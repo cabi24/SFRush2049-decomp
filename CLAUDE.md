@@ -10,7 +10,7 @@ This file helps Claude maintain context across sessions for the Rush 2049 N64 de
 
 ## Current Status
 
-**Phase**: 0 - Infrastructure Setup
+**Phase**: 1 - ROM Analysis (just started)
 **Last Updated**: 2025-12-06
 
 ### Completed
@@ -18,24 +18,32 @@ This file helps Claude maintain context across sessions for the Rush 2049 N64 de
 - [x] Cloned reference repos (rushtherock, sm64, mk64, perfect_dark, banjo-kazooie)
 - [x] Created lessons-learned.md from decomp research
 - [x] Set up agent definitions in .claude/agents/
-- [x] Verified ROM: `f79223f8060a530d0dc8683a923c3c60615aa0a0` (US, 12MB)
+- [x] Verified ROM (US, 12MB)
 - [x] Created project structure and README
+- [x] Converted ROM from V64 to Z64 format
+- [x] Configured splat (splat.us.yaml)
+- [x] Initial ROM disassembly (~18K lines MIPS assembly)
+- [x] Splat found 80+ potential file boundaries
 
 ### In Progress
-- [ ] Build system setup (Makefile)
-- [ ] splat configuration for ROM extraction
+- [ ] Segment ROM into individual code files
+- [ ] Identify libultra functions
+- [ ] Match functions to arcade source
 
 ### Not Started
-- [ ] Initial ROM analysis
-- [ ] Function identification
-- [ ] Any actual decompilation
+- [ ] Function decompilation
+- [ ] Build system refinement (IDO compiler)
 
 ## Key Files
 
 | File | Purpose |
 |------|---------|
-| `baserom.us.z64` | Original ROM (not in git) |
+| `baserom.us.z64` | Original ROM in Z64 format (not in git) |
 | `us.sha1` | ROM hash for verification |
+| `splat.us.yaml` | Splat configuration for ROM extraction |
+| `asm/us/1050.s` | Main disassembled code (~18K lines) |
+| `rush2049.us.ld` | Generated linker script |
+| `symbol_addrs.us.txt` | Discovered symbols |
 | `.specify/specs/plan.md` | Implementation plan with phases |
 | `.specify/specs/tasks.md` | Detailed task breakdown (144 tasks) |
 | `reference/lessons-learned.md` | Best practices from other decomps |
@@ -63,8 +71,11 @@ The arcade source is organized as:
 
 ### ROM Info
 - Size: 12,582,912 bytes (12 MB)
-- Format: V64 (byte-swapped)
-- SHA-1: f79223f8060a530d0dc8683a923c3c60615aa0a0
+- Format: Z64 (big-endian, converted from V64)
+- SHA-1: 3f99351d7bb61656614bdb2aa1a90cfe55d1922c
+- Internal name: "uRhs2 40 9"
+- Cartridge ID: UR
+- Graphics microcode: F3DEX2 (assumed)
 
 ## Build Commands (When Ready)
 
@@ -103,11 +114,11 @@ See `.claude/agents/` for specialized agents:
 
 ## Next Steps (When Resuming)
 
-1. Finish build system (Makefile from MK64)
-2. Set up splat for ROM extraction
-3. Run initial ROM analysis
-4. Begin function identification
-5. Start with game state machine (most portable)
+1. Update splat.us.yaml with file boundaries from suggestions
+2. Re-run splat to split into individual .s files
+3. Search for string references to identify functions
+4. Start matching functions to arcade source
+5. Begin with simple/recognizable functions first
 
 ## Quick Reference
 
