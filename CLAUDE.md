@@ -10,7 +10,7 @@ This file helps Claude maintain context across sessions for the Rush 2049 N64 de
 
 ## Current Status
 
-**Phase**: 1 - ROM Analysis (just started)
+**Phase**: 1 - ROM Analysis (code segmented)
 **Last Updated**: 2025-12-06
 
 ### Completed
@@ -23,16 +23,17 @@ This file helps Claude maintain context across sessions for the Rush 2049 N64 de
 - [x] Converted ROM from V64 to Z64 format
 - [x] Configured splat (splat.us.yaml)
 - [x] Initial ROM disassembly (~18K lines MIPS assembly)
-- [x] Splat found 80+ potential file boundaries
+- [x] Splat found 85 file boundaries
+- [x] Split code into 88 individual .s files
 
 ### In Progress
-- [ ] Segment ROM into individual code files
 - [ ] Identify libultra functions
 - [ ] Match functions to arcade source
+- [ ] Begin function decompilation
 
 ### Not Started
-- [ ] Function decompilation
 - [ ] Build system refinement (IDO compiler)
+- [ ] Progress tracking script
 
 ## Key Files
 
@@ -41,7 +42,9 @@ This file helps Claude maintain context across sessions for the Rush 2049 N64 de
 | `baserom.us.z64` | Original ROM in Z64 format (not in git) |
 | `us.sha1` | ROM hash for verification |
 | `splat.us.yaml` | Splat configuration for ROM extraction |
-| `asm/us/1050.s` | Main disassembled code (~18K lines) |
+| `asm/us/*.s` | 88 disassembled code files |
+| `asm/us/5610.s` | Largest code file (125KB) - likely game logic |
+| `asm/us/34A0.s` | Second largest (124KB) - math/physics? |
 | `rush2049.us.ld` | Generated linker script |
 | `symbol_addrs.us.txt` | Discovered symbols |
 | `.specify/specs/plan.md` | Implementation plan with phases |
