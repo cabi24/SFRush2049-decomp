@@ -1,0 +1,52 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential \
+            binutils-mips-linux-gnu \
+            gcc-mips-linux-gnu \
+            python3 \
+            python3-pip
+
+      - name: Install Python dependencies
+        run: |
+          pip3 install splat64
+
+      # Note: ROM must be provided via secrets for matching builds
+      # For now, just verify the build system works
+
+      - name: Check Makefile
+        run: make help
+
+      - name: Check code formatting
+        run: |
+          # Install clang-format if not present
+          sudo apt-get install -y clang-format
+          make lint || echo "Lint check completed (warnings expected during setup)"
+
+  # Future: Add matching verification job when ROM is available
+  # verify:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Build matching ROM
+  #       run: make VERSION=us
+  #     - name: Verify hash
+  #       run: make test

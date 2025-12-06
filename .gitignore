@@ -1,0 +1,44 @@
+# ROMs (do not commit copyrighted content)
+*.z64
+*.n64
+*.v64
+baserom.*
+
+# Build artifacts
+build/
+*.o
+*.d
+*.elf
+*.bin
+
+# Extracted assets (regenerated from ROM)
+assets/extracted/
+
+# Tool binaries
+tools/ido-recomp/*/cc
+tools/ido-recomp/*/as
+tools/armips/armips
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Spec Kit local state
+.specify/cache/
+
+# Claude Code
+.claude/settings.local.json
+reference/repos/
