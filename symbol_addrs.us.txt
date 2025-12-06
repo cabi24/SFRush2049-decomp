@@ -1,0 +1,2 @@
+// Visit https://github.com/ethteck/splat/wiki/Adding-Symbols for documentation about this file
+entrypoint = 0x00800004; // type:func

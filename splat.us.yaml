@@ -1,0 +1,98 @@
+# San Francisco Rush 2049 (N64) - US Version
+# Splat configuration for ROM extraction and decompilation
+
+name: San Francisco Rush 2049 (US)
+sha1: 3f99351d7bb61656614bdb2aa1a90cfe55d1922c
+
+options:
+  basename: rush2049
+  target_path: baserom.us.z64
+  elf_path: build/us/rush2049.us.elf
+  base_path: .
+  platform: n64
+  compiler: IDO  # Likely IDO 5.3 or 7.1
+
+  # Output paths
+  asm_path: asm/us
+  src_path: src
+  build_path: build/us
+  asset_path: assets/us
+  cache_path: .splat_cache
+
+  # Build settings
+  create_asm_dependencies: True
+  ld_script_path: rush2049.us.ld
+  ld_dependencies: True
+
+  # Analysis settings
+  find_file_boundaries: True
+  header_encoding: ASCII
+
+  # Compiler/assembler settings
+  o_as_suffix: True
+  use_legacy_include_asm: False
+  mips_abi_float_regs: o32
+
+  section_order: [".text", ".data", ".rodata", ".bss"]
+  auto_link_sections: [".data", ".rodata", ".bss"]
+
+  # Symbol files
+  symbol_addrs_path:
+    - symbol_addrs.us.txt
+  reloc_addrs_path:
+    - reloc_addrs.us.txt
+
+  undefined_funcs_auto_path: undefined_funcs_auto.us.txt
+  undefined_syms_auto_path: undefined_syms_auto.us.txt
+
+  # Extensions
+  extensions_path: tools/splat_ext
+
+  # String detection
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+  rodata_string_guesser_level: 2
+  data_string_guesser_level: 2
+
+  # N64 SDK symbols
+  libultra_symbols: True
+  hardware_regs: True
+
+  # Graphics microcode (Rush 2049 likely uses F3DEX2)
+  gfx_ucode: f3dex2
+
+segments:
+  # N64 ROM Header (0x00 - 0x40)
+  - name: header
+    type: header
+    start: 0x0
+
+  # IPL3 Boot code (0x40 - 0x1000)
+  - name: ipl3
+    type: bin
+    start: 0x40
+
+  # Entry point / boot code
+  - name: entry
+    type: code
+    start: 0x1000
+    vram: 0x80000400
+    subsegments:
+      - [0x1000, hasm]
+
+  # Main code segment (placeholder - will be refined with analysis)
+  - name: main
+    type: code
+    start: 0x1050
+    vram: 0x80000450
+    follows_vram: entry
+    subsegments:
+      - [0x1050, asm]  # Will be split into individual files after analysis
+
+  # Remaining ROM data (placeholder - will be segmented after analysis)
+  - type: bin
+    start: 0x10000
+    name: data
+
+  # End of ROM
+  - [0xC00000]
