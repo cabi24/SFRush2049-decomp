@@ -111,9 +111,18 @@ See `symbol_addrs.us.txt` for complete list.
 |--------------|-------------------|------------|
 | func_8000C050 | GUTS/os/dll.c:dll_remove | High |
 | func_8000C090 | GUTS/os/dll.c:dll_init | High |
-| func_80002238 | game/init.c:game_init | High |
+| func_800020F0 (main) | game/init.c:start() | Medium |
+| func_80002238 (game_init) | game/init.c:init() | Low-Medium |
+| func_800024FC (audio_thread) | game/init.c:game_loop() | Low-Medium |
 | func_800015F0 | game/visuals.c | Medium |
 | func_80001B44 | game/camera.c | Medium |
+
+**Key Insight from Codex Analysis (2025-12-07)**:
+- N64 `game_init` (0x80002238) is **NOT** the same as arcade `game_init()`
+- N64 game_init is OS bootstrap (message queues, ROM decompression, thread spawning)
+- Arcade game_init (game.c:494-601) is gameplay setup (NVRAM options, difficulty, HUD)
+- The actual game loop target is `func_800FD464` (called from main thread in infinite loop)
+- Game logic is likely in compressed ROM data decompressed at runtime to 0x8010FD80+
 
 ### Assembly File Analysis
 | File | Size | Content |
@@ -251,21 +260,23 @@ enum GState {
 
 When starting a new session:
 1. Read this file first
-2. Check `symbol_addrs.us.txt` for identified functions (175 total)
+2. Check `symbol_addrs.us.txt` for identified functions (228 total, 100% coverage)
 3. Check git log for recent changes
 4. Run `make progress` (when available) to see status
 
 ## Next Session TODO
 
-**Priority**: Continue symbol discovery and begin actual decompilation
-1. **1050.s analysis incomplete** - Contains ~22 scheduler/VI manager functions that need identification
-2. **Start matching game functions** to arcade source in `reference/repos/rushtherock/`
-3. **Decompile a simple game function** to test the workflow
-4. **Large .s files to analyze**: 5610.s (125KB), 34A0.s (122KB) - likely game logic
+**Priority**: Investigate decompressed game code and arcade comparisons
+1. **Analyze decompressed code region** at 0x8010FD80+ - this is where game logic lives
+2. **Match DLL functions** to arcade source (dll_remove, dll_init already matched to GUTS/os/dll.c)
+3. **Continue matching game functions** to arcade source in `reference/repos/rushtherock/`
+4. **Decompile a simple game function** to test the workflow
+
+**Key Discovery**: Game logic is loaded dynamically from compressed ROM to 0x8010FD80+. The main game loop at `func_800FD464` is in this region.
 
 **Useful Codex command for function ID**:
 ```bash
 codex exec --dangerously-bypass-approvals-and-sandbox "Analyze asm/us/XXXX.s and identify functions..."
 ```
 
-**Current stats**: 175 functions identified, 32 C files, 6033 lines decompiled, ~15-20% complete
+**Current stats**: 228 functions identified (100% coverage), 32 C files, ~6033 lines decompiled
