@@ -290,13 +290,30 @@ When starting a new session:
 3. **Continue matching game functions** to arcade source in `reference/repos/rushtherock/`
 4. **Decompile a simple game function** to test the workflow
 
-### Compressed Game Code (EXTRACTED 2025-12-07!)
+### Compressed Game Code (EXTRACTED & ANALYZED 2025-12-07!)
 - **ROM offset**: 0xB0CB10 (compressed DEFLATE data)
 - **RAM destination**: 0x80086A50 - 0x80124AF0 (from D_80086A50 in init)
 - **Decompressed size**: 647,072 bytes (~632 KB)
-- **Functions found**: 752 functions, 1480 return instructions
+- **Functions found**: 767 unique call targets, 752 function prologues
 - **Key function**: `func_800FD464` = **game_loop** (704 bytes) - the main per-frame game logic!
 - **Content**: RDP graphics commands, game rendering, actual game logic
+
+**Largest Functions (likely core game logic)**:
+| Address | Size | Description |
+|---------|------|-------------|
+| 0x80099BFC | 10KB | render_object - 3D model rendering (uses G_DL) |
+| 0x80087A08 | 10KB | render_large - major rendering function |
+| 0x800F93A0 | 5.6KB | unknown - needs analysis |
+| 0x800A04C4 | 2.7KB | render_scene - viewport/camera setup (G_SETGEOMETRYMODE) |
+| 0x800CA3B4 | 2.5KB | game_update - called from game_loop |
+
+**Key Global Variables**:
+| Address | References | Likely Purpose |
+|---------|------------|----------------|
+| 0x801461D0 | 160 | Main game struct |
+| 0x801174B4 | 110 | gstate - game state variable |
+| 0x80152818 | 89 | Player/car state array |
+| 0x80142AFC | - | Frame counter |
 
 **Tools created**:
 - `tools/extract_game_code.py` - Extracts and decompresses game code from ROM

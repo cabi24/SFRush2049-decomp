@@ -335,3 +335,13 @@ func_800B811C = 0x800B811C; // called in game_loop sequence
 func_800DB81C = 0x800DB81C; // conditional game_loop call
 func_800FBF88 = 0x800FBF88; // conditional game_loop call
 func_800B37E8 = 0x800B37E8; // audio/sound related (called with -1 as stop)
+
+// Key global variables in game data section
+D_801461D0 = 0x801461D0; // Most referenced global (160 refs) - likely main game struct
+D_801174B4 = 0x801174B4; // gstate candidate (110 refs) - checked in game_loop
+D_80152818 = 0x80152818; // Frequently used (89 refs) - player/car state?
+D_80152770 = 0x80152770; // Frequently used (86 refs) - player/car state?
+D_80142728 = 0x80142728; // (77 refs)
+D_8014A110 = 0x8014A110; // (74 refs) - paired with A250
+D_8014A250 = 0x8014A250; // (74 refs) - paired with A110
+D_80142AFC = 0x80142AFC; // Frame counter (incremented each frame in game_loop)
