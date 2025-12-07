@@ -109,13 +109,31 @@ See `symbol_addrs.us.txt` for complete list.
 **Arcade Source Matches**:
 | N64 Function | Arcade Equivalent | Confidence |
 |--------------|-------------------|------------|
+| **func_800FD464** (game_loop) | **game/game.c:game()** | **High** |
 | func_8000C050 | GUTS/os/dll.c:dll_remove | High |
 | func_8000C090 | GUTS/os/dll.c:dll_init | High |
 | func_800020F0 (main) | game/init.c:start() | Medium |
 | func_80002238 (game_init) | game/init.c:init() | Low-Medium |
-| func_800024FC (audio_thread) | game/init.c:game_loop() | Low-Medium |
+| func_800024FC (game_thread) | game/init.c:game_loop() wrapper | Low-Medium |
 | func_800015F0 | game/visuals.c | Medium |
 | func_80001B44 | game/camera.c | Medium |
+
+**Arcade game() State Machine** (game.c:714+):
+```c
+switch (gstate) {
+    case ATTRACT:   attract();    break;
+    case TRKSEL:    TrackSel();   break;
+    case CARSEL:    CarSel();     break;
+    case PREPLAY:   preplay();    break;
+    case COUNTDOWN: CountDown();  break;
+    case PREPLAY2:  /* final setup */ break;
+    case PLAYGAME:  /* active racing */ break;
+    case ENDGAME:   endgame();    break;
+    case GAMEOVER:  gameover();   break;
+    case HISCORE:   hiscore();    break;
+}
+```
+The N64's func_800FD464 should implement this same state machine.
 
 **Key Insight from Codex Analysis (2025-12-07)**:
 - N64 `game_init` (0x80002238) is **NOT** the same as arcade `game_init()`
