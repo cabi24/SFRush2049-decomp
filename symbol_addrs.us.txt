@@ -323,3 +323,15 @@ func_800C9AE0 = 0x800C9AE0; // called from game_loop
 func_800EDDC0 = 0x800EDDC0; // called from game_loop
 func_800C997C = 0x800C997C; // called from game_loop
 
+
+// Large game functions (from analysis 2025-12-07)
+func_80099BFC = 0x80099BFC; // render_object (10236 bytes) - 3D model rendering, uses G_DL
+func_80087A08 = 0x80087A08; // render_large (10048 bytes) - large rendering function
+func_800A04C4 = 0x800A04C4; // render_scene (2720 bytes) - scene setup, viewport modes, uses G_SETGEOMETRYMODE
+func_800CA3B4 = 0x800CA3B4; // game_update (2544 bytes) - called from game_loop
+func_800F733C = 0x800F733C; // called in game_loop sequence
+func_800B0868 = 0x800B0868; // called in game_loop sequence  
+func_800B811C = 0x800B811C; // called in game_loop sequence
+func_800DB81C = 0x800DB81C; // conditional game_loop call
+func_800FBF88 = 0x800FBF88; // conditional game_loop call
+func_800B37E8 = 0x800B37E8; // audio/sound related (called with -1 as stop)
