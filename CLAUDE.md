@@ -122,7 +122,7 @@ See `symbol_addrs.us.txt` for complete list.
 - N64 game_init is OS bootstrap (message queues, ROM decompression, thread spawning)
 - Arcade game_init (game.c:494-601) is gameplay setup (NVRAM options, difficulty, HUD)
 - The actual game loop target is `func_800FD464` (called from main thread in infinite loop)
-- Game logic is likely in compressed ROM data decompressed at runtime to 0x8010FD80+
+- Game logic is in compressed ROM data decompressed at runtime to 0x80086A50 (confirmed!)
 
 ### Assembly File Analysis
 | File | Size | Content |
@@ -274,10 +274,11 @@ When starting a new session:
 
 ### Compressed Game Code (EXTRACTED 2025-12-07!)
 - **ROM offset**: 0xB0CB10 (compressed DEFLATE data)
-- **RAM destination**: 0x8010FD80 - 0x801AE080
+- **RAM destination**: 0x80086A50 - 0x80124AF0 (from D_80086A50 in init)
 - **Decompressed size**: 647,072 bytes (~632 KB)
 - **Functions found**: 752 functions, 1480 return instructions
-- **Content**: RDP graphics commands, game rendering, actual game logic!
+- **Key function**: `func_800FD464` = **game_loop** (704 bytes) - the main per-frame game logic!
+- **Content**: RDP graphics commands, game rendering, actual game logic
 
 **Tools created**:
 - `tools/extract_game_code.py` - Extracts and decompresses game code from ROM

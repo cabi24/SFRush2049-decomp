@@ -15,7 +15,7 @@ from pathlib import Path
 
 # ROM layout constants (from init.c and Codex analysis)
 ROM_COMPRESSED_DATA = 0xB0CB10  # Source offset in ROM
-RAM_DEST_START = 0x8010FD80     # Destination in RAM after decompression
+RAM_DEST_START = 0x80086A50     # Destination in RAM after decompression (from init.c D_80086A50)
 HEADER_SIZE = 0x1000            # N64 ROM header + IPL3
 
 def read_rom(rom_path):

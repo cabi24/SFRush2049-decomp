@@ -316,3 +316,10 @@ osSpTaskLoad = 0x8000DF80; // type:func load RSP task microcode and data
 
 // More timer functions (EF80.s)
 __osInsertTimer = 0x8000E390; // type:func insert timer into sorted timer queue
+
+// Compressed game code functions (decompressed at 0x80086A50)
+func_800FD464 = 0x800FD464; // game_loop - main per-frame game logic (704 bytes)
+func_800C9AE0 = 0x800C9AE0; // called from game_loop
+func_800EDDC0 = 0x800EDDC0; // called from game_loop
+func_800C997C = 0x800C997C; // called from game_loop
+
