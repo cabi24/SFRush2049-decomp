@@ -11,7 +11,7 @@ This file helps Claude maintain context across sessions for the Rush 2049 N64 de
 ## Current Status
 
 **Phase**: 2 - Decompilation Ready (MATCHING BUILD ACHIEVED!)
-**Last Updated**: 2025-12-06
+**Last Updated**: 2025-12-07
 
 ### Completed
 - [x] Project planning via Spec Kit (constitution, spec, plan, tasks)
@@ -34,23 +34,23 @@ This file helps Claude maintain context across sessions for the Rush 2049 N64 de
 - [ ] Match functions to arcade source
 - [ ] Begin function decompilation
 
-### Identified Functions (202 total, 228 in assembly = 88.6% coverage, updated 2025-12-07)
+### Identified Functions (228/228 = 100% coverage! updated 2025-12-07)
 | Category | Count | Examples |
 |----------|-------|----------|
-| startup | 2 | entrypoint, main |
-| libc | 7 | memchr, memset, strchr, strlen, memcpy, bzero, bcopy |
+| startup | 4 | entrypoint, main, idle_thread_entry, audio_thread_entry |
+| libc | 8 | memchr, memset, strchr, strlen, memcpy, bzero, bcopy, bzero_alt |
 | libm | 10 | modf, modff, __isinf, __isnan, sinf, cosf, sqrtf, fcvt, __ecvt_internal, __round_helper |
-| libultra os | 64 | osCreateMesgQueue, osJamMesg, osPiStartDma, osSpTaskYielded, osDpWait, osAiSetFrequency, osContStartReadData, osSetTimer, __osException, __osSetCompare, __osViSwapContext, etc. |
+| libultra os | 70 | osCreateMesgQueue, osJamMesg, osPiStartDma, osSpTaskYielded, osDpWait, osAiSetFrequency, osContStartReadData, osSetTimer, osCreatePiManager, osCreateViManager, osInvalICache, osWritebackDCache, osSpTaskLoad, __osException, __osSetCompare, __osViSwapContext, etc. |
 | libultra gu | 10 | guMtxIdentF, guMtxF2L, guMtxL2F, guMtxIdent, guOrthoF, guOrtho, guPerspectiveF, guPerspective, guLookAtF, guLookAt |
-| libultra pfs | 17 | osPfsInitPak, osPfsChecker, osPfsReadWriteFile, osPfsFreeBlocks, osPfsFileState, __osPfsSelectBank, __osPfsCheckPages, __osPfsPageCheck, __osPfsDeclearPage, __osContRamRead, __osRepairId, __osCheckId, __osGetId, __osIdCheckSum |
-| controller | 5 | osContStartQuery, osContGetQuery, osContStartReadData, osContGetReadData, __osPackReadData |
+| libultra pfs | 25 | osPfsInitPak, osPfsChecker, osPfsReadWriteFile, osPfsFreeBlocks, osPfsFileState, osPfsAllocate, osPfsDeleteFile, osPfsRename, osPfsFindFile, osPfsGetFileStat, osPfsGetFileSize, osPfsReAllocate, __osPfsSelectBank, __osPfsCheckPages, etc. |
+| controller | 8 | osContStartQuery, osContGetQuery, osContStartReadData, osContGetReadData, __osPackReadData, __osContBuildPacket, __osContGetStatus, __osContRamReset |
 | libultra motor | 4 | osMotorInit, __osMotorAccess, osMotorStart, osMotorStop |
-| libultra vi | 3 | osViModeTableGet, osViModeNtscLan1, osViModeNtscLpn1 |
+| libultra vi | 4 | osViModeTableGet, osViModeNtscLan1, osViModeNtscLpn1, vi_manager_main |
 | libultra sp | 2 | osSpTaskLoad, __osPiReadDeviceType |
 | libgcc FP | 8 | __fixdfdi, __floatdidf, etc. |
 | libgcc 64-bit | 9 | __lshrdi3, __udivdi3, __muldi3, etc. |
-| inflate/decomp | 10 | inflate_entry, inflate_loop, huft_build, lzss_decode, etc. |
-| timer queue | 9 | dll_remove, dll_init, dll_update, dll_reschedule, dll_insert, dll_get_priority, __osEnqueueThread, __osPopThread, __osDispatchThread |
+| inflate/decomp | 16 | inflate_entry, inflate_loop, huft_build, lzss_decode, inflate_read_bits, inflate_needbits, inflate_getbits, inflate_io_wait, inflate_flush_window, inflate_free_window, etc. |
+| timer queue | 14 | dll_remove, dll_init, dll_update, dll_reschedule, dll_insert, dll_get_priority, dll_get_data, dll_set_data, __osEnqueueThread, __osPopThread, __osDispatchThread, __osTimerInterrupt, __osGetTimerValue, __osInsertTimer |
 | display/render | 8 | display_update, viewport_setup, get_viewport_pos, display_mode_tick, get_tv_offset, apply_display_mode |
 | game init | 1 | game_init |
 | utility | 3 | checksum8, checksum16_adler, comm_parse |
