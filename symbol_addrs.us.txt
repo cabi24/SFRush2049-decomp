@@ -347,6 +347,18 @@ func_800FBF88 = 0x800FBF88; // state_transition - conditional state transition
 func_800B37E8 = 0x800B37E8; // sound_control - audio/sound (called with -1 as stop signal)
 func_800B358C = 0x800B358C; // sound_stop - stop sound (called when engine stops)
 
+// High-frequency utility functions (called 100+ times)
+func_800B4200 = 0x800B4200; // slot_state_setup - player/slot state management (171 calls)
+func_800B4208 = 0x800B4208; // slot_state_init - player slot initialization
+func_800B74A0 = 0x800B74A0; // dispatch_handler - event dispatch (152 calls)
+func_800B71D4 = 0x800B71D4; // state_utility - state helper (125 calls)
+func_800B3FA4 = 0x800B3FA4; // object_utility - object management (107 calls)
+func_800B3F50 = 0x800B3F50; // object_helper - object helper (77 calls)
+func_8008D6B0 = 0x8008D6B0; // math_utility - math/vector utility (67 calls)
+func_800B65B4 = 0x800B65B4; // render_helper - rendering helper (65 calls)
+func_8008AE8C = 0x8008AE8C; // model_utility - model/mesh utility (63 calls)
+func_80094EC8 = 0x80094EC8; // input_handler - input processing (60 calls)
+
 // Key global variables in game data section
 D_801461D0 = 0x801461D0; // Most referenced global (160 refs) - likely main game struct
 D_801174B4 = 0x801174B4; // gstate candidate (110 refs) - checked in game_loop
