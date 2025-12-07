@@ -34,7 +34,7 @@ This file helps Claude maintain context across sessions for the Rush 2049 N64 de
 - [ ] Match functions to arcade source
 - [ ] Begin function decompilation
 
-### Identified Functions (197 total, updated 2025-12-07)
+### Identified Functions (202 total, 228 in assembly = 88.6% coverage, updated 2025-12-07)
 | Category | Count | Examples |
 |----------|-------|----------|
 | startup | 2 | entrypoint, main |
@@ -42,7 +42,7 @@ This file helps Claude maintain context across sessions for the Rush 2049 N64 de
 | libm | 10 | modf, modff, __isinf, __isnan, sinf, cosf, sqrtf, fcvt, __ecvt_internal, __round_helper |
 | libultra os | 64 | osCreateMesgQueue, osJamMesg, osPiStartDma, osSpTaskYielded, osDpWait, osAiSetFrequency, osContStartReadData, osSetTimer, __osException, __osSetCompare, __osViSwapContext, etc. |
 | libultra gu | 10 | guMtxIdentF, guMtxF2L, guMtxL2F, guMtxIdent, guOrthoF, guOrtho, guPerspectiveF, guPerspective, guLookAtF, guLookAt |
-| libultra pfs | 15 | osPfsInitPak, osPfsChecker, osPfsReadWriteFile, osPfsFreeBlocks, __osPfsSelectBank, __osPfsCheckPages, __osPfsPageCheck, __osPfsDeclearPage, __osContRamRead, __osRepairId, __osCheckId, __osGetId, __osIdCheckSum |
+| libultra pfs | 17 | osPfsInitPak, osPfsChecker, osPfsReadWriteFile, osPfsFreeBlocks, osPfsFileState, __osPfsSelectBank, __osPfsCheckPages, __osPfsPageCheck, __osPfsDeclearPage, __osContRamRead, __osRepairId, __osCheckId, __osGetId, __osIdCheckSum |
 | controller | 5 | osContStartQuery, osContGetQuery, osContStartReadData, osContGetReadData, __osPackReadData |
 | libultra motor | 4 | osMotorInit, __osMotorAccess, osMotorStart, osMotorStop |
 | libultra vi | 3 | osViModeTableGet, osViModeNtscLan1, osViModeNtscLpn1 |
@@ -51,11 +51,11 @@ This file helps Claude maintain context across sessions for the Rush 2049 N64 de
 | libgcc 64-bit | 9 | __lshrdi3, __udivdi3, __muldi3, etc. |
 | inflate/decomp | 10 | inflate_entry, inflate_loop, huft_build, lzss_decode, etc. |
 | timer queue | 9 | dll_remove, dll_init, dll_update, dll_reschedule, dll_insert, dll_get_priority, __osEnqueueThread, __osPopThread, __osDispatchThread |
-| display/render | 5 | display_update, viewport_setup, get_viewport_pos, etc. |
+| display/render | 8 | display_update, viewport_setup, get_viewport_pos, display_mode_tick, get_tv_offset, apply_display_mode |
 | game init | 1 | game_init |
 | utility | 3 | checksum8, checksum16_adler, comm_parse |
-| **scheduler** | 13 | osCreateScheduler, osScAddClient, __scMain, __scSchedule, __scHandleRetrace, __scHandleRSP, __scHandleRDP, __scTaskReady, __scExecTask, __scAppendList, __scExec, __scHandlePreNMI, __scScheduleCore |
-| **VI timing** | 9 | viTickStart, viEnableAccum, viDisableAccum, viUpdateTime, viScheduleTick, viAddTicks, viGetTimeToDeadline, viDeadlinePassed, viStub |
+| scheduler | 13 | osCreateScheduler, osScAddClient, __scMain, __scSchedule, __scHandleRetrace, __scHandleRSP, __scHandleRDP, __scTaskReady, __scExecTask, __scAppendList, __scExec, __scHandlePreNMI, __scScheduleCore |
+| VI timing | 9 | viTickStart, viEnableAccum, viDisableAccum, viUpdateTime, viScheduleTick, viAddTicks, viGetTimeToDeadline, viDeadlinePassed, viStub |
 
 See `symbol_addrs.us.txt` for complete list.
 

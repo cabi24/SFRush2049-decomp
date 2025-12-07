@@ -240,3 +240,12 @@ viAddTicks = 0x8000153C; // type:func add ticks to deadline
 viGetTimeToDeadline = 0x80001578; // type:func get float time until deadline
 viDeadlinePassed = 0x800015BC; // type:func check if deadline passed
 viStub = 0x800015DC; // type:func no-op stub
+
+// Display mode functions (21F0.s) - newly identified
+display_mode_tick = 0x80001D60; // type:func countdown and apply pending display mode
+get_tv_offset = 0x80001DFC; // type:func return TV-type specific offset (0 for PAL=0, 0xE for NTSC, 0x1C for other)
+apply_display_mode = 0x80001E58; // type:func apply current display mode settings
+
+// Controller pak PFS functions (F700.s) - newly identified
+osPfsReadWriteFile = 0x8000F2D0; // type:func read/write controller pak file pages
+osPfsFileState = 0x8000F3A4; // type:func get/verify controller pak file state
