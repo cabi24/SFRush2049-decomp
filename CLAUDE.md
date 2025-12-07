@@ -266,17 +266,30 @@ When starting a new session:
 
 ## Next Session TODO
 
-**Priority**: Investigate decompressed game code and arcade comparisons
-1. **Analyze decompressed code region** at 0x8010FD80+ - this is where game logic lives
-2. **Match DLL functions** to arcade source (dll_remove, dll_init already matched to GUTS/os/dll.c)
+**Priority**: Analyze extracted game code and match to arcade source
+1. **Analyze extracted game code** (build/game_code.bin, build/game_code_disasm.txt)
+2. **Match RDP/graphics functions** to arcade source (game contains render commands)
 3. **Continue matching game functions** to arcade source in `reference/repos/rushtherock/`
 4. **Decompile a simple game function** to test the workflow
 
-**Key Discovery**: Game logic is loaded dynamically from compressed ROM to 0x8010FD80+. The main game loop at `func_800FD464` is in this region.
+### Compressed Game Code (EXTRACTED 2025-12-07!)
+- **ROM offset**: 0xB0CB10 (compressed DEFLATE data)
+- **RAM destination**: 0x8010FD80 - 0x801AE080
+- **Decompressed size**: 647,072 bytes (~632 KB)
+- **Functions found**: 752 functions, 1480 return instructions
+- **Content**: RDP graphics commands, game rendering, actual game logic!
+
+**Tools created**:
+- `tools/extract_game_code.py` - Extracts and decompresses game code from ROM
+- `tools/simple_mips_disasm.py` - Basic MIPS disassembler (for Pi without toolchain)
+- `build/game_code.bin` - Extracted raw binary
+- `build/game_code_disasm.txt` - Full disassembly (163K lines)
 
 **Useful Codex command for function ID**:
 ```bash
 codex exec --dangerously-bypass-approvals-and-sandbox "Analyze asm/us/XXXX.s and identify functions..."
 ```
 
-**Current stats**: 228 functions identified (100% coverage), 32 C files, ~6033 lines decompiled
+**Current stats**:
+- Static ROM: 228 functions identified (100% coverage), 32 C files, ~6033 lines
+- Dynamic game code: 752 functions extracted, ready for analysis
