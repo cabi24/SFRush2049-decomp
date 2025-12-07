@@ -1,2 +1,242 @@
 // Visit https://github.com/ethteck/splat/wiki/Adding-Symbols for documentation about this file
-entrypoint = 0x00800004; // type:func
+entrypoint = 0x80000400; // type:func clears BSS, sets stack, jumps to main
+main = 0x800020F0; // type:func real main function (called from entrypoint)
+
+// libc functions
+memchr = 0x80002730; // type:func
+memset = 0x80002790; // type:func
+strchr = 0x80007C00; // type:func find char in string
+strlen = 0x80007C40; // type:func get string length
+memcpy = 0x80007C68; // type:func copy memory
+bcopy = 0x8000D2B0; // type:func copy memory with overlap handling (memmove)
+
+// libgcc floating point conversion functions (A5F0.s)
+__fixdfdi = 0x800099F0; // type:func double to long long
+__fixsfdi = 0x80009A0C; // type:func float to long long
+__fixunsdfdi = 0x80009A28; // type:func double to unsigned long long
+__fixunssfdi = 0x80009AC8; // type:func float to unsigned long long
+__floatdidf = 0x80009B64; // type:func long long to double
+__floatdisf = 0x80009B7C; // type:func long long to float
+__floatundidf = 0x80009B94; // type:func unsigned long long to double
+__floatundisf = 0x80009BC8; // type:func unsigned long long to float
+
+// libm functions (34A0.s, 9330.s)
+modf = 0x800028A0; // type:func split double into integer and fractional parts
+modff = 0x80002A64; // type:func float version of modf
+__isinf = 0x80002BF0; // type:func
+__isnan = 0x80002C60; // type:func
+sinf = 0x80008730; // type:func sine approximation using polynomial
+cosf = 0x800088F0; // type:func cosine approximation using polynomial
+fcvt = 0x80002CD0; // type:func convert float to string
+__ecvt_internal = 0x80003C3C; // type:func float to string internal helper
+__round_helper = 0x80004674; // type:func rounding helper for float conversion
+
+// libultra OS functions
+osCreateMesgQueue = 0x80006A00; // type:func
+osSetEventMesg = 0x80006A30; // type:func set event message
+osGetCount = 0x8000C970; // type:func read CP0 Count register
+osDpIsBusy = 0x8000D740; // type:func check if RDP is busy
+osGetActiveQueue = 0x8000C660; // type:func get active thread queue
+osSetThreadPri = 0x80006D40; // type:func set thread priority
+osSetIntMask = 0x80006DA0; // type:func set interrupt mask
+osSetTimer = 0x8000E3D0; // type:func set timer (initializes OSTimer and inserts to queue)
+osSetTimerIntr = 0x80006ED0; // type:func set timer interrupt
+osCreateThread = 0x80006F30; // type:func create thread
+osStartThread = 0x80007080; // type:func start thread
+osRecvMesg = 0x80007270; // type:func receive message from queue
+osSetGlobalIntMask = 0x800071D0; // type:func set global interrupt mask
+osSendMesg = 0x80007440; // type:func send message to queue
+osJamMesg = 0x800075E0; // type:func insert message at front of queue
+osViSetMode = 0x80007590; // type:func set VI mode
+osSpTaskYielded = 0x80007730; // type:func check if SP task yielded
+osGetTime = 0x800073B0; // type:func get system time
+osViGetFramebuffer = 0x800077D0; // type:func get configured framebuffer from context
+osViGetCurrentFramebuffer = 0x80007790; // type:func get current framebuffer
+osInvalICache = 0x80007810; // type:func invalidate I-cache
+osWritebackDCache = 0x80007CA0; // type:func writeback D-cache
+osDpSetNextBuffer = 0x80007B00; // type:func set RDP display list
+osDpWait = 0x80007B80; // type:func wait for RDP ready
+osDpGetCounters = 0x800099B0; // type:func get RDP performance counters
+
+// Audio interface functions
+osAiSetNextBuffer = 0x8000BE70; // type:func set AI DMA buffer
+osAiSetFrequency = 0x8000BF00; // type:func set AI sample rate
+__setfpcsr = 0x800049F0; // type:func
+osInvalDCache = 0x800084E0; // type:func invalidate D-cache
+bzero = 0x80008590; // type:func optimized zero-fill
+__osDisableInt = 0x8000C4B0; // type:func disable interrupts, return previous state
+__osRestoreInt = 0x8000C520; // type:func restore interrupt state
+osViInit = 0x8000C540; // type:func video interface initialization
+__osViSwapContext = 0x8000C670; // type:func swap VI context (writes to VI hardware registers)
+__osException = 0x8000C980; // type:func CPU exception handler (handwritten asm)
+osViSetSpecialFeatures = 0x80007D20; // type:func set VI special features (gamma, dither, etc.)
+osCauseGet = 0x8000DBB0; // type:func read CP0 Cause register
+osPiReadIo = 0x8000D7A0; // type:func read from physical I/O address
+osPiWriteWord = 0x8000D7F0; // type:func write word to cartridge space
+osPiRawReadWord = 0x800081D0; // type:func synchronized ROM word read with PI access control
+osPiInit = 0x8000DBC0; // type:func peripheral interface initialization
+osPiGetAccess = 0x8000DC10; // type:func acquire PI mutex
+osPiReleaseAccess = 0x8000DC54; // type:func release PI mutex
+osPiReadWord = 0x8000DC80; // type:func read word from cartridge
+osPiStartDma = 0x8000DCD0; // type:func start PI DMA transfer
+osPiSetDeviceTiming = 0x8000DDA0; // type:func configure PI bus timing registers
+__osPiRawStartDma = 0x80008630; // type:func PI raw DMA request via message queue
+__osTlbFlush = 0x8000D840; // type:func flush all TLB entries
+__osTlbInit = 0x8000D890; // type:func initialize TLB for 0xC0000000 region
+osPhysicalToVirtual = 0x80009C00; // type:func convert physical address to KSEG0 virtual
+osVirtualToPhysical = 0x8000D5C0; // type:func convert virtual address to physical
+__osSpDma = 0x8000D680; // type:func SP DMA transfer (RSP <-> RDRAM)
+__osSiRawStartDma = 0x8000E4B0; // type:func SI raw DMA to/from PIF
+osSiInit = 0x8000E560; // type:func serial interface initialization
+__osSiGetAccess = 0x8000E5B0; // type:func acquire SI mutex
+__osSiRelAccess = 0x8000E5F4; // type:func release SI mutex
+osContStartReadData = 0x8000E620; // type:func start controller read
+__osContBuildRequest = 0x8000E6F0; // type:func build controller request packet
+__osContParseResponse = 0x8000E7B4; // type:func parse controller response
+
+// Controller query/read functions (A330.s)
+osContStartQuery = 0x80009730; // type:func start controller status query
+osContGetQuery = 0x800097AC; // type:func get controller query results (wrapper for __osContGetInitData)
+osContStartReadData2 = 0x800097D0; // type:func alternative start controller read
+osContGetReadData = 0x80009854; // type:func parse PIF response into OSContPad
+__osPackReadData = 0x800098E0; // type:func pack read-buttons command into PIF buffer
+__osContRamRead = 0x8000E8D0; // type:func read from controller pak RAM
+__osContRamWrite = 0x8000EA98; // type:func write to controller pak RAM
+__osContAddressCrc = 0x8000F9F0; // type:func calculate address CRC for controller pak
+__osContDataCrc = 0x8000FA4C; // type:func calculate data CRC for controller pak
+__osPfsGetStatus = 0x8000E850; // type:func get controller pak status
+__osSetFpcCsr = 0x8000D790; // type:func set FP control/status register
+__osSetSR = 0x8000D770; // type:func set CP0 Status register
+__osGetSR = 0x8000D780; // type:func get CP0 Status register
+__osGetFpcCsr = 0x8000D790; // type:func get FP control/status register
+__osSpSetStatus = 0x8000D640; // type:func set RSP status register
+__osSpSetPc = 0x8000D650; // type:func set RSP program counter (only if halted)
+__osSpDeviceBusy = 0x8000D710; // type:func check if RSP is busy (bits 0x1C)
+
+// VI mode table functions (8440.s)
+osViModeTableGet = 0x80007840; // type:func get VI mode from table
+osViModeNtscLan1 = 0x8000794C; // type:func get NTSC LAN1 VI mode
+osViModeNtscLpn1 = 0x80007AB4; // type:func get NTSC LPN1 VI mode
+
+// OS/SP task functions (8A80.s)
+osSpTaskLoad = 0x80007E80; // type:func load RSP task into DMEM
+__osPiReadDeviceType = 0x80008128; // type:func read PI BSD DOM2 timing registers
+
+// Controller pak (osPfs) functions
+osPfsInitPak = 0x80009C10; // type:func initialize controller pak
+osPfsChecker = 0x8000B3E0; // type:func check controller pak integrity
+osPfsReadWriteFile = 0x8000A970; // type:func read/write controller pak file
+osPfsFreeBlocks = 0x8000B240; // type:func get free blocks on controller pak
+__osPfsSelectBank = 0x8000E850; // type:func select controller pak bank
+__osPfsCheckPages = 0x8000B918; // type:func build inode usage bitmap for integrity check
+__osPfsPageCheck = 0x8000BBF0; // type:func validate inode references, detect duplicates
+__osPfsDeclearPage = 0x8000ACA4; // type:func page allocation helper for file allocation
+__osIdCheckSum = 0x8000EB74; // type:func calculate ID checksum (Adler-like)
+__osRepairId = 0x8000EC70; // type:func repair/rewrite ID to 4 redundant pages
+__osCheckId = 0x8000EFC0; // type:func check ID consistency across 4 pages
+__osGetId = 0x8000F124; // type:func top-level ID retrieval during pak init
+
+// Utility functions (F700.s)
+checksum8 = 0x8000EB00; // type:func 8-bit checksum calculation
+checksum16_adler = 0x8000EB74; // type:func Adler-like checksum
+
+// Timer queue and linked list utilities (CC50.s, D0B0.s)
+dll_remove = 0x8000C050; // type:func remove node from singly-linked list
+dll_init = 0x8000C090; // type:func initialize timer queue (doubly-linked list)
+dll_update = 0x8000C11C; // type:func process expired timers (delta queue maintenance)
+dll_reschedule = 0x8000C294; // type:func reschedule timer interrupt (__osSetTimerIntr)
+dll_insert = 0x8000C308; // type:func insert timer into delta queue (__osInsertTimer)
+dll_get_priority = 0x8000C490; // type:func get thread priority helper
+__osSetCompare = 0x8000FB90; // type:func set CP0 Compare register for timer
+
+// Thread queue management (D550.s)
+__osEnqueueThread = 0x8000D0C4; // type:func enqueue thread to priority queue
+__osPopThread = 0x8000D10C; // type:func pop highest priority thread
+__osDispatchThread = 0x8000D11C; // type:func dispatch next runnable thread
+
+// DMA/decompression wrappers (3140.s)
+dma_queue_init = 0x80002540; // type:func initialize DMA message queue
+dma_wait = 0x80002598; // type:func wait for DMA completion
+dma_signal = 0x8000262C; // type:func signal DMA complete
+lzss_decompress = 0x80002660; // type:func LZSS decompress with DMA
+inflate_decompress = 0x800026C0; // type:func inflate decompress with DMA
+
+// Inflate/decompression (5610.s)
+inflate_entry = 0x80006814; // type:func main decompression entry point
+inflate_entry_alt = 0x8000697C; // type:func alternative entry (heap alloc)
+inflate_loop = 0x80006678; // type:func main inflate decompression loop
+inflate_block = 0x800064D4; // type:func decode one deflate block
+inflate_stored = 0x8000595C; // type:func handle uncompressed block (type 0)
+inflate_fixed = 0x80005B7C; // type:func handle fixed Huffman block (type 1)
+inflate_dynamic = 0x80005D44; // type:func handle dynamic Huffman block (type 2)
+huft_build = 0x80004D98; // type:func build Huffman decoding tables
+huft_alloc = 0x80004D6C; // type:func allocate Huffman table memory
+lzss_decode = 0x80004AFC; // type:func LZSS back-reference decoder
+
+// Game initialization (2CF0.s)
+game_init = 0x80002238; // type:func main game initialization, creates threads
+
+// Display/rendering (21F0.s)
+display_update = 0x800015F0; // type:func update display list with viewport interpolation
+viewport_setup = 0x80001B44; // type:func camera/viewport bounds setup
+get_viewport_pos = 0x80001E84; // type:func get current viewport position
+get_viewport_offset = 0x80001ECC; // type:func get viewport offset from base
+update_viewport = 0x80001F2C; // type:func update viewport with bounds checking
+
+// Matrix functions (9DE0.s)
+guMtxF2L = 0x800091E0; // type:func convert float matrix to N64 fixed-point
+guMtxL2F = 0x800092E0; // type:func convert N64 fixed-point to float matrix
+guMtxIdentF = 0x80009394; // type:func create 4x4 identity matrix (float)
+guMtxIdent = 0x8000941C; // type:func create N64 identity matrix (fixed-point)
+
+// Graphics utility functions (9660.s, 9820.s, 9AB0.s)
+guOrthoF = 0x80008A60; // type:func orthographic projection matrix (float)
+guOrtho = 0x80008BB4; // type:func orthographic projection matrix (fixed-point)
+guPerspectiveF = 0x80008C20; // type:func perspective projection matrix (float)
+guPerspective = 0x80008E50; // type:func perspective projection matrix (fixed-point)
+guLookAtF = 0x80008EB0; // type:func look-at view matrix (float)
+guLookAt = 0x80009168; // type:func look-at view matrix (fixed-point)
+sqrtf = 0x8000E3C0; // type:func square root (float)
+
+// Communication/data parsing (AB20.s)
+osMotorInit = 0x80009F20; // type:func rumble pak motor initialization
+__osMotorAccess = 0x8000A088; // type:func build rumble pak PIF command
+osMotorStart = 0x8000A194; // type:func start rumble pak motor (writes 0x01 to 0xC000)
+osMotorStop = 0x8000A2F0; // type:func stop rumble pak motor (writes 0x00 to 0xC000)
+
+// libgcc 64-bit arithmetic (E4F0.s)
+__lshrdi3 = 0x8000D8F0; // type:func logical right shift
+__umoddi3 = 0x8000D91C; // type:func unsigned modulo
+__udivdi3 = 0x8000D958; // type:func unsigned divide
+__ashldi3 = 0x8000D994; // type:func arithmetic left shift
+__divdi3 = 0x8000D9FC; // type:func signed divide
+__muldi3 = 0x8000DA58; // type:func multiply
+__qdivrem = 0x8000DA88; // type:func quotient and remainder
+__moddi3 = 0x8000DAE8; // type:func signed modulo
+__ashrdi3 = 0x8000DB84; // type:func arithmetic right shift
+
+// Scheduler functions (1050.s) - identified by Codex analysis
+osCreateScheduler = 0x80000450; // type:func create OSSc-like scheduler struct, sets up msg queues and events
+osScAddClient = 0x800005D4; // type:func link client into scheduler clientList
+__scMain = 0x8000063C; // type:func scheduler thread main loop (handles events 0x29A-0x29E)
+__scSchedule = 0x80000780; // type:func drain command queue, append tasks to pending lists
+__scHandleRetrace = 0x80000880; // type:func VI retrace handler, sends msgs to clients
+__scHandleRSP = 0x80000950; // type:func SP interrupt handler, finalizes RSP tasks
+__scHandleRDP = 0x80000ACC; // type:func DP interrupt handler, reschedules graphics
+__scTaskReady = 0x80000BA4; // type:func validate task timing before scheduling
+__scExecTask = 0x80000C54; // type:func process task msgQ, handle watchdog
+__scAppendList = 0x80000D6C; // type:func insert task into audio/gfx pending list
+__scExec = 0x80000E20; // type:func launch next task to RSP/RDP
+__scHandlePreNMI = 0x80000F88; // type:func handle pre-NMI for audio tasks
+__scScheduleCore = 0x80000FE8; // type:func main scheduler algorithm
+
+// VI timing functions (1050.s)
+viTickStart = 0x80001350; // type:func snapshot counter, compute frame duration
+viEnableAccum = 0x800013C0; // type:func enable time accumulation
+viDisableAccum = 0x800013DC; // type:func disable time accumulation
+viUpdateTime = 0x800013F4; // type:func update frame delta timing
+viScheduleTick = 0x800014F0; // type:func schedule next tick deadline
+viAddTicks = 0x8000153C; // type:func add ticks to deadline
+viGetTimeToDeadline = 0x80001578; // type:func get float time until deadline
+viDeadlinePassed = 0x800015BC; // type:func check if deadline passed
+viStub = 0x800015DC; // type:func no-op stub

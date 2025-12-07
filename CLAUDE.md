@@ -10,7 +10,7 @@ This file helps Claude maintain context across sessions for the Rush 2049 N64 de
 
 ## Current Status
 
-**Phase**: 1 - ROM Analysis (code segmented)
+**Phase**: 2 - Decompilation Ready (MATCHING BUILD ACHIEVED!)
 **Last Updated**: 2025-12-06
 
 ### Completed
@@ -25,14 +25,106 @@ This file helps Claude maintain context across sessions for the Rush 2049 N64 de
 - [x] Initial ROM disassembly (~18K lines MIPS assembly)
 - [x] Splat found 85 file boundaries
 - [x] Split code into 88 individual .s files
+- [x] **BUILD SYSTEM WORKING - ROM MATCHES!**
+- [x] Set up OptiPlex 3080 (20 cores, 31GB RAM) for fast builds
+- [x] Created hardware_regs.ld with N64 MMIO addresses
+- [x] Created tools/diff.py for function comparison
 
 ### In Progress
-- [ ] Identify libultra functions
 - [ ] Match functions to arcade source
 - [ ] Begin function decompilation
 
+### Identified Functions (197 total, updated 2025-12-07)
+| Category | Count | Examples |
+|----------|-------|----------|
+| startup | 2 | entrypoint, main |
+| libc | 7 | memchr, memset, strchr, strlen, memcpy, bzero, bcopy |
+| libm | 10 | modf, modff, __isinf, __isnan, sinf, cosf, sqrtf, fcvt, __ecvt_internal, __round_helper |
+| libultra os | 64 | osCreateMesgQueue, osJamMesg, osPiStartDma, osSpTaskYielded, osDpWait, osAiSetFrequency, osContStartReadData, osSetTimer, __osException, __osSetCompare, __osViSwapContext, etc. |
+| libultra gu | 10 | guMtxIdentF, guMtxF2L, guMtxL2F, guMtxIdent, guOrthoF, guOrtho, guPerspectiveF, guPerspective, guLookAtF, guLookAt |
+| libultra pfs | 15 | osPfsInitPak, osPfsChecker, osPfsReadWriteFile, osPfsFreeBlocks, __osPfsSelectBank, __osPfsCheckPages, __osPfsPageCheck, __osPfsDeclearPage, __osContRamRead, __osRepairId, __osCheckId, __osGetId, __osIdCheckSum |
+| controller | 5 | osContStartQuery, osContGetQuery, osContStartReadData, osContGetReadData, __osPackReadData |
+| libultra motor | 4 | osMotorInit, __osMotorAccess, osMotorStart, osMotorStop |
+| libultra vi | 3 | osViModeTableGet, osViModeNtscLan1, osViModeNtscLpn1 |
+| libultra sp | 2 | osSpTaskLoad, __osPiReadDeviceType |
+| libgcc FP | 8 | __fixdfdi, __floatdidf, etc. |
+| libgcc 64-bit | 9 | __lshrdi3, __udivdi3, __muldi3, etc. |
+| inflate/decomp | 10 | inflate_entry, inflate_loop, huft_build, lzss_decode, etc. |
+| timer queue | 9 | dll_remove, dll_init, dll_update, dll_reschedule, dll_insert, dll_get_priority, __osEnqueueThread, __osPopThread, __osDispatchThread |
+| display/render | 5 | display_update, viewport_setup, get_viewport_pos, etc. |
+| game init | 1 | game_init |
+| utility | 3 | checksum8, checksum16_adler, comm_parse |
+| **scheduler** | 13 | osCreateScheduler, osScAddClient, __scMain, __scSchedule, __scHandleRetrace, __scHandleRSP, __scHandleRDP, __scTaskReady, __scExecTask, __scAppendList, __scExec, __scHandlePreNMI, __scScheduleCore |
+| **VI timing** | 9 | viTickStart, viEnableAccum, viDisableAccum, viUpdateTime, viScheduleTick, viAddTicks, viGetTimeToDeadline, viDeadlinePassed, viStub |
+
+See `symbol_addrs.us.txt` for complete list.
+
+### Decompiled Source Files (32 C files, ~6033 lines)
+| File | Functions | Status |
+|------|-----------|--------|
+| src/libc/string.c | memchr, memset, strchr, strlen, memcpy | Complete |
+| src/libc/memory.c | bcopy (memmove with overlap handling) | Complete |
+| src/libm/math.c | modf, modff, __isinf, __isnan, sinf, cosf | Complete |
+| src/libgcc/ll.c | __lshrdi3, __ashldi3, __ashrdi3, __umoddi3, __udivdi3, __divdi3, __moddi3, __muldi3 | Complete (stubs) |
+| src/libultra/os_message.c | osCreateMesgQueue, osSendMesg, osRecvMesg | Complete |
+| src/libultra/os_vi.c | osViGetCurrentFramebuffer, osViSwapBuffer, osViSetMode, osViGetFramebuffer, osViSetSpecialFeatures | Complete |
+| src/libultra/os_vi_mgr.c | osViInit, vi_manager_thread | Complete |
+| src/libultra/os_event.c | osSetEventMesg | Complete |
+| src/libultra/os_thread.c | osCreateThread, osStartThread, osSetThreadPri, osSetIntMask | Complete |
+| src/libultra/os_cache.c | osInvalICache, osInvalDCache, bzero | Complete |
+| src/libultra/os_timer.c | osSetTimer, osSetTimerIntr, osGetTime (64-bit) | Complete |
+| src/libultra/os_int.c | __osDisableInt, __osRestoreInt | Complete |
+| src/libultra/os_dp.c | osDpSetNextBuffer, osDpWait, osDpGetCounters | Complete |
+| src/libultra/os_sp.c | __osSpSetStatus, __osSpSetPc, __osSpDeviceBusy | Complete |
+| src/libultra/os_sp_task.c | osSpTaskYielded, osViGetFramebuffer | Complete |
+| src/libultra/os_misc.c | osDpIsBusy, osVirtualToPhysical (full), osGetActiveQueue, osPhysicalToVirtual | Complete |
+| src/libultra/os_cpu.c | __osSetSR, __osGetSR, __osSetFpcCsr, __osGetFpcCsr (stubs) | Complete |
+| src/libultra/os_pi.c | osPiInit, osPiGetAccess, osPiReleaseAccess, osPiReadWord, osPiWriteWord, osPiReadIo, osPiRawReadWord, osPiStartDma, osPiSetDeviceTiming | Complete |
+| src/libultra/os_si.c | __osSiRawStartDma, osSiInit, __osSiGetAccess, __osSiRelAccess, osContStartReadData, __osContBuildRequest, __osContParseResponse | Complete |
+| src/libultra/os_ai.c | osAiSetNextBuffer, osAiSetFrequency | Complete |
+| src/libultra/os_sync.c | sync_init, sync_acquire, sync_release, sync_execute | Complete |
+| src/libultra/os_queue.c | __osEnqueueThread, __osPopThread, __osDispatchThread | Complete |
+| src/libultra/os_jam.c | osJamMesg | Complete |
+| src/game/gfx.c | gfx_init_dl, gfx_alloc_dl | Complete |
+| src/os/dll.c | dll_remove, dll_init, dll_update, dll_reschedule, dll_insert, dll_get_priority | Complete |
+| src/inflate/inflate.c | inflate_entry, inflate_loop, inflate_block, huft_build, inflate_codes, inflate_stored, inflate_fixed, inflate_dynamic | Complete |
+| src/game/init.c | main, game_init, thread entry points | Complete |
+| src/game/display.c | display_update, viewport_setup, display_process, get_tv_offset, get_viewport_pos, get_viewport_offset, update_viewport | Complete |
+| src/util/checksum.c | checksum8, checksum16_adler | Complete |
+| src/util/dma.c | dma_queue_init, dma_wait, dma_signal, lzss_decompress, inflate_decompress | Complete |
+| src/game/matrix.c | guMtxIdentF, guMtxF2L, guMtxL2F, guMtxIdent | Complete |
+| src/libultra/gu.c | guOrthoF, guOrtho, guPerspectiveF, guPerspective, guLookAtF, guLookAt | Complete |
+| include/types.h | Basic types, volatile types (vu32, etc.), vector/matrix types | Complete |
+| include/inflate/inflate.h | struct huft, inflate function prototypes | Complete |
+| include/PR/os_message.h | OSMesgQueue structure | Complete |
+| include/game/game.h | GState enum, game constants | Complete |
+
+### Key Discoveries from Agent Analysis
+
+**Decompression (5610.s)**: DEFLATE/zlib inflate implementation
+- Uses 4KB double-buffered sliding window
+- Async I/O for ROM access optimization
+- Can reference Perfect Dark's inflate.c as template
+
+**Arcade Source Matches**:
+| N64 Function | Arcade Equivalent | Confidence |
+|--------------|-------------------|------------|
+| func_8000C050 | GUTS/os/dll.c:dll_remove | High |
+| func_8000C090 | GUTS/os/dll.c:dll_init | High |
+| func_80002238 | game/init.c:game_init | High |
+| func_800015F0 | game/visuals.c | Medium |
+| func_80001B44 | game/camera.c | Medium |
+
+### Assembly File Analysis
+| File | Size | Content |
+|------|------|---------|
+| 5610.s | 125KB | Decompression code (LZSS, Huffman), inflate-style |
+| 34A0.s | 122KB | libm functions, float-to-string conversion |
+| 1050.s | 67KB | OS initialization, thread/message queue setup |
+| D580.s | 40KB | Exception handler (__osException) |
+
 ### Not Started
-- [ ] Build system refinement (IDO compiler)
+- [ ] IDO compiler setup (for matching C builds)
 - [ ] Progress tracking script
 
 ## Key Files
@@ -51,6 +143,9 @@ This file helps Claude maintain context across sessions for the Rush 2049 N64 de
 | `.specify/specs/tasks.md` | Detailed task breakdown (144 tasks) |
 | `reference/lessons-learned.md` | Best practices from other decomps |
 | `reference/repos/rushtherock/` | **ARCADE SOURCE** - primary reference |
+| `tools/mips_to_c/` | mips_to_c decompiler (auto-generates C) |
+| `tools/m2c.py` | Wrapper script for mips_to_c |
+| `tools/diff.py` | Function comparison tool |
 
 ## Architecture Notes
 
@@ -96,7 +191,12 @@ make progress
 make test
 
 # Diff a function
-./diff.py function_name -m -w
+./tools/diff.py function_name -m -w
+
+# Auto-decompile a function (generates initial C code)
+./tools/m2c.py func_80006A00           # By function name
+./tools/m2c.py asm/us/5610.s -f 0      # First function in file
+./tools/m2c.py asm/us/7600.s           # All functions in file
 ```
 
 ## Agent Roles
@@ -111,17 +211,20 @@ See `.claude/agents/` for specialized agents:
 
 ## Development Environment
 
-- **Primary**: Raspberry Pi (current, for light work)
-- **Faster machine**: To be set up for heavy compilation
+- **Primary Build Machine**: OptiPlex 3080 WSL (20 cores, 31GB RAM)
+  - SSH: `ssh -p 2222 user@optiplex3080`
+  - Sudo without password enabled
+  - 10x faster builds than Raspberry Pi
+- **Light Work**: Raspberry Pi (current terminal)
 - **Spec Kit**: Installed via `uv tool install specify-cli`
 
 ## Next Steps (When Resuming)
 
-1. Update splat.us.yaml with file boundaries from suggestions
-2. Re-run splat to split into individual .s files
-3. Search for string references to identify functions
-4. Start matching functions to arcade source
-5. Begin with simple/recognizable functions first
+1. Continue decompiling library functions (remaining libm, libultra)
+2. Set up IDO compiler for matching C builds
+3. Match N64 game functions to arcade source code
+4. Identify key game structures (car state, track data, etc.)
+5. Begin systematic game function decompilation
 
 ## Quick Reference
 
@@ -148,6 +251,21 @@ enum GState {
 
 When starting a new session:
 1. Read this file first
-2. Check `.specify/specs/tasks.md` for current phase
+2. Check `symbol_addrs.us.txt` for identified functions (175 total)
 3. Check git log for recent changes
 4. Run `make progress` (when available) to see status
+
+## Next Session TODO
+
+**Priority**: Continue symbol discovery and begin actual decompilation
+1. **1050.s analysis incomplete** - Contains ~22 scheduler/VI manager functions that need identification
+2. **Start matching game functions** to arcade source in `reference/repos/rushtherock/`
+3. **Decompile a simple game function** to test the workflow
+4. **Large .s files to analyze**: 5610.s (125KB), 34A0.s (122KB) - likely game logic
+
+**Useful Codex command for function ID**:
+```bash
+codex exec --dangerously-bypass-approvals-and-sandbox "Analyze asm/us/XXXX.s and identify functions..."
+```
+
+**Current stats**: 175 functions identified, 32 C files, 6033 lines decompiled, ~15-20% complete

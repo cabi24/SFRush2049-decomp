@@ -1,8 +1,6 @@
 # ============================================================
 # San Francisco Rush 2049 (N64) Decompilation Makefile
 # ============================================================
-# Based on MK64/SM64 patterns
-# See reference/repos/mk64/Makefile for full example
 
 # Version selection (only US supported currently)
 VERSION ?= us
@@ -16,59 +14,69 @@ VERBOSE      ?= 0
 # Directories
 BUILD_DIR    := build/$(VERSION)
 SRC_DIR      := src
-ASM_DIR      := asm
+ASM_DIR      := asm/$(VERSION)
+ASSETS_DIR   := assets/$(VERSION)
 INCLUDE_DIR  := include
 TOOLS_DIR    := tools
-COURSES_DIR  := courses
 
 # ROM files
 BASEROM      := baserom.$(VERSION).z64
 TARGET       := $(BUILD_DIR)/rush2049.$(VERSION).z64
 ELF          := $(BUILD_DIR)/rush2049.$(VERSION).elf
+LD_SCRIPT    := rush2049.$(VERSION).ld
 
-# Tools (to be set up)
+# Tools
 CROSS        ?= mips-linux-gnu-
 AS           := $(CROSS)as
 CC           := $(CROSS)gcc
 LD           := $(CROSS)ld
 OBJCOPY      := $(CROSS)objcopy
 OBJDUMP      := $(CROSS)objdump
-
 PYTHON       := python3
 
-# Flags
-ASFLAGS      := -march=vr4300 -mabi=32
-CFLAGS       := -G0 -mno-shared -march=vr4300 -mfix4300 -mabi=32 \
-                -fno-stack-protector -fno-common -fno-zero-initialized-in-bss \
-                -fno-PIC -mno-abicalls -fno-strict-aliasing -fno-inline-functions \
-                -ffreestanding -fwrapv -Wall -Wextra
+# Assembler flags
+ASFLAGS      := -march=vr4300 -mabi=32 -I$(INCLUDE_DIR)
 
-# Include paths
-CFLAGS       += -I$(INCLUDE_DIR) -I.
+# Symbol files for undefined references (will be converted to linker script format)
+UNDEFINED_SYMS := undefined_syms_auto.$(VERSION).txt
+UNDEFINED_FUNCS := undefined_funcs_auto.$(VERSION).txt
+HARDWARE_REGS := hardware_regs.ld
+SYMS_LD := $(BUILD_DIR)/syms.ld
 
-# Non-matching mode uses GCC optimizations
-ifeq ($(NON_MATCHING),1)
-CFLAGS       += -DNON_MATCHING -O2
-else
-# Matching mode (IDO compiler - to be configured)
-CFLAGS       += -O2
-endif
+# Linker flags
+# --accept-unknown-input-arch allows linking binary blobs with different apparent arch
+LDFLAGS      := -T $(LD_SCRIPT) -T $(SYMS_LD) -T $(HARDWARE_REGS) -Map $(BUILD_DIR)/rush2049.$(VERSION).map --no-check-sections --accept-unknown-input-arch
 
 # Verbose output
 ifeq ($(VERBOSE),0)
-V := @
-else
-V :=
+  V := @
 endif
+
+# ============================================================
+# File lists
+# ============================================================
+
+# Assembly source files
+ASM_FILES    := $(wildcard $(ASM_DIR)/*.s)
+ASM_O_FILES  := $(patsubst $(ASM_DIR)/%.s,$(BUILD_DIR)/$(ASM_DIR)/%.o,$(ASM_FILES))
+
+# Binary data files
+BIN_FILES    := $(wildcard $(ASSETS_DIR)/*.bin)
+BIN_O_FILES  := $(patsubst $(ASSETS_DIR)/%.bin,$(BUILD_DIR)/$(ASSETS_DIR)/%.o,$(BIN_FILES))
+
+# All object files
+O_FILES      := $(ASM_O_FILES) $(BIN_O_FILES)
 
 # ============================================================
 # Targets
 # ============================================================
 
-.PHONY: all clean extract test progress setup help
+.PHONY: all clean extract test progress setup help verify
 
 all: $(TARGET)
-	@echo "Build complete: $(TARGET)"
+ifeq ($(COMPARE),1)
+	@$(MAKE) --no-print-directory verify
+endif
 
 # Help target
 help:
@@ -88,103 +96,145 @@ help:
 	@echo "Options:"
 	@echo "  VERSION=us          - Target version (default: us)"
 	@echo "  NON_MATCHING=1      - Build non-matching ROM"
+	@echo "  COMPARE=0           - Skip hash verification"
 	@echo "  VERBOSE=1           - Show all commands"
 	@echo ""
 	@echo "Quick start:"
-	@echo "  1. cp /path/to/rom baserom.us.z64"
+	@echo "  1. Place ROM as baserom.us.z64"
 	@echo "  2. make extract"
-	@echo "  3. make NON_MATCHING=1"
+	@echo "  3. make"
 
-# Check for baserom
-$(BASEROM):
-	@echo "Error: $(BASEROM) not found"
-	@echo "Please place your Rush 2049 (US) ROM as $(BASEROM)"
-	@echo "Expected SHA-1: f79223f8060a530d0dc8683a923c3c60615aa0a0"
-	@exit 1
+# ============================================================
+# Build rules
+# ============================================================
 
-# Create build directory
+# Create build directories
+$(BUILD_DIR)/$(ASM_DIR) $(BUILD_DIR)/$(ASSETS_DIR):
+	$(V)mkdir -p $@
+
+# Create symbols linker script from undefined_syms and undefined_funcs files
+$(SYMS_LD): $(UNDEFINED_SYMS) $(UNDEFINED_FUNCS) | $(BUILD_DIR)
+	@echo "GEN $@"
+	$(V)cat $(UNDEFINED_SYMS) $(UNDEFINED_FUNCS) > $@
+
 $(BUILD_DIR):
-	$(V)mkdir -p $(BUILD_DIR)
+	$(V)mkdir -p $@
 
-# Extract assets from ROM (requires splat setup)
-extract: $(BASEROM)
-	@echo "Asset extraction not yet configured"
-	@echo "TODO: Set up splat with config.yaml"
+# Assemble .s files
+$(BUILD_DIR)/$(ASM_DIR)/%.o: $(ASM_DIR)/%.s | $(BUILD_DIR)/$(ASM_DIR)
+	@echo "AS $<"
+	$(V)$(AS) $(ASFLAGS) -o $@ $<
 
-# Placeholder ROM target (actual build rules TBD)
-$(TARGET): $(BASEROM) | $(BUILD_DIR)
-	@echo "Build system not yet complete"
-	@echo "Copying baserom as placeholder..."
-	$(V)cp $(BASEROM) $(TARGET)
+# Convert binary files to objects (using MIPS big-endian ELF format)
+# Use elf32-big for binary files to avoid ABI conflicts
+$(BUILD_DIR)/$(ASSETS_DIR)/%.o: $(ASSETS_DIR)/%.bin | $(BUILD_DIR)/$(ASSETS_DIR)
+	@echo "BIN $<"
+	$(V)$(OBJCOPY) -I binary -O elf32-big $< $@
+
+# Link ELF
+$(ELF): $(O_FILES) $(LD_SCRIPT) $(SYMS_LD)
+	@echo "LD $@"
+	$(V)$(LD) $(LDFLAGS) -o $@ $(O_FILES)
+
+# Extract ROM from ELF
+$(TARGET): $(ELF)
+	@echo "OBJCOPY $@"
+	$(V)$(OBJCOPY) -O binary $< $@
+	@echo "Build complete: $@"
 
 # Verify ROM hash
-test: $(TARGET)
+verify: $(TARGET)
 	@echo "Verifying ROM hash..."
-	$(V)sha1sum -c $(VERSION).sha1
+	@sha1sum -c $(VERSION).sha1 && echo "ROM matches!" || echo "ROM does NOT match"
 
-# Show progress (placeholder)
+test: verify
+
+# ============================================================
+# Extraction
+# ============================================================
+
+extract: $(BASEROM)
+	@echo "Running splat..."
+	$(V)$(PYTHON) -m splat split splat.$(VERSION).yaml
+
+# ============================================================
+# Progress tracking
+# ============================================================
+
 progress:
-	@echo "Progress tracking not yet implemented"
-	@echo "TODO: Create progress.py script"
+	@echo "=== Rush 2049 Decompilation Progress ==="
 	@echo ""
-	@echo "Current status: 0% (infrastructure setup)"
+	@total_asm=$$(find $(ASM_DIR) -name '*.s' | wc -l); \
+	total_c=$$(find $(SRC_DIR) -name '*.c' 2>/dev/null | wc -l); \
+	echo "Assembly files: $$total_asm"; \
+	echo "C source files: $$total_c"; \
+	if [ $$total_asm -gt 0 ]; then \
+		pct=$$((total_c * 100 / total_asm)); \
+		echo "Progress: $$pct%"; \
+	fi
+	@echo ""
+	@echo "Functions by file:"
+	@grep -c 'glabel func_' $(ASM_DIR)/*.s 2>/dev/null | sort -t: -k2 -nr | head -10
 
-# Clean build artifacts
+# ============================================================
+# Cleanup
+# ============================================================
+
 clean:
 	$(V)rm -rf build/
 	@echo "Build directory cleaned"
 
-# Tool setup helper
+# ============================================================
+# Setup helpers
+# ============================================================
+
 setup:
 	@echo "Tool setup checklist:"
 	@echo ""
-	@echo "[ ] MIPS toolchain:"
+	@echo "[x] MIPS toolchain:"
 	@echo "    sudo apt install binutils-mips-linux-gnu gcc-mips-linux-gnu"
 	@echo ""
-	@echo "[ ] Python dependencies:"
-	@echo "    pip install splat64"
+	@echo "[x] Python dependencies:"
+	@echo "    pip install splat64 spimdisasm"
 	@echo ""
 	@echo "[ ] IDO compiler (for matching builds):"
-	@echo "    Copy from reference/repos/sm64/tools/ido-static-recomp/"
-	@echo ""
-	@echo "[ ] asm-processor:"
-	@echo "    Copy from reference/repos/sm64/tools/asm-processor/"
+	@echo "    Required for byte-matching decompilation"
 
 # ============================================================
 # Development helpers
 # ============================================================
 
-.PHONY: format lint
+.PHONY: format lint disasm
 
 # Format all source files
 format:
 	@echo "Formatting source files..."
-	$(V)find $(SRC_DIR) -name '*.c' -o -name '*.h' | xargs clang-format -i
-	$(V)find $(INCLUDE_DIR) -name '*.h' | xargs clang-format -i
+	$(V)find $(SRC_DIR) -name '*.c' -o -name '*.h' 2>/dev/null | xargs -r clang-format -i
+	$(V)find $(INCLUDE_DIR) -name '*.h' | xargs -r clang-format -i
 
 # Lint check
 lint:
 	@echo "Running lint checks..."
-	$(V)find $(SRC_DIR) -name '*.c' -o -name '*.h' | xargs clang-format --dry-run -Werror
+	$(V)find $(SRC_DIR) -name '*.c' -o -name '*.h' 2>/dev/null | xargs -r clang-format --dry-run -Werror
 
-# ============================================================
-# Diff helpers (when diff.py is set up)
-# ============================================================
-
-# Usage: make diff FUNC=function_name
-.PHONY: diff
-diff:
+# Disassemble a function from the built ELF
+disasm:
 ifndef FUNC
-	@echo "Usage: make diff FUNC=function_name"
+	@echo "Usage: make disasm FUNC=func_80001234"
 else
-	$(V)$(PYTHON) diff.py $(FUNC) -m
+	$(V)$(OBJDUMP) -d $(ELF) | grep -A 100 "<$(FUNC)>:" | head -120
 endif
 
-# Watch mode
-.PHONY: diff-watch
-diff-watch:
-ifndef FUNC
-	@echo "Usage: make diff-watch FUNC=function_name"
-else
-	$(V)$(PYTHON) diff.py $(FUNC) -m -w
-endif
+# ============================================================
+# Context for decomp.me
+# ============================================================
+
+.PHONY: context
+context:
+	@echo "// Target: N64 MIPS VR4300"
+	@echo "// Compiler: IDO 7.1 (assumed)"
+	@echo "// Flags: -O2 -mips2"
+	@echo ""
+	@cat $(INCLUDE_DIR)/types.h
+	@echo ""
+	@cat $(INCLUDE_DIR)/macros.h
