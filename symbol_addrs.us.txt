@@ -249,3 +249,70 @@ apply_display_mode = 0x80001E58; // type:func apply current display mode setting
 // Controller pak PFS functions (F700.s) - newly identified
 osPfsReadWriteFile = 0x8000F2D0; // type:func read/write controller pak file pages
 osPfsFileState = 0x8000F3A4; // type:func get/verify controller pak file state
+
+// Init/boot functions (2CF0.s) - identified via Codex analysis
+idle_thread_entry = 0x800021A4; // type:func boot idle thread: inits PI manager, creates game thread, loops forever
+audio_thread_entry = 0x800024FC; // type:func audio thread entry point (priority 5)
+
+// OS manager init functions (8E10.s)
+osCreatePiManager = 0x80008210; // type:func create PI DMA manager thread and queues
+osCreateViManager = 0x80008380; // type:func create VI manager thread (handles retrace/prenmi)
+osInvalICache = 0x80008460; // type:func invalidate instruction cache (cache op 0x00)
+
+// Event/interrupt functions (7A10.s)
+osSetEventMesgAlt = 0x80006E10; // type:func alternative event message setter
+
+// VI manager thread (7630.s)
+vi_manager_main = 0x80006BB0; // type:func VI manager main loop (handles VI_RETRACE, PRENMI events)
+
+// Inflate/decompression helpers (5610.s)
+inflate_read_bits = 0x800066D4; // type:func read compressed bits from buffered DMA stream
+
+// Additional inflate helpers (5610.s)
+inflate_needbits = 0x80004878; // type:func ensure enough bits available in buffer
+inflate_getbits = 0x80004990; // type:func get n bits from inflate stream
+inflate_io_wait = 0x80004A10; // type:func wait for DMA buffer ready
+inflate_flush_window = 0x80004D50; // type:func flush output window to destination
+inflate_free_window = 0x80005464; // type:func free huffman decode tables
+
+// Cache operations (9230.s)
+osWritebackDCache = 0x800086F0; // type:func writeback data cache region
+osWritebackDCacheAll = 0x8000870C; // type:func writeback all data cache
+
+// SI controller functions (9930.s)
+__osContBuildPacket = 0x80009450; // type:func build controller pak read/write command
+__osContGetStatus = 0x800095AC; // type:func get controller status
+__osContRamReset = 0x80009658; // type:func reset controller pak RAM
+
+// Timer internal functions (A9E0.s)
+__osTimerInterrupt = 0x80009E18; // type:func timer interrupt handler
+
+// Controller pak PFS helpers (AF30.s)
+osPfsAllocate = 0x8000A350; // type:func allocate controller pak pages
+osPfsDeleteFile = 0x8000A520; // type:func delete controller pak file
+osPfsRename = 0x8000A700; // type:func rename controller pak file
+osPfsFindFile = 0x8000A8D8; // type:func find file in controller pak
+
+// More PFS functions (B9E0.s)
+osPfsGetFileStat = 0x8000ADF0; // type:func get controller pak file status
+osPfsGetFileSize = 0x8000AEC4; // type:func get controller pak file size
+
+// PFS checksum/validation (C930.s)
+osPfsChecker = 0x8000BD90; // type:func validate controller pak filesystem
+osPfsReAllocate = 0x8000BE50; // type:func reallocate controller pak file pages
+
+// DLL linked list functions (D890.s)
+dll_get_data = 0x8000CEDC; // type:func get data from dll node
+dll_set_data = 0x8000CFC4; // type:func set data in dll node
+
+// String utility (DE20.s)
+bzero_alt = 0x8000D2A0; // type:func alternative bzero (zeroes memory)
+
+// Timer functions (E5A0.s)
+__osGetTimerValue = 0x8000D9C0; // type:func get current timer value
+
+// SP task functions (EB70.s)
+osSpTaskLoad = 0x8000DF80; // type:func load RSP task microcode and data
+
+// More timer functions (EF80.s)
+__osInsertTimer = 0x8000E390; // type:func insert timer into sorted timer queue
