@@ -117,6 +117,21 @@ See `symbol_addrs.us.txt` for complete list.
 | func_800024FC (game_thread) | game/init.c:game_loop() wrapper | Low-Medium |
 | func_800015F0 | game/visuals.c | Medium |
 | func_80001B44 | game/camera.c | Medium |
+| func_800C9AE0 | game/game.c:in_game_mode handling | Medium |
+| func_800EDDC0 | game/game.c:attract mode or state change | Medium |
+| func_800C997C | game/game.c:ProcessPDUs or switch handler | Medium |
+| func_800CA3B4 | game/game.c:playgame() or Update_MDrive | Medium |
+| func_800B37E8 | game/audio.c:sound control | High |
+
+**Arcade Key Files to Reference**:
+| N64 Area | Arcade File | Key Functions |
+|----------|-------------|---------------|
+| Game loop | game/game.c | game(), playgame(), preplay() |
+| Track select | game/sselect.c | TrackSel(), CarSel() |
+| Checkpoints | game/checkpoint.c | CheckCPs(), InitCPS() |
+| AI/Drones | game/drones.c | DoDrones(), InitDrones() |
+| Physics | game/cars.c | Update_MDrive(), CheckCrash() |
+| Visuals | game/visuals.c | UpdateVisuals() |
 
 **Arcade game() State Machine** (game.c:714+):
 ```c

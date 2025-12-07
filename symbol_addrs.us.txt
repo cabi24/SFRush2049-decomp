@@ -318,23 +318,34 @@ osSpTaskLoad = 0x8000DF80; // type:func load RSP task microcode and data
 __osInsertTimer = 0x8000E390; // type:func insert timer into sorted timer queue
 
 // Compressed game code functions (decompressed at 0x80086A50)
-func_800FD464 = 0x800FD464; // game_loop - main per-frame game logic (704 bytes)
-func_800C9AE0 = 0x800C9AE0; // called from game_loop
-func_800EDDC0 = 0x800EDDC0; // called from game_loop
-func_800C997C = 0x800C997C; // called from game_loop
+// Maps to arcade game/game.c structure
+
+// Main game loop - equivalent to arcade game()
+func_800FD464 = 0x800FD464; // game - main per-frame game state machine (704 bytes)
+
+// Game state handlers called from game_loop
+func_800C9AE0 = 0x800C9AE0; // game_mode_handler - in_game_mode handling (arcade: game.c:620)
+func_800EDDC0 = 0x800EDDC0; // attract_or_transition - attract mode/state transition
+func_800C997C = 0x800C997C; // process_inputs - ProcessPDUs equivalent or state switch
 
 
 // Large game functions (from analysis 2025-12-07)
+// Rendering system (maps to ZOID/visuals in arcade)
 func_80099BFC = 0x80099BFC; // render_object (10236 bytes) - 3D model rendering, uses G_DL
 func_80087A08 = 0x80087A08; // render_large (10048 bytes) - large rendering function
 func_800A04C4 = 0x800A04C4; // render_scene (2720 bytes) - scene setup, viewport modes, uses G_SETGEOMETRYMODE
-func_800CA3B4 = 0x800CA3B4; // game_update (2544 bytes) - called from game_loop
-func_800F733C = 0x800F733C; // called in game_loop sequence
-func_800B0868 = 0x800B0868; // called in game_loop sequence  
-func_800B811C = 0x800B811C; // called in game_loop sequence
-func_800DB81C = 0x800DB81C; // conditional game_loop call
-func_800FBF88 = 0x800FBF88; // conditional game_loop call
-func_800B37E8 = 0x800B37E8; // audio/sound related (called with -1 as stop)
+
+// Gameplay functions (maps to game/game.c)
+func_800CA3B4 = 0x800CA3B4; // playgame - main gameplay update (arcade: playgame(), 2544 bytes)
+func_800F733C = 0x800F733C; // game_state_update - called in game_loop sequence
+func_800B0868 = 0x800B0868; // car_physics_update - car/physics update
+func_800B811C = 0x800B811C; // visual_effects - visual effects update
+func_800DB81C = 0x800DB81C; // checkpoint_handler - conditional checkpoint call
+func_800FBF88 = 0x800FBF88; // state_transition - conditional state transition
+
+// Audio system
+func_800B37E8 = 0x800B37E8; // sound_control - audio/sound (called with -1 as stop signal)
+func_800B358C = 0x800B358C; // sound_stop - stop sound (called when engine stops)
 
 // Key global variables in game data section
 D_801461D0 = 0x801461D0; // Most referenced global (160 refs) - likely main game struct
