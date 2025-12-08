@@ -59,7 +59,7 @@ This file helps Claude maintain context across sessions for the Rush 2049 N64 de
 
 See `symbol_addrs.us.txt` for complete list.
 
-### Decompiled Source Files (32 C files, ~6033 lines)
+### Decompiled Source Files (32 C files, ~6155 lines)
 | File | Functions | Status |
 |------|-----------|--------|
 | src/libc/string.c | memchr, memset, strchr, strlen, memcpy | Complete |
@@ -254,9 +254,13 @@ See `.claude/agents/` for specialized agents:
 ## Development Environment
 
 - **Primary Build Machine**: OptiPlex 3080 WSL (20 cores, 31GB RAM)
-  - SSH: `ssh -p 2222 user@optiplex3080`
+  - SSH: `ssh user@192.168.50.100`
   - Sudo without password enabled
   - 10x faster builds than Raspberry Pi
+- **Ollama Server**: Watchman24 (Windows, qwen3-coder:30b 18GB model)
+  - SSH: `ssh cabi2@192.168.50.7`
+  - Use for heavy analysis tasks to save Claude tokens
+  - Example: `ssh cabi2@192.168.50.7 "ollama run qwen3-coder:30b \"prompt here\""`
 - **Light Work**: Raspberry Pi (current terminal)
 - **Spec Kit**: Installed via `uv tool install specify-cli`
 
@@ -326,9 +330,23 @@ When starting a new session:
 | Address | References | Likely Purpose |
 |---------|------------|----------------|
 | 0x801461D0 | 160 | Main game struct |
-| 0x801174B4 | 110 | gstate - game state variable |
+| 0x801146EC | - | **gstate** - game state byte (confirmed via Ollama analysis) |
+| 0x801174B4 | 110 | Secondary state variable |
 | 0x80152818 | 89 | Player/car state array |
 | 0x80142AFC | - | Frame counter |
+
+**Game Loop Function Calls** (from Ollama analysis of game_loop @ 0x800FD464):
+| Address | Likely Purpose | Arcade Equivalent |
+|---------|----------------|-------------------|
+| 0x800C9AE0 | Input/init handling | ProcessPDUs? |
+| 0x800EDDC0 | Rendering/game logic | attract? |
+| 0x800C997C | Screen/state update | - |
+| 0x800B37E8 | Audio/sound control | sound functions |
+| 0x800CA3B4 | Main gameplay | playgame() |
+| 0x800DB81C | Attract mode | attract() |
+| 0x800FBF88 | High score logic | EnterHighScore() |
+| 0x800FBC30 | Countdown timer | CountDown() |
+| 0x800A04C4 | Viewport/camera | render_scene |
 
 **Tools created**:
 - `tools/extract_game_code.py` - Extracts and decompresses game code from ROM

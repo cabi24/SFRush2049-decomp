@@ -1,0 +1,125 @@
+ADDR: PURPOSE  
+80087068: Function Entry  
+8008706C: Save Return Address  
+80087070: Bitwise AND  
+80087074: Branch if Zero  
+80087078: Logical OR  
+8008707C: Logical NOR  
+80087104: Function Exit  
+80087108: Return from Subroutine  
+80087110: Load Upper Immediate  
+80087114: Load Word  
+80087118: Function Entry  
+8008711C: Logical OR  
+80087120: Set Less Than  
+80087124: Logical OR  
+80087128: Branch if Equal  
+8008712C: Logical OR  
+80090088: Function Entry  
+8009008C: Save Return Address  
+80090090: Save Argument 0  
+80090094: Branch if Zero  
+80090098: Save Argument 1  
+8009009C: Load Halfword  
+80090228: Function Entry  
+8009022C: Save Return Address  
+80090230: Save Argument 0  
+80090234: Shift Left Logical  
+80090238: Shift Right Arithmetic  
+8009023C: Jump and Link  
+80090248: Function Exit  
+8009024C: Return from Subroutine  
+80090254: Function Entry  
+80090254: Save Return Address  
+80090258: Save Argument 0  
+80090260: Shift Left Logical  
+80090264: Shift Right Arithmetic  
+80090268: Move Register  
+80090278: Function Exit  
+80090284: Load Upper Immediate  
+80090288: Add Immediate  
+8009028C: Load Word  
+80090310: Function Entry  
+80090314: Save Return Address  
+80090318: Jump and Link  
+8009031C: Save Temporary 6  
+80090320: Branch if Zero  
+80090324: Save Result
+---
+ADDR: PURPOSE
+
+80090764: Function prologue and calculation
+80090894: Function prologue and stack manipulation
+80091870: Function prologue and memory access
+80092350: Function return and simple operation
+80092360: Function prologue, parameter saving, and calculation
+80094890: Conditional branching and memory access
+80095120: Conditional branching and function call
+80095148: Function epilogue and return
+---
+Here's the classification of each N64 game function based on the provided assembly code:
+
+1. **ADDR:** 80095188
+   - **PURPOSE:** Function setup and return
+
+2. **ADDR:** 80095390
+   - **PURPOSE:** Load values and return
+
+3. **ADDR:** 80095494
+   - **PURPOSE:** Branch and return
+
+4. **ADDR:** 80095524
+   - **PURPOSE:** Setup stack, save registers, branch based on condition, call function, restore registers, return
+
+5. **ADDR:** 80095800
+   - **PURPOSE:** Setup stack, save registers, load values, branch based on condition, call function, store result, restore registers, return
+
+6. **ADDR:** 80095924
+   - **PURPOSE:** Setup stack, save registers, load values, call functions, restore registers, return
+
+7. **ADDR:** 80096234
+   - **PURPOSE:** Load value and setup stack for function calls
+---
+ADDR: PURPOSE  
+80096380: Function Prologue  
+8009638C: Stack Allocation for Local Variables  
+80096734: Allocate Space for Call Stack and Save Registers  
+80096750: Function Epilogue  
+80097150: Function Prologue  
+8009715C: Load Value into Register, Calculate Address, Access Memory  
+80097378: Load Parameter, Add Offset, Call Function  
+80097470: Allocate Space for Parameters and Save Registers  
+80097688: Shift Values, Load Address, Call Function  
+80097798: Allocate Space for Local Variables, Save Registers  
+80098550: Function Prologue  
+80098554: Allocate Stack Space and Save Return Address
+---
+**ADDR:** 80098568 **PURPOSE:** Stack Manipulation and Return
+
+**ADDR:** 80098574 **PURPOSE:** Register Save/Restore and Argument Processing
+
+**ADDR:** 80098620 **PURPOSE:** Register Save/Restore, Argument Processing, and Bitwise Operations
+
+**ADDR:** 80098860 **PURPOSE:** Memory Write
+
+**ADDR:** 80100558 **PURPOSE:** Stack Manipulation, Function Call, and State Saving
+
+**ADDR:** 80100564 **PURPOSE:** Stack Manipulation, State Saving, and Function Call
+
+**ADDR:** 80101900 **PURPOSE:** Memory Access, State Saving, and Conditional Branch
+
+**ADDR:** 80102218 **PURPOSE:** Stack Manipulation and Return
+---
+```plaintext
+ADDR: PURPOSE
+
+80102434: Stack manipulation and return to caller
+80102450: Initialize stack for function call, save registers
+80102988: Conditional branching based on register value
+80104704: Allocate space for local variables, save registers
+80105480: Allocate large space, save multiple registers, prepare for function call
+80106868: Stack manipulation and return to caller
+80106874: Save register values before function call
+80107618: Allocate space, initialize variables, set up for nested function
+80108150: Allocate space, save registers, prepare for nested function
+```

@@ -1,0 +1,717 @@
+// === 800FD464: game_loop - main state machine ===
+```c
+void game_loop(void) {
+    s32 sp = -88;
+    u8* gstate_ptr = (u8*)0x801146EC + 18156;
+    u32 ra_save = *(u32*)&sp + 76;
+    u32 fp_save = *(u32*)&sp + 72;
+    u32 s7_save = *(u32*)&sp + 68;
+    u32 s6_save = *(u32*)&sp + 64;
+    u32 s5_save = *(u32*)&sp + 60;
+    u32 s4_save = *(u32*)&sp + 56;
+    u32 s3_save = *(u32*)&sp + 52;
+    u32 s2_save = *(u32*)&sp + 48;
+    u32 s1_save = *(u32*)&sp + 44;
+    u32 s0_save = *(u32*)&sp + 40;
+    f64 f22_save = *(f64*)&sp + 32;
+    f64 f20_save = *(f64*)&sp + 24;
+
+    if (*gstate_ptr == 0) {
+        *(u32*)&sp + 84 = 0;
+        u32* game_struct_ptr = (u32*)0x801461D0 + 11004 / 4;
+        *game_struct_ptr = 0;
+        s32 car_count = 1;
+        *(u32*)&sp + 18156 / 4 = car_count;
+    }
+
+    u32* gstate_ptr_2 = (u32*)0x801146EC + 29876 / 4;
+    u32* gstate_ptr_3 = (u32*)0x801146EC + 29880 / 4;
+    u32* game_struct_ptr_2 = (u32*)0x8003E7B0 - 5264 / 4;
+
+    if (*gstate_ptr_2 == *gstate_ptr_3) {
+        void(*func_0x800C9AE0)(void);
+        func_0x800C9AE0 = (void(*)(void))0x800C9AE0;
+        func_0x800C9AE0();
+
+        u32* car_array_ptr = (u32*)0x80152818;
+
+        if (*(u16*)game_struct_ptr_2 == 0) {
+            void(*func_0x800EDDC0)(void);
+            func_0x800EDDC0 = (void(*)(void))0x800EDDC0;
+            func_0x800EDDC0();
+
+            *(u32*)car_array_ptr - 27592 / 4 = 0;
+
+            u32* game_struct_ptr_3 = (u32*)0x80152818 + -26680 / 4;
+            void(*func_0x800C997C)(u32);
+            func_0x800C997C = (void(*)(u32))0x800C997C;
+            func_0x800C997C(game_struct_ptr_3);
+
+            *(u32*)game_struct_ptr_3 - 26636 / 4 = game_struct_ptr_3;
+        }
+
+        u32* game_struct_ptr_4 = (u32*)0x8003E800 - 5912 / 4;
+        u32* car_array_ptr_2 = (u32*)0x801146EC + 6488 / 4;
+        u32* game_struct_ptr_5 = (u32*)0x8003E7B0 - 5912 / 4 + -636 / 4;
+        f32 value = *(f32*)game_struct_ptr_5;
+
+        if (value < 0) {
+            void(*func_0x800FD560)(void);
+            func_0x800FD560 = (void(*)(void))0x800FD560;
+            func_0x800FD560();
+        }
+
+        *(f32*)game_struct_ptr_4 = value;
+
+        u32* game_struct_ptr_6 = (u32*)0x801146EC + 18152 / 4;
+        u32* car_array_ptr_3 = (u32*)0x801146EC + 6488 / 4;
+
+        if (*game_struct_ptr_6 & 0xF) {
+            u32* game_struct_ptr_7 = (u32*)0x801146EC + 18152 / 4;
+            u32 value = *(u32*)game_struct_ptr_7;
+
+            if (value != 0) {
+                void(*func_0x800FD5C8)(void);
+                func_0x800FD5C8 = (void(*)(void))0x800FD5C8;
+                func_0x800FD5C8();
+            }
+        }
+    }
+
+    *(u32*)&sp + 76 = ra_save;
+    *(u32*)&sp + 72 = fp_save;
+    *(u32*)&sp + 68 = s7_save;
+    *(u32*)&sp + 64 = s6_save;
+    *(u32*)&sp + 60 = s5_save;
+    *(u32*)&sp + 56 = s4_save;
+    *(u32*)&sp + 52 = s3_save;
+    *(u32*)&sp + 48 = s2_save;
+    *(u32*)&sp + 44 = s1_save;
+    *(u32*)&sp + 40 = s0_save;
+    *(f64*)&sp + 32 = f22_save;
+    *(f64*)&sp + 24 = f20_save;
+
+    return;
+}
+```
+
+
+// === 800CA3B4: game_update - per-frame gameplay ===
+```c
+void game_update() {
+    __asm__ volatile (
+        "addiu   $sp, $sp, -232\n"
+        "sw      $s0, 56($sp)\n"
+        "lui     $s0, 0x8011\n"
+        "addiu   $s0, $s0, 29876\n"
+        "lui     $t7, 0x8011\n"
+        "lw      $t7, 29880($t7)\n"
+        "lw      $t6, 0($s0)\n"
+        "sw      $ra, 76($sp)\n"
+        "sw      $s4, 72($sp)\n"
+        "sw      $s3, 68($sp)\n"
+        "sw      $s2, 64($sp)\n"
+        "sw      $s1, 60($sp)\n"
+        "sdc1    $f22, 48($sp)\n"
+        "beq     $t6, $t7, 0x800CAD7C\n"
+        "sdc1    $f20, 40($sp)\n"
+        "jal     0x800CA300\n"
+        "nop\n"
+        "lui     $t8, 0x8011\n"
+        "lw      $v1, 29880($t8)\n"
+        "lui     $at, 0x8014\n"
+        "andi    $t9, $v1, 0x0001\n"
+        "beq     $t9, $zero, 0x800CA4F4\n"
+        "sw      $v1, 0($s0)\n"
+        "sb      $zero, 25080($at)\n"
+        "sb      $zero, 25093($at)\n"
+        "lui     $at, 0x8015\n"
+        "sb      $zero, -27628($at)\n"
+        "sb      $zero, -26764($at)\n"
+        "sb      $zero, -26732($at)\n"
+        "sb      $zero, -26684($at)\n"
+        "lui     $t6, 0x8015\n"
+        "lb      $t6, 27028($t6)\n"
+        "addiu   $a0, $zero, 32\n"
+        "addiu   $a1, $zero, 16\n"
+        "bne     $t6, $zero, 0x800CA48C\n"
+        "addiu   $a2, $zero, 16\n"
+        "lui     $at, 0x3F80\n"
+        "i-type  op=0x11\n"
+        "lui     $at, 0x4348\n"
+        "i-type  op=0x11\n"
+        "addiu   $t7, $zero, 64\n"
+        "sw      $t7, 16($sp)\n"
+        "addiu   $a3, $zero, 5\n"
+        "sw      $zero, 28($sp)\n"
+        "swc1    $f4, 20($sp)\n"
+        "jal     0x800C8B8C\n"
+        "swc1    $f6, 24($sp)\n"
+        "jal     0x800C885C\n"
+        "nop\n"
+        "jal     0x800C8FA4\n"
+        "addiu   $a0, $zero, 1\n"
+        "addiu   $v0, $zero, 1\n"
+        "lui     $at, 0x8015\n"
+        "sh      $v0, -24312($at)\n"
+        "lui     $at, 0x8015\n"
+        "jal     0x800C9BE0\n"
+        "sh      $v0, 6864($at)\n"
+        "lui     $at, 0x41F0\n"
+        "i-type  op=0x11\n"
+        "jal     0x800014F0\n"
+        "nop\n"
+        "jal     0x800C9AE0\n"
+        "nop\n"
+        "jal     0x800C9AE0\n"
+        "jal     0x800C9AE0\n"
+        "jal     0x800C9AE0\n"
+        "jal     0x800C9480\n"
+        "nop\n"
+        "addiu   $t8, $zero, 2\n"
+        "lui     $at, 0x8011\n"
+        "lui     $v1, 0x8011\n"
+        "lw      $v1, 29876($v1)\n"
+        "beq     $zero, $zero, 0x800CAD10\n"
+        "sw      $t8, 29880($at)\n"
+    );
+}
+```
+
+
+// === 800DB81C: attract - demo/title screen ===
+```c
+#include <stdint.h>
+
+void attract() {
+    uint32_t *gstate = (uint32_t *)0x801146EC;
+    uint32_t *car_array = (uint32_t *)0x80152818;
+    uint32_t *game_struct = (uint32_t *)0x801461D0;
+
+    __asm__ volatile (
+        "addiu   $sp, $sp, -272\n"
+        "lui     $v1, 0x8011\n"
+        "lw      $v1, 28924($v1)\n"
+        "sw      $ra, 60($sp)\n"
+        "sw      $s5, 56($sp)\n"
+        "sw      $s4, 52($sp)\n"
+        "sw      $s3, 48($sp)\n"
+        "sw      $s2, 44($sp)\n"
+        "sw      $s1, 40($sp)\n"
+        "sw      $s0, 36($sp)\n"
+        "sdc1    $f22, 24($sp)\n"
+        "beq     $v1, $zero, 0x800DB864\n"
+        "sdc1    $f20, 16($sp)\n"
+        "move    $a0, $zero\n"
+        "jal     0x800C813C\n"
+        "move    $a1, $zero\n"
+        "lui     $v1, 0x8011\n"
+        "lw      $v1, 28924($v1)\n"
+        "sltiu   $at, $v1, 9\n"
+        "beq     $at, $zero, 0x800DBF68\n"
+        "addiu   $t0, $zero, 2\n"
+        "sll     $t6, $v1, 2\n"
+        "lui     $at, 0x8012\n"
+        "addu    $at, $at, $t6\n"
+        "lw      $t6, 17028($at)\n"
+        "jr      $t6\n"
+        "nop\n"
+        "lui     $a1, 0x8015\n"
+        "lh      $a1, 6864($a1)\n"
+        "lui     $a0, 0x8015\n"
+        "addiu   $a0, $a0, -24296\n"
+        "blez    $a1, 0x800DC054\n"
+        "move    $v1, $zero\n"
+        "lui     $a2, 0x8015\n"
+        "addiu   $a2, $a2, 27888\n"
+        "lw      $v0, 4($a0)\n"
+        "sll     $t9, $v1, 4\n"
+        "addu    $t6, $a2, $t9\n"
+        "andi    $t7, $v0, 0x0001\n"
+        "sltu    $v0, $zero, $t7\n"
+        "bne     $v0, $zero, 0x800DB8D8\n"
+        "sll     $t9, $v1, 4\n"
+        "lb      $v0, 0($t6)\n"
+        "sltiu   $t7, $v0, 1\n"
+        "bne     $t7, $zero, 0x800DB8D8\n"
+        "or      $v0, $t7, $zero\n"
+        "move    $v0, $zero\n"
+        "beq     $v0, $zero, 0x800DB900\n"
+        "addu    $t6, $a2, $t9\n"
+        "lb      $v0, 0($t6)\n"
+        "lui     $a1, 0x8015\n"
+        "addiu   $a1, $a1, 27020\n"
+        "sw      $v1, 0($a1)\n"
+        "lui     $at, 0x8011\n"
+        "sltiu   $t7, $v0, 1\n"
+        "beq     $zero, $zero, 0x800DB918\n"
+        "sb      $t7, 29520($at)\n"
+        "addiu   $v1, $v1, 1\n"
+        "slt     $at, $v1, $a1\n"
+        "bne     $at, $zero, 0x800DB8A8\n"
+        "addiu   $a0, $a0, 76\n"
+        "beq     $zero, $zero, 0x800DC058\n"
+        "lw      $ra, 60($sp)\n"
+        "jal     0x800B4FB0\n"
+        "move    $a0, $one\n"
+        "lui     $v1, 0x8015\n"
+        "addiu   $v1, $v1, -25192\n"
+        "jal     0x800013C0\n"
+        "sw      $zero, 0($v1)\n"
+        "lui     $a0, 0x8014\n"
+        "addiu   $a0, $a0, 10024\n"
+        "move    $a1, $zero\n"
+        "jal     0x80007270\n"
+        "addiu   $a2, $one\n"
+        "jal     0x80091B00\n"
+        "nop\n"
+        "sw      $v0, 244($sp)\n"
+        "addiu   $t8, $zero, 7\n"
+        "lui     $a0, 0x8014\n"
+        "addiu   $a0, $a0, 10024\n"
+    );
+}
+```
+
+
+// === 80099BFC: render_object - 3D rendering (10KB) ===
+```c
+void render_object(void *s1, void *s0, void *s4) {
+    int sp = -608;
+    int ra = *(int *)(sp + 20);
+    int t6 = *(int *)s4;
+    if (s1 != 0) {
+        int v0 = t6;
+        t6 += 8;
+        int t7 = *(int *)(s1 + 28);
+        while (t7 < 0) {
+            int t8 = 0xDE00;
+            sw(v0, 596 + sp);
+            sw(t8, 0);
+            if (*(int *)(s1 + 24) != 0)
+                sw(*(int *)(s1 + 24), 4);
+            if (s0 != 0) {
+                u16 t9 = lhu(s0, 0);
+                u16 t6_2 = lhu(s0, 4);
+                jal(0x80087804);
+                subu(a0, t9, t6_2);
+                u16 t8_2 = lhu(s0, 2);
+                u16 t9_2 = lhu(s0, 6);
+                int s2 = v0 - 5;
+                t7 = s2 & 0xFFFF;
+                jal(0x80087804);
+                subu(a0, t8_2, t9_2);
+                int t3 = v0 - 5;
+                t6_2 = t3 & 0xFFFF;
+                if (t6_2 != 0) {
+                    t3 = t6_2 | 0x0001;
+                    jal(0x80087804);
+                    subu(a0, t9_2, t9_2);
+                }
+                sw(lhu(s1 + 16), 596 + sp);
+                sw(lhu(s1 + 18), 0);
+                int t3_2 = v0 & 0xFFFF;
+                jal(0x80087804);
+                sw(lhu(s1 + 20), 4);
+                int t6_3 = lhu(s1 + 22);
+                int t3_3 = v0 - 5;
+                t6_2 = t3_3 & 0xFFFF;
+                if (t6_2 != 0) {
+                    t3_3 = t6_2 | 0x0001;
+                    jal(0x80087804);
+                    subu(a0, t9_2, t9_2);
+                }
+            }
+            int v0_2 = *(int *)(s1 + 28);
+            int t2 = 0;
+            int a1 = 0;
+            int t7_2 = v0_2 << 15;
+            if (t7_2 >= 0) {
+                t8 = v0_2 << 13;
+                if (t8 >= 0) {
+                    t2 = 2;
+                    a1 = 0;
+                    t8 = v0_2 << 14;
+                    if (t8 >= 0) {
+                        t9 = v0_2 << 12;
+                        a1 = 2;
+                        if (t9 >= 0) {
+                            a1 = lhu(s1 + 21);
+                            int v1 = 0x8018;
+                            sw(v1, 596 + sp);
+                            u16 t9_3 = lhu(0x8018 - 22984);
+                            if (t9_3 != 0) {
+                                a0 = 2;
+                                int t9_4 = lw(0xE300);
+                                int t6_4 = *(int *)(sp + 596);
+                                u16 t8_3 = 0x1001;
+                                if (t9_4 != 0) {
+                                    t7 = t6_4 + 8;
+                                    sw(t7, 596 + sp);
+                                    t8_3 |= t8_3;
+                                }
+                                sw(t8_3, t6_4);
+                                sw(0, t6_4 + 4);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    *(int *)(sp + 20) = ra;
+}
+```
+
+
+// === 800A04C4: render_scene - viewport setup ===
+```c
+void render_scene() {
+    __asm__ volatile (
+        "addiu   $sp, $sp, -256\n"
+        "lui     $at, 0x8018\n"
+        "sw      $zero, -23376($at)\n"
+        "li      $t6, -1\n"
+        "sw      $t6, -22984($at)\n"
+        "lui     $v1, 0x8015\n"
+        "addiu   $at, $zero, -26680\n"
+        "sw      $zero, -23288($at)\n"
+        "lw      $v0, 0($v1)\n"
+        "sw      $ra, 116($sp)\n"
+        "sw      $fp, 112($sp)\n"
+        "addiu   $t7, $v0, 8\n"
+        "sw      $s7, 108($sp)\n"
+        "sw      $s6, 104($sp)\n"
+        "sw      $s5, 100($sp)\n"
+        "sw      $s4, 96($sp)\n"
+        "sw      $s3, 92($sp)\n"
+        "sw      $s2, 88($sp)\n"
+        "sw      $s1, 84($sp)\n"
+        "sw      $s0, 80($sp)\n"
+        "sdc1    $f24, 72($sp)\n"
+        "sdc1    $f22, 64($sp)\n"
+        "sdc1    $f20, 56($sp)\n"
+        "sw      $a0, 256($sp)\n"
+        "sw      $t7, 0($v1)\n"
+        "lui     $t8, 0xD9F9\n"
+        "ori     $t8, $t8, 0xFFFF\n"
+        "lui     $a2, 0x8014\n"
+        "sw      $t8, 0($v0)\n"
+        "sw      $zero, 4($v0)\n"
+        "lh      $a2, 1560($a2)\n"
+        "lui     $at, 0x8012\n"
+        "sb      $zero, 20356($at)\n"
+        "bltz    $a2, 0x800A06D8\n"
+        "move    $a0, $zero\n"
+        "beq     $a2, $zero, 0x800A0580\n"
+        "lui     $t0, 0x8014\n"
+        "li      $at, 1\n"
+        "beq     $a2, $at, 0x800A05E8\n"
+        "lui     $t0, 0x8014\n"
+        "li      $at, 2\n"
+        "beq     $a2, $at, 0x800A0650\n"
+        "lui     $t0, 0x8014\n"
+        "li      $at, 3\n"
+        "j       0x800A06D8\n"
+        "nop\n"
+        "lw      $v0, 0($v1)\n"
+        "lui     $t6, 0xDB02\n"
+        "li      $t7, 24\n"
+        "addiu   $t9, $v0, 8\n"
+        "sw      $t9, 0($v1)\n"
+        "sw      $t7, 4($v0)\n"
+        "sw      $t6, 0($v0)\n"
+        "lw      $v0, 0($v1)\n"
+        "lui     $t9, 0xDC08\n"
+        "ori     $t9, $t9, 0x060A\n"
+        "addiu   $t8, $v0, 8\n"
+        "sw      $t8, 0($v1)\n"
+        "li      $t0, 1720\n"
+        "sw      $t9, 0($v0)\n"
+        "lw      $t6, 0($t0)\n"
+        "lui     $t9, 0xDC08\n"
+        "ori     $t9, $t9, 0x090A\n"
+        "addiu   $t7, $t6, 8\n"
+        "sw      $t7, 4($v0)\n"
+        "lw      $v0, 0($v1)\n"
+        "addiu   $t8, $v0, 8\n"
+        "sw      $t8, 0($v1)\n"
+        "sw      $t9, 0($v0)\n"
+        "lw      $t6, 0($t0)\n"
+        "beq     $zero, $zero, 0x800A06D8\n"
+        "sw      $t6, 4($v0)\n"
+        "lui     $t9, 0xDB02\n"
+        "li      $t7, 24\n"
+        "addiu   $t8, $v0, 8\n"
+        "sw      $t8, 0($v1)\n"
+        "lw      $t9, 0($v0)\n"
+        "sw      $t9, 4($v0)\n"
+        "lw      $t8, 0($v0)\n"
+        "sw      $t8, 0($v1)\n"
+        "j       0x800A06D8\n"
+        "nop\n"
+    );
+}
+```
+
+
+// === 800B37E8: audio_control - sound system ===
+```c
+void audio_control(int a0, int a1, int a2, int a3) {
+    void* sp = (void*)((char*)__builtin_frame_address(0) - 64);
+    *(int*)(sp + 40) = a3;
+    a3 <<= 16;
+    a0 <<= 16;
+    a1 <<= 16;
+    int t7 = a1 >> 16;
+    int t6 = a0 >> 16;
+    int t8 = a3 >> 16;
+    int s4 = t8 | (a3 << 16);
+    int t0 = t6 | (a0 << 16);
+    int t1 = t7 | (a1 << 16);
+    *(void**)(sp + 60) = __builtin_return_address(0);
+    *(int*)(sp + 56) = (int)__builtin_frame_address(0);
+    *(int*)(sp + 52) = *(int*)0x801461D0; // s7
+    *(int*)(sp + 48) = *(int*)0x80152818; // s6
+    *(int*)(sp + 44) = *(int*)0x801146EC; // s5
+    *(int*)(sp + 36) = a3;
+    *(int*)(sp + 32) = a2;
+    *(int*)(sp + 28) = a1;
+    *(int*)(sp + 24) = a0;
+    *(void**)(sp + 64) = (void*)a0;
+    *(void**)(sp + 68) = (void*)a1;
+
+    if (t8 > 0) {
+        void* s7 = (void*)((char*)__builtin_frame_address(0) - 28);
+        *(int*)(s7 + 66) = t0;
+        *(int*)(s7 + 70) = t1;
+        int s5 = -1;
+        int s6 = -1;
+
+        if (t8 > 0) {
+            int t9 = *(short*)(sp + 4);
+            int t2 = *(short*)(sp + 6);
+            void* t3 = *(void**)(sp + 32);
+            int a0 = t9;
+            int a1 = t2;
+            int a2 = t5 & s6;
+            __builtin_jalr(0x800B3704);
+
+            int a3 = t3[3] & s5;
+            int t4 = *(int*)(sp + 24);
+            *(void**)(s7 + 24) = (void*)t4;
+
+            int t5 = *(int*)(sp + 20);
+            *(short*)(s7 + 18) = t5;
+            short t6 = *(short*)(sp + 16);
+            *(short*)(s7 + 32) = t6;
+            short t7 = *(short*)(sp + 12);
+            *(short*)(s7 + 28) = t7;
+            short t8 = *(short*)(sp + 18);
+            *(short*)(s7 + 34) = t8;
+            short t9 = *(short*)(sp + 14);
+            *(short*)(s7 + 30) = t9;
+
+            int v1 = *(short*)(sp + 8);
+            if (v1 < 0) {
+                *(short*)(s7 + 22) = v1;
+            }
+
+            if (*(int*)(sp + 28) != 0) {
+                int t3 = *(void**)(sp + 32);
+                int a0 = s1;
+                int a1 = t4 & s6;
+                __builtin_sw(a1, 44, s1);
+
+                int t5 = *(int*)(sp + 0);
+                int v1 = t5[2] & s6;
+                __builtin_jalr(0x80094EC8);
+
+                if (v1 != 0) {
+                    int a0 = s1;
+                    int a1 = t3[3];
+                    __builtin_sw(a1, 44, s1);
+                }
+            }
+        }
+    }
+
+    *(void**)(sp + 56) = NULL;
+    *(int*)(sp + 52) = 0;
+}
+```
+
+
+// === 800C9AE0: input_handler - controller/init ===
+```c
+void input_handler_controller_init() {
+    // func_800C9AE0
+    int t7 = 0x8003;
+    int ra_backup = ra;
+    int s2_backup = s2;
+    int s1_backup = s1;
+    int s0_backup = s0;
+    t7 += 21618;
+    s2 = 1;
+    *(char*)t7 = s2;
+    int t8 = 2750;
+    *(short*)(0x8003 + 48) = t8;
+    func_800075E0(0x8003 - 4872, sp + 48, 1);
+    s0 = 0x8003 - 4928;
+    s1 = sp + 44;
+    *(char*)t9 = 0;
+    func_80007270(s0, s1, 0);
+    func_80007270(s0, s1, 0);
+    func_80007270(s0, s1, 1);
+    func_80007270(s0, s1, 0);
+    if (*(char*)s2 != -1) {
+        func_80007270(s0, s1, 0);
+    }
+    *(char*)t9 = 1;
+    *(char*)t2 = 0;
+    int t3 = 0x8015;
+    t3 -= 26680;
+    func_800013F4(t3);
+    t3 += -26636;
+    *(int*)t3 = gstate;
+    func_800C997C();
+    func_800C9528();
+
+    // func_800C9BE0
+    int a1_backup = a1;
+    ra_backup = ra;
+    s4_backup = s4;
+    v1 = (a1 & 0x0008) != 0;
+    if (!v1) {
+        s3_backup = s3;
+        s2_backup = s2;
+        s1_backup = s1;
+        s0_backup = s0;
+        s0 = 0x8015;
+        t0 = *(short*)(s0 - 24312);
+        s2 = 0x8015;
+        // End of C code
+    }
+}
+```
+
+
+// === 800FBF88: countdown - race start ===
+```c
+void countdown() {
+    u32* gstate = (u32*)0x801146EC;
+    CarArray* car_array = (CarArray*)0x80152818;
+    GameStruct* game_struct = (GameStruct*)0x801461D0;
+
+    u32 index = gstate[7];
+    if (index >= 8) {
+        return;
+    }
+
+    // Initialize variables
+    u8 tmp1 = car_array[index].is_active;
+    u32 tmp2 = game_struct->race_state;
+    u8* race_info = &game_struct->race_info;
+
+    // Set countdown flags
+    race_info[46] = 0x01;
+    race_info[38] = 0x01;
+    if (tmp2 != 0) {
+        race_info[52] = 0x01;
+    }
+
+    // Call functions based on index
+    switch (index * 4) {
+        case 0:
+            func_800C9BE0();
+            func_800FAF6C();
+            break;
+        case 4:
+            func_800B6138();
+            break;
+        case 8:
+            func_800C813C();
+            break;
+    }
+
+    // Additional checks and function calls
+    if (index == 7) {
+        return;
+    }
+    u8 flag = game_struct->race_info[0x20];
+    if (flag != 0) {
+        func_800EC0DC();
+        func_800BD2C8();
+    }
+
+    u16 value = *(u16*)(game_struct + 0x350);
+    if (value == 0xFFFF) {
+        return;
+    }
+    if (flag != 0) {
+        func_800F8D9C();
+    }
+
+    func_800BEAA0(value, game_struct->race_info[0x12]);
+    u8 flag2 = game_struct->race_info[46];
+    if (flag2 == 0) {
+        return;
+    }
+    func_800014F0();
+}
+```
+
+
+// === 800FBC30: preplay - pre-race setup ===
+```c
+void preplay() {
+    u32 *gstate = (u32*)0x801546EC;
+    CarArray *car_array = (CarArray*)0x80152818;
+    GameStruct *game_struct = (GameStruct*)0x801461D0;
+
+    if (*(u32*)(gstate + 90) == 2) {
+        u32 index = *(u16*)(car_array + 2);
+        u32 count = *(u16*)(car_array + 3);
+
+        for (u32 i = 0; i < count; i++) {
+            if (i < index) {
+                u32 car_index = i;
+                Car *car = &car_array->cars[car_index];
+
+                int track_length = game_struct->track_length;
+                int lap_count = *(u16*)(car + 504);
+                int lap_distance = *(u16*)(car + 506);
+
+                u32 *race_data = (u32*)0x80125040;
+                race_data[2] = car_index;
+
+                if (i == 320) {
+                    game_struct->track_offset = 0x7080;
+                }
+
+                *(u32*)(game_struct + 22) = lap_count;
+                *(u32*)(game_struct + 24) = lap_distance;
+                *(u32*)(game_struct + 28) = lap_distance;
+
+                u32 *race_data2 = (u32*)0x8012504C;
+                race_data2[2] = lap_count;
+                race_data2[3] = lap_distance;
+                race_data2[4] = lap_distance;
+
+                if (i < track_length) {
+                    u32 *track_data = (u32*)game_struct->track_data + 512;
+                    u32 *track_offset = (u32*)0x801461D4;
+                    u32 offset = *(u32*)(track_data + track_index);
+                    u32 length = track_length;
+
+                    if (length > track_count) {
+                        track_length -= lap_distance;
+                    }
+
+                    *(u32*)(track_offset + 5) = track_length;
+                }
+            }
+        }
+    }
+}
+```

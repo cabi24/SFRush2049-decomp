@@ -1,0 +1,28 @@
+```c
+void attract(void) {
+    static int demo_car;
+    static int demo_track;
+
+    switch (attract_state) {
+        case 0: // Init demo
+            demo_car = rand() % NUM_CARS;
+            demo_track = rand() % NUM_TRACKS;
+            load_track(demo_track);
+            init_demo_playback();
+            attract_state = 1;
+            break;
+        case 1: // Run demo
+            if (demo_done || coin_inserted()) {
+                attract_state = 2;
+            }
+            update_demo_frame();
+            break;
+        case 2: // Show title
+            draw_title_screen();
+            if (start_pressed()) {
+                gstate = TRKSEL;
+            }
+            break;
+    }
+}
+```

@@ -1,0 +1,66 @@
+Here is a decompiled version of the N64 rendering function `func_80099BFC` based on the provided assembly code. This function appears to handle the rendering of a car or object model by setting up matrices and drawing display lists.
+
+```c
+#include <n64.h>
+
+void func_80099BFC(Gfx **glistp, u32 *objectData) {
+    s32 sp608;
+    Mtx *mtx;
+    u16 *matrixData = (u16 *)objectData[1];
+    s32 displayListOffset;
+
+    // Allocate and load matrix from object data
+    mtx = alloc_mtx();
+    guMtxF2L(matrixData, mtx);
+    gSPMatrix((*glistp)++, mtx, G_MTX_MODELVIEW | G_MTX_LOAD);
+
+    // Get the display list offset for the body of the car
+    displayListOffset = (s32)objectData[8];
+    if (displayListOffset != 0) {
+        // Load and execute the body display list
+        gSPDisplayList((*glistp)++, objectData + displayListOffset);
+    }
+
+    // Process wheels (4x)
+    for (int i = 0; i < 4; i++) {
+        Mtx *wheel_mtx;
+        s16 wheelIndex = *(s16 *)(objectData[24 + i * 2]);
+        u16 *wheelMatrixData = (u16 *)(objectData[28] + wheelIndex * 20);
+
+        // Allocate and load wheel matrix
+        wheel_mtx = alloc_mtx();
+        guMtxF2L(wheelMatrixData, wheel_mtx);
+        gSPMatrix((*glistp)++, wheel_mtx, G_MTX_MODELVIEW | G_MTX_MUL);
+
+        // Get the display list offset for the current wheel
+        displayListOffset = (s32)objectData[32 + i * 2];
+        if (displayListOffset != 0) {
+            // Load and execute the wheel display list
+            gSPDisplayList((*glistp)++, objectData + displayListOffset);
+        }
+    }
+
+    // End of function
+}
+```
+
+### Explanation:
+
+1. **Matrix Setup**:
+   - The function starts by allocating and loading a matrix from `objectData[1]` using `guMtxF2L`.
+   - This matrix is then loaded into the modelview matrix stack using `gSPMatrix`.
+
+2. **Body Display List**:
+   - The body of the car's display list offset is retrieved from `objectData[8]`. If it is not zero, the corresponding display list is executed.
+
+3. **Wheels Processing**:
+   - The function iterates over four wheels (indices 0 to 3).
+   - For each wheel, it retrieves a wheel index from `objectData[24 + i * 2]` and finds the matrix data for that wheel.
+   - It allocates and loads the wheel matrix using `guMtxF2L`.
+   - The wheel matrix is then multiplied with the current modelview matrix using `G_MTX_MUL`.
+   - The display list offset for each wheel is retrieved from `objectData[32 + i * 2]`. If it is not zero, the corresponding display list is executed.
+
+4. **End of Function**:
+   - The function ends after processing all wheels and displaying lists.
+
+This decompiled code should provide a clear understanding of how the N64 rendering function handles matrix operations and display list execution for a car or object model.

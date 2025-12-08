@@ -1,0 +1,79 @@
+To decompile the N64 MIPS assembly code to C, we need to reverse-engineer the function `func_800FD464`. This function appears to be a central state machine that handles different game states. Let's go through the assembly step by step and map it to C code.
+
+### Assembly Analysis
+
+1. **Initialization**:
+   - The stack is adjusted by subtracting 88 bytes.
+   - `gstate` (0x801146EC) is loaded into `$t6`.
+   - Function pointers are saved on the stack for later restoration.
+
+2. **State Handling**:
+   - If `gstate` is zero, it sets a specific state and jumps to a function.
+   - Otherwise, it jumps to a function based on the value of `gstate`.
+
+3. **Function Pointers**:
+   - A jump table at 0x80124284 is used to determine which function to call based on `gstate`.
+   - The functions are mapped as follows:
+     - `ATTRACT`: `func_800DB81C`
+     - `TRKSEL`: `func_800CA3B4`
+     - `CARSEL`: `func_800CA3B4`
+     - `PREPLAY`: `func_800FBC30`
+     - `COUNTDOWN`: `func_800FBF88`
+     - `PREPLAY2`: `func_800FBC30`
+     - `PLAYGAME`: `func_800CA3B4`
+     - `ENDGAME`: `func_800FBC30`
+     - `GAMEOVER`: `func_800FBC30`
+     - `HISCORE`: `func_800FBC30`
+
+### C Code
+
+Based on the assembly and the known mappings, we can write the equivalent C code for `func_800FD464`.
+
+```c
+void game(void) {
+    // Initialize local variables
+    byte* gstate_ptr = (byte*)0x801146EC;
+    byte gstate = *gstate_ptr;
+
+    switch (gstate) {
+        case ATTRACT:
+            func_800DB81C();
+            break;
+        case TRKSEL:
+        case CARSEL:
+            func_800CA3B4();
+            break;
+        case PREPLAY:
+            func_800FBC30();
+            break;
+        case COUNTDOWN:
+            func_800FBF88();
+            break;
+        case PREPLAY2:
+            func_800FBC30();
+            break;
+        case PLAYGAME:
+            func_800CA3B4();
+            break;
+        case ENDGAME:
+        case GAMEOVER:
+        case HISCORE:
+            func_800FBC30();
+            break;
+        default:
+            // Handle unknown states if necessary
+            break;
+    }
+
+    render_frame();
+    swap_buffers();
+}
+```
+
+### Explanation
+
+- **State Handling**: The `switch` statement checks the value of `gstate` and calls the appropriate function based on its value.
+- **Function Pointers**: Each case in the `switch` statement corresponds to a specific game state, and the corresponding function is called.
+- **Render and Swap Buffers**: After handling the game state, the frame is rendered, and buffers are swapped.
+
+This C code closely matches the structure of the original N64 MIPS assembly, providing a clear mapping of the state machine logic.

@@ -1,0 +1,820 @@
+// === 80087A08: render_large - 10KB major rendering ===
+```c
+void render_large() {
+    u32 sp[16];
+    s32 *s0 = (s32 *)sp;
+    s32 *s1 = (s32 *)(sp + 5);
+    s32 at = 3;
+    u16 *v0 = (u16 *)(sp + 9);
+    u32 t8, t9, t7, t6;
+
+    *s0 = gstate;
+    *s1 = car_array;
+    *at = *s1[(*s0 & 0xFFFF) << 2];
+    if (*s0 == 0) {
+        *s1 = *v0 >> 8;
+        v0->v0 = *s1 + (t7 << 2);
+        if (t9 == 0) goto end;
+
+        at = 2;
+        if (at != *s0) {
+            v0->v0 = *s1 + (t8 << 1);
+            if (t9 == 0) goto end;
+
+            at = 1;
+            if (at != *s0) {
+                v0->v0 = *s1 + t7;
+                if (t6 < 0) {
+                    t7 = t6 >> 1;
+                    t8 = (t6 + 1) >> 1;
+                    t9 += t7;
+                }
+            } else {
+                t9 = t8;
+            }
+        } else {
+            t9 = t7;
+        }
+
+        sp[10] = t9;
+        u16 *t6 = (u16 *)(sp + 11);
+        *t6 = *s0 - v0->v0;
+
+        if (*t6 != 0) {
+            t9 = *s0 - *t6;
+            *t6 = t9 + sp[7];
+            *t6 = *s0 - v0->v0;
+            *t6 = t9 + *t6;
+        }
+    }
+
+end:
+    s32 a0 = 0, a1 = 0, a2 = 0, a3 = 32;
+    u16 *v0 = (u16 *)sp[5];
+    u16 *v1 = (u16 *)sp[6];
+
+    // Function calls to 0x8000D994 with different offsets
+    for (int i = 0; i < 4; i++) {
+        a3 += 16 * i;
+        v0->v0 = 0;
+        v1->v0 = 0;
+        (*func_8000D994)(a0, a1, a2, a3);
+    }
+}
+```
+
+
+// === 800974EC: audio_processing - sound helper ===
+```c
+void audio_processing(void *arg0) {
+    u32 sp = (u32)arg0;
+    u32 s0 = arg0;
+    u32 ra = *(u32 *)(sp + 36);
+    u32 a1 = *(u32 *)(sp + 52);
+
+    // Function call to another routine
+    func_80007270(0x80151000, s0, 1);
+
+    if (s0 == 0) {
+        s0 = 0x80151000;
+    }
+
+    // Load and use global variables
+    u32 car_array_address = 0x80152818;
+    u32 game_struct_address = 0x801461D0;
+    u32 gstate_address = 0x801146EC;
+
+    // Local variables
+    u32 v0, t6, s2, s1, a2, t7, t0, t1, t8, t9;
+
+    // Load and use global variable from gstate
+    v0 = *(u32 *)(gstate_address + 0x27C8);
+    t6 = *(u32 *)(v0 + 0x1C);
+    s2 = v0;
+    s1 = v0 + 0x18;
+
+    // Function call to another routine
+    func_80097384(s1);
+
+    // Load and use global variable from car_array
+    a2 = *(u32 *)(car_array_address + 0x20);
+    t0 = 0;
+    *(u32 *)s1 = a2;
+
+    // Function call to another routine
+    func_80097384(s1);
+
+    // Load and use global variable from game_struct
+    a2 = *(u32 *)(game_struct_address + 0x20);
+    t1 = 1;
+    t8 = a2 << 2;
+    func_80002790(t8, s2);
+
+    *(u32 *)(s1 + 8) = 0;
+
+    // Function call to another routine
+    if (*(u32 *)s1 != 0) {
+        u32 t6 = 12;
+        u32 t2 = *(u32 *)(*(u32 *)s1);
+        u32 v1 = *(u32 *)(t2 + 0);
+
+        while (v1 > s0) {
+            t2 += 4;
+            v1 -= 1;
+        }
+
+        if (*(u32 *)(s1 + 8) == 0 && v1 != 0) {
+            func_80097384(s1);
+        }
+    }
+}
+```
+
+
+// === 80097798: vehicle_physics - collision detection ===
+```c
+void vehicle_physics(void *arg0, void *arg1, void *arg2) {
+    int sp = -112;
+    int ra = arg1 ? ((int)arg1 + 0x15) : 0;
+    int fp = sp + 56;
+    int s7 = arg2 ? *(int *)(arg2 + 44) : 0;
+    int s6 = arg2 ? *(int *)(arg2 + 48) : 0;
+    int s5 = arg2 ? *(int *)(arg2 + 52) : 0;
+    int s4 = arg2 ? *(int *)(arg2 + 40) : 0;
+    int s3 = arg2 ? *(int *)(arg2 + 36) : 0;
+    int s2 = arg2 ? *(int *)(arg2 + 32) : 0;
+    int s1 = arg2 ? *(int *)(arg2 + 28) : 0;
+    int s0 = arg2 ? *(int *)(arg2 + 24) : 0;
+    int a2 = arg0;
+
+    if (a1 != NULL) {
+        int t6 = ((int)a3 & 0xFF);
+        void *func_result = func_80097694(t6);
+        if (func_result != NULL) {
+            int v0 = *(int *)func_result;
+            int t7 = (v0 << 2) + v0;
+            int t8 = ((int)0x8015 << 16) | (t7 << 2);
+            unsigned char lb_value = *((unsigned char *)t8 + 0x3B);
+            if (lb_value != 0) {
+                func_800965BC(a3);
+            }
+        }
+    }
+
+    int a3 = *(int *)(0x8015 << 16 | (a2 << 2));
+    memset((void *)0x8015 << 16 | 0x6D38, 0, 4);
+
+    if (a1 != 0) {
+        int a2_value = (s0 & 0xFF);
+        func_800974EC(a2_value);
+        int a3_value = (a2_value << 2);
+        int a1_value = ((int)0x8003 << 16) | (a3_value + 0xE0);
+        memset((void *)a1_value, 0, 5);
+        func_80097470(a2_value);
+    }
+}
+```
+
+
+// === 800B8C14: collision_check - car collision ===
+```c
+void collision_check() {
+    u32* gstate = (u32*)0x801146EC;
+    u32* car_array = (u32*)0x80152818;
+    GameStruct* game_struct = (GameStruct*)0x801461D0;
+
+    u32 t7 = gstate[0] & 0xFFFE;
+    if (t7 == 0) {
+        return;
+    }
+
+    f64* s1 = (f64*)&game_struct->some_field; // Assuming some_field is a struct with f64 members
+
+    f64 t9 = *(f64*)((u32)s1 + 0x8C);
+
+    if (*(s32*)t9 == 0) {
+        u32 a0 = car_array[*(u32*)((u32)s1 + 0x5C)];
+        u32 v1 = car_array[*(u32*)((u32)s1 + 0x60)];
+        u32 a1 = car_array[*(u32*)((u32)s1 + 0x58)];
+
+        func_800B8820(a0, v1, a1);
+
+        f64* a0_f = (f64*)&a0;
+        f64* a1_f = (f64*)&a1;
+
+        if (*(u32*)t9 == 1) {
+            func_0x800015BC();
+        }
+
+        if (v0 != 0) {
+            *(s32*)((u32)s1 + 0x5C) = 1;
+            u32 v1_f = *(u32*)((u32)s1 + 0x60);
+            s32 t0 = *(s32*)v1_f & 0xFFFE;
+
+            if (t0 != 0) {
+                func_800B5FC4(a0, v1_f, a1_f);
+            }
+        }
+
+        f64* a0_d = (f64*)&a0;
+        f64* a1_d = (f64*)&a1;
+
+        s32 t8 = *(u32*)s32*((u32)a0_d + 0x5C);
+        s32 t9 = *(u32*)((u32)s1 + 0x60);
+
+        if (*(s32*)t9 != t8) {
+            if (t8 & 7 == 0) {
+                func_800B5FC4(a0, v1_f, a1_d);
+            }
+        }
+
+        f64* a0_e = (f64*)&a0;
+        f64* a1_e = (f64*)&a1;
+
+        s32 t6 = *(u32*)s32*((u32)a0_e + 0x5C);
+        s32 t7 = *(u32*)((u32)s1 + 0x60);
+
+        if (*(s32*)t9 != t8) {
+            if (t8 & 3 == 0) {
+                func_800B5FC4(a0, v1_f, a1_d);
+            }
+        }
+    }
+}
+```
+
+
+// === 800BAE24: physics_calc - physics calculations ===
+```c
+void physics_calc(volatile unsigned short* params) {
+    signed char v7 = params[1];
+    memset(params + 2, 0, 4);
+    
+    if (params[0] <= 0) return;
+    
+    params[3] = params[5];
+    params[6] = 45;
+    params[8] = 80;
+    unsigned short v0 = 1;
+    signed char v2 = params[4];
+    unsigned int v9 = (unsigned int)v0 << 16;
+    
+    if (v0 < 3) {
+        ++v0;
+    }
+    
+    unsigned int v3 = ((params[5] >> 14) & 3) + 1;
+    unsigned short v10 = params[2];
+    unsigned short v4 = (unsigned short)(v0 << 2);
+    
+    if (v3 > 0) {
+        v4 <<= 4;
+    }
+    
+    unsigned int v5 = params[1] * 4;
+    unsigned int v6 = params[1] * 4 + v4;
+    
+    if ((params[v5 + 40] & 1)) {
+        params[2] = params[4];
+        
+        if ((params[v6 + 40] & 4)) {
+            params[4] += (params[3] << 2);
+            
+            if (params[3] < 20) {
+                params[6] = params[3];
+            }
+        }
+    } else {
+        params[4] = params[2];
+        
+        if ((params[v6 + 40] & 2)) {
+            params[2] += (params[3] << 2);
+            
+            if (params[3] < 20) {
+                params[6] = params[3];
+            }
+        }
+    }
+    
+    v5 = gstate->car_array[(unsigned int)v10].game_struct;
+    memset(params + 4, 0, 2);
+    
+    if ((v9 >> 14) & 1) {
+        params[4] = params[2];
+        
+        if ((params[v6 + 40] & 4)) {
+            params[2] += (params[3] << 2);
+            
+            if (params[3] < 20) {
+                params[6] = params[3];
+            }
+        }
+    } else {
+        params[2] = params[4];
+        
+        if ((params[v6 + 40] & 2)) {
+            params[4] += (params[3] << 2);
+            
+            if (params[3] < 20) {
+                params[6] = params[3];
+            }
+        }
+    }
+    
+    params[46] = 0;
+}
+```
+
+
+// === 800BD2C8: physics_helper - called from countdown ===
+```c
+void physics_helper() {
+    u32* gstate = (u32*)0x801146EC;
+    Car car_array[10];
+    GameStruct* game_struct = (GameStruct*)0x801461D0;
+
+    if ((gstate[2] & 0x0008) != 0) {
+        s32 byte_80152818 = *((u8*)0x80152818);
+        if (byte_80152818 == 0) {
+            return;
+        }
+    }
+
+    u8 byte_80152819 = *((u8*)0x80152819);
+    Car* car = &car_array[byte_80152819];
+    if (car->flags == 0) {
+        return;
+    }
+
+    f32 f6, f4, f0, f8;
+    f6 = *(f32*)((u32)game_struct + 0xEB94);
+    f4 = car->state[12];
+    // Assuming a function to perform the calculations
+    some_physics_function(car, &f6, &f4, &f0, &f8);
+
+    u16 value_20 = car->state[20];
+    s16 value_10 = car->state[10];
+    f32* ptr_15912 = (f32*)((u32)game_struct + 0x3E28);
+    f4 = *ptr_15912;
+    // Assuming a function to perform the calculations
+    some_physics_function(car, &f6, &f4, &f0, &f8);
+
+    u8 byte_9 = car->state[9];
+    u32 value_16 = car->state[16];
+    f32* ptr_15916 = (f32*)((u32)game_struct + 0x3E2C);
+    if ((byte_9 & 0xFF) < 11) {
+        byte_9 <<= 2;
+        car->state[12] = f8;
+        u32 address = *(u32*)((u32)game_struct + byte_9);
+        some_physics_function(car, &f6, &f4, &f0, &f8);
+    }
+
+    s16 value_6 = car->state[6];
+    s16 value_4 = car->state[4];
+    u32 temp_v1 = (value_6 << 1) + (value_4 - 1);
+    u32 address = value_20 + temp_v1;
+    f4 = *(f32*)address;
+    // Assuming a function to perform the calculations
+    some_physics_function(car, &f6, &f4, &f0, &f8);
+
+    s16* ptr_4 = (s16*)(car->state + 4);
+    u32 temp_v1 = value_4 - 1;
+    u32 address = value_20 + (temp_v1 << 1);
+    f4 = *(f32*)address;
+    // Assuming a function to perform the calculations
+    some_physics_function(car, &f6, &f4, &f0, &f8);
+
+    u32 temp_v1 = value_4 - 1;
+    u32 address = value_20 + (temp_v1 << 1);
+    f4 = *(f32*)address;
+    // Assuming a function to perform the calculations
+    some_physics_function(car, &f6, &f4, &f0, &f8);
+}
+```
+
+
+// === 800BEAA0: race_logic - called from countdown ===
+```c
+void race_logic(void* arg) {
+    int car_index = *(int*)((char*)arg + 136);
+    struct GameState* gstate = (struct GameState*)(0x801146EC);
+    struct Car* car_array = (struct Car*)(0x80152818);
+    struct GameStruct* game_struct = (struct GameStruct*)(0x801461D0);
+
+    int index_shifted = car_index << 4;
+    int index_diff = index_shifted - car_index;
+    index_diff <<= 3;
+
+    int car_address = 0x80152818 + 10264 + index_diff;
+    char* temp_buffer = (char*)(car_address + 60);
+
+    if ((gstate->race_flags & 0x0008) != 0) {
+        *(int*)(sp + 60) = car_address;
+
+        char race_state = *(char*)(0x80152818 + 27028);
+        if (race_state == 0) {
+            return;
+        }
+
+        struct Car* temp_car = (struct Car*)car_address;
+        int car_flags = temp_car->flags;
+
+        if (temp_car != NULL) {
+            int flag_4 = car_flags & 4;
+            if (flag_4 != 0) {
+                *(int*)(sp + 60) = car_address;
+
+                struct Car* other_car = (struct Car*)*(int*)((char*)game_struct + 8);
+                if (other_car != NULL) {
+                    int flag_a1 = other_car->flags;
+                    if (flag_a1 == 0) {
+                        return;
+                    }
+
+                    *(int*)(sp + 60) = car_address;
+
+                    struct Car* temp_car_2 = (struct Car*)*(int*)((char*)game_struct + 8);
+                    int temp_s4 = other_car->x_position;
+                    int temp_s5 = other_car->y_position;
+                    int temp_s7 = gstate->world_time;
+
+                    *(int*)(sp + 60) = car_address;
+
+                    struct Car* temp_car_3 = (struct Car*)*(int*)((char*)game_struct + 8);
+                    int temp_v0 = temp_car_2->x_speed;
+                    if (temp_v0 == 0) {
+                        return;
+                    }
+
+                    *(int*)(sp + 60) = car_address;
+
+                    struct Car* temp_car_4 = (struct Car*)*(int*)((char*)game_struct + 8);
+                    int temp_t0 = *(int*)((char*)car_array + temp_s7 * 32 + 8);
+
+                    (*(void (*)(void))temp_t0)();
+                }
+            }
+
+            char flag_4b = car_flags & 4;
+            if (flag_4b != 0) {
+                temp_car->flags |= 4;
+
+                *(int*)(sp + 92) = car_index;
+
+                int temp_v0_2 = temp_car->x_position;
+                if (temp_v0_2 == 0) {
+                    return;
+                }
+
+                (*(void (*)(void))*(int*)((char*)game_struct + 8))();
+            }
+        }
+
+        *(int*)(sp + 60) = car_address;
+
+        struct Car* temp_car_5 = (struct Car*)*(int*)((char*)game_struct + 8);
+        int temp_s2 = temp_car_5->x_position;
+        if (temp_s2 != 0) {
+            (*(void (*)(void))*(int*)((char*)car_array + temp_s7 * 32 + 8))(temp_car);
+        }
+    }
+}
+```
+
+
+// === 800C997C: screen_update - state update ===
+```c
+void screen_update() {
+    __asm volatile (
+        "addiu   $sp, $sp, -24\n"
+        "sw      $ra, 20($sp)\n"
+        "jal     0x800C95DC\n"
+        "nop\n"
+        "lui     $v1, 0x8015\n"
+        "lui     $a0, 0x8015\n"
+        "lui     $t5, 0x8015\n"
+        "lui     $t4, 0x8014\n"
+        "lui     $t3, 0x8015\n"
+        "lui     $t2, 0x8015\n"
+        "lui     $t1, 0x8015\n"
+        "nop\n"
+        "addiu   $t1, $t1, -24312\n"
+        "addiu   $t2, $t2, 27000\n"
+        "addiu   $t3, $t3, 27032\n"
+        "addiu   $t4, $t4, 14848\n"
+        "addiu   $t5, $t5, 26968\n"
+        "addiu   $a0, $a0, -24220\n"
+        "addiu   $v1, $v1, -24296\n"
+        "move    $a3, $zero\n"
+        "addiu   $ra, $zero, 4\n"
+        "addiu   $t0, $zero, 5\n"
+        "lbu     $a2, 1($v1)\n"
+        "nop\n"
+        "sltu    $at, $a3, $t6\n"
+        "bne     $at, $zero, 0x800C9A10\n"
+        "addu    $t7, $t2, $v0\n"
+        "sw      $zero, 8($v1)\n"
+        "lw      $t6, 0($t1)\n"
+        "sll     $v0, $a2, 2\n"
+        "addu    $t9, $t3, $v0\n"
+        "sw      $zero, 8($v1)\n"
+        "sw      $zero, 4($v1)\n"
+        "sw      $zero, 12($v1)\n"
+        "swc1    $f0, 16($v1)\n"
+        "beq     $zero, $zero, 0x800C9A44\n"
+        "swc1    $f0, 20($v1)\n"
+        "lw      $t8, 0($t7)\n"
+        "lw      $t6, 0($t9)\n"
+        "sll     $t9, $a2, 3\n"
+        "addu    $a1, $t5, $t9\n"
+        "addu    $t7, $t4, $v0\n"
+        "sw      $t8, 8($v1)\n"
+        "lw      $t8, 0($t7)\n"
+        "lwc1    $f4, 0($a1)\n"
+        "lwc1    $f6, 4($a1)\n"
+        "sw      $t6, 4($v1)\n"
+        "sw      $t8, 12($v1)\n"
+        "swc1    $f4, 16($v1)\n"
+        "swc1    $f6, 20($v1)\n"
+        "lbu     $t6, 77($v1)\n"
+        "addiu   $v1, $v1, 152\n"
+        "sltu    $at, $a3, $t8\n"
+        "bne     $at, $zero, 0x800C9AC4\n"
+        "sw      $zero, 8($a0)\n"
+        "lw      $t7, 0($t1)\n"
+        "addiu   $t8, $t7, -1\n"
+        "sltu    $at, $a3, $t8\n"
+        "bne     $at, $zero, 0x800C9AC4\n"
+        "sw      $zero, 8($a0)\n"
+        "sw      $zero, 4($a0)\n"
+        "sw      $zero, 12($a0)\n"
+        "swc1    $f0, 16($a0)\n"
+        "beq     $zero, $zero, 0x800C9AC4\n"
+        "swc1    $f0, 20($a0)\n"
+        "lbu     $a1, 1($a0)\n"
+        "sll     $v0, $a1, 2\n"
+        "addu    $t9, $t2, $v0\n"
+        "lw      $t6, 0($t9)\n"
+        "addu    $t7, $t3, $v0\n"
+        "addu    $t9, $t4, $v0\n"
+        "sw      $t6, 8($a0)\n"
+        "lw      $t8, 0($t7)\n"
+        "sll     $t7, $a1, 3\n"
+        "addu    $a2, $t5, $t7\n"
+        "sw      $t8, 4($a0)\n"
+        "lw      $t6, 0($t9)\n"
+        "sw      $t6, 12($a0)\n"
+        "lwc1    $f8, 0($a2)\n"
+        "swc1    $f8, 16($a0)\n"
+        "jr      $ra\n"
+        "nop\n"
+    );
+}
+```
+
+
+// === 800EC0DC: state_helper - called from countdown ===
+```c
+void state_helper() {
+    int sp = -48;
+    sp -= sp;
+
+    void (*jal_800E847C)();
+    jal_800E847C();
+
+    int s0 = 2;
+    if (gstate->race_state == 2) {
+        s0++;
+    }
+
+    car_struct *car_array = car_array;
+    game_struct *game_struct = game_struct;
+
+    for (int i = 0; i < s0; i++) {
+        car_struct *car = &car_array[i];
+        if (i == 1) {
+            jal_8008D6FC(car, 0);
+        }
+        jal_800EB90C(car);
+    }
+
+    int a1 = -26740;
+    sb(a0, a1);
+
+    int t9 = 17354;
+    sh(t8, t9);
+
+    int v0 = 176;
+    if (v0 < 6) {
+        sll(t2, v0, 3);
+        sll(t0, v0, 3);
+        a0 += a2 + t0;
+        sb(zero, 6, a0);
+        if (v0 == 1) {
+            sb(t1, 7, a0);
+        }
+    }
+
+    a0 += a2 + t2;
+    lb(t5, a1);
+    sb(v1, 5, a0);
+    v1++;
+    sll(t3, v1, 16);
+    sb(zero, 7, a0);
+    sra(v1, t3, 16);
+    sb(a3, 6, a0);
+    sb(t5, 0, a0);
+
+    v0++;
+    sll(t6, v0, 16);
+    sra(v0, t6, 16);
+}
+```
+
+
+// === 800F8D9C: race_helper - called from countdown ===
+```c
+void func_800F8D9C() {
+    int sp = (int)&gstate;
+    char* car_array = (char*)0x80152818;
+    GameStruct* game_struct = (GameStruct*)0x801461D0;
+
+    if (*(char*)(car_array + 10052)) {
+        int s2 = 0;
+        char* v1 = (char*)game_struct;
+        int s3 = *(int*)(v1 + 14840);
+        int s4 = 2056;
+        int s5 = *(int*)(v1 + 14840);
+        int s6 = 1;
+
+        do {
+            char* t7 = (char*)(s3 + s6 * 4);
+            char* t8 = (char*)game_struct + (*(short*)(t7 + 1990) & 255);
+            char t9 = *(char*)(t8 + 8);
+            int a0 = (t8[0] << 16) >> 16;
+            if (!t8[0]) {
+                a0 = t1;
+                a1 = t9;
+                func_800B200C(a0, a1, s6);
+            } else {
+                int t2 = (a0 << 16) >> 16;
+                s6++;
+                *(char*)t7 = s6;
+                a0 = t2;
+                a1 = t9;
+                func_800B0180(a0, a1);
+            }
+        } while (*(int*)(car_array + 10052) == s2);
+
+        return;
+    }
+
+    int sp2 = (int)&gstate;
+    float v0 = *(float*)&game_struct->unk_0x3C[sp2 & 7];
+    *(float*)((int)v0 + (sp2 >> 3)) = v0;
+}
+```
+
+
+// === 800F93A0: large_unknown - 5.6KB function ===
+```c
+void large_unknown() {
+    __asm__ volatile (
+        "addiu   $sp, $sp, -472\n"
+        "sw      $ra, 116($sp)\n"
+        "sw      $fp, 112($sp)\n"
+        "sw      $s7, 108($sp)\n"
+        "sw      $s6, 104($sp)\n"
+        "sw      $s5, 100($sp)\n"
+        "sw      $s4, 96($sp)\n"
+        "sw      $s3, 92($sp)\n"
+        "sw      $s2, 88($sp)\n"
+        "sw      $s1, 84($sp)\n"
+        "sw      $s0, 80($sp)\n"
+        "sdc1    $f30, 72($sp)\n"
+        "sdc1    $f28, 64($sp)\n"
+        "sdc1    $f26, 56($sp)\n"
+        "sdc1    $f24, 48($sp)\n"
+        "sdc1    $f22, 40($sp)\n"
+        "jal     0x800DE860\n"
+        "sdc1    $f20, 32($sp)\n"
+        "lui     $t5, 0x8015\n"
+        "lb      $t5, 10052($t5)\n"
+        "move    $t3, $zero\n"
+        "move    $s3, $zero\n"
+        "blez    $t5, 0x800F9460\n"
+        "move    $s6, $zero\n"
+        "lui     $s0, 0x8015\n"
+        "lui     $a0, 0x8015\n"
+        "addiu   $a0, $a0, 10264\n"
+        "addiu   $s0, $s0, -23984\n"
+        "addiu   $fp, $sp, 376\n"
+        "addiu   $s1, $zero, 2056\n"
+        "addiu   $a1, $zero, 952\n"
+        "lw      $t6, 0($v0)\n"
+        "move    $t7, $v0\n"
+        "sll     $t7, $t7, 1\n"
+        "lw      $t8, 0($a0)\n"
+        "lui     $t9, 0x000B\n"
+        "sll     $t9, $t3, 16\n"
+        "sra     $t3, $t9, 16\n"
+        "slt     $at, $t3, $t5\n"
+        "addu    $t8, $fp, $t7\n"
+        "lb      $t6, 0($t8)\n"
+        "bne     $at, $zero, 0x800F941C\n"
+        "sh      $t6, 0($t8)\n"
+        "move    $t3, $zero\n"
+        "lui     $a0, 0x8015\n"
+        "lui     $s0, 0x8015\n"
+        "addiu   $s0, $s0, -23984\n"
+        "addiu   $a0, $a0, 10264\n"
+        "addiu   $a1, $zero, 952\n"
+        "addiu   $s1, $zero, 2056\n"
+        "blez    $t5, 0x800F954C\n"
+        "addiu   $fp, $sp, 376\n"
+        "addiu   $s7, $sp, 428\n"
+        "addiu   $s5, $zero, 2\n"
+        "addiu   $s4, $sp, 392\n"
+        "addiu   $v0, $sp, 416\n"
+        "move    $t4, $zero\n"
+        "blez    $t5, 0x800F94D8\n"
+        "move    $a3, $zero\n"
+        "lw      $t4, 0($v0)\n"
+        "addiu   $a3, $a3, 1\n"
+        "sll     $t8, $t4, 1\n"
+        "sra     $a3, $t8, 16\n"
+        "lw      $t9, 0($a0)\n"
+        "addu    $t7, $fp, $t9\n"
+        "lb      $t6, 0($t7)\n"
+        "slt     $at, $a3, $t5\n"
+        "beq     $t3, $t6, 0x800F94D8\n"
+        "bne     $at, $zero, 0x800F949C\n"
+        "r-type  funct=0x19\n"
+        "sll     $t7, $t3, 1\n"
+    );
+}
+```
+
+
+// === 800C85F0: checkpoint_check - checkpoint area ===
+```c
+void checkpoint_check(void) {
+    u32 s0 = 0;
+    if (t8 > 0) {
+        u32 s4 = 1;
+        u32 t9 = *(u32*)(s2);
+        u32 a0 = s3;
+        u32 t0 = t9 + s0;
+        *(u8*)(t0 + 8) = s4;
+        u32 t1 = *(u32*)(s2);
+        u32 t2 = t1 + s0;
+        *(u8*)(t2 + 9) = 0;
+        u32 t3 = *(u32*)(s2);
+        u32 a2 = *(u32*)(s3 + 8);
+        func_80091FBC(s0, t3, a2);
+        s1 += 1;
+        s0 += 60;
+        if (s1 < s4) {
+            goto func_800C8644;
+        }
+    } else {
+        u32 t5 = *(u32*)(sp + 60);
+        *(u32*)0x801162DC = t5;
+        u32 s2 = 0x80116088;
+        *(u32*)(s2) = v0;
+        func_800962D4(v0);
+        u32 t7 = *(u32*)0x80120F1C;
+        if (t7 > 0) {
+            u32 s4 = 1;
+            u32 t8 = *(u32*)(s2);
+            u32 a0 = s5;
+            u32 t9 = t8 + s0;
+            *(u8*)(t9 + 8) = s4;
+            u32 t0 = *(u32*)(s2);
+            u32 t1 = t0 + s0;
+            *(u8*)(t1 + 9) = 0;
+            u32 t2 = *(u32*)(s2);
+            u32 a2 = *(u32*)(s5 + 8);
+            func_80091FBC(s0, t2, a2);
+            s1 += 1;
+            s0 += 44;
+            if (s1 < s7) {
+                goto func_800C86E0;
+            }
+        } else {
+            u32 ra = *(u32*)(sp + 52);
+            u32 s0 = *(u32*)(sp + 24);
+            u32 s1 = *(u32*)(sp + 28);
+            u32 s2 = *(u32*)(sp + 32);
+            u32 s3 = *(u32*)(sp + 36);
+            u32 s4 = *(u32*)(sp + 40);
+            u32 s5 = *(u32*)(sp + 44);
+            u32 s6 = *(u32*)(sp + 48);
+        }
+    }
+}
+```
+
+
+// === 800C8A00: track_logic - track handling ===
+// ERROR: timed out
