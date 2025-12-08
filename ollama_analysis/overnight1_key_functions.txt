@@ -1,0 +1,54 @@
+80087068: references car_array
+8008A6D0: references car_array
+8008A710: references gstate, car_array, game_struct
+8008AE8C: references car_array, game_struct
+8008B474: references gstate
+8008B660: references gstate
+8008B69C: references car_array
+8008E280: references car_array
+8008E398: references game_struct
+80090254: references car_array, game_struct
+8009079C: references car_array, game_struct
+800908A0: references gstate
+80090FEC: references gstate, car_array
+80091C04: references car_array, game_struct
+8009229C: references game_struct
+80092C58: references gstate, car_array, game_struct
+80092E2C: references gstate, car_array, game_struct
+800930A4: references gstate, car_array, game_struct
+80094890: references gstate, car_array
+80094A54: references car_array
+8009508C: references gstate
+8009515C: references game_struct
+800953CC: references game_struct
+800954A8: references car_array, game_struct
+80095800: references gstate, game_struct
+80095924: references game_struct
+80095B10: references game_struct
+80095D04: references game_struct
+8009614C: references gstate
+80096CC4: references gstate, car_array
+80098FC0: references game_struct
+800992AC: references car_array, game_struct
+8009C8F0: references car_array, game_struct
+800A0FDC: references gstate, car_array, game_struct
+800A1244: references gstate, car_array, game_struct
+800A13E8: references gstate, car_array, game_struct
+800A1A60: references gstate, car_array, game_struct
+800A1F18: references gstate, car_array, game_struct
+800A21A4: references car_array, game_struct
+800A2378: references gstate, car_array, game_struct
+800A2504: references game_struct
+800A25C0: references car_array, game_struct
+800A2680: references gstate, car_array
+800A2CE4: references gstate, car_array, game_struct
+800A2D0C: references gstate, car_array, game_struct
+800A2D4C: references gstate, car_array, game_struct
+800A4AC4: references gstate, car_array, game_struct
+800A511C: references gstate, car_array, game_struct
+800A5D34: references gstate, car_array, game_struct
+800A6404: references game_struct
+800A7C9C: references gstate, car_array
+800A7DF0: references car_array, game_struct
+800AAB44: references car_array, game_struct
+800AAE68: references gstate, car_array, game_struct

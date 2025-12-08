@@ -1,0 +1,573 @@
+// Extracted quality candidate from overnight1: func_8008ABF4
+// === func_8008ABF4 ===
+```c
+int func_8008ABF4(int arg0, int arg1, int arg2) {
+    int sp = -40;
+    int ra = *(&sp + 36);
+    int at = (arg0 < arg2);
+    if (!at) {
+        return 0;
+    } else {
+        int v0 = 0;
+        int t7 = arg0 + 1;
+        int t9 = t7 & 0xFFFF;
+        int t8 = *(int*)(arg1 + 8);
+        int t6 = (t9 << 2) - t9;
+        t6 <<= 2;
+        *(short*)(arg1 + 4) = t7;
+        v0 = t8 + t6;
+        int t7a = *(int*)(v0 - 4);
+        int a3 = *(int*)(v0 - 8);
+        int t8a = 0x80153E68;
+        *(int*)(sp + 16) = t7a;
+        int t9a = *(int*)(v0 - 12);
+        t8a += 0x3E68;
+        int a0a = 0x80161438;
+        *(int*)(sp + 24) = t8a;
+        int a1a = 1;
+        int a2a = 0;
+        func_80008630(a0a, a1a, a2a);
+        *(int*)(sp + 20) = t9a;
+        if (t9a != 0) {
+            v0 = 1;
+        }
+    }
+    ra = *(&sp + 36);
+    sp += 40;
+    return v0;
+}
+
+void func_8008AC74(int arg0, int arg1) {
+    int sp = -32;
+    int s1 = 0x80153E68;
+    int ra = *(&sp + 28);
+    int a0a = arg0;
+    int a1a = arg1;
+    int a0b = s1;
+    int a1b = 0x80154F20;
+    func_0x80006A00(a0b, a1a, a2);
+    int a2b = 1;
+    int s0 = 0x80154F20;
+    *(char*)(s0) = 0;
+    a0c = s1;
+    int a1c = 0;
+    func_0x80007270(a0c, a1c, a2b);
+    func_0x8008ABE4();
+    if (*(char*)(s0) == 0) {
+        *(int*)sp = ra;
+        sp += 32;
+        return;
+    }
+    ra = *(&sp + 28);
+    s0 = *(&sp + 20);
+    s1 = *(&sp + 24);
+    ra = *(&sp + 28);
+    sp += 32;
+}
+
+void func_0x80006A00(int arg0, int arg1, int arg2) {
+    // Placeholder for actual implementation
+}
+
+void func_0x80007270(int arg0, int arg1, int arg2) {
+    // Placeholder for actual implementation
+}
+
+int func_0x8008ABE4() {
+    // Placeholder for actual implementation
+    return 0;
+}
+```
+
+// Extracted quality candidate from overnight1: func_8008AE8C
+// === func_8008AE8C ===
+```c
+void func_8008AE8C(volatile u32* gstate, int car_index, int flag) {
+    volatile CarStruct* car_array = (volatile CarStruct*)0x80152818;
+    GameStruct* game_struct = (GameStruct*)0x801461D0;
+
+    s1 = 0x8013;
+    s4 = -1;
+    s3 = car_index;
+    s2 = 68;
+    s5 = 0;
+    ra = func_8008AE8C;
+
+    if (flag != 2) {
+        u32 t6 = game_struct->car_data[car_index].some_value << 16;
+        u32 t7 = t6 >> 16;
+        u32 t9 = s1 - 6400 + (t7 * 8);
+        volatile CarData* car_data = (volatile CarData*)t9;
+
+        u32 v0 = car_data->some_value;
+        u32 t2 = v0 | (s3 << 8);
+        u32 s0 = s1 - 6400 + (v0 * 8);
+        u16 value = ((volatile CarData*)s0)->some_other_value;
+
+        if (value != -1) {
+            ((volatile CarData*)s0)->some_value = t2;
+        }
+    }
+
+    if (flag == 3) {
+        u32 t3 = game_struct->car_data[car_index].some_value << 16;
+        u32 t4 = t3 >> 16;
+        u32 t8 = s1 - 6400 + (t4 * 8);
+        volatile CarData* car_data = (volatile CarData*)t8;
+
+        u32 v0 = car_data->some_value;
+        u32 t7 = v0 | (s3 << 8);
+        u32 s0 = s1 - 6400 + (v0 * 8);
+        ((volatile CarData*)s0)->some_other_value = t7;
+
+        if (((volatile CarData*)s0)->some_value != -1) {
+            // Additional logic for flag == 3
+            // This part is incomplete as the assembly code is cut off.
+        }
+    }
+
+    // More cases for other flags can be added here if needed
+}
+```
+
+Note: The C code provided is a simplified version and may not accurately reflect all details of the original assembly code. The logic for `flag == 3` is left incomplete due to the cutoff in the assembly code.
+
+// Extracted quality candidate from overnight1: func_8008B0D8
+// === func_8008B0D8 ===
+```c
+void func_8008B0D8(int a0, int a1, int a2) {
+    char *sp = (char *)__builtin_frame_address(0);
+    int s3 = a2;
+    int s1 = 0x8013 << 16;
+    int s4 = -1;
+    unsigned short *a2_ptr = (unsigned short *)0x8000;
+    s1 -= 6400;
+
+    sp -= 48;
+    *(int *)(sp + 32) = s3;
+    *(int *)(sp + 24) = a1;
+    *(int *)(sp + 36) = s4;
+    *(int *)(sp + 28) = a0;
+    *(int *)(sp + 44) = (int)&func_8008B0D8 + 48;
+    *(int *)(sp + 40) = a1;
+    *(int *)(sp + 20) = s3;
+
+    int v1 = 1;
+    if (a1 != v1) {
+        int t6 = a0 << 16;
+        int t7 = t6 >> 16;
+        t6 &= 0xFFFF;
+
+        int t1 = s3 << 8;
+        int t2 = ~t1 | 0x8000;
+
+        int t9 = s1 + t6;
+        unsigned char *v0 = *(unsigned char **)(t9);
+        v1 = t7 & 0xFFFF;
+        t3 = v0[v1] & t2;
+
+        t9 = s1 + t0;
+        unsigned short *v0_ptr = (unsigned short *)*(int *)(t9 + 2);
+
+        if (*v0_ptr != s4) {
+            int a0_temp = *v0_ptr;
+            do {
+                v0[a0_temp] = t3;
+                a0_ptr++;
+                a1--;
+            } while (a1);
+        }
+    }
+
+    if (a1 == 2) {
+        t6 = a0 << 16;
+        t7 = t6 >> 16;
+        t6 &= 0xFFFF;
+
+        int t8 = s3 << 8;
+        int t9 = ~t8 | 0x8000;
+
+        t9 = s1 + t7;
+        unsigned short *v0_ptr = (unsigned short *)*(int *)(t9 + 2);
+
+        if (*v0_ptr != 0xFFFF) {
+            int a0_temp = *v0_ptr;
+            do {
+                v0[a0_temp] = t9;
+                a1--;
+            } while (a1);
+        }
+    }
+
+    // Additional cases for a1 == 3 and a1 == 4 are similar, but with different calculations.
+}
+```
+
+// Extracted quality candidate from overnight1: func_8008B26C
+// === func_8008B26C ===
+```c
+int func_8008B26C(signed char *arg0) {
+    if (arg0 != NULL) {
+        int result = 0;
+        int numCars = *(unsigned short *)(gstate + 0x735C);
+        for (int i = 0; i < numCars; ++i) {
+            struct CarStruct *car = &car_array[i];
+            func_8008B0D8(car, arg0[6], 15);
+        }
+        return result;
+    } else {
+        int result = 0;
+        int numCars = *(unsigned short *)(gstate + 0x735C);
+        for (int i = 0; i < numCars; ++i) {
+            struct CarStruct *car = &car_array[i];
+            func_8008AE8C(car, arg0[6], 15);
+        }
+        return result;
+    }
+}
+```
+
+// Extracted quality candidate from overnight1: func_8008E398
+// === func_8008E398 ===
+```c
+void func_8008E398(u32 param) {
+    int t6 = param >> 16;
+    u32 sp = 0x8008E398;
+    sp -= 24;
+
+    car_array[t6].some_field = gstate->some_other_field;
+    car_array[t6].another_field = func_8008E26C(t6);
+    car_array[t6].field1 = t6;
+    car_array[t6].field2 = 0;
+    car_array[t6].field3 = (u32)car_array[t6];
+    car_array[t6].field4 = (u32)car_array[t6];
+
+    if (!gstate->some_other_field) {
+        u8 value = gstate->some_value;
+        gstate->some_field = (value << 16) | (value >> 16);
+        return;
+    }
+
+    sp -= 256;
+    int t7 = (u32)(gstate->some_field >> 2);
+    t6 <<= 16;
+    t7 >>= 16;
+    u32 at = t6;
+
+    *(u32*)(sp + 256) = param;
+    u32 base_address = 0x801461D0;
+    int offset = 0x92D8 - base_address;
+    void* ptr = (void*)(base_address + offset);
+
+    u16 value = *(u16*)((u32)ptr + 0xF8);
+    t6 = value;
+
+    switch (param & 0xFF) {
+        case 1:
+            t7 <<= 2;
+            break;
+        case 2:
+            t7 <<= 2;
+            at = 2;
+            break;
+        case 3:
+            t7 <<= 2;
+            at = 3;
+            break;
+        default:
+            if (param & 0xFF == 4) {
+                *(u32*)(sp + 260) = param;
+            }
+            break;
+    }
+
+    if (at != 1 && value & 0x100) {
+        value |= 0x100;
+    }
+
+    *(u32*)((u32)ptr + 0xF8) = value;
+}
+```
+
+// Extracted quality candidate from overnight1: func_80090254
+// === func_80090254 ===
+```c
+void func_80090254(u32 arg0) {
+    u32 car_index = (arg0 << 16) >> 16;
+    s32 result = func_80090088(car_index, 0);
+
+    if (!result) {
+        return;
+    }
+
+    u32 game_struct_offset = 0x801461D0;
+    u32 car_array_offset = 0x80152818;
+
+    s32 *car_info = &car_array[car_index];
+    u32 game_struct_value = *(u32 *)(game_struct_offset + 0x90);
+    if (game_struct_value == 0) {
+        return;
+    }
+
+    u32 speedometer_index = 0x8013E66C - game_struct_value;
+    s16 speedometer_value = *(s16 *)&car_info[speedometer_index];
+
+    u32 speedometer_new_value = speedometer_value + 1;
+    car_info[speedometer_index] = speedometer_new_value;
+
+    if (speedometer_new_value > *(s16 *)&car_info[0x8013E678 - game_struct_value]) {
+        u32 temp_buffer_offset = 274 * 2 + 274 * 2;
+        u16 speedometer_old_value = *(u16 *)(temp_buffer_offset + 2);
+        car_info[speedometer_index] = speedometer_new_value;
+
+        *(u8 *)temp_buffer_offset = (u8)speedometer_new_value;
+        *(u8 *)(temp_buffer_offset + 1) = (u8)speedometer_old_value;
+        *(u32 *)(game_struct_offset + 0x90) = 0;
+        *(u32 *)(game_struct_offset + 0x94) = 0;
+        *(u32 *)(game_struct_offset + 0x96) = -1;
+        *(u32 *)(game_struct_offset + 0x98) = 0;
+        *(u32 *)(game_struct_offset + 0x9C) = 0;
+        *(u32 *)(game_struct_offset + 0xA0) = 0;
+    }
+}
+
+void func_80090310(u32 arg0) {
+    s32 result = func_80090284();
+
+    if (!result) {
+        return;
+    }
+
+    u32 game_struct_offset = 0x801461D0 + 4076;
+    u32 temp_buffer_offset = 274 * 2 + 274 * 2;
+
+    *(u32 *)(game_struct_offset) = (u32)temp_buffer_offset;
+    f32 value1 = *(f32 *)(0x80152818 + 17356);
+    f32 value2 = 244.0f;
+    f32 value3 = value1 - value2;
+
+    *(u32 *)(game_struct_offset + 0x10) = *(u32 *)&value3;
+    u16 speedometer_value = *(u16 *)temp_buffer_offset;
+    *(u8 *)(temp_buffer_offset + 1) = (u8)speedometer_value;
+}
+```
+
+// Extracted quality candidate from overnight1: func_8009079C
+// === func_8009079C ===
+```c
+void func_8009079C(void *arg0) {
+    s16 value = *(s16 *)arg0;
+    void **carArray = car_array;
+    if (value > 0) {
+        value--;
+        func_8008AE8C(value, 15);
+    }
+    arg0->prev = -1;
+    arg0->next = -1;
+
+    int* gameStruct = (int*)0x801461D0;
+    if (*(s32*)gameStruct != 0) {
+        if (*(int*)(*(s32*)gameStruct) == arg0) {
+            *(int*)(*(s32*)gameStruct) = carArray[(*(int*)gameStruct + value) % 15];
+        }
+        int *temp = (int*)carArray;
+        for (int i = 0; i < 15; i++) {
+            if (*(int*)(temp[i]) == arg0) {
+                temp[i] = carArray[(i + value) % 15];
+                break;
+            }
+        }
+    }
+
+    int *gState = gstate;
+    if (*(s32*)gState != 0) {
+        if (*(int*)(*(s32*)gState) == arg0) {
+            *(int*)(*(s32*)gState) = carArray[(*(int*)gState + value) % 15];
+        }
+        int *temp = (int*)carArray;
+        for (int i = 0; i < 15; i++) {
+            if (*(int*)(temp[i]) == arg0) {
+                temp[i] = carArray[(i + value) % 15];
+                break;
+            }
+        }
+    }
+
+    int *temp2 = (int*)carArray;
+    for (int i = 0; i < 15; i++) {
+        if (*(int*)(temp2[i]) == arg0) {
+            *(int*)(temp2[i]) = carArray[(i + value) % 15];
+            break;
+        }
+    }
+
+    int *gState2 = gstate;
+    if (*(s32*)gState2 != 0 && *(int*)(*(s32*)gState2) == arg0) {
+        *(int*)(*(s32*)gState2) = carArray[(*(int*)gState2 + value) % 15];
+    }
+}
+
+void func_800908A0(void *arg0, int arg1) {
+    void **carArray = (void**)0x80152818;
+    int temp = arg1 << 16;
+    s16 index = (temp >> 16);
+    *(int*)(arg0 + 104) = index;
+
+    car_array[index] = carArray[(index + value) % 15];
+}
+```
+
+// Extracted quality candidate from overnight1: func_800908A0
+// === func_800908A0 ===
+```c
+void func_800908A0(u32 arg0) {
+    u32 *gstate = (u32 *)0x801146EC;
+    s32 idx = arg0 >> 16;
+    u32 temp_idx = idx << 16;
+    s32 local_a1 = 0;
+
+    __asm__ volatile (
+        "sw %0, 116(%sp)\n"
+        "sw $ra, 108(%sp)\n"
+        "sw $fp, 104(%sp)\n"
+        "sw $s7, 100(%sp)\n"
+        "sw $s6, 96(%sp)\n"
+        "sw $s5, 92(%sp)\n"
+        "sw $s4, 88(%sp)\n"
+        "sw $s3, 84(%sp)\n"
+        "sw $s2, 80(%sp)\n"
+        "sw $s1, 76(%sp)\n"
+        "sw $s0, 72(%sp)\n"
+        "sdc1 $f30, 64(%sp)\n"
+        "sdc1 $f28, 56(%sp)\n"
+        "sdc1 $f26, 48(%sp)\n"
+        "sdc1 $f24, 40(%sp)\n"
+        "sdc1 $f22, 32(%sp)\n"
+        "sdc1 $f20, 24(%sp)\n"
+        "jal 0x80090088\n"
+        "move $a2, $zero\n"
+        "lw %0, 116(%sp)\n"
+        "sh $t9, 6(%0)\n"
+        "beqz $zero, 0x80090B24\n"
+        "lw $ra, 108(%sp)\n"
+        "lh %1, 8(%0)\n"
+        "lui $t7, 0x8015\n"
+        "bltz %1, 0x80090B24\n"
+        "sll $t6, %1, 8\n"
+        "addu $t6, $t6, $a1\n"
+        "sll $t6, $t6, 3\n"
+        "addu $t7, $t7, $t6\n"
+        "lb %2, -22384($t7)\n"
+        "lui $t1, 0x8015\n"
+        "addiu $a1, $zero, 952\n"
+        "i-type op=0x14\n"
+        "lh $a0, 6(%0)\n"
+        "addu %3, $t1, $t8\n"
+        "lwc1 $f4, 8($3)\n"
+        "r-type funct=0x19\n"
+        "r-type funct=0x12\n"
+        "lwc1 $f6, 12($3)\n"
+        "r-type funct=0x19\n"
+        "r-type funct=0x12\n"
+        "lw %4, 8($3)\n"
+        "swc1 $f4, 36(%t4)\n"
+        "lwc1 $f6, 12($4)\n"
+        "r-type funct=0x19\n"
+        "r-type funct=0x12\n"
+        "lw %5, 8($4)\n"
+        "swc1 $f6, 40(%t5)\n"
+        :
+        : "r"(local_a1), "r"(temp_idx), "r"(idx), "r"(gstate), "r"((u32 *)car_array), "r"((u32 *)game_struct)
+        : "$ra", "$fp", "$s7", "$s6", "$s5", "$s4", "$s3", "$s2", "$s1", "$s0"
+    );
+}
+```
+
+// Extracted quality candidate from overnight1: func_80094A54
+// === func_80094A54 ===
+```c
+void func_80094A54(int arg0) {
+    int s0 = 0;
+    int s1 = 0;
+    int s2 = 4;
+    int s3 = -1;
+    int s4 = 60;
+    int s5 = 12;
+    int v0 = 0;
+    int a0 = 0;
+    int t0 = arg0;
+    int a1 = 0x80152818; // car_array
+    int a2 = a1 + 5776;
+    int a3 = 0;
+    int v1 = 0;
+
+    if (t0 != (*(int*)a2)) {
+        t1 = 0;
+        do {
+            s0 -= a3;
+            t7 = s0 & 3;
+            if (t7 != 0) {
+                t8 = a0 + s5 * t7;
+                *(int*)(v1 + s4 * t1) = *(int*)t8;
+                v1 += 4;
+                t1++;
+            }
+        } while (t1 < s2);
+    }
+
+    s0 = 0;
+    do {
+        t7 = s0 & 3;
+        if (t7 != 0) {
+            t8 = a0 + s5 * t7;
+            *(int*)(v1 + s4 * s1) = *(int*)t8;
+            v1 += 4;
+            s1++;
+        }
+    } while (s1 < s2);
+}
+```
+
+// Extracted quality candidate from overnight1: func_80095D04
+// === func_80095D04 ===
+```c
+int func_80095D04(int a0) {
+    int sp = -80;
+    int at = -1;
+    void* ra = *(void**)(sp + 44);
+    void* s4 = *(void**)(sp + 40);
+    void* s3 = *(void**)(sp + 36);
+    void* s2 = *(void**)(sp + 32);
+    void* s1 = *(void**)(sp + 28);
+    void* s0 = *(void**)(sp + 24);
+    int a1 = *(int*)(sp + 84);
+    int a2 = *(int*)(sp + 88);
+
+    if (a0 != at) {
+        int t0 = a0;
+        int zero = 0;
+
+        if (!(zero == zero)) {
+            int v0 = -1;
+            int* a1_ptr = (int*)0x801461D0;
+            int v1 = *(int*)(a1_ptr + 2);
+            int t6 = *(unsigned char*)v1;
+            int t7 = -1;
+
+            while (t7 != t6) {
+                v0++;
+                a1_ptr += 32;
+
+                if (!(zero == zero)) {
+                    break;
+                }
+
+                int* v1_ptr = (int*)0x801461D0 + 2;
+                *(unsigned char*)(v1_ptr + t7 * 2) = 1;
+            }
+        }
+    }
+
+    return 0;
+}
+```
