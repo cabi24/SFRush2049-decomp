@@ -1,0 +1,371 @@
+// Cleaned C snippets derived from Ollama outputs.
+// Each entry notes the source file and current state; many snippets are incomplete and require manual re-derivation.
+
+// func_800FD464: game_loop - main state machine (priority_decompiled.txt)
+// Status: Pseudo-C was heavily mangled (stack arithmetic, bad pointers). Needs fresh decomp/diff; snippet not reliable.
+
+// func_800CA3B4: game_update - per-frame gameplay (priority_decompiled.txt)
+// Status: Inline asm block only; incomplete. Needs proper decomp.
+
+// func_800DB81C: attract - demo/title screen (priority_decompiled.txt)
+// Status: Pseudo-C/asm mix; incomplete. Needs clean decomp.
+
+// func_80099BFC: render_object - 3D rendering (priority_decompiled.txt)
+// Status: Partial pseudo-C with truncated branches. Needs re-run through m2c/diff.
+
+// func_800A04C4: render_scene - viewport setup (priority_decompiled.txt)
+// Status: Inline asm stub; incomplete. Needs manual cleanup.
+
+// func_800B37E8: audio_control - sound system (priority_decompiled.txt)
+// Status: Pseudo-C with bad stack math; incomplete. Needs proper decomp.
+
+// func_800C9AE0: input_handler - controller/init (priority_decompiled.txt)
+// Status: Fragmentary pseudo-C; incomplete. Needs re-decomp.
+
+// func_800FBF88: countdown - race start (priority_decompiled.txt)
+// Status: Missing body in Ollama output. Needs decomp.
+
+// func_800FBC30: preplay_setup - pre-race setup (priority_decompiled.txt)
+// Status: Missing body in Ollama output. Needs decomp.
+
+// func_80087A08: render_large - 10KB major rendering (batch2_decompiled.txt)
+// Status: Pseudo-C with nonsensical pointer math; incomplete. Needs full re-decomp.
+
+// func_800974EC: audio_processing - sound helper (batch2_decompiled.txt)
+// Status: Pseudo-C with globals; incomplete. Needs re-decomp.
+
+// func_80097798: vehicle_physics - collision detection (batch2_decompiled.txt)
+// Status: Pseudo-C present but corrupted (undefined a1/a3). Needs proper decomp.
+
+// func_800B8C14: collision_check - car collision (batch2_decompiled.txt)
+// Status: Pseudo-C truncated; needs re-decomp.
+
+// func_800BAE24: physics_calc (batch2_decompiled.txt)
+// Status: Pseudo-C truncated; needs re-decomp.
+
+// func_800BD2C8: physics_helper - called from countdown (batch2_decompiled.txt)
+// Status: Pseudo-C truncated; needs re-decomp.
+
+// func_800BEAA0: race_logic - called from countdown (batch2_decompiled.txt)
+// Status: Pseudo-C truncated; needs re-decomp.
+
+// func_800C997C: screen_update - state update (batch2_decompiled.txt)
+// Status: Missing body. Needs decomp.
+
+// func_800EC0DC: state_helper - called from countdown (batch2_decompiled.txt)
+// Status: Missing body. Needs decomp.
+
+// func_800F8D9C: race_helper - called from countdown (batch2_decompiled.txt)
+// Status: Pseudo-C present but partial; needs cleanup.
+
+// func_800F93A0: large_unknown - 5.6KB function (batch2_decompiled.txt)
+// Status: Not emitted in parse; needs extraction/decomp.
+
+// func_800C85F0: checkpoint_check - checkpoint area (batch2_decompiled.txt)
+// Status: Not emitted in parse; needs extraction/decomp.
+
+// func_800C8A00: track_logic - track handling (batch2_decompiled.txt)
+// Status: Not emitted in parse; needs extraction/decomp.
+
+// batch3_decompiled.txt (state handlers, camera helpers, dispatch)
+// Cleaned for syntax; still pseudo-C and needs verification against baserom.
+// Addresses are left as literals to keep the call graph visible.
+
+```c
+#include <stdint.h>
+#include <stddef.h>
+typedef uint32_t u32;
+typedef int32_t s32;
+typedef uint16_t u16;
+typedef int16_t s16;
+typedef uint8_t u8;
+typedef float f32;
+
+#define GSTATE_ADDR 0x801146EC
+#define CAR_ARRAY_ADDR 0x80152818
+#define GAME_STRUCT_ADDR 0x801461D0
+
+void func_800B200C(u8 a0, u8 a1, u32 a2);
+void func_800B0180(u8 a0);
+void func_800F8EC8(int a0, int a1);
+
+void state_init_handler(int cold_boot) {
+    volatile u32 *gstate = (u32 *)GSTATE_ADDR;
+    volatile u8 *car_flags = (u8 *)(CAR_ARRAY_ADDR + 3836);
+
+    ((void (*)(int))0x800C9BE0)(1);
+    gstate[0x1D5] = 1;
+    gstate[0x1D4] = *car_flags;
+
+    ((void (*)(int, int))0x800FB2C8)(1, 1);
+    gstate[0x70] = cold_boot ? 1 : 0;
+
+    if (cold_boot && (gstate[0x1D4] & 1) == 0) {
+        ((void (*)(void))0x800F8D9C)();
+        ((void (*)(void))0x801EC0DC)();
+        ((void (*)(void))0x800BD2C8)();
+    }
+}
+
+// Setup state: branch/call layout only; gstate offsets in Ollama dump were garbled.
+void state_setup_handler(void) {
+    int ready = ((int (*)(int, int))0x800FB2C8)(1, 1);
+    if (ready) {
+        ((void (*)(void))0x800F8D9C)();
+        ((void (*)(int))0x800FBD2C)(1);
+    } else {
+        ((void (*)(void))0x800C813C)();
+    }
+}
+
+// Menu handler scaffold; menu_state lives near car_array -24304 per dump.
+void state_menu_handler(int arg1) {
+    s32 menu_state = *(s32 *)((u8 *)CAR_ARRAY_ADDR - 24304);
+    switch (menu_state) {
+    case 4:
+    case 5:
+    case 6:
+        ((void (*)(int, int))0x80097694)(78, menu_state);
+        break;
+    default:
+        // Placeholder: menu flow not reconstructed yet.
+        break;
+    }
+    (void)arg1;
+}
+
+// Camera state: sequence of camera/physics helpers.
+void state_camera_handler(void) {
+    u16 *car_count = (u16 *)0x80152374;
+    s16 *camera_mode = (s16 *)0x801149A0;
+
+    if (*(volatile u32 *)GSTATE_ADDR) {
+        ((void (*)(void))0x800F8D9C)();
+        ((void (*)(void))0x800EC0DC)();
+        ((void (*)(void))0x800BD2C8)();
+
+        if (*car_count == 1) {
+            ((void (*)(void))0x800BEAA0)();
+        }
+
+        if (*camera_mode) {
+            ((void (*)(int))0x8000F53C)(1);
+        }
+
+        ((void (*)(float *))0x800E762C)((float *)0x8003E4BC);
+        *camera_mode = 0;
+
+        ((void (*)(void))0x800FBF2C)();
+        ((void (*)(void))0x800FBE30)();
+        ((void (*)(int))0x800C813C)(0);
+    }
+}
+
+// Ready state: helper sequence with countdown/camera prep.
+void state_ready_handler(void) {
+    volatile u32 *gstate = (u32 *)GSTATE_ADDR;
+
+    ((void (*)(int))0x800C813C)(1);
+    ((void (*)(void))0x800FA9B4)();
+    ((void (*)(void))0x800FBE30)();
+    ((void (*)(void))0x800F7F3C)();
+
+    if (((volatile u8 *)gstate)[125]) {
+        ((void (*)(void))0x800D510C)();
+        ((volatile u32 *)((u8 *)gstate + 29880))[0] = 1;
+        ((void (*)(void))0x800D58CC)();
+    }
+}
+
+// Play state: placeholder; Ollama output only showed high-level flow.
+void state_play_handler(void) {
+    volatile u32 *gstate = (u32 *)GSTATE_ADDR;
+    volatile u8 *game = (u8 *)GAME_STRUCT_ADDR;
+
+    ((void (*)(int, int))0x800FB2C8)(1, 1);
+    ((void (*)(void))0x800FBE30)();
+
+    if (game[9881]) {
+        ((void (*)(void))0x800D58CC)();
+        return;
+    }
+
+    ((volatile u32 *)((u8 *)gstate + 29880))[0] = 1;
+    // TODO: fill in car/input/update loops from real decomp.
+}
+
+// Cars state: condensed; original dump repeated bit-twiddling on car flags.
+void state_cars_handler(int state_flag) {
+    if (state_flag < 0) {
+        ((void (*)(void))0x800F64D4)();
+        return;
+    }
+
+    ((void (*)(void))0x800D5798)();
+    ((void (*)(void))0x800D5374)();
+    *(volatile u32 *)0x80110200 |= 0x60;
+
+    if (*(volatile u32 *)0x80110200 & 0x60) {
+        ((void (*)(void))0x800F64D4)();
+    }
+}
+
+// Finish state: copies race order; address math from Ollama was incomplete.
+void state_finish_handler(int arg) {
+    if (arg >= 0) {
+        ((void (*)(int))0x800F64D4)(arg << 8);
+    }
+
+    if (*(volatile u32 *)GSTATE_ADDR != 0x02000000) {
+        return;
+    }
+
+    u16 count = *(volatile u16 *)(CAR_ARRAY_ADDR + 6864);
+    for (u16 i = 0; i < count; i++) {
+        // TODO: copy finish order into car_array slots; loop bounds confirmed, offsets not.
+    }
+}
+
+// Camera view transform: placeholder; real body is large inline asm driving camera lists.
+void camera_view_transform(void) {
+    // TODO: reconstruct from MIPS asm at 0x80097CA0; calls 0x80095924 over camera entries.
+}
+
+typedef void (*CameraUpdateFn)(void *car, void *ctx);
+
+void camera_update_nested(void *car_array, void *game_struct, CameraUpdateFn cb, CameraUpdateFn next) {
+    if (!cb) {
+        return;
+    }
+    cb(car_array, game_struct);
+    if (next) {
+        next(car_array, game_struct);
+    }
+}
+
+void func_80098620(void *ctx, CameraUpdateFn cb) {
+    camera_update_nested(ctx, (void *)GAME_STRUCT_ADDR, cb, NULL);
+}
+
+void func_80098640(void *ctx) {
+    CameraUpdateFn cb = *(CameraUpdateFn *)ctx;
+    camera_update_nested(ctx, (void *)GAME_STRUCT_ADDR, cb, NULL);
+}
+
+// Camera setup for race start; walks car list and spawns cameras.
+void camera_race_setup(void) {
+    u8 *car_base = (u8 *)CAR_ARRAY_ADDR;
+    if (!car_base) {
+        return;
+    }
+
+    u32 count = *(volatile u32 *)GAME_STRUCT_ADDR;
+    for (u32 i = 0; i < count; i++) {
+        u16 slot = *(u16 *)(0x801427F4 + i * 2);
+        u8 occupied = *(u8 *)(0x80153A48 + slot);
+        if (!occupied) {
+            func_800B200C(slot >> 16, *(u8 *)(0x801427F4 + i * 8 + 8), 1);
+        } else {
+            func_800B0180(slot >> 16);
+        }
+    }
+
+    func_800F8EC8(0, 0);
+}
+
+// Object dispatcher; cleaned up loop logic.
+void UpdateActiveObjects(void) {
+    u32 *cars = (u32 *)CAR_ARRAY_ADDR;
+    if (!cars) {
+        return;
+    }
+
+    u32 car_count = cars[1] & 0xFFFF;
+    u32 active_count = (car_count > 0) ? car_count - 1 : 0;
+
+    for (u32 i = 0; i < active_count; i++) {
+        u32 car_index = i + 1;
+        u32 *car_ptr = cars + car_index * 4;
+        u32 car_type = car_ptr[0];
+        u32 car_state = car_ptr[1];
+        if (car_type && car_state == active_count) {
+            ((void (*)(u32))car_type)(car_index);
+        }
+    }
+
+    for (u32 i = 0; i < active_count; i++) {
+        u32 car_index = i + 1;
+        u32 *car_ptr = cars + car_index * 4;
+        u32 car_type = car_ptr[0];
+        u32 car_state = car_ptr[1];
+        if (car_type && car_state != active_count) {
+            ((void (*)(u32))car_type)(car_index);
+        }
+    }
+
+    ((void (*)(void))0x800B358C)();
+}
+
+void HandleGameObjects(u32 arg1, u32 arg2) {
+    if (!arg1) {
+        return;
+    }
+
+    ((void (*)(u32, u32))0x800F733C)(*(u32 *)GAME_STRUCT_ADDR, arg2);
+    u32 car_count = ((u32 *)CAR_ARRAY_ADDR)[1] & 0xFFFF;
+    if (arg2) {
+        ((void (*)(u32))0x800B0868)(car_count);
+    }
+    ((void (*)(u32))0x800B811C)(car_count);
+    ((void (*)(u32, u32))0x800A04C4)(arg1, 0);
+}
+
+s32 GetCarCount(void) {
+    s32 car_array = *(s32 *)CAR_ARRAY_ADDR;
+    if (car_array != 0) {
+        return ((u32 *)car_array)[1] & 0xFFFF;
+    }
+    return 0;
+}
+
+// State dispatch ladder; mirrors arcade state machine entry points.
+void state_dispatch(u32 state) {
+    volatile u32 *gstate = (u32 *)GSTATE_ADDR;
+
+    if (state & 0x0002) ((void (*)(u32))0x8039A2A0)(state);
+    if (state & 0x0004) ((void (*)(u32))0x8038A400)(state);
+    if (state & 0x0008) ((void (*)(u32))0x8038F454)(state);
+    if (state & 0x0010) ((void (*)(u32))0x800FD024)(state);
+    if (!(state & 0x2000)) {
+        *(volatile u32 *)(GAME_STRUCT_ADDR + 1017 * 4) = 0;
+        ((void (*)(u32, int, int))0x80097694)(54, -1, 1);
+        state |= gstate[0];
+        ((void (*)(u32))0x80390418)(state);
+    }
+    if (state & 0x0020) ((void (*)(u32))0x80394058)(state);
+    if (state & 0x0040) ((void (*)(u32))0x8039842C)(state);
+    if (state & 0x4000) ((void (*)(u32))0x80399D10)(state);
+    if (!(state & 0x0080)) {
+        *(volatile u32 *)(GAME_STRUCT_ADDR + 1017 * 4) = 0;
+        ((void (*)(u32, int, int))0x80097694)(54, -1, 1);
+        state |= gstate[0];
+        ((void (*)(u32))0x80390418)(state);
+    }
+    if (state & 0x0100) ((void (*)(u32))0x8038E5DC)(state);
+    if (state & 0x0200) ((void (*)(u32))0x803A1EAC)(state);
+}
+
+// VI retrace callback: timing copy from Ollama dump; verify offsets.
+void vi_retrace_callback(void) {
+    u8 *cars = (u8 *)CAR_ARRAY_ADDR;
+    void (**cb)(int, u8 *) = (void (**)(int, u8 *))(*(u32 *)(GSTATE_ADDR + 13208) + 52);
+    if (cb && *cb) {
+        (*cb)(0, cars);
+    }
+    for (int i = 0; i < 41; i++) {
+        cars[13 + i] = cars[9 * i];
+    }
+}
+```
+
+// Status: Functions are syntactically valid but still pseudocode; verify against real disassembly.

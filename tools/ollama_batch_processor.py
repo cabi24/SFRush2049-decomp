@@ -17,6 +17,12 @@ MODEL = "qwen2.5-coder:7b"
 CONTEXT_SIZE = 16384  # 16K context
 BATCH_SIZE = 25       # Functions per batch (bigger with 16K)
 ASM_LINES_PER_FUNC = 20  # Assembly lines to include per function
+
+# Overnight batch settings - stay within 16K context
+# ~20 lines ASM * ~50 chars = ~1000 chars/func
+# 16K context = ~12K usable for prompt = ~12 functions per batch safely
+OVERNIGHT_BATCH_SIZE = 10  # Conservative to avoid context overflow
+OVERNIGHT_FUNCS_TARGET = 400  # Process all remaining functions
 OUTPUT_DIR = Path("/home/cburnes/projects/rush2049-decomp/ollama_analysis")
 DISASM_FILE = Path("/home/cburnes/projects/rush2049-decomp/build/game_code_disasm.txt")
 
@@ -211,6 +217,138 @@ def run_batch2_functions():
     print(f"\nDone! Batch 2 functions saved.")
 
 
+def run_batch3_functions():
+    """Decompile third batch - state handlers and game flow functions."""
+    batch3 = [
+        # State machine handlers (from symbol_addrs.us.txt)
+        ("800FBF90", "state_init_handler - GSTATE_INIT 0x00040000"),
+        ("800FBFE4", "state_setup_handler - GSTATE_SETUP 0x00080000"),
+        ("800FC0EC", "state_menu_handler - GSTATE_MENU 0x00100000"),
+        ("800FC038", "state_camera_handler - GSTATE_CAMERA 0x00200000"),
+        ("800FC228", "state_ready_handler - GSTATE_READY 0x00400000"),
+        ("800FC25C", "state_play_handler - GSTATE_PLAY 0x00800000"),
+        ("800FC89C", "state_cars_handler - GSTATE_CARS 0x01000000"),
+        ("800FC960", "state_finish_handler - GSTATE_FINISH 0x02000000"),
+        # Camera functions
+        ("80097CA0", "camera_view_transform - camera and view"),
+        ("80098574", "camera_update_nested - camera update helper"),
+        ("800F8D9C", "camera_race_setup - camera setup for race"),
+        # Scene/object update
+        ("800F733C", "UpdateActiveObjects - per-frame scene object dispatcher"),
+        ("800FD238", "state_dispatch - state machine bitmask ladder"),
+        ("800DE4DC", "vi_retrace_callback - video timing config"),
+    ]
+
+
+def run_batch4_functions():
+    """Decompile fourth batch - AI, drones, and race logic."""
+    batch4 = [
+        # AI/Drone functions (from classification showing AI patterns)
+        ("800C0000", "drone_init - AI drone initialization"),
+        ("800C0400", "drone_update - per-frame drone AI"),
+        ("800C1000", "pathfind_calc - pathfinding calculation"),
+        ("800C1800", "drone_steering - AI steering logic"),
+        # Race/checkpoint logic
+        ("800C85F0", "checkpoint_check - checkpoint collision"),
+        ("800C8A00", "track_position - race position calc"),
+        ("800C8E00", "lap_complete - lap completion handler"),
+        # Menu/UI functions
+        ("800D0000", "menu_draw - menu rendering"),
+        ("800D2000", "menu_input - menu input handler"),
+        ("800D4000", "hud_draw - in-race HUD"),
+        # Audio helpers
+        ("800B37E8", "audio_control - sound system control"),
+        ("800B4000", "sfx_play - sound effect trigger"),
+        ("800B4800", "music_control - music playback"),
+        # Physics helpers
+        ("800BAE24", "physics_integrate - physics integration"),
+    ]
+
+    print("Loading disassembly...")
+    disasm = load_disasm()
+
+    results = []
+    for addr, desc in batch4:
+        print(f"Decompiling {addr} ({desc})...")
+        context = f"This function is: {desc}"
+        result = decompile_function(addr, disasm, context)
+        results.append(f"// === {addr}: {desc} ===\n{result}\n")
+        time.sleep(1)
+
+    save_results(results, "batch4_decompiled.txt")
+    print(f"\nDone! Batch 4 functions saved.")
+
+
+def get_processed_addresses():
+    """Get set of already-processed function addresses."""
+    processed = set()
+    for filename in OUTPUT_DIR.glob("*_decompiled.txt"):
+        content = filename.read_text()
+        # Match patterns like "// === 800FD464:" or "// === func_800FD464"
+        for match in re.finditer(r'===\s*(?:func_)?([0-9A-Fa-f]{8})', content):
+            processed.add(match.group(1).upper())
+    return processed
+
+def run_overnight_batch():
+    """Run overnight decompilation of ~350 functions (one at a time for reliability)."""
+    print("=== OVERNIGHT BATCH JOB ===")
+    print(f"Target: {OVERNIGHT_FUNCS_TARGET} functions")
+    print(f"Context: {CONTEXT_SIZE} tokens (16K)")
+    print()
+
+    print("Loading disassembly...")
+    disasm = load_disasm()
+
+    print("Finding all functions...")
+    all_funcs = get_all_functions(disasm)
+    print(f"Found {len(all_funcs)} total functions")
+
+    print("Checking already processed...")
+    processed = get_processed_addresses()
+    print(f"Already processed: {len(processed)} functions")
+
+    # Filter to unprocessed functions
+    remaining = [f for f in all_funcs if f.upper() not in processed]
+    print(f"Remaining unprocessed: {len(remaining)} functions")
+
+    # Take first OVERNIGHT_FUNCS_TARGET
+    to_process = remaining[:OVERNIGHT_FUNCS_TARGET]
+    print(f"Will process: {len(to_process)} functions")
+    print()
+
+    if not to_process:
+        print("No functions to process!")
+        return
+
+    results = []
+    start_time = time.time()
+
+    for i, addr in enumerate(to_process):
+        elapsed = time.time() - start_time
+        rate = (i / elapsed * 3600) if elapsed > 0 and i > 0 else 0
+        eta_hours = ((len(to_process) - i) / rate) if rate > 0 else 0
+
+        print(f"[{i+1}/{len(to_process)}] Decompiling {addr} "
+              f"({rate:.0f}/hr, ETA: {eta_hours:.1f}h)...")
+
+        result = decompile_function(addr, disasm)
+        results.append(f"// === func_{addr} ===\n{result}\n")
+
+        # Save progress every 25 functions
+        if (i + 1) % 25 == 0:
+            save_results(results, "overnight2_decompiled.txt.partial")
+            print(f"  Progress saved ({i+1}/{len(to_process)})")
+
+        time.sleep(0.5)  # Brief pause between requests
+
+    # Final save
+    save_results(results, "overnight2_decompiled.txt")
+    elapsed = time.time() - start_time
+    print(f"\n=== OVERNIGHT BATCH COMPLETE ===")
+    print(f"Processed: {len(to_process)} functions")
+    print(f"Time: {elapsed/3600:.1f} hours")
+    print(f"Output: {OUTPUT_DIR / 'overnight_decompiled.txt'}")
+
 def run_priority_functions_impl():
     """Actually run priority decompilation."""
     priority = [
@@ -246,6 +384,7 @@ if __name__ == "__main__":
         print("Usage:")
         print("  python ollama_batch_processor.py classify    - Classify ALL functions")
         print("  python ollama_batch_processor.py priority    - Decompile priority functions")
+        print("  python ollama_batch_processor.py overnight   - Decompile 350 functions (multi-hour job)")
         print("  python ollama_batch_processor.py decompile ADDR1 ADDR2 ...  - Decompile specific")
         sys.exit(1)
 
@@ -257,6 +396,12 @@ if __name__ == "__main__":
         run_priority_functions_impl()
     elif cmd == "batch2":
         run_batch2_functions()
+    elif cmd == "batch3":
+        run_batch3_functions()
+    elif cmd == "batch4":
+        run_batch4_functions()
+    elif cmd == "overnight":
+        run_overnight_batch()
     elif cmd == "decompile":
         if len(sys.argv) < 3:
             print("Provide function addresses to decompile")

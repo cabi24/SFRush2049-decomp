@@ -1,0 +1,11 @@
+# N64 Function -> Arcade Equivalent
+# Format: N64_addr N64_name -> arcade_file:function_name confidence
+
+800FD464 game_loop -> game/game.c:game HIGH
+800CA3B4 game_update -> game/game.c:playgame MEDIUM
+800DB81C attract_mode -> game/game.c:attract HIGH
+800C85F0 checkpoint_check -> game/checkpoint.c:CheckCPs HIGH
+800C9AE0 input_handler -> game/game.c:ProcessPDUs MEDIUM
+800B37E8 audio_control -> game/audio.c:sound_control HIGH
+80097CA0 camera_transform -> game/camera.c:CameraUpdate MEDIUM
+800BAE24 physics_calc -> game/cars.c:Update_MDrive MEDIUM

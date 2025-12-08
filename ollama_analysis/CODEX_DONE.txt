@@ -1,0 +1,13 @@
+Processed:
+- Ran parse_ollama_output.py extract-symbols/clean-c/summary and produced cleaned outputs in ollama_analysis/.
+- Replaced extract-symbols output with a deduped, meaningful set in ollama_analysis/extracted_symbols.txt.
+- Cleaned C snippets into ollama_analysis/extracted_c_code.txt with headers and noted incomplete/missing bodies.
+- Generated ollama_analysis/summary.txt from parser.
+
+Issues/notes:
+- Many Ollama pseudo-C snippets are corrupted or missing; extracted_c_code.txt flags which need full re-decomp.
+- batch3_decompiled.txt is absent in the repo, so no batch3 snippets were processed; rerun tools if it’s added.
+- Per instructions, symbol_addrs.us.txt was not modified.
+
+Functions needing human review:
+- All priority and batch2 functions listed in extracted_c_code.txt (game_loop, game_update, attract, render_object/render_scene/audio_control/input_handler, countdown/preplay, render_large, audio_processing, vehicle_physics, collision_check, physics_calc/helper, race_logic, screen_update, state_helper, race_helper, checkpoint_check, track_logic) require proper decomp or validation beyond the Ollama output.

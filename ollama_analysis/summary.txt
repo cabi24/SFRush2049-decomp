@@ -1,0 +1,19 @@
+=== Ollama Analysis Summary ===
+
+Total functions identified: 762 classified so far (all_functions_classified.txt); overnight_decompiled.txt is still generating (~350 expected).
+Functions with C code extracted: 14 cleaned stubs from batch3_decompiled.txt added to extracted_c_code.txt (priority/batch2 remain status-only).
+Functions mapped to arcade source: 8 (see ollama_analysis/arcade_mapping.txt).
+Remaining functions needing analysis: ~748 from the classified set plus the incoming overnight batch; batch4_decompiled.txt is incomplete.
+
+Processed files:
+  priority_decompiled.txt: 9 functions, 20.7KB
+  batch2_decompiled.txt: 13 functions, 21.4KB
+  batch3_decompiled.txt: 14 functions, cleaned pseudo-C extracted
+
+Categories identified (from classification):
+  graphics: ~132 mentions
+  audio: ~89 mentions
+  physics: ~155 mentions
+  ai: ~146 mentions
+  input: ~14 mentions
+  state: ~30 mentions
