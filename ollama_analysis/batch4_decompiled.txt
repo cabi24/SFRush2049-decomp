@@ -1,0 +1,54 @@
+// === 800C0000: drone_init - AI drone initialization ===
+// ERROR: <urlopen error [Errno 113] No route to host>
+
+
+// === 800C0400: drone_update - per-frame drone AI ===
+// ERROR: <urlopen error [Errno 113] No route to host>
+
+
+// === 800C1000: pathfind_calc - pathfinding calculation ===
+// ERROR: <urlopen error [Errno 113] No route to host>
+
+
+// === 800C1800: drone_steering - AI steering logic ===
+// ERROR: <urlopen error [Errno 113] No route to host>
+
+
+// === 800C85F0: checkpoint_check - checkpoint collision ===
+// ERROR: <urlopen error [Errno 113] No route to host>
+
+
+// === 800C8A00: track_position - race position calc ===
+// ERROR: <urlopen error [Errno 113] No route to host>
+
+
+// === 800C8E00: lap_complete - lap completion handler ===
+// ERROR: <urlopen error [Errno 113] No route to host>
+
+
+// === 800D0000: menu_draw - menu rendering ===
+// ERROR: <urlopen error [Errno 113] No route to host>
+
+
+// === 800D2000: menu_input - menu input handler ===
+// ERROR: <urlopen error [Errno 113] No route to host>
+
+
+// === 800D4000: hud_draw - in-race HUD ===
+// ERROR: <urlopen error [Errno 113] No route to host>
+
+
+// === 800B37E8: audio_control - sound system control ===
+// ERROR: <urlopen error [Errno 113] No route to host>
+
+
+// === 800B4000: sfx_play - sound effect trigger ===
+// ERROR: <urlopen error [Errno 113] No route to host>
+
+
+// === 800B4800: music_control - music playback ===
+// ERROR: <urlopen error [Errno 113] No route to host>
+
+
+// === 800BAE24: physics_integrate - physics integration ===
+// ERROR: <urlopen error [Errno 113] No route to host>
