@@ -1,0 +1,794 @@
+// === 800FBF90: state_init_handler - GSTATE_INIT 0x00040000 ===
+```c
+void state_init_handler(int v0) {
+    int t6 = v0 << 13;
+    if (t6 >= 0) {
+        int t7 = 1;
+        u32 *at = (u32 *)0x801146EC;
+        ((void (*)(int))0x800C9BE0)(t7);
+        at[0x1D5] = t7;
+        ((void (*)(void))0x800FAF6C)();
+    }
+    u8 *t8 = (u8 *)0x80152818 + 3836;
+    int t9 = *t8;
+    at[0x1D4] = t9;
+    if (gstate != NULL) {
+        at[0x1D4] = t9;
+    }
+    t6 = v0 << 12;
+    if (t6 >= 0) {
+        t9 = v0 << 10;
+        ((void (*)(int, int))0x800FB2C8)(1, t7);
+        t7 = 0;
+        at[0x70] = t7;
+        if (v0 != 0) {
+            t7 = 1;
+            at[0x70] = t7;
+            ((void (*)(int))0x800C813C)(1);
+            if (gstate != NULL) {
+                u32 *v0_1 = gstate + 29876;
+                if (*v0_1 != 0) {
+                    int t6_1 = *v0_1 & 1;
+                    if (t6_1 == 0) {
+                        ((void (*)(int))0x800F8D9C)();
+                    }
+                    if (gstate != NULL) {
+                        ((void (*)(int))0x801EC0DC)();
+                    }
+                    ((void (*)(void))0x800BD2C8)();
+                }
+            }
+        }
+    }
+}
+```
+
+
+// === 800FBFE4: state_setup_handler - GSTATE_SETUP 0x00080000 ===
+```c
+void state_setup_handler() {
+    int result;
+    void (*func1)(int);
+    void (*func2)(void);
+    void (*func3)(void);
+    void (*func4)(int);
+
+    func1 = (void (*)(int))0x800FB2C8;
+    func2 = (void (*)())0x800C813C;
+    func3 = (void (*)())0x800F8D9C;
+    func4 = (void (*)(int))0x800FBD2C;
+
+    result = func1(1);
+    if (result != 0) {
+        *(volatile unsigned char *)0x801146EC18160 = 1;
+        func3();
+        func4(1);
+    } else {
+        *(volatile unsigned char *)0x801146EC18160 = 1;
+        func2();
+        if (*(volatile short *)0x8015281874B8 != 0) {
+            *(volatile unsigned char *)0x801146EC18000 = 0;
+            *(volatile unsigned int *)0x801146EC74B4 = 0;
+        } else if (*(volatile unsigned char *)0x8015281818000 != 0) {
+            func3();
+            func4(1);
+        }
+    }
+
+    *(volatile unsigned int *)0x801146EC74B4 = 0;
+    func1(1);
+
+    if (*(volatile short *)0x8015281874B8 != 0) {
+        *(volatile unsigned char *)0x801146EC18000 = 0;
+    } else if (*(volatile unsigned char *)0x8015281818000 != 0) {
+        func3();
+        func4(1);
+    }
+
+    *(volatile unsigned int *)0x801146EC74B4 = 0;
+}
+```
+
+
+// === 800FC0EC: state_menu_handler - GSTATE_MENU 0x00100000 ===
+```c
+void state_menu_handler(int arg1) {
+    int t9 = (arg1 << 11);
+    if ((t9 & 0x3FF) != 0) {
+        t9 = (arg1 << 9);
+    }
+    void* s6 = (void*)0x80152818 - 24304;
+    int v0 = *(int*)s6;
+    if (v0 == 1) {
+        // Perform some operations based on v0
+        return;
+    }
+
+    switch (v0) {
+        case 4:
+            // Call function with parameters 78 and an immediate value
+            break;
+        case 5:
+            // Call function with parameters 78 and an immediate value
+            break;
+        case 6:
+            // Call function with parameters 78 and an immediate value
+            break;
+        default:
+            // Perform some operations based on v0
+            break;
+    }
+}
+```
+
+
+// === 800FC038: state_camera_handler - GSTATE_CAMERA 0x00200000 ===
+```c
+void state_camera_handler() {
+    u8 *gstate = (u8 *)0x801146EC;
+    Car car_array[256] __attribute__((aligned(32))) = {0};
+    GameStruct game_struct;
+
+    if (*gstate) {
+        func_800F8D9C();
+        func_800EC0DC();
+        func_800BD2C8();
+
+        u16 *car_count = (u16 *)0x80152374;
+        if (*car_count == 1) {
+            func_800BEAA0();
+        }
+
+        s16 camera_mode = *(s16 *)0x801149A0;
+        if (camera_mode) {
+            func_0000F53C(1);
+        }
+
+        f32 *camera_pos = (f32 *)0x8003E4BC;
+        func_800E762C(camera_pos);
+
+        *(s16 *)0x801149A0 = 0;
+
+        u32 car_index = (u32)gstate * 11;
+        if (*car_count != 1) {
+            u32 temp = *(u32 *)0x80151E5C;
+            for (u32 i = 1; i < *car_count + 1; ++i) {
+                if (i == temp) {
+                    func_0000F53C(78);
+                }
+            }
+        }
+
+        u32 camera_flags = *(u32 *)0x801416D0;
+        if (camera_flags != 4) {
+            func_0000F53C(78);
+        }
+
+        s32 temp = *(s32 *)0x80141B9C;
+        u32 camera_index = (temp << 4) - temp;
+        if (*(u32 *)0x801416D0 != 4) {
+            func_0000F53C(78);
+        }
+
+        func_800FBF2C();
+        func_800FBE30();
+
+        func_800C813C(0);
+    }
+}
+```
+
+
+// === 800FC228: state_ready_handler - GSTATE_READY 0x00400000 ===
+```c
+void state_ready_handler(void) {
+    u32 *gstate = (u32 *)0x801146EC;
+    float *car_array = (float *)0x80152818;
+    struct GameStruct *game_struct = (struct GameStruct *)0x801461D0;
+
+    u32 *s1 = gstate + 4356;
+    s1[7] = 0x40400000; // car_array base address
+
+    float f8 = *((float *)s1);
+    u32 *s0 = (u32 *)0x8014 + 4012;
+    *((float *)s0) = f8;
+
+    if (*(u32 *)gstate == 0) {
+        int v0 = gstate[769];
+        s1[15] = v0 << 9;
+        s1[15] |= (v0 << 7);
+        s1[15] &= ~0x40400000;
+
+        f8 = *((float *)s1);
+        *((float *)s0) = f8;
+
+        __asm__ volatile ("jal 0x800C813C");
+        __asm__ volatile ("addiu $a1, $zero, 1");
+
+        f8 = *((float *)s1);
+        *((float *)s0) = f8;
+
+        __asm__ volatile ("jal 0x800FA9B4");
+        __asm__ volatile ("jal 0x800FBE30");
+        __asm__ volatile ("jal 0x800F7F3C");
+
+        char t6 = gstate[125];
+        if (t6 != 0) {
+            __asm__ volatile ("jal 0x800D510C");
+            __asm__ volatile ("sw %0, 29880(%1)" : : "r"(1), "r"(&gstate[125]));
+            __asm__ volatile ("jal 0x800D58CC");
+        }
+
+        if (*(u32 *)s1 == 0) {
+            u32 *s5 = (u32 *)0x8014 + 79;
+            char a3 = *s5;
+            u32 *s6 = (u32 *)0x8015 - 6000;
+            if (a3 != 0) {
+                s6 = (u32 *)0x8015 - 12480;
+                short a1 = *(short *)(s6 + 1);
+                u32 s2 = 1;
+                while (a1 > 0) {
+                    s1 = (u32 *)0x8014 + 2520;
+                    char t8 = *s1;
+
+                    s0[0] = s1[6];
+                    int a0 = ((s0[0] & 0xFFFF0000) >> 16);
+                    __asm__ volatile ("jal 0x800CF604");
+                    if (v0 != 0) {
+                        s2 = 0;
+                        s0[0] = *(short *)(s6 + 1);
+                    }
+                    a1--;
+                    s0[0]++;
+                }
+            }
+        }
+    }
+}
+```
+
+
+// === 800FC25C: state_play_handler - GSTATE_PLAY 0x00800000 ===
+```c
+void state_play_handler(void) {
+    u32 v0 = gstate; // Assuming gstate is a global variable representing the current game state
+
+    u32 t9 = v0 << 9;
+    u32 s0 = (u32)&game_struct + 16412;
+    f32 f10 = *(f32*)s0;
+
+    u32 s1 = (u32)&car_array + 17356;
+    f32 f6 = *(f32*)s1;
+
+    car_array[0].speed = 0.0f;
+    f8 = *(f32*)s1;
+    *(f32*)s0 = f8;
+
+    handle_speed(1);
+    update_car_positions();
+    check_collision();
+
+    u8 t6 = *(((u8*)&game_struct) + 9881);
+    if (t6 != 0) {
+        process_race_end();
+        return;
+    }
+
+    u32 t7 = 1;
+    u32 at = (u32)&gstate;
+    *(u32*)(at + 29880) = t7;
+
+    update_ui();
+    handle_inputs();
+
+    u8 t6_2 = *(((u8*)&game_struct) + 9881);
+    if (t6_2 != 0) {
+        return;
+    }
+
+    u32 s5 = (u32)&game_struct - 309;
+    u8 a3 = *(u8*)s5;
+
+    u32 s6 = (u32)&car_array - 24304;
+    u16 a1 = *(u16*)&car_array[0];
+    if (a3 != 0) {
+        s6 += -24304;
+        a1 = *(u16*)&car_array[0] - 24312;
+        u16 s2 = 1;
+
+        for (; a1 > 0; a1--) {
+            s1 = (u32)&game_struct + 10080;
+            u8 t8 = *(u8*)s1;
+            u16 a0 = (s0 << 16) >> 16;
+
+            if (a0 != 0) {
+                handle_car_collision(a0);
+            }
+
+            s0++;
+        }
+    }
+}
+```
+
+
+// === 800FC89C: state_cars_handler - GSTATE_CARS 0x01000000 ===
+```c
+void state_cars_handler(int t6) {
+    if (t6 >= 0) {
+        int index = v0 << 6;
+        int car_index = *(int*)(0x80152818 + index);
+
+        if (car_index > 0) {
+            int base_address = 0x80152818 + (car_index * 0x2C);
+            int data = *(unsigned char*)base_address;
+            if (data <= 0) {
+                return;
+            }
+
+            int car_struct_index = *(int*)(0x801461D0 + 0x952);
+            int car_struct_base = 0x801146EC + (car_struct_index * 0x4C);
+
+            int flags = 0x7FFFFFFF;
+            flags &= *(unsigned short*)(base_address + 0xE8);
+            flags &= data;
+
+            if (flags == 0) {
+                return;
+            }
+
+            car_struct_base += 0xF4;
+            int new_flags = *(int*)car_struct_base;
+            new_flags |= (1 << 29);
+
+            *(unsigned short*)(base_address + 0xE8) = flags;
+            *(int*)car_struct_base = new_flags;
+
+            data = *(unsigned char*)base_address;
+            if (data <= 0) {
+                return;
+            }
+
+            int temp_index = *(int*)(0x80152818 + index);
+            base_address = 0x80152818 + (temp_index * 0x2C);
+
+            data &= 0xF;
+            data |= 0x1;
+
+            car_struct_base += 0xF4;
+            new_flags = *(int*)car_struct_base;
+            new_flags |= (1 << 30);
+            *(int*)car_struct_base = new_flags;
+
+            data = *(unsigned char*)base_address;
+            if (data <= 0) {
+                return;
+            }
+
+            int temp_index2 = *(int*)(0x80152818 + index);
+            base_address = 0x80152818 + (temp_index2 * 0x2C);
+
+            data &= 0xF;
+            data |= 0x1;
+
+            car_struct_base += 0xF4;
+            new_flags = *(int*)car_struct_base;
+            new_flags |= (1 << 30);
+            *(int*)car_struct_base = new_flags;
+
+            data = *(unsigned char*)base_address;
+            if (data <= 0) {
+                return;
+            }
+
+            int temp_index3 = *(int*)(0x80152818 + index);
+            base_address = 0x80152818 + (temp_index3 * 0x2C);
+
+            data &= 0xF;
+            data |= 0x1;
+
+            car_struct_base += 0xF4;
+            new_flags = *(int*)car_struct_base;
+            new_flags |= (1 << 30);
+            *(int*)car_struct_base = new_flags;
+        }
+    }
+
+    (*(void(*)())0x800D5798)();
+    (*(void(*)())0x800D5374)();
+    *(unsigned int*)(0x80110200) |= 0x60;
+
+    if (*(int*)(0x80110200) & 0x60) {
+        int temp_index4 = *(int*)(0x80152818 + index);
+        base_address = 0x80152818 + (temp_index4 * 0x2C);
+
+        int data = *(unsigned char*)base_address;
+        if (data <= 0) {
+            return;
+        }
+
+        temp_index4 = *(int*)(0x80152818 + index);
+        base_address = 0x80152818 + (temp_index4 * 0x2C);
+
+        data &= 0xF;
+        data |= 0x1;
+
+        car_struct_base += 0xF4;
+        new_flags = *(int*)car_struct_base;
+        new_flags |= (1 << 30);
+        *(int*)car_struct_base = new_flags;
+
+        data = *(unsigned char*)base_address;
+        if (data <= 0) {
+            return;
+        }
+
+        temp_index4 = *(int*)(0x80152818 + index);
+        base_address = 0x80152818 + (temp_index4 * 0x2C);
+
+        data &= 0xF;
+        data |= 0x1;
+
+        car_struct_base += 0xF4;
+        new_flags = *(int*)car_struct_base;
+        new_flags |= (1 << 30);
+        *(int*)car_struct_base = new_flags;
+
+        data = *(unsigned char*)base_address;
+        if (data <= 0) {
+            return;
+        }
+
+        temp_index4 = *(int*)(0x80152818 + index);
+        base_address = 0x80152818 + (temp_index4 * 0x2C);
+
+        data &= 0xF;
+        data |= 0x1;
+
+        car_struct_base += 0xF4;
+        new_flags = *(int*)car_struct_base;
+        new_flags |= (1 << 30);
+        *(int*)car_struct_base = new_flags;
+    }
+
+    (*(void(*)())0x800F64D4)();
+}
+```
+
+
+// === 800FC960: state_finish_handler - GSTATE_FINISH 0x02000000 ===
+```c
+void state_finish_handler(int arg) {
+    if (arg >= 0) {
+        int car_index = arg << 8;
+        ((void (*)())0x800F64D4)(car_index);
+    }
+
+    gstate = *(int*)(0x801146EC);
+
+    if (gstate != 2097152) {
+        return;
+    }
+
+    int state = *(int*)(0x8011 + 29876);
+    int s2 = 0x8015 + 6864;
+    short count = *(short*)s2;
+    int s0 = 0;
+    while (s0 < count) {
+        int a0 = 0x8015 + 2964;
+        car_array[a0][s0] = *(int*)(a0 + s0 * 152);
+        if (*(short*)(s2 + 2) != s0) {
+            break;
+        }
+        s0++;
+    }
+
+    int s1 = 0x8015 + 6864;
+    count = *(short*)s1;
+    int a0 = 0x8015 + 2964;
+    car_array[a0][s1] = *(int*)(a0 + s1 * 152);
+    if (*(short*)(s1 + 2) != s1) {
+        return;
+    }
+}
+```
+
+
+// === 80097CA0: camera_view_transform - camera and view ===
+```c
+#include <stdint.h>
+
+void camera_view_transform(void) {
+    uint32_t *sp = (uint32_t *)__builtin_frame_address(0);
+    sp -= 21;
+
+    __asm__ volatile (
+        "addiu $sp, %0, -88\n"
+        "lui $t6, 0x8011\n"
+        "lb $t6, 644($t6)\n"
+        "sw $ra, 84($sp)\n"
+        "sw $s7, 80($sp)\n"
+        "sw $s6, 76($sp)\n"
+        "sw $s5, 72($sp)\n"
+        "sw $s4, 68($sp)\n"
+        "sw $s3, 64($sp)\n"
+        "sw $s2, 60($sp)\n"
+        "sw $s1, 56($sp)\n"
+        "sw $s0, 52($sp)\n"
+        "sdc1 $f26, 40($sp)\n"
+        "sdc1 $f24, 32($sp)\n"
+        "sdc1 $f22, 24($sp)\n"
+        "beq $t6, $zero, 0x80098518\n"
+        "sdc1 $f20, 16($sp)\n"
+        "lui $s7, 0x8014\n"
+        "addiu $s7, $s7, 24776\n"
+        "lui $t7, 0x8014\n"
+        "lw $t7, 19896($t7)\n"
+        "lw $t8, 16($s7)\n"
+        "lui $at, 0x8014\n"
+        "lui $v0, 0x8014\n"
+        "lui $v1, 0x8014\n"
+        "addu $t9, $t7, $t8\n"
+        "sw $t9, 19896($at)\n"
+        "addiu $v1, $v1, 24780\n"
+        "addiu $v0, $v0, 24792\n"
+        "lw $t6, -4($v0)\n"
+        "addiu $v0, $v0, -4\n"
+        "sltu $at, $v0, $v1\n"
+        "beq $at, $zero, 0x80097D14\n"
+        "sw $t6, 4($v0)\n"
+        "lui $s2, 0x8011\n"
+        "addiu $s2, $s2, 652\n"
+        "lb $t7, 0($s2)\n"
+        "sw $zero, 0($s7)\n"
+        "beq $t7, $zero, 0x80097DD0\n"
+        "move $s4, $zero\n"
+        "move $s1, $zero\n"
+        "blez $v0, 0x80097DC4\n"
+        "move $s0, $zero\n"
+        "lui $t8, 0x8014\n"
+        "lw $t8, 19528($t8)\n"
+        "addu $v1, $t8, $s0\n"
+        "lb $t9, 0($v1)\n"
+        "i-type op=0x14\n"
+        "addiu $s4, $s4, 1\n"
+        "lb $t6, 4($v1)\n"
+        "i-type op=0x14\n"
+        "addiu $s4, $s4, 1\n"
+        "lb $t7, 2($v1)\n"
+        "i-type op=0x15\n"
+        "addiu $s4, $s4, 1\n"
+        "addiu $s1, $s1, 1\n"
+        "bgez $v0, 0x80097D9C\n"
+        "sra $t8, $v0, 2\n"
+        "addiu $at, $v0, 3\n"
+        "sra $t8, $at, 2\n"
+        "beq $s1, $t8, 0x80097DC4\n"
+        "jal 0x80095924\n"
+        "lw $a0, 8($v1)\n"
+        "lui $v0, 0x8014\n"
+        "lw $v0, 24820($v0)\n"
+        "addiu $s4, $s4, 1\n"
+        "slt $at, $s4, $v0\n"
+        "bne $at, $zero, 0x80097D58\n"
+        "addiu $s0, $s0, 24\n"
+        "bne $s4, $v0, 0x80097DD0\n"
+        "nop\n"
+        "sb $zero, 0($s2)\n"
+        "lui $t9, 0x8014\n"
+        "lw $t9, 24820($t9)\n"
+        "move $s4, $zero\n"
+        "move $s0, $zero\n"
+    );
+}
+```
+
+
+// === 80098574: camera_update_nested - camera update helper ===
+```c
+void camera_update_nested(void *car_array, void *game_struct, int arg3, int arg4) {
+    int stack[10];
+    memcpy(stack + 3, &arg3, sizeof(int));
+    memcpy(stack + 2, &arg4, sizeof(int));
+    if (arg1 != 0) {
+        camera_update_nested(car_array, game_struct, *(int*)car_array, *(int*)game_struct);
+        ((void (*)(void *, void *))(*(int *)stack[2]))(car_array, game_struct);
+        *car_array = *(int *)car_array + 1;
+    }
+}
+
+void func_80098620(void *arg1, int arg2) {
+    int stack[10];
+    memcpy(stack + 3, &arg2, sizeof(int));
+    camera_update_nested(arg1, game_struct, *(int*)arg1, *(int*)game_struct);
+    ((void (*)(void *, void *))(*(int *)stack[2]))(car_array, game_struct);
+    *car_array = *(int *)car_array + 1;
+}
+
+void func_80098640(void *arg1) {
+    int stack[10];
+    camera_update_nested(arg1, game_struct, *(int*)arg1, *(int*)game_struct);
+    ((void (*)(void *, void *))(*(int *)stack[2]))(car_array, game_struct);
+    *car_array = *(int *)car_array + 1;
+}
+```
+
+
+// === 800F8D9C: camera_race_setup - camera setup for race ===
+```c
+void camera_race_setup() {
+    s32 sp = -56;
+    u8* car_array = (u8*)0x80152818;
+    GameStruct* game_struct = (GameStruct*)0x801461D0;
+
+    if (car_array) {
+        u32 s2 = 0;
+        u32 s3 = 0x801427F4 - 23984;
+        u32 s5 = 0x80153A48 + 14840;
+        u32 s6 = 1;
+        u32 s4 = 2056;
+
+        while (s2 < *game_struct) {
+            u32 t7 = s3 + s2;
+            u16 s0 = *(u16*)(t7 + 1990);
+            u32 s1 = s5 + s0;
+            u32 v0 = s3 + s2;
+            u8 t9 = *(u8*)(v0 + 2013);
+
+            if (*(u8*)s1 == 0) {
+                u8 a0 = *(u8*)&s0 >> 16;
+                u8 a1 = *(u8*)(v0 + 8);
+                func_800B200C(a0, a1, s6);
+            } else {
+                u8 a0 = *(u8*)&s0 >> 16;
+                func_800B0180(a0);
+            }
+
+            if (s2 < *game_struct) {
+                s2++;
+            }
+        }
+    }
+
+    // Additional code for setting up the camera
+    s32 sp2 = -168;
+    u32 t6 = 0x80152818;
+
+    func_800F8EC8(0, 0);
+}
+```
+
+
+// === 800F733C: UpdateActiveObjects - per-frame scene object dispatcher ===
+```c
+void UpdateActiveObjects(void) {
+    u32* car_array = (u32*)0x80152818;
+    s32 game_struct = *(s32*)0x801461D0;
+
+    if (car_array != NULL) {
+        u32* gstate = (u32*)0x801146EC;
+        s32 car_count = *gstate & 0xFFFF;
+        s32 active_count = car_count - 1;
+
+        for (s32 i = 0; i < active_count; i++) {
+            u32 car_index = i + 1;
+            u32* car_ptr = car_array + car_index * 4;
+            u32 car_type = *(u32*)car_ptr;
+            if (car_type != 0) {
+                u32 car_state = *(u32*)(car_ptr + 1);
+                if (car_state == active_count) {
+                    ((void (*)(u32))car_type)(car_index);
+                }
+            }
+        }
+
+        for (s32 i = 0; i < active_count; i++) {
+            u32 car_index = i + 1;
+            u32* car_ptr = car_array + car_index * 4;
+            u32 car_state = *(u32*)(car_ptr + 1);
+            if (car_state != active_count) {
+                ((void (*)(u32))car_type)(car_index);
+            }
+        }
+
+        for (s32 i = 0; i < active_count; i++) {
+            u32 car_index = i + 1;
+            u32* car_ptr = car_array + car_index * 4;
+            u32 car_state = *(u32*)(car_ptr + 1);
+            if (car_state != active_count) {
+                ((void (*)(u32))car_type)(car_index);
+            }
+        }
+
+        ((void (*)(void))0x800B358C)();
+    }
+}
+
+void HandleGameObjects(u32 arg1, u32 arg2) {
+    if (arg1 != 0) {
+        s32 game_struct = *(s32*)0x801461D0;
+        ((void (*)(u32, u32))0x800F733C)(game_struct, arg2);
+        s32 car_count = *((u32*)0x80152818 + 1) & 0xFFFF;
+        if (arg2 != 0) {
+            ((void (*)(u32))0x800B0868)(car_count);
+        }
+        ((void (*)(u32))0x800B811C)(car_count);
+        ((void (*)(u32))0x800A04C4)(arg1, 0);
+    }
+}
+
+s32 GetCarCount(void) {
+    s32 car_array = *(s32*)0x80152818;
+    if (car_array != NULL) {
+        return ((u32*)car_array)[1] & 0xFFFF;
+    }
+    return 0;
+}
+```
+
+
+// === 800FD238: state_dispatch - state machine bitmask ladder ===
+```c
+void state_dispatch(u32 state) {
+    u32 *gstate = (u32 *)0x801146EC;
+    CarInfo *car_array = (CarInfo *)0x80152818;
+    GameStruct *game_struct = (GameStruct *)0x801461D0;
+
+    if (state & 0x0002) {
+        ((void (*)(u32))0x8039A2A0)(state);
+    }
+    if (state & 0x0004) {
+        ((void (*)(u32))0x8038A400)(state);
+    }
+    if (state & 0x0008) {
+        ((void (*)(u32))0x8038F454)(state);
+    }
+    if (state & 0x0010) {
+        ((void (*)(u32))0x800FD024)(state);
+    }
+    if (!(state & 0x2000)) {
+        u32 *at = (u32 *)0x801461D0;
+        at[1017] = 0;
+        ((void (*)(u32, int, int))0x80097694)(54, -1, 1);
+        state |= gstate[0];
+        ((void (*)(u32))0x80390418)(state);
+    }
+    if (state & 0x0020) {
+        ((void (*)(u32))0x80394058)(state);
+    }
+    if (state & 0x0040) {
+        ((void (*)(u32))0x8039842C)(state);
+    }
+    if (state & 0x4000) {
+        ((void (*)(u32))0x80399D10)(state);
+    }
+    if (!(state & 0x0080)) {
+        u32 *at = (u32 *)0x801461D0;
+        at[1017] = 0;
+        ((void (*)(u32, int, int))0x80097694)(54, -1, 1);
+        state |= gstate[0];
+        ((void (*)(u32))0x80390418)(state);
+    }
+    if (state & 0x0100) {
+        ((void (*)(u32))0x8038E5DC)(state);
+    }
+    if (state & 0x0200) {
+        ((void (*)(u32))0x803A1EAC)(state);
+    }
+}
+```
+
+
+// === 800DE4DC: vi_retrace_callback - video timing config ===
+```c
+void vi_retrace_callback(void) {
+    char* sp = (char*)__builtin_frame_address(0);
+    *(char*)(sp - 24067) = *car_array;
+    (*(int*)(*(int*)(gstate + 13208) + 52))(0, car_array);
+    int i = 0;
+    while (i < 41) {
+        *(char*)(car_array + 13 + i) = *(char*)(car_array + 9 * i);
+        i++;
+    }
+}
+```
