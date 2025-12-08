@@ -1083,3 +1083,26 @@ func_800C26E0 = 0x800C26E0; // from overnight1 decompilation
 func_800C2960 = 0x800C2960; // from overnight1 decompilation
 func_800C2BE0 = 0x800C2BE0; // from overnight1 decompilation
 func_800C3594 = 0x800C3594; // from overnight1 decompilation
+
+// Input handling functions (game code)
+Input_SetPadEnabledFlag = 0x80094D20; // type:func enable/disable controller pad
+Input_SetPadSecondaryFlag = 0x80094D68; // type:func set rumble/lock flag
+Input_ConfigRepeatTimers = 0x80094DB0; // type:func configure button repeat params
+Input_SetAnalogBounds = 0x80094E00; // type:func set analog stick bounds/deadzone
+
+// Key data structures (game code)
+pad_array = 0x80140BF0; // type:data controller pad entry array (4x32 bytes)
+gstate = 0x801146EC; // type:data game state byte (ATTRACT, PLAYGAME, etc)
+car_array = 0x80152818; // type:data CarData array (runtime car state)
+game_struct = 0x801461D0; // type:data main GameStruct (160 references)
+frame_counter = 0x80142AFC; // type:data frame counter (u32)
+
+// Game state machine functions (game code)
+game_loop = 0x800FD464; // type:func main per-frame game logic (arcade game.c:game)
+playgame = 0x800CA3B4; // type:func active racing handler
+attract = 0x800DB81C; // type:func demo/title screen handler
+countdown = 0x800FBC30; // type:func race countdown handler
+high_score_entry = 0x800FBF88; // type:func high score entry handler
+state_init_handler = 0x800FBF90; // type:func GSTATE_INIT handler
+state_setup_handler = 0x800FBFE4; // type:func GSTATE_SETUP handler
+state_menu_handler = 0x800FC0EC; // type:func GSTATE_MENU handler

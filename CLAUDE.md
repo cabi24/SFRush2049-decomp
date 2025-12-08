@@ -253,16 +253,9 @@ See `.claude/agents/` for specialized agents:
 
 ## Development Environment
 
-- **Primary Build Machine**: OptiPlex 3080 WSL (20 cores, 31GB RAM)
-  - SSH: `ssh user@192.168.50.100`
-  - Sudo without password enabled
-  - 10x faster builds than Raspberry Pi
-- **Ollama Server**: Watchman24 (Windows, qwen3-coder:30b 18GB model)
-  - SSH: `ssh cabi2@192.168.50.7`
-  - Use for heavy analysis tasks to save Claude tokens
-  - Example: `ssh cabi2@192.168.50.7 "ollama run qwen3-coder:30b \"prompt here\""`
-- **Light Work**: Raspberry Pi (current terminal)
-- **Spec Kit**: Installed via `uv tool install specify-cli`
+- Uses GNU Make and mips-linux-gnu cross-compiler toolchain
+- Build system based on splat for ROM extraction
+- Local Ollama server can be used for batch function analysis
 
 ## Next Steps (When Resuming)
 

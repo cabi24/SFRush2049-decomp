@@ -84,3 +84,48 @@ s32 __osSpDeviceBusy(void) {
     }
     return 0;
 }
+
+/* SP Memory DMA registers */
+#define SP_MEM_ADDR_REG   (*(vu32 *)0xA4040000)
+#define SP_DRAM_ADDR_REG  (*(vu32 *)0xA4040004)
+#define SP_RD_LEN_REG     (*(vu32 *)0xA4040008)
+#define SP_WR_LEN_REG     (*(vu32 *)0xA404000C)
+
+/* External functions */
+extern u32 osVirtualToPhysical(void *addr);
+
+/**
+ * Transfer data between RSP DMEM/IMEM and RDRAM
+ * (func_8000D680 - __osSpDma)
+ *
+ * Performs DMA transfer between RSP memory and main RAM.
+ *
+ * @param direction 0 = RDRAM->RSP (write to RSP), non-zero = RSP->RDRAM (read from RSP)
+ * @param spMemAddr RSP memory address (DMEM/IMEM offset)
+ * @param dramAddr RDRAM virtual address
+ * @param length Transfer length in bytes
+ * @return 0 on success, -1 if RSP busy
+ */
+s32 __osSpDma(s32 direction, void *spMemAddr, void *dramAddr, u32 length) {
+    /* Check if SP is busy */
+    if (__osSpDeviceBusy()) {
+        return -1;
+    }
+
+    /* Set SP memory address */
+    SP_MEM_ADDR_REG = (u32)spMemAddr;
+
+    /* Set DRAM address (convert virtual to physical) */
+    SP_DRAM_ADDR_REG = osVirtualToPhysical(dramAddr);
+
+    /* Start DMA - direction determines which length register to use */
+    if (direction == 0) {
+        /* Write to RSP (RDRAM -> DMEM/IMEM) */
+        SP_WR_LEN_REG = length - 1;
+    } else {
+        /* Read from RSP (DMEM/IMEM -> RDRAM) */
+        SP_RD_LEN_REG = length - 1;
+    }
+
+    return 0;
+}

@@ -258,6 +258,19 @@ f32 sinf(f32 x) {
 }
 
 /**
+ * Single precision square root
+ * (func_8000E3C0 - sqrtf)
+ *
+ * Uses the hardware sqrt.s instruction on MIPS.
+ *
+ * @param x Input value
+ * @return sqrt(x)
+ */
+f32 sqrtf(f32 x) {
+    return __builtin_sqrtf(x);
+}
+
+/**
  * Compute cosine of angle (single precision)
  * (func_800088F0 - cosf)
  *

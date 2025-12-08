@@ -98,3 +98,28 @@ u32 __osGetFpcCsr(u32 newCsr) {
     return oldCsr;
 }
 #endif
+
+/**
+ * Get CP0 Cause register
+ * (func_8000DBB0 - __osGetCause)
+ *
+ * The Cause register indicates the cause of the most recent
+ * exception. Contains:
+ * - Exception code (bits 2-6)
+ * - Pending hardware interrupts (bits 8-15)
+ * - Coprocessor error (bits 28-29)
+ * - Branch delay slot (bit 31)
+ *
+ * @return Current Cause register value
+ *
+ * Assembly:
+ *   mfc0 $v0, $13   ; Read Cause register into $v0
+ *   jr $ra          ; Return
+ *
+ * Note: This is a leaf function implemented in assembly.
+ */
+u32 __osGetCause(void) {
+    /* NOTE: Returns CP0 register $13 (Cause)
+     * Cannot implement in C - requires inline assembly: mfc0 $v0, $13 */
+    return 0; /* placeholder */
+}

@@ -119,4 +119,21 @@ s32 sync_execute(void *arg0, void *arg1) {
  * @param arg2 Third argument for protected operation
  * @return Result from protected operation, or 0 if lock not acquired
  */
-s32 sync_execute3(void *arg0, void *arg1, void *arg2);
+extern s32 func_80006814(void *arg0, void *arg1, void *arg2);  /* 3-arg protected op */
+
+s32 sync_execute3(void *arg0, void *arg1, void *arg2) {
+    s32 result;
+
+    /* Acquire lock (blocking) */
+    if (sync_acquire(1) == 0) {
+        return 0;
+    }
+
+    /* Execute protected operation */
+    result = func_80006814(arg0, arg1, arg2);
+
+    /* Release lock */
+    sync_release();
+
+    return result;
+}
