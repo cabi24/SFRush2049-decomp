@@ -25,14 +25,11 @@
  *
  * @param sr New Status register value
  *
- * Note: Implemented in assembly (mtc0 $a0, $12)
+ * Assembly: mtc0 $a0, $12; nop; jr $ra; nop
  */
-/* Assembly stub - actual implementation in asm */
-#if 0
 void __osSetSR(u32 sr) {
-    __mtc0(12, sr);
+    __asm__ volatile("mtc0 %0, $12" : : "r"(sr));
 }
-#endif
 
 /**
  * Get CP0 Status register
@@ -40,14 +37,13 @@ void __osSetSR(u32 sr) {
  *
  * @return Current Status register value
  *
- * Note: Implemented in assembly (mfc0 $v0, $12)
+ * Assembly: mfc0 $v0, $12; jr $ra; nop
  */
-/* Assembly stub - actual implementation in asm */
-#if 0
 u32 __osGetSR(void) {
-    return __mfc0(12);
+    u32 sr;
+    __asm__ volatile("mfc0 %0, $12" : "=r"(sr));
+    return sr;
 }
-#endif
 
 /**
  * Set FPU Control/Status register
@@ -63,41 +59,27 @@ u32 __osGetSR(void) {
  *
  * @param csr New FPU CSR value
  *
- * Note: Implemented in assembly (ctc1 $a0, $31)
+ * Assembly: ctc1 $a0, $31; jr $ra; nop
  */
-/* Assembly stub - actual implementation in asm */
-#if 0
 void __osSetFpcCsr(u32 csr) {
-    __ctc1(31, csr);
+    __asm__ volatile("ctc1 %0, $31" : : "r"(csr));
 }
-#endif
 
 /**
- * Get and Set FPU Control/Status register
+ * Get FPU Control/Status register
  * (func_8000D790 - __osGetFpcCsr)
  *
- * Reads the current FPU CSR value and sets a new one.
- * This is an atomic swap operation for the FPU control register.
+ * Reads the current FPU CSR value.
  *
- * Assembly:
- *   cfc1 $v0, $31    ; Read current CSR into $v0
- *   ctc1 $a0, $31    ; Write new CSR from $a0
- *   jr $ra           ; Return
+ * Assembly: cfc1 $v0, $31; jr $ra; nop
  *
- * @param newCsr New FPU CSR value to set
- * @return Previous FPU CSR value
- *
- * Note: This is a leaf function implemented in assembly.
+ * @return Current FPU CSR value
  */
-/* Assembly stub - actual implementation in asm */
-#if 0
-u32 __osGetFpcCsr(u32 newCsr) {
-    u32 oldCsr;
-    oldCsr = __cfc1(31);
-    __ctc1(31, newCsr);
-    return oldCsr;
+u32 __osGetFpcCsr(void) {
+    u32 csr;
+    __asm__ volatile("cfc1 %0, $31" : "=r"(csr));
+    return csr;
 }
-#endif
 
 /**
  * Get CP0 Cause register
@@ -112,14 +94,10 @@ u32 __osGetFpcCsr(u32 newCsr) {
  *
  * @return Current Cause register value
  *
- * Assembly:
- *   mfc0 $v0, $13   ; Read Cause register into $v0
- *   jr $ra          ; Return
- *
- * Note: This is a leaf function implemented in assembly.
+ * Assembly: mfc0 $v0, $13; jr $ra; nop
  */
 u32 __osGetCause(void) {
-    /* NOTE: Returns CP0 register $13 (Cause)
-     * Cannot implement in C - requires inline assembly: mfc0 $v0, $13 */
-    return 0; /* placeholder */
+    u32 cause;
+    __asm__ volatile("mfc0 %0, $13" : "=r"(cause));
+    return cause;
 }

@@ -27,14 +27,15 @@ extern void *D_8002C460;  /* Active queue pointer */
  *
  * @return Current count value
  *
- * Note: This is implemented in assembly (mfc0 $v0, $9)
+ * Note: This requires inline assembly or compiler intrinsic.
+ * The function is 3 instructions: mfc0 $v0, $9; jr $ra; nop
  */
-/* Assembly stub - actual implementation in asm */
-#if 0
 u32 osGetCount(void) {
-    return __mfc0(9);
+    u32 count;
+    /* GCC inline assembly for mfc0 */
+    __asm__ volatile("mfc0 %0, $9" : "=r"(count));
+    return count;
 }
-#endif
 
 /**
  * Check if RDP DMA is busy
@@ -56,23 +57,7 @@ s32 osDpIsBusy(void) {
     return 0;
 }
 
-/**
- * Calculate square root (single precision)
- * (func_8000E3C0 - sqrtf)
- *
- * Uses the MIPS sqrt.s instruction for hardware square root.
- *
- * @param x Value to compute square root of
- * @return Square root of x
- *
- * Note: This is implemented in assembly (sqrt.s)
- */
-/* Assembly stub - actual implementation in asm */
-#if 0
-f32 sqrtf(f32 x) {
-    return __sqrt_s(x);
-}
-#endif
+/* sqrtf is implemented in src/libm/math.c */
 
 /* External function for TLB lookup */
 extern u32 func_8000FCB0(void *addr);  /* __osTLBLookup */

@@ -11,7 +11,7 @@ This file helps Claude maintain context across sessions for the Rush 2049 N64 de
 ## Current Status
 
 **Phase**: 2 - Decompilation Ready (MATCHING BUILD ACHIEVED!)
-**Last Updated**: 2025-12-07
+**Last Updated**: 2025-12-08 (Session 2)
 
 ### Completed
 - [x] Project planning via Spec Kit (constitution, spec, plan, tasks)
@@ -59,7 +59,7 @@ This file helps Claude maintain context across sessions for the Rush 2049 N64 de
 
 See `symbol_addrs.us.txt` for complete list.
 
-### Decompiled Source Files (32 C files, ~6155 lines)
+### Decompiled Source Files (46 C files, ~7,479 lines)
 | File | Functions | Status |
 |------|-----------|--------|
 | src/libc/string.c | memchr, memset, strchr, strlen, memcpy | Complete |
@@ -78,7 +78,9 @@ See `symbol_addrs.us.txt` for complete list.
 | src/libultra/os_sp.c | __osSpSetStatus, __osSpSetPc, __osSpDeviceBusy | Complete |
 | src/libultra/os_sp_task.c | osSpTaskYielded, osViGetFramebuffer | Complete |
 | src/libultra/os_misc.c | osDpIsBusy, osVirtualToPhysical (full), osGetActiveQueue, osPhysicalToVirtual | Complete |
-| src/libultra/os_cpu.c | __osSetSR, __osGetSR, __osSetFpcCsr, __osGetFpcCsr (stubs) | Complete |
+| src/libultra/os_cpu.c | __osSetSR, __osGetSR, __osSetFpcCsr, __osGetFpcCsr, __osGetCause (inline asm) | Complete |
+| src/libultra/os_tlb.c | __osTlbInit, __osTLBLookup, osTLBMapTLB, osTLBUnmapTLB (asm-only stubs) | Complete |
+| src/libultra/os_cont.c | osContStartQuery, osContGetQuery, osContStartReadData, osContGetReadData, __osContRamReset | Complete |
 | src/libultra/os_pi.c | osPiInit, osPiGetAccess, osPiReleaseAccess, osPiReadWord, osPiWriteWord, osPiReadIo, osPiRawReadWord, osPiStartDma, osPiSetDeviceTiming | Complete |
 | src/libultra/os_si.c | __osSiRawStartDma, osSiInit, __osSiGetAccess, __osSiRelAccess, osContStartReadData, __osContBuildRequest, __osContParseResponse | Complete |
 | src/libultra/os_ai.c | osAiSetNextBuffer, osAiSetFrequency | Complete |
@@ -353,5 +355,6 @@ codex exec --dangerously-bypass-approvals-and-sandbox "Analyze asm/us/XXXX.s and
 ```
 
 **Current stats**:
-- Static ROM: 228 functions identified (100% coverage), 32 C files, ~6033 lines
-- Dynamic game code: 752 functions extracted, ready for analysis
+- Static ROM: 228 functions identified (100% coverage), 46 C files, ~7,479 lines
+- Dynamic game code: 752 functions extracted, ~40 decompiled via Ollama batch
+- Symbol file: 1,164 entries (including game code function labels)

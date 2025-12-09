@@ -9,3 +9,8 @@
 800B37E8 audio_control -> game/audio.c:sound_control HIGH
 80097CA0 camera_transform -> game/camera.c:CameraUpdate MEDIUM
 800BAE24 physics_calc -> game/cars.c:Update_MDrive MEDIUM
+8008AE8C func_8008AE8C -> game/cars.c:InitCarSlot MEDIUM
+8008B26C func_8008B26C -> game/cars.c:UpdateCarsLoop MEDIUM
+800908A0 func_800908A0 -> game/game.c:StateBitDispatch LOW
+800C8B8C func_800C8B8C -> game/drones.c:DoDrones LOW
+800F20A0 func_800F20A0 -> game/game.c:StateBitHandler LOW

@@ -115,3 +115,23 @@ void osDpGetCounters(u32 *counters) {
     counters[2] = DPC_PIPEBUSY_REG;
     counters[3] = DPC_TMEM_REG;
 }
+
+/**
+ * Check if RDP DMA is busy
+ * (func_8000D740 - osDpIsBusy)
+ *
+ * Checks the DPC_STATUS_REG for the DMA_BUSY bit.
+ *
+ * @return 1 if RDP DMA is busy, 0 if not
+ */
+s32 osDpIsBusy(void) {
+    u32 status;
+
+    status = DPC_STATUS_REG;
+
+    /* Check DMA_BUSY bit (bit 8) */
+    if (status & DPC_STATUS_DMA_BUSY) {
+        return 1;
+    }
+    return 0;
+}

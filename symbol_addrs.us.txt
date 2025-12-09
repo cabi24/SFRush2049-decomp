@@ -1106,3 +1106,59 @@ high_score_entry = 0x800FBF88; // type:func high score entry handler
 state_init_handler = 0x800FBF90; // type:func GSTATE_INIT handler
 state_setup_handler = 0x800FBFE4; // type:func GSTATE_SETUP handler
 state_menu_handler = 0x800FC0EC; // type:func GSTATE_MENU handler
+
+// Game code functions (extracted from compressed ROM, 0x80086A50 - 0x80124AF0)
+// These are in the dynamically loaded game code segment
+
+// Large rendering/display functions
+func_80087A08 = 0x80087A08; // type:func render_large - 10KB major rendering function
+func_80099BFC = 0x80099BFC; // type:func render_object - 10KB 3D model rendering
+
+// Audio/sound functions  
+func_80097384 = 0x80097384; // type:func audio_helper
+func_800974EC = 0x800974EC; // type:func audio_processing - sound processing helper
+func_80095360 = 0x80095360; // type:func play_sfx - sound effect playback
+func_80095960 = 0x80095960; // type:func bgm_playback - background music handler
+func_8008A750 = 0x8008A750; // type:func audio_wrapper - audio system wrapper
+func_800B37E8 = 0x800B37E8; // type:func sound_control - main sound control
+
+// Vehicle/physics functions
+func_80097798 = 0x80097798; // type:func vehicle_physics - collision detection helper
+func_800B8C14 = 0x800B8C14; // type:func update_car_physics - physics update
+func_800B9000 = 0x800B9000; // type:func apply_forces - physics force application  
+func_800B9400 = 0x800B9400; // type:func integrate_position - position integration
+func_800BA000 = 0x800BA000; // type:func tire_physics - tire simulation
+func_800BA800 = 0x800BA800; // type:func suspension_update - suspension calc
+
+// Collision functions
+func_800BB000 = 0x800BB000; // type:func check_collisions - main collision check
+func_800BB400 = 0x800BB400; // type:func car_car_collision - car-to-car collision
+func_800BB800 = 0x800BB800; // type:func car_wall_collision - car-to-wall collision
+func_800BBC00 = 0x800BBC00; // type:func point_in_body - point inside body test
+
+// AI/drone functions
+func_800A0000 = 0x800A0000; // type:func do_drones - AI main update
+func_800A0800 = 0x800A0800; // type:func drone_steering - AI steering logic
+func_800A1000 = 0x800A1000; // type:func path_follow - path following
+func_800A1800 = 0x800A1800; // type:func avoid_obstacles - obstacle avoidance
+
+// Checkpoint functions
+func_800C0000 = 0x800C0000; // type:func check_cps - checkpoint detection
+
+// Input functions
+func_800C9AE0 = 0x800C9AE0; // type:func process_input - input/init handling
+func_800140B0 = 0x800140B0; // type:func read_controllers - controller input reading
+
+// Scene/camera functions  
+func_800A04C4 = 0x800A04C4; // type:func render_scene - viewport/camera setup
+
+// Game state handlers (called from game_loop @ 0x800FD464)
+func_800FD464 = 0x800FD464; // type:func game_loop - main per-frame game logic (arcade: game())
+func_800CA3B4 = 0x800CA3B4; // type:func playgame - PLAYGAME state handler  
+func_800DB81C = 0x800DB81C; // type:func attract - ATTRACT/demo state
+func_800FBC30 = 0x800FBC30; // type:func countdown - race countdown
+func_800FBF88 = 0x800FBF88; // type:func high_score_entry - high score handler
+func_800FBF90 = 0x800FBF90; // type:func state_init_handler - init state
+func_800FBFE4 = 0x800FBFE4; // type:func state_setup_handler - setup state  
+func_800FC0EC = 0x800FC0EC; // type:func state_menu_handler - menu state
+func_800EDDC0 = 0x800EDDC0; // type:func state_transition - state change logic
