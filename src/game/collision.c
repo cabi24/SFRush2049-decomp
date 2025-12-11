@@ -1,200 +1,430 @@
 /**
- * Rush 2049 - Collision Functions
- * Collision detection and response
+ * collision.c - Collision detection and response for Rush 2049 N64
  *
- * Auto-extracted from Ollama decompilation output
- * Source: ollama_analysis/refined_c_code_clean.txt
+ * Based on arcade game/collision.c
+ * Handles car-car collisions using bounding sphere then box tests
+ *
+ * Algorithm:
+ * 1. Check bounding sphere overlap (fast rejection)
+ * 2. Check body corners of car1 against car2's bounding box
+ * 3. If penetration detected, apply spring/damping forces
+ *
+ * Key functions mapped from arcade:
+ * - init_collision -> collision structure initialization
+ * - collision -> per-car collision detection
+ * - setCollisionForce -> collision response calculation
  */
 
 #include "types.h"
+#include "game/collision.h"
 #include "game/structs.h"
 
-/* External declarations */
-extern u8 gstate;
-extern u8 gstate_prev;
-extern CarData car_array[];
-extern GameStruct* game_struct;
+/* External OS functions */
+extern u32 osGetCount(void);
 extern u32 frame_counter;
-extern PadEntry pad_array[];
 
+/* External game state */
+extern u8 gstate;
+extern CarData car_array[];
+extern GameStruct game_struct;
+extern s32 num_active_cars;
 
-// === func_800BB044 @ 0x800BB044 ===
+/* External vector math */
+extern f32 vec_dot(const f32 a[3], const f32 b[3]);
+extern void vec_sub(const f32 a[3], const f32 b[3], f32 result[3]);
+extern void vec_add(const f32 a[3], const f32 b[3], f32 result[3]);
+extern void vec_scale(const f32 a[3], f32 scale, f32 result[3]);
+extern void vec_copy(const f32 src[3], f32 dst[3]);
 
-void func_800BB044(u32 arg0, u16 arg1, void* arg2) {
-    s32 sp = -32;
-    u8 pad_data[3];
-    CarData* car = (CarData*)arg0;
-    PadEntry* pad_entry = (PadEntry*)arg2;
+/* Collision data for all cars */
+CollisionData col_data[MAX_CARS];
 
-    *pad_data = 0;
-    *(pad_data + 16) = 0;
-    *(pad_data + 17) = 255;
+/* Default collision box dimensions (half-sizes in feet) */
+static const f32 default_body_corners[4][3] = {
+    {  2.0f, 0.0f,  4.5f },  /* Front right */
+    { -2.0f, 0.0f,  4.5f },  /* Front left */
+    { -2.0f, 0.0f, -4.5f },  /* Rear left */
+    {  2.0f, 0.0f, -4.5f }   /* Rear right */
+};
 
-    if (arg1 != 0) {
-        *(u16*)(pad_data + 18) = arg1;
-    }
+/* Default collision radius (bounding sphere) */
+static const f32 default_colrad = 6.0f;
 
-    func_800BAF98(arg0, arg1, arg2);
+/**
+ * init_collision - Initialize collision data for one car
+ * Based on arcade: collision.c:init_collision()
+ *
+ * @param car_index Car index to initialize
+ */
+void init_collision(s32 car_index) {
+    CollisionData *col;
+    s32 i, j;
 
-    s32 result = func_800BAF98(arg0, arg1, arg2);
-    if (result < 512) {
-        car->dr_uvs[0][1] = *(pad_entry + (arg1 * 4));
-        car->dr_uvs[1][1] = *(pad_entry + ((arg1 * 4) + 1));
-
-        u8 value1 = pad_data[1];
-        u8 value2 = pad_data[2];
-        if (value1 != 0 || value2 != 0) {
-            u32 offset = ((value2 << 8) | value1);
-            car->RWV[0] = *(car_array + (offset * 4));
-        }
-    }
-
-    return;
-}
-
-
-
-// === func_800BB140 @ 0x800BB140 ===
-
-void func_800BB140(u32 arg0) {
-    s32 sp = (s32)&sp - 168;
-    s32 ra = (s32)&ra;
-    s32 fp = (s32)&fp;
-    s32 s7 = (s32)&s7;
-    s32 s6 = (s32)&s6;
-    s32 s5 = (s32)&s5;
-    s32 s4 = (s32)&s4;
-    s32 s3 = (s32)&s3;
-    s32 s2 = (s32)&s2;
-    s32 s1 = (s32)&s1;
-    s32 s0 = (s32)&s0;
-
-    __m128 f22, f20;
-
-    if (arg0 != 0) {
-        f20 = *(__m128 *)(sp + 32);
-        func_8039156C();
-    }
-
-    f22 = *(__m128 *)(sp + 40);
-
-    gstate_prev = gstate;
-
-    if (gstate == GSTATE_INIT) {
-        CarData *car;
-        PadEntry *pad;
-        for (s3 = 0; s3 < 8; s3++) {
-            car = &car_array[s3];
-            pad = &pad_array[s3];
-
-            car->mph = pad->speed;
-            car->rpm = pad->rpm;
-            car->data_valid = 1;
-            car->place = -1;
-            car->laps = 0;
-            car->checkpoint = 0;
-        }
-    }
-
-    *(u32 *)fp = ra;
-}
-
-
-
-// === func_800BB69C @ 0x800BB69C ===
-
-u8 *gstate = (u8 *)0x801146EC;
-CarData *car_array = (CarData *)0x80152818;
-
-void func_800BB69C() {
-    u8 gameState = *gstate;
-    s32 sp = -48;
-
-    register u32 ra asm("$ra");
-    register u32 s5 asm("$s5");
-    register u32 s4 asm("$s4");
-    register u32 s3 asm("$s3");
-    register u32 s2 asm("$s2");
-    register u32 s1 asm("$s1");
-    register u32 s0 asm("$s0");
-
-    if (gameState <= 0) {
-        s0 = sp;
-        ra = func_800B90F8();
-    }
-
-    if (!(gameState & GSTATE_CARS)) {
+    if (car_index < 0 || car_index >= MAX_CARS) {
         return;
     }
 
-    u32 carIndex = gameState >> 16;
+    col = &col_data[car_index];
 
-    if (carIndex == 7 || carIndex == 8 || carIndex == 9 || carIndex == 10 ||
-        carIndex == 11 || carIndex == 12 || carIndex == 13 || carIndex == 17 ||
-        carIndex == 18) {
-        ra = func_800B90F8();
+    /* Clear force vectors */
+    for (i = 0; i < 3; i++) {
+        col->CENTERFORCE[i] = 0.0f;
+        col->peak_center_force[0][i] = 0.0f;
+        col->peak_center_force[1][i] = 0.0f;
+        col->peak_body_force[0][i] = 0.0f;
+        col->peak_body_force[1][i] = 0.0f;
+    }
+
+    for (i = 0; i < 4; i++) {
+        for (j = 0; j < 3; j++) {
+            col->BODYFORCE[i][j] = 0.0f;
+            col->BODYR[i][j] = default_body_corners[i][j];
+        }
+    }
+
+    col->colrad = default_colrad;
+    col->collidable = 1;
+    col->in_game = 1;
+}
+
+/**
+ * init_all_collisions - Initialize collision for all cars
+ */
+void init_all_collisions(void) {
+    s32 i;
+
+    for (i = 0; i < MAX_CARS; i++) {
+        init_collision(i);
     }
 }
 
-
-
-// === func_800BB834 @ 0x800BB834 ===
-
-void func_800BB834(u8* arg0) {
-    CarData* car_data = (CarData*)(game_struct + 16328);
-    PadEntry* pad_entry = &pad_array[130];
-    u8* state_flags = (u8*)(gstate_prev + 18000);
-    u8* state_flags_new = (u8*)(car_data->RWV);
-
-    // Set initial values in CarData
-    car_data->dr_pos[0] = 0.0f;
-    car_data->dr_pos[1] = 0.0f;
-    car_data->dr_pos[2] = 0.0f;
-    car_data->dr_vel[0] = 0.0f;
-    car_data->dr_vel[1] = 0.0f;
-    car_data->dr_vel[2] = 0.0f;
-    car_data->RWV[0] = 0.0f;
-    car_data->RWV[1] = 0.0f;
-    car_data->RWV[2] = 0.0f;
-    car_data->RWR[0] = 0.0f;
-    car_data->RWR[1] = 0.0f;
-    car_data->RWR[2] = 0.0f;
-    car_data->mph = 0.0f;
-    car_data->rpm = 0;
-    car_data->data_valid = 0;
-    car_data->place = 0;
-    car_data->laps = 0;
-    car_data->checkpoint = 0;
-    car_data->difficulty = 2;
-
-    // Call another function with CarData as argument
-    func_800B04D0(car_data);
-
-    // Set state flags
-    *state_flags_new = *state_flags;
-
-    // Set a value in memory
-    pad_entry->dr_pos[2] = 1.0f;
+/**
+ * vec_dist_sq - Calculate squared distance between two points
+ *
+ * @param a First point
+ * @param b Second point
+ * @return Squared distance
+ */
+f32 vec_dist_sq(f32 a[3], f32 b[3]) {
+    f32 dx = a[0] - b[0];
+    f32 dy = a[1] - b[1];
+    f32 dz = a[2] - b[2];
+    return dx*dx + dy*dy + dz*dz;
 }
 
+/**
+ * body_to_world - Transform point from body coords to world coords
+ *
+ * @param body_pos Position in body coordinates
+ * @param world_pos Output position in world coordinates
+ * @param uvs Rotation matrix (3x3)
+ * @param rwr World position of body origin
+ */
+void body_to_world(f32 body_pos[3], f32 world_pos[3], f32 uvs[3][3], f32 rwr[3]) {
+    s32 i;
 
+    for (i = 0; i < 3; i++) {
+        world_pos[i] = rwr[i] +
+                       body_pos[0] * uvs[0][i] +
+                       body_pos[1] * uvs[1][i] +
+                       body_pos[2] * uvs[2][i];
+    }
+}
 
-// === func_800BB9BC @ 0x800BB9BC ===
+/**
+ * world_to_body - Transform point from world coords to body coords
+ *
+ * @param world_pos Position in world coordinates
+ * @param body_pos Output position in body coordinates
+ * @param uvs Rotation matrix (3x3)
+ * @param rwr World position of body origin
+ */
+void world_to_body(f32 world_pos[3], f32 body_pos[3], f32 uvs[3][3], f32 rwr[3]) {
+    f32 diff[3];
+    s32 i;
 
-void func_800BB9BC(u32 arg0, CarData* car_array) {
-    s8 state = (gstate & 0x1000000) ? 1 : 0;
-    if (state == 0) {
-        u32 arg2 = *(u32*)(car_array + 4);
-        func_80097798(arg0 + 101, 0, arg2);
-        (*(u8*)(0x801461D0 + 14864)) = 1;
+    /* Get offset from body origin */
+    for (i = 0; i < 3; i++) {
+        diff[i] = world_pos[i] - rwr[i];
+    }
+
+    /* Dot with each unit vector row */
+    body_pos[0] = diff[0] * uvs[0][0] + diff[1] * uvs[0][1] + diff[2] * uvs[0][2];
+    body_pos[1] = diff[0] * uvs[1][0] + diff[1] * uvs[1][1] + diff[2] * uvs[1][2];
+    body_pos[2] = diff[0] * uvs[2][0] + diff[1] * uvs[2][1] + diff[2] * uvs[2][2];
+}
+
+/**
+ * check_sphere_collision - Check if two cars' bounding spheres overlap
+ * Based on arcade: first check in collision()
+ *
+ * @param car1 First car index
+ * @param car2 Second car index
+ * @param dist_sq Output squared distance between centers
+ * @return 1 if spheres overlap, 0 otherwise
+ */
+s32 check_sphere_collision(s32 car1, s32 car2, f32 *dist_sq) {
+    CollisionData *c1, *c2;
+    f32 dsq;
+    f32 combined_rad;
+
+    c1 = &col_data[car1];
+    c2 = &col_data[car2];
+
+    /* Calculate squared distance between car centers */
+    dsq = vec_dist_sq(car_array[car1].RWR, car_array[car2].RWR);
+
+    if (dist_sq) {
+        *dist_sq = dsq;
+    }
+
+    /* Check if spheres overlap */
+    combined_rad = c1->colrad + c2->colrad;
+    if (dsq > combined_rad * combined_rad) {
+        return 0;  /* No overlap */
+    }
+
+    return 1;  /* Spheres overlap */
+}
+
+/**
+ * point_in_body - Check if point is inside car's bounding box
+ * Based on arcade: PointInBody()
+ *
+ * @param car_index Car to test against
+ * @param point World position to test
+ * @return 1 if point is inside, 0 otherwise
+ */
+s32 point_in_body(s32 car_index, f32 point[3]) {
+    CollisionData *col;
+    CarData *car;
+    f32 body_point[3];
+    f32 half_x, half_y, half_z;
+
+    col = &col_data[car_index];
+    car = &car_array[car_index];
+
+    /* Transform point to body coordinates */
+    world_to_body(point, body_point, car->dr_uvs, car->RWR);
+
+    /* Get half-sizes from body corners */
+    half_x = col->BODYR[0][0];  /* Right side = positive X */
+    half_y = 2.0f;              /* Fixed height */
+    half_z = col->BODYR[0][2];  /* Front = positive Z */
+
+    /* Check if inside box */
+    if (body_point[0] < -half_x || body_point[0] > half_x) {
+        return 0;
+    }
+    if (body_point[1] < -half_y || body_point[1] > half_y) {
+        return 0;
+    }
+    if (body_point[2] < -half_z || body_point[2] > half_z) {
+        return 0;
+    }
+
+    return 1;
+}
+
+/**
+ * set_collision_force - Calculate and apply collision response
+ * Based on arcade: setFBCollisionForce()
+ *
+ * @param car1 First car index
+ * @param car2 Second car index
+ * @param vec Direction vector (from car2 to car1)
+ * @param point Collision point
+ */
+void set_collision_force(s32 car1, s32 car2, f32 force[3], f32 point[3]) {
+    CollisionData *c1, *c2;
+    CarData *d1, *d2;
+    f32 rel_vel[3];
+    f32 vel_along_normal;
+    f32 force_mag;
+    f32 normal[3];
+    f32 dist;
+    s32 i;
+
+    c1 = &col_data[car1];
+    c2 = &col_data[car2];
+    d1 = &car_array[car1];
+    d2 = &car_array[car2];
+
+    /* Calculate relative velocity */
+    for (i = 0; i < 3; i++) {
+        rel_vel[i] = d1->RWV[i] - d2->RWV[i];
+    }
+
+    /* Normalize direction vector */
+    dist = force[0]*force[0] + force[1]*force[1] + force[2]*force[2];
+    if (dist > 0.001f) {
+        dist = 1.0f / sqrtf(dist);
+        for (i = 0; i < 3; i++) {
+            normal[i] = force[i] * dist;
+        }
     } else {
-        u32 state_value = *(u32*)(0x801461D0 + 14864);
-        func_80096288(state_value, 0, 0);
-        if (state_value) {
-            u8* flags_ptr = (u8*)(0x80152818 + state_value * sizeof(CarData));
-            *flags_ptr |= 0x1;
+        normal[0] = 0.0f;
+        normal[1] = 0.0f;
+        normal[2] = 1.0f;
+    }
+
+    /* Calculate velocity component along collision normal */
+    vel_along_normal = rel_vel[0] * normal[0] +
+                       rel_vel[1] * normal[1] +
+                       rel_vel[2] * normal[2];
+
+    /* Spring + damping force */
+    /* F = Ks * penetration + Kd * relative_velocity */
+    force_mag = COL_SPRING_K * 0.5f + COL_DAMP_K * vel_along_normal;
+
+    /* Clamp force magnitude */
+    if (force_mag > MAXFORCE) {
+        force_mag = MAXFORCE;
+    }
+    if (force_mag < -MAXFORCE) {
+        force_mag = -MAXFORCE;
+    }
+
+    /* Apply force to center */
+    for (i = 0; i < 3; i++) {
+        c1->CENTERFORCE[i] += normal[i] * force_mag;
+    }
+}
+
+/**
+ * collision - Main collision detection for one car
+ * Based on arcade: collision.c:collision()
+ *
+ * @param car_index Car to check collisions for
+ */
+void collision(s32 car_index) {
+    CollisionData *col, *col2;
+    CarData *car, *car2;
+    f32 vec[3], pos[3], posr[3];
+    f32 dsq;
+    s32 other, i;
+
+    col = &col_data[car_index];
+    car = &car_array[car_index];
+
+    /* Check if this car is collidable */
+    if (!col->collidable) {
+        return;
+    }
+
+    /* Velocity sanity check */
+    dsq = car->RWV[0]*car->RWV[0] + car->RWV[1]*car->RWV[1] + car->RWV[2]*car->RWV[2];
+    if (dsq > MAX_VEL_SQ) {
+        return;
+    }
+
+    /* Check against all other cars */
+    for (other = 0; other < num_active_cars; other++) {
+        if (other == car_index) {
+            continue;  /* Don't collide with self */
+        }
+
+        col2 = &col_data[other];
+        car2 = &car_array[other];
+
+        /* Check if other car is in game and collidable */
+        if (!col2->in_game || !col2->collidable) {
+            continue;
+        }
+
+        /* Velocity sanity check for other car */
+        dsq = car2->RWV[0]*car2->RWV[0] + car2->RWV[1]*car2->RWV[1] + car2->RWV[2]*car2->RWV[2];
+        if (dsq > MAX_VEL_SQ) {
+            continue;
+        }
+
+        /* Phase 1: Bounding sphere test */
+        if (!check_sphere_collision(car_index, other, &dsq)) {
+            continue;  /* Spheres don't overlap */
+        }
+
+        /* Calculate vector from other car to this car */
+        for (i = 0; i < 3; i++) {
+            vec[i] = car->RWR[i] - car2->RWR[i];
+        }
+
+        /* Phase 2: Check body corners */
+        for (i = 0; i < 4; i++) {
+            /* Transform body corner to world coords */
+            body_to_world(col->BODYR[i], pos, car->dr_uvs, car->RWR);
+
+            /* Check if corner is inside other car's body */
+            if (point_in_body(other, pos)) {
+                /* Collision detected! Apply forces */
+                set_collision_force(car_index, other, vec, pos);
+                return;
+            }
         }
     }
 }
 
+/**
+ * check_all_collisions - Check collisions for all active cars
+ */
+void check_all_collisions(void) {
+    s32 i;
 
+    /* Clear all forces first */
+    for (i = 0; i < num_active_cars; i++) {
+        col_data[i].CENTERFORCE[0] = 0.0f;
+        col_data[i].CENTERFORCE[1] = 0.0f;
+        col_data[i].CENTERFORCE[2] = 0.0f;
+    }
+
+    /* Check each car for collisions */
+    for (i = 0; i < num_active_cars; i++) {
+        collision(i);
+    }
+}
+
+/**
+ * apply_collision_forces - Apply accumulated collision forces to car
+ *
+ * @param car_index Car to apply forces to
+ */
+void apply_collision_forces(s32 car_index) {
+    CollisionData *col;
+    CarData *car;
+    f32 dt = 1.0f / 60.0f;  /* Fixed timestep */
+    f32 mass = 100.0f;      /* Car mass in slugs (placeholder) */
+    f32 accel[3];
+    s32 i;
+
+    col = &col_data[car_index];
+    car = &car_array[car_index];
+
+    /* F = ma, so a = F/m */
+    for (i = 0; i < 3; i++) {
+        accel[i] = col->CENTERFORCE[i] / mass;
+        car->RWV[i] += accel[i] * dt;
+    }
+}
+
+/**
+ * set_car_collidable - Set car's collision state
+ *
+ * @param car_index Car index
+ * @param collidable 1 for collidable, 0 for not
+ */
+void set_car_collidable(s32 car_index, s32 collidable) {
+    if (car_index >= 0 && car_index < MAX_CARS) {
+        col_data[car_index].collidable = collidable ? 1 : 0;
+    }
+}
+
+/**
+ * set_car_in_game - Set car's in-game state
+ *
+ * @param car_index Car index
+ * @param in_game 1 if in game, 0 if not
+ */
+void set_car_in_game(s32 car_index, s32 in_game) {
+    if (car_index >= 0 && car_index < MAX_CARS) {
+        col_data[car_index].in_game = in_game ? 1 : 0;
+    }
+}

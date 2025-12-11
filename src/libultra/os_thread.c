@@ -216,3 +216,86 @@ void osStartThread(OSThread *thread) {
 
     __osRestoreInt(saved);
 }
+
+/* Additional external functions */
+extern void __osSwitchThread(s32 runnable);
+
+/**
+ * Yield the current thread
+ * (func_8000BD90 - osYieldThread)
+ *
+ * Causes the current thread to voluntarily give up the CPU.
+ * If thread is NULL, yields current thread to idle.
+ * Otherwise handles thread state transitions.
+ *
+ * @param thread Thread to yield, or NULL for current
+ */
+void osYieldThread(OSThread *thread) {
+    s32 saved;
+    u16 state;
+
+    saved = __osDisableInt();
+
+    if (thread == NULL) {
+        state = OS_STATE_RUNNING;  /* 4 */
+    } else {
+        state = *(u16 *)&thread->state;
+    }
+
+    switch (state) {
+        case OS_STATE_RUNNING:  /* 4 */
+            /* Current thread - just switch to idle */
+            *(u16 *)&D_8002C3E0->state = OS_STATE_STOPPED;
+            __osSwitchThread(0);
+            break;
+
+        case OS_STATE_RUNNABLE:  /* 2 */
+        case OS_STATE_WAITING:   /* 8 */
+            /* Thread in queue - mark as stopped and re-enqueue */
+            *(u16 *)&thread->state = OS_STATE_STOPPED;
+            __osEnqueueThread(thread->queue, thread);
+            break;
+    }
+
+    __osRestoreInt(saved);
+}
+
+/**
+ * Get thread priority
+ * (func_8000BE50 - osGetThreadPri)
+ *
+ * Returns the priority of the specified thread.
+ * If thread is NULL, returns current thread's priority.
+ *
+ * @param thread Thread to query, or NULL for current
+ * @return Thread priority value
+ */
+s32 osGetThreadPri(OSThread *thread) {
+    OSThread *t;
+
+    t = thread;
+    if (t == NULL) {
+        t = D_8002C3E0;
+    }
+    return t->priority;
+}
+
+/**
+ * Get thread ID
+ * (func_8000C490 - osGetThreadId)
+ *
+ * Returns the ID of the specified thread.
+ * If thread is NULL, returns current thread's ID.
+ *
+ * @param thread Thread to query, or NULL for current
+ * @return Thread ID value
+ */
+s32 osGetThreadId(OSThread *thread) {
+    OSThread *t;
+
+    t = thread;
+    if (t == NULL) {
+        t = D_8002C3E0;
+    }
+    return t->id;
+}

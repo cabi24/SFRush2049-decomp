@@ -91,6 +91,26 @@ void osViSetMode(void *mode) {
     __osRestoreInt(savedMask);
 }
 
+/**
+ * Enable or disable black screen
+ * (func_80006DA0 - osViBlack)
+ *
+ * When enabled, the VI outputs black regardless of framebuffer content.
+ *
+ * @param black Non-zero to enable black screen, 0 to disable
+ */
+void osViBlack(s32 black) {
+    s32 savedMask;
+
+    savedMask = __osDisableInt();
+    if (black) {
+        *(u16 *)D_8002C464 |= 0x20;
+    } else {
+        *(u16 *)D_8002C464 &= ~0x20;
+    }
+    __osRestoreInt(savedMask);
+}
+
 /* VI special features flags */
 #define OS_VI_GAMMA_ON          0x0001
 #define OS_VI_GAMMA_OFF         0x0002
@@ -169,6 +189,31 @@ void osViSetSpecialFeatures(u32 features) {
 
     /* Set update flag (bit 3) */
     *(u16 *)D_8002C464 |= 0x08;
+
+    __osRestoreInt(savedMask);
+}
+
+/**
+ * Set VI swap buffer callback
+ * (func_80006ED0 - osViSetSwapBuffer)
+ *
+ * Configures the VI retrace callback settings.
+ * This is called during scheduler setup to register
+ * the swap buffer completion message.
+ *
+ * @param mq Message queue pointer for notifications
+ * @param msg Message value to send on buffer swap
+ * @param numFields Number of fields (1=single, 2=double)
+ */
+void osViSetSwapBuffer(void *mq, s32 msg, s16 numFields) {
+    s32 savedMask;
+
+    savedMask = __osDisableInt();
+
+    /* Store settings in VI context */
+    *(void **)((u8 *)D_8002C464 + 0x10) = mq;
+    *(s32 *)((u8 *)D_8002C464 + 0x14) = msg;
+    *(s16 *)((u8 *)D_8002C464 + 0x02) = numFields;
 
     __osRestoreInt(savedMask);
 }

@@ -1,0 +1,5 @@
+{
+  "platform": "n64",
+  "compiler": "ido5.3",
+  "compiler_flags": "-O2 -g0 -mips2"
+}

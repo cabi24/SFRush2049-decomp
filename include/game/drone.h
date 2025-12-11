@@ -1,0 +1,99 @@
+/**
+ * drone.h - AI/Drone car control for Rush 2049 N64
+ *
+ * Based on arcade game/drones.c
+ * Handles AI-controlled cars (drones) that race against the player.
+ *
+ * Key features:
+ * - Path following using maxpath waypoints
+ * - Catch-up/rubber-banding for competitive racing
+ * - Difficulty scaling based on player position
+ */
+
+#ifndef DRONE_H
+#define DRONE_H
+
+#include "types.h"
+
+/* Drone types */
+#define DRONE_TYPE_HUMAN    0   /* Player-controlled */
+#define DRONE_TYPE_DRONE    1   /* AI-controlled */
+
+/* Drone personality/behavior */
+#define DRONE_PERS_NORMAL   0   /* Normal racing */
+#define DRONE_PERS_AGGRESSIVE 1 /* More aggressive */
+#define DRONE_PERS_PASSIVE  2   /* Hangs back */
+
+/* Catch-up constants */
+#define CATCHUP_DISTANCE    500.0f  /* Distance for catchup to activate */
+#define CATCHUP_MAX_BOOST   1.1f    /* Max speed boost */
+#define CATCHUP_MIN_BOOST   0.9f    /* Min speed (brake) */
+
+/* Drone control structure */
+typedef struct DroneControl {
+    s32     car_index;          /* Which car this controls */
+    s32     drone_type;         /* HUMAN or DRONE */
+    s32     personality;        /* Behavior style */
+    s32     difficulty;         /* 0=hard, 7=easy */
+    s32     target_car;         /* Car this drone is targeting */
+    s32     weight_index;       /* Position in drone order */
+    f32     drone_scale;        /* Speed scaling factor */
+    f32     time_boost;         /* Time-based speed boost */
+    f32     catchup_boost;      /* Catch-up speed boost */
+    s32     mpath_index;        /* Current maxpath waypoint */
+    s32     mpath_segment;      /* Current path segment */
+    f32     steer_target;       /* Target steering angle */
+    f32     throttle_target;    /* Target throttle (0-1) */
+    f32     brake_target;       /* Target brake (0-1) */
+    s8      we_control;         /* Do we control this car? */
+    s8      is_active;          /* Is drone active? */
+    u8      pad[2];
+} DroneControl;
+
+/* Maxpath waypoint structure */
+typedef struct MaxPathPoint {
+    f32     pos[3];             /* World position */
+    f32     dir[3];             /* Direction at this point */
+    f32     speed_hint;         /* Suggested speed */
+    f32     width;              /* Track width at point */
+    s16     flags;              /* Special flags */
+    s16     next;               /* Next waypoint index */
+} MaxPathPoint;
+
+/* External drone data */
+extern DroneControl drone_ctl[];
+extern s32 num_drones;
+extern s32 num_humans;
+
+/* Initialization */
+void drone_init(void);
+void drone_init_car(s32 car_index);
+void drone_init_maxpath(s32 record_mode);
+
+/* Per-frame update */
+void drone_update_all(void);
+void drone_update(s32 car_index);
+void drone_do_maxpath(s32 car_index);
+
+/* Catch-up system */
+void drone_set_catchup(void);
+void drone_no_catchup(void);
+void drone_calc_catchup(s32 car_index);
+
+/* Drone assignment */
+void drone_assign_all(void);
+void drone_assign_default_paths(void);
+void drone_place_in_order(void);
+
+/* Queries */
+s32  drone_get_type(s32 car_index);
+s32  drone_get_target(s32 car_index);
+f32  drone_get_scale(s32 car_index);
+s32  drone_is_human(s32 car_index);
+
+/* Utility */
+void drone_set_difficulty(s32 car_index, s32 difficulty);
+void drone_set_target(s32 car_index, s32 target);
+void drone_end(void);
+
+#endif /* DRONE_H */

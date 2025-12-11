@@ -11,7 +11,7 @@ This file helps Claude maintain context across sessions for the Rush 2049 N64 de
 ## Current Status
 
 **Phase**: 2 - Decompilation Ready (MATCHING BUILD ACHIEVED!)
-**Last Updated**: 2025-12-08 (Session 2)
+**Last Updated**: 2025-12-09
 
 ### Completed
 - [x] Project planning via Spec Kit (constitution, spec, plan, tasks)
@@ -59,7 +59,7 @@ This file helps Claude maintain context across sessions for the Rush 2049 N64 de
 
 See `symbol_addrs.us.txt` for complete list.
 
-### Decompiled Source Files (46 C files, ~7,479 lines)
+### Decompiled Source Files (47 C files, ~7,893 lines)
 | File | Functions | Status |
 |------|-----------|--------|
 | src/libc/string.c | memchr, memset, strchr, strlen, memcpy | Complete |
@@ -67,7 +67,7 @@ See `symbol_addrs.us.txt` for complete list.
 | src/libm/math.c | modf, modff, __isinf, __isnan, sinf, cosf | Complete |
 | src/libgcc/ll.c | __lshrdi3, __ashldi3, __ashrdi3, __umoddi3, __udivdi3, __divdi3, __moddi3, __muldi3 | Complete (stubs) |
 | src/libultra/os_message.c | osCreateMesgQueue, osSendMesg, osRecvMesg | Complete |
-| src/libultra/os_vi.c | osViGetCurrentFramebuffer, osViSwapBuffer, osViSetMode, osViGetFramebuffer, osViSetSpecialFeatures | Complete |
+| src/libultra/os_vi.c | osViGetCurrentFramebuffer, osViSwapBuffer, osViSetMode, osViGetFramebuffer, osViSetSpecialFeatures, osViSetSwapBuffer | Complete |
 | src/libultra/os_vi_mgr.c | osViInit, vi_manager_thread | Complete |
 | src/libultra/os_event.c | osSetEventMesg | Complete |
 | src/libultra/os_thread.c | osCreateThread, osStartThread, osSetThreadPri, osSetIntMask | Complete |
@@ -87,6 +87,7 @@ See `symbol_addrs.us.txt` for complete list.
 | src/libultra/os_sync.c | sync_init, sync_acquire, sync_release, sync_execute | Complete |
 | src/libultra/os_queue.c | __osEnqueueThread, __osPopThread, __osDispatchThread | Complete |
 | src/libultra/os_jam.c | osJamMesg | Complete |
+| src/libultra/os_scheduler.c | osCreateScheduler, osScAddClient, __scMain, __scSchedule, __scHandleRetrace, osScResetTime, osScEnableTime, osScDisableTime, osScUpdateTime, osScSetDeadline, osScAddDeadline, osScGetTimeRemaining, osScDeadlinePassed | Complete |
 | src/game/gfx.c | gfx_init_dl, gfx_alloc_dl | Complete |
 | src/os/dll.c | dll_remove, dll_init, dll_update, dll_reschedule, dll_insert, dll_get_priority | Complete |
 | src/inflate/inflate.c | inflate_entry, inflate_loop, inflate_block, huft_build, inflate_codes, inflate_stored, inflate_fixed, inflate_dynamic | Complete |
