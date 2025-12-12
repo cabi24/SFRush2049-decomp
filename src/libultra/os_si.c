@@ -35,11 +35,11 @@ extern u8 D_8002C4D4;           /* Controller request type */
 
 /* External functions */
 extern void osCreateMesgQueue(void *mq, void *msgBuf, s32 count);
-extern void func_800075E0(void *mq, s32 msg, s32 arg);  /* osSendMesg */
-extern s32 func_80007270(void *mq, s32 *msg, s32 flags);  /* osRecvMesg */
-extern u32 func_8000D5C0(void *addr);  /* osVirtualToPhysical */
-extern void func_80007CA0(void *addr, s32 size);  /* osWritebackDCache */
-extern void func_800084E0(void *addr, s32 size);  /* osInvalDCache */
+extern void osJamMesg(void *mq, s32 msg, s32 arg);  /* Insert message at front */
+extern s32 osRecvMesg(void *mq, s32 *msg, s32 flags);  /* Receive message */
+extern u32 osVirtualToPhysical(void *addr);  /* Convert virtual to physical */
+extern void osWritebackDCache(void *addr, s32 size);  /* Writeback D-cache */
+extern void osInvalDCache(void *addr, s32 size);  /* Invalidate D-cache */
 
 /* Forward declarations */
 void __osContBuildRequest(s32 ctrlNum, s32 cmd);
@@ -67,11 +67,11 @@ s32 __osSiRawStartDma(s32 direction, void *dramAddr) {
 
     /* If writing to PIF, flush cache first */
     if (direction == 1) {
-        func_80007CA0(dramAddr, 64);
+        osWritebackDCache(dramAddr, 64);
     }
 
     /* Convert to physical address and set DRAM register */
-    physAddr = func_8000D5C0(dramAddr);
+    physAddr = osVirtualToPhysical(dramAddr);
     SI_DRAM_ADDR_REG = physAddr;
 
     /* Start transfer */
@@ -85,7 +85,7 @@ s32 __osSiRawStartDma(s32 direction, void *dramAddr) {
 
     /* If reading, invalidate cache to get fresh data */
     if (direction == 0) {
-        func_800084E0(dramAddr, 64);
+        osInvalDCache(dramAddr, 64);
     }
 
     return 0;
@@ -104,7 +104,7 @@ void osSiInit(void) {
     osCreateMesgQueue(&D_80037C98, &D_80037C90, 1);
 
     /* Send initial message to indicate ready */
-    func_800075E0(&D_80037C98, 0, 0);
+    osJamMesg(&D_80037C98, 0, 0);
 }
 
 /**
@@ -121,7 +121,7 @@ void __osSiGetAccess(void) {
     }
 
     /* Wait for message indicating SI is free */
-    func_80007270(&D_80037C98, &msg, 1);
+    osRecvMesg(&D_80037C98, &msg, 1);
 }
 
 /**
@@ -131,7 +131,7 @@ void __osSiGetAccess(void) {
  * Signals that SI is now available for other operations.
  */
 void __osSiRelAccess(void) {
-    func_800075E0(&D_80037C98, 0, 0);
+    osJamMesg(&D_80037C98, 0, 0);
 }
 
 /**
@@ -159,14 +159,14 @@ s32 osContStartReadData(void *mq, s32 ctrlNum) {
     __osSiRawStartDma(1, D_80037F60);
 
     /* Wait for write to complete */
-    func_80007270(mq, &msg, 1);
+    osRecvMesg(mq, &msg, 1);
 
     /* Read response from PIF */
     __osSiRawStartDma(0, D_80037F60);
     ret = msg;  /* Save status */
 
     /* Wait for read to complete */
-    func_80007270(mq, &msg, 1);
+    osRecvMesg(mq, &msg, 1);
 
     /* Parse response */
     __osContParseResponse(ctrlNum, response);

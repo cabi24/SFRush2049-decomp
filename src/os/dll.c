@@ -74,10 +74,10 @@ extern u32 D_80037C60;              /* Last update timestamp */
 
 /* External functions */
 extern u32 osGetCount(void);                        /* Get CP0 Count register */
-extern void func_800075E0(void *mq, s32 msg, s32 arg);  /* Send message */
-extern void func_8000FB90(s32 arg);                 /* Unknown - called on empty */
-extern s32 __osDisableInt(void);                    /* func_8000C4B0 */
-extern void __osRestoreInt(s32 mask);               /* func_8000C520 */
+extern void osJamMesg(void *mq, s32 msg, s32 arg);  /* Insert message at front of queue */
+extern void __osSetCompare(s32 arg);                /* Set CP0 Compare register */
+extern s32 __osDisableInt(void);                    /* Disable interrupts */
+extern void __osRestoreInt(s32 mask);               /* Restore interrupts */
 
 /* Forward declarations */
 void dll_reschedule(u32 hi, u32 lo);
@@ -161,7 +161,7 @@ loop:
     /* Re-check if queue became empty */
     node = q->head;
     if (node == (TimerNode *)q) {
-        func_8000FB90(0);
+        __osSetCompare(0);
         D_80037C60 = 0;
         return;
     }
@@ -199,7 +199,7 @@ loop:
 
     /* Send message if message queue is set */
     if (node->mq != NULL) {
-        func_800075E0(node->mq, node->msg, 0);
+        osJamMesg(node->mq, node->msg, 0);
     }
 
     /* Check if this is a periodic timer (reload != 0) */
@@ -239,8 +239,8 @@ void dll_reschedule(u32 hi, u32 lo) {
     wake_time_hi = (wake_time_lo < lo) ? 1 : 0;
     wake_time_hi += hi;
 
-    /* Set hardware timer */
-    func_8000FB90(wake_time_lo);
+    /* Set hardware timer (CP0 Compare register) */
+    __osSetCompare(wake_time_lo);
 
     __osRestoreInt(savedMask);
 }

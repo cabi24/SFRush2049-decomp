@@ -40,10 +40,10 @@ extern void *D_80037C78;        /* PI event queue */
 
 /* External functions */
 extern void osCreateMesgQueue(void *mq, void *msgBuf, s32 count);
-extern void func_800075E0(void *mq, s32 msg, s32 arg);  /* osSendMesg */
-extern s32 func_80007270(void *mq, s32 *msg, s32 flags);  /* osRecvMesg */
-extern u32 func_8000D5C0(void *addr);  /* osVirtualToPhysical */
-extern s32 func_8000FD70(void);  /* Wait for PI idle */
+extern void osJamMesg(void *mq, s32 msg, s32 arg);  /* Insert message at front */
+extern s32 osRecvMesg(void *mq, s32 *msg, s32 flags);  /* Receive message */
+extern u32 osVirtualToPhysical(void *addr);  /* Convert virtual to physical */
+extern s32 __osPiDeviceBusy(void);  /* Wait for PI idle */
 
 /**
  * Initialize PI for DMA operations
@@ -58,7 +58,7 @@ void osPiInit(void) {
     osCreateMesgQueue(&D_80037C78, &D_80037C70, 1);
 
     /* Send initial message to indicate ready */
-    func_800075E0(&D_80037C78, 0, 0);
+    osJamMesg(&D_80037C78, 0, 0);
 }
 
 /**
@@ -75,7 +75,7 @@ void osPiGetAccess(void) {
     }
 
     /* Wait for message indicating PI is free */
-    func_80007270(&D_80037C78, &msg, 1);
+    osRecvMesg(&D_80037C78, &msg, 1);
 }
 
 /**
@@ -85,7 +85,7 @@ void osPiGetAccess(void) {
  * Signals that PI is now available for other operations.
  */
 void osPiReleaseAccess(void) {
-    func_800075E0(&D_80037C78, 0, 0);
+    osJamMesg(&D_80037C78, 0, 0);
 }
 
 /**
@@ -136,8 +136,8 @@ s32 osPiWriteWord(u32 offset, u32 value) {
     s32 status;
     u32 addr;
 
-    /* Check and wait for PI to be idle (via func_8000FD70) */
-    status = func_8000FD70();
+    /* Check and wait for PI to be idle */
+    status = __osPiDeviceBusy();
     if (status != 0) {
         return -1;
     }
@@ -167,7 +167,7 @@ s32 osPiReadIo(u32 physAddr, u32 *dest) {
     u32 addr;
 
     /* Check and wait for PI to be idle */
-    status = func_8000FD70();
+    status = __osPiDeviceBusy();
     if (status != 0) {
         return -1;
     }
@@ -228,7 +228,7 @@ s32 osPiStartDma(s32 direction, u32 romOffset, void *dramAddr, u32 size) {
     }
 
     /* Convert DRAM address to physical */
-    physDram = func_8000D5C0(dramAddr);
+    physDram = osVirtualToPhysical(dramAddr);
 
     /* Set DRAM address register */
     PI_DRAM_ADDR_REG = physDram;

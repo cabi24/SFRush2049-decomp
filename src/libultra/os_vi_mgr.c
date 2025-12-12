@@ -60,14 +60,14 @@ extern s32 osRecvMesg(void *mq, void **msg, s32 flags);
 extern s32 osSendMesg(void *mq, s32 msg, s32 flags);
 extern s32 __osDisableInt(void);
 extern void __osRestoreInt(s32 mask);
-extern void func_8000C090(void);        /* VI hardware init */
-extern s32 func_8000C490(s32 arg);      /* Get current TV mode */
-extern void func_80008380(s32 a0, s32 a1);  /* Set video mode */
-extern void func_8000C540(void);        /* Enable VI interrupt */
-extern void *func_8000C660(void);       /* Get current VI context */
-extern void func_8000C670(void);        /* Swap VI buffers */
+extern void __osViInit(void);           /* VI hardware init */
+extern s32 osViGetCurrentMode(s32 arg); /* Get current TV mode */
+extern void osViSetMode(s32 a0, s32 a1);  /* Set video mode */
+extern void __osViInterrupt(void);      /* Enable VI interrupt */
+extern void *__osViGetCurrentContext(void);  /* Get current VI context */
+extern void __osViSwapContext(void);    /* Swap VI buffers */
 extern u32 osGetCount(void);            /* Read CP0 Count register */
-extern void func_8000C11C(void);        /* Handle Pre-NMI */
+extern void __osViHandlePreNMI(void);   /* Handle Pre-NMI */
 
 /* Forward declaration */
 static void vi_manager_thread(void *arg);
@@ -91,7 +91,7 @@ void osViInit(s32 mode) {
     }
 
     /* Initialize VI hardware */
-    func_8000C090();
+    __osViInit();
 
     /* Clear black flag */
     D_8002C34C = 0;
@@ -115,8 +115,8 @@ void osViInit(s32 mode) {
 
     /* Check and save current mode */
     prevMode = -1;
-    if (func_8000C490(0) < mode) {
-        func_80008380(0, mode);
+    if (osViGetCurrentMode(0) < mode) {
+        osViSetMode(0, mode);
         prevMode = mode;
     }
 
@@ -136,7 +136,7 @@ void osViInit(s32 mode) {
                    D_800366A0, mode);
 
     /* Enable VI interrupt */
-    func_8000C540();
+    __osViInterrupt();
 
     /* Start VI manager thread */
     osStartThread(D_800354F0);
@@ -145,7 +145,7 @@ void osViInit(s32 mode) {
 
     /* Restore previous mode if needed */
     if (prevMode != -1) {
-        func_80008380(0, prevMode);
+        osViSetMode(0, prevMode);
     }
 }
 
@@ -167,7 +167,7 @@ static void vi_manager_thread(void *arg) {
     u32 time;
 
     /* Get initial retrace count from VI context */
-    viCtx = func_8000C660();
+    viCtx = __osViGetCurrentContext();
     retraceCount = *(u16 *)((u8 *)viCtx + 2);
     if (retraceCount == 0) {
         retraceCount = 1;
@@ -182,7 +182,7 @@ static void vi_manager_thread(void *arg) {
             /* VI retrace interrupt */
 
             /* Swap buffers */
-            func_8000C670();
+            __osViSwapContext();
 
             /* Decrement retrace counter */
             retraceCount = D_80036700 - 1;
@@ -190,7 +190,7 @@ static void vi_manager_thread(void *arg) {
 
             if (retraceCount == 0) {
                 /* Counter reached zero - notify waiting threads */
-                viCtx = func_8000C660();
+                viCtx = __osViGetCurrentContext();
 
                 /* Send message if queue registered */
                 if (*(void **)((u8 *)viCtx + 0x10) != NULL) {
@@ -220,7 +220,7 @@ static void vi_manager_thread(void *arg) {
 
         } else if (msg->type == OS_EVENT_PRENMI) {
             /* Pre-NMI warning */
-            func_8000C11C();
+            __osViHandlePreNMI();
         }
     }
 }

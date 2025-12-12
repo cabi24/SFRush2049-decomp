@@ -36,10 +36,10 @@ extern u8 D_80037AE0;       /* Controller read in progress flag */
 extern u8 D_80037AE1;       /* Number of controllers (max 4) */
 
 /* External functions */
-extern void func_8000E5B0(void);              /* __osSiGetAccess - acquire SI access */
-extern void func_8000E5F4(void);              /* __osSiRelAccess - release SI access */
-extern s32 func_8000E4B0(s32 write, u8 *buf); /* __osSiRawStartDma */
-extern void func_80007270(OSMesgQueue *mq, OSMesg *msg, s32 flag); /* osRecvMesg */
+extern void __osSiGetAccess(void);              /* Acquire SI access */
+extern void __osSiRelAccess(void);              /* Release SI access */
+extern s32 __osSiRawStartDma(s32 write, u8 *buf); /* SI raw DMA to/from PIF */
+extern void osRecvMesg(OSMesgQueue *mq, OSMesg *msg, s32 flag); /* Receive message */
 
 /**
  * Build controller query command packet
@@ -97,19 +97,19 @@ void __osContRamReset(u32 channel) {
 s32 osContStartQuery(OSMesgQueue *mq) {
     s32 ret;
 
-    func_8000E5B0();  /* __osSiGetAccess */
+    __osSiGetAccess();
 
     if (D_80037AE0 != 0) {
         /* Controller already in use - re-init */
         __osContRamReset(0);
-        func_8000E4B0(1, D_80037AA0);  /* Write to PIF */
-        func_80007270(mq, NULL, 1);     /* Wait for completion */
+        __osSiRawStartDma(1, D_80037AA0);  /* Write to PIF */
+        osRecvMesg(mq, NULL, 1);     /* Wait for completion */
     }
 
     /* Read results */
-    ret = func_8000E4B0(0, D_80037AA0);
+    ret = __osSiRawStartDma(0, D_80037AA0);
     D_80037AE0 = 0;
-    func_8000E5F4();  /* __osSiRelAccess */
+    __osSiRelAccess();
 
     return ret;
 }
@@ -140,19 +140,19 @@ void osContGetQuery(OSContStatus *status) {
 s32 osContStartReadData2(OSMesgQueue *mq) {
     s32 ret;
 
-    func_8000E5B0();  /* __osSiGetAccess */
+    __osSiGetAccess();
 
     if (D_80037AE0 != 1) {
         /* Need to send read command first */
         func_800098E0();  /* Build read command */
-        func_8000E4B0(1, D_80037AA0);  /* Write to PIF */
-        func_80007270(mq, NULL, 1);     /* Wait for completion */
+        __osSiRawStartDma(1, D_80037AA0);  /* Write to PIF */
+        osRecvMesg(mq, NULL, 1);     /* Wait for completion */
     }
 
     /* Read results */
-    ret = func_8000E4B0(0, D_80037AA0);
+    ret = __osSiRawStartDma(0, D_80037AA0);
     D_80037AE0 = 1;  /* Mark as read mode */
-    func_8000E5F4();  /* __osSiRelAccess */
+    __osSiRelAccess();
 
     return ret;
 }
