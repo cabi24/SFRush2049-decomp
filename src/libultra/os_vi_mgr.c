@@ -66,7 +66,7 @@ extern void func_80008380(s32 a0, s32 a1);  /* Set video mode */
 extern void func_8000C540(void);        /* Enable VI interrupt */
 extern void *func_8000C660(void);       /* Get current VI context */
 extern void func_8000C670(void);        /* Swap VI buffers */
-extern u32 func_8000C970(void);         /* osGetTime low word */
+extern u32 osGetCount(void);            /* Read CP0 Count register */
 extern void func_8000C11C(void);        /* Handle Pre-NMI */
 
 /* Forward declaration */
@@ -205,7 +205,7 @@ static void vi_manager_thread(void *arg) {
 
             /* Update timing */
             D_80037C5C++;
-            time = func_8000C970();
+            time = osGetCount();
 
             /* Add elapsed time to accumulator */
             /* 64-bit addition: D_80037C50:D_80037C54 += time - D_80037C58 */

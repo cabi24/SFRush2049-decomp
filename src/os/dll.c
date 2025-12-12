@@ -73,7 +73,7 @@ extern s32 D_80037C5C;
 extern u32 D_80037C60;              /* Last update timestamp */
 
 /* External functions */
-extern u32 func_8000C970(void);                     /* Get current time */
+extern u32 osGetCount(void);                        /* Get CP0 Count register */
 extern void func_800075E0(void *mq, s32 msg, s32 arg);  /* Send message */
 extern void func_8000FB90(s32 arg);                 /* Unknown - called on empty */
 extern s32 __osDisableInt(void);                    /* func_8000C4B0 */
@@ -167,7 +167,7 @@ loop:
     }
 
     /* Get current time and calculate elapsed since last update */
-    current_time = func_8000C970();
+    current_time = osGetCount();
     elapsed = current_time - D_80037C60;
     D_80037C60 = current_time;
 
@@ -230,7 +230,7 @@ void dll_reschedule(u32 hi, u32 lo) {
 
     savedMask = __osDisableInt();
 
-    current_time = func_8000C970();
+    current_time = osGetCount();
     D_80037C60 = current_time;
 
     /* Calculate absolute wake time: current + delta */

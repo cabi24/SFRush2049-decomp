@@ -94,7 +94,7 @@ extern u32 D_80037C54;   /* Time low word */
 extern u32 D_80037C58;   /* Last count value */
 
 /* External functions for time retrieval */
-extern u32 func_8000C970(void);   /* osGetCount - read CP0 Count register */
+extern u32 osGetCount(void);      /* Read CP0 Count register */
 
 /**
  * Get current system time
@@ -118,7 +118,7 @@ u64 osGetTime(void) {
     savedMask = __osDisableInt();
 
     /* Get current Count register */
-    count = func_8000C970();
+    count = osGetCount();
 
     /* Calculate elapsed cycles since last update */
     elapsed = count - D_80037C58;
