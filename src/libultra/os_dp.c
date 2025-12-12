@@ -27,9 +27,9 @@
 #define DPC_STATUS_REG  (*(vu32 *)0xA410000C)
 
 /* External functions */
-extern s32 func_8000D740(void);              /* Check if DP is busy */
-extern u32 func_8000D5C0(void *addr);        /* Convert virtual to physical */
-extern void func_8000D640(s32 cycles);       /* Delay */
+extern s32 osDpIsBusy(void);                 /* Check if DP is busy */
+extern u32 osVirtualToPhysical(void *addr);  /* Convert virtual to physical */
+extern void __osSpSetStatus(s32 status);     /* Delay / SP status */
 
 /**
  * Set RDP display list buffer
@@ -50,7 +50,7 @@ s32 osDpSetNextBuffer(void *cmdList, s32 arg1, s32 arg2, s32 size) {
     u32 end_addr;
 
     /* Check if DP is available */
-    if (func_8000D740() != 0) {
+    if (osDpIsBusy() != 0) {
         return -1;
     }
 
@@ -65,13 +65,13 @@ s32 osDpSetNextBuffer(void *cmdList, s32 arg1, s32 arg2, s32 size) {
     }
 
     /* Convert virtual address to physical */
-    start_addr = func_8000D5C0(cmdList);
+    start_addr = osVirtualToPhysical(cmdList);
 
     /* Set start register */
     DPC_START_REG = start_addr;
 
     /* Get physical address again (may have been modified) */
-    start_addr = func_8000D5C0(cmdList);
+    start_addr = osVirtualToPhysical(cmdList);
 
     /* Set end register */
     end_addr = start_addr + size;
@@ -87,7 +87,7 @@ s32 osDpSetNextBuffer(void *cmdList, s32 arg1, s32 arg2, s32 size) {
  * Delays for a fixed number of cycles before checking DP status.
  */
 void osDpWait(void) {
-    func_8000D640(0x400);  /* Delay ~1024 cycles */
+    __osSpSetStatus(0x400);  /* Delay ~1024 cycles */
 }
 
 /* Additional DPC counter registers */

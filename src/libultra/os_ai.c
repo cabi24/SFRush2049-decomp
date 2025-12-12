@@ -21,8 +21,8 @@ extern u8 D_8002C3C0;           /* Audio double buffer flag */
 extern u32 D_8002C368;          /* System clock frequency */
 
 /* External functions */
-extern s32 func_8000FB60(void);  /* Check if AI DMA is full */
-extern u32 func_8000D5C0(void *addr);  /* osVirtualToPhysical */
+extern s32 __osAiDeviceBusy(void);           /* Check if AI DMA is full */
+extern u32 osVirtualToPhysical(void *addr);  /* Convert virtual to physical */
 
 /**
  * Set audio DMA buffer
@@ -40,7 +40,7 @@ s32 osAiSetNextBuffer(void *addr, u32 size) {
     u32 physAddr;
 
     /* Check if AI can accept another buffer */
-    if (func_8000FB60() != 0) {
+    if (__osAiDeviceBusy() != 0) {
         return -1;
     }
 
@@ -60,7 +60,7 @@ s32 osAiSetNextBuffer(void *addr, u32 size) {
     }
 
     /* Convert to physical address and set registers */
-    physAddr = func_8000D5C0(bufAddr);
+    physAddr = osVirtualToPhysical(bufAddr);
     AI_DRAM_ADDR_REG = physAddr;
     AI_LEN_REG = size;
 
