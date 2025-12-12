@@ -107,6 +107,7 @@ __osContDataCrc = 0x8000FA4C; // type:func calculate data CRC for controller pak
 __osSetFpcCsr = 0x8000D790; // type:func set FP control/status register
 __osSetSR = 0x8000D770; // type:func set CP0 Status register
 __osGetSR = 0x8000D780; // type:func get CP0 Status register
+__osGetCause = 0x8000DBB0; // type:func get CP0 Cause register
 __osSpSetStatus = 0x8000D640; // type:func set RSP status register
 __osSpSetPc = 0x8000D650; // type:func set RSP program counter (only if halted)
 __osSpDeviceBusy = 0x8000D710; // type:func check if RSP is busy (bits 0x1C)
