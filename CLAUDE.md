@@ -59,7 +59,7 @@ This file helps Claude maintain context across sessions for the Rush 2049 N64 de
 
 See `symbol_addrs.us.txt` for complete list.
 
-### Decompiled Source Files (47 C files, ~7,893 lines)
+### Decompiled Source Files (67 C files, ~21,288 lines)
 | File | Functions | Status |
 |------|-----------|--------|
 | src/libc/string.c | memchr, memset, strchr, strlen, memcpy | Complete |
@@ -101,6 +101,30 @@ See `symbol_addrs.us.txt` for complete list.
 | include/inflate/inflate.h | struct huft, inflate function prototypes | Complete |
 | include/PR/os_message.h | OSMesgQueue structure | Complete |
 | include/game/game.h | GState enum, game constants | Complete |
+
+#### Game Code Files (Recently Added)
+| File | Lines | Description |
+|------|-------|-------------|
+| src/game/menu.c | 904 | Menu system and UI |
+| src/game/hiscore.c | 793 | High score entry and display |
+| src/game/physics.c | 767 | Car physics (Milliken model) |
+| src/game/car.c | 705 | Car state and control |
+| src/game/effects.c | 710 | Particle and visual effects |
+| src/game/race.c | 675 | Race logic and timing |
+| src/game/replay.c | 649 | Replay recording/playback |
+| src/game/attract.c | 633 | Attract mode handler |
+| src/game/carsel.c | 622 | Car selection UI |
+| src/game/select.c | 620 | Track selection |
+| src/game/drivetrain.c | 595 | Engine/transmission |
+| src/game/tire.c | 506 | Tire physics model |
+| src/game/sound.c | 482 | Sound system |
+| src/game/state.c | 443 | Game state machine |
+| src/game/vecmath.c | 442 | Vector/matrix math |
+| src/game/drone.c | 432 | AI drone control |
+| src/game/collision.c | 430 | Collision detection |
+| src/game/road.c | 425 | Road/track geometry |
+| src/game/camera.c | 423 | Camera system |
+| src/game/checkpoint.c | ~350 | Checkpoint logic |
 
 ### Key Discoveries from Agent Analysis
 
@@ -355,7 +379,9 @@ When starting a new session:
 codex exec --dangerously-bypass-approvals-and-sandbox "Analyze asm/us/XXXX.s and identify functions..."
 ```
 
-**Current stats**:
-- Static ROM: 228 functions identified (100% coverage), 46 C files, ~7,479 lines
-- Dynamic game code: 752 functions extracted, ~40 decompiled via Ollama batch
-- Symbol file: 1,164 entries (including game code function labels)
+**Current stats** (updated 2025-12-24):
+- Static ROM: 228 functions identified (100% coverage)
+- Dynamic game code: 752 functions extracted from compressed ROM
+- Symbol file: 1,165 entries (324 named, 567 unnamed func_*)
+- Source files: 67 C files, ~21,288 lines total
+- Game code: ~14K lines of decompiled game logic

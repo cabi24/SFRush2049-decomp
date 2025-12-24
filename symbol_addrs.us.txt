@@ -245,7 +245,7 @@ get_tv_offset = 0x80001DFC; // type:func return TV-type specific offset (0 for P
 apply_display_mode = 0x80001E58; // type:func apply current display mode settings
 
 // Controller pak PFS functions (F700.s) - newly identified
-osPfsReadWriteFile = 0x8000F2D0; // type:func read/write controller pak file pages
+osPfsReadWriteFile_pages = 0x8000F2D0; // type:func read/write controller pak file pages
 osPfsFileState = 0x8000F3A4; // type:func get/verify controller pak file state
 
 // Init/boot functions (2CF0.s) - identified via Codex analysis
@@ -255,7 +255,7 @@ audio_thread_entry = 0x800024FC; // type:func audio thread entry point (priority
 // OS manager init functions (8E10.s)
 osCreatePiManager = 0x80008210; // type:func create PI DMA manager thread and queues
 osCreateViManager = 0x80008380; // type:func create VI manager thread (handles retrace/prenmi)
-osInvalICache = 0x80008460; // type:func invalidate instruction cache (cache op 0x00)
+osInvalICache_full = 0x80008460; // type:func invalidate instruction cache (cache op 0x00)
 
 // Event/interrupt functions (7A10.s)
 osSetEventMesgAlt = 0x80006E10; // type:func alternative event message setter
@@ -274,7 +274,7 @@ inflate_flush_window = 0x80004D50; // type:func flush output window to destinati
 inflate_free_window = 0x80005464; // type:func free huffman decode tables
 
 // Cache operations (9230.s)
-osWritebackDCache = 0x800086F0; // type:func writeback data cache region
+osWritebackDCache_full = 0x800086F0; // type:func writeback data cache region
 osWritebackDCacheAll = 0x8000870C; // type:func writeback all data cache
 
 // SI controller functions (9930.s)
@@ -296,7 +296,7 @@ osPfsGetFileStat = 0x8000ADF0; // type:func get controller pak file status
 osPfsGetFileSize = 0x8000AEC4; // type:func get controller pak file size
 
 // PFS checksum/validation (C930.s)
-osPfsChecker = 0x8000BD90; // type:func validate controller pak filesystem
+osPfsChecker_full = 0x8000BD90; // type:func validate controller pak filesystem
 osPfsReAllocate = 0x8000BE50; // type:func reallocate controller pak file pages
 
 // DLL linked list functions (D890.s)
@@ -310,7 +310,7 @@ bzero_alt = 0x8000D2A0; // type:func alternative bzero (zeroes memory)
 __osGetTimerValue = 0x8000D9C0; // type:func get current timer value
 
 // SP task functions (EB70.s)
-osSpTaskLoad = 0x8000DF80; // type:func load RSP task microcode and data
+osSpTaskLoad_full = 0x8000DF80; // type:func load RSP task microcode and data
 
 // More timer functions (EF80.s)
 __osInsertTimer = 0x8000E390; // type:func insert timer into sorted timer queue
@@ -651,12 +651,6 @@ physics_calc = 0x800BAE24; // type:func physics calculations
 camera_transform = 0x80097CA0; // type:func camera/view transformation
 audio_processing = 0x800974EC; // type:func audio processing
 vehicle_physics = 0x80097798; // type:func vehicle physics/collision
-
-// Game globals (from analysis)
-gstate = 0x801146EC; // type:data game state variable (bitmask)
-car_array = 0x80152818; // type:data player/car state array
-game_struct = 0x801461D0; // type:data main game structure
-frame_counter = 0x80142AFC; // type:data frame counter
 
 // Cleaned symbols appended from ollama_analysis/cleaned_symbols.txt
 func_8008A650 = 0x8008A650; // load_texture_data - pulls texture data into memory
@@ -1085,29 +1079,6 @@ func_800C2960 = 0x800C2960; // from overnight1 decompilation
 func_800C2BE0 = 0x800C2BE0; // from overnight1 decompilation
 func_800C3594 = 0x800C3594; // from overnight1 decompilation
 
-// Input handling functions (game code)
-Input_SetPadEnabledFlag = 0x80094D20; // type:func enable/disable controller pad
-Input_SetPadSecondaryFlag = 0x80094D68; // type:func set rumble/lock flag
-Input_ConfigRepeatTimers = 0x80094DB0; // type:func configure button repeat params
-Input_SetAnalogBounds = 0x80094E00; // type:func set analog stick bounds/deadzone
-
-// Key data structures (game code)
-pad_array = 0x80140BF0; // type:data controller pad entry array (4x32 bytes)
-gstate = 0x801146EC; // type:data game state byte (ATTRACT, PLAYGAME, etc)
-car_array = 0x80152818; // type:data CarData array (runtime car state)
-game_struct = 0x801461D0; // type:data main GameStruct (160 references)
-frame_counter = 0x80142AFC; // type:data frame counter (u32)
-
-// Game state machine functions (game code)
-game_loop = 0x800FD464; // type:func main per-frame game logic (arcade game.c:game)
-playgame = 0x800CA3B4; // type:func active racing handler
-attract = 0x800DB81C; // type:func demo/title screen handler
-countdown = 0x800FBC30; // type:func race countdown handler
-high_score_entry = 0x800FBF88; // type:func high score entry handler
-state_init_handler = 0x800FBF90; // type:func GSTATE_INIT handler
-state_setup_handler = 0x800FBFE4; // type:func GSTATE_SETUP handler
-state_menu_handler = 0x800FC0EC; // type:func GSTATE_MENU handler
-
 // Game code functions (extracted from compressed ROM, 0x80086A50 - 0x80124AF0)
 // These are in the dynamically loaded game code segment
 
@@ -1146,20 +1117,5 @@ func_800A1800 = 0x800A1800; // type:func avoid_obstacles - obstacle avoidance
 // Checkpoint functions
 func_800C0000 = 0x800C0000; // type:func check_cps - checkpoint detection
 
-// Input functions
-func_800C9AE0 = 0x800C9AE0; // type:func process_input - input/init handling
+// Additional game code functions
 func_800140B0 = 0x800140B0; // type:func read_controllers - controller input reading
-
-// Scene/camera functions  
-func_800A04C4 = 0x800A04C4; // type:func render_scene - viewport/camera setup
-
-// Game state handlers (called from game_loop @ 0x800FD464)
-func_800FD464 = 0x800FD464; // type:func game_loop - main per-frame game logic (arcade: game())
-func_800CA3B4 = 0x800CA3B4; // type:func playgame - PLAYGAME state handler  
-func_800DB81C = 0x800DB81C; // type:func attract - ATTRACT/demo state
-func_800FBC30 = 0x800FBC30; // type:func countdown - race countdown
-func_800FBF88 = 0x800FBF88; // type:func high_score_entry - high score handler
-func_800FBF90 = 0x800FBF90; // type:func state_init_handler - init state
-func_800FBFE4 = 0x800FBFE4; // type:func state_setup_handler - setup state  
-func_800FC0EC = 0x800FC0EC; // type:func state_menu_handler - menu state
-func_800EDDC0 = 0x800EDDC0; // type:func state_transition - state change logic
