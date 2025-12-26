@@ -14132,105 +14132,816 @@ void func_800E31D4(f32 *pos, f32 size) {
 /*
  * func_800E32CC (1112 bytes)
  * Dust cloud
+ *
+ * Creates a cloud of dust particles.
+ * Used for driving on dirt, sand, or off-road.
  */
 void func_800E32CC(f32 *pos, f32 *velocity, f32 size) {
-    /* Dust cloud - stub */
+    s32 *particlePool;
+    s32 *particleIndex;
+    s32 i, numParticles;
+    f32 baseVelX, baseVelY, baseVelZ;
+    s32 seed;
+
+    if (pos == NULL || size <= 0.0f) {
+        return;
+    }
+
+    particlePool = (s32 *)0x80162000;
+    particleIndex = (s32 *)0x80162100;
+
+    numParticles = (s32)(size * 8.0f);
+    if (numParticles < 3) numParticles = 3;
+    if (numParticles > 20) numParticles = 20;
+
+    seed = D_80159A20;
+
+    if (velocity != NULL) {
+        baseVelX = velocity[0] * 0.3f;
+        baseVelY = velocity[1] * 0.1f;
+        baseVelZ = velocity[2] * 0.3f;
+    } else {
+        baseVelX = 0.0f;
+        baseVelY = 0.0f;
+        baseVelZ = 0.0f;
+    }
+
+    for (i = 0; i < numParticles; i++) {
+        s32 *particle = &particlePool[(*particleIndex) * 16];
+
+        particle[0] = 1;  /* Active */
+
+        /* Position with spread */
+        seed = seed * 1103515245 + 12345;
+        *(f32 *)&particle[1] = pos[0] + ((seed >> 16 & 0xFF) - 128) / 128.0f * size;
+        *(f32 *)&particle[2] = pos[1] + ((seed >> 8 & 0xFF)) / 255.0f * 0.5f;
+        *(f32 *)&particle[3] = pos[2] + ((seed & 0xFF) - 128) / 128.0f * size;
+
+        /* Velocity with outward spread and rise */
+        seed = seed * 1103515245 + 12345;
+        *(f32 *)&particle[4] = baseVelX + ((seed >> 16 & 0xFF) - 128) / 256.0f;
+        *(f32 *)&particle[5] = 0.3f + ((seed >> 8 & 0xFF)) / 512.0f;
+        *(f32 *)&particle[6] = baseVelZ + ((seed & 0xFF) - 128) / 256.0f;
+
+        /* Lifetime */
+        particle[7] = 40 + (seed & 0x1F);
+
+        /* Type: dust/smoke */
+        particle[8] = 0;
+
+        /* Size */
+        *(f32 *)&particle[9] = size * 0.5f;
+
+        (*particleIndex) = ((*particleIndex) + 1) % 64;
+    }
 }
 
 /*
  * func_800E3724 (612 bytes)
  * Water splash
+ *
+ * Creates water splash particles.
+ * Used when car drives through water or puddles.
  */
 void func_800E3724(f32 *pos, f32 size) {
-    /* Water splash - stub */
+    s32 *particlePool;
+    s32 *particleIndex;
+    s32 i, numParticles;
+    f32 angle, speed;
+    s32 seed;
+
+    if (pos == NULL || size <= 0.0f) {
+        return;
+    }
+
+    particlePool = (s32 *)0x80162000;
+    particleIndex = (s32 *)0x80162100;
+
+    numParticles = (s32)(size * 12.0f);
+    if (numParticles < 5) numParticles = 5;
+    if (numParticles > 30) numParticles = 30;
+
+    seed = D_80159A20;
+
+    for (i = 0; i < numParticles; i++) {
+        s32 *particle = &particlePool[(*particleIndex) * 16];
+
+        particle[0] = 1;  /* Active */
+
+        /* Position at water surface */
+        *(f32 *)&particle[1] = pos[0];
+        *(f32 *)&particle[2] = pos[1];
+        *(f32 *)&particle[3] = pos[2];
+
+        /* Outward and upward velocity */
+        seed = seed * 1103515245 + 12345;
+        angle = ((seed >> 16) & 0xFFFF) / 65535.0f * 6.28318f;
+        speed = size * (0.3f + ((seed >> 8) & 0xFF) / 255.0f * 0.7f);
+
+        *(f32 *)&particle[4] = cosf(angle) * speed;
+        *(f32 *)&particle[5] = size * (1.0f + ((seed & 0xFF) / 255.0f));
+        *(f32 *)&particle[6] = sinf(angle) * speed;
+
+        /* Lifetime */
+        particle[7] = 20 + (seed & 0xF);
+
+        /* Type: water splash */
+        particle[8] = 3;
+
+        /* Size */
+        *(f32 *)&particle[9] = size * 0.3f;
+
+        (*particleIndex) = ((*particleIndex) + 1) % 64;
+    }
+
+    /* Play splash sound */
+    func_80094A54(0x24, (s32)(size * 60.0f));
 }
 
 /*
  * func_800E398C (2960 bytes)
  * Particle render
+ *
+ * Renders all active particles as billboarded sprites.
+ * Handles different particle types with appropriate textures.
  */
 void func_800E398C(void *particles) {
-    /* Particle render - stub */
+    s32 *pool;
+    s32 maxParticles, i;
+    f32 *cameraPos;
+    f32 dx, dy, dz, dist;
+
+    if (particles == NULL) {
+        return;
+    }
+
+    pool = (s32 *)((u8 *)particles + 0x00);
+    maxParticles = *(s32 *)((u8 *)particles + 0x100);
+    cameraPos = (f32 *)0x80161000;
+
+    if (maxParticles > 256) maxParticles = 256;
+
+    for (i = 0; i < maxParticles; i++) {
+        s32 *particle = &pool[i * 16];
+        s32 active = particle[0];
+        s32 lifetime = particle[7];
+        s32 type = particle[8];
+        f32 *pos;
+        f32 size, alpha;
+        s32 spriteId;
+
+        if (!active) {
+            continue;
+        }
+
+        pos = (f32 *)&particle[1];
+        size = *(f32 *)&particle[9];
+
+        /* Distance culling */
+        dx = pos[0] - cameraPos[0];
+        dy = pos[1] - cameraPos[1];
+        dz = pos[2] - cameraPos[2];
+        dist = sqrtf(dx * dx + dy * dy + dz * dz);
+
+        if (dist > 500.0f) {
+            continue;  /* Too far to render */
+        }
+
+        /* Calculate alpha based on lifetime */
+        alpha = (f32)lifetime / 60.0f;
+        if (alpha > 1.0f) alpha = 1.0f;
+
+        /* Select sprite based on type */
+        switch (type) {
+            case 0:  /* Smoke/dust */
+                spriteId = 0x40;
+                /* Smoke grows as it ages */
+                size *= (1.0f + (1.0f - alpha) * 2.0f);
+                break;
+
+            case 1:  /* Spark */
+                spriteId = 0x41;
+                /* Sparks stay small */
+                size *= 0.3f;
+                break;
+
+            case 2:  /* Debris */
+                spriteId = 0x42;
+                break;
+
+            case 3:  /* Water */
+                spriteId = 0x43;
+                /* Water fades faster */
+                alpha *= alpha;
+                break;
+
+            default:
+                spriteId = 0x40;
+        }
+
+        /* Render billboard at particle position */
+        func_800E7B44(pos, spriteId);
+    }
 }
 
 /*
  * func_800E451C (1596 bytes)
  * Lens flare effect
+ *
+ * Renders lens flare when looking towards the sun.
+ * Creates multiple flare elements along sun-to-center axis.
  */
 void func_800E451C(void *camera, f32 *sunPos) {
-    /* Lens flare - stub */
+    f32 *camPos, *camDir;
+    f32 toSunX, toSunY, toSunZ, toSunLen;
+    f32 dot, intensity;
+    f32 screenX, screenY;
+    f32 flareX, flareY;
+    s32 i;
+
+    /* Flare element positions along axis (0 = sun, 1 = center, 2 = opposite) */
+    f32 flarePositions[6] = {0.0f, 0.3f, 0.5f, 0.7f, 1.0f, 1.3f};
+    s32 flareSizes[6] = {32, 16, 24, 8, 20, 12};
+    s32 flareSprites[6] = {0x50, 0x51, 0x52, 0x51, 0x53, 0x51};
+
+    if (camera == NULL || sunPos == NULL) {
+        return;
+    }
+
+    camPos = (f32 *)((u8 *)camera + 0x00);
+    camDir = (f32 *)((u8 *)camera + 0x0C);
+
+    /* Calculate direction to sun */
+    toSunX = sunPos[0] - camPos[0];
+    toSunY = sunPos[1] - camPos[1];
+    toSunZ = sunPos[2] - camPos[2];
+    toSunLen = sqrtf(toSunX * toSunX + toSunY * toSunY + toSunZ * toSunZ);
+
+    if (toSunLen < 0.001f) {
+        return;
+    }
+
+    toSunX /= toSunLen;
+    toSunY /= toSunLen;
+    toSunZ /= toSunLen;
+
+    /* Check if sun is in front of camera */
+    dot = toSunX * camDir[0] + toSunY * camDir[1] + toSunZ * camDir[2];
+
+    if (dot < 0.0f) {
+        return;  /* Sun behind camera */
+    }
+
+    /* Calculate intensity based on how directly we're looking at sun */
+    intensity = dot * dot;
+    if (intensity < 0.1f) {
+        return;  /* Not looking at sun enough */
+    }
+
+    /* Project sun position to screen (simplified) */
+    screenX = 160.0f + toSunX * 100.0f / (dot + 0.1f);
+    screenY = 120.0f - toSunY * 100.0f / (dot + 0.1f);
+
+    /* Render flare elements */
+    for (i = 0; i < 6; i++) {
+        f32 t = flarePositions[i];
+
+        /* Interpolate from sun to screen center */
+        flareX = screenX + (160.0f - screenX) * t;
+        flareY = screenY + (120.0f - screenY) * t;
+
+        /* Render flare sprite */
+        func_800C7110((s32)flareX - flareSizes[i] / 2,
+                     (s32)flareY - flareSizes[i] / 2,
+                     flareSizes[i], flareSizes[i],
+                     flareSprites[i]);
+    }
 }
 
 /*
  * func_800E4B58 (2284 bytes)
  * Sky rendering
+ *
+ * Renders the skybox/skydome based on time of day.
+ * Includes gradient sky, clouds, and sun/moon.
  */
 void func_800E4B58(void *camera) {
-    /* Sky render - stub */
+    f32 *camDir;
+    s32 timeOfDay;
+    f32 sunAngle, sunHeight;
+    f32 skyTopR, skyTopG, skyTopB;
+    f32 skyBotR, skyBotG, skyBotB;
+    f32 sunPos[3];
+
+    if (camera == NULL) {
+        return;
+    }
+
+    camDir = (f32 *)((u8 *)camera + 0x0C);
+    timeOfDay = D_80159A28;  /* 0-2400 representing time */
+
+    /* Calculate sun position based on time */
+    sunAngle = (f32)timeOfDay / 2400.0f * 6.28318f - 1.5708f;
+    sunHeight = sinf(sunAngle);
+
+    sunPos[0] = cosf(sunAngle) * 1000.0f;
+    sunPos[1] = sunHeight * 500.0f + 200.0f;
+    sunPos[2] = 0.0f;
+
+    /* Calculate sky colors based on time of day */
+    if (timeOfDay >= 600 && timeOfDay < 1800) {
+        /* Day time - blue sky */
+        skyTopR = 0.3f;
+        skyTopG = 0.5f;
+        skyTopB = 0.9f;
+        skyBotR = 0.6f;
+        skyBotG = 0.7f;
+        skyBotB = 0.9f;
+    } else if (timeOfDay >= 500 && timeOfDay < 700) {
+        /* Sunrise */
+        skyTopR = 0.5f;
+        skyTopG = 0.4f;
+        skyTopB = 0.6f;
+        skyBotR = 0.9f;
+        skyBotG = 0.5f;
+        skyBotB = 0.3f;
+    } else if (timeOfDay >= 1700 && timeOfDay < 1900) {
+        /* Sunset */
+        skyTopR = 0.5f;
+        skyTopG = 0.3f;
+        skyTopB = 0.5f;
+        skyBotR = 0.9f;
+        skyBotG = 0.4f;
+        skyBotB = 0.2f;
+    } else {
+        /* Night */
+        skyTopR = 0.05f;
+        skyTopG = 0.05f;
+        skyTopB = 0.15f;
+        skyBotR = 0.1f;
+        skyBotG = 0.1f;
+        skyBotB = 0.2f;
+    }
+
+    /* Render sky gradient (would use RDP fill/texture commands) */
+    /* This is simplified - actual N64 would use display list */
+
+    /* Render sun/moon */
+    if (sunHeight > -0.1f) {
+        /* Sun is visible */
+        func_800E451C(camera, sunPos);
+    }
+
+    /* Render clouds */
+    func_800E5444(camera);
 }
 
 /*
  * func_800E5444 (712 bytes)
  * Horizon line
+ *
+ * Renders distant horizon with haze/fog effect.
+ * Also renders distant clouds as layered sprites.
  */
 void func_800E5444(void *camera) {
-    /* Horizon - stub */
+    f32 *camPos, *camDir;
+    f32 horizonY;
+    s32 i;
+    f32 cloudOffset;
+
+    if (camera == NULL) {
+        return;
+    }
+
+    camPos = (f32 *)((u8 *)camera + 0x00);
+    camDir = (f32 *)((u8 *)camera + 0x0C);
+
+    /* Calculate horizon position based on camera pitch */
+    horizonY = 120.0f - camDir[1] * 80.0f;
+
+    /* Clamp to screen */
+    if (horizonY < 0.0f) horizonY = 0.0f;
+    if (horizonY > 240.0f) horizonY = 240.0f;
+
+    /* Render horizon haze line */
+    func_800C7110(0, (s32)horizonY - 4, 320, 8, 0x54);  /* Haze sprite */
+
+    /* Render scrolling clouds */
+    cloudOffset = (f32)(D_80159A20 % 6400) / 20.0f;
+
+    for (i = 0; i < 5; i++) {
+        f32 cloudX = (f32)(i * 80) - cloudOffset;
+        while (cloudX < -40.0f) {
+            cloudX += 400.0f;
+        }
+        while (cloudX > 360.0f) {
+            cloudX -= 400.0f;
+        }
+
+        f32 cloudY = horizonY - 30.0f - (i & 1) * 15.0f;
+
+        if (cloudY > 10.0f && cloudY < 200.0f) {
+            func_800C7110((s32)cloudX, (s32)cloudY, 64, 24, 0x55);  /* Cloud sprite */
+        }
+    }
 }
 
 /*
  * func_800E571C (4360 bytes)
  * Environment mapping
+ *
+ * Applies environment/reflection mapping to surfaces.
+ * Uses camera-relative texture coordinates for fake reflections.
  */
 void func_800E571C(void *surface) {
-    /* Env mapping - stub */
+    f32 *normal, *camPos, *surfPos;
+    f32 viewX, viewY, viewZ, viewLen;
+    f32 reflectX, reflectY, reflectZ;
+    f32 dot;
+    s32 envU, envV;
+
+    if (surface == NULL) {
+        return;
+    }
+
+    normal = (f32 *)((u8 *)surface + 0x00);
+    surfPos = (f32 *)((u8 *)surface + 0x0C);
+    camPos = (f32 *)0x80161000;
+
+    /* Calculate view direction */
+    viewX = surfPos[0] - camPos[0];
+    viewY = surfPos[1] - camPos[1];
+    viewZ = surfPos[2] - camPos[2];
+    viewLen = sqrtf(viewX * viewX + viewY * viewY + viewZ * viewZ);
+
+    if (viewLen < 0.001f) {
+        return;
+    }
+
+    viewX /= viewLen;
+    viewY /= viewLen;
+    viewZ /= viewLen;
+
+    /* Calculate reflection vector: R = V - 2(V.N)N */
+    dot = viewX * normal[0] + viewY * normal[1] + viewZ * normal[2];
+
+    reflectX = viewX - 2.0f * dot * normal[0];
+    reflectY = viewY - 2.0f * dot * normal[1];
+    reflectZ = viewZ - 2.0f * dot * normal[2];
+
+    /* Convert reflection to texture coordinates */
+    /* Using spherical mapping */
+    envU = (s32)((reflectX * 0.5f + 0.5f) * 31.0f);
+    envV = (s32)((reflectY * 0.5f + 0.5f) * 31.0f);
+
+    /* Clamp to texture bounds */
+    if (envU < 0) envU = 0;
+    if (envU > 31) envU = 31;
+    if (envV < 0) envV = 0;
+    if (envV > 31) envV = 31;
+
+    /* Store calculated UV in surface for rendering */
+    *(s32 *)((u8 *)surface + 0x18) = envU;
+    *(s32 *)((u8 *)surface + 0x1C) = envV;
 }
 
 /*
  * func_800E6824 (708 bytes)
  * Reflection update
+ *
+ * Updates reflection state for reflective surfaces.
+ * Called each frame for surfaces like car paint, water.
  */
 void func_800E6824(void *surface) {
-    /* Reflection - stub */
+    f32 *intensity;
+    s32 *reflectType;
+    f32 fresnel;
+    f32 viewDot;
+
+    if (surface == NULL) {
+        return;
+    }
+
+    intensity = (f32 *)((u8 *)surface + 0x20);
+    reflectType = (s32 *)((u8 *)surface + 0x24);
+
+    /* Get view dot product calculated earlier */
+    viewDot = *(f32 *)((u8 *)surface + 0x28);
+
+    /* Calculate Fresnel effect (more reflective at grazing angles) */
+    fresnel = 1.0f - fabsf(viewDot);
+    fresnel = fresnel * fresnel;
+
+    /* Adjust intensity based on surface type */
+    switch (*reflectType) {
+        case 0:  /* Matte - no reflection */
+            *intensity = 0.0f;
+            break;
+
+        case 1:  /* Glossy - moderate reflection */
+            *intensity = 0.3f + fresnel * 0.4f;
+            break;
+
+        case 2:  /* Chrome - high reflection */
+            *intensity = 0.7f + fresnel * 0.3f;
+            break;
+
+        case 3:  /* Water - variable reflection */
+            *intensity = 0.2f + fresnel * 0.6f;
+            break;
+
+        default:
+            *intensity = 0.1f;
+    }
+
+    /* Update environment map UVs */
+    func_800E571C(surface);
 }
 
 /*
  * func_800E6AF8 (1596 bytes)
  * Shadow volume
+ *
+ * Calculates shadow projection for an object.
+ * Projects shadow onto ground plane based on light direction.
  */
 void func_800E6AF8(void *object, f32 *lightDir) {
-    /* Shadow volume - stub */
+    f32 *objPos, *objBounds;
+    f32 shadowVerts[8][3];
+    f32 groundY;
+    f32 lightDirNorm[3], lightLen;
+    s32 i;
+
+    if (object == NULL || lightDir == NULL) {
+        return;
+    }
+
+    objPos = (f32 *)((u8 *)object + 0x24);
+    objBounds = (f32 *)((u8 *)object + 0x50);
+
+    /* Normalize light direction */
+    lightLen = sqrtf(lightDir[0] * lightDir[0] +
+                    lightDir[1] * lightDir[1] +
+                    lightDir[2] * lightDir[2]);
+    if (lightLen < 0.001f) {
+        return;
+    }
+
+    lightDirNorm[0] = lightDir[0] / lightLen;
+    lightDirNorm[1] = lightDir[1] / lightLen;
+    lightDirNorm[2] = lightDir[2] / lightLen;
+
+    /* Get ground height at object position */
+    func_800BB9B0(objPos, NULL, &groundY);
+
+    /* Generate bounding box corners */
+    for (i = 0; i < 8; i++) {
+        f32 cornerX = objPos[0] + ((i & 1) ? objBounds[0] : -objBounds[0]);
+        f32 cornerY = objPos[1] + ((i & 2) ? objBounds[1] : -objBounds[1]);
+        f32 cornerZ = objPos[2] + ((i & 4) ? objBounds[2] : -objBounds[2]);
+
+        /* Project corner onto ground along light direction */
+        f32 t = (cornerY - groundY) / (-lightDirNorm[1] + 0.001f);
+
+        shadowVerts[i][0] = cornerX + lightDirNorm[0] * t;
+        shadowVerts[i][1] = groundY + 0.1f;  /* Slight offset to avoid z-fighting */
+        shadowVerts[i][2] = cornerZ + lightDirNorm[2] * t;
+    }
+
+    /* Store shadow vertices for rendering */
+    f32 *shadowData = (f32 *)((u8 *)object + 0x100);
+    for (i = 0; i < 8; i++) {
+        shadowData[i * 3 + 0] = shadowVerts[i][0];
+        shadowData[i * 3 + 1] = shadowVerts[i][1];
+        shadowData[i * 3 + 2] = shadowVerts[i][2];
+    }
 }
 
 /*
  * func_800E7134 (2576 bytes)
  * Crowd rendering
+ *
+ * Renders animated crowd sprites along track sides.
+ * Uses billboarded sprites with animation.
  */
 void func_800E7134(void *crowd) {
-    /* Crowd render - stub */
+    f32 *positions;
+    s32 *animFrames;
+    s32 numSpectators, i;
+    f32 *cameraPos;
+    f32 dx, dz, dist;
+    s32 animOffset;
+
+    if (crowd == NULL) {
+        return;
+    }
+
+    positions = (f32 *)((u8 *)crowd + 0x00);
+    animFrames = (s32 *)((u8 *)crowd + 0x400);
+    numSpectators = *(s32 *)((u8 *)crowd + 0x800);
+    cameraPos = (f32 *)0x80161000;
+
+    if (numSpectators > 64) numSpectators = 64;
+
+    /* Animation offset based on frame */
+    animOffset = (D_80159A20 >> 3) % 4;
+
+    for (i = 0; i < numSpectators; i++) {
+        f32 *pos = &positions[i * 3];
+        s32 baseFrame = animFrames[i];
+
+        /* Distance culling */
+        dx = pos[0] - cameraPos[0];
+        dz = pos[2] - cameraPos[2];
+        dist = sqrtf(dx * dx + dz * dz);
+
+        if (dist > 200.0f) {
+            continue;  /* Too far */
+        }
+
+        /* LOD - use simpler sprite at distance */
+        s32 spriteId;
+        if (dist > 100.0f) {
+            spriteId = 0x60;  /* Distant crowd sprite */
+        } else {
+            /* Animated sprite */
+            spriteId = 0x61 + ((baseFrame + animOffset) % 4);
+        }
+
+        /* Render billboard */
+        func_800E7B44(pos, spriteId);
+    }
 }
 
 /*
  * func_800E7B44 (472 bytes)
  * Billboard sprite
+ *
+ * Renders a camera-facing sprite at 3D position.
+ * Used for particles, crowd, trees, etc.
  */
 void func_800E7B44(f32 *pos, s32 spriteId) {
-    /* Billboard - stub */
+    f32 *cameraPos, *cameraDir;
+    f32 dx, dy, dz, dist;
+    f32 screenX, screenY;
+    f32 scale;
+    s32 size;
+
+    if (pos == NULL) {
+        return;
+    }
+
+    cameraPos = (f32 *)0x80161000;
+    cameraDir = (f32 *)0x8016100C;
+
+    /* Calculate distance to camera */
+    dx = pos[0] - cameraPos[0];
+    dy = pos[1] - cameraPos[1];
+    dz = pos[2] - cameraPos[2];
+    dist = sqrtf(dx * dx + dy * dy + dz * dz);
+
+    if (dist < 1.0f || dist > 1000.0f) {
+        return;  /* Too close or too far */
+    }
+
+    /* Check if in front of camera */
+    f32 dot = dx * cameraDir[0] + dy * cameraDir[1] + dz * cameraDir[2];
+    if (dot < 0.0f) {
+        return;  /* Behind camera */
+    }
+
+    /* Project to screen (simplified perspective) */
+    f32 invDist = 200.0f / dist;
+    screenX = 160.0f + dx * invDist;
+    screenY = 120.0f - dy * invDist;
+
+    /* Check screen bounds */
+    if (screenX < -32 || screenX > 352 || screenY < -32 || screenY > 272) {
+        return;
+    }
+
+    /* Size based on distance */
+    scale = 64.0f / dist;
+    size = (s32)(32.0f * scale);
+    if (size < 4) size = 4;
+    if (size > 64) size = 64;
+
+    /* Render sprite */
+    func_800C7110((s32)screenX - size / 2, (s32)screenY - size / 2,
+                 size, size, spriteId);
 }
 
 /*
  * func_800E7D14 (684 bytes)
  * Animated billboard
+ *
+ * Renders an animated billboard sprite.
+ * Animation frame selected based on time parameter.
  */
 void func_800E7D14(f32 *pos, s32 animId, f32 time) {
-    /* Animated billboard - stub */
+    s32 *animData;
+    s32 numFrames, frameRate;
+    s32 baseSprite, currentFrame;
+    s32 spriteId;
+
+    if (pos == NULL) {
+        return;
+    }
+
+    /* Animation data table (would be loaded from ROM) */
+    animData = (s32 *)(0x80150000 + animId * 16);
+
+    baseSprite = animData[0];
+    numFrames = animData[1];
+    frameRate = animData[2];  /* Frames per second * 100 */
+
+    if (numFrames <= 0) numFrames = 1;
+    if (frameRate <= 0) frameRate = 1000;  /* Default 10 fps */
+
+    /* Calculate current frame */
+    currentFrame = (s32)(time * (f32)frameRate / 100.0f) % numFrames;
+
+    spriteId = baseSprite + currentFrame;
+
+    /* Render using regular billboard function */
+    func_800E7B44(pos, spriteId);
 }
 
 /*
  * func_800E7FC8 (3312 bytes)
  * Track decoration rendering
+ *
+ * Renders track-side decorations (signs, trees, barriers).
+ * Uses LOD and distance culling for performance.
  */
 void func_800E7FC8(void *track) {
-    /* Track decoration - stub */
+    s32 numDecorations, i;
+    f32 *positions, *cameraPos;
+    s32 *types, *lodLevels;
+    f32 dx, dz, dist;
+
+    if (track == NULL) {
+        return;
+    }
+
+    numDecorations = func_800E8CB8(track);
+    if (numDecorations <= 0 || numDecorations > 256) {
+        return;
+    }
+
+    positions = (f32 *)((u8 *)track + 0x100);
+    types = (s32 *)((u8 *)track + 0x1000);
+    lodLevels = (s32 *)((u8 *)track + 0x1400);
+    cameraPos = (f32 *)0x80161000;
+
+    for (i = 0; i < numDecorations; i++) {
+        f32 *pos = &positions[i * 3];
+        s32 type = types[i];
+        s32 lod;
+        s32 spriteId;
+
+        /* Distance check */
+        dx = pos[0] - cameraPos[0];
+        dz = pos[2] - cameraPos[2];
+        dist = sqrtf(dx * dx + dz * dz);
+
+        if (dist > 300.0f) {
+            continue;  /* Too far to render */
+        }
+
+        /* Determine LOD level */
+        if (dist < 50.0f) {
+            lod = 0;  /* High detail */
+        } else if (dist < 150.0f) {
+            lod = 1;  /* Medium detail */
+        } else {
+            lod = 2;  /* Low detail */
+        }
+
+        /* Select sprite based on type and LOD */
+        switch (type) {
+            case 0:  /* Tree */
+                spriteId = 0x70 + lod;
+                break;
+            case 1:  /* Sign */
+                spriteId = 0x73 + lod;
+                break;
+            case 2:  /* Barrier */
+                spriteId = 0x76 + lod;
+                break;
+            case 3:  /* Building */
+                spriteId = 0x79 + lod;
+                break;
+            case 4:  /* Light post */
+                spriteId = 0x7C + lod;
+                break;
+            default:
+                spriteId = 0x70;
+        }
+
+        /* Render decoration */
+        func_800E7B44(pos, spriteId);
+    }
 }
 
 /*
@@ -14244,9 +14955,41 @@ s32 func_800E8CB8(void *track) {
 /*
  * func_800E8D50 (448 bytes)
  * LOD distance check
+ *
+ * Checks if object is within render distance and returns LOD level.
+ * Returns: -1 if too far, 0-3 for LOD level
  */
 s32 func_800E8D50(f32 *pos, f32 *camera, f32 maxDist) {
-    /* LOD check - stub */
+    f32 dx, dy, dz, dist;
+    f32 lodDist0, lodDist1, lodDist2;
+
+    if (pos == NULL || camera == NULL) {
+        return -1;
+    }
+
+    dx = pos[0] - camera[0];
+    dy = pos[1] - camera[1];
+    dz = pos[2] - camera[2];
+    dist = sqrtf(dx * dx + dy * dy + dz * dz);
+
+    if (dist > maxDist) {
+        return -1;  /* Too far to render */
+    }
+
+    /* LOD thresholds as fractions of max distance */
+    lodDist0 = maxDist * 0.15f;  /* High detail */
+    lodDist1 = maxDist * 0.4f;   /* Medium detail */
+    lodDist2 = maxDist * 0.7f;   /* Low detail */
+
+    if (dist < lodDist0) {
+        return 0;  /* Highest detail */
+    } else if (dist < lodDist1) {
+        return 1;  /* Medium-high detail */
+    } else if (dist < lodDist2) {
+        return 2;  /* Medium-low detail */
+    } else {
+        return 3;  /* Lowest detail */
+    }
     return 0;
 }
 
