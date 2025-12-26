@@ -17929,58 +17929,284 @@ void func_800D1AB8(s32 colorId) {
 
 /*
  * func_800D1CE0 (1960 bytes)
- * Race setup screen
+ * Race setup screen - configure race options before starting
  */
 void func_800D1CE0(void) {
-    /* Race setup - stub */
+    s32 input;
+    s32 selectedItem;
+    s32 numItems;
+    char *modeNames[4];
+    char *lapOptions[5];
+    char *difficultyNames[4];
+
+    modeNames[0] = "CIRCUIT";
+    modeNames[1] = "TIME ATTACK";
+    modeNames[2] = "STUNT";
+    modeNames[3] = "BATTLE";
+
+    lapOptions[0] = "1";
+    lapOptions[1] = "3";
+    lapOptions[2] = "5";
+    lapOptions[3] = "7";
+    lapOptions[4] = "10";
+
+    difficultyNames[0] = "EASY";
+    difficultyNames[1] = "NORMAL";
+    difficultyNames[2] = "HARD";
+    difficultyNames[3] = "EXPERT";
+
+    numItems = 7;  /* Mode, Laps, Difficulty, Mirror, Weather, Time, Start */
+    selectedItem = D_80159B00;
+
+    func_800CC040();
+
+    input = func_800CB748(D_80158100);
+
+    /* Navigation */
+    if (input == 4) {
+        selectedItem--;
+        if (selectedItem < 0) selectedItem = numItems - 1;
+        func_800CC3C0(12);
+    }
+    else if (input == 5) {
+        selectedItem++;
+        if (selectedItem >= numItems) selectedItem = 0;
+        func_800CC3C0(12);
+    }
+    else if (input == 6 || input == 7) {
+        /* Left/right to change option value */
+        s32 delta = (input == 6) ? -1 : 1;
+        switch (selectedItem) {
+            case 0:  /* Mode */
+                D_80159B04 = (D_80159B04 + delta + 4) % 4;
+                func_800D24C8(D_80159B04);
+                break;
+            case 1:  /* Laps */
+                D_80159B08 = (D_80159B08 + delta + 5) % 5;
+                func_800D2928(D_80159B08);
+                break;
+            case 2:  /* Difficulty */
+                D_80159B0C = (D_80159B0C + delta + 4) % 4;
+                func_800D2A74(D_80159B0C);
+                break;
+            case 3:  /* Mirror */
+                func_800D2C2C();
+                break;
+            case 4:  /* Weather */
+                D_80159B14 = (D_80159B14 + delta + 4) % 4;
+                func_800D2CDC(D_80159B14);
+                break;
+            case 5:  /* Time of day */
+                D_80159B18 = (D_80159B18 + delta + 3) % 3;
+                func_800D2DCC(D_80159B18);
+                break;
+        }
+        func_800CC3C0(14);
+    }
+    else if (input == 1) {
+        if (selectedItem == 6) {
+            /* Start race */
+            D_801146EC = 7;  /* PREPLAY state */
+            func_800CBE8C(-1);  /* Close menu */
+            func_800CC3C0(10);
+        }
+    }
+    else if (input == 2) {
+        func_800CBE08();
+    }
+
+    D_80159B00 = selectedItem;
+
+    /* Render */
+    func_800C734C("RACE SETUP", 105, 30, 255);
+
+    /* Mode */
+    func_800C734C("MODE:", 50, 70, (selectedItem == 0) ? 255 : 180);
+    func_800C734C(modeNames[D_80159B04], 120, 70, 255);
+
+    /* Laps */
+    func_800C734C("LAPS:", 50, 95, (selectedItem == 1) ? 255 : 180);
+    func_800C734C(lapOptions[D_80159B08], 120, 95, 255);
+
+    /* Difficulty */
+    func_800C734C("DIFFICULTY:", 50, 120, (selectedItem == 2) ? 255 : 180);
+    func_800C734C(difficultyNames[D_80159B0C], 140, 120, 255);
+
+    /* Mirror mode */
+    func_800C734C("MIRROR:", 50, 145, (selectedItem == 3) ? 255 : 180);
+    func_800C734C(D_80159B10 ? "ON" : "OFF", 120, 145, 255);
+
+    /* Weather */
+    func_800C734C("WEATHER:", 50, 170, (selectedItem == 4) ? 255 : 180);
+    {
+        char *weatherNames[4] = {"CLEAR", "RAIN", "FOG", "NIGHT"};
+        func_800C734C(weatherNames[D_80159B14], 130, 170, 255);
+    }
+
+    /* Time of day */
+    func_800C734C("TIME:", 50, 195, (selectedItem == 5) ? 255 : 180);
+    {
+        char *timeNames[3] = {"MORNING", "NOON", "EVENING"};
+        func_800C734C(timeNames[D_80159B18], 100, 195, 255);
+    }
+
+    /* Start button */
+    func_800C734C("START RACE", 100, 225, (selectedItem == 6) ? 255 : 180);
+    if (selectedItem == 6) {
+        func_800C7110(56, 80, 227, 12, 12, 255);
+    }
+
+    /* Draw cursor */
+    s32 cursorY = 70 + selectedItem * 25;
+    if (selectedItem == 6) cursorY = 227;
+    func_800C7110(56, 30, cursorY, 12, 12, 255);
 }
 
 /*
  * func_800D24C8 (1120 bytes)
- * Race mode select
+ * Race mode select - configures race mode settings
  */
 void func_800D24C8(s32 modeId) {
-    /* Mode select - stub */
+    /* Store selected mode */
+    D_80159B04 = modeId;
+
+    /* Configure mode-specific defaults */
+    switch (modeId) {
+        case 0:  /* Circuit */
+            D_80159B1C = 1;  /* Enable opponents */
+            D_80159B20 = 1;  /* Enable checkpoints */
+            D_80159B24 = 0;  /* Disable stunt scoring */
+            D_80159B28 = 0;  /* Disable battle mode */
+            break;
+        case 1:  /* Time Attack */
+            D_80159B1C = 0;  /* No opponents */
+            D_80159B20 = 1;  /* Enable checkpoints */
+            D_80159B24 = 0;  /* No stunt scoring */
+            D_80159B28 = 0;
+            break;
+        case 2:  /* Stunt */
+            D_80159B1C = 0;  /* No opponents */
+            D_80159B20 = 0;  /* No checkpoints */
+            D_80159B24 = 1;  /* Enable stunt scoring */
+            D_80159B28 = 0;
+            break;
+        case 3:  /* Battle */
+            D_80159B1C = 1;  /* Enable opponents */
+            D_80159B20 = 0;  /* No checkpoints */
+            D_80159B24 = 0;
+            D_80159B28 = 1;  /* Enable battle mode */
+            break;
+    }
 }
 
 /*
  * func_800D2928 (332 bytes)
- * Lap count select
+ * Lap count select - sets number of laps for race
  */
 void func_800D2928(s32 laps) {
-    /* Lap count - stub */
+    s32 lapCounts[5] = {1, 3, 5, 7, 10};
+
+    D_80159B08 = laps;
+    if (laps >= 0 && laps < 5) {
+        D_801582E8 = lapCounts[laps];  /* Store actual lap count */
+    }
 }
 
 /*
  * func_800D2A74 (440 bytes)
- * Difficulty select
+ * Difficulty select - sets AI difficulty and rubber-banding
  */
 void func_800D2A74(s32 difficulty) {
-    /* Difficulty - stub */
+    D_80159B0C = difficulty;
+
+    /* Configure AI based on difficulty */
+    switch (difficulty) {
+        case 0:  /* Easy */
+            D_80159B2C = 70;   /* AI max speed % */
+            D_80159B30 = 50;   /* AI aggression */
+            D_80159B34 = 1;    /* Heavy rubber-banding */
+            break;
+        case 1:  /* Normal */
+            D_80159B2C = 85;
+            D_80159B30 = 70;
+            D_80159B34 = 1;
+            break;
+        case 2:  /* Hard */
+            D_80159B2C = 95;
+            D_80159B30 = 85;
+            D_80159B34 = 0;
+            break;
+        case 3:  /* Expert */
+            D_80159B2C = 100;
+            D_80159B30 = 100;
+            D_80159B34 = 0;
+            break;
+    }
 }
 
 /*
  * func_800D2C2C (176 bytes)
- * Mirror mode toggle
+ * Mirror mode toggle - flips track left-right
  */
 void func_800D2C2C(void) {
-    /* Mirror - stub */
+    D_80159B10 = (D_80159B10 == 0) ? 1 : 0;
+
+    /* Set mirror transform flag */
+    D_80159B38 = D_80159B10;
 }
 
 /*
  * func_800D2CDC (240 bytes)
- * Weather select
+ * Weather select - sets weather conditions
  */
 void func_800D2CDC(s32 weather) {
-    /* Weather - stub */
+    D_80159B14 = weather;
+
+    switch (weather) {
+        case 0:  /* Clear */
+            D_80159B3C = 0;     /* No rain */
+            D_80159B40 = 1000;  /* Max visibility */
+            D_80159B44 = 255;   /* Full brightness */
+            break;
+        case 1:  /* Rain */
+            D_80159B3C = 1;     /* Rain enabled */
+            D_80159B40 = 600;   /* Reduced visibility */
+            D_80159B44 = 200;   /* Dimmer */
+            break;
+        case 2:  /* Fog */
+            D_80159B3C = 0;
+            D_80159B40 = 300;   /* Low visibility */
+            D_80159B44 = 180;
+            break;
+        case 3:  /* Night */
+            D_80159B3C = 0;
+            D_80159B40 = 400;   /* Limited visibility */
+            D_80159B44 = 80;    /* Dark */
+            break;
+    }
 }
 
 /*
  * func_800D2DCC (200 bytes)
- * Time of day select
+ * Time of day select - sets lighting conditions
  */
 void func_800D2DCC(s32 timeOfDay) {
-    /* Time of day - stub */
+    D_80159B18 = timeOfDay;
+
+    switch (timeOfDay) {
+        case 0:  /* Morning */
+            D_80159B48 = 0x90A0C0;  /* Cool blue light */
+            D_80159B4C = 0.7f;      /* Sun angle */
+            break;
+        case 1:  /* Noon */
+            D_80159B48 = 0xFFFFE0;  /* Bright yellow */
+            D_80159B4C = 1.0f;      /* Sun directly above */
+            break;
+        case 2:  /* Evening */
+            D_80159B48 = 0xFFA060;  /* Orange sunset */
+            D_80159B4C = 0.3f;      /* Low sun angle */
+            break;
+    }
 }
 
 /*
