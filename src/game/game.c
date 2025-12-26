@@ -13460,25 +13460,206 @@ void func_800DB1E0(void *car, s32 paintId) {
 /*
  * func_800E114C (1012 bytes)
  * Replay system update
+ *
+ * Updates the replay system - handles recording or playback.
+ * Manages frame buffer, timing, and input sync.
  */
 void func_800E114C(void *replay) {
-    /* Replay update - stub */
+    s32 *mode, *frameIndex, *maxFrames;
+    s32 *recordBuffer;
+    f32 *playbackSpeed;
+    s32 currentFrame;
+
+    if (replay == NULL) {
+        return;
+    }
+
+    mode = (s32 *)((u8 *)replay + 0x00);  /* 0=off, 1=record, 2=playback */
+    frameIndex = (s32 *)((u8 *)replay + 0x04);
+    maxFrames = (s32 *)((u8 *)replay + 0x08);
+    recordBuffer = (s32 *)((u8 *)replay + 0x10);
+    playbackSpeed = (f32 *)((u8 *)replay + 0x0C);
+
+    switch (*mode) {
+        case 0:  /* Off */
+            break;
+
+        case 1:  /* Recording */
+            if (*frameIndex < *maxFrames) {
+                /* Record current frame data */
+                func_800E1AA0(replay, (void *)(*frameIndex));
+                (*frameIndex)++;
+            } else {
+                /* Buffer full, stop recording */
+                *mode = 0;
+            }
+            break;
+
+        case 2:  /* Playback */
+            currentFrame = *frameIndex;
+
+            /* Advance playback with speed control */
+            currentFrame += (s32)(*playbackSpeed * 1.0f);
+
+            if (currentFrame < 0) {
+                currentFrame = 0;
+            }
+            if (currentFrame >= *maxFrames) {
+                /* Loop or stop */
+                currentFrame = 0;  /* Loop for now */
+            }
+
+            *frameIndex = currentFrame;
+
+            /* Apply recorded frame data */
+            func_800E15A0(replay);
+            break;
+    }
 }
 
 /*
  * func_800E15A0 (1280 bytes)
  * Replay playback
+ *
+ * Applies recorded frame data to all cars during replay playback.
+ * Interpolates between frames for smooth motion.
  */
 void func_800E15A0(void *replay) {
-    /* Replay playback - stub */
+    s32 *frameIndex, *maxFrames;
+    void *frameData;
+    s32 currentFrame, nextFrame;
+    f32 *playbackSpeed;
+    f32 t;  /* Interpolation factor */
+    s32 i, numCars;
+    void **carList;
+
+    if (replay == NULL) {
+        return;
+    }
+
+    frameIndex = (s32 *)((u8 *)replay + 0x04);
+    maxFrames = (s32 *)((u8 *)replay + 0x08);
+    playbackSpeed = (f32 *)((u8 *)replay + 0x0C);
+    carList = (void **)((u8 *)replay + 0x100);
+    numCars = *(s32 *)((u8 *)replay + 0xFC);
+
+    currentFrame = *frameIndex;
+    nextFrame = currentFrame + 1;
+    if (nextFrame >= *maxFrames) {
+        nextFrame = currentFrame;
+    }
+
+    /* Calculate interpolation factor */
+    t = (*playbackSpeed) - (f32)(s32)(*playbackSpeed);
+    if (t < 0.0f) t = 0.0f;
+    if (t > 1.0f) t = 1.0f;
+
+    /* Apply frame data to each car */
+    for (i = 0; i < numCars && i < 8; i++) {
+        void *car = carList[i];
+        f32 *carPos, *carRot, *carVel;
+        f32 *framePos, *nextPos;
+        s32 frameOffset;
+
+        if (car == NULL) {
+            continue;
+        }
+
+        carPos = (f32 *)((u8 *)car + 0x24);
+        carRot = (f32 *)((u8 *)car + 0x60);
+        carVel = (f32 *)((u8 *)car + 0x34);
+
+        /* Calculate frame data offset */
+        /* Each frame stores: pos(3), rot(4 quat), vel(3), inputs(2) = 12 floats per car */
+        frameOffset = 0x200 + (currentFrame * numCars * 48) + (i * 48);
+        framePos = (f32 *)((u8 *)replay + frameOffset);
+        nextPos = (f32 *)((u8 *)replay + frameOffset + (numCars * 48));
+
+        if (currentFrame == nextFrame) {
+            /* No interpolation needed */
+            carPos[0] = framePos[0];
+            carPos[1] = framePos[1];
+            carPos[2] = framePos[2];
+        } else {
+            /* Linear interpolation */
+            carPos[0] = framePos[0] + (nextPos[0] - framePos[0]) * t;
+            carPos[1] = framePos[1] + (nextPos[1] - framePos[1]) * t;
+            carPos[2] = framePos[2] + (nextPos[2] - framePos[2]) * t;
+
+            carVel[0] = framePos[7] + (nextPos[7] - framePos[7]) * t;
+            carVel[1] = framePos[8] + (nextPos[8] - framePos[8]) * t;
+            carVel[2] = framePos[9] + (nextPos[9] - framePos[9]) * t;
+        }
+
+        /* Apply quaternion rotation (simplified - just copy for now) */
+        carRot[0] = framePos[3];
+        carRot[1] = framePos[4];
+        carRot[2] = framePos[5];
+    }
 }
 
 /*
  * func_800E1AA0 (404 bytes)
  * Replay record frame
+ *
+ * Records the current game state into the replay buffer.
+ * Captures car positions, rotations, velocities, and inputs.
  */
 void func_800E1AA0(void *replay, void *frame) {
-    /* Record frame - stub */
+    s32 *frameIndex;
+    s32 i, numCars;
+    void **carList;
+    s32 frameOffset;
+
+    if (replay == NULL) {
+        return;
+    }
+
+    frameIndex = (s32 *)((u8 *)replay + 0x04);
+    carList = (void **)((u8 *)replay + 0x100);
+    numCars = *(s32 *)((u8 *)replay + 0xFC);
+
+    /* Record each car's state */
+    for (i = 0; i < numCars && i < 8; i++) {
+        void *car = carList[i];
+        f32 *carPos, *carRot, *carVel;
+        f32 *frameData;
+        f32 steer, throttle;
+
+        if (car == NULL) {
+            continue;
+        }
+
+        carPos = (f32 *)((u8 *)car + 0x24);
+        carRot = (f32 *)((u8 *)car + 0x60);
+        carVel = (f32 *)((u8 *)car + 0x34);
+        steer = *(f32 *)((u8 *)car + 0xFC);
+        throttle = *(f32 *)((u8 *)car + 0x100);
+
+        /* Calculate frame data offset */
+        frameOffset = 0x200 + (*frameIndex * numCars * 48) + (i * 48);
+        frameData = (f32 *)((u8 *)replay + frameOffset);
+
+        /* Store position */
+        frameData[0] = carPos[0];
+        frameData[1] = carPos[1];
+        frameData[2] = carPos[2];
+
+        /* Store rotation (forward vector) */
+        frameData[3] = carRot[0];
+        frameData[4] = carRot[1];
+        frameData[5] = carRot[2];
+        frameData[6] = 1.0f;  /* Placeholder for W component */
+
+        /* Store velocity */
+        frameData[7] = carVel[0];
+        frameData[8] = carVel[1];
+        frameData[9] = carVel[2];
+
+        /* Store inputs */
+        frameData[10] = steer;
+        frameData[11] = throttle;
+    }
 }
 
 /*
@@ -13500,57 +13681,452 @@ void func_800E23A4(void *replay) {
 /*
  * func_800E0050 (1440 bytes)
  * Weather effect system
+ *
+ * Updates weather effects (rain, snow, fog).
+ * Controls intensity, wind, and transitions.
  */
 void func_800E0050(void *weather) {
-    /* Weather effects - stub */
+    s32 *weatherType, *intensity;
+    f32 *windDir, *windSpeed;
+    f32 *transitionTimer, *targetIntensity;
+    s32 type;
+
+    if (weather == NULL) {
+        return;
+    }
+
+    weatherType = (s32 *)((u8 *)weather + 0x00);
+    intensity = (s32 *)((u8 *)weather + 0x04);
+    windDir = (f32 *)((u8 *)weather + 0x08);
+    windSpeed = (f32 *)((u8 *)weather + 0x14);
+    transitionTimer = (f32 *)((u8 *)weather + 0x18);
+    targetIntensity = (f32 *)((u8 *)weather + 0x1C);
+
+    type = *weatherType;
+
+    /* Handle weather transitions */
+    if (*transitionTimer > 0.0f) {
+        *transitionTimer -= 1.0f / 60.0f;
+        f32 currentInt = (f32)(*intensity);
+        currentInt += (*targetIntensity - currentInt) * 0.02f;
+        *intensity = (s32)currentInt;
+    }
+
+    /* Update wind direction slightly */
+    windDir[0] += (((D_80159A20 & 0xFF) / 255.0f) - 0.5f) * 0.01f;
+    windDir[2] += (((D_80159A20 >> 8 & 0xFF) / 255.0f) - 0.5f) * 0.01f;
+
+    /* Normalize wind direction */
+    f32 windLen = sqrtf(windDir[0] * windDir[0] + windDir[2] * windDir[2]);
+    if (windLen > 0.001f) {
+        windDir[0] /= windLen;
+        windDir[2] /= windLen;
+    }
+
+    /* Apply weather effects based on type */
+    switch (type) {
+        case 0:  /* Clear */
+            break;
+
+        case 1:  /* Rain */
+            func_800E05F0((f32)(*intensity) / 100.0f);
+            break;
+
+        case 2:  /* Snow */
+            /* Snow would use different particles */
+            break;
+
+        case 3:  /* Fog */
+            /* Fog adjusts render distance and adds overlay */
+            break;
+    }
 }
 
 /*
  * func_800E05F0 (1328 bytes)
  * Rain effect rendering
+ *
+ * Renders rain droplets as falling particles.
+ * Adjusts density based on intensity.
  */
 void func_800E05F0(f32 intensity) {
-    /* Rain effect - stub */
+    s32 numDrops;
+    s32 i;
+    f32 *cameraPos;
+    f32 dropX, dropY, dropZ;
+    f32 dropLen;
+    s32 seed;
+
+    if (intensity <= 0.0f) {
+        return;
+    }
+
+    /* Get camera position for culling */
+    cameraPos = (f32 *)0x80161000;
+
+    /* Number of drops based on intensity */
+    numDrops = (s32)(intensity * 200.0f);
+    if (numDrops < 10) numDrops = 10;
+    if (numDrops > 200) numDrops = 200;
+
+    /* Initialize random seed from frame counter */
+    seed = D_80159A20;
+
+    for (i = 0; i < numDrops; i++) {
+        /* Generate pseudo-random position around camera */
+        seed = seed * 1103515245 + 12345;
+        dropX = cameraPos[0] + ((seed >> 16) & 0xFF) - 128.0f;
+
+        seed = seed * 1103515245 + 12345;
+        dropY = cameraPos[1] + ((seed >> 16) & 0xFF) * 0.5f;
+
+        seed = seed * 1103515245 + 12345;
+        dropZ = cameraPos[2] + ((seed >> 16) & 0xFF) - 128.0f;
+
+        /* Rain drop length based on speed */
+        dropLen = 2.0f + intensity * 3.0f;
+
+        /* Render rain drop as line (simplified) */
+        /* In actual game, this would use the graphics display list */
+        func_800C7110((s32)dropX, (s32)dropY, 1, (s32)dropLen, 0x20);
+    }
 }
 
 /*
  * func_800E0B20 (1576 bytes)
  * Particle system update
+ *
+ * Updates all active particles in the system.
+ * Handles physics, lifetime, and rendering.
  */
 void func_800E0B20(void *particles) {
-    /* Particle update - stub */
+    s32 *pool;
+    s32 maxParticles, i;
+    f32 gravity, drag;
+
+    if (particles == NULL) {
+        return;
+    }
+
+    pool = (s32 *)((u8 *)particles + 0x00);
+    maxParticles = *(s32 *)((u8 *)particles + 0x100);
+    gravity = -0.5f;
+    drag = 0.98f;
+
+    if (maxParticles > 256) maxParticles = 256;
+
+    for (i = 0; i < maxParticles; i++) {
+        s32 *particle = &pool[i * 16];
+        s32 active = particle[0];
+        s32 lifetime = particle[7];
+        s32 type = particle[8];
+        f32 *pos, *vel;
+
+        if (!active) {
+            continue;
+        }
+
+        pos = (f32 *)&particle[1];
+        vel = (f32 *)&particle[4];
+
+        /* Decrease lifetime */
+        lifetime--;
+        if (lifetime <= 0) {
+            particle[0] = 0;  /* Deactivate */
+            continue;
+        }
+        particle[7] = lifetime;
+
+        /* Apply physics based on type */
+        switch (type) {
+            case 0:  /* Dust/smoke - rises slowly, drifts */
+                vel[1] += 0.02f;
+                vel[0] *= 0.95f;
+                vel[2] *= 0.95f;
+                break;
+
+            case 1:  /* Sparks - gravity, bounces */
+                vel[1] += gravity;
+                break;
+
+            case 2:  /* Debris - heavy gravity */
+                vel[1] += gravity * 2.0f;
+                break;
+
+            case 3:  /* Water splash - rises then falls */
+                if (lifetime > 15) {
+                    vel[1] += 0.1f;
+                } else {
+                    vel[1] += gravity;
+                }
+                break;
+        }
+
+        /* Apply drag */
+        vel[0] *= drag;
+        vel[1] *= drag;
+        vel[2] *= drag;
+
+        /* Update position */
+        pos[0] += vel[0];
+        pos[1] += vel[1];
+        pos[2] += vel[2];
+
+        /* Kill if below ground */
+        if (pos[1] < -100.0f) {
+            particle[0] = 0;
+        }
+    }
 }
 
 /*
  * func_800E15A8 (1176 bytes)
  * Explosion effect
+ *
+ * Creates an explosion at the given position.
+ * Spawns particles, camera shake, and sound.
  */
 void func_800E15A8(f32 *pos, f32 size) {
-    /* Explosion - stub */
+    s32 *particlePool;
+    s32 *particleIndex;
+    s32 numParticles, i;
+    f32 angle, speed;
+    s32 seed;
+
+    if (pos == NULL || size <= 0.0f) {
+        return;
+    }
+
+    particlePool = (s32 *)0x80162000;
+    particleIndex = (s32 *)0x80162100;
+
+    /* Number of particles based on size */
+    numParticles = (s32)(size * 20.0f);
+    if (numParticles < 5) numParticles = 5;
+    if (numParticles > 50) numParticles = 50;
+
+    seed = D_80159A20;
+
+    /* Spawn explosion particles */
+    for (i = 0; i < numParticles; i++) {
+        s32 *particle = &particlePool[(*particleIndex) * 16];
+
+        /* Activate particle */
+        particle[0] = 1;
+
+        /* Set position at explosion center */
+        *(f32 *)&particle[1] = pos[0];
+        *(f32 *)&particle[2] = pos[1];
+        *(f32 *)&particle[3] = pos[2];
+
+        /* Random outward velocity */
+        seed = seed * 1103515245 + 12345;
+        angle = ((seed >> 16) & 0xFFFF) / 65535.0f * 6.28318f;
+
+        seed = seed * 1103515245 + 12345;
+        speed = size * (0.5f + ((seed >> 16) & 0xFF) / 255.0f);
+
+        *(f32 *)&particle[4] = cosf(angle) * speed;
+        *(f32 *)&particle[5] = ((seed >> 8) & 0xFF) / 255.0f * size;
+        *(f32 *)&particle[6] = sinf(angle) * speed;
+
+        /* Lifetime */
+        particle[7] = 30 + (seed & 0x1F);
+
+        /* Type: debris or spark */
+        particle[8] = (i < numParticles / 2) ? 2 : 1;
+
+        (*particleIndex) = ((*particleIndex) + 1) % 64;
+    }
+
+    /* Camera shake based on size */
+    void *camera = (void *)D_80152800;
+    if (camera != NULL) {
+        func_800BF0A4(camera, size * 0.5f, 0.5f);
+    }
+
+    /* Play explosion sound */
+    func_80094A54(0x30, (s32)(size * 50.0f));
 }
 
 /*
  * func_800E1F80 (984 bytes)
  * Debris spawning
+ *
+ * Spawns debris particles from a car (crash, damage, etc.)
  */
 void func_800E1F80(void *car, s32 debrisType) {
-    /* Debris spawn - stub */
+    f32 *carPos, *carVel;
+    s32 *particlePool;
+    s32 *particleIndex;
+    s32 numDebris, i;
+    f32 angle, speed;
+    s32 seed;
+
+    if (car == NULL) {
+        return;
+    }
+
+    carPos = (f32 *)((u8 *)car + 0x24);
+    carVel = (f32 *)((u8 *)car + 0x34);
+
+    particlePool = (s32 *)0x80162000;
+    particleIndex = (s32 *)0x80162100;
+
+    /* Number of debris based on type */
+    switch (debrisType) {
+        case 0:  /* Minor scrape */
+            numDebris = 3;
+            break;
+        case 1:  /* Medium impact */
+            numDebris = 8;
+            break;
+        case 2:  /* Major crash */
+            numDebris = 15;
+            break;
+        default:
+            numDebris = 5;
+    }
+
+    seed = D_80159A20;
+
+    for (i = 0; i < numDebris; i++) {
+        s32 *particle = &particlePool[(*particleIndex) * 16];
+
+        particle[0] = 1;  /* Active */
+
+        /* Position at car */
+        *(f32 *)&particle[1] = carPos[0];
+        *(f32 *)&particle[2] = carPos[1] + 1.0f;
+        *(f32 *)&particle[3] = carPos[2];
+
+        /* Velocity: inherit car velocity plus random scatter */
+        seed = seed * 1103515245 + 12345;
+        angle = ((seed >> 16) & 0xFFFF) / 65535.0f * 6.28318f;
+        speed = 2.0f + ((seed >> 8) & 0xFF) / 255.0f * 5.0f;
+
+        *(f32 *)&particle[4] = carVel[0] * 0.5f + cosf(angle) * speed;
+        *(f32 *)&particle[5] = 3.0f + ((seed & 0xFF) / 255.0f * 5.0f);
+        *(f32 *)&particle[6] = carVel[2] * 0.5f + sinf(angle) * speed;
+
+        /* Lifetime */
+        particle[7] = 45 + (seed & 0x1F);
+
+        /* Type: debris */
+        particle[8] = 2;
+
+        (*particleIndex) = ((*particleIndex) + 1) % 64;
+    }
+
+    /* Play debris sound */
+    func_80094A54(0x28, 80);
 }
 
 /*
  * func_800E2F00 (716 bytes)
  * Spark effect
+ *
+ * Creates sparks at a position with given velocity.
+ * Used for metal-on-metal impacts and scraping.
  */
 void func_800E2F00(f32 *pos, f32 *velocity) {
-    /* Spark effect - stub */
+    s32 *particlePool;
+    s32 *particleIndex;
+    s32 i, numSparks;
+    f32 baseVelX, baseVelY, baseVelZ;
+    s32 seed;
+
+    if (pos == NULL) {
+        return;
+    }
+
+    particlePool = (s32 *)0x80162000;
+    particleIndex = (s32 *)0x80162100;
+
+    numSparks = 5 + (D_80159A20 & 0x7);
+    seed = D_80159A20;
+
+    if (velocity != NULL) {
+        baseVelX = velocity[0];
+        baseVelY = velocity[1];
+        baseVelZ = velocity[2];
+    } else {
+        baseVelX = 0.0f;
+        baseVelY = 2.0f;
+        baseVelZ = 0.0f;
+    }
+
+    for (i = 0; i < numSparks; i++) {
+        s32 *particle = &particlePool[(*particleIndex) * 16];
+
+        particle[0] = 1;  /* Active */
+
+        /* Position */
+        *(f32 *)&particle[1] = pos[0];
+        *(f32 *)&particle[2] = pos[1];
+        *(f32 *)&particle[3] = pos[2];
+
+        /* Random velocity scatter */
+        seed = seed * 1103515245 + 12345;
+        *(f32 *)&particle[4] = baseVelX + ((seed >> 16 & 0xFF) - 128) / 64.0f;
+        *(f32 *)&particle[5] = baseVelY + ((seed >> 8 & 0xFF)) / 64.0f;
+        *(f32 *)&particle[6] = baseVelZ + ((seed & 0xFF) - 128) / 64.0f;
+
+        /* Short lifetime for sparks */
+        particle[7] = 10 + (seed & 0xF);
+
+        /* Type: spark */
+        particle[8] = 1;
+
+        (*particleIndex) = ((*particleIndex) + 1) % 64;
+    }
 }
 
 /*
  * func_800E31D4 (248 bytes)
  * Smoke puff
+ *
+ * Creates a single smoke puff at the given position.
+ * Used for engine smoke, tire smoke, etc.
  */
 void func_800E31D4(f32 *pos, f32 size) {
-    /* Smoke puff - stub */
+    s32 *particlePool;
+    s32 *particleIndex;
+    s32 *particle;
+    s32 seed;
+
+    if (pos == NULL || size <= 0.0f) {
+        return;
+    }
+
+    particlePool = (s32 *)0x80162000;
+    particleIndex = (s32 *)0x80162100;
+    seed = D_80159A20;
+
+    particle = &particlePool[(*particleIndex) * 16];
+
+    particle[0] = 1;  /* Active */
+
+    /* Position with slight randomization */
+    *(f32 *)&particle[1] = pos[0] + ((seed & 0xFF) - 128) / 256.0f;
+    *(f32 *)&particle[2] = pos[1];
+    *(f32 *)&particle[3] = pos[2] + ((seed >> 8 & 0xFF) - 128) / 256.0f;
+
+    /* Slow upward drift */
+    *(f32 *)&particle[4] = ((seed >> 16 & 0xFF) - 128) / 512.0f;
+    *(f32 *)&particle[5] = 0.5f + size * 0.2f;
+    *(f32 *)&particle[6] = ((seed >> 24 & 0xFF) - 128) / 512.0f;
+
+    /* Longer lifetime for smoke */
+    particle[7] = (s32)(30 + size * 20);
+
+    /* Type: smoke */
+    particle[8] = 0;
+
+    /* Size stored in extra slot */
+    *(f32 *)&particle[9] = size;
+
+    (*particleIndex) = ((*particleIndex) + 1) % 64;
 }
 
 /*
