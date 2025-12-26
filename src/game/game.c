@@ -18211,18 +18211,255 @@ void func_800D2DCC(s32 timeOfDay) {
 
 /*
  * func_800D2E94 (1544 bytes)
- * Multiplayer setup
+ * Multiplayer setup - configures multiplayer game options
  */
 void func_800D2E94(void) {
-    /* MP setup - stub */
+    s32 input;
+    s32 selectedItem;
+    s32 numPlayers;
+    s32 i;
+
+    selectedItem = D_80159C00;
+    numPlayers = D_80159C04;
+
+    func_800CC040();
+
+    input = func_800CB748(D_80158100);
+
+    /* Navigation */
+    if (input == 4) {
+        selectedItem--;
+        if (selectedItem < 0) selectedItem = 5;
+        func_800CC3C0(12);
+    }
+    else if (input == 5) {
+        selectedItem++;
+        if (selectedItem > 5) selectedItem = 0;
+        func_800CC3C0(12);
+    }
+    else if (input == 6 || input == 7) {
+        s32 delta = (input == 6) ? -1 : 1;
+        switch (selectedItem) {
+            case 0:  /* Player count */
+                numPlayers = numPlayers + delta;
+                if (numPlayers < 2) numPlayers = 4;
+                if (numPlayers > 4) numPlayers = 2;
+                D_80159C04 = numPlayers;
+                break;
+            case 1:  /* Split screen mode */
+                D_80159C08 = (D_80159C08 + delta + 3) % 3;  /* Horizontal/Vertical/Quad */
+                break;
+            case 2:  /* Handicap */
+                D_80159C0C = (D_80159C0C == 0) ? 1 : 0;
+                break;
+            case 3:  /* Team mode */
+                D_80159C10 = (D_80159C10 == 0) ? 1 : 0;
+                break;
+        }
+        func_800CC3C0(14);
+    }
+    else if (input == 1) {
+        if (selectedItem == 4) {
+            /* Continue to player join */
+            func_800CBE8C(20);  /* Player join screen */
+            func_800CC3C0(10);
+        } else if (selectedItem == 5) {
+            /* Back */
+            func_800CBE08();
+        }
+    }
+    else if (input == 2) {
+        func_800CBE08();
+    }
+
+    D_80159C00 = selectedItem;
+
+    /* Render */
+    func_800C734C("MULTIPLAYER SETUP", 80, 30, 255);
+
+    /* Player count */
+    {
+        char numBuf[2];
+        numBuf[0] = '0' + numPlayers;
+        numBuf[1] = '\0';
+        func_800C734C("PLAYERS:", 50, 70, (selectedItem == 0) ? 255 : 180);
+        func_800C734C(numBuf, 140, 70, 255);
+    }
+
+    /* Split screen mode */
+    func_800C734C("SCREEN:", 50, 95, (selectedItem == 1) ? 255 : 180);
+    {
+        char *splitModes[3] = {"HORIZONTAL", "VERTICAL", "QUAD"};
+        func_800C734C(splitModes[D_80159C08], 130, 95, 255);
+    }
+
+    /* Handicap */
+    func_800C734C("HANDICAP:", 50, 120, (selectedItem == 2) ? 255 : 180);
+    func_800C734C(D_80159C0C ? "ON" : "OFF", 145, 120, 255);
+
+    /* Team mode */
+    func_800C734C("TEAMS:", 50, 145, (selectedItem == 3) ? 255 : 180);
+    func_800C734C(D_80159C10 ? "ON" : "OFF", 120, 145, 255);
+
+    /* Continue */
+    func_800C734C("CONTINUE", 100, 180, (selectedItem == 4) ? 255 : 180);
+
+    /* Back */
+    func_800C734C("BACK", 100, 205, (selectedItem == 5) ? 255 : 180);
+
+    /* Player preview boxes */
+    for (i = 0; i < numPlayers; i++) {
+        s32 boxX = 200 + (i % 2) * 55;
+        s32 boxY = 70 + (i / 2) * 55;
+        func_800C7110(68, boxX, boxY, 50, 50, 200);  /* Player box */
+        {
+            char pNum[3];
+            pNum[0] = 'P';
+            pNum[1] = '1' + i;
+            pNum[2] = '\0';
+            func_800C734C(pNum, boxX + 18, boxY + 18, 255);
+        }
+    }
+
+    /* Draw cursor */
+    s32 cursorY = 70 + selectedItem * 25;
+    if (selectedItem >= 4) cursorY = 180 + (selectedItem - 4) * 25;
+    func_800C7110(56, 30, cursorY, 12, 12, 255);
 }
 
 /*
  * func_800D349C (1676 bytes)
- * Player join screen
+ * Player join screen - players press start to join
  */
 void func_800D349C(void) {
-    /* Player join - stub */
+    s32 i;
+    s32 numPlayers;
+    s32 joinedPlayers;
+    s32 allReady;
+    u32 controllerInput[4];
+
+    numPlayers = D_80159C04;
+    joinedPlayers = 0;
+    allReady = 1;
+
+    func_800CC040();
+
+    /* Read all controller inputs */
+    controllerInput[0] = D_80158100;
+    controllerInput[1] = D_80158104;
+    controllerInput[2] = D_80158108;
+    controllerInput[3] = D_8015810C;
+
+    /* Check each player slot */
+    for (i = 0; i < numPlayers; i++) {
+        s32 buttons = controllerInput[i] & 0xFFFF;
+
+        /* Check for Start button to join */
+        if (buttons & 0x1000) {
+            if (D_80159C20[i] == 0) {
+                /* Player joining */
+                D_80159C20[i] = 1;
+                func_800CC3C0(10);
+            } else if (D_80159C20[i] == 1) {
+                /* Player ready */
+                D_80159C20[i] = 2;
+                func_800CC3C0(10);
+            }
+        }
+
+        /* Check for B button to leave */
+        if (buttons & 0x4000) {
+            if (D_80159C20[i] == 2) {
+                D_80159C20[i] = 1;  /* Unready */
+                func_800CC3C0(11);
+            } else if (D_80159C20[i] == 1) {
+                D_80159C20[i] = 0;  /* Leave */
+                func_800CC3C0(11);
+            }
+        }
+
+        /* Count joined and check ready */
+        if (D_80159C20[i] >= 1) {
+            joinedPlayers++;
+        }
+        if (D_80159C20[i] != 2) {
+            allReady = 0;
+        }
+    }
+
+    /* Check if all required players are ready */
+    if (joinedPlayers >= 2 && allReady) {
+        D_80159C14 = D_80159C14 + 1;  /* Countdown timer */
+        if (D_80159C14 >= 90) {  /* 1.5 seconds */
+            /* Start game */
+            D_80159C18 = joinedPlayers;
+            D_801146EC = 7;  /* PREPLAY state */
+            func_800CBE8C(-1);
+        }
+    } else {
+        D_80159C14 = 0;
+    }
+
+    /* Player 1 can press B to go back if no one joined */
+    if ((controllerInput[0] & 0x4000) && joinedPlayers == 0) {
+        func_800CBE08();
+    }
+
+    /* Render */
+    func_800C734C("PRESS START TO JOIN", 70, 30, 255);
+
+    /* Render player slots */
+    for (i = 0; i < numPlayers; i++) {
+        s32 slotX = 40 + (i % 2) * 140;
+        s32 slotY = 70 + (i / 2) * 90;
+        s32 state = D_80159C20[i];
+        s32 alpha;
+        char playerStr[12];
+
+        /* Draw slot background */
+        if (state == 0) {
+            alpha = 100;  /* Empty */
+        } else if (state == 1) {
+            alpha = 180;  /* Joined */
+        } else {
+            alpha = 255;  /* Ready */
+        }
+        func_800C7110(69, slotX, slotY, 120, 75, alpha);
+
+        /* Draw player number */
+        playerStr[0] = 'P';
+        playerStr[1] = 'L';
+        playerStr[2] = 'A';
+        playerStr[3] = 'Y';
+        playerStr[4] = 'E';
+        playerStr[5] = 'R';
+        playerStr[6] = ' ';
+        playerStr[7] = '1' + i;
+        playerStr[8] = '\0';
+        func_800C734C(playerStr, slotX + 20, slotY + 10, alpha);
+
+        /* Draw status */
+        if (state == 0) {
+            func_800C734C("PRESS START", slotX + 10, slotY + 40, alpha);
+        } else if (state == 1) {
+            func_800C734C("JOINED", slotX + 30, slotY + 40, alpha);
+            func_800C734C("START=READY", slotX + 8, slotY + 55, 150);
+        } else {
+            func_800C734C("READY!", slotX + 35, slotY + 40, 255);
+        }
+    }
+
+    /* Show countdown if all ready */
+    if (joinedPlayers >= 2 && allReady) {
+        s32 countdown = 3 - (D_80159C14 / 30);
+        char countBuf[2];
+        countBuf[0] = '0' + countdown;
+        countBuf[1] = '\0';
+        func_800C734C("STARTING IN", 100, 200, 255);
+        func_800C734C(countBuf, 155, 220, 255);
+    } else if (joinedPlayers < 2) {
+        func_800C734C("NEED 2+ PLAYERS", 90, 210, 180);
+    }
 }
 
 /*
@@ -18251,58 +18488,412 @@ void func_800D510C(void) {
 
 /*
  * func_800D58CC (740 bytes)
- * Records screen
+ * Records screen - displays best times and high scores
  */
 void func_800D58CC(void) {
-    /* Records - stub */
+    s32 input;
+    s32 selectedTab;
+    s32 selectedTrack;
+
+    selectedTab = D_80159D00;
+    selectedTrack = D_80159D04;
+
+    func_800CC040();
+
+    input = func_800CB748(D_80158100);
+
+    /* Tab navigation with L/R */
+    if (input == 8) {  /* L */
+        selectedTab = (selectedTab + 2) % 3;  /* Times, Scores, Stats */
+        func_800CC3C0(12);
+    }
+    else if (input == 9) {  /* R */
+        selectedTab = (selectedTab + 1) % 3;
+        func_800CC3C0(12);
+    }
+    /* Track selection */
+    else if (input == 4) {
+        selectedTrack--;
+        if (selectedTrack < 0) selectedTrack = 11;
+        func_800CC3C0(12);
+    }
+    else if (input == 5) {
+        selectedTrack++;
+        if (selectedTrack > 11) selectedTrack = 0;
+        func_800CC3C0(12);
+    }
+    else if (input == 2) {
+        func_800CBE08();
+    }
+
+    D_80159D00 = selectedTab;
+    D_80159D04 = selectedTrack;
+
+    /* Render tabs */
+    func_800C734C("TIMES", 50, 30, (selectedTab == 0) ? 255 : 150);
+    func_800C734C("SCORES", 130, 30, (selectedTab == 1) ? 255 : 150);
+    func_800C734C("STATS", 220, 30, (selectedTab == 2) ? 255 : 150);
+
+    /* Render content based on tab */
+    switch (selectedTab) {
+        case 0:
+            func_800D5BB0(selectedTrack);
+            break;
+        case 1:
+            func_800D5C90(selectedTrack);
+            break;
+        case 2:
+            func_800D616C();
+            break;
+    }
+
+    func_800C734C("L/R: CHANGE TAB", 80, 220, 150);
 }
 
 /*
  * func_800D5BB0 (224 bytes)
- * Best times display
+ * Best times display - shows best lap and race times
  */
 void func_800D5BB0(s32 trackId) {
-    /* Best times - stub */
+    char *trackNames[12];
+    char timeBuf[16];
+    s32 bestTime;
+    s32 bestLap;
+    s32 i;
+
+    trackNames[0] = "MARINA";
+    trackNames[1] = "HAIGHT";
+    trackNames[2] = "SOMA";
+    trackNames[3] = "MISSION";
+    trackNames[4] = "NOB HILL";
+    trackNames[5] = "CHINATOWN";
+    trackNames[6] = "FISHERMAN'S";
+    trackNames[7] = "ALCATRAZ";
+    trackNames[8] = "BONUS 1";
+    trackNames[9] = "BONUS 2";
+    trackNames[10] = "BONUS 3";
+    trackNames[11] = "STUNT ARENA";
+
+    func_800C734C("BEST TIMES", 105, 55, 255);
+    func_800C734C(trackNames[trackId], 100, 80, 255);
+
+    /* Best race time */
+    bestTime = D_80159A10[trackId];
+    func_800C734C("RACE:", 60, 110, 200);
+    if (bestTime > 0) {
+        s32 m = bestTime / 6000;
+        s32 s = (bestTime / 100) % 60;
+        s32 h = bestTime % 100;
+        timeBuf[0] = '0' + m / 10; timeBuf[1] = '0' + m % 10;
+        timeBuf[2] = ':';
+        timeBuf[3] = '0' + s / 10; timeBuf[4] = '0' + s % 10;
+        timeBuf[5] = '.';
+        timeBuf[6] = '0' + h / 10; timeBuf[7] = '0' + h % 10;
+        timeBuf[8] = '\0';
+        func_800C734C(timeBuf, 120, 110, 255);
+    } else {
+        func_800C734C("--:--.--", 120, 110, 150);
+    }
+
+    /* Best lap time */
+    bestLap = D_80159D10[trackId];
+    func_800C734C("LAP:", 60, 135, 200);
+    if (bestLap > 0) {
+        s32 m = bestLap / 6000;
+        s32 s = (bestLap / 100) % 60;
+        s32 h = bestLap % 100;
+        timeBuf[0] = '0' + m / 10; timeBuf[1] = '0' + m % 10;
+        timeBuf[2] = ':';
+        timeBuf[3] = '0' + s / 10; timeBuf[4] = '0' + s % 10;
+        timeBuf[5] = '.';
+        timeBuf[6] = '0' + h / 10; timeBuf[7] = '0' + h % 10;
+        timeBuf[8] = '\0';
+        func_800C734C(timeBuf, 110, 135, 255);
+    } else {
+        func_800C734C("--:--.--", 110, 135, 150);
+    }
+
+    /* Navigation hint */
+    func_800C734C("UP/DOWN: TRACK", 85, 180, 150);
 }
 
 /*
  * func_800D5C90 (220 bytes)
- * High scores display
+ * High scores display - shows stunt high scores
  */
 void func_800D5C90(s32 trackId) {
-    /* High scores - stub */
+    s32 i;
+    s32 score;
+    char scoreBuf[12];
+    char nameBuf[8];
+
+    func_800C734C("HIGH SCORES", 100, 55, 255);
+
+    /* Display top 5 scores */
+    for (i = 0; i < 5; i++) {
+        s32 y = 90 + i * 22;
+        char rankBuf[3];
+
+        rankBuf[0] = '1' + i;
+        rankBuf[1] = '.';
+        rankBuf[2] = '\0';
+        func_800C734C(rankBuf, 50, y, 200);
+
+        /* Get name and score from save data */
+        score = D_80159D40[trackId * 5 + i];
+        if (score > 0) {
+            /* Format score */
+            s32 tmp = score;
+            s32 j;
+            for (j = 7; j >= 0; j--) {
+                scoreBuf[j] = '0' + (tmp % 10);
+                tmp = tmp / 10;
+            }
+            scoreBuf[8] = '\0';
+            func_800C734C(scoreBuf, 130, y, 255);
+
+            /* Name would be stored elsewhere */
+            func_800C734C("---", 80, y, 200);
+        } else {
+            func_800C734C("---", 80, y, 150);
+            func_800C734C("--------", 130, y, 150);
+        }
+    }
 }
 
 /*
  * func_800D616C (452 bytes)
- * Stats display
+ * Stats display - shows player statistics
  */
 void func_800D616C(void) {
-    /* Stats - stub */
+    s32 totalRaces;
+    s32 totalWins;
+    s32 totalStunts;
+    s32 totalDistance;
+    char numBuf[12];
+
+    totalRaces = D_80159D80;
+    totalWins = D_80159D84;
+    totalStunts = D_80159D88;
+    totalDistance = D_80159D8C;  /* In meters */
+
+    func_800C734C("STATISTICS", 105, 55, 255);
+
+    /* Total races */
+    func_800C734C("RACES:", 60, 90, 200);
+    {
+        s32 tmp = totalRaces;
+        s32 i;
+        for (i = 5; i >= 0; i--) {
+            numBuf[i] = '0' + (tmp % 10);
+            tmp = tmp / 10;
+        }
+        numBuf[6] = '\0';
+        func_800C734C(numBuf, 140, 90, 255);
+    }
+
+    /* Wins */
+    func_800C734C("WINS:", 60, 115, 200);
+    {
+        s32 tmp = totalWins;
+        s32 i;
+        for (i = 5; i >= 0; i--) {
+            numBuf[i] = '0' + (tmp % 10);
+            tmp = tmp / 10;
+        }
+        numBuf[6] = '\0';
+        func_800C734C(numBuf, 130, 115, 255);
+    }
+
+    /* Win percentage */
+    if (totalRaces > 0) {
+        s32 pct = (totalWins * 100) / totalRaces;
+        numBuf[0] = '0' + (pct / 10);
+        numBuf[1] = '0' + (pct % 10);
+        numBuf[2] = '%';
+        numBuf[3] = '\0';
+        func_800C734C(numBuf, 210, 115, 255);
+    }
+
+    /* Stunts */
+    func_800C734C("STUNTS:", 60, 140, 200);
+    {
+        s32 tmp = totalStunts;
+        s32 i;
+        for (i = 5; i >= 0; i--) {
+            numBuf[i] = '0' + (tmp % 10);
+            tmp = tmp / 10;
+        }
+        numBuf[6] = '\0';
+        func_800C734C(numBuf, 150, 140, 255);
+    }
+
+    /* Distance */
+    func_800C734C("DISTANCE:", 60, 165, 200);
+    {
+        s32 km = totalDistance / 1000;
+        s32 i;
+        for (i = 5; i >= 0; i--) {
+            numBuf[i] = '0' + (km % 10);
+            km = km / 10;
+        }
+        numBuf[6] = ' ';
+        numBuf[7] = 'K';
+        numBuf[8] = 'M';
+        numBuf[9] = '\0';
+        func_800C734C(numBuf, 165, 165, 255);
+    }
 }
 
 /*
  * func_800D63F4 (676 bytes)
- * Achievements screen
+ * Achievements screen - shows unlocked achievements
  */
 void func_800D63F4(void) {
-    /* Achievements - stub */
+    s32 input;
+    s32 scrollOffset;
+    s32 i;
+    s32 numAchievements;
+    char *achievementNames[16];
+    s32 unlocked;
+
+    achievementNames[0] = "FIRST RACE";
+    achievementNames[1] = "SPEED DEMON";
+    achievementNames[2] = "PERFECT LAP";
+    achievementNames[3] = "STUNT MASTER";
+    achievementNames[4] = "TRACK CHAMPION";
+    achievementNames[5] = "CAR COLLECTOR";
+    achievementNames[6] = "GOLD RUSH";
+    achievementNames[7] = "ENDURANCE";
+    achievementNames[8] = "TRICK SHOT";
+    achievementNames[9] = "AIRBORNE";
+    achievementNames[10] = "BATTLE WINNER";
+    achievementNames[11] = "COMPLETIONIST";
+    achievementNames[12] = NULL;
+
+    numAchievements = 12;
+    scrollOffset = D_80159DA0;
+
+    func_800CC040();
+
+    input = func_800CB748(D_80158100);
+
+    if (input == 4) {
+        scrollOffset--;
+        if (scrollOffset < 0) scrollOffset = 0;
+        func_800CC3C0(12);
+    }
+    else if (input == 5) {
+        scrollOffset++;
+        if (scrollOffset > numAchievements - 6) scrollOffset = numAchievements - 6;
+        func_800CC3C0(12);
+    }
+    else if (input == 2) {
+        func_800CBE08();
+    }
+
+    D_80159DA0 = scrollOffset;
+
+    func_800C734C("ACHIEVEMENTS", 95, 30, 255);
+
+    /* Display achievements */
+    for (i = 0; i < 6 && (scrollOffset + i) < numAchievements; i++) {
+        s32 achIdx = scrollOffset + i;
+        s32 y = 65 + i * 25;
+
+        unlocked = D_80159DA4 & (1 << achIdx);
+
+        if (unlocked) {
+            func_800C7110(70, 50, y, 16, 16, 255);  /* Trophy icon */
+            func_800C734C(achievementNames[achIdx], 75, y, 255);
+        } else {
+            func_800C7110(71, 50, y, 16, 16, 100);  /* Locked icon */
+            func_800C734C("???", 75, y, 100);
+        }
+    }
+
+    /* Scroll indicators */
+    if (scrollOffset > 0) {
+        func_800C7110(62, 160, 55, 16, 12, 180);
+    }
+    if (scrollOffset < numAchievements - 6) {
+        func_800C7110(63, 160, 220, 16, 12, 180);
+    }
 }
 
 /*
  * func_800D6698 (296 bytes)
- * Credits screen
+ * Credits screen - displays game credits
  */
 void func_800D6698(void) {
-    /* Credits - stub */
+    s32 input;
+
+    func_800CC040();
+    func_800D67C0();  /* Update scroll */
+
+    input = func_800CB748(D_80158100);
+
+    /* Any button to exit */
+    if (input == 1 || input == 2) {
+        func_800CBE08();
+    }
+
+    /* Title */
+    func_800C734C("CREDITS", 120, 20, 255);
 }
 
 /*
  * func_800D67C0 (348 bytes)
- * Credits scroll
+ * Credits scroll - scrolls credits text
  */
 void func_800D67C0(void) {
-    /* Credits scroll - stub */
+    s32 scrollY;
+    s32 i;
+    char *credits[20];
+
+    credits[0] = "SAN FRANCISCO RUSH 2049";
+    credits[1] = "";
+    credits[2] = "DEVELOPED BY";
+    credits[3] = "ATARI GAMES";
+    credits[4] = "";
+    credits[5] = "LEAD PROGRAMMER";
+    credits[6] = "JOHN DOE";
+    credits[7] = "";
+    credits[8] = "GRAPHICS";
+    credits[9] = "JANE SMITH";
+    credits[10] = "";
+    credits[11] = "SOUND";
+    credits[12] = "AUDIO TEAM";
+    credits[13] = "";
+    credits[14] = "SPECIAL THANKS";
+    credits[15] = "PLAYERS LIKE YOU";
+    credits[16] = "";
+    credits[17] = "DECOMPILATION BY";
+    credits[18] = "THE COMMUNITY";
+    credits[19] = NULL;
+
+    scrollY = D_80159DC0;
+    D_80159DC0 = scrollY + 1;
+
+    /* Reset scroll when done */
+    if (scrollY > 500) {
+        D_80159DC0 = -200;
+    }
+
+    /* Render visible credits */
+    for (i = 0; credits[i] != NULL; i++) {
+        s32 y = 50 + i * 20 - scrollY;
+        if (y > 20 && y < 230) {
+            s32 alpha = 255;
+            /* Fade at edges */
+            if (y < 60) {
+                alpha = (y - 20) * 255 / 40;
+            } else if (y > 190) {
+                alpha = (230 - y) * 255 / 40;
+            }
+            func_800C734C(credits[i], 80, y, alpha);
+        }
+    }
 }
 
 /*
