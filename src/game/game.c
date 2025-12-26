@@ -40987,90 +40987,453 @@ void func_80105EA8(void *car) {
 
  * func_80106874 (712 bytes)
  * Boost activate
+ *
+ * Activates nitro boost for a car
  */
 void func_80106874(void *car) {
-    /* Boost - stub */
+    u8 *carData = (u8 *)car;
+    f32 *nitroReserve;
+    f32 *nitroActive;
+    f32 *velocity;
+
+    if (carData == NULL) {
+        return;
+    }
+
+    nitroReserve = (f32 *)(carData + 0x1BC);  /* Nitro tank */
+    nitroActive = (f32 *)(carData + 0x1C0);   /* Active boost amount */
+    velocity = (f32 *)(carData + 0x34);
+
+    /* Check if we have nitro */
+    if (*nitroReserve <= 0.0f) {
+        return;
+    }
+
+    /* Already boosting? */
+    if (*nitroActive > 0.0f) {
+        return;
+    }
+
+    /* Consume nitro and activate boost */
+    *nitroActive = 1.0f;
+    *nitroReserve -= 0.25f;  /* 4 boosts per full tank */
+
+    if (*nitroReserve < 0.0f) {
+        *nitroReserve = 0.0f;
+    }
+
+    /* Play boost sound */
+    func_800CC3C0(35);
 }
 
 /*
 
  * func_80106B3C (600 bytes)
  * Boost update
+ *
+ * Updates active boost each frame - applies acceleration and decays
  */
 void func_80106B3C(void *car) {
-    /* Boost update - stub */
+    u8 *carData = (u8 *)car;
+    f32 *nitroActive;
+    f32 *velocity;
+    f32 *forward;
+    f32 boostForce;
+
+    if (carData == NULL) {
+        return;
+    }
+
+    nitroActive = (f32 *)(carData + 0x1C0);
+    velocity = (f32 *)(carData + 0x34);
+    forward = (f32 *)(carData + 0x60);
+
+    if (*nitroActive <= 0.0f) {
+        return;
+    }
+
+    /* Apply boost acceleration in forward direction */
+    boostForce = 50.0f * (*nitroActive);
+
+    velocity[0] += forward[0] * boostForce * (1.0f / 60.0f);
+    velocity[1] += forward[1] * boostForce * (1.0f / 60.0f);
+    velocity[2] += forward[2] * boostForce * (1.0f / 60.0f);
+
+    /* Decay boost amount */
+    *nitroActive -= 0.016f;  /* ~1 second boost duration */
+
+    if (*nitroActive < 0.0f) {
+        *nitroActive = 0.0f;
+    }
 }
 
 /*
 
  * func_80106D94 (1604 bytes)
  * Nitro pickup
+ *
+ * Handles car collecting a nitro pickup on track
  */
 void func_80106D94(void *car, void *pickup) {
-    /* Nitro pickup - stub */
+    u8 *carData = (u8 *)car;
+    u8 *pickupData = (u8 *)pickup;
+    f32 *nitroReserve;
+    f32 addAmount;
+
+    if (carData == NULL || pickupData == NULL) {
+        return;
+    }
+
+    nitroReserve = (f32 *)(carData + 0x1BC);
+
+    /* Get pickup amount (offset 0x10 in pickup) */
+    addAmount = *(f32 *)(pickupData + 0x10);
+    if (addAmount <= 0.0f) {
+        addAmount = 0.25f;  /* Default 1/4 tank */
+    }
+
+    /* Add to nitro reserve */
+    *nitroReserve += addAmount;
+
+    /* Cap at full tank */
+    if (*nitroReserve > 1.0f) {
+        *nitroReserve = 1.0f;
+    }
+
+    /* Mark pickup as collected (offset 0x00 = active flag) */
+    pickupData[0x00] = 0;
+
+    /* Play pickup sound */
+    func_800CC3C0(22);
+
+    /* Spawn collect effect at pickup position */
+    func_800EE820(4, (f32 *)(pickupData + 0x04));
 }
 
 /*
 
  * func_801073D8 (580 bytes)
  * Checkpoint hit
+ *
+ * Records checkpoint passage for lap validation
  */
 void func_801073D8(void *car, s32 cpId) {
-    /* Checkpoint - stub */
+    u8 *carData = (u8 *)car;
+    s32 *lastCp;
+    s32 *cpMask;
+    s32 expectedCp;
+
+    if (carData == NULL) {
+        return;
+    }
+
+    lastCp = (s32 *)(carData + 0x1A0);    /* Last checkpoint hit */
+    cpMask = (s32 *)(carData + 0x1A4);    /* Checkpoint bitmask */
+
+    /* Check if this is the expected next checkpoint */
+    expectedCp = (*lastCp + 1) % 16;  /* Assuming 16 checkpoints max */
+
+    if (cpId == expectedCp || cpId == *lastCp + 1) {
+        /* Valid checkpoint sequence */
+        *lastCp = cpId;
+        *cpMask |= (1 << cpId);
+
+        /* Play checkpoint sound */
+        func_800CC3C0(15);
+    }
 }
 
 /*
 
  * func_8010761C (1240 bytes)
  * Lap complete
+ *
+ * Handles lap completion - validates checkpoints and updates lap count
  */
 void func_8010761C(void *car) {
-    /* Lap complete - stub */
+    extern u32 D_80142AFC;     /* Frame counter */
+    extern s32 D_80159A00;     /* Required checkpoint mask */
+    extern s32 D_80159A04;     /* Total laps */
+    u8 *carData = (u8 *)car;
+    s32 *cpMask;
+    s32 *lapCount;
+    s32 *lapTime;
+    s32 *bestLap;
+
+    if (carData == NULL) {
+        return;
+    }
+
+    cpMask = (s32 *)(carData + 0x1A4);
+    lapCount = (s32 *)(carData + 0x1A8);
+    lapTime = (s32 *)(carData + 0x1AC);
+    bestLap = (s32 *)(carData + 0x1B0);
+
+    /* Verify all required checkpoints were hit */
+    if ((*cpMask & D_80159A00) != D_80159A00) {
+        return;  /* Shortcut detected - invalid lap */
+    }
+
+    /* Record lap time */
+    s32 currentLapTime = (s32)D_80142AFC - *lapTime;
+
+    /* Check for best lap */
+    if (*bestLap == 0 || currentLapTime < *bestLap) {
+        *bestLap = currentLapTime;
+    }
+
+    /* Increment lap count */
+    (*lapCount)++;
+
+    /* Reset for next lap */
+    *cpMask = 0;
+    *lapTime = (s32)D_80142AFC;
+    *(s32 *)(carData + 0x1A0) = -1;  /* Reset last checkpoint */
+
+    /* Check for race finish */
+    if (*lapCount >= D_80159A04) {
+        func_80107AF4(car);  /* Race finish */
+    } else {
+        /* Play lap complete sound */
+        func_800CC3C0(16);
+    }
 }
 
 /*
 
  * func_80107AF4 (1000 bytes)
  * Race finish
+ *
+ * Handles car finishing the race - records time and position
  */
 void func_80107AF4(void *car) {
-    /* Race finish - stub */
+    extern u32 D_80142AFC;
+    extern s32 D_80159A10;     /* Finish order counter */
+    extern s32 D_80159A14[];   /* Finish times [8] */
+    extern s32 D_80159A34[];   /* Finish positions [8] */
+    u8 *carData = (u8 *)car;
+    s32 carIdx;
+    s32 *raceTime;
+    s32 *finishPos;
+    s32 *raceState;
+
+    if (carData == NULL) {
+        return;
+    }
+
+    carIdx = *(s32 *)(carData + 0x08);
+    raceTime = (s32 *)(carData + 0x1B4);
+    finishPos = (s32 *)(carData + 0x1B8);
+    raceState = (s32 *)(carData + 0x1D0);
+
+    /* Check if already finished */
+    if (*raceState == 2) {
+        return;
+    }
+
+    /* Record finish */
+    *raceState = 2;  /* Finished state */
+    *raceTime = (s32)D_80142AFC;
+    *finishPos = D_80159A10;
+
+    /* Record in global arrays */
+    if (carIdx >= 0 && carIdx < 8) {
+        D_80159A14[carIdx] = *raceTime;
+        D_80159A34[carIdx] = D_80159A10;
+    }
+
+    D_80159A10++;
+
+    /* Play finish sound based on position */
+    if (*finishPos == 0) {
+        func_800CC3C0(40);  /* First place */
+    } else {
+        func_800CC3C0(41);  /* Other positions */
+    }
+
+    /* Check if this is the player */
+    if (carIdx == 0) {
+        D_801146EC = 7;  /* Transition to ENDGAME state */
+    }
 }
 
 /*
 
  * func_80107EDC (632 bytes)
  * Position update
+ *
+ * Updates race positions for all cars based on progress
  */
 void func_80107EDC(void) {
-    /* Position update - stub */
+    extern s8 D_80152744;      /* Number of cars */
+    extern u8 D_80152818[];    /* Car array */
+    s32 i, j;
+    s32 numCars;
+    f32 progress[8];
+    s32 positions[8];
+
+    numCars = D_80152744;
+    if (numCars <= 0 || numCars > 8) {
+        return;
+    }
+
+    /* Calculate progress for each car */
+    for (i = 0; i < numCars; i++) {
+        u8 *car = &D_80152818[i * 0x808];
+        s32 lap = *(s32 *)(car + 0x1A8);
+        s32 cp = *(s32 *)(car + 0x1A0);
+        f32 cpProgress = *(f32 *)(car + 0x1C4);  /* Progress within checkpoint */
+
+        progress[i] = (f32)(lap * 1000 + cp * 10) + cpProgress;
+        positions[i] = 0;
+    }
+
+    /* Sort to determine positions (higher progress = better position) */
+    for (i = 0; i < numCars; i++) {
+        for (j = 0; j < numCars; j++) {
+            if (i != j && progress[j] > progress[i]) {
+                positions[i]++;
+            }
+        }
+    }
+
+    /* Write positions back to cars */
+    for (i = 0; i < numCars; i++) {
+        u8 *car = &D_80152818[i * 0x808];
+        *(s32 *)(car + 0x1CC) = positions[i];  /* Current race position */
+    }
 }
 
 /*
 
  * func_80108154 (900 bytes)
  * Race standings
+ *
+ * Displays current race standings on HUD
  */
 void func_80108154(void) {
-    /* Standings - stub */
+    extern s8 D_80152744;
+    extern u8 D_80152818[];
+    s32 i;
+    s32 numCars;
+    s32 y;
+
+    numCars = D_80152744;
+    if (numCars <= 0) {
+        return;
+    }
+
+    y = 20;
+
+    /* Draw position for each car sorted by position */
+    for (i = 0; i < numCars && i < 4; i++) {
+        u8 *car = &D_80152818[i * 0x808];
+        s32 pos = *(s32 *)(car + 0x1CC);
+        s32 carNum = *(s32 *)(car + 0x08);
+
+        /* Draw position indicator */
+        s8 posStr[8];
+        posStr[0] = '0' + pos + 1;
+        posStr[1] = '.';
+        posStr[2] = ' ';
+        posStr[3] = 'P';
+        posStr[4] = '0' + carNum + 1;
+        posStr[5] = '\0';
+
+        func_800C734C(posStr, 260, y, (carNum == 0) ? 255 : 180);
+        y += 12;
+    }
 }
 
 /*
 
  * func_801084D4 (1500 bytes)
  * Respawn car
+ *
+ * Respawns car at last valid checkpoint
  */
 void func_801084D4(void *car) {
-    /* Respawn - stub */
+    extern u8 D_80159B00[];    /* Checkpoint positions */
+    u8 *carData = (u8 *)car;
+    s32 lastCp;
+    f32 *carPos;
+    f32 *carVel;
+    f32 *cpPos;
+
+    if (carData == NULL) {
+        return;
+    }
+
+    lastCp = *(s32 *)(carData + 0x1A0);
+    if (lastCp < 0) {
+        lastCp = 0;  /* Start position */
+    }
+
+    carPos = (f32 *)(carData + 0x24);
+    carVel = (f32 *)(carData + 0x34);
+
+    /* Get checkpoint position */
+    cpPos = (f32 *)&D_80159B00[lastCp * 0x20];
+
+    /* Set car position to checkpoint */
+    carPos[0] = cpPos[0];
+    carPos[1] = cpPos[1] + 2.0f;  /* Slightly above ground */
+    carPos[2] = cpPos[2];
+
+    /* Reset velocity */
+    carVel[0] = 0.0f;
+    carVel[1] = 0.0f;
+    carVel[2] = 0.0f;
+
+    /* Reset angular velocity */
+    *(f32 *)(carData + 0x84) = 0.0f;
+    *(f32 *)(carData + 0x88) = 0.0f;
+    *(f32 *)(carData + 0x8C) = 0.0f;
+
+    /* Reset damage */
+    *(s32 *)(carData + 0x1B0) = 0;
+
+    /* Clear wreck flag */
+    *(s32 *)(carData + 0x1D0) = 1;  /* Racing state */
+
+    /* Play respawn sound */
+    func_800CC3C0(28);
 }
 
 /*
 
  * func_80108AB0 (760 bytes)
  * Death check
+ *
+ * Checks if car should be destroyed (out of bounds, excessive damage)
  */
 s32 func_80108AB0(void *car) {
-    /* Death check - stub */
+    u8 *carData = (u8 *)car;
+    f32 *carPos;
+    s32 damage;
+
+    if (carData == NULL) {
+        return 0;
+    }
+
+    carPos = (f32 *)(carData + 0x24);
+    damage = *(s32 *)(carData + 0x1B0);
+
+    /* Check if below death plane */
+    if (carPos[1] < -100.0f) {
+        return 1;
+    }
+
+    /* Check for excessive damage */
+    if (damage >= 10) {
+        return 1;
+    }
+
+    /* Check out of bounds */
+    if (func_8010A53C(car)) {
+        return 1;
+    }
+
     return 0;
 }
 
@@ -41078,36 +41441,121 @@ s32 func_80108AB0(void *car) {
 
  * func_80108DA8 (408 bytes)
  * Wreck car
+ *
+ * Triggers car destruction sequence
  */
 void func_80108DA8(void *car) {
-    /* Wreck - stub */
+    u8 *carData = (u8 *)car;
+    f32 *carPos;
+
+    if (carData == NULL) {
+        return;
+    }
+
+    carPos = (f32 *)(carData + 0x24);
+
+    /* Set wrecked state */
+    *(s32 *)(carData + 0x1D0) = 3;  /* Wrecked */
+
+    /* Spawn explosion effect */
+    func_800EF8F4(carPos, 10.0f);
+
+    /* Play crash sound */
+    func_800CC3C0(32);
+
+    /* Start recovery timer */
+    *(s32 *)(carData + 0x1D4) = 180;  /* 3 seconds at 60fps */
 }
 
 /*
 
  * func_80108F40 (1320 bytes)
  * Recovery timer
+ *
+ * Counts down recovery timer and respawns when ready
  */
 void func_80108F40(void *car) {
-    /* Recovery - stub */
+    u8 *carData = (u8 *)car;
+    s32 *timer;
+    s32 *state;
+
+    if (carData == NULL) {
+        return;
+    }
+
+    state = (s32 *)(carData + 0x1D0);
+    timer = (s32 *)(carData + 0x1D4);
+
+    /* Only update if in wrecked state */
+    if (*state != 3) {
+        return;
+    }
+
+    /* Count down timer */
+    if (*timer > 0) {
+        (*timer)--;
+    }
+
+    /* Respawn when timer expires */
+    if (*timer <= 0) {
+        func_801084D4(car);
+    }
 }
 
 /*
 
  * func_80109468 (1528 bytes)
  * Reset position
+ *
+ * Manual reset - player requests respawn
  */
 void func_80109468(void *car) {
-    /* Reset pos - stub */
+    u8 *carData = (u8 *)car;
+    s32 *state;
+
+    if (carData == NULL) {
+        return;
+    }
+
+    state = (s32 *)(carData + 0x1D0);
+
+    /* Don't reset if already wrecked or finished */
+    if (*state == 2 || *state == 3) {
+        return;
+    }
+
+    /* Respawn at last checkpoint */
+    func_801084D4(car);
 }
 
 /*
 
  * func_80109A60 (1276 bytes)
  * Shortcut detect
+ *
+ * Detects if car is using a valid shortcut path
  */
 s32 func_80109A60(void *car) {
-    /* Shortcut - stub */
+    u8 *carData = (u8 *)car;
+    f32 *carPos;
+    s32 zone;
+
+    if (carData == NULL) {
+        return 0;
+    }
+
+    carPos = (f32 *)(carData + 0x24);
+
+    /* Get current track zone */
+    zone = func_8010A7AC(carPos);
+
+    /* Check if zone is a shortcut zone (types 10-19) */
+    if (zone >= 10 && zone < 20) {
+        /* Set shortcut flag */
+        *(s32 *)(carData + 0x1E0) = 1;
+        return 1;
+    }
+
     return 0;
 }
 
@@ -41115,9 +41563,58 @@ s32 func_80109A60(void *car) {
 
  * func_80109F5C (1504 bytes)
  * Wrong way detect
+ *
+ * Detects if car is driving in wrong direction
  */
 s32 func_80109F5C(void *car) {
-    /* Wrong way - stub */
+    extern u8 D_80159B00[];    /* Checkpoint data */
+    u8 *carData = (u8 *)car;
+    f32 *carPos;
+    f32 *carDir;
+    s32 lastCp;
+    s32 nextCp;
+    f32 *cpPos;
+    f32 *nextCpPos;
+    f32 toNext[3];
+    f32 dot;
+
+    if (carData == NULL) {
+        return 0;
+    }
+
+    carPos = (f32 *)(carData + 0x24);
+    carDir = (f32 *)(carData + 0x60);  /* Forward direction */
+    lastCp = *(s32 *)(carData + 0x1A0);
+
+    if (lastCp < 0) {
+        return 0;  /* Haven't passed a checkpoint yet */
+    }
+
+    nextCp = (lastCp + 1) % 16;
+
+    /* Get checkpoint positions */
+    nextCpPos = (f32 *)&D_80159B00[nextCp * 0x20];
+
+    /* Calculate direction to next checkpoint */
+    toNext[0] = nextCpPos[0] - carPos[0];
+    toNext[2] = nextCpPos[2] - carPos[2];
+
+    /* Normalize */
+    f32 len = sqrtf(toNext[0] * toNext[0] + toNext[2] * toNext[2]);
+    if (len < 0.001f) {
+        return 0;
+    }
+    toNext[0] /= len;
+    toNext[2] /= len;
+
+    /* Dot product with car forward */
+    dot = carDir[0] * toNext[0] + carDir[2] * toNext[2];
+
+    /* If facing away from next checkpoint, wrong way */
+    if (dot < -0.5f) {
+        return 1;
+    }
+
     return 0;
 }
 
@@ -41125,9 +41622,33 @@ s32 func_80109F5C(void *car) {
 
  * func_8010A53C (624 bytes)
  * Out of bounds
+ *
+ * Checks if car is outside track boundaries
  */
 s32 func_8010A53C(void *car) {
-    /* Out of bounds - stub */
+    extern f32 D_80159C00;  /* Track min X */
+    extern f32 D_80159C04;  /* Track max X */
+    extern f32 D_80159C08;  /* Track min Z */
+    extern f32 D_80159C0C;  /* Track max Z */
+    u8 *carData = (u8 *)car;
+    f32 *carPos;
+
+    if (carData == NULL) {
+        return 0;
+    }
+
+    carPos = (f32 *)(carData + 0x24);
+
+    /* Check X bounds */
+    if (carPos[0] < D_80159C00 || carPos[0] > D_80159C04) {
+        return 1;
+    }
+
+    /* Check Z bounds */
+    if (carPos[2] < D_80159C08 || carPos[2] > D_80159C0C) {
+        return 1;
+    }
+
     return 0;
 }
 
@@ -41135,114 +41656,403 @@ s32 func_8010A53C(void *car) {
 
  * func_8010A7AC (292 bytes)
  * Track zone get
+ *
+ * Returns the track zone type at given position
  */
 s32 func_8010A7AC(f32 *pos) {
-    /* Track zone - stub */
-    return 0;
+    extern u8 D_80159D00[];    /* Zone grid data */
+    extern s32 D_80159D04;     /* Grid width */
+    extern s32 D_80159D08;     /* Grid height */
+    extern f32 D_80159D0C;     /* Grid cell size */
+    extern f32 D_80159D10;     /* Grid origin X */
+    extern f32 D_80159D14;     /* Grid origin Z */
+    s32 gridX, gridZ;
+    s32 idx;
+
+    if (pos == NULL) {
+        return 0;
+    }
+
+    /* Convert world position to grid cell */
+    gridX = (s32)((pos[0] - D_80159D10) / D_80159D0C);
+    gridZ = (s32)((pos[2] - D_80159D14) / D_80159D0C);
+
+    /* Bounds check */
+    if (gridX < 0 || gridX >= D_80159D04 || gridZ < 0 || gridZ >= D_80159D08) {
+        return 0;  /* Out of grid = road */
+    }
+
+    idx = gridZ * D_80159D04 + gridX;
+    return D_80159D00[idx];
 }
 
 /*
 
  * func_8010A8D0 (1500 bytes)
  * Surface type get
+ *
+ * Returns surface type at position (affects grip/handling)
+ * Types: 0=asphalt, 1=concrete, 2=dirt, 3=grass, 4=sand, 5=ice, 6=water
  */
 s32 func_8010A8D0(f32 *pos) {
-    /* Surface type - stub */
-    return 0;
+    s32 zone;
+
+    if (pos == NULL) {
+        return 0;
+    }
+
+    zone = func_8010A7AC(pos);
+
+    /* Map zone to surface type */
+    switch (zone) {
+        case 0:   /* Road */
+        case 1:   /* Start grid */
+            return 0;  /* Asphalt */
+        case 2:   /* Pit lane */
+            return 1;  /* Concrete */
+        case 3:   /* Off-road */
+            return 2;  /* Dirt */
+        case 4:   /* Grass */
+            return 3;  /* Grass */
+        case 5:   /* Sand */
+            return 4;  /* Sand */
+        case 6:   /* Ice */
+            return 5;  /* Ice */
+        case 7:   /* Water */
+            return 6;  /* Water */
+        default:
+            return 0;  /* Default to asphalt */
+    }
 }
 
 /*
 
  * func_8010AEAC (1828 bytes)
  * Grip calculate
+ *
+ * Calculates tire grip based on surface type
  */
 f32 func_8010AEAC(void *tire, s32 surface) {
-    /* Grip - stub */
-    return 1.0f;
+    static const f32 gripTable[7] = {
+        1.0f,   /* Asphalt - full grip */
+        0.95f,  /* Concrete - slightly less */
+        0.6f,   /* Dirt - reduced grip */
+        0.4f,   /* Grass - low grip */
+        0.3f,   /* Sand - very low grip */
+        0.15f,  /* Ice - minimal grip */
+        0.1f    /* Water - almost none */
+    };
+
+    if (surface < 0 || surface > 6) {
+        surface = 0;
+    }
+
+    return gripTable[surface];
 }
 
 /*
 
  * func_8010B5D0 (556 bytes)
  * Drag calculate
+ *
+ * Calculates aerodynamic drag based on speed
  */
 f32 func_8010B5D0(void *car) {
-    /* Drag - stub */
-    return 0.0f;
+    u8 *carData = (u8 *)car;
+    f32 *velocity;
+    f32 speed;
+    f32 dragCoeff;
+
+    if (carData == NULL) {
+        return 0.0f;
+    }
+
+    velocity = (f32 *)(carData + 0x34);
+
+    /* Calculate speed */
+    speed = sqrtf(velocity[0] * velocity[0] +
+                  velocity[1] * velocity[1] +
+                  velocity[2] * velocity[2]);
+
+    /* Drag coefficient from car stats (offset 0x50) */
+    dragCoeff = *(f32 *)(carData + 0x50);
+    if (dragCoeff <= 0.0f) {
+        dragCoeff = 0.35f;  /* Default */
+    }
+
+    /* Drag = 0.5 * Cd * v^2 */
+    return 0.5f * dragCoeff * speed * speed;
 }
 
 /*
 
  * func_8010B7FC (460 bytes)
  * Downforce calculate
+ *
+ * Calculates aerodynamic downforce based on speed
  */
 f32 func_8010B7FC(void *car) {
-    /* Downforce - stub */
-    return 0.0f;
+    u8 *carData = (u8 *)car;
+    f32 *velocity;
+    f32 speed;
+    f32 downforceCoeff;
+
+    if (carData == NULL) {
+        return 0.0f;
+    }
+
+    velocity = (f32 *)(carData + 0x34);
+
+    speed = sqrtf(velocity[0] * velocity[0] + velocity[2] * velocity[2]);
+
+    /* Downforce coefficient from car stats (offset 0x54) */
+    downforceCoeff = *(f32 *)(carData + 0x54);
+    if (downforceCoeff <= 0.0f) {
+        downforceCoeff = 0.5f;
+    }
+
+    /* Downforce = Cl * v^2 */
+    return downforceCoeff * speed * speed * 0.01f;
 }
 
 /*
 
  * func_8010B9C8 (700 bytes)
  * Engine torque
+ *
+ * Calculates engine torque based on RPM
  */
 f32 func_8010B9C8(void *car, s32 rpm) {
-    /* Torque - stub */
-    return 0.0f;
+    u8 *carData = (u8 *)car;
+    f32 maxTorque;
+    f32 peakRpm;
+    f32 torque;
+
+    if (carData == NULL || rpm <= 0) {
+        return 0.0f;
+    }
+
+    /* Get max torque from car stats (offset 0x58) */
+    maxTorque = *(f32 *)(carData + 0x58);
+    if (maxTorque <= 0.0f) {
+        maxTorque = 300.0f;  /* Default Nm */
+    }
+
+    /* Peak torque at 5000 RPM */
+    peakRpm = 5000.0f;
+
+    /* Simple torque curve - linear up to peak, then drops */
+    if (rpm < peakRpm) {
+        torque = maxTorque * ((f32)rpm / peakRpm);
+    } else {
+        /* Linear drop-off after peak */
+        f32 overRev = (f32)(rpm - peakRpm) / 3000.0f;
+        torque = maxTorque * (1.0f - overRev * 0.5f);
+        if (torque < 0.0f) torque = 0.0f;
+    }
+
+    return torque;
 }
 
 /*
 
  * func_8010BC84 (932 bytes)
  * Transmission shift
+ *
+ * Changes gear with shift timing
  */
 void func_8010BC84(void *car, s32 gear) {
-    /* Shift - stub */
+    u8 *carData = (u8 *)car;
+    s32 *currentGear;
+    s32 *shiftTimer;
+
+    if (carData == NULL) {
+        return;
+    }
+
+    currentGear = (s32 *)(carData + 0xD0);
+    shiftTimer = (s32 *)(carData + 0xD4);
+
+    /* Validate gear range (1-6 + reverse) */
+    if (gear < -1 || gear > 6) {
+        return;
+    }
+
+    /* Already in this gear? */
+    if (*currentGear == gear) {
+        return;
+    }
+
+    /* Set shift timer (brief power loss during shift) */
+    *shiftTimer = 6;  /* 0.1 seconds */
+    *currentGear = gear;
+
+    /* Play shift sound */
+    func_800CC3C0(26);
 }
 
 /*
 
  * func_8010C02C (1060 bytes)
  * Brake apply
+ *
+ * Applies braking force to slow the car
  */
 void func_8010C02C(void *car, f32 force) {
-    /* Brake - stub */
+    u8 *carData = (u8 *)car;
+    f32 *velocity;
+    f32 speed;
+    f32 decel;
+
+    if (carData == NULL || force <= 0.0f) {
+        return;
+    }
+
+    velocity = (f32 *)(carData + 0x34);
+
+    /* Calculate current speed */
+    speed = sqrtf(velocity[0] * velocity[0] + velocity[2] * velocity[2]);
+
+    if (speed < 0.1f) {
+        velocity[0] = 0.0f;
+        velocity[2] = 0.0f;
+        return;
+    }
+
+    /* Deceleration proportional to brake force */
+    decel = force * 30.0f * (1.0f / 60.0f);  /* Max 30 m/s^2 */
+
+    /* Apply deceleration in velocity direction */
+    f32 factor = 1.0f - (decel / speed);
+    if (factor < 0.0f) factor = 0.0f;
+
+    velocity[0] *= factor;
+    velocity[2] *= factor;
+
+    /* Store brake state for lights */
+    *(s32 *)(carData + 0xCC) = (s32)(force * 100.0f);
 }
 
 /*
 
  * func_8010C450 (320 bytes)
  * Handbrake apply
+ *
+ * Applies handbrake - locks rear wheels for drifting
  */
 void func_8010C450(void *car) {
-    /* Handbrake - stub */
+    u8 *carData = (u8 *)car;
+
+    if (carData == NULL) {
+        return;
+    }
+
+    /* Set handbrake flag */
+    *(s32 *)(carData + 0xD8) = 1;
+
+    /* Reduce rear wheel grip */
+    /* (handled in tire physics) */
 }
 
 /*
 
  * func_8010C590 (320 bytes)
  * Throttle apply
+ *
+ * Applies throttle input to accelerate car
  */
 void func_8010C590(void *car, f32 amount) {
-    /* Throttle - stub */
+    u8 *carData = (u8 *)car;
+
+    if (carData == NULL) {
+        return;
+    }
+
+    /* Clamp throttle 0-1 */
+    if (amount < 0.0f) amount = 0.0f;
+    if (amount > 1.0f) amount = 1.0f;
+
+    /* Store throttle amount */
+    *(f32 *)(carData + 0xC4) = amount;
 }
 
 /*
 
  * func_8010C6D0 (292 bytes)
  * Steering apply
+ *
+ * Applies steering angle to front wheels
  */
 void func_8010C6D0(void *car, f32 angle) {
-    /* Steering - stub */
+    u8 *carData = (u8 *)car;
+
+    if (carData == NULL) {
+        return;
+    }
+
+    /* Clamp steering angle */
+    if (angle < -1.0f) angle = -1.0f;
+    if (angle > 1.0f) angle = 1.0f;
+
+    /* Store steering angle (converted to radians later) */
+    *(f32 *)(carData + 0xC0) = angle * 0.5f;  /* Max 0.5 radians (~28 degrees) */
 }
 
 /*
 
  * func_8010C7F4 (384 bytes)
  * Car input process
+ *
+ * Processes controller input and applies to car controls
  */
 void func_8010C7F4(void *car, void *input) {
-    /* Car input - stub */
+    u8 *carData = (u8 *)car;
+    u8 *inputData = (u8 *)input;
+    f32 stickX, stickY;
+    s32 buttons;
+
+    if (carData == NULL || inputData == NULL) {
+        return;
+    }
+
+    /* Read analog stick (-1 to 1) */
+    stickX = *(f32 *)(inputData + 0x00);
+    stickY = *(f32 *)(inputData + 0x04);
+
+    /* Read button state */
+    buttons = *(s32 *)(inputData + 0x08);
+
+    /* Apply steering */
+    func_8010C6D0(car, stickX);
+
+    /* Apply throttle (forward on stick or A button) */
+    if (stickY > 0.0f || (buttons & 0x01)) {
+        f32 throttle = (stickY > 0.0f) ? stickY : 1.0f;
+        func_8010C590(car, throttle);
+    } else {
+        func_8010C590(car, 0.0f);
+    }
+
+    /* Apply brake (back on stick or B button) */
+    if (stickY < 0.0f || (buttons & 0x02)) {
+        f32 brake = (stickY < 0.0f) ? -stickY : 1.0f;
+        func_8010C02C(car, brake);
+    }
+
+    /* Handbrake (Z or R button) */
+    if (buttons & 0x10) {
+        func_8010C450(car);
+    }
+
+    /* Boost (C-up or L button) */
+    if (buttons & 0x20) {
+        func_80106874(car);
+    }
+
+    /* Reset (Start button) */
+    if (buttons & 0x1000) {
+        func_80109468(car);
+    }
 }
 
 /*
