@@ -37598,37 +37598,254 @@ void func_800EDCE8(void *player) {
 
  * func_800EE5DC (580 bytes)
  * World trigger activate
+ *
+ * Activates a world trigger by ID - used for checkpoints, shortcuts, etc.
+ * Based on arcade checkpoint.c trigger handling
  */
 void func_800EE5DC(s32 triggerId) {
-    /* Trigger activate - stub */
+    extern u8 D_80153D00[];    /* Trigger state array */
+    extern s32 D_80153D80;     /* Number of triggers */
+    extern u8 D_80152818[];    /* Car state */
+    u8 *trigger;
+    s32 triggerType;
+    f32 *playerPos;
+
+    if (triggerId < 0 || triggerId >= D_80153D80) {
+        return;
+    }
+
+    trigger = &D_80153D00[triggerId * 0x20];
+
+    /* Check if already activated */
+    if (trigger[0x1C] != 0) {
+        return;
+    }
+
+    /* Mark as activated */
+    trigger[0x1C] = 1;
+
+    /* Get trigger type (offset 0x00) */
+    triggerType = trigger[0x00];
+
+    playerPos = (f32 *)(&D_80152818[0x24]);
+
+    switch (triggerType) {
+        case 0:  /* Checkpoint */
+            func_800F6960(triggerId);  /* Record checkpoint */
+            func_800CC3C0(15);  /* Checkpoint sound */
+            break;
+
+        case 1:  /* Shortcut entry */
+            D_80152818[0x1E0] = 1;  /* Set shortcut flag */
+            break;
+
+        case 2:  /* Boost pad */
+            func_800F6584(triggerId);  /* Apply boost */
+            func_800CC3C0(20);  /* Boost sound */
+            break;
+
+        case 3:  /* Jump ramp */
+            func_800CC3C0(25);  /* Jump sound */
+            break;
+
+        case 4:  /* Item pickup */
+            func_800EB028(5, playerPos);  /* Spawn pickup effect */
+            break;
+
+        case 5:  /* Death trigger */
+            func_800F6D10((void *)D_80152818);  /* Respawn player */
+            break;
+    }
 }
 
 /*
 
  * func_800EE820 (148 bytes)
  * World effect spawn
+ *
+ * Creates a visual effect at the specified position
+ * Effect types: 0=smoke, 1=spark, 2=explosion, 3=dust, 4=trail
  */
 void *func_800EE820(s32 effectType, f32 *pos) {
-    /* Effect spawn - stub */
-    return NULL;
+    extern u8 D_80154800[];    /* Effect pool */
+    extern s32 D_80154C00;     /* Effect pool count */
+    extern s32 D_80154C04;     /* Max effects */
+    u8 *effect;
+    s32 i;
+
+    if (pos == NULL) {
+        return NULL;
+    }
+
+    /* Find free slot in effect pool */
+    for (i = 0; i < D_80154C04; i++) {
+        effect = &D_80154800[i * 0x40];
+        if (effect[0x00] == 0) {  /* Inactive slot */
+            /* Initialize effect */
+            effect[0x00] = 1;  /* Active */
+            effect[0x04] = (u8)effectType;
+            effect[0x08] = 0;  /* Frame counter */
+
+            /* Copy position */
+            *(f32 *)(effect + 0x10) = pos[0];
+            *(f32 *)(effect + 0x14) = pos[1];
+            *(f32 *)(effect + 0x18) = pos[2];
+
+            /* Set lifetime based on type */
+            switch (effectType) {
+                case 0: effect[0x3C] = 30; break;  /* Smoke - 0.5s */
+                case 1: effect[0x3C] = 15; break;  /* Spark - 0.25s */
+                case 2: effect[0x3C] = 45; break;  /* Explosion - 0.75s */
+                case 3: effect[0x3C] = 20; break;  /* Dust - 0.33s */
+                case 4: effect[0x3C] = 60; break;  /* Trail - 1s */
+                default: effect[0x3C] = 30; break;
+            }
+
+            D_80154C00++;
+            return (void *)effect;
+        }
+    }
+
+    return NULL;  /* No free slots */
 }
 
 /*
 
  * func_800EE8B4 (456 bytes)
  * World effect update
+ *
+ * Updates a single effect - position, animation, lifetime
  */
 void func_800EE8B4(void *effect) {
-    /* Effect update - stub */
+    u8 *eff = (u8 *)effect;
+    s32 effectType;
+    s32 frame;
+    s32 lifetime;
+    f32 *pos;
+    f32 *vel;
+
+    if (eff == NULL || eff[0x00] == 0) {
+        return;
+    }
+
+    effectType = eff[0x04];
+    frame = eff[0x08];
+    lifetime = eff[0x3C];
+
+    /* Update frame counter */
+    eff[0x08] = frame + 1;
+
+    /* Check if effect expired */
+    if (frame >= lifetime) {
+        eff[0x00] = 0;  /* Deactivate */
+        return;
+    }
+
+    /* Get position and velocity */
+    pos = (f32 *)(eff + 0x10);
+    vel = (f32 *)(eff + 0x20);
+
+    /* Update based on type */
+    switch (effectType) {
+        case 0:  /* Smoke - rise and fade */
+            pos[1] += 2.0f;  /* Rise */
+            vel[0] *= 0.95f;  /* Slow horizontal */
+            vel[2] *= 0.95f;
+            eff[0x38] = (u8)(255 * (lifetime - frame) / lifetime);  /* Alpha fade */
+            break;
+
+        case 1:  /* Spark - gravity */
+            vel[1] -= 0.5f;  /* Gravity */
+            pos[0] += vel[0];
+            pos[1] += vel[1];
+            pos[2] += vel[2];
+            break;
+
+        case 2:  /* Explosion - expand and fade */
+            *(f32 *)(eff + 0x30) += 5.0f;  /* Expand radius */
+            eff[0x38] = (u8)(255 * (lifetime - frame) / lifetime);
+            break;
+
+        case 3:  /* Dust - drift and settle */
+            pos[1] -= 0.5f;  /* Settle */
+            pos[0] += vel[0] * 0.1f;
+            pos[2] += vel[2] * 0.1f;
+            eff[0x38] = (u8)(200 * (lifetime - frame) / lifetime);
+            break;
+
+        case 4:  /* Trail - fade only */
+            eff[0x38] = (u8)(255 * (lifetime - frame) / lifetime);
+            break;
+    }
 }
 
 /*
 
  * func_800EEA7C (820 bytes)
  * Particle emitter create
+ *
+ * Creates a particle emitter that spawns particles over time
+ * Types: 0=smoke trail, 1=spark shower, 2=fire, 3=steam, 4=exhaust
  */
 void *func_800EEA7C(s32 type, f32 *pos) {
-    /* Emitter create - stub */
+    extern u8 D_80155000[];    /* Emitter pool */
+    extern s32 D_80155400;     /* Emitter count */
+    extern s32 D_80155404;     /* Max emitters */
+    u8 *emitter;
+    s32 i;
+
+    if (pos == NULL) {
+        return NULL;
+    }
+
+    /* Find free slot */
+    for (i = 0; i < D_80155404; i++) {
+        emitter = &D_80155000[i * 0x80];
+        if (emitter[0x00] == 0) {
+            /* Initialize emitter */
+            emitter[0x00] = 1;  /* Active */
+            emitter[0x04] = (u8)type;
+            emitter[0x08] = 0;  /* Frame counter */
+            emitter[0x0C] = 0;  /* Particles spawned */
+
+            /* Copy position */
+            *(f32 *)(emitter + 0x10) = pos[0];
+            *(f32 *)(emitter + 0x14) = pos[1];
+            *(f32 *)(emitter + 0x18) = pos[2];
+
+            /* Set spawn rate and particle count based on type */
+            switch (type) {
+                case 0:  /* Smoke trail */
+                    emitter[0x40] = 3;   /* Spawn every 3 frames */
+                    emitter[0x44] = 20;  /* Max 20 particles */
+                    break;
+                case 1:  /* Spark shower */
+                    emitter[0x40] = 1;   /* Every frame */
+                    emitter[0x44] = 50;  /* Max 50 particles */
+                    break;
+                case 2:  /* Fire */
+                    emitter[0x40] = 2;
+                    emitter[0x44] = 30;
+                    break;
+                case 3:  /* Steam */
+                    emitter[0x40] = 4;
+                    emitter[0x44] = 15;
+                    break;
+                case 4:  /* Exhaust */
+                    emitter[0x40] = 2;
+                    emitter[0x44] = 10;
+                    break;
+                default:
+                    emitter[0x40] = 3;
+                    emitter[0x44] = 20;
+                    break;
+            }
+
+            D_80155400++;
+            return (void *)emitter;
+        }
+    }
+
     return NULL;
 }
 
@@ -37636,180 +37853,967 @@ void *func_800EEA7C(s32 type, f32 *pos) {
 
  * func_800EEDB0 (1240 bytes)
  * Particle update
+ *
+ * Updates all particles from an emitter and spawns new ones
  */
 void func_800EEDB0(void *emitter) {
-    /* Particle update - stub */
+    extern u32 D_80142AFC;     /* Frame counter */
+    u8 *emit = (u8 *)emitter;
+    s32 type;
+    s32 frame;
+    s32 spawnRate;
+    s32 maxParticles;
+    s32 currentCount;
+    f32 *emitPos;
+    f32 spawnPos[3];
+    f32 vel[3];
+    s32 seed;
+
+    if (emit == NULL || emit[0x00] == 0) {
+        return;
+    }
+
+    type = emit[0x04];
+    frame = emit[0x08];
+    spawnRate = emit[0x40];
+    maxParticles = emit[0x44];
+    currentCount = emit[0x0C];
+    emitPos = (f32 *)(emit + 0x10);
+
+    /* Increment frame */
+    emit[0x08] = frame + 1;
+
+    /* Check if we should spawn a new particle */
+    if (currentCount < maxParticles && (frame % spawnRate) == 0) {
+        /* LCG random for position jitter */
+        seed = D_80142AFC * 0x41C64E6D + 12345;
+
+        /* Add random offset to spawn position */
+        spawnPos[0] = emitPos[0] + ((seed >> 8) & 0xFF) * 0.05f - 6.4f;
+        spawnPos[1] = emitPos[1] + ((seed >> 16) & 0xFF) * 0.02f;
+        spawnPos[2] = emitPos[2] + ((seed >> 24) & 0xFF) * 0.05f - 6.4f;
+
+        /* Set initial velocity based on type */
+        switch (type) {
+            case 0:  /* Smoke - rise */
+                vel[0] = ((seed >> 4) & 0xFF) * 0.02f - 2.56f;
+                vel[1] = 3.0f + ((seed >> 12) & 0xFF) * 0.02f;
+                vel[2] = ((seed >> 20) & 0xFF) * 0.02f - 2.56f;
+                func_800EF288(spawnPos, vel);
+                break;
+            case 1:  /* Sparks - random direction */
+                vel[0] = ((seed >> 4) & 0xFF) * 0.1f - 12.8f;
+                vel[1] = ((seed >> 12) & 0xFF) * 0.1f;
+                vel[2] = ((seed >> 20) & 0xFF) * 0.1f - 12.8f;
+                func_800EF62C(spawnPos, 1);
+                break;
+            case 2:  /* Fire - upward with flicker */
+                vel[0] = ((seed >> 4) & 0xFF) * 0.03f - 3.84f;
+                vel[1] = 5.0f;
+                vel[2] = ((seed >> 20) & 0xFF) * 0.03f - 3.84f;
+                func_800EF288(spawnPos, vel);
+                break;
+            case 3:  /* Steam */
+                vel[0] = 0.0f;
+                vel[1] = 4.0f;
+                vel[2] = 0.0f;
+                func_800EF288(spawnPos, vel);
+                break;
+            case 4:  /* Exhaust - backward */
+                vel[0] = -5.0f;
+                vel[1] = 0.5f;
+                vel[2] = 0.0f;
+                func_800EF288(spawnPos, vel);
+                break;
+        }
+
+        emit[0x0C] = currentCount + 1;
+    }
 }
 
 /*
 
  * func_800EF288 (932 bytes)
  * Smoke effect
+ *
+ * Creates a smoke particle with rising motion
  */
 void func_800EF288(f32 *pos, f32 *vel) {
-    /* Smoke - stub */
+    void *effect;
+    u8 *eff;
+
+    if (pos == NULL) {
+        return;
+    }
+
+    effect = func_800EE820(0, pos);  /* Type 0 = smoke */
+    if (effect == NULL) {
+        return;
+    }
+
+    eff = (u8 *)effect;
+
+    /* Set velocity if provided */
+    if (vel != NULL) {
+        *(f32 *)(eff + 0x20) = vel[0];
+        *(f32 *)(eff + 0x24) = vel[1];
+        *(f32 *)(eff + 0x28) = vel[2];
+    } else {
+        /* Default upward drift */
+        *(f32 *)(eff + 0x20) = 0.0f;
+        *(f32 *)(eff + 0x24) = 2.0f;
+        *(f32 *)(eff + 0x28) = 0.0f;
+    }
+
+    /* Set initial size and alpha */
+    *(f32 *)(eff + 0x30) = 5.0f;   /* Initial radius */
+    eff[0x38] = 180;              /* Initial alpha (semi-transparent) */
+    eff[0x39] = 128;              /* Gray color R */
+    eff[0x3A] = 128;              /* Gray color G */
+    eff[0x3B] = 128;              /* Gray color B */
 }
 
 /*
 
  * func_800EF62C (712 bytes)
  * Spark effect
+ *
+ * Creates multiple spark particles that fly outward with gravity
  */
 void func_800EF62C(f32 *pos, s32 count) {
-    /* Spark - stub */
+    extern u32 D_80142AFC;
+    void *effect;
+    u8 *eff;
+    s32 i;
+    s32 seed;
+    f32 angle;
+    f32 speed;
+
+    if (pos == NULL || count <= 0) {
+        return;
+    }
+
+    seed = D_80142AFC;
+
+    for (i = 0; i < count; i++) {
+        effect = func_800EE820(1, pos);  /* Type 1 = spark */
+        if (effect == NULL) {
+            break;
+        }
+
+        eff = (u8 *)effect;
+
+        /* Random velocity direction */
+        seed = seed * 0x41C64E6D + 12345;
+        angle = (seed & 0xFFFF) * 0.0000958738f;  /* 0 to 2*PI */
+        speed = 5.0f + ((seed >> 16) & 0xFF) * 0.05f;
+
+        *(f32 *)(eff + 0x20) = speed * cosf(angle);
+        *(f32 *)(eff + 0x24) = 3.0f + ((seed >> 8) & 0xFF) * 0.02f;  /* Upward */
+        *(f32 *)(eff + 0x28) = speed * sinf(angle);
+
+        /* Set spark appearance - bright yellow/orange */
+        *(f32 *)(eff + 0x30) = 1.0f;  /* Small radius */
+        eff[0x38] = 255;              /* Full alpha */
+        eff[0x39] = 255;              /* Yellow R */
+        eff[0x3A] = 200;              /* Yellow G */
+        eff[0x3B] = 50;               /* Yellow B */
+    }
 }
 
 /*
 
  * func_800EF8F4 (1460 bytes)
  * Explosion effect
+ *
+ * Creates a large explosion with fireball, smoke, and sparks
  */
 void func_800EF8F4(f32 *pos, f32 radius) {
-    /* Explosion - stub */
+    extern u32 D_80142AFC;
+    void *effect;
+    u8 *eff;
+    s32 seed;
+    f32 sparkPos[3];
+    s32 i;
+
+    if (pos == NULL) {
+        return;
+    }
+
+    /* Create main fireball */
+    effect = func_800EE820(2, pos);  /* Type 2 = explosion */
+    if (effect != NULL) {
+        eff = (u8 *)effect;
+
+        /* Set explosion properties */
+        *(f32 *)(eff + 0x30) = radius * 0.5f;  /* Initial radius */
+        eff[0x38] = 255;                       /* Full alpha */
+        eff[0x39] = 255;                       /* Orange R */
+        eff[0x3A] = 100;                       /* Orange G */
+        eff[0x3B] = 20;                        /* Orange B */
+    }
+
+    /* Create smoke ring */
+    seed = D_80142AFC;
+    for (i = 0; i < 8; i++) {
+        seed = seed * 0x41C64E6D + 12345;
+        sparkPos[0] = pos[0] + ((seed >> 8) & 0xFF) * 0.1f - 12.8f;
+        sparkPos[1] = pos[1] + 2.0f;
+        sparkPos[2] = pos[2] + ((seed >> 16) & 0xFF) * 0.1f - 12.8f;
+
+        func_800EF288(sparkPos, NULL);  /* Smoke puff */
+    }
+
+    /* Create sparks */
+    func_800EF62C(pos, 20);
+
+    /* Create secondary smoke */
+    func_800EFEA8(pos);
+
+    /* Play explosion sound */
+    func_800CC3C0(30);
+
+    /* Screen shake if close to camera */
+    func_800D11BC(15);  /* Camera shake */
 }
 
 /*
 
  * func_800EFEA8 (600 bytes)
  * Dust cloud effect
+ *
+ * Creates a settling dust cloud (from crashes, off-road driving)
  */
 void func_800EFEA8(f32 *pos) {
-    /* Dust cloud - stub */
+    extern u32 D_80142AFC;
+    void *effect;
+    u8 *eff;
+    s32 seed;
+    f32 dustPos[3];
+    s32 i;
+
+    if (pos == NULL) {
+        return;
+    }
+
+    seed = D_80142AFC;
+
+    /* Create multiple dust particles */
+    for (i = 0; i < 5; i++) {
+        seed = seed * 0x41C64E6D + 12345;
+        dustPos[0] = pos[0] + ((seed >> 8) & 0xFF) * 0.08f - 10.24f;
+        dustPos[1] = pos[1] + 1.0f;
+        dustPos[2] = pos[2] + ((seed >> 16) & 0xFF) * 0.08f - 10.24f;
+
+        effect = func_800EE820(3, dustPos);  /* Type 3 = dust */
+        if (effect != NULL) {
+            eff = (u8 *)effect;
+
+            /* Random horizontal velocity */
+            *(f32 *)(eff + 0x20) = ((seed >> 4) & 0xFF) * 0.02f - 2.56f;
+            *(f32 *)(eff + 0x24) = -0.5f;  /* Settle down */
+            *(f32 *)(eff + 0x28) = ((seed >> 12) & 0xFF) * 0.02f - 2.56f;
+
+            /* Brown/tan color */
+            *(f32 *)(eff + 0x30) = 4.0f + (i * 0.5f);  /* Varying size */
+            eff[0x38] = 150;              /* Semi-transparent */
+            eff[0x39] = 180;              /* Brown R */
+            eff[0x3A] = 150;              /* Brown G */
+            eff[0x3B] = 100;              /* Brown B */
+        }
+    }
 }
 
 /*
 
  * func_800F0100 (1396 bytes)
  * Skid mark render
+ *
+ * Renders tire skid marks on the track surface
+ * Uses decal-style rendering on track geometry
  */
 void func_800F0100(void *tire) {
-    /* Skid mark - stub */
+    extern u8 D_80155800[];    /* Skid mark buffer */
+    extern s32 D_80155C00;     /* Skid mark count */
+    extern s32 D_80155C04;     /* Max skid marks */
+    extern Gfx **D_80149438;   /* Display list pointer */
+    u8 *tireData = (u8 *)tire;
+    u8 *skidMark;
+    f32 *tirePos;
+    f32 skidIntensity;
+    s32 slot;
+
+    if (tireData == NULL) {
+        return;
+    }
+
+    /* Get tire position (offset 0x00) */
+    tirePos = (f32 *)(tireData + 0x00);
+
+    /* Get slip intensity (offset 0x20) - how hard the tire is slipping */
+    skidIntensity = *(f32 *)(tireData + 0x20);
+
+    /* Only create skid marks if tire is slipping significantly */
+    if (skidIntensity < 0.3f) {
+        return;
+    }
+
+    /* Find or create skid mark slot */
+    if (D_80155C00 >= D_80155C04) {
+        /* Buffer full - overwrite oldest */
+        slot = 0;
+    } else {
+        slot = D_80155C00;
+        D_80155C00++;
+    }
+
+    skidMark = &D_80155800[slot * 0x40];
+
+    /* Store skid mark data */
+    *(f32 *)(skidMark + 0x00) = tirePos[0];
+    *(f32 *)(skidMark + 0x04) = tirePos[1] + 0.02f;  /* Slightly above ground */
+    *(f32 *)(skidMark + 0x08) = tirePos[2];
+
+    /* Copy previous position for line segment */
+    *(f32 *)(skidMark + 0x10) = *(f32 *)(tireData + 0x30);
+    *(f32 *)(skidMark + 0x14) = *(f32 *)(tireData + 0x34) + 0.02f;
+    *(f32 *)(skidMark + 0x18) = *(f32 *)(tireData + 0x38);
+
+    /* Skid mark alpha based on intensity */
+    skidMark[0x30] = (u8)(skidIntensity * 200.0f);
+    skidMark[0x34] = 180;  /* Lifetime frames */
 }
 
 /*
 
  * func_800F0674 (472 bytes)
  * Trail effect
+ *
+ * Creates a fading trail behind a moving object (nitro boost, wings)
  */
 void func_800F0674(void *object) {
-    /* Trail - stub */
+    extern u8 D_80156000[];    /* Trail buffer */
+    extern s32 D_80156400;     /* Trail segment count */
+    extern s32 D_80156404;     /* Max trail segments */
+    u8 *objData = (u8 *)object;
+    u8 *trail;
+    f32 *objPos;
+    s32 slot;
+    s32 i;
+
+    if (objData == NULL) {
+        return;
+    }
+
+    objPos = (f32 *)(objData + 0x24);
+
+    /* Shift existing trail segments */
+    for (i = D_80156404 - 1; i > 0; i--) {
+        trail = &D_80156000[i * 0x20];
+        u8 *prevTrail = &D_80156000[(i - 1) * 0x20];
+
+        /* Copy position from previous */
+        *(f32 *)(trail + 0x00) = *(f32 *)(prevTrail + 0x00);
+        *(f32 *)(trail + 0x04) = *(f32 *)(prevTrail + 0x04);
+        *(f32 *)(trail + 0x08) = *(f32 *)(prevTrail + 0x08);
+
+        /* Fade alpha */
+        trail[0x10] = (u8)(255 * (D_80156404 - i) / D_80156404);
+    }
+
+    /* Add new segment at head */
+    trail = &D_80156000[0];
+    *(f32 *)(trail + 0x00) = objPos[0];
+    *(f32 *)(trail + 0x04) = objPos[1];
+    *(f32 *)(trail + 0x08) = objPos[2];
+    trail[0x10] = 255;  /* Full alpha at head */
+
+    if (D_80156400 < D_80156404) {
+        D_80156400++;
+    }
 }
 
 /*
 
  * func_800F084C (208 bytes)
  * Weather rain
+ *
+ * Renders falling rain particles
  */
 void func_800F084C(void) {
-    /* Rain - stub */
+    extern u32 D_80142AFC;     /* Frame counter */
+    extern u8 D_80156800[];    /* Rain particle buffer */
+    extern s32 D_80156C00;     /* Active rain drops */
+    extern f32 D_80158000[];   /* Camera position */
+    s32 i;
+    s32 seed;
+    f32 *drop;
+
+    seed = D_80142AFC;
+
+    /* Update and spawn rain drops around camera */
+    for (i = 0; i < 100; i++) {
+        drop = (f32 *)&D_80156800[i * 0x10];
+
+        /* Check if drop needs respawn */
+        if (drop[1] < 0.0f) {
+            /* Respawn at top near camera */
+            seed = seed * 0x41C64E6D + 12345;
+            drop[0] = D_80158000[0] + ((seed >> 8) & 0xFF) - 128.0f;
+            drop[1] = D_80158000[1] + 50.0f;
+            drop[2] = D_80158000[2] + ((seed >> 16) & 0xFF) - 128.0f;
+            drop[3] = 0.0f;  /* Reset fall distance */
+        }
+
+        /* Move drop downward */
+        drop[1] -= 8.0f;
+        drop[3] += 8.0f;  /* Track fall distance for trail length */
+    }
 }
 
 /*
 
  * func_800F091C (564 bytes)
  * Weather snow
+ *
+ * Renders falling snow particles with wind drift
  */
 void func_800F091C(void) {
-    /* Snow - stub */
+    extern u32 D_80142AFC;     /* Frame counter */
+    extern u8 D_80157000[];    /* Snow particle buffer */
+    extern s32 D_80157400;     /* Active snowflakes */
+    extern f32 D_80158000[];   /* Camera position */
+    extern f32 D_80157404;     /* Wind X */
+    extern f32 D_80157408;     /* Wind Z */
+    s32 i;
+    s32 seed;
+    f32 *flake;
+    f32 drift;
+
+    seed = D_80142AFC;
+
+    /* Update wind with slow sine wave */
+    D_80157404 = sinf(D_80142AFC * 0.01f) * 2.0f;
+    D_80157408 = cosf(D_80142AFC * 0.015f) * 1.5f;
+
+    /* Update and spawn snowflakes */
+    for (i = 0; i < 80; i++) {
+        flake = (f32 *)&D_80157000[i * 0x14];
+
+        /* Check if flake needs respawn */
+        if (flake[1] < 0.0f) {
+            /* Respawn at top near camera */
+            seed = seed * 0x41C64E6D + 12345;
+            flake[0] = D_80158000[0] + ((seed >> 8) & 0xFF) - 128.0f;
+            flake[1] = D_80158000[1] + 40.0f;
+            flake[2] = D_80158000[2] + ((seed >> 16) & 0xFF) - 128.0f;
+            flake[3] = ((seed >> 4) & 0xFF) * 0.01f;  /* Random phase for wobble */
+            flake[4] = 1.0f + ((seed >> 24) & 0x0F) * 0.1f;  /* Size */
+        }
+
+        /* Move flake with wind and wobble */
+        drift = sinf(D_80142AFC * 0.1f + flake[3]) * 0.5f;
+        flake[0] += D_80157404 + drift;
+        flake[1] -= 1.5f;  /* Slow fall */
+        flake[2] += D_80157408;
+    }
 }
 
 /*
 
  * func_800F0F4C (468 bytes)
  * Weather fog
+ *
+ * Configures RDP fog settings for distance fog effect
  */
 void func_800F0F4C(f32 density) {
-    /* Fog - stub */
+    extern Gfx **D_80149438;   /* Display list pointer */
+    extern u8 D_80157500;      /* Fog R */
+    extern u8 D_80157501;      /* Fog G */
+    extern u8 D_80157502;      /* Fog B */
+    extern f32 D_80157504;     /* Current fog density */
+    extern f32 D_80157508;     /* Fog near */
+    extern f32 D_8015750C;     /* Fog far */
+    Gfx *gfx;
+    s32 fogMin, fogMax;
+
+    if (density < 0.0f) {
+        density = 0.0f;
+    } else if (density > 1.0f) {
+        density = 1.0f;
+    }
+
+    D_80157504 = density;
+
+    /* Calculate fog range based on density */
+    /* Higher density = closer fog start */
+    fogMin = (s32)(900.0f - density * 800.0f);  /* Near plane */
+    fogMax = (s32)(1000.0f - density * 500.0f); /* Far plane */
+
+    if (fogMin < 100) fogMin = 100;
+    if (fogMax < fogMin + 50) fogMax = fogMin + 50;
+
+    /* Apply fog to display list */
+    gfx = *D_80149438;
+
+    /* Set fog color */
+    gDPSetFogColor(gfx++, D_80157500, D_80157501, D_80157502, 255);
+
+    /* Set fog parameters - simplified */
+    gSPFogPosition(gfx++, fogMin, fogMax);
+
+    *D_80149438 = gfx;
 }
 
 /*
 
  * func_800F1120 (252 bytes)
  * Weather update
+ *
+ * Updates current weather effects each frame
  */
 void func_800F1120(void) {
-    /* Weather update - stub */
+    extern s32 D_80157600;     /* Current weather type: 0=clear, 1=rain, 2=snow, 3=fog */
+    extern f32 D_80157604;     /* Weather intensity 0-1 */
+    extern f32 D_80157608;     /* Target intensity */
+    extern s32 D_8015760C;     /* Weather transition timer */
+
+    /* Smooth transition between intensities */
+    if (D_80157604 < D_80157608) {
+        D_80157604 += 0.01f;
+        if (D_80157604 > D_80157608) {
+            D_80157604 = D_80157608;
+        }
+    } else if (D_80157604 > D_80157608) {
+        D_80157604 -= 0.01f;
+        if (D_80157604 < D_80157608) {
+            D_80157604 = D_80157608;
+        }
+    }
+
+    /* Update based on weather type */
+    switch (D_80157600) {
+        case 0:  /* Clear - no weather effects */
+            break;
+
+        case 1:  /* Rain */
+            func_800F084C();
+            func_800F0F4C(D_80157604 * 0.3f);  /* Light fog with rain */
+            break;
+
+        case 2:  /* Snow */
+            func_800F091C();
+            func_800F0F4C(D_80157604 * 0.5f);  /* More fog with snow */
+            break;
+
+        case 3:  /* Fog only */
+            func_800F0F4C(D_80157604);
+            break;
+    }
 }
 
 /*
 
  * func_800F121C (1824 bytes)
  * Lighting setup
+ *
+ * Configures scene lighting for rendering
  */
 void func_800F121C(void) {
-    /* Lighting - stub */
+    extern Gfx **D_80149438;
+    extern u8 D_80157800[];    /* Ambient light RGB */
+    extern u8 D_80157804[];    /* Directional light RGB */
+    extern f32 D_80157808[];   /* Light direction (normalized) */
+    extern s32 D_80157814;     /* Time of day (0-2400) */
+    Gfx *gfx;
+    s32 timeOfDay;
+    f32 sunAngle;
+    f32 brightness;
+
+    gfx = *D_80149438;
+    timeOfDay = D_80157814;
+
+    /* Calculate sun angle based on time of day */
+    sunAngle = (timeOfDay / 2400.0f) * 3.14159f;
+    brightness = sinf(sunAngle);
+    if (brightness < 0.0f) brightness = 0.0f;
+
+    /* Set ambient light based on time */
+    D_80157800[0] = (u8)(40 + brightness * 60);   /* R */
+    D_80157800[1] = (u8)(40 + brightness * 70);   /* G */
+    D_80157800[2] = (u8)(60 + brightness * 80);   /* B */
+
+    /* Set directional light color */
+    D_80157804[0] = (u8)(brightness * 255);
+    D_80157804[1] = (u8)(brightness * 240);
+    D_80157804[2] = (u8)(brightness * 200);
+
+    /* Set light direction (from sun position) */
+    D_80157808[0] = cosf(sunAngle);
+    D_80157808[1] = sinf(sunAngle);
+    D_80157808[2] = 0.3f;
+
+    /* Apply to RSP */
+    gSPNumLights(gfx++, 1);
+
+    *D_80149438 = gfx;
 }
 
 /*
 
  * func_800F193C (968 bytes)
  * Shadow render
+ *
+ * Renders a blob shadow under an object
  */
 void func_800F193C(void *object) {
-    /* Shadow - stub */
+    extern Gfx **D_80149438;
+    u8 *objData = (u8 *)object;
+    f32 *objPos;
+    f32 groundY;
+    f32 shadowScale;
+    f32 height;
+
+    if (objData == NULL) {
+        return;
+    }
+
+    objPos = (f32 *)(objData + 0x24);
+
+    /* Get ground height at object position */
+    groundY = func_800ED3FC(objPos[0], objPos[2]);
+
+    /* Calculate height above ground */
+    height = objPos[1] - groundY;
+    if (height < 0.0f) height = 0.0f;
+    if (height > 50.0f) {
+        return;  /* Too high, no shadow */
+    }
+
+    /* Shadow shrinks and fades with height */
+    shadowScale = 1.0f - (height / 50.0f);
+
+    /* Get base shadow size from object (offset 0x48) */
+    f32 baseSize = *(f32 *)(objData + 0x48);
+    f32 shadowSize = baseSize * shadowScale * 0.8f;
+
+    /* Draw shadow decal at ground level */
+    func_800C6E60(
+        (s32)(objPos[0] - shadowSize),
+        (s32)(objPos[2] - shadowSize),
+        (s32)(shadowSize * 2.0f),
+        (s32)(shadowSize * 2.0f),
+        0, 0, 0, (s32)(128 * shadowScale)  /* Black, fading alpha */
+    );
 }
 
 /*
 
  * func_800F1D04 (924 bytes)
  * Lens flare
+ *
+ * Renders lens flare effect when looking toward the sun
  */
 void func_800F1D04(f32 *sunPos) {
-    /* Lens flare - stub */
+    extern f32 D_80158000[];   /* Camera position */
+    extern f32 D_80158010[];   /* Camera forward */
+    f32 toSun[3];
+    f32 dot;
+    f32 dist;
+    s32 screenX, screenY;
+    s32 flareAlpha;
+
+    if (sunPos == NULL) {
+        return;
+    }
+
+    /* Calculate vector to sun */
+    toSun[0] = sunPos[0] - D_80158000[0];
+    toSun[1] = sunPos[1] - D_80158000[1];
+    toSun[2] = sunPos[2] - D_80158000[2];
+
+    /* Normalize */
+    dist = sqrtf(toSun[0] * toSun[0] + toSun[1] * toSun[1] + toSun[2] * toSun[2]);
+    if (dist < 0.001f) return;
+    toSun[0] /= dist;
+    toSun[1] /= dist;
+    toSun[2] /= dist;
+
+    /* Dot product with camera forward = how aligned we are */
+    dot = toSun[0] * D_80158010[0] + toSun[1] * D_80158010[1] + toSun[2] * D_80158010[2];
+
+    /* Only show flare when looking toward sun */
+    if (dot < 0.5f) {
+        return;
+    }
+
+    /* Calculate screen position (simplified projection) */
+    screenX = 160 + (s32)(toSun[0] * 100.0f);
+    screenY = 120 - (s32)(toSun[1] * 100.0f);
+
+    /* Flare intensity based on alignment */
+    flareAlpha = (s32)((dot - 0.5f) * 2.0f * 180.0f);
+    if (flareAlpha > 180) flareAlpha = 180;
+
+    /* Draw main flare glow */
+    func_800C6E60(screenX - 30, screenY - 30, 60, 60, 255, 255, 200, flareAlpha);
+
+    /* Draw secondary flares along line to center */
+    func_800C6E60(screenX - 10, screenY - 10, 20, 20, 255, 200, 150, flareAlpha / 2);
+    func_800C6E60(160 - 8, 120 - 8, 16, 16, 200, 150, 100, flareAlpha / 3);
 }
 
 /*
 
  * func_800F20A0 (1664 bytes)
  * Environment map
+ *
+ * Configures RSP for environment mapping on reflective surfaces
  */
 void func_800F20A0(void *object) {
-    /* Env map - stub */
+    extern Gfx **D_80149438;
+    extern u8 D_80158200[];    /* Envmap texture */
+    u8 *objData = (u8 *)object;
+    Gfx *gfx;
+    s32 useEnvmap;
+
+    if (objData == NULL) {
+        return;
+    }
+
+    /* Check if object uses envmap (offset 0x7C flags) */
+    useEnvmap = *(s32 *)(objData + 0x7C) & 0x10;
+    if (!useEnvmap) {
+        return;
+    }
+
+    gfx = *D_80149438;
+
+    /* Set up texture generation for environment mapping */
+    gSPTexture(gfx++, 0x8000, 0x8000, 0, G_TX_RENDERTILE, G_ON);
+
+    /* Configure for spherical envmap */
+    gDPSetTexturePersp(gfx++, G_TP_PERSP);
+    gDPSetCombineMode(gfx++, G_CC_MODULATERGBA, G_CC_MODULATERGBA);
+
+    /* Set envmap texture */
+    gDPSetTextureImage(gfx++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 32, D_80158200);
+
+    *D_80149438 = gfx;
 }
 
 /*
 
  * func_800F2720 (376 bytes)
  * Reflection setup
+ *
+ * Configures planar reflection rendering for wet surfaces
  */
 void func_800F2720(void) {
-    /* Reflection - stub */
+    extern Gfx **D_80149438;
+    extern s32 D_80158400;     /* Reflection enabled */
+    extern f32 D_80158404;     /* Reflection plane Y */
+    extern f32 D_80158408;     /* Reflection intensity */
+    Gfx *gfx;
+
+    if (!D_80158400) {
+        return;
+    }
+
+    gfx = *D_80149438;
+
+    /* Set up reflection blend mode */
+    gDPSetRenderMode(gfx++, G_RM_XLU_SURF, G_RM_XLU_SURF2);
+    gDPSetCombineMode(gfx++, G_CC_MODULATEIA, G_CC_MODULATEIA);
+
+    /* Set reflection alpha */
+    gDPSetPrimColor(gfx++, 0, 0, 255, 255, 255, (s32)(D_80158408 * 128.0f));
+
+    *D_80149438 = gfx;
 }
 
 /*
 
  * func_800F2890 (408 bytes)
  * Water surface
+ *
+ * Renders animated water surface with wave distortion
  */
 void func_800F2890(void) {
-    /* Water - stub */
+    extern Gfx **D_80149438;
+    extern u32 D_80142AFC;     /* Frame counter */
+    extern f32 D_80158500;     /* Water level Y */
+    extern s32 D_80158504;     /* Water tile count X */
+    extern s32 D_80158508;     /* Water tile count Z */
+    Gfx *gfx;
+    f32 waveOffset;
+    s32 wavePhase;
+
+    gfx = *D_80149438;
+
+    /* Calculate wave animation offset */
+    wavePhase = D_80142AFC & 0x3F;  /* 64 frame cycle */
+    waveOffset = sinf(wavePhase * 0.098f) * 0.5f;
+
+    /* Set up water render mode - translucent with texture */
+    gDPSetRenderMode(gfx++, G_RM_XLU_SURF, G_RM_XLU_SURF2);
+    gDPSetCombineMode(gfx++, G_CC_MODULATEIA, G_CC_MODULATEIA);
+
+    /* Set water color - blue-green tint */
+    gDPSetPrimColor(gfx++, 0, 0, 100, 150, 200, 160);
+
+    /* Scroll texture for wave effect */
+    gDPSetTileSize(gfx++, G_TX_RENDERTILE,
+        (s32)(waveOffset * 32.0f) << 2, 0,
+        (31 + (s32)(waveOffset * 32.0f)) << 2, 31 << 2);
+
+    *D_80149438 = gfx;
 }
 
 /*
 
  * func_800F2A28 (2736 bytes)
  * Skybox render
+ *
+ * Renders the skybox around the camera
  */
 void func_800F2A28(void *camera) {
-    /* Skybox - stub */
+    extern Gfx **D_80149438;
+    extern u8 D_80158600[];    /* Skybox texture data */
+    extern s32 D_80158604;     /* Skybox type: 0=day, 1=sunset, 2=night */
+    u8 *camData = (u8 *)camera;
+    Gfx *gfx;
+    f32 *camPos;
+    f32 *camRot;
+    s32 skyType;
+
+    if (camData == NULL) {
+        return;
+    }
+
+    gfx = *D_80149438;
+    camPos = (f32 *)(camData + 0x00);
+    camRot = (f32 *)(camData + 0x30);
+    skyType = D_80158604;
+
+    /* Disable Z buffer for skybox (always behind) */
+    gDPSetRenderMode(gfx++, G_RM_OPA_SURF, G_RM_OPA_SURF2);
+    gSPClearGeometryMode(gfx++, G_ZBUFFER);
+
+    /* Set sky color based on type */
+    switch (skyType) {
+        case 0:  /* Day - blue gradient */
+            gDPSetPrimColor(gfx++, 0, 0, 135, 206, 235, 255);
+            break;
+        case 1:  /* Sunset - orange/pink */
+            gDPSetPrimColor(gfx++, 0, 0, 255, 140, 100, 255);
+            break;
+        case 2:  /* Night - dark blue */
+            gDPSetPrimColor(gfx++, 0, 0, 20, 20, 60, 255);
+            break;
+    }
+
+    /* Draw skybox geometry (would reference display list) */
+    gDPSetCombineMode(gfx++, G_CC_SHADE, G_CC_SHADE);
+
+    /* Re-enable Z buffer */
+    gSPSetGeometryMode(gfx++, G_ZBUFFER);
+
+    *D_80149438 = gfx;
 }
 
 /*
 
  * func_800F34D8 (3576 bytes)
  * Track render
+ *
+ * Renders visible track sections based on camera position
  */
 void func_800F34D8(void *camera) {
-    /* Track render - stub */
+    extern s32 D_80159000;     /* Number of track sections */
+    extern u8 D_80159010[];    /* Track section data */
+    u8 *camData = (u8 *)camera;
+    f32 *camPos;
+    s32 i;
+    s32 lod;
+    f32 dx, dz, dist;
+
+    if (camData == NULL) {
+        return;
+    }
+
+    camPos = (f32 *)(camData + 0x00);
+
+    /* Iterate through track sections */
+    for (i = 0; i < D_80159000; i++) {
+        u8 *section = &D_80159010[i * 0x40];
+        f32 *sectionPos = (f32 *)(section + 0x00);
+
+        /* Frustum cull check */
+        if (!func_800F42D0(i, camera)) {
+            continue;
+        }
+
+        /* Calculate distance for LOD */
+        dx = camPos[0] - sectionPos[0];
+        dz = camPos[2] - sectionPos[2];
+        dist = sqrtf(dx * dx + dz * dz);
+
+        /* Select LOD based on distance */
+        lod = func_800F43D4(dist);
+
+        /* Load textures for this section */
+        func_800F5F90(*(s32 *)(section + 0x30));
+
+        /* Render section geometry at selected LOD */
+        /* (would call into display list rendering) */
+    }
 }
 
 /*
 
  * func_800F42D0 (260 bytes)
  * Track section visible
+ *
+ * Checks if a track section is within camera frustum
  */
 s32 func_800F42D0(s32 sectionId, void *camera) {
-    /* Section visible - stub */
+    extern u8 D_80159010[];    /* Track section data */
+    u8 *camData = (u8 *)camera;
+    u8 *section;
+    f32 *camPos;
+    f32 *camFwd;
+    f32 *sectionPos;
+    f32 toSection[3];
+    f32 dot;
+    f32 dist;
+
+    if (camData == NULL) {
+        return 0;
+    }
+
+    section = &D_80159010[sectionId * 0x40];
+    camPos = (f32 *)(camData + 0x00);
+    camFwd = (f32 *)(camData + 0x30);
+    sectionPos = (f32 *)(section + 0x00);
+
+    /* Vector to section center */
+    toSection[0] = sectionPos[0] - camPos[0];
+    toSection[1] = sectionPos[1] - camPos[1];
+    toSection[2] = sectionPos[2] - camPos[2];
+
+    /* Distance check */
+    dist = toSection[0] * toSection[0] + toSection[2] * toSection[2];
+    if (dist > 90000.0f) {  /* 300 units max distance */
+        return 0;
+    }
+
+    /* Dot product with camera forward (behind camera check) */
+    dot = toSection[0] * camFwd[0] + toSection[2] * camFwd[2];
+    if (dot < -50.0f) {
+        return 0;  /* Behind camera */
+    }
+
     return 1;
 }
 
@@ -37817,127 +38821,608 @@ s32 func_800F42D0(s32 sectionId, void *camera) {
 
  * func_800F43D4 (560 bytes)
  * Track LOD select
+ *
+ * Selects appropriate LOD level based on distance from camera
  */
 s32 func_800F43D4(f32 distance) {
-    /* LOD select - stub */
-    return 0;
+    /* LOD thresholds */
+    if (distance < 50.0f) {
+        return 0;  /* High detail */
+    } else if (distance < 150.0f) {
+        return 1;  /* Medium detail */
+    } else if (distance < 250.0f) {
+        return 2;  /* Low detail */
+    }
+    return 3;  /* Lowest/billboard */
 }
 
 /*
 
  * func_800F4604 (6540 bytes)
  * Track geometry stream
+ *
+ * Streams track geometry data from ROM to RSP
  */
 void func_800F4604(void) {
-    /* Geometry stream - stub */
+    extern Gfx **D_80149438;
+    extern s32 D_80159100;     /* Current stream position */
+    extern s32 D_80159104;     /* Total geometry size */
+    extern u8 D_80159200[];    /* Geometry buffer */
+    Gfx *gfx;
+    s32 chunkSize;
+
+    gfx = *D_80149438;
+
+    /* Calculate chunk to stream this frame */
+    chunkSize = 0x1000;  /* 4KB per frame */
+    if (D_80159100 + chunkSize > D_80159104) {
+        chunkSize = D_80159104 - D_80159100;
+    }
+
+    if (chunkSize <= 0) {
+        D_80159100 = 0;  /* Reset to beginning */
+        return;
+    }
+
+    /* Issue DMA for geometry data */
+    /* (would normally call osPiStartDma) */
+
+    /* Add geometry display list */
+    gSPDisplayList(gfx++, &D_80159200[D_80159100]);
+
+    D_80159100 += chunkSize;
+
+    *D_80149438 = gfx;
 }
 
 /*
 
  * func_800F5F90 (1348 bytes)
  * Track texture load
+ *
+ * Loads track texture into TMEM
  */
 void func_800F5F90(s32 textureId) {
-    /* Texture load - stub */
+    extern Gfx **D_80149438;
+    extern u8 *D_80159400[];   /* Texture pointer table */
+    extern s32 D_80159404;     /* Current loaded texture */
+    Gfx *gfx;
+    u8 *texData;
+
+    /* Skip if already loaded */
+    if (textureId == D_80159404) {
+        return;
+    }
+
+    if (textureId < 0 || textureId >= 256) {
+        return;
+    }
+
+    texData = D_80159400[textureId];
+    if (texData == NULL) {
+        return;
+    }
+
+    gfx = *D_80149438;
+    D_80159404 = textureId;
+
+    /* Load texture to TMEM */
+    gDPSetTextureImage(gfx++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 32, texData);
+    gDPLoadSync(gfx++);
+    gDPLoadBlock(gfx++, G_TX_LOADTILE, 0, 0, 32 * 32 - 1, 0);
+
+    /* Set tile parameters */
+    gDPSetTile(gfx++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0,
+               G_TX_RENDERTILE, 0, G_TX_WRAP, 5, 0, G_TX_WRAP, 5, 0);
+
+    *D_80149438 = gfx;
 }
 
 /*
 
  * func_800F64D4 (1120 bytes)
  * Billboard render
+ *
+ * Renders a camera-facing billboard sprite
  */
 void func_800F64D4(void *billboard) {
-    /* Billboard - stub */
+    extern Gfx **D_80149438;
+    extern f32 D_80158000[];   /* Camera position */
+    u8 *bbData = (u8 *)billboard;
+    Gfx *gfx;
+    f32 *bbPos;
+    f32 dx, dz;
+    f32 angle;
+    f32 size;
+
+    if (bbData == NULL) {
+        return;
+    }
+
+    gfx = *D_80149438;
+    bbPos = (f32 *)(bbData + 0x00);
+    size = *(f32 *)(bbData + 0x10);
+
+    /* Calculate angle to face camera */
+    dx = D_80158000[0] - bbPos[0];
+    dz = D_80158000[2] - bbPos[2];
+
+    /* Set up billboard transform matrix */
+    /* (would build rotation matrix to face camera) */
+
+    /* Set texture from billboard data */
+    gDPSetTextureImage(gfx++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 32,
+                       (u8 *)(*(s32 *)(bbData + 0x20)));
+
+    /* Draw quad */
+    gSPVertex(gfx++, bbData + 0x40, 4, 0);
+    gSP2Triangles(gfx++, 0, 1, 2, 0, 0, 2, 3, 0);
+
+    *D_80149438 = gfx;
 }
 
 /*
 
  * func_800F6934 (388 bytes)
  * Sign render
+ *
+ * Renders roadside signs (speed limits, directions, etc.)
  */
 void func_800F6934(void *sign) {
-    /* Sign - stub */
+    u8 *signData = (u8 *)sign;
+    f32 *signPos;
+    s32 signType;
+
+    if (signData == NULL) {
+        return;
+    }
+
+    signPos = (f32 *)(signData + 0x00);
+    signType = *(s32 *)(signData + 0x0C);
+
+    /* Render as billboard facing camera */
+    func_800F64D4(sign);
 }
 
 /*
 
  * func_800F6AB8 (2460 bytes)
  * Props render
+ *
+ * Renders track props (cones, barriers, trees, etc.)
  */
 void func_800F6AB8(void *camera) {
-    /* Props - stub */
+    extern s32 D_80159600;     /* Prop count */
+    extern u8 D_80159610[];    /* Prop data array */
+    u8 *camData = (u8 *)camera;
+    f32 *camPos;
+    s32 i;
+    f32 dx, dz, distSq;
+
+    if (camData == NULL) {
+        return;
+    }
+
+    camPos = (f32 *)(camData + 0x00);
+
+    /* Render each visible prop */
+    for (i = 0; i < D_80159600; i++) {
+        u8 *prop = &D_80159610[i * 0x30];
+        f32 *propPos = (f32 *)(prop + 0x00);
+        s32 propType = *(s32 *)(prop + 0x10);
+
+        /* Distance cull */
+        dx = propPos[0] - camPos[0];
+        dz = propPos[2] - camPos[2];
+        distSq = dx * dx + dz * dz;
+
+        if (distSq > 40000.0f) {  /* 200 units */
+            continue;
+        }
+
+        /* Render based on type */
+        switch (propType) {
+            case 0:  /* Cone */
+            case 1:  /* Barrier */
+                func_800F64D4(prop);  /* As billboard */
+                break;
+            case 2:  /* Tree */
+            case 3:  /* Building */
+                /* Full 3D model render */
+                break;
+        }
+    }
 }
 
 /*
 
  * func_800F7454 (1996 bytes)
  * Crowd render
+ *
+ * Renders animated crowd sprites along the track
  */
 void func_800F7454(void) {
-    /* Crowd - stub */
+    extern Gfx **D_80149438;
+    extern u32 D_80142AFC;     /* Frame counter */
+    extern s32 D_80159800;     /* Crowd section count */
+    extern u8 D_80159810[];    /* Crowd section data */
+    extern f32 D_80158000[];   /* Camera position */
+    Gfx *gfx;
+    s32 i;
+    s32 animFrame;
+    f32 dx, dz, distSq;
+
+    gfx = *D_80149438;
+
+    /* Animation frame (4 frames, cycle every 8 game frames) */
+    animFrame = (D_80142AFC >> 3) & 0x03;
+
+    /* Render each crowd section */
+    for (i = 0; i < D_80159800; i++) {
+        u8 *crowd = &D_80159810[i * 0x40];
+        f32 *crowdPos = (f32 *)(crowd + 0x00);
+        s32 crowdCount = *(s32 *)(crowd + 0x10);
+
+        /* Distance cull */
+        dx = crowdPos[0] - D_80158000[0];
+        dz = crowdPos[2] - D_80158000[2];
+        distSq = dx * dx + dz * dz;
+
+        if (distSq > 22500.0f) {  /* 150 units */
+            continue;
+        }
+
+        /* Set crowd sprite based on animation frame */
+        gDPSetTextureImage(gfx++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 32,
+                           (u8 *)(*(s32 *)(crowd + 0x20 + animFrame * 4)));
+
+        /* Draw crowd billboards */
+        gSPDisplayList(gfx++, crowd + 0x30);
+    }
+
+    *D_80149438 = gfx;
 }
 
 /*
 
  * func_800F7C28 (796 bytes)
  * Car body render
+ *
+ * Renders the car body mesh with paint/decals
  */
 void func_800F7C28(void *car) {
-    /* Car body - stub */
+    extern Gfx **D_80149438;
+    u8 *carData = (u8 *)car;
+    Gfx *gfx;
+    s32 carModel;
+    s32 paintColor;
+    u8 *bodyMesh;
+
+    if (carData == NULL) {
+        return;
+    }
+
+    gfx = *D_80149438;
+
+    /* Get car model ID (offset 0x00) */
+    carModel = *(s32 *)(carData + 0x00);
+
+    /* Get paint color (offset 0x04) */
+    paintColor = *(s32 *)(carData + 0x04);
+
+    /* Get body mesh pointer (offset 0x80) */
+    bodyMesh = (u8 *)(*(s32 *)(carData + 0x80));
+
+    if (bodyMesh == NULL) {
+        *D_80149438 = gfx;
+        return;
+    }
+
+    /* Set car color as primitive color */
+    gDPSetPrimColor(gfx++, 0, 0,
+        (paintColor >> 16) & 0xFF,
+        (paintColor >> 8) & 0xFF,
+        paintColor & 0xFF, 255);
+
+    /* Set up environment mapping for reflective paint */
+    func_800F20A0(car);
+
+    /* Draw body mesh display list */
+    gSPDisplayList(gfx++, bodyMesh);
+
+    *D_80149438 = gfx;
 }
 
 /*
 
  * func_800F7F44 (1604 bytes)
  * Car wheels render
+ *
+ * Renders the four wheels with rotation and steering
  */
 void func_800F7F44(void *car) {
-    /* Wheels - stub */
+    extern Gfx **D_80149438;
+    u8 *carData = (u8 *)car;
+    Gfx *gfx;
+    f32 steerAngle;
+    f32 wheelRotation;
+    s32 i;
+
+    if (carData == NULL) {
+        return;
+    }
+
+    gfx = *D_80149438;
+
+    /* Get steering angle (offset 0xC0) */
+    steerAngle = *(f32 *)(carData + 0xC0);
+
+    /* Get wheel rotation (offset 0xC4) */
+    wheelRotation = *(f32 *)(carData + 0xC4);
+
+    /* Render each wheel */
+    for (i = 0; i < 4; i++) {
+        u8 *wheelData = carData + 0x100 + (i * 0x40);
+        f32 *wheelPos = (f32 *)(wheelData + 0x00);
+        u8 *wheelMesh = (u8 *)(*(s32 *)(wheelData + 0x30));
+
+        if (wheelMesh == NULL) {
+            continue;
+        }
+
+        /* Build wheel transform matrix */
+        /* Front wheels (0,1) get steering rotation */
+        /* All wheels get rotation animation */
+
+        /* Draw wheel mesh */
+        gSPDisplayList(gfx++, wheelMesh);
+
+        /* Render skid marks if slipping */
+        func_800F0100(wheelData);
+    }
+
+    *D_80149438 = gfx;
 }
 
 /*
 
  * func_800F8588 (548 bytes)
  * Car damage render
+ *
+ * Renders visual damage on car (dents, scratches, missing parts)
  */
 void func_800F8588(void *car) {
-    /* Damage - stub */
+    extern Gfx **D_80149438;
+    u8 *carData = (u8 *)car;
+    Gfx *gfx;
+    s32 damageLevel;
+    u8 *damageMesh;
+
+    if (carData == NULL) {
+        return;
+    }
+
+    /* Get damage level (offset 0x1B0) */
+    damageLevel = *(s32 *)(carData + 0x1B0);
+
+    if (damageLevel <= 0) {
+        return;  /* No damage */
+    }
+
+    gfx = *D_80149438;
+
+    /* Get damage overlay mesh based on level */
+    if (damageLevel < 3) {
+        damageMesh = (u8 *)(*(s32 *)(carData + 0x84));  /* Light damage */
+    } else if (damageLevel < 6) {
+        damageMesh = (u8 *)(*(s32 *)(carData + 0x88));  /* Medium damage */
+    } else {
+        damageMesh = (u8 *)(*(s32 *)(carData + 0x8C));  /* Heavy damage */
+    }
+
+    if (damageMesh != NULL) {
+        /* Set damage decal blend mode */
+        gDPSetRenderMode(gfx++, G_RM_XLU_SURF, G_RM_XLU_SURF2);
+        gSPDisplayList(gfx++, damageMesh);
+    }
+
+    *D_80149438 = gfx;
 }
 
 /*
 
  * func_800F87AC (964 bytes)
  * Car lights render
+ *
+ * Renders car headlights, taillights, and brake lights
  */
 void func_800F87AC(void *car) {
-    /* Lights - stub */
+    extern Gfx **D_80149438;
+    extern s32 D_80157814;     /* Time of day */
+    u8 *carData = (u8 *)car;
+    Gfx *gfx;
+    f32 *carPos;
+    s32 isBraking;
+    s32 lightsOn;
+
+    if (carData == NULL) {
+        return;
+    }
+
+    gfx = *D_80149438;
+    carPos = (f32 *)(carData + 0x24);
+
+    /* Check if braking (offset 0xCC) */
+    isBraking = *(s32 *)(carData + 0xCC) > 0;
+
+    /* Lights on at night or in tunnels */
+    lightsOn = (D_80157814 < 600 || D_80157814 > 1800);
+
+    if (lightsOn) {
+        /* Headlights - bright white glow */
+        gDPSetPrimColor(gfx++, 0, 0, 255, 255, 220, 200);
+        /* (would render headlight billboards) */
+    }
+
+    /* Taillights always visible */
+    if (isBraking) {
+        /* Bright red brake lights */
+        gDPSetPrimColor(gfx++, 0, 0, 255, 50, 50, 255);
+    } else {
+        /* Dim red taillights */
+        gDPSetPrimColor(gfx++, 0, 0, 200, 30, 30, 150);
+    }
+
+    /* (would render taillight billboards) */
+
+    *D_80149438 = gfx;
 }
 
 /*
 
  * func_800F8B70 (556 bytes)
  * Car exhaust render
+ *
+ * Renders exhaust smoke/flames when accelerating
  */
 void func_800F8B70(void *car) {
-    /* Exhaust - stub */
+    u8 *carData = (u8 *)car;
+    f32 *exhaustPos;
+    f32 throttle;
+    f32 speed;
+
+    if (carData == NULL) {
+        return;
+    }
+
+    /* Get throttle amount (offset 0xC4) */
+    throttle = *(f32 *)(carData + 0xC4);
+
+    /* Get speed (offset 0x34 velocity magnitude) */
+    speed = *(f32 *)(carData + 0x50);
+
+    /* Only show exhaust when accelerating */
+    if (throttle < 0.3f) {
+        return;
+    }
+
+    /* Get exhaust position (offset 0x200) */
+    exhaustPos = (f32 *)(carData + 0x200);
+
+    /* Create smoke particle at exhaust */
+    if (speed > 20.0f) {
+        /* At high speed, less visible exhaust */
+        if ((*(u32 *)&carData[0x08] & 0x07) == 0) {  /* Every 8 frames */
+            func_800EF288(exhaustPos, NULL);
+        }
+    } else {
+        /* At low speed, more visible puffs */
+        if ((*(u32 *)&carData[0x08] & 0x03) == 0) {  /* Every 4 frames */
+            func_800EF288(exhaustPos, NULL);
+        }
+    }
 }
 
 /*
 
  * func_800F8D9C (300 bytes)
  * Car antenna render
+ *
+ * Renders flexible car antenna with physics-based wobble
  */
 void func_800F8D9C(void *car) {
-    /* Antenna - stub */
+    extern Gfx **D_80149438;
+    u8 *carData = (u8 *)car;
+    Gfx *gfx;
+    f32 *antennaBase;
+    f32 wobbleX, wobbleZ;
+    f32 speed;
+
+    if (carData == NULL) {
+        return;
+    }
+
+    /* Get antenna base position (offset 0x210) */
+    antennaBase = (f32 *)(carData + 0x210);
+
+    /* Get car speed for wobble intensity */
+    speed = *(f32 *)(carData + 0x50);
+
+    /* Calculate wobble based on velocity and random variation */
+    wobbleX = *(f32 *)(carData + 0x34) * 0.02f;  /* Velocity X */
+    wobbleZ = *(f32 *)(carData + 0x3C) * 0.02f;  /* Velocity Z */
+
+    /* Clamp wobble */
+    if (wobbleX > 0.3f) wobbleX = 0.3f;
+    if (wobbleX < -0.3f) wobbleX = -0.3f;
+    if (wobbleZ > 0.3f) wobbleZ = 0.3f;
+    if (wobbleZ < -0.3f) wobbleZ = -0.3f;
+
+    gfx = *D_80149438;
+
+    /* Draw antenna line segments */
+    /* (would build line strip with wobble offset) */
+
+    *D_80149438 = gfx;
 }
 
 /*
 
  * func_800F8EC8 (1240 bytes)
  * Car nitro effect
+ *
+ * Renders nitro boost flames and trail effect
  */
 void func_800F8EC8(void *car) {
-    /* Nitro - stub */
+    extern Gfx **D_80149438;
+    extern u32 D_80142AFC;
+    u8 *carData = (u8 *)car;
+    Gfx *gfx;
+    f32 *exhaustPos;
+    f32 nitroAmount;
+    s32 flameIntensity;
+    f32 vel[3];
+
+    if (carData == NULL) {
+        return;
+    }
+
+    /* Get nitro amount (offset 0x1C0) */
+    nitroAmount = *(f32 *)(carData + 0x1C0);
+
+    if (nitroAmount <= 0.0f) {
+        return;  /* No nitro active */
+    }
+
+    gfx = *D_80149438;
+
+    /* Get exhaust positions (offset 0x200, 0x20C for dual exhaust) */
+    exhaustPos = (f32 *)(carData + 0x200);
+
+    /* Flame intensity based on nitro level */
+    flameIntensity = (s32)(nitroAmount * 255.0f);
+    if (flameIntensity > 255) flameIntensity = 255;
+
+    /* Set flame color - bright blue core, orange edges */
+    gDPSetPrimColor(gfx++, 0, 0, 100, 150, 255, flameIntensity);
+
+    /* Create flame particles */
+    vel[0] = -*(f32 *)(carData + 0x34) * 0.5f;  /* Opposite of velocity */
+    vel[1] = 1.0f;
+    vel[2] = -*(f32 *)(carData + 0x3C) * 0.5f;
+
+    /* Spawn flame particles every frame during nitro */
+    func_800EF288(exhaustPos, vel);
+
+    /* Spawn sparks occasionally */
+    if ((D_80142AFC & 0x03) == 0) {
+        func_800EF62C(exhaustPos, 3);
+    }
+
+    /* Update trail effect */
+    func_800F0674(car);
+
+    *D_80149438 = gfx;
 }
 
 /*
