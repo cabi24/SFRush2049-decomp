@@ -11507,83 +11507,746 @@ void func_800FA0D8(void) {
 
 /*
  * func_800FA9E4 (1296 bytes)
- * Loading screen
+ * Loading screen - displays progress bar during track loading
  */
 void func_800FA9E4(f32 progress) {
-    /* Loading screen - stub */
+    s32 barWidth;
+    s32 barX = 40;
+    s32 barY = 140;
+    s32 barMaxWidth = 240;
+    s32 barHeight = 20;
+    s32 dotCount;
+    s32 i;
+    s32 animFrame;
+    char *loadingTips[8];
+    s32 tipIndex;
+
+    loadingTips[0] = "USE WINGS FOR BIG AIR";
+    loadingTips[1] = "TAP BRAKE TO DRIFT";
+    loadingTips[2] = "SHORTCUTS ARE EVERYWHERE";
+    loadingTips[3] = "HOLD Z FOR WING DEPLOY";
+    loadingTips[4] = "COMBOS MULTIPLY SCORES";
+    loadingTips[5] = "FIND ALL HIDDEN COINS";
+    loadingTips[6] = "MASTER EACH SHORTCUT";
+    loadingTips[7] = "USE ENVIRONMENT TO WIN";
+
+    /* Clear screen with gradient effect */
+    func_800C6E60(0, 0, 320, 240, 0x101020);
+
+    /* Logo at top */
+    func_800C7110(1, 110, 30, 100, 50, 255);
+
+    /* "LOADING" text with animated dots */
+    animFrame = D_80142AFC & 0x1F;
+    dotCount = (animFrame / 8) + 1;
+    if (dotCount > 3) dotCount = 3;
+
+    func_800C734C("LOADING", 125, 100, 255);
+
+    /* Animated dots */
+    for (i = 0; i < dotCount; i++) {
+        func_800C734C(".", 175 + i * 8, 100, 255);
+    }
+
+    /* Progress bar background */
+    func_800C6E60(barX - 2, barY - 2, barMaxWidth + 4, barHeight + 4, 0x404040);
+
+    /* Progress bar fill */
+    if (progress < 0.0f) progress = 0.0f;
+    if (progress > 1.0f) progress = 1.0f;
+    barWidth = (s32)(progress * barMaxWidth);
+    if (barWidth > 0) {
+        /* Gradient fill - darker to lighter */
+        func_800C6E60(barX, barY, barWidth, barHeight / 2, 0x3080E0);
+        func_800C6E60(barX, barY + barHeight / 2, barWidth, barHeight / 2, 0x2060B0);
+    }
+
+    /* Progress percentage */
+    {
+        char percentStr[8];
+        s32 pct = (s32)(progress * 100);
+        percentStr[0] = '0' + (pct / 100);
+        percentStr[1] = '0' + ((pct / 10) % 10);
+        percentStr[2] = '0' + (pct % 10);
+        percentStr[3] = '%';
+        percentStr[4] = '\0';
+        if (pct < 100) {
+            percentStr[0] = ' ';
+            if (pct < 10) percentStr[1] = ' ';
+        }
+        func_800C734C(percentStr, 145, 170, 220);
+    }
+
+    /* Loading tip */
+    tipIndex = (D_80142AFC / 180) % 8;  /* Change tip every 3 seconds */
+    func_800C734C("TIP:", 60, 205, 150);
+    func_800C734C(loadingTips[tipIndex], 95, 205, 180);
+
+    /* Track name being loaded */
+    if (D_80159A08 >= 0 && D_80159A08 < 12) {
+        char *trackNames[12];
+        trackNames[0] = "MARINA";
+        trackNames[1] = "HAIGHT";
+        trackNames[2] = "SOMA";
+        trackNames[3] = "MISSION";
+        trackNames[4] = "NOB HILL";
+        trackNames[5] = "EMBARCADERO";
+        trackNames[6] = "PRESIDIO";
+        trackNames[7] = "SUNSET";
+        trackNames[8] = "RICHMOND";
+        trackNames[9] = "BAY BRIDGE";
+        trackNames[10] = "GOLDEN GATE";
+        trackNames[11] = "ALCATRAZ";
+
+        func_800C734C(trackNames[D_80159A08], 120, 70, 200);
+    }
 }
 
 /*
  * func_800FAEF4 (1808 bytes)
- * Pause menu
+ * Pause menu - in-race pause screen with options
  */
 void func_800FAEF4(void *pause) {
-    /* Pause menu - stub */
+    s32 input;
+    s32 selectedOption;
+    s32 confirmState;
+    char *menuItems[6];
+    s32 numItems;
+    s32 i;
+    s32 itemAlpha;
+    s32 baseY;
+
+    menuItems[0] = "RESUME";
+    menuItems[1] = "RESTART RACE";
+    menuItems[2] = "OPTIONS";
+    menuItems[3] = "VIEW CONTROLS";
+    menuItems[4] = "QUIT TO MENU";
+    numItems = 5;
+
+    selectedOption = D_80159F40;
+    confirmState = D_80159F44;
+
+    input = func_800CB748(D_80158100);
+
+    if (confirmState == 0) {
+        /* Normal pause menu */
+        if (input == 4) {  /* Up */
+            selectedOption--;
+            if (selectedOption < 0) selectedOption = numItems - 1;
+            func_800CC3C0(12);
+        } else if (input == 5) {  /* Down */
+            selectedOption++;
+            if (selectedOption >= numItems) selectedOption = 0;
+            func_800CC3C0(12);
+        } else if (input == 1) {  /* A */
+            if (selectedOption == 0) {
+                /* Resume - unpause */
+                func_800FB5F4(0);
+            } else if (selectedOption == 1) {
+                /* Restart - confirm */
+                confirmState = 1;
+            } else if (selectedOption == 2) {
+                /* Options submenu */
+                D_80159F48 = 1;  /* Options mode */
+            } else if (selectedOption == 3) {
+                /* Controls view */
+                D_80159F48 = 2;  /* Controls mode */
+            } else if (selectedOption == 4) {
+                /* Quit - confirm */
+                confirmState = 2;
+            }
+            func_800CC3C0(10);
+        } else if (input == 2 || (D_80158100 & 0x1000)) {  /* B or START */
+            /* Resume */
+            func_800FB5F4(0);
+        }
+    } else if (confirmState == 1) {
+        /* Restart confirmation */
+        if (input == 1) {  /* A - yes */
+            /* Restart race */
+            D_80159F44 = 0;
+            D_801146EC = 7;  /* PREPLAY */
+            func_800FB5F4(0);
+            func_800CC3C0(10);
+        } else if (input == 2) {  /* B - no */
+            confirmState = 0;
+            func_800CC3C0(11);
+        }
+    } else if (confirmState == 2) {
+        /* Quit confirmation */
+        if (input == 1) {  /* A - yes */
+            D_80159F44 = 0;
+            D_801146EC = 1;  /* TRKSEL or menu */
+            func_800FB5F4(0);
+            func_800CC3C0(10);
+        } else if (input == 2) {  /* B - no */
+            confirmState = 0;
+            func_800CC3C0(11);
+        }
+    }
+
+    /* Render pause overlay */
+    /* Darken background */
+    func_800C6E60(0, 0, 320, 240, 0x00000080);
+
+    /* Pause box */
+    func_800C6E60(70, 50, 180, 160, 0x202040);
+    func_800C6E60(72, 52, 176, 156, 0x303060);
+
+    func_800C734C("PAUSED", 130, 60, 255);
+
+    if (confirmState == 0) {
+        /* Normal menu */
+        baseY = 90;
+        for (i = 0; i < numItems; i++) {
+            if (i == selectedOption) {
+                itemAlpha = 255;
+                /* Highlight bar */
+                func_800C6E60(80, baseY + i * 22 - 2, 160, 18, 0x404080);
+            } else {
+                itemAlpha = 150;
+            }
+            func_800C734C(menuItems[i], 100, baseY + i * 22, itemAlpha);
+        }
+    } else if (confirmState == 1) {
+        /* Restart confirmation */
+        func_800C734C("RESTART RACE?", 105, 100, 255);
+        func_800C734C("A: YES   B: NO", 100, 140, 200);
+    } else if (confirmState == 2) {
+        /* Quit confirmation */
+        func_800C734C("QUIT TO MENU?", 105, 100, 255);
+        func_800C734C("A: YES   B: NO", 100, 140, 200);
+    }
+
+    D_80159F40 = selectedOption;
+    D_80159F44 = confirmState;
 }
 
 /*
  * func_800FB5F4 (820 bytes)
- * Pause state toggle
+ * Pause state toggle - handles entering/exiting pause
  */
 void func_800FB5F4(s32 pause) {
-    /* Pause toggle - stub */
+    s32 prevPause;
+
+    prevPause = D_80159F50;
+    D_80159F50 = pause;
+
+    if (pause && !prevPause) {
+        /* Entering pause */
+        D_80159F40 = 0;  /* Reset menu selection */
+        D_80159F44 = 0;  /* Reset confirm state */
+        D_80159F48 = 0;  /* Reset submenu state */
+
+        /* Pause game timer */
+        D_80159F54 = D_80142AFC;  /* Store pause start time */
+
+        /* Stop audio */
+        func_800B37E8(0);  /* Pause music */
+        func_800CC3C0(15);  /* Pause sound effect */
+
+        /* Set render mode for pause overlay */
+        D_80159F58 = 1;
+
+    } else if (!pause && prevPause) {
+        /* Exiting pause */
+        s32 pauseDuration;
+
+        /* Calculate pause duration and adjust game timer */
+        pauseDuration = D_80142AFC - D_80159F54;
+        D_8015A000 = D_8015A000 + pauseDuration;  /* Add to pause accumulator */
+
+        /* Resume audio */
+        func_800B37E8(1);  /* Resume music */
+
+        /* Clear pause state */
+        D_80159F58 = 0;
+    }
 }
 
 /*
  * func_800FB928 (712 bytes)
- * Game timer update
+ * Game timer update - updates race clock and lap times
  */
 void func_800FB928(void) {
-    /* Timer update - stub */
+    s32 currentFrame;
+    s32 elapsedTime;
+    s32 raceTime;
+    s32 i;
+
+    /* Skip if paused */
+    if (D_80159F50) {
+        return;
+    }
+
+    currentFrame = D_80142AFC;
+
+    /* Calculate race time (excluding pause time) */
+    elapsedTime = currentFrame - D_8015A004;  /* Start time */
+    elapsedTime = elapsedTime - D_8015A000;   /* Subtract pause time */
+
+    /* Convert frames to hundredths (60fps) */
+    raceTime = (elapsedTime * 100) / 60;
+
+    /* Store current race time */
+    D_8015A008 = raceTime;
+
+    /* Update lap time */
+    D_8015A00C = raceTime - D_8015A010;  /* Current lap = race - last lap total */
+
+    /* Update split times for display */
+    for (i = 0; i < 4; i++) {
+        if (D_8015A020[i] > 0) {
+            s32 splitAge = currentFrame - D_8015A030[i];
+            if (splitAge > 180) {  /* 3 seconds */
+                D_8015A020[i] = 0;  /* Clear split display */
+            }
+        }
+    }
+
+    /* Time limit check (if enabled) */
+    if (D_80159A18 > 0) {
+        s32 timeLimit = D_80159A18 * 100;  /* In hundredths */
+        if (raceTime >= timeLimit) {
+            /* Time's up! */
+            D_8015A040 = 1;  /* Time expired flag */
+        }
+    }
+
+    /* Best lap tracking */
+    if (D_8015A00C > 0 && D_8015A00C < D_8015A044) {
+        D_8015A044 = D_8015A00C;  /* New best lap */
+    }
 }
 
 /*
  * func_800FC3D8 (1516 bytes)
- * Bonus mode
+ * Bonus mode - hidden coin collection mode
  */
 void func_800FC3D8(void *bonus) {
-    /* Bonus mode - stub */
+    s32 coinCount;
+    s32 totalCoins;
+    s32 i;
+    s32 trackId;
+
+    trackId = D_80159A08;
+    coinCount = 0;
+    totalCoins = D_8015A050[trackId];  /* Total coins on track */
+
+    /* Count collected coins */
+    for (i = 0; i < 16; i++) {
+        if (D_8015A060[trackId * 16 + i] != 0) {
+            coinCount++;
+        }
+    }
+
+    /* Update HUD coin counter */
+    D_8015A080 = coinCount;
+    D_8015A084 = totalCoins;
+
+    /* Check for all coins collected */
+    if (coinCount >= totalCoins && totalCoins > 0) {
+        /* All coins collected - trigger unlock */
+        if (D_8015A088 == 0) {
+            D_8015A088 = 1;  /* Coins complete flag */
+            func_800FCEB0(trackId + 20);  /* Unlock bonus for this track */
+            func_800CC3C0(20);  /* Bonus sound */
+        }
+    }
+
+    /* Render coin HUD */
+    {
+        char coinStr[8];
+        s32 x = 260;
+        s32 y = 20;
+
+        /* Coin icon */
+        func_800C7110(30, x, y, 16, 16, 255);
+
+        /* Count text */
+        coinStr[0] = '0' + (coinCount / 10);
+        coinStr[1] = '0' + (coinCount % 10);
+        coinStr[2] = '/';
+        coinStr[3] = '0' + (totalCoins / 10);
+        coinStr[4] = '0' + (totalCoins % 10);
+        coinStr[5] = '\0';
+        func_800C734C(coinStr, x + 20, y + 2, 255);
+    }
 }
 
 /*
  * func_800FC9B8 (1284 bytes)
- * Unlock check
+ * Unlock check - check if content is unlocked
+ *
+ * Unlock IDs:
+ * 0-11: Tracks (0=Marina, 1=Haight, etc.)
+ * 12-19: Cars (12=Venom, 13=Crusher, etc.)
+ * 20-31: Track bonuses (coins collected)
+ * 32-39: Stunt arenas
+ * 40-47: Paint jobs/colors
+ * 48-55: Cheats
+ * 56+: Misc unlocks
  */
 s32 func_800FC9B8(s32 unlockId) {
-    /* Unlock check - stub */
+    u32 unlockWord;
+    s32 bitIndex;
+
+    /* Basic tracks and cars always unlocked */
+    if (unlockId < 4) {
+        return 1;  /* First 4 tracks unlocked */
+    }
+    if (unlockId >= 12 && unlockId < 16) {
+        return 1;  /* First 4 cars unlocked */
+    }
+
+    /* Check unlock bits from save data */
+    unlockWord = D_8015A100[unlockId / 32];
+    bitIndex = unlockId % 32;
+
+    if (unlockWord & (1 << bitIndex)) {
+        return 1;
+    }
+
     return 0;
 }
 
 /*
  * func_800FCEB0 (948 bytes)
- * Unlock trigger
+ * Unlock trigger - unlock new content
  */
 void func_800FCEB0(s32 unlockId) {
-    /* Unlock trigger - stub */
+    u32 *unlockWord;
+    s32 bitIndex;
+    s32 wasLocked;
+
+    /* Check if already unlocked */
+    wasLocked = !func_800FC9B8(unlockId);
+
+    if (!wasLocked) {
+        return;  /* Already unlocked */
+    }
+
+    /* Set unlock bit */
+    unlockWord = &D_8015A100[unlockId / 32];
+    bitIndex = unlockId % 32;
+    *unlockWord = *unlockWord | (1 << bitIndex);
+
+    /* Show unlock notification */
+    D_8015A110 = unlockId;
+    D_8015A114 = 300;  /* Show for 5 seconds */
+
+    /* Play unlock sound */
+    func_800CC3C0(25);
+
+    /* Queue save */
+    D_8015A118 = 1;
+
+    /* Set unlock message based on ID */
+    if (unlockId >= 0 && unlockId < 12) {
+        /* Track unlock */
+        D_8015A11C = 0;  /* "NEW TRACK UNLOCKED!" */
+    } else if (unlockId >= 12 && unlockId < 20) {
+        /* Car unlock */
+        D_8015A11C = 1;  /* "NEW CAR UNLOCKED!" */
+    } else if (unlockId >= 20 && unlockId < 32) {
+        /* Bonus unlock */
+        D_8015A11C = 2;  /* "BONUS UNLOCKED!" */
+    } else if (unlockId >= 32 && unlockId < 40) {
+        /* Arena unlock */
+        D_8015A11C = 3;  /* "NEW ARENA UNLOCKED!" */
+    } else if (unlockId >= 40 && unlockId < 48) {
+        /* Paint job */
+        D_8015A11C = 4;  /* "NEW PAINT UNLOCKED!" */
+    } else if (unlockId >= 48 && unlockId < 56) {
+        /* Cheat */
+        D_8015A11C = 5;  /* "CHEAT UNLOCKED!" */
+    } else {
+        D_8015A11C = 6;  /* "SECRET UNLOCKED!" */
+    }
 }
 
 /*
  * func_800FD264 (512 bytes)
- * Progress save
+ * Progress save - save game progress to Controller Pak
  */
 void func_800FD264(void) {
-    /* Progress save - stub */
+    u8 saveData[256];
+    s32 i;
+    s32 offset;
+    u16 checksum;
+
+    /* Check if save needed */
+    if (D_8015A118 == 0) {
+        return;
+    }
+    D_8015A118 = 0;
+
+    /* Build save data block */
+    offset = 0;
+
+    /* Header/magic */
+    saveData[offset++] = 'R';
+    saveData[offset++] = 'U';
+    saveData[offset++] = 'S';
+    saveData[offset++] = 'H';
+
+    /* Version */
+    saveData[offset++] = 1;
+    saveData[offset++] = 0;
+
+    /* Unlock bits (8 bytes = 64 unlocks) */
+    for (i = 0; i < 2; i++) {
+        u32 unlockWord = D_8015A100[i];
+        saveData[offset++] = (unlockWord >> 24) & 0xFF;
+        saveData[offset++] = (unlockWord >> 16) & 0xFF;
+        saveData[offset++] = (unlockWord >> 8) & 0xFF;
+        saveData[offset++] = unlockWord & 0xFF;
+    }
+
+    /* Best times (12 tracks * 4 bytes = 48 bytes) */
+    for (i = 0; i < 12; i++) {
+        s32 time = D_80159A10[i];
+        saveData[offset++] = (time >> 24) & 0xFF;
+        saveData[offset++] = (time >> 16) & 0xFF;
+        saveData[offset++] = (time >> 8) & 0xFF;
+        saveData[offset++] = time & 0xFF;
+    }
+
+    /* Best laps (12 tracks * 4 bytes = 48 bytes) */
+    for (i = 0; i < 12; i++) {
+        s32 time = D_80159D10[i];
+        saveData[offset++] = (time >> 24) & 0xFF;
+        saveData[offset++] = (time >> 16) & 0xFF;
+        saveData[offset++] = (time >> 8) & 0xFF;
+        saveData[offset++] = time & 0xFF;
+    }
+
+    /* Options (8 bytes) */
+    saveData[offset++] = D_80159300;  /* Music volume */
+    saveData[offset++] = D_80159304;  /* SFX volume */
+    saveData[offset++] = D_80159308;  /* Controller config */
+    saveData[offset++] = D_8015930C;  /* Vibration */
+    saveData[offset++] = D_80159310;  /* Display mode */
+    saveData[offset++] = D_80159314;  /* Misc flags */
+    saveData[offset++] = 0;
+    saveData[offset++] = 0;
+
+    /* Calculate checksum */
+    checksum = 0;
+    for (i = 0; i < offset; i++) {
+        checksum = checksum + saveData[i];
+    }
+    saveData[offset++] = (checksum >> 8) & 0xFF;
+    saveData[offset++] = checksum & 0xFF;
+
+    /* Write to Controller Pak */
+    func_800B0580(0, saveData, offset);
 }
 
 /*
  * func_800FDA90 (4560 bytes)
- * Race init
+ * Race init - initialize race state for new race
  */
 void func_800FDA90(void *race) {
-    /* Race init - stub */
+    s32 i;
+    s32 numPlayers;
+    s32 trackId;
+    s32 numLaps;
+
+    trackId = D_80159A08;
+    numLaps = D_80159A0C;
+    numPlayers = D_80159C18;
+    if (numPlayers < 1) numPlayers = 1;
+
+    /* Reset timer state */
+    D_8015A000 = 0;  /* Pause accumulator */
+    D_8015A004 = D_80142AFC;  /* Race start frame */
+    D_8015A008 = 0;  /* Race time */
+    D_8015A00C = 0;  /* Lap time */
+    D_8015A010 = 0;  /* Last lap total */
+    D_8015A040 = 0;  /* Time expired flag */
+    D_8015A044 = 0x7FFFFFFF;  /* Best lap (max) */
+
+    /* Clear split times */
+    for (i = 0; i < 4; i++) {
+        D_8015A020[i] = 0;
+        D_8015A030[i] = 0;
+    }
+
+    /* Initialize player race state */
+    for (i = 0; i < 4; i++) {
+        D_8015A200[i] = 0;  /* Position */
+        D_8015A210[i] = 0;  /* Lap count */
+        D_8015A220[i] = 0;  /* Checkpoint */
+        D_8015A230[i] = 0;  /* Race time */
+        D_8015A240[i] = 0;  /* Finished flag */
+        D_8015A250[i] = 0;  /* DNF flag */
+        D_8015A260[i] = 0;  /* Respawn count */
+    }
+
+    /* Load track data */
+    func_800A0F74(trackId);
+
+    /* Initialize checkpoint system */
+    func_800958A4(trackId, numLaps);
+
+    /* Initialize car positions at starting grid */
+    for (i = 0; i < numPlayers; i++) {
+        func_80095A30(i, i);  /* Player i at grid position i */
+    }
+
+    /* Initialize AI drones if single player or need fill */
+    if (numPlayers == 1) {
+        s32 numDrones = 5;  /* 5 AI opponents */
+        for (i = 0; i < numDrones; i++) {
+            func_800960D4(i, i + 1);  /* Drone at grid positions 1-5 */
+        }
+        D_8015A280 = numDrones;
+    } else {
+        D_8015A280 = 0;
+    }
+
+    /* Set race state */
+    D_8015A290 = 0;  /* Race phase: countdown */
+    D_8015A294 = 0;  /* Countdown timer */
+    D_8015A298 = numLaps;
+
+    /* Initialize stunt score if stunt mode */
+    if (D_80159A04 == 2) {  /* Stunt mode */
+        for (i = 0; i < 4; i++) {
+            D_8015A2A0[i] = 0;  /* Score */
+            D_8015A2B0[i] = 0;  /* Combo */
+            D_8015A2C0[i] = 1;  /* Multiplier */
+        }
+    }
+
+    /* Initialize battle mode if battle */
+    if (D_80159A04 == 3) {  /* Battle mode */
+        for (i = 0; i < 4; i++) {
+            D_8015A2D0[i] = 0;  /* Frags */
+            D_8015A2E0[i] = 0;  /* Deaths */
+            D_8015A2F0[i] = 3;  /* Lives/health */
+        }
+    }
+
+    /* Reset ghost recording if time attack */
+    if (D_80159A14 == 0 && D_80159A04 == 1) {  /* Time attack, not playing ghost */
+        D_8015A300 = 0;  /* Ghost frame count */
+        D_8015A304 = 1;  /* Recording flag */
+    }
+
+    /* Initialize coin collection if bonus mode */
+    D_8015A088 = 0;
+    for (i = 0; i < 16; i++) {
+        D_8015A060[trackId * 16 + i] = 0;
+    }
+
+    /* Play starting music */
+    func_800B358C(trackId);
+
+    /* Clear pause state */
+    D_80159F50 = 0;
+    D_80159F58 = 0;
 }
 
 /*
  * func_800FEC78 (1808 bytes)
- * Race cleanup
+ * Race cleanup - clean up after race ends
  */
 void func_800FEC78(void) {
-    /* Race cleanup - stub */
+    s32 i;
+    s32 trackId;
+    s32 raceTime;
+    s32 bestLap;
+    s32 numPlayers;
+
+    trackId = D_80159A08;
+    raceTime = D_8015A008;
+    bestLap = D_8015A044;
+    numPlayers = D_80159C18;
+    if (numPlayers < 1) numPlayers = 1;
+
+    /* Stop music */
+    func_800B37E8(2);  /* Stop */
+
+    /* Save ghost data if recording */
+    if (D_8015A304 && D_8015A240[0]) {
+        /* Player finished, save ghost */
+        func_800B0618(trackId, D_8015A300);
+        D_8015A304 = 0;
+    }
+
+    /* Check for new records */
+    if (D_80159A04 == 0 || D_80159A04 == 1) {
+        /* Circuit or Time Attack */
+
+        /* Check best race time */
+        if (D_8015A240[0] && raceTime > 0) {
+            if (D_80159A10[trackId] == 0 || raceTime < D_80159A10[trackId]) {
+                D_80159A10[trackId] = raceTime;
+                D_8015A118 = 1;  /* Queue save */
+                D_8015A310 = 1;  /* New record flag */
+            }
+        }
+
+        /* Check best lap */
+        if (bestLap < 0x7FFFFFFF) {
+            if (D_80159D10[trackId] == 0 || bestLap < D_80159D10[trackId]) {
+                D_80159D10[trackId] = bestLap;
+                D_8015A118 = 1;  /* Queue save */
+                D_8015A314 = 1;  /* New lap record flag */
+            }
+        }
+    }
+
+    /* Check for stunt high score */
+    if (D_80159A04 == 2) {
+        s32 score = D_8015A2A0[0];
+        if (score > D_80159D40[trackId * 5]) {
+            /* New high score - shift others down */
+            for (i = 4; i > 0; i--) {
+                D_80159D40[trackId * 5 + i] = D_80159D40[trackId * 5 + i - 1];
+            }
+            D_80159D40[trackId * 5] = score;
+            D_8015A118 = 1;
+            D_8015A318 = 1;  /* New stunt record flag */
+        }
+    }
+
+    /* Check unlock conditions */
+    /* Finishing first on a track unlocks next track */
+    if (D_8015A200[0] == 1 && D_8015A240[0]) {
+        s32 nextTrack = trackId + 1;
+        if (nextTrack < 12 && !func_800FC9B8(nextTrack)) {
+            func_800FCEB0(nextTrack);
+        }
+    }
+
+    /* Perfect lap unlocks bonus car */
+    if (bestLap < D_8015A320[trackId]) {  /* Par time for track */
+        s32 bonusCar = 16 + (trackId / 3);  /* Bonus cars 16-19 */
+        if (!func_800FC9B8(bonusCar)) {
+            func_800FCEB0(bonusCar);
+        }
+    }
+
+    /* Update statistics */
+    D_8015A330++;  /* Total races */
+    if (D_8015A200[0] == 1 && D_8015A240[0]) {
+        D_8015A334++;  /* Wins */
+    }
+    D_8015A338 = D_8015A338 + D_8015A33C;  /* Add distance traveled */
+
+    /* Free track resources */
+    func_800A11E4(trackId);
+
+    /* Clear drone state */
+    for (i = 0; i < 8; i++) {
+        func_800963B0(i);
+    }
+
+    /* Save progress */
+    func_800FD264();
 }
 
 /*
@@ -18464,26 +19127,613 @@ void func_800D349C(void) {
 
 /*
  * func_800D3B28 (5068 bytes)
- * Stunt mode setup
+ * Stunt mode setup - configure stunt arena and scoring
  */
 void func_800D3B28(void) {
-    /* Stunt setup - stub */
+    s32 input;
+    s32 menuState;
+    s32 selectedOption;
+    s32 selectedArena;
+    s32 timeLimit;
+    s32 targetScore;
+    s32 wingEnabled;
+    s32 i;
+    char *arenaNames[8];
+    s32 arenaUnlocked[8];
+    s32 targetScores[6];
+    s32 timeLimits[5];
+    char scoreStr[16];
+    char timeStr[16];
+
+    arenaNames[0] = "ALCATRAZ";
+    arenaNames[1] = "METRO";
+    arenaNames[2] = "PIER 39";
+    arenaNames[3] = "GOLDEN GATE";
+    arenaNames[4] = "TWIN PEAKS";
+    arenaNames[5] = "DOWNTOWN";
+    arenaNames[6] = "OBSTACLE";
+    arenaNames[7] = "FREEFORM";
+
+    targetScores[0] = 10000;
+    targetScores[1] = 25000;
+    targetScores[2] = 50000;
+    targetScores[3] = 100000;
+    targetScores[4] = 250000;
+    targetScores[5] = 0;  /* No limit */
+
+    timeLimits[0] = 60;   /* 1 minute */
+    timeLimits[1] = 120;  /* 2 minutes */
+    timeLimits[2] = 180;  /* 3 minutes */
+    timeLimits[3] = 300;  /* 5 minutes */
+    timeLimits[4] = 0;    /* No limit */
+
+    menuState = D_80159E00;
+    selectedOption = D_80159E04;
+    selectedArena = D_80159E08;
+    timeLimit = D_80159E0C;
+    targetScore = D_80159E10;
+    wingEnabled = D_80159E14;
+
+    func_800CC040();
+
+    /* Check arena unlock status */
+    for (i = 0; i < 8; i++) {
+        arenaUnlocked[i] = func_800D3430(i);
+    }
+
+    input = func_800CB748(D_80158100);
+
+    if (menuState == 0) {
+        /* Main stunt setup menu */
+        if (input == 4) {  /* Up */
+            selectedOption--;
+            if (selectedOption < 0) selectedOption = 5;
+            func_800CC3C0(12);
+        } else if (input == 5) {  /* Down */
+            selectedOption++;
+            if (selectedOption > 5) selectedOption = 0;
+            func_800CC3C0(12);
+        } else if (input == 6 || input == 7) {  /* Left/Right */
+            /* Adjust option value */
+            if (selectedOption == 0) {
+                /* Arena selection */
+                if (input == 6) {
+                    selectedArena--;
+                    if (selectedArena < 0) selectedArena = 7;
+                } else {
+                    selectedArena++;
+                    if (selectedArena > 7) selectedArena = 0;
+                }
+                /* Skip locked arenas */
+                while (!arenaUnlocked[selectedArena]) {
+                    if (input == 6) {
+                        selectedArena--;
+                        if (selectedArena < 0) selectedArena = 7;
+                    } else {
+                        selectedArena++;
+                        if (selectedArena > 7) selectedArena = 0;
+                    }
+                }
+            } else if (selectedOption == 1) {
+                /* Time limit */
+                if (input == 6) {
+                    timeLimit--;
+                    if (timeLimit < 0) timeLimit = 4;
+                } else {
+                    timeLimit++;
+                    if (timeLimit > 4) timeLimit = 0;
+                }
+            } else if (selectedOption == 2) {
+                /* Target score */
+                if (input == 6) {
+                    targetScore--;
+                    if (targetScore < 0) targetScore = 5;
+                } else {
+                    targetScore++;
+                    if (targetScore > 5) targetScore = 0;
+                }
+            } else if (selectedOption == 3) {
+                /* Wings enabled */
+                wingEnabled = !wingEnabled;
+            }
+            func_800CC3C0(12);
+        } else if (input == 1) {  /* A - select */
+            if (selectedOption == 4) {
+                /* Start stunt mode */
+                if (arenaUnlocked[selectedArena]) {
+                    D_80159E08 = selectedArena;
+                    D_80159E0C = timeLimit;
+                    D_80159E10 = targetScore;
+                    D_80159E14 = wingEnabled;
+                    D_80159A08 = selectedArena + 100;  /* Stunt arena IDs */
+                    D_801146EC = 7;  /* PREPLAY */
+                    func_800CBE8C(-1);
+                }
+            } else if (selectedOption == 5) {
+                /* Stunt tutorial */
+                menuState = 1;
+            }
+        } else if (input == 2) {  /* B - back */
+            func_800CBE08();
+        }
+
+        /* Render stunt setup menu */
+        func_800C734C("STUNT MODE", 105, 20, 255);
+
+        /* Arena selection */
+        func_800C734C("ARENA", 40, 55, selectedOption == 0 ? 255 : 180);
+        func_800C734C(arenaNames[selectedArena], 140, 55, arenaUnlocked[selectedArena] ? 255 : 100);
+        if (!arenaUnlocked[selectedArena]) {
+            func_800C7110(61, 230, 53, 16, 16, 180);  /* Lock icon */
+        }
+        /* Arrow indicators */
+        func_800C734C("<", 125, 55, selectedOption == 0 ? 200 : 100);
+        func_800C734C(">", 250, 55, selectedOption == 0 ? 200 : 100);
+
+        /* Time limit */
+        func_800C734C("TIME LIMIT", 40, 80, selectedOption == 1 ? 255 : 180);
+        if (timeLimits[timeLimit] == 0) {
+            func_800C734C("UNLIMITED", 160, 80, 255);
+        } else {
+            s32 mins = timeLimits[timeLimit] / 60;
+            s32 secs = timeLimits[timeLimit] % 60;
+            timeStr[0] = '0' + mins;
+            timeStr[1] = ':';
+            timeStr[2] = '0' + (secs / 10);
+            timeStr[3] = '0' + (secs % 10);
+            timeStr[4] = '\0';
+            func_800C734C(timeStr, 175, 80, 255);
+        }
+        func_800C734C("<", 145, 80, selectedOption == 1 ? 200 : 100);
+        func_800C734C(">", 220, 80, selectedOption == 1 ? 200 : 100);
+
+        /* Target score */
+        func_800C734C("TARGET SCORE", 40, 105, selectedOption == 2 ? 255 : 180);
+        if (targetScores[targetScore] == 0) {
+            func_800C734C("NONE", 180, 105, 255);
+        } else {
+            func_800A2CE4(scoreStr, targetScores[targetScore]);
+            func_800C734C(scoreStr, 165, 105, 255);
+        }
+        func_800C734C("<", 150, 105, selectedOption == 2 ? 200 : 100);
+        func_800C734C(">", 225, 105, selectedOption == 2 ? 200 : 100);
+
+        /* Wings toggle */
+        func_800C734C("WINGS", 40, 130, selectedOption == 3 ? 255 : 180);
+        func_800C734C(wingEnabled ? "ON" : "OFF", 180, 130, wingEnabled ? 200 : 150);
+
+        /* Start button */
+        func_800C734C("START STUNT MODE", 75, 165, selectedOption == 4 ? 255 : 180);
+
+        /* Tutorial button */
+        func_800C734C("STUNT TUTORIAL", 85, 190, selectedOption == 5 ? 255 : 180);
+
+        /* Arena preview */
+        func_800D3E50(selectedArena);
+
+    } else if (menuState == 1) {
+        /* Stunt tutorial screen */
+        input = func_800CB748(D_80158100);
+
+        if (input == 2 || input == 1) {  /* B or A to go back */
+            menuState = 0;
+        }
+
+        func_800C734C("STUNT TUTORIAL", 95, 20, 255);
+        func_800C734C("TRICKS AND SCORING:", 60, 50, 255);
+
+        func_800C734C("BARREL ROLL", 40, 75, 220);
+        func_800C734C("- Spin car while airborne", 40, 88, 180);
+        func_800C734C("- 500 pts per rotation", 40, 101, 180);
+
+        func_800C734C("FLIP", 40, 120, 220);
+        func_800C734C("- Front/back flip in air", 40, 133, 180);
+        func_800C734C("- 750 pts per flip", 40, 146, 180);
+
+        func_800C734C("WING GLIDE", 40, 165, 220);
+        func_800C734C("- Hold Z to deploy wings", 40, 178, 180);
+        func_800C734C("- 100 pts per second", 40, 191, 180);
+
+        func_800C734C("COMBO BONUS", 40, 210, 220);
+        func_800C734C("- Chain tricks for 2x-5x", 40, 223, 180);
+
+        func_800C734C("PRESS B TO RETURN", 85, 250, 150);
+    }
+
+    D_80159E00 = menuState;
+    D_80159E04 = selectedOption;
+    D_80159E08 = selectedArena;
+    D_80159E0C = timeLimit;
+    D_80159E10 = targetScore;
+    D_80159E14 = wingEnabled;
+}
+
+/*
+ * func_800D3E50 (384 bytes)
+ * Render stunt arena preview
+ */
+void func_800D3E50(s32 arenaId) {
+    s32 previewX = 160;
+    s32 previewY = 160;
+    s32 previewW = 100;
+    s32 previewH = 60;
+
+    /* Draw preview frame */
+    func_800C7110(70, previewX - 2, previewY - 2, previewW + 4, previewH + 4, 200);
+
+    /* Load arena preview texture */
+    func_800C7454(arenaId + 200, previewX, previewY, previewW, previewH, 255);
+
+    /* Arena difficulty indicator */
+    func_800C734C("DIFF:", 165, 225, 180);
+    if (arenaId < 2) {
+        func_800C734C("EASY", 205, 225, 100);
+    } else if (arenaId < 5) {
+        func_800C734C("MEDIUM", 205, 225, 200);
+    } else {
+        func_800C734C("HARD", 205, 225, 255);
+    }
 }
 
 /*
  * func_800D4EF4 (532 bytes)
- * Battle mode setup
+ * Battle mode setup - configure battle arena and rules
  */
 void func_800D4EF4(void) {
-    /* Battle setup - stub */
+    s32 input;
+    s32 selectedOption;
+    s32 selectedArena;
+    s32 fragLimit;
+    s32 timeLimit;
+    s32 weaponsEnabled;
+    char *arenaNames[4];
+    s32 fragLimits[5];
+    s32 timeLimits[4];
+    char fragStr[8];
+    char timeStr[8];
+
+    arenaNames[0] = "WAREHOUSE";
+    arenaNames[1] = "ROOFTOPS";
+    arenaNames[2] = "DOCKS";
+    arenaNames[3] = "FACTORY";
+
+    fragLimits[0] = 5;
+    fragLimits[1] = 10;
+    fragLimits[2] = 15;
+    fragLimits[3] = 20;
+    fragLimits[4] = 0;  /* No limit */
+
+    timeLimits[0] = 180;   /* 3 minutes */
+    timeLimits[1] = 300;   /* 5 minutes */
+    timeLimits[2] = 600;   /* 10 minutes */
+    timeLimits[3] = 0;     /* No limit */
+
+    selectedOption = D_80159E20;
+    selectedArena = D_80159E24;
+    fragLimit = D_80159E28;
+    timeLimit = D_80159E2C;
+    weaponsEnabled = D_80159E30;
+
+    func_800CC040();
+
+    input = func_800CB748(D_80158100);
+
+    if (input == 4) {  /* Up */
+        selectedOption--;
+        if (selectedOption < 0) selectedOption = 5;
+        func_800CC3C0(12);
+    } else if (input == 5) {  /* Down */
+        selectedOption++;
+        if (selectedOption > 5) selectedOption = 0;
+        func_800CC3C0(12);
+    } else if (input == 6 || input == 7) {  /* Left/Right */
+        if (selectedOption == 0) {
+            /* Arena selection */
+            if (input == 6) {
+                selectedArena--;
+                if (selectedArena < 0) selectedArena = 3;
+            } else {
+                selectedArena++;
+                if (selectedArena > 3) selectedArena = 0;
+            }
+        } else if (selectedOption == 1) {
+            /* Frag limit */
+            if (input == 6) {
+                fragLimit--;
+                if (fragLimit < 0) fragLimit = 4;
+            } else {
+                fragLimit++;
+                if (fragLimit > 4) fragLimit = 0;
+            }
+        } else if (selectedOption == 2) {
+            /* Time limit */
+            if (input == 6) {
+                timeLimit--;
+                if (timeLimit < 0) timeLimit = 3;
+            } else {
+                timeLimit++;
+                if (timeLimit > 3) timeLimit = 0;
+            }
+        } else if (selectedOption == 3) {
+            /* Weapons */
+            weaponsEnabled = !weaponsEnabled;
+        }
+        func_800CC3C0(12);
+    } else if (input == 1) {  /* A - select */
+        if (selectedOption == 4) {
+            /* Player count check */
+            if (D_80159C18 >= 2) {
+                D_80159E24 = selectedArena;
+                D_80159E28 = fragLimit;
+                D_80159E2C = timeLimit;
+                D_80159E30 = weaponsEnabled;
+                D_80159A08 = selectedArena + 200;  /* Battle arena IDs */
+                D_801146EC = 7;  /* PREPLAY */
+                func_800CBE8C(-1);
+            } else {
+                func_800CC3C0(13);  /* Error sound */
+            }
+        } else if (selectedOption == 5) {
+            /* Go to player join */
+            func_800CBE8C(15);
+        }
+    } else if (input == 2) {  /* B - back */
+        func_800CBE08();
+    }
+
+    /* Render */
+    func_800C734C("BATTLE MODE", 100, 20, 255);
+
+    /* Arena */
+    func_800C734C("ARENA", 40, 55, selectedOption == 0 ? 255 : 180);
+    func_800C734C(arenaNames[selectedArena], 150, 55, 255);
+    func_800C734C("<", 135, 55, selectedOption == 0 ? 200 : 100);
+    func_800C734C(">", 240, 55, selectedOption == 0 ? 200 : 100);
+
+    /* Frag limit */
+    func_800C734C("FRAG LIMIT", 40, 80, selectedOption == 1 ? 255 : 180);
+    if (fragLimits[fragLimit] == 0) {
+        func_800C734C("UNLIMITED", 160, 80, 255);
+    } else {
+        fragStr[0] = '0' + (fragLimits[fragLimit] / 10);
+        fragStr[1] = '0' + (fragLimits[fragLimit] % 10);
+        fragStr[2] = '\0';
+        func_800C734C(fragStr, 185, 80, 255);
+    }
+    func_800C734C("<", 145, 80, selectedOption == 1 ? 200 : 100);
+    func_800C734C(">", 215, 80, selectedOption == 1 ? 200 : 100);
+
+    /* Time limit */
+    func_800C734C("TIME LIMIT", 40, 105, selectedOption == 2 ? 255 : 180);
+    if (timeLimits[timeLimit] == 0) {
+        func_800C734C("UNLIMITED", 160, 105, 255);
+    } else {
+        s32 mins = timeLimits[timeLimit] / 60;
+        timeStr[0] = '0' + (mins / 10);
+        timeStr[1] = '0' + (mins % 10);
+        timeStr[2] = ':';
+        timeStr[3] = '0';
+        timeStr[4] = '0';
+        timeStr[5] = '\0';
+        func_800C734C(timeStr, 170, 105, 255);
+    }
+    func_800C734C("<", 155, 105, selectedOption == 2 ? 200 : 100);
+    func_800C734C(">", 225, 105, selectedOption == 2 ? 200 : 100);
+
+    /* Weapons toggle */
+    func_800C734C("WEAPONS", 40, 130, selectedOption == 3 ? 255 : 180);
+    func_800C734C(weaponsEnabled ? "ON" : "OFF", 180, 130, weaponsEnabled ? 200 : 150);
+
+    /* Start button */
+    func_800C734C("START BATTLE", 90, 165, selectedOption == 4 ? 255 : 180);
+    if (D_80159C18 < 2) {
+        func_800C734C("(NEED 2+ PLAYERS)", 75, 180, 120);
+    }
+
+    /* Player select */
+    func_800C734C("SELECT PLAYERS", 85, 200, selectedOption == 5 ? 255 : 180);
+
+    D_80159E20 = selectedOption;
+    D_80159E24 = selectedArena;
+    D_80159E28 = fragLimit;
+    D_80159E2C = timeLimit;
+    D_80159E30 = weaponsEnabled;
 }
 
 /*
  * func_800D510C (716 bytes)
- * Ghost race setup
+ * Ghost race setup - race against saved ghosts
  */
 void func_800D510C(void) {
-    /* Ghost setup - stub */
+    s32 input;
+    s32 selectedOption;
+    s32 selectedTrack;
+    s32 selectedGhost;
+    s32 ghostCount;
+    s32 i;
+    char *trackNames[12];
+    char *ghostNames[4];
+    s32 ghostTimes[4];
+    char timeStr[12];
+
+    trackNames[0] = "MARINA";
+    trackNames[1] = "HAIGHT";
+    trackNames[2] = "SOMA";
+    trackNames[3] = "MISSION";
+    trackNames[4] = "NOB HILL";
+    trackNames[5] = "EMBARCADERO";
+    trackNames[6] = "PRESIDIO";
+    trackNames[7] = "SUNSET";
+    trackNames[8] = "RICHMOND";
+    trackNames[9] = "BAY BRIDGE";
+    trackNames[10] = "GOLDEN GATE";
+    trackNames[11] = "ALCATRAZ";
+
+    selectedOption = D_80159E40;
+    selectedTrack = D_80159E44;
+    selectedGhost = D_80159E48;
+
+    func_800CC040();
+
+    /* Get available ghosts for selected track */
+    ghostCount = func_800D5430(selectedTrack, ghostNames, ghostTimes);
+
+    input = func_800CB748(D_80158100);
+
+    if (input == 4) {  /* Up */
+        selectedOption--;
+        if (selectedOption < 0) selectedOption = 3;
+        func_800CC3C0(12);
+    } else if (input == 5) {  /* Down */
+        selectedOption++;
+        if (selectedOption > 3) selectedOption = 0;
+        func_800CC3C0(12);
+    } else if (input == 6 || input == 7) {  /* Left/Right */
+        if (selectedOption == 0) {
+            /* Track selection */
+            if (input == 6) {
+                selectedTrack--;
+                if (selectedTrack < 0) selectedTrack = 11;
+            } else {
+                selectedTrack++;
+                if (selectedTrack > 11) selectedTrack = 0;
+            }
+            selectedGhost = 0;  /* Reset ghost selection */
+        } else if (selectedOption == 1) {
+            /* Ghost selection */
+            if (ghostCount > 0) {
+                if (input == 6) {
+                    selectedGhost--;
+                    if (selectedGhost < 0) selectedGhost = ghostCount - 1;
+                } else {
+                    selectedGhost++;
+                    if (selectedGhost >= ghostCount) selectedGhost = 0;
+                }
+            }
+        }
+        func_800CC3C0(12);
+    } else if (input == 1) {  /* A - select */
+        if (selectedOption == 2) {
+            /* Start ghost race */
+            if (ghostCount > 0) {
+                D_80159E44 = selectedTrack;
+                D_80159E48 = selectedGhost;
+                D_80159A08 = selectedTrack;
+                D_80159A14 = 1;  /* Ghost mode enabled */
+                D_801146EC = 7;  /* PREPLAY */
+                func_800CBE8C(-1);
+            } else {
+                func_800CC3C0(13);  /* Error - no ghost */
+            }
+        } else if (selectedOption == 3) {
+            /* Delete ghost */
+            if (ghostCount > 0) {
+                func_800D55A0(selectedTrack, selectedGhost);
+                func_800CC3C0(14);
+                if (selectedGhost >= ghostCount - 1) {
+                    selectedGhost = 0;
+                }
+            }
+        }
+    } else if (input == 2) {  /* B - back */
+        func_800CBE08();
+    }
+
+    /* Render */
+    func_800C734C("GHOST RACE", 105, 20, 255);
+
+    /* Track selection */
+    func_800C734C("TRACK", 40, 55, selectedOption == 0 ? 255 : 180);
+    func_800C734C(trackNames[selectedTrack], 140, 55, 255);
+    func_800C734C("<", 125, 55, selectedOption == 0 ? 200 : 100);
+    func_800C734C(">", 240, 55, selectedOption == 0 ? 200 : 100);
+
+    /* Ghost selection */
+    func_800C734C("GHOST", 40, 80, selectedOption == 1 ? 255 : 180);
+    if (ghostCount > 0) {
+        func_800C734C(ghostNames[selectedGhost], 140, 80, 255);
+
+        /* Format ghost time */
+        s32 ghostTime = ghostTimes[selectedGhost];
+        s32 mins = ghostTime / 6000;
+        s32 secs = (ghostTime / 100) % 60;
+        s32 cents = ghostTime % 100;
+        timeStr[0] = '0' + mins;
+        timeStr[1] = ':';
+        timeStr[2] = '0' + (secs / 10);
+        timeStr[3] = '0' + (secs % 10);
+        timeStr[4] = '.';
+        timeStr[5] = '0' + (cents / 10);
+        timeStr[6] = '0' + (cents % 10);
+        timeStr[7] = '\0';
+        func_800C734C(timeStr, 140, 95, 200);
+
+        func_800C734C("<", 125, 80, selectedOption == 1 ? 200 : 100);
+        func_800C734C(">", 240, 80, selectedOption == 1 ? 200 : 100);
+    } else {
+        func_800C734C("NO GHOSTS SAVED", 120, 80, 120);
+    }
+
+    /* Start button */
+    func_800C734C("START RACE", 95, 130, selectedOption == 2 ? 255 : 180);
+    if (ghostCount == 0) {
+        func_800C734C("(NO GHOST)", 100, 145, 120);
+    }
+
+    /* Delete button */
+    func_800C734C("DELETE GHOST", 90, 165, selectedOption == 3 ? 255 : 180);
+
+    /* Ghost count indicator */
+    func_800C734C("SAVED GHOSTS:", 40, 200, 180);
+    {
+        char countStr[4];
+        countStr[0] = '0' + ghostCount;
+        countStr[1] = '/';
+        countStr[2] = '4';
+        countStr[3] = '\0';
+        func_800C734C(countStr, 160, 200, 200);
+    }
+
+    D_80159E40 = selectedOption;
+    D_80159E44 = selectedTrack;
+    D_80159E48 = selectedGhost;
+}
+
+/*
+ * func_800D5430 (164 bytes)
+ * Get saved ghosts for track
+ */
+s32 func_800D5430(s32 trackId, char **names, s32 *times) {
+    s32 count = 0;
+    s32 i;
+
+    /* Read ghost data from controller pak */
+    for (i = 0; i < 4; i++) {
+        s32 ghostData = D_80159F00[trackId * 4 + i];
+        if (ghostData != 0) {
+            /* Ghost exists */
+            times[count] = ghostData & 0xFFFFFF;  /* Time in lower 24 bits */
+            names[count] = "GHOST";  /* Default name */
+            count++;
+        }
+    }
+
+    return count;
+}
+
+/*
+ * func_800D55A0 (96 bytes)
+ * Delete saved ghost
+ */
+void func_800D55A0(s32 trackId, s32 ghostIndex) {
+    s32 i;
+    s32 baseIdx = trackId * 4;
+
+    /* Shift ghosts down */
+    for (i = ghostIndex; i < 3; i++) {
+        D_80159F00[baseIdx + i] = D_80159F00[baseIdx + i + 1];
+    }
+    D_80159F00[baseIdx + 3] = 0;  /* Clear last slot */
 }
 
 /*
