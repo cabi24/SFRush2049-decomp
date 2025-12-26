@@ -10267,58 +10267,508 @@ void func_800A7E00(void *tire, f32 normalForce, f32 driveTorque) {
 
 /*
  * func_800A80D0 (3276 bytes)
- * Car AI behavior
+ * Car AI behavior - main AI update function
  */
 void func_800A80D0(void *car, void *target) {
-    /* AI behavior - stub */
+    f32 *carPos;
+    f32 *carVel;
+    f32 *carDir;
+    f32 *targetPos;
+    f32 dx, dz;
+    f32 distance;
+    f32 targetAngle;
+    f32 currentAngle;
+    f32 angleDiff;
+    f32 steerInput;
+    f32 throttleInput;
+    f32 brakeInput;
+    s32 *aiState;
+    s32 difficulty;
+
+    if (car == NULL) return;
+
+    carPos = (f32 *)((u8 *)car + 0x24);
+    carVel = (f32 *)((u8 *)car + 0x34);
+    carDir = (f32 *)((u8 *)car + 0x60);
+    aiState = (s32 *)((u8 *)car + 0x240);
+    difficulty = D_80159A1C;  /* 0=easy, 1=medium, 2=hard */
+
+    /* Get target position (next waypoint or player) */
+    if (target != NULL) {
+        targetPos = (f32 *)((u8 *)target + 0x24);
+    } else {
+        /* Use next waypoint from path */
+        s32 waypointIdx = aiState[0];
+        func_800A2378(D_80159A08, waypointIdx, &dx, NULL, &dz);
+        targetPos = (f32 *)aiState + 4;
+        targetPos[0] = dx;
+        targetPos[2] = dz;
+    }
+
+    /* Calculate direction to target */
+    dx = targetPos[0] - carPos[0];
+    dz = targetPos[2] - carPos[2];
+    distance = sqrtf(dx * dx + dz * dz);
+
+    if (distance < 1.0f) {
+        /* Reached waypoint, advance to next */
+        aiState[0] = (aiState[0] + 1) % 100;
+        return;
+    }
+
+    /* Calculate target angle */
+    targetAngle = atan2f(dx, dz);
+
+    /* Get current heading angle */
+    currentAngle = atan2f(carDir[0], carDir[2]);
+
+    /* Calculate angle difference (-PI to PI) */
+    angleDiff = targetAngle - currentAngle;
+    while (angleDiff > 3.14159f) angleDiff -= 6.28318f;
+    while (angleDiff < -3.14159f) angleDiff += 6.28318f;
+
+    /* Steering input based on angle difference */
+    steerInput = angleDiff * 2.0f;
+    if (steerInput > 1.0f) steerInput = 1.0f;
+    if (steerInput < -1.0f) steerInput = -1.0f;
+
+    /* Calculate speed */
+    f32 speed = sqrtf(carVel[0] * carVel[0] + carVel[2] * carVel[2]);
+
+    /* Speed control based on difficulty */
+    f32 maxSpeed;
+    switch (difficulty) {
+        case 0: maxSpeed = 60.0f; break;
+        case 1: maxSpeed = 80.0f; break;
+        case 2: maxSpeed = 100.0f; break;
+        default: maxSpeed = 70.0f; break;
+    }
+
+    /* Slow down for turns */
+    f32 turnFactor = 1.0f - (fabsf(angleDiff) / 3.14159f) * 0.5f;
+    maxSpeed *= turnFactor;
+
+    /* Throttle and brake control */
+    if (speed < maxSpeed * 0.9f) {
+        throttleInput = 1.0f;
+        brakeInput = 0.0f;
+    } else if (speed > maxSpeed * 1.1f) {
+        throttleInput = 0.0f;
+        brakeInput = 0.5f;
+    } else {
+        throttleInput = 0.5f;
+        brakeInput = 0.0f;
+    }
+
+    /* Check for obstacles */
+    func_800A8F64(car, NULL);
+
+    /* Apply inputs */
+    func_800A78FC(car, steerInput);
+    func_800A7AE4(car, throttleInput, brakeInput);
+
+    /* Store AI state for debugging */
+    aiState[1] = (s32)(steerInput * 100);
+    aiState[2] = (s32)(throttleInput * 100);
+    aiState[3] = (s32)(brakeInput * 100);
 }
 
 /*
  * func_800A8D9C (484 bytes)
- * AI path following
+ * AI path following - follow racing path
  */
 void func_800A8D9C(void *car, void *path) {
-    /* Path following - stub */
+    f32 *carPos;
+    s32 *aiState;
+    s32 currentWaypoint;
+    s32 nextWaypoint;
+    f32 waypointPos[3];
+    f32 nextPos[3];
+    f32 dx, dz;
+    f32 distance;
+    f32 lookahead;
+
+    if (car == NULL || path == NULL) return;
+
+    carPos = (f32 *)((u8 *)car + 0x24);
+    aiState = (s32 *)((u8 *)car + 0x240);
+    currentWaypoint = aiState[0];
+
+    /* Get current waypoint position */
+    func_800A2378(D_80159A08, currentWaypoint, &waypointPos[0], &waypointPos[1], &waypointPos[2]);
+
+    /* Check distance to current waypoint */
+    dx = waypointPos[0] - carPos[0];
+    dz = waypointPos[2] - carPos[2];
+    distance = sqrtf(dx * dx + dz * dz);
+
+    /* Waypoint reached? */
+    if (distance < 20.0f) {
+        /* Advance to next waypoint */
+        aiState[0] = (currentWaypoint + 1) % 100;
+    }
+
+    /* Lookahead - get position slightly ahead on path */
+    lookahead = 30.0f;  /* Look 30 units ahead */
+    nextWaypoint = (currentWaypoint + 1) % 100;
+    func_800A2378(D_80159A08, nextWaypoint, &nextPos[0], &nextPos[1], &nextPos[2]);
+
+    /* Interpolate between current and next waypoint */
+    f32 t = distance / (distance + lookahead);
+    aiState[4] = (s32)(waypointPos[0] * (1.0f - t) + nextPos[0] * t);  /* Target X */
+    aiState[6] = (s32)(waypointPos[2] * (1.0f - t) + nextPos[2] * t);  /* Target Z */
 }
 
 /*
  * func_800A8F64 (1068 bytes)
- * AI obstacle avoidance
+ * AI obstacle avoidance - avoid collisions with other cars
  */
 void func_800A8F64(void *car, void *obstacles) {
-    /* Obstacle avoidance - stub */
+    f32 *carPos;
+    f32 *carDir;
+    f32 *carVel;
+    s32 i;
+    s32 numCars;
+    f32 avoidX, avoidZ;
+    f32 avoidStrength;
+
+    if (car == NULL) return;
+
+    carPos = (f32 *)((u8 *)car + 0x24);
+    carDir = (f32 *)((u8 *)car + 0x60);
+    carVel = (f32 *)((u8 *)car + 0x34);
+
+    avoidX = 0.0f;
+    avoidZ = 0.0f;
+    avoidStrength = 0.0f;
+
+    /* Get number of active cars */
+    numCars = D_801582E0;
+
+    /* Check each other car */
+    for (i = 0; i < numCars; i++) {
+        void *otherCar = D_801582C0[i];
+        if (otherCar == NULL || otherCar == car) continue;
+
+        f32 *otherPos = (f32 *)((u8 *)otherCar + 0x24);
+
+        /* Calculate distance */
+        f32 dx = otherPos[0] - carPos[0];
+        f32 dz = otherPos[2] - carPos[2];
+        f32 dist = sqrtf(dx * dx + dz * dz);
+
+        /* Check if in danger zone */
+        if (dist < 30.0f && dist > 1.0f) {
+            /* Check if ahead of us */
+            f32 dotFwd = dx * carDir[0] + dz * carDir[2];
+            if (dotFwd > 0.0f) {
+                /* Other car is ahead */
+                f32 weight = (30.0f - dist) / 30.0f;
+
+                /* Push away from obstacle */
+                f32 nx = -dx / dist;
+                f32 nz = -dz / dist;
+
+                /* Perpendicular direction for avoidance */
+                f32 perpX = -carDir[2];
+                f32 perpZ = carDir[0];
+
+                /* Determine which side to avoid to */
+                f32 side = nx * perpX + nz * perpZ;
+                if (side > 0) {
+                    avoidX += perpX * weight;
+                    avoidZ += perpZ * weight;
+                } else {
+                    avoidX -= perpX * weight;
+                    avoidZ -= perpZ * weight;
+                }
+
+                avoidStrength += weight;
+            }
+        }
+    }
+
+    /* Store avoidance vector in AI state */
+    if (avoidStrength > 0.0f) {
+        s32 *aiState = (s32 *)((u8 *)car + 0x240);
+        aiState[8] = (s32)(avoidX * 100);
+        aiState[9] = (s32)(avoidZ * 100);
+        aiState[10] = (s32)(avoidStrength * 100);
+    }
 }
 
 /*
  * func_800A9390 (1592 bytes)
- * AI racing line optimization
+ * AI racing line optimization - find optimal path through corners
  */
 void func_800A9390(void *car, void *track) {
-    /* Racing line - stub */
+    f32 *carPos;
+    s32 *aiState;
+    s32 waypointIdx;
+    f32 cornerAngle;
+    f32 entrySpeed;
+    f32 apexOffset;
+    f32 trackWidth;
+    s32 i;
+
+    if (car == NULL) return;
+
+    carPos = (f32 *)((u8 *)car + 0x24);
+    aiState = (s32 *)((u8 *)car + 0x240);
+    waypointIdx = aiState[0];
+    trackWidth = 20.0f;  /* Default track width */
+
+    /* Look ahead several waypoints to detect corner */
+    cornerAngle = 0.0f;
+    for (i = 0; i < 5; i++) {
+        s32 idx1 = (waypointIdx + i) % 100;
+        s32 idx2 = (waypointIdx + i + 1) % 100;
+        s32 idx3 = (waypointIdx + i + 2) % 100;
+
+        f32 p1[3], p2[3], p3[3];
+        func_800A2378(D_80159A08, idx1, &p1[0], &p1[1], &p1[2]);
+        func_800A2378(D_80159A08, idx2, &p2[0], &p2[1], &p2[2]);
+        func_800A2378(D_80159A08, idx3, &p3[0], &p3[1], &p3[2]);
+
+        /* Calculate angle between segments */
+        f32 dx1 = p2[0] - p1[0];
+        f32 dz1 = p2[2] - p1[2];
+        f32 dx2 = p3[0] - p2[0];
+        f32 dz2 = p3[2] - p2[2];
+
+        f32 cross = dx1 * dz2 - dz1 * dx2;
+        f32 dot = dx1 * dx2 + dz1 * dz2;
+        f32 angle = atan2f(cross, dot);
+
+        if (fabsf(angle) > fabsf(cornerAngle)) {
+            cornerAngle = angle;
+        }
+    }
+
+    /* Calculate racing line offset based on corner angle */
+    if (fabsf(cornerAngle) > 0.2f) {
+        /* Significant corner - adjust racing line */
+        if (cornerAngle > 0) {
+            /* Right turn - position on left (outside) */
+            apexOffset = trackWidth * 0.4f;
+        } else {
+            /* Left turn - position on right (outside) */
+            apexOffset = -trackWidth * 0.4f;
+        }
+
+        /* Speed adjustment for corner */
+        entrySpeed = 1.0f - fabsf(cornerAngle) * 0.3f;
+        if (entrySpeed < 0.5f) entrySpeed = 0.5f;
+    } else {
+        /* Straight - stay centered, full speed */
+        apexOffset = 0.0f;
+        entrySpeed = 1.0f;
+    }
+
+    /* Store racing line data */
+    aiState[12] = (s32)(cornerAngle * 100);
+    aiState[13] = (s32)(apexOffset * 10);
+    aiState[14] = (s32)(entrySpeed * 100);
 }
 
 /*
  * func_800A99C8 (2700 bytes)
- * AI decision making
+ * AI decision making - high-level race decisions
  */
 void func_800A99C8(void *car) {
-    /* AI decision - stub */
+    s32 *aiState;
+    s32 position;
+    s32 lap;
+    s32 totalLaps;
+    f32 raceProgress;
+    s32 aiMode;
+    s32 difficulty;
+
+    if (car == NULL) return;
+
+    aiState = (s32 *)((u8 *)car + 0x240);
+    position = *(s32 *)((u8 *)car + 0x5C);
+    lap = *(s32 *)((u8 *)car + 0x58);
+    totalLaps = D_8015A298;
+    difficulty = D_80159A1C;
+
+    raceProgress = (f32)lap / (f32)totalLaps;
+
+    /* Determine AI mode based on race situation */
+    if (position == 1) {
+        /* Leading - defensive mode */
+        aiMode = 0;  /* Defend position */
+    } else if (position <= 3) {
+        /* Near front - balanced mode */
+        aiMode = 1;  /* Normal racing */
+    } else {
+        /* Behind - aggressive mode */
+        aiMode = 2;  /* Catch up */
+    }
+
+    /* Rubber banding based on difficulty */
+    if (difficulty < 2) {
+        /* Easy/medium - help player */
+        if (position == 1 && raceProgress > 0.8f) {
+            /* Leading near end - slow down slightly */
+            aiState[16] = 90;  /* 90% speed */
+        } else {
+            aiState[16] = 100;
+        }
+    } else {
+        /* Hard - no rubber banding */
+        aiState[16] = 100 + (3 - position) * 2;  /* Faster when behind */
+    }
+
+    /* Store AI mode */
+    aiState[15] = aiMode;
+
+    /* Decision: use shortcut? */
+    if (aiMode == 2 && raceProgress < 0.9f) {
+        /* Behind and not near finish - maybe use shortcut */
+        s32 shortcutChance = difficulty * 30 + 10;  /* 10-70% based on difficulty */
+        if ((D_80142AFC % 100) < shortcutChance) {
+            aiState[17] = 1;  /* Enable shortcut seeking */
+        }
+    } else {
+        aiState[17] = 0;
+    }
+
+    /* Decision: attack/defend? */
+    if (aiMode == 0) {
+        /* Defend - block overtaking attempts */
+        aiState[18] = 1;
+    } else if (aiMode == 2) {
+        /* Aggressive - attempt overtakes */
+        aiState[18] = 2;
+    } else {
+        aiState[18] = 0;  /* Normal */
+    }
 }
 
 /*
  * func_800AA454 (692 bytes)
- * AI speed control
+ * AI speed control - control throttle/brake to reach target speed
  */
 void func_800AA454(void *car, f32 targetSpeed) {
-    /* Speed control - stub */
+    f32 *carVel;
+    f32 currentSpeed;
+    f32 speedError;
+    f32 throttle, brake;
+    s32 *aiState;
+    f32 speedMultiplier;
+
+    if (car == NULL) return;
+
+    carVel = (f32 *)((u8 *)car + 0x34);
+    aiState = (s32 *)((u8 *)car + 0x240);
+
+    /* Get speed multiplier from decision system */
+    speedMultiplier = (f32)aiState[16] / 100.0f;
+    targetSpeed *= speedMultiplier;
+
+    /* Calculate current speed */
+    currentSpeed = sqrtf(carVel[0] * carVel[0] + carVel[2] * carVel[2]);
+
+    /* Speed error */
+    speedError = targetSpeed - currentSpeed;
+
+    /* P controller for throttle/brake */
+    if (speedError > 5.0f) {
+        throttle = 1.0f;
+        brake = 0.0f;
+    } else if (speedError > 0.0f) {
+        throttle = 0.5f + speedError * 0.1f;
+        brake = 0.0f;
+    } else if (speedError > -5.0f) {
+        throttle = 0.2f;
+        brake = 0.0f;
+    } else if (speedError > -15.0f) {
+        throttle = 0.0f;
+        brake = (-speedError - 5.0f) * 0.05f;
+    } else {
+        throttle = 0.0f;
+        brake = 0.5f;
+    }
+
+    /* Clamp values */
+    if (throttle > 1.0f) throttle = 1.0f;
+    if (brake > 1.0f) brake = 1.0f;
+
+    /* Apply */
+    func_800A7AE4(car, throttle, brake);
 }
 
 /*
  * func_800AA708 (1084 bytes)
- * AI overtaking behavior
+ * AI overtaking behavior - attempt to pass opponent
  */
 void func_800AA708(void *car, void *opponent) {
-    /* Overtaking - stub */
+    f32 *carPos, *carVel, *carDir;
+    f32 *oppPos, *oppVel;
+    f32 dx, dz, dist;
+    f32 relSpeed;
+    f32 approach;
+    s32 *aiState;
+    s32 overtakeState;
+    f32 steerAdjust;
+
+    if (car == NULL || opponent == NULL) return;
+
+    carPos = (f32 *)((u8 *)car + 0x24);
+    carVel = (f32 *)((u8 *)car + 0x34);
+    carDir = (f32 *)((u8 *)car + 0x60);
+    oppPos = (f32 *)((u8 *)opponent + 0x24);
+    oppVel = (f32 *)((u8 *)opponent + 0x34);
+    aiState = (s32 *)((u8 *)car + 0x240);
+
+    /* Calculate relative position */
+    dx = oppPos[0] - carPos[0];
+    dz = oppPos[2] - carPos[2];
+    dist = sqrtf(dx * dx + dz * dz);
+
+    /* Calculate relative speed (positive = catching up) */
+    f32 ourSpeed = sqrtf(carVel[0] * carVel[0] + carVel[2] * carVel[2]);
+    f32 theirSpeed = sqrtf(oppVel[0] * oppVel[0] + oppVel[2] * oppVel[2]);
+    relSpeed = ourSpeed - theirSpeed;
+
+    /* Check if opponent is ahead */
+    approach = dx * carDir[0] + dz * carDir[2];
+
+    overtakeState = aiState[19];
+
+    if (approach > 0 && dist < 50.0f) {
+        /* Opponent ahead and close */
+        if (overtakeState == 0 && relSpeed > 5.0f) {
+            /* Start overtake - decide which side */
+            f32 side = -dx * carDir[2] + dz * carDir[0];
+            if (side > 0) {
+                overtakeState = 1;  /* Pass on left */
+            } else {
+                overtakeState = 2;  /* Pass on right */
+            }
+        }
+
+        if (overtakeState == 1) {
+            /* Passing on left */
+            steerAdjust = -0.3f;
+        } else if (overtakeState == 2) {
+            /* Passing on right */
+            steerAdjust = 0.3f;
+        } else {
+            steerAdjust = 0.0f;
+        }
+
+        /* Apply steering adjustment */
+        aiState[20] = (s32)(steerAdjust * 100);
+
+    } else if (approach < -10.0f || dist > 60.0f) {
+        /* Passed opponent or lost them */
+        overtakeState = 0;
+        aiState[20] = 0;
+    }
+
+    aiState[19] = overtakeState;
 }
 
 /*
