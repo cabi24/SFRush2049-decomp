@@ -36091,148 +36091,649 @@ void func_800D67C0(void) {
 }
 
 /*
-
  * func_800D691C (1376 bytes)
- * Loading screen
+ * Loading screen - Displays loading progress bar
+ *
+ * @param percent Loading progress (0-100)
  */
+extern s32 D_8015A700;      /* Loading animation frame */
+extern s32 D_8015A704;      /* Last percent shown */
+
 void func_800D691C(s32 percent) {
-    /* Loading - stub */
+    s32 frame;
+    s32 barWidth;
+    s32 dotPhase;
+
+    frame = D_8015A700;
+    frame++;
+
+    /* Clamp percent */
+    if (percent < 0) percent = 0;
+    if (percent > 100) percent = 100;
+
+    /* Clear screen */
+    func_800C6E60(0, 0, 320, 240, 0xFF000020);
+
+    /* Game logo area */
+    func_800C6E60(80, 40, 160, 60, 0xFF202040);
+
+    /* "LOADING" text */
+    func_800C734C("LOADING", 125, 120, 255);
+
+    /* Animated dots */
+    dotPhase = (frame / 20) % 4;
+    if (dotPhase >= 1) func_800C734C(".", 185, 120, 255);
+    if (dotPhase >= 2) func_800C734C(".", 195, 120, 255);
+    if (dotPhase >= 3) func_800C734C(".", 205, 120, 255);
+
+    /* Progress bar background */
+    func_800C6E60(60, 150, 200, 20, 0xFF404040);
+    func_800C6E60(62, 152, 196, 16, 0xFF202020);
+
+    /* Progress bar fill */
+    barWidth = (percent * 192) / 100;
+    if (barWidth > 0) {
+        func_800C6E60(64, 154, barWidth, 12, 0xFF00AA00);
+    }
+
+    /* Percent text */
+    {
+        char percentStr[8];
+        sprintf(percentStr, "%d%%", percent);
+        func_800C734C(percentStr, 145, 180, 200);
+    }
+
+    D_8015A700 = frame;
+    D_8015A704 = percent;
 }
 
 /*
-
  * func_800D6E7C (852 bytes)
- * Loading tips
+ * Loading tips - Shows random gameplay tip during loading
  */
+static const char *loadingTips[] = {
+    "Use the handbrake for tight corners!",
+    "Collect coins to unlock new cars.",
+    "Try different shortcuts on each track.",
+    "Wings help with big jumps!",
+    "Draft behind other cars for speed.",
+    "Hit ramps at full speed for stunts.",
+    "Master the tracks in practice mode.",
+    "Battle mode: Grab weapons first!"
+};
+#define NUM_TIPS 8
+
 void func_800D6E7C(void) {
-    /* Tips - stub */
+    s32 tipIndex;
+    const char *tip;
+
+    /* Select tip based on frame counter */
+    tipIndex = (D_80142AFC / 60) % NUM_TIPS;
+    tip = loadingTips[tipIndex];
+
+    /* Display tip */
+    func_800C6E60(40, 200, 240, 25, 0xC0303050);
+    func_800C734C("TIP:", 50, 207, 255);
+    func_800C734C((char *)tip, 85, 207, 200);
 }
 
 /*
-
  * func_800D71D0 (3256 bytes)
- * Pause menu
+ * Pause menu - Full pause menu with options
  */
+extern s32 D_8015A710;      /* Pause menu state */
+extern s32 D_8015A714;      /* Selected option */
+extern s32 D_8015A718;      /* Pause active flag */
+
 void func_800D71D0(void) {
-    /* Pause - stub */
+    s32 input;
+    s32 selection;
+    s32 i;
+    const char *options[] = {"RESUME", "RESTART", "OPTIONS", "QUIT"};
+    s32 numOptions = 4;
+
+    if (!D_8015A718) {
+        return;
+    }
+
+    selection = D_8015A714;
+    input = func_800CB748(D_80158100);
+
+    /* Navigation */
+    if (input == 4) {  /* Up */
+        selection--;
+        if (selection < 0) selection = numOptions - 1;
+        func_800CC3C0(12);
+    } else if (input == 5) {  /* Down */
+        selection++;
+        if (selection >= numOptions) selection = 0;
+        func_800CC3C0(12);
+    } else if (input == 1) {  /* A - select */
+        func_800CC3C0(10);
+        switch (selection) {
+            case 0:  /* Resume */
+                func_800D7E88();
+                return;
+            case 1:  /* Restart */
+                func_800D8184();
+                return;
+            case 2:  /* Options */
+                /* func_800DXXXX(); */
+                break;
+            case 3:  /* Quit */
+                func_800D8C58();
+                return;
+        }
+    } else if (input == 8) {  /* Start - also resume */
+        func_800D7E88();
+        return;
+    }
+
+    /* Draw pause overlay */
+    func_800C6E60(0, 0, 320, 240, 0x80000000);  /* Dim background */
+
+    /* Menu box */
+    func_800C6E60(90, 60, 140, 120, 0xE0202050);
+    func_800C6E60(92, 62, 136, 116, 0xE0303070);
+
+    /* Title */
+    func_800C734C("PAUSED", 130, 70, 255);
+
+    /* Options */
+    for (i = 0; i < numOptions; i++) {
+        s32 yPos = 100 + i * 25;
+        s32 alpha = (i == selection) ? 255 : 150;
+
+        if (i == selection) {
+            func_800C6E60(100, yPos - 3, 120, 20, 0x80404080);
+            func_800C734C(">", 105, yPos, 255);
+        }
+
+        func_800C734C((char *)options[i], 120, yPos, alpha);
+    }
+
+    D_8015A714 = selection;
 }
 
 /*
-
  * func_800D7E88 (788 bytes)
- * Pause resume
+ * Pause resume - Resumes game from pause
  */
 void func_800D7E88(void) {
-    /* Resume - stub */
+    D_8015A718 = 0;  /* Clear pause flag */
+
+    /* Resume audio */
+    func_800B37E8(0, 1.0f);  /* Restore master volume */
+
+    /* Resume timers */
+    /* D_8015A720 = osGetTime(); */
+
+    /* Play resume sound */
+    func_800CC3C0(11);
 }
 
 /*
-
  * func_800D8184 (2772 bytes)
- * Pause restart
+ * Pause restart - Restarts current race
  */
 void func_800D8184(void) {
-    /* Restart - stub */
+    s32 i;
+    u8 *carBase;
+
+    D_8015A718 = 0;  /* Clear pause */
+
+    /* Reset all cars to start positions */
+    carBase = (u8 *)&D_80152818;
+    for (i = 0; i < 4; i++) {
+        f32 *pos = (f32 *)(carBase + i * 0x400 + 0x24);
+        f32 *vel = (f32 *)(carBase + i * 0x400 + 0x34);
+        f32 *rot = (f32 *)(carBase + i * 0x400 + 0x60);
+
+        /* Reset to start grid position */
+        pos[0] = *(f32 *)(0x8015C200 + i * 12);
+        pos[1] = *(f32 *)(0x8015C204 + i * 12);
+        pos[2] = *(f32 *)(0x8015C208 + i * 12);
+
+        /* Clear velocity */
+        vel[0] = 0.0f;
+        vel[1] = 0.0f;
+        vel[2] = 0.0f;
+
+        /* Reset rotation to track start direction */
+        rot[0] = 0.0f;
+        rot[1] = *(f32 *)0x8015C230;  /* Start heading */
+        rot[2] = 0.0f;
+
+        /* Reset race progress */
+        *(s32 *)(carBase + i * 0x400 + 0x1A0) = 0;  /* Lap count */
+        *(s32 *)(carBase + i * 0x400 + 0x1A8) = 0;  /* Checkpoint */
+        *(s32 *)(carBase + i * 0x400 + 0x1AC) = 0;  /* Race time */
+    }
+
+    /* Reset race timer */
+    D_80142AFC = 0;
+
+    /* Go to countdown state */
+    D_801146EC = 5;  /* COUNTDOWN */
+
+    func_800CC3C0(14);  /* Restart sound */
 }
 
 /*
-
  * func_800D8C58 (1032 bytes)
- * Pause quit
+ * Pause quit - Quits to main menu
  */
 void func_800D8C58(void) {
-    /* Quit - stub */
+    D_8015A718 = 0;  /* Clear pause */
+
+    /* Stop all game sounds */
+    func_800B557C();
+
+    /* Clear race state */
+    func_8010C2FC();
+
+    /* Return to attract mode */
+    D_801146EC = 0;  /* ATTRACT */
+
+    func_800CC3C0(17);  /* Quit sound */
 }
 
 /*
-
  * func_800D9060 (4204 bytes)
- * Results screen
+ * Results screen - Displays race results
  */
+extern s32 D_8015A730;      /* Results state */
+extern s32 D_8015A734;      /* Results timer */
+
 void func_800D9060(void) {
-    /* Results - stub */
+    s32 state;
+    s32 timer;
+    s32 input;
+    s32 i;
+    u8 *carBase;
+
+    state = D_8015A730;
+    timer = D_8015A734;
+    input = func_800CB748(D_80158100);
+
+    timer++;
+
+    /* Exit on input or timeout */
+    if (timer > 600 || (timer > 120 && (input == 1 || input == 2))) {
+        D_8015A730 = 0;
+        D_8015A734 = 0;
+        /* Move to next state */
+        func_80102A74();  /* Award ceremony */
+        return;
+    }
+
+    /* Background */
+    func_800C6E60(0, 0, 320, 240, 0xFF101030);
+
+    /* Title */
+    func_800C734C("RACE RESULTS", 100, 30, 255);
+
+    /* Results list */
+    carBase = (u8 *)&D_80152818;
+    for (i = 0; i < 4; i++) {
+        s32 position = *(s32 *)(carBase + i * 0x400 + 0x1A4);
+        s32 raceTime = *(s32 *)(carBase + i * 0x400 + 0x1AC);
+        s32 yPos = 70 + i * 35;
+
+        if (position > 0 && position <= 4) {
+            func_800DA0CC(position);  /* Show position */
+            func_800DA174(raceTime);  /* Show time */
+        }
+    }
+
+    /* Points awarded */
+    if (timer > 60) {
+        func_800DA2D0();
+    }
+
+    /* Continue prompt */
+    if (timer > 180) {
+        s32 blink = (timer / 30) & 1;
+        if (blink) {
+            func_800C734C("PRESS A TO CONTINUE", 80, 210, 200);
+        }
+    }
+
+    D_8015A730 = state;
+    D_8015A734 = timer;
 }
 
 /*
-
  * func_800DA0CC (168 bytes)
- * Position result
+ * Position result - Displays finishing position
  */
 void func_800DA0CC(s32 position) {
-    /* Position result - stub */
+    char posStr[8];
+    s32 color;
+
+    switch (position) {
+        case 1:
+            sprintf(posStr, "1ST");
+            color = 0xFFD700;  /* Gold */
+            break;
+        case 2:
+            sprintf(posStr, "2ND");
+            color = 0xC0C0C0;  /* Silver */
+            break;
+        case 3:
+            sprintf(posStr, "3RD");
+            color = 0xCD7F32;  /* Bronze */
+            break;
+        default:
+            sprintf(posStr, "%dTH", position);
+            color = 0xFFFFFF;
+            break;
+    }
+
+    func_800C734C(posStr, 60, 70 + (position - 1) * 35, (color >> 16) & 0xFF);
 }
 
 /*
-
  * func_800DA174 (348 bytes)
- * Time result
+ * Time result - Displays race time
  */
 void func_800DA174(s32 timeMs) {
-    /* Time result - stub */
+    char timeStr[16];
+    s32 mins, secs, ms;
+
+    mins = timeMs / 3600;
+    secs = (timeMs / 60) % 60;
+    ms = ((timeMs % 60) * 100) / 60;
+
+    sprintf(timeStr, "%d:%02d.%02d", mins, secs, ms);
+    func_800C734C(timeStr, 150, 70, 255);
 }
 
 /*
-
  * func_800DA2D0 (2316 bytes)
- * Points award
+ * Points award - Calculates and displays points earned
  */
+extern s32 D_8015A740[4];   /* Points per player */
+static const s32 positionPoints[] = {10, 6, 4, 2, 1, 0, 0, 0};
+
 void func_800DA2D0(void) {
-    /* Points - stub */
+    s32 i;
+    u8 *carBase;
+    char pointsStr[16];
+
+    carBase = (u8 *)&D_80152818;
+
+    func_800C734C("POINTS", 220, 50, 200);
+
+    for (i = 0; i < 4; i++) {
+        s32 position = *(s32 *)(carBase + i * 0x400 + 0x1A4);
+        s32 points = 0;
+
+        if (position >= 1 && position <= 8) {
+            points = positionPoints[position - 1];
+        }
+
+        D_8015A740[i] += points;
+
+        sprintf(pointsStr, "+%d", points);
+        func_800C734C(pointsStr, 220, 70 + i * 35, 255);
+    }
 }
 
 /*
-
  * func_800DABDC (2940 bytes)
- * Replay save prompt
+ * Replay save prompt - Asks user to save replay
  */
+extern s32 D_8015A750;      /* Replay prompt state */
+extern s32 D_8015A754;      /* Replay selection */
+
 void func_800DABDC(void) {
-    /* Replay save - stub */
+    s32 input;
+    s32 selection;
+
+    selection = D_8015A754;
+    input = func_800CB748(D_80158100);
+
+    /* Navigation */
+    if (input == 6 || input == 7) {  /* Left/Right */
+        selection = !selection;
+        func_800CC3C0(12);
+    } else if (input == 1) {  /* A - confirm */
+        if (selection == 0) {
+            /* Save replay */
+            /* func_800DXXXX(); */
+            func_800CC3C0(10);
+        }
+        D_8015A750 = 0;
+        D_8015A754 = 0;
+        return;
+    } else if (input == 2) {  /* B - cancel */
+        D_8015A750 = 0;
+        D_8015A754 = 0;
+        return;
+    }
+
+    /* Draw prompt */
+    func_800C6E60(60, 90, 200, 60, 0xE0202050);
+    func_800C6E60(62, 92, 196, 56, 0xE0303070);
+
+    func_800C734C("SAVE REPLAY?", 110, 100, 255);
+
+    func_800C734C("YES", 100, 130, selection == 0 ? 255 : 150);
+    func_800C734C("NO", 190, 130, selection == 1 ? 255 : 150);
+
+    if (selection == 0) {
+        func_800C734C(">", 85, 130, 255);
+    } else {
+        func_800C734C(">", 175, 130, 255);
+    }
+
+    D_8015A754 = selection;
 }
 
 /*
-
  * func_800DB758 (196 bytes)
- * Continue prompt
+ * Continue prompt - Quick continue/quit choice
  */
+extern s32 D_8015A760;      /* Continue countdown */
+
 s32 func_800DB758(void) {
-    /* Continue - stub */
-    return 0;
+    s32 input;
+    s32 countdown;
+    char countStr[4];
+
+    countdown = D_8015A760;
+    if (countdown == 0) {
+        countdown = 10 * 60;  /* 10 seconds */
+    }
+
+    input = func_800CB748(D_80158100);
+
+    if (input == 1) {  /* A - continue */
+        D_8015A760 = 0;
+        return 1;
+    } else if (input == 2) {  /* B - quit */
+        D_8015A760 = 0;
+        return 0;
+    }
+
+    countdown--;
+    if (countdown <= 0) {
+        D_8015A760 = 0;
+        return 0;  /* Time out = quit */
+    }
+
+    /* Display */
+    func_800C734C("CONTINUE?", 120, 120, 255);
+    sprintf(countStr, "%d", (countdown / 60) + 1);
+    func_800C734C(countStr, 155, 145, 200);
+
+    D_8015A760 = countdown;
+    return -1;  /* Still waiting */
 }
 
 /*
-
  * func_800DC248 (432 bytes)
- * Championship standings
+ * Championship standings - Shows championship points
  */
+extern s32 D_8015A770[4];   /* Championship points per player */
+
 void func_800DC248(void) {
-    /* Standings - stub */
+    s32 i;
+    char pointsStr[16];
+    s32 sorted[4] = {0, 1, 2, 3};
+    s32 j, temp;
+
+    /* Sort by points */
+    for (i = 0; i < 3; i++) {
+        for (j = i + 1; j < 4; j++) {
+            if (D_8015A770[sorted[j]] > D_8015A770[sorted[i]]) {
+                temp = sorted[i];
+                sorted[i] = sorted[j];
+                sorted[j] = temp;
+            }
+        }
+    }
+
+    /* Display */
+    func_800C6E60(50, 50, 220, 140, 0xE0202050);
+    func_800C734C("CHAMPIONSHIP STANDINGS", 70, 60, 255);
+
+    for (i = 0; i < 4; i++) {
+        s32 playerIdx = sorted[i];
+        s32 yPos = 90 + i * 25;
+
+        sprintf(pointsStr, "PLAYER %d: %d PTS", playerIdx + 1, D_8015A770[playerIdx]);
+        func_800C734C(pointsStr, 70, yPos, 200);
+    }
 }
 
 /*
-
  * func_800DC3F8 (924 bytes)
- * Trophy award
+ * Trophy award - Awards championship trophy
  */
 void func_800DC3F8(s32 placing) {
-    /* Trophy - stub */
+    char placeStr[16];
+
+    func_800C6E60(80, 60, 160, 120, 0xE0303060);
+
+    func_800C734C("CHAMPIONSHIP", 105, 70, 255);
+
+    switch (placing) {
+        case 1:
+            func_800C734C("WINNER!", 125, 100, 255);
+            func_8010306C(1);  /* Gold trophy */
+            break;
+        case 2:
+            func_800C734C("2ND PLACE", 115, 100, 200);
+            func_8010306C(2);  /* Silver trophy */
+            break;
+        case 3:
+            func_800C734C("3RD PLACE", 115, 100, 150);
+            func_8010306C(3);  /* Bronze trophy */
+            break;
+        default:
+            sprintf(placeStr, "%dTH PLACE", placing);
+            func_800C734C(placeStr, 110, 100, 150);
+            break;
+    }
 }
 
 /*
-
  * func_800DC794 (248 bytes)
- * Unlock notification
+ * Unlock notification - Shows unlock popup
  */
+static const char *unlockNames[] = {
+    "NEW CAR UNLOCKED!",
+    "NEW TRACK UNLOCKED!",
+    "BONUS MODE UNLOCKED!",
+    "SECRET UNLOCKED!"
+};
+
 void func_800DC794(s32 unlockId) {
-    /* Unlock notify - stub */
+    const char *msg;
+
+    if (unlockId < 0 || unlockId >= 4) {
+        unlockId = 3;
+    }
+
+    msg = unlockNames[unlockId];
+
+    func_800C6E60(60, 100, 200, 40, 0xE0FFD700);
+    func_800C6E60(62, 102, 196, 36, 0xE0604000);
+    func_800C734C((char *)msg, 80, 115, 255);
+
+    func_800CC3C0(20);  /* Unlock jingle */
 }
 
 /*
-
  * func_800DC88C (1272 bytes)
- * Attract mode start
+ * Attract mode start - Initializes attract mode demo
  */
+extern s32 D_8015A780;      /* Attract state */
+extern s32 D_8015A784;      /* Attract timer */
+extern s32 D_8015A788;      /* Demo replay index */
+
 void func_800DC88C(void) {
-    /* Attract start - stub */
+    s32 state;
+    s32 timer;
+    s32 input;
+
+    state = D_8015A780;
+    timer = D_8015A784;
+    input = func_800CB748(D_80158100);
+
+    /* Any input exits attract mode */
+    if (input != 0) {
+        D_8015A780 = 0;
+        D_8015A784 = 0;
+        D_801146EC = 1;  /* Go to title/menu */
+        return;
+    }
+
+    timer++;
+
+    switch (state) {
+        case 0:  /* Title screen */
+            func_800C6E60(0, 0, 320, 240, 0xFF000020);
+            func_800C734C("SAN FRANCISCO", 85, 80, 255);
+            func_800C734C("RUSH 2049", 105, 110, 255);
+
+            if ((timer / 60) & 1) {
+                func_800C734C("PRESS START", 100, 180, 200);
+            }
+
+            if (timer > 300) {
+                state = 1;
+                timer = 0;
+            }
+            break;
+
+        case 1:  /* Demo playback */
+            /* Play back recorded demo */
+            D_8015A788 = (D_8015A788 + 1) % 3;  /* Cycle through demos */
+            /* func_800DXXXX(D_8015A788); */
+
+            if (timer > 900) {  /* 15 seconds demo */
+                state = 2;
+                timer = 0;
+            }
+            break;
+
+        case 2:  /* High scores */
+            func_800C6E60(0, 0, 320, 240, 0xFF101030);
+            func_800C734C("HIGH SCORES", 105, 40, 255);
+            /* func_800AXXXX(); display high score table */
+
+            if (timer > 300) {
+                state = 0;
+                timer = 0;
+            }
+            break;
+    }
+
+    D_8015A780 = state;
+    D_8015A784 = timer;
 }
 
 /*
