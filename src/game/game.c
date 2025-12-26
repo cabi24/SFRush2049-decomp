@@ -14372,104 +14372,731 @@ s32 func_8010190C(s32 combo) {
 
 /*
  * func_80101D8C (1168 bytes)
- * Trick detect
+ * Trick detect - Main stunt detection dispatcher
+ *
+ * Rush 2049's stunt mode allows players to perform aerial tricks.
+ * This function detects what trick is being performed based on
+ * car orientation changes while airborne.
+ *
+ * Car structure offsets for stunt tracking:
+ *   0x6C: up vector (vec3)
+ *   0x60: forward vector (vec3)
+ *   0x78: right vector (vec3)
+ *   0x84: angular velocity (vec3)
+ *   0x118: road code [4] - all AIR means airborne
+ *   0x180: stunt state
+ *   0x184: stunt start orientation (quat)
+ *   0x194: accumulated rotation (vec3)
+ *   0x1A0: air time
+ *   0x1A4: current trick ID
+ *   0x1A8: trick score
+ *   0x1AC: combo count
+ *
+ * Trick IDs:
+ *   0 = None
+ *   1 = Front flip
+ *   2 = Back flip
+ *   3 = Barrel roll left
+ *   4 = Barrel roll right
+ *   5 = Spin left
+ *   6 = Spin right
+ *   7 = Corkscrew
+ *   8 = Super flip
  */
 s32 func_80101D8C(void *car) {
-    /* Trick detect - stub */
+    s32 *roadCode;
+    s32 *stuntState;
+    f32 *accumRot;
+    s32 *currentTrick;
+    f32 *airTime;
+    s32 trick = 0;
+    s32 i;
+    s32 isAirborne;
+
+    if (car == NULL) {
+        return 0;
+    }
+
+    roadCode = (s32 *)((u8 *)car + 0x118);
+    stuntState = (s32 *)((u8 *)car + 0x180);
+    accumRot = (f32 *)((u8 *)car + 0x194);
+    currentTrick = (s32 *)((u8 *)car + 0x1A4);
+    airTime = (f32 *)((u8 *)car + 0x1A0);
+
+    /* Check if all wheels are in air (road code = AIR = 4) */
+    isAirborne = 1;
+    for (i = 0; i < 4; i++) {
+        if (roadCode[i] != 4) {
+            isAirborne = 0;
+            break;
+        }
+    }
+
+    if (!isAirborne) {
+        /* Just landed - finalize any active trick */
+        if (*stuntState != 0) {
+            trick = *currentTrick;
+            *stuntState = 0;
+            *currentTrick = 0;
+            accumRot[0] = 0.0f;
+            accumRot[1] = 0.0f;
+            accumRot[2] = 0.0f;
+            *airTime = 0.0f;
+        }
+        return trick;
+    }
+
+    /* Airborne - update stunt state */
+    if (*stuntState == 0) {
+        /* Just became airborne - initialize stunt tracking */
+        *stuntState = 1;
+        accumRot[0] = 0.0f;
+        accumRot[1] = 0.0f;
+        accumRot[2] = 0.0f;
+    }
+
+    /* Check rotation-based tricks */
+    trick = func_80102988(car);   /* Front/back flip */
+    if (trick != 0) {
+        *currentTrick = trick;
+        return trick;
+    }
+
+    trick = func_80102F30(car);   /* Barrel roll */
+    if (trick != 0) {
+        *currentTrick = trick;
+        return trick;
+    }
+
+    trick = func_80103D28(car);   /* Spin */
+    if (trick != 0) {
+        *currentTrick = trick;
+        return trick;
+    }
+
     return 0;
 }
 
 /*
  * func_8010221C (564 bytes)
- * Trick register
+ * Trick register - Records completed trick and awards points
+ *
+ * Global stunt data addresses:
+ *   D_80158000: Stunt score table [16] (points per trick type)
+ *   D_80158040: Current stunt score
+ *   D_80158044: Combo multiplier
+ *   D_80158048: Trick history [8] (for combo detection)
+ *   D_80158068: Trick history index
  */
+extern s32 D_80158000[16];   /* Base points per trick */
+extern s32 D_80158040;       /* Current score */
+extern s32 D_80158044;       /* Combo multiplier */
+extern s32 D_80158048[8];    /* Trick history */
+extern s32 D_80158068;       /* History index */
+
 void func_8010221C(s32 trickId) {
-    /* Trick register - stub */
+    s32 basePoints;
+    s32 finalPoints;
+    s32 historyIdx;
+
+    if (trickId <= 0 || trickId > 15) {
+        return;
+    }
+
+    /* Get base points for this trick type */
+    basePoints = D_80158000[trickId];
+
+    /* Apply combo multiplier */
+    finalPoints = basePoints * D_80158044;
+
+    /* Add to score */
+    D_80158040 += finalPoints;
+
+    /* Record in trick history */
+    historyIdx = D_80158068;
+    D_80158048[historyIdx] = trickId;
+    D_80158068 = (historyIdx + 1) % 8;
+
+    /* Increase combo multiplier (caps at 8x) */
+    if (D_80158044 < 8) {
+        D_80158044++;
+    }
 }
 
 /*
  * func_80102450 (1336 bytes)
- * Air time track
+ * Air time track - Updates air time and accumulated rotation
+ *
+ * Called every frame while airborne to track total rotation
+ * and time spent in the air for bonus calculations.
  */
 void func_80102450(void *car) {
-    /* Air time - stub */
+    f32 *angVel;
+    f32 *accumRot;
+    f32 *airTime;
+    s32 *stuntState;
+    f32 dt = 0.016f;  /* ~60fps */
+
+    if (car == NULL) {
+        return;
+    }
+
+    stuntState = (s32 *)((u8 *)car + 0x180);
+    angVel = (f32 *)((u8 *)car + 0x84);
+    accumRot = (f32 *)((u8 *)car + 0x194);
+    airTime = (f32 *)((u8 *)car + 0x1A0);
+
+    /* Only track if in stunt state */
+    if (*stuntState == 0) {
+        return;
+    }
+
+    /* Accumulate air time */
+    *airTime += dt;
+
+    /* Accumulate rotation from angular velocity */
+    /* X = pitch (front/back flip) */
+    /* Y = yaw (spin) */
+    /* Z = roll (barrel roll) */
+    accumRot[0] += angVel[0] * dt;
+    accumRot[1] += angVel[1] * dt;
+    accumRot[2] += angVel[2] * dt;
 }
 
 /*
  * func_80102988 (1448 bytes)
- * Flip detect
+ * Flip detect - Detects front and back flips
+ *
+ * A flip is rotation around the car's lateral (X) axis.
+ * Front flip = nose goes down first (negative pitch rotation)
+ * Back flip = nose goes up first (positive pitch rotation)
+ *
+ * Thresholds:
+ *   Single flip = 270-450 degrees
+ *   Double flip = 630-810 degrees
+ *   Triple flip = 990+ degrees
+ *
+ * Returns:
+ *   0 = No flip
+ *   1 = Front flip
+ *   2 = Back flip
+ *   11 = Double front flip
+ *   12 = Double back flip
+ *   21 = Triple front flip
+ *   22 = Triple back flip
  */
 s32 func_80102988(void *car) {
-    /* Flip detect - stub */
-    return 0;
+    f32 *accumRot;
+    f32 pitchRot;
+    f32 absPitch;
+    s32 flipCount;
+    s32 trickId = 0;
+
+    if (car == NULL) {
+        return 0;
+    }
+
+    accumRot = (f32 *)((u8 *)car + 0x194);
+    pitchRot = accumRot[0];  /* X rotation in radians */
+    absPitch = fabsf(pitchRot);
+
+    /* Convert to rotation count (full 360 = 2*PI = 6.283) */
+    /* Need at least 3/4 rotation (270 deg = 4.71 rad) to count as flip */
+    if (absPitch < 4.71f) {
+        return 0;  /* Not enough rotation */
+    }
+
+    /* Count complete flips */
+    flipCount = (s32)(absPitch / 6.283f);
+    if (flipCount < 1) {
+        flipCount = 1;  /* At least one flip if threshold met */
+    }
+    if (flipCount > 3) {
+        flipCount = 3;  /* Cap at triple */
+    }
+
+    /* Determine flip direction */
+    if (pitchRot < 0.0f) {
+        /* Negative pitch = front flip */
+        trickId = 1 + (flipCount - 1) * 10;
+    } else {
+        /* Positive pitch = back flip */
+        trickId = 2 + (flipCount - 1) * 10;
+    }
+
+    return trickId;
 }
 
 /*
  * func_80102F30 (3576 bytes)
- * Barrel roll
+ * Barrel roll - Detects lateral barrel rolls
+ *
+ * A barrel roll is rotation around the car's longitudinal (Z) axis.
+ * Left roll = counter-clockwise when viewed from behind
+ * Right roll = clockwise when viewed from behind
+ *
+ * Returns:
+ *   0 = No barrel roll
+ *   3 = Barrel roll left
+ *   4 = Barrel roll right
+ *   13 = Double barrel roll left
+ *   14 = Double barrel roll right
+ *   23 = Triple barrel roll left
+ *   24 = Triple barrel roll right
  */
 s32 func_80102F30(void *car) {
-    /* Barrel roll - stub */
-    return 0;
+    f32 *accumRot;
+    f32 rollRot;
+    f32 absRoll;
+    s32 rollCount;
+    s32 trickId = 0;
+
+    if (car == NULL) {
+        return 0;
+    }
+
+    accumRot = (f32 *)((u8 *)car + 0x194);
+    rollRot = accumRot[2];  /* Z rotation in radians */
+    absRoll = fabsf(rollRot);
+
+    /* Need at least 3/4 rotation to count as barrel roll */
+    if (absRoll < 4.71f) {
+        return 0;
+    }
+
+    /* Count complete rolls */
+    rollCount = (s32)(absRoll / 6.283f);
+    if (rollCount < 1) {
+        rollCount = 1;
+    }
+    if (rollCount > 3) {
+        rollCount = 3;
+    }
+
+    /* Determine roll direction */
+    if (rollRot > 0.0f) {
+        /* Positive roll = left barrel roll */
+        trickId = 3 + (rollCount - 1) * 10;
+    } else {
+        /* Negative roll = right barrel roll */
+        trickId = 4 + (rollCount - 1) * 10;
+    }
+
+    return trickId;
 }
 
 /*
  * func_80103D28 (2524 bytes)
- * Spin detect
+ * Spin detect - Detects horizontal spins
+ *
+ * A spin is rotation around the car's vertical (Y) axis.
+ * Spins are counted in 180-degree increments.
+ *
+ * Returns:
+ *   0 = No spin (less than 180)
+ *   5 = 180 spin left
+ *   6 = 180 spin right
+ *   15 = 360 spin left
+ *   16 = 360 spin right
+ *   25 = 540 spin left
+ *   26 = 540 spin right
+ *   35 = 720 spin left
+ *   36 = 720 spin right
  */
 s32 func_80103D28(void *car) {
-    /* Spin detect - stub */
-    return 0;
+    f32 *accumRot;
+    f32 yawRot;
+    f32 absYaw;
+    s32 spinCount;
+    s32 trickId = 0;
+
+    if (car == NULL) {
+        return 0;
+    }
+
+    accumRot = (f32 *)((u8 *)car + 0x194);
+    yawRot = accumRot[1];  /* Y rotation in radians */
+    absYaw = fabsf(yawRot);
+
+    /* Spins are counted in 180-degree (PI) increments */
+    /* Need at least 135 degrees (2.36 rad) to count */
+    if (absYaw < 2.36f) {
+        return 0;
+    }
+
+    /* Count 180-degree spins */
+    spinCount = (s32)(absYaw / 3.14159f);
+    if (spinCount < 1) {
+        spinCount = 1;
+    }
+    if (spinCount > 4) {
+        spinCount = 4;  /* Cap at 720 (4 x 180) */
+    }
+
+    /* Determine spin direction */
+    if (yawRot > 0.0f) {
+        /* Positive yaw = left spin */
+        trickId = 5 + (spinCount - 1) * 10;
+    } else {
+        /* Negative yaw = right spin */
+        trickId = 6 + (spinCount - 1) * 10;
+    }
+
+    return trickId;
 }
 
 /*
  * func_80104704 (1040 bytes)
- * Landing bonus
+ * Landing bonus - Awards points for clean landings
+ *
+ * Calculates landing bonus based on:
+ *   - Air time (longer = more points)
+ *   - Landing angle (all wheels = perfect)
+ *   - Speed at landing
+ *   - Active combo multiplier
+ *
+ * Returns landing bonus points (0 if crashed)
  */
 s32 func_80104704(void *car) {
-    /* Landing bonus - stub */
-    return 0;
+    f32 *airTime;
+    f32 *upVec;
+    s32 *comboMult;
+    f32 landingAngle;
+    s32 baseBonus;
+    s32 angleMult;
+    s32 timeMult;
+    s32 finalBonus;
+
+    if (car == NULL) {
+        return 0;
+    }
+
+    airTime = (f32 *)((u8 *)car + 0x1A0);
+    upVec = (f32 *)((u8 *)car + 0x6C);
+    comboMult = (s32 *)((u8 *)car + 0x1AC);
+
+    /* Check landing angle (up vector Y component) */
+    /* Perfect landing: up.y close to 1.0 */
+    /* Crashed: up.y < 0 (upside down) */
+    landingAngle = upVec[1];
+
+    if (landingAngle < 0.0f) {
+        /* Crashed - no bonus, reset combo */
+        *comboMult = 1;
+        D_80158044 = 1;  /* Reset global combo */
+        return 0;
+    }
+
+    /* Base bonus from air time (100 pts per second) */
+    baseBonus = (s32)(*airTime * 100.0f);
+    if (baseBonus > 2000) {
+        baseBonus = 2000;  /* Cap at 2000 base */
+    }
+
+    /* Angle multiplier (1.0 = perfect, scales down) */
+    if (landingAngle > 0.95f) {
+        angleMult = 3;  /* Perfect landing - 3x */
+    } else if (landingAngle > 0.8f) {
+        angleMult = 2;  /* Good landing - 2x */
+    } else if (landingAngle > 0.5f) {
+        angleMult = 1;  /* OK landing - 1x */
+    } else {
+        angleMult = 0;  /* Rough landing - no bonus */
+        *comboMult = 1;  /* Reset combo on rough landing */
+    }
+
+    /* Time bonus (extra for long air time) */
+    if (*airTime > 3.0f) {
+        timeMult = 2;  /* 3+ seconds = 2x */
+    } else if (*airTime > 1.5f) {
+        timeMult = 1;  /* 1.5-3 seconds = normal */
+    } else {
+        timeMult = 1;
+    }
+
+    /* Calculate final bonus */
+    finalBonus = baseBonus * angleMult * timeMult;
+
+    /* Apply combo multiplier */
+    finalBonus *= D_80158044;
+
+    return finalBonus;
 }
 
 /*
  * func_80104B14 (2412 bytes)
- * Stunt combo
+ * Stunt combo - Manages trick combos during a single air session
+ *
+ * A combo is built by performing multiple different tricks in one jump.
+ * Same trick repeated = no combo bonus
+ * Different tricks = increasing combo multiplier
+ *
+ * Car structure offsets:
+ *   0x1AC: combo count
+ *   0x1B0: combo tricks [8] (trick IDs in this combo)
+ *   0x1D0: combo timer (resets on landing)
  */
 void func_80104B14(void *car) {
-    /* Stunt combo - stub */
+    s32 *comboCount;
+    s32 *comboTricks;
+    f32 *comboTimer;
+    s32 *currentTrick;
+    s32 trick;
+    s32 i;
+    s32 isDuplicate;
+
+    if (car == NULL) {
+        return;
+    }
+
+    comboCount = (s32 *)((u8 *)car + 0x1AC);
+    comboTricks = (s32 *)((u8 *)car + 0x1B0);
+    comboTimer = (f32 *)((u8 *)car + 0x1D0);
+    currentTrick = (s32 *)((u8 *)car + 0x1A4);
+
+    trick = *currentTrick;
+
+    /* No trick = nothing to add */
+    if (trick == 0) {
+        return;
+    }
+
+    /* Check if this trick type already in combo */
+    isDuplicate = 0;
+    for (i = 0; i < *comboCount && i < 8; i++) {
+        /* Compare base trick type (mod 10 gives type) */
+        if ((comboTricks[i] % 10) == (trick % 10)) {
+            isDuplicate = 1;
+            break;
+        }
+    }
+
+    /* Add to combo if new trick type */
+    if (!isDuplicate && *comboCount < 8) {
+        comboTricks[*comboCount] = trick;
+        (*comboCount)++;
+
+        /* Update global combo multiplier */
+        D_80158044 = *comboCount + 1;
+    }
+
+    /* Reset combo timer */
+    *comboTimer = 2.0f;  /* 2 second window for next trick */
 }
 
 /*
  * func_80105480 (1780 bytes)
- * Wing deploy
+ * Wing deploy - Deploys the car's stunt wings
+ *
+ * Rush 2049's signature feature - cars have deployable wings
+ * that provide air control during jumps.
+ *
+ * Wing effects:
+ *   - Increased air control (pitch/roll influence)
+ *   - Reduced fall speed (glide)
+ *   - Enables advanced trick combos
+ *
+ * Car structure offsets:
+ *   0x1D4: wing state (0=retracted, 1=deploying, 2=deployed)
+ *   0x1D8: wing deploy timer
+ *   0x1DC: wing angle (0.0 = retracted, 1.0 = fully deployed)
+ *   0x1E0: wing lift coefficient
+ *   0x1E4: wing drag coefficient
  */
 void func_80105480(void *car) {
-    /* Wing deploy - stub */
+    s32 *wingState;
+    f32 *deployTimer;
+    f32 *wingAngle;
+    f32 *liftCoef;
+    f32 *dragCoef;
+    f32 dt = 0.016f;
+    f32 deployRate = 4.0f;  /* Full deploy in 0.25 seconds */
+
+    if (car == NULL) {
+        return;
+    }
+
+    wingState = (s32 *)((u8 *)car + 0x1D4);
+    deployTimer = (f32 *)((u8 *)car + 0x1D8);
+    wingAngle = (f32 *)((u8 *)car + 0x1DC);
+    liftCoef = (f32 *)((u8 *)car + 0x1E0);
+    dragCoef = (f32 *)((u8 *)car + 0x1E4);
+
+    /* Start deploy if not already deploying/deployed */
+    if (*wingState == 0) {
+        *wingState = 1;  /* Deploying */
+        *deployTimer = 0.0f;
+    }
+
+    /* Animate wing deployment */
+    if (*wingState == 1) {
+        *wingAngle += deployRate * dt;
+        *deployTimer += dt;
+
+        if (*wingAngle >= 1.0f) {
+            *wingAngle = 1.0f;
+            *wingState = 2;  /* Fully deployed */
+        }
+    }
+
+    /* Calculate aerodynamic coefficients based on wing angle */
+    /* Lift increases with wing deployment */
+    *liftCoef = 0.5f + (*wingAngle * 1.5f);  /* 0.5 base, up to 2.0 */
+
+    /* Drag also increases */
+    *dragCoef = 0.1f + (*wingAngle * 0.3f);  /* 0.1 base, up to 0.4 */
+
+    /* Apply wing physics if deployed */
+    if (*wingState == 2) {
+        func_80105EA8(car);  /* Apply glide physics */
+    }
 }
 
 /*
  * func_80105B74 (572 bytes)
- * Wing retract
+ * Wing retract - Retracts the car's stunt wings
+ *
+ * Called when:
+ *   - Player releases wing button
+ *   - Car lands
+ *   - Car crashes
  */
 void func_80105B74(void *car) {
-    /* Wing retract - stub */
+    s32 *wingState;
+    f32 *wingAngle;
+    f32 *liftCoef;
+    f32 *dragCoef;
+    f32 dt = 0.016f;
+    f32 retractRate = 6.0f;  /* Faster retract than deploy */
+
+    if (car == NULL) {
+        return;
+    }
+
+    wingState = (s32 *)((u8 *)car + 0x1D4);
+    wingAngle = (f32 *)((u8 *)car + 0x1DC);
+    liftCoef = (f32 *)((u8 *)car + 0x1E0);
+    dragCoef = (f32 *)((u8 *)car + 0x1E4);
+
+    /* Skip if already retracted */
+    if (*wingState == 0) {
+        return;
+    }
+
+    /* Animate wing retraction */
+    *wingAngle -= retractRate * dt;
+
+    if (*wingAngle <= 0.0f) {
+        *wingAngle = 0.0f;
+        *wingState = 0;  /* Fully retracted */
+        *liftCoef = 0.5f;  /* Reset to base */
+        *dragCoef = 0.1f;
+    } else {
+        /* Update coefficients during retraction */
+        *liftCoef = 0.5f + (*wingAngle * 1.5f);
+        *dragCoef = 0.1f + (*wingAngle * 0.3f);
+    }
 }
 
 /*
  * func_80105DB0 (248 bytes)
- * Wing state check
+ * Wing state check - Returns current wing deployment state
+ *
+ * Returns:
+ *   0 = Wings retracted
+ *   1 = Wings deploying
+ *   2 = Wings fully deployed
  */
 s32 func_80105DB0(void *car) {
-    /* Wing state - stub */
-    return 0;
+    if (car == NULL) {
+        return 0;
+    }
+    return *(s32 *)((u8 *)car + 0x1D4);
 }
 
 /*
  * func_80105EA8 (2508 bytes)
- * Glide physics
+ * Glide physics - Applies wing aerodynamic forces
+ *
+ * When wings are deployed, the car experiences:
+ *   - Lift force (reduces fall rate)
+ *   - Drag force (reduces forward speed)
+ *   - Control forces (pitch/roll from player input)
+ *
+ * This enables the "gliding" behavior unique to Rush 2049.
  */
 void func_80105EA8(void *car) {
-    /* Glide - stub */
+    f32 *vel;
+    f32 *forward, *up, *right;
+    f32 *angVel;
+    f32 liftCoef, dragCoef;
+    f32 wingAngle;
+    f32 speed, speedSq;
+    f32 liftForce, dragForce;
+    f32 pitchControl, rollControl;
+    f32 dt = 0.016f;
+    f32 airDensity = 0.002377f;  /* Slug/ft^3 */
+    f32 wingArea = 20.0f;  /* Square feet */
+
+    if (car == NULL) {
+        return;
+    }
+
+    vel = (f32 *)((u8 *)car + 0x34);
+    forward = (f32 *)((u8 *)car + 0x60);
+    up = (f32 *)((u8 *)car + 0x6C);
+    right = (f32 *)((u8 *)car + 0x78);
+    angVel = (f32 *)((u8 *)car + 0x84);
+    wingAngle = *(f32 *)((u8 *)car + 0x1DC);
+    liftCoef = *(f32 *)((u8 *)car + 0x1E0);
+    dragCoef = *(f32 *)((u8 *)car + 0x1E4);
+
+    /* Calculate speed */
+    speedSq = vel[0]*vel[0] + vel[1]*vel[1] + vel[2]*vel[2];
+    speed = sqrtf(speedSq);
+
+    if (speed < 1.0f) {
+        return;  /* Too slow for aerodynamic effects */
+    }
+
+    /* Lift force: L = 0.5 * rho * v^2 * S * Cl */
+    /* Applied in the up direction */
+    liftForce = 0.5f * airDensity * speedSq * wingArea * liftCoef * wingAngle;
+
+    /* Reduce vertical velocity (counteract gravity) */
+    vel[1] += liftForce * dt * 0.01f;
+
+    /* Clamp to prevent flying upward */
+    if (vel[1] > 0.0f && up[1] > 0.0f) {
+        vel[1] *= 0.95f;  /* Dampen upward motion */
+    }
+
+    /* Drag force: D = 0.5 * rho * v^2 * S * Cd */
+    /* Applied opposite to velocity */
+    dragForce = 0.5f * airDensity * speedSq * wingArea * dragCoef * wingAngle;
+
+    /* Reduce speed in direction of motion */
+    if (speed > 0.0f) {
+        f32 dragScale = 1.0f - (dragForce * dt * 0.001f / speed);
+        if (dragScale < 0.9f) dragScale = 0.9f;  /* Cap drag effect */
+        vel[0] *= dragScale;
+        vel[2] *= dragScale;
+    }
+
+    /* Get control inputs from angular velocity requests */
+    pitchControl = angVel[0] * wingAngle * 2.0f;
+    rollControl = angVel[2] * wingAngle * 2.0f;
+
+    /* Apply pitch moment (nose up/down) */
+    angVel[0] += pitchControl * dt;
+
+    /* Apply roll moment (barrel roll) */
+    angVel[2] += rollControl * dt;
+
+    /* Dampen angular velocities slightly for stability */
+    angVel[0] *= 0.98f;
+    angVel[1] *= 0.98f;
+    angVel[2] *= 0.98f;
 }
 
 /*
