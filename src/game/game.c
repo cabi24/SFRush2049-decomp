@@ -21153,72 +21153,397 @@ void func_8009DD88(void *segment) {
 
 /*
  * func_8009EA70 (168 bytes)
- * Track bounds check
+ * Track bounds check - check if position is within track boundaries
  */
 s32 func_8009EA70(f32 *pos) {
-    /* Bounds check - stub */
-    return 0;
+    f32 *trackBounds;
+    f32 x, y, z;
+
+    if (pos == NULL) {
+        return 1;  /* Out of bounds */
+    }
+
+    trackBounds = (f32 *)0x8015C000;
+    x = pos[0];
+    y = pos[1];
+    z = pos[2];
+
+    /* Check X bounds */
+    if (x < trackBounds[0] || x > trackBounds[1]) {
+        return 1;
+    }
+
+    /* Check Y bounds */
+    if (y < trackBounds[2] || y > trackBounds[3]) {
+        return 1;
+    }
+
+    /* Check Z bounds */
+    if (z < trackBounds[4] || z > trackBounds[5]) {
+        return 1;
+    }
+
+    return 0;  /* Within bounds */
 }
 
 /*
  * func_8009EB18 (168 bytes)
- * Track height query
+ * Track height query - get terrain height at position
  */
 f32 func_8009EB18(f32 x, f32 z) {
-    /* Height query - stub */
-    return 0.0f;
+    s32 *heightGrid;
+    s32 gridWidth, gridHeight;
+    f32 cellSize;
+    s32 gridX, gridZ;
+    s32 idx;
+    f32 height;
+
+    heightGrid = (s32 *)0x8015C100;
+    gridWidth = 64;
+    gridHeight = 64;
+    cellSize = 50.0f;
+
+    /* Convert world position to grid index */
+    gridX = (s32)((x + 1600.0f) / cellSize);
+    gridZ = (s32)((z + 1600.0f) / cellSize);
+
+    /* Clamp to grid bounds */
+    if (gridX < 0) gridX = 0;
+    if (gridX >= gridWidth) gridX = gridWidth - 1;
+    if (gridZ < 0) gridZ = 0;
+    if (gridZ >= gridHeight) gridZ = gridHeight - 1;
+
+    idx = gridZ * gridWidth + gridX;
+    height = (f32)heightGrid[idx] / 256.0f;
+
+    return height;
 }
 
 /*
  * func_8009EBC0 (1188 bytes)
- * Track surface type query
+ * Track surface type query - get surface material at position
  */
 s32 func_8009EBC0(f32 *pos) {
-    /* Surface type - stub */
-    return 0;
+    u8 *surfaceGrid;
+    s32 gridWidth, gridHeight;
+    f32 cellSize;
+    s32 gridX, gridZ;
+    s32 idx;
+    s32 surfaceType;
+
+    if (pos == NULL) {
+        return 0;  /* Default asphalt */
+    }
+
+    surfaceGrid = (u8 *)0x8015D000;
+    gridWidth = 64;
+    gridHeight = 64;
+    cellSize = 50.0f;
+
+    /* Convert world position to grid index */
+    gridX = (s32)((pos[0] + 1600.0f) / cellSize);
+    gridZ = (s32)((pos[2] + 1600.0f) / cellSize);
+
+    /* Clamp to grid bounds */
+    if (gridX < 0) gridX = 0;
+    if (gridX >= gridWidth) gridX = gridWidth - 1;
+    if (gridZ < 0) gridZ = 0;
+    if (gridZ >= gridHeight) gridZ = gridHeight - 1;
+
+    idx = gridZ * gridWidth + gridX;
+    surfaceType = surfaceGrid[idx];
+
+    /* Surface types:
+     * 0 = Asphalt (normal)
+     * 1 = Dirt (low grip)
+     * 2 = Grass (very low grip)
+     * 3 = Sand (very low grip, slow)
+     * 4 = Water (reset position)
+     * 5 = Ice (slippery)
+     * 6 = Boost pad
+     * 7 = Jump ramp
+     */
+    return surfaceType;
 }
 
 /*
  * func_8009F064 (8600 bytes)
- * Track collision test
+ * Track collision test - raycast against track geometry
  */
 s32 func_8009F064(f32 *start, f32 *end, f32 *hitPoint) {
-    /* Collision test - stub */
-    return 0;
+    f32 dir[3];
+    f32 len;
+    f32 t;
+    f32 step;
+    f32 testPos[3];
+    f32 terrainHeight;
+    s32 i;
+    s32 maxSteps;
+
+    if (start == NULL || end == NULL) {
+        return 0;
+    }
+
+    /* Calculate ray direction */
+    dir[0] = end[0] - start[0];
+    dir[1] = end[1] - start[1];
+    dir[2] = end[2] - start[2];
+
+    len = sqrtf(dir[0] * dir[0] + dir[1] * dir[1] + dir[2] * dir[2]);
+    if (len < 0.001f) {
+        return 0;
+    }
+
+    dir[0] /= len;
+    dir[1] /= len;
+    dir[2] /= len;
+
+    /* Step along ray checking terrain height */
+    step = 1.0f;
+    maxSteps = (s32)(len / step) + 1;
+    if (maxSteps > 200) {
+        maxSteps = 200;
+    }
+
+    for (i = 0; i < maxSteps; i++) {
+        t = (f32)i * step;
+        if (t > len) {
+            t = len;
+        }
+
+        testPos[0] = start[0] + dir[0] * t;
+        testPos[1] = start[1] + dir[1] * t;
+        testPos[2] = start[2] + dir[2] * t;
+
+        /* Check terrain height at this position */
+        terrainHeight = func_8009EB18(testPos[0], testPos[2]);
+
+        /* Hit if below terrain */
+        if (testPos[1] <= terrainHeight) {
+            if (hitPoint != NULL) {
+                hitPoint[0] = testPos[0];
+                hitPoint[1] = terrainHeight;
+                hitPoint[2] = testPos[2];
+            }
+            return 1;  /* Hit */
+        }
+
+        /* Check bounds */
+        if (func_8009EA70(testPos) != 0) {
+            if (hitPoint != NULL) {
+                hitPoint[0] = testPos[0];
+                hitPoint[1] = testPos[1];
+                hitPoint[2] = testPos[2];
+            }
+            return 2;  /* Out of bounds */
+        }
+    }
+
+    return 0;  /* No hit */
 }
 
 /*
  * func_800AF06C (1396 bytes)
- * Save game data
+ * Save game data - write save structure to buffer
  */
 void func_800AF06C(void *saveData) {
-    /* Save game - stub */
+    u8 *data;
+    s32 offset;
+    s32 i;
+    s32 *unlockFlags;
+    s32 *bestTimes;
+    s32 *bestLaps;
+    u8 *settings;
+
+    if (saveData == NULL) {
+        return;
+    }
+
+    data = (u8 *)saveData;
+    offset = 0;
+
+    /* Magic header */
+    data[offset++] = 'R';
+    data[offset++] = 'U';
+    data[offset++] = 'S';
+    data[offset++] = 'H';
+    data[offset++] = '2';
+    data[offset++] = '0';
+    data[offset++] = '4';
+    data[offset++] = '9';
+
+    /* Version */
+    data[offset++] = 0x01;
+    data[offset++] = 0x00;
+
+    /* Unlock flags (8 bytes) */
+    unlockFlags = (s32 *)0x8015A100;
+    for (i = 0; i < 2; i++) {
+        data[offset++] = (unlockFlags[i] >> 24) & 0xFF;
+        data[offset++] = (unlockFlags[i] >> 16) & 0xFF;
+        data[offset++] = (unlockFlags[i] >> 8) & 0xFF;
+        data[offset++] = unlockFlags[i] & 0xFF;
+    }
+
+    /* Best times (12 tracks, 4 bytes each = 48 bytes) */
+    bestTimes = (s32 *)0x80159A10;
+    for (i = 0; i < 12; i++) {
+        data[offset++] = (bestTimes[i] >> 24) & 0xFF;
+        data[offset++] = (bestTimes[i] >> 16) & 0xFF;
+        data[offset++] = (bestTimes[i] >> 8) & 0xFF;
+        data[offset++] = bestTimes[i] & 0xFF;
+    }
+
+    /* Best lap times (12 tracks, 4 bytes each = 48 bytes) */
+    bestLaps = (s32 *)0x80159D10;
+    for (i = 0; i < 12; i++) {
+        data[offset++] = (bestLaps[i] >> 24) & 0xFF;
+        data[offset++] = (bestLaps[i] >> 16) & 0xFF;
+        data[offset++] = (bestLaps[i] >> 8) & 0xFF;
+        data[offset++] = bestLaps[i] & 0xFF;
+    }
+
+    /* Settings (16 bytes) */
+    settings = (u8 *)0x80159300;
+    for (i = 0; i < 16; i++) {
+        data[offset++] = settings[i];
+    }
+
+    /* Checksum */
+    {
+        u16 checksum = 0;
+        for (i = 0; i < offset; i++) {
+            checksum += data[i];
+        }
+        data[offset++] = (checksum >> 8) & 0xFF;
+        data[offset++] = checksum & 0xFF;
+    }
 }
 
 /*
  * func_800AF5E0 (176 bytes)
- * Save slot check
+ * Save slot check - verify if save slot has valid data
  */
 s32 func_800AF5E0(s32 slot) {
-    /* Slot check - stub */
-    return 0;
+    OSPfs pfs;
+    s32 result;
+    u8 header[16];
+
+    if (slot < 0 || slot >= 4) {
+        return 0;  /* Invalid slot */
+    }
+
+    /* Initialize controller pak */
+    result = osPfsInitPak(0, &pfs, slot);
+    if (result != 0) {
+        return 0;  /* No pak or error */
+    }
+
+    /* Read save header */
+    result = osPfsReadWriteFile(&pfs, slot, PFS_READ, 0, 16, header);
+    if (result != 0) {
+        return 0;  /* Read error */
+    }
+
+    /* Check magic header */
+    if (header[0] != 'R' || header[1] != 'U' ||
+        header[2] != 'S' || header[3] != 'H' ||
+        header[4] != '2' || header[5] != '0' ||
+        header[6] != '4' || header[7] != '9') {
+        return 0;  /* Invalid header */
+    }
+
+    return 1;  /* Valid save */
 }
 
 /*
  * func_800AF690 (572 bytes)
- * Load game data
+ * Load game data - read save from controller pak
  */
 s32 func_800AF690(void *saveData, s32 slot) {
-    /* Load game - stub */
-    return 0;
+    OSPfs pfs;
+    s32 result;
+    u8 *data;
+    s32 saveSize;
+
+    if (saveData == NULL || slot < 0 || slot >= 4) {
+        return 0;
+    }
+
+    /* Save data is 140 bytes:
+     * 8 header + 2 version + 8 unlocks + 48 times + 48 laps + 16 settings + 2 checksum + padding
+     */
+    saveSize = 140;
+    data = (u8 *)saveData;
+
+    /* Initialize controller pak */
+    result = osPfsInitPak(0, &pfs, slot);
+    if (result != 0) {
+        return 0;
+    }
+
+    /* Read save data */
+    result = osPfsReadWriteFile(&pfs, slot, PFS_READ, 0, saveSize, data);
+    if (result != 0) {
+        return 0;
+    }
+
+    /* Verify header */
+    if (data[0] != 'R' || data[1] != 'U' ||
+        data[2] != 'S' || data[3] != 'H') {
+        return 0;
+    }
+
+    /* Verify checksum */
+    {
+        u16 storedSum, calcSum;
+        s32 i;
+
+        storedSum = (data[saveSize - 2] << 8) | data[saveSize - 1];
+        calcSum = 0;
+        for (i = 0; i < saveSize - 2; i++) {
+            calcSum += data[i];
+        }
+
+        if (storedSum != calcSum) {
+            return 0;  /* Checksum mismatch */
+        }
+    }
+
+    return 1;  /* Success */
 }
 
 /*
  * func_800AF8CC (620 bytes)
- * Delete save
+ * Delete save - erase save data from slot
  */
 void func_800AF8CC(s32 slot) {
-    /* Delete save - stub */
+    OSPfs pfs;
+    s32 result;
+    u8 emptyData[140];
+    s32 i;
+
+    if (slot < 0 || slot >= 4) {
+        return;
+    }
+
+    /* Initialize controller pak */
+    result = osPfsInitPak(0, &pfs, slot);
+    if (result != 0) {
+        return;
+    }
+
+    /* Clear data buffer */
+    for (i = 0; i < 140; i++) {
+        emptyData[i] = 0;
+    }
+
+    /* Write empty data to slot */
+    result = osPfsReadWriteFile(&pfs, slot, PFS_WRITE, 0, 140, emptyData);
+    if (result != 0) {
+        /* Write failed, try to delete file entry */
+        osPfsDeleteFile(&pfs, 0, slot, "RUSH2049");
+    }
 }
 
 /*
