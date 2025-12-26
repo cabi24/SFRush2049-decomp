@@ -14744,10 +14744,88 @@ void func_800D5524(void *menu) {
 
 /*
  * func_800D5A04 (1704 bytes)
- * Controller config
+ * Controller config - button mapping screen
  */
 void func_800D5A04(void *menu) {
-    /* Controller config - stub */
+    s32 *selectedOption;
+    s32 *buttonMappings;
+    s32 *waitingForInput;
+    s32 i;
+    u32 color;
+    u16 buttonsPressed;
+
+    if (menu == NULL) {
+        return;
+    }
+
+    selectedOption = (s32 *)((u8 *)menu + 0x04);
+    buttonMappings = (s32 *)((u8 *)menu + 0x40);
+    waitingForInput = (s32 *)((u8 *)menu + 0x3C);
+
+    buttonsPressed = D_801520A4;
+
+    /* Draw title */
+    func_800C734C(80, 50, "CONTROLLER CONFIG", 0xFF8800FF);
+
+    /* Draw action labels */
+    for (i = 0; i < 6; i++) {
+        s32 y = 90 + i * 18;
+        color = (i == *selectedOption) ? 0xFFFF00FF : 0xFFFFFFFF;
+
+        switch (i) {
+            case 0:
+                func_800C734C(40, y, "ACCELERATE:", color);
+                break;
+            case 1:
+                func_800C734C(40, y, "BRAKE:", color);
+                break;
+            case 2:
+                func_800C734C(40, y, "NITRO:", color);
+                break;
+            case 3:
+                func_800C734C(40, y, "WINGS:", color);
+                break;
+            case 4:
+                func_800C734C(40, y, "LOOK BACK:", color);
+                break;
+            case 5:
+                func_800C734C(40, y, "RESET:", color);
+                break;
+        }
+
+        /* Show current mapping */
+        if (*waitingForInput && i == *selectedOption) {
+            func_800C734C(160, y, "PRESS BUTTON...", 0x00FF00FF);
+        } else {
+            switch (buttonMappings[i]) {
+                case 0x8000: func_800C734C(160, y, "A", 0x888888FF); break;
+                case 0x4000: func_800C734C(160, y, "B", 0x888888FF); break;
+                case 0x2000: func_800C734C(160, y, "Z", 0x888888FF); break;
+                case 0x0020: func_800C734C(160, y, "L", 0x888888FF); break;
+                case 0x0010: func_800C734C(160, y, "R", 0x888888FF); break;
+                case 0x0008: func_800C734C(160, y, "C-UP", 0x888888FF); break;
+                case 0x0004: func_800C734C(160, y, "C-DOWN", 0x888888FF); break;
+                case 0x0002: func_800C734C(160, y, "C-LEFT", 0x888888FF); break;
+                case 0x0001: func_800C734C(160, y, "C-RIGHT", 0x888888FF); break;
+                default: func_800C734C(160, y, "---", 0x888888FF); break;
+            }
+        }
+    }
+
+    /* Default/Back options */
+    color = (*selectedOption == 6) ? 0xFFFF00FF : 0xFFFFFFFF;
+    func_800C734C(40, 200, "DEFAULTS", color);
+    color = (*selectedOption == 7) ? 0xFFFF00FF : 0xFFFFFFFF;
+    func_800C734C(140, 200, "BACK", color);
+
+    /* Handle input capture mode */
+    if (*waitingForInput) {
+        if (buttonsPressed != 0) {
+            buttonMappings[*selectedOption] = buttonsPressed;
+            *waitingForInput = 0;
+            func_800B37E8(0x02);  /* Confirm sound */
+        }
+    }
 }
 
 /*
@@ -14760,26 +14838,248 @@ void func_800D60AC(void) {
 
 /*
  * func_800D6160 (496 bytes)
- * Save/load menu
+ * Save/load menu - data management screen
  */
 void func_800D6160(void *menu) {
-    /* Save/load - stub */
+    s32 *selectedOption;
+    s32 *saveSlotSelected;
+    s32 *operationPending;
+    s32 i;
+    u32 color;
+
+    if (menu == NULL) {
+        return;
+    }
+
+    selectedOption = (s32 *)((u8 *)menu + 0x04);
+    saveSlotSelected = (s32 *)((u8 *)menu + 0x08);
+    operationPending = (s32 *)((u8 *)menu + 0x0C);
+
+    /* Draw title */
+    func_800C734C(100, 50, "SAVE/LOAD", 0xFF8800FF);
+
+    /* Draw save slots */
+    for (i = 0; i < 4; i++) {
+        s32 y = 90 + i * 24;
+        s32 *slotData = (s32 *)(0x80158100 + i * 0x100);
+        color = (i == *saveSlotSelected) ? 0xFFFF00FF : 0xFFFFFFFF;
+
+        /* Slot number */
+        func_800C734C(40, y, "SLOT", color);
+        func_800C734C(80, y, (i == 0) ? "1" : (i == 1) ? "2" : (i == 2) ? "3" : "4", color);
+
+        /* Slot status */
+        if (slotData[0] == 0x52555348) {  /* "RUSH" magic */
+            /* Show progress percentage */
+            s32 progress = slotData[1];
+            char progressStr[8];
+            progressStr[0] = '0' + (progress / 10);
+            progressStr[1] = '0' + (progress % 10);
+            progressStr[2] = '%';
+            progressStr[3] = '\0';
+            func_800C734C(120, y, progressStr, 0x00FF00FF);
+        } else {
+            func_800C734C(120, y, "EMPTY", 0x888888FF);
+        }
+    }
+
+    /* Operation buttons */
+    color = (*selectedOption == 0) ? 0xFFFF00FF : 0xFFFFFFFF;
+    func_800C734C(40, 190, "SAVE", color);
+
+    color = (*selectedOption == 1) ? 0xFFFF00FF : 0xFFFFFFFF;
+    func_800C734C(100, 190, "LOAD", color);
+
+    color = (*selectedOption == 2) ? 0xFFFF00FF : 0xFFFFFFFF;
+    func_800C734C(160, 190, "DELETE", color);
+
+    color = (*selectedOption == 3) ? 0xFFFF00FF : 0xFFFFFFFF;
+    func_800C734C(230, 190, "BACK", color);
+
+    /* Show operation status */
+    if (*operationPending) {
+        func_800C734C(80, 210, "PLEASE WAIT...", 0x00FFFFFF);
+    }
 }
 
 /*
  * func_800D6530 (4356 bytes)
- * Memory card operations
+ * Memory card operations - controller pak read/write
  */
 void func_800D6530(s32 operation) {
-    /* Memory card - stub */
+    s32 *operationResult;
+    s32 *currentSlot;
+    void *saveBuffer;
+    s32 result;
+    OSPfs *pfs;
+
+    operationResult = (s32 *)0x80158500;
+    currentSlot = (s32 *)0x80158504;
+    saveBuffer = (void *)0x80158600;
+    pfs = (OSPfs *)0x80140000;
+
+    *operationResult = 0;  /* Pending */
+
+    switch (operation) {
+        case 0:  /* Initialize/detect controller pak */
+            result = osPfsInitPak(NULL, pfs, 0);
+            if (result == 0) {
+                *operationResult = 1;  /* Success */
+            } else {
+                *operationResult = -1;  /* No pak or error */
+            }
+            break;
+
+        case 1:  /* Check free space */
+            {
+                s32 freePages;
+                result = osPfsFreeBlocks(pfs, &freePages);
+                if (result == 0) {
+                    *operationResult = freePages;
+                } else {
+                    *operationResult = -2;
+                }
+            }
+            break;
+
+        case 2:  /* Save to current slot */
+            {
+                s32 slot = *currentSlot;
+                s32 *slotData = (s32 *)(0x80158100 + slot * 0x100);
+
+                /* Write magic number */
+                slotData[0] = 0x52555348;  /* "RUSH" */
+
+                /* Copy save data to slot buffer */
+                slotData[1] = D_80159200;  /* Progress */
+                slotData[2] = D_80159204;  /* Unlocks */
+                slotData[3] = D_80159208;  /* Best times pointer */
+
+                /* Write to controller pak */
+                result = osPfsWriteFile(pfs, slot, 0, 0x100, (u8 *)slotData);
+                if (result == 0) {
+                    *operationResult = 1;
+                    func_800B37E8(0x04);  /* Save complete sound */
+                } else {
+                    *operationResult = -3;
+                    func_800B37E8(0x05);  /* Error sound */
+                }
+            }
+            break;
+
+        case 3:  /* Load from current slot */
+            {
+                s32 slot = *currentSlot;
+                s32 *slotData = (s32 *)(0x80158100 + slot * 0x100);
+
+                result = osPfsReadFile(pfs, slot, 0, 0x100, (u8 *)slotData);
+                if (result == 0 && slotData[0] == 0x52555348) {
+                    /* Restore game state */
+                    D_80159200 = slotData[1];
+                    D_80159204 = slotData[2];
+                    *operationResult = 1;
+                    func_800B37E8(0x04);
+                } else {
+                    *operationResult = -4;
+                    func_800B37E8(0x05);
+                }
+            }
+            break;
+
+        case 4:  /* Delete slot */
+            {
+                s32 slot = *currentSlot;
+                s32 *slotData = (s32 *)(0x80158100 + slot * 0x100);
+
+                /* Clear magic number */
+                slotData[0] = 0;
+
+                result = osPfsDeleteFile(pfs, 0, slot);
+                *operationResult = (result == 0) ? 1 : -5;
+            }
+            break;
+
+        default:
+            *operationResult = -10;  /* Unknown operation */
+            break;
+    }
 }
 
 /*
  * func_800D7634 (1804 bytes)
- * Profile management
+ * Profile management - player profile data
  */
 void func_800D7634(void *profile) {
-    /* Profile management - stub */
+    s32 *profileId;
+    char *playerName;
+    s32 *totalRaces;
+    s32 *wins;
+    s32 *crashes;
+    s32 *stuntsCompleted;
+    s32 *bestLapTime;
+    s32 *unlockedTracks;
+    s32 *unlockedCars;
+
+    if (profile == NULL) {
+        return;
+    }
+
+    profileId = (s32 *)((u8 *)profile + 0x00);
+    playerName = (char *)((u8 *)profile + 0x04);
+    totalRaces = (s32 *)((u8 *)profile + 0x14);
+    wins = (s32 *)((u8 *)profile + 0x18);
+    crashes = (s32 *)((u8 *)profile + 0x1C);
+    stuntsCompleted = (s32 *)((u8 *)profile + 0x20);
+    bestLapTime = (s32 *)((u8 *)profile + 0x24);  /* Array of 6 tracks */
+    unlockedTracks = (s32 *)((u8 *)profile + 0x40);
+    unlockedCars = (s32 *)((u8 *)profile + 0x44);
+
+    /* Initialize new profile */
+    if (*profileId == 0) {
+        *profileId = D_80159A20;  /* Use frame counter as ID */
+
+        /* Default name "PLAYER" */
+        playerName[0] = 'P';
+        playerName[1] = 'L';
+        playerName[2] = 'A';
+        playerName[3] = 'Y';
+        playerName[4] = 'E';
+        playerName[5] = 'R';
+        playerName[6] = '\0';
+
+        *totalRaces = 0;
+        *wins = 0;
+        *crashes = 0;
+        *stuntsCompleted = 0;
+
+        /* No best times yet */
+        for (s32 i = 0; i < 6; i++) {
+            bestLapTime[i] = 0;
+        }
+
+        /* Start with first track and car unlocked */
+        *unlockedTracks = 0x01;  /* Track 1 */
+        *unlockedCars = 0x01;    /* Car 1 */
+    }
+
+    /* Calculate win percentage */
+    {
+        s32 winPercent = 0;
+        if (*totalRaces > 0) {
+            winPercent = (*wins * 100) / *totalRaces;
+        }
+        *((s32 *)((u8 *)profile + 0x48)) = winPercent;
+    }
+
+    /* Calculate total stunts score */
+    {
+        s32 totalStuntScore = 0;
+        s32 *stuntScores = (s32 *)((u8 *)profile + 0x80);
+        for (s32 i = 0; i < 16; i++) {
+            totalStuntScore += stuntScores[i];
+        }
+        *((s32 *)((u8 *)profile + 0x4C)) = totalStuntScore;
+    }
 }
 
 /*
