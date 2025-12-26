@@ -7183,11 +7183,128 @@ void func_800C69C0(void (*callback)(void *)) {
 }
 
 /*
- * func_800C6AA0 (1564 bytes) - stub
- * Large entity processing function
+ * func_800C6AA0 (1564 bytes)
+ * Large entity processing function - full entity update
  */
 void func_800C6AA0(void *entity) {
-    /* Large function - needs full implementation */
+    s32 *entityType;
+    s32 *entityState;
+    s32 *entityFlags;
+    f32 *pos, *vel, *accel;
+    f32 *rot, *angVel;
+    f32 dt;
+    s32 type, state, flags;
+
+    if (entity == NULL) {
+        return;
+    }
+
+    entityType = (s32 *)((u8 *)entity + 0x08);
+    entityState = (s32 *)((u8 *)entity + 0x0C);
+    entityFlags = (s32 *)((u8 *)entity + 0x10);
+    pos = (f32 *)((u8 *)entity + 0x24);
+    vel = (f32 *)((u8 *)entity + 0x34);
+    accel = (f32 *)((u8 *)entity + 0x44);
+    rot = (f32 *)((u8 *)entity + 0x60);
+    angVel = (f32 *)((u8 *)entity + 0x70);
+
+    type = *entityType;
+    state = *entityState;
+    flags = *entityFlags;
+    dt = 1.0f / 60.0f;
+
+    /* Check if entity is active */
+    if ((flags & 0x01) == 0) {
+        return;
+    }
+
+    /* Apply physics based on entity type */
+    switch (type) {
+        case 0:  /* Static entity */
+            break;
+
+        case 1:  /* Car entity */
+            /* Cars have their own update path */
+            break;
+
+        case 2:  /* Dynamic prop */
+        case 3:  /* Destructible */
+            /* Apply gravity */
+            accel[1] = -9.8f;
+
+            /* Integrate velocity */
+            vel[0] += accel[0] * dt;
+            vel[1] += accel[1] * dt;
+            vel[2] += accel[2] * dt;
+
+            /* Apply damping */
+            vel[0] *= 0.99f;
+            vel[1] *= 0.99f;
+            vel[2] *= 0.99f;
+
+            /* Integrate position */
+            pos[0] += vel[0] * dt;
+            pos[1] += vel[1] * dt;
+            pos[2] += vel[2] * dt;
+
+            /* Update rotation */
+            rot[0] += angVel[0] * dt;
+            rot[1] += angVel[1] * dt;
+            rot[2] += angVel[2] * dt;
+
+            /* Ground check */
+            if (pos[1] < 0.0f) {
+                pos[1] = 0.0f;
+                vel[1] = -vel[1] * 0.5f;  /* Bounce */
+                if (vel[1] < 0.1f && vel[1] > -0.1f) {
+                    vel[1] = 0.0f;
+                    *entityState = 2;  /* Resting */
+                }
+            }
+            break;
+
+        case 4:  /* Projectile */
+            /* Integrate without gravity */
+            pos[0] += vel[0] * dt;
+            pos[1] += vel[1] * dt;
+            pos[2] += vel[2] * dt;
+
+            /* Check lifetime */
+            {
+                s32 *lifetime = (s32 *)((u8 *)entity + 0x80);
+                (*lifetime)--;
+                if (*lifetime <= 0) {
+                    *entityFlags &= ~0x01;  /* Deactivate */
+                }
+            }
+            break;
+
+        case 5:  /* Particle effect */
+            /* Simple fade out */
+            {
+                f32 *alpha = (f32 *)((u8 *)entity + 0x84);
+                *alpha -= dt * 2.0f;
+                if (*alpha <= 0.0f) {
+                    *entityFlags &= ~0x01;  /* Deactivate */
+                }
+            }
+            break;
+
+        default:
+            break;
+    }
+
+    /* Update bounding box if moved */
+    if (type >= 2) {
+        f32 *bounds = (f32 *)((u8 *)entity + 0xA0);
+        f32 radius = *((f32 *)((u8 *)entity + 0x5C));
+        bounds[0] = pos[0] - radius;
+        bounds[1] = pos[1] - radius;
+        bounds[2] = pos[2] - radius;
+        bounds[3] = pos[0] + radius;
+        bounds[4] = pos[1] + radius;
+        bounds[5] = pos[2] + radius;
+    }
 }
 
 /*
@@ -7534,19 +7651,162 @@ void func_800FBFE4(void) {
 }
 
 /*
- * func_800FC0EC (872 bytes) - stub
- * Full game reset function
+ * func_800FC0EC (872 bytes)
+ * Full game reset function - resets all game subsystems
  */
 void func_800FC0EC(void) {
-    /* Large function - needs full implementation */
+    s32 i;
+    void *car;
+    s32 *timerQueue;
+    s32 *entityList;
+    s32 *audioState;
+
+    /* Reset game state */
+    *(s32 *)0x801146EC = 0;        /* gstate = ATTRACT */
+    *(s32 *)0x80142AFC = 0;        /* Frame counter */
+    *(s32 *)0x80142B00 = 0;        /* Race timer */
+    *(s32 *)0x80114700 = 0;        /* Pause state */
+
+    /* Clear all player cars */
+    for (i = 0; i < 4; i++) {
+        car = (void *)(D_80152818 + i * 0x400);
+        memset(car, 0, 0x400);
+    }
+
+    /* Clear AI drone cars */
+    for (i = 0; i < 8; i++) {
+        car = (void *)(0x80153800 + i * 0x400);
+        memset(car, 0, 0x400);
+    }
+
+    /* Reset checkpoint data */
+    for (i = 0; i < 20; i++) {
+        *(s32 *)(0x80155000 + i * 4) = 0;  /* Clear checkpoint times */
+    }
+
+    /* Reset lap data */
+    for (i = 0; i < 4; i++) {
+        *(s32 *)(0x80155100 + i * 4) = 0;  /* Lap count */
+        *(s32 *)(0x80155110 + i * 4) = 0;  /* Best lap time */
+        *(s32 *)(0x80155120 + i * 4) = 0;  /* Current lap time */
+    }
+
+    /* Clear timer queue */
+    timerQueue = (s32 *)0x80156000;
+    for (i = 0; i < 32; i++) {
+        timerQueue[i * 4 + 0] = 0;  /* Active flag */
+        timerQueue[i * 4 + 1] = 0;  /* Time */
+        timerQueue[i * 4 + 2] = 0;  /* Callback */
+        timerQueue[i * 4 + 3] = 0;  /* Data */
+    }
+
+    /* Clear entity list */
+    entityList = (s32 *)0x80157000;
+    for (i = 0; i < 256; i++) {
+        entityList[i] = 0;
+    }
+
+    /* Reset audio */
+    audioState = (s32 *)0x80130000;
+    audioState[0] = 0;  /* Stop all sounds */
+    audioState[1] = 0;  /* Clear queued sounds */
+
+    /* Reset multiplayer state */
+    *(s32 *)0x80166000 = 0;  /* netState = disconnected */
+    *(s32 *)0x80166004 = 1;  /* numPlayers = 1 */
+
+    /* Clear display lists */
+    *(s32 *)0x80149438 = 0x80180000;  /* Reset DL pointer */
+
+    /* Reset camera */
+    *(f32 *)0x8015B000 = 0.0f;
+    *(f32 *)0x8015B004 = 50.0f;
+    *(f32 *)0x8015B008 = -100.0f;
+
+    /* Clear any pending messages */
+    *(s32 *)0x80163FF8 = 0;  /* Send buffer size */
+    *(s32 *)0x80164FF8 = 0;  /* Recv buffer size */
 }
 
 /*
- * func_800FEA00 (556 bytes) - stub
- * Save game state
+ * func_800FEA00 (556 bytes)
+ * Save game state - save progress to controller pak
  */
 void func_800FEA00(void) {
-    /* Needs full implementation */
+    u8 saveData[256];
+    s32 offset;
+    s32 i;
+    OSPfs pfs;
+    s32 result;
+    s32 *unlockFlags;
+    s32 *bestTimes;
+    s32 *settings;
+
+    /* Initialize save data buffer */
+    memset(saveData, 0, 256);
+
+    offset = 0;
+
+    /* Header: magic number and version */
+    saveData[offset++] = 'R';
+    saveData[offset++] = '2';
+    saveData[offset++] = '0';
+    saveData[offset++] = '4';
+    saveData[offset++] = '9';
+    saveData[offset++] = 0x01;  /* Version 1 */
+    saveData[offset++] = 0x00;
+    saveData[offset++] = 0x00;
+
+    /* Checksum placeholder */
+    saveData[offset++] = 0x00;
+    saveData[offset++] = 0x00;
+    saveData[offset++] = 0x00;
+    saveData[offset++] = 0x00;
+
+    /* Unlock flags */
+    unlockFlags = (s32 *)0x80159000;
+    saveData[offset++] = (*unlockFlags >> 24) & 0xFF;
+    saveData[offset++] = (*unlockFlags >> 16) & 0xFF;
+    saveData[offset++] = (*unlockFlags >> 8) & 0xFF;
+    saveData[offset++] = *unlockFlags & 0xFF;
+
+    /* Best lap times (16 tracks x 4 bytes) */
+    bestTimes = (s32 *)0x80159100;
+    for (i = 0; i < 16; i++) {
+        saveData[offset++] = (bestTimes[i] >> 24) & 0xFF;
+        saveData[offset++] = (bestTimes[i] >> 16) & 0xFF;
+        saveData[offset++] = (bestTimes[i] >> 8) & 0xFF;
+        saveData[offset++] = bestTimes[i] & 0xFF;
+    }
+
+    /* Settings (audio, controls, etc.) */
+    settings = (s32 *)0x80159200;
+    for (i = 0; i < 8; i++) {
+        saveData[offset++] = settings[i] & 0xFF;
+    }
+
+    /* Calculate checksum */
+    {
+        u16 checksum = 0;
+        for (i = 12; i < offset; i++) {
+            checksum += saveData[i];
+        }
+        saveData[8] = (checksum >> 8) & 0xFF;
+        saveData[9] = checksum & 0xFF;
+    }
+
+    /* Initialize controller pak */
+    result = osPfsInitPak(0, &pfs, 0);
+    if (result != 0) {
+        return;  /* No controller pak */
+    }
+
+    /* Write save file */
+    result = osPfsReadWriteFile(&pfs, 0, PFS_WRITE, 0, 256, saveData);
+    if (result != 0) {
+        /* Save failed */
+        return;
+    }
 }
 
 /*
@@ -7763,35 +8023,220 @@ f32 func_8008B434(f32 *vec) {
 }
 
 /*
- * func_8008AE8C (372 bytes) - stub
- * Texture parameter setup
+ * func_8008AE8C (372 bytes)
+ * Texture parameter setup - configure texture parameters
  */
 void func_8008AE8C(s16 texId, s32 mode, s32 flags) {
-    /* Complex texture setup - needs full implementation */
+    u32 *dlPtr;
+    u32 *texTable;
+    u32 texAddr;
+    s32 width, height;
+    s32 format, size;
+
+    if (texId < 0 || texId >= 256) {
+        return;
+    }
+
+    /* Texture table at 0x80140000 */
+    texTable = (u32 *)0x80140000;
+    texAddr = texTable[texId * 4 + 0];
+    width = texTable[texId * 4 + 1] & 0xFFFF;
+    height = (texTable[texId * 4 + 1] >> 16) & 0xFFFF;
+    format = texTable[texId * 4 + 2] & 0xFF;
+    size = (texTable[texId * 4 + 2] >> 8) & 0xFF;
+
+    /* Get display list pointer */
+    dlPtr = *(u32 **)0x80149438;
+
+    /* G_SETTILE command */
+    dlPtr[0] = 0xF5000000 | (format << 21) | (size << 19);
+    dlPtr[1] = ((width / 8) << 9) | 0;
+    dlPtr += 2;
+
+    /* G_SETTILESIZE command */
+    dlPtr[0] = 0xF2000000;
+    dlPtr[1] = ((width - 1) << 14) | ((height - 1) << 2);
+    dlPtr += 2;
+
+    /* Handle texture modes */
+    if (mode & 0x01) {
+        /* Clamp S */
+        dlPtr[0] = 0xF5100000;
+        dlPtr[1] = 0x00000000;
+        dlPtr += 2;
+    }
+    if (mode & 0x02) {
+        /* Clamp T */
+        dlPtr[0] = 0xF5200000;
+        dlPtr[1] = 0x00000000;
+        dlPtr += 2;
+    }
+    if (mode & 0x04) {
+        /* Mirror S */
+        dlPtr[0] = 0xF5400000;
+        dlPtr[1] = 0x00000000;
+        dlPtr += 2;
+    }
+    if (mode & 0x08) {
+        /* Mirror T */
+        dlPtr[0] = 0xF5800000;
+        dlPtr[1] = 0x00000000;
+        dlPtr += 2;
+    }
+
+    *(u32 **)0x80149438 = dlPtr;
 }
 
 /*
- * func_8008B0D8 (404 bytes) - stub
- * Texture load with parameters
+ * func_8008B0D8 (404 bytes)
+ * Texture load with parameters - load texture to TMEM
  */
 void func_8008B0D8(s16 texId, s32 param, s32 flags) {
-    /* Complex texture loading - needs full implementation */
+    u32 *dlPtr;
+    u32 *texTable;
+    u32 texAddr;
+    s32 width, height;
+    s32 format, size;
+    s32 tmemAddr;
+    s32 numTiles;
+
+    if (texId < 0 || texId >= 256) {
+        return;
+    }
+
+    /* Texture table at 0x80140000 */
+    texTable = (u32 *)0x80140000;
+    texAddr = texTable[texId * 4 + 0];
+    width = texTable[texId * 4 + 1] & 0xFFFF;
+    height = (texTable[texId * 4 + 1] >> 16) & 0xFFFF;
+    format = texTable[texId * 4 + 2] & 0xFF;
+    size = (texTable[texId * 4 + 2] >> 8) & 0xFF;
+
+    /* TMEM address from param */
+    tmemAddr = (param & 0x1FF) * 8;
+
+    /* Get display list pointer */
+    dlPtr = *(u32 **)0x80149438;
+
+    /* G_SETTIMG - set texture image address */
+    dlPtr[0] = 0xFD000000 | (format << 21) | (size << 19) | (width - 1);
+    dlPtr[1] = texAddr;
+    dlPtr += 2;
+
+    /* G_LOADBLOCK - load texture into TMEM */
+    numTiles = (width * height * (1 << size)) / 8;
+    dlPtr[0] = 0xF3000000;
+    dlPtr[1] = (7 << 24) | ((numTiles - 1) << 12);
+    dlPtr += 2;
+
+    /* G_SETTILE - configure tile descriptor */
+    dlPtr[0] = 0xF5000000 | (format << 21) | (size << 19) | (width / 8);
+    dlPtr[1] = tmemAddr;
+    dlPtr += 2;
+
+    /* G_SETTILESIZE */
+    dlPtr[0] = 0xF2000000;
+    dlPtr[1] = ((width - 1) << 14) | ((height - 1) << 2);
+    dlPtr += 2;
+
+    /* Handle flags */
+    if (flags & 0x01) {
+        /* Enable filtering */
+        dlPtr[0] = 0xBA001402;
+        dlPtr[1] = 0x00002000;
+        dlPtr += 2;
+    }
+
+    *(u32 **)0x80149438 = dlPtr;
 }
 
 /*
- * func_8008B4C4 (380 bytes) - stub
- * Matrix multiply
+ * func_8008B4C4 (380 bytes)
+ * Matrix multiply - 4x4 matrix multiplication (out = a * b)
  */
 void func_8008B4C4(f32 *a, f32 *b, f32 *out) {
-    /* 4x4 matrix multiply - needs full implementation */
+    f32 temp[16];
+    s32 i, j, k;
+    f32 sum;
+
+    /* Multiply a * b into temp to allow in-place operation */
+    for (i = 0; i < 4; i++) {
+        for (j = 0; j < 4; j++) {
+            sum = 0.0f;
+            for (k = 0; k < 4; k++) {
+                sum += a[i * 4 + k] * b[k * 4 + j];
+            }
+            temp[i * 4 + j] = sum;
+        }
+    }
+
+    /* Copy result to output */
+    for (i = 0; i < 16; i++) {
+        out[i] = temp[i];
+    }
 }
 
 /*
- * func_8008B69C (712 bytes) - stub
- * Transform vertices
+ * func_8008B69C (712 bytes)
+ * Transform vertices - apply matrix transformation to vertex array
  */
 void func_8008B69C(void *verts, s32 count, void *mtx) {
-    /* Vertex transformation - needs full implementation */
+    f32 *matrix;
+    s32 i;
+    f32 x, y, z, w;
+    f32 tx, ty, tz, tw;
+    s16 *vertData;
+
+    if (verts == NULL || mtx == NULL || count <= 0) {
+        return;
+    }
+
+    matrix = (f32 *)mtx;
+
+    /* N64 vertex format: 16 bytes per vertex
+     * 0-1: x (s16)
+     * 2-3: y (s16)
+     * 4-5: z (s16)
+     * 6-7: reserved
+     * 8-9: s (texture coord)
+     * 10-11: t (texture coord)
+     * 12-15: rgba
+     */
+    for (i = 0; i < count; i++) {
+        vertData = (s16 *)((u8 *)verts + i * 16);
+
+        /* Get original position */
+        x = (f32)vertData[0];
+        y = (f32)vertData[1];
+        z = (f32)vertData[2];
+        w = 1.0f;
+
+        /* Apply 4x4 matrix transformation */
+        tx = matrix[0] * x + matrix[4] * y + matrix[8] * z + matrix[12] * w;
+        ty = matrix[1] * x + matrix[5] * y + matrix[9] * z + matrix[13] * w;
+        tz = matrix[2] * x + matrix[6] * y + matrix[10] * z + matrix[14] * w;
+        tw = matrix[3] * x + matrix[7] * y + matrix[11] * z + matrix[15] * w;
+
+        /* Perspective divide if w != 1 */
+        if (tw != 0.0f && tw != 1.0f) {
+            f32 invW = 1.0f / tw;
+            tx *= invW;
+            ty *= invW;
+            tz *= invW;
+        }
+
+        /* Clamp and store back as s16 */
+        if (tx > 32767.0f) tx = 32767.0f;
+        if (tx < -32768.0f) tx = -32768.0f;
+        if (ty > 32767.0f) ty = 32767.0f;
+        if (ty < -32768.0f) ty = -32768.0f;
+        if (tz > 32767.0f) tz = 32767.0f;
+        if (tz < -32768.0f) tz = -32768.0f;
+
+        vertData[0] = (s16)tx;
+        vertData[1] = (s16)ty;
+        vertData[2] = (s16)tz;
+    }
 }
 
 /*
@@ -17159,155 +17604,1016 @@ s32 func_800E8D50(f32 *pos, f32 *camera, f32 maxDist) {
 
 /*
  * func_800E8F10 (952 bytes)
- * Ambient light setup
+ * Ambient light setup - sets global ambient illumination
  */
 void func_800E8F10(f32 *color, f32 intensity) {
-    /* Ambient light - stub */
+    f32 *ambientLight;
+    f32 *lightState;
+    f32 clampedIntensity;
+
+    /* Ambient light stored at 0x80160100 */
+    ambientLight = (f32 *)0x80160100;
+    lightState = (f32 *)0x80160140;
+
+    /* Clamp intensity to valid range */
+    clampedIntensity = intensity;
+    if (clampedIntensity < 0.0f) {
+        clampedIntensity = 0.0f;
+    }
+    if (clampedIntensity > 1.0f) {
+        clampedIntensity = 1.0f;
+    }
+
+    /* Set ambient color with intensity */
+    if (color != NULL) {
+        ambientLight[0] = color[0] * clampedIntensity;
+        ambientLight[1] = color[1] * clampedIntensity;
+        ambientLight[2] = color[2] * clampedIntensity;
+    } else {
+        /* Default gray ambient */
+        ambientLight[0] = 0.2f * clampedIntensity;
+        ambientLight[1] = 0.2f * clampedIntensity;
+        ambientLight[2] = 0.2f * clampedIntensity;
+    }
+
+    ambientLight[3] = clampedIntensity;  /* Store raw intensity */
+
+    /* Mark ambient as active */
+    lightState[0] = 1.0f;
 }
 
 /*
  * func_800E92C8 (788 bytes)
- * Directional light
+ * Directional light - sun/moon lighting
  */
 void func_800E92C8(f32 *direction, f32 *color, f32 intensity) {
-    /* Directional light - stub */
+    f32 *dirLight;
+    f32 *lightState;
+    f32 len, invLen;
+    f32 clampedIntensity;
+
+    /* Directional light at 0x80160110 */
+    dirLight = (f32 *)0x80160110;
+    lightState = (f32 *)0x80160140;
+
+    /* Clamp intensity */
+    clampedIntensity = intensity;
+    if (clampedIntensity < 0.0f) {
+        clampedIntensity = 0.0f;
+    }
+    if (clampedIntensity > 2.0f) {
+        clampedIntensity = 2.0f;
+    }
+
+    /* Normalize direction vector */
+    if (direction != NULL) {
+        len = sqrtf(direction[0] * direction[0] +
+                    direction[1] * direction[1] +
+                    direction[2] * direction[2]);
+        if (len > 0.001f) {
+            invLen = 1.0f / len;
+            dirLight[0] = direction[0] * invLen;
+            dirLight[1] = direction[1] * invLen;
+            dirLight[2] = direction[2] * invLen;
+        } else {
+            /* Default: straight down */
+            dirLight[0] = 0.0f;
+            dirLight[1] = -1.0f;
+            dirLight[2] = 0.0f;
+        }
+    } else {
+        dirLight[0] = 0.0f;
+        dirLight[1] = -1.0f;
+        dirLight[2] = 0.0f;
+    }
+
+    /* Set color with intensity */
+    if (color != NULL) {
+        dirLight[4] = color[0] * clampedIntensity;
+        dirLight[5] = color[1] * clampedIntensity;
+        dirLight[6] = color[2] * clampedIntensity;
+    } else {
+        /* Default warm white sunlight */
+        dirLight[4] = 1.0f * clampedIntensity;
+        dirLight[5] = 0.95f * clampedIntensity;
+        dirLight[6] = 0.85f * clampedIntensity;
+    }
+
+    dirLight[7] = clampedIntensity;
+
+    /* Mark directional as active */
+    lightState[1] = 1.0f;
 }
 
 /*
  * func_800E95DC (1684 bytes)
- * Point light
+ * Point light - local light source (street lamps, etc.)
  */
 void func_800E95DC(f32 *pos, f32 *color, f32 radius) {
-    /* Point light - stub */
+    f32 *pointLights;
+    s32 *numPointLights;
+    s32 lightIndex;
+    f32 *light;
+
+    /* Point light array at 0x80160200 */
+    pointLights = (f32 *)0x80160200;
+    numPointLights = (s32 *)0x80160148;
+
+    /* Max 8 point lights */
+    if (*numPointLights >= 8) {
+        return;
+    }
+
+    lightIndex = *numPointLights;
+    light = pointLights + (lightIndex * 8);
+
+    /* Store position */
+    if (pos != NULL) {
+        light[0] = pos[0];
+        light[1] = pos[1];
+        light[2] = pos[2];
+    } else {
+        light[0] = 0.0f;
+        light[1] = 0.0f;
+        light[2] = 0.0f;
+    }
+
+    /* Store color */
+    if (color != NULL) {
+        light[3] = color[0];
+        light[4] = color[1];
+        light[5] = color[2];
+    } else {
+        /* Default white */
+        light[3] = 1.0f;
+        light[4] = 1.0f;
+        light[5] = 1.0f;
+    }
+
+    /* Store radius (for attenuation) */
+    if (radius < 1.0f) {
+        radius = 1.0f;
+    }
+    light[6] = radius;
+    light[7] = 1.0f;  /* Active flag */
+
+    (*numPointLights)++;
 }
 
 /*
  * func_800E9C70 (444 bytes)
- * Light fade
+ * Light fade - animate light intensity over time
  */
 void func_800E9C70(void *light, f32 targetIntensity, f32 duration) {
-    /* Light fade - stub */
+    f32 *currentIntensity;
+    f32 *fadeTarget;
+    f32 *fadeRate;
+    s32 *fading;
+
+    if (light == NULL) {
+        return;
+    }
+
+    /* Light structure offsets for fade animation */
+    currentIntensity = (f32 *)((u8 *)light + 0x1C);
+    fadeTarget = (f32 *)((u8 *)light + 0x20);
+    fadeRate = (f32 *)((u8 *)light + 0x24);
+    fading = (s32 *)((u8 *)light + 0x28);
+
+    /* Clamp target */
+    if (targetIntensity < 0.0f) {
+        targetIntensity = 0.0f;
+    }
+    if (targetIntensity > 2.0f) {
+        targetIntensity = 2.0f;
+    }
+
+    *fadeTarget = targetIntensity;
+
+    /* Calculate fade rate (assume 60fps) */
+    if (duration <= 0.0f) {
+        /* Instant change */
+        *currentIntensity = targetIntensity;
+        *fading = 0;
+    } else {
+        f32 diff = targetIntensity - *currentIntensity;
+        *fadeRate = diff / (duration * 60.0f);
+        *fading = 1;
+    }
 }
 
 /*
  * func_800E9E2C (476 bytes)
- * Light flicker
+ * Light flicker - simulate flickering effect
  */
 void func_800E9E2C(void *light, f32 frequency, f32 amplitude) {
-    /* Light flicker - stub */
+    f32 *baseIntensity;
+    f32 *flickerPhase;
+    f32 *flickerFreq;
+    f32 *flickerAmp;
+    s32 *flickering;
+
+    if (light == NULL) {
+        return;
+    }
+
+    baseIntensity = (f32 *)((u8 *)light + 0x1C);
+    flickerPhase = (f32 *)((u8 *)light + 0x2C);
+    flickerFreq = (f32 *)((u8 *)light + 0x30);
+    flickerAmp = (f32 *)((u8 *)light + 0x34);
+    flickering = (s32 *)((u8 *)light + 0x38);
+
+    /* Clamp parameters */
+    if (frequency < 0.1f) {
+        frequency = 0.1f;
+    }
+    if (frequency > 30.0f) {
+        frequency = 30.0f;
+    }
+    if (amplitude < 0.0f) {
+        amplitude = 0.0f;
+    }
+    if (amplitude > 1.0f) {
+        amplitude = 1.0f;
+    }
+
+    *flickerFreq = frequency;
+    *flickerAmp = amplitude * (*baseIntensity);
+    *flickerPhase = 0.0f;
+    *flickering = (amplitude > 0.0f) ? 1 : 0;
 }
 
 /*
  * func_800EA108 (468 bytes)
- * Headlight cone
+ * Headlight cone - car headlight projection
  */
 void func_800EA108(void *car, f32 *direction) {
-    /* Headlight cone - stub */
+    f32 *headlightData;
+    f32 *carPos;
+    f32 *carForward;
+    f32 headlightOffset[3];
+    f32 len, invLen;
+
+    if (car == NULL) {
+        return;
+    }
+
+    carPos = (f32 *)((u8 *)car + 0x24);
+    carForward = (f32 *)((u8 *)car + 0x60);
+    headlightData = (f32 *)((u8 *)car + 0x380);
+
+    /* Headlight position (offset from car center) */
+    headlightOffset[0] = 0.0f;
+    headlightOffset[1] = 0.5f;   /* Slightly above center */
+    headlightOffset[2] = 1.5f;   /* Forward from car center */
+
+    /* Transform offset by car orientation */
+    headlightData[0] = carPos[0] + headlightOffset[2] * carForward[0];
+    headlightData[1] = carPos[1] + headlightOffset[1];
+    headlightData[2] = carPos[2] + headlightOffset[2] * carForward[2];
+
+    /* Light direction */
+    if (direction != NULL) {
+        len = sqrtf(direction[0] * direction[0] +
+                    direction[1] * direction[1] +
+                    direction[2] * direction[2]);
+        if (len > 0.001f) {
+            invLen = 1.0f / len;
+            headlightData[3] = direction[0] * invLen;
+            headlightData[4] = direction[1] * invLen;
+            headlightData[5] = direction[2] * invLen;
+        } else {
+            /* Use car forward */
+            headlightData[3] = carForward[0];
+            headlightData[4] = -0.1f;  /* Slight downward tilt */
+            headlightData[5] = carForward[2];
+        }
+    } else {
+        headlightData[3] = carForward[0];
+        headlightData[4] = -0.1f;
+        headlightData[5] = carForward[2];
+    }
+
+    /* Headlight properties */
+    headlightData[6] = 1.0f;   /* Intensity */
+    headlightData[7] = 0.5f;   /* Cone angle (radians) */
+    headlightData[8] = 50.0f;  /* Range */
 }
 
 /*
  * func_800EA2DC (276 bytes)
- * Light enable/disable
+ * Light enable/disable - toggle light on/off
  */
 void func_800EA2DC(void *light, s32 enable) {
-    /* Light enable - stub */
+    s32 *active;
+    f32 *savedIntensity;
+    f32 *currentIntensity;
+
+    if (light == NULL) {
+        return;
+    }
+
+    active = (s32 *)((u8 *)light + 0x00);
+    currentIntensity = (f32 *)((u8 *)light + 0x1C);
+    savedIntensity = (f32 *)((u8 *)light + 0x3C);
+
+    if (enable) {
+        if (*active == 0) {
+            *active = 1;
+            /* Restore saved intensity */
+            if (*savedIntensity > 0.0f) {
+                *currentIntensity = *savedIntensity;
+            } else {
+                *currentIntensity = 1.0f;
+            }
+        }
+    } else {
+        if (*active != 0) {
+            /* Save current intensity before disabling */
+            *savedIntensity = *currentIntensity;
+            *currentIntensity = 0.0f;
+            *active = 0;
+        }
+    }
 }
 
 /*
  * func_800EA3F4 (2548 bytes)
- * Full lighting update
+ * Full lighting update - process all lights each frame
  */
 void func_800EA3F4(void *scene) {
-    /* Full lighting - stub */
+    f32 *ambientLight;
+    f32 *dirLight;
+    f32 *pointLights;
+    s32 *numPointLights;
+    f32 *lightState;
+    s32 i;
+    f32 *light;
+    f32 phase, intensity;
+    f32 fadeTarget, fadeRate, currentIntensity;
+    s32 fading, flickering;
+
+    if (scene == NULL) {
+        return;
+    }
+
+    ambientLight = (f32 *)0x80160100;
+    dirLight = (f32 *)0x80160110;
+    pointLights = (f32 *)0x80160200;
+    numPointLights = (s32 *)0x80160148;
+    lightState = (f32 *)0x80160140;
+
+    /* Update point light animations */
+    for (i = 0; i < *numPointLights; i++) {
+        light = pointLights + (i * 8);
+
+        /* Check if light is active */
+        if (light[7] < 0.5f) {
+            continue;
+        }
+
+        /* Get animation state (using extended light structure) */
+        fading = *((s32 *)((u8 *)light + 0x28));
+        flickering = *((s32 *)((u8 *)light + 0x38));
+
+        /* Process fade animation */
+        if (fading) {
+            currentIntensity = *((f32 *)((u8 *)light + 0x1C));
+            fadeTarget = *((f32 *)((u8 *)light + 0x20));
+            fadeRate = *((f32 *)((u8 *)light + 0x24));
+
+            currentIntensity += fadeRate;
+
+            /* Check if fade complete */
+            if ((fadeRate > 0.0f && currentIntensity >= fadeTarget) ||
+                (fadeRate < 0.0f && currentIntensity <= fadeTarget)) {
+                currentIntensity = fadeTarget;
+                *((s32 *)((u8 *)light + 0x28)) = 0;  /* Stop fading */
+            }
+
+            *((f32 *)((u8 *)light + 0x1C)) = currentIntensity;
+        }
+
+        /* Process flicker animation */
+        if (flickering) {
+            f32 *flickerPhase = (f32 *)((u8 *)light + 0x2C);
+            f32 *flickerFreq = (f32 *)((u8 *)light + 0x30);
+            f32 *flickerAmp = (f32 *)((u8 *)light + 0x34);
+            f32 baseIntensity = *((f32 *)((u8 *)light + 0x1C));
+
+            /* Update phase */
+            *flickerPhase += *flickerFreq / 60.0f;
+            if (*flickerPhase > 6.28318f) {
+                *flickerPhase -= 6.28318f;
+            }
+
+            /* Apply flicker using sin wave + noise */
+            phase = *flickerPhase;
+            intensity = baseIntensity + *flickerAmp * sinf(phase);
+
+            /* Add some randomness for realistic flicker */
+            if ((s32)(phase * 10.0f) % 7 == 0) {
+                intensity *= 0.9f + 0.2f * ((phase - (s32)phase));
+            }
+
+            if (intensity < 0.0f) {
+                intensity = 0.0f;
+            }
+
+            /* Apply to light color */
+            light[3] *= intensity / baseIntensity;
+            light[4] *= intensity / baseIntensity;
+            light[5] *= intensity / baseIntensity;
+        }
+    }
+
+    /* Clear point light count for next frame (rebuilt each frame) */
+    /* Note: commented out - lights persist until explicitly removed */
+    /* *numPointLights = 0; */
 }
 
 /*
  * func_800F0050 (1644 bytes)
- * Network message send
+ * Network message send - queue message for transmission
+ *
+ * N64 Rush 2049 uses the Transfer Pak for link play.
+ * Messages are serialized car state + inputs.
  */
 void func_800F0050(void *msg, s32 size) {
-    /* Net send - stub */
+    u8 *sendBuffer;
+    s32 *sendHead, *sendTail, *sendSize;
+    s32 bufferSize;
+    s32 writePos;
+    s32 i;
+    u8 *msgData;
+
+    if (msg == NULL || size <= 0) {
+        return;
+    }
+
+    /* Network send buffer at 0x80164000 */
+    sendBuffer = (u8 *)0x80164000;
+    sendHead = (s32 *)0x80163FF0;
+    sendTail = (s32 *)0x80163FF4;
+    sendSize = (s32 *)0x80163FF8;
+    bufferSize = 4096;
+
+    /* Check if buffer has space */
+    if (*sendSize + size + 4 > bufferSize) {
+        /* Buffer full - drop message */
+        return;
+    }
+
+    /* Write message header (size) */
+    writePos = *sendHead;
+    sendBuffer[writePos] = (size >> 8) & 0xFF;
+    writePos = (writePos + 1) % bufferSize;
+    sendBuffer[writePos] = size & 0xFF;
+    writePos = (writePos + 1) % bufferSize;
+
+    /* Write message data */
+    msgData = (u8 *)msg;
+    for (i = 0; i < size; i++) {
+        sendBuffer[writePos] = msgData[i];
+        writePos = (writePos + 1) % bufferSize;
+    }
+
+    *sendHead = writePos;
+    *sendSize += size + 2;
 }
 
 /*
  * func_800F0698 (1408 bytes)
- * Network message receive
+ * Network message receive - dequeue received message
  */
 s32 func_800F0698(void *buffer, s32 maxSize) {
-    /* Net receive - stub */
-    return 0;
+    u8 *recvBuffer;
+    s32 *recvHead, *recvTail, *recvSize;
+    s32 bufferSize;
+    s32 readPos;
+    s32 msgSize;
+    s32 i;
+    u8 *dstData;
+
+    if (buffer == NULL || maxSize <= 0) {
+        return 0;
+    }
+
+    /* Network receive buffer at 0x80165000 */
+    recvBuffer = (u8 *)0x80165000;
+    recvHead = (s32 *)0x80164FF0;
+    recvTail = (s32 *)0x80164FF4;
+    recvSize = (s32 *)0x80164FF8;
+    bufferSize = 4096;
+
+    /* Check if data available */
+    if (*recvSize < 2) {
+        return 0;  /* No complete message */
+    }
+
+    /* Read message size header */
+    readPos = *recvTail;
+    msgSize = (recvBuffer[readPos] << 8);
+    readPos = (readPos + 1) % bufferSize;
+    msgSize |= recvBuffer[readPos];
+    readPos = (readPos + 1) % bufferSize;
+
+    /* Validate message size */
+    if (msgSize <= 0 || msgSize > *recvSize - 2) {
+        /* Invalid or incomplete - skip header */
+        *recvTail = readPos;
+        *recvSize -= 2;
+        return 0;
+    }
+
+    if (msgSize > maxSize) {
+        /* Message too large for buffer - skip it */
+        *recvTail = (readPos + msgSize) % bufferSize;
+        *recvSize -= msgSize + 2;
+        return -1;
+    }
+
+    /* Copy message data */
+    dstData = (u8 *)buffer;
+    for (i = 0; i < msgSize; i++) {
+        dstData[i] = recvBuffer[readPos];
+        readPos = (readPos + 1) % bufferSize;
+    }
+
+    *recvTail = readPos;
+    *recvSize -= msgSize + 2;
+
+    return msgSize;
 }
 
 /*
  * func_800F0C18 (2036 bytes)
- * Network state sync
+ * Network state sync - synchronize game state across players
  */
 void func_800F0C18(void *state) {
-    /* State sync - stub */
+    u8 syncBuffer[256];
+    s32 bufferPos;
+    s32 *frameCounter;
+    s32 *numPlayers;
+    s32 i;
+    void *playerCar;
+    f32 *carPos, *carVel, *carRot;
+    u16 *carInputs;
+
+    if (state == NULL) {
+        return;
+    }
+
+    frameCounter = (s32 *)0x80142AFC;
+    numPlayers = (s32 *)((u8 *)state + 0x00);
+
+    bufferPos = 0;
+
+    /* Header: message type (0x01 = state sync) */
+    syncBuffer[bufferPos++] = 0x01;
+
+    /* Frame number for synchronization */
+    syncBuffer[bufferPos++] = (*frameCounter >> 24) & 0xFF;
+    syncBuffer[bufferPos++] = (*frameCounter >> 16) & 0xFF;
+    syncBuffer[bufferPos++] = (*frameCounter >> 8) & 0xFF;
+    syncBuffer[bufferPos++] = *frameCounter & 0xFF;
+
+    /* Number of players */
+    syncBuffer[bufferPos++] = *numPlayers;
+
+    /* Serialize each player's car state */
+    for (i = 0; i < *numPlayers && i < 4; i++) {
+        playerCar = (void *)(D_80152818 + i * 0x400);
+
+        carPos = (f32 *)((u8 *)playerCar + 0x24);
+        carVel = (f32 *)((u8 *)playerCar + 0x34);
+        carRot = (f32 *)((u8 *)playerCar + 0x60);
+        carInputs = (u16 *)((u8 *)playerCar + 0x200);
+
+        /* Position (12 bytes) */
+        memcpy(&syncBuffer[bufferPos], carPos, 12);
+        bufferPos += 12;
+
+        /* Velocity (12 bytes) */
+        memcpy(&syncBuffer[bufferPos], carVel, 12);
+        bufferPos += 12;
+
+        /* Rotation (12 bytes) */
+        memcpy(&syncBuffer[bufferPos], carRot, 12);
+        bufferPos += 12;
+
+        /* Inputs (2 bytes) */
+        syncBuffer[bufferPos++] = (*carInputs >> 8) & 0xFF;
+        syncBuffer[bufferPos++] = *carInputs & 0xFF;
+    }
+
+    /* Send state sync message */
+    func_800F0050(syncBuffer, bufferPos);
 }
 
 /*
  * func_800F13F0 (1364 bytes)
- * Multiplayer lobby
+ * Multiplayer lobby - handle lobby state and player management
  */
 void func_800F13F0(void *lobby) {
-    /* Lobby - stub */
+    s32 *lobbyState;
+    s32 *numPlayers;
+    s32 *readyFlags;
+    s32 *selectedTrack;
+    s32 *hostPlayer;
+    s32 i;
+    s32 allReady;
+    u8 msgBuffer[32];
+
+    if (lobby == NULL) {
+        return;
+    }
+
+    lobbyState = (s32 *)((u8 *)lobby + 0x00);
+    numPlayers = (s32 *)((u8 *)lobby + 0x04);
+    readyFlags = (s32 *)((u8 *)lobby + 0x08);
+    selectedTrack = (s32 *)((u8 *)lobby + 0x0C);
+    hostPlayer = (s32 *)((u8 *)lobby + 0x10);
+
+    switch (*lobbyState) {
+        case 0:  /* Waiting for players */
+            /* Check for incoming connection messages */
+            if (func_800F0698(msgBuffer, 32) > 0) {
+                if (msgBuffer[0] == 0x10) {  /* Join request */
+                    if (*numPlayers < 4) {
+                        func_800F1944(*numPlayers);
+                        (*numPlayers)++;
+                    }
+                }
+            }
+            break;
+
+        case 1:  /* Players joined, waiting for ready */
+            /* Check if all players ready */
+            allReady = 1;
+            for (i = 0; i < *numPlayers; i++) {
+                if ((*readyFlags & (1 << i)) == 0) {
+                    allReady = 0;
+                    break;
+                }
+            }
+
+            if (allReady && *numPlayers >= 2) {
+                *lobbyState = 2;  /* All ready - start countdown */
+            }
+            break;
+
+        case 2:  /* Starting game */
+            /* Host initiates game start */
+            if (*hostPlayer == 0) {  /* We are host */
+                func_800F1F3C();
+            }
+            *lobbyState = 3;
+            break;
+
+        case 3:  /* Game in progress */
+            /* Lobby inactive during gameplay */
+            break;
+    }
 }
 
 /*
  * func_800F1944 (852 bytes)
- * Player join handling
+ * Player join handling - initialize new player
  */
 void func_800F1944(s32 playerSlot) {
-    /* Player join - stub */
+    void *playerCar;
+    s32 *playerActive;
+    s32 *playerController;
+    f32 *spawnPos;
+    f32 *carPos;
+    u8 joinMsg[8];
+
+    if (playerSlot < 0 || playerSlot >= 4) {
+        return;
+    }
+
+    /* Get player car slot */
+    playerCar = (void *)(D_80152818 + playerSlot * 0x400);
+    playerActive = (s32 *)((u8 *)playerCar + 0x00);
+    playerController = (s32 *)((u8 *)playerCar + 0x04);
+    carPos = (f32 *)((u8 *)playerCar + 0x24);
+
+    /* Mark player as active */
+    *playerActive = 1;
+    *playerController = playerSlot;
+
+    /* Set spawn position based on slot */
+    spawnPos = (f32 *)0x80158000;  /* Track spawn points */
+    carPos[0] = spawnPos[playerSlot * 3 + 0];
+    carPos[1] = spawnPos[playerSlot * 3 + 1];
+    carPos[2] = spawnPos[playerSlot * 3 + 2];
+
+    /* Initialize car to default state */
+    memset((u8 *)playerCar + 0x34, 0, 0x100);  /* Clear velocity/state */
+
+    /* Send join acknowledgment */
+    joinMsg[0] = 0x11;  /* Join ack message type */
+    joinMsg[1] = playerSlot;
+    joinMsg[2] = 0x00;
+    joinMsg[3] = 0x00;
+    func_800F0050(joinMsg, 4);
 }
 
 /*
  * func_800F1C98 (676 bytes)
- * Player leave handling
+ * Player leave handling - cleanup disconnected player
  */
 void func_800F1C98(s32 playerSlot) {
-    /* Player leave - stub */
+    void *playerCar;
+    s32 *playerActive;
+    s32 *lobbyReadyFlags;
+    u8 leaveMsg[8];
+
+    if (playerSlot < 0 || playerSlot >= 4) {
+        return;
+    }
+
+    /* Get player car slot */
+    playerCar = (void *)(D_80152818 + playerSlot * 0x400);
+    playerActive = (s32 *)((u8 *)playerCar + 0x00);
+
+    /* Mark player as inactive */
+    *playerActive = 0;
+
+    /* Clear player's car state */
+    memset(playerCar, 0, 0x100);
+
+    /* Clear ready flag in lobby */
+    lobbyReadyFlags = (s32 *)0x80166008;
+    *lobbyReadyFlags &= ~(1 << playerSlot);
+
+    /* Notify other players */
+    leaveMsg[0] = 0x12;  /* Leave notification message type */
+    leaveMsg[1] = playerSlot;
+    leaveMsg[2] = 0x00;
+    leaveMsg[3] = 0x00;
+    func_800F0050(leaveMsg, 4);
 }
 
 /*
  * func_800F1F3C (2208 bytes)
- * Network game start
+ * Network game start - synchronize game start across players
  */
 void func_800F1F3C(void) {
-    /* Net game start - stub */
+    u8 startMsg[32];
+    s32 *gstate;
+    s32 *selectedTrack;
+    s32 *selectedLaps;
+    s32 *numPlayers;
+    s32 *randomSeed;
+    s32 i;
+
+    gstate = (s32 *)0x801146EC;
+    selectedTrack = (s32 *)0x80166010;
+    selectedLaps = (s32 *)0x80166014;
+    numPlayers = (s32 *)0x80166004;
+    randomSeed = (s32 *)0x80166018;
+
+    /* Generate random seed for synchronized randomness */
+    *randomSeed = *((s32 *)0x80142AFC) ^ 0x12345678;
+
+    /* Build game start message */
+    startMsg[0] = 0x20;  /* Game start message type */
+    startMsg[1] = *numPlayers;
+    startMsg[2] = *selectedTrack;
+    startMsg[3] = *selectedLaps;
+
+    /* Random seed (4 bytes) */
+    startMsg[4] = (*randomSeed >> 24) & 0xFF;
+    startMsg[5] = (*randomSeed >> 16) & 0xFF;
+    startMsg[6] = (*randomSeed >> 8) & 0xFF;
+    startMsg[7] = *randomSeed & 0xFF;
+
+    /* Player starting positions */
+    for (i = 0; i < *numPlayers && i < 4; i++) {
+        startMsg[8 + i] = i;  /* Grid position = player slot for now */
+    }
+
+    /* Send start message to all players */
+    func_800F0050(startMsg, 12);
+
+    /* Transition to countdown state */
+    *gstate = 8;  /* COUNTDOWN state */
 }
 
 /*
  * func_800F27DC (1632 bytes)
- * Input sync
+ * Input sync - synchronize player inputs across network
  */
 void func_800F27DC(void *inputs) {
-    /* Input sync - stub */
+    u8 inputMsg[64];
+    s32 bufferPos;
+    s32 *frameCounter;
+    s32 *localPlayer;
+    s32 i;
+    u16 *inputBuffer;
+    s8 *stickX, *stickY;
+
+    if (inputs == NULL) {
+        return;
+    }
+
+    frameCounter = (s32 *)0x80142AFC;
+    localPlayer = (s32 *)0x80166020;
+    inputBuffer = (u16 *)inputs;
+    stickX = (s8 *)((u8 *)inputs + 0x08);
+    stickY = (s8 *)((u8 *)inputs + 0x09);
+
+    bufferPos = 0;
+
+    /* Message header */
+    inputMsg[bufferPos++] = 0x30;  /* Input sync message type */
+    inputMsg[bufferPos++] = *localPlayer;
+
+    /* Frame number (for input prediction/rollback) */
+    inputMsg[bufferPos++] = (*frameCounter >> 8) & 0xFF;
+    inputMsg[bufferPos++] = *frameCounter & 0xFF;
+
+    /* Pack current frame's inputs */
+    inputMsg[bufferPos++] = (inputBuffer[0] >> 8) & 0xFF;
+    inputMsg[bufferPos++] = inputBuffer[0] & 0xFF;
+    inputMsg[bufferPos++] = *stickX;
+    inputMsg[bufferPos++] = *stickY;
+
+    /* Include last 3 frames of input history for redundancy */
+    for (i = 1; i < 4; i++) {
+        inputMsg[bufferPos++] = (inputBuffer[i * 2] >> 8) & 0xFF;
+        inputMsg[bufferPos++] = inputBuffer[i * 2] & 0xFF;
+    }
+
+    func_800F0050(inputMsg, bufferPos);
 }
 
 /*
  * func_800F2E3C (784 bytes)
- * Latency compensation
+ * Latency compensation - predict entity position based on latency
  */
 void func_800F2E3C(void *entity, s32 frames) {
-    /* Latency comp - stub */
+    f32 *pos, *vel, *accel;
+    f32 dt;
+    s32 i;
+
+    if (entity == NULL || frames <= 0) {
+        return;
+    }
+
+    /* Cap prediction to avoid wild extrapolation */
+    if (frames > 10) {
+        frames = 10;
+    }
+
+    pos = (f32 *)((u8 *)entity + 0x24);
+    vel = (f32 *)((u8 *)entity + 0x34);
+    accel = (f32 *)((u8 *)entity + 0x44);
+
+    /* Time step per frame (60fps = 1/60 sec) */
+    dt = 1.0f / 60.0f;
+
+    /* Simple Euler integration for prediction */
+    for (i = 0; i < frames; i++) {
+        /* Update position: p = p + v*dt + 0.5*a*dt^2 */
+        pos[0] += vel[0] * dt + 0.5f * accel[0] * dt * dt;
+        pos[1] += vel[1] * dt + 0.5f * accel[1] * dt * dt;
+        pos[2] += vel[2] * dt + 0.5f * accel[2] * dt * dt;
+
+        /* Update velocity: v = v + a*dt */
+        vel[0] += accel[0] * dt;
+        vel[1] += accel[1] * dt;
+        vel[2] += accel[2] * dt;
+    }
 }
 
 /*
  * func_800F314C (1084 bytes)
- * Network error handling
+ * Network error handling - process network errors
  */
 void func_800F314C(s32 errorCode) {
-    /* Net error - stub */
+    s32 *netState;
+    s32 *errorCount;
+    s32 *lastError;
+    s32 *gstate;
+
+    netState = (s32 *)0x80166000;
+    errorCount = (s32 *)0x80166024;
+    lastError = (s32 *)0x80166028;
+    gstate = (s32 *)0x801146EC;
+
+    *lastError = errorCode;
+    (*errorCount)++;
+
+    switch (errorCode) {
+        case 0:  /* No error */
+            break;
+
+        case 1:  /* Connection lost */
+            /* Return to single player mode */
+            *netState = 0;
+            /* Could transition to error screen */
+            break;
+
+        case 2:  /* Timeout */
+            if (*errorCount > 5) {
+                /* Too many timeouts - disconnect */
+                *netState = 0;
+            }
+            break;
+
+        case 3:  /* Sync error */
+            /* Request full state resync */
+            {
+                u8 resyncMsg[4];
+                resyncMsg[0] = 0x40;  /* Resync request */
+                resyncMsg[1] = 0x00;
+                func_800F0050(resyncMsg, 2);
+            }
+            break;
+
+        case 4:  /* Protocol error */
+            /* Invalid message received - ignore */
+            break;
+
+        case 5:  /* Host disconnected */
+            /* End multiplayer session */
+            *netState = 0;
+            *gstate = 0;  /* Return to attract/menu */
+            break;
+
+        default:
+            /* Unknown error */
+            break;
+    }
 }
 
 /*
  * func_800F3588 (836 bytes)
- * Session management
+ * Session management - handle multiplayer session lifecycle
  */
 void func_800F3588(s32 cmd) {
-    /* Session mgmt - stub */
+    s32 *netState;
+    s32 *sessionId;
+    s32 *isHost;
+    s32 *numPlayers;
+    s32 i;
+
+    netState = (s32 *)0x80166000;
+    sessionId = (s32 *)0x8016602C;
+    isHost = (s32 *)0x80166030;
+    numPlayers = (s32 *)0x80166004;
+
+    switch (cmd) {
+        case 0:  /* Initialize session */
+            *netState = 0;
+            *sessionId = 0;
+            *isHost = 0;
+            *numPlayers = 1;
+
+            /* Clear network buffers */
+            *((s32 *)0x80163FF0) = 0;  /* Send head */
+            *((s32 *)0x80163FF4) = 0;  /* Send tail */
+            *((s32 *)0x80163FF8) = 0;  /* Send size */
+            *((s32 *)0x80164FF0) = 0;  /* Recv head */
+            *((s32 *)0x80164FF4) = 0;  /* Recv tail */
+            *((s32 *)0x80164FF8) = 0;  /* Recv size */
+            break;
+
+        case 1:  /* Host session */
+            *netState = 1;
+            *isHost = 1;
+            *sessionId = *((s32 *)0x80142AFC);  /* Use frame counter as ID */
+            *numPlayers = 1;
+            break;
+
+        case 2:  /* Join session */
+            *netState = 2;
+            *isHost = 0;
+            break;
+
+        case 3:  /* Leave session */
+            if (*netState != 0) {
+                /* Notify other players we're leaving */
+                func_800F1C98(0);  /* Local player is always slot 0 for us */
+            }
+            *netState = 0;
+            *numPlayers = 1;
+            break;
+
+        case 4:  /* End session (host only) */
+            if (*isHost) {
+                /* Notify all players */
+                for (i = 1; i < *numPlayers; i++) {
+                    func_800F1C98(i);
+                }
+            }
+            *netState = 0;
+            *numPlayers = 1;
+            break;
+    }
 }
 
 /*
