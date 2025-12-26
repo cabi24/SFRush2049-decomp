@@ -15154,214 +15154,2152 @@ void func_800CADA4(void) {
 
 /*
  * func_800CB748 (628 bytes)
- * Menu button process
+ * Menu button process - handles controller input for menu navigation
  */
 s32 func_800CB748(s32 input) {
-    /* Button process - stub */
-    return 0;
+    s32 result;
+    s32 buttons;
+    s32 stickX;
+    s32 stickY;
+    s32 repeatDelay;
+
+    result = 0;
+    buttons = input & 0xFFFF;
+    stickX = (input >> 16) & 0xFF;
+    stickY = (input >> 24) & 0xFF;
+
+    /* Convert signed stick values */
+    if (stickX > 127) {
+        stickX = stickX - 256;
+    }
+    if (stickY > 127) {
+        stickY = stickY - 256;
+    }
+
+    /* Check for A button - select */
+    if (buttons & 0x8000) {
+        if ((D_80159200 & 0x8000) == 0) {
+            result = 1;  /* Select pressed */
+            func_800CC3C0(10);  /* Menu select sound */
+        }
+    }
+
+    /* Check for B button - back */
+    if (buttons & 0x4000) {
+        if ((D_80159200 & 0x4000) == 0) {
+            result = 2;  /* Back pressed */
+            func_800CC3C0(11);  /* Menu back sound */
+        }
+    }
+
+    /* Check for Start button - pause/confirm */
+    if (buttons & 0x1000) {
+        if ((D_80159200 & 0x1000) == 0) {
+            result = 3;  /* Start pressed */
+        }
+    }
+
+    /* Check D-pad up or stick up */
+    if ((buttons & 0x0800) || stickY > 50) {
+        repeatDelay = D_80159204;
+        if (repeatDelay == 0 || repeatDelay > 15) {
+            result = 4;  /* Up */
+            func_800CC3C0(12);  /* Menu move sound */
+            if (repeatDelay == 0) {
+                D_80159204 = 1;
+            }
+        }
+        if (repeatDelay > 0) {
+            D_80159204 = repeatDelay + 1;
+        }
+    }
+    /* Check D-pad down or stick down */
+    else if ((buttons & 0x0400) || stickY < -50) {
+        repeatDelay = D_80159204;
+        if (repeatDelay == 0 || repeatDelay > 15) {
+            result = 5;  /* Down */
+            func_800CC3C0(12);  /* Menu move sound */
+            if (repeatDelay == 0) {
+                D_80159204 = 1;
+            }
+        }
+        if (repeatDelay > 0) {
+            D_80159204 = repeatDelay + 1;
+        }
+    }
+    else {
+        D_80159204 = 0;  /* Reset repeat counter */
+    }
+
+    /* Check D-pad left or stick left */
+    if ((buttons & 0x0200) || stickX < -50) {
+        repeatDelay = D_80159208;
+        if (repeatDelay == 0 || repeatDelay > 10) {
+            result = 6;  /* Left */
+            if (repeatDelay == 0) {
+                D_80159208 = 1;
+            }
+        }
+        if (repeatDelay > 0) {
+            D_80159208 = repeatDelay + 1;
+        }
+    }
+    /* Check D-pad right or stick right */
+    else if ((buttons & 0x0100) || stickX > 50) {
+        repeatDelay = D_80159208;
+        if (repeatDelay == 0 || repeatDelay > 10) {
+            result = 7;  /* Right */
+            if (repeatDelay == 0) {
+                D_80159208 = 1;
+            }
+        }
+        if (repeatDelay > 0) {
+            D_80159208 = repeatDelay + 1;
+        }
+    }
+    else {
+        D_80159208 = 0;  /* Reset repeat counter */
+    }
+
+    /* Check L trigger - page up */
+    if (buttons & 0x0020) {
+        if ((D_80159200 & 0x0020) == 0) {
+            result = 8;  /* L trigger */
+        }
+    }
+
+    /* Check R trigger - page down */
+    if (buttons & 0x0010) {
+        if ((D_80159200 & 0x0010) == 0) {
+            result = 9;  /* R trigger */
+        }
+    }
+
+    /* Store previous button state */
+    D_80159200 = buttons;
+
+    return result;
 }
 
 /*
  * func_800CB9D0 (516 bytes)
- * Menu cursor move
+ * Menu cursor move - navigates between menu items
  */
 void func_800CB9D0(s32 direction) {
-    /* Cursor move - stub */
+    s32 currentIndex;
+    s32 newIndex;
+    s32 itemCount;
+    s32 *menuItems;
+    s32 itemFlags;
+    s32 wrapAround;
+    s32 i;
+
+    currentIndex = D_80159210;
+    itemCount = D_80159214;
+    menuItems = (s32 *)D_80159218;
+    wrapAround = D_8015921C;
+
+    if (itemCount <= 0) {
+        return;
+    }
+
+    newIndex = currentIndex;
+
+    /* Direction: 4=up, 5=down, 6=left, 7=right */
+    if (direction == 4) {
+        /* Move up */
+        newIndex = currentIndex - 1;
+        if (newIndex < 0) {
+            if (wrapAround) {
+                newIndex = itemCount - 1;
+            } else {
+                newIndex = 0;
+            }
+        }
+        /* Skip disabled items */
+        for (i = 0; i < itemCount; i++) {
+            if (menuItems != NULL) {
+                itemFlags = menuItems[newIndex * 4 + 3];  /* Flag offset in menu item struct */
+                if ((itemFlags & 1) == 0) {
+                    break;  /* Item is enabled */
+                }
+            } else {
+                break;
+            }
+            newIndex = newIndex - 1;
+            if (newIndex < 0) {
+                if (wrapAround) {
+                    newIndex = itemCount - 1;
+                } else {
+                    newIndex = currentIndex;
+                    break;
+                }
+            }
+        }
+    }
+    else if (direction == 5) {
+        /* Move down */
+        newIndex = currentIndex + 1;
+        if (newIndex >= itemCount) {
+            if (wrapAround) {
+                newIndex = 0;
+            } else {
+                newIndex = itemCount - 1;
+            }
+        }
+        /* Skip disabled items */
+        for (i = 0; i < itemCount; i++) {
+            if (menuItems != NULL) {
+                itemFlags = menuItems[newIndex * 4 + 3];
+                if ((itemFlags & 1) == 0) {
+                    break;
+                }
+            } else {
+                break;
+            }
+            newIndex = newIndex + 1;
+            if (newIndex >= itemCount) {
+                if (wrapAround) {
+                    newIndex = 0;
+                } else {
+                    newIndex = currentIndex;
+                    break;
+                }
+            }
+        }
+    }
+    else if (direction == 6 || direction == 7) {
+        /* Left/right handled by individual items (sliders, etc.) */
+        /* Pass to item handler */
+        if (menuItems != NULL) {
+            s32 itemType;
+            itemType = menuItems[currentIndex * 4 + 2];  /* Type offset */
+            if (itemType == 2) {  /* Slider type */
+                /* Slider adjusts via func_800CCE5C */
+                s32 value;
+                s32 minVal;
+                s32 maxVal;
+                value = menuItems[currentIndex * 4 + 1];  /* Current value */
+                minVal = 0;
+                maxVal = 100;
+                if (direction == 6) {
+                    value = value - 5;
+                } else {
+                    value = value + 5;
+                }
+                menuItems[currentIndex * 4 + 1] = func_800CCE5C(value, minVal, maxVal);
+            }
+        }
+        return;  /* No cursor movement */
+    }
+
+    if (newIndex != currentIndex) {
+        /* Update highlight */
+        func_800CC8C8(newIndex);
+        D_80159210 = newIndex;
+    }
 }
 
 /*
  * func_800CBBD4 (564 bytes)
- * Menu item select
+ * Menu item select - handles selection action for current menu item
  */
 void func_800CBBD4(s32 itemIndex) {
-    /* Item select - stub */
+    s32 *menuItems;
+    s32 itemType;
+    s32 itemAction;
+    s32 itemValue;
+    s32 itemFlags;
+    s32 targetMenu;
+    void (*callback)(s32);
+
+    menuItems = (s32 *)D_80159218;
+    if (menuItems == NULL) {
+        return;
+    }
+
+    if (itemIndex < 0 || itemIndex >= D_80159214) {
+        return;
+    }
+
+    /* Get item properties */
+    itemAction = menuItems[itemIndex * 4];      /* Action ID */
+    itemValue = menuItems[itemIndex * 4 + 1];   /* Current value */
+    itemType = menuItems[itemIndex * 4 + 2];    /* Type */
+    itemFlags = menuItems[itemIndex * 4 + 3];   /* Flags */
+
+    /* Check if item is disabled */
+    if (itemFlags & 1) {
+        func_800CC3C0(13);  /* Error sound */
+        return;
+    }
+
+    /* Handle by item type */
+    switch (itemType) {
+        case 0:  /* Action button */
+            /* Execute action */
+            switch (itemAction) {
+                case 1:  /* Start race */
+                    D_801146EC = 3;  /* PREPLAY state */
+                    func_800CBE8C(-1);  /* Close menu */
+                    break;
+                case 2:  /* Options */
+                    func_800CBE8C(2);  /* Go to options menu */
+                    break;
+                case 3:  /* Track select */
+                    func_800CBE8C(3);  /* Go to track select */
+                    break;
+                case 4:  /* Car select */
+                    func_800CBE8C(4);  /* Go to car select */
+                    break;
+                case 5:  /* Exit */
+                    D_801146EC = 0;  /* ATTRACT state */
+                    func_800CBE8C(-1);
+                    break;
+                case 6:  /* Controller Pak */
+                    func_800CBE8C(5);  /* Go to save menu */
+                    break;
+                case 7:  /* Sound test */
+                    func_800CBE8C(6);
+                    break;
+                case 8:  /* Credits */
+                    func_800CBE8C(7);
+                    break;
+                default:
+                    break;
+            }
+            break;
+
+        case 1:  /* Toggle */
+            /* Flip value */
+            itemValue = (itemValue == 0) ? 1 : 0;
+            menuItems[itemIndex * 4 + 1] = itemValue;
+            func_800CC3C0(14);  /* Toggle sound */
+            /* Apply setting immediately */
+            if (itemAction == 10) {  /* Music toggle */
+                D_80159300 = itemValue;
+            } else if (itemAction == 11) {  /* SFX toggle */
+                D_80159304 = itemValue;
+            } else if (itemAction == 12) {  /* Vibration */
+                D_80159308 = itemValue;
+            } else if (itemAction == 13) {  /* Widescreen */
+                D_8015930C = itemValue;
+            }
+            break;
+
+        case 2:  /* Slider - handled by left/right */
+            /* A button on slider doesn't do anything special */
+            break;
+
+        case 3:  /* Submenu */
+            targetMenu = itemAction;
+            func_800CBE8C(targetMenu);
+            break;
+
+        case 4:  /* Multi-choice */
+            /* Cycle through options */
+            itemValue = itemValue + 1;
+            if (itemValue > itemFlags >> 8) {  /* Max stored in upper flags */
+                itemValue = 0;
+            }
+            menuItems[itemIndex * 4 + 1] = itemValue;
+            func_800CC3C0(14);
+            break;
+
+        case 5:  /* Callback */
+            /* Call function pointer stored in value */
+            callback = (void (*)(s32))itemValue;
+            if (callback != NULL) {
+                callback(itemIndex);
+            }
+            break;
+    }
 }
 
 /*
  * func_800CBE08 (132 bytes)
- * Menu back
+ * Menu back - returns to previous menu in stack
  */
 void func_800CBE08(void) {
-    /* Menu back - stub */
+    s32 prevMenu;
+    s32 stackDepth;
+
+    stackDepth = D_80159220;
+    if (stackDepth <= 0) {
+        /* At root menu, back returns to game */
+        D_80159230 = 0;  /* Hide menu */
+        return;
+    }
+
+    /* Pop menu from stack */
+    stackDepth = stackDepth - 1;
+    D_80159220 = stackDepth;
+
+    /* Get previous menu ID */
+    prevMenu = D_80159224[stackDepth];
+
+    /* Transition to previous menu */
+    func_800CBE8C(prevMenu);
+    func_800CC3C0(11);  /* Back sound */
 }
 
 /*
  * func_800CBE8C (340 bytes)
- * Menu transition
+ * Menu transition - switches to a new menu with animation
  */
 void func_800CBE8C(s32 toMenuId) {
-    /* Transition - stub */
+    s32 currentMenu;
+    s32 stackDepth;
+
+    currentMenu = D_80159234;
+
+    /* Special case: close menu */
+    if (toMenuId < 0) {
+        D_80159230 = 0;  /* Hide menu */
+        D_80159238 = 1;  /* Transition state: closing */
+        D_8015923C = 0;  /* Animation frame */
+        D_80159220 = 0;  /* Clear stack */
+        return;
+    }
+
+    /* Push current menu to stack if navigating forward */
+    if (toMenuId != currentMenu && currentMenu >= 0) {
+        stackDepth = D_80159220;
+        if (stackDepth < 8) {  /* Max stack depth */
+            D_80159224[stackDepth] = currentMenu;
+            D_80159220 = stackDepth + 1;
+        }
+    }
+
+    /* Start transition animation */
+    D_80159238 = 2;  /* Transition state: switching */
+    D_8015923C = 0;  /* Animation frame */
+    D_80159240 = toMenuId;  /* Target menu */
+
+    /* Load menu data */
+    switch (toMenuId) {
+        case 0:  /* Main menu */
+            D_80159218 = (u32)&D_80159400;  /* Main menu items */
+            D_80159214 = 5;  /* Item count */
+            break;
+        case 1:  /* Pause menu */
+            D_80159218 = (u32)&D_80159480;  /* Pause menu items */
+            D_80159214 = 4;
+            break;
+        case 2:  /* Options menu */
+            D_80159218 = (u32)&D_80159500;  /* Options items */
+            D_80159214 = 8;
+            break;
+        case 3:  /* Track select */
+            D_80159218 = (u32)&D_80159600;  /* Track items */
+            D_80159214 = 8;
+            break;
+        case 4:  /* Car select */
+            D_80159218 = (u32)&D_80159700;  /* Car items */
+            D_80159214 = 12;
+            break;
+        case 5:  /* Save/load menu */
+            D_80159218 = (u32)&D_80159800;
+            D_80159214 = 4;
+            break;
+        default:
+            D_80159218 = 0;
+            D_80159214 = 0;
+            break;
+    }
+
+    /* Reset cursor */
+    D_80159210 = 0;
+    D_80159234 = toMenuId;
 }
 
 /*
  * func_800CC040 (900 bytes)
- * Menu animation update
+ * Menu animation update - handles menu transitions and element animations
  */
 void func_800CC040(void) {
-    /* Animation - stub */
+    s32 transitionState;
+    s32 animFrame;
+    s32 targetFrame;
+    f32 t;
+    f32 easedT;
+    s32 i;
+    s32 *menuItems;
+    s32 itemCount;
+    f32 itemY;
+    f32 targetY;
+    f32 highlightX;
+    f32 highlightWidth;
+
+    transitionState = D_80159238;
+    animFrame = D_8015923C;
+
+    /* No animation needed */
+    if (transitionState == 0) {
+        return;
+    }
+
+    animFrame = animFrame + 1;
+    D_8015923C = animFrame;
+
+    /* Transition: closing */
+    if (transitionState == 1) {
+        targetFrame = 15;
+        if (animFrame >= targetFrame) {
+            D_80159238 = 0;
+            D_8015923C = 0;
+            return;
+        }
+        /* Slide out animation */
+        t = (f32)animFrame / (f32)targetFrame;
+        easedT = t * t;  /* Ease in (accelerate) */
+        D_80159244 = (s32)(320.0f * easedT);  /* X offset slides right */
+        D_80159248 = (s32)(255.0f * (1.0f - t));  /* Fade out */
+    }
+    /* Transition: switching */
+    else if (transitionState == 2) {
+        targetFrame = 20;
+        if (animFrame >= targetFrame) {
+            D_80159238 = 0;
+            D_8015923C = 0;
+            D_80159244 = 0;
+            D_80159248 = 255;
+            return;
+        }
+        /* Two-phase: slide out then slide in */
+        if (animFrame < 10) {
+            /* Phase 1: slide out */
+            t = (f32)animFrame / 10.0f;
+            easedT = t * t;
+            D_80159244 = (s32)(-320.0f * easedT);  /* Slide left */
+            D_80159248 = (s32)(255.0f * (1.0f - t * 0.5f));
+        } else {
+            /* Phase 2: slide in */
+            t = (f32)(animFrame - 10) / 10.0f;
+            easedT = 1.0f - (1.0f - t) * (1.0f - t);  /* Ease out */
+            D_80159244 = (s32)(320.0f * (1.0f - easedT));  /* Slide from right */
+            D_80159248 = (s32)(128.0f + 127.0f * easedT);
+        }
+    }
+    /* Transition: opening */
+    else if (transitionState == 3) {
+        targetFrame = 15;
+        if (animFrame >= targetFrame) {
+            D_80159238 = 0;
+            D_8015923C = 0;
+            D_80159244 = 0;
+            D_80159248 = 255;
+            D_80159230 = 1;  /* Menu now visible */
+            return;
+        }
+        t = (f32)animFrame / (f32)targetFrame;
+        easedT = 1.0f - (1.0f - t) * (1.0f - t);  /* Ease out */
+        D_80159244 = (s32)(-320.0f * (1.0f - easedT));  /* Slide from left */
+        D_80159248 = (s32)(255.0f * easedT);
+    }
+
+    /* Animate menu items (staggered entry) */
+    menuItems = (s32 *)D_80159218;
+    itemCount = D_80159214;
+    if (menuItems != NULL && transitionState != 1) {
+        for (i = 0; i < itemCount; i++) {
+            /* Calculate staggered delay */
+            s32 itemDelay;
+            s32 itemFrame;
+            itemDelay = i * 2;
+            itemFrame = animFrame - itemDelay;
+            if (itemFrame < 0) {
+                itemFrame = 0;
+            }
+            if (itemFrame > 10) {
+                itemFrame = 10;
+            }
+            /* Store per-item animation state */
+            t = (f32)itemFrame / 10.0f;
+            easedT = 1.0f - (1.0f - t) * (1.0f - t);
+            /* Item Y positions stored in global array */
+            D_8015924C[i] = (s32)(255.0f * easedT);  /* Per-item alpha */
+        }
+    }
+
+    /* Animate highlight bar */
+    highlightX = D_80159260;
+    targetY = (f32)(D_80159210 * 24 + 80);  /* 24px per item, 80px top offset */
+    if (D_80159264 != targetY) {
+        f32 diff;
+        diff = targetY - D_80159264;
+        if (diff > 0) {
+            if (diff > 8.0f) diff = 8.0f;
+        } else {
+            if (diff < -8.0f) diff = -8.0f;
+        }
+        D_80159264 = D_80159264 + diff;
+    }
+    /* Pulse highlight width */
+    D_80159268 = 150.0f + 10.0f * sinf((f32)D_80159270 * 0.1f);
+    D_80159270 = D_80159270 + 1;
 }
 
 /*
  * func_800CC3C0 (380 bytes)
- * Menu sound play
+ * Menu sound play - plays menu sound effects
  */
 void func_800CC3C0(s32 soundId) {
-    /* Menu sound - stub */
+    s32 actualSoundId;
+    s32 volume;
+    s32 pitch;
+    u32 handle;
+
+    /* Check if SFX enabled */
+    if (D_80159304 == 0) {
+        return;
+    }
+
+    /* Map menu sound ID to actual sound bank ID */
+    volume = 100;  /* Default volume */
+    pitch = 0x1000;  /* Normal pitch */
+
+    switch (soundId) {
+        case 10:  /* Select/confirm */
+            actualSoundId = 200;
+            volume = 110;
+            break;
+        case 11:  /* Back/cancel */
+            actualSoundId = 201;
+            break;
+        case 12:  /* Cursor move */
+            actualSoundId = 202;
+            volume = 80;
+            break;
+        case 13:  /* Error/disabled */
+            actualSoundId = 203;
+            pitch = 0x0C00;  /* Lower pitch */
+            break;
+        case 14:  /* Toggle */
+            actualSoundId = 204;
+            break;
+        case 15:  /* Slider tick */
+            actualSoundId = 205;
+            volume = 60;
+            break;
+        case 16:  /* Dialog open */
+            actualSoundId = 206;
+            volume = 90;
+            break;
+        case 17:  /* Dialog close */
+            actualSoundId = 207;
+            volume = 90;
+            break;
+        case 18:  /* Menu open */
+            actualSoundId = 208;
+            volume = 100;
+            break;
+        case 19:  /* Menu close */
+            actualSoundId = 209;
+            volume = 100;
+            break;
+        case 20:  /* Countdown beep */
+            actualSoundId = 210;
+            volume = 127;
+            break;
+        case 21:  /* Countdown go */
+            actualSoundId = 211;
+            volume = 127;
+            pitch = 0x1400;
+            break;
+        default:
+            /* Play raw sound ID */
+            actualSoundId = soundId;
+            break;
+    }
+
+    /* Play via audio system */
+    handle = func_80090284(actualSoundId, 0);
+    if (handle != 0) {
+        func_800B3D18(handle, volume);
+        if (pitch != 0x1000) {
+            func_800B3FA4(handle, pitch);
+        }
+    }
 }
 
 /*
  * func_800CC540 (904 bytes)
- * Menu text scroll
+ * Menu text scroll - scrolls long text horizontally
  */
 void func_800CC540(char *text, s32 maxWidth) {
-    /* Text scroll - stub */
+    s32 textLen;
+    s32 textWidth;
+    s32 charWidth;
+    s32 scrollOffset;
+    s32 scrollSpeed;
+    s32 scrollDelay;
+    s32 scrollState;
+    s32 visibleChars;
+    char *src;
+    char *dst;
+    s32 i;
+    s32 pauseFrames;
+
+    if (text == NULL) {
+        return;
+    }
+
+    /* Calculate text length */
+    textLen = 0;
+    src = text;
+    while (*src != '\0') {
+        textLen++;
+        src++;
+    }
+
+    /* Assume 8 pixels per character */
+    charWidth = 8;
+    textWidth = textLen * charWidth;
+    visibleChars = maxWidth / charWidth;
+
+    /* Get current scroll state for this text */
+    scrollState = D_80159280;
+    scrollOffset = D_80159284;
+    scrollDelay = D_80159288;
+    pauseFrames = D_8015928C;
+
+    /* If text fits, no scrolling needed */
+    if (textWidth <= maxWidth) {
+        /* Just render the text as-is */
+        D_80159290 = 0;  /* No scroll offset */
+        D_80159280 = 0;
+        return;
+    }
+
+    /* State machine for text scrolling */
+    switch (scrollState) {
+        case 0:  /* Idle/initial pause */
+            pauseFrames++;
+            if (pauseFrames > 60) {  /* 1 second at 60fps */
+                scrollState = 1;
+                pauseFrames = 0;
+            }
+            break;
+
+        case 1:  /* Scrolling left */
+            scrollDelay++;
+            if (scrollDelay >= 3) {  /* Scroll every 3 frames */
+                scrollDelay = 0;
+                scrollOffset++;
+                if (scrollOffset >= (textLen - visibleChars + 3)) {
+                    scrollState = 2;
+                    pauseFrames = 0;
+                }
+            }
+            break;
+
+        case 2:  /* End pause */
+            pauseFrames++;
+            if (pauseFrames > 45) {  /* 0.75 second pause */
+                scrollState = 3;
+                pauseFrames = 0;
+            }
+            break;
+
+        case 3:  /* Scrolling back (fast) */
+            scrollDelay++;
+            if (scrollDelay >= 1) {  /* Scroll every frame */
+                scrollDelay = 0;
+                scrollOffset = scrollOffset - 2;
+                if (scrollOffset <= 0) {
+                    scrollOffset = 0;
+                    scrollState = 0;
+                    pauseFrames = 0;
+                }
+            }
+            break;
+    }
+
+    /* Store state */
+    D_80159280 = scrollState;
+    D_80159284 = scrollOffset;
+    D_80159288 = scrollDelay;
+    D_8015928C = pauseFrames;
+    D_80159290 = scrollOffset * charWidth;  /* Pixel offset for rendering */
+
+    /* Copy visible portion to render buffer */
+    dst = (char *)D_80159294;
+    src = text + scrollOffset;
+    for (i = 0; i < visibleChars && *src != '\0'; i++) {
+        *dst = *src;
+        dst++;
+        src++;
+    }
+    *dst = '\0';
 }
 
 /*
  * func_800CC8C8 (316 bytes)
- * Menu highlight
+ * Menu highlight - sets highlight state for menu item
  */
 void func_800CC8C8(s32 itemIndex) {
-    /* Highlight - stub */
+    s32 prevIndex;
+    s32 itemCount;
+    s32 targetY;
+    f32 startY;
+
+    prevIndex = D_80159210;
+    itemCount = D_80159214;
+
+    /* Bounds check */
+    if (itemIndex < 0 || itemIndex >= itemCount) {
+        return;
+    }
+
+    /* Clear previous highlight animation state */
+    if (prevIndex >= 0 && prevIndex < 16) {
+        D_801592A0[prevIndex] = 0;  /* Reset highlight pulse */
+    }
+
+    /* Set new highlight */
+    if (itemIndex >= 0 && itemIndex < 16) {
+        D_801592A0[itemIndex] = 1;  /* Start highlight animation */
+    }
+
+    /* Calculate target Y position for highlight bar */
+    targetY = itemIndex * 24 + 80;  /* 24 pixels per item, 80 top offset */
+
+    /* If jumping multiple items, start smooth transition */
+    startY = D_80159264;
+    if (startY == 0.0f) {
+        /* First time, snap to position */
+        D_80159264 = (f32)targetY;
+    }
+    /* Otherwise animation update will smooth it */
+
+    /* Store target for animation */
+    D_801592C0 = targetY;
+
+    /* Reset highlight pulse phase */
+    D_80159270 = 0;
+
+    /* Reset text scroll state for new item */
+    D_80159280 = 0;
+    D_80159284 = 0;
+    D_80159288 = 0;
+    D_8015928C = 0;
 }
 
 /*
  * func_800CCA04 (1112 bytes)
- * Menu list render
+ * Menu list render - renders entire menu with items
  */
 void func_800CCA04(void *list, s32 count) {
-    /* List render - stub */
+    s32 i;
+    s32 *items;
+    s32 itemAction;
+    s32 itemValue;
+    s32 itemType;
+    s32 itemFlags;
+    s32 x, y;
+    s32 baseX, baseY;
+    s32 itemAlpha;
+    s32 highlightAlpha;
+    s32 offsetX;
+    s32 globalAlpha;
+    char *labelPtr;
+    char valueBuf[32];
+    s32 isHighlighted;
+    s32 isDisabled;
+    f32 highlightY;
+    s32 sliderWidth;
+    s32 sliderFill;
+
+    if (list == NULL || count <= 0) {
+        return;
+    }
+
+    items = (s32 *)list;
+    baseX = 85 + D_80159244;  /* Base X with transition offset */
+    baseY = 80;
+    globalAlpha = D_80159248;
+    highlightY = D_80159264;
+
+    /* Draw highlight bar first (behind items) */
+    if (D_80159210 >= 0) {
+        highlightAlpha = (globalAlpha * 180) / 255;
+        /* func_800C7110 draws HUD elements */
+        /* Draw stretched highlight sprite at position */
+        x = baseX - 5;
+        y = (s32)highlightY - 2;
+        func_800C7110(50, x, y, (s32)D_80159268, 20, highlightAlpha);
+    }
+
+    /* Draw each menu item */
+    for (i = 0; i < count; i++) {
+        itemAction = items[i * 4];
+        itemValue = items[i * 4 + 1];
+        itemType = items[i * 4 + 2];
+        itemFlags = items[i * 4 + 3];
+
+        x = baseX;
+        y = baseY + i * 24;
+
+        isHighlighted = (i == D_80159210);
+        isDisabled = (itemFlags & 1);
+
+        /* Get per-item alpha from animation */
+        if (i < 16) {
+            itemAlpha = D_8015924C[i];
+        } else {
+            itemAlpha = 255;
+        }
+        itemAlpha = (itemAlpha * globalAlpha) / 255;
+
+        /* Dim disabled items */
+        if (isDisabled) {
+            itemAlpha = itemAlpha / 2;
+        }
+
+        /* Get label text pointer (stored after main data) */
+        labelPtr = (char *)(items + count * 4 + i * 16);
+
+        /* Draw item based on type */
+        switch (itemType) {
+            case 0:  /* Action button */
+            case 3:  /* Submenu link */
+                /* Just draw the label */
+                func_800C734C(labelPtr, x, y, itemAlpha);
+                /* Draw arrow for submenu */
+                if (itemType == 3) {
+                    func_800C7110(51, x + 140, y + 4, 8, 8, itemAlpha);  /* Arrow icon */
+                }
+                break;
+
+            case 1:  /* Toggle */
+                /* Draw label */
+                func_800C734C(labelPtr, x, y, itemAlpha);
+                /* Draw on/off indicator */
+                if (itemValue) {
+                    func_800C734C("ON", x + 120, y, itemAlpha);
+                } else {
+                    func_800C734C("OFF", x + 120, y, itemAlpha);
+                }
+                break;
+
+            case 2:  /* Slider */
+                /* Draw label */
+                func_800C734C(labelPtr, x, y, itemAlpha);
+                /* Draw slider bar background */
+                sliderWidth = 80;
+                func_800C7110(52, x + 70, y + 6, sliderWidth, 8, itemAlpha / 2);  /* Slider bg */
+                /* Draw slider fill */
+                sliderFill = (itemValue * sliderWidth) / 100;
+                func_800C7110(53, x + 70, y + 6, sliderFill, 8, itemAlpha);  /* Slider fill */
+                /* Draw value */
+                valueBuf[0] = '0' + (itemValue / 100);
+                valueBuf[1] = '0' + ((itemValue / 10) % 10);
+                valueBuf[2] = '0' + (itemValue % 10);
+                valueBuf[3] = '\0';
+                func_800C734C(valueBuf, x + 155, y, itemAlpha);
+                break;
+
+            case 4:  /* Multi-choice */
+                /* Draw label */
+                func_800C734C(labelPtr, x, y, itemAlpha);
+                /* Draw current choice (stored in extra data area) */
+                {
+                    char *choices;
+                    s32 choiceOffset;
+                    choices = (char *)(items + count * 4 + count * 16 + i * 64);
+                    choiceOffset = itemValue * 16;  /* 16 chars per choice */
+                    func_800C734C(choices + choiceOffset, x + 100, y, itemAlpha);
+                    /* Draw arrows if highlighted */
+                    if (isHighlighted) {
+                        func_800C7110(54, x + 90, y + 4, 8, 8, itemAlpha);   /* Left arrow */
+                        func_800C7110(55, x + 170, y + 4, 8, 8, itemAlpha);  /* Right arrow */
+                    }
+                }
+                break;
+
+            case 5:  /* Callback/special */
+                /* Draw label only */
+                func_800C734C(labelPtr, x, y, itemAlpha);
+                break;
+        }
+
+        /* Draw selection indicator for highlighted item */
+        if (isHighlighted && !isDisabled) {
+            /* Pulsing cursor */
+            s32 cursorAlpha;
+            cursorAlpha = 200 + (s32)(55.0f * sinf((f32)D_80159270 * 0.15f));
+            func_800C7110(56, x - 20, y + 2, 12, 12, cursorAlpha);  /* Cursor icon */
+        }
+    }
 }
 
 /*
  * func_800CCE5C (716 bytes)
- * Menu slider control
+ * Menu slider control - handles slider value adjustment
  */
 s32 func_800CCE5C(s32 current, s32 min, s32 max) {
-    /* Slider - stub */
-    return current;
+    s32 value;
+    s32 range;
+    s32 step;
+    s32 snapValue;
+    s32 prevValue;
+
+    value = current;
+    prevValue = current;
+
+    /* Clamp to range */
+    if (value < min) {
+        value = min;
+    }
+    if (value > max) {
+        value = max;
+    }
+
+    /* Calculate step size based on range */
+    range = max - min;
+    if (range <= 10) {
+        step = 1;
+    } else if (range <= 50) {
+        step = 5;
+    } else if (range <= 100) {
+        step = 5;
+    } else {
+        step = 10;
+    }
+
+    /* Snap to step increments */
+    snapValue = ((value - min + step / 2) / step) * step + min;
+    if (snapValue > max) {
+        snapValue = max;
+    }
+    if (snapValue < min) {
+        snapValue = min;
+    }
+
+    /* Play tick sound if value changed */
+    if (snapValue != prevValue) {
+        func_800CC3C0(15);  /* Slider tick sound */
+    }
+
+    /* Store for visual feedback */
+    D_801592D0 = snapValue;
+    D_801592D4 = min;
+    D_801592D8 = max;
+
+    /* Calculate fill percentage for rendering */
+    if (range > 0) {
+        D_801592DC = ((snapValue - min) * 100) / range;
+    } else {
+        D_801592DC = 0;
+    }
+
+    return snapValue;
 }
 
 /*
  * func_800CD104 (1088 bytes)
- * Menu dialog display
+ * Menu dialog display - shows modal dialog box
  */
 void func_800CD104(s32 dialogId) {
-    /* Dialog - stub */
+    s32 dialogX, dialogY;
+    s32 dialogW, dialogH;
+    s32 titleY, messageY;
+    s32 buttonY;
+    s32 alpha;
+    s32 animFrame;
+    f32 scale;
+    char *title;
+    char *message;
+    char *button1;
+    char *button2;
+    s32 buttonCount;
+    s32 selectedButton;
+
+    /* Check if dialog is active */
+    if (D_801592E0 == 0) {
+        return;
+    }
+
+    animFrame = D_801592E4;
+    selectedButton = D_801592E8;
+
+    /* Dialog dimensions */
+    dialogW = 200;
+    dialogH = 120;
+    dialogX = (320 - dialogW) / 2;
+    dialogY = (240 - dialogH) / 2;
+
+    /* Animation: scale in */
+    if (animFrame < 10) {
+        scale = (f32)animFrame / 10.0f;
+        scale = 1.0f - (1.0f - scale) * (1.0f - scale);  /* Ease out */
+        dialogW = (s32)((f32)dialogW * scale);
+        dialogH = (s32)((f32)dialogH * scale);
+        dialogX = (320 - dialogW) / 2;
+        dialogY = (240 - dialogH) / 2;
+        alpha = (s32)(255.0f * scale);
+    } else {
+        alpha = 255;
+    }
+
+    /* Get dialog content based on ID */
+    switch (dialogId) {
+        case 0:  /* Generic confirm */
+            title = "CONFIRM";
+            message = "Are you sure?";
+            button1 = "YES";
+            button2 = "NO";
+            buttonCount = 2;
+            break;
+        case 1:  /* Save game */
+            title = "SAVE GAME";
+            message = "Save progress to\nController Pak?";
+            button1 = "SAVE";
+            button2 = "CANCEL";
+            buttonCount = 2;
+            break;
+        case 2:  /* Load game */
+            title = "LOAD GAME";
+            message = "Load saved data?";
+            button1 = "LOAD";
+            button2 = "CANCEL";
+            buttonCount = 2;
+            break;
+        case 3:  /* Delete save */
+            title = "DELETE";
+            message = "Delete this save?\nThis cannot be undone.";
+            button1 = "DELETE";
+            button2 = "CANCEL";
+            buttonCount = 2;
+            break;
+        case 4:  /* No Controller Pak */
+            title = "ERROR";
+            message = "No Controller Pak\nfound.";
+            button1 = "OK";
+            button2 = NULL;
+            buttonCount = 1;
+            break;
+        case 5:  /* Pak full */
+            title = "ERROR";
+            message = "Controller Pak is\nfull.";
+            button1 = "OK";
+            button2 = NULL;
+            buttonCount = 1;
+            break;
+        case 6:  /* Quit race */
+            title = "QUIT RACE";
+            message = "Quit current race?";
+            button1 = "QUIT";
+            button2 = "RESUME";
+            buttonCount = 2;
+            break;
+        case 7:  /* Restart race */
+            title = "RESTART";
+            message = "Restart this race?";
+            button1 = "RESTART";
+            button2 = "CANCEL";
+            buttonCount = 2;
+            break;
+        default:
+            title = "DIALOG";
+            message = "";
+            button1 = "OK";
+            button2 = NULL;
+            buttonCount = 1;
+            break;
+    }
+
+    /* Draw dialog background */
+    /* Dark overlay behind dialog */
+    func_800C7110(57, 0, 0, 320, 240, alpha / 2);  /* Screen darken */
+
+    /* Dialog box */
+    func_800C7110(58, dialogX, dialogY, dialogW, dialogH, alpha);  /* Dialog bg */
+
+    /* Draw border */
+    func_800C7110(59, dialogX, dialogY, dialogW, 3, alpha);  /* Top border */
+    func_800C7110(59, dialogX, dialogY + dialogH - 3, dialogW, 3, alpha);  /* Bottom */
+    func_800C7110(59, dialogX, dialogY, 3, dialogH, alpha);  /* Left */
+    func_800C7110(59, dialogX + dialogW - 3, dialogY, 3, dialogH, alpha);  /* Right */
+
+    /* Skip text rendering during scale animation */
+    if (animFrame < 10) {
+        D_801592E4 = animFrame + 1;
+        return;
+    }
+
+    /* Draw title */
+    titleY = dialogY + 10;
+    func_800C734C(title, dialogX + 10, titleY, alpha);
+
+    /* Draw message */
+    messageY = dialogY + 35;
+    func_800C734C(message, dialogX + 10, messageY, alpha);
+
+    /* Draw buttons */
+    buttonY = dialogY + dialogH - 30;
+    if (buttonCount == 1) {
+        /* Single centered button */
+        s32 btnX = dialogX + dialogW / 2 - 20;
+        s32 btnAlpha = (selectedButton == 0) ? alpha : alpha * 2 / 3;
+        if (selectedButton == 0) {
+            func_800C7110(60, btnX - 5, buttonY - 2, 50, 20, alpha);  /* Highlight */
+        }
+        func_800C734C(button1, btnX, buttonY, btnAlpha);
+    } else {
+        /* Two buttons */
+        s32 btn1X = dialogX + 30;
+        s32 btn2X = dialogX + dialogW - 70;
+        s32 btn1Alpha = (selectedButton == 0) ? alpha : alpha * 2 / 3;
+        s32 btn2Alpha = (selectedButton == 1) ? alpha : alpha * 2 / 3;
+        if (selectedButton == 0) {
+            func_800C7110(60, btn1X - 5, buttonY - 2, 50, 20, alpha);
+        } else {
+            func_800C7110(60, btn2X - 5, buttonY - 2, 50, 20, alpha);
+        }
+        func_800C734C(button1, btn1X, buttonY, btn1Alpha);
+        func_800C734C(button2, btn2X, buttonY, btn2Alpha);
+    }
+
+    D_801592E4 = animFrame + 1;
 }
 
 /*
  * func_800CD544 (412 bytes)
- * Menu confirm dialog
+ * Menu confirm dialog - shows confirmation and handles input
  */
 s32 func_800CD544(char *message) {
-    /* Confirm - stub */
-    return 0;
+    s32 result;
+    s32 input;
+    s32 buttonAction;
+    s32 selectedButton;
+    s32 buttonCount;
+
+    result = -1;  /* -1 = still waiting, 0 = no, 1 = yes */
+
+    /* Check if dialog is not yet open */
+    if (D_801592E0 == 0) {
+        /* Open dialog */
+        D_801592E0 = 1;
+        D_801592EC = (u32)message;  /* Store custom message pointer */
+        D_801592E4 = 0;  /* Reset animation */
+        D_801592E8 = 0;  /* Default to first button (YES) */
+        D_801592F0 = 2;  /* Two buttons */
+        func_800CC3C0(16);  /* Dialog open sound */
+        return result;
+    }
+
+    /* Wait for animation to complete */
+    if (D_801592E4 < 10) {
+        return result;
+    }
+
+    selectedButton = D_801592E8;
+    buttonCount = D_801592F0;
+
+    /* Handle input */
+    input = func_800CB748(D_80158100);
+
+    /* Left/right to switch buttons */
+    if (input == 6) {  /* Left */
+        if (selectedButton > 0) {
+            selectedButton--;
+            D_801592E8 = selectedButton;
+            func_800CC3C0(12);
+        }
+    }
+    else if (input == 7) {  /* Right */
+        if (selectedButton < buttonCount - 1) {
+            selectedButton++;
+            D_801592E8 = selectedButton;
+            func_800CC3C0(12);
+        }
+    }
+    /* A button to confirm */
+    else if (input == 1) {
+        result = (selectedButton == 0) ? 1 : 0;
+        func_800CD6E0();  /* Close dialog */
+    }
+    /* B button to cancel */
+    else if (input == 2) {
+        result = 0;
+        func_800CD6E0();
+    }
+
+    return result;
 }
 
 /*
  * func_800CD6E0 (184 bytes)
- * Menu close dialog
+ * Menu close dialog - closes active dialog with animation
  */
 void func_800CD6E0(void) {
-    /* Close dialog - stub */
+    /* Start close animation */
+    D_801592F4 = 1;  /* Closing state */
+    D_801592F8 = 0;  /* Animation frame */
+    func_800CC3C0(17);  /* Dialog close sound */
+
+    /* Actually close after short delay */
+    D_801592E0 = 0;  /* Dialog inactive */
+    D_801592EC = 0;  /* Clear message pointer */
+    D_801592E8 = 0;  /* Reset selection */
+    D_801592F0 = 0;  /* Reset button count */
+
+    /* Return focus to menu */
+    D_801592FC = 1;  /* Flag that dialog just closed */
 }
 
 /*
  * func_800CD798 (340 bytes)
- * Menu keyboard init
+ * Menu keyboard init - initializes on-screen keyboard for text entry
  */
 void func_800CD798(void) {
-    /* Keyboard init - stub */
+    s32 i;
+
+    /* Keyboard layout - 6x7 grid */
+    /* Row 0: A B C D E F G */
+    /* Row 1: H I J K L M N */
+    /* Row 2: O P Q R S T U */
+    /* Row 3: V W X Y Z . _ */
+    /* Row 4: 0 1 2 3 4 5 6 */
+    /* Row 5: 7 8 9 SPACE BACK OK */
+
+    D_80159900 = 0;  /* Current column */
+    D_80159904 = 0;  /* Current row */
+    D_80159908 = 6;  /* Columns per row */
+    D_8015990C = 6;  /* Number of rows */
+    D_80159910 = 0;  /* Keyboard visible */
+    D_80159914 = 0;  /* Current cursor position in text buffer */
+    D_80159918 = 0;  /* Animation frame */
+
+    /* Clear preview buffer */
+    for (i = 0; i < 16; i++) {
+        D_8015991C[i] = '\0';
+    }
+
+    /* Set keyboard character map */
+    D_80159940 = (u32)"ABCDEFG";
+    D_80159944 = (u32)"HIJKLMN";
+    D_80159948 = (u32)"OPQRSTU";
+    D_8015994C = (u32)"VWXYZ._";
+    D_80159950 = (u32)"0123456";
+    D_80159954 = (u32)"789 <OK";
 }
 
 /*
  * func_800CD8EC (500 bytes)
- * Menu keyboard input
+ * Menu keyboard input - handles navigation and character selection
  */
 char func_800CD8EC(s32 input) {
-    /* Keyboard input - stub */
-    return '\0';
+    s32 col, row;
+    s32 maxCol, maxRow;
+    char selectedChar;
+    char *rowStr;
+
+    col = D_80159900;
+    row = D_80159904;
+    maxCol = D_80159908;
+    maxRow = D_8015990C;
+    selectedChar = '\0';
+
+    /* Handle directional input */
+    switch (input) {
+        case 4:  /* Up */
+            row = row - 1;
+            if (row < 0) {
+                row = maxRow - 1;
+            }
+            func_800CC3C0(12);
+            break;
+
+        case 5:  /* Down */
+            row = row + 1;
+            if (row >= maxRow) {
+                row = 0;
+            }
+            func_800CC3C0(12);
+            break;
+
+        case 6:  /* Left */
+            col = col - 1;
+            if (col < 0) {
+                col = maxCol - 1;
+            }
+            func_800CC3C0(12);
+            break;
+
+        case 7:  /* Right */
+            col = col + 1;
+            if (col >= maxCol) {
+                col = 0;
+            }
+            func_800CC3C0(12);
+            break;
+
+        case 1:  /* A button - select character */
+            /* Get character at current position */
+            switch (row) {
+                case 0: rowStr = (char *)D_80159940; break;
+                case 1: rowStr = (char *)D_80159944; break;
+                case 2: rowStr = (char *)D_80159948; break;
+                case 3: rowStr = (char *)D_8015994C; break;
+                case 4: rowStr = (char *)D_80159950; break;
+                case 5: rowStr = (char *)D_80159954; break;
+                default: rowStr = NULL; break;
+            }
+            if (rowStr != NULL && col < 7) {
+                selectedChar = rowStr[col];
+                /* Handle special characters */
+                if (selectedChar == '<') {
+                    selectedChar = '\b';  /* Backspace */
+                } else if (selectedChar == ' ' && row == 5 && col == 3) {
+                    selectedChar = ' ';  /* Space */
+                } else if (row == 5 && col >= 5) {
+                    selectedChar = '\n';  /* OK/Enter */
+                }
+                func_800CC3C0(10);  /* Select sound */
+            }
+            break;
+
+        case 2:  /* B button - backspace */
+            selectedChar = '\b';
+            func_800CC3C0(11);
+            break;
+    }
+
+    D_80159900 = col;
+    D_80159904 = row;
+
+    return selectedChar;
 }
 
 /*
  * func_800CDAE0 (460 bytes)
- * Menu text input
+ * Menu text input - handles full text entry with on-screen keyboard
  */
 void func_800CDAE0(char *buffer, s32 maxLen) {
-    /* Text input - stub */
+    s32 input;
+    char c;
+    s32 cursorPos;
+    s32 i;
+
+    /* Initialize if not already active */
+    if (D_80159910 == 0) {
+        func_800CD798();  /* Init keyboard */
+        D_80159910 = 1;
+        D_80159914 = 0;
+        /* Copy existing buffer content to preview */
+        for (i = 0; i < maxLen && i < 16 && buffer[i] != '\0'; i++) {
+            D_8015991C[i] = buffer[i];
+            D_80159914 = i + 1;
+        }
+        return;
+    }
+
+    /* Get input */
+    input = func_800CB748(D_80158100);
+    cursorPos = D_80159914;
+
+    /* Process keyboard input */
+    c = func_800CD8EC(input);
+
+    if (c == '\n') {
+        /* OK pressed - copy preview to buffer and close */
+        for (i = 0; i < maxLen && i < 16; i++) {
+            buffer[i] = D_8015991C[i];
+        }
+        if (maxLen > 0) {
+            buffer[maxLen - 1] = '\0';
+        }
+        D_80159910 = 0;  /* Close keyboard */
+        func_800CC3C0(10);  /* Confirm sound */
+    }
+    else if (c == '\b') {
+        /* Backspace */
+        if (cursorPos > 0) {
+            cursorPos--;
+            D_8015991C[cursorPos] = '\0';
+            D_80159914 = cursorPos;
+        }
+    }
+    else if (c != '\0' && cursorPos < maxLen - 1 && cursorPos < 15) {
+        /* Add character */
+        D_8015991C[cursorPos] = c;
+        cursorPos++;
+        D_8015991C[cursorPos] = '\0';
+        D_80159914 = cursorPos;
+    }
+
+    /* Update animation frame */
+    D_80159918 = D_80159918 + 1;
 }
 
 /*
  * func_800CDCAC (576 bytes)
- * Menu option toggle
+ * Menu option toggle - toggles a game option and applies it immediately
  */
 void func_800CDCAC(s32 optionId) {
-    /* Toggle - stub */
+    s32 currentValue;
+    s32 newValue;
+
+    /* Get current value based on option ID */
+    switch (optionId) {
+        case 0:  /* Music */
+            currentValue = D_80159300;
+            newValue = (currentValue == 0) ? 1 : 0;
+            D_80159300 = newValue;
+            /* Apply: mute/unmute music channel */
+            if (newValue == 0) {
+                func_800B4DAC(1);  /* Mute music */
+            } else {
+                func_800B4E70(1);  /* Unmute music */
+            }
+            break;
+
+        case 1:  /* Sound effects */
+            currentValue = D_80159304;
+            newValue = (currentValue == 0) ? 1 : 0;
+            D_80159304 = newValue;
+            break;
+
+        case 2:  /* Vibration/rumble */
+            currentValue = D_80159308;
+            newValue = (currentValue == 0) ? 1 : 0;
+            D_80159308 = newValue;
+            /* Test vibration when enabled */
+            if (newValue == 1) {
+                func_800CFE74();  /* Short rumble test */
+            }
+            break;
+
+        case 3:  /* Widescreen mode */
+            currentValue = D_8015930C;
+            newValue = (currentValue == 0) ? 1 : 0;
+            D_8015930C = newValue;
+            break;
+
+        case 4:  /* HUD display */
+            currentValue = D_80159060;
+            newValue = (currentValue == 0) ? 1 : 0;
+            D_80159060 = newValue;
+            break;
+
+        case 5:  /* Minimap */
+            currentValue = D_80159310;
+            newValue = (currentValue == 0) ? 1 : 0;
+            D_80159310 = newValue;
+            break;
+
+        case 6:  /* Speedometer units (mph/kph) */
+            currentValue = D_80159314;
+            newValue = (currentValue == 0) ? 1 : 0;
+            D_80159314 = newValue;
+            break;
+
+        case 7:  /* Camera auto-center */
+            currentValue = D_80159318;
+            newValue = (currentValue == 0) ? 1 : 0;
+            D_80159318 = newValue;
+            break;
+
+        case 8:  /* Subtitles */
+            currentValue = D_8015931C;
+            newValue = (currentValue == 0) ? 1 : 0;
+            D_8015931C = newValue;
+            break;
+
+        default:
+            return;
+    }
+
+    func_800CC3C0(14);  /* Toggle sound */
 }
 
 /*
  * func_800CDEEC (764 bytes)
- * Menu save options
+ * Menu save options - saves game options to Controller Pak
  */
 void func_800CDEEC(void) {
-    /* Save options - stub */
+    u8 saveData[64];
+    s32 i;
+    s32 result;
+    u8 checksum;
+
+    /* Pack options into save data */
+    saveData[0] = 0x52;  /* Magic byte 'R' */
+    saveData[1] = 0x32;  /* Magic byte '2' */
+    saveData[2] = 0x30;  /* Version 0 */
+    saveData[3] = 0x00;  /* Reserved */
+
+    /* Audio settings */
+    saveData[4] = (u8)D_80159300;   /* Music on/off */
+    saveData[5] = (u8)D_80159304;   /* SFX on/off */
+    saveData[6] = (u8)D_80159320;   /* Music volume */
+    saveData[7] = (u8)D_80159324;   /* SFX volume */
+
+    /* Video settings */
+    saveData[8] = (u8)D_8015930C;   /* Widescreen */
+    saveData[9] = (u8)D_80159060;   /* HUD enabled */
+    saveData[10] = (u8)D_80159310;  /* Minimap */
+    saveData[11] = (u8)D_80159314;  /* Speed units */
+
+    /* Control settings */
+    saveData[12] = (u8)D_80159308;  /* Vibration */
+    saveData[13] = (u8)D_80159318;  /* Camera auto */
+    saveData[14] = (u8)D_80159328;  /* Steering sensitivity */
+    saveData[15] = (u8)D_8015932C;  /* Invert Y */
+
+    /* Controller mapping (8 bytes) */
+    for (i = 0; i < 8; i++) {
+        saveData[16 + i] = (u8)D_80159330[i];
+    }
+
+    /* Misc settings */
+    saveData[24] = (u8)D_8015931C;  /* Subtitles */
+    saveData[25] = (u8)D_80159334;  /* Difficulty */
+    saveData[26] = (u8)D_80159338;  /* Laps count */
+    saveData[27] = (u8)D_8015933C;  /* AI difficulty */
+
+    /* Pad remaining with zeros */
+    for (i = 28; i < 63; i++) {
+        saveData[i] = 0;
+    }
+
+    /* Calculate checksum */
+    checksum = 0;
+    for (i = 0; i < 63; i++) {
+        checksum = checksum + saveData[i];
+    }
+    saveData[63] = checksum;
+
+    /* Write to Controller Pak */
+    result = func_800AEB54((void *)saveData, 64, 0);  /* Slot 0 for options */
+    if (result == 0) {
+        /* Success */
+        func_800CC3C0(10);
+    } else {
+        /* Error - show dialog */
+        func_800CD104(4);  /* No Controller Pak */
+    }
 }
 
 /*
  * func_800CE1EC (364 bytes)
- * Menu load options
+ * Menu load options - loads game options from Controller Pak
  */
 void func_800CE1EC(void) {
-    /* Load options - stub */
+    u8 saveData[64];
+    s32 i;
+    s32 result;
+    u8 checksum;
+    u8 calcChecksum;
+
+    /* Read from Controller Pak */
+    result = func_800AED64((void *)saveData, 64, 0);  /* Slot 0 for options */
+    if (result != 0) {
+        /* Error or no save - use defaults */
+        return;
+    }
+
+    /* Verify magic bytes */
+    if (saveData[0] != 0x52 || saveData[1] != 0x32) {
+        return;  /* Invalid save */
+    }
+
+    /* Verify checksum */
+    calcChecksum = 0;
+    for (i = 0; i < 63; i++) {
+        calcChecksum = calcChecksum + saveData[i];
+    }
+    if (calcChecksum != saveData[63]) {
+        return;  /* Corrupted save */
+    }
+
+    /* Unpack options */
+    D_80159300 = saveData[4];   /* Music on/off */
+    D_80159304 = saveData[5];   /* SFX on/off */
+    D_80159320 = saveData[6];   /* Music volume */
+    D_80159324 = saveData[7];   /* SFX volume */
+
+    D_8015930C = saveData[8];   /* Widescreen */
+    D_80159060 = saveData[9];   /* HUD enabled */
+    D_80159310 = saveData[10];  /* Minimap */
+    D_80159314 = saveData[11];  /* Speed units */
+
+    D_80159308 = saveData[12];  /* Vibration */
+    D_80159318 = saveData[13];  /* Camera auto */
+    D_80159328 = saveData[14];  /* Steering sensitivity */
+    D_8015932C = saveData[15];  /* Invert Y */
+
+    /* Controller mapping */
+    for (i = 0; i < 8; i++) {
+        D_80159330[i] = saveData[16 + i];
+    }
+
+    D_8015931C = saveData[24];  /* Subtitles */
+    D_80159334 = saveData[25];  /* Difficulty */
+    D_80159338 = saveData[26];  /* Laps count */
+    D_8015933C = saveData[27];  /* AI difficulty */
 }
 
 /*
  * func_800CE358 (2532 bytes)
- * Menu options screen
+ * Menu options screen - main options menu handler
  */
 void func_800CE358(void) {
-    /* Options screen - stub */
+    s32 input;
+    s32 action;
+    s32 selectedItem;
+
+    /* Update menu animations */
+    func_800CC040();
+
+    /* Handle dialog if active */
+    if (D_801592E0 != 0) {
+        func_800CD104(D_80159340);
+        return;
+    }
+
+    /* Get input */
+    input = func_800CB748(D_80158100);
+    selectedItem = D_80159210;
+
+    /* Handle navigation */
+    if (input >= 4 && input <= 7) {
+        func_800CB9D0(input);
+    }
+    /* Handle selection */
+    else if (input == 1) {
+        action = D_80159344[selectedItem];
+        switch (action) {
+            case 0:  /* Audio settings */
+                func_800CBE8C(10);  /* Go to audio submenu */
+                break;
+            case 1:  /* Video settings */
+                func_800CBE8C(11);  /* Go to video submenu */
+                break;
+            case 2:  /* Control settings */
+                func_800CBE8C(12);  /* Go to controls submenu */
+                break;
+            case 3:  /* Save options */
+                D_80159340 = 1;  /* Save confirm dialog */
+                D_801592E0 = 1;
+                D_801592E4 = 0;
+                D_801592E8 = 0;
+                break;
+            case 4:  /* Load options */
+                D_80159340 = 2;  /* Load confirm dialog */
+                D_801592E0 = 1;
+                D_801592E4 = 0;
+                D_801592E8 = 0;
+                break;
+            case 5:  /* Reset defaults */
+                /* Reset all options to defaults */
+                D_80159300 = 1;  /* Music on */
+                D_80159304 = 1;  /* SFX on */
+                D_80159320 = 80; /* Music volume */
+                D_80159324 = 100; /* SFX volume */
+                D_8015930C = 0;  /* Widescreen off */
+                D_80159060 = 1;  /* HUD on */
+                D_80159310 = 1;  /* Minimap on */
+                D_80159308 = 1;  /* Vibration on */
+                func_800CC3C0(10);
+                break;
+            case 6:  /* Back */
+                func_800CBE08();
+                break;
+        }
+    }
+    /* Handle back button */
+    else if (input == 2) {
+        func_800CBE08();
+    }
+
+    /* Render menu */
+    func_800CCA04((void *)D_80159218, D_80159214);
 }
 
 /*
  * func_800CED3C (1364 bytes)
- * Menu audio settings
+ * Menu audio settings - audio options submenu
  */
 void func_800CED3C(void) {
-    /* Audio settings - stub */
+    s32 input;
+    s32 selectedItem;
+    s32 itemType;
+    s32 *menuItems;
+
+    /* Update animations */
+    func_800CC040();
+
+    /* Get input */
+    input = func_800CB748(D_80158100);
+    selectedItem = D_80159210;
+    menuItems = (s32 *)D_80159218;
+
+    /* Handle navigation */
+    if (input >= 4 && input <= 7) {
+        func_800CB9D0(input);
+    }
+    /* Handle selection */
+    else if (input == 1) {
+        if (menuItems != NULL) {
+            itemType = menuItems[selectedItem * 4 + 2];
+            if (itemType == 1) {
+                /* Toggle item */
+                if (selectedItem == 0) {
+                    func_800CDCAC(0);  /* Toggle music */
+                } else if (selectedItem == 1) {
+                    func_800CDCAC(1);  /* Toggle SFX */
+                }
+            } else if (selectedItem == 4) {
+                /* Back */
+                func_800CBE08();
+            }
+        }
+    }
+    /* Handle left/right for sliders */
+    else if (input == 6 || input == 7) {
+        if (menuItems != NULL) {
+            itemType = menuItems[selectedItem * 4 + 2];
+            if (itemType == 2) {  /* Slider */
+                s32 value = menuItems[selectedItem * 4 + 1];
+                s32 delta = (input == 6) ? -5 : 5;
+                value = func_800CCE5C(value + delta, 0, 100);
+                menuItems[selectedItem * 4 + 1] = value;
+                /* Apply volume change */
+                if (selectedItem == 2) {
+                    D_80159320 = value;  /* Music volume */
+                    func_800B3D18(D_80158140, value);  /* Apply to music */
+                } else if (selectedItem == 3) {
+                    D_80159324 = value;  /* SFX volume */
+                }
+            }
+        }
+    }
+    /* Handle back button */
+    else if (input == 2) {
+        func_800CBE08();
+    }
+
+    /* Render menu */
+    func_800CCA04((void *)D_80159218, D_80159214);
+
+    /* Draw title */
+    func_800C734C("AUDIO SETTINGS", 100, 40, 255);
 }
 
 /*
  * func_800CF290 (228 bytes)
- * Menu video settings
+ * Menu video settings - video options submenu
  */
 void func_800CF290(void) {
-    /* Video settings - stub */
+    s32 input;
+    s32 selectedItem;
+
+    func_800CC040();
+
+    input = func_800CB748(D_80158100);
+    selectedItem = D_80159210;
+
+    if (input >= 4 && input <= 7) {
+        func_800CB9D0(input);
+    }
+    else if (input == 1) {
+        switch (selectedItem) {
+            case 0:  /* Widescreen */
+                func_800CDCAC(3);
+                break;
+            case 1:  /* HUD */
+                func_800CDCAC(4);
+                break;
+            case 2:  /* Minimap */
+                func_800CDCAC(5);
+                break;
+            case 3:  /* Back */
+                func_800CBE08();
+                break;
+        }
+    }
+    else if (input == 2) {
+        func_800CBE08();
+    }
+
+    func_800CCA04((void *)D_80159218, D_80159214);
+    func_800C734C("VIDEO SETTINGS", 100, 40, 255);
 }
 
 /*
  * func_800CF374 (808 bytes)
- * Menu control settings
+ * Menu control settings - controller options submenu
  */
 void func_800CF374(void) {
-    /* Control settings - stub */
+    s32 input;
+    s32 selectedItem;
+    s32 *menuItems;
+    s32 itemType;
+
+    func_800CC040();
+
+    input = func_800CB748(D_80158100);
+    selectedItem = D_80159210;
+    menuItems = (s32 *)D_80159218;
+
+    if (input >= 4 && input <= 7) {
+        func_800CB9D0(input);
+    }
+    else if (input == 1) {
+        switch (selectedItem) {
+            case 0:  /* Vibration */
+                func_800CDCAC(2);
+                break;
+            case 1:  /* Camera auto-center */
+                func_800CDCAC(7);
+                break;
+            case 2:  /* Invert Y axis */
+                D_8015932C = (D_8015932C == 0) ? 1 : 0;
+                func_800CC3C0(14);
+                break;
+            case 3:  /* Remap controls */
+                func_800CBE8C(13);  /* Go to remap screen */
+                break;
+            case 4:  /* Test vibration */
+                func_800CFE74();
+                break;
+            case 5:  /* Back */
+                func_800CBE08();
+                break;
+        }
+    }
+    /* Handle left/right for sensitivity slider */
+    else if (input == 6 || input == 7) {
+        if (menuItems != NULL && selectedItem == 6) {  /* Sensitivity slider */
+            itemType = menuItems[selectedItem * 4 + 2];
+            if (itemType == 2) {
+                s32 value = menuItems[selectedItem * 4 + 1];
+                s32 delta = (input == 6) ? -5 : 5;
+                value = func_800CCE5C(value + delta, 0, 100);
+                menuItems[selectedItem * 4 + 1] = value;
+                D_80159328 = value;  /* Steering sensitivity */
+            }
+        }
+    }
+    else if (input == 2) {
+        func_800CBE08();
+    }
+
+    func_800CCA04((void *)D_80159218, D_80159214);
+    func_800C734C("CONTROL SETTINGS", 90, 40, 255);
 }
 
 /*
  * func_800CF69C (1976 bytes)
- * Menu controller remap
+ * Menu controller remap - controller button remapping screen
  */
 void func_800CF69C(void) {
-    /* Remap - stub */
+    s32 input;
+    s32 selectedItem;
+    s32 remapState;
+    s32 buttons;
+    s32 i;
+    char *actionNames[8];
+    char *buttonNames[10];
+
+    /* Action names */
+    actionNames[0] = "ACCELERATE";
+    actionNames[1] = "BRAKE";
+    actionNames[2] = "HANDBRAKE";
+    actionNames[3] = "LOOK BACK";
+    actionNames[4] = "CHANGE VIEW";
+    actionNames[5] = "HORN";
+    actionNames[6] = "RESET CAR";
+    actionNames[7] = "PAUSE";
+
+    /* Button names */
+    buttonNames[0] = "A";
+    buttonNames[1] = "B";
+    buttonNames[2] = "Z";
+    buttonNames[3] = "START";
+    buttonNames[4] = "L";
+    buttonNames[5] = "R";
+    buttonNames[6] = "C-UP";
+    buttonNames[7] = "C-DOWN";
+    buttonNames[8] = "C-LEFT";
+    buttonNames[9] = "C-RIGHT";
+
+    func_800CC040();
+
+    remapState = D_80159350;
+    selectedItem = D_80159210;
+
+    if (remapState == 0) {
+        /* Normal navigation */
+        input = func_800CB748(D_80158100);
+
+        if (input >= 4 && input <= 5) {
+            func_800CB9D0(input);
+        }
+        else if (input == 1) {
+            if (selectedItem < 8) {
+                /* Start remapping this action */
+                remapState = 1;
+                D_80159350 = 1;
+                D_80159354 = selectedItem;  /* Action being remapped */
+                D_80159358 = 60;  /* Timeout frames */
+                func_800CC3C0(10);
+            } else if (selectedItem == 8) {
+                /* Reset to defaults */
+                D_80159330[0] = 0;  /* A = accelerate */
+                D_80159330[1] = 1;  /* B = brake */
+                D_80159330[2] = 2;  /* Z = handbrake */
+                D_80159330[3] = 5;  /* R = look back */
+                D_80159330[4] = 4;  /* L = change view */
+                D_80159330[5] = 6;  /* C-UP = horn */
+                D_80159330[6] = 7;  /* C-DOWN = reset */
+                D_80159330[7] = 3;  /* START = pause */
+                func_800CC3C0(10);
+            } else if (selectedItem == 9) {
+                /* Back */
+                func_800CBE08();
+            }
+        }
+        else if (input == 2) {
+            func_800CBE08();
+        }
+    }
+    else {
+        /* Waiting for button press */
+        buttons = D_80158100 & 0xFFFF;
+        D_80159358 = D_80159358 - 1;
+
+        if (D_80159358 <= 0) {
+            /* Timeout - cancel remap */
+            D_80159350 = 0;
+            func_800CC3C0(13);
+        }
+        else if (buttons != 0) {
+            /* Button pressed - find which one */
+            s32 buttonId = -1;
+            if (buttons & 0x8000) buttonId = 0;       /* A */
+            else if (buttons & 0x4000) buttonId = 1;  /* B */
+            else if (buttons & 0x2000) buttonId = 2;  /* Z */
+            else if (buttons & 0x1000) buttonId = 3;  /* START */
+            else if (buttons & 0x0020) buttonId = 4;  /* L */
+            else if (buttons & 0x0010) buttonId = 5;  /* R */
+            else if (buttons & 0x0008) buttonId = 6;  /* C-UP */
+            else if (buttons & 0x0004) buttonId = 7;  /* C-DOWN */
+            else if (buttons & 0x0002) buttonId = 8;  /* C-LEFT */
+            else if (buttons & 0x0001) buttonId = 9;  /* C-RIGHT */
+
+            if (buttonId >= 0) {
+                /* Assign button to action */
+                D_80159330[D_80159354] = buttonId;
+                D_80159350 = 0;
+                func_800CC3C0(10);
+            }
+        }
+    }
+
+    /* Render */
+    func_800C734C("CONTROLLER REMAP", 85, 40, 255);
+
+    for (i = 0; i < 8; i++) {
+        s32 y = 80 + i * 20;
+        s32 alpha = (i == selectedItem) ? 255 : 180;
+        s32 buttonIdx = D_80159330[i];
+        func_800C734C(actionNames[i], 60, y, alpha);
+        if (buttonIdx >= 0 && buttonIdx < 10) {
+            func_800C734C(buttonNames[buttonIdx], 200, y, alpha);
+        }
+        if (i == selectedItem) {
+            func_800C7110(56, 40, y + 2, 12, 12, 255);
+        }
+    }
+
+    /* Draw reset/back options */
+    func_800C734C("RESET DEFAULTS", 60, 260, (selectedItem == 8) ? 255 : 180);
+    func_800C734C("BACK", 60, 280, (selectedItem == 9) ? 255 : 180);
+
+    /* Draw prompt if remapping */
+    if (remapState == 1) {
+        func_800C7110(57, 0, 0, 320, 240, 128);  /* Darken */
+        func_800C734C("PRESS A BUTTON", 95, 120, 255);
+    }
 }
 
 /*
  * func_800CFE74 (404 bytes)
- * Menu vibration test
+ * Menu vibration test - tests controller rumble feature
  */
 void func_800CFE74(void) {
-    /* Vibration test - stub */
+    s32 vibeState;
+    s32 vibeTimer;
+    s32 vibePattern;
+    s32 controller;
+
+    vibeState = D_80159360;
+    vibeTimer = D_80159364;
+    controller = 0;  /* Player 1 controller */
+
+    if (vibeState == 0) {
+        /* Start vibration sequence */
+        vibeState = 1;
+        vibeTimer = 0;
+        vibePattern = 0;
+        D_80159368 = 0;
+        osMotorStart(&D_80159370[controller]);  /* Start motor */
+    }
+
+    vibeTimer = vibeTimer + 1;
+
+    /* Vibration pattern: short-short-long */
+    vibePattern = D_80159368;
+    switch (vibePattern) {
+        case 0:  /* First short pulse */
+            if (vibeTimer >= 10) {
+                osMotorStop(&D_80159370[controller]);
+                vibeTimer = 0;
+                D_80159368 = 1;
+            }
+            break;
+        case 1:  /* First pause */
+            if (vibeTimer >= 5) {
+                osMotorStart(&D_80159370[controller]);
+                vibeTimer = 0;
+                D_80159368 = 2;
+            }
+            break;
+        case 2:  /* Second short pulse */
+            if (vibeTimer >= 10) {
+                osMotorStop(&D_80159370[controller]);
+                vibeTimer = 0;
+                D_80159368 = 3;
+            }
+            break;
+        case 3:  /* Second pause */
+            if (vibeTimer >= 5) {
+                osMotorStart(&D_80159370[controller]);
+                vibeTimer = 0;
+                D_80159368 = 4;
+            }
+            break;
+        case 4:  /* Long pulse */
+            if (vibeTimer >= 30) {
+                osMotorStop(&D_80159370[controller]);
+                vibeTimer = 0;
+                D_80159368 = 5;
+                vibeState = 0;  /* Done */
+            }
+            break;
+        default:
+            vibeState = 0;
+            osMotorStop(&D_80159370[controller]);
+            break;
+    }
+
+    D_80159360 = vibeState;
+    D_80159364 = vibeTimer;
 }
 
 /*
