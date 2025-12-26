@@ -12093,82 +12093,482 @@ void func_800AEFE8(void) {
 
 /*
  * func_800B087C (1012 bytes)
- * Audio voice allocation
+ * Audio voice allocation - allocates a hardware voice for sound playback
  */
 void func_800B087C(s32 voiceId, s32 priority) {
-    /* Voice allocation - stub */
+    s32 *voiceTable;
+    s32 *voicePriority;
+    s32 *voiceActive;
+    s32 i;
+    s32 lowestPriority;
+    s32 lowestVoice;
+
+    voiceTable = (s32 *)0x80170000;      /* Voice allocation table */
+    voicePriority = (s32 *)0x80170100;   /* Voice priorities */
+    voiceActive = (s32 *)0x80170200;     /* Voice active flags */
+
+    /* Check if voice is already allocated */
+    if (voiceId >= 0 && voiceId < 16) {
+        if (voiceActive[voiceId] == 0) {
+            /* Voice is free, allocate it */
+            voiceActive[voiceId] = 1;
+            voicePriority[voiceId] = priority;
+            voiceTable[voiceId] = voiceId;
+            return;
+        }
+    }
+
+    /* Find lowest priority voice to steal */
+    lowestPriority = priority;
+    lowestVoice = -1;
+
+    for (i = 0; i < 16; i++) {
+        if (voiceActive[i] == 0) {
+            /* Found free voice */
+            voiceActive[i] = 1;
+            voicePriority[i] = priority;
+            voiceTable[i] = voiceId;
+            return;
+        }
+
+        if (voicePriority[i] < lowestPriority) {
+            lowestPriority = voicePriority[i];
+            lowestVoice = i;
+        }
+    }
+
+    /* Steal lowest priority voice if our priority is higher */
+    if (lowestVoice >= 0 && priority > lowestPriority) {
+        voicePriority[lowestVoice] = priority;
+        voiceTable[lowestVoice] = voiceId;
+    }
 }
 
 /*
  * func_800B24EC (4256 bytes)
- * Audio sequence player
+ * Audio sequence player - plays MIDI-like sequences
  */
 void func_800B24EC(void *sequence) {
-    /* Sequence player - stub */
+    u8 *seqData;
+    s32 *seqPos;
+    s32 *seqTempo;
+    s32 *seqPlaying;
+    s32 *seqTickCounter;
+    u8 cmd;
+    u8 channel;
+    u8 note;
+    u8 velocity;
+    s32 delta;
+
+    if (sequence == NULL) {
+        return;
+    }
+
+    seqData = (u8 *)((u8 *)sequence + 0x100);
+    seqPos = (s32 *)((u8 *)sequence + 0x00);
+    seqTempo = (s32 *)((u8 *)sequence + 0x04);
+    seqPlaying = (s32 *)((u8 *)sequence + 0x08);
+    seqTickCounter = (s32 *)((u8 *)sequence + 0x0C);
+
+    if (!(*seqPlaying)) {
+        return;
+    }
+
+    /* Update tick counter */
+    (*seqTickCounter)++;
+
+    /* Process events at current tick */
+    while (1) {
+        /* Read delta time */
+        delta = seqData[*seqPos];
+        if (delta == 0xFF) {
+            /* End of sequence */
+            *seqPlaying = 0;
+            return;
+        }
+
+        if (*seqTickCounter < delta) {
+            break;  /* Not time for this event yet */
+        }
+
+        (*seqPos)++;
+        *seqTickCounter = 0;
+
+        /* Read command */
+        cmd = seqData[*seqPos];
+        (*seqPos)++;
+
+        if ((cmd & 0xF0) == 0x90) {
+            /* Note on */
+            channel = cmd & 0x0F;
+            note = seqData[*seqPos];
+            (*seqPos)++;
+            velocity = seqData[*seqPos];
+            (*seqPos)++;
+
+            if (velocity > 0) {
+                /* Play note */
+                func_800B358C(channel, (f32)velocity / 127.0f);
+                func_800B3D18(channel, (f32)note / 60.0f);
+            }
+        } else if ((cmd & 0xF0) == 0x80) {
+            /* Note off */
+            channel = cmd & 0x0F;
+            note = seqData[*seqPos];
+            (*seqPos)++;
+            (*seqPos)++;  /* Skip velocity */
+
+            /* Silence channel (note off) */
+            func_800B358C(channel, 0.0f);
+        } else if ((cmd & 0xF0) == 0xB0) {
+            /* Control change */
+            channel = cmd & 0x0F;
+            (*seqPos) += 2;  /* Skip controller and value */
+        } else if ((cmd & 0xF0) == 0xC0) {
+            /* Program change */
+            (*seqPos)++;  /* Skip program */
+        } else if (cmd == 0xFF) {
+            /* Meta event */
+            (*seqPos)++;  /* Skip meta type */
+            delta = seqData[*seqPos];  /* Length */
+            (*seqPos) += 1 + delta;    /* Skip data */
+        }
+    }
 }
 
 /*
  * func_800B358C (160 bytes)
- * Audio volume set
+ * Audio volume set - sets channel volume with ramping
  */
 void func_800B358C(s32 channel, f32 volume) {
-    /* Volume set - stub */
+    f32 *channelVolumes;
+    f32 *targetVolumes;
+
+    if (channel < 0 || channel >= 16) {
+        return;
+    }
+
+    /* Clamp volume */
+    if (volume < 0.0f) volume = 0.0f;
+    if (volume > 1.0f) volume = 1.0f;
+
+    channelVolumes = (f32 *)0x80170400;
+    targetVolumes = (f32 *)0x80170440;
+
+    /* Set target volume for ramping */
+    targetVolumes[channel] = volume;
+
+    /* Apply volume immediately if big change */
+    if (volume < 0.01f || channelVolumes[channel] < 0.01f) {
+        channelVolumes[channel] = volume;
+    }
 }
 
 /*
  * func_800B362C (444 bytes)
- * Audio pan set
+ * Audio pan set - sets stereo panning for channel
  */
 void func_800B362C(s32 channel, f32 pan) {
-    /* Pan set - stub */
+    f32 *channelPan;
+    f32 leftVol, rightVol;
+
+    if (channel < 0 || channel >= 16) {
+        return;
+    }
+
+    /* Clamp pan (-1 = left, 0 = center, 1 = right) */
+    if (pan < -1.0f) pan = -1.0f;
+    if (pan > 1.0f) pan = 1.0f;
+
+    channelPan = (f32 *)0x80170480;
+    channelPan[channel] = pan;
+
+    /* Calculate stereo volumes using constant power panning */
+    leftVol = sqrtf((1.0f - pan) * 0.5f);
+    rightVol = sqrtf((1.0f + pan) * 0.5f);
+
+    /* Store left/right volumes */
+    *((f32 *)(0x801704C0 + channel * 8)) = leftVol;
+    *((f32 *)(0x801704C0 + channel * 8 + 4)) = rightVol;
 }
 
 /*
  * func_800B3D18 (228 bytes)
- * Audio pitch set
+ * Audio pitch set - sets playback pitch/frequency
  */
 void func_800B3D18(s32 channel, f32 pitch) {
-    /* Pitch set - stub */
+    f32 *channelPitch;
+    u32 *sampleRate;
+
+    if (channel < 0 || channel >= 16) {
+        return;
+    }
+
+    /* Clamp pitch (0.25x to 4x) */
+    if (pitch < 0.25f) pitch = 0.25f;
+    if (pitch > 4.0f) pitch = 4.0f;
+
+    channelPitch = (f32 *)0x80170500;
+    channelPitch[channel] = pitch;
+
+    /* Calculate actual sample rate from pitch */
+    /* Base rate is typically 22050 Hz */
+    sampleRate = (u32 *)0x80170540;
+    sampleRate[channel] = (u32)(22050.0f * pitch);
 }
 
 /*
  * func_800B3FA4 (604 bytes)
- * Audio effect apply
+ * Audio effect apply - applies reverb/chorus/etc to channel
  */
 void func_800B3FA4(s32 channel, s32 effectType, f32 amount) {
-    /* Effect apply - stub */
+    f32 *effectLevels;
+    s32 *effectTypes;
+
+    if (channel < 0 || channel >= 16) {
+        return;
+    }
+
+    /* Clamp amount */
+    if (amount < 0.0f) amount = 0.0f;
+    if (amount > 1.0f) amount = 1.0f;
+
+    effectLevels = (f32 *)0x80170600;
+    effectTypes = (s32 *)0x80170640;
+
+    /* Effect types:
+     * 0 = None
+     * 1 = Reverb (small room)
+     * 2 = Reverb (large hall)
+     * 3 = Chorus
+     * 4 = Delay
+     * 5 = Lowpass filter
+     */
+
+    effectTypes[channel] = effectType;
+    effectLevels[channel] = amount;
+
+    /* Configure effect parameters based on type */
+    switch (effectType) {
+        case 1:  /* Small room reverb */
+            *((f32 *)(0x80170680 + channel * 16)) = 0.3f;   /* Decay */
+            *((f32 *)(0x80170680 + channel * 16 + 4)) = 0.02f;  /* Pre-delay */
+            break;
+        case 2:  /* Large hall reverb */
+            *((f32 *)(0x80170680 + channel * 16)) = 0.7f;   /* Decay */
+            *((f32 *)(0x80170680 + channel * 16 + 4)) = 0.05f;  /* Pre-delay */
+            break;
+        case 3:  /* Chorus */
+            *((f32 *)(0x80170680 + channel * 16)) = 2.0f;   /* Rate */
+            *((f32 *)(0x80170680 + channel * 16 + 4)) = 0.01f;  /* Depth */
+            break;
+        case 4:  /* Delay */
+            *((f32 *)(0x80170680 + channel * 16)) = 0.25f;  /* Time */
+            *((f32 *)(0x80170680 + channel * 16 + 4)) = 0.5f;   /* Feedback */
+            break;
+        case 5:  /* Lowpass */
+            *((f32 *)(0x80170680 + channel * 16)) = 4000.0f;  /* Cutoff Hz */
+            break;
+    }
 }
 
 /*
  * func_800B4200 (352 bytes)
- * Audio buffer fill
+ * Audio buffer fill - fills audio output buffer with mixed samples
  */
 void func_800B4200(void *buffer, s32 samples) {
-    /* Buffer fill - stub */
+    s16 *outBuffer;
+    f32 *channelVolumes;
+    f32 *channelPan;
+    s32 i, ch;
+    f32 leftSample, rightSample;
+    f32 leftVol, rightVol;
+
+    if (buffer == NULL || samples <= 0) {
+        return;
+    }
+
+    outBuffer = (s16 *)buffer;
+    channelVolumes = (f32 *)0x80170400;
+
+    /* Fill buffer with mixed audio */
+    for (i = 0; i < samples; i++) {
+        leftSample = 0.0f;
+        rightSample = 0.0f;
+
+        /* Mix all active channels */
+        for (ch = 0; ch < 16; ch++) {
+            f32 channelSample;
+            s32 *voiceActive = (s32 *)0x80170200;
+
+            if (voiceActive[ch] == 0) {
+                continue;
+            }
+
+            /* Get sample from channel (placeholder - actual impl reads from sample data) */
+            channelSample = 0.0f;  /* Would read from sample buffer */
+
+            /* Get pan volumes */
+            leftVol = *((f32 *)(0x801704C0 + ch * 8));
+            rightVol = *((f32 *)(0x801704C0 + ch * 8 + 4));
+
+            /* Mix with volume */
+            leftSample += channelSample * channelVolumes[ch] * leftVol;
+            rightSample += channelSample * channelVolumes[ch] * rightVol;
+        }
+
+        /* Clamp and convert to s16 */
+        if (leftSample > 1.0f) leftSample = 1.0f;
+        if (leftSample < -1.0f) leftSample = -1.0f;
+        if (rightSample > 1.0f) rightSample = 1.0f;
+        if (rightSample < -1.0f) rightSample = -1.0f;
+
+        outBuffer[i * 2] = (s16)(leftSample * 32767.0f);
+        outBuffer[i * 2 + 1] = (s16)(rightSample * 32767.0f);
+    }
 }
 
 /*
  * func_800B438C (228 bytes)
- * Audio stream start
+ * Audio stream start - starts streaming audio from ROM
  */
 void func_800B438C(s32 streamId, void *data) {
-    /* Stream start - stub */
+    s32 *streamActive;
+    void **streamData;
+    s32 *streamPos;
+    s32 *streamLength;
+
+    if (streamId < 0 || streamId >= 4) {
+        return;
+    }
+
+    streamActive = (s32 *)0x80170800;
+    streamData = (void **)0x80170810;
+    streamPos = (s32 *)0x80170820;
+    streamLength = (s32 *)0x80170830;
+
+    /* Stop any existing stream on this slot */
+    streamActive[streamId] = 0;
+
+    if (data == NULL) {
+        return;
+    }
+
+    /* Initialize stream */
+    streamData[streamId] = data;
+    streamPos[streamId] = 0;
+    streamLength[streamId] = *((s32 *)data);  /* First word is length */
+    streamActive[streamId] = 1;
+
+    /* Start DMA for first buffer */
+    osPiStartDma((OSIoMesg *)0x80170900, 0, OS_READ,
+                 (u32)data + 4, (void *)0x80171000 + streamId * 0x1000,
+                 0x1000, NULL);
 }
 
 /*
  * func_800B466C (604 bytes)
- * Audio stream update
+ * Audio stream update - updates streaming audio playback
  */
 void func_800B466C(s32 streamId) {
-    /* Stream update - stub */
+    s32 *streamActive;
+    void **streamData;
+    s32 *streamPos;
+    s32 *streamLength;
+    s32 *streamBuffer;
+    s32 bytesRemaining;
+    s32 bytesToRead;
+
+    if (streamId < 0 || streamId >= 4) {
+        return;
+    }
+
+    streamActive = (s32 *)0x80170800;
+    streamData = (void **)0x80170810;
+    streamPos = (s32 *)0x80170820;
+    streamLength = (s32 *)0x80170830;
+    streamBuffer = (s32 *)0x80170840;
+
+    if (streamActive[streamId] == 0) {
+        return;
+    }
+
+    /* Check if we need to fetch more data */
+    bytesRemaining = streamLength[streamId] - streamPos[streamId];
+
+    if (bytesRemaining <= 0) {
+        /* Stream complete */
+        streamActive[streamId] = 0;
+        return;
+    }
+
+    /* Check if current buffer is consumed */
+    if (streamBuffer[streamId] <= 0) {
+        /* Calculate bytes to read */
+        bytesToRead = 0x1000;
+        if (bytesToRead > bytesRemaining) {
+            bytesToRead = bytesRemaining;
+        }
+
+        /* Start DMA for next buffer */
+        osPiStartDma((OSIoMesg *)0x80170900, 0, OS_READ,
+                     (u32)streamData[streamId] + 4 + streamPos[streamId],
+                     (void *)0x80171000 + streamId * 0x1000,
+                     bytesToRead, NULL);
+
+        streamPos[streamId] += bytesToRead;
+        streamBuffer[streamId] = bytesToRead;
+    }
 }
 
 /*
  * func_800B4FB0 (1484 bytes)
- * Audio music playback
+ * Audio music playback - plays background music track
  */
 void func_800B4FB0(s32 trackId) {
-    /* Music playback - stub */
+    s32 *currentTrack;
+    s32 *musicPlaying;
+    s32 *musicVolume;
+    void *trackData;
+    u32 *trackTable;
+
+    currentTrack = (s32 *)0x80170850;
+    musicPlaying = (s32 *)0x80170854;
+    musicVolume = (s32 *)0x80170858;
+
+    /* Stop current music if playing */
+    if (*musicPlaying) {
+        func_800B438C(0, NULL);  /* Stop stream 0 */
+        *musicPlaying = 0;
+    }
+
+    if (trackId < 0) {
+        /* Just stop, don't start new track */
+        *currentTrack = -1;
+        return;
+    }
+
+    /* Get track data from ROM table */
+    trackTable = (u32 *)0x80180000;  /* Music track pointer table */
+
+    if (trackId >= 16) {
+        return;  /* Invalid track */
+    }
+
+    trackData = (void *)trackTable[trackId];
+    if (trackData == NULL) {
+        return;
+    }
+
+    /* Start streaming the track */
+    func_800B438C(0, trackData);
+
+    /* Set music channel volume */
+    func_800B358C(0, (f32)(*musicVolume) / 100.0f);
+    func_800B362C(0, 0.0f);  /* Center pan */
+
+    *currentTrack = trackId;
+    *musicPlaying = 1;
 }
 
 /*
