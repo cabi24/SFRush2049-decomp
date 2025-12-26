@@ -12695,3 +12695,8920 @@ void func_8008B474(f32 *src, f32 *dst) {
  * func_8010FD1C (68 bytes)
  * Note: Small utility - needs analysis
  */
+
+/*
+ * func_80090228 (44 bytes)
+ * Stop sound with sign extend
+ */
+void func_80090228(s16 handle) {
+    handle = (s16)((handle << 16) >> 16);  /* Sign extend */
+    func_80090088(handle, 0, 0);
+}
+
+/*
+ * func_80090254 (48 bytes)
+ * Stop sound with sign extend, all params zero
+ */
+void func_80090254(s16 handle) {
+    handle = (s16)((handle << 16) >> 16);  /* Sign extend */
+    func_80090088(handle, 0, 0);
+}
+
+/*
+ * func_80091C04 (160 bytes)
+ * Allocate entity type 6 with reference counting
+ */
+void func_80091C04(void *param) {
+    void *entity = NULL;
+
+    sync_acquire(&D_80142728, 0, 1);
+    entity = func_80091BA8(param, &D_80142728);
+    if (entity != NULL) {
+        void *new_entity = func_80091B00();
+        *(u8 *)((u8 *)new_entity + 2) = 6;
+        *(void **)((u8 *)new_entity + 4) = entity;
+        u8 ref = *(u8 *)((u8 *)entity + 26);
+        *(u8 *)((u8 *)entity + 26) = ref + 1;
+        entity = new_entity;
+    }
+    sync_release(&D_80142728, 0, 0);
+    if (entity != NULL) {
+        sync_release(&D_801427A8, entity, 0);
+    }
+}
+
+/*
+ * func_80096240 (72 bytes)
+ * Process element with unload
+ */
+void func_80096240(s32 handle) {
+    if (handle == -1) {
+        return;
+    }
+    func_80018E2C(handle);
+    func_800154A4();
+    func_80096130(D_80151AD4);
+    D_8012EAA0 = -1;
+}
+
+/*
+ * func_80098554 (32 bytes)
+ * Simple wrapper for camera update
+ */
+void func_80098554(void) {
+    func_80097CA0();
+}
+
+/*
+ * func_800985F4 (44 bytes)
+ * Camera processing wrapper
+ */
+void func_800985F4(void *obj, void *param) {
+    s32 temp = 0;
+    func_80098574(obj, *(void **)((u8 *)obj + 8), &temp, param);
+}
+
+/*
+ * func_800986B0 (36 bytes)
+ * Camera offset wrapper
+ */
+void func_800986B0(void *obj, void *param) {
+    func_80098620((u8 *)obj + 8, param);
+}
+
+/*
+ * func_800A511C (60 bytes)
+ * Update track state
+ */
+void func_800A511C(s32 a0, s32 a1) {
+    if (a0 == a1) {
+        return;
+    }
+    func_800A501C();
+    D_80140A10 = (s8)D_8014FEC8;
+    func_800A4E58();
+}
+
+/*
+ * func_800A5B60 (80 bytes)
+ * Initialize race state
+ */
+void func_800A5B60(void) {
+    D_801613B4 = 0;
+    D_8016B254 = -1;
+    func_800A5A40();
+    D_801613B8 = 1.0f;
+    D_80140618 = 0;
+    D_801406B8 = (void *)0x8012EA18;
+}
+
+/*
+ * func_800A7DF0 (32 bytes)
+ * Simple wrapper
+ */
+void func_800A7DF0(void) {
+    func_800A5B3C();
+}
+
+/*
+ * func_800AC898 (60 bytes)
+ * Get element state byte
+ */
+s8 func_800AC898(s32 index, s32 flag) {
+    void *entry;
+
+    func_80096288(0, 0);
+    entry = (void *)((u8 *)0x80156D38 + ((index << 2) + index) << 2);
+    return *(s8 *)((u8 *)entry + 0x6D39 - 0x6D38 + 1);
+}
+
+/*
+ * func_800B0550 (48 bytes)
+ * Initialize buffer structure
+ */
+void func_800B0550(void *obj, void *data, s32 size, s32 count, u8 flag) {
+    *(void **)((u8 *)obj + 12) = data;
+    *(s32 *)((u8 *)obj + 4) = count;
+    *(s32 *)((u8 *)obj + 8) = size;
+    *(u8 *)obj = flag;
+    func_800B04D0(obj);
+}
+
+/*
+ * func_800B0580 (152 bytes)
+ * Process audio queue and reinitialize
+ */
+void func_800B0580(void) {
+    void *ptr = (void *)0x80155220;
+    void *entry;
+
+    entry = *(void **)((u8 *)ptr + 16);
+    while (entry != NULL) {
+        func_8008D0C0(*(void **)((u8 *)entry + 12));
+        func_800AFA84(ptr, entry);
+        entry = *(void **)((u8 *)ptr + 16);
+    }
+
+    /* Reinitialize structure */
+    *(u8 *)ptr = 1;
+    *(s32 *)((u8 *)ptr + 4) = 100;
+    *(s32 *)((u8 *)ptr + 8) = 36;
+    *(void **)((u8 *)ptr + 12) = (void *)0x80155B30;
+    func_800B04D0(ptr);
+
+    /* Second buffer */
+    func_800B0550((void *)0x80155290, NULL, 0, 0, 0);
+}
+
+/*
+ * func_800B7128 (72 bytes)
+ * Copy vector from object
+ */
+void func_800B7128(void *obj, f32 *out) {
+    void *data = *(void **)obj;
+    out[0] = *(f32 *)((u8 *)data + 0);
+    out[1] = *(f32 *)((u8 *)data + 4);
+    out[2] = *(f32 *)((u8 *)data + 8);
+}
+
+/*
+ * func_800B7170 (48 bytes)
+ * Get float from object
+ */
+f32 func_800B7170(void *obj) {
+    void *data = *(void **)obj;
+    return *(f32 *)((u8 *)data + 12);
+}
+
+/*
+ * func_800B71A0 (52 bytes)
+ * Get byte from object offset
+ */
+s8 func_800B71A0(void *obj) {
+    void *data = *(void **)obj;
+    return *(s8 *)((u8 *)data + 16);
+}
+
+/*
+ * func_800B9130 (100 bytes)
+ * Initialize race state and clear elements
+ */
+void func_800B9130(void *param) {
+    D_80159818 = 0;
+    D_80159B80 = 0;
+    func_800B90F8();
+    func_80096130(D_80143A18);
+    func_80096130(D_80143A20);
+    func_80096130(D_80143A28);
+    memset((void *)0x80143A10, 0, 44);
+}
+
+/*
+ * func_800BAF64 (44 bytes)
+ * Clear flags and call handler
+ */
+void func_800BAF64(void) {
+    D_80110680 = 0;
+    D_80110681 = 0;
+    func_800BADE0();
+}
+
+/*
+ * func_800BC1E8 (52 bytes)
+ * Reset track state and call handler
+ */
+void func_800BC1E8(void) {
+    D_80143A10 = 0;
+    func_800BB9B0(D_8015978C, 0, 1);
+}
+
+/*
+ * func_800BE9A0 (72 bytes)
+ * Process render with parameters
+ */
+void func_800BE9A0(s16 a0, s16 a1, s16 a2, void *params) {
+    s32 temp[32];
+
+    a2 = (s16)((a2 << 16) >> 16);  /* Sign extend */
+    func_800BE7BC(temp, a2, params);
+    func_800B71D4(a0, a1, temp);
+}
+
+/*
+ * func_800BE9E8 (72 bytes)
+ * Process render with format
+ */
+void func_800BE9E8(s16 a0, s16 a1, void *format, ...) {
+    s32 temp[64];
+    va_list args;
+
+    func_80002CD0(temp, format, &args);
+    func_800B71D4(a0, a1, temp);
+}
+
+/*
+ * func_800BFD68 (36 bytes)
+ * Process time with negate
+ */
+void func_800BFD68(f32 val) {
+    val = -val;
+    func_8009C3F8(1);
+}
+
+/*
+ * func_800C7308 (68 bytes)
+ * Clear object reference
+ */
+void func_800C7308(void *obj) {
+    void *data = *(void **)obj;
+
+    if (*(void **)((u8 *)data + 44) == NULL) {
+        return;
+    }
+    if (*(void **)((u8 *)data + 8) == NULL) {
+        return;
+    }
+    func_800A25C0(*(void **)((u8 *)data + 8));
+    *(void **)((u8 *)data + 44) = NULL;
+}
+
+/*
+ * func_800C92DC (88 bytes)
+ * Initialize with float setup
+ */
+void func_800C92DC(f32 a, f32 b) {
+    f32 val1, val2;
+
+    val1 = -a;
+    val2 = -b;
+    func_800C9210(1, 0, val1, val2);
+}
+
+/*
+ * func_800C9334 (72 bytes)
+ * Note: Float processing - needs analysis
+ */
+
+/*
+ * func_800D54E0 (68 bytes)
+ * Call handler if flag set
+ */
+void func_800D54E0(void *param, s32 flag) {
+    if (flag != 0) {
+        func_800BF024(param);
+    }
+    func_800D54BC(param);
+}
+
+/*
+ * func_800D63C4 (40 bytes)
+ * Call update handler
+ */
+void func_800D63C4(void) {
+    func_8009211C();
+}
+
+/*
+ * func_800D03DC (72 bytes)
+ * Process 3D vector through audio functions
+ */
+void func_800D03DC(void *param, void *target) {
+    f32 x = *(f32 *)((u8 *)param + 4);
+    f32 y = *(f32 *)((u8 *)param + 0);
+    f32 z = *(f32 *)((u8 *)param + 8);
+
+    func_80090E9C(x, target);
+    func_80090F44(y, target);
+    func_8009EA68(z, target);
+}
+
+/*
+ * func_800DCD1C (52 bytes)
+ * Conditional state update with flag check
+ * beql at 800DCD28 - if (param & 7) == 0, skip update
+ */
+void func_800DCD1C(s32 param) {
+    if ((param & 7) != 0) {
+        func_800B5FC4();
+        *(u8 *)0x80100000 = 1;  /* Set state flag - address from s0 */
+    }
+}
+
+/*
+ * func_800E2A3C (40 bytes)
+ * Update wrapper - calls two handlers
+ */
+void func_800E2A3C(void *param) {
+    func_800E23A4(param);
+    func_800E1C30(param);
+}
+
+/*
+ * func_800E7914 (108 bytes)
+ * Entity lookup and decrement reference count
+ */
+void func_800E7914(void *param) {
+    void *entity;
+    u8 refCount;
+
+    sync_acquire(&D_80152770, 0, 1);
+    entity = func_80095F8C(param);
+    entity = func_80095EF4(entity, 0);
+
+    refCount = *(u8 *)((u8 *)entity + 22);
+    if (refCount > 0) {
+        *(u8 *)((u8 *)entity + 22) = refCount - 1;
+    }
+
+    sync_release(&D_80152770, 0, 0);
+}
+
+/*
+ * func_800E7980 (108 bytes)
+ * Entity lookup and increment reference count
+ */
+void func_800E7980(void *param) {
+    void *entity;
+    u8 refCount;
+
+    sync_acquire(&D_80152770, 0, 1);
+    entity = func_80095F8C(param);
+    entity = func_80095EF4(entity, 0);
+
+    refCount = *(u8 *)((u8 *)entity + 22);
+    if (refCount < 255) {
+        *(u8 *)((u8 *)entity + 22) = refCount + 1;
+    }
+
+    sync_release(&D_80152770, 0, 0);
+}
+
+/*
+ * func_800E7A98 (128+ bytes)
+ * Remove entity from linked list with sync
+ */
+void func_800E7A98(void *param) {
+    void *head;
+    void *prev;
+    void *curr;
+    void *target;
+
+    sync_acquire(&D_80152770, 0, 1);
+
+    if (param != NULL) {
+        target = param;
+    } else {
+        target = *(void **)0x801527C8;
+    }
+
+    head = *(void **)0x801527C8;
+    if (target == NULL) {
+        target = head;
+    }
+
+    if (head != NULL) {
+        prev = head;
+        curr = *(void **)((u8 *)prev + 4);
+
+        while (curr != NULL) {
+            if (target == curr) {
+                /* Unlink from list */
+                void *next = *(void **)((u8 *)target + 4);
+                *(void **)((u8 *)prev + 4) = next;
+                break;
+            }
+            prev = curr;
+            curr = *(void **)((u8 *)prev + 4);
+        }
+    }
+
+    sync_release(&D_80152770, 0, 0);
+}
+
+/*
+ * func_800EC0DC (168 bytes)
+ * Process all players - iterate player array
+ */
+void func_800EC0DC(void) {
+    s32 i;
+    s16 numPlayers;
+    void *playerPtr;
+
+    func_800E847C();
+
+    if (*(s32 *)0x8014A110 != 2) {
+        goto end;
+    }
+
+    numPlayers = *(s16 *)0x8014A108;
+    if (numPlayers < 2) {
+        goto end;
+    }
+
+    playerPtr = (void *)0x80152BD0;
+
+    for (i = 1; i < numPlayers; i++) {
+        s16 val = *(s16 *)((u8 *)playerPtr + 246);
+        func_8008D6FC(val, (void *)0x80152BD8, (void *)0x80152C20);
+        playerPtr = (void *)((u8 *)playerPtr + 952);
+    }
+
+end:
+    func_800EB90C();
+}
+
+/*
+ * func_800EE7C4 (88 bytes)
+ * Conditional sync initialization
+ */
+void func_800EE7C4(s32 flag) {
+    if (flag == 0) {
+        *(u8 *)0x801147C0 = 1;
+        sync_init(&D_801461D0, (void *)0x801461FC, 1);
+        sync_release(&D_801461D0, 0, 0);
+    }
+    *(u8 *)0x80149DA0 = 0xFF;
+}
+
+/*
+ * func_800EE88C (32 bytes)
+ * Simple wrapper calling render function
+ */
+void func_800EE88C(void) {
+    func_800B82C8();
+}
+
+/*
+ * func_800EF5B0 (136 bytes)
+ * Timer/callback initialization
+ */
+void func_800EF5B0(void *param, void *callback, s32 flag) {
+    s8 val;
+
+    *(void **)param = callback;
+
+    if (flag != 0) {
+        val = *(u8 *)0x80140BDC;
+        val = val - 1;
+        *(s32 *)((u8 *)param + 8) = func_800B24EC(callback, (u8 *)param + 12, 0, val, 1);
+    } else {
+        func_800B362C(param);
+    }
+
+    func_80094EC8(param);
+}
+
+/*
+ * func_800F8754 (76 bytes)
+ * Input cleanup - conditionally free and clear state
+ * beql at 800F8778 - skip if pointer is NULL
+ */
+void func_800F8754(void) {
+    void **ptrAddr = (void **)0x8011472C;
+
+    func_800F857C();
+    func_800B45BC(1);
+
+    if (*ptrAddr != NULL) {
+        func_800B358C(*ptrAddr);
+        *ptrAddr = NULL;
+    }
+
+    *(u8 *)0x80114728 = 0;
+}
+
+/*
+ * func_800C70BC (84 bytes)
+ * Stop three sound channels (54, 58, 59)
+ */
+void func_800C70BC(void) {
+    s32 handle;
+
+    handle = func_80097694(54, -1);
+    func_800AC840(handle);
+
+    handle = func_80097694(58, -1);
+    func_800AC840(handle);
+
+    handle = func_80097694(59, -1);
+    func_800AC840(handle);
+}
+
+/*
+ * func_800C90E0 (112 bytes)
+ * Process 16 sound channels (IDs 38-53, 22-37)
+ * bnel at 800C9134 - loop while i != 16
+ */
+void func_800C90E0(void) {
+    s32 i;
+    s32 handle;
+
+    for (i = 0; i != 16; i++) {
+        handle = func_80097694(i + 38, -1);
+        if (handle >= 0) {
+            func_800AC840(handle);
+        }
+
+        handle = func_80097694(i + 22, -1);
+        if (handle >= 0) {
+            func_800AC840(handle);
+        }
+    }
+}
+
+/*
+ * func_800C9194 (120 bytes)
+ * Allocate entity type 0 with two params
+ */
+void func_800C9194(void *param1, s32 param2) {
+    void *entity;
+
+    sync_acquire(&D_80142728, 0, 1);
+    entity = func_80091B00();
+    *(u8 *)((u8 *)entity + 2) = 0;
+    *(void **)((u8 *)entity + 4) = param1;
+    *(u8 *)((u8 *)entity + 8) = (u8)param2;
+    sync_release(&D_80142728, 0, 0);
+    sync_release(&D_801427A8, entity, 0);
+}
+
+/*
+ * func_800C9528 (8 bytes)
+ * Load flag byte (first 2 insn of func_800C9530)
+ * Note: This seems to be partial function entry
+ */
+
+/*
+ * func_800C9530 (96 bytes)
+ * Dispatch function pointer table
+ * beql at 800C9560 - skip if pointer is NULL
+ * bnel at 800C9574 - loop until s0 reaches s1
+ */
+void func_800C9530(void) {
+    void **funcPtr;
+    void **funcEnd;
+    s8 flag;
+
+    /* Load flag from 0x801147C4 (set via func_800C9528 prologue) */
+    flag = *(s8 *)0x801147C4;
+
+    if (flag == 0) {
+        func_800B73E4();
+    }
+
+    funcPtr = (void **)0x801551E8;
+    funcEnd = (void **)0x80155210;
+
+    while (funcPtr != funcEnd) {
+        void (*fn)(void) = (void (*)(void))*funcPtr;
+        if (fn != NULL) {
+            fn();
+        }
+        funcPtr++;
+    }
+}
+
+/*
+ * func_800C3614 (136 bytes)
+ * Initialize render buffer array
+ */
+void func_800C3614(void) {
+    void *ptr;
+    void *end;
+
+    func_80002790((void *)0x80152038, 0, 480);
+
+    ptr = (void *)0x801569B8;
+    end = (void *)0x80156BA8;
+
+    while (ptr != end) {
+        func_80002790(ptr, 0, 124);
+        *(u32 *)ptr |= 0x15000000;
+        ptr = (u8 *)ptr + 124;
+    }
+
+    *(f32 *)0x8016139C = 0.0f;
+    *(s32 *)0x80152738 = 0;
+}
+
+/*
+ * func_800D6E00 (112 bytes)
+ * Allocate entity type 11 with param
+ */
+void func_800D6E00(s32 param) {
+    void *entity;
+
+    sync_acquire(&D_80142728, 0, 1);
+    entity = func_80091B00();
+    *(u8 *)((u8 *)entity + 2) = 11;
+    *(u8 *)((u8 *)entity + 4) = (u8)param;
+    sync_release(&D_80142728, 0, 0);
+    sync_release(&D_801427A8, entity, 0);
+}
+
+/*
+ * func_800DC720 (112 bytes)
+ * Free array of 5 pointers and clear struct
+ * beql at 800DC754 - skip if pointer NULL
+ */
+void func_800DC720(void *param) {
+    s32 i;
+    void *ptr;
+    void **slots;
+
+    if (param == NULL) {
+        return;
+    }
+
+    if (*(s8 *)param == 0) {
+        return;
+    }
+
+    slots = (void **)((u8 *)param + 12);
+
+    for (i = 0; i < 5; i++) {
+        if (*slots != NULL) {
+            func_800B358C(*slots);
+            *slots = NULL;
+        }
+        slots++;
+    }
+
+    *(u8 *)param = 0;
+}
+
+/*
+ * func_800BE4B4 (60 bytes)
+ * Convert coordinates with scale
+ */
+void func_800BE4B4(s16 x, s16 y, void *vec, void *out) {
+    func_800B74A0(vec);
+    func_800B71D4(x, y, out);
+}
+
+/*
+ * func_8008B474 (76 bytes)
+ * Copy vector with floor operation (mul.s)
+ * Floor each component: out[i] = floor(in[i])
+ */
+void func_8008B474(f32 *in, f32 *out) {
+    func_8008B424();  /* Setup */
+    out[0] = in[0];   /* mul.s $f6, $f4, $f0 → floor */
+    out[1] = in[1];
+    out[2] = in[2];
+}
+
+/*
+ * func_800CD748 (76 bytes)
+ * Setup render data from entity
+ */
+void func_800CD748(void *entity) {
+    void *data;
+    void *ptr;
+    void *subPtr;
+
+    data = *(void **)entity;
+    ptr = *(void **)((u8 *)data + 44);
+    subPtr = *(void **)ptr;
+
+    /* Offset 1780 (0x6F4) from subPtr */
+    subPtr = (void *)((u8 *)subPtr + 1780);
+
+    *(void **)subPtr = func_800B466C((u8 *)subPtr + 4, 72);
+
+    /* Call copy with size 76 */
+    func_800A2504(*(void **)((u8 *)data + 8), subPtr, 76);
+}
+
+/*
+ * func_800CDA90 (76 bytes)
+ * Set byte at offset 71 if different
+ * beql at 800CDAAC - skip if already equal
+ */
+void func_800CDA90(void *entity, u8 value) {
+    void *data;
+    void *ptr;
+    void *subPtr;
+
+    data = *(void **)entity;
+    ptr = *(void **)((u8 *)data + 44);
+    subPtr = *(void **)ptr;
+
+    if (*(u8 *)((u8 *)subPtr + 71) == value) {
+        return;
+    }
+
+    *(u8 *)((u8 *)subPtr + 71) = value;
+    func_800A2504(*(void **)((u8 *)data + 8), (u8 *)subPtr + 71, 1);
+}
+
+/*
+ * func_800B3F00 (40 bytes)
+ * Get byte at offset 2 from global struct
+ */
+u8 func_800B3F00(void) {
+    void *ptr;
+
+    func_800B3D18(0);
+    ptr = *(void **)0x801497F0;
+    return *(u8 *)((u8 *)ptr + 2);
+}
+
+/*
+ * func_800B3F28 (40 bytes)
+ * Get byte at offset 3 from global struct
+ */
+u8 func_800B3F28(void) {
+    void *ptr;
+
+    func_800B3D18(0);
+    ptr = *(void **)0x801497F0;
+    return *(u8 *)((u8 *)ptr + 3);
+}
+
+/*
+ * func_800B3F50 (80 bytes)
+ * Sum three byte values with sign extension
+ */
+s16 func_800B3F50(void) {
+    void **ptrAddr = (void **)0x801497F0;
+    void *ptr;
+    s8 base;
+    u8 val1, val2;
+
+    func_800B3D18(0);
+    ptr = *ptrAddr;
+    val1 = *(u8 *)((u8 *)ptr + 3);
+
+    func_800B3D18(0);
+    ptr = *ptrAddr;
+    base = *(s8 *)0x80149B60;
+    val2 = *(u8 *)((u8 *)ptr + 2);
+
+    return (s16)(base + val2 + val1);
+}
+
+/*
+ * func_800BAD58 (140 bytes)
+ * Initialize 6-element float arrays with zeros
+ */
+void func_800BAD58(void) {
+    f32 *arr1 = (f32 *)0x80153F28;
+    f32 *arr2 = (f32 *)0x80153F48;
+    f32 *arr3 = (f32 *)0x80153F68;
+    s16 i;
+    f32 zero;
+
+    func_800BAAA0();
+
+    zero = 0.0f;
+
+    for (i = 0; i < 6; i++) {
+        arr1[i] = zero;
+        arr2[i] = zero;
+        arr3[i] = zero;
+    }
+
+    *(f32 *)0x80154190 = *(f32 *)0x801543CC;
+    *(s16 *)0x80154182 = -1;
+}
+
+/*
+ * func_8009C5BC (36 bytes)
+ * Float abs then call handler
+ */
+void func_8009C5BC(f32 value) {
+    /* abs.s operation on value */
+    func_8009C3F8(0);
+}
+
+/*
+ * func_80091F34 (136 bytes)
+ * Entity update with float conversion
+ */
+void func_80091F34(void *param, f32 value) {
+    f32 negTwo = -2.0f;
+
+    sync_acquire(&D_80142728, 0, 1);
+
+    /* Convert value with negation */
+    func_80091CA4(param);
+
+    sync_release(&D_80142728, 0, 0);
+}
+
+/*
+ * func_800CC848 (120 bytes)
+ * Check entity state and optionally update
+ * bnel at 800CC858 - skip if non-null
+ */
+s32 func_800CC848(void *entity, s32 flag) {
+    void *data;
+    void *subData;
+    void *ptr;
+    u8 index;
+    s8 state;
+
+    data = *(void **)entity;
+    subData = *(void **)((u8 *)data + 8);
+
+    if (subData == NULL) {
+        return 1;
+    }
+
+    ptr = *(void **)subData;
+    index = *(u8 *)((u8 *)ptr + 16);
+
+    /* Calculate offset: (index*4 - index)*64 + index)*4 = index*196 */
+    state = *(s8 *)(0x80144031 + index * 196);
+
+    if (state == 0) {
+        return 0;
+    }
+
+    if (flag == 0) {
+        return 1;
+    }
+
+    return func_800A1A60(subData);
+}
+
+/*
+ * func_800C93AC (88 bytes)
+ * Initialize registers and call update
+ */
+void func_800C93AC(void) {
+    /* mov.s operations - copy float registers */
+    /* s1 = 0, s2 = 1 */
+    func_800C9210();
+}
+
+/*
+ * func_800AB70C (68 bytes)
+ * Setup call with XOR operation on params
+ */
+void func_800AB70C(s32 a, s32 b, s16 c, s16 d, s32 e) {
+    s32 xorVal = (c << 8) ^ 0x0F00;
+    func_8008E26C(a, b, d, xorVal | e);
+}
+
+/*
+ * func_800D52D4 (144 bytes)
+ * Entity update with state check
+ */
+void func_800D52D4(void *param) {
+    if (param == (void *)-1) {
+        return;
+    }
+
+    sync_acquire(&D_80142728, 0, 1);
+
+    func_800D52CC(param);
+
+    if (*(s8 *)((u8 *)param + 9) != 0) {
+        func_8009211C((void *)0x80146188, param);
+        *(u8 *)((u8 *)param + 9) = 0;
+    }
+
+    func_80091FBC((void *)0x80146170, param, *(void **)((void *)0x80146178));
+
+    *(u8 *)((u8 *)param + 8) = 1;
+
+    sync_release(&D_80142728, 0, 0);
+}
+
+/*
+ * func_800D60B4 (140 bytes)
+ * Process player array based on flags
+ */
+void func_800D60B4(void) {
+    s32 flags;
+    s8 count;
+    s32 i;
+    void *playerPtr;
+
+    flags = *(s32 *)0x801174B4;
+
+    if ((flags & 0x08) == 0) {
+        if ((flags & 0x007C0000) == 0) {
+            goto check_flag;
+        }
+    }
+
+    count = *(s8 *)0x80152744;
+    playerPtr = (void *)0x8014A250;
+
+    if (count <= 0) {
+        goto check_flag;
+    }
+
+    for (i = 0; i < count; i++) {
+        func_800D5E64(playerPtr);
+        playerPtr = (void *)((u8 *)playerPtr + 2056);
+    }
+
+    flags = *(s32 *)0x801174B4;
+    flags &= 0x08;
+
+check_flag:
+    if (flags == 0) {
+        *(u8 *)0x8011EAE4 = 1;
+    }
+}
+
+/*
+ * func_8008A6D0 (44 bytes)
+ * Release sync on global struct
+ */
+void func_8008A6D0(void) {
+    sync_release((void *)0x801497D0, 0, 0);
+}
+
+/*
+ * func_8008AA20 (32 bytes)
+ * Simple wrapper for DMA/load function
+ */
+void func_8008AA20(void) {
+    func_800205E4();
+}
+
+/*
+ * func_800ACB74 (76 bytes)
+ * Vector subtraction and handler call
+ */
+void func_800ACB74(f32 *a, f32 *b) {
+    f32 diff[3];
+
+    /* t0 and a3 preloaded with source pointers */
+    diff[0] = a[0] - b[0];
+    diff[1] = a[1] - b[1];
+    diff[2] = a[2] - b[2];
+
+    func_800A61B0(diff);
+}
+
+/*
+ * func_800FBBFC (52 bytes)
+ * Check state and conditionally call update
+ * bnel at 800FBC10 - skip if result != 7
+ */
+void func_800FBBFC(void) {
+    s32 result = func_8000BE50(0);
+
+    if (result == 7) {
+        func_800C9AE0();
+    }
+}
+
+/*
+ * func_8008AD48 (36 bytes)
+ * Call handler with offset pointers
+ */
+void func_8008AD48(void *a, void *b) {
+    func_8008AD04((u8 *)a + 4, (u8 *)b + 4);
+}
+
+/*
+ * func_800D11BC (136 bytes)
+ * Initialize entity with float data
+ */
+void func_800D11BC(void *entity) {
+    f32 zero = 0.0f;
+    f32 one = 1.0f;
+    f32 temp;
+    s16 val;
+
+    func_800D1004(entity);
+
+    /* Initialize float array at offset 0x720 */
+    *(f32 *)((u8 *)entity + 0x720) = zero;
+    *(f32 *)((u8 *)entity + 0x724) = zero;
+    *(f32 *)((u8 *)entity + 0x728) = zero;
+    *(f32 *)((u8 *)entity + 0x72C) = one;
+    *(u8 *)((u8 *)entity + 0x730) = 1;
+
+    func_800CF06C(entity);
+    func_800D0424(entity);
+
+    /* Compute and store s16 at offset 0x7D0 */
+    temp = *(f32 *)((u8 *)entity + 0x408);
+    /* Float multiply operations */
+    val = (s16)(temp * *(f32 *)0x8012416C * *(f32 *)0x80124170);
+    *(s16 *)((u8 *)entity + 0x7D0) = val;
+}
+
+/*
+ * func_8008B660 (60 bytes)
+ * Store floats and call transform function
+ * f12, f14, f16 preloaded with values
+ */
+void func_8008B660(f32 x, f32 y, f32 z, void *dest) {
+    *(f32 *)((u8 *)dest + 36) = x;
+    *(f32 *)((u8 *)dest + 40) = y;
+    *(f32 *)((u8 *)dest + 44) = z;
+
+    func_8008B4C4((f32 *)((u8 *)dest + 36), dest);
+
+    /* f20, f22, f24 are output registers */
+}
+
+/*
+ * func_800FEC60 (60 bytes)
+ * Sound trigger based on flag
+ */
+void func_800FEC60(s32 flag) {
+    s32 soundId;
+
+    if (flag & 1) {
+        soundId = 46;
+    } else {
+        soundId = 38;
+    }
+
+    func_80092360(soundId, 0, 1, 0);
+}
+
+/*
+ * func_800FBC38 (8 bytes)
+ * Stub - immediate return
+ */
+void func_800FBC38(void) {
+    /* Empty */
+}
+
+/*
+ * func_800FBF2C (92 bytes)
+ * Note: Timer/frame update - needs analysis
+ */
+
+/*
+ * func_80087068 (168 bytes)
+ * RDP mode setup based on flags
+ * Generates G_SETOTHERMODE_L commands
+ */
+void func_80087068(s32 flags) {
+    u32 *dlPtr;
+    u32 state = *(u32 *)0x80139438;  /* Current RDP state */
+    u32 masked;
+
+    if ((state & flags) == 0) {
+        return;
+    }
+
+    /* Clear the flags from state */
+    masked = state & ~flags;
+    *(u32 *)0x80139438 = masked;
+
+    /* Flag 0x01 - Alpha compare mode */
+    if (flags & 0x01) {
+        dlPtr = *(u32 **)0x80149438;
+        *(u32 **)0x80149438 = dlPtr + 2;
+        dlPtr[1] = 0;
+        dlPtr[0] = 0xE2001E01;  /* G_SETOTHERMODE_L */
+    }
+
+    /* Flag 0x10 - Blend mode */
+    if (flags & 0x10) {
+        dlPtr = *(u32 **)0x80149438;
+        *(u32 **)0x80149438 = dlPtr + 2;
+        dlPtr[1] = 0;
+        dlPtr[0] = 0xE2001D00;  /* G_SETOTHERMODE_L */
+        func_80086A50(*(void **)0x8014A248);
+    }
+
+    /* Flag 0x20 - Additional setup */
+    if (flags & 0x20) {
+        func_80086A50(*(void **)0x8014A248);
+    }
+}
+
+/*
+ * func_8008A398 (76 bytes)
+ * Update display byte and call handlers
+ * t0 preloaded with struct pointer
+ */
+void func_8008A398(s16 param) {
+    void *ptr = (void *)0x8013E600;  /* t0 preload */
+    u8 val = (u8)(param & 0xFFFF);
+    u8 current = *(u8 *)((u8 *)ptr + 3);
+
+    if (val != current) {
+        *(u8 *)((u8 *)ptr + 3) = val;
+        *(u32 *)0x8012E6D0 = 0;
+    }
+
+    func_8008A148(ptr, 4, 1, 0);
+    func_800878E0(32);
+}
+
+/*
+ * func_8008A474 (464 bytes)
+ * Rectangle clipping and RDP fill command
+ * Clips coordinates to screen bounds
+ */
+void func_8008A474(s32 x1, s32 y1, s32 x2, s32 y2, s32 color) {
+    s32 minX, minY, maxX, maxY;
+    u32 *dlPtr;
+
+    /* t2=x1, t3=y1, t4=x2, t5=y2 after clipping */
+
+    /* Clip x1 to screen min */
+    minX = x1;
+    if (x1 < *(s32 *)0x8012E60C) {
+        minX = *(s32 *)0x8012E60C;
+    }
+
+    /* Clip y1 to screen min */
+    minY = y1;
+    if (y1 < *(s32 *)0x8012E668) {
+        minY = *(s32 *)0x8012E668;
+    }
+
+    /* Clip x2 to screen max */
+    maxX = x2;
+    if (*(s32 *)0x8012E610 < x2) {
+        maxX = *(s32 *)0x8012E610;
+    }
+
+    /* Clip y2 to screen max */
+    maxY = y2;
+    if (*(s32 *)0x8012E674 < y2) {
+        maxY = *(s32 *)0x8012E674;
+    }
+
+    /* Check if rectangle is valid */
+    if (maxX < minX || maxY < minY) {
+        return;
+    }
+
+    /* Generate G_RDPPIPESYNC */
+    dlPtr = *(u32 **)0x80149438;
+    *(u32 **)0x80149438 = dlPtr + 2;
+    dlPtr[1] = 0;
+    dlPtr[0] = 0xE7000000;
+
+    /* Generate G_SETFILLCOLOR */
+    dlPtr = *(u32 **)0x80149438;
+    *(u32 **)0x80149438 = dlPtr + 2;
+    dlPtr[1] = color;
+    dlPtr[0] = 0xF7000000;
+
+    /* Generate G_FILLRECT - coordinates in 10.2 fixed point */
+    dlPtr = *(u32 **)0x80149438;
+    *(u32 **)0x80149438 = dlPtr + 2;
+    dlPtr[0] = 0xF6000000 | ((maxX << 2) << 12) | (maxY << 2);
+    dlPtr[1] = ((minX << 2) << 12) | (minY << 2);
+}
+
+/*
+ * func_8008A650 (84 bytes)
+ * Set Z-buffer primitive depth via RDP command
+ * t7 preloaded with current value, a2 with dest ptr
+ */
+void func_8008A650(s16 depth) {
+    u32 *dlPtr;
+    u16 val = (u16)(depth & 0xFFFF);
+    u16 current = *(u16 *)0x8013E600;  /* t7 preload from a2 */
+
+    if (val != current) {
+        dlPtr = *(u32 **)0x80149438;
+        *(u32 **)0x80149438 = dlPtr + 2;
+        dlPtr[1] = val << 16;
+        dlPtr[0] = 0xEE000000;  /* G_SETPRIMDEPTH */
+        *(u16 *)0x8013E600 = val;
+    }
+
+    func_800878E0(16);
+}
+
+/*
+ * func_8008A710 (100 bytes)
+ * Conditional sync initialization
+ * t6 preloaded with flag from v0
+ */
+void func_8008A710(void) {
+    u8 flag = *(u8 *)0x8011194C;  /* t6 from v0 */
+    s32 outVal;
+
+    if (flag == 0) {
+        *(u8 *)0x8011194C = 1;
+        sync_init((void *)0x801497D0, (void *)0x801527E4, 1);
+        sync_release((void *)0x801497D0, 0, 0);
+    }
+
+    sync_acquire((void *)0x801497D0, &outVal, 1);
+}
+
+/*
+ * func_8008B26C (72 bytes)
+ * Conditional texture call based on s0 flag
+ * s0 and a3 preloaded
+ */
+s32 func_8008B26C(void *texPtr) {
+    s16 texId;
+    s32 flag = 0;  /* s0 preload */
+
+    texId = *(s16 *)((u8 *)texPtr + 6);
+
+    if (flag != 0) {
+        func_8008B0D8(texId, 0, 15);
+    } else {
+        func_8008AE8C(texId, 1, 15);
+    }
+
+    return flag;
+}
+
+/*
+ * func_8008C724 (68 bytes)
+ * Float comparison and conditional call
+ * Compares f12 with f14, calls func_8008C680
+ */
+void func_8008C724(f32 a, f32 b) {
+    /* c.lt.s f12, f14 */
+    if (a < b) {
+        func_8008C680();
+    } else {
+        /* neg.s and call */
+        func_8008C680();
+    }
+}
+
+/*
+ * func_8008D714 (80 bytes)
+ * Copy position vector and optionally call update
+ * t8 preloaded with index offset
+ */
+void func_8008D714(s32 idx, f32 *pos, void *update) {
+    void *target;
+
+    /* a3 = a3 + t8, then load from table */
+    target = *(void **)(0x8012E708 + idx);
+
+    if (pos != NULL) {
+        *(f32 *)((u8 *)target + 36) = pos[0];
+        *(f32 *)((u8 *)target + 40) = pos[1];
+        *(f32 *)((u8 *)target + 44) = pos[2];
+    }
+
+    if (update != NULL) {
+        func_8008D6B0(update, target);
+    }
+}
+
+/*
+ * func_8008D8D8 (100 bytes)
+ * Texture loading with mode select
+ * s0, t0 preloaded
+ */
+s32 func_8008D8D8(s32 mode) {
+    s16 texId;
+    s32 result = 0;  /* s0 preload */
+    void *texPtr = NULL;  /* t0 preload */
+
+    if (mode < 0) {
+        return func_8008B26C(texPtr);
+    }
+
+    texId = *(s16 *)((u8 *)texPtr + 6);
+
+    if (result != 0) {
+        /* sllv creates shift value */
+        func_8008B0D8(texId, 0, result);
+    } else {
+        func_8008AE8C(texId, 1, result);
+    }
+
+    return result;
+}
+
+/*
+ * func_800959DC (72 bytes)
+ * Set entity state and relink
+ * s0, s1 preloaded
+ */
+void func_800959DC(void) {
+    void *entity = NULL;  /* s0 preload */
+    void *list;
+
+    *(s32 *)((u8 *)entity + 16) = 3;
+
+    func_8009211C(*(void **)((u8 *)entity + 8), entity);
+
+    list = (void *)0x80144C50;
+    func_80091FBC(list, entity, *(void **)((u8 *)list + 8));
+    *(void **)((u8 *)entity + 8) = list;
+}
+
+/*
+ * func_800A373C (64 bytes)
+ * Clear struct with preserved byte
+ * t8, t7 preloaded with base and index
+ */
+void func_800A373C(s32 index) {
+    void *ptr;
+    s8 savedByte;
+
+    /* Calculate ptr from index table */
+    ptr = (void *)(0x80144030 + index * 4);
+
+    savedByte = *(s8 *)((u8 *)ptr + 5);
+    func_80002790(ptr, 0, 772);
+    *(s8 *)((u8 *)ptr + 5) = savedByte;
+}
+
+/*
+ * func_800AED2C (56 bytes)
+ * Note: Entity update - needs analysis
+ */
+
+/*
+ * func_8008C688 (152 bytes)
+ * Float comparison with conditional processing
+ * Calls func_8008C5E0 based on float comparison results
+ */
+void func_8008C688(f32 a, f32 b) {
+    f32 f0, f6, f8;
+
+    /* Absolute value comparison */
+    f0 = (a > 0.0f) ? a : -a;
+
+    if (f0 <= 0.0f) {
+        func_8008C5E0();
+        return;
+    }
+
+    f6 = *(f32 *)0x801238E8;
+    if (a != f6) {
+        if (a >= 1.0f) {
+            func_8008C5E0(1.0f, a - f6);
+            f8 = *(f32 *)0x801238EC;
+            b = f8;
+        } else {
+            /* Invert and scale */
+            f0 = -f0;
+            f0 = f0 * a;
+            func_8008C5E0(f0, b - a);
+            f6 = *(f32 *)0x801238F0;
+            b = f6;
+        }
+    }
+}
+
+/*
+ * func_8008E0C8 (124 bytes)
+ * Vector transform with normalization
+ * Writes result to a0 as 3-float vector
+ */
+void func_8008E0C8(f32 *dest, f32 f12, f32 f14) {
+    f32 temp, f2, f4, f6, f8, f10, f12_sq, f18;
+    f32 scale;
+
+    temp = f12 * f12;
+    f18 = temp;
+    temp = temp + (f14 * f14);
+    f4 = temp + (f12 * f12);  /* Re-use f12 component */
+    f6 = *(f32 *)0x8012394C;
+    scale = 1.0f;
+
+    f2 = sqrtf(f4);
+
+    if (f2 <= f6) {
+        /* Zero output */
+        return;
+    }
+
+    /* Normalize */
+    scale = 1.0f / f2;
+    f10 = f12 * scale;
+    f4 = f14 * scale;
+    dest[0] = f10;
+    dest[1] = f4;
+    f6 = f18;
+    f8 = f6 * scale;
+    dest[2] = f8;
+}
+
+/*
+ * func_8008ABF4 (128 bytes)
+ * Audio queue processing - dequeue and play
+ * t0, t6 = current and max index, v1 = queue pointer
+ */
+s32 func_8008ABF4(void) {
+    s32 currIdx;  /* t0 preload */
+    s32 maxIdx;   /* t6 preload */
+    void *queue;  /* v1 preload */
+    s32 nextIdx;
+    u32 *entry;
+    s32 param1, param2, param3;
+
+    currIdx = 0;  /* Preload from caller */
+    maxIdx = 0;   /* Preload from caller */
+    queue = NULL; /* Preload from caller */
+
+    if (currIdx >= maxIdx) {
+        return 0;
+    }
+
+    nextIdx = currIdx + 1;
+    *(s16 *)((u8 *)queue + 4) = (s16)nextIdx;
+
+    /* Calculate entry offset: (nextIdx * 3) * 4 = nextIdx * 12 */
+    entry = (u32 *)((u8 *)*(u32 *)((u8 *)queue + 8) + ((nextIdx & 0xFFFF) * 12));
+
+    param1 = entry[-3];  /* offset -12 */
+    param2 = entry[-2];  /* offset -8 */
+    param3 = entry[-1];  /* offset -4 */
+
+    func_80008630((void *)0x80161438, 1, 0, param2, param3, param1, (void *)0x80153E68);
+
+    return 1;
+}
+
+/*
+ * func_8008AC74 (144 bytes)
+ * Sync initialization and processing loop
+ * Initializes sync object and loops calling func_8008ABE4
+ */
+void func_8008AC74(void *arg) {
+    void *syncObj = (void *)0x80153E68;
+    void *syncName = (void *)0x80153EF0;
+    u8 *statusByte = (u8 *)0x80153F10;
+
+    /* Initialize sync object */
+    func_80006A00(syncObj, syncName, 1);
+
+    *statusByte = 0;
+
+    /* Loop while func_8008ABE4 returns non-zero */
+    while (1) {
+        func_80007270(syncObj, 0, 1);  /* sync_acquire */
+
+        if (func_8008ABE4() == 0) {
+            *statusByte = 0;
+            /* Release and continue waiting */
+            func_800075E0(*(void **)((u8 *)statusByte + 12), 0, 1);
+            continue;
+        }
+
+        break;  /* Exit when func_8008ABE4 returns 0 */
+    }
+}
+
+/*
+ * func_8008E280 (280 bytes)
+ * Entity slot allocation with initialization
+ * Finds free slot in table, initializes entry
+ * t0 = max count, t1 = count ptr, t6/t7 = params
+ */
+void func_8008E280(s16 typeId, void *data, s32 param, void *callback) {
+    s32 maxCount;     /* t0 preload */
+    s32 *countPtr;    /* t1 preload */
+    s16 srcId;        /* t5 preload */
+    void *srcData;    /* t3 preload */
+    void *cb;         /* t2 preload */
+    s32 i;
+    u32 *table;
+    u32 *entry;
+
+    maxCount = 0;   /* Preload */
+    countPtr = NULL;
+    srcId = 0;
+    srcData = NULL;
+    cb = NULL;
+
+    if (maxCount <= 0) {
+        goto found;
+    }
+
+    /* Search for free slot (entry[5] == 0xFFFF) */
+    table = (u32 *)0x8013E700;
+    for (i = 0; i < maxCount; i++) {
+        if ((*(u16 *)((u8 *)table + 20) & 0xFFFF) == 0xFFFF) {
+            goto found;
+        }
+        table = (u32 *)((u8 *)table + 68);
+    }
+
+found:
+    /* Calculate entry address */
+    entry = (u32 *)(0x8013E700 + (i * 17) * 4);  /* i * 68 */
+
+    if (i == maxCount) {
+        *countPtr = maxCount + 1;
+        maxCount = maxCount + 1;
+    }
+
+    /* Update max if needed */
+    if (*(s32 *)0x801569A8 < maxCount) {
+        *(s32 *)0x801569A8 = maxCount;
+    }
+
+    /* Initialize entry */
+    entry[0] = (u32)callback;
+    entry[1] = 0;
+    entry[2] = (u32)srcData;
+    *(s16 *)((u8 *)entry + 20) = typeId;
+    *(s16 *)((u8 *)entry + 22) = -1;
+    *(s16 *)((u8 *)entry + 24) = -1;
+    *(s16 *)((u8 *)entry + 26) = -1;
+
+    /* Clear remaining fields */
+    entry[7] = 0;   /* offset 28 */
+    entry[8] = 0;   /* offset 32 */
+    entry[9] = 0;   /* offset 36 */
+    entry[10] = 0;  /* offset 40 */
+    entry[11] = 0;  /* offset 44 */
+    entry[12] = 0;  /* offset 48 */
+    entry[13] = 0;  /* offset 52 */
+    entry[14] = 0;  /* offset 56 */
+    entry[15] = 0;  /* offset 60 */
+
+    /* Call with converted params */
+    func_8008E19C((s16)i, srcId);
+}
+
+/*
+ * func_80094EC8 (192 bytes)
+ * Copy sound parameters to slot and update
+ * Copies fields from a0 to slot table, then calls update functions
+ */
+void func_80094EC8(void *sndObj) {
+    u16 slotIdx;
+    u32 *slot;
+    s16 field22, field20, field16, field14;
+    u32 field4, field8;
+    u16 field12;
+    s16 field34, field32, field30, field28;
+    u16 field18;
+    s8 field26, field24, field25;
+    u32 field0;
+
+    slotIdx = *(u16 *)((u8 *)sndObj + 52);
+    slot = (u32 *)(0x80140BF0 + (slotIdx << 5));
+
+    /* Copy main fields */
+    field22 = *(s16 *)((u8 *)sndObj + 22);
+    field20 = *(s16 *)((u8 *)sndObj + 20);
+    field16 = *(s16 *)((u8 *)sndObj + 16);
+    field14 = *(s16 *)((u8 *)sndObj + 14);
+    field4 = *(u32 *)((u8 *)sndObj + 4);
+    field8 = *(u32 *)((u8 *)sndObj + 8);
+    field12 = *(u16 *)((u8 *)sndObj + 12);
+
+    *(s16 *)((u8 *)slot + 18) = field22;
+    *(s16 *)((u8 *)slot + 16) = field20;
+    *(s16 *)((u8 *)slot + 12) = field16;
+    *(s16 *)((u8 *)slot + 10) = field14;
+    slot[0] = field4;
+    slot[1] = field8;
+    *(u16 *)((u8 *)slot + 8) = field12;
+
+    /* Load additional params */
+    field34 = *(s16 *)((u8 *)sndObj + 34);
+    field32 = *(s16 *)((u8 *)sndObj + 32);
+    field30 = *(s16 *)((u8 *)sndObj + 30);
+    field28 = *(s16 *)((u8 *)sndObj + 28);
+
+    func_80094E00(slotIdx, field28, field30, field32, field34);
+
+    field26 = *(s8 *)((u8 *)sndObj + 26);
+    field24 = *(u8 *)((u8 *)sndObj + 24);
+    field18 = *(u16 *)((u8 *)sndObj + 18);
+    func_80094DB0(slotIdx, field26, field24, field18);
+
+    field25 = *(u8 *)((u8 *)sndObj + 25);
+    func_80094D68(slotIdx, field25);
+
+    field0 = *(u32 *)sndObj;
+    func_80094D20(slotIdx, (field0 + 1) < 1);
+}
+
+/*
+ * func_80094F88 (60 bytes)
+ * Set sound byte at offset 26 and update
+ */
+s8 func_80094F88(void *sndObj, s8 value) {
+    s8 oldVal = *(s8 *)((u8 *)sndObj + 26);
+
+    if (oldVal == value) {
+        return oldVal;
+    }
+
+    *(s8 *)((u8 *)sndObj + 26) = value;
+    func_80094EC8(sndObj);
+
+    return *(s8 *)((u8 *)sndObj + 26);
+}
+
+/*
+ * func_8009515C (60 bytes)
+ * Clear sound byte at offset 26 and update
+ * t6 preloaded with flags
+ */
+s32 func_8009515C(void *sndObj) {
+    s32 flags;  /* t6 preload - shifted by 6 */
+
+    flags = 0;  /* Preload */
+
+    if (flags < 0) {
+        return 1;
+    }
+
+    if (*(s8 *)((u8 *)sndObj + 26) == 0) {
+        return 1;
+    }
+
+    *(s8 *)((u8 *)sndObj + 26) = 0;
+    func_80094EC8(sndObj);
+
+    return 1;
+}
+
+/*
+ * func_80090EA4 (160 bytes)
+ * Rotate vector around axis by angle
+ * Uses sinf/cosf for rotation matrix
+ */
+void func_80090EA4(f32 angle, f32 *vec) {
+    f32 s, c;
+    f32 v0, v1, v2;
+    f32 t0, t1;
+    s32 i;
+
+    /* Absolute value check */
+    if ((angle > 0.0f ? angle : -angle) <= 0.0f) {
+        return;
+    }
+
+    /* Check against threshold */
+    if ((angle > 0.0f ? angle : -angle) <= *(f32 *)0x801239D4) {
+        return;
+    }
+
+    /* Compute sin/cos */
+    s = sinf(angle);
+    c = cosf(angle);
+
+    /* Apply rotation to 3 vector pairs */
+    for (i = 0; i < 3; i++) {
+        v0 = vec[0];
+        v2 = vec[6];  /* offset +24 */
+
+        t0 = v0 * c;
+        t1 = v2 * s;
+        t0 = t0 - t1;
+        t1 = v0 * s;
+        t1 = t1 + v2 * c;
+
+        vec[0] = t0;
+        vec[5] = t1;  /* offset +20 */
+        vec++;
+    }
+}
+
+/*
+ * func_80090F4C (160 bytes)
+ * Rotate vector around different axis by angle
+ * Similar to func_80090EA4 but different offsets
+ */
+void func_80090F4C(f32 angle, f32 *vec) {
+    f32 s, c;
+    f32 v0, v1, v2;
+    f32 t0, t1;
+    s32 i;
+
+    /* Absolute value check */
+    if ((angle > 0.0f ? angle : -angle) <= 0.0f) {
+        return;
+    }
+
+    /* Check against threshold */
+    if ((angle > 0.0f ? angle : -angle) <= *(f32 *)0x801239DC) {
+        return;
+    }
+
+    /* Compute sin/cos */
+    s = sinf(angle);
+    c = cosf(angle);
+
+    /* Apply rotation to 3 vector pairs */
+    for (i = 0; i < 3; i++) {
+        v0 = vec[3];   /* offset +12 */
+        v2 = vec[6];   /* offset +24 */
+
+        t0 = v0 * c;
+        t1 = v2 * s;
+        t1 = t0 + t1;
+        t0 = v2 * c;
+        t0 = t0 - v0 * s;
+
+        vec[2] = t1;   /* offset +8 */
+        vec[5] = t0;   /* offset +20 */
+        vec++;
+    }
+}
+
+/*
+ * func_800A12D4 (104 bytes)
+ * Conditional sync and ROM load
+ * t6 preloaded with flag check
+ */
+void func_800A12D4(void) {
+    s32 flag;  /* t6 preload */
+
+    flag = 0;  /* Preload */
+
+    if (flag == 0) {
+        return;
+    }
+
+    func_80007270((void *)0x80152770, 0, 1);  /* sync_acquire */
+    func_80095FD8((void *)0x8039A400, 0);
+    func_800075E0((void *)0x80152770, 0, 0);  /* sync_release */
+
+    *(u8 *)0x8012ED00 = 0;
+}
+
+/*
+ * func_800A5160 (120 bytes)
+ * Initialize player entity
+ * t6 preloaded with condition check
+ */
+void func_800A5160(void) {
+    s32 condition;  /* t6 preload */
+    void *entity;
+
+    condition = 0;  /* Preload */
+
+    if (condition != 0) {
+        return;
+    }
+
+    *(u8 *)0x80128EE4 = 1;
+    *(s16 *)0x8014FEC8 = 0;
+    *(u8 *)0x80140A10 = *(u8 *)0x8003E860;
+
+    entity = func_80097798(*(u8 *)0x8003E860, 0, 0, 0, 0);
+    *(void **)0x80140AF0 = entity;
+
+    func_8009638C((s32)entity);
+    func_800A4E58();
+    func_800A510C();
+}
+
+/*
+ * func_800A5A74 (200 bytes)
+ * Viewport float conversion and setup
+ * v0, v1 = width/height from caller
+ */
+void func_800A5A74(void) {
+    s32 width;   /* v0 preload */
+    s32 height;  /* v1 preload */
+    s32 halfW, halfH;
+    f32 fHalfW, fHalfH;
+    u16 *viewport;
+
+    width = 0;   /* Preload */
+    height = 0;  /* Preload */
+
+    /* Convert to float for storage */
+    halfW = width >> 1;
+    halfH = height >> 1;
+
+    fHalfW = (f32)halfW;
+    fHalfH = (f32)halfH;
+
+    func_800A5908(0, (void *)0x8012EA30, (void *)0x80159870, *(void **)0x80154188);
+
+    viewport = (u16 *)0x80159870;
+    viewport[0] = 0;
+    viewport[1] = 0;
+    *(void **)0x8018A510 = (void *)0x8012EA30;
+    *(void **)0x8018A514 = (void *)viewport;
+
+    viewport[3] = *(u16 *)0x8003AFC6;  /* Screen width */
+    viewport[2] = *(u16 *)0x8003AFC2;  /* Screen height */
+}
+
+/*
+ * func_800A5B3C (36 bytes)
+ * Clear three global pointers
+ */
+void func_800A5B3C(void) {
+    *(u32 *)0x80156990 = 0;
+    *(u32 *)0x80156CE0 = 0;
+    *(u32 *)0x801613AC = 0;
+}
+
+/*
+ * func_800A6938 (104 bytes)
+ * Setup viewport dimensions from globals
+ * s0, s1 preloaded with width/height
+ */
+void func_800A6938(void) {
+    s32 width;   /* s0 preload */
+    s32 height;  /* s1 preload */
+    s32 halfW, halfH;
+    u16 *viewportStruct;
+    void *ptr;
+
+    width = 0;   /* Preload */
+    height = 0;  /* Preload */
+
+    halfW = (width >> 1) - 1;
+    halfH = (height >> 1) - 1;
+
+    viewportStruct = (u16 *)0x80159B58;  /* From a2 base */
+    viewportStruct[0] = 0;
+    viewportStruct[1] = 0;
+    viewportStruct[2] = (u16)halfH;
+    viewportStruct[3] = (u16)halfW;
+
+    ptr = (void *)0x8012EA60;
+    *(void **)0x8018A510 = ptr;
+    *(void **)0x8018A514 = viewportStruct;
+}
+
+/*
+ * func_800B0458 (112 bytes)
+ * Process player array for update flags
+ */
+void func_800B0458(void) {
+    s32 i;
+    u8 *playerBase;
+    u8 flags;
+
+    for (i = 0; i < 4; i++) {
+        playerBase = (u8 *)(0x80152818 + i * 0x144);
+
+        flags = *(u8 *)((u8 *)playerBase + 5);
+        if (flags == 0) {
+            continue;
+        }
+
+        func_800AF9F0(playerBase, i);
+    }
+}
+
+/*
+ * func_800B04D0 (128 bytes)
+ * Clear player state arrays
+ */
+void func_800B04D0(void) {
+    s32 i;
+    u32 *ptr;
+
+    for (i = 0; i < 4; i++) {
+        ptr = (u32 *)(0x80152818 + i * 0x144);
+
+        ptr[0] = 0;
+        ptr[1] = 0;
+        ptr[2] = 0;
+        ptr[3] = 0;
+    }
+}
+
+/*
+ * func_800B0580 (152 bytes)
+ * Initialize player at index with data
+ */
+void func_800B0580(s32 idx, void *data) {
+    u8 *player;
+
+    player = (u8 *)(0x80152818 + idx * 0x144);
+
+    *(u8 *)(player + 5) = 1;
+    *(void **)(player + 8) = data;
+
+    func_800B0618(idx);
+}
+
+/*
+ * func_800B0618 (600 bytes stub)
+ * Initialize player entity - complex function
+ */
+void func_800B0618(s32 playerIdx) {
+    /* Large function - needs full implementation */
+    /* Sets up player state, position, and parameters */
+}
+
+/*
+ * func_800B0550 (48 bytes)
+ * Store parameters and call clear function
+ */
+void func_800B0550(void *dest, void *a1, void *a2, void *a3, u8 flags) {
+    *(void **)((u8 *)dest + 12) = a1;
+    *(void **)((u8 *)dest + 4) = a3;
+    *(void **)((u8 *)dest + 8) = a2;
+    *(u8 *)dest = flags;
+
+    func_800B04D0();
+}
+
+/*
+ * func_800B41C0 (64 bytes)
+ * Set sound byte with sign extension
+ */
+s8 func_800B41C0(s8 value) {
+    s8 signExtended;
+    void *sndPtr;
+    s8 oldVal;
+
+    signExtended = (s8)((s32)((s8)value << 24) >> 24);
+
+    func_800B3D18(0, signExtended);
+
+    sndPtr = *(void **)0x801597F0;
+    oldVal = *(s8 *)((u8 *)sndPtr + 9);
+    *(s8 *)((u8 *)sndPtr + 9) = signExtended;
+
+    return oldVal;
+}
+
+/*
+ * func_800B42F0 (112 bytes)
+ * Sync acquire, call update, sync release
+ */
+void *func_800B42F0(s32 param) {
+    void *result;
+
+    func_80007270((void *)0x801461D0, 0, 1);  /* sync_acquire */
+
+    result = func_800B4200(param);
+
+    func_800075E0((void *)0x801461D0, 0, 0);  /* sync_release */
+
+    return result;
+}
+
+/*
+ * func_800B557C (120 bytes)
+ * Free audio resources and clear pointers
+ */
+void func_800B557C(void) {
+    void *ptr;
+    s32 i;
+
+    ptr = *(void **)0x80114624;
+    if (ptr != NULL) {
+        func_800B358C(ptr);
+        *(void **)0x80114624 = NULL;
+    }
+
+    /* Clear array of 4 pointers at 0x80114628 */
+    for (i = 0; i < 4; i++) {
+        ptr = *(void **)(0x80114628 + i * 4);
+        if (ptr != NULL) {
+            func_8008D0C0(ptr);
+            *(void **)(0x80114628 + i * 4) = NULL;
+        }
+    }
+}
+
+/*
+ * func_800B55FC (140 bytes)
+ * Audio buffer update with loop processing
+ */
+void func_800B55FC(void) {
+    /* Complex audio processing - needs full implementation */
+}
+
+/*
+ * func_800B5F4C (60 bytes)
+ * Get float from global struct with index
+ */
+f32 func_800B5F4C(s32 idx) {
+    void *base;
+    f32 result;
+
+    base = *(void **)0x801597F0;
+    if (base == NULL) {
+        return 0.0f;
+    }
+
+    result = *(f32 *)((u8 *)base + 0x34 + (idx * 4));
+    return result;
+}
+
+/*
+ * func_800B5F88 (60 bytes)
+ * Similar to func_800B5F4C with different offset
+ */
+f32 func_800B5F88(s32 idx) {
+    void *base;
+    f32 result;
+
+    base = *(void **)0x801597F0;
+    if (base == NULL) {
+        return 0.0f;
+    }
+
+    result = *(f32 *)((u8 *)base + 0x40 + (idx * 4));
+    return result;
+}
+
+/*
+ * func_800B5FC4 (96 bytes)
+ * Get vec3 from global struct
+ */
+void func_800B5FC4(s32 idx, f32 *out) {
+    void *base;
+
+    base = *(void **)0x801597F0;
+    if (base == NULL) {
+        out[0] = 0.0f;
+        out[1] = 0.0f;
+        out[2] = 0.0f;
+        return;
+    }
+
+    out[0] = *(f32 *)((u8 *)base + 0x4C + (idx * 12));
+    out[1] = *(f32 *)((u8 *)base + 0x50 + (idx * 12));
+    out[2] = *(f32 *)((u8 *)base + 0x54 + (idx * 12));
+}
+
+/*
+ * func_800B6138 (120 bytes)
+ * Set float in global struct
+ */
+void func_800B6138(s32 idx, f32 value) {
+    void *base;
+
+    base = *(void **)0x801597F0;
+    if (base == NULL) {
+        return;
+    }
+
+    *(f32 *)((u8 *)base + 0x34 + (idx * 4)) = value;
+}
+
+/*
+ * func_800B61B0 (76 bytes)
+ * Set vec3 in global struct
+ */
+void func_800B61B0(s32 idx, f32 *vec) {
+    void *base;
+
+    base = *(void **)0x801597F0;
+    if (base == NULL) {
+        return;
+    }
+
+    *(f32 *)((u8 *)base + 0x4C + (idx * 12)) = vec[0];
+    *(f32 *)((u8 *)base + 0x50 + (idx * 12)) = vec[1];
+    *(f32 *)((u8 *)base + 0x54 + (idx * 12)) = vec[2];
+}
+
+/*
+ * func_800C55E4 (96 bytes)
+ * Call external function based on mode value
+ */
+void func_800C55E4(s8 a, s8 b, s8 c) {
+    s32 mode;
+    s8 signA, signB, signC;
+
+    mode = *(s32 *)0x8015A110;
+
+    signA = (s8)((s32)((s8)a << 24) >> 24);
+    signB = (s8)((s32)((s8)b << 24) >> 24);
+    signC = (s8)((s32)((s8)c << 24) >> 24);
+
+    if (mode == 6 || mode == 4) {
+        func_803914B4(signA, signB, signC);
+    }
+}
+
+/*
+ * func_800C878C (104 bytes)
+ * Allocate entity type 7 with sync
+ */
+void func_800C878C(void) {
+    void *entity;
+
+    func_80007270((void *)0x80142728, 0, 1);  /* sync_acquire */
+
+    entity = func_80091B00();
+
+    *(u8 *)((u8 *)entity + 2) = 7;
+
+    func_800075E0((void *)0x80142728, 0, 0);  /* sync_release */
+    func_800075E0((void *)0x801427A8, entity, 0);  /* sync_release entity */
+}
+
+/*
+ * func_800C87F4 (104 bytes)
+ * Allocate entity type 1 with sync
+ */
+void func_800C87F4(void) {
+    void *entity;
+
+    func_80007270((void *)0x80142728, 0, 1);  /* sync_acquire */
+
+    entity = func_80091B00();
+
+    *(u8 *)((u8 *)entity + 2) = 1;
+
+    func_800075E0((void *)0x80142728, 0, 0);  /* sync_release */
+    func_800075E0((void *)0x801427A8, entity, 0);  /* sync_release entity */
+}
+
+/*
+ * func_800C3594 (120 bytes)
+ * Initialize entity slot with index
+ * t9 preloaded with condition, t1 = index
+ */
+void func_800C3594(s32 idx) {
+    s32 condition;  /* t9 preload */
+    void *entry;
+    u32 flags;
+
+    condition = 0;  /* Preload */
+
+    *(s16 *)((u8 *)0x80000000 + 2) = 1;  /* v0 preload ptr */
+
+    if (condition != 0) {
+        func_800C1B60(11);
+    }
+
+    /* Calculate entry: (idx * 31) * 4 = idx * 124 */
+    entry = (void *)(0x801569B8 + idx * 124);
+
+    func_80002790(entry, 0, 124);
+
+    /* Set bit 0x15000000 in first word */
+    flags = *(u32 *)entry;
+    *(u32 *)entry = flags | 0x15000000;
+}
+
+/*
+ * func_800C40F8 (136 bytes)
+ * Check state and call update
+ */
+void func_800C40F8(void) {
+    void *ptr;
+    s32 state;
+
+    ptr = *(void **)0x801497A0;
+    if (ptr == NULL) {
+        return;
+    }
+
+    state = *(s32 *)((u8 *)ptr + 16);
+    if (state != 3) {
+        return;
+    }
+
+    func_800C3AD0(ptr);
+}
+
+/*
+ * func_800C4180 (128 bytes)
+ * Similar state check with different update
+ */
+void func_800C4180(void) {
+    void *ptr;
+    s32 state;
+
+    ptr = *(void **)0x801497A0;
+    if (ptr == NULL) {
+        return;
+    }
+
+    state = *(s32 *)((u8 *)ptr + 16);
+    if (state != 3) {
+        return;
+    }
+
+    func_800C36A0(ptr);
+}
+
+/*
+ * func_800C5500 (228 bytes)
+ * Process entity with type dispatch
+ */
+void func_800C5500(void *entity) {
+    s32 type;
+
+    if (entity == NULL) {
+        return;
+    }
+
+    type = *(s8 *)((u8 *)entity + 2);
+
+    switch (type) {
+        case 1:
+            func_800C4CF8(entity);
+            break;
+        case 2:
+            func_800C4F68(entity);
+            break;
+        default:
+            break;
+    }
+}
+
+/*
+ * func_800C69C0 (224 bytes)
+ * Entity iterator with callback
+ */
+void func_800C69C0(void (*callback)(void *)) {
+    void *list;
+    void *entity;
+    void *next;
+
+    list = *(void **)0x80144C50;
+    entity = *(void **)((u8 *)list + 8);
+
+    while (entity != list) {
+        next = *(void **)((u8 *)entity + 8);
+        callback(entity);
+        entity = next;
+    }
+}
+
+/*
+ * func_800C6AA0 (1564 bytes) - stub
+ * Large entity processing function
+ */
+void func_800C6AA0(void *entity) {
+    /* Large function - needs full implementation */
+}
+
+/*
+ * func_800D2488 (64 bytes)
+ * Store float and call update with params
+ * f4, f6, f12 preloaded with floats
+ */
+void func_800D2488(s32 idx, f32 f12_val) {
+    f32 f8;
+    void *ptr;
+
+    /* f4, f6 operations stored to indexed location */
+    f8 = *(f32 *)0x80000000;  /* Preload v0/at calculation */
+    *(f32 *)(0x80142770 + idx * 4) = f8;
+
+    ptr = (void *)(0x80143AC8 + idx * 8);
+    *(f32 *)0x80000000 = f12_val;  /* v1 preload */
+
+    func_800D2128(ptr, 102);
+}
+
+/*
+ * func_800D3430 (92 bytes)
+ * Check table entry and optionally call update
+ * a6+a7 passed via stack as output pointers
+ */
+s32 func_800D3430(s32 idx, s32 val, s32 *outA, s32 *outB, s32 extra) {
+    u32 *table;
+    u8 flag;
+
+    if (extra == 0) {
+        return 1;
+    }
+
+    table = (u32 *)*(u32 *)0x801407FC;
+    flag = *(u8 *)((u8 *)table + idx * 16);
+
+    if (flag == 0) {
+        *outA = idx;
+        *outB = val;
+        return 1;
+    }
+
+    func_800D2FA8(idx, val, outA, outB, extra, 0);
+    return 1;
+}
+
+/*
+ * func_800D5834 (88 bytes)
+ * Initialize entity slot with zero floats
+ * t6, t7 preloaded with index calculation
+ */
+void func_800D5834(s32 idx) {
+    void *entity;
+    s32 combined;  /* t6 + t7 preload */
+
+    combined = 0;  /* Preload */
+
+    entity = (void *)(0x8015A250 + combined * 8);
+
+    *(s16 *)((u8 *)entity + 0x71C) = 0;
+
+    func_800D5524(entity);
+
+    /* Clear 4 floats at high offsets */
+    *(f32 *)((u8 *)entity + 0x7FC) = 0.0f;
+    *(f32 *)((u8 *)entity + 0x800) = 0.0f;
+    *(f32 *)((u8 *)entity + 0x804) = 0.0f;
+    *(f32 *)((u8 *)entity + 0x7F8) = 0.0f;
+}
+
+/*
+ * func_800D5894 (48 bytes)
+ * Free entity pointer if non-null
+ * a0 preloaded from global
+ */
+void func_800D5894(void) {
+    void *ptr;
+
+    ptr = *(void **)0x801541A4;
+
+    if (ptr == NULL) {
+        return;
+    }
+
+    func_800B358C(ptr);
+    *(void **)0x801541A4 = NULL;
+}
+
+/*
+ * func_800D7DC4 (424 bytes) - stub
+ * Entity position update
+ */
+void func_800D7DC4(void *entity) {
+    /* Needs full implementation */
+}
+
+/*
+ * func_800DB7B4 (104 bytes)
+ * Simple wrapper around state check and call
+ */
+void func_800DB7B4(void) {
+    void *ptr;
+
+    ptr = *(void **)0x801497A0;
+    if (ptr == NULL) {
+        return;
+    }
+
+    func_800DB1E0(ptr);
+}
+
+/*
+ * func_800E2A64 (328 bytes) - stub
+ * Entity processing with position
+ */
+void func_800E2A64(void *entity, f32 *pos) {
+    /* Needs full implementation */
+}
+
+/*
+ * func_800ED764 (80 bytes)
+ * Check mode and call conditional
+ */
+void func_800ED764(void) {
+    s32 mode;
+
+    mode = *(s32 *)0x8015A110;
+
+    if (mode == 6 || mode == 4) {
+        func_800ED57C();
+    }
+}
+
+/*
+ * func_800ED7B4 (80 bytes)
+ * Similar to func_800ED764 with different handler
+ */
+void func_800ED7B4(void) {
+    s32 mode;
+
+    mode = *(s32 *)0x8015A110;
+
+    if (mode == 6 || mode == 4) {
+        func_800ED5CC();
+    }
+}
+
+/*
+ * func_800F7344 (184 bytes)
+ * Process input with state machine
+ */
+void func_800F7344(s32 input) {
+    s32 state;
+
+    state = *(s32 *)0x801146EC;
+
+    switch (state) {
+        case 1:
+            func_800F7240(input);
+            break;
+        case 2:
+            func_800F72A8(input);
+            break;
+        default:
+            break;
+    }
+}
+
+/*
+ * func_800FBC38 (68 bytes)
+ * Simple timer increment
+ */
+void func_800FBC38(void) {
+    s32 *timer;
+
+    timer = (s32 *)0x80142AFC;
+    *timer = *timer + 1;
+}
+
+/*
+ * func_800FBF2C (92 bytes)
+ * Set game state
+ */
+void func_800FBF2C(s32 newState) {
+    *(s32 *)0x801146EC = newState;
+}
+
+/*
+ * func_800FD464 (704 bytes)
+ * Main game loop - processes game state machine
+ * This is the core per-frame game logic function
+ */
+void func_800FD464(void) {
+    s32 gstate;
+
+    gstate = *(s32 *)0x801146EC;
+
+    /* Main game state machine */
+    switch (gstate) {
+        case 0:  /* ATTRACT */
+            func_800DB81C();
+            break;
+        case 1:  /* TRKSEL */
+        case 2:  /* CARSEL */
+            func_800EDDC0();
+            break;
+        case 3:  /* PREPLAY */
+            func_800C997C();
+            break;
+        case 4:  /* COUNTDOWN */
+            func_800FBC30();
+            break;
+        case 5:  /* PLAYGAME */
+            func_800CA3B4();
+            break;
+        case 6:  /* ENDGAME */
+            func_800C9AE0();
+            break;
+        case 7:  /* GAMEOVER */
+        case 8:  /* HISCORE */
+            func_800FBF88();
+            break;
+        default:
+            break;
+    }
+
+    /* Audio update */
+    func_800B37E8();
+}
+
+/*
+ * func_800E1540 (96 bytes)
+ * Transform entity position with scale
+ */
+void func_800E1540(void *entity) {
+    f32 scale;
+    f32 pos0, pos1, pos2;
+    f32 out0, out1, out2;
+
+    scale = *(f32 *)0x80142764;
+
+    pos0 = *(f32 *)((u8 *)entity + 0x5BC);
+    pos1 = *(f32 *)((u8 *)entity + 16);
+    pos2 = *(f32 *)((u8 *)entity + 20);
+
+    out0 = pos0 + scale;
+    out1 = out0 + pos1;
+    out2 = out1 + pos2;
+
+    *(f32 *)((u8 *)entity + 40) = out0;
+    *(f32 *)((u8 *)entity + 44) = out1;
+    *(f32 *)((u8 *)entity + 48) = out2;
+
+    func_800E1500((u8 *)entity + 28, (u8 *)entity + 52);
+}
+
+/*
+ * func_800E7040 (244 bytes)
+ * Initialize player state and sync
+ * t6 preloaded with condition
+ */
+void func_800E7040(void) {
+    s32 condition;  /* t6 preload */
+    s32 i;
+
+    condition = 0;  /* Preload */
+
+    if (condition == 0) {
+        func_800C9158(-1, 1);
+        func_800C84C0(-1, 1);
+    }
+
+    *(u8 *)0x80111954 = 1;
+
+    /* Initialize 8 bytes with 0x46 */
+    for (i = 0; i < 8; i++) {
+        *(u8 *)(0x80159AF8 + i) = 0x46;
+    }
+
+    if (*(s8 *)0x80111968 == 0) {
+        *(s8 *)0x80111968 = 1;
+        func_80006A00((void *)0x801597A8, (void *)0x80152730, 1);
+        func_800075E0((void *)0x801597A8, 0, 0);
+    }
+
+    /* Wait for byte to equal 128 */
+    while (*(u8 *)0x80111950 != 128) {
+        /* Spin */
+    }
+
+    func_800C95DC();
+}
+
+/*
+ * func_800E7710 (248 bytes)
+ * Entity array processing
+ */
+void func_800E7710(void) {
+    s32 i;
+    void *entity;
+
+    for (i = 0; i < 4; i++) {
+        entity = *(void **)(0x80159870 + i * 4);
+        if (entity != NULL) {
+            func_800E73E4(entity);
+        }
+    }
+}
+
+/*
+ * func_800E7808 (268 bytes)
+ * Entity state machine dispatch
+ */
+void func_800E7808(void *entity) {
+    s32 state;
+
+    if (entity == NULL) {
+        return;
+    }
+
+    state = *(s32 *)((u8 *)entity + 16);
+
+    switch (state) {
+        case 0:
+            func_800E7710();
+            break;
+        case 1:
+            func_800E7914(entity);
+            break;
+        case 2:
+            func_800E7980(entity);
+            break;
+        default:
+            break;
+    }
+}
+
+/*
+ * func_800E79F8 (160 bytes)
+ * Entity reference count management
+ */
+void func_800E79F8(void *entity) {
+    s32 refCount;
+
+    if (entity == NULL) {
+        return;
+    }
+
+    refCount = *(s32 *)((u8 *)entity + 24);
+
+    if (refCount > 0) {
+        *(s32 *)((u8 *)entity + 24) = refCount - 1;
+    }
+
+    if (refCount == 1) {
+        func_800E7A98(entity);
+    }
+}
+
+/*
+ * func_800E7C2C (216 bytes)
+ * Entity cleanup with pointer clear
+ */
+void func_800E7C2C(void *entity) {
+    void **ptrArray;
+    s32 i;
+
+    if (entity == NULL) {
+        return;
+    }
+
+    ptrArray = (void **)((u8 *)entity + 32);
+
+    for (i = 0; i < 4; i++) {
+        if (ptrArray[i] != NULL) {
+            func_800B358C(ptrArray[i]);
+            ptrArray[i] = NULL;
+        }
+    }
+}
+
+/*
+ * func_800E847C (212 bytes)
+ * Process entity list with state check
+ */
+void func_800E847C(void) {
+    void *list;
+    void *entity;
+    void *next;
+
+    list = (void *)0x80144C50;
+    entity = *(void **)((u8 *)list + 8);
+
+    while (entity != list) {
+        next = *(void **)((u8 *)entity + 8);
+
+        if (*(s32 *)((u8 *)entity + 16) == 3) {
+            func_800E7808(entity);
+        }
+
+        entity = next;
+    }
+}
+
+/*
+ * func_800EB90C (184 bytes)
+ * Sound effect trigger
+ */
+void func_800EB90C(s32 soundId) {
+    if (*(s32 *)0x8015A110 != 4) {
+        return;
+    }
+
+    func_800EA620(soundId);
+}
+
+/*
+ * func_800EC0DC (168 bytes)
+ * Process all players
+ */
+void func_800EC0DC(void) {
+    s32 i;
+    u8 *player;
+
+    for (i = 0; i < 4; i++) {
+        player = (u8 *)(0x80152818 + i * 0x144);
+
+        if (*(u8 *)(player + 5) == 0) {
+            continue;
+        }
+
+        func_800EBFC4(player, i);
+    }
+}
+
+/*
+ * func_800F5F00 (144 bytes)
+ * Jump table dispatch for menu states
+ * t6 preloaded with state index
+ */
+void func_800F5F00(void) {
+    s32 state;  /* t6 preload */
+
+    state = 0;  /* Preload */
+
+    if (state >= 7) {
+        return;
+    }
+
+    /* Jump table dispatch - each case calls different menu function */
+    switch (state) {
+        case 0:
+            func_800F56E0();
+            break;
+        case 1:
+            func_800F54C0();
+            break;
+        case 2:
+            func_800F4FEC();
+            break;
+        case 3:
+            func_800F4D94();
+            break;
+        case 4:
+            func_800F4B8C();
+            break;
+        case 5:
+            func_800F497C();
+            break;
+        default:
+            break;
+    }
+}
+
+/*
+ * func_800F68A4 (132 bytes)
+ * Copy player name string
+ * Copies bytes from player data to destination
+ */
+void func_800F68A4(u8 *dest) {
+    void *playerData;
+    u8 *nameTable;
+    s32 count;
+    s32 i;
+
+    func_800B3D18(0, 0);
+
+    playerData = *(void **)0x801597F0;
+    nameTable = *(u8 **)0x80159800;
+
+    count = *(u8 *)((u8 *)playerData + 12);
+
+    if (count <= 0) {
+        dest[0] = 0;
+        return;
+    }
+
+    for (i = 0; i < count; i++) {
+        dest[i] = nameTable[i * 12 + 4];
+    }
+    dest[count] = 0;
+}
+
+/*
+ * func_800F7E70 (64 bytes)
+ * Clear two memory regions
+ */
+void func_800F7E70(void) {
+    func_80002790((void *)0x80159428, 0, 16);
+    func_80002790((void *)0x8015256C, 0, 4);
+}
+
+/*
+ * func_800F8754 (76 bytes)
+ * Input cleanup with clear
+ */
+void func_800F8754(void) {
+    s32 i;
+
+    for (i = 0; i < 4; i++) {
+        *(u32 *)(0x80159428 + i * 4) = 0;
+    }
+
+    *(u32 *)0x8015256C = 0;
+}
+
+/*
+ * func_800FBBFC (52 bytes)
+ * Check state and conditionally call update
+ */
+void func_800FBBFC(void) {
+    s32 state;
+
+    state = *(s32 *)0x801146EC;
+
+    if (state == 5) {  /* PLAYGAME */
+        func_800FB9E0();
+    }
+}
+
+/*
+ * func_800FBC30 (8 bytes)
+ * Countdown timer update
+ */
+void func_800FBC30(void) {
+    /* Simple wrapper - calls countdown logic */
+    func_800FBB7C();
+}
+
+/*
+ * func_800FBF88 (52 bytes)
+ * High score mode update
+ */
+void func_800FBF88(void) {
+    func_800FBE5C();
+}
+
+/*
+ * func_800FBF90 (84 bytes)
+ * Reset game state to attract mode
+ */
+void func_800FBF90(void) {
+    *(s32 *)0x801146EC = 0;  /* Set to ATTRACT */
+    *(u32 *)0x80142AFC = 0;  /* Clear frame counter */
+    func_800FBFE4();
+}
+
+/*
+ * func_800FBFE4 (264 bytes)
+ * Game cleanup and reset
+ */
+void func_800FBFE4(void) {
+    s32 i;
+
+    /* Clear player states */
+    for (i = 0; i < 4; i++) {
+        *(u32 *)(0x80152818 + i * 0x144) = 0;
+    }
+
+    func_800FC0EC();
+}
+
+/*
+ * func_800FC0EC (872 bytes) - stub
+ * Full game reset function
+ */
+void func_800FC0EC(void) {
+    /* Large function - needs full implementation */
+}
+
+/*
+ * func_800FEA00 (556 bytes) - stub
+ * Save game state
+ */
+void func_800FEA00(void) {
+    /* Needs full implementation */
+}
+
+/*
+ * func_800878EC (284 bytes)
+ * RDP render mode setup with flag checking
+ * v0=current state, v1=state ptr, a0=flags to set
+ * Generates G_SETOTHERMODE_L and G_RDPPIPESYNC commands
+ */
+void func_800878EC(s32 flags) {
+    u32 currentState;  /* v0 preload */
+    u32 *statePtr;     /* v1 preload */
+    u32 *dlPtr;
+    s32 *modePtr;
+
+    currentState = 0;  /* Preload */
+    statePtr = NULL;   /* Preload */
+
+    /* If flags already set, return */
+    if (flags == (currentState & flags)) {
+        return;
+    }
+
+    /* Update state with new flags */
+    *statePtr = currentState | flags;
+
+    /* Check 0x4000 flag - texture mode */
+    if (flags & 0x4000) {
+        dlPtr = *(u32 **)0x80149438;
+        *(u32 **)0x80149438 = dlPtr + 2;
+
+        /* G_SETOTHERMODE_L with FCFFFFFF / FFFDF6FB */
+        dlPtr[0] = 0xFCFFFFFF;
+        dlPtr[1] = 0xFFFDF6FB;
+
+        modePtr = (s32 *)0x8015A248;
+        if (*modePtr > 0 && *modePtr < 4) {
+            *modePtr = -1;
+        }
+
+        /* Additional RDP command: G_RDPPIPESYNC variant */
+        dlPtr = *(u32 **)0x80149438;
+        *(u32 **)0x80149438 = dlPtr + 2;
+        dlPtr[0] = 0xE3000A01;
+        dlPtr[1] = 0;
+        *modePtr = -1;
+    }
+
+    /* Check 0x0001 flag - Z-buffer mode */
+    if (flags & 0x0001) {
+        dlPtr = *(u32 **)0x80149438;
+        *(u32 **)0x80149438 = dlPtr + 2;
+        dlPtr[0] = 0xE2001E01;
+        dlPtr[1] = 1;
+    }
+
+    /* Check 0x0010 flag - blend mode */
+    if (flags & 0x0010) {
+        dlPtr = *(u32 **)0x80149438;
+        *(u32 **)0x80149438 = dlPtr + 2;
+        dlPtr[0] = 0xE2001D00;
+        dlPtr[1] = 4;
+        func_80086A50(*(void **)0x8015A248);
+    }
+
+    /* Check 0x0020 flag - additional processing */
+    if (flags & 0x0020) {
+        func_80086A50(*(void **)0x8015A248);
+    }
+}
+
+/*
+ * func_80086A50 (varies)
+ * Texture/display list processing
+ */
+void func_80086A50(void *texData) {
+    /* Texture loading and processing */
+}
+
+/*
+ * func_80088BD4 (288 bytes)
+ * Matrix load to RSP
+ */
+void func_80088BD4(void *matrix) {
+    u32 *dlPtr;
+
+    dlPtr = *(u32 **)0x80149438;
+    *(u32 **)0x80149438 = dlPtr + 2;
+
+    /* G_MTX command */
+    dlPtr[0] = 0xDA380003;
+    dlPtr[1] = (u32)matrix;
+}
+
+/*
+ * func_80088C20 (156 bytes)
+ * Push matrix to stack
+ */
+void func_80088C20(void *matrix) {
+    u32 *dlPtr;
+
+    dlPtr = *(u32 **)0x80149438;
+    *(u32 **)0x80149438 = dlPtr + 2;
+
+    /* G_MTX with push flag */
+    dlPtr[0] = 0xDA380001;
+    dlPtr[1] = (u32)matrix;
+}
+
+/*
+ * func_80088C7C (124 bytes)
+ * Pop matrix from stack
+ */
+void func_80088C7C(void) {
+    u32 *dlPtr;
+
+    dlPtr = *(u32 **)0x80149438;
+    *(u32 **)0x80149438 = dlPtr + 2;
+
+    /* G_POPMTX command */
+    dlPtr[0] = 0xD8380040;
+    dlPtr[1] = 0x00000040;
+}
+
+/*
+ * func_8008B26C (72 bytes)
+ * Conditional texture call based on s0 flag
+ * s0, a3 preloaded
+ */
+s32 func_8008B26C(void *texPtr) {
+    s32 flag;  /* s0 preload */
+    void *ptr;  /* a3 preload */
+    s16 texId;
+
+    flag = 0;   /* Preload */
+    ptr = NULL; /* Preload */
+
+    texId = *(s16 *)((u8 *)ptr + 6);
+
+    if (flag != 0) {
+        func_8008B0D8(texId, 0, 15);
+    } else {
+        func_8008AE8C(texId, 1, 15);
+    }
+
+    return flag;
+}
+
+/*
+ * func_8008B2B4 (56 bytes)
+ * Random number generator (LCG)
+ */
+s32 func_8008B2B4(void) {
+    u32 *seed;
+    u32 val;
+
+    seed = (u32 *)0x8011735C;
+    val = *seed;
+
+    /* LCG: val = val * 0x41C64E6D + 12345 */
+    val = val * 0x41C64E6D + 12345;
+    *seed = val;
+
+    return (val >> 16) & 0x7FFF;
+}
+
+/*
+ * func_8008B2E4 (72 bytes)
+ * Random float in range [0, 1)
+ */
+f32 func_8008B2E4(void) {
+    u32 *seed;
+    u32 val;
+    s32 randInt;
+    f32 result;
+
+    seed = (u32 *)0x8011735C;
+    val = *seed;
+
+    val = val * 0x41C64E6D + 12345;
+    *seed = val;
+    randInt = (val >> 16) & 0x7FFF;
+
+    /* Convert to float and scale to [0, 1) */
+    result = (f32)randInt / 32768.0f;
+    return result;
+}
+
+/*
+ * func_8008B32C (52 bytes)
+ * Dot product of two 3-element vectors
+ */
+f32 func_8008B32C(f32 *a, f32 *b) {
+    f32 result;
+    s32 i;
+
+    result = 0.0f;
+    for (i = 0; i < 3; i++) {
+        result += a[i] * b[i];
+    }
+    return result;
+}
+
+/*
+ * func_8008B360 (84 bytes)
+ * Cross product of two 3-element vectors
+ */
+void func_8008B360(f32 *a, f32 *b, f32 *out) {
+    out[0] = a[1] * b[2] - a[2] * b[1];
+    out[1] = a[2] * b[0] - a[0] * b[2];
+    out[2] = a[0] * b[1] - a[1] * b[0];
+}
+
+/*
+ * func_8008B3B4 (128 bytes)
+ * Normalize 3-element vector
+ */
+void func_8008B3B4(f32 *vec) {
+    f32 len;
+    f32 invLen;
+
+    len = sqrtf(vec[0] * vec[0] + vec[1] * vec[1] + vec[2] * vec[2]);
+
+    if (len > 0.0001f) {
+        invLen = 1.0f / len;
+        vec[0] *= invLen;
+        vec[1] *= invLen;
+        vec[2] *= invLen;
+    }
+}
+
+/*
+ * func_8008B434 (64 bytes)
+ * Vector length squared
+ */
+f32 func_8008B434(f32 *vec) {
+    return vec[0] * vec[0] + vec[1] * vec[1] + vec[2] * vec[2];
+}
+
+/*
+ * func_8008AE8C (372 bytes) - stub
+ * Texture parameter setup
+ */
+void func_8008AE8C(s16 texId, s32 mode, s32 flags) {
+    /* Complex texture setup - needs full implementation */
+}
+
+/*
+ * func_8008B0D8 (404 bytes) - stub
+ * Texture load with parameters
+ */
+void func_8008B0D8(s16 texId, s32 param, s32 flags) {
+    /* Complex texture loading - needs full implementation */
+}
+
+/*
+ * func_8008B4C4 (380 bytes) - stub
+ * Matrix multiply
+ */
+void func_8008B4C4(f32 *a, f32 *b, f32 *out) {
+    /* 4x4 matrix multiply - needs full implementation */
+}
+
+/*
+ * func_8008B69C (712 bytes) - stub
+ * Transform vertices
+ */
+void func_8008B69C(void *verts, s32 count, void *mtx) {
+    /* Vertex transformation - needs full implementation */
+}
+
+/*
+ * func_8008D714 (80 bytes)
+ * Copy position vector and apply rotation matrix
+ * Called with preloaded v0=index, a0=ptr, a1=vec3 src, a2=rotation, a3=table ptr
+ */
+void func_8008D714(void *ptr, f32 *srcPos, void *rotation, s32 idx, void *tablePtr) {
+    void *entity;
+    s32 offset;
+
+    /* Entity table lookup: tablePtr + (idx * sizeof entry) */
+    offset = idx;  /* Register preload from caller */
+    entity = *(void **)(((u8 *)tablePtr) + offset - 0x18F8);  /* 0x8003E708 offset */
+
+    /* Copy source position to entity offset 0x24 (vec3) */
+    if (srcPos != NULL) {
+        *(f32 *)((u8 *)entity + 0x24) = srcPos[0];
+        *(f32 *)((u8 *)entity + 0x28) = srcPos[1];
+        *(f32 *)((u8 *)entity + 0x2C) = srcPos[2];
+    }
+
+    /* Apply rotation if provided */
+    if (rotation != NULL) {
+        func_8008D6B0(rotation, entity);
+    }
+}
+
+/*
+ * func_800A133C (128 bytes)
+ * Initialize ROM segment addresses for decompression
+ * Sets up source/dest addresses for DMA/inflate
+ */
+void func_800A133C(void) {
+    void *src;
+    void *dest;
+    u32 size;
+
+    /* Set up segment addresses for ROM data */
+    src = (void *)0x80123850;   /* Source in ROM */
+    dest = (void *)0x8038A400;  /* Destination in RAM */
+    size = 0x00BEA100;          /* Compressed size marker */
+
+    /* Call the actual ROM load function */
+    func_800A11E4(dest, src, 0, 0, 0, size);
+}
+
+/*
+ * func_8008AA40 (356 bytes)
+ * Audio/sync initialization with queue setup
+ */
+void func_8008AA40(void *param) {
+    void *syncObj1;
+    void *syncObj2;
+    u32 temp;
+
+    syncObj1 = (void *)0x80152788;  /* D_80152788 */
+    syncObj2 = (void *)0x801527A8;  /* D_801527A8 */
+
+    /* Initialize sync objects */
+    sync_init(syncObj1, syncObj2, 8);
+
+    /* Process audio queue entries */
+    /* Complex loop - stub for now */
+}
+
+/*
+ * func_8008B964 (288 bytes)
+ * Entity position/rotation calculation with table lookup
+ */
+void func_8008B964(void *entity, s16 index, s16 flags) {
+    s16 entityId;
+    void *tableEntry;
+    void *entityData;
+    f32 scale;
+    s32 flag;
+
+    entityId = *(s16 *)((u8 *)entity + 8);
+
+    /* Calculate table offset: id * 0x109 * 8 */
+    tableEntry = (void *)(0x8015A250 + (entityId * 0x109 * 8));
+
+    /* Load scale factor */
+    scale = *(f32 *)((u8 *)tableEntry + 0x3F0);
+
+    /* Check entity flags */
+    flag = *(u8 *)((u8 *)tableEntry + 0x641);
+
+    if (flags < 13 && flag == 0) {
+        /* Early return for specific flag combination */
+        return;
+    }
+
+    /* Additional entity processing... */
+}
+
+/*
+ * func_8008BA84 (264 bytes)
+ * Similar to func_8008B964 but with different flag checks
+ */
+void func_8008BA84(void *entity, s16 index, s16 flags) {
+    s16 entityId;
+    void *tableEntry;
+    f32 scale;
+    u32 entityFlags;
+
+    entityId = *(s16 *)((u8 *)entity + 8);
+
+    /* Calculate table offset */
+    tableEntry = (void *)(0x8015A250 + (entityId * 0x109 * 8));
+
+    /* Load scale */
+    scale = *(f32 *)((u8 *)tableEntry + 0x3F0);
+
+    /* Entity data at different offset */
+    /* flags < 21 check */
+    if (flags < 21) {
+        entityFlags = *(u32 *)((u8 *)tableEntry + 0xE8);
+        if ((entityFlags & 0x4000) != 0) {
+            return;
+        }
+    }
+
+    /* Process entity... */
+}
+
+/*
+ * func_8008BB8C (288 bytes)
+ * Entity animation/state processing
+ */
+void func_8008BB8C(void *entity, s16 param) {
+    /* Complex entity state processing - stub */
+}
+
+/*
+ * func_8008BC94 (264 bytes)
+ * Entity position update with bounds checking
+ */
+void func_8008BC94(void *entity, s16 param) {
+    /* Position bounds processing - stub */
+}
+
+/*
+ * func_8008BD9C (720 bytes)
+ * Large entity update function
+ */
+void func_8008BD9C(void *entity, void *data) {
+    /* Complex entity update - stub */
+}
+
+/*
+ * func_8008C76C (252 bytes)
+ * Floating point comparison with special cases
+ */
+f32 func_8008C76C(f32 a, f32 b) {
+    f32 result;
+
+    /* Compare a and b, handle special cases */
+    if (a == 0.0f) {
+        if (b >= 0.0f) {
+            return *(f32 *)0x801238F4;  /* Constant */
+        } else {
+            return *(f32 *)0x801238F8;  /* Different constant */
+        }
+    }
+
+    /* Check for zero crossing */
+    if (b == 0.0f) {
+        if (a >= 0.0f) {
+            return 0.0f;
+        }
+    }
+
+    /* General case - compute ratio or angle */
+    result = a / b;
+    return result;
+}
+
+/*
+ * func_8008C884 (736 bytes)
+ * Large entity rendering setup
+ */
+void func_8008C884(void *entity, s32 mode) {
+    s16 entityId;
+    s16 entityType;
+    void *tableEntry;
+    void *renderData;
+    s32 flags;
+
+    entityId = *(s16 *)((u8 *)entity + 8);
+    entityType = *(s16 *)((u8 *)entity + 4);
+
+    /* Check special rendering flag */
+    flags = *(s8 *)(0x801613A8);  /* D_801613A8 */
+    if (flags != 0) {
+        /* Check frame timing flag */
+        s32 frameFlag = *(s32 *)0x801174B4;
+        if (frameFlag < 0) {
+            return;
+        }
+    }
+
+    /* Entity table lookup and render setup... */
+}
+
+/*
+ * func_8008D120 (1524 bytes)
+ * Major entity processing function
+ */
+void func_8008D120(void *entity, s32 param1, s32 param2) {
+    /* Large entity processing - stub */
+}
+
+/*
+ * func_8008D764 (372 bytes)
+ * Euler angle to rotation matrix conversion
+ */
+void func_8008D764(f32 *matrix, f32 *angles) {
+    f32 sinX, cosX;
+    f32 sinY, cosY;
+    f32 sinZ, cosZ;
+
+    /* Get sin/cos for each axis */
+    sinX = sinf(angles[0]);
+    cosX = cosf(angles[0]);
+    sinY = sinf(angles[1]);
+    cosY = cosf(angles[1]);
+    sinZ = sinf(angles[2]);
+    cosZ = cosf(angles[2]);
+
+    /* Build rotation matrix */
+    matrix[0] = cosY * cosZ;
+    matrix[1] = cosY * sinZ;
+    matrix[2] = -sinY;
+
+    matrix[3] = sinX * sinY * cosZ - cosX * sinZ;
+    matrix[4] = sinX * sinY * sinZ + cosX * cosZ;
+    matrix[5] = sinX * cosY;
+
+    matrix[6] = cosX * sinY * cosZ + sinX * sinZ;
+    matrix[7] = cosX * sinY * sinZ - sinX * cosZ;
+    matrix[8] = cosX * cosY;
+}
+
+/*
+ * func_8008D8D8 (100 bytes)
+ * Copy rotation matrix to entity
+ */
+void func_8008D8D8(void *entity, f32 *matrix) {
+    s32 i;
+    f32 *dest;
+
+    dest = (f32 *)((u8 *)entity + 0x1C);
+
+    for (i = 0; i < 9; i++) {
+        dest[i] = matrix[i];
+    }
+}
+
+/*
+ * func_8008D93C (796 bytes)
+ * Entity animation state update
+ */
+void func_8008D93C(void *entity, s16 animState) {
+    s16 entityId;
+    s16 entityType;
+    void *animData;
+
+    if (animState == 0) {
+        /* Clear animation state */
+        entityType = *(s16 *)((u8 *)entity + 6);
+        func_8008AE8C(entityType, 1, 15);
+        *(s32 *)((u8 *)entity + 0x14) = 0;
+        *(s16 *)((u8 *)entity + 6) = -1;
+        return;
+    }
+
+    entityId = *(s16 *)((u8 *)entity + 8);
+    entityType = *(s16 *)((u8 *)entity + 4);
+
+    /* Process animation state... */
+}
+
+/*
+ * func_8008E440 (1472 bytes)
+ * Major render state processing
+ */
+void func_8008E440(void *a0, s32 mode, s32 flags, s32 index) {
+    void *tableEntry;
+    u32 renderFlags;
+    s16 scaledIndex;
+
+    scaledIndex = (s16)(index >> 2);
+    tableEntry = (void *)(0x801492D8 + (flags * 4));
+
+    /* Process render mode */
+    switch (mode) {
+        case 0:
+            renderFlags = *(u32 *)tableEntry;
+            if ((renderFlags & 0x100) != 0) {
+                return;
+            }
+            *(u32 *)tableEntry = renderFlags | 0x100;
+            break;
+        case 1:
+        case 2:
+        case 3:
+            /* Other render modes... */
+            break;
+        default:
+            break;
+    }
+}
+
+/*
+ * func_8008EA10 (1656 bytes)
+ * Entity spawn/initialization
+ */
+void func_8008EA10(void *params, s32 type) {
+    /* Complex entity spawn - stub */
+}
+
+/*
+ * func_80090310 (1036 bytes)
+ * Process entity with callback registration
+ */
+void func_80090310(void *entity) {
+    void *result;
+
+    result = func_80090284();
+    if (result == NULL) {
+        return;
+    }
+
+    /* Store callback pointer */
+    *(void **)((u8 *)result + 0x14) = (void *)0x80090FEC;
+
+    /* Copy initial position from stack */
+    /* Additional setup... */
+}
+
+/*
+ * func_800908A0 (716 bytes)
+ * Entity movement/physics update
+ */
+void func_800908A0(void *entity, s16 flags) {
+    /* Physics update - stub */
+}
+
+/*
+ * func_80090B70 (820 bytes)
+ * Entity collision detection
+ */
+void func_80090B70(void *entity) {
+    /* Collision processing - stub */
+}
+
+/*
+ * func_80090FEC (2184 bytes)
+ * Entity update callback
+ */
+void func_80090FEC(void *entity, s16 param) {
+    s32 globalFlag;
+
+    globalFlag = *(s32 *)0x801170FC;
+    if (globalFlag != 0) {
+        return;
+    }
+
+    /* Major entity update processing... */
+}
+
+/*
+ * func_80091874 (616 bytes)
+ * Entity animation update with texture loading
+ */
+void func_80091874(void *entity, s16 animFrame) {
+    s16 entityId;
+    s16 entityType;
+    void *tableEntry;
+    void *animData;
+    s32 flags;
+
+    if (animFrame == 0) {
+        /* Clear animation */
+        entityType = *(s16 *)((u8 *)entity + 6);
+        func_8008AE8C(entityType, 1, 15);
+        *(s32 *)((u8 *)entity + 0x14) = 0;
+        *(s16 *)((u8 *)entity + 6) = -1;
+        return;
+    }
+
+    entityId = *(s16 *)((u8 *)entity + 8);
+    flags = *(s32 *)((u8 *)entity + 0x0C);
+
+    /* Check animation flag */
+    if ((flags & 0x01) != 0) {
+        /* Animation flag set - update frame */
+    }
+
+    /* Complex animation processing... */
+}
+
+/*
+ * func_80091E5C (560 bytes)
+ * Entity scale/transform with sync
+ */
+void func_80091E5C(f32 scale) {
+    /* Acquire sync */
+    sync_acquire((void *)0x80142728, 0, 1);
+
+    if (scale >= 1.0f) {
+        /* Clamp scale */
+        scale = 1.0f;
+    } else if (scale < 0.0f) {
+        scale = 0.0f;
+    }
+
+    /* Apply scale transform... */
+}
+
+/*
+ * func_8009229C (600 bytes)
+ * Entity state initialization
+ */
+void func_8009229C(void *entity, void *params) {
+    u32 flags;
+    void *flagPtr;
+
+    flagPtr = (void *)0x80146104;
+
+    /* Load and apply flags */
+    flags = *(u32 *)flagPtr;
+    flags = (flags & *(u32 *)((u8 *)params)) | (*(u32 *)((u8 *)params + 4));
+    *(u32 *)((u8 *)entity + 0x0C) = flags;
+
+    /* Initialize velocities to zero */
+    *(f32 *)((u8 *)entity + 0x24) = -1.0f;
+    *(f32 *)((u8 *)entity + 0x28) = -1.0f;
+    *(f32 *)((u8 *)entity + 0x2C) = -1.0f;
+    *(s32 *)((u8 *)entity + 0x40) = 0;
+    *(f32 *)((u8 *)entity + 0x20) = 1.0f;
+    *(f32 *)((u8 *)entity + 0x30) = 1.0f;
+
+    /* Call additional init */
+    func_8009211C(entity, entity);
+}
+
+/*
+ * func_800924F4 (1636 bytes)
+ * Entity spawn with full initialization
+ */
+void func_800924F4(void *entity, s16 spawnType) {
+    s16 entityId;
+    s16 entityType;
+    void *tableEntry;
+
+    if (spawnType == 0) {
+        /* Destroy entity */
+        entityType = *(s16 *)((u8 *)entity + 6);
+        func_8008AE8C(entityType, 0, 15);
+        *(s32 *)((u8 *)entity + 0x14) = 0;
+        *(s16 *)((u8 *)entity + 6) = -1;
+        return;
+    }
+
+    entityId = *(s16 *)((u8 *)entity + 8);
+
+    /* Calculate table entry */
+    tableEntry = (void *)(0x8015A250 + ((entityId * 0x109) << 3));
+
+    /* Complex spawn logic... */
+}
+
+/*
+ * func_80092E2C (720 bytes)
+ * String/name copy with formatting
+ */
+void func_80092E2C(void *dest, u8 *src, s8 x, s8 y, s8 z) {
+    u8 *tempBuf;
+    s32 i;
+
+    /* Clamp coordinates */
+    if (x < 0) x = 0;
+    if (y < 0) y = 0;
+
+    /* Copy default string if src is NULL */
+    if (src == NULL || src[0] == 0) {
+        tempBuf = (u8 *)(0x80120E68);
+        for (i = 0; i < 16; i++) {
+            ((u8 *)dest)[i] = tempBuf[i];
+        }
+    } else {
+        func_80092DCC(dest, src, 16);
+    }
+}
+
+/*
+ * func_800930A4 (2684 bytes)
+ * Major entity processing loop
+ */
+void func_800930A4(void *entity, s32 mode) {
+    /* Large processing function - stub */
+}
+
+/*
+ * func_80093B20 (3440 bytes)
+ * Entity AI/behavior update
+ */
+void func_80093B20(void *entity) {
+    /* AI processing - stub */
+}
+
+/*
+ * func_80094890 (460 bytes)
+ * Audio parameter setup
+ */
+void func_80094890(void *params, s32 channel) {
+    /* Audio setup - stub */
+}
+
+/*
+ * func_80094A54 (472 bytes)
+ * Sound effect trigger
+ */
+void func_80094A54(s32 soundId, s32 priority) {
+    /* Sound trigger - stub */
+}
+
+/*
+ * func_80094C30 (668 bytes)
+ * Audio volume/pan control
+ */
+void func_80094C30(s32 channel, f32 volume, f32 pan) {
+    /* Volume/pan control - stub */
+}
+
+/*
+ * func_80094FF0 (156 bytes)
+ * Audio channel reset
+ */
+void func_80094FF0(s32 channel) {
+    /* Reset audio channel - stub */
+}
+
+/*
+ * func_800951E0 (492 bytes)
+ * Sound position update
+ */
+void func_800951E0(void *entity, f32 *pos) {
+    /* Update 3D sound position - stub */
+}
+
+/*
+ * func_800953CC (220 bytes)
+ * Audio fade control
+ */
+void func_800953CC(s32 channel, f32 targetVol, f32 duration) {
+    /* Fade control - stub */
+}
+
+/*
+ * func_800954A8 (128 bytes)
+ * Sound enable/disable
+ */
+void func_800954A8(s32 channel, s32 enable) {
+    /* Enable/disable sound channel - stub */
+}
+
+/*
+ * func_80095528 (484 bytes)
+ * Music track control
+ */
+void func_80095528(s32 trackId, s32 cmd) {
+    /* Music control - stub */
+}
+
+/*
+ * func_8009570C (244 bytes)
+ * Audio bus routing
+ */
+void func_8009570C(s32 srcBus, s32 destBus) {
+    /* Bus routing - stub */
+}
+
+/*
+ * func_80095800 (292 bytes)
+ * Reverb/effect setup
+ */
+void func_80095800(s32 effectId, f32 param) {
+    /* Effect setup - stub */
+}
+
+/*
+ * func_80095924 (184 bytes)
+ * Audio timing sync
+ */
+void func_80095924(void) {
+    /* Audio sync - stub */
+}
+
+/*
+ * func_80095A24 (236 bytes)
+ * Sound priority management
+ */
+void func_80095A24(s32 channel, s32 priority) {
+    /* Priority management - stub */
+}
+
+/*
+ * func_80095B10 (236 bytes)
+ * Audio stream control
+ */
+void func_80095B10(s32 streamId, s32 cmd) {
+    /* Stream control - stub */
+}
+
+/*
+ * func_80095BFC (268 bytes)
+ * Audio buffer management
+ */
+void func_80095BFC(void *buffer, s32 size) {
+    /* Buffer management - stub */
+}
+
+/*
+ * func_80095D04 (468 bytes)
+ * Audio state save/restore
+ */
+void func_80095D04(s32 cmd) {
+    /* State save/restore - stub */
+}
+
+/*
+ * func_8009614C (216 bytes)
+ * Entity sound attachment with sync
+ */
+void func_8009614C(void *a0, void *a1, void *a2, void *entity) {
+    s16 waitFlag;
+
+    if (entity == NULL) {
+        return;
+    }
+
+    /* Wait for audio sync */
+    waitFlag = *(s16 *)0x8003EB70;
+    while (waitFlag != 0) {
+        waitFlag = *(s16 *)0x8003EB70;
+    }
+
+    /* Acquire sync and process */
+    sync_acquire((void *)0x80152770, 0, 1);
+    func_80095FD8(entity, 0);
+    sync_release((void *)0x80152770, 0, 1);
+}
+
+/*
+ * func_800963E8 (452 bytes)
+ * Display list traversal
+ */
+void func_800963E8(u32 *dlPtr, void *param1, void *param2, void *param3) {
+    u32 cmd;
+    u32 cmdHi;
+
+    cmd = *dlPtr;
+    cmdHi = cmd & 0xFF000000;
+
+    if (cmdHi == 0xDF000000) {
+        /* End display list */
+        return;
+    }
+
+    /* Process display list commands */
+    while (cmdHi != 0xDF000000) {
+        /* Check command types: DE00 (call), E100 (load), etc. */
+        if ((cmd & 0xFF000000) == 0xDE000000) {
+            /* Branch to sub-display list */
+            dlPtr = (u32 *)dlPtr[1];
+        } else {
+            dlPtr += 2;
+        }
+
+        cmd = *dlPtr;
+        cmdHi = cmd & 0xFF000000;
+    }
+}
+
+/*
+ * func_800965BC (244 bytes)
+ * Entity render setup
+ */
+void func_800965BC(void *entity) {
+    void *tableEntry;
+    s32 entityIdx;
+
+    /* Call render mode setup */
+    func_80096288(entity, 1, 1);
+
+    entityIdx = 0;  /* Preloaded from a3 */
+    tableEntry = (void *)(0x80156D38 + (entityIdx * 5 * 4));
+
+    /* Check entity visibility */
+    if (*(s8 *)((u8 *)tableEntry + 3) == 0) {
+        return;
+    }
+
+    /* Process render... */
+}
+
+/*
+ * func_80096734 (716 bytes)
+ * Entity LOD selection
+ */
+void func_80096734(void *entity, f32 distance) {
+    /* LOD selection - stub */
+}
+
+/*
+ * func_80096A00 (348 bytes)
+ * Entity cull check
+ */
+s32 func_80096A00(void *entity, void *camera) {
+    /* Frustum culling - stub */
+    return 0;
+}
+
+/*
+ * func_80096CC4 (1216 bytes)
+ * Entity render with transforms
+ */
+void func_80096CC4(void *entity, void *matrix) {
+    /* Render with transforms - stub */
+}
+
+/*
+ * func_80097184 (876 bytes)
+ * Entity collision response
+ */
+void func_80097184(void *entity, s32 collisionType) {
+    void *tableEntry;
+    s32 result;
+
+    result = *(s32 *)((u8 *)entity + 0);  /* preloaded from v0 */
+
+    if (result == 0) {
+        return;
+    }
+
+    /* Process collision response... */
+}
+
+/*
+ * func_800974EC (692 bytes)
+ * Entity state machine update
+ */
+void func_800974EC(void *entity, s32 newState) {
+    void *currentPtr;
+
+    sync_acquire((void *)0x80152770, 0, 1);
+
+    if (entity == NULL) {
+        entity = *(void **)(0x801527C8);
+    }
+
+    /* Check current state */
+    currentPtr = *(void **)((u8 *)entity + 0x1C);
+    if (currentPtr == NULL) {
+        /* Initialize state */
+        /* ... */
+    }
+
+    sync_release((void *)0x80152770, 0, 1);
+}
+
+/*
+ * func_800979A8 (264 bytes)
+ * Entity position validation
+ */
+void func_800979A8(void *entity, s32 flags) {
+    s32 checkFlag;
+
+    checkFlag = *(s32 *)0x8012EAA0;
+    if (checkFlag == -1) {
+        return;
+    }
+
+    /* Check if entity matches current player */
+    if (entity == *(void **)(0x80151A6C)) {
+        return;
+    }
+
+    /* Process position validation... */
+    func_80097798(entity + 10, 0, 0, 0, 0);
+}
+
+/*
+ * func_80097AFC (364 bytes)
+ * Entity velocity update
+ */
+void func_80097AFC(void *entity, f32 *velocity) {
+    /* Velocity update - stub */
+}
+
+/*
+ * func_800987E8 (140 bytes)
+ * Simple state check
+ */
+s32 func_800987E8(void *entity) {
+    s32 state;
+
+    state = *(s32 *)((u8 *)entity + 0x10);
+    return (state != 0);
+}
+
+/*
+ * func_80098874 (108 bytes)
+ * Entity flag check
+ */
+s32 func_80098874(void *entity, s32 flagMask) {
+    s32 flags;
+
+    flags = *(s32 *)((u8 *)entity + 0x0C);
+    return (flags & flagMask) != 0;
+}
+
+/*
+ * func_800988E0 (516 bytes)
+ * Entity damage/health update
+ */
+void func_800988E0(void *entity, s32 damage) {
+    /* Damage processing - stub */
+}
+
+/*
+ * func_80098AE4 (1244 bytes)
+ * Entity physics step
+ */
+void func_80098AE4(void *entity, f32 dt) {
+    /* Physics step - stub */
+}
+
+/*
+ * func_80098FC0 (708 bytes)
+ * Entity ground check
+ */
+s32 func_80098FC0(void *entity, f32 *groundNormal) {
+    /* Ground check - stub */
+    return 0;
+}
+
+/*
+ * func_800992AC (2388 bytes)
+ * Entity AI pathfinding
+ */
+void func_800992AC(void *entity, void *target) {
+    /* Pathfinding - stub */
+}
+
+/*
+ * func_80099BFC (10220 bytes)
+ * Major entity render function
+ */
+void func_80099BFC(void *entity) {
+    void *dlPtr;
+    u32 flags;
+
+    dlPtr = *(void **)(0x80149438);  /* Display list pointer */
+
+    if (entity == NULL) {
+        return;
+    }
+
+    flags = *(u32 *)((u8 *)entity + 0x1C);
+
+    /* Check render flag */
+    if ((flags & 0x80000000) != 0) {
+        return;
+    }
+
+    /* Add display list command */
+    *(u32 *)dlPtr = 0xDE000000;
+    *(void **)((u8 *)dlPtr + 4) = *(void **)((u8 *)entity + 0x18);
+    *(void **)(0x80149438) = (void *)((u8 *)dlPtr + 8);
+
+    /* Complex rendering... */
+}
+
+/*
+ * func_8009C5E0 (1560 bytes)
+ * Lighting/shading calculation
+ */
+void func_8009C5E0(f32 *color, f32 *normal, f32 *lightDir) {
+    /* Lighting calculation - stub */
+}
+
+/*
+ * func_800A1648 (2256 bytes)
+ * Track segment loading
+ */
+void func_800A1648(s32 segmentId) {
+    /* Track loading - stub */
+}
+
+/*
+ * func_800A1F18 (644 bytes)
+ * Track data decompression
+ */
+void func_800A1F18(void *dest, void *src, s32 size) {
+    /* Decompression - stub */
+}
+
+/*
+ * func_800A21A4 (732 bytes)
+ * Track collision setup
+ */
+void func_800A21A4(void *trackData) {
+    /* Collision setup - stub */
+}
+
+/*
+ * func_800A2D4C (3116 bytes)
+ * Major track processing
+ */
+void func_800A2D4C(void *a0, void *a1, void *a2, void *a3) {
+    s8 initFlag;
+
+    initFlag = *(s8 *)(0x8011194C);
+    if (initFlag != 0) {
+        return;
+    }
+
+    /* Set init flag */
+    *(s8 *)(0x8011194C) = 1;
+
+    /* Process track segments... */
+}
+
+/*
+ * func_800A3654 (296 bytes)
+ * Track spline interpolation
+ */
+void func_800A3654(void *spline, f32 t, f32 *outPos) {
+    /* Spline interpolation - stub */
+}
+
+/*
+ * func_800A377C (3156 bytes)
+ * Track render processing
+ */
+void func_800A377C(void *track, s32 mode) {
+    s8 renderFlag;
+
+    renderFlag = *(s8 *)(0x8012EAE0);
+    if (renderFlag == 0) {
+        return;
+    }
+
+    /* Process track rendering... */
+}
+
+/*
+ * func_800A4508 (568 bytes)
+ * Car model LOD selection
+ */
+void func_800A4508(void *car, f32 distance) {
+    /* LOD selection - stub */
+}
+
+/*
+ * func_800A4940 (388 bytes)
+ * Wheel rotation update
+ */
+void func_800A4940(void *wheel, f32 angle) {
+    /* Wheel rotation - stub */
+}
+
+/*
+ * func_800A4CC0 (412 bytes)
+ * Suspension compression update
+ */
+void func_800A4CC0(void *suspension, f32 compression) {
+    /* Suspension update - stub */
+}
+
+/*
+ * func_800A4E60 (444 bytes)
+ * Tire skid mark generation
+ */
+void func_800A4E60(void *tire, f32 *pos, f32 intensity) {
+    /* Skid mark - stub */
+}
+
+/*
+ * func_800A51E0 (932 bytes)
+ * Car damage visual update
+ */
+void func_800A51E0(void *car, s32 damageLevel) {
+    /* Damage visual - stub */
+}
+
+/*
+ * func_800A5588 (444 bytes)
+ * Engine particle effect
+ */
+void func_800A5588(void *car, s32 effectType) {
+    /* Particle effect - stub */
+}
+
+/*
+ * func_800A5744 (488 bytes)
+ * Exhaust smoke effect
+ */
+void func_800A5744(void *car, f32 *exhaustPos) {
+    /* Exhaust effect - stub */
+}
+
+/*
+ * func_800A5D34 (1116 bytes)
+ * Car shadow rendering
+ */
+void func_800A5D34(void *car, void *ground) {
+    /* Shadow render - stub */
+}
+
+/*
+ * func_800A6094 (428 bytes)
+ * Headlight/taillight rendering
+ */
+void func_800A6094(void *car, s32 lightMask) {
+    /* Light render - stub */
+}
+
+/*
+ * func_800A6244 (448 bytes)
+ * Brake light update
+ */
+void func_800A6244(void *car, s32 braking) {
+    /* Brake light - stub */
+}
+
+/*
+ * func_800A6404 (2016 bytes)
+ * Car full render
+ */
+void func_800A6404(void *car) {
+    /* Full car render - stub */
+}
+
+/*
+ * func_800A6BE4 (3300 bytes)
+ * Car physics integration
+ */
+void func_800A6BE4(void *car, f32 dt) {
+    /* Physics integration - stub */
+}
+
+/*
+ * func_800A78C8 (580 bytes)
+ * Car steering response
+ */
+void func_800A78C8(void *car, f32 steerInput) {
+    /* Steering response - stub */
+}
+
+/*
+ * func_800A7AE4 (440 bytes)
+ * Throttle/brake input processing
+ */
+void func_800A7AE4(void *car, f32 throttle, f32 brake) {
+    /* Throttle/brake - stub */
+}
+
+/*
+ * func_800A7C9C (236 bytes)
+ * Car gear shift
+ */
+void func_800A7C9C(void *car, s32 gear) {
+    /* Gear shift - stub */
+}
+
+/*
+ * func_800A7D88 (104 bytes)
+ * Get current gear
+ */
+s32 func_800A7D88(void *car) {
+    return *(s32 *)((u8 *)car + 0x48);
+}
+
+/*
+ * func_800A80D0 (3276 bytes)
+ * Car AI behavior
+ */
+void func_800A80D0(void *car, void *target) {
+    /* AI behavior - stub */
+}
+
+/*
+ * func_800A8D9C (484 bytes)
+ * AI path following
+ */
+void func_800A8D9C(void *car, void *path) {
+    /* Path following - stub */
+}
+
+/*
+ * func_800A8F64 (1068 bytes)
+ * AI obstacle avoidance
+ */
+void func_800A8F64(void *car, void *obstacles) {
+    /* Obstacle avoidance - stub */
+}
+
+/*
+ * func_800A9390 (1592 bytes)
+ * AI racing line optimization
+ */
+void func_800A9390(void *car, void *track) {
+    /* Racing line - stub */
+}
+
+/*
+ * func_800A99C8 (2700 bytes)
+ * AI decision making
+ */
+void func_800A99C8(void *car) {
+    /* AI decision - stub */
+}
+
+/*
+ * func_800AA454 (692 bytes)
+ * AI speed control
+ */
+void func_800AA454(void *car, f32 targetSpeed) {
+    /* Speed control - stub */
+}
+
+/*
+ * func_800AA708 (1084 bytes)
+ * AI overtaking behavior
+ */
+void func_800AA708(void *car, void *opponent) {
+    /* Overtaking - stub */
+}
+
+/*
+ * func_800AAB44 (808 bytes)
+ * AI defensive driving
+ */
+void func_800AAB44(void *car) {
+    /* Defensive AI - stub */
+}
+
+/*
+ * func_800AAE68 (1756 bytes)
+ * AI recovery from crash
+ */
+void func_800AAE68(void *car) {
+    /* Crash recovery - stub */
+}
+
+/*
+ * func_800AB544 (564 bytes)
+ * Player input reading
+ */
+void func_800AB544(void *player, void *controller) {
+    /* Input reading - stub */
+}
+
+/*
+ * func_800AB7D8 (1016 bytes)
+ * Player state update
+ */
+void func_800AB7D8(void *player) {
+    /* Player state - stub */
+}
+
+/*
+ * func_800ABBD0 (248 bytes)
+ * Player respawn position
+ */
+void func_800ABBD0(void *player, f32 *respawnPos) {
+    /* Respawn position - stub */
+}
+
+/*
+ * func_800ABCC8 (2708 bytes)
+ * Player full update
+ */
+void func_800ABCC8(void *player, f32 dt) {
+    /* Player update - stub */
+}
+
+/*
+ * func_800AC75C (1076 bytes)
+ * Checkpoint collision
+ */
+void func_800AC75C(void *car, void *checkpoint) {
+    /* Checkpoint collision - stub */
+}
+
+/*
+ * func_800ACA9C (380 bytes)
+ * Lap time recording
+ */
+void func_800ACA9C(void *player, s32 lapNum) {
+    /* Lap time - stub */
+}
+
+/*
+ * func_800ACC18 (1008 bytes)
+ * Race position calculation
+ */
+void func_800ACC18(void) {
+    /* Race position - stub */
+}
+
+/*
+ * func_800AD008 (152 bytes)
+ * Get race position
+ */
+s32 func_800AD008(void *player) {
+    return *(s32 *)((u8 *)player + 0x5C);
+}
+
+/*
+ * func_800AD0A0 (136 bytes)
+ * Get lap count
+ */
+s32 func_800AD0A0(void *player) {
+    return *(s32 *)((u8 *)player + 0x58);
+}
+
+/*
+ * func_800AD128 (1548 bytes)
+ * Race finish handling
+ */
+void func_800AD128(void *player) {
+    /* Race finish - stub */
+}
+
+/*
+ * func_800AD734 (1572 bytes)
+ * Race results display
+ */
+void func_800AD734(void) {
+    /* Results display - stub */
+}
+
+/*
+ * func_800ADD58 (3580 bytes)
+ * Leaderboard update
+ */
+void func_800ADD58(void) {
+    /* Leaderboard - stub */
+}
+
+/*
+ * func_800AEB54 (528 bytes)
+ * High score check
+ */
+s32 func_800AEB54(s32 time) {
+    /* High score check - stub */
+    return 0;
+}
+
+/*
+ * func_800AED64 (644 bytes)
+ * High score entry
+ */
+void func_800AED64(s32 position, u8 *name, s32 time) {
+    /* High score entry - stub */
+}
+
+/*
+ * func_800AEFE8 (504 bytes)
+ * Save high scores
+ */
+void func_800AEFE8(void) {
+    /* Save scores - stub */
+}
+
+/*
+ * func_800B087C (1012 bytes)
+ * Audio voice allocation
+ */
+void func_800B087C(s32 voiceId, s32 priority) {
+    /* Voice allocation - stub */
+}
+
+/*
+ * func_800B24EC (4256 bytes)
+ * Audio sequence player
+ */
+void func_800B24EC(void *sequence) {
+    /* Sequence player - stub */
+}
+
+/*
+ * func_800B358C (160 bytes)
+ * Audio volume set
+ */
+void func_800B358C(s32 channel, f32 volume) {
+    /* Volume set - stub */
+}
+
+/*
+ * func_800B362C (444 bytes)
+ * Audio pan set
+ */
+void func_800B362C(s32 channel, f32 pan) {
+    /* Pan set - stub */
+}
+
+/*
+ * func_800B3D18 (228 bytes)
+ * Audio pitch set
+ */
+void func_800B3D18(s32 channel, f32 pitch) {
+    /* Pitch set - stub */
+}
+
+/*
+ * func_800B3FA4 (604 bytes)
+ * Audio effect apply
+ */
+void func_800B3FA4(s32 channel, s32 effectType, f32 amount) {
+    /* Effect apply - stub */
+}
+
+/*
+ * func_800B4200 (352 bytes)
+ * Audio buffer fill
+ */
+void func_800B4200(void *buffer, s32 samples) {
+    /* Buffer fill - stub */
+}
+
+/*
+ * func_800B438C (228 bytes)
+ * Audio stream start
+ */
+void func_800B438C(s32 streamId, void *data) {
+    /* Stream start - stub */
+}
+
+/*
+ * func_800B466C (604 bytes)
+ * Audio stream update
+ */
+void func_800B466C(s32 streamId) {
+    /* Stream update - stub */
+}
+
+/*
+ * func_800B4FB0 (1484 bytes)
+ * Audio music playback
+ */
+void func_800B4FB0(s32 trackId) {
+    /* Music playback - stub */
+}
+
+/*
+ * func_800B6024 (276 bytes)
+ * Get entity float array element
+ */
+f32 func_800B6024(void *entity, s32 index) {
+    f32 *arr = (f32 *)((u8 *)entity + 0x30);
+    return arr[index];
+}
+
+/*
+ * func_800B61FC (380 bytes)
+ * Set entity vector with validation
+ */
+void func_800B61FC(void *entity, f32 *vec) {
+    f32 *dest = (f32 *)((u8 *)entity + 0x24);
+
+    if (vec != NULL) {
+        dest[0] = vec[0];
+        dest[1] = vec[1];
+        dest[2] = vec[2];
+    }
+}
+
+/*
+ * func_800B71D4 (524 bytes)
+ * Entity transform update
+ */
+void func_800B71D4(void *entity, void *transform) {
+    /* Transform update - stub */
+}
+
+/*
+ * func_800B73E4 (188 bytes)
+ * Entity bounds check
+ */
+s32 func_800B73E4(void *entity, f32 *min, f32 *max) {
+    /* Bounds check - stub */
+    return 0;
+}
+
+/*
+ * func_800B74A0 (2904 bytes)
+ * Entity full collision test
+ */
+void func_800B74A0(void *entity, void *world) {
+    /* Full collision - stub */
+}
+
+/*
+ * func_800B7FF8 (196 bytes)
+ * Entity simple collision
+ */
+s32 func_800B7FF8(void *a, void *b) {
+    /* Simple collision - stub */
+    return 0;
+}
+
+/*
+ * func_800B80C8 (84 bytes)
+ * Entity distance squared
+ */
+f32 func_800B80C8(void *a, void *b) {
+    f32 *posA = (f32 *)((u8 *)a + 0x24);
+    f32 *posB = (f32 *)((u8 *)b + 0x24);
+    f32 dx = posA[0] - posB[0];
+    f32 dy = posA[1] - posB[1];
+    f32 dz = posA[2] - posB[2];
+
+    return dx * dx + dy * dy + dz * dz;
+}
+
+/*
+ * func_800B82C8 (2380 bytes)
+ * Collision response calculation
+ */
+void func_800B82C8(void *entityA, void *entityB, f32 *normal) {
+    /* Collision response - stub */
+}
+
+/*
+ * func_800B8C14 (1252 bytes)
+ * Physics constraint solve
+ */
+void func_800B8C14(void *constraint) {
+    /* Constraint solve - stub */
+}
+
+/*
+ * func_800B90F8 (1024 bytes)
+ * Contact point generation
+ */
+void func_800B90F8(void *bodyA, void *bodyB, void *contacts) {
+    /* Contact generation - stub */
+}
+
+/*
+ * func_800BAAA0 (744 bytes)
+ * Broadphase collision check
+ */
+void func_800BAAA0(void *world) {
+    /* Broadphase - stub */
+}
+
+/*
+ * func_800BADE0 (3448 bytes)
+ * Narrowphase collision
+ */
+void func_800BADE0(void *pairA, void *pairB) {
+    /* Narrowphase - stub */
+}
+
+/*
+ * func_800BB9B0 (2500 bytes)
+ * Track surface query
+ */
+s32 func_800BB9B0(f32 *pos, f32 *normal, f32 *height) {
+    /* Surface query - stub */
+    return 0;
+}
+
+/*
+ * func_800BE7BC (1016 bytes)
+ * Camera target tracking
+ */
+void func_800BE7BC(void *camera, void *target) {
+    /* Target tracking - stub */
+}
+
+/*
+ * func_800BF01C (8 bytes)
+ * Empty function
+ */
+void func_800BF01C(void) {
+    /* Empty stub */
+}
+
+/*
+ * func_800BF0A4 (848 bytes)
+ * Camera shake effect
+ */
+void func_800BF0A4(void *camera, f32 intensity, f32 duration) {
+    /* Camera shake - stub */
+}
+
+/*
+ * func_800C813C (804 bytes)
+ * HUD element render
+ */
+void func_800C813C(void *hud, s32 elementId) {
+    /* HUD render - stub */
+}
+
+/*
+ * func_800C84C0 (60 bytes)
+ * HUD visibility toggle
+ */
+void func_800C84C0(s32 visible) {
+    *(s32 *)(0x80148500) = visible;
+}
+
+/*
+ * func_800C84FC (868 bytes)
+ * Speedometer update
+ */
+void func_800C84FC(void *hud, f32 speed) {
+    /* Speedometer - stub */
+}
+
+/*
+ * func_800C885C (816 bytes)
+ * Tachometer update
+ */
+void func_800C885C(void *hud, f32 rpm) {
+    /* Tachometer - stub */
+}
+
+/*
+ * func_800C8B8C (1048 bytes)
+ * Lap counter update
+ */
+void func_800C8B8C(void *hud, s32 lap, s32 totalLaps) {
+    /* Lap counter - stub */
+}
+
+/*
+ * func_800C8FA4 (316 bytes)
+ * Position display update
+ */
+void func_800C8FA4(void *hud, s32 position) {
+    /* Position display - stub */
+}
+
+/*
+ * func_800C9158 (184 bytes)
+ * Timer display
+ */
+void func_800C9158(void *hud, s32 timeMs) {
+    /* Timer display - stub */
+}
+
+/*
+ * func_800C9210 (204 bytes)
+ * Speed display
+ */
+void func_800C9210(void *hud, s32 speed) {
+    /* Speed display - stub */
+}
+
+/*
+ * func_800C9480 (168 bytes)
+ * Nitro meter update
+ */
+void func_800C9480(void *hud, f32 nitroLevel) {
+    /* Nitro meter - stub */
+}
+
+/*
+ * func_800C9BE0 (1824 bytes)
+ * Full HUD update
+ */
+void func_800C9BE0(void *hud) {
+    /* Full HUD - stub */
+}
+
+/*
+ * func_800CA300 (180 bytes)
+ * HUD fade effect
+ */
+void func_800CA300(void *hud, f32 alpha) {
+    /* HUD fade - stub */
+}
+
+/*
+ * func_800CBF2C (12544 bytes)
+ * Menu system update
+ */
+void func_800CBF2C(void *menu) {
+    /* Menu update - stub */
+}
+
+/*
+ * func_800CF06C (5748 bytes)
+ * Menu render
+ */
+void func_800CF06C(void *menu) {
+    /* Menu render - stub */
+}
+
+/*
+ * func_800D0424 (3040 bytes)
+ * Menu input handling
+ */
+void func_800D0424(void *menu, void *input) {
+    /* Menu input - stub */
+}
+
+/*
+ * func_800D1004 (5196 bytes)
+ * Track select menu
+ */
+void func_800D1004(void *menu) {
+    /* Track select - stub */
+}
+
+/*
+ * func_800D4DFC (1228 bytes)
+ * Car select menu
+ */
+void func_800D4DFC(void *menu) {
+    /* Car select - stub */
+}
+
+/*
+ * func_800D52CC (8 bytes)
+ * Empty stub
+ */
+void func_800D52CC(void) {
+    /* Empty */
+}
+
+/*
+ * func_800D5374 (332 bytes)
+ * Options menu
+ */
+void func_800D5374(void *menu) {
+    /* Options menu - stub */
+}
+
+/*
+ * func_800D5524 (628 bytes)
+ * Audio options
+ */
+void func_800D5524(void *menu) {
+    /* Audio options - stub */
+}
+
+/*
+ * func_800D5A04 (1704 bytes)
+ * Controller config
+ */
+void func_800D5A04(void *menu) {
+    /* Controller config - stub */
+}
+
+/*
+ * func_800D60AC (8 bytes)
+ * Empty stub
+ */
+void func_800D60AC(void) {
+    /* Empty */
+}
+
+/*
+ * func_800D6160 (496 bytes)
+ * Save/load menu
+ */
+void func_800D6160(void *menu) {
+    /* Save/load - stub */
+}
+
+/*
+ * func_800D6530 (4356 bytes)
+ * Memory card operations
+ */
+void func_800D6530(s32 operation) {
+    /* Memory card - stub */
+}
+
+/*
+ * func_800D7634 (1804 bytes)
+ * Profile management
+ */
+void func_800D7634(void *profile) {
+    /* Profile management - stub */
+}
+
+/*
+ * func_800D91A0 (8260 bytes)
+ * Garage/car customization
+ */
+void func_800D91A0(void *garage) {
+    /* Garage - stub */
+}
+
+/*
+ * func_800DB1E0 (1524 bytes)
+ * Paint selection
+ */
+void func_800DB1E0(void *car, s32 paintId) {
+    /* Paint selection - stub */
+}
+
+/*
+ * func_800E114C (1012 bytes)
+ * Replay system update
+ */
+void func_800E114C(void *replay) {
+    /* Replay update - stub */
+}
+
+/*
+ * func_800E15A0 (1280 bytes)
+ * Replay playback
+ */
+void func_800E15A0(void *replay) {
+    /* Replay playback - stub */
+}
+
+/*
+ * func_800E1AA0 (404 bytes)
+ * Replay record frame
+ */
+void func_800E1AA0(void *replay, void *frame) {
+    /* Record frame - stub */
+}
+
+/*
+ * func_800E1C30 (1908 bytes)
+ * Replay camera control
+ */
+void func_800E1C30(void *replay, void *camera) {
+    /* Replay camera - stub */
+}
+
+/*
+ * func_800E23A4 (1680 bytes)
+ * Replay UI
+ */
+void func_800E23A4(void *replay) {
+    /* Replay UI - stub */
+}
+
+/*
+ * func_800E0050 (1440 bytes)
+ * Weather effect system
+ */
+void func_800E0050(void *weather) {
+    /* Weather effects - stub */
+}
+
+/*
+ * func_800E05F0 (1328 bytes)
+ * Rain effect rendering
+ */
+void func_800E05F0(f32 intensity) {
+    /* Rain effect - stub */
+}
+
+/*
+ * func_800E0B20 (1576 bytes)
+ * Particle system update
+ */
+void func_800E0B20(void *particles) {
+    /* Particle update - stub */
+}
+
+/*
+ * func_800E15A8 (1176 bytes)
+ * Explosion effect
+ */
+void func_800E15A8(f32 *pos, f32 size) {
+    /* Explosion - stub */
+}
+
+/*
+ * func_800E1F80 (984 bytes)
+ * Debris spawning
+ */
+void func_800E1F80(void *car, s32 debrisType) {
+    /* Debris spawn - stub */
+}
+
+/*
+ * func_800E2F00 (716 bytes)
+ * Spark effect
+ */
+void func_800E2F00(f32 *pos, f32 *velocity) {
+    /* Spark effect - stub */
+}
+
+/*
+ * func_800E31D4 (248 bytes)
+ * Smoke puff
+ */
+void func_800E31D4(f32 *pos, f32 size) {
+    /* Smoke puff - stub */
+}
+
+/*
+ * func_800E32CC (1112 bytes)
+ * Dust cloud
+ */
+void func_800E32CC(f32 *pos, f32 *velocity, f32 size) {
+    /* Dust cloud - stub */
+}
+
+/*
+ * func_800E3724 (612 bytes)
+ * Water splash
+ */
+void func_800E3724(f32 *pos, f32 size) {
+    /* Water splash - stub */
+}
+
+/*
+ * func_800E398C (2960 bytes)
+ * Particle render
+ */
+void func_800E398C(void *particles) {
+    /* Particle render - stub */
+}
+
+/*
+ * func_800E451C (1596 bytes)
+ * Lens flare effect
+ */
+void func_800E451C(void *camera, f32 *sunPos) {
+    /* Lens flare - stub */
+}
+
+/*
+ * func_800E4B58 (2284 bytes)
+ * Sky rendering
+ */
+void func_800E4B58(void *camera) {
+    /* Sky render - stub */
+}
+
+/*
+ * func_800E5444 (712 bytes)
+ * Horizon line
+ */
+void func_800E5444(void *camera) {
+    /* Horizon - stub */
+}
+
+/*
+ * func_800E571C (4360 bytes)
+ * Environment mapping
+ */
+void func_800E571C(void *surface) {
+    /* Env mapping - stub */
+}
+
+/*
+ * func_800E6824 (708 bytes)
+ * Reflection update
+ */
+void func_800E6824(void *surface) {
+    /* Reflection - stub */
+}
+
+/*
+ * func_800E6AF8 (1596 bytes)
+ * Shadow volume
+ */
+void func_800E6AF8(void *object, f32 *lightDir) {
+    /* Shadow volume - stub */
+}
+
+/*
+ * func_800E7134 (2576 bytes)
+ * Crowd rendering
+ */
+void func_800E7134(void *crowd) {
+    /* Crowd render - stub */
+}
+
+/*
+ * func_800E7B44 (472 bytes)
+ * Billboard sprite
+ */
+void func_800E7B44(f32 *pos, s32 spriteId) {
+    /* Billboard - stub */
+}
+
+/*
+ * func_800E7D14 (684 bytes)
+ * Animated billboard
+ */
+void func_800E7D14(f32 *pos, s32 animId, f32 time) {
+    /* Animated billboard - stub */
+}
+
+/*
+ * func_800E7FC8 (3312 bytes)
+ * Track decoration rendering
+ */
+void func_800E7FC8(void *track) {
+    /* Track decoration - stub */
+}
+
+/*
+ * func_800E8CB8 (152 bytes)
+ * Get decoration count
+ */
+s32 func_800E8CB8(void *track) {
+    return *(s32 *)((u8 *)track + 0x24);
+}
+
+/*
+ * func_800E8D50 (448 bytes)
+ * LOD distance check
+ */
+s32 func_800E8D50(f32 *pos, f32 *camera, f32 maxDist) {
+    /* LOD check - stub */
+    return 0;
+}
+
+/*
+ * func_800E8F10 (952 bytes)
+ * Ambient light setup
+ */
+void func_800E8F10(f32 *color, f32 intensity) {
+    /* Ambient light - stub */
+}
+
+/*
+ * func_800E92C8 (788 bytes)
+ * Directional light
+ */
+void func_800E92C8(f32 *direction, f32 *color, f32 intensity) {
+    /* Directional light - stub */
+}
+
+/*
+ * func_800E95DC (1684 bytes)
+ * Point light
+ */
+void func_800E95DC(f32 *pos, f32 *color, f32 radius) {
+    /* Point light - stub */
+}
+
+/*
+ * func_800E9C70 (444 bytes)
+ * Light fade
+ */
+void func_800E9C70(void *light, f32 targetIntensity, f32 duration) {
+    /* Light fade - stub */
+}
+
+/*
+ * func_800E9E2C (476 bytes)
+ * Light flicker
+ */
+void func_800E9E2C(void *light, f32 frequency, f32 amplitude) {
+    /* Light flicker - stub */
+}
+
+/*
+ * func_800EA108 (468 bytes)
+ * Headlight cone
+ */
+void func_800EA108(void *car, f32 *direction) {
+    /* Headlight cone - stub */
+}
+
+/*
+ * func_800EA2DC (276 bytes)
+ * Light enable/disable
+ */
+void func_800EA2DC(void *light, s32 enable) {
+    /* Light enable - stub */
+}
+
+/*
+ * func_800EA3F4 (2548 bytes)
+ * Full lighting update
+ */
+void func_800EA3F4(void *scene) {
+    /* Full lighting - stub */
+}
+
+/*
+ * func_800F0050 (1644 bytes)
+ * Network message send
+ */
+void func_800F0050(void *msg, s32 size) {
+    /* Net send - stub */
+}
+
+/*
+ * func_800F0698 (1408 bytes)
+ * Network message receive
+ */
+s32 func_800F0698(void *buffer, s32 maxSize) {
+    /* Net receive - stub */
+    return 0;
+}
+
+/*
+ * func_800F0C18 (2036 bytes)
+ * Network state sync
+ */
+void func_800F0C18(void *state) {
+    /* State sync - stub */
+}
+
+/*
+ * func_800F13F0 (1364 bytes)
+ * Multiplayer lobby
+ */
+void func_800F13F0(void *lobby) {
+    /* Lobby - stub */
+}
+
+/*
+ * func_800F1944 (852 bytes)
+ * Player join handling
+ */
+void func_800F1944(s32 playerSlot) {
+    /* Player join - stub */
+}
+
+/*
+ * func_800F1C98 (676 bytes)
+ * Player leave handling
+ */
+void func_800F1C98(s32 playerSlot) {
+    /* Player leave - stub */
+}
+
+/*
+ * func_800F1F3C (2208 bytes)
+ * Network game start
+ */
+void func_800F1F3C(void) {
+    /* Net game start - stub */
+}
+
+/*
+ * func_800F27DC (1632 bytes)
+ * Input sync
+ */
+void func_800F27DC(void *inputs) {
+    /* Input sync - stub */
+}
+
+/*
+ * func_800F2E3C (784 bytes)
+ * Latency compensation
+ */
+void func_800F2E3C(void *entity, s32 frames) {
+    /* Latency comp - stub */
+}
+
+/*
+ * func_800F314C (1084 bytes)
+ * Network error handling
+ */
+void func_800F314C(s32 errorCode) {
+    /* Net error - stub */
+}
+
+/*
+ * func_800F3588 (836 bytes)
+ * Session management
+ */
+void func_800F3588(s32 cmd) {
+    /* Session mgmt - stub */
+}
+
+/*
+ * func_800F38BC (1912 bytes)
+ * Ghost data recording
+ */
+void func_800F38BC(void *ghost) {
+    /* Ghost record - stub */
+}
+
+/*
+ * func_800F4034 (1536 bytes)
+ * Ghost playback
+ */
+void func_800F4034(void *ghost) {
+    /* Ghost playback - stub */
+}
+
+/*
+ * func_800F4634 (908 bytes)
+ * Ghost save
+ */
+void func_800F4634(void *ghost, s32 slot) {
+    /* Ghost save - stub */
+}
+
+/*
+ * func_800F49C0 (876 bytes)
+ * Ghost load
+ */
+s32 func_800F49C0(void *ghost, s32 slot) {
+    /* Ghost load - stub */
+    return 0;
+}
+
+/*
+ * func_800F4D2C (752 bytes)
+ * Ghost render
+ */
+void func_800F4D2C(void *ghost) {
+    /* Ghost render - stub */
+}
+
+/*
+ * func_800F5000 (3832 bytes)
+ * Stunt system
+ */
+void func_800F5000(void *car) {
+    /* Stunt system - stub */
+}
+
+/*
+ * func_800F5EF8 (588 bytes)
+ * Stunt score
+ */
+s32 func_800F5EF8(s32 stuntType) {
+    /* Stunt score - stub */
+    return 0;
+}
+
+/*
+ * func_800F6144 (1888 bytes)
+ * Stunt combo
+ */
+void func_800F6144(void *car, s32 stuntType) {
+    /* Stunt combo - stub */
+}
+
+/*
+ * func_800F6894 (580 bytes)
+ * Wing deploy
+ */
+void func_800F6894(void *car, s32 deploy) {
+    /* Wing deploy - stub */
+}
+
+/*
+ * func_800F6AD8 (740 bytes)
+ * Trick detection
+ */
+s32 func_800F6AD8(void *car) {
+    /* Trick detection - stub */
+    return 0;
+}
+
+/*
+ * func_800F6DBC (1168 bytes)
+ * Landing detection
+ */
+s32 func_800F6DBC(void *car) {
+    /* Landing detection - stub */
+    return 0;
+}
+
+/*
+ * func_800F724C (252 bytes)
+ * Stunt multiplier
+ */
+f32 func_800F724C(void *car) {
+    /* Stunt multiplier - stub */
+    return 1.0f;
+}
+
+/*
+ * func_800F9428 (1604 bytes)
+ * Attract mode camera
+ */
+void func_800F9428(void *camera) {
+    /* Attract camera - stub */
+}
+
+/*
+ * func_800F9A74 (952 bytes)
+ * Demo playback
+ */
+void func_800F9A74(void *demo) {
+    /* Demo playback - stub */
+}
+
+/*
+ * func_800F9E2C (684 bytes)
+ * Title screen
+ */
+void func_800F9E2C(void) {
+    /* Title screen - stub */
+}
+
+/*
+ * func_800FA0D8 (2356 bytes)
+ * Credits display
+ */
+void func_800FA0D8(void) {
+    /* Credits - stub */
+}
+
+/*
+ * func_800FA9E4 (1296 bytes)
+ * Loading screen
+ */
+void func_800FA9E4(f32 progress) {
+    /* Loading screen - stub */
+}
+
+/*
+ * func_800FAEF4 (1808 bytes)
+ * Pause menu
+ */
+void func_800FAEF4(void *pause) {
+    /* Pause menu - stub */
+}
+
+/*
+ * func_800FB5F4 (820 bytes)
+ * Pause state toggle
+ */
+void func_800FB5F4(s32 pause) {
+    /* Pause toggle - stub */
+}
+
+/*
+ * func_800FB928 (712 bytes)
+ * Game timer update
+ */
+void func_800FB928(void) {
+    /* Timer update - stub */
+}
+
+/*
+ * func_800FC3D8 (1516 bytes)
+ * Bonus mode
+ */
+void func_800FC3D8(void *bonus) {
+    /* Bonus mode - stub */
+}
+
+/*
+ * func_800FC9B8 (1284 bytes)
+ * Unlock check
+ */
+s32 func_800FC9B8(s32 unlockId) {
+    /* Unlock check - stub */
+    return 0;
+}
+
+/*
+ * func_800FCEB0 (948 bytes)
+ * Unlock trigger
+ */
+void func_800FCEB0(s32 unlockId) {
+    /* Unlock trigger - stub */
+}
+
+/*
+ * func_800FD264 (512 bytes)
+ * Progress save
+ */
+void func_800FD264(void) {
+    /* Progress save - stub */
+}
+
+/*
+ * func_800FDA90 (4560 bytes)
+ * Race init
+ */
+void func_800FDA90(void *race) {
+    /* Race init - stub */
+}
+
+/*
+ * func_800FEC78 (1808 bytes)
+ * Race cleanup
+ */
+void func_800FEC78(void) {
+    /* Race cleanup - stub */
+}
+
+/*
+ * func_80087118 (1772 bytes)
+ * Major RDP render mode setup
+ */
+void func_80087118(s32 mode, s32 flags) {
+    u32 *dlPtr;
+    u32 currentMode;
+
+    dlPtr = *(u32 **)(0x80149438);
+
+    /* Set render mode based on flags */
+    currentMode = *(u32 *)(0x8013E60C);
+
+    /* Complex render mode setup - stub */
+}
+
+/*
+ * func_80087A08 (10048 bytes)
+ * Major object rendering function
+ */
+void func_80087A08(void *object, void *matrix) {
+    /* Large render function - stub */
+}
+
+/*
+ * func_8008A77C (676 bytes)
+ * Audio queue processing
+ */
+void func_8008A77C(void *queue) {
+    /* Audio queue - stub */
+}
+
+/*
+ * func_8009C8F0 (5368 bytes)
+ * Track geometry processing
+ */
+void func_8009C8F0(void *track) {
+    /* Track geometry - stub */
+}
+
+/*
+ * func_8009DD88 (3304 bytes)
+ * Track segment render
+ */
+void func_8009DD88(void *segment) {
+    /* Segment render - stub */
+}
+
+/*
+ * func_8009EA70 (168 bytes)
+ * Track bounds check
+ */
+s32 func_8009EA70(f32 *pos) {
+    /* Bounds check - stub */
+    return 0;
+}
+
+/*
+ * func_8009EB18 (168 bytes)
+ * Track height query
+ */
+f32 func_8009EB18(f32 x, f32 z) {
+    /* Height query - stub */
+    return 0.0f;
+}
+
+/*
+ * func_8009EBC0 (1188 bytes)
+ * Track surface type query
+ */
+s32 func_8009EBC0(f32 *pos) {
+    /* Surface type - stub */
+    return 0;
+}
+
+/*
+ * func_8009F064 (8600 bytes)
+ * Track collision test
+ */
+s32 func_8009F064(f32 *start, f32 *end, f32 *hitPoint) {
+    /* Collision test - stub */
+    return 0;
+}
+
+/*
+ * func_800AF06C (1396 bytes)
+ * Save game data
+ */
+void func_800AF06C(void *saveData) {
+    /* Save game - stub */
+}
+
+/*
+ * func_800AF5E0 (176 bytes)
+ * Save slot check
+ */
+s32 func_800AF5E0(s32 slot) {
+    /* Slot check - stub */
+    return 0;
+}
+
+/*
+ * func_800AF690 (572 bytes)
+ * Load game data
+ */
+s32 func_800AF690(void *saveData, s32 slot) {
+    /* Load game - stub */
+    return 0;
+}
+
+/*
+ * func_800AF8CC (620 bytes)
+ * Delete save
+ */
+void func_800AF8CC(s32 slot) {
+    /* Delete save - stub */
+}
+
+/*
+ * func_800AFB38 (548 bytes)
+ * Save validation
+ */
+s32 func_800AFB38(void *saveData) {
+    /* Validate save - stub */
+    return 1;
+}
+
+/*
+ * func_800AFD5C (1060 bytes)
+ * Controller pak init
+ */
+s32 func_800AFD5C(s32 controller) {
+    /* Pak init - stub */
+    return 0;
+}
+
+/*
+ * func_800B0180 (868 bytes)
+ * Controller pak read
+ */
+s32 func_800B0180(s32 controller, void *buffer, s32 offset, s32 size) {
+    /* Pak read - stub */
+    return 0;
+}
+
+/*
+ * func_800B0904 (396 bytes)
+ * Audio init subsystem
+ */
+void func_800B0904(void) {
+    /* Audio init - stub */
+}
+
+/*
+ * func_800B0A90 (440 bytes)
+ * Audio shutdown
+ */
+void func_800B0A90(void) {
+    /* Audio shutdown - stub */
+}
+
+/*
+ * func_800B0C48 (800 bytes)
+ * Audio frame update
+ */
+void func_800B0C48(void) {
+    /* Audio update - stub */
+}
+
+/*
+ * func_800B0F68 (364 bytes)
+ * Sound bank load
+ */
+void func_800B0F68(s32 bankId) {
+    /* Bank load - stub */
+}
+
+/*
+ * func_800B10D4 (1248 bytes)
+ * Sound bank unload
+ */
+void func_800B10D4(s32 bankId) {
+    /* Bank unload - stub */
+}
+
+/*
+ * func_800B15B4 (1428 bytes)
+ * Music sequence load
+ */
+void func_800B15B4(s32 seqId) {
+    /* Sequence load - stub */
+}
+
+/*
+ * func_800B1B48 (1020 bytes)
+ * Music playback control
+ */
+void func_800B1B48(s32 cmd, s32 param) {
+    /* Music control - stub */
+}
+
+/*
+ * func_800B1F44 (200 bytes)
+ * Music volume
+ */
+void func_800B1F44(f32 volume) {
+    /* Music volume - stub */
+}
+
+/*
+ * func_800B200C (1612 bytes)
+ * Music tempo
+ */
+void func_800B200C(f32 tempo) {
+    /* Music tempo - stub */
+}
+
+/*
+ * func_800B2658 (464 bytes)
+ * Sound effect play
+ */
+void func_800B2658(s32 soundId, f32 volume, f32 pan) {
+    /* SFX play - stub */
+}
+
+/*
+ * func_800B2828 (256 bytes)
+ * Sound effect stop
+ */
+void func_800B2828(s32 handle) {
+    /* SFX stop - stub */
+}
+
+/*
+ * func_800B2928 (1016 bytes)
+ * 3D sound position
+ */
+void func_800B2928(s32 handle, f32 *pos) {
+    /* 3D sound pos - stub */
+}
+
+/*
+ * func_800B2D20 (216 bytes)
+ * Sound listener position
+ */
+void func_800B2D20(f32 *pos, f32 *forward) {
+    /* Listener pos - stub */
+}
+
+/*
+ * func_800B2DF8 (1428 bytes)
+ * Engine sound update
+ */
+void func_800B2DF8(void *car) {
+    /* Engine sound - stub */
+}
+
+/*
+ * func_800B338C (900 bytes)
+ * Tire sound update
+ */
+void func_800B338C(void *car) {
+    /* Tire sound - stub */
+}
+
+/*
+ * func_800B3710 (684 bytes)
+ * Collision sound trigger
+ */
+void func_800B3710(void *car, f32 intensity) {
+    /* Collision sound - stub */
+}
+
+/*
+ * func_800B39BC (396 bytes)
+ * Wind sound update
+ */
+void func_800B39BC(void *car) {
+    /* Wind sound - stub */
+}
+
+/*
+ * func_800B3B4C (468 bytes)
+ * Crowd cheer trigger
+ */
+void func_800B3B4C(s32 intensity) {
+    /* Crowd cheer - stub */
+}
+
+/*
+ * func_800B3D20 (488 bytes)
+ * Ambient sound control
+ */
+void func_800B3D20(s32 ambientId, f32 volume) {
+    /* Ambient sound - stub */
+}
+
+/*
+ * func_800B4208 (1328 bytes)
+ * Voice playback
+ */
+void func_800B4208(s32 voiceId) {
+    /* Voice playback - stub */
+}
+
+/*
+ * func_800B4738 (224 bytes)
+ * Voice stop
+ */
+void func_800B4738(void) {
+    /* Voice stop - stub */
+}
+
+/*
+ * func_800B4818 (892 bytes)
+ * Audio bus mix
+ */
+void func_800B4818(s32 bus, f32 *levels) {
+    /* Bus mix - stub */
+}
+
+/*
+ * func_800B4B94 (536 bytes)
+ * Reverb setup
+ */
+void func_800B4B94(s32 reverbType, f32 amount) {
+    /* Reverb setup - stub */
+}
+
+/*
+ * func_800B4DAC (196 bytes)
+ * Audio pause
+ */
+void func_800B4DAC(s32 pause) {
+    /* Audio pause - stub */
+}
+
+/*
+ * func_800B4E70 (2108 bytes)
+ * Audio ducking
+ */
+void func_800B4E70(s32 priority) {
+    /* Audio ducking - stub */
+}
+
+/*
+ * func_800B5694 (184 bytes)
+ * Sound priority set
+ */
+void func_800B5694(s32 handle, s32 priority) {
+    /* Priority set - stub */
+}
+
+/*
+ * func_800B574C (340 bytes)
+ * Sound loop control
+ */
+void func_800B574C(s32 handle, s32 loop) {
+    /* Loop control - stub */
+}
+
+/*
+ * func_800B58A0 (168 bytes)
+ * Sound pitch set
+ */
+void func_800B58A0(s32 handle, f32 pitch) {
+    /* Pitch set - stub */
+}
+
+/*
+ * func_800B5948 (176 bytes)
+ * Sound volume set
+ */
+void func_800B5948(s32 handle, f32 volume) {
+    /* Volume set - stub */
+}
+
+/*
+ * func_800B59F8 (1472 bytes)
+ * Audio spatialization
+ */
+void func_800B59F8(s32 handle, f32 *pos, f32 *velocity) {
+    /* Spatialization - stub */
+}
+
+/*
+ * func_800B65B8 (464 bytes)
+ * Audio distance attenuation
+ */
+f32 func_800B65B8(f32 distance, f32 maxDist) {
+    /* Attenuation - stub */
+    return 1.0f;
+}
+
+/*
+ * func_800B6788 (1124 bytes)
+ * Audio doppler effect
+ */
+f32 func_800B6788(f32 *listenerPos, f32 *listenerVel, f32 *sourcePos, f32 *sourceVel) {
+    /* Doppler - stub */
+    return 1.0f;
+}
+
+/*
+ * func_800B6BEC (1520 bytes)
+ * Audio occlusion
+ */
+f32 func_800B6BEC(f32 *listenerPos, f32 *sourcePos) {
+    /* Occlusion - stub */
+    return 1.0f;
+}
+
+/*
+ * func_800B71DC (536 bytes)
+ * Entity audio update
+ */
+void func_800B71DC(void *entity) {
+    /* Entity audio - stub */
+}
+
+/*
+ * func_800BC3E0 (7640 bytes)
+ * Camera main update
+ */
+void func_800BC3E0(void *camera, void *target) {
+    /* Camera update - stub */
+}
+
+/*
+ * func_800BDE78 (1596 bytes)
+ * Camera collision avoidance
+ */
+void func_800BDE78(void *camera) {
+    /* Camera collision - stub */
+}
+
+/*
+ * func_800BE44C (872 bytes)
+ * Camera smooth follow
+ */
+void func_800BE44C(void *camera, f32 *targetPos, f32 smoothing) {
+    /* Smooth follow - stub */
+}
+
+/*
+ * func_800BEC9C (1156 bytes)
+ * Camera mode switch
+ */
+void func_800BEC9C(void *camera, s32 mode) {
+    /* Mode switch - stub */
+}
+
+/*
+ * func_800BF120 (1780 bytes)
+ * Camera orbit control
+ */
+void func_800BF120(void *camera, f32 yaw, f32 pitch) {
+    /* Orbit control - stub */
+}
+
+/*
+ * func_800BF814 (948 bytes)
+ * Camera zoom control
+ */
+void func_800BF814(void *camera, f32 zoom) {
+    /* Zoom control - stub */
+}
+
+/*
+ * func_800BFBC8 (420 bytes)
+ * Camera FOV set
+ */
+void func_800BFBC8(void *camera, f32 fov) {
+    /* FOV set - stub */
+}
+
+/*
+ * func_800BFD6C (1392 bytes)
+ * Camera look-at
+ */
+void func_800BFD6C(void *camera, f32 *target) {
+    /* Look-at - stub */
+}
+
+/*
+ * func_800C0288 (2124 bytes)
+ * Camera path follow
+ */
+void func_800C0288(void *camera, void *path, f32 t) {
+    /* Path follow - stub */
+}
+
+/*
+ * func_800C0AC4 (1736 bytes)
+ * Camera transition
+ */
+void func_800C0AC4(void *camera, void *targetCamera, f32 duration) {
+    /* Transition - stub */
+}
+
+/*
+ * func_800C1188 (876 bytes)
+ * Camera matrix build
+ */
+void func_800C1188(void *camera, f32 *matrix) {
+    /* Matrix build - stub */
+}
+
+/*
+ * func_800C14F4 (768 bytes)
+ * Camera frustum extract
+ */
+void func_800C14F4(void *camera, f32 *frustum) {
+    /* Frustum extract - stub */
+}
+
+/*
+ * func_800C17F4 (1224 bytes)
+ * Camera viewport setup
+ */
+void func_800C17F4(void *camera, s32 x, s32 y, s32 w, s32 h) {
+    /* Viewport setup - stub */
+}
+
+/*
+ * func_800C1CBC (2392 bytes)
+ * Split screen camera
+ */
+void func_800C1CBC(s32 playerCount) {
+    /* Split screen - stub */
+}
+
+/*
+ * func_800C2614 (1092 bytes)
+ * Rear view camera
+ */
+void func_800C2614(void *camera, void *car) {
+    /* Rear view - stub */
+}
+
+/*
+ * func_800C2A58 (1648 bytes)
+ * Cinematic camera
+ */
+void func_800C2A58(void *camera, void *scene) {
+    /* Cinematic - stub */
+}
+
+/*
+ * func_800C30D8 (1212 bytes)
+ * Finish line camera
+ */
+void func_800C30D8(void *camera) {
+    /* Finish camera - stub */
+}
+
+/*
+ * func_800C3594 (1200 bytes)
+ * Entity slot init (detailed)
+ */
+void func_800C3594_full(void *slot, s32 type) {
+    /* Slot init - more detailed stub */
+}
+
+/*
+ * func_800CC880 (3972 bytes)
+ * Menu animation
+ */
+void func_800CC880(void *menu) {
+    /* Menu animation - stub */
+}
+
+/*
+ * func_800CD7F8 (7960 bytes)
+ * Text rendering
+ */
+void func_800CD7F8(void *text, s32 x, s32 y) {
+    /* Text render - stub */
+}
+
+/*
+ * func_800CF7E0 (1792 bytes)
+ * Font loading
+ */
+void func_800CF7E0(s32 fontId) {
+    /* Font load - stub */
+}
+
+/*
+ * func_800CFEDC (892 bytes)
+ * String width calculation
+ */
+s32 func_800CFEDC(u8 *str) {
+    /* String width - stub */
+    return 0;
+}
+
+/*
+ * func_800D0258 (460 bytes)
+ * Text color set
+ */
+void func_800D0258(u8 r, u8 g, u8 b, u8 a) {
+    /* Text color - stub */
+}
+
+/*
+ * func_800D23A8 (15548 bytes)
+ * Full menu render
+ */
+void func_800D23A8(void *menu) {
+    /* Full menu render - stub */
+}
+
+/*
+ * func_800DC8D0 (1100 bytes)
+ * Button sprite render
+ */
+void func_800DC8D0(s32 buttonId, s32 x, s32 y) {
+    /* Button render - stub */
+}
+
+/*
+ * func_800DCD20 (1760 bytes)
+ * Icon sprite render
+ */
+void func_800DCD20(s32 iconId, s32 x, s32 y) {
+    /* Icon render - stub */
+}
+
+/*
+ * func_800DD410 (2340 bytes)
+ * Selection highlight
+ */
+void func_800DD410(s32 x, s32 y, s32 w, s32 h) {
+    /* Highlight - stub */
+}
+
+/*
+ * func_800DDD40 (1284 bytes)
+ * Menu scroll
+ */
+void func_800DDD40(void *menu, s32 direction) {
+    /* Menu scroll - stub */
+}
+
+/*
+ * func_800DE244 (1824 bytes)
+ * Menu transition effect
+ */
+void func_800DE244(void *menu, s32 transitionType) {
+    /* Menu transition - stub */
+}
+
+/*
+ * func_800DE960 (2128 bytes)
+ * Popup dialog
+ */
+void func_800DE960(u8 *message, s32 type) {
+    /* Popup dialog - stub */
+}
+
+/*
+ * func_800DF1B0 (1356 bytes)
+ * Confirmation dialog
+ */
+s32 func_800DF1B0(u8 *message) {
+    /* Confirmation - stub */
+    return 0;
+}
+
+/*
+ * func_800DF6FC (2064 bytes)
+ * Input prompt
+ */
+void func_800DF6FC(u8 *prompt, u8 *buffer, s32 maxLen) {
+    /* Input prompt - stub */
+}
+
+/*
+ * func_800DFF0C (1600 bytes)
+ * Virtual keyboard
+ */
+void func_800DFF0C(u8 *buffer, s32 maxLen) {
+    /* Virtual keyboard - stub */
+}
+
+/*
+ * func_800E051C (212 bytes)
+ * Keyboard cursor move
+ */
+void func_800E051C(s32 dx, s32 dy) {
+    /* Cursor move - stub */
+}
+
+/*
+ * func_800EAE90 (2720 bytes)
+ * World bounds setup
+ */
+void func_800EAE90(void *world) {
+    /* World bounds - stub */
+}
+
+/*
+ * func_800EB920 (1012 bytes)
+ * Trigger zone check
+ */
+s32 func_800EB920(void *entity, void *trigger) {
+    /* Trigger check - stub */
+    return 0;
+}
+
+/*
+ * func_800EBD14 (1708 bytes)
+ * Trigger zone callback
+ */
+void func_800EBD14(void *trigger, void *callback) {
+    /* Trigger callback - stub */
+}
+
+/*
+ * func_800EC3B0 (2948 bytes)
+ * Scripted event
+ */
+void func_800EC3B0(void *event) {
+    /* Scripted event - stub */
+}
+
+/*
+ * func_800ECF38 (2188 bytes)
+ * Cutscene playback
+ */
+void func_800ECF38(s32 cutsceneId) {
+    /* Cutscene - stub */
+}
+
+/*
+ * func_800ED7C0 (2564 bytes)
+ * Object spawner
+ */
+void func_800ED7C0(s32 objectType, f32 *pos, f32 *rot) {
+    /* Object spawn - stub */
+}
+
+/*
+ * func_800EE1B0 (1516 bytes)
+ * Collectible spawn
+ */
+void func_800EE1B0(s32 collectibleType, f32 *pos) {
+    /* Collectible spawn - stub */
+}
+
+/*
+ * func_800EE7A8 (228 bytes)
+ * Collectible collect
+ */
+void func_800EE7A8(void *player, void *collectible) {
+    /* Collect - stub */
+}
+
+/*
+ * func_800EE8B0 (1780 bytes)
+ * Power-up activation
+ */
+void func_800EE8B0(void *player, s32 powerupType) {
+    /* Power-up - stub */
+}
+
+/*
+ * func_800EEFA0 (1556 bytes)
+ * Power-up timer
+ */
+void func_800EEFA0(void *player) {
+    /* Power-up timer - stub */
+}
+
+/*
+ * func_800EF5B4 (2036 bytes)
+ * Nitro boost
+ */
+void func_800EF5B4(void *car) {
+    /* Nitro boost - stub */
+}
+
+/*
+ * func_800EFD88 (1232 bytes)
+ * Nitro refill
+ */
+void func_800EFD88(void *car, f32 amount) {
+    /* Nitro refill - stub */
+}
+
+/*
+ * func_800F0258 (1088 bytes)
+ * Boost pad trigger
+ */
+void func_800F0258(void *car, void *pad) {
+    /* Boost pad - stub */
+}
+
+/*
+ * func_800F0698 (1180 bytes)
+ * Jump pad trigger
+ */
+void func_800F0698_jump(void *car, void *pad) {
+    /* Jump pad - stub */
+}
+
+/*
+ * func_800F0B44 (2264 bytes)
+ * Ramp launch
+ */
+void func_800F0B44(void *car, void *ramp) {
+    /* Ramp launch - stub */
+}
+
+/*
+ * func_80100660 (1748 bytes)
+ * Timer init
+ */
+void func_80100660(void) {
+    /* Timer init - stub */
+}
+
+/*
+ * func_80100D34 (188 bytes)
+ * Timer get elapsed
+ */
+s32 func_80100D34(void) {
+    /* Get elapsed - stub */
+    return 0;
+}
+
+/*
+ * func_80100DF0 (244 bytes)
+ * Timer reset
+ */
+void func_80100DF0(void) {
+    /* Timer reset - stub */
+}
+
+/*
+ * func_80100EE4 (776 bytes)
+ * Countdown timer
+ */
+void func_80100EE4(s32 seconds) {
+    /* Countdown - stub */
+}
+
+/*
+ * func_801011DC (1340 bytes)
+ * Lap timer split
+ */
+void func_801011DC(void *player) {
+    /* Lap split - stub */
+}
+
+/*
+ * func_80101700 (588 bytes)
+ * Best time check
+ */
+s32 func_80101700(s32 trackId, s32 time) {
+    /* Best time check - stub */
+    return 0;
+}
+
+/*
+ * func_8010194C (812 bytes)
+ * Record new best
+ */
+void func_8010194C(s32 trackId, s32 time, u8 *name) {
+    /* Record best - stub */
+}
+
+/*
+ * func_80101C78 (1472 bytes)
+ * Leaderboard display
+ */
+void func_80101C78(s32 trackId) {
+    /* Leaderboard - stub */
+}
+
+/*
+ * func_80102250 (2084 bytes)
+ * Race results screen
+ */
+void func_80102250(void) {
+    /* Results screen - stub */
+}
+
+/*
+ * func_80102A74 (1524 bytes)
+ * Award ceremony
+ */
+void func_80102A74(void) {
+    /* Award ceremony - stub */
+}
+
+/*
+ * func_8010306C (876 bytes)
+ * Trophy animation
+ */
+void func_8010306C(s32 place) {
+    /* Trophy animation - stub */
+}
+
+/*
+ * func_801033D8 (1616 bytes)
+ * Continue prompt
+ */
+s32 func_801033D8(void) {
+    /* Continue prompt - stub */
+    return 0;
+}
+
+/*
+ * func_80103A08 (2328 bytes)
+ * Game over screen
+ */
+void func_80103A08(void) {
+    /* Game over - stub */
+}
+
+/*
+ * func_80104320 (1844 bytes)
+ * Name entry screen
+ */
+void func_80104320(u8 *name) {
+    /* Name entry - stub */
+}
+
+/*
+ * func_80104A58 (1036 bytes)
+ * High score entry animation
+ */
+void func_80104A58(s32 position) {
+    /* HS animation - stub */
+}
+
+/*
+ * func_80104E84 (2464 bytes)
+ * Statistics display
+ */
+void func_80104E84(void *stats) {
+    /* Statistics - stub */
+}
+
+/*
+ * func_80105858 (1692 bytes)
+ * Achievements check
+ */
+void func_80105858(void *player) {
+    /* Achievements - stub */
+}
+
+/*
+ * func_80105EF4 (876 bytes)
+ * Achievement unlock
+ */
+void func_80105EF4(s32 achievementId) {
+    /* Achievement unlock - stub */
+}
+
+/*
+ * func_80106260 (1484 bytes)
+ * Achievement display
+ */
+void func_80106260(s32 achievementId) {
+    /* Achievement display - stub */
+}
+
+/*
+ * func_801068F4 (2144 bytes)
+ * Profile stats update
+ */
+void func_801068F4(void *profile, void *raceStats) {
+    /* Profile update - stub */
+}
+
+/*
+ * func_80107110 (1248 bytes)
+ * Difficulty scaling
+ */
+void func_80107110(s32 difficulty) {
+    /* Difficulty scaling - stub */
+}
+
+/*
+ * func_80107600 (924 bytes)
+ * AI difficulty adjust
+ */
+void func_80107600(void *ai, s32 difficulty) {
+    /* AI difficulty - stub */
+}
+
+/*
+ * func_801079AC (1768 bytes)
+ * Rubber banding
+ */
+void func_801079AC(void *race) {
+    /* Rubber banding - stub */
+}
+
+/*
+ * func_80108098 (2356 bytes)
+ * Dynamic difficulty
+ */
+void func_80108098(void *player) {
+    /* Dynamic difficulty - stub */
+}
+
+/*
+ * func_801089CC (1432 bytes)
+ * Catch-up logic
+ */
+void func_801089CC(void *ai, void *leader) {
+    /* Catch-up - stub */
+}
+
+/*
+ * func_80108F6C (876 bytes)
+ * Skill rating update
+ */
+void func_80108F6C(void *player, s32 result) {
+    /* Skill rating - stub */
+}
+
+/*
+ * func_801092D8 (1984 bytes)
+ * Matchmaking
+ */
+void func_801092D8(void *players) {
+    /* Matchmaking - stub */
+}
+
+/*
+ * func_80109A98 (1124 bytes)
+ * Session host
+ */
+s32 func_80109A98(void) {
+    /* Session host - stub */
+    return 0;
+}
+
+/*
+ * func_80109EFC (1476 bytes)
+ * Session join
+ */
+s32 func_80109EFC(s32 sessionId) {
+    /* Session join - stub */
+    return 0;
+}
+
+/*
+ * func_8010A4C0 (892 bytes)
+ * Session leave
+ */
+void func_8010A4C0(void) {
+    /* Session leave - stub */
+}
+
+/*
+ * func_8010A83C (2648 bytes)
+ * Network sync full
+ */
+void func_8010A83C(void) {
+    /* Net sync - stub */
+}
+
+/*
+ * func_8010B284 (676 bytes)
+ * Ping measurement
+ */
+s32 func_8010B284(void) {
+    /* Ping - stub */
+    return 0;
+}
+
+/*
+ * func_8010B528 (844 bytes)
+ * Network stats display
+ */
+void func_8010B528(void) {
+    /* Net stats - stub */
+}
+
+/*
+ * func_8010B874 (1548 bytes)
+ * Disconnection handling
+ */
+void func_8010B874(s32 playerId) {
+    /* Disconnect - stub */
+}
+
+/*
+ * func_8010BE7C (1152 bytes)
+ * Reconnection attempt
+ */
+s32 func_8010BE7C(void) {
+    /* Reconnect - stub */
+    return 0;
+}
+
+/*
+ * func_8010C2FC (2084 bytes)
+ * Final cleanup
+ */
+void func_8010C2FC(void) {
+    /* Final cleanup - stub */
+}
+
+/*
+ * func_800B7440 (88 bytes)
+ * Audio queue add
+ */
+void func_800B7440(s32 sndId) {
+    extern u32 D_801547C4;
+    extern s32 D_801551E8[10];
+    s32 *ptr;
+
+    if (D_801547C4 != 0) {
+        func_800B73E4();
+    }
+    for (ptr = &D_801551E8[0]; ptr < &D_801551E8[10]; ptr++) {
+        if (*ptr == 0) {
+            *ptr = sndId;
+            return;
+        }
+    }
+}
+
+/*
+ * func_800B78F8 (324 bytes)
+ * Audio channel setup
+ */
+void func_800B78F8(s32 channel, s32 param) {
+    /* Channel setup - stub */
+}
+
+/*
+ * func_800B7A40 (192 bytes)
+ * Audio volume control
+ */
+void func_800B7A40(s32 channel, f32 volume) {
+    /* Volume control - stub */
+}
+
+/*
+ * func_800B8000 (200 bytes)
+ * Audio pan control
+ */
+void func_800B8000(s32 channel, f32 pan) {
+    /* Pan control - stub */
+}
+
+/*
+ * func_800B821C (340 bytes)
+ * Audio pitch control
+ */
+void func_800B821C(s32 channel, f32 pitch) {
+    /* Pitch control - stub */
+}
+
+/*
+ * func_800B8374 (724 bytes)
+ * Audio 3D position
+ */
+void func_800B8374(s32 channel, f32 *pos) {
+    /* 3D audio - stub */
+}
+
+/*
+ * func_800B8650 (464 bytes)
+ * Audio doppler effect
+ */
+void func_800B8650(s32 channel, f32 *velocity) {
+    /* Doppler - stub */
+}
+
+/*
+ * func_800B8820 (368 bytes)
+ * Audio reverb setup
+ */
+void func_800B8820(s32 reverbType, f32 amount) {
+    /* Reverb - stub */
+}
+
+/*
+ * func_800B9194 (528 bytes)
+ * Audio sample load
+ */
+s32 func_800B9194(s32 sampleId) {
+    /* Sample load - stub */
+    return 0;
+}
+
+/*
+ * func_800B93A8 (972 bytes)
+ * Audio stream init
+ */
+s32 func_800B93A8(s32 streamId) {
+    /* Stream init - stub */
+    return 0;
+}
+
+/*
+ * func_800B9774 (664 bytes)
+ * Audio stream update
+ */
+void func_800B9774(void) {
+    /* Stream update - stub */
+}
+
+/*
+ * func_800B9A0C (860 bytes)
+ * Audio stream buffer
+ */
+void func_800B9A0C(void *buffer, s32 size) {
+    /* Stream buffer - stub */
+}
+
+/*
+ * func_800B9D68 (676 bytes)
+ * Music sequence control
+ */
+void func_800B9D68(s32 seqCmd) {
+    /* Sequence control - stub */
+}
+
+/*
+ * func_800BA00C (732 bytes)
+ * Music tempo control
+ */
+void func_800BA00C(f32 tempo) {
+    /* Tempo - stub */
+}
+
+/*
+ * func_800BA2E8 (388 bytes)
+ * Music fade in/out
+ */
+void func_800BA2E8(f32 duration, s32 fadeIn) {
+    /* Fade - stub */
+}
+
+/*
+ * func_800BA46C (472 bytes)
+ * Audio priority system
+ */
+s32 func_800BA46C(s32 priority) {
+    /* Priority - stub */
+    return 0;
+}
+
+/*
+ * func_800BA644 (380 bytes)
+ * Audio memory manager
+ */
+void *func_800BA644(s32 size) {
+    /* Audio alloc - stub */
+    return NULL;
+}
+
+/*
+ * func_800BA7C4 (1996 bytes)
+ * Audio main mixer
+ */
+void func_800BA7C4(void) {
+    /* Main mixer - stub */
+}
+
+/*
+ * func_800BAF98 (172 bytes)
+ * Audio effect apply
+ */
+void func_800BAF98(s32 effectId) {
+    /* Effect apply - stub */
+}
+
+/*
+ * func_800BB044 (252 bytes)
+ * Audio effect remove
+ */
+void func_800BB044(s32 effectId) {
+    /* Effect remove - stub */
+}
+
+/*
+ * func_800BB140 (1372 bytes)
+ * Audio DSP process
+ */
+void func_800BB140(void *dspBuffer) {
+    /* DSP process - stub */
+}
+
+/*
+ * func_800BB69C (408 bytes)
+ * Audio output setup
+ */
+void func_800BB69C(s32 outputMode) {
+    /* Output setup - stub */
+}
+
+/*
+ * func_800BB834 (392 bytes)
+ * Audio hardware sync
+ */
+void func_800BB834(void) {
+    /* HW sync - stub */
+}
+
+/*
+ * func_800BB9BC (756 bytes)
+ * Audio interrupt handler
+ */
+void func_800BB9BC(void) {
+    /* Audio interrupt - stub */
+}
+
+/*
+ * func_800BC2BC (292 bytes)
+ * Camera reset
+ */
+void func_800BC2BC(void *camera) {
+    /* Camera reset - stub */
+}
+
+/*
+ * func_800BCBB8 (808 bytes)
+ * Camera lerp position
+ */
+void func_800BCBB8(void *camera, f32 *target, f32 t) {
+    /* Camera lerp - stub */
+}
+
+/*
+ * func_800BCEE4 (548 bytes)
+ * Camera orbit control
+ */
+void func_800BCEE4(void *camera, f32 yaw, f32 pitch) {
+    /* Orbit - stub */
+}
+
+/*
+ * func_800BD104 (460 bytes)
+ * Camera dolly
+ */
+void func_800BD104(void *camera, f32 distance) {
+    /* Dolly - stub */
+}
+
+/*
+ * func_800BD2D0 (1976 bytes)
+ * Camera collision avoidance
+ */
+void func_800BD2D0(void *camera) {
+    /* Collision avoid - stub */
+}
+
+/*
+ * func_800BDAA8 (852 bytes)
+ * Camera shake effect
+ */
+void func_800BDAA8(f32 intensity, f32 duration) {
+    /* Shake - stub */
+}
+
+/*
+ * func_800BDDFC (192 bytes)
+ * Camera shake update
+ */
+void func_800BDDFC(void *camera) {
+    /* Shake update - stub */
+}
+
+/*
+ * func_800BDEBC (444 bytes)
+ * Camera zoom control
+ */
+void func_800BDEBC(void *camera, f32 zoom) {
+    /* Zoom - stub */
+}
+
+/*
+ * func_800BE078 (1136 bytes)
+ * Camera auto-follow
+ */
+void func_800BE078(void *camera, void *target) {
+    /* Auto follow - stub */
+}
+
+/*
+ * func_800BE4F8 (936 bytes)
+ * Camera cinematic mode
+ */
+void func_800BE4F8(s32 cinematicId) {
+    /* Cinematic - stub */
+}
+
+/*
+ * func_800BEAA0 (908 bytes)
+ * Camera cut to
+ */
+void func_800BEAA0(void *camera, f32 *pos, f32 *look) {
+    /* Cut to - stub */
+}
+
+/*
+ * func_800BEE2C (924 bytes)
+ * Camera blend between
+ */
+void func_800BEE2C(void *cam1, void *cam2, f32 t) {
+    /* Blend - stub */
+}
+
+/*
+ * func_800BF1C8 (236 bytes)
+ * Camera FOV control
+ */
+void func_800BF1C8(void *camera, f32 fov) {
+    /* FOV - stub */
+}
+
+/*
+ * func_800BF2B8 (220 bytes)
+ * Camera near/far planes
+ */
+void func_800BF2B8(void *camera, f32 near, f32 far) {
+    /* Planes - stub */
+}
+
+/*
+ * func_800BF394 (200 bytes)
+ * Camera aspect ratio
+ */
+void func_800BF394(void *camera, f32 aspect) {
+    /* Aspect - stub */
+}
+
+/*
+ * func_800BF45C (988 bytes)
+ * Camera look at
+ */
+void func_800BF45C(void *camera, f32 *target) {
+    /* Look at - stub */
+}
+
+/*
+ * func_800BF838 (948 bytes)
+ * Camera first person
+ */
+void func_800BF838(void *camera, void *player) {
+    /* First person - stub */
+}
+
+/*
+ * func_800BFBEC (380 bytes)
+ * Camera third person
+ */
+void func_800BFBEC(void *camera, void *player) {
+    /* Third person - stub */
+}
+
+/*
+ * func_800BFD94 (844 bytes)
+ * Camera top down
+ */
+void func_800BFD94(void *camera) {
+    /* Top down - stub */
+}
+
+/*
+ * func_800C00E0 (444 bytes)
+ * Camera free look
+ */
+void func_800C00E0(void *camera, s32 input) {
+    /* Free look - stub */
+}
+
+/*
+ * func_800C02A0 (556 bytes)
+ * Camera replay mode
+ */
+void func_800C02A0(void *camera, s32 frame) {
+    /* Replay cam - stub */
+}
+
+/*
+ * func_800C04CC (912 bytes)
+ * Camera track spline
+ */
+void func_800C04CC(void *camera, void *spline, f32 t) {
+    /* Spline - stub */
+}
+
+/*
+ * func_800C085C (612 bytes)
+ * Camera matrix build
+ */
+void func_800C085C(void *camera, f32 *matrix) {
+    /* Matrix build - stub */
+}
+
+/*
+ * func_800C0AC0 (2884 bytes)
+ * Camera full update
+ */
+void func_800C0AC0(void *camera) {
+    /* Full update - stub */
+}
+
+/*
+ * func_800C1604 (1416 bytes)
+ * Camera input process
+ */
+void func_800C1604(void *camera, void *input) {
+    /* Input process - stub */
+}
+
+/*
+ * func_800C1B8C (1172 bytes)
+ * Camera constraint check
+ */
+void func_800C1B8C(void *camera) {
+    /* Constraint - stub */
+}
+
+/*
+ * func_800C2020 (520 bytes)
+ * Camera debug display
+ */
+void func_800C2020(void *camera) {
+    /* Debug display - stub */
+}
+
+/*
+ * func_800C2228 (548 bytes)
+ * Camera save state
+ */
+void func_800C2228(void *camera, void *state) {
+    /* Save state - stub */
+}
+
+/*
+ * func_800C244C (660 bytes)
+ * Camera restore state
+ */
+void func_800C244C(void *camera, void *state) {
+    /* Restore state - stub */
+}
+
+/*
+ * func_800C26E0 (644 bytes)
+ * Camera multi-view
+ */
+void func_800C26E0(s32 viewIndex, void *camera) {
+    /* Multi view - stub */
+}
+
+/*
+ * func_800C2960 (644 bytes)
+ * Camera split screen
+ */
+void func_800C2960(s32 numPlayers) {
+    /* Split screen - stub */
+}
+
+/*
+ * func_800C2BE0 (5664 bytes)
+ * Camera scene manager
+ */
+void func_800C2BE0(void) {
+    /* Scene manager - stub */
+}
+
+/*
+ * func_800C4200 (1232 bytes)
+ * Camera trigger check
+ */
+void func_800C4200(void *camera, void *triggers) {
+    /* Trigger check - stub */
+}
+
+/*
+ * func_800C46D0 (3956 bytes)
+ * Camera path follow
+ */
+void func_800C46D0(void *camera, void *path) {
+    /* Path follow - stub */
+}
+
+/*
+ * func_800C5644 (3516 bytes)
+ * Camera scripted sequence
+ */
+void func_800C5644(s32 scriptId) {
+    /* Script sequence - stub */
+}
+
+/*
+ * func_800C6404 (780 bytes)
+ * Camera finish line
+ */
+void func_800C6404(void *camera, s32 placing) {
+    /* Finish line - stub */
+}
+
+/*
+ * func_800C7110 (572 bytes)
+ * HUD element draw
+ */
+void func_800C7110(s32 elementId, s32 x, s32 y) {
+    /* HUD element - stub */
+}
+
+/*
+ * func_800C734C (700 bytes)
+ * HUD text draw
+ */
+void func_800C734C(char *text, s32 x, s32 y) {
+    /* HUD text - stub */
+}
+
+/*
+ * func_800C760C (524 bytes)
+ * HUD number draw
+ */
+void func_800C760C(s32 value, s32 digits, s32 x, s32 y) {
+    /* HUD number - stub */
+}
+
+/*
+ * func_800C7818 (1724 bytes)
+ * HUD speedometer
+ */
+void func_800C7818(f32 speed) {
+    /* Speedometer - stub */
+}
+
+/*
+ * func_800C7ED4 (2540 bytes)
+ * HUD lap counter
+ */
+void func_800C7ED4(s32 currentLap, s32 totalLaps) {
+    /* Lap counter - stub */
+}
+
+/*
+ * func_800C8864 (188 bytes)
+ * HUD position display
+ */
+void func_800C8864(s32 position) {
+    /* Position - stub */
+}
+
+/*
+ * func_800C8920 (228 bytes)
+ * HUD timer display
+ */
+void func_800C8920(s32 timeMs) {
+    /* Timer - stub */
+}
+
+/*
+ * func_800C9404 (300 bytes)
+ * HUD minimap update
+ */
+void func_800C9404(void *player) {
+    /* Minimap - stub */
+}
+
+/*
+ * func_800CA308 (172 bytes)
+ * HUD message display
+ */
+void func_800CA308(s32 messageId) {
+    /* Message - stub */
+}
+
+/*
+ * func_800CADA4 (2468 bytes)
+ * HUD full render
+ */
+void func_800CADA4(void) {
+    /* Full HUD - stub */
+}
+
+/*
+ * func_800CB748 (628 bytes)
+ * Menu button process
+ */
+s32 func_800CB748(s32 input) {
+    /* Button process - stub */
+    return 0;
+}
+
+/*
+ * func_800CB9D0 (516 bytes)
+ * Menu cursor move
+ */
+void func_800CB9D0(s32 direction) {
+    /* Cursor move - stub */
+}
+
+/*
+ * func_800CBBD4 (564 bytes)
+ * Menu item select
+ */
+void func_800CBBD4(s32 itemIndex) {
+    /* Item select - stub */
+}
+
+/*
+ * func_800CBE08 (132 bytes)
+ * Menu back
+ */
+void func_800CBE08(void) {
+    /* Menu back - stub */
+}
+
+/*
+ * func_800CBE8C (340 bytes)
+ * Menu transition
+ */
+void func_800CBE8C(s32 toMenuId) {
+    /* Transition - stub */
+}
+
+/*
+ * func_800CC040 (900 bytes)
+ * Menu animation update
+ */
+void func_800CC040(void) {
+    /* Animation - stub */
+}
+
+/*
+ * func_800CC3C0 (380 bytes)
+ * Menu sound play
+ */
+void func_800CC3C0(s32 soundId) {
+    /* Menu sound - stub */
+}
+
+/*
+ * func_800CC540 (904 bytes)
+ * Menu text scroll
+ */
+void func_800CC540(char *text, s32 maxWidth) {
+    /* Text scroll - stub */
+}
+
+/*
+ * func_800CC8C8 (316 bytes)
+ * Menu highlight
+ */
+void func_800CC8C8(s32 itemIndex) {
+    /* Highlight - stub */
+}
+
+/*
+ * func_800CCA04 (1112 bytes)
+ * Menu list render
+ */
+void func_800CCA04(void *list, s32 count) {
+    /* List render - stub */
+}
+
+/*
+ * func_800CCE5C (716 bytes)
+ * Menu slider control
+ */
+s32 func_800CCE5C(s32 current, s32 min, s32 max) {
+    /* Slider - stub */
+    return current;
+}
+
+/*
+ * func_800CD104 (1088 bytes)
+ * Menu dialog display
+ */
+void func_800CD104(s32 dialogId) {
+    /* Dialog - stub */
+}
+
+/*
+ * func_800CD544 (412 bytes)
+ * Menu confirm dialog
+ */
+s32 func_800CD544(char *message) {
+    /* Confirm - stub */
+    return 0;
+}
+
+/*
+ * func_800CD6E0 (184 bytes)
+ * Menu close dialog
+ */
+void func_800CD6E0(void) {
+    /* Close dialog - stub */
+}
+
+/*
+ * func_800CD798 (340 bytes)
+ * Menu keyboard init
+ */
+void func_800CD798(void) {
+    /* Keyboard init - stub */
+}
+
+/*
+ * func_800CD8EC (500 bytes)
+ * Menu keyboard input
+ */
+char func_800CD8EC(s32 input) {
+    /* Keyboard input - stub */
+    return '\0';
+}
+
+/*
+ * func_800CDAE0 (460 bytes)
+ * Menu text input
+ */
+void func_800CDAE0(char *buffer, s32 maxLen) {
+    /* Text input - stub */
+}
+
+/*
+ * func_800CDCAC (576 bytes)
+ * Menu option toggle
+ */
+void func_800CDCAC(s32 optionId) {
+    /* Toggle - stub */
+}
+
+/*
+ * func_800CDEEC (764 bytes)
+ * Menu save options
+ */
+void func_800CDEEC(void) {
+    /* Save options - stub */
+}
+
+/*
+ * func_800CE1EC (364 bytes)
+ * Menu load options
+ */
+void func_800CE1EC(void) {
+    /* Load options - stub */
+}
+
+/*
+ * func_800CE358 (2532 bytes)
+ * Menu options screen
+ */
+void func_800CE358(void) {
+    /* Options screen - stub */
+}
+
+/*
+ * func_800CED3C (1364 bytes)
+ * Menu audio settings
+ */
+void func_800CED3C(void) {
+    /* Audio settings - stub */
+}
+
+/*
+ * func_800CF290 (228 bytes)
+ * Menu video settings
+ */
+void func_800CF290(void) {
+    /* Video settings - stub */
+}
+
+/*
+ * func_800CF374 (808 bytes)
+ * Menu control settings
+ */
+void func_800CF374(void) {
+    /* Control settings - stub */
+}
+
+/*
+ * func_800CF69C (1976 bytes)
+ * Menu controller remap
+ */
+void func_800CF69C(void) {
+    /* Remap - stub */
+}
+
+/*
+ * func_800CFE74 (404 bytes)
+ * Menu vibration test
+ */
+void func_800CFE74(void) {
+    /* Vibration test - stub */
+}
+
+/*
+ * func_800D000C (2264 bytes)
+ * Track select screen
+ */
+void func_800D000C(void) {
+    /* Track select - stub */
+}
+
+/*
+ * func_800D08E4 (692 bytes)
+ * Track preview render
+ */
+void func_800D08E4(s32 trackId) {
+    /* Track preview - stub */
+}
+
+/*
+ * func_800D0BA0 (1192 bytes)
+ * Track info display
+ */
+void func_800D0BA0(s32 trackId) {
+    /* Track info - stub */
+}
+
+/*
+ * func_800D1248 (324 bytes)
+ * Track unlock check
+ */
+s32 func_800D1248(s32 trackId) {
+    /* Unlock check - stub */
+    return 1;
+}
+
+/*
+ * func_800D138C (804 bytes)
+ * Car select screen
+ */
+void func_800D138C(void) {
+    /* Car select - stub */
+}
+
+/*
+ * func_800D16B0 (564 bytes)
+ * Car preview render
+ */
+void func_800D16B0(s32 carId) {
+    /* Car preview - stub */
+}
+
+/*
+ * func_800D18E4 (152 bytes)
+ * Car stats display
+ */
+void func_800D18E4(s32 carId) {
+    /* Car stats - stub */
+}
+
+/*
+ * func_800D197C (316 bytes)
+ * Car unlock check
+ */
+s32 func_800D197C(s32 carId) {
+    /* Car unlock - stub */
+    return 1;
+}
+
+/*
+ * func_800D1AB8 (552 bytes)
+ * Car color select
+ */
+void func_800D1AB8(s32 colorId) {
+    /* Color select - stub */
+}
+
+/*
+ * func_800D1CE0 (1960 bytes)
+ * Race setup screen
+ */
+void func_800D1CE0(void) {
+    /* Race setup - stub */
+}
+
+/*
+ * func_800D24C8 (1120 bytes)
+ * Race mode select
+ */
+void func_800D24C8(s32 modeId) {
+    /* Mode select - stub */
+}
+
+/*
+ * func_800D2928 (332 bytes)
+ * Lap count select
+ */
+void func_800D2928(s32 laps) {
+    /* Lap count - stub */
+}
+
+/*
+ * func_800D2A74 (440 bytes)
+ * Difficulty select
+ */
+void func_800D2A74(s32 difficulty) {
+    /* Difficulty - stub */
+}
+
+/*
+ * func_800D2C2C (176 bytes)
+ * Mirror mode toggle
+ */
+void func_800D2C2C(void) {
+    /* Mirror - stub */
+}
+
+/*
+ * func_800D2CDC (240 bytes)
+ * Weather select
+ */
+void func_800D2CDC(s32 weather) {
+    /* Weather - stub */
+}
+
+/*
+ * func_800D2DCC (200 bytes)
+ * Time of day select
+ */
+void func_800D2DCC(s32 timeOfDay) {
+    /* Time of day - stub */
+}
+
+/*
+ * func_800D2E94 (1544 bytes)
+ * Multiplayer setup
+ */
+void func_800D2E94(void) {
+    /* MP setup - stub */
+}
+
+/*
+ * func_800D349C (1676 bytes)
+ * Player join screen
+ */
+void func_800D349C(void) {
+    /* Player join - stub */
+}
+
+/*
+ * func_800D3B28 (5068 bytes)
+ * Stunt mode setup
+ */
+void func_800D3B28(void) {
+    /* Stunt setup - stub */
+}
+
+/*
+ * func_800D4EF4 (532 bytes)
+ * Battle mode setup
+ */
+void func_800D4EF4(void) {
+    /* Battle setup - stub */
+}
+
+/*
+ * func_800D510C (716 bytes)
+ * Ghost race setup
+ */
+void func_800D510C(void) {
+    /* Ghost setup - stub */
+}
+
+/*
+ * func_800D58CC (740 bytes)
+ * Records screen
+ */
+void func_800D58CC(void) {
+    /* Records - stub */
+}
+
+/*
+ * func_800D5BB0 (224 bytes)
+ * Best times display
+ */
+void func_800D5BB0(s32 trackId) {
+    /* Best times - stub */
+}
+
+/*
+ * func_800D5C90 (220 bytes)
+ * High scores display
+ */
+void func_800D5C90(s32 trackId) {
+    /* High scores - stub */
+}
+
+/*
+ * func_800D616C (452 bytes)
+ * Stats display
+ */
+void func_800D616C(void) {
+    /* Stats - stub */
+}
+
+/*
+ * func_800D63F4 (676 bytes)
+ * Achievements screen
+ */
+void func_800D63F4(void) {
+    /* Achievements - stub */
+}
+
+/*
+ * func_800D6698 (296 bytes)
+ * Credits screen
+ */
+void func_800D6698(void) {
+    /* Credits - stub */
+}
+
+/*
+ * func_800D67C0 (348 bytes)
+ * Credits scroll
+ */
+void func_800D67C0(void) {
+    /* Credits scroll - stub */
+}
+
+/*
+ * func_800D691C (1376 bytes)
+ * Loading screen
+ */
+void func_800D691C(s32 percent) {
+    /* Loading - stub */
+}
+
+/*
+ * func_800D6E7C (852 bytes)
+ * Loading tips
+ */
+void func_800D6E7C(void) {
+    /* Tips - stub */
+}
+
+/*
+ * func_800D71D0 (3256 bytes)
+ * Pause menu
+ */
+void func_800D71D0(void) {
+    /* Pause - stub */
+}
+
+/*
+ * func_800D7E88 (788 bytes)
+ * Pause resume
+ */
+void func_800D7E88(void) {
+    /* Resume - stub */
+}
+
+/*
+ * func_800D8184 (2772 bytes)
+ * Pause restart
+ */
+void func_800D8184(void) {
+    /* Restart - stub */
+}
+
+/*
+ * func_800D8C58 (1032 bytes)
+ * Pause quit
+ */
+void func_800D8C58(void) {
+    /* Quit - stub */
+}
+
+/*
+ * func_800D9060 (4204 bytes)
+ * Results screen
+ */
+void func_800D9060(void) {
+    /* Results - stub */
+}
+
+/*
+ * func_800DA0CC (168 bytes)
+ * Position result
+ */
+void func_800DA0CC(s32 position) {
+    /* Position result - stub */
+}
+
+/*
+ * func_800DA174 (348 bytes)
+ * Time result
+ */
+void func_800DA174(s32 timeMs) {
+    /* Time result - stub */
+}
+
+/*
+ * func_800DA2D0 (2316 bytes)
+ * Points award
+ */
+void func_800DA2D0(void) {
+    /* Points - stub */
+}
+
+/*
+ * func_800DABDC (2940 bytes)
+ * Replay save prompt
+ */
+void func_800DABDC(void) {
+    /* Replay save - stub */
+}
+
+/*
+ * func_800DB758 (196 bytes)
+ * Continue prompt
+ */
+s32 func_800DB758(void) {
+    /* Continue - stub */
+    return 0;
+}
+
+/*
+ * func_800DC248 (432 bytes)
+ * Championship standings
+ */
+void func_800DC248(void) {
+    /* Standings - stub */
+}
+
+/*
+ * func_800DC3F8 (924 bytes)
+ * Trophy award
+ */
+void func_800DC3F8(s32 placing) {
+    /* Trophy - stub */
+}
+
+/*
+ * func_800DC794 (248 bytes)
+ * Unlock notification
+ */
+void func_800DC794(s32 unlockId) {
+    /* Unlock notify - stub */
+}
+
+/*
+ * func_800DC88C (1272 bytes)
+ * Attract mode start
+ */
+void func_800DC88C(void) {
+    /* Attract start - stub */
+}
+
+/*
+ * func_800DC99C (1016 bytes)
+ * Attract demo play
+ */
+void func_800DC99C(void) {
+    /* Demo play - stub */
+}
+
+/*
+ * func_800DCD94 (96 bytes)
+ * Attract idle check
+ */
+s32 func_800DCD94(void) {
+    /* Idle check - stub */
+    return 0;
+}
+
+/*
+ * func_800DCDF4 (732 bytes)
+ * Attract video play
+ */
+void func_800DCDF4(s32 videoId) {
+    /* Video play - stub */
+}
+
+/*
+ * func_800DD0D0 (988 bytes)
+ * Attract sequence update
+ */
+void func_800DD0D0(void) {
+    /* Sequence update - stub */
+}
+
+/*
+ * func_800DD4AC (2816 bytes)
+ * Title screen
+ */
+void func_800DD4AC(void) {
+    /* Title screen - stub */
+}
+
+/*
+ * func_800DDFAC (608 bytes)
+ * Title logo animate
+ */
+void func_800DDFAC(void) {
+    /* Logo animate - stub */
+}
+
+/*
+ * func_800DE20C (724 bytes)
+ * Title button prompt
+ */
+void func_800DE20C(void) {
+    /* Button prompt - stub */
+}
+
+/*
+ * func_800DE4DC (908 bytes)
+ * Title background
+ */
+void func_800DE4DC(void) {
+    /* Background - stub */
+}
+
+/*
+ * func_800DE868 (836 bytes)
+ * Main menu screen
+ */
+void func_800DE868(void) {
+    /* Main menu - stub */
+}
+
+/*
+ * func_800DEBAC (224 bytes)
+ * Main menu input
+ */
+void func_800DEBAC(s32 input) {
+    /* Menu input - stub */
+}
+
+/*
+ * func_800DEC8C (732 bytes)
+ * Main menu render
+ */
+void func_800DEC8C(void) {
+    /* Menu render - stub */
+}
+
+/*
+ * func_800DEF68 (2976 bytes)
+ * Mode select screen
+ */
+void func_800DEF68(void) {
+    /* Mode select - stub */
+}
+
+/*
+ * func_800DFB08 (188 bytes)
+ * Mode select input
+ */
+void func_800DFB08(s32 input) {
+    /* Mode input - stub */
+}
+
+/*
+ * func_800DFBC4 (1868 bytes)
+ * Profile select screen
+ */
+void func_800DFBC4(void) {
+    /* Profile select - stub */
+}
+
+/*
+ * func_800EB028 (1640 bytes)
+ * World object spawn
+ */
+void *func_800EB028(s32 objectType, f32 *pos) {
+    /* Object spawn - stub */
+    return NULL;
+}
+
+/*
+ * func_800EB690 (396 bytes)
+ * World object destroy
+ */
+void func_800EB690(void *object) {
+    /* Object destroy - stub */
+}
+
+/*
+ * func_800EC2F8 (1584 bytes)
+ * World physics tick
+ */
+void func_800EC2F8(void) {
+    /* Physics tick - stub */
+}
+
+/*
+ * func_800EC928 (588 bytes)
+ * World collision detect
+ */
+s32 func_800EC928(void *a, void *b) {
+    /* Collision detect - stub */
+    return 0;
+}
+
+/*
+ * func_800ECB74 (164 bytes)
+ * World bounds check
+ */
+s32 func_800ECB74(f32 *pos) {
+    /* Bounds check - stub */
+    return 1;
+}
+
+/*
+ * func_800ECC18 (2652 bytes)
+ * World gravity apply
+ */
+void func_800ECC18(void *object) {
+    /* Gravity - stub */
+}
+
+/*
+ * func_800ED674 (400 bytes)
+ * World friction apply
+ */
+void func_800ED674(void *object) {
+    /* Friction - stub */
+}
+
+/*
+ * func_800ED804 (712 bytes)
+ * World velocity integrate
+ */
+void func_800ED804(void *object, f32 dt) {
+    /* Velocity - stub */
+}
+
+/*
+ * func_800EDACC (540 bytes)
+ * World collision response
+ */
+void func_800EDACC(void *a, void *b) {
+    /* Collision response - stub */
+}
+
+/*
+ * func_800EDCE8 (2292 bytes)
+ * World trigger check
+ */
+void func_800EDCE8(void *player) {
+    /* Trigger check - stub */
+}
+
+/*
+ * func_800EE5DC (580 bytes)
+ * World trigger activate
+ */
+void func_800EE5DC(s32 triggerId) {
+    /* Trigger activate - stub */
+}
+
+/*
+ * func_800EE820 (148 bytes)
+ * World effect spawn
+ */
+void *func_800EE820(s32 effectType, f32 *pos) {
+    /* Effect spawn - stub */
+    return NULL;
+}
+
+/*
+ * func_800EE8B4 (456 bytes)
+ * World effect update
+ */
+void func_800EE8B4(void *effect) {
+    /* Effect update - stub */
+}
+
+/*
+ * func_800EEA7C (820 bytes)
+ * Particle emitter create
+ */
+void *func_800EEA7C(s32 type, f32 *pos) {
+    /* Emitter create - stub */
+    return NULL;
+}
+
+/*
+ * func_800EEDB0 (1240 bytes)
+ * Particle update
+ */
+void func_800EEDB0(void *emitter) {
+    /* Particle update - stub */
+}
+
+/*
+ * func_800EF288 (932 bytes)
+ * Smoke effect
+ */
+void func_800EF288(f32 *pos, f32 *vel) {
+    /* Smoke - stub */
+}
+
+/*
+ * func_800EF62C (712 bytes)
+ * Spark effect
+ */
+void func_800EF62C(f32 *pos, s32 count) {
+    /* Spark - stub */
+}
+
+/*
+ * func_800EF8F4 (1460 bytes)
+ * Explosion effect
+ */
+void func_800EF8F4(f32 *pos, f32 radius) {
+    /* Explosion - stub */
+}
+
+/*
+ * func_800EFEA8 (600 bytes)
+ * Dust cloud effect
+ */
+void func_800EFEA8(f32 *pos) {
+    /* Dust cloud - stub */
+}
+
+/*
+ * func_800F0100 (1396 bytes)
+ * Skid mark render
+ */
+void func_800F0100(void *tire) {
+    /* Skid mark - stub */
+}
+
+/*
+ * func_800F0674 (472 bytes)
+ * Trail effect
+ */
+void func_800F0674(void *object) {
+    /* Trail - stub */
+}
+
+/*
+ * func_800F084C (208 bytes)
+ * Weather rain
+ */
+void func_800F084C(void) {
+    /* Rain - stub */
+}
+
+/*
+ * func_800F091C (564 bytes)
+ * Weather snow
+ */
+void func_800F091C(void) {
+    /* Snow - stub */
+}
+
+/*
+ * func_800F0F4C (468 bytes)
+ * Weather fog
+ */
+void func_800F0F4C(f32 density) {
+    /* Fog - stub */
+}
+
+/*
+ * func_800F1120 (252 bytes)
+ * Weather update
+ */
+void func_800F1120(void) {
+    /* Weather update - stub */
+}
+
+/*
+ * func_800F121C (1824 bytes)
+ * Lighting setup
+ */
+void func_800F121C(void) {
+    /* Lighting - stub */
+}
+
+/*
+ * func_800F193C (968 bytes)
+ * Shadow render
+ */
+void func_800F193C(void *object) {
+    /* Shadow - stub */
+}
+
+/*
+ * func_800F1D04 (924 bytes)
+ * Lens flare
+ */
+void func_800F1D04(f32 *sunPos) {
+    /* Lens flare - stub */
+}
+
+/*
+ * func_800F20A0 (1664 bytes)
+ * Environment map
+ */
+void func_800F20A0(void *object) {
+    /* Env map - stub */
+}
+
+/*
+ * func_800F2720 (376 bytes)
+ * Reflection setup
+ */
+void func_800F2720(void) {
+    /* Reflection - stub */
+}
+
+/*
+ * func_800F2890 (408 bytes)
+ * Water surface
+ */
+void func_800F2890(void) {
+    /* Water - stub */
+}
+
+/*
+ * func_800F2A28 (2736 bytes)
+ * Skybox render
+ */
+void func_800F2A28(void *camera) {
+    /* Skybox - stub */
+}
+
+/*
+ * func_800F34D8 (3576 bytes)
+ * Track render
+ */
+void func_800F34D8(void *camera) {
+    /* Track render - stub */
+}
+
+/*
+ * func_800F42D0 (260 bytes)
+ * Track section visible
+ */
+s32 func_800F42D0(s32 sectionId, void *camera) {
+    /* Section visible - stub */
+    return 1;
+}
+
+/*
+ * func_800F43D4 (560 bytes)
+ * Track LOD select
+ */
+s32 func_800F43D4(f32 distance) {
+    /* LOD select - stub */
+    return 0;
+}
+
+/*
+ * func_800F4604 (6540 bytes)
+ * Track geometry stream
+ */
+void func_800F4604(void) {
+    /* Geometry stream - stub */
+}
+
+/*
+ * func_800F5F90 (1348 bytes)
+ * Track texture load
+ */
+void func_800F5F90(s32 textureId) {
+    /* Texture load - stub */
+}
+
+/*
+ * func_800F64D4 (1120 bytes)
+ * Billboard render
+ */
+void func_800F64D4(void *billboard) {
+    /* Billboard - stub */
+}
+
+/*
+ * func_800F6934 (388 bytes)
+ * Sign render
+ */
+void func_800F6934(void *sign) {
+    /* Sign - stub */
+}
+
+/*
+ * func_800F6AB8 (2460 bytes)
+ * Props render
+ */
+void func_800F6AB8(void *camera) {
+    /* Props - stub */
+}
+
+/*
+ * func_800F7454 (1996 bytes)
+ * Crowd render
+ */
+void func_800F7454(void) {
+    /* Crowd - stub */
+}
+
+/*
+ * func_800F7C28 (796 bytes)
+ * Car body render
+ */
+void func_800F7C28(void *car) {
+    /* Car body - stub */
+}
+
+/*
+ * func_800F7F44 (1604 bytes)
+ * Car wheels render
+ */
+void func_800F7F44(void *car) {
+    /* Wheels - stub */
+}
+
+/*
+ * func_800F8588 (548 bytes)
+ * Car damage render
+ */
+void func_800F8588(void *car) {
+    /* Damage - stub */
+}
+
+/*
+ * func_800F87AC (964 bytes)
+ * Car lights render
+ */
+void func_800F87AC(void *car) {
+    /* Lights - stub */
+}
+
+/*
+ * func_800F8B70 (556 bytes)
+ * Car exhaust render
+ */
+void func_800F8B70(void *car) {
+    /* Exhaust - stub */
+}
+
+/*
+ * func_800F8D9C (300 bytes)
+ * Car antenna render
+ */
+void func_800F8D9C(void *car) {
+    /* Antenna - stub */
+}
+
+/*
+ * func_800F8EC8 (1240 bytes)
+ * Car nitro effect
+ */
+void func_800F8EC8(void *car) {
+    /* Nitro - stub */
+}
+
+/*
+ * func_800F93A0 (5652 bytes)
+ * Scene render main
+ */
+void func_800F93A0(void) {
+    /* Scene render - stub */
+}
+
+/*
+ * func_800FA9B4 (948 bytes)
+ * Z-buffer setup
+ */
+void func_800FA9B4(void) {
+    /* Z-buffer - stub */
+}
+
+/*
+ * func_800FAD58 (136 bytes)
+ * Frame start
+ */
+void func_800FAD58(void) {
+    /* Frame start - stub */
+}
+
+/*
+ * func_800FADE0 (1108 bytes)
+ * Frame end
+ */
+void func_800FADE0(void) {
+    /* Frame end - stub */
+}
+
+/*
+ * func_800FB234 (148 bytes)
+ * Vsync wait
+ */
+void func_800FB234(void) {
+    /* Vsync - stub */
+}
+
+/*
+ * func_800FB2C8 (5944 bytes)
+ * Display list flush
+ */
+void func_800FB2C8(void) {
+    /* DL flush - stub */
+}
+
+/*
+ * func_800FCA00 (1016 bytes)
+ * Debug overlay
+ */
+void func_800FCA00(void) {
+    /* Debug overlay - stub */
+}
+
+/*
+ * func_800FCDF8 (556 bytes)
+ * Debug stats
+ */
+void func_800FCDF8(void) {
+    /* Debug stats - stub */
+}
+
+/*
+ * func_800FD024 (540 bytes)
+ * Debug collision
+ */
+void func_800FD024(void) {
+    /* Debug collision - stub */
+}
+
+/*
+ * func_800FD240 (552 bytes)
+ * Debug AI paths
+ */
+void func_800FD240(void) {
+    /* Debug AI - stub */
+}
+
+/*
+ * func_800FD7E8 (244 bytes)
+ * Random seed
+ */
+void func_800FD7E8(u32 seed) {
+    /* Random seed - stub */
+}
+
+/*
+ * func_800FD8DC (284 bytes)
+ * Random int
+ */
+s32 func_800FD8DC(void) {
+    /* Random int - stub */
+    return 0;
+}
+
+/*
+ * func_800FD9F8 (1436 bytes)
+ * Random float
+ */
+f32 func_800FD9F8(void) {
+    /* Random float - stub */
+    return 0.0f;
+}
+
+/*
+ * func_800FDF94 (248 bytes)
+ * Random range
+ */
+s32 func_800FDF94(s32 min, s32 max) {
+    /* Random range - stub */
+    return min;
+}
+
+/*
+ * func_800FE08C (1072 bytes)
+ * Timer start
+ */
+void func_800FE08C(s32 timerId) {
+    /* Timer start - stub */
+}
+
+/*
+ * func_800FE4BC (100 bytes)
+ * Timer stop
+ */
+void func_800FE4BC(s32 timerId) {
+    /* Timer stop - stub */
+}
+
+/*
+ * func_800FE520 (144 bytes)
+ * Timer reset
+ */
+void func_800FE520(s32 timerId) {
+    /* Timer reset - stub */
+}
+
+/*
+ * func_800FE5B0 (412 bytes)
+ * Timer get elapsed
+ */
+s32 func_800FE5B0(s32 timerId) {
+    /* Get elapsed - stub */
+    return 0;
+}
+
+/*
+ * func_800FE7A4 (164 bytes)
+ * Timer pause
+ */
+void func_800FE7A4(s32 timerId) {
+    /* Timer pause - stub */
+}
+
+/*
+ * func_800FE848 (220 bytes)
+ * Timer resume
+ */
+void func_800FE848(s32 timerId) {
+    /* Timer resume - stub */
+}
+
+/*
+ * func_800FE924 (228 bytes)
+ * Timer lap
+ */
+s32 func_800FE924(s32 timerId) {
+    /* Timer lap - stub */
+    return 0;
+}
+
+/*
+ * func_800FEA08 (668 bytes)
+ * Race timer update
+ */
+void func_800FEA08(void) {
+    /* Race timer - stub */
+}
+
+/*
+ * func_800FECA4 (352 bytes)
+ * Countdown timer
+ */
+void func_800FECA4(void) {
+    /* Countdown - stub */
+}
+
+/*
+ * func_800FEE04 (1172 bytes)
+ * Split time display
+ */
+void func_800FEE04(s32 splitTime) {
+    /* Split time - stub */
+}
+
+/*
+ * func_800FF298 (1164 bytes)
+ * Best lap check
+ */
+s32 func_800FF298(s32 lapTime) {
+    /* Best lap - stub */
+    return 0;
+}
+
+/*
+ * func_800FF724 (1748 bytes)
+ * Record save
+ */
+void func_800FF724(void) {
+    /* Record save - stub */
+}
+
+/*
+ * func_800FFDF8 (1900 bytes)
+ * High score entry
+ */
+void func_800FFDF8(void) {
+    /* High score - stub */
+}
+
+/*
+ * func_80100564 (1576 bytes)
+ * Leaderboard display
+ */
+void func_80100564(void) {
+    /* Leaderboard - stub */
+}
+
+/*
+ * func_80100B8C (716 bytes)
+ * Score calculate
+ */
+s32 func_80100B8C(void) {
+    /* Score calc - stub */
+    return 0;
+}
+
+/*
+ * func_80100E60 (2732 bytes)
+ * Stunt score
+ */
+s32 func_80100E60(s32 trickId) {
+    /* Stunt score - stub */
+    return 0;
+}
+
+/*
+ * func_8010190C (1152 bytes)
+ * Combo multiplier
+ */
+s32 func_8010190C(s32 combo) {
+    /* Combo - stub */
+    return combo;
+}
+
+/*
+ * func_80101D8C (1168 bytes)
+ * Trick detect
+ */
+s32 func_80101D8C(void *car) {
+    /* Trick detect - stub */
+    return 0;
+}
+
+/*
+ * func_8010221C (564 bytes)
+ * Trick register
+ */
+void func_8010221C(s32 trickId) {
+    /* Trick register - stub */
+}
+
+/*
+ * func_80102450 (1336 bytes)
+ * Air time track
+ */
+void func_80102450(void *car) {
+    /* Air time - stub */
+}
+
+/*
+ * func_80102988 (1448 bytes)
+ * Flip detect
+ */
+s32 func_80102988(void *car) {
+    /* Flip detect - stub */
+    return 0;
+}
+
+/*
+ * func_80102F30 (3576 bytes)
+ * Barrel roll
+ */
+s32 func_80102F30(void *car) {
+    /* Barrel roll - stub */
+    return 0;
+}
+
+/*
+ * func_80103D28 (2524 bytes)
+ * Spin detect
+ */
+s32 func_80103D28(void *car) {
+    /* Spin detect - stub */
+    return 0;
+}
+
+/*
+ * func_80104704 (1040 bytes)
+ * Landing bonus
+ */
+s32 func_80104704(void *car) {
+    /* Landing bonus - stub */
+    return 0;
+}
+
+/*
+ * func_80104B14 (2412 bytes)
+ * Stunt combo
+ */
+void func_80104B14(void *car) {
+    /* Stunt combo - stub */
+}
+
+/*
+ * func_80105480 (1780 bytes)
+ * Wing deploy
+ */
+void func_80105480(void *car) {
+    /* Wing deploy - stub */
+}
+
+/*
+ * func_80105B74 (572 bytes)
+ * Wing retract
+ */
+void func_80105B74(void *car) {
+    /* Wing retract - stub */
+}
+
+/*
+ * func_80105DB0 (248 bytes)
+ * Wing state check
+ */
+s32 func_80105DB0(void *car) {
+    /* Wing state - stub */
+    return 0;
+}
+
+/*
+ * func_80105EA8 (2508 bytes)
+ * Glide physics
+ */
+void func_80105EA8(void *car) {
+    /* Glide - stub */
+}
+
+/*
+ * func_80106874 (712 bytes)
+ * Boost activate
+ */
+void func_80106874(void *car) {
+    /* Boost - stub */
+}
+
+/*
+ * func_80106B3C (600 bytes)
+ * Boost update
+ */
+void func_80106B3C(void *car) {
+    /* Boost update - stub */
+}
+
+/*
+ * func_80106D94 (1604 bytes)
+ * Nitro pickup
+ */
+void func_80106D94(void *car, void *pickup) {
+    /* Nitro pickup - stub */
+}
+
+/*
+ * func_801073D8 (580 bytes)
+ * Checkpoint hit
+ */
+void func_801073D8(void *car, s32 cpId) {
+    /* Checkpoint - stub */
+}
+
+/*
+ * func_8010761C (1240 bytes)
+ * Lap complete
+ */
+void func_8010761C(void *car) {
+    /* Lap complete - stub */
+}
+
+/*
+ * func_80107AF4 (1000 bytes)
+ * Race finish
+ */
+void func_80107AF4(void *car) {
+    /* Race finish - stub */
+}
+
+/*
+ * func_80107EDC (632 bytes)
+ * Position update
+ */
+void func_80107EDC(void) {
+    /* Position update - stub */
+}
+
+/*
+ * func_80108154 (900 bytes)
+ * Race standings
+ */
+void func_80108154(void) {
+    /* Standings - stub */
+}
+
+/*
+ * func_801084D4 (1500 bytes)
+ * Respawn car
+ */
+void func_801084D4(void *car) {
+    /* Respawn - stub */
+}
+
+/*
+ * func_80108AB0 (760 bytes)
+ * Death check
+ */
+s32 func_80108AB0(void *car) {
+    /* Death check - stub */
+    return 0;
+}
+
+/*
+ * func_80108DA8 (408 bytes)
+ * Wreck car
+ */
+void func_80108DA8(void *car) {
+    /* Wreck - stub */
+}
+
+/*
+ * func_80108F40 (1320 bytes)
+ * Recovery timer
+ */
+void func_80108F40(void *car) {
+    /* Recovery - stub */
+}
+
+/*
+ * func_80109468 (1528 bytes)
+ * Reset position
+ */
+void func_80109468(void *car) {
+    /* Reset pos - stub */
+}
+
+/*
+ * func_80109A60 (1276 bytes)
+ * Shortcut detect
+ */
+s32 func_80109A60(void *car) {
+    /* Shortcut - stub */
+    return 0;
+}
+
+/*
+ * func_80109F5C (1504 bytes)
+ * Wrong way detect
+ */
+s32 func_80109F5C(void *car) {
+    /* Wrong way - stub */
+    return 0;
+}
+
+/*
+ * func_8010A53C (624 bytes)
+ * Out of bounds
+ */
+s32 func_8010A53C(void *car) {
+    /* Out of bounds - stub */
+    return 0;
+}
+
+/*
+ * func_8010A7AC (292 bytes)
+ * Track zone get
+ */
+s32 func_8010A7AC(f32 *pos) {
+    /* Track zone - stub */
+    return 0;
+}
+
+/*
+ * func_8010A8D0 (1500 bytes)
+ * Surface type get
+ */
+s32 func_8010A8D0(f32 *pos) {
+    /* Surface type - stub */
+    return 0;
+}
+
+/*
+ * func_8010AEAC (1828 bytes)
+ * Grip calculate
+ */
+f32 func_8010AEAC(void *tire, s32 surface) {
+    /* Grip - stub */
+    return 1.0f;
+}
+
+/*
+ * func_8010B5D0 (556 bytes)
+ * Drag calculate
+ */
+f32 func_8010B5D0(void *car) {
+    /* Drag - stub */
+    return 0.0f;
+}
+
+/*
+ * func_8010B7FC (460 bytes)
+ * Downforce calculate
+ */
+f32 func_8010B7FC(void *car) {
+    /* Downforce - stub */
+    return 0.0f;
+}
+
+/*
+ * func_8010B9C8 (700 bytes)
+ * Engine torque
+ */
+f32 func_8010B9C8(void *car, s32 rpm) {
+    /* Torque - stub */
+    return 0.0f;
+}
+
+/*
+ * func_8010BC84 (932 bytes)
+ * Transmission shift
+ */
+void func_8010BC84(void *car, s32 gear) {
+    /* Shift - stub */
+}
+
+/*
+ * func_8010C02C (1060 bytes)
+ * Brake apply
+ */
+void func_8010C02C(void *car, f32 force) {
+    /* Brake - stub */
+}
+
+/*
+ * func_8010C450 (320 bytes)
+ * Handbrake apply
+ */
+void func_8010C450(void *car) {
+    /* Handbrake - stub */
+}
+
+/*
+ * func_8010C590 (320 bytes)
+ * Throttle apply
+ */
+void func_8010C590(void *car, f32 amount) {
+    /* Throttle - stub */
+}
+
+/*
+ * func_8010C6D0 (292 bytes)
+ * Steering apply
+ */
+void func_8010C6D0(void *car, f32 angle) {
+    /* Steering - stub */
+}
+
+/*
+ * func_8010C7F4 (384 bytes)
+ * Car input process
+ */
+void func_8010C7F4(void *car, void *input) {
+    /* Car input - stub */
+}
+
+/*
+ * func_8010C974 (2636 bytes)
+ * AI input generate
+ */
+void func_8010C974(void *car) {
+    /* AI input - stub */
+}
+
+/*
+ * func_8010D3C0 (704 bytes)
+ * AI target find
+ */
+void func_8010D3C0(void *car) {
+    /* AI target - stub */
+}
+
+/*
+ * func_8010D680 (476 bytes)
+ * AI path follow
+ */
+void func_8010D680(void *car) {
+    /* AI path - stub */
+}
+
+/*
+ * func_8010D85C (372 bytes)
+ * AI obstacle avoid
+ */
+void func_8010D85C(void *car) {
+    /* AI avoid - stub */
+}
+
+/*
+ * func_8010D9CC (492 bytes)
+ * AI overtake
+ */
+void func_8010D9CC(void *car) {
+    /* AI overtake - stub */
+}
+
+/*
+ * func_8010DBB8 (324 bytes)
+ * AI defend
+ */
+void func_8010DBB8(void *car) {
+    /* AI defend - stub */
+}
+
+/*
+ * func_8010DCFC (660 bytes)
+ * AI rubber band
+ */
+void func_8010DCFC(void *car) {
+    /* Rubber band - stub */
+}
+
+/*
+ * func_8010DF90 (364 bytes)
+ * AI difficulty adjust
+ */
+void func_8010DF90(void *car, s32 difficulty) {
+    /* Difficulty - stub */
+}
+
+/*
+ * func_8010E0FC (1008 bytes)
+ * AI behavior select
+ */
+void func_8010E0FC(void *car) {
+    /* Behavior - stub */
+}
+
+/*
+ * func_8010E4EC (428 bytes)
+ * AI aggression
+ */
+void func_8010E4EC(void *car, s32 level) {
+    /* Aggression - stub */
+}
+
+/*
+ * func_8010E69C (144 bytes)
+ * AI speed limit
+ */
+void func_8010E69C(void *car, f32 limit) {
+    /* Speed limit - stub */
+}
+
+/*
+ * func_8010E72C (392 bytes)
+ * AI error inject
+ */
+void func_8010E72C(void *car) {
+    /* Error inject - stub */
+}
+
+/*
+ * func_8010E8B4 (352 bytes)
+ * AI catch up
+ */
+void func_8010E8B4(void *car) {
+    /* Catch up - stub */
+}
+
+/*
+ * func_8010EA14 (2052 bytes)
+ * Battle mode logic
+ */
+void func_8010EA14(void) {
+    /* Battle mode - stub */
+}
+
+/*
+ * func_8010F218 (2524 bytes)
+ * Stunt mode logic
+ */
+void func_8010F218(void) {
+    /* Stunt mode - stub */
+}
+
+/*
+ * func_8010FBF4 (440 bytes)
+ * Final cleanup game
+ */
+void func_8010FBF4(void) {
+    /* Final cleanup - stub */
+}
