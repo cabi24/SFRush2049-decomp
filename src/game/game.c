@@ -8894,10 +8894,59 @@ void func_800979A8(void *entity, s32 flags) {
 
 /*
  * func_80097AFC (364 bytes)
- * Entity velocity update
+ * Entity velocity update - applies velocity to entity position
  */
 void func_80097AFC(void *entity, f32 *velocity) {
-    /* Velocity update - stub */
+    f32 *pos;
+    f32 *vel;
+    f32 *accel;
+    f32 *mass;
+    f32 dt;
+    f32 friction;
+    f32 speed;
+
+    if (entity == NULL || velocity == NULL) {
+        return;
+    }
+
+    pos = (f32 *)((u8 *)entity + 0x24);
+    vel = (f32 *)((u8 *)entity + 0x34);
+    accel = (f32 *)((u8 *)entity + 0x44);
+    mass = (f32 *)((u8 *)entity + 0x54);
+
+    dt = 1.0f / 60.0f;  /* Fixed timestep */
+
+    /* Apply input velocity */
+    vel[0] = velocity[0];
+    vel[1] = velocity[1];
+    vel[2] = velocity[2];
+
+    /* Apply gravity */
+    vel[1] -= 9.8f * dt;
+
+    /* Apply acceleration */
+    vel[0] += accel[0] * dt;
+    vel[1] += accel[1] * dt;
+    vel[2] += accel[2] * dt;
+
+    /* Apply friction */
+    friction = 0.98f;
+    vel[0] *= friction;
+    vel[2] *= friction;
+
+    /* Clamp velocity */
+    speed = sqrtf(vel[0] * vel[0] + vel[1] * vel[1] + vel[2] * vel[2]);
+    if (speed > 500.0f) {
+        f32 scale = 500.0f / speed;
+        vel[0] *= scale;
+        vel[1] *= scale;
+        vel[2] *= scale;
+    }
+
+    /* Update position */
+    pos[0] += vel[0] * dt;
+    pos[1] += vel[1] * dt;
+    pos[2] += vel[2] * dt;
 }
 
 /*
@@ -8924,35 +8973,345 @@ s32 func_80098874(void *entity, s32 flagMask) {
 
 /*
  * func_800988E0 (516 bytes)
- * Entity damage/health update
+ * Entity damage/health update - processes damage and effects
  */
 void func_800988E0(void *entity, s32 damage) {
-    /* Damage processing - stub */
+    s32 *health;
+    s32 *maxHealth;
+    s32 *invulnTimer;
+    s32 *damageState;
+    f32 *pos;
+
+    if (entity == NULL) {
+        return;
+    }
+
+    health = (s32 *)((u8 *)entity + 0x100);
+    maxHealth = (s32 *)((u8 *)entity + 0x104);
+    invulnTimer = (s32 *)((u8 *)entity + 0x108);
+    damageState = (s32 *)((u8 *)entity + 0x10C);
+    pos = (f32 *)((u8 *)entity + 0x24);
+
+    /* Check invulnerability */
+    if (*invulnTimer > 0) {
+        return;
+    }
+
+    /* Apply damage */
+    *health -= damage;
+
+    /* Clamp health */
+    if (*health < 0) {
+        *health = 0;
+    }
+    if (*health > *maxHealth) {
+        *health = *maxHealth;
+    }
+
+    /* Set damage state */
+    if (*health <= 0) {
+        *damageState = 3;  /* Destroyed */
+    } else if (*health < *maxHealth / 4) {
+        *damageState = 2;  /* Critical */
+    } else if (*health < *maxHealth / 2) {
+        *damageState = 1;  /* Damaged */
+    } else {
+        *damageState = 0;  /* Healthy */
+    }
+
+    /* Grant invulnerability frames */
+    if (damage > 0) {
+        *invulnTimer = 30;  /* 0.5 seconds */
+
+        /* Spawn damage effect */
+        func_800E15A8(pos, 0, 5);
+
+        /* Play damage sound */
+        func_800B37E8(0x50);
+    }
 }
 
 /*
  * func_80098AE4 (1244 bytes)
- * Entity physics step
+ * Entity physics step - integrates physics for one timestep
  */
 void func_80098AE4(void *entity, f32 dt) {
-    /* Physics step - stub */
+    f32 *pos;
+    f32 *vel;
+    f32 *accel;
+    f32 *angVel;
+    f32 *rot;
+    f32 *mass;
+    s32 *grounded;
+    f32 gravity;
+    f32 drag;
+    f32 speed;
+    f32 groundNormal[3];
+
+    if (entity == NULL) {
+        return;
+    }
+
+    pos = (f32 *)((u8 *)entity + 0x24);
+    vel = (f32 *)((u8 *)entity + 0x34);
+    accel = (f32 *)((u8 *)entity + 0x44);
+    rot = (f32 *)((u8 *)entity + 0x60);
+    angVel = (f32 *)((u8 *)entity + 0x70);
+    mass = (f32 *)((u8 *)entity + 0x54);
+    grounded = (s32 *)((u8 *)entity + 0x1C0);
+
+    gravity = 30.0f;  /* Gravity constant */
+    drag = 0.02f;     /* Air drag */
+
+    /* Apply gravity if not grounded */
+    if (!(*grounded)) {
+        vel[1] -= gravity * dt;
+    }
+
+    /* Apply acceleration */
+    vel[0] += accel[0] * dt;
+    vel[1] += accel[1] * dt;
+    vel[2] += accel[2] * dt;
+
+    /* Apply drag (velocity-squared model) */
+    speed = sqrtf(vel[0] * vel[0] + vel[1] * vel[1] + vel[2] * vel[2]);
+    if (speed > 0.01f) {
+        f32 dragForce = drag * speed * speed;
+        f32 dragScale = 1.0f - (dragForce * dt / speed);
+        if (dragScale < 0.9f) dragScale = 0.9f;
+        vel[0] *= dragScale;
+        vel[1] *= dragScale;
+        vel[2] *= dragScale;
+    }
+
+    /* Integrate position */
+    pos[0] += vel[0] * dt;
+    pos[1] += vel[1] * dt;
+    pos[2] += vel[2] * dt;
+
+    /* Integrate rotation */
+    rot[0] += angVel[0] * dt;
+    rot[1] += angVel[1] * dt;
+    rot[2] += angVel[2] * dt;
+
+    /* Normalize rotation angles */
+    while (rot[0] > 3.14159f) rot[0] -= 6.28318f;
+    while (rot[0] < -3.14159f) rot[0] += 6.28318f;
+    while (rot[1] > 3.14159f) rot[1] -= 6.28318f;
+    while (rot[1] < -3.14159f) rot[1] += 6.28318f;
+    while (rot[2] > 3.14159f) rot[2] -= 6.28318f;
+    while (rot[2] < -3.14159f) rot[2] += 6.28318f;
+
+    /* Angular velocity damping */
+    angVel[0] *= 0.98f;
+    angVel[1] *= 0.99f;
+    angVel[2] *= 0.98f;
+
+    /* Ground collision check */
+    if (func_80098FC0(entity, groundNormal)) {
+        *grounded = 1;
+
+        /* Apply ground friction */
+        vel[0] *= 0.95f;
+        vel[2] *= 0.95f;
+    } else {
+        *grounded = 0;
+    }
+
+    /* Clear acceleration for next frame */
+    accel[0] = 0.0f;
+    accel[1] = 0.0f;
+    accel[2] = 0.0f;
 }
 
 /*
  * func_80098FC0 (708 bytes)
- * Entity ground check
+ * Entity ground check - raycasts down to find ground
  */
 s32 func_80098FC0(void *entity, f32 *groundNormal) {
-    /* Ground check - stub */
+    f32 *pos;
+    f32 *vel;
+    f32 rayStart[3];
+    f32 rayEnd[3];
+    f32 hitPoint[3];
+    f32 hitNormal[3];
+    f32 groundHeight;
+    f32 entityHeight;
+    s32 surfaceType;
+
+    if (entity == NULL) {
+        return 0;
+    }
+
+    pos = (f32 *)((u8 *)entity + 0x24);
+    vel = (f32 *)((u8 *)entity + 0x34);
+    entityHeight = *((f32 *)((u8 *)entity + 0x58));  /* Entity collision height */
+
+    if (entityHeight < 1.0f) {
+        entityHeight = 2.0f;  /* Default height */
+    }
+
+    /* Cast ray from entity center down */
+    rayStart[0] = pos[0];
+    rayStart[1] = pos[1];
+    rayStart[2] = pos[2];
+
+    rayEnd[0] = pos[0];
+    rayEnd[1] = pos[1] - entityHeight - 5.0f;  /* Check slightly below */
+    rayEnd[2] = pos[2];
+
+    /* Check track surface */
+    surfaceType = func_800BB9B0(rayStart, hitNormal, &groundHeight);
+
+    if (surfaceType > 0) {
+        /* Check if close enough to ground */
+        f32 distToGround = pos[1] - groundHeight;
+
+        if (distToGround < entityHeight + 0.5f) {
+            /* On ground - snap to surface if falling through */
+            if (distToGround < entityHeight - 0.1f) {
+                pos[1] = groundHeight + entityHeight;
+
+                /* Cancel downward velocity */
+                if (vel[1] < 0) {
+                    vel[1] = 0;
+                }
+            }
+
+            /* Return ground normal if requested */
+            if (groundNormal != NULL) {
+                groundNormal[0] = hitNormal[0];
+                groundNormal[1] = hitNormal[1];
+                groundNormal[2] = hitNormal[2];
+            }
+
+            return 1;  /* Grounded */
+        }
+    }
+
+    /* Not grounded - set default up normal */
+    if (groundNormal != NULL) {
+        groundNormal[0] = 0.0f;
+        groundNormal[1] = 1.0f;
+        groundNormal[2] = 0.0f;
+    }
+
     return 0;
 }
 
 /*
  * func_800992AC (2388 bytes)
- * Entity AI pathfinding
+ * Entity AI pathfinding - calculates path to target
  */
 void func_800992AC(void *entity, void *target) {
-    /* Pathfinding - stub */
+    f32 *entityPos;
+    f32 *targetPos;
+    f32 *waypoints;
+    s32 *waypointCount;
+    s32 *currentWaypoint;
+    f32 dx, dy, dz, dist;
+    f32 dirX, dirZ;
+    s32 i;
+    s32 bestWaypoint;
+    f32 bestDist;
+
+    if (entity == NULL || target == NULL) {
+        return;
+    }
+
+    entityPos = (f32 *)((u8 *)entity + 0x24);
+    targetPos = (f32 *)((u8 *)target + 0x24);
+    waypoints = (f32 *)((u8 *)entity + 0x400);  /* Waypoint array */
+    waypointCount = (s32 *)((u8 *)entity + 0x3F0);
+    currentWaypoint = (s32 *)((u8 *)entity + 0x3F4);
+
+    /* Calculate direct distance to target */
+    dx = targetPos[0] - entityPos[0];
+    dy = targetPos[1] - entityPos[1];
+    dz = targetPos[2] - entityPos[2];
+    dist = sqrtf(dx * dx + dy * dy + dz * dz);
+
+    /* If close enough, go direct */
+    if (dist < 100.0f) {
+        /* Clear waypoints, go direct */
+        *waypointCount = 0;
+        *currentWaypoint = -1;
+
+        /* Set steering toward target */
+        dirX = dx / dist;
+        dirZ = dz / dist;
+        *((f32 *)((u8 *)entity + 0x250)) = dirX;
+        *((f32 *)((u8 *)entity + 0x258)) = dirZ;
+        return;
+    }
+
+    /* Check if need to recalculate path */
+    if (*waypointCount == 0 || *currentWaypoint >= *waypointCount) {
+        /* Build simple waypoint path using track nodes */
+        void *trackData = (void *)D_80148000;
+        s32 *nodeList = (s32 *)((u8 *)trackData + 0x1000);
+        s32 nodeCount = *((s32 *)((u8 *)trackData + 0x0FFC));
+        f32 nodeX, nodeY, nodeZ;
+
+        *waypointCount = 0;
+        *currentWaypoint = 0;
+
+        /* Find nearest track node to entity */
+        bestWaypoint = 0;
+        bestDist = 999999.0f;
+
+        for (i = 0; i < nodeCount && i < 100; i++) {
+            func_800A2378(0, i, &nodeX, &nodeY, &nodeZ);
+
+            dx = nodeX - entityPos[0];
+            dz = nodeZ - entityPos[2];
+            dist = sqrtf(dx * dx + dz * dz);
+
+            if (dist < bestDist) {
+                bestDist = dist;
+                bestWaypoint = i;
+            }
+        }
+
+        /* Add waypoints from nearest node toward target */
+        for (i = 0; i < 8 && *waypointCount < 16; i++) {
+            s32 nodeIdx = (bestWaypoint + i) % nodeCount;
+            func_800A2378(0, nodeIdx, &nodeX, &nodeY, &nodeZ);
+
+            waypoints[*waypointCount * 3 + 0] = nodeX;
+            waypoints[*waypointCount * 3 + 1] = nodeY;
+            waypoints[*waypointCount * 3 + 2] = nodeZ;
+            (*waypointCount)++;
+
+            /* Check if close to target */
+            dx = nodeX - targetPos[0];
+            dz = nodeZ - targetPos[2];
+            if (sqrtf(dx * dx + dz * dz) < 150.0f) {
+                break;
+            }
+        }
+    }
+
+    /* Follow current waypoint */
+    if (*currentWaypoint < *waypointCount) {
+        f32 wpX = waypoints[*currentWaypoint * 3 + 0];
+        f32 wpZ = waypoints[*currentWaypoint * 3 + 2];
+
+        dx = wpX - entityPos[0];
+        dz = wpZ - entityPos[2];
+        dist = sqrtf(dx * dx + dz * dz);
+
+        /* Check if reached waypoint */
+        if (dist < 20.0f) {
+            (*currentWaypoint)++;
+        } else {
+            /* Steer toward waypoint */
+            dirX = dx / dist;
+            dirZ = dz / dist;
+            *((f32 *)((u8 *)entity + 0x250)) = dirX;
+            *((f32 *)((u8 *)entity + 0x258)) = dirZ;
+        }
+    }
 }
 
 /*
@@ -13339,42 +13698,534 @@ void func_800CA300(void *hud, f32 alpha) {
 
 /*
  * func_800CBF2C (12544 bytes)
- * Menu system update
+ * Menu system update - main menu logic processor
  */
 void func_800CBF2C(void *menu) {
-    /* Menu update - stub */
+    s32 *menuState;
+    s32 *selectedItem;
+    s32 *itemCount;
+    s32 *subMenu;
+    s32 *inputDelay;
+    s32 *animTimer;
+    u16 buttons;
+    u16 buttonsPressed;
+
+    if (menu == NULL) {
+        return;
+    }
+
+    menuState = (s32 *)((u8 *)menu + 0x00);
+    selectedItem = (s32 *)((u8 *)menu + 0x04);
+    itemCount = (s32 *)((u8 *)menu + 0x08);
+    subMenu = (s32 *)((u8 *)menu + 0x0C);
+    inputDelay = (s32 *)((u8 *)menu + 0x10);
+    animTimer = (s32 *)((u8 *)menu + 0x14);
+
+    /* Get controller input */
+    buttons = D_801520A0;
+    buttonsPressed = D_801520A4;
+
+    /* Update animation timer */
+    (*animTimer)++;
+
+    /* Handle input delay */
+    if (*inputDelay > 0) {
+        (*inputDelay)--;
+        return;
+    }
+
+    /* Menu navigation */
+    if (buttonsPressed & 0x0800) {  /* D-pad Up */
+        (*selectedItem)--;
+        if (*selectedItem < 0) {
+            *selectedItem = *itemCount - 1;
+        }
+        *inputDelay = 8;
+        func_800B37E8(0x01);  /* Menu navigate sound */
+    }
+
+    if (buttonsPressed & 0x0400) {  /* D-pad Down */
+        (*selectedItem)++;
+        if (*selectedItem >= *itemCount) {
+            *selectedItem = 0;
+        }
+        *inputDelay = 8;
+        func_800B37E8(0x01);
+    }
+
+    /* Menu selection */
+    if (buttonsPressed & 0x8000) {  /* A button */
+        *inputDelay = 15;
+        func_800B37E8(0x02);  /* Menu select sound */
+
+        /* Handle menu item selection based on current menu */
+        switch (*menuState) {
+            case 0:  /* Main menu */
+                switch (*selectedItem) {
+                    case 0:  /* Race */
+                        *menuState = 1;
+                        *subMenu = 1;
+                        *selectedItem = 0;
+                        break;
+                    case 1:  /* Time Trial */
+                        *menuState = 2;
+                        *subMenu = 2;
+                        *selectedItem = 0;
+                        break;
+                    case 2:  /* Stunt Mode */
+                        *menuState = 3;
+                        *subMenu = 3;
+                        *selectedItem = 0;
+                        break;
+                    case 3:  /* Battle */
+                        *menuState = 4;
+                        *subMenu = 4;
+                        *selectedItem = 0;
+                        break;
+                    case 4:  /* Options */
+                        *menuState = 10;
+                        *subMenu = 10;
+                        *selectedItem = 0;
+                        break;
+                }
+                break;
+
+            case 1:  /* Track select for Race */
+            case 2:  /* Track select for Time Trial */
+            case 3:  /* Track select for Stunt */
+                /* Proceed to car select */
+                *menuState = 20;
+                D_80159A08 = *selectedItem;  /* Set selected track */
+                *selectedItem = 0;
+                break;
+
+            case 20:  /* Car select */
+                /* Start game */
+                D_80159A0C = *selectedItem;  /* Set selected car */
+                *menuState = 100;  /* Transition to game */
+                break;
+        }
+    }
+
+    /* Menu back */
+    if (buttonsPressed & 0x4000) {  /* B button */
+        *inputDelay = 15;
+        func_800B37E8(0x03);  /* Menu back sound */
+
+        if (*menuState == 0) {
+            /* Already at main menu */
+        } else if (*menuState >= 1 && *menuState <= 10) {
+            *menuState = 0;  /* Back to main */
+            *selectedItem = 0;
+        } else if (*menuState == 20) {
+            *menuState = *subMenu;  /* Back to track select */
+            *selectedItem = 0;
+        }
+    }
 }
 
 /*
  * func_800CF06C (5748 bytes)
- * Menu render
+ * Menu render - draws menu UI elements
  */
 void func_800CF06C(void *menu) {
-    /* Menu render - stub */
+    s32 *menuState;
+    s32 *selectedItem;
+    s32 *itemCount;
+    s32 *animTimer;
+    s32 i;
+    s32 baseX, baseY;
+    s32 itemY;
+    u32 color;
+    f32 selectPulse;
+
+    if (menu == NULL) {
+        return;
+    }
+
+    menuState = (s32 *)((u8 *)menu + 0x00);
+    selectedItem = (s32 *)((u8 *)menu + 0x04);
+    itemCount = (s32 *)((u8 *)menu + 0x08);
+    animTimer = (s32 *)((u8 *)menu + 0x14);
+
+    /* Calculate selection pulse animation */
+    selectPulse = sinf((f32)(*animTimer) * 0.15f) * 0.3f + 0.7f;
+
+    baseX = 80;
+    baseY = 100;
+
+    /* Draw menu background */
+    func_800C813C(NULL, 0);
+
+    /* Draw menu title based on state */
+    switch (*menuState) {
+        case 0:
+            func_800C734C(baseX, 50, "RUSH 2049", 0xFF8800FF);
+            break;
+        case 1:
+            func_800C734C(baseX, 50, "RACE - SELECT TRACK", 0xFF8800FF);
+            break;
+        case 2:
+            func_800C734C(baseX, 50, "TIME TRIAL - SELECT TRACK", 0xFF8800FF);
+            break;
+        case 3:
+            func_800C734C(baseX, 50, "STUNT MODE - SELECT TRACK", 0xFF8800FF);
+            break;
+        case 4:
+            func_800C734C(baseX, 50, "BATTLE - SELECT ARENA", 0xFF8800FF);
+            break;
+        case 10:
+            func_800C734C(baseX, 50, "OPTIONS", 0xFF8800FF);
+            break;
+        case 20:
+            func_800C734C(baseX, 50, "SELECT CAR", 0xFF8800FF);
+            break;
+    }
+
+    /* Draw menu items */
+    for (i = 0; i < *itemCount && i < 8; i++) {
+        itemY = baseY + i * 24;
+
+        /* Set color based on selection */
+        if (i == *selectedItem) {
+            /* Selected item - pulsing yellow */
+            u8 brightness = (u8)(selectPulse * 255.0f);
+            color = (brightness << 24) | (brightness << 16) | 0x00FF;
+        } else {
+            /* Normal item - white */
+            color = 0xFFFFFFFF;
+        }
+
+        /* Draw item based on menu state */
+        switch (*menuState) {
+            case 0:  /* Main menu */
+                switch (i) {
+                    case 0: func_800C734C(baseX, itemY, "RACE", color); break;
+                    case 1: func_800C734C(baseX, itemY, "TIME TRIAL", color); break;
+                    case 2: func_800C734C(baseX, itemY, "STUNT MODE", color); break;
+                    case 3: func_800C734C(baseX, itemY, "BATTLE", color); break;
+                    case 4: func_800C734C(baseX, itemY, "OPTIONS", color); break;
+                }
+                break;
+
+            case 1:  /* Track select */
+            case 2:
+            case 3:
+                switch (i) {
+                    case 0: func_800C734C(baseX, itemY, "TRACK 1", color); break;
+                    case 1: func_800C734C(baseX, itemY, "TRACK 2", color); break;
+                    case 2: func_800C734C(baseX, itemY, "TRACK 3", color); break;
+                    case 3: func_800C734C(baseX, itemY, "TRACK 4", color); break;
+                    case 4: func_800C734C(baseX, itemY, "TRACK 5", color); break;
+                    case 5: func_800C734C(baseX, itemY, "TRACK 6", color); break;
+                }
+                break;
+
+            case 20:  /* Car select */
+                switch (i) {
+                    case 0: func_800C734C(baseX, itemY, "CAR 1", color); break;
+                    case 1: func_800C734C(baseX, itemY, "CAR 2", color); break;
+                    case 2: func_800C734C(baseX, itemY, "CAR 3", color); break;
+                    case 3: func_800C734C(baseX, itemY, "CAR 4", color); break;
+                }
+                break;
+        }
+
+        /* Draw selection arrow */
+        if (i == *selectedItem) {
+            func_800C734C(baseX - 20, itemY, ">", color);
+        }
+    }
+
+    /* Draw control hints at bottom */
+    func_800C734C(40, 200, "A: Select  B: Back", 0x888888FF);
 }
 
 /*
  * func_800D0424 (3040 bytes)
- * Menu input handling
+ * Menu input handling - processes raw input for menu
  */
 void func_800D0424(void *menu, void *input) {
-    /* Menu input - stub */
+    s32 *menuState;
+    s32 *selectedItem;
+    s32 *inputDelay;
+    s8 stickX, stickY;
+    u16 buttons;
+
+    if (menu == NULL || input == NULL) {
+        return;
+    }
+
+    menuState = (s32 *)((u8 *)menu + 0x00);
+    selectedItem = (s32 *)((u8 *)menu + 0x04);
+    inputDelay = (s32 *)((u8 *)menu + 0x10);
+
+    /* Read analog stick */
+    stickX = *((s8 *)((u8 *)input + 0x02));
+    stickY = *((s8 *)((u8 *)input + 0x03));
+    buttons = *((u16 *)((u8 *)input + 0x00));
+
+    /* Handle input delay */
+    if (*inputDelay > 0) {
+        return;
+    }
+
+    /* Analog stick navigation */
+    if (stickY > 50) {  /* Up */
+        (*selectedItem)--;
+        *inputDelay = 10;
+    } else if (stickY < -50) {  /* Down */
+        (*selectedItem)++;
+        *inputDelay = 10;
+    }
+
+    /* Horizontal navigation for some menus */
+    if (stickX > 50) {  /* Right */
+        if (*menuState == 20) {  /* Car select - rotate car preview */
+            s32 *carRotation = (s32 *)((u8 *)menu + 0x20);
+            (*carRotation) += 5;
+        }
+    } else if (stickX < -50) {  /* Left */
+        if (*menuState == 20) {
+            s32 *carRotation = (s32 *)((u8 *)menu + 0x20);
+            (*carRotation) -= 5;
+        }
+    }
+
+    /* C-buttons for fast navigation */
+    if (buttons & 0x0008) {  /* C-Up */
+        *selectedItem = 0;  /* Jump to first */
+        *inputDelay = 15;
+    }
+    if (buttons & 0x0004) {  /* C-Down */
+        s32 *itemCount = (s32 *)((u8 *)menu + 0x08);
+        *selectedItem = *itemCount - 1;  /* Jump to last */
+        *inputDelay = 15;
+    }
+
+    /* L/R triggers for page navigation */
+    if (buttons & 0x0020) {  /* L */
+        *selectedItem -= 4;  /* Page up */
+        *inputDelay = 15;
+    }
+    if (buttons & 0x0010) {  /* R */
+        *selectedItem += 4;  /* Page down */
+        *inputDelay = 15;
+    }
 }
 
 /*
  * func_800D1004 (5196 bytes)
- * Track select menu
+ * Track select menu - displays track selection screen
  */
 void func_800D1004(void *menu) {
-    /* Track select - stub */
+    s32 *selectedTrack;
+    s32 *previewTimer;
+    s32 trackCount;
+    s32 i;
+    f32 previewAngle;
+    char trackName[32];
+    char trackInfo[64];
+
+    if (menu == NULL) {
+        return;
+    }
+
+    selectedTrack = (s32 *)((u8 *)menu + 0x04);
+    previewTimer = (s32 *)((u8 *)menu + 0x24);
+
+    trackCount = 6;  /* Number of tracks */
+
+    /* Update preview animation */
+    (*previewTimer)++;
+    previewAngle = (f32)(*previewTimer) * 0.02f;
+
+    /* Clamp selection */
+    if (*selectedTrack < 0) *selectedTrack = trackCount - 1;
+    if (*selectedTrack >= trackCount) *selectedTrack = 0;
+
+    /* Draw track preview (3D rotating miniature) */
+    func_800A04C4(*selectedTrack, previewAngle, 160, 80);
+
+    /* Draw track list */
+    for (i = 0; i < trackCount; i++) {
+        s32 y = 120 + i * 16;
+        u32 color = (i == *selectedTrack) ? 0xFFFF00FF : 0xFFFFFFFF;
+
+        switch (i) {
+            case 0:
+                func_800C734C(60, y, "MARINA", color);
+                break;
+            case 1:
+                func_800C734C(60, y, "HAIGHT", color);
+                break;
+            case 2:
+                func_800C734C(60, y, "METRO", color);
+                break;
+            case 3:
+                func_800C734C(60, y, "MISSION", color);
+                break;
+            case 4:
+                func_800C734C(60, y, "TENDERLOIN", color);
+                break;
+            case 5:
+                func_800C734C(60, y, "ALCATRAZ", color);
+                break;
+        }
+    }
+
+    /* Draw track info for selected track */
+    switch (*selectedTrack) {
+        case 0:
+            func_800C734C(180, 130, "BEGINNER", 0x00FF00FF);
+            func_800C734C(180, 145, "LENGTH: SHORT", 0xAAAAAAFF);
+            break;
+        case 1:
+            func_800C734C(180, 130, "INTERMEDIATE", 0xFFFF00FF);
+            func_800C734C(180, 145, "LENGTH: MEDIUM", 0xAAAAAAFF);
+            break;
+        case 2:
+            func_800C734C(180, 130, "ADVANCED", 0xFF8800FF);
+            func_800C734C(180, 145, "LENGTH: LONG", 0xAAAAAAFF);
+            break;
+        case 3:
+            func_800C734C(180, 130, "EXPERT", 0xFF0000FF);
+            func_800C734C(180, 145, "LENGTH: MEDIUM", 0xAAAAAAFF);
+            break;
+        case 4:
+            func_800C734C(180, 130, "EXTREME", 0xFF00FFFF);
+            func_800C734C(180, 145, "LENGTH: LONG", 0xAAAAAAFF);
+            break;
+        case 5:
+            func_800C734C(180, 130, "SECRET", 0x8888FFFF);
+            func_800C734C(180, 145, "LENGTH: ???", 0xAAAAAAFF);
+            break;
+    }
+
+    /* Draw best time for selected track */
+    {
+        s32 bestTime = *((s32 *)(0x80158000 + (*selectedTrack) * 4));
+        if (bestTime > 0) {
+            s32 mins = bestTime / 6000;
+            s32 secs = (bestTime / 100) % 60;
+            s32 cents = bestTime % 100;
+            char timeStr[16];
+
+            timeStr[0] = '0' + mins;
+            timeStr[1] = ':';
+            timeStr[2] = '0' + (secs / 10);
+            timeStr[3] = '0' + (secs % 10);
+            timeStr[4] = '.';
+            timeStr[5] = '0' + (cents / 10);
+            timeStr[6] = '0' + (cents % 10);
+            timeStr[7] = '\0';
+
+            func_800C734C(180, 170, "BEST:", 0x88FF88FF);
+            func_800C734C(220, 170, timeStr, 0x88FF88FF);
+        } else {
+            func_800C734C(180, 170, "BEST: --:--.--", 0x888888FF);
+        }
+    }
 }
 
 /*
  * func_800D4DFC (1228 bytes)
- * Car select menu
+ * Car select menu - displays car selection with stats
  */
 void func_800D4DFC(void *menu) {
-    /* Car select - stub */
+    s32 *selectedCar;
+    s32 *carRotation;
+    s32 *previewTimer;
+    s32 carCount;
+    s32 i;
+    f32 rotAngle;
+
+    if (menu == NULL) {
+        return;
+    }
+
+    selectedCar = (s32 *)((u8 *)menu + 0x04);
+    carRotation = (s32 *)((u8 *)menu + 0x20);
+    previewTimer = (s32 *)((u8 *)menu + 0x24);
+
+    carCount = 4;  /* Number of cars */
+
+    /* Update preview animation */
+    (*previewTimer)++;
+    rotAngle = (f32)(*carRotation) * 0.0174533f;  /* Degrees to radians */
+
+    /* Clamp selection */
+    if (*selectedCar < 0) *selectedCar = carCount - 1;
+    if (*selectedCar >= carCount) *selectedCar = 0;
+
+    /* Draw 3D car preview (rotating) */
+    func_800E7B44((f32[]){160.0f, 100.0f, 0.0f}, *selectedCar);
+
+    /* Draw car name */
+    switch (*selectedCar) {
+        case 0:
+            func_800C734C(120, 150, "RAZOR", 0xFFFF00FF);
+            break;
+        case 1:
+            func_800C734C(120, 150, "VENOM", 0xFF0000FF);
+            break;
+        case 2:
+            func_800C734C(120, 150, "STALLION", 0x00FF00FF);
+            break;
+        case 3:
+            func_800C734C(120, 150, "PHANTOM", 0x8888FFFF);
+            break;
+    }
+
+    /* Draw car stats */
+    {
+        s32 speed, accel, handling, weight;
+        s32 statX = 60;
+        s32 statY = 170;
+
+        /* Car stats per vehicle */
+        switch (*selectedCar) {
+            case 0:  /* Razor - balanced */
+                speed = 7; accel = 7; handling = 7; weight = 5;
+                break;
+            case 1:  /* Venom - speed focused */
+                speed = 9; accel = 6; handling = 5; weight = 4;
+                break;
+            case 2:  /* Stallion - heavy hitter */
+                speed = 6; accel = 5; handling = 6; weight = 9;
+                break;
+            case 3:  /* Phantom - agile */
+                speed = 7; accel = 8; handling = 9; weight = 3;
+                break;
+            default:
+                speed = 5; accel = 5; handling = 5; weight = 5;
+                break;
+        }
+
+        /* Draw stat bars */
+        func_800C734C(statX, statY, "SPEED:", 0xFFFFFFFF);
+        for (i = 0; i < speed; i++) {
+            func_800C734C(statX + 60 + i * 8, statY, "|", 0x00FF00FF);
+        }
+
+        func_800C734C(statX, statY + 12, "ACCEL:", 0xFFFFFFFF);
+        for (i = 0; i < accel; i++) {
+            func_800C734C(statX + 60 + i * 8, statY + 12, "|", 0xFFFF00FF);
+        }
+
+        func_800C734C(statX, statY + 24, "HANDLING:", 0xFFFFFFFF);
+        for (i = 0; i < handling; i++) {
+            func_800C734C(statX + 80 + i * 8, statY + 24, "|", 0x00FFFFFF);
+        }
+
+        func_800C734C(statX, statY + 36, "WEIGHT:", 0xFFFFFFFF);
+        for (i = 0; i < weight; i++) {
+            func_800C734C(statX + 70 + i * 8, statY + 36, "|", 0xFF8800FF);
+        }
+    }
+
+    /* Draw navigation hints */
+    func_800C734C(40, 220, "< > Rotate  A: Select  B: Back", 0x888888FF);
 }
 
 /*
@@ -13387,18 +14238,108 @@ void func_800D52CC(void) {
 
 /*
  * func_800D5374 (332 bytes)
- * Options menu
+ * Options menu - game settings screen
  */
 void func_800D5374(void *menu) {
-    /* Options menu - stub */
+    s32 *selectedOption;
+    s32 optionCount;
+    s32 i;
+    u32 color;
+
+    if (menu == NULL) {
+        return;
+    }
+
+    selectedOption = (s32 *)((u8 *)menu + 0x04);
+    optionCount = 5;
+
+    /* Clamp selection */
+    if (*selectedOption < 0) *selectedOption = optionCount - 1;
+    if (*selectedOption >= optionCount) *selectedOption = 0;
+
+    /* Draw title */
+    func_800C734C(100, 50, "OPTIONS", 0xFF8800FF);
+
+    /* Draw option items */
+    for (i = 0; i < optionCount; i++) {
+        s32 y = 90 + i * 20;
+        color = (i == *selectedOption) ? 0xFFFF00FF : 0xFFFFFFFF;
+
+        switch (i) {
+            case 0:
+                func_800C734C(60, y, "AUDIO", color);
+                break;
+            case 1:
+                func_800C734C(60, y, "CONTROLS", color);
+                break;
+            case 2:
+                func_800C734C(60, y, "DISPLAY", color);
+                break;
+            case 3:
+                func_800C734C(60, y, "SAVE/LOAD", color);
+                break;
+            case 4:
+                func_800C734C(60, y, "BACK", color);
+                break;
+        }
+    }
 }
 
 /*
  * func_800D5524 (628 bytes)
- * Audio options
+ * Audio options - sound settings
  */
 void func_800D5524(void *menu) {
-    /* Audio options - stub */
+    s32 *selectedOption;
+    s32 *musicVolume;
+    s32 *sfxVolume;
+    s32 *stereo;
+    s32 i;
+    u32 color;
+
+    if (menu == NULL) {
+        return;
+    }
+
+    selectedOption = (s32 *)((u8 *)menu + 0x04);
+    musicVolume = (s32 *)((u8 *)menu + 0x30);
+    sfxVolume = (s32 *)((u8 *)menu + 0x34);
+    stereo = (s32 *)((u8 *)menu + 0x38);
+
+    /* Draw title */
+    func_800C734C(100, 50, "AUDIO OPTIONS", 0xFF8800FF);
+
+    /* Music volume */
+    color = (*selectedOption == 0) ? 0xFFFF00FF : 0xFFFFFFFF;
+    func_800C734C(60, 90, "MUSIC:", color);
+    for (i = 0; i < 10; i++) {
+        u32 barColor = (i < *musicVolume) ? 0x00FF00FF : 0x444444FF;
+        func_800C734C(130 + i * 10, 90, "|", barColor);
+    }
+
+    /* SFX volume */
+    color = (*selectedOption == 1) ? 0xFFFF00FF : 0xFFFFFFFF;
+    func_800C734C(60, 110, "SFX:", color);
+    for (i = 0; i < 10; i++) {
+        u32 barColor = (i < *sfxVolume) ? 0x00FF00FF : 0x444444FF;
+        func_800C734C(130 + i * 10, 110, "|", barColor);
+    }
+
+    /* Stereo toggle */
+    color = (*selectedOption == 2) ? 0xFFFF00FF : 0xFFFFFFFF;
+    func_800C734C(60, 130, "MODE:", color);
+    if (*stereo) {
+        func_800C734C(130, 130, "STEREO", 0x00FFFFFF);
+    } else {
+        func_800C734C(130, 130, "MONO", 0x888888FF);
+    }
+
+    /* Back */
+    color = (*selectedOption == 3) ? 0xFFFF00FF : 0xFFFFFFFF;
+    func_800C734C(60, 160, "BACK", color);
+
+    /* Controls hint */
+    func_800C734C(40, 200, "< > Adjust  A: Toggle  B: Back", 0x888888FF);
 }
 
 /*
@@ -15149,102 +16090,1054 @@ void func_800F3588(s32 cmd) {
 /*
  * func_800F38BC (1912 bytes)
  * Ghost data recording
+ *
+ * Records player car state for ghost playback.
+ * Captures position, rotation, velocity each frame.
  */
 void func_800F38BC(void *ghost) {
-    /* Ghost record - stub */
+    s32 *frameCount, *maxFrames;
+    s32 *recording;
+    f32 *frameData;
+    void *playerCar;
+    f32 *carPos, *carRot, *carVel;
+    s32 frameOffset;
+
+    if (ghost == NULL) {
+        return;
+    }
+
+    recording = (s32 *)((u8 *)ghost + 0x00);
+    frameCount = (s32 *)((u8 *)ghost + 0x04);
+    maxFrames = (s32 *)((u8 *)ghost + 0x08);
+    frameData = (f32 *)((u8 *)ghost + 0x100);
+
+    if (*recording == 0) {
+        return;  /* Not recording */
+    }
+
+    if (*frameCount >= *maxFrames) {
+        *recording = 0;  /* Buffer full */
+        return;
+    }
+
+    /* Get player car */
+    playerCar = (void *)D_80152818;
+    if (playerCar == NULL) {
+        return;
+    }
+
+    carPos = (f32 *)((u8 *)playerCar + 0x24);
+    carRot = (f32 *)((u8 *)playerCar + 0x60);
+    carVel = (f32 *)((u8 *)playerCar + 0x34);
+
+    /* Calculate frame data offset (9 floats per frame) */
+    frameOffset = (*frameCount) * 9;
+
+    /* Store position */
+    frameData[frameOffset + 0] = carPos[0];
+    frameData[frameOffset + 1] = carPos[1];
+    frameData[frameOffset + 2] = carPos[2];
+
+    /* Store rotation (forward vector) */
+    frameData[frameOffset + 3] = carRot[0];
+    frameData[frameOffset + 4] = carRot[1];
+    frameData[frameOffset + 5] = carRot[2];
+
+    /* Store velocity */
+    frameData[frameOffset + 6] = carVel[0];
+    frameData[frameOffset + 7] = carVel[1];
+    frameData[frameOffset + 8] = carVel[2];
+
+    (*frameCount)++;
 }
 
 /*
  * func_800F4034 (1536 bytes)
- * Ghost playback
+ * Ghost playback - interpolates ghost car position from recorded data
  */
 void func_800F4034(void *ghost) {
-    /* Ghost playback - stub */
+    s32 *frameCount;
+    s32 *playbackFrame;
+    s32 *maxFrames;
+    s32 *playbackState;
+    f32 *frameData;
+    f32 *ghostPos;
+    f32 *ghostRot;
+    f32 *ghostVel;
+    f32 t;
+    s32 frame0, frame1;
+    s32 offset0, offset1;
+
+    if (ghost == NULL) {
+        return;
+    }
+
+    playbackState = (s32 *)((u8 *)ghost + 0x00);
+    playbackFrame = (s32 *)((u8 *)ghost + 0x04);
+    maxFrames = (s32 *)((u8 *)ghost + 0x08);
+    frameData = (f32 *)((u8 *)ghost + 0x100);
+    ghostPos = (f32 *)((u8 *)ghost + 0x40);
+    ghostRot = (f32 *)((u8 *)ghost + 0x50);
+    ghostVel = (f32 *)((u8 *)ghost + 0x60);
+
+    /* Check if playback is active */
+    if (*playbackState != 2) {
+        return;
+    }
+
+    /* Check bounds */
+    if (*playbackFrame >= *maxFrames - 1) {
+        *playbackState = 0;  /* Playback complete */
+        return;
+    }
+
+    /* Get interpolation frames */
+    frame0 = *playbackFrame;
+    frame1 = frame0 + 1;
+
+    /* Calculate interpolation factor (sub-frame position) */
+    frameCount = (s32 *)D_80159A20;
+    t = (f32)((*frameCount) & 1) * 0.5f;
+
+    /* Frame data layout: 9 floats per frame (pos[3], rot[3], vel[3]) */
+    offset0 = frame0 * 9;
+    offset1 = frame1 * 9;
+
+    /* Interpolate position */
+    ghostPos[0] = frameData[offset0 + 0] * (1.0f - t) + frameData[offset1 + 0] * t;
+    ghostPos[1] = frameData[offset0 + 1] * (1.0f - t) + frameData[offset1 + 1] * t;
+    ghostPos[2] = frameData[offset0 + 2] * (1.0f - t) + frameData[offset1 + 2] * t;
+
+    /* Interpolate rotation (simple lerp, should use slerp for accuracy) */
+    ghostRot[0] = frameData[offset0 + 3] * (1.0f - t) + frameData[offset1 + 3] * t;
+    ghostRot[1] = frameData[offset0 + 4] * (1.0f - t) + frameData[offset1 + 4] * t;
+    ghostRot[2] = frameData[offset0 + 5] * (1.0f - t) + frameData[offset1 + 5] * t;
+
+    /* Interpolate velocity (for motion blur) */
+    ghostVel[0] = frameData[offset0 + 6] * (1.0f - t) + frameData[offset1 + 6] * t;
+    ghostVel[1] = frameData[offset0 + 7] * (1.0f - t) + frameData[offset1 + 7] * t;
+    ghostVel[2] = frameData[offset0 + 8] * (1.0f - t) + frameData[offset1 + 8] * t;
+
+    /* Advance playback frame every other game frame */
+    if (((*frameCount) & 1) == 0) {
+        (*playbackFrame)++;
+    }
 }
 
 /*
  * func_800F4634 (908 bytes)
- * Ghost save
+ * Ghost save - saves ghost data to controller pak
  */
 void func_800F4634(void *ghost, s32 slot) {
-    /* Ghost save - stub */
+    s32 *maxFrames;
+    s32 *trackId;
+    s32 *lapTime;
+    f32 *frameData;
+    u8 *saveBuffer;
+    s32 frameCount;
+    s32 dataSize;
+    s32 headerSize;
+    s32 i;
+    s32 result;
+
+    if (ghost == NULL) {
+        return;
+    }
+
+    if (slot < 0 || slot >= 4) {
+        return;
+    }
+
+    maxFrames = (s32 *)((u8 *)ghost + 0x08);
+    trackId = (s32 *)((u8 *)ghost + 0x0C);
+    lapTime = (s32 *)((u8 *)ghost + 0x10);
+    frameData = (f32 *)((u8 *)ghost + 0x100);
+
+    frameCount = *maxFrames;
+    if (frameCount <= 0) {
+        return;
+    }
+
+    /* Calculate save data size */
+    headerSize = 32;  /* Track ID, lap time, frame count, checksum */
+    dataSize = frameCount * 9 * sizeof(f32);  /* 9 floats per frame */
+
+    /* Allocate temporary save buffer */
+    saveBuffer = (u8 *)0x80180000;  /* Temporary buffer area */
+
+    /* Write header */
+    saveBuffer[0] = 'G';
+    saveBuffer[1] = 'H';
+    saveBuffer[2] = 'S';
+    saveBuffer[3] = 'T';
+    *((s32 *)(saveBuffer + 4)) = *trackId;
+    *((s32 *)(saveBuffer + 8)) = *lapTime;
+    *((s32 *)(saveBuffer + 12)) = frameCount;
+    *((s32 *)(saveBuffer + 16)) = 0x20490001;  /* Version */
+
+    /* Copy frame data */
+    for (i = 0; i < frameCount * 9; i++) {
+        *((f32 *)(saveBuffer + headerSize + i * 4)) = frameData[i];
+    }
+
+    /* Calculate checksum */
+    {
+        u32 checksum = 0;
+        for (i = 0; i < headerSize + dataSize - 4; i++) {
+            checksum += saveBuffer[i];
+        }
+        *((u32 *)(saveBuffer + headerSize + dataSize - 4)) = checksum;
+    }
+
+    /* Save to controller pak slot */
+    result = osPfsWriteFile((OSPfs *)0x80140000, slot, 0, headerSize + dataSize, saveBuffer);
+    if (result != 0) {
+        /* Save failed - could set error flag */
+    }
 }
 
 /*
  * func_800F49C0 (876 bytes)
- * Ghost load
+ * Ghost load - loads ghost data from controller pak
  */
 s32 func_800F49C0(void *ghost, s32 slot) {
-    /* Ghost load - stub */
+    s32 *maxFrames;
+    s32 *trackId;
+    s32 *lapTime;
+    s32 *playbackState;
+    s32 *playbackFrame;
+    f32 *frameData;
+    u8 *loadBuffer;
+    s32 frameCount;
+    s32 dataSize;
+    s32 headerSize;
+    s32 i;
+    s32 result;
+    u32 checksum, storedChecksum;
+
+    if (ghost == NULL) {
+        return -1;
+    }
+
+    if (slot < 0 || slot >= 4) {
+        return -2;
+    }
+
+    /* Use temporary buffer */
+    loadBuffer = (u8 *)0x80180000;
+    headerSize = 32;
+
+    /* Read header first to get size */
+    result = osPfsReadFile((OSPfs *)0x80140000, slot, 0, headerSize, loadBuffer);
+    if (result != 0) {
+        return -3;
+    }
+
+    /* Verify magic number */
+    if (loadBuffer[0] != 'G' || loadBuffer[1] != 'H' ||
+        loadBuffer[2] != 'S' || loadBuffer[3] != 'T') {
+        return -4;
+    }
+
+    /* Get header data */
+    frameCount = *((s32 *)(loadBuffer + 12));
+    if (frameCount <= 0 || frameCount > 18000) {  /* Max 5 minute recording at 60fps */
+        return -5;
+    }
+
+    /* Calculate data size and read full data */
+    dataSize = frameCount * 9 * sizeof(f32);
+    result = osPfsReadFile((OSPfs *)0x80140000, slot, 0, headerSize + dataSize, loadBuffer);
+    if (result != 0) {
+        return -6;
+    }
+
+    /* Verify checksum */
+    checksum = 0;
+    for (i = 0; i < headerSize + dataSize - 4; i++) {
+        checksum += loadBuffer[i];
+    }
+    storedChecksum = *((u32 *)(loadBuffer + headerSize + dataSize - 4));
+    if (checksum != storedChecksum) {
+        return -7;
+    }
+
+    /* Copy to ghost structure */
+    playbackState = (s32 *)((u8 *)ghost + 0x00);
+    playbackFrame = (s32 *)((u8 *)ghost + 0x04);
+    maxFrames = (s32 *)((u8 *)ghost + 0x08);
+    trackId = (s32 *)((u8 *)ghost + 0x0C);
+    lapTime = (s32 *)((u8 *)ghost + 0x10);
+    frameData = (f32 *)((u8 *)ghost + 0x100);
+
+    *trackId = *((s32 *)(loadBuffer + 4));
+    *lapTime = *((s32 *)(loadBuffer + 8));
+    *maxFrames = frameCount;
+    *playbackFrame = 0;
+    *playbackState = 0;  /* Loaded but not playing */
+
+    /* Copy frame data */
+    for (i = 0; i < frameCount * 9; i++) {
+        frameData[i] = *((f32 *)(loadBuffer + headerSize + i * 4));
+    }
+
     return 0;
 }
 
 /*
  * func_800F4D2C (752 bytes)
- * Ghost render
+ * Ghost render - renders translucent ghost car
  */
 void func_800F4D2C(void *ghost) {
-    /* Ghost render - stub */
+    s32 *playbackState;
+    f32 *ghostPos;
+    f32 *ghostRot;
+    f32 *cameraPos;
+    f32 dx, dy, dz, dist;
+    f32 alpha;
+    s32 carModel;
+    Mtx *mtx;
+    Gfx *gfx;
+
+    if (ghost == NULL) {
+        return;
+    }
+
+    playbackState = (s32 *)((u8 *)ghost + 0x00);
+    if (*playbackState != 2) {
+        return;  /* Not playing back */
+    }
+
+    ghostPos = (f32 *)((u8 *)ghost + 0x40);
+    ghostRot = (f32 *)((u8 *)ghost + 0x50);
+    carModel = *((s32 *)((u8 *)ghost + 0x20));
+    cameraPos = (f32 *)0x80161000;
+
+    /* Calculate distance to camera for LOD/culling */
+    dx = ghostPos[0] - cameraPos[0];
+    dy = ghostPos[1] - cameraPos[1];
+    dz = ghostPos[2] - cameraPos[2];
+    dist = sqrtf(dx * dx + dy * dy + dz * dz);
+
+    /* Cull if too far */
+    if (dist > 5000.0f) {
+        return;
+    }
+
+    /* Calculate alpha based on distance (fade out at range) */
+    if (dist > 3000.0f) {
+        alpha = 128.0f * (1.0f - (dist - 3000.0f) / 2000.0f);
+    } else {
+        alpha = 128.0f;  /* 50% translucent */
+    }
+
+    /* Get display list pointer */
+    gfx = (Gfx *)D_80159A30;
+    mtx = (Mtx *)(D_80159A40 + 0x40);
+
+    /* Build transformation matrix */
+    guTranslateF((MtxF *)mtx, ghostPos[0], ghostPos[1], ghostPos[2]);
+    guRotateRPYF((MtxF *)mtx, ghostRot[0], ghostRot[1], ghostRot[2]);
+
+    /* Set translucent render mode */
+    gDPSetRenderMode(gfx++, G_RM_XLU_SURF, G_RM_XLU_SURF2);
+    gDPSetPrimColor(gfx++, 0, 0, 128, 128, 255, (s32)alpha);
+    gDPSetCombineMode(gfx++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
+
+    /* Push matrix */
+    gSPMatrix(gfx++, OS_K0_TO_PHYSICAL(mtx),
+              G_MTX_MODELVIEW | G_MTX_LOAD | G_MTX_PUSH);
+
+    /* Draw ghost car model (bluish tint) */
+    if (carModel >= 0 && carModel < 8) {
+        gSPDisplayList(gfx++, D_80130000 + carModel * 0x1000);
+    }
+
+    /* Pop matrix */
+    gSPPopMatrix(gfx++, G_MTX_MODELVIEW);
+
+    /* Restore render mode */
+    gDPSetRenderMode(gfx++, G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2);
+
+    /* Update display list pointer */
+    *((Gfx **)D_80159A30) = gfx;
 }
 
 /*
  * func_800F5000 (3832 bytes)
- * Stunt system
+ * Stunt system - detects and scores aerial stunts
  */
 void func_800F5000(void *car) {
-    /* Stunt system - stub */
+    f32 *carPos;
+    f32 *carVel;
+    f32 *carRot;
+    f32 *carAngVel;
+    s32 *airborne;
+    s32 *stuntState;
+    s32 *currentStunt;
+    s32 *comboCount;
+    s32 *comboTimer;
+    s32 *totalScore;
+    f32 *stuntRotation;
+    f32 *landingAngle;
+    f32 heightAboveGround;
+    f32 rotSpeed;
+    f32 rollDelta, pitchDelta, yawDelta;
+    s32 newStunt;
+    s32 stuntScore;
+
+    if (car == NULL) {
+        return;
+    }
+
+    carPos = (f32 *)((u8 *)car + 0x24);
+    carVel = (f32 *)((u8 *)car + 0x34);
+    carRot = (f32 *)((u8 *)car + 0x60);
+    carAngVel = (f32 *)((u8 *)car + 0x70);
+    airborne = (s32 *)((u8 *)car + 0x1C0);
+    stuntState = (s32 *)((u8 *)car + 0x300);
+    currentStunt = (s32 *)((u8 *)car + 0x304);
+    comboCount = (s32 *)((u8 *)car + 0x308);
+    comboTimer = (s32 *)((u8 *)car + 0x30C);
+    totalScore = (s32 *)((u8 *)car + 0x310);
+    stuntRotation = (f32 *)((u8 *)car + 0x320);
+    landingAngle = (f32 *)((u8 *)car + 0x330);
+
+    /* Get height above track */
+    heightAboveGround = func_800BB9B0(carPos, NULL, NULL) > 0 ? carPos[1] : 0.0f;
+
+    /* Check if just became airborne */
+    if (*airborne && *stuntState == 0) {
+        *stuntState = 1;  /* Airborne, tracking */
+        *currentStunt = 0;
+        stuntRotation[0] = 0.0f;  /* Roll accumulator */
+        stuntRotation[1] = 0.0f;  /* Pitch accumulator */
+        stuntRotation[2] = 0.0f;  /* Yaw accumulator */
+        landingAngle[0] = carRot[0];
+        landingAngle[1] = carRot[1];
+        landingAngle[2] = carRot[2];
+    }
+
+    /* While airborne, accumulate rotation */
+    if (*stuntState == 1 && *airborne) {
+        /* Track rotation deltas */
+        rollDelta = carAngVel[0];
+        pitchDelta = carAngVel[1];
+        yawDelta = carAngVel[2];
+
+        stuntRotation[0] += rollDelta;
+        stuntRotation[1] += pitchDelta;
+        stuntRotation[2] += yawDelta;
+
+        /* Detect stunt types */
+        newStunt = 0;
+
+        /* Barrel roll (full 360 roll) */
+        if (stuntRotation[0] > 6.28f || stuntRotation[0] < -6.28f) {
+            if (stuntRotation[0] > 0) {
+                newStunt |= 0x01;  /* Right barrel roll */
+            } else {
+                newStunt |= 0x02;  /* Left barrel roll */
+            }
+            stuntRotation[0] = 0.0f;  /* Reset for next roll */
+        }
+
+        /* Flip (full 360 pitch) */
+        if (stuntRotation[1] > 6.28f || stuntRotation[1] < -6.28f) {
+            if (stuntRotation[1] > 0) {
+                newStunt |= 0x04;  /* Front flip */
+            } else {
+                newStunt |= 0x08;  /* Back flip */
+            }
+            stuntRotation[1] = 0.0f;
+        }
+
+        /* Spin (full 360 yaw) */
+        if (stuntRotation[2] > 6.28f || stuntRotation[2] < -6.28f) {
+            if (stuntRotation[2] > 0) {
+                newStunt |= 0x10;  /* Clockwise spin */
+            } else {
+                newStunt |= 0x20;  /* Counter-clockwise spin */
+            }
+            stuntRotation[2] = 0.0f;
+        }
+
+        /* Check for half rotations (180 degrees = 3.14 radians) */
+        rotSpeed = sqrtf(rollDelta * rollDelta + pitchDelta * pitchDelta + yawDelta * yawDelta);
+        if (rotSpeed > 0.5f) {
+            /* High speed rotation bonus */
+            newStunt |= 0x40;
+        }
+
+        /* Apply new stunts */
+        if (newStunt != 0) {
+            *currentStunt |= newStunt;
+            func_800F6144(car, newStunt);  /* Add to combo */
+        }
+
+        /* Wings extended bonus */
+        if (*((s32 *)((u8 *)car + 0x1E0)) != 0) {
+            /* Track wing time for bonus */
+            *((s32 *)((u8 *)car + 0x340)) += 1;
+        }
+    }
+
+    /* Check for landing */
+    if (*stuntState == 1 && !(*airborne)) {
+        /* Calculate landing quality */
+        f32 landAngleDiff;
+        s32 landingBonus;
+
+        landAngleDiff = carRot[0] * carRot[0] + carRot[2] * carRot[2];
+        landAngleDiff = sqrtf(landAngleDiff);
+
+        if (landAngleDiff < 0.2f) {
+            landingBonus = 3;  /* Perfect landing - 3x multiplier */
+        } else if (landAngleDiff < 0.5f) {
+            landingBonus = 2;  /* Good landing - 2x multiplier */
+        } else if (landAngleDiff < 1.0f) {
+            landingBonus = 1;  /* Normal landing */
+        } else {
+            landingBonus = 0;  /* Crash - no points */
+            *comboCount = 0;
+            *comboTimer = 0;
+        }
+
+        if (landingBonus > 0 && *currentStunt != 0) {
+            /* Calculate stunt score */
+            stuntScore = func_800F5EF8(*currentStunt);
+            stuntScore *= landingBonus;
+
+            /* Apply combo multiplier */
+            if (*comboCount > 1) {
+                stuntScore *= *comboCount;
+            }
+
+            *totalScore += stuntScore;
+
+            /* Display stunt notification */
+            func_800C55E4(*currentStunt, stuntScore, landingBonus);
+        }
+
+        /* Reset stunt state */
+        *stuntState = 0;
+        *currentStunt = 0;
+    }
+
+    /* Decay combo timer */
+    if (*comboTimer > 0) {
+        (*comboTimer)--;
+        if (*comboTimer == 0) {
+            *comboCount = 0;
+        }
+    }
 }
 
 /*
  * func_800F5EF8 (588 bytes)
- * Stunt score
+ * Stunt score - calculates point value for stunt type
  */
 s32 func_800F5EF8(s32 stuntType) {
-    /* Stunt score - stub */
-    return 0;
+    s32 score;
+    s32 count;
+
+    score = 0;
+    count = 0;
+
+    /* Right barrel roll - 500 points */
+    if (stuntType & 0x01) {
+        score += 500;
+        count++;
+    }
+
+    /* Left barrel roll - 500 points */
+    if (stuntType & 0x02) {
+        score += 500;
+        count++;
+    }
+
+    /* Front flip - 750 points */
+    if (stuntType & 0x04) {
+        score += 750;
+        count++;
+    }
+
+    /* Back flip - 750 points */
+    if (stuntType & 0x08) {
+        score += 750;
+        count++;
+    }
+
+    /* Clockwise spin - 300 points */
+    if (stuntType & 0x10) {
+        score += 300;
+        count++;
+    }
+
+    /* Counter-clockwise spin - 300 points */
+    if (stuntType & 0x20) {
+        score += 300;
+        count++;
+    }
+
+    /* High speed rotation bonus - 200 points */
+    if (stuntType & 0x40) {
+        score += 200;
+    }
+
+    /* Combo bonus for multiple tricks */
+    if (count >= 3) {
+        score = (score * 3) / 2;  /* 1.5x for triple */
+    } else if (count >= 2) {
+        score = (score * 5) / 4;  /* 1.25x for double */
+    }
+
+    /* Special combos */
+    /* Corkscrew: barrel roll + flip */
+    if ((stuntType & 0x03) && (stuntType & 0x0C)) {
+        score += 1000;  /* Corkscrew bonus */
+    }
+
+    /* Rodeo: flip + spin */
+    if ((stuntType & 0x0C) && (stuntType & 0x30)) {
+        score += 800;  /* Rodeo bonus */
+    }
+
+    return score;
 }
 
 /*
  * func_800F6144 (1888 bytes)
- * Stunt combo
+ * Stunt combo - tracks and chains stunts together
  */
 void func_800F6144(void *car, s32 stuntType) {
-    /* Stunt combo - stub */
+    s32 *comboCount;
+    s32 *comboTimer;
+    s32 *comboHistory;
+    s32 *bestCombo;
+    s32 *comboScore;
+    s32 stuntScore;
+    s32 i;
+
+    if (car == NULL) {
+        return;
+    }
+
+    comboCount = (s32 *)((u8 *)car + 0x308);
+    comboTimer = (s32 *)((u8 *)car + 0x30C);
+    comboHistory = (s32 *)((u8 *)car + 0x350);  /* Array of 16 recent stunts */
+    bestCombo = (s32 *)((u8 *)car + 0x390);
+    comboScore = (s32 *)((u8 *)car + 0x394);
+
+    /* Add stunt to combo */
+    (*comboCount)++;
+
+    /* Reset combo timer (3 seconds at 60fps) */
+    *comboTimer = 180;
+
+    /* Shift combo history and add new stunt */
+    for (i = 15; i > 0; i--) {
+        comboHistory[i] = comboHistory[i - 1];
+    }
+    comboHistory[0] = stuntType;
+
+    /* Calculate combo score */
+    stuntScore = func_800F5EF8(stuntType);
+
+    /* Apply combo multiplier */
+    if (*comboCount >= 10) {
+        stuntScore *= 5;  /* 5x at 10+ combo */
+    } else if (*comboCount >= 7) {
+        stuntScore *= 4;  /* 4x at 7-9 combo */
+    } else if (*comboCount >= 5) {
+        stuntScore *= 3;  /* 3x at 5-6 combo */
+    } else if (*comboCount >= 3) {
+        stuntScore *= 2;  /* 2x at 3-4 combo */
+    }
+
+    *comboScore += stuntScore;
+
+    /* Update best combo */
+    if (*comboCount > *bestCombo) {
+        *bestCombo = *comboCount;
+    }
+
+    /* Check for special combo sequences */
+    /* Triple roll: three barrel rolls in a row */
+    if (*comboCount >= 3) {
+        if ((comboHistory[0] & 0x03) && (comboHistory[1] & 0x03) && (comboHistory[2] & 0x03)) {
+            *comboScore += 2000;  /* Triple roll bonus */
+        }
+    }
+
+    /* Triple flip: three flips in a row */
+    if (*comboCount >= 3) {
+        if ((comboHistory[0] & 0x0C) && (comboHistory[1] & 0x0C) && (comboHistory[2] & 0x0C)) {
+            *comboScore += 3000;  /* Triple flip bonus */
+        }
+    }
+
+    /* Variety bonus: 5 different stunt types */
+    if (*comboCount >= 5) {
+        s32 variety = 0;
+        s32 seen = 0;
+        for (i = 0; i < 5; i++) {
+            if ((comboHistory[i] & 0x3F) && !((comboHistory[i] & 0x3F) & seen)) {
+                variety++;
+                seen |= (comboHistory[i] & 0x3F);
+            }
+        }
+        if (variety >= 4) {
+            *comboScore += 1500;  /* Variety bonus */
+        }
+    }
+
+    /* Play combo sound effect */
+    if (*comboCount == 3) {
+        func_800B37E8(0x20);  /* Nice combo sound */
+    } else if (*comboCount == 5) {
+        func_800B37E8(0x21);  /* Great combo sound */
+    } else if (*comboCount == 10) {
+        func_800B37E8(0x22);  /* Insane combo sound */
+    }
+
+    /* Update HUD combo display */
+    func_800C70BC(*comboCount, *comboScore);
 }
 
 /*
  * func_800F6894 (580 bytes)
- * Wing deploy
+ * Wing deploy - extends/retracts car wings for air control
  */
 void func_800F6894(void *car, s32 deploy) {
-    /* Wing deploy - stub */
+    s32 *wingState;
+    s32 *wingTimer;
+    f32 *liftForce;
+    f32 *dragCoeff;
+    f32 *carVel;
+    f32 speed;
+
+    if (car == NULL) {
+        return;
+    }
+
+    wingState = (s32 *)((u8 *)car + 0x1E0);
+    wingTimer = (s32 *)((u8 *)car + 0x1E4);
+    liftForce = (f32 *)((u8 *)car + 0x1E8);
+    dragCoeff = (f32 *)((u8 *)car + 0x1EC);
+    carVel = (f32 *)((u8 *)car + 0x34);
+
+    if (deploy) {
+        /* Deploy wings */
+        if (*wingState == 0) {
+            *wingState = 1;
+            *wingTimer = 0;
+
+            /* Play deploy sound */
+            func_800B37E8(0x30);
+        }
+
+        /* Animate wing extension (takes 10 frames) */
+        if (*wingTimer < 10) {
+            (*wingTimer)++;
+        }
+
+        /* Calculate lift based on speed and wing extension */
+        speed = sqrtf(carVel[0] * carVel[0] + carVel[1] * carVel[1] + carVel[2] * carVel[2]);
+
+        /* Lift force increases with speed and wing extension */
+        *liftForce = speed * 0.02f * ((f32)(*wingTimer) / 10.0f);
+
+        /* Clamp lift force */
+        if (*liftForce > 15.0f) {
+            *liftForce = 15.0f;
+        }
+
+        /* Wings add drag */
+        *dragCoeff = 0.05f + 0.03f * ((f32)(*wingTimer) / 10.0f);
+    } else {
+        /* Retract wings */
+        if (*wingState == 1) {
+            *wingState = 0;
+
+            /* Play retract sound */
+            func_800B37E8(0x31);
+        }
+
+        /* Animate wing retraction */
+        if (*wingTimer > 0) {
+            (*wingTimer)--;
+        }
+
+        /* Reduce lift as wings retract */
+        speed = sqrtf(carVel[0] * carVel[0] + carVel[1] * carVel[1] + carVel[2] * carVel[2]);
+        *liftForce = speed * 0.02f * ((f32)(*wingTimer) / 10.0f);
+
+        /* Reduce drag */
+        *dragCoeff = 0.05f + 0.03f * ((f32)(*wingTimer) / 10.0f);
+    }
 }
 
 /*
  * func_800F6AD8 (740 bytes)
- * Trick detection
+ * Trick detection - identifies trick type from car state
  */
 s32 func_800F6AD8(void *car) {
-    /* Trick detection - stub */
-    return 0;
+    f32 *carRot;
+    f32 *carAngVel;
+    f32 *prevRot;
+    s32 *airborne;
+    s32 *airTime;
+    f32 rollRate, pitchRate, yawRate;
+    f32 totalRot;
+    s32 trick;
+
+    if (car == NULL) {
+        return 0;
+    }
+
+    carRot = (f32 *)((u8 *)car + 0x60);
+    carAngVel = (f32 *)((u8 *)car + 0x70);
+    prevRot = (f32 *)((u8 *)car + 0x80);
+    airborne = (s32 *)((u8 *)car + 0x1C0);
+    airTime = (s32 *)((u8 *)car + 0x1C4);
+
+    /* Must be airborne for tricks */
+    if (!(*airborne)) {
+        return 0;
+    }
+
+    /* Need minimum air time (0.5 seconds) */
+    if (*airTime < 30) {
+        return 0;
+    }
+
+    trick = 0;
+    rollRate = carAngVel[0];
+    pitchRate = carAngVel[1];
+    yawRate = carAngVel[2];
+
+    /* Detect barrel roll (high roll rate) */
+    if (rollRate > 0.3f) {
+        trick |= 0x01;  /* Right barrel roll */
+    } else if (rollRate < -0.3f) {
+        trick |= 0x02;  /* Left barrel roll */
+    }
+
+    /* Detect flip (high pitch rate) */
+    if (pitchRate > 0.25f) {
+        trick |= 0x04;  /* Front flip */
+    } else if (pitchRate < -0.25f) {
+        trick |= 0x08;  /* Back flip */
+    }
+
+    /* Detect spin (high yaw rate) */
+    if (yawRate > 0.2f) {
+        trick |= 0x10;  /* Clockwise spin */
+    } else if (yawRate < -0.2f) {
+        trick |= 0x20;  /* Counter-clockwise spin */
+    }
+
+    /* Calculate total rotation magnitude */
+    totalRot = sqrtf(rollRate * rollRate + pitchRate * pitchRate + yawRate * yawRate);
+
+    /* High speed rotation bonus */
+    if (totalRot > 0.5f) {
+        trick |= 0x40;
+    }
+
+    /* Detect inverted (upside down) */
+    if (carRot[0] > 2.5f || carRot[0] < -2.5f) {
+        trick |= 0x80;  /* Inverted bonus */
+    }
+
+    /* Detect superman (nose down, high speed) */
+    if (carRot[1] < -0.8f && *airTime > 60) {
+        trick |= 0x100;  /* Superman pose */
+    }
+
+    /* Store previous rotation for next frame comparison */
+    prevRot[0] = carRot[0];
+    prevRot[1] = carRot[1];
+    prevRot[2] = carRot[2];
+
+    return trick;
 }
 
 /*
  * func_800F6DBC (1168 bytes)
- * Landing detection
+ * Landing detection - evaluates landing quality after aerial
  */
 s32 func_800F6DBC(void *car) {
-    /* Landing detection - stub */
-    return 0;
+    f32 *carPos;
+    f32 *carVel;
+    f32 *carRot;
+    s32 *airborne;
+    s32 *wasAirborne;
+    s32 *airTime;
+    f32 verticalVel;
+    f32 rollAngle, pitchAngle;
+    f32 landingAngle;
+    s32 surfaceType;
+    f32 surfaceNormal[3];
+    f32 surfaceHeight;
+    s32 landingQuality;
+
+    if (car == NULL) {
+        return 0;
+    }
+
+    carPos = (f32 *)((u8 *)car + 0x24);
+    carVel = (f32 *)((u8 *)car + 0x34);
+    carRot = (f32 *)((u8 *)car + 0x60);
+    airborne = (s32 *)((u8 *)car + 0x1C0);
+    wasAirborne = (s32 *)((u8 *)car + 0x1C8);
+    airTime = (s32 *)((u8 *)car + 0x1C4);
+
+    /* Check if just landed */
+    if (*wasAirborne && !(*airborne)) {
+        /* Get surface info at landing point */
+        surfaceType = func_800BB9B0(carPos, surfaceNormal, &surfaceHeight);
+
+        /* Calculate landing angle relative to surface */
+        rollAngle = carRot[0];
+        pitchAngle = carRot[2];
+
+        /* Normalize angles to 0-2pi */
+        while (rollAngle > 3.14159f) rollAngle -= 6.28318f;
+        while (rollAngle < -3.14159f) rollAngle += 6.28318f;
+        while (pitchAngle > 3.14159f) pitchAngle -= 6.28318f;
+        while (pitchAngle < -3.14159f) pitchAngle += 6.28318f;
+
+        /* Calculate total landing angle deviation */
+        landingAngle = sqrtf(rollAngle * rollAngle + pitchAngle * pitchAngle);
+
+        /* Get vertical impact velocity */
+        verticalVel = -carVel[1];  /* Positive = downward */
+
+        /* Determine landing quality */
+        if (landingAngle < 0.1f && verticalVel < 30.0f) {
+            landingQuality = 4;  /* Perfect - wheels down, soft landing */
+        } else if (landingAngle < 0.3f && verticalVel < 50.0f) {
+            landingQuality = 3;  /* Great - mostly level */
+        } else if (landingAngle < 0.6f && verticalVel < 80.0f) {
+            landingQuality = 2;  /* Good - acceptable angle */
+        } else if (landingAngle < 1.0f && verticalVel < 120.0f) {
+            landingQuality = 1;  /* OK - rough but survivable */
+        } else {
+            landingQuality = 0;  /* Crash - too steep or fast */
+        }
+
+        /* Surface type affects quality */
+        if (surfaceType == 0) {
+            /* Off-track landing - reduce quality */
+            if (landingQuality > 0) {
+                landingQuality--;
+            }
+        }
+
+        /* Long air time bonus */
+        if (*airTime > 120 && landingQuality >= 2) {
+            landingQuality++;  /* Bonus for 2+ second air */
+            if (landingQuality > 4) {
+                landingQuality = 4;
+            }
+        }
+
+        /* Play landing sound based on quality */
+        switch (landingQuality) {
+            case 4:
+                func_800B37E8(0x40);  /* Perfect landing */
+                break;
+            case 3:
+                func_800B37E8(0x41);  /* Good landing */
+                break;
+            case 2:
+            case 1:
+                func_800B37E8(0x42);  /* Rough landing */
+                break;
+            case 0:
+                func_800B37E8(0x43);  /* Crash */
+                break;
+        }
+
+        /* Reset airborne tracking */
+        *wasAirborne = 0;
+        *airTime = 0;
+
+        return landingQuality;
+    }
+
+    /* Track airborne state */
+    *wasAirborne = *airborne;
+    if (*airborne) {
+        (*airTime)++;
+    }
+
+    return -1;  /* Not landing this frame */
 }
 
 /*
  * func_800F724C (252 bytes)
- * Stunt multiplier
+ * Stunt multiplier - calculates score multiplier based on conditions
  */
 f32 func_800F724C(void *car) {
-    /* Stunt multiplier - stub */
-    return 1.0f;
+    s32 *comboCount;
+    s32 *airTime;
+    s32 *wingState;
+    f32 *carVel;
+    f32 multiplier;
+    f32 speed;
+    f32 heightBonus;
+
+    if (car == NULL) {
+        return 1.0f;
+    }
+
+    comboCount = (s32 *)((u8 *)car + 0x308);
+    airTime = (s32 *)((u8 *)car + 0x1C4);
+    wingState = (s32 *)((u8 *)car + 0x1E0);
+    carVel = (f32 *)((u8 *)car + 0x34);
+
+    multiplier = 1.0f;
+
+    /* Combo multiplier */
+    if (*comboCount >= 10) {
+        multiplier *= 3.0f;
+    } else if (*comboCount >= 7) {
+        multiplier *= 2.5f;
+    } else if (*comboCount >= 5) {
+        multiplier *= 2.0f;
+    } else if (*comboCount >= 3) {
+        multiplier *= 1.5f;
+    }
+
+    /* Air time bonus (after 1 second) */
+    if (*airTime > 60) {
+        heightBonus = 1.0f + (f32)(*airTime - 60) / 180.0f;
+        if (heightBonus > 2.0f) {
+            heightBonus = 2.0f;
+        }
+        multiplier *= heightBonus;
+    }
+
+    /* Speed bonus */
+    speed = sqrtf(carVel[0] * carVel[0] + carVel[2] * carVel[2]);
+    if (speed > 100.0f) {
+        multiplier *= 1.0f + (speed - 100.0f) / 200.0f;
+    }
+
+    /* Wings deployed bonus */
+    if (*wingState != 0) {
+        multiplier *= 1.25f;
+    }
+
+    /* Cap maximum multiplier */
+    if (multiplier > 10.0f) {
+        multiplier = 10.0f;
+    }
+
+    return multiplier;
 }
 
 /*
