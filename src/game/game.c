@@ -36737,121 +36737,476 @@ void func_800DC88C(void) {
 }
 
 /*
-
  * func_800DC99C (1016 bytes)
- * Attract demo play
+ * Attract demo play - Plays back recorded demo race
  */
+extern s32 D_8015A790;      /* Demo playback frame */
+extern s32 D_8015A794;      /* Demo input buffer index */
+extern u8 *D_8015A798;      /* Demo input data pointer */
+
 void func_800DC99C(void) {
-    /* Demo play - stub */
+    s32 frame;
+    u8 *inputData;
+    u8 demoInput;
+
+    frame = D_8015A790;
+    inputData = D_8015A798;
+
+    if (inputData == NULL) {
+        return;
+    }
+
+    /* Read demo input for this frame */
+    demoInput = inputData[frame];
+
+    /* Apply to player 0 car */
+    {
+        u8 *carBase = (u8 *)&D_80152818;
+        f32 *steering = (f32 *)(carBase + 0xC0);
+        f32 *throttle = (f32 *)(carBase + 0xC4);
+        f32 *brake = (f32 *)(carBase + 0xC8);
+
+        /* Decode demo input byte */
+        *throttle = ((demoInput >> 4) & 0x0F) / 15.0f;
+        *steering = (((demoInput & 0x0F) - 8) / 7.0f);
+        *brake = (demoInput & 0x80) ? 1.0f : 0.0f;
+    }
+
+    frame++;
+    D_8015A790 = frame;
+
+    /* Check for demo end (0xFF marker) */
+    if (inputData[frame] == 0xFF) {
+        D_8015A790 = 0;
+        D_801146EC = 0;  /* Back to attract */
+    }
 }
 
 /*
-
  * func_800DCD94 (96 bytes)
- * Attract idle check
+ * Attract idle check - Returns 1 if no input for idle timeout
  */
+extern s32 D_8015A7A0;      /* Idle frame counter */
+#define IDLE_TIMEOUT (30 * 60)  /* 30 seconds */
+
 s32 func_800DCD94(void) {
-    /* Idle check - stub */
+    s32 input;
+
+    input = func_800CB748(D_80158100);
+
+    if (input != 0) {
+        D_8015A7A0 = 0;
+        return 0;
+    }
+
+    D_8015A7A0++;
+
+    if (D_8015A7A0 >= IDLE_TIMEOUT) {
+        D_8015A7A0 = 0;
+        return 1;  /* Idle timeout reached */
+    }
+
     return 0;
 }
 
 /*
-
  * func_800DCDF4 (732 bytes)
- * Attract video play
+ * Attract video play - Plays FMV or pre-rendered video sequence
  */
+extern s32 D_8015A7A8;      /* Video playback frame */
+extern s32 D_8015A7AC;      /* Video duration */
+
 void func_800DCDF4(s32 videoId) {
-    /* Video play - stub */
+    s32 frame;
+    s32 duration;
+
+    frame = D_8015A7A8;
+    frame++;
+
+    /* Get video duration based on ID */
+    switch (videoId) {
+        case 0:  /* Intro video */
+            duration = 300;
+            break;
+        case 1:  /* Credits */
+            duration = 600;
+            break;
+        default:
+            duration = 180;
+            break;
+    }
+
+    D_8015A7AC = duration;
+
+    /* Draw "playing" indicator (actual video decode would go here) */
+    func_800C6E60(0, 0, 320, 240, 0xFF000000);
+
+    if (frame >= duration) {
+        D_8015A7A8 = 0;
+        return;
+    }
+
+    D_8015A7A8 = frame;
 }
 
 /*
-
  * func_800DD0D0 (988 bytes)
- * Attract sequence update
+ * Attract sequence update - Updates attract mode state machine
  */
 void func_800DD0D0(void) {
-    /* Sequence update - stub */
+    s32 state;
+    s32 timer;
+
+    state = D_8015A780;
+    timer = D_8015A784;
+
+    timer++;
+
+    /* Handle state transitions */
+    switch (state) {
+        case 0:  /* Title */
+            if (timer > 300) {
+                state = 1;
+                timer = 0;
+            }
+            break;
+
+        case 1:  /* Demo */
+            func_800DC99C();
+            if (timer > 900) {
+                state = 2;
+                timer = 0;
+            }
+            break;
+
+        case 2:  /* High scores */
+            if (timer > 300) {
+                state = 0;
+                timer = 0;
+            }
+            break;
+    }
+
+    D_8015A780 = state;
+    D_8015A784 = timer;
 }
 
 /*
-
  * func_800DD4AC (2816 bytes)
- * Title screen
+ * Title screen - Main title screen display
  */
+extern s32 D_8015A7B0;      /* Title animation frame */
+extern s32 D_8015A7B4;      /* Title state */
+
 void func_800DD4AC(void) {
-    /* Title screen - stub */
+    s32 frame;
+    s32 input;
+    s32 logoY;
+    s32 alpha;
+
+    frame = D_8015A7B0;
+    frame++;
+    input = func_800CB748(D_80158100);
+
+    /* Any button goes to menu */
+    if (input != 0) {
+        D_8015A7B0 = 0;
+        D_801146EC = 1;  /* TRKSEL or menu */
+        func_800CC3C0(10);
+        return;
+    }
+
+    /* Background */
+    func_800DE4DC();
+
+    /* Logo animation - drop in from top */
+    if (frame < 60) {
+        logoY = -100 + (frame * 180 / 60);
+        alpha = (frame * 255) / 60;
+    } else {
+        logoY = 80;
+        alpha = 255;
+    }
+
+    func_800DDFAC();  /* Animate logo */
+
+    /* Draw title text */
+    func_800C734C("SAN FRANCISCO", 85, logoY - 20, alpha);
+    func_800C734C("RUSH 2049", 105, logoY + 10, alpha);
+
+    /* Button prompt after logo settles */
+    if (frame > 90) {
+        func_800DE20C();
+    }
+
+    /* Copyright */
+    func_800C734C("(C) 1999 ATARI GAMES", 80, 220, 150);
+
+    D_8015A7B0 = frame;
 }
 
 /*
-
  * func_800DDFAC (608 bytes)
- * Title logo animate
+ * Title logo animate - Animates the game logo
  */
+extern s32 D_8015A7B8;      /* Logo animation phase */
+
 void func_800DDFAC(void) {
-    /* Logo animate - stub */
+    s32 phase;
+    f32 scale;
+    f32 glow;
+
+    phase = D_8015A7B8;
+    phase++;
+
+    /* Pulsing scale effect */
+    scale = 1.0f + sinf((f32)phase * 0.05f) * 0.02f;
+
+    /* Glow effect */
+    glow = 0.5f + sinf((f32)phase * 0.08f) * 0.3f;
+
+    /* Logo would be drawn here with transforms */
+    /* For now just draw a placeholder box */
+    {
+        s32 glowAlpha = (s32)(glow * 255.0f);
+        func_800C6E60(75, 55, 170, 80, (glowAlpha << 24) | 0x404080);
+    }
+
+    D_8015A7B8 = phase;
 }
 
 /*
-
  * func_800DE20C (724 bytes)
- * Title button prompt
+ * Title button prompt - Shows "PRESS START" with blinking
  */
 void func_800DE20C(void) {
-    /* Button prompt - stub */
+    s32 frame;
+    s32 blink;
+    s32 alpha;
+
+    frame = D_80142AFC;
+    blink = (frame / 30) & 1;
+
+    if (blink) {
+        alpha = 255;
+    } else {
+        alpha = 100;
+    }
+
+    /* Pulsing alpha */
+    alpha = 150 + (s32)(sinf((f32)frame * 0.1f) * 100.0f);
+    if (alpha > 255) alpha = 255;
+    if (alpha < 50) alpha = 50;
+
+    func_800C734C("PRESS START", 100, 180, alpha);
 }
 
 /*
-
  * func_800DE4DC (908 bytes)
- * Title background
+ * Title background - Renders animated title background
  */
 void func_800DE4DC(void) {
-    /* Background - stub */
+    s32 frame;
+    s32 i;
+    s32 scrollX, scrollY;
+
+    frame = D_80142AFC;
+
+    /* Gradient background */
+    func_800C6E60(0, 0, 320, 120, 0xFF000030);
+    func_800C6E60(0, 120, 320, 120, 0xFF000050);
+
+    /* Scrolling city silhouette effect */
+    scrollX = (frame / 2) % 320;
+
+    for (i = 0; i < 4; i++) {
+        s32 x = ((scrollX + i * 80) % 320) - 40;
+        s32 height = 30 + (i * 17) % 40;
+        func_800C6E60(x, 200 - height, 60, height, 0x80202040);
+    }
+
+    /* Stars/particles */
+    for (i = 0; i < 8; i++) {
+        s32 starX = ((frame * 3 + i * 47) % 320);
+        s32 starY = ((i * 31) % 180) + 10;
+        s32 twinkle = ((frame + i * 13) / 10) & 1;
+
+        if (twinkle) {
+            func_800C6E60(starX, starY, 2, 2, 0xFFFFFFFF);
+        }
+    }
 }
 
 /*
-
  * func_800DE868 (836 bytes)
- * Main menu screen
+ * Main menu screen - Handles main menu logic
  */
+extern s32 D_8015A7C0;      /* Menu selection */
+extern s32 D_8015A7C4;      /* Menu state */
+
 void func_800DE868(void) {
-    /* Main menu - stub */
+    s32 input;
+
+    input = func_800CB748(D_80158100);
+
+    func_800DEBAC(input);
+    func_800DEC8C();
 }
 
 /*
-
  * func_800DEBAC (224 bytes)
- * Main menu input
+ * Main menu input - Processes main menu input
  */
+static const char *mainMenuOptions[] = {
+    "RACE",
+    "BATTLE",
+    "STUNT",
+    "OPTIONS",
+    "RECORDS"
+};
+#define MAIN_MENU_COUNT 5
+
 void func_800DEBAC(s32 input) {
-    /* Menu input - stub */
+    s32 selection = D_8015A7C0;
+
+    if (input == 4) {  /* Up */
+        selection--;
+        if (selection < 0) selection = MAIN_MENU_COUNT - 1;
+        func_800CC3C0(12);
+    } else if (input == 5) {  /* Down */
+        selection++;
+        if (selection >= MAIN_MENU_COUNT) selection = 0;
+        func_800CC3C0(12);
+    } else if (input == 1) {  /* A - select */
+        func_800CC3C0(10);
+        switch (selection) {
+            case 0:  /* Race */
+                D_801146EC = 1;  /* TRKSEL */
+                break;
+            case 1:  /* Battle */
+                D_801146EC = 10;  /* Battle mode */
+                break;
+            case 2:  /* Stunt */
+                D_801146EC = 11;  /* Stunt mode */
+                break;
+            case 3:  /* Options */
+                D_8015A7C4 = 1;  /* Options submenu */
+                break;
+            case 4:  /* Records */
+                D_8015A7C4 = 2;  /* Records submenu */
+                break;
+        }
+    } else if (input == 2) {  /* B - back to title */
+        D_801146EC = 0;  /* ATTRACT */
+    }
+
+    D_8015A7C0 = selection;
 }
 
 /*
-
  * func_800DEC8C (732 bytes)
- * Main menu render
+ * Main menu render - Draws the main menu
  */
 void func_800DEC8C(void) {
-    /* Menu render - stub */
+    s32 selection = D_8015A7C0;
+    s32 i;
+
+    /* Background */
+    func_800C6E60(0, 0, 320, 240, 0xFF101030);
+
+    /* Title */
+    func_800C734C("MAIN MENU", 115, 30, 255);
+
+    /* Menu options */
+    for (i = 0; i < MAIN_MENU_COUNT; i++) {
+        s32 yPos = 80 + i * 30;
+        s32 alpha = (i == selection) ? 255 : 150;
+
+        if (i == selection) {
+            /* Selection highlight */
+            func_800C6E60(80, yPos - 5, 160, 25, 0x80404080);
+            func_800C734C(">", 90, yPos, 255);
+        }
+
+        func_800C734C((char *)mainMenuOptions[i], 110, yPos, alpha);
+    }
+
+    /* Footer */
+    func_800C734C("A:SELECT  B:BACK", 90, 210, 150);
 }
 
 /*
-
  * func_800DEF68 (2976 bytes)
- * Mode select screen
+ * Mode select screen - Race/Battle/Stunt mode configuration
  */
+extern s32 D_8015A7D0;      /* Mode select selection */
+extern s32 D_8015A7D4;      /* Selected mode type */
+
 void func_800DEF68(void) {
-    /* Mode select - stub */
+    s32 input;
+    s32 selection;
+
+    selection = D_8015A7D0;
+    input = func_800CB748(D_80158100);
+
+    func_800DFB08(input);
+
+    /* Background */
+    func_800C6E60(0, 0, 320, 240, 0xFF101030);
+
+    /* Title based on mode */
+    switch (D_8015A7D4) {
+        case 0:  /* Race */
+            func_800C734C("RACE MODE", 115, 30, 255);
+            func_800C734C("SINGLE RACE", 110, 80, selection == 0 ? 255 : 150);
+            func_800C734C("CHAMPIONSHIP", 105, 110, selection == 1 ? 255 : 150);
+            func_800C734C("TIME TRIAL", 115, 140, selection == 2 ? 255 : 150);
+            break;
+
+        case 1:  /* Battle */
+            func_800C734C("BATTLE MODE", 110, 30, 255);
+            func_800C734C("DEATHMATCH", 110, 80, selection == 0 ? 255 : 150);
+            func_800C734C("TEAM BATTLE", 110, 110, selection == 1 ? 255 : 150);
+            func_800C734C("LAST MAN", 115, 140, selection == 2 ? 255 : 150);
+            break;
+
+        case 2:  /* Stunt */
+            func_800C734C("STUNT MODE", 115, 30, 255);
+            func_800C734C("FREESTYLE", 115, 80, selection == 0 ? 255 : 150);
+            func_800C734C("TRICK ATTACK", 105, 110, selection == 1 ? 255 : 150);
+            break;
+    }
+
+    /* Selection cursor */
+    func_800C734C(">", 90, 80 + selection * 30, 255);
 }
 
 /*
-
  * func_800DFB08 (188 bytes)
- * Mode select input
+ * Mode select input - Handles mode selection input
  */
 void func_800DFB08(s32 input) {
-    /* Mode input - stub */
+    s32 selection = D_8015A7D0;
+    s32 maxOptions = (D_8015A7D4 == 2) ? 2 : 3;
+
+    if (input == 4) {  /* Up */
+        selection--;
+        if (selection < 0) selection = maxOptions - 1;
+        func_800CC3C0(12);
+    } else if (input == 5) {  /* Down */
+        selection++;
+        if (selection >= maxOptions) selection = 0;
+        func_800CC3C0(12);
+    } else if (input == 1) {  /* A - select */
+        func_800CC3C0(10);
+        /* Proceed to track/arena selection */
+        D_801146EC = 1;  /* TRKSEL */
+    } else if (input == 2) {  /* B - back */
+        D_8015A7D0 = 0;
+        D_801146EC = 0;  /* Back to menu */
+    }
+
+    D_8015A7D0 = selection;
 }
 
 /*
