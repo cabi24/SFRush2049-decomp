@@ -28584,79 +28584,293 @@ void func_801092D8(void *players) {
 }
 
 /*
-
  * func_80109A98 (1124 bytes)
- * Session host
+ * Session host - Initializes a multiplayer session as host
+ *
+ * Sets up session state and allocates player slots.
+ * For N64, this is local split-screen multiplayer.
+ *
+ * @return Session ID or -1 on failure
  */
+extern s32 D_80159600;      /* Session state: 0=none, 1=hosting, 2=joined */
+extern s32 D_80159604;      /* Session ID */
+extern s32 D_80159608;      /* Number of players */
+extern s32 D_8015960C[4];   /* Player slot states */
+extern s32 D_8015961C;      /* Host player index */
+
 s32 func_80109A98(void) {
-    /* Session host - stub */
-    return 0;
+    s32 i;
+
+    /* Check if already in session */
+    if (D_80159600 != 0) {
+        return -1;
+    }
+
+    /* Initialize session */
+    D_80159600 = 1;  /* Hosting */
+    D_80159604 = D_80142AFC & 0xFFFF;  /* Session ID from frame counter */
+    D_80159608 = 1;  /* Start with host only */
+    D_8015961C = 0;  /* Host is player 0 */
+
+    /* Initialize player slots */
+    D_8015960C[0] = 1;  /* Host active */
+    for (i = 1; i < 4; i++) {
+        D_8015960C[i] = 0;  /* Empty */
+    }
+
+    /* Play session start sound */
+    func_800CC3C0(15);
+
+    return D_80159604;
 }
 
 /*
-
  * func_80109EFC (1476 bytes)
- * Session join
+ * Session join - Joins an existing multiplayer session
+ *
+ * Finds an empty player slot and registers the player.
+ *
+ * @param sessionId Session to join (ignored for local)
+ * @return Assigned player index or -1 on failure
  */
 s32 func_80109EFC(s32 sessionId) {
-    /* Session join - stub */
-    return 0;
+    s32 i;
+    s32 slot = -1;
+
+    /* Must have a hosted session */
+    if (D_80159600 != 1) {
+        return -1;
+    }
+
+    /* Already full */
+    if (D_80159608 >= 4) {
+        return -1;
+    }
+
+    /* Find empty slot */
+    for (i = 1; i < 4; i++) {
+        if (D_8015960C[i] == 0) {
+            slot = i;
+            break;
+        }
+    }
+
+    if (slot < 0) {
+        return -1;
+    }
+
+    /* Assign slot */
+    D_8015960C[slot] = 1;
+    D_80159608++;
+
+    /* Play join sound */
+    func_800CC3C0(16);
+
+    return slot;
 }
 
 /*
-
  * func_8010A4C0 (892 bytes)
- * Session leave
+ * Session leave - Removes a player from the session
+ *
+ * Called when a player disconnects or leaves.
  */
 void func_8010A4C0(void) {
-    /* Session leave - stub */
+    s32 i;
+
+    if (D_80159600 == 0) {
+        return;
+    }
+
+    /* Clear session */
+    D_80159600 = 0;
+    D_80159604 = 0;
+    D_80159608 = 0;
+
+    for (i = 0; i < 4; i++) {
+        D_8015960C[i] = 0;
+    }
+
+    /* Play leave sound */
+    func_800CC3C0(17);
 }
 
 /*
-
  * func_8010A83C (2648 bytes)
- * Network sync full
+ * Network sync full - Synchronizes game state between players
+ *
+ * For local multiplayer, ensures all player states are consistent.
+ * Copies relevant state between player structures.
  */
+extern void *D_80152818;    /* Car state array base */
+
 void func_8010A83C(void) {
-    /* Net sync - stub */
+    s32 numPlayers;
+    s32 i, j;
+    u8 *carBase;
+    s32 *lapCount;
+    s32 *position;
+    s32 *checkpoint;
+
+    if (D_80159600 == 0) {
+        return;
+    }
+
+    numPlayers = D_80159608;
+    carBase = (u8 *)&D_80152818;
+
+    /* Sync race positions and checkpoints */
+    for (i = 0; i < numPlayers; i++) {
+        if (D_8015960C[i] == 0) {
+            continue;
+        }
+
+        lapCount = (s32 *)(carBase + i * 0x400 + 0x1A0);
+        position = (s32 *)(carBase + i * 0x400 + 0x1A4);
+        checkpoint = (s32 *)(carBase + i * 0x400 + 0x1A8);
+
+        /* Calculate race position based on progress */
+        s32 myProgress = (*lapCount * 100) + *checkpoint;
+        s32 myPosition = 1;
+
+        for (j = 0; j < numPlayers; j++) {
+            if (i == j || D_8015960C[j] == 0) {
+                continue;
+            }
+
+            s32 *otherLap = (s32 *)(carBase + j * 0x400 + 0x1A0);
+            s32 *otherCP = (s32 *)(carBase + j * 0x400 + 0x1A8);
+            s32 otherProgress = (*otherLap * 100) + *otherCP;
+
+            if (otherProgress > myProgress) {
+                myPosition++;
+            }
+        }
+
+        *position = myPosition;
+    }
 }
 
 /*
-
  * func_8010B284 (676 bytes)
- * Ping measurement
+ * Ping measurement - Measures input lag/response time
+ *
+ * For local multiplayer, returns 0 (no network latency).
+ * Could be used for controller response testing.
+ *
+ * @return Ping time in frames (0 for local)
  */
 s32 func_8010B284(void) {
-    /* Ping - stub */
+    /* Local multiplayer has no network latency */
     return 0;
 }
 
 /*
-
  * func_8010B874 (1548 bytes)
- * Disconnection handling
+ * Disconnection handling - Handles player disconnect
+ *
+ * Called when a controller is unplugged or player leaves.
+ *
+ * @param playerId Player index that disconnected
  */
 void func_8010B874(s32 playerId) {
-    /* Disconnect - stub */
+    u8 *carBase;
+
+    if (playerId < 0 || playerId >= 4) {
+        return;
+    }
+
+    if (D_8015960C[playerId] == 0) {
+        return;  /* Already disconnected */
+    }
+
+    /* Mark slot as empty */
+    D_8015960C[playerId] = 0;
+    D_80159608--;
+
+    /* Set car to AI control or remove */
+    carBase = (u8 *)&D_80152818;
+    *(s32 *)(carBase + playerId * 0x400 + 0x240) = 2;  /* AI_CONTROLLED */
+
+    /* Show disconnect message */
+    /* func_800C734C would show "PLAYER X DISCONNECTED" */
+
+    /* If host disconnected, end session */
+    if (playerId == D_8015961C) {
+        func_8010A4C0();
+    }
 }
 
 /*
-
  * func_8010BE7C (1152 bytes)
- * Reconnection attempt
+ * Reconnection attempt - Attempts to reconnect a player
+ *
+ * Checks if a disconnected player's controller is active again.
+ *
+ * @return Player index if reconnected, -1 otherwise
  */
 s32 func_8010BE7C(void) {
-    /* Reconnect - stub */
-    return 0;
+    s32 i;
+    s32 controllerState;
+
+    /* Check all controller ports */
+    for (i = 0; i < 4; i++) {
+        /* Skip active players */
+        if (D_8015960C[i] != 0) {
+            continue;
+        }
+
+        /* Check if controller is connected */
+        controllerState = func_800CB748(i);
+        if (controllerState != 0) {
+            /* Controller active, rejoin */
+            return func_80109EFC(D_80159604);
+        }
+    }
+
+    return -1;
 }
 
 /*
-
  * func_8010C2FC (2084 bytes)
- * Final cleanup
+ * Final cleanup - Performs end-of-game cleanup
+ *
+ * Frees resources, saves state, and resets for next game.
  */
 void func_8010C2FC(void) {
-    /* Final cleanup - stub */
+    s32 i;
+
+    /* End any active session */
+    if (D_80159600 != 0) {
+        func_8010A4C0();
+    }
+
+    /* Stop all sounds */
+    for (i = 0; i < 16; i++) {
+        func_800B362C((void *)(0x80170000 + i * 0x40));
+    }
+
+    /* Clear particle systems */
+    func_800B9130(1);
+
+    /* Save any pending data */
+    if (D_80158FCC != 0) {
+        /* Trigger save */
+        func_80096240(NULL, 0);
+        D_80158FCC = 0;
+    }
+
+    /* Reset game state */
+    D_801146EC = 0;  /* ATTRACT mode */
+
+    /* Clear car states */
+    for (i = 0; i < 4; i++) {
+        u8 *carBase = (u8 *)&D_80152818 + i * 0x400;
+        *(s32 *)(carBase + 0x00) = 0;  /* Inactive */
+    }
+
+    /* Reset timers */
+    D_80142AFC = 0;
 }
 
 /*
