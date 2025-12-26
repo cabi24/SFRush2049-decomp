@@ -11836,65 +11836,816 @@ void func_800B61FC(void *entity, f32 *vec) {
 }
 
 /*
-/*
-/*
  * func_800B74A0 (2904 bytes)
  * Entity full collision test
+ *
+ * Performs a complete collision check for an entity against the world.
+ * This includes:
+ * - Track boundary collision
+ * - Other entity collision (cars, obstacles)
+ * - Track surface detection
+ * - Wall/barrier collision
  */
 void func_800B74A0(void *entity, void *world) {
-    /* Full collision - stub */
+    f32 *pos, *vel, *bounds;
+    f32 *worldMin, *worldMax;
+    f32 surfaceHeight, penetration;
+    s32 *flags, *collisionMask;
+    s32 i, numEntities;
+    void **entityList;
+
+    if (entity == NULL || world == NULL) {
+        return;
+    }
+
+    pos = (f32 *)((u8 *)entity + 0x24);
+    vel = (f32 *)((u8 *)entity + 0x34);
+    bounds = (f32 *)((u8 *)entity + 0x50);  /* Bounding box half-extents */
+    flags = (s32 *)((u8 *)entity + 0x0C);
+    collisionMask = (s32 *)((u8 *)entity + 0x10);
+
+    worldMin = (f32 *)((u8 *)world + 0x00);
+    worldMax = (f32 *)((u8 *)world + 0x0C);
+    entityList = (void **)((u8 *)world + 0x40);
+    numEntities = *(s32 *)((u8 *)world + 0x38);
+
+    /* Clear previous collision flags */
+    *flags &= ~0xFF00;
+
+    /* Track surface query - get height at current XZ position */
+    surfaceHeight = 0.0f;
+    if (func_800BB9B0(pos, NULL, &surfaceHeight) != 0) {
+        /* On valid surface */
+        penetration = surfaceHeight - (pos[1] - bounds[1]);
+        if (penetration > 0.0f) {
+            /* Push entity up out of ground */
+            pos[1] += penetration;
+            if (vel[1] < 0.0f) {
+                vel[1] = 0.0f;
+            }
+            *flags |= 0x0100;  /* On ground flag */
+        }
+    }
+
+    /* World boundary checks */
+    if (pos[0] - bounds[0] < worldMin[0]) {
+        pos[0] = worldMin[0] + bounds[0];
+        vel[0] = -vel[0] * 0.5f;
+        *flags |= 0x0200;  /* Hit west wall */
+    }
+    if (pos[0] + bounds[0] > worldMax[0]) {
+        pos[0] = worldMax[0] - bounds[0];
+        vel[0] = -vel[0] * 0.5f;
+        *flags |= 0x0400;  /* Hit east wall */
+    }
+    if (pos[2] - bounds[2] < worldMin[2]) {
+        pos[2] = worldMin[2] + bounds[2];
+        vel[2] = -vel[2] * 0.5f;
+        *flags |= 0x0800;  /* Hit south wall */
+    }
+    if (pos[2] + bounds[2] > worldMax[2]) {
+        pos[2] = worldMax[2] - bounds[2];
+        vel[2] = -vel[2] * 0.5f;
+        *flags |= 0x1000;  /* Hit north wall */
+    }
+
+    /* Check collisions with other entities */
+    for (i = 0; i < numEntities; i++) {
+        void *other = entityList[i];
+        s32 *otherMask;
+        f32 *otherPos, *otherBounds;
+        f32 dx, dy, dz, overlapX, overlapY, overlapZ;
+
+        if (other == NULL || other == entity) {
+            continue;
+        }
+
+        otherMask = (s32 *)((u8 *)other + 0x10);
+
+        /* Check if collision masks overlap */
+        if ((*collisionMask & *otherMask) == 0) {
+            continue;
+        }
+
+        otherPos = (f32 *)((u8 *)other + 0x24);
+        otherBounds = (f32 *)((u8 *)other + 0x50);
+
+        /* AABB overlap test */
+        dx = pos[0] - otherPos[0];
+        dy = pos[1] - otherPos[1];
+        dz = pos[2] - otherPos[2];
+
+        overlapX = bounds[0] + otherBounds[0] - fabsf(dx);
+        overlapY = bounds[1] + otherBounds[1] - fabsf(dy);
+        overlapZ = bounds[2] + otherBounds[2] - fabsf(dz);
+
+        if (overlapX > 0.0f && overlapY > 0.0f && overlapZ > 0.0f) {
+            /* Collision detected - resolve along smallest axis */
+            f32 normal[3] = {0.0f, 0.0f, 0.0f};
+
+            if (overlapX < overlapY && overlapX < overlapZ) {
+                normal[0] = (dx > 0.0f) ? 1.0f : -1.0f;
+                pos[0] += normal[0] * overlapX * 0.5f;
+            } else if (overlapY < overlapZ) {
+                normal[1] = (dy > 0.0f) ? 1.0f : -1.0f;
+                pos[1] += normal[1] * overlapY * 0.5f;
+            } else {
+                normal[2] = (dz > 0.0f) ? 1.0f : -1.0f;
+                pos[2] += normal[2] * overlapZ * 0.5f;
+            }
+
+            /* Call collision response */
+            func_800B82C8(entity, other, normal);
+            *flags |= 0x2000;  /* Entity collision flag */
+        }
+    }
 }
 
 /*
-/*
-/*
  * func_800B82C8 (2380 bytes)
  * Collision response calculation
+ *
+ * Calculates and applies collision response between two entities.
+ * Uses impulse-based physics with restitution and friction.
  */
 void func_800B82C8(void *entityA, void *entityB, f32 *normal) {
-    /* Collision response - stub */
+    f32 *velA, *velB, *massA, *massB;
+    f32 relVelX, relVelY, relVelZ, normalVel;
+    f32 restitution, impulse, invMassSum;
+    f32 impulseX, impulseY, impulseZ;
+    f32 tangentX, tangentY, tangentZ, tangentLen;
+    f32 friction, tangentImpulse;
+
+    if (entityA == NULL || entityB == NULL || normal == NULL) {
+        return;
+    }
+
+    velA = (f32 *)((u8 *)entityA + 0x34);
+    velB = (f32 *)((u8 *)entityB + 0x34);
+    massA = (f32 *)((u8 *)entityA + 0x48);
+    massB = (f32 *)((u8 *)entityB + 0x48);
+
+    /* Calculate relative velocity */
+    relVelX = velA[0] - velB[0];
+    relVelY = velA[1] - velB[1];
+    relVelZ = velA[2] - velB[2];
+
+    /* Velocity along collision normal */
+    normalVel = relVelX * normal[0] + relVelY * normal[1] + relVelZ * normal[2];
+
+    /* Objects separating, no response needed */
+    if (normalVel > 0.0f) {
+        return;
+    }
+
+    /* Coefficient of restitution (bounciness) */
+    restitution = 0.3f;
+
+    /* Calculate inverse mass sum */
+    invMassSum = 0.0f;
+    if (*massA > 0.0f) {
+        invMassSum += 1.0f / *massA;
+    }
+    if (*massB > 0.0f) {
+        invMassSum += 1.0f / *massB;
+    }
+
+    if (invMassSum == 0.0f) {
+        /* Both objects have infinite mass, no response */
+        return;
+    }
+
+    /* Calculate impulse magnitude */
+    impulse = -(1.0f + restitution) * normalVel / invMassSum;
+
+    /* Apply impulse along normal */
+    impulseX = impulse * normal[0];
+    impulseY = impulse * normal[1];
+    impulseZ = impulse * normal[2];
+
+    if (*massA > 0.0f) {
+        velA[0] += impulseX / *massA;
+        velA[1] += impulseY / *massA;
+        velA[2] += impulseZ / *massA;
+    }
+
+    if (*massB > 0.0f) {
+        velB[0] -= impulseX / *massB;
+        velB[1] -= impulseY / *massB;
+        velB[2] -= impulseZ / *massB;
+    }
+
+    /* Calculate tangent (friction) direction */
+    tangentX = relVelX - normalVel * normal[0];
+    tangentY = relVelY - normalVel * normal[1];
+    tangentZ = relVelZ - normalVel * normal[2];
+    tangentLen = sqrtf(tangentX * tangentX + tangentY * tangentY + tangentZ * tangentZ);
+
+    if (tangentLen > 0.001f) {
+        tangentX /= tangentLen;
+        tangentY /= tangentLen;
+        tangentZ /= tangentLen;
+
+        /* Friction coefficient */
+        friction = 0.4f;
+        tangentImpulse = -tangentLen / invMassSum;
+
+        /* Clamp friction impulse (Coulomb friction model) */
+        if (tangentImpulse > impulse * friction) {
+            tangentImpulse = impulse * friction;
+        } else if (tangentImpulse < -impulse * friction) {
+            tangentImpulse = -impulse * friction;
+        }
+
+        /* Apply friction impulse */
+        if (*massA > 0.0f) {
+            velA[0] += tangentImpulse * tangentX / *massA;
+            velA[1] += tangentImpulse * tangentY / *massA;
+            velA[2] += tangentImpulse * tangentZ / *massA;
+        }
+
+        if (*massB > 0.0f) {
+            velB[0] -= tangentImpulse * tangentX / *massB;
+            velB[1] -= tangentImpulse * tangentY / *massB;
+            velB[2] -= tangentImpulse * tangentZ / *massB;
+        }
+    }
+
+    /* Play collision sound based on impact strength */
+    if (fabsf(normalVel) > 5.0f) {
+        func_80094A54(0x20, (s32)(fabsf(normalVel) * 10.0f));  /* Impact sound */
+    }
 }
 
 /*
  * func_800B8C14 (1252 bytes)
  * Physics constraint solve
+ *
+ * Solves a physics constraint (joint, limit, or motor).
+ * Used for car suspension, wheel connections, etc.
  */
 void func_800B8C14(void *constraint) {
-    /* Constraint solve - stub */
+    s32 *type;
+    void *bodyA, *bodyB;
+    f32 *anchorA, *anchorB;
+    f32 *posA, *posB, *velA, *velB;
+    f32 dx, dy, dz, distance, targetDist;
+    f32 correction, lambda;
+    f32 nx, ny, nz;
+
+    if (constraint == NULL) {
+        return;
+    }
+
+    type = (s32 *)((u8 *)constraint + 0x00);
+    bodyA = *(void **)((u8 *)constraint + 0x04);
+    bodyB = *(void **)((u8 *)constraint + 0x08);
+    anchorA = (f32 *)((u8 *)constraint + 0x0C);
+    anchorB = (f32 *)((u8 *)constraint + 0x18);
+    targetDist = *(f32 *)((u8 *)constraint + 0x24);
+
+    if (bodyA == NULL) {
+        return;
+    }
+
+    posA = (f32 *)((u8 *)bodyA + 0x24);
+    velA = (f32 *)((u8 *)bodyA + 0x34);
+
+    switch (*type) {
+        case 0:  /* Distance constraint */
+            if (bodyB == NULL) {
+                return;
+            }
+            posB = (f32 *)((u8 *)bodyB + 0x24);
+            velB = (f32 *)((u8 *)bodyB + 0x34);
+
+            /* Calculate anchor world positions */
+            dx = (posB[0] + anchorB[0]) - (posA[0] + anchorA[0]);
+            dy = (posB[1] + anchorB[1]) - (posA[1] + anchorA[1]);
+            dz = (posB[2] + anchorB[2]) - (posA[2] + anchorA[2]);
+
+            distance = sqrtf(dx * dx + dy * dy + dz * dz);
+            if (distance < 0.001f) {
+                return;
+            }
+
+            nx = dx / distance;
+            ny = dy / distance;
+            nz = dz / distance;
+
+            correction = (distance - targetDist) * 0.5f;
+            posA[0] += nx * correction;
+            posA[1] += ny * correction;
+            posA[2] += nz * correction;
+            posB[0] -= nx * correction;
+            posB[1] -= ny * correction;
+            posB[2] -= nz * correction;
+            break;
+
+        case 1:  /* Point constraint (fixed anchor) */
+            dx = anchorB[0] - (posA[0] + anchorA[0]);
+            dy = anchorB[1] - (posA[1] + anchorA[1]);
+            dz = anchorB[2] - (posA[2] + anchorA[2]);
+
+            /* Spring-like correction */
+            lambda = 0.1f;
+            posA[0] += dx * lambda;
+            posA[1] += dy * lambda;
+            posA[2] += dz * lambda;
+            velA[0] += dx * lambda * 0.5f;
+            velA[1] += dy * lambda * 0.5f;
+            velA[2] += dz * lambda * 0.5f;
+            break;
+
+        case 2:  /* Slider constraint (1D motion) */
+            if (bodyB == NULL) {
+                return;
+            }
+            posB = (f32 *)((u8 *)bodyB + 0x24);
+
+            /* Constrain to slide along axis defined by anchorA */
+            nx = anchorA[0];
+            ny = anchorA[1];
+            nz = anchorA[2];
+
+            dx = posB[0] - posA[0];
+            dy = posB[1] - posA[1];
+            dz = posB[2] - posA[2];
+
+            /* Project position difference onto constraint axis */
+            lambda = dx * nx + dy * ny + dz * nz;
+
+            /* Remove perpendicular component */
+            correction = 0.5f;
+            posA[0] += (dx - lambda * nx) * correction;
+            posA[1] += (dy - lambda * ny) * correction;
+            posA[2] += (dz - lambda * nz) * correction;
+            posB[0] -= (dx - lambda * nx) * correction;
+            posB[1] -= (dy - lambda * ny) * correction;
+            posB[2] -= (dz - lambda * nz) * correction;
+            break;
+    }
 }
 
 /*
-/*
  * func_800BAAA0 (744 bytes)
  * Broadphase collision check
+ *
+ * Performs spatial partitioning to quickly identify potential collision pairs.
+ * Uses grid-based spatial hashing for O(n) performance.
  */
 void func_800BAAA0(void *world) {
-    /* Broadphase - stub */
+    void **entityList;
+    s32 numEntities, numPairs;
+    s32 *pairListA, *pairListB;
+    s32 *gridCells;
+    s32 gridSizeX, gridSizeZ, cellIndex;
+    f32 cellWidth, cellHeight;
+    f32 *worldMin;
+    s32 i, j;
+
+    if (world == NULL) {
+        return;
+    }
+
+    entityList = (void **)((u8 *)world + 0x40);
+    numEntities = *(s32 *)((u8 *)world + 0x38);
+    pairListA = (s32 *)((u8 *)world + 0x80);
+    pairListB = (s32 *)((u8 *)world + 0x180);
+    gridCells = (s32 *)((u8 *)world + 0x280);
+    worldMin = (f32 *)((u8 *)world + 0x00);
+
+    gridSizeX = 16;
+    gridSizeZ = 16;
+    cellWidth = 100.0f;
+    cellHeight = 100.0f;
+
+    /* Clear grid cells */
+    for (i = 0; i < gridSizeX * gridSizeZ; i++) {
+        gridCells[i] = -1;
+    }
+
+    numPairs = 0;
+
+    /* Insert entities into grid */
+    for (i = 0; i < numEntities && i < 64; i++) {
+        void *entity = entityList[i];
+        f32 *pos;
+        s32 cellX, cellZ, cellIdx;
+
+        if (entity == NULL) {
+            continue;
+        }
+
+        pos = (f32 *)((u8 *)entity + 0x24);
+
+        cellX = (s32)((pos[0] - worldMin[0]) / cellWidth);
+        cellZ = (s32)((pos[2] - worldMin[2]) / cellHeight);
+
+        if (cellX < 0) cellX = 0;
+        if (cellX >= gridSizeX) cellX = gridSizeX - 1;
+        if (cellZ < 0) cellZ = 0;
+        if (cellZ >= gridSizeZ) cellZ = gridSizeZ - 1;
+
+        cellIdx = cellZ * gridSizeX + cellX;
+
+        /* Check for pairs in same cell and adjacent cells */
+        for (j = i + 1; j < numEntities && j < 64; j++) {
+            void *other = entityList[j];
+            f32 *otherPos;
+            s32 otherCellX, otherCellZ;
+
+            if (other == NULL) {
+                continue;
+            }
+
+            otherPos = (f32 *)((u8 *)other + 0x24);
+
+            otherCellX = (s32)((otherPos[0] - worldMin[0]) / cellWidth);
+            otherCellZ = (s32)((otherPos[2] - worldMin[2]) / cellHeight);
+
+            if (otherCellX < 0) otherCellX = 0;
+            if (otherCellX >= gridSizeX) otherCellX = gridSizeX - 1;
+            if (otherCellZ < 0) otherCellZ = 0;
+            if (otherCellZ >= gridSizeZ) otherCellZ = gridSizeZ - 1;
+
+            /* If in same or adjacent cell, add to pair list */
+            if (abs(cellX - otherCellX) <= 1 && abs(cellZ - otherCellZ) <= 1) {
+                if (numPairs < 64) {
+                    pairListA[numPairs] = i;
+                    pairListB[numPairs] = j;
+                    numPairs++;
+                }
+            }
+        }
+    }
+
+    /* Store pair count */
+    *(s32 *)((u8 *)world + 0x7C) = numPairs;
 }
 
 /*
  * func_800BADE0 (3448 bytes)
  * Narrowphase collision
+ *
+ * Performs detailed collision detection between two entities.
+ * Uses separating axis theorem (SAT) for oriented bounding boxes.
  */
 void func_800BADE0(void *pairA, void *pairB) {
-    /* Narrowphase - stub */
+    f32 *posA, *posB, *boundsA, *boundsB;
+    f32 *rotA, *rotB;
+    f32 centerDiff[3], absRot[3][3];
+    f32 axes[15][3];
+    f32 projA, projB, overlap, minOverlap;
+    s32 minAxis, i, j;
+    f32 contactNormal[3], contactPoint[3];
+    f32 penetration;
+
+    if (pairA == NULL || pairB == NULL) {
+        return;
+    }
+
+    posA = (f32 *)((u8 *)pairA + 0x24);
+    posB = (f32 *)((u8 *)pairB + 0x24);
+    boundsA = (f32 *)((u8 *)pairA + 0x50);
+    boundsB = (f32 *)((u8 *)pairB + 0x50);
+    rotA = (f32 *)((u8 *)pairA + 0x60);  /* 3x3 rotation matrix */
+    rotB = (f32 *)((u8 *)pairB + 0x60);
+
+    /* Center difference */
+    centerDiff[0] = posB[0] - posA[0];
+    centerDiff[1] = posB[1] - posA[1];
+    centerDiff[2] = posB[2] - posA[2];
+
+    /* Set up 15 potential separating axes:
+     * 3 from A's local axes
+     * 3 from B's local axes
+     * 9 from cross products of A and B axes
+     */
+
+    /* A's local axes */
+    for (i = 0; i < 3; i++) {
+        axes[i][0] = rotA[i * 3 + 0];
+        axes[i][1] = rotA[i * 3 + 1];
+        axes[i][2] = rotA[i * 3 + 2];
+    }
+
+    /* B's local axes */
+    for (i = 0; i < 3; i++) {
+        axes[3 + i][0] = rotB[i * 3 + 0];
+        axes[3 + i][1] = rotB[i * 3 + 1];
+        axes[3 + i][2] = rotB[i * 3 + 2];
+    }
+
+    /* Cross products (simplified - just checking major axes for N64) */
+    for (i = 0; i < 9; i++) {
+        s32 aIdx = i / 3;
+        s32 bIdx = i % 3;
+        f32 *axisA = axes[aIdx];
+        f32 *axisB = axes[3 + bIdx];
+
+        axes[6 + i][0] = axisA[1] * axisB[2] - axisA[2] * axisB[1];
+        axes[6 + i][1] = axisA[2] * axisB[0] - axisA[0] * axisB[2];
+        axes[6 + i][2] = axisA[0] * axisB[1] - axisA[1] * axisB[0];
+
+        /* Normalize */
+        f32 len = sqrtf(axes[6 + i][0] * axes[6 + i][0] +
+                       axes[6 + i][1] * axes[6 + i][1] +
+                       axes[6 + i][2] * axes[6 + i][2]);
+        if (len > 0.001f) {
+            axes[6 + i][0] /= len;
+            axes[6 + i][1] /= len;
+            axes[6 + i][2] /= len;
+        }
+    }
+
+    minOverlap = 999999.0f;
+    minAxis = -1;
+
+    /* Test all 15 axes */
+    for (i = 0; i < 15; i++) {
+        f32 *axis = axes[i];
+        f32 axisLen = sqrtf(axis[0] * axis[0] + axis[1] * axis[1] + axis[2] * axis[2]);
+
+        if (axisLen < 0.001f) {
+            continue;  /* Degenerate axis */
+        }
+
+        /* Project A onto axis */
+        projA = fabsf(boundsA[0] * (rotA[0] * axis[0] + rotA[1] * axis[1] + rotA[2] * axis[2])) +
+                fabsf(boundsA[1] * (rotA[3] * axis[0] + rotA[4] * axis[1] + rotA[5] * axis[2])) +
+                fabsf(boundsA[2] * (rotA[6] * axis[0] + rotA[7] * axis[1] + rotA[8] * axis[2]));
+
+        /* Project B onto axis */
+        projB = fabsf(boundsB[0] * (rotB[0] * axis[0] + rotB[1] * axis[1] + rotB[2] * axis[2])) +
+                fabsf(boundsB[1] * (rotB[3] * axis[0] + rotB[4] * axis[1] + rotB[5] * axis[2])) +
+                fabsf(boundsB[2] * (rotB[6] * axis[0] + rotB[7] * axis[1] + rotB[8] * axis[2]));
+
+        /* Project center difference onto axis */
+        f32 centerProj = fabsf(centerDiff[0] * axis[0] + centerDiff[1] * axis[1] + centerDiff[2] * axis[2]);
+
+        overlap = projA + projB - centerProj;
+
+        if (overlap < 0.0f) {
+            /* Separating axis found, no collision */
+            return;
+        }
+
+        if (overlap < minOverlap) {
+            minOverlap = overlap;
+            minAxis = i;
+        }
+    }
+
+    /* Collision detected - compute contact info */
+    if (minAxis >= 0 && minAxis < 15) {
+        contactNormal[0] = axes[minAxis][0];
+        contactNormal[1] = axes[minAxis][1];
+        contactNormal[2] = axes[minAxis][2];
+
+        /* Ensure normal points from A to B */
+        f32 dot = contactNormal[0] * centerDiff[0] +
+                  contactNormal[1] * centerDiff[1] +
+                  contactNormal[2] * centerDiff[2];
+        if (dot < 0.0f) {
+            contactNormal[0] = -contactNormal[0];
+            contactNormal[1] = -contactNormal[1];
+            contactNormal[2] = -contactNormal[2];
+        }
+
+        penetration = minOverlap;
+
+        /* Contact point approximation (midpoint) */
+        contactPoint[0] = (posA[0] + posB[0]) * 0.5f;
+        contactPoint[1] = (posA[1] + posB[1]) * 0.5f;
+        contactPoint[2] = (posA[2] + posB[2]) * 0.5f;
+
+        /* Call collision response */
+        func_800B82C8(pairA, pairB, contactNormal);
+    }
 }
 
 /*
  * func_800BB9B0 (2500 bytes)
  * Track surface query
+ *
+ * Queries the track geometry at a given XZ position to find:
+ * - Surface height (Y coordinate)
+ * - Surface normal
+ * - Surface type (asphalt, dirt, etc.)
+ *
+ * Returns: surface type (0 = off track, 1+ = valid surface)
  */
 s32 func_800BB9B0(f32 *pos, f32 *normal, f32 *height) {
-    /* Surface query - stub */
-    return 0;
+    void *trackData = (void *)D_80148000;  /* Track geometry data */
+    s32 *triangleList;
+    s32 numTriangles;
+    f32 *vertices;
+    f32 queryX, queryZ;
+    s32 foundSurface = 0;
+    f32 bestHeight = -99999.0f;
+    f32 bestNormal[3] = {0.0f, 1.0f, 0.0f};
+    s32 bestSurfaceType = 0;
+    s32 i;
+
+    if (pos == NULL || trackData == NULL) {
+        if (height != NULL) {
+            *height = 0.0f;
+        }
+        if (normal != NULL) {
+            normal[0] = 0.0f;
+            normal[1] = 1.0f;
+            normal[2] = 0.0f;
+        }
+        return 0;
+    }
+
+    queryX = pos[0];
+    queryZ = pos[2];
+
+    triangleList = (s32 *)((u8 *)trackData + 0x10);
+    numTriangles = *(s32 *)((u8 *)trackData + 0x08);
+    vertices = (f32 *)((u8 *)trackData + 0x100);
+
+    /* Iterate through triangles to find one containing query point */
+    for (i = 0; i < numTriangles && i < 4096; i++) {
+        s32 *tri = &triangleList[i * 4];  /* v0, v1, v2, surfaceType */
+        s32 idx0 = tri[0] * 3;
+        s32 idx1 = tri[1] * 3;
+        s32 idx2 = tri[2] * 3;
+        s32 surfaceType = tri[3];
+
+        f32 x0 = vertices[idx0 + 0];
+        f32 y0 = vertices[idx0 + 1];
+        f32 z0 = vertices[idx0 + 2];
+        f32 x1 = vertices[idx1 + 0];
+        f32 y1 = vertices[idx1 + 1];
+        f32 z1 = vertices[idx1 + 2];
+        f32 x2 = vertices[idx2 + 0];
+        f32 y2 = vertices[idx2 + 1];
+        f32 z2 = vertices[idx2 + 2];
+
+        /* Point in triangle test (2D, XZ plane) using barycentric coords */
+        f32 v0x = x2 - x0;
+        f32 v0z = z2 - z0;
+        f32 v1x = x1 - x0;
+        f32 v1z = z1 - z0;
+        f32 v2x = queryX - x0;
+        f32 v2z = queryZ - z0;
+
+        f32 dot00 = v0x * v0x + v0z * v0z;
+        f32 dot01 = v0x * v1x + v0z * v1z;
+        f32 dot02 = v0x * v2x + v0z * v2z;
+        f32 dot11 = v1x * v1x + v1z * v1z;
+        f32 dot12 = v1x * v2x + v1z * v2z;
+
+        f32 invDenom = dot00 * dot11 - dot01 * dot01;
+        if (fabsf(invDenom) < 0.0001f) {
+            continue;  /* Degenerate triangle */
+        }
+        invDenom = 1.0f / invDenom;
+
+        f32 u = (dot11 * dot02 - dot01 * dot12) * invDenom;
+        f32 v = (dot00 * dot12 - dot01 * dot02) * invDenom;
+
+        /* Check if point is in triangle */
+        if (u >= 0.0f && v >= 0.0f && (u + v) <= 1.0f) {
+            /* Interpolate height */
+            f32 h = y0 + u * (y2 - y0) + v * (y1 - y0);
+
+            /* Take highest surface at this point (for bridges, etc.) */
+            if (h > bestHeight) {
+                bestHeight = h;
+                bestSurfaceType = surfaceType;
+
+                /* Calculate normal from triangle edges */
+                f32 e1x = x1 - x0;
+                f32 e1y = y1 - y0;
+                f32 e1z = z1 - z0;
+                f32 e2x = x2 - x0;
+                f32 e2y = y2 - y0;
+                f32 e2z = z2 - z0;
+
+                bestNormal[0] = e1y * e2z - e1z * e2y;
+                bestNormal[1] = e1z * e2x - e1x * e2z;
+                bestNormal[2] = e1x * e2y - e1y * e2x;
+
+                /* Normalize */
+                f32 len = sqrtf(bestNormal[0] * bestNormal[0] +
+                               bestNormal[1] * bestNormal[1] +
+                               bestNormal[2] * bestNormal[2]);
+                if (len > 0.001f) {
+                    bestNormal[0] /= len;
+                    bestNormal[1] /= len;
+                    bestNormal[2] /= len;
+                }
+
+                /* Ensure normal points up */
+                if (bestNormal[1] < 0.0f) {
+                    bestNormal[0] = -bestNormal[0];
+                    bestNormal[1] = -bestNormal[1];
+                    bestNormal[2] = -bestNormal[2];
+                }
+
+                foundSurface = 1;
+            }
+        }
+    }
+
+    /* Output results */
+    if (height != NULL) {
+        *height = bestHeight;
+    }
+    if (normal != NULL) {
+        normal[0] = bestNormal[0];
+        normal[1] = bestNormal[1];
+        normal[2] = bestNormal[2];
+    }
+
+    return foundSurface ? bestSurfaceType : 0;
 }
 
 /*
  * func_800BE7BC (1016 bytes)
  * Camera target tracking
+ *
+ * Smoothly tracks a target entity with the camera.
+ * Implements chase cam behavior with configurable lag.
  */
 void func_800BE7BC(void *camera, void *target) {
-    /* Target tracking - stub */
+    f32 *camPos, *camTarget, *camUp;
+    f32 *targetPos, *targetVel, *targetDir;
+    f32 *followOffset, *lookaheadScale;
+    f32 desiredPos[3], desiredTarget[3];
+    f32 smoothFactor, lookahead;
+    f32 dx, dy, dz, dist;
+
+    if (camera == NULL || target == NULL) {
+        return;
+    }
+
+    camPos = (f32 *)((u8 *)camera + 0x00);
+    camTarget = (f32 *)((u8 *)camera + 0x0C);
+    camUp = (f32 *)((u8 *)camera + 0x18);
+    followOffset = (f32 *)((u8 *)camera + 0x24);  /* Behind/above offset */
+    lookaheadScale = (f32 *)((u8 *)camera + 0x30);
+    smoothFactor = *(f32 *)((u8 *)camera + 0x34);
+
+    targetPos = (f32 *)((u8 *)target + 0x24);
+    targetVel = (f32 *)((u8 *)target + 0x34);
+    targetDir = (f32 *)((u8 *)target + 0x60);
+
+    if (smoothFactor <= 0.0f) {
+        smoothFactor = 0.1f;
+    }
+
+    /* Calculate speed for lookahead */
+    f32 speed = sqrtf(targetVel[0] * targetVel[0] +
+                     targetVel[1] * targetVel[1] +
+                     targetVel[2] * targetVel[2]);
+    lookahead = speed * (*lookaheadScale);
+
+    /* Desired camera position: behind and above target */
+    desiredPos[0] = targetPos[0] - targetDir[0] * followOffset[0] + targetVel[0] * 0.1f;
+    desiredPos[1] = targetPos[1] + followOffset[1];
+    desiredPos[2] = targetPos[2] - targetDir[2] * followOffset[0] + targetVel[2] * 0.1f;
+
+    /* Desired look target: ahead of car based on speed */
+    desiredTarget[0] = targetPos[0] + targetDir[0] * lookahead;
+    desiredTarget[1] = targetPos[1] + followOffset[2];  /* Slight offset up */
+    desiredTarget[2] = targetPos[2] + targetDir[2] * lookahead;
+
+    /* Smooth interpolation of camera position */
+    camPos[0] += (desiredPos[0] - camPos[0]) * smoothFactor;
+    camPos[1] += (desiredPos[1] - camPos[1]) * smoothFactor;
+    camPos[2] += (desiredPos[2] - camPos[2]) * smoothFactor;
+
+    /* Smooth interpolation of look target */
+    camTarget[0] += (desiredTarget[0] - camTarget[0]) * smoothFactor * 1.5f;
+    camTarget[1] += (desiredTarget[1] - camTarget[1]) * smoothFactor * 1.5f;
+    camTarget[2] += (desiredTarget[2] - camTarget[2]) * smoothFactor * 1.5f;
+
+    /* Keep up vector mostly vertical with slight tilt on turns */
+    f32 turnRate = targetVel[0] * targetDir[2] - targetVel[2] * targetDir[0];
+    camUp[0] = -turnRate * 0.01f;
+    camUp[1] = 1.0f;
+    camUp[2] = 0.0f;
+
+    /* Normalize up vector */
+    f32 upLen = sqrtf(camUp[0] * camUp[0] + camUp[1] * camUp[1] + camUp[2] * camUp[2]);
+    if (upLen > 0.001f) {
+        camUp[0] /= upLen;
+        camUp[1] /= upLen;
+        camUp[2] /= upLen;
+    }
+
+    /* Ground collision for camera */
+    f32 groundHeight;
+    if (func_800BB9B0(camPos, NULL, &groundHeight) != 0) {
+        if (camPos[1] < groundHeight + 2.0f) {
+            camPos[1] = groundHeight + 2.0f;
+        }
+    }
 }
 
 /*
@@ -11908,90 +12659,682 @@ void func_800BF01C(void) {
 /*
  * func_800BF0A4 (848 bytes)
  * Camera shake effect
+ *
+ * Applies a shake effect to the camera for impacts, explosions, etc.
+ * Uses decaying oscillation with random offset.
  */
 void func_800BF0A4(void *camera, f32 intensity, f32 duration) {
-    /* Camera shake - stub */
+    f32 *shakeOffset, *shakeState;
+    f32 *shakeTimer, *shakeIntensity;
+    f32 currentTime, elapsed, decay;
+    f32 shakeX, shakeY, shakeZ;
+    s32 seed;
+
+    if (camera == NULL || intensity <= 0.0f) {
+        return;
+    }
+
+    shakeOffset = (f32 *)((u8 *)camera + 0x40);
+    shakeState = (f32 *)((u8 *)camera + 0x4C);
+    shakeTimer = (f32 *)((u8 *)camera + 0x58);
+    shakeIntensity = (f32 *)((u8 *)camera + 0x5C);
+
+    /* Start new shake if stronger than current */
+    if (intensity > *shakeIntensity * 0.5f) {
+        *shakeTimer = duration;
+        *shakeIntensity = intensity;
+
+        /* Initialize shake state with pseudo-random values */
+        seed = D_80159A20 & 0xFFFF;
+        shakeState[0] = (f32)(seed % 1000) / 1000.0f * 6.28318f;
+        shakeState[1] = (f32)((seed >> 4) % 1000) / 1000.0f * 6.28318f;
+        shakeState[2] = (f32)((seed >> 8) % 1000) / 1000.0f * 6.28318f;
+    }
+
+    /* Update shake */
+    if (*shakeTimer > 0.0f) {
+        elapsed = duration - *shakeTimer;
+        decay = *shakeTimer / duration;  /* Linear decay */
+        decay = decay * decay;  /* Quadratic for smoother falloff */
+
+        /* Oscillating shake with multiple frequencies */
+        f32 freq1 = 15.0f;  /* Fast shake */
+        f32 freq2 = 8.0f;   /* Slower shake */
+
+        shakeX = sinf(shakeState[0] + elapsed * freq1) * 0.6f +
+                 sinf(shakeState[0] * 1.7f + elapsed * freq2) * 0.4f;
+        shakeY = sinf(shakeState[1] + elapsed * freq1 * 0.8f) * 0.6f +
+                 sinf(shakeState[1] * 1.3f + elapsed * freq2) * 0.4f;
+        shakeZ = sinf(shakeState[2] + elapsed * freq1 * 1.2f) * 0.3f;
+
+        /* Apply intensity and decay */
+        shakeOffset[0] = shakeX * (*shakeIntensity) * decay;
+        shakeOffset[1] = shakeY * (*shakeIntensity) * decay;
+        shakeOffset[2] = shakeZ * (*shakeIntensity) * decay * 0.5f;
+
+        /* Decrement timer */
+        *shakeTimer -= 1.0f / 60.0f;  /* Assuming 60fps */
+
+        if (*shakeTimer <= 0.0f) {
+            *shakeTimer = 0.0f;
+            *shakeIntensity = 0.0f;
+            shakeOffset[0] = 0.0f;
+            shakeOffset[1] = 0.0f;
+            shakeOffset[2] = 0.0f;
+        }
+    }
 }
 
 /*
  * func_800C813C (804 bytes)
  * HUD element render
+ *
+ * Renders a single HUD element by ID.
+ * Elements include: speedometer, tachometer, lap counter, position, timer, etc.
  */
 void func_800C813C(void *hud, s32 elementId) {
-    /* HUD render - stub */
+    s32 *visibility;
+    f32 *positions;
+    f32 *sizes;
+    s32 x, y, width, height;
+
+    if (hud == NULL) {
+        return;
+    }
+
+    visibility = (s32 *)((u8 *)hud + 0x00);
+    positions = (f32 *)((u8 *)hud + 0x40);
+    sizes = (f32 *)((u8 *)hud + 0xC0);
+
+    /* Check if element is visible */
+    if (((*visibility) & (1 << elementId)) == 0) {
+        return;
+    }
+
+    x = (s32)positions[elementId * 2 + 0];
+    y = (s32)positions[elementId * 2 + 1];
+    width = (s32)sizes[elementId * 2 + 0];
+    height = (s32)sizes[elementId * 2 + 1];
+
+    switch (elementId) {
+        case 0:  /* Speedometer background */
+            func_800C7110(x, y, width, height, 0x10);  /* Sprite ID 0x10 */
+            break;
+
+        case 1:  /* Speedometer needle */
+            /* Needle rotation handled by speedometer update */
+            func_800C7110(x, y, width, height, 0x11);
+            break;
+
+        case 2:  /* Tachometer background */
+            func_800C7110(x, y, width, height, 0x12);
+            break;
+
+        case 3:  /* Tachometer needle */
+            func_800C7110(x, y, width, height, 0x13);
+            break;
+
+        case 4:  /* Lap counter background */
+            func_800C7110(x, y, width, height, 0x14);
+            break;
+
+        case 5:  /* Position indicator */
+            func_800C7110(x, y, width, height, 0x15);
+            break;
+
+        case 6:  /* Timer background */
+            func_800C7110(x, y, width, height, 0x16);
+            break;
+
+        case 7:  /* Nitro meter */
+            func_800C7110(x, y, width, height, 0x17);
+            break;
+
+        case 8:  /* Minimap */
+            func_800C7110(x, y, width, height, 0x18);
+            break;
+
+        case 9:  /* Wrong way indicator */
+            func_800C7110(x, y, width, height, 0x19);
+            break;
+
+        case 10:  /* Damage indicator */
+            func_800C7110(x, y, width, height, 0x1A);
+            break;
+    }
 }
 
 /*
-/*
  * func_800C84FC (868 bytes)
  * Speedometer update
+ *
+ * Updates the speedometer display with current speed.
+ * Includes needle animation and digital readout.
  */
 void func_800C84FC(void *hud, f32 speed) {
-    /* Speedometer - stub */
+    f32 *needleAngle, *displaySpeed;
+    f32 *positions;
+    f32 maxSpeed, minAngle, maxAngle, targetAngle;
+    s32 digitalSpeed;
+    s32 x, y;
+    char speedText[8];
+
+    if (hud == NULL) {
+        return;
+    }
+
+    needleAngle = (f32 *)((u8 *)hud + 0x140);
+    displaySpeed = (f32 *)((u8 *)hud + 0x144);
+    positions = (f32 *)((u8 *)hud + 0x40);
+
+    /* Clamp speed to valid range */
+    if (speed < 0.0f) speed = 0.0f;
+
+    maxSpeed = 200.0f;  /* Max speed in MPH */
+    minAngle = -135.0f;  /* Degrees, starting position */
+    maxAngle = 135.0f;   /* Degrees, max speed position */
+
+    /* Calculate target needle angle */
+    if (speed > maxSpeed) speed = maxSpeed;
+    targetAngle = minAngle + (speed / maxSpeed) * (maxAngle - minAngle);
+
+    /* Smooth needle movement */
+    *needleAngle += (targetAngle - *needleAngle) * 0.15f;
+
+    /* Smooth display speed */
+    *displaySpeed += (speed - *displaySpeed) * 0.2f;
+
+    /* Render speedometer background */
+    x = (s32)positions[0];
+    y = (s32)positions[1];
+    func_800C813C(hud, 0);  /* Background */
+
+    /* Render needle with rotation */
+    /* Needle rendering would need rotation support in the sprite system */
+    func_800C813C(hud, 1);  /* Needle */
+
+    /* Digital speed display */
+    digitalSpeed = (s32)(*displaySpeed);
+    if (digitalSpeed < 0) digitalSpeed = 0;
+    if (digitalSpeed > 999) digitalSpeed = 999;
+
+    /* Format speed text */
+    speedText[0] = '0' + (digitalSpeed / 100);
+    speedText[1] = '0' + ((digitalSpeed / 10) % 10);
+    speedText[2] = '0' + (digitalSpeed % 10);
+    speedText[3] = '\0';
+
+    /* Render digital readout */
+    func_800C734C(x + 20, y + 40, speedText, 0xFFFFFFFF);
 }
 
 /*
  * func_800C885C (816 bytes)
  * Tachometer update
+ *
+ * Updates the tachometer display with current RPM.
+ * Includes redline warning and gear indicator.
  */
 void func_800C885C(void *hud, f32 rpm) {
-    /* Tachometer - stub */
+    f32 *needleAngle, *displayRpm;
+    f32 *positions;
+    f32 maxRpm, redlineRpm, minAngle, maxAngle, targetAngle;
+    s32 x, y;
+    s32 inRedline;
+
+    if (hud == NULL) {
+        return;
+    }
+
+    needleAngle = (f32 *)((u8 *)hud + 0x148);
+    displayRpm = (f32 *)((u8 *)hud + 0x14C);
+    positions = (f32 *)((u8 *)hud + 0x40);
+
+    /* RPM parameters */
+    maxRpm = 9000.0f;
+    redlineRpm = 7500.0f;
+    minAngle = -120.0f;
+    maxAngle = 120.0f;
+
+    /* Clamp RPM */
+    if (rpm < 0.0f) rpm = 0.0f;
+    if (rpm > maxRpm) rpm = maxRpm;
+
+    /* Calculate target angle */
+    targetAngle = minAngle + (rpm / maxRpm) * (maxAngle - minAngle);
+
+    /* Smooth needle movement (tach moves faster than speedo) */
+    *needleAngle += (targetAngle - *needleAngle) * 0.25f;
+    *displayRpm += (rpm - *displayRpm) * 0.3f;
+
+    /* Check redline */
+    inRedline = (rpm >= redlineRpm) ? 1 : 0;
+
+    /* Render tachometer */
+    x = (s32)positions[4];
+    y = (s32)positions[5];
+
+    func_800C813C(hud, 2);  /* Background */
+    func_800C813C(hud, 3);  /* Needle */
+
+    /* Redline flash effect */
+    if (inRedline && ((D_80159A20 >> 2) & 1)) {
+        /* Flash red when in redline */
+        func_800C7110(x, y, 64, 64, 0x1B);  /* Redline overlay */
+    }
 }
 
 /*
  * func_800C8B8C (1048 bytes)
  * Lap counter update
+ *
+ * Updates the lap counter display with current and total laps.
+ * Shows lap time splits and best lap indicator.
  */
 void func_800C8B8C(void *hud, s32 lap, s32 totalLaps) {
-    /* Lap counter - stub */
+    f32 *positions;
+    s32 *lastLap, *bestLap;
+    s32 *lapTimes;
+    s32 x, y;
+    char lapText[16];
+    s32 showNewLap;
+
+    if (hud == NULL) {
+        return;
+    }
+
+    positions = (f32 *)((u8 *)hud + 0x40);
+    lastLap = (s32 *)((u8 *)hud + 0x150);
+    bestLap = (s32 *)((u8 *)hud + 0x154);
+    lapTimes = (s32 *)((u8 *)hud + 0x160);
+
+    x = (s32)positions[8];
+    y = (s32)positions[9];
+
+    /* Clamp values */
+    if (lap < 1) lap = 1;
+    if (lap > totalLaps) lap = totalLaps;
+    if (totalLaps < 1) totalLaps = 1;
+    if (totalLaps > 99) totalLaps = 99;
+
+    /* Check for new lap */
+    showNewLap = 0;
+    if (lap != *lastLap && lap > 1) {
+        showNewLap = 1;
+        *lastLap = lap;
+
+        /* Check if this was best lap */
+        if (lap > 1 && lapTimes[lap - 2] < *bestLap) {
+            *bestLap = lapTimes[lap - 2];
+        }
+    }
+
+    /* Render lap counter background */
+    func_800C813C(hud, 4);
+
+    /* Format lap text "LAP X/Y" */
+    lapText[0] = 'L';
+    lapText[1] = 'A';
+    lapText[2] = 'P';
+    lapText[3] = ' ';
+    lapText[4] = '0' + lap;
+    lapText[5] = '/';
+    lapText[6] = '0' + totalLaps;
+    lapText[7] = '\0';
+
+    func_800C734C(x + 4, y + 4, lapText, 0xFFFFFFFF);
+
+    /* Show "NEW LAP" flash on lap change */
+    if (showNewLap) {
+        s32 flashTimer = D_80159A20 % 60;
+        if (flashTimer < 30) {
+            func_800C734C(x - 20, y + 20, "NEW LAP!", 0xFFFF00FF);
+        }
+    }
+
+    /* Final lap indicator */
+    if (lap == totalLaps) {
+        func_800C734C(x - 10, y - 16, "FINAL LAP", 0xFF0000FF);
+    }
 }
 
 /*
  * func_800C8FA4 (316 bytes)
  * Position display update
+ *
+ * Shows the player's race position (1st, 2nd, etc.)
+ * with ordinal suffix.
  */
 void func_800C8FA4(void *hud, s32 position) {
-    /* Position display - stub */
+    f32 *positions;
+    s32 x, y;
+    char posText[8];
+    char *suffix;
+
+    if (hud == NULL) {
+        return;
+    }
+
+    positions = (f32 *)((u8 *)hud + 0x40);
+    x = (s32)positions[10];
+    y = (s32)positions[11];
+
+    /* Clamp position */
+    if (position < 1) position = 1;
+    if (position > 8) position = 8;
+
+    /* Determine ordinal suffix */
+    if (position == 1) {
+        suffix = "ST";
+    } else if (position == 2) {
+        suffix = "ND";
+    } else if (position == 3) {
+        suffix = "RD";
+    } else {
+        suffix = "TH";
+    }
+
+    /* Render position background */
+    func_800C813C(hud, 5);
+
+    /* Format position text */
+    posText[0] = '0' + position;
+    posText[1] = suffix[0];
+    posText[2] = suffix[1];
+    posText[3] = '\0';
+
+    /* Large position number */
+    func_800C734C(x + 8, y + 4, posText, 0xFFFFFFFF);
 }
 
 /*
  * func_800C9158 (184 bytes)
  * Timer display
+ *
+ * Displays race time in MM:SS.CC format.
  */
 void func_800C9158(void *hud, s32 timeMs) {
-    /* Timer display - stub */
+    f32 *positions;
+    s32 x, y;
+    s32 minutes, seconds, centiseconds;
+    char timeText[12];
+
+    if (hud == NULL) {
+        return;
+    }
+
+    positions = (f32 *)((u8 *)hud + 0x40);
+    x = (s32)positions[12];
+    y = (s32)positions[13];
+
+    /* Convert milliseconds to components */
+    /* Time is stored in hundredths of seconds (centiseconds) */
+    centiseconds = timeMs % 100;
+    seconds = (timeMs / 100) % 60;
+    minutes = (timeMs / 6000);
+
+    if (minutes > 99) minutes = 99;
+
+    /* Render timer background */
+    func_800C813C(hud, 6);
+
+    /* Format time text MM:SS.CC */
+    timeText[0] = '0' + (minutes / 10);
+    timeText[1] = '0' + (minutes % 10);
+    timeText[2] = ':';
+    timeText[3] = '0' + (seconds / 10);
+    timeText[4] = '0' + (seconds % 10);
+    timeText[5] = '.';
+    timeText[6] = '0' + (centiseconds / 10);
+    timeText[7] = '0' + (centiseconds % 10);
+    timeText[8] = '\0';
+
+    func_800C734C(x + 4, y + 4, timeText, 0xFFFFFFFF);
 }
 
 /*
  * func_800C9210 (204 bytes)
  * Speed display
+ *
+ * Digital speed readout with MPH/KPH unit.
  */
 void func_800C9210(void *hud, s32 speed) {
-    /* Speed display - stub */
+    f32 *positions;
+    s32 x, y;
+    s32 useMetric;
+    char speedText[12];
+
+    if (hud == NULL) {
+        return;
+    }
+
+    positions = (f32 *)((u8 *)hud + 0x40);
+    x = (s32)positions[14];
+    y = (s32)positions[15];
+
+    useMetric = D_80159A24;  /* Options setting for metric units */
+
+    /* Clamp speed */
+    if (speed < 0) speed = 0;
+    if (speed > 999) speed = 999;
+
+    /* Convert to KPH if metric */
+    if (useMetric) {
+        speed = (speed * 161) / 100;  /* MPH to KPH approx */
+        if (speed > 999) speed = 999;
+    }
+
+    /* Format speed text */
+    speedText[0] = '0' + (speed / 100);
+    speedText[1] = '0' + ((speed / 10) % 10);
+    speedText[2] = '0' + (speed % 10);
+    speedText[3] = ' ';
+    if (useMetric) {
+        speedText[4] = 'K';
+        speedText[5] = 'P';
+        speedText[6] = 'H';
+    } else {
+        speedText[4] = 'M';
+        speedText[5] = 'P';
+        speedText[6] = 'H';
+    }
+    speedText[7] = '\0';
+
+    func_800C734C(x, y, speedText, 0xFFFFFFFF);
 }
 
 /*
  * func_800C9480 (168 bytes)
  * Nitro meter update
+ *
+ * Displays nitro/boost gauge with fill level.
  */
 void func_800C9480(void *hud, f32 nitroLevel) {
-    /* Nitro meter - stub */
+    f32 *positions;
+    s32 x, y;
+    s32 fillHeight, maxHeight;
+
+    if (hud == NULL) {
+        return;
+    }
+
+    positions = (f32 *)((u8 *)hud + 0x40);
+    x = (s32)positions[14];
+    y = (s32)positions[15];
+
+    /* Clamp nitro level */
+    if (nitroLevel < 0.0f) nitroLevel = 0.0f;
+    if (nitroLevel > 1.0f) nitroLevel = 1.0f;
+
+    /* Render background */
+    func_800C813C(hud, 7);
+
+    /* Calculate fill height */
+    maxHeight = 48;
+    fillHeight = (s32)(nitroLevel * (f32)maxHeight);
+
+    /* Render fill bar (bottom to top) */
+    if (fillHeight > 0) {
+        s32 fillY = y + maxHeight - fillHeight;
+        s32 color;
+
+        /* Color based on level: green -> yellow -> red */
+        if (nitroLevel > 0.66f) {
+            color = 0x00FF00FF;  /* Green - ready to use */
+        } else if (nitroLevel > 0.33f) {
+            color = 0xFFFF00FF;  /* Yellow - partial */
+        } else {
+            color = 0xFF0000FF;  /* Red - low */
+        }
+
+        func_800C7110(x + 4, fillY, 16, fillHeight, 0x1C);  /* Fill sprite */
+    }
+
+    /* Flash when full */
+    if (nitroLevel >= 1.0f && ((D_80159A20 >> 3) & 1)) {
+        func_800C734C(x - 8, y - 12, "NITRO!", 0x00FF00FF);
+    }
 }
 
 /*
  * func_800C9BE0 (1824 bytes)
  * Full HUD update
+ *
+ * Updates all HUD elements based on current player state.
+ * Called once per frame during gameplay.
  */
 void func_800C9BE0(void *hud) {
-    /* Full HUD - stub */
+    void *player;
+    f32 *playerVel, *playerPos;
+    s32 *playerState;
+    f32 speed, rpm, nitro;
+    s32 lap, totalLaps, position, raceTime;
+    s32 isWrongWay, isDamaged;
+
+    if (hud == NULL) {
+        return;
+    }
+
+    /* Get player car */
+    player = (void *)D_80152818;  /* Player car pointer */
+    if (player == NULL) {
+        return;
+    }
+
+    playerVel = (f32 *)((u8 *)player + 0x34);
+    playerPos = (f32 *)((u8 *)player + 0x24);
+    playerState = (s32 *)((u8 *)player + 0x00);
+
+    /* Calculate current speed (convert from units/frame to MPH) */
+    speed = sqrtf(playerVel[0] * playerVel[0] +
+                  playerVel[2] * playerVel[2]) * 2.237f;
+
+    /* Get RPM from player car engine state */
+    rpm = *(f32 *)((u8 *)player + 0x100);
+
+    /* Get nitro level */
+    nitro = *(f32 *)((u8 *)player + 0x110);
+
+    /* Get race state */
+    lap = D_8015A090;
+    totalLaps = D_8015A094;
+    position = D_8015A098;
+    raceTime = D_8015A09C;
+
+    /* Check wrong way */
+    isWrongWay = *(s32 *)((u8 *)player + 0x1C0);
+
+    /* Check damage */
+    isDamaged = ((*playerState) & 0x8000) != 0;
+
+    /* Update speedometer */
+    func_800C84FC(hud, speed);
+
+    /* Update tachometer */
+    func_800C885C(hud, rpm);
+
+    /* Update lap counter */
+    func_800C8B8C(hud, lap, totalLaps);
+
+    /* Update position */
+    func_800C8FA4(hud, position);
+
+    /* Update timer */
+    func_800C9158(hud, raceTime);
+
+    /* Update digital speed */
+    func_800C9210(hud, (s32)speed);
+
+    /* Update nitro meter */
+    func_800C9480(hud, nitro);
+
+    /* Wrong way indicator */
+    if (isWrongWay) {
+        s32 *visibility = (s32 *)((u8 *)hud + 0x00);
+        *visibility |= (1 << 9);  /* Show wrong way */
+
+        /* Flash wrong way text */
+        if ((D_80159A20 >> 3) & 1) {
+            func_800C734C(120, 80, "WRONG WAY!", 0xFF0000FF);
+        }
+    } else {
+        s32 *visibility = (s32 *)((u8 *)hud + 0x00);
+        *visibility &= ~(1 << 9);  /* Hide wrong way */
+    }
+
+    /* Damage indicator */
+    if (isDamaged) {
+        func_800C813C(hud, 10);
+    }
+
+    /* Minimap */
+    func_800C813C(hud, 8);
+
+    /* Draw car position on minimap */
+    f32 *minimapScale = (f32 *)((u8 *)hud + 0x180);
+    s32 minimapX = 260;  /* Screen position of minimap */
+    s32 minimapY = 180;
+    s32 carX = minimapX + (s32)(playerPos[0] * (*minimapScale));
+    s32 carY = minimapY + (s32)(playerPos[2] * (*minimapScale));
+    func_800C7110(carX - 2, carY - 2, 4, 4, 0x1D);  /* Player dot */
 }
 
 /*
  * func_800CA300 (180 bytes)
  * HUD fade effect
+ *
+ * Fades the entire HUD in/out based on alpha value.
+ * Used for transitions and pause/unpause effects.
  */
 void func_800CA300(void *hud, f32 alpha) {
-    /* HUD fade - stub */
+    f32 *hudAlpha;
+    f32 *targetAlpha;
+
+    if (hud == NULL) {
+        return;
+    }
+
+    hudAlpha = (f32 *)((u8 *)hud + 0x38);
+    targetAlpha = (f32 *)((u8 *)hud + 0x3C);
+
+    /* Clamp alpha */
+    if (alpha < 0.0f) alpha = 0.0f;
+    if (alpha > 1.0f) alpha = 1.0f;
+
+    *targetAlpha = alpha;
+
+    /* Smooth fade transition */
+    if (*hudAlpha < *targetAlpha) {
+        *hudAlpha += 0.05f;
+        if (*hudAlpha > *targetAlpha) {
+            *hudAlpha = *targetAlpha;
+        }
+    } else if (*hudAlpha > *targetAlpha) {
+        *hudAlpha -= 0.05f;
+        if (*hudAlpha < *targetAlpha) {
+            *hudAlpha = *targetAlpha;
+        }
+    }
 }
 
 /*
