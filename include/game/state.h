@@ -87,5 +87,40 @@ s32 timer_timeout(void);                /* Check if time ran out */
 void state_enter(GState state);         /* Called on state entry */
 void state_exit(GState state);          /* Called on state exit */
 const char* state_get_name(GState state); /* Get state name for debug */
+void state_change_notify(void);         /* Handle gstate variable changes */
+
+/******* ARCADE-COMPATIBLE FUNCTIONS *******/
+
+/* Main game loop */
+void game(void);                        /* Main per-frame game function */
+
+/* Pre-race setup */
+void state_preplay2(void);              /* Final pre-race setup */
+s32 preplay(s32 useHud, s32 canAbort);  /* Full pre-race initialization */
+void init_cars(void);                   /* Initialize all car data */
+void SetupCar(s32 node, s32 body_type, s32 init);  /* Setup single car */
+void check_buttons(void);               /* Check button presses */
+
+/* Game flow */
+void do_endgame(void);                  /* End game handling */
+void do_gameover(void);                 /* Game over handling */
+s32 check_high_score(void);             /* Check for high score */
+s32 are_all_cars_stopped_impl(void);    /* Check if all cars stopped */
+
+/* Countdown (arcade-style) */
+void CountDown(void);                   /* Handle countdown sequence */
+void ResetCountdownTimer(void);         /* Reset countdown */
+void SetCountdownTimer(s32 time);       /* Set countdown duration */
+void SetCountdownTimerAt0(s32 time);    /* Set countdown at zero start */
+s32 GetCountdownTime(void);             /* Get remaining countdown */
+u32 GetElapsedTime(void);               /* Get elapsed race time */
+s32 TimeOut(void);                      /* Check if time expired */
+
+/* State queries */
+s32 is_playgame(void);                  /* Check if in PLAYGAME state */
+s32 is_countdown(void);                 /* Check if in COUNTDOWN state */
+s32 is_attract(void);                   /* Check if in ATTRACT state */
+s32 is_demo_game(void);                 /* Check if demo game active */
+s32 get_state_timer(void);              /* Get time in current state */
 
 #endif /* STATE_H */

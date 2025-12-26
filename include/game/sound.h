@@ -115,4 +115,78 @@ void sound_set_sfx_volume(u8 volume);
 void sound_set_music_volume(u8 volume);
 void sound_enable(s32 enable);
 
+/******* ARCADE-COMPATIBLE SOUND INTERFACE *******/
+
+/* GUTS system commands */
+#define S_STOP_ALL          0x8000
+#define S_ATTRACT_MODE      0x8001
+#define S_GAME_MODE         0x8002
+#define S_SET_GAME_VOL      0x8006
+#define S_SET_ATTR_VOL      0x8007
+
+/* Music commands */
+#define S_SELECT            0x8046
+#define S_KSELECT           0x8047
+#define S_CARSELECT         0x804B
+#define S_KCARSELECT        0x804C
+#define S_WINNER            0x803C
+#define S_KWINNER           0x803D
+#define S_EXPLO             0x8040
+#define S_KEXPLO            0x8041
+
+/* Game sounds */
+#define S_CHKPNTSTATIC      0x8084
+#define S_THREE             0x8092
+#define S_TWO               0x8093
+#define S_ONE               0x8094
+#define S_GO                0x8095
+#define S_LEADERLIGHT       0x8088
+#define S_KLEADERLIGHT      0x8089
+#define S_CAR_LANDS         0x8083
+#define S_COIN1             0x8090
+#define S_COIN2             0x8091
+#define S_TRANSELECT        0x808B
+#define S_TRACKBROWSE       0x808A
+#define S_TURNTABLE         0x808E
+#define S_KTURNTABLE        0x808F
+#define S_BOG               0x8086
+#define S_KBOG              0x8087
+#define S_SCRAPELOOP        0x807D
+#define S_KSCRAPELOOP       0x807E
+
+/* Music base IDs */
+#define MUSIC_RACE_BASE     0x100
+#define MUSIC_ATTRACT_BASE  0x200
+
+/* Arcade-style sound function */
+void SOUND(u16 cmd);
+void SOUNDS(u16 cmd, s32 nargs, ...);
+
+/* Attract mode control */
+void set_attract_sound(s32 effects, s32 music);
+
+/* Game event sounds */
+void sound_checkpoint(void);
+void sound_lap_complete(void);
+void sound_race_start(s32 countdown);
+void sound_first_place(void);
+void sound_kill_first_place(void);
+void sound_winner(void);
+void sound_kill_winner(void);
+void sound_explosion(f32 pos[3]);
+void sound_car_lands(s32 car_index);
+void sound_coin(s32 full);
+void sound_menu_select(void);
+void sound_menu_browse(void);
+
+/* Music control */
+void start_track_music(s32 track_num);
+void stop_track_music(void);
+void start_attract_music(s32 track_num);
+void stop_attract_music(void);
+void start_select_music(void);
+void stop_select_music(void);
+void start_car_select_music(void);
+void stop_car_select_music(void);
+
 #endif /* SOUND_H */

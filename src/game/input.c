@@ -116,3 +116,235 @@ void Input_SetAnalogBounds(s32 pad_index, s16 analog_min, s16 analog_max,
         pad->deadzone_max = deadzone_max;
     }
 }
+
+/******* ARCADE-COMPATIBLE CONTROL FUNCTIONS *******/
+/* Based on arcade: controls.c */
+
+/* Control scale - converts 16-bit input to 0-1 range */
+#define CTLSCALE        (1.0f / 32767.0f)
+#define STEER_SCALE     (1.0f / 127.0f)   /* Analog stick to radians */
+#define STEER_MAX_ANGLE (0.5f)            /* Max steer angle in radians */
+
+/* N64 button definitions */
+#define BTN_A           0x8000
+#define BTN_B           0x4000
+#define BTN_Z           0x2000
+#define BTN_START       0x1000
+#define BTN_DU          0x0800
+#define BTN_DD          0x0400
+#define BTN_DL          0x0200
+#define BTN_DR          0x0100
+#define BTN_L           0x0020
+#define BTN_R           0x0010
+#define BTN_CU          0x0008
+#define BTN_CD          0x0004
+#define BTN_CL          0x0002
+#define BTN_CR          0x0001
+
+/* External game state */
+extern u8 gstate;
+extern s32 end_game_flag;
+extern s32 coast_flag;
+
+/* Game state constants */
+#define GS_COUNTDOWN    5
+
+/**
+ * ControlInput - Per-player control state
+ * Maps N64 controller to arcade-style inputs
+ */
+typedef struct ControlInput {
+    f32     throttle;       /* 0-1 throttle position */
+    f32     brake;          /* 0-1 brake position */
+    f32     steerangle;     /* Steering angle in radians */
+    f32     clutch;         /* 0-1 clutch position */
+    s32     gear;           /* Current gear (0=neutral, 1-6) */
+    s32     autotrans;      /* Auto transmission enabled */
+    s32     view_change;    /* View change button pressed */
+    s32     horn;           /* Horn button pressed */
+    s32     pause;          /* Pause button pressed */
+} ControlInput;
+
+/* Control state for each player */
+ControlInput control_input[4];
+
+/**
+ * controls_read_pad - Read N64 controller and convert to control inputs
+ * Based on arcade: controls.c:controls()
+ *
+ * @param pad_index Which controller (0-3)
+ * @param ctrl Output control state
+ */
+void controls_read_pad(s32 pad_index, ControlInput *ctrl) {
+    PadEntry *pad;
+    s32 stick_x;
+    f32 brake_rolloff;
+
+    if (pad_index < 0 || pad_index > 3) {
+        return;
+    }
+
+    pad = &pad_array[pad_index];
+
+    /* Skip if pad not enabled */
+    if (!(pad->flags & PAD_FLAG_ENABLED)) {
+        return;
+    }
+
+    /* Steering from analog stick X */
+    stick_x = pad->stick_x;
+
+    /* Apply deadzone */
+    if (stick_x > pad->deadzone_min && stick_x < pad->deadzone_max) {
+        stick_x = 0;
+    }
+
+    ctrl->steerangle = (f32)stick_x * STEER_SCALE * STEER_MAX_ANGLE;
+
+    /* Throttle from A button or R trigger */
+    if (pad->buttons_held & (BTN_A | BTN_R)) {
+        ctrl->throttle = 1.0f;
+    } else {
+        ctrl->throttle = 0.0f;
+    }
+
+    /* Brake from B button or Z trigger */
+    if (pad->buttons_held & (BTN_B | BTN_Z)) {
+        ctrl->brake = 1.0f;
+    } else {
+        ctrl->brake = 0.0f;
+    }
+
+    /* View change from C buttons */
+    ctrl->view_change = (pad->buttons_pressed & (BTN_CU | BTN_CD | BTN_CL | BTN_CR)) ? 1 : 0;
+
+    /* Horn from L button */
+    ctrl->horn = (pad->buttons_held & BTN_L) ? 1 : 0;
+
+    /* Pause from Start */
+    ctrl->pause = (pad->buttons_pressed & BTN_START) ? 1 : 0;
+
+    /* Default to auto transmission */
+    ctrl->autotrans = 1;
+    ctrl->clutch = 1.0f;
+    ctrl->gear = 1;
+
+    /* During countdown, lock controls */
+    if (gstate == GS_COUNTDOWN) {
+        ctrl->gear = 0;
+        ctrl->clutch = 1.0f;
+        ctrl->brake = 1.0f;
+        ctrl->throttle = 0.0f;
+    }
+
+    /* End of game braking */
+    if (coast_flag || end_game_flag) {
+        ctrl->brake = 1.0f;
+        ctrl->throttle = 0.0f;
+        ctrl->clutch = 1.0f;
+    }
+}
+
+/**
+ * controls_apply_to_physics - Apply control inputs to physics state
+ *
+ * @param ctrl Control input state
+ * @param phys Physics state to update
+ */
+void controls_apply_to_physics(ControlInput *ctrl, void *phys_ptr) {
+    /* Cast to CarPhysics - defined in physics.h */
+    /* For now, directly update the fields */
+    f32 *phys = (f32 *)phys_ptr;
+
+    /* This would map to CarPhysics fields */
+    /* phys->throttle = ctrl->throttle; */
+    /* phys->brake = ctrl->brake; */
+    /* phys->steerangle = ctrl->steerangle; */
+}
+
+/**
+ * ReadGasAndBrake - Read gas and brake pedals
+ * Based on arcade: mdrive.c:ReadGasAndBrake()
+ *
+ * On arcade, this reads physical pedals.
+ * On N64, we map buttons to 0-1 range.
+ */
+void ReadGasAndBrake(void) {
+    s32 i;
+
+    for (i = 0; i < 4; i++) {
+        controls_read_pad(i, &control_input[i]);
+    }
+}
+
+/**
+ * Input_GetStickX - Get normalized analog stick X value
+ *
+ * @param pad_index Which controller (0-3)
+ * @return Normalized value -1.0 to 1.0
+ */
+f32 Input_GetStickX(s32 pad_index) {
+    PadEntry *pad;
+    s32 stick_x;
+
+    if (pad_index < 0 || pad_index > 3) {
+        return 0.0f;
+    }
+
+    pad = &pad_array[pad_index];
+    stick_x = pad->stick_x;
+
+    /* Apply deadzone */
+    if (stick_x > pad->deadzone_min && stick_x < pad->deadzone_max) {
+        return 0.0f;
+    }
+
+    return (f32)stick_x / 127.0f;
+}
+
+/**
+ * Input_GetStickY - Get normalized analog stick Y value
+ *
+ * @param pad_index Which controller (0-3)
+ * @return Normalized value -1.0 to 1.0
+ */
+f32 Input_GetStickY(s32 pad_index) {
+    PadEntry *pad;
+
+    if (pad_index < 0 || pad_index > 3) {
+        return 0.0f;
+    }
+
+    pad = &pad_array[pad_index];
+    return (f32)pad->stick_y / 127.0f;
+}
+
+/**
+ * Input_IsButtonPressed - Check if button was just pressed this frame
+ *
+ * @param pad_index Which controller (0-3)
+ * @param button Button mask to check
+ * @return Non-zero if button was just pressed
+ */
+s32 Input_IsButtonPressed(s32 pad_index, u16 button) {
+    if (pad_index < 0 || pad_index > 3) {
+        return 0;
+    }
+
+    return (pad_array[pad_index].buttons_pressed & button) ? 1 : 0;
+}
+
+/**
+ * Input_IsButtonHeld - Check if button is currently held
+ *
+ * @param pad_index Which controller (0-3)
+ * @param button Button mask to check
+ * @return Non-zero if button is held
+ */
+s32 Input_IsButtonHeld(s32 pad_index, u16 button) {
+    if (pad_index < 0 || pad_index > 3) {
+        return 0;
+    }
+
+    return (pad_array[pad_index].buttons_held & button) ? 1 : 0;
+}

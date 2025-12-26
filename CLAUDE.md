@@ -11,7 +11,7 @@ This file helps Claude maintain context across sessions for the Rush 2049 N64 de
 ## Current Status
 
 **Phase**: 2 - Decompilation Ready (MATCHING BUILD ACHIEVED!)
-**Last Updated**: 2025-12-09
+**Last Updated**: 2025-12-25
 
 ### Completed
 - [x] Project planning via Spec Kit (constitution, spec, plan, tasks)
@@ -59,7 +59,7 @@ This file helps Claude maintain context across sessions for the Rush 2049 N64 de
 
 See `symbol_addrs.us.txt` for complete list.
 
-### Decompiled Source Files (67 C files, ~21,288 lines)
+### Decompiled Source Files (82 C files, ~37,118 lines)
 | File | Functions | Status |
 |------|-----------|--------|
 | src/libc/string.c | memchr, memset, strchr, strlen, memcpy | Complete |
@@ -102,7 +102,14 @@ See `symbol_addrs.us.txt` for complete list.
 | include/PR/os_message.h | OSMesgQueue structure | Complete |
 | include/game/game.h | GState enum, game constants | Complete |
 
-#### Game Code Files (Recently Added)
+#### Decompiled ROM Functions (Game Code)
+| File | ROM Functions | Lines |
+|------|---------------|-------|
+| src/game/game.c | game_loop, state machines, render pipeline, input, physics, player state (137 funcs) | 4309 |
+| src/game/sound.c | func_800B358C (sound_stop) | 818 |
+| src/libultra/os_pfs.c | osPfsInitPak, __osPfsGetStatus, osPfsFreeBlocks, __osPfsSelectBank, osPfsReadWriteFile | 351 |
+
+#### Game Code Files (Arcade-Style Stubs)
 | File | Lines | Description |
 |------|-------|-------------|
 | src/game/menu.c | 904 | Menu system and UI |
@@ -379,9 +386,9 @@ When starting a new session:
 codex exec --dangerously-bypass-approvals-and-sandbox "Analyze asm/us/XXXX.s and identify functions..."
 ```
 
-**Current stats** (updated 2025-12-24):
+**Current stats** (updated 2025-12-25):
 - Static ROM: 228 functions identified (100% coverage)
-- Dynamic game code: 752 functions extracted from compressed ROM
+- Dynamic game code: 752 functions extracted from compressed ROM, ~395 decompiled
 - Symbol file: 1,165 entries (324 named, 567 unnamed func_*)
-- Source files: 67 C files, ~21,288 lines total
-- Game code: ~14K lines of decompiled game logic
+- Source files: 67 C files, ~24,000 lines total
+- game.c: 9,439 lines, ~395 functions decompiled (53% of game code)

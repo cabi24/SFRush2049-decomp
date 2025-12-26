@@ -480,3 +480,339 @@ void sound_enable(s32 enable) {
         music_stop();
     }
 }
+
+/******* ARCADE-COMPATIBLE SOUND INTERFACE *******/
+
+/* Attract mode sound flag */
+static u8 attract_mode_sound = 0;
+static u8 attract_effects = 1;
+static u8 attract_music = 1;
+
+/**
+ * SOUND - Arcade-style sound command
+ * Based on arcade: sounds.c SOUND macro
+ *
+ * This wraps the arcade's SOUND() macro for compatibility.
+ * Commands >= 0x8000 are GUTS commands, others are sound IDs.
+ *
+ * @param cmd Sound command or ID
+ */
+void SOUND(u16 cmd) {
+    /* Check for attract mode restrictions */
+    if (attract_mode_sound) {
+        if (cmd < 0x8000 && !attract_effects) {
+            return;  /* Effects disabled in attract */
+        }
+        /* Music commands handled separately */
+    }
+
+    /* GUTS system commands (0x8000+) */
+    if (cmd >= 0x8000) {
+        switch (cmd) {
+            case S_STOP_ALL:
+                sound_stop_all();
+                break;
+
+            case S_ATTRACT_MODE:
+                attract_mode_sound = 1;
+                break;
+
+            case S_GAME_MODE:
+                attract_mode_sound = 0;
+                break;
+
+            /* Kill sound commands */
+            case S_KSELECT:
+            case S_KCARSELECT:
+            case S_KTURNTABLE:
+            case S_KBOG:
+            case S_KLEADERLIGHT:
+            case S_KSCRAPELOOP:
+            case S_KWINNER:
+            case S_KEXPLO:
+                /* Stop the corresponding sound */
+                sound_stop(cmd - 1);  /* Kill cmd is always sound cmd + 1 */
+                break;
+
+            default:
+                /* Assume it's a regular sound command */
+                sound_play(cmd);
+                break;
+        }
+    } else {
+        /* Regular sound ID */
+        sound_play(cmd);
+    }
+}
+
+/**
+ * SOUNDS - Send sound with arguments
+ * Based on arcade: sounds.c multi-argument sound call
+ *
+ * @param cmd Sound command
+ * @param nargs Number of arguments
+ * @param ... Variable arguments
+ */
+void SOUNDS(u16 cmd, s32 nargs, ...) {
+    /* For N64, we simplify this to just play the sound */
+    /* On arcade, this would send multiple arguments to sound system */
+    SOUND(cmd);
+}
+
+/**
+ * set_attract_sound - Set attract mode sound flags
+ * Based on arcade: sounds.c attract sound control
+ *
+ * @param effects Enable effects in attract
+ * @param music Enable music in attract
+ */
+void set_attract_sound(s32 effects, s32 music) {
+    attract_effects = effects ? 1 : 0;
+    attract_music = music ? 1 : 0;
+}
+
+/**
+ * sound_checkpoint - Play checkpoint sound
+ */
+void sound_checkpoint(void) {
+    SOUND(S_CHKPNTSTATIC);
+}
+
+/**
+ * sound_lap_complete - Play lap completion sound
+ */
+void sound_lap_complete(void) {
+    /* Play lap complete announcement */
+    sound_play(SFX_LAP_COMPLETE);
+}
+
+/**
+ * sound_race_start - Play race start sounds
+ *
+ * @param countdown 3, 2, 1, or 0 for GO
+ */
+void sound_race_start(s32 countdown) {
+    switch (countdown) {
+        case 3:
+            SOUND(S_THREE);
+            break;
+        case 2:
+            SOUND(S_TWO);
+            break;
+        case 1:
+            SOUND(S_ONE);
+            break;
+        case 0:
+            SOUND(S_GO);
+            break;
+    }
+}
+
+/**
+ * sound_first_place - Play first place sound effect
+ */
+void sound_first_place(void) {
+    SOUND(S_LEADERLIGHT);
+}
+
+/**
+ * sound_kill_first_place - Stop first place sound
+ */
+void sound_kill_first_place(void) {
+    SOUND(S_KLEADERLIGHT);
+}
+
+/**
+ * sound_winner - Play winner music
+ */
+void sound_winner(void) {
+    SOUND(S_WINNER);
+}
+
+/**
+ * sound_kill_winner - Stop winner music
+ */
+void sound_kill_winner(void) {
+    SOUND(S_KWINNER);
+}
+
+/**
+ * sound_explosion - Play explosion sound at position
+ *
+ * @param pos World position
+ */
+void sound_explosion(f32 pos[3]) {
+    sound_play_3d(S_EXPLO, pos);
+}
+
+/**
+ * sound_car_lands - Play landing sound after jump
+ *
+ * @param car_index Car that landed
+ */
+void sound_car_lands(s32 car_index) {
+    SOUND(S_CAR_LANDS);
+}
+
+/**
+ * sound_coin - Play coin insert sound
+ *
+ * @param full Non-zero if full credit
+ */
+void sound_coin(s32 full) {
+    SOUND(full ? S_COIN2 : S_COIN1);
+}
+
+/**
+ * sound_menu_select - Play menu selection sound
+ */
+void sound_menu_select(void) {
+    SOUND(S_TRANSELECT);
+}
+
+/**
+ * sound_menu_browse - Play menu browse sound
+ */
+void sound_menu_browse(void) {
+    SOUND(S_TRACKBROWSE);
+}
+
+/**
+ * start_track_music - Start race music for track
+ *
+ * @param track_num Track number
+ */
+void start_track_music(s32 track_num) {
+    /* Each track has its own music */
+    /* For now, just start generic race music */
+    music_play(MUSIC_RACE_BASE + track_num);
+}
+
+/**
+ * stop_track_music - Stop race music
+ */
+void stop_track_music(void) {
+    music_stop();
+}
+
+/**
+ * start_attract_music - Start attract mode music
+ *
+ * @param track_num Attract music track
+ */
+void start_attract_music(s32 track_num) {
+    if (attract_music) {
+        music_play(MUSIC_ATTRACT_BASE + track_num);
+    }
+}
+
+/**
+ * stop_attract_music - Stop attract mode music
+ */
+void stop_attract_music(void) {
+    music_stop();
+}
+
+/**
+ * start_select_music - Start selection screen music
+ */
+void start_select_music(void) {
+    SOUND(S_SELECT);
+}
+
+/**
+ * stop_select_music - Stop selection screen music
+ */
+void stop_select_music(void) {
+    SOUND(S_KSELECT);
+}
+
+/**
+ * start_car_select_music - Start car selection music
+ */
+void start_car_select_music(void) {
+    SOUND(S_CARSELECT);
+}
+
+/**
+ * stop_car_select_music - Stop car selection music
+ */
+void stop_car_select_music(void) {
+    SOUND(S_KCARSELECT);
+}
+
+/******* DECOMPILED ROM FUNCTIONS *******/
+
+/* N64 Sound handle structure (from ROM analysis) */
+typedef struct N64SoundHandle {
+    struct N64SoundHandle *next;  /* 0x00: Next in chain */
+    void *field_04;               /* 0x04 */
+    u8   pad_08[0x2C];            /* 0x08-0x33 */
+    u16  state_index;             /* 0x34: Index into state array */
+    u8   pad_36[6];               /* 0x36-0x3B */
+    struct N64SoundHandle *linked;/* 0x3C: Linked sound handle */
+} N64SoundHandle;
+
+/* N64 Sound channel state */
+typedef struct N64SoundState {
+    u8   pad[22];                 /* 0x00-0x15 */
+    u8   status;                  /* 0x16: 0=free, 1=playing, 2=stopped */
+    u8   pad2[9];                 /* 0x17-0x1F */
+} N64SoundState;  /* 0x20 bytes per entry */
+
+/* External N64 sound data */
+extern s32 D_80159788;              /* Active sound count */
+extern N64SoundHandle* D_80159450[];/* Active sound list */
+extern N64SoundState D_80140BF0[];  /* Sound state array */
+
+/**
+ * func_800B358C - Stop a sound handle (N64 ROM function)
+ * Address: 0x800B358C
+ * Size: 156 bytes
+ *
+ * Stops a sound and removes it from the active sound list.
+ * Processes all linked sounds in a chain.
+ *
+ * @param sound  Sound handle to stop (can be NULL)
+ */
+void func_800B358C(N64SoundHandle *sound) {
+    s32 count;
+    s32 i;
+    s32 last_idx;
+    N64SoundHandle *current;
+
+    if (sound == NULL) {
+        return;
+    }
+
+    current = sound;
+
+    /* Process this sound and all linked sounds */
+    do {
+        count = D_80159788;
+
+        /* Find sound in active list */
+        i = 0;
+        if (count > 0) {
+            while (i < count) {
+                if (D_80159450[i] == current) {
+                    break;
+                }
+                i++;
+            }
+        }
+
+        /* Mark sound state as stopped (2) */
+        D_80140BF0[current->state_index].status = 2;
+
+        /* Remove from list by swapping with last entry */
+        last_idx = count - 1;
+        D_80159450[i] = D_80159450[last_idx];
+        D_80159450[last_idx] = current;
+        D_80159788 = last_idx;
+
+        /* Move to linked sound */
+        current = current->linked;
+
+    } while (current != NULL);
+}

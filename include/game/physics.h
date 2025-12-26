@@ -36,12 +36,119 @@
 
 /* Physics constants */
 #define GRAVITY         32.174f     /* ft/s^2 */
+#define GRAVCON         32.174f     /* Alternative gravity name */
 #define MAX_VELOCITY    1000.0f     /* fps (speed of sound limit) */
 #define DT_PHYSICS      (1.0f/60.0f)  /* Physics timestep at 60Hz */
+#define CTLSCALE        (1.0f/32767.0f) /* Control input scale */
 
 /* Anti-spin table - per car type and difficulty */
 #define NUM_CAR_TYPES   4
 #define NUM_DIFF_OPT    3
+
+/* Gear and transmission limits */
+#define MAXGEAR         6       /* Maximum number of gears */
+
+/******* ARCADE CAR PARAMETER STRUCTURES *******/
+/* Based on arcade drivsym.h Car and tiredes structs */
+
+/**
+ * TireDes - Tire parameters for physics model
+ * Based on arcade: tiredes.h
+ *
+ * The Milliken tire model uses slip angle and longitudinal
+ * slip to compute lateral and tractive forces.
+ */
+typedef struct TireDes {
+    f32     tradius;        /* Tire radius (feet) */
+    f32     springK;        /* Static lateral stiffness (lbs/ft) */
+    f32     rubdamp;        /* Lateral damping coefficient */
+    f32     PaveCstiff;     /* Cornering stiffness on pavement (lbs/rad) */
+    f32     PaveCfmax;      /* Max cornering friction on pavement (g) */
+    f32     Cstiff;         /* Current cornering stiffness */
+    f32     Cfmax;          /* Current max cornering friction */
+    f32     invmi;          /* 1/moment of inertia of wheel */
+    f32     Zforce;         /* Vertical loading for cornering */
+    f32     Afmax;          /* Slip angle at max force */
+    f32     k1, k2, k3;     /* Lateral force polynomial coefficients */
+    f32     l2, l3;         /* Derivative coefficients */
+    f32     m1, m2, m3, m4; /* Aligning torque coefficients */
+    f32     patchy;         /* Contact patch deformation */
+    f32     angvel;         /* Current angular velocity */
+    f32     sliptorque;     /* Torque from tire slipping */
+    f32     sideforce;      /* For tire squeal sound */
+    s32     slipflag;       /* Tire slipping flag */
+} TireDes;
+
+/**
+ * Car - Complete car parameter definition
+ * Based on arcade: drivsym.h struct car
+ *
+ * Defines all physical properties for a vehicle type.
+ */
+typedef struct Car {
+    char    *name;              /* Name of car */
+    f32     mass;               /* Mass in slugs (weight/32.2) */
+    f32     I[3];               /* Moment of inertia (roll, pitch, yaw) */
+
+    f32     springrate[4];      /* Suspension spring rates (lbs/ft) */
+    f32     farspringrate;      /* Front anti-roll bar rate */
+    f32     rarspringrate;      /* Rear anti-roll bar rate */
+    f32     cdamping[4];        /* Compression damping (lbs-sec/ft) */
+    f32     rdamping[4];        /* Rebound damping */
+
+    f32     steerratio;         /* Steering ratio (deg/deg) */
+    f32     swtpg;              /* Steering wheel torque per G */
+    s16     maxswdamp;          /* Max steering damping */
+    s16     minswfrict;         /* Min steering friction */
+    s16     maxswfrict;         /* Max steering friction */
+    s16     pad;                /* Alignment */
+
+    f32     srefpcybo2;         /* Aerodynamic drag factor */
+    f32     rollresist;         /* Rolling resistance (lbs) */
+
+    TireDes tires[4];           /* Tire descriptions (FR, FL, RR, RL) */
+    f32     TIRER[4][3];        /* Tire positions relative to CG */
+
+    f32     brakebal;           /* Front brake balance (0-1) */
+    f32     engmi;              /* Engine flywheel moment of inertia */
+    f32     dwratio;            /* Differential gear ratio */
+    f32     clutchmaxt;         /* Max clutch torque */
+    f32     viewheight;         /* Observer height above CG */
+
+    s8      nothrusttorque;     /* Flag for zero yaw torque from thrust */
+    s8      magicdif;           /* Magic load-sensitive differential */
+    s8      pad2[2];
+
+    f32     fgtorquescale;      /* Torque scale in 1st gear */
+    f32     sgtorquescale;      /* Torque scale in 2nd gear */
+    f32     torquescale;        /* Torque scale in higher gears */
+    f32     dirttorquescale;    /* Torque scale off-road */
+    f32     transarray[MAXGEAR+2]; /* Transmission gear ratios */
+
+    const s16 *torquecp;        /* Engine torque curve pointer */
+    const s16 *dirttorquecp;    /* Dirt torque curve pointer */
+    s16     rpmperent;          /* RPM per torque curve entry */
+    s16     topgear;            /* Top gear for auto transmission */
+    f32     upshiftangvel;      /* Upshift angular velocity */
+    f32     downshiftangvel;    /* Downshift angular velocity */
+} Car;
+
+/**
+ * CollSize - Car collision box dimensions
+ * Based on arcade: drivsym.h COLLSIZE
+ */
+typedef struct CollSize {
+    f32     colfront;           /* Distance to front */
+    f32     colrear;            /* Distance to rear */
+    f32     colside;            /* Half-width */
+    f32     colheight;          /* Height */
+} CollSize;
+
+/* External car parameter tables */
+extern const s16 stdtorquecurve[10][12];    /* Standard torque curve */
+extern const s16 rushtorquecurve[10][12];   /* Rush-style torque curve */
+extern const Car *carlist[];                /* Available cars */
+extern const CollSize car_collsizes[];      /* Collision box sizes */
 
 /* Tire state */
 typedef struct TireState {
@@ -223,5 +330,30 @@ void vec_cross(f32 a[3], f32 b[3], f32 out[3]);
 f32  vec_magnitude(f32 v[3]);
 void rw_to_body(f32 rw[3], f32 body[3], UVect *uv);
 void body_to_rw(f32 body[3], f32 rw[3], UVect *uv);
+
+/******* TIRE AND ENGINE FUNCTIONS *******/
+
+/**
+ * tire_constants - Calculate derived tire constants
+ * Based on arcade: initiali.c:tire_constants()
+ */
+void tire_constants(TireDes *tdes);
+
+/**
+ * copy_tire_info - Copy tire parameters with load adjustment
+ * Based on arcade: initiali.c:copy_tire_info()
+ */
+void copy_tire_info(f32 mass, TireDes *tp1, TireDes *tp2, f32 otw, f32 wb);
+
+/**
+ * get_engine_torque - Interpolate torque from curve
+ * Based on arcade engine torque lookup
+ */
+f32 get_engine_torque(const s16 curve[10][12], f32 throttle, s32 rpm, s32 rpm_per_entry);
+
+/**
+ * init_car_from_params - Initialize car physics from Car parameters
+ */
+void init_car_from_params(CarPhysics *m, const Car *car);
 
 #endif /* PHYSICS_H */

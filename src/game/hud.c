@@ -395,3 +395,264 @@ void hud_format_speed(s32 speed, char *buffer) {
         buffer[1] = '\0';
     }
 }
+
+/******* ARCADE-COMPATIBLE TIME CONVERSION FUNCTIONS *******/
+
+/**
+ * cvt_time - Convert milliseconds to time format
+ * Based on arcade: hud.c:cvt_time()
+ *
+ * @param t Time in milliseconds
+ * @param dest Output array (at least 5 bytes)
+ * @param format 's' = MM:SS, 'h' = MM:SS.hh, 'c' = SSS countdown
+ * @return Number of digits set
+ */
+u8 cvt_time(s32 t, u8 *dest, char format) {
+    s32 sec, min;
+    u8 ret = 0;
+
+    if (t < 0) {
+        t = 0;
+    }
+
+    switch (format) {
+        case 'c':
+            /* Countdown timer (seconds only, max 999) */
+            sec = t / 1000;  /* Convert ms to seconds */
+            if (sec > 999) {
+                sec = 999;
+            }
+            dest[0] = (u8)((sec / 100) % 10);
+            dest[1] = (u8)((sec / 10) % 10);
+            dest[2] = (u8)(sec % 10);
+            ret = 3;
+            break;
+
+        case 'h':
+            /* Hundredths display */
+            dest[3] = (u8)((t / 100) % 10);
+            dest[4] = (u8)((t / 10) % 10);
+            ret = 5;
+            /* Fall through to do seconds */
+
+        case 's':
+            /* Seconds and minutes only */
+            sec = t / 1000;
+            min = (sec / 60) % 60;
+            sec %= 60;
+            dest[0] = (u8)(min % 10);
+            dest[1] = (u8)(sec / 10);
+            dest[2] = (u8)(sec % 10);
+            if (ret == 0) {
+                ret = 3;
+            }
+            break;
+    }
+
+    return ret;
+}
+
+/**
+ * cvt_time_frames - Convert frame count to time format
+ * N64-specific version using 60fps timing
+ *
+ * @param frames Frame count
+ * @param dest Output array (at least 5 bytes)
+ * @param format 's' = MM:SS, 'h' = MM:SS.hh, 'c' = SSS countdown
+ * @return Number of digits set
+ */
+u8 cvt_time_frames(u32 frames, u8 *dest, char format) {
+    /* Convert frames to milliseconds (assuming 60fps) */
+    u32 ms = (frames * 1000) / FRAMES_PER_SEC;
+    return cvt_time((s32)ms, dest, format);
+}
+
+/**
+ * hud_format_position - Format race position with suffix
+ *
+ * @param position Position (1 = first)
+ * @param buffer Output buffer (at least 5 chars)
+ */
+void hud_format_position(s32 position, char *buffer) {
+    if (position < 1) {
+        position = 1;
+    }
+    if (position > 8) {
+        position = 8;
+    }
+
+    buffer[0] = '0' + position;
+
+    /* Add appropriate suffix */
+    switch (position) {
+        case 1:
+            buffer[1] = 's';
+            buffer[2] = 't';
+            break;
+        case 2:
+            buffer[1] = 'n';
+            buffer[2] = 'd';
+            break;
+        case 3:
+            buffer[1] = 'r';
+            buffer[2] = 'd';
+            break;
+        default:
+            buffer[1] = 't';
+            buffer[2] = 'h';
+            break;
+    }
+    buffer[3] = '\0';
+}
+
+/**
+ * hud_format_lap - Format lap counter
+ *
+ * @param current Current lap (1-based)
+ * @param total Total laps
+ * @param buffer Output buffer (at least 8 chars)
+ */
+void hud_format_lap(s32 current, s32 total, char *buffer) {
+    buffer[0] = 'L';
+    buffer[1] = 'A';
+    buffer[2] = 'P';
+    buffer[3] = ' ';
+    buffer[4] = '0' + current;
+    buffer[5] = '/';
+    buffer[6] = '0' + total;
+    buffer[7] = '\0';
+}
+
+/**
+ * hud_get_speed_mph - Get current player speed in MPH
+ *
+ * @return Speed in MPH
+ */
+s32 hud_get_speed_mph(void) {
+    return gHud.speed_display;
+}
+
+/**
+ * hud_get_speed_kph - Get current player speed in KPH
+ *
+ * @return Speed in KPH
+ */
+s32 hud_get_speed_kph(void) {
+    return (gHud.speed_display * 161) / 100;  /* 1.61 km per mile */
+}
+
+/**
+ * hud_get_elapsed_frames - Get elapsed race time in frames
+ *
+ * @return Elapsed frames since race start
+ */
+u32 hud_get_elapsed_frames(void) {
+    return gHud.elapsed_time;
+}
+
+/**
+ * hud_get_elapsed_ms - Get elapsed race time in milliseconds
+ *
+ * @return Elapsed time in milliseconds
+ */
+u32 hud_get_elapsed_ms(void) {
+    return (gHud.elapsed_time * 1000) / FRAMES_PER_SEC;
+}
+
+/**
+ * hud_set_countdown_time - Set remaining countdown time
+ *
+ * @param ms Time remaining in milliseconds
+ */
+void hud_set_countdown_time(u32 ms) {
+    gHud.countdown_time = ms;
+}
+
+/**
+ * hud_get_countdown_time - Get remaining countdown time
+ *
+ * @return Time remaining in milliseconds
+ */
+u32 hud_get_countdown_time(void) {
+    return gHud.countdown_time;
+}
+
+/**
+ * hud_set_metric - Enable/disable metric units (KPH vs MPH)
+ *
+ * @param metric Non-zero for metric
+ */
+void hud_set_metric(s32 metric) {
+    gHud.metric_mode = metric ? 1 : 0;
+}
+
+/**
+ * hud_is_metric - Check if metric mode is enabled
+ *
+ * @return Non-zero if metric
+ */
+s32 hud_is_metric(void) {
+    return gHud.metric_mode;
+}
+
+/******* RADAR MAP FUNCTIONS *******/
+
+/* Radar mapping variables */
+static f32 radar_min_x, radar_max_x;
+static f32 radar_min_z, radar_max_z;
+static f32 radar_scale_x, radar_scale_z;
+
+/**
+ * set_radar_mapping - Set radar coordinate mapping
+ * Based on arcade: hud.c:set_radar_mapping()
+ *
+ * @param min_x World minimum X
+ * @param max_x World maximum X
+ * @param min_z World minimum Z
+ * @param max_z World maximum Z
+ */
+void set_radar_mapping(f32 min_x, f32 max_x, f32 min_z, f32 max_z) {
+    radar_min_x = min_x;
+    radar_max_x = max_x;
+    radar_min_z = min_z;
+    radar_max_z = max_z;
+
+    /* Calculate scale factors */
+    if (max_x != min_x) {
+        radar_scale_x = (f32)HUD_RADAR_SIZE / (max_x - min_x);
+    } else {
+        radar_scale_x = 1.0f;
+    }
+
+    if (max_z != min_z) {
+        radar_scale_z = (f32)HUD_RADAR_SIZE / (max_z - min_z);
+    } else {
+        radar_scale_z = 1.0f;
+    }
+}
+
+/**
+ * world_to_radar - Convert world position to radar position
+ *
+ * @param world_x World X coordinate
+ * @param world_z World Z coordinate
+ * @param radar_x Output radar X
+ * @param radar_y Output radar Y
+ */
+void world_to_radar(f32 world_x, f32 world_z, f32 *radar_x, f32 *radar_y) {
+    f32 rel_x, rel_z;
+
+    /* Convert to relative position */
+    rel_x = (world_x - radar_min_x) * radar_scale_x;
+    rel_z = (world_z - radar_min_z) * radar_scale_z;
+
+    /* Clamp to radar bounds */
+    if (rel_x < 0.0f) rel_x = 0.0f;
+    if (rel_x > (f32)HUD_RADAR_SIZE) rel_x = (f32)HUD_RADAR_SIZE;
+    if (rel_z < 0.0f) rel_z = 0.0f;
+    if (rel_z > (f32)HUD_RADAR_SIZE) rel_z = (f32)HUD_RADAR_SIZE;
+
+    /* Convert to screen coords */
+    *radar_x = (f32)HUD_RADAR_X + rel_x;
+    *radar_y = (f32)HUD_RADAR_Y + (f32)HUD_RADAR_SIZE - rel_z;  /* Flip Z */
+}

@@ -45,4 +45,24 @@ void mtx_world_roll(f32 angle, f32 uv[3][3]);
 void mtx_fix_rows(f32 m[3][3]);
 void mtx_fix_cols(f32 m[3][3]);
 
+/******* ARCADE-COMPATIBLE NAMES *******/
+/* These match the arcade vecmath.c function names exactly */
+
+f32  magnitude(f32 vec[3]);             /* Vector magnitude */
+f32  invmagnitude(f32 vec[3]);          /* 1/magnitude */
+void direction(f32 vec[3], f32 dir[3]); /* Normalize to unit vector */
+void scalmul(f32 *a, f32 b, f32 *r);    /* r = a * b (scalar) */
+void scaldiv(f32 *a, f32 b, f32 *r);    /* r = a / b (scalar) */
+void vecadd(f32 *ap, f32 *bp, f32 *rp); /* r = a + b */
+void vecsub(f32 *ap, f32 *bp, f32 *rp); /* r = a - b */
+void crossprod(f32 a[3], f32 b[3], f32 r[3]); /* r = a x b */
+f32  dotprod(f32 a[3], f32 b[3]);       /* a . b */
+void veccopy(f32 *a, f32 *r);           /* r = a */
+
+/******* COORDINATE TRANSFORMS *******/
+
+void ftransvec(f32 in[3], f32 out[3], f32 uvs[3][3]);     /* Body to world */
+void finvtransvec(f32 in[3], f32 out[3], f32 uvs[3][3]);  /* World to body */
+void fmatcopy(f32 *src, f32 *dst);                        /* Copy 3x3 matrix */
+
 #endif /* VECMATH_H */

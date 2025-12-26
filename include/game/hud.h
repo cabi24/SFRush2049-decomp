@@ -49,11 +49,13 @@ typedef struct HudState {
     s8      position;           /* Race position (1-8) */
     s8      total_cars;         /* Total cars in race */
     u32     elapsed_time;       /* Elapsed race time (frames) */
+    u32     countdown_time;     /* Remaining countdown time (ms) */
     u32     checkpoint_time;    /* Time added at checkpoint */
     s32     checkpoint_flash;   /* Flash timer for checkpoint bonus */
     s8      wrong_way;          /* Wrong way indicator active? */
     s8      markers_init;       /* Markers initialized? */
-    u8      pad[2];
+    s8      metric_mode;        /* Show KPH instead of MPH? */
+    u8      pad;
 } HudState;
 
 /* Car marker on radar */
@@ -105,5 +107,29 @@ void hud_set_wrong_way(s32 wrong);
 /* Utility */
 void hud_format_time(u32 frames, char *buffer);
 void hud_format_speed(s32 speed, char *buffer);
+void hud_format_position(s32 position, char *buffer);
+void hud_format_lap(s32 current, s32 total, char *buffer);
+
+/* Time conversion (arcade-compatible) */
+u8 cvt_time(s32 t, u8 *dest, char format);
+u8 cvt_time_frames(u32 frames, u8 *dest, char format);
+
+/* Speed queries */
+s32 hud_get_speed_mph(void);
+s32 hud_get_speed_kph(void);
+
+/* Timer queries */
+u32 hud_get_elapsed_frames(void);
+u32 hud_get_elapsed_ms(void);
+void hud_set_countdown_time(u32 ms);
+u32 hud_get_countdown_time(void);
+
+/* Units mode */
+void hud_set_metric(s32 metric);
+s32 hud_is_metric(void);
+
+/* Radar map */
+void set_radar_mapping(f32 min_x, f32 max_x, f32 min_z, f32 max_z);
+void world_to_radar(f32 world_x, f32 world_z, f32 *radar_x, f32 *radar_y);
 
 #endif /* HUD_H */

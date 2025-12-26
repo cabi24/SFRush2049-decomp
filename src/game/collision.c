@@ -428,3 +428,132 @@ void set_car_in_game(s32 car_index, s32 in_game) {
         col_data[car_index].in_game = in_game ? 1 : 0;
     }
 }
+
+/**
+ * ForceApart - Force two overlapping cars apart
+ * Based on arcade: collision.c:ForceApart()
+ *
+ * Called when cars are stuck inside each other.
+ * Applies a large separation force.
+ *
+ * @param car1 First car index
+ * @param car2 Second car index
+ * @param dir Direction vector from car2 to car1
+ */
+void ForceApart(s32 car1, s32 car2, f32 dir[3]) {
+    CollisionData *c1;
+    CarData *d1;
+    f32 invdist, force;
+    f32 temp[3];
+    s32 i;
+
+    c1 = &col_data[car1];
+    d1 = &car_array[car1];
+
+    /* Normalize direction vector */
+    invdist = dir[0]*dir[0] + dir[1]*dir[1] + dir[2]*dir[2];
+    if (invdist < 0.0001f) {
+        /* If coincident centers, force in Y direction based on slot order */
+        dir[0] = 0.0f;
+        dir[1] = (car1 > car2) ? 1.0f : -1.0f;
+        dir[2] = 0.0f;
+        invdist = 1.0f;
+    } else {
+        invdist = 1.0f / sqrtf(invdist);
+        for (i = 0; i < 3; i++) {
+            dir[i] = dir[i] * invdist;
+        }
+    }
+
+    /* Large separation force */
+    force = 100000.0f;
+
+    for (i = 0; i < 3; i++) {
+        temp[i] = force * dir[i];
+    }
+
+    /* Transform to body coordinates and apply */
+    world_to_body(temp, c1->CENTERFORCE, d1->dr_uvs, d1->RWR);
+}
+
+/**
+ * set_center_force - Set center force for a car
+ *
+ * @param car_index Car index
+ * @param force Force vector to set
+ */
+void set_center_force(s32 car_index, f32 force[3]) {
+    if (car_index >= 0 && car_index < MAX_CARS) {
+        col_data[car_index].CENTERFORCE[0] = force[0];
+        col_data[car_index].CENTERFORCE[1] = force[1];
+        col_data[car_index].CENTERFORCE[2] = force[2];
+    }
+}
+
+/**
+ * set_body_force - Set force at a body corner
+ *
+ * @param car_index Car index
+ * @param corner Corner index (0-3)
+ * @param force Force vector to set
+ */
+void set_body_force(s32 car_index, s32 corner, f32 force[3]) {
+    if (car_index >= 0 && car_index < MAX_CARS && corner >= 0 && corner < 4) {
+        col_data[car_index].BODYFORCE[corner][0] = force[0];
+        col_data[car_index].BODYFORCE[corner][1] = force[1];
+        col_data[car_index].BODYFORCE[corner][2] = force[2];
+    }
+}
+
+/**
+ * set_collision_damage - Calculate and apply damage from collision
+ * Based on arcade: collision.c:setCollisionDamage()
+ *
+ * @param car_index Car that was hit
+ */
+void set_collision_damage(s32 car_index) {
+    CollisionData *col;
+    f32 force_mag;
+
+    col = &col_data[car_index];
+
+    /* Calculate magnitude of collision force */
+    force_mag = sqrtf(col->CENTERFORCE[0] * col->CENTERFORCE[0] +
+                      col->CENTERFORCE[1] * col->CENTERFORCE[1] +
+                      col->CENTERFORCE[2] * col->CENTERFORCE[2]);
+
+    /* Update peak force tracking */
+    if (force_mag > col->peak_center_force[0][0]) {
+        col->peak_center_force[1][0] = col->peak_center_force[0][0];
+        col->peak_center_force[0][0] = force_mag;
+    } else if (force_mag > col->peak_center_force[1][0]) {
+        col->peak_center_force[1][0] = force_mag;
+    }
+
+    /* Damage would be applied to car state here based on force magnitude */
+}
+
+/**
+ * get_collision_radius - Get collision radius for a car
+ *
+ * @param car_index Car index
+ * @return Collision radius
+ */
+f32 get_collision_radius(s32 car_index) {
+    if (car_index >= 0 && car_index < MAX_CARS) {
+        return col_data[car_index].colrad;
+    }
+    return 0.0f;
+}
+
+/**
+ * set_collision_radius - Set collision radius for a car
+ *
+ * @param car_index Car index
+ * @param radius New collision radius
+ */
+void set_collision_radius(s32 car_index, f32 radius) {
+    if (car_index >= 0 && car_index < MAX_CARS) {
+        col_data[car_index].colrad = radius;
+    }
+}

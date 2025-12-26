@@ -440,3 +440,175 @@ void mtx_fix_cols(f32 m[3][3]) {
     mtx_fix_rows(m);
     mtx_transpose(m);
 }
+
+/******* ARCADE-COMPATIBLE ALIASES *******/
+
+/**
+ * magnitude - Vector magnitude (arcade name)
+ * Based on arcade: vecmath.c:magnitude()
+ *
+ * @param vec Input vector
+ * @return |vec|
+ */
+f32 magnitude(f32 vec[3]) {
+    return sqrtf(vec[0] * vec[0] + vec[1] * vec[1] + vec[2] * vec[2]);
+}
+
+/**
+ * invmagnitude - Inverse vector magnitude
+ * Based on arcade: vecmath.c:invmagnitude()
+ *
+ * @param vec Input vector
+ * @return 1 / |vec|
+ */
+f32 invmagnitude(f32 vec[3]) {
+    f32 len_sq = vec[0] * vec[0] + vec[1] * vec[1] + vec[2] * vec[2];
+    if (len_sq > 0.0001f) {
+        return 1.0f / sqrtf(len_sq);
+    }
+    return 0.0f;
+}
+
+/**
+ * direction - Normalize vector to unit length
+ * Based on arcade: vecmath.c:direction()
+ *
+ * @param vec Input vector
+ * @param dir Output unit vector
+ */
+void direction(f32 vec[3], f32 dir[3]) {
+    f32 invmag = invmagnitude(vec);
+    dir[0] = vec[0] * invmag;
+    dir[1] = vec[1] * invmag;
+    dir[2] = vec[2] * invmag;
+}
+
+/**
+ * scalmul - Scale multiply (arcade name)
+ * Based on arcade: vecmath.c:scalmul()
+ *
+ * @param a Input vector
+ * @param b Scalar
+ * @param r Output vector: a * b
+ */
+void scalmul(f32 *a, f32 b, f32 *r) {
+    r[0] = a[0] * b;
+    r[1] = a[1] * b;
+    r[2] = a[2] * b;
+}
+
+/**
+ * scaldiv - Scale divide (arcade name)
+ * Based on arcade: vecmath.c:scaldiv()
+ *
+ * @param a Input vector
+ * @param b Scalar divisor
+ * @param r Output vector: a / b
+ */
+void scaldiv(f32 *a, f32 b, f32 *r) {
+    f32 binv = 1.0f / b;
+    r[0] = a[0] * binv;
+    r[1] = a[1] * binv;
+    r[2] = a[2] * binv;
+}
+
+/**
+ * vecadd - Vector add (arcade name)
+ * Based on arcade: vecmath.c:vecadd()
+ */
+void vecadd(f32 *ap, f32 *bp, f32 *rp) {
+    rp[0] = ap[0] + bp[0];
+    rp[1] = ap[1] + bp[1];
+    rp[2] = ap[2] + bp[2];
+}
+
+/**
+ * vecsub - Vector subtract (arcade name)
+ * Based on arcade: vecmath.c:vecsub()
+ */
+void vecsub(f32 *ap, f32 *bp, f32 *rp) {
+    rp[0] = ap[0] - bp[0];
+    rp[1] = ap[1] - bp[1];
+    rp[2] = ap[2] - bp[2];
+}
+
+/**
+ * crossprod - Cross product (arcade name)
+ * Based on arcade: vecmath.c:crossprod()
+ */
+void crossprod(f32 a[3], f32 b[3], f32 r[3]) {
+    f32 temp[3];
+    r[0]    = a[1] * b[2];
+    temp[0] = a[2] * b[1];
+    r[1]    = a[2] * b[0];
+    temp[1] = a[0] * b[2];
+    r[2]    = a[0] * b[1];
+    temp[2] = a[1] * b[0];
+    vecsub(r, temp, r);
+}
+
+/**
+ * dotprod - Dot product (arcade name)
+ * Based on arcade: vecmath.c:dotprod()
+ */
+f32 dotprod(f32 a[3], f32 b[3]) {
+    return a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+}
+
+/**
+ * veccopy - Vector copy (arcade name)
+ * Based on arcade: vecmath.c:veccopy()
+ */
+void veccopy(f32 *a, f32 *r) {
+    r[0] = a[0];
+    r[1] = a[1];
+    r[2] = a[2];
+}
+
+/******* COORDINATE TRANSFORMS *******/
+
+/**
+ * ftransvec - Transform vector by rotation matrix
+ * Based on arcade: math.c:ftransvec()
+ *
+ * Transforms a body-coordinate vector to world coordinates.
+ *
+ * @param in Input vector (body coords)
+ * @param out Output vector (world coords)
+ * @param uvs 3x3 rotation matrix
+ */
+void ftransvec(f32 in[3], f32 out[3], f32 uvs[3][3]) {
+    out[0] = in[0] * uvs[0][0] + in[1] * uvs[1][0] + in[2] * uvs[2][0];
+    out[1] = in[0] * uvs[0][1] + in[1] * uvs[1][1] + in[2] * uvs[2][1];
+    out[2] = in[0] * uvs[0][2] + in[1] * uvs[1][2] + in[2] * uvs[2][2];
+}
+
+/**
+ * finvtransvec - Inverse transform vector by rotation matrix
+ * Based on arcade: math.c
+ *
+ * Transforms a world-coordinate vector to body coordinates.
+ *
+ * @param in Input vector (world coords)
+ * @param out Output vector (body coords)
+ * @param uvs 3x3 rotation matrix
+ */
+void finvtransvec(f32 in[3], f32 out[3], f32 uvs[3][3]) {
+    out[0] = in[0] * uvs[0][0] + in[1] * uvs[0][1] + in[2] * uvs[0][2];
+    out[1] = in[0] * uvs[1][0] + in[1] * uvs[1][1] + in[2] * uvs[1][2];
+    out[2] = in[0] * uvs[2][0] + in[1] * uvs[2][1] + in[2] * uvs[2][2];
+}
+
+/**
+ * fmatcopy - Copy 3x3 float matrix
+ * Based on arcade: camera.c reference
+ *
+ * @param src Source matrix (as float pointer)
+ * @param dst Destination matrix (as float pointer)
+ */
+void fmatcopy(f32 *src, f32 *dst) {
+    s32 i;
+    for (i = 0; i < 9; i++) {
+        dst[i] = src[i];
+    }
+}

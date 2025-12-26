@@ -86,7 +86,7 @@ u32 get_next_checkpoint(u32 cur_checkpoint);
 
 /* Checkpoint detection */
 void CheckCPs(void);                    /* Check all cars for checkpoints */
-void PassedCP(void *model, s8 flag);    /* Car passed checkpoint */
+void PassedCP(s32 car_index, s8 flag);  /* Car passed checkpoint */
 void JumpToNextCP(void);                /* Skip to next checkpoint */
 
 /* Position/timing */
@@ -97,6 +97,18 @@ void CarReportsGameOver(s32 slot, u32 score, u32 flag);
 /* Utility */
 void set_game_time_to_one_second(void); /* End race quickly */
 void update_lap_counter(s16 mode, s16 laps_left);
+u32  get_checkpoint_bonus_time(s32 cp_index, s32 lap);
+f32  calc_car_distance(s32 car_index);
+
+/* Race position sorting */
+void sort_race_positions(void);         /* Sort active cars by distance */
+void sort_finished_positions(void);     /* Sort finished cars by time */
+void update_all_positions(void);        /* Full position update */
+s32  get_race_position(s32 car_index);  /* Get car's position */
+s32  get_race_leader(void);             /* Get leader's car index */
+s32  is_in_first_place(void);           /* Check if player is leading */
+f32  get_distance_to_leader(s32 car_index);   /* Distance behind leader */
+f32  get_distance_to_car(s32 car1, s32 car2); /* Distance between cars */
 
 /* Mode values for update_lap_counter */
 #define CP_INITIALIZE   0

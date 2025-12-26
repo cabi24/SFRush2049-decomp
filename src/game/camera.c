@@ -36,6 +36,13 @@ f32 gCamUvs[3][3];
 /* Static state */
 static f32 last_car_pos[3];
 static f32 camera_velocity[3];
+static f32 cur_acc[3];               /* Acceleration offset for camera shake */
+static f32 old_vec0;                 /* Previous frame velocity for smoothing */
+static s32 view3_switch;             /* View 3 state */
+
+/* Arcade constants (from camera.c) */
+static const f32 acc_elasticity = 0.85f;    /* Lateral/longitudinal smoothing */
+static const f32 acc_elasticity2 = 0.35f;   /* Vertical smoothing (bouncier) */
 
 /**
  * camera_init - Initialize camera system
@@ -79,7 +86,11 @@ void camera_init(void) {
         gCamera.acc[i] = 0.0f;
         last_car_pos[i] = 0.0f;
         camera_velocity[i] = 0.0f;
+        cur_acc[i] = 0.0f;
     }
+
+    old_vec0 = 0.0f;
+    view3_switch = 1;
 }
 
 /**
@@ -258,17 +269,41 @@ void camera_update_chase(s32 car_index) {
  * camera_update_hood - Update hood/cockpit camera
  * Based on arcade: camera.c view 2 (hood cam)
  *
+ * Hood camera includes acceleration-based shake from collisions
+ * and road bumps for immersive effect.
+ *
  * @param car_index Target car
  */
 void camera_update_hood(s32 car_index) {
     CarData *car;
+    f32 pos_in[3];
+    s32 i;
 
     car = &car_array[car_index];
 
-    /* Hood cam is rigidly attached to car */
-    gCamera.pos[0] = car->dr_pos[0] + gCamera.offset[0];
-    gCamera.pos[1] = car->dr_pos[1] + gCamera.offset[1];
-    gCamera.pos[2] = car->dr_pos[2] + gCamera.offset[2];
+    /* Calculate camera shake from acceleration */
+    /* From arcade: collision forces scaled and smoothed */
+    pos_in[0] = car->dr_acc[0] * -0.00002f;  /* Left/right shake */
+    pos_in[1] = car->dr_acc[1] * -0.00002f;  /* Forward/back shake */
+    pos_in[2] = car->dr_acc[2] * -0.003f;    /* Up/down shake (stronger) */
+
+    /* Clamp vertical acceleration effect */
+    if (pos_in[2] < -0.003f) {
+        pos_in[2] = -0.003f;
+    }
+
+    /* Smooth left/right and forward/back bumps */
+    for (i = 0; i < 2; i++) {
+        cur_acc[i] = cur_acc[i] * acc_elasticity + pos_in[i] * (1.0f - acc_elasticity);
+    }
+
+    /* Smooth up/down bumps (different elasticity for more bounce) */
+    cur_acc[2] = cur_acc[2] * acc_elasticity2 + pos_in[2] * (1.0f - acc_elasticity2);
+
+    /* Hood cam is attached to car with shake offset */
+    gCamera.pos[0] = car->dr_pos[0] + gCamera.offset[0] - cur_acc[1];
+    gCamera.pos[1] = car->dr_pos[1] + gCamera.offset[1] + cur_acc[2];
+    gCamera.pos[2] = car->dr_pos[2] + gCamera.offset[2] - cur_acc[0];
 
     /* Look forward from car's perspective */
     /* Would use car's orientation matrix here */

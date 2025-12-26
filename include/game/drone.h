@@ -96,4 +96,20 @@ void drone_set_difficulty(s32 car_index, s32 difficulty);
 void drone_set_target(s32 car_index, s32 target);
 void drone_end(void);
 
+/**
+ * Linear interpolation utility
+ * Based on arcade: drones.c:linear_interp()
+ *
+ * Maps input from range [in_bound1, in_bound2] to [out_bound1, out_bound2]
+ * Clamps output to bounds if input is outside range.
+ *
+ * @param in_bound1  First input boundary
+ * @param in_bound2  Second input boundary
+ * @param out_bound1 Output value when input equals in_bound1
+ * @param out_bound2 Output value when input equals in_bound2
+ * @param input      Value to interpolate
+ * @return Interpolated output value
+ */
+f32 linear_interp(f32 in_bound1, f32 in_bound2, f32 out_bound1, f32 out_bound2, f32 input);
+
 #endif /* DRONE_H */

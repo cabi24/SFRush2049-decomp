@@ -441,3 +441,411 @@ void state_change_notify(void) {
         gstate_prev = gstate;
     }
 }
+
+/******* ARCADE-COMPATIBLE GAME LOOP *******/
+
+/* External sound functions */
+extern void SOUND(u16 cmd);
+extern void sound_stop_all(void);
+
+/* Sound command IDs */
+#define S_STOP_ALL      0x8000
+#define S_FANFARE2      0x8048
+#define S_RUSH          0x8095
+#define S_SPUTTER       0x80A0
+#define S_KSPUTTER      0x80A1
+
+/* External game data */
+extern s32 trackno;
+extern s32 num_active_cars;
+extern s32 this_node;
+extern s32 demo_game;
+extern s32 difficulty[];
+
+/* External functions */
+extern void ReadGasAndBrake(void);
+extern void update_all_positions(void);
+extern s32 are_all_cars_stopped(void);
+
+/**
+ * game - Main per-frame game function
+ * Based on arcade: game.c:game()
+ *
+ * This is the central game loop dispatcher that handles
+ * all state-specific logic and transitions.
+ */
+void game(void) {
+    /* Handle state-specific logic */
+    switch (current_state) {
+        case GS_ATTRACT:
+            state_attract();
+            break;
+
+        case GS_TRKSEL:
+            state_track_select();
+            break;
+
+        case GS_CARSEL:
+            state_car_select();
+            break;
+
+        case GS_PREPLAY:
+            state_preplay();
+            break;
+
+        case GS_COUNTDOWN:
+            state_countdown();
+            break;
+
+        case GS_PREPLAY2:
+            state_preplay2();
+            break;
+
+        case GS_PLAYGAME:
+            state_playgame();
+            break;
+
+        case GS_ENDGAME:
+            state_endgame();
+            break;
+
+        case GS_GAMEOVER:
+            state_gameover();
+            break;
+
+        case GS_HISCORE:
+            state_hiscore();
+            break;
+
+        default:
+            break;
+    }
+
+    /* Increment state timer */
+    state_timer++;
+}
+
+/**
+ * state_preplay2 - Final pre-race setup
+ * Based on arcade: game.c PREPLAY2 case
+ *
+ * Called just before race starts to set up timer
+ * and transition to PLAYGAME.
+ */
+void state_preplay2(void) {
+    /* Set race time from track data */
+    /* track_data[trackno].start_time[difficulty[trackno]] */
+
+    /* Play "RUSH!" sound */
+    SOUND(S_RUSH);
+
+    /* Initialize checkpoint timing */
+    init_cp_time();
+
+    /* Transition to gameplay */
+    state_set(GS_PLAYGAME);
+}
+
+/**
+ * do_endgame - End of race handling
+ * Based on arcade: game.c:do_endgame()
+ */
+void do_endgame(void) {
+    /* Show race results */
+
+    /* After delay, transition to GAMEOVER */
+    if (state_timer > 3 * ONE_SEC) {
+        state_set(GS_GAMEOVER);
+    }
+}
+
+/**
+ * do_gameover - Game over handling
+ * Based on arcade: game.c:do_gameover()
+ */
+void do_gameover(void) {
+    /* Check for high score */
+    if (check_high_score()) {
+        state_set(GS_HISCORE);
+    } else {
+        state_set(GS_ATTRACT);
+    }
+}
+
+/**
+ * check_high_score - Check if player achieved a high score
+ *
+ * @return Non-zero if high score achieved
+ */
+s32 check_high_score(void) {
+    /* Compare player's score against high score table */
+    /* For now, always return 0 (no high score) */
+    return 0;
+}
+
+/**
+ * are_all_cars_stopped - Check if all cars have stopped
+ * Based on arcade: game.c:are_all_cars_stopped()
+ *
+ * Used to determine when to end the race after timeout.
+ *
+ * @return Non-zero if all cars stopped
+ */
+s32 are_all_cars_stopped_impl(void) {
+    s32 i;
+    f32 speed_threshold = 5.0f;
+
+    for (i = 0; i < num_active_cars; i++) {
+        if (car_array[i].speed > speed_threshold) {
+            return 0;  /* At least one car still moving */
+        }
+    }
+
+    return 1;  /* All cars stopped */
+}
+
+/**
+ * preplay - Full pre-race initialization
+ * Based on arcade: game.c:preplay()
+ *
+ * @param useHud Show HUD during race
+ * @param canAbort Allow race abort
+ * @return Non-zero if successful
+ */
+s32 preplay(s32 useHud, s32 canAbort) {
+    s32 i;
+
+    /* Clear car object numbers */
+    for (i = 0; i < MAX_CARS; i++) {
+        car_array[i].objnum = -1;
+    }
+
+    /* Load track would go here */
+    /* loadTrack(trackno, useHud, canAbort) */
+
+    /* Initialize checkpoints */
+    InitCPS();
+
+    /* Initialize cars */
+    /* init_cars() */
+
+    /* Initialize drones/AI */
+    /* InitDrones() */
+
+    /* Initialize physics for all cars */
+    coast_flag = 0;
+    for (i = 0; i < num_active_cars; i++) {
+        /* Init_MDrive(Initialize, slot) */
+    }
+
+    /* Show HUD if requested */
+    if (useHud) {
+        /* ShowHUD() */
+    }
+
+    return 1;  /* Success */
+}
+
+/**
+ * init_cars - Initialize all car data
+ * Based on arcade: game.c:init_cars()
+ */
+void init_cars(void) {
+    s32 i;
+
+    for (i = 0; i < MAX_CARS; i++) {
+        car_array[i].data_valid = 0;
+        car_array[i].laps = 0;
+        car_array[i].checkpoint = 0;
+        car_array[i].place = i;
+        car_array[i].place_locked = 0;
+        car_array[i].score = 0;
+        car_array[i].crashflag = 0;
+    }
+}
+
+/**
+ * SetupCar - Setup car visuals and physics
+ * Based on arcade: game.c:SetupCar()
+ *
+ * @param node Car slot index
+ * @param body_type Body type index
+ * @param init Initialize physics
+ */
+void SetupCar(s32 node, s32 body_type, s32 init) {
+    if (node < 0 || node >= MAX_CARS) {
+        return;
+    }
+
+    car_array[node].body_type = body_type;
+    car_array[node].data_valid = 1;
+
+    if (init) {
+        /* Initialize car physics */
+        /* Init_MDrive(Initialize, node) */
+    }
+}
+
+/**
+ * check_buttons - Check for button presses during game
+ * Based on arcade: game.c:check_buttons()
+ */
+void check_buttons(void) {
+    /* Check for pause, abort, view change, etc. */
+    /* Handled by input system */
+}
+
+/******* COUNTDOWN FUNCTIONS *******/
+
+/**
+ * CountDown - Handle race countdown sequence
+ * Based on arcade: game.c:CountDown()
+ *
+ * Displays 3-2-1-GO and plays appropriate sounds.
+ */
+void CountDown(void) {
+    s32 elapsed_frames;
+    s32 current_count;
+    static s32 last_count = -1;
+
+    elapsed_frames = frame_counter - countdown_start_time;
+    current_count = COUNTDOWN_START - (elapsed_frames / ONE_SEC);
+
+    if (current_count < -1) {
+        current_count = -1;
+    }
+
+    /* Play sound on count change */
+    if (current_count != last_count) {
+        last_count = current_count;
+
+        switch (current_count) {
+            case 3:
+                SOUND(0x8092);  /* S_THREE */
+                break;
+            case 2:
+                SOUND(0x8093);  /* S_TWO */
+                break;
+            case 1:
+                SOUND(0x8094);  /* S_ONE */
+                break;
+            case 0:
+                SOUND(S_RUSH);  /* "RUSH!" / GO */
+                /* Transition to race */
+                state_set(GS_PREPLAY2);
+                break;
+        }
+    }
+
+    countdown_value = current_count;
+}
+
+/**
+ * ResetCountdownTimer - Reset the countdown to full
+ * Based on arcade: game.c:ResetCountdownTimer()
+ */
+void ResetCountdownTimer(void) {
+    countdown_start_time = frame_counter;
+    countdown_value = COUNTDOWN_START;
+}
+
+/**
+ * SetCountdownTimer - Set countdown duration
+ * Based on arcade: game.c:SetCountdownTimer()
+ *
+ * @param time Time in frames
+ */
+void SetCountdownTimer(s32 time) {
+    countdown_time_limit = frame_counter + time;
+}
+
+/**
+ * SetCountdownTimerAt0 - Set countdown with time already at zero
+ * Based on arcade: game.c:SetCountdownTimerAt0()
+ *
+ * @param time Time in frames
+ */
+void SetCountdownTimerAt0(s32 time) {
+    countdown_time_limit = frame_counter + time;
+    game_start_time = frame_counter;
+}
+
+/**
+ * GetCountdownTime - Get remaining countdown time
+ * Based on arcade: game.c:GetCountdownTime()
+ *
+ * @return Remaining time in frames (0 if expired)
+ */
+s32 GetCountdownTime(void) {
+    if (frame_counter >= countdown_time_limit) {
+        return 0;
+    }
+    return countdown_time_limit - frame_counter;
+}
+
+/**
+ * GetElapsedTime - Get elapsed race time
+ * Based on arcade: game.c:GetElapsedTime()
+ *
+ * @return Elapsed time in frames since race start
+ */
+u32 GetElapsedTime(void) {
+    return frame_counter - game_start_time;
+}
+
+/**
+ * TimeOut - Check if time has run out
+ * Based on arcade: game.c:TimeOut()
+ *
+ * @return Non-zero if time expired
+ */
+s32 TimeOut(void) {
+    return (GetCountdownTime() == 0) ? 1 : 0;
+}
+
+/******* STATE QUERY FUNCTIONS *******/
+
+/**
+ * is_playgame - Check if currently in gameplay state
+ *
+ * @return Non-zero if in PLAYGAME state
+ */
+s32 is_playgame(void) {
+    return (current_state == GS_PLAYGAME) ? 1 : 0;
+}
+
+/**
+ * is_countdown - Check if currently in countdown state
+ *
+ * @return Non-zero if in COUNTDOWN state
+ */
+s32 is_countdown(void) {
+    return (current_state == GS_COUNTDOWN) ? 1 : 0;
+}
+
+/**
+ * is_attract - Check if currently in attract mode
+ *
+ * @return Non-zero if in ATTRACT state
+ */
+s32 is_attract(void) {
+    return (current_state == GS_ATTRACT) ? 1 : 0;
+}
+
+/**
+ * is_demo_game - Check if running demo game
+ *
+ * @return Non-zero if demo game active
+ */
+s32 is_demo_game(void) {
+    return demo_game;
+}
+
+/**
+ * get_state_timer - Get frames spent in current state
+ *
+ * @return State timer value
+ */
+s32 get_state_timer(void) {
+    return state_timer;
+}

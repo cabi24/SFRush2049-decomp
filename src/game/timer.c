@@ -235,3 +235,107 @@ f32 frame_time_get_fps(void) {
     }
     return 60.0f;
 }
+
+/******* ARCADE-COMPATIBLE TIMING FUNCTIONS *******/
+/* Based on arcade game/sselect.c timing system */
+/* Uses millisecond time base like arcade IRQTIME */
+
+#define ONE_SEC     1000    /* Milliseconds per second (arcade constant) */
+
+/* Arcade-style timer state */
+static u32 arcade_start_time;    /* IRQTIME snapshot when timer started */
+static u32 arcade_play_time;     /* Target countdown time in milliseconds */
+
+/**
+ * get_irqtime - Get current time in milliseconds (arcade IRQTIME equivalent)
+ *
+ * The arcade uses hardware IRQ to maintain a millisecond timer.
+ * On N64 we convert osGetCount() to milliseconds.
+ *
+ * @return Current time in milliseconds
+ */
+static u32 get_irqtime(void) {
+    u32 count = osGetCount();
+    /* Convert CPU counter to milliseconds */
+    /* COUNT_PER_SEC / 1000 = counts per millisecond */
+    return count / (COUNT_PER_SEC / 1000);
+}
+
+/**
+ * GetElapsedTime - Get elapsed time in milliseconds
+ * Arcade: game/sselect.c:2736
+ *
+ * Returns time elapsed since last SetCountdownTimer call.
+ *
+ * @return Elapsed time in milliseconds
+ */
+u32 GetElapsedTime(void) {
+    return get_irqtime() - arcade_start_time;
+}
+
+/**
+ * GetCountdownTime - Get remaining countdown time in milliseconds
+ * Arcade: game/sselect.c:2728
+ *
+ * Returns time remaining on countdown timer.
+ * Negative values indicate timer has expired.
+ *
+ * @return Time remaining in milliseconds (can be negative)
+ */
+s32 GetCountdownTime(void) {
+    return (s32)arcade_play_time - (s32)GetElapsedTime();
+}
+
+/**
+ * SetCountdownTimer - Set countdown timer
+ * Arcade: game/sselect.c:2744
+ *
+ * Resets the elapsed timer and sets target countdown time.
+ *
+ * @param msec Countdown time in milliseconds
+ */
+void SetCountdownTimer(s32 msec) {
+    arcade_play_time = (u32)msec;
+    arcade_start_time = get_irqtime();
+}
+
+/**
+ * TimeOut - Check if countdown timer has expired
+ * Arcade: game/sselect.c:2753
+ *
+ * Returns true if countdown has reached the final half second.
+ * The arcade uses ONE_SEC/2 (500ms) as the timeout threshold.
+ *
+ * @return 1 if timed out, 0 otherwise
+ */
+s32 TimeOut(void) {
+    return GetCountdownTime() <= (ONE_SEC / 2);
+}
+
+/**
+ * SetCountdownTimerAt0 - Set countdown preserving elapsed offset
+ * Arcade: game/select.c:3059
+ *
+ * Sets new countdown while maintaining offset from current timer.
+ * Used for seamless timer transitions.
+ *
+ * @param msec New countdown time in milliseconds
+ */
+void SetCountdownTimerAt0(s32 msec) {
+    s32 timer = GetCountdownTime();
+    SetCountdownTimer(msec);
+    /* Adjust start time to preserve elapsed offset */
+    if (timer > 0) {
+        arcade_start_time -= (msec - timer);
+    }
+}
+
+/**
+ * arcade_timer_init - Initialize arcade-style timer system
+ *
+ * Called at game init to reset all arcade timing state.
+ */
+void arcade_timer_init(void) {
+    arcade_start_time = get_irqtime();
+    arcade_play_time = 0;
+}

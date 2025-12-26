@@ -762,6 +762,172 @@ void body_to_rw(f32 body[3], f32 rw[3], UVect *uv) {
     rw[2] = uv->fpuvs[0][2]*body[0] + uv->fpuvs[1][2]*body[1] + uv->fpuvs[2][2]*body[2];
 }
 
+/******* ARCADE TORQUE CURVES *******/
+/* From arcade: cars.c */
+/* Rows = throttle 0-100%, Columns = RPM 0-11000 */
+
+const s16 stdtorquecurve[10][12] = {
+    {  75, -10, -30, -50, -70, -80, -80, -80, -80, -80, -80, -80 },
+    {  75, 100,   1, -12, -29, -41, -49, -60, -71, -76, -78, -80 },
+    {  75, 150,  32,  26,  12,  -2, -18, -40, -62, -71, -76, -80 },
+    {  75, 150,  63,  63,  53,  37,  13, -20, -53, -67, -73, -80 },
+    {  75, 150,  94, 101,  94,  76,  44,   0, -44, -62, -71, -80 },
+    {  75, 175, 126, 139, 136, 114,  76,  20, -36, -58, -69, -80 },
+    {  75, 175, 157, 177, 177, 153, 107,  40, -27, -53, -67, -80 },
+    {  75, 175, 188, 214, 218, 192, 138,  60, -18, -49, -64, -80 },
+    {  75, 177, 219, 252, 259, 231, 169,  80,  -9, -44, -62, -80 },
+    {  75, 200, 250, 290, 300, 270, 200, 100,   0, -40, -60, -80 }
+};
+
+const s16 rushtorquecurve[10][12] = {
+    { 100, -12, -33, -51, -61, -54, -71, -75, -75, -75, -75, -75 },
+    { 100, 112,  62,   3, -30, -51, -65, -69, -71, -73, -75, -75 },
+    { 100, 114, 113, 112, 104,  70,  87,  32, -32, -62, -70, -75 },
+    { 100, 116, 126, 131, 136, 136, 131,  90,  -1, -36, -69, -75 },
+    { 100, 119, 137, 151, 161, 170, 175, 160,  90,   0, -50, -75 },
+    { 100, 127, 156, 178, 196, 215, 223, 225, 205,  75, -32, -75 },
+    { 100, 133, 163, 190, 212, 230, 245, 256, 243, 108, -23, -75 },
+    { 100, 137, 175, 206, 230, 250, 265, 280, 282, 175, -10, -75 },
+    { 100, 146, 186, 222, 248, 275, 293, 305, 310, 251,   4, -69 },
+    { 100, 155, 202, 240, 275, 300, 320, 327, 328, 312,  49, -65 }
+};
+
+/**
+ * tire_constants - Calculate derived tire constants
+ * Based on arcade: initiali.c:tire_constants()
+ *
+ * Calculates polynomial coefficients for tire force model
+ * based on cornering stiffness and max friction.
+ *
+ * @param tdes Tire description to update
+ */
+void tire_constants(TireDes *tdes) {
+    /* Calculate slip angle at max force */
+    tdes->Afmax = 3.0f * tdes->Cfmax * tdes->Zforce / tdes->Cstiff;
+
+    /* Lateral force polynomial: Cf = k1*a + k2*|a|*a + k3*a^3 */
+    tdes->k1 = tdes->Cstiff / tdes->Zforce;
+    tdes->k2 = tdes->k1 * tdes->k1 / (3.0f * tdes->Cfmax);
+    tdes->k3 = tdes->k1 * tdes->k1 * tdes->k1 / (27.0f * tdes->Cfmax * tdes->Cfmax);
+
+    /* Derivative coefficients */
+    tdes->l2 = tdes->k2 * 2.0f;
+    tdes->l3 = tdes->k3 * 3.0f;
+
+    /* Aligning torque coefficients */
+    tdes->m1 = 40.0f * 0.052f / (tdes->Cfmax / 2.0f);
+    tdes->m2 = tdes->m1 * tdes->m1 / 3.4f;
+    tdes->m3 = tdes->m1 * tdes->m1 * tdes->m1 / 46.3f;
+    tdes->m4 = 1.0f / 0.000055f;
+
+    /* Reset contact patch deformation */
+    tdes->patchy = 0.0f;
+}
+
+/**
+ * copy_tire_info - Copy tire parameters with load adjustment
+ * Based on arcade: initiali.c:copy_tire_info()
+ *
+ * @param mass Vehicle mass (for load calculation)
+ * @param tp1 Source tire parameters
+ * @param tp2 Destination tire parameters
+ * @param otw Track width to other tire (feet)
+ * @param wb Wheelbase (feet)
+ */
+void copy_tire_info(f32 mass, TireDes *tp1, TireDes *tp2, f32 otw, f32 wb) {
+    tp2->tradius = tp1->tradius;
+    tp2->springK = tp1->springK;
+    tp2->rubdamp = tp1->rubdamp;
+    tp2->Cstiff = tp1->PaveCstiff;
+    tp2->PaveCstiff = tp1->PaveCstiff;
+    tp2->Cfmax = tp1->PaveCfmax;
+    tp2->PaveCfmax = tp1->PaveCfmax;
+    tp2->invmi = tp1->invmi;
+
+    /* Calculate static load based on geometry */
+    tp2->Zforce = (mass * GRAVCON * otw / wb) * 0.5f;
+}
+
+/**
+ * get_engine_torque - Interpolate torque from curve
+ * Based on arcade: engine torque lookup
+ *
+ * @param curve Torque curve (10x12 table)
+ * @param throttle Throttle position (0-1)
+ * @param rpm Engine RPM
+ * @param rpm_per_entry RPM per curve column
+ * @return Interpolated torque value
+ */
+f32 get_engine_torque(const s16 curve[10][12], f32 throttle, s32 rpm, s32 rpm_per_entry) {
+    s32 throttle_idx, rpm_idx;
+    f32 throttle_frac, rpm_frac;
+    f32 t00, t01, t10, t11;
+    f32 t0, t1;
+
+    /* Clamp throttle to valid range */
+    if (throttle < 0.0f) throttle = 0.0f;
+    if (throttle > 1.0f) throttle = 1.0f;
+
+    /* Clamp RPM to valid range */
+    if (rpm < 0) rpm = 0;
+    if (rpm > 11 * rpm_per_entry) rpm = 11 * rpm_per_entry;
+
+    /* Calculate indices and fractions */
+    throttle_idx = (s32)(throttle * 9.0f);
+    if (throttle_idx > 8) throttle_idx = 8;
+    throttle_frac = throttle * 9.0f - (f32)throttle_idx;
+
+    rpm_idx = rpm / rpm_per_entry;
+    if (rpm_idx > 10) rpm_idx = 10;
+    rpm_frac = (f32)(rpm % rpm_per_entry) / (f32)rpm_per_entry;
+
+    /* Bilinear interpolation */
+    t00 = (f32)curve[throttle_idx][rpm_idx];
+    t01 = (f32)curve[throttle_idx][rpm_idx + 1];
+    t10 = (f32)curve[throttle_idx + 1][rpm_idx];
+    t11 = (f32)curve[throttle_idx + 1][rpm_idx + 1];
+
+    t0 = t00 + (t01 - t00) * rpm_frac;
+    t1 = t10 + (t11 - t10) * rpm_frac;
+
+    return t0 + (t1 - t0) * throttle_frac;
+}
+
+/**
+ * init_car_from_params - Initialize car physics from Car parameters
+ *
+ * @param m Physics state to initialize
+ * @param car Car parameter definition
+ */
+void init_car_from_params(CarPhysics *m, const Car *car) {
+    s32 i;
+
+    m->mass = car->mass;
+    m->massinv = 1.0f / car->mass;
+    m->rollresist = car->rollresist;
+    m->srefpcybo2 = car->srefpcybo2;
+
+    for (i = 0; i < 4; i++) {
+        m->springrate[i] = -car->springrate[i];  /* Negate (compression = positive) */
+        m->cdamping[i] = -car->cdamping[i];
+        m->rdamping[i] = -car->rdamping[i];
+
+        m->TIRER[i][XCOMP] = car->TIRER[i][XCOMP];
+        m->TIRER[i][YCOMP] = car->TIRER[i][YCOMP];
+        m->TIRER[i][ZCOMP] = car->TIRER[i][ZCOMP];
+    }
+
+    m->farspringrate = -car->farspringrate;
+
+    /* Steering */
+    m->swtorquegain = car->swtpg;
+    m->maxswdamp = (f32)car->maxswdamp;
+    m->maxswfrict = (f32)car->maxswfrict;
+    m->minswfrict = (f32)car->minswfrict;
+
+    m->nothrusttorque = car->nothrusttorque;
+}
+
 /* Stub declarations for original disassembled functions */
 void func_800B0868(void);  /* PhysicsObjectList_Update - TODO: Decompile */
 void func_800B811C(void);  /* Effects_UpdateEmitters - TODO: Decompile */

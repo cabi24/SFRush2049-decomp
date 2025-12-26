@@ -66,5 +66,11 @@ void check_wall_collision(s32 car_index);
 /* Utility */
 f32 vec_dist_sq(f32 a[3], f32 b[3]);
 void apply_collision_forces(s32 car_index);
+void set_car_collidable(s32 car_index, s32 collidable);
+void set_car_in_game(s32 car_index, s32 in_game);
+void ForceApart(s32 car1, s32 car2, f32 dir[3]);
+void set_collision_damage(s32 car_index);
+f32 get_collision_radius(s32 car_index);
+void set_collision_radius(s32 car_index, f32 radius);
 
 #endif /* COLLISION_H */

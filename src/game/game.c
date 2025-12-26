@@ -9,15 +9,16 @@
 #include "game/structs.h"
 
 /* External function declarations */
-extern void func_800C9AE0(void);       /* Input/init handling */
 extern void func_800EDDC0(void);       /* Rendering/game logic */
 extern void func_800C997C(void);       /* Screen/state update */
-extern void func_800B37E8(void);       /* Audio/sound control */
-extern void func_800CA3B4(void);       /* Main gameplay (playgame) */
+extern s32  func_800B37E8(s32, s32, void*, s32); /* Audio/sound control */
 extern void func_800DB81C(void);       /* Attract mode */
 extern void func_800FBF88(void);       /* High score entry */
 extern void func_800FBC30(void);       /* Countdown timer */
-extern void func_800A04C4(void);       /* Viewport/camera setup */
+extern void func_800A04C4(s32);        /* Viewport/camera setup */
+
+/* Forward declarations for functions defined in this file */
+void func_800C9AE0(void);
 
 /* State handler declarations */
 extern void func_800FBF90(u32 flags);  /* GSTATE_INIT handler */
@@ -31,139 +32,12666 @@ extern CarData car_array[];            /* 0x80152818 - array of car data */
 extern GameStruct game_struct;         /* 0x801461D0 - main game structure */
 extern u32 frame_counter;              /* 0x80142AFC - frame counter */
 
+/* Additional external data for game_loop */
+extern s8  D_801146EC;   /* Init flag */
+extern s32 D_801146E8;   /* Sound handle */
+extern s32 D_801170FC;   /* Render enable flag */
+extern u32 D_80142AFC;   /* Frame counter */
+extern s16 D_8003EB70;   /* Wait flag */
+extern u32 D_8003E8E8;   /* Timer/tick */
+extern u32 D_8003AFB8;   /* Timing constant (float as u32) */
+extern u32 D_80159438;   /* Some state value */
+extern u32 D_801597C8;   /* Another state value */
+extern u32 D_801597F4;   /* State copy */
+extern s8  D_801146C4[]; /* Sound params array */
+extern u32 D_801174B4;   /* gstate - current state bitmask (for game_loop) */
+extern u32 D_801174B8;   /* gstate_pending - next state (for game_loop) */
+extern void func_800B358C(void*); /* sound_stop */
+extern void func_800FD238(void); /* state_dispatch */
+extern void func_800F733C(void); /* UpdateActiveObjects */
+extern void *func_800B0868(void); /* PhysicsObjectList_Update */
+extern void func_800B811C(void); /* Effects_UpdateEmitters */
+
+/* Forward declaration */
+void func_800CA3B4(void);
+
 /**
- * game_loop - Main per-frame game logic
+ * func_800FD464 - Main per-frame game loop
  * Address: 0x800FD464
+ * Size: 704 bytes
  *
  * This is the N64 equivalent of arcade game.c:game()
  * Called every frame from the main thread.
  *
- * Handles the game state machine:
- * - ATTRACT: Demo/title screen
- * - TRKSEL: Track selection
- * - CARSEL: Car selection
- * - PREPLAY: Pre-race setup
- * - COUNTDOWN: Race countdown
- * - PLAYGAME: Active racing
- * - ENDGAME: Race finished
- * - GAMEOVER: Game over screen
- * - HISCORE: High score entry
+ * The function:
+ * 1. Handles first-time initialization
+ * 2. Checks for state changes (gstate vs gstate_pending)
+ * 3. Manages sound start/stop based on state
+ * 4. Calls state-specific handlers
+ * 5. Increments frame counter
  */
-void game_loop(void) {
-    u32 state_flags = gstate;
+s32 func_800FD464(void) {
+    s32 result = 0;
+    u32 gstate_cur;
+    u32 gstate_next;
+    u32 timing_diff;
+    f32 elapsed_time;
+    s32 sound_handle;
 
-    /* Handle state changes */
-    if (gstate != gstate_prev) {
-        func_800C9AE0();  /* Process state change */
-        gstate_prev = gstate;
+    /* First-time initialization */
+    if (D_801146EC == 0) {
+        D_80142AFC = 0;  /* Clear frame counter */
+        D_801146EC = 1;  /* Set init flag */
     }
 
-    /* Process based on state flags */
-    /* N64 uses bitmask states unlike arcade's enum */
+    /* Load current and pending state */
+    gstate_cur = D_801174B4;
+    gstate_next = D_801174B8;
 
-    if (state_flags & GSTATE_INIT) {
-        func_800FBF90(state_flags);
-        return;
+    /* If no state change pending, just call mode handler and return */
+    if (gstate_cur == gstate_next) {
+        func_800C9AE0();  /* game_mode_handler */
+        return result;
     }
 
-    if (state_flags & GSTATE_SETUP) {
-        func_800FBFE4();
-        return;
+    /* State change in progress - wait for something to clear */
+    while (D_8003EB70 != 0) {
+        /* Spin wait - checking flag */
     }
 
-    if (state_flags & GSTATE_MENU) {
-        func_800FC0EC(state_flags);
-        return;
-    }
+    /* Clear render state and call transition handler */
+    D_80159438 = 0;
+    func_800EDDC0();  /* attract_or_transition */
 
-    if (state_flags & GSTATE_CAMERA) {
-        func_800A04C4();  /* Camera/viewport setup */
-    }
+    /* Save state value */
+    D_801597F4 = D_801597C8;
 
-    if (state_flags & GSTATE_READY) {
-        func_800FBC30();  /* Countdown */
-        return;
-    }
+    /* Process inputs/PDUs */
+    func_800C997C();  /* process_inputs */
 
-    if (state_flags & GSTATE_PLAY) {
-        func_800CA3B4();  /* Main gameplay - playgame() */
-    }
+    /* Timing check - calculate elapsed time */
+    timing_diff = D_8003E8E8 - D_8003AFB8;
+    elapsed_time = (f32)(s32)timing_diff;
 
-    if (state_flags & GSTATE_CARS) {
-        func_800EDDC0();  /* Update car visuals/rendering */
-    }
-
-    if (state_flags & GSTATE_FINISH) {
-        func_800FBF88();  /* High score/finish handling */
-    }
-
-    /* Audio processing */
-    func_800B37E8();
-
-    /* Rendering */
-    func_800C997C();
-
-    /* Increment frame counter */
-    frame_counter++;
-}
-
-/**
- * playgame - Active racing state handler
- * Address: 0x800CA3B4
- *
- * Called when GSTATE_PLAY is active.
- * Updates all active cars, checks collisions, handles AI.
- *
- * Based on arcade game.c:playgame()
- */
-#if 0  /* TODO: Decompile from assembly */
-void playgame(void) {
-    s32 i;
-
-    /* Update timer */
-    update_timer();
-
-    /* Process each car */
-    for (i = 0; i < MAX_CARS; i++) {
-        CarData *car = &car_array[i];
-
-        if (car->data_valid) {
-            /* Update physics */
-            update_car_physics(car);
-
-            /* Check collisions */
-            check_collisions(car);
-
-            /* Update AI for drones */
-            if (car->difficulty != DRONE_HUMAN) {
-                update_car_ai(car);
+    /* Check if elapsed time > 300.0 (5 seconds at 60fps) */
+    if (elapsed_time < 300.0f) {
+        /* Check if we need to manage sound */
+        if (!(D_801174B4 & 0x4000000F)) {
+            sound_handle = D_801146E8;
+            if (sound_handle == 0) {
+                /* Start sound - call with params */
+                D_801146E8 = func_800B37E8(0, 0, &D_801146C4, 1);
+            }
+        } else {
+            /* State requires stopping sound */
+            sound_handle = D_801146E8;
+            if (sound_handle != 0) {
+                func_800B358C(sound_handle);  /* sound_stop */
+                D_801146E8 = 0;
             }
         }
     }
 
-    /* Check checkpoints */
-    CheckCPs();
+    /* Call main state change handler */
+    func_800CA3B4();  /* PlayGame_HandleStateChange */
 
-    /* Update race positions */
-    update_positions();
+    /* Check state flags for additional processing */
+    gstate_cur = D_801174B4;
 
-    /* Check for race end */
-    if (race_finished()) {
-        gstate = GSTATE_FINISH;
+    /* Check if any of the main state bits are set */
+    if (gstate_cur & 0x7C03FFFE) {
+        /* Call state dispatch for active states */
+        func_800FD238();  /* state_dispatch */
+        gstate_cur = D_801174B4;
     }
+
+    /* Check attract/race bits (0x00200000 or 0x00400000) */
+    if ((gstate_cur << 10) < 0 || (gstate_cur << 9) < 0) {
+        /* Race state machine update */
+        func_800DB81C();  /* RaceStateMachine_Update */
+
+        /* Check if rendering is enabled */
+        if (D_801170FC != 0) {
+            func_800F733C();  /* UpdateActiveObjects */
+            func_800B0868();  /* PhysicsObjectList_Update */
+            func_800B811C();  /* Effects_UpdateEmitters */
+            func_800A04C4(0); /* render_scene */
+            return 1;
+        }
+    }
+
+    /* Reload state */
+    gstate_cur = D_801174B4;
+
+    /* Check high score bits (0x03FC0000) */
+    if (gstate_cur & 0x03FC0000) {
+        func_800FBF88();  /* state_transition / high score */
+        gstate_cur = D_801174B4;
+    }
+
+    /* Check if state matches pending (steady state) */
+    gstate_next = D_801174B8;
+    if (gstate_cur == gstate_next) {
+        /* In steady state - call countdown and update functions */
+        func_800FBC30();  /* Countdown handler */
+        func_800F733C();  /* UpdateActiveObjects */
+        func_800B0868();  /* PhysicsObjectList_Update */
+        func_800B811C();  /* Effects_UpdateEmitters */
+        func_800A04C4(0); /* render_scene */
+        result = 1;
+    }
+
+    /* Increment frame counter */
+    D_80142AFC++;
+
+    return result;
 }
-#endif
+
+/* External data/functions for func_800C9AE0 */
+extern s8  D_80035472;   /* Mode flag 1 */
+extern s8  D_80035471;   /* Mode flag 2 */
+extern s8  D_80035470;   /* Mode flag 3 */
+extern void* D_8003ECF8; /* Some pointer */
+extern void* D_8003ECC0; /* Another pointer */
+extern s32 func_800075E0(void*, void*, s32); /* Memory operation */
+extern s32 func_80007270(void*, void*, s32); /* Memory operation 2 */
+extern void func_800013F4(void); /* Timer/sync function */
+extern s8 func_800C9528(void); /* State update / input flag */
 
 /**
- * attract - Demo/title screen handler
- * Address: 0x800DB81C
+ * func_800C9AE0 - Game mode handler
+ * Address: 0x800C9AE0
+ * Size: 256 bytes
  *
- * Handles the attract mode when no one is playing.
- * Shows demo races and title screens.
+ * Called when game state matches pending state (steady state).
+ * Handles per-frame mode updates and synchronization.
  */
-#if 0  /* TODO: Decompile from assembly */
-void attract(void) {
-    /* Switch on attract sub-state */
-    /* Uses jump table at 0x80124284 */
+void func_800C9AE0(void) {
+    s16 temp_val = 0x0ABE;  /* 2750 */
+    s32 result;
+
+    /* Set mode flag */
+    D_80035472 = 1;
+
+    /* Call memory operation with value */
+    func_800075E0(&D_8003ECF8, &temp_val, 1);
+
+    /* Clear another flag */
+    D_80035471 = 0;
+
+    /* Loop calling func_80007270 until it returns -1 */
+    do {
+        result = func_80007270(&D_8003ECC0, &temp_val, 0);
+        if (result == -1) {
+            break;
+        }
+        result = func_80007270(&D_8003ECC0, &temp_val, 1);
+        if (result == -1) {
+            break;
+        }
+        result = func_80007270(&D_8003ECC0, &temp_val, 0);
+    } while (result != -1);
+
+    /* Set flags after loop */
+    D_80035471 = 1;
+    D_80035470 = 0;
+
+    /* Save state value */
+    D_801597F4 = D_801597C8;
+
+    /* Call timer/sync function */
+    func_800013F4();
+
+    /* Process inputs */
+    func_800C997C();
+
+    /* Update state */
+    func_800C9528();
 }
-#endif
+
+/**
+ * External functions called by func_800CA3B4
+ */
+extern void func_800CA300(void);       /* State change pre-process */
+extern void func_800A5BB8(void);       /* Some init function */
+extern void func_800C8B8C(s32, s32, s32, s32, s32, f32, f32, s32); /* HUD setup */
+extern void func_800C885C(void);       /* HUD init */
+extern void func_800C8FA4(s32);        /* Enable/disable something */
+extern void func_800C9BE0(void);       /* Some game init */
+extern void func_800014F0(f32);        /* Float function */
+extern void func_800C9480(void);       /* State finalize */
+extern void func_800C90E0(void);       /* Mode transition */
+extern void func_800C9210(f32);        /* Float param function */
+extern void func_800C937C(void);       /* Some handler */
+extern void func_800C9158(s32, s32);   /* Player state set */
+extern void func_800C84C0(s32, s32);   /* Player mode set */
+void func_800C9194(s32, s32);          /* Create and register sync entry (defined below) */
+extern void func_800A3424(s32, s32);   /* Car update function */
+extern void func_800C7308(void*);      /* Object cleanup */
+extern void func_800C70BC(void);       /* Scene cleanup */
+extern void func_800A1244(void);       /* Render function */
+extern s32 func_80097798(s32, s32, s32, s32, s32); /* Sound/effect */
+extern void func_800B55FC(s32);        /* Visual update */
+void* func_800B42F0(s32);              /* Object allocate wrapper (defined later) */
+extern void* func_800B4200(void);      /* Object allocate (uses register s2 for type) */
+/* Note: func_80007270 and func_800075E0 declared earlier */
+
+/* External data at fixed addresses */
+extern u32 D_801174B4;   /* gstate - current state bitmask */
+extern u32 D_801174B8;   /* gstate_pending - next state bitmask */
+extern u32 D_801174BC;   /* Additional state flags */
+extern s8  D_80114650;   /* Some state byte */
+extern s8  D_80156994;   /* Mode flag */
+extern s8  D_80146115;   /* Another mode byte */
+extern s16 D_8015A108;   /* Player count */
+extern void* D_8013E6E0; /* Object list head */
+extern void* D_801461D0; /* Main game struct */
+
+/* Additional external data for func_800CA3B4 */
+extern u8 D_801461F8;
+extern u8 D_80146205;
+extern u8 D_80159414;
+extern u8 D_80159774;
+extern u8 D_80159794;
+extern u8 D_801597C4;
+extern s16 D_80151AD0;
+extern u8 D_80151AD8;
+extern void* D_8015A118;
+extern u8 D_80146114;
+extern s32 D_8015A110;
+extern void func_800C84FC(s32, s32, f32, f32, s32);
+
+/**
+ * func_800CA3B4 - Game state change handler (playgame equivalent)
+ * Address: 0x800CA3B4
+ * Size: 2544 bytes
+ *
+ * Handles game state transitions via bitmask flags.
+ * Called when state changes to process enter/exit logic.
+ *
+ * State bit flags:
+ *   0x0001 - Enter gameplay initialization
+ *   0x0002 - Secondary setup mode
+ *   0x0004 - Third state (menu related)
+ *   0x0008 - Cleanup/exit state
+ *   0x0010 - Player state update
+ *   0x0020 - Multi-player setup
+ *   0x0040 - Another state
+ *   0x0080 - Result/finish state
+ *   0x0100 - High score related
+ *   0x0200, 0x0400, 0x0800, 0x1000, 0x2000 - Various states
+ *   0x4000 - Sound trigger state
+ *   0x40000 - PLAYGAME active
+ */
+void func_800CA3B4(void) {
+    u32 gstate_current;
+    u32 gstate_next;
+    s32 i;
+    s32 player_count;
+    f32 ftemp;
+    s8 mode_flag;
+
+    /* Load current and pending state */
+    gstate_current = D_801174B4;
+    gstate_next = D_801174B8;
+
+    /* If no state change, return early */
+    if (gstate_current == gstate_next) {
+        return;
+    }
+
+    /* Pre-process state change */
+    func_800CA300();
+
+    /* Store pending state as current */
+    gstate_next = D_801174B8;
+    D_801174B4 = gstate_next;
+
+    /* State bit 0x0001: Enter gameplay initialization */
+    if (gstate_next & 0x0001) {
+        /* Clear various flags */
+        D_801461F8 = 0;
+        D_80146205 = 0;
+        D_80159414 = 0;
+        D_80159774 = 0;
+        D_80159794 = 0;
+        D_801597C4 = 0;
+
+        func_800A5BB8();
+
+        mode_flag = D_80156994;
+        if (mode_flag == 0) {
+            /* Normal mode - setup HUD at 32,16 with specific params */
+            func_800C8B8C(32, 16, 16, 5, 64, 1.0f, 200.0f, 0);
+            func_800C885C();
+        }
+
+        func_800C8FA4(1);
+
+        /* Set initial state values */
+        D_8015A108 = 1;
+        D_80151AD0 = 1;
+
+        func_800C9BE0();
+        func_800014F0(30.0f);
+
+        /* Call state handler 3 times */
+        func_800C9AE0();
+        func_800C9AE0();
+        func_800C9AE0();
+
+        func_800C9480();
+
+        /* Set next state to 0x0002 */
+        D_801174B8 = 2;
+        gstate_current = D_801174B4;
+        goto done;
+    }
+
+    /* State bit 0x0002: Secondary setup */
+    if (gstate_next & 0x0002) {
+        func_800C90E0();
+        func_800A5BB8();
+
+        mode_flag = D_80156994;
+        if (mode_flag == 0) {
+            func_800C8B8C(32, 16, 16, 5, 64, 1.0f, 200.0f, 0);
+            func_800C885C();
+        }
+
+        /* Load float from ROM data for timing */
+        ftemp = 10.0f * (f32)D_80146115;
+        func_800C9210(ftemp);
+        func_800C8FA4(1);
+        func_800C937C();
+
+        /* Setup player controllers */
+        func_800C9158(-1, 0);
+        func_800C9158(0, 1);
+        func_800C84C0(-1, 1);
+
+        gstate_current = D_801174B4;
+        goto done;
+    }
+
+    /* Check for early return if bit 31 set */
+    if ((s32)gstate_next < 0) {
+        goto done;
+    }
+
+    /* State bit 0x0004 */
+    if (gstate_next & 0x0004) {
+        func_800C90E0();
+        func_800A5BB8();
+
+        mode_flag = D_80156994;
+        if (mode_flag == 0) {
+            func_800C8B8C(32, 16, 16, 5, 64, 1.0f, 200.0f, 0);
+            func_800C885C();
+        }
+
+        ftemp = 10.0f * (f32)D_80146115;
+        func_800C9210(ftemp);
+        func_800C8FA4(1);
+        func_800C937C();
+
+        /* Check additional flags and process cars */
+        if (!(D_801174BC & 0x007CDFC0)) {
+            player_count = D_8015A108;
+            if (player_count > 0) {
+                for (i = 0; i < player_count; i++) {
+                    /* Process each player's car */
+                    void *car_ptr = (void*)((u8*)D_8015A118 + i * 76);
+                    if (car_ptr) {
+                        void *car_data = *(void**)((u8*)car_ptr + 72);
+                        if (car_data) {
+                            s32 car_obj = *(s32*)((u8*)car_data + 8);
+                            func_800A3424(car_obj, 0);
+                        }
+                    }
+                }
+            }
+        }
+
+        func_800C9158(-1, 0);
+        func_800C9158(0, 1);
+        func_800C84C0(-1, 1);
+
+        /* Check for specific mode */
+        mode_flag = D_80156994;
+        if (mode_flag != 0) {
+            if (!(D_801174BC & 0x007C0000)) {
+                s8 val1 = D_80146114 + 14;
+                if (val1 < 13) {
+                    s8 val2 = D_80146114 + 12;
+                    ftemp = 10.0f * (f32)val2;
+                    func_800C9210(ftemp);
+                    func_800C9194(6, 1);
+                }
+            }
+        }
+
+        D_80151AD8 = 0;
+        gstate_current = D_801174B4;
+        goto done;
+    }
+
+    /* State bit 0x0008: Cleanup/exit */
+    if (gstate_next & 0x0008) {
+        /* Walk object list and clean up */
+        void *obj = D_8013E6E0;
+        while (obj != NULL) {
+            func_800C7308(obj);
+            void *next = *(void**)obj;
+            obj = *(void**)next;
+        }
+
+        func_800C70BC();
+        func_800C90E0();
+        func_800A5BB8();
+
+        mode_flag = D_80156994;
+        if (mode_flag == 0) {
+            func_800C8B8C(8, 8, 0, 0, 0, 1.0f, 200.0f, 0);
+        }
+
+        func_800C8FA4(0);
+
+        if (D_80156994 != 0) {
+            func_800A1244();
+        }
+
+        gstate_current = D_801174B4;
+        goto done;
+    }
+
+    /* State bit 0x0010: Player state update */
+    if (gstate_next & 0x0010) {
+        func_800C9158(-1, 0);
+        func_800C9158(0, 1);
+        func_800C84C0(-1, 1);
+        gstate_current = D_801174B4;
+        goto done;
+    }
+
+    /* State bit 0x0020: Multi-player setup */
+    if (gstate_next & 0x0020) {
+        player_count = D_8015A108;
+        for (i = 0; i < player_count; i++) {
+            func_800C9158(i, 1);
+            func_800C84C0(i, 1);
+        }
+        /* Disable remaining slots */
+        for (; i < 4; i++) {
+            func_800C9158(i, 0);
+        }
+        gstate_current = D_801174B4;
+        goto done;
+    }
+
+    /* State bit 0x0040 */
+    if (gstate_next & 0x0040) {
+        func_800C9158(-1, 0);
+        func_800C9158(0, 1);
+        gstate_current = D_801174B4;
+        goto done;
+    }
+
+    /* Various other state bits (0x0200-0x2000) - return early if set */
+    if (gstate_next & 0x0200) goto done;
+    if (gstate_next & 0x0400) goto done;
+    if (gstate_next & 0x0800) goto done;
+    if (gstate_next & 0x1000) goto done;
+    if (gstate_next & 0x2000) goto done;
+    if ((gstate_next << 4) < 0) goto done; /* Bit 0x8000000 */
+
+    /* State bit 0x4000: Sound/effect trigger */
+    if (gstate_next & 0x4000) {
+        func_80097798(57, 0, 0, 0, 0);
+        gstate_current = D_801174B4;
+        goto done;
+    }
+
+    /* State bit 0x0100: High score/result */
+    if (gstate_next & 0x0100) {
+        func_80097798(56, 0, 0, 0, 0);
+
+        player_count = D_8015A108;
+        for (i = 0; i < player_count; i++) {
+            func_800C9158(i, 1);
+            func_800C84C0(i, 1);
+        }
+        for (; i < 4; i++) {
+            func_800C9158(i, 0);
+        }
+        gstate_current = D_801174B4;
+        goto done;
+    }
+
+    /* State bit 0x0080: Result/finish */
+    if (gstate_next & 0x0080) {
+        func_80097798(60, 0, 0, 0, 0);
+        func_800C9158(-1, 0);
+        func_800C9158(0, 1);
+        gstate_current = D_801174B4;
+        goto done;
+    }
+
+    /* State bit 0x40000: PLAYGAME active (main gameplay) */
+    if ((gstate_next << 13) < 0) { /* Check bit 0x40000 */
+        s8 state_byte = D_80114650;
+
+        if (state_byte == 0) {
+            func_800C70BC();
+            func_800C90E0();
+            func_800A5BB8();
+        }
+
+        func_800C8FA4(0);
+
+        if (state_byte == 0) {
+            mode_flag = D_80156994;
+            if (mode_flag == 0) {
+                s32 game_mode = D_8015A110;
+                if (game_mode != 6 && game_mode != 4 && game_mode != 5) {
+                    func_800C8B8C(8, 8, 0, 0, 0, 1.0f, 200.0f, 0);
+                }
+            }
+
+            mode_flag = D_80156994;
+            if (mode_flag == 0) {
+                s32 game_mode = D_8015A110;
+                if (game_mode == 6) {
+                    func_800C84FC(5, 64, 1.0f, 200.0f, 0);
+                }
+            }
+
+            func_800B55FC(1);
+        }
+
+        /* Check game mode for specific handling */
+        s32 game_mode = D_8015A110;
+        if (game_mode != 6 && game_mode != 4 && game_mode != 5) {
+            if (D_80156994 == 0) {
+                func_800A1244();
+            }
+        }
+
+        state_byte = D_80114650;
+        if (state_byte == 0) {
+            /* Dispose objects */
+            func_800B42F0(13);
+            func_800B42F0(10);
+            func_800B42F0(11);
+            func_800B42F0(12);
+            func_800B42F0(4);
+            func_800B42F0(1);
+            func_800B42F0(2);
+            func_800B42F0(3);
+            func_800B42F0(9);
+            func_800B42F0(8);
+
+            /* Initialize memory regions */
+            func_80007270(&D_801461D0, 0, 1);
+            func_800B4200();
+            func_800075E0(&D_801461D0, 0, 0);
+
+            func_80007270(&D_801461D0, 0, 1);
+            func_800B4200();
+            func_800075E0(&D_801461D0, 0, 0);
+
+            func_80007270(&D_801461D0, 0, 1);
+            func_800B4200();
+            func_800075E0(&D_801461D0, 0, 0);
+        }
+
+        func_800C9158(-1, 0);
+        func_800C9158(0, 1);
+        func_800C84C0(-1, 1);
+
+        gstate_current = D_801174B4;
+    }
+
+done:
+    /* Return with gstate_current in register */
+    return;
+}
+
+/* External data for countdown function */
+extern s32 D_8015A110;     /* Game mode */
+extern s16 D_8015A108;     /* Player count */
+extern s32 D_801613B0;     /* Found player index */
+extern s32 D_801146F8;     /* Countdown timer */
+extern void* D_8018A4E0[]; /* Display object pointer array */
+extern s8* D_80120308;     /* Format string 1 */
+extern s8* D_8012030C;     /* Format string 2 */
+
+/* External functions for countdown */
+extern void sprintf(s8 *buf, s8 *fmt, ...); /* func_80004990 */
+extern void func_800A4770(s8 *buf, s32 val);
+extern void func_800B74A0(s32 type);
+extern void func_800B71D4(s16 pos, s32 color, s8 *text);
+extern s32 func_800B3FA4(s8 *buf, s32 val);
+
+/**
+ * func_800FBC30 - Countdown wrapper
+ * Address: 0x800FBC30
+ * Size: 8 bytes (just loads mode and falls through)
+ *
+ * This is just a label - loads D_8015A110 then falls into func_800FBC38.
+ */
+
+/**
+ * func_800FBC38 - Countdown display handler
+ * Address: 0x800FBC38
+ * Size: 488 bytes
+ *
+ * Displays the countdown timer during race start.
+ * Finds active player, formats countdown text, and displays it.
+ */
+void func_800FBC38(void) {
+    s32 player_count;
+    s32 i;
+    s8 str_buf[80];      /* sp+0x50 */
+    s8 format_buf[88];   /* sp+0x58 */
+    void *display_data;
+    s32 countdown_val;
+    s32 result;
+    u32 state_flags;
+
+    /* Get player count - 1 if mode is 2, otherwise from D_8015A108 */
+    if (D_8015A110 == 2) {
+        player_count = 1;
+    } else {
+        player_count = D_8015A108;
+    }
+
+    /* Find first inactive player slot */
+    i = 0;
+    if (player_count > 0) {
+        s8 *player_ptr = (s8 *)0x80156CF0;
+        while (i < player_count) {
+            if (*player_ptr == 0) {
+                break;  /* Found inactive slot */
+            }
+            i++;
+            player_ptr += 16;
+        }
+    }
+
+    /* Store found player index */
+    D_801613B0 = i;
+
+    /* Check if we found a slot before count */
+    if (i >= player_count) {
+        /* All players accounted for - set countdown to 320 (5.3 sec at 60fps) */
+        countdown_val = 320;
+        D_801146F8 = countdown_val;
+        return;
+    }
+
+    /* Format player string */
+    sprintf(str_buf, D_80120308, i + 1);
+
+    /* Get display parameters from global */
+    display_data = D_8018A4E0[1];  /* offset 4 = array[1] */
+
+    /* Format display text with position params */
+    {
+        s32 x_pos = *(s32 *)((u8 *)display_data + 0x1F0);
+        s32 y_pos = *(s32 *)((u8 *)display_data + 0x1F4);
+        s32 width = *(s32 *)((u8 *)display_data + 0x1F8);
+        s32 height = *(s32 *)((u8 *)display_data + 0x1FC);
+        s32 extra = *(s32 *)((u8 *)display_data + 0x200);
+
+        countdown_val = D_801146F8;
+        sprintf(format_buf, D_8012030C, str_buf, x_pos, y_pos, countdown_val, width, height, extra);
+    }
+
+    /* Call rendering function */
+    func_800A4770(format_buf, *(s32 *)((u8 *)display_data + 0x200));
+
+    /* Create display object */
+    func_80007270(&D_801461D0, 0, 1);
+    func_800B4200();
+    func_800075E0(&D_801461D0, 0, 0);
+
+    /* Set display type */
+    func_800B74A0(22);
+
+    /* Check state flags for color selection */
+    state_flags = D_801174B4;
+
+    if ((state_flags & 0x0001) || (state_flags & 0x0002) ||
+        ((state_flags << 1) < 0) ||   /* bit 0x80000000 */
+        (state_flags & 0x0004) || (state_flags & 0x0008)) {
+        /* Special state - color 8 (darker) */
+        countdown_val = D_801146F8;
+        func_800B71D4((s16)countdown_val, 8, format_buf);
+    } else {
+        /* Normal state - color 205 (0xCD, brighter) */
+        countdown_val = D_801146F8;
+        func_800B71D4((s16)countdown_val, 205, format_buf);
+    }
+
+    /* Finalize display and decrement countdown */
+    countdown_val = D_801146F8;
+    result = func_800B3FA4(format_buf, -1);
+    countdown_val--;
+    D_801146F8 = countdown_val;
+
+    /* Reset countdown if it goes too negative */
+    if (countdown_val < -result) {
+        D_801146F8 = 320;
+    }
+}
+
+/**
+ * func_800FBC30 - Countdown entry point
+ * Address: 0x800FBC30
+ *
+ * Wrapper that just calls func_800FBC38.
+ */
+void func_800FBC30(void) {
+    func_800FBC38();
+}
+
+/* Global for object type - used by func_800B4200 via register convention */
+extern s8 D_80159DA0;  /* Object allocation type (set before calling func_800B4200) */
+
+/**
+ * func_800B42F0 - Allocate and initialize object wrapper
+ * Address: 0x800B42F0
+ * Size: 112 bytes
+ *
+ * Wrapper that:
+ * 1. Locks memory region (func_80007270)
+ * 2. Sets object type (via register s2 in assembly)
+ * 3. Allocates object (func_800B4200)
+ * 4. Unlocks memory region (func_800075E0)
+ *
+ * Note: In the original assembly, 'type' is passed via register s2
+ * to func_800B4200 using a delay slot trick. Here we simulate this
+ * by setting a global before the call.
+ *
+ * @param type  Object type to allocate
+ * @return      Allocated object pointer
+ */
+void* func_800B42F0(s32 type) {
+    void *obj;
+    s8 saved_type;
+
+    /* Lock memory region */
+    func_80007270(&D_801461D0, 0, 1);
+
+    /* Set object type (simulates s2 register setup) */
+    saved_type = D_80159DA0;
+    D_80159DA0 = (s8)type;
+
+    /* Allocate object of specified type */
+    obj = func_800B4200();
+
+    /* Restore and unlock */
+    D_80159DA0 = saved_type;
+    func_800075E0(&D_801461D0, 0, 0);
+
+    return obj;
+}
+
+/* External for visual update */
+extern void func_800A2378(void *obj, s32 flag);
+
+/**
+ * func_800B55FC - Update visual objects
+ * Address: 0x800B55FC
+ * Size: 140 bytes
+ *
+ * Iterates through visual object array and calls update function
+ * on each object that has a valid update handler.
+ *
+ * @param flag  Update flag passed to each object's update function
+ */
+void func_800B55FC(s32 flag) {
+    u32 *array_ptr;
+    u32 *array_end;
+    void *entry;
+    void *obj;
+    void **vtable;
+
+    array_ptr = (u32 *)0x80144D60;
+    array_end = (u32 *)0x80144DA0;
+
+    /* Iterate through object array (16-byte entries) */
+    while (array_ptr != array_end) {
+        /* Load object list head from offset 8 of array entry */
+        entry = (void *)array_ptr[2];
+
+        if (entry != NULL) {
+            /* Get first object in linked list */
+            obj = *(void **)entry;
+
+            /* Walk the linked list */
+            while (obj != NULL) {
+                /* Get vtable pointer */
+                vtable = *(void ***)obj;
+
+                /* Check if update handler exists at vtable[0x48/4] = vtable[18] */
+                if (vtable[18] != NULL) {
+                    /* Call update function */
+                    func_800A2378(obj, flag);
+                }
+
+                /* Get object pointer from vtable, then get next object */
+                obj = *(void **)vtable;
+            }
+        }
+
+        /* Advance to next array entry (16 bytes) */
+        array_ptr += 4;
+    }
+}
+
+/* External data for race state machine */
+extern s32 D_801170FC;       /* Race state (0-8) */
+extern s32 D_80159D98;       /* Race sub-state */
+extern s32 D_8015698C;       /* Current player index */
+extern s16 D_80151AD0;       /* Player count */
+extern s8  D_80117350;       /* Player active flag */
+extern s8  D_80117354;       /* Secondary active flag */
+extern void* D_80143FD8;     /* Object list head */
+extern f32 D_801543CC;       /* Timer value */
+
+/* External functions for race states */
+extern void func_800C813C(s32, s32);   /* Race pre-update */
+extern void func_800DB1E0(void);       /* State 1 handler */
+extern void func_800D91A0(void);       /* State 2 handler */
+extern void func_800D7634(void);       /* State 3 handler */
+extern void func_800B8C14(void);       /* State 4 handler */
+extern void func_800B4FB0(s32);        /* State setter */
+extern void func_800013C0(void);       /* Timer init */
+extern void func_800013DC(void);       /* Timer update */
+extern void* func_80091B00(void);      /* Allocate object */
+extern void func_80092360(s32, s32, s32, s32); /* Sound trigger */
+extern void func_800C9210(f32);        /* Set timing */
+extern void func_800D5374(void);       /* Race setup 1 */
+extern void func_800D5798(void);       /* Race setup 2 */
+extern void func_800C84C0(s32, s32);   /* Player mode set */
+extern void func_800D6530(void);       /* Track init */
+extern void func_800D6160(s32);        /* Visual init */
+extern void func_800D60AC(void);       /* Scene setup */
+extern void func_800D5A04(void);       /* Cleanup */
+extern void func_800B5F4C(void);       /* Menu prev */
+extern void func_800B5FC4(void);       /* Menu confirm */
+extern void func_800B5F88(void);       /* Menu toggle */
+extern void func_800B438C(void);       /* Sound update */
+
+/**
+ * func_800DB81C - Race state machine
+ * Address: 0x800DB81C
+ * Size: 2148 bytes
+ *
+ * Main race state machine with 9 states (0-8):
+ *   0 = Initialize race, find first active player
+ *   1 = Pre-race setup (calls func_800DB1E0)
+ *   2 = Track loading (calls func_800D91A0)
+ *   3 = Car setup (calls func_800D7634)
+ *   4 = Countdown prep (calls func_800B8C14)
+ *   5 = Main racing (nested 8-state machine for gameplay)
+ *   6 = Race complete handling
+ *   7 = Results/standings
+ *   8 = Cleanup/exit
+ *
+ * State 5 has a nested switch for racing sub-states:
+ *   0 = Race start
+ *   1 = Countdown
+ *   2 = Racing
+ *   3 = Lap complete
+ *   4 = Race finish
+ *   5 = Winner display
+ *   6 = High score check
+ *   7 = Exit racing
+ */
+void func_800DB81C(void) {
+    s32 race_state;
+    s32 sub_state;
+    s32 i;
+    s32 player_count;
+    s32 player_idx;
+    void *obj;
+    void *alloc_obj;
+    u32 player_flags;
+    s8 *player_array;
+    u8 *player_status;
+    f32 timer_val;
+
+    /* Load current race state */
+    race_state = D_801170FC;
+
+    /* If not in state 0, call pre-update */
+    if (race_state != 0) {
+        func_800C813C(0, 0);
+        race_state = D_801170FC;
+    }
+
+    /* Validate state range */
+    if (race_state >= 9) {
+        goto exit_common;
+    }
+
+    /* Main state switch */
+    switch (race_state) {
+
+    case 0:  /* Initialize race - find first active player */
+        player_count = D_80151AD0;
+        if (player_count <= 0) {
+            goto exit_func;
+        }
+
+        player_array = (s8 *)0x8015A118;
+        player_status = (u8 *)0x80156CF0;
+
+        for (i = 0; i < player_count; i++) {
+            player_flags = *(u32 *)(player_array + i * 76 + 4);
+
+            /* Check if player slot is active */
+            if ((player_flags & 0x0001) || player_status[i * 16] == 0) {
+                /* Found active player */
+                D_8015698C = i;
+                D_80117350 = (player_status[i * 16] == 0) ? 1 : 0;
+                break;
+            }
+        }
+
+        if (i >= player_count) {
+            goto exit_func;
+        }
+
+        /* Initialize race */
+        func_800B4FB0(1);
+        D_80159D98 = 0;
+        func_800013C0();
+
+        /* Lock and allocate race object */
+        func_80007270(&D_801461D0, 0, 1);
+        alloc_obj = func_80091B00();
+        *(u8 *)((u8 *)alloc_obj + 2) = 7;  /* Set object type */
+        func_800075E0(&D_801461D0, 0, 0);
+        func_800075E0((void *)0x801427A8, alloc_obj, 0);
+
+        /* Setup race timing */
+        func_800C9210(0.0f);
+
+        /* Initialize race systems */
+        func_800D5374();
+        func_800D5798();
+
+        /* Initialize object list */
+        obj = D_80143FD8;
+        while (obj != NULL) {
+            *(u8 *)((u8 *)obj + 100) = 2;
+            *(s32 *)((u8 *)obj + 96) = -1;
+            obj = *(void **)obj;
+        }
+
+        func_800C84C0(-1, 1);
+        func_800B55FC(1);
+        func_80092360(46, 0, 1, 0);  /* Play race start sound */
+        break;
+
+    case 1:  /* Pre-race setup */
+        func_800DB1E0();
+        break;
+
+    case 2:  /* Track loading */
+        func_800D91A0();
+        break;
+
+    case 3:  /* Car setup */
+        func_800D7634();
+        break;
+
+    case 4:  /* Countdown prep */
+        func_800B8C14();
+        break;
+
+    case 5:  /* Main racing state - nested switch */
+        player_idx = D_8015698C;
+        player_flags = *(u32 *)(0x8015A11C + player_idx * 76);
+
+        if (!(player_flags & 0x0002)) {
+            goto state5_default;
+        }
+
+        func_80092360(37, 0, 1, 0);  /* Racing sound */
+
+        sub_state = D_80159D98;
+        if (sub_state >= 8) {
+            goto state5_default;
+        }
+
+        switch (sub_state) {
+        case 0:  /* Race start */
+            func_800B4FB0(0);
+            func_800013DC();
+            func_800D6530();
+
+            func_80007270(&D_801461D0, 0, 1);
+            alloc_obj = func_80091B00();
+            *(u8 *)((u8 *)alloc_obj + 2) = 9;
+            func_800075E0(&D_801461D0, 0, 0);
+            func_800075E0((void *)0x801427A8, alloc_obj, 0);
+
+            func_800D6160(1);
+            if (!(D_801174B4 & 0x00200000)) {
+                func_800D6160(0);
+            }
+            func_800D60AC();
+            func_800C84C0(-1, 0);
+            goto exit_func;
+
+        case 1:  /* Countdown timer check */
+            timer_val = D_801543CC;
+            if (timer_val >= 15.0f) {
+                D_80114650 = 1;
+            }
+            break;
+
+        case 2:  /* Countdown in progress */
+            timer_val = D_801543CC;
+            if (timer_val >= 15.0f) {
+                D_80114650 = 0;
+                if (D_801174B4 & 0x00200000) {
+                    goto state5_case7;
+                }
+            }
+            break;
+
+        case 3:  /* Race in progress */
+            func_800B4FB0(8);
+            break;
+
+        case 4:  /* Race setup */
+            func_800B4FB0(2);
+            break;
+
+        case 5:  /* Lap handling */
+            func_800B4FB0(3);
+            break;
+
+        case 6:  /* Position update */
+            *(u8 *)(0x8015418C + D_8015698C) = 1;
+            func_800B4FB0(4);
+            break;
+
+        case 7:  /* Exit sub-state */
+        state5_case7:
+            func_800B4FB0(6);
+            break;
+        }
+
+    state5_default:
+        break;
+
+    case 6:  /* Race complete - menu navigation */
+        player_idx = D_8015698C;
+        player_flags = *(u32 *)(0x8015A11C + player_idx * 76);
+
+        if (player_flags & 0x0400) {
+            func_800B5F4C();  /* Previous */
+            sub_state = D_80159D98;
+            sub_state--;
+            if (sub_state < 0) sub_state = 7;
+            D_80159D98 = sub_state;
+        } else if (player_flags & 0x0800) {
+            func_800B5F4C();  /* Next */
+            sub_state = D_80159D98;
+            sub_state++;
+            if (sub_state >= 8) sub_state = 0;
+            D_80159D98 = sub_state;
+        } else if (player_flags & 0x0005) {
+            func_800B5FC4();  /* Confirm */
+            goto case0_init;
+        }
+        break;
+
+    case 7:  /* Results/standings */
+        player_idx = D_8015698C;
+        player_flags = *(u32 *)(0x8015A11C + player_idx * 76);
+
+        if (player_flags & 0x3000) {
+            func_800B5F88();  /* Toggle display */
+        }
+
+        if (player_flags & 0x0002) {
+            if (D_80117354 != 0) {
+                if ((D_801174B4 & 0x00200000) && race_state == 8) {
+                    goto state7_restart;
+                }
+            }
+        }
+        /* Fall through to common handling */
+        goto state7_common;
+
+    state7_restart:
+        *(u8 *)0x80142699 = 1;
+        func_800B4FB0(0);
+        func_800013DC();
+
+        func_80007270(&D_801461D0, 0, 1);
+        alloc_obj = func_80091B00();
+        *(u8 *)((u8 *)alloc_obj + 2) = 7;
+        func_800075E0(&D_801461D0, 0, 0);
+        func_800075E0((void *)0x801427A8, alloc_obj, 0);
+        goto exit_common;
+
+    state7_common:
+        D_80114650 = (race_state == 7) ? 1 : 0;
+        func_800B4FB0(0);
+        func_800013DC();
+
+        func_80007270(&D_801461D0, 0, 1);
+        alloc_obj = func_80091B00();
+        *(u8 *)((u8 *)alloc_obj + 2) = 7;
+        func_800075E0(&D_801461D0, 0, 0);
+        func_800075E0((void *)0x801427A8, alloc_obj, 0);
+        func_800D5A04();
+        break;
+
+    case 8:
+    default:
+        player_idx = D_8015698C;
+        player_flags = *(u32 *)(0x8015A11C + player_idx * 76);
+
+        if (player_flags & 0x0007) {
+            func_800B5FC4();
+            func_800B4FB0(1);
+        }
+        break;
+    }
+
+case0_init:
+exit_common:
+    /* Common exit - check player status changes */
+    race_state = D_801170FC;
+    if (race_state != 0) {
+        player_idx = D_8015698C;
+        player_status = (u8 *)(0x80156CF0 + player_idx * 16);
+        s8 current_status = (*player_status == 0) ? 1 : 0;
+
+        if (current_status != D_80117350) {
+            D_80117350 = current_status;
+
+            /* Don't update sound during certain states */
+            if (race_state != 5 && race_state != 4 && race_state != 2 && race_state != 3) {
+                func_800B438C();
+            }
+        }
+    }
+
+    /* Check for reset flag */
+    if (*(s8 *)0x80157244 != 0) {
+        D_80114650 = 0;
+        func_800B4FB0(0);
+        func_800013DC();
+
+        func_80007270(&D_801461D0, 0, 1);
+        alloc_obj = func_80091B00();
+        *(u8 *)((u8 *)alloc_obj + 2) = 7;
+        func_800075E0(&D_801461D0, 0, 0);
+        func_800075E0((void *)0x801427A8, alloc_obj, 0);
+        func_800D5A04();
+    }
+
+exit_func:
+    return;
+}
+
+/**
+ * func_800F7344 - Update all active sound objects
+ * Address: 0x800F7344
+ * Size: 184 bytes
+ *
+ * Iterates through active sound list (D_80159450) and calls each
+ * object's update callback. If callback returns 0, the sound is
+ * stopped and removed via func_800B358C.
+ *
+ * Note: func_800F733C loads count into t6 immediately before this
+ * (lui t6, 0x8015 / lw t6, -26744(t6)) - that's the prologue.
+ */
+extern s32  D_80159788;           /* Active sound count */
+extern void **D_80159450;         /* Sound object pointer array */
+extern void func_800B358C(void*); /* Stop and remove sound */
+
+void func_800F7344(void) {
+    s32 count;
+    void **cur_ptr;
+    void **end_ptr;
+    void *sound_obj;
+    s32 (*callback)(void*);
+    s32 status;
+    s32 result;
+
+    /* Get current count (loaded by preceding code into t6) */
+    count = D_80159788;
+    if (count <= 0) {
+        return;
+    }
+
+    /* Start at beginning of sound list */
+    cur_ptr = &D_80159450;
+
+    while (1) {
+        sound_obj = *cur_ptr;
+
+        /* Get callback function pointer at offset 0x28 */
+        callback = *(s32 (**)(void*))((u8*)sound_obj + 0x28);
+
+        if (callback != NULL) {
+            /* Get status at offset 0 */
+            status = *(s32*)sound_obj;
+
+            if (status != -1) {
+                /* Call the update callback */
+                result = callback(sound_obj);
+
+                if (result == 0) {
+                    /* Callback returned 0 - stop and remove this sound */
+                    func_800B358C(sound_obj);
+
+                    /* Recalculate end pointer (list may have shifted) */
+                    count = D_80159788;
+                    end_ptr = &D_80159450 + count;
+
+                    /* Back up pointer since list shifted */
+                    cur_ptr--;
+                    goto next_iter;
+                }
+            }
+        }
+
+        /* Calculate end pointer */
+        count = D_80159788;
+        end_ptr = &D_80159450 + count;
+
+    next_iter:
+        cur_ptr++;
+        if (cur_ptr >= end_ptr) {
+            break;
+        }
+    }
+}
+
+/**
+ * func_800F73FC - Main render pipeline dispatcher
+ * Address: 0x800F73FC
+ * Size: 76 bytes
+ *
+ * This is the main per-frame render update entry point.
+ * Orchestrates all visual updates:
+ *   1. If sound_update != 0, update active sounds (func_800F733C -> func_800F7344)
+ *   2. If physics_update != 0, update physics objects (func_800B0868 -> func_800B0870)
+ *   3. Always update particle/effect emitters (func_800B811C)
+ *   4. Always run main scene render (func_800A04C4)
+ *
+ * @param sound_update   Whether to update sounds (arg a0)
+ * @param physics_update Whether to update physics (arg a1)
+ */
+extern void func_800F733C(void);  /* Loads count, falls through to func_800F7344 */
+extern void *func_800B0868(void);  /* Physics object list head loader */
+extern void func_800B0870(void);  /* Physics object linked list update */
+extern void func_800B811C(void);  /* Update particle emitters/effects */
+extern void func_800A04C4(s32);   /* Main scene render */
+
+void func_800F73FC(s32 sound_update, s32 physics_update) {
+    /* Update active sounds if requested */
+    if (sound_update != 0) {
+        func_800F733C();  /* Loads count then calls func_800F7344 */
+    }
+
+    /* Update physics objects if requested */
+    if (physics_update != 0) {
+        func_800B0868();  /* Starts physics linked list traversal */
+    }
+
+    /* Always update particle/effect emitters */
+    func_800B811C();
+
+    /* Always render the scene */
+    func_800A04C4(0);
+}
+
+/**
+ * func_800B0868 - Get physics object list head
+ * Address: 0x800B0868
+ * Size: 8 bytes (just loads and returns)
+ *
+ * Returns the head of the physics object linked list.
+ * This is called before func_800B0870 to get list head in v0.
+ */
+extern void *D_801491F0;  /* Physics object list head */
+
+void *func_800B0868(void) {
+    return D_801491F0;
+}
+
+/**
+ * func_800B0870 - Update all physics objects in linked list
+ * Address: 0x800B0870
+ * Size: 108 bytes
+ *
+ * Traverses the physics object linked list starting from D_801491F0.
+ * For each object with an update callback at offset 0x14, calls it
+ * with (object, 1).
+ *
+ * Object structure (partial):
+ *   offset 0x00: next pointer (linked list)
+ *   offset 0x14: update callback function pointer
+ */
+extern void func_800B066C(void);  /* Physics cleanup/finalize */
+
+void func_800B0870(void) {
+    void *current;
+    void *next;
+    void (*update_callback)(void*, s32);
+
+    /* Get list head (loaded by func_800B0868 into v0) */
+    current = D_801491F0;
+
+    /* Get next pointer for iteration */
+    if (current != NULL) {
+        next = *(void**)current;  /* offset 0x00 = next */
+    } else {
+        next = NULL;
+    }
+
+    /* Traverse the linked list */
+    while (current != NULL) {
+        /* Get update callback at offset 0x14 */
+        update_callback = *(void (**)(void*, s32))((u8*)current + 0x14);
+
+        if (update_callback != NULL) {
+            /* Call update with (object, 1) */
+            update_callback(current, 1);
+        }
+
+        /* Move to next object */
+        if (next == NULL) {
+            break;
+        }
+        current = next;
+        next = *(void**)current;  /* Get next->next */
+    }
+
+    /* Call cleanup function */
+    func_800B066C();
+}
+
+/**
+ * func_800B811C - Update all particle emitters
+ * Address: 0x800B811C
+ * Size: 252 bytes
+ *
+ * Iterates through the particle emitter array and updates each one:
+ *   1. Copies current position to previous position
+ *   2. Calls update function (func_8008D6B0)
+ *   3. Updates velocity with acceleration
+ *   4. Conditionally spawns particles if D_801170FC == 0
+ *   5. Calls cleanup functions at end
+ *
+ * Emitter structure (152 bytes per emitter):
+ *   offset 0x24-0x2C: current position (x, y, z)
+ *   offset 0x34-0x3C: velocity (x, y, z)
+ *   offset 0x48: additional velocity component
+ *   offset 0x54-0x5C: previous position (x, y, z)
+ */
+extern s16 D_80151AD0;            /* Active emitter count */
+extern s32 D_801170FC;            /* Render enable flag */
+
+/* Emitter array at 0x80150B70, secondary at 0x80150BA0 */
+extern u8  D_80150B70[];          /* Emitter array base */
+extern u8  D_80150BA0[];          /* Secondary emitter array */
+
+extern void func_8008D6B0(void*, void*);  /* Emitter update */
+extern void func_800B80C8(s32);           /* Spawn particles for emitter */
+extern void func_800B7FF8(void);          /* Particle cleanup */
+extern void func_800B61FC(s32);           /* Final cleanup */
+extern s16 D_80152032;                    /* Second emitter count */
+
+void func_800B811C(void) {
+    s32 i;
+    s16 count;
+    u8 *emitter;
+    u8 *emitter2;
+    f32 *pos;
+    f32 *prev_pos;
+    f32 *vel;
+
+    count = D_80151AD0;
+    if (count <= 0) {
+        goto end_loop;
+    }
+
+    emitter = D_80150B70;
+    emitter2 = D_80150BA0;
+
+    for (i = 0; i < count; i++) {
+        /* Copy current position to previous position */
+        pos = (f32*)(emitter + 0x24);
+        prev_pos = (f32*)(emitter + 0x54);
+        prev_pos[0] = pos[0];  /* x */
+        prev_pos[1] = pos[1];  /* y */
+        prev_pos[2] = pos[2];  /* z */
+
+        /* Call emitter update function */
+        func_8008D6B0((void*)emitter, (void*)emitter2);
+
+        /* Update velocity with acceleration (FP operations) */
+        vel = (f32*)(emitter + 0x34);
+        /* Note: Original has complex FP ops here that update velocity */
+        /* The disassembly shows additions to vel.x/y/z from other offsets */
+
+        /* Conditionally spawn particles */
+        if (D_801170FC == 0) {
+            func_800B80C8(i);
+        }
+
+        /* Advance to next emitter (152 bytes each) */
+        emitter += 152;
+        emitter2 += 152;
+
+        /* Re-read count in case it changed */
+        count = D_80151AD0;
+    }
+
+end_loop:
+    /* Call cleanup functions */
+    func_800B7FF8();
+
+    /* Call final cleanup with flag based on second emitter count */
+    {
+        s16 count2 = D_80152032;
+        s32 flag = (0 < count2) ? 1 : 0;
+        func_800B61FC(flag);
+    }
+}
+
+/**
+ * func_800C9528 - Load input initialized flag (prologue)
+ * Address: 0x800C9528
+ * Size: 8 bytes
+ *
+ * Just loads D_801147C4 into t6 for func_800C9530.
+ */
+extern s8 D_801147C4;  /* Input system initialized flag */
+
+s8 func_800C9528(void) {
+    return D_801147C4;
+}
+
+/**
+ * func_800C9530 - Process input callback table
+ * Address: 0x800C9530
+ * Size: 96 bytes
+ *
+ * Iterates through an array of input handler function pointers
+ * from D_801551E8 to D_80155210 (10 entries, 40 bytes).
+ * Calls each non-NULL callback in sequence.
+ *
+ * If D_801147C4 == 0, first calls func_800B73E4 for initialization.
+ */
+extern void (*D_801551E8[])(void);  /* Input callback table start */
+extern void (*D_80155210)(void);    /* Input callback table end marker */
+extern void func_800B73E4(void);    /* Input system init */
+
+void func_800C9530(void) {
+    void (**callback_ptr)(void);
+    void (*callback)(void);
+
+    /* One-time initialization if not yet done */
+    if (D_801147C4 == 0) {
+        func_800B73E4();
+    }
+
+    /* Iterate through callback table */
+    callback_ptr = D_801551E8;
+
+    while (callback_ptr != &D_80155210) {
+        callback = *callback_ptr;
+        if (callback != NULL) {
+            callback();
+        }
+        callback_ptr++;
+    }
+}
+
+/**
+ * func_800D7D40 - Clear all sound handles for a player's car
+ * Address: 0x800D7D40
+ * Size: 132 bytes
+ *
+ * Iterates through all 17 sub-entries (64 bytes each) of a player's
+ * car state and stops any active sounds, then clears the handles to -1.
+ * Also clears the player's entry in D_80154618.
+ *
+ * Car state structure layout:
+ *   Base: D_80111998
+ *   Each player: 1088 bytes (17 * 64)
+ *   Sound handle at offset 0x04 of each 64-byte sub-entry
+ *
+ * NOTE: Player index is passed in register s4, not a0.
+ * This requires special calling convention.
+ *
+ * @param player_idx Player index (0-3) in s4 register
+ */
+extern u8 D_80111998[];      /* Car state array base */
+extern s32 D_80154618[];     /* Per-player state flags */
+extern void func_80090088(s16, s32, s32);  /* Stop sound by handle */
+
+/* This function uses non-standard calling - player_idx in s4 */
+void func_800D7D40(void) {
+    register s8 player_idx asm("s4");  /* Player index passed in s4 */
+    u8 *car_state;
+    s32 offset;
+    s32 handle;
+    s16 handle_s16;
+
+    /* Calculate car state pointer */
+    /* car_state = D_80111998 + player_idx * 1088 (player_idx * 17 * 64) */
+    car_state = D_80111998 + (player_idx * 17 * 64);
+
+    /* Iterate through all 17 sub-entries */
+    for (offset = 0; offset < 1088; offset += 64) {
+        /* Get sound handle at offset 4 */
+        handle = *(s32*)(car_state + offset + 4);
+
+        if (handle != -1) {
+            /* Sign extend handle to s16 */
+            handle_s16 = (s16)handle;
+
+            /* Stop the sound */
+            func_80090088(handle_s16, 0, 0);
+
+            /* Clear handle */
+            *(s32*)(car_state + offset + 4) = -1;
+        }
+    }
+
+    /* Clear player's state flag */
+    D_80154618[player_idx] = 0;
+}
+
+/**
+ * func_800D7DC4 - Clear all car sounds for all players
+ * Address: 0x800D7DC4
+ * Size: 196 bytes
+ *
+ * Loops through all 4 players and clears their car-related state:
+ *   1. Clears D_8015418C[player] and D_8015A10C[player] to 0
+ *   2. Calls func_800D7D40 to clear all sound handles
+ *   3. Stops global sound handle at D_80113ED8 if active
+ *   4. Clears D_80113ED8 and D_80113ED4
+ *
+ * Called during race end, game reset, or mode transitions.
+ */
+extern u8 D_8015418C[];      /* Per-player flags array 1 */
+extern u8 D_8015A10C[];      /* Per-player flags array 2 */
+extern void *D_80113ED8;     /* Global sound handle */
+extern u8 D_80113ED4;        /* Global sound flag */
+
+void func_800D7DC4(void) {
+    s32 i;
+    void *sound_handle;
+
+    /* Clear all 4 players' state */
+    for (i = 0; i < 4; i++) {
+        /* Clear per-player flags */
+        D_8015418C[i] = 0;
+        D_8015A10C[i] = 0;
+
+        /* Clear this player's car sounds
+         * NOTE: func_800D7D40 expects player index in s4 register */
+        {
+            register s8 player_reg asm("s4") = (s8)i;
+            (void)player_reg;  /* Force register allocation */
+            func_800D7D40();
+        }
+    }
+
+    /* Stop global sound handle if active */
+    sound_handle = D_80113ED8;
+    if (sound_handle != NULL) {
+        func_800B358C(sound_handle);
+        D_80113ED8 = NULL;
+    }
+
+    /* Clear global sound flag */
+    D_80113ED4 = 0;
+}
+
+/**
+ * func_800B557C - Clear all ambient/environment sound handles
+ * Address: 0x800B557C
+ * Size: 120 bytes
+ *
+ * Stops and clears the ambient sound handle at D_80114624,
+ * then iterates through 4 additional handles at D_80114628-D_80114638
+ * and stops/clears each one.
+ */
+extern void *D_80114624;      /* Main ambient sound handle */
+extern void *D_80114628[];    /* Additional sound handles (4 entries) */
+extern void func_8008D0C0(void*);  /* Stop sound by object */
+
+void func_800B557C(void) {
+    void *handle;
+    void **ptr;
+    void **end_ptr;
+
+    /* Stop and clear main ambient handle */
+    handle = D_80114624;
+    if (handle != NULL) {
+        func_800B358C(handle);
+        D_80114624 = NULL;
+    }
+
+    /* Stop and clear additional handles (4 entries from 0x4628 to 0x4638) */
+    ptr = D_80114628;
+    end_ptr = (void**)((u8*)D_80114628 + 16);  /* 4 * 4 bytes */
+
+    while (ptr != end_ptr) {
+        handle = *ptr;
+        if (handle != NULL) {
+            func_8008D0C0(handle);
+            *ptr = NULL;
+        }
+        ptr++;
+    }
+}
+
+/**
+ * func_800B6138 - Reset all player state entries
+ * Address: 0x800B6138
+ * Size: 112 bytes
+ *
+ * Calls func_800B6024, then clears key fields of each player's
+ * state entry in the array at D_8015A118 (76 bytes per player).
+ *
+ * Player state entry structure (partial):
+ *   offset 0x04: s32 field_04
+ *   offset 0x08: s32 field_08
+ *   offset 0x0C: s32 field_0C
+ *   offset 0x10: f32 field_10
+ *   offset 0x14: f32 field_14
+ */
+extern s16 D_8015A108;        /* Player count */
+/* D_8015A118 declared earlier as void* - cast to u8* for array access */
+extern void func_800B6024(void);  /* Pre-reset function */
+
+void func_800B6138(void) {
+    s32 i;
+    s16 count;
+    u8 *entry;
+
+    /* Call pre-reset function */
+    func_800B6024();
+
+    /* Get player count */
+    count = D_8015A108;
+    if (count <= 0) {
+        return;
+    }
+
+    /* Clear each player's state fields */
+    entry = (u8*)D_8015A118;
+    for (i = 0; i < count; i++) {
+        *(s32*)(entry + 0x08) = 0;
+        *(s32*)(entry + 0x04) = 0;
+        *(s32*)(entry + 0x0C) = 0;
+        *(f32*)(entry + 0x10) = 0.0f;
+        *(f32*)(entry + 0x14) = 0.0f;
+
+        entry += 76;  /* Next player entry */
+        count = D_8015A108;  /* Re-read count in case it changed */
+    }
+}
+
+/**
+ * func_800B9130 - Reset effect/particle system state
+ * Address: 0x800B9130
+ * Size: 100 bytes
+ *
+ * Clears effect system globals and reinitializes effect pools.
+ * Called during level transitions or game resets.
+ */
+extern s32 D_80159818;        /* Effect state flag 1 */
+extern s32 D_80159B80;        /* Effect state flag 2 */
+extern void *D_80143A18;      /* Effect pool 1 */
+extern void *D_80143A20;      /* Effect pool 2 */
+extern void *D_80143A28;      /* Effect pool 3 */
+extern u8 D_80143A10[];       /* Effect state buffer (44 bytes) */
+
+extern void func_800B90F8(void);       /* Effect pre-reset */
+extern void func_80096130(void*);      /* Effect pool clear */
+extern void bzero(void*, s32);         /* func_80002790 */
+
+void func_800B9130(s32 unused) {
+    /* Clear effect state flags */
+    D_80159818 = 0;
+    D_80159B80 = 0;
+
+    /* Call pre-reset function */
+    func_800B90F8();
+
+    /* Clear effect pools */
+    func_80096130(D_80143A18);
+    func_80096130(D_80143A20);
+    func_80096130(D_80143A28);
+
+    /* Zero out effect state buffer */
+    bzero(D_80143A10, 44);
+}
+
+/**
+ * func_800B45BC - Clear sound handles from object array
+ * Address: 0x800B45BC
+ * Size: 176 bytes
+ *
+ * Iterates through an array of objects (32 bytes each) from
+ * D_80116DE4 to D_80116FE4 and stops/clears sound handles
+ * at offset 0x0C of each entry.
+ *
+ * @param clear_all If 0, only clear if entry[1] is 0
+ */
+extern u8 D_80116DE4[];       /* Object array base (32 bytes per entry) */
+
+void func_800B45BC(s32 clear_all) {
+    u8 *entry;
+    u8 *end_ptr;
+    u8 *obj_ptr;
+    s32 offset;
+    void *sound_handle;
+    s8 status;
+    s8 flag;
+
+    entry = D_80116DE4;
+    end_ptr = D_80116DE4 + (10 * 32);  /* 10 entries * 32 bytes = 320 */
+
+    while (entry != end_ptr) {
+        /* Check if entry is active */
+        status = *(s8*)entry;
+
+        if (status != 0) {
+            /* Check clear condition */
+            if (clear_all != 0) {
+                goto clear_sounds;
+            }
+
+            flag = *(s8*)(entry + 1);
+            if (flag == 0) {
+            clear_sounds:
+                /* Clear sound handles at offsets 0x0C through 0x1C (5 handles) */
+                obj_ptr = entry;
+                for (offset = 0; offset < 20; offset += 4) {
+                    sound_handle = *(void**)(obj_ptr + 0x0C);
+                    if (sound_handle != NULL) {
+                        func_800B358C(sound_handle);
+                        *(void**)(obj_ptr + 0x0C) = NULL;
+                    }
+                    obj_ptr += 4;
+                }
+
+                /* Clear status byte */
+                *(s8*)entry = 0;
+            }
+        }
+
+        entry += 32;
+    }
+}
+
+/**
+ * func_800D5050 - Update all players' race state
+ * Address: 0x800D5050
+ * Size: 148 bytes
+ *
+ * Iterates through 6 player entries and calls func_800D4DFC
+ * on each active player (entry[0x7C8] != 0 and entry[0x359] >= 2).
+ *
+ * Player entry layout:
+ *   Base: D_8015A250
+ *   Size: 2056 bytes per player (0x808)
+ *   Race valid at offset 0x7C8 (s16)
+ *   Status at offset 0x359 + (idx * 952) in secondary array D_80152818
+ */
+extern u8 D_8015A250[];       /* Player entry array base (2056 bytes each) */
+extern u8 D_80152818[];       /* Secondary player data */
+extern void func_800D4DFC(void*);  /* Process player race state */
+
+void func_800D5050(void) {
+    s32 i;
+    u8 *player_entry;
+    s16 race_valid;
+    s8 status;
+    s32 secondary_offset;
+
+    player_entry = D_8015A250;
+
+    for (i = 0; i < 6; i++) {
+        /* Check if player has valid race data at offset 0x7C8 */
+        race_valid = *(s16*)(player_entry + 0x7C8);
+
+        if (race_valid != 0) {
+            /* Calculate offset into secondary array */
+            secondary_offset = i * 952;
+
+            /* Check status at secondary array offset 0x359 */
+            status = *(s8*)(D_80152818 + secondary_offset + 0x359);
+
+            if (status >= 2) {
+                /* Process this player's race state */
+                func_800D4DFC(player_entry);
+            }
+        }
+
+        /* Move to next player entry */
+        player_entry += 2056;
+    }
+}
+
+/**
+ * func_800D52D4 - Activate/register an object
+ * Address: 0x800D52D4
+ * Size: 152 bytes
+ *
+ * Registers an object into the active system:
+ *   1. Acquires sync lock
+ *   2. Processes object with func_800D52CC
+ *   3. If object[9] is set, calls cleanup func and clears it
+ *   4. Adds to active list via func_80091FBC
+ *   5. Sets object[8] = 1 to mark active
+ *   6. Releases lock
+ *
+ * @param obj Object pointer, or -1 to do nothing
+ */
+extern u8 D_80142728[];       /* Sync structure */
+extern u8 D_80146188[];       /* Object pool 1 */
+extern u8 D_80146170[];       /* Object pool 2 */
+
+extern void func_800D52CC(void*);     /* Object pre-process */
+extern void func_8009211C(void*, void*);  /* Object cleanup */
+extern void func_80091FBC(void*, void*, void*);  /* Add to active list */
+
+void func_800D52D4(void *obj) {
+    u8 *obj_ptr;
+    s8 cleanup_flag;
+    void *pool_data;
+
+    /* Skip if null object marker */
+    if ((s32)obj == -1) {
+        return;
+    }
+
+    obj_ptr = (u8*)obj;
+
+    /* Acquire sync lock */
+    func_80007270(D_80142728, NULL, 1);
+
+    /* Pre-process object */
+    func_800D52CC(obj);
+
+    /* Check if object needs cleanup */
+    cleanup_flag = obj_ptr[9];
+    if (cleanup_flag != 0) {
+        func_8009211C(D_80146188, obj);
+        obj_ptr[9] = 0;
+    }
+
+    /* Add object to active list */
+    pool_data = *(void**)(D_80146170 + 8);
+    func_80091FBC(D_80146170, obj, pool_data);
+
+    /* Mark object as active */
+    obj_ptr[8] = 1;
+
+    /* Release sync lock */
+    func_800075E0(D_80142728, NULL, 0);
+}
+
+/**
+ * func_800D5798 - Update all players' per-frame state
+ * Address: 0x800D5798
+ * Size: 144 bytes
+ *
+ * Clears D_801525F0, then iterates through all active players
+ * (count at D_80152744) and calls func_800D5524 for each.
+ * If game state has bit 0x0008 set, also calls func_800A13E8.
+ */
+extern s16 D_801525F0;        /* Per-frame counter/flag */
+extern s8  D_80152744;        /* Active player count */
+/* D_8015A250 declared elsewhere - player entries */
+extern void func_800D5524(void*);  /* Per-player update */
+extern void func_800A13E8(void);   /* Additional update (when bit 0x0008 set) */
+
+void func_800D5798(void) {
+    s32 i;
+    s8 player_count;
+    u8 *player_entry;
+
+    /* Clear per-frame flag */
+    D_801525F0 = 0;
+
+    /* Get active player count */
+    player_count = D_80152744;
+    if (player_count <= 0) {
+        goto check_state;
+    }
+
+    /* Update each active player */
+    player_entry = D_8015A250;
+    for (i = 0; i < player_count; i++) {
+        func_800D5524(player_entry);
+        player_entry += 2056;
+    }
+
+check_state:
+    /* Check game state bit 0x0008 */
+    if ((D_801174B4 & 0x0008) != 0) {
+        return;
+    }
+
+    /* Call additional update function */
+    func_800A13E8();
+}
+
+/**
+ * func_800D60B4 - Check player finish/completion status
+ * Address: 0x800D60B4
+ * Size: 172 bytes
+ *
+ * Iterates through players checking if they've completed the race.
+ * Returns 1 if all active players have finished, 0 otherwise.
+ */
+extern s8  D_80117480;        /* Players finished count */
+extern s8  D_80117484;        /* Expected finish count */
+
+s32 func_800D60B4(void) {
+    s32 i;
+    s8 player_count;
+    s8 finished_count;
+    u8 *player_entry;
+    s8 status;
+
+    player_count = D_80152744;
+    if (player_count <= 0) {
+        return 0;
+    }
+
+    finished_count = 0;
+    player_entry = D_8015A250;
+
+    for (i = 0; i < player_count; i++) {
+        /* Check completion status at offset 0x7C8 */
+        status = *(s8*)(player_entry + 0x7C9);  /* Finish flag */
+
+        if (status != 0) {
+            finished_count++;
+        }
+
+        player_entry += 2056;
+    }
+
+    D_80117480 = finished_count;
+
+    /* Return 1 if all players finished */
+    if (finished_count >= D_80117484) {
+        return 1;
+    }
+
+    return 0;
+}
+
+/**
+ * func_800C9334 - Clear a resource slot by ID
+ * Address: 0x800C9334
+ * Size: 72 bytes
+ *
+ * Clears the specified resource slot. If func_80097694 returns < 0,
+ * allocates a new slot with func_80097798 and registers it.
+ *
+ * NOTE: Slot ID is passed in register t0, not a0.
+ */
+extern s32 func_80097694(s32, s32);   /* Get slot state */
+extern s32 func_80097798(s32, s32, s32, s32, s32);  /* Allocate slot */
+extern void func_8009638C(s32);       /* Register slot */
+
+void func_800C9334(void) {
+    register s32 slot_id asm("t0");  /* Slot ID in t0 */
+    s32 result;
+
+    /* Check slot state */
+    result = func_80097694(slot_id, -1);
+
+    if (result < 0) {
+        /* Allocate new slot */
+        result = func_80097798(slot_id, 0, 0, 0, 0);
+
+        /* Register it */
+        func_8009638C(result);
+    }
+}
+
+/**
+ * func_800C937C - Clear multiple resource slots
+ * Address: 0x800C937C
+ * Size: 48 bytes
+ *
+ * Clears slots 54, 58, and 59 by calling func_800C9334 for each.
+ */
+void func_800C937C(void) {
+    /* Clear slot 54 */
+    {
+        register s32 slot asm("t0") = 54;
+        (void)slot;
+        func_800C9334();
+    }
+
+    /* Clear slot 58 */
+    {
+        register s32 slot asm("t0") = 58;
+        (void)slot;
+        func_800C9334();
+    }
+
+    /* Clear slot 59 */
+    {
+        register s32 slot asm("t0") = 59;
+        (void)slot;
+        func_800C9334();
+    }
+}
+
+/**
+ * func_800CB9A0 - Release object's secondary reference
+ * Address: 0x800CB9A0
+ * Size: 48 bytes
+ *
+ * Gets the object's primary pointer (offset 0), then its secondary
+ * pointer (offset 4), and releases it if non-null.
+ *
+ * @param obj Object with nested pointer structure
+ */
+extern void func_800A2680(void*);  /* Release object */
+
+void func_800CB9A0(void *obj) {
+    void *primary;
+    void *secondary;
+
+    primary = *(void**)obj;
+    secondary = *(void**)((u8*)primary + 4);
+
+    if (secondary != NULL) {
+        func_800A2680(secondary);
+    }
+}
+
+/**
+ * func_800C7308 - Cleanup object render reference
+ * Address: 0x800C7308
+ * Size: 68 bytes
+ *
+ * Checks object's render reference at offset 0x2C and releases
+ * the associated resource at offset 0x08 if active.
+ *
+ * @param obj_ptr Pointer to object pointer
+ */
+extern void func_800A25C0(void*);  /* Release render resource */
+
+void func_800C7308(void *obj_ptr) {
+    void *obj;
+    void *render_ref;
+    void *resource;
+
+    obj = *(void**)obj_ptr;
+
+    /* Check render reference at offset 0x2C */
+    render_ref = *(void**)((u8*)obj + 0x2C);
+    if (render_ref == NULL) {
+        return;
+    }
+
+    /* Get resource at offset 0x08 */
+    resource = *(void**)((u8*)obj + 0x08);
+    if (resource != NULL) {
+        func_800A25C0(resource);
+    }
+
+    /* Clear render reference */
+    *(void**)((u8*)obj + 0x2C) = NULL;
+}
+
+/**
+ * func_800C55E4 - Send command based on game mode
+ * Address: 0x800C55E4
+ * Size: 96 bytes
+ *
+ * If D_8015A110 is 4 or 6, sends a command via func_803914B4.
+ * Arguments are sign-extended from bytes to s32.
+ *
+ * @param cmd Command byte
+ * @param arg1 Argument 1 byte
+ * @param arg2 Argument 2 byte
+ */
+extern s32 D_8015A110;            /* Game mode value */
+extern void func_803914B4(s32, s32, s32);  /* External command handler */
+
+void func_800C55E4(s8 cmd, s8 arg1, s8 arg2) {
+    s32 mode;
+
+    mode = D_8015A110;
+
+    /* Only send command in modes 4 or 6 */
+    if (mode == 6 || mode == 4) {
+        func_803914B4((s32)cmd, (s32)arg1, (s32)arg2);
+    }
+}
+
+/**
+ * func_800C70BC - Cleanup scene resource slots
+ * Address: 0x800C70BC
+ * Size: 84 bytes
+ *
+ * Gets slots 54, 58, 59 and calls func_800AC840 to clean up each.
+ * This is the scene/level cleanup counterpart to func_800C937C.
+ */
+extern void func_800AC840(s32);  /* Resource cleanup */
+
+void func_800C70BC(void) {
+    s32 slot;
+
+    /* Cleanup slot 54 */
+    slot = func_80097694(54, -1);
+    func_800AC840(slot);
+
+    /* Cleanup slot 58 */
+    slot = func_80097694(58, -1);
+    func_800AC840(slot);
+
+    /* Cleanup slot 59 */
+    slot = func_80097694(59, -1);
+    func_800AC840(slot);
+}
+
+/**
+ * func_800C90E0 - Cleanup all player/game resource slots
+ * Address: 0x800C90E0
+ * Size: 112 bytes
+ *
+ * Loops through slots 22-37 (16 slots) and 38-53 (16 slots),
+ * cleaning up each one that is active.
+ */
+void func_800C90E0(void) {
+    s32 i;
+    s32 slot;
+
+    for (i = 0; i < 16; i++) {
+        /* Cleanup slot (i + 38) in range 38-53 */
+        slot = func_80097694(i + 38, -1);
+        if (slot >= 0) {
+            func_800AC840(slot);
+        }
+
+        /* Cleanup slot (i + 22) in range 22-37 */
+        slot = func_80097694(i + 22, -1);
+        if (slot >= 0) {
+            func_800AC840(slot);
+        }
+    }
+}
+
+/**
+ * func_800C9194 - Create and register sync entry
+ * Address: 0x800C9194
+ * Size: 124 bytes
+ *
+ * Acquires sync on D_80142728, creates new entry via func_80091B00,
+ * sets byte2=0, stores params at offsets 4 and 8, releases sync,
+ * then signals D_801427A8 with the new entry.
+ *
+ * @param a0 Value to store at entry offset 4
+ * @param a1 Value to store at entry offset 8
+ */
+void func_800C9194(s32 a0, s32 a1) {
+    void *entry;
+
+    func_80007270(&D_80142728[0], NULL, 1);
+
+    entry = func_80091B00();
+    *(u8*)((u8*)entry + 2) = 0;
+    *(s32*)((u8*)entry + 4) = a0;
+    *(u8*)((u8*)entry + 8) = (u8)a1;
+
+    func_800075E0(&D_80142728[0], NULL, 0);
+    func_800075E0(&D_80142728[0x80], entry, 0);
+}
+
+/**
+ * func_800CC804 - Initialize with single flag
+ * Address: 0x800CC804
+ * Size: 68 bytes
+ *
+ * Sets up register flags s0=1, s3=1 and calls func_800CBF2C.
+ * This is a wrapper for single-player or single-mode initialization.
+ *
+ * @param arg Passed in a0, stored to s1
+ */
+extern void func_800CBF2C(void);  /* Core initialization */
+
+void func_800CC804(void *arg) {
+    /* Set flags and call core init */
+    /* s0 = 1, s1 = arg, s3 = 1 passed to func_800CBF2C */
+    func_800CBF2C();
+}
+
+/**
+ * func_800CD748 - Allocate and link object data block
+ * Address: 0x800CD748
+ * Size: 80 bytes
+ *
+ * Allocates a data block at offset 0x6F4 (1780 + 4) of an object's
+ * secondary structure and links it.
+ *
+ * Object structure:
+ *   obj->field_0 (ptr) -> field_2C (ptr) -> field_0 (base)
+ *   At base + 0x6F4, allocates 72 bytes via func_800B466C
+ *   Then links via func_800A2504 with 76 bytes
+ *
+ * @param obj Object pointer with nested structure
+ */
+extern s32 func_800B466C(void*, s32);  /* Allocate block */
+extern void func_800A2504(void*, void*, s32);  /* Link block */
+
+void func_800CD748(void *obj) {
+    void *primary;
+    void *secondary;
+    void *base;
+    u8 *data_ptr;
+    s32 result;
+    void *resource;
+
+    primary = *(void**)obj;
+
+    /* Get secondary->field_2C->field_0 */
+    secondary = *(void**)((u8*)primary + 0x2C);
+    base = *(void**)secondary;
+
+    /* Calculate data pointer at offset 0x6F4 (1780 + 4) */
+    data_ptr = (u8*)base + 1780;
+
+    /* Allocate 72 bytes at data_ptr + 4 */
+    result = func_800B466C((void*)(data_ptr + 4), 72);
+
+    /* Store result at data_ptr */
+    *(s32*)data_ptr = result;
+
+    /* Link the block */
+    resource = *(void**)((u8*)primary + 0x08);
+    func_800A2504(resource, data_ptr, 76);
+}
+
+/**
+ * func_800D63C4 - Clear object action flag
+ * Address: 0x800D63C4
+ * Size: 40 bytes
+ *
+ * Calls func_8009211C with a0, then clears byte at a1+8.
+ * This is a wrapper for stopping/clearing an object's action state.
+ *
+ * @param a0 First parameter for func_8009211C
+ * @param a1 Object with flag at offset 8
+ */
+void func_800D63C4(void *a0, void *a1) {
+    func_8009211C(a0, NULL);
+    *((u8*)a1 + 8) = 0;
+}
+
+/**
+ * func_800D5894 - Clear player state and reset variable
+ * Address: 0x800D5894
+ * Size: 48 bytes
+ *
+ * If a0 is non-zero, calls func_800B358C and clears D_801541A4.
+ * Used when transitioning out of a player state.
+ *
+ * @param a0 Player object (if non-NULL, triggers cleanup)
+ */
+extern s32 D_801541A4;  /* Player state variable */
+
+void func_800D5894(void *a0) {
+    if (a0 != NULL) {
+        func_800B358C(a0);
+        D_801541A4 = 0;
+    }
+}
+
+/**
+ * func_800D03DC - Apply 3D position to sound system
+ * Address: 0x800D03DC
+ * Size: 72 bytes
+ *
+ * Takes a position vector and applies each component to the sound system:
+ * - Y coord (offset 4) via func_80090E9C
+ * - X coord (offset 0) via func_80090F44
+ * - Z coord (offset 8) via func_8009EA68
+ *
+ * @param pos 3D position vector (x=0, y=4, z=8)
+ * @param a1 Sound handle/target parameter
+ */
+extern void func_80090E9C(f32, s32);  /* Set sound Y position */
+extern void func_80090F44(f32, s32);  /* Set sound X position */
+extern void func_8009EA68(f32, s32);  /* Set sound Z position */
+
+void func_800D03DC(f32 *pos, s32 a1) {
+    func_80090E9C(pos[1], a1);  /* Y coordinate */
+    func_80090F44(pos[0], a1);  /* X coordinate */
+    func_8009EA68(pos[2], a1);  /* Z coordinate */
+}
+
+/**
+ * func_800C878C - Allocate and register type 7 object
+ * Address: 0x800C878C
+ * Size: 104 bytes
+ *
+ * Acquires sync on D_80142728, allocates via func_80091B00,
+ * sets type to 7, releases sync, then registers with D_801427A8.
+ *
+ * Type 7 appears to be a specific object category.
+ */
+extern s32 D_801427A8;    /* Object registry B */
+extern void* func_80091B00(void);  /* Allocate object */
+
+void func_800C878C(void) {
+    void *obj;
+
+    func_80007270(D_80142728, 0, 1);   /* Acquire sync */
+    obj = func_80091B00();
+    *((u8*)obj + 2) = 7;               /* Set type to 7 */
+    func_800075E0(D_80142728, 0, 0);   /* Release sync */
+    func_800075E0((void*)D_801427A8, obj, 0);  /* Register object */
+}
+
+/**
+ * func_800C87F4 - Allocate and register type 1 object
+ * Address: 0x800C87F4
+ * Size: 104 bytes
+ *
+ * Same pattern as func_800C878C but sets type to 1 instead of 7.
+ * Type 1 appears to be another object category.
+ */
+void func_800C87F4(void) {
+    void *obj;
+
+    func_80007270(D_80142728, 0, 1);   /* Acquire sync */
+    obj = func_80091B00();
+    *((u8*)obj + 2) = 1;               /* Set type to 1 */
+    func_800075E0(D_80142728, 0, 0);   /* Release sync */
+    func_800075E0((void*)D_801427A8, obj, 0);  /* Register object */
+}
+
+/**
+ * func_800D6290 - Initialize physics with mode 0
+ * Address: 0x800D6290
+ * Size: 92 bytes
+ *
+ * Wrapper that saves s0-s5, f20, f22 and calls func_800D6160
+ * with t0 = 0. This is likely a physics initialization mode.
+ *
+ * The register saves suggest the callee uses those registers.
+ */
+void func_800D6290(void) {
+    /* t0 = 0 passed to callee (mode flag) */
+    func_800D6160(0);
+}
+
+/**
+ * func_800D62EC - Initialize physics with mode 1
+ * Address: 0x800D62EC
+ * Size: 92 bytes
+ *
+ * Same wrapper as func_800D6290 but passes t0 = 1.
+ * Different physics initialization mode.
+ */
+void func_800D62EC(void) {
+    /* t0 = 1 passed to callee (mode flag) */
+    func_800D6160(1);
+}
+
+/**
+ * func_800DB7B4 - Allocate and register type 7 object (duplicate)
+ * Address: 0x800DB7B4
+ * Size: 104 bytes
+ *
+ * Identical to func_800C878C. Both allocate a type 7 object
+ * and register it. This may be called from different contexts.
+ */
+void func_800DB7B4(void) {
+    void *obj;
+
+    func_80007270(D_80142728, 0, 1);   /* Acquire sync */
+    obj = func_80091B00();
+    *((u8*)obj + 2) = 7;               /* Set type to 7 */
+    func_800075E0(D_80142728, 0, 0);   /* Release sync */
+    func_800075E0((void*)D_801427A8, obj, 0);  /* Register object */
+}
+
+/**
+ * func_800DCD1C - Conditional enable with flag set
+ * Address: 0x800DCD1C
+ * Size: 52 bytes
+ *
+ * If (a0 & 7) is zero, returns early.
+ * Otherwise calls func_800B5FC4 and sets s0[0] = 1.
+ *
+ * NOTE: Uses s0 register for output pointer (non-standard).
+ *
+ * @param a0 Mode flags - only acts if (a0 & 7) != 0
+ */
+extern void func_800B5FC4(void);  /* Enable function */
+
+void func_800DCD1C(s32 a0) {
+    if ((a0 & 7) != 0) {
+        func_800B5FC4();
+        /* s0[0] = 1 - requires register s0 to be set by caller */
+    }
+}
+
+/**
+ * func_800DC720 - Clear sound handles in object array
+ * Address: 0x800DC720
+ * Size: 116 bytes
+ *
+ * Iterates through an array of 5 entries (20 bytes, stride 4),
+ * calling func_800B358C on each non-NULL entry at offset 12.
+ * Then clears the first byte of the object.
+ *
+ * Object structure:
+ *   byte 0: active flag
+ *   offset 12: sound handle (4 bytes each, 5 entries)
+ *
+ * @param obj Object with sound handle array
+ */
+void func_800DC720(void *obj) {
+    s32 i;
+    u8 *ptr;
+    void *handle;
+
+    if (obj == NULL) {
+        return;
+    }
+
+    /* Check active flag */
+    if (*(s8*)obj == 0) {
+        return;
+    }
+
+    ptr = (u8*)obj;
+    for (i = 0; i < 20; i += 4) {
+        handle = *(void**)(ptr + 12);
+        if (handle != NULL) {
+            func_800B358C(handle);
+            *(void**)(ptr + 12) = NULL;
+        }
+        ptr += 4;
+    }
+
+    /* Clear active flag */
+    *(u8*)obj = 0;
+}
+
+/**
+ * func_8008A6D0 - Signal sync release on D_801597D0
+ * Address: 0x8008A6D0
+ * Size: 44 bytes
+ *
+ * Simple wrapper that releases sync on D_801597D0 with
+ * null parameters.
+ */
+extern u8 D_801597D0[];  /* Sync structure for audio */
+
+void func_8008A6D0(void) {
+    func_800075E0(D_801597D0, NULL, 0);
+}
+
+/**
+ * func_8008AA20 - Call func_800205E4 wrapper
+ * Address: 0x8008AA20
+ * Size: 32 bytes
+ *
+ * Simple thunk to func_800205E4.
+ * May be for ABI compatibility or code organization.
+ */
+extern void func_800205E4(void);
+
+void func_8008AA20(void) {
+    func_800205E4();
+}
+
+/**
+ * func_80098554 - Call func_80097CA0 wrapper
+ * Address: 0x80098554
+ * Size: 32 bytes
+ *
+ * Simple thunk to func_80097CA0.
+ */
+extern void func_80097CA0(void);
+
+void func_80098554(void) {
+    func_80097CA0();
+}
+
+/**
+ * func_800AC820 - Get resource slot with a0, -1
+ * Address: 0x800AC820
+ * Size: 32 bytes
+ *
+ * Wrapper that calls func_80097694(a0, -1).
+ * Returns the slot ID for the given resource type.
+ *
+ * @param a0 Resource type ID
+ * @return Slot ID or -1 if not found
+ */
+s32 func_800AC820(s32 a0) {
+    return func_80097694(a0, -1);
+}
+
+/**
+ * func_800B3F00 - Get object type byte 2
+ * Address: 0x800B3F00
+ * Size: 40 bytes
+ *
+ * Calls func_800B3D18 with t0=0, then returns byte at offset 2
+ * from D_801597F0.
+ *
+ * @return Type byte 2 from current object
+ */
+extern void func_800B3D18(void);  /* Update/sync function */
+extern u8 *D_801597F0;            /* Current object pointer */
+
+u8 func_800B3F00(void) {
+    func_800B3D18();
+    return *(D_801597F0 + 2);
+}
+
+/**
+ * func_800B3F28 - Get object type byte 3
+ * Address: 0x800B3F28
+ * Size: 40 bytes
+ *
+ * Same as func_800B3F00 but returns byte at offset 3.
+ *
+ * @return Type byte 3 from current object
+ */
+u8 func_800B3F28(void) {
+    func_800B3D18();
+    return *(D_801597F0 + 3);
+}
+
+/**
+ * func_800B7170 - Calculate difference with func_800B3FA4 result
+ * Address: 0x800B7170
+ * Size: 48 bytes
+ *
+ * Calls func_800B3FA4(a0, -1) and returns (s16)(a1 - result).
+ *
+ * @param a0 First parameter for func_800B3FA4
+ * @param a1 Value to subtract from
+ * @return a1 - func_800B3FA4(a0, -1) as signed 16-bit
+ */
+s16 func_800B7170(s8 *a0, s16 a1) {
+    s32 result = func_800B3FA4(a0, -1);
+    return (s16)(a1 - (s16)result);
+}
+
+/**
+ * func_800E2A3C - Call two functions with same parameter
+ * Address: 0x800E2A3C
+ * Size: 40 bytes
+ *
+ * Calls func_800E23A4 then func_800E1C30 with same a0.
+ *
+ * @param a0 Parameter passed to both functions
+ */
+extern void func_800E23A4(s32);
+extern void func_800E1C30(s32);
+
+void func_800E2A3C(s32 a0) {
+    func_800E23A4(a0);
+    func_800E1C30(a0);
+}
+
+/**
+ * func_80094F88 - Set byte at offset 26 and update
+ * Address: 0x80094F88
+ * Size: 60 bytes
+ *
+ * If a0[26] != a1, sets a0[26] = a1 and calls func_80094EC8.
+ * Returns the final value of a0[26].
+ *
+ * @param a0 Object pointer
+ * @param a1 New value for byte at offset 26
+ * @return Value at a0[26]
+ */
+extern void func_80094EC8(void*);
+
+s8 func_80094F88(void *a0, s8 a1) {
+    s8 old_val = *((s8*)a0 + 26);
+
+    if (old_val != a1) {
+        *((s8*)a0 + 26) = a1;
+        func_80094EC8(a0);
+    }
+
+    return *((s8*)a0 + 26);
+}
+
+/**
+ * func_800A2D0C - Call func_80091FBC with indexed parameters
+ * Address: 0x800A2D0C
+ * Size: 56 bytes
+ *
+ * Gets player index from a1[0][16], calculates address in
+ * D_80144D60 + index * 16, and calls func_80091FBC with
+ * a0 and the value at offset 8 of that address.
+ *
+ * @param a0 First parameter for func_80091FBC
+ * @param a1 Pointer to object with player index
+ */
+extern u8 D_80144D60[];  /* Player data array, 16 bytes each */
+
+void func_800A2D0C(void *a0, void *a1) {
+    void *ptr = *(void**)a1;
+    u8 player_idx = *((u8*)ptr + 16);
+    u8 *player_data = D_80144D60 + (player_idx * 16);
+    void *value = *(void**)(player_data + 8);
+    func_80091FBC(a0, value, NULL);
+}
+
+/**
+ * func_800AC898 - Get player state byte after call
+ * Address: 0x800AC898
+ * Size: 60 bytes
+ *
+ * Calls func_80096288(a0, 0, 0) then returns
+ * D_80156D39 + (a0 * 20) - a byte from player state array.
+ *
+ * @param a0 Player/object index
+ * @return State byte for player
+ */
+extern void func_80096288(s32, s32, s32);
+extern s8 D_80156D39[];  /* Player state array, 20 bytes per entry */
+
+s8 func_800AC898(s32 a0) {
+    func_80096288(a0, 0, 0);
+    return D_80156D39[a0 * 20];
+}
+
+/**
+ * func_800B5FC4 - Select resource type based on flags
+ * Address: 0x800B5FC4
+ * Size: 80 bytes
+ *
+ * Based on bit flags in a0:
+ *   bit 0 set: uses resource type 46
+ *   bit 1 set: uses resource type 37
+ *   otherwise: uses resource type 38
+ * Then calls func_80092360 with selected type.
+ */
+extern void func_80092360(s32, s32, s32, s32);
+
+void func_800B5FC4_impl(s32 a0) {
+    s32 resource_type;
+
+    if (a0 & 1) {
+        resource_type = 46;
+    } else if (a0 & 2) {
+        resource_type = 37;
+    } else {
+        resource_type = 38;
+    }
+
+    func_80092360(resource_type, 0, 1, 0);
+}
+
+/**
+ * func_800B61B0 - Conditional call to func_80092360
+ * Address: 0x800B61B0
+ * Size: 76 bytes
+ *
+ * Returns -1 if t7 is 0 or if a0 is -1.
+ * Otherwise calls func_80092360 and returns its result.
+ *
+ * NOTE: Uses t7 register as condition (set by caller).
+ *
+ * @param a0 Resource type (returns -1 if -1)
+ * @param a1 Second param for func_80092360
+ * @param a2 Third param for func_80092360
+ * @param a3 Fourth param (masked to 8 bits)
+ * @return -1 on early exit, or result of func_80092360
+ */
+void func_800B61B0(s32 a0, s32 a1, s32 a2, u8 a3) {
+    /* t7 condition checked by caller, always enter here if t7 != 0 */
+    if (a0 == -1) {
+        return;
+    }
+    func_80092360(a0, a1, a2, a3);
+}
+
+/**
+ * func_800BC1E8 - Clear flag and call func_800BB9B0
+ * Address: 0x800BC1E8
+ * Size: 52 bytes
+ *
+ * Clears D_80143A10[0], loads player index from D_8015978C,
+ * then calls func_800BB9B0(player_idx, 0, 1).
+ */
+extern s8 D_8015978C;   /* Current player index */
+extern void func_800BB9B0(s32, s32, s32);
+
+void func_800BC1E8(void) {
+    D_80143A10[0] = 0;
+    func_800BB9B0(D_8015978C, 0, 1);
+}
+
+/**
+ * func_800EE88C - Call func_800B82C8 wrapper
+ * Address: 0x800EE88C
+ * Size: 32 bytes
+ *
+ * Simple thunk to func_800B82C8.
+ */
+extern void func_800B82C8(void);
+
+void func_800EE88C(void) {
+    func_800B82C8();
+}
+
+/**
+ * func_800A4B48 - Call func_80096238 with D_80151A6C
+ * Address: 0x800A4B48
+ * Size: 36 bytes
+ *
+ * Loads value from D_80151A6C and calls func_80096238.
+ */
+extern s32 D_80151A6C;
+extern void func_80096238(s32);
+
+void func_800A4B48(void) {
+    func_80096238(D_80151A6C);
+}
+
+/**
+ * func_800A7DF0 - Call func_800A5B3C wrapper
+ * Address: 0x800A7DF0
+ * Size: 32 bytes
+ *
+ * Simple thunk to func_800A5B3C.
+ */
+extern void func_800A5B3C(void);
+
+void func_800A7DF0(void) {
+    func_800A5B3C();
+}
+
+/**
+ * func_800B4360 - Call func_80002CD0 with stack-passed parameters
+ * Address: 0x800B4360
+ * Size: 44 bytes
+ *
+ * Stores a1, a2, a3 on stack then calls func_80002CD0 with
+ * a0, a1, and address of stack area containing a2, a3.
+ *
+ * @param a0 First parameter
+ * @param a1 Second parameter
+ * @param a2 Third parameter (passed via stack)
+ * @param a3 Fourth parameter (passed via stack)
+ */
+extern void func_80002CD0(s32, s32, void*);
+
+void func_800B4360(s32 a0, s32 a1, s32 a2, s32 a3) {
+    s32 stack_args[2];
+    stack_args[0] = a2;
+    stack_args[1] = a3;
+    func_80002CD0(a0, a1, stack_args);
+}
+
+/**
+ * func_800BAF64 - Clear two bytes and call func_800BADE0
+ * Address: 0x800BAF64
+ * Size: 44 bytes
+ *
+ * Clears D_80110680[0] and D_80110680[1], then calls func_800BADE0.
+ */
+extern u8 D_80110680[];  /* Mode/state flags */
+extern void func_800BADE0(void);
+
+void func_800BAF64(void) {
+    D_80110680[0] = 0;
+    D_80110680[1] = 0;
+    func_800BADE0();
+}
+
+/**
+ * func_800AC840 - Clear slot entry and deactivate
+ * Address: 0x800AC840
+ * Size: 88 bytes
+ *
+ * Calls func_80096288(a0, 0, 0), then calculates slot address
+ * at D_80156D38 + (a0 * 20), calls func_800962D4 with slot[12],
+ * and clears slot[2].
+ *
+ * @param a0 Slot index
+ */
+extern u8 D_80156D38[];  /* Slot array, 20 bytes per entry */
+extern void func_800962D4(s32, s32);
+
+void func_800AC840(s32 a0) {
+    u8 *slot;
+
+    func_80096288(a0, 0, 0);
+
+    slot = D_80156D38 + (a0 * 20);
+    func_800962D4(*(s32*)(slot + 12), 1);
+    slot[2] = 0;
+}
+
+/**
+ * func_8008B474 - Copy and multiply 3D vector
+ * Address: 0x8008B474
+ * Size: 80 bytes
+ *
+ * Calls func_8008B424, then copies src vector to dst with
+ * component-wise multiply by some factor (FPU ops).
+ *
+ * @param src Source 3D vector (12 bytes)
+ * @param dst Destination 3D vector
+ */
+extern void func_8008B424(void);
+
+void func_8008B474(f32 *src, f32 *dst) {
+    func_8008B424();
+    /* FPU operations: mul.s each component */
+    dst[0] = src[0];  /* with multiplier */
+    dst[1] = src[1];
+    dst[2] = src[2];
+}
+
+/**
+ * func_800A5B60 - Initialize render/camera state
+ * Address: 0x800A5B60
+ * Size: 80 bytes
+ *
+ * Clears several global variables and calls func_800A5A40.
+ * Sets up initial render state with default values.
+ */
+extern s32 D_801613B4;    /* Render state 1 */
+extern s16 D_8015B254;    /* Camera short */
+extern f32 D_801613B8;    /* Render float */
+extern s16 D_80140618;    /* Mode short */
+extern s32 D_801406B8;    /* Data pointer */
+extern void func_800A5A40(void);
+
+void func_800A5B60(void) {
+    D_801613B4 = 0;
+    D_8015B254 = -1;
+    func_800A5A40();
+    D_801613B8 = 1.0f;
+    D_80140618 = 0;
+    D_801406B8 = 0x8011EA18;  /* Constant pointer */
+}
+
+/**
+ * func_800ACB74 - Calculate vector difference and call func_800A61B0
+ * Address: 0x800ACB74
+ * Size: 80 bytes
+ *
+ * Subtracts t0 vector from a3 vector, stores result on stack,
+ * and calls func_800A61B0 with result pointer.
+ *
+ * NOTE: Uses t0 and a3 registers for input (non-standard ABI).
+ */
+extern void func_800A61B0(f32*);
+
+void func_800ACB74(f32 *a3, f32 *t0) {
+    f32 diff[3];
+
+    diff[0] = a3[0] - t0[0];
+    diff[1] = a3[1] - t0[1];
+    diff[2] = a3[2] - t0[2];
+
+    func_800A61B0(diff);
+}
+
+/**
+ * func_80096B5C - Lookup and return with optional output
+ * Address: 0x80096B5C
+ * Size: 96 bytes
+ *
+ * If a0 != 0, calls func_80096B00 to get result.
+ * If result is non-zero, returns result[4] and optionally
+ * stores result[8] to *a2.
+ * If result is zero, stores 0 to *a2 and returns 0.
+ *
+ * @param a0 Input key for lookup
+ * @param a1 Unused
+ * @param a2 Optional output pointer
+ * @return Value at result[4] or 0
+ */
+extern void* func_80096B00(s32);
+
+s32 func_80096B5C(s32 a0, s32 a1, s32 *a2) {
+    void *result = NULL;
+
+    if (a0 != 0) {
+        result = func_80096B00(a0);
+    }
+
+    if (result == NULL) {
+        if (a2 != NULL) {
+            *a2 = 0;
+        }
+        return 0;
+    }
+
+    if (a2 != NULL) {
+        *a2 = *(s32*)((u8*)result + 8);
+    }
+    return *(s32*)((u8*)result + 4);
+}
+
+/**
+ * func_800960D4 - Synced call to func_80095FD8
+ * Address: 0x800960D4
+ * Size: 92 bytes
+ *
+ * Acquires sync on D_80152770, calls func_80095FD8(a0, 0),
+ * then releases sync.
+ *
+ * @param a0 Parameter for func_80095FD8
+ */
+extern u8 D_80152770[];  /* Sync structure */
+extern void func_80095FD8(s32, s32);
+
+void func_800960D4(s32 a0) {
+    func_80007270(D_80152770, 0, 1);
+    func_80095FD8(a0, 0);
+    func_800075E0(D_80152770, 0, 0);
+}
+
+/**
+ * func_8009638C - Activate slot entry
+ * Address: 0x8009638C
+ * Size: 92 bytes
+ *
+ * Similar to func_800AC840 but sets slot[2] = 1 instead of 0.
+ * Calls func_80096288(a0, 0, 0), then func_800962D4(slot[12], 0),
+ * then sets slot[2] = 1.
+ *
+ * @param a0 Slot index
+ */
+void func_8009638C(s32 a0) {
+    u8 *slot;
+
+    func_80096288(a0, 0, 0);
+
+    slot = D_80156D38 + (a0 * 20);
+    func_800962D4(*(s32*)(slot + 12), 0);
+    slot[2] = 1;
+}
+
+/**
+ * func_800A0F74 - Conditional synced call with clear
+ * Address: 0x800A0F74
+ * Size: 104 bytes
+ *
+ * If t6 (condition) is non-zero:
+ *   - Acquires sync on D_80152770
+ *   - Calls func_80095FD8(0x8039A400, 0)
+ *   - Releases sync
+ *   - Clears D_8011ED04
+ *
+ * NOTE: Uses t6 register as condition (set by caller).
+ */
+extern u8 D_8011ED04;  /* Mode flag */
+
+void func_800A0F74(s32 condition) {
+    if (condition != 0) {
+        func_80007270(D_80152770, 0, 1);
+        func_80095FD8(0x8039A400, 0);
+        func_800075E0(D_80152770, 0, 0);
+        D_8011ED04 = 0;
+    }
+}
+
+/**
+ * func_800A11E4 - Complex initialization with multiple calls
+ * Address: 0x800A11E4
+ * Size: 96 bytes
+ *
+ * Uses registers s0, s1, s2, s3, s4 set by caller.
+ * If s3[0] == 0:
+ *   - Calls func_800A0FDC(s0, a2-s0)
+ *   - Calls func_800962D4(result, 0)
+ *   - Calls func_800026C0(s4, s0, 1)
+ *   - Calls func_80008590(s2, s1-s2)
+ *   - Sets s3[0] = 1
+ *
+ * NOTE: Heavy use of callee-saved registers for parameters.
+ */
+extern s32 func_800A0FDC(s32, s32);
+extern void func_800026C0(s32, s32, s32);
+extern void func_80008590(s32, s32);
+
+void func_800A11E4(s32 s0, s32 s1, s32 s2, s8 *s3, s32 s4, s32 a2) {
+    if (*s3 == 0) {
+        s32 result = func_800A0FDC(s0, a2 - s0);
+        func_800962D4(result, 0);
+        func_800026C0(s4, s0, 1);
+        func_80008590(s2, s1 - s2);
+        *s3 = 1;
+    }
+}
+
+/**
+ * func_800AB758 - Set up object with position and rotation vectors
+ * Address: 0x800AB758
+ * Size: 120 bytes
+ *
+ * Calculates object address from a0 * 64 + t7, calls func_8008D6B0,
+ * then copies two 3D vectors into the object structure:
+ *   - a2 vector to offset 40-48 (position)
+ *   - a1 vector to offset 52-60 (rotation)
+ *
+ * NOTE: Uses t7 register as base address (set by caller).
+ *
+ * @param a0 Object index (multiplied by 64)
+ * @param a1 Rotation vector (12 bytes)
+ * @param a2 Position vector (12 bytes)
+ * @param a3 Parameter for func_8008D6B0
+ */
+void func_800AB758(s32 a0, f32 *rotation, f32 *position, void *a3, u8 *base) {
+    u8 *obj = base + (a0 * 64);
+
+    func_8008D6B0(a3, obj + 4);
+
+    /* Copy position vector to offset 40 */
+    *(f32*)(obj + 40) = position[0];
+    *(f32*)(obj + 44) = position[1];
+    *(f32*)(obj + 48) = position[2];
+
+    /* Copy rotation vector to offset 52 */
+    *(f32*)(obj + 52) = rotation[0];
+    *(f32*)(obj + 56) = rotation[1];
+    *(f32*)(obj + 60) = rotation[2];
+}
+
+/**
+ * func_800AC6F4 - Call func_80096CA8 with fp and t0=0
+ * Address: 0x800AC6F4
+ * Size: 104 bytes
+ *
+ * Saves all callee-saved registers, sets fp=a0 and t0=0,
+ * calls func_80096CA8, then restores registers.
+ *
+ * @param a0 Value to pass in fp register
+ */
+extern void func_80096CA8(void);
+
+void func_800AC6F4(s32 a0) {
+    /* fp = a0, t0 = 0 passed to callee */
+    func_80096CA8();
+}
+
+/**
+ * func_800F7E70 - Clear two memory regions
+ * Address: 0x800F7E70
+ * Size: 64 bytes
+ *
+ * Clears D_80159428 (16 bytes) and D_8015256C (4 bytes) using bzero.
+ */
+extern u8 D_80159428[];  /* 16-byte buffer */
+extern u8 D_8015256C[];  /* 4-byte buffer */
+
+void func_800F7E70(void) {
+    bzero(D_80159428, 16);
+    bzero(D_8015256C, 4);
+}
+
+/**
+ * func_800FBBFC - Conditional call based on game state
+ * Address: 0x800FBBFC
+ * Size: 52 bytes
+ *
+ * Calls func_8000BE50(0), if result == 7, calls func_800C9AE0.
+ */
+extern s32 func_8000BE50(s32);
+
+void func_800FBBFC(void) {
+    s32 state = func_8000BE50(0);
+    if (state == 7) {
+        func_800C9AE0();
+    }
+}
+
+/**
+ * func_800FEC60 - Select resource type 46 or 38
+ * Address: 0x800FEC60
+ * Size: 60 bytes
+ *
+ * If bit 0 of a0 is set, uses resource type 46.
+ * Otherwise uses resource type 38.
+ * Then calls func_80092360.
+ *
+ * @param a0 Mode flags
+ */
+void func_800FEC60(s32 a0) {
+    s32 resource_type;
+
+    if (a0 & 1) {
+        resource_type = 46;
+    } else {
+        resource_type = 38;
+    }
+
+    func_80092360(resource_type, 0, 1, 0);
+}
+
+/**
+ * func_800ED764 - Set mode byte from parameter or object
+ * Address: 0x800ED764
+ * Size: 80 bytes
+ *
+ * If a0 (as signed 16-bit) is negative:
+ *   - Calls func_800B3D18 with t0=0
+ *   - Sets D_80159B70 = D_801597F0[8]
+ * Otherwise:
+ *   - Sets D_80159B70 = a0
+ *
+ * @param a0 Mode value or -1 to use current object
+ */
+extern u8 D_80159B70;  /* Mode byte */
+
+void func_800ED764(s16 a0) {
+    if (a0 < 0) {
+        func_800B3D18();
+        D_80159B70 = *(D_801597F0 + 8);
+    } else {
+        D_80159B70 = (u8)a0;
+    }
+}
+
+/**
+ * func_800ED7B4 - Set mode byte from parameter or object (variant)
+ * Address: 0x800ED7B4
+ * Size: 80 bytes
+ *
+ * Same as func_800ED764 but reads offset 4 and writes to D_80159B60.
+ *
+ * @param a0 Mode value or -1 to use current object
+ */
+extern u8 D_80159B60;  /* Mode byte 2 */
+
+void func_800ED7B4(s16 a0) {
+    if (a0 < 0) {
+        func_800B3D18();
+        D_80159B60 = *(D_801597F0 + 4);
+    } else {
+        D_80159B60 = (u8)a0;
+    }
+}
+
+/**
+ * func_800EE7C4 - Conditional sync init with flag
+ * Address: 0x800EE7C4
+ * Size: 92 bytes
+ *
+ * If t6 (condition) is zero:
+ *   - Sets D_801147C0 = 1
+ *   - Calls func_80006A00(D_801461D0, D_801461FC, 1)
+ *   - Releases sync on D_801461D0
+ * Always sets D_80159DA0 = -1
+ *
+ * NOTE: Uses t6 register as condition (set by caller).
+ */
+extern u8 D_801147C0;   /* Init flag */
+extern u8 D_801461FC[]; /* Data pointer */
+extern s8 D_80159DA0;   /* State byte */
+extern void func_80006A00(void*, void*, s32);
+
+void func_800EE7C4(s32 condition) {
+    if (condition == 0) {
+        D_801147C0 = 1;
+        func_80006A00(&D_801461D0, D_801461FC, 1);
+        func_800075E0(&D_801461D0, NULL, 0);
+    }
+    D_80159DA0 = -1;
+}
+
+/**
+ * func_800E2A64 - Call multiple update functions on object
+ * Address: 0x800E2A64
+ * Size: 96 bytes
+ *
+ * Calls 8 functions in sequence with the same object parameter:
+ *   func_800CF06C, func_800E23A4, func_800E1C30, func_800E1AA0,
+ *   func_800E15A0, func_800E1540, func_800E114C, func_800D0424
+ *
+ * This is likely a full object update/tick function.
+ *
+ * @param a0 Object pointer
+ */
+extern void func_800CF06C(void*);
+extern void func_800E1AA0(void*);
+extern void func_800E15A0(void*);
+extern void func_800E1540(void*);
+extern void func_800E114C(void*);
+extern void func_800D0424(void*);
+
+void func_800E2A64(void *obj) {
+    func_800CF06C(obj);
+    func_800E23A4((s32)obj);
+    func_800E1C30((s32)obj);
+    func_800E1AA0(obj);
+    func_800E15A0(obj);
+    func_800E1540(obj);
+    func_800E114C(obj);
+    func_800D0424(obj);
+}
+
+/**
+ * func_800E2A3C - Wrapper for E23A4 and E1C30
+ * Address: 0x800E2A3C
+ * Size: 40 bytes
+ *
+ * Calls func_800E23A4 then func_800E1C30 with same parameter.
+ *
+ * @param a0 Object pointer
+ */
+void func_800E2A3C(void *obj) {
+    func_800E23A4((s32)obj);
+    func_800E1C30((s32)obj);
+}
+
+/**
+ * func_8008A6D0 - Release sync on audio/render object
+ * Address: 0x8008A6D0
+ * Size: 44 bytes
+ *
+ * Simply releases sync on D_801497D0 with (0, 0) flags.
+ */
+extern void *D_801497D0;  /* Audio/render sync object */
+
+void func_8008A6D0(void) {
+    func_800075E0(&D_801497D0, NULL, 0);
+}
+
+/**
+ * func_800E7914 - Decrement object counter with sync
+ * Address: 0x800E7914
+ * Size: 108 bytes
+ *
+ * Acquires sync, looks up object by ID, decrements counter at offset 22
+ * if it's positive, then releases sync.
+ *
+ * @param id Object ID to look up
+ */
+extern void *D_80152770;  /* Object sync structure */
+extern void *func_80095F8C(s32);
+extern void *func_80095EF4(void*, void*, s32);
+
+void func_800E7914(s32 id) {
+    void *obj;
+    u8 counter;
+
+    func_80007270(&D_80152770, NULL, 1);
+    obj = func_80095F8C(id);
+    obj = func_80095EF4(obj, NULL, 0);
+    counter = *((u8*)obj + 22);
+    if (counter > 0) {
+        *((u8*)obj + 22) = counter - 1;
+    }
+    func_800075E0(&D_80152770, NULL, 0);
+}
+
+/**
+ * func_800E7980 - Increment object counter with sync
+ * Address: 0x800E7980
+ * Size: 112 bytes
+ *
+ * Acquires sync, looks up object by ID, increments counter at offset 22
+ * if it's less than 255, then releases sync.
+ *
+ * @param id Object ID to look up
+ */
+void func_800E7980(s32 id) {
+    void *obj;
+    u8 counter;
+
+    func_80007270(&D_80152770, NULL, 1);
+    obj = func_80095F8C(id);
+    obj = func_80095EF4(obj, NULL, 0);
+    counter = *((u8*)obj + 22);
+    if (counter < 255) {
+        *((u8*)obj + 22) = counter + 1;
+    }
+    func_800075E0(&D_80152770, NULL, 0);
+}
+
+/**
+ * func_8008AA20 - Wrapper for func_800205E4
+ * Address: 0x8008AA20
+ * Size: 32 bytes
+ *
+ * Simple wrapper that calls func_800205E4 with no parameters.
+ */
+extern void func_800205E4(void);
+
+void func_8008AA20(void) {
+    func_800205E4();
+}
+
+/**
+ * func_8008AD48 - Offset pointer wrapper for 8008AD04
+ * Address: 0x8008AD48
+ * Size: 36 bytes
+ *
+ * Adds 4 to both pointers and calls func_8008AD04.
+ * Used for skipping header bytes in data structures.
+ *
+ * @param a0 First pointer (offset by 4)
+ * @param a1 Second pointer (offset by 4)
+ */
+extern void func_8008AD04(void*, void*);
+
+void func_8008AD48(void *a0, void *a1) {
+    func_8008AD04((u8*)a0 + 4, (u8*)a1 + 4);
+}
+
+/**
+ * func_8008E398 - Sign-extend and call E26C
+ * Address: 0x8008E398
+ * Size: 40 bytes
+ *
+ * Sign-extends the third parameter from 16 bits and calls func_8008E26C.
+ *
+ * @param a0 First parameter (passed through)
+ * @param a1 Second parameter (passed through)
+ * @param a2 16-bit value to sign-extend
+ */
+extern void func_8008E26C(void*, void*, s16);
+
+void func_8008E398(void *a0, void *a1, s16 a2) {
+    func_8008E26C(a0, a1, a2);
+}
+
+/**
+ * func_80090228 - Wrapper for func_80090088 with zeroed a2
+ * Address: 0x80090228
+ * Size: 44 bytes
+ *
+ * Sign-extends parameter and calls func_80090088 with a2=0.
+ *
+ * @param a0 16-bit value to sign-extend
+ */
+extern void func_80090088(s16, void*, s32);
+
+void func_80090228(s16 a0) {
+    func_80090088(a0, NULL, 0);
+}
+
+/**
+ * func_80090254 - Wrapper for func_80090088 with zeroed a1 and a2
+ * Address: 0x80090254
+ * Size: 48 bytes
+ *
+ * Sign-extends parameter and calls func_80090088 with a1=NULL, a2=0.
+ *
+ * @param a0 16-bit value to sign-extend
+ */
+void func_80090254(s16 a0) {
+    func_80090088(a0, NULL, 0);
+}
+
+/**
+ * func_8009508C - Simple wrapper for func_8008AD04
+ * Address: 0x8009508C
+ * Size: 32 bytes
+ *
+ * Calls func_8008AD04 with unchanged parameters.
+ *
+ * @param a0 First pointer
+ * @param a1 Second pointer
+ */
+void func_8009508C(void *a0, void *a1) {
+    func_8008AD04(a0, a1);
+}
+
+/**
+ * func_800EE88C - Wrapper for func_800B82C8
+ * Address: 0x800EE88C
+ * Size: 32 bytes
+ *
+ * Simple wrapper that calls func_800B82C8.
+ */
+extern void func_800B82C8(void);
+
+void func_800EE88C(void) {
+    func_800B82C8();
+}
+
+/**
+ * func_800AC820 - Call func_80097694 with -1
+ * Address: 0x800AC820
+ * Size: 32 bytes
+ *
+ * Calls func_80097694 with second parameter as -1.
+ *
+ * @param a0 First parameter passed through
+ */
+extern void func_80097694(s32, s32);
+
+void func_800AC820(s32 a0) {
+    func_80097694(a0, -1);
+}
+
+/**
+ * func_800A7DF0 - Wrapper for func_800A5B3C
+ * Address: 0x800A7DF0
+ * Size: 32 bytes
+ *
+ * Simple wrapper that calls func_800A5B3C.
+ */
+extern void func_800A5B3C(void);
+
+void func_800A7DF0(void) {
+    func_800A5B3C();
+}
+
+/**
+ * func_800B3F00 - Get byte at offset 2 of current object
+ * Address: 0x800B3F00
+ * Size: 40 bytes
+ *
+ * Calls func_800B3D18 then returns byte at offset 2 of D_801597F0.
+ *
+ * @return Byte at offset 2 of current object
+ */
+u8 func_800B3F00(void) {
+    func_800B3D18();
+    return *((u8*)D_801597F0 + 2);
+}
+
+/**
+ * func_800B3F28 - Get byte at offset 3 of current object
+ * Address: 0x800B3F28
+ * Size: 40 bytes
+ *
+ * Calls func_800B3D18 then returns byte at offset 3 of D_801597F0.
+ *
+ * @return Byte at offset 3 of current object
+ */
+u8 func_800B3F28(void) {
+    func_800B3D18();
+    return *((u8*)D_801597F0 + 3);
+}
+
+/**
+ * func_800A2CE4 - Call func_800A2990 with derived parameter
+ * Address: 0x800A2CE4
+ * Size: 40 bytes
+ *
+ * Loads pointer from a0->0, then gets value at offset 64 of that,
+ * and calls func_800A2990 with (a0, 0, value).
+ *
+ * @param a0 Pointer to pointer
+ */
+extern void func_800A2990(void*, s32, s32);
+
+void func_800A2CE4(void **a0) {
+    void *ptr = *a0;
+    s32 val = *(s32*)((u8*)ptr + 64);
+    func_800A2990(a0, 0, val);
+}
+
+/**
+ * func_80098554 - Wrapper for func_80097CA0
+ * Address: 0x80098554
+ * Size: 32 bytes
+ *
+ * Simple wrapper that calls func_80097CA0.
+ */
+extern void func_80097CA0(void);
+
+void func_80098554(void) {
+    func_80097CA0();
+}
+
+/**
+ * func_800986B0 - Offset pointer call to func_80098620
+ * Address: 0x800986B0
+ * Size: 36 bytes
+ *
+ * Calls func_80098620 with (a0+8, original_a1).
+ *
+ * @param a0 Base pointer
+ * @param a1 Parameter moved to a2
+ */
+extern void func_80098620(void*, void*, void*);
+
+void func_800986B0(void *a0, void *a1) {
+    func_80098620((u8*)a0 + 8, a1, NULL);
+}
+
+/**
+ * func_800A4B48 - Call func_80096238 with global value
+ * Address: 0x800A4B48
+ * Size: 36 bytes
+ *
+ * Loads D_80151A6C and calls func_80096238 with it.
+ */
+extern void *D_80151A6C;  /* Global pointer */
+extern void func_80096238(void*);
+
+void func_800A4B48(void) {
+    func_80096238(D_80151A6C);
+}
+
+/**
+ * func_800985F4 - Parameter reshuffling wrapper
+ * Address: 0x800985F4
+ * Size: 44 bytes
+ *
+ * Reorganizes parameters and calls func_80098574.
+ *
+ * @param a0 Base object
+ * @param a1 Moved to a3
+ */
+extern void func_80098574(void*, void*, void*, void*);
+
+void func_800985F4(void *a0, void *a1) {
+    s32 temp = 0;
+    void *val = *(void**)((u8*)a0 + 8);
+    func_80098574(a0, val, &temp, a1);
+}
+
+/**
+ * func_800B4360 - Parameter pass-through to func_80002CD0
+ * Address: 0x800B4360
+ * Size: 44 bytes
+ *
+ * Stores a1, a2, a3 on stack and calls func_80002CD0.
+ *
+ * @param a0 First param
+ * @param a1 Stored at offset 0
+ * @param a2 Stored at offset 4
+ * @param a3 Stored at offset 8
+ */
+extern void func_80002CD0(void*, void*, void*);
+
+void func_800B4360(void *a0, s32 a1, s32 a2, s32 a3) {
+    s32 args[3];
+    args[0] = a1;
+    args[1] = a2;
+    args[2] = a3;
+    func_80002CD0(a0, NULL, args);
+}
+
+/**
+ * func_800BAF64 - Clear flags and call BADE0
+ * Address: 0x800BAF64
+ * Size: 44 bytes
+ *
+ * Clears two bytes at D_80110680 and calls func_800BADE0.
+ */
+extern u8 D_80110680[2];  /* Two-byte flags */
+extern void func_800BADE0(void);
+
+void func_800BAF64(void) {
+    D_80110680[0] = 0;
+    D_80110680[1] = 0;
+    func_800BADE0();
+}
+
+/**
+ * func_80100D30 - Initialize with callback pointer
+ * Address: 0x80100D30
+ * Size: 44 bytes
+ *
+ * Stores D_801146FC at a0+4, calls func_80094EC8, returns 1.
+ *
+ * @param a0 Object to initialize
+ * @return Always returns 1
+ */
+extern void *D_801146FC;  /* Callback pointer */
+extern void func_80094EC8(void*);
+
+s32 func_80100D30(void *a0) {
+    *(void**)((u8*)a0 + 4) = &D_801146FC;
+    func_80094EC8(a0);
+    return 1;
+}
+
+/**
+ * func_8010FBB4 - Acquire sync on D_80152750
+ * Address: 0x8010FBB4
+ * Size: 44 bytes
+ *
+ * Acquires sync on D_80152750 with flags (0, 1).
+ */
+extern void *D_80152750;  /* Sync object */
+
+void func_8010FBB4(void) {
+    func_80007270(&D_80152750, NULL, 1);
+}
+
+/**
+ * func_800B0550 - Initialize structure with parameters
+ * Address: 0x800B0550
+ * Size: 48 bytes
+ *
+ * Stores parameters into structure fields and calls func_800B04D0.
+ * Structure layout: byte at 0, s32 at 4, s32 at 8, s32 at 12.
+ *
+ * @param a0 Structure pointer
+ * @param a1 Stored at offset 12
+ * @param a2 Stored at offset 8
+ * @param a3 Stored at offset 4
+ * @param stack Byte from stack stored at offset 0
+ */
+void func_800B0550(void *a0, s32 a1, s32 a2, s32 a3, u8 stack) {
+    *(s32*)((u8*)a0 + 12) = a1;
+    *(s32*)((u8*)a0 + 4) = a3;
+    *(s32*)((u8*)a0 + 8) = a2;
+    *(u8*)a0 = stack;
+    func_800B04D0(a0);
+}
+
+/**
+ * func_800B7170 - Calculate difference with func_800B3FA4 result
+ * Address: 0x800B7170
+ * Size: 48 bytes
+ *
+ * Calls func_800B3FA4 with -1, subtracts result from high halfword
+ * of original a1 parameter.
+ *
+ * @param a0 First parameter
+ * @param a1 Value whose high halfword minus result is returned
+ * @return (s16)(a1 >> 16) - result
+ */
+s16 func_800B7170(void *a0, s32 a1) {
+    s16 original = (s16)(a1 >> 16);
+    s16 result = func_800B3FA4(a0, -1);
+    return original - result;
+}
+
+/**
+ * func_800C937C - Call func_800C9334 three times
+ * Address: 0x800C937C
+ * Size: 48 bytes
+ *
+ * Calls func_800C9334 three times with t0 values 54, 58, 59.
+ * NOTE: Uses t0 register to pass parameter (non-standard).
+ */
+extern void func_800C9334_with_t0(s32 t0_val);
+
+void func_800C937C(void) {
+    func_800C9334_with_t0(54);
+    func_800C9334_with_t0(58);
+    func_800C9334_with_t0(59);
+}
+
+/**
+ * func_800CB9A0 - Conditional call to func_800A2680
+ * Address: 0x800CB9A0
+ * Size: 48 bytes
+ *
+ * Loads a0->0->4, if non-zero calls func_800A2680 with it.
+ *
+ * @param a0 Pointer to pointer structure
+ */
+extern void func_800A2680(void*);
+
+void func_800CB9A0(void **a0) {
+    void *ptr = *a0;
+    void *val = *(void**)((u8*)ptr + 4);
+    if (val != NULL) {
+        func_800A2680(val);
+    }
+}
+
+/**
+ * func_80095120 - Validate and call func_800950AC
+ * Address: 0x80095120
+ * Size: 52 bytes
+ *
+ * If either a0 or a1 is NULL, returns -1.
+ * Otherwise calls func_800950AC with a2=15.
+ *
+ * @param a0 First pointer (must be non-NULL)
+ * @param a1 Second pointer (must be non-NULL)
+ * @return -1 if invalid, otherwise result of func_800950AC
+ */
+extern s32 func_800950AC(void*, void*, s32);
+
+s32 func_80095120(void *a0, void *a1) {
+    if (a0 == NULL || a1 == NULL) {
+        return -1;
+    }
+    return func_800950AC(a0, a1, 15);
+}
+
+/**
+ * func_800B71A0 - Calculate difference with halved result
+ * Address: 0x800B71A0
+ * Size: 52 bytes
+ *
+ * Similar to func_800B7170 but divides result by 2 before subtracting.
+ *
+ * @param a0 First parameter
+ * @param a1 Value whose high halfword is used
+ * @return (s16)(a1 >> 16) - (result / 2)
+ */
+s16 func_800B71A0(void *a0, s32 a1) {
+    s16 original = (s16)(a1 >> 16);
+    s16 result = func_800B3FA4(a0, -1);
+    return original - (result >> 1);
+}
+
+/**
+ * func_800BC1E8 - Clear flag and call BB9B0
+ * Address: 0x800BC1E8
+ * Size: 52 bytes
+ *
+ * Clears D_80143A10, loads D_8015978C, calls func_800BB9B0.
+ */
+extern u8 D_80143A10;      /* Flag byte */
+extern s8 D_8015978C;      /* Parameter byte */
+extern void func_800BB9B0(s8, s32, s32);
+
+void func_800BC1E8(void) {
+    D_80143A10 = 0;
+    func_800BB9B0(D_8015978C, 0, 1);
+}
+
+/**
+ * func_800FBBFC - Conditional call to func_800C9AE0
+ * Address: 0x800FBBFC
+ * Size: 52 bytes
+ *
+ * Calls func_8000BE50(0), if result != 7 calls func_800C9AE0.
+ */
+extern s32 func_8000BE50(s32);
+extern void func_800C9AE0(void);
+
+void func_800FBBFC(void) {
+    s32 result = func_8000BE50(0);
+    if (result != 7) {
+        func_800C9AE0();
+    }
+}
+
+/**
+ * func_800AED2C - Initialize object with cleared byte
+ * Address: 0x800AED2C
+ * Size: 56 bytes
+ *
+ * If a1 is NULL returns 0. Otherwise calls func_8009211C,
+ * clears byte at a1+8, returns a1.
+ *
+ * @param a0 First parameter
+ * @param a1 Object pointer
+ * @return 0 if a1 is NULL, otherwise a1
+ */
+void *func_800AED2C(void *a0, void *a1) {
+    if (a1 == NULL) {
+        return NULL;
+    }
+    func_8009211C(a0, a1);
+    *((u8*)a1 + 8) = 0;
+    return a1;
+}
+
+/**
+ * func_80094F88 - Set byte at offset 26 and update
+ * Address: 0x80094F88
+ * Size: 60 bytes
+ *
+ * If byte at a0+26 equals a1, returns current value.
+ * Otherwise sets a0+26 = a1, calls func_80094EC8, returns new value.
+ *
+ * @param a0 Object pointer
+ * @param a1 New value to set
+ * @return Value at a0+26 after operation
+ */
+s8 func_80094F88(void *a0, s8 a1) {
+    s8 current = *((s8*)a0 + 26);
+    if (current != a1) {
+        *((s8*)a0 + 26) = a1;
+        func_80094EC8(a0);
+    }
+    return *((s8*)a0 + 26);
+}
+
+/**
+ * func_8008B660 - Store 3D vector and transform
+ * Address: 0x8008B660
+ * Size: 60 bytes
+ *
+ * Stores f12, f14, f16 at a1+36/40/44, calls func_8008B4C4,
+ * then stores f20, f22, f24 at same offsets.
+ * Uses floating-point register parameters for 3D vector input/output.
+ *
+ * @param a0 Unused in this wrapper
+ * @param a1 Object to store vector in
+ * @param f12 X component
+ * @param f14 Y component
+ * @param f16 Z component
+ */
+extern void func_8008B4C4(void*);
+
+void func_8008B660(void *a0, void *a1, f32 x, f32 y, f32 z) {
+    f32 *vec = (f32*)((u8*)a1 + 36);
+    vec[0] = x;
+    vec[1] = y;
+    vec[2] = z;
+    func_8008B4C4(vec);
+    /* Output stored in f20, f22, f24 by callee - stored back by asm */
+}
+
+/**
+ * func_80096298 - Get slot value from array
+ * Address: 0x80096298
+ * Size: 60 bytes
+ *
+ * Calls func_80096288(a0, 0, 0), then returns D_80156D44[a0 * 5].
+ * Slot array entries are 20 bytes each.
+ *
+ * @param a0 Slot index
+ * @return Value from slot array at computed offset
+ */
+extern void func_80096288(s32, s32, s32);
+extern void *D_80156D44[];  /* Slot array, 20-byte entries */
+
+void *func_80096298(s32 a0) {
+    func_80096288(a0, 0, 0);
+    return D_80156D44[a0 * 5];
+}
+
+/**
+ * func_80096240 - Conditional reset with callbacks
+ * Address: 0x80096240
+ * Size: 72 bytes
+ *
+ * If a1 == -1, returns immediately.
+ * Otherwise calls func_80018E2C, func_800154A4, func_80096130,
+ * and sets D_8011EAA0 = -1.
+ *
+ * @param a0 Unused
+ * @param a1 If -1, skip processing
+ */
+extern void func_80018E2C(s32);
+extern void func_800154A4(void);
+extern void func_80096130(void*);
+extern void *D_80151AD4;  /* Global pointer */
+extern s32 D_8011EAA0;    /* State variable */
+
+void func_80096240(s32 a0, s32 a1) {
+    if (a1 == -1) {
+        return;
+    }
+    func_80018E2C(a1);
+    func_800154A4();
+    func_80096130(D_80151AD4);
+    D_8011EAA0 = -1;
+}
+
+/**
+ * func_8008B474 - Copy and multiply 3D vector
+ * Address: 0x8008B474
+ * Size: 80 bytes
+ *
+ * Calls func_8008B424, then copies 3 floats from a0 to a1
+ * with multiplication operations.
+ *
+ * @param a0 Source vector pointer
+ * @param a1 Destination vector pointer
+ */
+extern void func_8008B424(void);
+
+void func_8008B474(f32 *src, f32 *dst) {
+    func_8008B424();
+    /* mul.s operations copy src[0-2] to dst[0-2] with multiplier */
+    dst[0] = src[0];  /* Simplified - actual uses mul.s */
+    dst[1] = src[1];
+    dst[2] = src[2];
+}
+
+/**
+ * func_800960D4 - Call func_80095FD8 with sync
+ * Address: 0x800960D4
+ * Size: 92 bytes
+ *
+ * Acquires sync on D_80152770, calls func_80095FD8, releases sync.
+ *
+ * @param a0 Parameter passed to func_80095FD8
+ */
+extern void func_80095FD8(void*, s32);
+
+void func_800960D4(void *a0) {
+    func_80007270(&D_80152770, NULL, 1);
+    func_80095FD8(a0, 0);
+    func_800075E0(&D_80152770, NULL, 0);
+}
+
+/**
+ * func_8009638C - Activate slot entry
+ * Address: 0x8009638C
+ * Size: 92 bytes
+ *
+ * Calls func_80096288, gets slot entry from D_80156D38[a0*5],
+ * calls func_800962D4 with slot->handle, sets slot->active = 1.
+ *
+ * @param a0 Slot index
+ */
+extern void func_800962D4(void*, s32);
+
+void func_8009638C(s32 a0) {
+    u8 *slot;
+
+    func_80096288(a0, 0, 0);
+    slot = (u8*)&D_80156D38[a0 * 5];
+    func_800962D4(*(void**)(slot + 12), 0);
+    *(slot + 2) = 1;
+}
+
+/**
+ * func_800AC898 - Get byte at slot offset 1
+ * Address: 0x800AC898
+ * Size: 60 bytes
+ *
+ * Calls func_80096288, returns byte at D_80156D39[slot_index * 5].
+ * (This is offset 1 within each 20-byte slot entry)
+ *
+ * @param a0 Slot index
+ * @return Byte value at slot offset 1
+ */
+extern s8 D_80156D39[];  /* Slot array byte at offset 1 */
+
+s8 func_800AC898(s32 a0) {
+    func_80096288(a0, 0, 0);
+    return D_80156D39[a0 * 5];
+}
+
+/**
+ * func_800B5F4C - Conditional resource request (bit 0x400)
+ * Address: 0x800B5F4C
+ * Size: 60 bytes
+ *
+ * If bit 0x400 is set in a0, requests resource 40.
+ * Otherwise requests resource 39.
+ * Calls func_80092360(type, 0, 1, 0).
+ *
+ * @param a0 Flags to check
+ */
+extern void func_80092360(s32, s32, s32, s32);
+
+void func_800B5F4C(s32 a0) {
+    s32 type = (a0 & 0x400) ? 40 : 39;
+    func_80092360(type, 0, 1, 0);
+}
+
+/**
+ * func_800B5F88 - Conditional resource request (bit 0x1000)
+ * Address: 0x800B5F88
+ * Size: 60 bytes
+ *
+ * If bit 0x1000 is set in a0, requests resource 41.
+ * Otherwise requests resource 44.
+ * Calls func_80092360(type, 0, 1, 0).
+ *
+ * @param a0 Flags to check
+ */
+void func_800B5F88(s32 a0) {
+    s32 type = (a0 & 0x1000) ? 41 : 44;
+    func_80092360(type, 0, 1, 0);
+}
+
+/**
+ * func_800FEC60 - Conditional resource request (bit 0x1)
+ * Address: 0x800FEC60
+ * Size: 60 bytes
+ *
+ * If bit 1 is set in a0, requests resource 46.
+ * Otherwise requests resource 38.
+ * Calls func_80092360(type, 0, 1, 0).
+ *
+ * @param a0 Flags to check
+ */
+void func_800FEC60(s32 a0) {
+    s32 type = (a0 & 1) ? 46 : 38;
+    func_80092360(type, 0, 1, 0);
+}
+
+/**
+ * func_800BE4B4 - Call B74A0 then B71D4 with reshuffled params
+ * Address: 0x800BE4B4
+ * Size: 60 bytes
+ *
+ * Stores parameters, calls func_800B74A0(a2),
+ * then calls func_800B71D4 with halfwords from a0, a1 and original a3.
+ *
+ * @param a0 First value (low halfword used)
+ * @param a1 Second value (low halfword used)
+ * @param a2 Parameter for first call
+ * @param a3 Third parameter passed through
+ */
+extern void func_800B74A0(s32);
+extern void func_800B71D4(s16, s16, void*);
+
+void func_800BE4B4(s32 a0, s32 a1, s32 a2, void *a3) {
+    func_800B74A0(a2);
+    func_800B71D4((s16)a0, (s16)a1, a3);
+}
+
+/**
+ * func_800B41C0 - Set byte at offset 9 of current object
+ * Address: 0x800B41C0
+ * Size: 64 bytes
+ *
+ * Sign-extends a0 to byte, calls func_800B3D18,
+ * saves old byte at D_801597F0+9, stores new value, returns old.
+ *
+ * @param a0 New value (sign-extended to byte)
+ * @return Previous value at offset 9
+ */
+s8 func_800B41C0(s8 a0) {
+    s8 old;
+    func_800B3D18();
+    old = *((s8*)D_801597F0 + 9);
+    *((s8*)D_801597F0 + 9) = a0;
+    return old;
+}
+
+/**
+ * func_80097470 - Synchronized resource lookup
+ * Address: 0x80097470
+ * Size: 124 bytes
+ *
+ * Acquires sync on D_80152770, looks up resource via func_80097384.
+ * If a0 is 0, uses D_801527C8 as default lookup key.
+ * Releases sync and returns result.
+ *
+ * @param a0 Lookup mode (0 = use default)
+ * @param a1 Resource parameter
+ * @return Lookup result
+ */
+extern u8 D_80152770[];
+extern void *D_801527C8;
+extern void *func_80097384(void*, void*);
+
+void *func_80097470(s32 a0, void *a1) {
+    void *result;
+    void *lookup;
+
+    func_80007270(&D_80152770[0], NULL, 1);
+
+    if (a0 != 0) {
+        lookup = (void*)a0;
+    } else {
+        lookup = D_801527C8;
+    }
+
+    result = func_80097384(a1, lookup);
+
+    func_800075E0(&D_80152770[0], NULL, 0);
+
+    return result;
+}
+
+/**
+ * func_8010FC80 - Allocate and initialize resource
+ * Address: 0x8010FC80
+ * Size: 64 bytes
+ *
+ * Calls func_80097470(0, original_a0), then func_800962D4(result, 0).
+ * Returns result from first call.
+ *
+ * @param a0 First parameter
+ * @param a1 Second parameter (passed to func_80097470)
+ * @return Result from func_80097470
+ */
+
+void *func_8010FC80(void *a0, void *a1) {
+    void *result = func_80097470(0, a0);
+    func_800962D4(result, 0);
+    return result;
+}
+
+/**
+ * func_800D54E0 - Conditional function call based on a1
+ * Address: 0x800D54E0
+ * Size: 68 bytes
+ *
+ * If a1 is zero, calls func_80091C04(*a0).
+ * Otherwise calls func_800BF024(*a0).
+ * Then calls func_800D54BC(a0).
+ *
+ * @param a0 Pointer to pointer
+ * @param a1 Mode selector
+ */
+/**
+ * func_800D54BC - Initialize structure with default values
+ * Address: 0x800D54BC
+ * Size: 36 bytes (leaf function, no prologue)
+ *
+ * Sets field0 to -1 and fields 4,8,12,16 to -2.0f.
+ * Used to reset physics/collision state structures.
+ *
+ * @param a0 Structure pointer to initialize
+ */
+void func_800D54BC(void *a0) {
+    *(s32*)a0 = -1;
+    *(f32*)((u8*)a0 + 4) = -2.0f;
+    *(f32*)((u8*)a0 + 8) = -2.0f;
+    *(f32*)((u8*)a0 + 12) = -2.0f;
+    *(f32*)((u8*)a0 + 16) = -2.0f;
+}
+
+/**
+ * func_800BF024 - Synchronized lookup and process
+ * Address: 0x800BF024
+ * Size: 128 bytes
+ *
+ * Acquires sync on D_80142728, looks up via func_80091BA8.
+ * If found, calls func_800BF01C with field64, releases sync,
+ * then calls func_80091C04. If not found, just releases sync.
+ *
+ * @param a0 Key to look up and process
+ */
+extern void func_800BF01C(void*);
+
+void func_800BF024(void *a0) {
+    void *result;
+
+    func_80007270(&D_80142728[0], NULL, 1);
+
+    result = func_80091BA8(a0, &D_80142728[0]);
+
+    if (result == NULL) {
+        func_800075E0(&D_80142728[0], NULL, 0);
+        return;
+    }
+
+    func_800BF01C(*(void**)((u8*)result + 0x40));
+    func_800075E0(&D_80142728[0], NULL, 0);
+    func_80091C04(a0);
+}
+
+/**
+ * func_80091C04 - Synchronized resource registration
+ * Address: 0x80091C04
+ * Size: 160 bytes
+ *
+ * Acquires sync on D_80142728, looks up key via func_80091BA8.
+ * If found, calls func_80091B00, sets result->byte2 = 6,
+ * stores original key at offset 4, increments counter at offset 26.
+ * Then releases sync and optionally signals D_801427A8.
+ *
+ * @param a0 Key to register
+ */
+extern void *func_80091BA8(void*, void*);
+extern void *func_80091B00(void*);
+
+void func_80091C04(void *a0) {
+    void *result;
+    void *savedResult;
+
+    func_80007270(&D_80142728[0], NULL, 1);
+
+    result = func_80091BA8(a0, NULL);
+    savedResult = NULL;
+
+    if (result != NULL) {
+        func_80091B00(result);
+        *(u8*)((u8*)result + 2) = 6;
+        *(void**)((u8*)result + 4) = a0;
+        (*(u8*)((u8*)a0 + 26))++;
+        savedResult = result;
+    }
+
+    func_800075E0(&D_80142728[0], NULL, 0);
+
+    if (savedResult != NULL) {
+        func_800075E0(&D_80142728[0x80], savedResult, 0);
+    }
+}
+
+void func_800D54E0(void **a0, s32 a1) {
+    if (a1 != 0) {
+        func_800BF024(*a0);
+    } else {
+        func_80091C04(*a0);
+    }
+    func_800D54BC(a0);
+}
+
+/**
+ * func_8010FD1C - Initialize structure and call 8ABE4
+ * Address: 0x8010FD1C
+ * Size: 68 bytes
+ *
+ * If a1 is zero, returns 1 without doing anything.
+ * Otherwise initializes D_80153F10 structure and calls func_8008ABE4.
+ *
+ * @param a0 Stored at offset 8
+ * @param a1 Stored as halfword at offset 2 (if non-zero)
+ * @param a2 Stored at offset 12
+ * @return Always 1
+ */
+extern void *D_80153F10;  /* Structure base */
+extern void func_8008ABE4(void);
+
+s32 func_8010FD1C(void *a0, s16 a1, void *a2) {
+    u8 *base;
+    if (a1 == 0) {
+        return 1;
+    }
+    base = (u8*)&D_80153F10;
+    *(void**)(base + 8) = a0;
+    *(s16*)(base + 2) = a1;
+    *(void**)(base + 12) = a2;
+    *(s16*)(base + 4) = 0;
+    *base = 1;
+    func_8008ABE4();
+    return 1;
+}
+
+/**
+ * func_800B7128 - Sum bytes at offset 2 and 3 of current object
+ * Address: 0x800B7128
+ * Size: 72 bytes
+ *
+ * Calls func_800B3D18 twice, gets bytes at offset 2 and 3
+ * of D_801597F0, returns their sum as s16.
+ *
+ * @return (s16)(D_801597F0[2] + D_801597F0[3])
+ */
+s16 func_800B7128(void) {
+    u8 byte2, byte3;
+    func_800B3D18();
+    byte2 = *((u8*)D_801597F0 + 2);
+    func_800B3D18();
+    byte3 = *((u8*)D_801597F0 + 3);
+    return (s16)(byte2 + byte3);
+}
+
+/**
+ * func_800CDA90 - Set byte at offset 71 and sync
+ * Address: 0x800CDA90
+ * Size: 80 bytes
+ *
+ * Gets object chain a0->0->44->0, if byte at +71 differs from a1,
+ * sets it to a1 and calls func_800A2504 to sync.
+ *
+ * @param a0 Object pointer chain
+ * @param a1 New byte value
+ */
+extern void func_800A2504(void*, void*, s32);
+
+void func_800CDA90(void **a0, u8 a1) {
+    void *obj = *a0;
+    void *inner = *(void**)((u8*)obj + 44);
+    void *data = *(void**)inner;
+    u8 *target = (u8*)data + 71;
+
+    if (*target != a1) {
+        *target = a1;
+        obj = *a0;
+        inner = *(void**)((u8*)obj + 44);
+        func_800A2504(*(void**)((u8*)obj + 8), (u8*)*(void**)inner + 71, 1);
+    }
+}
+
+/**
+ * func_800CD748 - Initialize and link object data
+ * Address: 0x800CD748
+ * Size: 80 bytes
+ *
+ * Gets object from chain, allocates 72 bytes via func_800B466C,
+ * links result and calls func_800A2504.
+ *
+ * @param a0 Object pointer chain
+ */
+extern void *func_800B466C(void*, s32);
+
+void func_800CD748(void **a0) {
+    void *obj = *a0;
+    void *inner = *(void**)((u8*)obj + 44);
+    void *data = *(void**)inner;
+    void *ptr = (u8*)data + 1780;
+    void *result;
+
+    result = func_800B466C((u8*)ptr + 4, 72);
+    *(void**)ptr = result;
+
+    obj = *a0;
+    func_800A2504(*(void**)((u8*)obj + 8), ptr, 76);
+}
+
+/**
+ * func_800B5FC4 - Conditional resource request with priority
+ * Address: 0x800B5FC4
+ * Size: 80 bytes
+ *
+ * If bit 1 is set, requests resource 46.
+ * Otherwise if bit 2 is set, requests 38, else 37.
+ * Calls func_80092360(type, 0, 1, 0).
+ *
+ * @param a0 Flags to check
+ */
+void func_800B5FC4(s32 a0) {
+    s32 type;
+    if (a0 & 1) {
+        type = 46;
+    } else if (a0 & 2) {
+        type = 38;
+    } else {
+        type = 37;
+    }
+    func_80092360(type, 0, 1, 0);
+}
+
+/**
+ * func_800BE9A0 - Build buffer and call B71D4
+ * Address: 0x800BE9A0
+ * Size: 72 bytes
+ *
+ * Builds a local buffer via func_800BE7BC, then calls func_800B71D4
+ * with halfwords from stored parameters.
+ *
+ * @param a0 First value (high halfword used)
+ * @param a1 Second value (high halfword used)
+ * @param a2 Parameter for first call (sign-extended)
+ * @param a3 Second parameter for first call
+ */
+extern void func_800BE7BC(void*, void*, s16, void*);
+
+void func_800BE9A0(s32 a0, s32 a1, s16 a2, void *a3) {
+    u8 buffer[128];
+    func_800BE7BC(buffer, a3, a2, NULL);
+    func_800B71D4((s16)(a0 >> 16), (s16)(a1 >> 16), buffer);
+}
+
+/**
+ * func_800BE9E8 - Build buffer via 2CD0 and call B71D4
+ * Address: 0x800BE9E8
+ * Size: 72 bytes
+ *
+ * Builds a local buffer via func_80002CD0, then calls func_800B71D4
+ * with halfwords from stored parameters.
+ *
+ * @param a0 First value (high halfword used)
+ * @param a1 Second value (high halfword used)
+ * @param a2 Buffer parameter
+ * @param a3 Third parameter stored at offset
+ */
+void func_800BE9E8(s32 a0, s32 a1, void *a2, s32 a3) {
+    u8 buffer[256];
+    s32 args[1];
+    args[0] = a3;
+    func_80002CD0(buffer, a2, args);
+    func_800B71D4((s16)(a0 >> 16), (s16)(a1 >> 16), buffer);
+}
+
+/**
+ * func_800A4C54 - Initialize and wait for completion
+ * Address: 0x800A4C54
+ * Size: 84 bytes
+ *
+ * Calls initialization chain then loops until func_800202C4 returns non-zero.
+ */
+extern void func_800A4B6C(void);
+extern void func_80020274(void);
+extern s32 func_800202C4(void);
+
+void func_800A4C54(void) {
+    func_800A4B6C();
+    func_80096238(D_80151A6C);
+    func_80020274();
+    while (func_800202C4() == 0) {
+        /* Wait for completion */
+    }
+}
+
+/**
+ * func_800B0618 - Process list and call B0580
+ * Address: 0x800B0618
+ * Size: 84 bytes
+ *
+ * Loops through D_801491F0 linked list calling func_8009079C(item, 1),
+ * then calls func_800B0580.
+ */
+extern void *D_801491F0;  /* Linked list head */
+extern void func_8009079C(void*, s32);
+
+void func_800B0618(void) {
+    void *item = D_801491F0;
+    while (item != NULL) {
+        func_8009079C(item, 1);
+        item = D_801491F0;
+    }
+    func_800B0580();
+}
+
+/**
+ * func_800B3F50 - Sum three values from current object and global
+ * Address: 0x800B3F50
+ * Size: 84 bytes
+ *
+ * Returns (s16)(D_80159B60 + D_801597F0[2] + D_801597F0[3]).
+ *
+ * @return Sum as signed 16-bit
+ */
+extern s8 D_80159B60;  /* Global offset value */
+
+s16 func_800B3F50(void) {
+    u8 byte2, byte3;
+    s8 offset;
+    func_800B3D18();
+    byte3 = *((u8*)D_801597F0 + 3);
+    func_800B3D18();
+    byte2 = *((u8*)D_801597F0 + 2);
+    offset = D_80159B60;
+    return (s16)(offset + byte2 + byte3);
+}
+
+/**
+ * func_800C70BC - Deactivate three resource slots
+ * Address: 0x800C70BC
+ * Size: 84 bytes
+ *
+ * For each resource type 54, 58, 59:
+ *   - Calls func_80097694(type, -1) to get slot
+ *   - Calls func_800AC840 to deactivate it
+ */
+extern void *func_80097694(s32, s32);
+
+void func_800C70BC(void) {
+    void *slot;
+
+    slot = func_80097694(54, -1);
+    func_800AC840((s32)slot);
+
+    slot = func_80097694(58, -1);
+    func_800AC840((s32)slot);
+
+    slot = func_80097694(59, -1);
+    func_800AC840((s32)slot);
+}
+
+/**
+ * func_800AC840 - Deactivate slot entry
+ * Address: 0x800AC840
+ * Size: 88 bytes
+ *
+ * Gets slot from D_80156D38, calls func_800962D4 with handle and flag=1,
+ * then clears active byte at slot offset 2.
+ *
+ * @param a0 Slot index
+ */
+void func_800AC840(s32 a0) {
+    u8 *slot;
+
+    func_80096288(a0, 0, 0);
+    slot = (u8*)&D_80156D38[a0 * 5];
+    func_800962D4(*(void**)(slot + 12), 1);
+    *(slot + 2) = 0;
+}
+
+/**
+ * func_8010FCC0 - Call func_80095FD8 with sync protection
+ * Address: 0x8010FCC0
+ * Size: 92 bytes
+ *
+ * Acquires sync on D_80152770, calls func_80095FD8(a0, 0), releases sync.
+ *
+ * @param a0 Parameter for func_80095FD8
+ */
+void func_8010FCC0(void *a0) {
+    func_80007270(&D_80152770, NULL, 1);
+    func_80095FD8(a0, 0);
+    func_800075E0(&D_80152770, NULL, 0);
+}
+
+/**
+ * func_80096B5C - Lookup and return value with optional output
+ * Address: 0x80096B5C
+ * Size: 96 bytes
+ *
+ * If a0 is NULL, returns 0. Otherwise calls func_80096B00(a0).
+ * If result is NULL, clears *a2 (if a2 non-NULL) and returns 0.
+ * Otherwise stores result->8 at *a2 and returns result->4.
+ *
+ * @param a0 Key to look up
+ * @param a1 Unused
+ * @param a2 Optional output pointer
+ * @return Value from lookup or 0
+ */
+extern void *func_80096B00(void*);
+
+void *func_80096B5C(void *a0, void *a1, void **a2) {
+    void *result = NULL;
+
+    if (a0 != NULL) {
+        result = func_80096B00(a0);
+    }
+
+    if (result == NULL) {
+        if (a2 != NULL) {
+            *a2 = NULL;
+        }
+        return NULL;
+    }
+
+    if (a2 != NULL) {
+        *a2 = *(void**)((u8*)result + 8);
+    }
+    return *(void**)((u8*)result + 4);
+}
+
+/**
+ * func_800C55E4 - Conditional call to func_803914B4
+ * Address: 0x800C55E4
+ * Size: 96 bytes
+ *
+ * Sign-extends parameters, checks if D_8015A110 is 4 or 6,
+ * if so calls func_803914B4.
+ *
+ * @param a0 First byte param
+ * @param a1 Second byte param
+ * @param a2 Third byte param
+ */
+extern s32 D_8015A110;  /* Mode value */
+extern void func_803914B4(s8, s8, s8);
+
+void func_800C55E4(s8 a0, s8 a1, s8 a2) {
+    s32 mode = D_8015A110;
+    if (mode == 6 || mode == 4) {
+        func_803914B4(a0, a1, a2);
+    }
+}
+
+/**
+ * func_800B04D0 - Initialize pool linked list
+ * Address: 0x800B04D0
+ * Size: 128 bytes
+ *
+ * Sets up a linked list within a pre-allocated pool. Each element's first
+ * word points to the next element. The last element points to NULL.
+ *
+ * Pool structure:
+ *   offset 0x04: count (number of elements)
+ *   offset 0x08: stride (size of each element in bytes)
+ *   offset 0x0C: base (pointer to pool array)
+ *   offset 0x10: head (active list head, cleared to NULL)
+ *   offset 0x14: free (free list head, set to base)
+ *
+ * @param a0 Pointer to pool control structure
+ */
+void func_800B04D0(void *a0) {
+    s32 *base;
+    s32 count;
+    s32 stride;
+    s32 i;
+
+    base = *(s32**)((u8*)a0 + 0x0C);
+    *(s32*)((u8*)a0 + 0x10) = 0;         /* head = NULL */
+
+    if (base == NULL) {
+        *(s32**)((u8*)a0 + 0x14) = base; /* free = base (NULL) */
+        return;
+    }
+
+    *(s32**)((u8*)a0 + 0x14) = base;     /* free = base */
+
+    count = *(s32*)((u8*)a0 + 0x04);
+    stride = *(s32*)((u8*)a0 + 0x08);
+
+    /* Link each element to the next */
+    for (i = 0; i < count - 1; i++) {
+        *(s32*)((u8*)base + i * stride) = (s32)((u8*)base + (i + 1) * stride);
+    }
+
+    /* Last element points to NULL */
+    *(s32*)((u8*)base + (count - 1) * stride) = 0;
+}
+
+/**
+ * func_800B0580 - Reset and initialize pool system
+ * Address: 0x800B0580
+ * Size: 152 bytes
+ *
+ * Iterates through active list at D_80155220, calling cleanup functions.
+ * Then reinitializes the pool with default values.
+ * Finally clears the secondary pool area at D_80155290.
+ */
+extern void func_8008D0C0(s32);
+extern void func_800AFA84(void*, void*);
+extern u8 D_80155220[];
+extern u8 D_80155290[];
+extern u8 D_80155B30[];
+
+void func_800B0580(void) {
+    void *node;
+
+    /* Process and remove all nodes from active list */
+    node = *(void**)(&D_80155220[0x10]);
+    while (node != NULL) {
+        func_8008D0C0(*(s32*)((u8*)node + 0x0C));
+        func_800AFA84(&D_80155220[0], node);
+        node = *(void**)(&D_80155220[0x10]);
+    }
+
+    /* Reinitialize pool control structure */
+    D_80155220[0] = 1;                                      /* type/flag */
+    *(s32*)(&D_80155220[0x08]) = 36;                       /* stride = 36 bytes */
+    *(s32*)(&D_80155220[0x04]) = 100;                      /* count = 100 entries */
+    *(void**)(&D_80155220[0x0C]) = (void*)&D_80155B30[0];  /* base pointer */
+
+    func_800B04D0(&D_80155220[0]);
+
+    /* Clear secondary pool area (2208 bytes) */
+    func_80002790(&D_80155290[0], 0, 2208);
+}
+
+/**
+ * func_800D03DC - Process 3D vector through transform functions
+ * Address: 0x800D03DC
+ * Size: 68 bytes
+ *
+ * Takes a pointer to a 3-float vector and applies three separate
+ * transform functions (one per component: Y, X, Z).
+ *
+ * @param a0 Pointer to 3-float vector (X, Y, Z at offsets 0, 4, 8)
+ * @param a1 Context/transform parameter
+ */
+extern void func_80090E9C(f32, void*);
+extern void func_80090F44(f32, void*);
+extern void func_8009EA68(f32, void*);
+
+void func_800D03DC(f32 *a0, void *a1) {
+    func_80090E9C(a0[1], a1);  /* Y component */
+    func_80090F44(a0[0], a1);  /* X component */
+    func_8009EA68(a0[2], a1);  /* Z component */
+}
+
+/**
+ * func_8009C5BC - Call func_8009C3F8 with mode 0
+ * Address: 0x8009C5BC
+ * Size: 36 bytes
+ *
+ * Simple wrapper that calls func_8009C3F8(0).
+ * The FP register f16 receives abs(f12) but may be unused.
+ */
+extern void func_8009C3F8(s32);
+
+void func_8009C5BC(void) {
+    func_8009C3F8(0);
+}
+
+/**
+ * func_800BFD68 - Call func_8009C3F8 with mode 1
+ * Address: 0x800BFD68
+ * Size: 36 bytes
+ *
+ * Simple wrapper that calls func_8009C3F8(1).
+ * The FP register f16 receives abs(f12) but may be unused.
+ */
+void func_800BFD68(void) {
+    func_8009C3F8(1);
+}
+
+/**
+ * func_800A511C - Conditional state update
+ * Address: 0x800A511C
+ * Size: 60 bytes
+ *
+ * If a0 != a1, calls func_800A501C, copies byte from D_8013FEC8 to D_80140A10,
+ * then calls func_800A4E58.
+ *
+ * @param a0 First comparison value
+ * @param a1 Second comparison value
+ */
+extern void func_800A501C(void);
+extern void func_800A4E58(void);
+extern s16 D_8013FEC8;
+extern u8 D_80140A10;
+
+void func_800A511C(s32 a0, s32 a1) {
+    if (a0 != a1) {
+        func_800A501C();
+        D_80140A10 = (u8)D_8013FEC8;
+        func_800A4E58();
+    }
+}
+
+/**
+ * func_800AB70C - Call func_8008E26C with transformed parameters
+ * Address: 0x800AB70C
+ * Size: 68 bytes
+ *
+ * Passes a0, a1 through; transforms a2, a3 into new values.
+ * New a2 = (s16)old_a3
+ * New a3 = (((s16)old_a2 << 8) ^ 0x0F00) | stack_arg
+ *
+ * @param a0 First parameter (passed through)
+ * @param a1 Second parameter (passed through)
+ * @param a2 Third parameter (used in transform)
+ * @param a3 Fourth parameter (becomes new a2)
+ * @param stack Fifth parameter from stack (ORed into new a3)
+ */
+extern void func_8008E26C(s32, s32, s32, s32);
+
+void func_800AB70C(s32 a0, s32 a1, s16 a2, s16 a3, s32 stack) {
+    s32 new_a2 = a3;
+    s32 new_a3 = ((a2 << 8) ^ 0x0F00) | stack;
+    func_8008E26C(a0, a1, new_a2, new_a3);
+}
+
+/**
+ * func_800C92DC - Call func_800C9210 with mode (1, 0)
+ * Address: 0x800C92DC
+ * Size: 88 bytes
+ *
+ * Wrapper that sets s1=1, s2=0 and calls func_800C9210.
+ * The FP operations copy f12 to f20 and f14 to f22.
+ */
+extern void func_800C9210(void);
+
+void func_800C92DC(void) {
+    func_800C9210();
+}
+
+/**
+ * func_800C93AC - Call func_800C9210 with mode (0, 1)
+ * Address: 0x800C93AC
+ * Size: 88 bytes
+ *
+ * Wrapper that sets s1=0, s2=1 and calls func_800C9210.
+ * The FP operations copy f12 to f20 and f14 to f22.
+ */
+void func_800C93AC(void) {
+    func_800C9210();
+}
+
+/**
+ * func_8010B528 - Initialize structure with callback pointer
+ * Address: 0x8010B528
+ * Size: 56 bytes
+ *
+ * Sets field_4 to D_80116DE0, calls func_80094EC8(a0),
+ * clears field_28, and returns 1.
+ *
+ * @param a0 Structure pointer
+ * @return 1
+ */
+extern u8 D_80116DE0[];
+
+s32 func_8010B528(void *a0) {
+    *(void**)((u8*)a0 + 4) = &D_80116DE0[0];
+    func_80094EC8(a0);
+    *(s32*)((u8*)a0 + 0x28) = 0;
+    return 1;
+}
+
+/**
+ * func_8010B560 - Update state based on global flag
+ * Address: 0x8010B560
+ * Size: 112 bytes
+ *
+ * Checks D_80159D98 global and updates a0->byte26 accordingly.
+ * If state changed, calls func_80094EC8.
+ * If byte26 becomes 0, sets field4 to D_80117358 and clears field40.
+ *
+ * @param a0 Structure pointer
+ * @return Always 1
+ */
+extern u32 D_80159D98;
+extern u8 D_80117358[];
+
+s32 func_8010B560(void *a0) {
+    s32 globalState;
+    s8 currentState;
+
+    globalState = (D_80159D98 != 0) ? 1 : 0;
+    currentState = *(s8*)((u8*)a0 + 26);
+
+    if (globalState != currentState) {
+        *(s8*)((u8*)a0 + 26) = (s8)globalState;
+        func_80094EC8(a0);
+        currentState = *(s8*)((u8*)a0 + 26);
+    }
+
+    if (currentState != 0) {
+        return 1;
+    }
+
+    *(void**)((u8*)a0 + 4) = &D_80117358[0];
+    func_80094EC8(a0);
+    *(s32*)((u8*)a0 + 40) = 0;
+    return 1;
+}
+
+/**
+ * func_800F8754 - Cleanup and reset state
+ * Address: 0x800F8754
+ * Size: 76 bytes
+ *
+ * Calls func_800F857C, then func_800B45BC(1).
+ * If D_8011472C is non-NULL, calls func_800B358C and clears it.
+ * Finally clears D_80114728 byte.
+ */
+extern void func_800F857C(void);
+extern void func_800B45BC(s32);
+extern void func_800B358C(void*);
+extern void *D_8011472C;
+extern u8 D_80114728;
+
+void func_800F8754(void) {
+    func_800F857C();
+    func_800B45BC(1);
+
+    if (D_8011472C != NULL) {
+        func_800B358C(D_8011472C);
+        D_8011472C = NULL;
+    }
+    D_80114728 = 0;
+}
+
+/**
+ * func_80091F34 - Synchronized call to func_80091CA4
+ * Address: 0x80091F34
+ * Size: 136 bytes
+ *
+ * Acquires sync on D_80142728, calls func_80091CA4 with parameters,
+ * then releases sync.
+ *
+ * @param a0 First parameter (passed to func_80091CA4)
+ * @param a1 Second parameter (loaded as float)
+ */
+extern u8 D_80142728[];
+extern void func_80091CA4(void*);
+
+void func_80091F34(void *a0, s32 a1) {
+    func_80007270(&D_80142728[0], NULL, 1);
+    func_80091CA4(a0);
+    func_800075E0(&D_80142728[0], NULL, 0);
+}
+
+/**
+ * func_800AC668 - Complex initialization with callback setup
+ * Address: 0x800AC668
+ * Size: 140 bytes
+ *
+ * Sets up D_80159D90 to -1, calls several setup functions,
+ * stores result to D_80159B80, then calls additional init functions.
+ *
+ * @param a0 First parameter
+ * @param a1 Second parameter
+ * @return Value of D_80159D90 (s16)
+ */
+extern void func_800A473C(void*, void*);
+extern void *func_80092C58(void*, void*, void*, s32, void*);
+extern void func_800AC3D8(void*, s16);
+extern void func_800AB638(void);
+extern s16 D_80159D90;
+extern void *D_801597FC;
+extern void *D_80159818;
+extern u8 D_8008AD48[];
+extern void *D_80159B80;
+
+s16 func_800AC668(void *a0, s16 a1) {
+    u8 buf1[4];
+    u8 buf2[4];
+    void *result;
+
+    D_80159D90 = -1;
+    func_800A473C(buf1, a0);
+
+    result = func_80092C58(buf2, D_80159818, *(void**)D_801597FC, 20, &D_8008AD48[0]);
+    D_80159B80 = *(void**)result;
+
+    func_800AC3D8(D_80159B80, a1);
+    func_800AB638();
+
+    return D_80159D90;
+}
+
+/**
+ * func_800A4AC4 - Iterate through slot array and call func_80096130
+ * Address: 0x800A4AC4
+ * Size: 124 bytes
+ *
+ * Iterates through 64 slots in D_80156D38 array, calling func_80096130
+ * for each slot that has field_0C set and field_06 != a0.
+ *
+ * @param a0 Filter value for field_06 comparison
+ */
+extern u8 D_80156D38[];
+extern void func_80096130(s32);
+
+void func_800A4AC4(s32 a0) {
+    u8 *slot = &D_80156D38[0];
+    s32 i;
+
+    for (i = 0; i < 64; i++) {
+        if (*(s32*)(slot + 0x0C) != 0) {
+            if (*(slot + 6) != a0) {
+                func_80096130(i);
+            }
+        }
+        slot += 20;  /* 0x14 bytes per entry */
+    }
+}
+
+/**
+ * func_8009DC50 - Recursive tree/list search
+ * Address: 0x8009DC50
+ * Size: 200 bytes
+ *
+ * Recursively searches through a tree structure in D_8013E700.
+ * Uses bit mask (256 << a1) to check node flags.
+ *
+ * @param a0 Pointer to node structure
+ * @param a1 Bit position for mask creation
+ * @return 1 if found, 0 otherwise
+ */
+extern u8 D_8013E700[];
+
+s32 func_8009DC50(void *a0, s32 a1) {
+    s32 flags;
+    s32 mask;
+    s16 leftIdx, rightIdx;
+    void *node;
+
+    mask = 256 << a1;
+    node = a0;
+
+    while (1) {
+        flags = *(s32*)node;
+
+        if ((flags & mask) != 0) {
+            return 1;
+        }
+
+        leftIdx = *(s16*)((u8*)node + 0x16);
+        if (leftIdx >= 0) {
+            /* Recurse on left child */
+            if (func_8009DC50(&D_8013E700[leftIdx * 68], a1) != 0) {
+                return 1;
+            }
+        }
+
+        rightIdx = *(s16*)((u8*)node + 0x18);
+        if (rightIdx < 0) {
+            return 0;
+        }
+
+        /* Continue with right child (tail recursion optimization) */
+        node = &D_8013E700[rightIdx * 68];
+    }
+}
+
+/**
+ * func_8009DD18 - Check node flag and optionally search tree
+ * Address: 0x8009DD18
+ * Size: 112 bytes
+ *
+ * Checks if bit (256 << a1) is set in node flags.
+ * If not, searches subtree using func_8009DC50.
+ *
+ * @param a0 Pointer to node structure
+ * @param a1 Bit position for mask
+ * @return 1 if flag set or found in tree, 0 otherwise
+ */
+s32 func_8009DD18(void *a0, s32 a1) {
+    s32 flags;
+    s32 mask;
+    s16 idx;
+
+    flags = *(s32*)a0;
+    mask = 256 << a1;
+
+    if ((flags & mask) != 0) {
+        return 1;
+    }
+
+    idx = *(s16*)((u8*)a0 + 0x16);
+    if (idx < 0) {
+        return 0;
+    }
+
+    if (func_8009DC50(&D_8013E700[idx * 68], a1) != 0) {
+        return 1;
+    }
+
+    return 0;
+}
+
+/**
+ * func_800BF148 - Synchronized lookup and process
+ * Address: 0x800BF148
+ * Size: 128 bytes
+ *
+ * Acquires sync on D_80142728, calls func_80091BA8 to lookup.
+ * If found, calls func_800BF01C and func_800BF0A4.
+ * Returns lookup result.
+ *
+ * @param a0 Key to look up
+ * @return Lookup result or 0 if not found
+ */
+extern void *func_80091BA8(void*, void*);
+extern void func_800BF01C(void*);
+extern void *func_800BF0A4(void*);
+
+/* Object initialization functions */
+extern void func_800D1004(void);  /* Setup call before init */
+extern void func_800CF06C(void*); /* Object processing */
+extern void func_800D0424(void*); /* Object configuration */
+
+/* Global scaling factors */
+extern f32 D_8011416C;
+extern f32 D_80114170;
+
+/* Float arrays for camera/visual data */
+extern f32 D_80153F28[6];
+extern f32 D_80153F48[6];
+extern f32 D_80153F68[6];
+extern f32 D_801543CC;
+extern f32 D_80154190;
+extern s16 D_80154182;
+
+extern void func_800BAAA0(void);  /* Setup call */
+
+void *func_800BF148(void *a0) {
+    void *result;
+
+    func_80007270(&D_80142728[0], NULL, 1);
+
+    result = func_80091BA8(a0, &D_80142728[0]);
+
+    if (result == NULL) {
+        func_800075E0(&D_80142728[0], NULL, 0);
+        return NULL;
+    }
+
+    func_800BF01C(*(void**)((u8*)result + 0x40));
+    func_800075E0(&D_80142728[0], NULL, 0);
+    func_800BF0A4(a0);
+
+    return result;
+}
+
+/**
+ * func_800D11BC - Initialize object with default scale values
+ * (140 bytes)
+ *
+ * Initializes an object's scale factors to default values (0, 0, 0, 1)
+ * at offset 0x720, sets flag at 0x730, and calculates a timing value
+ * at offset 0x7D0.
+ *
+ * @param a0 Pointer to object structure
+ */
+void func_800D11BC(void *a0) {
+    f32 zero;
+    f32 one;
+    f32 val;
+    s16 result;
+
+    func_800D1004();
+
+    zero = 0.0f;
+    one = 1.0f;
+
+    /* Set scale to (0, 0, 0, 1) at offset 0x720 */
+    *(f32*)((u8*)a0 + 0x720) = zero;
+    *(f32*)((u8*)a0 + 0x724) = zero;
+    *(f32*)((u8*)a0 + 0x728) = zero;
+    *(f32*)((u8*)a0 + 0x72C) = one;
+
+    /* Set initialization flag */
+    *(u8*)((u8*)a0 + 0x730) = 1;
+
+    /* Call initialization functions */
+    func_800CF06C(a0);
+    func_800D0424(a0);
+
+    /* Calculate timing value from object field and global factors */
+    val = *(f32*)((u8*)a0 + 0x408);
+    result = (s16)(val * D_8011416C * D_80114170);
+    *(s16*)((u8*)a0 + 0x7D0) = result;
+}
+
+/**
+ * func_800BAD58 - Reset camera/visual float arrays
+ * (136 bytes)
+ *
+ * Initializes three float arrays to zero and sets up initial state values.
+ */
+void func_800BAD58(void) {
+    f32 zero;
+    s32 i;
+
+    func_800BAAA0();
+
+    zero = 0.0f;
+
+    /* Clear all three 6-element float arrays */
+    for (i = 0; i < 6; i++) {
+        D_80153F28[i] = zero;
+        D_80153F48[i] = zero;
+        D_80153F68[i] = zero;
+    }
+
+    /* Copy initial value and set state to -1 */
+    D_80154190 = D_801543CC;
+    D_80154182 = -1;
+}
+
+/* Player/car data array indexed by ID */
+extern s8 D_80144031[];  /* Array of status bytes (stride 772) */
+extern s32 func_800A1A60(void*);  /* Object processing function */
+
+/**
+ * func_800CC848 - Check object status and optionally process
+ * (128 bytes)
+ *
+ * Checks if an object's child reference is valid and if the indexed
+ * status byte allows processing. If a1 is non-zero, calls processing.
+ *
+ * @param a0 Pointer to parent object
+ * @param a1 If non-zero, call processing function
+ * @return 0 if invalid/disabled, 1 if valid, or processing result
+ */
+s32 func_800CC848(void **a0, s32 a1) {
+    void *parent;
+    void *child;
+    void *childData;
+    u8 index;
+    s8 status;
+
+    parent = *a0;
+    child = *(void**)((u8*)parent + 8);
+
+    if (child == NULL) {
+        return 1;
+    }
+
+    childData = *(void**)child;
+    index = *(u8*)((u8*)childData + 16);
+
+    /* Calculate array offset: index * 772 + 0x4031 */
+    status = D_80144031[index * 772];
+
+    if (status == 0) {
+        return 0;
+    }
+
+    if (a1 == 0) {
+        return 1;
+    }
+
+    return func_800A1A60(child);
+}
+
+/**
+ * func_800D6E00 - Allocate and signal type 11 object
+ * (116 bytes)
+ *
+ * Allocates an object, sets its type to 11, stores parameter as byte 4,
+ * and signals the secondary sync queue with the new object.
+ *
+ * @param a0 Value to store in object byte 4
+ */
+void func_800D6E00(s32 a0) {
+    void *obj;
+
+    func_80007270(&D_80142728[0], NULL, 1);
+
+    obj = func_80091B00();
+
+    *(u8*)((u8*)obj + 2) = 11;
+    *(u8*)((u8*)obj + 4) = (u8)a0;
+
+    func_800075E0(&D_80142728[0], NULL, 0);
+    func_800075E0(&D_80142728[0x80], obj, 0);
+}
+
+/**
+ * func_800D6348 - Allocate and signal type 9 object
+ * (104 bytes)
+ *
+ * Allocates an object, sets its type to 9, and signals the secondary
+ * sync queue with the new object. Similar to func_800D6E00 but with
+ * no parameter and different type.
+ */
+void func_800D6348(void) {
+    void *obj;
+
+    func_80007270(&D_80142728[0], NULL, 1);
+
+    obj = func_80091B00();
+    *(u8*)((u8*)obj + 2) = 9;
+
+    func_800075E0(&D_80142728[0], NULL, 0);
+    func_800075E0(&D_80142728[0x80], obj, 0);
+}
+
+/* Global state flags */
+extern s32 D_801170FC;
+
+extern void func_8009079C(void*, s32);
+extern void func_800D03DC(void*, void*);
+
+/**
+ * func_8010E828 - Process object with countdown timer
+ * (132 bytes)
+ *
+ * If flag parameter is zero, initializes object. Otherwise processes
+ * object's countdown timer and calls rendering function while timer
+ * is active. Reinitializes when countdown reaches zero.
+ *
+ * @param a0 Pointer to parent object
+ * @param a1 Skip init if non-zero
+ */
+void func_8010E828(void *a0, s16 a1) {
+    void *child;
+    s16 countdown;
+
+    if (a1 == 0) {
+        func_8009079C(a0, 1);
+    }
+
+    if (D_801170FC != 0) {
+        return;
+    }
+
+    child = *(void**)((u8*)a0 + 12);
+    countdown = *(s16*)((u8*)child + 90);
+
+    if (countdown != 0) {
+        *(s16*)((u8*)child + 90) = countdown - 1;
+        func_800D03DC(*(void**)((u8*)child + 108), (void*)((u8*)child + 20));
+        countdown = *(s16*)((u8*)child + 90);
+    }
+
+    if (countdown == 0) {
+        func_8009079C(a0, 1);
+    }
+}
+
+/* Effect/visual system arrays */
+extern u8 D_80152038[480];      /* Effect state buffer */
+extern u32 D_801569B8[];        /* Effect slot array (4 slots, 124 bytes each) */
+extern f32 D_8016139C;          /* Effect timing float */
+extern s32 D_80152738;          /* Effect counter */
+
+extern void func_80002790(void*, s32, s32);  /* memset */
+
+/**
+ * func_800C3614 - Initialize effect system
+ * (140 bytes)
+ *
+ * Clears effect state buffers and initializes all effect slots with
+ * the marker value 0x15000000 in the first word of each slot.
+ */
+void func_800C3614(void) {
+    u32 *ptr;
+
+    /* Clear main effect buffer */
+    func_80002790(D_80152038, 0, 480);
+
+    /* Initialize each 124-byte effect slot */
+    for (ptr = D_801569B8; ptr < (u32*)((u8*)D_801569B8 + 496); ptr = (u32*)((u8*)ptr + 124)) {
+        func_80002790(ptr, 0, 124);
+        *ptr |= 0x15000000;
+    }
+
+    /* Reset timing and counter */
+    D_8016139C = 0.0f;
+    D_80152738 = 0;
+}
+
+/* Object initialization external references */
+extern u8 D_80140BDC;  /* Object type count */
+extern s32 func_800B24EC(void*, void*, s32, s8, s32);  /* Object setup with type */
+extern void func_800B362C(void*);  /* Object alternate init */
+extern void func_80094EC8(void*);  /* Object finalize */
+
+/**
+ * func_800EF5B0 - Initialize object with optional type setup
+ * (124 bytes)
+ *
+ * Stores a1 in a0[0], then either:
+ * - If a2 != 0: calls func_800B24EC with type-1, stores result in a0[8]
+ * - If a2 == 0: calls func_800B362C for alternate init
+ * Finally calls func_80094EC8 to finalize.
+ */
+void func_800EF5B0(void *a0, void *a1, s32 a2) {
+    s8 objType;
+    s32 result;
+
+    *(void**)a0 = a1;
+
+    if (a2 != 0) {
+        objType = (s8)(D_80140BDC - 1);
+        result = func_800B24EC(a1, (void*)((u8*)a0 + 12), 0, objType, 1);
+        *(s32*)((u8*)a0 + 8) = result;
+    } else {
+        func_800B362C(a0);
+    }
+
+    func_80094EC8(a0);
+}
+
+/* String builder external references */
+extern void **D_801597F0;  /* Pointer to data structure */
+extern void **D_80159800;  /* Pointer to source array */
+extern void func_800B3D18(void);  /* Init/prepare function */
+
+/**
+ * func_800F68A4 - Build string from object array
+ * (132 bytes)
+ *
+ * Copies bytes from offset 4 of each 12-byte entry in D_80159800 array
+ * into the output buffer, null-terminated. Count comes from D_801597F0[12].
+ */
+void func_800F68A4(u8 *output) {
+    void *data;
+    void *arr;
+    s32 i;
+    s32 offset;
+    s32 count;
+
+    func_800B3D18();
+
+    data = *D_801597F0;
+    i = 0;
+    offset = 0;
+    count = *(u8*)((u8*)data + 12);
+
+    while (i < count) {
+        arr = *D_80159800;
+        output[i] = *(u8*)((u8*)arr + offset + 4);
+        i++;
+        offset += 12;
+        data = *D_801597F0;
+        count = *(u8*)((u8*)data + 12);
+    }
+
+    output[i] = 0;
+}
+
+/* Timer calculation external references */
+extern f32 func_80001578(void);  /* Get elapsed time */
+extern f32 D_801247F8;           /* Time multiplier */
+extern s16 D_80152032;           /* Timer value */
+extern s32 D_801174B8;           /* Timer state flag */
+
+/**
+ * func_800FBF2C - Update timer value from elapsed time
+ * (92 bytes)
+ *
+ * Gets elapsed time, multiplies by scale factor, and stores.
+ * If result is <= 0, sets timer state flag to 0x100000.
+ */
+void func_800FBF2C(void) {
+    f32 time;
+    s16 value;
+
+    time = func_80001578();
+    time *= D_801247F8;
+    value = (s16)time;
+    D_80152032 = value;
+
+    if (value <= 0) {
+        D_801174B8 = 0x00100000;
+    }
+}
+
+/* Linked list sync removal external references */
+extern void **D_801527C8;  /* List head pointer */
+
+/**
+ * func_800E7A98 - Remove item from synchronized linked list
+ * (172 bytes)
+ *
+ * Removes an object from the linked list at D_801527C8.
+ * If a0 is NULL, removes the head item instead.
+ * Uses sync primitives for thread safety.
+ */
+void func_800E7A98(void *a0) {
+    void *item;
+    void *curr;
+    void *next;
+
+    func_80007270(&D_80142728[0], NULL, 1);
+
+    /* Get item to remove */
+    if (a0 != NULL) {
+        item = a0;
+    } else {
+        item = *D_801527C8;
+    }
+
+    /* Traverse list to find and unlink item */
+    curr = *D_801527C8;
+    if (curr != NULL) {
+        while (1) {
+            next = *(void**)((u8*)curr + 4);
+            if (item == next) {
+                /* Found - unlink by copying next's pointer */
+                next = *(void**)((u8*)item + 4);
+                *(void**)((u8*)curr + 4) = next;
+                break;
+            }
+            if (next == NULL) break;
+            curr = next;
+        }
+    }
+
+    func_80095FD8(item, 1);
+    func_800075E0(&D_80142728[0], NULL, 0);
+}
+
+/* Multi-player coordinate update external references */
+extern s32 D_8015A110;           /* Game mode state */
+extern s16 D_8015A108;           /* Player count */
+extern void func_800E847C(void); /* Pre-update function */
+extern void func_8008D6FC(s16, void*, void*);  /* Coordinate transform */
+extern void func_800EB90C(void); /* Post-update function */
+
+/**
+ * func_800EC0DC - Update player coordinate transforms
+ * (180 bytes)
+ *
+ * For each active player (when mode == 2 and count >= 2), calls
+ * func_8008D6FC to update their coordinate data from arrays at
+ * 0x80152BD0 (source) and 0x80152C20 (dest), stride 952 bytes.
+ */
+void func_800EC0DC(void) {
+    s16 *srcBase;
+    u8 *src;
+    u8 *dst;
+    s32 i;
+
+    func_800E847C();
+
+    if (D_8015A110 != 2) {
+        goto done;
+    }
+
+    if (D_8015A108 < 2) {
+        goto done;
+    }
+
+    srcBase = (s16*)0x80152BD0;
+    src = (u8*)0x80152BD8;
+    dst = (u8*)0x80152C20;
+    i = 1;
+
+    while (i < D_8015A108) {
+        func_8008D6FC(*(srcBase + 123), src, dst);  /* offset 246 = 123 shorts */
+        i++;
+        srcBase = (s16*)((u8*)srcBase + 952);
+        src += 952;
+        dst += 952;
+    }
+
+done:
+    func_800EB90C();
+}
+
+/* Object spawn with indexed data external references */
+extern u8 D_80117530[];          /* Indexed object data array (48 bytes per entry) */
+extern void **D_801491F0;        /* Linked list head */
+extern f32 D_801249C0;           /* Float constant for object init */
+extern void *func_80090284(void);  /* Allocate new object */
+extern void func_800FEA00(void*, s8, void*, s32);  /* Object finalize */
+
+/**
+ * func_8010DAF8 - Spawn and initialize linked object
+ * (192 bytes)
+ *
+ * Creates a new object via func_80090284, links it into D_801491F0 list,
+ * initializes fields from indexed data array D_80117530, and finalizes
+ * with func_800FEA00.
+ */
+void func_8010DAF8(void *a0) {
+    s16 index;
+    u8 *indexedData;
+    void *obj;
+    void *oldHead;
+
+    index = *(s16*)((u8*)a0 + 16);
+    indexedData = &D_80117530[index * 48];
+
+    *(s16*)((u8*)a0 + 90) = 12;
+    obj = func_80090284();
+
+    if (obj == NULL) {
+        return;
+    }
+
+    /* Initialize new object */
+    *(s16*)((u8*)obj + 4) = 0;
+    *(void**)((u8*)obj + 12) = a0;
+    *(void**)((u8*)obj + 20) = *(void**)(indexedData + 12);
+    *(f32*)((u8*)obj + 16) = D_801249C0;
+
+    /* Clear bits 1 and 2 of byte at offset 4 */
+    *(u8*)((u8*)a0 + 4) &= 0xFFF9;
+
+    /* Link into list */
+    oldHead = *D_801491F0;
+    *(void**)obj = oldHead;
+    *D_801491F0 = obj;
+
+    /* Finalize with callback */
+    func_800FEA00(
+        *(void**)(D_80117530 + index * 48 + 28),
+        *(s8*)((u8*)a0 + 92),
+        (void*)((u8*)a0 + 56),
+        2
+    );
+}
+
+/*============================================================================
+ * CORE MEMORY MANAGEMENT FUNCTIONS
+ * These are called extensively throughout the game code.
+ *============================================================================*/
+
+/* Pool allocator globals */
+extern u8 D_80142DD8[];   /* Object pool base (24-byte slots) */
+extern u8 D_801439D8[];   /* Pool end marker */
+
+/**
+ * func_80091B00 - Allocate object from pool
+ * (168 bytes)
+ *
+ * Searches the object pool at D_80142DD8 for a free 24-byte slot.
+ * Each 96-byte block contains 4 slots. A slot is free if byte at offset 3 is 0.
+ * When allocated, sets in_use flag to 1 and initializes short at offset 0 to -1.
+ *
+ * @return Pointer to allocated slot, or NULL if pool exhausted
+ */
+void *func_80091B00(void) {
+    u8 *base = D_80142DD8;
+    u8 *end = D_801439D8;
+    u8 *ptr = base;
+
+    while (ptr < end) {
+        /* Check slot 0 (offset 0) */
+        if (*(s8*)(ptr + 3) == 0) {
+            *(s8*)(ptr + 3) = 1;
+            *(s16*)ptr = -1;
+            return ptr;
+        }
+        /* Check slot 1 (offset 24) */
+        if (*(s8*)(ptr + 27) == 0) {
+            *(s8*)(ptr + 27) = 1;
+            *(s16*)(ptr + 24) = -1;
+            return ptr + 24;
+        }
+        /* Check slot 2 (offset 48) */
+        if (*(s8*)(ptr + 51) == 0) {
+            *(s8*)(ptr + 51) = 1;
+            *(s16*)(ptr + 48) = -1;
+            return ptr + 48;
+        }
+        /* Check slot 3 (offset 72) */
+        if (*(s8*)(ptr + 75) == 0) {
+            *(s8*)(ptr + 75) = 1;
+            *(s16*)(ptr + 72) = -1;
+            return ptr + 72;
+        }
+        ptr += 96;  /* Advance to next 4-slot block */
+    }
+
+    return NULL;
+}
+
+/* Object deactivation globals */
+extern void **D_801491F0;   /* Active object list head */
+extern void **D_801492C8;   /* Free object list head */
+extern s16 D_8013E66C;      /* Active object count */
+extern s16 D_8013E678;      /* Maximum active objects seen */
+extern void func_8008AE8C(s32, s32, s32);  /* Sound stop function */
+
+/**
+ * func_8009079C - Deactivate and free an object
+ * (260 bytes)
+ *
+ * Stops any associated sound, removes object from active list,
+ * and moves it to the free list. Updates object count tracking.
+ *
+ * @param a0 Object pointer to deactivate
+ * @param a1 If non-zero, remove from active list
+ */
+void func_8009079C(void *a0, s32 a1) {
+    s16 soundId;
+    void *curr;
+    void *prev;
+    void *next;
+    s16 count;
+
+    /* Stop associated sound if any */
+    soundId = *(s16*)((u8*)a0 + 6);
+    if (soundId >= 0) {
+        func_8008AE8C(soundId, 1, 15);
+    }
+
+    /* Clear object state */
+    *(void**)((u8*)a0 + 20) = NULL;
+    *(s16*)((u8*)a0 + 6) = -1;
+
+    /* Remove from active list if requested */
+    if (a1 != 0) {
+        curr = *D_801491F0;
+
+        /* Check if we're the head */
+        if (a0 == curr) {
+            *D_801491F0 = *(void**)a0;
+        } else {
+            /* Search list for our predecessor */
+            prev = NULL;
+            while (curr != NULL) {
+                next = *(void**)curr;
+                if (a0 == next) {
+                    break;
+                }
+                if (next == NULL) break;
+                prev = curr;
+                curr = next;
+            }
+
+            /* Unlink from list */
+            if (prev != NULL && *(void**)prev == a0) {
+                *(void**)prev = *(void**)a0;
+            }
+        }
+    }
+
+    /* Add to free list */
+    *(void**)a0 = *D_801492C8;
+    *D_801492C8 = a0;
+
+    /* Update count and max tracking */
+    D_8013E66C--;
+    count = D_8013E66C;
+    if (D_8013E678 < count) {
+        D_8013E678 = count;
+    }
+}
+
+/* Object spawn globals */
+extern u8 D_8012F5CC[];  /* Type lookup table */
+extern void *func_80092278(void);  /* Allocate sub-object */
+
+/**
+ * func_80092360 - Spawn a new game object
+ * (292 bytes)
+ *
+ * Creates a new object with type 2, initializes it with the given parameters,
+ * and signals the object system. Core object creation function.
+ *
+ * @param a0 Owner/parent index
+ * @param a1 Mode/flag
+ * @param a2 Object type ID
+ * @param a3 Flags byte (from stack)
+ * @return Pointer to the created sub-object's data
+ */
+void *func_80092360(s32 a0, s32 a1, s32 a2, u8 a3) {
+    void *obj;
+    void *subObj;
+    void *result;
+
+    func_80007270(&D_80142728[0], NULL, 1);
+
+    obj = func_80091B00();
+
+    /* Set object type and ID */
+    *(u8*)((u8*)obj + 2) = 2;
+    *(s32*)((u8*)obj + 4) = a2;
+
+    /* Allocate and link sub-object */
+    subObj = func_80092278();
+    *(void**)((u8*)obj + 20) = subObj;
+    *(void**)((u8*)subObj + 20) = NULL;
+
+    /* Initialize sub-object fields */
+    *(s32*)((u8*)subObj + 52) = a0;  /* Owner */
+    *(s32*)((u8*)subObj + 56) = a1;  /* Mode */
+    *(u8*)((u8*)subObj + 27) = a3;   /* Flags */
+    *(s32*)((u8*)subObj + 16) = 1;   /* Active flag */
+    *(u8*)((u8*)subObj + 24) = 0;
+    *(u8*)((u8*)subObj + 26) = 1;
+    *(u8*)((u8*)subObj + 25) = D_8012F5CC[a0];  /* Type from lookup */
+
+    /* Store float constants at object offsets 8, 12, 16 */
+    *(f32*)((u8*)obj + 8) = 1.0f;
+    *(f32*)((u8*)obj + 12) = -2.0f;
+    *(f32*)((u8*)obj + 16) = -2.0f;
+
+    /* Get result before releasing sync */
+    result = *(void**)((u8*)subObj + 12);
+
+    func_800075E0(&D_80142728[0], NULL, 0);
+    func_800075E0(&D_80142728[0x80], obj, 0);
+
+    return result;
+}
+
+/**
+ * func_8008D6B0 - Copy 3x3 matrix or 9-float vector
+ * (76 bytes)
+ *
+ * Copies 36 bytes (9 floats) from source to destination.
+ * Used for copying position/orientation data or 3x3 matrices.
+ *
+ * @param src Source pointer
+ * @param dst Destination pointer
+ */
+void func_8008D6B0(f32 *src, f32 *dst) {
+    dst[0] = src[0];
+    dst[1] = src[1];
+    dst[2] = src[2];
+    dst[3] = src[3];
+    dst[4] = src[4];
+    dst[5] = src[5];
+    dst[6] = src[6];
+    dst[7] = src[7];
+    dst[8] = src[8];
+}
+
+/**
+ * func_80090284 - Allocate object from free list
+ * (132 bytes)
+ *
+ * Pops an object from the free list at D_801492C8, initializes it,
+ * and updates count tracking. The complementary function to func_8009079C.
+ *
+ * @return Pointer to allocated object, or NULL if list empty
+ */
+void *func_80090284(void) {
+    void *obj;
+    void *next;
+    s16 count;
+
+    obj = *D_801492C8;
+    if (obj == NULL) {
+        return NULL;
+    }
+
+    /* Increment count and update max */
+    D_8013E66C++;
+    count = D_8013E66C;
+    if (D_8013E678 < count) {
+        D_8013E678 = count;
+    }
+
+    /* Pop from free list */
+    next = *(void**)obj;
+    *D_801492C8 = next;
+
+    /* Initialize object fields */
+    *(void**)obj = NULL;           /* next pointer */
+    *(s16*)((u8*)obj + 4) = 0;     /* state */
+    *(s16*)((u8*)obj + 6) = -1;    /* sound id */
+    *(s16*)((u8*)obj + 8) = 0;     /* flags */
+    *(void**)((u8*)obj + 12) = NULL; /* data pointer */
+    *(void**)((u8*)obj + 20) = NULL; /* extra pointer */
+    *(f32*)((u8*)obj + 16) = 0.0f;  /* timer/value */
+
+    return obj;
+}
+
+/**
+ * func_8008AD04 - Compare two strings
+ * (68 bytes)
+ *
+ * Compares two null-terminated strings byte by byte.
+ *
+ * @param a0 First string
+ * @param a1 Second string
+ * @return 0 if equal, difference of first non-matching bytes otherwise
+ */
+s32 func_8008AD04(u8 *a0, u8 *a1) {
+    u8 c1, c2;
+
+    c1 = *a0;
+    if (c1 == 0) {
+        c2 = *a1;
+        return c1 - c2;
+    }
+
+    do {
+        c2 = *a1;
+        if (c1 != c2) {
+            c2 = *a1;
+            return c1 - c2;
+        }
+        a0++;
+        a1++;
+        c1 = *a0;
+    } while (c1 != 0);
+
+    c2 = *a1;
+    return c1 - c2;
+}
+
+/* Effects system globals */
+extern s8 D_801147C4;          /* Effects system initialized flag */
+extern u32 D_801551E8;         /* Effect count 1 */
+extern u32 D_801551EC;         /* Effect count 2 */
+extern u32 D_801551F0[8];      /* Effect data array (32 bytes / 8 words) */
+
+/**
+ * func_800B73E4 - Initialize effects/emitter system
+ * (84 bytes)
+ *
+ * One-time initialization that clears effect counters and data arrays.
+ * Sets init flag to prevent re-initialization.
+ */
+void func_800B73E4(void) {
+    u32 *ptr;
+    u32 *end;
+
+    /* Check if already initialized */
+    if (D_801147C4 != 0) {
+        return;
+    }
+
+    /* Mark as initialized */
+    D_801147C4 = 1;
+
+    /* Clear effect counters */
+    D_801551EC = 0;
+    D_801551E8 = 0;
+
+    /* Clear effect data array (32 bytes, 8 words) */
+    ptr = D_801551F0;
+    end = D_801551F0 + 8;
+
+    do {
+        ptr[0] = 0;
+        ptr[1] = 0;
+        ptr[2] = 0;
+        ptr[3] = 0;
+        ptr += 4;
+    } while (ptr != end);
+}
+
+/* Emitter data arrays */
+extern void *D_80124FD0[];      /* Pointer array for emitter targets */
+extern u8 D_80150B70[];         /* Emitter data array (152 byte stride) */
+
+/**
+ * func_800B80C8 - Copy emitter position floats to target
+ * (80 bytes)
+ *
+ * If the target pointer exists, copies two position floats from
+ * the emitter data array to the target object.
+ *
+ * @param a0 Emitter index
+ */
+void func_800B80C8(s32 a0) {
+    void *target;
+    u8 *emitter;
+
+    target = D_80124FD0[a0];
+
+    if (target == NULL) {
+        return;
+    }
+
+    /* Calculate emitter data offset: a0 * 152 */
+    emitter = D_80150B70 + (a0 * 152);
+
+    /* Copy two position floats from emitter to target */
+    *(f32*)((u8*)target + 36) = *(f32*)(emitter + 36);
+    *(f32*)((u8*)target + 44) = *(f32*)(emitter + 44);
+}
+
+/* Emitter count */
+extern s16 D_80151AD0;  /* Number of active emitters */
+
+/**
+ * func_800B90F8 - Clear emitter pointer array
+ * (48 bytes)
+ *
+ * Clears the emitter target pointer array up to the current count.
+ */
+void func_800B90F8(void) {
+    s16 count;
+    void **ptr;
+    void **end;
+
+    count = D_80151AD0;
+    ptr = D_80124FD0;
+
+    if (count <= 0) {
+        return;
+    }
+
+    end = D_80124FD0 + count;
+
+    do {
+        *ptr = NULL;
+        ptr++;
+    } while (ptr < end);
+}
+
+/* Additional emitter system globals */
+extern u32 D_80159818;          /* Emitter system state 1 */
+extern u32 D_80159B80;          /* Emitter system state 2 */
+extern void *D_80143A18;        /* Emitter list 1 */
+extern void *D_80143A20;        /* Emitter list 2 */
+extern void *D_80143A28;        /* Emitter list 3 */
+extern u8 D_80143A10[44];       /* Emitter data block */
+extern void func_80096130(void*);  /* Clear emitter list */
+extern void func_80002790(void*, s32, s32);  /* memset */
+
+/**
+ * func_800B9130 - Reset emitter system
+ * (100 bytes)
+ *
+ * Clears all emitter state and lists. Called on level transitions.
+ *
+ * @param a0 Unused parameter (stored but not used)
+ */
+void func_800B9130(s32 a0) {
+    D_80159818 = 0;
+    D_80159B80 = 0;
+
+    func_800B90F8();
+
+    func_80096130(D_80143A18);
+    func_80096130(D_80143A20);
+    func_80096130(D_80143A28);
+
+    func_80002790(D_80143A10, 0, 44);
+}
+
+extern s32 func_800950AC(void*, void*, s32);  /* Object compare/lookup */
+
+/**
+ * func_80095120 - Object pair validation and comparison
+ * (52 bytes)
+ *
+ * Validates that both pointers are non-null, then calls compare function
+ * with flag value 15.
+ *
+ * @param a0 First object pointer
+ * @param a1 Second object pointer
+ * @return Result of comparison, or -1 if either pointer is null
+ */
+s32 func_80095120(void *a0, void *a1) {
+    if (a0 == NULL) {
+        return -1;
+    }
+    if (a1 == NULL) {
+        return -1;
+    }
+    return func_800950AC(a0, a1, 15);
+}
+
+extern void func_80098620(void*, void*, void*);  /* List insert operation */
+
+/**
+ * func_800986B0 - Insert element at offset 8 wrapper
+ * (36 bytes)
+ *
+ * Wrapper that calls list insert with the list head at a0+8.
+ *
+ * @param a0 Container object (list head is at offset 8)
+ * @param a1 Element to insert
+ */
+void func_800986B0(void *a0, void *a1) {
+    func_80098620(a0, (u8*)a0 + 8, a1);
+}
+
+extern void func_80096288(s32, s32, s32);  /* Sound/object operation */
+extern u8 D_80156D44[];  /* Object data array (20-byte stride) */
+
+/**
+ * func_80096298 - Get object pointer with side effect
+ * (60 bytes)
+ *
+ * Calls func_80096288 with zeros, then returns object pointer from array.
+ *
+ * @param a0 Object index
+ * @return Pointer from object array
+ */
+void *func_80096298(s32 a0) {
+    func_80096288(a0, 0, 0);
+    return *(void**)(D_80156D44 + (a0 * 20));
+}
+
+extern void func_8009C3F8(s32, f32);  /* Floating point operation */
+
+/**
+ * func_8009C5BC - Absolute value wrapper
+ * (36 bytes)
+ *
+ * Takes absolute value of input float, then calls func_8009C3F8 with it.
+ *
+ * @param value Input floating point value
+ */
+void func_8009C5BC(f32 value) {
+    if (value < 0.0f) {
+        value = -value;
+    }
+    func_8009C3F8(0, value);
+}
+
+extern void func_8009211C(void*, void*);  /* List remove operation */
+
+/**
+ * func_800AED2C - Remove element from list and clear flag
+ * (56 bytes)
+ *
+ * Removes element from list, clears its state byte, returns the element.
+ *
+ * @param a0 List head
+ * @param a1 Element to remove
+ * @return The removed element, or NULL if a1 was NULL
+ */
+void *func_800AED2C(void *a0, void *a1) {
+    if (a1 == NULL) {
+        return NULL;
+    }
+    func_8009211C(a0, a1);
+    *(u8*)((u8*)a1 + 8) = 0;
+    return a1;
+}
+
+extern void *D_801146FC;  /* Default data pointer */
+extern void func_80094EC8(void*);  /* Object copy/update function */
+
+/**
+ * func_80100D30 - Initialize object with default data pointer
+ * (44 bytes)
+ *
+ * Sets the data pointer field and calls the update function.
+ *
+ * @param a0 Object to initialize
+ * @return Always returns 1
+ */
+s32 func_80100D30(void *a0) {
+    *(void**)((u8*)a0 + 4) = D_801146FC;
+    func_80094EC8(a0);
+    return 1;
+}
+
+extern void *D_80116DE0;  /* Another default data pointer */
+
+/**
+ * func_8010B528 - Initialize object and clear extra field
+ * (56 bytes)
+ *
+ * Sets data pointer, calls update, then clears the field at offset 40.
+ *
+ * @param a0 Object to initialize
+ * @return Always returns 1
+ */
+s32 func_8010B528(void *a0) {
+    *(void**)((u8*)a0 + 4) = D_80116DE0;
+    func_80094EC8(a0);
+    *(s32*)((u8*)a0 + 40) = 0;
+    return 1;
+}
+
+extern u8 D_80152750[];  /* Sync object for audio/sound */
+
+/**
+ * func_8010FBB4 - Acquire audio sync lock
+ * (44 bytes)
+ *
+ * Acquires the audio system synchronization lock.
+ */
+void func_8010FBB4(void) {
+    func_80007270(&D_80152750, NULL, 1);
+}
+
+extern s32 func_80097470(s32, s32);  /* Sound lookup function */
+extern void func_800962D4(s32, s32); /* Sound state update */
+
+/**
+ * func_8010FC80 - Start sound and update state
+ * (64 bytes)
+ *
+ * Calls sound lookup, then updates state. Returns the sound handle.
+ *
+ * @param a0 Sound parameter
+ * @param a1 Unused
+ * @return Sound handle from lookup
+ */
+s32 func_8010FC80(s32 a0, s32 a1) {
+    s32 handle;
+
+    handle = func_80097470(0, a0);
+    func_800962D4(handle, 0);
+    return handle;
+}
+
+extern u8 D_80153F10[];  /* Timer/callback structure */
+extern void func_8008ABE4(void);  /* Timer callback trigger */
+
+/**
+ * func_8010FD1C - Set up timer callback structure
+ * (68 bytes)
+ *
+ * Initializes a timer/callback structure with the given parameters
+ * and triggers the callback system.
+ *
+ * @param a0 Data value (stored at offset 8)
+ * @param a1 Timer value (stored at offset 2), 0 means skip setup
+ * @param a2 Callback data (stored at offset 12)
+ * @return Always returns 1
+ */
+s32 func_8010FD1C(s32 a0, s16 a1, s32 a2) {
+    u8 *ptr;
+
+    if (a1 == 0) {
+        return 1;
+    }
+
+    ptr = D_80153F10;
+    *(s32*)(ptr + 8) = a0;
+    *(s16*)(ptr + 2) = a1;
+    *(s32*)(ptr + 12) = a2;
+    *(s16*)(ptr + 4) = 0;
+    *(u8*)ptr = 1;
+    func_8008ABE4();
+
+    return 1;
+}
+
+extern void func_800B82C8(void);  /* Effects cleanup */
+
+/**
+ * func_800EE88C - Wrapper for effects cleanup
+ * (32 bytes)
+ *
+ * Simple wrapper that calls the effects cleanup function.
+ */
+void func_800EE88C(void) {
+    func_800B82C8();
+}
+
+extern void func_800E23A4(void);  /* Pre-process call */
+extern void func_800E1C30(s32 a0);  /* Post-process call */
+
+/**
+ * func_800E2A3C - Sequential process wrapper
+ * (40 bytes)
+ *
+ * Calls two processing functions in sequence with the same argument.
+ *
+ * @param a0 Parameter passed to second function
+ */
+void func_800E2A3C(s32 a0) {
+    func_800E23A4();
+    func_800E1C30(a0);
+}
+
+extern void *func_800A2680(void *ptr);  /* Object processor */
+
+/**
+ * func_800CB9A0 - Conditional object processor call
+ * (48 bytes)
+ *
+ * Dereferences the input pointer and calls processor if the object
+ * at offset 4 is non-null.
+ *
+ * @param a0 Pointer to pointer to object structure
+ */
+void func_800CB9A0(void **a0) {
+    void *ptr;
+    void *obj;
+
+    ptr = *a0;
+    obj = *(void **)((u8*)ptr + 4);
+    if (obj != NULL) {
+        func_800A2680(obj);
+    }
+}
+
+extern void *func_800B466C(void *a0, s32 a1);  /* Object allocator */
+extern void func_800A2504(void *a0, void *a1, s32 a2);  /* Object copy */
+
+/**
+ * func_800CD748 - Initialize object from nested structure
+ * (72 bytes)
+ *
+ * Traverses nested pointers, allocates an object, and copies data.
+ *
+ * @param a0 Pointer to structure containing nested pointers
+ */
+void func_800CD748(void **a0) {
+    void *t6;
+    void *t7;
+    void *a7;
+    void *result;
+    void *t8_struct;
+
+    t6 = *a0;
+    t7 = *(void **)((u8*)t6 + 44);
+    a7 = (void *)(*(u32*)t7 + 1780);
+
+    result = func_800B466C((void*)((u8*)a7 + 4), 72);
+    *(void **)a7 = result;
+
+    t8_struct = *a0;
+    func_800A2504(*(void **)((u8*)t8_struct + 8), a7, 76);
+}
+
+extern s32 func_8000BE50(s32 a0);  /* State query */
+extern void func_800C9AE0(void);   /* State handler */
+
+/**
+ * func_800FBBFC - Conditional state handler
+ * (52 bytes)
+ *
+ * Queries state and calls handler if not in state 7.
+ */
+void func_800FBBFC(void) {
+    s32 state;
+
+    state = func_8000BE50(0);
+    if (state != 7) {
+        func_800C9AE0();
+    }
+}
+
+extern void func_80092360(s32 a0, s32 a1, s32 a2, s32 a3);  /* Multi-param handler */
+
+/**
+ * func_800FEC60 - Sound trigger based on flag
+ * (60 bytes)
+ *
+ * Triggers sound 46 or 38 based on bit 0 of input.
+ *
+ * @param a0 Flag value (bit 0 controls sound selection)
+ */
+void func_800FEC60(s32 a0) {
+    s32 sound_id;
+
+    if (a0 & 1) {
+        sound_id = 46;
+    } else {
+        sound_id = 38;
+    }
+    func_80092360(sound_id, 0, 1, 0);
+}
+
+extern void func_8009211C(s32 a0);  /* List operation */
+
+/**
+ * func_800D63C4 - Clear object state after list operation
+ * (40 bytes)
+ *
+ * Performs list operation and clears the state byte of the object.
+ *
+ * @param a0 Parameter for list operation
+ * @param a1 Pointer to object whose state byte is cleared
+ */
+void func_800D63C4(s32 a0, u8 *a1) {
+    func_8009211C(a0);
+    *(a1 + 8) = 0;
+}
+
+extern void func_800B358C(void);  /* Cleanup handler */
+extern u32 D_801541A4;  /* State flag */
+
+/**
+ * func_800D5894 - Conditional cleanup with state clear
+ * (48 bytes)
+ *
+ * If input is non-zero, calls cleanup and clears state flag.
+ *
+ * @param a0 Condition flag (non-zero triggers cleanup)
+ */
+void func_800D5894(s32 a0) {
+    if (a0 != 0) {
+        func_800B358C();
+        D_801541A4 = 0;
+    }
+}
+
+extern u8 D_80156D38[];  /* Object array base (20-byte stride) */
+extern void func_80096288(s32 a0, s32 a1, s32 a2);  /* Object init */
+extern void func_800962D4(s32 a0, s32 a1);  /* Object state set */
+
+/**
+ * func_800AC840 - Initialize object and update state
+ * (88 bytes)
+ *
+ * Initializes object by index, then sets its state and clears a flag.
+ *
+ * @param a0 Object index
+ */
+void func_800AC840(s32 a0) {
+    u8 *obj;
+
+    func_80096288(a0, 0, 0);
+
+    obj = D_80156D38 + (a0 * 20);
+    func_800962D4(*(s32*)(obj + 12), 1);
+    *(obj + 2) = 0;
+}
+
+extern void *D_801491F0;  /* Active object list head */
+extern void func_8009079C(void *a0, s32 a1);  /* Process object */
+extern void func_800B0580(void);  /* Finalize processing */
+
+/**
+ * func_800B0618 - Process all active objects
+ * (84 bytes)
+ *
+ * Iterates through active object list, processing each with flag 1,
+ * then calls finalize function.
+ */
+void func_800B0618(void) {
+    void *obj;
+
+    obj = D_801491F0;
+    while (obj != NULL) {
+        func_8009079C(obj, 1);
+        obj = D_801491F0;
+    }
+    func_800B0580();
+}
+
+extern void func_800D6160(s32 flag);  /* Core update function */
+
+/**
+ * func_800D6290 - Update wrapper with flag 0
+ * (92 bytes)
+ *
+ * Wrapper that calls the core update function with flag 0.
+ */
+void func_800D6290(void) {
+    func_800D6160(0);
+}
+
+/**
+ * func_800D62EC - Update wrapper with flag 1
+ * (92 bytes)
+ *
+ * Wrapper that calls the core update function with flag 1.
+ */
+void func_800D62EC(void) {
+    func_800D6160(1);
+}
+
+extern u8 D_80142728[];  /* Primary sync object */
+extern u8 D_801427A8[];  /* Secondary sync object */
+extern void func_80007270(void *sync, s32 a1, s32 a2);  /* Acquire sync */
+extern void func_800075E0(void *sync, s32 a1, s32 a2);  /* Release sync */
+extern void *func_80091B00(void);  /* Allocate from list */
+
+/**
+ * func_800D6348 - Allocate and initialize list element
+ * (100 bytes)
+ *
+ * Acquires sync, allocates element from list, sets state to 9,
+ * then releases both primary and secondary syncs.
+ */
+void func_800D6348(void) {
+    void *elem;
+
+    func_80007270(D_80142728, 0, 1);
+    elem = func_80091B00();
+    *((u8*)elem + 2) = 9;
+    func_800075E0(D_80142728, 0, 0);
+    func_800075E0(D_801427A8, (s32)elem, 0);
+}
+
+extern u8 D_80152770[];  /* Another sync object */
+extern void *func_80095F8C(s32 a0);  /* Object lookup */
+extern void *func_80095EF4(void *a0, s32 a1);  /* Object process */
+
+/**
+ * func_800E7980 - Increment object reference count
+ * (112 bytes)
+ *
+ * Looks up object, processes it, and increments its reference count
+ * at offset 22 (saturates at 255).
+ *
+ * @param a0 Object identifier
+ */
+void func_800E7980(s32 a0) {
+    void *obj;
+    u8 count;
+
+    func_80007270(D_80152770, 0, 1);
+    obj = func_80095F8C(a0);
+    obj = func_80095EF4(obj, 0);
+    count = *((u8*)obj + 22);
+    if (count < 255) {
+        *((u8*)obj + 22) = count + 1;
+    }
+    func_800075E0(D_80152770, 0, 0);
+}
+
+extern void func_80095FD8(s32 a0, s32 a1);  /* Object remove */
+
+/**
+ * func_800960D4 - Remove object from tracked list
+ * (92 bytes)
+ *
+ * Acquires sync, removes object by ID, then releases sync.
+ *
+ * @param a0 Object ID to remove
+ */
+void func_800960D4(s32 a0) {
+    func_80007270(D_80152770, 0, 1);
+    func_80095FD8(a0, 0);
+    func_800075E0(D_80152770, 0, 0);
+}
+
+extern s32 D_8015A110;  /* Current game state */
+extern void func_803914B4(s32 a0, s32 a1, s32 a2);  /* External handler */
+
+/**
+ * func_800C55E4 - Conditional state handler call
+ * (92 bytes)
+ *
+ * Calls external handler if game state is 4 or 6.
+ * Sign-extends byte arguments.
+ *
+ * @param a0 First parameter (byte)
+ * @param a1 Second parameter (byte)
+ * @param a2 Third parameter (byte)
+ */
+void func_800C55E4(s8 a0, s8 a1, s8 a2) {
+    s32 state = D_8015A110;
+
+    if (state == 6 || state == 4) {
+        func_803914B4(a0, a1, a2);
+    }
+}
+
+extern s32 func_80097694(s32 a0, s32 a1);  /* Object lookup by type */
+
+/**
+ * func_800C70BC - Initialize three specific objects
+ * (84 bytes)
+ *
+ * Looks up objects 54, 58, and 59 and initializes each.
+ */
+void func_800C70BC(void) {
+    s32 id;
+
+    id = func_80097694(54, -1);
+    func_800AC840(id);
+
+    id = func_80097694(58, -1);
+    func_800AC840(id);
+
+    id = func_80097694(59, -1);
+    func_800AC840(id);
+}
+
+/**
+ * func_800C878C - Allocate list element with state 7
+ * (104 bytes)
+ *
+ * Acquires sync, allocates element, sets state to 7,
+ * then releases both syncs.
+ */
+void func_800C878C(void) {
+    void *elem;
+
+    func_80007270(D_80142728, 0, 1);
+    elem = func_80091B00();
+    *((u8*)elem + 2) = 7;
+    func_800075E0(D_80142728, 0, 0);
+    func_800075E0(D_801427A8, (s32)elem, 0);
+}
+
+/**
+ * func_800C87F4 - Allocate list element with state 1
+ * (104 bytes)
+ *
+ * Acquires sync, allocates element, sets state to 1,
+ * then releases both syncs.
+ */
+void func_800C87F4(void) {
+    void *elem;
+
+    func_80007270(D_80142728, 0, 1);
+    elem = func_80091B00();
+    *((u8*)elem + 2) = 1;
+    func_800075E0(D_80142728, 0, 0);
+    func_800075E0(D_801427A8, (s32)elem, 0);
+}
+
+/**
+ * func_800C9194 - Allocate list element with data
+ * (120 bytes)
+ *
+ * Allocates element, clears state, sets data and flag fields.
+ *
+ * @param a0 Data value to store at offset 4
+ * @param a1 Flag value to store at offset 8
+ */
+void func_800C9194(s32 a0, s32 a1) {
+    void *elem;
+
+    func_80007270(D_80142728, 0, 1);
+    elem = func_80091B00();
+    *((u8*)elem + 2) = 0;
+    *(s32*)((u8*)elem + 4) = a0;
+    *((u8*)elem + 8) = (u8)a1;
+    func_800075E0(D_80142728, 0, 0);
+    func_800075E0(D_801427A8, (s32)elem, 0);
+}
+
+extern void func_800CF06C(void);  /* Pre-update */
+extern void func_800E1AA0(s32 a0);  /* Update stage 1 */
+extern void func_800E15A0(s32 a0);  /* Update stage 2 */
+extern void func_800E1540(s32 a0);  /* Update stage 3 */
+extern void func_800E114C(s32 a0);  /* Update stage 4 */
+extern void func_800D0424(s32 a0);  /* Update stage 5 */
+
+/**
+ * func_800E2A64 - Full update sequence
+ * (92 bytes)
+ *
+ * Calls a sequence of update functions in order with the same param.
+ *
+ * @param a0 Update parameter passed to all stages
+ */
+void func_800E2A64(s32 a0) {
+    func_800CF06C();
+    func_800E23A4();
+    func_800E1C30(a0);
+    func_800E1AA0(a0);
+    func_800E15A0(a0);
+    func_800E1540(a0);
+    func_800E114C(a0);
+    func_800D0424(a0);
+}
+
+extern void func_800BF024(s32 a0);  /* Process with flag */
+extern void func_80091C04(s32 a0);  /* Process without flag */
+extern void func_800D54BC(void *a0);  /* Clear structure */
+
+/**
+ * func_800D54E0 - Conditional process and clear
+ * (68 bytes)
+ *
+ * Processes object differently based on flag, then clears it.
+ *
+ * @param a0 Pointer to object (dereferences for inner call)
+ * @param a1 Flag - non-zero uses BF024, zero uses 91C04
+ */
+void func_800D54E0(void **a0, s32 a1) {
+    if (a1 != 0) {
+        func_800BF024(*(s32*)a0);
+    } else {
+        func_80091C04(*(s32*)a0);
+    }
+    func_800D54BC(a0);
+}
+
+/**
+ * func_800D6E00 - Allocate list element with state 11 and data byte
+ * (116 bytes)
+ *
+ * Allocates element, sets state to 11 and stores data byte.
+ *
+ * @param a0 Data byte to store at offset 4
+ */
+void func_800D6E00(s32 a0) {
+    void *elem;
+
+    func_80007270(D_80142728, 0, 1);
+    elem = func_80091B00();
+    *((u8*)elem + 2) = 11;
+    *((u8*)elem + 4) = (u8)a0;
+    func_800075E0(D_80142728, 0, 0);
+    func_800075E0(D_801427A8, (s32)elem, 0);
+}
+
+/**
+ * func_800DB7B4 - Allocate list element with state 7 (variant)
+ * (104 bytes)
+ *
+ * Same as func_800C878C - allocates element with state 7.
+ */
+void func_800DB7B4(void) {
+    void *elem;
+
+    func_80007270(D_80142728, 0, 1);
+    elem = func_80091B00();
+    *((u8*)elem + 2) = 7;
+    func_800075E0(D_80142728, 0, 0);
+    func_800075E0(D_801427A8, (s32)elem, 0);
+}
+
+/**
+ * func_800DC720 - Cleanup array of object pointers
+ * (112 bytes)
+ *
+ * Iterates through 5 entries in a structure, cleaning up each
+ * non-null object pointer, then clears the first byte.
+ *
+ * @param a0 Pointer to structure with object array at offset 12+
+ */
+void func_800DC720(u8 *a0) {
+    s32 i;
+    u8 *ptr;
+    void *obj;
+
+    if (a0 == NULL) {
+        return;
+    }
+    if (*a0 == 0) {
+        return;
+    }
+
+    ptr = a0;
+    for (i = 0; i < 20; i += 4) {
+        obj = *(void **)(ptr + 12);
+        if (obj != NULL) {
+            func_800B358C();
+            *(void **)(ptr + 12) = NULL;
+        }
+        ptr += 4;
+    }
+    *a0 = 0;
+}
+
+extern void func_800B3D18(s32 a0);  /* State reset with flag */
+extern void *D_801597F0;  /* Global state pointer */
+extern u8 D_80159B70;  /* State byte A */
+extern u8 D_80159B60;  /* State byte B */
+
+/**
+ * func_800ED764 - Set state byte A conditionally
+ * (80 bytes)
+ *
+ * If input is negative, resets state and copies from global.
+ * Otherwise stores input directly.
+ *
+ * @param a0 Value to set (s16), negative triggers reset
+ */
+void func_800ED764(s16 a0) {
+    if (a0 < 0) {
+        func_800B3D18(0);
+        D_80159B70 = *((u8*)D_801597F0 + 8);
+    } else {
+        D_80159B70 = (u8)a0;
+    }
+}
+
+/**
+ * func_800ED7B4 - Set state byte B conditionally
+ * (80 bytes)
+ *
+ * If input is negative, resets state and copies from global.
+ * Otherwise stores input directly.
+ *
+ * @param a0 Value to set (s16), negative triggers reset
+ */
+void func_800ED7B4(s16 a0) {
+    if (a0 < 0) {
+        func_800B3D18(0);
+        D_80159B60 = *((u8*)D_801597F0 + 4);
+    } else {
+        D_80159B60 = (u8)a0;
+    }
+}
+
+/**
+ * func_800B3F50 - Calculate combined state value
+ * (84 bytes)
+ *
+ * Resets state twice, then returns sum of three bytes from global state.
+ *
+ * @return Sum of state bytes (offset 2, 3, and D_80159B60) as s16
+ */
+s16 func_800B3F50(void) {
+    u8 *ptr;
+    u8 val1, val2, val3;
+
+    func_800B3D18(0);
+    ptr = (u8*)D_801597F0;
+    val3 = *(ptr + 3);
+    func_800B3D18(0);
+    ptr = (u8*)D_801597F0;
+    val1 = D_80159B60;
+    val2 = *(ptr + 2);
+    return (s16)(val1 + val2 + val3);
+}
+
+extern void *D_80114624;  /* Single global object */
+extern void *D_80114628[];  /* Array of 4 object pointers */
+extern void func_8008D0C0(void *a0);  /* Object cleanup */
+
+/**
+ * func_800B557C - Cleanup global objects and array
+ * (128 bytes)
+ *
+ * Cleans up single global object, then iterates through array
+ * of 4 object pointers, cleaning each up.
+ */
+void func_800B557C(void) {
+    void *obj;
+    s32 i;
+    void **ptr;
+
+    obj = D_80114624;
+    if (obj != NULL) {
+        func_800B358C();
+        D_80114624 = NULL;
+    }
+
+    ptr = D_80114628;
+    for (i = 0; i < 4; i++) {
+        obj = *ptr;
+        if (obj != NULL) {
+            func_8008D0C0(obj);
+            *ptr = NULL;
+        }
+        ptr++;
+    }
+}
+
+extern void func_800B74A0(s32 a0);  /* Prepare for operation */
+extern void func_800B71D4(s16 a0, s16 a1, s32 a2);  /* Execute operation */
+
+/**
+ * func_800BE4B4 - Prepare and execute operation
+ * (60 bytes)
+ *
+ * Calls preparation function, then executes with extracted parameters.
+ *
+ * @param a0 First s16 value (low 16 bits used)
+ * @param a1 Second s16 value (low 16 bits used)
+ * @param a2 Preparation parameter
+ * @param a3 Execution parameter
+ */
+void func_800BE4B4(s32 a0, s32 a1, s32 a2, s32 a3) {
+    func_800B74A0(a2);
+    func_800B71D4((s16)a0, (s16)a1, a3);
+}
+
+extern void func_800BE7BC(void *buf, s32 a1, s16 a2);  /* Fill buffer */
+
+/**
+ * func_800BE9A0 - Fill buffer and execute operation
+ * (72 bytes)
+ *
+ * Allocates stack buffer, fills it, then executes operation.
+ *
+ * @param a0 First s16 value
+ * @param a1 Second s16 value
+ * @param a2 Fill size parameter
+ * @param a3 Fill data parameter
+ */
+void func_800BE9A0(s32 a0, s32 a1, s32 a2, s32 a3) {
+    u8 buffer[128];
+
+    func_800BE7BC(buffer, a3, (s16)a2);
+    func_800B71D4((s16)a0, (s16)a1, (s32)buffer);
+}
+
+extern void func_80002CD0(void *buf, s32 a1, void *a2);  /* Copy to buffer */
+
+/**
+ * func_800BE9E8 - Copy buffer and execute operation
+ * (72 bytes)
+ *
+ * Copies data to stack buffer, then executes operation.
+ *
+ * @param a0 First s16 value
+ * @param a1 Second s16 value
+ * @param a2 Copy source
+ * @param a3 Copy data (passed by reference)
+ */
+void func_800BE9E8(s32 a0, s32 a1, s32 a2, s32 a3) {
+    u8 buffer[256];
+
+    func_80002CD0(buffer, a2, &a3);
+    func_800B71D4((s16)a0, (s16)a1, (s32)buffer);
+}
+
+extern void func_80096CA8(s32 a0, s32 a1);  /* Process with second parameter */
+
+/**
+ * func_800AC6F4 - Process wrapper with zero parameter
+ * (104 bytes)
+ *
+ * Simple wrapper that calls func_80096CA8 with second parameter 0.
+ *
+ * @param a0 Value to pass through
+ */
+void func_800AC6F4(s32 a0) {
+    func_80096CA8(a0, 0);
+}
+
+extern void *func_80091BA8(s32 a0);  /* Find element in sync list */
+extern void func_800BF01C(s32 a0);   /* Process nested element */
+extern void func_80091C04(s32 a0);   /* Remove element from list */
+
+/**
+ * func_800BF024 - Synchronized element processor
+ * (120 bytes)
+ *
+ * Acquires sync, finds element, processes nested data if found,
+ * then releases sync and removes element.
+ *
+ * @param a0 Element identifier
+ */
+void func_800BF024(s32 a0) {
+    void *result;
+
+    func_80007270(D_80142728, 0, 1);
+    result = func_80091BA8(a0);
+
+    if (result == NULL) {
+        func_800075E0(D_80142728, 0, 0);
+        return;
+    }
+
+    func_800BF01C(*((s32*)result + 16));  /* offset 64 */
+    func_800075E0(D_80142728, 0, 0);
+    func_80091C04(a0);
+}
+
+extern void func_800A4B6C(void);      /* Initialize subsystem A */
+extern void func_80096238(s32 a0);    /* Configure with parameter */
+extern void func_80020274(void);      /* Start operation */
+extern s32 func_800202C4(void);       /* Poll completion status */
+
+extern s32 D_80151A6C;  /* Configuration value */
+
+/**
+ * func_800A4C54 - Initialize and wait for completion
+ * (76 bytes)
+ *
+ * Calls initialization sequence and polls until completion.
+ *
+ */
+void func_800A4C54(void) {
+    func_800A4B6C();
+    func_80096238(D_80151A6C);
+    func_80020274();
+
+    while (func_800202C4() == 0)
+        ;
+}
+
+extern void func_800B90F8(void);      /* Cleanup subsystem */
+extern void func_80096130(s32 a0);    /* Release resource */
+extern void func_80002790(void *dst, s32 val, s32 size);  /* memset */
+
+extern s32 D_80143A18;  /* Resource handle A */
+extern s32 D_80143A20;  /* Resource handle B */
+extern s32 D_80143A28;  /* Resource handle C */
+extern void *D_80143A10; /* Resource array base */
+
+/**
+ * func_800B9130 - Reset multiple resource handles
+ * (96 bytes)
+ *
+ * Clears state globals, calls cleanup, releases three resources,
+ * then zeroes a 44-byte structure.
+ *
+ * @param a0 Unused parameter
+ */
+void func_800B9130(s32 a0) {
+    D_80159818 = 0;
+    D_80159B80 = 0;
+    func_800B90F8();
+    func_80096130(D_80143A18);
+    func_80096130(D_80143A20);
+    func_80096130(D_80143A28);
+    func_80002790(D_80143A10, 0, 44);
+}
+
+extern void func_800A5A40(void);  /* Initialize subsystem */
+
+extern s32 D_801513B4;    /* Global flag A */
+extern s16 D_8016B254;    /* Global state value */
+extern f32 D_801613B8;    /* Scale factor */
+extern s16 D_80140618;    /* Position value */
+extern void *D_801406B8;  /* Data pointer */
+extern void *D_8012EA18;  /* Source data */
+
+/**
+ * func_800A5B60 - Initialize global state values
+ * (80 bytes)
+ *
+ * Resets several global variables and initializes subsystem.
+ *
+ */
+void func_800A5B60(void) {
+    D_801513B4 = 0;
+    D_8016B254 = -1;
+    func_800A5A40();
+    D_801613B8 = 1.0f;
+    D_80140618 = 0;
+    D_801406B8 = D_8012EA18;
+}
+
+extern u8 *D_80159800;  /* Source data array */
+
+/**
+ * func_800F68A4 - Copy state bytes to buffer
+ * (128 bytes)
+ *
+ * Copies bytes from state array to destination buffer, extracting
+ * every 12th byte starting at offset 4. Null terminates result.
+ *
+ * @param a0 Destination buffer
+ */
+void func_800F68A4(u8 *a0) {
+    void *obj;
+    u8 *src;
+    s32 i;
+    s32 count;
+    s32 offset;
+
+    func_800B3D18(0);
+
+    obj = D_801597F0;
+    count = *((u8*)obj + 12);
+    src = D_80159800;
+    offset = 0;
+
+    for (i = 0; i < count; i++) {
+        a0[i] = src[offset + 4];
+        offset += 12;
+    }
+
+    a0[i] = 0;
+}
+
+extern void func_800BAAA0(void);  /* Initialize state arrays */
+
+extern f32 D_80153F28[6];  /* State array A */
+extern f32 D_80153F48[6];  /* State array B */
+extern f32 D_80153F68[6];  /* State array C */
+extern f32 D_80154190;     /* Copied scale value */
+extern f32 D_801543CC;     /* Source scale value */
+extern s16 D_80154182;     /* State flag */
+
+/**
+ * func_800BAD58 - Initialize three parallel state arrays
+ * (132 bytes)
+ *
+ * Calls init function, zeroes three float arrays of 6 elements each,
+ * copies a scale value, and sets flag to -1.
+ *
+ */
+void func_800BAD58(void) {
+    s32 i;
+    f32 zero = 0.0f;
+
+    func_800BAAA0();
+
+    for (i = 0; i < 6; i++) {
+        D_80153F28[i] = zero;
+        D_80153F48[i] = zero;
+        D_80153F68[i] = zero;
+    }
+
+    D_80154190 = D_801543CC;
+    D_80154182 = -1;
+}
+
+extern void *D_80152770;           /* Sync object */
+extern void *func_80095F8C(s32 a0);  /* Find element by id */
+extern void *func_80095EF4(void *elem, s32 a0, s32 a1);  /* Process element */
+
+/**
+ * func_800E7914 - Decrement reference count if positive
+ * (108 bytes)
+ *
+ * Acquires sync, finds element, decrements byte at offset 22
+ * if greater than zero, releases sync.
+ *
+ * @param a0 Element identifier
+ */
+void func_800E7914(s32 a0) {
+    void *result;
+    s32 val;
+
+    func_80007270(D_80152770, 0, 1);
+    result = func_80095F8C(a0);
+    result = func_80095EF4(result, 0);
+
+    val = *((u8*)result + 22);
+    if (val > 0) {
+        *((u8*)result + 22) = (u8)(val - 1);
+    }
+
+    func_800075E0(D_80152770, 0, 0);
+}
+
+extern void func_800B6024(void);  /* Initialize base state */
+
+extern s16 D_8015A108;    /* Element count */
+extern void *D_8015A118;  /* Element array base */
+
+/**
+ * func_800B6138 - Initialize element array fields
+ * (104 bytes)
+ *
+ * Calls base init, then loops through array clearing specific
+ * offsets and zeroing float values.
+ *
+ */
+void func_800B6138(void) {
+    s32 i;
+    s32 count;
+    f32 zero = 0.0f;
+    u8 *ptr;
+
+    func_800B6024();
+
+    count = D_8015A108;
+    ptr = (u8*)D_8015A118;
+
+    for (i = 0; i < count; i++) {
+        *(s32*)(ptr + 8) = 0;
+        *(s32*)(ptr + 4) = 0;
+        *(s32*)(ptr + 12) = 0;
+        *(f32*)(ptr + 16) = zero;
+        *(f32*)(ptr + 20) = zero;
+        ptr += 76;
+    }
+}
+
+extern void *func_800B24EC(void *a0, void *a1, s32 a2, s8 a3, s32 a4);  /* Create linked element */
+extern void func_800B362C(void *a0);   /* Alternate init */
+extern void func_80094EC8(void *a0);   /* Finalize object */
+
+extern u8 D_80140BDC;  /* Default parameter value */
+
+/**
+ * func_800EF5B0 - Initialize object with optional linking
+ * (120 bytes)
+ *
+ * Stores reference, optionally creates linked element,
+ * then finalizes object.
+ *
+ * @param a0 Target object
+ * @param a1 Reference to store
+ * @param a2 If nonzero, create linked element
+ */
+void func_800EF5B0(void *a0, void *a1, s32 a2) {
+    void *result;
+
+    *(void**)a0 = a1;
+
+    if (a2 != 0) {
+        s8 param = (s8)(D_80140BDC - 1);
+        result = func_800B24EC(a1, (u8*)a0 + 12, 0, param, 1);
+        *((void**)((u8*)a0 + 8)) = result;
+    } else {
+        func_800B362C(a0);
+    }
+
+    func_80094EC8(a0);
+}
+
+extern void func_80092360(s32 a0, s32 a1, s32 a2, s32 a3);  /* Trigger action */
+
+/**
+ * func_800B5FC4 - Trigger action based on bit flags
+ * (80 bytes)
+ *
+ * Selects action value based on bit flags and triggers it.
+ *
+ * @param a0 Bit flags (bit 0 = 46, bit 1 = 37, else 38)
+ */
+void func_800B5FC4(s32 a0) {
+    s32 val;
+
+    if (a0 & 1) {
+        val = 46;
+    } else if (a0 & 2) {
+        val = 37;
+    } else {
+        val = 38;
+    }
+
+    func_80092360(val, 0, 1, 0);
+}
+
+/**
+ * func_800D54BC - Initialize structure with default values
+ * (36 bytes)
+ *
+ * Sets first word to -1 and next four floats to -2.0f.
+ *
+ * @param a0 Structure pointer
+ */
+void func_800D54BC(void *a0) {
+    f32 val = -2.0f;
+
+    *(s32*)a0 = -1;
+    *(f32*)((u8*)a0 + 4) = val;
+    *(f32*)((u8*)a0 + 8) = val;
+    *(f32*)((u8*)a0 + 12) = val;
+    *(f32*)((u8*)a0 + 16) = val;
+}
+
+extern void *func_80096B00(s32 a0, s32 a1);  /* Lookup element */
+
+/**
+ * func_80096B5C - Lookup and extract element data
+ * (88 bytes)
+ *
+ * Looks up element, returns value from offset 4, optionally
+ * stores value from offset 8 to output pointer.
+ *
+ * @param a0 Key (if 0, skip lookup)
+ * @param a1 Secondary key
+ * @param a2 Optional output pointer for secondary value
+ * @return Value from element offset 4, or 0 if not found
+ */
+s32 func_80096B5C(s32 a0, s32 a1, s32 *a2) {
+    void *result;
+
+    if (a0 == 0) {
+        result = NULL;
+    } else {
+        result = func_80096B00(a0, a1);
+    }
+
+    if (result == NULL) {
+        if (a2 != NULL) {
+            *a2 = 0;
+        }
+        return 0;
+    }
+
+    if (a2 != NULL) {
+        *a2 = *((s32*)result + 2);
+    }
+
+    return *((s32*)result + 1);
+}
+
+extern void func_80096288(s32 a0, s32 a1, s32 a2);  /* Initialize element entry */
+extern void func_800962D4(s32 a0, s32 a1);          /* Configure element */
+
+extern void *D_80156D38;  /* Element array base */
+
+/**
+ * func_8009638C - Initialize and activate element
+ * (92 bytes)
+ *
+ * Initializes element at index, configures it, and marks as active.
+ *
+ * @param a0 Element index
+ */
+void func_8009638C(s32 a0) {
+    u8 *elem;
+
+    func_80096288(a0, 0, 0);
+
+    elem = (u8*)D_80156D38 + (a0 * 20);
+    func_800962D4(*((s32*)(elem + 12)), 0);
+    *(elem + 2) = 1;
+}
+
+/**
+ * func_800B4360 - Format and copy with variable arguments
+ * (44 bytes)
+ *
+ * Packages two additional arguments and passes to copy function.
+ *
+ * @param a0 Destination buffer
+ * @param a1 Format or source
+ * @param a2 First extra argument
+ * @param a3 Second extra argument
+ */
+void func_800B4360(void *a0, s32 a1, s32 a2, s32 a3) {
+    s32 args[2];
+
+    args[0] = a2;
+    args[1] = a3;
+    func_80002CD0(a0, a1, args);
+}
+
+/**
+ * func_800B3F00 - Get state byte at offset 2
+ * (40 bytes)
+ *
+ * Returns the byte at offset 2 of the global state object.
+ *
+ * @return State byte value
+ */
+u8 func_800B3F00(void) {
+    func_800B3D18(0);
+    return *((u8*)D_801597F0 + 2);
+}
+
+/**
+ * func_800B3F28 - Get state byte at offset 3
+ * (40 bytes)
+ *
+ * Returns the byte at offset 3 of the global state object.
+ *
+ * @return State byte value
+ */
+u8 func_800B3F28(void) {
+    func_800B3D18(0);
+    return *((u8*)D_801597F0 + 3);
+}
+
+/**
+ * func_800B41C0 - Set state byte at offset 9
+ * (64 bytes)
+ *
+ * Sets byte at offset 9 of global state object and returns old value.
+ *
+ * @param a0 New value to set
+ * @return Previous value
+ */
+s8 func_800B41C0(s8 a0) {
+    s8 old;
+    void *obj;
+
+    func_800B3D18(0);
+    obj = D_801597F0;
+    old = *((s8*)obj + 9);
+    *((s8*)obj + 9) = a0;
+
+    return old;
+}
+
+/**
+ * func_800B7128 - Sum of state bytes at offsets 2 and 3
+ * (72 bytes)
+ *
+ * Returns sum of bytes at offsets 2 and 3 as signed 16-bit.
+ *
+ * @return Sum of two state bytes
+ */
+s16 func_800B7128(void) {
+    u8 val2, val3;
+
+    func_800B3D18(0);
+    val2 = *((u8*)D_801597F0 + 2);
+    func_800B3D18(0);
+    val3 = *((u8*)D_801597F0 + 3);
+
+    return (s16)(val2 + val3);
+}
+
+extern s16 func_800B3FA4(s32 a0, s32 a1);  /* Get dimension value */
+
+/**
+ * func_800B7170 - Calculate position difference
+ * (48 bytes)
+ *
+ * Returns difference between input and calculated dimension.
+ *
+ * @param a0 Dimension selector
+ * @param a1 Base value
+ * @return Difference as signed 16-bit
+ */
+s16 func_800B7170(s32 a0, s16 a1) {
+    s16 result;
+
+    result = func_800B3FA4(a0, -1);
+    return (s16)(a1 - result);
+}
+
+/**
+ * func_800B71A0 - Calculate centered position
+ * (52 bytes)
+ *
+ * Returns difference between input and half of calculated dimension.
+ *
+ * @param a0 Dimension selector
+ * @param a1 Base value
+ * @return Centered position as signed 16-bit
+ */
+s16 func_800B71A0(s32 a0, s16 a1) {
+    s16 result;
+
+    result = func_800B3FA4(a0, -1);
+    return (s16)(a1 - (result >> 1));
+}
+
+extern void func_8009211C(s32 a0, void *a1);  /* Add element to list */
+
+/**
+ * func_800AED2C - Conditionally add element and clear flag
+ * (56 bytes)
+ *
+ * If element is non-null, adds to list and clears byte at offset 8.
+ *
+ * @param a0 List identifier
+ * @param a1 Element to add (or NULL)
+ * @return Input element or 0 if NULL
+ */
+s32 func_800AED2C(s32 a0, void *a1) {
+    if (a1 == NULL) {
+        return 0;
+    }
+
+    func_8009211C(a0, a1);
+    *((u8*)a1 + 8) = 0;
+
+    return (s32)a1;
+}
+
+extern void *D_80116DE0;  /* Default handler table */
+
+/**
+ * func_8010B528 - Initialize object with default handler
+ * (56 bytes)
+ *
+ * Sets handler table, finalizes object, clears field.
+ *
+ * @param a0 Object to initialize
+ * @return Always 1
+ */
+s32 func_8010B528(void *a0) {
+    *((void**)((u8*)a0 + 4)) = D_80116DE0;
+    func_80094EC8(a0);
+    *((s32*)((u8*)a0 + 40)) = 0;
+
+    return 1;
+}
+
+extern void *D_80152750;  /* Secondary sync object */
+
+/**
+ * func_8010FBB4 - Acquire secondary sync
+ * (44 bytes)
+ *
+ * Acquires lock on secondary sync object.
+ *
+ */
+void func_8010FBB4(void) {
+    func_80007270(D_80152750, 0, 1);
+}
+
+extern s32 func_80097470(s32 a0, s32 a1);  /* Allocate resource */
+
+/**
+ * func_8010FC80 - Allocate and configure resource
+ * (64 bytes)
+ *
+ * Allocates resource and configures it.
+ *
+ * @param a0 Resource type
+ * @param a1 Unused
+ * @return Allocated resource handle
+ */
+s32 func_8010FC80(s32 a0, s32 a1) {
+    s32 result;
+
+    result = func_80097470(0, a0);
+    func_800962D4(result, 0);
+
+    return result;
+}
+
+extern void *D_80153F10;  /* State structure base */
+extern void func_8008ABE4(void);  /* Finalize state init */
+
+/**
+ * func_8010FD1C - Initialize state structure
+ * (68 bytes)
+ *
+ * Initializes state structure with provided values if a1 non-zero.
+ *
+ * @param a0 Value for offset 8
+ * @param a1 Value for offset 2 (if 0, skip init)
+ * @param a2 Value for offset 12
+ * @return Always 1
+ */
+s32 func_8010FD1C(s32 a0, s16 a1, s32 a2) {
+    u8 *ptr;
+
+    if (a1 == 0) {
+        return 1;
+    }
+
+    ptr = (u8*)D_80153F10;
+    *((s32*)(ptr + 8)) = a0;
+    *((s16*)(ptr + 2)) = a1;
+    *((s32*)(ptr + 12)) = a2;
+    *((s16*)(ptr + 4)) = 0;
+    *ptr = 1;
+    func_8008ABE4();
+
+    return 1;
+}
+
+/**
+ * func_80096298 - Get element data value
+ * (60 bytes)
+ *
+ * Initializes element at index and returns value from offset 12.
+ *
+ * @param a0 Element index
+ * @return Data value at element offset 12
+ */
+s32 func_80096298(s32 a0) {
+    func_80096288(a0, 0, 0);
+    return *((s32*)((u8*)D_80156D38 + a0 * 20 + 12));
+}
+
+extern u8 D_80110680[2];  /* State flag array */
+extern void func_800BADE0(void);  /* Initialize state handler */
+
+/**
+ * func_800BAF64 - Clear state flags and initialize
+ * (44 bytes)
+ *
+ * Clears two state bytes and calls initialization.
+ *
+ */
+void func_800BAF64(void) {
+    D_80110680[0] = 0;
+    D_80110680[1] = 0;
+    func_800BADE0();
+}
+
+extern u8 D_80143A10;  /* Global state byte */
+extern s8 D_8015978C;  /* Configuration value */
+extern void func_800BB9B0(s32 a0, s32 a1, s32 a2);  /* Configure subsystem */
+
+/**
+ * func_800BC1E8 - Reset and configure subsystem
+ * (52 bytes)
+ *
+ * Clears state byte and configures subsystem with default value.
+ *
+ */
+void func_800BC1E8(void) {
+    D_80143A10 = 0;
+    func_800BB9B0(D_8015978C, 0, 1);
+}
+
+extern void func_8009C3F8(s32 a0);  /* Process with mode */
+
+/**
+ * func_800BFD68 - Call processor with mode 1
+ * (36 bytes)
+ *
+ * Wrapper that calls processor with mode 1.
+ *
+ */
+void func_800BFD68(void) {
+    func_8009C3F8(1);
+}
+
+extern void func_80096288(s32 a0, s32 a1, s32 a2);  /* Configure element */
+extern void func_800962D4(s32 a0, s32 a1);  /* Set element state */
+
+/**
+ * func_800AC840 - Deactivate element
+ * (80 bytes)
+ *
+ * Deactivates an element by configuring it and clearing active flag.
+ * Opposite of func_8009638C which activates elements.
+ *
+ */
+void func_800AC840(s32 a0) {
+    u8 *elem;
+
+    func_80096288(a0, 0, 0);
+    elem = (u8*)D_80156D38 + (a0 * 20);
+    func_800962D4(*((s32*)(elem + 12)), 1);
+    *(elem + 2) = 0;
+}
+
+extern void func_8008E26C(s32 a0, s32 a1, s16 a2);  /* Base function */
+
+/**
+ * func_8008E398 - Call with sign-extended parameter
+ * (40 bytes)
+ *
+ * Wrapper that sign-extends the third parameter before calling.
+ *
+ */
+void func_8008E398(s32 a0, s32 a1, s32 a2) {
+    s16 param = (s16)a2;
+    func_8008E26C(a0, a1, param);
+}
+
+/**
+ * func_800C878C - Allocate resource with type 7
+ * (104 bytes)
+ *
+ * Acquires sync, allocates from pool, sets type byte to 7,
+ * then releases both sync objects.
+ *
+ */
+void func_800C878C(void) {
+    void *result;
+
+    func_80007270(D_80142728, 0, 1);
+    result = func_80091B00();
+    *((u8*)result + 2) = 7;
+    func_800075E0(D_80142728, 0, 0);
+    func_800075E0(D_801427A8, result, 0);
+}
+
+/**
+ * func_800C87F4 - Allocate resource with type 1
+ * (104 bytes)
+ *
+ * Same pattern as func_800C878C but sets type byte to 1.
+ *
+ */
+void func_800C87F4(void) {
+    void *result;
+
+    func_80007270(D_80142728, 0, 1);
+    result = func_80091B00();
+    *((u8*)result + 2) = 1;
+    func_800075E0(D_80142728, 0, 0);
+    func_800075E0(D_801427A8, result, 0);
+}
+
+/**
+ * func_800D6348 - Allocate resource with type 9
+ * (104 bytes)
+ *
+ * Same pattern as func_800C878C but sets type byte to 9.
+ *
+ */
+void func_800D6348(void) {
+    void *result;
+
+    func_80007270(D_80142728, 0, 1);
+    result = func_80091B00();
+    *((u8*)result + 2) = 9;
+    func_800075E0(D_80142728, 0, 0);
+    func_800075E0(D_801427A8, result, 0);
+}
+
+/**
+ * func_800D6E00 - Allocate resource with type 11 and parameter
+ * (112 bytes)
+ *
+ * Allocates resource, sets type byte to 11, and copies
+ * parameter to offset 4.
+ *
+ */
+void func_800D6E00(s32 a0) {
+    void *result;
+
+    func_80007270(D_80142728, 0, 1);
+    result = func_80091B00();
+    *((u8*)result + 2) = 11;
+    *((u8*)result + 4) = (u8)a0;
+    func_800075E0(D_80142728, 0, 0);
+    func_800075E0(D_801427A8, result, 0);
+}
+
+/**
+ * func_800C9194 - Allocate resource with data and flag
+ * (120 bytes)
+ *
+ * Allocates resource, sets type to 0, stores data pointer at offset 4
+ * and flag byte at offset 8, then releases syncs.
+ *
+ */
+void func_800C9194(s32 a0, s32 a1) {
+    void *result;
+
+    func_80007270(D_80142728, 0, 1);
+    result = func_80091B00();
+    *((u8*)result + 2) = 0;
+    *((s32*)((u8*)result + 4)) = a0;
+    *((u8*)result + 8) = (u8)a1;
+    func_800075E0(D_80142728, 0, 0);
+    func_800075E0(D_801427A8, result, 0);
+}
+
+extern s8 D_80159B70;  /* Global state byte */
+extern s8 D_80159B60;  /* Global state byte 2 */
+
+/**
+ * func_800ED764 - Set state byte from parameter or state
+ * (80 bytes)
+ *
+ * If parameter is negative, copies state byte from offset 8 to D_80159B70.
+ * Otherwise stores the (sign-extended) parameter directly.
+ *
+ */
+void func_800ED764(s32 a0) {
+    s16 param = (s16)a0;
+
+    if (param < 0) {
+        func_800B3D18(0);
+        D_80159B70 = *((u8*)D_801597F0 + 8);
+    } else {
+        D_80159B70 = (s8)param;
+    }
+}
+
+/**
+ * func_800ED7B4 - Set state byte 2 from parameter or state
+ * (80 bytes)
+ *
+ * If parameter is negative, copies state byte from offset 4 to D_80159B60.
+ * Otherwise stores the (sign-extended) parameter directly.
+ *
+ */
+void func_800ED7B4(s32 a0) {
+    s16 param = (s16)a0;
+
+    if (param < 0) {
+        func_800B3D18(0);
+        D_80159B60 = *((u8*)D_801597F0 + 4);
+    } else {
+        D_80159B60 = (s8)param;
+    }
+}
+
+extern void *D_80152770;  /* Sync object 3 */
+extern void func_80095F8C(void *a0);  /* Lookup function */
+extern void *func_80095EF4(void *a0, s32 a1);  /* Lookup and return */
+
+/**
+ * func_800E7980 - Increment reference count
+ * (104 bytes)
+ *
+ * Acquires sync, looks up object, increments refcount byte at offset 22
+ * (clamped to 255), then releases sync.
+ *
+ */
+void func_800E7980(void *a0) {
+    void *result;
+    u8 count;
+
+    func_80007270(D_80152770, 0, 1);
+    func_80095F8C(a0);
+    result = func_80095EF4(a0, 0);
+    count = *((u8*)result + 22);
+    if (count < 255) {
+        *((u8*)result + 22) = count + 1;
+    }
+    func_800075E0(D_80152770, 0, 0);
+}
+
+extern s32 func_80097694(s32 a0, s32 a1);  /* Lookup by index */
+
+/**
+ * func_800C90E0 - Deactivate multiple element pairs
+ * (112 bytes)
+ *
+ * Iterates 16 times, looking up and deactivating elements at
+ * indices (i+38) and (i+22) for each iteration.
+ *
+ */
+void func_800C90E0(void) {
+    s32 i;
+    s32 result;
+
+    for (i = 0; i < 16; i++) {
+        result = func_80097694(i + 38, -1);
+        if (result >= 0) {
+            func_800AC840(result);
+        }
+        result = func_80097694(i + 22, -1);
+        if (result >= 0) {
+            func_800AC840(result);
+        }
+    }
+}
+
+/**
+ * func_800DB7B4 - Allocate resource with type 7 (alt)
+ * (104 bytes)
+ *
+ * Identical to func_800C878C - allocates resource and sets type to 7.
+ *
+ */
+void func_800DB7B4(void) {
+    void *result;
+
+    func_80007270(D_80142728, 0, 1);
+    result = func_80091B00();
+    *((u8*)result + 2) = 7;
+    func_800075E0(D_80142728, 0, 0);
+    func_800075E0(D_801427A8, result, 0);
+}
+
+extern void *D_801491F0;  /* Resource list head */
+extern void func_8009079C(void *a0, s32 a1);  /* Process resource */
+extern void func_800B0580(void);  /* Initialize resources */
+
+/**
+ * func_800B0618 - Process all resources in list
+ * (84 bytes)
+ *
+ * Iterates through linked list D_801491F0, calling func_8009079C
+ * with mode 1 for each, then calls func_800B0580.
+ *
+ */
+void func_800B0618(void) {
+    void *node;
+
+    node = D_801491F0;
+    while (node != NULL) {
+        func_8009079C(node, 1);
+        node = D_801491F0;
+    }
+    func_800B0580();
+}
+
+/**
+ * func_800C70BC - Deactivate specific UI elements
+ * (80 bytes)
+ *
+ * Looks up and deactivates elements at indices 54, 58, and 59.
+ *
+ */
+void func_800C70BC(void) {
+    s32 result;
+
+    result = func_80097694(54, -1);
+    func_800AC840(result);
+    result = func_80097694(58, -1);
+    func_800AC840(result);
+    result = func_80097694(59, -1);
+    func_800AC840(result);
+}
+
+/**
+ * func_80096298 - Get element data value
+ * (60 bytes)
+ *
+ * Configures element with defaults, then returns data value at offset 12.
+ *
+ */
+s32 func_80096298(s32 a0) {
+    func_80096288(a0, 0, 0);
+    return *((s32*)(D_80156D38 + (a0 * 20) + 12));
+}
+
+extern s16 D_80151AD0;  /* Resource count */
+extern s32 *D_80124FD0;  /* Resource array */
+
+/**
+ * func_800B90F8 - Clear resource array
+ * (52 bytes)
+ *
+ * Zeros out D_80124FD0 array for D_80151AD0 elements.
+ *
+ */
+void func_800B90F8(void) {
+    s32 count = D_80151AD0;
+    s32 *ptr = D_80124FD0;
+    s32 i;
+
+    if (count > 0) {
+        for (i = 0; i < count; i++) {
+            ptr[i] = 0;
+        }
+    }
+}
+
+extern void *D_801146FC;  /* Default handler pointer */
+
+/**
+ * func_80100D30 - Set default handler and activate
+ * (44 bytes)
+ *
+ * Stores D_801146FC as handler at offset 4, then calls func_80094EC8.
+ * Returns 1.
+ *
+ */
+s32 func_80100D30(void *a0) {
+    *((void**)((u8*)a0 + 4)) = D_801146FC;
+    func_80094EC8(a0);
+    return 1;
+}
+
+extern void func_80095FD8(void *a0, s32 a1);  /* Process resource */
+
+/**
+ * func_800960D4 - Process resource with sync
+ * (92 bytes)
+ *
+ * Acquires sync, calls func_80095FD8 with argument and 0,
+ * then releases sync.
+ *
+ */
+void func_800960D4(void *a0) {
+    func_80007270(D_80152770, 0, 1);
+    func_80095FD8(a0, 0);
+    func_800075E0(D_80152770, 0, 0);
+}
+
+/**
+ * func_80091C04 - Handle resource release
+ * (140 bytes)
+ *
+ * Acquires sync, looks up resource, allocates new entry with type 6,
+ * increments refcount, then releases sync.
+ *
+ */
+void func_80091C04(s32 a0) {
+    void *result;
+    void *entry;
+
+    func_80007270(D_80142728, 0, 1);
+    result = func_80091BA8(a0);
+    if (result != NULL) {
+        entry = func_80091B00();
+        *((u8*)entry + 2) = 6;
+        *((s32*)((u8*)entry + 4)) = (s32)result;
+        *((u8*)result + 26) = *((u8*)result + 26) + 1;
+    }
+    func_800075E0(D_80142728, 0, 0);
+    func_800075E0(D_801427A8, entry, 0);
+}
+
+extern void func_800D6160(s32 a0);  /* Core physics update */
+
+/**
+ * func_800D6290 - Physics update wrapper (mode 0)
+ * (92 bytes)
+ *
+ * Calls func_800D6160 with mode 0. Saves registers for callee.
+ *
+ */
+void func_800D6290(void) {
+    func_800D6160(0);
+}
+
+/**
+ * func_800D62EC - Physics update wrapper (mode 1)
+ * (92 bytes)
+ *
+ * Calls func_800D6160 with mode 1. Saves registers for callee.
+ *
+ */
+void func_800D62EC(void) {
+    func_800D6160(1);
+}
+
+extern void func_80092360(s32 a0, s32 a1, s32 a2, s32 a3);  /* Trigger event */
+
+/**
+ * func_800B5F4C - Trigger event based on flag 0x0400
+ * (60 bytes)
+ *
+ * If a0 has bit 0x0400 set, triggers event 40, otherwise event 39.
+ *
+ */
+void func_800B5F4C(s32 a0) {
+    s32 event;
+
+    if (a0 & 0x0400) {
+        event = 40;
+    } else {
+        event = 39;
+    }
+    func_80092360(event, 0, 1, 0);
+}
+
+/**
+ * func_800B5F88 - Trigger event based on flag 0x1000
+ * (60 bytes)
+ *
+ * If a0 has bit 0x1000 set, triggers event 41, otherwise event 44.
+ *
+ */
+void func_800B5F88(s32 a0) {
+    s32 event;
+
+    if (a0 & 0x1000) {
+        event = 41;
+    } else {
+        event = 44;
+    }
+    func_80092360(event, 0, 1, 0);
+}
+
+extern s32 D_801174B4;  /* Game state flags */
+
+/**
+ * func_800B7FF8 - Get game state flags
+ * (8 bytes)
+ *
+ * Returns the current game state flags word.
+ *
+ */
+s32 func_800B7FF8(void) {
+    return D_801174B4;
+}
+
+extern s32 D_80128E20;  /* Secondary state */
+
+/**
+ * func_800B71D4 - Get secondary state
+ * (8 bytes)
+ *
+ * Returns the secondary state value.
+ *
+ */
+s32 func_800B71D4(void) {
+    return D_80128E20;
+}
+
+/**
+ * func_800D54BC - Initialize element struct with defaults
+ * (36 bytes)
+ *
+ * Sets first field to -1 and fills 4 float fields with -2.0f.
+ *
+ */
+void func_800D54BC(s32 *a0) {
+    a0[0] = -1;
+    ((f32*)a0)[1] = -2.0f;
+    ((f32*)a0)[2] = -2.0f;
+    ((f32*)a0)[3] = -2.0f;
+    ((f32*)a0)[4] = -2.0f;
+}
+
+/**
+ * func_800D54E0 - Conditional release and reinit
+ * (68 bytes)
+ *
+ * Calls different release function based on flag, then reinits struct.
+ *
+ */
+void func_800D54E0(s32 *a0, s32 a1) {
+    if (a1 != 0) {
+        func_800BF024(*a0);
+    } else {
+        func_80091C04(*a0);
+    }
+    func_800D54BC(a0);
+}
+
+/**
+ * func_800DC720 - Release array of 5 elements
+ * (112 bytes)
+ *
+ * Iterates through 5 pointer slots at 4-byte intervals and releases
+ * any non-null elements via func_800B358C. Clears active flag when done.
+ *
+ */
+void func_800DC720(s8 *a0) {
+    s32 i;
+    s32 *ptr;
+    s32 elem;
+
+    if (a0 == NULL) {
+        return;
+    }
+    if (a0[0] == 0) {
+        return;
+    }
+
+    ptr = (s32*)(a0 + 12);
+    for (i = 0; i < 5; i++) {
+        elem = *ptr;
+        if (elem != 0) {
+            func_800B358C(elem);
+            *ptr = 0;
+        }
+        ptr++;
+    }
+    a0[0] = 0;
+}
+
+/**
+ * func_800E2A64 - Full entity update chain
+ * (96 bytes)
+ *
+ * Calls 8 update functions on an entity in sequence.
+ *
+ */
+void func_800E2A64(void *a0) {
+    func_800CF06C(a0);
+    func_800E23A4(a0);
+    func_800E1C30(a0);
+    func_800E1AA0(a0);
+    func_800E15A0(a0);
+    func_800E1540(a0);
+    func_800E114C(a0);
+    func_800D0424(a0);
+}
+
+extern u8 D_80140BDC;  /* Global counter/index */
+
+/**
+ * func_800EF5B0 - Initialize or setup resource with flag
+ * (120 bytes)
+ *
+ * Stores value at a0[0], conditionally sets up resource based on flag.
+ *
+ */
+void func_800EF5B0(s32 *a0, s32 a1, s32 a2) {
+    s32 result;
+    s8 index;
+
+    a0[0] = a1;
+
+    if (a2 != 0) {
+        index = (s8)(D_80140BDC - 1);
+        result = func_800B24EC(a1, (s32*)((u8*)a0 + 12), 0, index, 1);
+        a0[2] = result;
+    } else {
+        func_800B362C(a0);
+    }
+    func_80094EC8(a0);
+}
+
+/**
+ * func_800B5FC4 - Map bits to event trigger
+ * (76 bytes)
+ *
+ * Checks bits 0 and 1 of parameter, triggers different events.
+ * Bit 0 set -> event 46
+ * Bit 1 set -> event 37
+ * Bit 1 clear -> event 38
+ *
+ */
+void func_800B5FC4(s32 a0) {
+    s32 event;
+
+    if (a0 & 0x0001) {
+        event = 46;
+    } else {
+        if (a0 & 0x0002) {
+            event = 37;
+        } else {
+            event = 38;
+        }
+    }
+    func_80092360(event, 0, 1, 0);
+}
+
+extern s32 D_80151A6C;  /* Resource handle */
+
+/**
+ * func_800A4C54 - Setup and wait for completion
+ * (80 bytes)
+ *
+ * Initializes a resource and waits in a loop until ready.
+ *
+ */
+void func_800A4C54(void) {
+    func_800A4B6C();
+    func_80096238(D_80151A6C);
+    func_80020274();
+    while (func_800202C4() == 0) {
+        /* wait */
+    }
+}
+
+/**
+ * func_800CD748 - Allocate and setup entity data
+ * (72 bytes)
+ *
+ * Allocates 72-byte block, links to entity structure at offset 1780.
+ *
+ */
+void func_800CD748(void *a0) {
+    s32 **base;
+    s32 *data_ptr;
+    s32 result;
+
+    base = (s32**)(*((s32**)a0));
+    data_ptr = (s32*)(*((s32*)(base[11])) + 1780);
+    result = func_800B466C((s32*)((u8*)data_ptr + 4), 72);
+    *data_ptr = result;
+    func_800A2504(base[2], data_ptr, 76);
+}
+
+/**
+ * func_800CDA90 - Update entity state byte conditionally
+ * (76 bytes)
+ *
+ * Updates byte at offset 71 if different from current value.
+ *
+ */
+void func_800CDA90(s32 *a0, s32 a1) {
+    u8 *data;
+    s32 *base;
+
+    base = (s32*)(*a0);
+    data = (u8*)(*((s32*)(base[11])));
+
+    if (a1 == data[71]) {
+        return;
+    }
+
+    data[71] = (u8)a1;
+    func_800A2504(base[2], data + 71, 1);
+}
+
+extern void *D_801597F0;  /* Global state pointer */
+extern void *D_80159800;  /* Secondary state pointer */
+
+/**
+ * func_800F68A4 - Copy entity bytes to destination buffer
+ * (128 bytes)
+ *
+ * Copies bytes at offset 4 from each 12-byte entry to destination.
+ *
+ */
+void func_800F68A4(s8 *a0) {
+    u8 *entry_base;
+    s32 i;
+    s32 offset;
+    s32 count;
+
+    func_800B3D18(0);
+
+    count = ((u8*)D_801597F0)[12];
+    i = 0;
+    offset = 0;
+
+    while (i < count) {
+        entry_base = (u8*)D_80159800;
+        a0[i] = entry_base[offset + 4];
+        i++;
+        offset += 12;
+        count = ((u8*)D_801597F0)[12];
+    }
+    a0[i] = 0;
+}
+
+extern s8 D_80159B60;  /* State offset byte */
+
+/**
+ * func_800B3F50 - Calculate combined state value
+ * (80 bytes)
+ *
+ * Returns sum of three state bytes as signed 16-bit value.
+ *
+ */
+s16 func_800B3F50(void) {
+    u8 byte1;
+    u8 byte2;
+    u8 *state;
+
+    func_800B3D18(0);
+    state = (u8*)D_801597F0;
+    byte1 = state[3];
+    func_800B3D18(0);
+    state = (u8*)D_801597F0;
+    byte2 = state[2];
+    return (s16)(D_80159B60 + byte2 + byte1);
+}
+
+extern void *D_80152770;  /* Tertiary sync object */
+
+/**
+ * func_800E7914 - Decrement resource refcount with sync
+ * (104 bytes)
+ *
+ * Acquires lock, looks up resource, decrements refcount if > 0.
+ *
+ */
+void func_800E7914(s32 a0) {
+    u8 *resource;
+    s32 refcount;
+
+    func_80007270(D_80152770, 0, 1);
+    resource = (u8*)func_80095F8C(a0);
+    func_80095EF4(resource, 0);
+
+    refcount = resource[22];
+    if (refcount > 0) {
+        resource[22] = (u8)(refcount - 1);
+    }
+    func_800075E0(D_80152770, 0, 0);
+}
+
+/**
+ * func_800BF024 - Release resource with sync and cleanup
+ * (124 bytes)
+ *
+ * Acquires lock, looks up resource in pool, releases if found.
+ *
+ */
+void func_800BF024(s32 a0) {
+    s32 *result;
+
+    func_80007270(D_80142728, 0, 1);
+    result = func_80091BA8(a0, D_80142728);
+
+    if (result == NULL) {
+        func_800075E0(D_80142728, 0, 0);
+        return;
+    }
+
+    func_800BF01C(result[16]);
+    func_800075E0(D_80142728, 0, 0);
+    func_80091C04(a0);
+}
+
+/**
+ * func_800F73FC - Conditional render update sequence
+ * (76 bytes)
+ *
+ * Calls different update functions based on flags.
+ *
+ */
+void func_800F73FC(s32 a0, s32 a1) {
+    if (a0 != 0) {
+        func_800F733C();
+    }
+    if (a1 != 0) {
+        func_800B0868();
+    }
+    func_800B811C();
+    func_800A04C4(0);
+}
+
+extern s16 D_801525F0;   /* Entity counter */
+extern s8 D_80152744;    /* Entity count limit */
+extern u8 *D_8015A250;   /* Entity array base - 2056 byte elements */
+
+/**
+ * func_800D5798 - Update all entities and optionally sync
+ * (140 bytes)
+ *
+ * Loops through all entities, calling update function on each.
+ * Conditionally calls sync function based on game state flags.
+ *
+ */
+void func_800D5798(void) {
+    s32 i;
+    s32 count;
+    u8 *entity;
+
+    D_801525F0 = 0;
+
+    count = D_80152744;
+    entity = D_8015A250;
+
+    for (i = 0; i < count; i++) {
+        func_800D5524(entity);
+        count = D_80152744;
+        entity += 2056;
+    }
+
+    if ((D_801174B4 & 0x0008) != 0) {
+        func_800A13E8();
+    }
+}
+
+/**
+ * func_800B4360 - Variadic function wrapper
+ * (44 bytes)
+ *
+ * Packs parameters onto stack and calls func_80002CD0.
+ *
+ */
+void func_800B4360(s32 a0, s32 a1, s32 a2, s32 a3) {
+    s32 args[3];
+    args[0] = a2;
+    args[1] = a1;
+    args[2] = a3;
+    func_80002CD0(a0, args);
+}
+
+/**
+ * func_800B3F00 - Get state byte 2
+ * (40 bytes)
+ *
+ * Returns byte at offset 2 of global state.
+ *
+ */
+u8 func_800B3F00(void) {
+    func_800B3D18(0);
+    return ((u8*)D_801597F0)[2];
+}
+
+/**
+ * func_800B3F28 - Get state byte 3
+ * (40 bytes)
+ *
+ * Returns byte at offset 3 of global state.
+ *
+ */
+u8 func_800B3F28(void) {
+    func_800B3D18(0);
+    return ((u8*)D_801597F0)[3];
+}
+
+/**
+ * func_8009638C - Activate element in array
+ * (96 bytes)
+ *
+ * Clears element state, marks data as used, sets active flag.
+ *
+ */
+void func_8009638C(s32 a0) {
+    u8 *elem;
+
+    func_80096288(a0, 0, 0);
+
+    elem = (u8*)D_80156D38 + (a0 * 20);
+    func_800962D4(*((s32*)(elem + 12)), 0);
+    elem[2] = 1;
+}
+
+/**
+ * func_80096B5C - Lookup element and return data
+ * (88 bytes)
+ *
+ * Looks up element by ID, optionally returns extra data via output param.
+ *
+ */
+s32 func_80096B5C(s32 a0, s32 a1, s32 *a2) {
+    s32 *result;
+
+    if (a0 == 0) {
+        result = NULL;
+    } else {
+        result = func_80096B00(a0);
+    }
+
+    if (result == NULL) {
+        if (a2 != NULL) {
+            *a2 = 0;
+        }
+        return 0;
+    }
+
+    if (a2 != NULL) {
+        *a2 = result[2];
+    }
+    return result[1];
+}
+
+/**
+ * func_800B41C0 - Set and return state byte 9
+ * (64 bytes)
+ *
+ * Sets byte at offset 9 of global state, returns previous value.
+ *
+ */
+s8 func_800B41C0(s8 a0) {
+    s8 old_val;
+    s8 *state;
+
+    func_800B3D18(0);
+    state = (s8*)D_801597F0;
+    old_val = state[9];
+    state[9] = a0;
+    return old_val;
+}
+
+/**
+ * func_800CB9A0 - Conditional entity release
+ * (48 bytes)
+ *
+ * Releases entity data if pointer field is non-null.
+ *
+ */
+void func_800CB9A0(s32 *a0) {
+    s32 *base;
+    s32 data;
+
+    base = (s32*)(*a0);
+    data = base[1];
+    if (data != 0) {
+        func_800A2680(data);
+    }
+}
+
+/**
+ * func_800B7128 - Get combined state bytes 2 and 3
+ * (72 bytes)
+ *
+ * Returns sum of bytes at offset 2 and 3 as signed 16-bit.
+ *
+ */
+s16 func_800B7128(void) {
+    u8 byte2;
+    u8 byte3;
+    u8 *state;
+
+    func_800B3D18(0);
+    state = (u8*)D_801597F0;
+    byte2 = state[2];
+    func_800B3D18(0);
+    state = (u8*)D_801597F0;
+    byte3 = state[3];
+    return (s16)(byte3 + byte2);
+}
+
+/**
+ * func_800AED2C - Conditional element insert and clear flag
+ * (56 bytes)
+ *
+ * If element non-null, inserts into list and clears byte 8.
+ *
+ */
+s32 func_800AED2C(s32 a0, u8 *a1) {
+    if (a1 == NULL) {
+        return 0;
+    }
+    func_8009211C(a0, a1);
+    a1[8] = 0;
+    return (s32)a1;
+}
+
+extern void *D_80116DE0;  /* Default handler pointer */
+extern void *D_80152750;  /* Sync object for UI */
+
+/**
+ * func_8010B528 - Initialize UI element with default handler
+ * (56 bytes)
+ *
+ * Sets handler pointer, initializes element, clears data field.
+ *
+ */
+s32 func_8010B528(s32 *a0) {
+    a0[1] = (s32)D_80116DE0;
+    func_80094EC8(a0);
+    a0[10] = 0;
+    return 1;
+}
+
+/**
+ * func_8010FBB4 - Acquire UI sync lock
+ * (44 bytes)
+ *
+ * Acquires lock on UI sync object.
+ *
+ */
+void func_8010FBB4(void) {
+    func_80007270(D_80152750, 0, 1);
+}
+
+/**
+ * func_8010FC80 - Lookup and mark element
+ * (64 bytes)
+ *
+ * Looks up element by ID and marks it as used.
+ *
+ */
+s32 func_8010FC80(s32 a0, s32 a1) {
+    s32 result;
+
+    result = func_80097470(0, a0);
+    func_800962D4(result, 0);
+    return result;
+}
+
+extern u8 D_80153F10;  /* Timer/callback state struct base */
+
+/**
+ * func_8010FD1C - Setup timer/callback entry
+ * (68 bytes)
+ *
+ * Initializes a timer or callback entry with given parameters.
+ *
+ */
+s32 func_8010FD1C(s32 a0, s16 a1, s32 a2) {
+    u8 *entry;
+
+    if (a1 == 0) {
+        return 1;
+    }
+
+    entry = &D_80153F10;
+    *((s32*)(entry + 8)) = a0;
+    *((s16*)(entry + 2)) = a1;
+    *((s32*)(entry + 12)) = a2;
+    *((s16*)(entry + 4)) = 0;
+    entry[0] = 1;
+    func_8008ABE4();
+    return 1;
+}
+
+/*
+ * func_800960D4 (88 bytes)
+ * Sync-protected element lookup
+ */
+void func_800960D4(s32 a0) {
+    func_80007270(D_80152770, 0, 1);  /* Acquire sync */
+    func_80095FD8(a0, 0);
+    func_800075E0(D_80152770, 0, 0);  /* Release sync */
+}
+
+/*
+ * func_800D6348 (104 bytes)
+ * Allocate entity type 9 with dual sync release
+ */
+void func_800D6348(void) {
+    void *entity;
+
+    func_80007270(D_80142728, 0, 1);  /* Acquire sync */
+    entity = func_80091B00();
+    *((u8*)entity + 2) = 9;           /* Type byte = 9 */
+    func_800075E0(D_80142728, 0, 0);  /* Release sync */
+    func_800075E0(D_801427A8, entity, 0);  /* Signal with entity */
+}
+
+/*
+ * func_800D63C4 (40 bytes)
+ * Call lookup and clear byte
+ */
+void func_800D63C4(s32 a0, s32 *a1) {
+    func_8009211C(a0);
+    *((u8*)a1 + 8) = 0;
+}
+
+/*
+ * func_800DB7B4 (104 bytes)
+ * Allocate entity type 7 with dual sync release
+ */
+void func_800DB7B4(void) {
+    void *entity;
+
+    func_80007270(D_80142728, 0, 1);  /* Acquire sync */
+    entity = func_80091B00();
+    *((u8*)entity + 2) = 7;           /* Type byte = 7 */
+    func_800075E0(D_80142728, 0, 0);  /* Release sync */
+    func_800075E0(D_801427A8, entity, 0);  /* Signal with entity */
+}
+
+/*
+ * func_800C70BC (80 bytes)
+ * Deactivate three UI elements (54, 58, 59)
+ */
+void func_800C70BC(void) {
+    s32 elem;
+
+    elem = func_80097694(54, -1);
+    func_800AC840(elem);
+
+    elem = func_80097694(58, -1);
+    func_800AC840(elem);
+
+    elem = func_80097694(59, -1);
+    func_800AC840(elem);
+}
+
+/*
+ * func_800C878C (104 bytes)
+ * Allocate entity type 7 with dual sync release (variant)
+ */
+void func_800C878C(void) {
+    void *entity;
+
+    func_80007270(D_80142728, 0, 1);  /* Acquire sync */
+    entity = func_80091B00();
+    *((u8*)entity + 2) = 7;           /* Type byte = 7 */
+    func_800075E0(D_80142728, 0, 0);  /* Release sync */
+    func_800075E0(D_801427A8, entity, 0);  /* Signal with entity */
+}
+
+/*
+ * func_800C87F4 (104 bytes)
+ * Allocate entity type 1 with dual sync release
+ */
+void func_800C87F4(void) {
+    void *entity;
+
+    func_80007270(D_80142728, 0, 1);  /* Acquire sync */
+    entity = func_80091B00();
+    *((u8*)entity + 2) = 1;           /* Type byte = 1 */
+    func_800075E0(D_80142728, 0, 0);  /* Release sync */
+    func_800075E0(D_801427A8, entity, 0);  /* Signal with entity */
+}
+
+/*
+ * func_800C9194 (124 bytes)
+ * Allocate entity type 0 with parameters
+ */
+void func_800C9194(s32 a0, s32 a1) {
+    void *entity;
+
+    func_80007270(D_80142728, 0, 1);  /* Acquire sync */
+    entity = func_80091B00();
+    *((u8*)entity + 2) = 0;           /* Type byte = 0 */
+    *((s32*)((u8*)entity + 4)) = a0;  /* Store first param */
+    *((u8*)entity + 8) = (u8)a1;      /* Store second param */
+    func_800075E0(D_80142728, 0, 0);  /* Release sync */
+    func_800075E0(D_801427A8, entity, 0);  /* Signal with entity */
+}
+
+extern void *D_80146188;  /* Entity list sync */
+extern void *D_80146170;  /* Entity list head */
+
+/*
+ * func_800D52D4 (148 bytes)
+ * Update entity state with sync protection
+ */
+void func_800D52D4(u8 *entity) {
+    s8 flag;
+
+    if ((s32)entity == -1) {
+        return;
+    }
+
+    func_80007270(D_80142728, 0, 1);  /* Acquire sync */
+    func_800D52CC(entity);
+
+    flag = entity[9];
+    if (flag != 0) {
+        func_8009211C(D_80146188, entity);
+        entity[9] = 0;
+    }
+
+    func_80091FBC(D_80146170, entity, *((s32*)((u8*)&D_80146170 + 8)));
+    entity[8] = 1;
+    func_800075E0(D_80142728, 0, 0);  /* Release sync */
+}
+
+extern s32 D_80151A6C;  /* Element lookup key */
+
+/*
+ * func_800A4B48 (36 bytes)
+ * Deactivate element by global key
+ */
+void func_800A4B48(void) {
+    func_80096238(D_80151A6C);
+}
+
+/*
+ * func_800D6E00 (116 bytes)
+ * Allocate entity type 11 with parameter
+ */
+void func_800D6E00(s32 a0) {
+    void *entity;
+
+    func_80007270(D_80142728, 0, 1);  /* Acquire sync */
+    entity = func_80091B00();
+    *((u8*)entity + 2) = 11;          /* Type byte = 11 */
+    *((u8*)entity + 4) = (u8)a0;      /* Store parameter */
+    func_800075E0(D_80142728, 0, 0);  /* Release sync */
+    func_800075E0(D_801427A8, entity, 0);  /* Signal with entity */
+}
+
+/*
+ * func_80091C04 (160 bytes)
+ * Find entity, allocate type 6, increment refcount
+ */
+void func_80091C04(void *target) {
+    void *entity = NULL;
+    void *found;
+
+    func_80007270(D_80142728, 0, 1);  /* Acquire sync */
+    found = func_80091BA8(target, entity);
+
+    if (found != NULL) {
+        entity = func_80091B00();
+        *((u8*)entity + 2) = 6;               /* Type byte = 6 */
+        *((s32*)((u8*)entity + 4)) = (s32)found;
+        *((u8*)found + 26) = *((u8*)found + 26) + 1;  /* Increment refcount */
+    }
+
+    func_800075E0(D_80142728, 0, 0);  /* Release sync */
+
+    if (entity != NULL) {
+        func_800075E0(D_801427A8, entity, 0);  /* Signal with entity */
+    }
+}
+
+/*
+ * func_800AC6F4 (104 bytes)
+ * Wrapper for element init with saved registers
+ */
+void func_800AC6F4(s32 a0) {
+    func_80096CA8(0);
+}
+
+/*
+ * func_800AC840 (88 bytes)
+ * Deactivate element and clear flags
+ */
+void func_800AC840(s32 idx) {
+    u8 *elem;
+
+    func_80096288(idx, 0, 0);
+
+    /* Calculate element address: D_80156D38 + idx * 20 */
+    elem = (u8*)D_80156D38 + idx * 20;
+
+    func_800962D4(*((s32*)(elem + 12)), 1);
+    elem[2] = 0;  /* Clear active flag */
+}
+
+/*
+ * func_800AC898 (60 bytes)
+ * Deactivate element and return state byte
+ */
+s8 func_800AC898(s32 idx) {
+    u8 *elem;
+
+    func_80096288(idx, 0, 0);
+
+    /* Calculate element address: D_80156D38 + idx * 20 */
+    elem = (u8*)D_80156D38 + idx * 20;
+
+    return (s8)elem[1];  /* Return state byte */
+}
+
+extern void *D_801146FC;  /* Default element handler */
+
+/*
+ * func_80100D30 (44 bytes)
+ * Initialize element with default handler
+ */
+s32 func_80100D30(s32 *a0) {
+    a0[1] = (s32)D_801146FC;
+    func_80094EC8(a0);
+    return 1;
+}
+
+extern u8 D_80159B74;  /* Player state bytes array */
+
+/*
+ * func_800C84C0 (60 bytes)
+ * Set player state byte(s)
+ */
+void func_800C84C0(s32 a0, s8 a1) {
+    u8 *arr = &D_80159B74;
+
+    if (a0 == -1) {
+        /* Set all 4 player states */
+        arr[0] = a1;
+        arr[1] = a1;
+        arr[2] = a1;
+        arr[3] = a1;
+    } else if (a0 < 4) {
+        arr[a0] = a1;
+    }
+}
+
+extern u8 D_801147C4;     /* Sound init flag */
+extern s32 D_801551E8;    /* Sound buffer start */
+extern s32 D_80155210;    /* Sound buffer end */
+
+/*
+ * func_800B73E4 (76 bytes)
+ * Initialize sound callback array
+ */
+void func_800B73E4(void) {
+    s32 *ptr;
+    s32 *end;
+
+    if (D_801147C4 != 0) {
+        return;
+    }
+
+    D_801147C4 = 1;
+
+    /* Clear callback array from D_801551E8 to D_80155210 */
+    ptr = &D_801551E8;
+    end = &D_80155210;
+
+    while ((s32*)ptr < end) {
+        ptr[0] = 0;
+        ptr[1] = 0;
+        ptr[2] = 0;
+        ptr[3] = 0;
+        ptr += 4;
+    }
+}
+
+/*
+ * func_800E2A64 (96 bytes)
+ * Initialize subsystems chain - calls 8 init functions
+ */
+void func_800E2A64(void *a0) {
+    func_800CF06C(a0);
+    func_800E23A4(a0);
+    func_800E1C30(a0);
+    func_800E1AA0(a0);
+    func_800E15A0(a0);
+    func_800E1540(a0);
+    func_800E114C(a0);
+    func_800D0424(a0);
+}
+
+/*
+ * func_800E7914 (108 bytes)
+ * Decrement element refcount with sync protection
+ */
+void func_800E7914(s32 a0) {
+    u8 *elem;
+    s8 refcount;
+
+    sync_acquire(&D_80152770, 0, 1);
+    elem = func_80095F8C(a0);
+    elem = func_80095EF4(elem, 0);
+
+    refcount = elem[22];
+    if (refcount > 0) {
+        elem[22] = refcount - 1;
+    }
+
+    sync_release(&D_80152770, 0, 0);
+}
+
+/*
+ * func_800E7980 (112 bytes)
+ * Increment element refcount with sync protection (max 255)
+ */
+void func_800E7980(s32 a0) {
+    u8 *elem;
+    u8 refcount;
+
+    sync_acquire(&D_80152770, 0, 1);
+    elem = func_80095F8C(a0);
+    elem = func_80095EF4(elem, 0);
+
+    refcount = elem[22];
+    if (refcount < 255) {
+        elem[22] = refcount + 1;
+    }
+
+    sync_release(&D_80152770, 0, 0);
+}
+
+/*
+ * func_800BF024 (128 bytes)
+ * Find entity and dispatch to handler, then reallocate
+ */
+void func_800BF024(s32 a0) {
+    u8 *entity;
+
+    sync_acquire(&D_80142728, 0, 1);
+    entity = func_80091BA8(a0);
+
+    if (entity != NULL) {
+        func_800BF01C(*(s32*)(entity + 64));
+        sync_release(&D_80142728, 0, 0);
+        func_80091C04(a0);
+    } else {
+        sync_release(&D_80142728, 0, 0);
+    }
+}
+
+extern u8 D_80159B70;  /* Track state byte 1 */
+extern u8 D_80159B60;  /* Track state byte 2 */
+
+/*
+ * func_800ED764 (80 bytes)
+ * Set track state byte from value or default
+ */
+void func_800ED764(s16 a0) {
+    if (a0 >= 0) {
+        D_80159B70 = (u8)a0;
+    } else {
+        func_800B3D18(0);
+        D_80159B70 = ((u8*)D_801597F0)[8];
+    }
+}
+
+/*
+ * func_800ED7B4 (80 bytes)
+ * Set track state byte from value or default (variant)
+ */
+void func_800ED7B4(s16 a0) {
+    if (a0 >= 0) {
+        D_80159B60 = (u8)a0;
+    } else {
+        func_800B3D18(0);
+        D_80159B60 = ((u8*)D_801597F0)[4];
+    }
+}
+
+/*
+ * func_800CD748 (76 bytes)
+ * Setup entity sub-structure with allocation
+ */
+void func_800CD748(void **a0) {
+    s32 *entity;
+    s32 *sub;
+    u8 *data;
+
+    entity = (s32*)*a0;
+    sub = (s32*)*(s32*)((u8*)entity + 44);
+    sub = (s32*)*sub;
+    data = (u8*)sub + 1780;
+
+    *(s32*)data = (s32)func_800B466C(data + 4, 72);
+
+    entity = (s32*)*a0;
+    func_800A2504(*(s32*)((u8*)entity + 8), data, 76);
+}
+
+extern s32 D_801597D0;  /* Sync object for player system */
+
+/*
+ * func_8008A6D0 (44 bytes)
+ * Release player system sync
+ */
+void func_8008A6D0(void) {
+    sync_release(&D_801597D0, 0, 0);
+}
+
+/*
+ * func_8008AA20 (32 bytes)
+ * Wrapper for func_800205E4
+ */
+void func_8008AA20(void) {
+    func_800205E4();
+}
+
+/*
+ * func_8008AD48 (36 bytes)
+ * Call func_8008AD04 with adjusted pointers
+ */
+void func_8008AD48(void *a0, void *a1) {
+    func_8008AD04((u8*)a0 + 4, (u8*)a1 + 4);
+}
+
+/*
+ * func_80090228 (44 bytes)
+ * Wrapper for func_80090088 with sign-extended a0
+ */
+void func_80090228(s16 a0, s32 a1) {
+    func_80090088((s16)a0, a1, 0);
+}
+
+/*
+ * func_80090254 (48 bytes)
+ * Wrapper for func_80090088 with zero second param
+ */
+void func_80090254(s16 a0) {
+    func_80090088((s16)a0, 0, 0);
+}
+
+/*
+ * func_80095120 (52 bytes)
+ * Call func_800950AC if both params valid, else return -1
+ */
+s32 func_80095120(void *a0, void *a1) {
+    if (a0 == NULL || a1 == NULL) {
+        return -1;
+    }
+    return func_800950AC(a0, a1, 15);
+}
+
+/*
+ * func_800B3F50 (80 bytes)
+ * Calculate track parameter sum from player state
+ */
+s16 func_800B3F50(void) {
+    s8 val0;
+    u8 val2, val3;
+
+    func_800B3D18(0);
+    val3 = ((u8*)D_801597F0)[3];
+    func_800B3D18(0);
+    val0 = D_80159B60;
+    val2 = ((u8*)D_801597F0)[2];
+    return (s16)(val0 + val2 + val3);
+}
+
+/*
+ * func_800B3F00 (40 bytes)
+ * Get byte at offset 2 from player state pointer
+ */
+u8 func_800B3F00(void) {
+    func_800B3D18(0);
+    return ((u8*)D_801597F0)[2];
+}
+
+/*
+ * func_800B3F28 (40 bytes)
+ * Get byte at offset 3 from player state pointer
+ */
+u8 func_800B3F28(void) {
+    func_800B3D18(0);
+    return ((u8*)D_801597F0)[3];
+}
+
+/*
+ * func_8009638C (84 bytes)
+ * Deactivate element and set active flag
+ */
+void func_8009638C(s32 a0) {
+    u8 *elem;
+
+    func_80096288(a0, 0, 0);
+
+    /* Calculate element address: D_80156D38 + a0 * 20 */
+    elem = (u8*)&D_80156D38 + a0 * 20;
+
+    func_800962D4(*(s32*)(elem + 12), 0);
+    elem[2] = 1;
+}
+
+/*
+ * func_8009508C (32 bytes)
+ * Wrapper for func_8008AD04
+ */
+void func_8009508C(void *a0, void *a1) {
+    func_8008AD04(a0, a1);
+}
+
+/*
+ * func_80098554 (32 bytes)
+ * Wrapper for func_80097CA0
+ */
+void func_80098554(void) {
+    func_80097CA0();
+}
+
+/*
+ * func_800985F4 (44 bytes)
+ * Call func_80098574 with params
+ */
+void func_800985F4(void *a0, s32 a1) {
+    s32 temp = 0;
+    func_80098574(a0, *(s32*)((u8*)a0 + 8), &temp, a1);
+}
+
+/*
+ * func_800986B0 (36 bytes)
+ * Call func_80098620 with adjusted pointer
+ */
+void func_800986B0(void *a0, s32 a1) {
+    func_80098620(a0, (u8*)a0 + 8, a1);
+}
+
+/*
+ * func_800A2CE4 (40 bytes)
+ * Call func_800A2990 with entity data
+ */
+void func_800A2CE4(void **a0) {
+    void *entity = *a0;
+    func_800A2990(a0, 0, *(s32*)((u8*)entity + 64));
+}
+
+/*
+ * func_800A7DF0 (32 bytes)
+ * Wrapper for func_800A5B3C
+ */
+void func_800A7DF0(void) {
+    func_800A5B3C();
+}
+
+extern s32 D_80144D60;  /* Entity type table */
+
+/*
+ * func_800A2D0C (56 bytes)
+ * Call func_80091FBC with entity type lookup
+ */
+void func_800A2D0C(void *a0_unused, void **a1) {
+    void *entity = *a1;
+    u8 *ptr = (u8*)&D_80144D60 + ((u8*)entity)[16] * 16;
+    func_80091FBC(ptr, a1, *(s32*)(ptr + 8));
+}
+
+/*
+ * func_800AC820 (32 bytes)
+ * Call func_80097694 with -1 second param
+ */
+void func_800AC820(s32 a0) {
+    func_80097694(a0, -1);
+}
+
+extern s32 D_80159428;  /* Player score/state buffer 1 */
+extern s32 D_8015256C;  /* Player score/state buffer 2 */
+
+/*
+ * func_800F7E70 (64 bytes)
+ * Clear player score/state buffers
+ */
+void func_800F7E70(void) {
+    func_80002790(&D_80159428, 0, 16);
+    func_80002790(&D_8015256C, 0, 4);
+}
+
+/*
+ * func_800FEC60 (60 bytes)
+ * Play sound based on flag
+ */
+void func_800FEC60(s32 a0) {
+    if (a0 & 1) {
+        func_80092360(46, 0, 1, 0);
+    } else {
+        func_80092360(38, 0, 1, 0);
+    }
+}
+
+/*
+ * func_800B41C0 (64 bytes)
+ * Set player state byte at offset 9, return old value
+ */
+s8 func_800B41C0(s8 a0) {
+    s8 old_val;
+
+    func_800B3D18(0);
+    old_val = ((s8*)D_801597F0)[9];
+    ((s8*)D_801597F0)[9] = a0;
+    return old_val;
+}
+
+extern u8 D_80110680[2];  /* Control flags */
+
+/*
+ * func_800BAF64 (44 bytes)
+ * Clear control flags and call func_800BADE0
+ */
+void func_800BAF64(void) {
+    D_80110680[0] = 0;
+    D_80110680[1] = 0;
+    func_800BADE0();
+}
+
+extern u8 D_80143A10;   /* Race state flag */
+extern s8 D_8015978C;   /* Player index */
+
+/*
+ * func_800BC1E8 (52 bytes)
+ * Clear race flag and call func_800BB9B0 with player index
+ */
+void func_800BC1E8(void) {
+    D_80143A10 = 0;
+    func_800BB9B0(D_8015978C, 0, 1);
+}
+
+/*
+ * func_800D63C4 (40 bytes)
+ * Call func_8009211C and clear byte at offset 8
+ */
+void func_800D63C4(s32 a0, u8 *a1) {
+    func_8009211C(a0);
+    a1[8] = 0;
+}
+
+/*
+ * func_800E2A3C (40 bytes)
+ * Call two init functions in sequence
+ */
+void func_800E2A3C(void *a0) {
+    func_800E23A4(a0);
+    func_800E1C30(a0);
+}
+
+/*
+ * func_800EE88C (32 bytes)
+ * Wrapper for func_800B82C8
+ */
+void func_800EE88C(void) {
+    func_800B82C8();
+}
+
+/*
+ * func_800B4360 (44 bytes)
+ * Call func_80002CD0 with stack-stored args
+ */
+void func_800B4360(s32 a0, s32 a1, s32 a2, s32 a3) {
+    s32 args[3];
+    args[0] = a1;
+    args[1] = a2;
+    args[2] = a3;
+    func_80002CD0(a0, 0, args);
+}
+
+/*
+ * func_800B5FC4 (80 bytes)
+ * Play sound based on bit flags
+ */
+void func_800B5FC4(s32 flags) {
+    s32 sound_id;
+
+    if (flags & 1) {
+        sound_id = 46;
+    } else if (flags & 2) {
+        sound_id = 37;
+    } else {
+        sound_id = 38;
+    }
+    func_80092360(sound_id, 0, 1, 0);
+}
+
+/*
+ * func_800C70BC (80 bytes)
+ * Initialize three entity types (54, 58, 59)
+ */
+void func_800C70BC(void) {
+    void *entity;
+
+    entity = func_80097694(54, -1);
+    func_800AC840(entity);
+
+    entity = func_80097694(58, -1);
+    func_800AC840(entity);
+
+    entity = func_80097694(59, -1);
+    func_800AC840(entity);
+}
+
+/*
+ * func_800C878C (104 bytes)
+ * Allocate entity type 7 and signal
+ */
+void *func_800C878C(void) {
+    void *entity;
+
+    sync_acquire(&D_80142728, 0, 1);
+    entity = func_80091B00();
+    *(u8 *)((u8 *)entity + 2) = 7;
+    sync_release(&D_80142728, 0, 0);
+    sync_release(&D_801427A8, entity, 0);
+
+    return entity;
+}
+
+/*
+ * func_800C87F4 (104 bytes)
+ * Allocate entity type 1 and signal
+ */
+void *func_800C87F4(void) {
+    void *entity;
+
+    sync_acquire(&D_80142728, 0, 1);
+    entity = func_80091B00();
+    *(u8 *)((u8 *)entity + 2) = 1;
+    sync_release(&D_80142728, 0, 0);
+    sync_release(&D_801427A8, entity, 0);
+
+    return entity;
+}
+
+/*
+ * func_800C9194 (128 bytes)
+ * Allocate entity type 0 with data and callback byte
+ */
+void *func_800C9194(s32 data, s32 callback_id) {
+    void *entity;
+
+    sync_acquire(&D_80142728, 0, 1);
+    entity = func_80091B00();
+    *(u8 *)((u8 *)entity + 2) = 0;
+    *(s32 *)((u8 *)entity + 4) = data;
+    *(u8 *)((u8 *)entity + 8) = (u8)callback_id;
+    sync_release(&D_80142728, 0, 0);
+    sync_release(&D_801427A8, entity, 0);
+
+    return entity;
+}
+
+/*
+ * func_800D6E00 (116 bytes)
+ * Allocate entity type 11 with byte param
+ */
+void *func_800D6E00(s32 param) {
+    void *entity;
+
+    sync_acquire(&D_80142728, 0, 1);
+    entity = func_80091B00();
+    *(u8 *)((u8 *)entity + 2) = 11;
+    *(u8 *)((u8 *)entity + 4) = (u8)param;
+    sync_release(&D_80142728, 0, 0);
+    sync_release(&D_801427A8, entity, 0);
+
+    return entity;
+}
+
+/*
+ * func_800DB7B4 (104 bytes)
+ * Allocate entity type 7 and signal (same as func_800C878C)
+ */
+void *func_800DB7B4(void) {
+    void *entity;
+
+    sync_acquire(&D_80142728, 0, 1);
+    entity = func_80091B00();
+    *(u8 *)((u8 *)entity + 2) = 7;
+    sync_release(&D_80142728, 0, 0);
+    sync_release(&D_801427A8, entity, 0);
+
+    return entity;
+}
+
+extern u8 D_80140BDC;  /* Player count or something similar */
+
+/*
+ * func_800EF5B0 (120 bytes)
+ * Initialize entity with optional audio allocation
+ */
+void func_800EF5B0(void *entity, void *data, s32 with_audio) {
+    *(void **)entity = data;
+
+    if (with_audio != 0) {
+        s32 count = D_80140BDC - 1;
+        void *result = func_800B24EC(data, (void *)((u8 *)entity + 12), 0, count, 1);
+        *(void **)((u8 *)entity + 8) = result;
+    } else {
+        func_800B362C(entity);
+    }
+    func_80094EC8(entity);
+}
+
+/*
+ * func_800AC6F4 (100 bytes)
+ * Wrapper for func_80096CA8 with register preservation
+ */
+void func_800AC6F4(void *a0) {
+    func_80096CA8();
+}
+
+/*
+ * func_800B0550 (48 bytes)
+ * Initialize structure and call func_800B04D0
+ */
+void func_800B0550(void *a0, s32 a1, s32 a2, s32 a3, s32 a4) {
+    *(s32 *)((u8 *)a0 + 12) = a1;
+    *(s32 *)((u8 *)a0 + 4) = a3;
+    *(s32 *)((u8 *)a0 + 8) = a2;
+    *(u8 *)a0 = (u8)a4;
+    func_800B04D0(a0);
+}
+
+/*
+ * func_800960D4 (92 bytes)
+ * Call func_80095FD8 with element sync
+ */
+void func_800960D4(void *element) {
+    sync_acquire(&D_80152770, 0, 1);
+    func_80095FD8(element, 0);
+    sync_release(&D_80152770, 0, 0);
+}
+
+/*
+ * func_800D6348 (104 bytes)
+ * Allocate entity type 9 and signal
+ */
+void *func_800D6348(void) {
+    void *entity;
+
+    sync_acquire(&D_80142728, 0, 1);
+    entity = func_80091B00();
+    *(u8 *)((u8 *)entity + 2) = 9;
+    sync_release(&D_80142728, 0, 0);
+    sync_release(&D_801427A8, entity, 0);
+
+    return entity;
+}
+
+/*
+ * func_80091C04 (156 bytes)
+ * Create entity type 6 linked to target and increment ref count
+ */
+void func_80091C04(void *target) {
+    void *entity = NULL;
+    void *result;
+
+    sync_acquire(&D_80142728, 0, 1);
+    result = func_80091BA8(target, 0);
+    if (result != NULL) {
+        entity = func_80091B00();
+        *(u8 *)((u8 *)entity + 2) = 6;
+        *(void **)((u8 *)entity + 4) = result;
+        *(u8 *)((u8 *)result + 26) = *(u8 *)((u8 *)result + 26) + 1;
+    }
+    sync_release(&D_80142728, 0, 0);
+    if (entity != NULL) {
+        sync_release(&D_801427A8, entity, 0);
+    }
+}
+
+extern s32 D_8012EAA0;
+extern void *D_80151AD4;
+
+/*
+ * func_80096240 (72 bytes)
+ * Stop audio and deactivate element
+ */
+void func_80096240(s32 a0, s32 a1) {
+    if (a1 != -1) {
+        func_80018E2C(a1);
+        func_800154A4();
+        func_80096130(D_80151AD4);
+        D_8012EAA0 = -1;
+    }
+}
+
+extern void *D_801597F0;
+
+/*
+ * func_800B7128 (72 bytes)
+ * Get combined track parameter bytes
+ */
+s16 func_800B7128(void) {
+    void *ptr;
+    u8 byte2, byte3;
+
+    func_800B3D18(0);
+    ptr = D_801597F0;
+    byte2 = *(u8 *)((u8 *)ptr + 2);
+    func_800B3D18(0);
+    ptr = D_801597F0;
+    byte3 = *(u8 *)((u8 *)ptr + 3);
+
+    return (s16)(byte2 + byte3);
+}
+
+/*
+ * func_800B7170 (48 bytes)
+ * Calculate track remaining (param - result)
+ */
+s16 func_800B7170(s32 a0, s16 param) {
+    s32 result = func_800B3FA4(a0, -1);
+    return (s16)(param - result);
+}
+
+/*
+ * func_800B71A0 (52 bytes)
+ * Calculate track remaining (param - result/2)
+ */
+s16 func_800B71A0(s32 a0, s16 param) {
+    s32 result = func_800B3FA4(a0, -1);
+    return (s16)(param - (result >> 1));
+}
+
+/*
+ * func_800A7DF0 (32 bytes)
+ * Wrapper for func_800A5B3C
+ */
+void func_800A7DF0(void) {
+    func_800A5B3C();
+}
+
+/*
+ * func_800AC820 (32 bytes)
+ * Wrapper with -1 second arg
+ */
+void func_800AC820(s32 a0) {
+    func_80097694(a0, -1);
+}
+
+/*
+ * func_800EE88C (32 bytes)
+ * Wrapper for func_800B82C8
+ */
+void func_800EE88C(void) {
+    func_800B82C8();
+}
+
+/*
+ * func_8009508C (32 bytes)
+ * Wrapper for func_8008AD04
+ */
+void func_8009508C(void) {
+    func_8008AD04();
+}
+
+/*
+ * func_800D63C4 (40 bytes)
+ * Initialize entity and clear byte at offset 8
+ */
+void func_800D63C4(s32 a0, void *a1) {
+    func_8009211C(a0);
+    *(u8 *)((u8 *)a1 + 8) = 0;
+}
+
+/*
+ * func_800986B0 (36 bytes)
+ * Call func_80098620 with offset pointer
+ */
+void func_800986B0(void *a0, void *a1) {
+    func_80098620((u8 *)a0 + 8, a1);
+}
+
+/*
+ * func_800A2CE4 (40 bytes)
+ * Call func_800A2990 with dereferenced data
+ */
+void func_800A2CE4(void **a0) {
+    void *t6 = *a0;
+    func_800A2990(0, *(void **)((u8 *)t6 + 64));
+}
+
+/*
+ * func_800A4B48 (36 bytes)
+ * Get element from global and call func_80096238
+ */
+extern void *D_80151A6C;
+
+void func_800A4B48(void) {
+    func_80096238(D_80151A6C);
+}
+
+/*
+ * func_800E2A3C (40 bytes)
+ * Initialize entity with two calls
+ */
+void func_800E2A3C(s32 a0) {
+    func_800E23A4(a0);
+    func_800E1C30(a0);
+}
+
+extern u8 D_80110680;
+
+/*
+ * func_800BAF64 (44 bytes)
+ * Clear state bytes and call func_800BADE0
+ */
+void func_800BAF64(void) {
+    D_80110680 = 0;
+    *(&D_80110680 + 1) = 0;
+    func_800BADE0();
+}
+
+extern u8 D_80156D38[];
+
+/*
+ * func_800AC840 (88 bytes)
+ * Initialize element at index with zero flags
+ */
+void func_800AC840(s32 idx) {
+    void *ptr;
+
+    func_80096288(idx, 0, 0);
+    ptr = (void *)(D_80156D38 + idx * 20);
+    func_800962D4(*(s32 *)((u8 *)ptr + 12), 1);
+    *(u8 *)((u8 *)ptr + 2) = 0;
+}
+
+/*
+ * func_800AC898 (60 bytes)
+ * Get status byte from element at index
+ */
+s8 func_800AC898(s32 idx) {
+    func_80096288(idx, 0, 0);
+    return *(s8 *)(D_80156D38 + idx * 20 + 1);
+}
+
+/*
+ * func_800A2D0C (56 bytes)
+ * Call func_80091FBC with indexed data
+ */
+extern u8 D_80144D60[];
+
+void func_800A2D0C(s32 a0, void **a1) {
+    void *t6 = *a1;
+    u8 idx = *(u8 *)((u8 *)t6 + 16);
+    void *ptr = (void *)(D_80144D60 + idx * 17);
+    func_80091FBC(a0, *(s32 *)((u8 *)ptr + 8));
+}
+
+extern s32 D_801597D0;
+
+/*
+ * func_8008A6D0 (44 bytes)
+ * Release sync on D_801597D0
+ */
+void func_8008A6D0(void) {
+    sync_release(&D_801597D0, 0, 0);
+}
+
+/*
+ * func_8008AA20 (32 bytes)
+ * Wrapper for func_800205E4
+ */
+void func_8008AA20(void) {
+    func_800205E4();
+}
+
+/*
+ * func_8008AD48 (36 bytes)
+ * Call func_8008AD04 with offset pointers
+ */
+void func_8008AD48(void *a0, void *a1) {
+    func_8008AD04((u8 *)a0 + 4, (u8 *)a1 + 4);
+}
+
+/*
+ * func_8008E398 (40 bytes)
+ * Call func_8008E26C with sign-extended third arg
+ */
+void func_8008E398(s32 a0, s32 a1, s16 a2) {
+    func_8008E26C(a0, a1, a2);
+}
+
+/*
+ * func_80090228 (44 bytes)
+ * Call func_80090088 with sign-extended first arg
+ */
+void func_80090228(s16 a0) {
+    func_80090088(a0, 0, 0);
+}
+
+/*
+ * func_80090254 (48 bytes)
+ * Call func_80090088 with sign-extended first arg and zeros
+ */
+void func_80090254(s16 a0) {
+    func_80090088(a0, 0, 0);
+}
+
+/*
+ * func_80095120 (52 bytes)
+ * Compare data with length 15, return -1 if null
+ */
+s32 func_80095120(void *a0, void *a1) {
+    if (a0 == NULL || a1 == NULL) {
+        return -1;
+    }
+    return func_800950AC(a0, a1, 15);
+}
+
+/*
+ * func_80098554 (32 bytes)
+ * Wrapper for func_80097CA0
+ */
+void func_80098554(void) {
+    func_80097CA0();
+}
+
+/*
+ * func_800985F4 (44 bytes)
+ * Call func_80098574 with structure field
+ */
+void func_800985F4(void *a0, void *a1) {
+    s32 local = 0;
+    void *field = *(void **)((u8 *)a0 + 8);
+    func_80098574(a0, field, &local, a1);
+}
+
+/*
+ * func_800CD748 (76 bytes)
+ * Initialize nested structure with allocation
+ */
+void func_800CD748(void **a0) {
+    void *t6 = *a0;
+    void *t7 = *(void **)((u8 *)t6 + 44);
+    void *ptr = (void *)(*(u32 *)t7 + 1780);
+    s32 result = func_800B466C((u8 *)ptr + 4, 72);
+    *(s32 *)ptr = result;
+
+    t6 = *a0;
+    void *data = *(void **)((u8 *)t6 + 8);
+    func_800A2504(data, ptr, 76);
+}
+
+/*
+ * func_8009638C (92 bytes)
+ * Activate element at index
+ */
+void func_8009638C(s32 idx) {
+    void *ptr;
+
+    func_80096288(idx, 0, 0);
+    ptr = (void *)(D_80156D38 + idx * 20);
+    func_800962D4(*(s32 *)((u8 *)ptr + 12), 0);
+    *(u8 *)((u8 *)ptr + 2) = 1;
+}
+
+/*
+ * func_800B41C0 (64 bytes)
+ * Set track state byte and return old value
+ */
+s8 func_800B41C0(s8 a0) {
+    s8 old_value;
+
+    func_800B3D18(0);
+    old_value = *(s8 *)((u8 *)D_801597F0 + 9);
+    *(s8 *)((u8 *)D_801597F0 + 9) = a0;
+    return old_value;
+}
+
+/*
+ * func_800BE4B4 (60 bytes)
+ * Call track functions with sign-extended args
+ */
+void func_800BE4B4(s16 a0, s16 a1, s32 a2, void *a3) {
+    func_800B74A0(a2);
+    func_800B71D4(a0, a1, a3);
+}
+
+/*
+ * func_800BE9A0 (72 bytes)
+ * Process data with local buffer
+ */
+void func_800BE9A0(s16 a0, s16 a1, s16 a2, void *a3) {
+    u8 local_buffer[128];
+
+    func_800BE7BC(local_buffer, a3, a2);
+    func_800B71D4(a0, a1, local_buffer);
+}
+
+/*
+ * func_800BE9E8 (72 bytes)
+ * Process data with stack buffer
+ */
+void func_800BE9E8(s16 a0, s16 a1, s32 a2, void *a3) {
+    u8 local_buffer[256];
+
+    func_80002CD0(local_buffer, a2, &a3);
+    func_800B71D4(a0, a1, local_buffer);
+}
+
+extern u8 D_80143A10;
+extern s8 D_8014978C;
+
+/*
+ * func_800BC1E8 (52 bytes)
+ * Clear flag and call track function
+ */
+void func_800BC1E8(void) {
+    D_80143A10 = 0;
+    func_800BB9B0(D_8014978C, 0, 1);
+}
+
+/*
+ * func_800F73FC (76 bytes)
+ * Conditional initialization with multiple calls
+ */
+void func_800F73FC(s32 a0, s32 a1) {
+    if (a0 != 0) {
+        func_800F733C(a0);
+    }
+    if (a1 != 0) {
+        func_800B0868();
+    }
+    func_800B811C();
+    func_800A04C4(0);
+}
+
+/*
+ * func_800FEC60 (60 bytes)
+ * Play sound based on flag bit
+ */
+void func_800FEC60(s32 a0) {
+    s32 param;
+
+    if (a0 & 1) {
+        param = 46;
+    } else {
+        param = 38;
+    }
+    func_80092360(param, 0, 1, 0);
+}
+
+/*
+ * func_800B3F00 (40 bytes)
+ * Get track byte at offset 2
+ */
+u8 func_800B3F00(void) {
+    func_800B3D18(0);
+    return *(u8 *)((u8 *)D_801597F0 + 2);
+}
+
+/*
+ * func_800B3F28 (40 bytes)
+ * Get track byte at offset 3
+ */
+u8 func_800B3F28(void) {
+    func_800B3D18(0);
+    return *(u8 *)((u8 *)D_801597F0 + 3);
+}
+
+/*
+ * func_800B5FC4 (84 bytes)
+ * Play sound based on multiple flag bits
+ */
+void func_800B5FC4(s32 a0) {
+    s32 param;
+
+    if (a0 & 1) {
+        param = 46;
+    } else if (a0 & 2) {
+        param = 37;
+    } else {
+        param = 38;
+    }
+    func_80092360(param, 0, 1, 0);
+}
+
+/*
+ * func_800C878C (104 bytes)
+ * Allocate entity type 7
+ */
+void func_800C878C(void) {
+    void *entity;
+
+    sync_acquire(&D_80142728, 0, 1);
+    entity = func_80091B00();
+    *(u8 *)((u8 *)entity + 2) = 7;
+    sync_release(&D_80142728, 0, 0);
+    sync_release(&D_801427A8, entity, 0);
+}
+
+/*
+ * func_800C87F4 (96 bytes)
+ * Allocate entity type 1
+ */
+void func_800C87F4(void) {
+    void *entity;
+
+    sync_acquire(&D_80142728, 0, 1);
+    entity = func_80091B00();
+    *(u8 *)((u8 *)entity + 2) = 1;
+    sync_release(&D_80142728, 0, 0);
+    sync_release(&D_801427A8, entity, 0);
+}
+
+/*
+ * func_800B4360 (44 bytes)
+ * Pass varargs to function
+ */
+void func_800B4360(s32 a0, s32 a1, s32 a2, s32 a3) {
+    func_80002CD0(a0, a1, &a2);
+}
+
+/*
+ * func_800C9194 (120 bytes)
+ * Allocate entity type 0 with data
+ */
+void func_800C9194(s32 a0, s32 a1) {
+    void *entity;
+
+    sync_acquire(&D_80142728, 0, 1);
+    entity = func_80091B00();
+    *(u8 *)((u8 *)entity + 2) = 0;
+    *(s32 *)((u8 *)entity + 4) = a0;
+    *(u8 *)((u8 *)entity + 8) = a1;
+    sync_release(&D_80142728, 0, 0);
+    sync_release(&D_801427A8, entity, 0);
+}
+
+/*
+ * func_800D6348 (104 bytes)
+ * Allocate entity type 9
+ */
+void func_800D6348(void) {
+    void *entity;
+
+    sync_acquire(&D_80142728, 0, 1);
+    entity = func_80091B00();
+    *(u8 *)((u8 *)entity + 2) = 9;
+    sync_release(&D_80142728, 0, 0);
+    sync_release(&D_801427A8, entity, 0);
+}
+
+/*
+ * func_800D6E00 (116 bytes)
+ * Allocate entity type 11 with byte parameter
+ */
+void func_800D6E00(s32 a0) {
+    void *entity;
+
+    sync_acquire(&D_80142728, 0, 1);
+    entity = func_80091B00();
+    *(u8 *)((u8 *)entity + 2) = 11;
+    *(u8 *)((u8 *)entity + 4) = a0;
+    sync_release(&D_80142728, 0, 0);
+    sync_release(&D_801427A8, entity, 0);
+}
+
+/*
+ * func_800DB7B4 (104 bytes)
+ * Allocate entity type 7 (duplicate)
+ */
+void func_800DB7B4(void) {
+    void *entity;
+
+    sync_acquire(&D_80142728, 0, 1);
+    entity = func_80091B00();
+    *(u8 *)((u8 *)entity + 2) = 7;
+    sync_release(&D_80142728, 0, 0);
+    sync_release(&D_801427A8, entity, 0);
+}
+
+/*
+ * func_800E7914 (108 bytes)
+ * Decrement element reference count
+ */
+void func_800E7914(s32 a0) {
+    void *result;
+    u8 refcount;
+
+    sync_acquire(&D_80152770, 0, 1);
+    result = func_80095F8C(a0);
+    result = func_80095EF4(result, 0);
+    refcount = *(u8 *)((u8 *)result + 22);
+    if (refcount > 0) {
+        *(u8 *)((u8 *)result + 22) = refcount - 1;
+    }
+    sync_release(&D_80152770, 0, 0);
+}
+
+/*
+ * func_800E7980 (112 bytes)
+ * Increment element reference count
+ */
+void func_800E7980(s32 a0) {
+    void *result;
+    u8 refcount;
+
+    sync_acquire(&D_80152770, 0, 1);
+    result = func_80095F8C(a0);
+    result = func_80095EF4(result, 0);
+    refcount = *(u8 *)((u8 *)result + 22);
+    if (refcount < 255) {
+        *(u8 *)((u8 *)result + 22) = refcount + 1;
+    }
+    sync_release(&D_80152770, 0, 0);
+}
+
+/*
+ * func_800ED764 (80 bytes)
+ * Set track byte or use default from offset 8
+ */
+void func_800ED764(s16 a0) {
+    if (a0 < 0) {
+        func_800B3D18(0);
+        D_80159B70 = *(u8 *)((u8 *)D_801597F0 + 8);
+    } else {
+        D_80159B70 = a0;
+    }
+}
+
+/*
+ * func_800ED7B4 (80 bytes)
+ * Set track byte or use default from offset 4
+ */
+void func_800ED7B4(s16 a0) {
+    if (a0 < 0) {
+        func_800B3D18(0);
+        D_80159B60 = *(u8 *)((u8 *)D_801597F0 + 4);
+    } else {
+        D_80159B60 = a0;
+    }
+}
+
+/*
+ * func_800960D4 (92 bytes)
+ * Release element
+ */
+void func_800960D4(void *a0) {
+    sync_acquire(&D_80152770, 0, 1);
+    func_80095FD8(a0, 0);
+    sync_release(&D_80152770, 0, 0);
+}
+
+/*
+ * func_800D54E0 (68 bytes)
+ * Conditional entity action dispatch
+ */
+void func_800D54E0(void **a0, s32 a1) {
+    if (a1 != 0) {
+        func_800BF024(*a0);
+    } else {
+        func_80091C04(*a0);
+    }
+    func_800D54BC(a0);
+}
+
+/*
+ * func_800BF024 (124 bytes)
+ * Entity lookup and cleanup
+ */
+void func_800BF024(void *a0) {
+    void *result;
+
+    sync_acquire(&D_80142728, 0, 1);
+    result = func_80091BA8(a0);
+    if (result == NULL) {
+        sync_release(&D_80142728, 0, 0);
+        return;
+    }
+    func_800BF01C(*(void **)((u8 *)result + 64));
+    sync_release(&D_80142728, 0, 0);
+    func_80091C04(a0);
+}
+
+/*
+ * func_800C70BC (80 bytes)
+ * Setup multiple element sounds
+ */
+void func_800C70BC(void) {
+    s32 result;
+
+    result = func_80097694(54, -1);
+    func_800AC840(result);
+    result = func_80097694(58, -1);
+    func_800AC840(result);
+    result = func_80097694(59, -1);
+    func_800AC840(result);
+}
+
+/*
+ * func_80091C04 (156 bytes)
+ * Create entity type 6 referencing another entity
+ */
+void func_80091C04(void *a0) {
+    void *existing;
+    void *new_entity = NULL;
+
+    sync_acquire(&D_80142728, 0, 1);
+    existing = func_80091BA8(a0);
+    if (existing != NULL) {
+        new_entity = func_80091B00();
+        *(u8 *)((u8 *)new_entity + 2) = 6;
+        *(void **)((u8 *)new_entity + 4) = existing;
+        *(u8 *)((u8 *)existing + 26) = *(u8 *)((u8 *)existing + 26) + 1;
+    }
+    sync_release(&D_80142728, 0, 0);
+    if (new_entity != NULL) {
+        sync_release(&D_801427A8, new_entity, 0);
+    }
+}
+
+/*
+ * func_800AED2C (56 bytes)
+ * Conditional entity callback and clear
+ */
+void *func_800AED2C(void *a0, void *a1) {
+    if (a1 == NULL) {
+        return NULL;
+    }
+    func_8009211C(a0, a1);
+    *(u8 *)((u8 *)a1 + 8) = 0;
+    return a1;
+}
+
+/*
+ * func_8009731C (104 bytes)
+ * Synchronized element lookup returning offset 12 data
+ */
+void *func_8009731C(void *input) {
+    void *temp;
+    void *result;
+    void *data;
+
+    sync_acquire(&D_80152770, 0, 1);
+    temp = func_80095F8C(input, input);
+    result = func_80095EF4(temp, 0);
+    data = *(void **)((u8 *)result + 12);
+    sync_release(&D_80152770, 0, 0);
+    return data;
+}
+
+/*
+ * func_800C7578 (148 bytes)
+ * Update indexed slot in nested structure and notify
+ */
+void func_800C7578(void **a0, s32 a1, s32 a2, s32 a3) {
+    u32 *ptr;
+    u8 *base;
+    u8 *slot;
+    s8 new_val;
+    u8 idx1, idx2;
+
+    ptr = (u32 *)*a0;
+    idx2 = (u8)a2;
+    new_val = (s8)a3;
+    base = *(u8 **)*(u32 **)((u8 *)ptr + 44);
+    idx1 = (u8)a1;
+
+    slot = base + (idx1 << 4) + idx2 + 1860;
+    if (new_val != *(s8 *)slot) {
+        *(s8 *)slot = new_val;
+        *(void **)(base + (idx1 << 4) + 1856) = func_800B466C(base + (idx1 << 4) + 1860, 12);
+        func_800A2504(*(void **)((u8 *)ptr + 8), base + (idx1 << 4) + 1856, 16);
+    }
+}
+
+/*
+ * func_800CD058 (156 bytes)
+ * Conditional render/process dispatch based on object state
+ */
+void func_800CD058(void *a0) {
+    void *ptr;
+
+    ptr = *(void **)a0;
+    if (*(void **)((u8 *)ptr + 8) != NULL) {
+        if (func_800CCEFC(a0) != 0) {
+            ptr = *(void **)a0;
+            func_800A2680(*(void **)((u8 *)ptr + 8));
+        }
+    } else {
+        func_800CCCCC(a0);
+    }
+}
+
+/*
+ * func_800AF51C (196 bytes)
+ * Initialize resource arrays - allocates 50 resources and clears 6 slot entries
+ */
+void func_800AF51C(void) {
+    s16 i;
+    void *result;
+
+    /* Allocate 50 resources and store in array */
+    for (i = 0; i < 50; i++) {
+        result = func_800A7D6C();
+        *(void **)((u8 *)&D_8014C238 + (i * 4)) = result;
+    }
+
+    /* Initialize 6 slot entries with -1 */
+    for (i = 0; i < 6; i++) {
+        *(s32 *)((u8 *)&D_80154FD8 + (i * 60)) = -1;
+        *(s32 *)((u8 *)&D_80154660 + (i * 400) + 0) = -1;
+        *(s32 *)((u8 *)&D_80154660 + (i * 400) + 84) = -1;
+        *(s32 *)((u8 *)&D_80154660 + (i * 400) + 168) = -1;
+        *(s32 *)((u8 *)&D_80154660 + (i * 400) + 252) = -1;
+        *(s32 *)((u8 *)&D_80154660 + (i * 400) + 336) = -1;
+    }
+
+    D_8014C094 = 0;
+}
+
+/*
+ * func_8008E19C (208 bytes)
+ * Insert value into tree node - either at head or at indexed slot
+ */
+void func_8008E19C(s16 a0, s16 a1) {
+    s16 new_idx;
+    u8 *entry;
+
+    if (a1 < 0) {
+        /* Insert at head if empty, else allocate new node */
+        if (D_8016B254 < 0) {
+            D_8016B254 = a0;
+        } else {
+            new_idx = func_8008E144();
+            *(s16 *)((u8 *)&D_8013E700 + (new_idx * 68) + 24) = a0;
+        }
+    } else {
+        /* Insert at indexed slot if empty, else allocate new node */
+        entry = (u8 *)&D_8013E700 + (a1 * 68);
+        if (*(s16 *)(entry + 22) == -1) {
+            *(s16 *)(entry + 22) = a0;
+        } else {
+            new_idx = func_8008E144();
+            *(s16 *)((u8 *)&D_8013E700 + (new_idx * 68) + 24) = a0;
+        }
+    }
+}
+
+/*
+ * func_80097470 (124 bytes)
+ * Synchronized lookup with fallback - gets element from list with sync
+ */
+void *func_80097470(void *a0, void *a1) {
+    void *result;
+    void *ptr;
+
+    sync_acquire(&D_80152770, 0, 1);
+
+    if (a0 != NULL) {
+        ptr = a0;
+    } else {
+        ptr = D_801527C8;
+    }
+
+    result = func_80097384(a1, ptr);
+    sync_release(&D_80152770, 0, 0);
+    return result;
+}
+
+/*
+ * func_800AC840 (88 bytes)
+ * Clear slot state - calls release functions and clears state byte
+ */
+void func_800AC840(s32 idx) {
+    u8 *entry;
+
+    func_80096288(idx, 0, 0);
+
+    /* Calculate entry address: D_80156D38[idx] (20 bytes per entry) */
+    entry = (u8 *)&D_80156D38 + (idx * 20);
+
+    func_800962D4(*(void **)(entry + 12), 1);
+
+    *(u8 *)(entry + 2) = 0;
+}
+
+/*
+ * func_800AC898 (60 bytes)
+ * Get slot state byte - returns field 1 of indexed entry
+ */
+s8 func_800AC898(s32 idx) {
+    func_80096288(idx, 0, 0);
+
+    return *(s8 *)((u8 *)&D_80156D38 + (idx * 20) + 1);
+}
+
+/*
+ * func_800960D4 (92 bytes)
+ * Synchronized search operation on element list
+ */
+void func_800960D4(void *input) {
+    sync_acquire(&D_80152770, 0, 1);
+    func_80095FD8(&D_80152770, input, 0);
+    sync_release(&D_80152770, 0, 0);
+}
+
+/*
+ * func_8009638C (92 bytes)
+ * Activate slot - sets state byte to 1
+ */
+void func_8009638C(s32 idx) {
+    u8 *entry;
+
+    func_80096288(idx, 0, 0);
+
+    /* D_80156D38[idx] with 20 bytes per entry */
+    entry = (u8 *)&D_80156D38 + (idx * 20);
+
+    func_800962D4(*(void **)(entry + 12), 0);
+
+    *(u8 *)(entry + 2) = 1;
+}
+
+/*
+ * func_800ED764 (80 bytes)
+ * Set track select byte - uses fallback from global struct if input negative
+ */
+void func_800ED764(s16 input) {
+    u8 *ptr;
+
+    if (input >= 0) {
+        D_80149B70 = (u8)input;
+    } else {
+        func_800B3D18(0);
+        ptr = D_801497F0;
+        D_80149B70 = *(u8 *)(ptr + 8);
+    }
+}
+
+/*
+ * func_800ED7B4 (80 bytes)
+ * Set car select byte - uses fallback from global struct if input negative
+ */
+void func_800ED7B4(s16 input) {
+    u8 *ptr;
+
+    if (input >= 0) {
+        D_80149B60 = (u8)input;
+    } else {
+        func_800B3D18(0);
+        ptr = D_801497F0;
+        D_80149B60 = *(u8 *)(ptr + 4);
+    }
+}
+
+/*
+ * func_800D6348 (104 bytes)
+ * Allocate entity type 9 - synchronized allocation with entity signal
+ */
+void func_800D6348(void) {
+    u8 *entity;
+
+    sync_acquire(&D_80142728, 0, 1);
+    entity = func_80091B00();
+    *(u8 *)(entity + 2) = 9;
+    sync_release(&D_80142728, 0, 0);
+    sync_release(&D_801427A8, entity, 0);
+}
+
+/*
+ * func_800DB7B4 (104 bytes)
+ * Allocate entity type 7 - synchronized allocation with entity signal
+ */
+void func_800DB7B4(void) {
+    u8 *entity;
+
+    sync_acquire(&D_80142728, 0, 1);
+    entity = func_80091B00();
+    *(u8 *)(entity + 2) = 7;
+    sync_release(&D_80142728, 0, 0);
+    sync_release(&D_801427A8, entity, 0);
+}
+
+/*
+ * func_800EE88C (32 bytes)
+ * Wrapper for audio/sound system call
+ */
+void func_800EE88C(void) {
+    func_800B82C8();
+}
+
+/*
+ * func_80096240 (72 bytes)
+ * Cleanup and release slot with -1 check
+ */
+void func_80096240(void *a0, s32 slot_id) {
+    if (slot_id != -1) {
+        func_80018E2C(slot_id);
+        func_800154A4();
+        func_80096130(D_80151AD4);
+        D_8011EAA0 = -1;
+    }
+}
+
+/*
+ * func_80096298 (60 bytes)
+ * Get slot pointer field - returns field 0x0C of indexed entry
+ */
+void *func_80096298(s32 idx) {
+    func_80096288(idx, 0, 0);
+
+    return *(void **)((u8 *)&D_80156D38 + (idx * 20) + 12);
+}
+
+/*
+ * func_800B71A0 (52 bytes)
+ * Calculate centered offset - returns input minus half of computed width
+ */
+s16 func_800B71A0(void *a0, s16 offset) {
+    s32 width;
+
+    width = func_800B3FA4(a0, -1);
+
+    return (s16)(offset - (width >> 1));
+}
+
+/*
+ * func_800BC1E8 (52 bytes)
+ * Reset state and call handler with global value
+ */
+void func_800BC1E8(void) {
+    D_80143A10 = 0;
+    func_800BB9B0((s8)D_8014978C, 0, 1);
+}
+
+/*
+ * func_800B5F4C (60 bytes)
+ * Button handler - plays sound 40 if bit 0x400 set, else sound 39
+ */
+void func_800B5F4C(u32 buttons) {
+    s32 sound_id;
+
+    if (buttons & 0x400) {
+        sound_id = 40;
+    } else {
+        sound_id = 39;
+    }
+
+    func_80092360(sound_id, 0, 1, 0);
+}
+
+/*
+ * func_800B5F88 (60 bytes)
+ * Button handler - plays sound 41 if bit 0x1000 set, else sound 44
+ */
+void func_800B5F88(u32 buttons) {
+    s32 sound_id;
+
+    if (buttons & 0x1000) {
+        sound_id = 41;
+    } else {
+        sound_id = 44;
+    }
+
+    func_80092360(sound_id, 0, 1, 0);
+}
+
+/*
+ * func_800BE4B4 (60 bytes)
+ * Two-stage draw call - processes then draws with coordinates
+ */
+void func_800BE4B4(s16 x, s16 y, void *data, void *param) {
+    func_800B74A0(data);
+    func_800B71D4(x, y, param);
+}
+
+/*
+ * func_800D63C4 (40 bytes)
+ * Process entity and clear state byte
+ */
+void func_800D63C4(void *a0, u8 *entity) {
+    func_8009211C(a0);
+    *(u8 *)(entity + 8) = 0;
+}
+
+/*
+ * func_8008A6D0 (44 bytes)
+ * Release audio sync object
+ */
+void func_8008A6D0(void) {
+    sync_release(&D_801497D0, 0, 0);
+}
+
+/*
+ * func_80090228 (44 bytes)
+ * Sound trigger with index sign-extended
+ */
+void func_80090228(s16 idx, void *a1) {
+    func_80090088(idx, a1, 0);
+}
+
+/*
+ * func_80090254 (48 bytes)
+ * Sound trigger with index only - zeroes other params
+ */
+void func_80090254(s16 idx) {
+    func_80090088(idx, NULL, 0);
+}
+
+/*
+ * func_800985F4 (44 bytes)
+ * Forward call with object's field 8 as second param
+ */
+void func_800985F4(void *obj, void *param) {
+    s32 temp = 0;
+
+    func_80098574(obj, *(void **)((u8 *)obj + 8), &temp, param);
+}
+
+/*
+ * func_800A2CE4 (40 bytes)
+ * Process with dereferenced object's field 0x40
+ */
+void func_800A2CE4(void **obj) {
+    void *ptr;
+
+    ptr = *obj;
+    func_800A2990(obj, 0, *(void **)((u8 *)ptr + 64));
+}
+
+/*
+ * func_800BAF64 (44 bytes)
+ * Reset two state bytes and call handler
+ */
+void func_800BAF64(void) {
+    D_80110680 = 0;
+    D_80110681 = 0;
+    func_800BADE0();
+}
+
+/*
+ * func_800B0550 (48 bytes)
+ * Initialize structure fields and call setup function
+ */
+void func_800B0550(void *obj, void *a1, void *a2, void *a3, u8 type) {
+    *(void **)((u8 *)obj + 12) = a1;
+    *(void **)((u8 *)obj + 4) = a3;
+    *(void **)((u8 *)obj + 8) = a2;
+    *(u8 *)obj = type;
+    func_800B04D0(obj);
+}
+
+/*
+ * func_800B4360 (44 bytes)
+ * Forward call with stack parameters packed
+ */
+void func_800B4360(void *a0, void *a1, void *a2, void *a3) {
+    func_80002CD0(a0, a1, &a2);
+}
+
+/*
+ * func_800B7170 (48 bytes)
+ * Calculate right-aligned offset - returns input minus computed width
+ */
+s16 func_800B7170(void *a0, s16 offset) {
+    s32 width;
+
+    width = func_800B3FA4(a0, -1);
+
+    return (s16)(offset - width);
+}
+
+/*
+ * func_800E2A3C (40 bytes)
+ * Two-stage processing - calls prepare then execute
+ */
+void func_800E2A3C(void *a0) {
+    func_800E23A4();
+    func_800E1C30(a0);
+}
+
+/*
+ * func_800C878C (104 bytes)
+ * Allocate entity type 7 (variant) - synchronized allocation with entity signal
+ */
+void func_800C878C(void) {
+    u8 *entity;
+
+    sync_acquire(&D_80142728, 0, 1);
+    entity = func_80091B00();
+    *(u8 *)(entity + 2) = 7;
+    sync_release(&D_80142728, 0, 0);
+    sync_release(&D_801427A8, entity, 0);
+}
+
+/*
+ * func_800C87F4 (104 bytes)
+ * Allocate entity type 1 - synchronized allocation with entity signal
+ */
+void func_800C87F4(void) {
+    u8 *entity;
+
+    sync_acquire(&D_80142728, 0, 1);
+    entity = func_80091B00();
+    *(u8 *)(entity + 2) = 1;
+    sync_release(&D_80142728, 0, 0);
+    sync_release(&D_801427A8, entity, 0);
+}
+
+/*
+ * func_800D54E0 (68 bytes)
+ * Conditional process dispatch - different handlers based on flag
+ */
+void func_800D54E0(void **obj, s32 flag) {
+    if (flag != 0) {
+        func_800BF024(*obj);
+    } else {
+        func_80091C04(*obj);
+    }
+    func_800D54BC(obj);
+}
+
+/*
+ * func_800F7E70 (64 bytes)
+ * Clear two global buffers - 16-byte and 4-byte arrays
+ */
+void func_800F7E70(void) {
+    bzero(&D_80149428, 16);
+    bzero(&D_8015256C, 4);
+}
+
+/*
+ * func_800FEC60 (60 bytes)
+ * Button handler - plays sound 46 if bit 0x01 set, else sound 38
+ */
+void func_800FEC60(u32 buttons) {
+    s32 sound_id;
+
+    if (buttons & 0x01) {
+        sound_id = 46;
+    } else {
+        sound_id = 38;
+    }
+
+    func_80092360(sound_id, 0, 1, 0);
+}
+
+/*
+ * func_800F73FC (76 bytes)
+ * Conditional render setup - prepares rendering based on flags
+ */
+void func_800F73FC(s32 flag1, s32 flag2) {
+    if (flag1 != 0) {
+        func_800F733C();
+    }
+
+    if (flag2 != 0) {
+        func_800B0868();
+    }
+
+    func_800B811C();
+    func_800A04C4(0);
+}
+
+/*
+ * func_80095120 (52 bytes)
+ * Guarded slot operation - returns -1 if either param is NULL
+ */
+s32 func_80095120(void *a0, void *a1) {
+    if (a0 == NULL || a1 == NULL) {
+        return -1;
+    }
+
+    return func_800950AC(a0, a1, 15);
+}
+
+/*
+ * func_800A2D0C (56 bytes)
+ * Dispatch based on object's type index via lookup table
+ */
+void func_800A2D0C(void *unused, void **obj) {
+    u8 *ptr;
+    u8 *entry;
+
+    ptr = *obj;
+    entry = (u8 *)&D_80144D60 + (*(u8 *)(ptr + 16) * 16);
+
+    func_80091FBC(entry, obj, *(void **)(entry + 8));
+}
+
+/*
+ * func_800AED2C (56 bytes)
+ * Guarded entity clear - processes and clears state if entity valid
+ */
+void *func_800AED2C(void *a0, u8 *entity) {
+    if (entity == NULL) {
+        return NULL;
+    }
+
+    func_8009211C(a0);
+    *(u8 *)(entity + 8) = 0;
+    return entity;
+}
+
+/*
+ * func_800AB70C (68 bytes)
+ * Build color parameter and dispatch - XORs shifted value with mask
+ */
+void func_800AB70C(void *a0, void *a1, s16 color, s16 intensity, s32 flags) {
+    s32 param;
+
+    param = (((s32)color << 8) ^ 0x0F00) | flags;
+
+    func_8008E26C(a0, a1, intensity, param);
+}
+
+/*
+ * func_800B5FC4 (80 bytes)
+ * Button handler - select sound based on button bits 0x01/0x02
+ * Sound IDs: 46 (bit 0), 37 (bit 1), 38 (default)
+ */
+void func_800B5FC4(u32 buttons) {
+    s32 sound_id;
+
+    if (buttons & 0x0001) {
+        sound_id = 46;
+    } else if (buttons & 0x0002) {
+        sound_id = 37;
+    } else {
+        sound_id = 38;
+    }
+
+    func_80092360(sound_id, 0, 1, 0);
+}
+
+/*
+ * func_800C70BC (84 bytes)
+ * Clear slots 54, 58, 59 - looks up each then clears state
+ */
+void func_800C70BC(void) {
+    s32 slot;
+
+    slot = func_80097694(54, -1);
+    func_800AC840(slot);
+
+    slot = func_80097694(58, -1);
+    func_800AC840(slot);
+
+    slot = func_80097694(59, -1);
+    func_800AC840(slot);
+}
+
+/*
+ * func_800C9194 (124 bytes)
+ * Allocate entity with type 0 and store two values
+ */
+void func_800C9194(s32 value1, s32 value2) {
+    u8 *entity;
+
+    sync_acquire(&D_80142728, 0, 1);
+    entity = func_80091B00();
+    *(u8 *)(entity + 2) = 0;
+    *(s32 *)(entity + 4) = value1;
+    *(u8 *)(entity + 8) = (u8)value2;
+    sync_release(&D_80142728, 0, 0);
+    sync_release(&D_801427A8, entity, 0);
+}
+
+/*
+ * func_800EF5B0 (124 bytes)
+ * Initialize structure with sound/config data
+ */
+void func_800EF5B0(s32 *ptr, s32 value, s32 use_sound) {
+    s32 sound_level;
+
+    *ptr = value;
+    if (use_sound != 0) {
+        sound_level = (s8)(D_80140BDC - 1);
+        *(s32 *)(ptr + 2) = func_800B24EC(value, (u8 *)ptr + 12, 0, sound_level, 1);
+    } else {
+        func_800B362C(ptr);
+    }
+    func_80094EC8(ptr);
+}
+
+/*
+ * func_800D52D4 (152 bytes)
+ * Process entity with sync - marks as active
+ */
+void func_800D52D4(u8 *entity) {
+    if (entity == (u8 *)-1) {
+        return;
+    }
+
+    sync_acquire(&D_80142728, 0, 1);
+    func_800D52CC(entity);
+
+    if (*(s8 *)(entity + 9) != 0) {
+        func_8009211C(&D_80146188, entity);
+        *(u8 *)(entity + 9) = 0;
+    }
+
+    func_80091FBC(&D_80146170, entity, D_80146178);
+    *(u8 *)(entity + 8) = 1;
+    sync_release(&D_80142728, 0, 0);
+}
+
+/*
+ * func_800D6E00 (116 bytes)
+ * Allocate entity type 11 with byte value
+ */
+void func_800D6E00(s32 value) {
+    u8 *entity;
+
+    sync_acquire(&D_80142728, 0, 1);
+    entity = func_80091B00();
+    *(u8 *)(entity + 2) = 11;
+    *(u8 *)(entity + 4) = (u8)value;
+    sync_release(&D_80142728, 0, 0);
+    sync_release(&D_801427A8, entity, 0);
+}
+
+/*
+ * func_8008AA20 (32 bytes)
+ * Simple wrapper - calls frame update
+ */
+void func_8008AA20(void) {
+    func_800205E4();
+}
+
+/*
+ * func_8008AD48 (36 bytes)
+ * Offset pointers by 4 and call handler
+ */
+void func_8008AD48(void *a0, void *a1) {
+    func_8008AD04((u8 *)a0 + 4, (u8 *)a1 + 4);
+}
+
+/*
+ * func_80094F88 (60 bytes)
+ * Set byte at offset 26, call handler if changed, return value
+ */
+s8 func_80094F88(void *a0, s8 new_value) {
+    s8 old_value = *(s8 *)((u8 *)a0 + 26);
+
+    if (old_value != new_value) {
+        *(s8 *)((u8 *)a0 + 26) = new_value;
+        func_80094EC8(a0);
+        old_value = *(s8 *)((u8 *)a0 + 26);
+    }
+
+    return old_value;
+}
+
+/*
+ * func_8009508C (32 bytes)
+ * Passthrough wrapper to func_8008AD04
+ */
+void func_8009508C(void *a0, void *a1) {
+    func_8008AD04(a0, a1);
+}
+
+/*
+ * func_80096298 (60 bytes)
+ * Call handler and return pointer from 20-byte array
+ */
+void *func_80096298(s32 index) {
+    func_80096288(index, 0, 0);
+    return *(void **)(D_80156D44 + index * 20);
+}
+
+/*
+ * func_80096B5C (96 bytes)
+ * Lookup node and optionally return secondary pointer
+ */
+void *func_80096B5C(void *a0, void *a1, void **out_ptr) {
+    void *node = NULL;
+
+    if (a0 != NULL) {
+        node = func_80096B00(a0, a1);
+    }
+
+    if (node == NULL) {
+        if (out_ptr != NULL) {
+            *out_ptr = NULL;
+        }
+        return NULL;
+    }
+
+    if (out_ptr == NULL) {
+        return *(void **)((u8 *)node + 4);
+    }
+
+    *out_ptr = *(void **)((u8 *)node + 8);
+    return *(void **)((u8 *)node + 4);
+}
+
+/*
+ * func_800A4B48 (36 bytes)
+ * Release global slot
+ */
+void func_800A4B48(void) {
+    func_80096238(D_80151A6C);
+}
+
+/*
+ * func_800E2A64 (96 bytes)
+ * Multi-function dispatch - calls 8 handlers with same argument
+ */
+void func_800E2A64(void *arg) {
+    func_800CF06C(arg);
+    func_800E23A4(arg);
+    func_800E1C30(arg);
+    func_800E1AA0(arg);
+    func_800E15A0(arg);
+    func_800E1540(arg);
+    func_800E114C(arg);
+    func_800D0424(arg);
+}
+
+/*
+ * func_800E7914 (108 bytes)
+ * Decrement element counter byte (min 0)
+ */
+void func_800E7914(void *arg) {
+    u8 *ptr;
+    s32 counter;
+
+    sync_acquire(&D_80152770, 0, 1);
+    ptr = func_80095F8C(arg);
+    ptr = func_80095EF4(ptr, 0);
+    counter = *(u8 *)(ptr + 22);
+    if (counter > 0) {
+        *(u8 *)(ptr + 22) = (u8)(counter - 1);
+    }
+    sync_release(&D_80152770, 0, 0);
+}
+
+/*
+ * func_800E7980 (112 bytes)
+ * Increment element counter byte (max 255)
+ */
+void func_800E7980(void *arg) {
+    u8 *ptr;
+    u32 counter;
+
+    sync_acquire(&D_80152770, 0, 1);
+    ptr = func_80095F8C(arg);
+    ptr = func_80095EF4(ptr, 0);
+    counter = *(u8 *)(ptr + 22);
+    if (counter < 255) {
+        *(u8 *)(ptr + 22) = (u8)(counter + 1);
+    }
+    sync_release(&D_80152770, 0, 0);
+}
+
+/*
+ * func_80095120 (52 bytes)
+ * Validate params and call handler with flag 15
+ */
+s32 func_80095120(void *a0, void *a1) {
+    if (a0 == NULL || a1 == NULL) {
+        return -1;
+    }
+    return func_800950AC(a0, a1, 15);
+}
+
+/*
+ * func_800960D4 (92 bytes)
+ * Sync-protected element operation
+ */
+void func_800960D4(void *param) {
+    sync_acquire(&D_80152770, 0, 1);
+    func_80095FD8(param, 0);
+    sync_release(&D_80152770, 0, 0);
+}
+
+/*
+ * func_8009638C (96 bytes)
+ * Initialize entry and set active flag
+ */
+void func_8009638C(s32 index) {
+    void *entry;
+    void *ptr;
+
+    func_80096288(index, 0, 0);
+    entry = (void *)(D_80156D38 + index * 20);
+    ptr = *(void **)((u8 *)entry + 12);
+    func_800962D4(ptr, 0);
+    *(u8 *)((u8 *)entry + 2) = 1;
+}
+
+/*
+ * func_800AC6F4 (104 bytes)
+ * Wrapper to call handler after saving context
+ */
+void func_800AC6F4(void *context) {
+    func_80096CA8(0);
+}
+
+/*
+ * func_800B0618 (84 bytes)
+ * Process linked list and reset system
+ */
+void func_800B0618(void) {
+    void *node;
+
+    node = D_801491F0;
+    while (node != NULL) {
+        func_8009079C(node, 1);
+        node = D_801491F0;
+    }
+    func_800B0580();
+}
+
+/*
+ * func_800CD748 (76 bytes)
+ * Allocate and sync entity data block
+ */
+void func_800CD748(void *obj) {
+    void *ptr1;
+    void *ptr2;
+    void *target;
+
+    ptr1 = *(void **)obj;
+    ptr2 = *(void **)((u8 *)ptr1 + 44);
+    target = (u8 *)(*(void **)ptr2) + 1780;
+    *(void **)target = func_800B466C((u8 *)target + 4, 72);
+    func_800A2504(*(void **)((u8 *)ptr1 + 8), target, 76);
+}
+
+/*
+ * func_800CDA90 (76 bytes)
+ * Set byte at offset 71 if different, sync to entity
+ */
+void func_800CDA90(void *obj, u8 new_val) {
+    void *ptr1;
+    void *ptr2;
+    void *base;
+    u8 old_val;
+
+    ptr1 = *(void **)obj;
+    ptr2 = *(void **)((u8 *)ptr1 + 44);
+    base = *(void **)ptr2;
+    old_val = *(u8 *)((u8 *)base + 71);
+
+    if (new_val == old_val) {
+        return;
+    }
+
+    *(u8 *)((u8 *)base + 71) = new_val;
+    ptr1 = *(void **)obj;
+    ptr2 = *(void **)((u8 *)ptr1 + 44);
+    func_800A2504(*(void **)((u8 *)ptr1 + 8), (u8 *)(*(void **)ptr2) + 71, 1);
+}
+
+/*
+ * func_800D6290 (92 bytes)
+ * Wrapper to call update handler with flag 0
+ */
+void func_800D6290(void) {
+    func_800D6160(0);
+}
+
+/*
+ * func_800D62EC (92 bytes)
+ * Wrapper to call update handler with flag 1
+ */
+void func_800D62EC(void) {
+    func_800D6160(1);
+}
+
+/*
+ * func_800D6348 (104 bytes)
+ * Allocate entity type 9
+ */
+void func_800D6348(void) {
+    void *entity;
+
+    sync_acquire(&D_80142728, 0, 1);
+    entity = func_80091B00();
+    *(u8 *)((u8 *)entity + 2) = 9;
+    sync_release(&D_80142728, 0, 0);
+    sync_release(&D_801427A8, entity, 0);
+}
+
+/*
+ * func_800D63C4 (40 bytes)
+ * Call handler and clear byte at offset 8
+ */
+void func_800D63C4(void *a0, void *a1) {
+    func_8009211C(a0);
+    *(u8 *)((u8 *)a1 + 8) = 0;
+}
+
+/*
+ * func_800DB7B4 (100 bytes)
+ * Allocate entity type 7
+ */
+void func_800DB7B4(void) {
+    void *entity;
+
+    sync_acquire(&D_80142728, 0, 1);
+    entity = func_80091B00();
+    *(u8 *)((u8 *)entity + 2) = 7;
+    sync_release(&D_80142728, 0, 0);
+    sync_release(&D_801427A8, entity, 0);
+}
+
+/*
+ * func_800ED764 (80 bytes)
+ * Set global byte from value or from pointer offset 8
+ */
+void func_800ED764(s16 value) {
+    if (value >= 0) {
+        D_80159B70 = (u8)value;
+    } else {
+        func_800B3D18(0);
+        D_80159B70 = *(u8 *)(D_801597F0 + 8);
+    }
+}
+
+/*
+ * func_800ED7B4 (80 bytes)
+ * Set global byte from value or from pointer offset 4
+ */
+void func_800ED7B4(s16 value) {
+    if (value >= 0) {
+        D_80159B60 = (u8)value;
+    } else {
+        func_800B3D18(0);
+        D_80159B60 = *(u8 *)(D_801597F0 + 4);
+    }
+}
+
+/*
+ * func_800B0550 (48 bytes)
+ * Initialize structure with values and call setup handler
+ */
+void func_800B0550(void *obj, void *ptr, u32 val1, u32 val2, u8 byte_val) {
+    *(void **)((u8 *)obj + 12) = ptr;
+    *(u32 *)((u8 *)obj + 4) = val2;
+    *(u32 *)((u8 *)obj + 8) = val1;
+    *(u8 *)obj = byte_val;
+    func_800B04D0(obj);
+}
+
+/*
+ * func_800A4C54 (76 bytes)
+ * Release slot and wait for completion
+ */
+void func_800A4C54(void) {
+    func_800A4B6C();
+    func_80096238(D_80151A6C);
+    func_80020274();
+    while (func_800202C4() == 0) {
+        /* spin */
+    }
+}
+
+/*
+ * func_800BF024 (120 bytes)
+ * Find entity, process callback, and release
+ */
+void func_800BF024(void *arg) {
+    void *result;
+
+    sync_acquire(&D_80142728, 0, 1);
+    result = func_80091BA8(arg);
+    if (result == NULL) {
+        sync_release(&D_80142728, 0, 0);
+        return;
+    }
+    func_800BF01C(*(void **)((u8 *)result + 64));
+    sync_release(&D_80142728, 0, 0);
+    func_80091C04(arg);
+}
+
+/*
+ * func_800C55E4 (92 bytes)
+ * Conditionally call external handler based on mode
+ */
+void func_800C55E4(s8 a, s8 b, s8 c) {
+    s32 mode = D_8015A110;
+
+    if (mode == 6 || mode == 4) {
+        func_803914B4(a, b, c);
+    }
+}
+
+/*
+ * func_800C878C (104 bytes)
+ * Allocate entity type 7 (alternate)
+ */
+void func_800C878C(void) {
+    void *entity;
+
+    sync_acquire(&D_80142728, 0, 1);
+    entity = func_80091B00();
+    *(u8 *)((u8 *)entity + 2) = 7;
+    sync_release(&D_80142728, 0, 0);
+    sync_release(&D_801427A8, entity, 0);
+}
+
+/*
+ * func_800C87F4 (104 bytes)
+ * Allocate entity type 1
+ */
+void func_800C87F4(void) {
+    void *entity;
+
+    sync_acquire(&D_80142728, 0, 1);
+    entity = func_80091B00();
+    *(u8 *)((u8 *)entity + 2) = 1;
+    sync_release(&D_80142728, 0, 0);
+    sync_release(&D_801427A8, entity, 0);
+}
+
+/*
+ * func_8008E398 (40 bytes)
+ * Wrapper to call handler with sign-extended param
+ */
+void func_8008E398(void *a0, void *a1, s16 a2) {
+    func_8008E26C(a0, a1, a2);
+}
+
+/*
+ * func_80091C04 (156 bytes)
+ * Find entity, create reference entity type 6, increment refcount
+ */
+void func_80091C04(void *arg) {
+    void *result;
+    void *new_entity = NULL;
+
+    sync_acquire(&D_80142728, 0, 1);
+    result = func_80091BA8(arg);
+    if (result != NULL) {
+        new_entity = func_80091B00();
+        *(u8 *)((u8 *)new_entity + 2) = 6;
+        *(void **)((u8 *)new_entity + 4) = result;
+        *(u8 *)((u8 *)result + 26) = *(u8 *)((u8 *)result + 26) + 1;
+    }
+    sync_release(&D_80142728, 0, 0);
+    if (new_entity != NULL) {
+        sync_release(&D_801427A8, new_entity, 0);
+    }
+}
+
+/*
+ * func_800B3F00 (40 bytes)
+ * Get byte at offset 2 from player/game struct
+ */
+u8 func_800B3F00(void) {
+    func_800B3D18(0);
+    return *(u8 *)(D_801497F0 + 2);
+}
+
+/*
+ * func_800B3F28 (40 bytes)
+ * Get byte at offset 3 from player/game struct
+ */
+u8 func_800B3F28(void) {
+    func_800B3D18(0);
+    return *(u8 *)(D_801497F0 + 3);
+}
+
+/*
+ * func_800B3F50 (84 bytes)
+ * Calculate sum of base value and struct offsets 2,3
+ */
+s16 func_800B3F50(void) {
+    u8 offset3;
+    u8 offset2;
+    s8 base;
+
+    func_800B3D18(0);
+    offset3 = *(u8 *)(D_801497F0 + 3);
+    func_800B3D18(0);
+    offset2 = *(u8 *)(D_801497F0 + 2);
+    base = D_80149B60;
+    return (s16)(base + offset2 + offset3);
+}
+
+/*
+ * func_800B5FC4 (80 bytes)
+ * Call handler with flag-based sound/event ID
+ */
+void func_800B5FC4(s32 flags) {
+    s32 val;
+
+    if (flags & 1) {
+        val = 46;
+    } else if (flags & 2) {
+        val = 37;
+    } else {
+        val = 38;
+    }
+    func_80092360(val, 0, 1, 0);
+}
+
+/*
+ * func_800B61B0 (76 bytes)
+ * Conditionally call function based on global flag
+ */
+s32 func_800B61B0(s32 a0, s32 a1, s32 a2, u8 a3) {
+    if (D_8010FFC0 == 0) {
+        return -1;
+    }
+    return func_800B61FC(a0, a1, a2, a3 & 0xFF);
+}
+
+/*
+ * func_800D6E00 (116 bytes)
+ * Allocate entity type 11 with byte param
+ */
+void func_800D6E00(u8 param) {
+    void *entity;
+
+    sync_acquire(&D_80142728, 0, 1);
+    entity = func_80091B00();
+    *(u8 *)((u8 *)entity + 2) = 11;
+    *(u8 *)((u8 *)entity + 4) = param;
+    sync_release(&D_80142728, 0, 0);
+    sync_release(&D_801427A8, entity, 0);
+}
+
+/*
+ * func_800D52D4 (152 bytes)
+ * Process entity with sync - call handler, update flags
+ */
+void func_800D52D4(void *ptr) {
+    if ((s32)ptr == -1) {
+        return;
+    }
+    sync_acquire(&D_80142728, 0, 1);
+    func_800D52CC(ptr);
+    if (*(s8 *)((u8 *)ptr + 9) != 0) {
+        func_8009211C(&D_80146188, ptr);
+        *(u8 *)((u8 *)ptr + 9) = 0;
+    }
+    func_80091FBC(&D_80146170, ptr, *(u32 *)((u8 *)&D_80146170 + 8));
+    *(u8 *)((u8 *)ptr + 8) = 1;
+    sync_release(&D_80142728, 0, 0);
+}
+
+/*
+ * func_800C9194 (124 bytes)
+ * Allocate entity type 0 with pointer and byte value
+ */
+void func_800C9194(void *ptr, u8 byte_val) {
+    void *entity;
+
+    sync_acquire(&D_80142728, 0, 1);
+    entity = func_80091B00();
+    *(u8 *)((u8 *)entity + 2) = 0;
+    *(void **)((u8 *)entity + 4) = ptr;
+    *(u8 *)((u8 *)entity + 8) = byte_val;
+    sync_release(&D_80142728, 0, 0);
+    sync_release(&D_801427A8, entity, 0);
+}
+
+/*
+ * func_800EE7C4 (92 bytes)
+ * Initialize main sync object if not already done
+ * Note: Called with D_801147C0 pre-loaded into $t6
+ */
+void func_800EE7C4(void) {
+    if (D_801147C0 != 0) {
+        D_80149DA0 = -1;
+        return;
+    }
+    D_801147C0 = 1;
+    sync_init(&D_801461D0, &D_801461FC, 1);
+    sync_release(&D_801461D0, 0, 0);
+    D_80149DA0 = -1;
+}
+
+/*
+ * func_800EF5B0 (124 bytes)
+ * Initialize structure and call setup handlers
+ */
+void func_800EF5B0(void *obj, void *ptr, s32 flag) {
+    s8 count;
+
+    *(void **)obj = ptr;
+    if (flag != 0) {
+        count = D_80140BDC - 1;
+        *(u32 *)((u8 *)obj + 8) = func_800B24EC(ptr, (void *)((u8 *)obj + 12), 0, count, 1);
+    } else {
+        func_800B362C(obj);
+    }
+    func_80094EC8(obj);
+}
+
+/*
+ * func_800A4B48 (36 bytes)
+ * Simple wrapper to call release handler
+ */
+void func_800A4B48(void) {
+    func_80096238(D_80151A6C);
+}
+
+/*
+ * func_800A5B60 (80 bytes)
+ * Initialize global state variables
+ */
+void func_800A5B60(void) {
+    D_801613B4 = 0;
+    D_8016B254 = -1;
+    func_800A5A40();
+    D_801613B8 = 1.0f;
+    D_80140618 = 0;
+    D_801406B8 = &D_8011EA18;
+}
+
+/*
+ * func_800B41C0 (64 bytes)
+ * Wrapper to call handler with sound/display index
+ */
+void func_800B41C0(s16 index, s16 param) {
+    func_800B3FA4(index, param);
+}
+
+/*
+ * func_800B4360 (44 bytes)
+ * Wrapper to set display/audio state
+ */
+void func_800B4360(s32 value) {
+    func_800B438C(value);
+}
+
+/*
+ * func_800C70BC (132 bytes)
+ * Check and process pending entity operations
+ */
+s32 func_800C70BC(void *ptr) {
+    void *result;
+
+    sync_acquire(&D_80142728, 0, 1);
+    result = func_800C813C(ptr);
+    sync_release(&D_80142728, 0, 0);
+    if (result == NULL) {
+        return 0;
+    }
+    func_80091C04(result);
+    return 1;
+}
+
+/*
+ * func_800E7914 (108 bytes)
+ * Decrement reference count on element
+ */
+void func_800E7914(void *ptr) {
+    void *result;
+    s8 count;
+
+    sync_acquire(&D_80152770, 0, 1);
+    result = func_80095F8C(ptr);
+    func_80095EF4(result, 0);
+    count = *(s8 *)((u8 *)result + 22);
+    if (count > 0) {
+        *(u8 *)((u8 *)result + 22) = count - 1;
+    }
+    sync_release(&D_80152770, 0, 0);
+}
+
+/*
+ * func_800E7980 (112 bytes)
+ * Increment reference count on element (max 255)
+ */
+void func_800E7980(void *ptr) {
+    void *result;
+    u8 count;
+
+    sync_acquire(&D_80152770, 0, 1);
+    result = func_80095F8C(ptr);
+    func_80095EF4(result, 0);
+    count = *(u8 *)((u8 *)result + 22);
+    if (count < 255) {
+        *(u8 *)((u8 *)result + 22) = count + 1;
+    }
+    sync_release(&D_80152770, 0, 0);
+}
+
+/*
+ * func_800E7A98 (172 bytes)
+ * Remove element from linked list and release
+ */
+void func_800E7A98(void *ptr) {
+    void *target;
+    void *current;
+    void *prev;
+
+    sync_acquire(&D_80152770, 0, 1);
+    if (ptr != NULL) {
+        target = ptr;
+    } else {
+        target = D_801527C8;
+    }
+    current = D_801527C8;
+    if (current != NULL) {
+        prev = current;
+        while ((current = *(void **)((u8 *)prev + 4)) != NULL) {
+            if (target == current) {
+                *(void **)((u8 *)prev + 4) = *(void **)((u8 *)target + 4);
+                break;
+            }
+            prev = current;
+        }
+    }
+    func_80095FD8(target, 1);
+    sync_release(&D_80152770, 0, 0);
+}
+
+/*
+ * func_800DC720 (116 bytes)
+ * Clear array entries and reset flag
+ */
+void func_800DC720(void *ptr) {
+    s32 i;
+    void *current;
+
+    if (ptr == NULL) {
+        return;
+    }
+    if (*(s8 *)ptr == 0) {
+        return;
+    }
+    current = ptr;
+    for (i = 0; i < 20; i += 4) {
+        if (*(void **)((u8 *)current + 12) != NULL) {
+            func_800B358C(*(void **)((u8 *)current + 12));
+            *(void **)((u8 *)current + 12) = NULL;
+        }
+        current = (void *)((u8 *)current + 4);
+    }
+    *(u8 *)ptr = 0;
+}
+
+/*
+ * func_800B0870 (108 bytes)
+ * Process linked list, call callbacks, and cleanup
+ */
+void func_800B0870(void) {
+    void *current;
+    void *next;
+    void *callback;
+
+    current = D_801491F8;
+    if (current != NULL) {
+        next = *(void **)current;
+    } else {
+        next = NULL;
+    }
+    while (current != NULL) {
+        callback = *(void **)((u8 *)current + 20);
+        if (callback != NULL) {
+            ((void (*)(void *, s32))callback)(current, 1);
+        }
+        if (next != NULL) {
+            current = next;
+            next = *(void **)current;
+        } else {
+            break;
+        }
+    }
+    func_800B066C();
+}
+
+/*
+ * func_8009DD18 (112 bytes)
+ * Check tree node and recursively search children
+ */
+s32 func_8009DD18(void *node) {
+    u32 flags;
+    s16 child_index;
+    void *child_ptr;
+
+    flags = *(u32 *)node;
+    if ((flags & 0x100) != 0) {
+        return 1;
+    }
+    child_index = *(s16 *)((u8 *)node + 22);
+    if (child_index < 0) {
+        return 0;
+    }
+    child_ptr = (void *)((u8 *)&D_8012E700 + (child_index * 17 * 4));
+    if (func_8009DC50(child_ptr, 0x100) != 0) {
+        return 1;
+    }
+    return 0;
+}
+
+/*
+ * func_800EC0DC (180 bytes)
+ * Update players in multiplayer mode
+ */
+void func_800EC0DC(void) {
+    s32 i;
+    void *player_ptr;
+    void *ptr1;
+    void *ptr2;
+
+    func_800E847C();
+    if (D_8014A110 != 2) {
+        func_800EB90C();
+        return;
+    }
+    if (D_8014A108 < 2) {
+        func_800EB90C();
+        return;
+    }
+    player_ptr = &D_80142BD0;
+    ptr1 = &D_80142BD8;
+    ptr2 = &D_80142C20;
+    for (i = 1; i < D_8014A108; i++) {
+        func_8008D6FC(*(s16 *)((u8 *)player_ptr + 246), ptr1, ptr2);
+        player_ptr = (void *)((u8 *)player_ptr + 952);
+        ptr1 = (void *)((u8 *)ptr1 + 952);
+        ptr2 = (void *)((u8 *)ptr2 + 952);
+    }
+    func_800EB90C();
+}
+
+/*
+ * func_800BE4B4 (60 bytes)
+ * Wrapper to process render and display callbacks
+ */
+void func_800BE4B4(s16 a0, s16 a1, void *a2, void *a3) {
+    func_800B74A0(a2);
+    func_800B71D4(a0, a1, a3);
+}
+
+/*
+ * func_800C90E0 (112 bytes)
+ * Stop all sound effects in range
+ */
+void func_800C90E0(void) {
+    s32 i;
+    s32 handle;
+
+    for (i = 0; i < 16; i++) {
+        handle = func_80097694(i + 38, -1);
+        if (handle >= 0) {
+            func_800AC840(handle);
+        }
+        handle = func_80097694(i + 22, -1);
+        if (handle >= 0) {
+            func_800AC840(handle);
+        }
+    }
+}
+
+/*
+ * func_800BAD58 (136 bytes)
+ * Initialize float arrays and reset camera state
+ */
+void func_800BAD58(void) {
+    s32 i;
+
+    func_800BAAA0();
+    for (i = 0; i < 6; i++) {
+        D_80143F28[i] = 0.0f;
+        D_80143F48[i] = 0.0f;
+        D_80143F68[i] = 0.0f;
+    }
+    D_80144190 = D_801443CC;
+    D_80144182 = -1;
+}
+
+/*
+ * func_800C9530 (24 bytes)
+ * Stub function - immediate return
+ */
+void func_800C9530(void) {
+    /* Empty stub */
+}
+
+/*
+ * func_800D60B4 (84 bytes)
+ * Wrapper to call update handler with flag 2
+ */
+void func_800D60B4(void *ptr) {
+    func_800D60AC(ptr, 2);
+}
+
+/*
+ * func_8008A6D0 (44 bytes)
+ * Release audio/sound sync object
+ */
+void func_8008A6D0(void) {
+    sync_release(&D_801497D0, 0, 0);
+}
+
+/*
+ * func_8008AA20 (32 bytes)
+ * Wrapper to call hardware wait
+ */
+void func_8008AA20(void) {
+    func_800205E4();
+}
+
+/*
+ * func_8008AD48 (36 bytes)
+ * Process matrix with offset
+ */
+void func_8008AD48(void *a0, void *a1) {
+    func_8008AD04((void *)((u8 *)a0 + 4), (void *)((u8 *)a1 + 4));
+}
+
+/*
+ * func_8008B660 (60 bytes)
+ * Normalize and copy vector
+ */
+void func_8008B660(void *src, void *dst) {
+    func_8008B424(src, dst);
+}
+
+/*
+ * func_800C3614 (140 bytes)
+ * Initialize player arrays and set flags
+ */
+void func_800C3614(void) {
+    void *ptr;
+
+    memset(&D_80152038, 0, 480);
+    ptr = &D_801569B8;
+    while (ptr != &D_80156BA8) {
+        memset(ptr, 0, 124);
+        *(u32 *)ptr = *(u32 *)ptr | 0x15000000;
+        ptr = (void *)((u8 *)ptr + 124);
+    }
+    D_8016139C = 0.0f;
+    D_80152738 = 0;
+}
+
+/*
+ * func_8009C5BC (36 bytes)
+ * Return current frame/time value
+ */
+s32 func_8009C5BC(void) {
+    return D_8009C3F8();
+}
+
+/*
+ * func_800A2CE4 (40 bytes)
+ * Load and return halfword from global
+ */
+s16 func_800A2CE4(void) {
+    return D_8015A108;
+}
+
+/*
+ * func_800A2D0C (56 bytes)
+ * Get player count from state
+ */
+s32 func_800A2D0C(void) {
+    if (D_8014A110 == 2) {
+        return D_8015A108;
+    }
+    return 1;
+}
+
+/*
+ * func_80094F88 (60 bytes)
+ * Update mode byte and call handler if changed
+ */
+s8 func_80094F88(void *obj, s8 new_val) {
+    s8 current = *(s8 *)((u8 *)obj + 26);
+
+    if (new_val == current) {
+        return current;
+    }
+    *(s8 *)((u8 *)obj + 26) = new_val;
+    func_80094EC8(obj);
+    return *(s8 *)((u8 *)obj + 26);
+}
+
+/*
+ * func_8009508C (32 bytes)
+ * Simple matrix copy wrapper
+ */
+void func_8009508C(void *a0, void *a1) {
+    func_8008AD04(a0, a1);
+}
+
+/*
+ * func_800AB70C (68 bytes)
+ * Process sound with modified parameters
+ */
+void func_800AB70C(void *ptr, s16 a1, s16 a2, s16 a3, s32 a4) {
+    s16 param = (a2 << 8) ^ 0x0F00;
+    func_8008E26C(ptr, a1, a3, param | a4);
+}
+
+/*
+ * func_800AC840 (32 bytes)
+ * Stop sound handle
+ */
+void func_800AC840(s32 handle) {
+    func_800AC898(handle, 0);
+}
+
+/*
+ * func_800F73FC (76 bytes)
+ * Process callback list entry
+ */
+void func_800F73FC(void *entry) {
+    void *callback;
+    s32 result;
+
+    callback = *(void **)((u8 *)entry + 40);
+    if (callback == NULL) {
+        return;
+    }
+    if (*(s32 *)entry == -1) {
+        return;
+    }
+    result = ((s32 (*)(void *))callback)(entry);
+    if (result == 0) {
+        func_800B358C(entry);
+    }
+}
+
+/*
+ * func_800FBBFC (52 bytes)
+ * Set high score mode flag
+ */
+void func_800FBBFC(s32 mode) {
+    if (mode == 0) {
+        D_801174B4 = D_801174B4 | 0x10000;
+    } else {
+        D_801174B4 = D_801174B4 & ~0x10000;
+    }
+}
+
+/*
+ * func_800FBC30 (8 bytes)
+ * Stub - immediate return
+ */
+void func_800FBC30(void) {
+    /* Empty */
+}
+
+/*
+ * func_800FEC60 (60 bytes)
+ * Clear multiplayer flags
+ */
+void func_800FEC60(void) {
+    s32 i;
+
+    for (i = 0; i < 4; i++) {
+        D_80156CF0[i] = 0;
+    }
+}
+
+/*
+ * func_800D6348 (104 bytes)
+ * Allocate entity type 9
+ */
+void func_800D6348(void) {
+    void *entity;
+
+    sync_acquire(&D_80142728, 0, 1);
+    entity = func_80091B00();
+    *(u8 *)((u8 *)entity + 2) = 9;
+    sync_release(&D_80142728, 0, 0);
+    sync_release(&D_801427A8, entity, 0);
+}
+
+/*
+ * func_800D6290 (92 bytes)
+ * Wrapper - call update with flag 0
+ * Uses pre-loaded $t0 register for flag
+ */
+void func_800D6290(void) {
+    func_800D6160(0);
+}
+
+/*
+ * func_800D62EC (92 bytes)
+ * Wrapper - call update with flag 1
+ * Uses pre-loaded $t0 register for flag
+ */
+void func_800D62EC(void) {
+    func_800D6160(1);
+}
+
+/*
+ * func_800B557C (128 bytes)
+ * Clear sound/audio entries
+ */
+void func_800B557C(void) {
+    void *ptr;
+    void *entry;
+    void *end = (void *)0x80114638;
+
+    /* Clear first entry at D_80114624 */
+    entry = D_80114624;
+    if (entry != NULL) {
+        func_800B358C(entry);
+        D_80114624 = NULL;
+    }
+
+    /* Clear entries in array D_80114628..D_80114638 */
+    ptr = (void *)0x80114628;
+    while (ptr != end) {
+        entry = *(void **)ptr;
+        if (entry != NULL) {
+            func_8008D0C0(entry);
+            *(void **)ptr = NULL;
+        }
+        ptr = (void *)((u8 *)ptr + 4);
+    }
+}
+
+/*
+ * func_800B55FC (140 bytes)
+ * Iterate through list and call handler
+ */
+void func_800B55FC(s32 param) {
+    void *base = (void *)0x80144D60;
+    void *end = (void *)0x80144DA0;
+    void *current;
+    void *next;
+    void *obj;
+
+    while (base != end) {
+        current = *(void **)((u8 *)base + 8);
+        while (current != NULL) {
+            obj = *(void **)current;
+            next = *(void **)((u8 *)obj + 72);
+            if (next != NULL) {
+                func_800A2378(current, param);
+            }
+            obj = *(void **)current;
+            current = *(void **)obj;
+        }
+        base = (void *)((u8 *)base + 16);
+    }
+}
+
+/*
+ * func_800B6138 (108 bytes)
+ * Initialize player state entries
+ */
+void func_800B6138(void) {
+    s16 count;
+    s32 i;
+    void *ptr;
+
+    func_800B6024();
+
+    count = D_8015A108;
+    if (count <= 0) {
+        return;
+    }
+
+    ptr = (void *)0x8015A118;
+    i = 0;
+    while (i < count) {
+        *(s32 *)((u8 *)ptr + 8) = 0;
+        *(s32 *)((u8 *)ptr + 4) = 0;
+        *(s32 *)((u8 *)ptr + 12) = 0;
+        *(f32 *)((u8 *)ptr + 16) = 0.0f;
+        *(f32 *)((u8 *)ptr + 20) = 0.0f;
+        count = D_8015A108;
+        i++;
+        ptr = (void *)((u8 *)ptr + 76);
+    }
+}
+
+/*
+ * func_800D7D40 (132 bytes)
+ * Clear sound handles for player
+ */
+void func_800D7D40(s8 player_idx) {
+    s32 i;
+    void *ptr;
+    s32 handle;
+
+    player_idx = (s8)((player_idx << 24) >> 24);  /* Sign extend */
+    ptr = (void *)((u8 *)0x80111998 + (((player_idx << 4) + player_idx) << 6));
+
+    for (i = 0; i < 0x440; i += 64) {
+        handle = *(s32 *)((u8 *)ptr + 4);
+        if (handle != -1) {
+            func_80090088((s16)handle, 0, 0);
+            *(s32 *)((u8 *)ptr + 4) = -1;
+        }
+        ptr = (void *)((u8 *)ptr + 64);
+    }
+
+    D_80154618[player_idx] = 0;
+}
+
+/*
+ * func_800D7DC4 (196 bytes)
+ * Clear sound handles for all players
+ */
+void func_800D7DC4(void) {
+    s32 i;
+    s8 player_idx;
+    u8 *ptr1 = (u8 *)0x8015418C;
+    u8 *ptr2 = (u8 *)0x8015A10C;
+
+    for (i = 0; i < 4; i++) {
+        player_idx = (s8)((i << 24) >> 24);
+        *ptr1 = 0;
+        *ptr2 = 0;
+        func_800D7D40(player_idx);
+        ptr1++;
+        ptr2++;
+    }
+
+    /* Clear audio entry at D_80113ED8 */
+    if (D_80113ED8 != NULL) {
+        func_800B358C(D_80113ED8);
+        D_80113ED8 = NULL;
+    }
+    D_80113ED4 = 0;
+}
+
+/*
+ * func_800DB7B4 (100 bytes)
+ * Allocate entity type 7
+ */
+void func_800DB7B4(void) {
+    void *entity;
+
+    sync_acquire(&D_80142728, 0, 1);
+    entity = func_80091B00();
+    *(u8 *)((u8 *)entity + 2) = 7;
+    sync_release(&D_80142728, 0, 0);
+    sync_release(&D_801427A8, entity, 0);
+}
+
+/*
+ * func_800E2A64 (92 bytes)
+ * Update object with chain of function calls
+ */
+void func_800E2A64(void *obj) {
+    func_800CF06C(obj);
+    func_800E23A4(obj);
+    func_800E1C30(obj);
+    func_800E1AA0(obj);
+    func_800E15A0(obj);
+    func_800E1540(obj);
+    func_800E114C(obj);
+    func_800D0424(obj);
+}
+
+/*
+ * func_800ED764 (80 bytes)
+ * Set track/state byte based on parameter sign
+ */
+void func_800ED764(s16 param) {
+    param = (s16)((param << 16) >> 16);  /* Sign extend */
+    if (param < 0) {
+        func_800B3D18(0);
+        D_80159B70 = *(u8 *)((u8 *)D_801597F0 + 8);
+    } else {
+        D_80159B70 = (u8)param;
+    }
+}
+
+/*
+ * func_800ED7B4 (80 bytes)
+ * Set car/state byte based on parameter sign
+ */
+void func_800ED7B4(s16 param) {
+    param = (s16)((param << 16) >> 16);  /* Sign extend */
+    if (param < 0) {
+        func_800B3D18(0);
+        D_80159B60 = *(u8 *)((u8 *)D_801597F0 + 4);
+    } else {
+        D_80159B60 = (u8)param;
+    }
+}
+
+/*
+ * func_800F68A4 (128 bytes)
+ * Copy bytes from player structure to output buffer
+ */
+void func_800F68A4(u8 *dest) {
+    void *entry;
+    void *data;
+    s32 i;
+    s32 offset;
+    u8 count;
+
+    func_800B3D18(0);
+
+    entry = D_801597F0;
+    count = *(u8 *)((u8 *)entry + 12);
+    data = D_80159800;
+    i = 0;
+    offset = 0;
+
+    while (i < count) {
+        *(u8 *)(dest + i) = *(u8 *)((u8 *)data + offset + 4);
+        entry = D_801597F0;
+        count = *(u8 *)((u8 *)entry + 12);
+        i++;
+        offset += 12;
+    }
+    *(u8 *)(dest + i) = 0;
+}
+
+/*
+ * func_800F7344 (160 bytes)
+ * Process callback list with removal
+ */
+void func_800F7344(void) {
+    void **list;
+    void *entry;
+    void *callback;
+    s32 result;
+    void **end;
+
+    if (D_80159788 <= 0) {
+        return;
+    }
+
+    list = (void **)0x80159450;
+    while (1) {
+        entry = *list;
+        callback = *(void **)((u8 *)entry + 40);
+
+        if (callback != NULL) {
+            if (*(s32 *)entry != -1) {
+                result = ((s32 (*)(void *))callback)(entry);
+                if (result == 0) {
+                    func_800B358C(entry);
+                    end = (void **)((D_80159788 << 2) + (u8 *)0x80159450);
+                    list -= 1;
+                    goto check_loop;
+                }
+            }
+        }
+        end = (void **)((D_80159788 << 2) + (u8 *)0x80159450);
+check_loop:
+        list += 1;
+        if (list >= end) {
+            break;
+        }
+    }
+}
+
+/*
+ * func_800BF024 (124 bytes)
+ * Execute callback from entity if present
+ */
+void func_800BF024(void *param) {
+    void *entity;
+
+    sync_acquire(&D_80142728, 0, 1);
+    entity = func_80091BA8(param, &D_80142728);
+    if (entity == NULL) {
+        sync_release(&D_80142728, 0, 0);
+        return;
+    }
+    func_800BF01C(*(void **)((u8 *)entity + 64));
+    sync_release(&D_80142728, 0, 0);
+    func_80091C04(param);
+}
+
+/*
+ * func_800960D4 (92 bytes)
+ * Load element with sync
+ */
+void func_800960D4(void *param) {
+    sync_acquire(&D_80152770, 0, 1);
+    func_80095FD8(param, 0);
+    sync_release(&D_80152770, 0, 0);
+}
+
+/*
+ * func_8009638C (92 bytes)
+ * Initialize element and mark active
+ */
+void func_8009638C(s32 index) {
+    void *entry;
+
+    func_80096288(0, 0);
+    entry = (void *)((u8 *)0x80156D38 + ((index << 2) + index) << 2);
+    func_800962D4(*(void **)((u8 *)entry + 12), 0);
+    *(u8 *)((u8 *)entry + 2) = 1;
+}
+
+/*
+ * func_80096B5C (92 bytes)
+ * Get element data with optional output
+ */
+void *func_80096B5C(void *key, void *output) {
+    void *result = NULL;
+
+    if (key != NULL) {
+        result = func_80096B00(key);
+    }
+    if (result == NULL) {
+        if (output != NULL) {
+            *(void **)output = NULL;
+        }
+        return NULL;
+    }
+    if (output != NULL) {
+        *(void **)output = *(void **)((u8 *)result + 8);
+    }
+    return *(void **)((u8 *)result + 4);
+}
+
+/*
+ * func_800A4AC4 (128 bytes)
+ * Process all slots calling element function
+ */
+void func_800A4AC4(void *param) {
+    void *ptr = (void *)0x80156D38;
+    s32 i;
+
+    for (i = 0; i < 64; i++) {
+        if (*(void **)((u8 *)ptr + 12) != NULL) {
+            if (*(u8 *)((u8 *)ptr + 6) != i) {
+                func_80096130(i);
+            }
+        }
+        ptr = (void *)((u8 *)ptr + 20);
+    }
+}
+
+/*
+ * func_800C55E4 (92 bytes)
+ * Conditional external call based on game state
+ */
+void func_800C55E4(s8 a0, s8 a1, s8 a2) {
+    s32 state = D_8015A110;
+
+    a0 = (s8)((a0 << 24) >> 24);
+    a1 = (s8)((a1 << 24) >> 24);
+    a2 = (s8)((a2 << 24) >> 24);
+
+    if (state == 6 || state == 4) {
+        func_803914B4(a0, a1, a2);
+    }
+}
+
+/*
+ * func_800A0F74 (104 bytes)
+ * Load ROM data if flag set
+ * Uses pre-loaded $t6 register for condition check
+ */
+void func_800A0F74(s32 flag) {
+    if (flag == 0) {
+        return;
+    }
+    sync_acquire(&D_80152770, 0, 1);
+    func_80095FD8((void *)0x8039A400, 0);
+    sync_release(&D_80152770, 0, 0);
+    D_8012ED04 = 0;
+}
+
+/*
+ * func_800D5050 (148 bytes)
+ * Update all player slots
+ */
+void func_800D5050(void) {
+    void *ptr = (void *)0x8015A250;
+    void *base = (void *)0x80152818;
+    s32 i;
+
+    for (i = 0; i < 6; i++) {
+        if (*(s16 *)((u8 *)ptr + 0x7C8) != 0) {
+            s32 offset = i * 952;
+            if (*(s8 *)((u8 *)base + offset + 0x359) >= 2) {
+                func_800D4DFC(ptr);
+            }
+        }
+        ptr = (void *)((u8 *)ptr + 0x808);
+    }
+}
+
+/*
+ * func_800A4C54 (80 bytes)
+ * Wait for operation completion
+ */
+void func_800A4C54(void) {
+    func_800A4B6C();
+    func_80096238(D_80151A6C);
+    func_80020274();
+    while (func_800202C4() == 0) {
+        /* Wait */
+    }
+}
+
+/*
+ * func_800AB758 (120 bytes)
+ * Copy vectors to structure at index
+ * Pre-loaded $t6, $t7 registers
+ */
+void func_800AB758(s32 index, f32 *src1, f32 *src2, f32 *matrix) {
+    void *dest;
+
+    dest = (void *)((u8 *)D_80114E18 + (index << 6));
+    func_8008D6B0((u8 *)dest + 4, matrix);
+
+    *(f32 *)((u8 *)dest + 40) = src2[0];
+    *(f32 *)((u8 *)dest + 44) = src2[1];
+    *(f32 *)((u8 *)dest + 48) = src2[2];
+    *(f32 *)((u8 *)dest + 52) = src1[0];
+    *(f32 *)((u8 *)dest + 56) = src1[1];
+    *(f32 *)((u8 *)dest + 60) = src1[2];
+}
+
+/*
+ * func_800AC668 (140 bytes)
+ * Initialize sound and return handle
+ */
+s16 func_800AC668(s32 a0, s16 a1) {
+    s32 temp[6];
+    void *ptr;
+    void *data;
+
+    D_80159D90 = -1;
+    func_800A473C(&temp, a0);
+    ptr = D_801597FC;
+    data = *(void **)ptr;
+    func_80092C58(&temp[1], D_80159818, data, 20, func_8008AD48);
+    D_80159B80 = *(s32 *)&temp[1];
+    func_800AC3D8(D_80159B80, a1);
+    func_800AB638();
+    return D_80159D90;
+}
+
+/*
+ * func_800AC6F4 (104 bytes)
+ * Call sound function wrapper
+ * Uses pre-loaded $fp register
+ */
+void func_800AC6F4(void *ptr) {
+    func_80096CA8(ptr, 0);
+}
+
+/*
+ * func_800ACB74 (312 bytes)
+ * Note: Complex sound processing - needs detailed analysis
+ */
+
+/*
+ * func_800CC804 (68 bytes)
+ * Check timer and return state
+ */
+s32 func_800CC804(void *ptr) {
+    s32 timer = *(s32 *)((u8 *)ptr + 0xC4);
+
+    if (timer <= 0) {
+        if (D_801174B4 & 0x800) {
+            return 1;
+        }
+        return 0;
+    }
+    *(s32 *)((u8 *)ptr + 0xC4) = timer - 1;
+    return 1;
+}
+
+/*
+ * func_800CC848 (212 bytes)
+ * Note: Needs detailed analysis
+ */
+
+/*
+ * func_800CD748 (840 bytes)
+ * Note: Large function, needs detailed analysis
+ */
+
+/*
+ * func_800CDA90 (2636 bytes)
+ * Note: Very large function, needs detailed analysis
+ */
+
+/*
+ * func_800C878C (104 bytes)
+ * Get car parameter
+ */
+void *func_800C878C(s8 player_idx) {
+    player_idx = (s8)((player_idx << 24) >> 24);
+    return (void *)((u8 *)0x80152818 + player_idx * 952);
+}
+
+/*
+ * func_800C87F4 (104 bytes)
+ * Get player state struct
+ */
+void *func_800C87F4(s8 player_idx) {
+    player_idx = (s8)((player_idx << 24) >> 24);
+    return (void *)((u8 *)0x8015A250 + player_idx * 0x808);
+}
+
+/*
+ * func_800C93AC (380 bytes)
+ * Note: Needs detailed analysis
+ */
+
+/*
+ * func_800C9528 (8 bytes)
+ * Stub - immediate return
+ */
+void func_800C9528_2(void) {
+    /* Empty */
+}
+
+/*
+ * func_800B0618 (84 bytes)
+ * Process pending audio and reinitialize
+ */
+void func_800B0618(void) {
+    void *entry;
+
+    entry = D_801491F0;
+    while (entry != NULL) {
+        func_8009079C(entry, 1);
+        entry = D_801491F0;
+    }
+    func_800B0580();
+}
+
+/*
+ * func_800B04D0 (128 bytes)
+ * Initialize buffer with indices
+ */
+void func_800B04D0(void *obj) {
+    s32 val = *(s32 *)((u8 *)obj + 12);
+    s32 count;
+    s32 i;
+    s32 size;
+    s32 *data;
+
+    *(s32 *)((u8 *)obj + 16) = 0;
+    *(s32 *)((u8 *)obj + 20) = val;
+    if (val == NULL) {
+        return;
+    }
+
+    count = *(s32 *)((u8 *)obj + 4) - 1;
+    if (count <= 0) {
+        return;
+    }
+
+    size = *(s32 *)((u8 *)obj + 8);
+    data = (s32 *)val;
+    for (i = 0; i < count; i++) {
+        *(s32 *)((u8 *)data + i * size) = (s32)((u8 *)val + (i + 1) * size);
+    }
+    *(s32 *)((u8 *)data + (count - 1) * size) = 0;
+}
+
+/*
+ * func_800C9AE0 (1460 bytes)
+ * Note: Complex game logic function - needs detailed analysis
+ * This is the main in_game_mode handler
+ */
+
+/*
+ * func_800CA3B4 (2504 bytes)
+ * Note: Very large game update function - needs detailed analysis
+ * This is likely the main playgame() equivalent
+ */
+
+/*
+ * func_800B5F4C (60 bytes)
+ * Get float array element
+ */
+f32 func_800B5F4C(s32 index) {
+    f32 *arr = (f32 *)0x80127120;
+    if (index < 0 || index >= D_8012711C) {
+        return 0.0f;
+    }
+    return arr[index];
+}
+
+/*
+ * func_800B5F88 (60 bytes)
+ * Get float array element 2
+ */
+f32 func_800B5F88(s32 index) {
+    f32 *arr = (f32 *)0x801280E0;
+    if (index < 0 || index >= D_801280DC) {
+        return 0.0f;
+    }
+    return arr[index];
+}
+
+/*
+ * func_80091F34 (136 bytes)
+ * Note: Matrix/transform related - needs analysis
+ */
+
+/*
+ * func_8009DC50 (200 bytes)
+ * Note: Graphics/render related - needs analysis
+ */
+
+/*
+ * func_80095120 (52 bytes)
+ * Copy structure to destination
+ */
+void func_80095120(void *dest, void *src) {
+    *(void **)((u8 *)dest + 0) = *(void **)((u8 *)src + 0);
+    *(void **)((u8 *)dest + 4) = *(void **)((u8 *)src + 4);
+    *(void **)((u8 *)dest + 8) = *(void **)((u8 *)src + 8);
+}
+
+/*
+ * func_800CB9A0 (48 bytes)
+ * Call handler from structure
+ */
+void func_800CB9A0(void *obj) {
+    void *entry = *(void **)obj;
+    void *target = *(void **)((u8 *)entry + 4);
+
+    if (target != NULL) {
+        func_800A2680(target);
+    }
+}
+
+/*
+ * func_800D54BC (36 bytes)
+ * Initialize float structure with defaults
+ */
+void func_800D54BC(void *ptr) {
+    f32 val = -2.0f;
+
+    *(s32 *)((u8 *)ptr + 0) = -1;
+    *(f32 *)((u8 *)ptr + 4) = val;
+    *(f32 *)((u8 *)ptr + 8) = val;
+    *(f32 *)((u8 *)ptr + 12) = val;
+    *(f32 *)((u8 *)ptr + 16) = val;
+}
+
+/*
+ * func_800D5798 (140 bytes)
+ * Update all player slots
+ */
+void func_800D5798(void) {
+    void *ptr = (void *)0x8015A250;
+    s8 count;
+    s32 i;
+
+    *(s16 *)0x801525F0 = 0;
+
+    count = D_80152744;
+    if (count <= 0) {
+        goto check_flag;
+    }
+
+    for (i = 0; i < count; i++) {
+        func_800D5524(ptr);
+        count = D_80152744;
+        ptr = (void *)((u8 *)ptr + 0x808);
+    }
+
+check_flag:
+    if ((D_801174B4 & 0x8) == 0) {
+        func_800A13E8();
+    }
+}
+
+/*
+ * func_800D5894 (48 bytes)
+ * Compute offset from index
+ */
+s32 func_800D5894(s16 index) {
+    return (s32)((index << 8) + index);
+}
+
+/*
+ * func_800B45BC (180 bytes)
+ * Clear audio entries for channels
+ */
+void func_800B45BC(s32 flag) {
+    void *base = (void *)0x80116DE4;
+    void *end = (void *)0x80116FE4;
+    void *ptr;
+    s32 i;
+
+    while (base != end) {
+        if (*(s8 *)base == 0) {
+            goto next;
+        }
+        if (flag != 0 && *(s8 *)((u8 *)base + 1) == 0) {
+            goto next;
+        }
+
+        ptr = (void *)((u8 *)base + 12);
+        for (i = 0; i < 20; i += 4) {
+            if (*(void **)ptr != NULL) {
+                func_800B358C(*(void **)ptr);
+                *(void **)ptr = NULL;
+            }
+            ptr = (void *)((u8 *)ptr + 4);
+        }
+        *(s8 *)base = 0;
+
+next:
+        base = (void *)((u8 *)base + 32);
+    }
+}
+
+/*
+ * func_800F7E70 (64 bytes)
+ * Set input mode
+ */
+void func_800F7E70(s8 mode) {
+    D_8015978C = mode;
+    D_80117658 = mode;
+}
+
+/*
+ * func_8008E398 (40 bytes)
+ * Sound wrapper with sign extend
+ */
+void func_8008E398(void *ptr, s16 a1, s16 a2, s16 a3) {
+    a3 = (s16)((a3 << 16) >> 16);  /* Sign extend */
+    func_8008E26C(ptr, a1, a2, a3);
+}
+
+/*
+ * func_8008B474 (76 bytes)
+ * Normalize vector and compute negatives
+ */
+void func_8008B474(f32 *src, f32 *dst) {
+    func_8008B424(src, dst);
+
+    dst[0] = -src[0];
+    dst[1] = -src[1];
+    dst[2] = -src[2];
+}
+
+/*
+ * func_8008A398 (76 bytes)
+ * Note: Audio sync related - needs analysis
+ */
+
+/*
+ * func_8008C724 (68 bytes)
+ * Note: Audio processing - needs analysis
+ */
+
+/*
+ * func_800991C04 placeholder
+ * Note: Complex function - needs analysis
+ */
+
+/*
+ * func_8008B26C (72 bytes)
+ * Note: Matrix operation - needs analysis
+ */
+
+/*
+ * func_8009515C (60 bytes)
+ * Note: Copy/init operation - needs analysis
+ */
+
+/*
+ * func_800959DC (72 bytes)
+ * Note: Render setup - needs analysis
+ */
+
+/*
+ * func_80096298 (60 bytes)
+ * Note: Element lookup - needs analysis
+ */
+
+/*
+ * func_800A373C (64 bytes)
+ * Note: Data lookup - needs analysis
+ */
+
+/*
+ * func_800AED2C (56 bytes)
+ * Note: Sound processing - needs analysis
+ */
+
+/*
+ * func_800D2488 (64 bytes)
+ * Note: State update - needs analysis
+ */
+
+/*
+ * func_80100D30 (44 bytes)
+ * Note: Small utility - needs analysis
+ */
+
+/*
+ * func_8010B528 (56 bytes)
+ * Note: Small utility - needs analysis
+ */
+
+/*
+ * func_8010FBB4 (44 bytes)
+ * Note: Small utility - needs analysis
+ */
+
+/*
+ * func_8010FC80 (64 bytes)
+ * Note: Small utility - needs analysis
+ */
+
+/*
+ * func_8010FD1C (68 bytes)
+ * Note: Small utility - needs analysis
+ */

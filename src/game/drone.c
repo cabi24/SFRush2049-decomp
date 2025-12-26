@@ -193,7 +193,7 @@ void drone_do_maxpath(s32 car_index) {
 
 /**
  * drone_set_catchup - Enable catch-up mode
- * Based on arcade: drones.c logic
+ * Based on arcade: model.c:set_catchup() and drones.c logic
  *
  * Catch-up makes trailing drones faster and leading drones slower
  * to keep the race competitive.
@@ -201,10 +201,13 @@ void drone_do_maxpath(s32 car_index) {
 void drone_set_catchup(void) {
     s32 i;
     s32 my_place;
+    s32 target_car;
     f32 place_scale;
     f32 diff_scale;
     f32 max_boost, min_boost;
     f32 max_brake, min_brake;
+    f32 delta_dist;
+    f32 time_scale, scale;
     DroneControl *ctl;
 
     for (i = 0; i < num_active_cars; i++) {
@@ -214,7 +217,12 @@ void drone_set_catchup(void) {
             continue;
         }
 
+        if (!ctl->we_control) {
+            continue;
+        }
+
         my_place = car_array[i].place;
+        target_car = ctl->target_car;
 
         /* Place scale: first place = 0, last place = 1 */
         place_scale = (f32)my_place / (f32)(num_active_cars - 1);
@@ -229,15 +237,35 @@ void drone_set_catchup(void) {
         max_brake = 0.9f - place_scale * ((0.6f - 0.1f) * diff_scale + 0.1f);
         min_brake = (0.96f - 1.0f) * diff_scale + 1.0f - place_scale * ((0.05f - 0.02f) * diff_scale + 0.02f);
 
+        /* Calculate distance to target */
+        delta_dist = car_array[i].distance - car_array[target_car].distance;
+
         /* Apply catch-up based on distance to target human */
-        /* Simplified: just use place-based scaling */
-        if (my_place < num_active_cars / 2) {
-            /* Leading - slow down */
-            ctl->catchup_boost = min_boost;
+        if (target_car != i) {
+            if (delta_dist < -20.0f) {
+                /* Human in front of drone, speed up */
+                time_scale = linear_interp(-300.0f, -60.0f, max_boost, min_boost, delta_dist);
+                scale = min_brake;
+            } else {
+                /* Drone ahead of or near human, slow down */
+                scale = linear_interp(200.0f, 60.0f, max_brake, min_brake, delta_dist);
+                time_scale = min_boost;
+            }
         } else {
-            /* Trailing - speed up */
-            ctl->catchup_boost = max_boost;
+            /* No target - use place-based scaling */
+            if (my_place < num_active_cars / 2) {
+                /* Leading - slow down */
+                time_scale = min_boost;
+                scale = min_brake;
+            } else {
+                /* Trailing - speed up */
+                time_scale = max_boost;
+                scale = min_brake;
+            }
         }
+
+        ctl->catchup_boost = time_scale;
+        ctl->drone_scale = scale;
     }
 }
 
@@ -429,4 +457,48 @@ void drone_set_target(s32 car_index, s32 target) {
  */
 void drone_end(void) {
     /* Nothing to clean up in arcade version */
+}
+
+/**
+ * linear_interp - Linear interpolation utility
+ * Based on arcade: drones.c:linear_interp()
+ *
+ * Maps input from range [in_bound1, in_bound2] to [out_bound1, out_bound2].
+ * Clamps output to bounds if input is outside range.
+ *
+ * @param in_bound1  First input boundary
+ * @param in_bound2  Second input boundary
+ * @param out_bound1 Output value when input equals in_bound1
+ * @param out_bound2 Output value when input equals in_bound2
+ * @param input      Value to interpolate
+ * @return Interpolated output value
+ */
+f32 linear_interp(f32 in_bound1, f32 in_bound2, f32 out_bound1, f32 out_bound2, f32 input) {
+    f32 slope, offset;
+
+    /* Handle clamping based on bound ordering */
+    if (in_bound1 < in_bound2) {
+        if (input < in_bound1) {
+            return out_bound1;
+        } else if (input > in_bound2) {
+            return out_bound2;
+        }
+    } else {
+        if (input < in_bound2) {
+            return out_bound2;
+        } else if (input > in_bound1) {
+            return out_bound1;
+        }
+    }
+
+    /* If input range is too small, return center of output */
+    if ((in_bound1 - in_bound2 > -0.001f) && (in_bound1 - in_bound2 < 0.001f)) {
+        return (out_bound1 + out_bound2) * 0.5f;
+    }
+
+    /* Linear interpolation: y = mx + b */
+    slope = (out_bound1 - out_bound2) / (in_bound1 - in_bound2);
+    offset = out_bound1 - slope * in_bound1;
+
+    return slope * input + offset;
 }
