@@ -29010,97 +29010,497 @@ void func_800C0AC0(void *camera) {
 /*
  * func_800C1604 (1416 bytes)
  * Camera input process
+ *
+ * Processes player input for camera control
+ * Handles C-button camera rotation, L/R shoulder zoom
  */
 void func_800C1604(void *camera, void *input) {
-    /* Input process - stub */
+    s32 *inputState;
+    s32 *mode;
+    f32 yawDelta = 0.0f;
+    f32 pitchDelta = 0.0f;
+    f32 zoomDelta = 0.0f;
+
+    if (camera == NULL || input == NULL) {
+        return;
+    }
+
+    inputState = (s32 *)input;
+    mode = (s32 *)((u8 *)camera + 0x34);
+
+    /* Skip if in cinematic or replay mode */
+    if (*mode == 4 || *mode == 6) {
+        return;
+    }
+
+    /* C-button camera rotation */
+    if (*inputState & 0x0001) {  /* C-Right */
+        yawDelta = 0.03f;
+    }
+    if (*inputState & 0x0002) {  /* C-Left */
+        yawDelta = -0.03f;
+    }
+    if (*inputState & 0x0004) {  /* C-Down */
+        pitchDelta = 0.02f;
+    }
+    if (*inputState & 0x0008) {  /* C-Up */
+        pitchDelta = -0.02f;
+    }
+
+    /* L/R shoulder zoom */
+    if (*inputState & 0x0010) {  /* R trigger */
+        zoomDelta = 0.05f;
+    }
+    if (*inputState & 0x0020) {  /* L trigger */
+        zoomDelta = -0.05f;
+    }
+
+    /* Apply rotations */
+    if (yawDelta != 0.0f || pitchDelta != 0.0f) {
+        func_800BCEE4(camera, yawDelta, pitchDelta);
+    }
+
+    /* Apply zoom */
+    if (zoomDelta != 0.0f) {
+        f32 *zoom = (f32 *)((u8 *)camera + 0x40);
+        *zoom += zoomDelta;
+        if (*zoom < 0.5f) *zoom = 0.5f;
+        if (*zoom > 2.0f) *zoom = 2.0f;
+        func_800BDEBC(camera, *zoom);
+    }
 }
 
 /*
  * func_800C1B8C (1172 bytes)
  * Camera constraint check
+ *
+ * Enforces camera position constraints
+ * Keeps camera within world bounds and above terrain
  */
 void func_800C1B8C(void *camera) {
-    /* Constraint - stub */
+    f32 *pos;
+    f32 terrainHeight;
+    f32 minHeight = 20.0f;
+
+    if (camera == NULL) {
+        return;
+    }
+
+    pos = (f32 *)camera;
+
+    /* World boundary constraints */
+    if (pos[0] < -5000.0f) pos[0] = -5000.0f;
+    if (pos[0] > 5000.0f) pos[0] = 5000.0f;
+    if (pos[2] < -5000.0f) pos[2] = -5000.0f;
+    if (pos[2] > 5000.0f) pos[2] = 5000.0f;
+
+    /* Height constraint - stay above terrain */
+    terrainHeight = func_800A7E50(pos[0], pos[2]);  /* Get terrain height */
+    if (pos[1] < terrainHeight + minHeight) {
+        pos[1] = terrainHeight + minHeight;
+    }
+
+    /* Maximum height constraint */
+    if (pos[1] > 2000.0f) {
+        pos[1] = 2000.0f;
+    }
 }
 
 /*
  * func_800C2020 (520 bytes)
  * Camera debug display
+ *
+ * Shows camera debug information (position, target, mode)
  */
 void func_800C2020(void *camera) {
-    /* Debug display - stub */
+    extern s32 D_80159E00;  /* Debug mode flag */
+    f32 *pos, *target;
+    s32 *mode;
+    char buf[32];
+
+    if (!D_80159E00 || camera == NULL) {
+        return;
+    }
+
+    pos = (f32 *)camera;
+    target = (f32 *)((u8 *)camera + 0x0C);
+    mode = (s32 *)((u8 *)camera + 0x34);
+
+    /* Display camera position */
+    func_800C734C("CAM:", 10, 180, 200);
+
+    /* X position */
+    {
+        s32 x = (s32)pos[0];
+        buf[0] = 'X';
+        buf[1] = ':';
+        buf[2] = (x < 0) ? '-' : ' ';
+        if (x < 0) x = -x;
+        buf[3] = '0' + ((x / 1000) % 10);
+        buf[4] = '0' + ((x / 100) % 10);
+        buf[5] = '0' + ((x / 10) % 10);
+        buf[6] = '0' + (x % 10);
+        buf[7] = '\0';
+        func_800C734C(buf, 45, 180, 180);
+    }
+
+    /* Mode indicator */
+    {
+        char *modeNames[] = {"DEF", "FP", "TP", "TOP", "CIN", "FREE", "REP"};
+        if (*mode >= 0 && *mode < 7) {
+            func_800C734C(modeNames[*mode], 130, 180, 180);
+        }
+    }
 }
 
 /*
  * func_800C2228 (548 bytes)
  * Camera save state
+ *
+ * Saves camera state for replay or undo
  */
 void func_800C2228(void *camera, void *state) {
-    /* Save state - stub */
+    f32 *src, *dst;
+    s32 i;
+
+    if (camera == NULL || state == NULL) {
+        return;
+    }
+
+    src = (f32 *)camera;
+    dst = (f32 *)state;
+
+    /* Copy camera structure (position, target, up, fov, planes, aspect, mode) */
+    for (i = 0; i < 16; i++) {
+        dst[i] = src[i];
+    }
 }
 
 /*
  * func_800C244C (660 bytes)
  * Camera restore state
+ *
+ * Restores camera state from saved data
  */
 void func_800C244C(void *camera, void *state) {
-    /* Restore state - stub */
+    f32 *src, *dst;
+    s32 i;
+
+    if (camera == NULL || state == NULL) {
+        return;
+    }
+
+    src = (f32 *)state;
+    dst = (f32 *)camera;
+
+    /* Restore camera structure */
+    for (i = 0; i < 16; i++) {
+        dst[i] = src[i];
+    }
 }
 
 /*
  * func_800C26E0 (644 bytes)
  * Camera multi-view
+ *
+ * Sets up camera for multi-view (split screen) rendering
  */
 void func_800C26E0(s32 viewIndex, void *camera) {
-    /* Multi view - stub */
+    extern s32 D_80159020;  /* Number of active views */
+    f32 *aspect;
+    s32 viewportX, viewportY, viewportW, viewportH;
+
+    if (camera == NULL || viewIndex < 0 || viewIndex >= 4) {
+        return;
+    }
+
+    aspect = (f32 *)((u8 *)camera + 0x30);
+
+    /* Calculate viewport based on view count and index */
+    switch (D_80159020) {
+        case 1:
+            /* Full screen */
+            viewportX = 0;
+            viewportY = 0;
+            viewportW = 320;
+            viewportH = 240;
+            *aspect = 4.0f / 3.0f;
+            break;
+
+        case 2:
+            /* Horizontal split */
+            viewportX = 0;
+            viewportY = viewIndex * 120;
+            viewportW = 320;
+            viewportH = 120;
+            *aspect = 8.0f / 3.0f;
+            break;
+
+        case 3:
+        case 4:
+            /* Quad split */
+            viewportX = (viewIndex & 1) * 160;
+            viewportY = (viewIndex / 2) * 120;
+            viewportW = 160;
+            viewportH = 120;
+            *aspect = 4.0f / 3.0f;
+            break;
+
+        default:
+            return;
+    }
+
+    /* Store viewport in camera */
+    *(s32 *)((u8 *)camera + 0x44) = viewportX;
+    *(s32 *)((u8 *)camera + 0x48) = viewportY;
+    *(s32 *)((u8 *)camera + 0x4C) = viewportW;
+    *(s32 *)((u8 *)camera + 0x50) = viewportH;
 }
 
 /*
  * func_800C2960 (644 bytes)
  * Camera split screen
+ *
+ * Configures split screen mode for multiplayer
  */
 void func_800C2960(s32 numPlayers) {
-    /* Split screen - stub */
+    extern s32 D_80159020;        /* Number of active views */
+    extern void *D_80159024[4];   /* Camera pointers for each view */
+    s32 i;
+
+    if (numPlayers < 1) numPlayers = 1;
+    if (numPlayers > 4) numPlayers = 4;
+
+    D_80159020 = numPlayers;
+
+    /* Setup each player's camera */
+    for (i = 0; i < numPlayers; i++) {
+        if (D_80159024[i] != NULL) {
+            func_800C26E0(i, D_80159024[i]);
+        }
+    }
 }
 
 /*
  * func_800C2BE0 (5664 bytes)
  * Camera scene manager
+ *
+ * Manages camera state transitions between game states
  */
 void func_800C2BE0(void) {
-    /* Scene manager - stub */
+    extern s32 D_801146EC;        /* gstate */
+    extern void *D_80170020;      /* Active camera */
+    extern s32 D_80159030;        /* Previous gstate */
+    static s32 lastGState = -1;
+
+    if (D_80170020 == NULL) {
+        return;
+    }
+
+    /* Detect state change */
+    if (D_801146EC != lastGState) {
+        lastGState = D_801146EC;
+
+        switch (D_801146EC) {
+            case 0:  /* ATTRACT */
+                func_800BC2BC(D_80170020);  /* Reset camera */
+                *(s32 *)((u8 *)D_80170020 + 0x34) = 0;  /* Default mode */
+                break;
+
+            case 1:  /* TRKSEL */
+            case 2:  /* CARSEL */
+                /* Menu camera - fixed position */
+                func_800BC2BC(D_80170020);
+                break;
+
+            case 5:  /* COUNTDOWN */
+                /* Starting grid camera */
+                *(s32 *)((u8 *)D_80170020 + 0x34) = 4;  /* Cinematic */
+                func_800C5644(0);  /* Start sequence */
+                break;
+
+            case 6:  /* PLAYGAME */
+                /* Switch to chase camera */
+                *(s32 *)((u8 *)D_80170020 + 0x34) = 2;  /* Third person */
+                break;
+
+            case 7:  /* ENDGAME */
+                /* Victory camera */
+                func_800C6404(D_80170020, 1);
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    /* Update active camera */
+    func_800C0AC0(D_80170020);
 }
 
 /*
  * func_800C4200 (1232 bytes)
  * Camera trigger check
+ *
+ * Checks if camera has entered any trigger zones
+ * Used for cinematic triggers and camera mode switches
  */
 void func_800C4200(void *camera, void *triggers) {
-    /* Trigger check - stub */
+    f32 *camPos;
+    s32 numTriggers;
+    s32 i;
+    f32 *triggerData;
+    f32 dx, dy, dz, dist;
+
+    if (camera == NULL || triggers == NULL) {
+        return;
+    }
+
+    camPos = (f32 *)camera;
+    numTriggers = *(s32 *)triggers;
+    triggerData = (f32 *)((u8 *)triggers + 4);
+
+    /* Check each trigger */
+    for (i = 0; i < numTriggers && i < 32; i++) {
+        f32 *trig = &triggerData[i * 5];  /* x, y, z, radius, action */
+
+        dx = camPos[0] - trig[0];
+        dy = camPos[1] - trig[1];
+        dz = camPos[2] - trig[2];
+        dist = sqrtf(dx*dx + dy*dy + dz*dz);
+
+        if (dist < trig[3]) {
+            /* Inside trigger - execute action */
+            s32 action = (s32)trig[4];
+            switch (action) {
+                case 1:  /* Switch to cinematic */
+                    func_800C5644(i);
+                    break;
+                case 2:  /* Camera shake */
+                    func_800BDAA8(5.0f, 0.5f);
+                    break;
+                case 3:  /* Zoom in */
+                    func_800BDEBC(camera, 1.5f);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 }
 
 /*
  * func_800C46D0 (3956 bytes)
  * Camera path follow
+ *
+ * Makes camera follow a predefined path
  */
 void func_800C46D0(void *camera, void *path) {
-    /* Path follow - stub */
+    extern f32 D_80159040;  /* Path progress (0.0 to 1.0) */
+    extern f32 D_80159044;  /* Path speed */
+    f32 t;
+
+    if (camera == NULL || path == NULL) {
+        return;
+    }
+
+    t = D_80159040;
+
+    /* Advance along path */
+    t += D_80159044 * 0.0166f;  /* dt = 1/60 */
+
+    if (t > 1.0f) {
+        t = 1.0f;  /* Clamp at end */
+    }
+
+    D_80159040 = t;
+
+    /* Interpolate camera along path spline */
+    func_800C04CC(camera, path, t);
 }
 
 /*
  * func_800C5644 (3516 bytes)
  * Camera scripted sequence
+ *
+ * Plays a scripted camera sequence (intro, finish, replay)
  */
 void func_800C5644(s32 scriptId) {
-    /* Script sequence - stub */
+    extern void *D_80170020;      /* Active camera */
+    extern s32 D_80159050;        /* Script state */
+    extern s32 D_80159054;        /* Script frame */
+    extern f32 D_80159058[16][6]; /* Script keyframes */
+    s32 *mode;
+    f32 *camPos, *camTarget;
+    s32 frame;
+    s32 keyframe, nextKeyframe;
+    f32 t;
+
+    if (D_80170020 == NULL) {
+        return;
+    }
+
+    mode = (s32 *)((u8 *)D_80170020 + 0x34);
+    *mode = 4;  /* Cinematic mode */
+
+    D_80159050 = scriptId;
+    D_80159054++;
+    frame = D_80159054;
+
+    /* Find keyframe */
+    keyframe = frame / 60;  /* 60 frames per keyframe */
+    nextKeyframe = keyframe + 1;
+    if (nextKeyframe > 15) nextKeyframe = 15;
+    t = (f32)(frame % 60) / 60.0f;
+
+    camPos = (f32 *)D_80170020;
+    camTarget = (f32 *)((u8 *)D_80170020 + 0x0C);
+
+    /* Interpolate between keyframes */
+    camPos[0] = D_80159058[keyframe][0] + (D_80159058[nextKeyframe][0] - D_80159058[keyframe][0]) * t;
+    camPos[1] = D_80159058[keyframe][1] + (D_80159058[nextKeyframe][1] - D_80159058[keyframe][1]) * t;
+    camPos[2] = D_80159058[keyframe][2] + (D_80159058[nextKeyframe][2] - D_80159058[keyframe][2]) * t;
+
+    camTarget[0] = D_80159058[keyframe][3] + (D_80159058[nextKeyframe][3] - D_80159058[keyframe][3]) * t;
+    camTarget[1] = D_80159058[keyframe][4] + (D_80159058[nextKeyframe][4] - D_80159058[keyframe][4]) * t;
+    camTarget[2] = D_80159058[keyframe][5] + (D_80159058[nextKeyframe][5] - D_80159058[keyframe][5]) * t;
 }
 
 /*
  * func_800C6404 (780 bytes)
  * Camera finish line
+ *
+ * Victory camera for race finish
  */
 void func_800C6404(void *camera, s32 placing) {
-    /* Finish line - stub */
+    extern void *D_80152818;  /* Player car */
+    f32 *camPos, *camTarget;
+    f32 *carPos;
+    f32 orbitAngle;
+    s32 *mode;
+
+    if (camera == NULL) {
+        return;
+    }
+
+    mode = (s32 *)((u8 *)camera + 0x34);
+    *mode = 4;  /* Cinematic mode */
+
+    camPos = (f32 *)camera;
+    camTarget = (f32 *)((u8 *)camera + 0x0C);
+    carPos = (f32 *)((u8 *)&D_80152818 + 0x24);
+
+    /* Orbit around the car */
+    orbitAngle = (f32)D_80142AFC * 0.02f;  /* Slow rotation */
+
+    camPos[0] = carPos[0] + sinf(orbitAngle) * 150.0f;
+    camPos[1] = carPos[1] + 50.0f + (placing == 1 ? 30.0f : 0.0f);  /* Higher for 1st place */
+    camPos[2] = carPos[2] + cosf(orbitAngle) * 150.0f;
+
+    /* Look at car */
+    camTarget[0] = carPos[0];
+    camTarget[1] = carPos[1] + 20.0f;
+    camTarget[2] = carPos[2];
 }
 
 /*
