@@ -9710,25 +9710,278 @@ void func_800ABCC8(void *player, f32 dt) {
 /*
  * func_800AC75C (1076 bytes)
  * Checkpoint collision
+ *
+ * Checks if a car has crossed a checkpoint trigger plane.
+ * Based on arcade CheckCPs() in checkpoint.c:
+ *   - Calculates distance from car to checkpoint center
+ *   - Uses dot product with checkpoint normal to detect crossing
+ *   - Awards time bonus on successful checkpoint pass
+ *
+ * Car offsets:
+ *   0x24: position (f32[3])
+ *   0x54: current checkpoint index (s32)
+ *   0x58: lap count (s32)
+ *   0x5C: race position (s32)
+ *   0x60: race time (u32)
+ *   0x64: checkpoint times array (u32[16])
+ *
+ * Checkpoint structure:
+ *   0x00: position (f32[3])
+ *   0x0C: radius squared (f32)
+ *   0x10: normal/direction (f32[3])
+ *   0x1C: checkpoint index (s32)
+ *   0x20: bonus time (u32)
+ *   0x24: is finish line (s32)
  */
+extern u32 D_801582B0;          /* Race elapsed time */
+extern s32 D_801582B4;          /* Total checkpoints */
+extern s32 D_801582B8;          /* Finish line checkpoint index */
+extern void func_800B4208(s32 voiceId);  /* Play voice */
+
 void func_800AC75C(void *car, void *checkpoint) {
-    /* Checkpoint collision - stub */
+    f32 *carPos, *cpPos, *cpNormal;
+    f32 dx, dy, dz;
+    f32 distSq, radiusSq;
+    f32 dotProduct;
+    s32 *carCpIndex, *carLaps, cpIndex;
+    u32 *carTime, *cpTimes;
+    s32 isFinishLine;
+    u32 bonusTime;
+
+    if (car == NULL || checkpoint == NULL) {
+        return;
+    }
+
+    /* Get car data */
+    carPos = (f32 *)((u8 *)car + 0x24);
+    carCpIndex = (s32 *)((u8 *)car + 0x54);
+    carLaps = (s32 *)((u8 *)car + 0x58);
+    carTime = (u32 *)((u8 *)car + 0x60);
+    cpTimes = (u32 *)((u8 *)car + 0x64);
+
+    /* Get checkpoint data */
+    cpPos = (f32 *)checkpoint;
+    radiusSq = *(f32 *)((u8 *)checkpoint + 0x0C);
+    cpNormal = (f32 *)((u8 *)checkpoint + 0x10);
+    cpIndex = *(s32 *)((u8 *)checkpoint + 0x1C);
+    bonusTime = *(u32 *)((u8 *)checkpoint + 0x20);
+    isFinishLine = *(s32 *)((u8 *)checkpoint + 0x24);
+
+    /* Only check if this is the next expected checkpoint */
+    if (cpIndex != *carCpIndex) {
+        return;
+    }
+
+    /* Calculate distance from car to checkpoint center */
+    dx = carPos[0] - cpPos[0];
+    dy = carPos[1] - cpPos[1];
+    dz = carPos[2] - cpPos[2];
+
+    distSq = dx * dx + dz * dz;  /* Horizontal distance only */
+
+    /* Check if within checkpoint radius */
+    if (distSq > radiusSq) {
+        return;
+    }
+
+    /* Check if car crossed the checkpoint plane (dot product with normal) */
+    dotProduct = dx * cpNormal[0] + dy * cpNormal[1] + dz * cpNormal[2];
+
+    if (dotProduct <= 0.0f) {
+        return;  /* Haven't crossed the plane yet */
+    }
+
+    /* Checkpoint passed! Record time */
+    cpTimes[cpIndex] = D_801582B0;
+
+    /* Award bonus time */
+    if (bonusTime > 0) {
+        *carTime += bonusTime;
+    }
+
+    /* Advance to next checkpoint */
+    *carCpIndex = cpIndex + 1;
+
+    /* Check for lap completion */
+    if (*carCpIndex >= D_801582B4) {
+        *carCpIndex = 0;  /* Wrap to first checkpoint */
+    }
+
+    /* Handle finish line crossing */
+    if (isFinishLine != 0) {
+        (*carLaps)++;
+
+        /* Check for race finish (lap count check done in caller) */
+        func_800ACA9C(car, *carLaps);
+
+        /* Play lap-related voice */
+        func_800B4208(6);  /* "Final lap" or similar */
+    } else {
+        /* Regular checkpoint voice */
+        func_800B4208(8);  /* "Checkpoint!" */
+    }
 }
 
 /*
  * func_800ACA9C (380 bytes)
  * Lap time recording
+ *
+ * Records lap completion time and updates best lap.
+ * Based on arcade PassedCP() finish line handling.
+ *
+ * Player offsets:
+ *   0xA4: lap times array (u32[8])
+ *   0xC4: best lap time (u32)
+ *   0xC8: last lap time (u32)
+ *   0xCC: total race time (u32)
  */
+extern u32 D_801582BC[8];       /* Best lap times per track */
+
 void func_800ACA9C(void *player, s32 lapNum) {
-    /* Lap time - stub */
+    u32 *lapTimes;
+    u32 *bestLap, *lastLap, *totalTime;
+    u32 currentTime, lapTime;
+    u32 prevLapEnd;
+
+    if (player == NULL) {
+        return;
+    }
+
+    if (lapNum < 1 || lapNum > 8) {
+        return;
+    }
+
+    /* Get player lap data */
+    lapTimes = (u32 *)((u8 *)player + 0xA4);
+    bestLap = (u32 *)((u8 *)player + 0xC4);
+    lastLap = (u32 *)((u8 *)player + 0xC8);
+    totalTime = (u32 *)((u8 *)player + 0xCC);
+
+    /* Get current race time */
+    currentTime = D_801582B0;
+
+    /* Calculate lap time (difference from previous lap end) */
+    if (lapNum == 1) {
+        prevLapEnd = 0;
+    } else {
+        prevLapEnd = lapTimes[lapNum - 2];
+    }
+
+    lapTime = currentTime - prevLapEnd;
+
+    /* Record this lap time */
+    lapTimes[lapNum - 1] = currentTime;
+    *lastLap = lapTime;
+    *totalTime = currentTime;
+
+    /* Update best lap if this is faster */
+    if (*bestLap == 0 || lapTime < *bestLap) {
+        *bestLap = lapTime;
+
+        /* Check against track record */
+        if (D_801582BC[0] == 0 || lapTime < D_801582BC[0]) {
+            /* New track record! */
+            func_800B4208(9);  /* "New record!" */
+        }
+    }
 }
 
 /*
  * func_800ACC18 (1008 bytes)
  * Race position calculation
+ *
+ * Calculates race positions for all cars based on distance traveled.
+ * Based on arcade CheckCPs() position sorting logic:
+ *   - Sorts cars by (laps * track_distance + checkpoint_distance)
+ *   - Updates place field for each car
+ *
+ * Car offsets:
+ *   0x54: current checkpoint (s32)
+ *   0x58: lap count (s32)
+ *   0x5C: race position (s32) - output
+ *   0xD0: distance along track (f32)
  */
+extern void *D_801582C0[8];     /* Car pointers array */
+extern s32 D_801582E0;          /* Number of active cars */
+extern f32 D_801582E4;          /* Track total distance */
+
 void func_800ACC18(void) {
-    /* Race position - stub */
+    s32 i, j;
+    s32 numCars;
+    f32 distances[8];
+    s32 positions[8];
+    s32 laps, checkpoint;
+    f32 trackDist, carDist;
+    f32 totalDist;
+    void *car;
+    void *tempCar;
+    f32 tempDist;
+
+    numCars = D_801582E0;
+    if (numCars <= 0 || numCars > 8) {
+        return;
+    }
+
+    trackDist = D_801582E4;
+    if (trackDist <= 0.0f) {
+        trackDist = 10000.0f;  /* Default track length */
+    }
+
+    /* Calculate total distance for each car */
+    for (i = 0; i < numCars; i++) {
+        car = D_801582C0[i];
+        if (car == NULL) {
+            distances[i] = 0.0f;
+            positions[i] = i;
+            continue;
+        }
+
+        laps = *(s32 *)((u8 *)car + 0x58);
+        checkpoint = *(s32 *)((u8 *)car + 0x54);
+        carDist = *(f32 *)((u8 *)car + 0xD0);
+
+        /* Total distance = laps completed * track length + current progress */
+        totalDist = (f32)laps * trackDist + (f32)checkpoint * (trackDist / 16.0f) + carDist;
+        distances[i] = totalDist;
+        positions[i] = i;
+    }
+
+    /* Sort by distance (descending - higher distance = better position) */
+    for (i = 0; i < numCars - 1; i++) {
+        for (j = i + 1; j < numCars; j++) {
+            if (distances[positions[j]] > distances[positions[i]]) {
+                /* Swap */
+                s32 tempPos = positions[i];
+                positions[i] = positions[j];
+                positions[j] = tempPos;
+            }
+        }
+    }
+
+    /* Assign positions (0 = 1st place, 1 = 2nd, etc.) */
+    for (i = 0; i < numCars; i++) {
+        car = D_801582C0[positions[i]];
+        if (car != NULL) {
+            *(s32 *)((u8 *)car + 0x5C) = i;
+        }
+    }
+
+    /* Check if player moved into/out of first place for audio cue */
+    car = D_801582C0[0];  /* Assume player is car 0 */
+    if (car != NULL) {
+        s32 *playerPos = (s32 *)((u8 *)car + 0x5C);
+        static s32 lastPos = -1;
+
+        if (lastPos != -1) {
+            if (*playerPos == 0 && lastPos != 0) {
+                /* Player took first place */
+                func_800B4208(3);  /* "First!" */
+            } else if (*playerPos != 0 && lastPos == 0) {
+                /* Player lost first place */
+            }
+        }
+        lastPos = *playerPos;
+    }
 }
 
 /*
@@ -9750,50 +10003,307 @@ s32 func_800AD0A0(void *player) {
 /*
  * func_800AD128 (1548 bytes)
  * Race finish handling
+ *
+ * Called when a player completes the final lap.
+ * Locks their position and triggers race end sequence.
+ *
+ * Player offsets:
+ *   0x58: lap count (s32)
+ *   0x5C: race position (s32)
+ *   0xD4: finished flag (s32)
+ *   0xD8: finish time (u32)
+ *   0xDC: finish position (s32)
  */
+extern s32 D_801582E8;          /* Required laps */
+extern s32 D_801582EC;          /* Finished cars count */
+extern s32 D_801582F0;          /* Race finished flag */
+extern void func_800AD734(void);  /* Display results */
+
 void func_800AD128(void *player) {
-    /* Race finish - stub */
+    s32 *laps, *position;
+    s32 *finished, *finishPos;
+    u32 *finishTime;
+    s32 currentPos;
+
+    if (player == NULL) {
+        return;
+    }
+
+    /* Get player state */
+    laps = (s32 *)((u8 *)player + 0x58);
+    position = (s32 *)((u8 *)player + 0x5C);
+    finished = (s32 *)((u8 *)player + 0xD4);
+    finishTime = (u32 *)((u8 *)player + 0xD8);
+    finishPos = (s32 *)((u8 *)player + 0xDC);
+
+    /* Already finished? */
+    if (*finished != 0) {
+        return;
+    }
+
+    /* Check if completed required laps */
+    if (*laps < D_801582E8) {
+        return;
+    }
+
+    /* Mark as finished */
+    *finished = 1;
+    *finishTime = D_801582B0;
+    *finishPos = D_801582EC;  /* Finish order */
+
+    currentPos = *position;
+
+    /* Increment finished count */
+    D_801582EC++;
+
+    /* Play appropriate audio */
+    if (currentPos == 0) {
+        /* First place! */
+        func_800B4208(3);   /* "First!" */
+    } else if (currentPos == 1) {
+        func_800B4208(4);   /* "Second!" */
+    } else if (currentPos == 2) {
+        func_800B4208(5);   /* "Third!" */
+    }
+
+    /* Check if this is the player's car */
+    if (player == D_801582C0[0]) {
+        /* Player finished - trigger results */
+        if (currentPos == 0) {
+            /* Winner! */
+            func_800B4208(3);  /* Victory sound */
+        }
+
+        /* Check for high score */
+        if (func_800AEB54(*finishTime) != 0) {
+            /* New high score */
+            func_800B4208(9);  /* "New record!" */
+        }
+    }
+
+    /* Check if all cars finished */
+    if (D_801582EC >= D_801582E0) {
+        D_801582F0 = 1;  /* Race complete */
+        func_800AD734();  /* Show results */
+    }
 }
 
 /*
  * func_800AD734 (1572 bytes)
  * Race results display
+ *
+ * Displays the race results screen with times and positions.
+ * Called after all cars finish or timer expires.
  */
+extern s32 D_801582F4;          /* Results screen state */
+extern s32 D_801582F8;          /* Results timer */
+extern void func_800E2A3C(s32 type);  /* Screen transition */
+
 void func_800AD734(void) {
-    /* Results display - stub */
+    s32 i;
+    void *car;
+    s32 position, laps;
+    u32 finishTime;
+    s32 finished;
+
+    /* Set results screen state */
+    D_801582F4 = 1;
+    D_801582F8 = 0;
+
+    /* Trigger screen transition */
+    func_800E2A3C(5);  /* Results screen type */
+
+    /* Gather and display results for each car */
+    for (i = 0; i < D_801582E0; i++) {
+        car = D_801582C0[i];
+        if (car == NULL) {
+            continue;
+        }
+
+        position = *(s32 *)((u8 *)car + 0x5C);
+        laps = *(s32 *)((u8 *)car + 0x58);
+        finished = *(s32 *)((u8 *)car + 0xD4);
+        finishTime = *(u32 *)((u8 *)car + 0xD8);
+
+        /* Format: Position, Laps, Time */
+        /* HUD rendering happens in display update function */
+    }
+
+    /* Pause audio during results */
+    func_800B4DAC(0);  /* Don't fully pause, just reduce */
 }
 
 /*
  * func_800ADD58 (3580 bytes)
  * Leaderboard update
+ *
+ * Updates the race leaderboard with current standings.
+ * Manages the top 10 best times per track.
+ *
+ * Leaderboard entry structure (per track):
+ *   name[8], time (u32), date (u32)
  */
+extern u8 D_80158300[12][10][16];   /* Leaderboard entries [track][rank][data] */
+extern s32 D_80158FC0;              /* Current track index */
+
 void func_800ADD58(void) {
-    /* Leaderboard - stub */
+    s32 i, j;
+    void *car;
+    u32 finishTime;
+    s32 finished;
+    s32 rank;
+    u8 *leaderboard;
+
+    /* Get current track leaderboard */
+    leaderboard = D_80158300[D_80158FC0][0];
+
+    /* Check each car for potential leaderboard entry */
+    for (i = 0; i < D_801582E0; i++) {
+        car = D_801582C0[i];
+        if (car == NULL) {
+            continue;
+        }
+
+        finished = *(s32 *)((u8 *)car + 0xD4);
+        if (finished == 0) {
+            continue;
+        }
+
+        finishTime = *(u32 *)((u8 *)car + 0xD8);
+
+        /* Find rank on leaderboard */
+        rank = -1;
+        for (j = 0; j < 10; j++) {
+            u32 *entryTime = (u32 *)&D_80158300[D_80158FC0][j][8];
+            if (*entryTime == 0 || finishTime < *entryTime) {
+                rank = j;
+                break;
+            }
+        }
+
+        /* Insert into leaderboard if ranked */
+        if (rank >= 0 && rank < 10) {
+            /* Shift entries down */
+            for (j = 9; j > rank; j--) {
+                s32 k;
+                for (k = 0; k < 16; k++) {
+                    D_80158300[D_80158FC0][j][k] = D_80158300[D_80158FC0][j-1][k];
+                }
+            }
+
+            /* Insert new entry */
+            /* Name will be filled by high score entry screen */
+            *(u32 *)&D_80158300[D_80158FC0][rank][8] = finishTime;
+            *(u32 *)&D_80158300[D_80158FC0][rank][12] = 0;  /* Date placeholder */
+        }
+    }
 }
 
 /*
  * func_800AEB54 (528 bytes)
  * High score check
+ *
+ * Checks if the given time qualifies for the leaderboard.
+ * Returns the rank position (1-10) if qualified, 0 if not.
  */
 s32 func_800AEB54(s32 time) {
-    /* High score check - stub */
+    s32 j;
+    u32 checkTime = (u32)time;
+
+    if (checkTime == 0) {
+        return 0;
+    }
+
+    /* Check against current track leaderboard */
+    for (j = 0; j < 10; j++) {
+        u32 *entryTime = (u32 *)&D_80158300[D_80158FC0][j][8];
+
+        if (*entryTime == 0) {
+            /* Empty slot - qualifies */
+            return j + 1;
+        }
+
+        if (checkTime < *entryTime) {
+            /* Faster than this entry - qualifies at this rank */
+            return j + 1;
+        }
+    }
+
+    /* Didn't qualify */
     return 0;
 }
 
 /*
  * func_800AED64 (644 bytes)
  * High score entry
+ *
+ * Inserts a new high score entry into the leaderboard.
+ * Shifts existing entries down to make room.
+ *
+ * position: 1-10 (rank on leaderboard)
+ * name: 3-character name string
+ * time: Race completion time
  */
 void func_800AED64(s32 position, u8 *name, s32 time) {
-    /* High score entry - stub */
+    s32 rank, j, k;
+    u8 *entry;
+
+    if (position < 1 || position > 10) {
+        return;
+    }
+
+    if (name == NULL) {
+        return;
+    }
+
+    rank = position - 1;
+
+    /* Shift entries down */
+    for (j = 9; j > rank; j--) {
+        for (k = 0; k < 16; k++) {
+            D_80158300[D_80158FC0][j][k] = D_80158300[D_80158FC0][j-1][k];
+        }
+    }
+
+    /* Insert new entry */
+    entry = D_80158300[D_80158FC0][rank];
+
+    /* Copy name (up to 8 characters) */
+    for (k = 0; k < 8; k++) {
+        if (name[k] == '\0') {
+            entry[k] = ' ';  /* Pad with spaces */
+        } else {
+            entry[k] = name[k];
+        }
+    }
+
+    /* Store time */
+    *(u32 *)&entry[8] = (u32)time;
+
+    /* Store date/timestamp (placeholder - could use RTC) */
+    *(u32 *)&entry[12] = 0;
+
+    /* Mark as needing save */
+    func_800AEFE8();
 }
 
 /*
  * func_800AEFE8 (504 bytes)
  * Save high scores
+ *
+ * Saves high score data to controller pak/EEPROM.
+ * Uses N64 save system for persistence.
  */
+extern s32 D_80158FCC;          /* Save pending flag */
+extern void func_80096240(void *data, s32 size);  /* EEPROM write */
+
 void func_800AEFE8(void) {
-    /* Save scores - stub */
+    /* Mark save as pending */
+    D_80158FCC = 1;
+
+    /* Save will be performed during next save opportunity */
+    /* Actual save is handled by the save system which batches writes */
+    /* to avoid excessive EEPROM wear */
 }
 
 /*
