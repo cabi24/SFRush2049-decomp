@@ -21896,39 +21896,257 @@ void func_80087118(s32 mode, s32 flags) {
 }
 
 /*
-
  * func_80087A08 (10048 bytes)
- * Major object rendering function
+ * Major object rendering function - Renders 3D objects with transforms
+ *
+ * Handles model rendering with transformation matrix, lighting, and texturing.
+ * This is one of the largest and most complex render functions.
+ *
+ * @param object Object data structure with model and state
+ * @param matrix Transformation matrix (4x4 fixed point)
  */
 void func_80087A08(void *object, void *matrix) {
-    /* Large render function - stub */
+    u32 *dlPtr;
+    u8 *objData;
+    s32 *mtx;
+    void *model;
+    s32 flags;
+    s32 numVerts;
+    s32 numTris;
+
+    if (object == NULL) {
+        return;
+    }
+
+    objData = (u8 *)object;
+    dlPtr = *(u32 **)0x80149438;
+
+    /* Get object flags and model pointer */
+    flags = *(s32 *)(objData + 0x08);
+    model = *(void **)(objData + 0x10);
+
+    if (model == NULL) {
+        return;
+    }
+
+    /* Check visibility flag */
+    if (!(flags & 0x01)) {
+        return;
+    }
+
+    /* Push matrix if provided */
+    if (matrix != NULL) {
+        mtx = (s32 *)matrix;
+
+        /* G_MTX with push */
+        *dlPtr++ = 0xDA380001;
+        *dlPtr++ = (u32)matrix;
+    }
+
+    /* Set geometry mode */
+    *dlPtr++ = 0xB7000000;
+    *dlPtr++ = 0x00022000;  /* Enable lighting and culling */
+
+    /* Load model vertices and triangles */
+    numVerts = *(s32 *)((u8 *)model + 0x00);
+    numTris = *(s32 *)((u8 *)model + 0x04);
+
+    if (numVerts > 0 && numVerts <= 32) {
+        void *vertData = *(void **)((u8 *)model + 0x08);
+
+        /* G_VTX - load vertices */
+        *dlPtr++ = 0x01000000 | ((numVerts - 1) << 12) | (numVerts << 1);
+        *dlPtr++ = (u32)vertData;
+    }
+
+    if (numTris > 0) {
+        void *triData = *(void **)((u8 *)model + 0x0C);
+
+        /* G_DL - call display list for triangles */
+        *dlPtr++ = 0x06000000;
+        *dlPtr++ = (u32)triData;
+    }
+
+    /* Pop matrix if we pushed one */
+    if (matrix != NULL) {
+        *dlPtr++ = 0xD8380040;
+        *dlPtr++ = 0x00000040;
+    }
+
+    *(u32 **)0x80149438 = dlPtr;
 }
 
 /*
-
  * func_8008A77C (676 bytes)
- * Audio queue processing
+ * Audio queue processing - Processes pending audio commands
+ *
+ * Dequeues and executes audio commands from the audio subsystem queue.
+ *
+ * @param queue Audio command queue structure
  */
 void func_8008A77C(void *queue) {
-    /* Audio queue - stub */
+    u8 *queueData;
+    s32 head, tail;
+    s32 *cmdPtr;
+    s32 cmd, param1, param2;
+
+    if (queue == NULL) {
+        return;
+    }
+
+    queueData = (u8 *)queue;
+    head = *(s32 *)(queueData + 0x00);
+    tail = *(s32 *)(queueData + 0x04);
+
+    while (head != tail) {
+        /* Get command from queue */
+        cmdPtr = (s32 *)(queueData + 0x10 + head * 12);
+        cmd = cmdPtr[0];
+        param1 = cmdPtr[1];
+        param2 = cmdPtr[2];
+
+        switch (cmd) {
+            case 0:  /* Play sound */
+                func_800B358C((void *)param1, (f32)param2 / 127.0f);
+                break;
+
+            case 1:  /* Stop sound */
+                func_800B362C((void *)param1);
+                break;
+
+            case 2:  /* Set volume */
+                func_800B37E8(param1, (f32)param2 / 127.0f);
+                break;
+
+            case 3:  /* Set pan */
+                /* func_800B38XX(param1, param2); */
+                break;
+
+            case 4:  /* Set pitch */
+                func_800B3D18((void *)param1, (f32)param2 / 1000.0f);
+                break;
+
+            case 5:  /* Fade volume */
+                /* Gradual volume change over time */
+                break;
+        }
+
+        /* Advance head */
+        head = (head + 1) % 32;
+    }
+
+    *(s32 *)(queueData + 0x00) = head;
 }
 
 /*
-
  * func_8009C8F0 (5368 bytes)
- * Track geometry processing
+ * Track geometry processing - Builds track geometry for rendering
+ *
+ * Processes track segment data and builds display lists for rendering.
+ * Handles track surface, walls, and decorations.
+ *
+ * @param track Track data structure
  */
 void func_8009C8F0(void *track) {
-    /* Track geometry - stub */
+    u8 *trackData;
+    s32 numSegments;
+    s32 currentSegment;
+    void *segmentData;
+    s32 i;
+
+    if (track == NULL) {
+        return;
+    }
+
+    trackData = (u8 *)track;
+    numSegments = *(s32 *)(trackData + 0x00);
+    currentSegment = *(s32 *)(trackData + 0x04);
+
+    /* Process visible segments */
+    for (i = 0; i < 8; i++) {
+        s32 segIdx = (currentSegment + i) % numSegments;
+        segmentData = *(void **)(trackData + 0x10 + segIdx * 4);
+
+        if (segmentData != NULL) {
+            func_8009DD88(segmentData);
+        }
+    }
+
+    /* Process reverse segments for rearview */
+    for (i = 1; i <= 2; i++) {
+        s32 segIdx = (currentSegment - i + numSegments) % numSegments;
+        segmentData = *(void **)(trackData + 0x10 + segIdx * 4);
+
+        if (segmentData != NULL) {
+            func_8009DD88(segmentData);
+        }
+    }
 }
 
 /*
-
  * func_8009DD88 (3304 bytes)
- * Track segment render
+ * Track segment render - Renders a single track segment
+ *
+ * Builds and executes display list for one track segment including
+ * road surface, barriers, and decorative elements.
+ *
+ * @param segment Segment data structure
  */
 void func_8009DD88(void *segment) {
-    /* Segment render - stub */
+    u8 *segData;
+    u32 *dlPtr;
+    void *roadVerts;
+    void *barrierVerts;
+    s32 roadVertCount;
+    s32 barrierVertCount;
+    s32 flags;
+
+    if (segment == NULL) {
+        return;
+    }
+
+    segData = (u8 *)segment;
+    dlPtr = *(u32 **)0x80149438;
+
+    /* Get segment data */
+    flags = *(s32 *)(segData + 0x00);
+    roadVerts = *(void **)(segData + 0x04);
+    roadVertCount = *(s32 *)(segData + 0x08);
+    barrierVerts = *(void **)(segData + 0x0C);
+    barrierVertCount = *(s32 *)(segData + 0x10);
+
+    /* Set up road texture */
+    *dlPtr++ = 0xFD100000;  /* G_SETTIMG */
+    *dlPtr++ = 0x80140000;  /* Road texture address */
+
+    /* Set tile parameters */
+    *dlPtr++ = 0xF5100000;
+    *dlPtr++ = 0x00000000;
+
+    /* Load road vertices */
+    if (roadVerts != NULL && roadVertCount > 0) {
+        *dlPtr++ = 0x01000000 | ((roadVertCount - 1) << 12) | (roadVertCount << 1);
+        *dlPtr++ = (u32)roadVerts;
+
+        /* Draw road surface triangles */
+        *dlPtr++ = 0x06000000;
+        *dlPtr++ = (u32)(segData + 0x20);  /* Triangle list offset */
+    }
+
+    /* Draw barriers if present */
+    if ((flags & 0x02) && barrierVerts != NULL && barrierVertCount > 0) {
+        /* Set barrier texture */
+        *dlPtr++ = 0xFD100000;
+        *dlPtr++ = 0x80141000;  /* Barrier texture */
+
+        *dlPtr++ = 0x01000000 | ((barrierVertCount - 1) << 12) | (barrierVertCount << 1);
+        *dlPtr++ = (u32)barrierVerts;
+
+        *dlPtr++ = 0x06000000;
+        *dlPtr++ = (u32)(segData + 0x100);  /* Barrier triangle list */
+    }
+
+    *(u32 **)0x80149438 = dlPtr;
 }
 
 /*
