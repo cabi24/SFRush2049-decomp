@@ -9678,33 +9678,347 @@ void func_800AAE68(void *car) {
 /*
  * func_800AB544 (564 bytes)
  * Player input reading
+ *
+ * Reads N64 controller input and maps to player car controls.
+ *
+ * N64 Controller structure (from osContPad):
+ *   0x00: buttons (u16) - A, B, Z, Start, D-pad, C buttons, L, R
+ *   0x02: stick_x (s8) - Analog stick X (-128 to 127)
+ *   0x03: stick_y (s8) - Analog stick Y (-128 to 127)
+ *   0x04: errno (u8) - Error code
+ *
+ * Button masks:
+ *   A = 0x8000, B = 0x4000, Z = 0x2000, Start = 0x1000
+ *   D-Up = 0x0800, D-Down = 0x0400, D-Left = 0x0200, D-Right = 0x0100
+ *   L = 0x0020, R = 0x0010
+ *   C-Up = 0x0008, C-Down = 0x0004, C-Left = 0x0002, C-Right = 0x0001
+ *
+ * Player input offsets:
+ *   0xE0: steering input (f32) -1.0 to 1.0
+ *   0xE4: throttle input (f32) 0.0 to 1.0
+ *   0xE8: brake input (f32) 0.0 to 1.0
+ *   0xEC: handbrake (s32) 0 or 1
+ *   0xF0: shift up pressed (s32)
+ *   0xF4: shift down pressed (s32)
+ *   0xF8: view change pressed (s32)
+ *   0xFC: wing deploy (s32)
+ *   0x100: pause pressed (s32)
  */
 void func_800AB544(void *player, void *controller) {
-    /* Input reading - stub */
+    u16 buttons;
+    s8 stickX, stickY;
+    f32 *steering, *throttle, *brake;
+    s32 *handbrake, *shiftUp, *shiftDown;
+    s32 *viewChange, *wingDeploy, *pausePressed;
+    f32 stickMag;
+
+    if (player == NULL || controller == NULL) {
+        return;
+    }
+
+    /* Read controller state */
+    buttons = *(u16 *)controller;
+    stickX = *(s8 *)((u8 *)controller + 2);
+    stickY = *(s8 *)((u8 *)controller + 3);
+
+    /* Get player input pointers */
+    steering = (f32 *)((u8 *)player + 0xE0);
+    throttle = (f32 *)((u8 *)player + 0xE4);
+    brake = (f32 *)((u8 *)player + 0xE8);
+    handbrake = (s32 *)((u8 *)player + 0xEC);
+    shiftUp = (s32 *)((u8 *)player + 0xF0);
+    shiftDown = (s32 *)((u8 *)player + 0xF4);
+    viewChange = (s32 *)((u8 *)player + 0xF8);
+    wingDeploy = (s32 *)((u8 *)player + 0xFC);
+    pausePressed = (s32 *)((u8 *)player + 0x100);
+
+    /* Convert analog stick to steering (-1.0 to 1.0) */
+    /* Apply deadzone of ~10 */
+    if (stickX > 10) {
+        *steering = (f32)(stickX - 10) / 117.0f;
+    } else if (stickX < -10) {
+        *steering = (f32)(stickX + 10) / 117.0f;
+    } else {
+        *steering = 0.0f;
+    }
+
+    /* Clamp steering */
+    if (*steering > 1.0f) *steering = 1.0f;
+    if (*steering < -1.0f) *steering = -1.0f;
+
+    /* A button = throttle, B button = brake */
+    if (buttons & 0x8000) {  /* A */
+        *throttle = 1.0f;
+    } else if (stickY > 10) {
+        /* Forward on stick = partial throttle */
+        *throttle = (f32)(stickY - 10) / 117.0f;
+    } else {
+        *throttle = 0.0f;
+    }
+
+    if (buttons & 0x4000) {  /* B */
+        *brake = 1.0f;
+    } else if (stickY < -10) {
+        /* Back on stick = partial brake */
+        *brake = (f32)(-stickY - 10) / 117.0f;
+    } else {
+        *brake = 0.0f;
+    }
+
+    /* Z trigger = handbrake */
+    *handbrake = (buttons & 0x2000) ? 1 : 0;
+
+    /* R = shift up, L = shift down */
+    *shiftUp = (buttons & 0x0010) ? 1 : 0;
+    *shiftDown = (buttons & 0x0020) ? 1 : 0;
+
+    /* C buttons for view/wings */
+    *viewChange = (buttons & 0x0008) ? 1 : 0;  /* C-Up */
+    *wingDeploy = (buttons & 0x0004) ? 1 : 0;  /* C-Down */
+
+    /* Start = pause */
+    *pausePressed = (buttons & 0x1000) ? 1 : 0;
 }
 
 /*
  * func_800AB7D8 (1016 bytes)
  * Player state update
+ *
+ * Updates player state based on current inputs.
+ * Handles state transitions (racing, crashed, respawning, etc.)
+ *
+ * Player state values:
+ *   0 = Racing normally
+ *   1 = Crashed/wrecked
+ *   2 = Respawning
+ *   3 = Finished race
+ *   4 = In menu/paused
+ *
+ * Player offsets:
+ *   0x104: current state (s32)
+ *   0x108: state timer (s32)
+ *   0x10C: respawn countdown (s32)
+ *   0x110: invincibility timer (s32)
  */
 void func_800AB7D8(void *player) {
-    /* Player state - stub */
+    s32 *state, *stateTimer, *respawnCountdown, *invincibility;
+    s32 *pausePressed, *finished;
+    s32 currentState;
+
+    if (player == NULL) {
+        return;
+    }
+
+    /* Get player state data */
+    state = (s32 *)((u8 *)player + 0x104);
+    stateTimer = (s32 *)((u8 *)player + 0x108);
+    respawnCountdown = (s32 *)((u8 *)player + 0x10C);
+    invincibility = (s32 *)((u8 *)player + 0x110);
+    pausePressed = (s32 *)((u8 *)player + 0x100);
+    finished = (s32 *)((u8 *)player + 0xD4);
+
+    currentState = *state;
+
+    /* Decrement timers */
+    if (*stateTimer > 0) {
+        (*stateTimer)--;
+    }
+    if (*invincibility > 0) {
+        (*invincibility)--;
+    }
+
+    /* State machine */
+    switch (currentState) {
+        case 0:  /* Racing */
+            /* Check for crash condition */
+            /* (Crash detection happens in physics/collision) */
+
+            /* Check for pause */
+            if (*pausePressed != 0) {
+                *state = 4;
+                *stateTimer = 0;
+            }
+
+            /* Check for finish */
+            if (*finished != 0) {
+                *state = 3;
+                *stateTimer = 180;  /* 3 seconds at 60fps */
+            }
+            break;
+
+        case 1:  /* Crashed */
+            /* Wait for crash animation to complete */
+            if (*stateTimer == 0) {
+                *state = 2;  /* Begin respawn */
+                *respawnCountdown = 120;  /* 2 second respawn delay */
+            }
+            break;
+
+        case 2:  /* Respawning */
+            (*respawnCountdown)--;
+            if (*respawnCountdown <= 0) {
+                /* Respawn complete */
+                *state = 0;  /* Back to racing */
+                *invincibility = 120;  /* 2 seconds invincibility */
+            }
+            break;
+
+        case 3:  /* Finished */
+            /* Wait for celebration/results */
+            if (*stateTimer == 0) {
+                /* Stay in finished state until race ends */
+            }
+            break;
+
+        case 4:  /* Paused */
+            /* Wait for unpause */
+            if (*pausePressed != 0 && *stateTimer == 0) {
+                *state = 0;
+                *stateTimer = 10;  /* Debounce */
+            }
+            break;
+    }
 }
 
 /*
  * func_800ABBD0 (248 bytes)
  * Player respawn position
+ *
+ * Calculates respawn position based on last checkpoint.
+ * Places car on track near last valid position.
  */
+extern void *D_80158FD0[16];    /* Checkpoint data array */
+
 void func_800ABBD0(void *player, f32 *respawnPos) {
-    /* Respawn position - stub */
+    s32 lastCheckpoint;
+    void *checkpoint;
+    f32 *cpPos, *cpNormal;
+
+    if (player == NULL || respawnPos == NULL) {
+        return;
+    }
+
+    /* Get last checkpoint index */
+    lastCheckpoint = *(s32 *)((u8 *)player + 0x54);
+    if (lastCheckpoint > 0) {
+        lastCheckpoint--;  /* Go back one checkpoint */
+    }
+
+    /* Get checkpoint data */
+    checkpoint = D_80158FD0[lastCheckpoint];
+    if (checkpoint == NULL) {
+        /* Default to origin if no checkpoint data */
+        respawnPos[0] = 0.0f;
+        respawnPos[1] = 10.0f;  /* Slightly above ground */
+        respawnPos[2] = 0.0f;
+        return;
+    }
+
+    cpPos = (f32 *)checkpoint;
+    cpNormal = (f32 *)((u8 *)checkpoint + 0x10);
+
+    /* Place slightly behind checkpoint */
+    respawnPos[0] = cpPos[0] - cpNormal[0] * 20.0f;
+    respawnPos[1] = cpPos[1] + 5.0f;  /* Above ground */
+    respawnPos[2] = cpPos[2] - cpNormal[2] * 20.0f;
 }
 
 /*
  * func_800ABCC8 (2708 bytes)
  * Player full update
+ *
+ * Main per-frame update for player car.
+ * Orchestrates input, physics, collision, and state.
  */
+extern void *D_80159000;        /* Current controller state */
+extern void func_800A6BE4(void *car, f32 dt);     /* Physics integration */
+extern void func_800A78C8(void *car, f32 steer);  /* Steering */
+extern void func_800A7AE4(void *car, f32 throttle, f32 brake);  /* Drive */
+
 void func_800ABCC8(void *player, f32 dt) {
-    /* Player update - stub */
+    s32 state;
+    f32 steering, throttle, brake;
+    s32 wingDeploy;
+    f32 respawnPos[3];
+
+    if (player == NULL) {
+        return;
+    }
+
+    /* Get current state */
+    state = *(s32 *)((u8 *)player + 0x104);
+
+    /* Read controller input */
+    func_800AB544(player, D_80159000);
+
+    /* Update state machine */
+    func_800AB7D8(player);
+
+    /* Process based on state */
+    switch (state) {
+        case 0:  /* Racing */
+            /* Get input values */
+            steering = *(f32 *)((u8 *)player + 0xE0);
+            throttle = *(f32 *)((u8 *)player + 0xE4);
+            brake = *(f32 *)((u8 *)player + 0xE8);
+            wingDeploy = *(s32 *)((u8 *)player + 0xFC);
+
+            /* Apply steering */
+            func_800A78C8(player, steering);
+
+            /* Apply throttle/brake */
+            func_800A7AE4(player, throttle, brake);
+
+            /* Handle wing deployment (Rush 2049 feature) */
+            if (wingDeploy != 0) {
+                func_80105480(player);  /* Deploy wings */
+            }
+
+            /* Update physics */
+            func_800A6BE4(player, dt);
+
+            /* Update audio (engine, tire sounds) */
+            func_800B2DF8(player);
+            func_800B338C(player);
+            break;
+
+        case 1:  /* Crashed */
+            /* Minimal physics while crashed */
+            func_800A6BE4(player, dt);
+            break;
+
+        case 2:  /* Respawning */
+            /* Calculate respawn position */
+            func_800ABBD0(player, respawnPos);
+
+            /* Check if countdown finished */
+            if (*(s32 *)((u8 *)player + 0x10C) <= 0) {
+                /* Move to respawn position */
+                f32 *pos = (f32 *)((u8 *)player + 0x24);
+                pos[0] = respawnPos[0];
+                pos[1] = respawnPos[1];
+                pos[2] = respawnPos[2];
+
+                /* Reset velocity */
+                f32 *vel = (f32 *)((u8 *)player + 0x34);
+                vel[0] = 0.0f;
+                vel[1] = 0.0f;
+                vel[2] = 0.0f;
+            }
+            break;
+
+        case 3:  /* Finished */
+            /* Slow deceleration after finish */
+            throttle = 0.0f;
+            brake = 0.1f;
+            func_800A7AE4(player, throttle, brake);
+            func_800A6BE4(player, dt);
+            break;
+
+        case 4:  /* Paused */
+            /* No updates while paused */
+            break;
+    }
 }
 
 /*
