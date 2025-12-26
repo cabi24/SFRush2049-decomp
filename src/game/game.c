@@ -13947,105 +13947,538 @@ void func_8010C7F4(void *car, void *input) {
 /*
  * func_8010C974 (2636 bytes)
  * AI input generate
+ *
+ * Based on arcade MaxPath() - generates steering, throttle, brake inputs
+ * for AI-controlled cars using path following and obstacle avoidance.
+ *
+ * Car AI state offsets:
+ *   0x100: target waypoint index (s32)
+ *   0x104: target position (f32[3])
+ *   0x110: current path ID (s32)
+ *   0x114: steering output (f32)
+ *   0x118: throttle output (f32)
+ *   0x11C: brake output (f32)
+ *   0x120: AI flags (u32)
  */
 void func_8010C974(void *car) {
-    /* AI input - stub */
+    f32 *carPos, *carVel, *carDir;
+    f32 *targetPos, *steer, *throttle, *brake;
+    f32 dx, dz, dist, targetDist;
+    f32 dotForward, dotRight;
+    f32 carSpeed, desiredSpeed;
+    s32 *waypointIdx;
+    u32 *aiFlags;
+
+    if (car == NULL) {
+        return;
+    }
+
+    /* Get car state */
+    carPos = (f32 *)((u8 *)car + 0x24);
+    carVel = (f32 *)((u8 *)car + 0x34);
+    carDir = (f32 *)((u8 *)car + 0x60);  /* Forward direction */
+
+    /* Get AI state */
+    waypointIdx = (s32 *)((u8 *)car + 0x100);
+    targetPos = (f32 *)((u8 *)car + 0x104);
+    steer = (f32 *)((u8 *)car + 0x114);
+    throttle = (f32 *)((u8 *)car + 0x118);
+    brake = (f32 *)((u8 *)car + 0x11C);
+    aiFlags = (u32 *)((u8 *)car + 0x120);
+
+    /* Calculate vector to target */
+    dx = targetPos[0] - carPos[0];
+    dz = targetPos[2] - carPos[2];
+    dist = sqrtf(dx * dx + dz * dz);
+
+    /* Calculate current speed */
+    carSpeed = sqrtf(carVel[0] * carVel[0] + carVel[2] * carVel[2]);
+
+    /* Check if reached waypoint */
+    if (dist < 5.0f) {
+        /* Advance to next waypoint */
+        func_8010D3C0(car);
+        return;
+    }
+
+    /* Normalize direction to target */
+    if (dist > 0.001f) {
+        dx /= dist;
+        dz /= dist;
+    }
+
+    /* Calculate steering based on angle to target */
+    /* Dot product with forward = cos(angle), with right = sin(angle) */
+    dotForward = carDir[0] * dx + carDir[2] * dz;
+    dotRight = carDir[2] * dx - carDir[0] * dz;  /* Perpendicular */
+
+    /* Set steering (-1 to 1 based on angle) */
+    *steer = dotRight * 2.0f;
+    if (*steer > 1.0f) *steer = 1.0f;
+    if (*steer < -1.0f) *steer = -1.0f;
+
+    /* Calculate desired speed based on upcoming turn angle */
+    desiredSpeed = 60.0f;  /* Base speed */
+    if (dotForward < 0.7f) {
+        /* Sharp turn ahead - slow down */
+        desiredSpeed = 30.0f + dotForward * 30.0f;
+    }
+
+    /* Set throttle/brake based on speed difference */
+    if (carSpeed < desiredSpeed * 0.9f) {
+        *throttle = 1.0f;
+        *brake = 0.0f;
+    } else if (carSpeed > desiredSpeed * 1.1f) {
+        *throttle = 0.0f;
+        *brake = 0.5f;
+    } else {
+        *throttle = 0.5f;
+        *brake = 0.0f;
+    }
+
+    /* Apply obstacle avoidance */
+    func_8010D85C(car);
+
+    /* Apply rubber banding */
+    func_8010DCFC(car);
 }
 
 /*
  * func_8010D3C0 (704 bytes)
  * AI target find
+ *
+ * Updates AI target waypoint based on path data
+ * Path data structure at D_80143000
  */
 void func_8010D3C0(void *car) {
-    /* AI target - stub */
+    extern u8 D_80143000[];  /* Path data array */
+    extern s16 D_80143200;   /* Number of waypoints per path */
+    s32 *waypointIdx, *pathId;
+    f32 *targetPos;
+    f32 *pathData;
+    s32 wpIdx, numWaypoints;
+
+    if (car == NULL) {
+        return;
+    }
+
+    waypointIdx = (s32 *)((u8 *)car + 0x100);
+    pathId = (s32 *)((u8 *)car + 0x110);
+    targetPos = (f32 *)((u8 *)car + 0x104);
+
+    numWaypoints = D_80143200;
+    if (numWaypoints <= 0) {
+        numWaypoints = 20;  /* Default */
+    }
+
+    /* Advance waypoint */
+    (*waypointIdx)++;
+    if (*waypointIdx >= numWaypoints) {
+        *waypointIdx = 0;  /* Loop back */
+    }
+
+    wpIdx = *waypointIdx;
+
+    /* Get waypoint position from path data */
+    /* Path format: pathId * stride + wpIdx * 12 (3 floats) */
+    pathData = (f32 *)&D_80143000[(*pathId) * numWaypoints * 12 + wpIdx * 12];
+    targetPos[0] = pathData[0];
+    targetPos[1] = pathData[1];
+    targetPos[2] = pathData[2];
 }
 
 /*
  * func_8010D680 (476 bytes)
  * AI path follow
+ *
+ * Main path following update - called from AI input generate
  */
 void func_8010D680(void *car) {
-    /* AI path - stub */
+    f32 *carPos, *targetPos;
+    f32 dx, dy, dz, distSq;
+
+    if (car == NULL) {
+        return;
+    }
+
+    carPos = (f32 *)((u8 *)car + 0x24);
+    targetPos = (f32 *)((u8 *)car + 0x104);
+
+    /* Calculate squared distance to target */
+    dx = targetPos[0] - carPos[0];
+    dy = targetPos[1] - carPos[1];
+    dz = targetPos[2] - carPos[2];
+    distSq = dx * dx + dy * dy + dz * dz;
+
+    /* If close enough to waypoint, get next one */
+    if (distSq < 25.0f) {  /* 5^2 = 25 */
+        func_8010D3C0(car);
+    }
 }
 
 /*
  * func_8010D85C (372 bytes)
  * AI obstacle avoid
+ *
+ * Adjusts steering to avoid nearby obstacles and other cars
  */
 void func_8010D85C(void *car) {
-    /* AI avoid - stub */
+    extern u8 D_80152818[];  /* Car array */
+    extern s8 D_80152744;    /* Number of cars */
+    f32 *carPos, *steer;
+    f32 *otherPos;
+    f32 dx, dz, dist;
+    s32 i, numCars;
+
+    if (car == NULL) {
+        return;
+    }
+
+    carPos = (f32 *)((u8 *)car + 0x24);
+    steer = (f32 *)((u8 *)car + 0x114);
+    numCars = D_80152744;
+
+    /* Check distance to other cars */
+    for (i = 0; i < numCars; i++) {
+        u8 *otherCar = &D_80152818[i * 0x144];
+
+        if (otherCar == car) {
+            continue;  /* Skip self */
+        }
+
+        otherPos = (f32 *)(otherCar + 0x24);
+        dx = otherPos[0] - carPos[0];
+        dz = otherPos[2] - carPos[2];
+        dist = sqrtf(dx * dx + dz * dz);
+
+        /* If car is close, adjust steering */
+        if (dist < 8.0f && dist > 0.1f) {
+            /* Steer away from other car */
+            f32 avoidStrength = (8.0f - dist) / 8.0f;
+            if (dx > 0) {
+                *steer -= avoidStrength * 0.3f;
+            } else {
+                *steer += avoidStrength * 0.3f;
+            }
+        }
+    }
+
+    /* Clamp steering */
+    if (*steer > 1.0f) *steer = 1.0f;
+    if (*steer < -1.0f) *steer = -1.0f;
 }
 
 /*
  * func_8010D9CC (492 bytes)
  * AI overtake
+ *
+ * Attempts to overtake car ahead when appropriate
  */
 void func_8010D9CC(void *car) {
-    /* AI overtake - stub */
+    f32 *carPos, *carVel, *steer, *throttle;
+    f32 *targetPos;
+    u32 *aiFlags;
+
+    if (car == NULL) {
+        return;
+    }
+
+    carPos = (f32 *)((u8 *)car + 0x24);
+    carVel = (f32 *)((u8 *)car + 0x34);
+    steer = (f32 *)((u8 *)car + 0x114);
+    throttle = (f32 *)((u8 *)car + 0x118);
+    aiFlags = (u32 *)((u8 *)car + 0x120);
+
+    /* Check if in overtake mode (flag bit 0x01) */
+    if (*aiFlags & 0x01) {
+        /* Apply more aggressive steering and throttle */
+        *throttle = 1.0f;
+
+        /* TODO: Calculate optimal overtake line */
+    }
 }
 
 /*
  * func_8010DBB8 (324 bytes)
  * AI defend
+ *
+ * Defensive driving - blocks overtaking attempts
  */
 void func_8010DBB8(void *car) {
-    /* AI defend - stub */
+    u32 *aiFlags;
+    f32 *steer;
+
+    if (car == NULL) {
+        return;
+    }
+
+    aiFlags = (u32 *)((u8 *)car + 0x120);
+    steer = (f32 *)((u8 *)car + 0x114);
+
+    /* Check if in defensive mode (flag bit 0x02) */
+    if (*aiFlags & 0x02) {
+        /* TODO: Block racing line */
+    }
 }
 
 /*
  * func_8010DCFC (660 bytes)
  * AI rubber band
+ *
+ * Based on arcade set_catchup() - adjusts AI speed based on position
+ * to keep races competitive (slower when ahead, faster when behind)
  */
 void func_8010DCFC(void *car) {
-    /* Rubber band - stub */
+    extern f32 D_80143400;  /* Lead car distance */
+    extern f32 D_80143404;  /* Player distance */
+    f32 *throttle, *maxSpeed;
+    f32 distanceGap, speedMod;
+    s32 *racePosition;
+
+    if (car == NULL) {
+        return;
+    }
+
+    throttle = (f32 *)((u8 *)car + 0x118);
+    maxSpeed = (f32 *)((u8 *)car + 0x124);  /* Max speed modifier */
+    racePosition = (s32 *)((u8 *)car + 0x128);
+
+    /* Calculate gap to player */
+    distanceGap = D_80143400 - D_80143404;
+
+    /* Adjust speed based on gap */
+    if (distanceGap > 50.0f) {
+        /* AI is far ahead - slow down slightly */
+        speedMod = 0.9f;
+    } else if (distanceGap < -50.0f) {
+        /* AI is far behind - speed up */
+        speedMod = 1.1f;
+    } else {
+        /* Close race - normal speed */
+        speedMod = 1.0f;
+    }
+
+    /* Apply modifier */
+    *maxSpeed = speedMod;
+    *throttle *= speedMod;
 }
 
 /*
  * func_8010DF90 (364 bytes)
  * AI difficulty adjust
+ *
+ * Adjusts AI parameters based on difficulty setting
+ * Difficulty: 0=Easy, 1=Medium, 2=Hard, 3=Expert
  */
 void func_8010DF90(void *car, s32 difficulty) {
-    /* Difficulty - stub */
+    f32 *reactionTime, *accuracy, *aggression, *maxSpeed;
+
+    if (car == NULL) {
+        return;
+    }
+
+    reactionTime = (f32 *)((u8 *)car + 0x12C);
+    accuracy = (f32 *)((u8 *)car + 0x130);
+    aggression = (f32 *)((u8 *)car + 0x134);
+    maxSpeed = (f32 *)((u8 *)car + 0x124);
+
+    switch (difficulty) {
+        case 0:  /* Easy */
+            *reactionTime = 0.5f;
+            *accuracy = 0.7f;
+            *aggression = 0.3f;
+            *maxSpeed = 0.85f;
+            break;
+
+        case 1:  /* Medium */
+            *reactionTime = 0.3f;
+            *accuracy = 0.85f;
+            *aggression = 0.5f;
+            *maxSpeed = 0.95f;
+            break;
+
+        case 2:  /* Hard */
+            *reactionTime = 0.15f;
+            *accuracy = 0.95f;
+            *aggression = 0.7f;
+            *maxSpeed = 1.0f;
+            break;
+
+        case 3:  /* Expert */
+            *reactionTime = 0.05f;
+            *accuracy = 1.0f;
+            *aggression = 0.9f;
+            *maxSpeed = 1.05f;
+            break;
+
+        default:
+            break;
+    }
 }
 
 /*
  * func_8010E0FC (1008 bytes)
  * AI behavior select
+ *
+ * Selects AI behavior based on race situation
+ * Behaviors: 0=Normal, 1=Overtake, 2=Defend, 3=Recover, 4=Catchup
  */
 void func_8010E0FC(void *car) {
-    /* Behavior - stub */
+    u32 *aiFlags;
+    s32 *racePosition, *behavior;
+    f32 *carSpeed;
+    f32 speed;
+
+    if (car == NULL) {
+        return;
+    }
+
+    aiFlags = (u32 *)((u8 *)car + 0x120);
+    racePosition = (s32 *)((u8 *)car + 0x128);
+    behavior = (s32 *)((u8 *)car + 0x138);
+    carSpeed = (f32 *)((u8 *)car + 0x34);
+
+    speed = sqrtf(carSpeed[0] * carSpeed[0] + carSpeed[2] * carSpeed[2]);
+
+    /* Check if crashed/stuck (very low speed) */
+    if (speed < 2.0f) {
+        *behavior = 3;  /* Recover */
+        *aiFlags |= 0x04;
+        return;
+    }
+
+    /* Check position for behavior selection */
+    if (*racePosition <= 2) {
+        /* In lead - defend position */
+        *behavior = 2;
+        *aiFlags |= 0x02;
+        *aiFlags &= ~0x01;
+    } else if (*racePosition >= 4) {
+        /* In back - try to catch up/overtake */
+        *behavior = 1;
+        *aiFlags |= 0x01;
+        *aiFlags &= ~0x02;
+    } else {
+        /* Mid-pack - normal racing */
+        *behavior = 0;
+        *aiFlags &= ~0x03;
+    }
 }
 
 /*
  * func_8010E4EC (428 bytes)
  * AI aggression
+ *
+ * Sets AI aggression level (affects overtaking, blocking, etc.)
  */
 void func_8010E4EC(void *car, s32 level) {
-    /* Aggression - stub */
+    f32 *aggression;
+
+    if (car == NULL) {
+        return;
+    }
+
+    aggression = (f32 *)((u8 *)car + 0x134);
+
+    /* Clamp level to 0-10 */
+    if (level < 0) level = 0;
+    if (level > 10) level = 10;
+
+    /* Convert to 0.0-1.0 range */
+    *aggression = (f32)level / 10.0f;
 }
 
 /*
  * func_8010E69C (144 bytes)
  * AI speed limit
+ *
+ * Sets maximum speed for AI car
  */
 void func_8010E69C(void *car, f32 limit) {
-    /* Speed limit - stub */
+    f32 *maxSpeed;
+
+    if (car == NULL) {
+        return;
+    }
+
+    maxSpeed = (f32 *)((u8 *)car + 0x124);
+    *maxSpeed = limit;
 }
 
 /*
  * func_8010E72C (392 bytes)
  * AI error inject
+ *
+ * Injects random errors to make AI more human-like
+ * Based on arcade drone "personality" system
  */
 void func_8010E72C(void *car) {
-    /* Error inject - stub */
+    extern u32 D_80143500;  /* Random seed */
+    f32 *steer, *throttle;
+    f32 *accuracy;
+    f32 errorMag;
+    u32 rand;
+
+    if (car == NULL) {
+        return;
+    }
+
+    steer = (f32 *)((u8 *)car + 0x114);
+    throttle = (f32 *)((u8 *)car + 0x118);
+    accuracy = (f32 *)((u8 *)car + 0x130);
+
+    /* Simple LCG random */
+    D_80143500 = D_80143500 * 1103515245 + 12345;
+    rand = D_80143500;
+
+    /* Error magnitude based on inverse accuracy */
+    errorMag = (1.0f - *accuracy) * 0.2f;
+
+    /* Add random steering error */
+    *steer += ((f32)(rand & 0xFF) / 255.0f - 0.5f) * errorMag;
+
+    /* Add random throttle variation */
+    *throttle += ((f32)((rand >> 8) & 0xFF) / 255.0f - 0.5f) * errorMag * 0.5f;
+
+    /* Clamp values */
+    if (*steer > 1.0f) *steer = 1.0f;
+    if (*steer < -1.0f) *steer = -1.0f;
+    if (*throttle > 1.0f) *throttle = 1.0f;
+    if (*throttle < 0.0f) *throttle = 0.0f;
 }
 
 /*
  * func_8010E8B4 (352 bytes)
  * AI catch up
+ *
+ * More aggressive catch-up logic for AI far behind
  */
 void func_8010E8B4(void *car) {
-    /* Catch up - stub */
+    extern f32 D_80143404;  /* Player distance */
+    f32 *carPos;
+    f32 *throttle, *maxSpeed;
+    f32 distBehind;
+
+    if (car == NULL) {
+        return;
+    }
+
+    carPos = (f32 *)((u8 *)car + 0x24);
+    throttle = (f32 *)((u8 *)car + 0x118);
+    maxSpeed = (f32 *)((u8 *)car + 0x124);
+
+    /* Calculate how far behind player */
+    /* Simplified: use Z position as proxy for track distance */
+    distBehind = D_80143404 - carPos[2];
+
+    if (distBehind > 100.0f) {
+        /* Very far behind - maximum boost */
+        *maxSpeed = 1.2f;
+        *throttle = 1.0f;
+    } else if (distBehind > 50.0f) {
+        /* Moderately behind - some boost */
+        *maxSpeed = 1.1f;
+    }
 }
 
 /*
