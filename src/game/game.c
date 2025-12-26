@@ -27287,189 +27287,838 @@ void func_800B7440(s32 sndId) {
 /*
  * func_800B78F8 (324 bytes)
  * Audio channel setup
+ *
+ * Configures an audio channel for playback
+ * N64 uses 16 software-mixed channels via the audio library
  */
 void func_800B78F8(s32 channel, s32 param) {
-    /* Channel setup - stub */
+    extern u32 D_80160000[16];  /* Channel states */
+    extern u32 D_80160040[16];  /* Channel params */
+    extern f32 D_80160080[16];  /* Channel volumes */
+    extern f32 D_801600C0[16];  /* Channel pans */
+    extern f32 D_80160100[16];  /* Channel pitches */
+
+    if (channel < 0 || channel >= 16) {
+        return;
+    }
+
+    /* Initialize channel parameters */
+    D_80160000[channel] = 0;         /* Clear state */
+    D_80160040[channel] = param;     /* Set param flags */
+    D_80160080[channel] = 1.0f;      /* Default volume */
+    D_801600C0[channel] = 0.0f;      /* Center pan */
+    D_80160100[channel] = 1.0f;      /* Normal pitch */
 }
 
 /*
  * func_800B7A40 (192 bytes)
  * Audio volume control
+ *
+ * Sets volume for a channel (0.0 to 1.0)
  */
 void func_800B7A40(s32 channel, f32 volume) {
-    /* Volume control - stub */
+    extern f32 D_80160080[16];  /* Channel volumes */
+
+    if (channel < 0 || channel >= 16) {
+        return;
+    }
+
+    /* Clamp volume */
+    if (volume < 0.0f) volume = 0.0f;
+    if (volume > 1.0f) volume = 1.0f;
+
+    D_80160080[channel] = volume;
 }
 
 /*
  * func_800B8000 (200 bytes)
  * Audio pan control
+ *
+ * Sets stereo pan for a channel (-1.0 = left, 0.0 = center, 1.0 = right)
  */
 void func_800B8000(s32 channel, f32 pan) {
-    /* Pan control - stub */
+    extern f32 D_801600C0[16];  /* Channel pans */
+
+    if (channel < 0 || channel >= 16) {
+        return;
+    }
+
+    /* Clamp pan */
+    if (pan < -1.0f) pan = -1.0f;
+    if (pan > 1.0f) pan = 1.0f;
+
+    D_801600C0[channel] = pan;
 }
 
 /*
  * func_800B821C (340 bytes)
  * Audio pitch control
+ *
+ * Sets pitch multiplier for a channel (0.5 = octave down, 2.0 = octave up)
  */
 void func_800B821C(s32 channel, f32 pitch) {
-    /* Pitch control - stub */
+    extern f32 D_80160100[16];  /* Channel pitches */
+    extern u32 D_80160140[16];  /* Sample rate overrides */
+
+    if (channel < 0 || channel >= 16) {
+        return;
+    }
+
+    /* Clamp pitch to reasonable range */
+    if (pitch < 0.25f) pitch = 0.25f;
+    if (pitch > 4.0f) pitch = 4.0f;
+
+    D_80160100[channel] = pitch;
+
+    /* Calculate effective sample rate */
+    D_80160140[channel] = (u32)(22050.0f * pitch);  /* Base rate * pitch */
 }
 
 /*
  * func_800B8374 (724 bytes)
  * Audio 3D position
+ *
+ * Sets 3D position for spatial audio effects
+ * Calculates distance attenuation and stereo panning from listener
  */
 void func_800B8374(s32 channel, f32 *pos) {
-    /* 3D audio - stub */
+    extern f32 D_80160180[3];   /* Listener position */
+    extern f32 D_8016018C[3];   /* Listener forward */
+    extern f32 D_80160198[3];   /* Listener right */
+    extern f32 D_80160080[16];  /* Channel volumes */
+    extern f32 D_801600C0[16];  /* Channel pans */
+    f32 dx, dy, dz;
+    f32 dist, invDist;
+    f32 rightDot;
+    f32 attenuation;
+
+    if (channel < 0 || channel >= 16 || pos == NULL) {
+        return;
+    }
+
+    /* Vector from listener to source */
+    dx = pos[0] - D_80160180[0];
+    dy = pos[1] - D_80160180[1];
+    dz = pos[2] - D_80160180[2];
+
+    /* Calculate distance */
+    dist = sqrtf(dx*dx + dy*dy + dz*dz);
+
+    if (dist < 1.0f) {
+        /* Very close - full volume, center pan */
+        D_80160080[channel] = 1.0f;
+        D_801600C0[channel] = 0.0f;
+        return;
+    }
+
+    /* Distance attenuation (inverse square falloff with min distance) */
+    attenuation = 100.0f / (100.0f + dist);
+    if (attenuation > 1.0f) attenuation = 1.0f;
+    D_80160080[channel] = attenuation;
+
+    /* Calculate pan from dot product with listener right vector */
+    invDist = 1.0f / dist;
+    rightDot = (dx * D_80160198[0] + dy * D_80160198[1] + dz * D_80160198[2]) * invDist;
+
+    /* Clamp and apply pan */
+    if (rightDot < -1.0f) rightDot = -1.0f;
+    if (rightDot > 1.0f) rightDot = 1.0f;
+    D_801600C0[channel] = rightDot;
 }
 
 /*
  * func_800B8650 (464 bytes)
  * Audio doppler effect
+ *
+ * Applies doppler pitch shift based on relative velocity
+ * v_rel = (v_listener - v_source) dot (source_to_listener normalized)
  */
 void func_800B8650(s32 channel, f32 *velocity) {
-    /* Doppler - stub */
+    extern f32 D_80160180[3];   /* Listener position */
+    extern f32 D_801601A4[3];   /* Listener velocity */
+    extern f32 D_801601B0[16][3]; /* Source positions (cached) */
+    extern f32 D_80160100[16];  /* Channel pitches */
+    f32 dx, dy, dz, dist, invDist;
+    f32 relVel;
+    f32 dopplerFactor;
+    f32 soundSpeed = 343.0f;  /* Speed of sound in m/s */
+
+    if (channel < 0 || channel >= 16 || velocity == NULL) {
+        return;
+    }
+
+    /* Direction from source to listener */
+    dx = D_80160180[0] - D_801601B0[channel][0];
+    dy = D_80160180[1] - D_801601B0[channel][1];
+    dz = D_80160180[2] - D_801601B0[channel][2];
+
+    dist = sqrtf(dx*dx + dy*dy + dz*dz);
+    if (dist < 0.1f) {
+        return;  /* Too close for meaningful doppler */
+    }
+
+    invDist = 1.0f / dist;
+    dx *= invDist;
+    dy *= invDist;
+    dz *= invDist;
+
+    /* Relative velocity along line of sight */
+    /* Positive = approaching, negative = receding */
+    relVel = (D_801601A4[0] - velocity[0]) * dx +
+             (D_801601A4[1] - velocity[1]) * dy +
+             (D_801601A4[2] - velocity[2]) * dz;
+
+    /* Doppler formula: f' = f * (c + v_listener) / (c + v_source) */
+    /* Simplified: f' = f * (1 + relVel/c) */
+    dopplerFactor = 1.0f + (relVel / soundSpeed);
+
+    /* Clamp to prevent extreme shifts */
+    if (dopplerFactor < 0.5f) dopplerFactor = 0.5f;
+    if (dopplerFactor > 2.0f) dopplerFactor = 2.0f;
+
+    D_80160100[channel] *= dopplerFactor;
 }
 
 /*
  * func_800B8820 (368 bytes)
  * Audio reverb setup
+ *
+ * Configures reverb effect for spatial ambience
+ * Types: 0=None, 1=Small Room, 2=Large Room, 3=Hall, 4=Cave, 5=Outdoor
  */
 void func_800B8820(s32 reverbType, f32 amount) {
-    /* Reverb - stub */
+    extern s32 D_80160300;   /* Current reverb type */
+    extern f32 D_80160304;   /* Reverb wet/dry mix */
+    extern f32 D_80160308;   /* Reverb decay time */
+    extern f32 D_8016030C;   /* Reverb pre-delay */
+    extern f32 D_80160310;   /* Reverb diffusion */
+
+    /* Clamp amount */
+    if (amount < 0.0f) amount = 0.0f;
+    if (amount > 1.0f) amount = 1.0f;
+
+    D_80160300 = reverbType;
+    D_80160304 = amount;
+
+    /* Set reverb parameters based on type */
+    switch (reverbType) {
+        case 0:  /* None */
+            D_80160308 = 0.0f;
+            D_8016030C = 0.0f;
+            D_80160310 = 0.0f;
+            break;
+
+        case 1:  /* Small Room */
+            D_80160308 = 0.3f;
+            D_8016030C = 0.01f;
+            D_80160310 = 0.5f;
+            break;
+
+        case 2:  /* Large Room */
+            D_80160308 = 0.8f;
+            D_8016030C = 0.02f;
+            D_80160310 = 0.6f;
+            break;
+
+        case 3:  /* Hall */
+            D_80160308 = 1.5f;
+            D_8016030C = 0.03f;
+            D_80160310 = 0.7f;
+            break;
+
+        case 4:  /* Cave */
+            D_80160308 = 2.0f;
+            D_8016030C = 0.05f;
+            D_80160310 = 0.9f;
+            break;
+
+        case 5:  /* Outdoor */
+            D_80160308 = 0.5f;
+            D_8016030C = 0.0f;
+            D_80160310 = 0.3f;
+            break;
+
+        default:
+            break;
+    }
 }
 
 /*
  * func_800B9194 (528 bytes)
  * Audio sample load
+ *
+ * Loads audio sample from ROM into RAM audio buffer
+ * Returns handle for playback, or -1 on failure
  */
 s32 func_800B9194(s32 sampleId) {
-    /* Sample load - stub */
-    return 0;
+    extern u32 D_80160400;       /* Audio heap pointer */
+    extern u32 D_80160404;       /* Audio heap size remaining */
+    extern void *D_80160408[64]; /* Sample pointers */
+    extern u32 D_80160508[64];   /* Sample sizes */
+    extern u32 D_80160608;       /* Sample ROM offset table */
+    u32 romOffset, sampleSize;
+    void *destPtr;
+
+    if (sampleId < 0 || sampleId >= 64) {
+        return -1;
+    }
+
+    /* Check if already loaded */
+    if (D_80160408[sampleId] != NULL) {
+        return sampleId;  /* Already in memory */
+    }
+
+    /* Get ROM offset and size from table */
+    romOffset = *(u32 *)(D_80160608 + sampleId * 8);
+    sampleSize = *(u32 *)(D_80160608 + sampleId * 8 + 4);
+
+    /* Check heap space */
+    if (sampleSize > D_80160404) {
+        return -1;  /* Not enough memory */
+    }
+
+    /* Allocate from audio heap */
+    destPtr = (void *)D_80160400;
+    D_80160400 += (sampleSize + 15) & ~15;  /* Align to 16 bytes */
+    D_80160404 -= (sampleSize + 15) & ~15;
+
+    /* DMA from ROM */
+    osPiStartDma(&D_80086A70, OS_MESG_PRI_NORMAL, OS_READ,
+                 romOffset, destPtr, sampleSize, &D_80086A88);
+    osRecvMesg(&D_80086A88, NULL, OS_MESG_BLOCK);
+
+    /* Store pointer and size */
+    D_80160408[sampleId] = destPtr;
+    D_80160508[sampleId] = sampleSize;
+
+    return sampleId;
 }
 
 /*
  * func_800B93A8 (972 bytes)
  * Audio stream init
+ *
+ * Initializes streaming audio playback (for music)
+ * Uses double buffering to stream from ROM
  */
 s32 func_800B93A8(s32 streamId) {
-    /* Stream init - stub */
-    return 0;
+    extern u32 D_80160700;       /* Stream ROM offset */
+    extern u32 D_80160704;       /* Stream total size */
+    extern u32 D_80160708;       /* Stream bytes read */
+    extern void *D_8016070C[2];  /* Stream double buffers */
+    extern s32 D_80160714;       /* Active buffer index */
+    extern s32 D_80160718;       /* Stream state (0=idle, 1=playing, 2=paused) */
+    extern u32 D_8016071C;       /* Buffer size */
+    extern u32 D_80160720;       /* Stream table offset */
+    u32 tableEntry;
+
+    if (streamId < 0 || streamId >= 16) {
+        return -1;
+    }
+
+    /* Get stream info from table */
+    tableEntry = D_80160720 + streamId * 12;
+    D_80160700 = *(u32 *)tableEntry;        /* ROM offset */
+    D_80160704 = *(u32 *)(tableEntry + 4);  /* Total size */
+    D_80160708 = 0;                          /* Reset read position */
+
+    /* Allocate double buffers if not already */
+    D_8016071C = 0x2000;  /* 8KB per buffer */
+    if (D_8016070C[0] == NULL) {
+        D_8016070C[0] = func_800BA644(D_8016071C);
+        D_8016070C[1] = func_800BA644(D_8016071C);
+    }
+
+    if (D_8016070C[0] == NULL || D_8016070C[1] == NULL) {
+        return -1;  /* Allocation failed */
+    }
+
+    /* Fill first buffer */
+    D_80160714 = 0;
+    func_800B9A0C(D_8016070C[0], D_8016071C);
+
+    D_80160718 = 1;  /* Start playing */
+
+    return streamId;
 }
 
 /*
  * func_800B9774 (664 bytes)
  * Audio stream update
+ *
+ * Called each frame to manage streaming buffer refills
  */
 void func_800B9774(void) {
-    /* Stream update - stub */
+    extern u32 D_80160700;       /* Stream ROM offset */
+    extern u32 D_80160704;       /* Stream total size */
+    extern u32 D_80160708;       /* Stream bytes read */
+    extern void *D_8016070C[2];  /* Stream double buffers */
+    extern s32 D_80160714;       /* Active buffer index */
+    extern s32 D_80160718;       /* Stream state */
+    extern u32 D_8016071C;       /* Buffer size */
+    extern s32 D_80160724;       /* Buffer consumed flag */
+    s32 nextBuffer;
+    u32 remaining;
+
+    /* Skip if not playing */
+    if (D_80160718 != 1) {
+        return;
+    }
+
+    /* Check if current buffer consumed */
+    if (!D_80160724) {
+        return;
+    }
+
+    /* Switch to next buffer */
+    nextBuffer = (D_80160714 + 1) & 1;
+    D_80160714 = nextBuffer;
+    D_80160724 = 0;
+
+    /* Start filling the now-inactive buffer */
+    remaining = D_80160704 - D_80160708;
+    if (remaining > 0) {
+        u32 toRead = (remaining < D_8016071C) ? remaining : D_8016071C;
+        s32 fillBuffer = (nextBuffer + 1) & 1;
+        func_800B9A0C(D_8016070C[fillBuffer], toRead);
+    } else {
+        /* Stream ended - loop or stop */
+        D_80160708 = 0;  /* Loop back to start */
+        func_800B9A0C(D_8016070C[(nextBuffer + 1) & 1], D_8016071C);
+    }
 }
 
 /*
  * func_800B9A0C (860 bytes)
- * Audio stream buffer
+ * Audio stream buffer fill
+ *
+ * Fills a stream buffer from ROM asynchronously
  */
 void func_800B9A0C(void *buffer, s32 size) {
-    /* Stream buffer - stub */
+    extern u32 D_80160700;   /* Stream ROM offset */
+    extern u32 D_80160708;   /* Stream bytes read */
+    extern OSMesgQueue D_80160730;  /* Stream DMA queue */
+    extern OSIoMesg D_80160748;     /* Stream IO message */
+    u32 romAddr;
+
+    if (buffer == NULL || size <= 0) {
+        return;
+    }
+
+    /* Calculate ROM address */
+    romAddr = D_80160700 + D_80160708;
+
+    /* Initiate async DMA */
+    osPiStartDma(&D_80160748, OS_MESG_PRI_NORMAL, OS_READ,
+                 romAddr, buffer, size, &D_80160730);
+
+    /* Update read position */
+    D_80160708 += size;
+
+    /* Invalidate data cache for DMA destination */
+    osInvalDCache(buffer, size);
 }
 
 /*
  * func_800B9D68 (676 bytes)
  * Music sequence control
+ *
+ * Controls MIDI-style music sequence playback
+ * Commands: 0=Stop, 1=Play, 2=Pause, 3=Resume, 4=SetPosition
  */
 void func_800B9D68(s32 seqCmd) {
-    /* Sequence control - stub */
+    extern s32 D_80160800;   /* Sequence state */
+    extern s32 D_80160804;   /* Current sequence ID */
+    extern u32 D_80160808;   /* Sequence position (ticks) */
+    extern f32 D_8016080C;   /* Sequence tempo multiplier */
+
+    switch (seqCmd & 0xFF) {
+        case 0:  /* Stop */
+            D_80160800 = 0;
+            D_80160808 = 0;
+            break;
+
+        case 1:  /* Play */
+            D_80160804 = (seqCmd >> 8) & 0xFF;
+            D_80160800 = 1;
+            D_80160808 = 0;
+            break;
+
+        case 2:  /* Pause */
+            if (D_80160800 == 1) {
+                D_80160800 = 2;
+            }
+            break;
+
+        case 3:  /* Resume */
+            if (D_80160800 == 2) {
+                D_80160800 = 1;
+            }
+            break;
+
+        case 4:  /* Set position */
+            D_80160808 = (seqCmd >> 8) & 0xFFFFFF;
+            break;
+
+        default:
+            break;
+    }
 }
 
 /*
  * func_800BA00C (732 bytes)
  * Music tempo control
+ *
+ * Sets tempo multiplier (1.0 = normal, 2.0 = double speed)
  */
 void func_800BA00C(f32 tempo) {
-    /* Tempo - stub */
+    extern f32 D_8016080C;   /* Sequence tempo multiplier */
+    extern u32 D_80160810;   /* Tick rate (microseconds per tick) */
+    u32 baseTick = 10000;    /* 100 ticks per second at 1.0x */
+
+    /* Clamp tempo */
+    if (tempo < 0.1f) tempo = 0.1f;
+    if (tempo > 4.0f) tempo = 4.0f;
+
+    D_8016080C = tempo;
+    D_80160810 = (u32)(baseTick / tempo);
 }
 
 /*
  * func_800BA2E8 (388 bytes)
  * Music fade in/out
+ *
+ * Initiates a volume fade for music
  */
 void func_800BA2E8(f32 duration, s32 fadeIn) {
-    /* Fade - stub */
+    extern f32 D_80160820;   /* Music master volume */
+    extern f32 D_80160824;   /* Fade target volume */
+    extern f32 D_80160828;   /* Fade rate per frame */
+    extern s32 D_8016082C;   /* Fade direction (1=up, -1=down) */
+
+    if (duration <= 0.0f) {
+        /* Instant change */
+        D_80160820 = fadeIn ? 1.0f : 0.0f;
+        D_80160828 = 0.0f;
+        return;
+    }
+
+    /* Calculate fade rate (assuming 60fps) */
+    D_80160828 = 1.0f / (duration * 60.0f);
+
+    if (fadeIn) {
+        D_80160824 = 1.0f;
+        D_8016082C = 1;
+    } else {
+        D_80160824 = 0.0f;
+        D_8016082C = -1;
+    }
 }
 
 /*
  * func_800BA46C (472 bytes)
  * Audio priority system
+ *
+ * Finds a channel for a sound with given priority
+ * Higher priority sounds can steal channels from lower
  */
 s32 func_800BA46C(s32 priority) {
-    /* Priority - stub */
-    return 0;
+    extern u32 D_80160000[16];  /* Channel states */
+    extern s32 D_80160840[16];  /* Channel priorities */
+    s32 i;
+    s32 freeChannel = -1;
+    s32 lowestPri = priority;
+    s32 stealChannel = -1;
+
+    /* First, look for an idle channel */
+    for (i = 0; i < 16; i++) {
+        if (D_80160000[i] == 0) {
+            freeChannel = i;
+            break;
+        }
+    }
+
+    if (freeChannel >= 0) {
+        D_80160840[freeChannel] = priority;
+        return freeChannel;
+    }
+
+    /* No free channels - try to steal lowest priority */
+    for (i = 0; i < 16; i++) {
+        if (D_80160840[i] < lowestPri) {
+            lowestPri = D_80160840[i];
+            stealChannel = i;
+        }
+    }
+
+    if (stealChannel >= 0) {
+        /* Stop current sound and steal channel */
+        D_80160000[stealChannel] = 0;
+        D_80160840[stealChannel] = priority;
+        return stealChannel;
+    }
+
+    return -1;  /* Could not allocate channel */
 }
 
 /*
  * func_800BA644 (380 bytes)
  * Audio memory manager
+ *
+ * Allocates memory from audio heap
  */
 void *func_800BA644(s32 size) {
-    /* Audio alloc - stub */
-    return NULL;
+    extern u32 D_80160400;   /* Audio heap pointer */
+    extern u32 D_80160404;   /* Audio heap size remaining */
+    void *ptr;
+
+    if (size <= 0) {
+        return NULL;
+    }
+
+    /* Align to 16 bytes */
+    size = (size + 15) & ~15;
+
+    if ((u32)size > D_80160404) {
+        return NULL;  /* Not enough space */
+    }
+
+    ptr = (void *)D_80160400;
+    D_80160400 += size;
+    D_80160404 -= size;
+
+    return ptr;
 }
 
 /*
  * func_800BA7C4 (1996 bytes)
  * Audio main mixer
+ *
+ * Mixes all active audio channels into output buffer
+ * Called by audio thread each frame
  */
 void func_800BA7C4(void) {
-    /* Main mixer - stub */
+    extern u32 D_80160000[16];  /* Channel states */
+    extern f32 D_80160080[16];  /* Channel volumes */
+    extern f32 D_801600C0[16];  /* Channel pans */
+    extern f32 D_80160100[16];  /* Channel pitches */
+    extern void *D_80160408[64]; /* Sample pointers */
+    extern s32 D_80160860[16];  /* Channel sample IDs */
+    extern u32 D_801608A0[16];  /* Channel sample positions */
+    extern s16 *D_801608E0;     /* Output buffer L */
+    extern s16 *D_801608E4;     /* Output buffer R */
+    extern s32 D_801608E8;      /* Output buffer size (samples) */
+    s32 i, j;
+    s32 sampleId;
+    s16 *sampleData;
+    u32 samplePos, sampleLen;
+    f32 vol, pan, pitch;
+    f32 leftVol, rightVol;
+    s32 sampleValue;
+
+    /* Clear output buffers */
+    for (i = 0; i < D_801608E8; i++) {
+        D_801608E0[i] = 0;
+        D_801608E4[i] = 0;
+    }
+
+    /* Mix each active channel */
+    for (i = 0; i < 16; i++) {
+        if (D_80160000[i] == 0) {
+            continue;  /* Channel not active */
+        }
+
+        sampleId = D_80160860[i];
+        if (sampleId < 0 || D_80160408[sampleId] == NULL) {
+            D_80160000[i] = 0;  /* Invalid sample - stop channel */
+            continue;
+        }
+
+        sampleData = (s16 *)D_80160408[sampleId];
+        samplePos = D_801608A0[i];
+        sampleLen = D_80160508[sampleId] / 2;  /* Bytes to samples */
+
+        vol = D_80160080[i];
+        pan = D_801600C0[i];
+        pitch = D_80160100[i];
+
+        /* Calculate stereo volumes */
+        leftVol = vol * (1.0f - pan) * 0.5f;
+        rightVol = vol * (1.0f + pan) * 0.5f;
+
+        /* Mix samples into output */
+        for (j = 0; j < D_801608E8; j++) {
+            if (samplePos >= sampleLen) {
+                D_80160000[i] = 0;  /* Sample ended */
+                break;
+            }
+
+            sampleValue = sampleData[samplePos];
+            D_801608E0[j] += (s16)(sampleValue * leftVol);
+            D_801608E4[j] += (s16)(sampleValue * rightVol);
+
+            /* Advance sample position by pitch */
+            samplePos += (u32)(pitch * 256.0f);
+            samplePos >>= 8;  /* Fixed point */
+        }
+
+        D_801608A0[i] = samplePos;
+    }
 }
 
 /*
  * func_800BAF98 (172 bytes)
  * Audio effect apply
+ *
+ * Applies an audio effect to the output
  */
 void func_800BAF98(s32 effectId) {
-    /* Effect apply - stub */
+    extern u32 D_80160900;  /* Active effects bitfield */
+
+    if (effectId < 0 || effectId >= 32) {
+        return;
+    }
+
+    D_80160900 |= (1 << effectId);
 }
 
 /*
  * func_800BB044 (252 bytes)
  * Audio effect remove
+ *
+ * Removes an audio effect
  */
 void func_800BB044(s32 effectId) {
-    /* Effect remove - stub */
+    extern u32 D_80160900;  /* Active effects bitfield */
+
+    if (effectId < 0 || effectId >= 32) {
+        return;
+    }
+
+    D_80160900 &= ~(1 << effectId);
 }
 
 /*
  * func_800BB140 (1372 bytes)
  * Audio DSP process
+ *
+ * Processes audio through effects chain (reverb, EQ, etc.)
  */
 void func_800BB140(void *dspBuffer) {
-    /* DSP process - stub */
+    extern u32 D_80160900;   /* Active effects bitfield */
+    extern f32 D_80160304;   /* Reverb wet/dry */
+    extern f32 D_80160308;   /* Reverb decay */
+    extern s16 D_80160910[512]; /* Reverb delay buffer */
+    extern s32 D_80160B10;   /* Delay buffer write position */
+    s16 *buf = (s16 *)dspBuffer;
+    s32 bufferSize = 184;  /* N64 audio frame size in samples */
+    s32 i, delayIdx;
+    s32 sample, delayed;
+    f32 wet, dry;
+
+    if (dspBuffer == NULL) {
+        return;
+    }
+
+    /* Apply reverb if active (effect bit 0) */
+    if (D_80160900 & 0x01) {
+        wet = D_80160304;
+        dry = 1.0f - wet;
+
+        for (i = 0; i < bufferSize; i++) {
+            sample = buf[i];
+
+            /* Read from delay buffer */
+            delayIdx = (D_80160B10 - 200 + 512) & 511;
+            delayed = D_80160910[delayIdx];
+
+            /* Mix dry and wet (delayed) signals */
+            buf[i] = (s16)(sample * dry + delayed * wet);
+
+            /* Write to delay buffer with decay */
+            D_80160910[D_80160B10] = (s16)(sample + delayed * D_80160308);
+            D_80160B10 = (D_80160B10 + 1) & 511;
+        }
+    }
 }
 
 /*
  * func_800BB69C (408 bytes)
  * Audio output setup
+ *
+ * Configures audio output mode (mono, stereo, surround)
  */
 void func_800BB69C(s32 outputMode) {
-    /* Output setup - stub */
+    extern s32 D_80160920;  /* Output mode */
+    extern s32 D_80160924;  /* Sample rate */
+    extern s32 D_80160928;  /* Buffer size */
+
+    D_80160920 = outputMode;
+
+    switch (outputMode) {
+        case 0:  /* Mono */
+            D_80160924 = 22050;
+            D_80160928 = 368;  /* ~60fps at 22kHz */
+            break;
+
+        case 1:  /* Stereo */
+            D_80160924 = 22050;
+            D_80160928 = 368;
+            break;
+
+        case 2:  /* Surround (simulated via phase) */
+            D_80160924 = 22050;
+            D_80160928 = 368;
+            break;
+
+        default:
+            D_80160920 = 1;  /* Default to stereo */
+            break;
+    }
+
+    /* Configure AI output */
+    osAiSetFrequency(D_80160924);
 }
 
 /*
  * func_800BB834 (392 bytes)
  * Audio hardware sync
+ *
+ * Syncs audio buffer submission with hardware
  */
 void func_800BB834(void) {
-    /* HW sync - stub */
+    extern s16 *D_801608E0;  /* Output buffer L */
+    extern s16 *D_801608E4;  /* Output buffer R */
+    extern s32 D_80160928;   /* Buffer size */
+    extern void *D_80160930; /* DMA buffer */
+    s32 i;
+    s16 *dmaOut;
+
+    /* Interleave L/R into DMA buffer for AI */
+    dmaOut = (s16 *)D_80160930;
+    for (i = 0; i < D_80160928; i++) {
+        dmaOut[i * 2] = D_801608E0[i];
+        dmaOut[i * 2 + 1] = D_801608E4[i];
+    }
+
+    /* Submit to audio interface */
+    osAiSetNextBuffer(D_80160930, D_80160928 * 4);
 }
 
 /*
  * func_800BB9BC (756 bytes)
  * Audio interrupt handler
+ *
+ * Called when audio DMA completes - triggers next buffer
  */
 void func_800BB9BC(void) {
-    /* Audio interrupt - stub */
+    extern OSMesgQueue D_80086A88;  /* Audio message queue */
+
+    /* Signal audio thread to mix next buffer */
+    osSendMesg(&D_80086A88, (OSMesg)1, OS_MESG_NOBLOCK);
+
+    /* Update stream buffers if streaming */
+    func_800B9774();
 }
 
 /*
