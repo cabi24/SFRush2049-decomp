@@ -27059,21 +27059,232 @@ void func_80102250(void) {
 }
 
 /*
-
  * func_80102A74 (1524 bytes)
- * Award ceremony
+ * Award ceremony - Displays race results and trophies
+ *
+ * Shows podium positions, times, and animates trophy presentation.
+ * Called after race completion.
  */
+extern s32 D_8015A450;      /* Award ceremony state */
+extern s32 D_8015A454;      /* Animation frame counter */
+extern s32 D_8015A458[4];   /* Player placing (1st-4th) */
+extern s32 D_8015A468[4];   /* Player finish times */
+extern s32 D_80158100;      /* Input state */
+
 void func_80102A74(void) {
-    /* Award ceremony - stub */
+    s32 state;
+    s32 frame;
+    s32 input;
+    s32 i;
+    s32 yPos;
+    s32 alpha;
+    char timeStr[12];
+
+    state = D_8015A450;
+    frame = D_8015A454;
+    input = func_800CB748(D_80158100);
+
+    frame++;
+
+    switch (state) {
+        case 0:  /* Fade in */
+            alpha = (frame * 255) / 60;
+            if (alpha > 255) alpha = 255;
+
+            /* Draw background */
+            func_800C6E60(40, 30, 240, 180, (alpha << 24) | 0x101030);
+
+            if (frame >= 60) {
+                state = 1;
+                frame = 0;
+            }
+            break;
+
+        case 1:  /* Show results */
+            /* Background */
+            func_800C6E60(40, 30, 240, 180, 0xFF101030);
+
+            /* Title */
+            func_800C734C("RACE COMPLETE", 100, 45, 255);
+
+            /* Results list */
+            yPos = 70;
+            for (i = 0; i < 4; i++) {
+                s32 placing = D_8015A458[i];
+                if (placing > 0 && placing <= 4) {
+                    s32 time = D_8015A468[i];
+                    s32 mins, secs, ms;
+
+                    /* Format time */
+                    mins = time / 3600;
+                    secs = (time / 60) % 60;
+                    ms = ((time % 60) * 100) / 60;
+
+                    sprintf(timeStr, "%d:%02d.%02d", mins, secs, ms);
+
+                    /* Draw placing */
+                    if (placing == 1) {
+                        func_800C734C("1ST", 60, yPos, 255);
+                    } else if (placing == 2) {
+                        func_800C734C("2ND", 60, yPos, 200);
+                    } else if (placing == 3) {
+                        func_800C734C("3RD", 60, yPos, 150);
+                    } else {
+                        func_800C734C("4TH", 60, yPos, 100);
+                    }
+
+                    /* Draw time */
+                    func_800C734C(timeStr, 120, yPos, 200);
+
+                    yPos += 25;
+                }
+            }
+
+            /* Trophy animation for winner */
+            if (frame > 30) {
+                func_8010306C(1);  /* Show 1st place trophy */
+            }
+
+            /* Skip on input or timeout */
+            if (frame > 300 || (frame > 60 && (input == 1 || input == 2))) {
+                state = 2;
+                frame = 0;
+            }
+            break;
+
+        case 2:  /* Fade out */
+            alpha = 255 - (frame * 255) / 30;
+            if (alpha < 0) alpha = 0;
+
+            func_800C6E60(40, 30, 240, 180, (alpha << 24) | 0x101030);
+
+            if (frame >= 30) {
+                D_8015A450 = 0;
+                D_8015A454 = 0;
+                return;
+            }
+            break;
+    }
+
+    D_8015A450 = state;
+    D_8015A454 = frame;
 }
 
 /*
-
  * func_8010306C (876 bytes)
- * Trophy animation
+ * Trophy animation - Renders animated trophy for race winner
+ *
+ * Draws a rotating 3D trophy model at the specified position.
+ * Uses simple vertex transforms and triangle rendering.
+ *
+ * @param place Placing (1=gold, 2=silver, 3=bronze)
  */
+extern s32 D_8015A478;      /* Trophy rotation angle */
+extern f32 D_8015A47C;      /* Trophy Y offset (bobbing) */
+extern void *D_8012D000;    /* Trophy model data */
+
 void func_8010306C(s32 place) {
-    /* Trophy animation - stub */
+    u32 *dlPtr;
+    f32 rotAngle;
+    f32 yOffset;
+    f32 scale;
+    u32 color;
+    s32 frame;
+
+    frame = D_8015A478;
+    frame++;
+
+    /* Rotation: 2 degrees per frame */
+    rotAngle = (f32)frame * 0.035f;  /* ~2 deg in radians */
+
+    /* Bobbing animation */
+    yOffset = sinf((f32)frame * 0.08f) * 5.0f;
+
+    /* Color based on placing */
+    switch (place) {
+        case 1:  /* Gold */
+            color = 0xFFD700FF;
+            scale = 1.2f;
+            break;
+        case 2:  /* Silver */
+            color = 0xC0C0C0FF;
+            scale = 1.0f;
+            break;
+        case 3:  /* Bronze */
+            color = 0xCD7F32FF;
+            scale = 0.9f;
+            break;
+        default:
+            D_8015A478 = frame;
+            return;
+    }
+
+    /* Set up display list commands */
+    dlPtr = *(u32 **)0x80149438;
+
+    /* G_GEOMETRYMODE - enable lighting and culling */
+    *dlPtr++ = 0xB7000000;
+    *dlPtr++ = 0x00022000;
+
+    /* Set primitive color */
+    *dlPtr++ = 0xFA000000;
+    *dlPtr++ = color;
+
+    /* Push matrix */
+    *dlPtr++ = 0xDA380001;
+    *dlPtr++ = 0x00000000;
+
+    /* Build transformation matrix at stack */
+    {
+        f32 cosR = cosf(rotAngle);
+        f32 sinR = sinf(rotAngle);
+        s32 *mtx = (s32 *)0x80170400;
+
+        /* Rotation around Y axis with scale and translation */
+        /* Row 0: cos*scale, 0, sin*scale, 0 */
+        mtx[0] = (s32)(cosR * scale * 65536.0f);
+        mtx[1] = 0;
+        mtx[2] = (s32)(sinR * scale * 65536.0f);
+        mtx[3] = 0;
+
+        /* Row 1: 0, scale, 0, yOffset */
+        mtx[4] = 0;
+        mtx[5] = (s32)(scale * 65536.0f);
+        mtx[6] = 0;
+        mtx[7] = (s32)(yOffset * 4.0f);
+
+        /* Row 2: -sin*scale, 0, cos*scale, 0 */
+        mtx[8] = (s32)(-sinR * scale * 65536.0f);
+        mtx[9] = 0;
+        mtx[10] = (s32)(cosR * scale * 65536.0f);
+        mtx[11] = 0;
+
+        /* Row 3: translation */
+        mtx[12] = (s32)(200.0f * 4.0f);  /* X center */
+        mtx[13] = (s32)((50.0f + yOffset) * 4.0f);  /* Y */
+        mtx[14] = 0;
+        mtx[15] = 0x00010000;  /* W = 1 */
+    }
+
+    /* Load matrix */
+    *dlPtr++ = 0xDA380007;
+    *dlPtr++ = 0x80170400;
+
+    /* Draw trophy shape - simplified cup */
+    /* Base rectangle */
+    *dlPtr++ = 0x06000204;  /* Vertex load */
+    *dlPtr++ = 0x80170500;
+
+    /* Simple triangles for cup shape */
+    *dlPtr++ = 0x05000102;
+    *dlPtr++ = 0x00000000;
+
+    /* Pop matrix */
+    *dlPtr++ = 0xD8380040;
+    *dlPtr++ = 0x00000040;
+
+    *(u32 **)0x80149438 = dlPtr;
+    D_8015A478 = frame;
 }
 
 /*
@@ -27405,57 +27616,518 @@ void func_80104320(u8 *name) {
 }
 
 /*
-
  * func_80104A58 (1036 bytes)
- * High score entry animation
+ * High score entry animation - Animates the new high score entry effect
+ *
+ * Shows fireworks, flashing, and sparkles around the new entry.
+ *
+ * @param position Leaderboard position (1-10)
  */
+extern s32 D_8015A4A0;  /* HS animation frame */
+extern s32 D_8015A4A4;  /* Sparkle positions */
+
 void func_80104A58(s32 position) {
-    /* HS animation - stub */
+    s32 frame;
+    s32 i;
+    s32 xPos, yPos;
+    f32 sparkleAngle;
+    s32 sparkleRadius;
+    u32 color;
+
+    frame = D_8015A4A0;
+    frame++;
+
+    /* Position based on ranking */
+    yPos = 80 + (position - 1) * 20;
+    xPos = 160;
+
+    /* Flash effect */
+    if ((frame / 5) & 1) {
+        color = 0xFFFFFFFF;
+    } else {
+        color = 0xFFFF00FF;
+    }
+
+    /* Highlight bar */
+    {
+        s32 barAlpha = 128 + (s32)(sinf((f32)frame * 0.15f) * 64.0f);
+        func_800C6E60(50, yPos - 5, 220, 18, (barAlpha << 24) | 0x404000);
+    }
+
+    /* Sparkle effect - 8 sparkles orbiting */
+    for (i = 0; i < 8; i++) {
+        sparkleAngle = (f32)frame * 0.08f + (f32)i * 0.785f;  /* 2*PI/8 */
+        sparkleRadius = 30 + (s32)(sinf((f32)frame * 0.2f + (f32)i) * 10.0f);
+
+        {
+            s32 sx = xPos + (s32)(cosf(sparkleAngle) * (f32)sparkleRadius);
+            s32 sy = yPos + (s32)(sinf(sparkleAngle) * (f32)sparkleRadius * 0.5f);
+            s32 sparkleSize = 2 + (frame + i * 7) % 3;
+
+            func_800C6E60(sx - sparkleSize/2, sy - sparkleSize/2,
+                         sparkleSize, sparkleSize, color);
+        }
+    }
+
+    /* "NEW RECORD!" text with wobble */
+    if (position == 1) {
+        s32 wobbleX = (s32)(sinf((f32)frame * 0.3f) * 3.0f);
+        func_800C734C("NEW RECORD!", xPos - 40 + wobbleX, yPos - 25, 255);
+    }
+
+    D_8015A4A0 = frame;
 }
 
 /*
-
  * func_80104E84 (2464 bytes)
- * Statistics display
+ * Statistics display - Shows player game statistics
+ *
+ * Displays various lifetime stats like races, wins, etc.
+ *
+ * @param stats Pointer to player statistics structure
  */
+extern s32 D_8015A4B0;      /* Stats display state */
+extern s32 D_8015A4B4;      /* Stats scroll position */
+
 void func_80104E84(void *stats) {
-    /* Statistics - stub */
+    s32 *statData;
+    s32 state;
+    s32 scrollY;
+    s32 input;
+    s32 i;
+    char valueStr[16];
+
+    if (stats == NULL) {
+        return;
+    }
+
+    statData = (s32 *)stats;
+    state = D_8015A4B0;
+    scrollY = D_8015A4B4;
+    input = func_800CB748(D_80158100);
+
+    /* Navigation */
+    if (input == 4) {  /* Up */
+        scrollY -= 20;
+        if (scrollY < 0) scrollY = 0;
+    } else if (input == 5) {  /* Down */
+        scrollY += 20;
+        if (scrollY > 200) scrollY = 200;
+    } else if (input == 2 || input == 1) {  /* B or A - exit */
+        D_8015A4B0 = 0;
+        D_8015A4B4 = 0;
+        return;
+    }
+
+    /* Background */
+    func_800C6E60(30, 20, 260, 200, 0xE0202040);
+
+    /* Title */
+    func_800C734C("STATISTICS", 115, 30, 255);
+
+    /* Stats list */
+    {
+        s32 baseY = 60 - scrollY;
+        s32 yPos;
+
+        /* Races completed */
+        yPos = baseY;
+        if (yPos >= 50 && yPos <= 200) {
+            sprintf(valueStr, "%d", statData[0]);
+            func_800C734C("RACES:", 50, yPos, 200);
+            func_800C734C(valueStr, 180, yPos, 255);
+        }
+
+        /* Wins */
+        yPos = baseY + 25;
+        if (yPos >= 50 && yPos <= 200) {
+            sprintf(valueStr, "%d", statData[1]);
+            func_800C734C("WINS:", 50, yPos, 200);
+            func_800C734C(valueStr, 180, yPos, 255);
+        }
+
+        /* Podium finishes */
+        yPos = baseY + 50;
+        if (yPos >= 50 && yPos <= 200) {
+            sprintf(valueStr, "%d", statData[2]);
+            func_800C734C("PODIUMS:", 50, yPos, 200);
+            func_800C734C(valueStr, 180, yPos, 255);
+        }
+
+        /* Total time */
+        yPos = baseY + 75;
+        if (yPos >= 50 && yPos <= 200) {
+            s32 hours = statData[3] / 3600;
+            s32 mins = (statData[3] / 60) % 60;
+            sprintf(valueStr, "%d:%02d", hours, mins);
+            func_800C734C("TIME PLAYED:", 50, yPos, 200);
+            func_800C734C(valueStr, 180, yPos, 255);
+        }
+
+        /* Best lap */
+        yPos = baseY + 100;
+        if (yPos >= 50 && yPos <= 200) {
+            s32 secs = statData[4] / 60;
+            s32 ms = ((statData[4] % 60) * 100) / 60;
+            sprintf(valueStr, "%d.%02d", secs, ms);
+            func_800C734C("BEST LAP:", 50, yPos, 200);
+            func_800C734C(valueStr, 180, yPos, 255);
+        }
+
+        /* Miles driven */
+        yPos = baseY + 125;
+        if (yPos >= 50 && yPos <= 200) {
+            sprintf(valueStr, "%d", statData[5] / 1000);
+            func_800C734C("MILES:", 50, yPos, 200);
+            func_800C734C(valueStr, 180, yPos, 255);
+        }
+
+        /* Crashes */
+        yPos = baseY + 150;
+        if (yPos >= 50 && yPos <= 200) {
+            sprintf(valueStr, "%d", statData[6]);
+            func_800C734C("CRASHES:", 50, yPos, 200);
+            func_800C734C(valueStr, 180, yPos, 255);
+        }
+
+        /* Stunt points */
+        yPos = baseY + 175;
+        if (yPos >= 50 && yPos <= 200) {
+            sprintf(valueStr, "%d", statData[7]);
+            func_800C734C("STUNT PTS:", 50, yPos, 200);
+            func_800C734C(valueStr, 180, yPos, 255);
+        }
+    }
+
+    /* Scroll indicator */
+    if (scrollY > 0) {
+        func_800C734C("^", 155, 45, 150);
+    }
+    if (scrollY < 200) {
+        func_800C734C("v", 155, 205, 150);
+    }
+
+    D_8015A4B0 = state;
+    D_8015A4B4 = scrollY;
 }
 
 /*
-
  * func_80105858 (1692 bytes)
- * Achievements check
+ * Achievements check - Checks and unlocks achievements based on player progress
+ *
+ * Evaluates player stats against achievement thresholds and triggers unlocks.
+ *
+ * @param player Pointer to player data structure
  */
+
+/* Achievement IDs */
+#define ACH_FIRST_WIN       0
+#define ACH_10_WINS         1
+#define ACH_50_WINS         2
+#define ACH_FIRST_STUNT     3
+#define ACH_100K_STUNT      4
+#define ACH_NO_CRASH        5
+#define ACH_ALL_TRACKS      6
+#define ACH_ALL_CARS        7
+#define ACH_SPEEDSTER       8
+#define ACH_VETERAN         9
+#define ACH_COUNT           10
+
+extern u16 D_8015A500;      /* Achievement unlock bitfield */
+extern s32 D_8015A504[10];  /* Achievement thresholds */
+extern void func_80105EF4(s32 achId);  /* Unlock notification */
+
 void func_80105858(void *player) {
-    /* Achievements - stub */
+    s32 *playerStats;
+    u16 unlocked;
+    s32 wins, stuntPts, crashes, races, trackFlags, carFlags;
+    s32 bestLap;
+
+    if (player == NULL) {
+        return;
+    }
+
+    playerStats = (s32 *)player;
+    unlocked = D_8015A500;
+
+    /* Extract stats */
+    races = playerStats[0];
+    wins = playerStats[1];
+    stuntPts = playerStats[7];
+    crashes = playerStats[6];
+    bestLap = playerStats[4];
+    trackFlags = playerStats[10];
+    carFlags = playerStats[11];
+
+    /* Check each achievement */
+
+    /* First Win */
+    if (!(unlocked & (1 << ACH_FIRST_WIN)) && wins >= 1) {
+        unlocked |= (1 << ACH_FIRST_WIN);
+        func_80105EF4(ACH_FIRST_WIN);
+    }
+
+    /* 10 Wins */
+    if (!(unlocked & (1 << ACH_10_WINS)) && wins >= 10) {
+        unlocked |= (1 << ACH_10_WINS);
+        func_80105EF4(ACH_10_WINS);
+    }
+
+    /* 50 Wins */
+    if (!(unlocked & (1 << ACH_50_WINS)) && wins >= 50) {
+        unlocked |= (1 << ACH_50_WINS);
+        func_80105EF4(ACH_50_WINS);
+    }
+
+    /* First Stunt Score */
+    if (!(unlocked & (1 << ACH_FIRST_STUNT)) && stuntPts >= 1000) {
+        unlocked |= (1 << ACH_FIRST_STUNT);
+        func_80105EF4(ACH_FIRST_STUNT);
+    }
+
+    /* 100K Stunt Points */
+    if (!(unlocked & (1 << ACH_100K_STUNT)) && stuntPts >= 100000) {
+        unlocked |= (1 << ACH_100K_STUNT);
+        func_80105EF4(ACH_100K_STUNT);
+    }
+
+    /* No Crash Race - checked elsewhere when race ends */
+
+    /* All Tracks Unlocked */
+    if (!(unlocked & (1 << ACH_ALL_TRACKS)) && trackFlags == 0xFFFF) {
+        unlocked |= (1 << ACH_ALL_TRACKS);
+        func_80105EF4(ACH_ALL_TRACKS);
+    }
+
+    /* All Cars Unlocked */
+    if (!(unlocked & (1 << ACH_ALL_CARS)) && carFlags == 0xFFFF) {
+        unlocked |= (1 << ACH_ALL_CARS);
+        func_80105EF4(ACH_ALL_CARS);
+    }
+
+    /* Speedster - best lap under threshold */
+    if (!(unlocked & (1 << ACH_SPEEDSTER)) && bestLap > 0 && bestLap < 1800) {
+        unlocked |= (1 << ACH_SPEEDSTER);
+        func_80105EF4(ACH_SPEEDSTER);
+    }
+
+    /* Veteran - 100 races */
+    if (!(unlocked & (1 << ACH_VETERAN)) && races >= 100) {
+        unlocked |= (1 << ACH_VETERAN);
+        func_80105EF4(ACH_VETERAN);
+    }
+
+    D_8015A500 = unlocked;
 }
 
 /*
-
  * func_80105EF4 (876 bytes)
- * Achievement unlock
+ * Achievement unlock - Shows unlock notification popup
+ *
+ * Queues an achievement unlock notification to display on screen.
+ * Uses a notification queue to avoid overlapping popups.
+ *
+ * @param achievementId ID of the unlocked achievement
  */
+extern s32 D_8015A520;      /* Notification queue head */
+extern s32 D_8015A524[8];   /* Notification queue (8 slots) */
+extern s32 D_8015A544;      /* Notification display timer */
+
+/* Achievement names */
+static const char *achievementNames[ACH_COUNT] = {
+    "FIRST VICTORY",
+    "ROAD WARRIOR (10 WINS)",
+    "CHAMPION (50 WINS)",
+    "STUNT BEGINNER",
+    "STUNT MASTER (100K)",
+    "PERFECT RACE",
+    "TRACK COLLECTOR",
+    "CAR COLLECTOR",
+    "SPEEDSTER",
+    "VETERAN RACER"
+};
+
 void func_80105EF4(s32 achievementId) {
-    /* Achievement unlock - stub */
+    s32 queueHead;
+    s32 i;
+
+    if (achievementId < 0 || achievementId >= ACH_COUNT) {
+        return;
+    }
+
+    queueHead = D_8015A520;
+
+    /* Find empty slot in queue */
+    for (i = 0; i < 8; i++) {
+        s32 slot = (queueHead + i) % 8;
+        if (D_8015A524[slot] == -1) {
+            D_8015A524[slot] = achievementId;
+            break;
+        }
+    }
+
+    /* Play unlock sound */
+    func_800CC3C0(20);  /* Achievement unlock jingle */
+
+    /* Start display timer if not already showing */
+    if (D_8015A544 <= 0) {
+        D_8015A544 = 180;  /* 3 seconds */
+    }
 }
 
 /*
-
  * func_80106260 (1484 bytes)
- * Achievement display
+ * Achievement display - Renders achievement popup on screen
+ *
+ * Shows the current achievement notification with icon and text.
+ *
+ * @param achievementId ID of achievement to display
  */
+extern s32 D_8015A548;      /* Display animation frame */
+
 void func_80106260(s32 achievementId) {
-    /* Achievement display - stub */
+    s32 timer;
+    s32 frame;
+    s32 slideY;
+    s32 alpha;
+    const char *name;
+
+    timer = D_8015A544;
+    frame = D_8015A548;
+
+    if (timer <= 0) {
+        return;
+    }
+
+    frame++;
+
+    /* Slide in from top */
+    if (frame < 15) {
+        slideY = -50 + (frame * 60 / 15);
+    } else if (timer < 30) {
+        slideY = 10 + ((30 - timer) * 50 / 30);
+    } else {
+        slideY = 10;
+    }
+
+    /* Fade alpha */
+    if (frame < 10) {
+        alpha = (frame * 255) / 10;
+    } else if (timer < 20) {
+        alpha = (timer * 255) / 20;
+    } else {
+        alpha = 255;
+    }
+
+    /* Background box */
+    func_800C6E60(60, slideY, 200, 40, (alpha << 24) | 0x204080);
+    func_800C6E60(62, slideY + 2, 196, 36, (alpha << 24) | 0x306090);
+
+    /* Trophy icon (simplified) */
+    func_800C6E60(70, slideY + 10, 15, 20, (alpha << 24) | 0xFFD700);
+    func_800C6E60(72, slideY + 8, 11, 5, (alpha << 24) | 0xFFD700);
+
+    /* "ACHIEVEMENT UNLOCKED" text */
+    func_800C734C("ACHIEVEMENT", 95, slideY + 8, alpha);
+
+    /* Achievement name */
+    if (achievementId >= 0 && achievementId < ACH_COUNT) {
+        name = achievementNames[achievementId];
+        func_800C734C((char *)name, 95, slideY + 25, alpha);
+    }
+
+    D_8015A544 = timer - 1;
+    D_8015A548 = frame;
+
+    /* When done, advance queue */
+    if (timer <= 1) {
+        s32 nextSlot = (D_8015A520 + 1) % 8;
+        D_8015A524[D_8015A520] = -1;
+        D_8015A520 = nextSlot;
+        D_8015A548 = 0;
+
+        /* Check if more in queue */
+        if (D_8015A524[nextSlot] != -1) {
+            D_8015A544 = 180;
+        }
+    }
 }
 
 /*
-
  * func_801068F4 (2144 bytes)
- * Profile stats update
+ * Profile stats update - Updates player profile with race results
+ *
+ * Accumulates race statistics into the player's lifetime profile.
+ *
+ * @param profile Player profile data structure
+ * @param raceStats Current race statistics to add
  */
 void func_801068F4(void *profile, void *raceStats) {
-    /* Profile update - stub */
+    s32 *profileData;
+    s32 *raceData;
+    s32 placing;
+    s32 lapTime;
+    s32 distance;
+    s32 crashes;
+    s32 stuntPts;
+
+    if (profile == NULL || raceStats == NULL) {
+        return;
+    }
+
+    profileData = (s32 *)profile;
+    raceData = (s32 *)raceStats;
+
+    /* Extract race stats */
+    placing = raceData[0];
+    lapTime = raceData[1];
+    distance = raceData[2];
+    crashes = raceData[3];
+    stuntPts = raceData[4];
+
+    /* Update profile */
+
+    /* Increment race count */
+    profileData[0]++;
+
+    /* Increment wins if first place */
+    if (placing == 1) {
+        profileData[1]++;
+    }
+
+    /* Increment podium if top 3 */
+    if (placing >= 1 && placing <= 3) {
+        profileData[2]++;
+    }
+
+    /* Add race time to total time played */
+    profileData[3] += raceData[5];  /* Race duration */
+
+    /* Update best lap if better */
+    if (lapTime > 0 && (profileData[4] == 0 || lapTime < profileData[4])) {
+        profileData[4] = lapTime;
+    }
+
+    /* Add distance */
+    profileData[5] += distance;
+
+    /* Add crashes */
+    profileData[6] += crashes;
+
+    /* Add stunt points */
+    profileData[7] += stuntPts;
+
+    /* No-crash achievement check */
+    if (crashes == 0 && placing <= 3) {
+        extern u16 D_8015A500;
+        if (!(D_8015A500 & (1 << ACH_NO_CRASH))) {
+            D_8015A500 |= (1 << ACH_NO_CRASH);
+            func_80105EF4(ACH_NO_CRASH);
+        }
+    }
+
+    /* Mark profile as dirty (needs save) */
+    profileData[15] = 1;
 }
 
 /*
