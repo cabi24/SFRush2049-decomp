@@ -8343,7 +8343,40 @@ void func_8008BA84(void *entity, s16 index, s16 flags) {
  * Entity animation/state processing
  */
 void func_8008BB8C(void *entity, s16 param) {
-    /* Complex entity state processing - stub */
+    s32 *animState;
+    s32 *animFrame;
+    s32 *animSpeed;
+    s32 *animLooping;
+    s32 maxFrames;
+
+    if (entity == NULL) {
+        return;
+    }
+
+    animState = (s32 *)((u8 *)entity + 0xC0);
+    animFrame = (s32 *)((u8 *)entity + 0xC4);
+    animSpeed = (s32 *)((u8 *)entity + 0xC8);
+    animLooping = (s32 *)((u8 *)entity + 0xCC);
+    maxFrames = *((s32 *)((u8 *)entity + 0xD0));
+
+    /* Set animation based on param */
+    if (param >= 0) {
+        *animState = param;
+        *animFrame = 0;
+    }
+
+    /* Advance animation */
+    *animFrame += *animSpeed;
+
+    /* Handle animation end */
+    if (*animFrame >= maxFrames) {
+        if (*animLooping) {
+            *animFrame = 0;
+        } else {
+            *animFrame = maxFrames - 1;
+            *animState = 0;  /* Return to idle */
+        }
+    }
 }
 
 /*
@@ -8351,15 +8384,111 @@ void func_8008BB8C(void *entity, s16 param) {
  * Entity position update with bounds checking
  */
 void func_8008BC94(void *entity, s16 param) {
-    /* Position bounds processing - stub */
+    f32 *pos;
+    f32 *bounds;
+    f32 minX, maxX, minY, maxY, minZ, maxZ;
+
+    if (entity == NULL) {
+        return;
+    }
+
+    pos = (f32 *)((u8 *)entity + 0x24);
+    bounds = (f32 *)0x80158400;  /* World bounds */
+
+    minX = bounds[0];
+    maxX = bounds[1];
+    minY = bounds[2];
+    maxY = bounds[3];
+    minZ = bounds[4];
+    maxZ = bounds[5];
+
+    /* Clamp position to world bounds */
+    if (pos[0] < minX) pos[0] = minX;
+    if (pos[0] > maxX) pos[0] = maxX;
+    if (pos[1] < minY) pos[1] = minY;
+    if (pos[1] > maxY) pos[1] = maxY;
+    if (pos[2] < minZ) pos[2] = minZ;
+    if (pos[2] > maxZ) pos[2] = maxZ;
+
+    /* Special handling based on param */
+    if (param & 0x01) {
+        /* Wrap around X */
+        if (pos[0] < minX) pos[0] = maxX;
+        if (pos[0] > maxX) pos[0] = minX;
+    }
+    if (param & 0x02) {
+        /* Wrap around Z */
+        if (pos[2] < minZ) pos[2] = maxZ;
+        if (pos[2] > maxZ) pos[2] = minZ;
+    }
 }
 
 /*
  * func_8008BD9C (720 bytes)
- * Large entity update function
+ * Large entity update function - comprehensive entity tick
  */
 void func_8008BD9C(void *entity, void *data) {
-    /* Complex entity update - stub */
+    s32 *flags;
+    s32 *entityType;
+    f32 *pos, *vel, *accel;
+    f32 dt;
+    s32 updateFlags;
+
+    if (entity == NULL) {
+        return;
+    }
+
+    flags = (s32 *)((u8 *)entity + 0x10);
+    entityType = (s32 *)((u8 *)entity + 0x08);
+    pos = (f32 *)((u8 *)entity + 0x24);
+    vel = (f32 *)((u8 *)entity + 0x34);
+    accel = (f32 *)((u8 *)entity + 0x44);
+
+    /* Check if entity needs update */
+    if ((*flags & 0x01) == 0) {
+        return;  /* Inactive */
+    }
+
+    updateFlags = data ? *((s32 *)data) : 0xFF;
+    dt = 1.0f / 60.0f;
+
+    /* Physics update */
+    if (updateFlags & 0x01) {
+        vel[0] += accel[0] * dt;
+        vel[1] += accel[1] * dt;
+        vel[2] += accel[2] * dt;
+
+        pos[0] += vel[0] * dt;
+        pos[1] += vel[1] * dt;
+        pos[2] += vel[2] * dt;
+    }
+
+    /* Animation update */
+    if (updateFlags & 0x02) {
+        func_8008BB8C(entity, -1);
+    }
+
+    /* Bounds check */
+    if (updateFlags & 0x04) {
+        func_8008BC94(entity, 0);
+    }
+
+    /* Collision */
+    if (updateFlags & 0x08) {
+        /* Mark for collision testing */
+        *flags |= 0x100;
+    }
+
+    /* Visibility check */
+    if (updateFlags & 0x10) {
+        void *camera = (void *)0x8015B000;
+        s32 culled = func_80096A00(entity, camera);
+        if (culled) {
+            *flags &= ~0x200;  /* Not visible */
+        } else {
+            *flags |= 0x200;   /* Visible */
+        }
+    }
 }
 
 /*
@@ -8514,10 +8643,88 @@ void func_8008E440(void *a0, s32 mode, s32 flags, s32 index) {
 
 /*
  * func_8008EA10 (1656 bytes)
- * Entity spawn/initialization
+ * Entity spawn/initialization - create and initialize new entity
  */
 void func_8008EA10(void *params, s32 type) {
-    /* Complex entity spawn - stub */
+    void *entity;
+    s32 *entityPool;
+    s32 *poolIndex;
+    s32 i;
+    f32 *pos, *vel;
+    f32 *spawnPos;
+    s32 maxEntities;
+
+    entityPool = (s32 *)0x80157000;
+    poolIndex = (s32 *)0x80157400;
+    maxEntities = 256;
+
+    /* Find free slot in entity pool */
+    entity = NULL;
+    for (i = 0; i < maxEntities; i++) {
+        s32 *slot = (s32 *)(entityPool[i]);
+        if (slot == NULL || (*slot & 0x01) == 0) {
+            /* Found free slot */
+            entity = (void *)(0x80160000 + i * 0x100);
+            entityPool[i] = (s32)entity;
+            break;
+        }
+    }
+
+    if (entity == NULL) {
+        return;  /* Pool full */
+    }
+
+    /* Clear entity memory */
+    memset(entity, 0, 0x100);
+
+    /* Set entity type */
+    *((s32 *)((u8 *)entity + 0x08)) = type;
+    *((s32 *)((u8 *)entity + 0x10)) = 0x01;  /* Active flag */
+
+    /* Initialize position from params or defaults */
+    pos = (f32 *)((u8 *)entity + 0x24);
+    vel = (f32 *)((u8 *)entity + 0x34);
+
+    if (params != NULL) {
+        spawnPos = (f32 *)params;
+        pos[0] = spawnPos[0];
+        pos[1] = spawnPos[1];
+        pos[2] = spawnPos[2];
+    } else {
+        pos[0] = 0.0f;
+        pos[1] = 0.0f;
+        pos[2] = 0.0f;
+    }
+
+    vel[0] = 0.0f;
+    vel[1] = 0.0f;
+    vel[2] = 0.0f;
+
+    /* Set default bounding radius based on type */
+    switch (type) {
+        case 1:  /* Car */
+            *((f32 *)((u8 *)entity + 0x5C)) = 2.0f;
+            break;
+        case 2:  /* Prop */
+            *((f32 *)((u8 *)entity + 0x5C)) = 1.0f;
+            break;
+        case 3:  /* Destructible */
+            *((f32 *)((u8 *)entity + 0x5C)) = 1.5f;
+            break;
+        case 4:  /* Projectile */
+            *((f32 *)((u8 *)entity + 0x5C)) = 0.5f;
+            break;
+        default:
+            *((f32 *)((u8 *)entity + 0x5C)) = 1.0f;
+            break;
+    }
+
+    /* Initialize animation */
+    *((s32 *)((u8 *)entity + 0xC0)) = 0;  /* animState = idle */
+    *((s32 *)((u8 *)entity + 0xC4)) = 0;  /* animFrame = 0 */
+    *((s32 *)((u8 *)entity + 0xC8)) = 1;  /* animSpeed = 1 */
+
+    (*poolIndex)++;
 }
 
 /*
@@ -8544,7 +8751,72 @@ void func_80090310(void *entity) {
  * Entity movement/physics update
  */
 void func_800908A0(void *entity, s16 flags) {
-    /* Physics update - stub */
+    f32 *pos, *vel, *accel;
+    f32 *rot, *angVel;
+    f32 dt, gravity;
+    f32 friction, drag;
+
+    if (entity == NULL) {
+        return;
+    }
+
+    pos = (f32 *)((u8 *)entity + 0x24);
+    vel = (f32 *)((u8 *)entity + 0x34);
+    accel = (f32 *)((u8 *)entity + 0x44);
+    rot = (f32 *)((u8 *)entity + 0x60);
+    angVel = (f32 *)((u8 *)entity + 0x70);
+
+    dt = 1.0f / 60.0f;
+    gravity = -9.8f;
+    friction = 0.98f;
+    drag = 0.995f;
+
+    /* Apply gravity if enabled */
+    if (flags & 0x01) {
+        accel[1] = gravity;
+    }
+
+    /* Apply friction if grounded */
+    if (flags & 0x02) {
+        vel[0] *= friction;
+        vel[2] *= friction;
+    }
+
+    /* Apply air drag */
+    if (flags & 0x04) {
+        vel[0] *= drag;
+        vel[1] *= drag;
+        vel[2] *= drag;
+    }
+
+    /* Integrate acceleration */
+    vel[0] += accel[0] * dt;
+    vel[1] += accel[1] * dt;
+    vel[2] += accel[2] * dt;
+
+    /* Integrate velocity */
+    pos[0] += vel[0] * dt;
+    pos[1] += vel[1] * dt;
+    pos[2] += vel[2] * dt;
+
+    /* Angular velocity */
+    if (flags & 0x08) {
+        rot[0] += angVel[0] * dt;
+        rot[1] += angVel[1] * dt;
+        rot[2] += angVel[2] * dt;
+
+        /* Apply angular damping */
+        angVel[0] *= 0.99f;
+        angVel[1] *= 0.99f;
+        angVel[2] *= 0.99f;
+    }
+
+    /* Clear acceleration for next frame */
+    if (flags & 0x10) {
+        accel[0] = 0.0f;
+        accel[1] = 0.0f;
+        accel[2] = 0.0f;
+    }
 }
 
 /*
@@ -8552,7 +8824,66 @@ void func_800908A0(void *entity, s16 flags) {
  * Entity collision detection
  */
 void func_80090B70(void *entity) {
-    /* Collision processing - stub */
+    f32 *pos;
+    f32 radius;
+    s32 *entityPool;
+    s32 i;
+    void *other;
+    f32 *otherPos;
+    f32 otherRadius;
+    f32 dx, dy, dz, dist;
+    f32 overlap;
+    s32 maxEntities;
+
+    if (entity == NULL) {
+        return;
+    }
+
+    pos = (f32 *)((u8 *)entity + 0x24);
+    radius = *((f32 *)((u8 *)entity + 0x5C));
+    entityPool = (s32 *)0x80157000;
+    maxEntities = 256;
+
+    /* Check against all other entities */
+    for (i = 0; i < maxEntities; i++) {
+        other = (void *)entityPool[i];
+        if (other == NULL || other == entity) {
+            continue;
+        }
+
+        /* Check if other entity is active */
+        if ((*((s32 *)other) & 0x01) == 0) {
+            continue;
+        }
+
+        otherPos = (f32 *)((u8 *)other + 0x24);
+        otherRadius = *((f32 *)((u8 *)other + 0x5C));
+
+        /* Calculate distance */
+        dx = pos[0] - otherPos[0];
+        dy = pos[1] - otherPos[1];
+        dz = pos[2] - otherPos[2];
+        dist = sqrtf(dx * dx + dy * dy + dz * dz);
+
+        /* Check collision */
+        overlap = (radius + otherRadius) - dist;
+        if (overlap > 0.0f) {
+            /* Collision detected - separate entities */
+            if (dist > 0.001f) {
+                f32 separationDist = overlap * 0.5f / dist;
+                pos[0] += dx * separationDist;
+                pos[1] += dy * separationDist;
+                pos[2] += dz * separationDist;
+                otherPos[0] -= dx * separationDist;
+                otherPos[1] -= dy * separationDist;
+                otherPos[2] -= dz * separationDist;
+            }
+
+            /* Mark collision flags */
+            *((s32 *)((u8 *)entity + 0x10)) |= 0x1000;
+            *((s32 *)((u8 *)other + 0x10)) |= 0x1000;
+        }
+    }
 }
 
 /*
