@@ -25560,7 +25560,48 @@ void func_800EEFA0(void *player) {
  * Nitro boost
  */
 void func_800EF5B4(void *car) {
-    /* Nitro boost - stub */
+    f32 *velocity;
+    f32 *nitroAmount;
+    f32 *nitroActive;
+    f32 *forward;
+    f32 boostForce;
+    f32 nitroConsume;
+
+    if (car == NULL) {
+        return;
+    }
+
+    /* Car structure offsets */
+    velocity = (f32 *)((u8 *)car + 0x34);
+    forward = (f32 *)((u8 *)car + 0x60);
+    nitroAmount = (f32 *)((u8 *)car + 0x120);
+    nitroActive = (f32 *)((u8 *)car + 0x124);
+
+    /* Check if nitro available */
+    if (*nitroAmount <= 0.0f) {
+        *nitroActive = 0.0f;
+        return;
+    }
+
+    /* Activate nitro */
+    *nitroActive = 1.0f;
+    boostForce = 50.0f;
+    nitroConsume = 0.02f;  /* Per frame consumption */
+
+    /* Apply boost force in forward direction */
+    velocity[0] += forward[0] * boostForce * 0.0166f;  /* dt = 1/60 */
+    velocity[1] += forward[1] * boostForce * 0.0166f;
+    velocity[2] += forward[2] * boostForce * 0.0166f;
+
+    /* Consume nitro */
+    *nitroAmount -= nitroConsume;
+    if (*nitroAmount < 0.0f) {
+        *nitroAmount = 0.0f;
+        *nitroActive = 0.0f;
+    }
+
+    /* Play nitro sound if just started */
+    func_800B2658(20, 1.0f, 0.0f);  /* Nitro sound */
 }
 
 /*
@@ -25568,7 +25609,23 @@ void func_800EF5B4(void *car) {
  * Nitro refill
  */
 void func_800EFD88(void *car, f32 amount) {
-    /* Nitro refill - stub */
+    f32 *nitroAmount;
+    f32 *nitroMax;
+
+    if (car == NULL || amount <= 0.0f) {
+        return;
+    }
+
+    nitroAmount = (f32 *)((u8 *)car + 0x120);
+    nitroMax = (f32 *)((u8 *)car + 0x128);
+
+    *nitroAmount += amount;
+    if (*nitroAmount > *nitroMax) {
+        *nitroAmount = *nitroMax;
+    }
+
+    /* Play refill sound */
+    func_800B2658(21, 0.8f, 0.0f);
 }
 
 /*
@@ -25576,7 +25633,34 @@ void func_800EFD88(void *car, f32 amount) {
  * Boost pad trigger
  */
 void func_800F0258(void *car, void *pad) {
-    /* Boost pad - stub */
+    f32 *velocity;
+    f32 *padDir;
+    f32 boostSpeed;
+    f32 currentSpeed;
+
+    if (car == NULL || pad == NULL) {
+        return;
+    }
+
+    velocity = (f32 *)((u8 *)car + 0x34);
+    padDir = (f32 *)((u8 *)pad + 0x10);  /* Pad boost direction */
+    boostSpeed = *(f32 *)((u8 *)pad + 0x1C);  /* Pad boost amount */
+
+    /* Calculate current speed */
+    currentSpeed = sqrtf(velocity[0] * velocity[0] +
+                        velocity[1] * velocity[1] +
+                        velocity[2] * velocity[2]);
+
+    /* Only boost if moving in pad direction */
+    if (currentSpeed > 5.0f) {
+        /* Add boost in pad direction */
+        velocity[0] += padDir[0] * boostSpeed;
+        velocity[1] += padDir[1] * boostSpeed * 0.5f;  /* Less vertical boost */
+        velocity[2] += padDir[2] * boostSpeed;
+
+        /* Play boost pad sound */
+        func_800B2658(22, 1.0f, 0.0f);
+    }
 }
 
 /*
@@ -25585,7 +25669,47 @@ void func_800F0258(void *car, void *pad) {
  * Ramp launch
  */
 void func_800F0B44(void *car, void *ramp) {
-    /* Ramp launch - stub */
+    f32 *velocity;
+    f32 *position;
+    f32 *rampNormal;
+    f32 *rampAngle;
+    f32 speed, launchSpeed;
+    f32 launchAngle;
+
+    if (car == NULL || ramp == NULL) {
+        return;
+    }
+
+    position = (f32 *)((u8 *)car + 0x24);
+    velocity = (f32 *)((u8 *)car + 0x34);
+    rampNormal = (f32 *)((u8 *)ramp + 0x10);
+    rampAngle = (f32 *)((u8 *)ramp + 0x1C);
+
+    /* Calculate current horizontal speed */
+    speed = sqrtf(velocity[0] * velocity[0] + velocity[2] * velocity[2]);
+
+    /* Only launch if moving fast enough */
+    if (speed < 20.0f) {
+        return;
+    }
+
+    launchAngle = *rampAngle;
+    launchSpeed = speed * 1.2f;  /* Slight speed boost */
+
+    /* Calculate launch velocity based on ramp angle */
+    /* Preserve horizontal direction, add vertical component */
+    if (speed > 0.001f) {
+        f32 hNorm = 1.0f / speed;
+        velocity[0] *= hNorm * launchSpeed * cosf(launchAngle);
+        velocity[2] *= hNorm * launchSpeed * cosf(launchAngle);
+    }
+    velocity[1] = launchSpeed * sinf(launchAngle);
+
+    /* Set airborne flag */
+    *(s32 *)((u8 *)car + 0x1C) = 1;
+
+    /* Play launch sound */
+    func_800B2658(23, 1.0f, 0.0f);
 }
 
 /*
@@ -25593,7 +25717,29 @@ void func_800F0B44(void *car, void *ramp) {
  * Timer init
  */
 void func_80100660(void) {
-    /* Timer init - stub */
+    s32 *timerStartFrame;
+    s32 *timerElapsed;
+    s32 *timerPaused;
+    s32 *timerCountdown;
+    s32 i;
+
+    /* Timer state at 0x8015A100 */
+    timerStartFrame = (s32 *)0x8015A100;
+    timerElapsed = (s32 *)0x8015A104;
+    timerPaused = (s32 *)0x8015A108;
+    timerCountdown = (s32 *)0x8015A10C;
+
+    /* Get current frame from global counter */
+    *timerStartFrame = D_80142AFC;
+    *timerElapsed = 0;
+    *timerPaused = 0;
+    *timerCountdown = 0;
+
+    /* Clear split time arrays */
+    for (i = 0; i < 4; i++) {
+        *(s32 *)(0x8015A120 + i * 4) = 0;  /* Lap times */
+        *(s32 *)(0x8015A130 + i * 4) = 0;  /* Split times */
+    }
 }
 
 /*
@@ -25601,8 +25747,25 @@ void func_80100660(void) {
  * Timer get elapsed
  */
 s32 func_80100D34(void) {
-    /* Get elapsed - stub */
-    return 0;
+    s32 *timerStartFrame;
+    s32 *timerPaused;
+    s32 currentFrame;
+    s32 elapsed;
+
+    timerStartFrame = (s32 *)0x8015A100;
+    timerPaused = (s32 *)0x8015A108;
+
+    if (*timerPaused) {
+        /* Return cached elapsed time when paused */
+        return *(s32 *)0x8015A104;
+    }
+
+    currentFrame = D_80142AFC;
+    elapsed = currentFrame - *timerStartFrame;
+
+    /* Convert frames to centiseconds (assuming 60fps) */
+    /* elapsed_cs = elapsed_frames * 100 / 60 */
+    return (elapsed * 100) / 60;
 }
 
 /*
@@ -25610,7 +25773,17 @@ s32 func_80100D34(void) {
  * Timer reset
  */
 void func_80100DF0(void) {
-    /* Timer reset - stub */
+    s32 *timerStartFrame;
+    s32 *timerElapsed;
+    s32 *timerPaused;
+
+    timerStartFrame = (s32 *)0x8015A100;
+    timerElapsed = (s32 *)0x8015A104;
+    timerPaused = (s32 *)0x8015A108;
+
+    *timerStartFrame = D_80142AFC;
+    *timerElapsed = 0;
+    *timerPaused = 0;
 }
 
 /*
@@ -25618,7 +25791,23 @@ void func_80100DF0(void) {
  * Countdown timer
  */
 void func_80100EE4(s32 seconds) {
-    /* Countdown - stub */
+    s32 *timerCountdown;
+    s32 *countdownActive;
+    s32 frames;
+
+    timerCountdown = (s32 *)0x8015A10C;
+    countdownActive = (s32 *)0x8015A110;
+
+    /* Convert seconds to frames (60fps) */
+    frames = seconds * 60;
+
+    *timerCountdown = frames;
+    *countdownActive = 1;
+
+    /* Play countdown start sound */
+    if (seconds > 0) {
+        func_800B2658(30, 1.0f, 0.0f);  /* Countdown beep */
+    }
 }
 
 /*
@@ -25626,7 +25815,45 @@ void func_80100EE4(s32 seconds) {
  * Lap timer split
  */
 void func_801011DC(void *player) {
-    /* Lap split - stub */
+    s32 playerIdx;
+    s32 *lapCount;
+    s32 *lapTimes;
+    s32 *bestLap;
+    s32 currentTime;
+    s32 lapTime;
+
+    if (player == NULL) {
+        return;
+    }
+
+    playerIdx = *(s32 *)player;
+    lapCount = (s32 *)((u8 *)player + 0x10);
+    lapTimes = (s32 *)0x8015A120;
+    bestLap = (s32 *)0x8015A044;
+
+    /* Get current race time */
+    currentTime = func_80100D34();
+
+    /* Calculate lap time */
+    if (*lapCount > 0) {
+        lapTime = currentTime - lapTimes[*lapCount - 1];
+    } else {
+        lapTime = currentTime;
+    }
+
+    /* Store lap time */
+    if (*lapCount < 4) {
+        lapTimes[*lapCount] = currentTime;
+    }
+
+    /* Check for best lap */
+    if (lapTime < *bestLap) {
+        *bestLap = lapTime;
+        func_800B2658(31, 1.0f, 0.0f);  /* Best lap sound */
+    }
+
+    /* Increment lap count */
+    (*lapCount)++;
 }
 
 /*
@@ -25634,8 +25861,25 @@ void func_801011DC(void *player) {
  * Best time check
  */
 s32 func_80101700(s32 trackId, s32 time) {
-    /* Best time check - stub */
-    return 0;
+    s32 *bestTimes;
+    s32 i;
+
+    if (trackId < 0 || trackId >= 16) {
+        return 0;
+    }
+
+    /* Best times array: 16 tracks x 5 positions */
+    bestTimes = (s32 *)0x8016E000;
+
+    /* Check if time beats any leaderboard entry */
+    for (i = 0; i < 5; i++) {
+        s32 entryTime = bestTimes[trackId * 5 + i];
+        if (entryTime == 0 || time < entryTime) {
+            return i + 1;  /* Return position (1-5) */
+        }
+    }
+
+    return 0;  /* Didn't place */
 }
 
 /*
@@ -25643,7 +25887,50 @@ s32 func_80101700(s32 trackId, s32 time) {
  * Record new best
  */
 void func_8010194C(s32 trackId, s32 time, u8 *name) {
-    /* Record best - stub */
+    s32 *bestTimes;
+    u8 *bestNames;
+    s32 position;
+    s32 i, j;
+
+    if (trackId < 0 || trackId >= 16 || name == NULL) {
+        return;
+    }
+
+    bestTimes = (s32 *)0x8016E000;
+    bestNames = (u8 *)0x8016E200;  /* 16 tracks x 5 names x 4 chars */
+
+    /* Find position for this time */
+    position = -1;
+    for (i = 0; i < 5; i++) {
+        if (bestTimes[trackId * 5 + i] == 0 || time < bestTimes[trackId * 5 + i]) {
+            position = i;
+            break;
+        }
+    }
+
+    if (position < 0) {
+        return;
+    }
+
+    /* Shift lower times down */
+    for (i = 4; i > position; i--) {
+        bestTimes[trackId * 5 + i] = bestTimes[trackId * 5 + i - 1];
+        for (j = 0; j < 4; j++) {
+            bestNames[(trackId * 5 + i) * 4 + j] = bestNames[(trackId * 5 + i - 1) * 4 + j];
+        }
+    }
+
+    /* Insert new time and name */
+    bestTimes[trackId * 5 + position] = time;
+    for (j = 0; j < 4 && name[j] != 0; j++) {
+        bestNames[(trackId * 5 + position) * 4 + j] = name[j];
+    }
+    for (; j < 4; j++) {
+        bestNames[(trackId * 5 + position) * 4 + j] = ' ';
+    }
+
+    /* Save to Controller Pak */
+    func_800B0580(0, (u8 *)bestTimes, 16 * 5 * 4);
 }
 
 /*
@@ -25651,7 +25938,65 @@ void func_8010194C(s32 trackId, s32 time, u8 *name) {
  * Leaderboard display
  */
 void func_80101C78(s32 trackId) {
-    /* Leaderboard - stub */
+    s32 *bestTimes;
+    u8 *bestNames;
+    s32 i;
+    s32 x, y;
+    u8 timeStr[16];
+    u8 nameStr[8];
+
+    if (trackId < 0 || trackId >= 16) {
+        return;
+    }
+
+    bestTimes = (s32 *)0x8016E000;
+    bestNames = (u8 *)0x8016E200;
+
+    /* Header */
+    func_800D0258(255, 200, 0, 255);  /* Gold */
+    func_800CD7F8((u8 *)"BEST TIMES", 120, 40);
+
+    /* Display top 5 times */
+    x = 80;
+    y = 70;
+
+    for (i = 0; i < 5; i++) {
+        s32 entryTime = bestTimes[trackId * 5 + i];
+        s32 j;
+
+        /* Copy name */
+        for (j = 0; j < 4; j++) {
+            nameStr[j] = bestNames[(trackId * 5 + i) * 4 + j];
+        }
+        nameStr[4] = 0;
+
+        if (entryTime > 0) {
+            /* Format time as MM:SS.cc */
+            s32 mins = entryTime / 6000;
+            s32 secs = (entryTime % 6000) / 100;
+            s32 cs = entryTime % 100;
+
+            timeStr[0] = '0' + (mins / 10);
+            timeStr[1] = '0' + (mins % 10);
+            timeStr[2] = ':';
+            timeStr[3] = '0' + (secs / 10);
+            timeStr[4] = '0' + (secs % 10);
+            timeStr[5] = '.';
+            timeStr[6] = '0' + (cs / 10);
+            timeStr[7] = '0' + (cs % 10);
+            timeStr[8] = 0;
+
+            func_800D0258(255, 255, 255, 255);
+            func_800CD7F8(nameStr, x, y);
+            func_800CD7F8(timeStr, x + 60, y);
+        } else {
+            func_800D0258(128, 128, 128, 255);  /* Gray for empty */
+            func_800CD7F8((u8 *)"----", x, y);
+            func_800CD7F8((u8 *)"--:--.--", x + 60, y);
+        }
+
+        y += 20;
+    }
 }
 
 /*
