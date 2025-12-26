@@ -14635,81 +14635,521 @@ void func_800C6404(void *camera, s32 placing) {
 /*
  * func_800C7110 (572 bytes)
  * HUD element draw
+ *
+ * Draws a HUD element (icon/graphic) at the specified position.
+ * Uses N64 RDP for 2D sprite rendering.
+ *
+ * Element IDs:
+ *   0 = Speedometer background
+ *   1 = Tachometer background
+ *   2 = Lap indicator icon
+ *   3 = Position indicator
+ *   4 = Timer background
+ *   5 = Nitro bar background
+ *   6 = Minimap frame
+ *   7-15 = Number sprites 0-9
+ *   16-25 = Letter sprites (for position: 1st, 2nd, etc.)
  */
+extern void *D_80159010;        /* HUD sprite table */
+extern void *D_80159014;        /* Current display list */
+extern void func_80099BFC(void *dl, void *sprite, s32 x, s32 y, s32 w, s32 h);
+
 void func_800C7110(s32 elementId, s32 x, s32 y) {
-    /* HUD element - stub */
+    void **spriteTable;
+    void *sprite;
+    s32 width, height;
+
+    if (D_80159010 == NULL || D_80159014 == NULL) {
+        return;
+    }
+
+    /* Validate element ID */
+    if (elementId < 0 || elementId > 63) {
+        return;
+    }
+
+    /* Get sprite from table */
+    spriteTable = (void **)D_80159010;
+    sprite = spriteTable[elementId];
+
+    if (sprite == NULL) {
+        return;
+    }
+
+    /* Get sprite dimensions from header */
+    width = *(s32 *)sprite;
+    height = *(s32 *)((u8 *)sprite + 4);
+
+    /* Render sprite to display list */
+    func_80099BFC(D_80159014, sprite, x, y, width, height);
 }
 
 /*
  * func_800C734C (700 bytes)
  * HUD text draw
+ *
+ * Draws text string at specified position using HUD font.
+ * Supports uppercase letters, numbers, and basic punctuation.
  */
+extern void *D_80159018;        /* Font sprite table */
+extern s32 D_8015901C;          /* Font character width */
+extern s32 D_80159020;          /* Font character height */
+
 void func_800C734C(char *text, s32 x, s32 y) {
-    /* HUD text - stub */
+    s32 charX;
+    s32 charIndex;
+    char c;
+    s32 i;
+
+    if (text == NULL) {
+        return;
+    }
+
+    charX = x;
+
+    for (i = 0; text[i] != '\0' && i < 64; i++) {
+        c = text[i];
+
+        /* Map character to font index */
+        if (c >= '0' && c <= '9') {
+            charIndex = c - '0';  /* 0-9 */
+        } else if (c >= 'A' && c <= 'Z') {
+            charIndex = 10 + (c - 'A');  /* 10-35 */
+        } else if (c >= 'a' && c <= 'z') {
+            charIndex = 10 + (c - 'a');  /* 10-35 (lowercase = uppercase) */
+        } else if (c == ':') {
+            charIndex = 36;
+        } else if (c == '.') {
+            charIndex = 37;
+        } else if (c == '-') {
+            charIndex = 38;
+        } else if (c == '/') {
+            charIndex = 39;
+        } else if (c == '!') {
+            charIndex = 40;
+        } else if (c == ' ') {
+            /* Space - just advance position */
+            charX += D_8015901C;
+            continue;
+        } else {
+            /* Unknown character - skip */
+            charX += D_8015901C;
+            continue;
+        }
+
+        /* Draw character */
+        func_800C7110(charIndex + 64, charX, y);  /* Font chars start at element 64 */
+
+        /* Advance position */
+        charX += D_8015901C;
+    }
 }
 
 /*
  * func_800C760C (524 bytes)
  * HUD number draw
+ *
+ * Draws a numeric value at specified position.
+ * Leading zeros shown based on digits parameter.
+ *
+ * value: Number to display
+ * digits: Minimum digits to show (pads with leading zeros)
+ * x, y: Screen position
  */
 void func_800C760C(s32 value, s32 digits, s32 x, s32 y) {
-    /* HUD number - stub */
+    char buffer[12];
+    s32 i, len, startPos;
+    s32 absValue;
+    s32 negative;
+
+    /* Handle negative numbers */
+    if (value < 0) {
+        negative = 1;
+        absValue = -value;
+    } else {
+        negative = 0;
+        absValue = value;
+    }
+
+    /* Convert to string (reverse order) */
+    len = 0;
+    if (absValue == 0) {
+        buffer[len++] = '0';
+    } else {
+        while (absValue > 0 && len < 10) {
+            buffer[len++] = '0' + (absValue % 10);
+            absValue /= 10;
+        }
+    }
+
+    /* Pad with leading zeros if needed */
+    while (len < digits && len < 10) {
+        buffer[len++] = '0';
+    }
+
+    /* Add negative sign if needed */
+    if (negative) {
+        buffer[len++] = '-';
+    }
+
+    /* Reverse the string */
+    buffer[len] = '\0';
+    for (i = 0; i < len / 2; i++) {
+        char temp = buffer[i];
+        buffer[i] = buffer[len - 1 - i];
+        buffer[len - 1 - i] = temp;
+    }
+
+    /* Draw using text function */
+    func_800C734C(buffer, x, y);
 }
 
 /*
  * func_800C7818 (1724 bytes)
  * HUD speedometer
+ *
+ * Draws the speedometer dial with needle showing current speed.
+ * Speed in game units, converted to MPH for display.
+ *
+ * Speedometer layout:
+ *   - Background dial at fixed position
+ *   - Rotating needle based on speed
+ *   - Digital readout below
  */
+extern s32 D_80159024;          /* Speedometer X position */
+extern s32 D_80159028;          /* Speedometer Y position */
+extern f32 D_8015902C;          /* Speed to MPH conversion factor */
+
 void func_800C7818(f32 speed) {
-    /* Speedometer - stub */
+    s32 speedMph;
+    s32 needleAngle;
+    s32 dialX, dialY;
+    s32 digitalX, digitalY;
+
+    /* Convert speed to MPH */
+    speedMph = (s32)(speed * D_8015902C);
+    if (speedMph < 0) speedMph = 0;
+    if (speedMph > 200) speedMph = 200;
+
+    /* Get dial position */
+    dialX = D_80159024;
+    dialY = D_80159028;
+
+    /* Draw speedometer background */
+    func_800C7110(0, dialX, dialY);  /* Element 0 = speedometer bg */
+
+    /* Calculate needle angle (0-180 degrees mapped to 0-200 mph) */
+    /* Needle rotates from 7 o'clock (0 mph) to 5 o'clock (200 mph) */
+    needleAngle = (speedMph * 180) / 200;
+
+    /* Draw needle (element varies by angle) */
+    /* Needle sprites: elements 128-143 for 16 angle positions */
+    s32 needleElement = 128 + (needleAngle / 12);  /* 180/16 = ~11.25 degrees per sprite */
+    if (needleElement > 143) needleElement = 143;
+    func_800C7110(needleElement, dialX + 24, dialY + 24);  /* Center of dial */
+
+    /* Draw digital speed readout */
+    digitalX = dialX + 12;
+    digitalY = dialY + 50;
+    func_800C760C(speedMph, 3, digitalX, digitalY);
+
+    /* Draw "MPH" label */
+    func_800C734C("MPH", digitalX + 30, digitalY);
 }
 
 /*
  * func_800C7ED4 (2540 bytes)
  * HUD lap counter
+ *
+ * Displays current lap / total laps.
+ * Shows "FINAL LAP" text when on last lap.
  */
+extern s32 D_80159030;          /* Lap counter X position */
+extern s32 D_80159034;          /* Lap counter Y position */
+
 void func_800C7ED4(s32 currentLap, s32 totalLaps) {
-    /* Lap counter - stub */
+    s32 x, y;
+    char lapText[16];
+
+    x = D_80159030;
+    y = D_80159034;
+
+    /* Draw lap icon/background */
+    func_800C7110(2, x, y);  /* Element 2 = lap indicator */
+
+    /* Check for final lap */
+    if (currentLap == totalLaps) {
+        /* Flash "FINAL LAP" */
+        func_800C734C("FINAL", x + 40, y);
+        func_800C734C("LAP", x + 40, y + 12);
+    } else {
+        /* Show "LAP X/Y" */
+        func_800C734C("LAP", x + 40, y);
+
+        /* Draw current lap number */
+        func_800C760C(currentLap, 1, x + 40, y + 12);
+
+        /* Draw separator */
+        func_800C734C("/", x + 52, y + 12);
+
+        /* Draw total laps */
+        func_800C760C(totalLaps, 1, x + 60, y + 12);
+    }
 }
 
 /*
  * func_800C8864 (188 bytes)
  * HUD position display
+ *
+ * Shows race position (1st, 2nd, 3rd, etc.)
  */
+extern s32 D_80159038;          /* Position display X */
+extern s32 D_8015903C;          /* Position display Y */
+
 void func_800C8864(s32 position) {
-    /* Position - stub */
+    s32 x, y;
+    char *suffix;
+
+    x = D_80159038;
+    y = D_8015903C;
+
+    /* Draw position background */
+    func_800C7110(3, x, y);  /* Element 3 = position indicator */
+
+    /* Draw position number */
+    func_800C760C(position + 1, 1, x + 8, y + 4);  /* +1 because internal 0 = 1st place */
+
+    /* Draw suffix (st, nd, rd, th) */
+    switch (position) {
+        case 0:
+            suffix = "ST";
+            break;
+        case 1:
+            suffix = "ND";
+            break;
+        case 2:
+            suffix = "RD";
+            break;
+        default:
+            suffix = "TH";
+            break;
+    }
+    func_800C734C(suffix, x + 20, y + 4);
 }
 
 /*
  * func_800C8920 (228 bytes)
  * HUD timer display
+ *
+ * Shows race time in MM:SS.ms format.
+ * timeMs is in milliseconds.
  */
+extern s32 D_80159040;          /* Timer display X */
+extern s32 D_80159044;          /* Timer display Y */
+
 void func_800C8920(s32 timeMs) {
-    /* Timer - stub */
+    s32 x, y;
+    s32 minutes, seconds, ms;
+    char timeStr[16];
+
+    x = D_80159040;
+    y = D_80159044;
+
+    /* Draw timer background */
+    func_800C7110(4, x, y);  /* Element 4 = timer background */
+
+    /* Convert milliseconds to M:SS.ms */
+    if (timeMs < 0) timeMs = 0;
+
+    minutes = timeMs / 60000;
+    seconds = (timeMs / 1000) % 60;
+    ms = (timeMs / 10) % 100;  /* Centiseconds */
+
+    /* Clamp minutes */
+    if (minutes > 99) minutes = 99;
+
+    /* Draw minutes */
+    func_800C760C(minutes, 1, x + 8, y + 4);
+
+    /* Draw colon */
+    func_800C734C(":", x + 16, y + 4);
+
+    /* Draw seconds (2 digits with leading zero) */
+    func_800C760C(seconds, 2, x + 22, y + 4);
+
+    /* Draw decimal point */
+    func_800C734C(".", x + 38, y + 4);
+
+    /* Draw centiseconds */
+    func_800C760C(ms, 2, x + 44, y + 4);
 }
 
 /*
  * func_800C9404 (300 bytes)
  * HUD minimap update
+ *
+ * Draws a minimap showing track outline and car positions.
  */
+extern s32 D_80159048;          /* Minimap X position */
+extern s32 D_8015904C;          /* Minimap Y position */
+extern f32 D_80159050;          /* Minimap scale */
+extern void *D_80159054;        /* Track minimap texture */
+
 void func_800C9404(void *player) {
-    /* Minimap - stub */
+    s32 x, y;
+    f32 *playerPos;
+    f32 mapX, mapY;
+    s32 dotX, dotY;
+
+    x = D_80159048;
+    y = D_8015904C;
+
+    /* Draw minimap frame/background */
+    func_800C7110(6, x, y);  /* Element 6 = minimap frame */
+
+    if (player == NULL) {
+        return;
+    }
+
+    /* Get player position */
+    playerPos = (f32 *)((u8 *)player + 0x24);
+
+    /* Convert world position to minimap coordinates */
+    mapX = playerPos[0] * D_80159050;
+    mapY = playerPos[2] * D_80159050;  /* Use Z for top-down view */
+
+    /* Clamp to minimap bounds */
+    dotX = x + 24 + (s32)mapX;
+    dotY = y + 24 + (s32)mapY;
+
+    if (dotX < x + 4) dotX = x + 4;
+    if (dotX > x + 44) dotX = x + 44;
+    if (dotY < y + 4) dotY = y + 4;
+    if (dotY > y + 44) dotY = y + 44;
+
+    /* Draw player dot (blinking) */
+    func_800C7110(144, dotX - 2, dotY - 2);  /* Element 144 = player dot */
 }
 
 /*
  * func_800CA308 (172 bytes)
  * HUD message display
+ *
+ * Shows a centered message on screen (checkpoint, wrong way, etc.)
+ *
+ * Message IDs:
+ *   0 = "CHECKPOINT!"
+ *   1 = "WRONG WAY!"
+ *   2 = "FINAL LAP!"
+ *   3 = "GO!"
+ *   4 = "READY"
+ *   5 = "SET"
+ *   6 = "FINISH!"
+ *   7 = "NEW RECORD!"
  */
+extern s32 D_80159058;          /* Screen center X */
+extern s32 D_8015905C;          /* Message Y position */
+static char *hudMessages[] = {
+    "CHECKPOINT!",
+    "WRONG WAY!",
+    "FINAL LAP!",
+    "GO!",
+    "READY",
+    "SET",
+    "FINISH!",
+    "NEW RECORD!"
+};
+
 void func_800CA308(s32 messageId) {
-    /* Message - stub */
+    s32 x, y;
+    char *message;
+    s32 msgLen, charWidth;
+
+    if (messageId < 0 || messageId > 7) {
+        return;
+    }
+
+    message = hudMessages[messageId];
+
+    /* Calculate message length for centering */
+    msgLen = 0;
+    while (message[msgLen] != '\0') {
+        msgLen++;
+    }
+
+    /* Center horizontally */
+    charWidth = D_8015901C;
+    x = D_80159058 - (msgLen * charWidth) / 2;
+    y = D_8015905C;
+
+    /* Draw message */
+    func_800C734C(message, x, y);
 }
 
 /*
  * func_800CADA4 (2468 bytes)
  * HUD full render
+ *
+ * Main HUD rendering function - draws all HUD elements.
+ * Called every frame during gameplay.
  */
+extern void *D_801582C0[8];     /* Car pointers array */
+extern s32 D_801582E0;          /* Number of active cars */
+extern u32 D_801582B0;          /* Race elapsed time */
+extern s32 D_801582E8;          /* Required laps */
+extern s32 D_80159060;          /* HUD enabled flag */
+extern s32 D_80159064;          /* Current message ID (-1 = none) */
+extern s32 D_80159068;          /* Message timer */
+
 void func_800CADA4(void) {
-    /* Full HUD - stub */
+    void *player;
+    f32 *velocity;
+    f32 speed;
+    s32 currentLap, position;
+
+    /* Check if HUD is enabled */
+    if (D_80159060 == 0) {
+        return;
+    }
+
+    /* Get player car */
+    player = D_801582C0[0];
+    if (player == NULL) {
+        return;
+    }
+
+    /* Calculate speed from velocity */
+    velocity = (f32 *)((u8 *)player + 0x34);
+    speed = sqrtf(velocity[0] * velocity[0] + velocity[2] * velocity[2]);
+
+    /* Get player lap and position */
+    currentLap = *(s32 *)((u8 *)player + 0x58);
+    position = *(s32 *)((u8 *)player + 0x5C);
+
+    /* Draw speedometer */
+    func_800C7818(speed);
+
+    /* Draw lap counter */
+    func_800C7ED4(currentLap, D_801582E8);
+
+    /* Draw position */
+    func_800C8864(position);
+
+    /* Draw timer */
+    func_800C8920(D_801582B0);
+
+    /* Draw minimap */
+    func_800C9404(player);
+
+    /* Draw any active message */
+    if (D_80159064 >= 0 && D_80159068 > 0) {
+        func_800CA308(D_80159064);
+        D_80159068--;
+
+        if (D_80159068 <= 0) {
+            D_80159064 = -1;  /* Clear message */
+        }
+    }
 }
 
 /*
