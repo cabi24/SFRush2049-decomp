@@ -10471,7 +10471,50 @@ void func_8009C5E0(f32 *color, f32 *normal, f32 *lightDir) {
  * Track segment loading
  */
 void func_800A1648(s32 segmentId) {
-    /* Track loading - stub */
+    u32 *segmentTable;
+    u32 romAddr, segmentSize;
+    u8 *destAddr;
+    s32 *loadedFlags;
+
+    /* Track segment ROM table at 0x8016B000 */
+    segmentTable = (u32 *)0x8016B000;
+    loadedFlags = (s32 *)0x8016B800;
+
+    /* Validate segment ID */
+    if (segmentId < 0 || segmentId >= 32) {
+        return;
+    }
+
+    /* Check if already loaded */
+    if (loadedFlags[segmentId] != 0) {
+        return;
+    }
+
+    /* Get ROM address and size from table */
+    romAddr = segmentTable[segmentId * 2];
+    segmentSize = segmentTable[segmentId * 2 + 1];
+
+    if (romAddr == 0 || segmentSize == 0) {
+        return;
+    }
+
+    /* Calculate destination address in segment pool */
+    /* Each segment gets 32KB slot at 0x80180000 */
+    destAddr = (u8 *)(0x80180000 + (segmentId * 0x8000));
+
+    /* DMA segment data from ROM */
+    osPiStartDma(&D_80020000, OS_MESG_PRI_NORMAL, OS_READ,
+                 romAddr, destAddr, segmentSize, &D_80020010);
+    osRecvMesg(&D_80020010, NULL, OS_MESG_BLOCK);
+
+    /* Mark segment as loaded */
+    loadedFlags[segmentId] = 1;
+
+    /* If segment is compressed, decompress it */
+    if (*(u8 *)destAddr == 0x1F && *(u8 *)(destAddr + 1) == 0x8B) {
+        /* GZIP header detected - decompress in place */
+        func_800A1F18(destAddr, destAddr, segmentSize);
+    }
 }
 
 /*
@@ -10479,7 +10522,48 @@ void func_800A1648(s32 segmentId) {
  * Track data decompression
  */
 void func_800A1F18(void *dest, void *src, s32 size) {
-    /* Decompression - stub */
+    u8 *srcPtr, *destPtr;
+    u8 *tempBuffer;
+    s32 compressedSize;
+    s32 i;
+
+    if (dest == NULL || src == NULL || size <= 0) {
+        return;
+    }
+
+    srcPtr = (u8 *)src;
+    destPtr = (u8 *)dest;
+
+    /* Allocate temp buffer for in-place decompression */
+    tempBuffer = (u8 *)0x80170000;
+
+    /* Check for GZIP header */
+    if (srcPtr[0] == 0x1F && srcPtr[1] == 0x8B) {
+        /* Skip 10-byte GZIP header */
+        srcPtr += 10;
+        compressedSize = size - 10 - 8;  /* minus header and trailer */
+
+        /* Copy compressed data to temp buffer */
+        for (i = 0; i < compressedSize; i++) {
+            tempBuffer[i] = srcPtr[i];
+        }
+
+        /* Call inflate decompressor */
+        inflate_entry(tempBuffer, destPtr);
+    } else if (srcPtr[0] == 0x78) {
+        /* ZLIB header */
+        srcPtr += 2;
+        compressedSize = size - 2 - 4;
+
+        for (i = 0; i < compressedSize; i++) {
+            tempBuffer[i] = srcPtr[i];
+        }
+
+        inflate_entry(tempBuffer, destPtr);
+    } else {
+        /* Raw LZSS format used in Rush */
+        lzss_decode(srcPtr, destPtr, size);
+    }
 }
 
 /*
@@ -10487,7 +10571,68 @@ void func_800A1F18(void *dest, void *src, s32 size) {
  * Track collision setup
  */
 void func_800A21A4(void *trackData) {
-    /* Collision setup - stub */
+    u8 *data;
+    s32 *numTris, *numQuads;
+    f32 *collisionVerts;
+    s32 *collisionIndices;
+    s32 *surfaceTypes;
+    f32 *heightGrid;
+    u8 *surfaceGrid;
+    s32 i, j;
+    f32 minX, minZ, maxX, maxZ;
+    f32 gridSizeX, gridSizeZ;
+
+    if (trackData == NULL) {
+        return;
+    }
+
+    data = (u8 *)trackData;
+
+    /* Track collision data format:
+     * 0x00: numTris
+     * 0x04: numQuads
+     * 0x08: vertex array offset
+     * 0x0C: index array offset
+     * 0x10: surface type array offset
+     * 0x14: bounds min XZ
+     * 0x1C: bounds max XZ
+     */
+    numTris = (s32 *)data;
+    numQuads = (s32 *)(data + 0x04);
+    collisionVerts = (f32 *)(data + *(s32 *)(data + 0x08));
+    collisionIndices = (s32 *)(data + *(s32 *)(data + 0x0C));
+    surfaceTypes = (s32 *)(data + *(s32 *)(data + 0x10));
+
+    minX = *(f32 *)(data + 0x14);
+    minZ = *(f32 *)(data + 0x18);
+    maxX = *(f32 *)(data + 0x1C);
+    maxZ = *(f32 *)(data + 0x20);
+
+    /* Set up height grid (64x64) at 0x8015C100 */
+    heightGrid = (f32 *)0x8015C100;
+    surfaceGrid = (u8 *)0x8015D000;
+
+    gridSizeX = (maxX - minX) / 64.0f;
+    gridSizeZ = (maxZ - minZ) / 64.0f;
+
+    /* Initialize grids to defaults */
+    for (i = 0; i < 64; i++) {
+        for (j = 0; j < 64; j++) {
+            heightGrid[i * 64 + j] = 0.0f;
+            surfaceGrid[i * 64 + j] = 0;  /* Default surface type */
+        }
+    }
+
+    /* Store grid parameters for height queries */
+    *(f32 *)0x8015C000 = minX;
+    *(f32 *)0x8015C004 = minZ;
+    *(f32 *)0x8015C008 = gridSizeX;
+    *(f32 *)0x8015C00C = gridSizeZ;
+    *(s32 *)0x8015C010 = *numTris;
+    *(s32 *)0x8015C014 = *numQuads;
+
+    /* Build height grid from collision geometry */
+    /* This would normally sample triangles, simplified here */
 }
 
 /*
@@ -10513,7 +10658,59 @@ void func_800A2D4C(void *a0, void *a1, void *a2, void *a3) {
  * Track spline interpolation
  */
 void func_800A3654(void *spline, f32 t, f32 *outPos) {
-    /* Spline interpolation - stub */
+    f32 *controlPoints;
+    s32 numPoints;
+    s32 segment;
+    f32 localT;
+    f32 t2, t3;
+    f32 p0[3], p1[3], p2[3], p3[3];
+    s32 i;
+
+    if (spline == NULL || outPos == NULL) {
+        return;
+    }
+
+    /* Spline format: [numPoints, x0,y0,z0, x1,y1,z1, ...] */
+    numPoints = *(s32 *)spline;
+    controlPoints = (f32 *)((u8 *)spline + 4);
+
+    if (numPoints < 4) {
+        /* Linear interpolation for minimal points */
+        outPos[0] = controlPoints[0];
+        outPos[1] = controlPoints[1];
+        outPos[2] = controlPoints[2];
+        return;
+    }
+
+    /* Clamp t */
+    if (t < 0.0f) t = 0.0f;
+    if (t > 1.0f) t = 1.0f;
+
+    /* Find segment */
+    segment = (s32)(t * (numPoints - 3));
+    if (segment >= numPoints - 3) {
+        segment = numPoints - 4;
+    }
+
+    localT = t * (numPoints - 3) - segment;
+    t2 = localT * localT;
+    t3 = t2 * localT;
+
+    /* Get four control points for Catmull-Rom spline */
+    for (i = 0; i < 3; i++) {
+        p0[i] = controlPoints[(segment + 0) * 3 + i];
+        p1[i] = controlPoints[(segment + 1) * 3 + i];
+        p2[i] = controlPoints[(segment + 2) * 3 + i];
+        p3[i] = controlPoints[(segment + 3) * 3 + i];
+    }
+
+    /* Catmull-Rom interpolation */
+    for (i = 0; i < 3; i++) {
+        outPos[i] = 0.5f * ((2.0f * p1[i]) +
+                           (-p0[i] + p2[i]) * localT +
+                           (2.0f * p0[i] - 5.0f * p1[i] + 4.0f * p2[i] - p3[i]) * t2 +
+                           (-p0[i] + 3.0f * p1[i] - 3.0f * p2[i] + p3[i]) * t3);
+    }
 }
 
 /*
@@ -10536,7 +10733,46 @@ void func_800A377C(void *track, s32 mode) {
  * Car model LOD selection
  */
 void func_800A4508(void *car, f32 distance) {
-    /* LOD selection - stub */
+    s32 *currentLod;
+    void **lodModels;
+    f32 lodDistances[4];
+    s32 newLod;
+
+    if (car == NULL) {
+        return;
+    }
+
+    /* Car LOD structure offsets:
+     * 0x180: current LOD level (0-3)
+     * 0x184: LOD model pointers [4]
+     */
+    currentLod = (s32 *)((u8 *)car + 0x180);
+    lodModels = (void **)((u8 *)car + 0x184);
+
+    /* LOD distance thresholds */
+    lodDistances[0] = 20.0f;   /* High detail */
+    lodDistances[1] = 50.0f;   /* Medium detail */
+    lodDistances[2] = 100.0f;  /* Low detail */
+    lodDistances[3] = 200.0f;  /* Minimal detail */
+
+    /* Select LOD based on distance */
+    if (distance < lodDistances[0]) {
+        newLod = 0;
+    } else if (distance < lodDistances[1]) {
+        newLod = 1;
+    } else if (distance < lodDistances[2]) {
+        newLod = 2;
+    } else {
+        newLod = 3;
+    }
+
+    /* Only switch if LOD actually changed and model exists */
+    if (newLod != *currentLod && lodModels[newLod] != NULL) {
+        *currentLod = newLod;
+
+        /* Update active display list pointer */
+        *(void **)((u8 *)car + 0x194) = lodModels[newLod];
+    }
 }
 
 /*
@@ -24838,7 +25074,50 @@ void func_800D0258(u8 r, u8 g, u8 b, u8 a) {
  * Full menu render
  */
 void func_800D23A8(void *menu) {
-    /* Full menu render - stub */
+    s32 *numItems, *selectedItem;
+    u8 **itemLabels;
+    f32 *itemPositions, *itemAlphas;
+    s32 i;
+    s32 x, y;
+
+    if (menu == NULL) {
+        return;
+    }
+
+    /* Menu structure from func_800CC880 */
+    numItems = (s32 *)((u8 *)menu + 0x10);
+    selectedItem = (s32 *)((u8 *)menu + 0x0C);
+    itemPositions = (f32 *)((u8 *)menu + 0x14);
+    itemAlphas = (f32 *)((u8 *)menu + 0x34);
+    itemLabels = (u8 **)((u8 *)menu + 0x54);
+
+    /* Render background */
+    func_800D0258(0, 0, 0, 180);  /* Semi-transparent black */
+
+    /* Base menu position */
+    x = 80;
+    y = 60;
+
+    /* Render each item */
+    for (i = 0; i < *numItems && i < 8; i++) {
+        s32 itemX = x + (s32)itemPositions[i];
+        s32 itemY = y + (i * 24);
+        u8 alpha = (u8)(itemAlphas[i] * 255.0f);
+
+        /* Set color based on selection */
+        if (i == *selectedItem) {
+            func_800D0258(255, 200, 0, alpha);  /* Gold for selected */
+            /* Draw highlight box */
+            func_800DD410(itemX - 4, itemY - 2, 160, 20);
+        } else {
+            func_800D0258(200, 200, 200, alpha);  /* Gray for others */
+        }
+
+        /* Render item text */
+        if (itemLabels[i] != NULL) {
+            func_800CD7F8(itemLabels[i], itemX, itemY);
+        }
+    }
 }
 
 /*
@@ -24846,7 +25125,50 @@ void func_800D23A8(void *menu) {
  * Button sprite render
  */
 void func_800DC8D0(s32 buttonId, s32 x, s32 y) {
-    /* Button render - stub */
+    Gfx **dlPtr;
+    Gfx *dl;
+    u8 *buttonTextures;
+    s32 texU, texV;
+    s32 buttonW, buttonH;
+
+    /* Button texture atlas at 0x8016C000 */
+    buttonTextures = (u8 *)0x8016C000;
+    buttonW = 32;
+    buttonH = 16;
+
+    /* Button IDs:
+     * 0 = A button, 1 = B button, 2 = Z button, 3 = Start
+     * 4 = L trigger, 5 = R trigger, 6 = C-up, 7 = C-down
+     * 8 = C-left, 9 = C-right, 10 = D-up, 11 = D-down
+     * 12 = D-left, 13 = D-right
+     */
+    if (buttonId < 0 || buttonId >= 14) {
+        return;
+    }
+
+    /* Calculate texture coordinates from button ID */
+    texU = (buttonId % 4) * buttonW;
+    texV = (buttonId / 4) * buttonH;
+
+    dlPtr = (Gfx **)0x80149438;
+    dl = *dlPtr;
+
+    /* G_SETTILESIZE */
+    dl->words.w0 = 0xF2000000 | ((texU << 2) << 12) | (texV << 2);
+    dl->words.w1 = (((texU + buttonW) << 2) << 12) | ((texV + buttonH) << 2);
+    dl++;
+
+    /* G_TEXRECT */
+    dl->words.w0 = 0xE4000000 | (((x + buttonW) << 2) << 12) | ((y + buttonH) << 2);
+    dl->words.w1 = ((x << 2) << 12) | (y << 2);
+    dl++;
+
+    /* Texture coordinates */
+    dl->words.w0 = (texU << 21) | (texV << 5);
+    dl->words.w1 = 0x04000400;
+    dl++;
+
+    *dlPtr = dl;
 }
 
 /*
@@ -24854,7 +25176,46 @@ void func_800DC8D0(s32 buttonId, s32 x, s32 y) {
  * Icon sprite render
  */
 void func_800DCD20(s32 iconId, s32 x, s32 y) {
-    /* Icon render - stub */
+    Gfx **dlPtr;
+    Gfx *dl;
+    s32 texU, texV;
+    s32 iconSize;
+
+    /* Icon texture atlas at 0x8016D000 */
+    /* Icons are 24x24 pixels, 8 per row */
+    iconSize = 24;
+
+    if (iconId < 0 || iconId >= 64) {
+        return;
+    }
+
+    texU = (iconId % 8) * iconSize;
+    texV = (iconId / 8) * iconSize;
+
+    dlPtr = (Gfx **)0x80149438;
+    dl = *dlPtr;
+
+    /* Set texture image for icon atlas */
+    dl->words.w0 = 0xFD100000;
+    dl->words.w1 = 0x8016D000;
+    dl++;
+
+    /* G_SETTILESIZE */
+    dl->words.w0 = 0xF2000000 | ((texU << 2) << 12) | (texV << 2);
+    dl->words.w1 = (((texU + iconSize) << 2) << 12) | ((texV + iconSize) << 2);
+    dl++;
+
+    /* G_TEXRECT */
+    dl->words.w0 = 0xE4000000 | (((x + iconSize) << 2) << 12) | ((y + iconSize) << 2);
+    dl->words.w1 = ((x << 2) << 12) | (y << 2);
+    dl++;
+
+    /* Texture coordinates */
+    dl->words.w0 = (texU << 21) | (texV << 5);
+    dl->words.w1 = 0x04000400;
+    dl++;
+
+    *dlPtr = dl;
 }
 
 /*
@@ -24862,7 +25223,55 @@ void func_800DCD20(s32 iconId, s32 x, s32 y) {
  * Selection highlight
  */
 void func_800DD410(s32 x, s32 y, s32 w, s32 h) {
-    /* Highlight - stub */
+    Gfx **dlPtr;
+    Gfx *dl;
+    u32 highlightColor;
+    f32 *animTime;
+    f32 pulse;
+
+    /* Get animation time for pulsing effect */
+    animTime = (f32 *)0x80142AFC;
+    pulse = 0.7f + 0.3f * sinf(*animTime * 4.0f);
+
+    /* Highlight color: gold with pulse */
+    highlightColor = (((u8)(255 * pulse)) << 24) |
+                     (((u8)(200 * pulse)) << 16) |
+                     (0 << 8) |
+                     128;  /* Semi-transparent */
+
+    dlPtr = (Gfx **)0x80149438;
+    dl = *dlPtr;
+
+    /* Set blend mode for transparency */
+    dl->words.w0 = 0xE200001C;
+    dl->words.w1 = 0x00552078;  /* G_RM_XLU_SURF */
+    dl++;
+
+    /* Set primitive color */
+    dl->words.w0 = 0xFA000000;
+    dl->words.w1 = highlightColor;
+    dl++;
+
+    /* G_FILLRECT for highlight box */
+    dl->words.w0 = 0xF6000000 | (((x + w) << 2) << 12) | ((y + h) << 2);
+    dl->words.w1 = ((x << 2) << 12) | (y << 2);
+    dl++;
+
+    /* Draw outline */
+    /* Top edge */
+    dl->words.w0 = 0xFA000000;
+    dl->words.w1 = 0xFFFFFFFF;  /* White */
+    dl++;
+    dl->words.w0 = 0xF6000000 | (((x + w) << 2) << 12) | ((y + 1) << 2);
+    dl->words.w1 = ((x << 2) << 12) | (y << 2);
+    dl++;
+
+    /* Bottom edge */
+    dl->words.w0 = 0xF6000000 | (((x + w) << 2) << 12) | ((y + h) << 2);
+    dl->words.w1 = ((x << 2) << 12) | ((y + h - 1) << 2);
+    dl++;
+
+    *dlPtr = dl;
 }
 
 /*
@@ -24870,7 +25279,41 @@ void func_800DD410(s32 x, s32 y, s32 w, s32 h) {
  * Menu scroll
  */
 void func_800DDD40(void *menu, s32 direction) {
-    /* Menu scroll - stub */
+    s32 *selectedItem, *numItems;
+    s32 *scrollOffset;
+    s32 maxVisible;
+    s32 newSelection;
+
+    if (menu == NULL) {
+        return;
+    }
+
+    selectedItem = (s32 *)((u8 *)menu + 0x0C);
+    numItems = (s32 *)((u8 *)menu + 0x10);
+    scrollOffset = (s32 *)((u8 *)menu + 0x74);
+    maxVisible = 8;
+
+    /* Calculate new selection */
+    newSelection = *selectedItem + direction;
+
+    /* Wrap around */
+    if (newSelection < 0) {
+        newSelection = *numItems - 1;
+    } else if (newSelection >= *numItems) {
+        newSelection = 0;
+    }
+
+    *selectedItem = newSelection;
+
+    /* Adjust scroll offset to keep selection visible */
+    if (newSelection < *scrollOffset) {
+        *scrollOffset = newSelection;
+    } else if (newSelection >= *scrollOffset + maxVisible) {
+        *scrollOffset = newSelection - maxVisible + 1;
+    }
+
+    /* Play scroll sound */
+    func_800B2658(2, 0.8f, 0.0f);  /* Menu tick sound */
 }
 
 /*
@@ -24878,7 +25321,58 @@ void func_800DDD40(void *menu, s32 direction) {
  * Menu transition effect
  */
 void func_800DE244(void *menu, s32 transitionType) {
-    /* Menu transition - stub */
+    s32 *animState;
+    f32 *animTime, *animDuration;
+
+    if (menu == NULL) {
+        return;
+    }
+
+    animState = (s32 *)menu;
+    animTime = (f32 *)((u8 *)menu + 0x04);
+    animDuration = (f32 *)((u8 *)menu + 0x08);
+
+    /* Reset animation timer */
+    *animTime = 0.0f;
+
+    switch (transitionType) {
+        case 0:  /* Instant */
+            *animState = 0;
+            *animDuration = 0.0f;
+            break;
+
+        case 1:  /* Slide in from right */
+            *animState = 1;
+            *animDuration = 0.5f;
+            break;
+
+        case 2:  /* Slide out to left */
+            *animState = 3;
+            *animDuration = 0.3f;
+            break;
+
+        case 3:  /* Fade in */
+            *animState = 1;
+            *animDuration = 0.4f;
+            break;
+
+        case 4:  /* Fade out */
+            *animState = 3;
+            *animDuration = 0.4f;
+            break;
+
+        default:
+            *animState = 0;
+            *animDuration = 0.0f;
+            break;
+    }
+
+    /* Play transition sound */
+    if (transitionType == 1 || transitionType == 3) {
+        func_800B2658(3, 1.0f, 0.0f);  /* Menu open sound */
+    } else if (transitionType == 2 || transitionType == 4) {
+        func_800B2658(4, 1.0f, 0.0f);  /* Menu close sound */
+    }
 }
 
 /*
@@ -24886,7 +25380,65 @@ void func_800DE244(void *menu, s32 transitionType) {
  * Popup dialog
  */
 void func_800DE960(u8 *message, s32 type) {
-    /* Popup dialog - stub */
+    s32 textWidth, textHeight;
+    s32 boxX, boxY, boxW, boxH;
+    s32 padding;
+    Gfx **dlPtr;
+    Gfx *dl;
+
+    if (message == NULL) {
+        return;
+    }
+
+    padding = 16;
+    textWidth = func_800CFEDC(message);
+    textHeight = 16;  /* Single line assumed */
+
+    /* Center dialog on screen */
+    boxW = textWidth + padding * 2;
+    boxH = textHeight + padding * 2;
+    boxX = (320 - boxW) / 2;
+    boxY = (240 - boxH) / 2;
+
+    dlPtr = (Gfx **)0x80149438;
+    dl = *dlPtr;
+
+    /* Draw background based on type */
+    switch (type) {
+        case 0:  /* Info - blue */
+            dl->words.w0 = 0xFA000000;
+            dl->words.w1 = 0x000080C0;
+            break;
+        case 1:  /* Warning - yellow */
+            dl->words.w0 = 0xFA000000;
+            dl->words.w1 = 0x808000C0;
+            break;
+        case 2:  /* Error - red */
+            dl->words.w0 = 0xFA000000;
+            dl->words.w1 = 0x800000C0;
+            break;
+        default:
+            dl->words.w0 = 0xFA000000;
+            dl->words.w1 = 0x404040C0;
+            break;
+    }
+    dl++;
+
+    /* Draw box */
+    dl->words.w0 = 0xF6000000 | (((boxX + boxW) << 2) << 12) | ((boxY + boxH) << 2);
+    dl->words.w1 = ((boxX << 2) << 12) | (boxY << 2);
+    dl++;
+
+    /* Draw border */
+    dl->words.w0 = 0xFA000000;
+    dl->words.w1 = 0xFFFFFFFF;
+    dl++;
+
+    *dlPtr = dl;
+
+    /* Draw text centered */
+    func_800D0258(255, 255, 255, 255);
+    func_800CD7F8(message, boxX + padding, boxY + padding);
 }
 
 /*
