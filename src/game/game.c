@@ -11475,18 +11475,175 @@ f32 func_800F724C(void *car) {
 
 /*
  * func_800F9428 (1604 bytes)
- * Attract mode camera
+ * Attract mode camera - automatic camera movement for attract mode
  */
 void func_800F9428(void *camera) {
-    /* Attract camera - stub */
+    f32 *camPos;
+    f32 *camTarget;
+    f32 *camAngle;
+    s32 camMode;
+    s32 camTimer;
+    s32 trackId;
+    f32 t;
+    f32 pathProgress;
+
+    camPos = (f32 *)camera;
+    camTarget = (f32 *)((u8 *)camera + 12);
+    camAngle = (f32 *)((u8 *)camera + 24);
+
+    camMode = D_8015A500;
+    camTimer = D_8015A504;
+    trackId = D_80159A08;
+
+    camTimer++;
+
+    /* Switch camera mode periodically */
+    if (camTimer > 300) {  /* 5 seconds */
+        camMode = (camMode + 1) % 4;
+        camTimer = 0;
+    }
+
+    /* Calculate path progress (0.0 to 1.0) */
+    pathProgress = (f32)camTimer / 300.0f;
+
+    switch (camMode) {
+        case 0:  /* Flyover - follow track path from above */
+            {
+                f32 trackX, trackY, trackZ;
+                s32 pathPoint = (D_8015A508 + camTimer / 10) % 100;
+
+                /* Get track path point */
+                func_800A2378(trackId, pathPoint, &trackX, &trackY, &trackZ);
+
+                /* Position camera above and behind */
+                camPos[0] = trackX + 100.0f;
+                camPos[1] = trackY + 200.0f;
+                camPos[2] = trackZ + 100.0f;
+
+                /* Look at path */
+                camTarget[0] = trackX;
+                camTarget[1] = trackY;
+                camTarget[2] = trackZ;
+            }
+            break;
+
+        case 1:  /* Rotating around center */
+            {
+                f32 centerX = D_8015A510;
+                f32 centerY = D_8015A514;
+                f32 centerZ = D_8015A518;
+                f32 radius = 500.0f;
+                f32 angle = pathProgress * 6.28318f;  /* Full rotation */
+
+                camPos[0] = centerX + radius * sinf(angle);
+                camPos[1] = centerY + 150.0f;
+                camPos[2] = centerZ + radius * cosf(angle);
+
+                camTarget[0] = centerX;
+                camTarget[1] = centerY;
+                camTarget[2] = centerZ;
+            }
+            break;
+
+        case 2:  /* Follow car (if any) */
+            {
+                void *car = D_8015A520;
+                if (car != NULL) {
+                    f32 *carPos = (f32 *)((u8 *)car + 0x10);
+                    f32 *carDir = (f32 *)((u8 *)car + 0x40);
+
+                    /* Position behind and above car */
+                    camPos[0] = carPos[0] - carDir[0] * 80.0f;
+                    camPos[1] = carPos[1] + 40.0f;
+                    camPos[2] = carPos[2] - carDir[2] * 80.0f;
+
+                    camTarget[0] = carPos[0];
+                    camTarget[1] = carPos[1];
+                    camTarget[2] = carPos[2];
+                }
+            }
+            break;
+
+        case 3:  /* Static scenic view */
+            {
+                s32 viewIdx = D_8015A524;
+                func_800A2504(trackId, viewIdx, camPos, camTarget);
+            }
+            break;
+    }
+
+    D_8015A500 = camMode;
+    D_8015A504 = camTimer;
 }
 
 /*
  * func_800F9A74 (952 bytes)
- * Demo playback
+ * Demo playback - plays back a recorded demo for attract mode
  */
 void func_800F9A74(void *demo) {
-    /* Demo playback - stub */
+    u8 *demoData;
+    s32 demoFrame;
+    s32 demoLength;
+    s32 input;
+    void *car;
+
+    demoData = (u8 *)demo;
+    demoFrame = D_8015A530;
+    demoLength = *(s32 *)demoData;  /* First 4 bytes = length */
+
+    /* Check for user input to skip */
+    input = D_80158100 & 0xFFFF;
+    if (input & 0x9000) {  /* START or A */
+        D_8015A530 = 0;
+        D_8015A534 = 0;  /* Demo ended */
+        D_801146EC = 1;  /* Go to menu */
+        return;
+    }
+
+    /* Check if demo finished */
+    if (demoFrame >= demoLength) {
+        D_8015A530 = 0;
+        D_8015A534 = 0;
+        /* Cycle to next demo or title screen */
+        D_8015A538++;
+        if (D_8015A538 >= 3) {
+            D_8015A538 = 0;
+            D_801146EC = 0;  /* Back to ATTRACT/title */
+        }
+        return;
+    }
+
+    /* Get player car */
+    car = D_8015A520;
+    if (car == NULL) {
+        return;
+    }
+
+    /* Read demo input for this frame */
+    {
+        u32 *inputData = (u32 *)(demoData + 4 + demoFrame * 4);
+        u32 demoInput = *inputData;
+
+        /* Apply demo input to car */
+        /* Input format: buttons (16 bits) + stick X (8 bits) + stick Y (8 bits) */
+        *(u16 *)((u8 *)car + 0x200) = (u16)(demoInput >> 16);  /* Buttons */
+        *(s8 *)((u8 *)car + 0x202) = (s8)((demoInput >> 8) & 0xFF);  /* Stick X */
+        *(s8 *)((u8 *)car + 0x203) = (s8)(demoInput & 0xFF);  /* Stick Y */
+    }
+
+    /* Advance frame */
+    demoFrame++;
+    D_8015A530 = demoFrame;
+
+    /* Update camera to follow demo car */
+    func_800F9428(D_8015A540);
+
+    /* Display "DEMO" text */
+    {
+        s32 flash = ((D_80142AFC / 30) & 1) ? 255 : 180;
+        func_800C734C("DEMO", 140, 20, flash);
+        func_800C734C("PRESS START", 105, 220, 150);
+    }
 }
 
 /*
