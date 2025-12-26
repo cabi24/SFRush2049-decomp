@@ -11491,18 +11491,188 @@ void func_800F9A74(void *demo) {
 
 /*
  * func_800F9E2C (684 bytes)
- * Title screen
+ * Title screen - animated logo and press start
  */
 void func_800F9E2C(void) {
-    /* Title screen - stub */
+    s32 input;
+    s32 animFrame;
+    s32 logoAlpha;
+    s32 textAlpha;
+    s32 flashPhase;
+
+    animFrame = D_8015A410;
+
+    /* Handle input */
+    input = D_80158100 & 0xFFFF;
+
+    /* Any button press goes to main menu */
+    if (input & 0x9000) {  /* START or A */
+        func_800CC3C0(10);
+        D_801146EC = 1;  /* TRKSEL / main menu state */
+        D_8015A410 = 0;
+        return;
+    }
+
+    /* Increment animation frame */
+    animFrame++;
+    if (animFrame > 600) {
+        /* After 10 seconds, go to attract mode */
+        D_801146EC = 0;  /* ATTRACT */
+        D_8015A410 = 0;
+        return;
+    }
+
+    /* Calculate logo fade in */
+    if (animFrame < 60) {
+        logoAlpha = (animFrame * 255) / 60;
+    } else {
+        logoAlpha = 255;
+    }
+
+    /* Calculate "PRESS START" flash */
+    flashPhase = (animFrame / 15) & 1;
+    if (animFrame < 90) {
+        textAlpha = 0;
+    } else {
+        textAlpha = flashPhase ? 255 : 128;
+    }
+
+    /* Clear screen */
+    func_800C6E60(0, 0, 320, 240, 0x000000);
+
+    /* Draw logo (centered) */
+    func_800C7110(0, 60, 40, 200, 100, logoAlpha);
+
+    /* Draw "2049" text */
+    func_800C734C("2049", 135, 130, logoAlpha);
+
+    /* Draw "PRESS START" */
+    if (textAlpha > 0) {
+        func_800C734C("PRESS START", 105, 180, textAlpha);
+    }
+
+    /* Copyright notice */
+    func_800C734C("(C) 2000 MIDWAY GAMES", 80, 220, 120);
+
+    D_8015A410 = animFrame;
 }
 
 /*
  * func_800FA0D8 (2356 bytes)
- * Credits display
+ * Credits display - scrolling credits screen
  */
 void func_800FA0D8(void) {
-    /* Credits - stub */
+    s32 scrollY;
+    s32 i;
+    s32 lineY;
+    s32 input;
+    s32 alpha;
+    char *credits[32];
+    s32 numLines;
+
+    /* Credits text */
+    credits[0] = "SAN FRANCISCO RUSH 2049";
+    credits[1] = "";
+    credits[2] = "DEVELOPED BY";
+    credits[3] = "ATARI GAMES";
+    credits[4] = "";
+    credits[5] = "PRODUCER";
+    credits[6] = "ED LOGG";
+    credits[7] = "";
+    credits[8] = "LEAD PROGRAMMER";
+    credits[9] = "MARK PIERCE";
+    credits[10] = "";
+    credits[11] = "N64 PROGRAMMING";
+    credits[12] = "HANFORD LEMOORE";
+    credits[13] = "CHRIS WARD";
+    credits[14] = "";
+    credits[15] = "GAME DESIGN";
+    credits[16] = "ED LOGG";
+    credits[17] = "MARK PIERCE";
+    credits[18] = "";
+    credits[19] = "ART DIRECTOR";
+    credits[20] = "WILL NOBLE";
+    credits[21] = "";
+    credits[22] = "TRACK DESIGN";
+    credits[23] = "MARK LINN";
+    credits[24] = "";
+    credits[25] = "AUDIO";
+    credits[26] = "BRAD FULLER";
+    credits[27] = "CHRIS GRANNER";
+    credits[28] = "";
+    credits[29] = "SPECIAL THANKS";
+    credits[30] = "MIDWAY GAMES";
+    credits[31] = "";
+    numLines = 32;
+
+    scrollY = D_8015A400;
+
+    /* Handle input */
+    input = D_80158100 & 0xFFFF;
+
+    /* Speed up with A button */
+    if (input & 0x8000) {
+        scrollY = scrollY + 3;
+    } else {
+        scrollY = scrollY + 1;
+    }
+
+    /* Skip with B button */
+    if (input & 0x4000) {
+        D_8015A400 = 0;
+        func_800CBE08();
+        return;
+    }
+
+    /* Check if credits finished */
+    if (scrollY > numLines * 25 + 240) {
+        D_8015A400 = 0;
+        func_800CBE08();
+        return;
+    }
+
+    /* Clear screen */
+    func_800C6E60(0, 0, 320, 240, 0x000010);
+
+    /* Draw credits lines */
+    for (i = 0; i < numLines; i++) {
+        lineY = 240 - scrollY + i * 25;
+
+        /* Skip if off screen */
+        if (lineY < -20 || lineY > 250) {
+            continue;
+        }
+
+        /* Calculate alpha for fade at edges */
+        if (lineY < 40) {
+            alpha = (lineY + 20) * 255 / 60;
+        } else if (lineY > 200) {
+            alpha = (250 - lineY) * 255 / 50;
+        } else {
+            alpha = 255;
+        }
+        if (alpha < 0) alpha = 0;
+        if (alpha > 255) alpha = 255;
+
+        /* Draw centered text */
+        if (credits[i][0] != '\0') {
+            s32 textWidth = func_800C7520(credits[i]);
+            s32 textX = (320 - textWidth) / 2;
+
+            /* Headers in brighter color */
+            if (i == 0 || credits[i - 1][0] == '\0') {
+                func_800C734C(credits[i], textX, lineY, alpha);
+            } else {
+                /* Names in dimmer color */
+                func_800C734C(credits[i], textX, lineY, (alpha * 180) / 255);
+            }
+        }
+    }
+
+    /* Draw skip hint */
+    func_800C734C("B: SKIP", 130, 225, 100);
+
+    D_8015A400 = scrollY;
 }
 
 /*
@@ -14579,10 +14749,138 @@ void func_80101C78(s32 trackId) {
 
 /*
  * func_80102250 (2084 bytes)
- * Race results screen
+ * Race results screen - displays finish times and positions
  */
 void func_80102250(void) {
-    /* Results screen - stub */
+    s32 i;
+    s32 input;
+    s32 numPlayers;
+    s32 animFrame;
+    char timeStr[16];
+    char posStr[8];
+    s32 y;
+
+    numPlayers = D_80159C18;
+    if (numPlayers < 1) numPlayers = 1;
+
+    animFrame = D_8015A420;
+    animFrame++;
+
+    input = func_800CB748(D_80158100);
+
+    /* Skip after timeout or button press */
+    if (animFrame > 600 || (animFrame > 60 && (input == 1 || input == 2))) {
+        D_8015A420 = 0;
+        if (D_8015A310 || D_8015A314) {
+            /* New record - go to name entry */
+            D_801146EC = 9;  /* HISCORE state */
+        } else {
+            /* Back to menu or next race */
+            D_801146EC = 1;  /* TRKSEL */
+        }
+        return;
+    }
+
+    /* Clear screen */
+    func_800C6E60(0, 0, 320, 240, 0x101030);
+
+    /* Title */
+    func_800C734C("RACE RESULTS", 100, 20, 255);
+
+    /* Column headers */
+    func_800C734C("POS", 40, 50, 180);
+    func_800C734C("PLAYER", 90, 50, 180);
+    func_800C734C("LAPS", 170, 50, 180);
+    func_800C734C("TIME", 220, 50, 180);
+
+    /* Display each player/racer result */
+    for (i = 0; i < 8; i++) {
+        s32 position = D_8015A200[i];
+        s32 lapCount = D_8015A210[i];
+        s32 raceTime = D_8015A230[i];
+        s32 finished = D_8015A240[i];
+        s32 alpha;
+
+        if (position == 0) continue;  /* Not in race */
+
+        y = 70 + (position - 1) * 20;
+
+        /* Highlight player 1 */
+        if (i == 0) {
+            alpha = 255;
+            func_800C6E60(35, y - 2, 260, 18, 0x304060);
+        } else {
+            alpha = 180;
+        }
+
+        /* Position */
+        posStr[0] = '0' + position;
+        posStr[1] = '.';
+        posStr[2] = '\0';
+        func_800C734C(posStr, 45, y, alpha);
+
+        /* Player name */
+        if (i < numPlayers) {
+            char pStr[12];
+            pStr[0] = 'P';
+            pStr[1] = 'L';
+            pStr[2] = 'A';
+            pStr[3] = 'Y';
+            pStr[4] = 'E';
+            pStr[5] = 'R';
+            pStr[6] = ' ';
+            pStr[7] = '1' + i;
+            pStr[8] = '\0';
+            func_800C734C(pStr, 90, y, alpha);
+        } else {
+            func_800C734C("DRONE", 90, y, alpha - 40);
+        }
+
+        /* Laps */
+        {
+            char lapStr[8];
+            lapStr[0] = '0' + lapCount;
+            lapStr[1] = '/';
+            lapStr[2] = '0' + D_8015A298;
+            lapStr[3] = '\0';
+            func_800C734C(lapStr, 175, y, alpha);
+        }
+
+        /* Time */
+        if (finished) {
+            s32 m = raceTime / 6000;
+            s32 s = (raceTime / 100) % 60;
+            s32 h = raceTime % 100;
+            timeStr[0] = '0' + m;
+            timeStr[1] = ':';
+            timeStr[2] = '0' + (s / 10);
+            timeStr[3] = '0' + (s % 10);
+            timeStr[4] = '.';
+            timeStr[5] = '0' + (h / 10);
+            timeStr[6] = '0' + (h % 10);
+            timeStr[7] = '\0';
+            func_800C734C(timeStr, 215, y, alpha);
+        } else {
+            func_800C734C("DNF", 230, y, 120);
+        }
+    }
+
+    /* New record indicator */
+    if (D_8015A310) {
+        s32 flash = ((animFrame / 10) & 1) ? 255 : 180;
+        func_800C734C("NEW RECORD!", 110, 195, flash);
+    }
+    if (D_8015A314) {
+        s32 flash = ((animFrame / 10) & 1) ? 255 : 180;
+        func_800C734C("NEW BEST LAP!", 105, 210, flash);
+    }
+
+    /* Continue prompt */
+    if (animFrame > 60) {
+        func_800C734C("PRESS A TO CONTINUE", 85, 225, 150);
+    }
+
+    D_8015A420 = animFrame;
 }
 
 /*
@@ -14603,27 +14901,327 @@ void func_8010306C(s32 place) {
 
 /*
  * func_801033D8 (1616 bytes)
- * Continue prompt
+ * Continue prompt - ask player to continue or quit
  */
 s32 func_801033D8(void) {
-    /* Continue prompt - stub */
-    return 0;
+    s32 input;
+    s32 countdown;
+    s32 selection;
+    char countStr[4];
+
+    countdown = D_8015A430;
+    selection = D_8015A434;
+
+    if (countdown == 0) {
+        /* Initialize */
+        countdown = 10 * 60;  /* 10 seconds at 60fps */
+        selection = 0;  /* Default: Continue */
+    }
+
+    input = func_800CB748(D_80158100);
+
+    /* Navigate selection */
+    if (input == 6 || input == 7) {  /* Left/Right */
+        selection = !selection;
+        func_800CC3C0(12);
+    }
+
+    /* Confirm selection */
+    if (input == 1) {  /* A */
+        D_8015A430 = 0;
+        D_8015A434 = 0;
+        func_800CC3C0(10);
+        return selection;  /* 0 = continue, 1 = quit */
+    }
+
+    /* Countdown */
+    countdown--;
+    if (countdown <= 0) {
+        D_8015A430 = 0;
+        D_8015A434 = 0;
+        return 1;  /* Time's up - quit */
+    }
+
+    /* Render */
+    func_800C6E60(60, 80, 200, 80, 0x202040);
+    func_800C6E60(62, 82, 196, 76, 0x303060);
+
+    func_800C734C("CONTINUE?", 120, 95, 255);
+
+    /* Countdown number */
+    {
+        s32 secs = (countdown / 60) + 1;
+        countStr[0] = '0' + secs;
+        countStr[1] = '\0';
+        func_800C734C(countStr, 155, 115, 200);
+    }
+
+    /* Options */
+    func_800C734C("YES", 100, 140, selection == 0 ? 255 : 150);
+    func_800C734C("NO", 190, 140, selection == 1 ? 255 : 150);
+
+    /* Selection indicator */
+    if (selection == 0) {
+        func_800C734C(">", 85, 140, 255);
+    } else {
+        func_800C734C(">", 175, 140, 255);
+    }
+
+    D_8015A430 = countdown;
+    D_8015A434 = selection;
+
+    return -1;  /* Still waiting */
 }
 
 /*
  * func_80103A08 (2328 bytes)
- * Game over screen
+ * Game over screen - displays final stats and options
  */
 void func_80103A08(void) {
-    /* Game over - stub */
+    s32 input;
+    s32 animFrame;
+    s32 alpha;
+    s32 i;
+
+    animFrame = D_8015A440;
+    animFrame++;
+
+    input = func_800CB748(D_80158100);
+
+    /* Exit after timeout or button press */
+    if (animFrame > 480 || (animFrame > 120 && (input == 1 || input == 2))) {
+        D_8015A440 = 0;
+        D_801146EC = 0;  /* ATTRACT */
+        return;
+    }
+
+    /* Fade in */
+    if (animFrame < 60) {
+        alpha = (animFrame * 255) / 60;
+    } else {
+        alpha = 255;
+    }
+
+    /* Clear screen with fade */
+    func_800C6E60(0, 0, 320, 240, 0x100000 + ((alpha / 4) << 16));
+
+    /* "GAME OVER" text - large and centered */
+    {
+        s32 textY = 60;
+        s32 scale;
+
+        if (animFrame < 30) {
+            scale = 200 - (animFrame * 100 / 30);  /* Shrink from 200% to 100% */
+        } else {
+            scale = 100;
+        }
+
+        func_800C734C("GAME OVER", 95, textY, alpha);
+    }
+
+    /* Display final statistics */
+    if (animFrame > 30) {
+        s32 statsAlpha = alpha;
+        if (animFrame < 90) {
+            statsAlpha = ((animFrame - 30) * 255) / 60;
+        }
+
+        func_800C734C("FINAL STATS", 110, 100, statsAlpha);
+
+        /* Total races */
+        func_800C734C("RACES:", 80, 125, statsAlpha - 40);
+        {
+            char numStr[8];
+            s32 val = D_8015A330;
+            numStr[0] = '0' + (val / 100);
+            numStr[1] = '0' + ((val / 10) % 10);
+            numStr[2] = '0' + (val % 10);
+            numStr[3] = '\0';
+            func_800C734C(numStr, 180, 125, statsAlpha);
+        }
+
+        /* Wins */
+        func_800C734C("WINS:", 80, 145, statsAlpha - 40);
+        {
+            char numStr[8];
+            s32 val = D_8015A334;
+            numStr[0] = '0' + (val / 100);
+            numStr[1] = '0' + ((val / 10) % 10);
+            numStr[2] = '0' + (val % 10);
+            numStr[3] = '\0';
+            func_800C734C(numStr, 180, 145, statsAlpha);
+        }
+
+        /* Best finish */
+        func_800C734C("BEST FINISH:", 80, 165, statsAlpha - 40);
+        {
+            char posStr[4];
+            s32 bestPos = D_8015A448;
+            if (bestPos > 0 && bestPos <= 8) {
+                posStr[0] = '0' + bestPos;
+                if (bestPos == 1) {
+                    posStr[1] = 'S'; posStr[2] = 'T';
+                } else if (bestPos == 2) {
+                    posStr[1] = 'N'; posStr[2] = 'D';
+                } else if (bestPos == 3) {
+                    posStr[1] = 'R'; posStr[2] = 'D';
+                } else {
+                    posStr[1] = 'T'; posStr[2] = 'H';
+                }
+                posStr[3] = '\0';
+                func_800C734C(posStr, 200, 165, statsAlpha);
+            } else {
+                func_800C734C("---", 200, 165, statsAlpha);
+            }
+        }
+    }
+
+    /* Thanks message */
+    if (animFrame > 90) {
+        s32 thanksAlpha = alpha;
+        if (animFrame < 150) {
+            thanksAlpha = ((animFrame - 90) * 255) / 60;
+        }
+        func_800C734C("THANKS FOR PLAYING!", 75, 200, thanksAlpha);
+    }
+
+    /* Press button prompt */
+    if (animFrame > 120) {
+        s32 flash = ((animFrame / 15) & 1) ? 200 : 120;
+        func_800C734C("PRESS ANY BUTTON", 90, 225, flash);
+    }
+
+    D_8015A440 = animFrame;
 }
 
 /*
  * func_80104320 (1844 bytes)
- * Name entry screen
+ * Name entry screen - enter initials for high score
  */
 void func_80104320(u8 *name) {
-    /* Name entry - stub */
+    s32 input;
+    s32 cursorPos;
+    s32 selectedChar;
+    s32 i;
+    char charSet[40];
+    s32 charCount;
+    s32 blinkPhase;
+
+    /* Character set: A-Z, 0-9, space, end */
+    charSet[0] = 'A';
+    for (i = 1; i < 26; i++) {
+        charSet[i] = 'A' + i;
+    }
+    for (i = 0; i < 10; i++) {
+        charSet[26 + i] = '0' + i;
+    }
+    charSet[36] = ' ';
+    charSet[37] = '.';
+    charSet[38] = '!';
+    charSet[39] = '\0';  /* END marker */
+    charCount = 40;
+
+    cursorPos = D_8015A450;
+    selectedChar = D_8015A454;
+    blinkPhase = D_80142AFC & 0x10;
+
+    input = func_800CB748(D_80158100);
+
+    /* Navigate character selection */
+    if (input == 4) {  /* Up */
+        selectedChar = selectedChar - 10;
+        if (selectedChar < 0) selectedChar = selectedChar + charCount;
+        func_800CC3C0(12);
+    } else if (input == 5) {  /* Down */
+        selectedChar = selectedChar + 10;
+        if (selectedChar >= charCount) selectedChar = selectedChar - charCount;
+        func_800CC3C0(12);
+    } else if (input == 6) {  /* Left */
+        selectedChar--;
+        if (selectedChar < 0) selectedChar = charCount - 1;
+        func_800CC3C0(12);
+    } else if (input == 7) {  /* Right */
+        selectedChar++;
+        if (selectedChar >= charCount) selectedChar = 0;
+        func_800CC3C0(12);
+    } else if (input == 1) {  /* A - select */
+        if (selectedChar == 39) {
+            /* END selected */
+            D_8015A450 = 0;
+            D_8015A454 = 0;
+            D_8015A458 = 1;  /* Done flag */
+            func_800CC3C0(10);
+            return;
+        } else {
+            /* Add character to name */
+            if (cursorPos < 3) {
+                name[cursorPos] = charSet[selectedChar];
+                cursorPos++;
+                if (cursorPos >= 3) {
+                    /* Auto-advance to END */
+                    selectedChar = 39;
+                }
+                func_800CC3C0(12);
+            }
+        }
+    } else if (input == 2) {  /* B - backspace */
+        if (cursorPos > 0) {
+            cursorPos--;
+            name[cursorPos] = '_';
+            func_800CC3C0(11);
+        }
+    }
+
+    /* Render */
+    func_800C6E60(0, 0, 320, 240, 0x101030);
+
+    func_800C734C("ENTER YOUR INITIALS", 75, 25, 255);
+
+    /* Current name display */
+    {
+        char nameDisplay[8];
+        for (i = 0; i < 3; i++) {
+            if (i < cursorPos) {
+                nameDisplay[i * 2] = name[i];
+            } else if (i == cursorPos && blinkPhase) {
+                nameDisplay[i * 2] = '_';
+            } else {
+                nameDisplay[i * 2] = '_';
+            }
+            nameDisplay[i * 2 + 1] = ' ';
+        }
+        nameDisplay[6] = '\0';
+        func_800C734C(nameDisplay, 130, 55, 255);
+    }
+
+    /* Character grid */
+    for (i = 0; i < charCount; i++) {
+        s32 gridX = 60 + (i % 10) * 22;
+        s32 gridY = 90 + (i / 10) * 25;
+        s32 alpha;
+        char charBuf[2];
+
+        if (i == selectedChar) {
+            alpha = 255;
+            func_800C6E60(gridX - 3, gridY - 3, 18, 18, 0x404080);
+        } else {
+            alpha = 160;
+        }
+
+        if (i == 39) {
+            func_800C734C("END", gridX - 5, gridY, alpha);
+        } else {
+            charBuf[0] = charSet[i];
+            charBuf[1] = '\0';
+            func_800C734C(charBuf, gridX, gridY, alpha);
+        }
+    }
+
+    /* Instructions */
+    func_800C734C("A:SELECT  B:DELETE", 80, 210, 150);
+
+    D_8015A450 = cursorPos;
+    D_8015A454 = selectedChar;
 }
 
 /*
