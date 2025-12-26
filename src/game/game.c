@@ -9028,18 +9028,181 @@ void func_80092E2C(void *dest, u8 *src, s8 x, s8 y, s8 z) {
 
 /*
  * func_800930A4 (2684 bytes)
- * Major entity processing loop
+ * Major entity processing loop - comprehensive entity tick
  */
 void func_800930A4(void *entity, s32 mode) {
-    /* Large processing function - stub */
+    s32 *entityFlags;
+    s32 *entityType;
+    s32 flags, type;
+
+    if (entity == NULL) {
+        return;
+    }
+
+    entityFlags = (s32 *)((u8 *)entity + 0x10);
+    entityType = (s32 *)((u8 *)entity + 0x08);
+    flags = *entityFlags;
+    type = *entityType;
+
+    /* Check if entity is active */
+    if ((flags & 0x01) == 0) {
+        return;
+    }
+
+    /* Process based on mode */
+    switch (mode) {
+        case 0:  /* Physics update */
+            func_800908A0(entity, 0x1F);
+            break;
+
+        case 1:  /* Animation update */
+            func_8008BB8C(entity, -1);
+            break;
+
+        case 2:  /* AI update */
+            if (type == 1) {  /* Car entity */
+                func_80093B20(entity);
+            }
+            break;
+
+        case 3:  /* Collision update */
+            func_80090B70(entity);
+            break;
+
+        case 4:  /* Visibility update */
+            {
+                void *camera = (void *)0x8015B000;
+                s32 culled = func_80096A00(entity, camera);
+                if (culled) {
+                    *entityFlags &= ~0x200;
+                } else {
+                    *entityFlags |= 0x200;
+                }
+            }
+            break;
+
+        case 5:  /* Full update */
+            func_800908A0(entity, 0x1F);
+            func_8008BB8C(entity, -1);
+            func_80090B70(entity);
+            if (type == 1) {
+                func_80093B20(entity);
+            }
+            break;
+
+        default:
+            break;
+    }
+
+    /* Update bounds */
+    func_8008BC94(entity, 0);
 }
 
 /*
  * func_80093B20 (3440 bytes)
- * Entity AI/behavior update
+ * Entity AI/behavior update - drone car AI
  */
 void func_80093B20(void *entity) {
-    /* AI processing - stub */
+    s32 *aiState;
+    s32 *aiTarget;
+    f32 *pos, *vel, *rot;
+    f32 *targetPos;
+    f32 dx, dz, dist;
+    f32 targetAngle, currentAngle;
+    f32 steerAmount;
+    f32 throttle;
+    s32 state;
+
+    if (entity == NULL) {
+        return;
+    }
+
+    aiState = (s32 *)((u8 *)entity + 0x240);
+    aiTarget = (s32 *)((u8 *)entity + 0x244);
+    pos = (f32 *)((u8 *)entity + 0x24);
+    vel = (f32 *)((u8 *)entity + 0x34);
+    rot = (f32 *)((u8 *)entity + 0x60);
+
+    state = *aiState;
+
+    switch (state) {
+        case 0:  /* Idle */
+            /* Wait for race start */
+            break;
+
+        case 1:  /* Racing */
+            /* Get next waypoint */
+            targetPos = (f32 *)(0x8015E000 + (*aiTarget) * 12);
+
+            /* Calculate direction to target */
+            dx = targetPos[0] - pos[0];
+            dz = targetPos[2] - pos[2];
+            dist = sqrtf(dx * dx + dz * dz);
+
+            /* Check if reached waypoint */
+            if (dist < 10.0f) {
+                (*aiTarget)++;
+                if (*aiTarget >= 64) {  /* Waypoint count */
+                    *aiTarget = 0;
+                }
+            }
+
+            /* Calculate steering */
+            if (dist > 0.1f) {
+                targetAngle = atan2f(dx, dz);
+                currentAngle = rot[1];
+
+                steerAmount = targetAngle - currentAngle;
+
+                /* Normalize angle */
+                while (steerAmount > 3.14159f) steerAmount -= 6.28318f;
+                while (steerAmount < -3.14159f) steerAmount += 6.28318f;
+
+                /* Apply steering */
+                rot[1] += steerAmount * 0.1f;
+            }
+
+            /* Set throttle based on distance and angle */
+            throttle = 1.0f;
+            if (steerAmount > 0.5f || steerAmount < -0.5f) {
+                throttle = 0.5f;  /* Slow down for sharp turns */
+            }
+
+            /* Apply forward force */
+            vel[0] += sinf(rot[1]) * throttle * 0.5f;
+            vel[2] += cosf(rot[1]) * throttle * 0.5f;
+
+            /* Speed limit */
+            {
+                f32 speed = sqrtf(vel[0] * vel[0] + vel[2] * vel[2]);
+                f32 maxSpeed = 30.0f;
+                if (speed > maxSpeed) {
+                    vel[0] *= maxSpeed / speed;
+                    vel[2] *= maxSpeed / speed;
+                }
+            }
+            break;
+
+        case 2:  /* Crashed */
+            /* Recovery logic */
+            {
+                s32 *crashTimer = (s32 *)((u8 *)entity + 0x248);
+                (*crashTimer)--;
+                if (*crashTimer <= 0) {
+                    *aiState = 1;  /* Resume racing */
+                }
+            }
+            break;
+
+        case 3:  /* Finished */
+            /* Slow down and stop */
+            vel[0] *= 0.95f;
+            vel[2] *= 0.95f;
+            break;
+
+        default:
+            break;
+    }
 }
 
 /*
@@ -21548,85 +21711,389 @@ void func_800AF8CC(s32 slot) {
 
 /*
  * func_800AFB38 (548 bytes)
- * Save validation
+ * Save validation - verify save data integrity
  */
 s32 func_800AFB38(void *saveData) {
-    /* Validate save - stub */
-    return 1;
+    u8 *data;
+    u16 storedChecksum, calcChecksum;
+    s32 i;
+    s32 dataSize;
+
+    if (saveData == NULL) {
+        return 0;
+    }
+
+    data = (u8 *)saveData;
+    dataSize = 140;
+
+    /* Check header */
+    if (data[0] != 'R' || data[1] != 'U' ||
+        data[2] != 'S' || data[3] != 'H' ||
+        data[4] != '2' || data[5] != '0' ||
+        data[6] != '4' || data[7] != '9') {
+        return 0;
+    }
+
+    /* Check version */
+    if (data[8] != 0x01) {
+        return 0;  /* Unsupported version */
+    }
+
+    /* Verify checksum */
+    storedChecksum = (data[dataSize - 2] << 8) | data[dataSize - 1];
+    calcChecksum = 0;
+    for (i = 0; i < dataSize - 2; i++) {
+        calcChecksum += data[i];
+    }
+
+    if (storedChecksum != calcChecksum) {
+        return 0;
+    }
+
+    return 1;  /* Valid */
 }
 
 /*
  * func_800AFD5C (1060 bytes)
- * Controller pak init
+ * Controller pak init - initialize controller pak
  */
 s32 func_800AFD5C(s32 controller) {
-    /* Pak init - stub */
-    return 0;
+    OSPfs pfs;
+    s32 result;
+    s32 *pakState;
+
+    if (controller < 0 || controller >= 4) {
+        return -1;
+    }
+
+    pakState = (s32 *)(0x80166100 + controller * 4);
+
+    /* Initialize pak */
+    result = osPfsInitPak(0, &pfs, controller);
+
+    if (result == 0) {
+        *pakState = 1;  /* Pak present and initialized */
+        return 0;
+    } else if (result == PFS_ERR_NOPACK) {
+        *pakState = 0;  /* No pak inserted */
+        return -2;
+    } else {
+        *pakState = -1;  /* Error */
+        return -1;
+    }
 }
 
 /*
  * func_800B0180 (868 bytes)
- * Controller pak read
+ * Controller pak read - read data from controller pak
  */
 s32 func_800B0180(s32 controller, void *buffer, s32 offset, s32 size) {
-    /* Pak read - stub */
-    return 0;
+    OSPfs pfs;
+    s32 result;
+
+    if (controller < 0 || controller >= 4) {
+        return -1;
+    }
+
+    if (buffer == NULL || size <= 0) {
+        return -1;
+    }
+
+    /* Initialize pak */
+    result = osPfsInitPak(0, &pfs, controller);
+    if (result != 0) {
+        return -2;
+    }
+
+    /* Read data */
+    result = osPfsReadWriteFile(&pfs, 0, PFS_READ, offset, size, buffer);
+    if (result != 0) {
+        return -3;
+    }
+
+    return size;  /* Return bytes read */
 }
 
 /*
  * func_800B0904 (396 bytes)
- * Audio init subsystem
+ * Audio init subsystem - initialize N64 audio
  */
 void func_800B0904(void) {
-    /* Audio init - stub */
+    s32 *audioState;
+    s32 *channelStates;
+    s32 i;
+
+    audioState = (s32 *)0x80130000;
+    channelStates = (s32 *)0x80160000;
+
+    /* Initialize audio state */
+    audioState[0] = 1;  /* Audio enabled */
+    audioState[1] = 0;  /* No sounds playing */
+    audioState[2] = 0;  /* No music playing */
+
+    /* Clear all channels */
+    for (i = 0; i < 16; i++) {
+        s32 *channel = channelStates + i * 16;
+        channel[0] = 0;  /* Inactive */
+        channel[1] = 0;  /* Volume = 0 */
+        channel[2] = 0;  /* Pan center */
+        channel[3] = 0;  /* Default pitch */
+        channel[4] = 0;  /* No loop */
+        channel[5] = 0;  /* Priority 0 */
+    }
+
+    /* Initialize audio hardware */
+    osAiSetFrequency(22050);  /* 22kHz sample rate */
+
+    /* Audio system ready */
+    audioState[3] = 1;
 }
 
 /*
  * func_800B0A90 (440 bytes)
- * Audio shutdown
+ * Audio shutdown - cleanup audio system
  */
 void func_800B0A90(void) {
-    /* Audio shutdown - stub */
+    s32 *audioState;
+    s32 *channelStates;
+    s32 i;
+
+    audioState = (s32 *)0x80130000;
+    channelStates = (s32 *)0x80160000;
+
+    /* Stop all sounds */
+    for (i = 0; i < 16; i++) {
+        s32 *channel = channelStates + i * 16;
+        channel[0] = 0;  /* Deactivate */
+    }
+
+    /* Stop music */
+    audioState[2] = 0;
+
+    /* Mark audio as disabled */
+    audioState[0] = 0;
+    audioState[3] = 0;
 }
 
 /*
  * func_800B0C48 (800 bytes)
- * Audio frame update
+ * Audio frame update - process audio each frame
  */
 void func_800B0C48(void) {
-    /* Audio update - stub */
+    s32 *audioState;
+    s32 *channelStates;
+    s32 i;
+    s32 activeCount;
+
+    audioState = (s32 *)0x80130000;
+    channelStates = (s32 *)0x80160000;
+
+    /* Check if audio enabled */
+    if (audioState[0] == 0) {
+        return;
+    }
+
+    activeCount = 0;
+
+    /* Update each channel */
+    for (i = 0; i < 16; i++) {
+        s32 *channel = channelStates + i * 16;
+
+        if (channel[0] == 0) {
+            continue;  /* Inactive */
+        }
+
+        activeCount++;
+
+        /* Check if sound finished (non-looping) */
+        if (channel[4] == 0) {  /* Not looping */
+            s32 *timer = &channel[6];
+            if (*timer > 0) {
+                (*timer)--;
+                if (*timer <= 0) {
+                    channel[0] = 0;  /* Deactivate */
+                }
+            }
+        }
+
+        /* Apply volume fade if active */
+        if (channel[7] != 0) {
+            f32 *volume = (f32 *)&channel[1];
+            f32 *fadeRate = (f32 *)&channel[8];
+            f32 *fadeTarget = (f32 *)&channel[9];
+
+            *volume += *fadeRate;
+
+            if ((*fadeRate > 0 && *volume >= *fadeTarget) ||
+                (*fadeRate < 0 && *volume <= *fadeTarget)) {
+                *volume = *fadeTarget;
+                channel[7] = 0;  /* Fade complete */
+
+                if (*volume <= 0.0f) {
+                    channel[0] = 0;  /* Stop if faded to silence */
+                }
+            }
+        }
+    }
+
+    audioState[1] = activeCount;
 }
 
 /*
  * func_800B0F68 (364 bytes)
- * Sound bank load
+ * Sound bank load - load sound bank from ROM
  */
 void func_800B0F68(s32 bankId) {
-    /* Bank load - stub */
+    s32 *bankState;
+    u32 *bankTable;
+    u32 romAddr, ramAddr, size;
+
+    if (bankId < 0 || bankId >= 16) {
+        return;
+    }
+
+    bankState = (s32 *)(0x80130100 + bankId * 4);
+    bankTable = (u32 *)0x80130200;
+
+    /* Check if already loaded */
+    if (*bankState == 1) {
+        return;
+    }
+
+    /* Get bank info from ROM table */
+    romAddr = bankTable[bankId * 3 + 0];
+    ramAddr = bankTable[bankId * 3 + 1];
+    size = bankTable[bankId * 3 + 2];
+
+    if (size == 0) {
+        return;  /* Invalid bank */
+    }
+
+    /* DMA load from ROM */
+    osPiStartDma(0, OS_READ, romAddr, (void *)ramAddr, size, 0);
+
+    *bankState = 1;  /* Mark as loaded */
 }
 
 /*
  * func_800B10D4 (1248 bytes)
- * Sound bank unload
+ * Sound bank unload - free sound bank memory
  */
 void func_800B10D4(s32 bankId) {
-    /* Bank unload - stub */
+    s32 *bankState;
+    s32 *channelStates;
+    s32 i;
+
+    if (bankId < 0 || bankId >= 16) {
+        return;
+    }
+
+    bankState = (s32 *)(0x80130100 + bankId * 4);
+    channelStates = (s32 *)0x80160000;
+
+    /* Check if loaded */
+    if (*bankState == 0) {
+        return;
+    }
+
+    /* Stop any sounds using this bank */
+    for (i = 0; i < 16; i++) {
+        s32 *channel = channelStates + i * 16;
+        if (channel[0] != 0 && channel[10] == bankId) {
+            channel[0] = 0;  /* Stop */
+        }
+    }
+
+    *bankState = 0;  /* Mark as unloaded */
 }
 
 /*
  * func_800B15B4 (1428 bytes)
- * Music sequence load
+ * Music sequence load - load music sequence from ROM
  */
 void func_800B15B4(s32 seqId) {
-    /* Sequence load - stub */
+    s32 *audioState;
+    s32 *seqState;
+    u32 *seqTable;
+    u32 romAddr, size;
+
+    if (seqId < 0 || seqId >= 32) {
+        return;
+    }
+
+    audioState = (s32 *)0x80130000;
+    seqState = (s32 *)0x80130300;
+    seqTable = (u32 *)0x80130400;
+
+    /* Get sequence info */
+    romAddr = seqTable[seqId * 2 + 0];
+    size = seqTable[seqId * 2 + 1];
+
+    if (size == 0) {
+        return;
+    }
+
+    /* Load sequence to RAM */
+    osPiStartDma(0, OS_READ, romAddr, (void *)0x80135000, size, 0);
+
+    /* Store current sequence */
+    seqState[0] = seqId;
+    seqState[1] = size;
+    seqState[2] = 0;  /* Position = start */
+    seqState[3] = 0;  /* Not playing yet */
+
+    audioState[4] = seqId;  /* Current sequence ID */
 }
 
 /*
  * func_800B1B48 (1020 bytes)
- * Music playback control
+ * Music playback control - control music playback
  */
 void func_800B1B48(s32 cmd, s32 param) {
-    /* Music control - stub */
+    s32 *audioState;
+    s32 *seqState;
+
+    audioState = (s32 *)0x80130000;
+    seqState = (s32 *)0x80130300;
+
+    switch (cmd) {
+        case 0:  /* Stop */
+            seqState[3] = 0;
+            audioState[2] = 0;
+            break;
+
+        case 1:  /* Play */
+            seqState[3] = 1;
+            audioState[2] = 1;
+            break;
+
+        case 2:  /* Pause */
+            seqState[3] = 2;
+            break;
+
+        case 3:  /* Resume */
+            if (seqState[3] == 2) {
+                seqState[3] = 1;
+            }
+            break;
+
+        case 4:  /* Restart */
+            seqState[2] = 0;  /* Reset position */
+            seqState[3] = 1;
+            break;
+
+        case 5:  /* Set loop */
+            seqState[4] = param;
+            break;
+
+        case 6:  /* Fade out */
+            seqState[5] = param;  /* Fade duration in frames */
+            seqState[6] = 1;      /* Fading flag */
+            break;
+
+        default:
+            break;
+    }
 }
 
 /*
@@ -21634,7 +22101,31 @@ void func_800B1B48(s32 cmd, s32 param) {
  * Music volume
  */
 void func_800B1F44(f32 volume) {
-    /* Music volume - stub */
+    f32 *musicVolume;
+    f32 *masterVolume;
+    s32 i;
+    f32 finalVolume;
+
+    /* Audio system at 0x80160000, music state at offset 0x400 */
+    musicVolume = (f32 *)0x80160400;
+    masterVolume = (f32 *)0x80160008;
+
+    /* Clamp volume to valid range */
+    if (volume < 0.0f) {
+        volume = 0.0f;
+    }
+    if (volume > 1.0f) {
+        volume = 1.0f;
+    }
+
+    *musicVolume = volume;
+    finalVolume = volume * (*masterVolume);
+
+    /* Update all music channels (channels 12-15 are music) */
+    for (i = 12; i < 16; i++) {
+        f32 *channelVolume = (f32 *)(0x80160000 + (i * 0x20) + 0x08);
+        *channelVolume = finalVolume;
+    }
 }
 
 /*
@@ -21642,7 +22133,48 @@ void func_800B1F44(f32 volume) {
  * Music tempo
  */
 void func_800B200C(f32 tempo) {
-    /* Music tempo - stub */
+    f32 *musicTempo;
+    f32 *baseTickRate;
+    f32 *currentTickRate;
+    s32 *seqPosition;
+    s32 *seqData;
+    s32 *seqLength;
+    f32 *noteTimers;
+    s32 i;
+
+    /* Music playback state at 0x80160400 */
+    musicTempo = (f32 *)0x80160410;
+    baseTickRate = (f32 *)0x80160414;
+    currentTickRate = (f32 *)0x80160418;
+    seqPosition = (s32 *)0x80160420;
+    seqData = (s32 *)0x80160428;
+    seqLength = (s32 *)0x8016042C;
+    noteTimers = (f32 *)0x80160500;
+
+    /* Clamp tempo to reasonable range (0.25x to 4x) */
+    if (tempo < 0.25f) {
+        tempo = 0.25f;
+    }
+    if (tempo > 4.0f) {
+        tempo = 4.0f;
+    }
+
+    *musicTempo = tempo;
+    *currentTickRate = (*baseTickRate) * tempo;
+
+    /* Scale all active note timers */
+    for (i = 0; i < 64; i++) {
+        if (noteTimers[i] > 0.0f) {
+            noteTimers[i] = noteTimers[i] / tempo;
+        }
+    }
+
+    /* Update pitch for tempo-synced sounds */
+    for (i = 12; i < 16; i++) {
+        f32 *channelPitch = (f32 *)(0x80160000 + (i * 0x20) + 0x10);
+        f32 basePitch = *(f32 *)(0x80160000 + (i * 0x20) + 0x14);
+        *channelPitch = basePitch * tempo;
+    }
 }
 
 /*
@@ -21650,7 +22182,70 @@ void func_800B200C(f32 tempo) {
  * Sound effect play
  */
 void func_800B2658(s32 soundId, f32 volume, f32 pan) {
-    /* SFX play - stub */
+    s32 *sfxChannels;
+    s32 i;
+    s32 freeChannel;
+    f32 *channelVolume;
+    f32 *channelPan;
+    s32 *channelSound;
+    s32 *channelState;
+    f32 *masterVolume;
+    f32 *sfxVolume;
+
+    /* Audio system base */
+    sfxChannels = (s32 *)0x80160000;
+    masterVolume = (f32 *)0x80160008;
+    sfxVolume = (f32 *)0x8016000C;
+
+    /* Validate soundId */
+    if (soundId < 0 || soundId >= 256) {
+        return;
+    }
+
+    /* Clamp volume and pan */
+    if (volume < 0.0f) volume = 0.0f;
+    if (volume > 1.0f) volume = 1.0f;
+    if (pan < -1.0f) pan = -1.0f;
+    if (pan > 1.0f) pan = 1.0f;
+
+    /* Find free SFX channel (0-11 are SFX, 12-15 are music) */
+    freeChannel = -1;
+    for (i = 0; i < 12; i++) {
+        channelState = (s32 *)(0x80160000 + (i * 0x20));
+        if (*channelState == 0) {
+            freeChannel = i;
+            break;
+        }
+    }
+
+    /* If no free channel, steal oldest */
+    if (freeChannel < 0) {
+        s32 oldestAge = 0;
+        for (i = 0; i < 12; i++) {
+            s32 *channelAge = (s32 *)(0x80160000 + (i * 0x20) + 0x1C);
+            if (*channelAge > oldestAge) {
+                oldestAge = *channelAge;
+                freeChannel = i;
+            }
+        }
+        if (freeChannel < 0) {
+            freeChannel = 0;
+        }
+    }
+
+    /* Set up channel */
+    channelState = (s32 *)(0x80160000 + (freeChannel * 0x20));
+    channelSound = (s32 *)(0x80160000 + (freeChannel * 0x20) + 0x04);
+    channelVolume = (f32 *)(0x80160000 + (freeChannel * 0x20) + 0x08);
+    channelPan = (f32 *)(0x80160000 + (freeChannel * 0x20) + 0x0C);
+
+    *channelState = 1;  /* Playing */
+    *channelSound = soundId;
+    *channelVolume = volume * (*masterVolume) * (*sfxVolume);
+    *channelPan = pan;
+
+    /* Reset age counter */
+    *(s32 *)(0x80160000 + (freeChannel * 0x20) + 0x1C) = 0;
 }
 
 /*
@@ -21658,7 +22253,28 @@ void func_800B2658(s32 soundId, f32 volume, f32 pan) {
  * Sound effect stop
  */
 void func_800B2828(s32 handle) {
-    /* SFX stop - stub */
+    s32 *channelState;
+    s32 *channelSound;
+    s32 i;
+
+    /* Handle is either a channel index or a sound ID to stop all instances */
+    if (handle >= 0 && handle < 12) {
+        /* Direct channel stop */
+        channelState = (s32 *)(0x80160000 + (handle * 0x20));
+        *channelState = 0;
+        *(s32 *)(0x80160000 + (handle * 0x20) + 0x04) = 0;
+    } else if (handle >= 256) {
+        /* Stop all instances of a sound ID */
+        s32 soundId = handle - 256;
+        for (i = 0; i < 12; i++) {
+            channelState = (s32 *)(0x80160000 + (i * 0x20));
+            channelSound = (s32 *)(0x80160000 + (i * 0x20) + 0x04);
+            if (*channelState != 0 && *channelSound == soundId) {
+                *channelState = 0;
+                *channelSound = 0;
+            }
+        }
+    }
 }
 
 /*
@@ -21666,7 +22282,68 @@ void func_800B2828(s32 handle) {
  * 3D sound position
  */
 void func_800B2928(s32 handle, f32 *pos) {
-    /* 3D sound pos - stub */
+    f32 *channelPos;
+    f32 *channelVolume;
+    f32 *channelPan;
+    f32 *listenerPos;
+    f32 *listenerFwd;
+    f32 dx, dy, dz;
+    f32 dist, attenuation;
+    f32 pan;
+    f32 right_x, right_z;
+
+    /* Validate handle */
+    if (handle < 0 || handle >= 12 || pos == NULL) {
+        return;
+    }
+
+    /* Get listener position and forward */
+    listenerPos = (f32 *)0x80160600;
+    listenerFwd = (f32 *)0x80160610;
+
+    /* Calculate distance from listener */
+    dx = pos[0] - listenerPos[0];
+    dy = pos[1] - listenerPos[1];
+    dz = pos[2] - listenerPos[2];
+    dist = sqrtf(dx * dx + dy * dy + dz * dz);
+
+    /* Distance attenuation (linear falloff from 0 to 1000 units) */
+    if (dist < 1.0f) {
+        attenuation = 1.0f;
+    } else if (dist > 1000.0f) {
+        attenuation = 0.0f;
+    } else {
+        attenuation = 1.0f - (dist / 1000.0f);
+    }
+
+    /* Calculate pan based on listener right vector */
+    /* Right vector = cross(forward, up) where up = (0,1,0) */
+    right_x = listenerFwd[2];
+    right_z = -listenerFwd[0];
+
+    /* Normalize direction to listener */
+    if (dist > 0.001f) {
+        dx /= dist;
+        dz /= dist;
+    }
+
+    /* Pan = dot(direction, right) */
+    pan = dx * right_x + dz * right_z;
+    if (pan < -1.0f) pan = -1.0f;
+    if (pan > 1.0f) pan = 1.0f;
+
+    /* Update channel position data */
+    channelPos = (f32 *)(0x80160000 + (handle * 0x20) + 0x10);
+    channelVolume = (f32 *)(0x80160000 + (handle * 0x20) + 0x08);
+    channelPan = (f32 *)(0x80160000 + (handle * 0x20) + 0x0C);
+
+    channelPos[0] = pos[0];
+    channelPos[1] = pos[1];
+    channelPos[2] = pos[2];
+
+    /* Apply 3D attenuation to base volume */
+    *channelVolume = (*channelVolume) * attenuation;
+    *channelPan = pan;
 }
 
 /*
@@ -21674,7 +22351,33 @@ void func_800B2928(s32 handle, f32 *pos) {
  * Sound listener position
  */
 void func_800B2D20(f32 *pos, f32 *forward) {
-    /* Listener pos - stub */
+    f32 *listenerPos;
+    f32 *listenerFwd;
+    f32 len;
+
+    listenerPos = (f32 *)0x80160600;
+    listenerFwd = (f32 *)0x80160610;
+
+    if (pos != NULL) {
+        listenerPos[0] = pos[0];
+        listenerPos[1] = pos[1];
+        listenerPos[2] = pos[2];
+    }
+
+    if (forward != NULL) {
+        /* Normalize forward vector */
+        len = sqrtf(forward[0] * forward[0] + forward[1] * forward[1] + forward[2] * forward[2]);
+        if (len > 0.001f) {
+            listenerFwd[0] = forward[0] / len;
+            listenerFwd[1] = forward[1] / len;
+            listenerFwd[2] = forward[2] / len;
+        } else {
+            /* Default forward = -Z */
+            listenerFwd[0] = 0.0f;
+            listenerFwd[1] = 0.0f;
+            listenerFwd[2] = -1.0f;
+        }
+    }
 }
 
 /*
@@ -23402,7 +24105,74 @@ void func_800C1188(void *camera, f32 *matrix) {
  * Camera frustum extract
  */
 void func_800C14F4(void *camera, f32 *frustum) {
-    /* Frustum extract - stub */
+    f32 *camPos, *camLook, *camUp, *camRight;
+    f32 *fov, *aspect, *nearPlane, *farPlane;
+    f32 tanHalfFov;
+    f32 nearH, nearW, farH, farW;
+
+    if (camera == NULL || frustum == NULL) {
+        return;
+    }
+
+    /* Camera structure offsets */
+    camPos = (f32 *)camera;
+    camLook = (f32 *)((u8 *)camera + 0x18);
+    camUp = (f32 *)((u8 *)camera + 0x24);
+    camRight = (f32 *)((u8 *)camera + 0x30);
+    fov = (f32 *)((u8 *)camera + 0x40);
+    aspect = (f32 *)((u8 *)camera + 0x44);
+    nearPlane = (f32 *)((u8 *)camera + 0x48);
+    farPlane = (f32 *)((u8 *)camera + 0x4C);
+
+    /* Calculate frustum dimensions */
+    tanHalfFov = sinf(*fov * 0.5f) / cosf(*fov * 0.5f);
+    nearH = (*nearPlane) * tanHalfFov;
+    nearW = nearH * (*aspect);
+    farH = (*farPlane) * tanHalfFov;
+    farW = farH * (*aspect);
+
+    /* Frustum planes: left, right, top, bottom, near, far */
+    /* Each plane is 4 floats: normal (x,y,z) + distance */
+
+    /* Left plane */
+    frustum[0] = camRight[0] + camLook[0] * nearW;
+    frustum[1] = camRight[1] + camLook[1] * nearW;
+    frustum[2] = camRight[2] + camLook[2] * nearW;
+    frustum[3] = -(frustum[0] * camPos[0] + frustum[1] * camPos[1] + frustum[2] * camPos[2]);
+
+    /* Right plane */
+    frustum[4] = -camRight[0] + camLook[0] * nearW;
+    frustum[5] = -camRight[1] + camLook[1] * nearW;
+    frustum[6] = -camRight[2] + camLook[2] * nearW;
+    frustum[7] = -(frustum[4] * camPos[0] + frustum[5] * camPos[1] + frustum[6] * camPos[2]);
+
+    /* Top plane */
+    frustum[8] = -camUp[0] + camLook[0] * nearH;
+    frustum[9] = -camUp[1] + camLook[1] * nearH;
+    frustum[10] = -camUp[2] + camLook[2] * nearH;
+    frustum[11] = -(frustum[8] * camPos[0] + frustum[9] * camPos[1] + frustum[10] * camPos[2]);
+
+    /* Bottom plane */
+    frustum[12] = camUp[0] + camLook[0] * nearH;
+    frustum[13] = camUp[1] + camLook[1] * nearH;
+    frustum[14] = camUp[2] + camLook[2] * nearH;
+    frustum[15] = -(frustum[12] * camPos[0] + frustum[13] * camPos[1] + frustum[14] * camPos[2]);
+
+    /* Near plane */
+    frustum[16] = camLook[0];
+    frustum[17] = camLook[1];
+    frustum[18] = camLook[2];
+    frustum[19] = -(camLook[0] * (camPos[0] + camLook[0] * (*nearPlane)) +
+                   camLook[1] * (camPos[1] + camLook[1] * (*nearPlane)) +
+                   camLook[2] * (camPos[2] + camLook[2] * (*nearPlane)));
+
+    /* Far plane */
+    frustum[20] = -camLook[0];
+    frustum[21] = -camLook[1];
+    frustum[22] = -camLook[2];
+    frustum[23] = -(frustum[20] * (camPos[0] + camLook[0] * (*farPlane)) +
+                   frustum[21] * (camPos[1] + camLook[1] * (*farPlane)) +
+                   frustum[22] * (camPos[2] + camLook[2] * (*farPlane)));
 }
 
 /*
@@ -23410,7 +24180,60 @@ void func_800C14F4(void *camera, f32 *frustum) {
  * Camera viewport setup
  */
 void func_800C17F4(void *camera, s32 x, s32 y, s32 w, s32 h) {
-    /* Viewport setup - stub */
+    s32 *viewX, *viewY, *viewW, *viewH;
+    f32 *aspect;
+    Gfx **dlPtr;
+    Gfx *dl;
+
+    if (camera == NULL) {
+        return;
+    }
+
+    /* Store viewport in camera structure */
+    viewX = (s32 *)((u8 *)camera + 0x60);
+    viewY = (s32 *)((u8 *)camera + 0x64);
+    viewW = (s32 *)((u8 *)camera + 0x68);
+    viewH = (s32 *)((u8 *)camera + 0x6C);
+    aspect = (f32 *)((u8 *)camera + 0x44);
+
+    *viewX = x;
+    *viewY = y;
+    *viewW = w;
+    *viewH = h;
+
+    /* Update aspect ratio */
+    if (h > 0) {
+        *aspect = (f32)w / (f32)h;
+    }
+
+    /* Set up RDP viewport */
+    dlPtr = (Gfx **)0x80149438;
+    dl = *dlPtr;
+
+    /* gSPViewport equivalent */
+    dl->words.w0 = 0xDA380007;  /* G_MOVEMEM viewport */
+    dl->words.w1 = 0x80155000;  /* Viewport data address */
+    dl++;
+
+    /* Store viewport parameters */
+    {
+        s16 *vpData = (s16 *)0x80155000;
+        vpData[0] = (w * 2) << 1;   /* vscale x */
+        vpData[1] = (h * 2) << 1;   /* vscale y */
+        vpData[2] = 0x1FF << 1;     /* vscale z */
+        vpData[3] = 0;
+        vpData[4] = ((x * 2) + w) << 1;  /* vtrans x */
+        vpData[5] = ((y * 2) + h) << 1;  /* vtrans y */
+        vpData[6] = 0x1FF << 1;     /* vtrans z */
+        vpData[7] = 0;
+    }
+
+    /* gDPSetScissor equivalent */
+    dl->words.w0 = 0xED000000 | ((x << 2) << 12) | (y << 2);
+    dl->words.w1 = (((x + w) << 2) << 12) | ((y + h) << 2);
+    dl++;
+
+    *dlPtr = dl;
 }
 
 /*
@@ -23418,7 +24241,56 @@ void func_800C17F4(void *camera, s32 x, s32 y, s32 w, s32 h) {
  * Split screen camera
  */
 void func_800C1CBC(s32 playerCount) {
-    /* Split screen - stub */
+    void **cameras;
+    s32 screenW, screenH;
+    s32 i;
+
+    /* Camera array at 0x80158000 */
+    cameras = (void **)0x80158000;
+    screenW = 320;
+    screenH = 240;
+
+    if (playerCount <= 0 || playerCount > 4) {
+        return;
+    }
+
+    switch (playerCount) {
+        case 1:
+            /* Full screen for single player */
+            func_800C17F4(cameras[0], 0, 0, screenW, screenH);
+            break;
+
+        case 2:
+            /* Top/bottom split for 2 players */
+            func_800C17F4(cameras[0], 0, 0, screenW, screenH / 2);
+            func_800C17F4(cameras[1], 0, screenH / 2, screenW, screenH / 2);
+            break;
+
+        case 3:
+            /* Top full, bottom split for 3 players */
+            func_800C17F4(cameras[0], 0, 0, screenW, screenH / 2);
+            func_800C17F4(cameras[1], 0, screenH / 2, screenW / 2, screenH / 2);
+            func_800C17F4(cameras[2], screenW / 2, screenH / 2, screenW / 2, screenH / 2);
+            break;
+
+        case 4:
+            /* Quad split for 4 players */
+            func_800C17F4(cameras[0], 0, 0, screenW / 2, screenH / 2);
+            func_800C17F4(cameras[1], screenW / 2, 0, screenW / 2, screenH / 2);
+            func_800C17F4(cameras[2], 0, screenH / 2, screenW / 2, screenH / 2);
+            func_800C17F4(cameras[3], screenW / 2, screenH / 2, screenW / 2, screenH / 2);
+            break;
+    }
+
+    /* Update camera FOV for smaller viewports */
+    for (i = 0; i < playerCount; i++) {
+        f32 *fov = (f32 *)((u8 *)cameras[i] + 0x40);
+        if (playerCount >= 2) {
+            *fov = 1.2f;  /* Wider FOV for split screen */
+        } else {
+            *fov = 0.9f;  /* Normal FOV */
+        }
+    }
 }
 
 /*
@@ -23426,7 +24298,50 @@ void func_800C1CBC(s32 playerCount) {
  * Rear view camera
  */
 void func_800C2614(void *camera, void *car) {
-    /* Rear view - stub */
+    f32 *camPos, *camTarget, *camUp;
+    f32 *carPos, *carForward;
+    f32 rearOffset, upOffset;
+    f32 mirrorFwd[3];
+
+    if (camera == NULL || car == NULL) {
+        return;
+    }
+
+    camPos = (f32 *)camera;
+    camTarget = (f32 *)((u8 *)camera + 0x0C);
+    camUp = (f32 *)((u8 *)camera + 0x24);
+    carPos = (f32 *)((u8 *)car + 0x24);      /* Car position */
+    carForward = (f32 *)((u8 *)car + 0x60);  /* Car forward from rotation matrix */
+
+    /* Rear view offset */
+    rearOffset = 3.0f;
+    upOffset = 1.5f;
+
+    /* Mirror forward direction */
+    mirrorFwd[0] = -carForward[0];
+    mirrorFwd[1] = carForward[1];  /* Keep Y same */
+    mirrorFwd[2] = -carForward[2];
+
+    /* Position camera behind car, looking back */
+    camPos[0] = carPos[0] + carForward[0] * rearOffset;
+    camPos[1] = carPos[1] + upOffset;
+    camPos[2] = carPos[2] + carForward[2] * rearOffset;
+
+    /* Look behind */
+    camTarget[0] = carPos[0] + mirrorFwd[0] * 20.0f;
+    camTarget[1] = carPos[1] + upOffset;
+    camTarget[2] = carPos[2] + mirrorFwd[2] * 20.0f;
+
+    /* Up vector */
+    camUp[0] = 0.0f;
+    camUp[1] = 1.0f;
+    camUp[2] = 0.0f;
+
+    /* Set narrow FOV for rear mirror effect */
+    {
+        f32 *fov = (f32 *)((u8 *)camera + 0x40);
+        *fov = 0.5f;  /* Narrow FOV */
+    }
 }
 
 /*
@@ -23434,7 +24349,96 @@ void func_800C2614(void *camera, void *car) {
  * Cinematic camera
  */
 void func_800C2A58(void *camera, void *scene) {
-    /* Cinematic - stub */
+    f32 *camPos, *camTarget;
+    f32 *sceneTime, *sceneDuration;
+    s32 *sceneType;
+    f32 *sceneStart, *sceneEnd, *sceneLookStart, *sceneLookEnd;
+    f32 t;
+
+    if (camera == NULL || scene == NULL) {
+        return;
+    }
+
+    camPos = (f32 *)camera;
+    camTarget = (f32 *)((u8 *)camera + 0x0C);
+
+    /* Scene structure:
+     * 0x00: scene type (0=pan, 1=orbit, 2=dolly, 3=crane)
+     * 0x04: current time
+     * 0x08: duration
+     * 0x0C: start position [3]
+     * 0x18: end position [3]
+     * 0x24: start look [3]
+     * 0x30: end look [3]
+     */
+    sceneType = (s32 *)scene;
+    sceneTime = (f32 *)((u8 *)scene + 0x04);
+    sceneDuration = (f32 *)((u8 *)scene + 0x08);
+    sceneStart = (f32 *)((u8 *)scene + 0x0C);
+    sceneEnd = (f32 *)((u8 *)scene + 0x18);
+    sceneLookStart = (f32 *)((u8 *)scene + 0x24);
+    sceneLookEnd = (f32 *)((u8 *)scene + 0x30);
+
+    /* Calculate normalized time with ease in/out */
+    if (*sceneDuration <= 0.0f) {
+        t = 1.0f;
+    } else {
+        t = *sceneTime / *sceneDuration;
+    }
+    if (t < 0.0f) t = 0.0f;
+    if (t > 1.0f) t = 1.0f;
+
+    /* Smooth ease in/out: 3t^2 - 2t^3 */
+    t = t * t * (3.0f - 2.0f * t);
+
+    switch (*sceneType) {
+        case 0:  /* Linear pan */
+            camPos[0] = sceneStart[0] + (sceneEnd[0] - sceneStart[0]) * t;
+            camPos[1] = sceneStart[1] + (sceneEnd[1] - sceneStart[1]) * t;
+            camPos[2] = sceneStart[2] + (sceneEnd[2] - sceneStart[2]) * t;
+            camTarget[0] = sceneLookStart[0] + (sceneLookEnd[0] - sceneLookStart[0]) * t;
+            camTarget[1] = sceneLookStart[1] + (sceneLookEnd[1] - sceneLookStart[1]) * t;
+            camTarget[2] = sceneLookStart[2] + (sceneLookEnd[2] - sceneLookStart[2]) * t;
+            break;
+
+        case 1:  /* Orbit around look target */
+            {
+                f32 angle = t * 6.283185f;  /* Full circle */
+                f32 radius = sqrtf((sceneStart[0] - sceneLookStart[0]) * (sceneStart[0] - sceneLookStart[0]) +
+                                  (sceneStart[2] - sceneLookStart[2]) * (sceneStart[2] - sceneLookStart[2]));
+                camPos[0] = sceneLookStart[0] + radius * sinf(angle);
+                camPos[1] = sceneStart[1];
+                camPos[2] = sceneLookStart[2] + radius * cosf(angle);
+                camTarget[0] = sceneLookStart[0];
+                camTarget[1] = sceneLookStart[1];
+                camTarget[2] = sceneLookStart[2];
+            }
+            break;
+
+        case 2:  /* Dolly zoom */
+            {
+                f32 *fov = (f32 *)((u8 *)camera + 0x40);
+                f32 startFov = 0.6f;
+                f32 endFov = 1.2f;
+                camPos[0] = sceneStart[0] + (sceneEnd[0] - sceneStart[0]) * t;
+                camPos[1] = sceneStart[1] + (sceneEnd[1] - sceneStart[1]) * t;
+                camPos[2] = sceneStart[2] + (sceneEnd[2] - sceneStart[2]) * t;
+                camTarget[0] = sceneLookStart[0];
+                camTarget[1] = sceneLookStart[1];
+                camTarget[2] = sceneLookStart[2];
+                *fov = startFov + (endFov - startFov) * t;
+            }
+            break;
+
+        case 3:  /* Crane */
+            camPos[0] = sceneStart[0] + (sceneEnd[0] - sceneStart[0]) * t;
+            camPos[1] = sceneStart[1] + (sceneEnd[1] - sceneStart[1]) * t;
+            camPos[2] = sceneStart[2];
+            camTarget[0] = sceneLookStart[0];
+            camTarget[1] = sceneLookStart[1] + (sceneLookEnd[1] - sceneLookStart[1]) * t;
+            camTarget[2] = sceneLookStart[2];
+            break;
+    }
 }
 
 /*
@@ -23442,7 +24446,64 @@ void func_800C2A58(void *camera, void *scene) {
  * Finish line camera
  */
 void func_800C30D8(void *camera) {
-    /* Finish camera - stub */
+    f32 *camPos, *camTarget, *camUp;
+    f32 *finishLine;
+    f32 *trackWidth;
+    f32 *winnerCar;
+    f32 t;
+    s32 *cameraState;
+    f32 *stateTimer;
+
+    if (camera == NULL) {
+        return;
+    }
+
+    camPos = (f32 *)camera;
+    camTarget = (f32 *)((u8 *)camera + 0x0C);
+    camUp = (f32 *)((u8 *)camera + 0x24);
+    cameraState = (s32 *)((u8 *)camera + 0x70);
+    stateTimer = (f32 *)((u8 *)camera + 0x74);
+
+    /* Get finish line position from track data */
+    finishLine = (f32 *)0x8015A000;  /* Track finish line position */
+    trackWidth = (f32 *)0x8015A00C;
+    winnerCar = (f32 *)0x80152818;   /* First car in array */
+
+    /* State machine for finish camera */
+    switch (*cameraState) {
+        case 0:  /* Side view tracking */
+            camPos[0] = finishLine[0] + (*trackWidth) * 0.5f;
+            camPos[1] = finishLine[1] + 5.0f;
+            camPos[2] = finishLine[2];
+            camTarget[0] = winnerCar[0];
+            camTarget[1] = winnerCar[1] + 1.0f;
+            camTarget[2] = winnerCar[2];
+            break;
+
+        case 1:  /* Victory fly-around */
+            t = *stateTimer;
+            camPos[0] = winnerCar[0] + 10.0f * sinf(t * 0.5f);
+            camPos[1] = winnerCar[1] + 3.0f + 2.0f * sinf(t * 0.3f);
+            camPos[2] = winnerCar[2] + 10.0f * cosf(t * 0.5f);
+            camTarget[0] = winnerCar[0];
+            camTarget[1] = winnerCar[1] + 1.0f;
+            camTarget[2] = winnerCar[2];
+            break;
+
+        case 2:  /* Close-up */
+            camPos[0] = winnerCar[0] + 3.0f;
+            camPos[1] = winnerCar[1] + 1.5f;
+            camPos[2] = winnerCar[2];
+            camTarget[0] = winnerCar[0];
+            camTarget[1] = winnerCar[1] + 0.5f;
+            camTarget[2] = winnerCar[2];
+            break;
+    }
+
+    /* Up vector always world up */
+    camUp[0] = 0.0f;
+    camUp[1] = 1.0f;
+    camUp[2] = 0.0f;
 }
 
 /*
@@ -23451,7 +24512,82 @@ void func_800C30D8(void *camera) {
  * Menu animation
  */
 void func_800CC880(void *menu) {
-    /* Menu animation - stub */
+    s32 *animState;
+    f32 *animTime, *animDuration;
+    s32 *selectedItem, *numItems;
+    f32 *itemPositions;
+    f32 *itemAlphas;
+    f32 t;
+    s32 i;
+
+    if (menu == NULL) {
+        return;
+    }
+
+    /* Menu structure:
+     * 0x00: animation state
+     * 0x04: animation time
+     * 0x08: animation duration
+     * 0x0C: selected item
+     * 0x10: num items
+     * 0x14: item positions array
+     * 0x34: item alphas array
+     */
+    animState = (s32 *)menu;
+    animTime = (f32 *)((u8 *)menu + 0x04);
+    animDuration = (f32 *)((u8 *)menu + 0x08);
+    selectedItem = (s32 *)((u8 *)menu + 0x0C);
+    numItems = (s32 *)((u8 *)menu + 0x10);
+    itemPositions = (f32 *)((u8 *)menu + 0x14);
+    itemAlphas = (f32 *)((u8 *)menu + 0x34);
+
+    /* Normalize time */
+    if (*animDuration > 0.0f) {
+        t = *animTime / *animDuration;
+        if (t > 1.0f) t = 1.0f;
+    } else {
+        t = 1.0f;
+    }
+
+    switch (*animState) {
+        case 0:  /* Idle */
+            break;
+
+        case 1:  /* Slide in */
+            for (i = 0; i < *numItems && i < 8; i++) {
+                f32 delay = (f32)i * 0.1f;
+                f32 itemT = t - delay;
+                if (itemT < 0.0f) itemT = 0.0f;
+                if (itemT > 1.0f) itemT = 1.0f;
+                /* Ease out */
+                itemT = 1.0f - (1.0f - itemT) * (1.0f - itemT);
+                itemPositions[i] = 320.0f - (320.0f * itemT);
+                itemAlphas[i] = itemT;
+            }
+            break;
+
+        case 2:  /* Selection highlight */
+            for (i = 0; i < *numItems && i < 8; i++) {
+                if (i == *selectedItem) {
+                    /* Pulse effect */
+                    itemAlphas[i] = 0.8f + 0.2f * sinf(*animTime * 6.0f);
+                } else {
+                    itemAlphas[i] = 0.6f;
+                }
+            }
+            break;
+
+        case 3:  /* Slide out */
+            for (i = 0; i < *numItems && i < 8; i++) {
+                f32 delay = (f32)(*numItems - 1 - i) * 0.1f;
+                f32 itemT = t - delay;
+                if (itemT < 0.0f) itemT = 0.0f;
+                if (itemT > 1.0f) itemT = 1.0f;
+                itemPositions[i] = -320.0f * itemT;
+                itemAlphas[i] = 1.0f - itemT;
+            }
+            break;
+    }
 }
 
 /*
@@ -23459,7 +24595,95 @@ void func_800CC880(void *menu) {
  * Text rendering
  */
 void func_800CD7F8(void *text, s32 x, s32 y) {
-    /* Text render - stub */
+    u8 *str;
+    u8 *fontData;
+    s32 *fontWidth;
+    s32 charWidth, charHeight;
+    s32 curX;
+    Gfx **dlPtr;
+    Gfx *dl;
+    u8 c;
+    u32 *textColor;
+
+    if (text == NULL) {
+        return;
+    }
+
+    str = (u8 *)text;
+    fontData = (u8 *)0x80168000;  /* Font texture data */
+    fontWidth = (s32 *)0x80168800;  /* Character width table */
+    textColor = (u32 *)0x80168900;  /* Current text color */
+    charHeight = 16;
+    curX = x;
+
+    dlPtr = (Gfx **)0x80149438;
+    dl = *dlPtr;
+
+    /* Set texture mode for font rendering */
+    dl->words.w0 = 0xE200001C;  /* G_SETOTHERMODE_L */
+    dl->words.w1 = 0x00504240;  /* 1-cycle mode */
+    dl++;
+
+    /* Set combiner for text (texture * color) */
+    dl->words.w0 = 0xFC119623;  /* G_SETCOMBINE */
+    dl->words.w1 = 0xFF2FFFFF;
+    dl++;
+
+    /* Set primitive color */
+    dl->words.w0 = 0xFA000000;  /* G_SETPRIMCOLOR */
+    dl->words.w1 = *textColor;
+    dl++;
+
+    while (*str != 0) {
+        c = *str;
+
+        /* Handle special characters */
+        if (c == '\n') {
+            curX = x;
+            y += charHeight + 2;
+            str++;
+            continue;
+        }
+        if (c == ' ') {
+            curX += 6;
+            str++;
+            continue;
+        }
+
+        /* Get character dimensions */
+        if (c >= 32 && c < 128) {
+            charWidth = fontWidth[c - 32];
+            if (charWidth == 0) charWidth = 8;
+        } else {
+            charWidth = 8;
+        }
+
+        /* Set texture for this character */
+        {
+            s32 texU = ((c - 32) % 16) * 16;
+            s32 texV = ((c - 32) / 16) * 16;
+
+            /* G_SETTILESIZE */
+            dl->words.w0 = 0xF2000000 | ((texU << 2) << 12) | (texV << 2);
+            dl->words.w1 = (((texU + charWidth) << 2) << 12) | ((texV + charHeight) << 2);
+            dl++;
+
+            /* G_TEXRECT */
+            dl->words.w0 = 0xE4000000 | (((curX + charWidth) << 2) << 12) | ((y + charHeight) << 2);
+            dl->words.w1 = ((curX << 2) << 12) | (y << 2);
+            dl++;
+
+            /* Texture coordinates */
+            dl->words.w0 = (texU << 21) | (texV << 5);
+            dl->words.w1 = 0x04000400;  /* 1:1 scale */
+            dl++;
+        }
+
+        curX += charWidth + 1;
+        str++;
+    }
+
+    *dlPtr = dl;
 }
 
 /*
@@ -23467,7 +24691,66 @@ void func_800CD7F8(void *text, s32 x, s32 y) {
  * Font loading
  */
 void func_800CF7E0(s32 fontId) {
-    /* Font load - stub */
+    u8 *fontDest;
+    u32 *fontRomAddrs;
+    s32 *fontWidthTable;
+    s32 fontRomAddr, fontSize;
+    s32 i;
+
+    /* Font ROM address table at 0x8016A000 */
+    fontRomAddrs = (u32 *)0x8016A000;
+    fontDest = (u8 *)0x80168000;
+    fontWidthTable = (s32 *)0x80168800;
+
+    /* Validate font ID */
+    if (fontId < 0 || fontId >= 4) {
+        return;
+    }
+
+    /* Get ROM address and size for this font */
+    fontRomAddr = fontRomAddrs[fontId * 2];
+    fontSize = fontRomAddrs[fontId * 2 + 1];
+
+    if (fontRomAddr == 0 || fontSize == 0) {
+        return;
+    }
+
+    /* DMA font texture data (4KB per font) */
+    osPiStartDma(&D_80020000, OS_MESG_PRI_NORMAL, OS_READ,
+                 fontRomAddr, fontDest, fontSize, &D_80020010);
+    osRecvMesg(&D_80020010, NULL, OS_MESG_BLOCK);
+
+    /* Set up default character widths */
+    for (i = 0; i < 96; i++) {
+        switch (fontId) {
+            case 0:  /* Small font */
+                fontWidthTable[i] = 6;
+                break;
+            case 1:  /* Medium font */
+                fontWidthTable[i] = 8;
+                break;
+            case 2:  /* Large font */
+                fontWidthTable[i] = 12;
+                break;
+            case 3:  /* Title font */
+                fontWidthTable[i] = 16;
+                break;
+        }
+    }
+
+    /* Adjust widths for narrow characters */
+    fontWidthTable['I' - 32] = fontWidthTable[0] / 2;
+    fontWidthTable['l' - 32] = fontWidthTable[0] / 2;
+    fontWidthTable['i' - 32] = fontWidthTable[0] / 2;
+    fontWidthTable['1' - 32] = fontWidthTable[0] * 2 / 3;
+    fontWidthTable['.' - 32] = fontWidthTable[0] / 2;
+    fontWidthTable[',' - 32] = fontWidthTable[0] / 2;
+    fontWidthTable[':' - 32] = fontWidthTable[0] / 2;
+
+    /* Wide characters */
+    fontWidthTable['W' - 32] = fontWidthTable[0] * 3 / 2;
+    fontWidthTable['M' - 32] = fontWidthTable[0] * 3 / 2;
+    fontWidthTable['@' - 32] = fontWidthTable[0] * 3 / 2;
 }
 
 /*
@@ -23475,8 +24758,53 @@ void func_800CF7E0(s32 fontId) {
  * String width calculation
  */
 s32 func_800CFEDC(u8 *str) {
-    /* String width - stub */
-    return 0;
+    s32 *fontWidthTable;
+    s32 width, maxWidth;
+    u8 c;
+
+    if (str == NULL) {
+        return 0;
+    }
+
+    fontWidthTable = (s32 *)0x80168800;
+    width = 0;
+    maxWidth = 0;
+
+    while (*str != 0) {
+        c = *str;
+
+        if (c == '\n') {
+            /* Track maximum width for multi-line strings */
+            if (width > maxWidth) {
+                maxWidth = width;
+            }
+            width = 0;
+            str++;
+            continue;
+        }
+
+        if (c == ' ') {
+            width += 6;
+            str++;
+            continue;
+        }
+
+        if (c >= 32 && c < 128) {
+            s32 charWidth = fontWidthTable[c - 32];
+            if (charWidth == 0) charWidth = 8;
+            width += charWidth + 1;
+        } else {
+            width += 8 + 1;
+        }
+
+        str++;
+    }
+
+    if (width > maxWidth) {
+        maxWidth = width;
+    }
+
+    return maxWidth;
 }
 
 /*
@@ -23484,7 +24812,25 @@ s32 func_800CFEDC(u8 *str) {
  * Text color set
  */
 void func_800D0258(u8 r, u8 g, u8 b, u8 a) {
-    /* Text color - stub */
+    u32 *textColor;
+    u8 *shadowColor;
+    s32 *shadowEnabled;
+
+    textColor = (u32 *)0x80168900;
+    shadowColor = (u8 *)0x80168904;
+    shadowEnabled = (s32 *)0x80168908;
+
+    /* Pack RGBA into 32-bit color */
+    *textColor = (r << 24) | (g << 16) | (b << 8) | a;
+
+    /* Calculate shadow color (darker version) */
+    shadowColor[0] = r >> 2;
+    shadowColor[1] = g >> 2;
+    shadowColor[2] = b >> 2;
+    shadowColor[3] = a;
+
+    /* Enable shadow if not fully transparent */
+    *shadowEnabled = (a > 128) ? 1 : 0;
 }
 
 /*
