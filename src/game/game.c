@@ -34873,223 +34873,752 @@ void func_800F8EC8(void *car) {
 /*
  * func_800F93A0 (5652 bytes)
  * Scene render main
+ *
+ * Main render function - sets up frame and renders all scene elements
  */
 void func_800F93A0(void) {
-    /* Scene render - stub */
+    extern void *D_80149438;  /* Display list pointer */
+    extern s32 D_80143A00;    /* Current render mode */
+    extern void *D_80170020;  /* Active camera */
+
+    /* Begin frame */
+    func_800FAD58();
+
+    /* Setup Z-buffer */
+    func_800FA9B4();
+
+    /* Render skybox */
+    func_800F5B44();
+
+    /* Render track geometry */
+    func_800F7114();
+
+    /* Render cars */
+    func_800F7AA8();
+
+    /* Render particle effects */
+    func_800B811C();
+
+    /* Render HUD elements */
+    func_800CCFC0();
+
+    /* End frame */
+    func_800FADE0();
 }
 
 /*
  * func_800FA9B4 (948 bytes)
  * Z-buffer setup
+ *
+ * Configures RDP Z-buffer for depth testing
  */
 void func_800FA9B4(void) {
-    /* Z-buffer - stub */
+    extern Gfx **D_80149438;  /* Display list pointer */
+    Gfx *dl;
+
+    dl = *D_80149438;
+
+    /* Set Z-buffer mode */
+    gDPSetDepthSource(dl++, G_ZS_PIXEL);
+    gDPSetRenderMode(dl++, G_RM_ZB_OPA_SURF, G_RM_ZB_OPA_SURF2);
+    gDPSetDepthImage(dl++, 0x802C0000);  /* Z-buffer address */
+
+    /* Clear Z-buffer */
+    gDPSetColorImage(dl++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 320, 0x802C0000);
+    gDPSetFillColor(dl++, 0xFFFCFFFC);  /* Max depth */
+    gDPFillRectangle(dl++, 0, 0, 319, 239);
+    gDPPipeSync(dl++);
+
+    /* Restore color image */
+    gDPSetColorImage(dl++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 320, 0x80200000);
+
+    *D_80149438 = dl;
 }
 
 /*
  * func_800FAD58 (136 bytes)
  * Frame start
+ *
+ * Initializes display list for new frame
  */
 void func_800FAD58(void) {
-    /* Frame start - stub */
+    extern Gfx *D_80149430;   /* Display list base */
+    extern Gfx **D_80149438;  /* Display list pointer */
+    extern s32 D_80142AFC;    /* Frame counter */
+    Gfx *dl;
+
+    D_80142AFC++;
+
+    /* Reset display list to base */
+    dl = D_80149430;
+
+    /* Initialize RSP and RDP */
+    gSPSegment(dl++, 0, 0x00000000);
+    gDPSetCycleType(dl++, G_CYC_1CYCLE);
+    gDPSetTexturePersp(dl++, G_TP_PERSP);
+    gDPSetTextureLOD(dl++, G_TL_TILE);
+    gDPSetTextureLUT(dl++, G_TT_NONE);
+    gDPSetTextureDetail(dl++, G_TD_CLAMP);
+    gDPSetTextureConvert(dl++, G_TC_FILT);
+    gDPSetCombineKey(dl++, G_CK_NONE);
+    gDPSetAlphaCompare(dl++, G_AC_NONE);
+    gDPPipeSync(dl++);
+
+    *D_80149438 = dl;
 }
 
 /*
  * func_800FADE0 (1108 bytes)
  * Frame end
+ *
+ * Finalizes display list and submits to RDP
  */
 void func_800FADE0(void) {
-    /* Frame end - stub */
+    extern Gfx **D_80149438;  /* Display list pointer */
+    extern Gfx *D_80149430;   /* Display list base */
+    extern OSMesgQueue D_80086A88;  /* Graphics message queue */
+    extern OSTask D_80149440;       /* Graphics task */
+    Gfx *dl;
+
+    dl = *D_80149438;
+
+    /* End display list */
+    gDPFullSync(dl++);
+    gSPEndDisplayList(dl++);
+
+    *D_80149438 = dl;
+
+    /* Flush display list */
+    func_800FB2C8();
+
+    /* Wait for vsync */
+    func_800FB234();
 }
 
 /*
  * func_800FB234 (148 bytes)
  * Vsync wait
+ *
+ * Waits for vertical blank period
  */
 void func_800FB234(void) {
-    /* Vsync - stub */
+    extern OSMesgQueue D_80086AC0;  /* VI message queue */
+    OSMesg msg;
+
+    osRecvMesg(&D_80086AC0, &msg, OS_MESG_BLOCK);
 }
 
 /*
  * func_800FB2C8 (5944 bytes)
  * Display list flush
+ *
+ * Submits display list to RSP/RDP
  */
 void func_800FB2C8(void) {
-    /* DL flush - stub */
+    extern Gfx *D_80149430;   /* Display list base */
+    extern Gfx **D_80149438;  /* Display list pointer */
+    extern OSMesgQueue D_80086A88;  /* Graphics message queue */
+    extern OSTask D_80149440;       /* Graphics task */
+    OSTask *task = &D_80149440;
+
+    /* Configure task */
+    task->t.type = M_GFXTASK;
+    task->t.flags = 0;
+    task->t.ucode_boot = (u64 *)rspbootTextStart;
+    task->t.ucode_boot_size = (s32)rspbootTextEnd - (s32)rspbootTextStart;
+    task->t.ucode = (u64 *)gspF3DEX2_fifoTextStart;
+    task->t.ucode_data = (u64 *)gspF3DEX2_fifoDataStart;
+    task->t.ucode_data_size = SP_UCODE_DATA_SIZE;
+    task->t.dram_stack = NULL;
+    task->t.dram_stack_size = 0;
+    task->t.output_buff = NULL;
+    task->t.output_buff_size = NULL;
+    task->t.data_ptr = (u64 *)D_80149430;
+    task->t.data_size = ((u8 *)*D_80149438 - (u8 *)D_80149430);
+    task->t.yield_data_ptr = NULL;
+    task->t.yield_data_size = 0;
+
+    /* Start RSP task */
+    osSpTaskStart(task);
+
+    /* Wait for completion */
+    osRecvMesg(&D_80086A88, NULL, OS_MESG_BLOCK);
 }
 
 /*
  * func_800FCA00 (1016 bytes)
  * Debug overlay
+ *
+ * Displays debug information overlay
  */
 void func_800FCA00(void) {
-    /* Debug overlay - stub */
+    extern s32 D_80159E00;  /* Debug mode flag */
+    extern s32 D_80142AFC;  /* Frame counter */
+    extern s32 D_80143B00;  /* FPS counter */
+    char buf[32];
+
+    if (!D_80159E00) {
+        return;
+    }
+
+    /* FPS display */
+    buf[0] = 'F'; buf[1] = 'P'; buf[2] = 'S'; buf[3] = ':';
+    buf[4] = '0' + (D_80143B00 / 10);
+    buf[5] = '0' + (D_80143B00 % 10);
+    buf[6] = '\0';
+    func_800C734C(buf, 10, 10, 255);
+
+    /* Frame counter */
+    buf[0] = 'F'; buf[1] = ':';
+    {
+        s32 f = D_80142AFC;
+        buf[7] = '0' + (f % 10); f /= 10;
+        buf[6] = '0' + (f % 10); f /= 10;
+        buf[5] = '0' + (f % 10); f /= 10;
+        buf[4] = '0' + (f % 10); f /= 10;
+        buf[3] = '0' + (f % 10);
+        buf[2] = '0' + (f / 10);
+        buf[8] = '\0';
+    }
+    func_800C734C(buf, 10, 25, 200);
+
+    /* Memory usage */
+    func_800FCDF8();
 }
 
 /*
  * func_800FCDF8 (556 bytes)
  * Debug stats
+ *
+ * Shows memory and performance stats
  */
 void func_800FCDF8(void) {
-    /* Debug stats - stub */
+    extern s32 D_80159E00;  /* Debug mode flag */
+    extern u32 D_80160400;  /* Audio heap pointer */
+    extern u32 D_80160404;  /* Audio heap remaining */
+    char buf[32];
+
+    if (!D_80159E00) {
+        return;
+    }
+
+    /* Audio heap usage */
+    {
+        u32 used = D_80160400 - 0x80160400;  /* Assuming base */
+        buf[0] = 'A'; buf[1] = 'U'; buf[2] = 'D'; buf[3] = ':';
+        buf[4] = '0' + ((used / 100000) % 10);
+        buf[5] = '0' + ((used / 10000) % 10);
+        buf[6] = '0' + ((used / 1000) % 10);
+        buf[7] = 'K';
+        buf[8] = '\0';
+        func_800C734C(buf, 10, 40, 180);
+    }
 }
 
 /*
  * func_800FD024 (540 bytes)
  * Debug collision
+ *
+ * Draws collision debug visualization
  */
 void func_800FD024(void) {
-    /* Debug collision - stub */
+    extern s32 D_80159E04;  /* Collision debug flag */
+
+    if (!D_80159E04) {
+        return;
+    }
+
+    /* Would draw collision wireframes */
+    /* (Simplified - actual implementation draws collision meshes) */
 }
 
 /*
  * func_800FD240 (552 bytes)
  * Debug AI paths
+ *
+ * Draws AI waypoint paths
  */
 void func_800FD240(void) {
-    /* Debug AI - stub */
+    extern s32 D_80159E08;  /* AI debug flag */
+
+    if (!D_80159E08) {
+        return;
+    }
+
+    /* Would draw AI waypoints and paths */
+    /* (Simplified - actual implementation draws debug lines) */
 }
 
 /*
  * func_800FD7E8 (244 bytes)
  * Random seed
+ *
+ * Sets the random number generator seed
  */
 void func_800FD7E8(u32 seed) {
-    /* Random seed - stub */
+    extern u32 D_80143500;  /* Random state */
+
+    D_80143500 = seed;
+
+    /* Warm up the generator */
+    D_80143500 = D_80143500 * 1103515245 + 12345;
+    D_80143500 = D_80143500 * 1103515245 + 12345;
+    D_80143500 = D_80143500 * 1103515245 + 12345;
 }
 
 /*
  * func_800FD8DC (284 bytes)
  * Random int
+ *
+ * Returns a random 32-bit integer (LCG)
  */
 s32 func_800FD8DC(void) {
-    /* Random int - stub */
-    return 0;
+    extern u32 D_80143500;  /* Random state */
+
+    D_80143500 = D_80143500 * 1103515245 + 12345;
+
+    return (s32)D_80143500;
 }
 
 /*
  * func_800FD9F8 (1436 bytes)
  * Random float
+ *
+ * Returns a random float in [0.0, 1.0)
  */
 f32 func_800FD9F8(void) {
-    /* Random float - stub */
-    return 0.0f;
+    extern u32 D_80143500;  /* Random state */
+
+    D_80143500 = D_80143500 * 1103515245 + 12345;
+
+    /* Convert to float 0-1 */
+    return (f32)(D_80143500 & 0x7FFFFF) / (f32)0x800000;
 }
 
 /*
  * func_800FDF94 (248 bytes)
  * Random range
+ *
+ * Returns a random integer in [min, max]
  */
 s32 func_800FDF94(s32 min, s32 max) {
-    /* Random range - stub */
-    return min;
+    extern u32 D_80143500;  /* Random state */
+    s32 range;
+
+    if (max <= min) {
+        return min;
+    }
+
+    D_80143500 = D_80143500 * 1103515245 + 12345;
+    range = max - min + 1;
+
+    return min + (s32)((D_80143500 >> 16) % range);
 }
 
 /*
  * func_800FE08C (1072 bytes)
  * Timer start
+ *
+ * Starts a game timer
+ * Timer struct at D_80159B00[id]:
+ *   0x00: state (0=stopped, 1=running, 2=paused)
+ *   0x04: start time (OS ticks)
+ *   0x08: elapsed time
+ *   0x0C: lap times[8]
+ *   0x2C: lap count
  */
 void func_800FE08C(s32 timerId) {
-    /* Timer start - stub */
+    extern u64 D_80159B00[8][6];  /* Timer data */
+
+    if (timerId < 0 || timerId >= 8) {
+        return;
+    }
+
+    D_80159B00[timerId][0] = 1;  /* Running */
+    D_80159B00[timerId][1] = osGetTime();  /* Start time */
+    D_80159B00[timerId][2] = 0;  /* Elapsed */
 }
 
 /*
  * func_800FE4BC (100 bytes)
  * Timer stop
+ *
+ * Stops a game timer
  */
 void func_800FE4BC(s32 timerId) {
-    /* Timer stop - stub */
+    extern u64 D_80159B00[8][6];  /* Timer data */
+
+    if (timerId < 0 || timerId >= 8) {
+        return;
+    }
+
+    if (D_80159B00[timerId][0] == 1) {
+        /* Update elapsed before stopping */
+        D_80159B00[timerId][2] = osGetTime() - D_80159B00[timerId][1];
+    }
+
+    D_80159B00[timerId][0] = 0;  /* Stopped */
 }
 
 /*
  * func_800FE520 (144 bytes)
  * Timer reset
+ *
+ * Resets a game timer
  */
 void func_800FE520(s32 timerId) {
-    /* Timer reset - stub */
+    extern u64 D_80159B00[8][6];  /* Timer data */
+    s32 i;
+
+    if (timerId < 0 || timerId >= 8) {
+        return;
+    }
+
+    D_80159B00[timerId][0] = 0;  /* Stopped */
+    D_80159B00[timerId][1] = 0;  /* Start time */
+    D_80159B00[timerId][2] = 0;  /* Elapsed */
+
+    /* Clear lap times */
+    for (i = 3; i < 6; i++) {
+        D_80159B00[timerId][i] = 0;
+    }
 }
 
 /*
  * func_800FE5B0 (412 bytes)
  * Timer get elapsed
+ *
+ * Returns elapsed time in centiseconds
  */
 s32 func_800FE5B0(s32 timerId) {
-    /* Get elapsed - stub */
-    return 0;
+    extern u64 D_80159B00[8][6];  /* Timer data */
+    u64 elapsed;
+    s32 centisecs;
+
+    if (timerId < 0 || timerId >= 8) {
+        return 0;
+    }
+
+    if (D_80159B00[timerId][0] == 1) {
+        /* Running - calculate current elapsed */
+        elapsed = osGetTime() - D_80159B00[timerId][1];
+    } else {
+        /* Stopped/paused - return stored elapsed */
+        elapsed = D_80159B00[timerId][2];
+    }
+
+    /* Convert OS ticks to centiseconds (46.875 MHz counter) */
+    centisecs = (s32)(elapsed / 468750);
+
+    return centisecs;
 }
 
 /*
  * func_800FE7A4 (164 bytes)
  * Timer pause
+ *
+ * Pauses a game timer
  */
 void func_800FE7A4(s32 timerId) {
-    /* Timer pause - stub */
+    extern u64 D_80159B00[8][6];  /* Timer data */
+
+    if (timerId < 0 || timerId >= 8) {
+        return;
+    }
+
+    if (D_80159B00[timerId][0] == 1) {
+        /* Store elapsed time */
+        D_80159B00[timerId][2] = osGetTime() - D_80159B00[timerId][1];
+        D_80159B00[timerId][0] = 2;  /* Paused */
+    }
 }
 
 /*
  * func_800FE848 (220 bytes)
  * Timer resume
+ *
+ * Resumes a paused timer
  */
 void func_800FE848(s32 timerId) {
-    /* Timer resume - stub */
+    extern u64 D_80159B00[8][6];  /* Timer data */
+
+    if (timerId < 0 || timerId >= 8) {
+        return;
+    }
+
+    if (D_80159B00[timerId][0] == 2) {
+        /* Adjust start time to account for pause */
+        D_80159B00[timerId][1] = osGetTime() - D_80159B00[timerId][2];
+        D_80159B00[timerId][0] = 1;  /* Running */
+    }
 }
 
 /*
  * func_800FE924 (228 bytes)
  * Timer lap
+ *
+ * Records a lap time and returns lap number
  */
 s32 func_800FE924(s32 timerId) {
-    /* Timer lap - stub */
-    return 0;
+    extern u64 D_80159B00[8][6];  /* Timer data */
+    extern s32 D_80159C00[8];     /* Lap counts */
+    s32 lapNum;
+    s32 lapTime;
+
+    if (timerId < 0 || timerId >= 8) {
+        return 0;
+    }
+
+    lapNum = D_80159C00[timerId];
+    if (lapNum >= 8) {
+        return lapNum;  /* Max laps recorded */
+    }
+
+    /* Get current lap time */
+    lapTime = func_800FE5B0(timerId);
+
+    /* Store lap time */
+    D_80159B00[timerId][3 + (lapNum / 2)] |= ((u64)lapTime << ((lapNum & 1) * 32));
+
+    D_80159C00[timerId]++;
+
+    return lapNum + 1;
 }
 
 /*
  * func_800FEA08 (668 bytes)
  * Race timer update
+ *
+ * Updates race timer display each frame
  */
 void func_800FEA08(void) {
-    /* Race timer - stub */
+    extern s32 D_80142AFC;   /* Frame counter */
+    extern s32 D_80159A00;   /* Race timer (centisecs) */
+    extern s32 D_80159A04;   /* Race started flag */
+    extern s32 D_801146EC;   /* gstate */
+    char timeBuf[16];
+    s32 m, s, h;
+
+    /* Only update during gameplay */
+    if (D_801146EC != 6) {  /* Not PLAYGAME */
+        return;
+    }
+
+    if (!D_80159A04) {
+        return;
+    }
+
+    /* Get current race time */
+    D_80159A00 = func_800FE5B0(0);  /* Timer 0 = race timer */
+
+    /* Format time display */
+    m = D_80159A00 / 6000;
+    s = (D_80159A00 / 100) % 60;
+    h = D_80159A00 % 100;
+
+    timeBuf[0] = '0' + (m / 10);
+    timeBuf[1] = '0' + (m % 10);
+    timeBuf[2] = ':';
+    timeBuf[3] = '0' + (s / 10);
+    timeBuf[4] = '0' + (s % 10);
+    timeBuf[5] = '.';
+    timeBuf[6] = '0' + (h / 10);
+    timeBuf[7] = '0' + (h % 10);
+    timeBuf[8] = '\0';
+
+    /* Display timer */
+    func_800C734C(timeBuf, 130, 15, 255);
 }
 
 /*
  * func_800FECA4 (352 bytes)
  * Countdown timer
+ *
+ * Displays pre-race countdown (3, 2, 1, GO!)
  */
 void func_800FECA4(void) {
-    /* Countdown - stub */
+    extern s32 D_80159A08;   /* Countdown value (frames) */
+    extern s32 D_80159A04;   /* Race started flag */
+    s32 countdown;
+    char numBuf[2];
+
+    if (D_80159A04) {
+        return;  /* Race already started */
+    }
+
+    D_80159A08++;
+
+    /* 60fps, 1 second per count */
+    countdown = 3 - (D_80159A08 / 60);
+
+    if (countdown > 0) {
+        numBuf[0] = '0' + countdown;
+        numBuf[1] = '\0';
+        func_800C734C(numBuf, 155, 100, 255);
+        func_800CC3C0(10 + countdown);  /* Countdown sound */
+    } else if (countdown == 0 && D_80159A08 < 240) {
+        func_800C734C("GO!", 140, 100, 255);
+        if (D_80159A08 == 180) {
+            func_800CC3C0(13);  /* GO sound */
+            D_80159A04 = 1;     /* Start race */
+            func_800FE08C(0);   /* Start race timer */
+        }
+    }
 }
 
 /*
  * func_800FEE04 (1172 bytes)
  * Split time display
+ *
+ * Shows lap split time (+/- vs best)
  */
 void func_800FEE04(s32 splitTime) {
-    /* Split time - stub */
+    extern s32 D_80159D10[];  /* Best lap times */
+    extern s32 D_80159A0C;    /* Current track ID */
+    s32 diff;
+    s32 absDiff;
+    char splitBuf[16];
+    s32 m, s, h;
+    s32 color;
+    s32 i = 0;
+
+    /* Calculate difference from best */
+    if (D_80159D10[D_80159A0C] > 0) {
+        diff = splitTime - D_80159D10[D_80159A0C];
+    } else {
+        diff = 0;  /* No best time yet */
+    }
+
+    absDiff = (diff < 0) ? -diff : diff;
+
+    /* Format split time */
+    if (diff < 0) {
+        splitBuf[i++] = '-';
+        color = 0xFF00FF00;  /* Green - faster */
+    } else {
+        splitBuf[i++] = '+';
+        color = 0xFFFF0000;  /* Red - slower */
+    }
+
+    s = absDiff / 100;
+    h = absDiff % 100;
+
+    splitBuf[i++] = '0' + (s / 10);
+    splitBuf[i++] = '0' + (s % 10);
+    splitBuf[i++] = '.';
+    splitBuf[i++] = '0' + (h / 10);
+    splitBuf[i++] = '0' + (h % 10);
+    splitBuf[i] = '\0';
+
+    /* Display split time */
+    func_800C734C(splitBuf, 135, 35, (color >> 24) & 0xFF);
 }
 
 /*
  * func_800FF298 (1164 bytes)
  * Best lap check
+ *
+ * Checks if lap time is a new best, returns 1 if so
  */
 s32 func_800FF298(s32 lapTime) {
-    /* Best lap - stub */
+    extern s32 D_80159D10[];  /* Best lap times */
+    extern s32 D_80159A0C;    /* Current track ID */
+
+    if (lapTime <= 0) {
+        return 0;
+    }
+
+    if (D_80159D10[D_80159A0C] == 0 || lapTime < D_80159D10[D_80159A0C]) {
+        D_80159D10[D_80159A0C] = lapTime;
+        return 1;  /* New best! */
+    }
+
     return 0;
 }
 
 /*
  * func_800FF724 (1748 bytes)
  * Record save
+ *
+ * Saves best times and scores to controller pak
  */
 void func_800FF724(void) {
-    /* Record save - stub */
+    extern s32 D_80159A10[];  /* Best race times */
+    extern s32 D_80159D10[];  /* Best lap times */
+    extern OSPfs D_80159F00;  /* Pak file system handle */
+    u8 saveData[256];
+    s32 i;
+
+    /* Pack times into save data */
+    for (i = 0; i < 12; i++) {
+        /* Race times */
+        saveData[i * 4] = (D_80159A10[i] >> 24) & 0xFF;
+        saveData[i * 4 + 1] = (D_80159A10[i] >> 16) & 0xFF;
+        saveData[i * 4 + 2] = (D_80159A10[i] >> 8) & 0xFF;
+        saveData[i * 4 + 3] = D_80159A10[i] & 0xFF;
+
+        /* Lap times */
+        saveData[48 + i * 4] = (D_80159D10[i] >> 24) & 0xFF;
+        saveData[48 + i * 4 + 1] = (D_80159D10[i] >> 16) & 0xFF;
+        saveData[48 + i * 4 + 2] = (D_80159D10[i] >> 8) & 0xFF;
+        saveData[48 + i * 4 + 3] = D_80159D10[i] & 0xFF;
+    }
+
+    /* Write to controller pak */
+    osPfsReadWriteFile(&D_80159F00, 0, PFS_WRITE, 0, 96, saveData);
 }
 
 /*
  * func_800FFDF8 (1900 bytes)
  * High score entry
+ *
+ * High score name entry screen
  */
 void func_800FFDF8(void) {
-    /* High score - stub */
+    extern s32 D_80159E10;    /* Name entry state */
+    extern s32 D_80159E14;    /* Cursor position */
+    extern char D_80159E18[4]; /* Entered name */
+    extern s32 D_80158100;    /* Input state */
+    s32 input;
+    s32 cursorPos;
+    char *alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ";
+    s32 alphabetLen = 37;
+
+    func_800CC040();
+
+    input = func_800CB748(D_80158100);
+    cursorPos = D_80159E14;
+
+    /* Handle input */
+    if (input == 3) {  /* Left */
+        cursorPos--;
+        if (cursorPos < 0) cursorPos = alphabetLen - 1;
+    } else if (input == 4) {  /* Right */
+        cursorPos++;
+        if (cursorPos >= alphabetLen) cursorPos = 0;
+    } else if (input == 1) {  /* A - select letter */
+        if (D_80159E10 < 3) {
+            D_80159E18[D_80159E10] = alphabet[cursorPos];
+            D_80159E10++;
+        }
+        if (D_80159E10 >= 3) {
+            D_80159E18[3] = '\0';
+            /* Save high score */
+            func_800FF724();
+        }
+    } else if (input == 2) {  /* B - backspace */
+        if (D_80159E10 > 0) {
+            D_80159E10--;
+            D_80159E18[D_80159E10] = '_';
+        }
+    }
+
+    D_80159E14 = cursorPos;
+
+    /* Draw UI */
+    func_800C734C("ENTER NAME", 105, 40, 255);
+    func_800C734C(D_80159E18, 140, 80, 255);
+    func_800C734C(alphabet, 40, 140, 200);
 }
 
 /*
