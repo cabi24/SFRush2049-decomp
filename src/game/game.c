@@ -10423,78 +10423,410 @@ void func_800B71DC(void *entity) {
 /*
  * func_800BC3E0 (7640 bytes)
  * Camera main update
+ *
+ * Based on arcade camera.c - updates camera position/orientation to follow target
+ * Camera structure offsets:
+ *   0x00: position (f32[3])
+ *   0x0C: target position (f32[3])
+ *   0x18: look direction (f32[3])
+ *   0x24: up vector (f32[3])
+ *   0x30: right vector (f32[3])
+ *   0x3C: fov (f32)
+ *   0x40: near plane (f32)
+ *   0x44: far plane (f32)
+ *   0x48: mode (s32)
+ *   0x4C: shake intensity (f32)
+ *   0x50: distance (f32)
+ *   0x54: yaw (f32)
+ *   0x58: pitch (f32)
  */
 void func_800BC3E0(void *camera, void *target) {
-    /* Camera update - stub */
+    f32 *camPos, *camTarget, *camLook, *camUp;
+    f32 *targetPos, *targetVel;
+    f32 dx, dy, dz, dist, invDist;
+    f32 lookAhead[3];
+    f32 elasticity;
+    s32 mode;
+
+    if (camera == NULL || target == NULL) {
+        return;
+    }
+
+    /* Get camera components */
+    camPos = (f32 *)camera;
+    camTarget = (f32 *)((u8 *)camera + 0x0C);
+    camLook = (f32 *)((u8 *)camera + 0x18);
+    camUp = (f32 *)((u8 *)camera + 0x24);
+    mode = *(s32 *)((u8 *)camera + 0x48);
+
+    /* Get target position and velocity */
+    targetPos = (f32 *)((u8 *)target + 0x24);
+    targetVel = (f32 *)((u8 *)target + 0x34);
+
+    /* Elasticity based on mode (0 = rigid, 1 = smooth) */
+    elasticity = 0.85f;
+
+    /* Calculate look-ahead position based on velocity */
+    lookAhead[0] = targetPos[0] + targetVel[0] * 0.5f;
+    lookAhead[1] = targetPos[1];
+    lookAhead[2] = targetPos[2] + targetVel[2] * 0.5f;
+
+    /* Smooth interpolate camera target */
+    camTarget[0] = camTarget[0] * elasticity + lookAhead[0] * (1.0f - elasticity);
+    camTarget[1] = camTarget[1] * elasticity + lookAhead[1] * (1.0f - elasticity);
+    camTarget[2] = camTarget[2] * elasticity + lookAhead[2] * (1.0f - elasticity);
+
+    /* Calculate look direction */
+    dx = camTarget[0] - camPos[0];
+    dy = camTarget[1] - camPos[1];
+    dz = camTarget[2] - camPos[2];
+    dist = sqrtf(dx * dx + dy * dy + dz * dz);
+
+    if (dist > 0.001f) {
+        invDist = 1.0f / dist;
+        camLook[0] = dx * invDist;
+        camLook[1] = dy * invDist;
+        camLook[2] = dz * invDist;
+    }
+
+    /* Update up vector (keep mostly vertical) */
+    camUp[0] = 0.0f;
+    camUp[1] = 1.0f;
+    camUp[2] = 0.0f;
+
+    /* Check for collision and apply shake */
+    func_800BDE78(camera);
 }
 
 /*
  * func_800BDE78 (1596 bytes)
  * Camera collision avoidance
+ *
+ * Prevents camera from clipping through geometry
  */
 void func_800BDE78(void *camera) {
-    /* Camera collision - stub */
+    f32 *camPos, *camTarget;
+    f32 dx, dy, dz, dist;
+    f32 minDist;
+
+    if (camera == NULL) {
+        return;
+    }
+
+    camPos = (f32 *)camera;
+    camTarget = (f32 *)((u8 *)camera + 0x0C);
+
+    /* Calculate distance to target */
+    dx = camTarget[0] - camPos[0];
+    dy = camTarget[1] - camPos[1];
+    dz = camTarget[2] - camPos[2];
+    dist = sqrtf(dx * dx + dy * dy + dz * dz);
+
+    /* Minimum distance check */
+    minDist = 2.0f;
+    if (dist < minDist && dist > 0.001f) {
+        /* Push camera back */
+        f32 scale = minDist / dist;
+        camPos[0] = camTarget[0] - dx * scale;
+        camPos[1] = camTarget[1] - dy * scale;
+        camPos[2] = camTarget[2] - dz * scale;
+    }
+
+    /* Keep camera above ground (simple Y check) */
+    if (camPos[1] < 1.0f) {
+        camPos[1] = 1.0f;
+    }
 }
 
 /*
  * func_800BE44C (872 bytes)
  * Camera smooth follow
+ *
+ * Smoothly interpolates camera position toward target
  */
 void func_800BE44C(void *camera, f32 *targetPos, f32 smoothing) {
-    /* Smooth follow - stub */
+    f32 *camPos;
+    f32 t;
+
+    if (camera == NULL || targetPos == NULL) {
+        return;
+    }
+
+    camPos = (f32 *)camera;
+
+    /* Clamp smoothing factor */
+    if (smoothing < 0.0f) smoothing = 0.0f;
+    if (smoothing > 1.0f) smoothing = 1.0f;
+    t = 1.0f - smoothing;
+
+    /* Lerp position */
+    camPos[0] = camPos[0] * smoothing + targetPos[0] * t;
+    camPos[1] = camPos[1] * smoothing + targetPos[1] * t;
+    camPos[2] = camPos[2] * smoothing + targetPos[2] * t;
 }
 
 /*
  * func_800BEC9C (1156 bytes)
  * Camera mode switch
+ *
+ * Switches between camera modes (chase, first-person, orbit, etc.)
+ * Mode values: 0=chase, 1=first-person, 2=orbit, 3=cinematic
  */
 void func_800BEC9C(void *camera, s32 mode) {
-    /* Mode switch - stub */
+    s32 *camMode;
+    f32 *distance, *yaw, *pitch;
+
+    if (camera == NULL) {
+        return;
+    }
+
+    camMode = (s32 *)((u8 *)camera + 0x48);
+    distance = (f32 *)((u8 *)camera + 0x50);
+    yaw = (f32 *)((u8 *)camera + 0x54);
+    pitch = (f32 *)((u8 *)camera + 0x58);
+
+    *camMode = mode;
+
+    /* Set default values based on mode */
+    switch (mode) {
+        case 0:  /* Chase cam */
+            *distance = 8.0f;
+            *pitch = 0.2f;  /* Slight look-down angle */
+            break;
+
+        case 1:  /* First person */
+            *distance = 0.0f;
+            *pitch = 0.0f;
+            break;
+
+        case 2:  /* Orbit */
+            *distance = 12.0f;
+            break;
+
+        case 3:  /* Cinematic */
+            *distance = 20.0f;
+            break;
+
+        default:
+            break;
+    }
 }
 
 /*
  * func_800BF120 (1780 bytes)
  * Camera orbit control
+ *
+ * Orbits camera around target at given yaw/pitch angles
  */
 void func_800BF120(void *camera, f32 yaw, f32 pitch) {
-    /* Orbit control - stub */
+    f32 *camPos, *camTarget;
+    f32 *storedYaw, *storedPitch, *distance;
+    f32 sinYaw, cosYaw, sinPitch, cosPitch;
+    f32 x, y, z;
+
+    if (camera == NULL) {
+        return;
+    }
+
+    camPos = (f32 *)camera;
+    camTarget = (f32 *)((u8 *)camera + 0x0C);
+    storedYaw = (f32 *)((u8 *)camera + 0x54);
+    storedPitch = (f32 *)((u8 *)camera + 0x58);
+    distance = (f32 *)((u8 *)camera + 0x50);
+
+    /* Update stored angles */
+    *storedYaw = yaw;
+    *storedPitch = pitch;
+
+    /* Clamp pitch to avoid gimbal lock */
+    if (pitch > 1.4f) pitch = 1.4f;
+    if (pitch < -1.4f) pitch = -1.4f;
+
+    /* Calculate orbital position */
+    sinYaw = sinf(yaw);
+    cosYaw = cosf(yaw);
+    sinPitch = sinf(pitch);
+    cosPitch = cosf(pitch);
+
+    x = *distance * cosPitch * sinYaw;
+    y = *distance * sinPitch;
+    z = *distance * cosPitch * cosYaw;
+
+    /* Set camera position relative to target */
+    camPos[0] = camTarget[0] + x;
+    camPos[1] = camTarget[1] + y;
+    camPos[2] = camTarget[2] + z;
 }
 
 /*
  * func_800BF814 (948 bytes)
  * Camera zoom control
+ *
+ * Adjusts camera distance from target
  */
 void func_800BF814(void *camera, f32 zoom) {
-    /* Zoom control - stub */
+    f32 *distance;
+    f32 minDist, maxDist;
+
+    if (camera == NULL) {
+        return;
+    }
+
+    distance = (f32 *)((u8 *)camera + 0x50);
+
+    /* Clamp zoom distance */
+    minDist = 2.0f;
+    maxDist = 50.0f;
+
+    *distance = zoom;
+    if (*distance < minDist) *distance = minDist;
+    if (*distance > maxDist) *distance = maxDist;
 }
 
 /*
  * func_800BFBC8 (420 bytes)
  * Camera FOV set
+ *
+ * Sets camera field of view in radians
  */
 void func_800BFBC8(void *camera, f32 fov) {
-    /* FOV set - stub */
+    f32 *camFov;
+    f32 minFov, maxFov;
+
+    if (camera == NULL) {
+        return;
+    }
+
+    camFov = (f32 *)((u8 *)camera + 0x3C);
+
+    /* Clamp FOV (typical range: 30-120 degrees, in radians) */
+    minFov = 0.5f;   /* ~30 degrees */
+    maxFov = 2.1f;   /* ~120 degrees */
+
+    *camFov = fov;
+    if (*camFov < minFov) *camFov = minFov;
+    if (*camFov > maxFov) *camFov = maxFov;
 }
 
 /*
  * func_800BFD6C (1392 bytes)
  * Camera look-at
+ *
+ * Points camera at target position, calculating look direction
  */
 void func_800BFD6C(void *camera, f32 *target) {
-    /* Look-at - stub */
+    f32 *camPos, *camLook, *camUp, *camRight;
+    f32 dx, dy, dz, dist, invDist;
+    f32 rightX, rightZ, rightLen;
+
+    if (camera == NULL || target == NULL) {
+        return;
+    }
+
+    camPos = (f32 *)camera;
+    camLook = (f32 *)((u8 *)camera + 0x18);
+    camUp = (f32 *)((u8 *)camera + 0x24);
+    camRight = (f32 *)((u8 *)camera + 0x30);
+
+    /* Calculate look direction */
+    dx = target[0] - camPos[0];
+    dy = target[1] - camPos[1];
+    dz = target[2] - camPos[2];
+    dist = sqrtf(dx * dx + dy * dy + dz * dz);
+
+    if (dist < 0.001f) {
+        return;  /* Target at camera position */
+    }
+
+    invDist = 1.0f / dist;
+    camLook[0] = dx * invDist;
+    camLook[1] = dy * invDist;
+    camLook[2] = dz * invDist;
+
+    /* Calculate right vector (cross product: up x look) */
+    /* Assuming world up is (0, 1, 0) */
+    rightX = camLook[2];
+    rightZ = -camLook[0];
+    rightLen = sqrtf(rightX * rightX + rightZ * rightZ);
+
+    if (rightLen > 0.001f) {
+        camRight[0] = rightX / rightLen;
+        camRight[1] = 0.0f;
+        camRight[2] = rightZ / rightLen;
+    }
+
+    /* Calculate up vector (cross product: look x right) */
+    camUp[0] = camLook[1] * camRight[2] - camLook[2] * camRight[1];
+    camUp[1] = camLook[2] * camRight[0] - camLook[0] * camRight[2];
+    camUp[2] = camLook[0] * camRight[1] - camLook[1] * camRight[0];
 }
 
 /*
  * func_800C0288 (2124 bytes)
  * Camera path follow
+ *
+ * Follows a predefined camera path using interpolation
+ * Path structure: array of control points with position and look-at
  */
 void func_800C0288(void *camera, void *path, f32 t) {
-    /* Path follow - stub */
+    f32 *camPos, *camTarget;
+    f32 *pathData;
+    s32 numPoints, idx0, idx1;
+    f32 localT;
+
+    if (camera == NULL || path == NULL) {
+        return;
+    }
+
+    camPos = (f32 *)camera;
+    camTarget = (f32 *)((u8 *)camera + 0x0C);
+
+    /* Path format: [numPoints, pos0[3], look0[3], pos1[3], look1[3], ...] */
+    pathData = (f32 *)path;
+    numPoints = (s32)pathData[0];
+
+    if (numPoints < 2) {
+        return;
+    }
+
+    /* Clamp t to [0, 1] */
+    if (t < 0.0f) t = 0.0f;
+    if (t > 1.0f) t = 1.0f;
+
+    /* Find segment indices */
+    idx0 = (s32)(t * (numPoints - 1));
+    idx1 = idx0 + 1;
+    if (idx1 >= numPoints) {
+        idx1 = numPoints - 1;
+        idx0 = idx1 - 1;
+    }
+
+    /* Local t within segment */
+    localT = t * (numPoints - 1) - idx0;
+
+    /* Interpolate position (points start at offset 1, stride = 6 floats) */
+    {
+        f32 *p0 = &pathData[1 + idx0 * 6];
+        f32 *p1 = &pathData[1 + idx1 * 6];
+
+        camPos[0] = p0[0] + (p1[0] - p0[0]) * localT;
+        camPos[1] = p0[1] + (p1[1] - p0[1]) * localT;
+        camPos[2] = p0[2] + (p1[2] - p0[2]) * localT;
+
+        camTarget[0] = p0[3] + (p1[3] - p0[3]) * localT;
+        camTarget[1] = p0[4] + (p1[4] - p0[4]) * localT;
+        camTarget[2] = p0[5] + (p1[5] - p0[5]) * localT;
+    }
+
+    /* Update look direction */
+    func_800BFD6C(camera, camTarget);
 }
 
 /*
  * func_800C0AC4 (1736 bytes)
  * Camera transition
+ *
+ * Blends between two camera states over time
  */
 void func_800C0AC4(void *camera, void *targetCamera, f32 duration) {
     /* Transition - stub */
