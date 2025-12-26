@@ -8268,122 +8268,466 @@ void func_80093B20(void *entity) {
 
 /*
  * func_80094890 (460 bytes)
- * Audio parameter setup
+ * Audio parameter setup - configure audio channel parameters
  */
 void func_80094890(void *params, s32 channel) {
-    /* Audio setup - stub */
+    f32 *audioParams;
+    s32 *channelState;
+
+    if (channel < 0 || channel >= 16) {
+        return;
+    }
+
+    audioParams = (f32 *)params;
+    channelState = (s32 *)(0x80160000 + channel * 64);
+
+    /* Set channel parameters */
+    channelState[0] = 1;  /* Active */
+    *(f32 *)&channelState[1] = audioParams[0];  /* Volume */
+    *(f32 *)&channelState[2] = audioParams[1];  /* Pan */
+    *(f32 *)&channelState[3] = audioParams[2];  /* Pitch */
+    channelState[4] = (s32)audioParams[3];  /* Loop flag */
+    channelState[5] = (s32)audioParams[4];  /* Priority */
+
+    /* Trigger audio hardware update */
+    D_80160400 |= (1 << channel);
 }
 
 /*
  * func_80094A54 (472 bytes)
- * Sound effect trigger
+ * Sound effect trigger - play a sound effect
  */
 void func_80094A54(s32 soundId, s32 priority) {
-    /* Sound trigger - stub */
+    s32 channel;
+    s32 *channelState;
+    s32 lowestPri;
+    s32 lowestChannel;
+    s32 i;
+
+    /* Find free channel or lowest priority */
+    channel = -1;
+    lowestPri = priority;
+    lowestChannel = -1;
+
+    for (i = 0; i < 16; i++) {
+        channelState = (s32 *)(0x80160000 + i * 64);
+        if (channelState[0] == 0) {
+            /* Free channel */
+            channel = i;
+            break;
+        }
+        if (channelState[5] < lowestPri) {
+            lowestPri = channelState[5];
+            lowestChannel = i;
+        }
+    }
+
+    /* Use lowest priority if no free channel */
+    if (channel < 0) {
+        if (lowestChannel >= 0) {
+            channel = lowestChannel;
+        } else {
+            return;  /* All channels busy with higher priority */
+        }
+    }
+
+    channelState = (s32 *)(0x80160000 + channel * 64);
+
+    /* Configure channel for sound effect */
+    channelState[0] = 1;  /* Active */
+    channelState[5] = priority;
+    channelState[6] = soundId;
+    *(f32 *)&channelState[1] = D_80159300 / 100.0f;  /* SFX volume setting */
+    *(f32 *)&channelState[2] = 0.5f;  /* Center pan */
+
+    /* Trigger playback */
+    D_80160400 |= (1 << channel);
+    D_80160404 = soundId;
 }
 
 /*
  * func_80094C30 (668 bytes)
- * Audio volume/pan control
+ * Audio volume/pan control - adjust channel volume and pan
  */
 void func_80094C30(s32 channel, f32 volume, f32 pan) {
-    /* Volume/pan control - stub */
+    s32 *channelState;
+
+    if (channel < 0 || channel >= 16) {
+        return;
+    }
+
+    channelState = (s32 *)(0x80160000 + channel * 64);
+
+    if (channelState[0] == 0) {
+        return;  /* Channel not active */
+    }
+
+    /* Clamp values */
+    if (volume < 0.0f) volume = 0.0f;
+    if (volume > 1.0f) volume = 1.0f;
+    if (pan < 0.0f) pan = 0.0f;
+    if (pan > 1.0f) pan = 1.0f;
+
+    /* Apply master volume */
+    volume = volume * (D_80159300 / 100.0f);
+
+    *(f32 *)&channelState[1] = volume;
+    *(f32 *)&channelState[2] = pan;
+
+    /* Mark channel for update */
+    D_80160408 |= (1 << channel);
 }
 
 /*
  * func_80094FF0 (156 bytes)
- * Audio channel reset
+ * Audio channel reset - stop and reset a channel
  */
 void func_80094FF0(s32 channel) {
-    /* Reset audio channel - stub */
+    s32 *channelState;
+    s32 i;
+
+    if (channel < 0 || channel >= 16) {
+        return;
+    }
+
+    channelState = (s32 *)(0x80160000 + channel * 64);
+
+    /* Clear all channel state */
+    for (i = 0; i < 16; i++) {
+        channelState[i] = 0;
+    }
+
+    /* Mark channel as stopped */
+    D_8016040C |= (1 << channel);
 }
 
 /*
  * func_800951E0 (492 bytes)
- * Sound position update
+ * Sound position update - update 3D sound position for entity
  */
 void func_800951E0(void *entity, f32 *pos) {
-    /* Update 3D sound position - stub */
+    f32 *listenerPos;
+    f32 *listenerDir;
+    f32 dx, dy, dz;
+    f32 distance;
+    f32 volume;
+    f32 pan;
+    s32 channel;
+
+    if (entity == NULL || pos == NULL) {
+        return;
+    }
+
+    /* Get listener (camera) position */
+    listenerPos = (f32 *)0x80161000;
+    listenerDir = (f32 *)0x8016100C;
+
+    /* Calculate distance to listener */
+    dx = pos[0] - listenerPos[0];
+    dy = pos[1] - listenerPos[1];
+    dz = pos[2] - listenerPos[2];
+    distance = sqrtf(dx * dx + dy * dy + dz * dz);
+
+    /* Calculate volume falloff */
+    if (distance < 50.0f) {
+        volume = 1.0f;
+    } else if (distance > 1000.0f) {
+        volume = 0.0f;
+    } else {
+        volume = 1.0f - ((distance - 50.0f) / 950.0f);
+    }
+
+    /* Calculate stereo pan based on relative position */
+    if (distance > 1.0f) {
+        f32 right = dx * listenerDir[2] - dz * listenerDir[0];
+        pan = 0.5f + (right / distance) * 0.5f;
+        if (pan < 0.0f) pan = 0.0f;
+        if (pan > 1.0f) pan = 1.0f;
+    } else {
+        pan = 0.5f;
+    }
+
+    /* Get channel from entity */
+    channel = *(s32 *)((u8 *)entity + 0x1C0);
+    if (channel >= 0 && channel < 16) {
+        func_80094C30(channel, volume, pan);
+    }
 }
 
 /*
  * func_800953CC (220 bytes)
- * Audio fade control
+ * Audio fade control - fade channel volume over time
  */
 void func_800953CC(s32 channel, f32 targetVol, f32 duration) {
-    /* Fade control - stub */
+    s32 *channelState;
+    f32 currentVol;
+    f32 fadeRate;
+
+    if (channel < 0 || channel >= 16) {
+        return;
+    }
+
+    channelState = (s32 *)(0x80160000 + channel * 64);
+
+    if (channelState[0] == 0) {
+        return;
+    }
+
+    currentVol = *(f32 *)&channelState[1];
+
+    /* Calculate fade rate (per frame at 60fps) */
+    if (duration <= 0.0f) {
+        fadeRate = targetVol - currentVol;
+    } else {
+        fadeRate = (targetVol - currentVol) / (duration * 60.0f);
+    }
+
+    /* Store fade parameters */
+    *(f32 *)&channelState[8] = targetVol;
+    *(f32 *)&channelState[9] = fadeRate;
+    channelState[10] = 1;  /* Fading flag */
 }
 
 /*
  * func_800954A8 (128 bytes)
- * Sound enable/disable
+ * Sound enable/disable - enable or disable a sound channel
  */
 void func_800954A8(s32 channel, s32 enable) {
-    /* Enable/disable sound channel - stub */
+    s32 *channelState;
+
+    if (channel < 0 || channel >= 16) {
+        return;
+    }
+
+    channelState = (s32 *)(0x80160000 + channel * 64);
+
+    if (enable) {
+        channelState[11] = 0;  /* Unmute */
+        D_80160410 |= (1 << channel);
+    } else {
+        channelState[11] = 1;  /* Mute */
+        D_80160414 |= (1 << channel);
+    }
 }
 
 /*
  * func_80095528 (484 bytes)
- * Music track control
+ * Music track control - control music playback
  */
 void func_80095528(s32 trackId, s32 cmd) {
-    /* Music control - stub */
+    s32 *musicState = (s32 *)0x80161100;
+
+    switch (cmd) {
+        case 0:  /* Stop */
+            musicState[0] = 0;
+            musicState[1] = -1;
+            func_800953CC(0, 0.0f, 0.5f);  /* Fade out music channel */
+            break;
+
+        case 1:  /* Play */
+            if (trackId >= 0 && trackId < 20) {
+                musicState[0] = 1;
+                musicState[1] = trackId;
+                musicState[2] = 0;  /* Position */
+                *(f32 *)&musicState[3] = D_80159304 / 100.0f;  /* Music volume */
+                D_80160420 = trackId;
+            }
+            break;
+
+        case 2:  /* Pause */
+            if (musicState[0] == 1) {
+                musicState[0] = 2;  /* Paused */
+                D_80160424 = 1;
+            }
+            break;
+
+        case 3:  /* Resume */
+            if (musicState[0] == 2) {
+                musicState[0] = 1;  /* Playing */
+                D_80160424 = 0;
+            }
+            break;
+
+        case 4:  /* Loop on */
+            musicState[4] = 1;
+            break;
+
+        case 5:  /* Loop off */
+            musicState[4] = 0;
+            break;
+    }
 }
 
 /*
  * func_8009570C (244 bytes)
- * Audio bus routing
+ * Audio bus routing - route audio between buses
  */
 void func_8009570C(s32 srcBus, s32 destBus) {
-    /* Bus routing - stub */
+    s32 *busMatrix = (s32 *)0x80161200;
+
+    if (srcBus < 0 || srcBus >= 4 || destBus < 0 || destBus >= 4) {
+        return;
+    }
+
+    busMatrix[srcBus * 4 + destBus] = 1;
+    D_80160430 = 1;  /* Bus config changed */
 }
 
 /*
  * func_80095800 (292 bytes)
- * Reverb/effect setup
+ * Reverb/effect setup - configure audio effects
  */
 void func_80095800(s32 effectId, f32 param) {
-    /* Effect setup - stub */
+    s32 *effectState = (s32 *)0x80161300;
+
+    switch (effectId) {
+        case 0:  /* Reverb */
+            effectState[0] = 1;
+            *(f32 *)&effectState[1] = param;  /* Reverb amount 0-1 */
+            break;
+
+        case 1:  /* Echo */
+            effectState[2] = 1;
+            *(f32 *)&effectState[3] = param;  /* Echo delay */
+            break;
+
+        case 2:  /* Low-pass filter */
+            effectState[4] = 1;
+            *(f32 *)&effectState[5] = param;  /* Cutoff frequency */
+            break;
+
+        case 3:  /* Chorus */
+            effectState[6] = 1;
+            *(f32 *)&effectState[7] = param;  /* Chorus amount */
+            break;
+    }
+
+    D_80160434 = 1;  /* Effects changed */
 }
 
 /*
  * func_80095924 (184 bytes)
- * Audio timing sync
+ * Audio timing sync - synchronize audio with video
  */
 void func_80095924(void) {
-    /* Audio sync - stub */
+    s32 audioFrame;
+    s32 videoFrame;
+    s32 drift;
+
+    audioFrame = D_80160440;
+    videoFrame = D_80142AFC;
+
+    drift = videoFrame - audioFrame;
+
+    /* Adjust audio timing if drifted */
+    if (drift > 2) {
+        D_80160444 = 1;  /* Speed up */
+    } else if (drift < -2) {
+        D_80160444 = -1;  /* Slow down */
+    } else {
+        D_80160444 = 0;  /* Normal */
+    }
+
+    D_80160440 = videoFrame;
 }
 
 /*
  * func_80095A24 (236 bytes)
- * Sound priority management
+ * Sound priority management - set channel priority
  */
 void func_80095A24(s32 channel, s32 priority) {
-    /* Priority management - stub */
+    s32 *channelState;
+
+    if (channel < 0 || channel >= 16) {
+        return;
+    }
+
+    channelState = (s32 *)(0x80160000 + channel * 64);
+    channelState[5] = priority;
 }
 
 /*
  * func_80095B10 (236 bytes)
- * Audio stream control
+ * Audio stream control - control streaming audio
  */
 void func_80095B10(s32 streamId, s32 cmd) {
-    /* Stream control - stub */
+    s32 *streamState = (s32 *)(0x80161400 + streamId * 32);
+
+    if (streamId < 0 || streamId >= 4) {
+        return;
+    }
+
+    switch (cmd) {
+        case 0:  /* Stop */
+            streamState[0] = 0;
+            break;
+
+        case 1:  /* Start */
+            streamState[0] = 1;
+            streamState[1] = 0;  /* Position */
+            break;
+
+        case 2:  /* Pause */
+            streamState[0] = 2;
+            break;
+
+        case 3:  /* Resume */
+            if (streamState[0] == 2) {
+                streamState[0] = 1;
+            }
+            break;
+    }
 }
 
 /*
  * func_80095BFC (268 bytes)
- * Audio buffer management
+ * Audio buffer management - manage audio DMA buffers
  */
 void func_80095BFC(void *buffer, s32 size) {
-    /* Buffer management - stub */
+    s32 *bufferInfo = (s32 *)0x80161500;
+
+    if (buffer == NULL || size <= 0) {
+        return;
+    }
+
+    /* Register buffer */
+    bufferInfo[0] = (s32)buffer;
+    bufferInfo[1] = size;
+    bufferInfo[2] = 0;  /* Read position */
+    bufferInfo[3] = 0;  /* Write position */
+    bufferInfo[4] = 0;  /* Underrun count */
+
+    D_80160450 = 1;  /* Buffer registered */
 }
 
 /*
  * func_80095D04 (468 bytes)
- * Audio state save/restore
+ * Audio state save/restore - save or restore audio state
  */
 void func_80095D04(s32 cmd) {
-    /* State save/restore - stub */
+    s32 *stateBuffer = (s32 *)0x80161600;
+    s32 *channelState;
+    s32 i, j;
+
+    if (cmd == 0) {
+        /* Save state */
+        for (i = 0; i < 16; i++) {
+            channelState = (s32 *)(0x80160000 + i * 64);
+            for (j = 0; j < 16; j++) {
+                stateBuffer[i * 16 + j] = channelState[j];
+            }
+        }
+        D_80160460 = 1;  /* State saved */
+    } else {
+        /* Restore state */
+        for (i = 0; i < 16; i++) {
+            channelState = (s32 *)(0x80160000 + i * 64);
+            for (j = 0; j < 16; j++) {
+                channelState[j] = stateBuffer[i * 16 + j];
+            }
+        }
+        D_80160400 = 0xFFFF;  /* Mark all channels for update */
+    }
 }
 
 /*
@@ -8953,58 +9297,376 @@ void func_800A4E60(void *tire, f32 *pos, f32 intensity) {
 
 /*
  * func_800A51E0 (932 bytes)
- * Car damage visual update
+ * Car damage visual update - apply damage effects to car model
  */
 void func_800A51E0(void *car, s32 damageLevel) {
-    /* Damage visual - stub */
+    f32 *bodyOffset;
+    s32 *damageState;
+    s32 i;
+
+    if (car == NULL) return;
+
+    bodyOffset = (f32 *)((u8 *)car + 0x200);
+    damageState = (s32 *)((u8 *)car + 0x220);
+
+    /* Apply damage deformation based on level */
+    if (damageLevel == 0) {
+        /* No damage - reset */
+        for (i = 0; i < 8; i++) {
+            bodyOffset[i] = 0.0f;
+        }
+        *damageState = 0;
+        return;
+    }
+
+    /* Light damage - minor dents */
+    if (damageLevel == 1) {
+        bodyOffset[0] = -0.5f;  /* Front left */
+        bodyOffset[1] = 0.3f;   /* Front right */
+        *damageState = 1;
+    }
+    /* Medium damage - visible damage */
+    else if (damageLevel == 2) {
+        bodyOffset[0] = -1.5f;
+        bodyOffset[1] = 1.0f;
+        bodyOffset[2] = -0.8f;  /* Rear left */
+        bodyOffset[3] = 0.5f;   /* Rear right */
+        *damageState = 2;
+    }
+    /* Heavy damage - severe deformation */
+    else if (damageLevel >= 3) {
+        bodyOffset[0] = -3.0f;
+        bodyOffset[1] = 2.5f;
+        bodyOffset[2] = -2.0f;
+        bodyOffset[3] = 1.5f;
+        bodyOffset[4] = 0.5f;  /* Hood */
+        bodyOffset[5] = -1.0f; /* Trunk */
+        *damageState = 3;
+
+        /* Trigger smoke effect on heavy damage */
+        if (damageLevel >= 4) {
+            func_800A5588(car, 2);  /* Smoke */
+        }
+    }
 }
 
 /*
  * func_800A5588 (444 bytes)
- * Engine particle effect
+ * Engine particle effect - spawn particles from car
  */
 void func_800A5588(void *car, s32 effectType) {
-    /* Particle effect - stub */
+    f32 *carPos;
+    f32 *carDir;
+    s32 *particlePool;
+    s32 particleIndex;
+    s32 i;
+
+    if (car == NULL) return;
+
+    carPos = (f32 *)((u8 *)car + 0x24);
+    carDir = (f32 *)((u8 *)car + 0x60);
+    particlePool = (s32 *)0x80162000;
+    particleIndex = D_80162100;
+
+    /* Spawn particles based on effect type */
+    switch (effectType) {
+        case 0:  /* Dust/dirt */
+            for (i = 0; i < 4; i++) {
+                s32 *particle = &particlePool[particleIndex * 16];
+                particle[0] = 1;  /* Active */
+                *(f32 *)&particle[1] = carPos[0] + (i - 1.5f) * 2.0f;
+                *(f32 *)&particle[2] = carPos[1];
+                *(f32 *)&particle[3] = carPos[2] + (i - 1.5f) * 2.0f;
+                *(f32 *)&particle[4] = 0.0f;  /* Vel X */
+                *(f32 *)&particle[5] = 2.0f;  /* Vel Y (upward) */
+                *(f32 *)&particle[6] = 0.0f;  /* Vel Z */
+                particle[7] = 30;  /* Lifetime */
+                particle[8] = 0;   /* Type: dust */
+                particleIndex = (particleIndex + 1) % 64;
+            }
+            break;
+
+        case 1:  /* Sparks */
+            for (i = 0; i < 8; i++) {
+                s32 *particle = &particlePool[particleIndex * 16];
+                particle[0] = 1;
+                *(f32 *)&particle[1] = carPos[0];
+                *(f32 *)&particle[2] = carPos[1] + 1.0f;
+                *(f32 *)&particle[3] = carPos[2];
+                *(f32 *)&particle[4] = (f32)(i - 4) * 3.0f;
+                *(f32 *)&particle[5] = 5.0f + (f32)(i % 3);
+                *(f32 *)&particle[6] = (f32)((i * 7) % 8 - 4) * 3.0f;
+                particle[7] = 15;  /* Short lifetime */
+                particle[8] = 1;   /* Type: spark */
+                particleIndex = (particleIndex + 1) % 64;
+            }
+            break;
+
+        case 2:  /* Smoke */
+            for (i = 0; i < 3; i++) {
+                s32 *particle = &particlePool[particleIndex * 16];
+                particle[0] = 1;
+                *(f32 *)&particle[1] = carPos[0] + carDir[0] * 3.0f;
+                *(f32 *)&particle[2] = carPos[1] + 2.0f;
+                *(f32 *)&particle[3] = carPos[2] + carDir[2] * 3.0f;
+                *(f32 *)&particle[4] = 0.0f;
+                *(f32 *)&particle[5] = 1.0f;  /* Slow rise */
+                *(f32 *)&particle[6] = 0.0f;
+                particle[7] = 60;  /* Long lifetime */
+                particle[8] = 2;   /* Type: smoke */
+                particleIndex = (particleIndex + 1) % 64;
+            }
+            break;
+    }
+
+    D_80162100 = particleIndex;
 }
 
 /*
  * func_800A5744 (488 bytes)
- * Exhaust smoke effect
+ * Exhaust smoke effect - render exhaust from car
  */
 void func_800A5744(void *car, f32 *exhaustPos) {
-    /* Exhaust effect - stub */
+    f32 *carVel;
+    f32 speed;
+    s32 rpm;
+    s32 *particlePool;
+    s32 particleIndex;
+    s32 *particle;
+
+    if (car == NULL || exhaustPos == NULL) return;
+
+    carVel = (f32 *)((u8 *)car + 0x34);
+    rpm = *(s32 *)((u8 *)car + 0x10C);
+
+    /* Calculate speed */
+    speed = sqrtf(carVel[0] * carVel[0] + carVel[2] * carVel[2]);
+
+    /* Only emit exhaust at high RPM or acceleration */
+    if (rpm < 4000 && speed < 20.0f) {
+        return;
+    }
+
+    particlePool = (s32 *)0x80162000;
+    particleIndex = D_80162100;
+    particle = &particlePool[particleIndex * 16];
+
+    /* Spawn exhaust particle */
+    particle[0] = 1;
+    *(f32 *)&particle[1] = exhaustPos[0];
+    *(f32 *)&particle[2] = exhaustPos[1];
+    *(f32 *)&particle[3] = exhaustPos[2];
+    *(f32 *)&particle[4] = -carVel[0] * 0.2f;
+    *(f32 *)&particle[5] = 0.5f;
+    *(f32 *)&particle[6] = -carVel[2] * 0.2f;
+    particle[7] = 20;
+    particle[8] = 3;  /* Type: exhaust */
+
+    D_80162100 = (particleIndex + 1) % 64;
 }
 
 /*
  * func_800A5D34 (1116 bytes)
- * Car shadow rendering
+ * Car shadow rendering - render blob shadow under car
  */
 void func_800A5D34(void *car, void *ground) {
-    /* Shadow render - stub */
+    f32 *carPos;
+    f32 *groundY;
+    f32 shadowY;
+    f32 shadowScale;
+    f32 height;
+    void *dlPtr;
+
+    if (car == NULL) return;
+
+    carPos = (f32 *)((u8 *)car + 0x24);
+    dlPtr = *(void **)(0x80149438);
+
+    /* Get ground height at car position */
+    if (ground != NULL) {
+        groundY = (f32 *)((u8 *)ground + 0x04);
+        shadowY = *groundY + 0.1f;  /* Slight offset to avoid z-fighting */
+    } else {
+        shadowY = 0.1f;
+    }
+
+    /* Calculate shadow scale based on height */
+    height = carPos[1] - shadowY;
+    if (height < 0.0f) height = 0.0f;
+    if (height > 50.0f) height = 50.0f;
+
+    /* Shadow gets smaller and fainter when higher */
+    shadowScale = 1.0f - (height / 100.0f);
+    if (shadowScale < 0.3f) shadowScale = 0.3f;
+
+    /* Skip if too high */
+    if (height > 50.0f) return;
+
+    /* Render shadow quad */
+    {
+        f32 halfWidth = 3.0f * shadowScale;
+        f32 halfLength = 5.0f * shadowScale;
+        u8 alpha = (u8)(100 * shadowScale);
+
+        /* Set blend mode for shadow */
+        *(u32 *)dlPtr = 0xE200001C;  /* G_SETOTHERMODE_L */
+        *(u32 *)((u8 *)dlPtr + 4) = 0x00504240;  /* Blend mode */
+        dlPtr = (void *)((u8 *)dlPtr + 8);
+
+        /* Draw shadow texture */
+        func_800C7110(32, (s32)(carPos[0] - halfWidth), (s32)(shadowY),
+                      (s32)(halfWidth * 2), (s32)(halfLength * 2), alpha);
+    }
+
+    *(void **)(0x80149438) = dlPtr;
 }
 
 /*
  * func_800A6094 (428 bytes)
- * Headlight/taillight rendering
+ * Headlight/taillight rendering - render car lights
  */
 void func_800A6094(void *car, s32 lightMask) {
-    /* Light render - stub */
+    f32 *carPos;
+    f32 *carDir;
+    f32 lightPos[3];
+    s32 alpha;
+    s32 i;
+
+    if (car == NULL) return;
+
+    carPos = (f32 *)((u8 *)car + 0x24);
+    carDir = (f32 *)((u8 *)car + 0x60);
+
+    /* Headlights (bits 0-1) */
+    if (lightMask & 0x03) {
+        alpha = (lightMask & 0x01) ? 255 : 128;
+
+        /* Left headlight */
+        lightPos[0] = carPos[0] + carDir[0] * 4.0f - carDir[2] * 1.5f;
+        lightPos[1] = carPos[1] + 1.0f;
+        lightPos[2] = carPos[2] + carDir[2] * 4.0f + carDir[0] * 1.5f;
+        func_800C7110(33, (s32)lightPos[0], (s32)lightPos[1], 8, 8, alpha);
+
+        /* Right headlight */
+        lightPos[0] = carPos[0] + carDir[0] * 4.0f + carDir[2] * 1.5f;
+        lightPos[2] = carPos[2] + carDir[2] * 4.0f - carDir[0] * 1.5f;
+        func_800C7110(33, (s32)lightPos[0], (s32)lightPos[1], 8, 8, alpha);
+    }
+
+    /* Taillights (bits 2-3) */
+    if (lightMask & 0x0C) {
+        alpha = (lightMask & 0x04) ? 255 : 100;
+
+        /* Left taillight */
+        lightPos[0] = carPos[0] - carDir[0] * 4.0f - carDir[2] * 1.5f;
+        lightPos[1] = carPos[1] + 1.0f;
+        lightPos[2] = carPos[2] - carDir[2] * 4.0f + carDir[0] * 1.5f;
+        func_800C7110(34, (s32)lightPos[0], (s32)lightPos[1], 6, 4, alpha);
+
+        /* Right taillight */
+        lightPos[0] = carPos[0] - carDir[0] * 4.0f + carDir[2] * 1.5f;
+        lightPos[2] = carPos[2] - carDir[2] * 4.0f - carDir[0] * 1.5f;
+        func_800C7110(34, (s32)lightPos[0], (s32)lightPos[1], 6, 4, alpha);
+    }
 }
 
 /*
  * func_800A6244 (448 bytes)
- * Brake light update
+ * Brake light update - update brake light state
  */
 void func_800A6244(void *car, s32 braking) {
-    /* Brake light - stub */
+    s32 *lightState;
+    s32 currentLights;
+
+    if (car == NULL) return;
+
+    lightState = (s32 *)((u8 *)car + 0x230);
+    currentLights = *lightState;
+
+    if (braking) {
+        /* Turn on brake lights (bits 2-3) */
+        currentLights |= 0x0C;
+    } else {
+        /* Dim taillights */
+        currentLights = (currentLights & ~0x0C) | 0x08;
+    }
+
+    *lightState = currentLights;
+
+    /* Render lights */
+    func_800A6094(car, currentLights);
 }
 
 /*
  * func_800A6404 (2016 bytes)
- * Car full render
+ * Car full render - render complete car with all effects
  */
 void func_800A6404(void *car) {
-    /* Full car render - stub */
+    f32 *carPos;
+    f32 *carVel;
+    s32 damageLevel;
+    s32 lightState;
+    s32 braking;
+    s32 onGround;
+    f32 speed;
+    f32 exhaustPos[3];
+
+    if (car == NULL) return;
+
+    carPos = (f32 *)((u8 *)car + 0x24);
+    carVel = (f32 *)((u8 *)car + 0x34);
+    damageLevel = *(s32 *)((u8 *)car + 0x220);
+    lightState = *(s32 *)((u8 *)car + 0x230);
+    braking = *(s32 *)((u8 *)car + 0x104);
+    onGround = *(s32 *)((u8 *)car + 0x234);
+
+    /* Calculate speed */
+    speed = sqrtf(carVel[0] * carVel[0] + carVel[2] * carVel[2]);
+
+    /* Render shadow */
+    if (onGround) {
+        func_800A5D34(car, NULL);
+    }
+
+    /* Render car body */
+    func_80099BFC(car);
+
+    /* Apply damage visuals */
+    if (damageLevel > 0) {
+        func_800A51E0(car, damageLevel);
+    }
+
+    /* Render lights */
+    func_800A6094(car, lightState);
+
+    /* Update brake lights */
+    if (braking > 0) {
+        func_800A6244(car, 1);
+    } else {
+        func_800A6244(car, 0);
+    }
+
+    /* Exhaust effect */
+    {
+        f32 *carDir = (f32 *)((u8 *)car + 0x60);
+        exhaustPos[0] = carPos[0] - carDir[0] * 4.5f;
+        exhaustPos[1] = carPos[1] + 0.5f;
+        exhaustPos[2] = carPos[2] - carDir[2] * 4.5f;
+        func_800A5744(car, exhaustPos);
+    }
+
+    /* Dust/dirt effect when on ground and moving */
+    if (onGround && speed > 30.0f) {
+        s32 roadType = *(s32 *)((u8 *)car + 0x118);
+        if (roadType == 1 || roadType == 2) {  /* Dirt or gravel */
+            func_800A5588(car, 0);  /* Dust */
+        }
+    }
+
+    /* Spark effect on collision */
+    if (*(s32 *)((u8 *)car + 0x114) != 0) {  /* Crash flag */
+        func_800A5588(car, 1);  /* Sparks */
+    }
 }
 
 /*
