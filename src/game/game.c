@@ -28124,193 +28124,887 @@ void func_800BB9BC(void) {
 /*
  * func_800BC2BC (292 bytes)
  * Camera reset
+ *
+ * Resets camera to default state
+ * Camera structure offsets:
+ *   0x00: position[3]
+ *   0x0C: target[3]
+ *   0x18: up[3]
+ *   0x24: fov
+ *   0x28: near plane
+ *   0x2C: far plane
+ *   0x30: aspect
+ *   0x34: mode
+ *   0x38: shake intensity
+ *   0x3C: shake timer
  */
 void func_800BC2BC(void *camera) {
-    /* Camera reset - stub */
+    f32 *pos, *target, *up;
+    f32 *fov, *near, *far, *aspect;
+    s32 *mode;
+
+    if (camera == NULL) {
+        return;
+    }
+
+    pos = (f32 *)camera;
+    target = (f32 *)((u8 *)camera + 0x0C);
+    up = (f32 *)((u8 *)camera + 0x18);
+    fov = (f32 *)((u8 *)camera + 0x24);
+    near = (f32 *)((u8 *)camera + 0x28);
+    far = (f32 *)((u8 *)camera + 0x2C);
+    aspect = (f32 *)((u8 *)camera + 0x30);
+    mode = (s32 *)((u8 *)camera + 0x34);
+
+    /* Default position (behind and above origin) */
+    pos[0] = 0.0f;
+    pos[1] = 100.0f;
+    pos[2] = -200.0f;
+
+    /* Default target (origin) */
+    target[0] = 0.0f;
+    target[1] = 0.0f;
+    target[2] = 0.0f;
+
+    /* Default up (world Y) */
+    up[0] = 0.0f;
+    up[1] = 1.0f;
+    up[2] = 0.0f;
+
+    /* Default projection */
+    *fov = 60.0f;
+    *near = 10.0f;
+    *far = 10000.0f;
+    *aspect = 4.0f / 3.0f;  /* N64 4:3 */
+
+    *mode = 0;  /* Default mode */
 }
 
 /*
  * func_800BCBB8 (808 bytes)
  * Camera lerp position
+ *
+ * Smoothly interpolates camera position toward target
  */
-void func_800BCBB8(void *camera, f32 *target, f32 t) {
-    /* Camera lerp - stub */
+void func_800BCBB8(void *camera, f32 *targetPos, f32 t) {
+    f32 *pos;
+
+    if (camera == NULL || targetPos == NULL) {
+        return;
+    }
+
+    /* Clamp t */
+    if (t < 0.0f) t = 0.0f;
+    if (t > 1.0f) t = 1.0f;
+
+    pos = (f32 *)camera;
+
+    /* Linear interpolation */
+    pos[0] = pos[0] + (targetPos[0] - pos[0]) * t;
+    pos[1] = pos[1] + (targetPos[1] - pos[1]) * t;
+    pos[2] = pos[2] + (targetPos[2] - pos[2]) * t;
 }
 
 /*
  * func_800BCEE4 (548 bytes)
  * Camera orbit control
+ *
+ * Orbits camera around its current target
  */
 void func_800BCEE4(void *camera, f32 yaw, f32 pitch) {
-    /* Orbit - stub */
+    f32 *pos, *target;
+    f32 dx, dy, dz;
+    f32 dist, hDist;
+    f32 currentYaw, currentPitch;
+    f32 newYaw, newPitch;
+    f32 sinY, cosY, sinP, cosP;
+
+    if (camera == NULL) {
+        return;
+    }
+
+    pos = (f32 *)camera;
+    target = (f32 *)((u8 *)camera + 0x0C);
+
+    /* Vector from target to camera */
+    dx = pos[0] - target[0];
+    dy = pos[1] - target[1];
+    dz = pos[2] - target[2];
+
+    /* Calculate current angles and distance */
+    dist = sqrtf(dx*dx + dy*dy + dz*dz);
+    if (dist < 0.001f) return;
+
+    hDist = sqrtf(dx*dx + dz*dz);
+    currentYaw = atan2f(dx, dz);
+    currentPitch = atan2f(dy, hDist);
+
+    /* Apply deltas */
+    newYaw = currentYaw + yaw;
+    newPitch = currentPitch + pitch;
+
+    /* Clamp pitch to avoid gimbal lock */
+    if (newPitch > 1.5f) newPitch = 1.5f;
+    if (newPitch < -1.5f) newPitch = -1.5f;
+
+    /* Calculate new position */
+    sinY = sinf(newYaw);
+    cosY = cosf(newYaw);
+    sinP = sinf(newPitch);
+    cosP = cosf(newPitch);
+
+    pos[0] = target[0] + dist * cosP * sinY;
+    pos[1] = target[1] + dist * sinP;
+    pos[2] = target[2] + dist * cosP * cosY;
 }
 
 /*
  * func_800BD104 (460 bytes)
  * Camera dolly
+ *
+ * Moves camera along view direction (zoom in/out)
  */
 void func_800BD104(void *camera, f32 distance) {
-    /* Dolly - stub */
+    f32 *pos, *target;
+    f32 dx, dy, dz, len;
+
+    if (camera == NULL) {
+        return;
+    }
+
+    pos = (f32 *)camera;
+    target = (f32 *)((u8 *)camera + 0x0C);
+
+    /* Direction from camera to target */
+    dx = target[0] - pos[0];
+    dy = target[1] - pos[1];
+    dz = target[2] - pos[2];
+
+    len = sqrtf(dx*dx + dy*dy + dz*dz);
+    if (len < 0.001f) return;
+
+    /* Normalize */
+    dx /= len;
+    dy /= len;
+    dz /= len;
+
+    /* Move camera along direction */
+    pos[0] += dx * distance;
+    pos[1] += dy * distance;
+    pos[2] += dz * distance;
+
+    /* Clamp minimum distance */
+    dx = target[0] - pos[0];
+    dy = target[1] - pos[1];
+    dz = target[2] - pos[2];
+    len = sqrtf(dx*dx + dy*dy + dz*dz);
+    if (len < 10.0f) {
+        pos[0] = target[0] - dx * 10.0f / len;
+        pos[1] = target[1] - dy * 10.0f / len;
+        pos[2] = target[2] - dz * 10.0f / len;
+    }
 }
 
 /*
  * func_800BD2D0 (1976 bytes)
  * Camera collision avoidance
+ *
+ * Prevents camera from clipping through world geometry
+ * Uses raycasting from target to camera position
  */
 void func_800BD2D0(void *camera) {
-    /* Collision avoid - stub */
+    f32 *pos, *target;
+    f32 dx, dy, dz, len;
+    f32 hitDist;
+    s32 hit;
+
+    if (camera == NULL) {
+        return;
+    }
+
+    pos = (f32 *)camera;
+    target = (f32 *)((u8 *)camera + 0x0C);
+
+    /* Direction from target to camera */
+    dx = pos[0] - target[0];
+    dy = pos[1] - target[1];
+    dz = pos[2] - target[2];
+    len = sqrtf(dx*dx + dy*dy + dz*dz);
+
+    if (len < 0.001f) return;
+
+    /* Raycast from target toward camera */
+    hit = func_800A7DF0(target, pos, &hitDist);
+
+    if (hit && hitDist < len) {
+        /* Move camera to just before hit point */
+        f32 safeDist = hitDist - 5.0f;  /* 5 unit buffer */
+        if (safeDist < 10.0f) safeDist = 10.0f;
+
+        pos[0] = target[0] + (dx / len) * safeDist;
+        pos[1] = target[1] + (dy / len) * safeDist;
+        pos[2] = target[2] + (dz / len) * safeDist;
+    }
 }
 
 /*
  * func_800BDAA8 (852 bytes)
  * Camera shake effect
+ *
+ * Initiates a camera shake effect (impacts, explosions, etc.)
  */
 void func_800BDAA8(f32 intensity, f32 duration) {
-    /* Shake - stub */
+    extern f32 D_80170000;  /* Shake intensity */
+    extern f32 D_80170004;  /* Shake timer */
+    extern f32 D_80170008;  /* Shake decay rate */
+
+    D_80170000 = intensity;
+    D_80170004 = duration;
+
+    /* Calculate decay rate */
+    if (duration > 0.0f) {
+        D_80170008 = intensity / (duration * 60.0f);  /* Per-frame decay */
+    } else {
+        D_80170008 = intensity;
+    }
 }
 
 /*
  * func_800BDDFC (192 bytes)
  * Camera shake update
+ *
+ * Updates camera shake each frame
  */
 void func_800BDDFC(void *camera) {
-    /* Shake update - stub */
+    extern f32 D_80170000;  /* Shake intensity */
+    extern f32 D_80170004;  /* Shake timer */
+    extern f32 D_80170008;  /* Shake decay rate */
+    extern u32 D_80143500;  /* Random seed */
+    f32 *pos;
+    f32 offsetX, offsetY;
+
+    if (camera == NULL || D_80170000 <= 0.0f) {
+        return;
+    }
+
+    pos = (f32 *)camera;
+
+    /* Random offsets */
+    D_80143500 = D_80143500 * 1103515245 + 12345;
+    offsetX = ((f32)(D_80143500 & 0xFFFF) / 65535.0f - 0.5f) * D_80170000;
+    D_80143500 = D_80143500 * 1103515245 + 12345;
+    offsetY = ((f32)(D_80143500 & 0xFFFF) / 65535.0f - 0.5f) * D_80170000;
+
+    /* Apply shake offset */
+    pos[0] += offsetX;
+    pos[1] += offsetY;
+
+    /* Decay shake */
+    D_80170000 -= D_80170008;
+    D_80170004 -= 0.0166f;
+
+    if (D_80170004 <= 0.0f || D_80170000 <= 0.0f) {
+        D_80170000 = 0.0f;
+        D_80170004 = 0.0f;
+    }
 }
 
 /*
  * func_800BDEBC (444 bytes)
  * Camera zoom control
+ *
+ * Adjusts camera FOV for zoom effect
  */
 void func_800BDEBC(void *camera, f32 zoom) {
-    /* Zoom - stub */
+    f32 *fov;
+    f32 baseFOV = 60.0f;
+
+    if (camera == NULL) {
+        return;
+    }
+
+    fov = (f32 *)((u8 *)camera + 0x24);
+
+    /* Clamp zoom factor */
+    if (zoom < 0.5f) zoom = 0.5f;
+    if (zoom > 2.0f) zoom = 2.0f;
+
+    /* FOV inversely proportional to zoom */
+    *fov = baseFOV / zoom;
+
+    /* Clamp FOV */
+    if (*fov < 20.0f) *fov = 20.0f;
+    if (*fov > 120.0f) *fov = 120.0f;
 }
 
 /*
  * func_800BE078 (1136 bytes)
  * Camera auto-follow
+ *
+ * Smoothly follows a target (car) with spring physics
  */
 void func_800BE078(void *camera, void *target) {
-    /* Auto follow - stub */
+    f32 *camPos, *camTarget;
+    f32 *targetPos, *targetVel, *targetForward;
+    f32 desiredPos[3];
+    f32 dx, dz;
+    f32 behind = 200.0f;
+    f32 above = 80.0f;
+    f32 lookAhead = 50.0f;
+    f32 smoothFactor = 0.1f;
+
+    if (camera == NULL || target == NULL) {
+        return;
+    }
+
+    camPos = (f32 *)camera;
+    camTarget = (f32 *)((u8 *)camera + 0x0C);
+    targetPos = (f32 *)((u8 *)target + 0x24);
+    targetVel = (f32 *)((u8 *)target + 0x34);
+    targetForward = (f32 *)((u8 *)target + 0x60);
+
+    /* Desired position: behind and above target */
+    desiredPos[0] = targetPos[0] - targetForward[0] * behind;
+    desiredPos[1] = targetPos[1] + above;
+    desiredPos[2] = targetPos[2] - targetForward[2] * behind;
+
+    /* Smooth interpolation to desired position */
+    camPos[0] += (desiredPos[0] - camPos[0]) * smoothFactor;
+    camPos[1] += (desiredPos[1] - camPos[1]) * smoothFactor;
+    camPos[2] += (desiredPos[2] - camPos[2]) * smoothFactor;
+
+    /* Look ahead of target based on velocity */
+    dx = targetVel[0] * lookAhead * 0.1f;
+    dz = targetVel[2] * lookAhead * 0.1f;
+
+    camTarget[0] = targetPos[0] + dx;
+    camTarget[1] = targetPos[1] + 20.0f;
+    camTarget[2] = targetPos[2] + dz;
 }
 
 /*
  * func_800BE4F8 (936 bytes)
  * Camera cinematic mode
+ *
+ * Sets up camera for cinematic sequences
  */
 void func_800BE4F8(s32 cinematicId) {
-    /* Cinematic - stub */
+    extern void *D_80170020;  /* Active camera */
+    extern s32 D_80170024;    /* Cinematic state */
+    extern s32 D_80170028;    /* Cinematic frame */
+    extern f32 D_8017002C[32][6];  /* Keyframe data (pos + target) */
+    s32 *mode;
+
+    if (D_80170020 == NULL) {
+        return;
+    }
+
+    mode = (s32 *)((u8 *)D_80170020 + 0x34);
+    *mode = 4;  /* Cinematic mode */
+
+    D_80170024 = cinematicId;
+    D_80170028 = 0;
+
+    /* Load keyframes for this cinematic */
+    /* (Would load from ROM in real implementation) */
 }
 
 /*
  * func_800BEAA0 (908 bytes)
  * Camera cut to
+ *
+ * Instantly moves camera to new position and target
  */
 void func_800BEAA0(void *camera, f32 *pos, f32 *look) {
-    /* Cut to - stub */
+    f32 *camPos, *camTarget;
+
+    if (camera == NULL || pos == NULL || look == NULL) {
+        return;
+    }
+
+    camPos = (f32 *)camera;
+    camTarget = (f32 *)((u8 *)camera + 0x0C);
+
+    /* Instant cut */
+    camPos[0] = pos[0];
+    camPos[1] = pos[1];
+    camPos[2] = pos[2];
+
+    camTarget[0] = look[0];
+    camTarget[1] = look[1];
+    camTarget[2] = look[2];
 }
 
 /*
  * func_800BEE2C (924 bytes)
  * Camera blend between
+ *
+ * Blends between two camera states
  */
 void func_800BEE2C(void *cam1, void *cam2, f32 t) {
-    /* Blend - stub */
+    extern void *D_80170020;  /* Active camera */
+    f32 *pos1, *pos2, *target1, *target2;
+    f32 *outPos, *outTarget;
+
+    if (cam1 == NULL || cam2 == NULL || D_80170020 == NULL) {
+        return;
+    }
+
+    /* Clamp t */
+    if (t < 0.0f) t = 0.0f;
+    if (t > 1.0f) t = 1.0f;
+
+    pos1 = (f32 *)cam1;
+    target1 = (f32 *)((u8 *)cam1 + 0x0C);
+    pos2 = (f32 *)cam2;
+    target2 = (f32 *)((u8 *)cam2 + 0x0C);
+
+    outPos = (f32 *)D_80170020;
+    outTarget = (f32 *)((u8 *)D_80170020 + 0x0C);
+
+    /* Linear interpolation */
+    outPos[0] = pos1[0] + (pos2[0] - pos1[0]) * t;
+    outPos[1] = pos1[1] + (pos2[1] - pos1[1]) * t;
+    outPos[2] = pos1[2] + (pos2[2] - pos1[2]) * t;
+
+    outTarget[0] = target1[0] + (target2[0] - target1[0]) * t;
+    outTarget[1] = target1[1] + (target2[1] - target1[1]) * t;
+    outTarget[2] = target1[2] + (target2[2] - target1[2]) * t;
 }
 
 /*
  * func_800BF1C8 (236 bytes)
  * Camera FOV control
+ *
+ * Sets camera field of view
  */
 void func_800BF1C8(void *camera, f32 fov) {
-    /* FOV - stub */
+    f32 *camFov;
+
+    if (camera == NULL) {
+        return;
+    }
+
+    camFov = (f32 *)((u8 *)camera + 0x24);
+
+    /* Clamp FOV */
+    if (fov < 20.0f) fov = 20.0f;
+    if (fov > 120.0f) fov = 120.0f;
+
+    *camFov = fov;
 }
 
 /*
  * func_800BF2B8 (220 bytes)
  * Camera near/far planes
+ *
+ * Sets camera clipping planes
  */
-void func_800BF2B8(void *camera, f32 near, f32 far) {
-    /* Planes - stub */
+void func_800BF2B8(void *camera, f32 nearVal, f32 farVal) {
+    f32 *camNear, *camFar;
+
+    if (camera == NULL) {
+        return;
+    }
+
+    camNear = (f32 *)((u8 *)camera + 0x28);
+    camFar = (f32 *)((u8 *)camera + 0x2C);
+
+    /* Validate values */
+    if (nearVal < 1.0f) nearVal = 1.0f;
+    if (farVal < nearVal + 100.0f) farVal = nearVal + 100.0f;
+
+    *camNear = nearVal;
+    *camFar = farVal;
 }
 
 /*
  * func_800BF394 (200 bytes)
  * Camera aspect ratio
+ *
+ * Sets camera aspect ratio
  */
 void func_800BF394(void *camera, f32 aspect) {
-    /* Aspect - stub */
+    f32 *camAspect;
+
+    if (camera == NULL) {
+        return;
+    }
+
+    camAspect = (f32 *)((u8 *)camera + 0x30);
+
+    /* Clamp aspect */
+    if (aspect < 0.5f) aspect = 0.5f;
+    if (aspect > 3.0f) aspect = 3.0f;
+
+    *camAspect = aspect;
 }
 
 /*
  * func_800BF45C (988 bytes)
  * Camera look at
+ *
+ * Orients camera to look at target point
  */
 void func_800BF45C(void *camera, f32 *target) {
-    /* Look at - stub */
+    f32 *camTarget;
+
+    if (camera == NULL || target == NULL) {
+        return;
+    }
+
+    camTarget = (f32 *)((u8 *)camera + 0x0C);
+
+    camTarget[0] = target[0];
+    camTarget[1] = target[1];
+    camTarget[2] = target[2];
 }
 
 /*
  * func_800BF838 (948 bytes)
  * Camera first person
+ *
+ * First person view from inside vehicle
  */
 void func_800BF838(void *camera, void *player) {
-    /* First person - stub */
+    f32 *camPos, *camTarget;
+    f32 *playerPos, *playerForward;
+    s32 *mode;
+
+    if (camera == NULL || player == NULL) {
+        return;
+    }
+
+    camPos = (f32 *)camera;
+    camTarget = (f32 *)((u8 *)camera + 0x0C);
+    mode = (s32 *)((u8 *)camera + 0x34);
+
+    playerPos = (f32 *)((u8 *)player + 0x24);
+    playerForward = (f32 *)((u8 *)player + 0x60);
+
+    /* Camera at driver's head position */
+    camPos[0] = playerPos[0];
+    camPos[1] = playerPos[1] + 30.0f;  /* Eye height */
+    camPos[2] = playerPos[2];
+
+    /* Look forward */
+    camTarget[0] = camPos[0] + playerForward[0] * 100.0f;
+    camTarget[1] = camPos[1] + playerForward[1] * 100.0f;
+    camTarget[2] = camPos[2] + playerForward[2] * 100.0f;
+
+    *mode = 1;  /* First person mode */
 }
 
 /*
  * func_800BFBEC (380 bytes)
  * Camera third person
+ *
+ * Third person chase camera behind vehicle
  */
 void func_800BFBEC(void *camera, void *player) {
-    /* Third person - stub */
+    s32 *mode;
+
+    if (camera == NULL || player == NULL) {
+        return;
+    }
+
+    mode = (s32 *)((u8 *)camera + 0x34);
+    *mode = 2;  /* Third person mode */
+
+    /* Use auto-follow for actual positioning */
+    func_800BE078(camera, player);
 }
 
 /*
  * func_800BFD94 (844 bytes)
  * Camera top down
+ *
+ * Top-down overhead view
  */
 void func_800BFD94(void *camera) {
-    /* Top down - stub */
+    extern void *D_80152818;  /* Player car */
+    f32 *camPos, *camTarget;
+    f32 *playerPos;
+    s32 *mode;
+
+    if (camera == NULL) {
+        return;
+    }
+
+    camPos = (f32 *)camera;
+    camTarget = (f32 *)((u8 *)camera + 0x0C);
+    mode = (s32 *)((u8 *)camera + 0x34);
+
+    playerPos = (f32 *)((u8 *)&D_80152818 + 0x24);
+
+    /* Position directly above player */
+    camPos[0] = playerPos[0];
+    camPos[1] = playerPos[1] + 500.0f;
+    camPos[2] = playerPos[2];
+
+    /* Look straight down */
+    camTarget[0] = playerPos[0];
+    camTarget[1] = playerPos[1];
+    camTarget[2] = playerPos[2];
+
+    *mode = 3;  /* Top down mode */
 }
 
 /*
  * func_800C00E0 (444 bytes)
  * Camera free look
+ *
+ * Free camera controlled by player input
  */
 void func_800C00E0(void *camera, s32 input) {
-    /* Free look - stub */
+    f32 *camPos;
+    f32 moveSpeed = 10.0f;
+    f32 rotSpeed = 0.05f;
+    s32 *mode;
+
+    if (camera == NULL) {
+        return;
+    }
+
+    camPos = (f32 *)camera;
+    mode = (s32 *)((u8 *)camera + 0x34);
+    *mode = 5;  /* Free look mode */
+
+    /* Movement controls */
+    if (input & 0x0800) {  /* Up */
+        camPos[2] += moveSpeed;
+    }
+    if (input & 0x0400) {  /* Down */
+        camPos[2] -= moveSpeed;
+    }
+    if (input & 0x0200) {  /* Left */
+        camPos[0] -= moveSpeed;
+    }
+    if (input & 0x0100) {  /* Right */
+        camPos[0] += moveSpeed;
+    }
+    if (input & 0x0020) {  /* L trigger - up */
+        camPos[1] += moveSpeed;
+    }
+    if (input & 0x0010) {  /* R trigger - down */
+        camPos[1] -= moveSpeed;
+    }
+
+    /* Rotation controls via C-buttons */
+    if (input & 0x0008) {  /* C-up */
+        func_800BCEE4(camera, 0.0f, rotSpeed);
+    }
+    if (input & 0x0004) {  /* C-down */
+        func_800BCEE4(camera, 0.0f, -rotSpeed);
+    }
+    if (input & 0x0002) {  /* C-left */
+        func_800BCEE4(camera, -rotSpeed, 0.0f);
+    }
+    if (input & 0x0001) {  /* C-right */
+        func_800BCEE4(camera, rotSpeed, 0.0f);
+    }
 }
 
 /*
  * func_800C02A0 (556 bytes)
  * Camera replay mode
+ *
+ * Playback camera from recorded replay data
  */
 void func_800C02A0(void *camera, s32 frame) {
-    /* Replay cam - stub */
+    extern f32 D_80170100[3600][6];  /* Replay camera data (60 sec @ 60fps) */
+    f32 *camPos, *camTarget;
+    s32 *mode;
+
+    if (camera == NULL || frame < 0 || frame >= 3600) {
+        return;
+    }
+
+    camPos = (f32 *)camera;
+    camTarget = (f32 *)((u8 *)camera + 0x0C);
+    mode = (s32 *)((u8 *)camera + 0x34);
+
+    *mode = 6;  /* Replay mode */
+
+    /* Load position from replay data */
+    camPos[0] = D_80170100[frame][0];
+    camPos[1] = D_80170100[frame][1];
+    camPos[2] = D_80170100[frame][2];
+
+    camTarget[0] = D_80170100[frame][3];
+    camTarget[1] = D_80170100[frame][4];
+    camTarget[2] = D_80170100[frame][5];
 }
 
 /*
  * func_800C04CC (912 bytes)
  * Camera track spline
+ *
+ * Moves camera along a spline path
  */
 void func_800C04CC(void *camera, void *spline, f32 t) {
-    /* Spline - stub */
+    f32 *camPos, *camTarget;
+    f32 *points;
+    s32 numPoints;
+    s32 seg;
+    f32 localT;
+    f32 p0[3], p1[3], p2[3], p3[3];
+
+    if (camera == NULL || spline == NULL) {
+        return;
+    }
+
+    camPos = (f32 *)camera;
+    camTarget = (f32 *)((u8 *)camera + 0x0C);
+
+    /* Spline structure: [numPoints, point0[3], point1[3], ...] */
+    numPoints = *(s32 *)spline;
+    points = (f32 *)((u8 *)spline + 4);
+
+    if (numPoints < 4) return;
+
+    /* Clamp and find segment */
+    if (t < 0.0f) t = 0.0f;
+    if (t > 1.0f) t = 1.0f;
+
+    seg = (s32)(t * (numPoints - 3));
+    if (seg > numPoints - 4) seg = numPoints - 4;
+    localT = (t * (numPoints - 3)) - seg;
+
+    /* Get 4 control points for Catmull-Rom */
+    p0[0] = points[seg*3];     p0[1] = points[seg*3+1];     p0[2] = points[seg*3+2];
+    p1[0] = points[(seg+1)*3]; p1[1] = points[(seg+1)*3+1]; p1[2] = points[(seg+1)*3+2];
+    p2[0] = points[(seg+2)*3]; p2[1] = points[(seg+2)*3+1]; p2[2] = points[(seg+2)*3+2];
+    p3[0] = points[(seg+3)*3]; p3[1] = points[(seg+3)*3+1]; p3[2] = points[(seg+3)*3+2];
+
+    /* Catmull-Rom interpolation */
+    {
+        f32 t2 = localT * localT;
+        f32 t3 = t2 * localT;
+
+        camPos[0] = 0.5f * ((2*p1[0]) + (-p0[0]+p2[0])*localT + (2*p0[0]-5*p1[0]+4*p2[0]-p3[0])*t2 + (-p0[0]+3*p1[0]-3*p2[0]+p3[0])*t3);
+        camPos[1] = 0.5f * ((2*p1[1]) + (-p0[1]+p2[1])*localT + (2*p0[1]-5*p1[1]+4*p2[1]-p3[1])*t2 + (-p0[1]+3*p1[1]-3*p2[1]+p3[1])*t3);
+        camPos[2] = 0.5f * ((2*p1[2]) + (-p0[2]+p2[2])*localT + (2*p0[2]-5*p1[2]+4*p2[2]-p3[2])*t2 + (-p0[2]+3*p1[2]-3*p2[2]+p3[2])*t3);
+    }
+
+    /* Target slightly ahead on spline */
+    {
+        f32 aheadT = t + 0.05f;
+        if (aheadT > 1.0f) aheadT = 1.0f;
+        s32 aSeg = (s32)(aheadT * (numPoints - 3));
+        if (aSeg > numPoints - 4) aSeg = numPoints - 4;
+
+        camTarget[0] = points[(aSeg+1)*3];
+        camTarget[1] = points[(aSeg+1)*3+1];
+        camTarget[2] = points[(aSeg+1)*3+2];
+    }
 }
 
 /*
  * func_800C085C (612 bytes)
  * Camera matrix build
+ *
+ * Builds view matrix from camera state
  */
 void func_800C085C(void *camera, f32 *matrix) {
-    /* Matrix build - stub */
+    f32 *pos, *target, *up;
+    f32 forward[3], right[3], newUp[3];
+    f32 len;
+
+    if (camera == NULL || matrix == NULL) {
+        return;
+    }
+
+    pos = (f32 *)camera;
+    target = (f32 *)((u8 *)camera + 0x0C);
+    up = (f32 *)((u8 *)camera + 0x18);
+
+    /* Forward vector (target - pos, normalized) */
+    forward[0] = target[0] - pos[0];
+    forward[1] = target[1] - pos[1];
+    forward[2] = target[2] - pos[2];
+    len = sqrtf(forward[0]*forward[0] + forward[1]*forward[1] + forward[2]*forward[2]);
+    if (len > 0.001f) {
+        forward[0] /= len;
+        forward[1] /= len;
+        forward[2] /= len;
+    }
+
+    /* Right vector (forward x up) */
+    right[0] = forward[1] * up[2] - forward[2] * up[1];
+    right[1] = forward[2] * up[0] - forward[0] * up[2];
+    right[2] = forward[0] * up[1] - forward[1] * up[0];
+    len = sqrtf(right[0]*right[0] + right[1]*right[1] + right[2]*right[2]);
+    if (len > 0.001f) {
+        right[0] /= len;
+        right[1] /= len;
+        right[2] /= len;
+    }
+
+    /* Recalculate up (right x forward) */
+    newUp[0] = right[1] * forward[2] - right[2] * forward[1];
+    newUp[1] = right[2] * forward[0] - right[0] * forward[2];
+    newUp[2] = right[0] * forward[1] - right[1] * forward[0];
+
+    /* Build 4x4 view matrix (column-major for N64) */
+    matrix[0] = right[0];   matrix[4] = right[1];   matrix[8]  = right[2];   matrix[12] = -(right[0]*pos[0] + right[1]*pos[1] + right[2]*pos[2]);
+    matrix[1] = newUp[0];   matrix[5] = newUp[1];   matrix[9]  = newUp[2];   matrix[13] = -(newUp[0]*pos[0] + newUp[1]*pos[1] + newUp[2]*pos[2]);
+    matrix[2] = forward[0]; matrix[6] = forward[1]; matrix[10] = forward[2]; matrix[14] = -(forward[0]*pos[0] + forward[1]*pos[1] + forward[2]*pos[2]);
+    matrix[3] = 0.0f;       matrix[7] = 0.0f;       matrix[11] = 0.0f;       matrix[15] = 1.0f;
 }
 
 /*
  * func_800C0AC0 (2884 bytes)
  * Camera full update
+ *
+ * Main camera update - calls appropriate mode handler
  */
 void func_800C0AC0(void *camera) {
-    /* Full update - stub */
+    extern void *D_80152818;  /* Player car */
+    s32 *mode;
+
+    if (camera == NULL) {
+        return;
+    }
+
+    mode = (s32 *)((u8 *)camera + 0x34);
+
+    switch (*mode) {
+        case 0:  /* Default/Attract */
+            /* No movement */
+            break;
+
+        case 1:  /* First person */
+            func_800BF838(camera, &D_80152818);
+            break;
+
+        case 2:  /* Third person */
+            func_800BE078(camera, &D_80152818);
+            func_800BD2D0(camera);  /* Collision avoidance */
+            break;
+
+        case 3:  /* Top down */
+            func_800BFD94(camera);
+            break;
+
+        case 4:  /* Cinematic */
+            /* Handled by cinematic system */
+            break;
+
+        case 5:  /* Free look */
+            /* Handled by input */
+            break;
+
+        case 6:  /* Replay */
+            /* Handled by replay system */
+            break;
+
+        default:
+            break;
+    }
+
+    /* Apply camera shake if active */
+    func_800BDDFC(camera);
 }
 
 /*
