@@ -11014,172 +11014,1301 @@ void func_800B2D20(f32 *pos, f32 *forward) {
 /*
  * func_800B2DF8 (1428 bytes)
  * Engine sound update
+ *
+ * Based on arcade carsnd.c DoEngineSound().
+ * Updates engine sound pitch and volume based on RPM and throttle.
+ *
+ * Car structure offsets for audio:
+ *   0x10C: RPM
+ *   0x100: throttle
+ *   0x200: engine sound handle
+ *   0x204: engine sound pitch
+ *   0x208: engine sound volume
+ *   0x20C: engine sound state (0=off, 1=idle, 2=revving, 3=redline)
  */
+extern void func_80090F44(s32 handle, s32 pitch);  /* Set sound pitch */
+extern void func_80090E9C(s32 handle, s32 volume); /* Set sound volume */
+extern s32 func_80090284(s32 soundId, s32 flags);  /* Start sound */
+
 void func_800B2DF8(void *car) {
-    /* Engine sound - stub */
+    f32 rpm;
+    f32 throttle;
+    s32 *soundHandle;
+    s32 *soundPitch;
+    s32 *soundVolume;
+    s32 *soundState;
+    f32 idleRpm = 800.0f;
+    f32 redlineRpm = 8000.0f;
+    f32 rpmNorm;
+    s32 pitch, volume;
+
+    if (car == NULL) {
+        return;
+    }
+
+    rpm = *(f32 *)((u8 *)car + 0x10C);
+    throttle = *(f32 *)((u8 *)car + 0x100);
+    soundHandle = (s32 *)((u8 *)car + 0x200);
+    soundPitch = (s32 *)((u8 *)car + 0x204);
+    soundVolume = (s32 *)((u8 *)car + 0x208);
+    soundState = (s32 *)((u8 *)car + 0x20C);
+
+    /* Start engine sound if not playing */
+    if (*soundHandle == 0) {
+        *soundHandle = func_80090284(10, 0x8000);  /* Engine loop sound */
+        *soundState = 1;  /* Idle */
+    }
+
+    if (*soundHandle == 0) {
+        return;  /* Failed to start */
+    }
+
+    /* Normalize RPM (0.0 = idle, 1.0 = redline) */
+    rpmNorm = (rpm - idleRpm) / (redlineRpm - idleRpm);
+    if (rpmNorm < 0.0f) rpmNorm = 0.0f;
+    if (rpmNorm > 1.0f) rpmNorm = 1.0f;
+
+    /* Calculate pitch (0x1000 = normal, scaled by RPM) */
+    /* Arcade uses 0x800 to 0x1700 range */
+    pitch = (s32)(0x800 + rpmNorm * 0xF00);
+    if (pitch > 0x1700) pitch = 0x1700;
+
+    /* Calculate volume based on throttle and RPM */
+    /* More throttle = louder */
+    volume = (s32)(80 + throttle * 47 + rpmNorm * 30);
+    if (volume > 127) volume = 127;
+    if (volume < 40) volume = 40;
+
+    /* Update sound state */
+    if (rpmNorm > 0.9f) {
+        *soundState = 3;  /* Redline */
+    } else if (throttle > 0.3f) {
+        *soundState = 2;  /* Revving */
+    } else {
+        *soundState = 1;  /* Idle */
+    }
+
+    /* Apply pitch and volume */
+    if (pitch != *soundPitch) {
+        func_80090F44(*soundHandle, pitch);
+        *soundPitch = pitch;
+    }
+
+    if (volume != *soundVolume) {
+        func_80090E9C(*soundHandle, volume);
+        *soundVolume = volume;
+    }
 }
 
 /*
  * func_800B338C (900 bytes)
  * Tire sound update
+ *
+ * Based on arcade carsnd.c DoTireSqueals().
+ * Plays tire squeal sounds based on tire slip.
+ *
+ * Car structure offsets:
+ *   0x9C: tire forces [4][3]
+ *   0x210: tire squeal handles [4]
+ *   0x220: tire squeal volumes [4]
  */
 void func_800B338C(void *car) {
-    /* Tire sound - stub */
+    f32 *tireForces;
+    s32 *squealHandles;
+    s32 *squealVolumes;
+    f32 lateralForce, slipAmount;
+    s32 volume;
+    s32 i;
+
+    if (car == NULL) {
+        return;
+    }
+
+    tireForces = (f32 *)((u8 *)car + 0x9C);
+    squealHandles = (s32 *)((u8 *)car + 0x210);
+    squealVolumes = (s32 *)((u8 *)car + 0x220);
+
+    for (i = 0; i < 4; i++) {
+        /* Get lateral (side) force on this tire */
+        lateralForce = fabsf(tireForces[i * 3 + 1]);
+
+        /* Squeal threshold - need significant lateral force */
+        if (lateralForce > 500.0f) {
+            /* Calculate slip amount (normalized) */
+            slipAmount = (lateralForce - 500.0f) / 2000.0f;
+            if (slipAmount > 1.0f) slipAmount = 1.0f;
+
+            /* Calculate volume */
+            volume = (s32)(40 + slipAmount * 87);
+            if (volume > 127) volume = 127;
+
+            /* Start squeal if not playing */
+            if (squealHandles[i] == 0) {
+                squealHandles[i] = func_80090284(20 + i, 0x8000);  /* Tire squeal loop */
+            }
+
+            /* Update volume */
+            if (squealHandles[i] != 0 && volume != squealVolumes[i]) {
+                func_80090E9C(squealHandles[i], volume);
+                squealVolumes[i] = volume;
+            }
+        } else {
+            /* Stop squeal if force below threshold */
+            if (squealHandles[i] != 0) {
+                func_800B358C((void *)(long)squealHandles[i]);
+                squealHandles[i] = 0;
+                squealVolumes[i] = 0;
+            }
+        }
+    }
 }
 
 /*
  * func_800B3710 (684 bytes)
  * Collision sound trigger
+ *
+ * Based on arcade carsnd.c car bump sounds.
+ * Plays impact sounds when car collides with objects.
+ *
+ * Different sounds based on intensity:
+ *   Light (< 0.3): Small bump
+ *   Medium (0.3-0.6): Medium crash
+ *   Heavy (> 0.6): Big crash
  */
+extern s32 func_80091FBC(s32 soundId, s32 priority, s32 volume);  /* Play one-shot */
+
 void func_800B3710(void *car, f32 intensity) {
-    /* Collision sound - stub */
+    s32 soundId;
+    s32 volume;
+    s32 *lastBumpTime;
+
+    if (car == NULL) {
+        return;
+    }
+
+    lastBumpTime = (s32 *)((u8 *)car + 0x230);
+
+    /* Debounce - don't play too frequently */
+    /* Assume frame counter at D_80142AFC */
+    if (*lastBumpTime > 0) {
+        (*lastBumpTime)--;
+        return;
+    }
+
+    /* Clamp intensity */
+    if (intensity < 0.0f) intensity = 0.0f;
+    if (intensity > 1.0f) intensity = 1.0f;
+
+    /* Select sound based on intensity */
+    if (intensity < 0.3f) {
+        soundId = 30;  /* Light bump */
+        volume = (s32)(40 + intensity * 100);
+        *lastBumpTime = 5;  /* Short debounce */
+    } else if (intensity < 0.6f) {
+        soundId = 31;  /* Medium crash */
+        volume = (s32)(60 + intensity * 67);
+        *lastBumpTime = 10;  /* Medium debounce */
+    } else {
+        soundId = 32;  /* Heavy crash */
+        volume = 127;
+        *lastBumpTime = 20;  /* Long debounce */
+    }
+
+    /* Play collision sound */
+    func_80091FBC(soundId, 100, volume);
 }
 
 /*
  * func_800B39BC (396 bytes)
  * Wind sound update
+ *
+ * Wind noise that increases with speed.
+ * Based on arcade wind_state handling.
+ *
+ * Car structure offsets:
+ *   0x34: velocity (vec3)
+ *   0x234: wind sound handle
+ *   0x238: wind sound volume
  */
 void func_800B39BC(void *car) {
-    /* Wind sound - stub */
+    f32 *vel;
+    f32 speed;
+    s32 *windHandle;
+    s32 *windVolume;
+    s32 volume;
+    f32 speedThreshold = 30.0f;  /* Wind starts at 30 fps */
+    f32 maxSpeed = 200.0f;
+
+    if (car == NULL) {
+        return;
+    }
+
+    vel = (f32 *)((u8 *)car + 0x34);
+    windHandle = (s32 *)((u8 *)car + 0x234);
+    windVolume = (s32 *)((u8 *)car + 0x238);
+
+    /* Calculate speed */
+    speed = sqrtf(vel[0]*vel[0] + vel[1]*vel[1] + vel[2]*vel[2]);
+
+    if (speed > speedThreshold) {
+        /* Calculate wind volume (scales with speed) */
+        volume = (s32)((speed - speedThreshold) / (maxSpeed - speedThreshold) * 100);
+        if (volume > 100) volume = 100;
+        if (volume < 0) volume = 0;
+
+        /* Start wind sound if needed */
+        if (*windHandle == 0) {
+            *windHandle = func_80090284(40, 0x8000);  /* Wind loop */
+        }
+
+        /* Update volume */
+        if (*windHandle != 0 && volume != *windVolume) {
+            func_80090E9C(*windHandle, volume);
+            *windVolume = volume;
+        }
+    } else {
+        /* Stop wind sound when slow */
+        if (*windHandle != 0) {
+            func_800B358C((void *)(long)*windHandle);
+            *windHandle = 0;
+            *windVolume = 0;
+        }
+    }
 }
 
 /*
  * func_800B3B4C (468 bytes)
  * Crowd cheer trigger
+ *
+ * Plays crowd cheer sounds for stunts and checkpoints.
+ * Different sounds based on intensity/achievement.
  */
 void func_800B3B4C(s32 intensity) {
-    /* Crowd cheer - stub */
+    s32 soundId;
+    s32 volume;
+
+    /* Select cheer based on intensity */
+    if (intensity < 0) intensity = 0;
+    if (intensity > 10) intensity = 10;
+
+    if (intensity <= 2) {
+        soundId = 50;  /* Small cheer */
+        volume = 60 + intensity * 15;
+    } else if (intensity <= 5) {
+        soundId = 51;  /* Medium cheer */
+        volume = 80 + intensity * 8;
+    } else if (intensity <= 8) {
+        soundId = 52;  /* Big cheer */
+        volume = 100 + intensity * 3;
+    } else {
+        soundId = 53;  /* Huge cheer (epic trick) */
+        volume = 127;
+    }
+
+    /* Play one-shot cheer */
+    func_80091FBC(soundId, 50, volume);
 }
 
 /*
  * func_800B3D20 (488 bytes)
  * Ambient sound control
+ *
+ * Controls environmental ambient sounds (city noise, track ambience).
+ *
+ * Ambient IDs:
+ *   0 = City ambient (traffic, horns)
+ *   1 = Stadium ambient (crowd murmur)
+ *   2 = Tunnel echo
+ *   3 = Underwater muffled
+ *   4 = Wind gust
  */
+extern s32 D_80158100[8];  /* Ambient sound handles */
+extern s32 D_80158120[8];  /* Ambient sound volumes */
+
 void func_800B3D20(s32 ambientId, f32 volume) {
-    /* Ambient sound - stub */
+    s32 intVolume;
+    s32 soundId;
+
+    if (ambientId < 0 || ambientId > 7) {
+        return;
+    }
+
+    /* Clamp volume */
+    if (volume < 0.0f) volume = 0.0f;
+    if (volume > 1.0f) volume = 1.0f;
+    intVolume = (s32)(volume * 127);
+
+    /* Stop if volume is zero */
+    if (intVolume == 0) {
+        if (D_80158100[ambientId] != 0) {
+            func_800B358C((void *)(long)D_80158100[ambientId]);
+            D_80158100[ambientId] = 0;
+            D_80158120[ambientId] = 0;
+        }
+        return;
+    }
+
+    /* Map ambient ID to sound ID */
+    soundId = 60 + ambientId;
+
+    /* Start ambient if needed */
+    if (D_80158100[ambientId] == 0) {
+        D_80158100[ambientId] = func_80090284(soundId, 0x8000);  /* Loop */
+    }
+
+    /* Update volume */
+    if (D_80158100[ambientId] != 0 && intVolume != D_80158120[ambientId]) {
+        func_80090E9C(D_80158100[ambientId], intVolume);
+        D_80158120[ambientId] = intVolume;
+    }
 }
 
 /*
  * func_800B4208 (1328 bytes)
  * Voice playback
+ *
+ * Plays announcer voice clips for game events.
+ * Voice IDs correspond to different announcements:
+ *   0-2  = Race start announcer ("Ready", "Set", "Go!")
+ *   3-5  = Position calls ("First!", "Second!", "Third!")
+ *   6    = "Final Lap!"
+ *   7    = "Time Extended!"
+ *   8    = "Checkpoint!"
+ *   9    = "New Record!"
+ *   10   = "Game Over"
+ *   11-13 = Lap calls ("2 laps", "3 laps")
+ *   14-16 = Stunt calls ("Nice!", "Awesome!", "Incredible!")
+ *   17   = "Wings deployed"
+ *   18   = "Perfect landing!"
+ *
+ * Reference: Arcade announcer_sound[] and kill_announcer[] in game.c
  */
+extern s32 D_80158140;          /* Current voice handle */
+extern s32 D_80158144;          /* Voice playing flag */
+extern s32 D_80158148;          /* Voice queue */
+extern s32 D_8015814C;          /* Voice priority */
+extern s32 D_80158150;          /* Voice fade timer */
+
+/* External audio functions */
+extern s32 func_80090284(s32 soundId, s32 flags);
+extern void func_80090E9C(s32 handle, s32 volume);
+extern void func_80090F44(s32 handle, s32 pitch);
+extern void func_800B358C(void *handle);
+extern s32 func_80091FBC(s32 handle);  /* Check if sound done */
+
 void func_800B4208(s32 voiceId) {
-    /* Voice playback - stub */
+    s32 soundId;
+    s32 priority;
+    s32 baseSoundId;
+
+    /* Validate voice ID */
+    if (voiceId < 0 || voiceId > 31) {
+        return;
+    }
+
+    /* Map voice ID to sound ID */
+    baseSoundId = 100;  /* Voice sounds start at ID 100 */
+    soundId = baseSoundId + voiceId;
+
+    /* Determine priority (higher = more important) */
+    switch (voiceId) {
+        case 0: case 1: case 2:  /* Start sequence */
+            priority = 100;
+            break;
+        case 3: case 4: case 5:  /* Position calls */
+            priority = 80;
+            break;
+        case 6:  /* Final lap */
+            priority = 90;
+            break;
+        case 7:  /* Time extended */
+            priority = 95;
+            break;
+        case 8:  /* Checkpoint */
+            priority = 70;
+            break;
+        case 9:  /* New record */
+            priority = 100;
+            break;
+        case 10:  /* Game over */
+            priority = 100;
+            break;
+        case 14: case 15: case 16:  /* Stunt calls */
+            priority = 60;
+            break;
+        default:
+            priority = 50;
+            break;
+    }
+
+    /* Check if current voice should be preempted */
+    if (D_80158144 != 0) {
+        /* Voice already playing */
+        if (priority <= D_8015814C) {
+            /* Queue this voice if higher priority isn't playing */
+            D_80158148 = voiceId;
+            return;
+        }
+
+        /* Stop current voice (fade out quickly) */
+        if (D_80158140 != 0) {
+            func_800B358C((void *)(long)D_80158140);
+            D_80158140 = 0;
+        }
+    }
+
+    /* Start new voice */
+    D_80158140 = func_80090284(soundId, 0x0000);  /* One-shot, no loop */
+
+    if (D_80158140 != 0) {
+        D_80158144 = 1;
+        D_8015814C = priority;
+        D_80158150 = 0;
+
+        /* Set full volume for voices */
+        func_80090E9C(D_80158140, 127);
+
+        /* Center pitch */
+        func_80090F44(D_80158140, 0x1000);
+    }
 }
 
 /*
  * func_800B4738 (224 bytes)
  * Voice stop
+ *
+ * Stops the currently playing voice and clears the queue.
+ * Similar to arcade kill_announcer[] usage in game.c.
  */
 void func_800B4738(void) {
-    /* Voice stop - stub */
+    /* Stop current voice */
+    if (D_80158140 != 0) {
+        func_800B358C((void *)(long)D_80158140);
+        D_80158140 = 0;
+    }
+
+    /* Clear state */
+    D_80158144 = 0;
+    D_80158148 = -1;  /* Clear queue */
+    D_8015814C = 0;
+    D_80158150 = 0;
 }
 
 /*
  * func_800B4818 (892 bytes)
  * Audio bus mix
+ *
+ * Sets volume levels for different audio buses (categories).
+ * N64 audio system uses multiple buses for mixing:
+ *   Bus 0 = Music
+ *   Bus 1 = Sound effects (engine, tire, collision)
+ *   Bus 2 = Voice/announcer
+ *   Bus 3 = Ambient sounds
+ *   Bus 4 = UI sounds
+ *
+ * levels[] array: [left, right, center, sub] for each bus
+ * Values 0.0-1.0
  */
+extern f32 D_80158160[8][4];    /* Bus levels [bus][channel] */
+extern s32 D_801581E0;          /* Bus dirty flags */
+extern void func_80091B00(s32 bus, f32 left, f32 right);  /* Set bus volume */
+
 void func_800B4818(s32 bus, f32 *levels) {
-    /* Bus mix - stub */
+    f32 left, right, center, sub;
+    f32 finalLeft, finalRight;
+
+    /* Validate bus */
+    if (bus < 0 || bus > 7) {
+        return;
+    }
+
+    /* Validate levels pointer */
+    if (levels == NULL) {
+        return;
+    }
+
+    /* Extract channel levels */
+    left = levels[0];
+    right = levels[1];
+    center = levels[2];
+    sub = levels[3];
+
+    /* Clamp values */
+    if (left < 0.0f) left = 0.0f;
+    if (left > 1.0f) left = 1.0f;
+    if (right < 0.0f) right = 0.0f;
+    if (right > 1.0f) right = 1.0f;
+    if (center < 0.0f) center = 0.0f;
+    if (center > 1.0f) center = 1.0f;
+    if (sub < 0.0f) sub = 0.0f;
+    if (sub > 1.0f) sub = 1.0f;
+
+    /* Store levels */
+    D_80158160[bus][0] = left;
+    D_80158160[bus][1] = right;
+    D_80158160[bus][2] = center;
+    D_80158160[bus][3] = sub;
+
+    /* Mark bus as dirty */
+    D_801581E0 |= (1 << bus);
+
+    /* Calculate stereo mix (N64 is stereo only, no center/sub) */
+    /* Center channel mixed equally to L/R */
+    finalLeft = left + (center * 0.707f);
+    finalRight = right + (center * 0.707f);
+
+    /* Clamp final output */
+    if (finalLeft > 1.0f) finalLeft = 1.0f;
+    if (finalRight > 1.0f) finalRight = 1.0f;
+
+    /* Apply to audio system */
+    func_80091B00(bus, finalLeft, finalRight);
 }
 
 /*
  * func_800B4B94 (536 bytes)
  * Reverb setup
+ *
+ * Configures reverb effect for different environments.
+ * Rush 2049 uses reverb for tunnels, stadiums, underwater, etc.
+ *
+ * Reverb types:
+ *   0 = None (outdoor)
+ *   1 = Small room (garage)
+ *   2 = Large room (stadium)
+ *   3 = Tunnel (long delay)
+ *   4 = Underwater (heavy, muffled)
+ *   5 = Metallic (industrial)
+ *   6 = Cave
+ *
+ * N64 audio uses AL_FX_BIGROOM, AL_FX_SMALLROOM, etc.
  */
+extern s32 D_801581E4;          /* Current reverb type */
+extern f32 D_801581E8;          /* Current reverb amount */
+extern f32 D_801581EC[7];       /* Reverb decay times per type */
+extern f32 D_80158208[7];       /* Reverb diffusion per type */
+extern void func_80091BA8(s32 type, f32 decay, f32 diffusion, f32 wet);
+
 void func_800B4B94(s32 reverbType, f32 amount) {
-    /* Reverb setup - stub */
+    f32 decay, diffusion, wet;
+
+    /* Validate type */
+    if (reverbType < 0 || reverbType > 6) {
+        reverbType = 0;
+    }
+
+    /* Clamp amount */
+    if (amount < 0.0f) amount = 0.0f;
+    if (amount > 1.0f) amount = 1.0f;
+
+    /* Store current settings */
+    D_801581E4 = reverbType;
+    D_801581E8 = amount;
+
+    /* Get reverb parameters based on type */
+    switch (reverbType) {
+        case 0:  /* None */
+            decay = 0.0f;
+            diffusion = 0.0f;
+            wet = 0.0f;
+            break;
+        case 1:  /* Small room */
+            decay = 0.3f;
+            diffusion = 0.4f;
+            wet = amount * 0.3f;
+            break;
+        case 2:  /* Large room */
+            decay = 0.6f;
+            diffusion = 0.6f;
+            wet = amount * 0.4f;
+            break;
+        case 3:  /* Tunnel */
+            decay = 1.2f;
+            diffusion = 0.3f;
+            wet = amount * 0.5f;
+            break;
+        case 4:  /* Underwater */
+            decay = 0.8f;
+            diffusion = 0.9f;
+            wet = amount * 0.7f;
+            break;
+        case 5:  /* Metallic */
+            decay = 0.5f;
+            diffusion = 0.2f;
+            wet = amount * 0.4f;
+            break;
+        case 6:  /* Cave */
+            decay = 1.5f;
+            diffusion = 0.5f;
+            wet = amount * 0.6f;
+            break;
+        default:
+            decay = 0.0f;
+            diffusion = 0.0f;
+            wet = 0.0f;
+            break;
+    }
+
+    /* Apply to audio system */
+    func_80091BA8(reverbType, decay, diffusion, wet);
 }
 
 /*
  * func_800B4DAC (196 bytes)
  * Audio pause
+ *
+ * Pauses or resumes all game audio.
+ * Used for pause menu, attract mode transitions, etc.
  */
+extern s32 D_80158224;          /* Audio paused flag */
+extern void func_80091CA4(s32 pause);  /* System audio pause */
+
 void func_800B4DAC(s32 pause) {
-    /* Audio pause - stub */
+    /* Set paused state */
+    if (pause != 0) {
+        if (D_80158224 == 0) {
+            D_80158224 = 1;
+            func_80091CA4(1);  /* Pause audio system */
+        }
+    } else {
+        if (D_80158224 != 0) {
+            D_80158224 = 0;
+            func_80091CA4(0);  /* Resume audio system */
+        }
+    }
 }
 
 /*
  * func_800B4E70 (2108 bytes)
  * Audio ducking
+ *
+ * Reduces volume of lower-priority audio when higher-priority sounds play.
+ * Common in racing games to ensure voices/announcements are heard over
+ * engine sounds.
+ *
+ * Priority levels:
+ *   0 = No ducking (normal)
+ *   1 = Low priority (ambient sounds duck)
+ *   2 = Medium priority (SFX duck)
+ *   3 = High priority (music ducks)
+ *   4 = Critical (everything ducks except voice)
  */
+extern s32 D_80158228;          /* Current duck priority */
+extern f32 D_8015822C;          /* Duck amount (0-1) */
+extern f32 D_80158230[5];       /* Duck targets per bus */
+extern f32 D_80158244[5];       /* Duck current values */
+extern s32 D_80158258;          /* Duck timer */
+extern void func_80091B00(s32 bus, f32 left, f32 right);
+
 void func_800B4E70(s32 priority) {
-    /* Audio ducking - stub */
+    f32 duckAmount;
+    f32 targetLevel;
+    f32 attackRate, releaseRate;
+    s32 i;
+
+    /* Validate priority */
+    if (priority < 0) priority = 0;
+    if (priority > 4) priority = 4;
+
+    /* Store priority */
+    D_80158228 = priority;
+
+    /* Calculate duck amount based on priority */
+    switch (priority) {
+        case 0:  /* No ducking */
+            duckAmount = 0.0f;
+            break;
+        case 1:  /* Low - duck ambient only */
+            duckAmount = 0.3f;
+            break;
+        case 2:  /* Medium - duck ambient and some SFX */
+            duckAmount = 0.5f;
+            break;
+        case 3:  /* High - duck music too */
+            duckAmount = 0.7f;
+            break;
+        case 4:  /* Critical - heavy ducking */
+            duckAmount = 0.85f;
+            break;
+        default:
+            duckAmount = 0.0f;
+            break;
+    }
+
+    D_8015822C = duckAmount;
+
+    /* Set duck targets per bus */
+    /* Bus 0 = Music */
+    if (priority >= 3) {
+        D_80158230[0] = 1.0f - (duckAmount * 0.6f);  /* Music ducks 60% */
+    } else {
+        D_80158230[0] = 1.0f;
+    }
+
+    /* Bus 1 = SFX (engine, tire, collision) */
+    if (priority >= 2) {
+        D_80158230[1] = 1.0f - (duckAmount * 0.4f);  /* SFX duck 40% */
+    } else {
+        D_80158230[1] = 1.0f;
+    }
+
+    /* Bus 2 = Voice - never ducks */
+    D_80158230[2] = 1.0f;
+
+    /* Bus 3 = Ambient */
+    if (priority >= 1) {
+        D_80158230[3] = 1.0f - (duckAmount * 0.8f);  /* Ambient ducks 80% */
+    } else {
+        D_80158230[3] = 1.0f;
+    }
+
+    /* Bus 4 = UI */
+    D_80158230[4] = 1.0f;
+
+    /* Smooth transitions - attack fast, release slow */
+    attackRate = 0.2f;   /* ~5 frames to duck */
+    releaseRate = 0.05f; /* ~20 frames to release */
+
+    /* Update current values toward targets */
+    for (i = 0; i < 5; i++) {
+        targetLevel = D_80158230[i];
+
+        if (D_80158244[i] > targetLevel) {
+            /* Ducking - fast attack */
+            D_80158244[i] -= attackRate;
+            if (D_80158244[i] < targetLevel) {
+                D_80158244[i] = targetLevel;
+            }
+        } else if (D_80158244[i] < targetLevel) {
+            /* Releasing - slow release */
+            D_80158244[i] += releaseRate;
+            if (D_80158244[i] > targetLevel) {
+                D_80158244[i] = targetLevel;
+            }
+        }
+
+        /* Apply ducked level to bus (stereo) */
+        func_80091B00(i, D_80158244[i], D_80158244[i]);
+    }
+
+    /* Update timer */
+    D_80158258++;
 }
 
 /*
  * func_800B5694 (184 bytes)
  * Sound priority set
+ *
+ * Sets priority for a sound handle.
+ * Higher priority sounds won't be stolen by lower priority.
  */
+extern void func_8009211C(s32 handle, s32 priority);
+
 void func_800B5694(s32 handle, s32 priority) {
-    /* Priority set - stub */
+    /* Validate handle */
+    if (handle == 0) {
+        return;
+    }
+
+    /* Clamp priority */
+    if (priority < 0) priority = 0;
+    if (priority > 255) priority = 255;
+
+    /* Set priority in audio system */
+    func_8009211C(handle, priority);
 }
 
 /*
  * func_800B574C (340 bytes)
  * Sound loop control
+ *
+ * Enables or disables looping for a playing sound.
+ * Used for engine sounds, ambient loops, etc.
+ *
+ * loop: 0 = one-shot, 1 = loop forever, >1 = loop N times
  */
+extern void func_80092360(s32 handle, s32 loopCount);
+
 void func_800B574C(s32 handle, s32 loop) {
-    /* Loop control - stub */
+    s32 loopCount;
+
+    /* Validate handle */
+    if (handle == 0) {
+        return;
+    }
+
+    /* Convert loop parameter */
+    if (loop == 0) {
+        loopCount = 1;  /* Play once */
+    } else if (loop == 1) {
+        loopCount = -1;  /* Loop forever (negative = infinite) */
+    } else {
+        loopCount = loop;  /* Loop specific count */
+    }
+
+    /* Set loop in audio system */
+    func_80092360(handle, loopCount);
 }
 
 /*
  * func_800B58A0 (168 bytes)
  * Sound pitch set
+ *
+ * Sets pitch multiplier for a playing sound.
+ * pitch: 1.0 = normal, 2.0 = octave up, 0.5 = octave down
+ * Used for engine RPM-based pitch, doppler effects, etc.
  */
 void func_800B58A0(s32 handle, f32 pitch) {
-    /* Pitch set - stub */
+    s32 pitchVal;
+
+    /* Validate handle */
+    if (handle == 0) {
+        return;
+    }
+
+    /* Clamp pitch to reasonable range */
+    if (pitch < 0.25f) pitch = 0.25f;
+    if (pitch > 4.0f) pitch = 4.0f;
+
+    /* Convert float pitch to N64 fixed-point */
+    /* N64 audio uses 0x1000 = 1.0 pitch */
+    pitchVal = (s32)(pitch * 4096.0f);
+
+    /* Clamp to valid range */
+    if (pitchVal < 0x400) pitchVal = 0x400;    /* 0.25x */
+    if (pitchVal > 0x4000) pitchVal = 0x4000;  /* 4.0x */
+
+    /* Set pitch */
+    func_80090F44(handle, pitchVal);
 }
 
 /*
  * func_800B5948 (176 bytes)
  * Sound volume set
+ *
+ * Sets volume for a playing sound.
+ * volume: 0.0 = silent, 1.0 = full volume
  */
 void func_800B5948(s32 handle, f32 volume) {
-    /* Volume set - stub */
+    s32 volumeVal;
+
+    /* Validate handle */
+    if (handle == 0) {
+        return;
+    }
+
+    /* Clamp volume */
+    if (volume < 0.0f) volume = 0.0f;
+    if (volume > 1.0f) volume = 1.0f;
+
+    /* Convert to N64 volume (0-127) */
+    volumeVal = (s32)(volume * 127.0f);
+
+    /* Set volume */
+    func_80090E9C(handle, volumeVal);
 }
 
 /*
  * func_800B59F8 (1472 bytes)
  * Audio spatialization
+ *
+ * Positions a sound in 3D space relative to the listener (camera).
+ * Calculates pan, volume attenuation, and doppler shift.
+ *
+ * pos[3]: World position of sound source
+ * velocity[3]: Velocity of sound source (for doppler)
  */
+extern f32 D_8015825C[3];       /* Listener position (camera) */
+extern f32 D_80158268[3];       /* Listener velocity */
+extern f32 D_80158274[3];       /* Listener forward vector */
+extern f32 D_80158280[3];       /* Listener right vector */
+extern f32 D_8015828C;          /* Speed of sound */
+extern f32 D_80158290;          /* Doppler factor */
+extern void func_80092C58(s32 handle, s32 pan, s32 volume, s32 pitch);
+
 void func_800B59F8(s32 handle, f32 *pos, f32 *velocity) {
-    /* Spatialization - stub */
+    f32 dx, dy, dz;
+    f32 distance;
+    f32 rightDot, forwardDot;
+    f32 pan, volume, doppler;
+    f32 relVelSource, relVelListener;
+    f32 closingSpeed;
+    s32 panVal, volVal, pitchVal;
+
+    /* Validate handle */
+    if (handle == 0) {
+        return;
+    }
+
+    /* Calculate vector from listener to source */
+    dx = pos[0] - D_8015825C[0];
+    dy = pos[1] - D_8015825C[1];
+    dz = pos[2] - D_8015825C[2];
+
+    /* Calculate distance */
+    distance = sqrtf(dx * dx + dy * dy + dz * dz);
+
+    /* Avoid division by zero */
+    if (distance < 1.0f) {
+        distance = 1.0f;
+    }
+
+    /* Normalize direction */
+    dx /= distance;
+    dy /= distance;
+    dz /= distance;
+
+    /* Calculate pan based on dot product with listener's right vector */
+    rightDot = dx * D_80158280[0] + dy * D_80158280[1] + dz * D_80158280[2];
+
+    /* Pan: -1.0 = full left, 0.0 = center, 1.0 = full right */
+    pan = rightDot;
+    if (pan < -1.0f) pan = -1.0f;
+    if (pan > 1.0f) pan = 1.0f;
+
+    /* Calculate volume based on distance attenuation */
+    volume = func_800B65B8(distance, 500.0f);
+
+    /* Calculate forward dot for front/back attenuation */
+    forwardDot = dx * D_80158274[0] + dy * D_80158274[1] + dz * D_80158274[2];
+
+    /* Sounds behind are slightly quieter */
+    if (forwardDot < 0.0f) {
+        volume *= (1.0f + forwardDot * 0.3f);  /* Up to 30% quieter */
+    }
+
+    /* Doppler effect */
+    if (velocity != NULL) {
+        /* Calculate relative velocity along the direction vector */
+        relVelSource = velocity[0] * dx + velocity[1] * dy + velocity[2] * dz;
+        relVelListener = D_80158268[0] * dx + D_80158268[1] * dy + D_80158268[2] * dz;
+
+        /* Closing speed (positive = approaching) */
+        closingSpeed = relVelListener - relVelSource;
+
+        /* Doppler ratio */
+        doppler = (D_8015828C + closingSpeed * D_80158290) / D_8015828C;
+
+        /* Clamp doppler to reasonable range */
+        if (doppler < 0.5f) doppler = 0.5f;
+        if (doppler > 2.0f) doppler = 2.0f;
+    } else {
+        doppler = 1.0f;
+    }
+
+    /* Convert to N64 audio values */
+    /* Pan: 0 = left, 64 = center, 127 = right */
+    panVal = (s32)((pan + 1.0f) * 63.5f);
+    if (panVal < 0) panVal = 0;
+    if (panVal > 127) panVal = 127;
+
+    /* Volume: 0-127 */
+    volVal = (s32)(volume * 127.0f);
+    if (volVal < 0) volVal = 0;
+    if (volVal > 127) volVal = 127;
+
+    /* Pitch: 0x1000 = 1.0 */
+    pitchVal = (s32)(doppler * 4096.0f);
+    if (pitchVal < 0x800) pitchVal = 0x800;    /* 0.5x min */
+    if (pitchVal > 0x2000) pitchVal = 0x2000;  /* 2.0x max */
+
+    /* Apply to audio system */
+    func_80092C58(handle, panVal, volVal, pitchVal);
 }
 
 /*
  * func_800B65B8 (464 bytes)
  * Audio distance attenuation
+ *
+ * Calculates volume attenuation based on distance.
+ * Uses inverse distance model with rolloff.
+ *
+ * distance: Distance from listener to source
+ * maxDist: Maximum audible distance
+ *
+ * Returns: Volume multiplier 0.0-1.0
  */
 f32 func_800B65B8(f32 distance, f32 maxDist) {
-    /* Attenuation - stub */
-    return 1.0f;
+    f32 minDist;
+    f32 rolloff;
+    f32 attenuation;
+    f32 range;
+
+    /* Minimum distance (full volume) */
+    minDist = 10.0f;
+
+    /* Rolloff factor (1.0 = realistic, 2.0 = faster falloff) */
+    rolloff = 1.5f;
+
+    /* Below minimum distance = full volume */
+    if (distance <= minDist) {
+        return 1.0f;
+    }
+
+    /* Beyond maximum distance = silent */
+    if (distance >= maxDist) {
+        return 0.0f;
+    }
+
+    /* Calculate attenuation using inverse distance with rolloff */
+    /* Formula: 1 / (1 + rolloff * (d - minDist) / (maxDist - minDist)) */
+    range = maxDist - minDist;
+    attenuation = 1.0f / (1.0f + rolloff * (distance - minDist) / range);
+
+    /* Apply squared falloff for more natural sound */
+    attenuation = attenuation * attenuation;
+
+    /* Clamp result */
+    if (attenuation < 0.0f) attenuation = 0.0f;
+    if (attenuation > 1.0f) attenuation = 1.0f;
+
+    return attenuation;
 }
 
 /*
  * func_800B6788 (1124 bytes)
  * Audio doppler effect
+ *
+ * Calculates doppler pitch shift based on relative motion.
+ * Uses the classic Doppler formula:
+ *   f' = f * (c + vr) / (c + vs)
+ * where c = speed of sound, vr = receiver velocity, vs = source velocity
+ *
+ * Returns: Pitch multiplier (1.0 = no shift, >1.0 = higher pitch, <1.0 = lower)
  */
 f32 func_800B6788(f32 *listenerPos, f32 *listenerVel, f32 *sourcePos, f32 *sourceVel) {
-    /* Doppler - stub */
-    return 1.0f;
+    f32 dx, dy, dz;
+    f32 dist, invDist;
+    f32 dirX, dirY, dirZ;
+    f32 listenerSpeed, sourceSpeed;
+    f32 speedOfSound;
+    f32 dopplerRatio;
+
+    /* Speed of sound in game units (approximate) */
+    speedOfSound = 1100.0f;
+
+    /* Validate inputs */
+    if (listenerPos == NULL || sourcePos == NULL) {
+        return 1.0f;
+    }
+
+    /* Calculate direction from source to listener */
+    dx = listenerPos[0] - sourcePos[0];
+    dy = listenerPos[1] - sourcePos[1];
+    dz = listenerPos[2] - sourcePos[2];
+
+    dist = sqrtf(dx * dx + dy * dy + dz * dz);
+
+    /* If very close, no doppler */
+    if (dist < 1.0f) {
+        return 1.0f;
+    }
+
+    /* Normalize direction */
+    invDist = 1.0f / dist;
+    dirX = dx * invDist;
+    dirY = dy * invDist;
+    dirZ = dz * invDist;
+
+    /* Calculate velocity components along the direction */
+    if (listenerVel != NULL) {
+        listenerSpeed = listenerVel[0] * dirX + listenerVel[1] * dirY + listenerVel[2] * dirZ;
+    } else {
+        listenerSpeed = 0.0f;
+    }
+
+    if (sourceVel != NULL) {
+        sourceSpeed = sourceVel[0] * dirX + sourceVel[1] * dirY + sourceVel[2] * dirZ;
+    } else {
+        sourceSpeed = 0.0f;
+    }
+
+    /* Doppler formula: f' = f * (c + vr) / (c - vs) */
+    /* Note: positive listenerSpeed = listener moving toward source */
+    /* Note: positive sourceSpeed = source moving toward listener (inverted) */
+    dopplerRatio = (speedOfSound + listenerSpeed) / (speedOfSound - sourceSpeed);
+
+    /* Clamp to reasonable range */
+    if (dopplerRatio < 0.5f) dopplerRatio = 0.5f;
+    if (dopplerRatio > 2.0f) dopplerRatio = 2.0f;
+
+    return dopplerRatio;
 }
 
 /*
  * func_800B6BEC (1520 bytes)
  * Audio occlusion
+ *
+ * Calculates audio occlusion (blocking) between listener and source.
+ * Checks if geometry blocks the sound path for muffling effect.
+ * Used for sounds behind walls, inside tunnels, underwater, etc.
+ *
+ * Returns: Occlusion factor 0.0-1.0 (1.0 = no occlusion, 0.0 = fully blocked)
  */
+extern s32 func_800A2378(f32 *start, f32 *end, s32 flags);  /* Ray cast */
+extern u8 D_801582A0;           /* Current zone type (tunnel, underwater, etc) */
+
 f32 func_800B6BEC(f32 *listenerPos, f32 *sourcePos) {
-    /* Occlusion - stub */
-    return 1.0f;
+    f32 dx, dy, dz;
+    f32 dist;
+    f32 occlusion;
+    s32 hitCount;
+    f32 rayStart[3], rayEnd[3];
+
+    /* Validate inputs */
+    if (listenerPos == NULL || sourcePos == NULL) {
+        return 1.0f;
+    }
+
+    /* Calculate distance */
+    dx = sourcePos[0] - listenerPos[0];
+    dy = sourcePos[1] - listenerPos[1];
+    dz = sourcePos[2] - listenerPos[2];
+    dist = sqrtf(dx * dx + dy * dy + dz * dz);
+
+    /* Very close = no occlusion */
+    if (dist < 5.0f) {
+        return 1.0f;
+    }
+
+    /* Start occlusion at full pass-through */
+    occlusion = 1.0f;
+
+    /* Check zone-based occlusion */
+    switch (D_801582A0) {
+        case 0:  /* Normal outdoor */
+            /* No extra occlusion */
+            break;
+        case 1:  /* Tunnel */
+            /* Tunnel reverb handled elsewhere, slight muffling */
+            occlusion *= 0.9f;
+            break;
+        case 2:  /* Underwater */
+            /* Heavy muffling underwater */
+            occlusion *= 0.4f;
+            break;
+        case 3:  /* Indoor/garage */
+            occlusion *= 0.85f;
+            break;
+        default:
+            break;
+    }
+
+    /* Set up ray for geometry test */
+    rayStart[0] = listenerPos[0];
+    rayStart[1] = listenerPos[1];
+    rayStart[2] = listenerPos[2];
+    rayEnd[0] = sourcePos[0];
+    rayEnd[1] = sourcePos[1];
+    rayEnd[2] = sourcePos[2];
+
+    /* Cast ray to check for blocking geometry */
+    /* Flags: 0x01 = check buildings, 0x02 = check terrain */
+    hitCount = func_800A2378(rayStart, rayEnd, 0x03);
+
+    /* Each hit reduces volume */
+    if (hitCount > 0) {
+        /* First hit = 50% reduction, each additional = 30% more */
+        occlusion *= 0.5f;
+        if (hitCount > 1) {
+            s32 i;
+            for (i = 1; i < hitCount && i < 4; i++) {
+                occlusion *= 0.7f;
+            }
+        }
+    }
+
+    /* Distance-based additional occlusion */
+    /* Far sounds are slightly more occluded */
+    if (dist > 200.0f) {
+        f32 distFactor = (dist - 200.0f) / 300.0f;
+        if (distFactor > 1.0f) distFactor = 1.0f;
+        occlusion *= (1.0f - distFactor * 0.3f);
+    }
+
+    /* Clamp result */
+    if (occlusion < 0.0f) occlusion = 0.0f;
+    if (occlusion > 1.0f) occlusion = 1.0f;
+
+    return occlusion;
 }
 
 /*
  * func_800B71DC (536 bytes)
  * Entity audio update
+ *
+ * Updates all audio for a game entity (car, drone, object).
+ * Handles 3D spatialization, occlusion, and doppler for the entity's sounds.
+ *
+ * Entity audio offsets:
+ *   0x200: Active sound handles array [8]
+ *   0x220: Sound source positions [8][3]
+ *   0x280: Sound flags (playing, looping, etc)
  */
 void func_800B71DC(void *entity) {
-    /* Entity audio - stub */
+    f32 *entityPos, *entityVel;
+    s32 *soundHandles;
+    f32 *soundPos;
+    s32 flags;
+    s32 i;
+    f32 occlusion, volume;
+    s32 handle;
+
+    if (entity == NULL) {
+        return;
+    }
+
+    /* Get entity position and velocity */
+    entityPos = (f32 *)((u8 *)entity + 0x24);
+    entityVel = (f32 *)((u8 *)entity + 0x34);
+
+    /* Get audio data */
+    soundHandles = (s32 *)((u8 *)entity + 0x200);
+    soundPos = (f32 *)((u8 *)entity + 0x220);
+    flags = *(s32 *)((u8 *)entity + 0x280);
+
+    /* Update each active sound */
+    for (i = 0; i < 8; i++) {
+        handle = soundHandles[i];
+
+        if (handle == 0) {
+            continue;
+        }
+
+        /* Check if sound slot is active */
+        if ((flags & (1 << i)) == 0) {
+            continue;
+        }
+
+        /* Get sound source position (relative to entity or absolute) */
+        f32 sourcePos[3];
+        if ((flags & (0x100 << i)) != 0) {
+            /* Absolute position */
+            sourcePos[0] = soundPos[i * 3 + 0];
+            sourcePos[1] = soundPos[i * 3 + 1];
+            sourcePos[2] = soundPos[i * 3 + 2];
+        } else {
+            /* Relative to entity */
+            sourcePos[0] = entityPos[0] + soundPos[i * 3 + 0];
+            sourcePos[1] = entityPos[1] + soundPos[i * 3 + 1];
+            sourcePos[2] = entityPos[2] + soundPos[i * 3 + 2];
+        }
+
+        /* Calculate occlusion */
+        occlusion = func_800B6BEC(D_8015825C, sourcePos);
+
+        /* Base volume with occlusion */
+        volume = occlusion;
+
+        /* Apply 3D spatialization (handles pan, distance, doppler) */
+        func_800B59F8(handle, sourcePos, entityVel);
+
+        /* Apply additional occlusion volume reduction */
+        if (occlusion < 1.0f) {
+            s32 volVal = (s32)(occlusion * 127.0f);
+            func_80090E9C(handle, volVal);
+        }
+    }
 }
 
 /*
