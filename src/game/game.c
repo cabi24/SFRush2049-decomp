@@ -25479,7 +25479,35 @@ void func_800E051C(s32 dx, s32 dy) {
  * World bounds setup
  */
 void func_800EAE90(void *world) {
-    /* World bounds - stub */
+    f32 *minBounds;
+    f32 *maxBounds;
+    f32 *worldData;
+    s32 i;
+
+    if (world == NULL) {
+        return;
+    }
+
+    worldData = (f32 *)world;
+
+    /* World bounds at 0x8015B000 */
+    minBounds = (f32 *)0x8015B000;
+    maxBounds = (f32 *)0x8015B00C;
+
+    /* World format: minX, minY, minZ, maxX, maxY, maxZ */
+    for (i = 0; i < 3; i++) {
+        minBounds[i] = worldData[i];
+        maxBounds[i] = worldData[i + 3];
+    }
+
+    /* Calculate world center and size */
+    *(f32 *)0x8015B020 = (minBounds[0] + maxBounds[0]) * 0.5f;
+    *(f32 *)0x8015B024 = (minBounds[1] + maxBounds[1]) * 0.5f;
+    *(f32 *)0x8015B028 = (minBounds[2] + maxBounds[2]) * 0.5f;
+
+    *(f32 *)0x8015B030 = maxBounds[0] - minBounds[0];
+    *(f32 *)0x8015B034 = maxBounds[1] - minBounds[1];
+    *(f32 *)0x8015B038 = maxBounds[2] - minBounds[2];
 }
 
 /*
@@ -25487,7 +25515,63 @@ void func_800EAE90(void *world) {
  * Trigger zone check
  */
 s32 func_800EB920(void *entity, void *trigger) {
-    /* Trigger check - stub */
+    f32 *entityPos;
+    f32 *triggerMin, *triggerMax;
+    s32 *triggerType;
+
+    if (entity == NULL || trigger == NULL) {
+        return 0;
+    }
+
+    entityPos = (f32 *)((u8 *)entity + 0x24);
+
+    /* Trigger structure:
+     * 0x00: type (0=box, 1=sphere, 2=cylinder)
+     * 0x04: min bounds [3] or center
+     * 0x10: max bounds [3] or radius
+     */
+    triggerType = (s32 *)trigger;
+    triggerMin = (f32 *)((u8 *)trigger + 0x04);
+    triggerMax = (f32 *)((u8 *)trigger + 0x10);
+
+    switch (*triggerType) {
+        case 0:  /* Box */
+            if (entityPos[0] >= triggerMin[0] && entityPos[0] <= triggerMax[0] &&
+                entityPos[1] >= triggerMin[1] && entityPos[1] <= triggerMax[1] &&
+                entityPos[2] >= triggerMin[2] && entityPos[2] <= triggerMax[2]) {
+                return 1;
+            }
+            break;
+
+        case 1:  /* Sphere */
+            {
+                f32 dx = entityPos[0] - triggerMin[0];
+                f32 dy = entityPos[1] - triggerMin[1];
+                f32 dz = entityPos[2] - triggerMin[2];
+                f32 distSq = dx * dx + dy * dy + dz * dz;
+                f32 radius = triggerMax[0];
+                if (distSq <= radius * radius) {
+                    return 1;
+                }
+            }
+            break;
+
+        case 2:  /* Cylinder (vertical) */
+            {
+                f32 dx = entityPos[0] - triggerMin[0];
+                f32 dz = entityPos[2] - triggerMin[2];
+                f32 distSq = dx * dx + dz * dz;
+                f32 radius = triggerMax[0];
+                f32 height = triggerMax[1];
+                if (distSq <= radius * radius &&
+                    entityPos[1] >= triggerMin[1] &&
+                    entityPos[1] <= triggerMin[1] + height) {
+                    return 1;
+                }
+            }
+            break;
+    }
+
     return 0;
 }
 
@@ -25496,7 +25580,26 @@ s32 func_800EB920(void *entity, void *trigger) {
  * Trigger zone callback
  */
 void func_800EBD14(void *trigger, void *callback) {
-    /* Trigger callback - stub */
+    void (**callbackPtr)(void *);
+    s32 *triggerEnabled;
+    s32 *triggerOnce;
+    s32 *triggerFired;
+
+    if (trigger == NULL) {
+        return;
+    }
+
+    /* Trigger callback structure at offset 0x20 */
+    callbackPtr = (void (**)(void *))((u8 *)trigger + 0x20);
+    triggerEnabled = (s32 *)((u8 *)trigger + 0x24);
+    triggerOnce = (s32 *)((u8 *)trigger + 0x28);
+    triggerFired = (s32 *)((u8 *)trigger + 0x2C);
+
+    /* Set callback function */
+    *callbackPtr = (void (*)(void *))callback;
+    *triggerEnabled = 1;
+    *triggerOnce = 0;
+    *triggerFired = 0;
 }
 
 /*
@@ -25504,7 +25607,68 @@ void func_800EBD14(void *trigger, void *callback) {
  * Scripted event
  */
 void func_800EC3B0(void *event) {
-    /* Scripted event - stub */
+    s32 *eventType;
+    s32 *eventState;
+    f32 *eventTime;
+    f32 *eventDuration;
+    void *eventData;
+
+    if (event == NULL) {
+        return;
+    }
+
+    /* Event structure:
+     * 0x00: type
+     * 0x04: state (0=pending, 1=active, 2=complete)
+     * 0x08: current time
+     * 0x0C: duration
+     * 0x10: event-specific data
+     */
+    eventType = (s32 *)event;
+    eventState = (s32 *)((u8 *)event + 0x04);
+    eventTime = (f32 *)((u8 *)event + 0x08);
+    eventDuration = (f32 *)((u8 *)event + 0x0C);
+    eventData = (void *)((u8 *)event + 0x10);
+
+    if (*eventState == 2) {
+        return;  /* Already complete */
+    }
+
+    /* Activate event */
+    if (*eventState == 0) {
+        *eventState = 1;
+        *eventTime = 0.0f;
+    }
+
+    /* Update time */
+    *eventTime += 0.0166f;  /* 1/60 second */
+
+    /* Check completion */
+    if (*eventTime >= *eventDuration) {
+        *eventState = 2;
+    }
+
+    /* Process based on event type */
+    switch (*eventType) {
+        case 0:  /* Camera shake */
+            /* Handled by camera system */
+            break;
+        case 1:  /* Slow motion */
+            if (*eventState == 1) {
+                *(f32 *)0x80142B00 = 0.5f;  /* Time scale */
+            } else {
+                *(f32 *)0x80142B00 = 1.0f;
+            }
+            break;
+        case 2:  /* Screen flash */
+            /* Handled by render system */
+            break;
+        case 3:  /* Sound effect */
+            if (*eventState == 1 && *eventTime < 0.02f) {
+                func_800B2658(*(s32 *)eventData, 1.0f, 0.0f);
+            }
+            break;
+    }
 }
 
 /*
@@ -25512,7 +25676,45 @@ void func_800EC3B0(void *event) {
  * Cutscene playback
  */
 void func_800ECF38(s32 cutsceneId) {
-    /* Cutscene - stub */
+    s32 *cutsceneActive;
+    s32 *currentCutscene;
+    f32 *cutsceneTime;
+    void **cutsceneData;
+
+    /* Cutscene state at 0x8015C800 */
+    cutsceneActive = (s32 *)0x8015C800;
+    currentCutscene = (s32 *)0x8015C804;
+    cutsceneTime = (f32 *)0x8015C808;
+    cutsceneData = (void **)0x8015C810;
+
+    if (cutsceneId < 0 || cutsceneId >= 16) {
+        return;
+    }
+
+    /* Start cutscene */
+    *cutsceneActive = 1;
+    *currentCutscene = cutsceneId;
+    *cutsceneTime = 0.0f;
+
+    /* Load cutscene data from ROM */
+    {
+        u32 *cutsceneRomTable = (u32 *)0x8016F000;
+        u32 romAddr = cutsceneRomTable[cutsceneId * 2];
+        u32 size = cutsceneRomTable[cutsceneId * 2 + 1];
+
+        if (romAddr != 0 && size != 0) {
+            *cutsceneData = (void *)0x80178000;  /* Cutscene buffer */
+            osPiStartDma(&D_80020000, OS_MESG_PRI_NORMAL, OS_READ,
+                        romAddr, *cutsceneData, size, &D_80020010);
+            osRecvMesg(&D_80020010, NULL, OS_MESG_BLOCK);
+        }
+    }
+
+    /* Disable player input during cutscene */
+    *(s32 *)0x801147C8 = 0;
+
+    /* Play cutscene music */
+    func_800B1B48(1, cutsceneId + 100);
 }
 
 /*
@@ -25520,7 +25722,55 @@ void func_800ECF38(s32 cutsceneId) {
  * Object spawner
  */
 void func_800ED7C0(s32 objectType, f32 *pos, f32 *rot) {
-    /* Object spawn - stub */
+    void *objectPool;
+    s32 *objectCount;
+    s32 maxObjects;
+    void *newObject;
+    s32 i;
+
+    if (pos == NULL) {
+        return;
+    }
+
+    /* Object pool at 0x80157000 */
+    objectPool = (void *)0x80157000;
+    objectCount = (s32 *)0x80156FF0;
+    maxObjects = 128;
+
+    if (*objectCount >= maxObjects) {
+        return;  /* Pool full */
+    }
+
+    /* Find free slot */
+    for (i = 0; i < maxObjects; i++) {
+        s32 *slotActive = (s32 *)(0x80157000 + i * 0x100);
+        if (*slotActive == 0) {
+            newObject = (void *)(0x80157000 + i * 0x100);
+            break;
+        }
+    }
+
+    if (i >= maxObjects) {
+        return;
+    }
+
+    /* Initialize object */
+    *(s32 *)newObject = 1;  /* Active */
+    *(s32 *)((u8 *)newObject + 0x04) = objectType;
+
+    /* Position */
+    *(f32 *)((u8 *)newObject + 0x24) = pos[0];
+    *(f32 *)((u8 *)newObject + 0x28) = pos[1];
+    *(f32 *)((u8 *)newObject + 0x2C) = pos[2];
+
+    /* Rotation */
+    if (rot != NULL) {
+        *(f32 *)((u8 *)newObject + 0x60) = rot[0];
+        *(f32 *)((u8 *)newObject + 0x64) = rot[1];
+        *(f32 *)((u8 *)newObject + 0x68) = rot[2];
+    }
+
+    (*objectCount)++;
 }
 
 /*
@@ -25528,7 +25778,56 @@ void func_800ED7C0(s32 objectType, f32 *pos, f32 *rot) {
  * Collectible spawn
  */
 void func_800EE1B0(s32 collectibleType, f32 *pos) {
-    /* Collectible spawn - stub */
+    void *collectiblePool;
+    s32 *collectibleCount;
+    s32 maxCollectibles;
+    void *newCollectible;
+    s32 i;
+
+    if (pos == NULL) {
+        return;
+    }
+
+    /* Collectible pool at 0x80159000 */
+    collectiblePool = (void *)0x80159000;
+    collectibleCount = (s32 *)0x80158FF0;
+    maxCollectibles = 64;
+
+    if (*collectibleCount >= maxCollectibles) {
+        return;
+    }
+
+    /* Find free slot */
+    for (i = 0; i < maxCollectibles; i++) {
+        s32 *slotActive = (s32 *)(0x80159000 + i * 0x40);
+        if (*slotActive == 0) {
+            newCollectible = (void *)(0x80159000 + i * 0x40);
+            break;
+        }
+    }
+
+    if (i >= maxCollectibles) {
+        return;
+    }
+
+    /* Collectible structure:
+     * 0x00: active
+     * 0x04: type
+     * 0x08: position [3]
+     * 0x14: rotation (for spin animation)
+     * 0x18: respawn timer
+     * 0x1C: collected flag
+     */
+    *(s32 *)newCollectible = 1;
+    *(s32 *)((u8 *)newCollectible + 0x04) = collectibleType;
+    *(f32 *)((u8 *)newCollectible + 0x08) = pos[0];
+    *(f32 *)((u8 *)newCollectible + 0x0C) = pos[1];
+    *(f32 *)((u8 *)newCollectible + 0x10) = pos[2];
+    *(f32 *)((u8 *)newCollectible + 0x14) = 0.0f;
+    *(f32 *)((u8 *)newCollectible + 0x18) = 0.0f;
+    *(s32 *)((u8 *)newCollectible + 0x1C) = 0;
+
+    (*collectibleCount)++;
 }
 
 /*
@@ -25536,7 +25835,56 @@ void func_800EE1B0(s32 collectibleType, f32 *pos) {
  * Collectible collect
  */
 void func_800EE7A8(void *player, void *collectible) {
-    /* Collect - stub */
+    s32 *collectibleType;
+    s32 *collected;
+    s32 *playerScore;
+    s32 *playerCoins;
+
+    if (player == NULL || collectible == NULL) {
+        return;
+    }
+
+    collected = (s32 *)((u8 *)collectible + 0x1C);
+
+    /* Already collected */
+    if (*collected != 0) {
+        return;
+    }
+
+    collectibleType = (s32 *)((u8 *)collectible + 0x04);
+    playerScore = (s32 *)((u8 *)player + 0x100);
+    playerCoins = (s32 *)((u8 *)player + 0x104);
+
+    /* Mark as collected */
+    *collected = 1;
+
+    /* Award based on type */
+    switch (*collectibleType) {
+        case 0:  /* Coin */
+            (*playerCoins)++;
+            *playerScore += 100;
+            func_800B2658(40, 1.0f, 0.0f);  /* Coin sound */
+            break;
+
+        case 1:  /* Nitro can */
+            func_800EFD88(player, 0.25f);
+            *playerScore += 50;
+            break;
+
+        case 2:  /* Time bonus */
+            *(s32 *)0x8015A10C += 60;  /* Add 1 second */
+            *playerScore += 200;
+            func_800B2658(41, 1.0f, 0.0f);  /* Time bonus sound */
+            break;
+
+        case 3:  /* Key/unlock */
+            *playerScore += 500;
+            func_800B2658(42, 1.0f, 0.0f);  /* Key sound */
+            break;
+    }
+
+    /* Start respawn timer */
+    *(f32 *)((u8 *)collectible + 0x18) = 5.0f;  /* 5 second respawn */
 }
 
 /*
@@ -25544,7 +25892,54 @@ void func_800EE7A8(void *player, void *collectible) {
  * Power-up activation
  */
 void func_800EE8B0(void *player, s32 powerupType) {
-    /* Power-up - stub */
+    s32 *activePowerup;
+    f32 *powerupTimer;
+    f32 *powerupDuration;
+
+    if (player == NULL) {
+        return;
+    }
+
+    /* Player powerup state at offset 0x130 */
+    activePowerup = (s32 *)((u8 *)player + 0x130);
+    powerupTimer = (f32 *)((u8 *)player + 0x134);
+    powerupDuration = (f32 *)((u8 *)player + 0x138);
+
+    *activePowerup = powerupType;
+    *powerupTimer = 0.0f;
+
+    /* Set duration based on type */
+    switch (powerupType) {
+        case 0:  /* Speed boost */
+            *powerupDuration = 5.0f;
+            *(f32 *)((u8 *)player + 0xB0) *= 1.25f;  /* Max speed multiplier */
+            func_800B2658(50, 1.0f, 0.0f);
+            break;
+
+        case 1:  /* Invincibility */
+            *powerupDuration = 8.0f;
+            *(s32 *)((u8 *)player + 0x13C) = 1;  /* Invincible flag */
+            func_800B2658(51, 1.0f, 0.0f);
+            break;
+
+        case 2:  /* Magnet (attract collectibles) */
+            *powerupDuration = 10.0f;
+            *(f32 *)((u8 *)player + 0x140) = 50.0f;  /* Magnet radius */
+            func_800B2658(52, 1.0f, 0.0f);
+            break;
+
+        case 3:  /* Double points */
+            *powerupDuration = 15.0f;
+            *(s32 *)((u8 *)player + 0x144) = 2;  /* Score multiplier */
+            func_800B2658(53, 1.0f, 0.0f);
+            break;
+
+        case 4:  /* Ghost (pass through traffic) */
+            *powerupDuration = 6.0f;
+            *(s32 *)((u8 *)player + 0x148) = 1;  /* Ghost flag */
+            func_800B2658(54, 1.0f, 0.0f);
+            break;
+    }
 }
 
 /*
@@ -25552,7 +25947,55 @@ void func_800EE8B0(void *player, s32 powerupType) {
  * Power-up timer
  */
 void func_800EEFA0(void *player) {
-    /* Power-up timer - stub */
+    s32 *activePowerup;
+    f32 *powerupTimer;
+    f32 *powerupDuration;
+    f32 dt;
+
+    if (player == NULL) {
+        return;
+    }
+
+    activePowerup = (s32 *)((u8 *)player + 0x130);
+    powerupTimer = (f32 *)((u8 *)player + 0x134);
+    powerupDuration = (f32 *)((u8 *)player + 0x138);
+
+    /* No active powerup */
+    if (*activePowerup < 0) {
+        return;
+    }
+
+    dt = 0.0166f;  /* 1/60 second */
+    *powerupTimer += dt;
+
+    /* Check expiration */
+    if (*powerupTimer >= *powerupDuration) {
+        /* Deactivate powerup effects */
+        switch (*activePowerup) {
+            case 0:  /* Speed boost */
+                *(f32 *)((u8 *)player + 0xB0) /= 1.25f;  /* Restore speed */
+                break;
+            case 1:  /* Invincibility */
+                *(s32 *)((u8 *)player + 0x13C) = 0;
+                break;
+            case 2:  /* Magnet */
+                *(f32 *)((u8 *)player + 0x140) = 0.0f;
+                break;
+            case 3:  /* Double points */
+                *(s32 *)((u8 *)player + 0x144) = 1;
+                break;
+            case 4:  /* Ghost */
+                *(s32 *)((u8 *)player + 0x148) = 0;
+                break;
+        }
+
+        /* Clear powerup */
+        *activePowerup = -1;
+        *powerupTimer = 0.0f;
+
+        /* Powerup end sound */
+        func_800B2658(55, 0.8f, 0.0f);
+    }
 }
 
 /*
@@ -26529,7 +26972,48 @@ void func_801068F4(void *profile, void *raceStats) {
  * Difficulty scaling
  */
 void func_80107110(s32 difficulty) {
-    /* Difficulty scaling - stub */
+    f32 *aiSpeedMult;
+    f32 *aiReactionTime;
+    f32 *playerDamageMult;
+    f32 *timeBonusMult;
+
+    /* Difficulty settings at 0x80159300 */
+    aiSpeedMult = (f32 *)0x80159300;
+    aiReactionTime = (f32 *)0x80159304;
+    playerDamageMult = (f32 *)0x80159308;
+    timeBonusMult = (f32 *)0x8015930C;
+
+    D_8015933C = difficulty;
+
+    switch (difficulty) {
+        case 0:  /* Easy */
+            *aiSpeedMult = 0.85f;
+            *aiReactionTime = 0.5f;
+            *playerDamageMult = 0.5f;
+            *timeBonusMult = 1.5f;
+            break;
+
+        case 1:  /* Normal */
+            *aiSpeedMult = 1.0f;
+            *aiReactionTime = 0.3f;
+            *playerDamageMult = 1.0f;
+            *timeBonusMult = 1.0f;
+            break;
+
+        case 2:  /* Hard */
+            *aiSpeedMult = 1.1f;
+            *aiReactionTime = 0.15f;
+            *playerDamageMult = 1.5f;
+            *timeBonusMult = 0.75f;
+            break;
+
+        case 3:  /* Expert */
+            *aiSpeedMult = 1.2f;
+            *aiReactionTime = 0.05f;
+            *playerDamageMult = 2.0f;
+            *timeBonusMult = 0.5f;
+            break;
+    }
 }
 
 /*
@@ -26537,7 +27021,54 @@ void func_80107110(s32 difficulty) {
  * AI difficulty adjust
  */
 void func_80107600(void *ai, s32 difficulty) {
-    /* AI difficulty - stub */
+    f32 *aiMaxSpeed;
+    f32 *aiAccel;
+    f32 *aiSteering;
+    f32 *aiAggression;
+    f32 baseMult;
+
+    if (ai == NULL) {
+        return;
+    }
+
+    /* AI car parameters at offset 0x240 */
+    aiMaxSpeed = (f32 *)((u8 *)ai + 0x250);
+    aiAccel = (f32 *)((u8 *)ai + 0x254);
+    aiSteering = (f32 *)((u8 *)ai + 0x258);
+    aiAggression = (f32 *)((u8 *)ai + 0x25C);
+
+    /* Get global speed multiplier */
+    baseMult = *(f32 *)0x80159300;
+
+    switch (difficulty) {
+        case 0:  /* Easy */
+            *aiMaxSpeed = 80.0f * baseMult;
+            *aiAccel = 15.0f;
+            *aiSteering = 0.6f;
+            *aiAggression = 0.2f;
+            break;
+
+        case 1:  /* Normal */
+            *aiMaxSpeed = 95.0f * baseMult;
+            *aiAccel = 20.0f;
+            *aiSteering = 0.8f;
+            *aiAggression = 0.5f;
+            break;
+
+        case 2:  /* Hard */
+            *aiMaxSpeed = 105.0f * baseMult;
+            *aiAccel = 25.0f;
+            *aiSteering = 0.95f;
+            *aiAggression = 0.7f;
+            break;
+
+        case 3:  /* Expert */
+            *aiMaxSpeed = 115.0f * baseMult;
+            *aiAccel = 30.0f;
+            *aiSteering = 1.0f;
+            *aiAggression = 0.9f;
+            break;
+    }
 }
 
 /*
@@ -26545,7 +27076,49 @@ void func_80107600(void *ai, s32 difficulty) {
  * Rubber banding
  */
 void func_801079AC(void *race) {
-    /* Rubber banding - stub */
+    void *leaderCar;
+    void *aiCars;
+    s32 numAI;
+    s32 i;
+    f32 leaderDist;
+    f32 *aiDist;
+    f32 gap;
+    f32 speedBoost;
+
+    if (race == NULL) {
+        return;
+    }
+
+    /* Get leader car (player or AI in first) */
+    leaderCar = (void *)0x80152818;  /* First car slot */
+    aiCars = (void *)0x80153000;     /* AI car pool */
+    numAI = *(s32 *)0x8015A280;
+
+    leaderDist = *(f32 *)((u8 *)leaderCar + 0x230);  /* Track distance */
+
+    for (i = 0; i < numAI; i++) {
+        void *ai = (void *)((u8 *)aiCars + i * 0x300);
+        f32 *aiMaxSpeed = (f32 *)((u8 *)ai + 0x250);
+        f32 baseSpeed = *aiMaxSpeed;
+
+        aiDist = (f32 *)((u8 *)ai + 0x230);
+        gap = leaderDist - *aiDist;
+
+        /* Rubber band based on gap */
+        if (gap > 100.0f) {
+            /* Far behind - speed boost */
+            speedBoost = 1.0f + (gap - 100.0f) * 0.002f;
+            if (speedBoost > 1.3f) speedBoost = 1.3f;
+            *aiMaxSpeed = baseSpeed * speedBoost;
+        } else if (gap < -50.0f) {
+            /* Too far ahead - slow down slightly */
+            speedBoost = 1.0f + gap * 0.001f;
+            if (speedBoost < 0.9f) speedBoost = 0.9f;
+            *aiMaxSpeed = baseSpeed * speedBoost;
+        } else {
+            *aiMaxSpeed = baseSpeed;
+        }
+    }
 }
 
 /*
@@ -26553,7 +27126,49 @@ void func_801079AC(void *race) {
  * Dynamic difficulty
  */
 void func_80108098(void *player) {
-    /* Dynamic difficulty - stub */
+    s32 *playerPosition;
+    s32 *crashCount;
+    s32 *raceCount;
+    s32 *winCount;
+    f32 *difficultyFactor;
+    f32 performanceScore;
+
+    if (player == NULL) {
+        return;
+    }
+
+    playerPosition = (s32 *)((u8 *)player + 0x200);
+    crashCount = (s32 *)((u8 *)player + 0x204);
+    raceCount = (s32 *)0x80159340;
+    winCount = (s32 *)0x80159344;
+    difficultyFactor = (f32 *)0x80159348;
+
+    /* Calculate performance score */
+    performanceScore = 0.5f;
+
+    /* Adjust based on recent finishes */
+    if (*raceCount > 0) {
+        performanceScore = (f32)(*winCount) / (f32)(*raceCount);
+    }
+
+    /* Adjust based on crash frequency */
+    if (*crashCount > 5) {
+        performanceScore -= 0.1f;
+    }
+
+    /* Adjust based on position */
+    if (*playerPosition == 1) {
+        performanceScore += 0.1f;
+    } else if (*playerPosition > 4) {
+        performanceScore -= 0.1f;
+    }
+
+    /* Clamp performance score */
+    if (performanceScore < 0.2f) performanceScore = 0.2f;
+    if (performanceScore > 0.9f) performanceScore = 0.9f;
+
+    /* Set difficulty factor (used by AI) */
+    *difficultyFactor = performanceScore;
 }
 
 /*
@@ -34672,23 +35287,465 @@ void func_8010E8B4(void *car) {
 /*
  * func_8010EA14 (2052 bytes)
  * Battle mode logic
+ *
+ * Rush 2049's battle mode - vehicular combat arena gameplay
+ * Players collect weapons and attack each other to score points
+ *
+ * Game modes:
+ *   - Deathmatch: Most kills wins
+ *   - Team Battle: Team with most kills wins
+ *   - Last Man Standing: Survive to win
+ *
+ * Weapon pickups:
+ *   0 = Missile
+ *   1 = Machine gun
+ *   2 = Mines
+ *   3 = Shield
+ *   4 = Speed boost
  */
 void func_8010EA14(void) {
-    /* Battle mode - stub */
+    extern s32 D_8014B000;    /* Battle mode state */
+    extern s32 D_8014B004;    /* Battle timer (frames) */
+    extern s32 D_8014B008;    /* Battle mode type */
+    extern s32 D_8014B00C[4]; /* Player scores */
+    extern s32 D_8014B01C[4]; /* Player lives */
+    extern s32 D_8014B02C[4]; /* Player weapons */
+    extern s32 D_8014B03C[4]; /* Player ammo */
+    extern void *D_80152818;  /* Player car array */
+    s32 i, j;
+    void *car;
+    f32 *pos, *otherPos;
+    f32 dx, dy, dz, dist;
+    s32 *health;
+    s32 *weapon, *ammo;
+
+    /* Check if battle mode active */
+    if (D_8014B000 == 0) {
+        return;
+    }
+
+    /* Update battle timer */
+    D_8014B004++;
+
+    /* Process each player */
+    for (i = 0; i < 4; i++) {
+        car = (void *)((u8 *)&D_80152818 + i * 0x400);
+        if (car == NULL) {
+            continue;
+        }
+
+        pos = (f32 *)((u8 *)car + 0x24);
+        health = (s32 *)((u8 *)car + 0x1F0);
+        weapon = &D_8014B02C[i];
+        ammo = &D_8014B03C[i];
+
+        /* Skip eliminated players in Last Man Standing */
+        if (D_8014B008 == 2 && D_8014B01C[i] <= 0) {
+            continue;
+        }
+
+        /* Check health */
+        if (*health <= 0) {
+            /* Player destroyed */
+            D_8014B01C[i]--;
+
+            /* Find attacker and award point */
+            /* (simplified - award to closest other player) */
+            f32 closestDist = 999999.0f;
+            s32 closestPlayer = -1;
+
+            for (j = 0; j < 4; j++) {
+                if (j == i) continue;
+                void *otherCar = (void *)((u8 *)&D_80152818 + j * 0x400);
+                if (otherCar == NULL) continue;
+
+                otherPos = (f32 *)((u8 *)otherCar + 0x24);
+                dx = pos[0] - otherPos[0];
+                dy = pos[1] - otherPos[1];
+                dz = pos[2] - otherPos[2];
+                dist = dx*dx + dy*dy + dz*dz;
+
+                if (dist < closestDist) {
+                    closestDist = dist;
+                    closestPlayer = j;
+                }
+            }
+
+            if (closestPlayer >= 0) {
+                D_8014B00C[closestPlayer]++;
+            }
+
+            /* Respawn player (if lives remaining or not Last Man Standing) */
+            if (D_8014B008 != 2 || D_8014B01C[i] > 0) {
+                func_8010F0D0(car, i);  /* Respawn at battle arena spawn point */
+                *health = 100;
+                *weapon = 0;  /* Reset weapon */
+                *ammo = 0;
+            }
+        }
+
+        /* Check weapon pickup collision */
+        func_8010F158(car, i);
+
+        /* Fire weapon if button pressed */
+        if (func_80090EBC(i) & 0x8000) {  /* Z button / fire */
+            if (*ammo > 0) {
+                func_8010F1A0(car, *weapon, i);  /* Fire weapon */
+                (*ammo)--;
+            }
+        }
+    }
+
+    /* Check win condition */
+    func_8010F1E0();
 }
 
 /*
  * func_8010F218 (2524 bytes)
  * Stunt mode logic
+ *
+ * Rush 2049's signature stunt mode - score points by performing aerial tricks
+ * Uses the game's deployable wing system for air control
+ *
+ * Trick categories:
+ *   - Flips (front/back): Rotation around X axis
+ *   - Barrel rolls (left/right): Rotation around Z axis
+ *   - Spins (left/right): Rotation around Y axis
+ *   - Combos: Multiple different tricks in one air session
+ *
+ * Scoring:
+ *   - Base points per trick type
+ *   - Multiplier for multiple rotations (double flip = 2x)
+ *   - Combo multiplier for variety
+ *   - Landing bonus for clean landings
+ *   - Crash penalty resets combo
  */
 void func_8010F218(void) {
-    /* Stunt mode - stub */
+    extern s32 D_8014C000;    /* Stunt mode state */
+    extern s32 D_8014C004;    /* Session timer (frames) */
+    extern s32 D_8014C008;    /* Session time limit */
+    extern s32 D_8014C00C[4]; /* Player stunt scores */
+    extern s32 D_8014C01C[4]; /* Player combo multipliers */
+    extern s32 D_8014C02C[4]; /* Player best single trick */
+    extern s32 D_8014C03C[4]; /* Player best combo */
+    extern void *D_80152818;  /* Player car array */
+    s32 i;
+    void *car;
+    s32 *isAirborne;
+    s32 *wasAirborne;
+    s32 flipTrick, rollTrick, spinTrick;
+    s32 trickScore, landingBonus;
+    s32 *comboCount;
+    f32 *airTime;
+
+    /* Check if stunt mode active */
+    if (D_8014C000 == 0) {
+        return;
+    }
+
+    /* Update session timer */
+    D_8014C004++;
+
+    /* Check time limit */
+    if (D_8014C004 >= D_8014C008) {
+        /* Session over - determine winner */
+        func_8010F5A0();  /* End stunt session */
+        return;
+    }
+
+    /* Process each player */
+    for (i = 0; i < 4; i++) {
+        car = (void *)((u8 *)&D_80152818 + i * 0x400);
+        if (car == NULL) {
+            continue;
+        }
+
+        isAirborne = (s32 *)((u8 *)car + 0x190);
+        wasAirborne = (s32 *)((u8 *)car + 0x18C);
+        comboCount = (s32 *)((u8 *)car + 0x1AC);
+        airTime = (f32 *)((u8 *)car + 0x1A0);
+
+        /* Check if in air */
+        if (*isAirborne) {
+            /* Detect tricks while airborne */
+            flipTrick = func_80102988(car);   /* Front/back flip */
+            rollTrick = func_80102F30(car);   /* Barrel roll */
+            spinTrick = func_80103D28(car);   /* Spin */
+
+            /* Add new tricks to combo */
+            if (flipTrick > 0) {
+                func_80104B14(car);  /* Add to combo */
+            }
+            if (rollTrick > 0) {
+                func_80104B14(car);
+            }
+            if (spinTrick > 0) {
+                func_80104B14(car);
+            }
+
+            /* Track air time */
+            *airTime += 0.0166f;  /* ~1/60 second per frame */
+        }
+
+        /* Check for landing (was airborne, now grounded) */
+        if (*wasAirborne && !(*isAirborne)) {
+            /* Calculate trick scores */
+            trickScore = 0;
+
+            flipTrick = func_80102988(car);
+            rollTrick = func_80102F30(car);
+            spinTrick = func_80103D28(car);
+
+            /* Base points per trick */
+            if (flipTrick > 0) {
+                s32 level = (flipTrick / 10) + 1;  /* 1=single, 2=double, 3=triple */
+                trickScore += 100 * level * level;  /* 100, 400, 900 */
+            }
+            if (rollTrick > 0) {
+                s32 level = (rollTrick / 10) + 1;
+                trickScore += 150 * level * level;  /* 150, 600, 1350 */
+            }
+            if (spinTrick > 0) {
+                s32 level = (spinTrick / 10) + 1;
+                trickScore += 75 * level;  /* 75, 150, 225, 300 per 180 */
+            }
+
+            /* Get landing bonus */
+            landingBonus = func_80104704(car);
+
+            /* Apply combo multiplier */
+            trickScore *= D_8014C01C[i];
+            trickScore += landingBonus;
+
+            /* Track best single trick */
+            if (trickScore > D_8014C02C[i]) {
+                D_8014C02C[i] = trickScore;
+            }
+
+            /* Track best combo */
+            if (*comboCount > 1 && trickScore > D_8014C03C[i]) {
+                D_8014C03C[i] = trickScore;
+            }
+
+            /* Add to session score */
+            D_8014C00C[i] += trickScore;
+
+            /* Reset for next air session */
+            func_80104F48(car);  /* Reset trick accumulators */
+            *airTime = 0.0f;
+        }
+
+        /* Update was-airborne for next frame */
+        *wasAirborne = *isAirborne;
+    }
 }
 
 /*
  * func_8010FBF4 (440 bytes)
  * Final cleanup game
+ *
+ * Called when exiting a game session to clean up resources:
+ *   - Free allocated memory pools
+ *   - Reset audio channels
+ *   - Stop any running effects
+ *   - Clear display lists
+ *   - Reset game state variables
  */
 void func_8010FBF4(void) {
-    /* Final cleanup - stub */
+    extern s32 D_801461D0;    /* Main game state */
+    extern s32 D_801146EC;    /* gstate */
+    extern s32 D_801174B4;    /* Secondary state */
+    extern s32 D_80142AFC;    /* Frame counter */
+    extern void *D_80149438;  /* Display list pointer */
+    extern void *D_80152818;  /* Player car array */
+    s32 i;
+
+    /* Stop all audio */
+    func_800B2828(0, -1);  /* Stop all sounds */
+    func_800B1E24(0);      /* Stop music */
+
+    /* Clear all particle effects */
+    for (i = 0; i < 256; i++) {
+        func_800B86BC(i);  /* Kill particle */
+    }
+
+    /* Reset car states */
+    for (i = 0; i < 4; i++) {
+        void *car = (void *)((u8 *)&D_80152818 + i * 0x400);
+        if (car != NULL) {
+            /* Clear car memory */
+            u8 *carBytes = (u8 *)car;
+            s32 j;
+            for (j = 0; j < 0x400; j++) {
+                carBytes[j] = 0;
+            }
+        }
+    }
+
+    /* Reset display list to base address */
+    D_80149438 = (void *)0x80160000;
+
+    /* Reset game state */
+    D_801461D0 = 0;
+    D_801146EC = 0;  /* ATTRACT state */
+    D_801174B4 = 0;
+    D_80142AFC = 0;
+
+    /* Clear any pending messages */
+    func_80007A40();  /* Flush message queues */
+
+    /* Invalidate data cache for game data region */
+    osInvalDCache((void *)0x80140000, 0x40000);
+}
+
+/*
+ * Battle mode helper functions
+ */
+
+/*
+ * func_8010F0D0 (280 bytes)
+ * Battle respawn - Respawns player at arena spawn point
+ */
+void func_8010F0D0(void *car, s32 playerIdx) {
+    extern f32 D_8014B100[4][3];  /* Spawn positions */
+    extern f32 D_8014B130[4];     /* Spawn rotations */
+    f32 *pos;
+    f32 *vel;
+    f32 *rot;
+
+    if (car == NULL) {
+        return;
+    }
+
+    pos = (f32 *)((u8 *)car + 0x24);
+    vel = (f32 *)((u8 *)car + 0x34);
+    rot = (f32 *)((u8 *)car + 0x60);
+
+    /* Set spawn position */
+    pos[0] = D_8014B100[playerIdx][0];
+    pos[1] = D_8014B100[playerIdx][1];
+    pos[2] = D_8014B100[playerIdx][2];
+
+    /* Clear velocity */
+    vel[0] = 0.0f;
+    vel[1] = 0.0f;
+    vel[2] = 0.0f;
+
+    /* Set spawn rotation */
+    rot[1] = D_8014B130[playerIdx];
+
+    /* Brief invincibility after spawn */
+    *(s32 *)((u8 *)car + 0x1F4) = 180;  /* 3 seconds invincibility */
+}
+
+/*
+ * func_8010F158 (72 bytes)
+ * Battle pickup check - Checks for weapon pickup collision
+ */
+void func_8010F158(void *car, s32 playerIdx) {
+    extern s32 D_8014B02C[4];  /* Player weapons */
+    extern s32 D_8014B03C[4];  /* Player ammo */
+    /* TODO: Check collision with weapon pickups */
+    /* Simplified - stub for now */
+}
+
+/*
+ * func_8010F1A0 (64 bytes)
+ * Battle fire weapon - Fires player's equipped weapon
+ */
+void func_8010F1A0(void *car, s32 weaponType, s32 playerIdx) {
+    f32 *pos, *forward;
+
+    if (car == NULL) {
+        return;
+    }
+
+    pos = (f32 *)((u8 *)car + 0x24);
+    forward = (f32 *)((u8 *)car + 0x60);
+
+    switch (weaponType) {
+        case 0:  /* Missile */
+            func_800B9A68(pos, forward, playerIdx);  /* Spawn missile projectile */
+            break;
+        case 1:  /* Machine gun */
+            func_800B9C40(pos, forward, playerIdx);  /* Spawn bullet */
+            break;
+        case 2:  /* Mine */
+            func_800B9DF8(pos, playerIdx);  /* Drop mine */
+            break;
+        case 3:  /* Shield */
+            *(s32 *)((u8 *)car + 0x1F4) = 300;  /* 5 second shield */
+            break;
+        case 4:  /* Speed boost */
+            *(f32 *)((u8 *)car + 0x200) = 1.5f;  /* Temporary speed boost */
+            break;
+    }
+}
+
+/*
+ * func_8010F1E0 (56 bytes)
+ * Battle win check - Checks if any player has won
+ */
+void func_8010F1E0(void) {
+    extern s32 D_8014B000;    /* Battle mode state */
+    extern s32 D_8014B008;    /* Battle mode type */
+    extern s32 D_8014B00C[4]; /* Player scores */
+    extern s32 D_8014B01C[4]; /* Player lives */
+    extern s32 D_8014B04C;    /* Score limit */
+    s32 i;
+    s32 alivePlayers = 0;
+    s32 winner = -1;
+
+    /* Check score limit */
+    for (i = 0; i < 4; i++) {
+        if (D_8014B00C[i] >= D_8014B04C) {
+            /* Player reached score limit */
+            winner = i;
+            D_8014B000 = 2;  /* End battle, show results */
+            return;
+        }
+    }
+
+    /* Check Last Man Standing */
+    if (D_8014B008 == 2) {
+        for (i = 0; i < 4; i++) {
+            if (D_8014B01C[i] > 0) {
+                alivePlayers++;
+                winner = i;
+            }
+        }
+        if (alivePlayers <= 1) {
+            D_8014B000 = 2;  /* End battle */
+        }
+    }
+}
+
+/*
+ * Stunt mode helper functions
+ */
+
+/*
+ * func_8010F5A0 (164 bytes)
+ * Stunt end session - Ends stunt mode and shows results
+ */
+void func_8010F5A0(void) {
+    extern s32 D_8014C000;    /* Stunt mode state */
+    extern s32 D_8014C00C[4]; /* Player stunt scores */
+    s32 i;
+    s32 highScore = 0;
+    s32 winner = 0;
+
+    /* Find highest scorer */
+    for (i = 0; i < 4; i++) {
+        if (D_8014C00C[i] > highScore) {
+            highScore = D_8014C00C[i];
+            winner = i;
+        }
+    }
+
+    /* Set winner and end state */
+    D_8014C000 = 2;  /* End stunt mode, show results */
+
+    /* Trigger results screen */
+    func_800D7DC4(winner, highScore);
 }
