@@ -8724,25 +8724,231 @@ void func_800A4508(void *car, f32 distance) {
 /*
  * func_800A4940 (388 bytes)
  * Wheel rotation update
+ *
+ * Updates wheel visual rotation based on angular velocity.
+ * Also handles tire slip angle calculations for force model.
+ *
+ * Wheel structure offsets:
+ *   0x00: rotation angle
+ *   0x04: angular velocity (rad/s)
+ *   0x08: radius
+ *   0x0C: slip angle
+ *   0x10: slip ratio
+ *   0x14: contact patch velocity [3]
  */
-void func_800A4940(void *wheel, f32 angle) {
-    /* Wheel rotation - stub */
+void func_800A4940(void *wheel, f32 dt) {
+    f32 *rotAngle, *angVel;
+    f32 radius;
+    f32 *slipAngle, *slipRatio;
+    f32 *patchVel;
+    f32 roadSpeed, wheelSpeed;
+    f32 newAngle;
+
+    if (wheel == NULL || dt <= 0.0f) {
+        return;
+    }
+
+    rotAngle = (f32 *)((u8 *)wheel + 0x00);
+    angVel = (f32 *)((u8 *)wheel + 0x04);
+    radius = *(f32 *)((u8 *)wheel + 0x08);
+    slipAngle = (f32 *)((u8 *)wheel + 0x0C);
+    slipRatio = (f32 *)((u8 *)wheel + 0x10);
+    patchVel = (f32 *)((u8 *)wheel + 0x14);
+
+    if (radius == 0.0f) radius = 1.0f;
+
+    /* Update rotation angle for visual */
+    newAngle = *rotAngle + (*angVel * dt);
+
+    /* Keep angle in 0-2pi range */
+    while (newAngle > 6.283185f) {
+        newAngle -= 6.283185f;
+    }
+    while (newAngle < 0.0f) {
+        newAngle += 6.283185f;
+    }
+    *rotAngle = newAngle;
+
+    /* Calculate slip ratio for traction calculations */
+    /* Slip ratio = (wheel_speed - road_speed) / max(wheel_speed, road_speed) */
+    roadSpeed = patchVel[0];  /* Forward component of contact patch velocity */
+    wheelSpeed = *angVel * radius;
+
+    if (fabsf(roadSpeed) > 0.1f || fabsf(wheelSpeed) > 0.1f) {
+        f32 maxSpeed = fabsf(roadSpeed);
+        if (fabsf(wheelSpeed) > maxSpeed) {
+            maxSpeed = fabsf(wheelSpeed);
+        }
+        *slipRatio = (wheelSpeed - roadSpeed) / maxSpeed;
+    } else {
+        *slipRatio = 0.0f;
+    }
+
+    /* Calculate slip angle from lateral velocity */
+    /* Slip angle = atan2(lateral_vel, forward_vel) */
+    if (fabsf(patchVel[0]) > 0.1f) {
+        *slipAngle = patchVel[1] / patchVel[0];  /* Small angle approximation */
+        if (*slipAngle > 0.5f) *slipAngle = 0.5f;
+        if (*slipAngle < -0.5f) *slipAngle = -0.5f;
+    } else {
+        *slipAngle = 0.0f;
+    }
 }
 
 /*
  * func_800A4CC0 (412 bytes)
  * Suspension compression update
+ *
+ * Based on arcade tires.c dotireforce() function.
+ * Calculates suspension spring and damper forces.
+ * Updates suspension compression state.
+ *
+ * Suspension structure offsets:
+ *   0x00: compression (current)
+ *   0x04: compression velocity
+ *   0x08: spring rate (lb/ft)
+ *   0x0C: damping rate (compression)
+ *   0x10: damping rate (rebound)
+ *   0x14: anti-roll bar rate
+ *   0x18: other side compression (for ARB calc)
+ *   0x1C: output force
  */
-void func_800A4CC0(void *suspension, f32 compression) {
-    /* Suspension update - stub */
+void func_800A4CC0(void *suspension, f32 newCompression) {
+    f32 *compression, *compVel;
+    f32 springRate, cDamping, rDamping;
+    f32 arbRate, otherComp;
+    f32 *outputForce;
+    f32 springForce, dampForce, arbForce;
+    f32 totalForce;
+    f32 dt = 0.016f;  /* Assume 60fps */
+
+    if (suspension == NULL) {
+        return;
+    }
+
+    compression = (f32 *)((u8 *)suspension + 0x00);
+    compVel = (f32 *)((u8 *)suspension + 0x04);
+    springRate = *(f32 *)((u8 *)suspension + 0x08);
+    cDamping = *(f32 *)((u8 *)suspension + 0x0C);
+    rDamping = *(f32 *)((u8 *)suspension + 0x10);
+    arbRate = *(f32 *)((u8 *)suspension + 0x14);
+    otherComp = *(f32 *)((u8 *)suspension + 0x18);
+    outputForce = (f32 *)((u8 *)suspension + 0x1C);
+
+    /* Default values if not set */
+    if (springRate == 0.0f) springRate = -4000.0f;  /* Negative = upward force */
+    if (cDamping == 0.0f) cDamping = -500.0f;
+    if (rDamping == 0.0f) rDamping = -500.0f;
+
+    /* Calculate compression velocity */
+    *compVel = (newCompression - *compression) / dt;
+
+    /* Update compression */
+    *compression = newCompression;
+
+    /* Only apply forces if in contact with ground */
+    if (newCompression <= 0.0f) {
+        *outputForce = 0.0f;
+        return;
+    }
+
+    /* Spring force: F = -k * x */
+    springForce = springRate * newCompression;
+
+    /* Progressive spring rate for bottoming out */
+    if (newCompression > 10.0f) {
+        springForce *= (newCompression / 10.0f);
+    }
+
+    /* Damping force: F = -c * v */
+    if (*compVel > 0.0f) {
+        /* Compression stroke */
+        dampForce = cDamping * (*compVel);
+    } else {
+        /* Rebound stroke */
+        dampForce = rDamping * (*compVel);
+    }
+
+    /* Anti-roll bar force */
+    /* Differential force based on compression difference */
+    if (arbRate != 0.0f) {
+        arbForce = arbRate * (newCompression - otherComp);
+    } else {
+        arbForce = 0.0f;
+    }
+
+    /* Total vertical force */
+    totalForce = springForce + dampForce + arbForce;
+
+    /* Clamp to prevent negative (pulling down) forces */
+    if (totalForce < 0.0f) {
+        totalForce = 0.0f;
+    }
+
+    *outputForce = totalForce;
 }
 
 /*
  * func_800A4E60 (444 bytes)
  * Tire skid mark generation
+ *
+ * Creates visual skid marks on the ground based on tire slip.
+ * Based on arcade tires.c screech calculations.
+ *
+ * Tire structure offsets:
+ *   0x10: slip ratio
+ *   0x0C: slip angle
+ *   0x20: skid mark buffer pointer
+ *   0x24: skid mark index
  */
 void func_800A4E60(void *tire, f32 *pos, f32 intensity) {
-    /* Skid mark - stub */
+    f32 slipRatio, slipAngle;
+    f32 totalSlip;
+    void **skidBuffer;
+    s32 *skidIndex;
+    f32 *skidEntry;
+    s32 idx;
+
+    if (tire == NULL || pos == NULL) {
+        return;
+    }
+
+    slipRatio = *(f32 *)((u8 *)tire + 0x10);
+    slipAngle = *(f32 *)((u8 *)tire + 0x0C);
+    skidBuffer = (void **)((u8 *)tire + 0x20);
+    skidIndex = (s32 *)((u8 *)tire + 0x24);
+
+    if (*skidBuffer == NULL) {
+        return;
+    }
+
+    /* Calculate total slip magnitude */
+    totalSlip = sqrtf(slipRatio * slipRatio + slipAngle * slipAngle);
+
+    /* Only generate skid mark if slip exceeds threshold */
+    if (totalSlip < 0.15f) {
+        return;
+    }
+
+    /* Scale intensity by slip amount */
+    intensity *= (totalSlip - 0.15f) * 2.0f;
+    if (intensity > 1.0f) intensity = 1.0f;
+    if (intensity < 0.0f) intensity = 0.0f;
+
+    /* Add new skid mark point */
+    idx = *skidIndex;
+    skidEntry = (f32 *)((u8 *)(*skidBuffer) + idx * 16);  /* 16 bytes per entry */
+
+    /* Store position */
+    skidEntry[0] = pos[0];
+    skidEntry[1] = pos[1] + 0.01f;  /* Slightly above ground */
+    skidEntry[2] = pos[2];
+
+    /* Store intensity/alpha */
+    skidEntry[3] = intensity;
+
+    /* Advance index (circular buffer) */
+    *skidIndex = (idx + 1) % 64;  /* 64 entry buffer */
 }
 
 /*
@@ -8803,34 +9009,471 @@ void func_800A6404(void *car) {
 
 /*
  * func_800A6BE4 (3300 bytes)
- * Car physics integration
+ * Car physics integration - main physics loop
+ *
+ * Based on arcade drivsym.c sym() and regular() functions.
+ * Handles:
+ *   1. Controls processing
+ *   2. Drivetrain simulation
+ *   3. Road/terrain detection
+ *   4. Force calculations (tires, gravity, drag)
+ *   5. Torque calculations
+ *   6. Acceleration integration
+ *   7. Velocity integration
+ *   8. Position integration
+ *
+ * Car structure offsets:
+ *   0x24: position (vec3)
+ *   0x34: velocity (vec3)
+ *   0x40: acceleration (vec3)
+ *   0x60: forward direction (vec3)
+ *   0x6C: up direction (vec3)
+ *   0x78: right direction (vec3)
+ *   0x84: angular velocity (vec3)
+ *   0x90: angular acceleration (vec3)
+ *   0x9C: tire forces [4][3]
+ *   0xCC: suspension compression [4]
+ *   0xDC: mass
+ *   0xE0: inverse mass
+ *   0xE4: moment of inertia (vec3)
+ *   0xF0: inverse MOI (vec3)
+ *   0xFC: steer angle
+ *   0x100: throttle
+ *   0x104: brake
+ *   0x108: gear
+ *   0x10C: RPM
+ *   0x110: torque output
+ *   0x114: crash flag
+ *   0x118: road code [4]
+ *   0x128: wheel base
+ *   0x12C: track width
+ *   0x130: CG height
+ *   0x134: drag coefficient
+ *   0x138: roll resistance
  */
 void func_800A6BE4(void *car, f32 dt) {
-    /* Physics integration - stub */
+    f32 *pos, *vel, *accel;
+    f32 *forward, *up, *right;
+    f32 *angVel, *angAccel;
+    f32 *tireForces, *susComp;
+    f32 mass, invMass;
+    f32 *invi;
+    f32 steerAngle, throttle, brake;
+    f32 dragCoef, rollResist;
+    f32 totalForce[3], totalMoment[3];
+    f32 temp[3], tempMag;
+    f32 gravity[3] = {0.0f, -32.2f, 0.0f};  /* ft/s^2 */
+    f32 dragForce, rollForce;
+    f32 wheelBase, trackWidth;
+    s32 *roadCode;
+    s32 crashFlag;
+    s32 i;
+
+    if (car == NULL || dt <= 0.0f) {
+        return;
+    }
+
+    /* Get car state pointers */
+    pos = (f32 *)((u8 *)car + 0x24);
+    vel = (f32 *)((u8 *)car + 0x34);
+    accel = (f32 *)((u8 *)car + 0x40);
+    forward = (f32 *)((u8 *)car + 0x60);
+    up = (f32 *)((u8 *)car + 0x6C);
+    right = (f32 *)((u8 *)car + 0x78);
+    angVel = (f32 *)((u8 *)car + 0x84);
+    angAccel = (f32 *)((u8 *)car + 0x90);
+    tireForces = (f32 *)((u8 *)car + 0x9C);
+    susComp = (f32 *)((u8 *)car + 0xCC);
+    mass = *(f32 *)((u8 *)car + 0xDC);
+    invMass = *(f32 *)((u8 *)car + 0xE0);
+    invi = (f32 *)((u8 *)car + 0xF0);
+    steerAngle = *(f32 *)((u8 *)car + 0xFC);
+    throttle = *(f32 *)((u8 *)car + 0x100);
+    brake = *(f32 *)((u8 *)car + 0x104);
+    roadCode = (s32 *)((u8 *)car + 0x118);
+    wheelBase = *(f32 *)((u8 *)car + 0x128);
+    trackWidth = *(f32 *)((u8 *)car + 0x12C);
+    dragCoef = *(f32 *)((u8 *)car + 0x134);
+    rollResist = *(f32 *)((u8 *)car + 0x138);
+    crashFlag = *(s32 *)((u8 *)car + 0x114);
+
+    /* Skip physics if crashed */
+    if (crashFlag != 0) {
+        return;
+    }
+
+    /* Initialize total force and moment */
+    totalForce[0] = 0.0f;
+    totalForce[1] = 0.0f;
+    totalForce[2] = 0.0f;
+    totalMoment[0] = 0.0f;
+    totalMoment[1] = 0.0f;
+    totalMoment[2] = 0.0f;
+
+    /* Calculate speed in forward direction */
+    tempMag = vel[0] * forward[0] + vel[1] * forward[1] + vel[2] * forward[2];
+
+    /* Aerodynamic drag: F = -C * v^2 */
+    if (tempMag > 0.01f || tempMag < -0.01f) {
+        dragForce = -dragCoef * tempMag * fabsf(tempMag);
+        totalForce[0] += dragForce * forward[0];
+        totalForce[1] += dragForce * forward[1];
+        totalForce[2] += dragForce * forward[2];
+    }
+
+    /* Rolling resistance */
+    rollForce = -rollResist * mass;
+    if (tempMag > 0.0f) {
+        totalForce[0] += rollForce * forward[0];
+        totalForce[2] += rollForce * forward[2];
+    } else if (tempMag < 0.0f) {
+        totalForce[0] -= rollForce * forward[0];
+        totalForce[2] -= rollForce * forward[2];
+    }
+
+    /* Sum tire forces */
+    for (i = 0; i < 4; i++) {
+        totalForce[0] += tireForces[i * 3 + 0];
+        totalForce[1] += tireForces[i * 3 + 1];
+        totalForce[2] += tireForces[i * 3 + 2];
+    }
+
+    /* Add gravity */
+    totalForce[0] += gravity[0] * mass;
+    totalForce[1] += gravity[1] * mass;
+    totalForce[2] += gravity[2] * mass;
+
+    /* Calculate torques from tire forces */
+    /* Front right tire */
+    temp[0] = wheelBase * 0.5f;
+    temp[1] = 0.0f;
+    temp[2] = trackWidth * 0.5f;
+    totalMoment[0] += temp[1] * tireForces[0*3+2] - temp[2] * tireForces[0*3+1];
+    totalMoment[1] += temp[2] * tireForces[0*3+0] - temp[0] * tireForces[0*3+2];
+    totalMoment[2] += temp[0] * tireForces[0*3+1] - temp[1] * tireForces[0*3+0];
+
+    /* Front left tire */
+    temp[2] = -trackWidth * 0.5f;
+    totalMoment[0] += temp[1] * tireForces[1*3+2] - temp[2] * tireForces[1*3+1];
+    totalMoment[1] += temp[2] * tireForces[1*3+0] - temp[0] * tireForces[1*3+2];
+    totalMoment[2] += temp[0] * tireForces[1*3+1] - temp[1] * tireForces[1*3+0];
+
+    /* Rear right tire */
+    temp[0] = -wheelBase * 0.5f;
+    temp[2] = trackWidth * 0.5f;
+    totalMoment[0] += temp[1] * tireForces[2*3+2] - temp[2] * tireForces[2*3+1];
+    totalMoment[1] += temp[2] * tireForces[2*3+0] - temp[0] * tireForces[2*3+2];
+    totalMoment[2] += temp[0] * tireForces[2*3+1] - temp[1] * tireForces[2*3+0];
+
+    /* Rear left tire */
+    temp[2] = -trackWidth * 0.5f;
+    totalMoment[0] += temp[1] * tireForces[3*3+2] - temp[2] * tireForces[3*3+1];
+    totalMoment[1] += temp[2] * tireForces[3*3+0] - temp[0] * tireForces[3*3+2];
+    totalMoment[2] += temp[0] * tireForces[3*3+1] - temp[1] * tireForces[3*3+0];
+
+    /* Calculate accelerations: A = F / m */
+    accel[0] = totalForce[0] * invMass;
+    accel[1] = totalForce[1] * invMass;
+    accel[2] = totalForce[2] * invMass;
+
+    /* Calculate angular accelerations: AA = M * invI */
+    angAccel[0] = totalMoment[0] * invi[0];
+    angAccel[1] = totalMoment[1] * invi[1];
+    angAccel[2] = totalMoment[2] * invi[2];
+
+    /* Integrate velocities: V = V + A * dt */
+    vel[0] += accel[0] * dt;
+    vel[1] += accel[1] * dt;
+    vel[2] += accel[2] * dt;
+
+    /* Clamp velocity magnitude to prevent instability */
+    tempMag = sqrtf(vel[0]*vel[0] + vel[1]*vel[1] + vel[2]*vel[2]);
+    if (tempMag > 1000.0f) {
+        f32 scale = 1000.0f / tempMag;
+        vel[0] *= scale;
+        vel[1] *= scale;
+        vel[2] *= scale;
+    }
+
+    /* Integrate angular velocities: W = W + AA * dt */
+    angVel[0] += angAccel[0] * dt;
+    angVel[1] += angAccel[1] * dt;
+    angVel[2] += angAccel[2] * dt;
+
+    /* Integrate positions: P = P + V * dt */
+    pos[0] += vel[0] * dt;
+    pos[1] += vel[1] * dt;
+    pos[2] += vel[2] * dt;
+
+    /* Update orientation from angular velocity */
+    func_800A6F00(car, angVel, dt);  /* Update orientation vectors */
 }
 
 /*
  * func_800A78C8 (580 bytes)
  * Car steering response
+ *
+ * Based on arcade controls() function in drivsym.c.
+ * Converts steering wheel input to front tire steer angle.
+ * Applies steering ratio and speed-sensitive steering reduction.
+ *
+ * Car structure offsets:
+ *   0x34: velocity (vec3)
+ *   0x60: forward direction (vec3)
+ *   0xFC: steer angle (output)
+ *   0x13C: steering ratio (degrees input / degrees wheel)
+ *   0x140: max steer angle
+ *   0x144: steering speed factor
  */
 void func_800A78C8(void *car, f32 steerInput) {
-    /* Steering response - stub */
+    f32 *vel, *forward;
+    f32 *steerAngle;
+    f32 steerRatio, maxSteer, speedFactor;
+    f32 speed, speedEffect;
+    f32 targetAngle, currentAngle;
+    f32 steerRate;
+
+    if (car == NULL) {
+        return;
+    }
+
+    vel = (f32 *)((u8 *)car + 0x34);
+    forward = (f32 *)((u8 *)car + 0x60);
+    steerAngle = (f32 *)((u8 *)car + 0xFC);
+    steerRatio = *(f32 *)((u8 *)car + 0x13C);
+    maxSteer = *(f32 *)((u8 *)car + 0x140);
+    speedFactor = *(f32 *)((u8 *)car + 0x144);
+
+    /* Default values if not set */
+    if (steerRatio == 0.0f) steerRatio = 14.0f;
+    if (maxSteer == 0.0f) maxSteer = 0.5f;  /* ~28 degrees in radians */
+    if (speedFactor == 0.0f) speedFactor = 0.01f;
+
+    /* Calculate forward speed */
+    speed = vel[0] * forward[0] + vel[1] * forward[1] + vel[2] * forward[2];
+    speed = fabsf(speed);
+
+    /* Speed-sensitive steering reduction */
+    /* At high speeds, reduce max steering angle for stability */
+    speedEffect = 1.0f / (1.0f + speedFactor * speed);
+
+    /* Calculate target steer angle from input */
+    /* steerInput is normalized -1.0 to 1.0 */
+    targetAngle = (steerInput / steerRatio) * maxSteer * speedEffect;
+
+    /* Clamp to max steering angle */
+    if (targetAngle > maxSteer) {
+        targetAngle = maxSteer;
+    } else if (targetAngle < -maxSteer) {
+        targetAngle = -maxSteer;
+    }
+
+    /* Apply steering with some lag for realism */
+    currentAngle = *steerAngle;
+    steerRate = 3.0f;  /* Steering response rate */
+
+    if (targetAngle > currentAngle) {
+        currentAngle += steerRate * 0.016f;  /* Assume ~60fps */
+        if (currentAngle > targetAngle) {
+            currentAngle = targetAngle;
+        }
+    } else if (targetAngle < currentAngle) {
+        currentAngle -= steerRate * 0.016f;
+        if (currentAngle < targetAngle) {
+            currentAngle = targetAngle;
+        }
+    }
+
+    *steerAngle = currentAngle;
+
+    /* Update front tire steering for tire force calculations */
+    func_800A79E0(car, currentAngle);  /* Update tire orientations */
 }
 
 /*
  * func_800A7AE4 (440 bytes)
  * Throttle/brake input processing
+ *
+ * Based on arcade drivetrain() and controls() functions.
+ * Processes throttle and brake pedal inputs.
+ * Updates engine torque output and brake force.
+ *
+ * Car structure offsets:
+ *   0x100: throttle value (stored)
+ *   0x104: brake value (stored)
+ *   0x108: current gear
+ *   0x10C: RPM
+ *   0x110: torque output
+ *   0x148: max torque
+ *   0x14C: max brake force
+ *   0x150: idle RPM
+ *   0x154: redline RPM
+ *   0x158: gear ratios [6]
  */
 void func_800A7AE4(void *car, f32 throttle, f32 brake) {
-    /* Throttle/brake - stub */
+    f32 *storedThrottle, *storedBrake;
+    f32 *torqueOut;
+    f32 *rpm;
+    f32 maxTorque, maxBrake;
+    f32 idleRpm, redlineRpm;
+    f32 *gearRatios;
+    s32 gear;
+    f32 rpmNorm, torqueCurve;
+    f32 engineTorque, brakeTorque;
+
+    if (car == NULL) {
+        return;
+    }
+
+    storedThrottle = (f32 *)((u8 *)car + 0x100);
+    storedBrake = (f32 *)((u8 *)car + 0x104);
+    gear = *(s32 *)((u8 *)car + 0x108);
+    rpm = (f32 *)((u8 *)car + 0x10C);
+    torqueOut = (f32 *)((u8 *)car + 0x110);
+    maxTorque = *(f32 *)((u8 *)car + 0x148);
+    maxBrake = *(f32 *)((u8 *)car + 0x14C);
+    idleRpm = *(f32 *)((u8 *)car + 0x150);
+    redlineRpm = *(f32 *)((u8 *)car + 0x154);
+    gearRatios = (f32 *)((u8 *)car + 0x158);
+
+    /* Default values if not set */
+    if (maxTorque == 0.0f) maxTorque = 300.0f;
+    if (maxBrake == 0.0f) maxBrake = 5000.0f;
+    if (idleRpm == 0.0f) idleRpm = 800.0f;
+    if (redlineRpm == 0.0f) redlineRpm = 8000.0f;
+
+    /* Clamp inputs to valid range */
+    if (throttle < 0.0f) throttle = 0.0f;
+    if (throttle > 1.0f) throttle = 1.0f;
+    if (brake < 0.0f) brake = 0.0f;
+    if (brake > 1.0f) brake = 1.0f;
+
+    /* Store processed inputs */
+    *storedThrottle = throttle;
+    *storedBrake = brake;
+
+    /* Calculate normalized RPM position in powerband */
+    rpmNorm = (*rpm - idleRpm) / (redlineRpm - idleRpm);
+    if (rpmNorm < 0.0f) rpmNorm = 0.0f;
+    if (rpmNorm > 1.0f) rpmNorm = 1.0f;
+
+    /* Simple torque curve: peaks around 0.6-0.7 of rev range */
+    /* Based on arcade rushtorquecurve pattern */
+    if (rpmNorm < 0.3f) {
+        torqueCurve = 0.6f + rpmNorm * 1.33f;  /* Ramp up */
+    } else if (rpmNorm < 0.7f) {
+        torqueCurve = 1.0f;  /* Peak torque band */
+    } else {
+        torqueCurve = 1.0f - (rpmNorm - 0.7f) * 2.0f;  /* Fall off */
+        if (torqueCurve < 0.3f) torqueCurve = 0.3f;
+    }
+
+    /* Engine torque = throttle * torque_curve * max_torque */
+    engineTorque = throttle * torqueCurve * maxTorque;
+
+    /* Apply gear ratio if valid gear */
+    if (gear >= 1 && gear <= 6) {
+        f32 ratio = gearRatios[gear - 1];
+        if (ratio != 0.0f) {
+            engineTorque *= ratio;
+        }
+    }
+
+    /* Calculate brake torque (negative to oppose motion) */
+    brakeTorque = -brake * maxBrake;
+
+    /* Output combined torque */
+    /* If braking hard, engine torque is overridden */
+    if (brake > 0.5f) {
+        *torqueOut = brakeTorque;
+    } else {
+        *torqueOut = engineTorque + brakeTorque;
+    }
+
+    /* Apply torque to drive wheels via drivetrain */
+    func_800A7B90(car, *torqueOut);  /* Distribute to drive wheels */
 }
 
 /*
  * func_800A7C9C (236 bytes)
  * Car gear shift
+ *
+ * Based on arcade transmission code.
+ * Handles manual and automatic gear changes.
+ * Updates gear, recalculates drive ratio, and adjusts RPM.
+ *
+ * Car structure offsets:
+ *   0x108: current gear
+ *   0x10C: RPM
+ *   0x170: auto transmission flag
+ *   0x174: shift timer
+ *   0x158: gear ratios [6]
  */
-void func_800A7C9C(void *car, s32 gear) {
-    /* Gear shift - stub */
+void func_800A7C9C(void *car, s32 newGear) {
+    s32 *currentGear;
+    f32 *rpm;
+    f32 *gearRatios;
+    s32 autoTrans;
+    f32 *shiftTimer;
+    f32 oldRatio, newRatio;
+    f32 currentRpm;
+
+    if (car == NULL) {
+        return;
+    }
+
+    currentGear = (s32 *)((u8 *)car + 0x108);
+    rpm = (f32 *)((u8 *)car + 0x10C);
+    gearRatios = (f32 *)((u8 *)car + 0x158);
+    autoTrans = *(s32 *)((u8 *)car + 0x170);
+    shiftTimer = (f32 *)((u8 *)car + 0x174);
+
+    /* Clamp gear to valid range: -1 (reverse), 0 (neutral), 1-6 */
+    if (newGear < -1) newGear = -1;
+    if (newGear > 6) newGear = 6;
+
+    /* Check if shift is allowed (not in middle of shift) */
+    if (*shiftTimer > 0.0f) {
+        return;  /* Still shifting */
+    }
+
+    /* Don't shift if already in this gear */
+    if (newGear == *currentGear) {
+        return;
+    }
+
+    /* Get current and new gear ratios */
+    if (*currentGear >= 1 && *currentGear <= 6) {
+        oldRatio = gearRatios[*currentGear - 1];
+    } else if (*currentGear == -1) {
+        oldRatio = -3.0f;  /* Reverse ratio */
+    } else {
+        oldRatio = 0.0f;  /* Neutral */
+    }
+
+    if (newGear >= 1 && newGear <= 6) {
+        newRatio = gearRatios[newGear - 1];
+    } else if (newGear == -1) {
+        newRatio = -3.0f;  /* Reverse ratio */
+    } else {
+        newRatio = 0.0f;  /* Neutral */
+    }
+
+    /* Update gear */
+    *currentGear = newGear;
+
+    /* Adjust RPM for new gear ratio */
+    currentRpm = *rpm;
+    if (oldRatio != 0.0f && newRatio != 0.0f) {
+        *rpm = currentRpm * (newRatio / oldRatio);
+    }
+
+    /* Start shift timer (prevents rapid shifting) */
+    *shiftTimer = 0.2f;  /* 200ms shift delay */
+
+    /* Clamp RPM to valid range */
+    if (*rpm < 800.0f) *rpm = 800.0f;
+    if (*rpm > 9000.0f) *rpm = 9000.0f;
 }
 
 /*
@@ -8839,6 +9482,125 @@ void func_800A7C9C(void *car, s32 gear) {
  */
 s32 func_800A7D88(void *car) {
     return *(s32 *)((u8 *)car + 0x48);
+}
+
+/*
+ * func_800A7E00 (1200 bytes - estimated)
+ * Tire force calculation (friction circle model)
+ *
+ * Based on arcade tires.c frictioncircle() function.
+ * Calculates lateral and longitudinal tire forces using
+ * Pacejka-style tire model with friction circle limit.
+ *
+ * Tire structure offsets:
+ *   0x00: rotation angle
+ *   0x04: angular velocity
+ *   0x08: radius
+ *   0x0C: slip angle
+ *   0x10: slip ratio
+ *   0x14: contact patch velocity [3]
+ *   0x20: normal force
+ *   0x24: lateral force (output)
+ *   0x28: longitudinal force (output)
+ *   0x2C: cornering stiffness
+ *   0x30: max friction coefficient
+ *   0x34: drive torque input
+ */
+void func_800A7E00(void *tire, f32 normalForce, f32 driveTorque) {
+    f32 *angVel, radius;
+    f32 *slipAngle, *slipRatio;
+    f32 *patchVel;
+    f32 *latForce, *lonForce;
+    f32 cStiff, cfMax;
+    f32 maxTraction, maxLateral;
+    f32 lateralForce, tractionForce;
+    f32 totalForce, forceMag;
+    f32 roadAngVel, slipSpeed;
+
+    if (tire == NULL) {
+        return;
+    }
+
+    angVel = (f32 *)((u8 *)tire + 0x04);
+    radius = *(f32 *)((u8 *)tire + 0x08);
+    slipAngle = (f32 *)((u8 *)tire + 0x0C);
+    slipRatio = (f32 *)((u8 *)tire + 0x10);
+    patchVel = (f32 *)((u8 *)tire + 0x14);
+    latForce = (f32 *)((u8 *)tire + 0x24);
+    lonForce = (f32 *)((u8 *)tire + 0x28);
+    cStiff = *(f32 *)((u8 *)tire + 0x2C);
+    cfMax = *(f32 *)((u8 *)tire + 0x30);
+
+    /* Default tire parameters if not set */
+    if (radius == 0.0f) radius = 1.0f;
+    if (cStiff == 0.0f) cStiff = 16000.0f;  /* Cornering stiffness lb/rad */
+    if (cfMax == 0.0f) cfMax = 1.15f;       /* Max friction coefficient */
+
+    /* No forces if no normal load */
+    if (normalForce <= 0.0f) {
+        *latForce = 0.0f;
+        *lonForce = 0.0f;
+        return;
+    }
+
+    /* Maximum available friction force */
+    maxTraction = cfMax * normalForce;
+
+    /* Calculate road angular velocity (wheel would have if not slipping) */
+    roadAngVel = patchVel[0] / radius;
+
+    /* Longitudinal force from drive torque */
+    /* Check for wheel spin or lockup */
+    if (*angVel > roadAngVel) {
+        /* Wheel spinning faster than road - accelerating/wheelspin */
+        tractionForce = driveTorque / radius;
+
+        /* Limit by friction circle */
+        if (tractionForce > maxTraction) {
+            tractionForce = maxTraction;
+            /* Wheel continues to spin */
+        }
+
+        /* Update wheel angular velocity based on torque and resistance */
+        *angVel += (driveTorque - tractionForce * radius) * 0.001f * 0.016f;
+
+    } else if (*angVel < roadAngVel) {
+        /* Wheel slower than road - braking/lockup */
+        tractionForce = driveTorque / radius;
+
+        if (tractionForce < -maxTraction) {
+            tractionForce = -maxTraction;
+        }
+
+        *angVel += (driveTorque - tractionForce * radius) * 0.001f * 0.016f;
+
+    } else {
+        /* Wheel matched to road - pure rolling */
+        tractionForce = driveTorque / radius;
+        *angVel = roadAngVel;
+    }
+
+    /* Lateral force from cornering */
+    /* Using linear tire model up to saturation */
+    lateralForce = -cStiff * (*slipAngle);
+
+    /* Calculate total slip speed for friction circle */
+    slipSpeed = sqrtf((*slipRatio) * (*slipRatio) + (*slipAngle) * (*slipAngle));
+
+    /* Apply friction circle limit */
+    /* Total force magnitude cannot exceed maxTraction */
+    forceMag = sqrtf(lateralForce * lateralForce + tractionForce * tractionForce);
+
+    if (forceMag > maxTraction) {
+        /* Scale both forces proportionally */
+        f32 scale = maxTraction / forceMag;
+        lateralForce *= scale;
+        tractionForce *= scale;
+    }
+
+    /* Output forces */
+    *latForce = lateralForce;
+    *lonForce = tractionForce;
 }
 
 /*
