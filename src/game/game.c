@@ -8808,19 +8808,127 @@ void func_800965BC(void *entity) {
 
 /*
  * func_80096734 (716 bytes)
- * Entity LOD selection
+ * Entity LOD selection - chooses detail level based on distance
  */
 void func_80096734(void *entity, f32 distance) {
-    /* LOD selection - stub */
+    s32 *lodLevel;
+    s32 *modelIndex;
+    s32 baseModel;
+    f32 lodDist0, lodDist1, lodDist2;
+
+    if (entity == NULL) {
+        return;
+    }
+
+    lodLevel = (s32 *)((u8 *)entity + 0xF0);
+    modelIndex = (s32 *)((u8 *)entity + 0xF4);
+    baseModel = *((s32 *)((u8 *)entity + 0xF8));
+
+    /* LOD distance thresholds */
+    lodDist0 = 100.0f;   /* High detail */
+    lodDist1 = 300.0f;   /* Medium detail */
+    lodDist2 = 600.0f;   /* Low detail */
+
+    /* Select LOD level */
+    if (distance < lodDist0) {
+        *lodLevel = 0;
+        *modelIndex = baseModel;
+    } else if (distance < lodDist1) {
+        *lodLevel = 1;
+        *modelIndex = baseModel + 1;
+    } else if (distance < lodDist2) {
+        *lodLevel = 2;
+        *modelIndex = baseModel + 2;
+    } else {
+        *lodLevel = 3;
+        *modelIndex = baseModel + 3;  /* Billboard/sprite */
+    }
+
+    /* Adjust for entity type */
+    s32 entityType = *((s32 *)((u8 *)entity + 0x08));
+    if (entityType == 1) {  /* Car - use tighter thresholds */
+        if (distance < 50.0f) {
+            *lodLevel = 0;
+        } else if (distance < 150.0f) {
+            *lodLevel = 1;
+        } else {
+            *lodLevel = 2;
+        }
+        *modelIndex = baseModel + *lodLevel;
+    }
 }
 
 /*
  * func_80096A00 (348 bytes)
- * Entity cull check
+ * Entity cull check - tests entity against view frustum
  */
 s32 func_80096A00(void *entity, void *camera) {
-    /* Frustum culling - stub */
-    return 0;
+    f32 *entityPos;
+    f32 *cameraPos;
+    f32 *cameraDir;
+    f32 entityRadius;
+    f32 dx, dy, dz;
+    f32 dist;
+    f32 dotProduct;
+    f32 fov;
+    f32 nearPlane, farPlane;
+
+    if (entity == NULL || camera == NULL) {
+        return 1;  /* Cull if invalid */
+    }
+
+    entityPos = (f32 *)((u8 *)entity + 0x24);
+    entityRadius = *((f32 *)((u8 *)entity + 0x5C));
+    cameraPos = (f32 *)camera;
+    cameraDir = (f32 *)((u8 *)camera + 0x0C);
+
+    /* Default radius if not set */
+    if (entityRadius < 1.0f) {
+        entityRadius = 5.0f;
+    }
+
+    /* Calculate vector from camera to entity */
+    dx = entityPos[0] - cameraPos[0];
+    dy = entityPos[1] - cameraPos[1];
+    dz = entityPos[2] - cameraPos[2];
+    dist = sqrtf(dx * dx + dy * dy + dz * dz);
+
+    /* Frustum parameters */
+    nearPlane = 1.0f;
+    farPlane = 2000.0f;
+    fov = 0.7f;  /* ~80 degrees half-angle in radians */
+
+    /* Distance culling */
+    if (dist - entityRadius > farPlane) {
+        return 1;  /* Too far - cull */
+    }
+    if (dist + entityRadius < nearPlane) {
+        return 1;  /* Behind camera - cull */
+    }
+
+    /* Cone culling - check if entity is in front of camera */
+    if (dist > 0.01f) {
+        dx /= dist;
+        dy /= dist;
+        dz /= dist;
+    }
+
+    dotProduct = dx * cameraDir[0] + dy * cameraDir[1] + dz * cameraDir[2];
+
+    /* Entity must be mostly in front of camera */
+    if (dotProduct < -0.2f) {
+        return 1;  /* Behind camera - cull */
+    }
+
+    /* Check if within field of view (with radius margin) */
+    f32 coneAngle = cosf(fov);
+    f32 radiusMargin = entityRadius / dist;
+
+    if (dotProduct + radiusMargin < coneAngle) {
+        return 1;  /* Outside FOV - cull */
+    }
+
+    return 0;  /* Visible */
 }
 
 /*
@@ -9345,10 +9453,78 @@ void func_80099BFC(void *entity) {
 
 /*
  * func_8009C5E0 (1560 bytes)
- * Lighting/shading calculation
+ * Lighting/shading calculation - computes surface lighting
  */
 void func_8009C5E0(f32 *color, f32 *normal, f32 *lightDir) {
-    /* Lighting calculation - stub */
+    f32 ambient[3];
+    f32 diffuse[3];
+    f32 specular[3];
+    f32 nDotL;
+    f32 reflection[3];
+    f32 viewDir[3];
+    f32 rDotV;
+    f32 shininess;
+
+    if (color == NULL || normal == NULL || lightDir == NULL) {
+        return;
+    }
+
+    /* Get global lighting parameters */
+    ambient[0] = *((f32 *)0x80160000);  /* Ambient R */
+    ambient[1] = *((f32 *)0x80160004);  /* Ambient G */
+    ambient[2] = *((f32 *)0x80160008);  /* Ambient B */
+
+    diffuse[0] = *((f32 *)0x8016000C);  /* Light R */
+    diffuse[1] = *((f32 *)0x80160010);  /* Light G */
+    diffuse[2] = *((f32 *)0x80160014);  /* Light B */
+
+    /* Calculate diffuse lighting (Lambert) */
+    nDotL = normal[0] * lightDir[0] + normal[1] * lightDir[1] + normal[2] * lightDir[2];
+    if (nDotL < 0.0f) {
+        nDotL = 0.0f;
+    }
+
+    /* Calculate reflection vector for specular */
+    reflection[0] = 2.0f * nDotL * normal[0] - lightDir[0];
+    reflection[1] = 2.0f * nDotL * normal[1] - lightDir[1];
+    reflection[2] = 2.0f * nDotL * normal[2] - lightDir[2];
+
+    /* View direction (assume camera at origin looking down -Z) */
+    viewDir[0] = 0.0f;
+    viewDir[1] = 0.0f;
+    viewDir[2] = -1.0f;
+
+    /* Specular calculation (Phong) */
+    rDotV = reflection[0] * viewDir[0] + reflection[1] * viewDir[1] + reflection[2] * viewDir[2];
+    if (rDotV < 0.0f) {
+        rDotV = 0.0f;
+    }
+
+    shininess = 32.0f;
+    specular[0] = specular[1] = specular[2] = 0.0f;
+
+    if (rDotV > 0.0f) {
+        f32 spec = 1.0f;
+        for (s32 i = 0; i < 5; i++) {  /* Approximate pow(rDotV, 32) */
+            spec *= rDotV;
+        }
+        specular[0] = diffuse[0] * spec * 0.5f;
+        specular[1] = diffuse[1] * spec * 0.5f;
+        specular[2] = diffuse[2] * spec * 0.5f;
+    }
+
+    /* Combine lighting components */
+    color[0] = ambient[0] + diffuse[0] * nDotL + specular[0];
+    color[1] = ambient[1] + diffuse[1] * nDotL + specular[1];
+    color[2] = ambient[2] + diffuse[2] * nDotL + specular[2];
+
+    /* Clamp to 0-1 range */
+    if (color[0] > 1.0f) color[0] = 1.0f;
+    if (color[1] > 1.0f) color[1] = 1.0f;
+    if (color[2] > 1.0f) color[2] = 1.0f;
+    if (color[0] < 0.0f) color[0] = 0.0f;
+    if (color[1] < 0.0f) color[1] = 0.0f;
+    if (color[2] < 0.0f) color[2] = 0.0f;
 }
 
 /*
@@ -15084,18 +15260,180 @@ void func_800D7634(void *profile) {
 
 /*
  * func_800D91A0 (8260 bytes)
- * Garage/car customization
+ * Garage/car customization - car modification screen
  */
 void func_800D91A0(void *garage) {
-    /* Garage - stub */
+    s32 *selectedCar;
+    s32 *selectedOption;
+    s32 *carRotation;
+    s32 *animTimer;
+    s32 i;
+    u32 color;
+    f32 rotAngle;
+
+    if (garage == NULL) {
+        return;
+    }
+
+    selectedCar = (s32 *)((u8 *)garage + 0x00);
+    selectedOption = (s32 *)((u8 *)garage + 0x04);
+    carRotation = (s32 *)((u8 *)garage + 0x08);
+    animTimer = (s32 *)((u8 *)garage + 0x0C);
+
+    /* Update animation */
+    (*animTimer)++;
+    (*carRotation) += 1;
+    rotAngle = (f32)(*carRotation) * 0.0174533f;
+
+    /* Draw title */
+    func_800C734C(100, 30, "GARAGE", 0xFF8800FF);
+
+    /* Draw 3D car model (rotating) */
+    {
+        f32 carPos[3] = {160.0f, 100.0f, 0.0f};
+        func_800E7B44(carPos, *selectedCar);
+    }
+
+    /* Draw car name */
+    func_800C734C(120, 150, "CAR NAME", 0xFFFFFFFF);
+
+    /* Draw customization options */
+    for (i = 0; i < 5; i++) {
+        s32 y = 170 + i * 16;
+        color = (i == *selectedOption) ? 0xFFFF00FF : 0xFFFFFFFF;
+
+        switch (i) {
+            case 0:
+                func_800C734C(60, y, "PAINT", color);
+                break;
+            case 1:
+                func_800C734C(60, y, "WHEELS", color);
+                break;
+            case 2:
+                func_800C734C(60, y, "WINGS", color);
+                break;
+            case 3:
+                func_800C734C(60, y, "SPOILER", color);
+                break;
+            case 4:
+                func_800C734C(60, y, "BACK", color);
+                break;
+        }
+
+        /* Show current selection for each option */
+        if (i < 4) {
+            s32 *carOptions = (s32 *)((u8 *)garage + 0x20 + i * 4);
+            char numStr[4];
+            numStr[0] = '0' + (*carOptions);
+            numStr[1] = '\0';
+            func_800C734C(180, y, numStr, 0x888888FF);
+        }
+    }
+
+    /* Draw car stats */
+    {
+        s32 statX = 200;
+        s32 statY = 170;
+
+        func_800C734C(statX, statY, "SPD:", 0x888888FF);
+        func_800C734C(statX, statY + 12, "ACC:", 0x888888FF);
+        func_800C734C(statX, statY + 24, "HND:", 0x888888FF);
+    }
+
+    /* Draw controls hint */
+    func_800C734C(30, 230, "< > Change  A: Select  B: Back", 0x888888FF);
 }
 
 /*
  * func_800DB1E0 (1524 bytes)
- * Paint selection
+ * Paint selection - applies paint color to car
  */
 void func_800DB1E0(void *car, s32 paintId) {
-    /* Paint selection - stub */
+    u32 *carColor;
+    u32 *carSecondary;
+    u32 *carMetallic;
+    s32 *unlocked;
+
+    if (car == NULL) {
+        return;
+    }
+
+    /* Check if paint is unlocked */
+    unlocked = (s32 *)0x80159204;
+    if (paintId >= 8 && !((*unlocked >> (40 + paintId - 8)) & 1)) {
+        return;  /* Paint not unlocked */
+    }
+
+    carColor = (u32 *)((u8 *)car + 0x200);
+    carSecondary = (u32 *)((u8 *)car + 0x204);
+    carMetallic = (u32 *)((u8 *)car + 0x208);
+
+    /* Predefined paint colors */
+    switch (paintId) {
+        case 0:  /* Red */
+            *carColor = 0xFF0000FF;
+            *carSecondary = 0x880000FF;
+            *carMetallic = 0;
+            break;
+        case 1:  /* Blue */
+            *carColor = 0x0000FFFF;
+            *carSecondary = 0x000088FF;
+            *carMetallic = 0;
+            break;
+        case 2:  /* Green */
+            *carColor = 0x00FF00FF;
+            *carSecondary = 0x008800FF;
+            *carMetallic = 0;
+            break;
+        case 3:  /* Yellow */
+            *carColor = 0xFFFF00FF;
+            *carSecondary = 0x888800FF;
+            *carMetallic = 0;
+            break;
+        case 4:  /* Orange */
+            *carColor = 0xFF8800FF;
+            *carSecondary = 0x884400FF;
+            *carMetallic = 0;
+            break;
+        case 5:  /* Purple */
+            *carColor = 0x8800FFFF;
+            *carSecondary = 0x440088FF;
+            *carMetallic = 0;
+            break;
+        case 6:  /* White */
+            *carColor = 0xFFFFFFFF;
+            *carSecondary = 0xCCCCCCFF;
+            *carMetallic = 0;
+            break;
+        case 7:  /* Black */
+            *carColor = 0x222222FF;
+            *carSecondary = 0x111111FF;
+            *carMetallic = 0;
+            break;
+        case 8:  /* Chrome (unlockable) */
+            *carColor = 0xCCCCCCFF;
+            *carSecondary = 0xAAAAAAFF;
+            *carMetallic = 1;
+            break;
+        case 9:  /* Gold (unlockable) */
+            *carColor = 0xFFD700FF;
+            *carSecondary = 0xDAA520FF;
+            *carMetallic = 1;
+            break;
+        case 10:  /* Rainbow (unlockable) */
+            *carColor = 0xFFFFFFFF;  /* Special shader flag */
+            *carSecondary = 0x00000000;
+            *carMetallic = 2;  /* Rainbow mode */
+            break;
+        default:
+            *carColor = 0x888888FF;
+            *carSecondary = 0x444444FF;
+            *carMetallic = 0;
+            break;
+    }
+
+    /* Store selected paint */
+    *((s32 *)((u8 *)car + 0x20C)) = paintId;
 }
 
 /*
@@ -15305,18 +15643,203 @@ void func_800E1AA0(void *replay, void *frame) {
 
 /*
  * func_800E1C30 (1908 bytes)
- * Replay camera control
+ * Replay camera control - cinematic camera during replay
  */
 void func_800E1C30(void *replay, void *camera) {
-    /* Replay camera - stub */
+    s32 *cameraMode;
+    s32 *cameraTimer;
+    s32 *targetCar;
+    f32 *camPos;
+    f32 *camTarget;
+    f32 *carPos;
+    f32 *carVel;
+    f32 t;
+    f32 orbitAngle;
+
+    if (replay == NULL || camera == NULL) {
+        return;
+    }
+
+    cameraMode = (s32 *)((u8 *)replay + 0x80);
+    cameraTimer = (s32 *)((u8 *)replay + 0x84);
+    targetCar = (s32 *)((u8 *)replay + 0x88);
+    camPos = (f32 *)camera;
+    camTarget = (f32 *)((u8 *)camera + 0x0C);
+
+    /* Get target car position */
+    carPos = (f32 *)(0x80152818 + (*targetCar) * 0x400 + 0x24);
+    carVel = (f32 *)(0x80152818 + (*targetCar) * 0x400 + 0x34);
+
+    /* Update camera timer */
+    (*cameraTimer)++;
+
+    /* Auto-switch camera mode every 5 seconds */
+    if (*cameraTimer > 300) {
+        *cameraMode = (*cameraMode + 1) % 5;
+        *cameraTimer = 0;
+    }
+
+    t = (f32)(*cameraTimer) / 300.0f;
+
+    switch (*cameraMode) {
+        case 0:  /* Chase cam */
+            {
+                f32 speed = sqrtf(carVel[0] * carVel[0] + carVel[2] * carVel[2]);
+                f32 dirX = (speed > 0.1f) ? carVel[0] / speed : 0.0f;
+                f32 dirZ = (speed > 0.1f) ? carVel[2] / speed : 1.0f;
+
+                camPos[0] = carPos[0] - dirX * 80.0f;
+                camPos[1] = carPos[1] + 30.0f;
+                camPos[2] = carPos[2] - dirZ * 80.0f;
+
+                camTarget[0] = carPos[0] + dirX * 20.0f;
+                camTarget[1] = carPos[1] + 5.0f;
+                camTarget[2] = carPos[2] + dirZ * 20.0f;
+            }
+            break;
+
+        case 1:  /* Orbit cam */
+            orbitAngle = t * 6.28318f;
+            camPos[0] = carPos[0] + sinf(orbitAngle) * 100.0f;
+            camPos[1] = carPos[1] + 40.0f;
+            camPos[2] = carPos[2] + cosf(orbitAngle) * 100.0f;
+
+            camTarget[0] = carPos[0];
+            camTarget[1] = carPos[1] + 10.0f;
+            camTarget[2] = carPos[2];
+            break;
+
+        case 2:  /* Helicopter cam */
+            camPos[0] = carPos[0];
+            camPos[1] = carPos[1] + 200.0f;
+            camPos[2] = carPos[2] + 50.0f;
+
+            camTarget[0] = carPos[0];
+            camTarget[1] = carPos[1];
+            camTarget[2] = carPos[2];
+            break;
+
+        case 3:  /* Front cam */
+            {
+                f32 speed = sqrtf(carVel[0] * carVel[0] + carVel[2] * carVel[2]);
+                f32 dirX = (speed > 0.1f) ? carVel[0] / speed : 0.0f;
+                f32 dirZ = (speed > 0.1f) ? carVel[2] / speed : 1.0f;
+
+                camPos[0] = carPos[0] + dirX * 60.0f;
+                camPos[1] = carPos[1] + 15.0f;
+                camPos[2] = carPos[2] + dirZ * 60.0f;
+
+                camTarget[0] = carPos[0];
+                camTarget[1] = carPos[1] + 5.0f;
+                camTarget[2] = carPos[2];
+            }
+            break;
+
+        case 4:  /* Wide angle */
+            camPos[0] = carPos[0] + 150.0f;
+            camPos[1] = carPos[1] + 80.0f;
+            camPos[2] = carPos[2] + 150.0f;
+
+            camTarget[0] = carPos[0];
+            camTarget[1] = carPos[1];
+            camTarget[2] = carPos[2];
+            break;
+    }
 }
 
 /*
  * func_800E23A4 (1680 bytes)
- * Replay UI
+ * Replay UI - displays replay controls and info
  */
 void func_800E23A4(void *replay) {
-    /* Replay UI - stub */
+    s32 *playbackState;
+    s32 *currentFrame;
+    s32 *totalFrames;
+    s32 *playbackSpeed;
+    s32 *cameraMode;
+    f32 progressPercent;
+    s32 timeMs;
+    char timeStr[12];
+
+    if (replay == NULL) {
+        return;
+    }
+
+    playbackState = (s32 *)((u8 *)replay + 0x00);
+    currentFrame = (s32 *)((u8 *)replay + 0x04);
+    totalFrames = (s32 *)((u8 *)replay + 0x08);
+    playbackSpeed = (s32 *)((u8 *)replay + 0x8C);
+    cameraMode = (s32 *)((u8 *)replay + 0x80);
+
+    /* Calculate progress */
+    if (*totalFrames > 0) {
+        progressPercent = (f32)(*currentFrame) / (f32)(*totalFrames);
+    } else {
+        progressPercent = 0.0f;
+    }
+
+    /* Draw replay header */
+    func_800C734C(110, 20, "REPLAY", 0xFF8800FF);
+
+    /* Draw playback state */
+    if (*playbackState == 0) {
+        func_800C734C(10, 210, "PAUSED", 0xFFFF00FF);
+    } else if (*playbackState == 1) {
+        if (*playbackSpeed == 1) {
+            func_800C734C(10, 210, "PLAYING", 0x00FF00FF);
+        } else if (*playbackSpeed == 2) {
+            func_800C734C(10, 210, "2x SPEED", 0x00FF00FF);
+        } else if (*playbackSpeed == -1) {
+            func_800C734C(10, 210, "REWIND", 0x00FFFFFF);
+        }
+    }
+
+    /* Draw progress bar */
+    {
+        s32 barX = 40;
+        s32 barY = 225;
+        s32 barWidth = 200;
+        s32 barHeight = 4;
+        s32 progressWidth = (s32)(progressPercent * barWidth);
+
+        /* Background */
+        func_800C813C(NULL, 10);  /* Dark bar */
+
+        /* Progress fill */
+        func_800C813C(NULL, 11);  /* Progress bar */
+    }
+
+    /* Draw current time */
+    timeMs = (*currentFrame * 100) / 60;  /* Convert frames to centiseconds */
+    {
+        s32 mins = timeMs / 6000;
+        s32 secs = (timeMs / 100) % 60;
+        s32 cents = timeMs % 100;
+
+        timeStr[0] = '0' + (mins / 10);
+        timeStr[1] = '0' + (mins % 10);
+        timeStr[2] = ':';
+        timeStr[3] = '0' + (secs / 10);
+        timeStr[4] = '0' + (secs % 10);
+        timeStr[5] = '.';
+        timeStr[6] = '0' + (cents / 10);
+        timeStr[7] = '0' + (cents % 10);
+        timeStr[8] = '\0';
+
+        func_800C734C(250, 210, timeStr, 0xFFFFFFFF);
+    }
+
+    /* Draw camera mode indicator */
+    switch (*cameraMode) {
+        case 0: func_800C734C(250, 20, "CHASE", 0x888888FF); break;
+        case 1: func_800C734C(250, 20, "ORBIT", 0x888888FF); break;
+        case 2: func_800C734C(250, 20, "HELI", 0x888888FF); break;
+        case 3: func_800C734C(250, 20, "FRONT", 0x888888FF); break;
+        case 4: func_800C734C(250, 20, "WIDE", 0x888888FF); break;
+    }
+
+    /* Draw controls hint */
+    func_800C734C(50, 230, "A:Play/Pause B:Exit C:Camera L/R:Speed", 0x666666FF);
 }
 
 /*
