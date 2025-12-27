@@ -468,12 +468,13 @@ extern void update_active_objects(void);            /* func_800F733C */
 extern void *physics_update(void);                  /* func_800B0868 */
 extern void effects_update_emitters(void);          /* func_800B811C */
 
-/* Forward declaration */
-void func_800CA3B4(void);
+/* Forward declarations */
+void playgame_handler(void);  /* func_800CA3B4 */
 
 /**
 /*
- * func_800FD464 - Main per-frame game loop
+ * game_loop - Main per-frame game loop
+ * (func_800FD464)
  * Address: 0x800FD464
  * Size: 704 bytes
  *
@@ -487,7 +488,7 @@ void func_800CA3B4(void);
  * 4. Calls state-specific handlers
  * 5. Increments frame counter
  */
-s32 func_800FD464(void) {
+s32 game_loop(void) {
     s32 result = 0;
     u32 gstate_cur;
     u32 gstate_next;
@@ -550,7 +551,7 @@ s32 func_800FD464(void) {
     }
 
     /* Call main state change handler */
-    func_800CA3B4();  /* PlayGame_HandleStateChange */
+    playgame_handler();  /* PlayGame_HandleStateChange */
 
     /* Check state flags for additional processing */
     gstate_cur = D_801174B4;
@@ -565,7 +566,7 @@ s32 func_800FD464(void) {
     /* Check attract/race bits (0x00200000 or 0x00400000) */
     if ((gstate_cur << 10) < 0 || (gstate_cur << 9) < 0) {
         /* Race state machine update */
-        func_800DB81C();  /* RaceStateMachine_Update */
+        attract_handler();  /* RaceStateMachine_Update */
 
         /* Check if rendering is enabled */
         if (D_801170FC != 0) {
@@ -619,14 +620,15 @@ extern s8 func_800C9528(void); /* State update / input flag */
 
 /**
 /*
- * func_800C9AE0 - Game mode handler
+ * game_mode_handler - Game mode handler
+ * (func_800C9AE0)
  * Address: 0x800C9AE0
  * Size: 256 bytes
  *
  * Called when game state matches pending state (steady state).
  * Handles per-frame mode updates and synchronization.
  */
-void func_800C9AE0(void) {
+void game_mode_handler(void) {
     s16 temp_val = 0x0ABE;  /* 2750 */
     s32 result;
 
@@ -714,7 +716,8 @@ extern void func_800C84FC(void *hud, f32 speed);
 
 /**
 /*
- * func_800CA3B4 - Game state change handler (playgame equivalent)
+ * playgame_handler - Game state change handler (playgame equivalent)
+ * (func_800CA3B4)
  * Address: 0x800CA3B4
  * Size: 2544 bytes
  *
@@ -735,7 +738,7 @@ extern void func_800C84FC(void *hud, f32 speed);
  *   0x4000 - Sound trigger state
  *   0x40000 - PLAYGAME active
  */
-void func_800CA3B4(void) {
+void playgame_handler(void) {
     u32 gstate_current;
     u32 gstate_next;
     s32 i;
@@ -788,9 +791,9 @@ void func_800CA3B4(void) {
         func_800014F0(30.0f);
 
         /* Call state handler 3 times */
-        func_800C9AE0();
-        func_800C9AE0();
-        func_800C9AE0();
+        game_mode_handler();
+        game_mode_handler();
+        game_mode_handler();
 
         func_800C9480();
 
@@ -3714,14 +3717,14 @@ void func_800F7E70(void) {
  * Address: 0x800FBBFC
  * Size: 52 bytes
  *
- * Calls func_8000BE50(0), if result == 7, calls func_800C9AE0.
+ * Calls func_8000BE50(0), if result == 7, calls game_mode_handler.
  */
 extern s32 func_8000BE50(s32);
 
 void func_800FBBFC(void) {
     s32 state = func_8000BE50(0);
     if (state == 7) {
-        func_800C9AE0();
+        game_mode_handler();
     }
 }
 
@@ -6233,7 +6236,7 @@ extern s32 func_80097470(s32, s32);  /* Sound lookup function */
 /**
 
 /**
-extern void func_800C9AE0(void); /* State handler */
+extern void game_mode_handler(void); /* func_800C9AE0 - State handler */
 
 /**
 
