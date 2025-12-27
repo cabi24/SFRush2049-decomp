@@ -1084,7 +1084,7 @@ extern void sprintf(s8 *buf, s8 *fmt, ...); /* func_80004990 */
 extern void func_800A4770(s8 *buf, s32 val);
 extern void func_800B74A0(void *entity, void *world);
 extern s32 func_800B71D4();
-extern s16 func_800B3FA4(s32 channel, s32 effectType, f32 amount);
+extern s16 sound_apply_effect(s32 channel, s32 effectType, f32 amount); /* func_800B3FA4 */
 
 /**
 /*
@@ -1191,7 +1191,7 @@ void func_800FBC38(void) {
 
     /* Finalize display and decrement countdown */
     countdown_val = D_801146F8;
-    func_800B3FA4(0, -1, 0.0f);
+    sound_apply_effect(0, -1, 0.0f);
     countdown_val--;
     D_801146F8 = countdown_val;
 
@@ -3097,11 +3097,11 @@ s32 func_800AC820(s32 a0) {
  *
  * @return Type byte 2 from current object
  */
-extern void func_800B3D18(s32 channel, f32 volume); /* Audio update/sync function */
+extern void sound_update_channel(s32 channel, f32 volume); /* func_800B3D18 - Audio update/sync */
 extern u8 *D_801597F0;            /* Current object pointer */
 
 u8 func_800B3F00(void) {
-    func_800B3D18(0, 0.0f);
+    sound_update_channel(0, 0.0f);
     return *(D_801597F0 + 2);
 }
 
@@ -3118,7 +3118,7 @@ u8 func_800B3F00(void) {
  * @return Type byte 3 from current object
  */
 u8 func_800B3F28(void) {
-    func_800B3D18(0, 0.0f);
+    sound_update_channel(0, 0.0f);
     return *(D_801597F0 + 3);
 }
 
@@ -3773,7 +3773,7 @@ void func_800FEC60(s32 a0) {
 
 void func_800ED764(s16 a0) {
     if (a0 < 0) {
-        func_800B3D18(0, 0.0f);
+        sound_update_channel(0, 0.0f);
         D_80159B70 = *(D_801597F0 + 8);
     } else {
         D_80159B70 = (u8)a0;
@@ -3796,7 +3796,7 @@ extern u8 D_80159B60;  /* Mode byte 2 */
 
 void func_800ED7B4(s16 a0) {
     if (a0 < 0) {
-        func_800B3D18(0, 0.0f);
+        sound_update_channel(0, 0.0f);
         D_80159B60 = *(D_801597F0 + 4);
     } else {
         D_80159B60 = (u8)a0;
@@ -4382,7 +4382,7 @@ void func_800BE4B4(s32 a0, s32 a1, s32 a2, void *a3) {
  */
 s8 func_800B41C0(s8 a0) {
     s8 old;
-    func_800B3D18(0, 0.0f);
+    sound_update_channel(0, 0.0f);
     old = *((s8*)D_801597F0 + 9);
     *((s8*)D_801597F0 + 9) = a0;
     return old;
@@ -4615,9 +4615,9 @@ s32 func_8010FD1C(void *a0, s16 a1, void *a2) {
  */
 s16 func_800B7128(void) {
     u8 byte2, byte3;
-    func_800B3D18(0, 0.0f);
+    sound_update_channel(0, 0.0f);
     byte2 = *((u8*)D_801597F0 + 2);
-    func_800B3D18(0, 0.0f);
+    sound_update_channel(0, 0.0f);
     byte3 = *((u8*)D_801597F0 + 3);
     return (s16)(byte2 + byte3);
 }
@@ -4762,9 +4762,9 @@ void func_800B0618(s32 trackId, void *ghostData) {
 s16 func_800B3F50(void) {
     u8 byte2, byte3;
     s8 offset;
-    func_800B3D18(0, 0.0f);
+    sound_update_channel(0, 0.0f);
     byte3 = *((u8*)D_801597F0 + 3);
-    func_800B3D18(0, 0.0f);
+    sound_update_channel(0, 0.0f);
     byte2 = *((u8*)D_801597F0 + 2);
     offset = D_80159B60;
     return (s16)(offset + byte2 + byte3);
@@ -5608,7 +5608,7 @@ void func_800F68A4(u8 *output) {
     s32 offset;
     s32 count;
 
-    func_800B3D18(0, 0.0f);
+    sound_update_channel(0, 0.0f);
 
     data = (void*)D_801597F0;
     i = 0;
@@ -13876,7 +13876,7 @@ s32 func_800B24EC(void *a0, void *a1, s32 a2, s8 objType, s32 a4) {
             if (velocity > 0) {
                 /* Play note */
                 func_800B358C(channel, (f32)velocity / 127.0f);
-                func_800B3D18(channel, (f32)note / 127.0f);
+                sound_update_channel(channel, (f32)note / 127.0f);
             }
         } else if ((cmd & 0xF0) == 0x80) {
             /* Note off */
@@ -13905,10 +13905,11 @@ s32 func_800B24EC(void *a0, void *a1, s32 a2, s8 objType, s32 a4) {
 
 /*
 
- * func_800B358C(160 bytes, 0.0f)
- * Audio volume set - sets channel volume with ramping
+ * sound_set_channel_volume - Audio volume set
+ * (func_800B358C - 160 bytes)
+ * Sets channel volume with ramping.
  */
-void func_800B358C(s32 channel, f32 volume) {
+void sound_set_channel_volume(s32 channel, f32 volume) {
     f32 *channelVolumes;
     f32 *targetVolumes;
 
@@ -13934,10 +13935,11 @@ void func_800B358C(s32 channel, f32 volume) {
 
 /*
 
- * func_800B362C(444 bytes, 0)
- * Audio pan set - sets stereo panning for channel
+ * sound_set_channel_pan - Audio pan set
+ * (func_800B362C - 444 bytes)
+ * Sets stereo panning for channel.
  */
-void func_800B362C(s32 channel, f32 pan) {
+void sound_set_channel_pan(s32 channel, f32 pan) {
     f32 *channelPan;
     f32 leftVol, rightVol;
 
@@ -13963,20 +13965,22 @@ void func_800B362C(s32 channel, f32 pan) {
 
 /*
 
- * func_800B3D18 (228 bytes)
- * Audio pitch set - sets playback pitch/frequency
+ * sound_update_channel - Audio sync/update
+ * (func_800B3D18 - 228 bytes)
+ * Synchronizes audio state, called periodically.
  */
-void func_800B3D18(s32 channel, f32 volume) {
+void sound_update_channel(s32 channel, f32 volume) {
     /* Audio sync/update function - synchronizes audio state */
     /* Called periodically to update audio subsystem */
 }
 
 /*
 
- * func_800B3FA4(604 bytes)
- * Audio effect apply - applies reverb/chorus/etc to channel
+ * sound_apply_effect - Audio effect apply
+ * (func_800B3FA4 - 604 bytes)
+ * Applies reverb/chorus/etc effects to channel.
  */
-s16 func_800B3FA4(s32 channel, s32 effectType, f32 amount) {
+s16 sound_apply_effect(s32 channel, s32 effectType, f32 amount) {
     f32 *effectLevels;
     s32 *effectTypes;
 
@@ -21666,7 +21670,7 @@ void func_8008A77C(void *queue) {
                 break;
 
             case 2:  /* Set volume */
-                func_800B3D18(param1, (f32)param2 / 255.0f);
+                sound_update_channel(param1, (f32)param2 / 255.0f);
                 break;
 
             case 3:  /* Set pan */
@@ -21674,7 +21678,7 @@ void func_8008A77C(void *queue) {
                 break;
 
             case 4:  /* Set pitch */
-                func_800B3D18(param1, (f32)param2 / 255.0f);
+                sound_update_channel(param1, (f32)param2 / 255.0f);
                 break;
 
             case 5:  /* Fade volume */
@@ -31862,7 +31866,7 @@ void func_800CC3C0(s32 soundId) {
     /* Play via audio system */
     handle = func_80090284(actualSoundId, 0);
     if (handle != 0) {
-        func_800B3D18(handle, volume);
+        sound_update_channel(handle, volume);
         if (pitch != 0x1000) {
             func_800B3FA4(handle, pitch, 0.0f);
         }
@@ -33033,7 +33037,7 @@ void func_800CED3C(void) {
                 /* Apply volume change */
                 if (selectedItem == 2) {
                     D_80159320 = value;  /* Music volume */
-                    func_800B3D18(D_80158140, value);  /* Apply to music */
+                    sound_update_channel(D_80158140, value);  /* Apply to music */
                 } else if (selectedItem == 3) {
                     D_80159324 = value;  /* SFX volume */
                 }

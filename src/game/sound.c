@@ -766,7 +766,8 @@ extern N64SoundHandle* D_80159450[];/* Active sound list */
 extern N64SoundState D_80140BF0[];  /* Sound state array */
 
 /**
- * func_800B358C - Stop a sound handle (N64 ROM function)
+ * sound_handle_stop - Stop a sound handle (N64 ROM function)
+ * (func_800B358C)
  * Address: 0x800B358C
  * Size: 156 bytes
  *
@@ -775,7 +776,7 @@ extern N64SoundState D_80140BF0[];  /* Sound state array */
  *
  * @param sound  Sound handle to stop (can be NULL)
  */
-void func_800B358C(N64SoundHandle *sound) {
+void sound_handle_stop(N64SoundHandle *sound) {
     s32 count;
     s32 i;
     s32 last_idx;
