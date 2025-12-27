@@ -8,20 +8,30 @@
 #include "types.h"
 
 /**
- * SI read data function
- * (func_80008730)
+ * Read data from SI
+ * (func_80008730 - osSiReadData)
+ *
+ * Reads data from the Serial Interface (controller/PIF).
+ *
+ * @param data Buffer to receive data
+ * @return 0 on success, error code on failure
  */
-s32 func_80008730(void *data) {
+s32 osSiReadData(void *data) {
     /* SI read - stub */
     (void)data;
     return 0;
 }
 
 /**
- * SI write data function
- * (func_800088F0)
+ * Write data to SI
+ * (func_800088F0 - osSiWriteData)
+ *
+ * Writes data to the Serial Interface (controller/PIF).
+ *
+ * @param data Data to write
+ * @return 0 on success, error code on failure
  */
-s32 func_800088F0(void *data) {
+s32 osSiWriteData(void *data) {
     /* SI write - stub */
     (void)data;
     return 0;

@@ -9,9 +9,13 @@
 
 /**
  * Get controller status
- * (func_80009450)
+ * (func_80009450 - osContGetStatus)
+ *
+ * Returns the status of the controller subsystem.
+ *
+ * @return 0 on success, error code on failure
  */
-s32 func_80009450(void) {
+s32 osContGetStatus(void) {
     /* Controller status - stub */
     return 0;
 }
@@ -23,8 +27,10 @@ s32 func_80009450(void) {
 
 /**
  * Reset controller RAM
- * (func_80009658)
+ * (func_80009658 - osContRamReset)
+ *
+ * Resets the controller RAM (used for Controller Pak).
  */
-void func_80009658(void) {
+void osContRamReset(void) {
     /* Controller RAM reset - stub */
 }

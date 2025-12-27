@@ -13,28 +13,40 @@ extern s32 __osDisableInt(void);
 extern void __osRestoreInt(s32 mask);
 
 /**
- * Thread wait function
- * (func_80007840)
+ * Wait on thread queue
+ * (func_80007840 - osThreadWait)
+ *
+ * Blocks the calling thread until signaled.
+ *
+ * @param queue Thread wait queue
  */
-void func_80007840(void *queue) {
+void osThreadWait(void *queue) {
     /* Thread wait - stub */
     (void)queue;
 }
 
 /**
- * Thread signal function
- * (func_8000794C)
+ * Signal thread on queue
+ * (func_8000794C - osThreadSignal)
+ *
+ * Wakes up a thread waiting on the queue.
+ *
+ * @param queue Thread wait queue
  */
-void func_8000794C(void *queue) {
+void osThreadSignal(void *queue) {
     /* Thread signal - stub */
     (void)queue;
 }
 
 /**
- * Thread destroy function
- * (func_80007AB4)
+ * Destroy a thread
+ * (func_80007AB4 - osDestroyThread)
+ *
+ * Removes a thread from the system and frees its resources.
+ *
+ * @param thread Thread to destroy
  */
-void func_80007AB4(OSThread *thread) {
+void osDestroyThread(OSThread *thread) {
     /* Thread destroy - stub */
     (void)thread;
 }

@@ -8,11 +8,12 @@
 #include "types.h"
 
 /**
- * VI interrupt setup
- * (func_8000C670)
+ * Swap VI context
+ * (func_8000C670 - __osViSwapContext)
  *
- * Sets up the VI interrupt handler.
+ * Swaps between the current and next VI contexts.
+ * Called during VI retrace interrupt to switch display buffers.
  */
-void func_8000C670(void) {
-    /* VI interrupt setup - implemented in os_vi_init.c */
+void __osViSwapContext(void) {
+    /* VI context swap - implemented in os_vi_init.c */
 }

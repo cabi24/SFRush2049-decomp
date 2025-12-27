@@ -9,15 +9,15 @@
 #include "types.h"
 
 /**
- * Variadic argument saver stub
- * (func_800086F0)
+ * Profile start hook
+ * (func_800086F0 - __osProfileStart)
  *
- * Saves all 4 argument registers to the stack and returns.
- * Used for variadic functions or debugging.
+ * Debug profiling entry point stub.
+ * Saves arguments to stack and returns - actual profiling disabled.
  *
- * @param a0-a3 Arguments to save
+ * @param a0-a3 Profile context arguments
  */
-void func_800086F0(u32 a0, u32 a1, u32 a2, u32 a3) {
+void __osProfileStart(u32 a0, u32 a1, u32 a2, u32 a3) {
     /* Arguments are saved to stack by compiler */
     (void)a0;
     (void)a1;
@@ -26,14 +26,15 @@ void func_800086F0(u32 a0, u32 a1, u32 a2, u32 a3) {
 }
 
 /**
- * Variadic argument saver stub (alternate)
- * (func_8000870C)
+ * Profile end hook
+ * (func_8000870C - __osProfileEnd)
  *
- * Identical to func_800086F0.
+ * Debug profiling exit point stub.
+ * Saves arguments to stack and returns - actual profiling disabled.
  *
- * @param a0-a3 Arguments to save
+ * @param a0-a3 Profile context arguments
  */
-void func_8000870C(u32 a0, u32 a1, u32 a2, u32 a3) {
+void __osProfileEnd(u32 a0, u32 a1, u32 a2, u32 a3) {
     /* Arguments are saved to stack by compiler */
     (void)a0;
     (void)a1;

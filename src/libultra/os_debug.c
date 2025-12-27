@@ -9,13 +9,16 @@
 #include "types.h"
 
 /**
- * Debug stub function 1
- * (func_800086F0)
+ * Profile start hook (debug variant)
+ * (func_800086F0 - __osProfileStart)
  *
- * Stores arguments to stack and returns.
- * Likely a profiling/debug entry point stub.
+ * Debug profiling entry point stub.
+ * Stores arguments to stack and returns - actual profiling disabled.
+ *
+ * Note: This is a duplicate of the definition in os_stubs.c.
+ * Only one should be included in the build.
  */
-void func_800086F0(s32 a0, s32 a1, s32 a2, s32 a3) {
+void __osProfileStart(s32 a0, s32 a1, s32 a2, s32 a3) {
     /* Stub - just stores args and returns */
     (void)a0;
     (void)a1;
@@ -24,13 +27,16 @@ void func_800086F0(s32 a0, s32 a1, s32 a2, s32 a3) {
 }
 
 /**
- * Debug stub function 2
- * (func_8000870C)
+ * Profile end hook (debug variant)
+ * (func_8000870C - __osProfileEnd)
  *
- * Stores arguments to stack and returns.
- * Likely a profiling/debug exit point stub.
+ * Debug profiling exit point stub.
+ * Stores arguments to stack and returns - actual profiling disabled.
+ *
+ * Note: This is a duplicate of the definition in os_stubs.c.
+ * Only one should be included in the build.
  */
-void func_8000870C(s32 a0, s32 a1, s32 a2, s32 a3) {
+void __osProfileEnd(s32 a0, s32 a1, s32 a2, s32 a3) {
     /* Stub - just stores args and returns */
     (void)a0;
     (void)a1;

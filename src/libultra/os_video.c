@@ -8,31 +8,45 @@
 #include "types.h"
 
 /**
- * Set up video display
- * (func_80008210)
+ * Create scheduler
+ * (func_80008210 - osCreateScheduler)
+ *
+ * Creates and initializes the OS scheduler for video and task management.
+ *
+ * @param mode Video mode
+ * @param stack Scheduler stack pointer
+ * @param pri Priority
+ * @param numClients Number of scheduler clients
  */
-void func_80008210(s32 a0, void *a1, void *a2, s32 a3) {
-    /* Video setup - stub */
-    (void)a0;
-    (void)a1;
-    (void)a2;
-    (void)a3;
+void osCreateScheduler(s32 mode, void *stack, void *pri, s32 numClients) {
+    /* Scheduler creation - stub */
+    (void)mode;
+    (void)stack;
+    (void)pri;
+    (void)numClients;
 }
 
 /**
- * Set video mode
- * (func_80008380)
+ * Set scheduler video mode
+ * (func_80008380 - osScSetVideoMode)
+ *
+ * Configures the scheduler's video mode settings.
+ *
+ * @param mode Video mode (NTSC/PAL)
+ * @param flags Mode flags
  */
-void func_80008380(s32 a0, s32 a1) {
-    /* Video mode - stub */
-    (void)a0;
-    (void)a1;
+void osScSetVideoMode(s32 mode, s32 flags) {
+    /* Video mode set - stub */
+    (void)mode;
+    (void)flags;
 }
 
 /**
- * Additional video function
- * (func_80008460)
+ * Scheduler update
+ * (func_80008460 - osScUpdate)
+ *
+ * Updates the scheduler state, typically called each frame.
  */
-void func_80008460(void) {
-    /* Video update - stub */
+void osScUpdate(void) {
+    /* Scheduler update - stub */
 }
