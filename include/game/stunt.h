@@ -16,6 +16,7 @@
 #define STUNT_H
 
 #include "types.h"
+#include "game/structs.h"  /* For MAX_CARS */
 
 /* Stunt mode states */
 #define STUNT_STATE_DISABLED    0   /* Stunt mode not active */

@@ -16,6 +16,22 @@
 #define NUM_TIRES       4       /* Tires per car */
 #define MAX_VISUALS     8       /* Visual effects per car */
 
+/* Difficulty levels */
+#define DIFFICULTY_EASY     0
+#define DIFFICULTY_MEDIUM   1
+#define DIFFICULTY_HARD     2
+#define DIFFICULTY_EXPERT   3
+
+/* Unlock flags */
+#define UNLOCK_CAR_5        0x0001
+#define UNLOCK_CAR_6        0x0002
+#define UNLOCK_CAR_7        0x0004
+#define UNLOCK_CAR_8        0x0008
+#define UNLOCK_TRACK_5      0x0010
+#define UNLOCK_TRACK_6      0x0020
+#define UNLOCK_TRACK_7      0x0040
+#define UNLOCK_MIRROR_MODE  0x0100
+
 /* Forward declarations */
 typedef struct CarParams CarParams;
 typedef struct CarData CarData;
@@ -131,6 +147,15 @@ typedef struct CarData {
     s8      checkpoint;         /* Current checkpoint */
     s8      pad6[3];
     s32     lap_sync_time;      /* Lap sync duration */
+
+    /* Orientation angles (derived from dr_uvs matrix) */
+    f32     yaw;                /* Heading angle */
+    f32     pitch;              /* Pitch angle */
+    f32     roll;               /* Roll angle */
+
+    /* Ground tracking */
+    f32     ground_height;      /* Height of ground below car */
+    f32     air_time;           /* Time since leaving ground */
 } CarData;
 
 /**

@@ -9,6 +9,7 @@
 #define TOURNAMENT_H
 
 #include "types.h"
+#include "game/structs.h"  /* For difficulty and unlock constants */
 
 /* Tournament types */
 #define TOURNAMENT_SINGLE_RACE      0   /* Single race (quick race) */

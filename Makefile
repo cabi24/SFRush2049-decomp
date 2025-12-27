@@ -37,6 +37,18 @@ PYTHON       := python3
 # Assembler flags
 ASFLAGS      := -march=vr4300 -mabi=32 -I$(INCLUDE_DIR)
 
+# C compiler flags (GCC for now, IDO needed for matching)
+# -march=vr4300: MIPS VR4300 (N64 CPU)
+# -mabi=32: Use 32-bit ABI (o32)
+# -G 0: No global pointer optimization
+# -mno-abicalls: No PIC/ABI call sequences
+# -fno-PIC: No position independent code
+CFLAGS       := -march=vr4300 -mabi=32 -G 0 -mno-abicalls -fno-PIC \
+                -I$(INCLUDE_DIR) -I$(INCLUDE_DIR)/PR \
+                -D_LANGUAGE_C -D__USE_ISOC99 \
+                -fno-builtin -ffreestanding -O2 \
+                -Wall -Wno-unused-variable -Wno-unused-function
+
 # Symbol files for undefined references (will be converted to linker script format)
 UNDEFINED_SYMS := undefined_syms_auto.$(VERSION).txt
 UNDEFINED_FUNCS := undefined_funcs_auto.$(VERSION).txt
@@ -60,23 +72,33 @@ endif
 ASM_FILES    := $(wildcard $(ASM_DIR)/*.s)
 ASM_O_FILES  := $(patsubst $(ASM_DIR)/%.s,$(BUILD_DIR)/$(ASM_DIR)/%.o,$(ASM_FILES))
 
+# C source files (recursively find all .c files in src/)
+C_FILES      := $(shell find $(SRC_DIR) -name '*.c' 2>/dev/null)
+C_O_FILES    := $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/$(SRC_DIR)/%.o,$(C_FILES))
+
 # Binary data files
 BIN_FILES    := $(wildcard $(ASSETS_DIR)/*.bin)
 BIN_O_FILES  := $(patsubst $(ASSETS_DIR)/%.bin,$(BUILD_DIR)/$(ASSETS_DIR)/%.o,$(BIN_FILES))
 
-# All object files
+# All object files (C files compiled but not linked yet - need matching first)
+# For now, only use assembly files for the ROM build
 O_FILES      := $(ASM_O_FILES) $(BIN_O_FILES)
 
 # ============================================================
 # Targets
 # ============================================================
 
-.PHONY: all clean extract test progress setup help verify
+.PHONY: all clean extract test progress setup help verify cc
 
 all: $(TARGET)
 ifeq ($(COMPARE),1)
 	@$(MAKE) --no-print-directory verify
 endif
+
+# Compile all C files (for testing decompiled code)
+cc: $(C_O_FILES)
+	@echo "All C files compiled successfully!"
+	@echo "Compiled $(words $(C_O_FILES)) files"
 
 # Help target
 help:
@@ -112,6 +134,10 @@ help:
 $(BUILD_DIR)/$(ASM_DIR) $(BUILD_DIR)/$(ASSETS_DIR):
 	$(V)mkdir -p $@
 
+# Create C source build directories
+$(BUILD_DIR)/$(SRC_DIR)/%:
+	$(V)mkdir -p $@
+
 # Create symbols linker script from undefined_syms and undefined_funcs files
 $(SYMS_LD): $(UNDEFINED_SYMS) $(UNDEFINED_FUNCS) | $(BUILD_DIR)
 	@echo "GEN $@"
@@ -124,6 +150,12 @@ $(BUILD_DIR):
 $(BUILD_DIR)/$(ASM_DIR)/%.o: $(ASM_DIR)/%.s | $(BUILD_DIR)/$(ASM_DIR)
 	@echo "AS $<"
 	$(V)$(AS) $(ASFLAGS) -o $@ $<
+
+# Compile C files
+$(BUILD_DIR)/$(SRC_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(dir $@)
+	@echo "CC $<"
+	$(V)$(CC) -c $(CFLAGS) -o $@ $<
 
 # Convert binary files to objects (using MIPS big-endian ELF format)
 # Use elf32-big for binary files to avoid ABI conflicts

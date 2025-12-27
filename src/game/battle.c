@@ -530,7 +530,7 @@ void battle_respawn_player(s32 player) {
     car->dr_pos[0] = p->spawn_pos[0];
     car->dr_pos[1] = p->spawn_pos[1];
     car->dr_pos[2] = p->spawn_pos[2];
-    car->velocity = 0.0f;
+    car->mph = 0.0f;  /* Zero out speed */
 }
 
 /**
@@ -1024,8 +1024,8 @@ void battle_check_player_collisions(void) {
 
                 if (dist < 3.0f) {
                     /* Collision! */
-                    f32 speed_i = car_array[i].velocity;
-                    f32 speed_j = car_array[j].velocity;
+                    f32 speed_i = car_array[i].mph;
+                    f32 speed_j = car_array[j].mph;
 
                     /* Damage based on relative speed */
                     s32 damage = (s32)((ABS(speed_i - speed_j)) / 10.0f);

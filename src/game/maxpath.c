@@ -231,7 +231,7 @@ void maxpath_update(s32 car_index) {
     ctl->distance = maxpath_calc_distance(car_index);
 
     /* Reset abort counter if making progress */
-    if (car->velocity > 5.0f) {
+    if (car->mph > 5.0f) {
         ctl->abort_count = 0;
     } else {
         ctl->abort_count++;
@@ -665,11 +665,11 @@ void maxpath_calc_steering(s32 car_index, f32 *steer, f32 *throttle, f32 *brake)
     /* Throttle/brake based on speed and angle */
     suggested_speed = maxpath_get_speed(car_index);
 
-    if (car->velocity > suggested_speed * 1.2f) {
+    if (car->mph > suggested_speed * 1.2f) {
         /* Going too fast, brake */
         *throttle = 0.3f;
         *brake = 0.3f;
-    } else if (car->velocity < suggested_speed * 0.5f) {
+    } else if (car->mph < suggested_speed * 0.5f) {
         /* Going too slow, full throttle */
         *throttle = 1.0f;
         *brake = 0.0f;

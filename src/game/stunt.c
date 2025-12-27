@@ -329,7 +329,7 @@ void stunt_apply_wing_lift(s32 car_index, f32 *lift) {
     car = &car_array[car_index];
 
     /* Lift depends on speed and wing extension */
-    speed_factor = car->velocity / 100.0f;
+    speed_factor = car->mph / 100.0f;
     if (speed_factor > 1.0f) speed_factor = 1.0f;
 
     wing_factor = st->wing_extension * WING_LIFT_FACTOR;
@@ -390,7 +390,7 @@ void stunt_check_airborne(s32 car_index) {
             st->grounded = 0;
             st->state = STUNT_STATE_AIRBORNE;
             st->launch_height = car->dr_pos[1];
-            st->launch_speed = car->velocity;
+            st->launch_speed = car->mph;
             st->max_height = car->dr_pos[1];
             st->air_time = 0.0f;
 

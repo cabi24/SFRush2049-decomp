@@ -78,7 +78,7 @@ void hud_update(void) {
     car = &car_array[this_car];
 
     /* Update speed display (smooth toward target) */
-    gHud.target_speed = (s16)(car->speed * 0.6818f);  /* fps to mph approx */
+    gHud.target_speed = (s16)(car->mph * 0.6818f);  /* fps to mph approx */
     if (gHud.speed_display < gHud.target_speed) {
         gHud.speed_display += 2;
         if (gHud.speed_display > gHud.target_speed) {
