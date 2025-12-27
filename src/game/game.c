@@ -46,6 +46,7 @@ extern void *D_801551F0[];
 extern void *D_80155220[];
 extern void *D_80155290[];
 extern void *D_80156D44[];
+extern s32 D_80156D39;
 extern void *D_80158100[];
 extern s32 D_80158104;
 extern s32 D_80158108;
@@ -1821,7 +1822,7 @@ void func_800B811C(void) {
         prev_pos[2] = pos[2];  /* z */
 
         /* Call emitter update function */
-        func_8008D6B0(emitter);
+        func_8008D6B0(emitter, 0);
 
         /* Update velocity with acceleration (FP operations) */
         vel = (f32*)(emitter + 0x34);
@@ -1849,7 +1850,7 @@ end_loop:
     {
         s16 count2 = D_80152032;
         s32 flag = (0 < count2) ? 1 : 0;
-        func_800B61FC(flag);
+        func_800B61FC(flag, 0);
     }
 }
 
@@ -2086,7 +2087,7 @@ void func_800B6138(void) {
     u8 *entry;
 
     /* Call pre-reset function */
-    func_800B6024(0);
+    func_800B6024(0, 0);
 
     /* Get player count */
     count = D_8015A108;
@@ -2570,7 +2571,7 @@ void func_800C55E4(s8 cmd, s8 arg1, s8 arg2) {
 
     /* Only send command in modes 4 or 6 */
     if (mode == 6 || mode == 4) {
-        func_803914B4(0);
+        func_803914B4(0, 0);
     }
 }
 
@@ -3103,7 +3104,7 @@ extern void func_800E1C30(void *replay, void *camera);
 
 void func_800E2A3C(s32 a0) {
     func_800E23A4(a0);
-    func_800E1C30(a0);
+    func_800E1C30(a0, 0);
 }
 
 /*
@@ -3811,12 +3812,12 @@ extern void func_800D0424(void *menu, void *input);
 void func_800E2A64(void *obj) {
     func_800CF06C(obj);
     func_800E23A4(0);
-    func_800E1C30(0);
-    func_800E1AA0(obj);
+    func_800E1C30(0, 0);
+    func_800E1AA0(obj, 0);
     func_800E15A0(obj);
     func_800E1540(obj);
     func_800E114C(obj);
-    func_800D0424(obj);
+    func_800D0424(obj, 0);
 }
 
 /*
@@ -3896,7 +3897,7 @@ void func_800E7980(s32 id) {
 extern s32 func_8008AD04(u8 *a0, u8 *a1);
 
 void func_8008AD48(void *a0, void *a1) {
-    func_8008AD04(0);
+    func_8008AD04(0, 0);
 }
 
 /*
@@ -4012,7 +4013,7 @@ void func_800A2CE4(void **a0) {
 extern void func_80098620(void*, void*, void*);
 
 void func_800986B0(void *a0, void *a1) {
-    func_80098620(0);
+    func_80098620(0, 0);
 }
 
 /*
@@ -4200,7 +4201,7 @@ void func_8008B660(void *a0, void *a1, f32 x, f32 y, f32 z) {
     vec[0] = x;
     vec[1] = y;
     vec[2] = z;
-    func_8008B4C4(vec);
+    func_8008B4C4(vec, 0, 0);
     /* Output stored in f20, f22, f24 by callee - stored back by asm */
 }
 
@@ -4305,7 +4306,7 @@ void func_800B5F88(s32 a0) {
  * Address: 0x800BE4B4
  * Size: 60 bytes
  *
- * Stores parameters, calls func_800B74A0(a2),
+ * Stores parameters, calls func_800B74A0(a2, 0),
  * then calls func_800B71D4 with halfwords from a0, a1 and original a3.
  *
  * @param a0 First value (low halfword used)
@@ -4315,7 +4316,7 @@ void func_800B5F88(s32 a0) {
  */
 
 void func_800BE4B4(s32 a0, s32 a1, s32 a2, void *a3) {
-    func_800B74A0(a2);
+    func_800B74A0(a2, 0);
     func_800B71D4();
 }
 
@@ -5259,7 +5260,7 @@ void *func_800BF148(void *a0) {
 
     func_800BF01C()((u8*)result + 0x40));
     func_800075E0(&D_80142728[0], NULL, 0);
-    func_800BF0A4(a0);
+    func_800BF0A4(a0, 0, 0);
 
     return result;
 }
@@ -5299,7 +5300,7 @@ void func_800D11BC(void *a0) {
 
     /* Call initialization functions */
     func_800CF06C(a0);
-    func_800D0424(a0);
+    func_800D0424(a0, 0);
 
     /* Calculate timing value from object field and global factors */
     val = *(f32*)((u8*)a0 + 0x408);
@@ -5538,7 +5539,7 @@ void func_800EF5B0(void *a0, void *a1, s32 a2) {
         result = func_800B24EC(a1, (void*)((u8*)a0 + 12), 0, objType, 1);
         *(s32*)((u8*)a0 + 8) = result;
     } else {
-        func_800B362C(a0);
+        func_800B362C(a0, 0);
     }
 
     func_80094EC8(a0);
@@ -6552,7 +6553,7 @@ void func_800AF51C(void) {
 
 /*
 
- * func_8008E19C (208 bytes)
+ * func_8008E19C(208 bytes, 0)
  * Insert value into tree node - either at head or at indexed slot
  */
 void func_8008E19C(s16 a0, s16 a1) {
@@ -6952,7 +6953,7 @@ found:
     entry[15] = 0;  /* offset 60 */
 
     /* Call with converted params */
-    func_8008E19C(0);
+    func_8008E19C(0, 0);
 }
 
 /*
@@ -8349,7 +8350,7 @@ void func_8008B0D8(s16 texId, s32 param, s32 flags) {
 
 /*
 
- * func_8008B4C4 (380 bytes)
+ * func_8008B4C4(380 bytes, 0, 0)
  * Matrix multiply - 4x4 matrix multiplication (out = a * b)
  */
 void func_8008B4C4(f32 *a, f32 *b, f32 *out) {
@@ -11493,7 +11494,7 @@ void func_800A5D34(void *car, void *ground) {
         dlPtr = (void *)((u8 *)dlPtr + 8);
 
         /* Draw shadow texture */
-        func_800C7110(32, (s32)(carPos[0] - halfWidth), (s32)(shadowY), (s32)(halfWidth * 2), (s32)(halfLength * 2), alpha);
+        func_800C7110(32, (s32, 0, 0, 0, 0)(carPos[0] - halfWidth), (s32)(shadowY), (s32)(halfWidth * 2), (s32)(halfLength * 2), alpha);
     }
 
     *(void **)(0x80149438) = dlPtr;
@@ -11524,12 +11525,12 @@ void func_800A6094(void *car, s32 lightMask) {
         lightPos[0] = carPos[0] + carDir[0] * 4.0f - carDir[2] * 1.5f;
         lightPos[1] = carPos[1] + 1.0f;
         lightPos[2] = carPos[2] + carDir[2] * 4.0f + carDir[0] * 1.5f;
-        func_800C7110(33, (s32);
+        func_800C7110(33, (s32, 0, 0, 0, 0);
 
         /* Right headlight */
         lightPos[0] = carPos[0] + carDir[0] * 4.0f + carDir[2] * 1.5f;
         lightPos[2] = carPos[2] + carDir[2] * 4.0f - carDir[0] * 1.5f;
-        func_800C7110(33, (s32);
+        func_800C7110(33, (s32, 0, 0, 0, 0);
     }
 
     /* Taillights (bits 2-3) */
@@ -11540,12 +11541,12 @@ void func_800A6094(void *car, s32 lightMask) {
         lightPos[0] = carPos[0] - carDir[0] * 4.0f - carDir[2] * 1.5f;
         lightPos[1] = carPos[1] + 1.0f;
         lightPos[2] = carPos[2] - carDir[2] * 4.0f + carDir[0] * 1.5f;
-        func_800C7110(34, (s32);
+        func_800C7110(34, (s32, 0, 0, 0, 0);
 
         /* Right taillight */
         lightPos[0] = carPos[0] - carDir[0] * 4.0f + carDir[2] * 1.5f;
         lightPos[2] = carPos[2] - carDir[2] * 4.0f - carDir[0] * 1.5f;
-        func_800C7110(34, (s32);
+        func_800C7110(34, (s32, 0, 0, 0, 0);
     }
 }
 
@@ -13910,7 +13911,7 @@ void func_800B358C(s32 channel, f32 volume) {
 
 /*
 
- * func_800B362C (444 bytes)
+ * func_800B362C(444 bytes, 0)
  * Audio pan set - sets stereo panning for channel
  */
 void func_800B362C(s32 channel, f32 pan) {
@@ -14209,7 +14210,7 @@ void func_800B4FB0(s32 trackId) {
 
 /*
 
- * func_800B6024 (276 bytes)
+ * func_800B6024(276 bytes, 0)
  * Get entity float array element
  */
 f32 func_800B6024(void *entity, s32 index) {
@@ -14219,7 +14220,7 @@ f32 func_800B6024(void *entity, s32 index) {
 
 /*
 
- * func_800B61FC (380 bytes)
+ * func_800B61FC(380 bytes, 0)
  * Set entity vector with validation
  */
 void func_800B61FC(void *entity, f32 *vec) {
@@ -14234,7 +14235,7 @@ void func_800B61FC(void *entity, f32 *vec) {
 
 /*
 
- * func_800B74A0 (2904 bytes)
+ * func_800B74A0(2904 bytes, 0)
  * Entity full collision test
  *
  * Performs a complete collision check for an entity against the world.
@@ -15063,7 +15064,7 @@ void func_800BF01C() {
 
 /*
 
- * func_800BF0A4 (848 bytes)
+ * func_800BF0A4(848 bytes, 0, 0)
  * Camera shake effect
  *
  * Applies a shake effect to the camera for impacts, explosions, etc.
@@ -15610,7 +15611,7 @@ void func_800CF06C(void *menu) {
 
 /*
 
- * func_800D0424 (3040 bytes)
+ * func_800D0424(3040 bytes, 0)
  * Menu input handling - processes raw input for menu
  */
 void func_800D0424(void *menu, void *input) {
@@ -16685,7 +16686,7 @@ void func_800E15A0(void *replay) {
 
 /*
 
- * func_800E1AA0 (404 bytes)
+ * func_800E1AA0(404 bytes, 0)
  * Replay record frame
  *
  * Records the current game state into the replay buffer.
@@ -16750,7 +16751,7 @@ void func_800E1AA0(void *replay, void *frame) {
 
 /*
 
- * func_800E1C30 (1908 bytes)
+ * func_800E1C30(1908 bytes, 0)
  * Replay camera control - cinematic camera during replay
  */
 void func_800E1C30(void *replay, void *camera) {
@@ -17063,7 +17064,7 @@ void func_800E05F0(f32 intensity) {
 
         /* Render rain drop as line (simplified) */
         /* In actual game, this would use the graphics display list */
-        func_800C7110(0);
+        func_800C7110(0, 0, 0, 0, 0, 0);
     }
 }
 
@@ -17695,7 +17696,7 @@ void func_800E451C(void *camera, f32 *sunPos) {
         flareY = screenY + (120.0f - screenY) * t;
 
         /* Render flare sprite */
-        func_800C7110(0);
+        func_800C7110(0, 0, 0, 0, 0, 0);
     }
 }
 
@@ -17807,7 +17808,7 @@ void func_800E5444(void *camera) {
     if (horizonY > 240.0f) horizonY = 240.0f;
 
     /* Render horizon haze line */
-    func_800C7110(0, (s32);  /* Haze sprite */
+    func_800C7110(0, (s32, 0, 0, 0, 0);  /* Haze sprite */
 
     /* Render scrolling clouds */
     cloudOffset = (f32)(D_80159A20 % 6400) / 20.0f;
@@ -17824,7 +17825,7 @@ void func_800E5444(void *camera) {
         f32 cloudY = horizonY - 30.0f - (i & 1) * 15.0f;
 
         if (cloudY > 10.0f && cloudY < 200.0f) {
-            func_800C7110(0);  /* Cloud sprite */
+            func_800C7110(0, 0, 0, 0, 0, 0);  /* Cloud sprite */
         }
     }
 }
@@ -18115,7 +18116,7 @@ void func_800E7B44(f32 *pos, s32 spriteId) {
     if (size > 64) size = 64;
 
     /* Render sprite */
-    func_800C7110(0);
+    func_800C7110(0, 0, 0, 0, 0, 0);
 }
 
 /*
@@ -21632,7 +21633,7 @@ void func_8008A77C(void *queue) {
                 break;
 
             case 1:  /* Stop sound */
-                func_800B362C(0);
+                func_800B362C(0, 0);
                 break;
 
             case 2:  /* Set volume */
@@ -28415,7 +28416,7 @@ void func_8010C2FC(void) {
 
     /* Stop all sounds */
     for (i = 0; i < 16; i++) {
-        func_800B362C((void *)(0x80170000 + i * 0x40));
+        func_800B362C((void *, 0)(0x80170000 + i * 0x40));
     }
 
     /* Clear particle systems */
@@ -30685,7 +30686,7 @@ void func_800C6404(void *camera, s32 placing) {
 
 /*
 
- * func_800C7110 (572 bytes)
+ * func_800C7110(572 bytes, 0, 0, 0, 0, 0)
  * HUD element draw
  *
  * Draws a HUD element (icon/graphic) at the specified position.
@@ -30890,7 +30891,7 @@ void func_800C7818(f32 speed) {
     /* Needle sprites: elements 128-143 for 16 angle positions */
     s32 needleElement = 128 + (needleAngle / 12);  /* 180/16 = ~11.25 degrees per sprite */
     if (needleElement > 143) needleElement = 143;
-    func_800C7110(needleElement, dialX + 24, dialY + 24, 255);  /* Center of dial */
+    func_800C7110(needleElement, dialX + 24, dialY + 24, 255, 0, 0);  /* Center of dial */
 
     /* Draw digital speed readout */
     digitalX = dialX + 12;
@@ -31066,7 +31067,7 @@ void func_800C9404(void *player) {
     if (dotY > y + 44) dotY = y + 44;
 
     /* Draw player dot (blinking) */
-    func_800C7110(144, dotX - 2, dotY - 2, 255);  /* Element 144 = player dot */
+    func_800C7110(144, dotX - 2, dotY - 2, 255, 0, 0);  /* Element 144 = player dot */
 }
 
 /*
@@ -32069,7 +32070,7 @@ void func_800CCA04(void *list, s32 count) {
         /* Draw stretched highlight sprite at position */
         x = baseX - 5;
         y = (s32)highlightY - 2;
-        func_800C7110(50, x, y, (s32);
+        func_800C7110(50, x, y, (s32, 0, 0);
     }
 
     /* Draw each menu item */
@@ -33855,19 +33856,19 @@ void func_800D18E4(s32 carId) {
     /* Draw stat bars */
     func_800C734C("SPD", statX, statY, 180);
     func_800C7110(66, statX + 25, statY + 2, barWidth, 10, 100);  /* Background */
-    func_800C7110(67, statX + 25, statY + 2, (speed * barWidth) / 10, 10, 255);  /* Fill */
+    func_800C7110(67, statX + 25, statY + 2, (speed * barWidth, 0, 0) / 10, 10, 255);  /* Fill */
 
     func_800C734C("ACC", statX, statY + 14, 180);
     func_800C7110(66, statX + 25, statY + 16, barWidth, 10, 100);
-    func_800C7110(67, statX + 25, statY + 16, (accel * barWidth) / 10, 10, 255);
+    func_800C7110(67, statX + 25, statY + 16, (accel * barWidth, 0, 0) / 10, 10, 255);
 
     func_800C734C("HND", statX, statY + 28, 180);
     func_800C7110(66, statX + 25, statY + 30, barWidth, 10, 100);
-    func_800C7110(67, statX + 25, statY + 30, (handling * barWidth) / 10, 10, 255);
+    func_800C7110(67, statX + 25, statY + 30, (handling * barWidth, 0, 0) / 10, 10, 255);
 
     func_800C734C("WGT", statX, statY + 42, 180);
     func_800C7110(66, statX + 25, statY + 44, barWidth, 10, 100);
-    func_800C7110(67, statX + 25, statY + 44, (weight * barWidth) / 10, 10, 255);
+    func_800C7110(67, statX + 25, statY + 44, (weight * barWidth, 0, 0) / 10, 10, 255);
 }
 
 /*
