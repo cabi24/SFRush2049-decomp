@@ -211,4 +211,55 @@ typedef struct {
     OSTask_t t;
 } OSTask;
 
+/* N64 GBI Texture/Tile constants */
+#define G_TX_RENDERTILE  0
+#define G_TX_LOADTILE    7
+#define G_TX_WRAP        0
+#define G_TX_CLAMP       2
+#define G_TX_MIRROR      1
+#define G_TX_NOMASK      0
+#define G_TX_NOLOD       0
+
+/* N64 GBI Geometry Mode flags */
+#define G_ZBUFFER        0x00000001
+#define G_SHADE          0x00000004
+#define G_CULL_FRONT     0x00000200
+#define G_CULL_BACK      0x00000400
+#define G_FOG            0x00010000
+#define G_LIGHTING       0x00020000
+#define G_TEXTURE_GEN    0x00040000
+#define G_SHADING_SMOOTH 0x00200000
+#define G_CLIPPING       0x00800000
+
+/* N64 GBI Texture settings */
+#define G_ON             1
+#define G_OFF            0
+#define G_TP_PERSP       (1 << 11)
+#define G_TP_NONE        0
+#define G_TL_TILE        (1 << 14)
+#define G_TL_LOD         0
+#define G_TT_NONE        0
+#define G_TT_RGBA16      (2 << 16)
+#define G_TD_CLAMP       0
+#define G_TD_WRAP        (1 << 18)
+#define G_TC_FILT        (2 << 19)
+#define G_TC_FILTL       (3 << 19)
+#define G_CK_NONE        0
+#define G_AC_NONE        0
+#define G_ZS_PIXEL       0
+#define G_ZS_PRIM        (1 << 2)
+
+/* N64 GBI Cycle type */
+#define G_CYC_1CYCLE     0
+#define G_CYC_2CYCLE     (1 << 20)
+#define G_CYC_COPY       (2 << 20)
+#define G_CYC_FILL       (3 << 20)
+
+/* N64 GBI Combine modes (simplified - actual values are complex) */
+#define G_CC_MODULATERGBA    0
+#define G_CC_MODULATEIA      0
+#define G_CC_SHADE           0
+#define G_CC_DECALRGBA       0
+#define G_CC_BLENDRGBA       0
+
 #endif /* TYPES_H */

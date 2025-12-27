@@ -55,7 +55,7 @@ extern void *D_80158120[];
 extern s32 D_801581E4;
 extern void *D_801581EC[];
 extern void *D_80158208[];
-extern void *D_80158230[];
+extern f32 D_80158230[5];
 extern void *D_80158280[];
 extern s32 D_8015828C;
 extern s32 D_80158290;
@@ -69,7 +69,6 @@ extern s32 D_801582EC;
 extern s32 D_801582F0;
 extern s32 D_801582F4;
 extern s32 D_801582F8;
-extern void *D_80158300[];
 extern s32 D_80158FC0;
 extern s32 D_80159000;
 extern void *D_80159010[];
@@ -95,7 +94,7 @@ extern s32 D_8015905C;
 extern s32 D_80159060;
 extern s32 D_80159064;
 extern s32 D_80159068;
-extern void *D_80159200[];
+extern s32 D_80159200;
 extern s32 D_80159204;
 extern s32 D_80159208;
 extern s32 D_80159210;
@@ -284,7 +283,7 @@ extern s32 D_8015A008;
 extern s32 D_8015A00C;
 extern s32 D_8015A010;
 extern void *D_8015A020[];
-extern void *D_8015A030[];
+extern s32 D_8015A030[4];
 extern s32 D_8015A040;
 extern s32 D_8015A044;
 extern void *D_8015A050[];
@@ -341,7 +340,7 @@ extern s32 D_8015A450;
 extern s32 D_8015A454;
 extern s32 D_8015A478;
 extern s32 D_8015A500;
-extern void *D_8015A504[];
+extern s32 D_8015A504;
 extern s32 D_8015A508;
 extern s32 D_8015A510;
 extern s32 D_8015A514;
@@ -353,6 +352,43 @@ extern s32 D_8015A534;
 extern s32 D_8015A538;
 extern s32 D_8015A540;
 extern s32 D_8015B254;
+extern f32 D_80160080[16];  /* Audio channel volumes */
+extern f32 D_801600C0[16];  /* Audio channel pans */
+extern f32 D_80160100[16];  /* Audio channel pitches */
+extern f32 D_80160180[3];  /* Listener position */
+extern u32 D_80160000[16];  /* Channel states */
+extern u32 D_80160040[16];  /* Channel params */
+extern s32 D_80160304;
+extern s32 D_80160308;
+extern s32 D_80160700;
+extern s32 D_80160704;
+extern s32 D_80160708;
+extern s32 D_8016070C;
+extern s32 D_80160714;
+extern s32 D_80160718;
+extern s32 D_8016071C;
+extern s32 D_8016080C;
+extern s32 D_801608E0;
+extern s32 D_801608E4;
+extern s32 D_80160900;
+extern s32 D_80160928;
+extern s32 D_80170000;
+extern s32 D_80170004;
+extern s32 D_80170008;
+extern s32 D_80170020;
+extern s32 D_80158000;
+extern s32 D_80157814;
+extern s32 D_80149438;
+extern s32 D_80149430;
+extern s32 D_80149440;
+extern s32 D_80143500;
+extern s32 D_80143404;
+extern s32 D_8014B000;
+extern s32 D_8014B008;
+extern s32 D_8014B00C;
+extern s32 D_8014B01C;
+extern s32 D_8014C000;
+extern s32 D_8014C00C;
 extern s32 D_80160400;
 extern s32 D_80160404;
 extern void *D_80160408[4];
@@ -375,11 +411,11 @@ extern s32 D_C;
 /* External function declarations */
 extern void func_800EDDC0(void);       /* Rendering/game logic */
 extern void func_800C997C(void);       /* Screen/state update */
-extern s32  func_800B37E8(s32, s32, void*, s32); /* Audio/sound control */
+extern s32  func_800B37E8(s32 action, s32 type, void *data, s32 flag); /* Audio/sound control */
 extern void func_800DB81C(void); /* Attract mode */
 extern void func_800FBF88(void); /* High score entry */
 extern void func_800FBC30(void);       /* Countdown timer */
-extern void func_800A04C4(s32 arg);        /* Viewport/camera setup */
+extern void func_800A04C4(s32 track, f32 angle, s32 x, s32 y);        /* Viewport/camera setup */
 
 /* Forward declarations for functions defined in this file */
 
@@ -526,7 +562,7 @@ s32 func_800FD464(void) {
             func_800F733C();  /* UpdateActiveObjects */
             func_800B0868();  /* PhysicsObjectList_Update */
             func_800B811C();  /* Effects_UpdateEmitters */
-            func_800A04C4(0); /* render_scene */
+            func_800A04C4(0, 0.0f, 0, 0); /* render_scene */
             return 1;
         }
     }
@@ -548,7 +584,7 @@ s32 func_800FD464(void) {
         func_800F733C();  /* UpdateActiveObjects */
         func_800B0868();  /* PhysicsObjectList_Update */
         func_800B811C();  /* Effects_UpdateEmitters */
-        func_800A04C4(0); /* render_scene */
+        func_800A04C4(0, 0.0f, 0, 0); /* render_scene */
         result = 1;
     }
 
@@ -1688,7 +1724,7 @@ void func_800F73FC(s32 sound_update, s32 physics_update) {
     func_800B811C();
 
     /* Always render the scene */
-    func_800A04C4(0);
+    func_800A04C4(0, 0.0f, 0, 0);
 }
 
 /*
@@ -3048,11 +3084,11 @@ s32 func_800AC820(s32 a0) {
  *
  * @return Type byte 2 from current object
  */
-extern void func_800B3D18(void); /* Audio update/sync function */
+extern void func_800B3D18(s32 channel, f32 volume); /* Audio update/sync function */
 extern u8 *D_801597F0;            /* Current object pointer */
 
 u8 func_800B3F00(void) {
-    func_800B3D18();
+    func_800B3D18(0, 0.0f);
     return *(D_801597F0 + 2);
 }
 
@@ -3069,7 +3105,7 @@ u8 func_800B3F00(void) {
  * @return Type byte 3 from current object
  */
 u8 func_800B3F28(void) {
-    func_800B3D18();
+    func_800B3D18(0, 0.0f);
     return *(D_801597F0 + 3);
 }
 
@@ -3498,9 +3534,9 @@ s32 func_80096B5C(s32 a0, s32 a1, s32 *a2) {
 extern u8 D_80152770[];  /* Sync structure */
 extern void func_80095FD8(s32, s32);
 
-void func_800960D4(s32 a0) {
+void func_800960D4(s32 a0, s32 a1) {
     func_80007270(D_80152770, 0, 1);
-    func_80095FD8(a0, 0);
+    func_80095FD8(a0, a1);
     func_800075E0(D_80152770, 0, 0);
 }
 
@@ -3724,7 +3760,7 @@ void func_800FEC60(s32 a0) {
 
 void func_800ED764(s16 a0) {
     if (a0 < 0) {
-        func_800B3D18();
+        func_800B3D18(0, 0.0f);
         D_80159B70 = *(D_801597F0 + 8);
     } else {
         D_80159B70 = (u8)a0;
@@ -3747,7 +3783,7 @@ extern u8 D_80159B60;  /* Mode byte 2 */
 
 void func_800ED7B4(s16 a0) {
     if (a0 < 0) {
-        func_800B3D18();
+        func_800B3D18(0, 0.0f);
         D_80159B60 = *(D_801597F0 + 4);
     } else {
         D_80159B60 = (u8)a0;
@@ -4333,7 +4369,7 @@ void func_800BE4B4(s32 a0, s32 a1, s32 a2, void *a3) {
  */
 s8 func_800B41C0(s8 a0) {
     s8 old;
-    func_800B3D18();
+    func_800B3D18(0, 0.0f);
     old = *((s8*)D_801597F0 + 9);
     *((s8*)D_801597F0 + 9) = a0;
     return old;
@@ -4566,9 +4602,9 @@ s32 func_8010FD1C(void *a0, s16 a1, void *a2) {
  */
 s16 func_800B7128(void) {
     u8 byte2, byte3;
-    func_800B3D18();
+    func_800B3D18(0, 0.0f);
     byte2 = *((u8*)D_801597F0 + 2);
-    func_800B3D18();
+    func_800B3D18(0, 0.0f);
     byte3 = *((u8*)D_801597F0 + 3);
     return (s16)(byte2 + byte3);
 }
@@ -4688,13 +4724,13 @@ void func_800A4C54(void) {
  */
 extern void func_8009079C(void *a0, s32 a1);
 
-void func_800B0618(void) {
+void func_800B0618(s32 trackId, void *ghostData) {
     void *item = D_801491F0;
     while (item != NULL) {
         func_8009079C(item, 1);
         item = D_801491F0;
     }
-    func_800B0580();
+    func_800B0580(0, ghostData, 0);
 }
 
 /*
@@ -4713,9 +4749,9 @@ void func_800B0618(void) {
 s16 func_800B3F50(void) {
     u8 byte2, byte3;
     s8 offset;
-    func_800B3D18();
+    func_800B3D18(0, 0.0f);
     byte3 = *((u8*)D_801597F0 + 3);
-    func_800B3D18();
+    func_800B3D18(0, 0.0f);
     byte2 = *((u8*)D_801597F0 + 2);
     offset = D_80159B60;
     return (s16)(offset + byte2 + byte3);
@@ -4806,7 +4842,7 @@ void func_800B04D0(void *a0) {
 extern void func_800AFA84(void*, void*);
 extern u8 D_80155B30[];
 
-void func_800B0580(void) {
+void func_800B0580(s32 slot, void *data, s32 size) {
     void *node;
 
     /* Process and remove all nodes from active list */
@@ -5558,7 +5594,7 @@ void func_800F68A4(u8 *output) {
     s32 offset;
     s32 count;
 
-    func_800B3D18();
+    func_800B3D18(0, 0.0f);
 
     data = (void*)D_801597F0;
     i = 0;
@@ -6197,7 +6233,7 @@ extern void func_800C9AE0(void); /* State handler */
 /**
 
 /**
-extern void func_800B0580(void); /* Finalize processing */
+extern void func_800B0580(s32 slot, void *data, s32 size); /* Write save data */
 
 /**
 
@@ -11519,12 +11555,12 @@ void func_800A6094(void *car, s32 lightMask) {
         lightPos[0] = carPos[0] - carDir[0] * 4.0f - carDir[2] * 1.5f;
         lightPos[1] = carPos[1] + 1.0f;
         lightPos[2] = carPos[2] - carDir[2] * 4.0f + carDir[0] * 1.5f;
-        func_800C7110(34, (s32, 0, 0, 0, 0);
+        func_800C7110(34, (s32)lightPos[0], (s32)lightPos[1], (s32)lightPos[2], 8, alpha);
 
         /* Right taillight */
         lightPos[0] = carPos[0] - carDir[0] * 4.0f + carDir[2] * 1.5f;
         lightPos[2] = carPos[2] - carDir[2] * 4.0f - carDir[0] * 1.5f;
-        func_800C7110(34, (s32, 0, 0, 0, 0);
+        func_800C7110(34, (s32)lightPos[0], (s32)lightPos[1], (s32)lightPos[2], 8, alpha);
     }
 }
 
@@ -13021,10 +13057,6 @@ void func_800ABBD0(void *player, f32 *respawnPos) {
  * Main per-frame update for player car.
  * Orchestrates input, physics, collision, and state.
  */
-extern void func_800A6BE4(void *car, f32 dt); /* Physics integration */
-extern void func_800A78C8(void *car, f32 steerInput); /* Steering */
-extern void func_800A7AE4(void *car, f32 throttle, f32 brake); /* Drive */
-
 void func_800ABCC8(void *player, f32 dt) {
     s32 state;
     f32 steering, throttle, brake;
@@ -13420,8 +13452,6 @@ s32 func_800AD0A0(void *player) {
  *   0xD8: finish time (u32)
  *   0xDC: finish position (s32)
  */
-extern void func_800AD734(void); /* Display results */
-
 void func_800AD128(void *player) {
     s32 *laps, *position;
     s32 *finished, *finishPos;
@@ -13770,7 +13800,8 @@ void func_800B087C(s32 voiceId, s32 priority) {
  * func_800B24EC (4256 bytes)
  * Audio sequence player - plays MIDI-like sequences
  */
-void func_800B24EC(void *sequence) {
+s32 func_800B24EC(void *a0, void *a1, s32 a2, s8 objType, s32 a4) {
+    void *sequence = a0;
     u8 *seqData;
     s32 *seqPos;
     s32 *seqTempo;
@@ -13830,8 +13861,8 @@ void func_800B24EC(void *sequence) {
 
             if (velocity > 0) {
                 /* Play note */
-                func_800B358C(channel, (f32);
-                func_800B3D18(channel, (f32);
+                func_800B358C(channel, (f32)velocity / 127.0f);
+                func_800B3D18(channel, (f32)note / 127.0f);
             }
         } else if ((cmd & 0xF0) == 0x80) {
             /* Note off */
@@ -13921,7 +13952,7 @@ void func_800B362C(s32 channel, f32 pan) {
  * func_800B3D18 (228 bytes)
  * Audio pitch set - sets playback pitch/frequency
  */
-void func_800B3D18(void) {
+void func_800B3D18(s32 channel, f32 volume) {
     /* Audio sync/update function - synchronizes audio state */
     /* Called periodically to update audio subsystem */
 }
@@ -13931,7 +13962,7 @@ void func_800B3D18(void) {
  * func_800B3FA4(604 bytes)
  * Audio effect apply - applies reverb/chorus/etc to channel
  */
-void func_800B3FA4(s32 channel, s32 effectType, f32 amount, 0.0f) {
+s16 func_800B3FA4(s32 channel, s32 effectType, f32 amount) {
     f32 *effectLevels;
     s32 *effectTypes;
 
@@ -14084,7 +14115,7 @@ void func_800B438C(s32 streamId, void *data) {
  * func_800B466C (604 bytes)
  * Audio stream update - updates streaming audio playback
  */
-void func_800B466C(s32 streamId) {
+s32 func_800B466C(s32 streamId) {
     s32 *streamActive;
     void **streamData;
     s32 *streamPos;
@@ -14956,7 +14987,20 @@ s32 func_800BB9B0(f32 *pos, f32 *normal, f32 *height) {
  * Implements chase cam behavior with configurable lag.
  */
 void func_800BE7BC(void *camera, void *target) {
-    f32 *camPos) {
+    f32 *camPos;
+    f32 *camTarget;
+    f32 *camUp;
+    f32 *followOffset;
+    f32 *lookaheadScale;
+    f32 smoothFactor;
+    f32 *targetPos;
+    f32 *targetVel;
+    f32 *targetDir;
+    f32 lookahead;
+    f32 desiredPos[3];
+    f32 desiredTarget[3];
+
+    if (camera == NULL || target == NULL) {
         return;
     }
 
@@ -17779,7 +17823,7 @@ void func_800E5444(void *camera) {
     if (horizonY > 240.0f) horizonY = 240.0f;
 
     /* Render horizon haze line */
-    func_800C7110(0, (s32, 0, 0, 0, 0);  /* Haze sprite */
+    func_800C7110(0, (s32)horizonY, 320, 0, 255, 200);  /* Haze sprite */
 
     /* Render scrolling clouds */
     cloudOffset = (f32)(D_80159A20 % 6400) / 20.0f;
@@ -20449,8 +20493,8 @@ void func_800F9428(void *camera) {
         case 3:  /* Static scenic view */
             {
                 s32 viewIdx = D_8015A524;
-                func_800A2504(0);
-}
+                func_800A2504(NULL, NULL, 0);
+            }
             break;
     }
 
@@ -20475,7 +20519,7 @@ void func_800F9A74(void *demo) {
     demoLength = *(s32 *)demoData;  /* First 4 bytes = length */
 
     /* Check for user input to skip */
-    input = D_80158100 & 0xFFFF;
+    input = (s32)(long)D_80158100[0] & 0xFFFF;
     if (input & 0x9000) {  /* START or A */
         D_8015A530 = 0;
         D_8015A534 = 0;  /* Demo ended */
@@ -20544,7 +20588,7 @@ void func_800F9E2C(void) {
     animFrame = D_8015A410;
 
     /* Handle input */
-    input = D_80158100 & 0xFFFF;
+    input = (s32)(long)D_80158100[0] & 0xFFFF;
 
     /* Any button press goes to main menu */
     if (input & 0x9000) {  /* START or A */
@@ -20650,7 +20694,7 @@ void func_800FA0D8(void) {
     scrollY = D_8015A400;
 
     /* Handle input */
-    input = D_80158100 & 0xFFFF;
+    input = (s32)(long)D_80158100[0] & 0xFFFF;
 
     /* Speed up with A button */
     if (input & 0x8000) {
@@ -20870,7 +20914,7 @@ void func_800FAEF4(void *pause) {
                 confirmState = 2;
             }
             func_800CC3C0(10);
-        } else if (input == 2 || (D_80158100 & 0x1000)) {  /* B or START */
+        } else if (input == 2 || ((s32)(long)D_80158100[0] & 0x1000)) {  /* B or START */
             /* Resume */
             func_800FB5F4(0);
 }
@@ -20957,7 +21001,7 @@ void func_800FB5F4(s32 pause) {
         D_80159F54 = D_80142AFC;  /* Store pause start time */
 
         /* Stop audio */
-        func_800B37E8(0);  /* Pause music */
+        func_800B37E8(0, 0, NULL, 0);  /* Pause music */
         func_800CC3C0(15);  /* Pause sound effect */
 
         /* Set render mode for pause overlay */
@@ -20972,7 +21016,7 @@ void func_800FB5F4(s32 pause) {
         D_8015A000 = D_8015A000 + pauseDuration;  /* Add to pause accumulator */
 
         /* Resume audio */
-        func_800B37E8(1);  /* Resume music */
+        func_800B37E8(1, 0, NULL, 0);  /* Resume music */
 
         /* Clear pause state */
         D_80159F58 = 0;
@@ -21389,7 +21433,7 @@ void func_800FEC78(void) {
     if (numPlayers < 1) numPlayers = 1;
 
     /* Stop music */
-    func_800B37E8(2);  /* Stop */
+    func_800B37E8(2, 0, NULL, 0);  /* Stop */
 
     /* Save ghost data if recording */
     if (D_8015A304 && D_8015A240[0]) {
@@ -21460,7 +21504,7 @@ void func_800FEC78(void) {
     D_8015A338 = D_8015A338 + D_8015A33C;  /* Add distance traveled */
 
     /* Free track resources */
-    func_800A11E4(trackId);
+    func_800A11E4(trackId, 0, 0, NULL, 0, 0);
 
     /* Clear drone state */
     for (i = 0; i < 8; i++) {
@@ -21600,7 +21644,7 @@ void func_8008A77C(void *queue) {
 
         switch (cmd) {
             case 0:  /* Play sound */
-                func_800B358C(param1, (f32, 0.0f);
+                func_800B358C(param1, (f32)param2 / 255.0f);
                 break;
 
             case 1:  /* Stop sound */
@@ -21608,7 +21652,7 @@ void func_8008A77C(void *queue) {
                 break;
 
             case 2:  /* Set volume */
-                func_800B37E8(param1, (f32);
+                func_800B3D18(param1, (f32)param2 / 255.0f);
                 break;
 
             case 3:  /* Set pan */
@@ -21616,7 +21660,7 @@ void func_8008A77C(void *queue) {
                 break;
 
             case 4:  /* Set pitch */
-                func_800B3D18(0);
+                func_800B3D18(param1, (f32)param2 / 255.0f);
                 break;
 
             case 5:  /* Fade volume */
@@ -22975,7 +23019,7 @@ void func_800B338C(void *car) {
         } else {
             /* Stop squeal if force below threshold */
             if (squealHandles[i] != 0) {
-                func_800B358C(0);
+                func_800B358C(squealHandles[i], 0.0f);
                 squealHandles[i] = 0;
                 squealVolumes[i] = 0;
             }
@@ -23090,7 +23134,7 @@ void func_800B39BC(void *car) {
     } else {
         /* Stop wind sound when slow */
         if (*windHandle != 0) {
-            func_800B358C((long, 0.0f)*windHandle);
+            func_800B358C(*windHandle, 0.0f);
             *windHandle = 0;
             *windVolume = 0;
         }
@@ -23162,7 +23206,7 @@ void func_800B3D20(s32 ambientId, f32 volume) {
     /* Stop if volume is zero */
     if (intVolume == 0) {
         if (D_80158100[ambientId] != 0) {
-            func_800B358C(0);
+            func_800B358C(D_80158100[ambientId], 0.0f);
             D_80158100[ambientId] = 0;
             D_80158120[ambientId] = 0;
         }
@@ -23269,7 +23313,7 @@ void func_800B4208(s32 voiceId) {
 
         /* Stop current voice (fade out quickly) */
         if (D_80158140 != 0) {
-            func_800B358C(0);
+            func_800B358C(D_80158140, 0.0f);
             D_80158140 = 0;
         }
     }
@@ -23301,7 +23345,7 @@ void func_800B4208(s32 voiceId) {
 void func_800B4738(void) {
     /* Stop current voice */
     if (D_80158140 != 0) {
-        func_800B358C(0);
+        func_800B358C(D_80158140, 0.0f);
         D_80158140 = 0;
     }
 
@@ -23661,7 +23705,13 @@ void func_800B574C(s32 handle, s32 loop) {
     }
 
     /* Set loop in audio system */
-    func_80092360(handle) {
+    func_80092360(loopCount);
+}
+
+/*
+ * Sound pitch set helper
+ */
+void func_800B58A0(s32 handle, f32 pitch) {
     s32 pitchVal;
 
     /* Validate handle */
@@ -25899,7 +25949,7 @@ void func_800EC3B0(void *event) {
             break;
         case 3:  /* Sound effect */
             if (*eventState == 1 && *eventTime < 0.02f) {
-                func_800B2658(*(s32 *);
+                func_800B2658(0, 1.0f, 0.0f);
             }
             break;
     }
@@ -26618,12 +26668,12 @@ void func_8010194C(s32 trackId, s32 time, u8 *name) {
     for (j = 0; j < 4 && name[j] != 0; j++) {
         bestNames[(trackId * 5 + position) * 4 + j] = name[j];
     }
-    for(0); j < 4; j++) {
+    for (; j < 4; j++) {
         bestNames[(trackId * 5 + position) * 4 + j] = ' ';
     }
 
     /* Save to Controller Pak */
-    func_800B0580(0, (u8 *);
+    func_800B0580(0, (u8 *)bestNames, sizeof(bestNames));
 }
 
 /*
@@ -28442,12 +28492,6 @@ void func_800B7440(s32 sndId) {
  * N64 uses 16 software-mixed channels via the audio library
  */
 void func_800B78F8(s32 channel, s32 param) {
-    extern u32 D_80160000[16];  /* Channel states */
-    extern u32 D_80160040[16];  /* Channel params */
-    extern f32 D_80160080[16];  /* Channel volumes */
-    extern f32 D_801600C0[16];  /* Channel pans */
-    extern f32 D_80160100[16];  /* Channel pitches */
-
     if (channel < 0 || channel >= 16) {
         return;
     }
@@ -28532,10 +28576,9 @@ void func_800B821C(s32 channel, f32 pitch) {
  * Sets 3D position for spatial audio effects
  * Calculates distance attenuation and stereo panning from listener
  */
+extern f32 D_8016018C[3];   /* Listener forward */
+extern f32 D_80160198[3];   /* Listener right */
 void func_800B8374(s32 channel, f32 *pos) {
-    extern f32 D_80160180[3];   /* Listener position */
-    extern f32 D_8016018C[3];   /* Listener forward */
-    extern f32 D_80160198[3];   /* Listener right */
     f32 dx, dy, dz;
     f32 dist, invDist;
     f32 rightDot;
