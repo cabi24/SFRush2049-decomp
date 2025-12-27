@@ -18,13 +18,13 @@ extern OSThread *__osPopThread(OSThread **queue);
 extern void __osDispatchThread(void);
 
 /* External thread queue pointers */
-extern OSThread **D_8002C3D8;     /* Active thread queue */
-extern OSThread *D_8002C3DC;      /* Last created thread */
-extern OSThread *D_8002C3E0;      /* Current running thread */
-extern OSThread *D_8002C464;      /* System thread pointer */
+extern OSThread **__osActiveQueue;    /* Active thread queue */
+extern OSThread *__osThreadList;      /* Thread list head (last created) */
+extern OSThread *__osRunningThread;   /* Currently running thread */
+extern OSThread *__osViThread;        /* VI manager thread pointer */
 
 /* Exception return address */
-extern u32 D_8000D298;
+extern u32 __osExceptionReturn;
 
 /**
  * Set thread priority
@@ -33,11 +33,13 @@ extern u32 D_8000D298;
  * Updates the priority of a thread and re-enqueues it
  * in the active thread queue.
  *
- * @param thread Thread to modify (via D_8002C464 indirection)
+ * @param thread Thread to modify
+ * @param priority New priority value
+ * @return Previous priority value
  */
-s32 osSetThreadPri(OSThread *thread, s32 priority) {
+OSPri osSetThreadPri(OSThread *thread, OSPri priority) {
     s32 saved;
-    s32 old_priority;
+    OSPri old_priority;
 
     saved = __osDisableInt();
 
@@ -74,11 +76,11 @@ void osSetIntMask(s32 mask) {
 
     if ((u8)mask != 0) {
         /* Enable interrupts - set bit 5 of flags */
-        thread = D_8002C464;
+        thread = __osViThread;
         *(u16 *)thread = *(u16 *)thread | 0x20;
     } else {
         /* Disable interrupts - clear bit 5 of flags */
-        thread = D_8002C464;
+        thread = __osViThread;
         *(u16 *)thread = *(u16 *)thread & ~0x20;
     }
 
@@ -124,7 +126,7 @@ void osCreateThread(OSThread *thread, s32 id, void (*entry)(void *),
     thread->context.sp = (u64)((u32)stack - 16);
 
     /* Set return address to exception return point */
-    thread->context.ra = (u64)(u32)&D_8000D298;
+    thread->context.ra = (u64)(u32)&__osExceptionReturn;
 
     /* Set FP control register */
     thread->context.fpcsr = 0xFF03;
@@ -147,8 +149,8 @@ void osCreateThread(OSThread *thread, s32 id, void (*entry)(void *),
     saved = __osDisableInt();
 
     /* Link into thread list */
-    thread->tlnext = D_8002C3DC;
-    D_8002C3DC = thread;
+    thread->tlnext = __osThreadList;
+    __osThreadList = thread;
 
     __osRestoreInt(saved);
 }
@@ -173,10 +175,10 @@ void osStartThread(OSThread *thread) {
 
     if (state == OS_STATE_STOPPED) {
         /* Thread was just created */
-        if (thread->queue == NULL || thread->queue == D_8002C3D8) {
+        if (thread->queue == NULL || thread->queue == __osActiveQueue) {
             /* No queue or on active queue - just make runnable */
             *(u16 *)&thread->state = OS_STATE_RUNNABLE;
-            __osEnqueueThread(D_8002C3D8, thread);
+            __osEnqueueThread(__osActiveQueue, thread);
         } else {
             /* Thread was waiting on another queue */
             *(u16 *)&thread->state = OS_STATE_WAITING;
@@ -184,25 +186,25 @@ void osStartThread(OSThread *thread) {
 
             /* Pop from that queue and add to active */
             popped = __osPopThread(thread->queue);
-            __osEnqueueThread(D_8002C3D8, popped);
+            __osEnqueueThread(__osActiveQueue, popped);
         }
     } else if (state == OS_STATE_WAITING) {
         /* Thread was waiting - make runnable */
         *(u16 *)&thread->state = OS_STATE_RUNNABLE;
-        __osEnqueueThread(D_8002C3D8, thread);
+        __osEnqueueThread(__osActiveQueue, thread);
     }
 
     /* Check if we need to dispatch */
-    if (D_8002C3E0 == NULL) {
+    if (__osRunningThread == NULL) {
         /* No current thread - dispatch now */
         __osDispatchThread();
     } else {
         /* Compare priorities */
-        OSThread *active = *D_8002C3D8;
-        if (D_8002C3E0->priority < active->priority) {
+        OSThread *active = *__osActiveQueue;
+        if (__osRunningThread->priority < active->priority) {
             /* New thread has higher priority - preempt */
-            *(u16 *)&D_8002C3E0->state = OS_STATE_RUNNABLE;
-            __osEnqueueThread(D_8002C3D8, D_8002C3E0);
+            *(u16 *)&__osRunningThread->state = OS_STATE_RUNNABLE;
+            __osEnqueueThread(__osActiveQueue, __osRunningThread);
         }
     }
 
@@ -237,7 +239,7 @@ void osYieldThread(OSThread *thread) {
     switch (state) {
         case OS_STATE_RUNNING:  /* 4 */
             /* Current thread - just switch to idle */
-            *(u16 *)&D_8002C3E0->state = OS_STATE_STOPPED;
+            *(u16 *)&__osRunningThread->state = OS_STATE_STOPPED;
             __osSwitchThread(0);
             break;
 
@@ -262,12 +264,12 @@ void osYieldThread(OSThread *thread) {
  * @param thread Thread to query, or NULL for current
  * @return Thread priority value
  */
-s32 osGetThreadPri(OSThread *thread) {
+OSPri osGetThreadPri(OSThread *thread) {
     OSThread *t;
 
     t = thread;
     if (t == NULL) {
-        t = D_8002C3E0;
+        t = __osRunningThread;
     }
     return t->priority;
 }
@@ -282,12 +284,12 @@ s32 osGetThreadPri(OSThread *thread) {
  * @param thread Thread to query, or NULL for current
  * @return Thread ID value
  */
-s32 osGetThreadId(OSThread *thread) {
+OSId osGetThreadId(OSThread *thread) {
     OSThread *t;
 
     t = thread;
     if (t == NULL) {
-        t = D_8002C3E0;
+        t = __osRunningThread;
     }
     return t->id;
 }

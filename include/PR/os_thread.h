@@ -8,8 +8,9 @@
 
 #include "types.h"
 
-/* Thread priority type */
+/* Thread priority and ID types */
 typedef s32 OSPri;
+typedef s32 OSId;
 
 /* Thread priority values */
 #define OS_PRIORITY_IDLE        0
@@ -58,13 +59,13 @@ typedef struct OSThread_s {
 } OSThread;
 
 /* Function prototypes */
-void osCreateThread(OSThread *thread, s32 id, void (*entry)(void *),
-                    void *arg, void *sp, s32 priority);
+void osCreateThread(OSThread *thread, OSId id, void (*entry)(void *),
+                    void *arg, void *sp, OSPri priority);
 void osStartThread(OSThread *thread);
 void osStopThread(OSThread *thread);
-s32 osSetThreadPri(OSThread *thread, s32 priority);
+OSPri osSetThreadPri(OSThread *thread, OSPri priority);
 OSPri osGetThreadPri(OSThread *thread);
-s32 osGetThreadId(OSThread *thread);
+OSId osGetThreadId(OSThread *thread);
 OSThread *__osPopThread(OSThread **queue);
 void __osEnqueueThread(OSThread **queue, OSThread *thread);
 
