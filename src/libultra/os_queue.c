@@ -11,18 +11,7 @@
  */
 
 #include "types.h"
-
-/* Thread structure (partial - enough for queue operations) */
-typedef struct OSThread {
-    struct OSThread *next;      /* 0x00: Next thread in queue */
-    s32 priority;               /* 0x04: Thread priority */
-    struct OSThread **queue;    /* 0x08: Queue this thread belongs to */
-    /* ... rest of thread context ... */
-} OSThread;
-
-/* External data */
-extern OSThread *D_8002C3D8;    /* Active thread queue head */
-extern OSThread *D_8002C3E0;    /* Currently running thread */
+#include "PR/os_thread.h"
 
 /**
  * Enqueue thread into priority queue
@@ -84,13 +73,12 @@ OSThread *__osPopThread(OSThread **queue) {
  * and jumps to its program counter.
  *
  * This is a handwritten assembly function that:
- * 1. Pops thread from D_8002C3D8 (active queue)
- * 2. Stores it in D_8002C3E0 (current thread)
- * 3. Sets thread state to RUNNING (4)
+ * 1. Pops thread from __osActiveQueue
+ * 2. Stores it in __osRunningThread
+ * 3. Sets thread state to OS_STATE_RUNNING (4)
  * 4. Restores all 64-bit GPRs from thread context
  * 5. Restores CP0 Status and EPC registers
  * 6. Optionally restores FPU state if thread used FPU
  * 7. Executes ERET to return to thread's saved PC
  */
-void __osDispatchThread(void);
 /* Implementation in assembly - restores full thread context */

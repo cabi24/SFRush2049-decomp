@@ -8,17 +8,21 @@
 
 #include "types.h"
 
-/* Hardware register addresses */
-#define AI_DRAM_ADDR_REG    (*(vu32 *)0xA4500000)
-#define AI_LEN_REG          (*(vu32 *)0xA4500004)
-#define AI_CONTROL_REG      (*(vu32 *)0xA4500008)
-#define AI_STATUS_REG       (*(vu32 *)0xA450000C)
-#define AI_DACRATE_REG      (*(vu32 *)0xA4500010)
-#define AI_BITRATE_REG      (*(vu32 *)0xA4500014)
+/* Hardware register addresses (AI Base: 0xA4500000) */
+#define AI_DRAM_ADDR_REG    (*(vu32 *)0xA4500000)  /* AI_DRAM_ADDR: DRAM address for DMA */
+#define AI_LEN_REG          (*(vu32 *)0xA4500004)  /* AI_LEN: Length of DMA transfer */
+#define AI_CONTROL_REG      (*(vu32 *)0xA4500008)  /* AI_CONTROL: AI control register */
+#define AI_STATUS_REG       (*(vu32 *)0xA450000C)  /* AI_STATUS: AI status register */
+#define AI_DACRATE_REG      (*(vu32 *)0xA4500010)  /* AI_DACRATE: DAC sample rate divider */
+#define AI_BITRATE_REG      (*(vu32 *)0xA4500014)  /* AI_BITRATE: Bit rate divider */
+
+/* DAC rate calculation constants */
+#define AI_MIN_DAC_RATE     0x84    /* Minimum valid DAC rate divider */
+#define AI_MAX_BIT_RATE     16      /* Maximum bit rate value */
 
 /* External data */
-extern u8 D_8002C3C0;           /* Audio double buffer flag */
-extern u32 D_8002C368;          /* System clock frequency */
+extern u8 __osAiDmaQueueHead;       /* Audio double buffer flag */
+extern u32 osClockRate;             /* System clock frequency (46.875 MHz) */
 
 /* External functions */
 extern s32 __osAiDeviceBusy(void);           /* Check if AI DMA is full */
@@ -47,16 +51,16 @@ s32 osAiSetNextBuffer(void *addr, u32 size) {
     bufAddr = addr;
 
     /* Handle double buffering */
-    if (D_8002C3C0 != 0) {
+    if (__osAiDmaQueueHead != 0) {
         /* Use alternate buffer (0x2000 bytes before) */
         bufAddr = (u8 *)addr - 0x2000;
     }
 
     /* Check alignment and toggle buffer flag */
     if (((u32)addr + size & 0x1FFF) == 0) {
-        D_8002C3C0 = 1;
+        __osAiDmaQueueHead = 1;
     } else {
-        D_8002C3C0 = 0;
+        __osAiDmaQueueHead = 0;
     }
 
     /* Convert to physical address and set registers */
@@ -74,6 +78,9 @@ s32 osAiSetNextBuffer(void *addr, u32 size) {
  * Configures the AI DAC rate and bit rate for the specified
  * output frequency.
  *
+ * Formula: dacRate = osClockRate / frequency
+ * The actual frequency returned is osClockRate / dacRate
+ *
  * @param frequency Desired output frequency in Hz
  * @return Actual output frequency, or -1 on error
  */
@@ -84,8 +91,8 @@ s32 osAiSetFrequency(u32 frequency) {
     s32 dRate;
     s32 bitRate;
 
-    /* Get system clock frequency */
-    fSysFreq = (f32)(s32)D_8002C368;
+    /* Get system clock frequency (46.875 MHz) */
+    fSysFreq = (f32)(s32)osClockRate;
     fFreq = (f32)frequency;
 
     /* Calculate DAC rate: (sysFreq / freq) + 0.5 */
@@ -97,15 +104,15 @@ s32 osAiSetFrequency(u32 frequency) {
         dRate = -1;
     }
 
-    /* Validate range (minimum 0x84) */
-    if (dRate < 0x84) {
+    /* Validate range (minimum AI_MIN_DAC_RATE) */
+    if (dRate < AI_MIN_DAC_RATE) {
         return -1;
     }
 
     /* Calculate bit rate: dacRate / 66 */
     bitRate = dRate / 66;
-    if (bitRate > 16) {
-        bitRate = 16;
+    if (bitRate > AI_MAX_BIT_RATE) {
+        bitRate = AI_MAX_BIT_RATE;
     }
 
     /* Set hardware registers */
@@ -113,5 +120,5 @@ s32 osAiSetFrequency(u32 frequency) {
     AI_BITRATE_REG = bitRate - 1;
 
     /* Return actual frequency */
-    return (s32)D_8002C368 / dRate;
+    return (s32)osClockRate / dRate;
 }

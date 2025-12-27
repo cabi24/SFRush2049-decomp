@@ -6,6 +6,7 @@
  */
 
 #include "PR/os_message.h"
+#include "PR/os_thread.h"
 
 /* Empty thread queue sentinel */
 extern OSThread *__osThreadQueue;
@@ -48,7 +49,7 @@ s32 osSendMesg(OSMesgQueue *mq, OSMesg msg, s32 flags) {
 
     while (mq->validCount >= mq->msgCount) {
         if (flags == OS_MESG_BLOCK) {
-            __osRunningThread->state = 8;  /* OS_STATE_WAITING */
+            __osRunningThread->state = OS_STATE_WAITING;
             __osEnqueueAndYield(&mq->fullqueue);
         } else {
             __osRestoreInt(savedMask);
@@ -87,7 +88,7 @@ s32 osRecvMesg(OSMesgQueue *mq, OSMesg *msg, s32 flags) {
             __osRestoreInt(savedMask);
             return -1;
         }
-        __osRunningThread->state = 8;  /* OS_STATE_WAITING */
+        __osRunningThread->state = OS_STATE_WAITING;
         __osEnqueueAndYield(&mq->mtqueue);
     }
 

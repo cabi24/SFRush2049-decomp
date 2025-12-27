@@ -28,6 +28,7 @@
  */
 
 #include "types.h"
+#include "PR/os_message.h"
 
 /* Event IDs */
 #define OS_EVENT_SW1          0
@@ -46,21 +47,22 @@
 #define OS_EVENT_THREADSTATUS 13
 #define OS_EVENT_PRENMI       14
 
+#define OS_NUM_EVENTS         15
+
 /* Event table entry structure */
-typedef struct {
-    void *mq;       /* Message queue pointer */
-    s32 msg;        /* Message value to send */
-} OSEventEntry;
+typedef struct __OSEventState {
+    OSMesgQueue *queue;     /* Message queue pointer */
+    OSMesg msg;             /* Message value to send */
+} __OSEventState;
 
 /* External data */
-extern OSEventEntry D_80036710[15];  /* Event table (15 events * 8 bytes) */
-extern s32 D_8002C36C;               /* VI initialized flag */
-extern s32 D_8002C350;               /* Pre-NMI registered flag */
+extern __OSEventState __osEventStateTab[OS_NUM_EVENTS];  /* Event table */
+extern s32 __osViIntrCount;         /* VI initialized flag */
+extern s32 __osPreNMI;              /* Pre-NMI registered flag */
 
 /* External functions */
 extern s32 __osDisableInt(void);
 extern void __osRestoreInt(s32 mask);
-extern s32 osSendMesg(void *mq, s32 msg, s32 flags);
 
 /**
  * Set event message
@@ -73,28 +75,28 @@ extern s32 osSendMesg(void *mq, s32 msg, s32 flags);
  * @param mq Message queue to receive event notifications
  * @param msg Message value to send when event occurs
  */
-void osSetEventMesg(s32 event, void *mq, s32 msg) {
+void osSetEventMesg(s32 event, OSMesgQueue *mq, OSMesg msg) {
     s32 saved;
-    OSEventEntry *entry;
+    __OSEventState *entry;
 
     saved = __osDisableInt();
 
     /* Get entry in event table */
-    entry = &D_80036710[event];
+    entry = &__osEventStateTab[event];
 
     /* Store message queue and message */
-    entry->mq = mq;
+    entry->queue = mq;
     entry->msg = msg;
 
     /* Special handling for OS_EVENT_PRENMI (event 14) */
     if (event == OS_EVENT_PRENMI) {
         /* Check if VI is initialized and pre-NMI not already registered */
-        if (D_8002C36C != 0 && D_8002C350 == 0) {
+        if (__osViIntrCount != 0 && __osPreNMI == 0) {
             /* Send immediate notification if VI is running */
-            osSendMesg(mq, msg, 0);
+            osSendMesg(mq, msg, OS_MESG_NOBLOCK);
         }
         /* Mark pre-NMI as registered */
-        D_8002C350 = 1;
+        __osPreNMI = 1;
     }
 
     __osRestoreInt(saved);
