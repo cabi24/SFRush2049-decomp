@@ -12,10 +12,20 @@
 #define DPC_STATUS_REG  (*(vu32 *)0xA410000C)
 
 /* DPC Status bits */
-#define DPC_STATUS_DMA_BUSY     0x0100
+#define DPC_STATUS_XBUS_DMEM    0x0001  /* XBUS DMEM DMA */
+#define DPC_STATUS_FREEZE       0x0002  /* Freeze RDP */
+#define DPC_STATUS_FLUSH        0x0004  /* Flush RDP */
+#define DPC_STATUS_START_GCLK   0x0008  /* Start GCLK */
+#define DPC_STATUS_TMEM_BUSY    0x0010  /* TMEM busy */
+#define DPC_STATUS_PIPE_BUSY    0x0020  /* Pipe busy */
+#define DPC_STATUS_CMD_BUSY     0x0040  /* Command busy */
+#define DPC_STATUS_CBUF_READY   0x0080  /* Command buffer ready */
+#define DPC_STATUS_DMA_BUSY     0x0100  /* DMA busy */
+#define DPC_STATUS_END_VALID    0x0200  /* End register valid */
+#define DPC_STATUS_START_VALID  0x0400  /* Start register valid */
 
 /* External data */
-extern void *D_8002C460;  /* Active queue pointer */
+extern void *__osActiveQueue;  /* Active thread queue pointer */
 
 /**
  * Get CP0 Count register (hardware timer)
@@ -60,7 +70,7 @@ s32 osDpIsBusy(void) {
 /* sqrtf is implemented in src/libm/math.c */
 
 /* External function for TLB lookup */
-extern u32 func_8000FCB0(void *addr);  /* __osTLBLookup */
+extern u32 __osTLBLookup(void *addr);
 
 /**
  * Convert virtual address to physical
@@ -91,7 +101,7 @@ u32 osVirtualToPhysical(void *addr) {
     }
 
     /* KUSEG or KSSEG: Use TLB lookup */
-    return func_8000FCB0(addr);
+    return __osTLBLookup(addr);
 }
 
 /**
@@ -103,7 +113,7 @@ u32 osVirtualToPhysical(void *addr) {
  * @return Pointer to active queue
  */
 void *osGetActiveQueue(void) {
-    return D_8002C460;
+    return __osActiveQueue;
 }
 
 /**
