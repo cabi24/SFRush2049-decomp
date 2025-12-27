@@ -10,17 +10,15 @@
  */
 
 #include "types.h"
+#include "PR/os_message.h"
 
-/* External data */
-extern u8 D_8002B030;               /* Lock initialized flag */
-extern u8 D_8002F190[24];           /* Lock message queue (OSMesgQueue) */
-extern u8 D_8002F1A8[4];            /* Lock message buffer */
+/* External data - Sync lock state */
+extern u8 __osSyncInitialized;      /* Lock initialized flag */
+extern OSMesgQueue __osSyncQueue;   /* Lock message queue */
+extern OSMesg __osSyncMsgBuf;       /* Lock message buffer */
 
-/* External functions */
-extern void osCreateMesgQueue(void *mq, void *msgBuf, s32 count);
-extern s32 osSendMesg(void *mq, s32 msg, s32 flags);
-extern s32 osRecvMesg(void *mq, s32 *msg, s32 flags);
-extern s32 func_80004AFC(void *arg0, void *arg1);  /* Protected operation */
+/* Protected operation functions */
+extern s32 __osSyncProtectedOp(void *arg0, void *arg1);
 
 /* Forward declarations */
 void sync_init(void);
@@ -35,13 +33,13 @@ void sync_release(void);
  * message to indicate the lock is available.
  */
 void sync_init(void) {
-    D_8002B030 = 1;
+    __osSyncInitialized = 1;
 
     /* Create message queue with 1 slot */
-    osCreateMesgQueue(D_8002F190, D_8002F1A8, 1);
+    osCreateMesgQueue(&__osSyncQueue, &__osSyncMsgBuf, 1);
 
     /* Post initial message to indicate lock is free */
-    osSendMesg(D_8002F190, 0, 0);
+    osSendMesg(&__osSyncQueue, NULL, OS_MESG_NOBLOCK);
 }
 
 /**
@@ -53,19 +51,19 @@ void sync_init(void) {
  * @return 1 if lock was acquired, 0 if not (only when non-blocking)
  */
 s32 sync_acquire(s32 blocking) {
-    s32 msg;
+    OSMesg msg;
 
     /* Initialize if not already done */
-    if (D_8002B030 == 0) {
+    if (__osSyncInitialized == 0) {
         sync_init();
     }
 
     if (blocking != 0) {
         /* Blocking acquire - wait for message */
-        osRecvMesg(D_8002F190, &msg, 1);
+        osRecvMesg(&__osSyncQueue, &msg, OS_MESG_BLOCK);
     } else {
         /* Non-blocking acquire - try to get message */
-        if (osRecvMesg(D_8002F190, &msg, 0) == -1) {
+        if (osRecvMesg(&__osSyncQueue, &msg, OS_MESG_NOBLOCK) == -1) {
             return 0;  /* Lock not available */
         }
     }
@@ -80,7 +78,7 @@ s32 sync_acquire(s32 blocking) {
  * Posts a message to indicate the lock is now free.
  */
 void sync_release(void) {
-    osSendMesg(D_8002F190, 0, 0);
+    osSendMesg(&__osSyncQueue, NULL, OS_MESG_NOBLOCK);
 }
 
 /**
@@ -102,13 +100,16 @@ s32 sync_execute(void *arg0, void *arg1) {
     }
 
     /* Execute protected operation */
-    result = func_80004AFC(arg0, arg1);
+    result = __osSyncProtectedOp(arg0, arg1);
 
     /* Release lock */
     sync_release();
 
     return result;
 }
+
+/* Protected operation with 3 arguments */
+extern s32 __osSyncProtectedOp3(void *arg0, void *arg1, void *arg2);
 
 /**
  * Execute operation with three arguments while holding lock
@@ -119,8 +120,6 @@ s32 sync_execute(void *arg0, void *arg1) {
  * @param arg2 Third argument for protected operation
  * @return Result from protected operation, or 0 if lock not acquired
  */
-extern s32 func_80006814(void *arg0, void *arg1, void *arg2);  /* 3-arg protected op */
-
 s32 sync_execute3(void *arg0, void *arg1, void *arg2) {
     s32 result;
 
@@ -130,7 +129,7 @@ s32 sync_execute3(void *arg0, void *arg1, void *arg2) {
     }
 
     /* Execute protected operation */
-    result = func_80006814(arg0, arg1, arg2);
+    result = __osSyncProtectedOp3(arg0, arg1, arg2);
 
     /* Release lock */
     sync_release();
