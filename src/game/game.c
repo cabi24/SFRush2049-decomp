@@ -417,14 +417,14 @@ extern s32 D_8016B254;
 extern s32 D_C;
 
 /* External function declarations */
-extern void *func_800BA644(s32 size);  /* Audio memory allocator */
-extern void func_800EDDC0(void);       /* Rendering/game logic */
-extern void func_800C997C(void);       /* Screen/state update */
-extern s32  func_800B37E8(s32 action, s32 type, void *data, s32 flag); /* Audio/sound control */
-extern void func_800DB81C(void); /* Attract mode */
-extern void func_800FBF88(void); /* High score entry */
-extern void func_800FBC30(void);       /* Countdown timer */
-extern void func_800A04C4(s32 track, f32 angle, s32 x, s32 y);        /* Viewport/camera setup */
+extern void *audio_alloc(s32 size);           /* func_800BA644 - Audio memory allocator */
+extern void attract_or_transition(void);      /* func_800EDDC0 - Rendering/game logic */
+extern void process_inputs(void);             /* func_800C997C - Screen/state update */
+extern s32  sound_start(s32 action, s32 type, void *data, s32 flag); /* func_800B37E8 - Audio/sound control */
+extern void attract_handler(void);            /* func_800DB81C - Attract mode */
+extern void hiscore_handler(void);            /* func_800FBF88 - High score entry */
+extern void countdown_handler(void);          /* func_800FBC30 - Countdown timer */
+extern void render_scene(s32 track, f32 angle, s32 x, s32 y); /* func_800A04C4 - Viewport/camera setup */
 
 /* Forward declarations for functions defined in this file */
 s32 func_800F43D4(f32 distance);  /* LOD distance calculator */
@@ -432,14 +432,14 @@ s32 func_800F43D4(f32 distance);  /* LOD distance calculator */
 /* Additional extern declarations */
 extern s32 D_8013E6E0;
 
-void func_800C9AE0(void);
-void func_800C734C(s32 x, s32 y, char *text, u32 color);
-void func_800C7110(s32 elementId, s32 x, s32 y, s32 w, s32 h, s32 alpha);
+void game_mode_handler(void);  /* func_800C9AE0 */
+void draw_text(s32 x, s32 y, char *text, u32 color);  /* func_800C734C */
+void draw_ui_element(s32 elementId, s32 x, s32 y, s32 w, s32 h, s32 alpha);  /* func_800C7110 */
 
 /* State handler declarations */
-extern void func_800FBF90(void); /* GSTATE_INIT handler */
-extern void func_800FBFE4(void); /* GSTATE_SETUP handler */
-extern void func_800FC0EC(void); /* GSTATE_MENU handler */
+extern void state_init_handler(void);   /* func_800FBF90 - GSTATE_INIT handler */
+extern void state_setup_handler(void);  /* func_800FBFE4 - GSTATE_SETUP handler */
+extern void state_menu_handler(void);   /* func_800FC0EC - GSTATE_MENU handler */
 
 /* External data */
 extern u8 gstate;                      /* 0x801146EC - game state byte */
@@ -462,11 +462,11 @@ extern u32 D_801597F4;   /* State copy */
 extern s8  D_801146C4[]; /* Sound params array */
 extern u32 D_801174B4;   /* gstate - current state bitmask (for game_loop) */
 extern u32 D_801174B8;   /* gstate_pending - next state (for game_loop) */
-extern void func_800B358C(s32 channel, f32 volume); /* sound_stop */
-extern void func_800FD238(void); /* state_dispatch */
-extern void func_800F733C(void); /* UpdateActiveObjects */
-extern void *func_800B0868(void); /* PhysicsObjectList_Update */
-extern void func_800B811C(void); /* Effects_UpdateEmitters */
+extern void sound_stop(s32 channel, f32 volume);    /* func_800B358C */
+extern void state_dispatch(void);                   /* func_800FD238 */
+extern void update_active_objects(void);            /* func_800F733C */
+extern void *physics_update(void);                  /* func_800B0868 */
+extern void effects_update_emitters(void);          /* func_800B811C */
 
 /* Forward declaration */
 void func_800CA3B4(void);
@@ -507,7 +507,7 @@ s32 func_800FD464(void) {
 
     /* If no state change pending, just call mode handler and return */
     if (gstate_cur == gstate_next) {
-        func_800C9AE0();  /* game_mode_handler */
+        game_mode_handler();
         return result;
     }
 
@@ -518,13 +518,13 @@ s32 func_800FD464(void) {
 
     /* Clear render state and call transition handler */
     D_80159438 = 0;
-    func_800EDDC0();  /* attract_or_transition */
+    attract_or_transition();
 
     /* Save state value */
     D_801597F4 = D_801597C8;
 
     /* Process inputs/PDUs */
-    func_800C997C();  /* process_inputs */
+    process_inputs();
 
     /* Timing check - calculate elapsed time */
     timing_diff = D_8003E8E8 - D_8003AFB8;
@@ -537,13 +537,13 @@ s32 func_800FD464(void) {
             sound_handle = D_801146E8;
             if (sound_handle == 0) {
                 /* Start sound - call with params */
-                D_801146E8 = func_800B37E8(0, 0, &D_801146C4, 1);
+                D_801146E8 = sound_start(0, 0, &D_801146C4, 1);
             }
         } else {
             /* State requires stopping sound */
             sound_handle = D_801146E8;
             if (sound_handle != 0) {
-                func_800B358C(sound_handle, 0.0f);  /* sound_stop */
+                sound_stop(sound_handle, 0.0f);
                 D_801146E8 = 0;
             }
         }

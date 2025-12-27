@@ -11,11 +11,13 @@
 /* External OS functions */
 extern s32 osSetGlobalIntMask(s32 mask);
 extern void *memcpy(void *dst, const void *src, u32 size);
-extern void func_80007CA0(void *dst, s32 size);  /* osWritebackDCache wrapper */
-extern void func_80006D40(void *thread);         /* osSetThreadPri wrapper */
+extern void osWritebackDCache(void *dst, s32 size);
+extern void osSetThreadPri(void *thread, s32 pri);
 extern void osSetIntMask(s32 mask);
-extern void func_80007D20(s32 val);              /* Some display function */
-extern void func_800A7508(f32 a0, f32 a1);       /* Viewport scale function */
+extern void osViSetSpecialFeatures(s32 val);
+
+/* Game display functions */
+extern void viewport_scale(f32 a0, f32 a1);  /* func_800A7508 */
 
 /* TV type from libultra */
 extern s32 osTvType;
@@ -169,7 +171,7 @@ void display_update(void) {
     D_8002B010 = 2;
 
     /* Flush display state to memory */
-    func_80007CA0(D_8002B014, 0x50);
+    osWritebackDCache(D_8002B014, 0x50);
 
     /* Restore interrupts */
     osSetGlobalIntMask(saved_mask);
@@ -217,8 +219,8 @@ void viewport_setup(s32 mode, s32 player, s32 width, s32 height) {
         D_8002ECB2 = D_8002AFFE[mode * 4];
     } else {
         /* Scale existing offsets */
-        func_800A7508((f32)width / (f32)D_8002ECAC,
-                      (f32)height / (f32)D_8002ECAE);
+        viewport_scale((f32)width / (f32)D_8002ECAC,
+                       (f32)height / (f32)D_8002ECAE);
     }
 
     /* Store dimensions */
@@ -246,8 +248,8 @@ void display_process(void) {
             osSetIntMask(0);
         }
 
-        func_80006D40(D_8002B014);
-        func_80007D20(0xAA);
+        osSetThreadPri(D_8002B014, 0);
+        osViSetSpecialFeatures(0xAA);
     }
 }
 
@@ -275,7 +277,7 @@ s32 get_tv_offset(void) {
  * (func_80001E58)
  */
 void display_set_priority(void) {
-    func_80006D40(D_8002EBFC);
+    osSetThreadPri(D_8002EBFC, 0);
 }
 
 /**

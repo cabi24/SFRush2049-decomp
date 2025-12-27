@@ -12,7 +12,7 @@
 /* External OS functions */
 extern void osCreateMesgQueue(OSMesgQueue *mq, OSMesg *msg, s32 count);
 extern s32 osRecvMesg(OSMesgQueue *mq, OSMesg *msg, s32 flags);
-extern s32 func_800075E0(OSMesgQueue *mq, OSMesg msg, s32 flags);  /* osJamMesg */
+extern s32 osJamMesg(OSMesgQueue *mq, OSMesg msg, s32 flags);
 
 /* External decompression functions */
 extern s32 lzss_decode(void *src, void *dst);
@@ -35,7 +35,7 @@ extern u8 D_8002B030;
 void dma_queue_init(void) {
     D_8002B030 = 1;
     osCreateMesgQueue(&D_8002F190, D_8002F1A8, 1);
-    func_800075E0(&D_8002F190, NULL, 0);
+    osJamMesg(&D_8002F190, NULL, 0);
 }
 
 /**
@@ -75,7 +75,7 @@ s32 dma_wait(s32 blocking) {
  * Posts a message to indicate DMA transfer is complete.
  */
 void dma_signal(void) {
-    func_800075E0(&D_8002F190, NULL, 0);
+    osJamMesg(&D_8002F190, NULL, 0);
 }
 
 /**
