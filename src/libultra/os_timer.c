@@ -13,7 +13,7 @@
 /* External functions */
 extern s32 __osDisableInt(void);
 extern void __osRestoreInt(s32 mask);
-extern void osSendMesg(OSMesgQueue *mq, OSMesg msg, s32 flags);
+/* osSendMesg declared in os_message.h */
 
 /* External data */
 extern OSMesgQueue *D_80036710[];   /* Timer message queue table (8 entries) */
@@ -70,22 +70,22 @@ void osSetTimer(s32 timer, OSMesgQueue *mq, s32 msg) {
  */
 void osSetTimerIntr(OSThread *thread, OSMesgQueue *mq, s16 value) {
     s32 saved;
-    OSThread *sys;
+    u8 *sys;
 
     saved = __osDisableInt();
 
-    sys = D_8002C464;
+    sys = (u8 *)D_8002C464;
 
-    /* Store thread pointer */
-    sys->timer_mq = thread;
+    /* Store thread pointer at offset 0 */
+    *(void **)(sys + 0) = thread;
 
-    sys = D_8002C464;
-    /* Store message queue */
-    sys->timer_msg = mq;
+    sys = (u8 *)D_8002C464;
+    /* Store message queue at offset 4 */
+    *(void **)(sys + 4) = mq;
 
-    sys = D_8002C464;
-    /* Store interrupt value */
-    *(s16 *)((u8 *)sys + 2) = value;
+    sys = (u8 *)D_8002C464;
+    /* Store interrupt value at offset 2 */
+    *(s16 *)(sys + 2) = value;
 
     __osRestoreInt(saved);
 }

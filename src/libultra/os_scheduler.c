@@ -25,7 +25,8 @@ extern void osSpTaskLoad(void *task);
 extern void osSpTaskStartGo(void *task);
 extern s32 osSpTaskYielded(void *task);
 extern void osViSwapBuffer(void *framebuffer);
-extern void osDpSetNextBuffer(void *buf, s32 size);
+extern s32 osDpSetNextBuffer(void *buf, s32 size);
+extern void osSpTaskYield(void);
 
 /* External data */
 extern s16 D_8002EB70;
@@ -480,9 +481,6 @@ static void __scAppendList(void *arg, void *msg) {
 
 /* External SP/DP functions */
 extern void osSpClearStatus(void);
-extern void osSpTaskLoad(void *task);
-extern void osSpTaskStartGo(void *task);
-extern s32 osDpSetNextBuffer(void *buf, s32 size);
 
 /**
  * Execute RSP/RDP tasks
@@ -542,9 +540,6 @@ static void __scYield(void *arg) {
         osSpTaskYield();
     }
 }
-
-/* External yield function */
-extern void osSpTaskYield(void);
 
 /**
  * Core scheduling algorithm

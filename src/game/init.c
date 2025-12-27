@@ -7,14 +7,10 @@
  */
 
 #include "types.h"
+#include "PR/os_thread.h"
 #include "PR/os_message.h"
 
-/* Forward declarations for thread functions */
-extern void osCreateThread(void *thread, s32 id, void (*entry)(void *), void *arg,
-                          void *stack, s32 pri);
-extern void osStartThread(void *thread);
-extern s32 osRecvMesg(OSMesgQueue *mq, OSMesg *msg, s32 flags);
-extern void osCreateMesgQueue(OSMesgQueue *mq, OSMesg *msg, s32 count);
+/* OS function declarations (match os_thread.h and os_message.h) */
 extern void osSetEventMesg(s32 event, OSMesgQueue *mq, OSMesg msg);
 extern void __setfpcsr(u32 csr);
 
@@ -29,7 +25,7 @@ extern void func_80007E80(void);     /* OS initialization */
 extern void func_800081D0(u32 addr, u32 *out);  /* Read PIF/EEPROM */
 extern void func_80008210(s32 a0, void *a1, void *a2, s32 a3);  /* Video setup */
 extern void func_80008380(s32 a0, s32 a1);  /* Video mode */
-extern void func_80001DFC(void);     /* Returns frame counter ptr */
+extern void *func_80001DFC(void);    /* Returns frame counter ptr */
 extern void func_80000450(void *a0, void *a1, s32 a2, void *a3, s32 a4);  /* Timer/interrupt setup */
 extern void func_800005D4(void *a0, void *a1, void *a2);  /* More setup */
 extern void func_800075E0(OSMesgQueue *mq, OSMesg msg, s32 flags);  /* Send message */
@@ -38,6 +34,10 @@ extern void func_800A4934(void);     /* Sound init? */
 extern void func_800A48C8(void);     /* Audio start? */
 extern void func_800EE5DC(void);     /* Main game loop iteration */
 extern void func_800FD464(void);     /* Main thread loop */
+
+/* Forward declarations for functions in this file */
+static void game_init(void *arg);
+static void func_800024FC(void *arg);
 
 /* Thread structures */
 extern u8 D_80034BA0[];  /* Thread 1 struct (idle thread) */
@@ -142,7 +142,7 @@ static void thread1_entry(void *arg) {
  *
  * @param arg Argument passed through from main
  */
-void game_init(void *arg) {
+static void game_init(void *arg) {
     void *frame_counter;
     OSMesg msg;
 
@@ -229,7 +229,7 @@ void game_init(void *arg) {
  *
  * @param arg Argument passed through
  */
-void game_thread_entry(void *arg) {
+static void func_800024FC(void *arg) {
     /* Set FPU control/status register */
     __setfpcsr(0x1000E00);
 

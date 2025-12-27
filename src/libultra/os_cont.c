@@ -41,7 +41,11 @@ extern u8 D_80037AE1;       /* Number of controllers (max 4) */
 extern void __osSiGetAccess(void);              /* Acquire SI access */
 extern void __osSiRelAccess(void);              /* Release SI access */
 extern s32 __osSiRawStartDma(s32 write, u8 *buf); /* SI raw DMA to/from PIF */
-extern void osRecvMesg(OSMesgQueue *mq, OSMesg *msg, s32 flag); /* Receive message */
+/* osRecvMesg declared in os_message.h */
+
+/* Forward declarations */
+static void func_800098E0(void);
+static u8 func_800095AC(u8 *bitpattern, OSContStatus *status);
 
 /**
  * Build controller query command packet
@@ -198,7 +202,7 @@ void osContGetReadData(OSContPad *pad) {
  *
  * Initializes PIF buffer with button read commands for all controllers.
  */
-void func_800098E0(void) {
+static void func_800098E0(void) {
     u8 *ptr = D_80037AA0;
     u8 *end = &D_80037ADC;
     u8 pattern[8];
@@ -244,7 +248,7 @@ void func_800098E0(void) {
  * @param status Array of OSContStatus structures
  * @return Bitpattern of connected controllers
  */
-u8 func_800095AC(u8 *bitpattern, OSContStatus *status) {
+static u8 func_800095AC(u8 *bitpattern, OSContStatus *status) {
     u8 *buf = D_80037AA0;
     u8 response[8];
     u8 pattern = 0;

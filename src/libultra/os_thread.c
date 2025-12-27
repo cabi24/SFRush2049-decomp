@@ -35,28 +35,27 @@ extern u32 D_8000D298;
  *
  * @param thread Thread to modify (via D_8002C464 indirection)
  */
-void osSetThreadPri(OSThread *thread) {
+s32 osSetThreadPri(OSThread *thread, s32 priority) {
     s32 saved;
-    OSThread *target;
-    OSThread *sys;
+    s32 old_priority;
 
     saved = __osDisableInt();
 
-    /* Get system thread pointer */
-    sys = D_8002C464;
-    target = thread;
+    /* Get old priority */
+    old_priority = thread->priority;
 
     /* Set new priority */
-    sys->priority = target;
+    thread->priority = priority;
 
     /* Mark as runnable */
-    *(u16 *)sys = 1;
+    thread->state = OS_STATE_RUNNABLE;
 
-    /* Update queue position based on priority */
-    sys = D_8002C464;
-    sys->queue = sys->priority->id;
+    /* Re-enqueue to update queue position */
+    __osEnqueueThread(thread->queue, thread);
 
     __osRestoreInt(saved);
+
+    return old_priority;
 }
 
 /**
@@ -118,17 +117,14 @@ void osCreateThread(OSThread *thread, s32 id, void (*entry)(void *),
     /* Store entry point */
     thread->context.pc = (u32)entry;
 
-    /* Sign-extend arg for 64-bit register */
-    thread->context.gp[4] = (s32)arg >> 31;   /* a0 high */
-    thread->context.gp[5] = (s32)arg;          /* a0 low */
+    /* Set argument register a0 */
+    thread->context.a0 = (u64)(u32)arg;
 
     /* Set up stack pointer (sp = stack - 16, for 16 byte alignment) */
-    thread->context.gp[28] = (s32)stack >> 31;  /* sp high */
-    thread->context.gp[29] = (s32)stack - 16;   /* sp low */
+    thread->context.sp = (u64)((u32)stack - 16);
 
     /* Set return address to exception return point */
-    thread->context.gp[30] = (u32)&D_8000D298 >> 31;  /* ra high */
-    thread->context.gp[31] = (u32)&D_8000D298;        /* ra low */
+    thread->context.ra = (u64)(u32)&D_8000D298;
 
     /* Set FP control register */
     thread->context.fpcsr = 0xFF03;
@@ -139,8 +135,8 @@ void osCreateThread(OSThread *thread, s32 id, void (*entry)(void *),
     /* Set cause register */
     thread->context.cause = 0x1000800;
 
-    /* Clear flags */
-    thread->fp = NULL;
+    /* Clear FP used flag */
+    thread->fp = 0;
 
     /* Set state to stopped */
     *(u16 *)&thread->state = OS_STATE_STOPPED;
