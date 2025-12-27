@@ -56,7 +56,7 @@ extern s32 D_801581E4;
 extern void *D_801581EC[];
 extern void *D_80158208[];
 extern f32 D_80158230[5];
-extern void *D_80158280[];
+extern f32 D_80158280[3];  /* Listener right vector */
 extern s32 D_8015828C;
 extern s32 D_80158290;
 extern s32 D_801582A0;
@@ -89,7 +89,7 @@ extern s32 D_80159048;
 extern s32 D_8015904C;
 extern s32 D_80159050;
 extern s32 D_80159054;
-extern void *D_80159058[];
+extern f32 D_80159058[16][6];  /* Script keyframes */
 extern s32 D_8015905C;
 extern s32 D_80159060;
 extern s32 D_80159064;
@@ -196,8 +196,8 @@ extern s32 D_80159A00;
 extern s32 D_80159A04;
 extern s32 D_80159A08;
 extern s32 D_80159A0C;
-extern void *D_80159A10[];
-extern void *D_80159A14[];
+extern u32 D_80159A10[12];  /* Race times */
+extern u32 D_80159A14[32];  /* Data array */
 extern s32 D_80159A18;
 extern s32 D_80159A1C;
 extern s32 D_80159A20;
@@ -213,7 +213,7 @@ extern s32 D_80159A60;
 extern void *D_80159A70[];
 extern s32 D_80159A80;
 extern s32 D_80159A84;
-extern void *D_80159B00[];
+extern u64 D_80159B00[8][6];  /* Timer data */
 extern s32 D_80159B04;
 extern s32 D_80159B08;
 extern s32 D_80159B0C;
@@ -236,7 +236,7 @@ extern s32 D_80159B4C;
 extern s32 D_80159B70;
 extern s32 D_80159B74;
 extern s32 D_80159B80;
-extern void *D_80159C00[];
+extern u32 D_80159C00[32];  /* Data array */
 extern s32 D_80159C04;
 extern s32 D_80159C08;
 extern s32 D_80159C0C;
@@ -244,9 +244,9 @@ extern s32 D_80159C10;
 extern s32 D_80159C14;
 extern s32 D_80159C18;
 extern void *D_80159C20[];
-extern void *D_80159D00[];
+extern u32 D_80159D00[32];  /* Data array */
 extern s32 D_80159D04;
-extern void *D_80159D10[];
+extern u32 D_80159D10[12];  /* Lap times */
 extern void *D_80159D40[];
 extern s32 D_80159D80;
 extern s32 D_80159D84;
@@ -358,37 +358,45 @@ extern f32 D_80160100[16];  /* Audio channel pitches */
 extern f32 D_80160180[3];  /* Listener position */
 extern u32 D_80160000[16];  /* Channel states */
 extern u32 D_80160040[16];  /* Channel params */
-extern s32 D_80160304;
-extern s32 D_80160308;
-extern s32 D_80160700;
-extern s32 D_80160704;
-extern s32 D_80160708;
-extern s32 D_8016070C;
-extern s32 D_80160714;
-extern s32 D_80160718;
-extern s32 D_8016071C;
-extern s32 D_8016080C;
-extern s32 D_801608E0;
-extern s32 D_801608E4;
-extern s32 D_80160900;
+extern s32 D_80160300;   /* Current reverb type */
+extern f32 D_80160304;   /* Reverb wet/dry mix */
+extern f32 D_80160308;   /* Reverb decay time */
+extern f32 D_8016030C;   /* Reverb pre-delay */
+extern f32 D_80160310;   /* Reverb diffusion */
+extern u32 D_80160700;       /* Stream ROM offset */
+extern u32 D_80160704;       /* Stream total size */
+extern u32 D_80160708;       /* Stream bytes read */
+extern void *D_8016070C[2];  /* Stream double buffers */
+extern u32 D_80160720;       /* Stream table offset */
+extern s32 D_80160714;       /* Active buffer index */
+extern s32 D_80160718;       /* Stream state */
+extern u32 D_8016071C;       /* Buffer size */
+extern s32 D_80160800;       /* Sequence state */
+extern s32 D_80160804;       /* Current sequence ID */
+extern u32 D_80160808;       /* Sequence position (ticks) */
+extern s32 D_8016080C;       /* Sequence tempo multiplier */
+extern s16 *D_801608E0;  /* Output buffer L */
+extern s16 *D_801608E4;  /* Output buffer R */
+extern s32 D_801608E8;   /* Output buffer size */
+extern u32 D_80160900;  /* Active effects bitfield */
 extern s32 D_80160928;
-extern s32 D_80170000;
-extern s32 D_80170004;
-extern s32 D_80170008;
-extern s32 D_80170020;
-extern s32 D_80158000;
+extern f32 D_80170000;  /* Camera shake intensity */
+extern f32 D_80170004;  /* Shake timer */
+extern f32 D_80170008;  /* Shake decay rate */
+extern void *D_80170020;  /* Active camera pointer */
+extern f32 D_80158000[3];  /* Camera position */
 extern s32 D_80157814;
-extern s32 D_80149438;
-extern s32 D_80149430;
-extern s32 D_80149440;
-extern s32 D_80143500;
-extern s32 D_80143404;
+extern Gfx **D_80149438;   /* Display list pointer */
+extern Gfx *D_80149430;    /* Display list base */
+extern OSTask D_80149440;  /* Graphics task */
+extern u32 D_80143500;  /* Random seed */
+extern f32 D_80143404;     /* Player distance */
 extern s32 D_8014B000;
 extern s32 D_8014B008;
-extern s32 D_8014B00C;
-extern s32 D_8014B01C;
+extern s32 D_8014B00C[4];  /* Player scores */
+extern s32 D_8014B01C[4];  /* Player lives */
 extern s32 D_8014C000;
-extern s32 D_8014C00C;
+extern s32 D_8014C00C[4];  /* Player stunt scores */
 extern s32 D_80160400;
 extern s32 D_80160404;
 extern void *D_80160408[4];
@@ -403,12 +411,13 @@ extern s32 D_80160440;
 extern s32 D_80160444;
 extern s32 D_80160450;
 extern s32 D_80160460;
-extern void *D_80160508[];
+extern u32 D_80160508[64];  /* Sample sizes in bytes */
 extern s32 D_80162100;
 extern s32 D_8016B254;
 extern s32 D_C;
 
 /* External function declarations */
+extern void *func_800BA644(s32 size);  /* Audio memory allocator */
 extern void func_800EDDC0(void);       /* Rendering/game logic */
 extern void func_800C997C(void);       /* Screen/state update */
 extern s32  func_800B37E8(s32 action, s32 type, void *data, s32 flag); /* Audio/sound control */
@@ -418,6 +427,7 @@ extern void func_800FBC30(void);       /* Countdown timer */
 extern void func_800A04C4(s32 track, f32 angle, s32 x, s32 y);        /* Viewport/camera setup */
 
 /* Forward declarations for functions defined in this file */
+s32 func_800F43D4(f32 distance);  /* LOD distance calculator */
 
 /* Additional extern declarations */
 extern s32 D_8013E6E0;
@@ -2824,12 +2834,12 @@ void func_800D5894(void *a0) {
  * @param pos 3D position vector (x=0, y=4, z=8)
  * @param a1 Sound handle/target parameter
  */
-extern void func_80090E9C(f32, s32);  /* Set sound Y position */
+extern void func_80090E9C(void *handle, s32 volume);  /* Set sound volume */
 extern void func_80090F44(f32, s32);  /* Set sound X position */
 extern void func_8009EA68(f32, s32);  /* Set sound Z position */
 
 void func_800D03DC(f32 *pos, s32 a1) {
-    func_80090E9C(pos[1], a1);  /* Y coordinate */
+    func_80090E9C((void*)(long)*(s32*)&pos[1], a1);  /* Y coordinate */
     func_80090F44(pos[0], a1);  /* X coordinate */
     func_8009EA68(pos[2], a1);  /* Z coordinate */
 }
@@ -5549,6 +5559,7 @@ void func_800C3614(void) {
 extern u8 D_80140BDC;  /* Object type count */
 extern s32 func_800B24EC(void*, void*, s32, s8, s32); /* Object setup with type */
 extern void func_800B362C(s32 channel, f32 pan); /* Object alternate init */
+extern f32 func_800B65B8(f32 distance, f32 maxDist);  /* Audio distance attenuation */
 
 /**
 /*
@@ -23509,7 +23520,7 @@ void func_800B4B94(s32 reverbType, f32 amount) {
     }
 
     /* Apply to audio system */
-    func_80091BA8(reverbType, decay, diffusion, wet);
+    func_80091BA8((void*)(long)reverbType, (void*)&decay);
 }
 
 /*
@@ -23864,7 +23875,7 @@ void func_800B59F8(s32 handle, f32 *pos, f32 *velocity) {
     if (pitchVal > 0x2000) pitchVal = 0x2000;  /* 2.0x max */
 
     /* Apply to audio system */
-    func_80092C58(handle, panVal, volVal, pitchVal);
+    func_80092C58(handle, (void*)(long)panVal, (void*)(long)volVal, pitchVal, NULL);
 }
 
 /*
@@ -27358,7 +27369,7 @@ void func_80104320(u8 *name) {
             /* END selected */
             D_8015A450 = 0;
             D_8015A454 = 0;
-            D_8015A458 = 1;  /* Done flag */
+            D_8015A458[0] = 1;  /* Done flag */
             func_800CC3C0(10);
             return;
         } else {
@@ -27842,12 +27853,12 @@ void func_80106260(s32 achievementId) {
     func_800C6E60(72, slideY + 8, 11, 5, (alpha << 24) | 0xFFD700);
 
     /* "ACHIEVEMENT UNLOCKED" text */
-    func_800C734C("ACHIEVEMENT", 95, slideY + 8, alpha);
+    func_800C734C(95, slideY + 8, "ACHIEVEMENT", alpha);
 
     /* Achievement name */
     if (achievementId >= 0 && achievementId < ACH_COUNT) {
         name = achievementNames[achievementId];
-        func_800C734C(0);
+        func_800C734C(95, slideY + 24, name, alpha);
     }
 
     D_8015A544 = timer - 1;
@@ -28437,7 +28448,7 @@ void func_8010C2FC(void) {
 
     /* Stop all sounds */
     for (i = 0; i < 16; i++) {
-        func_800B362C((void *, 0)(0x80170000 + i * 0x40));
+        func_800B362C(i, 0.0f);
     }
 
     /* Clear particle systems */
@@ -28679,12 +28690,6 @@ void func_800B8650(s32 channel, f32 *velocity) {
  * Types: 0=None, 1=Small Room, 2=Large Room, 3=Hall, 4=Cave, 5=Outdoor
  */
 void func_800B8820(s32 reverbType, f32 amount) {
-    extern s32 D_80160300;   /* Current reverb type */
-    extern f32 D_80160304;   /* Reverb wet/dry mix */
-    extern f32 D_80160308;   /* Reverb decay time */
-    extern f32 D_8016030C;   /* Reverb pre-delay */
-    extern f32 D_80160310;   /* Reverb diffusion */
-
     /* Clamp amount */
     if (amount < 0.0f) amount = 0.0f;
     if (amount > 1.0f) amount = 1.0f;
@@ -28792,14 +28797,6 @@ s32 func_800B9194(s32 sampleId) {
  * Uses double buffering to stream from ROM
  */
 s32 func_800B93A8(s32 streamId) {
-    extern u32 D_80160700;       /* Stream ROM offset */
-    extern u32 D_80160704;       /* Stream total size */
-    extern u32 D_80160708;       /* Stream bytes read */
-    extern void *D_8016070C[2];  /* Stream double buffers */
-    extern s32 D_80160714;       /* Active buffer index */
-    extern s32 D_80160718;       /* Stream state (0=idle, 1=playing, 2=paused) */
-    extern u32 D_8016071C;       /* Buffer size */
-    extern u32 D_80160720;       /* Stream table offset */
     u32 tableEntry;
 
     if (streamId < 0 || streamId >= 16) {
@@ -28911,10 +28908,7 @@ void func_800B9A0C(void *buffer, s32 size) {
  * Commands: 0=Stop, 1=Play, 2=Pause, 3=Resume, 4=SetPosition
  */
 void func_800B9D68(s32 seqCmd) {
-    extern s32 D_80160800;   /* Sequence state */
-    extern s32 D_80160804;   /* Current sequence ID */
-    extern u32 D_80160808;   /* Sequence position (ticks) */
-    extern f32 D_8016080C;   /* Sequence tempo multiplier */
+    /* Note: D_80160800-D_8016080C declared globally */
 
     switch (seqCmd & 0xFF) {
         case 0:  /* Stop */
@@ -29085,9 +29079,7 @@ void *func_800BA644(s32 size) {
 void func_800BA7C4(void) {
     extern s32 D_80160860[16];  /* Channel sample IDs */
     extern u32 D_801608A0[16];  /* Channel sample positions */
-    extern s16 *D_801608E0;     /* Output buffer L */
-    extern s16 *D_801608E4;     /* Output buffer R */
-    extern s32 D_801608E8;      /* Output buffer size (samples) */
+    /* Note: D_801608E0-D_801608E8 declared globally */
     s32 i, j;
     s32 sampleId;
     s16 *sampleData;
@@ -29538,10 +29530,7 @@ void func_800BD2D0(void *camera) {
  * Initiates a camera shake effect (impacts, explosions, etc.)
  */
 void func_800BDAA8(f32 intensity, f32 duration) {
-    extern f32 D_80170000;  /* Shake intensity */
-    extern f32 D_80170004;  /* Shake timer */
-    extern f32 D_80170008;  /* Shake decay rate */
-
+    /* Note: D_80170000-D_80170008 declared globally */
     D_80170000 = intensity;
     D_80170004 = duration;
 
@@ -29674,7 +29663,6 @@ void func_800BE078(void *camera, void *target) {
  * Sets up camera for cinematic sequences
  */
 void func_800BE4F8(s32 cinematicId) {
-    extern void *D_80170020;  /* Active camera */
     extern s32 D_80170024;    /* Cinematic state */
     extern s32 D_80170028;    /* Cinematic frame */
     extern f32 D_8017002C[32][6];  /* Keyframe data (pos + target) */
@@ -30862,7 +30850,7 @@ void func_800C760C(s32 value, s32 digits, s32 x, s32 y) {
     }
 
     /* Draw using text function */
-    func_800C734C(buffer, x, y);
+    func_800C734C(buffer, x, y, 255);
 }
 
 /*
@@ -30913,7 +30901,7 @@ void func_800C7818(f32 speed) {
     func_800C760C(speedMph, 3, digitalX, digitalY);
 
     /* Draw "MPH" label */
-    func_800C734C("MPH", digitalX + 30, digitalY);
+    func_800C734C("MPH", digitalX + 30, digitalY, 255);
 }
 
 /*
@@ -30939,16 +30927,16 @@ void func_800C7ED4(s32 currentLap, s32 totalLaps) {
     if (currentLap == totalLaps) {
         /* Flash "FINAL LAP" */
         func_800C734C("FINAL", x + 40, y, 255);
-        func_800C734C("LAP", x + 40, y + 12);
+        func_800C734C("LAP", x + 40, y + 12, 255);
     } else {
         /* Show "LAP X/Y" */
-        func_800C734C("LAP", x + 40, y);
+        func_800C734C("LAP", x + 40, y, 255);
 
         /* Draw current lap number */
         func_800C760C(currentLap, 1, x + 40, y + 12);
 
         /* Draw separator */
-        func_800C734C("/", x + 52, y + 12);
+        func_800C734C("/", x + 52, y + 12, 255);
 
         /* Draw total laps */
         func_800C760C(totalLaps, 1, x + 60, y + 12);
@@ -30991,7 +30979,7 @@ void func_800C8864(s32 position) {
             suffix = "TH";
             break;
     }
-    func_800C734C(suffix, x + 20, y + 4);
+    func_800C734C(suffix, x + 20, y + 4, 255);
 }
 
 /*
@@ -31028,13 +31016,13 @@ void func_800C8920(s32 timeMs) {
     func_800C760C(minutes, 1, x + 8, y + 4);
 
     /* Draw colon */
-    func_800C734C(":", x + 16, y + 4);
+    func_800C734C(":", x + 16, y + 4, 255);
 
     /* Draw seconds (2 digits with leading zero) */
     func_800C760C(seconds, 2, x + 22, y + 4);
 
     /* Draw decimal point */
-    func_800C734C(".", x + 38, y + 4);
+    func_800C734C(".", x + 38, y + 4, 255);
 
     /* Draw centiseconds */
     func_800C760C(ms, 2, x + 44, y + 4);
@@ -31135,7 +31123,7 @@ void func_800CA308(s32 messageId) {
     y = D_8015905C;
 
     /* Draw message */
-    func_800C734C(message, x, y);
+    func_800C734C(message, x, y, 255);
 }
 
 /*
@@ -32084,7 +32072,7 @@ void func_800CCA04(void *list, s32 count) {
         /* Draw stretched highlight sprite at position */
         x = baseX - 5;
         y = (s32)highlightY - 2;
-        func_800C7110(50, x, y, (s32, 0, 0);
+        func_800C7110(50, x, y, 16, 16, highlightAlpha);
     }
 
     /* Draw each menu item */
@@ -32984,7 +32972,7 @@ void func_800CE358(void) {
     }
 
     /* Render menu */
-    func_800CCA04(0);
+    func_800CCA04(NULL, 0);
 }
 
 /*
@@ -33052,7 +33040,7 @@ void func_800CED3C(void) {
     }
 
     /* Render menu */
-    func_800CCA04(0);
+    func_800CCA04(NULL, 0);
 
     /* Draw title */
     func_800C734C(100, 40, "AUDIO SETTINGS", 0xFFFFFFFF);
@@ -33095,7 +33083,7 @@ void func_800CF290(void) {
         func_800CBE08();
     }
 
-    func_800CCA04(0);
+    func_800CCA04(NULL, 0);
     func_800C734C(100, 40, "VIDEO SETTINGS", 0xFFFFFFFF);
 }
 
@@ -33159,7 +33147,7 @@ void func_800CF374(void) {
         func_800CBE08();
     }
 
-    func_800CCA04(0);
+    func_800CCA04(NULL, 0);
     func_800C734C(90, 40, "CONTROL SETTINGS", 0xFFFFFFFF);
 }
 
@@ -34097,7 +34085,7 @@ void func_800D1CE0(void) {
         func_800CBE08();
     }
 
-    D_80159B00 = selectedItem;
+    D_80159B00[0][0] = selectedItem;
 
     /* Render */
     func_800C734C(105, 30, "RACE SETUP", 0xFFFFFFFF);
@@ -34361,7 +34349,7 @@ void func_800D2E94(void) {
         func_800CBE08();
     }
 
-    D_80159C00 = selectedItem;
+    D_80159C00[0] = selectedItem;
 
     /* Render */
     func_800C734C(80, 30, "MULTIPLAYER SETUP", 0xFFFFFFFF);
@@ -35050,7 +35038,7 @@ void func_800D510C(void) {
                 D_80159E44 = selectedTrack;
                 D_80159E48 = selectedGhost;
                 D_80159A08 = selectedTrack;
-                D_80159A14 = 1;  /* Ghost mode enabled */
+                D_80159A14[0] = 1;  /* Ghost mode enabled */
                 D_801146EC = 7;  /* PREPLAY */
                 func_800CBE8C(-1);
             } else {
@@ -35210,7 +35198,7 @@ void func_800D58CC(void) {
         func_800CBE08();
     }
 
-    D_80159D00 = selectedTab;
+    D_80159D00[0] = selectedTab;
     D_80159D04 = selectedTrack;
 
     /* Render tabs */
@@ -35670,7 +35658,7 @@ void func_800D6E7C(void) {
     /* Display tip */
     func_800C6E60(40, 200, 240, 25, 0xC0303050);
     func_800C734C(50, 207, "TIP:", 0xFFFFFFFF);
-    func_800C734C(0);
+    func_800C734C(90, 207, tip, 0xFFFFFFFF);
 }
 
 /*
@@ -35742,10 +35730,10 @@ void func_800D71D0(void) {
 
         if (i == selection) {
             func_800C6E60(100, yPos - 3, 120, 20, 0x80404080);
-            func_800C734C(">", 105, yPos, 255);
+            func_800C734C(105, yPos, ">", 255);
         }
 
-        func_800C734C(0);
+        func_800C734C(115, yPos, (char*)options[i], alpha);
     }
 
     D_8015A714 = selection;
@@ -35759,7 +35747,7 @@ void func_800D7E88(void) {
     D_8015A718 = 0;  /* Clear pause flag */
 
     /* Resume audio */
-    func_800B37E8(0, 1.0f);  /* Restore master volume */
+    func_800B37E8(0, 0, NULL, 0);  /* Restore audio state */
 
     /* Resume timers */
     /* D_8015A720 = osGetTime(); */
@@ -36157,7 +36145,7 @@ void func_800DC794(s32 unlockId) {
 
     func_800C6E60(60, 100, 200, 40, 0xE0FFD700);
     func_800C6E60(62, 102, 196, 36, 0xE0604000);
-    func_800C734C(0);
+    func_800C734C(80, 112, msg, 0xFFFFFFFF);
 
     func_800CC3C0(20);  /* Unlock jingle */
 }
@@ -36621,10 +36609,10 @@ void func_800DEC8C(void) {
         if (i == selection) {
             /* Selection highlight */
             func_800C6E60(80, yPos - 5, 160, 25, 0x80404080);
-            func_800C734C(">", 90, yPos, 255);
+            func_800C734C(90, yPos, ">", 255);
         }
 
-        func_800C734C(0);
+        func_800C734C(100, yPos, mainMenuOptions[i], alpha);
     }
 
     /* Footer */
@@ -38905,8 +38893,8 @@ void func_800F8EC8(void *car) {
  * Main render function - sets up frame and renders all scene elements
  */
 void func_800F93A0(void) {
-    extern void *D_80149438;  /* Display list pointer */
     extern s32 D_80143A00;    /* Current render mode */
+    /* Note: D_80149438 declared globally */
 
     /* Begin frame */
     func_800FAD58();
@@ -38971,8 +38959,7 @@ void func_800FA9B4(void) {
  * Initializes display list for new frame
  */
 void func_800FAD58(void) {
-    extern Gfx *D_80149430;   /* Display list base */
-    extern Gfx **D_80149438;  /* Display list pointer */
+    /* Note: D_80149430, D_80149438 declared globally */
     Gfx *dl;
 
     D_80142AFC++;
@@ -39003,8 +38990,7 @@ void func_800FAD58(void) {
  * Finalizes display list and submits to RDP
  */
 void func_800FADE0(void) {
-    extern Gfx **D_80149438;  /* Display list pointer */
-    extern OSTask D_80149440;       /* Graphics task */
+    /* Note: D_80149438, D_80149440 declared globally */
     Gfx *dl;
 
     dl = *D_80149438;
