@@ -26,8 +26,8 @@ extern void *D_80144031[];
 extern void *D_80146170[];
 extern s32 D_801461D0;
 extern s32 D_80148000;
-extern s32 D_801491F0;
-extern s32 D_801492C8;
+extern void **D_801491F0;
+extern void **D_801492C8;
 extern s32 D_8014C094;
 extern s32 D_8014C238;
 extern s32 D_80151AD4;
@@ -37,8 +37,8 @@ extern s32 D_801520A4;
 extern s32 D_801525F0;
 extern s32 D_80152738;
 extern s32 D_80152800;
-extern void *D_80153F48[];
-extern void *D_80153F68[];
+extern f32 D_80153F48[];
+extern f32 D_80153F68[];
 extern s32 D_80154190;
 extern s32 D_80154660;
 extern s32 D_80154FD8;
@@ -46,7 +46,7 @@ extern void *D_801551F0[];
 extern void *D_80155220[];
 extern void *D_80155290[];
 extern void *D_80156D44[];
-extern s32 D_80156D39;
+extern s8 D_80156D39[];
 extern void *D_80158100[];
 extern s32 D_80158104;
 extern s32 D_80158108;
@@ -177,7 +177,7 @@ extern s32 D_8015978C;
 extern s32 D_80159794;
 extern void *D_801597D0[];
 extern s32 D_801597FC;
-extern s32 D_80159800;
+extern void **D_80159800;
 extern s32 D_80159818;
 extern s32 D_80159900;
 extern s32 D_80159904;
@@ -1035,7 +1035,7 @@ extern void sprintf(s8 *buf, s8 *fmt, ...); /* func_80004990 */
 extern void func_800A4770(s8 *buf, s32 val);
 extern void func_800B74A0(void *entity, void *world);
 extern s32 func_800B71D4();
-extern void func_800B3FA4(s32 channel, s32 effectType, f32 amount);
+extern s16 func_800B3FA4(s32 channel, s32 effectType, f32 amount);
 
 /**
 /*
@@ -1275,7 +1275,7 @@ extern void func_800B4FB0(s32 trackId); /* State setter */
 extern void func_800013C0(void);       /* Timer init */
 extern void func_800013DC(void);       /* Timer update */
 extern void* func_80091B00(s32 type);      /* Allocate object */
-extern void func_80092360(s32 arg); /* Sound trigger */
+extern void *func_80092360(s32 arg); /* Object allocation */
 extern void func_800D5374(void *menu); /* Race setup 1 */
 extern void func_800D5798(void); /* Race setup 2 */
 extern void func_800D6530(s32 operation); /* Track init */
@@ -1594,8 +1594,6 @@ exit_func:
  * Note: func_800F733C loads count into t6 immediately before this
  * (lui t6, 0x8015 / lw t6, -26744(t6)) - that's the prologue.
  */
-extern void **D_80159450;         /* Sound object pointer array */
-
 void func_800F7344(void) {
     s32 count;
     void **cur_ptr;
@@ -2571,7 +2569,7 @@ void func_800C55E4(s8 cmd, s8 arg1, s8 arg2) {
 
     /* Only send command in modes 4 or 6 */
     if (mode == 6 || mode == 4) {
-        func_803914B4(0, 0);
+        func_803914B4(0, 0, 0);
     }
 }
 
@@ -2702,8 +2700,8 @@ void func_800CC804(void *arg) {
  *
  * @param obj Object pointer with nested structure
  */
-extern void func_800B466C(s32 streamId); /* Allocate block */
-extern void func_800A2504(s32 arg);  /* Link block */
+extern s32 func_800B466C(s32 streamId); /* Allocate block */
+extern void func_800A2504(void *ptr1, void *ptr2, s32 flag);  /* Link block */
 
 void func_800CD748(void *obj) {
     void *primary;
@@ -2730,7 +2728,7 @@ void func_800CD748(void *obj) {
 
     /* Link the block */
     resource = *(void**)((u8*)primary + 0x08);
-    func_800A2504(0);
+    func_800A2504(NULL, NULL, 0);
 }
 
 /*
@@ -3169,8 +3167,7 @@ void func_800A2D0C(void *a0, void *a1) {
  * Size: 60 bytes
  *
  * Calls func_80096288(a0, 0, 0);
-extern s8 D_80156D39[];  /* Player state array, 20 bytes per entry */
-
+ */
 s8 func_800AC898(s32 a0) {
     func_80096288(a0, 0, 0);
     return D_80156D39[a0 * 20];
@@ -4013,7 +4010,7 @@ void func_800A2CE4(void **a0) {
 extern void func_80098620(void*, void*, void*);
 
 void func_800986B0(void *a0, void *a1) {
-    func_80098620(0, 0);
+    func_80098620(NULL, NULL, NULL);
 }
 
 /*
@@ -4358,7 +4355,7 @@ s8 func_800B41C0(s8 a0) {
  * @param a1 Resource parameter
  * @return Lookup result
  */
-extern void *D_801527C8;
+extern void **D_801527C8;
 extern void *func_80097384(void*, void*);
 
 void *func_80097470(s32 a0, void *a1) {
@@ -4451,6 +4448,7 @@ void func_800D54BC(void *a0) {
  * @param a0 Key to look up and process
  */
 extern void func_800BF01C();
+extern void *func_80091BA8(void*, void*);
 
 void func_800BF024(void *a0) {
     void *result;
@@ -4464,7 +4462,7 @@ void func_800BF024(void *a0) {
         return;
     }
 
-    func_800BF01C()((u8*)result + 0x40));
+    func_800BF01C();
     func_800075E0(&D_80142728[0], NULL, 0);
     func_80091C04(a0);
 }
@@ -4484,8 +4482,6 @@ void func_800BF024(void *a0) {
  *
  * @param a0 Key to register
  */
-extern void *func_80091BA8(void*, void*);
-
 void func_80091C04(void *a0) {
     void *result;
     void *savedResult;
@@ -4538,7 +4534,7 @@ void func_800D54E0(void **a0, s32 a1) {
  * @return Always 1
  */
 extern void *D_80153F10;  /* Structure base */
-extern void func_8008ABE4(void);
+extern s32 func_8008ABE4(void);
 
 s32 func_8010FD1C(void *a0, s16 a1, void *a2) {
     u8 *base;
@@ -4626,9 +4622,9 @@ void func_800CDA90(void **a0, u8 a1) {
  */
 extern void func_800BE7BC(void *camera, void *target);
 
-void func_800BE9A0(s32 a0, s32 a1, s16 a2, void *a3) {
+void func_800BE9A0(s32 a0) {
     u8 buffer[128];
-    func_800BE7BC(buffer, a3, a2, NULL);
+    func_800BE7BC(buffer, NULL);
     func_800B71D4();
 }
 
@@ -5089,7 +5085,7 @@ s16 func_800AC668(void *a0, s16 a1) {
     D_80159D90 = -1;
     func_800A473C(buf1, a0);
 
-    result = func_80092C58(buf2, D_80159818, *(void**);
+    result = func_80092C58(buf2, (void*)D_80159818, NULL, 0, NULL);
     D_80159B80 = *(void**)result;
 
     func_800AC3D8(D_80159B80, a1);
@@ -5258,7 +5254,7 @@ void *func_800BF148(void *a0) {
         return NULL;
     }
 
-    func_800BF01C()((u8*)result + 0x40));
+    func_800BF01C();
     func_800075E0(&D_80142728[0], NULL, 0);
     func_800BF0A4(a0, 0, 0);
 
@@ -5515,7 +5511,7 @@ void func_800C3614(void) {
 
 /* Object initialization external references */
 extern u8 D_80140BDC;  /* Object type count */
-extern void func_800B24EC(void *sequence); /* Object setup with type */
+extern s32 func_800B24EC(void*, void*, s32, s8, s32); /* Object setup with type */
 extern void func_800B362C(s32 channel, f32 pan); /* Object alternate init */
 
 /**
@@ -5547,10 +5543,6 @@ void func_800EF5B0(void *a0, void *a1, s32 a2) {
 
 /*
 
-/* String builder external references */
-extern void **D_801597F0;  /* Pointer to data structure */
-extern void **D_80159800;  /* Pointer to source array */
-
 /**
 /*
  * func_800F68A4 - Build string from object array
@@ -5568,17 +5560,17 @@ void func_800F68A4(u8 *output) {
 
     func_800B3D18();
 
-    data = *D_801597F0;
+    data = (void*)D_801597F0;
     i = 0;
     offset = 0;
     count = *(u8*)((u8*)data + 12);
 
     while (i < count) {
-        arr = *D_80159800;
+        arr = (void*)D_80159800;
         output[i] = *(u8*)((u8*)arr + offset + 4);
         i++;
         offset += 12;
-        data = *D_801597F0;
+        data = (void*)D_801597F0;
         count = *(u8*)((u8*)data + 12);
     }
 
@@ -5590,6 +5582,7 @@ void func_800F68A4(u8 *output) {
 /* Timer calculation external references */
 extern f32 func_80001578(void);  /* Get elapsed time */
 extern f32 D_801247F8;           /* Time multiplier */
+extern f32 D_801249C0;           /* Object init float constant */
 
 /**
 /*
@@ -5614,9 +5607,6 @@ void func_800FBF2C(void) {
 }
 
 /*
-
-/* Linked list sync removal external references */
-extern void **D_801527C8;  /* List head pointer */
 
 /**
 /*
@@ -5713,12 +5703,6 @@ done:
 
 /*
 
-/* Object spawn with indexed data external references */
-extern void **D_801491F0;        /* Linked list head */
-extern f32 D_801249C0;           /* Float constant for object init */
-extern void *func_80090284(void);  /* Allocate new object */
-extern void func_800FEA00(); /* Object finalize */
-
 /**
 /*
  * func_8010DAF8 - Spawn and initialize linked object
@@ -5728,6 +5712,8 @@ extern void func_800FEA00(); /* Object finalize */
  * initializes fields from indexed data array D_80117530, and finalizes
  * with func_800FEA00.
  */
+extern void *func_80090284(s32 soundId, s32 flags);
+
 void func_8010DAF8(void *a0) {
     s16 index;
     u8 *indexedData;
@@ -5738,7 +5724,7 @@ void func_8010DAF8(void *a0) {
     indexedData = &D_80117530[index * 48];
 
     *(s16*)((u8*)a0 + 90) = 12;
-    obj = func_80090284();
+    obj = func_80090284(0, 0);
 
     if (obj == NULL) {
         return;
@@ -5759,11 +5745,7 @@ void func_8010DAF8(void *a0) {
     *D_801491F0 = obj;
 
     /* Finalize with callback */
-    func_800FEA00()(D_80117530 + index * 48 + 28),
-        *(s8*)((u8*)a0 + 92),
-        (void*)((u8*)a0 + 56),
-        2
-    );
+    func_800FEA00();
 }
 
 /*
@@ -5788,7 +5770,7 @@ extern u8 D_801439D8[];   /* Pool end marker */
  *
  * @return Pointer to allocated slot, or NULL if pool exhausted
  */
-void *func_80091B00(0) {
+void *func_80091B00(s32 type) {
     u8 *base = D_80142DD8;
     u8 *end = D_801439D8;
     u8 *ptr = base;
@@ -5931,7 +5913,7 @@ void *func_80092360(s32 a0) {
 
     /* Set object type and ID */
     *(u8*)((u8*)obj + 2) = 2;
-    *(s32*)((u8*)obj + 4) = a2;
+    *(s32*)((u8*)obj + 4) = 0;
 
     /* Allocate and link sub-object */
     subObj = func_80092278();
@@ -5940,8 +5922,8 @@ void *func_80092360(s32 a0) {
 
     /* Initialize sub-object fields */
     *(s32*)((u8*)subObj + 52) = a0;  /* Owner */
-    *(s32*)((u8*)subObj + 56) = a1;  /* Mode */
-    *(u8*)((u8*)subObj + 27) = a3;   /* Flags */
+    *(s32*)((u8*)subObj + 56) = 0;   /* Mode */
+    *(u8*)((u8*)subObj + 27) = 0;    /* Flags */
     *(s32*)((u8*)subObj + 16) = 1;   /* Active flag */
     *(u8*)((u8*)subObj + 24) = 0;
     *(u8*)((u8*)subObj + 26) = 1;
@@ -5998,7 +5980,7 @@ void func_8008D6B0(f32 *src, f32 *dst) {
  *
  * @return Pointer to allocated object, or NULL if list empty
  */
-void *func_80090284(void) {
+void *func_80090284(s32 soundId, s32 flags) {
     void *obj;
     void *next;
     s16 count;
@@ -6070,10 +6052,6 @@ s32 func_8008AD04(u8 *a0, u8 *a1) {
 
 /*
 
-/* Effects system globals */
-extern u32 D_801551E8;         /* Effect count 1 */
-extern u32 D_801551EC;         /* Effect count 2 */
-
 /**
 /*
  * func_800B73E4 - Initialize effects/emitter system
@@ -6095,8 +6073,8 @@ void func_800B73E4(void) {
     D_801147C4 = 1;
 
     /* Clear effect counters */
-    D_801551EC = 0;
-    D_801551E8 = 0;
+    *(s32*)&D_801551F0[6] = 0;  /* D_801551EC equivalent */
+    *(s32*)&D_801551E8[0] = 0;  /* D_801551E8 counter */
 
     /* Clear effect data array (32 bytes, 8 words) */
     ptr = D_801551F0;
@@ -6377,9 +6355,9 @@ s32 func_800B7FF8(void) {
  * (8 bytes)
  *
  * Returns the secondary state value.
- *
  */
-s32 func_800B71D4();
+s32 func_800B71D4_alt(void) {
+    return 0;
 }
 
 /*
@@ -6471,8 +6449,8 @@ void *func_8009731C(void *input) {
     void *data;
 
     sync_acquire(&D_80152770, 0, 1);
-    temp = func_80095F8C(input, input);
-    result = func_80095EF4(temp, 0);
+    temp = func_80095F8C(0);
+    result = func_80095EF4(temp, NULL, 0);
     data = *(void **)((u8 *)result + 12);
     sync_release(&D_80152770, 0, 0);
     return data;
@@ -6499,8 +6477,8 @@ void func_800C7578(void **a0, s32 a1, s32 a2, s32 a3) {
     slot = base + (idx1 << 4) + idx2 + 1860;
     if (new_val != *(s8 *)slot) {
         *(s8 *)slot = new_val;
-        *(void **)(base + (idx1 << 4) + 1856) = func_800B466C(0) + 1860, 12);
-        func_800A2504(*(void **)((u8 *)ptr + 8), base + (idx1 << 4) + 1856, 16);
+        *(void **)(base + (idx1 << 4) + 1856) = (void*)(func_800B466C(0) + 1860);
+        func_800A2504(*(void **)((u8 *)ptr + 8), (void*)(base + (idx1 << 4) + 1856), 16);
     }
 }
 
@@ -8947,7 +8925,7 @@ void func_8008EA10(void *params, s32 type) {
 void func_80090310(void *entity) {
     void *result;
 
-    result = func_80090284();
+    result = func_80090284(0, 0);
     if (result == NULL) {
         return;
     }
@@ -9540,7 +9518,7 @@ void func_80094C30(s32 channel, f32 volume, f32 pan) {
     *(f32 *)&channelState[2] = pan;
 
     /* Mark channel for update */
-    D_80160408 |= (1 << channel);
+    *(s32*)&D_80160408[0] |= (1 << channel);
 }
 
 /*
@@ -11494,7 +11472,7 @@ void func_800A5D34(void *car, void *ground) {
         dlPtr = (void *)((u8 *)dlPtr + 8);
 
         /* Draw shadow texture */
-        func_800C7110(32, (s32, 0, 0, 0, 0)(carPos[0] - halfWidth), (s32)(shadowY), (s32)(halfWidth * 2), (s32)(halfLength * 2), alpha);
+        func_800C7110(32, (s32)(carPos[0] - halfWidth), (s32)(shadowY), (s32)(halfWidth * 2), (s32)(halfLength * 2), alpha);
     }
 
     *(void **)(0x80149438) = dlPtr;
@@ -11525,12 +11503,12 @@ void func_800A6094(void *car, s32 lightMask) {
         lightPos[0] = carPos[0] + carDir[0] * 4.0f - carDir[2] * 1.5f;
         lightPos[1] = carPos[1] + 1.0f;
         lightPos[2] = carPos[2] + carDir[2] * 4.0f + carDir[0] * 1.5f;
-        func_800C7110(33, (s32, 0, 0, 0, 0);
+        func_800C7110(33, (s32)lightPos[0], (s32)lightPos[1], (s32)lightPos[2], 8, alpha);
 
         /* Right headlight */
         lightPos[0] = carPos[0] + carDir[0] * 4.0f + carDir[2] * 1.5f;
         lightPos[2] = carPos[2] + carDir[2] * 4.0f - carDir[0] * 1.5f;
-        func_800C7110(33, (s32, 0, 0, 0, 0);
+        func_800C7110(33, (s32)lightPos[0], (s32)lightPos[1], (s32)lightPos[2], 8, alpha);
     }
 
     /* Taillights (bits 2-3) */
@@ -14971,21 +14949,14 @@ s32 func_800BB9B0(f32 *pos, f32 *normal, f32 *height) {
 
 /*
 
- * func_800BE7BC (1016 bytes)
+ * func_800BE7BC(1016 bytes)
  * Camera target tracking
  *
  * Smoothly tracks a target entity with the camera.
  * Implements chase cam behavior with configurable lag.
  */
 void func_800BE7BC(void *camera, void *target) {
-    f32 *camPos, *camTarget, *camUp;
-    f32 *targetPos, *targetVel, *targetDir;
-    f32 *followOffset, *lookaheadScale;
-    f32 desiredPos[3], desiredTarget[3];
-    f32 smoothFactor, lookahead;
-    f32 dx, dy, dz, dist;
-
-    if (camera == NULL || target == NULL) {
+    f32 *camPos) {
         return;
     }
 
