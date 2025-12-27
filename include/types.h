@@ -32,7 +32,13 @@ typedef volatile s32 vs32;
 typedef volatile s64 vs64;
 
 /* N64 Graphics types (from libultra) */
-typedef u64 Gfx;
+typedef union {
+    struct {
+        u32 w0;
+        u32 w1;
+    } words;
+    u64 force_structure_alignment;
+} Gfx;
 typedef u32 Mtx[4][4];
 
 /* Arcade-style type definitions */
@@ -71,5 +77,97 @@ typedef f32 Mat4f[4][4];
 #ifndef NULL
 #define NULL ((void*)0)
 #endif
+
+/* N64 OS constants */
+#define OS_READ  0
+#define OS_WRITE 1
+#define OS_MESG_NOBLOCK 0
+#define OS_MESG_BLOCK   1
+
+/* N64 Controller Pak (PFS) structure */
+typedef struct {
+    s32 status;
+    s32 channel;
+    void *queue;
+    u8 activeBank;
+    u8 banks[4];
+    u8 dir_size;
+    u8 inode_table;
+    u32 version;
+    s32 bank;
+} OSPfs;
+
+/* N64 OS timer structure */
+typedef struct {
+    void *next;
+    void *prev;
+    u64 interval;
+    u64 value;
+    void *mq;
+    void *msg;
+} OSTimer;
+
+/* N64 RSP task type constants */
+#define M_GFXTASK   1
+#define M_AUDTASK   2
+#define M_VIDTASK   3
+#define M_HVQTASK   4
+
+#define SP_UCODE_DATA_SIZE 0x800
+
+/* N64 RDP Image Format constants */
+#define G_IM_FMT_RGBA    0
+#define G_IM_FMT_YUV     1
+#define G_IM_FMT_CI      2
+#define G_IM_FMT_IA      3
+#define G_IM_FMT_I       4
+
+#define G_IM_SIZ_4b      0
+#define G_IM_SIZ_8b      1
+#define G_IM_SIZ_16b     2
+#define G_IM_SIZ_32b     3
+
+/* N64 RDP Render Mode constants */
+#define G_RM_OPA_SURF    0x0C084000
+#define G_RM_OPA_SURF2   0x03024000
+#define G_RM_XLU_SURF    0x00404200
+#define G_RM_XLU_SURF2   0x00104240
+#define G_RM_ZB_OPA_SURF 0x0C184000
+#define G_RM_ZB_OPA_SURF2 0x03124000
+#define G_RM_ZB_XLU_SURF 0x00504A00
+#define G_RM_ZB_XLU_SURF2 0x00104A40
+
+/* N64 OS Message Priority */
+#define OS_MESG_PRI_NORMAL 0
+#define OS_MESG_PRI_HIGH   1
+
+/* External RSP boot/ucode symbols */
+extern u8 rspbootTextStart[], rspbootTextEnd[];
+extern u8 gspF3DEX2_fifoTextStart[], gspF3DEX2_fifoTextEnd[];
+extern u8 gspF3DEX2_fifoDataStart[], gspF3DEX2_fifoDataEnd[];
+
+/* N64 OSTask structure for RSP tasks */
+typedef struct {
+    u32 type;                /* Task type (M_GFXTASK, M_AUDTASK, etc.) */
+    u32 flags;               /* Task flags */
+    u64 *ucode_boot;         /* RSP boot microcode */
+    u32 ucode_boot_size;     /* Boot microcode size */
+    u64 *ucode;              /* RSP microcode */
+    u32 ucode_size;          /* Microcode size */
+    u64 *ucode_data;         /* Microcode data */
+    u32 ucode_data_size;     /* Data size */
+    u64 *dram_stack;         /* DRAM stack */
+    u32 dram_stack_size;     /* Stack size */
+    u64 *output_buff;        /* Output buffer */
+    u64 *output_buff_size;   /* Output buffer size */
+    u64 *data_ptr;           /* Data pointer */
+    u32 data_size;           /* Data size */
+    u64 *yield_data_ptr;     /* Yield data pointer */
+    u32 yield_data_size;     /* Yield data size */
+} OSTask_t;
+
+typedef struct {
+    OSTask_t t;
+} OSTask;
 
 #endif /* TYPES_H */

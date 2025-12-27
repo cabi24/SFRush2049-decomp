@@ -7,13 +7,375 @@
 
 #include "types.h"
 #include "game/structs.h"
+#include "PR/os_message.h"
+
+/* Auto-generated extern declarations for missing variables */
+extern s32 D_80020000;
+extern s32 D_80020010;
+extern s32 D_80086A70;
+extern s32 D_80086A88;
+extern void *D_8008AD48[];
+extern void *D_80117530[];
+extern s32 D_80120308;
+extern s32 D_8012030C;
+extern void *D_80124FD0[];
+extern s32 D_80128E20;
+extern s32 D_80130000;
+extern s32 D_80140A10;
+extern void *D_80144031[];
+extern void *D_80146170[];
+extern s32 D_80148000;
+extern s32 D_801491F0;
+extern s32 D_801492C8;
+extern s32 D_8014C094;
+extern s32 D_8014C238;
+extern s32 D_80151AD4;
+extern void *D_80152038[];
+extern s32 D_801520A0;
+extern s32 D_801520A4;
+extern s32 D_801525F0;
+extern s32 D_80152738;
+extern s32 D_80152800;
+extern void *D_80153F48[];
+extern void *D_80153F68[];
+extern s32 D_80154190;
+extern s32 D_80154660;
+extern s32 D_80154FD8;
+extern void *D_801551F0[];
+extern void *D_80155220[];
+extern void *D_80155290[];
+extern void *D_80156D44[];
+extern void *D_80158100[];
+extern s32 D_80158104;
+extern s32 D_80158108;
+extern s32 D_8015810C;
+extern void *D_80158120[];
+extern s32 D_801581E4;
+extern void *D_801581EC[];
+extern void *D_80158208[];
+extern void *D_80158230[];
+extern void *D_80158280[];
+extern s32 D_8015828C;
+extern s32 D_80158290;
+extern s32 D_801582A0;
+extern s32 D_801582B0;
+extern void *D_801582C0[];
+extern s32 D_801582E0;
+extern s32 D_801582E4;
+extern s32 D_801582E8;
+extern s32 D_801582EC;
+extern s32 D_801582F0;
+extern s32 D_801582F4;
+extern s32 D_801582F8;
+extern void *D_80158300[];
+extern s32 D_80158FC0;
+extern s32 D_80159000;
+extern void *D_80159010[];
+extern s32 D_80159014;
+extern s32 D_80159018;
+extern s32 D_8015901C;
+extern s32 D_80159020;
+extern void *D_80159024[];
+extern s32 D_80159028;
+extern s32 D_8015902C;
+extern s32 D_80159030;
+extern s32 D_80159034;
+extern s32 D_80159038;
+extern s32 D_8015903C;
+extern s32 D_80159040;
+extern s32 D_80159044;
+extern s32 D_80159048;
+extern s32 D_8015904C;
+extern s32 D_80159050;
+extern s32 D_80159054;
+extern void *D_80159058[];
+extern s32 D_8015905C;
+extern s32 D_80159060;
+extern s32 D_80159064;
+extern s32 D_80159068;
+extern void *D_80159200[];
+extern s32 D_80159204;
+extern s32 D_80159208;
+extern s32 D_80159210;
+extern s32 D_80159214;
+extern s32 D_80159218;
+extern s32 D_8015921C;
+extern s32 D_80159220;
+extern void *D_80159224[];
+extern s32 D_80159230;
+extern s32 D_80159234;
+extern s32 D_80159238;
+extern s32 D_8015923C;
+extern s32 D_80159240;
+extern s32 D_80159244;
+extern s32 D_80159248;
+extern void *D_8015924C[];
+extern s32 D_80159260;
+extern s32 D_80159264;
+extern s32 D_80159268;
+extern s32 D_80159270;
+extern s32 D_80159280;
+extern s32 D_80159284;
+extern s32 D_80159288;
+extern s32 D_8015928C;
+extern s32 D_80159290;
+extern s32 D_80159294;
+extern void *D_801592A0[];
+extern s32 D_801592C0;
+extern s32 D_801592D0;
+extern s32 D_801592D4;
+extern s32 D_801592D8;
+extern s32 D_801592DC;
+extern s32 D_801592E0;
+extern s32 D_801592E4;
+extern s32 D_801592E8;
+extern s32 D_801592EC;
+extern s32 D_801592F0;
+extern s32 D_801592F4;
+extern s32 D_801592F8;
+extern s32 D_801592FC;
+extern s32 D_80159300;
+extern s32 D_80159304;
+extern s32 D_80159308;
+extern s32 D_8015930C;
+extern s32 D_80159310;
+extern s32 D_80159314;
+extern s32 D_80159318;
+extern s32 D_8015931C;
+extern s32 D_80159320;
+extern s32 D_80159324;
+extern s32 D_80159328;
+extern s32 D_8015932C;
+extern void *D_80159330[];
+extern s32 D_80159334;
+extern s32 D_80159338;
+extern s32 D_8015933C;
+extern s32 D_80159340;
+extern void *D_80159344[];
+extern s32 D_80159350;
+extern s32 D_80159354;
+extern s32 D_80159358;
+extern s32 D_80159360;
+extern s32 D_80159364;
+extern s32 D_80159368;
+extern void *D_80159370[];
+extern void *D_80159400[];
+extern s32 D_80159414;
+extern void *D_80159428[];
+extern s32 D_80159450;
+extern s32 D_80159480;
+extern s32 D_80159500;
+extern s32 D_80159600;
+extern s32 D_80159604;
+extern s32 D_80159608;
+extern void *D_8015960C[];
+extern s32 D_80159700;
+extern s32 D_80159788;
+extern s32 D_8015978C;
+extern s32 D_80159794;
+extern void *D_801597D0[];
+extern s32 D_801597FC;
+extern s32 D_80159800;
+extern s32 D_80159818;
+extern s32 D_80159900;
+extern s32 D_80159904;
+extern s32 D_80159908;
+extern s32 D_8015990C;
+extern s32 D_80159910;
+extern s32 D_80159914;
+extern s32 D_80159918;
+extern void *D_8015991C[];
+extern s32 D_80159940;
+extern s32 D_80159944;
+extern s32 D_80159948;
+extern s32 D_8015994C;
+extern s32 D_80159950;
+extern s32 D_80159954;
+extern s32 D_80159A00;
+extern s32 D_80159A04;
+extern s32 D_80159A08;
+extern s32 D_80159A0C;
+extern void *D_80159A10[];
+extern void *D_80159A14[];
+extern s32 D_80159A18;
+extern s32 D_80159A1C;
+extern s32 D_80159A20;
+extern s32 D_80159A24;
+extern s32 D_80159A28;
+extern s32 D_80159A30;
+extern s32 D_80159A40;
+extern s32 D_80159A50;
+extern s32 D_80159A54;
+extern s32 D_80159A58;
+extern s32 D_80159A5C;
+extern s32 D_80159A60;
+extern void *D_80159A70[];
+extern s32 D_80159A80;
+extern s32 D_80159A84;
+extern void *D_80159B00[];
+extern s32 D_80159B04;
+extern s32 D_80159B08;
+extern s32 D_80159B0C;
+extern s32 D_80159B10;
+extern s32 D_80159B14;
+extern s32 D_80159B18;
+extern s32 D_80159B1C;
+extern s32 D_80159B20;
+extern s32 D_80159B24;
+extern s32 D_80159B28;
+extern s32 D_80159B2C;
+extern s32 D_80159B30;
+extern s32 D_80159B34;
+extern s32 D_80159B38;
+extern s32 D_80159B3C;
+extern s32 D_80159B40;
+extern s32 D_80159B44;
+extern s32 D_80159B48;
+extern s32 D_80159B4C;
+extern s32 D_80159B70;
+extern s32 D_80159B74;
+extern s32 D_80159B80;
+extern void *D_80159C00[];
+extern s32 D_80159C04;
+extern s32 D_80159C08;
+extern s32 D_80159C0C;
+extern s32 D_80159C10;
+extern s32 D_80159C14;
+extern s32 D_80159C18;
+extern void *D_80159C20[];
+extern void *D_80159D00[];
+extern s32 D_80159D04;
+extern void *D_80159D10[];
+extern void *D_80159D40[];
+extern s32 D_80159D80;
+extern s32 D_80159D84;
+extern s32 D_80159D88;
+extern s32 D_80159D8C;
+extern s32 D_80159D90;
+extern s32 D_80159DA0;
+extern s32 D_80159DA4;
+extern s32 D_80159DC0;
+extern s32 D_80159E00;
+extern s32 D_80159E04;
+extern s32 D_80159E08;
+extern s32 D_80159E0C;
+extern s32 D_80159E10;
+extern s32 D_80159E14;
+extern s32 D_80159E20;
+extern s32 D_80159E24;
+extern s32 D_80159E28;
+extern s32 D_80159E2C;
+extern s32 D_80159E30;
+extern s32 D_80159E40;
+extern s32 D_80159E44;
+extern s32 D_80159E48;
+extern void *D_80159F00[];
+extern s32 D_80159F40;
+extern s32 D_80159F44;
+extern s32 D_80159F48;
+extern s32 D_80159F50;
+extern s32 D_80159F54;
+extern s32 D_80159F58;
+extern s32 D_8015A000;
+extern s32 D_8015A004;
+extern s32 D_8015A008;
+extern s32 D_8015A00C;
+extern s32 D_8015A010;
+extern void *D_8015A020[];
+extern void *D_8015A030[];
+extern s32 D_8015A040;
+extern s32 D_8015A044;
+extern void *D_8015A050[];
+extern void *D_8015A060[];
+extern s32 D_8015A080;
+extern s32 D_8015A084;
+extern s32 D_8015A088;
+extern s32 D_8015A090;
+extern s32 D_8015A094;
+extern s32 D_8015A098;
+extern s32 D_8015A09C;
+extern void *D_8015A100[];
+extern s32 D_8015A108;
+extern void *D_8015A10C[];
+extern s32 D_8015A110;
+extern s32 D_8015A114;
+extern s32 D_8015A118;
+extern s32 D_8015A11C;
+extern void *D_8015A200[];
+extern void *D_8015A210[];
+extern void *D_8015A220[];
+extern void *D_8015A230[];
+extern void *D_8015A240[];
+extern void *D_8015A250[];
+extern void *D_8015A260[];
+extern s32 D_8015A280;
+extern s32 D_8015A290;
+extern s32 D_8015A294;
+extern s32 D_8015A298;
+extern void *D_8015A2A0[];
+extern void *D_8015A2B0[];
+extern void *D_8015A2C0[];
+extern void *D_8015A2D0[];
+extern void *D_8015A2E0[];
+extern void *D_8015A2F0[];
+extern s32 D_8015A300;
+extern s32 D_8015A304;
+extern s32 D_8015A310;
+extern s32 D_8015A314;
+extern s32 D_8015A318;
+extern void *D_8015A320[];
+extern s32 D_8015A330;
+extern s32 D_8015A334;
+extern s32 D_8015A338;
+extern s32 D_8015A33C;
+extern s32 D_8015A400;
+extern s32 D_8015A410;
+extern s32 D_8015A420;
+extern s32 D_8015A430;
+extern s32 D_8015A434;
+extern s32 D_8015A440;
+extern s32 D_8015A448;
+extern s32 D_8015A450;
+extern s32 D_8015A454;
+extern s32 D_8015A478;
+extern s32 D_8015A500;
+extern void *D_8015A504[];
+extern s32 D_8015A508;
+extern s32 D_8015A510;
+extern s32 D_8015A514;
+extern s32 D_8015A518;
+extern s32 D_8015A520;
+extern void *D_8015A524[];
+extern s32 D_8015A530;
+extern s32 D_8015A534;
+extern s32 D_8015A538;
+extern s32 D_8015A540;
+extern s32 D_8015B254;
+extern s32 D_80160400;
+extern s32 D_80160404;
+extern void *D_80160408[];
+extern s32 D_8016040C;
+extern s32 D_80160410;
+extern s32 D_80160414;
+extern s32 D_80160420;
+extern s32 D_80160424;
+extern s32 D_80160430;
+extern s32 D_80160434;
+extern s32 D_80160440;
+extern s32 D_80160444;
+extern s32 D_80160450;
+extern s32 D_80160460;
+extern void *D_80160508[];
+extern s32 D_80162100;
+extern s32 D_8016B254;
+extern s32 D_C;
 
 /* External function declarations */
 extern void func_800EDDC0(void);       /* Rendering/game logic */
 extern void func_800C997C(void);       /* Screen/state update */
 extern s32  func_800B37E8(s32, s32, void*, s32); /* Audio/sound control */
-extern void func_800DB81C(void);       /* Attract mode */
-extern void func_800FBF88(void);       /* High score entry */
+extern void func_800DB81C(void); /* Attract mode */
+extern void func_800FBF88(void); /* High score entry */
 extern void func_800FBC30(void);       /* Countdown timer */
 extern void func_800A04C4(s32);        /* Viewport/camera setup */
 
@@ -21,9 +383,9 @@ extern void func_800A04C4(s32);        /* Viewport/camera setup */
 void func_800C9AE0(void);
 
 /* State handler declarations */
-extern void func_800FBF90(u32 flags);  /* GSTATE_INIT handler */
-extern void func_800FBFE4(void);       /* GSTATE_SETUP handler */
-extern void func_800FC0EC(u32 flags);  /* GSTATE_MENU handler */
+extern void func_800FBF90(void); /* GSTATE_INIT handler */
+extern void func_800FBFE4(void); /* GSTATE_SETUP handler */
+extern void func_800FC0EC(void); /* GSTATE_MENU handler */
 
 /* External data */
 extern u8 gstate;                      /* 0x801146EC - game state byte */
@@ -46,7 +408,7 @@ extern u32 D_801597F4;   /* State copy */
 extern s8  D_801146C4[]; /* Sound params array */
 extern u32 D_801174B4;   /* gstate - current state bitmask (for game_loop) */
 extern u32 D_801174B8;   /* gstate_pending - next state (for game_loop) */
-extern void func_800B358C(void*); /* sound_stop */
+extern void func_800B358C((void*)s32 channel, f32 volume); /* sound_stop */
 extern void func_800FD238(void); /* state_dispatch */
 extern void func_800F733C(void); /* UpdateActiveObjects */
 extern void *func_800B0868(void); /* PhysicsObjectList_Update */
@@ -127,7 +489,7 @@ s32 func_800FD464(void) {
             /* State requires stopping sound */
             sound_handle = D_801146E8;
             if (sound_handle != 0) {
-                func_800B358C(sound_handle);  /* sound_stop */
+                func_800B358C((void*)sound_handle);  /* sound_stop */
                 D_801146E8 = 0;
             }
         }
@@ -258,33 +620,31 @@ void func_800C9AE0(void) {
 /**
  * External functions called by func_800CA3B4
  */
-extern void func_800CA300(void);       /* State change pre-process */
+extern void func_800CA300(void *hud, f32 alpha); /* State change pre-process */
 extern void func_800A5BB8(void);       /* Some init function */
-extern void func_800C8B8C(s32, s32, s32, s32, s32, f32, f32, s32); /* HUD setup */
-extern void func_800C885C(void);       /* HUD init */
-extern void func_800C8FA4(s32);        /* Enable/disable something */
-extern void func_800C9BE0(void);       /* Some game init */
+extern void func_800C8B8C(void *hud, s32 lap, s32 totalLaps); /* HUD setup */
+extern void func_800C885C(void *hud, f32 rpm); /* HUD init */
+extern void func_800C8FA4(void *hud, s32 position); /* Enable/disable something */
+extern void func_800C9BE0(void *hud); /* Some game init */
 extern void func_800014F0(f32);        /* Float function */
-extern void func_800C9480(void);       /* State finalize */
-extern void func_800C90E0(void);       /* Mode transition */
-extern void func_800C9210(f32);        /* Float param function */
-extern void func_800C937C(void);       /* Some handler */
-extern void func_800C9158(s32, s32);   /* Player state set */
-extern void func_800C84C0(s32, s32);   /* Player mode set */
+extern void func_800C9480(void *hud, f32 nitroLevel); /* State finalize */
+extern void func_800C90E0(void); /* Mode transition */
+extern void func_800C9210(void *hud, s32 speed); /* Float param function */
+extern void func_800C937C(void); /* Some handler */
+extern void func_800C9158(void *hud, s32 timeMs); /* Player state set */
+extern void func_800C84C0(s32 a0, s8 a1); /* Player mode set */
 void func_800C9194(s32, s32);          /* Create and register sync entry (defined below) */
 extern void func_800A3424(s32, s32);   /* Car update function */
-extern void func_800C7308(void*);      /* Object cleanup */
-extern void func_800C70BC(void);       /* Scene cleanup */
+extern void func_800C7308(void *obj_ptr); /* Object cleanup */
+extern void func_800C70BC(void); /* Scene cleanup */
 extern void func_800A1244(void);       /* Render function */
 extern s32 func_80097798(s32, s32, s32, s32, s32); /* Sound/effect */
-extern void func_800B55FC(s32);        /* Visual update */
+extern void func_800B55FC(s32 flag); /* Visual update */
 void* func_800B42F0(s32);              /* Object allocate wrapper (defined later) */
-extern void* func_800B4200(void);      /* Object allocate (uses register s2 for type) */
+extern void func_800B4200(void *buffer, s32 samples); /* Object allocate (uses register s2 for type) */
 /* Note: func_80007270 and func_800075E0 declared earlier */
 
 /* External data at fixed addresses */
-extern u32 D_801174B4;   /* gstate - current state bitmask */
-extern u32 D_801174B8;   /* gstate_pending - next state bitmask */
 extern u32 D_801174BC;   /* Additional state flags */
 extern s8  D_80114650;   /* Some state byte */
 extern s8  D_80156994;   /* Mode flag */
@@ -305,7 +665,7 @@ extern u8 D_80151AD8;
 extern void* D_8015A118;
 extern u8 D_80146114;
 extern s32 D_8015A110;
-extern void func_800C84FC(s32, s32, f32, f32, s32);
+extern void func_800C84FC(void *hud, f32 speed);
 
 /**
 /*
@@ -667,8 +1027,6 @@ done:
 /*
 
 /* External data for countdown function */
-extern s32 D_8015A110;     /* Game mode */
-extern s16 D_8015A108;     /* Player count */
 extern s32 D_801613B0;     /* Found player index */
 extern s32 D_801146F8;     /* Countdown timer */
 extern void* D_8018A4E0[]; /* Display object pointer array */
@@ -678,9 +1036,9 @@ extern s8* D_8012030C;     /* Format string 2 */
 /* External functions for countdown */
 extern void sprintf(s8 *buf, s8 *fmt, ...); /* func_80004990 */
 extern void func_800A4770(s8 *buf, s32 val);
-extern void func_800B74A0(s32 type);
-extern void func_800B71D4(s16 pos, s32 color, s8 *text);
-extern s32 func_800B3FA4(s8 *buf, s32 val);
+extern void func_800B74A0(void *entity, void *world);
+extern s32 func_800B71D4(void);
+extern void func_800B3FA4(s32 channel, s32 effectType, f32 amount);
 
 /**
 /*
@@ -902,38 +1260,34 @@ void func_800B55FC(s32 flag) {
 /*
 
 /* External data for race state machine */
-extern s32 D_801170FC;       /* Race state (0-8) */
 extern s32 D_80159D98;       /* Race sub-state */
 extern s32 D_8015698C;       /* Current player index */
-extern s16 D_80151AD0;       /* Player count */
 extern s8  D_80117350;       /* Player active flag */
 extern s8  D_80117354;       /* Secondary active flag */
 extern void* D_80143FD8;     /* Object list head */
 extern f32 D_801543CC;       /* Timer value */
 
 /* External functions for race states */
-extern void func_800C813C(s32, s32);   /* Race pre-update */
-extern void func_800DB1E0(void);       /* State 1 handler */
-extern void func_800D91A0(void);       /* State 2 handler */
-extern void func_800D7634(void);       /* State 3 handler */
-extern void func_800B8C14(void);       /* State 4 handler */
-extern void func_800B4FB0(s32);        /* State setter */
+extern void func_800C813C(void *hud, s32 elementId); /* Race pre-update */
+extern void func_800DB1E0(void *car, s32 paintId); /* State 1 handler */
+extern void func_800D91A0(void *garage); /* State 2 handler */
+extern void func_800D7634(void *profile); /* State 3 handler */
+extern void func_800B8C14(void *constraint); /* State 4 handler */
+extern void func_800B4FB0(s32 trackId); /* State setter */
 extern void func_800013C0(void);       /* Timer init */
 extern void func_800013DC(void);       /* Timer update */
 extern void* func_80091B00(void);      /* Allocate object */
 extern void func_80092360(s32, s32, s32, s32); /* Sound trigger */
-extern void func_800C9210(f32);        /* Set timing */
-extern void func_800D5374(void);       /* Race setup 1 */
-extern void func_800D5798(void);       /* Race setup 2 */
-extern void func_800C84C0(s32, s32);   /* Player mode set */
-extern void func_800D6530(void);       /* Track init */
-extern void func_800D6160(s32);        /* Visual init */
-extern void func_800D60AC(void);       /* Scene setup */
-extern void func_800D5A04(void);       /* Cleanup */
-extern void func_800B5F4C(void);       /* Menu prev */
+extern void func_800D5374(void *menu); /* Race setup 1 */
+extern void func_800D5798(void); /* Race setup 2 */
+extern void func_800D6530(s32 operation); /* Track init */
+extern void func_800D6160(void *menu); /* Visual init */
+extern void func_800D60AC(void); /* Scene setup */
+extern void func_800D5A04(void *menu); /* Cleanup */
+extern void func_800B5F4C(s32 a0); /* Menu prev */
 extern void func_800B5FC4(void);       /* Menu confirm */
-extern void func_800B5F88(void);       /* Menu toggle */
-extern void func_800B438C(void);       /* Sound update */
+extern void func_800B5F88(s32 a0); /* Menu toggle */
+extern void func_800B438C(s32 streamId, void *data); /* Sound update */
 
 /**
 /*
@@ -1274,7 +1628,6 @@ exit_func:
  */
 extern s32  D_80159788;           /* Active sound count */
 extern void **D_80159450;         /* Sound object pointer array */
-extern void func_800B358C(void*); /* Stop and remove sound */
 
 void func_800F7344(void) {
     s32 count;
@@ -1353,11 +1706,7 @@ void func_800F7344(void) {
  * @param sound_update   Whether to update sounds (arg a0)
  * @param physics_update Whether to update physics (arg a1)
  */
-extern void func_800F733C(void);  /* Loads count, falls through to func_800F7344 */
-extern void *func_800B0868(void);  /* Physics object list head loader */
-extern void func_800B0870(void);  /* Physics object linked list update */
-extern void func_800B811C(void);  /* Update particle emitters/effects */
-extern void func_800A04C4(s32);   /* Main scene render */
+extern void func_800B0870(void); /* Physics object linked list update */
 
 void func_800F73FC(s32 sound_update, s32 physics_update) {
     /* Update active sounds if requested */
@@ -1470,17 +1819,15 @@ void func_800B0870(void) {
  *   offset 0x48: additional velocity component
  *   offset 0x54-0x5C: previous position (x, y, z)
  */
-extern s16 D_80151AD0;            /* Active emitter count */
-extern s32 D_801170FC;            /* Render enable flag */
 
 /* Emitter array at 0x80150B70, secondary at 0x80150BA0 */
 extern u8  D_80150B70[];          /* Emitter array base */
 extern u8  D_80150BA0[];          /* Secondary emitter array */
 
-extern void func_8008D6B0(void*, void*);  /* Emitter update */
-extern void func_800B80C8(s32);           /* Spawn particles for emitter */
-extern void func_800B7FF8(void);          /* Particle cleanup */
-extern void func_800B61FC(s32);           /* Final cleanup */
+extern void func_8008D6B0(f32 *src, f32 *dst); /* Emitter update */
+extern void func_800B80C8(s32 a0); /* Spawn particles for emitter */
+extern s32 func_800B7FF8(void); /* Particle cleanup */
+extern void func_800B61FC(void *entity, f32 *vec); /* Final cleanup */
 extern s16 D_80152032;                    /* Second emitter count */
 
 void func_800B811C(void) {
@@ -1573,7 +1920,7 @@ s8 func_800C9528(void) {
  */
 extern void (*D_801551E8[])(void);  /* Input callback table start */
 extern void (*D_80155210)(void);    /* Input callback table end marker */
-extern void func_800B73E4(void);    /* Input system init */
+extern void func_800B73E4(void); /* Input system init */
 
 void func_800C9530(void) {
     void (**callback_ptr)(void);
@@ -1766,9 +2113,8 @@ void func_800B557C(void) {
  *   offset 0x10: f32 field_10
  *   offset 0x14: f32 field_14
  */
-extern s16 D_8015A108;        /* Player count */
 /* D_8015A118 declared earlier as void* - cast to u8* for array access */
-extern void func_800B6024(void);  /* Pre-reset function */
+extern f32 func_800B6024(void *entity, s32 index); /* Pre-reset function */
 
 void func_800B6138(void) {
     s32 i;
@@ -1816,7 +2162,7 @@ extern void *D_80143A20;      /* Effect pool 2 */
 extern void *D_80143A28;      /* Effect pool 3 */
 extern u8 D_80143A10[];       /* Effect state buffer (44 bytes) */
 
-extern void func_800B90F8(void);       /* Effect pre-reset */
+extern void func_800B90F8(void); /* Effect pre-reset */
 extern void func_80096130(void*);      /* Effect pool clear */
 extern void bzero(void*, s32);         /* func_80002790 */
 
@@ -1917,7 +2263,7 @@ void func_800B45BC(s32 clear_all) {
  */
 extern u8 D_8015A250[];       /* Player entry array base (2056 bytes each) */
 extern u8 D_80152818[];       /* Secondary player data */
-extern void func_800D4DFC(void*);  /* Process player race state */
+extern void func_800D4DFC(void *menu); /* Process player race state */
 
 void func_800D5050(void) {
     s32 i;
@@ -1972,7 +2318,7 @@ extern u8 D_80142728[];       /* Sync structure */
 extern u8 D_80146188[];       /* Object pool 1 */
 extern u8 D_80146170[];       /* Object pool 2 */
 
-extern void func_800D52CC(void*);     /* Object pre-process */
+extern void func_800D52CC(void); /* Object pre-process */
 extern void func_8009211C(void*, void*);  /* Object cleanup */
 extern void func_80091FBC(void*, void*, void*);  /* Add to active list */
 
@@ -2027,7 +2373,7 @@ void func_800D52D4(void *obj) {
 extern s16 D_801525F0;        /* Per-frame counter/flag */
 extern s8  D_80152744;        /* Active player count */
 /* D_8015A250 declared elsewhere - player entries */
-extern void func_800D5524(void*);  /* Per-player update */
+extern void func_800D5524(void *menu); /* Per-player update */
 extern void func_800A13E8(void);   /* Additional update (when bit 0x0008 set) */
 
 void func_800D5798(void) {
@@ -2125,8 +2471,7 @@ s32 func_800D60B4(void) {
  * NOTE: Slot ID is passed in register t0, not a0.
  */
 extern s32 func_80097694(s32, s32);   /* Get slot state */
-extern s32 func_80097798(s32, s32, s32, s32, s32);  /* Allocate slot */
-extern void func_8009638C(s32);       /* Register slot */
+extern void func_8009638C(s32 a0); /* Register slot */
 
 void func_800C9334(void) {
     register s32 slot_id asm("t0");  /* Slot ID in t0 */
@@ -2257,7 +2602,6 @@ void func_800C7308(void *obj_ptr) {
  * @param arg1 Argument 1 byte
  * @param arg2 Argument 2 byte
  */
-extern s32 D_8015A110;            /* Game mode value */
 extern void func_803914B4(s32, s32, s32);  /* External command handler */
 
 void func_800C55E4(s8 cmd, s8 arg1, s8 arg2) {
@@ -2282,7 +2626,7 @@ void func_800C55E4(s8 cmd, s8 arg1, s8 arg2) {
  * Gets slots 54, 58, 59 and calls func_800AC840 to clean up each.
  * This is the scene/level cleanup counterpart to func_800C937C.
  */
-extern void func_800AC840(s32);  /* Resource cleanup */
+extern void func_800AC840(s32 a0); /* Resource cleanup */
 
 void func_800C70BC(void) {
     s32 slot;
@@ -2372,7 +2716,7 @@ void func_800C9194(s32 a0, s32 a1) {
  *
  * @param arg Passed in a0, stored to s1
  */
-extern void func_800CBF2C(void);  /* Core initialization */
+extern void func_800CBF2C(void *menu); /* Core initialization */
 
 void func_800CC804(void *arg) {
     /* Set flags and call core init */
@@ -2398,7 +2742,7 @@ void func_800CC804(void *arg) {
  *
  * @param obj Object pointer with nested structure
  */
-extern s32 func_800B466C(void*, s32);  /* Allocate block */
+extern void func_800B466C(s32 streamId); /* Allocate block */
 extern void func_800A2504(void*, void*, s32);  /* Link block */
 
 void func_800CD748(void *obj) {
@@ -2510,7 +2854,6 @@ void func_800D03DC(f32 *pos, s32 a1) {
  * Type 7 appears to be a specific object category.
  */
 extern s32 D_801427A8;    /* Object registry B */
-extern void* func_80091B00(void);  /* Allocate object */
 
 void func_800C878C(void) {
     void *obj;
@@ -2613,7 +2956,6 @@ void func_800DB7B4(void) {
  *
  * @param a0 Mode flags - only acts if (a0 & 7) != 0
  */
-extern void func_800B5FC4(void);  /* Enable function */
 
 void func_800DCD1C(s32 a0) {
     if ((a0 & 7) != 0) {
@@ -2749,7 +3091,7 @@ s32 func_800AC820(s32 a0) {
  *
  * @return Type byte 2 from current object
  */
-extern void func_800B3D18(void);  /* Update/sync function */
+extern void func_800B3D18(s32 channel, f32 pitch); /* Update/sync function */
 extern u8 *D_801597F0;            /* Current object pointer */
 
 u8 func_800B3F00(void) {
@@ -2805,8 +3147,8 @@ s16 func_800B7170(s8 *a0, s16 a1) {
  *
  * @param a0 Parameter passed to both functions
  */
-extern void func_800E23A4(s32);
-extern void func_800E1C30(s32);
+extern void func_800E23A4(void *replay);
+extern void func_800E1C30(void *replay, void *camera);
 
 void func_800E2A3C(s32 a0) {
     func_800E23A4(a0);
@@ -2828,7 +3170,7 @@ void func_800E2A3C(s32 a0) {
  * @param a1 New value for byte at offset 26
  * @return Value at a0[26]
  */
-extern void func_80094EC8(void*);
+extern void func_80094EC8(void *sndObj);
 
 s8 func_80094F88(void *a0, s8 a1) {
     s8 old_val = *((s8*)a0 + 26);
@@ -2902,7 +3244,6 @@ s8 func_800AC898(s32 a0) {
  *   otherwise: uses resource type 38
  * Then calls func_80092360 with selected type.
  */
-extern void func_80092360(s32, s32, s32, s32);
 
 void func_800B5FC4_impl(s32 a0) {
     s32 resource_type;
@@ -2957,7 +3298,7 @@ void func_800B61B0(s32 a0, s32 a1, s32 a2, u8 a3) {
  * then calls func_800BB9B0(player_idx, 0, 1).
  */
 extern s8 D_8015978C;   /* Current player index */
-extern void func_800BB9B0(s32, s32, s32);
+extern s32 func_800BB9B0(f32 *pos, f32 *normal, f32 *height);
 
 void func_800BC1E8(void) {
     D_80143A10[0] = 0;
@@ -2974,7 +3315,7 @@ void func_800BC1E8(void) {
  *
  * Simple thunk to func_800B82C8.
  */
-extern void func_800B82C8(void);
+extern void func_800B82C8(void *entityA, void *entityB, f32 *normal);
 
 void func_800EE88C(void) {
     func_800B82C8();
@@ -3049,7 +3390,7 @@ void func_800B4360(s32 a0, s32 a1, s32 a2, s32 a3) {
  * Clears D_80110680[0] and D_80110680[1], then calls func_800BADE0.
  */
 extern u8 D_80110680[];  /* Mode/state flags */
-extern void func_800BADE0(void);
+extern void func_800BADE0(void *pairA, void *pairB);
 
 void func_800BAF64(void) {
     D_80110680[0] = 0;
@@ -3492,7 +3833,6 @@ void func_800ED7B4(s16 a0) {
  */
 extern u8 D_801147C0;   /* Init flag */
 extern u8 D_801461FC[]; /* Data pointer */
-extern s8 D_80159DA0;   /* State byte */
 extern void func_80006A00(void*, void*, s32);
 
 void func_800EE7C4(s32 condition) {
@@ -3520,12 +3860,12 @@ void func_800EE7C4(s32 condition) {
  *
  * @param a0 Object pointer
  */
-extern void func_800CF06C(void*);
-extern void func_800E1AA0(void*);
-extern void func_800E15A0(void*);
-extern void func_800E1540(void*);
-extern void func_800E114C(void*);
-extern void func_800D0424(void*);
+extern void func_800CF06C(void *menu);
+extern void func_800E1AA0(void *replay, void *frame);
+extern void func_800E15A0(void *replay);
+extern void func_800E1540(void *entity);
+extern void func_800E114C(void *replay);
+extern void func_800D0424(void *menu, void *input);
 
 void func_800E2A64(void *obj) {
     func_800CF06C(obj);
@@ -3553,7 +3893,6 @@ void func_800E2A64(void *obj) {
  *
  * @param id Object ID to look up
  */
-extern void *D_80152770;  /* Object sync structure */
 extern void *func_80095F8C(s32);
 extern void *func_80095EF4(void*, void*, s32);
 
@@ -3613,7 +3952,7 @@ void func_800E7980(s32 id) {
  * @param a0 First pointer (offset by 4)
  * @param a1 Second pointer (offset by 4)
  */
-extern void func_8008AD04(void*, void*);
+extern s32 func_8008AD04(u8 *a0, u8 *a1);
 
 void func_8008AD48(void *a0, void *a1) {
     func_8008AD04((u8*)a0 + 4, (u8*)a1 + 4);
@@ -3651,7 +3990,6 @@ void func_8008E398(void *a0, void *a1, s16 a2) {
  *
  * @param a0 16-bit value to sign-extend
  */
-extern void func_80090088(s16, void*, s32);
 
 void func_80090228(s16 a0) {
     func_80090088(a0, NULL, 0);
@@ -3774,7 +4112,6 @@ void func_800985F4(void *a0, void *a1) {
  * @return Always returns 1
  */
 extern void *D_801146FC;  /* Callback pointer */
-extern void func_80094EC8(void*);
 
 s32 func_80100D30(void *a0) {
     *(void**)((u8*)a0 + 4) = &D_801146FC;
@@ -3915,7 +4252,7 @@ void *func_800AED2C(void *a0, void *a1) {
  * @param f14 Y component
  * @param f16 Z component
  */
-extern void func_8008B4C4(void*);
+extern void func_8008B4C4(f32 *a, f32 *b, f32 *out);
 
 void func_8008B660(void *a0, void *a1, f32 x, f32 y, f32 z) {
     f32 *vec = (f32*)((u8*)a1 + 36);
@@ -3940,7 +4277,6 @@ void func_8008B660(void *a0, void *a1, f32 x, f32 y, f32 z) {
  * @param a0 Slot index
  * @return Value from slot array at computed offset
  */
-extern void func_80096288(s32, s32, s32);
 extern void *D_80156D44[];  /* Slot array, 20-byte entries */
 
 void *func_80096298(s32 a0) {
@@ -3965,7 +4301,6 @@ void *func_80096298(s32 a0) {
  */
 extern void func_80018E2C(s32);
 extern void func_800154A4(void);
-extern void func_80096130(void*);
 extern void *D_80151AD4;  /* Global pointer */
 extern s32 D_8011EAA0;    /* State variable */
 
@@ -3997,7 +4332,6 @@ void func_80096240(s32 a0, s32 a1) {
  *
  * @param a0 Flags to check
  */
-extern void func_80092360(s32, s32, s32, s32);
 
 void func_800B5F4C(s32 a0) {
     s32 type = (a0 & 0x400) ? 40 : 39;
@@ -4040,8 +4374,6 @@ void func_800B5F88(s32 a0) {
  * @param a2 Parameter for first call
  * @param a3 Third parameter passed through
  */
-extern void func_800B74A0(s32);
-extern void func_800B71D4(s16, s16, void*);
 
 void func_800BE4B4(s32 a0, s32 a1, s32 a2, void *a3) {
     func_800B74A0(a2);
@@ -4086,7 +4418,6 @@ s8 func_800B41C0(s8 a0) {
  * @param a1 Resource parameter
  * @return Lookup result
  */
-extern u8 D_80152770[];
 extern void *D_801527C8;
 extern void *func_80097384(void*, void*);
 
@@ -4179,7 +4510,7 @@ void func_800D54BC(void *a0) {
  *
  * @param a0 Key to look up and process
  */
-extern void func_800BF01C(void*);
+extern void func_800BF01C(void);
 
 void func_800BF024(void *a0) {
     void *result;
@@ -4214,7 +4545,6 @@ void func_800BF024(void *a0) {
  * @param a0 Key to register
  */
 extern void *func_80091BA8(void*, void*);
-extern void *func_80091B00(void*);
 
 void func_80091C04(void *a0) {
     void *result;
@@ -4321,7 +4651,6 @@ s16 func_800B7128(void) {
  * @param a0 Object pointer chain
  * @param a1 New byte value
  */
-extern void func_800A2504(void*, void*, s32);
 
 void func_800CDA90(void **a0, u8 a1) {
     void *obj = *a0;
@@ -4355,7 +4684,7 @@ void func_800CDA90(void **a0, u8 a1) {
  * @param a2 Parameter for first call (sign-extended)
  * @param a3 Second parameter for first call
  */
-extern void func_800BE7BC(void*, void*, s16, void*);
+extern void func_800BE7BC(void *camera, void *target);
 
 void func_800BE9A0(s32 a0, s32 a1, s16 a2, void *a3) {
     u8 buffer[128];
@@ -4421,8 +4750,7 @@ void func_800A4C54(void) {
  * Loops through D_801491F0 linked list calling func_8009079C(item, 1),
  * then calls func_800B0580.
  */
-extern void *D_801491F0;  /* Linked list head */
-extern void func_8009079C(void*, s32);
+extern void func_8009079C(void *a0, s32 a1);
 
 void func_800B0618(void) {
     void *item = D_801491F0;
@@ -4445,7 +4773,6 @@ void func_800B0618(void) {
  *
  * @return Sum as signed 16-bit
  */
-extern s8 D_80159B60;  /* Global offset value */
 
 s16 func_800B3F50(void) {
     u8 byte2, byte3;
@@ -4540,7 +4867,6 @@ void func_800B04D0(void *a0) {
  * Then reinitializes the pool with default values.
  * Finally clears the secondary pool area at D_80155290.
  */
-extern void func_8008D0C0(s32);
 extern void func_800AFA84(void*, void*);
 extern u8 D_80155220[];
 extern u8 D_80155290[];
@@ -4647,7 +4973,6 @@ void func_800A511C(s32 a0, s32 a1) {
  * @param a3 Fourth parameter (becomes new a2)
  * @param stack Fifth parameter from stack (ORed into new a3)
  */
-extern void func_8008E26C(s32, s32, s32, s32);
 
 void func_800AB70C(s32 a0, s32 a1, s16 a2, s16 a3, s32 stack) {
     s32 new_a2 = a3;
@@ -4666,7 +4991,6 @@ void func_800AB70C(s32 a0, s32 a1, s16 a2, s16 a3, s32 stack) {
  * Wrapper that sets s1=1, s2=0 and calls func_800C9210.
  * The FP operations copy f12 to f20 and f14 to f22.
  */
-extern void func_800C9210(void);
 
 void func_800C92DC(void) {
     func_800C9210();
@@ -4725,7 +5049,6 @@ s32 func_8010B528(void *a0) {
  * @param a0 Structure pointer
  * @return Always 1
  */
-extern u32 D_80159D98;
 extern u8 D_80117358[];
 
 s32 func_8010B560(void *a0) {
@@ -4764,8 +5087,7 @@ s32 func_8010B560(void *a0) {
  * Finally clears D_80114728 byte.
  */
 extern void func_800F857C(void);
-extern void func_800B45BC(s32);
-extern void func_800B358C(void*);
+extern void func_800B45BC(s32 clear_all);
 extern void *D_8011472C;
 extern u8 D_80114728;
 
@@ -4794,7 +5116,6 @@ void func_800F8754(void) {
  * @param a0 First parameter (passed to func_80091CA4)
  * @param a1 Second parameter (loaded as float)
  */
-extern u8 D_80142728[];
 extern void func_80091CA4(void*);
 
 void func_80091F34(void *a0, s32 a1) {
@@ -4824,9 +5145,7 @@ extern void func_800AC3D8(void*, s16);
 extern void func_800AB638(void);
 extern s16 D_80159D90;
 extern void *D_801597FC;
-extern void *D_80159818;
 extern u8 D_8008AD48[];
-extern void *D_80159B80;
 
 s16 func_800AC668(void *a0, s16 a1) {
     u8 buf1[4];
@@ -4858,8 +5177,6 @@ s16 func_800AC668(void *a0, s16 a1) {
  *
  * @param a0 Filter value for field_06 comparison
  */
-extern u8 D_80156D38[];
-extern void func_80096130(s32);
 
 void func_800A4AC4(s32 a0) {
     u8 *slot = &D_80156D38[0];
@@ -4980,14 +5297,10 @@ s32 func_8009DD18(void *a0, s32 a1) {
  * @param a0 Key to look up
  * @return Lookup result or 0 if not found
  */
-extern void *func_80091BA8(void*, void*);
-extern void func_800BF01C(void*);
-extern void *func_800BF0A4(void*);
+extern void func_800BF0A4(void *camera, f32 intensity, f32 duration);
 
 /* Object initialization functions */
-extern void func_800D1004(void);  /* Setup call before init */
-extern void func_800CF06C(void*); /* Object processing */
-extern void func_800D0424(void*); /* Object configuration */
+extern void func_800D1004(void *menu); /* Setup call before init */
 
 /* Global scaling factors */
 extern f32 D_8011416C;
@@ -4997,11 +5310,10 @@ extern f32 D_80114170;
 extern f32 D_80153F28[6];
 extern f32 D_80153F48[6];
 extern f32 D_80153F68[6];
-extern f32 D_801543CC;
 extern f32 D_80154190;
 extern s16 D_80154182;
 
-extern void func_800BAAA0(void);  /* Setup call */
+extern void func_800BAAA0(void *world); /* Setup call */
 
 void *func_800BF148(void *a0) {
     void *result;
@@ -5195,10 +5507,8 @@ void func_800D6348(void) {
 /*
 
 /* Global state flags */
-extern s32 D_801170FC;
 
-extern void func_8009079C(void*, s32);
-extern void func_800D03DC(void*, void*);
+extern void func_800D03DC(f32 *pos, s32 a1);
 
 /**
 /*
@@ -5277,9 +5587,8 @@ void func_800C3614(void) {
 
 /* Object initialization external references */
 extern u8 D_80140BDC;  /* Object type count */
-extern s32 func_800B24EC(void*, void*, s32, s8, s32);  /* Object setup with type */
-extern void func_800B362C(void*);  /* Object alternate init */
-extern void func_80094EC8(void*);  /* Object finalize */
+extern void func_800B24EC(void *sequence); /* Object setup with type */
+extern void func_800B362C(s32 channel, f32 pan); /* Object alternate init */
 
 /**
 /*
@@ -5313,7 +5622,6 @@ void func_800EF5B0(void *a0, void *a1, s32 a2) {
 /* String builder external references */
 extern void **D_801597F0;  /* Pointer to data structure */
 extern void **D_80159800;  /* Pointer to source array */
-extern void func_800B3D18(void);  /* Init/prepare function */
 
 /**
 /*
@@ -5354,8 +5662,6 @@ void func_800F68A4(u8 *output) {
 /* Timer calculation external references */
 extern f32 func_80001578(void);  /* Get elapsed time */
 extern f32 D_801247F8;           /* Time multiplier */
-extern s16 D_80152032;           /* Timer value */
-extern s32 D_801174B8;           /* Timer state flag */
 
 /**
 /*
@@ -5430,11 +5736,9 @@ void func_800E7A98(void *a0) {
 /*
 
 /* Multi-player coordinate update external references */
-extern s32 D_8015A110;           /* Game mode state */
-extern s16 D_8015A108;           /* Player count */
 extern void func_800E847C(void); /* Pre-update function */
 extern void func_8008D6FC(s16, void*, void*);  /* Coordinate transform */
-extern void func_800EB90C(void); /* Post-update function */
+extern void func_800EB90C(s32 soundId); /* Post-update function */
 
 /**
 /*
@@ -5486,7 +5790,7 @@ extern u8 D_80117530[];          /* Indexed object data array (48 bytes per entr
 extern void **D_801491F0;        /* Linked list head */
 extern f32 D_801249C0;           /* Float constant for object init */
 extern void *func_80090284(void);  /* Allocate new object */
-extern void func_800FEA00(void*, s8, void*, s32);  /* Object finalize */
+extern void func_800FEA00(void); /* Object finalize */
 
 /**
 /*
@@ -5601,7 +5905,7 @@ extern void **D_801491F0;   /* Active object list head */
 extern void **D_801492C8;   /* Free object list head */
 extern s16 D_8013E66C;      /* Active object count */
 extern s16 D_8013E678;      /* Maximum active objects seen */
-extern void func_8008AE8C(s32, s32, s32);  /* Sound stop function */
+extern void func_8008AE8C(s16 texId, s32 mode, s32 flags); /* Sound stop function */
 
 /**
 /*
@@ -5841,7 +6145,6 @@ s32 func_8008AD04(u8 *a0, u8 *a1) {
 /*
 
 /* Effects system globals */
-extern s8 D_801147C4;          /* Effects system initialized flag */
 extern u32 D_801551E8;         /* Effect count 1 */
 extern u32 D_801551EC;         /* Effect count 2 */
 extern u32 D_801551F0[8];      /* Effect data array (32 bytes / 8 words) */
@@ -5887,7 +6190,6 @@ void func_800B73E4(void) {
 
 /* Emitter data arrays */
 extern void *D_80124FD0[];      /* Pointer array for emitter targets */
-extern u8 D_80150B70[];         /* Emitter data array (152 byte stride) */
 
 /**
 /*
@@ -5920,7 +6222,6 @@ void func_800B80C8(s32 a0) {
 /*
 
 /* Emitter count */
-extern s16 D_80151AD0;  /* Number of active emitters */
 
 /**
 /*
@@ -5952,234 +6253,125 @@ void func_800B90F8(void) {
 /*
 
 /* Additional emitter system globals */
-extern u32 D_80159818;          /* Emitter system state 1 */
-extern u32 D_80159B80;          /* Emitter system state 2 */
-extern void *D_80143A18;        /* Emitter list 1 */
-extern void *D_80143A20;        /* Emitter list 2 */
-extern void *D_80143A28;        /* Emitter list 3 */
-extern u8 D_80143A10[44];       /* Emitter data block */
-extern void func_80096130(void*);  /* Clear emitter list */
-extern void func_80002790(void*, s32, s32);  /* memset */
 
 /**
-extern s32 func_800950AC(void*, void*, s32);  /* Object compare/lookup */
 
 /**
-extern void func_80098620(void*, void*, void*);  /* List insert operation */
 
 /**
-extern void func_80096288(s32, s32, s32);  /* Sound/object operation */
-extern u8 D_80156D44[];  /* Object data array (20-byte stride) */
 
 /**
-extern void func_8009C3F8(s32, f32);  /* Floating point operation */
 
 /**
-extern void func_8009211C(void*, void*);  /* List remove operation */
 
 /**
-extern void *D_801146FC;  /* Default data pointer */
-extern void func_80094EC8(void*);  /* Object copy/update function */
 
 /**
-extern void *D_80116DE0;  /* Another default data pointer */
 
 /**
-extern u8 D_80152750[];  /* Sync object for audio/sound */
 
 /**
 extern s32 func_80097470(s32, s32);  /* Sound lookup function */
-extern void func_800962D4(s32, s32); /* Sound state update */
 
 /**
-extern u8 D_80153F10[];  /* Timer/callback structure */
-extern void func_8008ABE4(void);  /* Timer callback trigger */
 
 /**
-extern void func_800B82C8(void);  /* Effects cleanup */
 
 /**
-extern void func_800E23A4(void);  /* Pre-process call */
-extern void func_800E1C30(s32 a0);  /* Post-process call */
 
 /**
-extern void *func_800A2680(void *ptr);  /* Object processor */
 
 /**
-extern void *func_800B466C(void *a0, s32 a1);  /* Object allocator */
-extern void func_800A2504(void *a0, void *a1, s32 a2);  /* Object copy */
 
 /**
-extern s32 func_8000BE50(s32 a0);  /* State query */
-extern void func_800C9AE0(void);   /* State handler */
+extern void func_800C9AE0(void); /* State handler */
 
 /**
-extern void func_80092360(s32 a0, s32 a1, s32 a2, s32 a3);  /* Multi-param handler */
 
 /**
-extern void func_8009211C(s32 a0);  /* List operation */
 
 /**
-extern void func_800B358C(void);  /* Cleanup handler */
-extern u32 D_801541A4;  /* State flag */
 
 /**
-extern u8 D_80156D38[];  /* Object array base (20-byte stride) */
-extern void func_80096288(s32 a0, s32 a1, s32 a2);  /* Object init */
-extern void func_800962D4(s32 a0, s32 a1);  /* Object state set */
 
 /**
-extern void *D_801491F0;  /* Active object list head */
-extern void func_8009079C(void *a0, s32 a1);  /* Process object */
-extern void func_800B0580(void);  /* Finalize processing */
+extern void func_800B0580(void); /* Finalize processing */
 
 /**
-extern void func_800D6160(s32 flag);  /* Core update function */
 
 /**
 /**
-extern u8 D_80142728[];  /* Primary sync object */
-extern u8 D_801427A8[];  /* Secondary sync object */
-extern void func_80007270(void *sync, s32 a1, s32 a2);  /* Acquire sync */
-extern void func_800075E0(void *sync, s32 a1, s32 a2);  /* Release sync */
-extern void *func_80091B00(void);  /* Allocate from list */
 
 /**
-extern u8 D_80152770[];  /* Another sync object */
-extern void *func_80095F8C(s32 a0);  /* Object lookup */
-extern void *func_80095EF4(void *a0, s32 a1);  /* Object process */
 
 /**
-extern void func_80095FD8(s32 a0, s32 a1);  /* Object remove */
 
 /**
-extern s32 D_8015A110;  /* Current game state */
-extern void func_803914B4(s32 a0, s32 a1, s32 a2);  /* External handler */
 
 /**
-extern s32 func_80097694(s32 a0, s32 a1);  /* Object lookup by type */
 
 /**
 /**
 /**
 /**
-extern void func_800CF06C(void);  /* Pre-update */
-extern void func_800E1AA0(s32 a0);  /* Update stage 1 */
-extern void func_800E15A0(s32 a0);  /* Update stage 2 */
-extern void func_800E1540(s32 a0);  /* Update stage 3 */
-extern void func_800E114C(s32 a0);  /* Update stage 4 */
-extern void func_800D0424(s32 a0);  /* Update stage 5 */
 
 /**
-extern void func_800BF024(s32 a0);  /* Process with flag */
-extern void func_80091C04(s32 a0);  /* Process without flag */
-extern void func_800D54BC(void *a0);  /* Clear structure */
+extern void func_800BF024(void *a0); /* Process with flag */
+extern void func_80091C04(void *a0); /* Process without flag */
+extern void func_800D54BC(void *a0); /* Clear structure */
 
 /**
 /**
 /**
 /**
-extern void func_800B3D18(s32 a0);  /* State reset with flag */
-extern void *D_801597F0;  /* Global state pointer */
-extern u8 D_80159B70;  /* State byte A */
-extern u8 D_80159B60;  /* State byte B */
 
 /**
 /**
 /**
-extern void *D_80114624;  /* Single global object */
-extern void *D_80114628[];  /* Array of 4 object pointers */
-extern void func_8008D0C0(void *a0);  /* Object cleanup */
 
 /**
-extern void func_800B74A0(s32 a0);  /* Prepare for operation */
-extern void func_800B71D4(s16 a0, s16 a1, s32 a2);  /* Execute operation */
 
 /**
-extern void func_800BE7BC(void *buf, s32 a1, s16 a2);  /* Fill buffer */
 
 /**
-extern void func_80002CD0(void *buf, s32 a1, void *a2);  /* Copy to buffer */
 
 /**
-extern void func_80096CA8(s32 a0, s32 a1);  /* Process with second parameter */
 
 /**
-extern void *func_80091BA8(s32 a0);  /* Find element in sync list */
-extern void func_800BF01C(s32 a0);   /* Process nested element */
-extern void func_80091C04(s32 a0);   /* Remove element from list */
 
 /**
-extern void func_800A4B6C(void);      /* Initialize subsystem A */
-extern void func_80096238(s32 a0);    /* Configure with parameter */
-extern void func_80020274(void);      /* Start operation */
-extern s32 func_800202C4(void);       /* Poll completion status */
 
-extern s32 D_80151A6C;  /* Configuration value */
 
 /**
-extern void func_800B90F8(void);      /* Cleanup subsystem */
-extern void func_80096130(s32 a0);    /* Release resource */
-extern void func_80002790(void *dst, s32 val, s32 size);  /* memset */
 
-extern s32 D_80143A18;  /* Resource handle A */
-extern s32 D_80143A20;  /* Resource handle B */
-extern s32 D_80143A28;  /* Resource handle C */
-extern void *D_80143A10; /* Resource array base */
 
 /**
-extern void func_800A5A40(void);  /* Initialize subsystem */
 
 extern s32 D_801513B4;    /* Global flag A */
 extern s16 D_8016B254;    /* Global state value */
-extern f32 D_801613B8;    /* Scale factor */
-extern s16 D_80140618;    /* Position value */
-extern void *D_801406B8;  /* Data pointer */
 extern void *D_8012EA18;  /* Source data */
 
 /**
 extern u8 *D_80159800;  /* Source data array */
 
 /**
-extern void func_800BAAA0(void);  /* Initialize state arrays */
 
-extern f32 D_80153F28[6];  /* State array A */
-extern f32 D_80153F48[6];  /* State array B */
-extern f32 D_80153F68[6];  /* State array C */
-extern f32 D_80154190;     /* Copied scale value */
-extern f32 D_801543CC;     /* Source scale value */
-extern s16 D_80154182;     /* State flag */
 
 /**
-extern void *D_80152770;           /* Sync object */
-extern void *func_80095F8C(s32 a0);  /* Find element by id */
-extern void *func_80095EF4(void *elem, s32 a0, s32 a1);  /* Process element */
 
 /**
-extern void func_800B6024(void);  /* Initialize base state */
 
-extern s16 D_8015A108;    /* Element count */
-extern void *D_8015A118;  /* Element array base */
 
 /**
-extern void *func_800B24EC(void *a0, void *a1, s32 a2, s8 a3, s32 a4);  /* Create linked element */
-extern void func_800B362C(void *a0);   /* Alternate init */
-extern void func_80094EC8(void *a0);   /* Finalize object */
 
-extern u8 D_80140BDC;  /* Default parameter value */
 
 /**
-extern void func_80092360(s32 a0, s32 a1, s32 a2, s32 a3);  /* Trigger action */
 
 /**
 /**
-extern void *func_80096B00(s32 a0, s32 a1);  /* Lookup element */
 
 /**
-extern void func_80096288(s32 a0, s32 a1, s32 a2);  /* Initialize element entry */
-extern void func_800962D4(s32 a0, s32 a1);          /* Configure element */
 
-extern void *D_80156D38;  /* Element array base */
 
 /**
 /**
@@ -6187,44 +6379,28 @@ extern void *D_80156D38;  /* Element array base */
 /**
 /**
 /**
-extern s16 func_800B3FA4(s32 a0, s32 a1);  /* Get dimension value */
 
 /**
 /**
-extern void func_8009211C(s32 a0, void *a1);  /* Add element to list */
 
 /**
-extern void *D_80116DE0;  /* Default handler table */
 
 /**
-extern void *D_80152750;  /* Secondary sync object */
 
 /**
-extern s32 func_80097470(s32 a0, s32 a1);  /* Allocate resource */
 
 /**
-extern void *D_80153F10;  /* State structure base */
-extern void func_8008ABE4(void);  /* Finalize state init */
 
 /**
 /**
-extern u8 D_80110680[2];  /* State flag array */
-extern void func_800BADE0(void);  /* Initialize state handler */
 
 /**
-extern u8 D_80143A10;  /* Global state byte */
-extern s8 D_8015978C;  /* Configuration value */
-extern void func_800BB9B0(s32 a0, s32 a1, s32 a2);  /* Configure subsystem */
 
 /**
-extern void func_8009C3F8(s32 a0);  /* Process with mode */
 
 /**
-extern void func_80096288(s32 a0, s32 a1, s32 a2);  /* Configure element */
-extern void func_800962D4(s32 a0, s32 a1);  /* Set element state */
 
 /**
-extern void func_8008E26C(s32 a0, s32 a1, s16 a2);  /* Base function */
 
 /**
 /**
@@ -6232,47 +6408,31 @@ extern void func_8008E26C(s32 a0, s32 a1, s16 a2);  /* Base function */
 /**
 /**
 /**
-extern s8 D_80159B70;  /* Global state byte */
-extern s8 D_80159B60;  /* Global state byte 2 */
 
 /**
 /**
-extern void *D_80152770;  /* Sync object 3 */
-extern void func_80095F8C(void *a0);  /* Lookup function */
-extern void *func_80095EF4(void *a0, s32 a1);  /* Lookup and return */
 
 /**
-extern s32 func_80097694(s32 a0, s32 a1);  /* Lookup by index */
 
 /**
 /**
-extern void *D_801491F0;  /* Resource list head */
-extern void func_8009079C(void *a0, s32 a1);  /* Process resource */
-extern void func_800B0580(void);  /* Initialize resources */
 
 /**
 /**
 /**
-extern s16 D_80151AD0;  /* Resource count */
-extern s32 *D_80124FD0;  /* Resource array */
 
 /**
-extern void *D_801146FC;  /* Default handler pointer */
 
 /**
-extern void func_80095FD8(void *a0, s32 a1);  /* Process resource */
 
 /**
 /**
-extern void func_800D6160(s32 a0);  /* Core physics update */
 
 /**
 /**
-extern void func_80092360(s32 a0, s32 a1, s32 a2, s32 a3);  /* Trigger event */
 
 /**
 /**
-extern s32 D_801174B4;  /* Game state flags */
 
 /**
 /*
@@ -6308,30 +6468,21 @@ s32 func_800B71D4(void) {
 /**
 /**
 /**
-extern u8 D_80140BDC;  /* Global counter/index */
 
 /**
 /**
-extern s32 D_80151A6C;  /* Resource handle */
-
-/**
-/**
-/**
-extern void *D_801597F0;  /* Global state pointer */
-extern void *D_80159800;  /* Secondary state pointer */
-
-/**
-extern s8 D_80159B60;  /* State offset byte */
-
-/**
-extern void *D_80152770;  /* Tertiary sync object */
 
 /**
 /**
 /**
-extern s16 D_801525F0;   /* Entity counter */
-extern s8 D_80152744;    /* Entity count limit */
-extern u8 *D_8015A250;   /* Entity array base - 2056 byte elements */
+
+/**
+
+/**
+
+/**
+/**
+/**
 
 /**
 /**
@@ -6343,21 +6494,14 @@ extern u8 *D_8015A250;   /* Entity array base - 2056 byte elements */
 /**
 /**
 /**
-extern void *D_80116DE0;  /* Default handler pointer */
-extern void *D_80152750;  /* Sync object for UI */
 
 /**
 /**
 /**
-extern u8 D_80153F10;  /* Timer/callback state struct base */
 
 /**
-extern void *D_80146188;  /* Entity list sync */
-extern void *D_80146170;  /* Entity list head */
 
-extern s32 D_80151A6C;  /* Element lookup key */
 
-extern void *D_801146FC;  /* Default element handler */
 
 extern u8 D_80159B74;  /* Player state bytes array */
 
@@ -6381,39 +6525,21 @@ void func_800C84C0(s32 a0, s8 a1) {
 
 /*
 
-extern u8 D_801147C4;     /* Sound init flag */
-extern s32 D_801551E8;    /* Sound buffer start */
 extern s32 D_80155210;    /* Sound buffer end */
 
-extern u8 D_80159B70;  /* Track state byte 1 */
-extern u8 D_80159B60;  /* Track state byte 2 */
 
-extern s32 D_801597D0;  /* Sync object for player system */
 
-extern s32 D_80144D60;  /* Entity type table */
 
-extern s32 D_80159428;  /* Player score/state buffer 1 */
-extern s32 D_8015256C;  /* Player score/state buffer 2 */
 
-extern u8 D_80110680[2];  /* Control flags */
 
-extern u8 D_80143A10;   /* Race state flag */
-extern s8 D_8015978C;   /* Player index */
 
-extern u8 D_80140BDC;  /* Player count or something similar */
 
 extern s32 D_8012EAA0;
-extern void *D_80151AD4;
 
-extern void *D_801597F0;
 
-extern u8 D_80110680;
 
-extern u8 D_80156D38[];
 
-extern s32 D_801597D0;
 
-extern u8 D_80143A10;
 extern s8 D_8014978C;
 
 /*
@@ -10280,7 +10406,7 @@ void func_800988E0(void *entity, s32 damage) {
         func_800E15A8(pos, 0, 5);
 
         /* Play damage sound */
-        func_800B37E8(0x50);
+        func_800B37E8(0x50, 0, NULL, 0);
     }
 }
 
@@ -13000,9 +13126,9 @@ void func_800ABBD0(void *player, f32 *respawnPos) {
  * Orchestrates input, physics, collision, and state.
  */
 extern void *D_80159000;        /* Current controller state */
-extern void func_800A6BE4(void *car, f32 dt);     /* Physics integration */
-extern void func_800A78C8(void *car, f32 steer);  /* Steering */
-extern void func_800A7AE4(void *car, f32 throttle, f32 brake);  /* Drive */
+extern void func_800A6BE4(void *car, f32 dt); /* Physics integration */
+extern void func_800A78C8(void *car, f32 steerInput); /* Steering */
+extern void func_800A7AE4(void *car, f32 throttle, f32 brake); /* Drive */
 
 void func_800ABCC8(void *player, f32 dt) {
     s32 state;
@@ -13120,7 +13246,7 @@ void func_800ABCC8(void *player, f32 dt) {
 extern u32 D_801582B0;          /* Race elapsed time */
 extern s32 D_801582B4;          /* Total checkpoints */
 extern s32 D_801582B8;          /* Finish line checkpoint index */
-extern void func_800B4208(s32 voiceId);  /* Play voice */
+extern void func_800B4208(s32 voiceId); /* Play voice */
 
 void func_800AC75C(void *car, void *checkpoint) {
     f32 *carPos, *cpPos, *cpNormal;
@@ -13406,7 +13532,7 @@ s32 func_800AD0A0(void *player) {
 extern s32 D_801582E8;          /* Required laps */
 extern s32 D_801582EC;          /* Finished cars count */
 extern s32 D_801582F0;          /* Race finished flag */
-extern void func_800AD734(void);  /* Display results */
+extern void func_800AD734(void); /* Display results */
 
 void func_800AD128(void *player) {
     s32 *laps, *position;
@@ -13487,7 +13613,7 @@ void func_800AD128(void *player) {
  */
 extern s32 D_801582F4;          /* Results screen state */
 extern s32 D_801582F8;          /* Results timer */
-extern void func_800E2A3C(s32 type);  /* Screen transition */
+extern void func_800E2A3C(s32 a0); /* Screen transition */
 
 void func_800AD734(void) {
     s32 i;
@@ -13689,7 +13815,7 @@ void func_800AED64(s32 position, u8 *name, s32 time) {
  * Uses N64 save system for persistence.
  */
 extern s32 D_80158FCC;          /* Save pending flag */
-extern void func_80096240(void *data, s32 size);  /* EEPROM write */
+extern void func_80096240(s32 a0, s32 a1); /* EEPROM write */
 
 void func_800AEFE8(void) {
     /* Mark save as pending */
@@ -15782,7 +15908,7 @@ void func_800CBF2C(void *menu) {
             *selectedItem = *itemCount - 1;
         }
         *inputDelay = 8;
-        func_800B37E8(0x01);  /* Menu navigate sound */
+        func_800B37E8(0x01, 0, NULL, 0);  /* Menu navigate sound */
     }
 
     if (buttonsPressed & 0x0400) {  /* D-pad Down */
@@ -15791,13 +15917,13 @@ void func_800CBF2C(void *menu) {
             *selectedItem = 0;
         }
         *inputDelay = 8;
-        func_800B37E8(0x01);
+        func_800B37E8(0x01, 0, NULL, 0);
     }
 
     /* Menu selection */
     if (buttonsPressed & 0x8000) {  /* A button */
         *inputDelay = 15;
-        func_800B37E8(0x02);  /* Menu select sound */
+        func_800B37E8(0x02, 0, NULL, 0);  /* Menu select sound */
 
         /* Handle menu item selection based on current menu */
         switch (*menuState) {
@@ -15851,7 +15977,7 @@ void func_800CBF2C(void *menu) {
     /* Menu back */
     if (buttonsPressed & 0x4000) {  /* B button */
         *inputDelay = 15;
-        func_800B37E8(0x03);  /* Menu back sound */
+        func_800B37E8(0x03, 0, NULL, 0);  /* Menu back sound */
 
         if (*menuState == 0) {
             /* Already at main menu */
@@ -16472,7 +16598,7 @@ void func_800D5A04(void *menu) {
         if (buttonsPressed != 0) {
             buttonMappings[*selectedOption] = buttonsPressed;
             *waitingForInput = 0;
-            func_800B37E8(0x02);  /* Confirm sound */
+            func_800B37E8(0x02, 0, NULL, 0);  /* Confirm sound */
         }
     }
 }
@@ -16611,10 +16737,10 @@ void func_800D6530(s32 operation) {
                 result = osPfsWriteFile(pfs, slot, 0, 0x100, (u8 *)slotData);
                 if (result == 0) {
                     *operationResult = 1;
-                    func_800B37E8(0x04);  /* Save complete sound */
+                    func_800B37E8(0x04, 0, NULL, 0);  /* Save complete sound */
                 } else {
                     *operationResult = -3;
-                    func_800B37E8(0x05);  /* Error sound */
+                    func_800B37E8(0x05, 0, NULL, 0);  /* Error sound */
                 }
             }
             break;
@@ -16630,10 +16756,10 @@ void func_800D6530(s32 operation) {
                     D_80159200 = slotData[1];
                     D_80159204 = slotData[2];
                     *operationResult = 1;
-                    func_800B37E8(0x04);
+                    func_800B37E8(0x04, 0, NULL, 0);
                 } else {
                     *operationResult = -4;
-                    func_800B37E8(0x05);
+                    func_800B37E8(0x05, 0, NULL, 0);
                 }
             }
             break;
@@ -20411,11 +20537,11 @@ void func_800F6144(void *car, s32 stuntType) {
 
     /* Play combo sound effect */
     if (*comboCount == 3) {
-        func_800B37E8(0x20);  /* Nice combo sound */
+        func_800B37E8(0x20, 0, NULL, 0);  /* Nice combo sound */
     } else if (*comboCount == 5) {
-        func_800B37E8(0x21);  /* Great combo sound */
+        func_800B37E8(0x21, 0, NULL, 0);  /* Great combo sound */
     } else if (*comboCount == 10) {
-        func_800B37E8(0x22);  /* Insane combo sound */
+        func_800B37E8(0x22, 0, NULL, 0);  /* Insane combo sound */
     }
 
     /* Update HUD combo display */
@@ -20452,7 +20578,7 @@ void func_800F6894(void *car, s32 deploy) {
             *wingTimer = 0;
 
             /* Play deploy sound */
-            func_800B37E8(0x30);
+            func_800B37E8(0x30, 0, NULL, 0);
         }
 
         /* Animate wing extension (takes 10 frames) */
@@ -20479,7 +20605,7 @@ void func_800F6894(void *car, s32 deploy) {
             *wingState = 0;
 
             /* Play retract sound */
-            func_800B37E8(0x31);
+            func_800B37E8(0x31, 0, NULL, 0);
         }
 
         /* Animate wing retraction */
@@ -20667,17 +20793,17 @@ s32 func_800F6DBC(void *car) {
         /* Play landing sound based on quality */
         switch (landingQuality) {
             case 4:
-                func_800B37E8(0x40);  /* Perfect landing */
+                func_800B37E8(0x40, 0, NULL, 0);  /* Perfect landing */
                 break;
             case 3:
-                func_800B37E8(0x41);  /* Good landing */
+                func_800B37E8(0x41, 0, NULL, 0);  /* Good landing */
                 break;
             case 2:
             case 1:
-                func_800B37E8(0x42);  /* Rough landing */
+                func_800B37E8(0x42, 0, NULL, 0);  /* Rough landing */
                 break;
             case 0:
-                func_800B37E8(0x43);  /* Crash */
+                func_800B37E8(0x43, 0, NULL, 0);  /* Crash */
                 break;
         }
 
@@ -23255,9 +23381,6 @@ void func_800B2D20(f32 *pos, f32 *forward) {
  *   0x208: engine sound volume
  *   0x20C: engine sound state (0=off, 1=idle, 2=revving, 3=redline)
  */
-extern void func_80090F44(s32 handle, s32 pitch);  /* Set sound pitch */
-extern void func_80090E9C(s32 handle, s32 volume); /* Set sound volume */
-extern s32 func_80090284(s32 soundId, s32 flags);  /* Start sound */
 
 void func_800B2DF8(void *car) {
     f32 rpm;
@@ -23406,7 +23529,6 @@ void func_800B338C(void *car) {
  *   Medium (0.3-0.6): Medium crash
  *   Heavy (> 0.6): Big crash
  */
-extern s32 func_80091FBC(s32 soundId, s32 priority, s32 volume);  /* Play one-shot */
 
 void func_800B3710(void *car, f32 intensity) {
     s32 soundId;
@@ -23625,11 +23747,6 @@ extern s32 D_8015814C;          /* Voice priority */
 extern s32 D_80158150;          /* Voice fade timer */
 
 /* External audio functions */
-extern s32 func_80090284(s32 soundId, s32 flags);
-extern void func_80090E9C(s32 handle, s32 volume);
-extern void func_80090F44(s32 handle, s32 pitch);
-extern void func_800B358C(void *handle);
-extern s32 func_80091FBC(s32 handle);  /* Check if sound done */
 
 void func_800B4208(s32 voiceId) {
     s32 soundId;
@@ -23748,7 +23865,6 @@ void func_800B4738(void) {
  */
 extern f32 D_80158160[8][4];    /* Bus levels [bus][channel] */
 extern s32 D_801581E0;          /* Bus dirty flags */
-extern void func_80091B00(s32 bus, f32 left, f32 right);  /* Set bus volume */
 
 void func_800B4818(s32 bus, f32 *levels) {
     f32 left, right, center, sub;
@@ -23825,7 +23941,6 @@ extern s32 D_801581E4;          /* Current reverb type */
 extern f32 D_801581E8;          /* Current reverb amount */
 extern f32 D_801581EC[7];       /* Reverb decay times per type */
 extern f32 D_80158208[7];       /* Reverb diffusion per type */
-extern void func_80091BA8(s32 type, f32 decay, f32 diffusion, f32 wet);
 
 void func_800B4B94(s32 reverbType, f32 amount) {
     f32 decay, diffusion, wet;
@@ -23900,7 +24015,6 @@ void func_800B4B94(s32 reverbType, f32 amount) {
  * Used for pause menu, attract mode transitions, etc.
  */
 extern s32 D_80158224;          /* Audio paused flag */
-extern void func_80091CA4(s32 pause);  /* System audio pause */
 
 void func_800B4DAC(s32 pause) {
     /* Set paused state */
@@ -23938,7 +24052,6 @@ extern f32 D_8015822C;          /* Duck amount (0-1) */
 extern f32 D_80158230[5];       /* Duck targets per bus */
 extern f32 D_80158244[5];       /* Duck current values */
 extern s32 D_80158258;          /* Duck timer */
-extern void func_80091B00(s32 bus, f32 left, f32 right);
 
 void func_800B4E70(s32 priority) {
     f32 duckAmount;
@@ -24043,7 +24156,6 @@ void func_800B4E70(s32 priority) {
  * Sets priority for a sound handle.
  * Higher priority sounds won't be stolen by lower priority.
  */
-extern void func_8009211C(s32 handle, s32 priority);
 
 void func_800B5694(s32 handle, s32 priority) {
     /* Validate handle */
@@ -24069,7 +24181,6 @@ void func_800B5694(s32 handle, s32 priority) {
  *
  * loop: 0 = one-shot, 1 = loop forever, >1 = loop N times
  */
-extern void func_80092360(s32 handle, s32 loopCount);
 
 void func_800B574C(s32 handle, s32 loop) {
     s32 loopCount;
@@ -24169,7 +24280,6 @@ extern f32 D_80158274[3];       /* Listener forward vector */
 extern f32 D_80158280[3];       /* Listener right vector */
 extern f32 D_8015828C;          /* Speed of sound */
 extern f32 D_80158290;          /* Doppler factor */
-extern void func_80092C58(s32 handle, s32 pan, s32 volume, s32 pitch);
 
 void func_800B59F8(s32 handle, f32 *pos, f32 *velocity) {
     f32 dx, dy, dz;
@@ -24393,7 +24503,6 @@ f32 func_800B6788(f32 *listenerPos, f32 *listenerVel, f32 *sourcePos, f32 *sourc
  *
  * Returns: Occlusion factor 0.0-1.0 (1.0 = no occlusion, 0.0 = fully blocked)
  */
-extern s32 func_800A2378(f32 *start, f32 *end, s32 flags);  /* Ray cast */
 extern u8 D_801582A0;           /* Current zone type (tunnel, underwater, etc) */
 
 f32 func_800B6BEC(f32 *listenerPos, f32 *sourcePos) {
@@ -27287,7 +27396,6 @@ extern s32 D_8015A450;      /* Award ceremony state */
 extern s32 D_8015A454;      /* Animation frame counter */
 extern s32 D_8015A458[4];   /* Player placing (1st-4th) */
 extern s32 D_8015A468[4];   /* Player finish times */
-extern s32 D_80158100;      /* Input state */
 
 void func_80102A74(void) {
     s32 state;
@@ -28053,7 +28161,7 @@ void func_80104E84(void *stats) {
 
 extern u16 D_8015A500;      /* Achievement unlock bitfield */
 extern s32 D_8015A504[10];  /* Achievement thresholds */
-extern void func_80105EF4(s32 achId);  /* Unlock notification */
+extern void func_80105EF4(s32 achievementId); /* Unlock notification */
 
 void func_80105858(void *player) {
     s32 *playerStats;
@@ -28702,7 +28810,6 @@ void func_8010A4C0(void) {
  * For local multiplayer, ensures all player states are consistent.
  * Copies relevant state between player structures.
  */
-extern void *D_80152818;    /* Car state array base */
 
 void func_8010A83C(void) {
     s32 numPlayers;
@@ -31193,12 +31300,11 @@ void func_800C6404(void *camera, s32 placing) {
  */
 extern void *D_80159010;        /* HUD sprite table */
 extern void *D_80159014;        /* Current display list */
-extern void func_80099BFC(void *dl, void *sprite, s32 x, s32 y, s32 w, s32 h);
+extern void func_80099BFC(void *entity);
 
-void func_800C7110(s32 elementId, s32 x, s32 y) {
+void func_800C7110(s32 elementId, s32 x, s32 y, s32 w, s32 h, s32 alpha) {
     void **spriteTable;
     void *sprite;
-    s32 width, height;
 
     if (D_80159010 == NULL || D_80159014 == NULL) {
         return;
@@ -31217,12 +31323,8 @@ void func_800C7110(s32 elementId, s32 x, s32 y) {
         return;
     }
 
-    /* Get sprite dimensions from header */
-    width = *(s32 *)sprite;
-    height = *(s32 *)((u8 *)sprite + 4);
-
-    /* Render sprite to display list */
-    func_80099BFC(D_80159014, sprite, x, y, width, height);
+    /* Render sprite to display list with specified size and alpha */
+    func_80099BFC(D_80159014, sprite, x, y, w, h, alpha);
 }
 
 /*
@@ -31237,17 +31339,19 @@ extern void *D_80159018;        /* Font sprite table */
 extern s32 D_8015901C;          /* Font character width */
 extern s32 D_80159020;          /* Font character height */
 
-void func_800C734C(char *text, s32 x, s32 y) {
+void func_800C734C(s32 x, s32 y, char *text, u32 color) {
     s32 charX;
     s32 charIndex;
     char c;
     s32 i;
+    s32 alpha;
 
     if (text == NULL) {
         return;
     }
 
     charX = x;
+    alpha = (color >> 24) & 0xFF;
 
     for (i = 0; text[i] != '\0' && i < 64; i++) {
         c = text[i];
@@ -31280,7 +31384,7 @@ void func_800C734C(char *text, s32 x, s32 y) {
         }
 
         /* Draw character */
-        func_800C7110(charIndex + 64, charX, y);  /* Font chars start at element 64 */
+        func_800C7110(charIndex + 64, charX, y, D_8015901C, D_80159020, alpha);
 
         /* Advance position */
         charX += D_8015901C;
@@ -31360,7 +31464,7 @@ void func_800C760C(s32 value, s32 digits, s32 x, s32 y) {
  *   - Rotating needle based on speed
  *   - Digital readout below
  */
-extern s32 D_80159024;          /* Speedometer X position */
+extern void *D_80159024[];          /* Speedometer X position */
 extern s32 D_80159028;          /* Speedometer Y position */
 extern f32 D_8015902C;          /* Speed to MPH conversion factor */
 
@@ -31596,7 +31700,7 @@ void func_800C9404(void *player) {
  *   6 = "FINISH!"
  *   7 = "NEW RECORD!"
  */
-extern s32 D_80159058;          /* Screen center X */
+extern void *D_80159058[];          /* Screen center X */
 extern s32 D_8015905C;          /* Message Y position */
 static char *hudMessages[] = {
     "CHECKPOINT!",
@@ -31643,10 +31747,6 @@ void func_800CA308(s32 messageId) {
  * Main HUD rendering function - draws all HUD elements.
  * Called every frame during gameplay.
  */
-extern void *D_801582C0[8];     /* Car pointers array */
-extern s32 D_801582E0;          /* Number of active cars */
-extern u32 D_801582B0;          /* Race elapsed time */
-extern s32 D_801582E8;          /* Required laps */
 extern s32 D_80159060;          /* HUD enabled flag */
 extern s32 D_80159064;          /* Current message ID (-1 = none) */
 extern s32 D_80159068;          /* Message timer */
@@ -40160,7 +40260,7 @@ void func_800FFDF8(void) {
     extern s32 D_80159E10;    /* Name entry state */
     extern s32 D_80159E14;    /* Cursor position */
     extern char D_80159E18[4]; /* Entered name */
-    extern s32 D_80158100;    /* Input state */
+    extern void *D_80158100[];    /* Input state */
     s32 input;
     s32 cursorPos;
     char *alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ";
@@ -41208,7 +41308,7 @@ void func_8010761C(void *car) {
  */
 void func_80107AF4(void *car) {
     extern u32 D_80142AFC;
-    extern s32 D_80159A10;     /* Finish order counter */
+    extern void *D_80159A10[];     /* Finish order counter */
     extern s32 D_80159A14[];   /* Finish times [8] */
     extern s32 D_80159A34[];   /* Finish positions [8] */
     u8 *carData = (u8 *)car;
