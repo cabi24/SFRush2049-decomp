@@ -6,11 +6,13 @@
  */
 
 #include "types.h"
+#include "PR/os_pfs.h"
 
 /* External functions */
-extern s32 func_8000F2D0(void *pfs);  /* Check PFS status */
-extern s32 func_8000E8D0(s32 channel, s32 bank, u16 page, void *buffer);
-extern s32 func_8000E620(s32 channel, s32 bank);
+extern s32 __osCheckId(OSPfs *pfs);                         /* func_8000F2D0 */
+extern s32 __osContRamRead(OSMesgQueue *mq, s32 channel,    /* func_8000E8D0 */
+                           u16 addr, u8 *data);
+extern s32 __osPfsGetStatus(OSMesgQueue *mq, s32 channel);  /* func_8000E620 */
 
 /**
  * Find a file on Controller Pak
@@ -19,89 +21,80 @@ extern s32 func_8000E620(s32 channel, s32 bank);
  * Searches the Controller Pak for a file matching the given criteria.
  *
  * @param pfs PFS handle
- * @param companyCode Company code to match
- * @param gameCode Game code to match
- * @param gameName Game name to match (can be NULL)
- * @param extName Extension name to match (can be NULL)
- * @param fileNo Output: file number if found
- * @return 0 on success, 5 if not found/invalid
+ * @param companyCode Company code to match (0 for any)
+ * @param gameCode Game code to match (0 for any)
+ * @param gameName Game name to match (NULL for any)
+ * @param extName Extension name to match (NULL for any)
+ * @param fileNo Output: file number if found, -1 if not found
+ * @return 0 on success, PFS_ERR_INVALID if not found/invalid
  */
-s32 osPfsFindFile(void *pfs, u16 companyCode, u32 gameCode,
+s32 osPfsFindFile(OSPfs *pfs, u16 companyCode, u32 gameCode,
                   u8 *gameName, u8 *extName, s32 *fileNo) {
-    u8 *p = (u8 *)pfs;
-    u8 buffer[0x28];  /* Directory entry buffer */
-    s32 i;
-    s32 numFiles;
-    s32 result;
-    s32 match;
+    __OSDir dir;
     s32 j;
+    s32 i;
+    s32 ret;
+    s32 err;
 
     /* Check if initialized */
-    if ((*(u32 *)p & 1) == 0) {
-        return 5;
+    if (!(pfs->status & PFS_INITIALIZED)) {
+        return PFS_ERR_INVALID;
     }
 
-    /* Check PFS status */
-    result = func_8000F2D0(pfs);
-    if (result != 0) {
-        return result;
+    /* Check PFS status / ID */
+    ret = __osCheckId(pfs);
+    if (ret != 0) {
+        return ret;
     }
 
-    /* Get number of files */
-    numFiles = *(s32 *)(p + 0x50);
-
-    /* Search through all file entries */
-    for (i = 0; i < numFiles; i++) {
+    /* Search through all directory entries */
+    for (j = 0; j < pfs->dir_size; j++) {
         /* Read directory entry */
-        result = func_8000E8D0(
-            *(s32 *)(p + 4),
-            *(s32 *)(p + 8),
-            *(s32 *)(p + 0x5C) + i,
-            buffer
-        );
-        if (result != 0) {
-            return result;
+        ret = __osContRamRead(pfs->queue, pfs->channel,
+                              (u16)(pfs->dir_table + j), (u8 *)&dir);
+        if (ret != 0) {
+            return ret;
         }
 
-        /* Release access */
-        result = func_8000E620(*(s32 *)(p + 4), *(s32 *)(p + 8));
-        if (result != 0) {
-            return result;
+        /* Get status / release access */
+        ret = __osPfsGetStatus(pfs->queue, pfs->channel);
+        if (ret != 0) {
+            return ret;
         }
 
         /* Check company code and game code */
-        if (companyCode != *(u16 *)(buffer + 4)) continue;
-        if (gameCode != *(u32 *)buffer) continue;
+        if (dir.company_code != companyCode) continue;
+        if (dir.game_code != gameCode) continue;
 
         /* Check game name if provided */
-        match = 0;
+        err = 0;
         if (gameName != NULL) {
-            for (j = 0; j < 16; j++) {
-                if (buffer[0x10 + j] != gameName[j]) {
-                    match = 1;
+            for (i = 0; i < PFS_FILE_NAME_LEN; i++) {
+                if (dir.game_name[i] != gameName[i]) {
+                    err = 1;
                     break;
                 }
             }
         }
 
         /* Check extension name if provided */
-        if (extName != NULL && match == 0) {
-            for (j = 0; j < 4; j++) {
-                if (buffer[0x0C + j] != extName[j]) {
-                    match = 1;
+        if (extName != NULL && err == 0) {
+            for (i = 0; i < PFS_FILE_EXT_LEN; i++) {
+                if (dir.ext_name[i] != extName[i]) {
+                    err = 1;
                     break;
                 }
             }
         }
 
         /* Found match */
-        if (match == 0) {
-            *fileNo = i;
+        if (err == 0) {
+            *fileNo = j;
             return 0;
         }
     }
 
     /* Not found */
     *fileNo = -1;
-    return 5;
+    return PFS_ERR_INVALID;
 }

@@ -88,30 +88,16 @@ typedef f32 Mat4f[4][4];
 #define OS_MESG_NOBLOCK 0
 #define OS_MESG_BLOCK   1
 
-/* Controller Pak (PFS) constants */
+/* Controller Pak (PFS) constants - see include/PR/os_pfs.h for full definitions */
+/* Basic constants kept here for compatibility */
+#ifndef _OS_PFS_H_
 #define PFS_READ  0
 #define PFS_WRITE 1
-/* PFS error codes */
-#define PFS_ERR_NOPACK       1   /* No pak inserted */
-#define PFS_ERR_NEW_PACK     2   /* New pak inserted (different ID) */
-#define PFS_ERR_INCONSISTENT 3   /* Inconsistent filesystem */
-#define PFS_ERR_CONTRFAIL    4   /* Controller communication failure */
 #define PFS_ERR_INVALID      5   /* Invalid parameter */
-#define PFS_ERR_EXIST        5   /* File already exists (alias) */
-#define PFS_ERR_BAD_DATA     6   /* Data read error */
-#define PFS_ERR_ID_FATAL     8   /* Fatal ID error */
-#define PFS_ERR_DEVICE       9   /* Wrong device type */
-#define PFS_ERR_NO_MEMORY    10  /* Not enough memory */
-#define PFS_ERR_NO_PAK       11  /* No pak inserted */
-
-/* PFS state flags */
-#define PFS_FLAG_INITIALIZED 0x01
-#define PFS_FLAG_NEEDS_CHECK 0x04
-
-/* Page/block sizes */
-#define PFS_PAGE_SIZE       256
-#define PFS_BLOCK_SIZE      32
-#define PFS_INODE_SIZE      32
+#define PFS_INITIALIZED      0x01
+#define PFS_BLOCKSIZE        32
+#define PFS_ONE_PAGE         8
+#endif
 #define PFS_LABEL_SIZE      28
 
 /* N64 Matrix constants */
@@ -134,22 +120,10 @@ typedef f32 Mat4f[4][4];
 /* Float matrix type alias */
 typedef f32 MtxF[4][4];
 
-/* N64 Controller Pak (PFS) structure - 0x68 bytes */
-typedef struct OSPfs {
-    s32     status;         /* 0x00: Status flags */
-    s32     channel;        /* 0x04: Controller channel (0-3) */
-    s32     activeBank;     /* 0x08: Current bank */
-    u8      label[32];      /* 0x0C: Volume label (0x20 bytes) */
-    u8      inode[32];      /* 0x2C: Inode table copy */
-    s32     companyCode;    /* 0x4C: Company code */
-    s32     gameCode;       /* 0x50: Game code */
-    s32     field_54;       /* 0x54: Field 54 (8) */
-    s32     field_58;       /* 0x58: Inode start page */
-    s32     field_5C;       /* 0x5C: Data start page */
-    s32     freePages;      /* 0x60: Number of free pages */
-    u8      banks;          /* 0x64: Number of banks */
-    u8      pad[3];         /* 0x65-0x67: Padding */
-} OSPfs;
+/* N64 Controller Pak (PFS) - see include/PR/os_pfs.h for full definition */
+/* Forward declaration for files that don't need the full struct */
+struct OSPfs;
+typedef struct OSPfs OSPfs;
 
 /* N64 OS timer structure */
 typedef struct {
