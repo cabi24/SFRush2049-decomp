@@ -12,13 +12,11 @@
 /* External functions */
 extern s32 __osDisableInt(void);
 extern void __osRestoreInt(s32 mask);
-extern OSThread *func_8000D10C(OSMesgQueue *mq);  /* Pop waiting thread */
+extern OSThread *__osPopThread(OSThread **queue);
 extern void osStartThread(OSThread *thread);
-extern void func_8000CFC4(s32 runnable);  /* Switch thread */
+extern void __osEnqueueAndYield(OSThread **queue);
 
-/* External data */
-extern OSThread *D_8002C3E0;  /* Current running thread */
-extern OSThread *D_8002C464;  /* System thread */
+/* Uses __osRunningThread from os_thread.h */
 
 /**
  * Jam message to front of queue
@@ -43,8 +41,8 @@ s32 osJamMesg(OSMesgQueue *mq, OSMesg msg, s32 flags) {
     while (mq->validCount >= mq->msgCount) {
         if (flags == OS_MESG_BLOCK) {
             /* Block - put current thread to sleep */
-            D_8002C3E0->state = OS_STATE_WAITING;
-            func_8000CFC4((s32)(mq) + 4);
+            __osRunningThread->state = OS_STATE_WAITING;
+            __osEnqueueAndYield(&mq->fullqueue);
         } else {
             /* Non-blocking - return error */
             __osRestoreInt(saved);
@@ -61,8 +59,8 @@ s32 osJamMesg(OSMesgQueue *mq, OSMesg msg, s32 flags) {
     mq->validCount++;
 
     /* Wake up any waiting receiver */
-    if (*(OSThread **)mq != NULL) {
-        thread = func_8000D10C(mq);
+    if (mq->mtqueue != NULL) {
+        thread = __osPopThread(&mq->mtqueue);
         osStartThread(thread);
     }
 
@@ -72,22 +70,22 @@ s32 osJamMesg(OSMesgQueue *mq, OSMesg msg, s32 flags) {
 
 /**
  * Set thread message queue
- * (func_80007590)
+ * (func_80007590 - __osSetThreadMesgQueue)
  *
  * Associates a message queue with the current thread.
  *
  * @param mq Message queue to associate
  */
-void func_80007590(OSMesgQueue *mq) {
+void __osSetThreadMesgQueue(OSMesgQueue *mq) {
     s32 saved;
 
     saved = __osDisableInt();
 
     /* Store queue in thread structure */
-    D_8002C464->priority = (s32)mq;
+    __osRunningThread->priority = (s32)mq;
 
     /* Set flag bit 4 */
-    *(u16 *)D_8002C464 |= 0x10;
+    *(u16 *)__osRunningThread |= 0x10;
 
     __osRestoreInt(saved);
 }
