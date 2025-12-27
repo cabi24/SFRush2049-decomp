@@ -11,6 +11,7 @@
  */
 
 #include "types.h"
+#include "PR/os_message.h"
 
 /* Hardware register addresses */
 #define SI_DRAM_ADDR_REG        (*(vu32 *)0xA4800000)
@@ -25,19 +26,19 @@
 #define SI_STATUS_DMA_BUSY      0x01
 #define SI_STATUS_IO_BUSY       0x02
 
+/* DMA direction constants */
+#define OS_READ     0   /* Read from PIF to DRAM */
+#define OS_WRITE    1   /* Write from DRAM to PIF */
+
 /* External data */
-extern s32 D_8002C4B0;          /* SI initialized flag */
-extern void *D_80037C90;        /* SI message buffer */
-extern void *D_80037C98;        /* SI message queue */
-extern u8 D_80037F60[64];       /* PIF buffer (64 bytes) */
-extern u8 D_80037AE0;           /* Terminator byte */
-extern u8 D_8002C4D4;           /* Controller request type */
+extern s32 __osSiAccessInited;          /* SI initialized flag */
+extern OSMesg __osSiAccessMesg;         /* SI access message */
+extern OSMesgQueue __osSiAccessQueue;   /* SI access message queue */
+extern u8 __osContPifRam[64];           /* PIF buffer (64 bytes) */
+extern u8 __osContLastCmd;              /* Last controller command type */
+extern u8 __osPifRamCmd;                /* PIF RAM command byte */
 
 /* External functions */
-extern void osCreateMesgQueue(void *mq, void *msgBuf, s32 count);
-extern void osJamMesg(void *mq, s32 msg, s32 arg);  /* Insert message at front */
-extern s32 osRecvMesg(void *mq, s32 *msg, s32 flags);  /* Receive message */
-extern u32 osVirtualToPhysical(void *addr);  /* Convert virtual to physical */
 extern void osWritebackDCache(void *addr, s32 size);  /* Writeback D-cache */
 extern void osInvalDCache(void *addr, s32 size);  /* Invalidate D-cache */
 
@@ -97,14 +98,14 @@ s32 __osSiRawStartDma(s32 direction, void *dramAddr) {
  *
  * Sets up the SI message queue for async operations.
  */
-void osSiInit(void) {
-    D_8002C4B0 = 1;
+void __osSiCreateAccessQueue(void) {
+    __osSiAccessInited = 1;
 
     /* Create message queue with 1 slot */
-    osCreateMesgQueue(&D_80037C98, &D_80037C90, 1);
+    osCreateMesgQueue(&__osSiAccessQueue, &__osSiAccessMesg, 1);
 
     /* Send initial message to indicate ready */
-    osJamMesg(&D_80037C98, 0, 0);
+    osJamMesg(&__osSiAccessQueue, NULL, OS_MESG_NOBLOCK);
 }
 
 /**
@@ -114,14 +115,14 @@ void osSiInit(void) {
  * Initializes SI if needed, then waits for it to be free.
  */
 void __osSiGetAccess(void) {
-    s32 msg;
+    OSMesg msg;
 
-    if (D_8002C4B0 == 0) {
-        osSiInit();
+    if (__osSiAccessInited == 0) {
+        __osSiCreateAccessQueue();
     }
 
     /* Wait for message indicating SI is free */
-    osRecvMesg(&D_80037C98, &msg, 1);
+    osRecvMesg(&__osSiAccessQueue, &msg, OS_MESG_BLOCK);
 }
 
 /**
@@ -131,7 +132,7 @@ void __osSiGetAccess(void) {
  * Signals that SI is now available for other operations.
  */
 void __osSiRelAccess(void) {
-    osJamMesg(&D_80037C98, 0, 0);
+    osJamMesg(&__osSiAccessQueue, NULL, OS_MESG_NOBLOCK);
 }
 
 /**
@@ -144,29 +145,29 @@ void __osSiRelAccess(void) {
  * @param ctrlNum Controller number (0-3)
  * @return Status code
  */
-s32 osContStartReadData(void *mq, s32 ctrlNum) {
-    s32 msg;
+s32 osContStartReadData(OSMesgQueue *mq, s32 ctrlNum) {
+    OSMesg msg;
     s32 ret;
     u8 response[4];
 
     /* Set controller request command */
-    D_8002C4D4 = 0xFA;  /* Read controller command */
+    __osPifRamCmd = 0xFA;  /* Read controller command */
 
     /* Build request packet */
     __osContBuildRequest(ctrlNum, 0);
 
     /* Write request to PIF */
-    __osSiRawStartDma(1, D_80037F60);
+    __osSiRawStartDma(OS_WRITE, __osContPifRam);
 
     /* Wait for write to complete */
-    osRecvMesg(mq, &msg, 1);
+    osRecvMesg(mq, &msg, OS_MESG_BLOCK);
 
     /* Read response from PIF */
-    __osSiRawStartDma(0, D_80037F60);
-    ret = msg;  /* Save status */
+    __osSiRawStartDma(OS_READ, __osContPifRam);
+    ret = (s32)(uintptr_t)msg;  /* Save status */
 
     /* Wait for read to complete */
-    osRecvMesg(mq, &msg, 1);
+    osRecvMesg(mq, &msg, OS_MESG_BLOCK);
 
     /* Parse response */
     __osContParseResponse(ctrlNum, response);
@@ -195,12 +196,12 @@ s32 osContStartReadData(void *mq, s32 ctrlNum) {
  * @param cmd Command to send (0 = status, 1 = read buttons)
  */
 void __osContBuildRequest(s32 ctrlNum, s32 cmd) {
-    u8 *buf = D_80037F60;
+    u8 *buf = __osContPifRam;
     u8 packet[6];
     s32 i;
 
-    D_80037AE0 = 0xFE;  /* Terminator */
-    buf[0x3C] = 1;      /* Enable */
+    __osContLastCmd = 0xFE;  /* Terminator */
+    buf[0x3C] = 1;           /* Enable */
 
     /* Build packet: tx_len, rx_len, cmd, padding... */
     packet[0] = 1;      /* TX length */
@@ -248,7 +249,7 @@ copy_packet:
  * @param out Output buffer for response data
  */
 void __osContParseResponse(s32 ctrlNum, u8 *out) {
-    u8 *buf = D_80037F60;
+    u8 *buf = __osContPifRam;
     u8 data[6];
     s32 i;
 
