@@ -20,24 +20,26 @@ extern void bzero(void *ptr, u32 size);
 extern void osInvalDCache(void *addr, u32 size);
 extern void dma_finalize(void *dst, u32 size);
 
-/* External game functions */
-extern void func_80007E80(void);     /* OS initialization */
-extern void func_800081D0(u32 addr, u32 *out);  /* Read PIF/EEPROM */
-extern void func_80008210(s32 a0, void *a1, void *a2, s32 a3);  /* Video setup */
-extern void func_80008380(s32 a0, s32 a1);  /* Video mode */
-extern void *func_80001DFC(void);    /* Returns frame counter ptr */
-extern void func_80000450(void *a0, void *a1, s32 a2, void *a3, s32 a4);  /* Timer/interrupt setup */
-extern void func_800005D4(void *a0, void *a1, void *a2);  /* More setup */
-extern void func_800075E0(OSMesgQueue *mq, OSMesg msg, s32 flags);  /* Send message */
-extern void func_800EEA7C(void);     /* Late init */
-extern void func_800A4934(void);     /* Sound init? */
-extern void func_800A48C8(void);     /* Audio start? */
-extern void func_800EE5DC(void);     /* Main game loop iteration */
-extern void func_800FD464(void);     /* Main thread loop */
+/* libultra OS functions */
+extern void osInitialize(void);                                    /* func_80007E80 */
+extern s32 osPiRawReadWord(u32 addr, u32 *out);                   /* func_800081D0 */
+extern void osCreateScheduler(s32 a0, void *a1, void *a2, s32 a3); /* func_80008210 */
+extern void osScSetVideoMode(s32 a0, s32 a1);                      /* func_80008380 */
+extern void *osScGetFrameCount(void);                              /* func_80001DFC */
+extern void osScCreateThread(void *a0, void *a1, s32 a2, void *a3, s32 a4);  /* func_80000450 */
+extern void osScStartRetrace(void *a0, void *a1, void *a2);        /* func_800005D4 */
+extern void osJamMesg(OSMesgQueue *mq, OSMesg msg, s32 flags);     /* func_800075E0 */
+
+/* Game-specific initialization functions */
+extern void game_late_init(void);    /* func_800EEA7C */
+extern void sound_init(void);        /* func_800A4934 */
+extern void audio_start(void);       /* func_800A48C8 */
+extern void game_frame_update(void); /* func_800EE5DC - per-frame game logic */
+extern void game_loop(void);         /* func_800FD464 - main game loop */
 
 /* Forward declarations for functions in this file */
 static void game_init(void *arg);
-static void func_800024FC(void *arg);
+static void game_thread_entry(void *arg);
 
 /* Thread structures */
 extern u8 D_80034BA0[];  /* Thread 1 struct (idle thread) */
@@ -97,12 +99,12 @@ void main(void *arg) {
     s32 i;
 
     /* Initialize OS */
-    func_80007E80();
+    osInitialize();
 
     /* Read 16 words from PIF RAM */
     addr = 0xFFB000;
     for (i = 0; i < 16; i++) {
-        func_800081D0(addr, &pif_data[i]);
+        osPiRawReadWord(addr, &pif_data[i]);
         addr += 4;
     }
 
@@ -122,8 +124,8 @@ void main(void *arg) {
  */
 static void thread1_entry(void *arg) {
     /* Initialize video system */
-    func_80008210(0x96, (void *)0x8002EE08, (void *)0x8002EE20, 0xC8);
-    func_80008380(0, 0);
+    osCreateScheduler(0x96, (void *)0x8002EE08, (void *)0x8002EE20, 0xC8);
+    osScSetVideoMode(0, 0);
 
     /* Create game_init thread (thread 6) */
     osCreateThread(D_80034D50, 6, game_init, arg,
@@ -156,8 +158,8 @@ static void game_init(void *arg) {
     osCreateMesgQueue(&D_8002ECC0, D_8002ECD8, 8);     /* Unknown queue */
 
     /* Get frame counter and set up timer interrupts */
-    frame_counter = (void *)func_80001DFC();
-    func_80000450((void *)0x8002E8E8, (void *)0x800344E0, 12, frame_counter, 1);
+    frame_counter = (void *)osScGetFrameCount();
+    osScCreateThread((void *)0x8002E8E8, (void *)0x800344E0, 12, frame_counter, 1);
 
     /* Finalize DMA for first region */
     dma_finalize(D_80086A50, (u32)(D_8010FD80 - D_80086A50));
@@ -172,7 +174,7 @@ static void game_init(void *arg) {
     bzero(D_801249F0, (u32)(D_8017A640 - D_801249F0));
 
     /* More initialization */
-    func_800005D4((void *)0x8002E8E8, &msg, &D_8002ECF8);
+    osScStartRetrace((void *)0x8002E8E8, &msg, &D_8002ECF8);
 
     /* Create audio thread (thread 8) */
     osCreateThread(D_80034690, 8, (void *)0x800AC75C, NULL,
@@ -180,7 +182,7 @@ static void game_init(void *arg) {
 
     /* Set up event message queue */
     osCreateMesgQueue(&D_80035440, D_8002F180, 1);
-    func_800075E0(&D_80035440, NULL, 1);
+    osJamMesg(&D_80035440, NULL, 1);
 
     /* Start audio thread */
     osStartThread(D_80034690);
@@ -191,11 +193,11 @@ static void game_init(void *arg) {
     osStartThread(D_80034840);
 
     /* Late initialization */
-    func_800EEA7C();
-    func_800A4934();
+    game_late_init();
+    sound_init();
 
     /* Create main game thread (thread 7) */
-    osCreateThread(D_800344E0, 7, (void *)func_800024FC, arg,
+    osCreateThread(D_800344E0, 7, (void *)game_thread_entry, arg,
                    D_80030AB0 + 0x12C0, 5);
 
     /* Write magic sync value */
@@ -215,11 +217,11 @@ static void game_init(void *arg) {
     D_80035472 = 0;
 
     /* Start audio */
-    func_800A48C8();
+    audio_start();
 
     /* Main loop - runs game logic */
     for (;;) {
-        func_800EE5DC();
+        game_frame_update();
     }
 }
 
@@ -229,12 +231,12 @@ static void game_init(void *arg) {
  *
  * @param arg Argument passed through
  */
-static void func_800024FC(void *arg) {
+static void game_thread_entry(void *arg) {
     /* Set FPU control/status register */
     __setfpcsr(0x1000E00);
 
     /* Main rendering loop */
     for (;;) {
-        func_800FD464();
+        game_loop();
     }
 }
