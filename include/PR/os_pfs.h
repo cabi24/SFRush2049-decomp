@@ -106,7 +106,16 @@ typedef struct __OSDir {
 #define PFS_FILE_EXT_LEN    4
 #define PFS_BLOCKSIZE       32      /* bytes per block */
 #define PFS_ONE_PAGE        8       /* blocks per page */
+#define PFS_PAGE_SIZE       32      /* bytes per page (same as block) */
 #define PFS_MAX_BANKS       62
+
+/* Inode special values */
+#define PFS_EOF             1       /* End of file chain */
+#define PFS_PAGE_FREE       3       /* Free page marker */
+
+/* Controller Pak Commands */
+#define PFS_CMD_READ        2       /* Read page command */
+#define PFS_CMD_WRITE       3       /* Write page command */
 
 /* File System Flags */
 #define PFS_READ            0
@@ -128,8 +137,8 @@ typedef struct __OSDir {
 #define PFS_ERR_CONTRFAIL       4   /* Controller overrun error */
 #define PFS_ERR_INVALID         5   /* Invalid parameter or file not found */
 #define PFS_ERR_BAD_DATA        6   /* Bad data read from pack */
-#define PFS_DATA_FULL           7   /* No free pages */
-#define PFS_DIR_FULL            8   /* No free directory entries */
+#define PFS_ERR_FULL            7   /* No free pages */
+#define PFS_ERR_DIR_FULL        8   /* No free directory entries */
 #define PFS_ERR_EXIST           9   /* File already exists */
 #define PFS_ERR_ID_FATAL        10  /* Dead memory card */
 #define PFS_ERR_DEVICE          11  /* Wrong device type */
