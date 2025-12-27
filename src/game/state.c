@@ -32,10 +32,10 @@ extern void init_cp_time(void);
 extern void CheckCPs(void);
 
 /* External functions - mapped from N64 addresses */
-extern void func_800DB81C(void);    /* attract mode handler */
-extern void func_800CA3B4(void);    /* playgame handler */
-extern void func_800FBF88(void);    /* high score handler */
-extern void func_800FBC30(void);    /* countdown handler */
+extern void attract_handler(void);   /* func_800DB81C - attract mode handler */
+extern void playgame_handler(void);  /* func_800CA3B4 - playgame handler */
+extern void hiscore_handler(void);   /* func_800FBF88 - high score handler */
+extern void countdown_handler(void); /* func_800FBC30 - countdown display */
 
 /* Game state flags (N64 uses bitmask, not enum) */
 #define GSTATE_INIT     0x40000
@@ -260,7 +260,7 @@ const char* state_get_name(GState state) {
  */
 void state_attract(void) {
     /* Call N64's attract handler */
-    func_800DB81C();
+    attract_handler();
 
     /* Check for coin insert / start button */
     /* Would transition to TRKSEL */
@@ -324,7 +324,7 @@ void state_countdown(void) {
     }
 
     /* Call countdown display handler */
-    func_800FBC30();
+    countdown_handler();
 }
 
 /**
@@ -333,7 +333,7 @@ void state_countdown(void) {
  */
 void state_playgame(void) {
     /* Call main gameplay function */
-    func_800CA3B4();
+    playgame_handler();
 
     /* Check checkpoints */
     CheckCPs();
@@ -374,7 +374,7 @@ void state_gameover(void) {
  */
 void state_hiscore(void) {
     /* Call high score handler */
-    func_800FBF88();
+    hiscore_handler();
 
     /* After entry: state_set(GS_ATTRACT) */
 }

@@ -11,7 +11,7 @@
 
 // External declarations
 extern s8 gstate;  // 0x801146EC
-extern s32 func_800FB908(void);  // Check if countdown complete
+extern s32 countdown_check_complete(void);  // func_800FB908 - Check if countdown complete
 
 /**
  * CountDown - Handle countdown state (3, 2, 1, GO!)
@@ -19,7 +19,7 @@ extern s32 func_800FB908(void);  // Check if countdown complete
  */
 void CountDown(void) {
     if (gstate == COUNTDOWN) {
-        if (func_800FB908() != 0) {
+        if (countdown_check_complete() != 0) {
             gstate = PREPLAY2;
         }
     }
