@@ -3,17 +3,24 @@
  * @brief N64 OS Video Interface functions
  *
  * Decompiled from asm/us/7940.s, asm/us/79A0.s, asm/us/8920.s
+ *
+ * The Video Interface (VI) controls the N64's video output.
+ * It reads from a framebuffer in RDRAM and outputs to the TV.
  */
 
 #include "types.h"
+#include "PR/os_message.h"
 
 /* External OS functions */
 extern s32 __osDisableInt(void);
 extern void __osRestoreInt(s32);
 
+/* Forward declaration for VI context */
+struct OSViContext;
+
 /* VI context pointers */
-extern void *__osViCurr;
-extern void *__osViNext;
+extern struct OSViContext *__osViCurr;  /* Currently displayed context */
+extern struct OSViContext *__osViNext;  /* Next context to display */
 
 /**
  * Get the current framebuffer address
@@ -43,8 +50,8 @@ void osViSwapBuffer(void *frameBufPtr) {
     __osRestoreInt(savedMask);
 }
 
-/* VI context structure */
-extern void *D_8002C464;  /* System VI context */
+/* VI context structure - __osViNext is also used as the pending context */
+extern struct OSViContext *__osViPending;  /* Pending VI context */
 
 /**
  * Get the configured framebuffer address
@@ -61,7 +68,7 @@ void *osViGetFramebuffer(void) {
     void *fb;
 
     savedMask = __osDisableInt();
-    fb = *(void **)((u8 *)D_8002C464 + 4);
+    fb = *(void **)((u8 *)__osViPending + 4);
     __osRestoreInt(savedMask);
     return fb;
 }
@@ -76,16 +83,16 @@ void *osViGetFramebuffer(void) {
  */
 void osViSetMode(void *mode) {
     s32 savedMask;
-    void *ctx;
+    struct OSViContext *ctx;
 
     savedMask = __osDisableInt();
 
-    ctx = D_8002C464;
+    ctx = __osViPending;
     /* Store mode in context offset 0x04 */
     *(void **)((u8 *)ctx + 4) = mode;
 
-    ctx = D_8002C464;
-    /* Set mode change flag (bit 4) */
+    ctx = __osViPending;
+    /* Set mode change flag (bit 4) - OS_VI_STATE_MODE */
     *(u16 *)ctx = *(u16 *)ctx | 0x10;
 
     __osRestoreInt(savedMask);
@@ -104,9 +111,10 @@ void osViBlack(s32 black) {
 
     savedMask = __osDisableInt();
     if (black) {
-        *(u16 *)D_8002C464 |= 0x20;
+        /* Set OS_VI_STATE_BLACK flag (bit 5) */
+        *(u16 *)__osViPending |= 0x20;
     } else {
-        *(u16 *)D_8002C464 &= ~0x20;
+        *(u16 *)__osViPending &= ~0x20;
     }
     __osRestoreInt(savedMask);
 }
@@ -122,7 +130,7 @@ void osViBlack(s32 black) {
 #define OS_VI_DITHER_FILTER_OFF 0x0080
 
 /* External function to read VI status */
-extern u32 func_8000D2A0(void);  /* Read VI_STATUS_REG */
+extern u32 __osViGetStatus(void);  /* Read VI_STATUS_REG */
 
 /**
  * Set VI special features
@@ -139,15 +147,15 @@ extern u32 func_8000D2A0(void);  /* Read VI_STATUS_REG */
 void osViSetSpecialFeatures(u32 features) {
     s32 savedMask;
     u32 status;
-    void *ctx;
+    struct OSViContext *ctx;
 
     savedMask = __osDisableInt();
 
-    status = func_8000D2A0();
+    status = __osViGetStatus();
 
     /* Check if VI is ready (bit 7 set = busy) */
     if (status & 0x80) {
-        ctx = D_8002C464;
+        ctx = __osViPending;
 
         /* Gamma on/off (bit 3 in features register) */
         if (features & OS_VI_GAMMA_ON) {
@@ -187,8 +195,8 @@ void osViSetSpecialFeatures(u32 features) {
         }
     }
 
-    /* Set update flag (bit 3) */
-    *(u16 *)D_8002C464 |= 0x08;
+    /* Set update flag (bit 3) - OS_VI_STATE_CTRL */
+    *(u16 *)__osViPending |= 0x08;
 
     __osRestoreInt(savedMask);
 }
@@ -205,15 +213,15 @@ void osViSetSpecialFeatures(u32 features) {
  * @param msg Message value to send on buffer swap
  * @param numFields Number of fields (1=single, 2=double)
  */
-void osViSetSwapBuffer(void *mq, s32 msg, s16 numFields) {
+void osViSetSwapBuffer(OSMesgQueue *mq, OSMesg msg, s16 numFields) {
     s32 savedMask;
 
     savedMask = __osDisableInt();
 
     /* Store settings in VI context */
-    *(void **)((u8 *)D_8002C464 + 0x10) = mq;
-    *(s32 *)((u8 *)D_8002C464 + 0x14) = msg;
-    *(s16 *)((u8 *)D_8002C464 + 0x02) = numFields;
+    *(OSMesgQueue **)((u8 *)__osViPending + 0x10) = mq;
+    *(OSMesg *)((u8 *)__osViPending + 0x14) = msg;
+    *(s16 *)((u8 *)__osViPending + 0x02) = numFields;
 
     __osRestoreInt(savedMask);
 }

@@ -27,9 +27,11 @@
 #define DPC_STATUS_REG  (*(vu32 *)0xA410000C)
 
 /* External functions */
-extern s32 osDpIsBusy(void);                 /* Check if DP is busy */
 extern u32 osVirtualToPhysical(void *addr);  /* Convert virtual to physical */
-extern void __osSpSetStatus(s32 status);     /* Delay / SP status */
+extern void __osSpSetStatus(u32 status);     /* SP status register write */
+
+/* Forward declaration */
+s32 __osDpDeviceBusy(void);
 
 /**
  * Set RDP display list buffer
@@ -45,22 +47,22 @@ extern void __osSpSetStatus(s32 status);     /* Delay / SP status */
  * @return 0 on success, -1 if DP is busy
  */
 s32 osDpSetNextBuffer(void *cmdList, s32 arg1, s32 arg2, s32 size) {
-    vu32 *status_reg;
     u32 start_addr;
     u32 end_addr;
 
+    (void)arg1;  /* Unused */
+    (void)arg2;  /* Unused */
+
     /* Check if DP is available */
-    if (osDpIsBusy() != 0) {
+    if (__osDpDeviceBusy() != 0) {
         return -1;
     }
 
-    status_reg = (vu32 *)0xA410000C;  /* DPC_STATUS_REG */
-
     /* Clear xbus/DMA path (write 1 to bit 0) */
-    *status_reg = 1;
+    DPC_STATUS_REG = 1;
 
     /* Wait for DMA to complete */
-    while (*status_reg & DPC_STATUS_XBUS_DMEM_DMA) {
+    while (DPC_STATUS_REG & DPC_STATUS_XBUS_DMEM_DMA) {
         /* Spin */
     }
 
@@ -118,13 +120,13 @@ void osDpGetCounters(u32 *counters) {
 
 /**
  * Check if RDP DMA is busy
- * (func_8000D740 - osDpIsBusy)
+ * (func_8000D740 - __osDpDeviceBusy)
  *
  * Checks the DPC_STATUS_REG for the DMA_BUSY bit.
  *
  * @return 1 if RDP DMA is busy, 0 if not
  */
-s32 osDpIsBusy(void) {
+s32 __osDpDeviceBusy(void) {
     u32 status;
 
     status = DPC_STATUS_REG;
