@@ -646,28 +646,20 @@ void* func_800B42F0(s32);              /* Object allocate wrapper (defined later
 extern void func_800B4200(void *buffer, s32 samples); /* Object allocate (uses register s2 for type) */
 /* Note: func_80007270 and func_800075E0 declared earlier */
 
-/* External data at fixed addresses */
-extern u32 D_801174BC;   /* Additional state flags */
-extern s8  D_80114650;   /* Some state byte */
-extern s8  D_80156994;   /* Mode flag */
-extern s8  D_80146115;   /* Another mode byte */
-extern s16 D_8015A108;   /* Player count */
-extern void* D_8013E6E0; /* Object list head */
-extern void* D_801461D0; /* Main game struct */
-
-/* Additional external data for func_800CA3B4 */
-extern u8 D_801461F8;
-extern u8 D_80146205;
-extern u8 D_80159414;
-extern u8 D_80159774;
-extern u8 D_80159794;
-extern u8 D_801597C4;
-extern s16 D_80151AD0;
-extern u8 D_80151AD8;
-extern void* D_8015A118;
-extern u8 D_80146114;
+/* Additional data and functions */
+extern u32 D_801174BC;
+extern s32 D_80114650;
+extern s32 D_80156994;
+extern s32 D_80146115;
+extern s32 D_80146114;
+extern s32 D_801461F8;
+extern s32 D_80146205;
+extern s32 D_80159774;
+extern s32 D_801597C4;
+extern s32 D_80151AD0;
+extern s32 D_80151AD8;
 extern s32 D_8015A110;
-extern void func_800C84FC(void *hud, f32 speed);
+extern void func_800C84FC(s32 a, s32 b);
 
 /**
 /*
