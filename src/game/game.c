@@ -1720,9 +1720,9 @@ void func_800F7344(void) {
  * @param sound_update   Whether to update sounds (arg a0)
  * @param physics_update Whether to update physics (arg a1)
  */
-extern void func_800B0870(void); /* Physics object linked list update */
+extern void physics_update_all(void); /* func_800B0870 - Physics object linked list update */
 
-void func_800F73FC(s32 sound_update, s32 physics_update) {
+void update_game_systems(s32 sound_update, s32 physics_update) {
     /* Update active sounds if requested */
     if (sound_update != 0) {
         func_800F733C();  /* Loads count then calls func_800F7344 */
@@ -1744,15 +1744,16 @@ void func_800F73FC(s32 sound_update, s32 physics_update) {
 
 /**
 /*
- * func_800B0868 - Get physics object list head
+ * physics_get_list_head - Get physics object list head
+ * (func_800B0868)
  * Address: 0x800B0868
  * Size: 8 bytes (just loads and returns)
  *
  * Returns the head of the physics object linked list.
- * This is called before func_800B0870 to get list head in v0.
+ * This is called before physics_update_all to get list head.
  */
 
-void *func_800B0868(void) {
+void *physics_get_list_head(void) {
     return D_801491F0;
 }
 
@@ -1760,7 +1761,8 @@ void *func_800B0868(void) {
 
 /**
 /*
- * func_800B0870 - Update all physics objects in linked list
+ * physics_update_all - Update all physics objects in linked list
+ * (func_800B0870)
  * Address: 0x800B0870
  * Size: 108 bytes
  *
@@ -1772,9 +1774,9 @@ void *func_800B0868(void) {
  *   offset 0x00: next pointer (linked list)
  *   offset 0x14: update callback function pointer
  */
-extern void func_800B066C(void);  /* Physics cleanup/finalize */
+extern void physics_cleanup(void);  /* func_800B066C - Physics cleanup/finalize */
 
-void func_800B0870(void) {
+void physics_update_all(void) {
     void *current;
     void *next;
     void (*update_callback)(void*, s32);
@@ -1837,13 +1839,13 @@ void func_800B0870(void) {
 extern u8  D_80150B70[];          /* Emitter array base */
 extern u8  D_80150BA0[];          /* Secondary emitter array */
 
-extern void func_8008D6B0(f32 *src, f32 *dst); /* Emitter update */
-extern void func_800B80C8(s32 a0); /* Spawn particles for emitter */
-extern s32 func_800B7FF8(void); /* Particle cleanup */
+extern void emitter_update(f32 *src, f32 *dst); /* func_8008D6B0 - Emitter update */
+extern void particles_spawn(s32 a0); /* func_800B80C8 - Spawn particles for emitter */
+extern s32 particles_cleanup(void); /* func_800B7FF8 - Particle cleanup */
 extern void func_800B61FC(void *entity, f32 *vec); /* Final cleanup */
 extern s16 D_80152032;                    /* Second emitter count */
 
-void func_800B811C(void) {
+void effects_update_emitters(void) {
     s32 i;
     s16 count;
     u8 *emitter;
@@ -1869,7 +1871,7 @@ void func_800B811C(void) {
         prev_pos[2] = pos[2];  /* z */
 
         /* Call emitter update function */
-        func_8008D6B0(emitter, 0);
+        emitter_update(emitter, 0);
 
         /* Update velocity with acceleration (FP operations) */
         vel = (f32*)(emitter + 0x34);
@@ -1878,7 +1880,7 @@ void func_800B811C(void) {
 
         /* Conditionally spawn particles */
         if (D_801170FC == 0) {
-            func_800B80C8(i);
+            particles_spawn(i);
         }
 
         /* Advance to next emitter (152 bytes each) */
