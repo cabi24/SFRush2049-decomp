@@ -13,8 +13,8 @@
 #include "PR/os_thread.h"
 
 /* External data */
-extern u32 D_8002C370;       /* Interrupt mask storage */
-extern OSThread *D_8002C3E0; /* Current running thread */
+extern u32 __osGlobalIntMask;      /* Global interrupt mask storage */
+extern OSThread *__osRunningThread; /* Currently executing thread */
 
 /**
  * Disable interrupts
@@ -30,7 +30,7 @@ extern OSThread *D_8002C3E0; /* Current running thread */
  * @return Previous interrupt enable state (0 or 1)
  *
  * Assembly implementation:
- * - Reads current interrupt mask from D_8002C370
+ * - Reads current interrupt mask from __osGlobalIntMask
  * - mfc0 $t0, $12 (read Status register)
  * - andi $t1, $t0, 0xFFFE (clear IE bit)
  * - mtc0 $t1, $12 (write Status register)
@@ -45,17 +45,17 @@ s32 __osDisableInt(void) {
     OSThread *thread;
 
     /* Read current mask */
-    prev_mask = D_8002C370 & 0xFF00;
+    prev_mask = __osGlobalIntMask & 0xFF00;
 
     /* Read and modify Status register */
     status = __mfc0(12);  /* Get Status register */
     __mtc0(12, status & ~1);  /* Clear IE bit */
 
     /* Check if mask changed */
-    new_mask = D_8002C370 & 0xFF00;
+    new_mask = __osGlobalIntMask & 0xFF00;
     if (new_mask != prev_mask) {
         /* Update thread's status register */
-        thread = D_8002C3E0;
+        thread = __osRunningThread;
         u32 thread_sr = thread->context.sr;
         thread_sr = (thread_sr & 0xFFFF00FF) | (new_mask & prev_mask);
         thread_sr &= ~1;  /* Keep IE cleared */
