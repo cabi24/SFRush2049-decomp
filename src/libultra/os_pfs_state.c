@@ -6,106 +6,110 @@
  */
 
 #include "types.h"
+#include "PR/os_pfs.h"
 
 /* External functions */
-extern s32 func_8000F2D0(void *pfs);
-extern s32 func_8000E850(void *pfs, u8 fillByte);
-extern s32 func_8000E8D0(s32 channel, s32 bank, u16 page, void *buffer);
-extern s32 func_8000F3A4(void *pfs, u16 *buffer, s32 start, u8 bank);
-extern s32 func_8000E620(s32 channel, s32 bank);
-extern void func_8000D2B0(void *src, void *dst, s32 len);
+extern s32 __osCheckId(OSPfs *pfs);                         /* func_8000F2D0 */
+extern s32 __osPfsSelectBank(OSPfs *pfs, u8 bank);          /* func_8000E850 */
+extern s32 __osContRamRead(OSMesgQueue *mq, s32 channel,    /* func_8000E8D0 */
+                           u16 addr, u8 *data);
+extern s32 __osPfsRWInode(OSPfs *pfs, __OSInode *inode,     /* func_8000F3A4 */
+                          u8 flag, u8 bank);
+extern s32 __osPfsGetStatus(OSMesgQueue *mq, s32 channel);  /* func_8000E620 */
+extern void bcopy(void *src, void *dst, s32 len);           /* func_8000D2B0 */
 
 /**
  * Get file state/info from Controller Pak
  * (func_8000A520 - osPfsFileState)
  *
- * Retrieves information about a file on the Controller Pak.
+ * Retrieves information about a file on the Controller Pak including
+ * file size, company code, game code, and file names.
  *
  * @param pfs PFS handle
- * @param fileNo File number
+ * @param fileNo File number (0 to dir_size-1)
  * @param state Output: file state structure
  * @return 0 on success, error code on failure
  */
-s32 osPfsFileState(void *pfs, s32 fileNo, void *state) {
-    u8 *p = (u8 *)pfs;
-    u8 buffer[0x100];
-    u16 pageTable[0x80];
-    u8 lastBank;
-    u8 bank;
-    u8 page;
+s32 osPfsFileState(OSPfs *pfs, s32 fileNo, OSPfsState *state) {
+    s32 ret;
     s32 pages;
-    s32 result;
+    __OSInode inode;
+    __OSDir dir;
+    __OSInodeUnit page;
+    u8 bank;
 
     /* Validate file number */
-    if (fileNo >= *(s32 *)(p + 0x50) || fileNo < 0) {
-        return 5;
+    if (fileNo >= pfs->dir_size || fileNo < 0) {
+        return PFS_ERR_INVALID;
     }
 
     /* Check if initialized */
-    if ((*(u32 *)p & 1) == 0) {
-        return 5;
+    if (!(pfs->status & PFS_INITIALIZED)) {
+        return PFS_ERR_INVALID;
     }
 
-    /* Check PFS status */
-    result = func_8000F2D0(pfs);
-    if (result != 0) {
-        return result;
+    /* Check PFS status / ID */
+    ret = __osCheckId(pfs);
+    if (ret != 0) {
+        return ret;
     }
 
-    /* Initialize if needed */
-    if (*(u8 *)(p + 0x65) != 0) {
-        result = func_8000E850(pfs, 0);
-        if (result != 0) {
-            return result;
+    /* Select bank 0 if needed */
+    if (pfs->activebank != 0) {
+        ret = __osPfsSelectBank(pfs, 0);
+        if (ret != 0) {
+            return ret;
         }
     }
 
     /* Read file directory entry */
-    result = func_8000E8D0(
-        *(s32 *)(p + 4),
-        *(s32 *)(p + 8),
-        *(s32 *)(p + 0x5C) + fileNo,
-        buffer
-    );
-    if (result != 0) {
-        return result;
+    ret = __osContRamRead(pfs->queue, pfs->channel,
+                          (u16)(pfs->dir_table + fileNo), (u8 *)&dir);
+    if (ret != 0) {
+        return ret;
     }
 
-    /* Check if valid entry */
-    if (*(u16 *)(buffer + 4) == 0 && *(u32 *)buffer == 0) {
-        return 5;
+    /* Check if valid entry (company and game code must be non-zero) */
+    if (dir.company_code == 0 || dir.game_code == 0) {
+        return PFS_ERR_INVALID;
     }
 
-    /* Count pages used by file */
-    bank = buffer[6];
-    page = buffer[7];
-    lastBank = 0xFF;
+    /* Count pages used by file by following inode chain */
+    page = dir.start_page;
     pages = 0;
+    bank = 0xFF;
 
-    while (*(u16 *)(buffer + 0x34) < *(s32 *)(p + 0x60)) {
-        if (lastBank != bank) {
-            lastBank = bank;
-            result = func_8000F3A4(pfs, pageTable, 0, bank);
-            if (result != 0) {
-                return result;
+    while (1) {
+        /* Check if we've reached end of valid pages */
+        if (page.ipage < pfs->inode_start_page) {
+            break;
+        }
+
+        /* Load inode table for this bank if different */
+        if (page.inode_t.bank != bank) {
+            bank = page.inode_t.bank;
+            ret = __osPfsRWInode(pfs, &inode, PFS_READ, bank);
+            if (ret != 0) {
+                return ret;
             }
         }
+
         pages++;
-        page = pageTable[page];
-        bank = buffer[0x34];
+        page = inode.inode_page[page.inode_t.page];
     }
 
-    /* Check if valid end */
-    if (*(u16 *)(buffer + 0x34) != 1) {
-        return 3;  /* Inconsistent */
+    /* Verify chain ended properly (ipage == 1 means EOF) */
+    if (page.ipage != 1) {
+        return PFS_ERR_INCONSISTENT;
     }
 
     /* Fill output structure */
-    *(s32 *)state = pages << 8;
-    *(u16 *)((u8 *)state + 8) = *(u16 *)(buffer + 4);
-    *(u32 *)((u8 *)state + 4) = *(u32 *)buffer;
-    func_8000D2B0(buffer + 0x10, (u8 *)state + 0xE, 16);
-    func_8000D2B0(buffer + 0x0C, (u8 *)state + 0xA, 4);
+    state->file_size = pages * PFS_ONE_PAGE * PFS_BLOCKSIZE;
+    state->company_code = dir.company_code;
+    state->game_code = dir.game_code;
 
-    return func_8000E620(*(s32 *)(p + 4), *(s32 *)(p + 8));
+    bcopy(dir.game_name, state->game_name, PFS_FILE_NAME_LEN);
+    bcopy(dir.ext_name, state->ext_name, PFS_FILE_EXT_LEN);
+
+    return __osPfsGetStatus(pfs->queue, pfs->channel);
 }

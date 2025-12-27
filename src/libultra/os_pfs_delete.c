@@ -6,24 +6,30 @@
  */
 
 #include "types.h"
+#include "PR/os_pfs.h"
 
 /* External functions */
-extern s32 osPfsFindFile(void *pfs, u16 companyCode, u32 gameCode,
-                         u8 *gameName, u8 *extName, s32 *fileNo);
-extern s32 func_8000E850(void *pfs, u8 fillByte);
-extern s32 func_8000E8D0(s32 channel, s32 bank, u16 page, void *buffer);
-extern s32 func_8000F3A4(void *pfs, u16 *buffer, s32 start, u8 bank);
-extern s32 func_8000F680(s32 channel, s32 bank, u32 size, u8 *buffer, s32 flags);
-extern void func_80008590(void *ptr, s32 size);
+extern s32 __osPfsSelectBank(OSPfs *pfs, u8 bank);           /* func_8000E850 */
+extern s32 __osContRamRead(OSMesgQueue *mq, s32 channel,     /* func_8000E8D0 */
+                           u16 addr, u8 *data);
+extern s32 __osPfsRWInode(OSPfs *pfs, __OSInode *inode,      /* func_8000F3A4 */
+                          u8 flag, u8 bank);
+extern s32 __osContRamWrite(OSMesgQueue *mq, s32 channel,    /* func_8000F680 */
+                            u16 addr, u8 *data, u8 pfs_flag);
+extern void bzero(void *ptr, s32 size);                      /* func_80008590 */
 
 /* Forward declaration */
-static s32 func_8000A8D8(void *pfs, u16 *buffer, u8 startPage, u8 bank, u16 *nextPage);
+static s32 __osPfsReleasePages(OSPfs *pfs, __OSInode *inode, u8 startPage,
+                               u8 bank, __OSInodeUnit *nextPage);
 
 /**
  * Delete a file from Controller Pak
  * (func_8000A700 - osPfsDeleteFile)
  *
- * Deletes a file from the Controller Pak filesystem.
+ * Deletes a file from the Controller Pak filesystem by:
+ * 1. Finding the file in the directory
+ * 2. Following the inode chain and marking pages as free
+ * 3. Clearing the directory entry
  *
  * @param pfs PFS handle
  * @param companyCode Company code of file
@@ -32,118 +38,117 @@ static s32 func_8000A8D8(void *pfs, u16 *buffer, u8 startPage, u8 bank, u16 *nex
  * @param extName Extension name (can be NULL)
  * @return 0 on success, error code on failure
  */
-s32 osPfsDeleteFile(void *pfs, u16 companyCode, u32 gameCode,
+s32 osPfsDeleteFile(OSPfs *pfs, u16 companyCode, u32 gameCode,
                     u8 *gameName, u8 *extName) {
-    u8 *p = (u8 *)pfs;
-    u8 buffer[0x28];
-    u16 pageTable[0x80];
-    u8 bank, page, nextBank, nextPage;
     s32 fileNo;
-    s32 result;
+    s32 ret;
+    __OSInode inode;
+    __OSDir dir;
+    __OSInodeUnit lastPage;
+    u8 startPage;
+    u8 bank;
 
     /* Validate parameters */
     if (companyCode == 0 || gameCode == 0) {
-        return 5;
+        return PFS_ERR_INVALID;
     }
 
     /* Find the file */
-    result = osPfsFindFile(pfs, companyCode, gameCode, gameName, extName, &fileNo);
-    if (result != 0) {
-        return result;
+    ret = osPfsFindFile(pfs, companyCode, gameCode, gameName, extName, &fileNo);
+    if (ret != 0) {
+        return ret;
     }
 
-    /* Initialize if needed */
-    if (*(u8 *)(p + 0x65) != 0) {
-        result = func_8000E850(pfs, 0);
-        if (result != 0) {
-            return result;
+    /* Select bank 0 if needed */
+    if (pfs->activebank != 0) {
+        ret = __osPfsSelectBank(pfs, 0);
+        if (ret != 0) {
+            return ret;
         }
     }
 
     /* Read file directory entry */
-    result = func_8000E8D0(
-        *(s32 *)(p + 4),
-        *(s32 *)(p + 8),
-        *(s32 *)(p + 0x5C) + fileNo,
-        buffer
-    );
-    if (result != 0) {
-        return result;
+    ret = __osContRamRead(pfs->queue, pfs->channel,
+                          (u16)(pfs->dir_table + fileNo), (u8 *)&dir);
+    if (ret != 0) {
+        return ret;
     }
 
-    /* Get starting page */
-    bank = buffer[6];
-    page = buffer[7];
+    /* Get starting page from directory entry */
+    startPage = dir.start_page.inode_t.page;
+    bank = dir.start_page.inode_t.bank;
 
     /* Free all pages in the file chain */
-    while (bank < *(u8 *)(p + 0x64)) {
-        /* Read page table for this bank */
-        result = func_8000F3A4(pfs, pageTable, 0, bank);
-        if (result != 0) {
-            return result;
+    while (bank < pfs->banks) {
+        /* Read inode table for this bank */
+        ret = __osPfsRWInode(pfs, &inode, PFS_READ, bank);
+        if (ret != 0) {
+            return ret;
         }
 
-        /* Mark page as free and get next */
-        result = func_8000A8D8(pfs, pageTable, page, bank, (u16 *)(buffer + 4));
-        if (result != 0) {
-            return result;
+        /* Release pages and get next chain location */
+        ret = __osPfsReleasePages(pfs, &inode, startPage, bank, &lastPage);
+        if (ret != 0) {
+            return ret;
         }
 
-        /* Write updated page table */
-        result = func_8000F3A4(pfs, pageTable, 1, bank);
-        if (result != 0) {
-            return result;
+        /* Write updated inode table */
+        ret = __osPfsRWInode(pfs, &inode, PFS_WRITE, bank);
+        if (ret != 0) {
+            return ret;
         }
 
-        /* Check if end of chain */
-        if (*(u16 *)(buffer + 4) == 1) {
+        /* Check if end of chain (ipage == 1 means EOF) */
+        if (lastPage.ipage == 1) {
             break;
         }
 
         /* Get next page location */
-        bank = *(u8 *)(buffer + 4);
-        page = *(u8 *)(buffer + 5);
+        bank = lastPage.inode_t.bank;
+        startPage = lastPage.inode_t.page;
     }
 
     /* Check for incomplete chain */
-    if (bank >= *(u8 *)(p + 0x64)) {
-        return 3;  /* Inconsistent */
+    if (bank >= pfs->banks) {
+        return PFS_ERR_INCONSISTENT;
     }
 
     /* Clear directory entry */
-    func_80008590(buffer, 0x20);
+    bzero(&dir, sizeof(__OSDir));
 
     /* Write cleared entry back */
-    return func_8000F680(
-        *(s32 *)(p + 4),
-        *(s32 *)(p + 8),
-        *(s32 *)(p + 0x5C) + fileNo,
-        buffer,
-        0
-    );
+    return __osContRamWrite(pfs->queue, pfs->channel,
+                            (u16)(pfs->dir_table + fileNo), (u8 *)&dir, 0);
 }
 
 /**
- * Free a page in the page table
- * (func_8000A8D8)
+ * Release pages in the inode chain
+ * (__osPfsReleasePages / func_8000A8D8)
  *
- * Helper function to mark a page as free and return the next page.
+ * Marks pages as free (value 3) and returns the next page in the chain.
+ *
+ * @param pfs PFS handle
+ * @param inode Inode table to modify
+ * @param startPage Starting page number
+ * @param bank Current bank
+ * @param nextPage Output: next page in chain (or EOF marker)
+ * @return 0 on success
  */
-static s32 func_8000A8D8(void *pfs, u16 *pageTable, u8 startPage, u8 bank, u16 *nextPage) {
-    u8 *p = (u8 *)pfs;
-    u16 currentPage;
-    u16 temp;
+static s32 __osPfsReleasePages(OSPfs *pfs, __OSInode *inode, u8 startPage,
+                               u8 bank, __OSInodeUnit *nextPage) {
+    __OSInodeUnit next;
+    __OSInodeUnit prev;
 
-    /* Build page index */
-    currentPage = ((u16)bank << 8) | startPage;
+    /* Build initial page index */
+    next.ipage = (u16)((bank << 8) + startPage);
 
-    /* Follow chain until we reach boundary or return to start */
+    /* Follow chain and mark pages as free */
     do {
-        temp = currentPage;
-        currentPage = pageTable[currentPage & 0xFF];
-        pageTable[temp & 0xFF] = 3;  /* Mark as free */
-    } while (currentPage < *(s32 *)(p + 0x60) && bank != (currentPage & 0xFF));
+        prev = next;
+        next = inode->inode_page[next.inode_t.page];
+        inode->inode_page[prev.inode_t.page].ipage = 3;  /* Mark as free */
+    } while (next.ipage >= pfs->inode_start_page && next.inode_t.bank == bank);
 
-    *nextPage = currentPage;
+    *nextPage = next;
     return 0;
 }
