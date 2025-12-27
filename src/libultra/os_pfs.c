@@ -12,21 +12,18 @@
  */
 
 #include "types.h"
-
-/* PFS constants and OSPfs are defined in types.h */
+#include "PR/os_pfs.h"
 
 /* External libultra functions */
 extern void __osSiGetAccess(void);
 extern void __osSiRelAccess(void);
-extern s32 osContStartReadData(s32 channel, s32 pad);
-extern s32 __osPfsSelectBank(OSPfs *pfs, s32 bank);
-extern s32 __osContRamRead(s32 channel, s32 pad, s32 addr, u8 *data);
-extern s32 __osContRamWrite(s32 channel, s32 pad, s32 addr, u8 *data, s32 flag);
+extern s32 osContStartReadData(OSMesgQueue *mq, s32 channel);
+extern s32 __osContRamRead(OSMesgQueue *mq, s32 channel, u16 addr, u8 *data);
+extern s32 __osContRamWrite(OSMesgQueue *mq, s32 channel, u16 addr, u8 *data, u8 flag);
 extern void __osPfsGetLabel(u8 *label, u16 *companyCode, u16 *gameCode);
 extern s32 __osPfsGetId(OSPfs *pfs, u8 *label, u8 *id);
 extern s32 __osPfsLabelCheck(OSPfs *pfs, u8 *label);
 extern void bcopy(void *src, void *dst, s32 len);
-extern s32 osPfsChecker(OSPfs *pfs);
 
 /* Forward declarations */
 static s32 __osPfsGetStatus(OSPfs *pfs);
@@ -35,12 +32,12 @@ static s32 __osPfsGetStatus(OSPfs *pfs);
  * osPfsInitPak - Initialize controller pak
  * (func_80009C10)
  *
- * @param channel Controller channel (0-3)
+ * @param mq      Message queue for SI operations
  * @param pfs     Pointer to OSPfs structure to initialize
- * @param pad     Controller pad ID
+ * @param channel Controller channel (0-3)
  * @return        0 on success, error code on failure
  */
-s32 osPfsInitPak(s32 channel, OSPfs *pfs, s32 pad) {
+s32 osPfsInitPak(OSMesgQueue *mq, OSPfs *pfs, s32 channel) {
     s32 ret;
     u16 companyCode;
     u16 gameCode;
@@ -50,7 +47,7 @@ s32 osPfsInitPak(s32 channel, OSPfs *pfs, s32 pad) {
 
     /* Acquire SI access */
     __osSiGetAccess();
-    ret = osContStartReadData(channel, pad);
+    ret = osContStartReadData(mq, channel);
     __osSiRelAccess();
 
     if (ret != 0) {
@@ -58,9 +55,10 @@ s32 osPfsInitPak(s32 channel, OSPfs *pfs, s32 pad) {
     }
 
     /* Initialize pfs structure */
+    pfs->queue = mq;
     pfs->channel = channel;
     pfs->status = 0;
-    pfs->activeBank = pad;
+    pfs->activebank = 0;
 
     /* Get pak status */
     ret = __osPfsGetStatus(pfs);
@@ -75,7 +73,7 @@ s32 osPfsInitPak(s32 channel, OSPfs *pfs, s32 pad) {
     }
 
     /* Read label from page 1 */
-    ret = __osContRamRead(pfs->channel, pfs->activeBank, 1, labelBuf);
+    ret = __osContRamRead(pfs->queue, pfs->channel, 1, labelBuf);
     if (ret != 0) {
         return ret;
     }
@@ -91,7 +89,7 @@ s32 osPfsInitPak(s32 channel, OSPfs *pfs, s32 pad) {
         /* Label mismatch - try to read ID */
         ret = __osPfsLabelCheck(pfs, labelBuf);
         if (ret != 0) {
-            pfs->status |= PFS_FLAG_NEEDS_CHECK;
+            pfs->status |= PFS_CORRUPTED;
             goto done;
         }
     }
@@ -101,15 +99,15 @@ s32 osPfsInitPak(s32 channel, OSPfs *pfs, s32 pad) {
         /* Not initialized - get ID */
         ret = __osPfsGetId(pfs, labelBuf, idBuf);
         if (ret != 0) {
-            if (ret == PFS_ERR_NO_MEMORY) {
-                pfs->status |= PFS_FLAG_NEEDS_CHECK;
+            if (ret == PFS_ERR_FULL) {
+                pfs->status |= PFS_CORRUPTED;
             }
             return ret;
         }
         labelPtr = idBuf;
 
         if (!(idBuf[0x18] & 1)) {
-            return PFS_ERR_NO_PAK;
+            return PFS_ERR_NOPACK;
         }
     }
 
@@ -117,28 +115,26 @@ s32 osPfsInitPak(s32 channel, OSPfs *pfs, s32 pad) {
     bcopy(labelPtr, pfs->label, 32);
 
     /* Parse label fields */
-    pfs->companyCode = labelPtr[0x1B];
-
     {
         u8 numBanks = labelPtr[0x1A];
         s32 temp = numBanks * 8;
         s32 inodeStart = temp + 8;
 
-        pfs->freePages = (numBanks * 2) + 3;
-        pfs->field_58 = inodeStart;
-        pfs->field_5C = inodeStart + temp;
+        pfs->dir_size = (numBanks * 2) + 3;
+        pfs->inode_table = inodeStart;
+        pfs->minode_table = inodeStart + temp;
         pfs->banks = numBanks;
     }
 
     /* Read inode from page 7 */
-    ret = __osContRamRead(pfs->channel, pfs->activeBank, 7, pfs->inode);
+    ret = __osContRamRead(pfs->queue, pfs->channel, 7, pfs->id);
     if (ret != 0) {
         return ret;
     }
 
     /* Run filesystem integrity check */
     ret = osPfsChecker(pfs);
-    pfs->status |= PFS_FLAG_INITIALIZED;
+    pfs->status |= PFS_INITIALIZED;
 
 done:
     return ret;
@@ -157,7 +153,7 @@ static s32 __osPfsGetStatus(OSPfs *pfs) {
     s32 i;
 
     /* Read status page */
-    ret = __osContRamRead(pfs->channel, pfs->activeBank, 0, statusBuf);
+    ret = __osContRamRead(pfs->queue, pfs->channel, 0, statusBuf);
     if (ret != 0) {
         return ret;
     }
@@ -177,32 +173,6 @@ static s32 __osPfsGetStatus(OSPfs *pfs) {
 }
 
 /**
- * osPfsFreeBlocks - Get number of free blocks on controller pak
- * (func_8000B240)
- *
- * @param pfs    PFS structure
- * @param blocks Output: number of free blocks
- * @return       0 on success, error code on failure
- */
-s32 osPfsFreeBlocks(OSPfs *pfs, s32 *blocks) {
-    s32 freePages;
-
-    if (pfs == NULL || blocks == NULL) {
-        return PFS_ERR_INVALID;
-    }
-
-    if (!(pfs->status & PFS_FLAG_INITIALIZED)) {
-        return PFS_ERR_INVALID;
-    }
-
-    /* Return cached free page count */
-    freePages = pfs->freePages;
-    *blocks = freePages;
-
-    return 0;
-}
-
-/**
  * __osPfsSelectBank - Select controller pak bank
  * (func_8000E850)
  *
@@ -210,12 +180,12 @@ s32 osPfsFreeBlocks(OSPfs *pfs, s32 *blocks) {
  * @param bank Bank number to select
  * @return     0 on success, error code on failure
  */
-s32 __osPfsSelectBank(OSPfs *pfs, s32 bank) {
+s32 __osPfsSelectBank(OSPfs *pfs, u8 bank) {
     u8 bankCmd[32];
     s32 ret;
     s32 i;
 
-    if (pfs->activeBank == bank) {
+    if (pfs->activebank == bank) {
         return 0;
     }
 
@@ -225,12 +195,12 @@ s32 __osPfsSelectBank(OSPfs *pfs, s32 bank) {
     }
 
     /* Write to bank select register (address 0x8000) */
-    ret = __osContRamWrite(pfs->channel, pfs->activeBank, 0x8000 >> 5, bankCmd, 1);
+    ret = __osContRamWrite(pfs->queue, pfs->channel, 0x8000 >> 5, bankCmd, 1);
     if (ret != 0) {
         return ret;
     }
 
-    pfs->activeBank = bank;
+    pfs->activebank = bank;
     return 0;
 }
 
@@ -246,7 +216,7 @@ s32 __osPfsSelectBank(OSPfs *pfs, s32 bank) {
  * @param data     Data buffer
  * @return         0 on success, error code on failure
  */
-s32 osPfsReadWriteFile(OSPfs *pfs, s32 fileNo, s32 flag, s32 offset, s32 size, u8 *data) {
+s32 osPfsReadWriteFile(OSPfs *pfs, s32 fileNo, u8 flag, s32 offset, s32 size, u8 *data) {
     s32 ret;
     s32 page;
     s32 pageOffset;
@@ -257,7 +227,7 @@ s32 osPfsReadWriteFile(OSPfs *pfs, s32 fileNo, s32 flag, s32 offset, s32 size, u
         return PFS_ERR_INVALID;
     }
 
-    if (!(pfs->status & PFS_FLAG_INITIALIZED)) {
+    if (!(pfs->status & PFS_INITIALIZED)) {
         return PFS_ERR_INVALID;
     }
 
@@ -270,18 +240,18 @@ s32 osPfsReadWriteFile(OSPfs *pfs, s32 fileNo, s32 flag, s32 offset, s32 size, u
     }
 
     /* Calculate starting page and offset */
-    page = pfs->field_5C + (offset / PFS_PAGE_SIZE);
+    page = pfs->minode_table + (offset / PFS_PAGE_SIZE);
     pageOffset = offset % PFS_PAGE_SIZE;
 
     while (size > 0) {
         /* Select appropriate bank */
-        ret = __osPfsSelectBank(pfs, page / 128);
+        ret = __osPfsSelectBank(pfs, (u8)(page / 128));
         if (ret != 0) {
             return ret;
         }
 
         /* Read current page */
-        ret = __osContRamRead(pfs->channel, pfs->activeBank, page % 128, pageBuf);
+        ret = __osContRamRead(pfs->queue, pfs->channel, (u16)(page % 128), pageBuf);
         if (ret != 0) {
             return ret;
         }
@@ -291,13 +261,13 @@ s32 osPfsReadWriteFile(OSPfs *pfs, s32 fileNo, s32 flag, s32 offset, s32 size, u
             bytesToCopy = size;
         }
 
-        if (flag == 0) {
+        if (flag == PFS_READ) {
             /* Read operation */
             bcopy(pageBuf + pageOffset, data, bytesToCopy);
         } else {
             /* Write operation */
             bcopy(data, pageBuf + pageOffset, bytesToCopy);
-            ret = __osContRamWrite(pfs->channel, pfs->activeBank, page % 128, pageBuf, 0);
+            ret = __osContRamWrite(pfs->queue, pfs->channel, (u16)(page % 128), pageBuf, 0);
             if (ret != 0) {
                 return ret;
             }
