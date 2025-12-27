@@ -7,19 +7,44 @@
  */
 
 #include "types.h"
+#include "PR/os_thread.h"
+#include "PR/os_message.h"
+
+/* OS Event types for osSetEventMesg */
+#define OS_EVENT_SW1        0   /* Software interrupt 1 */
+#define OS_EVENT_SW2        1   /* Software interrupt 2 */
+#define OS_EVENT_CART       2   /* Cartridge interrupt */
+#define OS_EVENT_COUNTER    3   /* Counter interrupt (timer) */
+#define OS_EVENT_SP         4   /* SP (RSP) interrupt */
+#define OS_EVENT_SI         5   /* SI (Serial) interrupt */
+#define OS_EVENT_AI         6   /* AI (Audio) interrupt */
+#define OS_EVENT_VI         7   /* VI (Video) interrupt */
+#define OS_EVENT_PI         8   /* PI (Parallel) interrupt */
+#define OS_EVENT_DP         9   /* DP (RDP) interrupt */
+#define OS_EVENT_PRENMI     14  /* Pre-NMI warning */
+
+/* Scheduler message IDs */
+#define SC_MSG_SWAP         0x29A   /* Swap buffer complete */
+#define SC_MSG_RETRACE      0x29B   /* VI retrace */
+#define SC_MSG_RSP_DONE     0x29C   /* RSP done */
+#define SC_MSG_RDP_DONE     0x29D   /* RDP done */
+#define SC_MSG_PRENMI       0x29E   /* Pre-NMI */
+
+/* Task types */
+#define SC_TASK_GFX         1   /* Graphics task */
+#define SC_TASK_AUDIO       2   /* Audio task */
+
+/* Task flags */
+#define SC_TASK_RDP_BUSY    0x01    /* RDP is processing */
+#define SC_TASK_RSP_BUSY    0x02    /* RSP is processing */
+#define SC_TASK_YIELD_REQ   0x10    /* Yield requested */
+#define SC_TASK_YIELDED     0x20    /* Task yielded */
+#define SC_TASK_SWAP_FB     0x40    /* Swap framebuffer on complete */
 
 /* External function declarations */
-extern void osCreateMesgQueue(void *mq, void *msg, s32 count);
-extern void osSetEventMesg(s32 event, void *mq, s32 msg);
+extern void osSetEventMesg(s32 event, OSMesgQueue *mq, OSMesg msg);
 extern void osViSetMode(void *mode);
 extern void osViBlack(s32 black);
-extern void osCreateThread(void *thread, s32 id, void (*entry)(void *),
-                           void *arg, void *stack, s32 priority);
-extern void osStartThread(void *thread);
-extern s32 __osDisableInt(void);
-extern void __osRestoreInt(s32 mask);
-extern s32 osRecvMesg(void *mq, void **msg, s32 flags);
-extern s32 osSendMesg(void *mq, void *msg, s32 flags);
 extern u32 osGetCount(void);
 extern void osSpTaskLoad(void *task);
 extern void osSpTaskStartGo(void *task);
@@ -28,26 +53,26 @@ extern void osViSwapBuffer(void *framebuffer);
 extern s32 osDpSetNextBuffer(void *buf, s32 size);
 extern void osSpTaskYield(void);
 
-/* External data */
-extern s16 D_8002EB70;
-extern void *D_8002AFA0;
-extern s32 D_8002AFA4;
-extern s32 D_8002AFA8;
-extern s32 D_8002AFB0;
-extern f32 D_8002AFB4;
-extern f32 D_8002AFB8;
-extern void *D_8002B1B0;
-extern s64 D_8002E8E0;
-extern s32 D_8002EB64;
-extern s32 D_8002EB80;
-extern s32 D_8002EB84;
-extern u32 D_8002EB78;
-extern f32 D_8002EB90;
-extern f32 D_8002EB94;
-extern s32 D_8002EB98;
-extern s32 D_8002EB9C;
-extern s32 D_8002EBA0;
-extern s32 D_8002EBA4;
+/* External data - scheduler globals */
+extern s16 __osScTaskCount;             /* Number of pending tasks */
+extern void *__osScCurAudioTask;        /* Current audio task */
+extern s32 __osScPendingSwap;           /* Pending framebuffer address */
+extern s32 __osScSwapCount;             /* Retrace count at last swap */
+extern s32 __osScTimeEnabled;           /* Time accumulation enabled */
+extern f32 __osScTicksPerSecond;        /* Ticks to seconds conversion */
+extern f32 __osScSecondsPerTick;        /* Seconds per tick */
+extern void *__osViModeTable;           /* Video mode table */
+extern s64 __osScFrameTime;             /* Frame time accumulator */
+extern s32 __osScFrameCount;            /* Current frame count */
+extern s32 __osScRetraceTimeLo;         /* Retrace time (low 32 bits) */
+extern s32 __osScRetraceTimeHi;         /* Retrace time (high 32 bits) */
+extern u32 __osScAudioStartTime;        /* Audio task start time */
+extern f32 __osScElapsedTime;           /* Elapsed time since start */
+extern f32 __osScDeltaTime;             /* Delta time this frame */
+extern s32 __osScDeltaFrames;           /* Delta frames this update */
+extern s32 __osScDeadlineCount;         /* Deadline frame count */
+extern s32 __osScStartCount;            /* Start frame count */
+extern s32 __osScLastCount;             /* Last frame count */
 
 /* Forward declarations */
 static void __scMain(void *sc);
@@ -62,13 +87,23 @@ static void __scYield(void *sc);
 static s32 __scScheduleCore(void *sc, void **rsp, void **rdp, s32 flags);
 
 /**
- * OSScClient structure (reconstructed from offsets):
- * 0x00: next - pointer to next client
- * 0x04: msgQueue - message queue to notify
+ * OSScClient - Scheduler client structure
+ *
+ * Clients register with the scheduler to receive notifications
+ * about retrace events and task completion.
  */
+typedef struct OSScClient_s {
+    struct OSScClient_s *next;      /* 0x00: Next client in list */
+    OSMesgQueue *msgQueue;          /* 0x04: Queue for notifications */
+} OSScClient;
 
 /**
- * OSSched structure (reconstructed from m2c offsets):
+ * OSSched - Scheduler structure (reconstructed from offsets)
+ *
+ * The scheduler manages RSP/RDP task queues and coordinates
+ * with the VI retrace for frame timing.
+ *
+ * Layout:
  * 0x00:  state (s16)
  * 0x20:  priority (s16)
  * 0x40:  cmdQueue (OSMesgQueue)
@@ -87,10 +122,32 @@ static s32 __scScheduleCore(void *sc, void **rsp, void **rdp, s32 flags);
  * 0x280: audioListPending
  */
 
-typedef struct OSScClient_s {
-    struct OSScClient_s *next;
-    void *msgQueue;
-} OSScClient;
+/* OSSched field offsets */
+#define SCHED_STATE             0x00
+#define SCHED_PRIORITY          0x20
+#define SCHED_CMD_QUEUE         0x40
+#define SCHED_CMD_MSGS          0x58
+#define SCHED_RET_QUEUE         0x78
+#define SCHED_RET_MSGS          0x90
+#define SCHED_THREAD            0xB0
+#define SCHED_CLIENT_LIST       0x260
+#define SCHED_RSP_TASK_HEAD     0x264
+#define SCHED_RSP_TASK_TAIL     0x268
+#define SCHED_RDP_TASK_HEAD     0x26C
+#define SCHED_RDP_TASK_TAIL     0x270
+#define SCHED_CUR_RSP_TASK      0x274
+#define SCHED_CUR_RDP_TASK      0x278
+#define SCHED_RETRACE_COUNT     0x27C
+#define SCHED_AUDIO_PENDING     0x280
+
+/* OSScTask field offsets */
+#define TASK_NEXT               0x00
+#define TASK_STATE              0x04
+#define TASK_FLAGS              0x08
+#define TASK_FRAMEBUFFER        0x0C
+#define TASK_TYPE               0x10
+#define TASK_MSG_QUEUE          0x50
+#define TASK_MSG                0x54
 
 /**
  * Create and initialize the scheduler
@@ -106,57 +163,64 @@ void osCreateScheduler(void *sc, void *stack, s32 stackSize, u8 viMode, u8 numFi
     u8 *scheduler = (u8 *)sc;
 
     /* Reset task count */
-    D_8002EB70 = 0;
+    __osScTaskCount = 0;
 
     /* Clear task pointers */
-    *(void **)(scheduler + 0x274) = NULL;  /* curRSPTask */
-    *(void **)(scheduler + 0x278) = NULL;  /* curRDPTask */
-    *(void **)(scheduler + 0x260) = NULL;  /* clientList */
-    *(s32 *)(scheduler + 0x27C) = 0;       /* retraceCount */
-    *(void **)(scheduler + 0x264) = NULL;  /* rspTaskHead */
-    *(void **)(scheduler + 0x268) = NULL;  /* rspTaskTail */
-    *(void **)(scheduler + 0x26C) = NULL;  /* rdpTaskHead */
-    *(void **)(scheduler + 0x270) = NULL;  /* rdpTaskTail */
+    *(void **)(scheduler + SCHED_CUR_RSP_TASK) = NULL;
+    *(void **)(scheduler + SCHED_CUR_RDP_TASK) = NULL;
+    *(void **)(scheduler + SCHED_CLIENT_LIST) = NULL;
+    *(s32 *)(scheduler + SCHED_RETRACE_COUNT) = 0;
+    *(void **)(scheduler + SCHED_RSP_TASK_HEAD) = NULL;
+    *(void **)(scheduler + SCHED_RSP_TASK_TAIL) = NULL;
+    *(void **)(scheduler + SCHED_RDP_TASK_HEAD) = NULL;
+    *(void **)(scheduler + SCHED_RDP_TASK_TAIL) = NULL;
 
     /* Set state and priority */
-    *(s16 *)(scheduler + 0x00) = 1;
-    *(s16 *)(scheduler + 0x20) = 4;
+    *(s16 *)(scheduler + SCHED_STATE) = 1;
+    *(s16 *)(scheduler + SCHED_PRIORITY) = 4;
 
     /* Create command message queue (8 messages) */
-    osCreateMesgQueue(scheduler + 0x40, scheduler + 0x58, 8);
+    osCreateMesgQueue((OSMesgQueue *)(scheduler + SCHED_CMD_QUEUE),
+                      (OSMesg *)(scheduler + SCHED_CMD_MSGS), 8);
 
     /* Create retrace message queue (8 messages) */
-    osCreateMesgQueue(scheduler + 0x78, scheduler + 0x90, 8);
+    osCreateMesgQueue((OSMesgQueue *)(scheduler + SCHED_RET_QUEUE),
+                      (OSMesg *)(scheduler + SCHED_RET_MSGS), 8);
 
     /* Set event mask */
-    osSetEventMesg(0xFE, NULL, 0);
+    osSetEventMesg(0xFE, NULL, NULL);
 
     /* Set VI mode */
-    osViSetMode((u8 *)&D_8002B1B0 + (viMode * 0x50));
+    osViSetMode((u8 *)&__osViModeTable + (viMode * 0x50));
 
     /* Enable/disable black screen */
     osViBlack(1);
 
-    /* Register for VI retrace events */
-    osSetEventMesg(4, scheduler + 0x40, 0x29B);
+    /* Register for SP (RSP) events */
+    osSetEventMesg(OS_EVENT_SP, (OSMesgQueue *)(scheduler + SCHED_CMD_QUEUE),
+                   (OSMesg)SC_MSG_RETRACE);
 
-    /* Register for SP events */
-    osSetEventMesg(9, scheduler + 0x40, 0x29C);
-
-    /* Register for DP events */
-    osSetEventMesg(14, scheduler + 0x40, 0x29D);
+    /* Register for DP (RDP) events */
+    osSetEventMesg(OS_EVENT_DP, (OSMesgQueue *)(scheduler + SCHED_CMD_QUEUE),
+                   (OSMesg)SC_MSG_RSP_DONE);
 
     /* Register for Pre-NMI events */
-    osSetEventMesg(0, scheduler + 0x40, 0x29E);
+    osSetEventMesg(OS_EVENT_PRENMI, (OSMesgQueue *)(scheduler + SCHED_CMD_QUEUE),
+                   (OSMesg)SC_MSG_RDP_DONE);
+
+    /* Register for software interrupt 1 */
+    osSetEventMesg(OS_EVENT_SW1, (OSMesgQueue *)(scheduler + SCHED_CMD_QUEUE),
+                   (OSMesg)SC_MSG_PRENMI);
 
     /* Set up VI swap callback with numFields */
-    /* osViSetSwapBuffer(scheduler + 0x40, 0x29A, numFields); */
+    /* osViSetSwapBuffer(scheduler + SCHED_CMD_QUEUE, SC_MSG_SWAP, numFields); */
 
     /* Create scheduler thread (priority 4, ID 4) */
-    osCreateThread(scheduler + 0xB0, 4, __scMain, sc, stack, stackSize);
+    osCreateThread((OSThread *)(scheduler + SCHED_THREAD), 4, __scMain, sc,
+                   stack, stackSize);
 
     /* Start scheduler thread */
-    osStartThread(scheduler + 0xB0);
+    osStartThread((OSThread *)(scheduler + SCHED_THREAD));
 }
 
 /**
@@ -167,15 +231,15 @@ void osCreateScheduler(void *sc, void *stack, s32 stackSize, u8 viMode, u8 numFi
  * @param client Client to add
  * @param msgQueue Message queue for notifications
  */
-void osScAddClient(void *sc, OSScClient *client, void *msgQueue) {
+void osScAddClient(void *sc, OSScClient *client, OSMesgQueue *msgQueue) {
     u8 *scheduler = (u8 *)sc;
     s32 saved;
 
     saved = __osDisableInt();
 
     client->msgQueue = msgQueue;
-    client->next = *(OSScClient **)(scheduler + 0x260);
-    *(OSScClient **)(scheduler + 0x260) = client;
+    client->next = *(OSScClient **)(scheduler + SCHED_CLIENT_LIST);
+    *(OSScClient **)(scheduler + SCHED_CLIENT_LIST) = client;
 
     __osRestoreInt(saved);
 }
@@ -186,44 +250,46 @@ void osScAddClient(void *sc, OSScClient *client, void *msgQueue) {
  */
 static void __scMain(void *arg) {
     u8 *sc = (u8 *)arg;
-    void *msg;
+    OSMesg msg;
 
     while (1) {
         /* Wait for message on command queue */
-        if (osRecvMesg(sc + 0x40, &msg, 1) != -1) {
+        if (osRecvMesg((OSMesgQueue *)(sc + SCHED_CMD_QUEUE), &msg,
+                       OS_MESG_BLOCK) != -1) {
             s32 msgId = (s32)(uintptr_t)msg;
 
             /* Handle different message types */
-            switch (msgId - 0x29A) {
-                case 0:  /* 0x29A - Swap buffer complete */
+            switch (msgId - SC_MSG_SWAP) {
+                case 0:  /* SC_MSG_SWAP - Swap buffer complete */
                     /* osViSwapBuffer */
                     break;
 
-                case 1:  /* 0x29B - VI Retrace */
-                    *(s64 *)&D_8002EB80 = osGetCount();
+                case 1:  /* SC_MSG_RETRACE - VI Retrace */
+                    *(s64 *)&__osScRetraceTimeLo = osGetCount();
                     __scHandleRetrace(sc);
                     __scSchedule(sc);
                     break;
 
-                case 2:  /* 0x29C - RSP done */
+                case 2:  /* SC_MSG_RSP_DONE - RSP done */
                     __scHandleRSP(sc);
                     break;
 
-                case 3:  /* 0x29D - RDP done */
-                    D_8002E8E0 = osGetCount() - *(s64 *)&D_8002EB80;
+                case 3:  /* SC_MSG_RDP_DONE - RDP done */
+                    __osScFrameTime = osGetCount() - *(s64 *)&__osScRetraceTimeLo;
                     __scHandleRDP(sc);
                     break;
 
-                case 4:  /* 0x29E - Pre-NMI */
+                case 4:  /* SC_MSG_PRENMI - Pre-NMI */
                     __scSchedule(sc);
                     break;
 
                 default:
                     /* Unknown message - notify clients */
                     {
-                        OSScClient *client = *(OSScClient **)(sc + 0x260);
+                        OSScClient *client = *(OSScClient **)(sc + SCHED_CLIENT_LIST);
                         while (client != NULL) {
-                            osSendMesg(client->msgQueue, (void *)(uintptr_t)(sc + 0x20), 1);
+                            osSendMesg(client->msgQueue,
+                                      (OSMesg)(sc + SCHED_PRIORITY), OS_MESG_BLOCK);
                             client = client->next;
                         }
                     }
@@ -239,24 +305,25 @@ static void __scMain(void *arg) {
  */
 static void __scSchedule(void *arg) {
     u8 *sc = (u8 *)arg;
-    void *msg;
+    OSMesg msg;
     void *rspTask = NULL;
     void *rdpTask = NULL;
 
     /* Process any pending return messages */
-    while (osRecvMesg(sc + 0x78, &msg, 0) != -1) {
+    while (osRecvMesg((OSMesgQueue *)(sc + SCHED_RET_QUEUE), &msg,
+                      OS_MESG_NOBLOCK) != -1) {
         __scAppendList(sc, msg);
     }
 
     /* Check if we can yield current audio task */
-    if (*(void **)(sc + 0x280) != NULL &&
-        *(void **)(sc + 0x264) != NULL &&
-        *(void **)(sc + 0x274) != NULL) {
+    if (*(void **)(sc + SCHED_AUDIO_PENDING) != NULL &&
+        *(void **)(sc + SCHED_RSP_TASK_HEAD) != NULL &&
+        *(void **)(sc + SCHED_CUR_RSP_TASK) != NULL) {
         __scYield(sc);
     } else {
         /* Calculate scheduling flags */
-        s32 flags = ((*(void **)(sc + 0x274) == NULL) << 1) |
-                    (*(void **)(sc + 0x278) == NULL);
+        s32 flags = ((*(void **)(sc + SCHED_CUR_RSP_TASK) == NULL) << 1) |
+                    (*(void **)(sc + SCHED_CUR_RDP_TASK) == NULL);
 
         if (__scScheduleCore(sc, &rspTask, &rdpTask, flags) != flags) {
             __scExec(sc, rspTask, rdpTask);
@@ -273,20 +340,21 @@ static void __scHandleRetrace(void *arg) {
     OSScClient *client;
 
     /* Increment retrace counter */
-    (*(s32 *)(sc + 0x27C))++;
+    (*(s32 *)(sc + SCHED_RETRACE_COUNT))++;
 
     /* Check for pending swap */
-    if (D_8002AFA4 != 0 && (u32)(*(s32 *)(sc + 0x27C) - D_8002AFA8) >= 2) {
-        osViSwapBuffer((void *)(uintptr_t)D_8002AFA4);
+    if (__osScPendingSwap != 0 &&
+        (u32)(*(s32 *)(sc + SCHED_RETRACE_COUNT) - __osScSwapCount) >= 2) {
+        osViSwapBuffer((void *)(uintptr_t)__osScPendingSwap);
         /* Clear pending */
-        D_8002AFA8 = *(s32 *)(sc + 0x27C);
-        D_8002AFA4 = 0;
+        __osScSwapCount = *(s32 *)(sc + SCHED_RETRACE_COUNT);
+        __osScPendingSwap = 0;
     }
 
     /* Notify all clients of retrace */
-    client = *(OSScClient **)(sc + 0x260);
+    client = *(OSScClient **)(sc + SCHED_CLIENT_LIST);
     while (client != NULL) {
-        osSendMesg(client->msgQueue, sc, 0);
+        osSendMesg(client->msgQueue, (OSMesg)sc, OS_MESG_NOBLOCK);
         client = client->next;
     }
 }
@@ -305,34 +373,36 @@ static void __scHandleRSP(void *arg) {
     void *rdpTask = NULL;
     s32 flags;
 
-    if (*(void **)(sc + 0x274) == NULL) {
+    if (*(void **)(sc + SCHED_CUR_RSP_TASK) == NULL) {
         return;
     }
 
-    task = *(void **)(sc + 0x274);
-    *(void **)(sc + 0x274) = NULL;
+    task = *(void **)(sc + SCHED_CUR_RSP_TASK);
+    *(void **)(sc + SCHED_CUR_RSP_TASK) = NULL;
 
     /* Check if task yielded and has pending work */
-    if ((*(s32 *)((u8 *)task + 4) & 0x10) && osSpTaskYielded(task + 0x10) != 0) {
+    if ((*(s32 *)((u8 *)task + TASK_STATE) & SC_TASK_YIELD_REQ) &&
+        osSpTaskYielded((u8 *)task + TASK_TYPE) != 0) {
         /* Mark as yielded */
-        *(s32 *)((u8 *)task + 4) |= 0x20;
+        *(s32 *)((u8 *)task + TASK_STATE) |= SC_TASK_YIELDED;
 
         /* If graphics task, add back to RDP queue */
-        if ((*(s32 *)((u8 *)task + 8) & 7) == 3) {
-            *(void **)task = *(void **)(sc + 0x268);
-            *(void **)(sc + 0x268) = task;
-            if (*(void **)(sc + 0x270) == NULL) {
-                *(void **)(sc + 0x270) = task;
+        if ((*(s32 *)((u8 *)task + TASK_FLAGS) & 7) == 3) {
+            *(void **)task = *(void **)(sc + SCHED_RSP_TASK_TAIL);
+            *(void **)(sc + SCHED_RSP_TASK_TAIL) = task;
+            if (*(void **)(sc + SCHED_RDP_TASK_TAIL) == NULL) {
+                *(void **)(sc + SCHED_RDP_TASK_TAIL) = task;
             }
         }
     } else {
         /* Clear RSP busy flag */
-        *(s32 *)((u8 *)task + 4) &= ~2;
+        *(s32 *)((u8 *)task + TASK_STATE) &= ~SC_TASK_RSP_BUSY;
         __scTaskComplete(sc, task);
     }
 
     /* Reschedule */
-    flags = ((*(void **)(sc + 0x274) == NULL) << 1) | (*(void **)(sc + 0x278) == NULL);
+    flags = ((*(void **)(sc + SCHED_CUR_RSP_TASK) == NULL) << 1) |
+            (*(void **)(sc + SCHED_CUR_RDP_TASK) == NULL);
     if (__scScheduleCore(sc, &rspTask, &rdpTask, flags) != flags) {
         __scExec(sc, rspTask, rdpTask);
     }
@@ -351,24 +421,25 @@ static void __scHandleRDP(void *arg) {
     void *rdpTask = NULL;
     s32 flags;
 
-    if (*(void **)(sc + 0x278) == NULL) {
+    if (*(void **)(sc + SCHED_CUR_RDP_TASK) == NULL) {
         return;
     }
 
-    /* Verify task type is graphics (1) */
-    if (*(s32 *)(*(u8 **)(sc + 0x278) + 0x10) != 1) {
+    /* Verify task type is graphics */
+    if (*(s32 *)(*(u8 **)(sc + SCHED_CUR_RDP_TASK) + TASK_TYPE) != SC_TASK_GFX) {
         return;
     }
 
-    task = *(void **)(sc + 0x278);
-    *(void **)(sc + 0x278) = NULL;
+    task = *(void **)(sc + SCHED_CUR_RDP_TASK);
+    *(void **)(sc + SCHED_CUR_RDP_TASK) = NULL;
 
     /* Clear RDP busy flag */
-    *(s32 *)((u8 *)task + 4) &= ~1;
+    *(s32 *)((u8 *)task + TASK_STATE) &= ~SC_TASK_RDP_BUSY;
     __scTaskComplete(sc, task);
 
     /* Reschedule */
-    flags = ((*(void **)(sc + 0x274) == NULL) << 1) | (*(void **)(sc + 0x278) == NULL);
+    flags = ((*(void **)(sc + SCHED_CUR_RSP_TASK) == NULL) << 1) |
+            (*(void **)(sc + SCHED_CUR_RDP_TASK) == NULL);
     if (__scScheduleCore(sc, &rspTask, &rdpTask, flags) != flags) {
         __scExec(sc, rspTask, rdpTask);
     }
@@ -377,7 +448,7 @@ static void __scHandleRDP(void *arg) {
 /* External VI functions */
 extern s32 osViGetCurrentFramebuffer(void);
 extern void *osViGetFramebuffer(void);
-extern void func_80001D60(void);  /* VI sync/update */
+extern void __osScViSync(void);  /* VI sync/update */
 
 /**
  * Check if buffer swap is ready
@@ -396,7 +467,8 @@ static s32 __scCheckSwap(void *sc, s32 flag) {
         }
 
         /* Check if swap is pending and not yet ready */
-        if (D_8002AFA4 != 0 && (u32)(*(s32 *)(scheduler + 0x27C) - D_8002AFA8) < 2) {
+        if (__osScPendingSwap != 0 &&
+            (u32)(*(s32 *)(scheduler + SCHED_RETRACE_COUNT) - __osScSwapCount) < 2) {
             return 0;
         }
 
@@ -416,23 +488,24 @@ static s32 __scTaskComplete(void *arg, void *task) {
     s32 result;
 
     /* Check if both RSP and RDP are done (flags in low 2 bits) */
-    if (!(*(s32 *)(t + 4) & 3)) {
+    if (!(*(s32 *)(t + TASK_STATE) & (SC_TASK_RDP_BUSY | SC_TASK_RSP_BUSY))) {
         /* Send completion message to client */
-        result = osSendMesg(*(void **)(t + 0x50), *(void **)(t + 0x54), 1);
+        result = osSendMesg(*(OSMesgQueue **)(t + TASK_MSG_QUEUE),
+                           *(OSMesg *)(t + TASK_MSG), OS_MESG_BLOCK);
 
         /* Handle graphics task completion */
-        if (*(s32 *)(t + 0x10) == 1) {
-            D_8002EB70--;
+        if (*(s32 *)(t + TASK_TYPE) == SC_TASK_GFX) {
+            __osScTaskCount--;
 
-            flags = *(s32 *)(t + 8);
-            /* Check for swap buffer flag (0x40) and completed (0x20) */
-            if ((flags & 0x40) && (flags & 0x20)) {
-                if ((u32)(*(s32 *)(sc + 0x27C) - D_8002AFA8) >= 2) {
-                    D_8002AFA8 = *(s32 *)(sc + 0x27C);
-                    osViSwapBuffer(*(void **)(t + 0xC));
-                    func_80001D60();
+            flags = *(s32 *)(t + TASK_FLAGS);
+            /* Check for swap buffer flag and completed */
+            if ((flags & SC_TASK_SWAP_FB) && (flags & SC_TASK_YIELDED)) {
+                if ((u32)(*(s32 *)(sc + SCHED_RETRACE_COUNT) - __osScSwapCount) >= 2) {
+                    __osScSwapCount = *(s32 *)(sc + SCHED_RETRACE_COUNT);
+                    osViSwapBuffer(*(void **)(t + TASK_FRAMEBUFFER));
+                    __osScViSync();
                 } else {
-                    D_8002AFA4 = *(s32 *)(t + 0xC);
+                    __osScPendingSwap = *(s32 *)(t + TASK_FRAMEBUFFER);
                 }
             }
         }
@@ -450,37 +523,41 @@ static void __scAppendList(void *arg, void *msg) {
     u8 *task = (u8 *)msg;
     s32 taskType;
 
-    taskType = *(s32 *)(task + 0x10);
+    taskType = *(s32 *)(task + TASK_TYPE);
 
     /* Task type 2 = audio, type 1 = graphics */
-    if (taskType == 2) {
+    if (taskType == SC_TASK_AUDIO) {
         /* Audio task - add to RSP queue */
-        if (*(void **)(sc + 0x26C) != NULL) {
-            *(void **)*(void **)(sc + 0x26C) = task;
+        if (*(void **)(sc + SCHED_RDP_TASK_HEAD) != NULL) {
+            *(void **)*(void **)(sc + SCHED_RDP_TASK_HEAD) = task;
         } else {
-            *(void **)(sc + 0x264) = task;
+            *(void **)(sc + SCHED_RSP_TASK_HEAD) = task;
         }
-        *(void **)(sc + 0x26C) = task;
+        *(void **)(sc + SCHED_RDP_TASK_HEAD) = task;
 
         /* Mark audio pending */
-        *(s32 *)(sc + 0x280) = 1;
+        *(s32 *)(sc + SCHED_AUDIO_PENDING) = 1;
     } else {
         /* Graphics task - add to RDP queue */
-        if (*(void **)(sc + 0x270) != NULL) {
-            *(void **)*(void **)(sc + 0x270) = task;
+        if (*(void **)(sc + SCHED_RDP_TASK_TAIL) != NULL) {
+            *(void **)*(void **)(sc + SCHED_RDP_TASK_TAIL) = task;
         } else {
-            *(void **)(sc + 0x268) = task;
+            *(void **)(sc + SCHED_RSP_TASK_TAIL) = task;
         }
-        *(void **)(sc + 0x270) = task;
+        *(void **)(sc + SCHED_RDP_TASK_TAIL) = task;
     }
 
     /* Clear next pointer and set busy flags from task flags */
     *(void **)task = NULL;
-    *(s32 *)(task + 4) = *(s32 *)(task + 8) & 3;
+    *(s32 *)(task + TASK_STATE) = *(s32 *)(task + TASK_FLAGS) &
+                                  (SC_TASK_RDP_BUSY | SC_TASK_RSP_BUSY);
 }
 
 /* External SP/DP functions */
 extern void osSpClearStatus(void);
+
+/* OSScTask RDP buffer offset */
+#define TASK_RDP_BUFFER     0x38
 
 /**
  * Execute RSP/RDP tasks
@@ -491,36 +568,36 @@ static void __scExec(void *arg, void *rspTask, void *rdpTask) {
     u8 *rsp = (u8 *)rspTask;
     u8 *rdp = (u8 *)rdpTask;
 
-    if (*(void **)(sc + 0x274) != NULL) {
+    if (*(void **)(sc + SCHED_CUR_RSP_TASK) != NULL) {
         return;
     }
 
     if (rspTask != NULL) {
-        /* Audio task (type 2) */
-        if (*(s32 *)(rsp + 0x10) == 2) {
-            D_8002EB78 = osGetCount();
-            D_8002AFA0 = rspTask;
-        } else if (!(*(s32 *)(rsp + 4) & 0x20)) {
+        /* Audio task */
+        if (*(s32 *)(rsp + TASK_TYPE) == SC_TASK_AUDIO) {
+            __osScAudioStartTime = osGetCount();
+            __osScCurAudioTask = rspTask;
+        } else if (!(*(s32 *)(rsp + TASK_STATE) & SC_TASK_YIELDED)) {
             /* Not yielded - record time */
-            D_8002E8E0 = D_8002EB80;
+            __osScFrameTime = __osScRetraceTimeLo;
         }
 
         /* Clear SP status and load task */
         osSpClearStatus();
-        *(s32 *)(rsp + 4) &= ~0x30;
-        osSpTaskLoad(rsp + 0x10);
-        osSpTaskStartGo(rsp + 0x10);
+        *(s32 *)(rsp + TASK_STATE) &= ~(SC_TASK_YIELD_REQ | SC_TASK_YIELDED);
+        osSpTaskLoad(rsp + TASK_TYPE);
+        osSpTaskStartGo(rsp + TASK_TYPE);
 
-        *(void **)(sc + 0x274) = rspTask;
+        *(void **)(sc + SCHED_CUR_RSP_TASK) = rspTask;
         if (rspTask == rdpTask) {
-            *(void **)(sc + 0x278) = rdpTask;
+            *(void **)(sc + SCHED_CUR_RDP_TASK) = rdpTask;
         }
     }
 
     /* Set up RDP if different task */
     if (rdpTask != NULL && rdpTask != rspTask) {
-        osDpSetNextBuffer(*(void **)(rdp + 0x38), 0);
-        *(void **)(sc + 0x278) = rdpTask;
+        osDpSetNextBuffer(*(void **)(rdp + TASK_RDP_BUFFER), 0);
+        *(void **)(sc + SCHED_CUR_RDP_TASK) = rdpTask;
     }
 }
 
@@ -532,11 +609,11 @@ static void __scYield(void *arg) {
     u8 *sc = (u8 *)arg;
     u8 *task;
 
-    /* Only yield graphics tasks (type 1) */
-    if (*(s32 *)(*(u8 **)(sc + 0x274) + 0x10) == 1) {
-        task = *(u8 **)(sc + 0x274);
+    /* Only yield graphics tasks */
+    if (*(s32 *)(*(u8 **)(sc + SCHED_CUR_RSP_TASK) + TASK_TYPE) == SC_TASK_GFX) {
+        task = *(u8 **)(sc + SCHED_CUR_RSP_TASK);
         /* Set yield request flag */
-        *(s32 *)(task + 4) |= 0x10;
+        *(s32 *)(task + TASK_STATE) |= SC_TASK_YIELD_REQ;
         osSpTaskYield();
     }
 }
@@ -557,32 +634,32 @@ static s32 __scScheduleCore(void *sc, void **rsp, void **rdp, s32 flags) {
     u8 *scheduler = (u8 *)sc;
     void *rspHead, *rdpHead;
 
-    rspHead = *(void **)(scheduler + 0x264);
-    rdpHead = *(void **)(scheduler + 0x268);
+    rspHead = *(void **)(scheduler + SCHED_RSP_TASK_HEAD);
+    rdpHead = *(void **)(scheduler + SCHED_RSP_TASK_TAIL);
 
     /* Check RSP queue (bit 1 = RSP available) */
-    if ((flags & 2) && rspHead != NULL) {
+    if ((flags & SC_TASK_RSP_BUSY) && rspHead != NULL) {
         *rsp = rspHead;
-        *(void **)(scheduler + 0x264) = *(void **)rspHead;
-        if (*(void **)(scheduler + 0x264) == NULL) {
-            *(void **)(scheduler + 0x26C) = NULL;
+        *(void **)(scheduler + SCHED_RSP_TASK_HEAD) = *(void **)rspHead;
+        if (*(void **)(scheduler + SCHED_RSP_TASK_HEAD) == NULL) {
+            *(void **)(scheduler + SCHED_RDP_TASK_HEAD) = NULL;
         }
-        flags &= ~2;
+        flags &= ~SC_TASK_RSP_BUSY;
 
         /* Audio task clears pending flag */
-        if (*(s32 *)((u8 *)rspHead + 0x10) == 2) {
-            *(s32 *)(scheduler + 0x280) = 0;
+        if (*(s32 *)((u8 *)rspHead + TASK_TYPE) == SC_TASK_AUDIO) {
+            *(s32 *)(scheduler + SCHED_AUDIO_PENDING) = 0;
         }
     }
 
     /* Check RDP queue (bit 0 = RDP available) */
-    if ((flags & 1) && rdpHead != NULL) {
+    if ((flags & SC_TASK_RDP_BUSY) && rdpHead != NULL) {
         *rdp = rdpHead;
-        *(void **)(scheduler + 0x268) = *(void **)rdpHead;
-        if (*(void **)(scheduler + 0x268) == NULL) {
-            *(void **)(scheduler + 0x270) = NULL;
+        *(void **)(scheduler + SCHED_RSP_TASK_TAIL) = *(void **)rdpHead;
+        if (*(void **)(scheduler + SCHED_RSP_TASK_TAIL) == NULL) {
+            *(void **)(scheduler + SCHED_RDP_TASK_TAIL) = NULL;
         }
-        flags &= ~1;
+        flags &= ~SC_TASK_RDP_BUSY;
     }
 
     return flags;
@@ -598,10 +675,10 @@ void osScResetTime(void) {
 
     saved = __osDisableInt();
 
-    D_8002EBA4 = D_8002EB64;
-    temp = 2.0f * D_8002AFB8;
-    D_8002EB94 = temp;
-    D_8002EB90 = temp;
+    __osScLastCount = __osScFrameCount;
+    temp = 2.0f * __osScSecondsPerTick;
+    __osScDeltaTime = temp;
+    __osScElapsedTime = temp;
 
     __osRestoreInt(saved);
 }
@@ -611,7 +688,7 @@ void osScResetTime(void) {
  * (func_800013C0)
  */
 void osScEnableTime(void) {
-    D_8002AFB0 = 1;
+    __osScTimeEnabled = 1;
 }
 
 /**
@@ -619,7 +696,7 @@ void osScEnableTime(void) {
  * (func_800013DC)
  */
 void osScDisableTime(void) {
-    D_8002AFB0 = 0;
+    __osScTimeEnabled = 0;
 }
 
 /**
@@ -627,22 +704,23 @@ void osScDisableTime(void) {
  * (func_800013F4)
  */
 void osScUpdateTime(void) {
-    D_8002EB98 = D_8002EB64 - D_8002EBA4;
-    D_8002EBA4 = D_8002EB64;
+    __osScDeltaFrames = __osScFrameCount - __osScLastCount;
+    __osScLastCount = __osScFrameCount;
 
-    if (D_8002AFB0 != 0) {
-        D_8002EBA0 += D_8002EB98;
-        D_8002EB9C += D_8002EB98;
+    if (__osScTimeEnabled != 0) {
+        __osScStartCount += __osScDeltaFrames;
+        __osScDeadlineCount += __osScDeltaFrames;
     } else {
-        D_8002EB90 = (f32)(D_8002EB64 - D_8002EBA0) * D_8002AFB8;
+        __osScElapsedTime = (f32)(__osScFrameCount - __osScStartCount) *
+                            __osScSecondsPerTick;
     }
 
     /* Clamp delta to max 5 frames */
-    if (D_8002EB98 >= 6) {
-        D_8002EB98 = 5;
+    if (__osScDeltaFrames >= 6) {
+        __osScDeltaFrames = 5;
     }
 
-    D_8002EB94 = (f32)D_8002EB98 * D_8002AFB8;
+    __osScDeltaTime = (f32)__osScDeltaFrames * __osScSecondsPerTick;
 }
 
 /**
@@ -650,8 +728,8 @@ void osScUpdateTime(void) {
  * (func_800014F0)
  */
 void osScSetDeadline(f32 time) {
-    D_8002EBA0 = D_8002EB64;
-    D_8002EB9C = (s32)(time * D_8002AFB4) + D_8002EB64;
+    __osScStartCount = __osScFrameCount;
+    __osScDeadlineCount = (s32)(time * __osScTicksPerSecond) + __osScFrameCount;
 }
 
 /**
@@ -659,7 +737,7 @@ void osScSetDeadline(f32 time) {
  * (func_8000153C)
  */
 void osScAddDeadline(f32 time) {
-    D_8002EB9C += (s32)(time * D_8002AFB4);
+    __osScDeadlineCount += (s32)(time * __osScTicksPerSecond);
 }
 
 /**
@@ -667,7 +745,7 @@ void osScAddDeadline(f32 time) {
  * (func_80001578)
  */
 f32 osScGetTimeRemaining(void) {
-    return (f32)(D_8002EB9C - D_8002EB64) * D_8002AFB8;
+    return (f32)(__osScDeadlineCount - __osScFrameCount) * __osScSecondsPerTick;
 }
 
 /**
@@ -675,7 +753,7 @@ f32 osScGetTimeRemaining(void) {
  * (func_800015BC)
  */
 s32 osScDeadlinePassed(void) {
-    return (D_8002EB9C - D_8002EB64) < 1;
+    return (__osScDeadlineCount - __osScFrameCount) < 1;
 }
 
 /**
