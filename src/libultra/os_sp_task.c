@@ -14,11 +14,28 @@ extern s32 __osDisableInt(void);
 extern void __osRestoreInt(s32 mask);
 
 /* External data */
-extern void *D_8002C460;  /* VI/RSP context pointer */
+extern void *__osViContext;  /* Current VI context pointer */
 
-/* SP Status bits */
-#define SP_STATUS_YIELD         0x0080  /* Signal 0 - task yielded */
-#define SP_STATUS_YIELDED       0x0100  /* Signal 1 - task has been yielded */
+/* SP Status register bits */
+#define SP_STATUS_HALT          0x0001  /* RSP is halted */
+#define SP_STATUS_BROKE         0x0002  /* RSP hit break instruction */
+#define SP_STATUS_DMA_BUSY      0x0004  /* DMA in progress */
+#define SP_STATUS_DMA_FULL      0x0008  /* DMA queue is full */
+#define SP_STATUS_IO_FULL       0x0010  /* I/O queue is full */
+#define SP_STATUS_SSTEP         0x0020  /* Single-step mode */
+#define SP_STATUS_INTR_BREAK    0x0040  /* Interrupt on break */
+#define SP_STATUS_SIG0          0x0080  /* Signal 0 - yield request */
+#define SP_STATUS_SIG1          0x0100  /* Signal 1 - task yielded */
+#define SP_STATUS_SIG2          0x0200  /* Signal 2 */
+#define SP_STATUS_SIG3          0x0400  /* Signal 3 */
+#define SP_STATUS_SIG4          0x0800  /* Signal 4 */
+#define SP_STATUS_SIG5          0x1000  /* Signal 5 */
+#define SP_STATUS_SIG6          0x2000  /* Signal 6 */
+#define SP_STATUS_SIG7          0x4000  /* Signal 7 */
+
+/* Aliases for task yield signals */
+#define SP_STATUS_YIELD         SP_STATUS_SIG0
+#define SP_STATUS_YIELDED       SP_STATUS_SIG1
 
 /**
  * Check if RSP task is done or yielded
@@ -68,7 +85,7 @@ void *osViGetFramebuffer(void) {
 
     savedMask = __osDisableInt();
 
-    ctx = D_8002C460;
+    ctx = __osViContext;
     framebuffer = *(void **)((u8 *)ctx + 4);
 
     __osRestoreInt(savedMask);
@@ -85,15 +102,17 @@ extern s32 __osSpDeviceBusy(void);
 extern void __osSpSetStatus(u32 status);
 extern s32 osVirtualToPhysical(void *vaddr);
 
-/* SP task context globals */
-extern u8 D_80036790[64];    /* SP task context buffer */
-extern s32 D_800367A0;       /* Task ucode pointer */
-extern s32 D_800367A8;       /* Task ucode_data pointer */
-extern s32 D_800367B0;       /* Task dram_stack pointer */
-extern s32 D_800367B8;       /* Task output_buff pointer */
-extern s32 D_800367BC;       /* Task output_buff_size */
-extern s32 D_800367C0;       /* Task yield_data pointer */
-extern s32 D_800367C8;       /* Task data pointer */
+/* SP task context buffer - mirrors OSTask structure for DMA */
+extern u8 __osSpTaskContext[64];
+
+/* Physical address pointers for task resources (converted from virtual) */
+extern s32 __osSpTaskUcode;         /* Microcode DRAM address */
+extern s32 __osSpTaskUcodeData;     /* Microcode data DRAM address */
+extern s32 __osSpTaskDramStack;     /* RSP stack in DRAM */
+extern s32 __osSpTaskOutputBuff;    /* Output buffer address */
+extern s32 __osSpTaskOutputSize;    /* Output buffer size */
+extern s32 __osSpTaskYieldData;     /* Yield data buffer */
+extern s32 __osSpTaskData;          /* Task data pointer */
 
 /**
  * Get SP task context
@@ -102,34 +121,35 @@ extern s32 D_800367C8;       /* Task data pointer */
  * Prepares the SP task context by converting virtual addresses
  * to physical addresses for DMA transfers.
  *
- * @return Pointer to task context
+ * @return Pointer to task context buffer
  */
 void *__osSpGetContext(void) {
-    __osSiRawWriteDram(D_80036790, 0x40);
+    __osSiRawWriteDram(__osSpTaskContext, 0x40);
 
-    if (D_800367A0 != 0) {
-        D_800367A0 = osVirtualToPhysical((void *)D_800367A0);
+    /* Convert virtual addresses to physical for DMA */
+    if (__osSpTaskUcode != 0) {
+        __osSpTaskUcode = osVirtualToPhysical((void *)__osSpTaskUcode);
     }
-    if (D_800367A8 != 0) {
-        D_800367A8 = osVirtualToPhysical((void *)D_800367A8);
+    if (__osSpTaskUcodeData != 0) {
+        __osSpTaskUcodeData = osVirtualToPhysical((void *)__osSpTaskUcodeData);
     }
-    if (D_800367B0 != 0) {
-        D_800367B0 = osVirtualToPhysical((void *)D_800367B0);
+    if (__osSpTaskDramStack != 0) {
+        __osSpTaskDramStack = osVirtualToPhysical((void *)__osSpTaskDramStack);
     }
-    if (D_800367B8 != 0) {
-        D_800367B8 = osVirtualToPhysical((void *)D_800367B8);
+    if (__osSpTaskOutputBuff != 0) {
+        __osSpTaskOutputBuff = osVirtualToPhysical((void *)__osSpTaskOutputBuff);
     }
-    if (D_800367BC != 0) {
-        D_800367BC = osVirtualToPhysical((void *)D_800367BC);
+    if (__osSpTaskOutputSize != 0) {
+        __osSpTaskOutputSize = osVirtualToPhysical((void *)__osSpTaskOutputSize);
     }
-    if (D_800367C0 != 0) {
-        D_800367C0 = osVirtualToPhysical((void *)D_800367C0);
+    if (__osSpTaskYieldData != 0) {
+        __osSpTaskYieldData = osVirtualToPhysical((void *)__osSpTaskYieldData);
     }
-    if (D_800367C8 != 0) {
-        D_800367C8 = osVirtualToPhysical((void *)D_800367C8);
+    if (__osSpTaskData != 0) {
+        __osSpTaskData = osVirtualToPhysical((void *)__osSpTaskData);
     }
 
-    return D_80036790;
+    return __osSpTaskContext;
 }
 
 /**
