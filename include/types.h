@@ -84,6 +84,36 @@ typedef f32 Mat4f[4][4];
 #define OS_MESG_NOBLOCK 0
 #define OS_MESG_BLOCK   1
 
+/* Controller Pak (PFS) constants */
+#define PFS_READ  0
+#define PFS_WRITE 1
+#define PFS_ERR_NOPACK    1
+#define PFS_ERR_NEW_PACK  2
+#define PFS_ERR_CONTRFAIL 4
+#define PFS_ERR_EXIST     5
+#define PFS_ERR_ID_FATAL  8
+#define PFS_ERR_DEVICE    11
+
+/* N64 Matrix constants */
+#define G_MTX_MODELVIEW  0x00
+#define G_MTX_PROJECTION 0x04
+#define G_MTX_MUL        0x00
+#define G_MTX_LOAD       0x02
+#define G_MTX_NOPUSH     0x00
+#define G_MTX_PUSH       0x01
+
+/* N64 AA render mode constants */
+#define G_RM_AA_ZB_OPA_SURF  0x0C184000
+#define G_RM_AA_ZB_OPA_SURF2 0x03124000
+#define G_RM_AA_ZB_XLU_SURF  0x00504A00
+#define G_RM_AA_ZB_XLU_SURF2 0x00104A40
+
+/* Combine mode macros */
+#define G_CC_MODULATEIA_PRIM 0
+
+/* Float matrix type alias */
+typedef f32 MtxF[4][4];
+
 /* N64 Controller Pak (PFS) structure */
 typedef struct {
     s32 status;
@@ -140,6 +170,17 @@ typedef struct {
 /* N64 OS Message Priority */
 #define OS_MESG_PRI_NORMAL 0
 #define OS_MESG_PRI_HIGH   1
+
+/* N64 I/O Message structure for DMA */
+typedef struct {
+    s16 type;
+    s16 pri;
+    s32 status;
+    void *mq;
+    void *devAddr;
+    void *dramAddr;
+    u32 size;
+} OSIoMesg;
 
 /* External RSP boot/ucode symbols */
 extern u8 rspbootTextStart[], rspbootTextEnd[];
