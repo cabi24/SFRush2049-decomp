@@ -323,13 +323,26 @@ enum GState {
 | src/racing/maxpath.c | game/maxpath.c | 3,730 |
 | src/camera/camera.c | game/camera.c | 2,043 |
 
+## Progress Report
+
+For a detailed breakdown of project progress by phase, see: **[docs/PROGRESS_REPORT.md](docs/PROGRESS_REPORT.md)**
+
+Quick summary (2025-12-27):
+- **Overall**: ~45% complete (Phase 2 of 5)
+- **Phase 1** (Setup): 100% - ROM extracted, build system working
+- **Phase 2** (C Source): 90% - 111 C files, all compiling
+- **Phase 3** (Decompilation): 25% - Many functions still stubs
+- **Phase 4** (Matching): 0% - IDO compiler not set up yet
+- **Phase 5** (Documentation): 10% - Basic docs only
+
 ## Session Continuity Tips
 
 When starting a new session:
 1. Read this file first
-2. Check `symbol_addrs.us.txt` for identified functions (228 total, 100% coverage)
-3. Check git log for recent changes
-4. Run `make progress` (when available) to see status
+2. Run `make progress` for quick stats
+3. See `docs/PROGRESS_REPORT.md` for detailed breakdown
+4. Check `symbol_addrs.us.txt` for function list
+5. Check git log for recent changes
 
 ## Next Session TODO
 
