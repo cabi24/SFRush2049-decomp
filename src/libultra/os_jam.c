@@ -7,30 +7,8 @@
  */
 
 #include "types.h"
-
-/* Forward declarations */
-struct OSThread;
-
-/* Message queue structure */
-typedef struct OSMesgQueue_s {
-    struct OSThread *mtqueue;      /* 0x00: Threads waiting to receive */
-    struct OSThread *fullqueue;    /* 0x04: Threads waiting to send */
-    s32 validCount;                /* 0x08: Number of valid messages */
-    s32 first;                     /* 0x0C: Index of first valid message */
-    s32 msgCount;                  /* 0x10: Maximum messages in queue */
-    void **msg;                    /* 0x14: Message buffer array */
-} OSMesgQueue;
-
-/* Thread structure (partial - for state access) */
-typedef struct OSThread {
-    struct OSThread *next;  /* 0x00: Next thread in queue */
-    s32 priority;           /* 0x04: Thread priority */
-    void *queue;            /* 0x08: Queue this thread belongs to */
-    s16 state;              /* 0x10: Thread state */
-} OSThread;
-
-/* External data */
-extern OSThread *D_8002C3E0;    /* Currently running thread */
+#include "PR/os_message.h"
+#include "PR/os_thread.h"
 
 /* External functions */
 extern s32 __osDisableInt(void);
@@ -59,8 +37,8 @@ s32 osJamMesg(OSMesgQueue *mq, void *msg, s32 flags) {
 
     /* Wait/fail if queue is full */
     while (mq->validCount >= mq->msgCount) {
-        if (flags == 1) {  /* OS_MESG_BLOCK */
-            D_8002C3E0->state = 8;  /* OS_STATE_WAITING */
+        if (flags == OS_MESG_BLOCK) {
+            __osRunningThread->state = OS_STATE_WAITING;
             __osEnqueueAndYield(&mq->fullqueue);
         } else {
             __osRestoreInt(savedMask);

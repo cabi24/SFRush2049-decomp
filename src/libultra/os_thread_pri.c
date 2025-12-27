@@ -12,8 +12,7 @@
 extern s32 __osDisableInt(void);
 extern void __osRestoreInt(s32 mask);
 
-/* External data */
-extern OSThread *D_8002C464;  /* System/current thread pointer */
+/* External data - uses __osRunningThread from os_thread.h */
 
 /**
  * Get current interrupt mask
@@ -30,7 +29,7 @@ s32 __osGetIntMask(void) {
     saved = __osDisableInt();
 
     /* Get interrupt mask from thread priority field */
-    mask = D_8002C464->priority;
+    mask = __osRunningThread->priority;
 
     __osRestoreInt(saved);
 
