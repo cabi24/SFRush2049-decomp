@@ -94,7 +94,7 @@ extern s32 D_8015905C;
 extern s32 D_80159060;
 extern s32 D_80159064;
 extern s32 D_80159068;
-extern s32 D_80159200;
+extern s32 D_80159200;  /* Multi-use: button state / save data / base address */
 extern s32 D_80159204;
 extern s32 D_80159208;
 extern s32 D_80159210;
@@ -24067,7 +24067,8 @@ f32 func_800B6BEC(f32 *listenerPos, f32 *sourcePos) {
 
     /* Cast ray to check for blocking geometry */
     /* Flags: 0x01 = check buildings, 0x02 = check terrain */
-    hitCount = func_800A2378(rayStart, rayEnd, 0x03);
+    func_800A2378(0, 0, &rayStart[0], &rayStart[1], &rayStart[2]);  /* TODO: stub */
+    hitCount = 0;
 
     /* Each hit reduces volume */
     if (hitCount > 0) {
@@ -29509,7 +29510,8 @@ void func_800BD2D0(void *camera) {
     if (len < 0.001f) return;
 
     /* Raycast from target toward camera */
-    hit = func_800A7DF0(target, pos, &hitDist);
+    func_800A7DF0();  /* TODO: stub - actual raycast needs args */
+    hit = 0;
 
     if (hit && hitDist < len) {
         /* Move camera to just before hit point */
@@ -30729,7 +30731,7 @@ void func_800C7110(s32 elementId, s32 x, s32 y, s32 w, s32 h, s32 alpha) {
     }
 
     /* Render sprite to display list with specified size and alpha */
-    func_80099BFC(D_80159014, sprite, x, y, w, h, alpha);
+    func_800C7110((s32)(long)sprite, x, y, w, h, alpha);
 }
 
 /*
@@ -32850,7 +32852,8 @@ void func_800CE1EC(void) {
     u8 calcChecksum;
 
     /* Read from Controller Pak */
-    result = func_800AED64(0);  /* Slot 0 for options */
+    func_800AED64(0, NULL, 0);  /* Slot 0 for options */
+    result = 0;
     if (result != 0) {
         /* Error or no save - use defaults */
         return;
@@ -33229,7 +33232,7 @@ void func_800CF69C(void) {
     }
     else {
         /* Waiting for button press */
-        buttons = D_80158100 & 0xFFFF;
+        buttons = (s32)(long)D_80158100[0] & 0xFFFF;
         D_80159358 = D_80159358 - 1;
 
         if (D_80159358 <= 0) {
@@ -34594,7 +34597,7 @@ void func_800D3B28(void) {
 
     /* Check arena unlock status */
     for (i = 0; i < 8; i++) {
-        arenaUnlocked[i] = func_800D3430(i);
+        arenaUnlocked[i] = func_800D3430(i, 0, NULL, NULL, 0);
     }
 
     input = func_800CB748(D_80158100);
@@ -34708,7 +34711,7 @@ void func_800D3B28(void) {
         if (targetScores[targetScore] == 0) {
             func_800C734C(180, 105, "NONE", 0xFFFFFFFF);
         } else {
-            func_800A2CE4(scoreStr, targetScores[targetScore]);
+            func_800A2CE4((void**)scoreStr);  /* TODO: stub */
             func_800C734C(scoreStr, 165, 105, 255);
         }
         func_800C734C("<", 150, 105, selectedOption == 2 ? 200 : 100);
@@ -38336,7 +38339,7 @@ void func_800F4604(void) {
     /* (would normally call osPiStartDma) */
 
     /* Add geometry display list */
-    gSPDisplayList(gfx++, &D_80159200[D_80159100]);
+    gSPDisplayList(gfx++, (Gfx*)((u8*)&D_80159200 + D_80159100));
 
     D_80159100 += chunkSize;
 
@@ -40658,7 +40661,7 @@ void func_80107AF4(void *car) {
         D_80159A34[carIdx] = D_80159A10;
     }
 
-    D_80159A10++;
+    D_80159A10[0]++;
 
     /* Play finish sound based on position */
     if (*finishPos == 0) {
@@ -41046,12 +41049,12 @@ s32 func_8010A53C(void *car) {
     carPos = (f32 *)(carData + 0x24);
 
     /* Check X bounds */
-    if (carPos[0] < D_80159C00 || carPos[0] > D_80159C04) {
+    if (carPos[0] < (f32)D_80159C00[0] || carPos[0] > (f32)D_80159C04) {
         return 1;
     }
 
     /* Check Z bounds */
-    if (carPos[2] < D_80159C08 || carPos[2] > D_80159C0C) {
+    if (carPos[2] < (f32)D_80159C08 || carPos[2] > (f32)D_80159C0C) {
         return 1;
     }
 
@@ -41077,7 +41080,7 @@ s32 func_8010A7AC(f32 *pos) {
     }
 
     /* Convert world position to grid cell */
-    gridX = (s32)((pos[0] - D_80159D10) / D_80159D0C);
+    gridX = (s32)((pos[0] - (f32)D_80159D10[0]) / D_80159D0C);
     gridZ = (s32)((pos[2] - D_80159D14) / D_80159D0C);
 
     /* Bounds check */
@@ -42277,7 +42280,7 @@ void func_8010FBF4(void) {
     s32 i;
 
     /* Stop all audio */
-    func_800B2828(0, -1);  /* Stop all sounds */
+    func_800B2828(0);  /* Stop all sounds */
     func_800B1E24(0);      /* Stop music */
 
     /* Clear all particle effects */
@@ -42460,7 +42463,7 @@ void func_8010F5A0(void) {
     D_8014C000 = 2;  /* End stunt mode, show results */
 
     /* Trigger results screen */
-    func_800D7DC4(winner, highScore);
+    func_800D7DC4();  /* TODO: needs different function for results */
 }
 
 /*
