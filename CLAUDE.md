@@ -11,7 +11,7 @@ This file helps Claude maintain context across sessions for the Rush 2049 N64 de
 ## Current Status
 
 **Phase**: 2 - Decompilation Ready (MATCHING BUILD ACHIEVED!)
-**Last Updated**: 2025-12-25
+**Last Updated**: 2025-12-27
 
 ### Completed
 - [x] Project planning via Spec Kit (constitution, spec, plan, tasks)
@@ -32,7 +32,10 @@ This file helps Claude maintain context across sessions for the Rush 2049 N64 de
 
 ### In Progress
 - [ ] Match functions to arcade source
-- [ ] Begin function decompilation
+- [ ] Refine function implementations for matching builds
+
+### Recently Completed
+- [x] All 88 assembly files now have C equivalents (111 C files total, 126% coverage)
 
 ### Identified Functions (228/228 = 100% coverage! updated 2025-12-07)
 | Category | Count | Examples |
@@ -59,7 +62,7 @@ This file helps Claude maintain context across sessions for the Rush 2049 N64 de
 
 See `symbol_addrs.us.txt` for complete list.
 
-### Decompiled Source Files (82 C files, ~37,118 lines)
+### Decompiled Source Files (111 C files, ~38,751 lines)
 | File | Functions | Status |
 |------|-----------|--------|
 | src/libc/string.c | memchr, memset, strchr, strlen, memcpy | Complete |
@@ -386,9 +389,20 @@ When starting a new session:
 codex exec --dangerously-bypass-approvals-and-sandbox "Analyze asm/us/XXXX.s and identify functions..."
 ```
 
-**Current stats** (updated 2025-12-25):
+**Current stats** (updated 2025-12-27):
 - Static ROM: 228 functions identified (100% coverage)
 - Dynamic game code: 752 functions extracted from compressed ROM, ~395 decompiled
 - Symbol file: 1,165 entries (324 named, 567 unnamed func_*)
-- Source files: 67 C files, ~24,000 lines total
+- Source files: 111 C files, ~38,751 lines total (126% coverage of 88 asm files)
 - game.c: 9,439 lines, ~395 functions decompiled (53% of game code)
+
+**New libultra files added (2025-12-27)**:
+- Controller Pak (PFS): os_pfs_alloc.c, os_pfs_check.c, os_pfs_create.c, os_pfs_delete.c, os_pfs_find.c, os_pfs_free.c, os_pfs_rw.c, os_pfs_state.c, os_pfs_write.c
+- Video Interface: os_vi_init.c, os_vi_intr.c, os_video.c
+- Peripheral Interface: os_pi_dma.c, os_pi_write.c, os_pif.c
+- Serial Interface: os_si_ext.c
+- Signal Processor: os_sp_dma.c
+- Controller: os_cont_query.c, os_cont_status.c
+- Thread/Timer: os_thread_ext.c, os_thread_pri.c, os_timer_set.c, os_yield.c
+- CPU/FPU: os_fpcsr.c, os_phys.c, os_dp_counters.c
+- Other: os_debug.c, os_mesg_jam.c, boot/boot.c
