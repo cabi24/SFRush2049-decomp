@@ -27,30 +27,30 @@
 #define OS_CLOCK_RATE_PAL   0x02E6025C   /* 48,628,316 Hz */
 #define OS_CLOCK_RATE_MPAL  0x02F5B2D2   /* 49,656,530 Hz */
 
-/* External system variables */
-extern s32 osTvType;        /* TV type (0=PAL, 1=NTSC, 2=MPAL) */
-extern s32 osResetType;     /* Reset type (0=cold, 1=NMI) */
-extern u8 osAppNMIBuffer[64];  /* NMI save buffer */
+/* External system variables (set by IPL3/boot) */
+extern s32 osTvType;                /* TV type (0=PAL, 1=NTSC, 2=MPAL) */
+extern s32 osResetType;             /* Reset type (0=cold, 1=NMI) */
+extern u8 osAppNMIBuffer[64];       /* NMI save buffer */
 
 /* External data */
-extern s32 D_800367D0;      /* Initialization state flag */
-extern u32 D_8002C360;      /* System parameter high */
-extern u32 D_8002C364;      /* System parameter low */
-extern u32 D_8002C368;      /* System clock frequency */
+extern s32 __osInitialized;         /* OS initialization state flag */
+extern u32 __osTimerCountHi;        /* Timer count (high 32 bits) */
+extern u32 __osTimerCountLo;        /* Timer count (low 32 bits) */
+extern u32 osClockRate;             /* System clock frequency (Hz) */
 
-/* PI timing parameters for DOM1 (cartridge) */
-extern u8 D_800367E4;       /* Domain 1 flags */
-extern u8 D_800367E5;       /* Domain 1 latency */
-extern u8 D_800367E6;       /* Domain 1 page size */
-extern u8 D_800367E7;       /* Domain 1 release */
-extern u8 D_800367E8;       /* Domain 1 pulse width */
+/* PI timing parameters for DOM1 (cartridge ROM) */
+extern u8 __osPiDom1Flags;          /* Domain 1 configuration flags */
+extern u8 __osPiDom1Latency;        /* Domain 1 latency */
+extern u8 __osPiDom1PageSize;       /* Domain 1 page size */
+extern u8 __osPiDom1Release;        /* Domain 1 release duration */
+extern u8 __osPiDom1Pulse;          /* Domain 1 pulse width */
 
-/* PI timing parameters for DOM2 (expansion) */
-extern u8 D_8003685C;       /* Domain 2 flags */
-extern u8 D_8003685D;       /* Domain 2 latency */
-extern u8 D_8003685E;       /* Domain 2 page size */
-extern u8 D_8003685F;       /* Domain 2 release */
-extern u8 D_80036860;       /* Domain 2 pulse width */
+/* PI timing parameters for DOM2 (SRAM/Flash) */
+extern u8 __osPiDom2Flags;          /* Domain 2 configuration flags */
+extern u8 __osPiDom2Latency;        /* Domain 2 latency */
+extern u8 __osPiDom2PageSize;       /* Domain 2 page size */
+extern u8 __osPiDom2Release;        /* Domain 2 release duration */
+extern u8 __osPiDom2Pulse;          /* Domain 2 pulse width */
 
 /* Exception vector code */
 extern u32 __osExceptionVector[4];  /* Exception handler code (16 bytes) */
@@ -78,19 +78,19 @@ extern u32 __osSiRawReadIo(void);
  * cartridge and expansion domains.
  */
 static void __osSavePiTiming(void) {
-    /* Save Domain 1 (cartridge) parameters */
-    D_800367E4 = 7;  /* Flags */
-    D_800367E5 = (u8)PI_BSD_DOM1_LAT_REG;
-    D_800367E8 = (u8)PI_BSD_DOM1_PWD_REG;
-    D_800367E6 = (u8)PI_BSD_DOM1_PGS_REG;
-    D_800367E7 = (u8)PI_BSD_DOM1_RLS_REG;
+    /* Save Domain 1 (cartridge ROM) parameters */
+    __osPiDom1Flags = 7;
+    __osPiDom1Latency = (u8)PI_BSD_DOM1_LAT_REG;
+    __osPiDom1Pulse = (u8)PI_BSD_DOM1_PWD_REG;
+    __osPiDom1PageSize = (u8)PI_BSD_DOM1_PGS_REG;
+    __osPiDom1Release = (u8)PI_BSD_DOM1_RLS_REG;
 
-    /* Save Domain 2 (expansion) parameters */
-    D_8003685C = 7;  /* Flags */
-    D_8003685D = (u8)PI_BSD_DOM2_LAT_REG;
-    D_80036860 = (u8)PI_BSD_DOM2_PWD_REG;
-    D_8003685E = (u8)PI_BSD_DOM2_PGS_REG;
-    D_8003685F = (u8)PI_BSD_DOM2_RLS_REG;
+    /* Save Domain 2 (SRAM/Flash) parameters */
+    __osPiDom2Flags = 7;
+    __osPiDom2Latency = (u8)PI_BSD_DOM2_LAT_REG;
+    __osPiDom2Pulse = (u8)PI_BSD_DOM2_PWD_REG;
+    __osPiDom2PageSize = (u8)PI_BSD_DOM2_PGS_REG;
+    __osPiDom2Release = (u8)PI_BSD_DOM2_RLS_REG;
 }
 
 /**
@@ -107,14 +107,14 @@ static void __osSavePiTiming(void) {
  */
 void osInitialize(void) {
     u32 pifData;
-    u32 sp24, sp20;
+    u32 timerVal;
 
-    D_800367D0 = 1;  /* Mark as initializing */
+    __osInitialized = 1;  /* Mark OS as initializing */
 
-    /* Set status register - enable coprocessors */
+    /* Set status register - enable coprocessors (CU1 for FPU) */
     __osSetSR(__osGetSR() | 0x20000000);
 
-    /* Set cause register */
+    /* Clear cause register except for timer interrupt pending */
     __osSetCause(0x01000800);
 
     /* Wait for PIF to be ready */
@@ -122,7 +122,7 @@ void osInitialize(void) {
         /* spin */
     }
 
-    /* Write PIF initialization command */
+    /* Write PIF initialization command (set bit 3) */
     while (osPiRawWriteIo(0x1FC007FC, pifData | 8) != 0) {
         /* spin */
     }
@@ -165,11 +165,10 @@ void osInitialize(void) {
     /* Initialize SI subsystem */
     __osSiInit();
 
-    /* Calculate timing parameters */
-    sp20 = __osSetTimerIntr(D_8002C360 | ((u64)D_8002C364 << 32));
-    sp24 = (u32)sp20;
-    sp20 = __osSetCompare(sp20);
-    D_8002C360 = (u32)sp20;
+    /* Initialize timer - combine hi/lo into 64-bit value */
+    timerVal = __osSetTimerIntr(__osTimerCountHi | ((u64)__osTimerCountLo << 32));
+    timerVal = __osSetCompare(timerVal);
+    __osTimerCountHi = timerVal;
 
     /* Clear NMI buffer on cold boot */
     if (osResetType == 0) {
@@ -179,16 +178,16 @@ void osInitialize(void) {
     /* Set system clock based on TV type */
     if (osTvType == 0) {
         /* PAL */
-        D_8002C368 = OS_CLOCK_RATE_MPAL;
+        osClockRate = OS_CLOCK_RATE_MPAL;
     } else if (osTvType == 2) {
         /* MPAL */
-        D_8002C368 = OS_CLOCK_RATE_PAL;
+        osClockRate = OS_CLOCK_RATE_PAL;
     } else {
         /* NTSC (default) */
-        D_8002C368 = OS_CLOCK_RATE_NTSC;
+        osClockRate = OS_CLOCK_RATE_NTSC;
     }
 
-    /* Check for hardware error condition */
+    /* Check for hardware error condition (PIF CIC error) */
     if (__osSiRawReadIo() & 0x1000) {
         /* Infinite loop on hardware error */
         for (;;) {
