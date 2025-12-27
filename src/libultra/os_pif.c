@@ -8,9 +8,9 @@
 #include "types.h"
 
 /* External functions */
-extern void func_8000DC10(void);     /* PIF acquire */
-extern s32 func_8000DC80(u32 addr, u32 *data);  /* PIF read */
-extern void func_8000DC54(void);     /* PIF release */
+extern void osPiGetAccess(void);                   /* func_8000DC10 */
+extern s32 osPiReadWord(u32 addr, u32 *data);      /* func_8000DC80 */
+extern void osPiReleaseAccess(void);               /* func_8000DC54 */
 
 /**
  * Read word from PIF RAM
@@ -25,9 +25,9 @@ extern void func_8000DC54(void);     /* PIF release */
 s32 osPifReadWord(u32 addr, u32 *data) {
     s32 result;
 
-    func_8000DC10();  /* Acquire PIF access */
-    result = func_8000DC80(addr, data);  /* Read from PIF */
-    func_8000DC54();  /* Release PIF access */
+    osPiGetAccess();
+    result = osPiReadWord(addr, data);
+    osPiReleaseAccess();
 
     return result;
 }

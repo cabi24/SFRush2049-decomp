@@ -8,7 +8,7 @@
 #include "types.h"
 
 /* External PI access check */
-extern s32 func_8000FD70(void);
+extern s32 __osPiDeviceBusy(void);
 
 /**
  * Get and set FPU control/status register
@@ -44,7 +44,7 @@ u32 __osSetFpcCsr(u32 value) {
  */
 s32 osPiReadIo(u32 addr, u32 *data) {
     /* Check PI access */
-    if (func_8000FD70() != 0) {
+    if (__osPiDeviceBusy() != 0) {
         return -1;
     }
 
