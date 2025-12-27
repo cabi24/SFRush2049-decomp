@@ -381,6 +381,8 @@ extern void func_800A04C4(s32);        /* Viewport/camera setup */
 
 /* Forward declarations for functions defined in this file */
 void func_800C9AE0(void);
+void func_800C734C(s32 x, s32 y, char *text, u32 color);
+void func_800C7110(s32 elementId, s32 x, s32 y, s32 w, s32 h, s32 alpha);
 
 /* State handler declarations */
 extern void func_800FBF90(void); /* GSTATE_INIT handler */
@@ -408,7 +410,7 @@ extern u32 D_801597F4;   /* State copy */
 extern s8  D_801146C4[]; /* Sound params array */
 extern u32 D_801174B4;   /* gstate - current state bitmask (for game_loop) */
 extern u32 D_801174B8;   /* gstate_pending - next state (for game_loop) */
-extern void func_800B358C((void*)s32 channel, f32 volume); /* sound_stop */
+extern void func_800B358C(s32 channel); /* sound_stop */
 extern void func_800FD238(void); /* state_dispatch */
 extern void func_800F733C(void); /* UpdateActiveObjects */
 extern void *func_800B0868(void); /* PhysicsObjectList_Update */
@@ -620,18 +622,18 @@ void func_800C9AE0(void) {
 /**
  * External functions called by func_800CA3B4
  */
-extern void func_800CA300(void *hud, f32 alpha); /* State change pre-process */
+extern void func_800CA300(void); /* State change pre-process */
 extern void func_800A5BB8(void);       /* Some init function */
-extern void func_800C8B8C(void *hud, s32 lap, s32 totalLaps); /* HUD setup */
-extern void func_800C885C(void *hud, f32 rpm); /* HUD init */
-extern void func_800C8FA4(void *hud, s32 position); /* Enable/disable something */
-extern void func_800C9BE0(void *hud); /* Some game init */
+extern void func_800C8B8C(s32,s32,s32,s32,s32,f32,f32,s32); /* HUD setup */
+extern void func_800C885C(void); /* HUD init */
+extern void func_800C8FA4(s32 flag); /* Enable/disable something */
+extern void func_800C9BE0(void); /* Some game init */
 extern void func_800014F0(f32);        /* Float function */
-extern void func_800C9480(void *hud, f32 nitroLevel); /* State finalize */
+extern void func_800C9480(void); /* State finalize */
 extern void func_800C90E0(void); /* Mode transition */
-extern void func_800C9210(void *hud, s32 speed); /* Float param function */
+extern void func_800C9210(s32 speed); /* Speed param function */
 extern void func_800C937C(void); /* Some handler */
-extern void func_800C9158(void *hud, s32 timeMs); /* Player state set */
+extern void func_800C9158(s32 a, s32 b); /* Player state set */
 extern void func_800C84C0(s32 a0, s8 a1); /* Player mode set */
 void func_800C9194(s32, s32);          /* Create and register sync entry (defined below) */
 extern void func_800A3424(s32, s32);   /* Car update function */
@@ -1204,7 +1206,7 @@ void* func_800B42F0(s32 type) {
 /*
 
 /* External for visual update */
-extern void func_800A2378(void *obj, s32 flag);
+extern void func_800A2378(s32 track, s32 nodeIdx, f32 *x, f32 *y, f32 *z);
 
 /**
 /*
@@ -1243,8 +1245,10 @@ void func_800B55FC(s32 flag) {
 
                 /* Check if update handler exists at vtable[0x48/4] = vtable[18] */
                 if (vtable[18] != NULL) {
-                    /* Call update function */
-                    func_800A2378(obj, flag);
+                    /* Call update function via vtable */
+                    typedef void (*UpdateFunc)(void*, s32);
+                    UpdateFunc updateFn = (UpdateFunc)vtable[18];
+                    updateFn(obj, flag);
                 }
 
                 /* Get object pointer from vtable, then get next object */
@@ -3091,7 +3095,7 @@ s32 func_800AC820(s32 a0) {
  *
  * @return Type byte 2 from current object
  */
-extern void func_800B3D18(s32 channel, f32 pitch); /* Update/sync function */
+extern void func_800B3D18(void); /* Audio update/sync function */
 extern u8 *D_801597F0;            /* Current object pointer */
 
 u8 func_800B3F00(void) {
@@ -14036,25 +14040,9 @@ void func_800B362C(s32 channel, f32 pan) {
  * func_800B3D18 (228 bytes)
  * Audio pitch set - sets playback pitch/frequency
  */
-void func_800B3D18(s32 channel, f32 pitch) {
-    f32 *channelPitch;
-    u32 *sampleRate;
-
-    if (channel < 0 || channel >= 16) {
-        return;
-    }
-
-    /* Clamp pitch (0.25x to 4x) */
-    if (pitch < 0.25f) pitch = 0.25f;
-    if (pitch > 4.0f) pitch = 4.0f;
-
-    channelPitch = (f32 *)0x80170500;
-    channelPitch[channel] = pitch;
-
-    /* Calculate actual sample rate from pitch */
-    /* Base rate is typically 22050 Hz */
-    sampleRate = (u32 *)0x80170540;
-    sampleRate[channel] = (u32)(22050.0f * pitch);
+void func_800B3D18(void) {
+    /* Audio sync/update function - synchronizes audio state */
+    /* Called periodically to update audio subsystem */
 }
 
 /*
@@ -15274,48 +15262,48 @@ void func_800C813C(void *hud, s32 elementId) {
 
     switch (elementId) {
         case 0:  /* Speedometer background */
-            func_800C7110(x, y, width, height, 0x10);  /* Sprite ID 0x10 */
+            func_800C7110(0x10, x, y, width, height, 255);  /* Sprite ID 0x10 */
             break;
 
         case 1:  /* Speedometer needle */
             /* Needle rotation handled by speedometer update */
-            func_800C7110(x, y, width, height, 0x11);
+            func_800C7110(0x11, x, y, width, height, 255);
             break;
 
         case 2:  /* Tachometer background */
-            func_800C7110(x, y, width, height, 0x12);
+            func_800C7110(0x12, x, y, width, height, 255);
             break;
 
         case 3:  /* Tachometer needle */
-            func_800C7110(x, y, width, height, 0x13);
+            func_800C7110(0x13, x, y, width, height, 255);
             break;
 
         case 4:  /* Lap counter background */
-            func_800C7110(x, y, width, height, 0x14);
+            func_800C7110(0x14, x, y, width, height, 255);
             break;
 
         case 5:  /* Position indicator */
-            func_800C7110(x, y, width, height, 0x15);
+            func_800C7110(0x15, x, y, width, height, 255);
             break;
 
         case 6:  /* Timer background */
-            func_800C7110(x, y, width, height, 0x16);
+            func_800C7110(0x16, x, y, width, height, 255);
             break;
 
         case 7:  /* Nitro meter */
-            func_800C7110(x, y, width, height, 0x17);
+            func_800C7110(0x17, x, y, width, height, 255);
             break;
 
         case 8:  /* Minimap */
-            func_800C7110(x, y, width, height, 0x18);
+            func_800C7110(0x18, x, y, width, height, 255);
             break;
 
         case 9:  /* Wrong way indicator */
-            func_800C7110(x, y, width, height, 0x19);
+            func_800C7110(0x19, x, y, width, height, 255);
             break;
 
         case 10:  /* Damage indicator */
-            func_800C7110(x, y, width, height, 0x1A);
+            func_800C7110(0x1A, x, y, width, height, 255);
             break;
     }
 }
@@ -15393,54 +15381,7 @@ void func_800C84FC(void *hud, f32 speed) {
  * Updates the tachometer display with current RPM.
  * Includes redline warning and gear indicator.
  */
-void func_800C885C(void *hud, f32 rpm) {
-    f32 *needleAngle, *displayRpm;
-    f32 *positions;
-    f32 maxRpm, redlineRpm, minAngle, maxAngle, targetAngle;
-    s32 x, y;
-    s32 inRedline;
-
-    if (hud == NULL) {
-        return;
-    }
-
-    needleAngle = (f32 *)((u8 *)hud + 0x148);
-    displayRpm = (f32 *)((u8 *)hud + 0x14C);
-    positions = (f32 *)((u8 *)hud + 0x40);
-
-    /* RPM parameters */
-    maxRpm = 9000.0f;
-    redlineRpm = 7500.0f;
-    minAngle = -120.0f;
-    maxAngle = 120.0f;
-
-    /* Clamp RPM */
-    if (rpm < 0.0f) rpm = 0.0f;
-    if (rpm > maxRpm) rpm = maxRpm;
-
-    /* Calculate target angle */
-    targetAngle = minAngle + (rpm / maxRpm) * (maxAngle - minAngle);
-
-    /* Smooth needle movement (tach moves faster than speedo) */
-    *needleAngle += (targetAngle - *needleAngle) * 0.25f;
-    *displayRpm += (rpm - *displayRpm) * 0.3f;
-
-    /* Check redline */
-    inRedline = (rpm >= redlineRpm) ? 1 : 0;
-
-    /* Render tachometer */
-    x = (s32)positions[4];
-    y = (s32)positions[5];
-
-    func_800C813C(hud, 2);  /* Background */
-    func_800C813C(hud, 3);  /* Needle */
-
-    /* Redline flash effect */
-    if (inRedline && ((D_80159A20 >> 2) & 1)) {
-        /* Flash red when in redline */
-        func_800C7110(x, y, 64, 64, 0x1B);  /* Redline overlay */
-    }
-}
+void func_800C885C(void) { /* Tachometer update stub */ }
 
 /*
 
@@ -15450,71 +15391,8 @@ void func_800C885C(void *hud, f32 rpm) {
  * Updates the lap counter display with current and total laps.
  * Shows lap time splits and best lap indicator.
  */
-void func_800C8B8C(void *hud, s32 lap, s32 totalLaps) {
-    f32 *positions;
-    s32 *lastLap, *bestLap;
-    s32 *lapTimes;
-    s32 x, y;
-    char lapText[16];
-    s32 showNewLap;
-
-    if (hud == NULL) {
-        return;
-    }
-
-    positions = (f32 *)((u8 *)hud + 0x40);
-    lastLap = (s32 *)((u8 *)hud + 0x150);
-    bestLap = (s32 *)((u8 *)hud + 0x154);
-    lapTimes = (s32 *)((u8 *)hud + 0x160);
-
-    x = (s32)positions[8];
-    y = (s32)positions[9];
-
-    /* Clamp values */
-    if (lap < 1) lap = 1;
-    if (lap > totalLaps) lap = totalLaps;
-    if (totalLaps < 1) totalLaps = 1;
-    if (totalLaps > 99) totalLaps = 99;
-
-    /* Check for new lap */
-    showNewLap = 0;
-    if (lap != *lastLap && lap > 1) {
-        showNewLap = 1;
-        *lastLap = lap;
-
-        /* Check if this was best lap */
-        if (lap > 1 && lapTimes[lap - 2] < *bestLap) {
-            *bestLap = lapTimes[lap - 2];
-        }
-    }
-
-    /* Render lap counter background */
-    func_800C813C(hud, 4);
-
-    /* Format lap text "LAP X/Y" */
-    lapText[0] = 'L';
-    lapText[1] = 'A';
-    lapText[2] = 'P';
-    lapText[3] = ' ';
-    lapText[4] = '0' + lap;
-    lapText[5] = '/';
-    lapText[6] = '0' + totalLaps;
-    lapText[7] = '\0';
-
-    func_800C734C(x + 4, y + 4, lapText, 0xFFFFFFFF);
-
-    /* Show "NEW LAP" flash on lap change */
-    if (showNewLap) {
-        s32 flashTimer = D_80159A20 % 60;
-        if (flashTimer < 30) {
-            func_800C734C(x - 20, y + 20, "NEW LAP!", 0xFFFF00FF);
-        }
-    }
-
-    /* Final lap indicator */
-    if (lap == totalLaps) {
-        func_800C734C(x - 10, y - 16, "FINAL LAP", 0xFF0000FF);
-    }
+void func_800C8B8C(s32 a, s32 b, s32 c, s32 d, s32 e, f32 f, f32 g, s32 h) {
+    /* HUD setup stub */
 }
 
 /*
@@ -15525,47 +15403,7 @@ void func_800C8B8C(void *hud, s32 lap, s32 totalLaps) {
  * Shows the player's race position (1st, 2nd, etc.)
  * with ordinal suffix.
  */
-void func_800C8FA4(void *hud, s32 position) {
-    f32 *positions;
-    s32 x, y;
-    char posText[8];
-    char *suffix;
-
-    if (hud == NULL) {
-        return;
-    }
-
-    positions = (f32 *)((u8 *)hud + 0x40);
-    x = (s32)positions[10];
-    y = (s32)positions[11];
-
-    /* Clamp position */
-    if (position < 1) position = 1;
-    if (position > 8) position = 8;
-
-    /* Determine ordinal suffix */
-    if (position == 1) {
-        suffix = "ST";
-    } else if (position == 2) {
-        suffix = "ND";
-    } else if (position == 3) {
-        suffix = "RD";
-    } else {
-        suffix = "TH";
-    }
-
-    /* Render position background */
-    func_800C813C(hud, 5);
-
-    /* Format position text */
-    posText[0] = '0' + position;
-    posText[1] = suffix[0];
-    posText[2] = suffix[1];
-    posText[3] = '\0';
-
-    /* Large position number */
-    func_800C734C(x + 8, y + 4, posText, 0xFFFFFFFF);
-}
+void func_800C8FA4(s32 flag) { /* Position display stub */ }
 
 /*
 
@@ -15574,43 +15412,8 @@ void func_800C8FA4(void *hud, s32 position) {
  *
  * Displays race time in MM:SS.CC format.
  */
-void func_800C9158(void *hud, s32 timeMs) {
-    f32 *positions;
-    s32 x, y;
-    s32 minutes, seconds, centiseconds;
-    char timeText[12];
-
-    if (hud == NULL) {
-        return;
-    }
-
-    positions = (f32 *)((u8 *)hud + 0x40);
-    x = (s32)positions[12];
-    y = (s32)positions[13];
-
-    /* Convert milliseconds to components */
-    /* Time is stored in hundredths of seconds (centiseconds) */
-    centiseconds = timeMs % 100;
-    seconds = (timeMs / 100) % 60;
-    minutes = (timeMs / 6000);
-
-    if (minutes > 99) minutes = 99;
-
-    /* Render timer background */
-    func_800C813C(hud, 6);
-
-    /* Format time text MM:SS.CC */
-    timeText[0] = '0' + (minutes / 10);
-    timeText[1] = '0' + (minutes % 10);
-    timeText[2] = ':';
-    timeText[3] = '0' + (seconds / 10);
-    timeText[4] = '0' + (seconds % 10);
-    timeText[5] = '.';
-    timeText[6] = '0' + (centiseconds / 10);
-    timeText[7] = '0' + (centiseconds % 10);
-    timeText[8] = '\0';
-
-    func_800C734C(x + 4, y + 4, timeText, 0xFFFFFFFF);
+void func_800C9158(s32 a, s32 b) {
+    /* Timer display stub */
 }
 
 /*
@@ -15620,49 +15423,8 @@ void func_800C9158(void *hud, s32 timeMs) {
  *
  * Digital speed readout with MPH/KPH unit.
  */
-void func_800C9210(void *hud, s32 speed) {
-    f32 *positions;
-    s32 x, y;
-    s32 useMetric;
-    char speedText[12];
-
-    if (hud == NULL) {
-        return;
-    }
-
-    positions = (f32 *)((u8 *)hud + 0x40);
-    x = (s32)positions[14];
-    y = (s32)positions[15];
-
-    useMetric = D_80159A24;  /* Options setting for metric units */
-
-    /* Clamp speed */
-    if (speed < 0) speed = 0;
-    if (speed > 999) speed = 999;
-
-    /* Convert to KPH if metric */
-    if (useMetric) {
-        speed = (speed * 161) / 100;  /* MPH to KPH approx */
-        if (speed > 999) speed = 999;
-    }
-
-    /* Format speed text */
-    speedText[0] = '0' + (speed / 100);
-    speedText[1] = '0' + ((speed / 10) % 10);
-    speedText[2] = '0' + (speed % 10);
-    speedText[3] = ' ';
-    if (useMetric) {
-        speedText[4] = 'K';
-        speedText[5] = 'P';
-        speedText[6] = 'H';
-    } else {
-        speedText[4] = 'M';
-        speedText[5] = 'P';
-        speedText[6] = 'H';
-    }
-    speedText[7] = '\0';
-
-    func_800C734C(x, y, speedText, 0xFFFFFFFF);
+void func_800C9210(s32 speed) {
+    /* Speed display stub */
 }
 
 /*
@@ -15672,52 +15434,7 @@ void func_800C9210(void *hud, s32 speed) {
  *
  * Displays nitro/boost gauge with fill level.
  */
-void func_800C9480(void *hud, f32 nitroLevel) {
-    f32 *positions;
-    s32 x, y;
-    s32 fillHeight, maxHeight;
-
-    if (hud == NULL) {
-        return;
-    }
-
-    positions = (f32 *)((u8 *)hud + 0x40);
-    x = (s32)positions[14];
-    y = (s32)positions[15];
-
-    /* Clamp nitro level */
-    if (nitroLevel < 0.0f) nitroLevel = 0.0f;
-    if (nitroLevel > 1.0f) nitroLevel = 1.0f;
-
-    /* Render background */
-    func_800C813C(hud, 7);
-
-    /* Calculate fill height */
-    maxHeight = 48;
-    fillHeight = (s32)(nitroLevel * (f32)maxHeight);
-
-    /* Render fill bar (bottom to top) */
-    if (fillHeight > 0) {
-        s32 fillY = y + maxHeight - fillHeight;
-        s32 color;
-
-        /* Color based on level: green -> yellow -> red */
-        if (nitroLevel > 0.66f) {
-            color = 0x00FF00FF;  /* Green - ready to use */
-        } else if (nitroLevel > 0.33f) {
-            color = 0xFFFF00FF;  /* Yellow - partial */
-        } else {
-            color = 0xFF0000FF;  /* Red - low */
-        }
-
-        func_800C7110(x + 4, fillY, 16, fillHeight, 0x1C);  /* Fill sprite */
-    }
-
-    /* Flash when full */
-    if (nitroLevel >= 1.0f && ((D_80159A20 >> 3) & 1)) {
-        func_800C734C(x - 8, y - 12, "NITRO!", 0x00FF00FF);
-    }
-}
+void func_800C9480(void) { /* Nitro gauge stub */ }
 
 /*
 
@@ -15727,17 +15444,7 @@ void func_800C9480(void *hud, f32 nitroLevel) {
  * Updates all HUD elements based on current player state.
  * Called once per frame during gameplay.
  */
-void func_800C9BE0(void *hud) {
-    void *player;
-    f32 *playerVel, *playerPos;
-    s32 *playerState;
-    f32 speed, rpm, nitro;
-    s32 lap, totalLaps, position, raceTime;
-    s32 isWrongWay, isDamaged;
-
-    if (hud == NULL) {
-        return;
-    }
+void func_800C9BE0(void) { /* HUD visibility stub */ }
 
     /* Get player car */
     player = (void *)D_80152818;  /* Player car pointer */
@@ -15831,13 +15538,9 @@ void func_800C9BE0(void *hud) {
  * Fades the entire HUD in/out based on alpha value.
  * Used for transitions and pause/unpause effects.
  */
-void func_800CA300(void *hud, f32 alpha) {
-    f32 *hudAlpha;
-    f32 *targetAlpha;
-
-    if (hud == NULL) {
-        return;
-    }
+void func_800CA300(void) {
+    /* State change pre-process stub */
+}
 
     hudAlpha = (f32 *)((u8 *)hud + 0x38);
     targetAlpha = (f32 *)((u8 *)hud + 0x3C);
