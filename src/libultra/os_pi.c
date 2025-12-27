@@ -3,10 +3,13 @@
  * @brief Peripheral Interface (PI) / ROM access functions
  *
  * Decompiled from asm/us/E7C0.s, E8D0.s, E9A0.s
- * Contains functions for PI DMA and direct ROM access
+ * Contains functions for PI DMA and direct ROM access.
+ *
+ * The PI handles all cartridge ROM access on the N64.
  */
 
 #include "types.h"
+#include "PR/os_pi.h"
 
 /* Hardware register addresses */
 #define PI_DRAM_ADDR_REG    (*(vu32 *)0xA4600000)
@@ -33,17 +36,17 @@
 #define PI_STATUS_ERROR     0x04
 
 /* External data */
-extern u32 osRomBase;           /* 0x80000308 - ROM base address */
-extern s32 D_8002C4A0;          /* PI initialized flag */
-extern void *D_80037C70;        /* PI message queue */
-extern void *D_80037C78;        /* PI event queue */
+extern u32 osRomBase;               /* 0x80000308 - ROM base address */
+extern s32 __osPiInitialized;       /* D_8002C4A0: PI initialized flag */
+extern OSMesgQueue __osPiMesgQueue; /* D_80037C78: PI message queue */
+extern OSMesg __osPiMesg;           /* D_80037C70: PI message buffer */
 
 /* External functions */
-extern void osCreateMesgQueue(void *mq, void *msgBuf, s32 count);
-extern void osJamMesg(void *mq, s32 msg, s32 arg);  /* Insert message at front */
-extern s32 osRecvMesg(void *mq, s32 *msg, s32 flags);  /* Receive message */
-extern u32 osVirtualToPhysical(void *addr);  /* Convert virtual to physical */
-extern s32 __osPiDeviceBusy(void);  /* Wait for PI idle */
+extern void osCreateMesgQueue(OSMesgQueue *mq, OSMesg *msg, s32 count);
+extern void osJamMesg(OSMesgQueue *mq, OSMesg msg, s32 flags);
+extern s32 osRecvMesg(OSMesgQueue *mq, OSMesg *msg, s32 flags);
+extern u32 osVirtualToPhysical(void *addr);
+extern s32 __osPiDeviceBusy(void);
 
 /**
  * Initialize PI for DMA operations
@@ -52,13 +55,13 @@ extern s32 __osPiDeviceBusy(void);  /* Wait for PI idle */
  * Sets up the PI message queue for async operations.
  */
 void osPiInit(void) {
-    D_8002C4A0 = 1;
+    __osPiInitialized = 1;
 
     /* Create message queue with 1 slot */
-    osCreateMesgQueue(&D_80037C78, &D_80037C70, 1);
+    osCreateMesgQueue(&__osPiMesgQueue, &__osPiMesg, 1);
 
     /* Send initial message to indicate ready */
-    osJamMesg(&D_80037C78, 0, 0);
+    osJamMesg(&__osPiMesgQueue, NULL, OS_MESG_NOBLOCK);
 }
 
 /**
@@ -68,14 +71,14 @@ void osPiInit(void) {
  * Initializes PI if needed, then waits for it to be free.
  */
 void osPiGetAccess(void) {
-    s32 msg;
+    OSMesg msg;
 
-    if (D_8002C4A0 == 0) {
+    if (__osPiInitialized == 0) {
         osPiInit();
     }
 
     /* Wait for message indicating PI is free */
-    osRecvMesg(&D_80037C78, &msg, 1);
+    osRecvMesg(&__osPiMesgQueue, &msg, OS_MESG_BLOCK);
 }
 
 /**
@@ -85,7 +88,7 @@ void osPiGetAccess(void) {
  * Signals that PI is now available for other operations.
  */
 void osPiReleaseAccess(void) {
-    osJamMesg(&D_80037C78, 0, 0);
+    osJamMesg(&__osPiMesgQueue, NULL, OS_MESG_NOBLOCK);
 }
 
 /**
@@ -203,18 +206,19 @@ s32 osPiRawReadWord(u32 offset, u32 *dest) {
 }
 
 /**
- * Start PI DMA transfer
- * (func_8000DCD0 - osPiStartDma)
+ * Start PI DMA transfer (low-level)
+ * (func_8000DCD0 - __osPiRawStartDma)
  *
  * Initiates a DMA transfer between DRAM and cartridge ROM.
+ * This is the low-level version without message queue handling.
  *
- * @param direction 0 = ROM to DRAM (write), 1 = DRAM to ROM (read)
+ * @param direction OS_READ (ROM to DRAM) or OS_WRITE (DRAM to ROM)
  * @param romOffset Offset from ROM base
  * @param dramAddr DRAM address (virtual)
  * @param size Transfer size in bytes
  * @return 0 on success, -1 on invalid direction
  */
-s32 osPiStartDma(s32 direction, u32 romOffset, void *dramAddr, u32 size) {
+s32 __osPiRawStartDma(s32 direction, u32 romOffset, void *dramAddr, u32 size) {
     u32 status;
     u32 physDram;
     u32 cartAddr;
@@ -240,11 +244,11 @@ s32 osPiStartDma(s32 direction, u32 romOffset, void *dramAddr, u32 size) {
     PI_CART_ADDR_REG = cartAddr;
 
     /* Start DMA based on direction */
-    if (direction == 0) {
+    if (direction == OS_READ) {
         /* ROM to DRAM (write to DRAM) */
         PI_WR_LEN_REG = size - 1;
         return 0;
-    } else if (direction == 1) {
+    } else if (direction == OS_WRITE) {
         /* DRAM to ROM (read from DRAM) */
         PI_RD_LEN_REG = size - 1;
         return 0;
@@ -254,93 +258,35 @@ s32 osPiStartDma(s32 direction, u32 romOffset, void *dramAddr, u32 size) {
 }
 
 /**
- * PI Device info structure
- * Contains timing parameters for PI bus access
- */
-typedef struct {
-    u8 domain;      /* 0x04: Domain (0 = DOM1, 1 = DOM2) */
-    u8 latency;     /* 0x05: Latency */
-    u8 pageSize;    /* 0x06: Page size */
-    u8 release;     /* 0x07: Release duration */
-    u8 pulse;       /* 0x08: Pulse width */
-    u8 flags;       /* 0x09: Device flags */
-} OSPiDeviceInfo;
-
-/* Array of current device configs indexed by domain */
-extern OSPiDeviceInfo *D_8002C3A0[2];
-
-/**
  * Set PI device timing parameters
  * (func_8000DDA0 - osPiSetDeviceTiming / __osPiDevConfig)
  *
  * Configures the PI bus timing registers for a device.
  * Only updates registers that have changed from current config.
  *
- * @param devInfo Device timing info structure
- * @param startAddr DMA start address (unused in this impl)
- * @param callback DMA completion callback (unused in this impl)
+ * @param handle PI device handle with timing info
  * @return 0 on success
  */
-s32 osPiSetDeviceTiming(OSPiDeviceInfo *devInfo, u32 startAddr, void *callback) {
-    u8 domain;
-    OSPiDeviceInfo *currDev;
-
+s32 osPiSetDeviceTiming(OSPiHandle *handle) {
     /* Wait for PI to be idle */
     while (PI_STATUS_REG & 0x03) {
         /* Spin */
     }
 
-    /* Get domain from device info */
-    domain = devInfo->flags;
-    currDev = D_8002C3A0[domain];
-
-    /* Check if device config has changed */
-    if (devInfo->domain == currDev->domain) {
-        /* Same device, skip update */
-        /* But still call callback if provided */
-        if (callback != NULL) {
-            /* Pass through to callback handler */
-        }
-        return 0;
-    }
-
     /* Update timing registers based on domain */
-    if (domain == 0) {
+    if (handle->domain == PI_DOMAIN1) {
         /* Domain 1 - Cartridge ROM */
-        if (devInfo->latency != currDev->latency) {
-            PI_BSD_DOM1_LAT_REG = devInfo->latency;
-        }
-        if (devInfo->pageSize != currDev->pageSize) {
-            PI_BSD_DOM1_PGS_REG = devInfo->pageSize;
-        }
-        if (devInfo->release != currDev->release) {
-            PI_BSD_DOM1_RLS_REG = devInfo->release;
-        }
-        if (devInfo->pulse != currDev->pulse) {
-            PI_BSD_DOM1_PWD_REG = devInfo->pulse;
-        }
+        PI_BSD_DOM1_LAT_REG = handle->latency;
+        PI_BSD_DOM1_PGS_REG = handle->pageSize;
+        PI_BSD_DOM1_RLS_REG = handle->relDuration;
+        PI_BSD_DOM1_PWD_REG = handle->pulse;
     } else {
         /* Domain 2 - SRAM/Flash */
-        if (devInfo->latency != currDev->latency) {
-            PI_BSD_DOM2_LAT_REG = devInfo->latency;
-        }
-        if (devInfo->pageSize != currDev->pageSize) {
-            PI_BSD_DOM2_PGS_REG = devInfo->pageSize;
-        }
-        if (devInfo->release != currDev->release) {
-            PI_BSD_DOM2_RLS_REG = devInfo->release;
-        }
-        if (devInfo->pulse != currDev->pulse) {
-            PI_BSD_DOM2_LWD_REG = devInfo->pulse;
-        }
+        PI_BSD_DOM2_LAT_REG = handle->latency;
+        PI_BSD_DOM2_PGS_REG = handle->pageSize;
+        PI_BSD_DOM2_RLS_REG = handle->relDuration;
+        PI_BSD_DOM2_LWD_REG = handle->pulse;
     }
-
-    /* Copy new config to current device state */
-    currDev->domain = devInfo->domain;
-    currDev->latency = devInfo->latency;
-    currDev->pageSize = devInfo->pageSize;
-    currDev->release = devInfo->release;
-    currDev->pulse = devInfo->pulse;
 
     return 0;
 }

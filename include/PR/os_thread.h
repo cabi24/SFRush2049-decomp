@@ -8,6 +8,9 @@
 
 #include "types.h"
 
+/* Thread priority type */
+typedef s32 OSPri;
+
 /* Thread priority values */
 #define OS_PRIORITY_IDLE        0
 #define OS_PRIORITY_APPMAX      127
@@ -60,7 +63,7 @@ void osCreateThread(OSThread *thread, s32 id, void (*entry)(void *),
 void osStartThread(OSThread *thread);
 void osStopThread(OSThread *thread);
 s32 osSetThreadPri(OSThread *thread, s32 priority);
-s32 osGetThreadPri(OSThread *thread);
+OSPri osGetThreadPri(OSThread *thread);
 s32 osGetThreadId(OSThread *thread);
 OSThread *__osPopThread(OSThread **queue);
 void __osEnqueueThread(OSThread **queue, OSThread *thread);
