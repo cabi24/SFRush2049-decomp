@@ -7,10 +7,7 @@
 #define _OS_MESSAGE_H_
 
 #include "types.h"
-
-/* Forward declarations */
-struct OSThread_s;
-typedef struct OSThread_s OSThread;
+#include "PR/os_thread.h"
 
 /* Message type */
 typedef void *OSMesg;

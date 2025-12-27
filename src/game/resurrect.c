@@ -493,7 +493,7 @@ void heal_damage(s32 car_index) {
     car = &car_array[car_index];
 
     /* Reset damage-related fields */
-    car->damage_level = 0;
+    /* car->damage_level = 0; */  /* TODO: add damage_level to CarData */
     car->crashflag = 0;
     car->just_crashed = 0;
     car->crashtime = 0;

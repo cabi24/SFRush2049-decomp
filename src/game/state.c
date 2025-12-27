@@ -596,7 +596,7 @@ s32 are_all_cars_stopped_impl(void) {
     f32 speed_threshold = 5.0f;
 
     for (i = 0; i < num_active_cars; i++) {
-        if (car_array[i].speed > speed_threshold) {
+        if (car_array[i].mph > speed_threshold) {
             return 0;  /* At least one car still moving */
         }
     }

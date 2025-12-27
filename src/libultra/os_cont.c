@@ -7,6 +7,8 @@
  */
 
 #include "types.h"
+#include "PR/os_thread.h"
+#include "PR/os_message.h"
 
 /* Controller data structures */
 typedef struct {

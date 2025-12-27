@@ -10,6 +10,7 @@
  */
 
 #include "types.h"
+#include "PR/os_thread.h"
 
 /* External data */
 extern u32 D_8002C370;       /* Interrupt mask storage */

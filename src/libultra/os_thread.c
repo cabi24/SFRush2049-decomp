@@ -7,12 +7,8 @@
  */
 
 #include "types.h"
-
-/* Thread state values */
-#define OS_STATE_STOPPED    1
-#define OS_STATE_RUNNABLE   2
-#define OS_STATE_RUNNING    4
-#define OS_STATE_WAITING    8
+#include "PR/os_thread.h"
+#include "PR/os_message.h"
 
 /* External functions */
 extern s32 __osDisableInt(void);

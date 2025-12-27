@@ -430,7 +430,7 @@ void sound_update(void) {
             CarData *car = &car_array[i];
             /* Engine RPM would come from car physics */
             /* For now, estimate from speed */
-            f32 rpm = 1000.0f + car->speed * 30.0f;
+            f32 rpm = 1000.0f + car->mph * 30.0f;
             sound_update_engine(i, rpm, 1.0f);
         }
     }
