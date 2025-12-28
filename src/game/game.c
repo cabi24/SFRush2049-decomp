@@ -24193,7 +24193,7 @@ f32 audio_occlusion(f32 *listenerPos, f32 *sourcePos) {
 
 /*
 
- * func_800B71DC (536 bytes)
+ * entity_audio_update (536 bytes)
  * Entity audio update
  *
  * Updates all audio for a game entity (car, drone, object).
@@ -24204,7 +24204,7 @@ f32 audio_occlusion(f32 *listenerPos, f32 *sourcePos) {
  *   0x220: Sound source positions [8][3]
  *   0x280: Sound flags (playing, looping, etc)
  */
-void func_800B71DC(void *entity) {
+void entity_audio_update(void *entity) {
     f32 *entityPos, *entityVel;
     s32 *soundHandles;
     f32 *soundPos;
@@ -28996,13 +28996,13 @@ void audio_stream_fill(void *buffer, s32 size) {
 
 /*
 
- * func_800B9D68 (676 bytes)
+ * music_seq_control (676 bytes)
  * Music sequence control
  *
  * Controls MIDI-style music sequence playback
  * Commands: 0=Stop, 1=Play, 2=Pause, 3=Resume, 4=SetPosition
  */
-void func_800B9D68(s32 seqCmd) {
+void music_seq_control(s32 seqCmd) {
     /* Note: D_80160800-D_8016080C declared globally */
 
     switch (seqCmd & 0xFF) {
@@ -29040,12 +29040,12 @@ void func_800B9D68(s32 seqCmd) {
 
 /*
 
- * func_800BA00C (732 bytes)
+ * music_tempo_control (732 bytes)
  * Music tempo control
  *
  * Sets tempo multiplier (1.0 = normal, 2.0 = double speed)
  */
-void func_800BA00C(f32 tempo) {
+void music_tempo_control(f32 tempo) {
     extern u32 D_80160810;   /* Tick rate (microseconds per tick) */
     u32 baseTick = 10000;    /* 100 ticks per second at 1.0x */
 
@@ -29059,12 +29059,12 @@ void func_800BA00C(f32 tempo) {
 
 /*
 
- * func_800BA2E8 (388 bytes)
+ * music_fade (388 bytes)
  * Music fade in/out
  *
  * Initiates a volume fade for music
  */
-void func_800BA2E8(f32 duration, s32 fadeIn) {
+void music_fade(f32 duration, s32 fadeIn) {
     extern f32 D_80160820;   /* Music master volume */
     extern f32 D_80160824;   /* Fade target volume */
     extern f32 D_80160828;   /* Fade rate per frame */
