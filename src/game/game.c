@@ -29171,7 +29171,7 @@ void *func_800BA644(s32 size) {
  * Mixes all active audio channels into output buffer
  * Called by audio thread each frame
  */
-void func_800BA7C4(void) {
+void audio_mixer_main(void) {
     extern s32 D_80160860[16];  /* Channel sample IDs */
     extern u32 D_801608A0[16];  /* Channel sample positions */
     /* Note: D_801608E0-D_801608E8 declared globally */
@@ -29235,12 +29235,12 @@ void func_800BA7C4(void) {
 
 /*
 
- * func_800BAF98 (172 bytes)
+ * audio_effect_apply (172 bytes)
  * Audio effect apply
  *
  * Applies an audio effect to the output
  */
-void func_800BAF98(s32 effectId) {
+void audio_effect_apply(s32 effectId) {
     extern u32 D_80160900;  /* Active effects bitfield */
 
     if (effectId < 0 || effectId >= 32) {
@@ -29252,12 +29252,12 @@ void func_800BAF98(s32 effectId) {
 
 /*
 
- * func_800BB044 (252 bytes)
+ * audio_effect_remove (252 bytes)
  * Audio effect remove
  *
  * Removes an audio effect
  */
-void func_800BB044(s32 effectId) {
+void audio_effect_remove(s32 effectId) {
 
     if (effectId < 0 || effectId >= 32) {
         return;
@@ -29268,12 +29268,12 @@ void func_800BB044(s32 effectId) {
 
 /*
 
- * func_800BB140 (1372 bytes)
+ * audio_dsp_process (1372 bytes)
  * Audio DSP process
  *
  * Processes audio through effects chain (reverb, EQ, etc.)
  */
-void func_800BB140(void *dspBuffer) {
+void audio_dsp_process(void *dspBuffer) {
     extern s16 D_80160910[512]; /* Reverb delay buffer */
     extern s32 D_80160B10;   /* Delay buffer write position */
     s16 *buf = (s16 *)dspBuffer;
@@ -29310,12 +29310,12 @@ void func_800BB140(void *dspBuffer) {
 
 /*
 
- * func_800BB69C (408 bytes)
+ * audio_output_setup (408 bytes)
  * Audio output setup
  *
  * Configures audio output mode (mono, stereo, surround)
  */
-void func_800BB69C(s32 outputMode) {
+void audio_output_setup(s32 outputMode) {
     extern s32 D_80160920;  /* Output mode */
     extern s32 D_80160924;  /* Sample rate */
     extern s32 D_80160928;  /* Buffer size */
@@ -29349,12 +29349,12 @@ void func_800BB69C(s32 outputMode) {
 
 /*
 
- * func_800BB834 (392 bytes)
+ * audio_hw_sync (392 bytes)
  * Audio hardware sync
  *
  * Syncs audio buffer submission with hardware
  */
-void func_800BB834(void) {
+void audio_hw_sync(void) {
     extern void *D_80160930; /* DMA buffer */
     s32 i;
     s16 *dmaOut;
@@ -29372,23 +29372,23 @@ void func_800BB834(void) {
 
 /*
 
- * func_800BB9BC (756 bytes)
+ * audio_interrupt_handler (756 bytes)
  * Audio interrupt handler
  *
  * Called when audio DMA completes - triggers next buffer
  */
-void func_800BB9BC(void) {
+void audio_interrupt_handler(void) {
 
     /* Signal audio thread to mix next buffer */
     osSendMesg(&D_80086A88, (OSMesg)1, OS_MESG_NOBLOCK);
 
     /* Update stream buffers if streaming */
-    func_800B9774();
+    audio_stream_update();
 }
 
 /*
 
- * func_800BC2BC (292 bytes)
+ * camera_reset (292 bytes)
  * Camera reset
  *
  * Resets camera to default state
@@ -29404,7 +29404,7 @@ void func_800BB9BC(void) {
  *   0x38: shake intensity
  *   0x3C: shake timer
  */
-void func_800BC2BC(void *camera) {
+void camera_reset(void *camera) {
     f32 *pos, *target, *up;
     f32 *fov, *near, *far, *aspect;
     s32 *mode;
@@ -29448,12 +29448,12 @@ void func_800BC2BC(void *camera) {
 
 /*
 
- * func_800BCBB8 (808 bytes)
+ * camera_lerp_position (808 bytes)
  * Camera lerp position
  *
  * Smoothly interpolates camera position toward target
  */
-void func_800BCBB8(void *camera, f32 *targetPos, f32 t) {
+void camera_lerp_position(void *camera, f32 *targetPos, f32 t) {
     f32 *pos;
 
     if (camera == NULL || targetPos == NULL) {
@@ -29474,12 +29474,12 @@ void func_800BCBB8(void *camera, f32 *targetPos, f32 t) {
 
 /*
 
- * func_800BCEE4 (548 bytes)
+ * camera_orbit_delta (548 bytes)
  * Camera orbit control
  *
  * Orbits camera around its current target
  */
-void func_800BCEE4(void *camera, f32 yaw, f32 pitch) {
+void camera_orbit_delta(void *camera, f32 yaw, f32 pitch) {
     f32 *pos, *target;
     f32 dx, dy, dz;
     f32 dist, hDist;
@@ -29528,12 +29528,12 @@ void func_800BCEE4(void *camera, f32 yaw, f32 pitch) {
 
 /*
 
- * func_800BD104 (460 bytes)
+ * camera_dolly (460 bytes)
  * Camera dolly
  *
  * Moves camera along view direction (zoom in/out)
  */
-void func_800BD104(void *camera, f32 distance) {
+void camera_dolly(void *camera, f32 distance) {
     f32 *pos, *target;
     f32 dx, dy, dz, len;
 
@@ -29582,7 +29582,7 @@ void func_800BD104(void *camera, f32 distance) {
  * Prevents camera from clipping through world geometry
  * Uses raycasting from target to camera position
  */
-void func_800BD2D0(void *camera) {
+void camera_collision_check(void *camera) {
     f32 *pos, *target;
     f32 dx, dy, dz, len;
     f32 hitDist;
@@ -29620,12 +29620,12 @@ void func_800BD2D0(void *camera) {
 
 /*
 
- * func_800BDAA8 (852 bytes)
+ * camera_shake_start (852 bytes)
  * Camera shake effect
  *
  * Initiates a camera shake effect (impacts, explosions, etc.)
  */
-void func_800BDAA8(f32 intensity, f32 duration) {
+void camera_shake_start(f32 intensity, f32 duration) {
     /* Note: D_80170000-D_80170008 declared globally */
     D_80170000 = intensity;
     D_80170004 = duration;
@@ -29640,12 +29640,12 @@ void func_800BDAA8(f32 intensity, f32 duration) {
 
 /*
 
- * func_800BDDFC (192 bytes)
+ * camera_shake_update (192 bytes)
  * Camera shake update
  *
  * Updates camera shake each frame
  */
-void func_800BDDFC(void *camera) {
+void camera_shake_update(void *camera) {
     extern u32 D_80143500;  /* Random seed */
     f32 *pos;
     f32 offsetX, offsetY;
@@ -29678,12 +29678,12 @@ void func_800BDDFC(void *camera) {
 
 /*
 
- * func_800BDEBC (444 bytes)
+ * camera_zoom_fov (444 bytes)
  * Camera zoom control
  *
  * Adjusts camera FOV for zoom effect
  */
-void func_800BDEBC(void *camera, f32 zoom) {
+void camera_zoom_fov(void *camera, f32 zoom) {
     f32 *fov;
     f32 baseFOV = 60.0f;
 
@@ -29707,12 +29707,12 @@ void func_800BDEBC(void *camera, f32 zoom) {
 
 /*
 
- * func_800BE078 (1136 bytes)
+ * camera_auto_follow (1136 bytes)
  * Camera auto-follow
  *
  * Smoothly follows a target (car) with spring physics
  */
-void func_800BE078(void *camera, void *target) {
+void camera_auto_follow(void *camera, void *target) {
     f32 *camPos, *camTarget;
     f32 *targetPos, *targetVel, *targetForward;
     f32 desiredPos[3];
@@ -29753,12 +29753,12 @@ void func_800BE078(void *camera, void *target) {
 
 /*
 
- * func_800BE4F8 (936 bytes)
+ * camera_cinematic_mode (936 bytes)
  * Camera cinematic mode
  *
  * Sets up camera for cinematic sequences
  */
-void func_800BE4F8(s32 cinematicId) {
+void camera_cinematic_mode(s32 cinematicId) {
     extern s32 D_80170024;    /* Cinematic state */
     extern s32 D_80170028;    /* Cinematic frame */
     extern f32 D_8017002C[32][6];  /* Keyframe data (pos + target) */
