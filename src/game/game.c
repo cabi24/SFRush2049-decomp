@@ -20622,7 +20622,7 @@ void func_800F9E2C(void) {
 
     /* Any button press goes to main menu */
     if (input & 0x9000) {  /* START or A */
-        func_800CC3C0(10);
+        sound_play_menu(10);
         D_801146EC = 1;  /* TRKSEL / main menu state */
         D_8015A410 = 0;
         return;
@@ -20921,11 +20921,11 @@ void func_800FAEF4(void *pause) {
         if (input == 4) {  /* Up */
             selectedOption--;
             if (selectedOption < 0) selectedOption = numItems - 1;
-            func_800CC3C0(12);
+            sound_play_menu(12);
         } else if (input == 5) {  /* Down */
             selectedOption++;
             if (selectedOption >= numItems) selectedOption = 0;
-            func_800CC3C0(12);
+            sound_play_menu(12);
         } else if (input == 1) {  /* A */
             if (selectedOption == 0) {
                 /* Resume - unpause */
@@ -20943,7 +20943,7 @@ void func_800FAEF4(void *pause) {
                 /* Quit - confirm */
                 confirmState = 2;
             }
-            func_800CC3C0(10);
+            sound_play_menu(10);
         } else if (input == 2 || ((s32)(long)D_80158100[0] & 0x1000)) {  /* B or START */
             /* Resume */
             func_800FB5F4(0);
@@ -20955,10 +20955,10 @@ void func_800FAEF4(void *pause) {
             D_80159F44 = 0;
             D_801146EC = 7;  /* PREPLAY */
             func_800FB5F4(0);
-            func_800CC3C0(10);
+            sound_play_menu(10);
         } else if (input == 2) {  /* B - no */
             confirmState = 0;
-            func_800CC3C0(11);
+            sound_play_menu(11);
         }
     } else if (confirmState == 2) {
         /* Quit confirmation */
@@ -20966,10 +20966,10 @@ void func_800FAEF4(void *pause) {
             D_80159F44 = 0;
             D_801146EC = 1;  /* TRKSEL or menu */
             func_800FB5F4(0);
-            func_800CC3C0(10);
+            sound_play_menu(10);
         } else if (input == 2) {  /* B - no */
             confirmState = 0;
-            func_800CC3C0(11);
+            sound_play_menu(11);
         }
     }
 
@@ -21032,7 +21032,7 @@ void func_800FB5F4(s32 pause) {
 
         /* Stop audio */
         func_800B37E8(0, 0, NULL, 0);  /* Pause music */
-        func_800CC3C0(15);  /* Pause sound effect */
+        sound_play_menu(15);  /* Pause sound effect */
 
         /* Set render mode for pause overlay */
         D_80159F58 = 1;
@@ -21141,7 +21141,7 @@ void func_800FC3D8(void *bonus) {
         if (D_8015A088 == 0) {
             D_8015A088 = 1;  /* Coins complete flag */
             func_800FCEB0(trackId + 20);  /* Unlock bonus for this track */
-            func_800CC3C0(20);  /* Bonus sound */
+            sound_play_menu(20);  /* Bonus sound */
         }
     }
 
@@ -21229,7 +21229,7 @@ void func_800FCEB0(s32 unlockId) {
     D_8015A114 = 300;  /* Show for 5 seconds */
 
     /* Play unlock sound */
-    func_800CC3C0(25);
+    sound_play_menu(25);
 
     /* Queue save */
     D_8015A118 = 1;
@@ -27161,14 +27161,14 @@ s32 func_801033D8(void) {
     /* Navigate selection */
     if (input == 6 || input == 7) {  /* Left/Right */
         selection = !selection;
-        func_800CC3C0(12);
+        sound_play_menu(12);
     }
 
     /* Confirm selection */
     if (input == 1) {  /* A */
         D_8015A430 = 0;
         D_8015A434 = 0;
-        func_800CC3C0(10);
+        sound_play_menu(10);
         return selection;  /* 0 = continue, 1 = quit */
     }
 
@@ -27371,26 +27371,26 @@ void func_80104320(u8 *name) {
     if (input == 4) {  /* Up */
         selectedChar = selectedChar - 10;
         if (selectedChar < 0) selectedChar = selectedChar + charCount;
-        func_800CC3C0(12);
+        sound_play_menu(12);
     } else if (input == 5) {  /* Down */
         selectedChar = selectedChar + 10;
         if (selectedChar >= charCount) selectedChar = selectedChar - charCount;
-        func_800CC3C0(12);
+        sound_play_menu(12);
     } else if (input == 6) {  /* Left */
         selectedChar--;
         if (selectedChar < 0) selectedChar = charCount - 1;
-        func_800CC3C0(12);
+        sound_play_menu(12);
     } else if (input == 7) {  /* Right */
         selectedChar++;
         if (selectedChar >= charCount) selectedChar = 0;
-        func_800CC3C0(12);
+        sound_play_menu(12);
     } else if (input == 1) {  /* A - select */
         if (selectedChar == 39) {
             /* END selected */
             D_8015A450 = 0;
             D_8015A454 = 0;
             D_8015A458[0] = 1;  /* Done flag */
-            func_800CC3C0(10);
+            sound_play_menu(10);
             return;
         } else {
             /* Add character to name */
@@ -27401,14 +27401,14 @@ void func_80104320(u8 *name) {
                     /* Auto-advance to END */
                     selectedChar = 39;
                 }
-                func_800CC3C0(12);
+                sound_play_menu(12);
             }
         }
     } else if (input == 2) {  /* B - backspace */
         if (cursorPos > 0) {
             cursorPos--;
             name[cursorPos] = '_';
-            func_800CC3C0(11);
+            sound_play_menu(11);
         }
     }
 
@@ -27812,7 +27812,7 @@ void func_80105EF4(s32 achievementId) {
     }
 
     /* Play unlock sound */
-    func_800CC3C0(20);  /* Achievement unlock jingle */
+    sound_play_menu(20);  /* Achievement unlock jingle */
 
     /* Start display timer if not already showing */
     if (D_8015A544 <= 0) {
@@ -28241,7 +28241,7 @@ s32 func_80109A98(void) {
     }
 
     /* Play session start sound */
-    func_800CC3C0(15);
+    sound_play_menu(15);
 
     return D_80159604;
 }
@@ -28286,7 +28286,7 @@ s32 func_80109EFC(s32 sessionId) {
     D_80159608++;
 
     /* Play join sound */
-    func_800CC3C0(16);
+    sound_play_menu(16);
 
     return slot;
 }
@@ -28314,7 +28314,7 @@ void func_8010A4C0(void) {
     }
 
     /* Play leave sound */
-    func_800CC3C0(17);
+    sound_play_menu(17);
 }
 
 /*
@@ -31209,10 +31209,11 @@ void hud_render(void) {
 
 /*
 
- * func_800CB748 (628 bytes)
- * Menu button process - handles controller input for menu navigation
+ * menu_process_input (func_800CB748)
+ * Size: 628 bytes
+ * Handles controller input for menu navigation
  */
-s32 func_800CB748(s32 input) {
+s32 menu_process_input(s32 input) {
     s32 result;
     s32 buttons;
     s32 stickX;
@@ -31236,7 +31237,7 @@ s32 func_800CB748(s32 input) {
     if (buttons & 0x8000) {
         if ((D_80159200 & 0x8000) == 0) {
             result = 1;  /* Select pressed */
-            func_800CC3C0(10);  /* Menu select sound */
+            sound_play_menu(10);  /* Menu select sound */
         }
     }
 
@@ -31244,7 +31245,7 @@ s32 func_800CB748(s32 input) {
     if (buttons & 0x4000) {
         if ((D_80159200 & 0x4000) == 0) {
             result = 2;  /* Back pressed */
-            func_800CC3C0(11);  /* Menu back sound */
+            sound_play_menu(11);  /* Menu back sound */
         }
     }
 
@@ -31260,7 +31261,7 @@ s32 func_800CB748(s32 input) {
         repeatDelay = D_80159204;
         if (repeatDelay == 0 || repeatDelay > 15) {
             result = 4;  /* Up */
-            func_800CC3C0(12);  /* Menu move sound */
+            sound_play_menu(12);  /* Menu move sound */
             if (repeatDelay == 0) {
                 D_80159204 = 1;
             }
@@ -31274,7 +31275,7 @@ s32 func_800CB748(s32 input) {
         repeatDelay = D_80159204;
         if (repeatDelay == 0 || repeatDelay > 15) {
             result = 5;  /* Down */
-            func_800CC3C0(12);  /* Menu move sound */
+            sound_play_menu(12);  /* Menu move sound */
             if (repeatDelay == 0) {
                 D_80159204 = 1;
             }
@@ -31339,10 +31340,11 @@ s32 func_800CB748(s32 input) {
 
 /*
 
- * func_800CB9D0 (516 bytes)
- * Menu cursor move - navigates between menu items
+ * menu_cursor_move (func_800CB9D0)
+ * Size: 516 bytes
+ * Navigates between menu items
  */
-void func_800CB9D0(s32 direction) {
+void menu_cursor_move(s32 direction) {
     s32 currentIndex;
     s32 newIndex;
     s32 itemCount;
@@ -31488,7 +31490,7 @@ void func_800CBBD4(s32 itemIndex) {
 
     /* Check if item is disabled */
     if (itemFlags & 1) {
-        func_800CC3C0(13);  /* Error sound */
+        sound_play_menu(13);  /* Error sound */
         return;
     }
 
@@ -31532,7 +31534,7 @@ void func_800CBBD4(s32 itemIndex) {
             /* Flip value */
             itemValue = (itemValue == 0) ? 1 : 0;
             menuItems[itemIndex * 4 + 1] = itemValue;
-            func_800CC3C0(14);  /* Toggle sound */
+            sound_play_menu(14);  /* Toggle sound */
             /* Apply setting immediately */
             if (itemAction == 10) {  /* Music toggle */
                 D_80159300 = itemValue;
@@ -31561,7 +31563,7 @@ void func_800CBBD4(s32 itemIndex) {
                 itemValue = 0;
             }
             menuItems[itemIndex * 4 + 1] = itemValue;
-            func_800CC3C0(14);
+            sound_play_menu(14);
             break;
 
         case 5:  /* Callback */
@@ -31599,7 +31601,7 @@ void func_800CBE08(void) {
 
     /* Transition to previous menu */
     func_800CBE8C(prevMenu);
-    func_800CC3C0(11);  /* Back sound */
+    sound_play_menu(11);  /* Back sound */
 }
 
 /*
@@ -31803,10 +31805,11 @@ void func_800CC040(void) {
 
 /*
 
- * func_800CC3C0 (380 bytes)
- * Menu sound play - plays menu sound effects
+ * sound_play_menu (func_800CC3C0)
+ * Size: 380 bytes
+ * Plays menu sound effects
  */
-void func_800CC3C0(s32 soundId) {
+void sound_play_menu(s32 soundId) {
     s32 actualSoundId;
     s32 volume;
     s32 pitch;
@@ -32245,7 +32248,7 @@ s32 func_800CCE5C(s32 current, s32 min, s32 max) {
 
     /* Play tick sound if value changed */
     if (snapValue != prevValue) {
-        func_800CC3C0(15);  /* Slider tick sound */
+        sound_play_menu(15);  /* Slider tick sound */
     }
 
     /* Store for visual feedback */
@@ -32454,7 +32457,7 @@ s32 func_800CD544(char *message) {
         D_801592E4 = 0;  /* Reset animation */
         D_801592E8 = 0;  /* Default to first button (YES) */
         D_801592F0 = 2;  /* Two buttons */
-        func_800CC3C0(16);  /* Dialog open sound */
+        sound_play_menu(16);  /* Dialog open sound */
         return result;
     }
 
@@ -32474,14 +32477,14 @@ s32 func_800CD544(char *message) {
         if (selectedButton > 0) {
             selectedButton--;
             D_801592E8 = selectedButton;
-            func_800CC3C0(12);
+            sound_play_menu(12);
         }
     }
     else if (input == 7) {  /* Right */
         if (selectedButton < buttonCount - 1) {
             selectedButton++;
             D_801592E8 = selectedButton;
-            func_800CC3C0(12);
+            sound_play_menu(12);
         }
     }
     /* A button to confirm */
@@ -32507,7 +32510,7 @@ void func_800CD6E0(void) {
     /* Start close animation */
     D_801592F4 = 1;  /* Closing state */
     D_801592F8 = 0;  /* Animation frame */
-    func_800CC3C0(17);  /* Dialog close sound */
+    sound_play_menu(17);  /* Dialog close sound */
 
     /* Actually close after short delay */
     D_801592E0 = 0;  /* Dialog inactive */
@@ -32581,7 +32584,7 @@ char func_800CD8EC(s32 input) {
             if (row < 0) {
                 row = maxRow - 1;
             }
-            func_800CC3C0(12);
+            sound_play_menu(12);
             break;
 
         case 5:  /* Down */
@@ -32589,7 +32592,7 @@ char func_800CD8EC(s32 input) {
             if (row >= maxRow) {
                 row = 0;
             }
-            func_800CC3C0(12);
+            sound_play_menu(12);
             break;
 
         case 6:  /* Left */
@@ -32597,7 +32600,7 @@ char func_800CD8EC(s32 input) {
             if (col < 0) {
                 col = maxCol - 1;
             }
-            func_800CC3C0(12);
+            sound_play_menu(12);
             break;
 
         case 7:  /* Right */
@@ -32605,7 +32608,7 @@ char func_800CD8EC(s32 input) {
             if (col >= maxCol) {
                 col = 0;
             }
-            func_800CC3C0(12);
+            sound_play_menu(12);
             break;
 
         case 1:  /* A button - select character */
@@ -32629,13 +32632,13 @@ char func_800CD8EC(s32 input) {
                 } else if (row == 5 && col >= 5) {
                     selectedChar = '\n';  /* OK/Enter */
                 }
-                func_800CC3C0(10);  /* Select sound */
+                sound_play_menu(10);  /* Select sound */
             }
             break;
 
         case 2:  /* B button - backspace */
             selectedChar = '\b';
-            func_800CC3C0(11);
+            sound_play_menu(11);
             break;
     }
 
@@ -32685,7 +32688,7 @@ void func_800CDAE0(char *buffer, s32 maxLen) {
             buffer[maxLen - 1] = '\0';
         }
         D_80159910 = 0;  /* Close keyboard */
-        func_800CC3C0(10);  /* Confirm sound */
+        sound_play_menu(10);  /* Confirm sound */
     }
     else if (c == '\b') {
         /* Backspace */
@@ -32786,7 +32789,7 @@ void func_800CDCAC(s32 optionId) {
             return;
     }
 
-    func_800CC3C0(14);  /* Toggle sound */
+    sound_play_menu(14);  /* Toggle sound */
 }
 
 /*
@@ -32851,7 +32854,7 @@ void func_800CDEEC(void) {
     result = func_800AEB54(0);  /* Slot 0 for options */
     if (result == 0) {
         /* Success */
-        func_800CC3C0(10);
+        sound_play_menu(10);
     } else {
         /* Error - show dialog */
         func_800CD104(4);  /* No Controller Pak */
@@ -32981,7 +32984,7 @@ void func_800CE358(void) {
                 D_80159060 = 1;  /* HUD on */
                 D_80159310 = 1;  /* Minimap on */
                 D_80159308 = 1;  /* Vibration on */
-                func_800CC3C0(10);
+                sound_play_menu(10);
                 break;
             case 6:  /* Back */
                 func_800CBE08();
@@ -33139,7 +33142,7 @@ void func_800CF374(void) {
                 break;
             case 2:  /* Invert Y axis */
                 D_8015932C = (D_8015932C == 0) ? 1 : 0;
-                func_800CC3C0(14);
+                sound_play_menu(14);
                 break;
             case 3:  /* Remap controls */
                 func_800CBE8C(13);  /* Go to remap screen */
@@ -33228,7 +33231,7 @@ void func_800CF69C(void) {
                 D_80159350 = 1;
                 D_80159354 = selectedItem;  /* Action being remapped */
                 D_80159358 = 60;  /* Timeout frames */
-                func_800CC3C0(10);
+                sound_play_menu(10);
             } else if (selectedItem == 8) {
                 /* Reset to defaults */
                 D_80159330[0] = 0;  /* A = accelerate */
@@ -33239,7 +33242,7 @@ void func_800CF69C(void) {
                 D_80159330[5] = 6;  /* C-UP = horn */
                 D_80159330[6] = 7;  /* C-DOWN = reset */
                 D_80159330[7] = 3;  /* START = pause */
-                func_800CC3C0(10);
+                sound_play_menu(10);
             } else if (selectedItem == 9) {
                 /* Back */
                 func_800CBE08();
@@ -33257,7 +33260,7 @@ void func_800CF69C(void) {
         if (D_80159358 <= 0) {
             /* Timeout - cancel remap */
             D_80159350 = 0;
-            func_800CC3C0(13);
+            sound_play_menu(13);
         }
         else if (buttons != 0) {
             /* Button pressed - find which one */
@@ -33277,7 +33280,7 @@ void func_800CF69C(void) {
                 /* Assign button to action */
                 D_80159330[D_80159354] = buttonId;
                 D_80159350 = 0;
-                func_800CC3C0(10);
+                sound_play_menu(10);
             }
         }
     }
@@ -33433,7 +33436,7 @@ void func_800D000C(void) {
         if (selectedTrack < scrollOffset) {
             scrollOffset = selectedTrack;
         }
-        func_800CC3C0(12);
+        sound_play_menu(12);
     }
     else if (input == 5) {  /* Down */
         selectedTrack++;
@@ -33443,16 +33446,16 @@ void func_800D000C(void) {
         if (selectedTrack >= scrollOffset + visibleTracks) {
             scrollOffset = selectedTrack - visibleTracks + 1;
         }
-        func_800CC3C0(12);
+        sound_play_menu(12);
     }
     else if (input == 1) {  /* Select */
         trackUnlocked = func_800D1248(selectedTrack);
         if (trackUnlocked) {
             D_80159A08 = selectedTrack;  /* Store selected track */
             func_800CBE8C(4);  /* Go to car select */
-            func_800CC3C0(10);
+            sound_play_menu(10);
         } else {
-            func_800CC3C0(13);  /* Locked sound */
+            sound_play_menu(13);  /* Locked sound */
         }
     }
     else if (input == 2) {  /* Back */
@@ -33720,23 +33723,23 @@ void func_800D138C(void) {
         if (selectedCar < 0) {
             selectedCar = numCars - 1;
         }
-        func_800CC3C0(12);
+        sound_play_menu(12);
     }
     else if (input == 7) {  /* Right */
         selectedCar++;
         if (selectedCar >= numCars) {
             selectedCar = 0;
         }
-        func_800CC3C0(12);
+        sound_play_menu(12);
     }
     else if (input == 1) {  /* Select */
         carUnlocked = func_800D197C(selectedCar);
         if (carUnlocked) {
             D_80159A54 = selectedCar;  /* Store selected car */
             func_800CBE8C(5);  /* Go to color select or race setup */
-            func_800CC3C0(10);
+            sound_play_menu(10);
         } else {
-            func_800CC3C0(13);
+            sound_play_menu(13);
         }
     }
     else if (input == 2) {  /* Back */
@@ -33754,7 +33757,7 @@ void func_800D138C(void) {
         }
         D_80159A58 = colorIdx;
         func_800D1AB8(colorIdx);
-        func_800CC3C0(12);
+        sound_play_menu(12);
     }
 
     D_80159A50 = selectedCar;
@@ -34058,12 +34061,12 @@ void func_800D1CE0(void) {
     if (input == 4) {
         selectedItem--;
         if (selectedItem < 0) selectedItem = numItems - 1;
-        func_800CC3C0(12);
+        sound_play_menu(12);
     }
     else if (input == 5) {
         selectedItem++;
         if (selectedItem >= numItems) selectedItem = 0;
-        func_800CC3C0(12);
+        sound_play_menu(12);
     }
     else if (input == 6 || input == 7) {
         /* Left/right to change option value */
@@ -34093,14 +34096,14 @@ void func_800D1CE0(void) {
                 func_800D2DCC(D_80159B18);
                 break;
         }
-        func_800CC3C0(14);
+        sound_play_menu(14);
     }
     else if (input == 1) {
         if (selectedItem == 6) {
             /* Start race */
             D_801146EC = 7;  /* PREPLAY state */
             func_800CBE8C(-1);  /* Close menu */
-            func_800CC3C0(10);
+            sound_play_menu(10);
         }
     }
     else if (input == 2) {
@@ -34329,12 +34332,12 @@ void func_800D2E94(void) {
     if (input == 4) {
         selectedItem--;
         if (selectedItem < 0) selectedItem = 5;
-        func_800CC3C0(12);
+        sound_play_menu(12);
     }
     else if (input == 5) {
         selectedItem++;
         if (selectedItem > 5) selectedItem = 0;
-        func_800CC3C0(12);
+        sound_play_menu(12);
     }
     else if (input == 6 || input == 7) {
         s32 delta = (input == 6) ? -1 : 1;
@@ -34355,13 +34358,13 @@ void func_800D2E94(void) {
                 D_80159C10 = (D_80159C10 == 0) ? 1 : 0;
                 break;
         }
-        func_800CC3C0(14);
+        sound_play_menu(14);
     }
     else if (input == 1) {
         if (selectedItem == 4) {
             /* Continue to player join */
             func_800CBE8C(20);  /* Player join screen */
-            func_800CC3C0(10);
+            sound_play_menu(10);
         } else if (selectedItem == 5) {
             /* Back */
             func_800CBE08();
@@ -34459,11 +34462,11 @@ void func_800D349C(void) {
             if (D_80159C20[i] == 0) {
                 /* Player joining */
                 D_80159C20[i] = 1;
-                func_800CC3C0(10);
+                sound_play_menu(10);
             } else if (D_80159C20[i] == 1) {
                 /* Player ready */
                 D_80159C20[i] = 2;
-                func_800CC3C0(10);
+                sound_play_menu(10);
             }
         }
 
@@ -34471,10 +34474,10 @@ void func_800D349C(void) {
         if (buttons & 0x4000) {
             if (D_80159C20[i] == 2) {
                 D_80159C20[i] = 1;  /* Unready */
-                func_800CC3C0(11);
+                sound_play_menu(11);
             } else if (D_80159C20[i] == 1) {
                 D_80159C20[i] = 0;  /* Leave */
-                func_800CC3C0(11);
+                sound_play_menu(11);
             }
         }
 
@@ -34626,11 +34629,11 @@ void func_800D3B28(void) {
         if (input == 4) {  /* Up */
             selectedOption--;
             if (selectedOption < 0) selectedOption = 5;
-            func_800CC3C0(12);
+            sound_play_menu(12);
         } else if (input == 5) {  /* Down */
             selectedOption++;
             if (selectedOption > 5) selectedOption = 0;
-            func_800CC3C0(12);
+            sound_play_menu(12);
         } else if (input == 6 || input == 7) {  /* Left/Right */
             /* Adjust option value */
             if (selectedOption == 0) {
@@ -34674,7 +34677,7 @@ void func_800D3B28(void) {
                 /* Wings enabled */
                 wingEnabled = !wingEnabled;
             }
-            func_800CC3C0(12);
+            sound_play_menu(12);
         } else if (input == 1) {  /* A - select */
             if (selectedOption == 4) {
                 /* Start stunt mode */
@@ -34861,11 +34864,11 @@ void func_800D4EF4(void) {
     if (input == 4) {  /* Up */
         selectedOption--;
         if (selectedOption < 0) selectedOption = 5;
-        func_800CC3C0(12);
+        sound_play_menu(12);
     } else if (input == 5) {  /* Down */
         selectedOption++;
         if (selectedOption > 5) selectedOption = 0;
-        func_800CC3C0(12);
+        sound_play_menu(12);
     } else if (input == 6 || input == 7) {  /* Left/Right */
         if (selectedOption == 0) {
             /* Arena selection */
@@ -34898,7 +34901,7 @@ void func_800D4EF4(void) {
             /* Weapons */
             weaponsEnabled = !weaponsEnabled;
         }
-        func_800CC3C0(12);
+        sound_play_menu(12);
     } else if (input == 1) {  /* A - select */
         if (selectedOption == 4) {
             /* Player count check */
@@ -34911,7 +34914,7 @@ void func_800D4EF4(void) {
                 D_801146EC = 7;  /* PREPLAY */
                 func_800CBE8C(-1);
             } else {
-                func_800CC3C0(13);  /* Error sound */
+                sound_play_menu(13);  /* Error sound */
             }
         } else if (selectedOption == 5) {
             /* Go to player join */
@@ -35024,11 +35027,11 @@ void func_800D510C(void) {
     if (input == 4) {  /* Up */
         selectedOption--;
         if (selectedOption < 0) selectedOption = 3;
-        func_800CC3C0(12);
+        sound_play_menu(12);
     } else if (input == 5) {  /* Down */
         selectedOption++;
         if (selectedOption > 3) selectedOption = 0;
-        func_800CC3C0(12);
+        sound_play_menu(12);
     } else if (input == 6 || input == 7) {  /* Left/Right */
         if (selectedOption == 0) {
             /* Track selection */
@@ -35052,7 +35055,7 @@ void func_800D510C(void) {
                 }
             }
         }
-        func_800CC3C0(12);
+        sound_play_menu(12);
     } else if (input == 1) {  /* A - select */
         if (selectedOption == 2) {
             /* Start ghost race */
@@ -35064,13 +35067,13 @@ void func_800D510C(void) {
                 D_801146EC = 7;  /* PREPLAY */
                 func_800CBE8C(-1);
             } else {
-                func_800CC3C0(13);  /* Error - no ghost */
+                sound_play_menu(13);  /* Error - no ghost */
             }
         } else if (selectedOption == 3) {
             /* Delete ghost */
             if (ghostCount > 0) {
                 func_800D55A0(selectedTrack, selectedGhost);
-                func_800CC3C0(14);
+                sound_play_menu(14);
                 if (selectedGhost >= ghostCount - 1) {
                     selectedGhost = 0;
                 }
@@ -35199,22 +35202,22 @@ void func_800D58CC(void) {
     /* Tab navigation with L/R */
     if (input == 8) {  /* L */
         selectedTab = (selectedTab + 2) % 3;  /* Times, Scores, Stats */
-        func_800CC3C0(12);
+        sound_play_menu(12);
     }
     else if (input == 9) {  /* R */
         selectedTab = (selectedTab + 1) % 3;
-        func_800CC3C0(12);
+        sound_play_menu(12);
     }
     /* Track selection */
     else if (input == 4) {
         selectedTrack--;
         if (selectedTrack < 0) selectedTrack = 11;
-        func_800CC3C0(12);
+        sound_play_menu(12);
     }
     else if (input == 5) {
         selectedTrack++;
         if (selectedTrack > 11) selectedTrack = 0;
-        func_800CC3C0(12);
+        sound_play_menu(12);
     }
     else if (input == 2) {
         func_800CBE08();
@@ -35479,12 +35482,12 @@ void func_800D63F4(void) {
     if (input == 4) {
         scrollOffset--;
         if (scrollOffset < 0) scrollOffset = 0;
-        func_800CC3C0(12);
+        sound_play_menu(12);
     }
     else if (input == 5) {
         scrollOffset++;
         if (scrollOffset > numAchievements - 6) scrollOffset = numAchievements - 6;
-        func_800CC3C0(12);
+        sound_play_menu(12);
     }
     else if (input == 2) {
         func_800CBE08();
@@ -35709,13 +35712,13 @@ void func_800D71D0(void) {
     if (input == 4) {  /* Up */
         selection--;
         if (selection < 0) selection = numOptions - 1;
-        func_800CC3C0(12);
+        sound_play_menu(12);
     } else if (input == 5) {  /* Down */
         selection++;
         if (selection >= numOptions) selection = 0;
-        func_800CC3C0(12);
+        sound_play_menu(12);
     } else if (input == 1) {  /* A - select */
-        func_800CC3C0(10);
+        sound_play_menu(10);
         switch (selection) {
             case 0:  /* Resume */
                 func_800D7E88();
@@ -35775,7 +35778,7 @@ void func_800D7E88(void) {
     /* D_8015A720 = osGetTime(); */
 
     /* Play resume sound */
-    func_800CC3C0(11);
+    sound_play_menu(11);
 }
 
 /*
@@ -35822,7 +35825,7 @@ void func_800D8184(void) {
     /* Go to countdown state */
     D_801146EC = 5;  /* COUNTDOWN */
 
-    func_800CC3C0(14);  /* Restart sound */
+    sound_play_menu(14);  /* Restart sound */
 }
 
 /*
@@ -35841,7 +35844,7 @@ void func_800D8C58(void) {
     /* Return to attract mode */
     D_801146EC = 0;  /* ATTRACT */
 
-    func_800CC3C0(17);  /* Quit sound */
+    sound_play_menu(17);  /* Quit sound */
 }
 
 /*
@@ -36003,12 +36006,12 @@ void func_800DABDC(void) {
     /* Navigation */
     if (input == 6 || input == 7) {  /* Left/Right */
         selection = !selection;
-        func_800CC3C0(12);
+        sound_play_menu(12);
     } else if (input == 1) {  /* A - confirm */
         if (selection == 0) {
             /* Save replay */
             /* func_800DXXXX(); */
-            func_800CC3C0(10);
+            sound_play_menu(10);
         }
         D_8015A750 = 0;
         D_8015A754 = 0;
@@ -36169,7 +36172,7 @@ void func_800DC794(s32 unlockId) {
     func_800C6E60(62, 102, 196, 36, 0xE0604000);
     draw_text(80, 112, msg, 0xFFFFFFFF);
 
-    func_800CC3C0(20);  /* Unlock jingle */
+    sound_play_menu(20);  /* Unlock jingle */
 }
 
 /*
@@ -36418,7 +36421,7 @@ void func_800DD4AC(void) {
     if (input != 0) {
         D_8015A7B0 = 0;
         D_801146EC = 1;  /* TRKSEL or menu */
-        func_800CC3C0(10);
+        sound_play_menu(10);
         return;
     }
 
@@ -36578,13 +36581,13 @@ void func_800DEBAC(s32 input) {
     if (input == 4) {  /* Up */
         selection--;
         if (selection < 0) selection = MAIN_MENU_COUNT - 1;
-        func_800CC3C0(12);
+        sound_play_menu(12);
     } else if (input == 5) {  /* Down */
         selection++;
         if (selection >= MAIN_MENU_COUNT) selection = 0;
-        func_800CC3C0(12);
+        sound_play_menu(12);
     } else if (input == 1) {  /* A - select */
-        func_800CC3C0(10);
+        sound_play_menu(10);
         switch (selection) {
             case 0:  /* Race */
                 D_801146EC = 1;  /* TRKSEL */
@@ -36698,13 +36701,13 @@ void func_800DFB08(s32 input) {
     if (input == 4) {  /* Up */
         selection--;
         if (selection < 0) selection = maxOptions - 1;
-        func_800CC3C0(12);
+        sound_play_menu(12);
     } else if (input == 5) {  /* Down */
         selection++;
         if (selection >= maxOptions) selection = 0;
-        func_800CC3C0(12);
+        sound_play_menu(12);
     } else if (input == 1) {  /* A - select */
-        func_800CC3C0(10);
+        sound_play_menu(10);
         /* Proceed to track/arena selection */
         D_801146EC = 1;  /* TRKSEL */
     } else if (input == 2) {  /* B - back */
@@ -37135,7 +37138,7 @@ void func_800EE5DC(s32 triggerId) {
     switch (triggerType) {
         case 0:  /* Checkpoint */
             func_800F6960(triggerId);  /* Record checkpoint */
-            func_800CC3C0(15);  /* Checkpoint sound */
+            sound_play_menu(15);  /* Checkpoint sound */
             break;
 
         case 1:  /* Shortcut entry */
@@ -37144,11 +37147,11 @@ void func_800EE5DC(s32 triggerId) {
 
         case 2:  /* Boost pad */
             func_800F6584(triggerId);  /* Apply boost */
-            func_800CC3C0(20);  /* Boost sound */
+            sound_play_menu(20);  /* Boost sound */
             break;
 
         case 3:  /* Jump ramp */
-            func_800CC3C0(25);  /* Jump sound */
+            sound_play_menu(25);  /* Jump sound */
             break;
 
         case 4:  /* Item pickup */
@@ -37571,7 +37574,7 @@ void func_800EF8F4(f32 *pos, f32 radius) {
     func_800EFEA8(pos);
 
     /* Play explosion sound */
-    func_800CC3C0(30);
+    sound_play_menu(30);
 
     /* Screen shake if close to camera */
     func_800D11BC(15);  /* Camera shake */
@@ -39488,11 +39491,11 @@ void func_800FECA4(void) {
         numBuf[0] = '0' + countdown;
         numBuf[1] = '\0';
         draw_text(numBuf, 155, 100, 255);
-        func_800CC3C0(10 + countdown);  /* Countdown sound */
+        sound_play_menu(10 + countdown);  /* Countdown sound */
     } else if (countdown == 0 && D_80159A08 < 240) {
         draw_text(140, 100, "GO!", 0xFFFFFFFF);
         if (D_80159A08 == 180) {
-            func_800CC3C0(13);  /* GO sound */
+            sound_play_menu(13);  /* GO sound */
             D_80159A04 = 1;     /* Start race */
             func_800FE08C(0);   /* Start race timer */
         }
@@ -40467,7 +40470,7 @@ void func_80106874(void *car) {
     }
 
     /* Play boost sound */
-    func_800CC3C0(35);
+    sound_play_menu(35);
 }
 
 /*
@@ -40548,7 +40551,7 @@ void func_80106D94(void *car, void *pickup) {
     pickupData[0x00] = 0;
 
     /* Play pickup sound */
-    func_800CC3C0(22);
+    sound_play_menu(22);
 
     /* Spawn collect effect at pickup position */
     func_800EE820(4, (f32 *)(pickupData + 0x04));
@@ -40583,7 +40586,7 @@ void func_801073D8(void *car, s32 cpId) {
         *cpMask |= (1 << cpId);
 
         /* Play checkpoint sound */
-        func_800CC3C0(15);
+        sound_play_menu(15);
     }
 }
 
@@ -40636,7 +40639,7 @@ void func_8010761C(void *car) {
         func_80107AF4(car);  /* Race finish */
     } else {
         /* Play lap complete sound */
-        func_800CC3C0(16);
+        sound_play_menu(16);
     }
 }
 
@@ -40684,9 +40687,9 @@ void func_80107AF4(void *car) {
 
     /* Play finish sound based on position */
     if (*finishPos == 0) {
-        func_800CC3C0(40);  /* First place */
+        sound_play_menu(40);  /* First place */
     } else {
-        func_800CC3C0(41);  /* Other positions */
+        sound_play_menu(41);  /* Other positions */
     }
 
     /* Check if this is the player */
@@ -40830,7 +40833,7 @@ void func_801084D4(void *car) {
     *(s32 *)(carData + 0x1D0) = 1;  /* Racing state */
 
     /* Play respawn sound */
-    func_800CC3C0(28);
+    sound_play_menu(28);
 }
 
 /*
@@ -40894,7 +40897,7 @@ void func_80108DA8(void *car) {
     func_800EF8F4(carPos, 10.0f);
 
     /* Play crash sound */
-    func_800CC3C0(32);
+    sound_play_menu(32);
 
     /* Start recovery timer */
     *(s32 *)(carData + 0x1D4) = 180;  /* 3 seconds at 60fps */
@@ -41313,7 +41316,7 @@ void func_8010BC84(void *car, s32 gear) {
     *currentGear = gear;
 
     /* Play shift sound */
-    func_800CC3C0(26);
+    sound_play_menu(26);
 }
 
 /*
