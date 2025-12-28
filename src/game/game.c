@@ -6652,11 +6652,11 @@ void tree_node_insert(s16 a0, s16 a1) {
  */
 
 /*
- * func_8008A474 (464 bytes)
+ * rect_fill_clipped (464 bytes)
  * Rectangle clipping and RDP fill command
  * Clips coordinates to screen bounds
  */
-void func_8008A474(s32 x1, s32 y1, s32 x2, s32 y2, s32 color) {
+void rect_fill_clipped(s32 x1, s32 y1, s32 x2, s32 y2, s32 color) {
     s32 minX, minY, maxX, maxY;
     u32 *dlPtr;
 
@@ -6712,11 +6712,11 @@ void func_8008A474(s32 x1, s32 y1, s32 x2, s32 y2, s32 color) {
 
 /*
 
- * func_8008A650 (84 bytes)
+ * rdp_primdepth_set (84 bytes)
  * Set Z-buffer primitive depth via RDP command
  * t7 preloaded with current value, a2 with dest ptr
  */
-void func_8008A650(s16 depth) {
+void rdp_primdepth_set(s16 depth) {
     u32 *dlPtr;
     u16 val = (u16)(depth & 0xFFFF);
     u16 current = *(u16 *)0x8013E600;  /* t7 preload from a2 */
@@ -6734,11 +6734,11 @@ void func_8008A650(s16 depth) {
 
 /*
 
- * func_8008A710 (100 bytes)
+ * sync_init_conditional (100 bytes)
  * Conditional sync initialization
  * t6 preloaded with flag from v0
  */
-void func_8008A710(void) {
+void sync_init_conditional(void) {
     u8 flag = *(u8 *)0x8011194C;  /* t6 from v0 */
     s32 outVal;
 
@@ -6753,11 +6753,11 @@ void func_8008A710(void) {
 
 /*
 
- * func_8008D714 (80 bytes)
+ * position_vector_copy (80 bytes)
  * Copy position vector and optionally call update
  * t8 preloaded with index offset
  */
-void func_8008D714(s32 idx, f32 *pos, void *update) {
+void position_vector_copy(s32 idx, f32 *pos, void *update) {
     void *target;
 
     /* a3 = a3 + t8, then load from table */
@@ -6776,11 +6776,11 @@ void func_8008D714(s32 idx, f32 *pos, void *update) {
 
 /*
 
- * func_8008D8D8 (100 bytes)
+ * texture_load_mode (100 bytes)
  * Texture loading with mode select
  * s0, t0 preloaded
  */
-s32 func_8008D8D8(s32 mode) {
+s32 texture_load_mode(s32 mode) {
     s16 texId;
     s32 result = 0;  /* s0 preload */
     void *texPtr = NULL;  /* t0 preload */
@@ -6803,11 +6803,11 @@ s32 func_8008D8D8(s32 mode) {
 
 /*
 
- * func_800A373C (64 bytes)
+ * struct_clear_preserve (64 bytes)
  * Clear struct with preserved byte
  * t8, t7 preloaded with base and index
  */
-void func_800A373C(s32 index) {
+void struct_clear_preserve(s32 index) {
     void *ptr;
     s8 savedByte;
 
@@ -6821,11 +6821,11 @@ void func_800A373C(s32 index) {
 
 /*
 
- * func_8008E0C8 (124 bytes)
+ * vector_normalize_3d (124 bytes)
  * Vector transform with normalization
  * Writes result to a0 as 3-float vector
  */
-void func_8008E0C8(f32 *dest, f32 f12, f32 f14) {
+void vector_normalize_3d(f32 *dest, f32 f12, f32 f14) {
     f32 temp, f2, f4, f6, f8, f10, f12_sq, f18;
     f32 scale;
 
@@ -6856,11 +6856,11 @@ void func_8008E0C8(f32 *dest, f32 f12, f32 f14) {
 
 /*
 
- * func_8008ABF4 (128 bytes)
+ * audio_queue_process (128 bytes)
  * Audio queue processing - dequeue and play
  * t0, t6 = current and max index, v1 = queue pointer
  */
-s32 func_8008ABF4(void) {
+s32 audio_queue_process(void) {
     s32 currIdx;  /* t0 preload */
     s32 maxIdx;   /* t6 preload */
     void *queue;  /* v1 preload */
@@ -6893,11 +6893,11 @@ s32 func_8008ABF4(void) {
 
 /*
 
- * func_8008AC74 (144 bytes)
+ * sync_process_loop (144 bytes)
  * Sync initialization and processing loop
  * Initializes sync object and loops calling func_8008ABE4
  */
-void func_8008AC74(void *arg) {
+void sync_process_loop(void *arg) {
     void *syncObj = (void *)0x80153E68;
     void *syncName = (void *)0x80153EF0;
     u8 *statusByte = (u8 *)0x80153F10;
@@ -6924,12 +6924,12 @@ void func_8008AC74(void *arg) {
 
 /*
 
- * func_8008E280 (280 bytes)
+ * entity_slot_alloc (280 bytes)
  * Entity slot allocation with initialization
  * Finds free slot in table, initializes entry
  * t0 = max count, t1 = count ptr, t6/t7 = params
  */
-void func_8008E280(s16 typeId, void *data, s32 param, void *callback) {
+void entity_slot_alloc(s16 typeId, void *data, s32 param, void *callback) {
     s32 maxCount;     /* t0 preload */
     s32 *countPtr;    /* t1 preload */
     s16 srcId;        /* t5 preload */
