@@ -29953,12 +29953,12 @@ void func_800BFD94(void *camera) {
 
 /*
 
- * func_800C00E0 (444 bytes)
- * Camera free look
+ * camera_free_look (func_800C00E0)
+ * Size: 444 bytes
  *
  * Free camera controlled by player input
  */
-void func_800C00E0(void *camera, s32 input) {
+void camera_free_look(void *camera, s32 input) {
     f32 *camPos;
     f32 moveSpeed = 10.0f;
     f32 rotSpeed = 0.05f;
@@ -30009,12 +30009,12 @@ void func_800C00E0(void *camera, s32 input) {
 
 /*
 
- * func_800C02A0 (556 bytes)
- * Camera replay mode
+ * camera_replay_mode (func_800C02A0)
+ * Size: 556 bytes
  *
  * Playback camera from recorded replay data
  */
-void func_800C02A0(void *camera, s32 frame) {
+void camera_replay_mode(void *camera, s32 frame) {
     extern f32 D_80170100[3600][6];  /* Replay camera data (60 sec @ 60fps) */
     f32 *camPos, *camTarget;
     s32 *mode;
@@ -30041,12 +30041,12 @@ void func_800C02A0(void *camera, s32 frame) {
 
 /*
 
- * func_800C04CC (912 bytes)
- * Camera track spline
+ * camera_track_spline (func_800C04CC)
+ * Size: 912 bytes
  *
  * Moves camera along a spline path
  */
-void func_800C04CC(void *camera, void *spline, f32 t) {
+void camera_track_spline(void *camera, void *spline, f32 t) {
     f32 *camPos, *camTarget;
     f32 *points;
     s32 numPoints;
@@ -30107,11 +30107,11 @@ void func_800C04CC(void *camera, void *spline, f32 t) {
 /*
 
  * func_800C085C (612 bytes)
- * Camera matrix build
+ * camera_build_view_matrix (func_800C085C)
  *
  * Builds view matrix from camera state
  */
-void func_800C085C(void *camera, f32 *matrix) {
+void camera_build_view_matrix(void *camera, f32 *matrix) {
     f32 *pos, *target, *up;
     f32 forward[3], right[3], newUp[3];
     f32 len;
@@ -30160,12 +30160,12 @@ void func_800C085C(void *camera, f32 *matrix) {
 
 /*
 
- * func_800C0AC0 (2884 bytes)
- * Camera full update
+ * camera_update (func_800C0AC0)
+ * Size: 2884 bytes
  *
  * Main camera update - calls appropriate mode handler
  */
-void func_800C0AC0(void *camera) {
+void camera_update(void *camera) {
     s32 *mode;
 
     if (camera == NULL) {
@@ -30214,13 +30214,13 @@ void func_800C0AC0(void *camera) {
 
 /*
 
- * func_800C1604 (1416 bytes)
- * Camera input process
+ * camera_process_input (func_800C1604)
+ * Size: 1416 bytes
  *
  * Processes player input for camera control
  * Handles C-button camera rotation, L/R shoulder zoom
  */
-void func_800C1604(void *camera, void *input) {
+void camera_process_input(void *camera, void *input) {
     s32 *inputState;
     s32 *mode;
     f32 yawDelta = 0.0f;
@@ -30278,13 +30278,13 @@ void func_800C1604(void *camera, void *input) {
 
 /*
 
- * func_800C1B8C (1172 bytes)
- * Camera constraint check
+ * camera_check_constraints (func_800C1B8C)
+ * Size: 1172 bytes
  *
  * Enforces camera position constraints
  * Keeps camera within world bounds and above terrain
  */
-void func_800C1B8C(void *camera) {
+void camera_check_constraints(void *camera) {
     f32 *pos;
     f32 terrainHeight;
     f32 minHeight = 20.0f;
@@ -30315,12 +30315,12 @@ void func_800C1B8C(void *camera) {
 
 /*
 
- * func_800C2020 (520 bytes)
- * Camera debug display
+ * camera_debug_display (func_800C2020)
+ * Size: 520 bytes
  *
  * Shows camera debug information (position, target, mode)
  */
-void func_800C2020(void *camera) {
+void camera_debug_display(void *camera) {
     f32 *pos, *target;
     s32 *mode;
     char buf[32];
@@ -30362,12 +30362,12 @@ void func_800C2020(void *camera) {
 
 /*
 
- * func_800C2228 (548 bytes)
- * Camera save state
+ * camera_save_state (func_800C2228)
+ * Size: 548 bytes
  *
  * Saves camera state for replay or undo
  */
-void func_800C2228(void *camera, void *state) {
+void camera_save_state(void *camera, void *state) {
     f32 *src, *dst;
     s32 i;
 
@@ -30386,12 +30386,12 @@ void func_800C2228(void *camera, void *state) {
 
 /*
 
- * func_800C244C (660 bytes)
- * Camera restore state
+ * camera_restore_state (func_800C244C)
+ * Size: 660 bytes
  *
  * Restores camera state from saved data
  */
-void func_800C244C(void *camera, void *state) {
+void camera_restore_state(void *camera, void *state) {
     f32 *src, *dst;
     s32 i;
 
@@ -30410,12 +30410,12 @@ void func_800C244C(void *camera, void *state) {
 
 /*
 
- * func_800C26E0 (644 bytes)
- * Camera multi-view
+ * camera_multi_view_setup (func_800C26E0)
+ * Size: 644 bytes
  *
  * Sets up camera for multi-view (split screen) rendering
  */
-void func_800C26E0(s32 viewIndex, void *camera) {
+void camera_multi_view_setup(s32 viewIndex, void *camera) {
     f32 *aspect;
     s32 viewportX, viewportY, viewportW, viewportH;
 
@@ -30468,12 +30468,12 @@ void func_800C26E0(s32 viewIndex, void *camera) {
 
 /*
 
- * func_800C2960 (644 bytes)
- * Camera split screen
+ * camera_split_screen_config (func_800C2960)
+ * Size: 644 bytes
  *
  * Configures split screen mode for multiplayer
  */
-void func_800C2960(s32 numPlayers) {
+void camera_split_screen_config(s32 numPlayers) {
     s32 i;
 
     if (numPlayers < 1) numPlayers = 1;
@@ -30484,7 +30484,7 @@ void func_800C2960(s32 numPlayers) {
     /* Setup each player's camera */
     for (i = 0; i < numPlayers; i++) {
         if (D_80159024[i] != NULL) {
-            func_800C26E0(i, D_80159024[i]);
+            camera_multi_view_setup(i, D_80159024[i]);
         }
     }
 }
