@@ -3796,17 +3796,17 @@ void mode_byte_set(s16 a0) {
 
 /**
 /*
- * func_800ED7B4 - Set mode byte from parameter or object (variant)
+ * mode_byte2_set (func_800ED7B4)
  * Address: 0x800ED7B4
  * Size: 80 bytes
  *
- * Same as func_800ED764 but reads offset 4 and writes to D_80159B60.
+ * Same as mode_byte_set but reads offset 4 and writes to D_80159B60.
  *
  * @param a0 Mode value or -1 to use current object
  */
 extern u8 D_80159B60;  /* Mode byte 2 */
 
-void func_800ED7B4(s16 a0) {
+void mode_byte2_set(s16 a0) {
     if (a0 < 0) {
         sound_update_channel(0, 0.0f);
         D_80159B60 = *(D_801597F0 + 4);
@@ -3819,7 +3819,7 @@ void func_800ED7B4(s16 a0) {
 
 /**
 /*
- * func_800EE7C4 - Conditional sync init with flag
+ * sync_init_conditional (func_800EE7C4)
  * Address: 0x800EE7C4
  * Size: 92 bytes
  *
@@ -3835,7 +3835,7 @@ extern u8 D_801147C0;   /* Init flag */
 extern u8 D_801461FC[]; /* Data pointer */
 extern void func_80006A00(void*, void*, s32);
 
-void func_800EE7C4(s32 condition) {
+void sync_init_conditional(s32 condition) {
     if (condition == 0) {
         D_801147C0 = 1;
         func_80006A00(&D_801461D0, D_801461FC, 1);
@@ -3848,7 +3848,7 @@ void func_800EE7C4(s32 condition) {
 
 /**
 /*
- * func_800E2A64 - Call multiple update functions on object
+ * object_update_full (func_800E2A64)
  * Address: 0x800E2A64
  * Size: 96 bytes
  *
@@ -3867,7 +3867,7 @@ extern void func_800E1540(void *entity);
 extern void func_800E114C(void *replay);
 extern void func_800D0424(void *menu, void *input);
 
-void func_800E2A64(void *obj) {
+void object_update_full(void *obj) {
     func_800CF06C(obj);
     func_800E23A4(0);
     func_800E1C30(0, 0);
@@ -3884,7 +3884,7 @@ void func_800E2A64(void *obj) {
 /**
 /**
 /*
- * func_800E7914 - Decrement object counter with sync
+ * object_counter_decrement (func_800E7914)
  * Address: 0x800E7914
  * Size: 108 bytes
  *
@@ -3896,7 +3896,7 @@ void func_800E2A64(void *obj) {
 extern void *func_80095F8C(s32);
 extern void *func_80095EF4(void*, void*, s32);
 
-void func_800E7914(s32 id) {
+void object_counter_decrement(s32 id) {
     void *obj;
     u8 counter;
 
@@ -3914,7 +3914,7 @@ void func_800E7914(s32 id) {
 
 /**
 /*
- * func_800E7980 - Increment object counter with sync
+ * object_counter_increment (func_800E7980)
  * Address: 0x800E7980
  * Size: 112 bytes
  *
@@ -3923,7 +3923,7 @@ void func_800E7914(s32 id) {
  *
  * @param id Object ID to look up
  */
-void func_800E7980(s32 id) {
+void object_counter_increment(s32 id) {
     void *obj;
     u8 counter;
 
@@ -3942,7 +3942,7 @@ void func_800E7980(s32 id) {
 /**
 /**
 /*
- * func_8008AD48 - Offset pointer wrapper for 8008AD04
+ * pointer_offset_wrapper (func_8008AD48)
  * Address: 0x8008AD48
  * Size: 36 bytes
  *
@@ -3954,7 +3954,7 @@ void func_800E7980(s32 id) {
  */
 extern s32 func_8008AD04(u8 *a0, u8 *a1);
 
-void func_8008AD48(void *a0, void *a1) {
+void pointer_offset_wrapper(void *a0, void *a1) {
     func_8008AD04(0, 0);
 }
 
@@ -3962,7 +3962,7 @@ void func_8008AD48(void *a0, void *a1) {
 
 /**
 /*
- * func_8008E398 - Sign-extend and call E26C
+ * sign_extend_call (func_8008E398)
  * Address: 0x8008E398
  * Size: 40 bytes
  *
@@ -3974,7 +3974,7 @@ void func_8008AD48(void *a0, void *a1) {
  */
 extern void* func_8008E26C(s32 arg);
 
-void func_8008E398(void *a0, void *a1, s16 a2) {
+void sign_extend_call(void *a0, void *a1, s16 a2) {
     func_8008E26C(0);
 }
 
@@ -3982,7 +3982,7 @@ void func_8008E398(void *a0, void *a1, s16 a2) {
 
 /**
 /*
- * func_80090228 - Wrapper for func_80090088 with zeroed a2
+ * sound_call_simple (func_80090228)
  * Address: 0x80090228
  * Size: 44 bytes
  *
@@ -3991,7 +3991,7 @@ void func_8008E398(void *a0, void *a1, s16 a2) {
  * @param a0 16-bit value to sign-extend
  */
 
-void func_80090228(s16 a0) {
+void sound_call_simple(s16 a0) {
     func_80090088(a0, NULL, 0);
 }
 
@@ -3999,7 +3999,7 @@ void func_80090228(s16 a0) {
 
 /**
 /*
- * func_80090254 - Wrapper for func_80090088 with zeroed a1 and a2
+ * sound_call_minimal (func_80090254)
  * Address: 0x80090254
  * Size: 48 bytes
  *
@@ -4007,7 +4007,7 @@ void func_80090228(s16 a0) {
  *
  * @param a0 16-bit value to sign-extend
  */
-void func_80090254(s16 a0) {
+void sound_call_minimal(s16 a0) {
     func_80090088(a0, NULL, 0);
 }
 
@@ -4015,7 +4015,7 @@ void func_80090254(s16 a0) {
 
 /**
 /*
- * func_8009508C - Simple wrapper for func_8008AD04
+ * pointer_compare_thunk (func_8009508C)
  * Address: 0x8009508C
  * Size: 32 bytes
  *
@@ -4024,7 +4024,7 @@ void func_80090254(s16 a0) {
  * @param a0 First pointer
  * @param a1 Second pointer
  */
-void func_8009508C(void *a0, void *a1) {
+void pointer_compare_thunk(void *a0, void *a1) {
     func_8008AD04(a0, a1);
 }
 
@@ -4037,7 +4037,7 @@ void func_8009508C(void *a0, void *a1) {
 /**
 /**
 /*
- * func_800A2CE4 - Call func_800A2990 with derived parameter
+ * object_derived_call (func_800A2CE4)
  * Address: 0x800A2CE4
  * Size: 40 bytes
  *
@@ -4048,7 +4048,7 @@ void func_8009508C(void *a0, void *a1) {
  */
 extern void func_800A2990(void*, s32, s32);
 
-void func_800A2CE4(void **a0) {
+void object_derived_call(void **a0) {
     void *ptr = *a0;
     s32 val = *(s32*)((u8*)ptr + 64);
     func_800A2990(a0, 0, val);
@@ -4059,7 +4059,7 @@ void func_800A2CE4(void **a0) {
 /**
 /**
 /*
- * func_800986B0 - Offset pointer call to func_80098620
+ * pointer_offset8_call (func_800986B0)
  * Address: 0x800986B0
  * Size: 36 bytes
  *
@@ -4070,7 +4070,7 @@ void func_800A2CE4(void **a0) {
  */
 extern void func_80098620(void*, void*, void*);
 
-void func_800986B0(void *a0, void *a1) {
+void pointer_offset8_call(void *a0, void *a1) {
     func_80098620(NULL, NULL, NULL);
 }
 
