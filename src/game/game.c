@@ -21189,7 +21189,7 @@ void game_timer_update(void) {
  * func_800FC3D8 (1516 bytes)
  * Bonus mode - hidden coin collection mode
  */
-void func_800FC3D8(void *bonus) {
+void bonus_mode_update(void *bonus) {
     s32 coinCount;
     s32 totalCoins;
     s32 i;
@@ -21215,7 +21215,7 @@ void func_800FC3D8(void *bonus) {
         /* All coins collected - trigger unlock */
         if (D_8015A088 == 0) {
             D_8015A088 = 1;  /* Coins complete flag */
-            func_800FCEB0(trackId + 20);  /* Unlock bonus for this track */
+            unlock_trigger(trackId + 20);  /* Unlock bonus for this track */
             sound_play_menu(20);  /* Bonus sound */
         }
     }
@@ -21254,7 +21254,7 @@ void func_800FC3D8(void *bonus) {
  * 48-55: Cheats
  * 56+: Misc unlocks
  */
-s32 func_800FC9B8(s32 unlockId) {
+s32 unlock_check(s32 unlockId) {
     u32 unlockWord;
     s32 bitIndex;
 
@@ -21282,13 +21282,13 @@ s32 func_800FC9B8(s32 unlockId) {
  * func_800FCEB0 (948 bytes)
  * Unlock trigger - unlock new content
  */
-void func_800FCEB0(s32 unlockId) {
+void unlock_trigger(s32 unlockId) {
     u32 *unlockWord;
     s32 bitIndex;
     s32 wasLocked;
 
     /* Check if already unlocked */
-    wasLocked = !func_800FC9B8(unlockId);
+    wasLocked = !unlock_check(unlockId);
 
     if (!wasLocked) {
         return;  /* Already unlocked */
@@ -21338,7 +21338,7 @@ void func_800FCEB0(s32 unlockId) {
  * func_800FD264 (512 bytes)
  * Progress save - save game progress to Controller Pak
  */
-void func_800FD264(void) {
+void progress_save(void) {
     u8 saveData[256];
     s32 i;
     s32 offset;
@@ -21417,7 +21417,7 @@ void func_800FD264(void) {
  * func_800FDA90 (4560 bytes)
  * Race init - initialize race state for new race
  */
-void func_800FDA90(void *race) {
+void race_init(void *race) {
     s32 i;
     s32 numPlayers;
     s32 trackId;
@@ -21524,7 +21524,7 @@ void func_800FDA90(void *race) {
  * func_800FEC78 (1808 bytes)
  * Race cleanup - clean up after race ends
  */
-void func_800FEC78(void) {
+void race_cleanup(void) {
     s32 i;
     s32 trackId;
     s32 raceTime;
@@ -21588,16 +21588,16 @@ void func_800FEC78(void) {
     /* Finishing first on a track unlocks next track */
     if (D_8015A200[0] == 1 && D_8015A240[0]) {
         s32 nextTrack = trackId + 1;
-        if (nextTrack < 12 && !func_800FC9B8(nextTrack)) {
-            func_800FCEB0(nextTrack);
+        if (nextTrack < 12 && !unlock_check(nextTrack)) {
+            unlock_trigger(nextTrack);
         }
     }
 
     /* Perfect lap unlocks bonus car */
     if (bestLap < D_8015A320[trackId]) {  /* Par time for track */
         s32 bonusCar = 16 + (trackId / 3);  /* Bonus cars 16-19 */
-        if (!func_800FC9B8(bonusCar)) {
-            func_800FCEB0(bonusCar);
+        if (!unlock_check(bonusCar)) {
+            unlock_trigger(bonusCar);
         }
     }
 
@@ -21617,7 +21617,7 @@ void func_800FEC78(void) {
     }
 
     /* Save progress */
-    func_800FD264();
+    progress_save();
 }
 
 /*
@@ -21625,7 +21625,7 @@ void func_800FEC78(void) {
  * func_80087118 (1772 bytes)
  * Major RDP render mode setup
  */
-void func_80087118(s32 mode, s32 flags) {
+void render_mode_setup(s32 mode, s32 flags) {
     u32 *dlPtr;
     u32 currentMode;
 
@@ -21647,7 +21647,7 @@ void func_80087118(s32 mode, s32 flags) {
  * @param object Object data structure with model and state
  * @param matrix Transformation matrix (4x4 fixed point)
  */
-void func_80087A08(void *object, void *matrix) {
+void object_render(void *object, void *matrix) {
     u32 *dlPtr;
     u8 *objData;
     s32 *mtx;
@@ -21726,7 +21726,7 @@ void func_80087A08(void *object, void *matrix) {
  *
  * @param queue Audio command queue structure
  */
-void func_8008A77C(void *queue) {
+void audio_queue_process(void *queue) {
     u8 *queueData;
     s32 head, tail;
     s32 *cmdPtr;
