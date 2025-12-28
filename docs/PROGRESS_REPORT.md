@@ -1,6 +1,6 @@
 # Rush 2049 Decompilation Progress Report
 
-**Generated**: 2025-12-27
+**Generated**: 2025-12-28
 **Project**: San Francisco Rush 2049 (N64)
 **ROM**: US Version (12 MB, SHA-1: 3f99351d7bb61656614bdb2aa1a90cfe55d1922c)
 
@@ -65,13 +65,13 @@
 | libultra GU | 10 | - | 10 | ~80% |
 | libc | 8 | - | 8 | 100% |
 | libgcc | 17 | - | 17 | 100% (stubs) |
-| Game code | ~150 | 557 | ~707 | ~20% |
-| **Total** | 311 | 557 | 868 | ~25% |
+| Game code | ~550 | ~160 | ~710 | ~25% |
+| **Total** | ~710 | ~160 | ~870 | ~30% |
 
 **Key Files by Decompilation Status**:
 | File | Functions | Status |
 |------|-----------|--------|
-| src/game/game.c | ~395 | Partial (stubs + real) |
+| src/game/game.c | ~450 | All named, ~60% real code |
 | src/libultra/*.c | ~124 | Mixed (some real, some stubs) |
 | src/libc/*.c | 8 | Complete |
 | src/inflate/inflate.c | 16 | Complete |
@@ -132,9 +132,11 @@ src/
 
 | Type | Count | Percentage |
 |------|-------|------------|
-| Named functions | 311 | 36% |
-| Unnamed (func_*) | 557 | 64% |
-| **Total symbols** | 868 | 100% |
+| Named functions | ~710 | 82% |
+| Unnamed (func_*) | ~160 | 18% |
+| **Total symbols** | ~870 | 100% |
+
+**Note**: All function definitions in game.c are now named with descriptive identifiers.
 
 ### Lines of Code
 

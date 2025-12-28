@@ -377,6 +377,32 @@ These core systems are likely to have N64 analogs due to fundamental behavior:
 - `void LoadWorld(void)`
   - Loads world/track geometry data (world header + objects).
 
+### Road Surface + Collision Integration (road.c)
+
+- `void road(MODELDAT *m)`
+  - Updates per-tire surface interaction, suspension compression, and air velocity.
+  - Calls `collision(m)` after sampling surfaces.
+
+## 17. Editor/Debug Tools (checkpoint.c / maxpath.c)
+
+Checkpoint and path editing tools used in arcade debug builds:
+
+- `void display_chkpnts(S16 mode)` / `void add_chkpnt(S16 mode)` / `void del_chkpnt(S16 mode)`
+  - Display and edit checkpoints for the current track.
+- `void fwd_chkpnt(S16 mode)` / `void back_chkpnt(S16 mode)`
+  - Walk checkpoint indices with on-screen diagnostics.
+- `void display_path_points(S16 mode)`
+  - Displays path point tables and mappings.
+- `void fwd_path_points(S16 mode)` / `void back_path_points(S16 mode)`
+  - Paginate through path point lists.
+
+Maxpath behavior helpers (beyond core follow/adjust):
+
+- `void AdjustSpeed(MODELDAT *m, F32 tspd)` / `void AdjustSteer(MODELDAT *m, F32 *pos)`
+  - Writes throttle/brake and steering targets for drones.
+- `void avoid_areas(S16 drone_index)`
+  - Obstacle avoidance and steering adjustment around traffic/players.
+
 ## 14. Audio System Cross-Reference (arcade sounds.c / carsnd.c)
 
 Likely arcade equivalents for N64 audio control:

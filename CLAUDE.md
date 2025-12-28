@@ -402,12 +402,12 @@ When starting a new session:
 codex exec --dangerously-bypass-approvals-and-sandbox "Analyze asm/us/XXXX.s and identify functions..."
 ```
 
-**Current stats** (updated 2025-12-27):
+**Current stats** (updated 2025-12-28):
 - Static ROM: 228 functions identified (100% coverage)
-- Dynamic game code: 752 functions extracted from compressed ROM, ~395 decompiled
-- Symbol file: 1,165 entries (324 named, 567 unnamed func_*)
-- Source files: 111 C files, ~38,751 lines total (126% coverage of 88 asm files)
-- game.c: 9,439 lines, ~395 functions decompiled (53% of game code)
+- Dynamic game code: 752 functions extracted from compressed ROM, ~450 decompiled
+- Symbol file: 1,165 entries (~710 named, ~160 unnamed func_*)
+- Source files: 111 C files, ~42,500 lines total
+- game.c: 42,578 lines, ~450 functions (ALL NAMED with descriptive identifiers)
 
 **New libultra files added (2025-12-27)**:
 - Controller Pak (PFS): os_pfs_alloc.c, os_pfs_check.c, os_pfs_create.c, os_pfs_delete.c, os_pfs_find.c, os_pfs_free.c, os_pfs_rw.c, os_pfs_state.c, os_pfs_write.c
