@@ -3361,7 +3361,7 @@ void object_process_thunk(void) {
 
 /**
 /*
- * func_800B4360 - Call func_80002CD0 with stack-passed parameters
+ * stack_call_wrapper (func_800B4360)
  * Address: 0x800B4360
  * Size: 44 bytes
  *
@@ -3375,7 +3375,7 @@ void object_process_thunk(void) {
  */
 extern void func_80002CD0(s32, s32, void*);
 
-void func_800B4360(s32 a0, s32 a1, s32 a2, s32 a3) {
+void stack_call_wrapper(s32 a0, s32 a1, s32 a2, s32 a3) {
     s32 stack_args[2];
     stack_args[0] = a2;
     stack_args[1] = a3;
@@ -3386,7 +3386,7 @@ void func_800B4360(s32 a0, s32 a1, s32 a2, s32 a3) {
 
 /**
 /*
- * func_800BAF64 - Clear two bytes and call func_800BADE0
+ * mode_flags_clear (func_800BAF64)
  * Address: 0x800BAF64
  * Size: 44 bytes
  *
@@ -3395,7 +3395,7 @@ void func_800B4360(s32 a0, s32 a1, s32 a2, s32 a3) {
 extern u8 D_80110680[];  /* Mode/state flags */
 extern void func_800BADE0(void *pairA, void *pairB);
 
-void func_800BAF64(void) {
+void mode_flags_clear(void) {
     D_80110680[0] = 0;
     D_80110680[1] = 0;
     func_800BADE0(NULL, NULL);
@@ -3405,7 +3405,7 @@ void func_800BAF64(void) {
 
 /**
 /*
- * func_800AC840 - Clear slot entry and deactivate
+ * slot_deactivate (func_800AC840)
  * Address: 0x800AC840
  * Size: 88 bytes
  *
@@ -3418,7 +3418,7 @@ void func_800BAF64(void) {
 extern u8 D_80156D38[];  /* Slot array, 20 bytes per entry */
 extern void func_800962D4(s32, s32);
 
-void func_800AC840(s32 a0) {
+void slot_deactivate(s32 a0) {
     u8 *slot;
 
     func_80096288(a0, 0, 0);
@@ -3432,7 +3432,7 @@ void func_800AC840(s32 a0) {
 
 /**
 /*
- * func_8008B474 - Copy and multiply 3D vector
+ * vector_copy_scale (func_8008B474)
  * Address: 0x8008B474
  * Size: 80 bytes
  *
@@ -3444,7 +3444,7 @@ void func_800AC840(s32 a0) {
  */
 extern void func_8008B424(void);
 
-void func_8008B474(f32 *src, f32 *dst) {
+void vector_copy_scale(f32 *src, f32 *dst) {
     func_8008B424();
     /* FPU operations: mul.s each component */
     dst[0] = src[0];  /* with multiplier */
@@ -3456,7 +3456,7 @@ void func_8008B474(f32 *src, f32 *dst) {
 
 /**
 /*
- * func_800A5B60 - Initialize render/camera state
+ * render_state_init (func_800A5B60)
  * Address: 0x800A5B60
  * Size: 80 bytes
  *
@@ -3469,7 +3469,7 @@ extern s16 D_80140618;    /* Mode short */
 extern s32 D_801406B8;    /* Data pointer */
 extern void func_800A5A40(void);
 
-void func_800A5B60(void) {
+void render_state_init(void) {
     D_801613B4 = 0;
     D_8015B254 = -1;
     func_800A5A40();
@@ -3482,7 +3482,7 @@ void func_800A5B60(void) {
 
 /**
 /*
- * func_800ACB74 - Calculate vector difference and call func_800A61B0
+ * vector_diff_process (func_800ACB74)
  * Address: 0x800ACB74
  * Size: 80 bytes
  *
@@ -3493,7 +3493,7 @@ void func_800A5B60(void) {
  */
 extern void func_800A61B0(f32*);
 
-void func_800ACB74(f32 *a3, f32 *t0) {
+void vector_diff_process(f32 *a3, f32 *t0) {
     f32 diff[3];
 
     diff[0] = a3[0] - t0[0];
@@ -3507,7 +3507,7 @@ void func_800ACB74(f32 *a3, f32 *t0) {
 
 /**
 /*
- * func_80096B5C - Lookup and return with optional output
+ * lookup_with_output (func_80096B5C)
  * Address: 0x80096B5C
  * Size: 96 bytes
  *
@@ -3523,7 +3523,7 @@ void func_800ACB74(f32 *a3, f32 *t0) {
  */
 extern void* func_80096B00(s32);
 
-s32 func_80096B5C(s32 a0, s32 a1, s32 *a2) {
+s32 lookup_with_output(s32 a0, s32 a1, s32 *a2) {
     void *result = NULL;
 
     if (a0 != 0) {
@@ -3547,7 +3547,7 @@ s32 func_80096B5C(s32 a0, s32 a1, s32 *a2) {
 
 /**
 /*
- * func_800960D4 - Synced call to func_80095FD8
+ * synced_process_call (func_800960D4)
  * Address: 0x800960D4
  * Size: 92 bytes
  *
@@ -3559,7 +3559,7 @@ s32 func_80096B5C(s32 a0, s32 a1, s32 *a2) {
 extern u8 D_80152770[];  /* Sync structure */
 extern void func_80095FD8(s32, s32);
 
-void func_800960D4(s32 a0, s32 a1) {
+void synced_process_call(s32 a0, s32 a1) {
     func_80007270(D_80152770, 0, 1);
     func_80095FD8(a0, a1);
     func_800075E0(D_80152770, 0, 0);
@@ -3569,17 +3569,17 @@ void func_800960D4(s32 a0, s32 a1) {
 
 /**
 /*
- * func_8009638C - Activate slot entry
+ * slot_activate (func_8009638C)
  * Address: 0x8009638C
  * Size: 92 bytes
  *
- * Similar to func_800AC840 but sets slot[2] = 1 instead of 0.
+ * Similar to slot_deactivate but sets slot[2] = 1 instead of 0.
  * Calls func_80096288(a0, 0, 0), then func_800962D4(slot[12], 0),
  * then sets slot[2] = 1.
  *
  * @param a0 Slot index
  */
-void func_8009638C(s32 a0) {
+void slot_activate(s32 a0) {
     u8 *slot;
 
     func_80096288(a0, 0, 0);
@@ -3593,7 +3593,7 @@ void func_8009638C(s32 a0) {
 
 /**
 /*
- * func_800A0F74 - Conditional synced call with clear
+ * conditional_synced_clear (func_800A0F74)
  * Address: 0x800A0F74
  * Size: 104 bytes
  *
@@ -3607,7 +3607,7 @@ void func_8009638C(s32 a0) {
  */
 extern u8 D_8011ED04;  /* Mode flag */
 
-void func_800A0F74(s32 condition) {
+void conditional_synced_clear(s32 condition) {
     if (condition != 0) {
         func_80007270(D_80152770, 0, 1);
         func_80095FD8(0x8039A400, 0);
@@ -3620,7 +3620,7 @@ void func_800A0F74(s32 condition) {
 
 /**
 /*
- * func_800A11E4 - Complex initialization with multiple calls
+ * complex_init_multi (func_800A11E4)
  * Address: 0x800A11E4
  * Size: 96 bytes
  *
@@ -3638,7 +3638,7 @@ extern s32 func_800A0FDC(s32, s32);
 extern void func_800026C0(s32, s32, s32);
 extern void func_80008590(s32, s32);
 
-void func_800A11E4(s32 s0, s32 s1, s32 s2, s8 *s3, s32 s4, s32 a2) {
+void complex_init_multi(s32 s0, s32 s1, s32 s2, s8 *s3, s32 s4, s32 a2) {
     if (*s3 == 0) {
         s32 result = func_800A0FDC(s0, a2 - s0);
         func_800962D4(result, 0);
@@ -3652,7 +3652,7 @@ void func_800A11E4(s32 s0, s32 s1, s32 s2, s8 *s3, s32 s4, s32 a2) {
 
 /**
 /*
- * func_800AB758 - Set up object with position and rotation vectors
+ * object_transform_set (func_800AB758)
  * Address: 0x800AB758
  * Size: 120 bytes
  *
@@ -3668,7 +3668,7 @@ void func_800A11E4(s32 s0, s32 s1, s32 s2, s8 *s3, s32 s4, s32 a2) {
  * @param a2 Position vector (12 bytes)
  * @param a3 Parameter for func_8008D6B0
  */
-void func_800AB758(s32 a0, f32 *rotation, f32 *position, void *a3, u8 *base) {
+void object_transform_set(s32 a0, f32 *rotation, f32 *position, void *a3, u8 *base) {
     u8 *obj = base + (a0 * 64);
 
     func_8008D6B0(a3, obj + 4);
@@ -3688,7 +3688,7 @@ void func_800AB758(s32 a0, f32 *rotation, f32 *position, void *a3, u8 *base) {
 
 /**
 /*
- * func_800AC6F4 - Call func_80096CA8 with fp and t0=0
+ * fp_call_wrapper (func_800AC6F4)
  * Address: 0x800AC6F4
  * Size: 104 bytes
  *
@@ -3699,7 +3699,7 @@ void func_800AB758(s32 a0, f32 *rotation, f32 *position, void *a3, u8 *base) {
  */
 extern void func_80096CA8(void);
 
-void func_800AC6F4(s32 a0) {
+void fp_call_wrapper(s32 a0) {
     /* fp = a0, t0 = 0 passed to callee */
     func_80096CA8();
 }
@@ -3708,7 +3708,7 @@ void func_800AC6F4(s32 a0) {
 
 /**
 /*
- * func_800F7E70 - Clear two memory regions
+ * memory_regions_clear (func_800F7E70)
  * Address: 0x800F7E70
  * Size: 64 bytes
  *
@@ -3716,7 +3716,7 @@ void func_800AC6F4(s32 a0) {
  */
 extern u8 D_8015256C[];  /* 4-byte buffer */
 
-void func_800F7E70(void) {
+void memory_regions_clear(void) {
     bzero(D_80159428, 16);
     bzero(D_8015256C, 4);
 }
@@ -3725,7 +3725,7 @@ void func_800F7E70(void) {
 
 /**
 /*
- * func_800FBBFC - Conditional call based on game state
+ * game_state_check_handler (func_800FBBFC)
  * Address: 0x800FBBFC
  * Size: 52 bytes
  *
@@ -3733,7 +3733,7 @@ void func_800F7E70(void) {
  */
 extern s32 func_8000BE50(s32);
 
-void func_800FBBFC(void) {
+void game_state_check_handler(void) {
     s32 state = func_8000BE50(0);
     if (state == 7) {
         game_mode_handler();
@@ -3744,7 +3744,7 @@ void func_800FBBFC(void) {
 
 /**
 /*
- * func_800FEC60 - Select resource type 46 or 38
+ * resource_type_select_simple (func_800FEC60)
  * Address: 0x800FEC60
  * Size: 60 bytes
  *
@@ -3754,7 +3754,7 @@ void func_800FBBFC(void) {
  *
  * @param a0 Mode flags
  */
-void func_800FEC60(s32 a0) {
+void resource_type_select_simple(s32 a0) {
     s32 resource_type;
 
     if (a0 & 1) {
@@ -3770,7 +3770,7 @@ void func_800FEC60(s32 a0) {
 
 /**
 /*
- * func_800ED764 - Set mode byte from parameter or object
+ * mode_byte_set (func_800ED764)
  * Address: 0x800ED764
  * Size: 80 bytes
  *
@@ -3783,7 +3783,7 @@ void func_800FEC60(s32 a0) {
  * @param a0 Mode value or -1 to use current object
  */
 
-void func_800ED764(s16 a0) {
+void mode_byte_set(s16 a0) {
     if (a0 < 0) {
         sound_update_channel(0, 0.0f);
         D_80159B70 = *(D_801597F0 + 8);
