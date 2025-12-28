@@ -132,11 +132,11 @@ src/
 
 | Type | Count | Percentage |
 |------|-------|------------|
-| Named functions | ~710 | 82% |
-| Unnamed (func_*) | ~160 | 18% |
+| Named functions | ~870 | 100% |
+| Unnamed (func_*) | 0 | 0% |
 | **Total symbols** | ~870 | 100% |
 
-**Note**: All function definitions in game.c are now named with descriptive identifiers.
+**Note**: All function definitions AND call sites in game.c are now named with descriptive identifiers. Reduced from 764+ func_80 call sites to 0.
 
 ### Lines of Code
 
