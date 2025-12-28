@@ -38658,12 +38658,12 @@ void func_800F7454(void) {
 
 /*
 
- * func_800F7C28 (796 bytes)
+ * car_body_render (796 bytes)
  * Car body render
  *
  * Renders the car body mesh with paint/decals
  */
-void func_800F7C28(void *car) {
+void car_body_render(void *car) {
     extern Gfx **D_80149438;
     u8 *carData = (u8 *)car;
     Gfx *gfx;
@@ -38708,12 +38708,12 @@ void func_800F7C28(void *car) {
 
 /*
 
- * func_800F7F44 (1604 bytes)
+ * car_wheels_render (1604 bytes)
  * Car wheels render
  *
  * Renders the four wheels with rotation and steering
  */
-void func_800F7F44(void *car) {
+void car_wheels_render(void *car) {
     extern Gfx **D_80149438;
     u8 *carData = (u8 *)car;
     Gfx *gfx;
@@ -38751,7 +38751,7 @@ void func_800F7F44(void *car) {
         gSPDisplayList(gfx++, wheelMesh);
 
         /* Render skid marks if slipping */
-        func_800F0100(wheelData);
+        skid_mark_render(wheelData);
     }
 
     *D_80149438 = gfx;
@@ -38759,12 +38759,12 @@ void func_800F7F44(void *car) {
 
 /*
 
- * func_800F8588 (548 bytes)
+ * car_damage_render (548 bytes)
  * Car damage render
  *
  * Renders visual damage on car (dents, scratches, missing parts)
  */
-void func_800F8588(void *car) {
+void car_damage_render(void *car) {
     extern Gfx **D_80149438;
     u8 *carData = (u8 *)car;
     Gfx *gfx;
@@ -38804,12 +38804,12 @@ void func_800F8588(void *car) {
 
 /*
 
- * func_800F87AC (964 bytes)
+ * car_lights_render (964 bytes)
  * Car lights render
  *
  * Renders car headlights, taillights, and brake lights
  */
-void func_800F87AC(void *car) {
+void car_lights_render(void *car) {
     extern Gfx **D_80149438;
     u8 *carData = (u8 *)car;
     Gfx *gfx;
@@ -38852,12 +38852,12 @@ void func_800F87AC(void *car) {
 
 /*
 
- * func_800F8B70 (556 bytes)
+ * car_exhaust_render (556 bytes)
  * Car exhaust render
  *
  * Renders exhaust smoke/flames when accelerating
  */
-void func_800F8B70(void *car) {
+void car_exhaust_render(void *car) {
     u8 *carData = (u8 *)car;
     f32 *exhaustPos;
     f32 throttle;
@@ -38897,12 +38897,12 @@ void func_800F8B70(void *car) {
 
 /*
 
- * func_800F8D9C (300 bytes)
+ * car_antenna_render (300 bytes)
  * Car antenna render
  *
  * Renders flexible car antenna with physics-based wobble
  */
-void func_800F8D9C(void *car) {
+void car_antenna_render(void *car) {
     extern Gfx **D_80149438;
     u8 *carData = (u8 *)car;
     Gfx *gfx;
@@ -38940,12 +38940,12 @@ void func_800F8D9C(void *car) {
 
 /*
 
- * func_800F8EC8 (1240 bytes)
+ * car_nitro_effect (1240 bytes)
  * Car nitro effect
  *
  * Renders nitro boost flames and trail effect
  */
-void func_800F8EC8(void *car) {
+void car_nitro_effect(void *car) {
     extern Gfx **D_80149438;
     u8 *carData = (u8 *)car;
     Gfx *gfx;
