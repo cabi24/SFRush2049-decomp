@@ -36173,7 +36173,7 @@ s32 func_800DB758(void) {
  */
 extern s32 D_8015A770[4];   /* Championship points per player */
 
-void func_800DC248(void) {
+void championship_standings(void) {
     s32 i;
     char pointsStr[16];
     s32 sorted[4] = {0, 1, 2, 3};
@@ -36207,7 +36207,7 @@ void func_800DC248(void) {
  * func_800DC3F8 (924 bytes)
  * Trophy award - Awards championship trophy
  */
-void func_800DC3F8(s32 placing) {
+void trophy_award_championship(s32 placing) {
     char placeStr[16];
 
     func_800C6E60(80, 60, 160, 120, 0xE0303060);
@@ -36217,15 +36217,15 @@ void func_800DC3F8(s32 placing) {
     switch (placing) {
         case 1:
             draw_text(125, 100, "WINNER!", 0xFFFFFFFF);
-            func_8010306C(1);  /* Gold trophy */
+            trophy_animate(1);  /* Gold trophy */
             break;
         case 2:
             draw_text(115, 100, "2ND PLACE", 0xFFFFFFC8);
-            func_8010306C(2);  /* Silver trophy */
+            trophy_animate(2);  /* Silver trophy */
             break;
         case 3:
             draw_text(115, 100, "3RD PLACE", 0xFFFFFF96);
-            func_8010306C(3);  /* Bronze trophy */
+            trophy_animate(3);  /* Bronze trophy */
             break;
         default:
             sprintf(placeStr, "%dTH PLACE", placing);
@@ -36245,7 +36245,7 @@ static const char *unlockNames[] = {
     "SECRET UNLOCKED!"
 };
 
-void func_800DC794(s32 unlockId) {
+void unlock_notification(s32 unlockId) {
     const char *msg;
 
     if (unlockId < 0 || unlockId >= 4) {
@@ -36269,7 +36269,7 @@ extern s32 D_8015A780;      /* Attract state */
 extern s32 D_8015A784;      /* Attract timer */
 extern s32 D_8015A788;      /* Demo replay index */
 
-void func_800DC88C(void) {
+void attract_mode_start(void) {
     s32 state;
     s32 timer;
     s32 input;
@@ -36339,7 +36339,7 @@ extern s32 D_8015A790;      /* Demo playback frame */
 extern s32 D_8015A794;      /* Demo input buffer index */
 extern u8 *D_8015A798;      /* Demo input data pointer */
 
-void func_800DC99C(void) {
+void attract_demo_play(void) {
     s32 frame;
     u8 *inputData;
     u8 demoInput;
@@ -36411,7 +36411,7 @@ s32 func_800DCD94(void) {
 extern s32 D_8015A7A8;      /* Video playback frame */
 extern s32 D_8015A7AC;      /* Video duration */
 
-void func_800DCDF4(s32 videoId) {
+void attract_video_play(s32 videoId) {
     s32 frame;
     s32 duration;
 
@@ -36448,7 +36448,7 @@ void func_800DCDF4(s32 videoId) {
  * func_800DD0D0 (988 bytes)
  * Attract sequence update - Updates attract mode state machine
  */
-void func_800DD0D0(void) {
+void attract_sequence_update(void) {
     s32 state;
     s32 timer;
 
@@ -36467,7 +36467,7 @@ void func_800DD0D0(void) {
             break;
 
         case 1:  /* Demo */
-            func_800DC99C();
+            attract_demo_play();
             if (timer > 900) {
                 state = 2;
                 timer = 0;
@@ -36493,7 +36493,7 @@ void func_800DD0D0(void) {
 extern s32 D_8015A7B0;      /* Title animation frame */
 extern s32 D_8015A7B4;      /* Title state */
 
-void func_800DD4AC(void) {
+void title_screen(void) {
     s32 frame;
     s32 input;
     s32 logoY;
@@ -36512,7 +36512,7 @@ void func_800DD4AC(void) {
     }
 
     /* Background */
-    func_800DE4DC();
+    title_background();
 
     /* Logo animation - drop in from top */
     if (frame < 60) {
@@ -36523,7 +36523,7 @@ void func_800DD4AC(void) {
         alpha = 255;
     }
 
-    func_800DDFAC();  /* Animate logo */
+    title_logo_animate();  /* Animate logo */
 
     /* Draw title text */
     draw_text("SAN FRANCISCO", 85, logoY - 20, alpha);
@@ -36531,7 +36531,7 @@ void func_800DD4AC(void) {
 
     /* Button prompt after logo settles */
     if (frame > 90) {
-        func_800DE20C();
+        title_button_prompt();
     }
 
     /* Copyright */
@@ -36546,7 +36546,7 @@ void func_800DD4AC(void) {
  */
 extern s32 D_8015A7B8;      /* Logo animation phase */
 
-void func_800DDFAC(void) {
+void title_logo_animate(void) {
     s32 phase;
     f32 scale;
     f32 glow;
@@ -36574,7 +36574,7 @@ void func_800DDFAC(void) {
  * func_800DE20C (724 bytes)
  * Title button prompt - Shows "PRESS START" with blinking
  */
-void func_800DE20C(void) {
+void title_button_prompt(void) {
     s32 frame;
     s32 blink;
     s32 alpha;
