@@ -21789,7 +21789,7 @@ void audio_queue_process(void *queue) {
  *
  * @param track Track data structure
  */
-void func_8009C8F0(void *track) {
+void track_geometry_process(void *track) {
     u8 *trackData;
     s32 numSegments;
     s32 currentSegment;
@@ -21810,7 +21810,7 @@ void func_8009C8F0(void *track) {
         segmentData = *(void **)(trackData + 0x10 + segIdx * 4);
 
         if (segmentData != NULL) {
-            func_8009DD88(segmentData);
+            track_segment_render(segmentData);
         }
     }
 
@@ -21820,7 +21820,7 @@ void func_8009C8F0(void *track) {
         segmentData = *(void **)(trackData + 0x10 + segIdx * 4);
 
         if (segmentData != NULL) {
-            func_8009DD88(segmentData);
+            track_segment_render(segmentData);
         }
     }
 }
@@ -21834,7 +21834,7 @@ void func_8009C8F0(void *track) {
  *
  * @param segment Segment data structure
  */
-void func_8009DD88(void *segment) {
+void track_segment_render(void *segment) {
     u8 *segData;
     u32 *dlPtr;
     void *roadVerts;
@@ -21896,7 +21896,7 @@ void func_8009DD88(void *segment) {
  * func_8009EA70 (168 bytes)
  * Track bounds check - check if position is within track boundaries
  */
-s32 func_8009EA70(f32 *pos) {
+s32 track_bounds_check(f32 *pos) {
     f32 *trackBounds;
     f32 x, y, z;
 
@@ -21932,7 +21932,7 @@ s32 func_8009EA70(f32 *pos) {
  * func_8009EB18 (168 bytes)
  * Track height query - get terrain height at position
  */
-f32 func_8009EB18(f32 x, f32 z) {
+f32 track_height_query(f32 x, f32 z) {
     s32 *heightGrid;
     s32 gridWidth, gridHeight;
     f32 cellSize;
@@ -21966,7 +21966,7 @@ f32 func_8009EB18(f32 x, f32 z) {
  * func_8009EBC0 (1188 bytes)
  * Track surface type query - get surface material at position
  */
-s32 func_8009EBC0(f32 *pos) {
+s32 track_surface_type(f32 *pos) {
     u8 *surfaceGrid;
     s32 gridWidth, gridHeight;
     f32 cellSize;
@@ -22014,7 +22014,7 @@ s32 func_8009EBC0(f32 *pos) {
  * func_8009F064 (8600 bytes)
  * Track collision test - raycast against track geometry
  */
-s32 func_8009F064(f32 *start, f32 *end, f32 *hitPoint) {
+s32 track_collision_test(f32 *start, f32 *end, f32 *hitPoint) {
     f32 dir[3];
     f32 len;
     f32 t;
@@ -22060,7 +22060,7 @@ s32 func_8009F064(f32 *start, f32 *end, f32 *hitPoint) {
         testPos[2] = start[2] + dir[2] * t;
 
         /* Check terrain height at this position */
-        terrainHeight = func_8009EB18(testPos[0], testPos[2]);
+        terrainHeight = track_height_query(testPos[0], testPos[2]);
 
         /* Hit if below terrain */
         if (testPos[1] <= terrainHeight) {
@@ -22073,7 +22073,7 @@ s32 func_8009F064(f32 *start, f32 *end, f32 *hitPoint) {
         }
 
         /* Check bounds */
-        if (func_8009EA70(testPos) != 0) {
+        if (track_bounds_check(testPos) != 0) {
             if (hitPoint != NULL) {
                 hitPoint[0] = testPos[0];
                 hitPoint[1] = testPos[1];
@@ -22091,7 +22091,7 @@ s32 func_8009F064(f32 *start, f32 *end, f32 *hitPoint) {
  * func_800AF06C (1396 bytes)
  * Save game data - write save structure to buffer
  */
-void func_800AF06C(void *saveData) {
+void save_write_data(void *saveData) {
     u8 *data;
     s32 offset;
     s32 i;
@@ -22170,7 +22170,7 @@ void func_800AF06C(void *saveData) {
  * func_800AF5E0 (176 bytes)
  * Save slot check - verify if save slot has valid data
  */
-s32 func_800AF5E0(s32 slot) {
+s32 save_slot_valid(s32 slot) {
     OSPfs pfs;
     s32 result;
     u8 header[16];
@@ -22207,7 +22207,7 @@ s32 func_800AF5E0(s32 slot) {
  * func_800AF690 (572 bytes)
  * Load game data - read save from controller pak
  */
-s32 func_800AF690(void *saveData, s32 slot) {
+s32 save_load_data(void *saveData, s32 slot) {
     OSPfs pfs;
     s32 result;
     u8 *data;
@@ -22265,7 +22265,7 @@ s32 func_800AF690(void *saveData, s32 slot) {
  * func_800AF8CC (620 bytes)
  * Delete save - erase save data from slot
  */
-void func_800AF8CC(s32 slot) {
+void save_delete(s32 slot) {
     OSPfs pfs;
     s32 result;
     u8 emptyData[140];
@@ -22299,7 +22299,7 @@ void func_800AF8CC(s32 slot) {
  * func_800AFB38 (548 bytes)
  * Save validation - verify save data integrity
  */
-s32 func_800AFB38(void *saveData) {
+s32 save_validate(void *saveData) {
     u8 *data;
     u16 storedChecksum, calcChecksum;
     s32 i;
@@ -22344,7 +22344,7 @@ s32 func_800AFB38(void *saveData) {
  * func_800AFD5C (1060 bytes)
  * Controller pak init - initialize controller pak
  */
-s32 func_800AFD5C(s32 controller) {
+s32 cpak_init(s32 controller) {
     OSPfs pfs;
     s32 result;
     s32 *pakState;
