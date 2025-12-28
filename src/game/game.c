@@ -4079,7 +4079,7 @@ void pointer_offset8_call(void *a0, void *a1) {
 /**
 /**
 /*
- * func_800985F4 - Parameter reshuffling wrapper
+ * param_reshuffle_wrapper (func_800985F4)
  * Address: 0x800985F4
  * Size: 44 bytes
  *
@@ -4090,7 +4090,7 @@ void pointer_offset8_call(void *a0, void *a1) {
  */
 extern void func_80098574(void*, void*, void*, void*);
 
-void func_800985F4(void *a0, void *a1) {
+void param_reshuffle_wrapper(void *a0, void *a1) {
     s32 temp = 0;
     void *val = *(void**)((u8*)a0 + 8);
     func_80098574(a0, val, &temp, a1);
@@ -4102,7 +4102,7 @@ void func_800985F4(void *a0, void *a1) {
 /**
 /**
 /*
- * func_80100D30 - Initialize with callback pointer
+ * callback_init (func_80100D30)
  * Address: 0x80100D30
  * Size: 44 bytes
  *
@@ -4113,7 +4113,7 @@ void func_800985F4(void *a0, void *a1) {
  */
 extern void *D_801146FC;  /* Callback pointer */
 
-s32 func_80100D30(void *a0) {
+s32 callback_init(void *a0) {
     *(void**)((u8*)a0 + 4) = &D_801146FC;
     func_80094EC8(a0);
     return 1;
@@ -4123,7 +4123,7 @@ s32 func_80100D30(void *a0) {
 
 /**
 /*
- * func_8010FBB4 - Acquire sync on D_80152750
+ * sync_acquire_menu (func_8010FBB4)
  * Address: 0x8010FBB4
  * Size: 44 bytes
  *
@@ -4131,7 +4131,7 @@ s32 func_80100D30(void *a0) {
  */
 extern void *D_80152750;  /* Sync object */
 
-void func_8010FBB4(void) {
+void sync_acquire_menu(void) {
     func_80007270(&D_80152750, NULL, 1);
 }
 
@@ -4139,7 +4139,7 @@ void func_8010FBB4(void) {
 
 /**
 /*
- * func_800B0550 - Initialize structure with parameters
+ * struct_fields_init (func_800B0550)
  * Address: 0x800B0550
  * Size: 48 bytes
  *
@@ -4152,7 +4152,7 @@ void func_8010FBB4(void) {
  * @param a3 Stored at offset 4
  * @param stack Byte from stack stored at offset 0
  */
-void func_800B0550(void *a0, s32 a1, s32 a2, s32 a3, u8 stack) {
+void struct_fields_init(void *a0, s32 a1, s32 a2, s32 a3, u8 stack) {
     *(s32*)((u8*)a0 + 12) = a1;
     *(s32*)((u8*)a0 + 4) = a3;
     *(s32*)((u8*)a0 + 8) = a2;
@@ -4167,7 +4167,7 @@ void func_800B0550(void *a0, s32 a1, s32 a2, s32 a3, u8 stack) {
 /**
 /**
 /*
- * func_80095120 - Validate and call func_800950AC
+ * validate_and_call (func_80095120)
  * Address: 0x80095120
  * Size: 52 bytes
  *
@@ -4180,7 +4180,7 @@ void func_800B0550(void *a0, s32 a1, s32 a2, s32 a3, u8 stack) {
  */
 extern s32 func_800950AC(void*, void*, s32);
 
-s32 func_80095120(void *a0, void *a1) {
+s32 validate_and_call(void *a0, void *a1) {
     if (a0 == NULL || a1 == NULL) {
         return -1;
     }
@@ -4191,7 +4191,7 @@ s32 func_80095120(void *a0, void *a1) {
 
 /**
 /*
- * func_800B71A0 - Calculate difference with halved result
+ * diff_halved_calc (func_800B71A0)
  * Address: 0x800B71A0
  * Size: 52 bytes
  *
@@ -4201,7 +4201,7 @@ s32 func_80095120(void *a0, void *a1) {
  * @param a1 Value whose high halfword is used
  * @return (s16)(a1 >> 16) - (result / 2)
  */
-s16 func_800B71A0(void *a0, s32 a1) {
+s16 diff_halved_calc(void *a0, s32 a1) {
     s16 original = (s16)(a1 >> 16);
     s16 result = func_800B3FA4(a0, -1, 0.0f);
     return original - (result >> 1);
@@ -4213,7 +4213,7 @@ s16 func_800B71A0(void *a0, s32 a1) {
 /**
 /**
 /*
- * func_800AED2C - Initialize object with cleared byte
+ * object_init_cleared (func_800AED2C)
  * Address: 0x800AED2C
  * Size: 56 bytes
  *
@@ -4224,7 +4224,7 @@ s16 func_800B71A0(void *a0, s32 a1) {
  * @param a1 Object pointer
  * @return 0 if a1 is NULL, otherwise a1
  */
-void *func_800AED2C(void *a0, void *a1) {
+void *object_init_cleared(void *a0, void *a1) {
     if (a1 == NULL) {
         return NULL;
     }
