@@ -23553,7 +23553,7 @@ void audio_bus_mix(s32 bus, f32 *levels) {
  */
 extern f32 D_801581E8;          /* Current reverb amount */
 
-void func_800B4B94(s32 reverbType, f32 amount) {
+void reverb_setup(s32 reverbType, f32 amount) {
     f32 decay, diffusion, wet;
 
     /* Validate type */
@@ -23627,7 +23627,7 @@ void func_800B4B94(s32 reverbType, f32 amount) {
  */
 extern s32 D_80158224;          /* Audio paused flag */
 
-void func_800B4DAC(s32 pause) {
+void audio_pause(s32 pause) {
     /* Set paused state */
     if (pause != 0) {
         if (D_80158224 == 0) {
@@ -23663,7 +23663,7 @@ extern f32 D_8015822C;          /* Duck amount (0-1) */
 extern f32 D_80158244[5];       /* Duck current values */
 extern s32 D_80158258;          /* Duck timer */
 
-void func_800B4E70(s32 priority) {
+void audio_ducking(s32 priority) {
     f32 duckAmount;
     f32 targetLevel;
     f32 attackRate, releaseRate;
@@ -23767,7 +23767,7 @@ void func_800B4E70(s32 priority) {
  * Higher priority sounds won't be stolen by lower priority.
  */
 
-void func_800B5694(s32 handle, s32 priority) {
+void sound_priority_set(s32 handle, s32 priority) {
     /* Validate handle */
     if (handle == 0) {
         return;
@@ -23792,7 +23792,7 @@ void func_800B5694(s32 handle, s32 priority) {
  * loop: 0 = one-shot, 1 = loop forever, >1 = loop N times
  */
 
-void func_800B574C(s32 handle, s32 loop) {
+void sound_loop_set(s32 handle, s32 loop) {
     s32 loopCount;
 
     /* Validate handle */
