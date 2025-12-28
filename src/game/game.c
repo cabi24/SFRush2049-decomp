@@ -1327,7 +1327,7 @@ extern void func_800013DC(void);       /* Timer update */
 extern void* func_80091B00(s32 type);      /* Allocate object */
 extern void *func_80092360(s32 arg); /* Object allocation */
 extern void func_800D5374(void *menu); /* Race setup 1 */
-extern void func_800D5798(void); /* Race setup 2 */
+extern void players_frame_update(void); /* Race setup 2 */
 extern void func_800D6530(s32 operation); /* Track init */
 extern void func_800D6160(void *menu); /* Visual init */
 extern void func_800D60AC(void); /* Scene setup */
@@ -1407,7 +1407,7 @@ void race_state_machine(void) {
 
         /* Initialize race systems */
         func_800D5374(NULL);
-        func_800D5798();
+        players_frame_update();
 
         /* Initialize object list */
         obj = D_80143FD8;
@@ -2202,7 +2202,7 @@ void func_800B9130(s32 unused) {
 
 /**
 /*
- * func_800B45BC - Clear sound handles from object array
+ * sound_handles_clear (func_800B45BC)
  * Address: 0x800B45BC
  * Size: 176 bytes
  *
@@ -2214,7 +2214,7 @@ void func_800B9130(s32 unused) {
  */
 extern u8 D_80116DE4[];       /* Object array base (32 bytes per entry) */
 
-void func_800B45BC(s32 clear_all) {
+void sound_handles_clear(s32 clear_all) {
     u8 *entry;
     u8 *end_ptr;
     u8 *obj_ptr;
@@ -2263,7 +2263,7 @@ void func_800B45BC(s32 clear_all) {
 
 /**
 /*
- * func_800D5050 - Update all players' race state
+ * players_race_update (func_800D5050)
  * Address: 0x800D5050
  * Size: 148 bytes
  *
@@ -2279,7 +2279,7 @@ void func_800B45BC(s32 clear_all) {
 extern u8 D_80152818[];       /* Secondary player data */
 extern void func_800D4DFC(void *menu); /* Process player race state */
 
-void func_800D5050(void) {
+void players_race_update(void) {
     s32 i;
     u8 *player_entry;
     s16 race_valid;
@@ -2314,7 +2314,7 @@ void func_800D5050(void) {
 
 /**
 /*
- * func_800D52D4 - Activate/register an object
+ * object_activate (func_800D52D4)
  * Address: 0x800D52D4
  * Size: 152 bytes
  *
@@ -2335,7 +2335,7 @@ extern void func_800D52CC(); /* Object pre-process */
 extern void func_8009211C(void*, void*);  /* Object cleanup */
 extern void func_80091FBC(void*, void*, void*);  /* Add to active list */
 
-void func_800D52D4(void *obj) {
+void object_activate(void *obj) {
     u8 *obj_ptr;
     s8 cleanup_flag;
     void *pool_data;
@@ -2375,7 +2375,7 @@ void func_800D52D4(void *obj) {
 
 /**
 /*
- * func_800D5798 - Update all players' per-frame state
+ * players_frame_update (func_800D5798)
  * Address: 0x800D5798
  * Size: 144 bytes
  *
@@ -2388,7 +2388,7 @@ extern s8  D_80152744;        /* Active player count */
 extern void func_800D5524(void *menu); /* Per-player update */
 extern void func_800A13E8(void);   /* Additional update (when bit 0x0008 set) */
 
-void func_800D5798(void) {
+void players_frame_update(void) {
     s32 i;
     s8 player_count;
     u8 *player_entry;
@@ -2423,7 +2423,7 @@ check_state:
 
 /**
 /*
- * func_800D60B4 - Check player finish/completion status
+ * players_finish_check (func_800D60B4)
  * Address: 0x800D60B4
  * Size: 172 bytes
  *
@@ -2433,7 +2433,7 @@ check_state:
 extern s8  D_80117480;        /* Players finished count */
 extern s8  D_80117484;        /* Expected finish count */
 
-s32 func_800D60B4(void) {
+s32 players_finish_check(void) {
     s32 i;
     s8 player_count;
     s8 finished_count;
@@ -2747,7 +2747,7 @@ void init_single_mode_wrapper(void *arg) {
 
 /**
 /*
- * func_800CD748 - Allocate and link object data block
+ * object_data_allocate (func_800CD748)
  * Address: 0x800CD748
  * Size: 80 bytes
  *
@@ -2764,7 +2764,7 @@ void init_single_mode_wrapper(void *arg) {
 extern s32 func_800B466C(s32 streamId); /* Allocate block */
 extern void func_800A2504(void *ptr1, void *ptr2, s32 flag);  /* Link block */
 
-void func_800CD748(void *obj) {
+void object_data_allocate(void *obj) {
     void *primary;
     void *secondary;
     void *base;
@@ -2796,7 +2796,7 @@ void func_800CD748(void *obj) {
 
 /**
 /*
- * func_800D63C4 - Clear object action flag
+ * object_action_clear (func_800D63C4)
  * Address: 0x800D63C4
  * Size: 40 bytes
  *
@@ -2806,7 +2806,7 @@ void func_800CD748(void *obj) {
  * @param a0 First parameter for func_8009211C
  * @param a1 Object with flag at offset 8
  */
-void func_800D63C4(void *a0, void *a1) {
+void object_action_clear(void *a0, void *a1) {
     func_8009211C(a0, NULL);
     *((u8*)a1 + 8) = 0;
 }
@@ -2815,7 +2815,7 @@ void func_800D63C4(void *a0, void *a1) {
 
 /**
 /*
- * func_800D5894 - Clear player state and reset variable
+ * player_state_clear (func_800D5894)
  * Address: 0x800D5894
  * Size: 48 bytes
  *
@@ -2826,7 +2826,7 @@ void func_800D63C4(void *a0, void *a1) {
  */
 extern s32 D_801541A4;  /* Player state variable */
 
-void func_800D5894(void *a0) {
+void player_state_clear(void *a0) {
     if (a0 != NULL) {
         func_800B358C(a0, 0.0f);
         D_801541A4 = 0;
@@ -2837,7 +2837,7 @@ void func_800D5894(void *a0) {
 
 /**
 /*
- * func_800D03DC - Apply 3D position to sound system
+ * sound_position_set (func_800D03DC)
  * Address: 0x800D03DC
  * Size: 72 bytes
  *
@@ -2853,7 +2853,7 @@ extern void func_80090E9C(void *handle, s32 volume);  /* Set sound volume */
 extern void func_80090F44(f32, s32);  /* Set sound X position */
 extern void func_8009EA68(f32, s32);  /* Set sound Z position */
 
-void func_800D03DC(f32 *pos, s32 a1) {
+void sound_position_set(f32 *pos, s32 a1) {
     func_80090E9C((void*)(long)*(s32*)&pos[1], a1);  /* Y coordinate */
     func_80090F44(pos[0], a1);  /* X coordinate */
     func_8009EA68(pos[2], a1);  /* Z coordinate */
@@ -2863,7 +2863,7 @@ void func_800D03DC(f32 *pos, s32 a1) {
 
 /**
 /*
- * func_800C878C - Allocate and register type 7 object
+ * object_type7_create (func_800C878C)
  * Address: 0x800C878C
  * Size: 104 bytes
  *
@@ -2874,7 +2874,7 @@ void func_800D03DC(f32 *pos, s32 a1) {
  */
 extern s32 D_801427A8;    /* Object registry B */
 
-void func_800C878C(void) {
+void object_type7_create(void) {
     void *obj;
 
     func_80007270(D_80142728, 0, 1);   /* Acquire sync */
@@ -2888,14 +2888,14 @@ void func_800C878C(void) {
 
 /**
 /*
- * func_800C87F4 - Allocate and register type 1 object
+ * object_type1_create (func_800C87F4)
  * Address: 0x800C87F4
  * Size: 104 bytes
  *
  * Same pattern as func_800C878C but sets type to 1 instead of 7.
  * Type 1 appears to be another object category.
  */
-void func_800C87F4(void) {
+void object_type1_create(void) {
     void *obj;
 
     func_80007270(D_80142728, 0, 1);   /* Acquire sync */
@@ -2909,7 +2909,7 @@ void func_800C87F4(void) {
 
 /**
 /*
- * func_800D6290 - Initialize physics with mode 0
+ * physics_init_mode0 (func_800D6290)
  * Address: 0x800D6290
  * Size: 92 bytes
  *
@@ -2918,7 +2918,7 @@ void func_800C87F4(void) {
  *
  * The register saves suggest the callee uses those registers.
  */
-void func_800D6290(void) {
+void physics_init_mode0(void) {
     /* t0 = 0 passed to callee (mode flag) */
     func_800D6160(0);
 }
@@ -2927,14 +2927,14 @@ void func_800D6290(void) {
 
 /**
 /*
- * func_800D62EC - Initialize physics with mode 1
+ * physics_init_mode1 (func_800D62EC)
  * Address: 0x800D62EC
  * Size: 92 bytes
  *
  * Same wrapper as func_800D6290 but passes t0 = 1.
  * Different physics initialization mode.
  */
-void func_800D62EC(void) {
+void physics_init_mode1(void) {
     /* t0 = 1 passed to callee (mode flag) */
     func_800D6160(1);
 }
@@ -2943,14 +2943,14 @@ void func_800D62EC(void) {
 
 /**
 /*
- * func_800DB7B4 - Allocate and register type 7 object (duplicate)
+ * object_type7_create_alt (func_800DB7B4)
  * Address: 0x800DB7B4
  * Size: 104 bytes
  *
- * Identical to func_800C878C. Both allocate a type 7 object
+ * Identical to object_type7_create. Both allocate a type 7 object
  * and register it. This may be called from different contexts.
  */
-void func_800DB7B4(void) {
+void object_type7_create_alt(void) {
     void *obj;
 
     func_80007270(D_80142728, 0, 1);   /* Acquire sync */
@@ -2964,7 +2964,7 @@ void func_800DB7B4(void) {
 
 /**
 /*
- * func_800DCD1C - Conditional enable with flag set
+ * mode_enable_flagged (func_800DCD1C)
  * Address: 0x800DCD1C
  * Size: 52 bytes
  *
@@ -2976,7 +2976,7 @@ void func_800DB7B4(void) {
  * @param a0 Mode flags - only acts if (a0 & 7) != 0
  */
 
-void func_800DCD1C(s32 a0) {
+void mode_enable_flagged(s32 a0) {
     if ((a0 & 7) != 0) {
         func_800B5FC4();
         /* s0[0] = 1 - requires register s0 to be set by caller */
@@ -2987,7 +2987,7 @@ void func_800DCD1C(s32 a0) {
 
 /**
 /*
- * func_800DC720 - Clear sound handles in object array
+ * sound_handles_array_clear (func_800DC720)
  * Address: 0x800DC720
  * Size: 116 bytes
  *
@@ -3001,7 +3001,7 @@ void func_800DCD1C(s32 a0) {
  *
  * @param obj Object with sound handle array
  */
-void func_800DC720(void *obj) {
+void sound_handles_array_clear(void *obj) {
     s32 i;
     u8 *ptr;
     void *handle;
@@ -3033,7 +3033,7 @@ void func_800DC720(void *obj) {
 
 /**
 /*
- * func_8008A6D0 - Signal sync release on D_801597D0
+ * sync_release_video (func_8008A6D0)
  * Address: 0x8008A6D0
  * Size: 44 bytes
  *
@@ -3041,7 +3041,7 @@ void func_800DC720(void *obj) {
  * null parameters.
  */
 
-void func_8008A6D0(void) {
+void sync_release_video(void) {
     func_800075E0(D_801597D0, NULL, 0);
 }
 
@@ -3049,7 +3049,7 @@ void func_8008A6D0(void) {
 
 /**
 /*
- * func_8008AA20 - Call func_800205E4 wrapper
+ * dma_wait_thunk (func_8008AA20)
  * Address: 0x8008AA20
  * Size: 32 bytes
  *
@@ -3058,7 +3058,7 @@ void func_8008A6D0(void) {
  */
 extern void func_800205E4(void);
 
-void func_8008AA20(void) {
+void dma_wait_thunk(void) {
     func_800205E4();
 }
 
@@ -3066,7 +3066,7 @@ void func_8008AA20(void) {
 
 /**
 /*
- * func_80098554 - Call func_80097CA0 wrapper
+ * resource_process_thunk (func_80098554)
  * Address: 0x80098554
  * Size: 32 bytes
  *
@@ -3074,7 +3074,7 @@ void func_8008AA20(void) {
  */
 extern void func_80097CA0(void);
 
-void func_80098554(void) {
+void resource_process_thunk(void) {
     func_80097CA0();
 }
 
@@ -3082,7 +3082,7 @@ void func_80098554(void) {
 
 /**
 /*
- * func_800AC820 - Get resource slot with a0, -1
+ * resource_slot_get (func_800AC820)
  * Address: 0x800AC820
  * Size: 32 bytes
  *
@@ -3092,7 +3092,7 @@ void func_80098554(void) {
  * @param a0 Resource type ID
  * @return Slot ID or -1 if not found
  */
-s32 func_800AC820(s32 a0) {
+s32 resource_slot_get(s32 a0) {
     return func_80097694(a0, -1);
 }
 
@@ -3100,7 +3100,7 @@ s32 func_800AC820(s32 a0) {
 
 /**
 /*
- * func_800B3F00 - Get object type byte 2
+ * object_type_byte2_get (func_800B3F00)
  * Address: 0x800B3F00
  * Size: 40 bytes
  *
@@ -3112,7 +3112,7 @@ s32 func_800AC820(s32 a0) {
 extern void sound_update_channel(s32 channel, f32 volume); /* func_800B3D18 - Audio update/sync */
 extern u8 *D_801597F0;            /* Current object pointer */
 
-u8 func_800B3F00(void) {
+u8 object_type_byte2_get(void) {
     sound_update_channel(0, 0.0f);
     return *(D_801597F0 + 2);
 }
@@ -3121,15 +3121,15 @@ u8 func_800B3F00(void) {
 
 /**
 /*
- * func_800B3F28 - Get object type byte 3
+ * object_type_byte3_get (func_800B3F28)
  * Address: 0x800B3F28
  * Size: 40 bytes
  *
- * Same as func_800B3F00 but returns byte at offset 3.
+ * Same as object_type_byte2_get but returns byte at offset 3.
  *
  * @return Type byte 3 from current object
  */
-u8 func_800B3F28(void) {
+u8 object_type_byte3_get(void) {
     sound_update_channel(0, 0.0f);
     return *(D_801597F0 + 3);
 }
@@ -3150,7 +3150,7 @@ u8 func_800B3F28(void) {
 
 /**
 /*
- * func_800E2A3C - Call two functions with same parameter
+ * replay_update_dual (func_800E2A3C)
  * Address: 0x800E2A3C
  * Size: 40 bytes
  *
@@ -3161,7 +3161,7 @@ u8 func_800B3F28(void) {
 extern void func_800E23A4(void *replay);
 extern void func_800E1C30(void *replay, void *camera);
 
-void func_800E2A3C(s32 a0) {
+void replay_update_dual(s32 a0) {
     func_800E23A4(a0);
     func_800E1C30(a0, 0);
 }
@@ -3170,7 +3170,7 @@ void func_800E2A3C(s32 a0) {
 
 /**
 /*
- * func_80094F88 - Set byte at offset 26 and update
+ * object_byte26_set (func_80094F88)
  * Address: 0x80094F88
  * Size: 60 bytes
  *
@@ -3183,7 +3183,7 @@ void func_800E2A3C(s32 a0) {
  */
 extern void func_80094EC8(void *sndObj);
 
-s8 func_80094F88(void *a0, s8 a1) {
+s8 object_byte26_set(void *a0, s8 a1) {
     s8 old_val = *((s8*)a0 + 26);
 
     if (old_val != a1) {
@@ -3198,7 +3198,7 @@ s8 func_80094F88(void *a0, s8 a1) {
 
 /**
 /*
- * func_800A2D0C - Call func_80091FBC with indexed parameters
+ * player_indexed_update (func_800A2D0C)
  * Address: 0x800A2D0C
  * Size: 56 bytes
  *
@@ -3211,7 +3211,7 @@ s8 func_80094F88(void *a0, s8 a1) {
  */
 extern u8 D_80144D60[];  /* Player data array, 16 bytes each */
 
-void func_800A2D0C(void *a0, void *a1) {
+void player_indexed_update(void *a0, void *a1) {
     void *ptr = *(void**)a1;
     u8 player_idx = *((u8*)ptr + 16);
     u8 *player_data = D_80144D60 + (player_idx * 16);
@@ -3223,13 +3223,13 @@ void func_800A2D0C(void *a0, void *a1) {
 
 /**
 /*
- * func_800AC898 - Get player state byte after call
+ * player_state_get (func_800AC898)
  * Address: 0x800AC898
  * Size: 60 bytes
  *
  * Calls func_80096288(a0, 0, 0);
  */
-s8 func_800AC898(s32 a0) {
+s8 player_state_get(s32 a0) {
     func_80096288(a0, 0, 0);
     return D_80156D39[a0 * 20];
 }
@@ -3238,7 +3238,7 @@ s8 func_800AC898(s32 a0) {
 
 /**
 /*
- * func_800B5FC4 - Select resource type based on flags
+ * resource_type_select (func_800B5FC4)
  * Address: 0x800B5FC4
  * Size: 80 bytes
  *
@@ -3249,7 +3249,7 @@ s8 func_800AC898(s32 a0) {
  * Then calls func_80092360 with selected type.
  */
 
-void func_800B5FC4_impl(s32 a0) {
+void resource_type_select(s32 a0) {
     s32 resource_type;
 
     if (a0 & 1) {
@@ -3267,7 +3267,7 @@ void func_800B5FC4_impl(s32 a0) {
 
 /**
 /*
- * func_800B61B0 - Conditional call to func_80092360
+ * resource_alloc_conditional (func_800B61B0)
  * Address: 0x800B61B0
  * Size: 76 bytes
  *
@@ -3282,7 +3282,7 @@ void func_800B5FC4_impl(s32 a0) {
  * @param a3 Fourth param (masked to 8 bits)
  * @return -1 on early exit, or result of func_80092360
  */
-void func_800B61B0(s32 a0, s32 a1, s32 a2, u8 a3) {
+void resource_alloc_conditional(s32 a0, s32 a1, s32 a2, u8 a3) {
     /* t7 condition checked by caller, always enter here if t7 != 0 */
     if (a0 == -1) {
         return;
@@ -3294,7 +3294,7 @@ void func_800B61B0(s32 a0, s32 a1, s32 a2, u8 a3) {
 
 /**
 /*
- * func_800BC1E8 - Clear flag and call func_800BB9B0
+ * player_flag_clear_process (func_800BC1E8)
  * Address: 0x800BC1E8
  * Size: 52 bytes
  *
@@ -3303,7 +3303,7 @@ void func_800B61B0(s32 a0, s32 a1, s32 a2, u8 a3) {
  */
 extern s32 func_800BB9B0(f32 *pos, f32 *normal, f32 *height);
 
-void func_800BC1E8(void) {
+void player_flag_clear_process(void) {
     D_80143A10[0] = 0;
     func_800BB9B0(D_8015978C, 0, 1);
 }
@@ -3312,7 +3312,7 @@ void func_800BC1E8(void) {
 
 /**
 /*
- * func_800EE88C - Call func_800B82C8 wrapper
+ * collision_check_thunk (func_800EE88C)
  * Address: 0x800EE88C
  * Size: 32 bytes
  *
@@ -3320,7 +3320,7 @@ void func_800BC1E8(void) {
  */
 extern void func_800B82C8(void *entityA, void *entityB, f32 *normal);
 
-void func_800EE88C(void) {
+void collision_check_thunk(void) {
     func_800B82C8(NULL, NULL, NULL);
 }
 
@@ -3328,7 +3328,7 @@ void func_800EE88C(void) {
 
 /**
 /*
- * func_800A4B48 - Call func_80096238 with D_80151A6C
+ * resource_update_global (func_800A4B48)
  * Address: 0x800A4B48
  * Size: 36 bytes
  *
@@ -3337,7 +3337,7 @@ void func_800EE88C(void) {
 extern s32 D_80151A6C;
 extern void func_80096238(s32);
 
-void func_800A4B48(void) {
+void resource_update_global(void) {
     func_80096238(D_80151A6C);
 }
 
@@ -3345,7 +3345,7 @@ void func_800A4B48(void) {
 
 /**
 /*
- * func_800A7DF0 - Call func_800A5B3C wrapper
+ * object_process_thunk (func_800A7DF0)
  * Address: 0x800A7DF0
  * Size: 32 bytes
  *
@@ -3353,7 +3353,7 @@ void func_800A4B48(void) {
  */
 extern void func_800A5B3C(void);
 
-void func_800A7DF0(void) {
+void object_process_thunk(void) {
     func_800A5B3C();
 }
 
@@ -5545,13 +5545,13 @@ extern void func_80002790(void*, s32, s32);  /* memset */
 
 /**
 /*
- * func_800C3614 - Initialize effect system
- * (140 bytes)
+ * effect_system_init (func_800C3614)
+ * Size: 140 bytes
  *
  * Clears effect state buffers and initializes all effect slots with
  * the marker value 0x15000000 in the first word of each slot.
  */
-void func_800C3614(void) {
+void effect_system_init(void) {
     u32 *ptr;
 
     /* Clear main effect buffer */
@@ -7289,11 +7289,11 @@ void func_800B0458(void) {
 
 /*
 
- * func_800C3594 (120 bytes)
- * Initialize entity slot with index
- * t9 preloaded with condition, t1 = index
+ * effect_slot_init (func_800C3594)
+ * Size: 120 bytes
+ * Initialize effect slot with index
  */
-void func_800C3594(s32 idx) {
+void effect_slot_init(s32 idx) {
     s32 condition;  /* t9 preload */
     void *entry;
     u32 flags;
@@ -7388,10 +7388,11 @@ void func_800C5500(void *entity) {
 
 /*
 
- * func_800C69C0 (224 bytes)
+ * entity_iterate (func_800C69C0)
+ * Size: 224 bytes
  * Entity iterator with callback
  */
-void func_800C69C0(void (*callback)(void *)) {
+void entity_iterate(void (*callback)(void *)) {
     void *list;
     void *entity;
     void *next;
@@ -7408,10 +7409,11 @@ void func_800C69C0(void (*callback)(void *)) {
 
 /*
 
- * func_800C6AA0 (1564 bytes)
- * Large entity processing function - full entity update
+ * entity_update (func_800C6AA0)
+ * Size: 1564 bytes
+ * Full entity physics and state update
  */
-void func_800C6AA0(void *entity) {
+void entity_update(void *entity) {
     s32 *entityType;
     s32 *entityState;
     s32 *entityFlags;
@@ -30491,12 +30493,12 @@ void camera_split_screen_config(s32 numPlayers) {
 
 /*
 
- * func_800C2BE0 (5664 bytes)
- * Camera scene manager
+ * camera_scene_manager (func_800C2BE0)
+ * Size: 5664 bytes
  *
  * Manages camera state transitions between game states
  */
-void func_800C2BE0(void) {
+void camera_scene_manager(void) {
     static s32 lastGState = -1;
 
     if (D_80170020 == NULL) {
@@ -30522,7 +30524,7 @@ void func_800C2BE0(void) {
             case 5:  /* COUNTDOWN */
                 /* Starting grid camera */
                 *(s32 *)((u8 *)D_80170020 + 0x34) = 4;  /* Cinematic */
-                func_800C5644(0);  /* Start sequence */
+                camera_play_script(0);  /* Start sequence */
                 break;
 
             case 6:  /* PLAYGAME */
@@ -30532,7 +30534,7 @@ void func_800C2BE0(void) {
 
             case 7:  /* ENDGAME */
                 /* Victory camera */
-                func_800C6404(D_80170020, 1);
+                camera_victory(D_80170020, 1);
                 break;
 
             default:
@@ -30541,18 +30543,18 @@ void func_800C2BE0(void) {
     }
 
     /* Update active camera */
-    func_800C0AC0(D_80170020);
+    camera_update(D_80170020);
 }
 
 /*
 
- * func_800C4200 (1232 bytes)
- * Camera trigger check
+ * camera_trigger_check (func_800C4200)
+ * Size: 1232 bytes
  *
  * Checks if camera has entered any trigger zones
  * Used for cinematic triggers and camera mode switches
  */
-void func_800C4200(void *camera, void *triggers) {
+void camera_trigger_check(void *camera, void *triggers) {
     f32 *camPos;
     s32 numTriggers;
     s32 i;
@@ -30581,7 +30583,7 @@ void func_800C4200(void *camera, void *triggers) {
             s32 action = (s32)trig[4];
             switch (action) {
                 case 1:  /* Switch to cinematic */
-                    func_800C5644(i);
+                    camera_play_script(i);
                     break;
                 case 2:  /* Camera shake */
                     func_800BDAA8(5.0f, 0.5f);
@@ -30598,12 +30600,12 @@ void func_800C4200(void *camera, void *triggers) {
 
 /*
 
- * func_800C46D0 (3956 bytes)
- * Camera path follow
+ * camera_follow_path (func_800C46D0)
+ * Size: 3956 bytes
  *
  * Makes camera follow a predefined path
  */
-void func_800C46D0(void *camera, void *path) {
+void camera_follow_path(void *camera, void *path) {
     f32 t;
 
     if (camera == NULL || path == NULL) {
@@ -30622,17 +30624,17 @@ void func_800C46D0(void *camera, void *path) {
     D_80159040 = t;
 
     /* Interpolate camera along path spline */
-    func_800C04CC(camera, path, t);
+    camera_track_spline(camera, path, t);
 }
 
 /*
 
- * func_800C5644 (3516 bytes)
- * Camera scripted sequence
+ * camera_play_script (func_800C5644)
+ * Size: 3516 bytes
  *
  * Plays a scripted camera sequence (intro, finish, replay)
  */
-void func_800C5644(s32 scriptId) {
+void camera_play_script(s32 scriptId) {
     extern f32 D_80159058[16][6]; /* Script keyframes */
     s32 *mode;
     f32 *camPos, *camTarget;
@@ -30672,12 +30674,12 @@ void func_800C5644(s32 scriptId) {
 
 /*
 
- * func_800C6404 (780 bytes)
- * Camera finish line
+ * camera_victory (func_800C6404)
+ * Size: 780 bytes
  *
  * Victory camera for race finish
  */
-void func_800C6404(void *camera, s32 placing) {
+void camera_victory(void *camera, s32 placing) {
     f32 *camPos, *camTarget;
     f32 *carPos;
     f32 orbitAngle;
