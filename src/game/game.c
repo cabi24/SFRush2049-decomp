@@ -1082,7 +1082,7 @@ extern void* D_8018A4E0[]; /* Display object pointer array */
 /* External functions for countdown */
 extern void sprintf(s8 *buf, s8 *fmt, ...); /* func_80004990 */
 extern void func_800A4770(s8 *buf, s32 val);
-extern void func_800B74A0(void *entity, void *world);
+extern void entity_collision_test(void *entity, void *world);
 extern s32 func_800B71D4();
 extern s16 sound_apply_effect(s32 channel, s32 effectType, f32 amount); /* func_800B3FA4 */
 
@@ -1173,7 +1173,7 @@ void countdown_display(void) {
     func_800075E0(&D_801461D0, 0, 0);
 
     /* Set display type */
-    func_800B74A0(NULL, NULL);
+    entity_collision_test(NULL, NULL);
 
     /* Check state flags for color selection */
     state_flags = D_801174B4;
@@ -1316,12 +1316,12 @@ extern void* D_80143FD8;     /* Object list head */
 extern f32 D_801543CC;       /* Timer value */
 
 /* External functions for race states */
-extern void func_800C813C(void *hud, s32 elementId); /* Race pre-update */
+extern void hud_element_render(void *hud, s32 elementId); /* Race pre-update */
 extern void func_800DB1E0(void *car, s32 paintId); /* State 1 handler */
 extern void func_800D91A0(void *garage); /* State 2 handler */
 extern void func_800D7634(void *profile); /* State 3 handler */
-extern void func_800B8C14(void *constraint); /* State 4 handler */
-extern void func_800B4FB0(s32 trackId); /* State setter */
+extern void physics_constraint_solve(void *constraint); /* State 4 handler */
+extern void audio_music_play(s32 trackId); /* State setter */
 extern void func_800013C0(void);       /* Timer init */
 extern void func_800013DC(void);       /* Timer update */
 extern void* func_80091B00(s32 type);      /* Allocate object */
@@ -1335,7 +1335,7 @@ extern void func_800D5A04(void *menu); /* Cleanup */
 extern void func_800B5F4C(s32 a0); /* Menu prev */
 extern void func_800B5FC4(void);       /* Menu confirm */
 extern void func_800B5F88(s32 a0); /* Menu toggle */
-extern void func_800B438C(s32 streamId, void *data); /* Audio stream start */
+extern void audio_stream_start(s32 streamId, void *data); /* Audio stream start */
 
 /*
  * race_state_machine - Race state machine
@@ -1354,7 +1354,7 @@ void race_state_machine(void) {
     f32 timer_val;
 
     /* Initialize state */
-    func_800C813C(0, 0);
+    hud_element_render(0, 0);
     race_state = D_801170FC;
 
     /* Validate state range */
@@ -1391,7 +1391,7 @@ void race_state_machine(void) {
         }
 
         /* Initialize race */
-        func_800B4FB0(1);
+        audio_music_play(1);
         D_80159D98 = 0;
         func_800013C0();
 
@@ -1435,7 +1435,7 @@ void race_state_machine(void) {
         break;
 
     case 4:  /* Countdown prep */
-        func_800B8C14(NULL);
+        physics_constraint_solve(NULL);
         break;
 
     case 5:  /* Main racing state - nested switch */
@@ -1455,7 +1455,7 @@ void race_state_machine(void) {
 
         switch (sub_state) {
         case 0:  /* Race start */
-            func_800B4FB0(0);
+            audio_music_play(0);
             func_800013DC();
             func_800D6530(0);
 
@@ -1491,25 +1491,25 @@ void race_state_machine(void) {
             break;
 
         case 3:  /* Race in progress */
-            func_800B4FB0(8);
+            audio_music_play(8);
             break;
 
         case 4:  /* Race setup */
-            func_800B4FB0(2);
+            audio_music_play(2);
             break;
 
         case 5:  /* Lap handling */
-            func_800B4FB0(3);
+            audio_music_play(3);
             break;
 
         case 6:  /* Position update */
             *(u8 *)(0x8015418C + D_8015698C) = 1;
-            func_800B4FB0(4);
+            audio_music_play(4);
             break;
 
         case 7:  /* Exit sub-state */
         state5_case7:
-            func_800B4FB0(6);
+            audio_music_play(6);
             break;
         }
 
@@ -1558,7 +1558,7 @@ void race_state_machine(void) {
 
     state7_restart:
         *(u8 *)0x80142699 = 1;
-        func_800B4FB0(0);
+        audio_music_play(0);
         func_800013DC();
 
         func_80007270(&D_801461D0, 0, 1);
@@ -1570,7 +1570,7 @@ void race_state_machine(void) {
 
     state7_common:
         D_80114650 = (race_state == 7) ? 1 : 0;
-        func_800B4FB0(0);
+        audio_music_play(0);
         func_800013DC();
 
         func_80007270(&D_801461D0, 0, 1);
@@ -1588,7 +1588,7 @@ void race_state_machine(void) {
 
         if (player_flags & 0x0007) {
             func_800B5FC4();
-            func_800B4FB0(1);
+            audio_music_play(1);
         }
         break;
     }
@@ -1607,7 +1607,7 @@ exit_common:
 
             /* Don't update sound during certain states */
             if (race_state != 5 && race_state != 4 && race_state != 2 && race_state != 3) {
-                func_800B438C(0, NULL);
+                audio_stream_start(0, NULL);
             }
         }
     }
@@ -1615,7 +1615,7 @@ exit_common:
     /* Check for reset flag */
     if (*(s8 *)0x80157244 != 0) {
         D_80114650 = 0;
-        func_800B4FB0(0);
+        audio_music_play(0);
         func_800013DC();
 
         func_80007270(&D_801461D0, 0, 1);
@@ -1844,7 +1844,7 @@ extern u8  D_80150BA0[];          /* Secondary emitter array */
 extern void emitter_update(f32 *src, f32 *dst); /* func_8008D6B0 - Emitter update */
 extern void particles_spawn(s32 a0); /* func_800B80C8 - Spawn particles for emitter */
 extern s32 particles_cleanup(void); /* func_800B7FF8 - Particle cleanup */
-extern void func_800B61FC(void *entity, f32 *vec); /* Final cleanup */
+extern void entity_set_position(void *entity, f32 *vec); /* Final cleanup */
 extern s16 D_80152032;                    /* Second emitter count */
 
 void effects_update_emitters(void) {
@@ -1901,7 +1901,7 @@ end_loop:
     {
         s16 count2 = D_80152032;
         s32 flag = (0 < count2) ? 1 : 0;
-        func_800B61FC(flag, 0);
+        entity_set_position(flag, 0);
     }
 }
 
@@ -2120,7 +2120,7 @@ void ambient_sounds_clear(void) {
  * Address: 0x800B6138
  * Size: 112 bytes
  *
- * Calls func_800B6024, then clears key fields of each player's
+ * Calls entity_get_float, then clears key fields of each player's
  * state entry in the array at D_8015A118 (76 bytes per player).
  *
  * Player state entry structure (partial):
@@ -2131,7 +2131,7 @@ void ambient_sounds_clear(void) {
  *   offset 0x14: f32 field_14
  */
 /* D_8015A118 declared earlier as void* - cast to u8* for array access */
-extern f32 func_800B6024(void *entity, s32 index); /* Pre-reset function */
+extern f32 entity_get_float(void *entity, s32 index); /* Pre-reset function */
 
 void player_states_reset(void) {
     s32 i;
@@ -2139,7 +2139,7 @@ void player_states_reset(void) {
     u8 *entry;
 
     /* Call pre-reset function */
-    func_800B6024(0, 0);
+    entity_get_float(0, 0);
 
     /* Get player count */
     count = D_8015A108;
@@ -2756,12 +2756,12 @@ void init_single_mode_wrapper(void *arg) {
  *
  * Object structure:
  *   obj->field_0 (ptr) -> field_2C (ptr) -> field_0 (base)
- *   At base + 0x6F4, allocates 72 bytes via func_800B466C
+ *   At base + 0x6F4, allocates 72 bytes via audio_stream_update
  *   Then links via func_800A2504 with 76 bytes
  *
  * @param obj Object pointer with nested structure
  */
-extern s32 func_800B466C(s32 streamId); /* Allocate block */
+extern s32 audio_stream_update(s32 streamId); /* Allocate block */
 extern void func_800A2504(void *ptr1, void *ptr2, s32 flag);  /* Link block */
 
 void object_data_allocate(void *obj) {
@@ -2782,7 +2782,7 @@ void object_data_allocate(void *obj) {
     data_ptr = (u8*)base + 1780;
 
     /* Allocate 72 bytes at data_ptr + 4 */
-    result = func_800B466C(0);
+    result = audio_stream_update(0);
 
     /* Store result at data_ptr */
     *(s32*)data_ptr = result;
@@ -3299,13 +3299,13 @@ void resource_alloc_conditional(s32 a0, s32 a1, s32 a2, u8 a3) {
  * Size: 52 bytes
  *
  * Clears D_80143A10[0], loads player index from D_8015978C,
- * then calls func_800BB9B0(player_idx, 0, 1).
+ * then calls track_surface_query(player_idx, 0, 1).
  */
-extern s32 func_800BB9B0(f32 *pos, f32 *normal, f32 *height);
+extern s32 track_surface_query(f32 *pos, f32 *normal, f32 *height);
 
 void player_flag_clear_process(void) {
     D_80143A10[0] = 0;
-    func_800BB9B0(D_8015978C, 0, 1);
+    track_surface_query(D_8015978C, 0, 1);
 }
 
 /*
@@ -3316,12 +3316,12 @@ void player_flag_clear_process(void) {
  * Address: 0x800EE88C
  * Size: 32 bytes
  *
- * Simple thunk to func_800B82C8.
+ * Simple thunk to collision_response_calc.
  */
-extern void func_800B82C8(void *entityA, void *entityB, f32 *normal);
+extern void collision_response_calc(void *entityA, void *entityB, f32 *normal);
 
 void collision_check_thunk(void) {
-    func_800B82C8(NULL, NULL, NULL);
+    collision_response_calc(NULL, NULL, NULL);
 }
 
 /*
@@ -3390,15 +3390,15 @@ void stack_call_wrapper(s32 a0, s32 a1, s32 a2, s32 a3) {
  * Address: 0x800BAF64
  * Size: 44 bytes
  *
- * Clears D_80110680[0] and D_80110680[1], then calls func_800BADE0.
+ * Clears D_80110680[0] and D_80110680[1], then calls collision_narrowphase.
  */
 extern u8 D_80110680[];  /* Mode/state flags */
-extern void func_800BADE0(void *pairA, void *pairB);
+extern void collision_narrowphase(void *pairA, void *pairB);
 
 void mode_flags_clear(void) {
     D_80110680[0] = 0;
     D_80110680[1] = 0;
-    func_800BADE0(NULL, NULL);
+    collision_narrowphase(NULL, NULL);
 }
 
 /*
@@ -4364,7 +4364,7 @@ void resource_request_41_or_44(s32 a0) {
  * Address: 0x800BE4B4
  * Size: 60 bytes
  *
- * Stores parameters, calls func_800B74A0(a2, 0),
+ * Stores parameters, calls entity_collision_test(a2, 0),
  * then calls func_800B71D4 with halfwords from a0, a1 and original a3.
  *
  * @param a0 First value (low halfword used)
@@ -4374,7 +4374,7 @@ void resource_request_41_or_44(s32 a0) {
  */
 
 void dual_call_reshuffled(s32 a0, s32 a1, s32 a2, void *a3) {
-    func_800B74A0(a2, 0);
+    entity_collision_test(a2, 0);
     func_800B71D4();
 }
 
@@ -4503,12 +4503,12 @@ void physics_struct_reset(void *a0) {
  * Size: 128 bytes
  *
  * Acquires sync on D_80142728, looks up via func_80091BA8.
- * If found, calls func_800BF01C with field64, releases sync,
+ * If found, calls camera_stub_empty with field64, releases sync,
  * then calls func_80091C04. If not found, just releases sync.
  *
  * @param a0 Key to look up and process
  */
-extern void func_800BF01C();
+extern void camera_stub_empty();
 extern void *func_80091BA8(void*, void*);
 
 void synced_lookup_process(void *a0) {
@@ -4523,7 +4523,7 @@ void synced_lookup_process(void *a0) {
         return;
     }
 
-    func_800BF01C();
+    camera_stub_empty();
     func_800075E0(&D_80142728[0], NULL, 0);
     func_80091C04(a0);
 }
@@ -4673,7 +4673,7 @@ void object_byte71_set_sync(void **a0, u8 a1) {
  * Address: 0x800BE9A0
  * Size: 72 bytes
  *
- * Builds a local buffer via func_800BE7BC, then calls func_800B71D4
+ * Builds a local buffer via camera_track_target, then calls func_800B71D4
  * with halfwords from stored parameters.
  *
  * @param a0 First value (high halfword used)
@@ -4681,11 +4681,11 @@ void object_byte71_set_sync(void **a0, u8 a1) {
  * @param a2 Parameter for first call (sign-extended)
  * @param a3 Second parameter for first call
  */
-extern void func_800BE7BC(void *camera, void *target);
+extern void camera_track_target(void *camera, void *target);
 
 void buffer_build_and_call(s32 a0) {
     u8 buffer[128];
-    func_800BE7BC(buffer, NULL);
+    camera_track_target(buffer, NULL);
     func_800B71D4();
 }
 
@@ -5282,13 +5282,13 @@ s32 tree_node_check(void *a0, s32 a1) {
  * Size: 128 bytes
  *
  * Acquires sync on D_80142728, calls func_80091BA8 to lookup.
- * If found, calls func_800BF01C and func_800BF0A4.
+ * If found, calls camera_stub_empty and camera_shake_apply.
  * Returns lookup result.
  *
  * @param a0 Key to look up
  * @return Lookup result or 0 if not found
  */
-extern void func_800BF0A4(void *camera, f32 intensity, f32 duration);
+extern void camera_shake_apply(void *camera, f32 intensity, f32 duration);
 
 /* Object initialization functions */
 extern void func_800D1004(void *menu); /* Setup call before init */
@@ -5301,7 +5301,7 @@ extern f32 D_80114170;
 extern f32 D_80153F28[6];
 extern s16 D_80154182;
 
-extern void func_800BAAA0(void *world); /* Setup call */
+extern void collision_broadphase(void *world); /* Setup call */
 
 void *synced_lookup_and_process(void *a0) {
     void *result;
@@ -5315,9 +5315,9 @@ void *synced_lookup_and_process(void *a0) {
         return NULL;
     }
 
-    func_800BF01C();
+    camera_stub_empty();
     func_800075E0(&D_80142728[0], NULL, 0);
-    func_800BF0A4(a0, 0, 0);
+    camera_shake_apply(a0, 0, 0);
 
     return result;
 }
@@ -5378,7 +5378,7 @@ void camera_arrays_reset(void) {
     f32 zero;
     s32 i;
 
-    func_800BAAA0(NULL);
+    collision_broadphase(NULL);
 
     zero = 0.0f;
 
@@ -5572,7 +5572,7 @@ void effect_system_init(void) {
 
 /* Object initialization external references */
 extern u8 D_80140BDC;  /* Object type count */
-extern s32 func_800B24EC(void*, void*, s32, s8, s32); /* Object setup with type */
+extern s32 audio_sequence_play(void*, void*, s32, s8, s32); /* Object setup with type */
 extern void func_800B362C(s32 channel, f32 pan); /* Object alternate init */
 extern f32 func_800B65B8(f32 distance, f32 maxDist);  /* Audio distance attenuation */
 
@@ -5582,7 +5582,7 @@ extern f32 func_800B65B8(f32 distance, f32 maxDist);  /* Audio distance attenuat
  * (124 bytes)
  *
  * Stores a1 in a0[0], then either:
- * - If a2 != 0: calls func_800B24EC with type-1, stores result in a0[8]
+ * - If a2 != 0: calls audio_sequence_play with type-1, stores result in a0[8]
  * - If a2 == 0: calls func_800B362C for alternate init
  * Finally calls func_80094EC8 to finalize.
  */
@@ -5594,7 +5594,7 @@ void object_type_setup_init(void *a0, void *a1, s32 a2) {
 
     if (a2 != 0) {
         objType = (s8)(D_80140BDC - 1);
-        result = func_800B24EC(a1, (void*)((u8*)a0 + 12), 0, objType, 1);
+        result = audio_sequence_play(a1, (void*)((u8*)a0 + 12), 0, objType, 1);
         *(s32*)((u8*)a0 + 8) = result;
     } else {
         func_800B362C(a0, 0);
@@ -6539,7 +6539,7 @@ void slot_update_notify(void **a0, s32 a1, s32 a2, s32 a3) {
     slot = base + (idx1 << 4) + idx2 + 1860;
     if (new_val != *(s8 *)slot) {
         *(s8 *)slot = new_val;
-        *(void **)(base + (idx1 << 4) + 1856) = (void*)(func_800B466C(0) + 1860);
+        *(void **)(base + (idx1 << 4) + 1856) = (void*)(audio_stream_update(0) + 1860);
         func_800A2504(*(void **)((u8 *)ptr + 8), (void*)(base + (idx1 << 4) + 1856), 16);
     }
 }
@@ -10550,7 +10550,7 @@ s32 entity_ground_check(void *entity, f32 *groundNormal) {
     rayEnd[2] = pos[2];
 
     /* Check track surface */
-    surfaceType = func_800BB9B0(rayStart, hitNormal, &groundHeight);
+    surfaceType = track_surface_query(rayStart, hitNormal, &groundHeight);
 
     if (surfaceType > 0) {
         /* Check if close enough to ground */
@@ -13844,10 +13844,10 @@ void hiscore_save_pending(void) {
 
 /*
 
- * func_800B087C (1012 bytes)
+ * audio_voice_alloc (1012 bytes)
  * Audio voice allocation - allocates a hardware voice for sound playback
  */
-void func_800B087C(s32 voiceId, s32 priority) {
+void audio_voice_alloc(s32 voiceId, s32 priority) {
     s32 *voiceTable;
     s32 *voicePriority;
     s32 *voiceActive;
@@ -13898,10 +13898,10 @@ void func_800B087C(s32 voiceId, s32 priority) {
 
 /*
 
- * func_800B24EC (4256 bytes)
+ * audio_sequence_play (4256 bytes)
  * Audio sequence player - plays MIDI-like sequences
  */
-s32 func_800B24EC(void *a0, void *a1, s32 a2, s8 objType, s32 a4) {
+s32 audio_sequence_play(void *a0, void *a1, s32 a2, s8 objType, s32 a4) {
     void *sequence = a0;
     u8 *seqData;
     s32 *seqPos;
@@ -14178,10 +14178,10 @@ void* func_800B4200(void *buffer, s32 samples) {
 
 /*
 
- * func_800B438C (228 bytes)
+ * audio_stream_start (228 bytes)
  * Audio stream start - starts streaming audio from ROM
  */
-void func_800B438C(s32 streamId, void *data) {
+void audio_stream_start(s32 streamId, void *data) {
     s32 *streamActive;
     void **streamData;
     s32 *streamPos;
@@ -14217,10 +14217,10 @@ void func_800B438C(s32 streamId, void *data) {
 
 /*
 
- * func_800B466C (604 bytes)
+ * audio_stream_update (604 bytes)
  * Audio stream update - updates streaming audio playback
  */
-s32 func_800B466C(s32 streamId) {
+s32 audio_stream_update(s32 streamId) {
     s32 *streamActive;
     void **streamData;
     s32 *streamPos;
@@ -14273,10 +14273,10 @@ s32 func_800B466C(s32 streamId) {
 
 /*
 
- * func_800B4FB0 (1484 bytes)
+ * audio_music_play (1484 bytes)
  * Audio music playback - plays background music track
  */
-void func_800B4FB0(s32 trackId) {
+void audio_music_play(s32 trackId) {
     s32 *currentTrack;
     s32 *musicPlaying;
     s32 *musicVolume;
@@ -14289,7 +14289,7 @@ void func_800B4FB0(s32 trackId) {
 
     /* Stop current music if playing */
     if (*musicPlaying) {
-        func_800B438C(0, NULL);  /* Stop stream 0 */
+        audio_stream_start(0, NULL);  /* Stop stream 0 */
         *musicPlaying = 0;
     }
 
@@ -14312,7 +14312,7 @@ void func_800B4FB0(s32 trackId) {
     }
 
     /* Start streaming the track */
-    func_800B438C(0, trackData);
+    audio_stream_start(0, trackData);
 
     /* Set music channel volume */
     func_800B358C(0, (f32)(*musicVolume) / 100.0f);
@@ -14324,20 +14324,20 @@ void func_800B4FB0(s32 trackId) {
 
 /*
 
- * func_800B6024(276 bytes, 0)
+ * entity_get_float(276 bytes, 0)
  * Get entity float array element
  */
-f32 func_800B6024(void *entity, s32 index) {
+f32 entity_get_float(void *entity, s32 index) {
     f32 *arr = (f32 *)((u8 *)entity + 0x30);
     return arr[index];
 }
 
 /*
 
- * func_800B61FC(380 bytes, 0)
+ * entity_set_position(380 bytes, 0)
  * Set entity vector with validation
  */
-void func_800B61FC(void *entity, f32 *vec) {
+void entity_set_position(void *entity, f32 *vec) {
     f32 *dest = (f32 *)((u8 *)entity + 0x24);
 
     if (vec != NULL) {
@@ -14349,7 +14349,7 @@ void func_800B61FC(void *entity, f32 *vec) {
 
 /*
 
- * func_800B74A0(2904 bytes, 0)
+ * entity_collision_test(2904 bytes, 0)
  * Entity full collision test
  *
  * Performs a complete collision check for an entity against the world.
@@ -14359,7 +14359,7 @@ void func_800B61FC(void *entity, f32 *vec) {
  * - Track surface detection
  * - Wall/barrier collision
  */
-void func_800B74A0(void *entity, void *world) {
+void entity_collision_test(void *entity, void *world) {
     f32 *pos, *vel, *bounds;
     f32 *worldMin, *worldMax;
     f32 surfaceHeight, penetration;
@@ -14387,7 +14387,7 @@ void func_800B74A0(void *entity, void *world) {
 
     /* Track surface query - get height at current XZ position */
     surfaceHeight = 0.0f;
-    if (func_800BB9B0(pos, NULL, &surfaceHeight) != 0) {
+    if (track_surface_query(pos, NULL, &surfaceHeight) != 0) {
         /* On valid surface */
         penetration = surfaceHeight - (pos[1] - bounds[1]);
         if (penetration > 0.0f) {
@@ -14468,7 +14468,7 @@ void func_800B74A0(void *entity, void *world) {
             }
 
             /* Call collision response */
-            func_800B82C8(entity, other, normal);
+            collision_response_calc(entity, other, normal);
             *flags |= 0x2000;  /* Entity collision flag */
         }
     }
@@ -14476,13 +14476,13 @@ void func_800B74A0(void *entity, void *world) {
 
 /*
 
- * func_800B82C8 (2380 bytes)
+ * collision_response_calc (2380 bytes)
  * Collision response calculation
  *
  * Calculates and applies collision response between two entities.
  * Uses impulse-based physics with restitution and friction.
  */
-void func_800B82C8(void *entityA, void *entityB, f32 *normal) {
+void collision_response_calc(void *entityA, void *entityB, f32 *normal) {
     f32 *velA, *velB, *massA, *massB;
     f32 relVelX, relVelY, relVelZ, normalVel;
     f32 restitution, impulse, invMassSum;
@@ -14593,13 +14593,13 @@ void func_800B82C8(void *entityA, void *entityB, f32 *normal) {
 
 /*
 
- * func_800B8C14 (1252 bytes)
+ * physics_constraint_solve (1252 bytes)
  * Physics constraint solve
  *
  * Solves a physics constraint (joint, limit, or motor).
  * Used for car suspension, wheel connections, etc.
  */
-void func_800B8C14(void *constraint) {
+void physics_constraint_solve(void *constraint) {
     s32 *type;
     void *bodyA, *bodyB;
     f32 *anchorA, *anchorB;
@@ -14704,13 +14704,13 @@ void func_800B8C14(void *constraint) {
 
 /*
 
- * func_800BAAA0 (744 bytes)
+ * collision_broadphase (744 bytes)
  * Broadphase collision check
  *
  * Performs spatial partitioning to quickly identify potential collision pairs.
  * Uses grid-based spatial hashing for O(n) performance.
  */
-void func_800BAAA0(void *world) {
+void collision_broadphase(void *world) {
     void **entityList;
     s32 numEntities, numPairs;
     s32 *pairListA, *pairListB;
@@ -14802,13 +14802,13 @@ void func_800BAAA0(void *world) {
 
 /*
 
- * func_800BADE0 (3448 bytes)
+ * collision_narrowphase (3448 bytes)
  * Narrowphase collision
  *
  * Performs detailed collision detection between two entities.
  * Uses separating axis theorem (SAT) for oriented bounding boxes.
  */
-void func_800BADE0(void *pairA, void *pairB) {
+void collision_narrowphase(void *pairA, void *pairB) {
     f32 *posA, *posB, *boundsA, *boundsB;
     f32 *rotA, *rotB;
     f32 centerDiff[3], absRot[3][3];
@@ -14938,13 +14938,13 @@ void func_800BADE0(void *pairA, void *pairB) {
         contactPoint[2] = (posA[2] + posB[2]) * 0.5f;
 
         /* Call collision response */
-        func_800B82C8(pairA, pairB, contactNormal);
+        collision_response_calc(pairA, pairB, contactNormal);
     }
 }
 
 /*
 
- * func_800BB9B0 (2500 bytes)
+ * track_surface_query (2500 bytes)
  * Track surface query
  *
  * Queries the track geometry at a given XZ position to find:
@@ -14954,7 +14954,7 @@ void func_800BADE0(void *pairA, void *pairB) {
  *
  * Returns: surface type (0 = off track, 1+ = valid surface)
  */
-s32 func_800BB9B0(f32 *pos, f32 *normal, f32 *height) {
+s32 track_surface_query(f32 *pos, f32 *normal, f32 *height) {
     void *trackData = (void *)D_80148000;  /* Track geometry data */
     s32 *triangleList;
     s32 numTriangles;
@@ -15085,13 +15085,13 @@ s32 func_800BB9B0(f32 *pos, f32 *normal, f32 *height) {
 
 /*
 
- * func_800BE7BC(1016 bytes)
+ * camera_track_target(1016 bytes)
  * Camera target tracking
  *
  * Smoothly tracks a target entity with the camera.
  * Implements chase cam behavior with configurable lag.
  */
-void func_800BE7BC(void *camera, void *target) {
+void camera_track_target(void *camera, void *target) {
     f32 *camPos;
     f32 *camTarget;
     f32 *camUp;
@@ -15166,7 +15166,7 @@ void func_800BE7BC(void *camera, void *target) {
 
     /* Ground collision for camera */
     f32 groundHeight;
-    if (func_800BB9B0(camPos, NULL, &groundHeight) != 0) {
+    if (track_surface_query(camPos, NULL, &groundHeight) != 0) {
         if (camPos[1] < groundHeight + 2.0f) {
             camPos[1] = groundHeight + 2.0f;
         }
@@ -15175,22 +15175,22 @@ void func_800BE7BC(void *camera, void *target) {
 
 /*
 
- * func_800BF01C()
+ * camera_stub_empty()
  * Empty function
  */
-void func_800BF01C() {
+void camera_stub_empty() {
     /* Empty stub */
 }
 
 /*
 
- * func_800BF0A4(848 bytes, 0, 0)
+ * camera_shake_apply(848 bytes, 0, 0)
  * Camera shake effect
  *
  * Applies a shake effect to the camera for impacts, explosions, etc.
  * Uses decaying oscillation with random offset.
  */
-void func_800BF0A4(void *camera, f32 intensity, f32 duration) {
+void camera_shake_apply(void *camera, f32 intensity, f32 duration) {
     f32 *shakeOffset, *shakeState;
     f32 *shakeTimer, *shakeIntensity;
     f32 currentTime, elapsed, decay;
@@ -15254,13 +15254,13 @@ void func_800BF0A4(void *camera, f32 intensity, f32 duration) {
 
 /*
 
- * func_800C813C (804 bytes)
+ * hud_element_render (804 bytes)
  * HUD element render
  *
  * Renders a single HUD element by ID.
  * Elements include: speedometer, tachometer, lap counter, position, timer, etc.
  */
-void func_800C813C(void *hud, s32 elementId) {
+void hud_element_render(void *hud, s32 elementId) {
     s32 *visibility;
     f32 *positions;
     f32 *sizes;
@@ -15376,11 +15376,11 @@ void hud_speed_display(void *hud, f32 speed) {
     /* Render speedometer background */
     x = (s32)positions[0];
     y = (s32)positions[1];
-    func_800C813C(hud, 0);  /* Background */
+    hud_element_render(hud, 0);  /* Background */
 
     /* Render needle with rotation */
     /* Needle rendering would need rotation support in the sprite system */
-    func_800C813C(hud, 1);  /* Needle */
+    hud_element_render(hud, 1);  /* Needle */
 
     /* Digital speed display */
     digitalSpeed = (s32)(*displaySpeed);
@@ -15643,7 +15643,7 @@ void func_800CF06C(void *menu) {
     baseY = 100;
 
     /* Draw menu background */
-    func_800C813C(NULL, 0);
+    hud_element_render(NULL, 0);
 
     /* Draw menu title based on state */
     switch (*menuState) {
@@ -17033,10 +17033,10 @@ void func_800E23A4(void *replay) {
         s32 progressWidth = (s32)(progressPercent * barWidth);
 
         /* Background */
-        func_800C813C(NULL, 10);  /* Dark bar */
+        hud_element_render(NULL, 10);  /* Dark bar */
 
         /* Progress fill */
-        func_800C813C(NULL, 11);  /* Progress bar */
+        hud_element_render(NULL, 11);  /* Progress bar */
     }
 
     /* Draw current time */
@@ -17340,7 +17340,7 @@ void func_800E15A8(f32 *pos, f32 size) {
     /* Camera shake based on size */
     void *camera = (void *)D_80152800;
     if (camera != NULL) {
-        func_800BF0A4(camera, size * 0.5f, 0.5f);
+        camera_shake_apply(camera, size * 0.5f, 0.5f);
     }
 
     /* Play explosion sound */
@@ -18099,7 +18099,7 @@ void func_800E6AF8(void *object, f32 *lightDir) {
     lightDirNorm[2] = lightDir[2] / lightLen;
 
     /* Get ground height at object position */
-    func_800BB9B0(objPos, NULL, &groundY);
+    track_surface_query(objPos, NULL, &groundY);
 
     /* Generate bounding box corners */
     for (i = 0; i < 8; i++) {
@@ -19861,7 +19861,7 @@ void func_800F5000(void *car) {
     landingAngle = (f32 *)((u8 *)car + 0x330);
 
     /* Get height above track */
-    heightAboveGround = func_800BB9B0(carPos, NULL, NULL) > 0 ? carPos[1] : 0.0f;
+    heightAboveGround = track_surface_query(carPos, NULL, NULL) > 0 ? carPos[1] : 0.0f;
 
     /* Check if just became airborne */
     if (*airborne && *stuntState == 0) {
@@ -20359,7 +20359,7 @@ s32 func_800F6DBC(void *car) {
     /* Check if just landed */
     if (*wasAirborne && !(*airborne)) {
         /* Get surface info at landing point */
-        surfaceType = func_800BB9B0(carPos, surfaceNormal, &surfaceHeight);
+        surfaceType = track_surface_query(carPos, surfaceNormal, &surfaceHeight);
 
         /* Calculate landing angle relative to surface */
         rollAngle = carRot[0];
