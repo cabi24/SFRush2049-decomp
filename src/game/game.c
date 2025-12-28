@@ -417,13 +417,13 @@ extern s32 D_8016B254;
 extern s32 D_C;
 
 /* External function declarations */
-extern void *audio_alloc(s32 size);           /* func_800BA644 - Audio memory allocator */
+extern void *audio_alloc(s32 size);           /* channel_stop - Audio memory allocator */
 extern void attract_or_transition(void);      /* func_800EDDC0 - Rendering/game logic */
-extern void process_inputs(void);             /* func_800C997C - Screen/state update */
+extern void process_inputs(void);             /* state_handler - Screen/state update */
 extern s32  sound_start(s32 action, s32 type, void *data, s32 flag); /* sound_start - Audio/sound control */
 extern void attract_handler(void);            /* func_800DB81C - Attract mode */
-extern void hiscore_handler(void);            /* func_800FBF88 - High score entry */
-extern void countdown_handler(void);          /* func_800FBC30 - Countdown timer */
+extern void hiscore_handler(void);            /* hiscore_entry - High score entry */
+extern void countdown_handler(void);          /* countdown_start - Countdown timer */
 extern void render_scene(s32 track, f32 angle, s32 x, s32 y); /* render_scene - Viewport/camera setup */
 
 /* Forward declarations for functions defined in this file */
@@ -438,7 +438,7 @@ void draw_ui_element(s32 elementId, s32 x, s32 y, s32 w, s32 h, s32 alpha);  /* 
 
 /* State handler declarations */
 extern void state_init_handler(void);   /* func_800FBF90 - GSTATE_INIT handler */
-extern void state_setup_handler(void);  /* func_800FBFE4 - GSTATE_SETUP handler */
+extern void state_setup_handler(void);  /* game_unpause - GSTATE_SETUP handler */
 extern void state_menu_handler(void);   /* func_800FC0EC - GSTATE_MENU handler */
 
 /* External data */
@@ -463,9 +463,9 @@ extern s8  D_801146C4[]; /* Sound params array */
 extern u32 D_801174B4;   /* gstate - current state bitmask (for game_loop) */
 extern u32 D_801174B8;   /* gstate_pending - next state (for game_loop) */
 extern void sound_stop(s32 channel, f32 volume);    /* sound_stop */
-extern void state_dispatch(void);                   /* func_800FD238 */
-extern void update_active_objects(void);            /* func_800F733C */
-extern void *physics_update(void);                  /* func_800B0868 */
+extern void state_dispatch(void);                   /* game_pause */
+extern void update_active_objects(void);            /* objects_update */
+extern void *physics_update(void);                  /* physics_update */
 extern void effects_update_emitters(void);          /* effects_update */
 
 /* Forward declarations */
@@ -559,7 +559,7 @@ s32 game_loop(void) {
     /* Check if any of the main state bits are set */
     if (gstate_cur & 0x7C03FFFE) {
         /* Call state dispatch for active states */
-        func_800FD238();  /* state_dispatch */
+        game_pause();  /* state_dispatch */
         gstate_cur = D_801174B4;
     }
 
@@ -570,8 +570,8 @@ s32 game_loop(void) {
 
         /* Check if rendering is enabled */
         if (D_801170FC != 0) {
-            func_800F733C();  /* UpdateActiveObjects */
-            func_800B0868();  /* PhysicsObjectList_Update */
+            objects_update();  /* UpdateActiveObjects */
+            physics_update();  /* PhysicsObjectList_Update */
             effects_update();  /* Effects_UpdateEmitters */
             render_scene(0, 0.0f, 0, 0); /* render_scene */
             return 1;
@@ -583,7 +583,7 @@ s32 game_loop(void) {
 
     /* Check high score bits (0x03FC0000) */
     if (gstate_cur & 0x03FC0000) {
-        func_800FBF88();  /* state_transition / high score */
+        hiscore_entry();  /* state_transition / high score */
         gstate_cur = D_801174B4;
     }
 
@@ -591,9 +591,9 @@ s32 game_loop(void) {
     gstate_next = D_801174B8;
     if (gstate_cur == gstate_next) {
         /* In steady state - call countdown and update functions */
-        func_800FBC30();  /* Countdown handler */
-        func_800F733C();  /* UpdateActiveObjects */
-        func_800B0868();  /* PhysicsObjectList_Update */
+        countdown_start();  /* Countdown handler */
+        objects_update();  /* UpdateActiveObjects */
+        physics_update();  /* PhysicsObjectList_Update */
         effects_update();  /* Effects_UpdateEmitters */
         render_scene(0, 0.0f, 0, 0); /* render_scene */
         result = 1;
@@ -615,8 +615,8 @@ extern void* D_8003ECF8; /* Some pointer */
 extern void* D_8003ECC0; /* Another pointer */
 extern s32 state_set(void*, void*, s32); /* Memory operation */
 extern s32 state_get(void*, void*, s32); /* Memory operation 2 */
-extern void func_800013F4(void); /* Timer/sync function */
-extern s8 func_800C9528(void); /* State update / input flag */
+extern void timer_sync(void); /* Timer/sync function */
+extern s8 input_flag_get(void); /* State update / input flag */
 
 /**
 /*
@@ -662,13 +662,13 @@ void game_mode_handler(void) {
     D_801597F4 = D_801597C8;
 
     /* Call timer/sync function */
-    func_800013F4();
+    timer_sync();
 
     /* Process inputs */
-    func_800C997C();
+    state_handler();
 
     /* Update state */
-    func_800C9528();
+    input_flag_get();
 }
 
 /*
@@ -682,7 +682,7 @@ extern void hud_setup(s32 a, s32 b, s32 c, s32 d, s32 e, f32 f, f32 g, s32 h); /
 extern void hud_init(void); /* hud_tachometer_update - HUD init */
 extern void display_enable(s32 flag); /* func_800C8FA4 - Enable/disable display */
 extern void game_init_state(void); /* hud_full_update - Game state init */
-extern void float_process(f32);        /* func_800014F0 - Float function */
+extern void float_process(f32);        /* interrupt_set - Float function */
 extern void state_finalize(void); /* hud_nitro_update - State finalize */
 extern void player_cleanup_slots(void); /* func_800C90E0 - Mode transition */
 extern void speed_set(s32 speed); /* func_800C9210 - Speed param function */
@@ -690,10 +690,10 @@ extern void resource_slots_clear_multiple(void); /* func_800C937C - Clear multip
 extern void player_state_set(s32 a, s32 b); /* func_800C9158 - Player state set */
 extern void player_mode_set(s32 a0, s8 a1); /* func_800C84C0 - Player mode set */
 void sync_entry_register(s32, s32);          /* func_800C9194 - Create and register sync entry (defined below) */
-extern void func_800A3424(s32, s32);   /* Car update function */
+extern void frustum_cull(s32, s32);   /* Car update function */
 extern void object_render_cleanup(void *obj_ptr); /* func_800C7308 - Object cleanup */
 extern void scene_cleanup_slots(void); /* func_800C70BC - Scene cleanup */
-extern void func_800A1244(void);       /* Render function */
+extern void track_bounds_check(void);       /* Render function */
 extern s32 sprite_draw(s32, s32, s32, s32, s32); /* Sound/effect */
 extern void visual_objects_update(s32 flag); /* Visual update */
 void* object_create(s32);              /* Object allocate wrapper (defined later) */
@@ -788,7 +788,7 @@ void playgame_handler(void) {
         D_80151AD0 = 1;
 
         game_init_state();
-        func_800014F0(30.0f);
+        interrupt_set(30.0f);
 
         /* Call state handler 3 times */
         game_mode_handler();
@@ -861,7 +861,7 @@ void playgame_handler(void) {
                         void *car_data = *(void**)((u8*)car_ptr + 72);
                         if (car_data) {
                             s32 car_obj = *(s32*)((u8*)car_data + 8);
-                            func_800A3424(car_obj, 0);
+                            frustum_cull(car_obj, 0);
                         }
                     }
                 }
@@ -913,7 +913,7 @@ void playgame_handler(void) {
         display_enable(0);
 
         if (D_80156994 != 0) {
-            func_800A1244();
+            track_bounds_check();
         }
 
         gstate_current = D_801174B4;
@@ -1028,7 +1028,7 @@ void playgame_handler(void) {
         s32 game_mode = D_8015A110;
         if (game_mode != 6 && game_mode != 4 && game_mode != 5) {
             if (D_80156994 == 0) {
-                func_800A1244();
+                track_bounds_check();
             }
         }
 
@@ -1081,14 +1081,14 @@ extern void* D_8018A4E0[]; /* Display object pointer array */
 
 /* External functions for countdown */
 extern void sprintf(s8 *buf, s8 *fmt, ...); /* func_80004990 */
-extern void func_800A4770(s8 *buf, s32 val);
+extern void camera_near_set(s8 *buf, s32 val);
 extern void entity_collision_test(void *entity, void *world);
 extern s32 audio_sync();
-extern s16 sound_apply_effect(s32 channel, s32 effectType, f32 amount); /* func_800B3FA4 */
+extern s16 sound_apply_effect(s32 channel, s32 effectType, f32 amount); /* sound_pitch_set */
 
 /**
 /*
- * func_800FBC30 - Countdown wrapper
+ * countdown_start - Countdown wrapper
  * Address: 0x800FBC30
  * Size: 8 bytes (just loads mode and falls through)
  *
@@ -1165,7 +1165,7 @@ void countdown_display(void) {
     }
 
     /* Call rendering function */
-    func_800A4770(format_buf, *(s32 *)((u8 *)display_data + 0x200));
+    camera_near_set(format_buf, *(s32 *)((u8 *)display_data + 0x200));
 
     /* Create display object */
     state_get(&D_801461D0, 0, 1);
@@ -1322,7 +1322,7 @@ extern void garage_screen(void *garage); /* State 2 handler */
 extern void profile_manage(void *profile); /* State 3 handler */
 extern void physics_constraint_solve(void *constraint); /* State 4 handler */
 extern void audio_music_play(s32 trackId); /* State setter */
-extern void func_800013C0(void);       /* Timer init */
+extern void timer_init(void);       /* Timer init */
 extern void timer_tick(void);       /* Timer update */
 extern void* object_alloc(s32 type);      /* Allocate object */
 extern void *sound_effect_play(s32 arg); /* Object allocation */
@@ -1332,9 +1332,9 @@ extern void mempak_operation(s32 operation); /* Track init */
 extern void menu_saveload(void *menu); /* Visual init */
 extern void scene_stub_empty(void); /* Scene setup */
 extern void menu_controller_config(void *menu); /* Cleanup */
-extern void func_800B5F4C(s32 a0); /* Menu prev */
+extern void menu_prev(s32 a0); /* Menu prev */
 extern void menu_confirm(void);       /* Menu confirm */
-extern void func_800B5F88(s32 a0); /* Menu toggle */
+extern void menu_toggle(s32 a0); /* Menu toggle */
 extern void audio_stream_start(s32 streamId, void *data); /* Audio stream start */
 
 /*
@@ -1393,7 +1393,7 @@ void race_state_machine(void) {
         /* Initialize race */
         audio_music_play(1);
         D_80159D98 = 0;
-        func_800013C0();
+        timer_init();
 
         /* Lock and allocate race object */
         state_get(&D_801461D0, 0, 1);
@@ -1521,13 +1521,13 @@ void race_state_machine(void) {
         player_flags = *(u32 *)(0x8015A11C + player_idx * 76);
 
         if (player_flags & 0x0400) {
-            func_800B5F4C(0);  /* Previous */
+            menu_prev(0);  /* Previous */
             sub_state = D_80159D98;
             sub_state--;
             if (sub_state < 0) sub_state = 7;
             D_80159D98 = sub_state;
         } else if (player_flags & 0x0800) {
-            func_800B5F4C(0);  /* Next */
+            menu_prev(0);  /* Next */
             sub_state = D_80159D98;
             sub_state++;
             if (sub_state >= 8) sub_state = 0;
@@ -1543,7 +1543,7 @@ void race_state_machine(void) {
         player_flags = *(u32 *)(0x8015A11C + player_idx * 76);
 
         if (player_flags & 0x3000) {
-            func_800B5F88(0);  /* Toggle display */
+            menu_toggle(0);  /* Toggle display */
         }
 
         if (player_flags & 0x0002) {
@@ -1643,7 +1643,7 @@ exit_func:
  * object's update callback. If callback returns 0, the sound is
  * stopped and removed via sound_handle_stop.
  *
- * Note: func_800F733C loads count into t6 immediately before this.
+ * Note: objects_update loads count into t6 immediately before this.
  */
 void active_sounds_update(void) {
     s32 count;
@@ -1714,8 +1714,8 @@ void active_sounds_update(void) {
  *
  * This is the main per-frame render update entry point.
  * Orchestrates all visual updates:
- *   1. If sound_update != 0, update active sounds (func_800F733C -> func_800F7344)
- *   2. If physics_update != 0, update physics objects (func_800B0868 -> func_800B0870)
+ *   1. If sound_update != 0, update active sounds (objects_update -> func_800F7344)
+ *   2. If physics_update != 0, update physics objects (physics_update -> func_800B0870)
  *   3. Always update particle/effect emitters (effects_update)
  *   4. Always run main scene render (render_scene)
  *
@@ -1727,12 +1727,12 @@ extern void physics_update_all(void); /* func_800B0870 - Physics object linked l
 void update_game_systems(s32 sound_update, s32 physics_update) {
     /* Update active sounds if requested */
     if (sound_update != 0) {
-        func_800F733C();  /* Loads count then calls func_800F7344 */
+        objects_update();  /* Loads count then calls func_800F7344 */
     }
 
     /* Update physics objects if requested */
     if (physics_update != 0) {
-        func_800B0868();  /* Starts physics linked list traversal */
+        physics_update();  /* Starts physics linked list traversal */
     }
 
     /* Always update particle/effect emitters */
@@ -1747,7 +1747,7 @@ void update_game_systems(s32 sound_update, s32 physics_update) {
 /**
 /*
  * physics_get_list_head - Get physics object list head
- * (func_800B0868)
+ * (physics_update)
  * Address: 0x800B0868
  * Size: 8 bytes (just loads and returns)
  *
@@ -1776,14 +1776,14 @@ void *physics_get_list_head(void) {
  *   offset 0x00: next pointer (linked list)
  *   offset 0x14: update callback function pointer
  */
-extern void physics_cleanup(void);  /* func_800B066C - Physics cleanup/finalize */
+extern void physics_cleanup(void);  /* tire_squeal - Physics cleanup/finalize */
 
 void physics_update_all(void) {
     void *current;
     void *next;
     void (*update_callback)(void*, s32);
 
-    /* Get list head (loaded by func_800B0868 into v0) */
+    /* Get list head (loaded by physics_update into v0) */
     current = D_801491F0;
 
     /* Get next pointer for iteration */
@@ -1812,7 +1812,7 @@ void physics_update_all(void) {
     }
 
     /* Call cleanup function */
-    func_800B066C();
+    tire_squeal();
 }
 
 /*
@@ -1825,7 +1825,7 @@ void physics_update_all(void) {
  *
  * Iterates through the particle emitter array and updates each one:
  *   1. Copies current position to previous position
- *   2. Calls update function (func_8008D6B0)
+ *   2. Calls update function (audio_stream_stop)
  *   3. Updates velocity with acceleration
  *   4. Conditionally spawns particles if D_801170FC == 0
  *   5. Calls cleanup functions at end
@@ -1841,9 +1841,9 @@ void physics_update_all(void) {
 extern u8  D_80150B70[];          /* Emitter array base */
 extern u8  D_80150BA0[];          /* Secondary emitter array */
 
-extern void emitter_update(f32 *src, f32 *dst); /* func_8008D6B0 - Emitter update */
+extern void emitter_update(f32 *src, f32 *dst); /* audio_stream_stop - Emitter update */
 extern void particles_spawn(s32 a0); /* func_800B80C8 - Spawn particles for emitter */
-extern s32 particles_cleanup(void); /* func_800B7FF8 - Particle cleanup */
+extern s32 particles_cleanup(void); /* explosion_spawn - Particle cleanup */
 extern void entity_set_position(void *entity, f32 *vec); /* Final cleanup */
 extern s16 D_80152032;                    /* Second emitter count */
 
@@ -1895,7 +1895,7 @@ void effects_update_emitters(void) {
 
 end_loop:
     /* Call cleanup functions */
-    func_800B7FF8();
+    explosion_spawn();
 
     /* Call final cleanup with flag based on second emitter count */
     {
@@ -1909,7 +1909,7 @@ end_loop:
 
 /**
 /*
- * func_800C9528 - Load input initialized flag (prologue)
+ * input_flag_get - Load input initialized flag (prologue)
  * Address: 0x800C9528
  * Size: 8 bytes
  *
@@ -1933,11 +1933,11 @@ s8 input_init_flag_get(void) {
  * from D_801551E8 to D_80155210 (10 entries, 40 bytes).
  * Calls each non-NULL callback in sequence.
  *
- * If D_801147C4 == 0, first calls func_800B73E4 for initialization.
+ * If D_801147C4 == 0, first calls debris_spawn for initialization.
  */
 extern void (*D_801551E8[])(void);  /* Input callback table start */
 extern void (*D_80155210)(void);    /* Input callback table end marker */
-extern void input_system_init(void); /* func_800B73E4 - Input system init */
+extern void input_system_init(void); /* debris_spawn - Input system init */
 
 void input_handlers_process(void) {
     void (**callback_ptr)(void);
@@ -1965,7 +1965,7 @@ void input_handlers_process(void) {
 /**
 /*
  * car_sounds_clear - Clear all sound handles for a player's car
- * (func_800D7D40)
+ * (menu_main)
  * Address: 0x800D7D40
  * Size: 132 bytes
  *
@@ -1985,7 +1985,7 @@ void input_handlers_process(void) {
  */
 extern u8 D_80111998[];      /* Car state array base */
 extern s32 D_80154618[];     /* Per-player state flags */
-extern void sound_stop_by_handle(s16, s32, s32);  /* func_80090088 - Stop sound */
+extern void sound_stop_by_handle(s16, s32, s32);  /* gfx_flush - Stop sound */
 
 /* This function uses non-standard calling - player_idx in s4 */
 void car_sounds_clear(void) {
@@ -2009,7 +2009,7 @@ void car_sounds_clear(void) {
             handle_s16 = (s16)handle;
 
             /* Stop the sound */
-            func_80090088(handle_s16, 0, 0);
+            gfx_flush(handle_s16, 0, 0);
 
             /* Clear handle */
             *(s32*)(car_state + offset + 4) = -1;
@@ -2030,7 +2030,7 @@ void car_sounds_clear(void) {
  *
  * Loops through all 4 players and clears their car-related state:
  *   1. Clears D_8015418C[player] and D_8015A10C[player] to 0
- *   2. Calls func_800D7D40 to clear all sound handles
+ *   2. Calls menu_main to clear all sound handles
  *   3. Stops global sound handle at D_80113ED8 if active
  *   4. Clears D_80113ED8 and D_80113ED4
  *
@@ -2051,11 +2051,11 @@ void all_player_sounds_clear(void) {
         D_8015A10C[i] = 0;
 
         /* Clear this player's car sounds
-         * NOTE: func_800D7D40 expects player index in s4 register */
+         * NOTE: menu_main expects player index in s4 register */
         {
             register s8 player_reg asm("s4") = (s8)i;
             (void)player_reg;  /* Force register allocation */
-            func_800D7D40();
+            menu_main();
         }
     }
 
@@ -2084,7 +2084,7 @@ void all_player_sounds_clear(void) {
  */
 extern void *D_80114624;      /* Main ambient sound handle */
 extern void *D_80114628[];    /* Additional sound handles (4 entries) */
-extern void func_8008D0C0(void*);  /* Stop sound by object */
+extern void audio_update(void*);  /* Stop sound by object */
 
 void ambient_sounds_clear(void) {
     void *handle;
@@ -2105,7 +2105,7 @@ void ambient_sounds_clear(void) {
     while (ptr != end_ptr) {
         handle = *ptr;
         if (handle != NULL) {
-            func_8008D0C0(handle);
+            audio_update(handle);
             *ptr = NULL;
         }
         ptr++;
@@ -2177,7 +2177,7 @@ extern void *D_80143A20;      /* Effect pool 2 */
 extern void *D_80143A28;      /* Effect pool 3 */
 extern u8 D_80143A10[];       /* Effect state buffer (44 bytes) */
 
-extern void func_800B90F8(void); /* Effect pre-reset */
+extern void engine_sound_update(void); /* Effect pre-reset */
 extern void matrix_push(void*);      /* Effect pool clear */
 extern void bzero(void*, s32);         /* memset_custom */
 
@@ -2187,7 +2187,7 @@ void effects_reset(s32 unused) {
     D_80159B80 = 0;
 
     /* Call pre-reset function */
-    func_800B90F8();
+    engine_sound_update();
 
     /* Clear effect pools */
     matrix_push(D_80143A18);
@@ -2202,7 +2202,7 @@ void effects_reset(s32 unused) {
 
 /**
 /*
- * sound_handles_clear (func_800B45BC)
+ * sound_handles_clear (sound_volume_set)
  * Address: 0x800B45BC
  * Size: 176 bytes
  *
@@ -2381,12 +2381,12 @@ void object_activate(void *obj) {
  *
  * Clears D_801525F0, then iterates through all active players
  * (count at D_80152744) and calls menu_audio_options for each.
- * If game state has bit 0x0008 set, also calls func_800A13E8.
+ * If game state has bit 0x0008 set, also calls state_update_extra.
  */
 extern s8  D_80152744;        /* Active player count */
 /* D_8015A250 declared elsewhere - player entries */
 extern void menu_audio_options(void *menu); /* Per-player update */
-extern void func_800A13E8(void);   /* Additional update (when bit 0x0008 set) */
+extern void state_update_extra(void);   /* Additional update (when bit 0x0008 set) */
 
 void players_frame_update(void) {
     s32 i;
@@ -2416,7 +2416,7 @@ check_state:
     }
 
     /* Call additional update function */
-    func_800A13E8();
+    state_update_extra();
 }
 
 /*
@@ -2477,13 +2477,13 @@ s32 players_finish_check(void) {
  * Address: 0x800C9334
  * Size: 72 bytes
  *
- * Clears the specified resource slot. If func_80097694 returns < 0,
+ * Clears the specified resource slot. If uv_set returns < 0,
  * allocates a new slot with sprite_draw and registers it.
  *
  * NOTE: Slot ID is passed in register t0, not a0.
  */
-extern s32 resource_get_slot_state(s32, s32);   /* func_80097694 - Get slot state */
-extern void resource_register_slot(s32 a0); /* func_8009638C - Register slot */
+extern s32 resource_get_slot_state(s32, s32);   /* uv_set - Get slot state */
+extern void resource_register_slot(s32 a0); /* matrix_pop - Register slot */
 
 void resource_slot_clear(void) {
     register s32 slot_id asm("t0");  /* Slot ID in t0 */
@@ -2549,7 +2549,7 @@ void resource_slots_clear_multiple(void) {
  *
  * @param obj Object with nested pointer structure
  */
-extern void object_ref_release(void*);  /* func_800A2680 - Release object */
+extern void object_ref_release(void*);  /* track_segment_get - Release object */
 
 void object_secondary_release(void *obj) {
     void *primary;
@@ -2837,26 +2837,26 @@ void player_state_clear(void *a0) {
 
 /**
 /*
- * sound_position_set (func_800D03DC)
+ * sound_position_set (timer_display)
  * Address: 0x800D03DC
  * Size: 72 bytes
  *
  * Takes a position vector and applies each component to the sound system:
  * - Y coord (offset 4) via gfx_set_color
  * - X coord (offset 0) via gfx_set_alpha
- * - Z coord (offset 8) via func_8009EA68
+ * - Z coord (offset 8) via sound_z_set
  *
  * @param pos 3D position vector (x=0, y=4, z=8)
  * @param a1 Sound handle/target parameter
  */
 extern void gfx_set_color(void *handle, s32 volume);  /* Set sound volume */
 extern void gfx_set_alpha(f32, s32);  /* Set sound X position */
-extern void func_8009EA68(f32, s32);  /* Set sound Z position */
+extern void sound_z_set(f32, s32);  /* Set sound Z position */
 
 void sound_position_set(f32 *pos, s32 a1) {
     gfx_set_color((void*)(long)*(s32*)&pos[1], a1);  /* Y coordinate */
     gfx_set_alpha(pos[0], a1);  /* X coordinate */
-    func_8009EA68(pos[2], a1);  /* Z coordinate */
+    sound_z_set(pos[2], a1);  /* Z coordinate */
 }
 
 /*
@@ -3053,13 +3053,13 @@ void sync_release_video(void) {
  * Address: 0x8008AA20
  * Size: 32 bytes
  *
- * Simple thunk to func_800205E4.
+ * Simple thunk to controller_rumble.
  * May be for ABI compatibility or code organization.
  */
-extern void func_800205E4(void);
+extern void controller_rumble(void);
 
 void dma_wait_thunk(void) {
-    func_800205E4();
+    controller_rumble();
 }
 
 /*
@@ -3070,12 +3070,12 @@ void dma_wait_thunk(void) {
  * Address: 0x80098554
  * Size: 32 bytes
  *
- * Simple thunk to func_80097CA0.
+ * Simple thunk to texture_set.
  */
-extern void func_80097CA0(void);
+extern void texture_set(void);
 
 void resource_process_thunk(void) {
-    func_80097CA0();
+    texture_set();
 }
 
 /*
@@ -3086,14 +3086,14 @@ void resource_process_thunk(void) {
  * Address: 0x800AC820
  * Size: 32 bytes
  *
- * Wrapper that calls func_80097694(a0, -1).
+ * Wrapper that calls uv_set(a0, -1).
  * Returns the slot ID for the given resource type.
  *
  * @param a0 Resource type ID
  * @return Slot ID or -1 if not found
  */
 s32 resource_slot_get(s32 a0) {
-    return func_80097694(a0, -1);
+    return uv_set(a0, -1);
 }
 
 /*
@@ -3138,11 +3138,11 @@ u8 object_type_byte3_get(void) {
 
 /**
 /*
- * func_800B7170 - Calculate difference with func_800B3FA4 result
+ * func_800B7170 - Calculate difference with sound_pitch_set result
  * Address: 0x800B7170
  * Size: 48 bytes
  *
- * Calls func_800B3FA4(a0, -1, 0.0f);
+ * Calls sound_pitch_set(a0, -1, 0.0f);
     return (s16)(a1 - (s16)result);
 }
 
@@ -3150,7 +3150,7 @@ u8 object_type_byte3_get(void) {
 
 /**
 /*
- * replay_update_dual (func_800E2A3C)
+ * replay_update_dual (screen_transition)
  * Address: 0x800E2A3C
  * Size: 40 bytes
  *
@@ -3332,29 +3332,29 @@ void collision_check_thunk(void) {
  * Address: 0x800A4B48
  * Size: 36 bytes
  *
- * Loads value from D_80151A6C and calls func_80096238.
+ * Loads value from D_80151A6C and calls matrix_mul.
  */
 extern s32 D_80151A6C;
-extern void func_80096238(s32);
+extern void matrix_mul(s32);
 
 void resource_update_global(void) {
-    func_80096238(D_80151A6C);
+    matrix_mul(D_80151A6C);
 }
 
 /*
 
 /**
 /*
- * object_process_thunk (func_800A7DF0)
+ * object_process_thunk (viewport_get)
  * Address: 0x800A7DF0
  * Size: 32 bytes
  *
- * Simple thunk to func_800A5B3C.
+ * Simple thunk to camera_target_set.
  */
-extern void func_800A5B3C(void);
+extern void camera_target_set(void);
 
 void object_process_thunk(void) {
-    func_800A5B3C();
+    camera_target_set();
 }
 
 /*
@@ -3365,7 +3365,7 @@ void object_process_thunk(void) {
  * Address: 0x800B4360
  * Size: 44 bytes
  *
- * Stores a1, a2, a3 on stack then calls func_80002CD0 with
+ * Stores a1, a2, a3 on stack then calls heap_init with
  * a0, a1, and address of stack area containing a2, a3.
  *
  * @param a0 First parameter
@@ -3373,13 +3373,13 @@ void object_process_thunk(void) {
  * @param a2 Third parameter (passed via stack)
  * @param a3 Fourth parameter (passed via stack)
  */
-extern void func_80002CD0(s32, s32, void*);
+extern void heap_init(s32, s32, void*);
 
 void stack_call_wrapper(s32 a0, s32 a1, s32 a2, s32 a3) {
     s32 stack_args[2];
     stack_args[0] = a2;
     stack_args[1] = a3;
-    func_80002CD0(a0, a1, stack_args);
+    heap_init(a0, a1, stack_args);
 }
 
 /*
@@ -3436,16 +3436,16 @@ void slot_deactivate(s32 a0) {
  * Address: 0x8008B474
  * Size: 80 bytes
  *
- * Calls func_8008B424, then copies src vector to dst with
+ * Calls sound_priority_set, then copies src vector to dst with
  * component-wise multiply by some factor (FPU ops).
  *
  * @param src Source 3D vector (12 bytes)
  * @param dst Destination 3D vector
  */
-extern void func_8008B424(void);
+extern void sound_priority_set(void);
 
 void vector_copy_scale(f32 *src, f32 *dst) {
-    func_8008B424();
+    sound_priority_set();
     /* FPU operations: mul.s each component */
     dst[0] = src[0];  /* with multiplier */
     dst[1] = src[1];
@@ -3460,19 +3460,19 @@ void vector_copy_scale(f32 *src, f32 *dst) {
  * Address: 0x800A5B60
  * Size: 80 bytes
  *
- * Clears several global variables and calls func_800A5A40.
+ * Clears several global variables and calls camera_distance_set.
  * Sets up initial render state with default values.
  */
 extern s32 D_801613B4;    /* Render state 1 */
 extern f32 D_801613B8;    /* Render float */
 extern s16 D_80140618;    /* Mode short */
 extern s32 D_801406B8;    /* Data pointer */
-extern void func_800A5A40(void);
+extern void camera_distance_set(void);
 
 void render_state_init(void) {
     D_801613B4 = 0;
     D_8015B254 = -1;
-    func_800A5A40();
+    camera_distance_set();
     D_801613B8 = 1.0f;
     D_80140618 = 0;
     D_801406B8 = 0x8011EA18;  /* Constant pointer */
@@ -3487,11 +3487,11 @@ void render_state_init(void) {
  * Size: 80 bytes
  *
  * Subtracts t0 vector from a3 vector, stores result on stack,
- * and calls func_800A61B0 with result pointer.
+ * and calls camera_shake with result pointer.
  *
  * NOTE: Uses t0 and a3 registers for input (non-standard ABI).
  */
-extern void func_800A61B0(f32*);
+extern void camera_shake(f32*);
 
 void vector_diff_process(f32 *a3, f32 *t0) {
     f32 diff[3];
@@ -3500,7 +3500,7 @@ void vector_diff_process(f32 *a3, f32 *t0) {
     diff[1] = a3[1] - t0[1];
     diff[2] = a3[2] - t0[2];
 
-    func_800A61B0(diff);
+    camera_shake(diff);
 }
 
 /*
@@ -3511,7 +3511,7 @@ void vector_diff_process(f32 *a3, f32 *t0) {
  * Address: 0x80096B5C
  * Size: 96 bytes
  *
- * If a0 != 0, calls func_80096B00 to get result.
+ * If a0 != 0, calls vertex_add to get result.
  * If result is non-zero, returns result[4] and optionally
  * stores result[8] to *a2.
  * If result is zero, stores 0 to *a2 and returns 0.
@@ -3521,13 +3521,13 @@ void vector_diff_process(f32 *a3, f32 *t0) {
  * @param a2 Optional output pointer
  * @return Value at result[4] or 0
  */
-extern void* func_80096B00(s32);
+extern void* vertex_add(s32);
 
 s32 lookup_with_output(s32 a0, s32 a1, s32 *a2) {
     void *result = NULL;
 
     if (a0 != 0) {
-        result = func_80096B00(a0);
+        result = vertex_add(a0);
     }
 
     if (result == NULL) {
@@ -3547,7 +3547,7 @@ s32 lookup_with_output(s32 a0, s32 a1, s32 *a2) {
 
 /**
 /*
- * synced_process_call (func_800960D4)
+ * synced_process_call (dl_end)
  * Address: 0x800960D4
  * Size: 92 bytes
  *
@@ -3569,7 +3569,7 @@ void synced_process_call(s32 a0, s32 a1) {
 
 /**
 /*
- * slot_activate (func_8009638C)
+ * slot_activate (matrix_pop)
  * Address: 0x8009638C
  * Size: 92 bytes
  *
@@ -3593,7 +3593,7 @@ void slot_activate(s32 a0) {
 
 /**
 /*
- * conditional_synced_clear (func_800A0F74)
+ * conditional_synced_clear (camera_init)
  * Address: 0x800A0F74
  * Size: 104 bytes
  *
@@ -3620,30 +3620,30 @@ void conditional_synced_clear(s32 condition) {
 
 /**
 /*
- * complex_init_multi (func_800A11E4)
+ * complex_init_multi (data_copy)
  * Address: 0x800A11E4
  * Size: 96 bytes
  *
  * Uses registers s0, s1, s2, s3, s4 set by caller.
  * If s3[0] == 0:
- *   - Calls func_800A0FDC(s0, a2-s0)
+ *   - Calls camera_mode_set(s0, a2-s0)
  *   - Calls model_set_matrix(result, 0)
- *   - Calls func_800026C0(s4, s0, 1)
- *   - Calls func_80008590(s2, s1-s2)
+ *   - Calls system_init(s4, s0, 1)
+ *   - Calls thread_create(s2, s1-s2)
  *   - Sets s3[0] = 1
  *
  * NOTE: Heavy use of callee-saved registers for parameters.
  */
-extern s32 func_800A0FDC(s32, s32);
-extern void func_800026C0(s32, s32, s32);
-extern void func_80008590(s32, s32);
+extern s32 camera_mode_set(s32, s32);
+extern void system_init(s32, s32, s32);
+extern void thread_create(s32, s32);
 
 void complex_init_multi(s32 s0, s32 s1, s32 s2, s8 *s3, s32 s4, s32 a2) {
     if (*s3 == 0) {
-        s32 result = func_800A0FDC(s0, a2 - s0);
+        s32 result = camera_mode_set(s0, a2 - s0);
         model_set_matrix(result, 0);
-        func_800026C0(s4, s0, 1);
-        func_80008590(s2, s1 - s2);
+        system_init(s4, s0, 1);
+        thread_create(s2, s1 - s2);
         *s3 = 1;
     }
 }
@@ -3656,7 +3656,7 @@ void complex_init_multi(s32 s0, s32 s1, s32 s2, s8 *s3, s32 s4, s32 a2) {
  * Address: 0x800AB758
  * Size: 120 bytes
  *
- * Calculates object address from a0 * 64 + t7, calls func_8008D6B0,
+ * Calculates object address from a0 * 64 + t7, calls audio_stream_stop,
  * then copies two 3D vectors into the object structure:
  *   - a2 vector to offset 40-48 (position)
  *   - a1 vector to offset 52-60 (rotation)
@@ -3666,12 +3666,12 @@ void complex_init_multi(s32 s0, s32 s1, s32 s2, s8 *s3, s32 s4, s32 a2) {
  * @param a0 Object index (multiplied by 64)
  * @param a1 Rotation vector (12 bytes)
  * @param a2 Position vector (12 bytes)
- * @param a3 Parameter for func_8008D6B0
+ * @param a3 Parameter for audio_stream_stop
  */
 void object_transform_set(s32 a0, f32 *rotation, f32 *position, void *a3, u8 *base) {
     u8 *obj = base + (a0 * 64);
 
-    func_8008D6B0(a3, obj + 4);
+    audio_stream_stop(a3, obj + 4);
 
     /* Copy position vector to offset 40 */
     *(f32*)(obj + 40) = position[0];
@@ -3693,15 +3693,15 @@ void object_transform_set(s32 a0, f32 *rotation, f32 *position, void *a3, u8 *ba
  * Size: 104 bytes
  *
  * Saves all callee-saved registers, sets fp=a0 and t0=0,
- * calls func_80096CA8, then restores registers.
+ * calls normal_set, then restores registers.
  *
  * @param a0 Value to pass in fp register
  */
-extern void func_80096CA8(void);
+extern void normal_set(void);
 
 void fp_call_wrapper(s32 a0) {
     /* fp = a0, t0 = 0 passed to callee */
-    func_80096CA8();
+    normal_set();
 }
 
 /*
@@ -3729,12 +3729,12 @@ void memory_regions_clear(void) {
  * Address: 0x800FBBFC
  * Size: 52 bytes
  *
- * Calls func_8000BE50(0), if result == 7, calls game_mode_handler.
+ * Calls exception_handler(0), if result == 7, calls game_mode_handler.
  */
-extern s32 func_8000BE50(s32);
+extern s32 exception_handler(s32);
 
 void game_state_check_handler(void) {
-    s32 state = func_8000BE50(0);
+    s32 state = exception_handler(0);
     if (state == 7) {
         game_mode_handler();
     }
@@ -3854,7 +3854,7 @@ void sync_init_conditional(s32 condition) {
  *
  * Calls 8 functions in sequence with the same object parameter:
  *   menu_render, replay_ui_draw, replay_camera_update, replay_record_frame,
- *   replay_playback, func_800E1540, replay_update, menu_input_handle
+ *   replay_playback, replay_entity_update, replay_update, menu_input_handle
  *
  * This is likely a full object update/tick function.
  *
@@ -3863,7 +3863,7 @@ void sync_init_conditional(s32 condition) {
 extern void menu_render(void *menu);
 extern void replay_record_frame(void *replay, void *frame);
 extern void replay_playback(void *replay);
-extern void func_800E1540(void *entity);
+extern void replay_entity_update(void *entity);
 extern void replay_update(void *replay);
 extern void menu_input_handle(void *menu, void *input);
 
@@ -3873,7 +3873,7 @@ void object_update_full(void *obj) {
     replay_camera_update(0, 0);
     replay_record_frame(obj, 0);
     replay_playback(obj);
-    func_800E1540(obj);
+    replay_entity_update(obj);
     replay_update(obj);
     menu_input_handle(obj, 0);
 }
@@ -3884,7 +3884,7 @@ void object_update_full(void *obj) {
 /**
 /**
 /*
- * object_counter_decrement (func_800E7914)
+ * object_counter_decrement (replay_frame)
  * Address: 0x800E7914
  * Size: 108 bytes
  *
@@ -3914,7 +3914,7 @@ void object_counter_decrement(s32 id) {
 
 /**
 /*
- * object_counter_increment (func_800E7980)
+ * object_counter_increment (replay_load)
  * Address: 0x800E7980
  * Size: 112 bytes
  *
@@ -3946,16 +3946,16 @@ void object_counter_increment(s32 id) {
  * Address: 0x8008AD48
  * Size: 36 bytes
  *
- * Adds 4 to both pointers and calls func_8008AD04.
+ * Adds 4 to both pointers and calls sound_position_set.
  * Used for skipping header bytes in data structures.
  *
  * @param a0 First pointer (offset by 4)
  * @param a1 Second pointer (offset by 4)
  */
-extern s32 func_8008AD04(u8 *a0, u8 *a1);
+extern s32 sound_position_set(u8 *a0, u8 *a1);
 
 void pointer_offset_wrapper(void *a0, void *a1) {
-    func_8008AD04(0, 0);
+    sound_position_set(0, 0);
 }
 
 /*
@@ -3966,16 +3966,16 @@ void pointer_offset_wrapper(void *a0, void *a1) {
  * Address: 0x8008E398
  * Size: 40 bytes
  *
- * Sign-extends the third parameter from 16 bits and calls func_8008E26C.
+ * Sign-extends the third parameter from 16 bits and calls audio_init.
  *
  * @param a0 First parameter (passed through)
  * @param a1 Second parameter (passed through)
  * @param a2 16-bit value to sign-extend
  */
-extern void* func_8008E26C(s32 arg);
+extern void* audio_init(s32 arg);
 
 void sign_extend_call(void *a0, void *a1, s16 a2) {
-    func_8008E26C(0);
+    audio_init(0);
 }
 
 /*
@@ -3986,13 +3986,13 @@ void sign_extend_call(void *a0, void *a1, s16 a2) {
  * Address: 0x80090228
  * Size: 44 bytes
  *
- * Sign-extends parameter and calls func_80090088 with a2=0.
+ * Sign-extends parameter and calls gfx_flush with a2=0.
  *
  * @param a0 16-bit value to sign-extend
  */
 
 void sound_call_simple(s16 a0) {
-    func_80090088(a0, NULL, 0);
+    gfx_flush(a0, NULL, 0);
 }
 
 /*
@@ -4003,12 +4003,12 @@ void sound_call_simple(s16 a0) {
  * Address: 0x80090254
  * Size: 48 bytes
  *
- * Sign-extends parameter and calls func_80090088 with a1=NULL, a2=0.
+ * Sign-extends parameter and calls gfx_flush with a1=NULL, a2=0.
  *
  * @param a0 16-bit value to sign-extend
  */
 void sound_call_minimal(s16 a0) {
-    func_80090088(a0, NULL, 0);
+    gfx_flush(a0, NULL, 0);
 }
 
 /*
@@ -4019,13 +4019,13 @@ void sound_call_minimal(s16 a0) {
  * Address: 0x8009508C
  * Size: 32 bytes
  *
- * Calls func_8008AD04 with unchanged parameters.
+ * Calls sound_position_set with unchanged parameters.
  *
  * @param a0 First pointer
  * @param a1 Second pointer
  */
 void pointer_compare_thunk(void *a0, void *a1) {
-    func_8008AD04(a0, a1);
+    sound_position_set(a0, a1);
 }
 
 /*
@@ -4037,21 +4037,21 @@ void pointer_compare_thunk(void *a0, void *a1) {
 /**
 /**
 /*
- * object_derived_call (func_800A2CE4)
+ * object_derived_call (track_data_get)
  * Address: 0x800A2CE4
  * Size: 40 bytes
  *
  * Loads pointer from a0->0, then gets value at offset 64 of that,
- * and calls func_800A2990 with (a0, 0, value).
+ * and calls object_property_set with (a0, 0, value).
  *
  * @param a0 Pointer to pointer
  */
-extern void func_800A2990(void*, s32, s32);
+extern void object_property_set(void*, s32, s32);
 
 void object_derived_call(void **a0) {
     void *ptr = *a0;
     s32 val = *(s32*)((u8*)ptr + 64);
-    func_800A2990(a0, 0, val);
+    object_property_set(a0, 0, val);
 }
 
 /*
@@ -4063,15 +4063,15 @@ void object_derived_call(void **a0) {
  * Address: 0x800986B0
  * Size: 36 bytes
  *
- * Calls func_80098620 with (a0+8, original_a1).
+ * Calls matrix_identity with (a0+8, original_a1).
  *
  * @param a0 Base pointer
  * @param a1 Parameter moved to a2
  */
-extern void func_80098620(void*, void*, void*);
+extern void matrix_identity(void*, void*, void*);
 
 void pointer_offset8_call(void *a0, void *a1) {
-    func_80098620(NULL, NULL, NULL);
+    matrix_identity(NULL, NULL, NULL);
 }
 
 /*
@@ -4083,17 +4083,17 @@ void pointer_offset8_call(void *a0, void *a1) {
  * Address: 0x800985F4
  * Size: 44 bytes
  *
- * Reorganizes parameters and calls func_80098574.
+ * Reorganizes parameters and calls matrix_translate.
  *
  * @param a0 Base object
  * @param a1 Moved to a3
  */
-extern void func_80098574(void*, void*, void*, void*);
+extern void matrix_translate(void*, void*, void*, void*);
 
 void param_reshuffle_wrapper(void *a0, void *a1) {
     s32 temp = 0;
     void *val = *(void**)((u8*)a0 + 8);
-    func_80098574(a0, val, &temp, a1);
+    matrix_translate(a0, val, &temp, a1);
 }
 
 /*
@@ -4143,7 +4143,7 @@ void sync_acquire_menu(void) {
  * Address: 0x800B0550
  * Size: 48 bytes
  *
- * Stores parameters into structure fields and calls func_800B04D0.
+ * Stores parameters into structure fields and calls collision_resolve.
  * Structure layout: byte at 0, s32 at 4, s32 at 8, s32 at 12.
  *
  * @param a0 Structure pointer
@@ -4157,7 +4157,7 @@ void struct_fields_init(void *a0, s32 a1, s32 a2, s32 a3, u8 stack) {
     *(s32*)((u8*)a0 + 4) = a3;
     *(s32*)((u8*)a0 + 8) = a2;
     *(u8*)a0 = stack;
-    func_800B04D0(a0);
+    collision_resolve(a0);
 }
 
 /*
@@ -4172,19 +4172,19 @@ void struct_fields_init(void *a0, s32 a1, s32 a2, s32 a3, u8 stack) {
  * Size: 52 bytes
  *
  * If either a0 or a1 is NULL, returns -1.
- * Otherwise calls func_800950AC with a2=15.
+ * Otherwise calls triangle_draw with a2=15.
  *
  * @param a0 First pointer (must be non-NULL)
  * @param a1 Second pointer (must be non-NULL)
- * @return -1 if invalid, otherwise result of func_800950AC
+ * @return -1 if invalid, otherwise result of triangle_draw
  */
-extern s32 func_800950AC(void*, void*, s32);
+extern s32 triangle_draw(void*, void*, s32);
 
 s32 validate_and_call(void *a0, void *a1) {
     if (a0 == NULL || a1 == NULL) {
         return -1;
     }
-    return func_800950AC(a0, a1, 15);
+    return triangle_draw(a0, a1, 15);
 }
 
 /*
@@ -4203,7 +4203,7 @@ s32 validate_and_call(void *a0, void *a1) {
  */
 s16 diff_halved_calc(void *a0, s32 a1) {
     s16 original = (s16)(a1 >> 16);
-    s16 result = func_800B3FA4(a0, -1, 0.0f);
+    s16 result = sound_pitch_set(a0, -1, 0.0f);
     return original - (result >> 1);
 }
 
@@ -4242,7 +4242,7 @@ void *object_init_cleared(void *a0, void *a1) {
  * Address: 0x8008B660
  * Size: 60 bytes
  *
- * Stores f12, f14, f16 at a1+36/40/44, calls func_8008B4C4,
+ * Stores f12, f14, f16 at a1+36/40/44, calls sound_reverb_set,
  * then stores f20, f22, f24 at same offsets.
  * Uses floating-point register parameters for 3D vector input/output.
  *
@@ -4252,14 +4252,14 @@ void *object_init_cleared(void *a0, void *a1) {
  * @param f14 Y component
  * @param f16 Z component
  */
-extern void func_8008B4C4(f32 *a, f32 *b, f32 *out);
+extern void sound_reverb_set(f32 *a, f32 *b, f32 *out);
 
 void vector3d_store_transform(void *a0, void *a1, f32 x, f32 y, f32 z) {
     f32 *vec = (f32*)((u8*)a1 + 36);
     vec[0] = x;
     vec[1] = y;
     vec[2] = z;
-    func_8008B4C4(vec, 0, 0);
+    sound_reverb_set(vec, 0, 0);
     /* Output stored in f20, f22, f24 by callee - stored back by asm */
 }
 
@@ -4287,27 +4287,27 @@ void *slot_value_get(s32 a0) {
 
 /**
 /*
- * conditional_reset_callbacks (func_80096240)
+ * conditional_reset_callbacks (matrix_rotate)
  * Address: 0x80096240
  * Size: 72 bytes
  *
  * If a1 == -1, returns immediately.
- * Otherwise calls func_80018E2C, func_800154A4, matrix_push,
+ * Otherwise calls os_timer_callback, dma_read, matrix_push,
  * and sets D_8011EAA0 = -1.
  *
  * @param a0 Unused
  * @param a1 If -1, skip processing
  */
-extern void func_80018E2C(s32);
-extern void func_800154A4(void);
+extern void os_timer_callback(s32);
+extern void dma_read(void);
 extern s32 D_8011EAA0;    /* State variable */
 
 void conditional_reset_callbacks(s32 a0, s32 a1) {
     if (a1 == -1) {
         return;
     }
-    func_80018E2C(a1);
-    func_800154A4();
+    os_timer_callback(a1);
+    dma_read();
     matrix_push(D_80151AD4);
     D_8011EAA0 = -1;
 }
@@ -4320,7 +4320,7 @@ void conditional_reset_callbacks(s32 a0, s32 a1) {
 /**
 /**
 /*
- * resource_request_40_or_39 (func_800B5F4C)
+ * resource_request_40_or_39 (menu_prev)
  * Address: 0x800B5F4C
  * Size: 60 bytes
  *
@@ -4340,7 +4340,7 @@ void resource_request_40_or_39(s32 a0) {
 
 /**
 /*
- * resource_request_41_or_44 (func_800B5F88)
+ * resource_request_41_or_44 (menu_toggle)
  * Address: 0x800B5F88
  * Size: 60 bytes
  *
@@ -4404,11 +4404,11 @@ s8 object_byte9_set(s8 a0) {
 
 /**
 /*
- * resource_lookup_synced (func_80097470)
+ * resource_lookup_synced (vertex_color)
  * Address: 0x80097470
  * Size: 124 bytes
  *
- * Acquires sync on D_80152770, looks up resource via func_80097384.
+ * Acquires sync on D_80152770, looks up resource via color_set.
  * If a0 is 0, uses D_801527C8 as default lookup key.
  * Releases sync and returns result.
  *
@@ -4417,7 +4417,7 @@ s8 object_byte9_set(s8 a0) {
  * @return Lookup result
  */
 extern void **D_801527C8;
-extern void *func_80097384(void*, void*);
+extern void *color_set(void*, void*);
 
 void *resource_lookup_synced(s32 a0, void *a1) {
     void *result;
@@ -4431,7 +4431,7 @@ void *resource_lookup_synced(s32 a0, void *a1) {
         lookup = D_801527C8;
     }
 
-    result = func_80097384(a1, lookup);
+    result = color_set(a1, lookup);
 
     state_set(&D_80152770[0], NULL, 0);
 
@@ -4468,16 +4468,16 @@ void *resource_alloc_init(void *a0, void *a1) {
  * Address: 0x800D54E0
  * Size: 68 bytes
  *
- * If a1 is zero, calls func_80091C04(*a0).
- * Otherwise calls func_800BF024(*a0).
- * Then calls func_800D54BC(a0).
+ * If a1 is zero, calls object_destroy(*a0).
+ * Otherwise calls particle_spawn(*a0).
+ * Then calls leaderboard_update(a0).
  *
  * @param a0 Pointer to pointer
  * @param a1 Mode selector
  */
 /**
 /*
- * physics_struct_reset (func_800D54BC)
+ * physics_struct_reset (leaderboard_update)
  * Address: 0x800D54BC
  * Size: 36 bytes (leaf function, no prologue)
  *
@@ -4498,13 +4498,13 @@ void physics_struct_reset(void *a0) {
 
 /**
 /*
- * synced_lookup_process (func_800BF024)
+ * synced_lookup_process (particle_spawn)
  * Address: 0x800BF024
  * Size: 128 bytes
  *
  * Acquires sync on D_80142728, looks up via object_init.
  * If found, calls camera_stub_empty with field64, releases sync,
- * then calls func_80091C04. If not found, just releases sync.
+ * then calls object_destroy. If not found, just releases sync.
  *
  * @param a0 Key to look up and process
  */
@@ -4525,14 +4525,14 @@ void synced_lookup_process(void *a0) {
 
     camera_stub_empty();
     state_set(&D_80142728[0], NULL, 0);
-    func_80091C04(a0);
+    object_destroy(a0);
 }
 
 /*
 
 /**
 /*
- * resource_register_synced (func_80091C04)
+ * resource_register_synced (object_destroy)
  * Address: 0x80091C04
  * Size: 160 bytes
  *
@@ -4587,7 +4587,7 @@ void conditional_call_with_init(void **a0, s32 a1) {
  * Size: 68 bytes
  *
  * If a1 is zero, returns 1 without doing anything.
- * Otherwise initializes D_80153F10 structure and calls func_8008ABE4.
+ * Otherwise initializes D_80153F10 structure and calls sound_start_3d.
  *
  * @param a0 Stored at offset 8
  * @param a1 Stored as halfword at offset 2 (if non-zero)
@@ -4595,7 +4595,7 @@ void conditional_call_with_init(void **a0, s32 a1) {
  * @return Always 1
  */
 extern void *D_80153F10;  /* Structure base */
-extern s32 func_8008ABE4(void);
+extern s32 sound_start_3d(void);
 
 s32 struct_init_and_call(void *a0, s16 a1, void *a2) {
     u8 *base;
@@ -4608,7 +4608,7 @@ s32 struct_init_and_call(void *a0, s16 a1, void *a2) {
     *(void**)(base + 12) = a2;
     *(s16*)(base + 4) = 0;
     *base = 1;
-    func_8008ABE4();
+    sound_start_3d();
     return 1;
 }
 
@@ -4697,7 +4697,7 @@ void buffer_build_and_call(s32 a0) {
  * Address: 0x800BE9E8
  * Size: 72 bytes
  *
- * Builds a local buffer via func_80002CD0, then calls audio_sync
+ * Builds a local buffer via heap_init, then calls audio_sync
  * with halfwords from stored parameters.
  *
  * @param a0 First value (high halfword used)
@@ -4709,7 +4709,7 @@ void buffer_build_2cd0_call(s32 a0, s32 a1, void *a2, s32 a3) {
     u8 buffer[256];
     s32 args[1];
     args[0] = a3;
-    func_80002CD0(buffer, a2, args);
+    heap_init(buffer, a2, args);
     audio_sync();
 }
 
@@ -4721,17 +4721,17 @@ void buffer_build_2cd0_call(s32 a0, s32 a1, void *a2, s32 a3) {
  * Address: 0x800A4C54
  * Size: 84 bytes
  *
- * Calls initialization chain then loops until func_800202C4 returns non-zero.
+ * Calls initialization chain then loops until controller_read returns non-zero.
  */
-extern void func_800A4B6C(void);
-extern void func_80020274(void);
-extern s32 func_800202C4(void);
+extern void camera_fov_set(void);
+extern void controller_init(void);
+extern s32 controller_read(void);
 
 void init_wait_completion(void) {
-    func_800A4B6C();
-    func_80096238(D_80151A6C);
-    func_80020274();
-    while (func_800202C4() == 0) {
+    camera_fov_set();
+    matrix_mul(D_80151A6C);
+    controller_init();
+    while (controller_read() == 0) {
         /* Wait for completion */
     }
 }
@@ -4740,12 +4740,12 @@ void init_wait_completion(void) {
 
 /**
 /*
- * list_process_and_call (func_800B0618)
+ * list_process_and_call (wind_sound)
  * Address: 0x800B0618
  * Size: 84 bytes
  *
  * Loops through D_801491F0 linked list calling vertex_set(item, 1),
- * then calls func_800B0580.
+ * then calls savedata_write.
  */
 extern void vertex_set(void *a0, s32 a1);
 
@@ -4755,7 +4755,7 @@ void list_process_and_call(s32 trackId, void *ghostData) {
         vertex_set(item, 1);
         item = D_801491F0;
     }
-    func_800B0580(0, ghostData, 0);
+    savedata_write(0, ghostData, 0);
 }
 
 /*
@@ -4808,7 +4808,7 @@ void synced_call_95fd8(void *a0) {
 /**
 /**
 /*
- * pool_linked_list_init (func_800B04D0)
+ * pool_linked_list_init (collision_resolve)
  * Address: 0x800B04D0
  * Size: 128 bytes
  *
@@ -4864,7 +4864,7 @@ void pool_linked_list_init(void *a0) {
  * Then reinitializes the pool with default values.
  * Finally clears the secondary pool area at D_80155290.
  */
-extern void func_800AFA84(void*, void*);
+extern void path_follow(void*, void*);
 extern u8 D_80155B30[];
 
 void pool_system_reset(s32 slot, void *data, s32 size) {
@@ -4873,8 +4873,8 @@ void pool_system_reset(s32 slot, void *data, s32 size) {
     /* Process and remove all nodes from active list */
     node = *(void**)(&D_80155220[0x10]);
     while (node != NULL) {
-        func_8008D0C0(*(s32*)((u8*)node + 0x0C));
-        func_800AFA84(&D_80155220[0], node);
+        audio_update(*(s32*)((u8*)node + 0x0C));
+        path_follow(&D_80155220[0], node);
         node = *(void**)(&D_80155220[0x10]);
     }
 
@@ -4884,7 +4884,7 @@ void pool_system_reset(s32 slot, void *data, s32 size) {
     *(s32*)(&D_80155220[0x04]) = 100;                      /* count = 100 entries */
     *(void**)(&D_80155220[0x0C]) = (void*)&D_80155B30[0];  /* base pointer */
 
-    func_800B04D0(&D_80155220[0]);
+    collision_resolve(&D_80155220[0]);
 
     /* Clear secondary pool area (2208 bytes) */
     memset_custom(&D_80155290[0], 0, 2208);
@@ -4931,21 +4931,21 @@ void mode1_setup_call(void) {
  * Address: 0x800A511C
  * Size: 60 bytes
  *
- * If a0 != a1, calls func_800A501C, copies byte from D_8013FEC8 to D_80140A10,
- * then calls func_800A4E58.
+ * If a0 != a1, calls camera_angle_set, copies byte from D_8013FEC8 to D_80140A10,
+ * then calls camera_lerp.
  *
  * @param a0 First comparison value
  * @param a1 Second comparison value
  */
-extern void func_800A501C(void);
-extern void func_800A4E58(void);
+extern void camera_angle_set(void);
+extern void camera_lerp(void);
 extern s16 D_8013FEC8;
 
 void state_update_conditional(s32 a0, s32 a1) {
     if (a0 != a1) {
-        func_800A501C();
+        camera_angle_set();
         D_80140A10 = (u8)D_8013FEC8;
-        func_800A4E58();
+        camera_lerp();
     }
 }
 
@@ -4953,7 +4953,7 @@ void state_update_conditional(s32 a0, s32 a1) {
 
 /**
 /*
- * params_transform_call - Call func_8008E26C with transformed parameters
+ * params_transform_call - Call audio_init with transformed parameters
  * Address: 0x800AB70C
  * Size: 68 bytes
  *
@@ -4971,7 +4971,7 @@ void state_update_conditional(s32 a0, s32 a1) {
 void params_transform_call(s32 a0, s32 a1, s16 a2, s16 a3, s32 stack) {
     s32 new_a2 = a3;
     s32 new_a3 = ((a2 << 8) ^ 0x0F00) | stack;
-    func_8008E26C(0);
+    audio_init(0);
 }
 
 /*
@@ -5076,18 +5076,18 @@ s32 state_update_global(void *a0) {
  * Address: 0x800F8754
  * Size: 76 bytes
  *
- * Calls func_800F857C, then func_800B45BC(1).
+ * Calls race_update, then sound_volume_set(1).
  * If D_8011472C is non-NULL, calls sound_stop and clears it.
  * Finally clears D_80114728 byte.
  */
-extern void func_800F857C(void);
-extern void func_800B45BC(s32 clear_all);
+extern void race_update(void);
+extern void sound_volume_set(s32 clear_all);
 extern void *D_8011472C;
 extern u8 D_80114728;
 
 void state_cleanup_reset(void) {
-    func_800F857C();
-    func_800B45BC(1);
+    race_update();
+    sound_volume_set(1);
 
     if (D_8011472C != NULL) {
         sound_stop(D_8011472C, 0.0f);
@@ -5133,10 +5133,10 @@ void synced_call_91ca4(void *a0, s32 a1) {
  * @param a1 Second parameter
  * @return Value of D_80159D90 (s16)
  */
-extern void func_800A473C(void*, void*);
-extern void *func_80092C58(void*, void*, void*, s32, void*);
-extern void func_800AC3D8(void*, s16);
-extern void func_800AB638(void);
+extern void camera_far_set(void*, void*);
+extern void *model_bounds_get(void*, void*, void*, s32, void*);
+extern void vehicle_update(void*, s16);
+extern void wheel_update(void);
 
 s16 callback_setup_complex(void *a0, s16 a1) {
     u8 buf1[4];
@@ -5144,13 +5144,13 @@ s16 callback_setup_complex(void *a0, s16 a1) {
     void *result;
 
     D_80159D90 = -1;
-    func_800A473C(buf1, a0);
+    camera_far_set(buf1, a0);
 
-    result = func_80092C58(buf2, (void*)D_80159818, NULL, 0, NULL);
+    result = model_bounds_get(buf2, (void*)D_80159818, NULL, 0, NULL);
     D_80159B80 = *(void**)result;
 
-    func_800AC3D8(D_80159B80, a1);
-    func_800AB638();
+    vehicle_update(D_80159B80, a1);
+    wheel_update();
 
     return D_80159D90;
 }
@@ -5397,7 +5397,7 @@ void camera_arrays_reset(void) {
 /*
 
 /* Player/car data array indexed by ID */
-extern s32 func_800A1A60(void*);  /* Object processing function */
+extern s32 object_process(void*);  /* Object processing function */
 
 /**
 /*
@@ -5439,7 +5439,7 @@ s32 object_status_check(void **a0, s32 a1) {
         return 1;
     }
 
-    return func_800A1A60(child);
+    return object_process(child);
 }
 
 /*
@@ -5495,7 +5495,7 @@ void object_type9_alloc_signal(void) {
 
 /* Global state flags */
 
-extern void func_800D03DC(f32 *pos, s32 a1);
+extern void timer_display(f32 *pos, s32 a1);
 
 /**
 /*
@@ -5526,7 +5526,7 @@ void object_countdown_process(void *a0, s16 a1) {
 
     if (countdown != 0) {
         *(s16*)((u8*)child + 90) = countdown - 1;
-        func_800D03DC(*(void**)((u8*)child + 108), (void*)((u8*)child + 20));
+        timer_display(*(void**)((u8*)child + 108), (void*)((u8*)child + 20));
         countdown = *(s16*)((u8*)child + 90);
     }
 
@@ -5642,7 +5642,7 @@ void string_build_from_array(u8 *output) {
 /*
 
 /* Timer calculation external references */
-extern f32 func_80001578(void);  /* Get elapsed time */
+extern f32 frame_sync(void);  /* Get elapsed time */
 extern f32 D_801247F8;           /* Time multiplier */
 extern f32 D_801249C0;           /* Object init float constant */
 
@@ -5658,7 +5658,7 @@ void timer_value_update(void) {
     f32 time;
     s16 value;
 
-    time = func_80001578();
+    time = frame_sync();
     time *= D_801247F8;
     value = (s16)time;
     D_80152032 = value;
@@ -5716,9 +5716,9 @@ void list_item_remove_synced(void *a0) {
 /*
 
 /* Multi-player coordinate update external references */
-extern void func_800E847C(void); /* Pre-update function */
-extern void func_8008D6FC(s16, void*, void*);  /* Coordinate transform */
-extern void func_800EB90C(s32 soundId); /* Post-update function */
+extern void pre_update(void); /* Pre-update function */
+extern void audio_stream_update(s16, void*, void*);  /* Coordinate transform */
+extern void post_update(s32 soundId); /* Post-update function */
 
 /**
 /*
@@ -5727,7 +5727,7 @@ extern void func_800EB90C(s32 soundId); /* Post-update function */
  *
  * For each active player (when mode == 2 and count >= 2), calls
 /*
- * func_8008D6FC to update their coordinate data from arrays at
+ * audio_stream_update to update their coordinate data from arrays at
  * 0x80152BD0 (source) and 0x80152C20 (dest), stride 952 bytes.
  */
 void player_coords_update(void) {
@@ -5736,7 +5736,7 @@ void player_coords_update(void) {
     u8 *dst;
     s32 i;
 
-    func_800E847C();
+    pre_update();
 
     if (D_8015A110 != 2) {
         goto done;
@@ -5752,7 +5752,7 @@ void player_coords_update(void) {
     i = 1;
 
     while (i < D_8015A108) {
-        func_8008D6FC(*(srcBase + 123), src, dst);  /* offset 246 = 123 shorts */
+        audio_stream_update(*(srcBase + 123), src, dst);  /* offset 246 = 123 shorts */
         i++;
         srcBase = (s16*)((u8*)srcBase + 952);
         src += 952;
@@ -5760,7 +5760,7 @@ void player_coords_update(void) {
     }
 
 done:
-    func_800EB90C(0);
+    post_update(0);
 }
 
 /*
@@ -5948,7 +5948,7 @@ void object_deactivate_free(void *a0, s32 a1) {
 
 /* Object spawn globals */
 extern u8 D_8012F5CC[];  /* Type lookup table */
-extern void *func_80092278(void);  /* Allocate sub-object */
+extern void *bounds_check(void);  /* Allocate sub-object */
 
 /**
 /*
@@ -5978,7 +5978,7 @@ void *object_spawn_new(s32 a0) {
     *(s32*)((u8*)obj + 4) = 0;
 
     /* Allocate and link sub-object */
-    subObj = func_80092278();
+    subObj = bounds_check();
     *(void**)((u8*)obj + 20) = subObj;
     *(void**)((u8*)subObj + 20) = NULL;
 
@@ -6235,7 +6235,7 @@ void emitter_array_clear(void) {
 /**
 
 /**
-extern s32 func_80097470(s32, s32);  /* Sound lookup function */
+extern s32 vertex_color(s32, s32);  /* Sound lookup function */
 
 /**
 
@@ -6280,9 +6280,9 @@ extern void pool_system_reset(s32 slot, void *data, s32 size); /* Write save dat
 /**
 
 /**
-extern void func_800BF024(void *a0); /* Process with flag */
-extern void func_80091C04(void *a0); /* Process without flag */
-extern void func_800D54BC(void *a0); /* Clear structure */
+extern void particle_spawn(void *a0); /* Process with flag */
+extern void object_destroy(void *a0); /* Process without flag */
+extern void leaderboard_update(void *a0); /* Clear structure */
 
 /**
 /**
@@ -6554,12 +6554,12 @@ void render_dispatch_conditional(void *a0) {
 
     ptr = *(void **)a0;
     if (*(void **)((u8 *)ptr + 8) != NULL) {
-        if (func_800CCEFC(a0) != 0) {
+        if (text_scale(a0) != 0) {
             ptr = *(void **)a0;
-            func_800A2680(*(void **)((u8 *)ptr + 8));
+            track_segment_get(*(void **)((u8 *)ptr + 8));
         }
     } else {
-        func_800CCCCC(a0);
+        text_shadow(a0);
     }
 }
 
@@ -6574,7 +6574,7 @@ void resource_arrays_init(void) {
 
     /* Allocate 50 resources and store in array */
     for (i = 0; i < 50; i++) {
-        result = func_800A7D6C();
+        result = viewport_clear();
         *(void **)((u8 *)&D_8014C238 + (i * 4)) = result;
     }
 
@@ -6605,7 +6605,7 @@ void tree_node_insert(s16 a0, s16 a1) {
         if (D_8016B254 < 0) {
             D_8016B254 = a0;
         } else {
-            new_idx = func_8008E144();
+            new_idx = audio_channel_init();
             *(s16 *)((u8 *)&D_8013E700 + (new_idx * 68) + 24) = a0;
         }
     } else {
@@ -6614,7 +6614,7 @@ void tree_node_insert(s16 a0, s16 a1) {
         if (*(s16 *)(entry + 22) == -1) {
             *(s16 *)(entry + 22) = a0;
         } else {
-            new_idx = func_8008E144();
+            new_idx = audio_channel_init();
             *(s16 *)((u8 *)&D_8013E700 + (new_idx * 68) + 24) = a0;
         }
     }
@@ -6637,7 +6637,7 @@ void tree_node_insert(s16 a0, s16 a1) {
  */
 
 /*
- * func_8008B26C (72 bytes)
+ * sound_distance (72 bytes)
  * Note: Matrix operation - needs analysis
  */
 
@@ -6729,7 +6729,7 @@ void rdp_primdepth_set(s16 depth) {
         *(u16 *)0x8013E600 = val;
     }
 
-    func_800878E0(16);
+    thread_start(16);
 }
 
 /*
@@ -6770,7 +6770,7 @@ void position_vector_copy(s32 idx, f32 *pos, void *update) {
     }
 
     if (update != NULL) {
-        func_8008D6B0(update, target);
+        audio_stream_stop(update, target);
     }
 }
 
@@ -6786,14 +6786,14 @@ s32 texture_load_mode(s32 mode) {
     void *texPtr = NULL;  /* t0 preload */
 
     if (mode < 0) {
-        return func_8008B26C(texPtr);
+        return sound_distance(texPtr);
     }
 
     texId = *(s16 *)((u8 *)texPtr + 6);
 
     if (result != 0) {
         /* sllv creates shift value */
-        func_8008B0D8(texId, 0, result);
+        sound_attenuation(texId, 0, result);
     } else {
         sound_param_set(texId, 1, result);
     }
@@ -6886,7 +6886,7 @@ s32 audio_queue_process(void) {
     param2 = entry[-2];  /* offset -8 */
     param3 = entry[-1];  /* offset -4 */
 
-    func_80008630((void *)0x80161438, 1, 0, param2, param3, param1, (void *)0x80153E68);
+    thread_stop((void *)0x80161438, 1, 0, param2, param3, param1, (void *)0x80153E68);
 
     return 1;
 }
@@ -6895,7 +6895,7 @@ s32 audio_queue_process(void) {
 
  * sync_process_loop (144 bytes)
  * Sync initialization and processing loop
- * Initializes sync object and loops calling func_8008ABE4
+ * Initializes sync object and loops calling sound_start_3d
  */
 void sync_process_loop(void *arg) {
     void *syncObj = (void *)0x80153E68;
@@ -6907,18 +6907,18 @@ void sync_process_loop(void *arg) {
 
     *statusByte = 0;
 
-    /* Loop while func_8008ABE4 returns non-zero */
+    /* Loop while sound_start_3d returns non-zero */
     while (1) {
         state_get(syncObj, 0, 1);  /* sync_acquire */
 
-        if (func_8008ABE4() == 0) {
+        if (sound_start_3d() == 0) {
             *statusByte = 0;
             /* Release and continue waiting */
             state_set(*(void **)((u8 *)statusByte + 12), 0, 1);
             continue;
         }
 
-        break;  /* Exit when func_8008ABE4 returns 0 */
+        break;  /* Exit when sound_start_3d returns 0 */
     }
 }
 
@@ -6993,7 +6993,7 @@ found:
     entry[15] = 0;  /* offset 60 */
 
     /* Call with converted params */
-    func_8008E19C(0, 0);
+    audio_reset(0, 0);
 }
 
 /*
@@ -7039,18 +7039,18 @@ void sound_params_copy(void *sndObj) {
     field30 = *(s16 *)((u8 *)sndObj + 30);
     field28 = *(s16 *)((u8 *)sndObj + 28);
 
-    func_80094E00(slotIdx, field28, field30, field32, field34);
+    texture_bind(slotIdx, field28, field30, field32, field34);
 
     field26 = *(s8 *)((u8 *)sndObj + 26);
     field24 = *(u8 *)((u8 *)sndObj + 24);
     field18 = *(u16 *)((u8 *)sndObj + 18);
-    func_80094DB0(slotIdx, field26, field24, field18);
+    texture_unbind(slotIdx, field26, field24, field18);
 
     field25 = *(u8 *)((u8 *)sndObj + 25);
-    func_80094D68(slotIdx, field25);
+    texture_filter(slotIdx, field25);
 
     field0 = *(u32 *)sndObj;
-    func_80094D20(slotIdx, (field0 + 1) < 1);
+    texture_wrap(slotIdx, (field0 + 1) < 1);
 }
 
 /*
@@ -7184,9 +7184,9 @@ void player_entity_init(void) {
     entity = sprite_draw(*(u8 *)0x8003E860, 0, 0, 0, 0);
     *(void **)0x80140AF0 = entity;
 
-    func_8009638C(0);
-    func_800A4E58();
-    func_800A510C();
+    matrix_pop(0);
+    camera_lerp();
+    camera_zoom();
 }
 
 /*
@@ -7212,7 +7212,7 @@ void viewport_setup_floats(void) {
     fHalfW = (f32)halfW;
     fHalfH = (f32)halfH;
 
-    func_800A5908(0, (void *)0x8012EA30, (void *)0x80159870, *(void **)0x80154188);
+    camera_update(0, (void *)0x8012EA30, (void *)0x80159870, *(void **)0x80154188);
 
     viewport = (u16 *)0x80159870;
     viewport[0] = 0;
@@ -7283,7 +7283,7 @@ void player_array_process(void) {
             continue;
         }
 
-        func_800AF9F0(playerBase, i);
+        ai_update(playerBase, i);
     }
 }
 
@@ -7303,7 +7303,7 @@ void effect_slot_init(s32 idx) {
     *(s16 *)((u8 *)0x80000000 + 2) = 1;  /* v0 preload ptr */
 
     if (condition != 0) {
-        func_800C1B60(11);
+        physics_init(11);
     }
 
     /* Calculate entry: (idx * 31) * 4 = idx * 124 */
@@ -7335,7 +7335,7 @@ void state_check_update1(void) {
         return;
     }
 
-    func_800C3AD0(ptr);
+    track_collision(ptr);
 }
 
 /*
@@ -7357,7 +7357,7 @@ void state_check_update2(void) {
         return;
     }
 
-    func_800C36A0(ptr);
+    car_collision(ptr);
 }
 
 /*
@@ -7376,10 +7376,10 @@ void entity_type_dispatch(void *entity) {
 
     switch (type) {
         case 1:
-            func_800C4CF8(entity);
+            collision_update(entity);
             break;
         case 2:
-            func_800C4F68(entity);
+            collision_init(entity);
             break;
         default:
             break;
@@ -7551,7 +7551,7 @@ void float_store_update(s32 idx, f32 f12_val) {
     ptr = (void *)(0x80143AC8 + idx * 8);
     *(f32 *)0x80000000 = f12_val;  /* v1 preload */
 
-    func_800D2128(ptr, 102);
+    menu_credits(ptr, 102);
 }
 
 /*
@@ -7577,7 +7577,7 @@ s32 table_entry_check(s32 idx, s32 val, s32 *outA, s32 *outB, s32 extra) {
         return 1;
     }
 
-    func_800D2FA8(idx, val, outA, outB, extra, 0);
+    menu_load(idx, val, outA, outB, extra, 0);
     return 1;
 }
 
@@ -7630,7 +7630,7 @@ void entity_pos_transform(void *entity) {
     *(f32 *)((u8 *)entity + 44) = out1;
     *(f32 *)((u8 *)entity + 48) = out2;
 
-    func_800E1500(0);
+    ghost_update(0);
 }
 
 /*
@@ -7668,7 +7668,7 @@ void player_state_sync_init(void) {
         /* Spin */
     }
 
-    func_800C95DC();
+    state_change();
 }
 
 /*
@@ -7683,7 +7683,7 @@ void entity_array_process(void) {
     for (i = 0; i < 4; i++) {
         entity = *(void **)(0x80159870 + i * 4);
         if (entity != NULL) {
-            func_800E73E4(entity);
+            ghost_init(entity);
         }
     }
 }
@@ -7707,10 +7707,10 @@ void entity_state_dispatch(void *entity) {
             entity_array_process();
             break;
         case 1:
-            func_800E7914(entity);
+            replay_frame(entity);
             break;
         case 2:
-            func_800E7980(entity);
+            replay_load(entity);
             break;
         default:
             break;
@@ -7736,7 +7736,7 @@ void entity_refcount_decr(void *entity) {
     }
 
     if (refCount == 1) {
-        func_800E7A98(entity);
+        replay_save(entity);
     }
 }
 
@@ -7797,7 +7797,7 @@ void sound_effect_trigger(s32 soundId) {
         return;
     }
 
-    func_800EA620(soundId);
+    replay_end(soundId);
 }
 
 /*
@@ -7818,22 +7818,22 @@ void menu_state_dispatch(void) {
     /* Jump table dispatch - each case calls different menu function */
     switch (state) {
         case 0:
-            func_800F56E0();
+            track_unload();
             break;
         case 1:
-            func_800F54C0();
+            track_reset();
             break;
         case 2:
-            func_800F4FEC();
+            car_spawn();
             break;
         case 3:
-            func_800F4D94();
+            car_destroy();
             break;
         case 4:
-            func_800F4B8C();
+            car_reset();
             break;
         case 5:
-            func_800F497C();
+            car_position_set();
             break;
         default:
             break;
@@ -7846,7 +7846,7 @@ void menu_state_dispatch(void) {
  * High score mode update
  */
 void hiscore_mode_update(void) {
-    func_800FBE5C();
+    game_exit();
 }
 
 /*
@@ -7857,7 +7857,7 @@ void hiscore_mode_update(void) {
 void game_reset_attract(void) {
     *(s32 *)0x801146EC = 0;  /* Set to ATTRACT */
     *(u32 *)0x80142AFC = 0;  /* Clear frame counter */
-    func_800FBFE4();
+    game_unpause();
 }
 
 /*
@@ -8498,7 +8498,7 @@ void rom_segment_init(void) {
     size = 0x00BEA100;          /* Compressed size marker */
 
     /* Call the actual ROM load function */
-    func_800A11E4(dest, src, 0, 0, 0, size);
+    data_copy(dest, src, 0, 0, 0, size);
 }
 
 /*
@@ -9300,7 +9300,7 @@ void string_copy_format(void *dest, u8 *src, s8 x, s8 y, s8 z) {
             ((u8 *)dest)[i] = tempBuf[i];
         }
     } else {
-        func_80092DCC(dest, src, 16);
+        model_lod(dest, src, 16);
     }
 }
 
@@ -11764,7 +11764,7 @@ void car_render_full(void *car) {
 
  * car_physics_integrate (3300 bytes)
  * Car physics integration - main physics loop
- * func_800A6BE4
+ * camera_follow
  *
  * Based on arcade drivsym.c sym() and regular() functions.
  * Handles:
@@ -11961,14 +11961,14 @@ void car_physics_integrate(void *car, f32 dt) {
     pos[2] += vel[2] * dt;
 
     /* Update orientation from angular velocity */
-    func_800A6F00(car, angVel, dt);  /* Update orientation vectors */
+    camera_reset(car, angVel, dt);  /* Update orientation vectors */
 }
 
 /*
 
  * car_steering_response (580 bytes)
  * Car steering response
- * func_800A78C8
+ * lookat_get
  *
  * Based on arcade controls() function in drivsym.c.
  * Converts steering wheel input to front tire steer angle.
@@ -12044,7 +12044,7 @@ void car_steering_response(void *car, f32 steerInput) {
     *steerAngle = currentAngle;
 
     /* Update front tire steering for tire force calculations */
-    func_800A79E0(car, currentAngle);  /* Update tire orientations */
+    projection_get(car, currentAngle);  /* Update tire orientations */
 }
 
 /*
@@ -12150,7 +12150,7 @@ void throttle_brake_input(void *car, f32 throttle, f32 brake) {
     }
 
     /* Apply torque to drive wheels via drivetrain */
-    func_800A7B90(car, *torqueOut);  /* Distribute to drive wheels */
+    projection_set(car, *torqueOut);  /* Distribute to drive wheels */
 }
 
 /*
@@ -12468,7 +12468,7 @@ void ai_update_car(void *car, void *target) {
     ai_avoid_obstacles(car, NULL);
 
     /* Apply inputs */
-    func_800A78FC(car, steerInput);
+    lookat_set(car, steerInput);
     camera_get_pos(car, throttleInput, brakeInput);
 
     /* Store AI state for debugging */
@@ -13187,27 +13187,27 @@ void player_update(void *player, f32 dt) {
             wingDeploy = *(s32 *)((u8 *)player + 0xFC);
 
             /* Apply steering */
-            func_800A78C8(player, steering);
+            lookat_get(player, steering);
 
             /* Apply throttle/brake */
             camera_get_pos(player, throttle, brake);
 
             /* Handle wing deployment (Rush 2049 feature) */
             if (wingDeploy != 0) {
-                func_80105480(player);  /* Deploy wings */
+                wing_deploy(player);  /* Deploy wings */
             }
 
             /* Update physics */
-            func_800A6BE4(player, dt);
+            camera_follow(player, dt);
 
             /* Update audio (engine, tire sounds) */
-            func_800B2DF8(player);
-            func_800B338C(player);
+            music_stop(player);
+            music_start(player);
             break;
 
         case 1:  /* Crashed */
             /* Minimal physics while crashed */
-            func_800A6BE4(player, dt);
+            camera_follow(player, dt);
             break;
 
         case 2:  /* Respawning */
@@ -13235,7 +13235,7 @@ void player_update(void *player, f32 dt) {
             throttle = 0.0f;
             brake = 0.1f;
             camera_get_pos(player, throttle, brake);
-            func_800A6BE4(player, dt);
+            camera_follow(player, dt);
             break;
 
         case 4:  /* Paused */
@@ -13630,7 +13630,7 @@ void race_finish_player(void *player) {
  * Displays the race results screen with times and positions.
  * Called after all cars finish or timer expires.
  */
-extern void func_800E2A3C(s32 a0); /* Screen transition */
+extern void screen_transition(s32 a0); /* Screen transition */
 
 void race_show_results(void) {
     s32 i;
@@ -13644,7 +13644,7 @@ void race_show_results(void) {
     D_801582F8 = 0;
 
     /* Trigger screen transition */
-    func_800E2A3C(5);  /* Results screen type */
+    screen_transition(5);  /* Results screen type */
 
     /* Gather and display results for each car */
     for (i = 0; i < D_801582E0; i++) {
@@ -13663,7 +13663,7 @@ void race_show_results(void) {
     }
 
     /* Pause audio during results */
-    func_800B4DAC(0);  /* Don't fully pause, just reduce */
+    sound_pan_set(0);  /* Don't fully pause, just reduce */
 }
 
 /*
@@ -13831,7 +13831,7 @@ void hiscore_insert_entry(s32 position, u8 *name, s32 time) {
  * Uses N64 save system for persistence.
  */
 extern s32 D_80158FCC;          /* Save pending flag */
-extern void func_80096240(s32 a0, s32 a1); /* EEPROM write */
+extern void matrix_rotate(s32 a0, s32 a1); /* EEPROM write */
 
 void hiscore_save_pending(void) {
     /* Mark save as pending */
@@ -14064,7 +14064,7 @@ void sound_update_channel(s32 channel, f32 volume) {
 /*
 
  * sound_apply_effect - Audio effect apply
- * (func_800B3FA4 - 604 bytes)
+ * (sound_pitch_set - 604 bytes)
  * Applies reverb/chorus/etc effects to channel.
  */
 s16 sound_apply_effect(s32 channel, s32 effectType, f32 amount) {
@@ -20847,7 +20847,7 @@ void credits_display(void) {
 
         /* Draw centered text */
         if (credits[i][0] != '\0') {
-            s32 textWidth = func_800C7520(credits[i]);
+            s32 textWidth = input_process(credits[i]);
             s32 textX = (320 - textWidth) / 2;
 
             /* Headers in brighter color */
@@ -21409,7 +21409,7 @@ void progress_save(void) {
     saveData[offset++] = checksum & 0xFF;
 
     /* Write to Controller Pak */
-    func_800B0580(0, saveData, offset);
+    savedata_write(0, saveData, offset);
 }
 
 /*
@@ -21455,21 +21455,21 @@ void race_init(void *race) {
     }
 
     /* Load track data */
-    func_800A0F74(trackId);
+    camera_init(trackId);
 
     /* Initialize checkpoint system */
-    func_800958A4(trackId, numLaps);
+    mesh_load(trackId, numLaps);
 
     /* Initialize car positions at starting grid */
     for (i = 0; i < numPlayers; i++) {
-        func_80095A30(i, i);  /* Player i at grid position i */
+        mesh_render(i, i);  /* Player i at grid position i */
     }
 
     /* Initialize AI drones if single player or need fill */
     if (numPlayers == 1) {
         s32 numDrones = 5;  /* 5 AI opponents */
         for (i = 0; i < numDrones; i++) {
-            func_800960D4(i, i + 1);  /* Drone at grid positions 1-5 */
+            dl_end(i, i + 1);  /* Drone at grid positions 1-5 */
         }
         D_8015A280 = numDrones;
     } else {
@@ -21543,7 +21543,7 @@ void race_cleanup(void) {
     /* Save ghost data if recording */
     if (D_8015A304 && D_8015A240[0]) {
         /* Player finished, save ghost */
-        func_800B0618(trackId, D_8015A300);
+        wind_sound(trackId, D_8015A300);
         D_8015A304 = 0;
     }
 
@@ -21609,11 +21609,11 @@ void race_cleanup(void) {
     D_8015A338 = D_8015A338 + D_8015A33C;  /* Add distance traveled */
 
     /* Free track resources */
-    func_800A11E4(trackId, 0, 0, NULL, 0, 0);
+    data_copy(trackId, 0, 0, NULL, 0, 0);
 
     /* Clear drone state */
     for (i = 0; i < 8; i++) {
-        func_800963B0(i);
+        matrix_scale(i);
     }
 
     /* Save progress */
@@ -22641,7 +22641,7 @@ void music_seq_load(s32 seqId) {
 
 /*
 
- * func_800B1B48 (1020 bytes)
+ * sfx_stop (1020 bytes)
  * Music playback control - control music playback
  */
 void music_control(s32 cmd, s32 param) {
@@ -22848,7 +22848,7 @@ void sfx_play(s32 soundId, f32 volume, f32 pan) {
 
 /*
 
- * func_800B2828 (256 bytes)
+ * music_volume (256 bytes)
  * Sound effect stop
  */
 void sfx_stop(s32 handle) {
@@ -22983,7 +22983,7 @@ void listener_position_set(f32 *pos, f32 *forward) {
 
 /*
 
- * func_800B2DF8 (1428 bytes)
+ * music_stop (1428 bytes)
  * Engine sound update
  *
  * Based on arcade carsnd.c DoEngineSound().
@@ -23070,7 +23070,7 @@ void engine_sound_update(void *car) {
 
 /*
 
- * func_800B338C (900 bytes)
+ * music_start (900 bytes)
  * Tire sound update
  *
  * Based on arcade carsnd.c DoTireSqueals().
@@ -23619,7 +23619,7 @@ void reverb_setup(s32 reverbType, f32 amount) {
 
 /*
 
- * func_800B4DAC (196 bytes)
+ * sound_pan_set (196 bytes)
  * Audio pause
  *
  * Pauses or resumes all game audio.
@@ -23644,7 +23644,7 @@ void audio_pause(s32 pause) {
 
 /*
 
- * func_800B4E70 (2108 bytes)
+ * sound_loop (2108 bytes)
  * Audio ducking
  *
  * Reduces volume of lower-priority audio when higher-priority sounds play.
@@ -23869,7 +23869,7 @@ void sound_volume_set(s32 handle, f32 volume) {
 
 /*
 
- * func_800B59F8 (1472 bytes)
+ * sound_fade (1472 bytes)
  * Audio spatialization
  *
  * Positions a sound in 3D space relative to the listener (camera).
@@ -23969,7 +23969,7 @@ void audio_spatialize(s32 handle, f32 *pos, f32 *velocity) {
     if (pitchVal > 0x2000) pitchVal = 0x2000;  /* 2.0x max */
 
     /* Apply to audio system */
-    func_80092C58(handle, (void*)(long)panVal, (void*)(long)volVal, pitchVal, NULL);
+    model_bounds_get(handle, (void*)(long)panVal, (void*)(long)volVal, pitchVal, NULL);
 }
 
 /*
@@ -24260,7 +24260,7 @@ void entity_audio_update(void *entity) {
         volume = occlusion;
 
         /* Apply 3D spatialization (handles pan, distance, doppler) */
-        func_800B59F8(handle, sourcePos, entityVel);
+        sound_fade(handle, sourcePos, entityVel);
 
         /* Apply additional occlusion volume reduction */
         if (occlusion < 1.0f) {
@@ -24678,7 +24678,7 @@ void camera_path_follow(void *camera, void *path, f32 t) {
     }
 
     /* Update look direction */
-    func_800BFD6C(camera, camTarget);
+    particle_update(camera, camTarget);
 }
 
 /*
@@ -26105,7 +26105,7 @@ void cutscene_play(s32 cutsceneId) {
     *(s32 *)0x801147C8 = 0;
 
     /* Play cutscene music */
-    func_800B1B48(1, cutsceneId + 100);
+    sfx_stop(1, cutsceneId + 100);
 }
 
 /*
@@ -26261,7 +26261,7 @@ void collectible_collect(void *player, void *collectible) {
             break;
 
         case 1:  /* Nitro can */
-            func_800EFD88(player, 0.25f);
+            drone_update(player, 0.25f);
             *playerScore += 50;
             break;
 
@@ -26679,7 +26679,7 @@ void lap_timer_split(void *player) {
     bestLap = (s32 *)0x8015A044;
 
     /* Get current race time */
-    currentTime = func_80100D34();
+    currentTime = score_display();
 
     /* Calculate lap time */
     if (*lapCount > 0) {
@@ -26779,7 +26779,7 @@ void best_time_record(s32 trackId, s32 time, u8 *name) {
     }
 
     /* Save to Controller Pak */
-    func_800B0580(0, (u8 *)bestNames, sizeof(bestNames));
+    savedata_write(0, (u8 *)bestNames, sizeof(bestNames));
 }
 
 /*
@@ -26803,7 +26803,7 @@ void leaderboard_display(s32 trackId) {
     bestNames = (u8 *)0x8016E200;
 
     /* Header */
-    func_800D0258(255, 200, 0, 255);  /* Gold */
+    hud_draw(255, 200, 0, 255);  /* Gold */
     text_print((u8 *)"BEST TIMES", 120, 40);
 
     /* Display top 5 times */
@@ -26836,11 +26836,11 @@ void leaderboard_display(s32 trackId) {
             timeStr[7] = '0' + (cs % 10);
             timeStr[8] = 0;
 
-            func_800D0258(255, 255, 255, 255);
+            hud_draw(255, 255, 255, 255);
             text_print(nameStr, x, y);
             text_print(timeStr, x + 60, y);
         } else {
-            func_800D0258(128, 128, 128, 255);  /* Gray for empty */
+            hud_draw(128, 128, 128, 255);  /* Gray for empty */
             text_print((u8 *)"----", x, y);
             text_print((u8 *)"--:--.--", x + 60, y);
         }
@@ -28552,7 +28552,7 @@ void final_cleanup(void) {
     /* Save any pending data */
     if (D_80158FCC != 0) {
         /* Trigger save */
-        func_80096240(NULL, 0);
+        matrix_rotate(NULL, 0);
         D_80158FCC = 0;
     }
 
@@ -28579,7 +28579,7 @@ void audio_queue_add(s32 sndId) {
     s32 *ptr;
 
     if (D_801547C4 != 0) {
-        func_800B73E4();
+        debris_spawn();
     }
     for (ptr = &D_801551E8[0]; ptr < &D_801551E8[10]; ptr++) {
         if (*ptr == 0) {
@@ -28907,8 +28907,8 @@ s32 audio_stream_init(s32 streamId) {
     /* Allocate double buffers if not already */
     D_8016071C = 0x2000;  /* 8KB per buffer */
     if (D_8016070C[0] == NULL) {
-        D_8016070C[0] = func_800BA644(D_8016071C);
-        D_8016070C[1] = func_800BA644(D_8016071C);
+        D_8016070C[0] = channel_stop(D_8016071C);
+        D_8016070C[1] = channel_stop(D_8016071C);
     }
 
     if (D_8016070C[0] == NULL || D_8016070C[1] == NULL) {
@@ -29137,12 +29137,12 @@ s32 audio_channel_alloc(s32 priority) {
 
 /*
 
- * func_800BA644 (380 bytes)
+ * channel_stop (380 bytes)
  * Audio memory manager
  *
  * Allocates memory from audio heap
  */
-void *func_800BA644(s32 size) {
+void *channel_stop(s32 size) {
     void *ptr;
 
     if (size <= 0) {
@@ -29604,7 +29604,7 @@ void camera_collision_check(void *camera) {
     if (len < 0.001f) return;
 
     /* Raycast from target toward camera */
-    func_800A7DF0();  /* TODO: stub - actual raycast needs args */
+    viewport_get();  /* TODO: stub - actual raycast needs args */
     hit = 0;
 
     if (hit && hitDist < len) {
@@ -30377,7 +30377,7 @@ void camera_check_constraints(void *camera) {
     if (pos[2] > 5000.0f) pos[2] = 5000.0f;
 
     /* Height constraint - stay above terrain */
-    terrainHeight = func_800A7E50(pos[0], pos[2]);  /* Get terrain height */
+    terrainHeight = viewport_set(pos[0], pos[2]);  /* Get terrain height */
     if (pos[1] < terrainHeight + minHeight) {
         pos[1] = terrainHeight + minHeight;
     }
@@ -31509,7 +31509,7 @@ void menu_cursor_move(s32 direction) {
             s32 itemType;
             itemType = menuItems[currentIndex * 4 + 2];  /* Type offset */
             if (itemType == 2) {  /* Slider type */
-                /* Slider adjusts via func_800CCE5C */
+                /* Slider adjusts via clamp_value */
                 s32 value;
                 s32 minVal;
                 s32 maxVal;
@@ -31521,7 +31521,7 @@ void menu_cursor_move(s32 direction) {
                 } else {
                     value = value + 5;
                 }
-                menuItems[currentIndex * 4 + 1] = func_800CCE5C(value, minVal, maxVal);
+                menuItems[currentIndex * 4 + 1] = clamp_value(value, minVal, maxVal);
             }
         }
         return;  /* No cursor movement */
@@ -31529,7 +31529,7 @@ void menu_cursor_move(s32 direction) {
 
     if (newIndex != currentIndex) {
         /* Update highlight */
-        func_800CC8C8(newIndex);
+        font_load(newIndex);
         D_80159210 = newIndex;
     }
 }
@@ -31962,7 +31962,7 @@ void sound_play_menu(s32 soundId) {
     if (handle != 0) {
         sound_update_channel(handle, volume);
         if (pitch != 0x1000) {
-            func_800B3FA4(handle, pitch, 0.0f);
+            sound_pitch_set(handle, pitch, 0.0f);
         }
     }
 }
@@ -32082,7 +32082,7 @@ void menu_text_scroll(char *text, s32 maxWidth) {
 
 /*
 
- * menu_highlight_set (func_800CC8C8)
+ * menu_highlight_set (font_load)
  * Size: 316 bytes
  * Sets highlight state for menu item
  */
@@ -32286,7 +32286,7 @@ void menu_list_render(void *list, s32 count) {
 
 /*
 
- * func_800CCE5C (716 bytes)
+ * clamp_value (716 bytes)
  * Menu slider control - handles slider value adjustment
  */
 s32 menu_slider_clamp(s32 current, s32 min, s32 max) {
@@ -32350,7 +32350,7 @@ s32 menu_slider_clamp(s32 current, s32 min, s32 max) {
 
 /*
 
- * menu_dialog_display (func_800CD104)
+ * menu_dialog_display (text_center)
  * Size: 1088 bytes
  * Shows modal dialog box
  */
@@ -32608,7 +32608,7 @@ void menu_dialog_close(void) {
 
 /*
 
- * keyboard_init (func_800CD798)
+ * keyboard_init (text_width)
  * Size: 340 bytes
  * Initializes on-screen keyboard for text entry
  */
@@ -32647,7 +32647,7 @@ void keyboard_init(void) {
 
 /*
 
- * keyboard_input_process (func_800CD8EC)
+ * keyboard_input_process (text_draw)
  * Size: 500 bytes
  * Handles navigation and character selection
  */
@@ -32747,7 +32747,7 @@ void menu_text_input(char *buffer, s32 maxLen) {
 
     /* Initialize if not already active */
     if (D_80159910 == 0) {
-        func_800CD798();  /* Init keyboard */
+        text_width();  /* Init keyboard */
         D_80159910 = 1;
         D_80159914 = 0;
         /* Copy existing buffer content to preview */
@@ -32763,7 +32763,7 @@ void menu_text_input(char *buffer, s32 maxLen) {
     cursorPos = D_80159914;
 
     /* Process keyboard input */
-    c = func_800CD8EC(input);
+    c = text_draw(input);
 
     if (c == '\n') {
         /* OK pressed - copy preview to buffer and close */
@@ -32813,9 +32813,9 @@ void menu_option_toggle(s32 optionId) {
             D_80159300 = newValue;
             /* Apply: mute/unmute music channel */
             if (newValue == 0) {
-                func_800B4DAC(1);  /* Mute music */
+                sound_pan_set(1);  /* Mute music */
             } else {
-                func_800B4E70(1);  /* Unmute music */
+                sound_loop(1);  /* Unmute music */
             }
             break;
 
@@ -32943,7 +32943,7 @@ void menu_save_options(void) {
         sound_play_menu(10);
     } else {
         /* Error - show dialog */
-        func_800CD104(4);  /* No Controller Pak */
+        text_center(4);  /* No Controller Pak */
     }
 }
 
@@ -33023,7 +33023,7 @@ void menu_options_screen(void) {
 
     /* Handle dialog if active */
     if (D_801592E0 != 0) {
-        func_800CD104(D_80159340);
+        text_center(D_80159340);
         return;
     }
 
@@ -33133,7 +33133,7 @@ void menu_audio_settings(void) {
             if (itemType == 2) {  /* Slider */
                 s32 value = menuItems[selectedItem * 4 + 1];
                 s32 delta = (input == 6) ? -5 : 5;
-                value = func_800CCE5C(value + delta, 0, 100);
+                value = clamp_value(value + delta, 0, 100);
                 menuItems[selectedItem * 4 + 1] = value;
                 /* Apply volume change */
                 if (selectedItem == 2) {
@@ -33248,7 +33248,7 @@ void menu_control_settings(void) {
             if (itemType == 2) {
                 s32 value = menuItems[selectedItem * 4 + 1];
                 s32 delta = (input == 6) ? -5 : 5;
-                value = func_800CCE5C(value + delta, 0, 100);
+                value = clamp_value(value + delta, 0, 100);
                 menuItems[selectedItem * 4 + 1] = value;
                 D_80159328 = value;  /* Steering sensitivity */
             }
@@ -34705,7 +34705,7 @@ void stunt_mode_setup(void) {
 
     /* Check arena unlock status */
     for (i = 0; i < 8; i++) {
-        arenaUnlocked[i] = func_800D3430(i, 0, NULL, NULL, 0);
+        arenaUnlocked[i] = menu_save(i, 0, NULL, NULL, 0);
     }
 
     input = controller_get_input(D_80158100);
@@ -34819,7 +34819,7 @@ void stunt_mode_setup(void) {
         if (targetScores[targetScore] == 0) {
             draw_text(180, 105, "NONE", 0xFFFFFFFF);
         } else {
-            func_800A2CE4((void**)scoreStr);  /* TODO: stub */
+            track_data_get((void**)scoreStr);  /* TODO: stub */
             draw_text(scoreStr, 165, 105, 255);
         }
         draw_text("<", 150, 105, selectedOption == 2 ? 200 : 100);
@@ -34890,7 +34890,7 @@ void stunt_arena_preview(s32 arenaId) {
     draw_ui_element(70, previewX - 2, previewY - 2, previewW + 4, previewH + 4, 200);
 
     /* Load arena preview texture */
-    func_800C7454(arenaId + 200, previewX, previewY, previewW, previewH, 255);
+    input_update(arenaId + 200, previewX, previewY, previewW, previewH, 255);
 
     /* Arena difficulty indicator */
     draw_text(165, 225, "DIFF:", 0xFFFFFFB4);
@@ -35106,7 +35106,7 @@ void ghost_race_setup(void) {
     animation_update();
 
     /* Get available ghosts for selected track */
-    ghostCount = func_800D5430(selectedTrack, ghostNames, ghostTimes);
+    ghostCount = menu_controls(selectedTrack, ghostNames, ghostTimes);
 
     input = controller_get_input(D_80158100);
 
@@ -35158,7 +35158,7 @@ void ghost_race_setup(void) {
         } else if (selectedOption == 3) {
             /* Delete ghost */
             if (ghostCount > 0) {
-                func_800D55A0(selectedTrack, selectedGhost);
+                menu_audio(selectedTrack, selectedGhost);
                 sound_play_menu(14);
                 if (selectedGhost >= ghostCount - 1) {
                     selectedGhost = 0;
@@ -35231,7 +35231,7 @@ void ghost_race_setup(void) {
 
 /*
 
- * func_800D5430 (164 bytes)
+ * menu_controls (164 bytes)
  * Get saved ghosts for track
  */
 s32 ghost_data_get(s32 trackId, char **names, s32 *times) {
@@ -35254,7 +35254,7 @@ s32 ghost_data_get(s32 trackId, char **names, s32 *times) {
 
 /*
 
- * func_800D55A0 (96 bytes)
+ * menu_audio (96 bytes)
  * Delete saved ghost
  */
 void ghost_data_delete(s32 trackId, s32 ghostIndex) {
@@ -35326,7 +35326,7 @@ void records_screen(void) {
             high_scores_display(selectedTrack);
             break;
         case 2:
-            func_800D616C();
+            menu_options();
             break;
     }
 
@@ -35448,7 +35448,7 @@ void high_scores_display(s32 trackId) {
 
 /*
 
- * func_800D616C (452 bytes)
+ * menu_options (452 bytes)
  * Stats display - shows player statistics
  */
 void stats_display_screen(void) {
@@ -36815,10 +36815,10 @@ void profile_select_screen(void) {
 
 /*
 
- * func_800EB028 (1640 bytes)
+ * pre_render (1640 bytes)
  * World object spawn
  */
-void *func_800EB028(s32 objectType, f32 *pos) {
+void *pre_render(s32 objectType, f32 *pos) {
     /* Object spawn - stub */
     return NULL;
 }
@@ -37223,7 +37223,7 @@ void world_trigger_activate(s32 triggerId) {
 
     switch (triggerType) {
         case 0:  /* Checkpoint */
-            func_800F6960(triggerId);  /* Record checkpoint */
+            lap_count_init(triggerId);  /* Record checkpoint */
             sound_play_menu(15);  /* Checkpoint sound */
             break;
 
@@ -37232,7 +37232,7 @@ void world_trigger_activate(s32 triggerId) {
             break;
 
         case 2:  /* Boost pad */
-            func_800F6584(triggerId);  /* Apply boost */
+            race_start(triggerId);  /* Apply boost */
             sound_play_menu(20);  /* Boost sound */
             break;
 
@@ -37241,11 +37241,11 @@ void world_trigger_activate(s32 triggerId) {
             break;
 
         case 4:  /* Item pickup */
-            func_800EB028(5, playerPos);  /* Spawn pickup effect */
+            pre_render(5, playerPos);  /* Spawn pickup effect */
             break;
 
         case 5:  /* Death trigger */
-            func_800F6D10(0);  /* Respawn player */
+            race_positions(0);  /* Respawn player */
             break;
     }
 }
@@ -37373,13 +37373,13 @@ void world_effect_update(void *effect) {
 
 /*
 
- * func_800EEA7C (820 bytes)
+ * drone_destroy (820 bytes)
  * Particle emitter create
  *
  * Creates a particle emitter that spawns particles over time
  * Types: 0=smoke trail, 1=spark shower, 2=fire, 3=steam, 4=exhaust
  */
-void *func_800EEA7C(s32 type, f32 *pos) {
+void *drone_destroy(s32 type, f32 *pos) {
     extern u8 D_80155000[];    /* Emitter pool */
     extern s32 D_80155400;     /* Emitter count */
     extern s32 D_80155404;     /* Max emitters */
@@ -37524,7 +37524,7 @@ void particle_update(void *emitter) {
 
 /*
 
- * func_800EF288 (932 bytes)
+ * drone_ai (932 bytes)
  * Smoke effect
  *
  * Creates a smoke particle with rising motion
@@ -37566,7 +37566,7 @@ void smoke_effect(f32 *pos, f32 *vel) {
 
 /*
 
- * func_800EF62C (712 bytes)
+ * drone_path (712 bytes)
  * Spark effect
  *
  * Creates multiple spark particles that fly outward with gravity
@@ -37663,7 +37663,7 @@ void explosion_effect(f32 *pos, f32 radius) {
     sound_play_menu(30);
 
     /* Screen shake if close to camera */
-    func_800D11BC(15);  /* Camera shake */
+    menu_exit(15);  /* Camera shake */
 }
 
 /*
@@ -38066,7 +38066,7 @@ void shadow_render(void *object) {
     objPos = (f32 *)(objData + 0x24);
 
     /* Get ground height at object position */
-    groundY = func_800ED3FC(objPos[0], objPos[2]);
+    groundY = replay_start(objPos[0], objPos[2]);
 
     /* Calculate height above ground */
     height = objPos[1] - groundY;
@@ -38983,15 +38983,15 @@ void car_nitro_effect(void *car) {
     vel[2] = -*(f32 *)(carData + 0x3C) * 0.5f;
 
     /* Spawn flame particles every frame during nitro */
-    func_800EF288(exhaustPos, vel);
+    drone_ai(exhaustPos, vel);
 
     /* Spawn sparks occasionally */
     if ((D_80142AFC & 0x03) == 0) {
-        func_800EF62C(exhaustPos, 3);
+        drone_path(exhaustPos, 3);
     }
 
     /* Update trail effect */
-    func_800F0674(car);
+    drone_spawn(car);
 
     *D_80149438 = gfx;
 }
@@ -39014,19 +39014,19 @@ void scene_render_main(void) {
     zbuffer_setup();
 
     /* Render skybox */
-    func_800F5B44();
+    track_load();
 
     /* Render track geometry */
-    func_800F7114();
+    checkpoint_init();
 
     /* Render cars */
-    func_800F7AA8();
+    race_end();
 
     /* Render particle effects */
     effects_update();
 
     /* Render HUD elements */
-    func_800CCFC0();
+    text_color();
 
     /* End frame */
     frame_end();
@@ -39863,19 +39863,19 @@ s32 trick_detect(void *car) {
     }
 
     /* Check rotation-based tricks */
-    trick = func_80102988(car);   /* Front/back flip */
+    trick = combo_end(car);   /* Front/back flip */
     if (trick != 0) {
         *currentTrick = trick;
         return trick;
     }
 
-    trick = func_80102F30(car);   /* Barrel roll */
+    trick = stunt_score_add(car);   /* Barrel roll */
     if (trick != 0) {
         *currentTrick = trick;
         return trick;
     }
 
-    trick = func_80103D28(car);   /* Spin */
+    trick = spin_update(car);   /* Spin */
     if (trick != 0) {
         *currentTrick = trick;
         return trick;
@@ -39973,7 +39973,7 @@ void air_time_track(void *car) {
 
 /*
 
- * func_80102988 (1448 bytes)
+ * combo_end (1448 bytes)
  * Flip detect - Detects front and back flips
  *
  * A flip is rotation around the car's lateral (X) axis.
@@ -40038,7 +40038,7 @@ s32 flip_detect(void *car) {
 
 /*
 
- * func_80102F30 (3576 bytes)
+ * stunt_score_add (3576 bytes)
  * Barrel roll - Detects lateral barrel rolls
  *
  * A barrel roll is rotation around the car's longitudinal (Z) axis.
@@ -40097,7 +40097,7 @@ s32 barrel_roll_detect(void *car) {
 
 /*
 
- * func_80103D28 (2524 bytes)
+ * spin_update (2524 bytes)
  * Spin detect - Detects horizontal spins
  *
  * A spin is rotation around the car's vertical (Y) axis.
@@ -40158,7 +40158,7 @@ s32 spin_detect(void *car) {
 
 /*
 
- * func_80104704 (1040 bytes)
+ * landing_bonus (1040 bytes)
  * Landing bonus - Awards points for clean landings
  *
  * Calculates landing bonus based on:
@@ -40237,7 +40237,7 @@ s32 landing_bonus_calc(void *car) {
 
 /*
 
- * func_80104B14 (2412 bytes)
+ * trick_add (2412 bytes)
  * Stunt combo - Manages trick combos during a single air session
  *
  * A combo is built by performing multiple different tricks in one jump.
@@ -40299,7 +40299,7 @@ void combo_trick_add(void *car) {
 
 /*
 
- * func_80105480 (1780 bytes)
+ * wing_deploy (1780 bytes)
  * Wing deploy - Deploys the car's stunt wings
  *
  * Rush 2049's signature feature - cars have deployable wings
@@ -42219,7 +42219,7 @@ void battle_mode_update(void) {
         battle_pickup_check(car, i);
 
         /* Fire weapon if button pressed */
-        if (func_80090EBC(i) & 0x8000) {  /* Z button / fire */
+        if (gfx_set_fog(i) & 0x8000) {  /* Z button / fire */
             if (*ammo > 0) {
                 battle_fire_weapon(car, *weapon, i);  /* Fire weapon */
                 (*ammo)--;
@@ -42299,8 +42299,8 @@ void stunt_mode_update(void) {
         /* Check if in air */
         if (*isAirborne) {
             /* Detect tricks while airborne */
-            flipTrick = func_80102988(car);   /* Front/back flip */
-            rollTrick = func_80102F30(car);   /* Barrel roll */
+            flipTrick = combo_end(car);   /* Front/back flip */
+            rollTrick = stunt_score_add(car);   /* Barrel roll */
             spinTrick = spin_detect(car);   /* Spin */
 
             /* Add new tricks to combo */
@@ -42308,10 +42308,10 @@ void stunt_mode_update(void) {
                 combo_trick_add(car);  /* Add to combo */
             }
             if (rollTrick > 0) {
-                func_80104B14(car);
+                trick_add(car);
             }
             if (spinTrick > 0) {
-                func_80104B14(car);
+                trick_add(car);
             }
 
             /* Track air time */
@@ -42323,9 +42323,9 @@ void stunt_mode_update(void) {
             /* Calculate trick scores */
             trickScore = 0;
 
-            flipTrick = func_80102988(car);
-            rollTrick = func_80102F30(car);
-            spinTrick = func_80103D28(car);
+            flipTrick = combo_end(car);
+            rollTrick = stunt_score_add(car);
+            spinTrick = spin_update(car);
 
             /* Base points per trick */
             if (flipTrick > 0) {
@@ -42342,7 +42342,7 @@ void stunt_mode_update(void) {
             }
 
             /* Get landing bonus */
-            landingBonus = func_80104704(car);
+            landingBonus = landing_bonus(car);
 
             /* Apply combo multiplier */
             trickScore *= D_8014C01C[i];
@@ -42362,7 +42362,7 @@ void stunt_mode_update(void) {
             D_8014C00C[i] += trickScore;
 
             /* Reset for next air session */
-            func_80104F48(car);  /* Reset trick accumulators */
+            wing_update(car);  /* Reset trick accumulators */
             *airTime = 0.0f;
         }
 
@@ -42388,12 +42388,12 @@ void game_state_reset(void) {
     s32 i;
 
     /* Stop all audio */
-    func_800B2828(0);  /* Stop all sounds */
-    func_800B1E24(0);      /* Stop music */
+    music_volume(0);  /* Stop all sounds */
+    sfx_play(0);      /* Stop music */
 
     /* Clear all particle effects */
     for (i = 0; i < 256; i++) {
-        func_800B86BC(i);  /* Kill particle */
+        spark_spawn(i);  /* Kill particle */
     }
 
     /* Reset car states */
@@ -42419,7 +42419,7 @@ void game_state_reset(void) {
     D_80142AFC = 0;
 
     /* Clear any pending messages */
-    func_80007A40();  /* Flush message queues */
+    heap_alloc();  /* Flush message queues */
 
     /* Invalidate data cache for game data region */
     osInvalDCache((void *)0x80140000, 0x40000);
@@ -42493,13 +42493,13 @@ void battle_fire_weapon(void *car, s32 weaponType, s32 playerIdx) {
 
     switch (weaponType) {
         case 0:  /* Missile */
-            func_800B9A68(pos, forward, playerIdx);  /* Spawn missile projectile */
+            smoke_spawn(pos, forward, playerIdx);  /* Spawn missile projectile */
             break;
         case 1:  /* Machine gun */
-            func_800B9C40(pos, forward, playerIdx);  /* Spawn bullet */
+            skid_mark_update(pos, forward, playerIdx);  /* Spawn bullet */
             break;
         case 2:  /* Mine */
-            func_800B9DF8(pos, playerIdx);  /* Drop mine */
+            skid_mark_spawn(pos, playerIdx);  /* Drop mine */
             break;
         case 3:  /* Shield */
             *(s32 *)((u8 *)car + 0x1F4) = 300;  /* 5 second shield */
