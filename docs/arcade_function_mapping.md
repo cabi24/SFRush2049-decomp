@@ -162,6 +162,16 @@ Core AI pathing and hint system used by drones:
   - Controls music/radio playback modes.
 - `void sndListenerUpdate(S32 x, S32 y, U16 velocity, U16 vel_angle, U16 facing_angle)`
   - Updates listener position for 3D sound.
+- `sndQStore(S16 *parms, S32 cnt)` / `sndCmds(S16 *parms, S32 cnt)`
+  - Enqueue and dispatch low-level sound commands.
+- `sndStart*` / `sndChange*`
+  - Start or modify static/doppler/positional sound effects.
+- `sndStartEngine*` / `sndUpdate*Engine` / `sndStopEngine`
+  - Engine sound control (auto/manual variants).
+- `sndRoadNoise` / `sndGravelNoise` / `sndWindNoise` / `sndSplashNoise`
+  - Surface and environment noise loops.
+- `sndDoSkid`
+  - Tire skid audio.
 
 ### Car + Engine Audio (carsnd.c)
 
@@ -175,6 +185,12 @@ Core AI pathing and hint system used by drones:
   - Radio station control.
 - `void DoTireSqueals(S16 drone_index)`
   - Tire squeal/skid audio.
+- `void init_bump_sounds(void)` / `void do_bump_sounds(S16 update_car_sounds)`
+  - Impact/bump audio from collision forces.
+- `void target_sound(Target *t, S16 slot)`
+  - Trigger sound effects for target interactions.
+- `void init_reverb(void)` / `void handle_reverb(void)`
+  - Per-environment reverb setup and updates.
 
 ## 6. Key Data Structures
 
@@ -297,6 +313,10 @@ These core systems are likely to have N64 analogs due to fundamental behavior:
   - Special camera behavior during crash/death.
 - `void circle_camera_around_car(F32 pos[3], F32 uvs[3][3])`
   - Orbit camera for replay/attract.
+- `void init_camera_on_track(void)`
+  - Sets initial camera placement on current track.
+- `void init_maxpath_cam(void)` / `void maxpath_cam(S16 mode, F32 pos[3], F32 uvs[3][3])`
+  - Maxpath-driven camera for flythrough/debug.
 
 ## 12. Controls / Input (controls.c)
 
@@ -309,6 +329,8 @@ These core systems are likely to have N64 analogs due to fundamental behavior:
 
 - `void init_road(MODELDAT *m)` / `void road(MODELDAT *m)`
   - Road surface sampling and per-tire contact setup.
+- `void uvinterp(...)` / `void vecinterp(...)`
+  - Interpolate orientation vectors and positions between road segments.
 - `void LoadWorld(void)`
   - Loads world/track geometry data (world header + objects).
 
@@ -385,9 +407,13 @@ These are candidate renames inferred from comments and module intent; confirm wi
 - `src/game/render.c`: `func_800B65B4` -> `render_helper`
 - `src/game/display.c`: `func_800015F0` -> `display_update`
 - `src/game/display.c`: `func_80001B44` -> `viewport_setup`
+- `src/game/display.c`: `func_80001D60` -> `display_process`
+- `src/game/display.c`: `func_80001DFC` -> `get_tv_offset`
+- `src/game/display.c`: `func_80001E58` -> `display_set_priority`
 - `src/game/display.c`: `func_80001E84` -> `get_viewport_pos`
 - `src/game/display.c`: `func_80001ECC` -> `get_viewport_offset`
 - `src/game/display.c`: `func_80001F2C` -> `update_viewport`
+- `src/game/display.c` (external): `func_800A7508` -> `viewport_scale`
 
 ### Physics / Effects
 
@@ -399,3 +425,25 @@ These are candidate renames inferred from comments and module intent; confirm wi
 - `src/game/game.c`: `func_800FD464` -> `game_loop`
 - `src/game/state.c`: `func_800DB81C` -> `attract_handler`
 - `src/game/state.c`: `func_800FBC30` -> `countdown_handler`
+- `src/game/game.c`: `func_800F43D4` -> `lod_distance_calc`
+- `src/game/game.c`: `func_800FD8DC` -> `rand_int`
+- `src/game/game.c`: `func_800FD9F8` -> `rand_float`
+- `src/game/game.c`: `func_800FDF94` -> `rand_range`
+- `src/game/game.c`: `func_800FE08C` -> `timer_start`
+- `src/game/game.c`: `func_800FE4BC` -> `timer_stop`
+- `src/game/game.c`: `func_800FE520` -> `timer_reset`
+- `src/game/game.c`: `func_800FE5B0` -> `timer_get_elapsed_cs`
+- `src/game/game.c`: `func_800FE7A4` -> `timer_pause`
+- `src/game/game.c`: `func_800FE848` -> `timer_resume`
+- `src/game/game.c`: `func_800FE924` -> `timer_lap`
+- `src/game/game.c`: `func_800FEA08` -> `race_timer_update`
+- `src/game/game.c`: `func_800FECA4` -> `countdown_display`
+- `src/game/game.c`: `func_800FEE04` -> `split_time_display`
+- `src/game/game.c`: `func_800FF298` -> `best_lap_check`
+- `src/game/game.c`: `func_800FF724` -> `record_save`
+- `src/game/game.c`: `func_800FFDF8` -> `hiscore_entry`
+- `src/game/game.c`: `func_80100564` -> `leaderboard_display`
+- `src/game/game.c`: `func_80100B8C` -> `score_calculate`
+- `src/game/game.c`: `func_80100E60` -> `stunt_score`
+- `src/game/game.c`: `func_8010190C` -> `combo_multiplier`
+- `src/game/game.c`: `func_80101D8C` -> `trick_detect`

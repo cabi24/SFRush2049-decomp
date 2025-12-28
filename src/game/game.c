@@ -24291,7 +24291,7 @@ void func_800B71DC(void *entity) {
  *   0x54: yaw (f32)
  *   0x58: pitch (f32)
  */
-void func_800BC3E0(void *camera, void *target) {
+void camera_follow_target(void *camera, void *target) {
     f32 *camPos, *camTarget, *camLook, *camUp;
     f32 *targetPos, *targetVel;
     f32 dx, dy, dz, dist, invDist;
@@ -24346,17 +24346,17 @@ void func_800BC3E0(void *camera, void *target) {
     camUp[2] = 0.0f;
 
     /* Check for collision and apply shake */
-    func_800BDE78(camera);
+    camera_collision_avoid(camera);
 }
 
 /*
 
- * func_800BDE78 (1596 bytes)
+ * camera_collision_avoid (1596 bytes)
  * Camera collision avoidance
  *
  * Prevents camera from clipping through geometry
  */
-void func_800BDE78(void *camera) {
+void camera_collision_avoid(void *camera) {
     f32 *camPos, *camTarget;
     f32 dx, dy, dz, dist;
     f32 minDist;
@@ -24392,12 +24392,12 @@ void func_800BDE78(void *camera) {
 
 /*
 
- * func_800BE44C (872 bytes)
+ * camera_smooth_follow (872 bytes)
  * Camera smooth follow
  *
  * Smoothly interpolates camera position toward target
  */
-void func_800BE44C(void *camera, f32 *targetPos, f32 smoothing) {
+void camera_smooth_follow(void *camera, f32 *targetPos, f32 smoothing) {
     f32 *camPos;
     f32 t;
 
@@ -24420,13 +24420,13 @@ void func_800BE44C(void *camera, f32 *targetPos, f32 smoothing) {
 
 /*
 
- * func_800BEC9C (1156 bytes)
+ * camera_mode_set (1156 bytes)
  * Camera mode switch
  *
  * Switches between camera modes (chase, first-person, orbit, etc.)
  * Mode values: 0=chase, 1=first-person, 2=orbit, 3=cinematic
  */
-void func_800BEC9C(void *camera, s32 mode) {
+void camera_mode_set(void *camera, s32 mode) {
     s32 *camMode;
     f32 *distance, *yaw, *pitch;
 
@@ -24468,12 +24468,12 @@ void func_800BEC9C(void *camera, s32 mode) {
 
 /*
 
- * func_800BF120 (1780 bytes)
+ * camera_orbit_control (1780 bytes)
  * Camera orbit control
  *
  * Orbits camera around target at given yaw/pitch angles
  */
-void func_800BF120(void *camera, f32 yaw, f32 pitch) {
+void camera_orbit_control(void *camera, f32 yaw, f32 pitch) {
     f32 *camPos, *camTarget;
     f32 *storedYaw, *storedPitch, *distance;
     f32 sinYaw, cosYaw, sinPitch, cosPitch;
@@ -24515,12 +24515,12 @@ void func_800BF120(void *camera, f32 yaw, f32 pitch) {
 
 /*
 
- * func_800BF814 (948 bytes)
+ * camera_zoom_set (948 bytes)
  * Camera zoom control
  *
  * Adjusts camera distance from target
  */
-void func_800BF814(void *camera, f32 zoom) {
+void camera_zoom_set(void *camera, f32 zoom) {
     f32 *distance;
     f32 minDist, maxDist;
 
@@ -24541,12 +24541,12 @@ void func_800BF814(void *camera, f32 zoom) {
 
 /*
 
- * func_800BFBC8 (420 bytes)
+ * camera_fov_set (420 bytes)
  * Camera FOV set
  *
  * Sets camera field of view in radians
  */
-void func_800BFBC8(void *camera, f32 fov) {
+void camera_fov_set(void *camera, f32 fov) {
     f32 *camFov;
     f32 minFov, maxFov;
 
@@ -24567,12 +24567,12 @@ void func_800BFBC8(void *camera, f32 fov) {
 
 /*
 
- * func_800BFD6C (1392 bytes)
+ * camera_lookat (1392 bytes)
  * Camera look-at
  *
  * Points camera at target position, calculating look direction
  */
-void func_800BFD6C(void *camera, f32 *target) {
+void camera_lookat(void *camera, f32 *target) {
     f32 *camPos, *camLook, *camUp, *camRight;
     f32 dx, dy, dz, dist, invDist;
     f32 rightX, rightZ, rightLen;
@@ -24899,10 +24899,10 @@ void camera_split_screen_setup(s32 playerCount) {
 
 /*
 
- * func_800C2614 (1092 bytes)
+ * camera_rearview (1092 bytes)
  * Rear view camera
  */
-void func_800C2614(void *camera, void *car) {
+void camera_rearview(void *camera, void *car) {
     f32 *camPos, *camTarget, *camUp;
     f32 *carPos, *carForward;
     f32 rearOffset, upOffset;
@@ -24951,10 +24951,10 @@ void func_800C2614(void *camera, void *car) {
 
 /*
 
- * func_800C2A58 (1648 bytes)
+ * camera_cinematic (1648 bytes)
  * Cinematic camera
  */
-void func_800C2A58(void *camera, void *scene) {
+void camera_cinematic(void *camera, void *scene) {
     f32 *camPos, *camTarget;
     f32 *sceneTime, *sceneDuration;
     s32 *sceneType;
@@ -25049,10 +25049,10 @@ void func_800C2A58(void *camera, void *scene) {
 
 /*
 
- * func_800C30D8 (1212 bytes)
+ * camera_finish_line (1212 bytes)
  * Finish line camera
  */
-void func_800C30D8(void *camera) {
+void camera_finish_line(void *camera) {
     f32 *camPos, *camTarget, *camUp;
     f32 *finishLine;
     f32 *trackWidth;
@@ -25115,10 +25115,10 @@ void func_800C30D8(void *camera) {
 
 /*
 
- * func_800CC880 (3972 bytes)
+ * menu_animation (3972 bytes)
  * Menu animation
  */
-void func_800CC880(void *menu) {
+void menu_animation(void *menu) {
     s32 *animState;
     f32 *animTime, *animDuration;
     s32 *selectedItem, *numItems;
@@ -25199,10 +25199,10 @@ void func_800CC880(void *menu) {
 
 /*
 
- * func_800CD7F8 (7960 bytes)
+ * text_render (7960 bytes)
  * Text rendering
  */
-void func_800CD7F8(void *text, s32 x, s32 y) {
+void text_render(void *text, s32 x, s32 y) {
     u8 *str;
     u8 *fontData;
     s32 *fontWidth;
@@ -25296,10 +25296,10 @@ void func_800CD7F8(void *text, s32 x, s32 y) {
 
 /*
 
- * func_800CF7E0 (1792 bytes)
+ * font_load (1792 bytes)
  * Font loading
  */
-void func_800CF7E0(s32 fontId) {
+void font_load(s32 fontId) {
     u8 *fontDest;
     u32 *fontRomAddrs;
     s32 *fontWidthTable;
@@ -25364,10 +25364,10 @@ void func_800CF7E0(s32 fontId) {
 
 /*
 
- * func_800CFEDC (892 bytes)
+ * text_width_calc (892 bytes)
  * String width calculation
  */
-s32 func_800CFEDC(u8 *str) {
+s32 text_width_calc(u8 *str) {
     s32 *fontWidthTable;
     s32 width, maxWidth;
     u8 c;
@@ -25419,10 +25419,10 @@ s32 func_800CFEDC(u8 *str) {
 
 /*
 
- * func_800D0258 (460 bytes)
+ * text_color_set (460 bytes)
  * Text color set
  */
-void func_800D0258(u8 r, u8 g, u8 b, u8 a) {
+void text_color_set(u8 r, u8 g, u8 b, u8 a) {
     u32 *textColor;
     u8 *shadowColor;
     s32 *shadowEnabled;
@@ -25446,10 +25446,10 @@ void func_800D0258(u8 r, u8 g, u8 b, u8 a) {
 
 /*
 
- * func_800D23A8 (15548 bytes)
+ * menu_render (15548 bytes)
  * Full menu render
  */
-void func_800D23A8(void *menu) {
+void menu_render(void *menu) {
     s32 *numItems, *selectedItem;
     u8 **itemLabels;
     f32 *itemPositions, *itemAlphas;
@@ -25468,7 +25468,7 @@ void func_800D23A8(void *menu) {
     itemLabels = (u8 **)((u8 *)menu + 0x54);
 
     /* Render background */
-    func_800D0258(0, 0, 0, 180);  /* Semi-transparent black */
+    text_color_set(0, 0, 0, 180);  /* Semi-transparent black */
 
     /* Base menu position */
     x = 80;
@@ -25482,26 +25482,26 @@ void func_800D23A8(void *menu) {
 
         /* Set color based on selection */
         if (i == *selectedItem) {
-            func_800D0258(255, 200, 0, alpha);  /* Gold for selected */
+            text_color_set(255, 200, 0, alpha);  /* Gold for selected */
             /* Draw highlight box */
-            func_800DD410(itemX - 4, itemY - 2, 160, 20);
+            selection_highlight(itemX - 4, itemY - 2, 160, 20);
         } else {
-            func_800D0258(200, 200, 200, alpha);  /* Gray for others */
+            text_color_set(200, 200, 200, alpha);  /* Gray for others */
         }
 
         /* Render item text */
         if (itemLabels[i] != NULL) {
-            func_800CD7F8(itemLabels[i], itemX, itemY);
+            text_render(itemLabels[i], itemX, itemY);
         }
     }
 }
 
 /*
 
- * func_800DC8D0 (1100 bytes)
+ * button_sprite_render (1100 bytes)
  * Button sprite render
  */
-void func_800DC8D0(s32 buttonId, s32 x, s32 y) {
+void button_sprite_render(s32 buttonId, s32 x, s32 y) {
     Gfx **dlPtr;
     Gfx *dl;
     u8 *buttonTextures;
@@ -25550,10 +25550,10 @@ void func_800DC8D0(s32 buttonId, s32 x, s32 y) {
 
 /*
 
- * func_800DCD20 (1760 bytes)
+ * icon_sprite_render (1760 bytes)
  * Icon sprite render
  */
-void func_800DCD20(s32 iconId, s32 x, s32 y) {
+void icon_sprite_render(s32 iconId, s32 x, s32 y) {
     Gfx **dlPtr;
     Gfx *dl;
     s32 texU, texV;
@@ -25598,10 +25598,10 @@ void func_800DCD20(s32 iconId, s32 x, s32 y) {
 
 /*
 
- * func_800DD410 (2340 bytes)
+ * selection_highlight (2340 bytes)
  * Selection highlight
  */
-void func_800DD410(s32 x, s32 y, s32 w, s32 h) {
+void selection_highlight(s32 x, s32 y, s32 w, s32 h) {
     Gfx **dlPtr;
     Gfx *dl;
     u32 highlightColor;
@@ -25655,10 +25655,10 @@ void func_800DD410(s32 x, s32 y, s32 w, s32 h) {
 
 /*
 
- * func_800DDD40 (1284 bytes)
+ * menu_scroll (1284 bytes)
  * Menu scroll
  */
-void func_800DDD40(void *menu, s32 direction) {
+void menu_scroll(void *menu, s32 direction) {
     s32 *selectedItem, *numItems;
     s32 *scrollOffset;
     s32 maxVisible;
@@ -25698,10 +25698,10 @@ void func_800DDD40(void *menu, s32 direction) {
 
 /*
 
- * func_800DE244 (1824 bytes)
+ * menu_transition (1824 bytes)
  * Menu transition effect
  */
-void func_800DE244(void *menu, s32 transitionType) {
+void menu_transition(void *menu, s32 transitionType) {
     s32 *animState;
     f32 *animTime, *animDuration;
 
@@ -25758,10 +25758,10 @@ void func_800DE244(void *menu, s32 transitionType) {
 
 /*
 
- * func_800DE960 (2128 bytes)
+ * popup_dialog (2128 bytes)
  * Popup dialog
  */
-void func_800DE960(u8 *message, s32 type) {
+void popup_dialog(u8 *message, s32 type) {
     s32 textWidth, textHeight;
     s32 boxX, boxY, boxW, boxH;
     s32 padding;
@@ -25773,7 +25773,7 @@ void func_800DE960(u8 *message, s32 type) {
     }
 
     padding = 16;
-    textWidth = func_800CFEDC(message);
+    textWidth = text_width_calc(message);
     textHeight = 16;  /* Single line assumed */
 
     /* Center dialog on screen */
@@ -25819,35 +25819,35 @@ void func_800DE960(u8 *message, s32 type) {
     *dlPtr = dl;
 
     /* Draw text centered */
-    func_800D0258(255, 255, 255, 255);
-    func_800CD7F8(message, boxX + padding, boxY + padding);
+    text_color_set(255, 255, 255, 255);
+    text_render(message, boxX + padding, boxY + padding);
 }
 
 /*
 
- * func_800DF1B0 (1356 bytes)
+ * confirm_dialog (1356 bytes)
  * Confirmation dialog
  */
-s32 func_800DF1B0(u8 *message) {
+s32 confirm_dialog(u8 *message) {
     /* Confirmation - stub */
     return 0;
 }
 
 /*
 
- * func_800DF6FC (2064 bytes)
+ * input_prompt (2064 bytes)
  * Input prompt
  */
-void func_800DF6FC(u8 *prompt, u8 *buffer, s32 maxLen) {
+void input_prompt(u8 *prompt, u8 *buffer, s32 maxLen) {
     /* Input prompt - stub */
 }
 
 /*
 
- * func_800DFF0C (1600 bytes)
+ * virtual_keyboard (1600 bytes)
  * Virtual keyboard
  */
-void func_800DFF0C(u8 *buffer, s32 maxLen) {
+void virtual_keyboard(u8 *buffer, s32 maxLen) {
     /* Virtual keyboard - stub */
 }
 
@@ -25856,16 +25856,16 @@ void func_800DFF0C(u8 *buffer, s32 maxLen) {
  * func_800E051C (212 bytes)
  * Keyboard cursor move
  */
-void func_800E051C(s32 dx, s32 dy) {
+void cursor_move(s32 dx, s32 dy) {
     /* Cursor move - stub */
 }
 
 /*
 
- * func_800EAE90 (2720 bytes)
+ * world_bounds_setup (2720 bytes)
  * World bounds setup
  */
-void func_800EAE90(void *world) {
+void world_bounds_setup(void *world) {
     f32 *minBounds;
     f32 *maxBounds;
     f32 *worldData;
@@ -25899,10 +25899,10 @@ void func_800EAE90(void *world) {
 
 /*
 
- * func_800EB920 (1012 bytes)
+ * trigger_zone_check (1012 bytes)
  * Trigger zone check
  */
-s32 func_800EB920(void *entity, void *trigger) {
+s32 trigger_zone_check(void *entity, void *trigger) {
     f32 *entityPos;
     f32 *triggerMin, *triggerMax;
     s32 *triggerType;
@@ -25965,10 +25965,10 @@ s32 func_800EB920(void *entity, void *trigger) {
 
 /*
 
- * func_800EBD14 (1708 bytes)
+ * trigger_callback_set (1708 bytes)
  * Trigger zone callback
  */
-void func_800EBD14(void *trigger, void *callback) {
+void trigger_callback_set(void *trigger, void *callback) {
     void (**callbackPtr)(void *);
     s32 *triggerEnabled;
     s32 *triggerOnce;
@@ -25993,10 +25993,10 @@ void func_800EBD14(void *trigger, void *callback) {
 
 /*
 
- * func_800EC3B0 (2948 bytes)
+ * scripted_event (2948 bytes)
  * Scripted event
  */
-void func_800EC3B0(void *event) {
+void scripted_event(void *event) {
     s32 *eventType;
     s32 *eventState;
     f32 *eventTime;
