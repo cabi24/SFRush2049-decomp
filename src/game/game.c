@@ -7267,10 +7267,10 @@ void viewport_dims_setup(void) {
 
 /*
 
- * func_800B0458 (112 bytes)
+ * player_array_process (112 bytes)
  * Process player array for update flags
  */
-void func_800B0458(void) {
+void player_array_process(void) {
     s32 i;
     u8 *playerBase;
     u8 flags;
@@ -7318,10 +7318,10 @@ void effect_slot_init(s32 idx) {
 
 /*
 
- * func_800C40F8 (136 bytes)
+ * state_check_update1 (136 bytes)
  * Check state and call update
  */
-void func_800C40F8(void) {
+void state_check_update1(void) {
     void *ptr;
     s32 state;
 
@@ -7340,10 +7340,10 @@ void func_800C40F8(void) {
 
 /*
 
- * func_800C4180 (128 bytes)
+ * state_check_update2 (128 bytes)
  * Similar state check with different update
  */
-void func_800C4180(void) {
+void state_check_update2(void) {
     void *ptr;
     s32 state;
 
@@ -7362,10 +7362,10 @@ void func_800C4180(void) {
 
 /*
 
- * func_800C5500 (228 bytes)
+ * entity_type_dispatch (228 bytes)
  * Process entity with type dispatch
  */
-void func_800C5500(void *entity) {
+void entity_type_dispatch(void *entity) {
     s32 type;
 
     if (entity == NULL) {
@@ -7536,11 +7536,11 @@ void entity_update(void *entity) {
 
 /*
 
- * func_800D2488 (64 bytes)
+ * float_store_update (64 bytes)
  * Store float and call update with params
  * f4, f6, f12 preloaded with floats
  */
-void func_800D2488(s32 idx, f32 f12_val) {
+void float_store_update(s32 idx, f32 f12_val) {
     f32 f8;
     void *ptr;
 
