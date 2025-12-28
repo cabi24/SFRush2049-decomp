@@ -17484,13 +17484,13 @@ void sparks_spawn(f32 *pos, f32 *velocity) {
 
 /*
 
- * func_800E31D4 (248 bytes)
+ * smoke_puff_spawn (248 bytes)
  * Smoke puff
  *
  * Creates a single smoke puff at the given position.
  * Used for engine smoke, tire smoke, etc.
  */
-void func_800E31D4(f32 *pos, f32 size) {
+void smoke_puff_spawn(f32 *pos, f32 size) {
     s32 *particlePool;
     s32 *particleIndex;
     s32 *particle;
@@ -17532,13 +17532,13 @@ void func_800E31D4(f32 *pos, f32 size) {
 
 /*
 
- * func_800E32CC (1112 bytes)
+ * dust_cloud_spawn (1112 bytes)
  * Dust cloud
  *
  * Creates a cloud of dust particles.
  * Used for driving on dirt, sand, or off-road.
  */
-void func_800E32CC(f32 *pos, f32 *velocity, f32 size) {
+void dust_cloud_spawn(f32 *pos, f32 *velocity, f32 size) {
     s32 *particlePool;
     s32 *particleIndex;
     s32 i, numParticles;
@@ -17600,13 +17600,13 @@ void func_800E32CC(f32 *pos, f32 *velocity, f32 size) {
 
 /*
 
- * func_800E3724 (612 bytes)
+ * water_splash_spawn (612 bytes)
  * Water splash
  *
  * Creates water splash particles.
  * Used when car drives through water or puddles.
  */
-void func_800E3724(f32 *pos, f32 size) {
+void water_splash_spawn(f32 *pos, f32 size) {
     s32 *particlePool;
     s32 *particleIndex;
     s32 i, numParticles;
@@ -17663,13 +17663,13 @@ void func_800E3724(f32 *pos, f32 size) {
 
 /*
 
- * func_800E398C (2960 bytes)
+ * particles_render (2960 bytes)
  * Particle render
  *
  * Renders all active particles as billboarded sprites.
  * Handles different particle types with appropriate textures.
  */
-void func_800E398C(void *particles) {
+void particles_render(void *particles) {
     s32 *pool;
     s32 maxParticles, i;
     f32 *cameraPos;
@@ -17750,13 +17750,13 @@ void func_800E398C(void *particles) {
 
 /*
 
- * func_800E451C (1596 bytes)
+ * lens_flare_render (1596 bytes)
  * Lens flare effect
  *
  * Renders lens flare when looking towards the sun.
  * Creates multiple flare elements along sun-to-center axis.
  */
-void func_800E451C(void *camera, f32 *sunPos) {
+void lens_flare_render(void *camera, f32 *sunPos) {
     f32 *camPos, *camDir;
     f32 toSunX, toSunY, toSunZ, toSunLen;
     f32 dot, intensity;
@@ -17822,13 +17822,13 @@ void func_800E451C(void *camera, f32 *sunPos) {
 
 /*
 
- * func_800E4B58 (2284 bytes)
+ * sky_render (2284 bytes)
  * Sky rendering
  *
  * Renders the skybox/skydome based on time of day.
  * Includes gradient sky, clouds, and sun/moon.
  */
-void func_800E4B58(void *camera) {
+void sky_render(void *camera) {
     f32 *camDir;
     s32 timeOfDay;
     f32 sunAngle, sunHeight;
@@ -17892,22 +17892,22 @@ void func_800E4B58(void *camera) {
     /* Render sun/moon */
     if (sunHeight > -0.1f) {
         /* Sun is visible */
-        func_800E451C(camera, sunPos);
+        lens_flare_render(camera, sunPos);
     }
 
     /* Render clouds */
-    func_800E5444(camera);
+    horizon_render(camera);
 }
 
 /*
 
- * func_800E5444 (712 bytes)
+ * horizon_render (712 bytes)
  * Horizon line
  *
  * Renders distant horizon with haze/fog effect.
  * Also renders distant clouds as layered sprites.
  */
-void func_800E5444(void *camera) {
+void horizon_render(void *camera) {
     f32 *camPos, *camDir;
     f32 horizonY;
     s32 i;
@@ -17952,13 +17952,13 @@ void func_800E5444(void *camera) {
 
 /*
 
- * func_800E571C (4360 bytes)
+ * envmap_calculate (4360 bytes)
  * Environment mapping
  *
  * Applies environment/reflection mapping to surfaces.
  * Uses camera-relative texture coordinates for fake reflections.
  */
-void func_800E571C(void *surface) {
+void envmap_calculate(void *surface) {
     f32 *normal, *camPos, *surfPos;
     f32 viewX, viewY, viewZ, viewLen;
     f32 reflectX, reflectY, reflectZ;
@@ -18012,13 +18012,13 @@ void func_800E571C(void *surface) {
 
 /*
 
- * func_800E6824 (708 bytes)
+ * reflection_update (708 bytes)
  * Reflection update
  *
  * Updates reflection state for reflective surfaces.
  * Called each frame for surfaces like car paint, water.
  */
-void func_800E6824(void *surface) {
+void reflection_update(void *surface) {
     f32 *intensity;
     s32 *reflectType;
     f32 fresnel;
@@ -18061,18 +18061,18 @@ void func_800E6824(void *surface) {
     }
 
     /* Update environment map UVs */
-    func_800E571C(surface);
+    envmap_calculate(surface);
 }
 
 /*
 
- * func_800E6AF8 (1596 bytes)
+ * shadow_project (1596 bytes)
  * Shadow volume
  *
  * Calculates shadow projection for an object.
  * Projects shadow onto ground plane based on light direction.
  */
-void func_800E6AF8(void *object, f32 *lightDir) {
+void shadow_project(void *object, f32 *lightDir) {
     f32 *objPos, *objBounds;
     f32 shadowVerts[8][3];
     f32 groundY;
