@@ -1097,14 +1097,15 @@ extern s16 sound_apply_effect(s32 channel, s32 effectType, f32 amount); /* func_
 
 /**
 /*
- * func_800FBC38 - Countdown display handler
+ * countdown_display - Countdown display handler
+ * (func_800FBC38)
  * Address: 0x800FBC38
  * Size: 488 bytes
  *
  * Displays the countdown timer during race start.
  * Finds active player, formats countdown text, and displays it.
  */
-void func_800FBC38(void) {
+void countdown_display(void) {
     s32 player_count;
     s32 i;
     s8 str_buf[80];      /* sp+0x50 */
@@ -1337,10 +1338,11 @@ extern void func_800B5F88(s32 a0); /* Menu toggle */
 extern void func_800B438C(s32 streamId, void *data); /* Audio stream start */
 
 /*
- * func_800F6310 - Race state machine
- * Handles race initialization and state transitions
+ * race_state_machine - Race state machine
+ * (func_800F6310)
+ * Handles race initialization and state transitions.
  */
-void func_800F6310(void) {
+void race_state_machine(void) {
     s32 race_state;
     s32 sub_state;
     s32 player_count, player_idx, i;
@@ -1632,18 +1634,18 @@ exit_func:
 
 /**
 /*
- * func_800F7344 - Update all active sound objects
+ * active_sounds_update - Update all active sound objects
+ * (func_800F7344)
  * Address: 0x800F7344
  * Size: 184 bytes
  *
  * Iterates through active sound list (D_80159450) and calls each
  * object's update callback. If callback returns 0, the sound is
- * stopped and removed via func_800B358C.
+ * stopped and removed via sound_handle_stop.
  *
- * Note: func_800F733C loads count into t6 immediately before this
- * (lui t6, 0x8015 / lw t6, -26744(t6)) - that's the prologue.
+ * Note: func_800F733C loads count into t6 immediately before this.
  */
-void func_800F7344(void) {
+void active_sounds_update(void) {
     s32 count;
     void **cur_ptr;
     void **end_ptr;
@@ -1935,15 +1937,15 @@ s8 func_800C9528(void) {
  */
 extern void (*D_801551E8[])(void);  /* Input callback table start */
 extern void (*D_80155210)(void);    /* Input callback table end marker */
-extern void func_800B73E4(void); /* Input system init */
+extern void input_system_init(void); /* func_800B73E4 - Input system init */
 
-void func_800C9530(void) {
+void input_handlers_process(void) {
     void (**callback_ptr)(void);
     void (*callback)(void);
 
     /* One-time initialization if not yet done */
     if (D_801147C4 == 0) {
-        func_800B73E4();
+        input_system_init();
     }
 
     /* Iterate through callback table */
@@ -1962,7 +1964,8 @@ void func_800C9530(void) {
 
 /**
 /*
- * func_800D7D40 - Clear all sound handles for a player's car
+ * car_sounds_clear - Clear all sound handles for a player's car
+ * (func_800D7D40)
  * Address: 0x800D7D40
  * Size: 132 bytes
  *
@@ -1982,10 +1985,10 @@ void func_800C9530(void) {
  */
 extern u8 D_80111998[];      /* Car state array base */
 extern s32 D_80154618[];     /* Per-player state flags */
-extern void func_80090088(s16, s32, s32);  /* Stop sound by handle */
+extern void sound_stop_by_handle(s16, s32, s32);  /* func_80090088 - Stop sound */
 
 /* This function uses non-standard calling - player_idx in s4 */
-void func_800D7D40(void) {
+void car_sounds_clear(void) {
     register s8 player_idx asm("s4");  /* Player index passed in s4 */
     u8 *car_state;
     s32 offset;
@@ -2479,22 +2482,22 @@ s32 func_800D60B4(void) {
  *
  * NOTE: Slot ID is passed in register t0, not a0.
  */
-extern s32 func_80097694(s32, s32);   /* Get slot state */
-extern void func_8009638C(s32 a0); /* Register slot */
+extern s32 resource_get_slot_state(s32, s32);   /* func_80097694 - Get slot state */
+extern void resource_register_slot(s32 a0); /* func_8009638C - Register slot */
 
-void func_800C9334(void) {
+void resource_slot_clear(void) {
     register s32 slot_id asm("t0");  /* Slot ID in t0 */
     s32 result;
 
     /* Check slot state */
-    result = func_80097694(slot_id, -1);
+    result = resource_get_slot_state(slot_id, -1);
 
     if (result < 0) {
         /* Allocate new slot */
         result = func_80097798(slot_id, 0, 0, 0, 0);
 
         /* Register it */
-        func_8009638C(result);
+        resource_register_slot(result);
     }
 }
 
@@ -2502,32 +2505,33 @@ void func_800C9334(void) {
 
 /**
 /*
- * func_800C937C - Clear multiple resource slots
+ * resource_slots_clear_multiple - Clear multiple resource slots
+ * (func_800C937C)
  * Address: 0x800C937C
  * Size: 48 bytes
  *
- * Clears slots 54, 58, and 59 by calling func_800C9334 for each.
+ * Clears slots 54, 58, and 59 by calling resource_slot_clear for each.
  */
-void func_800C937C(void) {
+void resource_slots_clear_multiple(void) {
     /* Clear slot 54 */
     {
         register s32 slot asm("t0") = 54;
         (void)slot;
-        func_800C9334();
+        resource_slot_clear();
     }
 
     /* Clear slot 58 */
     {
         register s32 slot asm("t0") = 58;
         (void)slot;
-        func_800C9334();
+        resource_slot_clear();
     }
 
     /* Clear slot 59 */
     {
         register s32 slot asm("t0") = 59;
         (void)slot;
-        func_800C9334();
+        resource_slot_clear();
     }
 }
 
