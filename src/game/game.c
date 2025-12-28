@@ -4856,7 +4856,7 @@ void pool_linked_list_init(void *a0) {
 
 /**
 /*
- * func_800B0580 - Reset and initialize pool system
+ * pool_system_reset - Reset and initialize pool system
  * Address: 0x800B0580
  * Size: 152 bytes
  *
@@ -4867,7 +4867,7 @@ void pool_linked_list_init(void *a0) {
 extern void func_800AFA84(void*, void*);
 extern u8 D_80155B30[];
 
-void func_800B0580(s32 slot, void *data, s32 size) {
+void pool_system_reset(s32 slot, void *data, s32 size) {
     void *node;
 
     /* Process and remove all nodes from active list */
@@ -4895,7 +4895,7 @@ void func_800B0580(s32 slot, void *data, s32 size) {
 /**
 /**
 /*
- * func_8009C5BC - Call func_8009C3F8 with mode 0
+ * mode0_setup_call - Call func_8009C3F8 with mode 0
  * Address: 0x8009C5BC
  * Size: 36 bytes
  *
@@ -4904,7 +4904,7 @@ void func_800B0580(s32 slot, void *data, s32 size) {
  */
 extern void func_8009C3F8(s32);
 
-void func_8009C5BC(void) {
+void mode0_setup_call(void) {
     func_8009C3F8(0);
 }
 
@@ -4912,14 +4912,14 @@ void func_8009C5BC(void) {
 
 /**
 /*
- * func_800BFD68 - Call func_8009C3F8 with mode 1
+ * mode1_setup_call - Call func_8009C3F8 with mode 1
  * Address: 0x800BFD68
  * Size: 36 bytes
  *
  * Simple wrapper that calls func_8009C3F8(1).
  * The FP register f16 receives abs(f12) but may be unused.
  */
-void func_800BFD68(void) {
+void mode1_setup_call(void) {
     func_8009C3F8(1);
 }
 
@@ -4927,7 +4927,7 @@ void func_800BFD68(void) {
 
 /**
 /*
- * func_800A511C - Conditional state update
+ * state_update_conditional - Conditional state update
  * Address: 0x800A511C
  * Size: 60 bytes
  *
@@ -4941,7 +4941,7 @@ extern void func_800A501C(void);
 extern void func_800A4E58(void);
 extern s16 D_8013FEC8;
 
-void func_800A511C(s32 a0, s32 a1) {
+void state_update_conditional(s32 a0, s32 a1) {
     if (a0 != a1) {
         func_800A501C();
         D_80140A10 = (u8)D_8013FEC8;
@@ -4953,7 +4953,7 @@ void func_800A511C(s32 a0, s32 a1) {
 
 /**
 /*
- * func_800AB70C - Call func_8008E26C with transformed parameters
+ * params_transform_call - Call func_8008E26C with transformed parameters
  * Address: 0x800AB70C
  * Size: 68 bytes
  *
@@ -4968,7 +4968,7 @@ void func_800A511C(s32 a0, s32 a1) {
  * @param stack Fifth parameter from stack (ORed into new a3)
  */
 
-void func_800AB70C(s32 a0, s32 a1, s16 a2, s16 a3, s32 stack) {
+void params_transform_call(s32 a0, s32 a1, s16 a2, s16 a3, s32 stack) {
     s32 new_a2 = a3;
     s32 new_a3 = ((a2 << 8) ^ 0x0F00) | stack;
     func_8008E26C(0);
@@ -4978,7 +4978,7 @@ void func_800AB70C(s32 a0, s32 a1, s16 a2, s16 a3, s32 stack) {
 
 /**
 /*
- * func_800C92DC - Call func_800C9210 with mode (1, 0)
+ * speed_mode0_wrapper - Call func_800C9210 with mode (1, 0)
  * Address: 0x800C92DC
  * Size: 88 bytes
  *
@@ -4986,7 +4986,7 @@ void func_800AB70C(s32 a0, s32 a1, s16 a2, s16 a3, s32 stack) {
  * The FP operations copy f12 to f20 and f14 to f22.
  */
 
-void func_800C92DC(void) {
+void speed_mode0_wrapper(void) {
     speed_set(0);
 }
 
@@ -4994,14 +4994,14 @@ void func_800C92DC(void) {
 
 /**
 /*
- * func_800C93AC - Call func_800C9210 with mode (0, 1)
+ * speed_mode1_wrapper - Call func_800C9210 with mode (0, 1)
  * Address: 0x800C93AC
  * Size: 88 bytes
  *
  * Wrapper that sets s1=0, s2=1 and calls func_800C9210.
  * The FP operations copy f12 to f20 and f14 to f22.
  */
-void func_800C93AC(void) {
+void speed_mode1_wrapper(void) {
     speed_set(0);
 }
 
@@ -5009,7 +5009,7 @@ void func_800C93AC(void) {
 
 /**
 /*
- * func_8010B528 - Initialize structure with callback pointer
+ * struct_callback_init - Initialize structure with callback pointer
  * Address: 0x8010B528
  * Size: 56 bytes
  *
@@ -5021,7 +5021,7 @@ void func_800C93AC(void) {
  */
 extern u8 D_80116DE0[];
 
-s32 func_8010B528(void *a0) {
+s32 struct_callback_init(void *a0) {
     *(void**)((u8*)a0 + 4) = &D_80116DE0[0];
     func_80094EC8(a0);
     *(s32*)((u8*)a0 + 0x28) = 0;
@@ -5032,7 +5032,7 @@ s32 func_8010B528(void *a0) {
 
 /**
 /*
- * func_8010B560 - Update state based on global flag
+ * state_update_global - Update state based on global flag
  * Address: 0x8010B560
  * Size: 112 bytes
  *
@@ -5045,7 +5045,7 @@ s32 func_8010B528(void *a0) {
  */
 extern u8 D_80117358[];
 
-s32 func_8010B560(void *a0) {
+s32 state_update_global(void *a0) {
     s32 globalState;
     s8 currentState;
 
@@ -5072,7 +5072,7 @@ s32 func_8010B560(void *a0) {
 
 /**
 /*
- * func_800F8754 - Cleanup and reset state
+ * state_cleanup_reset - Cleanup and reset state
  * Address: 0x800F8754
  * Size: 76 bytes
  *
@@ -5085,7 +5085,7 @@ extern void func_800B45BC(s32 clear_all);
 extern void *D_8011472C;
 extern u8 D_80114728;
 
-void func_800F8754(void) {
+void state_cleanup_reset(void) {
     func_800F857C();
     func_800B45BC(1);
 
@@ -5100,7 +5100,7 @@ void func_800F8754(void) {
 
 /**
 /*
- * func_80091F34 - Synchronized call to func_80091CA4
+ * synced_call_91ca4 - Synchronized call to func_80091CA4
  * Address: 0x80091F34
  * Size: 136 bytes
  *
@@ -5112,7 +5112,7 @@ void func_800F8754(void) {
  */
 extern void func_80091CA4(void*);
 
-void func_80091F34(void *a0, s32 a1) {
+void synced_call_91ca4(void *a0, s32 a1) {
     func_80007270(&D_80142728[0], NULL, 1);
     func_80091CA4(a0);
     func_800075E0(&D_80142728[0], NULL, 0);
@@ -5122,7 +5122,7 @@ void func_80091F34(void *a0, s32 a1) {
 
 /**
 /*
- * func_800AC668 - Complex initialization with callback setup
+ * callback_setup_complex - Complex initialization with callback setup
  * Address: 0x800AC668
  * Size: 140 bytes
  *
@@ -5138,7 +5138,7 @@ extern void *func_80092C58(void*, void*, void*, s32, void*);
 extern void func_800AC3D8(void*, s16);
 extern void func_800AB638(void);
 
-s16 func_800AC668(void *a0, s16 a1) {
+s16 callback_setup_complex(void *a0, s16 a1) {
     u8 buf1[4];
     u8 buf2[4];
     void *result;
@@ -5159,7 +5159,7 @@ s16 func_800AC668(void *a0, s16 a1) {
 
 /**
 /*
- * func_800A4AC4 - Iterate through slot array and call func_80096130
+ * slot_array_iterate - Iterate through slot array and call func_80096130
  * Address: 0x800A4AC4
  * Size: 124 bytes
  *
@@ -5169,7 +5169,7 @@ s16 func_800AC668(void *a0, s16 a1) {
  * @param a0 Filter value for field_06 comparison
  */
 
-void func_800A4AC4(s32 a0) {
+void slot_array_iterate(s32 a0) {
     u8 *slot = &D_80156D38[0];
     s32 i;
 
@@ -5187,7 +5187,7 @@ void func_800A4AC4(s32 a0) {
 
 /**
 /*
- * func_8009DC50 - Recursive tree/list search
+ * tree_search_recursive - Recursive tree/list search
  * Address: 0x8009DC50
  * Size: 200 bytes
  *
@@ -5200,7 +5200,7 @@ void func_800A4AC4(s32 a0) {
  */
 extern u8 D_8013E700[];
 
-s32 func_8009DC50(void *a0, s32 a1) {
+s32 tree_search_recursive(void *a0, s32 a1) {
     s32 flags;
     s32 mask;
     s16 leftIdx, rightIdx;
@@ -5219,7 +5219,7 @@ s32 func_8009DC50(void *a0, s32 a1) {
         leftIdx = *(s16*)((u8*)node + 0x16);
         if (leftIdx >= 0) {
             /* Recurse on left child */
-            if (func_8009DC50(&D_8013E700[leftIdx * 68], a1) != 0) {
+            if (tree_search_recursive(&D_8013E700[leftIdx * 68], a1) != 0) {
                 return 1;
             }
         }
@@ -5238,18 +5238,18 @@ s32 func_8009DC50(void *a0, s32 a1) {
 
 /**
 /*
- * func_8009DD18 - Check node flag and optionally search tree
+ * tree_node_check - Check node flag and optionally search tree
  * Address: 0x8009DD18
  * Size: 112 bytes
  *
  * Checks if bit (256 << a1) is set in node flags.
- * If not, searches subtree using func_8009DC50.
+ * If not, searches subtree using tree_search_recursive.
  *
  * @param a0 Pointer to node structure
  * @param a1 Bit position for mask
  * @return 1 if flag set or found in tree, 0 otherwise
  */
-s32 func_8009DD18(void *a0, s32 a1) {
+s32 tree_node_check(void *a0, s32 a1) {
     s32 flags;
     s32 mask;
     s16 idx;
@@ -5266,7 +5266,7 @@ s32 func_8009DD18(void *a0, s32 a1) {
         return 0;
     }
 
-    if (func_8009DC50(&D_8013E700[idx * 68], a1) != 0) {
+    if (tree_search_recursive(&D_8013E700[idx * 68], a1) != 0) {
         return 1;
     }
 
@@ -5277,7 +5277,7 @@ s32 func_8009DD18(void *a0, s32 a1) {
 
 /**
 /*
- * func_800BF148 - Synchronized lookup and process
+ * synced_lookup_and_process - Synchronized lookup and process
  * Address: 0x800BF148
  * Size: 128 bytes
  *
@@ -5303,7 +5303,7 @@ extern s16 D_80154182;
 
 extern void func_800BAAA0(void *world); /* Setup call */
 
-void *func_800BF148(void *a0) {
+void *synced_lookup_and_process(void *a0) {
     void *result;
 
     func_80007270(&D_80142728[0], NULL, 1);
@@ -5326,7 +5326,7 @@ void *func_800BF148(void *a0) {
 
 /**
 /*
- * func_800D11BC - Initialize object with default scale values
+ * object_scale_init - Initialize object with default scale values
  * (140 bytes)
  *
  * Initializes an object's scale factors to default values (0, 0, 0, 1)
@@ -5335,7 +5335,7 @@ void *func_800BF148(void *a0) {
  *
  * @param a0 Pointer to object structure
  */
-void func_800D11BC(void *a0) {
+void object_scale_init(void *a0) {
     f32 zero;
     f32 one;
     f32 val;
@@ -5369,12 +5369,12 @@ void func_800D11BC(void *a0) {
 
 /**
 /*
- * func_800BAD58 - Reset camera/visual float arrays
+ * camera_arrays_reset - Reset camera/visual float arrays
  * (136 bytes)
  *
  * Initializes three float arrays to zero and sets up initial state values.
  */
-void func_800BAD58(void) {
+void camera_arrays_reset(void) {
     f32 zero;
     s32 i;
 
@@ -5401,7 +5401,7 @@ extern s32 func_800A1A60(void*);  /* Object processing function */
 
 /**
 /*
- * func_800CC848 - Check object status and optionally process
+ * object_status_check - Check object status and optionally process
  * (128 bytes)
  *
  * Checks if an object's child reference is valid and if the indexed
@@ -5411,7 +5411,7 @@ extern s32 func_800A1A60(void*);  /* Object processing function */
  * @param a1 If non-zero, call processing function
  * @return 0 if invalid/disabled, 1 if valid, or processing result
  */
-s32 func_800CC848(void **a0, s32 a1) {
+s32 object_status_check(void **a0, s32 a1) {
     void *parent;
     void *child;
     void *childData;
