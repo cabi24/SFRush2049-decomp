@@ -11139,8 +11139,9 @@ void car_lod_select(void *car, f32 distance) {
 
 /*
 
- * func_800A4940 (388 bytes)
+ * wheel_rotation_update (388 bytes)
  * Wheel rotation update
+ * func_800A4940
  *
  * Updates wheel visual rotation based on angular velocity.
  * Also handles tire slip angle calculations for force model.
@@ -11153,7 +11154,7 @@ void car_lod_select(void *car, f32 distance) {
  *   0x10: slip ratio
  *   0x14: contact patch velocity [3]
  */
-void func_800A4940(void *wheel, f32 dt) {
+void wheel_rotation_update(void *wheel, f32 dt) {
     f32 *rotAngle, *angVel;
     f32 radius;
     f32 *slipAngle, *slipRatio;
@@ -11214,8 +11215,9 @@ void func_800A4940(void *wheel, f32 dt) {
 
 /*
 
- * func_800A4CC0 (412 bytes)
+ * suspension_update (412 bytes)
  * Suspension compression update
+ * func_800A4CC0
  *
  * Based on arcade tires.c dotireforce() function.
  * Calculates suspension spring and damper forces.
@@ -11231,7 +11233,7 @@ void func_800A4940(void *wheel, f32 dt) {
  *   0x18: other side compression (for ARB calc)
  *   0x1C: output force
  */
-void func_800A4CC0(void *suspension, f32 newCompression) {
+void suspension_update(void *suspension, f32 newCompression) {
     f32 *compression, *compVel;
     f32 springRate, cDamping, rDamping;
     f32 arbRate, otherComp;
@@ -11308,8 +11310,9 @@ void func_800A4CC0(void *suspension, f32 newCompression) {
 
 /*
 
- * func_800A4E60 (444 bytes)
+ * tire_skid_mark (444 bytes)
  * Tire skid mark generation
+ * func_800A4E60
  *
  * Creates visual skid marks on the ground based on tire slip.
  * Based on arcade tires.c screech calculations.
@@ -11320,7 +11323,7 @@ void func_800A4CC0(void *suspension, f32 newCompression) {
  *   0x20: skid mark buffer pointer
  *   0x24: skid mark index
  */
-void func_800A4E60(void *tire, f32 *pos, f32 intensity) {
+void tire_skid_mark(void *tire, f32 *pos, f32 intensity) {
     f32 slipRatio, slipAngle;
     f32 totalSlip;
     void **skidBuffer;
@@ -11372,10 +11375,11 @@ void func_800A4E60(void *tire, f32 *pos, f32 intensity) {
 
 /*
 
- * func_800A51E0 (932 bytes)
+ * car_damage_visual (932 bytes)
  * Car damage visual update - apply damage effects to car model
+ * func_800A51E0
  */
-void func_800A51E0(void *car, s32 damageLevel) {
+void car_damage_visual(void *car, s32 damageLevel) {
     f32 *bodyOffset;
     s32 *damageState;
     s32 i;
@@ -11421,17 +11425,18 @@ void func_800A51E0(void *car, s32 damageLevel) {
 
         /* Trigger smoke effect on heavy damage */
         if (damageLevel >= 4) {
-            func_800A5588(car, 2);  /* Smoke */
+            engine_particle_effect(car, 2);  /* Smoke */
         }
     }
 }
 
 /*
 
- * func_800A5588 (444 bytes)
+ * engine_particle_effect (444 bytes)
  * Engine particle effect - spawn particles from car
+ * func_800A5588
  */
-void func_800A5588(void *car, s32 effectType) {
+void engine_particle_effect(void *car, s32 effectType) {
     f32 *carPos;
     f32 *carDir;
     s32 *particlePool;
@@ -11501,10 +11506,11 @@ void func_800A5588(void *car, s32 effectType) {
 
 /*
 
- * func_800A5744 (488 bytes)
+ * exhaust_smoke_effect (488 bytes)
  * Exhaust smoke effect - render exhaust from car
+ * func_800A5744
  */
-void func_800A5744(void *car, f32 *exhaustPos) {
+void exhaust_smoke_effect(void *car, f32 *exhaustPos) {
     f32 *carVel;
     f32 speed;
     s32 rpm;
@@ -11545,10 +11551,11 @@ void func_800A5744(void *car, f32 *exhaustPos) {
 
 /*
 
- * func_800A5D34 (1116 bytes)
+ * car_shadow_render (1116 bytes)
  * Car shadow rendering - render blob shadow under car
+ * func_800A5D34
  */
-void func_800A5D34(void *car, void *ground) {
+void car_shadow_render(void *car, void *ground) {
     f32 *carPos;
     f32 *groundY;
     f32 shadowY;
@@ -11601,10 +11608,11 @@ void func_800A5D34(void *car, void *ground) {
 
 /*
 
- * func_800A6094 (428 bytes)
+ * car_lights_render (428 bytes)
  * Headlight/taillight rendering - render car lights
+ * func_800A6094
  */
-void func_800A6094(void *car, s32 lightMask) {
+void car_lights_render(void *car, s32 lightMask) {
     f32 *carPos;
     f32 *carDir;
     f32 lightPos[3];
@@ -11651,10 +11659,11 @@ void func_800A6094(void *car, s32 lightMask) {
 
 /*
 
- * func_800A6244 (448 bytes)
+ * brake_light_update (448 bytes)
  * Brake light update - update brake light state
+ * func_800A6244
  */
-void func_800A6244(void *car, s32 braking) {
+void brake_light_update(void *car, s32 braking) {
     s32 *lightState;
     s32 currentLights;
 
@@ -11674,15 +11683,16 @@ void func_800A6244(void *car, s32 braking) {
     *lightState = currentLights;
 
     /* Render lights */
-    func_800A6094(car, currentLights);
+    car_lights_render(car, currentLights);
 }
 
 /*
 
- * func_800A6404 (2016 bytes)
+ * car_render_full (2016 bytes)
  * Car full render - render complete car with all effects
+ * func_800A6404
  */
-void func_800A6404(void *car) {
+void car_render_full(void *car) {
     f32 *carPos;
     f32 *carVel;
     s32 damageLevel;
@@ -11706,25 +11716,25 @@ void func_800A6404(void *car) {
 
     /* Render shadow */
     if (onGround) {
-        func_800A5D34(car, NULL);
+        car_shadow_render(car, NULL);
     }
 
     /* Render car body */
-    func_80099BFC(car);
+    entity_render_main(car);
 
     /* Apply damage visuals */
     if (damageLevel > 0) {
-        func_800A51E0(car, damageLevel);
+        car_damage_visual(car, damageLevel);
     }
 
     /* Render lights */
-    func_800A6094(car, lightState);
+    car_lights_render(car, lightState);
 
     /* Update brake lights */
     if (braking > 0) {
-        func_800A6244(car, 1);
+        brake_light_update(car, 1);
     } else {
-        func_800A6244(car, 0);
+        brake_light_update(car, 0);
     }
 
     /* Exhaust effect */
