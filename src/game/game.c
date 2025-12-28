@@ -10590,10 +10590,11 @@ s32 entity_ground_check(void *entity, f32 *groundNormal) {
 
 /*
 
- * func_800992AC (2388 bytes)
+ * entity_ai_pathfind (2388 bytes)
  * Entity AI pathfinding - calculates path to target
+ * func_800992AC
  */
-void func_800992AC(void *entity, void *target) {
+void entity_ai_pathfind(void *entity, void *target) {
     f32 *entityPos;
     f32 *targetPos;
     f32 *waypoints;
@@ -10706,10 +10707,11 @@ void func_800992AC(void *entity, void *target) {
 
 /*
 
- * func_80099BFC (10220 bytes)
+ * entity_render_main (10220 bytes)
  * Major entity render function
+ * func_80099BFC
  */
-void func_80099BFC(void *entity) {
+void entity_render_main(void *entity) {
     void *dlPtr;
     u32 flags;
 
@@ -10736,10 +10738,11 @@ void func_80099BFC(void *entity) {
 
 /*
 
- * func_8009C5E0 (1560 bytes)
+ * lighting_calc (1560 bytes)
  * Lighting/shading calculation - computes surface lighting
+ * func_8009C5E0
  */
-void func_8009C5E0(f32 *color, f32 *normal, f32 *lightDir) {
+void lighting_calc(f32 *color, f32 *normal, f32 *lightDir) {
     f32 ambient[3];
     f32 diffuse[3];
     f32 specular[3];
@@ -10813,10 +10816,11 @@ void func_8009C5E0(f32 *color, f32 *normal, f32 *lightDir) {
 
 /*
 
- * func_800A1648 (2256 bytes)
+ * track_segment_load (2256 bytes)
  * Track segment loading
+ * func_800A1648
  */
-void func_800A1648(s32 segmentId) {
+void track_segment_load(s32 segmentId) {
     u32 *segmentTable;
     u32 romAddr, segmentSize;
     u8 *destAddr;
@@ -10859,16 +10863,17 @@ void func_800A1648(s32 segmentId) {
     /* If segment is compressed, decompress it */
     if (*(u8 *)destAddr == 0x1F && *(u8 *)(destAddr + 1) == 0x8B) {
         /* GZIP header detected - decompress in place */
-        func_800A1F18(destAddr, destAddr, segmentSize);
+        track_data_decompress(destAddr, destAddr, segmentSize);
     }
 }
 
 /*
 
- * func_800A1F18 (644 bytes)
+ * track_data_decompress (644 bytes)
  * Track data decompression
+ * func_800A1F18
  */
-void func_800A1F18(void *dest, void *src, s32 size) {
+void track_data_decompress(void *dest, void *src, s32 size) {
     u8 *srcPtr, *destPtr;
     u8 *tempBuffer;
     s32 compressedSize;
@@ -10915,10 +10920,11 @@ void func_800A1F18(void *dest, void *src, s32 size) {
 
 /*
 
- * func_800A21A4 (732 bytes)
+ * track_collision_setup (732 bytes)
  * Track collision setup
+ * func_800A21A4
  */
-void func_800A21A4(void *trackData) {
+void track_collision_setup(void *trackData) {
     u8 *data;
     s32 *numTris, *numQuads;
     f32 *collisionVerts;
@@ -10985,10 +10991,11 @@ void func_800A21A4(void *trackData) {
 
 /*
 
- * func_800A2D4C (3116 bytes)
+ * track_process_main (3116 bytes)
  * Major track processing
+ * func_800A2D4C
  */
-void func_800A2D4C(void *a0, void *a1, void *a2, void *a3) {
+void track_process_main(void *a0, void *a1, void *a2, void *a3) {
     s8 initFlag;
 
     initFlag = *(s8 *)(0x8011194C);
@@ -11004,10 +11011,11 @@ void func_800A2D4C(void *a0, void *a1, void *a2, void *a3) {
 
 /*
 
- * func_800A3654 (296 bytes)
+ * track_spline_interp (296 bytes)
  * Track spline interpolation
+ * func_800A3654
  */
-void func_800A3654(void *spline, f32 t, f32 *outPos) {
+void track_spline_interp(void *spline, f32 t, f32 *outPos) {
     f32 *controlPoints;
     s32 numPoints;
     s32 segment;
@@ -11065,10 +11073,11 @@ void func_800A3654(void *spline, f32 t, f32 *outPos) {
 
 /*
 
- * func_800A377C (3156 bytes)
+ * track_render_process (3156 bytes)
  * Track render processing
+ * func_800A377C
  */
-void func_800A377C(void *track, s32 mode) {
+void track_render_process(void *track, s32 mode) {
     s8 renderFlag;
 
     renderFlag = *(s8 *)(0x8012EAE0);
@@ -11081,10 +11090,11 @@ void func_800A377C(void *track, s32 mode) {
 
 /*
 
- * func_800A4508 (568 bytes)
+ * car_lod_select (568 bytes)
  * Car model LOD selection
+ * func_800A4508
  */
-void func_800A4508(void *car, f32 distance) {
+void car_lod_select(void *car, f32 distance) {
     s32 *currentLod;
     void **lodModels;
     f32 lodDistances[4];
