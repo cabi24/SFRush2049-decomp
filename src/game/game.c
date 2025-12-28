@@ -32739,7 +32739,7 @@ char keyboard_input_process(s32 input) {
  * func_800CDAE0 (460 bytes)
  * Menu text input - handles full text entry with on-screen keyboard
  */
-void func_800CDAE0(char *buffer, s32 maxLen) {
+void menu_text_input(char *buffer, s32 maxLen) {
     s32 input;
     char c;
     s32 cursorPos;
@@ -32801,7 +32801,7 @@ void func_800CDAE0(char *buffer, s32 maxLen) {
  * func_800CDCAC (576 bytes)
  * Menu option toggle - toggles a game option and applies it immediately
  */
-void func_800CDCAC(s32 optionId) {
+void menu_option_toggle(s32 optionId) {
     s32 currentValue;
     s32 newValue;
 
@@ -32883,7 +32883,7 @@ void func_800CDCAC(s32 optionId) {
  * func_800CDEEC (764 bytes)
  * Menu save options - saves game options to Controller Pak
  */
-void func_800CDEEC(void) {
+void menu_save_options(void) {
     u8 saveData[64];
     s32 i;
     s32 result;
@@ -32952,7 +32952,7 @@ void func_800CDEEC(void) {
  * func_800CE1EC (364 bytes)
  * Menu load options - loads game options from Controller Pak
  */
-void func_800CE1EC(void) {
+void menu_load_options(void) {
     u8 saveData[64];
     s32 i;
     s32 result;
@@ -35451,7 +35451,7 @@ void func_800D5C90(s32 trackId) {
  * func_800D616C (452 bytes)
  * Stats display - shows player statistics
  */
-void func_800D616C(void) {
+void stats_display_screen(void) {
     s32 totalRaces;
     s32 totalWins;
     s32 totalStunts;
@@ -35536,7 +35536,7 @@ void func_800D616C(void) {
  * func_800D63F4 (676 bytes)
  * Achievements screen - shows unlocked achievements
  */
-void func_800D63F4(void) {
+void achievements_screen(void) {
     s32 input;
     s32 scrollOffset;
     s32 i;
@@ -35613,11 +35613,11 @@ void func_800D63F4(void) {
  * func_800D6698 (296 bytes)
  * Credits screen - displays game credits
  */
-void func_800D6698(void) {
+void credits_screen(void) {
     s32 input;
 
     func_800CC040();
-    func_800D67C0();  /* Update scroll */
+    credits_scroll();  /* Update scroll */
 
     input = func_800CB748(D_80158100);
 
@@ -35635,7 +35635,7 @@ void func_800D6698(void) {
  * func_800D67C0 (348 bytes)
  * Credits scroll - scrolls credits text
  */
-void func_800D67C0(void) {
+void credits_scroll(void) {
     s32 scrollY;
     s32 i;
     char *credits[20];
@@ -35694,7 +35694,7 @@ void func_800D67C0(void) {
 extern s32 D_8015A700;      /* Loading animation frame */
 extern s32 D_8015A704;      /* Last percent shown */
 
-void func_800D691C(s32 percent) {
+void loading_screen(s32 percent) {
     s32 frame;
     s32 barWidth;
     s32 dotPhase;
@@ -35758,7 +35758,7 @@ static const char *loadingTips[] = {
 };
 #define NUM_TIPS 8
 
-void func_800D6E7C(void) {
+void loading_tips(void) {
     s32 tipIndex;
     const char *tip;
 
@@ -35780,7 +35780,7 @@ extern s32 D_8015A710;      /* Pause menu state */
 extern s32 D_8015A714;      /* Selected option */
 extern s32 D_8015A718;      /* Pause active flag */
 
-void func_800D71D0(void) {
+void pause_menu(void) {
     s32 input;
     s32 selection;
     s32 i;
@@ -35807,20 +35807,20 @@ void func_800D71D0(void) {
         sound_play_menu(10);
         switch (selection) {
             case 0:  /* Resume */
-                func_800D7E88();
+                pause_resume();
                 return;
             case 1:  /* Restart */
-                func_800D8184();
+                pause_restart();
                 return;
             case 2:  /* Options */
                 /* func_800DXXXX(); */
                 break;
             case 3:  /* Quit */
-                func_800D8C58();
+                pause_quit();
                 return;
         }
     } else if (input == 8) {  /* Start - also resume */
-        func_800D7E88();
+        pause_resume();
         return;
     }
 
@@ -35854,7 +35854,7 @@ void func_800D71D0(void) {
  * func_800D7E88 (788 bytes)
  * Pause resume - Resumes game from pause
  */
-void func_800D7E88(void) {
+void pause_resume(void) {
     D_8015A718 = 0;  /* Clear pause flag */
 
     /* Resume audio */
@@ -35871,7 +35871,7 @@ void func_800D7E88(void) {
  * func_800D8184 (2772 bytes)
  * Pause restart - Restarts current race
  */
-void func_800D8184(void) {
+void pause_restart(void) {
     s32 i;
     u8 *carBase;
 
@@ -35918,14 +35918,14 @@ void func_800D8184(void) {
  * func_800D8C58 (1032 bytes)
  * Pause quit - Quits to main menu
  */
-void func_800D8C58(void) {
+void pause_quit(void) {
     D_8015A718 = 0;  /* Clear pause */
 
     /* Stop all game sounds */
     ambient_sounds_clear();
 
     /* Clear race state */
-    func_8010C2FC();
+    final_cleanup();
 
     /* Return to attract mode */
     D_801146EC = 0;  /* ATTRACT */
@@ -35940,7 +35940,7 @@ void func_800D8C58(void) {
 extern s32 D_8015A730;      /* Results state */
 extern s32 D_8015A734;      /* Results timer */
 
-void func_800D9060(void) {
+void results_screen(void) {
     s32 state;
     s32 timer;
     s32 input;
@@ -35958,7 +35958,7 @@ void func_800D9060(void) {
         D_8015A730 = 0;
         D_8015A734 = 0;
         /* Move to next state */
-        func_80102A74();  /* Award ceremony */
+        award_ceremony();  /* Award ceremony */
         return;
     }
 
@@ -35976,14 +35976,14 @@ void func_800D9060(void) {
         s32 yPos = 70 + i * 35;
 
         if (position > 0 && position <= 4) {
-            func_800DA0CC(position);  /* Show position */
-            func_800DA174(raceTime);  /* Show time */
+            position_result_display(position);  /* Show position */
+            time_result_display(raceTime);  /* Show time */
         }
     }
 
     /* Points awarded */
     if (timer > 60) {
-        func_800DA2D0();
+        points_award();
     }
 
     /* Continue prompt */
@@ -36002,7 +36002,7 @@ void func_800D9060(void) {
  * func_800DA0CC (168 bytes)
  * Position result - Displays finishing position
  */
-void func_800DA0CC(s32 position) {
+void position_result_display(s32 position) {
     char posStr[8];
     s32 color;
 
@@ -36032,7 +36032,7 @@ void func_800DA0CC(s32 position) {
  * func_800DA174 (348 bytes)
  * Time result - Displays race time
  */
-void func_800DA174(s32 timeMs) {
+void time_result_display(s32 timeMs) {
     char timeStr[16];
     s32 mins, secs, ms;
 
@@ -36051,7 +36051,7 @@ void func_800DA174(s32 timeMs) {
 extern s32 D_8015A740[4];   /* Points per player */
 static const s32 positionPoints[] = {10, 6, 4, 2, 1, 0, 0, 0};
 
-void func_800DA2D0(void) {
+void points_award(void) {
     s32 i;
     u8 *carBase;
     char pointsStr[16];
@@ -36082,7 +36082,7 @@ void func_800DA2D0(void) {
 extern s32 D_8015A750;      /* Replay prompt state */
 extern s32 D_8015A754;      /* Replay selection */
 
-void func_800DABDC(void) {
+void replay_save_prompt(void) {
     s32 input;
     s32 selection;
 
