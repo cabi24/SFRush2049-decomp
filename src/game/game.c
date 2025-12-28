@@ -4683,7 +4683,7 @@ void object_byte71_set_sync(void **a0, u8 a1) {
  */
 extern void func_800BE7BC(void *camera, void *target);
 
-void func_800BE9A0(s32 a0) {
+void buffer_build_and_call(s32 a0) {
     u8 buffer[128];
     func_800BE7BC(buffer, NULL);
     func_800B71D4();
@@ -4693,7 +4693,7 @@ void func_800BE9A0(s32 a0) {
 
 /**
 /*
- * func_800BE9E8 - Build buffer via 2CD0 and call B71D4
+ * buffer_build_2cd0_call (func_800BE9E8)
  * Address: 0x800BE9E8
  * Size: 72 bytes
  *
@@ -4705,7 +4705,7 @@ void func_800BE9A0(s32 a0) {
  * @param a2 Buffer parameter
  * @param a3 Third parameter stored at offset
  */
-void func_800BE9E8(s32 a0, s32 a1, void *a2, s32 a3) {
+void buffer_build_2cd0_call(s32 a0, s32 a1, void *a2, s32 a3) {
     u8 buffer[256];
     s32 args[1];
     args[0] = a3;
@@ -4717,7 +4717,7 @@ void func_800BE9E8(s32 a0, s32 a1, void *a2, s32 a3) {
 
 /**
 /*
- * func_800A4C54 - Initialize and wait for completion
+ * init_wait_completion (func_800A4C54)
  * Address: 0x800A4C54
  * Size: 84 bytes
  *
@@ -4727,7 +4727,7 @@ extern void func_800A4B6C(void);
 extern void func_80020274(void);
 extern s32 func_800202C4(void);
 
-void func_800A4C54(void) {
+void init_wait_completion(void) {
     func_800A4B6C();
     func_80096238(D_80151A6C);
     func_80020274();
@@ -4740,7 +4740,7 @@ void func_800A4C54(void) {
 
 /**
 /*
- * func_800B0618 - Process list and call B0580
+ * list_process_and_call (func_800B0618)
  * Address: 0x800B0618
  * Size: 84 bytes
  *
@@ -4749,7 +4749,7 @@ void func_800A4C54(void) {
  */
 extern void func_8009079C(void *a0, s32 a1);
 
-void func_800B0618(s32 trackId, void *ghostData) {
+void list_process_and_call(s32 trackId, void *ghostData) {
     void *item = D_801491F0;
     while (item != NULL) {
         func_8009079C(item, 1);
@@ -4762,7 +4762,7 @@ void func_800B0618(s32 trackId, void *ghostData) {
 
 /**
 /*
- * func_800B3F50 - Sum three values from current object and global
+ * object_bytes_sum_global (func_800B3F50)
  * Address: 0x800B3F50
  * Size: 84 bytes
  *
@@ -4771,7 +4771,7 @@ void func_800B0618(s32 trackId, void *ghostData) {
  * @return Sum as signed 16-bit
  */
 
-s16 func_800B3F50(void) {
+s16 object_bytes_sum_global(void) {
     u8 byte2, byte3;
     s8 offset;
     sound_update_channel(0, 0.0f);
@@ -4788,7 +4788,7 @@ s16 func_800B3F50(void) {
 /**
 /**
 /*
- * func_8010FCC0 - Call func_80095FD8 with sync protection
+ * synced_call_95fd8 (func_8010FCC0)
  * Address: 0x8010FCC0
  * Size: 92 bytes
  *
@@ -4796,7 +4796,7 @@ s16 func_800B3F50(void) {
  *
  * @param a0 Parameter for func_80095FD8
  */
-void func_8010FCC0(void *a0) {
+void synced_call_95fd8(void *a0) {
     func_80007270(&D_80152770, NULL, 1);
     func_80095FD8(a0, 0);
     func_800075E0(&D_80152770, NULL, 0);
@@ -4808,7 +4808,7 @@ void func_8010FCC0(void *a0) {
 /**
 /**
 /*
- * func_800B04D0 - Initialize pool linked list
+ * pool_linked_list_init (func_800B04D0)
  * Address: 0x800B04D0
  * Size: 128 bytes
  *
@@ -4824,7 +4824,7 @@ void func_8010FCC0(void *a0) {
  *
  * @param a0 Pointer to pool control structure
  */
-void func_800B04D0(void *a0) {
+void pool_linked_list_init(void *a0) {
     s32 *base;
     s32 count;
     s32 stride;
