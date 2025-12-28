@@ -427,7 +427,7 @@ extern void countdown_handler(void);          /* func_800FBC30 - Countdown timer
 extern void render_scene(s32 track, f32 angle, s32 x, s32 y); /* func_800A04C4 - Viewport/camera setup */
 
 /* Forward declarations for functions defined in this file */
-s32 func_800F43D4(f32 distance);  /* LOD distance calculator */
+s32 track_lod_select(f32 distance);  /* LOD distance calculator */
 
 /* Additional extern declarations */
 extern s32 D_8013E6E0;
@@ -33718,7 +33718,7 @@ void track_info_display(s32 trackId) {
  * func_800D1248 (324 bytes)
  * Track unlock check - checks if track is unlocked
  */
-s32 func_800D1248(s32 trackId) {
+s32 track_unlock_check(s32 trackId) {
     s32 unlockedTracks;
     s32 i;
 
@@ -33775,7 +33775,7 @@ s32 func_800D1248(s32 trackId) {
  * func_800D138C (804 bytes)
  * Car select screen - main car selection menu
  */
-void func_800D138C(void) {
+void car_select_screen(void) {
     s32 input;
     s32 selectedCar;
     s32 numCars;
@@ -33819,7 +33819,7 @@ void func_800D138C(void) {
         sound_play_menu(12);
     }
     else if (input == 1) {  /* Select */
-        carUnlocked = func_800D197C(selectedCar);
+        carUnlocked = car_unlock_check(selectedCar);
         if (carUnlocked) {
             D_80159A54 = selectedCar;  /* Store selected car */
             menu_transition(5);  /* Go to color select or race setup */
@@ -33842,7 +33842,7 @@ void func_800D138C(void) {
             if (colorIdx > 7) colorIdx = 0;
         }
         D_80159A58 = colorIdx;
-        func_800D1AB8(colorIdx);
+        car_color_select(colorIdx);
         sound_play_menu(12);
     }
 
@@ -33852,20 +33852,20 @@ void func_800D138C(void) {
     draw_text(110, 30, "SELECT CAR", 0xFFFFFFFF);
 
     /* Render car preview (3D model rotating) */
-    func_800D16B0(selectedCar);
+    car_preview_render(selectedCar);
 
     /* Render car name */
     draw_text(carNames[selectedCar], 110, 200, 255);
 
     /* Render car stats */
-    func_800D18E4(selectedCar);
+    car_stats_display(selectedCar);
 
     /* Render left/right arrows */
     draw_ui_element(54, 30, 110, 20, 20, 255);   /* Left */
     draw_ui_element(55, 270, 110, 20, 20, 255);  /* Right */
 
     /* Render lock if not unlocked */
-    if (!func_800D197C(selectedCar)) {
+    if (!car_unlock_check(selectedCar)) {
         draw_ui_element(61, 145, 100, 32, 32, 200);  /* Lock icon centered */
     }
 }
@@ -33875,7 +33875,7 @@ void func_800D138C(void) {
  * func_800D16B0 (564 bytes)
  * Car preview render - renders rotating 3D car model
  */
-void func_800D16B0(s32 carId) {
+void car_preview_render(s32 carId) {
     s32 previewX, previewY;
     s32 rotation;
     f32 scale;
@@ -33890,7 +33890,7 @@ void func_800D16B0(s32 carId) {
     rotation = D_80159A5C;
     D_80159A5C = (rotation + 2) % 360;  /* Rotate 2 degrees per frame */
 
-    unlocked = func_800D197C(carId);
+    unlocked = car_unlock_check(carId);
 
     /* Get car model ID */
     modelId = 200 + carId;  /* Car models start at 200 */
@@ -33940,7 +33940,7 @@ void func_800D16B0(s32 carId) {
  * func_800D18E4 (152 bytes)
  * Car stats display - shows car performance stats
  */
-void func_800D18E4(s32 carId) {
+void car_stats_display(s32 carId) {
     s32 statX, statY;
     s32 speed, accel, handling, weight;
     s32 barWidth;
@@ -33989,7 +33989,7 @@ void func_800D18E4(s32 carId) {
  * func_800D197C (316 bytes)
  * Car unlock check - checks if car is unlocked
  */
-s32 func_800D197C(s32 carId) {
+s32 car_unlock_check(s32 carId) {
     s32 unlockedCars;
     s32 tracksCompleted;
     s32 i;
@@ -34053,7 +34053,7 @@ s32 func_800D197C(s32 carId) {
  * func_800D1AB8 (552 bytes)
  * Car color select - applies selected color to car preview
  */
-void func_800D1AB8(s32 colorId) {
+void car_color_select(s32 colorId) {
     u32 primaryColor;
     u32 secondaryColor;
 
@@ -34112,7 +34112,7 @@ void func_800D1AB8(s32 colorId) {
  * func_800D1CE0 (1960 bytes)
  * Race setup screen - configure race options before starting
  */
-void func_800D1CE0(void) {
+void race_setup_screen(void) {
     s32 input;
     s32 selectedItem;
     s32 numItems;
@@ -34160,26 +34160,26 @@ void func_800D1CE0(void) {
         switch (selectedItem) {
             case 0:  /* Mode */
                 D_80159B04 = (D_80159B04 + delta + 4) % 4;
-                func_800D24C8(D_80159B04);
+                race_mode_select(D_80159B04);
                 break;
             case 1:  /* Laps */
                 D_80159B08 = (D_80159B08 + delta + 5) % 5;
-                func_800D2928(D_80159B08);
+                lap_count_select(D_80159B08);
                 break;
             case 2:  /* Difficulty */
                 D_80159B0C = (D_80159B0C + delta + 4) % 4;
-                func_800D2A74(D_80159B0C);
+                difficulty_select(D_80159B0C);
                 break;
             case 3:  /* Mirror */
-                func_800D2C2C();
+                mirror_mode_toggle();
                 break;
             case 4:  /* Weather */
                 D_80159B14 = (D_80159B14 + delta + 4) % 4;
-                func_800D2CDC(D_80159B14);
+                weather_select(D_80159B14);
                 break;
             case 5:  /* Time of day */
                 D_80159B18 = (D_80159B18 + delta + 3) % 3;
-                func_800D2DCC(D_80159B18);
+                time_of_day_select(D_80159B18);
                 break;
         }
         sound_play_menu(14);
@@ -34248,7 +34248,7 @@ void func_800D1CE0(void) {
  * func_800D24C8 (1120 bytes)
  * Race mode select - configures race mode settings
  */
-void func_800D24C8(s32 modeId) {
+void race_mode_select(s32 modeId) {
     /* Store selected mode */
     D_80159B04 = modeId;
 
@@ -34286,7 +34286,7 @@ void func_800D24C8(s32 modeId) {
  * func_800D2928 (332 bytes)
  * Lap count select - sets number of laps for race
  */
-void func_800D2928(s32 laps) {
+void lap_count_select(s32 laps) {
     s32 lapCounts[5] = {1, 3, 5, 7, 10};
 
     D_80159B08 = laps;
@@ -34300,7 +34300,7 @@ void func_800D2928(s32 laps) {
  * func_800D2A74 (440 bytes)
  * Difficulty select - sets AI difficulty and rubber-banding
  */
-void func_800D2A74(s32 difficulty) {
+void difficulty_select(s32 difficulty) {
     D_80159B0C = difficulty;
 
     /* Configure AI based on difficulty */
@@ -34333,7 +34333,7 @@ void func_800D2A74(s32 difficulty) {
  * func_800D2C2C (176 bytes)
  * Mirror mode toggle - flips track left-right
  */
-void func_800D2C2C(void) {
+void mirror_mode_toggle(void) {
     D_80159B10 = (D_80159B10 == 0) ? 1 : 0;
 
     /* Set mirror transform flag */
@@ -34345,7 +34345,7 @@ void func_800D2C2C(void) {
  * func_800D2CDC (240 bytes)
  * Weather select - sets weather conditions
  */
-void func_800D2CDC(s32 weather) {
+void weather_select(s32 weather) {
     D_80159B14 = weather;
 
     switch (weather) {
@@ -34377,7 +34377,7 @@ void func_800D2CDC(s32 weather) {
  * func_800D2DCC (200 bytes)
  * Time of day select - sets lighting conditions
  */
-void func_800D2DCC(s32 timeOfDay) {
+void time_of_day_select(s32 timeOfDay) {
     D_80159B18 = timeOfDay;
 
     switch (timeOfDay) {
@@ -34401,7 +34401,7 @@ void func_800D2DCC(s32 timeOfDay) {
  * func_800D2E94 (1544 bytes)
  * Multiplayer setup - configures multiplayer game options
  */
-void func_800D2E94(void) {
+void multiplayer_setup(void) {
     s32 input;
     s32 selectedItem;
     s32 numPlayers;
@@ -34520,7 +34520,7 @@ void func_800D2E94(void) {
  * func_800D349C (1676 bytes)
  * Player join screen - players press start to join
  */
-void func_800D349C(void) {
+void player_join_screen(void) {
     s32 i;
     s32 numPlayers;
     s32 joinedPlayers;
@@ -34656,7 +34656,7 @@ void func_800D349C(void) {
  * func_800D3B28 (5068 bytes)
  * Stunt mode setup - configure stunt arena and scoring
  */
-void func_800D3B28(void) {
+void stunt_mode_setup(void) {
     s32 input;
     s32 menuState;
     s32 selectedOption;
@@ -34836,7 +34836,7 @@ void func_800D3B28(void) {
         draw_text("STUNT TUTORIAL", 85, 190, selectedOption == 5 ? 255 : 180);
 
         /* Arena preview */
-        func_800D3E50(selectedArena);
+        stunt_arena_preview(selectedArena);
 
     } else if (menuState == 1) {
         /* Stunt tutorial screen */
@@ -34880,7 +34880,7 @@ void func_800D3B28(void) {
  * func_800D3E50 (384 bytes)
  * Render stunt arena preview
  */
-void func_800D3E50(s32 arenaId) {
+void stunt_arena_preview(s32 arenaId) {
     s32 previewX = 160;
     s32 previewY = 160;
     s32 previewW = 100;
@@ -34908,7 +34908,7 @@ void func_800D3E50(s32 arenaId) {
  * func_800D4EF4 (532 bytes)
  * Battle mode setup - configure battle arena and rules
  */
-void func_800D4EF4(void) {
+void battle_mode_setup(void) {
     s32 input;
     s32 selectedOption;
     s32 selectedArena;
@@ -35074,7 +35074,7 @@ void func_800D4EF4(void) {
  * func_800D510C (716 bytes)
  * Ghost race setup - race against saved ghosts
  */
-void func_800D510C(void) {
+void ghost_race_setup(void) {
     s32 input;
     s32 selectedOption;
     s32 selectedTrack;
@@ -35234,7 +35234,7 @@ void func_800D510C(void) {
  * func_800D5430 (164 bytes)
  * Get saved ghosts for track
  */
-s32 func_800D5430(s32 trackId, char **names, s32 *times) {
+s32 ghost_data_get(s32 trackId, char **names, s32 *times) {
     s32 count = 0;
     s32 i;
 
@@ -35257,7 +35257,7 @@ s32 func_800D5430(s32 trackId, char **names, s32 *times) {
  * func_800D55A0 (96 bytes)
  * Delete saved ghost
  */
-void func_800D55A0(s32 trackId, s32 ghostIndex) {
+void ghost_data_delete(s32 trackId, s32 ghostIndex) {
     s32 i;
     s32 baseIdx = trackId * 4;
 
@@ -35273,7 +35273,7 @@ void func_800D55A0(s32 trackId, s32 ghostIndex) {
  * func_800D58CC (740 bytes)
  * Records screen - displays best times and high scores
  */
-void func_800D58CC(void) {
+void records_screen(void) {
     s32 input;
     s32 selectedTab;
     s32 selectedTrack;
@@ -35320,10 +35320,10 @@ void func_800D58CC(void) {
     /* Render content based on tab */
     switch (selectedTab) {
         case 0:
-            func_800D5BB0(selectedTrack);
+            best_times_display(selectedTrack);
             break;
         case 1:
-            func_800D5C90(selectedTrack);
+            high_scores_display(selectedTrack);
             break;
         case 2:
             func_800D616C();
@@ -35338,7 +35338,7 @@ void func_800D58CC(void) {
  * func_800D5BB0 (224 bytes)
  * Best times display - shows best lap and race times
  */
-void func_800D5BB0(s32 trackId) {
+void best_times_display(s32 trackId) {
     char *trackNames[12];
     char timeBuf[16];
     s32 bestTime;
@@ -35406,7 +35406,7 @@ void func_800D5BB0(s32 trackId) {
  * func_800D5C90 (220 bytes)
  * High scores display - shows stunt high scores
  */
-void func_800D5C90(s32 trackId) {
+void high_scores_display(s32 trackId) {
     s32 i;
     s32 score;
     char scoreBuf[12];
@@ -36132,7 +36132,7 @@ void replay_save_prompt(void) {
  */
 extern s32 D_8015A760;      /* Continue countdown */
 
-s32 func_800DB758(void) {
+s32 continue_prompt(void) {
     s32 input;
     s32 countdown;
     char countStr[4];
@@ -36384,7 +36384,7 @@ void attract_demo_play(void) {
 extern s32 D_8015A7A0;      /* Idle frame counter */
 #define IDLE_TIMEOUT (30 * 60)  /* 30 seconds */
 
-s32 func_800DCD94(void) {
+s32 attract_idle_check(void) {
     s32 input;
 
     input = func_800CB748(D_80158100);
@@ -36809,7 +36809,7 @@ void mode_select_input(s32 input) {
  * func_800DFBC4 (1868 bytes)
  * Profile select screen
  */
-void func_800DFBC4(void) {
+void profile_select_screen(void) {
     /* Profile select - stub */
 }
 
@@ -36828,7 +36828,7 @@ void *func_800EB028(s32 objectType, f32 *pos) {
  * func_800EB690 (396 bytes)
  * World object destroy
  */
-void func_800EB690(void *object) {
+void world_object_destroy(void *object) {
     /* Object destroy - stub */
 }
 
@@ -36843,7 +36843,7 @@ void func_800EB690(void *object) {
  *   D_8015A250 - car state array base (stride 0x808)
  *   D_80153E88 - car data array (stride 8)
  */
-void func_800EC2F8(void) {
+void world_physics_tick(void) {
     s32 i;
     s32 numCars;
 
@@ -36862,13 +36862,13 @@ void func_800EC2F8(void) {
         }
 
         /* Apply gravity */
-        func_800ECC18(carState);
+        world_gravity_apply(carState);
 
         /* Apply friction */
-        func_800ED674(carState);
+        world_friction_apply(carState);
 
         /* Integrate velocity */
-        func_800ED804(carState, 1.0f / 60.0f);
+        world_velocity_integrate(carState, 1.0f / 60.0f);
     }
 }
 
@@ -36880,7 +36880,7 @@ void func_800EC2F8(void) {
  * Based on arcade collision() - check if two objects' bounding spheres overlap
  * Returns 1 if collision detected, 0 otherwise
  */
-s32 func_800EC928(void *a, void *b) {
+s32 world_collision_detect(void *a, void *b) {
     f32 *posA, *posB;
     f32 dx, dy, dz, distSq;
     f32 radA, radB, radSum;
@@ -36920,7 +36920,7 @@ s32 func_800EC928(void *a, void *b) {
  * Check if position is within world bounds
  * Returns 1 if in bounds, 0 if out of bounds
  */
-s32 func_800ECB74(f32 *pos) {
+s32 world_bounds_check(f32 *pos) {
     extern f32 D_80124500;  /* World min X */
     extern f32 D_80124504;  /* World max X */
     extern f32 D_80124508;  /* World min Y */
@@ -36958,7 +36958,7 @@ s32 func_800ECB74(f32 *pos) {
  * Based on arcade physics - applies gravity acceleration to velocity
  * Gravity constant at D_80124574 (typically -9.8 * scale)
  */
-void func_800ECC18(void *object) {
+void world_gravity_apply(void *object) {
     extern f32 D_80124574;  /* Gravity constant */
     f32 *velocity;
     f32 *accel;
@@ -36994,7 +36994,7 @@ void func_800ECC18(void *object) {
  * Applies friction/drag to reduce velocity over time
  * Friction coefficient at D_80124578
  */
-void func_800ED674(void *object) {
+void world_friction_apply(void *object) {
     extern f32 D_80124578;  /* Friction coefficient (0.0 - 1.0) */
     f32 *velocity;
     f32 friction;
@@ -37036,7 +37036,7 @@ void func_800ED674(void *object) {
  *
  * Integrates velocity to update position (Euler integration)
  */
-void func_800ED804(void *object, f32 dt) {
+void world_velocity_integrate(void *object, f32 dt) {
     f32 *position;
     f32 *velocity;
 
@@ -37062,7 +37062,7 @@ void func_800ED804(void *object, f32 dt) {
  * Based on arcade setCollisionForce() - applies impulse to separate objects
  * Uses conservation of momentum for elastic collision response
  */
-void func_800EDACC(void *a, void *b) {
+void world_collision_response(void *a, void *b) {
     f32 *posA, *posB;
     f32 *velA, *velB;
     f32 dx, dy, dz, dist, invDist;
@@ -37148,7 +37148,7 @@ void func_800EDACC(void *a, void *b) {
  * D_801431C0 - trigger array base
  * D_801431BC - number of triggers
  */
-void func_800EDCE8(void *player) {
+void world_trigger_check(void *player) {
     extern u8 D_801431C0[];
     extern s16 D_801431BC;
     f32 *playerPos;
@@ -37182,7 +37182,7 @@ void func_800EDCE8(void *player) {
             playerPos[2] <= triggerPos[2] + triggerSize[2]) {
 
             /* Trigger activated - call handler */
-            func_800EE5DC(i);
+            world_trigger_activate(i);
         }
     }
 }
@@ -37195,7 +37195,7 @@ void func_800EDCE8(void *player) {
  * Activates a world trigger by ID - used for checkpoints, shortcuts, etc.
  * Based on arcade checkpoint.c trigger handling
  */
-void func_800EE5DC(s32 triggerId) {
+void world_trigger_activate(s32 triggerId) {
     extern u8 D_80153D00[];    /* Trigger state array */
     extern s32 D_80153D80;     /* Number of triggers */
     u8 *trigger;
@@ -37308,7 +37308,7 @@ void *func_800EE820(s32 effectType, f32 *pos) {
  *
  * Updates a single effect - position, animation, lifetime
  */
-void func_800EE8B4(void *effect) {
+void world_effect_update(void *effect) {
     u8 *eff = (u8 *)effect;
     s32 effectType;
     s32 frame;
@@ -37448,7 +37448,7 @@ void *func_800EEA7C(s32 type, f32 *pos) {
  *
  * Updates all particles from an emitter and spawns new ones
  */
-void func_800EEDB0(void *emitter) {
+void particle_update(void *emitter) {
     u8 *emit = (u8 *)emitter;
     s32 type;
     s32 frame;
@@ -37490,31 +37490,31 @@ void func_800EEDB0(void *emitter) {
                 vel[0] = ((seed >> 4) & 0xFF) * 0.02f - 2.56f;
                 vel[1] = 3.0f + ((seed >> 12) & 0xFF) * 0.02f;
                 vel[2] = ((seed >> 20) & 0xFF) * 0.02f - 2.56f;
-                func_800EF288(spawnPos, vel);
+                smoke_effect(spawnPos, vel);
                 break;
             case 1:  /* Sparks - random direction */
                 vel[0] = ((seed >> 4) & 0xFF) * 0.1f - 12.8f;
                 vel[1] = ((seed >> 12) & 0xFF) * 0.1f;
                 vel[2] = ((seed >> 20) & 0xFF) * 0.1f - 12.8f;
-                func_800EF62C(spawnPos, 1);
+                spark_effect(spawnPos, 1);
                 break;
             case 2:  /* Fire - upward with flicker */
                 vel[0] = ((seed >> 4) & 0xFF) * 0.03f - 3.84f;
                 vel[1] = 5.0f;
                 vel[2] = ((seed >> 20) & 0xFF) * 0.03f - 3.84f;
-                func_800EF288(spawnPos, vel);
+                smoke_effect(spawnPos, vel);
                 break;
             case 3:  /* Steam */
                 vel[0] = 0.0f;
                 vel[1] = 4.0f;
                 vel[2] = 0.0f;
-                func_800EF288(spawnPos, vel);
+                smoke_effect(spawnPos, vel);
                 break;
             case 4:  /* Exhaust - backward */
                 vel[0] = -5.0f;
                 vel[1] = 0.5f;
                 vel[2] = 0.0f;
-                func_800EF288(spawnPos, vel);
+                smoke_effect(spawnPos, vel);
                 break;
         }
 
@@ -37529,7 +37529,7 @@ void func_800EEDB0(void *emitter) {
  *
  * Creates a smoke particle with rising motion
  */
-void func_800EF288(f32 *pos, f32 *vel) {
+void smoke_effect(f32 *pos, f32 *vel) {
     void *effect;
     u8 *eff;
 
@@ -37571,7 +37571,7 @@ void func_800EF288(f32 *pos, f32 *vel) {
  *
  * Creates multiple spark particles that fly outward with gravity
  */
-void func_800EF62C(f32 *pos, s32 count) {
+void spark_effect(f32 *pos, s32 count) {
     void *effect;
     u8 *eff;
     s32 i;
@@ -37618,7 +37618,7 @@ void func_800EF62C(f32 *pos, s32 count) {
  *
  * Creates a large explosion with fireball, smoke, and sparks
  */
-void func_800EF8F4(f32 *pos, f32 radius) {
+void explosion_effect(f32 *pos, f32 radius) {
     void *effect;
     u8 *eff;
     s32 seed;
@@ -37650,14 +37650,14 @@ void func_800EF8F4(f32 *pos, f32 radius) {
         sparkPos[1] = pos[1] + 2.0f;
         sparkPos[2] = pos[2] + ((seed >> 16) & 0xFF) * 0.1f - 12.8f;
 
-        func_800EF288(sparkPos, NULL);  /* Smoke puff */
+        smoke_effect(sparkPos, NULL);  /* Smoke puff */
     }
 
     /* Create sparks */
-    func_800EF62C(pos, 20);
+    spark_effect(pos, 20);
 
     /* Create secondary smoke */
-    func_800EFEA8(pos);
+    dust_cloud_effect(pos);
 
     /* Play explosion sound */
     sound_play_menu(30);
@@ -37673,7 +37673,7 @@ void func_800EF8F4(f32 *pos, f32 radius) {
  *
  * Creates a settling dust cloud (from crashes, off-road driving)
  */
-void func_800EFEA8(f32 *pos) {
+void dust_cloud_effect(f32 *pos) {
     void *effect;
     u8 *eff;
     s32 seed;
@@ -38154,7 +38154,7 @@ void lens_flare(f32 *sunPos) {
  *
  * Configures RSP for environment mapping on reflective surfaces
  */
-void func_800F20A0(void *object) {
+void environment_map_setup(void *object) {
     extern Gfx **D_80149438;
     extern u8 D_80158200[];    /* Envmap texture */
     u8 *objData = (u8 *)object;
@@ -38193,7 +38193,7 @@ void func_800F20A0(void *object) {
  *
  * Configures planar reflection rendering for wet surfaces
  */
-void func_800F2720(void) {
+void reflection_setup(void) {
     extern Gfx **D_80149438;
     extern s32 D_80158400;     /* Reflection enabled */
     extern f32 D_80158404;     /* Reflection plane Y */
@@ -38223,7 +38223,7 @@ void func_800F2720(void) {
  *
  * Renders animated water surface with wave distortion
  */
-void func_800F2890(void) {
+void water_surface_render(void) {
     extern Gfx **D_80149438;
     extern f32 D_80158500;     /* Water level Y */
     extern s32 D_80158504;     /* Water tile count X */
@@ -38260,7 +38260,7 @@ void func_800F2890(void) {
  *
  * Renders the skybox around the camera
  */
-void func_800F2A28(void *camera) {
+void skybox_render(void *camera) {
     extern Gfx **D_80149438;
     extern u8 D_80158600[];    /* Skybox texture data */
     extern s32 D_80158604;     /* Skybox type: 0=day, 1=sunset, 2=night */
@@ -38312,7 +38312,7 @@ void func_800F2A28(void *camera) {
  *
  * Renders visible track sections based on camera position
  */
-void func_800F34D8(void *camera) {
+void track_render(void *camera) {
     u8 *camData = (u8 *)camera;
     f32 *camPos;
     s32 i;
@@ -38331,7 +38331,7 @@ void func_800F34D8(void *camera) {
         f32 *sectionPos = (f32 *)(section + 0x00);
 
         /* Frustum cull check */
-        if (!func_800F42D0(i, camera)) {
+        if (!track_section_visible(i, camera)) {
             continue;
         }
 
@@ -38341,10 +38341,10 @@ void func_800F34D8(void *camera) {
         dist = sqrtf(dx * dx + dz * dz);
 
         /* Select LOD based on distance */
-        lod = func_800F43D4(dist);
+        lod = track_lod_select(dist);
 
         /* Load textures for this section */
-        func_800F5F90(*(s32 *)(section + 0x30));
+        track_texture_load(*(s32 *)(section + 0x30));
 
         /* Render section geometry at selected LOD */
         /* (would call into display list rendering) */
@@ -38358,7 +38358,7 @@ void func_800F34D8(void *camera) {
  *
  * Checks if a track section is within camera frustum
  */
-s32 func_800F42D0(s32 sectionId, void *camera) {
+s32 track_section_visible(s32 sectionId, void *camera) {
     u8 *camData = (u8 *)camera;
     u8 *section;
     f32 *camPos;
@@ -38404,7 +38404,7 @@ s32 func_800F42D0(s32 sectionId, void *camera) {
  *
  * Selects appropriate LOD level based on distance from camera
  */
-s32 func_800F43D4(f32 distance) {
+s32 track_lod_select(f32 distance) {
     /* LOD thresholds */
     if (distance < 50.0f) {
         return 0;  /* High detail */
@@ -38423,7 +38423,7 @@ s32 func_800F43D4(f32 distance) {
  *
  * Streams track geometry data from ROM to RSP
  */
-void func_800F4604(void) {
+void track_geometry_stream(void) {
     extern Gfx **D_80149438;
     extern s32 D_80159100;     /* Current stream position */
     extern s32 D_80159104;     /* Total geometry size */
@@ -38461,7 +38461,7 @@ void func_800F4604(void) {
  *
  * Loads track texture into TMEM
  */
-void func_800F5F90(s32 textureId) {
+void track_texture_load(s32 textureId) {
     extern Gfx **D_80149438;
     extern s32 D_80159404;     /* Current loaded texture */
     Gfx *gfx;
@@ -38503,7 +38503,7 @@ void func_800F5F90(s32 textureId) {
  *
  * Renders a camera-facing billboard sprite
  */
-void func_800F64D4(void *billboard) {
+void billboard_render(void *billboard) {
     extern Gfx **D_80149438;
     u8 *bbData = (u8 *)billboard;
     Gfx *gfx;
@@ -38545,7 +38545,7 @@ void func_800F64D4(void *billboard) {
  *
  * Renders roadside signs (speed limits, directions, etc.)
  */
-void func_800F6934(void *sign) {
+void sign_render(void *sign) {
     u8 *signData = (u8 *)sign;
     f32 *signPos;
     s32 signType;
@@ -38558,7 +38558,7 @@ void func_800F6934(void *sign) {
     signType = *(s32 *)(signData + 0x0C);
 
     /* Render as billboard facing camera */
-    func_800F64D4(sign);
+    billboard_render(sign);
 }
 
 /*
@@ -38568,7 +38568,7 @@ void func_800F6934(void *sign) {
  *
  * Renders track props (cones, barriers, trees, etc.)
  */
-void func_800F6AB8(void *camera) {
+void props_render(void *camera) {
     extern u8 D_80159610[];    /* Prop data array */
     u8 *camData = (u8 *)camera;
     f32 *camPos;
@@ -38600,7 +38600,7 @@ void func_800F6AB8(void *camera) {
         switch (propType) {
             case 0:  /* Cone */
             case 1:  /* Barrier */
-                func_800F64D4(prop);  /* As billboard */
+                billboard_render(prop);  /* As billboard */
                 break;
             case 2:  /* Tree */
             case 3:  /* Building */
@@ -38617,7 +38617,7 @@ void func_800F6AB8(void *camera) {
  *
  * Renders animated crowd sprites along the track
  */
-void func_800F7454(void) {
+void crowd_render(void) {
     extern Gfx **D_80149438;
     extern u8 D_80159810[];    /* Crowd section data */
     Gfx *gfx;
@@ -38698,7 +38698,7 @@ void car_body_render(void *car) {
         paintColor & 0xFF, 255);
 
     /* Set up environment mapping for reflective paint */
-    func_800F20A0(car);
+    environment_map_setup(car);
 
     /* Draw body mesh display list */
     gSPDisplayList(gfx++, bodyMesh);
@@ -38885,12 +38885,12 @@ void car_exhaust_render(void *car) {
     if (speed > 20.0f) {
         /* At high speed, less visible exhaust */
         if ((*(u32 *)&carData[0x08] & 0x07) == 0) {  /* Every 8 frames */
-            func_800EF288(exhaustPos, NULL);
+            smoke_effect(exhaustPos, NULL);
         }
     } else {
         /* At low speed, more visible puffs */
         if ((*(u32 *)&carData[0x08] & 0x03) == 0) {  /* Every 4 frames */
-            func_800EF288(exhaustPos, NULL);
+            smoke_effect(exhaustPos, NULL);
         }
     }
 }
@@ -39003,15 +39003,15 @@ void car_nitro_effect(void *car) {
  *
  * Main render function - sets up frame and renders all scene elements
  */
-void func_800F93A0(void) {
+void scene_render_main(void) {
     extern s32 D_80143A00;    /* Current render mode */
     /* Note: D_80149438 declared globally */
 
     /* Begin frame */
-    func_800FAD58();
+    frame_start();
 
     /* Setup Z-buffer */
-    func_800FA9B4();
+    zbuffer_setup();
 
     /* Render skybox */
     func_800F5B44();
@@ -39029,7 +39029,7 @@ void func_800F93A0(void) {
     func_800CCFC0();
 
     /* End frame */
-    func_800FADE0();
+    frame_end();
 }
 
 /*
@@ -39039,7 +39039,7 @@ void func_800F93A0(void) {
  *
  * Configures RDP Z-buffer for depth testing
  */
-void func_800FA9B4(void) {
+void zbuffer_setup(void) {
     extern Gfx **D_80149438;  /* Display list pointer */
     Gfx *dl;
 
@@ -39069,7 +39069,7 @@ void func_800FA9B4(void) {
  *
  * Initializes display list for new frame
  */
-void func_800FAD58(void) {
+void frame_start(void) {
     /* Note: D_80149430, D_80149438 declared globally */
     Gfx *dl;
 
@@ -39100,7 +39100,7 @@ void func_800FAD58(void) {
  *
  * Finalizes display list and submits to RDP
  */
-void func_800FADE0(void) {
+void frame_end(void) {
     /* Note: D_80149438, D_80149440 declared globally */
     Gfx *dl;
 
@@ -39113,10 +39113,10 @@ void func_800FADE0(void) {
     *D_80149438 = dl;
 
     /* Flush display list */
-    func_800FB2C8();
+    display_list_flush();
 
     /* Wait for vsync */
-    func_800FB234();
+    vsync_wait();
 }
 
 /*
@@ -39126,7 +39126,7 @@ void func_800FADE0(void) {
  *
  * Waits for vertical blank period
  */
-void func_800FB234(void) {
+void vsync_wait(void) {
     extern OSMesgQueue D_80086AC0;  /* VI message queue */
     OSMesg msg;
 
@@ -39140,7 +39140,7 @@ void func_800FB234(void) {
  *
  * Submits display list to RSP/RDP
  */
-void func_800FB2C8(void) {
+void display_list_flush(void) {
     extern Gfx **D_80149438;  /* Display list pointer */
     OSTask *task = &D_80149440;
 
@@ -39175,7 +39175,7 @@ void func_800FB2C8(void) {
  *
  * Displays debug information overlay
  */
-void func_800FCA00(void) {
+void debug_overlay(void) {
     extern s32 D_80143B00;  /* FPS counter */
     char buf[32];
 
@@ -39205,7 +39205,7 @@ void func_800FCA00(void) {
     draw_text(buf, 10, 25, 200);
 
     /* Memory usage */
-    func_800FCDF8();
+    debug_stats();
 }
 
 /*
@@ -39215,7 +39215,7 @@ void func_800FCA00(void) {
  *
  * Shows memory and performance stats
  */
-void func_800FCDF8(void) {
+void debug_stats(void) {
     char buf[32];
 
     if (!D_80159E00) {
@@ -39242,7 +39242,7 @@ void func_800FCDF8(void) {
  *
  * Draws collision debug visualization
  */
-void func_800FD024(void) {
+void debug_collision(void) {
 
     if (!D_80159E04) {
         return;
@@ -39259,7 +39259,7 @@ void func_800FD024(void) {
  *
  * Draws AI waypoint paths
  */
-void func_800FD240(void) {
+void debug_ai_paths(void) {
 
     if (!D_80159E08) {
         return;
@@ -39276,7 +39276,7 @@ void func_800FD240(void) {
  *
  * Sets the random number generator seed
  */
-void func_800FD7E8(u32 seed) {
+void random_seed(u32 seed) {
 
     D_80143500 = seed;
 
@@ -39293,7 +39293,7 @@ void func_800FD7E8(u32 seed) {
  *
  * Returns a random 32-bit integer (LCG)
  */
-s32 func_800FD8DC(void) {
+s32 random_int(void) {
 
     D_80143500 = D_80143500 * 1103515245 + 12345;
 
@@ -39307,7 +39307,7 @@ s32 func_800FD8DC(void) {
  *
  * Returns a random float in [0.0, 1.0)
  */
-f32 func_800FD9F8(void) {
+f32 random_float(void) {
 
     D_80143500 = D_80143500 * 1103515245 + 12345;
 
@@ -39322,7 +39322,7 @@ f32 func_800FD9F8(void) {
  *
  * Returns a random integer in [min, max]
  */
-s32 func_800FDF94(s32 min, s32 max) {
+s32 random_range(s32 min, s32 max) {
     s32 range;
 
     if (max <= min) {
@@ -39348,7 +39348,7 @@ s32 func_800FDF94(s32 min, s32 max) {
  *   0x0C: lap times[8]
  *   0x2C: lap count
  */
-void func_800FE08C(s32 timerId) {
+void game_timer_start(s32 timerId) {
     extern u64 D_80159B00[8][6];  /* Timer data */
 
     if (timerId < 0 || timerId >= 8) {
@@ -39367,7 +39367,7 @@ void func_800FE08C(s32 timerId) {
  *
  * Stops a game timer
  */
-void func_800FE4BC(s32 timerId) {
+void game_timer_stop(s32 timerId) {
     extern u64 D_80159B00[8][6];  /* Timer data */
 
     if (timerId < 0 || timerId >= 8) {
@@ -39389,7 +39389,7 @@ void func_800FE4BC(s32 timerId) {
  *
  * Resets a game timer
  */
-void func_800FE520(s32 timerId) {
+void game_timer_reset(s32 timerId) {
     extern u64 D_80159B00[8][6];  /* Timer data */
     s32 i;
 
