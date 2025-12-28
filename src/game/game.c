@@ -5446,7 +5446,7 @@ s32 object_status_check(void **a0, s32 a1) {
 
 /**
 /*
- * func_800D6E00 - Allocate and signal type 11 object
+ * object_type11_alloc_signal - Allocate and signal type 11 object
  * (116 bytes)
  *
  * Allocates an object, sets its type to 11, stores parameter as byte 4,
@@ -5454,7 +5454,7 @@ s32 object_status_check(void **a0, s32 a1) {
  *
  * @param a0 Value to store in object byte 4
  */
-void func_800D6E00(s32 a0) {
+void object_type11_alloc_signal(s32 a0) {
     void *obj;
 
     func_80007270(&D_80142728[0], NULL, 1);
@@ -5472,14 +5472,14 @@ void func_800D6E00(s32 a0) {
 
 /**
 /*
- * func_800D6348 - Allocate and signal type 9 object
+ * object_type9_alloc_signal - Allocate and signal type 9 object
  * (104 bytes)
  *
  * Allocates an object, sets its type to 9, and signals the secondary
- * sync queue with the new object. Similar to func_800D6E00 but with
+ * sync queue with the new object. Similar to object_type11_alloc_signal but with
  * no parameter and different type.
  */
-void func_800D6348(void) {
+void object_type9_alloc_signal(void) {
     void *obj;
 
     func_80007270(&D_80142728[0], NULL, 1);
@@ -5499,7 +5499,7 @@ extern void func_800D03DC(f32 *pos, s32 a1);
 
 /**
 /*
- * func_8010E828 - Process object with countdown timer
+ * object_countdown_process - Process object with countdown timer
  * (132 bytes)
  *
  * If flag parameter is zero, initializes object. Otherwise processes
@@ -5509,7 +5509,7 @@ extern void func_800D03DC(f32 *pos, s32 a1);
  * @param a0 Pointer to parent object
  * @param a1 Skip init if non-zero
  */
-void func_8010E828(void *a0, s16 a1) {
+void object_countdown_process(void *a0, s16 a1) {
     void *child;
     s16 countdown;
 
@@ -5578,7 +5578,7 @@ extern f32 func_800B65B8(f32 distance, f32 maxDist);  /* Audio distance attenuat
 
 /**
 /*
- * func_800EF5B0 - Initialize object with optional type setup
+ * object_type_setup_init - Initialize object with optional type setup
  * (124 bytes)
  *
  * Stores a1 in a0[0], then either:
@@ -5586,7 +5586,7 @@ extern f32 func_800B65B8(f32 distance, f32 maxDist);  /* Audio distance attenuat
  * - If a2 == 0: calls func_800B362C for alternate init
  * Finally calls func_80094EC8 to finalize.
  */
-void func_800EF5B0(void *a0, void *a1, s32 a2) {
+void object_type_setup_init(void *a0, void *a1, s32 a2) {
     s8 objType;
     s32 result;
 
@@ -5607,13 +5607,13 @@ void func_800EF5B0(void *a0, void *a1, s32 a2) {
 
 /**
 /*
- * func_800F68A4 - Build string from object array
+ * string_build_from_array - Build string from object array
  * (132 bytes)
  *
  * Copies bytes from offset 4 of each 12-byte entry in D_80159800 array
  * into the output buffer, null-terminated. Count comes from D_801597F0[12].
  */
-void func_800F68A4(u8 *output) {
+void string_build_from_array(u8 *output) {
     void *data;
     void *arr;
     s32 i;
@@ -5648,13 +5648,13 @@ extern f32 D_801249C0;           /* Object init float constant */
 
 /**
 /*
- * func_800FBF2C - Update timer value from elapsed time
+ * timer_value_update - Update timer value from elapsed time
  * (92 bytes)
  *
  * Gets elapsed time, multiplies by scale factor, and stores.
  * If result is <= 0, sets timer state flag to 0x100000.
  */
-void func_800FBF2C(void) {
+void timer_value_update(void) {
     f32 time;
     s16 value;
 
@@ -5672,14 +5672,14 @@ void func_800FBF2C(void) {
 
 /**
 /*
- * func_800E7A98 - Remove item from synchronized linked list
+ * list_item_remove_synced - Remove item from synchronized linked list
  * (172 bytes)
  *
  * Removes an object from the linked list at D_801527C8.
  * If a0 is NULL, removes the head item instead.
  * Uses sync primitives for thread safety.
  */
-void func_800E7A98(void *a0) {
+void list_item_remove_synced(void *a0) {
     void *item;
     void *curr;
     void *next;
@@ -5722,7 +5722,7 @@ extern void func_800EB90C(s32 soundId); /* Post-update function */
 
 /**
 /*
- * func_800EC0DC - Update player coordinate transforms
+ * player_coords_update - Update player coordinate transforms
  * (180 bytes)
  *
  * For each active player (when mode == 2 and count >= 2), calls
@@ -5730,7 +5730,7 @@ extern void func_800EB90C(s32 soundId); /* Post-update function */
  * func_8008D6FC to update their coordinate data from arrays at
  * 0x80152BD0 (source) and 0x80152C20 (dest), stride 952 bytes.
  */
-void func_800EC0DC(void) {
+void player_coords_update(void) {
     s16 *srcBase;
     u8 *src;
     u8 *dst;
@@ -5767,16 +5767,16 @@ done:
 
 /**
 /*
- * func_8010DAF8 - Spawn and initialize linked object
+ * object_spawn_linked - Spawn and initialize linked object
  * (192 bytes)
  *
- * Creates a new object via func_80090284, links it into D_801491F0 list,
+ * Creates a new object via object_alloc_free_list, links it into D_801491F0 list,
  * initializes fields from indexed data array D_80117530, and finalizes
  * with func_800FEA00.
  */
-extern void *func_80090284(s32 soundId, s32 flags);
+extern void *object_alloc_free_list(s32 soundId, s32 flags);
 
-void func_8010DAF8(void *a0) {
+void object_spawn_linked(void *a0) {
     s16 index;
     u8 *indexedData;
     void *obj;
@@ -5786,7 +5786,7 @@ void func_8010DAF8(void *a0) {
     indexedData = &D_80117530[index * 48];
 
     *(s16*)((u8*)a0 + 90) = 12;
-    obj = func_80090284(0, 0);
+    obj = object_alloc_free_list(0, 0);
 
     if (obj == NULL) {
         return;
@@ -5823,7 +5823,7 @@ extern u8 D_801439D8[];   /* Pool end marker */
 
 /**
 /*
- * func_80091B00 - Allocate object from pool
+ * pool_object_alloc - Allocate object from pool
  * (168 bytes)
  *
  * Searches the object pool at D_80142DD8 for a free 24-byte slot.
@@ -5832,7 +5832,7 @@ extern u8 D_801439D8[];   /* Pool end marker */
  *
  * @return Pointer to allocated slot, or NULL if pool exhausted
  */
-void *func_80091B00(s32 type) {
+void *pool_object_alloc(s32 type) {
     u8 *base = D_80142DD8;
     u8 *end = D_801439D8;
     u8 *ptr = base;
@@ -5879,7 +5879,7 @@ extern void func_8008AE8C(s16 texId, s32 mode, s32 flags); /* Sound stop functio
 
 /**
 /*
- * func_8009079C - Deactivate and free an object
+ * object_deactivate_free - Deactivate and free an object
  * (260 bytes)
  *
  * Stops any associated sound, removes object from active list,
@@ -5888,7 +5888,7 @@ extern void func_8008AE8C(s16 texId, s32 mode, s32 flags); /* Sound stop functio
  * @param a0 Object pointer to deactivate
  * @param a1 If non-zero, remove from active list
  */
-void func_8009079C(void *a0, s32 a1) {
+void object_deactivate_free(void *a0, s32 a1) {
     s16 soundId;
     void *curr;
     void *prev;
@@ -5952,7 +5952,7 @@ extern void *func_80092278(void);  /* Allocate sub-object */
 
 /**
 /*
- * func_80092360 - Spawn a new game object
+ * object_spawn_new - Spawn a new game object
  * (292 bytes)
  *
  * Creates a new object with type 2, initializes it with the given parameters,
@@ -5964,14 +5964,14 @@ extern void *func_80092278(void);  /* Allocate sub-object */
  * @param a3 Flags byte (from stack)
  * @return Pointer to the created sub-object's data
  */
-void *func_80092360(s32 a0) {
+void *object_spawn_new(s32 a0) {
     void *obj;
     void *subObj;
     void *result;
 
     func_80007270(&D_80142728[0], NULL, 1);
 
-    obj = func_80091B00(0);
+    obj = pool_object_alloc(0);
 
     /* Set object type and ID */
     *(u8*)((u8*)obj + 2) = 2;
@@ -6009,7 +6009,7 @@ void *func_80092360(s32 a0) {
 
 /**
 /*
- * func_8008D6B0 - Copy 3x3 matrix or 9-float vector
+ * matrix3x3_copy - Copy 3x3 matrix or 9-float vector
  * (76 bytes)
  *
  * Copies 36 bytes (9 floats) from source to destination.
@@ -6018,7 +6018,7 @@ void *func_80092360(s32 a0) {
  * @param src Source pointer
  * @param dst Destination pointer
  */
-void func_8008D6B0(f32 *src, f32 *dst) {
+void matrix3x3_copy(f32 *src, f32 *dst) {
     dst[0] = src[0];
     dst[1] = src[1];
     dst[2] = src[2];
@@ -6034,15 +6034,15 @@ void func_8008D6B0(f32 *src, f32 *dst) {
 
 /**
 /*
- * func_80090284 - Allocate object from free list
+ * object_alloc_free_list - Allocate object from free list
  * (132 bytes)
  *
  * Pops an object from the free list at D_801492C8, initializes it,
- * and updates count tracking. The complementary function to func_8009079C.
+ * and updates count tracking. The complementary function to object_deactivate_free.
  *
  * @return Pointer to allocated object, or NULL if list empty
  */
-void *func_80090284(s32 soundId, s32 flags) {
+void *object_alloc_free_list(s32 soundId, s32 flags) {
     void *obj;
     void *next;
     s16 count;
