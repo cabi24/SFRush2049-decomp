@@ -20736,14 +20736,14 @@ void func_800FA0D8(void) {
     /* Skip with B button */
     if (input & 0x4000) {
         D_8015A400 = 0;
-        func_800CBE08();
+        menu_back();
         return;
     }
 
     /* Check if credits finished */
     if (scrollY > numLines * 25 + 240) {
         D_8015A400 = 0;
-        func_800CBE08();
+        menu_back();
         return;
     }
 
@@ -31461,10 +31461,11 @@ void menu_cursor_move(s32 direction) {
 
 /*
 
- * func_800CBBD4 (564 bytes)
- * Menu item select - handles selection action for current menu item
+ * menu_item_select (func_800CBBD4)
+ * Size: 564 bytes
+ * Handles selection action for current menu item
  */
-void func_800CBBD4(s32 itemIndex) {
+void menu_item_select(s32 itemIndex) {
     s32 *menuItems;
     s32 itemType;
     s32 itemAction;
@@ -31501,29 +31502,29 @@ void func_800CBBD4(s32 itemIndex) {
             switch (itemAction) {
                 case 1:  /* Start race */
                     D_801146EC = 3;  /* PREPLAY state */
-                    func_800CBE8C(-1);  /* Close menu */
+                    menu_transition(-1);  /* Close menu */
                     break;
                 case 2:  /* Options */
-                    func_800CBE8C(2);  /* Go to options menu */
+                    menu_transition(2);  /* Go to options menu */
                     break;
                 case 3:  /* Track select */
-                    func_800CBE8C(3);  /* Go to track select */
+                    menu_transition(3);  /* Go to track select */
                     break;
                 case 4:  /* Car select */
-                    func_800CBE8C(4);  /* Go to car select */
+                    menu_transition(4);  /* Go to car select */
                     break;
                 case 5:  /* Exit */
                     D_801146EC = 0;  /* ATTRACT state */
-                    func_800CBE8C(-1);
+                    menu_transition(-1);
                     break;
                 case 6:  /* Controller Pak */
-                    func_800CBE8C(5);  /* Go to save menu */
+                    menu_transition(5);  /* Go to save menu */
                     break;
                 case 7:  /* Sound test */
-                    func_800CBE8C(6);
+                    menu_transition(6);
                     break;
                 case 8:  /* Credits */
-                    func_800CBE8C(7);
+                    menu_transition(7);
                     break;
                 default:
                     break;
@@ -31553,7 +31554,7 @@ void func_800CBBD4(s32 itemIndex) {
 
         case 3:  /* Submenu */
             targetMenu = itemAction;
-            func_800CBE8C(targetMenu);
+            menu_transition(targetMenu);
             break;
 
         case 4:  /* Multi-choice */
@@ -31578,10 +31579,11 @@ void func_800CBBD4(s32 itemIndex) {
 
 /*
 
- * func_800CBE08 (132 bytes)
- * Menu back - returns to previous menu in stack
+ * menu_back (func_800CBE08)
+ * Size: 132 bytes
+ * Returns to previous menu in stack
  */
-void func_800CBE08(void) {
+void menu_back(void) {
     s32 prevMenu;
     s32 stackDepth;
 
@@ -31600,16 +31602,17 @@ void func_800CBE08(void) {
     prevMenu = D_80159224[stackDepth];
 
     /* Transition to previous menu */
-    func_800CBE8C(prevMenu);
+    menu_transition(prevMenu);
     sound_play_menu(11);  /* Back sound */
 }
 
 /*
 
- * func_800CBE8C (340 bytes)
- * Menu transition - switches to a new menu with animation
+ * menu_transition (func_800CBE8C)
+ * Size: 340 bytes
+ * Switches to a new menu with animation
  */
-void func_800CBE8C(s32 toMenuId) {
+void menu_transition(s32 toMenuId) {
     s32 currentMenu;
     s32 stackDepth;
 
@@ -31677,10 +31680,11 @@ void func_800CBE8C(s32 toMenuId) {
 
 /*
 
- * func_800CC040 (900 bytes)
- * Menu animation update - handles menu transitions and element animations
+ * menu_animation_update (func_800CC040)
+ * Size: 900 bytes
+ * Handles menu transitions and element animations
  */
-void func_800CC040(void) {
+void menu_animation_update(void) {
     s32 transitionState;
     s32 animFrame;
     s32 targetFrame;
@@ -31890,10 +31894,11 @@ void sound_play_menu(s32 soundId) {
 
 /*
 
- * func_800CC540 (904 bytes)
- * Menu text scroll - scrolls long text horizontally
+ * menu_text_scroll (func_800CC540)
+ * Size: 904 bytes
+ * Scrolls long text horizontally
  */
-void func_800CC540(char *text, s32 maxWidth) {
+void menu_text_scroll(char *text, s32 maxWidth) {
     s32 textLen;
     s32 textWidth;
     s32 charWidth;
@@ -32002,10 +32007,11 @@ void func_800CC540(char *text, s32 maxWidth) {
 
 /*
 
- * func_800CC8C8 (316 bytes)
- * Menu highlight - sets highlight state for menu item
+ * menu_highlight_set (func_800CC8C8)
+ * Size: 316 bytes
+ * Sets highlight state for menu item
  */
-void func_800CC8C8(s32 itemIndex) {
+void menu_highlight_set(s32 itemIndex) {
     s32 prevIndex;
     s32 itemCount;
     s32 targetY;
@@ -32055,10 +32061,11 @@ void func_800CC8C8(s32 itemIndex) {
 
 /*
 
- * func_800CCA04 (1112 bytes)
- * Menu list render - renders entire menu with items
+ * menu_list_render (func_800CCA04)
+ * Size: 1112 bytes
+ * Renders entire menu with items
  */
-void func_800CCA04(void *list, s32 count) {
+void menu_list_render(void *list, s32 count) {
     s32 i;
     s32 *items;
     s32 itemAction;
@@ -32268,10 +32275,11 @@ s32 func_800CCE5C(s32 current, s32 min, s32 max) {
 
 /*
 
- * func_800CD104 (1088 bytes)
- * Menu dialog display - shows modal dialog box
+ * menu_dialog_display (func_800CD104)
+ * Size: 1088 bytes
+ * Shows modal dialog box
  */
-void func_800CD104(s32 dialogId) {
+void menu_dialog_display(s32 dialogId) {
     s32 dialogX, dialogY;
     s32 dialogW, dialogH;
     s32 titleY, messageY;
@@ -32490,12 +32498,12 @@ s32 func_800CD544(char *message) {
     /* A button to confirm */
     else if (input == 1) {
         result = (selectedButton == 0) ? 1 : 0;
-        func_800CD6E0();  /* Close dialog */
+        menu_dialog_close();  /* Close dialog */
     }
     /* B button to cancel */
     else if (input == 2) {
         result = 0;
-        func_800CD6E0();
+        menu_dialog_close();
     }
 
     return result;
@@ -32503,10 +32511,11 @@ s32 func_800CD544(char *message) {
 
 /*
 
- * func_800CD6E0 (184 bytes)
- * Menu close dialog - closes active dialog with animation
+ * menu_dialog_close (func_800CD6E0)
+ * Size: 184 bytes
+ * Closes active dialog with animation
  */
-void func_800CD6E0(void) {
+void menu_dialog_close(void) {
     /* Start close animation */
     D_801592F4 = 1;  /* Closing state */
     D_801592F8 = 0;  /* Animation frame */
@@ -32524,10 +32533,11 @@ void func_800CD6E0(void) {
 
 /*
 
- * func_800CD798 (340 bytes)
- * Menu keyboard init - initializes on-screen keyboard for text entry
+ * keyboard_init (func_800CD798)
+ * Size: 340 bytes
+ * Initializes on-screen keyboard for text entry
  */
-void func_800CD798(void) {
+void keyboard_init(void) {
     s32 i;
 
     /* Keyboard layout - 6x7 grid */
@@ -32562,10 +32572,11 @@ void func_800CD798(void) {
 
 /*
 
- * func_800CD8EC (500 bytes)
- * Menu keyboard input - handles navigation and character selection
+ * keyboard_input_process (func_800CD8EC)
+ * Size: 500 bytes
+ * Handles navigation and character selection
  */
-char func_800CD8EC(s32 input) {
+char keyboard_input_process(s32 input) {
     s32 col, row;
     s32 maxCol, maxRow;
     char selectedChar;
@@ -32954,13 +32965,13 @@ void func_800CE358(void) {
         action = D_80159344[selectedItem];
         switch (action) {
             case 0:  /* Audio settings */
-                func_800CBE8C(10);  /* Go to audio submenu */
+                menu_transition(10);  /* Go to audio submenu */
                 break;
             case 1:  /* Video settings */
-                func_800CBE8C(11);  /* Go to video submenu */
+                menu_transition(11);  /* Go to video submenu */
                 break;
             case 2:  /* Control settings */
-                func_800CBE8C(12);  /* Go to controls submenu */
+                menu_transition(12);  /* Go to controls submenu */
                 break;
             case 3:  /* Save options */
                 D_80159340 = 1;  /* Save confirm dialog */
@@ -32987,13 +32998,13 @@ void func_800CE358(void) {
                 sound_play_menu(10);
                 break;
             case 6:  /* Back */
-                func_800CBE08();
+                menu_back();
                 break;
         }
     }
     /* Handle back button */
     else if (input == 2) {
-        func_800CBE08();
+        menu_back();
     }
 
     /* Render menu */
@@ -33036,7 +33047,7 @@ void func_800CED3C(void) {
                 }
             } else if (selectedItem == 4) {
                 /* Back */
-                func_800CBE08();
+                menu_back();
             }
         }
     }
@@ -33061,7 +33072,7 @@ void func_800CED3C(void) {
     }
     /* Handle back button */
     else if (input == 2) {
-        func_800CBE08();
+        menu_back();
     }
 
     /* Render menu */
@@ -33100,12 +33111,12 @@ void func_800CF290(void) {
                 func_800CDCAC(5);
                 break;
             case 3:  /* Back */
-                func_800CBE08();
+                menu_back();
                 break;
         }
     }
     else if (input == 2) {
-        func_800CBE08();
+        menu_back();
     }
 
     func_800CCA04(NULL, 0);
@@ -33145,13 +33156,13 @@ void func_800CF374(void) {
                 sound_play_menu(14);
                 break;
             case 3:  /* Remap controls */
-                func_800CBE8C(13);  /* Go to remap screen */
+                menu_transition(13);  /* Go to remap screen */
                 break;
             case 4:  /* Test vibration */
                 func_800CFE74();
                 break;
             case 5:  /* Back */
-                func_800CBE08();
+                menu_back();
                 break;
         }
     }
@@ -33169,7 +33180,7 @@ void func_800CF374(void) {
         }
     }
     else if (input == 2) {
-        func_800CBE08();
+        menu_back();
     }
 
     func_800CCA04(NULL, 0);
@@ -33245,11 +33256,11 @@ void func_800CF69C(void) {
                 sound_play_menu(10);
             } else if (selectedItem == 9) {
                 /* Back */
-                func_800CBE08();
+                menu_back();
             }
         }
         else if (input == 2) {
-            func_800CBE08();
+            menu_back();
         }
     }
     else {
@@ -33452,14 +33463,14 @@ void func_800D000C(void) {
         trackUnlocked = func_800D1248(selectedTrack);
         if (trackUnlocked) {
             D_80159A08 = selectedTrack;  /* Store selected track */
-            func_800CBE8C(4);  /* Go to car select */
+            menu_transition(4);  /* Go to car select */
             sound_play_menu(10);
         } else {
             sound_play_menu(13);  /* Locked sound */
         }
     }
     else if (input == 2) {  /* Back */
-        func_800CBE08();
+        menu_back();
     }
 
     D_80159A00 = selectedTrack;
@@ -33736,14 +33747,14 @@ void func_800D138C(void) {
         carUnlocked = func_800D197C(selectedCar);
         if (carUnlocked) {
             D_80159A54 = selectedCar;  /* Store selected car */
-            func_800CBE8C(5);  /* Go to color select or race setup */
+            menu_transition(5);  /* Go to color select or race setup */
             sound_play_menu(10);
         } else {
             sound_play_menu(13);
         }
     }
     else if (input == 2) {  /* Back */
-        func_800CBE08();
+        menu_back();
     }
     /* Up/down for color selection */
     else if (input == 4 || input == 5) {
@@ -34102,12 +34113,12 @@ void func_800D1CE0(void) {
         if (selectedItem == 6) {
             /* Start race */
             D_801146EC = 7;  /* PREPLAY state */
-            func_800CBE8C(-1);  /* Close menu */
+            menu_transition(-1);  /* Close menu */
             sound_play_menu(10);
         }
     }
     else if (input == 2) {
-        func_800CBE08();
+        menu_back();
     }
 
     D_80159B00[0][0] = selectedItem;
@@ -34363,15 +34374,15 @@ void func_800D2E94(void) {
     else if (input == 1) {
         if (selectedItem == 4) {
             /* Continue to player join */
-            func_800CBE8C(20);  /* Player join screen */
+            menu_transition(20);  /* Player join screen */
             sound_play_menu(10);
         } else if (selectedItem == 5) {
             /* Back */
-            func_800CBE08();
+            menu_back();
         }
     }
     else if (input == 2) {
-        func_800CBE08();
+        menu_back();
     }
 
     D_80159C00[0] = selectedItem;
@@ -34497,7 +34508,7 @@ void func_800D349C(void) {
             /* Start game */
             D_80159C18 = joinedPlayers;
             D_801146EC = 7;  /* PREPLAY state */
-            func_800CBE8C(-1);
+            menu_transition(-1);
         }
     } else {
         D_80159C14 = 0;
@@ -34505,7 +34516,7 @@ void func_800D349C(void) {
 
     /* Player 1 can press B to go back if no one joined */
     if ((controllerInput[0] & 0x4000) && joinedPlayers == 0) {
-        func_800CBE08();
+        menu_back();
     }
 
     /* Render */
@@ -34688,14 +34699,14 @@ void func_800D3B28(void) {
                     D_80159E14 = wingEnabled;
                     D_80159A08 = selectedArena + 100;  /* Stunt arena IDs */
                     D_801146EC = 7;  /* PREPLAY */
-                    func_800CBE8C(-1);
+                    menu_transition(-1);
                 }
             } else if (selectedOption == 5) {
                 /* Stunt tutorial */
                 menuState = 1;
             }
         } else if (input == 2) {  /* B - back */
-            func_800CBE08();
+            menu_back();
         }
 
         /* Render stunt setup menu */
@@ -34912,16 +34923,16 @@ void func_800D4EF4(void) {
                 D_80159E30 = weaponsEnabled;
                 D_80159A08 = selectedArena + 200;  /* Battle arena IDs */
                 D_801146EC = 7;  /* PREPLAY */
-                func_800CBE8C(-1);
+                menu_transition(-1);
             } else {
                 sound_play_menu(13);  /* Error sound */
             }
         } else if (selectedOption == 5) {
             /* Go to player join */
-            func_800CBE8C(15);
+            menu_transition(15);
         }
     } else if (input == 2) {  /* B - back */
-        func_800CBE08();
+        menu_back();
     }
 
     /* Render */
@@ -35065,7 +35076,7 @@ void func_800D510C(void) {
                 D_80159A08 = selectedTrack;
                 D_80159A14[0] = 1;  /* Ghost mode enabled */
                 D_801146EC = 7;  /* PREPLAY */
-                func_800CBE8C(-1);
+                menu_transition(-1);
             } else {
                 sound_play_menu(13);  /* Error - no ghost */
             }
@@ -35080,7 +35091,7 @@ void func_800D510C(void) {
             }
         }
     } else if (input == 2) {  /* B - back */
-        func_800CBE08();
+        menu_back();
     }
 
     /* Render */
@@ -35220,7 +35231,7 @@ void func_800D58CC(void) {
         sound_play_menu(12);
     }
     else if (input == 2) {
-        func_800CBE08();
+        menu_back();
     }
 
     D_80159D00[0] = selectedTab;
@@ -35490,7 +35501,7 @@ void func_800D63F4(void) {
         sound_play_menu(12);
     }
     else if (input == 2) {
-        func_800CBE08();
+        menu_back();
     }
 
     D_80159DA0 = scrollOffset;
@@ -35537,7 +35548,7 @@ void func_800D6698(void) {
 
     /* Any button to exit */
     if (input == 1 || input == 2) {
-        func_800CBE08();
+        menu_back();
     }
 
     /* Title */
