@@ -39414,7 +39414,7 @@ void game_timer_reset(s32 timerId) {
  *
  * Returns elapsed time in centiseconds
  */
-s32 func_800FE5B0(s32 timerId) {
+s32 game_timer_elapsed(s32 timerId) {
     extern u64 D_80159B00[8][6];  /* Timer data */
     u64 elapsed;
     s32 centisecs;
@@ -39444,7 +39444,7 @@ s32 func_800FE5B0(s32 timerId) {
  *
  * Pauses a game timer
  */
-void func_800FE7A4(s32 timerId) {
+void game_timer_pause(s32 timerId) {
     extern u64 D_80159B00[8][6];  /* Timer data */
 
     if (timerId < 0 || timerId >= 8) {
@@ -39465,7 +39465,7 @@ void func_800FE7A4(s32 timerId) {
  *
  * Resumes a paused timer
  */
-void func_800FE848(s32 timerId) {
+void game_timer_resume(s32 timerId) {
     extern u64 D_80159B00[8][6];  /* Timer data */
 
     if (timerId < 0 || timerId >= 8) {
@@ -39486,7 +39486,7 @@ void func_800FE848(s32 timerId) {
  *
  * Records a lap time and returns lap number
  */
-s32 func_800FE924(s32 timerId) {
+s32 game_timer_lap(s32 timerId) {
     extern u64 D_80159B00[8][6];  /* Timer data */
     s32 lapNum;
     s32 lapTime;
@@ -39501,7 +39501,7 @@ s32 func_800FE924(s32 timerId) {
     }
 
     /* Get current lap time */
-    lapTime = func_800FE5B0(timerId);
+    lapTime = game_timer_elapsed(timerId);
 
     /* Store lap time */
     D_80159B00[timerId][3 + (lapNum / 2)] |= ((u64)lapTime << ((lapNum & 1) * 32));
@@ -39518,7 +39518,7 @@ s32 func_800FE924(s32 timerId) {
  *
  * Updates race timer display each frame
  */
-void func_800FEA08(void) {
+void race_timer_update(void) {
     char timeBuf[16];
     s32 m, s, h;
 
@@ -39532,7 +39532,7 @@ void func_800FEA08(void) {
     }
 
     /* Get current race time */
-    D_80159A00 = func_800FE5B0(0);  /* Timer 0 = race timer */
+    D_80159A00 = game_timer_elapsed(0);  /* Timer 0 = race timer */
 
     /* Format time display */
     m = D_80159A00 / 6000;
@@ -39560,7 +39560,7 @@ void func_800FEA08(void) {
  *
  * Displays pre-race countdown (3, 2, 1, GO!)
  */
-void func_800FECA4(void) {
+void countdown_display(void) {
     s32 countdown;
     char numBuf[2];
 
@@ -39583,7 +39583,7 @@ void func_800FECA4(void) {
         if (D_80159A08 == 180) {
             sound_play_menu(13);  /* GO sound */
             D_80159A04 = 1;     /* Start race */
-            func_800FE08C(0);   /* Start race timer */
+            game_timer_start(0);   /* Start race timer */
         }
     }
 }
@@ -39642,7 +39642,7 @@ void func_800FEE04(s32 splitTime) {
  *
  * Checks if lap time is a new best, returns 1 if so
  */
-s32 func_800FF298(s32 lapTime) {
+s32 best_lap_check(s32 lapTime) {
 
     if (lapTime <= 0) {
         return 0;
@@ -39663,7 +39663,7 @@ s32 func_800FF298(s32 lapTime) {
  *
  * Saves best times and scores to controller pak
  */
-void func_800FF724(void) {
+void record_save(void) {
     u8 saveData[256];
     s32 i;
 
@@ -39693,7 +39693,7 @@ void func_800FF724(void) {
  *
  * High score name entry screen
  */
-void func_800FFDF8(void) {
+void high_score_entry(void) {
     extern char D_80159E18[4]; /* Entered name */
     s32 input;
     s32 cursorPos;
@@ -39720,7 +39720,7 @@ void func_800FFDF8(void) {
         if (D_80159E10 >= 3) {
             D_80159E18[3] = '\0';
             /* Save high score */
-            func_800FF724();
+            record_save();
         }
     } else if (input == 2) {  /* B - backspace */
         if (D_80159E10 > 0) {
@@ -39742,7 +39742,7 @@ void func_800FFDF8(void) {
  * func_80100564 (1576 bytes)
  * Leaderboard display
  */
-void func_80100564(void) {
+void leaderboard_display(void) {
     /* Leaderboard - stub */
 }
 
@@ -39751,7 +39751,7 @@ void func_80100564(void) {
  * func_80100B8C (716 bytes)
  * Score calculate
  */
-s32 func_80100B8C(void) {
+s32 score_calculate(void) {
     /* Score calc - stub */
     return 0;
 }
@@ -39761,7 +39761,7 @@ s32 func_80100B8C(void) {
  * func_80100E60 (2732 bytes)
  * Stunt score
  */
-s32 func_80100E60(s32 trickId) {
+s32 stunt_score(s32 trickId) {
     /* Stunt score - stub */
     return 0;
 }
@@ -39771,7 +39771,7 @@ s32 func_80100E60(s32 trickId) {
  * func_8010190C (1152 bytes)
  * Combo multiplier
  */
-s32 func_8010190C(s32 combo) {
+s32 combo_multiplier(s32 combo) {
     /* Combo - stub */
     return combo;
 }
