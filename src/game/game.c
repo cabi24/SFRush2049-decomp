@@ -32831,7 +32831,7 @@ void menu_option_toggle(s32 optionId) {
             D_80159308 = newValue;
             /* Test vibration when enabled */
             if (newValue == 1) {
-                func_800CFE74();  /* Short rumble test */
+                menu_vibration_test();  /* Short rumble test */
             }
             break;
 
@@ -33234,7 +33234,7 @@ void menu_control_settings(void) {
                 menu_transition(13);  /* Go to remap screen */
                 break;
             case 4:  /* Test vibration */
-                func_800CFE74();
+                menu_vibration_test();
                 break;
             case 5:  /* Back */
                 menu_back();
@@ -33267,7 +33267,7 @@ void menu_control_settings(void) {
  * func_800CF69C (1976 bytes)
  * Menu controller remap - controller button remapping screen
  */
-void func_800CF69C(void) {
+void menu_controller_remap(void) {
     s32 input;
     s32 selectedItem;
     s32 remapState;
@@ -33403,7 +33403,7 @@ void func_800CF69C(void) {
  * func_800CFE74 (404 bytes)
  * Menu vibration test - tests controller rumble feature
  */
-void func_800CFE74(void) {
+void menu_vibration_test(void) {
     s32 vibeState;
     s32 vibeTimer;
     s32 vibePattern;
@@ -33478,7 +33478,7 @@ void func_800CFE74(void) {
  * func_800D000C (2264 bytes)
  * Track select screen - main track selection menu
  */
-void func_800D000C(void) {
+void track_select_screen(void) {
     s32 input;
     s32 selectedTrack;
     s32 numTracks;
@@ -33589,10 +33589,10 @@ void func_800D000C(void) {
     }
 
     /* Render track preview */
-    func_800D08E4(selectedTrack);
+    track_preview_render(selectedTrack);
 
     /* Render track info */
-    func_800D0BA0(selectedTrack);
+    track_info_display(selectedTrack);
 }
 
 /*
@@ -33600,7 +33600,7 @@ void func_800D000C(void) {
  * func_800D08E4 (692 bytes)
  * Track preview render - renders track thumbnail/preview image
  */
-void func_800D08E4(s32 trackId) {
+void track_preview_render(s32 trackId) {
     s32 previewX, previewY;
     s32 previewW, previewH;
     s32 textureId;
@@ -33641,7 +33641,7 @@ void func_800D08E4(s32 trackId) {
  * func_800D0BA0 (1192 bytes)
  * Track info display - shows track statistics and info
  */
-void func_800D0BA0(s32 trackId) {
+void track_info_display(s32 trackId) {
     s32 infoX, infoY;
     s32 unlocked;
     char timeBuf[16];
