@@ -26063,10 +26063,10 @@ void scripted_event(void *event) {
 
 /*
 
- * func_800ECF38 (2188 bytes)
+ * cutscene_play (2188 bytes)
  * Cutscene playback
  */
-void func_800ECF38(s32 cutsceneId) {
+void cutscene_play(s32 cutsceneId) {
     s32 *cutsceneActive;
     s32 *currentCutscene;
     f32 *cutsceneTime;
@@ -26110,10 +26110,10 @@ void func_800ECF38(s32 cutsceneId) {
 
 /*
 
- * func_800ED7C0 (2564 bytes)
+ * object_spawn (2564 bytes)
  * Object spawner
  */
-void func_800ED7C0(s32 objectType, f32 *pos, f32 *rot) {
+void object_spawn(s32 objectType, f32 *pos, f32 *rot) {
     void *objectPool;
     s32 *objectCount;
     s32 maxObjects;
@@ -26167,10 +26167,10 @@ void func_800ED7C0(s32 objectType, f32 *pos, f32 *rot) {
 
 /*
 
- * func_800EE1B0 (1516 bytes)
+ * collectible_spawn (1516 bytes)
  * Collectible spawn
  */
-void func_800EE1B0(s32 collectibleType, f32 *pos) {
+void collectible_spawn(s32 collectibleType, f32 *pos) {
     void *collectiblePool;
     s32 *collectibleCount;
     s32 maxCollectibles;
@@ -26225,10 +26225,10 @@ void func_800EE1B0(s32 collectibleType, f32 *pos) {
 
 /*
 
- * func_800EE7A8 (228 bytes)
+ * collectible_collect (228 bytes)
  * Collectible collect
  */
-void func_800EE7A8(void *player, void *collectible) {
+void collectible_collect(void *player, void *collectible) {
     s32 *collectibleType;
     s32 *collected;
     s32 *playerScore;
@@ -26283,10 +26283,10 @@ void func_800EE7A8(void *player, void *collectible) {
 
 /*
 
- * func_800EE8B0 (1780 bytes)
+ * powerup_activate (1780 bytes)
  * Power-up activation
  */
-void func_800EE8B0(void *player, s32 powerupType) {
+void powerup_activate(void *player, s32 powerupType) {
     s32 *activePowerup;
     f32 *powerupTimer;
     f32 *powerupDuration;
@@ -26339,10 +26339,10 @@ void func_800EE8B0(void *player, s32 powerupType) {
 
 /*
 
- * func_800EEFA0 (1556 bytes)
+ * powerup_timer_update (1556 bytes)
  * Power-up timer
  */
-void func_800EEFA0(void *player) {
+void powerup_timer_update(void *player) {
     s32 *activePowerup;
     f32 *powerupTimer;
     f32 *powerupDuration;
@@ -26396,10 +26396,10 @@ void func_800EEFA0(void *player) {
 
 /*
 
- * func_800EF5B4 (2036 bytes)
+ * nitro_boost (2036 bytes)
  * Nitro boost
  */
-void func_800EF5B4(void *car) {
+void nitro_boost(void *car) {
     f32 *velocity;
     f32 *nitroAmount;
     f32 *nitroActive;
@@ -26446,10 +26446,10 @@ void func_800EF5B4(void *car) {
 
 /*
 
- * func_800EFD88 (1232 bytes)
+ * nitro_refill (1232 bytes)
  * Nitro refill
  */
-void func_800EFD88(void *car, f32 amount) {
+void nitro_refill(void *car, f32 amount) {
     f32 *nitroAmount;
     f32 *nitroMax;
 
@@ -26471,10 +26471,10 @@ void func_800EFD88(void *car, f32 amount) {
 
 /*
 
- * func_800F0258 (1088 bytes)
+ * boost_pad_trigger (1088 bytes)
  * Boost pad trigger
  */
-void func_800F0258(void *car, void *pad) {
+void boost_pad_trigger(void *car, void *pad) {
     f32 *velocity;
     f32 *padDir;
     f32 boostSpeed;
@@ -26507,10 +26507,10 @@ void func_800F0258(void *car, void *pad) {
 
 /*
 
- * func_800F0B44 (2264 bytes)
+ * ramp_launch (2264 bytes)
  * Ramp launch
  */
-void func_800F0B44(void *car, void *ramp) {
+void ramp_launch(void *car, void *ramp) {
     f32 *velocity;
     f32 *position;
     f32 *rampNormal;
@@ -26556,10 +26556,10 @@ void func_800F0B44(void *car, void *ramp) {
 
 /*
 
- * func_80100660 (1748 bytes)
+ * timer_init (1748 bytes)
  * Timer init
  */
-void func_80100660(void) {
+void timer_init(void) {
     s32 *timerStartFrame;
     s32 *timerElapsed;
     s32 *timerPaused;
@@ -26587,10 +26587,10 @@ void func_80100660(void) {
 
 /*
 
- * func_80100D34 (188 bytes)
+ * timer_get_elapsed (188 bytes)
  * Timer get elapsed
  */
-s32 func_80100D34(void) {
+s32 timer_get_elapsed(void) {
     s32 *timerStartFrame;
     s32 *timerPaused;
     s32 currentFrame;
@@ -28571,10 +28571,10 @@ void func_8010C2FC(void) {
 
 /*
 
- * func_800B7440 (88 bytes)
+ * audio_queue_add (88 bytes)
  * Audio queue add
  */
-void func_800B7440(s32 sndId) {
+void audio_queue_add(s32 sndId) {
     extern u32 D_801547C4;
     s32 *ptr;
 
@@ -28591,13 +28591,13 @@ void func_800B7440(s32 sndId) {
 
 /*
 
- * func_800B78F8 (324 bytes)
+ * audio_channel_setup (324 bytes)
  * Audio channel setup
  *
  * Configures an audio channel for playback
  * N64 uses 16 software-mixed channels via the audio library
  */
-void func_800B78F8(s32 channel, s32 param) {
+void audio_channel_setup(s32 channel, s32 param) {
     if (channel < 0 || channel >= 16) {
         return;
     }
@@ -28612,12 +28612,12 @@ void func_800B78F8(s32 channel, s32 param) {
 
 /*
 
- * func_800B7A40 (192 bytes)
+ * audio_volume_control (192 bytes)
  * Audio volume control
  *
  * Sets volume for a channel (0.0 to 1.0)
  */
-void func_800B7A40(s32 channel, f32 volume) {
+void audio_volume_control(s32 channel, f32 volume) {
 
     if (channel < 0 || channel >= 16) {
         return;
@@ -28632,12 +28632,12 @@ void func_800B7A40(s32 channel, f32 volume) {
 
 /*
 
- * func_800B8000 (200 bytes)
+ * audio_pan_control (200 bytes)
  * Audio pan control
  *
  * Sets stereo pan for a channel (-1.0 = left, 0.0 = center, 1.0 = right)
  */
-void func_800B8000(s32 channel, f32 pan) {
+void audio_pan_control(s32 channel, f32 pan) {
 
     if (channel < 0 || channel >= 16) {
         return;
@@ -28652,12 +28652,12 @@ void func_800B8000(s32 channel, f32 pan) {
 
 /*
 
- * func_800B821C (340 bytes)
+ * audio_pitch_control (340 bytes)
  * Audio pitch control
  *
  * Sets pitch multiplier for a channel (0.5 = octave down, 2.0 = octave up)
  */
-void func_800B821C(s32 channel, f32 pitch) {
+void audio_pitch_control(s32 channel, f32 pitch) {
     extern u32 D_80160140[16];  /* Sample rate overrides */
 
     if (channel < 0 || channel >= 16) {
@@ -28676,7 +28676,7 @@ void func_800B821C(s32 channel, f32 pitch) {
 
 /*
 
- * func_800B8374 (724 bytes)
+ * audio_3d_position (724 bytes)
  * Audio 3D position
  *
  * Sets 3D position for spatial audio effects
@@ -28684,7 +28684,7 @@ void func_800B821C(s32 channel, f32 pitch) {
  */
 extern f32 D_8016018C[3];   /* Listener forward */
 extern f32 D_80160198[3];   /* Listener right */
-void func_800B8374(s32 channel, f32 *pos) {
+void audio_3d_position(s32 channel, f32 *pos) {
     f32 dx, dy, dz;
     f32 dist, invDist;
     f32 rightDot;
@@ -28726,13 +28726,13 @@ void func_800B8374(s32 channel, f32 *pos) {
 
 /*
 
- * func_800B8650 (464 bytes)
+ * audio_doppler_effect (464 bytes)
  * Audio doppler effect
  *
  * Applies doppler pitch shift based on relative velocity
  * v_rel = (v_listener - v_source) dot (source_to_listener normalized)
  */
-void func_800B8650(s32 channel, f32 *velocity) {
+void audio_doppler_effect(s32 channel, f32 *velocity) {
     extern f32 D_801601A4[3];   /* Listener velocity */
     extern f32 D_801601B0[16][3]; /* Source positions (cached) */
     f32 dx, dy, dz, dist, invDist;
@@ -28778,13 +28778,13 @@ void func_800B8650(s32 channel, f32 *velocity) {
 
 /*
 
- * func_800B8820 (368 bytes)
+ * audio_reverb_setup (368 bytes)
  * Audio reverb setup
  *
  * Configures reverb effect for spatial ambience
  * Types: 0=None, 1=Small Room, 2=Large Room, 3=Hall, 4=Cave, 5=Outdoor
  */
-void func_800B8820(s32 reverbType, f32 amount) {
+void audio_reverb_setup(s32 reverbType, f32 amount) {
     /* Clamp amount */
     if (amount < 0.0f) amount = 0.0f;
     if (amount > 1.0f) amount = 1.0f;
@@ -28837,13 +28837,13 @@ void func_800B8820(s32 reverbType, f32 amount) {
 
 /*
 
- * func_800B9194 (528 bytes)
+ * audio_sample_load (528 bytes)
  * Audio sample load
  *
  * Loads audio sample from ROM into RAM audio buffer
  * Returns handle for playback, or -1 on failure
  */
-s32 func_800B9194(s32 sampleId) {
+s32 audio_sample_load(s32 sampleId) {
     extern u32 D_80160608;       /* Sample ROM offset table */
     u32 romOffset, sampleSize;
     void *destPtr;
@@ -28885,13 +28885,13 @@ s32 func_800B9194(s32 sampleId) {
 
 /*
 
- * func_800B93A8 (972 bytes)
+ * audio_stream_init (972 bytes)
  * Audio stream init
  *
  * Initializes streaming audio playback (for music)
  * Uses double buffering to stream from ROM
  */
-s32 func_800B93A8(s32 streamId) {
+s32 audio_stream_init(s32 streamId) {
     u32 tableEntry;
 
     if (streamId < 0 || streamId >= 16) {
@@ -28917,7 +28917,7 @@ s32 func_800B93A8(s32 streamId) {
 
     /* Fill first buffer */
     D_80160714 = 0;
-    func_800B9A0C(D_8016070C[0], D_8016071C);
+    audio_stream_fill(D_8016070C[0], D_8016071C);
 
     D_80160718 = 1;  /* Start playing */
 
@@ -28926,12 +28926,12 @@ s32 func_800B93A8(s32 streamId) {
 
 /*
 
- * func_800B9774 (664 bytes)
+ * audio_stream_update (664 bytes)
  * Audio stream update
  *
  * Called each frame to manage streaming buffer refills
  */
-void func_800B9774(void) {
+void audio_stream_update(void) {
     extern s32 D_80160724;       /* Buffer consumed flag */
     s32 nextBuffer;
     u32 remaining;
@@ -28956,22 +28956,22 @@ void func_800B9774(void) {
     if (remaining > 0) {
         u32 toRead = (remaining < D_8016071C) ? remaining : D_8016071C;
         s32 fillBuffer = (nextBuffer + 1) & 1;
-        func_800B9A0C(D_8016070C[fillBuffer], toRead);
+        audio_stream_fill(D_8016070C[fillBuffer], toRead);
     } else {
         /* Stream ended - loop or stop */
         D_80160708 = 0;  /* Loop back to start */
-        func_800B9A0C(D_8016070C[(nextBuffer + 1) & 1], D_8016071C);
+        audio_stream_fill(D_8016070C[(nextBuffer + 1) & 1], D_8016071C);
     }
 }
 
 /*
 
- * func_800B9A0C (860 bytes)
+ * audio_stream_fill (860 bytes)
  * Audio stream buffer fill
  *
  * Fills a stream buffer from ROM asynchronously
  */
-void func_800B9A0C(void *buffer, s32 size) {
+void audio_stream_fill(void *buffer, s32 size) {
     extern OSMesgQueue D_80160730;  /* Stream DMA queue */
     extern OSIoMesg D_80160748;     /* Stream IO message */
     u32 romAddr;
