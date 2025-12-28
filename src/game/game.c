@@ -37720,7 +37720,7 @@ void func_800EFEA8(f32 *pos) {
  * Renders tire skid marks on the track surface
  * Uses decal-style rendering on track geometry
  */
-void func_800F0100(void *tire) {
+void skid_mark_render(void *tire) {
     extern u8 D_80155800[];    /* Skid mark buffer */
     extern s32 D_80155C00;     /* Skid mark count */
     extern s32 D_80155C04;     /* Max skid marks */
@@ -37774,12 +37774,12 @@ void func_800F0100(void *tire) {
 
 /*
 
- * func_800F0674 (472 bytes)
+ * trail_effect (472 bytes)
  * Trail effect
  *
  * Creates a fading trail behind a moving object (nitro boost, wings)
  */
-void func_800F0674(void *object) {
+void trail_effect(void *object) {
     extern u8 D_80156000[];    /* Trail buffer */
     extern s32 D_80156400;     /* Trail segment count */
     extern s32 D_80156404;     /* Max trail segments */
@@ -37823,12 +37823,12 @@ void func_800F0674(void *object) {
 
 /*
 
- * func_800F084C (208 bytes)
+ * weather_rain (208 bytes)
  * Weather rain
  *
  * Renders falling rain particles
  */
-void func_800F084C(void) {
+void weather_rain(void) {
     extern u8 D_80156800[];    /* Rain particle buffer */
     extern s32 D_80156C00;     /* Active rain drops */
     extern f32 D_80158000[];   /* Camera position */
@@ -37860,12 +37860,12 @@ void func_800F084C(void) {
 
 /*
 
- * func_800F091C (564 bytes)
+ * weather_snow (564 bytes)
  * Weather snow
  *
  * Renders falling snow particles with wind drift
  */
-void func_800F091C(void) {
+void weather_snow(void) {
     extern u8 D_80157000[];    /* Snow particle buffer */
     extern s32 D_80157400;     /* Active snowflakes */
     extern f32 D_80157404;     /* Wind X */
@@ -37906,12 +37906,12 @@ void func_800F091C(void) {
 
 /*
 
- * func_800F0F4C (468 bytes)
+ * weather_fog (468 bytes)
  * Weather fog
  *
  * Configures RDP fog settings for distance fog effect
  */
-void func_800F0F4C(f32 density) {
+void weather_fog(f32 density) {
     extern Gfx **D_80149438;   /* Display list pointer */
     extern u8 D_80157500;      /* Fog R */
     extern u8 D_80157501;      /* Fog G */
@@ -37952,12 +37952,12 @@ void func_800F0F4C(f32 density) {
 
 /*
 
- * func_800F1120 (252 bytes)
+ * weather_update (252 bytes)
  * Weather update
  *
  * Updates current weather effects each frame
  */
-void func_800F1120(void) {
+void weather_update(void) {
     extern s32 D_80157600;     /* Current weather type: 0=clear, 1=rain, 2=snow, 3=fog */
     extern f32 D_80157604;     /* Weather intensity 0-1 */
     extern f32 D_80157608;     /* Target intensity */
@@ -37982,29 +37982,29 @@ void func_800F1120(void) {
             break;
 
         case 1:  /* Rain */
-            func_800F084C();
-            func_800F0F4C(D_80157604 * 0.3f);  /* Light fog with rain */
+            weather_rain();
+            weather_fog(D_80157604 * 0.3f);  /* Light fog with rain */
             break;
 
         case 2:  /* Snow */
-            func_800F091C();
-            func_800F0F4C(D_80157604 * 0.5f);  /* More fog with snow */
+            weather_snow();
+            weather_fog(D_80157604 * 0.5f);  /* More fog with snow */
             break;
 
         case 3:  /* Fog only */
-            func_800F0F4C(D_80157604);
+            weather_fog(D_80157604);
             break;
     }
 }
 
 /*
 
- * func_800F121C (1824 bytes)
+ * lighting_setup (1824 bytes)
  * Lighting setup
  *
  * Configures scene lighting for rendering
  */
-void func_800F121C(void) {
+void lighting_setup(void) {
     extern Gfx **D_80149438;
     extern u8 D_80157800[];    /* Ambient light RGB */
     extern u8 D_80157804[];    /* Directional light RGB */
@@ -38046,12 +38046,12 @@ void func_800F121C(void) {
 
 /*
 
- * func_800F193C (968 bytes)
+ * shadow_render (968 bytes)
  * Shadow render
  *
  * Renders a blob shadow under an object
  */
-void func_800F193C(void *object) {
+void shadow_render(void *object) {
     extern Gfx **D_80149438;
     u8 *objData = (u8 *)object;
     f32 *objPos;
@@ -38094,12 +38094,12 @@ void func_800F193C(void *object) {
 
 /*
 
- * func_800F1D04 (924 bytes)
+ * lens_flare (924 bytes)
  * Lens flare
  *
  * Renders lens flare effect when looking toward the sun
  */
-void func_800F1D04(f32 *sunPos) {
+void lens_flare(f32 *sunPos) {
     extern f32 D_80158010[];   /* Camera forward */
     f32 toSun[3];
     f32 dot;
