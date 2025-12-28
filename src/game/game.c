@@ -676,14 +676,14 @@ void game_mode_handler(void) {
 /**
  * External functions called by playgame_handler
  */
-extern void state_change_preprocess(void); /* func_800CA300 - State change pre-process */
+extern void state_change_preprocess(void); /* hud_fade_effect - State change pre-process */
 extern void object_init_render(void);       /* func_800A5BB8 - Object render init */
 extern void hud_setup(s32 a, s32 b, s32 c, s32 d, s32 e, f32 f, f32 g, s32 h); /* func_800C8B8C - HUD setup */
-extern void hud_init(void); /* func_800C885C - HUD init */
+extern void hud_init(void); /* hud_tachometer_update - HUD init */
 extern void display_enable(s32 flag); /* func_800C8FA4 - Enable/disable display */
-extern void game_init_state(void); /* func_800C9BE0 - Game state init */
+extern void game_init_state(void); /* hud_full_update - Game state init */
 extern void float_process(f32);        /* func_800014F0 - Float function */
-extern void state_finalize(void); /* func_800C9480 - State finalize */
+extern void state_finalize(void); /* hud_nitro_update - State finalize */
 extern void player_cleanup_slots(void); /* func_800C90E0 - Mode transition */
 extern void speed_set(s32 speed); /* func_800C9210 - Speed param function */
 extern void resource_slots_clear_multiple(void); /* func_800C937C - Clear multiple resource slots */
@@ -1317,21 +1317,21 @@ extern f32 D_801543CC;       /* Timer value */
 
 /* External functions for race states */
 extern void hud_element_render(void *hud, s32 elementId); /* Race pre-update */
-extern void func_800DB1E0(void *car, s32 paintId); /* State 1 handler */
-extern void func_800D91A0(void *garage); /* State 2 handler */
-extern void func_800D7634(void *profile); /* State 3 handler */
+extern void car_paint_apply(void *car, s32 paintId); /* State 1 handler */
+extern void garage_screen(void *garage); /* State 2 handler */
+extern void profile_manage(void *profile); /* State 3 handler */
 extern void physics_constraint_solve(void *constraint); /* State 4 handler */
 extern void audio_music_play(s32 trackId); /* State setter */
 extern void func_800013C0(void);       /* Timer init */
 extern void func_800013DC(void);       /* Timer update */
 extern void* func_80091B00(s32 type);      /* Allocate object */
 extern void *func_80092360(s32 arg); /* Object allocation */
-extern void func_800D5374(void *menu); /* Race setup 1 */
+extern void menu_options(void *menu); /* Race setup 1 */
 extern void players_frame_update(void); /* Race setup 2 */
-extern void func_800D6530(s32 operation); /* Track init */
-extern void func_800D6160(void *menu); /* Visual init */
-extern void func_800D60AC(void); /* Scene setup */
-extern void func_800D5A04(void *menu); /* Cleanup */
+extern void mempak_operation(s32 operation); /* Track init */
+extern void menu_saveload(void *menu); /* Visual init */
+extern void scene_stub_empty(void); /* Scene setup */
+extern void menu_controller_config(void *menu); /* Cleanup */
 extern void func_800B5F4C(s32 a0); /* Menu prev */
 extern void func_800B5FC4(void);       /* Menu confirm */
 extern void func_800B5F88(s32 a0); /* Menu toggle */
@@ -1406,7 +1406,7 @@ void race_state_machine(void) {
         speed_set(0.0f);
 
         /* Initialize race systems */
-        func_800D5374(NULL);
+        menu_options(NULL);
         players_frame_update();
 
         /* Initialize object list */
@@ -1423,15 +1423,15 @@ void race_state_machine(void) {
         break;
 
     case 1:  /* Pre-race setup */
-        func_800DB1E0(NULL, 0);
+        car_paint_apply(NULL, 0);
         break;
 
     case 2:  /* Track loading */
-        func_800D91A0(NULL);
+        garage_screen(NULL);
         break;
 
     case 3:  /* Car setup */
-        func_800D7634(NULL);
+        profile_manage(NULL);
         break;
 
     case 4:  /* Countdown prep */
@@ -1457,7 +1457,7 @@ void race_state_machine(void) {
         case 0:  /* Race start */
             audio_music_play(0);
             func_800013DC();
-            func_800D6530(0);
+            mempak_operation(0);
 
             func_80007270(&D_801461D0, 0, 1);
             alloc_obj = func_80091B00(0);
@@ -1465,11 +1465,11 @@ void race_state_machine(void) {
             func_800075E0(&D_801461D0, 0, 0);
             func_800075E0((void *)0x801427A8, alloc_obj, 0);
 
-            func_800D6160(1);
+            menu_saveload(1);
             if (!(D_801174B4 & 0x00200000)) {
-                func_800D6160(0);
+                menu_saveload(0);
 }
-            func_800D60AC();
+            scene_stub_empty();
             player_mode_set(-1, 0);
             goto exit_func;
 
@@ -1578,7 +1578,7 @@ void race_state_machine(void) {
         *(u8 *)((u8 *)alloc_obj + 2) = 7;
         func_800075E0(&D_801461D0, 0, 0);
         func_800075E0((void *)0x801427A8, alloc_obj, 0);
-        func_800D5A04(NULL);
+        menu_controller_config(NULL);
         break;
 
     case 8:
@@ -1623,7 +1623,7 @@ exit_common:
         *(u8 *)((u8 *)alloc_obj + 2) = 7;
         func_800075E0(&D_801461D0, 0, 0);
         func_800075E0((void *)0x801427A8, alloc_obj, 0);
-        func_800D5A04(NULL);
+        menu_controller_config(NULL);
     }
 
 exit_func:
@@ -2267,7 +2267,7 @@ void sound_handles_clear(s32 clear_all) {
  * Address: 0x800D5050
  * Size: 148 bytes
  *
- * Iterates through 6 player entries and calls func_800D4DFC
+ * Iterates through 6 player entries and calls menu_car_select
  * on each active player (entry[0x7C8] != 0 and entry[0x359] >= 2).
  *
  * Player entry layout:
@@ -2277,7 +2277,7 @@ void sound_handles_clear(s32 clear_all) {
  *   Status at offset 0x359 + (idx * 952) in secondary array D_80152818
  */
 extern u8 D_80152818[];       /* Secondary player data */
-extern void func_800D4DFC(void *menu); /* Process player race state */
+extern void menu_car_select(void *menu); /* Process player race state */
 
 void players_race_update(void) {
     s32 i;
@@ -2301,7 +2301,7 @@ void players_race_update(void) {
 
             if (status >= 2) {
                 /* Process this player's race state */
-                func_800D4DFC(player_entry);
+                menu_car_select(player_entry);
             }
         }
 
@@ -2320,7 +2320,7 @@ void players_race_update(void) {
  *
  * Registers an object into the active system:
  *   1. Acquires sync lock
- *   2. Processes object with func_800D52CC
+ *   2. Processes object with menu_stub_empty
  *   3. If object[9] is set, calls cleanup func and clears it
  *   4. Adds to active list via func_80091FBC
  *   5. Sets object[8] = 1 to mark active
@@ -2331,7 +2331,7 @@ void players_race_update(void) {
 extern u8 D_80142728[];       /* Sync structure */
 extern u8 D_80146188[];       /* Object pool 1 */
 
-extern void func_800D52CC(); /* Object pre-process */
+extern void menu_stub_empty(); /* Object pre-process */
 extern void func_8009211C(void*, void*);  /* Object cleanup */
 extern void func_80091FBC(void*, void*, void*);  /* Add to active list */
 
@@ -2351,7 +2351,7 @@ void object_activate(void *obj) {
     func_80007270(D_80142728, NULL, 1);
 
     /* Pre-process object */
-    func_800D52CC();
+    menu_stub_empty();
 
     /* Check if object needs cleanup */
     cleanup_flag = obj_ptr[9];
@@ -2380,12 +2380,12 @@ void object_activate(void *obj) {
  * Size: 144 bytes
  *
  * Clears D_801525F0, then iterates through all active players
- * (count at D_80152744) and calls func_800D5524 for each.
+ * (count at D_80152744) and calls menu_audio_options for each.
  * If game state has bit 0x0008 set, also calls func_800A13E8.
  */
 extern s8  D_80152744;        /* Active player count */
 /* D_8015A250 declared elsewhere - player entries */
-extern void func_800D5524(void *menu); /* Per-player update */
+extern void menu_audio_options(void *menu); /* Per-player update */
 extern void func_800A13E8(void);   /* Additional update (when bit 0x0008 set) */
 
 void players_frame_update(void) {
@@ -2405,7 +2405,7 @@ void players_frame_update(void) {
     /* Update each active player */
     player_entry = D_8015A250;
     for (i = 0; i < player_count; i++) {
-        func_800D5524(player_entry);
+        menu_audio_options(player_entry);
         player_entry += 2056;
     }
 
@@ -2735,7 +2735,7 @@ void sync_entry_register(s32 a0, s32 a1) {
  *
  * @param arg Passed in a0, stored to s1
  */
-extern void core_initialization(void *menu); /* func_800CBF2C - Core initialization */
+extern void core_initialization(void *menu); /* menu_system_update - Core initialization */
 
 void init_single_mode_wrapper(void *arg) {
     /* Set flags and call core init */
@@ -2913,14 +2913,14 @@ void object_type1_create(void) {
  * Address: 0x800D6290
  * Size: 92 bytes
  *
- * Wrapper that saves s0-s5, f20, f22 and calls func_800D6160
+ * Wrapper that saves s0-s5, f20, f22 and calls menu_saveload
  * with t0 = 0. This is likely a physics initialization mode.
  *
  * The register saves suggest the callee uses those registers.
  */
 void physics_init_mode0(void) {
     /* t0 = 0 passed to callee (mode flag) */
-    func_800D6160(0);
+    menu_saveload(0);
 }
 
 /*
@@ -2936,7 +2936,7 @@ void physics_init_mode0(void) {
  */
 void physics_init_mode1(void) {
     /* t0 = 1 passed to callee (mode flag) */
-    func_800D6160(1);
+    menu_saveload(1);
 }
 
 /*
@@ -3154,16 +3154,16 @@ u8 object_type_byte3_get(void) {
  * Address: 0x800E2A3C
  * Size: 40 bytes
  *
- * Calls func_800E23A4 then func_800E1C30 with same a0.
+ * Calls replay_ui_draw then replay_camera_update with same a0.
  *
  * @param a0 Parameter passed to both functions
  */
-extern void func_800E23A4(void *replay);
-extern void func_800E1C30(void *replay, void *camera);
+extern void replay_ui_draw(void *replay);
+extern void replay_camera_update(void *replay, void *camera);
 
 void replay_update_dual(s32 a0) {
-    func_800E23A4(a0);
-    func_800E1C30(a0, 0);
+    replay_ui_draw(a0);
+    replay_camera_update(a0, 0);
 }
 
 /*
@@ -3853,29 +3853,29 @@ void sync_init_conditional(s32 condition) {
  * Size: 96 bytes
  *
  * Calls 8 functions in sequence with the same object parameter:
- *   func_800CF06C, func_800E23A4, func_800E1C30, func_800E1AA0,
- *   func_800E15A0, func_800E1540, func_800E114C, func_800D0424
+ *   menu_render, replay_ui_draw, replay_camera_update, replay_record_frame,
+ *   replay_playback, func_800E1540, replay_update, menu_input_handle
  *
  * This is likely a full object update/tick function.
  *
  * @param a0 Object pointer
  */
-extern void func_800CF06C(void *menu);
-extern void func_800E1AA0(void *replay, void *frame);
-extern void func_800E15A0(void *replay);
+extern void menu_render(void *menu);
+extern void replay_record_frame(void *replay, void *frame);
+extern void replay_playback(void *replay);
 extern void func_800E1540(void *entity);
-extern void func_800E114C(void *replay);
-extern void func_800D0424(void *menu, void *input);
+extern void replay_update(void *replay);
+extern void menu_input_handle(void *menu, void *input);
 
 void object_update_full(void *obj) {
-    func_800CF06C(obj);
-    func_800E23A4(0);
-    func_800E1C30(0, 0);
-    func_800E1AA0(obj, 0);
-    func_800E15A0(obj);
+    menu_render(obj);
+    replay_ui_draw(0);
+    replay_camera_update(0, 0);
+    replay_record_frame(obj, 0);
+    replay_playback(obj);
     func_800E1540(obj);
-    func_800E114C(obj);
-    func_800D0424(obj, 0);
+    replay_update(obj);
+    menu_input_handle(obj, 0);
 }
 
 /*
@@ -5291,7 +5291,7 @@ s32 tree_node_check(void *a0, s32 a1) {
 extern void camera_shake_apply(void *camera, f32 intensity, f32 duration);
 
 /* Object initialization functions */
-extern void func_800D1004(void *menu); /* Setup call before init */
+extern void menu_track_select(void *menu); /* Setup call before init */
 
 /* Global scaling factors */
 extern f32 D_8011416C;
@@ -5341,7 +5341,7 @@ void object_scale_init(void *a0) {
     f32 val;
     s16 result;
 
-    func_800D1004(NULL);
+    menu_track_select(NULL);
 
     zero = 0.0f;
     one = 1.0f;
@@ -5356,8 +5356,8 @@ void object_scale_init(void *a0) {
     *(u8*)((u8*)a0 + 0x730) = 1;
 
     /* Call initialization functions */
-    func_800CF06C(a0);
-    func_800D0424(a0, 0);
+    menu_render(a0);
+    menu_input_handle(a0, 0);
 
     /* Calculate timing value from object field and global factors */
     val = *(f32*)((u8*)a0 + 0x408);
@@ -7597,7 +7597,7 @@ void entity_slot_clear(s32 idx) {
 
     *(s16 *)((u8 *)entity + 0x71C) = 0;
 
-    func_800D5524(entity);
+    menu_audio_options(entity);
 
     /* Clear 4 floats at high offsets */
     *(f32 *)((u8 *)entity + 0x7FC) = 0.0f;
@@ -10409,7 +10409,7 @@ void entity_damage_update(void *entity, s32 damage) {
         *invulnTimer = 30;  /* 0.5 seconds */
 
         /* Spawn damage effect */
-        func_800E15A8(pos, 0, 5);
+        explosion_spawn(pos, 0, 5);
 
         /* Play damage sound */
         func_800B37E8(0x50, 0, NULL, 0);
@@ -15399,13 +15399,13 @@ void hud_speed_display(void *hud, f32 speed) {
 
 /*
 
- * func_800C885C (816 bytes)
+ * hud_tachometer_update (816 bytes)
  * Tachometer update
  *
  * Updates the tachometer display with current RPM.
  * Includes redline warning and gear indicator.
  */
-void func_800C885C(void) { /* Tachometer update stub */ }
+void hud_tachometer_update(void) { /* Tachometer update stub */ }
 
 /*
 
@@ -15453,41 +15453,41 @@ void speed_set(s32 speed) {
 
 /*
 
- * func_800C9480 (168 bytes)
+ * hud_nitro_update (168 bytes)
  * Nitro meter update
  *
  * Displays nitro/boost gauge with fill level.
  */
-void func_800C9480(void) { /* Nitro gauge stub */ }
+void hud_nitro_update(void) { /* Nitro gauge stub */ }
 
 /*
 
- * func_800C9BE0 (1824 bytes)
+ * hud_full_update (1824 bytes)
  * Full HUD update
  *
  * Updates all HUD elements based on current player state.
  * Called once per frame during gameplay.
  */
-void func_800C9BE0(void) { /* HUD visibility stub */ }
+void hud_full_update(void) { /* HUD visibility stub */ }
 
 /*
 
- * func_800CA300 (180 bytes)
+ * hud_fade_effect (180 bytes)
  * HUD fade effect
  *
  * Fades the entire HUD in/out based on alpha value.
  * Used for transitions and pause/unpause effects.
  */
-void func_800CA300(void) {
+void hud_fade_effect(void) {
     /* State change pre-process stub */
 }
 
 /*
 
- * func_800CBF2C (12544 bytes)
+ * menu_system_update (12544 bytes)
  * Menu system update - main menu logic processor
  */
-void func_800CBF2C(void *menu) {
+void menu_system_update(void *menu) {
     s32 *menuState;
     s32 *selectedItem;
     s32 *itemCount;
@@ -15613,10 +15613,10 @@ void func_800CBF2C(void *menu) {
 
 /*
 
- * func_800CF06C (5748 bytes)
+ * menu_render (5748 bytes)
  * Menu render - draws menu UI elements
  */
-void func_800CF06C(void *menu) {
+void menu_render(void *menu) {
     s32 *menuState;
     s32 *selectedItem;
     s32 *itemCount;
@@ -15731,10 +15731,10 @@ void func_800CF06C(void *menu) {
 
 /*
 
- * func_800D0424(3040 bytes, 0)
+ * menu_input_handle(3040 bytes, 0)
  * Menu input handling - processes raw input for menu
  */
-void func_800D0424(void *menu, void *input) {
+void menu_input_handle(void *menu, void *input) {
     s32 *menuState;
     s32 *selectedItem;
     s32 *inputDelay;
@@ -15805,10 +15805,10 @@ void func_800D0424(void *menu, void *input) {
 
 /*
 
- * func_800D1004 (5196 bytes)
+ * menu_track_select (5196 bytes)
  * Track select menu - displays track selection screen
  */
-void func_800D1004(void *menu) {
+void menu_track_select(void *menu) {
     s32 *selectedTrack;
     s32 *previewTimer;
     s32 trackCount;
@@ -15920,10 +15920,10 @@ void func_800D1004(void *menu) {
 
 /*
 
- * func_800D4DFC (1228 bytes)
+ * menu_car_select (1228 bytes)
  * Car select menu - displays car selection with stats
  */
-void func_800D4DFC(void *menu) {
+void menu_car_select(void *menu) {
     s32 *selectedCar;
     s32 *carRotation;
     s32 *previewTimer;
@@ -16021,19 +16021,19 @@ void func_800D4DFC(void *menu) {
 
 /*
 
- * func_800D52CC()
+ * menu_stub_empty()
  * Empty stub
  */
-void func_800D52CC() {
+void menu_stub_empty() {
     /* Empty */
 }
 
 /*
 
- * func_800D5374 (332 bytes)
+ * menu_options (332 bytes)
  * Options menu - game settings screen
  */
-void func_800D5374(void *menu) {
+void menu_options(void *menu) {
     s32 *selectedOption;
     s32 optionCount;
     s32 i;
@@ -16080,10 +16080,10 @@ void func_800D5374(void *menu) {
 
 /*
 
- * func_800D5524 (628 bytes)
+ * menu_audio_options (628 bytes)
  * Audio options - sound settings
  */
-void func_800D5524(void *menu) {
+void menu_audio_options(void *menu) {
     s32 *selectedOption;
     s32 *musicVolume;
     s32 *sfxVolume;
@@ -16138,10 +16138,10 @@ void func_800D5524(void *menu) {
 
 /*
 
- * func_800D5A04 (1704 bytes)
+ * menu_controller_config (1704 bytes)
  * Controller config - button mapping screen
  */
-void func_800D5A04(void *menu) {
+void menu_controller_config(void *menu) {
     s32 *selectedOption;
     s32 *buttonMappings;
     s32 *waitingForInput;
@@ -16225,19 +16225,19 @@ void func_800D5A04(void *menu) {
 
 /*
 
- * func_800D60AC (8 bytes)
+ * scene_stub_empty (8 bytes)
  * Empty stub
  */
-void func_800D60AC(void) {
+void scene_stub_empty(void) {
     /* Empty */
 }
 
 /*
 
- * func_800D6160 (496 bytes)
+ * menu_saveload (496 bytes)
  * Save/load menu - data management screen
  */
-void func_800D6160(void *menu) {
+void menu_saveload(void *menu) {
     s32 *selectedOption;
     s32 *saveSlotSelected;
     s32 *operationPending;
@@ -16301,10 +16301,10 @@ void func_800D6160(void *menu) {
 
 /*
 
- * func_800D6530 (4356 bytes)
+ * mempak_operation (4356 bytes)
  * Memory card operations - controller pak read/write
  */
-void func_800D6530(s32 operation) {
+void mempak_operation(s32 operation) {
     s32 *operationResult;
     s32 *currentSlot;
     void *saveBuffer;
@@ -16405,10 +16405,10 @@ void func_800D6530(s32 operation) {
 
 /*
 
- * func_800D7634 (1804 bytes)
+ * profile_manage (1804 bytes)
  * Profile management - player profile data
  */
-void func_800D7634(void *profile) {
+void profile_manage(void *profile) {
     s32 *profileId;
     char *playerName;
     s32 *totalRaces;
@@ -16483,10 +16483,10 @@ void func_800D7634(void *profile) {
 
 /*
 
- * func_800D91A0 (8260 bytes)
+ * garage_screen (8260 bytes)
  * Garage/car customization - car modification screen
  */
-void func_800D91A0(void *garage) {
+void garage_screen(void *garage) {
     s32 *selectedCar;
     s32 *selectedOption;
     s32 *carRotation;
@@ -16570,10 +16570,10 @@ void func_800D91A0(void *garage) {
 
 /*
 
- * func_800DB1E0 (1524 bytes)
+ * car_paint_apply (1524 bytes)
  * Paint selection - applies paint color to car
  */
-void func_800DB1E0(void *car, s32 paintId) {
+void car_paint_apply(void *car, s32 paintId) {
     u32 *carColor;
     u32 *carSecondary;
     u32 *carMetallic;
@@ -16663,13 +16663,13 @@ void func_800DB1E0(void *car, s32 paintId) {
 
 /*
 
- * func_800E114C (1012 bytes)
+ * replay_update (1012 bytes)
  * Replay system update
  *
  * Updates the replay system - handles recording or playback.
  * Manages frame buffer, timing, and input sync.
  */
-void func_800E114C(void *replay) {
+void replay_update(void *replay) {
     s32 *mode, *frameIndex, *maxFrames;
     s32 *recordBuffer;
     f32 *playbackSpeed;
@@ -16692,7 +16692,7 @@ void func_800E114C(void *replay) {
         case 1:  /* Recording */
             if (*frameIndex < *maxFrames) {
                 /* Record current frame data */
-                func_800E1AA0(replay, (void *)(*frameIndex));
+                replay_record_frame(replay, (void *)(*frameIndex));
                 (*frameIndex)++;
             } else {
                 /* Buffer full, stop recording */
@@ -16717,20 +16717,20 @@ void func_800E114C(void *replay) {
             *frameIndex = currentFrame;
 
             /* Apply recorded frame data */
-            func_800E15A0(replay);
+            replay_playback(replay);
             break;
     }
 }
 
 /*
 
- * func_800E15A0 (1280 bytes)
+ * replay_playback (1280 bytes)
  * Replay playback
  *
  * Applies recorded frame data to all cars during replay playback.
  * Interpolates between frames for smooth motion.
  */
-void func_800E15A0(void *replay) {
+void replay_playback(void *replay) {
     s32 *frameIndex, *maxFrames;
     void *frameData;
     s32 currentFrame, nextFrame;
@@ -16806,13 +16806,13 @@ void func_800E15A0(void *replay) {
 
 /*
 
- * func_800E1AA0(404 bytes, 0)
+ * replay_record_frame(404 bytes, 0)
  * Replay record frame
  *
  * Records the current game state into the replay buffer.
  * Captures car positions, rotations, velocities, and inputs.
  */
-void func_800E1AA0(void *replay, void *frame) {
+void replay_record_frame(void *replay, void *frame) {
     s32 *frameIndex;
     s32 i, numCars;
     void **carList;
@@ -16871,10 +16871,10 @@ void func_800E1AA0(void *replay, void *frame) {
 
 /*
 
- * func_800E1C30(1908 bytes, 0)
+ * replay_camera_update(1908 bytes, 0)
  * Replay camera control - cinematic camera during replay
  */
-void func_800E1C30(void *replay, void *camera) {
+void replay_camera_update(void *replay, void *camera) {
     s32 *cameraMode;
     s32 *cameraTimer;
     s32 *targetCar;
@@ -16978,10 +16978,10 @@ void func_800E1C30(void *replay, void *camera) {
 
 /*
 
- * func_800E23A4 (1680 bytes)
+ * replay_ui_draw (1680 bytes)
  * Replay UI - displays replay controls and info
  */
-void func_800E23A4(void *replay) {
+void replay_ui_draw(void *replay) {
     s32 *playbackState;
     s32 *currentFrame;
     s32 *totalFrames;
@@ -17074,13 +17074,13 @@ void func_800E23A4(void *replay) {
 
 /*
 
- * func_800E0050 (1440 bytes)
+ * weather_update (1440 bytes)
  * Weather effect system
  *
  * Updates weather effects (rain, snow, fog).
  * Controls intensity, wind, and transitions.
  */
-void func_800E0050(void *weather) {
+void weather_update(void *weather) {
     s32 *weatherType, *intensity;
     f32 *windDir, *windSpeed;
     f32 *transitionTimer, *targetIntensity;
@@ -17124,7 +17124,7 @@ void func_800E0050(void *weather) {
             break;
 
         case 1:  /* Rain */
-            func_800E05F0((f32)(*intensity) / 100.0f);
+            rain_render((f32)(*intensity) / 100.0f);
             break;
 
         case 2:  /* Snow */
@@ -17139,13 +17139,13 @@ void func_800E0050(void *weather) {
 
 /*
 
- * func_800E05F0 (1328 bytes)
+ * rain_render (1328 bytes)
  * Rain effect rendering
  *
  * Renders rain droplets as falling particles.
  * Adjusts density based on intensity.
  */
-void func_800E05F0(f32 intensity) {
+void rain_render(f32 intensity) {
     s32 numDrops;
     s32 i;
     f32 *cameraPos;
@@ -17190,13 +17190,13 @@ void func_800E05F0(f32 intensity) {
 
 /*
 
- * func_800E0B20 (1576 bytes)
+ * particles_update (1576 bytes)
  * Particle system update
  *
  * Updates all active particles in the system.
  * Handles physics, lifetime, and rendering.
  */
-void func_800E0B20(void *particles) {
+void particles_update(void *particles) {
     s32 *pool;
     s32 maxParticles, i;
     f32 gravity, drag;
@@ -17278,13 +17278,13 @@ void func_800E0B20(void *particles) {
 
 /*
 
- * func_800E15A8 (1176 bytes)
+ * explosion_spawn (1176 bytes)
  * Explosion effect
  *
  * Creates an explosion at the given position.
  * Spawns particles, camera shake, and sound.
  */
-void func_800E15A8(f32 *pos, f32 size) {
+void explosion_spawn(f32 *pos, f32 size) {
     s32 *particlePool;
     s32 *particleIndex;
     s32 numParticles, i;
@@ -17349,12 +17349,12 @@ void func_800E15A8(f32 *pos, f32 size) {
 
 /*
 
- * func_800E1F80 (984 bytes)
+ * debris_spawn (984 bytes)
  * Debris spawning
  *
  * Spawns debris particles from a car (crash, damage, etc.)
  */
-void func_800E1F80(void *car, s32 debrisType) {
+void debris_spawn(void *car, s32 debrisType) {
     f32 *carPos, *carVel;
     s32 *particlePool;
     s32 *particleIndex;
@@ -17423,13 +17423,13 @@ void func_800E1F80(void *car, s32 debrisType) {
 
 /*
 
- * func_800E2F00 (716 bytes)
+ * sparks_spawn (716 bytes)
  * Spark effect
  *
  * Creates sparks at a position with given velocity.
  * Used for metal-on-metal impacts and scraping.
  */
-void func_800E2F00(f32 *pos, f32 *velocity) {
+void sparks_spawn(f32 *pos, f32 *velocity) {
     s32 *particlePool;
     s32 *particleIndex;
     s32 i, numSparks;
