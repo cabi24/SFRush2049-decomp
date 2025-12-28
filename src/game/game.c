@@ -33013,7 +33013,7 @@ void menu_load_options(void) {
  * func_800CE358 (2532 bytes)
  * Menu options screen - main options menu handler
  */
-void func_800CE358(void) {
+void menu_options_screen(void) {
     s32 input;
     s32 action;
     s32 selectedItem;
@@ -33091,7 +33091,7 @@ void func_800CE358(void) {
  * func_800CED3C (1364 bytes)
  * Menu audio settings - audio options submenu
  */
-void func_800CED3C(void) {
+void menu_audio_settings(void) {
     s32 input;
     s32 selectedItem;
     s32 itemType;
@@ -33116,9 +33116,9 @@ void func_800CED3C(void) {
             if (itemType == 1) {
                 /* Toggle item */
                 if (selectedItem == 0) {
-                    func_800CDCAC(0);  /* Toggle music */
+                    menu_option_toggle(0);  /* Toggle music */
                 } else if (selectedItem == 1) {
-                    func_800CDCAC(1);  /* Toggle SFX */
+                    menu_option_toggle(1);  /* Toggle SFX */
                 }
             } else if (selectedItem == 4) {
                 /* Back */
@@ -33162,7 +33162,7 @@ void func_800CED3C(void) {
  * func_800CF290 (228 bytes)
  * Menu video settings - video options submenu
  */
-void func_800CF290(void) {
+void menu_video_settings(void) {
     s32 input;
     s32 selectedItem;
 
@@ -33177,13 +33177,13 @@ void func_800CF290(void) {
     else if (input == 1) {
         switch (selectedItem) {
             case 0:  /* Widescreen */
-                func_800CDCAC(3);
+                menu_option_toggle(3);
                 break;
             case 1:  /* HUD */
-                func_800CDCAC(4);
+                menu_option_toggle(4);
                 break;
             case 2:  /* Minimap */
-                func_800CDCAC(5);
+                menu_option_toggle(5);
                 break;
             case 3:  /* Back */
                 menu_back();
@@ -33203,7 +33203,7 @@ void func_800CF290(void) {
  * func_800CF374 (808 bytes)
  * Menu control settings - controller options submenu
  */
-void func_800CF374(void) {
+void menu_control_settings(void) {
     s32 input;
     s32 selectedItem;
     s32 *menuItems;
@@ -33221,10 +33221,10 @@ void func_800CF374(void) {
     else if (input == 1) {
         switch (selectedItem) {
             case 0:  /* Vibration */
-                func_800CDCAC(2);
+                menu_option_toggle(2);
                 break;
             case 1:  /* Camera auto-center */
-                func_800CDCAC(7);
+                menu_option_toggle(7);
                 break;
             case 2:  /* Invert Y axis */
                 D_8015932C = (D_8015932C == 0) ? 1 : 0;
