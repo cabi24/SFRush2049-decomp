@@ -695,7 +695,7 @@ extern void object_render_cleanup(void *obj_ptr); /* func_800C7308 - Object clea
 extern void scene_cleanup_slots(void); /* func_800C70BC - Scene cleanup */
 extern void func_800A1244(void);       /* Render function */
 extern s32 func_80097798(s32, s32, s32, s32, s32); /* Sound/effect */
-extern void func_800B55FC(s32 flag); /* Visual update */
+extern void visual_objects_update(s32 flag); /* Visual update */
 void* func_800B42F0(s32);              /* Object allocate wrapper (defined later) */
 extern void* func_800B4200(void *buffer, s32 samples); /* Object allocate (uses register s2 for type) */
 /* Note: func_80007270 and func_800075E0 declared earlier */
@@ -1021,7 +1021,7 @@ void playgame_handler(void) {
                 }
             }
 
-            func_800B55FC(1);
+            visual_objects_update(1);
         }
 
         /* Check game mode for specific handling */
@@ -1254,7 +1254,7 @@ extern void func_800A2378(s32 track, s32 node, f32 *x, f32 *y, f32 *z);
 
 /**
 /*
- * func_800B55FC - Update visual objects
+ * visual_objects_update - Update visual objects
  * Address: 0x800B55FC
  * Size: 140 bytes
  *
@@ -1263,7 +1263,7 @@ extern void func_800A2378(s32 track, s32 node, f32 *x, f32 *y, f32 *z);
  *
  * @param flag  Update flag passed to each object's update function
  */
-void func_800B55FC(s32 flag) {
+void visual_objects_update(s32 flag) {
     u32 *array_ptr;
     u32 *array_end;
     void *entry;
@@ -1418,7 +1418,7 @@ void race_state_machine(void) {
         }
 
         player_mode_set(-1, 1);
-        func_800B55FC(1);
+        visual_objects_update(1);
         func_80092360(46);  /* Play race start sound */
         break;
 
@@ -2024,7 +2024,7 @@ void car_sounds_clear(void) {
 
 /**
 /*
- * func_800D7DC4 - Clear all car sounds for all players
+ * all_player_sounds_clear - Clear all car sounds for all players
  * Address: 0x800D7DC4
  * Size: 196 bytes
  *
@@ -2040,7 +2040,7 @@ extern u8 D_8015418C[];      /* Per-player flags array 1 */
 extern void *D_80113ED8;     /* Global sound handle */
 extern u8 D_80113ED4;        /* Global sound flag */
 
-void func_800D7DC4(void) {
+void all_player_sounds_clear(void) {
     s32 i;
     void *sound_handle;
 
@@ -2074,7 +2074,7 @@ void func_800D7DC4(void) {
 
 /**
 /*
- * func_800B557C - Clear all ambient/environment sound handles
+ * ambient_sounds_clear - Clear all ambient/environment sound handles
  * Address: 0x800B557C
  * Size: 120 bytes
  *
@@ -2086,7 +2086,7 @@ extern void *D_80114624;      /* Main ambient sound handle */
 extern void *D_80114628[];    /* Additional sound handles (4 entries) */
 extern void func_8008D0C0(void*);  /* Stop sound by object */
 
-void func_800B557C(void) {
+void ambient_sounds_clear(void) {
     void *handle;
     void **ptr;
     void **end_ptr;
@@ -2116,7 +2116,7 @@ void func_800B557C(void) {
 
 /**
 /*
- * func_800B6138 - Reset all player state entries
+ * player_states_reset - Reset all player state entries
  * Address: 0x800B6138
  * Size: 112 bytes
  *
@@ -2133,7 +2133,7 @@ void func_800B557C(void) {
 /* D_8015A118 declared earlier as void* - cast to u8* for array access */
 extern f32 func_800B6024(void *entity, s32 index); /* Pre-reset function */
 
-void func_800B6138(void) {
+void player_states_reset(void) {
     s32 i;
     s16 count;
     u8 *entry;
@@ -2165,7 +2165,7 @@ void func_800B6138(void) {
 
 /**
 /*
- * func_800B9130 - Reset effect/particle system state
+ * effects_reset - Reset effect/particle system state
  * Address: 0x800B9130
  * Size: 100 bytes
  *
@@ -2181,7 +2181,7 @@ extern void func_800B90F8(void); /* Effect pre-reset */
 extern void func_80096130(void*);      /* Effect pool clear */
 extern void bzero(void*, s32);         /* func_80002790 */
 
-void func_800B9130(s32 unused) {
+void effects_reset(s32 unused) {
     /* Clear effect state flags */
     D_80159818 = 0;
     D_80159B80 = 0;
@@ -5772,7 +5772,7 @@ done:
  *
  * Creates a new object via object_alloc_free_list, links it into D_801491F0 list,
  * initializes fields from indexed data array D_80117530, and finalizes
- * with func_800FEA00.
+ * with save_game_to_pak.
  */
 extern void *object_alloc_free_list(s32 soundId, s32 flags);
 
@@ -5807,7 +5807,7 @@ void object_spawn_linked(void *a0) {
     *D_801491F0 = obj;
 
     /* Finalize with callback */
-    func_800FEA00();
+    save_game_to_pak();
 }
 
 /*
@@ -7957,10 +7957,10 @@ void game_full_reset(void) {
 
 /*
 
- * func_800FEA00()
+ * save_game_to_pak()
  * Save game state - save progress to controller pak
  */
-void func_800FEA00() {
+void save_game_to_pak() {
     u8 saveData[256];
     s32 offset;
     s32 i;
@@ -12370,10 +12370,10 @@ void tire_force_calc(void *tire, f32 normalForce, f32 driveTorque) {
 
 /*
 
- * func_800A80D0 (3276 bytes)
+ * ai_update_car (3276 bytes)
  * Car AI behavior - main AI update function
  */
-void func_800A80D0(void *car, void *target) {
+void ai_update_car(void *car, void *target) {
     f32 *carPos;
     f32 *carVel;
     f32 *carDir;
@@ -12465,7 +12465,7 @@ void func_800A80D0(void *car, void *target) {
     }
 
     /* Check for obstacles */
-    func_800A8F64(car, NULL);
+    ai_avoid_obstacles(car, NULL);
 
     /* Apply inputs */
     func_800A78FC(car, steerInput);
@@ -12479,10 +12479,10 @@ void func_800A80D0(void *car, void *target) {
 
 /*
 
- * func_800A8D9C (484 bytes)
+ * ai_follow_path (484 bytes)
  * AI path following - follow racing path
  */
-void func_800A8D9C(void *car, void *path) {
+void ai_follow_path(void *car, void *path) {
     f32 *carPos;
     s32 *aiState;
     s32 currentWaypoint;
@@ -12526,10 +12526,10 @@ void func_800A8D9C(void *car, void *path) {
 
 /*
 
- * func_800A8F64 (1068 bytes)
+ * ai_avoid_obstacles (1068 bytes)
  * AI obstacle avoidance - avoid collisions with other cars
  */
-void func_800A8F64(void *car, void *obstacles) {
+void ai_avoid_obstacles(void *car, void *obstacles) {
     f32 *carPos;
     f32 *carDir;
     f32 *carVel;
@@ -12605,10 +12605,10 @@ void func_800A8F64(void *car, void *obstacles) {
 
 /*
 
- * func_800A9390 (1592 bytes)
+ * ai_optimize_racing_line (1592 bytes)
  * AI racing line optimization - find optimal path through corners
  */
-void func_800A9390(void *car, void *track) {
+void ai_optimize_racing_line(void *car, void *track) {
     f32 *carPos;
     s32 *aiState;
     s32 waypointIdx;
@@ -12680,10 +12680,10 @@ void func_800A9390(void *car, void *track) {
 
 /*
 
- * func_800A99C8 (2700 bytes)
+ * ai_decide_strategy (2700 bytes)
  * AI decision making - high-level race decisions
  */
-void func_800A99C8(void *car) {
+void ai_decide_strategy(void *car) {
     s32 *aiState;
     s32 position;
     s32 lap;
@@ -12756,10 +12756,10 @@ void func_800A99C8(void *car) {
 
 /*
 
- * func_800AA454 (692 bytes)
+ * ai_control_speed (692 bytes)
  * AI speed control - control throttle/brake to reach target speed
  */
-void func_800AA454(void *car, f32 targetSpeed) {
+void ai_control_speed(void *car, f32 targetSpeed) {
     f32 *carVel;
     f32 currentSpeed;
     f32 speedError;
@@ -12810,10 +12810,10 @@ void func_800AA454(void *car, f32 targetSpeed) {
 
 /*
 
- * func_800AA708 (1084 bytes)
+ * ai_attempt_overtake (1084 bytes)
  * AI overtaking behavior - attempt to pass opponent
  */
-void func_800AA708(void *car, void *opponent) {
+void ai_attempt_overtake(void *car, void *opponent) {
     f32 *carPos, *carVel, *carDir;
     f32 *oppPos, *oppVel;
     f32 dx, dz, dist;
@@ -12883,25 +12883,25 @@ void func_800AA708(void *car, void *opponent) {
 
 /*
 
- * func_800AAB44 (808 bytes)
+ * ai_defend_position (808 bytes)
  * AI defensive driving
  */
-void func_800AAB44(void *car) {
+void ai_defend_position(void *car) {
     /* Defensive AI - stub */
 }
 
 /*
 
- * func_800AAE68 (1756 bytes)
+ * ai_recover_crash (1756 bytes)
  * AI recovery from crash
  */
-void func_800AAE68(void *car) {
+void ai_recover_crash(void *car) {
     /* Crash recovery - stub */
 }
 
 /*
 
- * func_800AB544 (564 bytes)
+ * player_read_input (564 bytes)
  * Player input reading
  *
  * Reads N64 controller input and maps to player car controls.
@@ -12929,7 +12929,7 @@ void func_800AAE68(void *car) {
  *   0xFC: wing deploy (s32)
  *   0x100: pause pressed (s32)
  */
-void func_800AB544(void *player, void *controller) {
+void player_read_input(void *player, void *controller) {
     u16 buttons;
     s8 stickX, stickY;
     f32 *steering, *throttle, *brake;
@@ -13007,7 +13007,7 @@ void func_800AB544(void *player, void *controller) {
 
 /*
 
- * func_800AB7D8 (1016 bytes)
+ * player_update_state (1016 bytes)
  * Player state update
  *
  * Updates player state based on current inputs.
@@ -13026,7 +13026,7 @@ void func_800AB544(void *player, void *controller) {
  *   0x10C: respawn countdown (s32)
  *   0x110: invincibility timer (s32)
  */
-void func_800AB7D8(void *player) {
+void player_update_state(void *player) {
     s32 *state, *stateTimer, *respawnCountdown, *invincibility;
     s32 *pausePressed, *finished;
     s32 currentState;
@@ -13108,7 +13108,7 @@ void func_800AB7D8(void *player) {
 
 /*
 
- * func_800ABBD0 (248 bytes)
+ * player_get_respawn_pos (248 bytes)
  * Player respawn position
  *
  * Calculates respawn position based on last checkpoint.
@@ -13116,7 +13116,7 @@ void func_800AB7D8(void *player) {
  */
 extern void *D_80158FD0[16];    /* Checkpoint data array */
 
-void func_800ABBD0(void *player, f32 *respawnPos) {
+void player_get_respawn_pos(void *player, f32 *respawnPos) {
     s32 lastCheckpoint;
     void *checkpoint;
     f32 *cpPos, *cpNormal;
@@ -13152,13 +13152,13 @@ void func_800ABBD0(void *player, f32 *respawnPos) {
 
 /*
 
- * func_800ABCC8 (2708 bytes)
+ * player_update (2708 bytes)
  * Player full update
  *
  * Main per-frame update for player car.
  * Orchestrates input, physics, collision, and state.
  */
-void func_800ABCC8(void *player, f32 dt) {
+void player_update(void *player, f32 dt) {
     s32 state;
     f32 steering, throttle, brake;
     s32 wingDeploy;
@@ -13172,10 +13172,10 @@ void func_800ABCC8(void *player, f32 dt) {
     state = *(s32 *)((u8 *)player + 0x104);
 
     /* Read controller input */
-    func_800AB544(player, D_80159000);
+    player_read_input(player, D_80159000);
 
     /* Update state machine */
-    func_800AB7D8(player);
+    player_update_state(player);
 
     /* Process based on state */
     switch (state) {
@@ -13212,7 +13212,7 @@ void func_800ABCC8(void *player, f32 dt) {
 
         case 2:  /* Respawning */
             /* Calculate respawn position */
-            func_800ABBD0(player, respawnPos);
+            player_get_respawn_pos(player, respawnPos);
 
             /* Check if countdown finished */
             if (*(s32 *)((u8 *)player + 0x10C) <= 0) {
@@ -13246,7 +13246,7 @@ void func_800ABCC8(void *player, f32 dt) {
 
 /*
 
- * func_800AC75C (1076 bytes)
+ * checkpoint_check_collision (1076 bytes)
  * Checkpoint collision
  *
  * Checks if a car has crossed a checkpoint trigger plane.
@@ -13275,7 +13275,7 @@ extern s32 D_801582B4;          /* Total checkpoints */
 extern s32 D_801582B8;          /* Finish line checkpoint index */
 extern void func_800B4208(s32 voiceId); /* Play voice */
 
-void func_800AC75C(void *car, void *checkpoint) {
+void checkpoint_check_collision(void *car, void *checkpoint) {
     f32 *carPos, *cpPos, *cpNormal;
     f32 dx, dy, dz;
     f32 distSq, radiusSq;
@@ -13349,7 +13349,7 @@ void func_800AC75C(void *car, void *checkpoint) {
         (*carLaps)++;
 
         /* Check for race finish (lap count check done in caller) */
-        func_800ACA9C(car, *carLaps);
+        lap_record_time(car, *carLaps);
 
         /* Play lap-related voice */
         func_800B4208(6);  /* "Final lap" or similar */
@@ -13361,7 +13361,7 @@ void func_800AC75C(void *car, void *checkpoint) {
 
 /*
 
- * func_800ACA9C (380 bytes)
+ * lap_record_time (380 bytes)
  * Lap time recording
  *
  * Records lap completion time and updates best lap.
@@ -13375,7 +13375,7 @@ void func_800AC75C(void *car, void *checkpoint) {
  */
 extern u32 D_801582BC[8];       /* Best lap times per track */
 
-void func_800ACA9C(void *player, s32 lapNum) {
+void lap_record_time(void *player, s32 lapNum) {
     u32 *lapTimes;
     u32 *bestLap, *lastLap, *totalTime;
     u32 currentTime, lapTime;
@@ -13426,7 +13426,7 @@ void func_800ACA9C(void *player, s32 lapNum) {
 
 /*
 
- * func_800ACC18 (1008 bytes)
+ * race_calc_positions (1008 bytes)
  * Race position calculation
  *
  * Calculates race positions for all cars based on distance traveled.
@@ -13441,7 +13441,7 @@ void func_800ACA9C(void *player, s32 lapNum) {
  *   0xD0: distance along track (f32)
  */
 
-void func_800ACC18(void) {
+void race_calc_positions(void) {
     s32 i, j;
     s32 numCars;
     f32 distances[8];
@@ -13522,25 +13522,25 @@ void func_800ACC18(void) {
 
 /*
 
- * func_800AD008 (152 bytes)
+ * player_get_position (152 bytes)
  * Get race position
  */
-s32 func_800AD008(void *player) {
+s32 player_get_position(void *player) {
     return *(s32 *)((u8 *)player + 0x5C);
 }
 
 /*
 
- * func_800AD0A0 (136 bytes)
+ * player_get_lap (136 bytes)
  * Get lap count
  */
-s32 func_800AD0A0(void *player) {
+s32 player_get_lap(void *player) {
     return *(s32 *)((u8 *)player + 0x58);
 }
 
 /*
 
- * func_800AD128 (1548 bytes)
+ * race_finish_player (1548 bytes)
  * Race finish handling
  *
  * Called when a player completes the final lap.
@@ -13553,7 +13553,7 @@ s32 func_800AD0A0(void *player) {
  *   0xD8: finish time (u32)
  *   0xDC: finish position (s32)
  */
-void func_800AD128(void *player) {
+void race_finish_player(void *player) {
     s32 *laps, *position;
     s32 *finished, *finishPos;
     u32 *finishTime;
@@ -13609,7 +13609,7 @@ void func_800AD128(void *player) {
         }
 
         /* Check for high score */
-        if (func_800AEB54(*finishTime) != 0) {
+        if (hiscore_check_rank(*finishTime) != 0) {
             /* New high score */
             func_800B4208(9);  /* "New record!" */
         }
@@ -13618,13 +13618,13 @@ void func_800AD128(void *player) {
     /* Check if all cars finished */
     if (D_801582EC >= D_801582E0) {
         D_801582F0 = 1;  /* Race complete */
-        func_800AD734();  /* Show results */
+        race_show_results();  /* Show results */
     }
 }
 
 /*
 
- * func_800AD734 (1572 bytes)
+ * race_show_results (1572 bytes)
  * Race results display
  *
  * Displays the race results screen with times and positions.
@@ -13632,7 +13632,7 @@ void func_800AD128(void *player) {
  */
 extern void func_800E2A3C(s32 a0); /* Screen transition */
 
-void func_800AD734(void) {
+void race_show_results(void) {
     s32 i;
     void *car;
     s32 position, laps;
@@ -13668,7 +13668,7 @@ void func_800AD734(void) {
 
 /*
 
- * func_800ADD58 (3580 bytes)
+ * leaderboard_update (3580 bytes)
  * Leaderboard update
  *
  * Updates the race leaderboard with current standings.
@@ -13679,7 +13679,7 @@ void func_800AD734(void) {
  */
 extern u8 D_80158300[12][10][16];   /* Leaderboard entries [track][rank][data] */
 
-void func_800ADD58(void) {
+void leaderboard_update(void) {
     s32 i, j;
     void *car;
     u32 finishTime;
@@ -13734,13 +13734,13 @@ void func_800ADD58(void) {
 
 /*
 
- * func_800AEB54 (528 bytes)
+ * hiscore_check_rank (528 bytes)
  * High score check
  *
  * Checks if the given time qualifies for the leaderboard.
  * Returns the rank position (1-10) if qualified, 0 if not.
  */
-s32 func_800AEB54(s32 time) {
+s32 hiscore_check_rank(s32 time) {
     s32 j;
     u32 checkTime = (u32)time;
 
@@ -13769,7 +13769,7 @@ s32 func_800AEB54(s32 time) {
 
 /*
 
- * func_800AED64 (644 bytes)
+ * hiscore_insert_entry (644 bytes)
  * High score entry
  *
  * Inserts a new high score entry into the leaderboard.
@@ -13779,7 +13779,7 @@ s32 func_800AEB54(s32 time) {
  * name: 3-character name string
  * time: Race completion time
  */
-void func_800AED64(s32 position, u8 *name, s32 time) {
+void hiscore_insert_entry(s32 position, u8 *name, s32 time) {
     s32 rank, j, k;
     u8 *entry;
 
@@ -13819,12 +13819,12 @@ void func_800AED64(s32 position, u8 *name, s32 time) {
     *(u32 *)&entry[12] = 0;
 
     /* Mark as needing save */
-    func_800AEFE8();
+    hiscore_save_pending();
 }
 
 /*
 
- * func_800AEFE8 (504 bytes)
+ * hiscore_save_pending (504 bytes)
  * Save high scores
  *
  * Saves high score data to controller pak/EEPROM.
@@ -13833,7 +13833,7 @@ void func_800AED64(s32 position, u8 *name, s32 time) {
 extern s32 D_80158FCC;          /* Save pending flag */
 extern void func_80096240(s32 a0, s32 a1); /* EEPROM write */
 
-void func_800AEFE8(void) {
+void hiscore_save_pending(void) {
     /* Mark save as pending */
     D_80158FCC = 1;
 
@@ -28547,7 +28547,7 @@ void func_8010C2FC(void) {
     }
 
     /* Clear particle systems */
-    func_800B9130(1);
+    effects_reset(1);
 
     /* Save any pending data */
     if (D_80158FCC != 0) {
@@ -32937,7 +32937,7 @@ void func_800CDEEC(void) {
     saveData[63] = checksum;
 
     /* Write to Controller Pak */
-    result = func_800AEB54(0);  /* Slot 0 for options */
+    result = hiscore_check_rank(0);  /* Slot 0 for options */
     if (result == 0) {
         /* Success */
         sound_play_menu(10);
@@ -32960,7 +32960,7 @@ void func_800CE1EC(void) {
     u8 calcChecksum;
 
     /* Read from Controller Pak */
-    func_800AED64(0, NULL, 0);  /* Slot 0 for options */
+    hiscore_insert_entry(0, NULL, 0);  /* Slot 0 for options */
     result = 0;
     if (result != 0) {
         /* Error or no save - use defaults */
@@ -35922,7 +35922,7 @@ void func_800D8C58(void) {
     D_8015A718 = 0;  /* Clear pause */
 
     /* Stop all game sounds */
-    func_800B557C();
+    ambient_sounds_clear();
 
     /* Clear race state */
     func_8010C2FC();
@@ -42571,7 +42571,7 @@ void func_8010F5A0(void) {
     D_8014C000 = 2;  /* End stunt mode, show results */
 
     /* Trigger results screen */
-    func_800D7DC4();  /* TODO: needs different function for results */
+    all_player_sounds_clear();  /* TODO: needs different function for results */
 }
 
 /*
