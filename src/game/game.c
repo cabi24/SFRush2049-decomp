@@ -8149,10 +8149,10 @@ void matrix_push_stack(void *matrix) {
 
 /*
 
- * func_80088C7C (124 bytes)
+ * matrix_pop_stack (124 bytes)
  * Pop matrix from stack
  */
-void func_80088C7C(void) {
+void matrix_pop_stack(void) {
     u32 *dlPtr;
 
     dlPtr = *(u32 **)0x80149438;
@@ -8165,10 +8165,10 @@ void func_80088C7C(void) {
 
 /*
 
- * func_8008B2B4 (56 bytes)
+ * rand_int (56 bytes)
  * Random number generator (LCG)
  */
-s32 func_8008B2B4(void) {
+s32 rand_int(void) {
     u32 *seed;
     u32 val;
 
@@ -8184,10 +8184,10 @@ s32 func_8008B2B4(void) {
 
 /*
 
- * func_8008B2E4 (72 bytes)
+ * rand_float (72 bytes)
  * Random float in range [0, 1)
  */
-f32 func_8008B2E4(void) {
+f32 rand_float(void) {
     u32 *seed;
     u32 val;
     s32 randInt;
@@ -8207,10 +8207,10 @@ f32 func_8008B2E4(void) {
 
 /*
 
- * func_8008B32C (52 bytes)
+ * vec3_dot (52 bytes)
  * Dot product of two 3-element vectors
  */
-f32 func_8008B32C(f32 *a, f32 *b) {
+f32 vec3_dot(f32 *a, f32 *b) {
     f32 result;
     s32 i;
 
@@ -8223,10 +8223,10 @@ f32 func_8008B32C(f32 *a, f32 *b) {
 
 /*
 
- * func_8008B360 (84 bytes)
+ * vec3_cross (84 bytes)
  * Cross product of two 3-element vectors
  */
-void func_8008B360(f32 *a, f32 *b, f32 *out) {
+void vec3_cross(f32 *a, f32 *b, f32 *out) {
     out[0] = a[1] * b[2] - a[2] * b[1];
     out[1] = a[2] * b[0] - a[0] * b[2];
     out[2] = a[0] * b[1] - a[1] * b[0];
@@ -8234,10 +8234,10 @@ void func_8008B360(f32 *a, f32 *b, f32 *out) {
 
 /*
 
- * func_8008B3B4 (128 bytes)
+ * vec3_normalize (128 bytes)
  * Normalize 3-element vector
  */
-void func_8008B3B4(f32 *vec) {
+void vec3_normalize(f32 *vec) {
     f32 len;
     f32 invLen;
 
@@ -8253,19 +8253,19 @@ void func_8008B3B4(f32 *vec) {
 
 /*
 
- * func_8008B434 (64 bytes)
+ * vec3_length_sq (64 bytes)
  * Vector length squared
  */
-f32 func_8008B434(f32 *vec) {
+f32 vec3_length_sq(f32 *vec) {
     return vec[0] * vec[0] + vec[1] * vec[1] + vec[2] * vec[2];
 }
 
 /*
 
- * func_8008AE8C (372 bytes)
+ * texture_params_setup (372 bytes)
  * Texture parameter setup - configure texture parameters
  */
-void func_8008AE8C(s16 texId, s32 mode, s32 flags) {
+void texture_params_setup(s16 texId, s32 mode, s32 flags) {
     u32 *dlPtr;
     u32 *texTable;
     u32 texAddr;
@@ -8328,10 +8328,10 @@ void func_8008AE8C(s16 texId, s32 mode, s32 flags) {
 
 /*
 
- * func_8008B0D8 (404 bytes)
+ * texture_load_tmem (404 bytes)
  * Texture load with parameters - load texture to TMEM
  */
-void func_8008B0D8(s16 texId, s32 param, s32 flags) {
+void texture_load_tmem(s16 texId, s32 param, s32 flags) {
     u32 *dlPtr;
     u32 *texTable;
     u32 texAddr;
@@ -8392,10 +8392,10 @@ void func_8008B0D8(s16 texId, s32 param, s32 flags) {
 
 /*
 
- * func_8008B4C4(380 bytes, 0, 0)
+ * matrix4x4_multiply (380 bytes)
  * Matrix multiply - 4x4 matrix multiplication (out = a * b)
  */
-void func_8008B4C4(f32 *a, f32 *b, f32 *out) {
+void matrix4x4_multiply(f32 *a, f32 *b, f32 *out) {
     f32 temp[16];
     s32 i, j, k;
     f32 sum;
@@ -8419,10 +8419,10 @@ void func_8008B4C4(f32 *a, f32 *b, f32 *out) {
 
 /*
 
- * func_8008B69C (712 bytes)
+ * vertices_transform (712 bytes)
  * Transform vertices - apply matrix transformation to vertex array
  */
-void func_8008B69C(void *verts, s32 count, void *mtx) {
+void vertices_transform(void *verts, s32 count, void *mtx) {
     f32 *matrix;
     s32 i;
     f32 x, y, z, w;
