@@ -32,7 +32,7 @@ extern u32 frame_counter;
  * Renders car bodies, wheels, track objects.
  * Uses G_DL commands for display lists.
  */
-void func_80099BFC(void);  /* TODO: Decompile */
+void render_objects_3d(void);  /* TODO: Decompile */
 
 /**
  * Large rendering function
@@ -41,7 +41,7 @@ void func_80099BFC(void);  /* TODO: Decompile */
  *
  * Possibly scene/track rendering.
  */
-void func_80087A08(void);  /* TODO: Decompile */
+void render_scene_large(void);  /* TODO: Decompile */
 
 /**
  * Rendering utility helper
@@ -50,4 +50,4 @@ void func_80087A08(void);  /* TODO: Decompile */
  *
  * Common rendering operations.
  */
-void func_800B65B4(void);  /* TODO: Decompile */
+void render_util_common(void);  /* TODO: Decompile */

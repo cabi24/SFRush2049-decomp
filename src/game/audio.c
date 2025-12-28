@@ -31,7 +31,7 @@ extern u32 frame_counter;
  * Called every frame to process audio state.
  * -1 parameter stops all sounds.
  */
-void func_800B37E8(void);  /* TODO: Decompile */
+void audio_control_update(void);  /* TODO: Decompile */
 
 /**
  * Stop sound
@@ -39,7 +39,7 @@ void func_800B37E8(void);  /* TODO: Decompile */
  *
  * Called when stopping a specific sound channel.
  */
-void func_800B358C(void);  /* TODO: Decompile */
+void sound_stop(void);  /* TODO: Decompile */
 
 /* External OS functions */
 extern s32 osJamMesg(void *mq, void *msg, s32 flags);
@@ -65,4 +65,4 @@ void audio_msg_send(void) {
  *
  * Synchronizes audio task with main thread.
  */
-void func_8008A710(void);  /* TODO: Decompile */
+void audio_task_sync(void);  /* TODO: Decompile */

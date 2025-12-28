@@ -86,6 +86,49 @@ Other helpers used in state transitions:
   - Torque curves, gear ratios, suspension constants, tire setup, collision sizes.
   - These data tables drive the physics model in `MODELDAT`.
 
+### Collision (collision.c)
+
+- `void init_collision(MODELDAT *m)`
+  - Initializes per-car collision forces and last terrain pointers.
+- `void collision(MODELDAT *m)`
+  - Broad-phase sphere test, then corner-in-body tests to resolve car-car impacts.
+- `BOOL PointInBody(MODELDAT *m, F32 pt[3])`
+  - Bounding box test in car body space.
+- `void setFBCollisionForce(MODELDAT *m, MODELDAT *m1, MODELDAT *m2, F32 dir[3], F32 pos[3])`
+  - Applies force-based collision response (front/back emphasis).
+- `void setCollisionDamage(MODELDAT *m)`
+  - Calculates damage from collision forces.
+- `void setCenterForce(MODELDAT *m, MODELDAT *m1, MODELDAT *m2, F32 dir[3], F32 pos[3])`
+  - Applies impact to center-of-mass forces.
+- `F32 collForceNormal(MODELDAT *m, U32 coll_alg, F32 din, F32 vin)`
+  - Collision normal force calculation by algorithm type.
+- `void CollForceMineIn(...)` / `void CollForceOtherIn(...)`
+  - Handles which car “owns” the collision response.
+
+### Physics Core (drivsym.c)
+
+- `void syminit(MODELDAT *m)`
+  - Initialize model state, road, positions, and communication.
+- `void sym(MODELDAT *m)`
+  - Main physics tick: controls, drivetrain, forces, steering feedback, and comms.
+- `void regular(MODELDAT *m)`
+  - Runs road sampling, forces, torques, and integration steps.
+- `void antispin(MODELDAT *m)`
+  - Computes anti-spin center moment for stability.
+- `void forces(MODELDAT *m)` / `void forces1(MODELDAT *m)` / `void forces2(MODELDAT *m)`
+  - Tire forces, drag, gravity, and body forces aggregation.
+- `void torques(MODELDAT *m)` / `void accelerations(MODELDAT *m)` / `void velocities(MODELDAT *m)` / `void positions(MODELDAT *m)`
+  - Torque and integration pipeline for rigid-body updates.
+- `void checkok(MODELDAT *m)`
+  - Crash/thump detection, force thresholds, and safety clamps.
+
+### Catchup / Rubber-Band (model.c)
+
+- `void set_catchup(void)`
+  - Adjusts catchup multiplier based on player distance to leader.
+- `void no_catchup(void)`
+  - Disables catchup (e.g., tourney mode).
+
 ## 3. AI / Drone System Functions (drones.c)
 
 - `void InitDrones(void)`

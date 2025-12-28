@@ -929,5 +929,5 @@ void init_car_from_params(CarPhysics *m, const Car *car) {
 }
 
 /* Stub declarations for original disassembled functions */
-void func_800B0868(void);  /* PhysicsObjectList_Update - TODO: Decompile */
-void func_800B811C(void);  /* Effects_UpdateEmitters - TODO: Decompile */
+void physics_object_list_update(void);  /* TODO: Decompile */
+void effects_emitters_update(void);  /* TODO: Decompile */
