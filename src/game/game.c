@@ -6079,7 +6079,7 @@ void *object_alloc_free_list(s32 soundId, s32 flags) {
 
 /**
 /*
- * func_8008AD04 - Compare two strings
+ * string_compare - Compare two strings
  * (68 bytes)
  *
  * Compares two null-terminated strings byte by byte.
@@ -6088,7 +6088,7 @@ void *object_alloc_free_list(s32 soundId, s32 flags) {
  * @param a1 Second string
  * @return 0 if equal, difference of first non-matching bytes otherwise
  */
-s32 func_8008AD04(u8 *a0, u8 *a1) {
+s32 string_compare(u8 *a0, u8 *a1) {
     u8 c1, c2;
 
     c1 = *a0;
@@ -6116,13 +6116,13 @@ s32 func_8008AD04(u8 *a0, u8 *a1) {
 
 /**
 /*
- * func_800B73E4 - Initialize effects/emitter system
+ * effects_system_init - Initialize effects/emitter system
  * (84 bytes)
  *
  * One-time initialization that clears effect counters and data arrays.
  * Sets init flag to prevent re-initialization.
  */
-void func_800B73E4(void) {
+void effects_system_init(void) {
     u32 *ptr;
     u32 *end;
 
@@ -6157,7 +6157,7 @@ void func_800B73E4(void) {
 
 /**
 /*
- * func_800B80C8 - Copy emitter position floats to target
+ * emitter_position_copy - Copy emitter position floats to target
  * (80 bytes)
  *
  * If the target pointer exists, copies two position floats from
@@ -6165,7 +6165,7 @@ void func_800B73E4(void) {
  *
  * @param a0 Emitter index
  */
-void func_800B80C8(s32 a0) {
+void emitter_position_copy(s32 a0) {
     void *target;
     u8 *emitter;
 
@@ -6189,12 +6189,12 @@ void func_800B80C8(s32 a0) {
 
 /**
 /*
- * func_800B90F8 - Clear emitter pointer array
+ * emitter_array_clear - Clear emitter pointer array
  * (48 bytes)
  *
  * Clears the emitter target pointer array up to the current count.
  */
-void func_800B90F8(void) {
+void emitter_array_clear(void) {
     s16 count;
     void **ptr;
     void **end;
@@ -6259,7 +6259,7 @@ extern void game_mode_handler(void); /* func_800C9AE0 - State handler */
 /**
 
 /**
-extern void func_800B0580(s32 slot, void *data, s32 size); /* Write save data */
+extern void pool_system_reset(s32 slot, void *data, s32 size); /* Write save data */
 
 /**
 
@@ -6398,13 +6398,13 @@ extern void *D_8012EA18;  /* Source data */
 
 /**
 /*
- * func_800B7FF8 - Get game state flags
+ * game_state_flags_get - Get game state flags
  * (8 bytes)
  *
  * Returns the current game state flags word.
  *
  */
-s32 func_800B7FF8(void) {
+s32 game_state_flags_get(void) {
     return D_801174B4;
 }
 
@@ -6413,12 +6413,12 @@ s32 func_800B7FF8(void) {
 
 /**
 /*
- * func_800B71D4 - Get secondary state
+ * state_get_zero - Get secondary state
  * (8 bytes)
  *
  * Returns the secondary state value.
  */
-s32 func_800B71D4_alt(void) {
+s32 state_get_zero(void) {
     return 0;
 }
 
@@ -6502,10 +6502,10 @@ extern s32 D_8012EAA0;
 extern s8 D_8014978C;
 
 /*
- * func_8009731C (104 bytes)
+ * synced_element_lookup (104 bytes)
  * Synchronized element lookup returning offset 12 data
  */
-void *func_8009731C(void *input) {
+void *synced_element_lookup(void *input) {
     void *temp;
     void *result;
     void *data;
@@ -6520,10 +6520,10 @@ void *func_8009731C(void *input) {
 
 /*
 
- * func_800C7578 (148 bytes)
+ * slot_update_notify (148 bytes)
  * Update indexed slot in nested structure and notify
  */
-void func_800C7578(void **a0, s32 a1, s32 a2, s32 a3) {
+void slot_update_notify(void **a0, s32 a1, s32 a2, s32 a3) {
     u32 *ptr;
     u8 *base;
     u8 *slot;
@@ -6546,10 +6546,10 @@ void func_800C7578(void **a0, s32 a1, s32 a2, s32 a3) {
 
 /*
 
- * func_800CD058 (156 bytes)
+ * render_dispatch_conditional (156 bytes)
  * Conditional render/process dispatch based on object state
  */
-void func_800CD058(void *a0) {
+void render_dispatch_conditional(void *a0) {
     void *ptr;
 
     ptr = *(void **)a0;
@@ -6565,10 +6565,10 @@ void func_800CD058(void *a0) {
 
 /*
 
- * func_800AF51C (196 bytes)
+ * resource_arrays_init (196 bytes)
  * Initialize resource arrays - allocates 50 resources and clears 6 slot entries
  */
-void func_800AF51C(void) {
+void resource_arrays_init(void) {
     s16 i;
     void *result;
 
@@ -6593,10 +6593,10 @@ void func_800AF51C(void) {
 
 /*
 
- * func_8008E19C(208 bytes, 0)
+ * tree_node_insert (208 bytes)
  * Insert value into tree node - either at head or at indexed slot
  */
-void func_8008E19C(s16 a0, s16 a1) {
+void tree_node_insert(s16 a0, s16 a1) {
     s16 new_idx;
     u8 *entry;
 
