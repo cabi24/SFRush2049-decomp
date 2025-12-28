@@ -420,11 +420,11 @@ extern s32 D_C;
 extern void *audio_alloc(s32 size);           /* func_800BA644 - Audio memory allocator */
 extern void attract_or_transition(void);      /* func_800EDDC0 - Rendering/game logic */
 extern void process_inputs(void);             /* func_800C997C - Screen/state update */
-extern s32  sound_start(s32 action, s32 type, void *data, s32 flag); /* func_800B37E8 - Audio/sound control */
+extern s32  sound_start(s32 action, s32 type, void *data, s32 flag); /* sound_start - Audio/sound control */
 extern void attract_handler(void);            /* func_800DB81C - Attract mode */
 extern void hiscore_handler(void);            /* func_800FBF88 - High score entry */
 extern void countdown_handler(void);          /* func_800FBC30 - Countdown timer */
-extern void render_scene(s32 track, f32 angle, s32 x, s32 y); /* func_800A04C4 - Viewport/camera setup */
+extern void render_scene(s32 track, f32 angle, s32 x, s32 y); /* render_scene - Viewport/camera setup */
 
 /* Forward declarations for functions defined in this file */
 s32 track_lod_select(f32 distance);  /* LOD distance calculator */
@@ -462,11 +462,11 @@ extern u32 D_801597F4;   /* State copy */
 extern s8  D_801146C4[]; /* Sound params array */
 extern u32 D_801174B4;   /* gstate - current state bitmask (for game_loop) */
 extern u32 D_801174B8;   /* gstate_pending - next state (for game_loop) */
-extern void sound_stop(s32 channel, f32 volume);    /* func_800B358C */
+extern void sound_stop(s32 channel, f32 volume);    /* sound_stop */
 extern void state_dispatch(void);                   /* func_800FD238 */
 extern void update_active_objects(void);            /* func_800F733C */
 extern void *physics_update(void);                  /* func_800B0868 */
-extern void effects_update_emitters(void);          /* func_800B811C */
+extern void effects_update_emitters(void);          /* effects_update */
 
 /* Forward declarations */
 void playgame_handler(void);  /* func_800CA3B4 */
@@ -572,8 +572,8 @@ s32 game_loop(void) {
         if (D_801170FC != 0) {
             func_800F733C();  /* UpdateActiveObjects */
             func_800B0868();  /* PhysicsObjectList_Update */
-            func_800B811C();  /* Effects_UpdateEmitters */
-            func_800A04C4(0, 0.0f, 0, 0); /* render_scene */
+            effects_update();  /* Effects_UpdateEmitters */
+            render_scene(0, 0.0f, 0, 0); /* render_scene */
             return 1;
         }
     }
@@ -594,8 +594,8 @@ s32 game_loop(void) {
         func_800FBC30();  /* Countdown handler */
         func_800F733C();  /* UpdateActiveObjects */
         func_800B0868();  /* PhysicsObjectList_Update */
-        func_800B811C();  /* Effects_UpdateEmitters */
-        func_800A04C4(0, 0.0f, 0, 0); /* render_scene */
+        effects_update();  /* Effects_UpdateEmitters */
+        render_scene(0, 0.0f, 0, 0); /* render_scene */
         result = 1;
     }
 
@@ -613,8 +613,8 @@ extern s8  D_80035471;   /* Mode flag 2 */
 extern s8  D_80035470;   /* Mode flag 3 */
 extern void* D_8003ECF8; /* Some pointer */
 extern void* D_8003ECC0; /* Another pointer */
-extern s32 func_800075E0(void*, void*, s32); /* Memory operation */
-extern s32 func_80007270(void*, void*, s32); /* Memory operation 2 */
+extern s32 state_set(void*, void*, s32); /* Memory operation */
+extern s32 state_get(void*, void*, s32); /* Memory operation 2 */
 extern void func_800013F4(void); /* Timer/sync function */
 extern s8 func_800C9528(void); /* State update / input flag */
 
@@ -636,22 +636,22 @@ void game_mode_handler(void) {
     D_80035472 = 1;
 
     /* Call memory operation with value */
-    func_800075E0(&D_8003ECF8, &temp_val, 1);
+    state_set(&D_8003ECF8, &temp_val, 1);
 
     /* Clear another flag */
     D_80035471 = 0;
 
-    /* Loop calling func_80007270 until it returns -1 */
+    /* Loop calling state_get until it returns -1 */
     do {
-        result = func_80007270(&D_8003ECC0, &temp_val, 0);
+        result = state_get(&D_8003ECC0, &temp_val, 0);
         if (result == -1) {
             break;
         }
-        result = func_80007270(&D_8003ECC0, &temp_val, 1);
+        result = state_get(&D_8003ECC0, &temp_val, 1);
         if (result == -1) {
             break;
         }
-        result = func_80007270(&D_8003ECC0, &temp_val, 0);
+        result = state_get(&D_8003ECC0, &temp_val, 0);
     } while (result != -1);
 
     /* Set flags after loop */
@@ -677,7 +677,7 @@ void game_mode_handler(void) {
  * External functions called by playgame_handler
  */
 extern void state_change_preprocess(void); /* hud_fade_effect - State change pre-process */
-extern void object_init_render(void);       /* func_800A5BB8 - Object render init */
+extern void object_init_render(void);       /* camera_set_pos - Object render init */
 extern void hud_setup(s32 a, s32 b, s32 c, s32 d, s32 e, f32 f, f32 g, s32 h); /* func_800C8B8C - HUD setup */
 extern void hud_init(void); /* hud_tachometer_update - HUD init */
 extern void display_enable(s32 flag); /* func_800C8FA4 - Enable/disable display */
@@ -694,11 +694,11 @@ extern void func_800A3424(s32, s32);   /* Car update function */
 extern void object_render_cleanup(void *obj_ptr); /* func_800C7308 - Object cleanup */
 extern void scene_cleanup_slots(void); /* func_800C70BC - Scene cleanup */
 extern void func_800A1244(void);       /* Render function */
-extern s32 func_80097798(s32, s32, s32, s32, s32); /* Sound/effect */
+extern s32 sprite_draw(s32, s32, s32, s32, s32); /* Sound/effect */
 extern void visual_objects_update(s32 flag); /* Visual update */
-void* func_800B42F0(s32);              /* Object allocate wrapper (defined later) */
-extern void* func_800B4200(void *buffer, s32 samples); /* Object allocate (uses register s2 for type) */
-/* Note: func_80007270 and func_800075E0 declared earlier */
+void* object_create(s32);              /* Object allocate wrapper (defined later) */
+extern void* voice_stop(void *buffer, s32 samples); /* Object allocate (uses register s2 for type) */
+/* Note: state_get and state_set declared earlier */
 
 /* Additional data and functions */
 extern u32 D_801174BC;
@@ -772,7 +772,7 @@ void playgame_handler(void) {
         D_80159794 = 0;
         D_801597C4 = 0;
 
-        func_800A5BB8();
+        camera_set_pos();
 
         mode_flag = D_80156994;
         if (mode_flag == 0) {
@@ -806,7 +806,7 @@ void playgame_handler(void) {
     /* State bit 0x0002: Secondary setup */
     if (gstate_next & 0x0002) {
         player_cleanup_slots();
-        func_800A5BB8();
+        camera_set_pos();
 
         mode_flag = D_80156994;
         if (mode_flag == 0) {
@@ -837,7 +837,7 @@ void playgame_handler(void) {
     /* State bit 0x0004 */
     if (gstate_next & 0x0004) {
         player_cleanup_slots();
-        func_800A5BB8();
+        camera_set_pos();
 
         mode_flag = D_80156994;
         if (mode_flag == 0) {
@@ -903,7 +903,7 @@ void playgame_handler(void) {
 
         scene_cleanup_slots();
         player_cleanup_slots();
-        func_800A5BB8();
+        camera_set_pos();
 
         mode_flag = D_80156994;
         if (mode_flag == 0) {
@@ -962,14 +962,14 @@ void playgame_handler(void) {
 
     /* State bit 0x4000: Sound/effect trigger */
     if (gstate_next & 0x4000) {
-        func_80097798(57, 0, 0, 0, 0);
+        sprite_draw(57, 0, 0, 0, 0);
         gstate_current = D_801174B4;
         goto done;
     }
 
     /* State bit 0x0100: High score/result */
     if (gstate_next & 0x0100) {
-        func_80097798(56, 0, 0, 0, 0);
+        sprite_draw(56, 0, 0, 0, 0);
 
         player_count = D_8015A108;
         for (i = 0; i < player_count; i++) {
@@ -985,7 +985,7 @@ void playgame_handler(void) {
 
     /* State bit 0x0080: Result/finish */
     if (gstate_next & 0x0080) {
-        func_80097798(60, 0, 0, 0, 0);
+        sprite_draw(60, 0, 0, 0, 0);
         player_state_set(-1, 0);
         player_state_set(0, 1);
         gstate_current = D_801174B4;
@@ -999,7 +999,7 @@ void playgame_handler(void) {
         if (state_byte == 0) {
             scene_cleanup_slots();
             player_cleanup_slots();
-            func_800A5BB8();
+            camera_set_pos();
         }
 
         display_enable(0);
@@ -1035,29 +1035,29 @@ void playgame_handler(void) {
         state_byte = D_80114650;
         if (state_byte == 0) {
             /* Dispose objects */
-            func_800B42F0(13);
-            func_800B42F0(10);
-            func_800B42F0(11);
-            func_800B42F0(12);
-            func_800B42F0(4);
-            func_800B42F0(1);
-            func_800B42F0(2);
-            func_800B42F0(3);
-            func_800B42F0(9);
-            func_800B42F0(8);
+            object_create(13);
+            object_create(10);
+            object_create(11);
+            object_create(12);
+            object_create(4);
+            object_create(1);
+            object_create(2);
+            object_create(3);
+            object_create(9);
+            object_create(8);
 
             /* Initialize memory regions */
-            func_80007270(&D_801461D0, 0, 1);
-            func_800B4200(NULL, 0);
-            func_800075E0(&D_801461D0, 0, 0);
+            state_get(&D_801461D0, 0, 1);
+            voice_stop(NULL, 0);
+            state_set(&D_801461D0, 0, 0);
 
-            func_80007270(&D_801461D0, 0, 1);
-            func_800B4200(NULL, 0);
-            func_800075E0(&D_801461D0, 0, 0);
+            state_get(&D_801461D0, 0, 1);
+            voice_stop(NULL, 0);
+            state_set(&D_801461D0, 0, 0);
 
-            func_80007270(&D_801461D0, 0, 1);
-            func_800B4200(NULL, 0);
-            func_800075E0(&D_801461D0, 0, 0);
+            state_get(&D_801461D0, 0, 1);
+            voice_stop(NULL, 0);
+            state_set(&D_801461D0, 0, 0);
         }
 
         player_state_set(-1, 0);
@@ -1083,7 +1083,7 @@ extern void* D_8018A4E0[]; /* Display object pointer array */
 extern void sprintf(s8 *buf, s8 *fmt, ...); /* func_80004990 */
 extern void func_800A4770(s8 *buf, s32 val);
 extern void entity_collision_test(void *entity, void *world);
-extern s32 func_800B71D4();
+extern s32 audio_sync();
 extern s16 sound_apply_effect(s32 channel, s32 effectType, f32 amount); /* func_800B3FA4 */
 
 /**
@@ -1168,9 +1168,9 @@ void countdown_display(void) {
     func_800A4770(format_buf, *(s32 *)((u8 *)display_data + 0x200));
 
     /* Create display object */
-    func_80007270(&D_801461D0, 0, 1);
-    func_800B4200(NULL, 0);
-    func_800075E0(&D_801461D0, 0, 0);
+    state_get(&D_801461D0, 0, 1);
+    voice_stop(NULL, 0);
+    state_set(&D_801461D0, 0, 0);
 
     /* Set display type */
     entity_collision_test(NULL, NULL);
@@ -1183,11 +1183,11 @@ void countdown_display(void) {
         (state_flags & 0x0004) || (state_flags & 0x0008)) {
         /* Special state - color 8 (darker) */
         countdown_val = D_801146F8;
-        func_800B71D4();
+        audio_sync();
     } else {
         /* Normal state - color 205 (0xCD, brighter) */
         countdown_val = D_801146F8;
-        func_800B71D4();
+        audio_sync();
     }
 
     /* Finalize display and decrement countdown */
@@ -1205,44 +1205,44 @@ void countdown_display(void) {
 /*
 
 /**
-/* Global for object type - used by func_800B4200 via register convention */
+/* Global for object type - used by voice_stop via register convention */
 
 /**
 /*
- * func_800B42F0 - Allocate and initialize object wrapper
+ * object_create - Allocate and initialize object wrapper
  * Address: 0x800B42F0
  * Size: 112 bytes
  *
  * Wrapper that:
- * 1. Locks memory region (func_80007270)
+ * 1. Locks memory region (state_get)
  * 2. Sets object type (via register s2 in assembly)
- * 3. Allocates object (func_800B4200)
- * 4. Unlocks memory region (func_800075E0)
+ * 3. Allocates object (voice_stop)
+ * 4. Unlocks memory region (state_set)
  *
  * Note: In the original assembly, 'type' is passed via register s2
- * to func_800B4200 using a delay slot trick. Here we simulate this
+ * to voice_stop using a delay slot trick. Here we simulate this
  * by setting a global before the call.
  *
  * @param type  Object type to allocate
  * @return      Allocated object pointer
  */
-void* func_800B42F0(s32 type) {
+void* object_create(s32 type) {
     void *obj;
     s8 saved_type;
 
     /* Lock memory region */
-    func_80007270(&D_801461D0, 0, 1);
+    state_get(&D_801461D0, 0, 1);
 
     /* Set object type (simulates s2 register setup) */
     saved_type = D_80159DA0;
     D_80159DA0 = (s8)type;
 
     /* Allocate object of specified type */
-    obj = func_800B4200(NULL, 0);
+    obj = voice_stop(NULL, 0);
 
     /* Restore and unlock */
     D_80159DA0 = saved_type;
-    func_800075E0(&D_801461D0, 0, 0);
+    state_set(&D_801461D0, 0, 0);
 
     return obj;
 }
@@ -1250,7 +1250,7 @@ void* func_800B42F0(s32 type) {
 /*
 
 /* External for visual update */
-extern void func_800A2378(s32 track, s32 node, f32 *x, f32 *y, f32 *z);
+extern void track_get_node_pos(s32 track, s32 node, f32 *x, f32 *y, f32 *z);
 
 /**
 /*
@@ -1323,9 +1323,9 @@ extern void profile_manage(void *profile); /* State 3 handler */
 extern void physics_constraint_solve(void *constraint); /* State 4 handler */
 extern void audio_music_play(s32 trackId); /* State setter */
 extern void func_800013C0(void);       /* Timer init */
-extern void func_800013DC(void);       /* Timer update */
-extern void* func_80091B00(s32 type);      /* Allocate object */
-extern void *func_80092360(s32 arg); /* Object allocation */
+extern void timer_tick(void);       /* Timer update */
+extern void* object_alloc(s32 type);      /* Allocate object */
+extern void *sound_effect_play(s32 arg); /* Object allocation */
 extern void menu_options(void *menu); /* Race setup 1 */
 extern void players_frame_update(void); /* Race setup 2 */
 extern void mempak_operation(s32 operation); /* Track init */
@@ -1333,7 +1333,7 @@ extern void menu_saveload(void *menu); /* Visual init */
 extern void scene_stub_empty(void); /* Scene setup */
 extern void menu_controller_config(void *menu); /* Cleanup */
 extern void func_800B5F4C(s32 a0); /* Menu prev */
-extern void func_800B5FC4(void);       /* Menu confirm */
+extern void menu_confirm(void);       /* Menu confirm */
 extern void func_800B5F88(s32 a0); /* Menu toggle */
 extern void audio_stream_start(s32 streamId, void *data); /* Audio stream start */
 
@@ -1396,11 +1396,11 @@ void race_state_machine(void) {
         func_800013C0();
 
         /* Lock and allocate race object */
-        func_80007270(&D_801461D0, 0, 1);
-        alloc_obj = func_80091B00(0);
+        state_get(&D_801461D0, 0, 1);
+        alloc_obj = object_alloc(0);
         *(u8 *)((u8 *)alloc_obj + 2) = 7;  /* Set object type */
-        func_800075E0(&D_801461D0, 0, 0);
-        func_800075E0((void *)0x801427A8, alloc_obj, 0);
+        state_set(&D_801461D0, 0, 0);
+        state_set((void *)0x801427A8, alloc_obj, 0);
 
         /* Setup race timing */
         speed_set(0.0f);
@@ -1419,7 +1419,7 @@ void race_state_machine(void) {
 
         player_mode_set(-1, 1);
         visual_objects_update(1);
-        func_80092360(46);  /* Play race start sound */
+        sound_effect_play(46);  /* Play race start sound */
         break;
 
     case 1:  /* Pre-race setup */
@@ -1446,7 +1446,7 @@ void race_state_machine(void) {
             goto state5_default;
         }
 
-        func_80092360(37);  /* Racing sound */
+        sound_effect_play(37);  /* Racing sound */
 
         sub_state = D_80159D98;
         if (sub_state >= 8) {
@@ -1456,14 +1456,14 @@ void race_state_machine(void) {
         switch (sub_state) {
         case 0:  /* Race start */
             audio_music_play(0);
-            func_800013DC();
+            timer_tick();
             mempak_operation(0);
 
-            func_80007270(&D_801461D0, 0, 1);
-            alloc_obj = func_80091B00(0);
+            state_get(&D_801461D0, 0, 1);
+            alloc_obj = object_alloc(0);
             *(u8 *)((u8 *)alloc_obj + 2) = 9;
-            func_800075E0(&D_801461D0, 0, 0);
-            func_800075E0((void *)0x801427A8, alloc_obj, 0);
+            state_set(&D_801461D0, 0, 0);
+            state_set((void *)0x801427A8, alloc_obj, 0);
 
             menu_saveload(1);
             if (!(D_801174B4 & 0x00200000)) {
@@ -1533,7 +1533,7 @@ void race_state_machine(void) {
             if (sub_state >= 8) sub_state = 0;
             D_80159D98 = sub_state;
         } else if (player_flags & 0x0005) {
-            func_800B5FC4();  /* Confirm */
+            menu_confirm();  /* Confirm */
             goto case0_init;
         }
         break;
@@ -1559,25 +1559,25 @@ void race_state_machine(void) {
     state7_restart:
         *(u8 *)0x80142699 = 1;
         audio_music_play(0);
-        func_800013DC();
+        timer_tick();
 
-        func_80007270(&D_801461D0, 0, 1);
-        alloc_obj = func_80091B00(0);
+        state_get(&D_801461D0, 0, 1);
+        alloc_obj = object_alloc(0);
         *(u8 *)((u8 *)alloc_obj + 2) = 7;
-        func_800075E0(&D_801461D0, 0, 0);
-        func_800075E0((void *)0x801427A8, alloc_obj, 0);
+        state_set(&D_801461D0, 0, 0);
+        state_set((void *)0x801427A8, alloc_obj, 0);
         goto exit_common;
 
     state7_common:
         D_80114650 = (race_state == 7) ? 1 : 0;
         audio_music_play(0);
-        func_800013DC();
+        timer_tick();
 
-        func_80007270(&D_801461D0, 0, 1);
-        alloc_obj = func_80091B00(0);
+        state_get(&D_801461D0, 0, 1);
+        alloc_obj = object_alloc(0);
         *(u8 *)((u8 *)alloc_obj + 2) = 7;
-        func_800075E0(&D_801461D0, 0, 0);
-        func_800075E0((void *)0x801427A8, alloc_obj, 0);
+        state_set(&D_801461D0, 0, 0);
+        state_set((void *)0x801427A8, alloc_obj, 0);
         menu_controller_config(NULL);
         break;
 
@@ -1587,7 +1587,7 @@ void race_state_machine(void) {
         player_flags = *(u32 *)(0x8015A11C + player_idx * 76);
 
         if (player_flags & 0x0007) {
-            func_800B5FC4();
+            menu_confirm();
             audio_music_play(1);
         }
         break;
@@ -1616,13 +1616,13 @@ exit_common:
     if (*(s8 *)0x80157244 != 0) {
         D_80114650 = 0;
         audio_music_play(0);
-        func_800013DC();
+        timer_tick();
 
-        func_80007270(&D_801461D0, 0, 1);
-        alloc_obj = func_80091B00(0);
+        state_get(&D_801461D0, 0, 1);
+        alloc_obj = object_alloc(0);
         *(u8 *)((u8 *)alloc_obj + 2) = 7;
-        func_800075E0(&D_801461D0, 0, 0);
-        func_800075E0((void *)0x801427A8, alloc_obj, 0);
+        state_set(&D_801461D0, 0, 0);
+        state_set((void *)0x801427A8, alloc_obj, 0);
         menu_controller_config(NULL);
     }
 
@@ -1679,7 +1679,7 @@ void active_sounds_update(void) {
 
                 if (result == 0) {
                     /* Callback returned 0 - stop and remove this sound */
-                    func_800B358C(sound_obj, 0.0f);
+                    sound_stop(sound_obj, 0.0f);
 
                     /* Recalculate end pointer (list may have shifted) */
                     count = D_80159788;
@@ -1716,8 +1716,8 @@ void active_sounds_update(void) {
  * Orchestrates all visual updates:
  *   1. If sound_update != 0, update active sounds (func_800F733C -> func_800F7344)
  *   2. If physics_update != 0, update physics objects (func_800B0868 -> func_800B0870)
- *   3. Always update particle/effect emitters (func_800B811C)
- *   4. Always run main scene render (func_800A04C4)
+ *   3. Always update particle/effect emitters (effects_update)
+ *   4. Always run main scene render (render_scene)
  *
  * @param sound_update   Whether to update sounds (arg a0)
  * @param physics_update Whether to update physics (arg a1)
@@ -1736,10 +1736,10 @@ void update_game_systems(s32 sound_update, s32 physics_update) {
     }
 
     /* Always update particle/effect emitters */
-    func_800B811C();
+    effects_update();
 
     /* Always render the scene */
-    func_800A04C4(0, 0.0f, 0, 0);
+    render_scene(0, 0.0f, 0, 0);
 }
 
 /*
@@ -1819,7 +1819,7 @@ void physics_update_all(void) {
 
 /**
 /*
- * func_800B811C - Update all particle emitters
+ * effects_update - Update all particle emitters
  * Address: 0x800B811C
  * Size: 252 bytes
  *
@@ -2062,7 +2062,7 @@ void all_player_sounds_clear(void) {
     /* Stop global sound handle if active */
     sound_handle = D_80113ED8;
     if (sound_handle != NULL) {
-        func_800B358C(sound_handle, 0.0f);
+        sound_stop(sound_handle, 0.0f);
         D_80113ED8 = NULL;
     }
 
@@ -2094,7 +2094,7 @@ void ambient_sounds_clear(void) {
     /* Stop and clear main ambient handle */
     handle = D_80114624;
     if (handle != NULL) {
-        func_800B358C(handle, 0.0f);
+        sound_stop(handle, 0.0f);
         D_80114624 = NULL;
     }
 
@@ -2178,8 +2178,8 @@ extern void *D_80143A28;      /* Effect pool 3 */
 extern u8 D_80143A10[];       /* Effect state buffer (44 bytes) */
 
 extern void func_800B90F8(void); /* Effect pre-reset */
-extern void func_80096130(void*);      /* Effect pool clear */
-extern void bzero(void*, s32);         /* func_80002790 */
+extern void matrix_push(void*);      /* Effect pool clear */
+extern void bzero(void*, s32);         /* memset_custom */
 
 void effects_reset(s32 unused) {
     /* Clear effect state flags */
@@ -2190,9 +2190,9 @@ void effects_reset(s32 unused) {
     func_800B90F8();
 
     /* Clear effect pools */
-    func_80096130(D_80143A18);
-    func_80096130(D_80143A20);
-    func_80096130(D_80143A28);
+    matrix_push(D_80143A18);
+    matrix_push(D_80143A20);
+    matrix_push(D_80143A28);
 
     /* Zero out effect state buffer */
     bzero(D_80143A10, 44);
@@ -2244,7 +2244,7 @@ void sound_handles_clear(s32 clear_all) {
                 for (offset = 0; offset < 20; offset += 4) {
                     sound_handle = *(void**)(obj_ptr + 0x0C);
                     if (sound_handle != NULL) {
-                        func_800B358C(sound_handle, 0.0f);
+                        sound_stop(sound_handle, 0.0f);
                         *(void**)(obj_ptr + 0x0C) = NULL;
                     }
                     obj_ptr += 4;
@@ -2322,7 +2322,7 @@ void players_race_update(void) {
  *   1. Acquires sync lock
  *   2. Processes object with menu_stub_empty
  *   3. If object[9] is set, calls cleanup func and clears it
- *   4. Adds to active list via func_80091FBC
+ *   4. Adds to active list via object_update
  *   5. Sets object[8] = 1 to mark active
  *   6. Releases lock
  *
@@ -2332,8 +2332,8 @@ extern u8 D_80142728[];       /* Sync structure */
 extern u8 D_80146188[];       /* Object pool 1 */
 
 extern void menu_stub_empty(); /* Object pre-process */
-extern void func_8009211C(void*, void*);  /* Object cleanup */
-extern void func_80091FBC(void*, void*, void*);  /* Add to active list */
+extern void model_setup(void*, void*);  /* Object cleanup */
+extern void object_update(void*, void*, void*);  /* Add to active list */
 
 void object_activate(void *obj) {
     u8 *obj_ptr;
@@ -2348,7 +2348,7 @@ void object_activate(void *obj) {
     obj_ptr = (u8*)obj;
 
     /* Acquire sync lock */
-    func_80007270(D_80142728, NULL, 1);
+    state_get(D_80142728, NULL, 1);
 
     /* Pre-process object */
     menu_stub_empty();
@@ -2356,19 +2356,19 @@ void object_activate(void *obj) {
     /* Check if object needs cleanup */
     cleanup_flag = obj_ptr[9];
     if (cleanup_flag != 0) {
-        func_8009211C(D_80146188, obj);
+        model_setup(D_80146188, obj);
         obj_ptr[9] = 0;
     }
 
     /* Add object to active list */
     pool_data = *(void**)(D_80146170 + 8);
-    func_80091FBC(D_80146170, obj, pool_data);
+    object_update(D_80146170, obj, pool_data);
 
     /* Mark object as active */
     obj_ptr[8] = 1;
 
     /* Release sync lock */
-    func_800075E0(D_80142728, NULL, 0);
+    state_set(D_80142728, NULL, 0);
 }
 
 /*
@@ -2478,7 +2478,7 @@ s32 players_finish_check(void) {
  * Size: 72 bytes
  *
  * Clears the specified resource slot. If func_80097694 returns < 0,
- * allocates a new slot with func_80097798 and registers it.
+ * allocates a new slot with sprite_draw and registers it.
  *
  * NOTE: Slot ID is passed in register t0, not a0.
  */
@@ -2494,7 +2494,7 @@ void resource_slot_clear(void) {
 
     if (result < 0) {
         /* Allocate new slot */
-        result = func_80097798(slot_id, 0, 0, 0, 0);
+        result = sprite_draw(slot_id, 0, 0, 0, 0);
 
         /* Register it */
         resource_register_slot(result);
@@ -2757,12 +2757,12 @@ void init_single_mode_wrapper(void *arg) {
  * Object structure:
  *   obj->field_0 (ptr) -> field_2C (ptr) -> field_0 (base)
  *   At base + 0x6F4, allocates 72 bytes via audio_stream_update
- *   Then links via func_800A2504 with 76 bytes
+ *   Then links via track_get_direction with 76 bytes
  *
  * @param obj Object pointer with nested structure
  */
 extern s32 audio_stream_update(s32 streamId); /* Allocate block */
-extern void func_800A2504(void *ptr1, void *ptr2, s32 flag);  /* Link block */
+extern void track_get_direction(void *ptr1, void *ptr2, s32 flag);  /* Link block */
 
 void object_data_allocate(void *obj) {
     void *primary;
@@ -2789,7 +2789,7 @@ void object_data_allocate(void *obj) {
 
     /* Link the block */
     resource = *(void**)((u8*)primary + 0x08);
-    func_800A2504(NULL, NULL, 0);
+    track_get_direction(NULL, NULL, 0);
 }
 
 /*
@@ -2800,14 +2800,14 @@ void object_data_allocate(void *obj) {
  * Address: 0x800D63C4
  * Size: 40 bytes
  *
- * Calls func_8009211C with a0, then clears byte at a1+8.
+ * Calls model_setup with a0, then clears byte at a1+8.
  * This is a wrapper for stopping/clearing an object's action state.
  *
- * @param a0 First parameter for func_8009211C
+ * @param a0 First parameter for model_setup
  * @param a1 Object with flag at offset 8
  */
 void object_action_clear(void *a0, void *a1) {
-    func_8009211C(a0, NULL);
+    model_setup(a0, NULL);
     *((u8*)a1 + 8) = 0;
 }
 
@@ -2819,7 +2819,7 @@ void object_action_clear(void *a0, void *a1) {
  * Address: 0x800D5894
  * Size: 48 bytes
  *
- * If a0 is non-zero, calls func_800B358C and clears D_801541A4.
+ * If a0 is non-zero, calls sound_stop and clears D_801541A4.
  * Used when transitioning out of a player state.
  *
  * @param a0 Player object (if non-NULL, triggers cleanup)
@@ -2828,7 +2828,7 @@ extern s32 D_801541A4;  /* Player state variable */
 
 void player_state_clear(void *a0) {
     if (a0 != NULL) {
-        func_800B358C(a0, 0.0f);
+        sound_stop(a0, 0.0f);
         D_801541A4 = 0;
     }
 }
@@ -2842,20 +2842,20 @@ void player_state_clear(void *a0) {
  * Size: 72 bytes
  *
  * Takes a position vector and applies each component to the sound system:
- * - Y coord (offset 4) via func_80090E9C
- * - X coord (offset 0) via func_80090F44
+ * - Y coord (offset 4) via gfx_set_color
+ * - X coord (offset 0) via gfx_set_alpha
  * - Z coord (offset 8) via func_8009EA68
  *
  * @param pos 3D position vector (x=0, y=4, z=8)
  * @param a1 Sound handle/target parameter
  */
-extern void func_80090E9C(void *handle, s32 volume);  /* Set sound volume */
-extern void func_80090F44(f32, s32);  /* Set sound X position */
+extern void gfx_set_color(void *handle, s32 volume);  /* Set sound volume */
+extern void gfx_set_alpha(f32, s32);  /* Set sound X position */
 extern void func_8009EA68(f32, s32);  /* Set sound Z position */
 
 void sound_position_set(f32 *pos, s32 a1) {
-    func_80090E9C((void*)(long)*(s32*)&pos[1], a1);  /* Y coordinate */
-    func_80090F44(pos[0], a1);  /* X coordinate */
+    gfx_set_color((void*)(long)*(s32*)&pos[1], a1);  /* Y coordinate */
+    gfx_set_alpha(pos[0], a1);  /* X coordinate */
     func_8009EA68(pos[2], a1);  /* Z coordinate */
 }
 
@@ -2867,7 +2867,7 @@ void sound_position_set(f32 *pos, s32 a1) {
  * Address: 0x800C878C
  * Size: 104 bytes
  *
- * Acquires sync on D_80142728, allocates via func_80091B00,
+ * Acquires sync on D_80142728, allocates via object_alloc,
  * sets type to 7, releases sync, then registers with D_801427A8.
  *
  * Type 7 appears to be a specific object category.
@@ -2877,11 +2877,11 @@ extern s32 D_801427A8;    /* Object registry B */
 void object_type7_create(void) {
     void *obj;
 
-    func_80007270(D_80142728, 0, 1);   /* Acquire sync */
-    obj = func_80091B00(0);
+    state_get(D_80142728, 0, 1);   /* Acquire sync */
+    obj = object_alloc(0);
     *((u8*)obj + 2) = 7;               /* Set type to 7 */
-    func_800075E0(D_80142728, 0, 0);   /* Release sync */
-    func_800075E0(obj, 0, 0);  /* Register object */
+    state_set(D_80142728, 0, 0);   /* Release sync */
+    state_set(obj, 0, 0);  /* Register object */
 }
 
 /*
@@ -2898,11 +2898,11 @@ void object_type7_create(void) {
 void object_type1_create(void) {
     void *obj;
 
-    func_80007270(D_80142728, 0, 1);   /* Acquire sync */
-    obj = func_80091B00(0);
+    state_get(D_80142728, 0, 1);   /* Acquire sync */
+    obj = object_alloc(0);
     *((u8*)obj + 2) = 1;               /* Set type to 1 */
-    func_800075E0(D_80142728, 0, 0);   /* Release sync */
-    func_800075E0(obj, 0, 0);  /* Register object */
+    state_set(D_80142728, 0, 0);   /* Release sync */
+    state_set(obj, 0, 0);  /* Register object */
 }
 
 /*
@@ -2953,11 +2953,11 @@ void physics_init_mode1(void) {
 void object_type7_create_alt(void) {
     void *obj;
 
-    func_80007270(D_80142728, 0, 1);   /* Acquire sync */
-    obj = func_80091B00(0);
+    state_get(D_80142728, 0, 1);   /* Acquire sync */
+    obj = object_alloc(0);
     *((u8*)obj + 2) = 7;               /* Set type to 7 */
-    func_800075E0(D_80142728, 0, 0);   /* Release sync */
-    func_800075E0(obj, 0, 0);  /* Register object */
+    state_set(D_80142728, 0, 0);   /* Release sync */
+    state_set(obj, 0, 0);  /* Register object */
 }
 
 /*
@@ -2969,7 +2969,7 @@ void object_type7_create_alt(void) {
  * Size: 52 bytes
  *
  * If (a0 & 7) is zero, returns early.
- * Otherwise calls func_800B5FC4 and sets s0[0] = 1.
+ * Otherwise calls menu_confirm and sets s0[0] = 1.
  *
  * NOTE: Uses s0 register for output pointer (non-standard).
  *
@@ -2978,7 +2978,7 @@ void object_type7_create_alt(void) {
 
 void mode_enable_flagged(s32 a0) {
     if ((a0 & 7) != 0) {
-        func_800B5FC4();
+        menu_confirm();
         /* s0[0] = 1 - requires register s0 to be set by caller */
     }
 }
@@ -2992,7 +2992,7 @@ void mode_enable_flagged(s32 a0) {
  * Size: 116 bytes
  *
  * Iterates through an array of 5 entries (20 bytes, stride 4),
- * calling func_800B358C on each non-NULL entry at offset 12.
+ * calling sound_stop on each non-NULL entry at offset 12.
  * Then clears the first byte of the object.
  *
  * Object structure:
@@ -3019,7 +3019,7 @@ void sound_handles_array_clear(void *obj) {
     for (i = 0; i < 20; i += 4) {
         handle = *(void**)(ptr + 12);
         if (handle != NULL) {
-            func_800B358C(handle, 0.0f);
+            sound_stop(handle, 0.0f);
             *(void**)(ptr + 12) = NULL;
         }
         ptr += 4;
@@ -3042,7 +3042,7 @@ void sound_handles_array_clear(void *obj) {
  */
 
 void sync_release_video(void) {
-    func_800075E0(D_801597D0, NULL, 0);
+    state_set(D_801597D0, NULL, 0);
 }
 
 /*
@@ -3174,21 +3174,21 @@ void replay_update_dual(s32 a0) {
  * Address: 0x80094F88
  * Size: 60 bytes
  *
- * If a0[26] != a1, sets a0[26] = a1 and calls func_80094EC8.
+ * If a0[26] != a1, sets a0[26] = a1 and calls texture_load.
  * Returns the final value of a0[26].
  *
  * @param a0 Object pointer
  * @param a1 New value for byte at offset 26
  * @return Value at a0[26]
  */
-extern void func_80094EC8(void *sndObj);
+extern void texture_load(void *sndObj);
 
 s8 object_byte26_set(void *a0, s8 a1) {
     s8 old_val = *((s8*)a0 + 26);
 
     if (old_val != a1) {
         *((s8*)a0 + 26) = a1;
-        func_80094EC8(a0);
+        texture_load(a0);
     }
 
     return *((s8*)a0 + 26);
@@ -3203,10 +3203,10 @@ s8 object_byte26_set(void *a0, s8 a1) {
  * Size: 56 bytes
  *
  * Gets player index from a1[0][16], calculates address in
- * D_80144D60 + index * 16, and calls func_80091FBC with
+ * D_80144D60 + index * 16, and calls object_update with
  * a0 and the value at offset 8 of that address.
  *
- * @param a0 First parameter for func_80091FBC
+ * @param a0 First parameter for object_update
  * @param a1 Pointer to object with player index
  */
 extern u8 D_80144D60[];  /* Player data array, 16 bytes each */
@@ -3216,7 +3216,7 @@ void player_indexed_update(void *a0, void *a1) {
     u8 player_idx = *((u8*)ptr + 16);
     u8 *player_data = D_80144D60 + (player_idx * 16);
     void *value = *(void**)(player_data + 8);
-    func_80091FBC(a0, value, NULL);
+    object_update(a0, value, NULL);
 }
 
 /*
@@ -3227,10 +3227,10 @@ void player_indexed_update(void *a0, void *a1) {
  * Address: 0x800AC898
  * Size: 60 bytes
  *
- * Calls func_80096288(a0, 0, 0);
+ * Calls model_transform(a0, 0, 0);
  */
 s8 player_state_get(s32 a0) {
-    func_80096288(a0, 0, 0);
+    model_transform(a0, 0, 0);
     return D_80156D39[a0 * 20];
 }
 
@@ -3238,7 +3238,7 @@ s8 player_state_get(s32 a0) {
 
 /**
 /*
- * resource_type_select (func_800B5FC4)
+ * resource_type_select (menu_confirm)
  * Address: 0x800B5FC4
  * Size: 80 bytes
  *
@@ -3246,7 +3246,7 @@ s8 player_state_get(s32 a0) {
  *   bit 0 set: uses resource type 46
  *   bit 1 set: uses resource type 37
  *   otherwise: uses resource type 38
- * Then calls func_80092360 with selected type.
+ * Then calls sound_effect_play with selected type.
  */
 
 void resource_type_select(s32 a0) {
@@ -3260,7 +3260,7 @@ void resource_type_select(s32 a0) {
         resource_type = 38;
     }
 
-    func_80092360(resource_type);
+    sound_effect_play(resource_type);
 }
 
 /*
@@ -3272,22 +3272,22 @@ void resource_type_select(s32 a0) {
  * Size: 76 bytes
  *
  * Returns -1 if t7 is 0 or if a0 is -1.
- * Otherwise calls func_80092360 and returns its result.
+ * Otherwise calls sound_effect_play and returns its result.
  *
  * NOTE: Uses t7 register as condition (set by caller).
  *
  * @param a0 Resource type (returns -1 if -1)
- * @param a1 Second param for func_80092360
- * @param a2 Third param for func_80092360
+ * @param a1 Second param for sound_effect_play
+ * @param a2 Third param for sound_effect_play
  * @param a3 Fourth param (masked to 8 bits)
- * @return -1 on early exit, or result of func_80092360
+ * @return -1 on early exit, or result of sound_effect_play
  */
 void resource_alloc_conditional(s32 a0, s32 a1, s32 a2, u8 a3) {
     /* t7 condition checked by caller, always enter here if t7 != 0 */
     if (a0 == -1) {
         return;
     }
-    func_80092360(a0);
+    sound_effect_play(a0);
 }
 
 /*
@@ -3409,22 +3409,22 @@ void mode_flags_clear(void) {
  * Address: 0x800AC840
  * Size: 88 bytes
  *
- * Calls func_80096288(a0, 0, 0), then calculates slot address
- * at D_80156D38 + (a0 * 20), calls func_800962D4 with slot[12],
+ * Calls model_transform(a0, 0, 0), then calculates slot address
+ * at D_80156D38 + (a0 * 20), calls model_set_matrix with slot[12],
  * and clears slot[2].
  *
  * @param a0 Slot index
  */
 extern u8 D_80156D38[];  /* Slot array, 20 bytes per entry */
-extern void func_800962D4(s32, s32);
+extern void model_set_matrix(s32, s32);
 
 void slot_deactivate(s32 a0) {
     u8 *slot;
 
-    func_80096288(a0, 0, 0);
+    model_transform(a0, 0, 0);
 
     slot = D_80156D38 + (a0 * 20);
-    func_800962D4(*(s32*)(slot + 12), 1);
+    model_set_matrix(*(s32*)(slot + 12), 1);
     slot[2] = 0;
 }
 
@@ -3551,18 +3551,18 @@ s32 lookup_with_output(s32 a0, s32 a1, s32 *a2) {
  * Address: 0x800960D4
  * Size: 92 bytes
  *
- * Acquires sync on D_80152770, calls func_80095FD8(a0, 0),
+ * Acquires sync on D_80152770, calls model_render(a0, 0),
  * then releases sync.
  *
- * @param a0 Parameter for func_80095FD8
+ * @param a0 Parameter for model_render
  */
 extern u8 D_80152770[];  /* Sync structure */
-extern void func_80095FD8(s32, s32);
+extern void model_render(s32, s32);
 
 void synced_process_call(s32 a0, s32 a1) {
-    func_80007270(D_80152770, 0, 1);
-    func_80095FD8(a0, a1);
-    func_800075E0(D_80152770, 0, 0);
+    state_get(D_80152770, 0, 1);
+    model_render(a0, a1);
+    state_set(D_80152770, 0, 0);
 }
 
 /*
@@ -3574,7 +3574,7 @@ void synced_process_call(s32 a0, s32 a1) {
  * Size: 92 bytes
  *
  * Similar to slot_deactivate but sets slot[2] = 1 instead of 0.
- * Calls func_80096288(a0, 0, 0), then func_800962D4(slot[12], 0),
+ * Calls model_transform(a0, 0, 0), then model_set_matrix(slot[12], 0),
  * then sets slot[2] = 1.
  *
  * @param a0 Slot index
@@ -3582,10 +3582,10 @@ void synced_process_call(s32 a0, s32 a1) {
 void slot_activate(s32 a0) {
     u8 *slot;
 
-    func_80096288(a0, 0, 0);
+    model_transform(a0, 0, 0);
 
     slot = D_80156D38 + (a0 * 20);
-    func_800962D4(*(s32*)(slot + 12), 0);
+    model_set_matrix(*(s32*)(slot + 12), 0);
     slot[2] = 1;
 }
 
@@ -3599,7 +3599,7 @@ void slot_activate(s32 a0) {
  *
  * If t6 (condition) is non-zero:
  *   - Acquires sync on D_80152770
- *   - Calls func_80095FD8(0x8039A400, 0)
+ *   - Calls model_render(0x8039A400, 0)
  *   - Releases sync
  *   - Clears D_8011ED04
  *
@@ -3609,9 +3609,9 @@ extern u8 D_8011ED04;  /* Mode flag */
 
 void conditional_synced_clear(s32 condition) {
     if (condition != 0) {
-        func_80007270(D_80152770, 0, 1);
-        func_80095FD8(0x8039A400, 0);
-        func_800075E0(D_80152770, 0, 0);
+        state_get(D_80152770, 0, 1);
+        model_render(0x8039A400, 0);
+        state_set(D_80152770, 0, 0);
         D_8011ED04 = 0;
     }
 }
@@ -3627,7 +3627,7 @@ void conditional_synced_clear(s32 condition) {
  * Uses registers s0, s1, s2, s3, s4 set by caller.
  * If s3[0] == 0:
  *   - Calls func_800A0FDC(s0, a2-s0)
- *   - Calls func_800962D4(result, 0)
+ *   - Calls model_set_matrix(result, 0)
  *   - Calls func_800026C0(s4, s0, 1)
  *   - Calls func_80008590(s2, s1-s2)
  *   - Sets s3[0] = 1
@@ -3641,7 +3641,7 @@ extern void func_80008590(s32, s32);
 void complex_init_multi(s32 s0, s32 s1, s32 s2, s8 *s3, s32 s4, s32 a2) {
     if (*s3 == 0) {
         s32 result = func_800A0FDC(s0, a2 - s0);
-        func_800962D4(result, 0);
+        model_set_matrix(result, 0);
         func_800026C0(s4, s0, 1);
         func_80008590(s2, s1 - s2);
         *s3 = 1;
@@ -3750,7 +3750,7 @@ void game_state_check_handler(void) {
  *
  * If bit 0 of a0 is set, uses resource type 46.
  * Otherwise uses resource type 38.
- * Then calls func_80092360.
+ * Then calls sound_effect_play.
  *
  * @param a0 Mode flags
  */
@@ -3763,7 +3763,7 @@ void resource_type_select_simple(s32 a0) {
         resource_type = 38;
     }
 
-    func_80092360(resource_type);
+    sound_effect_play(resource_type);
 }
 
 /*
@@ -3825,7 +3825,7 @@ void mode_byte2_set(s16 a0) {
  *
  * If t6 (condition) is zero:
  *   - Sets D_801147C0 = 1
- *   - Calls func_80006A00(D_801461D0, D_801461FC, 1)
+ *   - Calls dma_start(D_801461D0, D_801461FC, 1)
  *   - Releases sync on D_801461D0
  * Always sets D_80159DA0 = -1
  *
@@ -3833,13 +3833,13 @@ void mode_byte2_set(s16 a0) {
  */
 extern u8 D_801147C0;   /* Init flag */
 extern u8 D_801461FC[]; /* Data pointer */
-extern void func_80006A00(void*, void*, s32);
+extern void dma_start(void*, void*, s32);
 
 void sync_init_conditional(s32 condition) {
     if (condition == 0) {
         D_801147C0 = 1;
-        func_80006A00(&D_801461D0, D_801461FC, 1);
-        func_800075E0(&D_801461D0, NULL, 0);
+        dma_start(&D_801461D0, D_801461FC, 1);
+        state_set(&D_801461D0, NULL, 0);
     }
     D_80159DA0 = -1;
 }
@@ -3893,21 +3893,21 @@ void object_update_full(void *obj) {
  *
  * @param id Object ID to look up
  */
-extern void *func_80095F8C(s32);
-extern void *func_80095EF4(void*, void*, s32);
+extern void *model_draw(s32);
+extern void *model_set_anim(void*, void*, s32);
 
 void object_counter_decrement(s32 id) {
     void *obj;
     u8 counter;
 
-    func_80007270(&D_80152770, NULL, 1);
-    obj = func_80095F8C(id);
-    obj = func_80095EF4(obj, NULL, 0);
+    state_get(&D_80152770, NULL, 1);
+    obj = model_draw(id);
+    obj = model_set_anim(obj, NULL, 0);
     counter = *((u8*)obj + 22);
     if (counter > 0) {
         *((u8*)obj + 22) = counter - 1;
     }
-    func_800075E0(&D_80152770, NULL, 0);
+    state_set(&D_80152770, NULL, 0);
 }
 
 /*
@@ -3927,14 +3927,14 @@ void object_counter_increment(s32 id) {
     void *obj;
     u8 counter;
 
-    func_80007270(&D_80152770, NULL, 1);
-    obj = func_80095F8C(id);
-    obj = func_80095EF4(obj, NULL, 0);
+    state_get(&D_80152770, NULL, 1);
+    obj = model_draw(id);
+    obj = model_set_anim(obj, NULL, 0);
     counter = *((u8*)obj + 22);
     if (counter < 255) {
         *((u8*)obj + 22) = counter + 1;
     }
-    func_800075E0(&D_80152770, NULL, 0);
+    state_set(&D_80152770, NULL, 0);
 }
 
 /*
@@ -4106,7 +4106,7 @@ void param_reshuffle_wrapper(void *a0, void *a1) {
  * Address: 0x80100D30
  * Size: 44 bytes
  *
- * Stores D_801146FC at a0+4, calls func_80094EC8, returns 1.
+ * Stores D_801146FC at a0+4, calls texture_load, returns 1.
  *
  * @param a0 Object to initialize
  * @return Always returns 1
@@ -4115,7 +4115,7 @@ extern void *D_801146FC;  /* Callback pointer */
 
 s32 callback_init(void *a0) {
     *(void**)((u8*)a0 + 4) = &D_801146FC;
-    func_80094EC8(a0);
+    texture_load(a0);
     return 1;
 }
 
@@ -4132,7 +4132,7 @@ s32 callback_init(void *a0) {
 extern void *D_80152750;  /* Sync object */
 
 void sync_acquire_menu(void) {
-    func_80007270(&D_80152750, NULL, 1);
+    state_get(&D_80152750, NULL, 1);
 }
 
 /*
@@ -4217,7 +4217,7 @@ s16 diff_halved_calc(void *a0, s32 a1) {
  * Address: 0x800AED2C
  * Size: 56 bytes
  *
- * If a1 is NULL returns 0. Otherwise calls func_8009211C,
+ * If a1 is NULL returns 0. Otherwise calls model_setup,
  * clears byte at a1+8, returns a1.
  *
  * @param a0 First parameter
@@ -4228,7 +4228,7 @@ void *object_init_cleared(void *a0, void *a1) {
     if (a1 == NULL) {
         return NULL;
     }
-    func_8009211C(a0, a1);
+    model_setup(a0, a1);
     *((u8*)a1 + 8) = 0;
     return a1;
 }
@@ -4271,7 +4271,7 @@ void vector3d_store_transform(void *a0, void *a1, f32 x, f32 y, f32 z) {
  * Address: 0x80096298
  * Size: 60 bytes
  *
- * Calls func_80096288(a0, 0, 0), then returns D_80156D44[a0 * 5].
+ * Calls model_transform(a0, 0, 0), then returns D_80156D44[a0 * 5].
  * Slot array entries are 20 bytes each.
  *
  * @param a0 Slot index
@@ -4279,7 +4279,7 @@ void vector3d_store_transform(void *a0, void *a1, f32 x, f32 y, f32 z) {
  */
 
 void *slot_value_get(s32 a0) {
-    func_80096288(a0, 0, 0);
+    model_transform(a0, 0, 0);
     return D_80156D44[a0 * 5];
 }
 
@@ -4292,7 +4292,7 @@ void *slot_value_get(s32 a0) {
  * Size: 72 bytes
  *
  * If a1 == -1, returns immediately.
- * Otherwise calls func_80018E2C, func_800154A4, func_80096130,
+ * Otherwise calls func_80018E2C, func_800154A4, matrix_push,
  * and sets D_8011EAA0 = -1.
  *
  * @param a0 Unused
@@ -4308,7 +4308,7 @@ void conditional_reset_callbacks(s32 a0, s32 a1) {
     }
     func_80018E2C(a1);
     func_800154A4();
-    func_80096130(D_80151AD4);
+    matrix_push(D_80151AD4);
     D_8011EAA0 = -1;
 }
 
@@ -4326,14 +4326,14 @@ void conditional_reset_callbacks(s32 a0, s32 a1) {
  *
  * If bit 0x400 is set in a0, requests resource 40.
  * Otherwise requests resource 39.
- * Calls func_80092360(type).
+ * Calls sound_effect_play(type).
  *
  * @param a0 Flags to check
  */
 
 void resource_request_40_or_39(s32 a0) {
     s32 type = (a0 & 0x400) ? 40 : 39;
-    func_80092360(type);
+    sound_effect_play(type);
 }
 
 /*
@@ -4346,13 +4346,13 @@ void resource_request_40_or_39(s32 a0) {
  *
  * If bit 0x1000 is set in a0, requests resource 41.
  * Otherwise requests resource 44.
- * Calls func_80092360(type).
+ * Calls sound_effect_play(type).
  *
  * @param a0 Flags to check
  */
 void resource_request_41_or_44(s32 a0) {
     s32 type = (a0 & 0x1000) ? 41 : 44;
-    func_80092360(type);
+    sound_effect_play(type);
 }
 
 /*
@@ -4365,7 +4365,7 @@ void resource_request_41_or_44(s32 a0) {
  * Size: 60 bytes
  *
  * Stores parameters, calls entity_collision_test(a2, 0),
- * then calls func_800B71D4 with halfwords from a0, a1 and original a3.
+ * then calls audio_sync with halfwords from a0, a1 and original a3.
  *
  * @param a0 First value (low halfword used)
  * @param a1 Second value (low halfword used)
@@ -4375,7 +4375,7 @@ void resource_request_41_or_44(s32 a0) {
 
 void dual_call_reshuffled(s32 a0, s32 a1, s32 a2, void *a3) {
     entity_collision_test(a2, 0);
-    func_800B71D4();
+    audio_sync();
 }
 
 /*
@@ -4423,7 +4423,7 @@ void *resource_lookup_synced(s32 a0, void *a1) {
     void *result;
     void *lookup;
 
-    func_80007270(&D_80152770[0], NULL, 1);
+    state_get(&D_80152770[0], NULL, 1);
 
     if (a0 != 0) {
         lookup = (void*)a0;
@@ -4433,7 +4433,7 @@ void *resource_lookup_synced(s32 a0, void *a1) {
 
     result = func_80097384(a1, lookup);
 
-    func_800075E0(&D_80152770[0], NULL, 0);
+    state_set(&D_80152770[0], NULL, 0);
 
     return result;
 }
@@ -4446,7 +4446,7 @@ void *resource_lookup_synced(s32 a0, void *a1) {
  * Address: 0x8010FC80
  * Size: 64 bytes
  *
- * Calls resource_lookup_synced(0, original_a0), then func_800962D4(result, 0).
+ * Calls resource_lookup_synced(0, original_a0), then model_set_matrix(result, 0).
  * Returns result from first call.
  *
  * @param a0 First parameter
@@ -4456,7 +4456,7 @@ void *resource_lookup_synced(s32 a0, void *a1) {
 
 void *resource_alloc_init(void *a0, void *a1) {
     void *result = resource_lookup_synced(0, a0);
-    func_800962D4(result, 0);
+    model_set_matrix(result, 0);
     return result;
 }
 
@@ -4502,29 +4502,29 @@ void physics_struct_reset(void *a0) {
  * Address: 0x800BF024
  * Size: 128 bytes
  *
- * Acquires sync on D_80142728, looks up via func_80091BA8.
+ * Acquires sync on D_80142728, looks up via object_init.
  * If found, calls camera_stub_empty with field64, releases sync,
  * then calls func_80091C04. If not found, just releases sync.
  *
  * @param a0 Key to look up and process
  */
 extern void camera_stub_empty();
-extern void *func_80091BA8(void*, void*);
+extern void *object_init(void*, void*);
 
 void synced_lookup_process(void *a0) {
     void *result;
 
-    func_80007270(&D_80142728[0], NULL, 1);
+    state_get(&D_80142728[0], NULL, 1);
 
-    result = func_80091BA8(a0, &D_80142728[0]);
+    result = object_init(a0, &D_80142728[0]);
 
     if (result == NULL) {
-        func_800075E0(&D_80142728[0], NULL, 0);
+        state_set(&D_80142728[0], NULL, 0);
         return;
     }
 
     camera_stub_empty();
-    func_800075E0(&D_80142728[0], NULL, 0);
+    state_set(&D_80142728[0], NULL, 0);
     func_80091C04(a0);
 }
 
@@ -4536,8 +4536,8 @@ void synced_lookup_process(void *a0) {
  * Address: 0x80091C04
  * Size: 160 bytes
  *
- * Acquires sync on D_80142728, looks up key via func_80091BA8.
- * If found, calls func_80091B00, sets result->byte2 = 6,
+ * Acquires sync on D_80142728, looks up key via object_init.
+ * If found, calls object_alloc, sets result->byte2 = 6,
  * stores original key at offset 4, increments counter at offset 26.
  * Then releases sync and optionally signals D_801427A8.
  *
@@ -4547,23 +4547,23 @@ void resource_register_synced(void *a0) {
     void *result;
     void *savedResult;
 
-    func_80007270(&D_80142728[0], NULL, 1);
+    state_get(&D_80142728[0], NULL, 1);
 
-    result = func_80091BA8(a0, NULL);
+    result = object_init(a0, NULL);
     savedResult = NULL;
 
     if (result != NULL) {
-        func_80091B00(0);
+        object_alloc(0);
         *(u8*)((u8*)result + 2) = 6;
         *(void**)((u8*)result + 4) = a0;
         (*(u8*)((u8*)a0 + 26))++;
         savedResult = result;
     }
 
-    func_800075E0(&D_80142728[0], NULL, 0);
+    state_set(&D_80142728[0], NULL, 0);
 
     if (savedResult != NULL) {
-        func_800075E0(&D_80142728[0x80], savedResult, 0);
+        state_set(&D_80142728[0x80], savedResult, 0);
     }
 }
 
@@ -4643,7 +4643,7 @@ s16 object_bytes23_sum(void) {
  * Size: 80 bytes
  *
  * Gets object chain a0->0->44->0, if byte at +71 differs from a1,
- * sets it to a1 and calls func_800A2504 to sync.
+ * sets it to a1 and calls track_get_direction to sync.
  *
  * @param a0 Object pointer chain
  * @param a1 New byte value
@@ -4659,7 +4659,7 @@ void object_byte71_set_sync(void **a0, u8 a1) {
         *target = a1;
         obj = *a0;
         inner = *(void**)((u8*)obj + 44);
-        func_800A2504(*(void**)((u8*)obj + 8), (u8*)*(void**)inner + 71, 1);
+        track_get_direction(*(void**)((u8*)obj + 8), (u8*)*(void**)inner + 71, 1);
     }
 }
 
@@ -4673,7 +4673,7 @@ void object_byte71_set_sync(void **a0, u8 a1) {
  * Address: 0x800BE9A0
  * Size: 72 bytes
  *
- * Builds a local buffer via camera_track_target, then calls func_800B71D4
+ * Builds a local buffer via camera_track_target, then calls audio_sync
  * with halfwords from stored parameters.
  *
  * @param a0 First value (high halfword used)
@@ -4686,7 +4686,7 @@ extern void camera_track_target(void *camera, void *target);
 void buffer_build_and_call(s32 a0) {
     u8 buffer[128];
     camera_track_target(buffer, NULL);
-    func_800B71D4();
+    audio_sync();
 }
 
 /*
@@ -4697,7 +4697,7 @@ void buffer_build_and_call(s32 a0) {
  * Address: 0x800BE9E8
  * Size: 72 bytes
  *
- * Builds a local buffer via func_80002CD0, then calls func_800B71D4
+ * Builds a local buffer via func_80002CD0, then calls audio_sync
  * with halfwords from stored parameters.
  *
  * @param a0 First value (high halfword used)
@@ -4710,7 +4710,7 @@ void buffer_build_2cd0_call(s32 a0, s32 a1, void *a2, s32 a3) {
     s32 args[1];
     args[0] = a3;
     func_80002CD0(buffer, a2, args);
-    func_800B71D4();
+    audio_sync();
 }
 
 /*
@@ -4744,15 +4744,15 @@ void init_wait_completion(void) {
  * Address: 0x800B0618
  * Size: 84 bytes
  *
- * Loops through D_801491F0 linked list calling func_8009079C(item, 1),
+ * Loops through D_801491F0 linked list calling vertex_set(item, 1),
  * then calls func_800B0580.
  */
-extern void func_8009079C(void *a0, s32 a1);
+extern void vertex_set(void *a0, s32 a1);
 
 void list_process_and_call(s32 trackId, void *ghostData) {
     void *item = D_801491F0;
     while (item != NULL) {
-        func_8009079C(item, 1);
+        vertex_set(item, 1);
         item = D_801491F0;
     }
     func_800B0580(0, ghostData, 0);
@@ -4792,14 +4792,14 @@ s16 object_bytes_sum_global(void) {
  * Address: 0x8010FCC0
  * Size: 92 bytes
  *
- * Acquires sync on D_80152770, calls func_80095FD8(a0, 0), releases sync.
+ * Acquires sync on D_80152770, calls model_render(a0, 0), releases sync.
  *
- * @param a0 Parameter for func_80095FD8
+ * @param a0 Parameter for model_render
  */
 void synced_call_95fd8(void *a0) {
-    func_80007270(&D_80152770, NULL, 1);
-    func_80095FD8(a0, 0);
-    func_800075E0(&D_80152770, NULL, 0);
+    state_get(&D_80152770, NULL, 1);
+    model_render(a0, 0);
+    state_set(&D_80152770, NULL, 0);
 }
 
 /*
@@ -4887,7 +4887,7 @@ void pool_system_reset(s32 slot, void *data, s32 size) {
     func_800B04D0(&D_80155220[0]);
 
     /* Clear secondary pool area (2208 bytes) */
-    func_80002790(&D_80155290[0], 0, 2208);
+    memset_custom(&D_80155290[0], 0, 2208);
 }
 
 /*
@@ -4895,32 +4895,32 @@ void pool_system_reset(s32 slot, void *data, s32 size) {
 /**
 /**
 /*
- * mode0_setup_call - Call func_8009C3F8 with mode 0
+ * mode0_setup_call - Call collision_check with mode 0
  * Address: 0x8009C5BC
  * Size: 36 bytes
  *
- * Simple wrapper that calls func_8009C3F8(0).
+ * Simple wrapper that calls collision_check(0).
  * The FP register f16 receives abs(f12) but may be unused.
  */
-extern void func_8009C3F8(s32);
+extern void collision_check(s32);
 
 void mode0_setup_call(void) {
-    func_8009C3F8(0);
+    collision_check(0);
 }
 
 /*
 
 /**
 /*
- * mode1_setup_call - Call func_8009C3F8 with mode 1
+ * mode1_setup_call - Call collision_check with mode 1
  * Address: 0x800BFD68
  * Size: 36 bytes
  *
- * Simple wrapper that calls func_8009C3F8(1).
+ * Simple wrapper that calls collision_check(1).
  * The FP register f16 receives abs(f12) but may be unused.
  */
 void mode1_setup_call(void) {
-    func_8009C3F8(1);
+    collision_check(1);
 }
 
 /*
@@ -5013,7 +5013,7 @@ void speed_mode1_wrapper(void) {
  * Address: 0x8010B528
  * Size: 56 bytes
  *
- * Sets field_4 to D_80116DE0, calls func_80094EC8(a0),
+ * Sets field_4 to D_80116DE0, calls texture_load(a0),
  * clears field_28, and returns 1.
  *
  * @param a0 Structure pointer
@@ -5023,7 +5023,7 @@ extern u8 D_80116DE0[];
 
 s32 struct_callback_init(void *a0) {
     *(void**)((u8*)a0 + 4) = &D_80116DE0[0];
-    func_80094EC8(a0);
+    texture_load(a0);
     *(s32*)((u8*)a0 + 0x28) = 0;
     return 1;
 }
@@ -5037,7 +5037,7 @@ s32 struct_callback_init(void *a0) {
  * Size: 112 bytes
  *
  * Checks D_80159D98 global and updates a0->byte26 accordingly.
- * If state changed, calls func_80094EC8.
+ * If state changed, calls texture_load.
  * If byte26 becomes 0, sets field4 to D_80117358 and clears field40.
  *
  * @param a0 Structure pointer
@@ -5054,7 +5054,7 @@ s32 state_update_global(void *a0) {
 
     if (globalState != currentState) {
         *(s8*)((u8*)a0 + 26) = (s8)globalState;
-        func_80094EC8(a0);
+        texture_load(a0);
         currentState = *(s8*)((u8*)a0 + 26);
     }
 
@@ -5063,7 +5063,7 @@ s32 state_update_global(void *a0) {
     }
 
     *(void**)((u8*)a0 + 4) = &D_80117358[0];
-    func_80094EC8(a0);
+    texture_load(a0);
     *(s32*)((u8*)a0 + 40) = 0;
     return 1;
 }
@@ -5077,7 +5077,7 @@ s32 state_update_global(void *a0) {
  * Size: 76 bytes
  *
  * Calls func_800F857C, then func_800B45BC(1).
- * If D_8011472C is non-NULL, calls func_800B358C and clears it.
+ * If D_8011472C is non-NULL, calls sound_stop and clears it.
  * Finally clears D_80114728 byte.
  */
 extern void func_800F857C(void);
@@ -5090,7 +5090,7 @@ void state_cleanup_reset(void) {
     func_800B45BC(1);
 
     if (D_8011472C != NULL) {
-        func_800B358C(D_8011472C, 0.0f);
+        sound_stop(D_8011472C, 0.0f);
         D_8011472C = NULL;
     }
     D_80114728 = 0;
@@ -5100,22 +5100,22 @@ void state_cleanup_reset(void) {
 
 /**
 /*
- * synced_call_91ca4 - Synchronized call to func_80091CA4
+ * synced_call_91ca4 - Synchronized call to object_free
  * Address: 0x80091F34
  * Size: 136 bytes
  *
- * Acquires sync on D_80142728, calls func_80091CA4 with parameters,
+ * Acquires sync on D_80142728, calls object_free with parameters,
  * then releases sync.
  *
- * @param a0 First parameter (passed to func_80091CA4)
+ * @param a0 First parameter (passed to object_free)
  * @param a1 Second parameter (loaded as float)
  */
-extern void func_80091CA4(void*);
+extern void object_free(void*);
 
 void synced_call_91ca4(void *a0, s32 a1) {
-    func_80007270(&D_80142728[0], NULL, 1);
-    func_80091CA4(a0);
-    func_800075E0(&D_80142728[0], NULL, 0);
+    state_get(&D_80142728[0], NULL, 1);
+    object_free(a0);
+    state_set(&D_80142728[0], NULL, 0);
 }
 
 /*
@@ -5159,11 +5159,11 @@ s16 callback_setup_complex(void *a0, s16 a1) {
 
 /**
 /*
- * slot_array_iterate - Iterate through slot array and call func_80096130
+ * slot_array_iterate - Iterate through slot array and call matrix_push
  * Address: 0x800A4AC4
  * Size: 124 bytes
  *
- * Iterates through 64 slots in D_80156D38 array, calling func_80096130
+ * Iterates through 64 slots in D_80156D38 array, calling matrix_push
  * for each slot that has field_0C set and field_06 != a0.
  *
  * @param a0 Filter value for field_06 comparison
@@ -5176,7 +5176,7 @@ void slot_array_iterate(s32 a0) {
     for (i = 0; i < 64; i++) {
         if (*(s32*)(slot + 0x0C) != 0) {
             if (*(slot + 6) != a0) {
-                func_80096130(i);
+                matrix_push(i);
             }
         }
         slot += 20;  /* 0x14 bytes per entry */
@@ -5281,7 +5281,7 @@ s32 tree_node_check(void *a0, s32 a1) {
  * Address: 0x800BF148
  * Size: 128 bytes
  *
- * Acquires sync on D_80142728, calls func_80091BA8 to lookup.
+ * Acquires sync on D_80142728, calls object_init to lookup.
  * If found, calls camera_stub_empty and camera_shake_apply.
  * Returns lookup result.
  *
@@ -5306,17 +5306,17 @@ extern void collision_broadphase(void *world); /* Setup call */
 void *synced_lookup_and_process(void *a0) {
     void *result;
 
-    func_80007270(&D_80142728[0], NULL, 1);
+    state_get(&D_80142728[0], NULL, 1);
 
-    result = func_80091BA8(a0, &D_80142728[0]);
+    result = object_init(a0, &D_80142728[0]);
 
     if (result == NULL) {
-        func_800075E0(&D_80142728[0], NULL, 0);
+        state_set(&D_80142728[0], NULL, 0);
         return NULL;
     }
 
     camera_stub_empty();
-    func_800075E0(&D_80142728[0], NULL, 0);
+    state_set(&D_80142728[0], NULL, 0);
     camera_shake_apply(a0, 0, 0);
 
     return result;
@@ -5457,15 +5457,15 @@ s32 object_status_check(void **a0, s32 a1) {
 void object_type11_alloc_signal(s32 a0) {
     void *obj;
 
-    func_80007270(&D_80142728[0], NULL, 1);
+    state_get(&D_80142728[0], NULL, 1);
 
-    obj = func_80091B00(0);
+    obj = object_alloc(0);
 
     *(u8*)((u8*)obj + 2) = 11;
     *(u8*)((u8*)obj + 4) = (u8)a0;
 
-    func_800075E0(&D_80142728[0], NULL, 0);
-    func_800075E0(&D_80142728[0x80], obj, 0);
+    state_set(&D_80142728[0], NULL, 0);
+    state_set(&D_80142728[0x80], obj, 0);
 }
 
 /*
@@ -5482,13 +5482,13 @@ void object_type11_alloc_signal(s32 a0) {
 void object_type9_alloc_signal(void) {
     void *obj;
 
-    func_80007270(&D_80142728[0], NULL, 1);
+    state_get(&D_80142728[0], NULL, 1);
 
-    obj = func_80091B00(0);
+    obj = object_alloc(0);
     *(u8*)((u8*)obj + 2) = 9;
 
-    func_800075E0(&D_80142728[0], NULL, 0);
-    func_800075E0(&D_80142728[0x80], obj, 0);
+    state_set(&D_80142728[0], NULL, 0);
+    state_set(&D_80142728[0x80], obj, 0);
 }
 
 /*
@@ -5514,7 +5514,7 @@ void object_countdown_process(void *a0, s16 a1) {
     s16 countdown;
 
     if (a1 == 0) {
-        func_8009079C(a0, 1);
+        vertex_set(a0, 1);
     }
 
     if (D_801170FC != 0) {
@@ -5531,7 +5531,7 @@ void object_countdown_process(void *a0, s16 a1) {
     }
 
     if (countdown == 0) {
-        func_8009079C(a0, 1);
+        vertex_set(a0, 1);
     }
 }
 
@@ -5541,7 +5541,7 @@ void object_countdown_process(void *a0, s16 a1) {
 extern u32 D_801569B8[];        /* Effect slot array (4 slots, 124 bytes each) */
 extern f32 D_8016139C;          /* Effect timing float */
 
-extern void func_80002790(void*, s32, s32);  /* memset */
+extern void memset_custom(void*, s32, s32);  /* memset */
 
 /**
 /*
@@ -5555,11 +5555,11 @@ void effect_system_init(void) {
     u32 *ptr;
 
     /* Clear main effect buffer */
-    func_80002790(D_80152038, 0, 480);
+    memset_custom(D_80152038, 0, 480);
 
     /* Initialize each 124-byte effect slot */
     for (ptr = D_801569B8; ptr < (u32*)((u8*)D_801569B8 + 496); ptr = (u32*)((u8*)ptr + 124)) {
-        func_80002790(ptr, 0, 124);
+        memset_custom(ptr, 0, 124);
         *ptr |= 0x15000000;
     }
 
@@ -5573,7 +5573,7 @@ void effect_system_init(void) {
 /* Object initialization external references */
 extern u8 D_80140BDC;  /* Object type count */
 extern s32 audio_sequence_play(void*, void*, s32, s8, s32); /* Object setup with type */
-extern void func_800B362C(s32 channel, f32 pan); /* Object alternate init */
+extern void sound_channel_set(s32 channel, f32 pan); /* Object alternate init */
 extern f32 audio_distance_atten(f32 distance, f32 maxDist);  /* Audio distance attenuation */
 
 /**
@@ -5583,8 +5583,8 @@ extern f32 audio_distance_atten(f32 distance, f32 maxDist);  /* Audio distance a
  *
  * Stores a1 in a0[0], then either:
  * - If a2 != 0: calls audio_sequence_play with type-1, stores result in a0[8]
- * - If a2 == 0: calls func_800B362C for alternate init
- * Finally calls func_80094EC8 to finalize.
+ * - If a2 == 0: calls sound_channel_set for alternate init
+ * Finally calls texture_load to finalize.
  */
 void object_type_setup_init(void *a0, void *a1, s32 a2) {
     s8 objType;
@@ -5597,10 +5597,10 @@ void object_type_setup_init(void *a0, void *a1, s32 a2) {
         result = audio_sequence_play(a1, (void*)((u8*)a0 + 12), 0, objType, 1);
         *(s32*)((u8*)a0 + 8) = result;
     } else {
-        func_800B362C(a0, 0);
+        sound_channel_set(a0, 0);
     }
 
-    func_80094EC8(a0);
+    texture_load(a0);
 }
 
 /*
@@ -5684,7 +5684,7 @@ void list_item_remove_synced(void *a0) {
     void *curr;
     void *next;
 
-    func_80007270(&D_80142728[0], NULL, 1);
+    state_get(&D_80142728[0], NULL, 1);
 
     /* Get item to remove */
     if (a0 != NULL) {
@@ -5709,8 +5709,8 @@ void list_item_remove_synced(void *a0) {
         }
     }
 
-    func_80095FD8(item, 1);
-    func_800075E0(&D_80142728[0], NULL, 0);
+    model_render(item, 1);
+    state_set(&D_80142728[0], NULL, 0);
 }
 
 /*
@@ -5875,7 +5875,7 @@ extern void **D_801491F0;   /* Active object list head */
 extern void **D_801492C8;   /* Free object list head */
 extern s16 D_8013E66C;      /* Active object count */
 extern s16 D_8013E678;      /* Maximum active objects seen */
-extern void func_8008AE8C(s16 texId, s32 mode, s32 flags); /* Sound stop function */
+extern void sound_param_set(s16 texId, s32 mode, s32 flags); /* Sound stop function */
 
 /**
 /*
@@ -5898,7 +5898,7 @@ void object_deactivate_free(void *a0, s32 a1) {
     /* Stop associated sound if any */
     soundId = *(s16*)((u8*)a0 + 6);
     if (soundId >= 0) {
-        func_8008AE8C(soundId, 1, 15);
+        sound_param_set(soundId, 1, 15);
     }
 
     /* Clear object state */
@@ -5969,7 +5969,7 @@ void *object_spawn_new(s32 a0) {
     void *subObj;
     void *result;
 
-    func_80007270(&D_80142728[0], NULL, 1);
+    state_get(&D_80142728[0], NULL, 1);
 
     obj = pool_object_alloc(0);
 
@@ -5999,8 +5999,8 @@ void *object_spawn_new(s32 a0) {
     /* Get result before releasing sync */
     result = *(void**)((u8*)subObj + 12);
 
-    func_800075E0(&D_80142728[0], NULL, 0);
-    func_800075E0(&D_80142728[0x80], obj, 0);
+    state_set(&D_80142728[0], NULL, 0);
+    state_set(&D_80142728[0x80], obj, 0);
 
     return result;
 }
@@ -6511,8 +6511,8 @@ void *synced_element_lookup(void *input) {
     void *data;
 
     sync_acquire(&D_80152770, 0, 1);
-    temp = func_80095F8C(0);
-    result = func_80095EF4(temp, NULL, 0);
+    temp = model_draw(0);
+    result = model_set_anim(temp, NULL, 0);
     data = *(void **)((u8 *)result + 12);
     sync_release(&D_80152770, 0, 0);
     return data;
@@ -6540,7 +6540,7 @@ void slot_update_notify(void **a0, s32 a1, s32 a2, s32 a3) {
     if (new_val != *(s8 *)slot) {
         *(s8 *)slot = new_val;
         *(void **)(base + (idx1 << 4) + 1856) = (void*)(audio_stream_update(0) + 1860);
-        func_800A2504(*(void **)((u8 *)ptr + 8), (void*)(base + (idx1 << 4) + 1856), 16);
+        track_get_direction(*(void **)((u8 *)ptr + 8), (void*)(base + (idx1 << 4) + 1856), 16);
     }
 }
 
@@ -6795,7 +6795,7 @@ s32 texture_load_mode(s32 mode) {
         /* sllv creates shift value */
         func_8008B0D8(texId, 0, result);
     } else {
-        func_8008AE8C(texId, 1, result);
+        sound_param_set(texId, 1, result);
     }
 
     return result;
@@ -6815,7 +6815,7 @@ void struct_clear_preserve(s32 index) {
     ptr = (void *)(0x80144030 + index * 4);
 
     savedByte = *(s8 *)((u8 *)ptr + 5);
-    func_80002790(ptr, 0, 772);
+    memset_custom(ptr, 0, 772);
     *(s8 *)((u8 *)ptr + 5) = savedByte;
 }
 
@@ -6903,18 +6903,18 @@ void sync_process_loop(void *arg) {
     u8 *statusByte = (u8 *)0x80153F10;
 
     /* Initialize sync object */
-    func_80006A00(syncObj, syncName, 1);
+    dma_start(syncObj, syncName, 1);
 
     *statusByte = 0;
 
     /* Loop while func_8008ABE4 returns non-zero */
     while (1) {
-        func_80007270(syncObj, 0, 1);  /* sync_acquire */
+        state_get(syncObj, 0, 1);  /* sync_acquire */
 
         if (func_8008ABE4() == 0) {
             *statusByte = 0;
             /* Release and continue waiting */
-            func_800075E0(*(void **)((u8 *)statusByte + 12), 0, 1);
+            state_set(*(void **)((u8 *)statusByte + 12), 0, 1);
             continue;
         }
 
@@ -7154,9 +7154,9 @@ void sync_rom_load_cond(void) {
         return;
     }
 
-    func_80007270((void *)0x80152770, 0, 1);  /* sync_acquire */
-    func_80095FD8((void *)0x8039A400, 0);
-    func_800075E0((void *)0x80152770, 0, 0);  /* sync_release */
+    state_get((void *)0x80152770, 0, 1);  /* sync_acquire */
+    model_render((void *)0x8039A400, 0);
+    state_set((void *)0x80152770, 0, 0);  /* sync_release */
 
     *(u8 *)0x8012ED00 = 0;
 }
@@ -7181,7 +7181,7 @@ void player_entity_init(void) {
     *(s16 *)0x8014FEC8 = 0;
     *(u8 *)0x80140A10 = *(u8 *)0x8003E860;
 
-    entity = func_80097798(*(u8 *)0x8003E860, 0, 0, 0, 0);
+    entity = sprite_draw(*(u8 *)0x8003E860, 0, 0, 0, 0);
     *(void **)0x80140AF0 = entity;
 
     func_8009638C(0);
@@ -7309,7 +7309,7 @@ void effect_slot_init(s32 idx) {
     /* Calculate entry: (idx * 31) * 4 = idx * 124 */
     entry = (void *)(0x801569B8 + idx * 124);
 
-    func_80002790(entry, 0, 124);
+    memset_custom(entry, 0, 124);
 
     /* Set bit 0x15000000 in first word */
     flags = *(u32 *)entry;
@@ -7659,8 +7659,8 @@ void player_state_sync_init(void) {
 
     if (*(s8 *)0x80111968 == 0) {
         *(s8 *)0x80111968 = 1;
-        func_80006A00((void *)0x801597A8, (void *)0x80152730, 1);
-        func_800075E0((void *)0x801597A8, 0, 0);
+        dma_start((void *)0x801597A8, (void *)0x80152730, 1);
+        state_set((void *)0x801597A8, 0, 0);
     }
 
     /* Wait for byte to equal 128 */
@@ -7757,7 +7757,7 @@ void entity_cleanup_ptrs(void *entity) {
 
     for (i = 0; i < 4; i++) {
         if (ptrArray[i] != NULL) {
-            func_800B358C(ptrArray[i], 0.0f);
+            sound_stop(ptrArray[i], 0.0f);
             ptrArray[i] = NULL;
         }
     }
@@ -8854,7 +8854,7 @@ void anim_state_update(void *entity, s16 animState) {
     if (animState == 0) {
         /* Clear animation state */
         entityType = *(s16 *)((u8 *)entity + 6);
-        func_8008AE8C(entityType, 1, 15);
+        sound_param_set(entityType, 1, 15);
         *(s32 *)((u8 *)entity + 0x14) = 0;
         *(s16 *)((u8 *)entity + 6) = -1;
         return;
@@ -8996,7 +8996,7 @@ void entity_spawn_init(void *params, s32 type) {
 void entity_callback_register(void *entity) {
     void *result;
 
-    result = func_80090284(0, 0);
+    result = gfx_set_mode(0, 0);
     if (result == NULL) {
         return;
     }
@@ -9185,7 +9185,7 @@ void entity_anim_texture(void *entity, s16 animFrame) {
     if (animFrame == 0) {
         /* Clear animation */
         entityType = *(s16 *)((u8 *)entity + 6);
-        func_8008AE8C(entityType, 1, 15);
+        sound_param_set(entityType, 1, 15);
         *(s32 *)((u8 *)entity + 0x14) = 0;
         *(s16 *)((u8 *)entity + 6) = -1;
         return;
@@ -9248,7 +9248,7 @@ void entity_state_init(void *entity, void *params) {
     *(f32 *)((u8 *)entity + 0x30) = 1.0f;
 
     /* Call additional init */
-    func_8009211C(entity, entity);
+    model_setup(entity, entity);
 }
 
 /*
@@ -9265,7 +9265,7 @@ void entity_spawn_full(void *entity, s16 spawnType) {
     if (spawnType == 0) {
         /* Destroy entity */
         entityType = *(s16 *)((u8 *)entity + 6);
-        func_8008AE8C(entityType, 0, 15);
+        sound_param_set(entityType, 0, 15);
         *(s32 *)((u8 *)entity + 0x14) = 0;
         *(s16 *)((u8 *)entity + 6) = -1;
         return;
@@ -9520,7 +9520,7 @@ void audio_channel_setup(void *params, s32 channel) {
 
  * sound_effect_play (472 bytes)
  * Sound effect trigger - play a sound effect
- * func_80094A54
+ * dl_push
  */
 void sound_effect_play(s32 soundId, s32 priority) {
     s32 channel;
@@ -10002,7 +10002,7 @@ void entity_sound_attach(void *a0, void *a1, void *a2, void *entity) {
 
     /* Acquire sync and process */
     sync_acquire((void *)0x80152770, 0, 1);
-    func_80095FD8(entity, 0);
+    model_render(entity, 0);
     sync_release((void *)0x80152770, 0, 1);
 }
 
@@ -10050,7 +10050,7 @@ void entity_render_mode(void *entity) {
     s32 entityIdx;
 
     /* Call render mode setup */
-    func_80096288(entity, 1, 1);
+    model_transform(entity, 1, 1);
 
     entityIdx = 0;  /* Preloaded from a3 */
     tableEntry = (void *)(0x80156D38 + (entityIdx * 5 * 4));
@@ -10266,7 +10266,7 @@ void entity_pos_validate(void *entity, s32 flags) {
     }
 
     /* Process position validation... */
-    func_80097798(entity + 10, 0, 0, 0, 0);
+    sprite_draw(entity + 10, 0, 0, 0, 0);
 }
 
 /*
@@ -10412,7 +10412,7 @@ void entity_damage_update(void *entity, s32 damage) {
         explosion_spawn(pos, 0, 5);
 
         /* Play damage sound */
-        func_800B37E8(0x50, 0, NULL, 0);
+        sound_start(0x50, 0, NULL, 0);
     }
 }
 
@@ -10652,7 +10652,7 @@ void entity_ai_pathfind(void *entity, void *target) {
         bestDist = 999999.0f;
 
         for (i = 0; i < nodeCount && i < 100; i++) {
-            func_800A2378(0, i, &nodeX, &nodeY, &nodeZ);
+            track_get_node_pos(0, i, &nodeX, &nodeY, &nodeZ);
 
             dx = nodeX - entityPos[0];
             dz = nodeZ - entityPos[2];
@@ -10667,7 +10667,7 @@ void entity_ai_pathfind(void *entity, void *target) {
         /* Add waypoints from nearest node toward target */
         for (i = 0; i < 8 && *waypointCount < 16; i++) {
             s32 nodeIdx = (bestWaypoint + i) % nodeCount;
-            func_800A2378(0, nodeIdx, &nodeX, &nodeY, &nodeZ);
+            track_get_node_pos(0, nodeIdx, &nodeX, &nodeY, &nodeZ);
 
             waypoints[*waypointCount * 3 + 0] = nodeX;
             waypoints[*waypointCount * 3 + 1] = nodeY;
@@ -12051,7 +12051,7 @@ void car_steering_response(void *car, f32 steerInput) {
 
  * throttle_brake_input (440 bytes)
  * Throttle/brake input processing
- * func_800A7AE4
+ * camera_get_pos
  *
  * Based on arcade drivetrain() and controls() functions.
  * Processes throttle and brake pedal inputs.
@@ -12403,7 +12403,7 @@ void ai_update_car(void *car, void *target) {
     } else {
         /* Use next waypoint from path */
         s32 waypointIdx = aiState[0];
-        func_800A2378(D_80159A08, waypointIdx, &dx, NULL, &dz);
+        track_get_node_pos(D_80159A08, waypointIdx, &dx, NULL, &dz);
         targetPos = (f32 *)aiState + 4;
         targetPos[0] = dx;
         targetPos[2] = dz;
@@ -12469,7 +12469,7 @@ void ai_update_car(void *car, void *target) {
 
     /* Apply inputs */
     func_800A78FC(car, steerInput);
-    func_800A7AE4(car, throttleInput, brakeInput);
+    camera_get_pos(car, throttleInput, brakeInput);
 
     /* Store AI state for debugging */
     aiState[1] = (s32)(steerInput * 100);
@@ -12500,7 +12500,7 @@ void ai_follow_path(void *car, void *path) {
     currentWaypoint = aiState[0];
 
     /* Get current waypoint position */
-    func_800A2378(D_80159A08, currentWaypoint, &waypointPos[0], &waypointPos[1], &waypointPos[2]);
+    track_get_node_pos(D_80159A08, currentWaypoint, &waypointPos[0], &waypointPos[1], &waypointPos[2]);
 
     /* Check distance to current waypoint */
     dx = waypointPos[0] - carPos[0];
@@ -12516,7 +12516,7 @@ void ai_follow_path(void *car, void *path) {
     /* Lookahead - get position slightly ahead on path */
     lookahead = 30.0f;  /* Look 30 units ahead */
     nextWaypoint = (currentWaypoint + 1) % 100;
-    func_800A2378(D_80159A08, nextWaypoint, &nextPos[0], &nextPos[1], &nextPos[2]);
+    track_get_node_pos(D_80159A08, nextWaypoint, &nextPos[0], &nextPos[1], &nextPos[2]);
 
     /* Interpolate between current and next waypoint */
     f32 t = distance / (distance + lookahead);
@@ -12633,9 +12633,9 @@ void ai_optimize_racing_line(void *car, void *track) {
         s32 idx3 = (waypointIdx + i + 2) % 100;
 
         f32 p1[3], p2[3], p3[3];
-        func_800A2378(D_80159A08, idx1, &p1[0], &p1[1], &p1[2]);
-        func_800A2378(D_80159A08, idx2, &p2[0], &p2[1], &p2[2]);
-        func_800A2378(D_80159A08, idx3, &p3[0], &p3[1], &p3[2]);
+        track_get_node_pos(D_80159A08, idx1, &p1[0], &p1[1], &p1[2]);
+        track_get_node_pos(D_80159A08, idx2, &p2[0], &p2[1], &p2[2]);
+        track_get_node_pos(D_80159A08, idx3, &p3[0], &p3[1], &p3[2]);
 
         /* Calculate angle between segments */
         f32 dx1 = p2[0] - p1[0];
@@ -12805,7 +12805,7 @@ void ai_control_speed(void *car, f32 targetSpeed) {
     if (brake > 1.0f) brake = 1.0f;
 
     /* Apply */
-    func_800A7AE4(car, throttle, brake);
+    camera_get_pos(car, throttle, brake);
 }
 
 /*
@@ -13190,7 +13190,7 @@ void player_update(void *player, f32 dt) {
             func_800A78C8(player, steering);
 
             /* Apply throttle/brake */
-            func_800A7AE4(player, throttle, brake);
+            camera_get_pos(player, throttle, brake);
 
             /* Handle wing deployment (Rush 2049 feature) */
             if (wingDeploy != 0) {
@@ -13234,7 +13234,7 @@ void player_update(void *player, f32 dt) {
             /* Slow deceleration after finish */
             throttle = 0.0f;
             brake = 0.1f;
-            func_800A7AE4(player, throttle, brake);
+            camera_get_pos(player, throttle, brake);
             func_800A6BE4(player, dt);
             break;
 
@@ -13273,7 +13273,7 @@ void player_update(void *player, f32 dt) {
  */
 extern s32 D_801582B4;          /* Total checkpoints */
 extern s32 D_801582B8;          /* Finish line checkpoint index */
-extern void func_800B4208(s32 voiceId); /* Play voice */
+extern void voice_play(s32 voiceId); /* Play voice */
 
 void checkpoint_check_collision(void *car, void *checkpoint) {
     f32 *carPos, *cpPos, *cpNormal;
@@ -13352,10 +13352,10 @@ void checkpoint_check_collision(void *car, void *checkpoint) {
         lap_record_time(car, *carLaps);
 
         /* Play lap-related voice */
-        func_800B4208(6);  /* "Final lap" or similar */
+        voice_play(6);  /* "Final lap" or similar */
     } else {
         /* Regular checkpoint voice */
-        func_800B4208(8);  /* "Checkpoint!" */
+        voice_play(8);  /* "Checkpoint!" */
     }
 }
 
@@ -13419,7 +13419,7 @@ void lap_record_time(void *player, s32 lapNum) {
         /* Check against track record */
         if (D_801582BC[0] == 0 || lapTime < D_801582BC[0]) {
             /* New track record! */
-            func_800B4208(9);  /* "New record!" */
+            voice_play(9);  /* "New record!" */
         }
     }
 }
@@ -13511,7 +13511,7 @@ void race_calc_positions(void) {
         if (lastPos != -1) {
             if (*playerPos == 0 && lastPos != 0) {
                 /* Player took first place */
-                func_800B4208(3);  /* "First!" */
+                voice_play(3);  /* "First!" */
             } else if (*playerPos != 0 && lastPos == 0) {
                 /* Player lost first place */
             }
@@ -13593,11 +13593,11 @@ void race_finish_player(void *player) {
     /* Play appropriate audio */
     if (currentPos == 0) {
         /* First place! */
-        func_800B4208(3);   /* "First!" */
+        voice_play(3);   /* "First!" */
     } else if (currentPos == 1) {
-        func_800B4208(4);   /* "Second!" */
+        voice_play(4);   /* "Second!" */
     } else if (currentPos == 2) {
-        func_800B4208(5);   /* "Third!" */
+        voice_play(5);   /* "Third!" */
     }
 
     /* Check if this is the player's car */
@@ -13605,13 +13605,13 @@ void race_finish_player(void *player) {
         /* Player finished - trigger results */
         if (currentPos == 0) {
             /* Winner! */
-            func_800B4208(3);  /* Victory sound */
+            voice_play(3);  /* Victory sound */
         }
 
         /* Check for high score */
         if (hiscore_check_rank(*finishTime) != 0) {
             /* New high score */
-            func_800B4208(9);  /* "New record!" */
+            voice_play(9);  /* "New record!" */
         }
     }
 
@@ -13962,7 +13962,7 @@ s32 audio_sequence_play(void *a0, void *a1, s32 a2, s8 objType, s32 a4) {
 
             if (velocity > 0) {
                 /* Play note */
-                func_800B358C(channel, (f32)velocity / 127.0f);
+                sound_stop(channel, (f32)velocity / 127.0f);
                 sound_update_channel(channel, (f32)note / 127.0f);
             }
         } else if ((cmd & 0xF0) == 0x80) {
@@ -13973,7 +13973,7 @@ s32 audio_sequence_play(void *a0, void *a1, s32 a2, s8 objType, s32 a4) {
             (*seqPos)++;  /* Skip velocity */
 
             /* Silence channel (note off) */
-            func_800B358C(channel, 0.0f);
+            sound_stop(channel, 0.0f);
         } else if ((cmd & 0xF0) == 0xB0) {
             /* Control change */
             channel = cmd & 0x0F;
@@ -13993,7 +13993,7 @@ s32 audio_sequence_play(void *a0, void *a1, s32 a2, s8 objType, s32 a4) {
 /*
 
  * sound_set_channel_volume - Audio volume set
- * (func_800B358C - 160 bytes)
+ * (sound_stop - 160 bytes)
  * Sets channel volume with ramping.
  */
 void sound_set_channel_volume(s32 channel, f32 volume) {
@@ -14023,7 +14023,7 @@ void sound_set_channel_volume(s32 channel, f32 volume) {
 /*
 
  * sound_set_channel_pan - Audio pan set
- * (func_800B362C - 444 bytes)
+ * (sound_channel_set - 444 bytes)
  * Sets stereo panning for channel.
  */
 void sound_set_channel_pan(s32 channel, f32 pan) {
@@ -14120,10 +14120,10 @@ s16 sound_apply_effect(s32 channel, s32 effectType, f32 amount) {
 
 /*
 
- * func_800B4200 (352 bytes)
+ * voice_stop (352 bytes)
  * Audio buffer fill - fills audio output buffer with mixed samples
  */
-void* func_800B4200(void *buffer, s32 samples) {
+void* voice_stop(void *buffer, s32 samples) {
     s16 *outBuffer;
     f32 *channelVolumes;
     f32 *channelPan;
@@ -14315,8 +14315,8 @@ void audio_music_play(s32 trackId) {
     audio_stream_start(0, trackData);
 
     /* Set music channel volume */
-    func_800B358C(0, (f32)(*musicVolume) / 100.0f);
-    func_800B362C(0, 0.0f);  /* Center pan */
+    sound_stop(0, (f32)(*musicVolume) / 100.0f);
+    sound_channel_set(0, 0.0f);  /* Center pan */
 
     *currentTrack = trackId;
     *musicPlaying = 1;
@@ -14587,7 +14587,7 @@ void collision_response_calc(void *entityA, void *entityB, f32 *normal) {
 
     /* Play collision sound based on impact strength */
     if (fabsf(normalVel) > 5.0f) {
-        func_80094A54(0x20, (s32)(fabsf(normalVel) * 10.0f));  /* Impact sound */
+        dl_push(0x20, (s32)(fabsf(normalVel) * 10.0f));  /* Impact sound */
     }
 }
 
@@ -15528,7 +15528,7 @@ void menu_system_update(void *menu) {
             *selectedItem = *itemCount - 1;
         }
         *inputDelay = 8;
-        func_800B37E8(0x01, 0, NULL, 0);  /* Menu navigate sound */
+        sound_start(0x01, 0, NULL, 0);  /* Menu navigate sound */
     }
 
     if (buttonsPressed & 0x0400) {  /* D-pad Down */
@@ -15537,13 +15537,13 @@ void menu_system_update(void *menu) {
             *selectedItem = 0;
         }
         *inputDelay = 8;
-        func_800B37E8(0x01, 0, NULL, 0);
+        sound_start(0x01, 0, NULL, 0);
     }
 
     /* Menu selection */
     if (buttonsPressed & 0x8000) {  /* A button */
         *inputDelay = 15;
-        func_800B37E8(0x02, 0, NULL, 0);  /* Menu select sound */
+        sound_start(0x02, 0, NULL, 0);  /* Menu select sound */
 
         /* Handle menu item selection based on current menu */
         switch (*menuState) {
@@ -15597,7 +15597,7 @@ void menu_system_update(void *menu) {
     /* Menu back */
     if (buttonsPressed & 0x4000) {  /* B button */
         *inputDelay = 15;
-        func_800B37E8(0x03, 0, NULL, 0);  /* Menu back sound */
+        sound_start(0x03, 0, NULL, 0);  /* Menu back sound */
 
         if (*menuState == 0) {
             /* Already at main menu */
@@ -15835,7 +15835,7 @@ void menu_track_select(void *menu) {
     if (*selectedTrack >= trackCount) *selectedTrack = 0;
 
     /* Draw track preview (3D rotating miniature) */
-    func_800A04C4(*selectedTrack, previewAngle, 160, 80);
+    render_scene(*selectedTrack, previewAngle, 160, 80);
 
     /* Draw track list */
     for (i = 0; i < trackCount; i++) {
@@ -16218,7 +16218,7 @@ void menu_controller_config(void *menu) {
         if (buttonsPressed != 0) {
             buttonMappings[*selectedOption] = buttonsPressed;
             *waitingForInput = 0;
-            func_800B37E8(0x02, 0, NULL, 0);  /* Confirm sound */
+            sound_start(0x02, 0, NULL, 0);  /* Confirm sound */
         }
     }
 }
@@ -16357,10 +16357,10 @@ void mempak_operation(s32 operation) {
                 result = osPfsWriteFile(pfs, slot, 0, 0x100, (u8 *)slotData);
                 if (result == 0) {
                     *operationResult = 1;
-                    func_800B37E8(0x04, 0, NULL, 0);  /* Save complete sound */
+                    sound_start(0x04, 0, NULL, 0);  /* Save complete sound */
                 } else {
                     *operationResult = -3;
-                    func_800B37E8(0x05, 0, NULL, 0);  /* Error sound */
+                    sound_start(0x05, 0, NULL, 0);  /* Error sound */
                 }
             }
             break;
@@ -16376,10 +16376,10 @@ void mempak_operation(s32 operation) {
                     D_80159200 = slotData[1];
                     D_80159204 = slotData[2];
                     *operationResult = 1;
-                    func_800B37E8(0x04, 0, NULL, 0);
+                    sound_start(0x04, 0, NULL, 0);
                 } else {
                     *operationResult = -4;
-                    func_800B37E8(0x05, 0, NULL, 0);
+                    sound_start(0x05, 0, NULL, 0);
                 }
             }
             break;
@@ -17344,7 +17344,7 @@ void explosion_spawn(f32 *pos, f32 size) {
     }
 
     /* Play explosion sound */
-    func_80094A54(0x30, (s32)(size * 50.0f));
+    dl_push(0x30, (s32)(size * 50.0f));
 }
 
 /*
@@ -17418,7 +17418,7 @@ void debris_spawn(void *car, s32 debrisType) {
     }
 
     /* Play debris sound */
-    func_80094A54(0x28, 80);
+    dl_push(0x28, 80);
 }
 
 /*
@@ -17658,7 +17658,7 @@ void water_splash_spawn(f32 *pos, f32 size) {
     }
 
     /* Play splash sound */
-    func_80094A54(0x24, (s32)(size * 60.0f));
+    dl_push(0x24, (s32)(size * 60.0f));
 }
 
 /*
@@ -20153,11 +20153,11 @@ void stunt_combo_update(void *car, s32 stuntType) {
 
     /* Play combo sound effect */
     if (*comboCount == 3) {
-        func_800B37E8(0x20, 0, NULL, 0);  /* Nice combo sound */
+        sound_start(0x20, 0, NULL, 0);  /* Nice combo sound */
     } else if (*comboCount == 5) {
-        func_800B37E8(0x21, 0, NULL, 0);  /* Great combo sound */
+        sound_start(0x21, 0, NULL, 0);  /* Great combo sound */
     } else if (*comboCount == 10) {
-        func_800B37E8(0x22, 0, NULL, 0);  /* Insane combo sound */
+        sound_start(0x22, 0, NULL, 0);  /* Insane combo sound */
     }
 
     /* Update HUD combo display */
@@ -20194,7 +20194,7 @@ void wing_deploy(void *car, s32 deploy) {
             *wingTimer = 0;
 
             /* Play deploy sound */
-            func_800B37E8(0x30, 0, NULL, 0);
+            sound_start(0x30, 0, NULL, 0);
         }
 
         /* Animate wing extension (takes 10 frames) */
@@ -20221,7 +20221,7 @@ void wing_deploy(void *car, s32 deploy) {
             *wingState = 0;
 
             /* Play retract sound */
-            func_800B37E8(0x31, 0, NULL, 0);
+            sound_start(0x31, 0, NULL, 0);
         }
 
         /* Animate wing retraction */
@@ -20409,17 +20409,17 @@ s32 landing_detect(void *car) {
         /* Play landing sound based on quality */
         switch (landingQuality) {
             case 4:
-                func_800B37E8(0x40, 0, NULL, 0);  /* Perfect landing */
+                sound_start(0x40, 0, NULL, 0);  /* Perfect landing */
                 break;
             case 3:
-                func_800B37E8(0x41, 0, NULL, 0);  /* Good landing */
+                sound_start(0x41, 0, NULL, 0);  /* Good landing */
                 break;
             case 2:
             case 1:
-                func_800B37E8(0x42, 0, NULL, 0);  /* Rough landing */
+                sound_start(0x42, 0, NULL, 0);  /* Rough landing */
                 break;
             case 0:
-                func_800B37E8(0x43, 0, NULL, 0);  /* Crash */
+                sound_start(0x43, 0, NULL, 0);  /* Crash */
                 break;
         }
 
@@ -20544,7 +20544,7 @@ void attract_camera_update(void *camera) {
                 s32 pathPoint = (D_8015A508 + camTimer / 10) % 100;
 
                 /* Get track path point */
-                func_800A2378(trackId, pathPoint, &trackX, &trackY, &trackZ);
+                track_get_node_pos(trackId, pathPoint, &trackX, &trackY, &trackZ);
 
                 /* Position camera above and behind */
                 camPos[0] = trackX + 100.0f;
@@ -20598,7 +20598,7 @@ void attract_camera_update(void *camera) {
         case 3:  /* Static scenic view */
             {
                 s32 viewIdx = D_8015A524;
-                func_800A2504(NULL, NULL, 0);
+                track_get_direction(NULL, NULL, 0);
             }
             break;
     }
@@ -20728,7 +20728,7 @@ void title_screen(void) {
     }
 
     /* Clear screen */
-    func_800C6E60(0, 0, 320, 240, 0x000000);
+    draw_fill_rect(0, 0, 320, 240, 0x000000);
 
     /* Draw logo (centered) */
     draw_ui_element(0, 60, 40, 200, 100, logoAlpha);
@@ -20823,7 +20823,7 @@ void credits_display(void) {
     }
 
     /* Clear screen */
-    func_800C6E60(0, 0, 320, 240, 0x000010);
+    draw_fill_rect(0, 0, 320, 240, 0x000010);
 
     /* Draw credits lines */
     for (i = 0; i < numLines; i++) {
@@ -20893,7 +20893,7 @@ void loading_screen(f32 progress) {
     loadingTips[7] = "USE ENVIRONMENT TO WIN";
 
     /* Clear screen with gradient effect */
-    func_800C6E60(0, 0, 320, 240, 0x101020);
+    draw_fill_rect(0, 0, 320, 240, 0x101020);
 
     /* Logo at top */
     draw_ui_element(1, 110, 30, 100, 50, 255);
@@ -20911,7 +20911,7 @@ void loading_screen(f32 progress) {
     }
 
     /* Progress bar background */
-    func_800C6E60(barX - 2, barY - 2, barMaxWidth + 4, barHeight + 4, 0x404040);
+    draw_fill_rect(barX - 2, barY - 2, barMaxWidth + 4, barHeight + 4, 0x404040);
 
     /* Progress bar fill */
     if (progress < 0.0f) progress = 0.0f;
@@ -20919,8 +20919,8 @@ void loading_screen(f32 progress) {
     barWidth = (s32)(progress * barMaxWidth);
     if (barWidth > 0) {
         /* Gradient fill - darker to lighter */
-        func_800C6E60(barX, barY, barWidth, barHeight / 2, 0x3080E0);
-        func_800C6E60(barX, barY + barHeight / 2, barWidth, barHeight / 2, 0x2060B0);
+        draw_fill_rect(barX, barY, barWidth, barHeight / 2, 0x3080E0);
+        draw_fill_rect(barX, barY + barHeight / 2, barWidth, barHeight / 2, 0x2060B0);
     }
 
     /* Progress percentage */
@@ -20989,7 +20989,7 @@ void pause_menu(void *pause) {
     selectedOption = D_80159F40;
     confirmState = D_80159F44;
 
-    input = func_800CB748(D_80158100);
+    input = controller_get_input(D_80158100);
 
     if (confirmState == 0) {
         /* Normal pause menu */
@@ -21050,11 +21050,11 @@ void pause_menu(void *pause) {
 
     /* Render pause overlay */
     /* Darken background */
-    func_800C6E60(0, 0, 320, 240, 0x00000080);
+    draw_fill_rect(0, 0, 320, 240, 0x00000080);
 
     /* Pause box */
-    func_800C6E60(70, 50, 180, 160, 0x202040);
-    func_800C6E60(72, 52, 176, 156, 0x303060);
+    draw_fill_rect(70, 50, 180, 160, 0x202040);
+    draw_fill_rect(72, 52, 176, 156, 0x303060);
 
     draw_text(130, 60, "PAUSED", 0xFFFFFFFF);
 
@@ -21065,7 +21065,7 @@ void pause_menu(void *pause) {
             if (i == selectedOption) {
                 itemAlpha = 255;
                 /* Highlight bar */
-                func_800C6E60(80, baseY + i * 22 - 2, 160, 18, 0x404080);
+                draw_fill_rect(80, baseY + i * 22 - 2, 160, 18, 0x404080);
             } else {
                 itemAlpha = 150;
             }
@@ -21106,7 +21106,7 @@ void pause_toggle(s32 pause) {
         D_80159F54 = D_80142AFC;  /* Store pause start time */
 
         /* Stop audio */
-        func_800B37E8(0, 0, NULL, 0);  /* Pause music */
+        sound_start(0, 0, NULL, 0);  /* Pause music */
         sound_play_menu(15);  /* Pause sound effect */
 
         /* Set render mode for pause overlay */
@@ -21121,7 +21121,7 @@ void pause_toggle(s32 pause) {
         D_8015A000 = D_8015A000 + pauseDuration;  /* Add to pause accumulator */
 
         /* Resume audio */
-        func_800B37E8(1, 0, NULL, 0);  /* Resume music */
+        sound_start(1, 0, NULL, 0);  /* Resume music */
 
         /* Clear pause state */
         D_80159F58 = 0;
@@ -21512,7 +21512,7 @@ void race_init(void *race) {
     }
 
     /* Play starting music */
-    func_800B358C(trackId, 0.0f);
+    sound_stop(trackId, 0.0f);
 
     /* Clear pause state */
     D_80159F50 = 0;
@@ -21538,7 +21538,7 @@ void race_cleanup(void) {
     if (numPlayers < 1) numPlayers = 1;
 
     /* Stop music */
-    func_800B37E8(2, 0, NULL, 0);  /* Stop */
+    sound_start(2, 0, NULL, 0);  /* Stop */
 
     /* Save ghost data if recording */
     if (D_8015A304 && D_8015A240[0]) {
@@ -21749,11 +21749,11 @@ void audio_queue_process(void *queue) {
 
         switch (cmd) {
             case 0:  /* Play sound */
-                func_800B358C(param1, (f32)param2 / 255.0f);
+                sound_stop(param1, (f32)param2 / 255.0f);
                 break;
 
             case 1:  /* Stop sound */
-                func_800B362C(0, 0);
+                sound_channel_set(0, 0);
                 break;
 
             case 2:  /* Set volume */
@@ -22776,7 +22776,7 @@ void music_tempo_set(f32 tempo) {
 
 /*
 
- * func_800B2658 (464 bytes)
+ * sound_play (464 bytes)
  * Sound effect play
  */
 void sfx_play(s32 soundId, f32 volume, f32 pan) {
@@ -23023,7 +23023,7 @@ void engine_sound_update(void *car) {
 
     /* Start engine sound if not playing */
     if (*soundHandle == 0) {
-        *soundHandle = func_80090284(10, 0x8000);  /* Engine loop sound */
+        *soundHandle = gfx_set_mode(10, 0x8000);  /* Engine loop sound */
         *soundState = 1;  /* Idle */
     }
 
@@ -23058,12 +23058,12 @@ void engine_sound_update(void *car) {
 
     /* Apply pitch and volume */
     if (pitch != *soundPitch) {
-        func_80090F44(*soundHandle, pitch);
+        gfx_set_alpha(*soundHandle, pitch);
         *soundPitch = pitch;
     }
 
     if (volume != *soundVolume) {
-        func_80090E9C(*soundHandle, volume);
+        gfx_set_color(*soundHandle, volume);
         *soundVolume = volume;
     }
 }
@@ -23113,18 +23113,18 @@ void tire_sound_update(void *car) {
 
             /* Start squeal if not playing */
             if (squealHandles[i] == 0) {
-                squealHandles[i] = func_80090284(20 + i, 0x8000);  /* Tire squeal loop */
+                squealHandles[i] = gfx_set_mode(20 + i, 0x8000);  /* Tire squeal loop */
             }
 
             /* Update volume */
             if (squealHandles[i] != 0 && volume != squealVolumes[i]) {
-                func_80090E9C(squealHandles[i], volume);
+                gfx_set_color(squealHandles[i], volume);
                 squealVolumes[i] = volume;
             }
         } else {
             /* Stop squeal if force below threshold */
             if (squealHandles[i] != 0) {
-                func_800B358C(squealHandles[i], 0.0f);
+                sound_stop(squealHandles[i], 0.0f);
                 squealHandles[i] = 0;
                 squealVolumes[i] = 0;
             }
@@ -23184,7 +23184,7 @@ void collision_sound_play(void *car, f32 intensity) {
     }
 
     /* Play collision sound */
-    func_80091FBC(soundId, 100, volume);
+    object_update(soundId, 100, volume);
 }
 
 /*
@@ -23228,18 +23228,18 @@ void wind_sound_update(void *car) {
 
         /* Start wind sound if needed */
         if (*windHandle == 0) {
-            *windHandle = func_80090284(40, 0x8000);  /* Wind loop */
+            *windHandle = gfx_set_mode(40, 0x8000);  /* Wind loop */
         }
 
         /* Update volume */
         if (*windHandle != 0 && volume != *windVolume) {
-            func_80090E9C(*windHandle, volume);
+            gfx_set_color(*windHandle, volume);
             *windVolume = volume;
         }
     } else {
         /* Stop wind sound when slow */
         if (*windHandle != 0) {
-            func_800B358C(*windHandle, 0.0f);
+            sound_stop(*windHandle, 0.0f);
             *windHandle = 0;
             *windVolume = 0;
         }
@@ -23277,7 +23277,7 @@ void crowd_cheer_play(s32 intensity) {
     }
 
     /* Play one-shot cheer */
-    func_80091FBC(soundId, 50, volume);
+    object_update(soundId, 50, volume);
 }
 
 /*
@@ -23311,7 +23311,7 @@ void ambient_sound_set(s32 ambientId, f32 volume) {
     /* Stop if volume is zero */
     if (intVolume == 0) {
         if (D_80158100[ambientId] != 0) {
-            func_800B358C(D_80158100[ambientId], 0.0f);
+            sound_stop(D_80158100[ambientId], 0.0f);
             D_80158100[ambientId] = 0;
             D_80158120[ambientId] = 0;
         }
@@ -23323,19 +23323,19 @@ void ambient_sound_set(s32 ambientId, f32 volume) {
 
     /* Start ambient if needed */
     if (D_80158100[ambientId] == 0) {
-        D_80158100[ambientId] = func_80090284(soundId, 0x8000);  /* Loop */
+        D_80158100[ambientId] = gfx_set_mode(soundId, 0x8000);  /* Loop */
     }
 
     /* Update volume */
     if (D_80158100[ambientId] != 0 && intVolume != D_80158120[ambientId]) {
-        func_80090E9C(D_80158100[ambientId], intVolume);
+        gfx_set_color(D_80158100[ambientId], intVolume);
         D_80158120[ambientId] = intVolume;
     }
 }
 
 /*
 
- * func_800B4208 (1328 bytes)
+ * voice_play (1328 bytes)
  * Voice playback
  *
  * Plays announcer voice clips for game events.
@@ -23418,13 +23418,13 @@ void voice_play(s32 voiceId) {
 
         /* Stop current voice (fade out quickly) */
         if (D_80158140 != 0) {
-            func_800B358C(D_80158140, 0.0f);
+            sound_stop(D_80158140, 0.0f);
             D_80158140 = 0;
         }
     }
 
     /* Start new voice */
-    D_80158140 = func_80090284(soundId, 0x0000);  /* One-shot, no loop */
+    D_80158140 = gfx_set_mode(soundId, 0x0000);  /* One-shot, no loop */
 
     if (D_80158140 != 0) {
         D_80158144 = 1;
@@ -23432,10 +23432,10 @@ void voice_play(s32 voiceId) {
         D_80158150 = 0;
 
         /* Set full volume for voices */
-        func_80090E9C(D_80158140, 127);
+        gfx_set_color(D_80158140, 127);
 
         /* Center pitch */
-        func_80090F44(D_80158140, 0x1000);
+        gfx_set_alpha(D_80158140, 0x1000);
     }
 }
 
@@ -23450,7 +23450,7 @@ void voice_play(s32 voiceId) {
 void voice_stop(void) {
     /* Stop current voice */
     if (D_80158140 != 0) {
-        func_800B358C(D_80158140, 0.0f);
+        sound_stop(D_80158140, 0.0f);
         D_80158140 = 0;
     }
 
@@ -23529,7 +23529,7 @@ void audio_bus_mix(s32 bus, f32 *levels) {
     if (finalRight > 1.0f) finalRight = 1.0f;
 
     /* Apply to audio system */
-    func_80091B00(0);
+    object_alloc(0);
 }
 
 /*
@@ -23614,7 +23614,7 @@ void reverb_setup(s32 reverbType, f32 amount) {
     }
 
     /* Apply to audio system */
-    func_80091BA8((void*)(long)reverbType, (void*)&decay);
+    object_init((void*)(long)reverbType, (void*)&decay);
 }
 
 /*
@@ -23632,12 +23632,12 @@ void audio_pause(s32 pause) {
     if (pause != 0) {
         if (D_80158224 == 0) {
             D_80158224 = 1;
-            func_80091CA4(1);  /* Pause audio system */
+            object_free(1);  /* Pause audio system */
         }
     } else {
         if (D_80158224 != 0) {
             D_80158224 = 0;
-            func_80091CA4(0);  /* Resume audio system */
+            object_free(0);  /* Resume audio system */
         }
     }
 }
@@ -23751,7 +23751,7 @@ void audio_ducking(s32 priority) {
         }
 
         /* Apply ducked level to bus (stereo) */
-        func_80091B00(0);
+        object_alloc(0);
 }
 
     /* Update timer */
@@ -23778,7 +23778,7 @@ void sound_priority_set(s32 handle, s32 priority) {
     if (priority > 255) priority = 255;
 
     /* Set priority in audio system */
-    func_8009211C(handle, priority);
+    model_setup(handle, priority);
 }
 
 /*
@@ -23810,7 +23810,7 @@ void sound_loop_set(s32 handle, s32 loop) {
     }
 
     /* Set loop in audio system */
-    func_80092360(loopCount);
+    sound_effect_play(loopCount);
 }
 
 /*
@@ -23837,7 +23837,7 @@ void sound_pitch_set(s32 handle, f32 pitch) {
     if (pitchVal > 0x4000) pitchVal = 0x4000;  /* 4.0x */
 
     /* Set pitch */
-    func_80090F44(handle, pitchVal);
+    gfx_set_alpha(handle, pitchVal);
 }
 
 /*
@@ -23864,7 +23864,7 @@ void sound_volume_set(s32 handle, f32 volume) {
     volumeVal = (s32)(volume * 127.0f);
 
     /* Set volume */
-    func_80090E9C(handle, volumeVal);
+    gfx_set_color(handle, volumeVal);
 }
 
 /*
@@ -24161,7 +24161,7 @@ f32 audio_occlusion(f32 *listenerPos, f32 *sourcePos) {
 
     /* Cast ray to check for blocking geometry */
     /* Flags: 0x01 = check buildings, 0x02 = check terrain */
-    func_800A2378(0, 0, &rayStart[0], &rayStart[1], &rayStart[2]);  /* TODO: stub */
+    track_get_node_pos(0, 0, &rayStart[0], &rayStart[1], &rayStart[2]);  /* TODO: stub */
     hitCount = 0;
 
     /* Each hit reduces volume */
@@ -24265,7 +24265,7 @@ void entity_audio_update(void *entity) {
         /* Apply additional occlusion volume reduction */
         if (occlusion < 1.0f) {
             s32 volVal = (s32)(occlusion * 127.0f);
-            func_80090E9C(handle, volVal);
+            gfx_set_color(handle, volVal);
         }
     }
 }
@@ -25693,7 +25693,7 @@ void menu_scroll(void *menu, s32 direction) {
     }
 
     /* Play scroll sound */
-    func_800B2658(2, 0.8f, 0.0f);  /* Menu tick sound */
+    sound_play(2, 0.8f, 0.0f);  /* Menu tick sound */
 }
 
 /*
@@ -25750,9 +25750,9 @@ void menu_transition(void *menu, s32 transitionType) {
 
     /* Play transition sound */
     if (transitionType == 1 || transitionType == 3) {
-        func_800B2658(3, 1.0f, 0.0f);  /* Menu open sound */
+        sound_play(3, 1.0f, 0.0f);  /* Menu open sound */
     } else if (transitionType == 2 || transitionType == 4) {
-        func_800B2658(4, 1.0f, 0.0f);  /* Menu close sound */
+        sound_play(4, 1.0f, 0.0f);  /* Menu close sound */
     }
 }
 
@@ -26055,7 +26055,7 @@ void scripted_event(void *event) {
             break;
         case 3:  /* Sound effect */
             if (*eventState == 1 && *eventTime < 0.02f) {
-                func_800B2658(0, 1.0f, 0.0f);
+                sound_play(0, 1.0f, 0.0f);
             }
             break;
     }
@@ -26257,7 +26257,7 @@ void collectible_collect(void *player, void *collectible) {
         case 0:  /* Coin */
             (*playerCoins)++;
             *playerScore += 100;
-            func_800B2658(40, 1.0f, 0.0f);  /* Coin sound */
+            sound_play(40, 1.0f, 0.0f);  /* Coin sound */
             break;
 
         case 1:  /* Nitro can */
@@ -26268,12 +26268,12 @@ void collectible_collect(void *player, void *collectible) {
         case 2:  /* Time bonus */
             *(s32 *)0x8015A10C += 60;  /* Add 1 second */
             *playerScore += 200;
-            func_800B2658(41, 1.0f, 0.0f);  /* Time bonus sound */
+            sound_play(41, 1.0f, 0.0f);  /* Time bonus sound */
             break;
 
         case 3:  /* Key/unlock */
             *playerScore += 500;
-            func_800B2658(42, 1.0f, 0.0f);  /* Key sound */
+            sound_play(42, 1.0f, 0.0f);  /* Key sound */
             break;
     }
 
@@ -26308,31 +26308,31 @@ void powerup_activate(void *player, s32 powerupType) {
         case 0:  /* Speed boost */
             *powerupDuration = 5.0f;
             *(f32 *)((u8 *)player + 0xB0) *= 1.25f;  /* Max speed multiplier */
-            func_800B2658(50, 1.0f, 0.0f);
+            sound_play(50, 1.0f, 0.0f);
             break;
 
         case 1:  /* Invincibility */
             *powerupDuration = 8.0f;
             *(s32 *)((u8 *)player + 0x13C) = 1;  /* Invincible flag */
-            func_800B2658(51, 1.0f, 0.0f);
+            sound_play(51, 1.0f, 0.0f);
             break;
 
         case 2:  /* Magnet (attract collectibles) */
             *powerupDuration = 10.0f;
             *(f32 *)((u8 *)player + 0x140) = 50.0f;  /* Magnet radius */
-            func_800B2658(52, 1.0f, 0.0f);
+            sound_play(52, 1.0f, 0.0f);
             break;
 
         case 3:  /* Double points */
             *powerupDuration = 15.0f;
             *(s32 *)((u8 *)player + 0x144) = 2;  /* Score multiplier */
-            func_800B2658(53, 1.0f, 0.0f);
+            sound_play(53, 1.0f, 0.0f);
             break;
 
         case 4:  /* Ghost (pass through traffic) */
             *powerupDuration = 6.0f;
             *(s32 *)((u8 *)player + 0x148) = 1;  /* Ghost flag */
-            func_800B2658(54, 1.0f, 0.0f);
+            sound_play(54, 1.0f, 0.0f);
             break;
     }
 }
@@ -26390,7 +26390,7 @@ void powerup_timer_update(void *player) {
         *powerupTimer = 0.0f;
 
         /* Powerup end sound */
-        func_800B2658(55, 0.8f, 0.0f);
+        sound_play(55, 0.8f, 0.0f);
     }
 }
 
@@ -26441,7 +26441,7 @@ void nitro_boost(void *car) {
     }
 
     /* Play nitro sound if just started */
-    func_800B2658(20, 1.0f, 0.0f);  /* Nitro sound */
+    sound_play(20, 1.0f, 0.0f);  /* Nitro sound */
 }
 
 /*
@@ -26466,7 +26466,7 @@ void nitro_refill(void *car, f32 amount) {
     }
 
     /* Play refill sound */
-    func_800B2658(21, 0.8f, 0.0f);
+    sound_play(21, 0.8f, 0.0f);
 }
 
 /*
@@ -26501,7 +26501,7 @@ void boost_pad_trigger(void *car, void *pad) {
         velocity[2] += padDir[2] * boostSpeed;
 
         /* Play boost pad sound */
-        func_800B2658(22, 1.0f, 0.0f);
+        sound_play(22, 1.0f, 0.0f);
     }
 }
 
@@ -26551,7 +26551,7 @@ void ramp_launch(void *car, void *ramp) {
     *(s32 *)((u8 *)car + 0x1C) = 1;
 
     /* Play launch sound */
-    func_800B2658(23, 1.0f, 0.0f);
+    sound_play(23, 1.0f, 0.0f);
 }
 
 /*
@@ -26652,7 +26652,7 @@ void countdown_start(s32 seconds) {
 
     /* Play countdown start sound */
     if (seconds > 0) {
-        func_800B2658(30, 1.0f, 0.0f);  /* Countdown beep */
+        sound_play(30, 1.0f, 0.0f);  /* Countdown beep */
     }
 }
 
@@ -26696,7 +26696,7 @@ void lap_timer_split(void *player) {
     /* Check for best lap */
     if (lapTime < *bestLap) {
         *bestLap = lapTime;
-        func_800B2658(31, 1.0f, 0.0f);  /* Best lap sound */
+        sound_play(31, 1.0f, 0.0f);  /* Best lap sound */
     }
 
     /* Increment lap count */
@@ -26804,7 +26804,7 @@ void leaderboard_display(s32 trackId) {
 
     /* Header */
     func_800D0258(255, 200, 0, 255);  /* Gold */
-    func_800CD7F8((u8 *)"BEST TIMES", 120, 40);
+    text_print((u8 *)"BEST TIMES", 120, 40);
 
     /* Display top 5 times */
     x = 80;
@@ -26837,12 +26837,12 @@ void leaderboard_display(s32 trackId) {
             timeStr[8] = 0;
 
             func_800D0258(255, 255, 255, 255);
-            func_800CD7F8(nameStr, x, y);
-            func_800CD7F8(timeStr, x + 60, y);
+            text_print(nameStr, x, y);
+            text_print(timeStr, x + 60, y);
         } else {
             func_800D0258(128, 128, 128, 255);  /* Gray for empty */
-            func_800CD7F8((u8 *)"----", x, y);
-            func_800CD7F8((u8 *)"--:--.--", x + 60, y);
+            text_print((u8 *)"----", x, y);
+            text_print((u8 *)"--:--.--", x + 60, y);
         }
 
         y += 20;
@@ -26869,7 +26869,7 @@ void race_results_display(void) {
     animFrame = D_8015A420;
     animFrame++;
 
-    input = func_800CB748(D_80158100);
+    input = controller_get_input(D_80158100);
 
     /* Skip after timeout or button press */
     if (animFrame > 600 || (animFrame > 60 && (input == 1 || input == 2))) {
@@ -26885,7 +26885,7 @@ void race_results_display(void) {
     }
 
     /* Clear screen */
-    func_800C6E60(0, 0, 320, 240, 0x101030);
+    draw_fill_rect(0, 0, 320, 240, 0x101030);
 
     /* Title */
     draw_text(100, 20, "RACE RESULTS", 0xFFFFFFFF);
@@ -26911,7 +26911,7 @@ void race_results_display(void) {
         /* Highlight player 1 */
         if (i == 0) {
             alpha = 255;
-            func_800C6E60(35, y - 2, 260, 18, 0x304060);
+            draw_fill_rect(35, y - 2, 260, 18, 0x304060);
         } else {
             alpha = 180;
         }
@@ -27007,7 +27007,7 @@ void award_ceremony(void) {
 
     state = D_8015A450;
     frame = D_8015A454;
-    input = func_800CB748(D_80158100);
+    input = controller_get_input(D_80158100);
 
     frame++;
 
@@ -27017,7 +27017,7 @@ void award_ceremony(void) {
             if (alpha > 255) alpha = 255;
 
             /* Draw background */
-            func_800C6E60(40, 30, 240, 180, (alpha << 24) | 0x101030);
+            draw_fill_rect(40, 30, 240, 180, (alpha << 24) | 0x101030);
 
             if (frame >= 60) {
                 state = 1;
@@ -27027,7 +27027,7 @@ void award_ceremony(void) {
 
         case 1:  /* Show results */
             /* Background */
-            func_800C6E60(40, 30, 240, 180, 0xFF101030);
+            draw_fill_rect(40, 30, 240, 180, 0xFF101030);
 
             /* Title */
             draw_text(100, 45, "RACE COMPLETE", 0xFFFFFFFF);
@@ -27081,7 +27081,7 @@ void award_ceremony(void) {
             alpha = 255 - (frame * 255) / 30;
             if (alpha < 0) alpha = 0;
 
-            func_800C6E60(40, 30, 240, 180, (alpha << 24) | 0x101030);
+            draw_fill_rect(40, 30, 240, 180, (alpha << 24) | 0x101030);
 
             if (frame >= 30) {
                 D_8015A450 = 0;
@@ -27231,7 +27231,7 @@ s32 continue_prompt(void) {
         selection = 0;  /* Default: Continue */
     }
 
-    input = func_800CB748(D_80158100);
+    input = controller_get_input(D_80158100);
 
     /* Navigate selection */
     if (input == 6 || input == 7) {  /* Left/Right */
@@ -27256,8 +27256,8 @@ s32 continue_prompt(void) {
     }
 
     /* Render */
-    func_800C6E60(60, 80, 200, 80, 0x202040);
-    func_800C6E60(62, 82, 196, 76, 0x303060);
+    draw_fill_rect(60, 80, 200, 80, 0x202040);
+    draw_fill_rect(62, 82, 196, 76, 0x303060);
 
     draw_text(120, 95, "CONTINUE?", 0xFFFFFFFF);
 
@@ -27300,7 +27300,7 @@ void game_over_screen(void) {
     animFrame = D_8015A440;
     animFrame++;
 
-    input = func_800CB748(D_80158100);
+    input = controller_get_input(D_80158100);
 
     /* Exit after timeout or button press */
     if (animFrame > 480 || (animFrame > 120 && (input == 1 || input == 2))) {
@@ -27317,7 +27317,7 @@ void game_over_screen(void) {
     }
 
     /* Clear screen with fade */
-    func_800C6E60(0, 0, 320, 240, 0x100000 + ((alpha / 4) << 16));
+    draw_fill_rect(0, 0, 320, 240, 0x100000 + ((alpha / 4) << 16));
 
     /* "GAME OVER" text - large and centered */
     {
@@ -27440,7 +27440,7 @@ void name_entry_screen(u8 *name) {
     selectedChar = D_8015A454;
     blinkPhase = D_80142AFC & 0x10;
 
-    input = func_800CB748(D_80158100);
+    input = controller_get_input(D_80158100);
 
     /* Navigate character selection */
     if (input == 4) {  /* Up */
@@ -27488,7 +27488,7 @@ void name_entry_screen(u8 *name) {
     }
 
     /* Render */
-    func_800C6E60(0, 0, 320, 240, 0x101030);
+    draw_fill_rect(0, 0, 320, 240, 0x101030);
 
     draw_text(75, 25, "ENTER YOUR INITIALS", 0xFFFFFFFF);
 
@@ -27518,7 +27518,7 @@ void name_entry_screen(u8 *name) {
 
         if (i == selectedChar) {
             alpha = 255;
-            func_800C6E60(gridX - 3, gridY - 3, 18, 18, 0x404080);
+            draw_fill_rect(gridX - 3, gridY - 3, 18, 18, 0x404080);
         } else {
             alpha = 160;
         }
@@ -27575,7 +27575,7 @@ void highscore_animation(s32 position) {
     /* Highlight bar */
     {
         s32 barAlpha = 128 + (s32)(sinf((f32)frame * 0.15f) * 64.0f);
-        func_800C6E60(50, yPos - 5, 220, 18, (barAlpha << 24) | 0x404000);
+        draw_fill_rect(50, yPos - 5, 220, 18, (barAlpha << 24) | 0x404000);
     }
 
     /* Sparkle effect - 8 sparkles orbiting */
@@ -27588,7 +27588,7 @@ void highscore_animation(s32 position) {
             s32 sy = yPos + (s32)(sinf(sparkleAngle) * (f32)sparkleRadius * 0.5f);
             s32 sparkleSize = 2 + (frame + i * 7) % 3;
 
-            func_800C6E60(sx - sparkleSize/2, sy - sparkleSize/2,
+            draw_fill_rect(sx - sparkleSize/2, sy - sparkleSize/2,
                          sparkleSize, sparkleSize, color);
         }
     }
@@ -27628,7 +27628,7 @@ void statistics_display(void *stats) {
     statData = (s32 *)stats;
     state = D_8015A4B0;
     scrollY = D_8015A4B4;
-    input = func_800CB748(D_80158100);
+    input = controller_get_input(D_80158100);
 
     /* Navigation */
     if (input == 4) {  /* Up */
@@ -27644,7 +27644,7 @@ void statistics_display(void *stats) {
     }
 
     /* Background */
-    func_800C6E60(30, 20, 260, 200, 0xE0202040);
+    draw_fill_rect(30, 20, 260, 200, 0xE0202040);
 
     /* Title */
     draw_text(115, 30, "STATISTICS", 0xFFFFFFFF);
@@ -27940,12 +27940,12 @@ void achievement_display(s32 achievementId) {
     }
 
     /* Background box */
-    func_800C6E60(60, slideY, 200, 40, (alpha << 24) | 0x204080);
-    func_800C6E60(62, slideY + 2, 196, 36, (alpha << 24) | 0x306090);
+    draw_fill_rect(60, slideY, 200, 40, (alpha << 24) | 0x204080);
+    draw_fill_rect(62, slideY + 2, 196, 36, (alpha << 24) | 0x306090);
 
     /* Trophy icon (simplified) */
-    func_800C6E60(70, slideY + 10, 15, 20, (alpha << 24) | 0xFFD700);
-    func_800C6E60(72, slideY + 8, 11, 5, (alpha << 24) | 0xFFD700);
+    draw_fill_rect(70, slideY + 10, 15, 20, (alpha << 24) | 0xFFD700);
+    draw_fill_rect(72, slideY + 8, 11, 5, (alpha << 24) | 0xFFD700);
 
     /* "ACHIEVEMENT UNLOCKED" text */
     draw_text(95, slideY + 8, "ACHIEVEMENT", alpha);
@@ -28517,7 +28517,7 @@ s32 reconnection_attempt(void) {
         }
 
         /* Check if controller is connected */
-        controllerState = func_800CB748(i);
+        controllerState = controller_get_input(i);
         if (controllerState != 0) {
             /* Controller active, rejoin */
             return session_join(D_80159604);
@@ -28543,7 +28543,7 @@ void final_cleanup(void) {
 
     /* Stop all sounds */
     for (i = 0; i < 16; i++) {
-        func_800B362C(i, 0.0f);
+        sound_channel_set(i, 0.0f);
     }
 
     /* Clear particle systems */
@@ -31284,7 +31284,7 @@ void hud_render(void) {
 
 /*
 
- * menu_process_input (func_800CB748)
+ * menu_process_input (controller_get_input)
  * Size: 628 bytes
  * Handles controller input for menu navigation
  */
@@ -31415,7 +31415,7 @@ s32 menu_process_input(s32 input) {
 
 /*
 
- * menu_cursor_move (func_800CB9D0)
+ * menu_cursor_move (input_poll)
  * Size: 516 bytes
  * Navigates between menu items
  */
@@ -31755,7 +31755,7 @@ void menu_transition(s32 toMenuId) {
 
 /*
 
- * menu_animation_update (func_800CC040)
+ * menu_animation_update (animation_update)
  * Size: 900 bytes
  * Handles menu transitions and element animations
  */
@@ -31958,7 +31958,7 @@ void sound_play_menu(s32 soundId) {
     }
 
     /* Play via audio system */
-    handle = func_80090284(actualSoundId, 0);
+    handle = gfx_set_mode(actualSoundId, 0);
     if (handle != 0) {
         sound_update_channel(handle, volume);
         if (pitch != 0x1000) {
@@ -32136,7 +32136,7 @@ void menu_highlight_set(s32 itemIndex) {
 
 /*
 
- * menu_list_render (func_800CCA04)
+ * menu_list_render (font_print)
  * Size: 1112 bytes
  * Renders entire menu with items
  */
@@ -32553,7 +32553,7 @@ s32 menu_confirm_dialog(char *message) {
     buttonCount = D_801592F0;
 
     /* Handle input */
-    input = func_800CB748(D_80158100);
+    input = controller_get_input(D_80158100);
 
     /* Left/right to switch buttons */
     if (input == 6) {  /* Left */
@@ -32759,7 +32759,7 @@ void menu_text_input(char *buffer, s32 maxLen) {
     }
 
     /* Get input */
-    input = func_800CB748(D_80158100);
+    input = controller_get_input(D_80158100);
     cursorPos = D_80159914;
 
     /* Process keyboard input */
@@ -33019,7 +33019,7 @@ void menu_options_screen(void) {
     s32 selectedItem;
 
     /* Update menu animations */
-    func_800CC040();
+    animation_update();
 
     /* Handle dialog if active */
     if (D_801592E0 != 0) {
@@ -33028,12 +33028,12 @@ void menu_options_screen(void) {
     }
 
     /* Get input */
-    input = func_800CB748(D_80158100);
+    input = controller_get_input(D_80158100);
     selectedItem = D_80159210;
 
     /* Handle navigation */
     if (input >= 4 && input <= 7) {
-        func_800CB9D0(input);
+        input_poll(input);
     }
     /* Handle selection */
     else if (input == 1) {
@@ -33083,7 +33083,7 @@ void menu_options_screen(void) {
     }
 
     /* Render menu */
-    func_800CCA04(NULL, 0);
+    font_print(NULL, 0);
 }
 
 /*
@@ -33098,16 +33098,16 @@ void menu_audio_settings(void) {
     s32 *menuItems;
 
     /* Update animations */
-    func_800CC040();
+    animation_update();
 
     /* Get input */
-    input = func_800CB748(D_80158100);
+    input = controller_get_input(D_80158100);
     selectedItem = D_80159210;
     menuItems = (s32 *)D_80159218;
 
     /* Handle navigation */
     if (input >= 4 && input <= 7) {
-        func_800CB9D0(input);
+        input_poll(input);
     }
     /* Handle selection */
     else if (input == 1) {
@@ -33151,7 +33151,7 @@ void menu_audio_settings(void) {
     }
 
     /* Render menu */
-    func_800CCA04(NULL, 0);
+    font_print(NULL, 0);
 
     /* Draw title */
     draw_text(100, 40, "AUDIO SETTINGS", 0xFFFFFFFF);
@@ -33166,13 +33166,13 @@ void menu_video_settings(void) {
     s32 input;
     s32 selectedItem;
 
-    func_800CC040();
+    animation_update();
 
-    input = func_800CB748(D_80158100);
+    input = controller_get_input(D_80158100);
     selectedItem = D_80159210;
 
     if (input >= 4 && input <= 7) {
-        func_800CB9D0(input);
+        input_poll(input);
     }
     else if (input == 1) {
         switch (selectedItem) {
@@ -33194,7 +33194,7 @@ void menu_video_settings(void) {
         menu_back();
     }
 
-    func_800CCA04(NULL, 0);
+    font_print(NULL, 0);
     draw_text(100, 40, "VIDEO SETTINGS", 0xFFFFFFFF);
 }
 
@@ -33209,14 +33209,14 @@ void menu_control_settings(void) {
     s32 *menuItems;
     s32 itemType;
 
-    func_800CC040();
+    animation_update();
 
-    input = func_800CB748(D_80158100);
+    input = controller_get_input(D_80158100);
     selectedItem = D_80159210;
     menuItems = (s32 *)D_80159218;
 
     if (input >= 4 && input <= 7) {
-        func_800CB9D0(input);
+        input_poll(input);
     }
     else if (input == 1) {
         switch (selectedItem) {
@@ -33258,7 +33258,7 @@ void menu_control_settings(void) {
         menu_back();
     }
 
-    func_800CCA04(NULL, 0);
+    font_print(NULL, 0);
     draw_text(90, 40, "CONTROL SETTINGS", 0xFFFFFFFF);
 }
 
@@ -33298,17 +33298,17 @@ void menu_controller_remap(void) {
     buttonNames[8] = "C-LEFT";
     buttonNames[9] = "C-RIGHT";
 
-    func_800CC040();
+    animation_update();
 
     remapState = D_80159350;
     selectedItem = D_80159210;
 
     if (remapState == 0) {
         /* Normal navigation */
-        input = func_800CB748(D_80158100);
+        input = controller_get_input(D_80158100);
 
         if (input >= 4 && input <= 5) {
-            func_800CB9D0(input);
+            input_poll(input);
         }
         else if (input == 1) {
             if (selectedItem < 8) {
@@ -33508,9 +33508,9 @@ void track_select_screen(void) {
     selectedTrack = D_80159A00;
     scrollOffset = D_80159A04;
 
-    func_800CC040();  /* Update animations */
+    animation_update();  /* Update animations */
 
-    input = func_800CB748(D_80158100);
+    input = controller_get_input(D_80158100);
 
     /* Navigation */
     if (input == 4) {  /* Up */
@@ -33535,7 +33535,7 @@ void track_select_screen(void) {
         sound_play_menu(12);
     }
     else if (input == 1) {  /* Select */
-        trackUnlocked = func_800D1248(selectedTrack);
+        trackUnlocked = menu_update(selectedTrack);
         if (trackUnlocked) {
             D_80159A08 = selectedTrack;  /* Store selected track */
             menu_transition(4);  /* Go to car select */
@@ -33561,7 +33561,7 @@ void track_select_screen(void) {
         s32 alpha;
         s32 unlocked;
 
-        unlocked = func_800D1248(trackIdx);
+        unlocked = menu_update(trackIdx);
         alpha = (trackIdx == selectedTrack) ? 255 : 180;
         if (!unlocked) {
             alpha = alpha / 2;
@@ -33611,7 +33611,7 @@ void track_preview_render(s32 trackId) {
     previewW = 120;
     previewH = 90;
 
-    unlocked = func_800D1248(trackId);
+    unlocked = menu_update(trackId);
 
     /* Draw preview frame */
     draw_ui_element(64, previewX - 2, previewY - 2, previewW + 4, previewH + 4, 255);  /* Border */
@@ -33651,7 +33651,7 @@ void track_info_display(s32 trackId) {
     infoX = 180;
     infoY = 170;
 
-    unlocked = func_800D1248(trackId);
+    unlocked = menu_update(trackId);
 
     if (!unlocked) {
         draw_text("LOCKED", infoX + 30, infoY + 20, 180);
@@ -33715,7 +33715,7 @@ void track_info_display(s32 trackId) {
 
 /*
 
- * func_800D1248 (324 bytes)
+ * menu_update (324 bytes)
  * Track unlock check - checks if track is unlocked
  */
 s32 track_unlock_check(s32 trackId) {
@@ -33799,9 +33799,9 @@ void car_select_screen(void) {
     numCars = 12;
     selectedCar = D_80159A50;
 
-    func_800CC040();
+    animation_update();
 
-    input = func_800CB748(D_80158100);
+    input = controller_get_input(D_80158100);
 
     /* Navigation left/right to cycle cars */
     if (input == 6) {  /* Left */
@@ -34139,9 +34139,9 @@ void race_setup_screen(void) {
     numItems = 7;  /* Mode, Laps, Difficulty, Mirror, Weather, Time, Start */
     selectedItem = D_80159B00;
 
-    func_800CC040();
+    animation_update();
 
-    input = func_800CB748(D_80158100);
+    input = controller_get_input(D_80158100);
 
     /* Navigation */
     if (input == 4) {
@@ -34410,9 +34410,9 @@ void multiplayer_setup(void) {
     selectedItem = D_80159C00;
     numPlayers = D_80159C04;
 
-    func_800CC040();
+    animation_update();
 
-    input = func_800CB748(D_80158100);
+    input = controller_get_input(D_80158100);
 
     /* Navigation */
     if (input == 4) {
@@ -34531,7 +34531,7 @@ void player_join_screen(void) {
     joinedPlayers = 0;
     allReady = 1;
 
-    func_800CC040();
+    animation_update();
 
     /* Read all controller inputs */
     controllerInput[0] = D_80158100;
@@ -34701,14 +34701,14 @@ void stunt_mode_setup(void) {
     targetScore = D_80159E10;
     wingEnabled = D_80159E14;
 
-    func_800CC040();
+    animation_update();
 
     /* Check arena unlock status */
     for (i = 0; i < 8; i++) {
         arenaUnlocked[i] = func_800D3430(i, 0, NULL, NULL, 0);
     }
 
-    input = func_800CB748(D_80158100);
+    input = controller_get_input(D_80158100);
 
     if (menuState == 0) {
         /* Main stunt setup menu */
@@ -34840,7 +34840,7 @@ void stunt_mode_setup(void) {
 
     } else if (menuState == 1) {
         /* Stunt tutorial screen */
-        input = func_800CB748(D_80158100);
+        input = controller_get_input(D_80158100);
 
         if (input == 2 || input == 1) {  /* B or A to go back */
             menuState = 0;
@@ -34943,9 +34943,9 @@ void battle_mode_setup(void) {
     timeLimit = D_80159E2C;
     weaponsEnabled = D_80159E30;
 
-    func_800CC040();
+    animation_update();
 
-    input = func_800CB748(D_80158100);
+    input = controller_get_input(D_80158100);
 
     if (input == 4) {  /* Up */
         selectedOption--;
@@ -35103,12 +35103,12 @@ void ghost_race_setup(void) {
     selectedTrack = D_80159E44;
     selectedGhost = D_80159E48;
 
-    func_800CC040();
+    animation_update();
 
     /* Get available ghosts for selected track */
     ghostCount = func_800D5430(selectedTrack, ghostNames, ghostTimes);
 
-    input = func_800CB748(D_80158100);
+    input = controller_get_input(D_80158100);
 
     if (input == 4) {  /* Up */
         selectedOption--;
@@ -35281,9 +35281,9 @@ void records_screen(void) {
     selectedTab = D_80159D00;
     selectedTrack = D_80159D04;
 
-    func_800CC040();
+    animation_update();
 
-    input = func_800CB748(D_80158100);
+    input = controller_get_input(D_80158100);
 
     /* Tab navigation with L/R */
     if (input == 8) {  /* L */
@@ -35561,9 +35561,9 @@ void achievements_screen(void) {
     numAchievements = 12;
     scrollOffset = D_80159DA0;
 
-    func_800CC040();
+    animation_update();
 
-    input = func_800CB748(D_80158100);
+    input = controller_get_input(D_80158100);
 
     if (input == 4) {
         scrollOffset--;
@@ -35616,10 +35616,10 @@ void achievements_screen(void) {
 void credits_screen(void) {
     s32 input;
 
-    func_800CC040();
+    animation_update();
     credits_scroll();  /* Update scroll */
 
-    input = func_800CB748(D_80158100);
+    input = controller_get_input(D_80158100);
 
     /* Any button to exit */
     if (input == 1 || input == 2) {
@@ -35707,10 +35707,10 @@ void loading_screen(s32 percent) {
     if (percent > 100) percent = 100;
 
     /* Clear screen */
-    func_800C6E60(0, 0, 320, 240, 0xFF000020);
+    draw_fill_rect(0, 0, 320, 240, 0xFF000020);
 
     /* Game logo area */
-    func_800C6E60(80, 40, 160, 60, 0xFF202040);
+    draw_fill_rect(80, 40, 160, 60, 0xFF202040);
 
     /* "LOADING" text */
     draw_text(125, 120, "LOADING", 0xFFFFFFFF);
@@ -35722,13 +35722,13 @@ void loading_screen(s32 percent) {
     if (dotPhase >= 3) draw_text(205, 120, ".", 0xFFFFFFFF);
 
     /* Progress bar background */
-    func_800C6E60(60, 150, 200, 20, 0xFF404040);
-    func_800C6E60(62, 152, 196, 16, 0xFF202020);
+    draw_fill_rect(60, 150, 200, 20, 0xFF404040);
+    draw_fill_rect(62, 152, 196, 16, 0xFF202020);
 
     /* Progress bar fill */
     barWidth = (percent * 192) / 100;
     if (barWidth > 0) {
-        func_800C6E60(64, 154, barWidth, 12, 0xFF00AA00);
+        draw_fill_rect(64, 154, barWidth, 12, 0xFF00AA00);
     }
 
     /* Percent text */
@@ -35767,7 +35767,7 @@ void loading_tips(void) {
     tip = loadingTips[tipIndex];
 
     /* Display tip */
-    func_800C6E60(40, 200, 240, 25, 0xC0303050);
+    draw_fill_rect(40, 200, 240, 25, 0xC0303050);
     draw_text(50, 207, "TIP:", 0xFFFFFFFF);
     draw_text(90, 207, tip, 0xFFFFFFFF);
 }
@@ -35792,7 +35792,7 @@ void pause_menu(void) {
     }
 
     selection = D_8015A714;
-    input = func_800CB748(D_80158100);
+    input = controller_get_input(D_80158100);
 
     /* Navigation */
     if (input == 4) {  /* Up */
@@ -35825,11 +35825,11 @@ void pause_menu(void) {
     }
 
     /* Draw pause overlay */
-    func_800C6E60(0, 0, 320, 240, 0x80000000);  /* Dim background */
+    draw_fill_rect(0, 0, 320, 240, 0x80000000);  /* Dim background */
 
     /* Menu box */
-    func_800C6E60(90, 60, 140, 120, 0xE0202050);
-    func_800C6E60(92, 62, 136, 116, 0xE0303070);
+    draw_fill_rect(90, 60, 140, 120, 0xE0202050);
+    draw_fill_rect(92, 62, 136, 116, 0xE0303070);
 
     /* Title */
     draw_text(130, 70, "PAUSED", 0xFFFFFFFF);
@@ -35840,7 +35840,7 @@ void pause_menu(void) {
         s32 alpha = (i == selection) ? 255 : 150;
 
         if (i == selection) {
-            func_800C6E60(100, yPos - 3, 120, 20, 0x80404080);
+            draw_fill_rect(100, yPos - 3, 120, 20, 0x80404080);
             draw_text(105, yPos, ">", 255);
         }
 
@@ -35858,7 +35858,7 @@ void pause_resume(void) {
     D_8015A718 = 0;  /* Clear pause flag */
 
     /* Resume audio */
-    func_800B37E8(0, 0, NULL, 0);  /* Restore audio state */
+    sound_start(0, 0, NULL, 0);  /* Restore audio state */
 
     /* Resume timers */
     /* D_8015A720 = osGetTime(); */
@@ -35949,7 +35949,7 @@ void results_screen(void) {
 
     state = D_8015A730;
     timer = D_8015A734;
-    input = func_800CB748(D_80158100);
+    input = controller_get_input(D_80158100);
 
     timer++;
 
@@ -35963,7 +35963,7 @@ void results_screen(void) {
     }
 
     /* Background */
-    func_800C6E60(0, 0, 320, 240, 0xFF101030);
+    draw_fill_rect(0, 0, 320, 240, 0xFF101030);
 
     /* Title */
     draw_text(100, 30, "RACE RESULTS", 0xFFFFFFFF);
@@ -36087,7 +36087,7 @@ void replay_save_prompt(void) {
     s32 selection;
 
     selection = D_8015A754;
-    input = func_800CB748(D_80158100);
+    input = controller_get_input(D_80158100);
 
     /* Navigation */
     if (input == 6 || input == 7) {  /* Left/Right */
@@ -36109,8 +36109,8 @@ void replay_save_prompt(void) {
     }
 
     /* Draw prompt */
-    func_800C6E60(60, 90, 200, 60, 0xE0202050);
-    func_800C6E60(62, 92, 196, 56, 0xE0303070);
+    draw_fill_rect(60, 90, 200, 60, 0xE0202050);
+    draw_fill_rect(62, 92, 196, 56, 0xE0303070);
 
     draw_text(110, 100, "SAVE REPLAY?", 0xFFFFFFFF);
 
@@ -36142,7 +36142,7 @@ s32 continue_prompt(void) {
         countdown = 10 * 60;  /* 10 seconds */
     }
 
-    input = func_800CB748(D_80158100);
+    input = controller_get_input(D_80158100);
 
     if (input == 1) {  /* A - continue */
         D_8015A760 = 0;
@@ -36191,7 +36191,7 @@ void championship_standings(void) {
     }
 
     /* Display */
-    func_800C6E60(50, 50, 220, 140, 0xE0202050);
+    draw_fill_rect(50, 50, 220, 140, 0xE0202050);
     draw_text(70, 60, "CHAMPIONSHIP STANDINGS", 0xFFFFFFFF);
 
     for (i = 0; i < 4; i++) {
@@ -36210,7 +36210,7 @@ void championship_standings(void) {
 void trophy_award_championship(s32 placing) {
     char placeStr[16];
 
-    func_800C6E60(80, 60, 160, 120, 0xE0303060);
+    draw_fill_rect(80, 60, 160, 120, 0xE0303060);
 
     draw_text(105, 70, "CHAMPIONSHIP", 0xFFFFFFFF);
 
@@ -36254,8 +36254,8 @@ void unlock_notification(s32 unlockId) {
 
     msg = unlockNames[unlockId];
 
-    func_800C6E60(60, 100, 200, 40, 0xE0FFD700);
-    func_800C6E60(62, 102, 196, 36, 0xE0604000);
+    draw_fill_rect(60, 100, 200, 40, 0xE0FFD700);
+    draw_fill_rect(62, 102, 196, 36, 0xE0604000);
     draw_text(80, 112, msg, 0xFFFFFFFF);
 
     sound_play_menu(20);  /* Unlock jingle */
@@ -36276,7 +36276,7 @@ void attract_mode_start(void) {
 
     state = D_8015A780;
     timer = D_8015A784;
-    input = func_800CB748(D_80158100);
+    input = controller_get_input(D_80158100);
 
     /* Any input exits attract mode */
     if (input != 0) {
@@ -36290,7 +36290,7 @@ void attract_mode_start(void) {
 
     switch (state) {
         case 0:  /* Title screen */
-            func_800C6E60(0, 0, 320, 240, 0xFF000020);
+            draw_fill_rect(0, 0, 320, 240, 0xFF000020);
             draw_text(85, 80, "SAN FRANCISCO", 0xFFFFFFFF);
             draw_text(105, 110, "RUSH 2049", 0xFFFFFFFF);
 
@@ -36316,7 +36316,7 @@ void attract_mode_start(void) {
             break;
 
         case 2:  /* High scores */
-            func_800C6E60(0, 0, 320, 240, 0xFF101030);
+            draw_fill_rect(0, 0, 320, 240, 0xFF101030);
             draw_text(105, 40, "HIGH SCORES", 0xFFFFFFFF);
             /* func_800AXXXX(); display high score table */
 
@@ -36387,7 +36387,7 @@ extern s32 D_8015A7A0;      /* Idle frame counter */
 s32 attract_idle_check(void) {
     s32 input;
 
-    input = func_800CB748(D_80158100);
+    input = controller_get_input(D_80158100);
 
     if (input != 0) {
         D_8015A7A0 = 0;
@@ -36434,7 +36434,7 @@ void attract_video_play(s32 videoId) {
     D_8015A7AC = duration;
 
     /* Draw "playing" indicator (actual video decode would go here) */
-    func_800C6E60(0, 0, 320, 240, 0xFF000000);
+    draw_fill_rect(0, 0, 320, 240, 0xFF000000);
 
     if (frame >= duration) {
         D_8015A7A8 = 0;
@@ -36501,7 +36501,7 @@ void title_screen(void) {
 
     frame = D_8015A7B0;
     frame++;
-    input = func_800CB748(D_80158100);
+    input = controller_get_input(D_80158100);
 
     /* Any button goes to menu */
     if (input != 0) {
@@ -36564,7 +36564,7 @@ void title_logo_animate(void) {
     /* For now just draw a placeholder box */
     {
         s32 glowAlpha = (s32)(glow * 255.0f);
-        func_800C6E60(75, 55, 170, 80, (glowAlpha << 24) | 0x404080);
+        draw_fill_rect(75, 55, 170, 80, (glowAlpha << 24) | 0x404080);
     }
 
     D_8015A7B8 = phase;
@@ -36608,8 +36608,8 @@ void title_background(void) {
     frame = D_80142AFC;
 
     /* Gradient background */
-    func_800C6E60(0, 0, 320, 120, 0xFF000030);
-    func_800C6E60(0, 120, 320, 120, 0xFF000050);
+    draw_fill_rect(0, 0, 320, 120, 0xFF000030);
+    draw_fill_rect(0, 120, 320, 120, 0xFF000050);
 
     /* Scrolling city silhouette effect */
     scrollX = (frame / 2) % 320;
@@ -36617,7 +36617,7 @@ void title_background(void) {
     for (i = 0; i < 4; i++) {
         s32 x = ((scrollX + i * 80) % 320) - 40;
         s32 height = 30 + (i * 17) % 40;
-        func_800C6E60(x, 200 - height, 60, height, 0x80202040);
+        draw_fill_rect(x, 200 - height, 60, height, 0x80202040);
     }
 
     /* Stars/particles */
@@ -36627,7 +36627,7 @@ void title_background(void) {
         s32 twinkle = ((frame + i * 13) / 10) & 1;
 
         if (twinkle) {
-            func_800C6E60(starX, starY, 2, 2, 0xFFFFFFFF);
+            draw_fill_rect(starX, starY, 2, 2, 0xFFFFFFFF);
         }
     }
 }
@@ -36642,7 +36642,7 @@ extern s32 D_8015A7C4;      /* Menu state */
 void main_menu_screen(void) {
     s32 input;
 
-    input = func_800CB748(D_80158100);
+    input = controller_get_input(D_80158100);
 
     main_menu_input(input);
     main_menu_render();
@@ -36707,7 +36707,7 @@ void main_menu_render(void) {
     s32 i;
 
     /* Background */
-    func_800C6E60(0, 0, 320, 240, 0xFF101030);
+    draw_fill_rect(0, 0, 320, 240, 0xFF101030);
 
     /* Title */
     draw_text(115, 30, "MAIN MENU", 0xFFFFFFFF);
@@ -36719,7 +36719,7 @@ void main_menu_render(void) {
 
         if (i == selection) {
             /* Selection highlight */
-            func_800C6E60(80, yPos - 5, 160, 25, 0x80404080);
+            draw_fill_rect(80, yPos - 5, 160, 25, 0x80404080);
             draw_text(90, yPos, ">", 255);
         }
 
@@ -36742,12 +36742,12 @@ void mode_select_screen(void) {
     s32 selection;
 
     selection = D_8015A7D0;
-    input = func_800CB748(D_80158100);
+    input = controller_get_input(D_80158100);
 
     mode_select_input(input);
 
     /* Background */
-    func_800C6E60(0, 0, 320, 240, 0xFF101030);
+    draw_fill_rect(0, 0, 320, 240, 0xFF101030);
 
     /* Title based on mode */
     switch (D_8015A7D4) {
@@ -37252,13 +37252,13 @@ void world_trigger_activate(s32 triggerId) {
 
 /*
 
- * func_800EE820 (148 bytes)
+ * effect_spawn (148 bytes)
  * World effect spawn
  *
  * Creates a visual effect at the specified position
  * Effect types: 0=smoke, 1=spark, 2=explosion, 3=dust, 4=trail
  */
-void *func_800EE820(s32 effectType, f32 *pos) {
+void *effect_spawn(s32 effectType, f32 *pos) {
     extern u8 D_80154800[];    /* Effect pool */
     extern s32 D_80154C00;     /* Effect pool count */
     extern s32 D_80154C04;     /* Max effects */
@@ -37537,7 +37537,7 @@ void smoke_effect(f32 *pos, f32 *vel) {
         return;
     }
 
-    effect = func_800EE820(0, pos);  /* Type 0 = smoke */
+    effect = effect_spawn(0, pos);  /* Type 0 = smoke */
     if (effect == NULL) {
         return;
     }
@@ -37586,7 +37586,7 @@ void spark_effect(f32 *pos, s32 count) {
     seed = D_80142AFC;
 
     for (i = 0; i < count; i++) {
-        effect = func_800EE820(1, pos);  /* Type 1 = spark */
+        effect = effect_spawn(1, pos);  /* Type 1 = spark */
         if (effect == NULL) {
             break;
         }
@@ -37630,7 +37630,7 @@ void explosion_effect(f32 *pos, f32 radius) {
     }
 
     /* Create main fireball */
-    effect = func_800EE820(2, pos);  /* Type 2 = explosion */
+    effect = effect_spawn(2, pos);  /* Type 2 = explosion */
     if (effect != NULL) {
         eff = (u8 *)effect;
 
@@ -37693,7 +37693,7 @@ void dust_cloud_effect(f32 *pos) {
         dustPos[1] = pos[1] + 1.0f;
         dustPos[2] = pos[2] + ((seed >> 16) & 0xFF) * 0.08f - 10.24f;
 
-        effect = func_800EE820(3, dustPos);  /* Type 3 = dust */
+        effect = effect_spawn(3, dustPos);  /* Type 3 = dust */
         if (effect != NULL) {
             eff = (u8 *)effect;
 
@@ -38083,7 +38083,7 @@ void shadow_render(void *object) {
     f32 shadowSize = baseSize * shadowScale * 0.8f;
 
     /* Draw shadow decal at ground level */
-    func_800C6E60(
+    draw_fill_rect(
         (s32)(objPos[0] - shadowSize),
         (s32)(objPos[2] - shadowSize),
         (s32)(shadowSize * 2.0f),
@@ -38140,11 +38140,11 @@ void lens_flare(f32 *sunPos) {
     if (flareAlpha > 180) flareAlpha = 180;
 
     /* Draw main flare glow */
-    func_800C6E60(screenX - 30, screenY - 30, 60, 60, 255, 255, 200, flareAlpha);
+    draw_fill_rect(screenX - 30, screenY - 30, 60, 60, 255, 255, 200, flareAlpha);
 
     /* Draw secondary flares along line to center */
-    func_800C6E60(screenX - 10, screenY - 10, 20, 20, 255, 200, 150, flareAlpha / 2);
-    func_800C6E60(160 - 8, 120 - 8, 16, 16, 200, 150, 100, flareAlpha / 3);
+    draw_fill_rect(screenX - 10, screenY - 10, 20, 20, 255, 200, 150, flareAlpha / 2);
+    draw_fill_rect(160 - 8, 120 - 8, 16, 16, 200, 150, 100, flareAlpha / 3);
 }
 
 /*
@@ -39023,7 +39023,7 @@ void scene_render_main(void) {
     func_800F7AA8();
 
     /* Render particle effects */
-    func_800B811C();
+    effects_update();
 
     /* Render HUD elements */
     func_800CCFC0();
@@ -39700,9 +39700,9 @@ void high_score_entry(void) {
     char *alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ";
     s32 alphabetLen = 37;
 
-    func_800CC040();
+    animation_update();
 
-    input = func_800CB748(D_80158100);
+    input = controller_get_input(D_80158100);
     cursorPos = D_80159E14;
 
     /* Handle input */
@@ -40640,7 +40640,7 @@ void nitro_pickup_collect(void *car, void *pickup) {
     sound_play_menu(22);
 
     /* Spawn collect effect at pickup position */
-    func_800EE820(4, (f32 *)(pickupData + 0x04));
+    effect_spawn(4, (f32 *)(pickupData + 0x04));
 }
 
 /*
