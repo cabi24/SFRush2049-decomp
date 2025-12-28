@@ -4238,7 +4238,7 @@ void *object_init_cleared(void *a0, void *a1) {
 /**
 /**
 /*
- * func_8008B660 - Store 3D vector and transform
+ * vector3d_store_transform (func_8008B660)
  * Address: 0x8008B660
  * Size: 60 bytes
  *
@@ -4254,7 +4254,7 @@ void *object_init_cleared(void *a0, void *a1) {
  */
 extern void func_8008B4C4(f32 *a, f32 *b, f32 *out);
 
-void func_8008B660(void *a0, void *a1, f32 x, f32 y, f32 z) {
+void vector3d_store_transform(void *a0, void *a1, f32 x, f32 y, f32 z) {
     f32 *vec = (f32*)((u8*)a1 + 36);
     vec[0] = x;
     vec[1] = y;
@@ -4267,7 +4267,7 @@ void func_8008B660(void *a0, void *a1, f32 x, f32 y, f32 z) {
 
 /**
 /*
- * func_80096298 - Get slot value from array
+ * slot_value_get (func_80096298)
  * Address: 0x80096298
  * Size: 60 bytes
  *
@@ -4278,7 +4278,7 @@ void func_8008B660(void *a0, void *a1, f32 x, f32 y, f32 z) {
  * @return Value from slot array at computed offset
  */
 
-void *func_80096298(s32 a0) {
+void *slot_value_get(s32 a0) {
     func_80096288(a0, 0, 0);
     return D_80156D44[a0 * 5];
 }
@@ -4287,7 +4287,7 @@ void *func_80096298(s32 a0) {
 
 /**
 /*
- * func_80096240 - Conditional reset with callbacks
+ * conditional_reset_callbacks (func_80096240)
  * Address: 0x80096240
  * Size: 72 bytes
  *
@@ -4302,7 +4302,7 @@ extern void func_80018E2C(s32);
 extern void func_800154A4(void);
 extern s32 D_8011EAA0;    /* State variable */
 
-void func_80096240(s32 a0, s32 a1) {
+void conditional_reset_callbacks(s32 a0, s32 a1) {
     if (a1 == -1) {
         return;
     }
@@ -4320,7 +4320,7 @@ void func_80096240(s32 a0, s32 a1) {
 /**
 /**
 /*
- * func_800B5F4C - Conditional resource request (bit 0x400)
+ * resource_request_40_or_39 (func_800B5F4C)
  * Address: 0x800B5F4C
  * Size: 60 bytes
  *
@@ -4331,7 +4331,7 @@ void func_80096240(s32 a0, s32 a1) {
  * @param a0 Flags to check
  */
 
-void func_800B5F4C(s32 a0) {
+void resource_request_40_or_39(s32 a0) {
     s32 type = (a0 & 0x400) ? 40 : 39;
     func_80092360(type);
 }
@@ -4340,7 +4340,7 @@ void func_800B5F4C(s32 a0) {
 
 /**
 /*
- * func_800B5F88 - Conditional resource request (bit 0x1000)
+ * resource_request_41_or_44 (func_800B5F88)
  * Address: 0x800B5F88
  * Size: 60 bytes
  *
@@ -4350,7 +4350,7 @@ void func_800B5F4C(s32 a0) {
  *
  * @param a0 Flags to check
  */
-void func_800B5F88(s32 a0) {
+void resource_request_41_or_44(s32 a0) {
     s32 type = (a0 & 0x1000) ? 41 : 44;
     func_80092360(type);
 }
@@ -4360,7 +4360,7 @@ void func_800B5F88(s32 a0) {
 /**
 /**
 /*
- * func_800BE4B4 - Call B74A0 then B71D4 with reshuffled params
+ * dual_call_reshuffled (func_800BE4B4)
  * Address: 0x800BE4B4
  * Size: 60 bytes
  *
@@ -4373,7 +4373,7 @@ void func_800B5F88(s32 a0) {
  * @param a3 Third parameter passed through
  */
 
-void func_800BE4B4(s32 a0, s32 a1, s32 a2, void *a3) {
+void dual_call_reshuffled(s32 a0, s32 a1, s32 a2, void *a3) {
     func_800B74A0(a2, 0);
     func_800B71D4();
 }
@@ -4382,7 +4382,7 @@ void func_800BE4B4(s32 a0, s32 a1, s32 a2, void *a3) {
 
 /**
 /*
- * func_800B41C0 - Set byte at offset 9 of current object
+ * object_byte9_set (func_800B41C0)
  * Address: 0x800B41C0
  * Size: 64 bytes
  *
@@ -4392,7 +4392,7 @@ void func_800BE4B4(s32 a0, s32 a1, s32 a2, void *a3) {
  * @param a0 New value (sign-extended to byte)
  * @return Previous value at offset 9
  */
-s8 func_800B41C0(s8 a0) {
+s8 object_byte9_set(s8 a0) {
     s8 old;
     sound_update_channel(0, 0.0f);
     old = *((s8*)D_801597F0 + 9);
@@ -4404,7 +4404,7 @@ s8 func_800B41C0(s8 a0) {
 
 /**
 /*
- * func_80097470 - Synchronized resource lookup
+ * resource_lookup_synced (func_80097470)
  * Address: 0x80097470
  * Size: 124 bytes
  *
@@ -4419,7 +4419,7 @@ s8 func_800B41C0(s8 a0) {
 extern void **D_801527C8;
 extern void *func_80097384(void*, void*);
 
-void *func_80097470(s32 a0, void *a1) {
+void *resource_lookup_synced(s32 a0, void *a1) {
     void *result;
     void *lookup;
 
@@ -4442,20 +4442,20 @@ void *func_80097470(s32 a0, void *a1) {
 
 /**
 /*
- * func_8010FC80 - Allocate and initialize resource
+ * resource_alloc_init (func_8010FC80)
  * Address: 0x8010FC80
  * Size: 64 bytes
  *
- * Calls func_80097470(0, original_a0), then func_800962D4(result, 0).
+ * Calls resource_lookup_synced(0, original_a0), then func_800962D4(result, 0).
  * Returns result from first call.
  *
  * @param a0 First parameter
- * @param a1 Second parameter (passed to func_80097470)
- * @return Result from func_80097470
+ * @param a1 Second parameter (passed to resource_lookup_synced)
+ * @return Result from resource_lookup_synced
  */
 
-void *func_8010FC80(void *a0, void *a1) {
-    void *result = func_80097470(0, a0);
+void *resource_alloc_init(void *a0, void *a1) {
+    void *result = resource_lookup_synced(0, a0);
     func_800962D4(result, 0);
     return result;
 }
@@ -4477,7 +4477,7 @@ void *func_8010FC80(void *a0, void *a1) {
  */
 /**
 /*
- * func_800D54BC - Initialize structure with default values
+ * physics_struct_reset (func_800D54BC)
  * Address: 0x800D54BC
  * Size: 36 bytes (leaf function, no prologue)
  *
@@ -4486,7 +4486,7 @@ void *func_8010FC80(void *a0, void *a1) {
  *
  * @param a0 Structure pointer to initialize
  */
-void func_800D54BC(void *a0) {
+void physics_struct_reset(void *a0) {
     *(s32*)a0 = -1;
     *(f32*)((u8*)a0 + 4) = -2.0f;
     *(f32*)((u8*)a0 + 8) = -2.0f;
@@ -4498,7 +4498,7 @@ void func_800D54BC(void *a0) {
 
 /**
 /*
- * func_800BF024 - Synchronized lookup and process
+ * synced_lookup_process (func_800BF024)
  * Address: 0x800BF024
  * Size: 128 bytes
  *
@@ -4511,7 +4511,7 @@ void func_800D54BC(void *a0) {
 extern void func_800BF01C();
 extern void *func_80091BA8(void*, void*);
 
-void func_800BF024(void *a0) {
+void synced_lookup_process(void *a0) {
     void *result;
 
     func_80007270(&D_80142728[0], NULL, 1);
@@ -4532,7 +4532,7 @@ void func_800BF024(void *a0) {
 
 /**
 /*
- * func_80091C04 - Synchronized resource registration
+ * resource_register_synced (func_80091C04)
  * Address: 0x80091C04
  * Size: 160 bytes
  *
@@ -4543,7 +4543,7 @@ void func_800BF024(void *a0) {
  *
  * @param a0 Key to register
  */
-void func_80091C04(void *a0) {
+void resource_register_synced(void *a0) {
     void *result;
     void *savedResult;
 
@@ -4569,20 +4569,20 @@ void func_80091C04(void *a0) {
 
 /*
 
-void func_800D54E0(void **a0, s32 a1) {
+void conditional_call_with_init(void **a0, s32 a1) {
     if (a1 != 0) {
-        func_800BF024(*a0);
+        synced_lookup_process(*a0);
     } else {
-        func_80091C04(*a0);
+        resource_register_synced(*a0);
     }
-    func_800D54BC(a0);
+    physics_struct_reset(a0);
 }
 
 /*
 
 /**
 /*
- * func_8010FD1C - Initialize structure and call 8ABE4
+ * struct_init_and_call (func_8010FD1C)
  * Address: 0x8010FD1C
  * Size: 68 bytes
  *
@@ -4597,7 +4597,7 @@ void func_800D54E0(void **a0, s32 a1) {
 extern void *D_80153F10;  /* Structure base */
 extern s32 func_8008ABE4(void);
 
-s32 func_8010FD1C(void *a0, s16 a1, void *a2) {
+s32 struct_init_and_call(void *a0, s16 a1, void *a2) {
     u8 *base;
     if (a1 == 0) {
         return 1;
@@ -4616,7 +4616,7 @@ s32 func_8010FD1C(void *a0, s16 a1, void *a2) {
 
 /**
 /*
- * func_800B7128 - Sum bytes at offset 2 and 3 of current object
+ * object_bytes23_sum (func_800B7128)
  * Address: 0x800B7128
  * Size: 72 bytes
  *
@@ -4625,7 +4625,7 @@ s32 func_8010FD1C(void *a0, s16 a1, void *a2) {
  *
  * @return (s16)(D_801597F0[2] + D_801597F0[3])
  */
-s16 func_800B7128(void) {
+s16 object_bytes23_sum(void) {
     u8 byte2, byte3;
     sound_update_channel(0, 0.0f);
     byte2 = *((u8*)D_801597F0 + 2);
@@ -4638,7 +4638,7 @@ s16 func_800B7128(void) {
 
 /**
 /*
- * func_800CDA90 - Set byte at offset 71 and sync
+ * object_byte71_set_sync (func_800CDA90)
  * Address: 0x800CDA90
  * Size: 80 bytes
  *
@@ -4649,7 +4649,7 @@ s16 func_800B7128(void) {
  * @param a1 New byte value
  */
 
-void func_800CDA90(void **a0, u8 a1) {
+void object_byte71_set_sync(void **a0, u8 a1) {
     void *obj = *a0;
     void *inner = *(void**)((u8*)obj + 44);
     void *data = *(void**)inner;
