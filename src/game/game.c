@@ -8730,7 +8730,7 @@ void entity_tick_update(void *entity, void *data) {
     /* Visibility check */
     if (updateFlags & 0x10) {
         void *camera = (void *)0x8015B000;
-        s32 culled = func_80096A00(entity, camera);
+        s32 culled = entity_cull_check(entity, camera);
         if (culled) {
             *flags &= ~0x200;  /* Not visible */
         } else {
@@ -9352,7 +9352,7 @@ void entity_tick_main(void *entity, s32 mode) {
         case 4:  /* Visibility update */
             {
                 void *camera = (void *)0x8015B000;
-                s32 culled = func_80096A00(entity, camera);
+                s32 culled = entity_cull_check(entity, camera);
                 if (culled) {
                     *entityFlags &= ~0x200;
                 } else {
@@ -9983,10 +9983,11 @@ void audio_state_save(s32 cmd) {
 
 /*
 
- * func_8009614C (216 bytes)
+ * entity_sound_attach (216 bytes)
  * Entity sound attachment with sync
+ * func_8009614C
  */
-void func_8009614C(void *a0, void *a1, void *a2, void *entity) {
+void entity_sound_attach(void *a0, void *a1, void *a2, void *entity) {
     s16 waitFlag;
 
     if (entity == NULL) {
@@ -10007,10 +10008,11 @@ void func_8009614C(void *a0, void *a1, void *a2, void *entity) {
 
 /*
 
- * func_800963E8 (452 bytes)
+ * display_list_traverse (452 bytes)
  * Display list traversal
+ * func_800963E8
  */
-void func_800963E8(u32 *dlPtr, void *param1, void *param2, void *param3) {
+void display_list_traverse(u32 *dlPtr, void *param1, void *param2, void *param3) {
     u32 cmd;
     u32 cmdHi;
 
@@ -10039,10 +10041,11 @@ void func_800963E8(u32 *dlPtr, void *param1, void *param2, void *param3) {
 
 /*
 
- * func_800965BC (244 bytes)
+ * entity_render_mode (244 bytes)
  * Entity render setup
+ * func_800965BC
  */
-void func_800965BC(void *entity) {
+void entity_render_mode(void *entity) {
     void *tableEntry;
     s32 entityIdx;
 
@@ -10062,10 +10065,11 @@ void func_800965BC(void *entity) {
 
 /*
 
- * func_80096734 (716 bytes)
+ * entity_lod_select (716 bytes)
  * Entity LOD selection - chooses detail level based on distance
+ * func_80096734
  */
-void func_80096734(void *entity, f32 distance) {
+void entity_lod_select(void *entity, f32 distance) {
     s32 *lodLevel;
     s32 *modelIndex;
     s32 baseModel;
@@ -10115,10 +10119,11 @@ void func_80096734(void *entity, f32 distance) {
 
 /*
 
- * func_80096A00 (348 bytes)
+ * entity_cull_check (348 bytes)
  * Entity cull check - tests entity against view frustum
+ * func_80096A00
  */
-s32 func_80096A00(void *entity, void *camera) {
+s32 entity_cull_check(void *entity, void *camera) {
     f32 *entityPos;
     f32 *cameraPos;
     f32 *cameraDir;
@@ -10189,19 +10194,21 @@ s32 func_80096A00(void *entity, void *camera) {
 
 /*
 
- * func_80096CC4 (1216 bytes)
+ * entity_render_transform (1216 bytes)
  * Entity render with transforms
+ * func_80096CC4
  */
-void func_80096CC4(void *entity, void *matrix) {
+void entity_render_transform(void *entity, void *matrix) {
     /* Render with transforms - stub */
 }
 
 /*
 
- * func_80097184 (876 bytes)
+ * entity_collision_response (876 bytes)
  * Entity collision response
+ * func_80097184
  */
-void func_80097184(void *entity, s32 collisionType) {
+void entity_collision_response(void *entity, s32 collisionType) {
     void *tableEntry;
     s32 result;
 
@@ -10216,10 +10223,11 @@ void func_80097184(void *entity, s32 collisionType) {
 
 /*
 
- * func_800974EC (692 bytes)
+ * entity_state_machine (692 bytes)
  * Entity state machine update
+ * func_800974EC
  */
-void func_800974EC(void *entity, s32 newState) {
+void entity_state_machine(void *entity, s32 newState) {
     void *currentPtr;
 
     sync_acquire((void *)0x80152770, 0, 1);
@@ -10240,10 +10248,11 @@ void func_800974EC(void *entity, s32 newState) {
 
 /*
 
- * func_800979A8 (264 bytes)
+ * entity_pos_validate (264 bytes)
  * Entity position validation
+ * func_800979A8
  */
-void func_800979A8(void *entity, s32 flags) {
+void entity_pos_validate(void *entity, s32 flags) {
     s32 checkFlag;
 
     checkFlag = *(s32 *)0x8012EAA0;
@@ -10262,10 +10271,11 @@ void func_800979A8(void *entity, s32 flags) {
 
 /*
 
- * func_80097AFC (364 bytes)
+ * entity_velocity_update (364 bytes)
  * Entity velocity update - applies velocity to entity position
+ * func_80097AFC
  */
-void func_80097AFC(void *entity, f32 *velocity) {
+void entity_velocity_update(void *entity, f32 *velocity) {
     f32 *pos;
     f32 *vel;
     f32 *accel;
@@ -10320,10 +10330,11 @@ void func_80097AFC(void *entity, f32 *velocity) {
 
 /*
 
- * func_800987E8 (140 bytes)
+ * entity_state_check (140 bytes)
  * Simple state check
+ * func_800987E8
  */
-s32 func_800987E8(void *entity) {
+s32 entity_state_check(void *entity) {
     s32 state;
 
     state = *(s32 *)((u8 *)entity + 0x10);
@@ -10332,10 +10343,11 @@ s32 func_800987E8(void *entity) {
 
 /*
 
- * func_80098874 (108 bytes)
+ * entity_flag_check (108 bytes)
  * Entity flag check
+ * func_80098874
  */
-s32 func_80098874(void *entity, s32 flagMask) {
+s32 entity_flag_check(void *entity, s32 flagMask) {
     s32 flags;
 
     flags = *(s32 *)((u8 *)entity + 0x0C);
@@ -10344,10 +10356,11 @@ s32 func_80098874(void *entity, s32 flagMask) {
 
 /*
 
- * func_800988E0 (516 bytes)
+ * entity_damage_update (516 bytes)
  * Entity damage/health update - processes damage and effects
+ * func_800988E0
  */
-void func_800988E0(void *entity, s32 damage) {
+void entity_damage_update(void *entity, s32 damage) {
     s32 *health;
     s32 *maxHealth;
     s32 *invulnTimer;
@@ -10405,10 +10418,11 @@ void func_800988E0(void *entity, s32 damage) {
 
 /*
 
- * func_80098AE4 (1244 bytes)
+ * entity_physics_step (1244 bytes)
  * Entity physics step - integrates physics for one timestep
+ * func_80098AE4
  */
-void func_80098AE4(void *entity, f32 dt) {
+void entity_physics_step(void *entity, f32 dt) {
     f32 *pos;
     f32 *vel;
     f32 *accel;
@@ -10481,7 +10495,7 @@ void func_80098AE4(void *entity, f32 dt) {
     angVel[2] *= 0.98f;
 
     /* Ground collision check */
-    if (func_80098FC0(entity, groundNormal)) {
+    if (entity_ground_check(entity, groundNormal)) {
         *grounded = 1;
 
         /* Apply ground friction */
@@ -10499,10 +10513,11 @@ void func_80098AE4(void *entity, f32 dt) {
 
 /*
 
- * func_80098FC0 (708 bytes)
+ * entity_ground_check (708 bytes)
  * Entity ground check - raycasts down to find ground
+ * func_80098FC0
  */
-s32 func_80098FC0(void *entity, f32 *groundNormal) {
+s32 entity_ground_check(void *entity, f32 *groundNormal) {
     f32 *pos;
     f32 *vel;
     f32 rayStart[3];
