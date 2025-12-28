@@ -6998,11 +6998,11 @@ found:
 
 /*
 
- * func_80094EC8 (192 bytes)
+ * sound_params_copy (192 bytes)
  * Copy sound parameters to slot and update
  * Copies fields from a0 to slot table, then calls update functions
  */
-void func_80094EC8(void *sndObj) {
+void sound_params_copy(void *sndObj) {
     u16 slotIdx;
     u32 *slot;
     s16 field22, field20, field16, field14;
@@ -7055,11 +7055,11 @@ void func_80094EC8(void *sndObj) {
 
 /*
 
- * func_80090EA4 (160 bytes)
+ * vector_rotate_axis1 (160 bytes)
  * Rotate vector around axis by angle
  * Uses sinf/cosf for rotation matrix
  */
-void func_80090EA4(f32 angle, f32 *vec) {
+void vector_rotate_axis1(f32 angle, f32 *vec) {
     f32 s, c;
     f32 v0, v1, v2;
     f32 t0, t1;
@@ -7098,11 +7098,11 @@ void func_80090EA4(f32 angle, f32 *vec) {
 
 /*
 
- * func_80090F4C (160 bytes)
+ * vector_rotate_axis2 (160 bytes)
  * Rotate vector around different axis by angle
- * Similar to func_80090EA4 but different offsets
+ * Similar to vector_rotate_axis1 but different offsets
  */
-void func_80090F4C(f32 angle, f32 *vec) {
+void vector_rotate_axis2(f32 angle, f32 *vec) {
     f32 s, c;
     f32 v0, v1, v2;
     f32 t0, t1;
@@ -7141,11 +7141,11 @@ void func_80090F4C(f32 angle, f32 *vec) {
 
 /*
 
- * func_800A12D4 (104 bytes)
+ * sync_rom_load_cond (104 bytes)
  * Conditional sync and ROM load
  * t6 preloaded with flag check
  */
-void func_800A12D4(void) {
+void sync_rom_load_cond(void) {
     s32 flag;  /* t6 preload */
 
     flag = 0;  /* Preload */
@@ -7163,11 +7163,11 @@ void func_800A12D4(void) {
 
 /*
 
- * func_800A5160 (120 bytes)
+ * player_entity_init (120 bytes)
  * Initialize player entity
  * t6 preloaded with condition check
  */
-void func_800A5160(void) {
+void player_entity_init(void) {
     s32 condition;  /* t6 preload */
     void *entity;
 
@@ -7191,11 +7191,11 @@ void func_800A5160(void) {
 
 /*
 
- * func_800A5A74 (200 bytes)
+ * viewport_setup_floats (200 bytes)
  * Viewport float conversion and setup
  * v0, v1 = width/height from caller
  */
-void func_800A5A74(void) {
+void viewport_setup_floats(void) {
     s32 width;   /* v0 preload */
     s32 height;  /* v1 preload */
     s32 halfW, halfH;
@@ -7226,10 +7226,10 @@ void func_800A5A74(void) {
 
 /*
 
- * func_800A5B3C (36 bytes)
+ * global_pointers_clear (36 bytes)
  * Clear three global pointers
  */
-void func_800A5B3C(void) {
+void global_pointers_clear(void) {
     *(u32 *)0x80156990 = 0;
     *(u32 *)0x80156CE0 = 0;
     *(u32 *)0x801613AC = 0;
@@ -7237,11 +7237,11 @@ void func_800A5B3C(void) {
 
 /*
 
- * func_800A6938 (104 bytes)
+ * viewport_dims_setup (104 bytes)
  * Setup viewport dimensions from globals
  * s0, s1 preloaded with width/height
  */
-void func_800A6938(void) {
+void viewport_dims_setup(void) {
     s32 width;   /* s0 preload */
     s32 height;  /* s1 preload */
     s32 halfW, halfH;
