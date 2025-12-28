@@ -1917,7 +1917,7 @@ end_loop:
  */
 extern s8 D_801147C4;  /* Input system initialized flag */
 
-s8 func_800C9528(void) {
+s8 input_init_flag_get(void) {
     return D_801147C4;
 }
 
@@ -29097,7 +29097,7 @@ void music_fade(f32 duration, s32 fadeIn) {
  * Finds a channel for a sound with given priority
  * Higher priority sounds can steal channels from lower
  */
-s32 func_800BA46C(s32 priority) {
+s32 audio_channel_alloc(s32 priority) {
     extern s32 D_80160840[16];  /* Channel priorities */
     s32 i;
     s32 freeChannel = -1;
@@ -32289,7 +32289,7 @@ void menu_list_render(void *list, s32 count) {
  * func_800CCE5C (716 bytes)
  * Menu slider control - handles slider value adjustment
  */
-s32 func_800CCE5C(s32 current, s32 min, s32 max) {
+s32 menu_slider_clamp(s32 current, s32 min, s32 max) {
     s32 value;
     s32 range;
     s32 step;
@@ -32523,7 +32523,7 @@ void menu_dialog_display(s32 dialogId) {
  * func_800CD544 (412 bytes)
  * Menu confirm dialog - shows confirmation and handles input
  */
-s32 func_800CD544(char *message) {
+s32 menu_confirm_dialog(char *message) {
     s32 result;
     s32 input;
     s32 buttonAction;
@@ -39595,7 +39595,7 @@ void countdown_display(void) {
  *
  * Shows lap split time (+/- vs best)
  */
-void func_800FEE04(s32 splitTime) {
+void split_time_display(s32 splitTime) {
     s32 diff;
     s32 absDiff;
     char splitBuf[16];
@@ -39810,7 +39810,7 @@ s32 combo_multiplier(s32 combo) {
  *   7 = Corkscrew
  *   8 = Super flip
  */
-s32 func_80101D8C(void *car) {
+s32 trick_detect(void *car) {
     s32 *roadCode;
     s32 *stuntState;
     f32 *accumRot;
@@ -39901,7 +39901,7 @@ extern s32 D_80158044;       /* Combo multiplier */
 extern s32 D_80158048[8];    /* Trick history */
 extern s32 D_80158068;       /* History index */
 
-void func_8010221C(s32 trickId) {
+void trick_register(s32 trickId) {
     s32 basePoints;
     s32 finalPoints;
     s32 historyIdx;
@@ -39938,7 +39938,7 @@ void func_8010221C(s32 trickId) {
  * Called every frame while airborne to track total rotation
  * and time spent in the air for bonus calculations.
  */
-void func_80102450(void *car) {
+void air_time_track(void *car) {
     f32 *angVel;
     f32 *accumRot;
     f32 *airTime;
@@ -39994,7 +39994,7 @@ void func_80102450(void *car) {
  *   21 = Triple front flip
  *   22 = Triple back flip
  */
-s32 func_80102988(void *car) {
+s32 flip_detect(void *car) {
     f32 *accumRot;
     f32 pitchRot;
     f32 absPitch;
@@ -40054,7 +40054,7 @@ s32 func_80102988(void *car) {
  *   23 = Triple barrel roll left
  *   24 = Triple barrel roll right
  */
-s32 func_80102F30(void *car) {
+s32 barrel_roll_detect(void *car) {
     f32 *accumRot;
     f32 rollRot;
     f32 absRoll;
@@ -40114,7 +40114,7 @@ s32 func_80102F30(void *car) {
  *   35 = 720 spin left
  *   36 = 720 spin right
  */
-s32 func_80103D28(void *car) {
+s32 spin_detect(void *car) {
     f32 *accumRot;
     f32 yawRot;
     f32 absYaw;
@@ -40169,7 +40169,7 @@ s32 func_80103D28(void *car) {
  *
  * Returns landing bonus points (0 if crashed)
  */
-s32 func_80104704(void *car) {
+s32 landing_bonus_calc(void *car) {
     f32 *airTime;
     f32 *upVec;
     s32 *comboMult;
@@ -40249,7 +40249,7 @@ s32 func_80104704(void *car) {
  *   0x1B0: combo tricks [8] (trick IDs in this combo)
  *   0x1D0: combo timer (resets on landing)
  */
-void func_80104B14(void *car) {
+void combo_trick_add(void *car) {
     s32 *comboCount;
     s32 *comboTricks;
     f32 *comboTimer;
@@ -40317,7 +40317,7 @@ void func_80104B14(void *car) {
  *   0x1E0: wing lift coefficient
  *   0x1E4: wing drag coefficient
  */
-void func_80105480(void *car) {
+void wing_deploy(void *car) {
     s32 *wingState;
     f32 *deployTimer;
     f32 *wingAngle;
@@ -40362,7 +40362,7 @@ void func_80105480(void *car) {
 
     /* Apply wing physics if deployed */
     if (*wingState == 2) {
-        func_80105EA8(car);  /* Apply glide physics */
+        glide_physics_apply(car);  /* Apply glide physics */
     }
 }
 
@@ -40376,7 +40376,7 @@ void func_80105480(void *car) {
  *   - Car lands
  *   - Car crashes
  */
-void func_80105B74(void *car) {
+void wing_retract(void *car) {
     s32 *wingState;
     f32 *wingAngle;
     f32 *liftCoef;
@@ -40423,7 +40423,7 @@ void func_80105B74(void *car) {
  *   1 = Wings deploying
  *   2 = Wings fully deployed
  */
-s32 func_80105DB0(void *car) {
+s32 wing_state_get(void *car) {
     if (car == NULL) {
         return 0;
     }
@@ -40442,7 +40442,7 @@ s32 func_80105DB0(void *car) {
  *
  * This enables the "gliding" behavior unique to Rush 2049.
  */
-void func_80105EA8(void *car) {
+void glide_physics_apply(void *car) {
     f32 *vel;
     f32 *forward, *up, *right;
     f32 *angVel;
@@ -40523,7 +40523,7 @@ void func_80105EA8(void *car) {
  *
  * Activates nitro boost for a car
  */
-void func_80106874(void *car) {
+void boost_activate(void *car) {
     u8 *carData = (u8 *)car;
     f32 *nitroReserve;
     f32 *nitroActive;
@@ -40566,7 +40566,7 @@ void func_80106874(void *car) {
  *
  * Updates active boost each frame - applies acceleration and decays
  */
-void func_80106B3C(void *car) {
+void boost_update(void *car) {
     u8 *carData = (u8 *)car;
     f32 *nitroActive;
     f32 *velocity;
@@ -40607,7 +40607,7 @@ void func_80106B3C(void *car) {
  *
  * Handles car collecting a nitro pickup on track
  */
-void func_80106D94(void *car, void *pickup) {
+void nitro_pickup_collect(void *car, void *pickup) {
     u8 *carData = (u8 *)car;
     u8 *pickupData = (u8 *)pickup;
     f32 *nitroReserve;
@@ -40650,7 +40650,7 @@ void func_80106D94(void *car, void *pickup) {
  *
  * Records checkpoint passage for lap validation
  */
-void func_801073D8(void *car, s32 cpId) {
+void checkpoint_hit(void *car, s32 cpId) {
     u8 *carData = (u8 *)car;
     s32 *lastCp;
     s32 *cpMask;
@@ -40683,7 +40683,7 @@ void func_801073D8(void *car, s32 cpId) {
  *
  * Handles lap completion - validates checkpoints and updates lap count
  */
-void func_8010761C(void *car) {
+void lap_complete(void *car) {
     u8 *carData = (u8 *)car;
     s32 *cpMask;
     s32 *lapCount;
@@ -40722,7 +40722,7 @@ void func_8010761C(void *car) {
 
     /* Check for race finish */
     if (*lapCount >= D_80159A04) {
-        func_80107AF4(car);  /* Race finish */
+        race_finish(car);  /* Race finish */
     } else {
         /* Play lap complete sound */
         sound_play_menu(16);
@@ -40736,7 +40736,7 @@ void func_8010761C(void *car) {
  *
  * Handles car finishing the race - records time and position
  */
-void func_80107AF4(void *car) {
+void race_finish(void *car) {
     extern s32 D_80159A34[];   /* Finish positions [8] */
     u8 *carData = (u8 *)car;
     s32 carIdx;
@@ -40791,7 +40791,7 @@ void func_80107AF4(void *car) {
  *
  * Updates race positions for all cars based on progress
  */
-void func_80107EDC(void) {
+void position_update(void) {
     s32 i, j;
     s32 numCars;
     f32 progress[8];
@@ -40836,7 +40836,7 @@ void func_80107EDC(void) {
  *
  * Displays current race standings on HUD
  */
-void func_80108154(void) {
+void standings_display(void) {
     s32 i;
     s32 numCars;
     s32 y;
@@ -40875,7 +40875,7 @@ void func_80108154(void) {
  *
  * Respawns car at last valid checkpoint
  */
-void func_801084D4(void *car) {
+void car_respawn(void *car) {
     u8 *carData = (u8 *)car;
     s32 lastCp;
     f32 *carPos;
@@ -40929,7 +40929,7 @@ void func_801084D4(void *car) {
  *
  * Checks if car should be destroyed (out of bounds, excessive damage)
  */
-s32 func_80108AB0(void *car) {
+s32 death_check(void *car) {
     u8 *carData = (u8 *)car;
     f32 *carPos;
     s32 damage;
@@ -40952,7 +40952,7 @@ s32 func_80108AB0(void *car) {
     }
 
     /* Check out of bounds */
-    if (func_8010A53C(car)) {
+    if (out_of_bounds_check(car)) {
         return 1;
     }
 
@@ -40966,7 +40966,7 @@ s32 func_80108AB0(void *car) {
  *
  * Triggers car destruction sequence
  */
-void func_80108DA8(void *car) {
+void car_wreck(void *car) {
     u8 *carData = (u8 *)car;
     f32 *carPos;
 
@@ -40980,7 +40980,7 @@ void func_80108DA8(void *car) {
     *(s32 *)(carData + 0x1D0) = 3;  /* Wrecked */
 
     /* Spawn explosion effect */
-    func_800EF8F4(carPos, 10.0f);
+    explosion_effect(carPos, 10.0f);
 
     /* Play crash sound */
     sound_play_menu(32);
@@ -40996,7 +40996,7 @@ void func_80108DA8(void *car) {
  *
  * Counts down recovery timer and respawns when ready
  */
-void func_80108F40(void *car) {
+void recovery_timer_update(void *car) {
     u8 *carData = (u8 *)car;
     s32 *timer;
     s32 *state;
@@ -41020,7 +41020,7 @@ void func_80108F40(void *car) {
 
     /* Respawn when timer expires */
     if (*timer <= 0) {
-        func_801084D4(car);
+        car_respawn(car);
     }
 }
 
@@ -41031,7 +41031,7 @@ void func_80108F40(void *car) {
  *
  * Manual reset - player requests respawn
  */
-void func_80109468(void *car) {
+void car_reset_manual(void *car) {
     u8 *carData = (u8 *)car;
     s32 *state;
 
@@ -41047,7 +41047,7 @@ void func_80109468(void *car) {
     }
 
     /* Respawn at last checkpoint */
-    func_801084D4(car);
+    car_respawn(car);
 }
 
 /*
@@ -41057,7 +41057,7 @@ void func_80109468(void *car) {
  *
  * Detects if car is using a valid shortcut path
  */
-s32 func_80109A60(void *car) {
+s32 shortcut_detect(void *car) {
     u8 *carData = (u8 *)car;
     f32 *carPos;
     s32 zone;
@@ -41069,7 +41069,7 @@ s32 func_80109A60(void *car) {
     carPos = (f32 *)(carData + 0x24);
 
     /* Get current track zone */
-    zone = func_8010A7AC(carPos);
+    zone = track_zone_get(carPos);
 
     /* Check if zone is a shortcut zone (types 10-19) */
     if (zone >= 10 && zone < 20) {
@@ -41088,7 +41088,7 @@ s32 func_80109A60(void *car) {
  *
  * Detects if car is driving in wrong direction
  */
-s32 func_80109F5C(void *car) {
+s32 wrong_way_detect(void *car) {
     u8 *carData = (u8 *)car;
     f32 *carPos;
     f32 *carDir;
@@ -41146,7 +41146,7 @@ s32 func_80109F5C(void *car) {
  *
  * Checks if car is outside track boundaries
  */
-s32 func_8010A53C(void *car) {
+s32 out_of_bounds_check(void *car) {
     u8 *carData = (u8 *)car;
     f32 *carPos;
 
@@ -41176,7 +41176,7 @@ s32 func_8010A53C(void *car) {
  *
  * Returns the track zone type at given position
  */
-s32 func_8010A7AC(f32 *pos) {
+s32 track_zone_get(f32 *pos) {
     extern s32 D_80159D08;     /* Grid height */
     extern f32 D_80159D0C;     /* Grid cell size */
     extern f32 D_80159D14;     /* Grid origin Z */
@@ -41208,14 +41208,14 @@ s32 func_8010A7AC(f32 *pos) {
  * Returns surface type at position (affects grip/handling)
  * Types: 0=asphalt, 1=concrete, 2=dirt, 3=grass, 4=sand, 5=ice, 6=water
  */
-s32 func_8010A8D0(f32 *pos) {
+s32 surface_type_get(f32 *pos) {
     s32 zone;
 
     if (pos == NULL) {
         return 0;
     }
 
-    zone = func_8010A7AC(pos);
+    zone = track_zone_get(pos);
 
     /* Map zone to surface type */
     switch (zone) {
@@ -41246,7 +41246,7 @@ s32 func_8010A8D0(f32 *pos) {
  *
  * Calculates tire grip based on surface type
  */
-f32 func_8010AEAC(void *tire, s32 surface) {
+f32 grip_calculate(void *tire, s32 surface) {
     static const f32 gripTable[7] = {
         1.0f,   /* Asphalt - full grip */
         0.95f,  /* Concrete - slightly less */
@@ -41271,7 +41271,7 @@ f32 func_8010AEAC(void *tire, s32 surface) {
  *
  * Calculates aerodynamic drag based on speed
  */
-f32 func_8010B5D0(void *car) {
+f32 drag_calculate(void *car) {
     u8 *carData = (u8 *)car;
     f32 *velocity;
     f32 speed;
@@ -41305,7 +41305,7 @@ f32 func_8010B5D0(void *car) {
  *
  * Calculates aerodynamic downforce based on speed
  */
-f32 func_8010B7FC(void *car) {
+f32 downforce_calculate(void *car) {
     u8 *carData = (u8 *)car;
     f32 *velocity;
     f32 speed;
@@ -41336,7 +41336,7 @@ f32 func_8010B7FC(void *car) {
  *
  * Calculates engine torque based on RPM
  */
-f32 func_8010B9C8(void *car, s32 rpm) {
+f32 engine_torque_get(void *car, s32 rpm) {
     u8 *carData = (u8 *)car;
     f32 maxTorque;
     f32 peakRpm;
@@ -41375,7 +41375,7 @@ f32 func_8010B9C8(void *car, s32 rpm) {
  *
  * Changes gear with shift timing
  */
-void func_8010BC84(void *car, s32 gear) {
+void transmission_shift(void *car, s32 gear) {
     u8 *carData = (u8 *)car;
     s32 *currentGear;
     s32 *shiftTimer;
@@ -41412,7 +41412,7 @@ void func_8010BC84(void *car, s32 gear) {
  *
  * Applies braking force to slow the car
  */
-void func_8010C02C(void *car, f32 force) {
+void brake_apply(void *car, f32 force) {
     u8 *carData = (u8 *)car;
     f32 *velocity;
     f32 speed;
@@ -41454,7 +41454,7 @@ void func_8010C02C(void *car, f32 force) {
  *
  * Applies handbrake - locks rear wheels for drifting
  */
-void func_8010C450(void *car) {
+void handbrake_apply(void *car) {
     u8 *carData = (u8 *)car;
 
     if (carData == NULL) {
@@ -41475,7 +41475,7 @@ void func_8010C450(void *car) {
  *
  * Applies throttle input to accelerate car
  */
-void func_8010C590(void *car, f32 amount) {
+void throttle_apply(void *car, f32 amount) {
     u8 *carData = (u8 *)car;
 
     if (carData == NULL) {
@@ -41497,7 +41497,7 @@ void func_8010C590(void *car, f32 amount) {
  *
  * Applies steering angle to front wheels
  */
-void func_8010C6D0(void *car, f32 angle) {
+void steering_apply(void *car, f32 angle) {
     u8 *carData = (u8 *)car;
 
     if (carData == NULL) {
@@ -41519,7 +41519,7 @@ void func_8010C6D0(void *car, f32 angle) {
  *
  * Processes controller input and applies to car controls
  */
-void func_8010C7F4(void *car, void *input) {
+void car_input_process(void *car, void *input) {
     u8 *carData = (u8 *)car;
     u8 *inputData = (u8 *)input;
     f32 stickX, stickY;
@@ -41537,35 +41537,35 @@ void func_8010C7F4(void *car, void *input) {
     buttons = *(s32 *)(inputData + 0x08);
 
     /* Apply steering */
-    func_8010C6D0(car, stickX);
+    steering_apply(car, stickX);
 
     /* Apply throttle (forward on stick or A button) */
     if (stickY > 0.0f || (buttons & 0x01)) {
         f32 throttle = (stickY > 0.0f) ? stickY : 1.0f;
-        func_8010C590(car, throttle);
+        throttle_apply(car, throttle);
     } else {
-        func_8010C590(car, 0.0f);
+        throttle_apply(car, 0.0f);
     }
 
     /* Apply brake (back on stick or B button) */
     if (stickY < 0.0f || (buttons & 0x02)) {
         f32 brake = (stickY < 0.0f) ? -stickY : 1.0f;
-        func_8010C02C(car, brake);
+        brake_apply(car, brake);
     }
 
     /* Handbrake (Z or R button) */
     if (buttons & 0x10) {
-        func_8010C450(car);
+        handbrake_apply(car);
     }
 
     /* Boost (C-up or L button) */
     if (buttons & 0x20) {
-        func_80106874(car);
+        boost_activate(car);
     }
 
     /* Reset (Start button) */
     if (buttons & 0x1000) {
-        func_80109468(car);
+        car_reset_manual(car);
     }
 }
 
@@ -41586,7 +41586,7 @@ void func_8010C7F4(void *car, void *input) {
  *   0x11C: brake output (f32)
  *   0x120: AI flags (u32)
  */
-void func_8010C974(void *car) {
+void ai_input_generate(void *car) {
     f32 *carPos, *carVel, *carDir;
     f32 *targetPos, *steer, *throttle, *brake;
     f32 dx, dz, dist, targetDist;
@@ -41623,7 +41623,7 @@ void func_8010C974(void *car) {
     /* Check if reached waypoint */
     if (dist < 5.0f) {
         /* Advance to next waypoint */
-        func_8010D3C0(car);
+        ai_waypoint_next(car);
         return;
     }
 
@@ -41663,10 +41663,10 @@ void func_8010C974(void *car) {
     }
 
     /* Apply obstacle avoidance */
-    func_8010D85C(car);
+    ai_obstacle_avoid(car);
 
     /* Apply rubber banding */
-    func_8010DCFC(car);
+    ai_rubber_band(car);
 }
 
 /*
@@ -41677,7 +41677,7 @@ void func_8010C974(void *car) {
  * Updates AI target waypoint based on path data
  * Path data structure at D_80143000
  */
-void func_8010D3C0(void *car) {
+void ai_waypoint_next(void *car) {
     extern u8 D_80143000[];  /* Path data array */
     extern s16 D_80143200;   /* Number of waypoints per path */
     s32 *waypointIdx, *pathId;
@@ -41721,7 +41721,7 @@ void func_8010D3C0(void *car) {
  *
  * Main path following update - called from AI input generate
  */
-void func_8010D680(void *car) {
+void ai_path_follow(void *car) {
     f32 *carPos, *targetPos;
     f32 dx, dy, dz, distSq;
 
@@ -41740,7 +41740,7 @@ void func_8010D680(void *car) {
 
     /* If close enough to waypoint, get next one */
     if (distSq < 25.0f) {  /* 5^2 = 25 */
-        func_8010D3C0(car);
+        ai_waypoint_next(car);
     }
 }
 
@@ -41751,7 +41751,7 @@ void func_8010D680(void *car) {
  *
  * Adjusts steering to avoid nearby obstacles and other cars
  */
-void func_8010D85C(void *car) {
+void ai_obstacle_avoid(void *car) {
     f32 *carPos, *steer;
     f32 *otherPos;
     f32 dx, dz, dist;
@@ -41802,7 +41802,7 @@ void func_8010D85C(void *car) {
  *
  * Attempts to overtake car ahead when appropriate
  */
-void func_8010D9CC(void *car) {
+void ai_overtake(void *car) {
     f32 *carPos, *carVel, *steer, *throttle;
     f32 *targetPos;
     u32 *aiFlags;
@@ -41833,7 +41833,7 @@ void func_8010D9CC(void *car) {
  *
  * Defensive driving - blocks overtaking attempts
  */
-void func_8010DBB8(void *car) {
+void ai_defend(void *car) {
     u32 *aiFlags;
     f32 *steer;
 
@@ -41858,7 +41858,7 @@ void func_8010DBB8(void *car) {
  * Based on arcade set_catchup() - adjusts AI speed based on position
  * to keep races competitive (slower when ahead, faster when behind)
  */
-void func_8010DCFC(void *car) {
+void ai_rubber_band(void *car) {
     extern f32 D_80143400;  /* Lead car distance */
     extern f32 D_80143404;  /* Player distance */
     f32 *throttle, *maxSpeed;
@@ -41901,7 +41901,7 @@ void func_8010DCFC(void *car) {
  * Adjusts AI parameters based on difficulty setting
  * Difficulty: 0=Easy, 1=Medium, 2=Hard, 3=Expert
  */
-void func_8010DF90(void *car, s32 difficulty) {
+void ai_difficulty_set(void *car, s32 difficulty) {
     f32 *reactionTime, *accuracy, *aggression, *maxSpeed;
 
     if (car == NULL) {
@@ -41955,7 +41955,7 @@ void func_8010DF90(void *car, s32 difficulty) {
  * Selects AI behavior based on race situation
  * Behaviors: 0=Normal, 1=Overtake, 2=Defend, 3=Recover, 4=Catchup
  */
-void func_8010E0FC(void *car) {
+void ai_behavior_select(void *car) {
     u32 *aiFlags;
     s32 *racePosition, *behavior;
     f32 *carSpeed;
@@ -42004,7 +42004,7 @@ void func_8010E0FC(void *car) {
  *
  * Sets AI aggression level (affects overtaking, blocking, etc.)
  */
-void func_8010E4EC(void *car, s32 level) {
+void ai_aggression_set(void *car, s32 level) {
     f32 *aggression;
 
     if (car == NULL) {
@@ -42028,7 +42028,7 @@ void func_8010E4EC(void *car, s32 level) {
  *
  * Sets maximum speed for AI car
  */
-void func_8010E69C(void *car, f32 limit) {
+void ai_speed_limit_set(void *car, f32 limit) {
     f32 *maxSpeed;
 
     if (car == NULL) {
@@ -42047,7 +42047,7 @@ void func_8010E69C(void *car, f32 limit) {
  * Injects random errors to make AI more human-like
  * Based on arcade drone "personality" system
  */
-void func_8010E72C(void *car) {
+void ai_error_inject(void *car) {
     f32 *steer, *throttle;
     f32 *accuracy;
     f32 errorMag;
@@ -42088,7 +42088,7 @@ void func_8010E72C(void *car) {
  *
  * More aggressive catch-up logic for AI far behind
  */
-void func_8010E8B4(void *car) {
+void ai_catch_up(void *car) {
     f32 *carPos;
     f32 *throttle, *maxSpeed;
     f32 distBehind;
@@ -42135,7 +42135,7 @@ void func_8010E8B4(void *car) {
  *   3 = Shield
  *   4 = Speed boost
  */
-void func_8010EA14(void) {
+void battle_mode_update(void) {
     extern s32 D_8014B000;    /* Battle mode state */
     extern s32 D_8014B004;    /* Battle timer (frames) */
     extern s32 D_8014B008;    /* Battle mode type */
@@ -42208,7 +42208,7 @@ void func_8010EA14(void) {
 
             /* Respawn player (if lives remaining or not Last Man Standing) */
             if (D_8014B008 != 2 || D_8014B01C[i] > 0) {
-                func_8010F0D0(car, i);  /* Respawn at battle arena spawn point */
+                battle_respawn(car, i);  /* Respawn at battle arena spawn point */
                 *health = 100;
                 *weapon = 0;  /* Reset weapon */
                 *ammo = 0;
@@ -42216,19 +42216,19 @@ void func_8010EA14(void) {
         }
 
         /* Check weapon pickup collision */
-        func_8010F158(car, i);
+        battle_pickup_check(car, i);
 
         /* Fire weapon if button pressed */
         if (func_80090EBC(i) & 0x8000) {  /* Z button / fire */
             if (*ammo > 0) {
-                func_8010F1A0(car, *weapon, i);  /* Fire weapon */
+                battle_fire_weapon(car, *weapon, i);  /* Fire weapon */
                 (*ammo)--;
             }
         }
     }
 
     /* Check win condition */
-    func_8010F1E0();
+    battle_win_check();
 }
 
 /*
@@ -42252,7 +42252,7 @@ void func_8010EA14(void) {
  *   - Landing bonus for clean landings
  *   - Crash penalty resets combo
  */
-void func_8010F218(void) {
+void stunt_mode_update(void) {
     extern s32 D_8014C000;    /* Stunt mode state */
     extern s32 D_8014C004;    /* Session timer (frames) */
     extern s32 D_8014C008;    /* Session time limit */
@@ -42280,7 +42280,7 @@ void func_8010F218(void) {
     /* Check time limit */
     if (D_8014C004 >= D_8014C008) {
         /* Session over - determine winner */
-        func_8010F5A0();  /* End stunt session */
+        stunt_session_end();  /* End stunt session */
         return;
     }
 
@@ -42301,11 +42301,11 @@ void func_8010F218(void) {
             /* Detect tricks while airborne */
             flipTrick = func_80102988(car);   /* Front/back flip */
             rollTrick = func_80102F30(car);   /* Barrel roll */
-            spinTrick = func_80103D28(car);   /* Spin */
+            spinTrick = spin_detect(car);   /* Spin */
 
             /* Add new tricks to combo */
             if (flipTrick > 0) {
-                func_80104B14(car);  /* Add to combo */
+                combo_trick_add(car);  /* Add to combo */
             }
             if (rollTrick > 0) {
                 func_80104B14(car);
@@ -42383,7 +42383,7 @@ void func_8010F218(void) {
  *   - Clear display lists
  *   - Reset game state variables
  */
-void func_8010FBF4(void) {
+void game_state_reset(void) {
     extern s32 D_801461D0;    /* Main game state */
     s32 i;
 
@@ -42434,7 +42434,7 @@ void func_8010FBF4(void) {
  * func_8010F0D0 (280 bytes)
  * Battle respawn - Respawns player at arena spawn point
  */
-void func_8010F0D0(void *car, s32 playerIdx) {
+void battle_respawn(void *car, s32 playerIdx) {
     extern f32 D_8014B100[4][3];  /* Spawn positions */
     extern f32 D_8014B130[4];     /* Spawn rotations */
     f32 *pos;
@@ -42471,7 +42471,7 @@ void func_8010F0D0(void *car, s32 playerIdx) {
  * func_8010F158 (72 bytes)
  * Battle pickup check - Checks for weapon pickup collision
  */
-void func_8010F158(void *car, s32 playerIdx) {
+void battle_pickup_check(void *car, s32 playerIdx) {
     /* TODO: Check collision with weapon pickups */
     /* Simplified - stub for now */
 }
@@ -42481,7 +42481,7 @@ void func_8010F158(void *car, s32 playerIdx) {
  * func_8010F1A0 (64 bytes)
  * Battle fire weapon - Fires player's equipped weapon
  */
-void func_8010F1A0(void *car, s32 weaponType, s32 playerIdx) {
+void battle_fire_weapon(void *car, s32 weaponType, s32 playerIdx) {
     f32 *pos, *forward;
 
     if (car == NULL) {
@@ -42515,7 +42515,7 @@ void func_8010F1A0(void *car, s32 weaponType, s32 playerIdx) {
  * func_8010F1E0 (56 bytes)
  * Battle win check - Checks if any player has won
  */
-void func_8010F1E0(void) {
+void battle_win_check(void) {
     extern s32 D_8014B04C;    /* Score limit */
     s32 i;
     s32 alivePlayers = 0;
@@ -42554,7 +42554,7 @@ void func_8010F1E0(void) {
  * func_8010F5A0 (164 bytes)
  * Stunt end session - Ends stunt mode and shows results
  */
-void func_8010F5A0(void) {
+void stunt_session_end(void) {
     s32 i;
     s32 highScore = 0;
     s32 winner = 0;
