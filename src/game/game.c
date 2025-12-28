@@ -15950,7 +15950,7 @@ void menu_car_select(void *menu) {
     if (*selectedCar >= carCount) *selectedCar = 0;
 
     /* Draw 3D car preview (rotating) */
-    func_800E7B44((f32[]){160.0f, 100.0f, 0.0f}, *selectedCar);
+    billboard_render((f32[]){160.0f, 100.0f, 0.0f}, *selectedCar);
 
     /* Draw car name */
     switch (*selectedCar) {
@@ -16515,7 +16515,7 @@ void garage_screen(void *garage) {
     /* Draw 3D car model (rotating) */
     {
         f32 carPos[3] = {160.0f, 100.0f, 0.0f};
-        func_800E7B44(carPos, *selectedCar);
+        billboard_render(carPos, *selectedCar);
     }
 
     /* Draw car name */
@@ -17744,7 +17744,7 @@ void particles_render(void *particles) {
         }
 
         /* Render billboard at particle position */
-        func_800E7B44(pos, spriteId);
+        billboard_render(pos, spriteId);
     }
 }
 
@@ -18126,13 +18126,13 @@ void shadow_project(void *object, f32 *lightDir) {
 
 /*
 
- * func_800E7134 (2576 bytes)
+ * crowd_render (2576 bytes)
  * Crowd rendering
  *
  * Renders animated crowd sprites along track sides.
  * Uses billboarded sprites with animation.
  */
-void func_800E7134(void *crowd) {
+void crowd_render(void *crowd) {
     f32 *positions;
     s32 *animFrames;
     s32 numSpectators, i;
@@ -18177,19 +18177,19 @@ void func_800E7134(void *crowd) {
         }
 
         /* Render billboard */
-        func_800E7B44(pos, spriteId);
+        billboard_render(pos, spriteId);
     }
 }
 
 /*
 
- * func_800E7B44 (472 bytes)
+ * billboard_render (472 bytes)
  * Billboard sprite
  *
  * Renders a camera-facing sprite at 3D position.
  * Used for particles, crowd, trees, etc.
  */
-void func_800E7B44(f32 *pos, s32 spriteId) {
+void billboard_render(f32 *pos, s32 spriteId) {
     f32 *cameraPos, *cameraDir;
     f32 dx, dy, dz, dist;
     f32 screenX, screenY;
@@ -18241,13 +18241,13 @@ void func_800E7B44(f32 *pos, s32 spriteId) {
 
 /*
 
- * func_800E7D14 (684 bytes)
+ * billboard_animated (684 bytes)
  * Animated billboard
  *
  * Renders an animated billboard sprite.
  * Animation frame selected based on time parameter.
  */
-void func_800E7D14(f32 *pos, s32 animId, f32 time) {
+void billboard_animated(f32 *pos, s32 animId, f32 time) {
     s32 *animData;
     s32 numFrames, frameRate;
     s32 baseSprite, currentFrame;
@@ -18273,18 +18273,18 @@ void func_800E7D14(f32 *pos, s32 animId, f32 time) {
     spriteId = baseSprite + currentFrame;
 
     /* Render using regular billboard function */
-    func_800E7B44(pos, spriteId);
+    billboard_render(pos, spriteId);
 }
 
 /*
 
- * func_800E7FC8 (3312 bytes)
+ * track_decorations_render (3312 bytes)
  * Track decoration rendering
  *
  * Renders track-side decorations (signs, trees, barriers).
  * Uses LOD and distance culling for performance.
  */
-void func_800E7FC8(void *track) {
+void track_decorations_render(void *track) {
     s32 numDecorations, i;
     f32 *positions, *cameraPos;
     s32 *types, *lodLevels;
@@ -18294,7 +18294,7 @@ void func_800E7FC8(void *track) {
         return;
     }
 
-    numDecorations = func_800E8CB8(track);
+    numDecorations = track_get_decoration_count(track);
     if (numDecorations <= 0 || numDecorations > 256) {
         return;
     }
@@ -18350,28 +18350,28 @@ void func_800E7FC8(void *track) {
         }
 
         /* Render decoration */
-        func_800E7B44(pos, spriteId);
+        billboard_render(pos, spriteId);
     }
 }
 
 /*
 
- * func_800E8CB8 (152 bytes)
+ * track_get_decoration_count (152 bytes)
  * Get decoration count
  */
-s32 func_800E8CB8(void *track) {
+s32 track_get_decoration_count(void *track) {
     return *(s32 *)((u8 *)track + 0x24);
 }
 
 /*
 
- * func_800E8D50 (448 bytes)
+ * lod_distance_check (448 bytes)
  * LOD distance check
  *
  * Checks if object is within render distance and returns LOD level.
  * Returns: -1 if too far, 0-3 for LOD level
  */
-s32 func_800E8D50(f32 *pos, f32 *camera, f32 maxDist) {
+s32 lod_distance_check(f32 *pos, f32 *camera, f32 maxDist) {
     f32 dx, dy, dz, dist;
     f32 lodDist0, lodDist1, lodDist2;
 
@@ -18407,10 +18407,10 @@ s32 func_800E8D50(f32 *pos, f32 *camera, f32 maxDist) {
 
 /*
 
- * func_800E8F10 (952 bytes)
+ * ambient_light_setup (952 bytes)
  * Ambient light setup - sets global ambient illumination
  */
-void func_800E8F10(f32 *color, f32 intensity) {
+void ambient_light_setup(f32 *color, f32 intensity) {
     f32 *ambientLight;
     f32 *lightState;
     f32 clampedIntensity;
@@ -18448,10 +18448,10 @@ void func_800E8F10(f32 *color, f32 intensity) {
 
 /*
 
- * func_800E92C8 (788 bytes)
+ * directional_light_setup (788 bytes)
  * Directional light - sun/moon lighting
  */
-void func_800E92C8(f32 *direction, f32 *color, f32 intensity) {
+void directional_light_setup(f32 *direction, f32 *color, f32 intensity) {
     f32 *dirLight;
     f32 *lightState;
     f32 len, invLen;
@@ -18512,10 +18512,10 @@ void func_800E92C8(f32 *direction, f32 *color, f32 intensity) {
 
 /*
 
- * func_800E95DC (1684 bytes)
+ * point_light_add (1684 bytes)
  * Point light - local light source (street lamps, etc.)
  */
-void func_800E95DC(f32 *pos, f32 *color, f32 radius) {
+void point_light_add(f32 *pos, f32 *color, f32 radius) {
     f32 *pointLights;
     s32 *numPointLights;
     s32 lightIndex;
@@ -18568,10 +18568,10 @@ void func_800E95DC(f32 *pos, f32 *color, f32 radius) {
 
 /*
 
- * func_800E9C70 (444 bytes)
+ * light_fade_start (444 bytes)
  * Light fade - animate light intensity over time
  */
-void func_800E9C70(void *light, f32 targetIntensity, f32 duration) {
+void light_fade_start(void *light, f32 targetIntensity, f32 duration) {
     f32 *currentIntensity;
     f32 *fadeTarget;
     f32 *fadeRate;
@@ -18611,10 +18611,10 @@ void func_800E9C70(void *light, f32 targetIntensity, f32 duration) {
 
 /*
 
- * func_800E9E2C (476 bytes)
+ * light_flicker_setup (476 bytes)
  * Light flicker - simulate flickering effect
  */
-void func_800E9E2C(void *light, f32 frequency, f32 amplitude) {
+void light_flicker_setup(void *light, f32 frequency, f32 amplitude) {
     f32 *baseIntensity;
     f32 *flickerPhase;
     f32 *flickerFreq;
@@ -18653,10 +18653,10 @@ void func_800E9E2C(void *light, f32 frequency, f32 amplitude) {
 
 /*
 
- * func_800EA108 (468 bytes)
+ * headlight_update (468 bytes)
  * Headlight cone - car headlight projection
  */
-void func_800EA108(void *car, f32 *direction) {
+void headlight_update(void *car, f32 *direction) {
     f32 *headlightData;
     f32 *carPos;
     f32 *carForward;
@@ -18711,10 +18711,10 @@ void func_800EA108(void *car, f32 *direction) {
 
 /*
 
- * func_800EA2DC (276 bytes)
+ * light_enable (276 bytes)
  * Light enable/disable - toggle light on/off
  */
-void func_800EA2DC(void *light, s32 enable) {
+void light_enable(void *light, s32 enable) {
     s32 *active;
     f32 *savedIntensity;
     f32 *currentIntensity;
@@ -18749,10 +18749,10 @@ void func_800EA2DC(void *light, s32 enable) {
 
 /*
 
- * func_800EA3F4 (2548 bytes)
+ * lighting_update_all (2548 bytes)
  * Full lighting update - process all lights each frame
  */
-void func_800EA3F4(void *scene) {
+void lighting_update_all(void *scene) {
     f32 *ambientLight;
     f32 *dirLight;
     f32 *pointLights;
@@ -18845,13 +18845,13 @@ void func_800EA3F4(void *scene) {
 
 /*
 
- * func_800F0050 (1644 bytes)
+ * net_message_send (1644 bytes)
  * Network message send - queue message for transmission
  *
  * N64 Rush 2049 uses the Transfer Pak for link play.
  * Messages are serialized car state + inputs.
  */
-void func_800F0050(void *msg, s32 size) {
+void net_message_send(void *msg, s32 size) {
     u8 *sendBuffer;
     s32 *sendHead, *sendTail, *sendSize;
     s32 bufferSize;
@@ -18899,7 +18899,7 @@ void func_800F0050(void *msg, s32 size) {
  * func_800F0698 (1408 bytes)
  * Network message receive - dequeue received message
  */
-s32 func_800F0698(void *buffer, s32 maxSize) {
+s32 net_message_recv(void *buffer, s32 maxSize) {
     u8 *recvBuffer;
     s32 *recvHead, *recvTail, *recvSize;
     s32 bufferSize;
@@ -18964,7 +18964,7 @@ s32 func_800F0698(void *buffer, s32 maxSize) {
  * func_800F0C18 (2036 bytes)
  * Network state sync - synchronize game state across players
  */
-void func_800F0C18(void *state) {
+void net_state_sync(void *state) {
     u8 syncBuffer[256];
     s32 bufferPos;
     s32 *frameCounter;
@@ -19022,7 +19022,7 @@ void func_800F0C18(void *state) {
     }
 
     /* Send state sync message */
-    func_800F0050(syncBuffer, bufferPos);
+    net_message_send(syncBuffer, bufferPos);
 }
 
 /*
@@ -19030,7 +19030,7 @@ void func_800F0C18(void *state) {
  * func_800F13F0 (1364 bytes)
  * Multiplayer lobby - handle lobby state and player management
  */
-void func_800F13F0(void *lobby) {
+void net_lobby_update(void *lobby) {
     s32 *lobbyState;
     s32 *numPlayers;
     s32 *readyFlags;
@@ -19053,10 +19053,10 @@ void func_800F13F0(void *lobby) {
     switch (*lobbyState) {
         case 0:  /* Waiting for players */
             /* Check for incoming connection messages */
-            if (func_800F0698(msgBuffer, 32) > 0) {
+            if (net_message_recv(msgBuffer, 32) > 0) {
                 if (msgBuffer[0] == 0x10) {  /* Join request */
                     if (*numPlayers < 4) {
-                        func_800F1944(*numPlayers);
+                        net_player_join(*numPlayers);
                         (*numPlayers)++;
                     }
                 }
@@ -19081,7 +19081,7 @@ void func_800F13F0(void *lobby) {
         case 2:  /* Starting game */
             /* Host initiates game start */
             if (*hostPlayer == 0) {  /* We are host */
-                func_800F1F3C();
+                net_game_start();
             }
             *lobbyState = 3;
             break;
@@ -19097,7 +19097,7 @@ void func_800F13F0(void *lobby) {
  * func_800F1944 (852 bytes)
  * Player join handling - initialize new player
  */
-void func_800F1944(s32 playerSlot) {
+void net_player_join(s32 playerSlot) {
     void *playerCar;
     s32 *playerActive;
     s32 *playerController;
@@ -19133,7 +19133,7 @@ void func_800F1944(s32 playerSlot) {
     joinMsg[1] = playerSlot;
     joinMsg[2] = 0x00;
     joinMsg[3] = 0x00;
-    func_800F0050(joinMsg, 4);
+    net_message_send(joinMsg, 4);
 }
 
 /*
@@ -19141,7 +19141,7 @@ void func_800F1944(s32 playerSlot) {
  * func_800F1C98 (676 bytes)
  * Player leave handling - cleanup disconnected player
  */
-void func_800F1C98(s32 playerSlot) {
+void net_player_leave(s32 playerSlot) {
     void *playerCar;
     s32 *playerActive;
     s32 *lobbyReadyFlags;
@@ -19170,7 +19170,7 @@ void func_800F1C98(s32 playerSlot) {
     leaveMsg[1] = playerSlot;
     leaveMsg[2] = 0x00;
     leaveMsg[3] = 0x00;
-    func_800F0050(leaveMsg, 4);
+    net_message_send(leaveMsg, 4);
 }
 
 /*
@@ -19178,7 +19178,7 @@ void func_800F1C98(s32 playerSlot) {
  * func_800F1F3C (2208 bytes)
  * Network game start - synchronize game start across players
  */
-void func_800F1F3C(void) {
+void net_game_start(void) {
     u8 startMsg[32];
     s32 *gstate;
     s32 *selectedTrack;
@@ -19214,7 +19214,7 @@ void func_800F1F3C(void) {
     }
 
     /* Send start message to all players */
-    func_800F0050(startMsg, 12);
+    net_message_send(startMsg, 12);
 
     /* Transition to countdown state */
     *gstate = 8;  /* COUNTDOWN state */
@@ -19225,7 +19225,7 @@ void func_800F1F3C(void) {
  * func_800F27DC (1632 bytes)
  * Input sync - synchronize player inputs across network
  */
-void func_800F27DC(void *inputs) {
+void net_input_sync(void *inputs) {
     u8 inputMsg[64];
     s32 bufferPos;
     s32 *frameCounter;
@@ -19266,7 +19266,7 @@ void func_800F27DC(void *inputs) {
         inputMsg[bufferPos++] = inputBuffer[i * 2] & 0xFF;
     }
 
-    func_800F0050(inputMsg, bufferPos);
+    net_message_send(inputMsg, bufferPos);
 }
 
 /*
@@ -19274,7 +19274,7 @@ void func_800F27DC(void *inputs) {
  * func_800F2E3C (784 bytes)
  * Latency compensation - predict entity position based on latency
  */
-void func_800F2E3C(void *entity, s32 frames) {
+void net_latency_predict(void *entity, s32 frames) {
     f32 *pos, *vel, *accel;
     f32 dt;
     s32 i;
@@ -19314,7 +19314,7 @@ void func_800F2E3C(void *entity, s32 frames) {
  * func_800F314C (1084 bytes)
  * Network error handling - process network errors
  */
-void func_800F314C(s32 errorCode) {
+void net_error_handle(s32 errorCode) {
     s32 *netState;
     s32 *errorCount;
     s32 *lastError;
@@ -19351,7 +19351,7 @@ void func_800F314C(s32 errorCode) {
                 u8 resyncMsg[4];
                 resyncMsg[0] = 0x40;  /* Resync request */
                 resyncMsg[1] = 0x00;
-                func_800F0050(resyncMsg, 2);
+                net_message_send(resyncMsg, 2);
             }
             break;
 
@@ -19376,7 +19376,7 @@ void func_800F314C(s32 errorCode) {
  * func_800F3588 (836 bytes)
  * Session management - handle multiplayer session lifecycle
  */
-void func_800F3588(s32 cmd) {
+void net_session_manage(s32 cmd) {
     s32 *netState;
     s32 *sessionId;
     s32 *isHost;
@@ -19419,7 +19419,7 @@ void func_800F3588(s32 cmd) {
         case 3:  /* Leave session */
             if (*netState != 0) {
                 /* Notify other players we're leaving */
-                func_800F1C98(0);  /* Local player is always slot 0 for us */
+                net_player_leave(0);  /* Local player is always slot 0 for us */
             }
             *netState = 0;
             *numPlayers = 1;
@@ -19429,7 +19429,7 @@ void func_800F3588(s32 cmd) {
             if (*isHost) {
                 /* Notify all players */
                 for (i = 1; i < *numPlayers; i++) {
-                    func_800F1C98(i);
+                    net_player_leave(i);
                 }
             }
             *netState = 0;
@@ -19446,7 +19446,7 @@ void func_800F3588(s32 cmd) {
  * Records player car state for ghost playback.
  * Captures position, rotation, velocity each frame.
  */
-void func_800F38BC(void *ghost) {
+void ghost_record_frame(void *ghost) {
     s32 *frameCount, *maxFrames;
     s32 *recording;
     f32 *frameData;
@@ -19508,7 +19508,7 @@ void func_800F38BC(void *ghost) {
  * func_800F4034 (1536 bytes)
  * Ghost playback - interpolates ghost car position from recorded data
  */
-void func_800F4034(void *ghost) {
+void ghost_playback(void *ghost) {
     s32 *frameCount;
     s32 *playbackFrame;
     s32 *maxFrames;
@@ -19582,7 +19582,7 @@ void func_800F4034(void *ghost) {
  * func_800F4634 (908 bytes)
  * Ghost save - saves ghost data to controller pak
  */
-void func_800F4634(void *ghost, s32 slot) {
+void ghost_save(void *ghost, s32 slot) {
     s32 *maxFrames;
     s32 *trackId;
     s32 *lapTime;
@@ -19655,7 +19655,7 @@ void func_800F4634(void *ghost, s32 slot) {
  * func_800F49C0 (876 bytes)
  * Ghost load - loads ghost data from controller pak
  */
-s32 func_800F49C0(void *ghost, s32 slot) {
+s32 ghost_load(void *ghost, s32 slot) {
     s32 *maxFrames;
     s32 *trackId;
     s32 *lapTime;
@@ -19744,7 +19744,7 @@ s32 func_800F49C0(void *ghost, s32 slot) {
  * func_800F4D2C (752 bytes)
  * Ghost render - renders translucent ghost car
  */
-void func_800F4D2C(void *ghost) {
+void ghost_render(void *ghost) {
     s32 *playbackState;
     f32 *ghostPos;
     f32 *ghostRot;
@@ -19824,7 +19824,7 @@ void func_800F4D2C(void *ghost) {
  * func_800F5000 (3832 bytes)
  * Stunt system - detects and scores aerial stunts
  */
-void func_800F5000(void *car) {
+void stunt_update(void *car) {
     f32 *carPos;
     f32 *carVel;
     f32 *carRot;
@@ -19929,7 +19929,7 @@ void func_800F5000(void *car) {
         /* Apply new stunts */
         if (newStunt != 0) {
             *currentStunt |= newStunt;
-            func_800F6144(car, newStunt);  /* Add to combo */
+            stunt_combo_update(car, newStunt);  /* Add to combo */
         }
 
         /* Wings extended bonus */
@@ -19962,7 +19962,7 @@ void func_800F5000(void *car) {
 
         if (landingBonus > 0 && *currentStunt != 0) {
             /* Calculate stunt score */
-            stuntScore = func_800F5EF8(*currentStunt);
+            stuntScore = stunt_calc_score(*currentStunt);
             stuntScore *= landingBonus;
 
             /* Apply combo multiplier */
@@ -19995,7 +19995,7 @@ void func_800F5000(void *car) {
  * func_800F5EF8 (588 bytes)
  * Stunt score - calculates point value for stunt type
  */
-s32 func_800F5EF8(s32 stuntType) {
+s32 stunt_calc_score(s32 stuntType) {
     s32 score;
     s32 count;
 
@@ -20069,7 +20069,7 @@ s32 func_800F5EF8(s32 stuntType) {
  * func_800F6144 (1888 bytes)
  * Stunt combo - tracks and chains stunts together
  */
-void func_800F6144(void *car, s32 stuntType) {
+void stunt_combo_update(void *car, s32 stuntType) {
     s32 *comboCount;
     s32 *comboTimer;
     s32 *comboHistory;
@@ -20101,7 +20101,7 @@ void func_800F6144(void *car, s32 stuntType) {
     comboHistory[0] = stuntType;
 
     /* Calculate combo score */
-    stuntScore = func_800F5EF8(stuntType);
+    stuntScore = stunt_calc_score(stuntType);
 
     /* Apply combo multiplier */
     if (*comboCount >= 10) {
@@ -20169,7 +20169,7 @@ void func_800F6144(void *car, s32 stuntType) {
  * func_800F6894 (580 bytes)
  * Wing deploy - extends/retracts car wings for air control
  */
-void func_800F6894(void *car, s32 deploy) {
+void wing_deploy(void *car, s32 deploy) {
     s32 *wingState;
     s32 *wingTimer;
     f32 *liftForce;
@@ -20243,7 +20243,7 @@ void func_800F6894(void *car, s32 deploy) {
  * func_800F6AD8 (740 bytes)
  * Trick detection - identifies trick type from car state
  */
-s32 func_800F6AD8(void *car) {
+s32 trick_detect(void *car) {
     f32 *carRot;
     f32 *carAngVel;
     f32 *prevRot;
@@ -20330,7 +20330,7 @@ s32 func_800F6AD8(void *car) {
  * func_800F6DBC (1168 bytes)
  * Landing detection - evaluates landing quality after aerial
  */
-s32 func_800F6DBC(void *car) {
+s32 landing_detect(void *car) {
     f32 *carPos;
     f32 *carVel;
     f32 *carRot;
@@ -20444,7 +20444,7 @@ s32 func_800F6DBC(void *car) {
  * func_800F724C (252 bytes)
  * Stunt multiplier - calculates score multiplier based on conditions
  */
-f32 func_800F724C(void *car) {
+f32 stunt_multiplier(void *car) {
     s32 *comboCount;
     s32 *airTime;
     s32 *wingState;
@@ -20508,7 +20508,7 @@ f32 func_800F724C(void *car) {
  * func_800F9428 (1604 bytes)
  * Attract mode camera - automatic camera movement for attract mode
  */
-void func_800F9428(void *camera) {
+void attract_camera_update(void *camera) {
     f32 *camPos;
     f32 *camTarget;
     f32 *camAngle;
@@ -20612,7 +20612,7 @@ void func_800F9428(void *camera) {
  * func_800F9A74 (952 bytes)
  * Demo playback - plays back a recorded demo for attract mode
  */
-void func_800F9A74(void *demo) {
+void demo_playback(void *demo) {
     u8 *demoData;
     s32 demoFrame;
     s32 demoLength;
@@ -20668,7 +20668,7 @@ void func_800F9A74(void *demo) {
     D_8015A530 = demoFrame;
 
     /* Update camera to follow demo car */
-    func_800F9428(D_8015A540);
+    attract_camera_update(D_8015A540);
 
     /* Display "DEMO" text */
     {
@@ -20683,7 +20683,7 @@ void func_800F9A74(void *demo) {
  * func_800F9E2C (684 bytes)
  * Title screen - animated logo and press start
  */
-void func_800F9E2C(void) {
+void title_screen(void) {
     s32 input;
     s32 animFrame;
     s32 logoAlpha;
@@ -20752,7 +20752,7 @@ void func_800F9E2C(void) {
  * func_800FA0D8 (2356 bytes)
  * Credits display - scrolling credits screen
  */
-void func_800FA0D8(void) {
+void credits_display(void) {
     s32 scrollY;
     s32 i;
     s32 lineY;
@@ -20871,7 +20871,7 @@ void func_800FA0D8(void) {
  * func_800FA9E4 (1296 bytes)
  * Loading screen - displays progress bar during track loading
  */
-void func_800FA9E4(f32 progress) {
+void loading_screen(f32 progress) {
     s32 barWidth;
     s32 barX = 40;
     s32 barY = 140;
@@ -20969,7 +20969,7 @@ void func_800FA9E4(f32 progress) {
  * func_800FAEF4 (1808 bytes)
  * Pause menu - in-race pause screen with options
  */
-void func_800FAEF4(void *pause) {
+void pause_menu(void *pause) {
     s32 input;
     s32 selectedOption;
     s32 confirmState;
@@ -21004,7 +21004,7 @@ void func_800FAEF4(void *pause) {
         } else if (input == 1) {  /* A */
             if (selectedOption == 0) {
                 /* Resume - unpause */
-                func_800FB5F4(0);
+                pause_toggle(0);
 } else if (selectedOption == 1) {
                 /* Restart - confirm */
                 confirmState = 1;
@@ -21021,7 +21021,7 @@ void func_800FAEF4(void *pause) {
             sound_play_menu(10);
         } else if (input == 2 || ((s32)(long)D_80158100[0] & 0x1000)) {  /* B or START */
             /* Resume */
-            func_800FB5F4(0);
+            pause_toggle(0);
 }
     } else if (confirmState == 1) {
         /* Restart confirmation */
@@ -21029,7 +21029,7 @@ void func_800FAEF4(void *pause) {
             /* Restart race */
             D_80159F44 = 0;
             D_801146EC = 7;  /* PREPLAY */
-            func_800FB5F4(0);
+            pause_toggle(0);
             sound_play_menu(10);
         } else if (input == 2) {  /* B - no */
             confirmState = 0;
@@ -21040,7 +21040,7 @@ void func_800FAEF4(void *pause) {
         if (input == 1) {  /* A - yes */
             D_80159F44 = 0;
             D_801146EC = 1;  /* TRKSEL or menu */
-            func_800FB5F4(0);
+            pause_toggle(0);
             sound_play_menu(10);
         } else if (input == 2) {  /* B - no */
             confirmState = 0;
@@ -21090,7 +21090,7 @@ void func_800FAEF4(void *pause) {
  * func_800FB5F4 (820 bytes)
  * Pause state toggle - handles entering/exiting pause
  */
-void func_800FB5F4(s32 pause) {
+void pause_toggle(s32 pause) {
     s32 prevPause;
 
     prevPause = D_80159F50;
@@ -21133,7 +21133,7 @@ void func_800FB5F4(s32 pause) {
  * func_800FB928 (712 bytes)
  * Game timer update - updates race clock and lap times
  */
-void func_800FB928(void) {
+void game_timer_update(void) {
     s32 currentFrame;
     s32 elapsedTime;
     s32 raceTime;
