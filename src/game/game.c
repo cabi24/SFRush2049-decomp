@@ -36600,7 +36600,7 @@ void title_button_prompt(void) {
  * func_800DE4DC (908 bytes)
  * Title background - Renders animated title background
  */
-void func_800DE4DC(void) {
+void title_background(void) {
     s32 frame;
     s32 i;
     s32 scrollX, scrollY;
@@ -36639,13 +36639,13 @@ void func_800DE4DC(void) {
 extern s32 D_8015A7C0;      /* Menu selection */
 extern s32 D_8015A7C4;      /* Menu state */
 
-void func_800DE868(void) {
+void main_menu_screen(void) {
     s32 input;
 
     input = func_800CB748(D_80158100);
 
-    func_800DEBAC(input);
-    func_800DEC8C();
+    main_menu_input(input);
+    main_menu_render();
 }
 
 /*
@@ -36661,7 +36661,7 @@ static const char *mainMenuOptions[] = {
 };
 #define MAIN_MENU_COUNT 5
 
-void func_800DEBAC(s32 input) {
+void main_menu_input(s32 input) {
     s32 selection = D_8015A7C0;
 
     if (input == 4) {  /* Up */
@@ -36702,7 +36702,7 @@ void func_800DEBAC(s32 input) {
  * func_800DEC8C (732 bytes)
  * Main menu render - Draws the main menu
  */
-void func_800DEC8C(void) {
+void main_menu_render(void) {
     s32 selection = D_8015A7C0;
     s32 i;
 
@@ -36737,14 +36737,14 @@ void func_800DEC8C(void) {
 extern s32 D_8015A7D0;      /* Mode select selection */
 extern s32 D_8015A7D4;      /* Selected mode type */
 
-void func_800DEF68(void) {
+void mode_select_screen(void) {
     s32 input;
     s32 selection;
 
     selection = D_8015A7D0;
     input = func_800CB748(D_80158100);
 
-    func_800DFB08(input);
+    mode_select_input(input);
 
     /* Background */
     func_800C6E60(0, 0, 320, 240, 0xFF101030);
@@ -36780,7 +36780,7 @@ void func_800DEF68(void) {
  * func_800DFB08 (188 bytes)
  * Mode select input - Handles mode selection input
  */
-void func_800DFB08(s32 input) {
+void mode_select_input(s32 input) {
     s32 selection = D_8015A7D0;
     s32 maxOptions = (D_8015A7D4 == 2) ? 2 : 3;
 
