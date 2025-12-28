@@ -11743,27 +11743,28 @@ void car_render_full(void *car) {
         exhaustPos[0] = carPos[0] - carDir[0] * 4.5f;
         exhaustPos[1] = carPos[1] + 0.5f;
         exhaustPos[2] = carPos[2] - carDir[2] * 4.5f;
-        func_800A5744(car, exhaustPos);
+        exhaust_smoke_effect(car, exhaustPos);
     }
 
     /* Dust/dirt effect when on ground and moving */
     if (onGround && speed > 30.0f) {
         s32 roadType = *(s32 *)((u8 *)car + 0x118);
         if (roadType == 1 || roadType == 2) {  /* Dirt or gravel */
-            func_800A5588(car, 0);  /* Dust */
+            engine_particle_effect(car, 0);  /* Dust */
         }
     }
 
     /* Spark effect on collision */
     if (*(s32 *)((u8 *)car + 0x114) != 0) {  /* Crash flag */
-        func_800A5588(car, 1);  /* Sparks */
+        engine_particle_effect(car, 1);  /* Sparks */
     }
 }
 
 /*
 
- * func_800A6BE4 (3300 bytes)
+ * car_physics_integrate (3300 bytes)
  * Car physics integration - main physics loop
+ * func_800A6BE4
  *
  * Based on arcade drivsym.c sym() and regular() functions.
  * Handles:
@@ -11805,7 +11806,7 @@ void car_render_full(void *car) {
  *   0x134: drag coefficient
  *   0x138: roll resistance
  */
-void func_800A6BE4(void *car, f32 dt) {
+void car_physics_integrate(void *car, f32 dt) {
     f32 *pos, *vel, *accel;
     f32 *forward, *up, *right;
     f32 *angVel, *angAccel;
@@ -11965,8 +11966,9 @@ void func_800A6BE4(void *car, f32 dt) {
 
 /*
 
- * func_800A78C8 (580 bytes)
+ * car_steering_response (580 bytes)
  * Car steering response
+ * func_800A78C8
  *
  * Based on arcade controls() function in drivsym.c.
  * Converts steering wheel input to front tire steer angle.
@@ -11980,7 +11982,7 @@ void func_800A6BE4(void *car, f32 dt) {
  *   0x140: max steer angle
  *   0x144: steering speed factor
  */
-void func_800A78C8(void *car, f32 steerInput) {
+void car_steering_response(void *car, f32 steerInput) {
     f32 *vel, *forward;
     f32 *steerAngle;
     f32 steerRatio, maxSteer, speedFactor;
@@ -12047,8 +12049,9 @@ void func_800A78C8(void *car, f32 steerInput) {
 
 /*
 
- * func_800A7AE4 (440 bytes)
+ * throttle_brake_input (440 bytes)
  * Throttle/brake input processing
+ * func_800A7AE4
  *
  * Based on arcade drivetrain() and controls() functions.
  * Processes throttle and brake pedal inputs.
@@ -12066,7 +12069,7 @@ void func_800A78C8(void *car, f32 steerInput) {
  *   0x154: redline RPM
  *   0x158: gear ratios [6]
  */
-void func_800A7AE4(void *car, f32 throttle, f32 brake) {
+void throttle_brake_input(void *car, f32 throttle, f32 brake) {
     f32 *storedThrottle, *storedBrake;
     f32 *torqueOut;
     f32 *rpm;
@@ -12152,8 +12155,9 @@ void func_800A7AE4(void *car, f32 throttle, f32 brake) {
 
 /*
 
- * func_800A7C9C (236 bytes)
+ * car_gear_shift (236 bytes)
  * Car gear shift
+ * func_800A7C9C
  *
  * Based on arcade transmission code.
  * Handles manual and automatic gear changes.
@@ -12166,7 +12170,7 @@ void func_800A7AE4(void *car, f32 throttle, f32 brake) {
  *   0x174: shift timer
  *   0x158: gear ratios [6]
  */
-void func_800A7C9C(void *car, s32 newGear) {
+void car_gear_shift(void *car, s32 newGear) {
     s32 *currentGear;
     f32 *rpm;
     f32 *gearRatios;
@@ -12235,17 +12239,19 @@ void func_800A7C9C(void *car, s32 newGear) {
 
 /*
 
- * func_800A7D88 (104 bytes)
+ * car_get_gear (104 bytes)
  * Get current gear
+ * func_800A7D88
  */
-s32 func_800A7D88(void *car) {
+s32 car_get_gear(void *car) {
     return *(s32 *)((u8 *)car + 0x48);
 }
 
 /*
 
- * func_800A7E00 (1200 bytes - estimated)
+ * tire_force_calc (1200 bytes - estimated)
  * Tire force calculation (friction circle model)
+ * func_800A7E00
  *
  * Based on arcade tires.c frictioncircle() function.
  * Calculates lateral and longitudinal tire forces using
@@ -12265,7 +12271,7 @@ s32 func_800A7D88(void *car) {
  *   0x30: max friction coefficient
  *   0x34: drive torque input
  */
-void func_800A7E00(void *tire, f32 normalForce, f32 driveTorque) {
+void tire_force_calc(void *tire, f32 normalForce, f32 driveTorque) {
     f32 *angVel, radius;
     f32 *slipAngle, *slipRatio;
     f32 *patchVel;
