@@ -28160,7 +28160,7 @@ void ai_difficulty_adjust(void *ai, s32 difficulty) {
  * func_801079AC (1768 bytes)
  * Rubber banding
  */
-void func_801079AC(void *race) {
+void rubber_banding(void *race) {
     void *leaderCar;
     void *aiCars;
     s32 numAI;
@@ -28211,7 +28211,7 @@ void func_801079AC(void *race) {
  * func_80108098 (2356 bytes)
  * Dynamic difficulty
  */
-void func_80108098(void *player) {
+void dynamic_difficulty(void *player) {
     s32 *playerPosition;
     s32 *crashCount;
     s32 *raceCount;
@@ -28262,7 +28262,7 @@ void func_80108098(void *player) {
  * func_801089CC (1432 bytes)
  * Catch-up logic
  */
-void func_801089CC(void *ai, void *leader) {
+void ai_catch_up_logic(void *ai, void *leader) {
     /* Catch-up - stub */
 }
 
@@ -28271,7 +28271,7 @@ void func_801089CC(void *ai, void *leader) {
  * func_80108F6C (876 bytes)
  * Skill rating update
  */
-void func_80108F6C(void *player, s32 result) {
+void skill_rating_update(void *player, s32 result) {
     /* Skill rating - stub */
 }
 
@@ -28280,7 +28280,7 @@ void func_80108F6C(void *player, s32 result) {
  * func_801092D8 (1984 bytes)
  * Matchmaking
  */
-void func_801092D8(void *players) {
+void matchmaking(void *players) {
     /* Matchmaking - stub */
 }
 
@@ -28295,7 +28295,7 @@ void func_801092D8(void *players) {
  */
 extern s32 D_8015961C;      /* Host player index */
 
-s32 func_80109A98(void) {
+s32 session_host(void) {
     s32 i;
 
     /* Check if already in session */
@@ -28330,7 +28330,7 @@ s32 func_80109A98(void) {
  * @param sessionId Session to join (ignored for local)
  * @return Assigned player index or -1 on failure
  */
-s32 func_80109EFC(s32 sessionId) {
+s32 session_join(s32 sessionId) {
     s32 i;
     s32 slot = -1;
 
@@ -28372,7 +28372,7 @@ s32 func_80109EFC(s32 sessionId) {
  *
  * Called when a player disconnects or leaves.
  */
-void func_8010A4C0(void) {
+void session_leave(void) {
     s32 i;
 
     if (D_80159600 == 0) {
@@ -28400,7 +28400,7 @@ void func_8010A4C0(void) {
  * Copies relevant state between player structures.
  */
 
-void func_8010A83C(void) {
+void network_sync_full(void) {
     s32 numPlayers;
     s32 i, j;
     u8 *carBase;
@@ -28456,7 +28456,7 @@ void func_8010A83C(void) {
  *
  * @return Ping time in frames (0 for local)
  */
-s32 func_8010B284(void) {
+s32 ping_measurement(void) {
     /* Local multiplayer has no network latency */
     return 0;
 }
@@ -28469,7 +28469,7 @@ s32 func_8010B284(void) {
  *
  * @param playerId Player index that disconnected
  */
-void func_8010B874(s32 playerId) {
+void disconnection_handling(s32 playerId) {
     u8 *carBase;
 
     if (playerId < 0 || playerId >= 4) {
@@ -28493,7 +28493,7 @@ void func_8010B874(s32 playerId) {
 
     /* If host disconnected, end session */
     if (playerId == D_8015961C) {
-        func_8010A4C0();
+        session_leave();
     }
 }
 
@@ -28505,7 +28505,7 @@ void func_8010B874(s32 playerId) {
  *
  * @return Player index if reconnected, -1 otherwise
  */
-s32 func_8010BE7C(void) {
+s32 reconnection_attempt(void) {
     s32 i;
     s32 controllerState;
 
@@ -28520,7 +28520,7 @@ s32 func_8010BE7C(void) {
         controllerState = func_800CB748(i);
         if (controllerState != 0) {
             /* Controller active, rejoin */
-            return func_80109EFC(D_80159604);
+            return session_join(D_80159604);
         }
     }
 
@@ -28533,12 +28533,12 @@ s32 func_8010BE7C(void) {
  *
  * Frees resources, saves state, and resets for next game.
  */
-void func_8010C2FC(void) {
+void final_cleanup(void) {
     s32 i;
 
     /* End any active session */
     if (D_80159600 != 0) {
-        func_8010A4C0();
+        session_leave();
     }
 
     /* Stop all sounds */
