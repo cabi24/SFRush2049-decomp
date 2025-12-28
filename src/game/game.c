@@ -26617,7 +26617,7 @@ s32 timer_get_elapsed(void) {
  * func_80100DF0 (244 bytes)
  * Timer reset
  */
-void func_80100DF0(void) {
+void timer_reset(void) {
     s32 *timerStartFrame;
     s32 *timerElapsed;
     s32 *timerPaused;
@@ -26636,7 +26636,7 @@ void func_80100DF0(void) {
  * func_80100EE4 (776 bytes)
  * Countdown timer
  */
-void func_80100EE4(s32 seconds) {
+void countdown_start(s32 seconds) {
     s32 *timerCountdown;
     s32 *countdownActive;
     s32 frames;
@@ -26661,7 +26661,7 @@ void func_80100EE4(s32 seconds) {
  * func_801011DC (1340 bytes)
  * Lap timer split
  */
-void func_801011DC(void *player) {
+void lap_timer_split(void *player) {
     s32 playerIdx;
     s32 *lapCount;
     s32 *lapTimes;
@@ -26708,7 +26708,7 @@ void func_801011DC(void *player) {
  * func_80101700 (588 bytes)
  * Best time check
  */
-s32 func_80101700(s32 trackId, s32 time) {
+s32 best_time_check(s32 trackId, s32 time) {
     s32 *bestTimes;
     s32 i;
 
@@ -26735,7 +26735,7 @@ s32 func_80101700(s32 trackId, s32 time) {
  * func_8010194C (812 bytes)
  * Record new best
  */
-void func_8010194C(s32 trackId, s32 time, u8 *name) {
+void best_time_record(s32 trackId, s32 time, u8 *name) {
     s32 *bestTimes;
     u8 *bestNames;
     s32 position;
@@ -26787,7 +26787,7 @@ void func_8010194C(s32 trackId, s32 time, u8 *name) {
  * func_80101C78 (1472 bytes)
  * Leaderboard display
  */
-void func_80101C78(s32 trackId) {
+void leaderboard_display(s32 trackId) {
     s32 *bestTimes;
     u8 *bestNames;
     s32 i;
@@ -26854,7 +26854,7 @@ void func_80101C78(s32 trackId) {
  * func_80102250 (2084 bytes)
  * Race results screen - displays finish times and positions
  */
-void func_80102250(void) {
+void race_results_display(void) {
     s32 i;
     s32 input;
     s32 numPlayers;
@@ -26996,7 +26996,7 @@ void func_80102250(void) {
 extern s32 D_8015A458[4];   /* Player placing (1st-4th) */
 extern s32 D_8015A468[4];   /* Player finish times */
 
-void func_80102A74(void) {
+void award_ceremony(void) {
     s32 state;
     s32 frame;
     s32 input;
@@ -27067,7 +27067,7 @@ void func_80102A74(void) {
 
             /* Trophy animation for winner */
             if (frame > 30) {
-                func_8010306C(1);  /* Show 1st place trophy */
+                trophy_animate(1);  /* Show 1st place trophy */
             }
 
             /* Skip on input or timeout */
@@ -27107,7 +27107,7 @@ void func_80102A74(void) {
 extern f32 D_8015A47C;      /* Trophy Y offset (bobbing) */
 extern void *D_8012D000;    /* Trophy model data */
 
-void func_8010306C(s32 place) {
+void trophy_animate(s32 place) {
     u32 *dlPtr;
     f32 rotAngle;
     f32 yOffset;
@@ -27216,7 +27216,7 @@ void func_8010306C(s32 place) {
  * func_801033D8 (1616 bytes)
  * Continue prompt - ask player to continue or quit
  */
-s32 func_801033D8(void) {
+s32 continue_prompt(void) {
     s32 input;
     s32 countdown;
     s32 selection;
@@ -27291,7 +27291,7 @@ s32 func_801033D8(void) {
  * func_80103A08 (2328 bytes)
  * Game over screen - displays final stats and options
  */
-void func_80103A08(void) {
+void game_over_screen(void) {
     s32 input;
     s32 animFrame;
     s32 alpha;
@@ -27413,7 +27413,7 @@ void func_80103A08(void) {
  * func_80104320 (1844 bytes)
  * Name entry screen - enter initials for high score
  */
-void func_80104320(u8 *name) {
+void name_entry_screen(u8 *name) {
     s32 input;
     s32 cursorPos;
     s32 selectedChar;
@@ -27550,7 +27550,7 @@ void func_80104320(u8 *name) {
 extern s32 D_8015A4A0;  /* HS animation frame */
 extern s32 D_8015A4A4;  /* Sparkle positions */
 
-void func_80104A58(s32 position) {
+void highscore_animation(s32 position) {
     s32 frame;
     s32 i;
     s32 xPos, yPos;
@@ -27613,7 +27613,7 @@ void func_80104A58(s32 position) {
 extern s32 D_8015A4B0;      /* Stats display state */
 extern s32 D_8015A4B4;      /* Stats scroll position */
 
-void func_80104E84(void *stats) {
+void statistics_display(void *stats) {
     s32 *statData;
     s32 state;
     s32 scrollY;
@@ -27757,9 +27757,9 @@ void func_80104E84(void *stats) {
 #define ACH_VETERAN         9
 #define ACH_COUNT           10
 
-extern void func_80105EF4(s32 achievementId); /* Unlock notification */
+extern void achievement_unlock(s32 achievementId); /* Unlock notification */
 
-void func_80105858(void *player) {
+void achievements_check(void *player) {
     s32 *playerStats;
     u16 unlocked;
     s32 wins, stuntPts, crashes, races, trackFlags, carFlags;
@@ -27786,31 +27786,31 @@ void func_80105858(void *player) {
     /* First Win */
     if (!(unlocked & (1 << ACH_FIRST_WIN)) && wins >= 1) {
         unlocked |= (1 << ACH_FIRST_WIN);
-        func_80105EF4(ACH_FIRST_WIN);
+        achievement_unlock(ACH_FIRST_WIN);
     }
 
     /* 10 Wins */
     if (!(unlocked & (1 << ACH_10_WINS)) && wins >= 10) {
         unlocked |= (1 << ACH_10_WINS);
-        func_80105EF4(ACH_10_WINS);
+        achievement_unlock(ACH_10_WINS);
     }
 
     /* 50 Wins */
     if (!(unlocked & (1 << ACH_50_WINS)) && wins >= 50) {
         unlocked |= (1 << ACH_50_WINS);
-        func_80105EF4(ACH_50_WINS);
+        achievement_unlock(ACH_50_WINS);
     }
 
     /* First Stunt Score */
     if (!(unlocked & (1 << ACH_FIRST_STUNT)) && stuntPts >= 1000) {
         unlocked |= (1 << ACH_FIRST_STUNT);
-        func_80105EF4(ACH_FIRST_STUNT);
+        achievement_unlock(ACH_FIRST_STUNT);
     }
 
     /* 100K Stunt Points */
     if (!(unlocked & (1 << ACH_100K_STUNT)) && stuntPts >= 100000) {
         unlocked |= (1 << ACH_100K_STUNT);
-        func_80105EF4(ACH_100K_STUNT);
+        achievement_unlock(ACH_100K_STUNT);
     }
 
     /* No Crash Race - checked elsewhere when race ends */
@@ -27818,25 +27818,25 @@ void func_80105858(void *player) {
     /* All Tracks Unlocked */
     if (!(unlocked & (1 << ACH_ALL_TRACKS)) && trackFlags == 0xFFFF) {
         unlocked |= (1 << ACH_ALL_TRACKS);
-        func_80105EF4(ACH_ALL_TRACKS);
+        achievement_unlock(ACH_ALL_TRACKS);
     }
 
     /* All Cars Unlocked */
     if (!(unlocked & (1 << ACH_ALL_CARS)) && carFlags == 0xFFFF) {
         unlocked |= (1 << ACH_ALL_CARS);
-        func_80105EF4(ACH_ALL_CARS);
+        achievement_unlock(ACH_ALL_CARS);
     }
 
     /* Speedster - best lap under threshold */
     if (!(unlocked & (1 << ACH_SPEEDSTER)) && bestLap > 0 && bestLap < 1800) {
         unlocked |= (1 << ACH_SPEEDSTER);
-        func_80105EF4(ACH_SPEEDSTER);
+        achievement_unlock(ACH_SPEEDSTER);
     }
 
     /* Veteran - 100 races */
     if (!(unlocked & (1 << ACH_VETERAN)) && races >= 100) {
         unlocked |= (1 << ACH_VETERAN);
-        func_80105EF4(ACH_VETERAN);
+        achievement_unlock(ACH_VETERAN);
     }
 
     D_8015A500 = unlocked;
@@ -27867,7 +27867,7 @@ static const char *achievementNames[ACH_COUNT] = {
     "VETERAN RACER"
 };
 
-void func_80105EF4(s32 achievementId) {
+void achievement_unlock(s32 achievementId) {
     s32 queueHead;
     s32 i;
 
@@ -27905,7 +27905,7 @@ void func_80105EF4(s32 achievementId) {
  */
 extern s32 D_8015A548;      /* Display animation frame */
 
-void func_80106260(s32 achievementId) {
+void achievement_display(s32 achievementId) {
     s32 timer;
     s32 frame;
     s32 slideY;
@@ -27982,7 +27982,7 @@ void func_80106260(s32 achievementId) {
  * @param profile Player profile data structure
  * @param raceStats Current race statistics to add
  */
-void func_801068F4(void *profile, void *raceStats) {
+void profile_stats_update(void *profile, void *raceStats) {
     s32 *profileData;
     s32 *raceData;
     s32 placing;
@@ -28041,7 +28041,7 @@ void func_801068F4(void *profile, void *raceStats) {
     if (crashes == 0 && placing <= 3) {
         if (!(D_8015A500 & (1 << ACH_NO_CRASH))) {
             D_8015A500 |= (1 << ACH_NO_CRASH);
-            func_80105EF4(ACH_NO_CRASH);
+            achievement_unlock(ACH_NO_CRASH);
         }
     }
 
@@ -28054,7 +28054,7 @@ void func_801068F4(void *profile, void *raceStats) {
  * func_80107110 (1248 bytes)
  * Difficulty scaling
  */
-void func_80107110(s32 difficulty) {
+void difficulty_set(s32 difficulty) {
     f32 *aiSpeedMult;
     f32 *aiReactionTime;
     f32 *playerDamageMult;
@@ -28104,7 +28104,7 @@ void func_80107110(s32 difficulty) {
  * func_80107600 (924 bytes)
  * AI difficulty adjust
  */
-void func_80107600(void *ai, s32 difficulty) {
+void ai_difficulty_adjust(void *ai, s32 difficulty) {
     f32 *aiMaxSpeed;
     f32 *aiAccel;
     f32 *aiSteering;
@@ -29785,7 +29785,7 @@ void camera_cinematic_mode(s32 cinematicId) {
  *
  * Instantly moves camera to new position and target
  */
-void func_800BEAA0(void *camera, f32 *pos, f32 *look) {
+void camera_cut_to(void *camera, f32 *pos, f32 *look) {
     f32 *camPos, *camTarget;
 
     if (camera == NULL || pos == NULL || look == NULL) {
@@ -29812,7 +29812,7 @@ void func_800BEAA0(void *camera, f32 *pos, f32 *look) {
  *
  * Blends between two camera states
  */
-void func_800BEE2C(void *cam1, void *cam2, f32 t) {
+void camera_blend_between(void *cam1, void *cam2, f32 t) {
     f32 *pos1, *pos2, *target1, *target2;
     f32 *outPos, *outTarget;
 
@@ -29849,7 +29849,7 @@ void func_800BEE2C(void *cam1, void *cam2, f32 t) {
  *
  * Sets camera field of view
  */
-void func_800BF1C8(void *camera, f32 fov) {
+void camera_fov_control(void *camera, f32 fov) {
     f32 *camFov;
 
     if (camera == NULL) {
@@ -29872,7 +29872,7 @@ void func_800BF1C8(void *camera, f32 fov) {
  *
  * Sets camera clipping planes
  */
-void func_800BF2B8(void *camera, f32 nearVal, f32 farVal) {
+void camera_clip_planes(void *camera, f32 nearVal, f32 farVal) {
     f32 *camNear, *camFar;
 
     if (camera == NULL) {
@@ -29897,7 +29897,7 @@ void func_800BF2B8(void *camera, f32 nearVal, f32 farVal) {
  *
  * Sets camera aspect ratio
  */
-void func_800BF394(void *camera, f32 aspect) {
+void camera_aspect_ratio(void *camera, f32 aspect) {
     f32 *camAspect;
 
     if (camera == NULL) {
@@ -29920,7 +29920,7 @@ void func_800BF394(void *camera, f32 aspect) {
  *
  * Orients camera to look at target point
  */
-void func_800BF45C(void *camera, f32 *target) {
+void camera_look_at_point(void *camera, f32 *target) {
     f32 *camTarget;
 
     if (camera == NULL || target == NULL) {
@@ -29941,7 +29941,7 @@ void func_800BF45C(void *camera, f32 *target) {
  *
  * First person view from inside vehicle
  */
-void func_800BF838(void *camera, void *player) {
+void camera_first_person(void *camera, void *player) {
     f32 *camPos, *camTarget;
     f32 *playerPos, *playerForward;
     s32 *mode;
@@ -29977,7 +29977,7 @@ void func_800BF838(void *camera, void *player) {
  *
  * Third person chase camera behind vehicle
  */
-void func_800BFBEC(void *camera, void *player) {
+void camera_third_person(void *camera, void *player) {
     s32 *mode;
 
     if (camera == NULL || player == NULL) {
@@ -29988,7 +29988,7 @@ void func_800BFBEC(void *camera, void *player) {
     *mode = 2;  /* Third person mode */
 
     /* Use auto-follow for actual positioning */
-    func_800BE078(camera, player);
+    camera_auto_follow(camera, player);
 }
 
 /*
@@ -29998,7 +29998,7 @@ void func_800BFBEC(void *camera, void *player) {
  *
  * Top-down overhead view
  */
-void func_800BFD94(void *camera) {
+void camera_top_down(void *camera) {
     f32 *camPos, *camTarget;
     f32 *playerPos;
     s32 *mode;
@@ -30069,16 +30069,16 @@ void camera_free_look(void *camera, s32 input) {
 
     /* Rotation controls via C-buttons */
     if (input & 0x0008) {  /* C-up */
-        func_800BCEE4(camera, 0.0f, rotSpeed);
+        camera_orbit_delta(camera, 0.0f, rotSpeed);
     }
     if (input & 0x0004) {  /* C-down */
-        func_800BCEE4(camera, 0.0f, -rotSpeed);
+        camera_orbit_delta(camera, 0.0f, -rotSpeed);
     }
     if (input & 0x0002) {  /* C-left */
-        func_800BCEE4(camera, -rotSpeed, 0.0f);
+        camera_orbit_delta(camera, -rotSpeed, 0.0f);
     }
     if (input & 0x0001) {  /* C-right */
-        func_800BCEE4(camera, rotSpeed, 0.0f);
+        camera_orbit_delta(camera, rotSpeed, 0.0f);
     }
 }
 
@@ -30255,16 +30255,16 @@ void camera_update(void *camera) {
             break;
 
         case 1:  /* First person */
-            func_800BF838(camera, &D_80152818);
+            camera_first_person(camera, &D_80152818);
             break;
 
         case 2:  /* Third person */
-            func_800BE078(camera, &D_80152818);
-            func_800BD2D0(camera);  /* Collision avoidance */
+            camera_auto_follow(camera, &D_80152818);
+            camera_collision_check(camera);  /* Collision avoidance */
             break;
 
         case 3:  /* Top down */
-            func_800BFD94(camera);
+            camera_top_down(camera);
             break;
 
         case 4:  /* Cinematic */
@@ -30284,7 +30284,7 @@ void camera_update(void *camera) {
     }
 
     /* Apply camera shake if active */
-    func_800BDDFC(camera);
+    camera_shake_update(camera);
 }
 
 /*
@@ -30338,7 +30338,7 @@ void camera_process_input(void *camera, void *input) {
 
     /* Apply rotations */
     if (yawDelta != 0.0f || pitchDelta != 0.0f) {
-        func_800BCEE4(camera, yawDelta, pitchDelta);
+        camera_orbit_delta(camera, yawDelta, pitchDelta);
     }
 
     /* Apply zoom */
@@ -30347,7 +30347,7 @@ void camera_process_input(void *camera, void *input) {
         *zoom += zoomDelta;
         if (*zoom < 0.5f) *zoom = 0.5f;
         if (*zoom > 2.0f) *zoom = 2.0f;
-        func_800BDEBC(camera, *zoom);
+        camera_zoom_fov(camera, *zoom);
     }
 }
 
@@ -30584,14 +30584,14 @@ void camera_scene_manager(void) {
 
         switch (D_801146EC) {
             case 0:  /* ATTRACT */
-                func_800BC2BC(D_80170020);  /* Reset camera */
+                camera_reset(D_80170020);  /* Reset camera */
                 *(s32 *)((u8 *)D_80170020 + 0x34) = 0;  /* Default mode */
                 break;
 
             case 1:  /* TRKSEL */
             case 2:  /* CARSEL */
                 /* Menu camera - fixed position */
-                func_800BC2BC(D_80170020);
+                camera_reset(D_80170020);
                 break;
 
             case 5:  /* COUNTDOWN */
@@ -30659,10 +30659,10 @@ void camera_trigger_check(void *camera, void *triggers) {
                     camera_play_script(i);
                     break;
                 case 2:  /* Camera shake */
-                    func_800BDAA8(5.0f, 0.5f);
+                    camera_shake_start(5.0f, 0.5f);
                     break;
                 case 3:  /* Zoom in */
-                    func_800BDEBC(camera, 1.5f);
+                    camera_zoom_fov(camera, 1.5f);
                     break;
                 default:
                     break;
