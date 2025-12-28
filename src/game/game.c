@@ -8483,11 +8483,11 @@ void vertices_transform(void *verts, s32 count, void *mtx) {
 
 /*
 
- * func_800A133C (128 bytes)
+ * rom_segment_init (128 bytes)
  * Initialize ROM segment addresses for decompression
  * Sets up source/dest addresses for DMA/inflate
  */
-void func_800A133C(void) {
+void rom_segment_init(void) {
     void *src;
     void *dest;
     u32 size;
@@ -8503,10 +8503,10 @@ void func_800A133C(void) {
 
 /*
 
- * func_8008AA40 (356 bytes)
+ * audio_sync_init (356 bytes)
  * Audio/sync initialization with queue setup
  */
-void func_8008AA40(void *param) {
+void audio_sync_init(void *param) {
     void *syncObj1;
     void *syncObj2;
     u32 temp;
@@ -8523,10 +8523,10 @@ void func_8008AA40(void *param) {
 
 /*
 
- * func_8008B964 (288 bytes)
+ * entity_pos_calc (288 bytes)
  * Entity position/rotation calculation with table lookup
  */
-void func_8008B964(void *entity, s16 index, s16 flags) {
+void entity_pos_calc(void *entity, s16 index, s16 flags) {
     s16 entityId;
     void *tableEntry;
     void *entityData;
@@ -8554,10 +8554,10 @@ void func_8008B964(void *entity, s16 index, s16 flags) {
 
 /*
 
- * func_8008BA84 (264 bytes)
- * Similar to func_8008B964 but with different flag checks
+ * entity_pos_calc_alt (264 bytes)
+ * Similar to entity_pos_calc but with different flag checks
  */
-void func_8008BA84(void *entity, s16 index, s16 flags) {
+void entity_pos_calc_alt(void *entity, s16 index, s16 flags) {
     s16 entityId;
     void *tableEntry;
     f32 scale;
@@ -8585,10 +8585,10 @@ void func_8008BA84(void *entity, s16 index, s16 flags) {
 
 /*
 
- * func_8008BB8C (288 bytes)
+ * entity_anim_update (288 bytes)
  * Entity animation/state processing
  */
-void func_8008BB8C(void *entity, s16 param) {
+void entity_anim_update(void *entity, s16 param) {
     s32 *animState;
     s32 *animFrame;
     s32 *animSpeed;
@@ -8627,10 +8627,10 @@ void func_8008BB8C(void *entity, s16 param) {
 
 /*
 
- * func_8008BC94 (264 bytes)
+ * entity_pos_bounds (264 bytes)
  * Entity position update with bounds checking
  */
-void func_8008BC94(void *entity, s16 param) {
+void entity_pos_bounds(void *entity, s16 param) {
     f32 *pos;
     f32 *bounds;
     f32 minX, maxX, minY, maxY, minZ, maxZ;
@@ -8672,10 +8672,10 @@ void func_8008BC94(void *entity, s16 param) {
 
 /*
 
- * func_8008BD9C (720 bytes)
+ * entity_tick_update (720 bytes)
  * Large entity update function - comprehensive entity tick
  */
-void func_8008BD9C(void *entity, void *data) {
+void entity_tick_update(void *entity, void *data) {
     s32 *flags;
     s32 *entityType;
     f32 *pos, *vel, *accel;
@@ -8713,12 +8713,12 @@ void func_8008BD9C(void *entity, void *data) {
 
     /* Animation update */
     if (updateFlags & 0x02) {
-        func_8008BB8C(entity, -1);
+        entity_anim_update(entity, -1);
     }
 
     /* Bounds check */
     if (updateFlags & 0x04) {
-        func_8008BC94(entity, 0);
+        entity_pos_bounds(entity, 0);
     }
 
     /* Collision */
@@ -8741,10 +8741,10 @@ void func_8008BD9C(void *entity, void *data) {
 
 /*
 
- * func_8008C76C (252 bytes)
+ * float_compare (252 bytes)
  * Floating point comparison with special cases
  */
-f32 func_8008C76C(f32 a, f32 b) {
+f32 float_compare(f32 a, f32 b) {
     f32 result;
 
     /* Compare a and b, handle special cases */
@@ -8770,10 +8770,11 @@ f32 func_8008C76C(f32 a, f32 b) {
 
 /*
 
- * func_8008C884 (736 bytes)
+ * entity_render_setup (736 bytes)
  * Large entity rendering setup
+ * func_8008C884
  */
-void func_8008C884(void *entity, s32 mode) {
+void entity_render_setup(void *entity, s32 mode) {
     s16 entityId;
     s16 entityType;
     void *tableEntry;
@@ -8798,19 +8799,21 @@ void func_8008C884(void *entity, s32 mode) {
 
 /*
 
- * func_8008D120 (1524 bytes)
+ * entity_process_main (1524 bytes)
  * Major entity processing function
+ * func_8008D120
  */
-void func_8008D120(void *entity, s32 param1, s32 param2) {
+void entity_process_main(void *entity, s32 param1, s32 param2) {
     /* Large entity processing - stub */
 }
 
 /*
 
- * func_8008D764 (372 bytes)
+ * euler_to_matrix (372 bytes)
  * Euler angle to rotation matrix conversion
+ * func_8008D764
  */
-void func_8008D764(f32 *matrix, f32 *angles) {
+void euler_to_matrix(f32 *matrix, f32 *angles) {
     f32 sinX, cosX;
     f32 sinY, cosY;
     f32 sinZ, cosZ;
@@ -8839,10 +8842,11 @@ void func_8008D764(f32 *matrix, f32 *angles) {
 
 /*
 
- * func_8008D93C (796 bytes)
+ * anim_state_update (796 bytes)
  * Entity animation state update
+ * func_8008D93C
  */
-void func_8008D93C(void *entity, s16 animState) {
+void anim_state_update(void *entity, s16 animState) {
     s16 entityId;
     s16 entityType;
     void *animData;
@@ -8864,10 +8868,11 @@ void func_8008D93C(void *entity, s16 animState) {
 
 /*
 
- * func_8008E440 (1472 bytes)
+ * render_state_process (1472 bytes)
  * Major render state processing
+ * func_8008E440
  */
-void func_8008E440(void *a0, s32 mode, s32 flags, s32 index) {
+void render_state_process(void *a0, s32 mode, s32 flags, s32 index) {
     void *tableEntry;
     u32 renderFlags;
     s16 scaledIndex;
@@ -8896,10 +8901,11 @@ void func_8008E440(void *a0, s32 mode, s32 flags, s32 index) {
 
 /*
 
- * func_8008EA10 (1656 bytes)
+ * entity_spawn_init (1656 bytes)
  * Entity spawn/initialization - create and initialize new entity
+ * func_8008EA10
  */
-void func_8008EA10(void *params, s32 type) {
+void entity_spawn_init(void *params, s32 type) {
     void *entity;
     s32 *entityPool;
     s32 *poolIndex;
@@ -8983,10 +8989,11 @@ void func_8008EA10(void *params, s32 type) {
 
 /*
 
- * func_80090310 (1036 bytes)
+ * entity_callback_register (1036 bytes)
  * Process entity with callback registration
+ * func_80090310
  */
-void func_80090310(void *entity) {
+void entity_callback_register(void *entity) {
     void *result;
 
     result = func_80090284(0, 0);
@@ -9003,10 +9010,11 @@ void func_80090310(void *entity) {
 
 /*
 
- * func_800908A0 (716 bytes)
+ * entity_physics_update (716 bytes)
  * Entity movement/physics update
+ * func_800908A0
  */
-void func_800908A0(void *entity, s16 flags) {
+void entity_physics_update(void *entity, s16 flags) {
     f32 *pos, *vel, *accel;
     f32 *rot, *angVel;
     f32 dt, gravity;
@@ -9077,10 +9085,11 @@ void func_800908A0(void *entity, s16 flags) {
 
 /*
 
- * func_80090B70 (820 bytes)
+ * entity_collision_detect (820 bytes)
  * Entity collision detection
+ * func_80090B70
  */
-void func_80090B70(void *entity) {
+void entity_collision_detect(void *entity) {
     f32 *pos;
     f32 radius;
     s32 *entityPool;
@@ -9145,10 +9154,11 @@ void func_80090B70(void *entity) {
 
 /*
 
- * func_80090FEC (2184 bytes)
+ * entity_update_callback (2184 bytes)
  * Entity update callback
+ * func_80090FEC
  */
-void func_80090FEC(void *entity, s16 param) {
+void entity_update_callback(void *entity, s16 param) {
     s32 globalFlag;
 
     globalFlag = *(s32 *)0x801170FC;
@@ -9161,10 +9171,11 @@ void func_80090FEC(void *entity, s16 param) {
 
 /*
 
- * func_80091874 (616 bytes)
+ * entity_anim_texture (616 bytes)
  * Entity animation update with texture loading
+ * func_80091874
  */
-void func_80091874(void *entity, s16 animFrame) {
+void entity_anim_texture(void *entity, s16 animFrame) {
     s16 entityId;
     s16 entityType;
     void *tableEntry;
@@ -9193,10 +9204,11 @@ void func_80091874(void *entity, s16 animFrame) {
 
 /*
 
- * func_80091E5C (560 bytes)
+ * entity_scale_sync (560 bytes)
  * Entity scale/transform with sync
+ * func_80091E5C
  */
-void func_80091E5C(f32 scale) {
+void entity_scale_sync(f32 scale) {
     /* Acquire sync */
     sync_acquire((void *)0x80142728, 0, 1);
 
@@ -9212,10 +9224,11 @@ void func_80091E5C(f32 scale) {
 
 /*
 
- * func_8009229C (600 bytes)
+ * entity_state_init (600 bytes)
  * Entity state initialization
+ * func_8009229C
  */
-void func_8009229C(void *entity, void *params) {
+void entity_state_init(void *entity, void *params) {
     u32 flags;
     void *flagPtr;
 
@@ -9240,10 +9253,11 @@ void func_8009229C(void *entity, void *params) {
 
 /*
 
- * func_800924F4 (1636 bytes)
+ * entity_spawn_full (1636 bytes)
  * Entity spawn with full initialization
+ * func_800924F4
  */
-void func_800924F4(void *entity, s16 spawnType) {
+void entity_spawn_full(void *entity, s16 spawnType) {
     s16 entityId;
     s16 entityType;
     void *tableEntry;
@@ -9267,10 +9281,11 @@ void func_800924F4(void *entity, s16 spawnType) {
 
 /*
 
- * func_80092E2C (720 bytes)
+ * string_copy_format (720 bytes)
  * String/name copy with formatting
+ * func_80092E2C
  */
-void func_80092E2C(void *dest, u8 *src, s8 x, s8 y, s8 z) {
+void string_copy_format(void *dest, u8 *src, s8 x, s8 y, s8 z) {
     u8 *tempBuf;
     s32 i;
 
@@ -9291,10 +9306,11 @@ void func_80092E2C(void *dest, u8 *src, s8 x, s8 y, s8 z) {
 
 /*
 
- * func_800930A4 (2684 bytes)
+ * entity_tick_main (2684 bytes)
  * Major entity processing loop - comprehensive entity tick
+ * func_800930A4
  */
-void func_800930A4(void *entity, s32 mode) {
+void entity_tick_main(void *entity, s32 mode) {
     s32 *entityFlags;
     s32 *entityType;
     s32 flags, type;
@@ -9316,21 +9332,21 @@ void func_800930A4(void *entity, s32 mode) {
     /* Process based on mode */
     switch (mode) {
         case 0:  /* Physics update */
-            func_800908A0(entity, 0x1F);
+            entity_physics_update(entity, 0x1F);
             break;
 
         case 1:  /* Animation update */
-            func_8008BB8C(entity, -1);
+            entity_anim_update(entity, -1);
             break;
 
         case 2:  /* AI update */
             if (type == 1) {  /* Car entity */
-                func_80093B20(entity);
+                drone_ai_update(entity);
             }
             break;
 
         case 3:  /* Collision update */
-            func_80090B70(entity);
+            entity_collision_detect(entity);
             break;
 
         case 4:  /* Visibility update */
@@ -9346,11 +9362,11 @@ void func_800930A4(void *entity, s32 mode) {
             break;
 
         case 5:  /* Full update */
-            func_800908A0(entity, 0x1F);
-            func_8008BB8C(entity, -1);
-            func_80090B70(entity);
+            entity_physics_update(entity, 0x1F);
+            entity_anim_update(entity, -1);
+            entity_collision_detect(entity);
             if (type == 1) {
-                func_80093B20(entity);
+                drone_ai_update(entity);
             }
             break;
 
@@ -9359,15 +9375,16 @@ void func_800930A4(void *entity, s32 mode) {
     }
 
     /* Update bounds */
-    func_8008BC94(entity, 0);
+    entity_pos_bounds(entity, 0);
 }
 
 /*
 
- * func_80093B20 (3440 bytes)
+ * drone_ai_update (3440 bytes)
  * Entity AI/behavior update - drone car AI
+ * func_80093B20
  */
-void func_80093B20(void *entity) {
+void drone_ai_update(void *entity) {
     s32 *aiState;
     s32 *aiTarget;
     f32 *pos, *vel, *rot;
@@ -9472,10 +9489,11 @@ void func_80093B20(void *entity) {
 
 /*
 
- * func_80094890 (460 bytes)
+ * audio_channel_setup (460 bytes)
  * Audio parameter setup - configure audio channel parameters
+ * func_80094890
  */
-void func_80094890(void *params, s32 channel) {
+void audio_channel_setup(void *params, s32 channel) {
     f32 *audioParams;
     s32 *channelState;
 
@@ -9500,10 +9518,11 @@ void func_80094890(void *params, s32 channel) {
 
 /*
 
- * func_80094A54 (472 bytes)
+ * sound_effect_play (472 bytes)
  * Sound effect trigger - play a sound effect
+ * func_80094A54
  */
-void func_80094A54(s32 soundId, s32 priority) {
+void sound_effect_play(s32 soundId, s32 priority) {
     s32 channel;
     s32 *channelState;
     s32 lowestPri;
@@ -9553,10 +9572,11 @@ void func_80094A54(s32 soundId, s32 priority) {
 
 /*
 
- * func_80094C30 (668 bytes)
+ * audio_volume_pan (668 bytes)
  * Audio volume/pan control - adjust channel volume and pan
+ * func_80094C30
  */
-void func_80094C30(s32 channel, f32 volume, f32 pan) {
+void audio_volume_pan(s32 channel, f32 volume, f32 pan) {
     s32 *channelState;
 
     if (channel < 0 || channel >= 16) {
@@ -9587,10 +9607,11 @@ void func_80094C30(s32 channel, f32 volume, f32 pan) {
 
 /*
 
- * func_80094FF0 (156 bytes)
+ * audio_channel_reset (156 bytes)
  * Audio channel reset - stop and reset a channel
+ * func_80094FF0
  */
-void func_80094FF0(s32 channel) {
+void audio_channel_reset(s32 channel) {
     s32 *channelState;
     s32 i;
 
@@ -9611,10 +9632,11 @@ void func_80094FF0(s32 channel) {
 
 /*
 
- * func_800951E0 (492 bytes)
+ * sound_position_update (492 bytes)
  * Sound position update - update 3D sound position for entity
+ * func_800951E0
  */
-void func_800951E0(void *entity, f32 *pos) {
+void sound_position_update(void *entity, f32 *pos) {
     f32 *listenerPos;
     f32 *listenerDir;
     f32 dx, dy, dz;
@@ -9659,16 +9681,17 @@ void func_800951E0(void *entity, f32 *pos) {
     /* Get channel from entity */
     channel = *(s32 *)((u8 *)entity + 0x1C0);
     if (channel >= 0 && channel < 16) {
-        func_80094C30(channel, volume, pan);
+        audio_volume_pan(channel, volume, pan);
     }
 }
 
 /*
 
- * func_800953CC (220 bytes)
+ * audio_fade_control (220 bytes)
  * Audio fade control - fade channel volume over time
+ * func_800953CC
  */
-void func_800953CC(s32 channel, f32 targetVol, f32 duration) {
+void audio_fade_control(s32 channel, f32 targetVol, f32 duration) {
     s32 *channelState;
     f32 currentVol;
     f32 fadeRate;
@@ -9700,10 +9723,11 @@ void func_800953CC(s32 channel, f32 targetVol, f32 duration) {
 
 /*
 
- * func_800954A8 (128 bytes)
+ * sound_channel_enable (128 bytes)
  * Sound enable/disable - enable or disable a sound channel
+ * func_800954A8
  */
-void func_800954A8(s32 channel, s32 enable) {
+void sound_channel_enable(s32 channel, s32 enable) {
     s32 *channelState;
 
     if (channel < 0 || channel >= 16) {
@@ -9723,17 +9747,18 @@ void func_800954A8(s32 channel, s32 enable) {
 
 /*
 
- * func_80095528 (484 bytes)
+ * music_track_control (484 bytes)
  * Music track control - control music playback
+ * func_80095528
  */
-void func_80095528(s32 trackId, s32 cmd) {
+void music_track_control(s32 trackId, s32 cmd) {
     s32 *musicState = (s32 *)0x80161100;
 
     switch (cmd) {
         case 0:  /* Stop */
             musicState[0] = 0;
             musicState[1] = -1;
-            func_800953CC(0, 0.0f, 0.5f);  /* Fade out music channel */
+            audio_fade_control(0, 0.0f, 0.5f);  /* Fade out music channel */
             break;
 
         case 1:  /* Play */
@@ -9772,10 +9797,11 @@ void func_80095528(s32 trackId, s32 cmd) {
 
 /*
 
- * func_8009570C (244 bytes)
+ * audio_bus_route (244 bytes)
  * Audio bus routing - route audio between buses
+ * func_8009570C
  */
-void func_8009570C(s32 srcBus, s32 destBus) {
+void audio_bus_route(s32 srcBus, s32 destBus) {
     s32 *busMatrix = (s32 *)0x80161200;
 
     if (srcBus < 0 || srcBus >= 4 || destBus < 0 || destBus >= 4) {
@@ -9788,10 +9814,11 @@ void func_8009570C(s32 srcBus, s32 destBus) {
 
 /*
 
- * func_80095800 (292 bytes)
+ * audio_effect_setup (292 bytes)
  * Reverb/effect setup - configure audio effects
+ * func_80095800
  */
-void func_80095800(s32 effectId, f32 param) {
+void audio_effect_setup(s32 effectId, f32 param) {
     s32 *effectState = (s32 *)0x80161300;
 
     switch (effectId) {
@@ -9821,10 +9848,11 @@ void func_80095800(s32 effectId, f32 param) {
 
 /*
 
- * func_80095924 (184 bytes)
+ * audio_timing_sync (184 bytes)
  * Audio timing sync - synchronize audio with video
+ * func_80095924
  */
-void func_80095924(void) {
+void audio_timing_sync(void) {
     s32 audioFrame;
     s32 videoFrame;
     s32 drift;
@@ -9848,10 +9876,11 @@ void func_80095924(void) {
 
 /*
 
- * func_80095A24 (236 bytes)
+ * sound_priority_set (236 bytes)
  * Sound priority management - set channel priority
+ * func_80095A24
  */
-void func_80095A24(s32 channel, s32 priority) {
+void sound_priority_set(s32 channel, s32 priority) {
     s32 *channelState;
 
     if (channel < 0 || channel >= 16) {
@@ -9864,10 +9893,11 @@ void func_80095A24(s32 channel, s32 priority) {
 
 /*
 
- * func_80095B10 (236 bytes)
+ * audio_stream_control (236 bytes)
  * Audio stream control - control streaming audio
+ * func_80095B10
  */
-void func_80095B10(s32 streamId, s32 cmd) {
+void audio_stream_control(s32 streamId, s32 cmd) {
     s32 *streamState = (s32 *)(0x80161400 + streamId * 32);
 
     if (streamId < 0 || streamId >= 4) {
@@ -9898,10 +9928,11 @@ void func_80095B10(s32 streamId, s32 cmd) {
 
 /*
 
- * func_80095BFC (268 bytes)
+ * audio_buffer_manage (268 bytes)
  * Audio buffer management - manage audio DMA buffers
+ * func_80095BFC
  */
-void func_80095BFC(void *buffer, s32 size) {
+void audio_buffer_manage(void *buffer, s32 size) {
     s32 *bufferInfo = (s32 *)0x80161500;
 
     if (buffer == NULL || size <= 0) {
@@ -9920,10 +9951,11 @@ void func_80095BFC(void *buffer, s32 size) {
 
 /*
 
- * func_80095D04 (468 bytes)
+ * audio_state_save (468 bytes)
  * Audio state save/restore - save or restore audio state
+ * func_80095D04
  */
-void func_80095D04(s32 cmd) {
+void audio_state_save(s32 cmd) {
     s32 *stateBuffer = (s32 *)0x80161600;
     s32 *channelState;
     s32 i, j;
