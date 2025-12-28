@@ -7556,11 +7556,11 @@ void float_store_update(s32 idx, f32 f12_val) {
 
 /*
 
- * func_800D3430 (92 bytes)
+ * table_entry_check (92 bytes)
  * Check table entry and optionally call update
  * a6+a7 passed via stack as output pointers
  */
-s32 func_800D3430(s32 idx, s32 val, s32 *outA, s32 *outB, s32 extra) {
+s32 table_entry_check(s32 idx, s32 val, s32 *outA, s32 *outB, s32 extra) {
     u32 *table;
     u8 flag;
 
@@ -7583,11 +7583,11 @@ s32 func_800D3430(s32 idx, s32 val, s32 *outA, s32 *outB, s32 extra) {
 
 /*
 
- * func_800D5834 (88 bytes)
+ * entity_slot_clear (88 bytes)
  * Initialize entity slot with zero floats
  * t6, t7 preloaded with index calculation
  */
-void func_800D5834(s32 idx) {
+void entity_slot_clear(s32 idx) {
     void *entity;
     s32 combined;  /* t6 + t7 preload */
 
@@ -7608,10 +7608,10 @@ void func_800D5834(s32 idx) {
 
 /*
 
- * func_800E1540 (96 bytes)
+ * entity_pos_transform (96 bytes)
  * Transform entity position with scale
  */
-void func_800E1540(void *entity) {
+void entity_pos_transform(void *entity) {
     f32 scale;
     f32 pos0, pos1, pos2;
     f32 out0, out1, out2;
@@ -7635,11 +7635,11 @@ void func_800E1540(void *entity) {
 
 /*
 
- * func_800E7040 (244 bytes)
+ * player_state_sync_init (244 bytes)
  * Initialize player state and sync
  * t6 preloaded with condition
  */
-void func_800E7040(void) {
+void player_state_sync_init(void) {
     s32 condition;  /* t6 preload */
     s32 i;
 
@@ -7673,10 +7673,10 @@ void func_800E7040(void) {
 
 /*
 
- * func_800E7710 (248 bytes)
+ * entity_array_process (248 bytes)
  * Entity array processing
  */
-void func_800E7710(void) {
+void entity_array_process(void) {
     s32 i;
     void *entity;
 
@@ -7690,10 +7690,10 @@ void func_800E7710(void) {
 
 /*
 
- * func_800E7808 (268 bytes)
+ * entity_state_dispatch (268 bytes)
  * Entity state machine dispatch
  */
-void func_800E7808(void *entity) {
+void entity_state_dispatch(void *entity) {
     s32 state;
 
     if (entity == NULL) {
@@ -7704,7 +7704,7 @@ void func_800E7808(void *entity) {
 
     switch (state) {
         case 0:
-            func_800E7710();
+            entity_array_process();
             break;
         case 1:
             func_800E7914(entity);
@@ -7719,10 +7719,10 @@ void func_800E7808(void *entity) {
 
 /*
 
- * func_800E79F8 (160 bytes)
+ * entity_refcount_decr (160 bytes)
  * Entity reference count management
  */
-void func_800E79F8(void *entity) {
+void entity_refcount_decr(void *entity) {
     s32 refCount;
 
     if (entity == NULL) {
@@ -7742,10 +7742,10 @@ void func_800E79F8(void *entity) {
 
 /*
 
- * func_800E7C2C (216 bytes)
+ * entity_cleanup_ptrs (216 bytes)
  * Entity cleanup with pointer clear
  */
-void func_800E7C2C(void *entity) {
+void entity_cleanup_ptrs(void *entity) {
     void **ptrArray;
     s32 i;
 
@@ -7765,10 +7765,10 @@ void func_800E7C2C(void *entity) {
 
 /*
 
- * func_800E847C (212 bytes)
+ * entity_list_process (212 bytes)
  * Process entity list with state check
  */
-void func_800E847C(void) {
+void entity_list_process(void) {
     void *list;
     void *entity;
     void *next;
@@ -7780,7 +7780,7 @@ void func_800E847C(void) {
         next = *(void **)((u8 *)entity + 8);
 
         if (*(s32 *)((u8 *)entity + 16) == 3) {
-            func_800E7808(entity);
+            entity_state_dispatch(entity);
         }
 
         entity = next;
@@ -7789,10 +7789,10 @@ void func_800E847C(void) {
 
 /*
 
- * func_800EB90C (184 bytes)
+ * sound_effect_trigger (184 bytes)
  * Sound effect trigger
  */
-void func_800EB90C(s32 soundId) {
+void sound_effect_trigger(s32 soundId) {
     if (*(s32 *)0x8015A110 != 4) {
         return;
     }
@@ -7802,11 +7802,11 @@ void func_800EB90C(s32 soundId) {
 
 /*
 
- * func_800F5F00 (144 bytes)
+ * menu_state_dispatch (144 bytes)
  * Jump table dispatch for menu states
  * t6 preloaded with state index
  */
-void func_800F5F00(void) {
+void menu_state_dispatch(void) {
     s32 state;  /* t6 preload */
 
     state = 0;  /* Preload */
@@ -7842,19 +7842,19 @@ void func_800F5F00(void) {
 
 /*
 
- * func_800FBF88 (52 bytes)
+ * hiscore_mode_update (52 bytes)
  * High score mode update
  */
-void func_800FBF88(void) {
+void hiscore_mode_update(void) {
     func_800FBE5C();
 }
 
 /*
 
- * func_800FBF90 (84 bytes)
+ * game_reset_attract (84 bytes)
  * Reset game state to attract mode
  */
-void func_800FBF90(void) {
+void game_reset_attract(void) {
     *(s32 *)0x801146EC = 0;  /* Set to ATTRACT */
     *(u32 *)0x80142AFC = 0;  /* Clear frame counter */
     func_800FBFE4();
@@ -7862,10 +7862,10 @@ void func_800FBF90(void) {
 
 /*
 
- * func_800FBFE4 (264 bytes)
+ * game_cleanup_reset (264 bytes)
  * Game cleanup and reset
  */
-void func_800FBFE4(void) {
+void game_cleanup_reset(void) {
     s32 i;
 
     /* Clear player states */
@@ -7873,15 +7873,15 @@ void func_800FBFE4(void) {
         *(u32 *)(0x80152818 + i * 0x144) = 0;
     }
 
-    func_800FC0EC();
+    game_full_reset();
 }
 
 /*
 
- * func_800FC0EC (872 bytes)
+ * game_full_reset (872 bytes)
  * Full game reset function - resets all game subsystems
  */
-void func_800FC0EC(void) {
+void game_full_reset(void) {
     s32 i;
     void *car;
     s32 *timerQueue;
@@ -8039,12 +8039,12 @@ void func_800FEA00() {
 
 /*
 
- * func_800878EC (284 bytes)
+ * rdp_mode_setup (284 bytes)
  * RDP render mode setup with flag checking
  * v0=current state, v1=state ptr, a0=flags to set
  * Generates G_SETOTHERMODE_L and G_RDPPIPESYNC commands
  */
-void func_800878EC(s32 flags) {
+void rdp_mode_setup(s32 flags) {
     u32 currentState;  /* v0 preload */
     u32 *statePtr;     /* v1 preload */
     u32 *dlPtr;
@@ -8097,30 +8097,30 @@ void func_800878EC(s32 flags) {
         *(u32 **)0x80149438 = dlPtr + 2;
         dlPtr[0] = 0xE2001D00;
         dlPtr[1] = 4;
-        func_80086A50(*(void **)0x8015A248);
+        texture_dl_process(*(void **)0x8015A248);
     }
 
     /* Check 0x0020 flag - additional processing */
     if (flags & 0x0020) {
-        func_80086A50(*(void **)0x8015A248);
+        texture_dl_process(*(void **)0x8015A248);
     }
 }
 
 /*
 
- * func_80086A50 (varies)
+ * texture_dl_process (varies)
  * Texture/display list processing
  */
-void func_80086A50(void *texData) {
+void texture_dl_process(void *texData) {
     /* Texture loading and processing */
 }
 
 /*
 
- * func_80088BD4 (288 bytes)
+ * matrix_load_rsp (288 bytes)
  * Matrix load to RSP
  */
-void func_80088BD4(void *matrix) {
+void matrix_load_rsp(void *matrix) {
     u32 *dlPtr;
 
     dlPtr = *(u32 **)0x80149438;
@@ -8133,10 +8133,10 @@ void func_80088BD4(void *matrix) {
 
 /*
 
- * func_80088C20 (156 bytes)
+ * matrix_push_stack (156 bytes)
  * Push matrix to stack
  */
-void func_80088C20(void *matrix) {
+void matrix_push_stack(void *matrix) {
     u32 *dlPtr;
 
     dlPtr = *(u32 **)0x80149438;
