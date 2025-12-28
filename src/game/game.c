@@ -674,25 +674,25 @@ void game_mode_handler(void) {
 /*
 
 /**
- * External functions called by func_800CA3B4
+ * External functions called by playgame_handler
  */
-extern void func_800CA300(void); /* State change pre-process */
-extern void func_800A5BB8(void);       /* Some init function */
-extern void func_800C8B8C(s32 a, s32 b, s32 c, s32 d, s32 e, f32 f, f32 g, s32 h); /* HUD setup */
-extern void func_800C885C(void); /* HUD init */
-extern void func_800C8FA4(s32 flag); /* Enable/disable something */
-extern void func_800C9BE0(void); /* Some game init */
-extern void func_800014F0(f32);        /* Float function */
-extern void func_800C9480(void); /* State finalize */
-extern void func_800C90E0(void); /* Mode transition */
-extern void func_800C9210(s32 speed); /* Speed param function */
-extern void func_800C937C(void); /* Some handler */
-extern void func_800C9158(s32 a, s32 b); /* Player state set */
-extern void func_800C84C0(s32 a0, s8 a1); /* Player mode set */
-void func_800C9194(s32, s32);          /* Create and register sync entry (defined below) */
+extern void state_change_preprocess(void); /* func_800CA300 - State change pre-process */
+extern void object_init_render(void);       /* func_800A5BB8 - Object render init */
+extern void hud_setup(s32 a, s32 b, s32 c, s32 d, s32 e, f32 f, f32 g, s32 h); /* func_800C8B8C - HUD setup */
+extern void hud_init(void); /* func_800C885C - HUD init */
+extern void display_enable(s32 flag); /* func_800C8FA4 - Enable/disable display */
+extern void game_init_state(void); /* func_800C9BE0 - Game state init */
+extern void float_process(f32);        /* func_800014F0 - Float function */
+extern void state_finalize(void); /* func_800C9480 - State finalize */
+extern void player_cleanup_slots(void); /* func_800C90E0 - Mode transition */
+extern void speed_set(s32 speed); /* func_800C9210 - Speed param function */
+extern void resource_slots_clear_multiple(void); /* func_800C937C - Clear multiple resource slots */
+extern void player_state_set(s32 a, s32 b); /* func_800C9158 - Player state set */
+extern void player_mode_set(s32 a0, s8 a1); /* func_800C84C0 - Player mode set */
+void sync_entry_register(s32, s32);          /* func_800C9194 - Create and register sync entry (defined below) */
 extern void func_800A3424(s32, s32);   /* Car update function */
-extern void func_800C7308(void *obj_ptr); /* Object cleanup */
-extern void func_800C70BC(void); /* Scene cleanup */
+extern void object_render_cleanup(void *obj_ptr); /* func_800C7308 - Object cleanup */
+extern void scene_cleanup_slots(void); /* func_800C70BC - Scene cleanup */
 extern void func_800A1244(void);       /* Render function */
 extern s32 func_80097798(s32, s32, s32, s32, s32); /* Sound/effect */
 extern void func_800B55FC(s32 flag); /* Visual update */
@@ -712,7 +712,7 @@ extern s32 D_80159774;
 extern s32 D_801597C4;
 extern s32 D_80151AD0;
 extern s32 D_80151AD8;
-extern void func_800C84FC(void *hud, f32 speed);
+extern void hud_speed_display(void *hud, f32 speed); /* func_800C84FC - HUD speed display */
 
 /**
 /*
@@ -756,7 +756,7 @@ void playgame_handler(void) {
     }
 
     /* Pre-process state change */
-    func_800CA300();
+    state_change_preprocess();
 
     /* Store pending state as current */
     gstate_next = D_801174B8;
@@ -777,17 +777,17 @@ void playgame_handler(void) {
         mode_flag = D_80156994;
         if (mode_flag == 0) {
             /* Normal mode - setup HUD at 32,16 with specific params */
-            func_800C8B8C(32, 16, 16, 5, 64, 1.0f, 200.0f, 0);
-            func_800C885C();
+            hud_setup(32, 16, 16, 5, 64, 1.0f, 200.0f, 0);
+            hud_init();
         }
 
-        func_800C8FA4(1);
+        display_enable(1);
 
         /* Set initial state values */
         D_8015A108 = 1;
         D_80151AD0 = 1;
 
-        func_800C9BE0();
+        game_init_state();
         func_800014F0(30.0f);
 
         /* Call state handler 3 times */
@@ -795,7 +795,7 @@ void playgame_handler(void) {
         game_mode_handler();
         game_mode_handler();
 
-        func_800C9480();
+        state_finalize();
 
         /* Set next state to 0x0002 */
         D_801174B8 = 2;
@@ -805,25 +805,25 @@ void playgame_handler(void) {
 
     /* State bit 0x0002: Secondary setup */
     if (gstate_next & 0x0002) {
-        func_800C90E0();
+        player_cleanup_slots();
         func_800A5BB8();
 
         mode_flag = D_80156994;
         if (mode_flag == 0) {
-            func_800C8B8C(32, 16, 16, 5, 64, 1.0f, 200.0f, 0);
-            func_800C885C();
+            hud_setup(32, 16, 16, 5, 64, 1.0f, 200.0f, 0);
+            hud_init();
         }
 
         /* Load float from ROM data for timing */
         ftemp = 10.0f * (f32)D_80146115;
-        func_800C9210(ftemp);
-        func_800C8FA4(1);
-        func_800C937C();
+        speed_set(ftemp);
+        display_enable(1);
+        resource_slots_clear_multiple();
 
         /* Setup player controllers */
-        func_800C9158(-1, 0);
-        func_800C9158(0, 1);
-        func_800C84C0(-1, 1);
+        player_state_set(-1, 0);
+        player_state_set(0, 1);
+        player_mode_set(-1, 1);
 
         gstate_current = D_801174B4;
         goto done;
@@ -836,19 +836,19 @@ void playgame_handler(void) {
 
     /* State bit 0x0004 */
     if (gstate_next & 0x0004) {
-        func_800C90E0();
+        player_cleanup_slots();
         func_800A5BB8();
 
         mode_flag = D_80156994;
         if (mode_flag == 0) {
-            func_800C8B8C(32, 16, 16, 5, 64, 1.0f, 200.0f, 0);
-            func_800C885C();
+            hud_setup(32, 16, 16, 5, 64, 1.0f, 200.0f, 0);
+            hud_init();
         }
 
         ftemp = 10.0f * (f32)D_80146115;
-        func_800C9210(ftemp);
-        func_800C8FA4(1);
-        func_800C937C();
+        speed_set(ftemp);
+        display_enable(1);
+        resource_slots_clear_multiple();
 
         /* Check additional flags and process cars */
         if (!(D_801174BC & 0x007CDFC0)) {
@@ -868,9 +868,9 @@ void playgame_handler(void) {
             }
         }
 
-        func_800C9158(-1, 0);
-        func_800C9158(0, 1);
-        func_800C84C0(-1, 1);
+        player_state_set(-1, 0);
+        player_state_set(0, 1);
+        player_mode_set(-1, 1);
 
         /* Check for specific mode */
         mode_flag = D_80156994;
@@ -880,8 +880,8 @@ void playgame_handler(void) {
                 if (val1 < 13) {
                     s8 val2 = D_80146114 + 12;
                     ftemp = 10.0f * (f32)val2;
-                    func_800C9210(ftemp);
-                    func_800C9194(6, 1);
+                    speed_set(ftemp);
+                    sync_entry_register(6, 1);
                 }
             }
         }
@@ -896,21 +896,21 @@ void playgame_handler(void) {
         /* Walk object list and clean up */
         void *obj = D_8013E6E0;
         while (obj != NULL) {
-            func_800C7308(obj);
+            object_render_cleanup(obj);
             void *next = *(void**)obj;
             obj = *(void**)next;
         }
 
-        func_800C70BC();
-        func_800C90E0();
+        scene_cleanup_slots();
+        player_cleanup_slots();
         func_800A5BB8();
 
         mode_flag = D_80156994;
         if (mode_flag == 0) {
-            func_800C8B8C(8, 8, 0, 0, 0, 1.0f, 200.0f, 0);
+            hud_setup(8, 8, 0, 0, 0, 1.0f, 200.0f, 0);
         }
 
-        func_800C8FA4(0);
+        display_enable(0);
 
         if (D_80156994 != 0) {
             func_800A1244();
@@ -922,9 +922,9 @@ void playgame_handler(void) {
 
     /* State bit 0x0010: Player state update */
     if (gstate_next & 0x0010) {
-        func_800C9158(-1, 0);
-        func_800C9158(0, 1);
-        func_800C84C0(-1, 1);
+        player_state_set(-1, 0);
+        player_state_set(0, 1);
+        player_mode_set(-1, 1);
         gstate_current = D_801174B4;
         goto done;
     }
@@ -933,12 +933,12 @@ void playgame_handler(void) {
     if (gstate_next & 0x0020) {
         player_count = D_8015A108;
         for (i = 0; i < player_count; i++) {
-            func_800C9158(i, 1);
-            func_800C84C0(i, 1);
+            player_state_set(i, 1);
+            player_mode_set(i, 1);
         }
         /* Disable remaining slots */
         for (; i < 4; i++) {
-            func_800C9158(i, 0);
+            player_state_set(i, 0);
         }
         gstate_current = D_801174B4;
         goto done;
@@ -946,8 +946,8 @@ void playgame_handler(void) {
 
     /* State bit 0x0040 */
     if (gstate_next & 0x0040) {
-        func_800C9158(-1, 0);
-        func_800C9158(0, 1);
+        player_state_set(-1, 0);
+        player_state_set(0, 1);
         gstate_current = D_801174B4;
         goto done;
     }
@@ -973,11 +973,11 @@ void playgame_handler(void) {
 
         player_count = D_8015A108;
         for (i = 0; i < player_count; i++) {
-            func_800C9158(i, 1);
-            func_800C84C0(i, 1);
+            player_state_set(i, 1);
+            player_mode_set(i, 1);
         }
         for (; i < 4; i++) {
-            func_800C9158(i, 0);
+            player_state_set(i, 0);
         }
         gstate_current = D_801174B4;
         goto done;
@@ -986,8 +986,8 @@ void playgame_handler(void) {
     /* State bit 0x0080: Result/finish */
     if (gstate_next & 0x0080) {
         func_80097798(60, 0, 0, 0, 0);
-        func_800C9158(-1, 0);
-        func_800C9158(0, 1);
+        player_state_set(-1, 0);
+        player_state_set(0, 1);
         gstate_current = D_801174B4;
         goto done;
     }
@@ -997,19 +997,19 @@ void playgame_handler(void) {
         s8 state_byte = D_80114650;
 
         if (state_byte == 0) {
-            func_800C70BC();
-            func_800C90E0();
+            scene_cleanup_slots();
+            player_cleanup_slots();
             func_800A5BB8();
         }
 
-        func_800C8FA4(0);
+        display_enable(0);
 
         if (state_byte == 0) {
             mode_flag = D_80156994;
             if (mode_flag == 0) {
                 s32 game_mode = D_8015A110;
                 if (game_mode != 6 && game_mode != 4 && game_mode != 5) {
-                    func_800C8B8C(8, 8, 0, 0, 0, 1.0f, 200.0f, 0);
+                    hud_setup(8, 8, 0, 0, 0, 1.0f, 200.0f, 0);
                 }
             }
 
@@ -1017,7 +1017,7 @@ void playgame_handler(void) {
             if (mode_flag == 0) {
                 s32 game_mode = D_8015A110;
                 if (game_mode == 6) {
-                    func_800C84FC(NULL, 0.0f);
+                    hud_speed_display(NULL, 0.0f);
                 }
             }
 
@@ -1060,9 +1060,9 @@ void playgame_handler(void) {
             func_800075E0(&D_801461D0, 0, 0);
         }
 
-        func_800C9158(-1, 0);
-        func_800C9158(0, 1);
-        func_800C84C0(-1, 1);
+        player_state_set(-1, 0);
+        player_state_set(0, 1);
+        player_mode_set(-1, 1);
 
         gstate_current = D_801174B4;
     }
@@ -1403,7 +1403,7 @@ void race_state_machine(void) {
         func_800075E0((void *)0x801427A8, alloc_obj, 0);
 
         /* Setup race timing */
-        func_800C9210(0.0f);
+        speed_set(0.0f);
 
         /* Initialize race systems */
         func_800D5374(NULL);
@@ -1417,7 +1417,7 @@ void race_state_machine(void) {
             obj = *(void **)obj;
         }
 
-        func_800C84C0(-1, 1);
+        player_mode_set(-1, 1);
         func_800B55FC(1);
         func_80092360(46);  /* Play race start sound */
         break;
@@ -1470,7 +1470,7 @@ void race_state_machine(void) {
                 func_800D6160(0);
 }
             func_800D60AC();
-            func_800C84C0(-1, 0);
+            player_mode_set(-1, 0);
             goto exit_func;
 
         case 1:  /* Countdown timer check */
@@ -2539,7 +2539,8 @@ void resource_slots_clear_multiple(void) {
 
 /**
 /*
- * func_800CB9A0 - Release object's secondary reference
+ * object_secondary_release - Release object's secondary reference
+ * (func_800CB9A0)
  * Address: 0x800CB9A0
  * Size: 48 bytes
  *
@@ -2548,9 +2549,9 @@ void resource_slots_clear_multiple(void) {
  *
  * @param obj Object with nested pointer structure
  */
-extern void func_800A2680(void*);  /* Release object */
+extern void object_ref_release(void*);  /* func_800A2680 - Release object */
 
-void func_800CB9A0(void *obj) {
+void object_secondary_release(void *obj) {
     void *primary;
     void *secondary;
 
@@ -2558,7 +2559,7 @@ void func_800CB9A0(void *obj) {
     secondary = *(void**)((u8*)primary + 4);
 
     if (secondary != NULL) {
-        func_800A2680(secondary);
+        object_ref_release(secondary);
     }
 }
 
@@ -2575,9 +2576,9 @@ void func_800CB9A0(void *obj) {
  *
  * @param obj_ptr Pointer to object pointer
  */
-extern void func_800A25C0(void*);  /* Release render resource */
+extern void render_resource_release(void*);  /* func_800A25C0 - Release render resource */
 
-void func_800C7308(void *obj_ptr) {
+void object_render_cleanup(void *obj_ptr) {
     void *obj;
     void *render_ref;
     void *resource;
@@ -2593,7 +2594,7 @@ void func_800C7308(void *obj_ptr) {
     /* Get resource at offset 0x08 */
     resource = *(void**)((u8*)obj + 0x08);
     if (resource != NULL) {
-        func_800A25C0(resource);
+        render_resource_release(resource);
     }
 
     /* Clear render reference */
@@ -2604,27 +2605,28 @@ void func_800C7308(void *obj_ptr) {
 
 /**
 /*
- * func_800C55E4 - Send command based on game mode
+ * stunt_command_send - Send command based on game mode
+ * (func_800C55E4)
  * Address: 0x800C55E4
  * Size: 96 bytes
  *
- * If D_8015A110 is 4 or 6, sends a command via func_803914B4.
+ * If D_8015A110 is 4 or 6, sends a command via external handler.
  * Arguments are sign-extended from bytes to s32.
  *
  * @param cmd Command byte
  * @param arg1 Argument 1 byte
  * @param arg2 Argument 2 byte
  */
-extern void func_803914B4(s32, s32, s32);  /* External command handler */
+extern void external_command_handler(s32, s32, s32);  /* func_803914B4 - External command handler */
 
-void func_800C55E4(s8 cmd, s8 arg1, s8 arg2) {
+void stunt_command_send(s8 cmd, s8 arg1, s8 arg2) {
     s32 mode;
 
     mode = D_8015A110;
 
     /* Only send command in modes 4 or 6 */
     if (mode == 6 || mode == 4) {
-        func_803914B4(0, 0, 0);
+        external_command_handler(0, 0, 0);
     }
 }
 
@@ -2632,57 +2634,59 @@ void func_800C55E4(s8 cmd, s8 arg1, s8 arg2) {
 
 /**
 /*
- * func_800C70BC - Cleanup scene resource slots
+ * scene_cleanup_slots - Cleanup scene resource slots
+ * (func_800C70BC)
  * Address: 0x800C70BC
  * Size: 84 bytes
  *
- * Gets slots 54, 58, 59 and calls func_800AC840 to clean up each.
- * This is the scene/level cleanup counterpart to func_800C937C.
+ * Gets slots 54, 58, 59 and calls resource_cleanup to clean up each.
+ * This is the scene/level cleanup counterpart to resource_slots_clear_multiple.
  */
-extern void func_800AC840(s32 a0); /* Resource cleanup */
+extern void resource_cleanup(s32 a0); /* func_800AC840 - Resource cleanup */
 
-void func_800C70BC(void) {
+void scene_cleanup_slots(void) {
     s32 slot;
 
     /* Cleanup slot 54 */
-    slot = func_80097694(54, -1);
-    func_800AC840(slot);
+    slot = resource_get_slot_state(54, -1);
+    resource_cleanup(slot);
 
     /* Cleanup slot 58 */
-    slot = func_80097694(58, -1);
-    func_800AC840(slot);
+    slot = resource_get_slot_state(58, -1);
+    resource_cleanup(slot);
 
     /* Cleanup slot 59 */
-    slot = func_80097694(59, -1);
-    func_800AC840(slot);
+    slot = resource_get_slot_state(59, -1);
+    resource_cleanup(slot);
 }
 
 /*
 
 /**
 /*
- * func_800C90E0 - Cleanup all player/game resource slots
+ * player_cleanup_slots - Cleanup all player/game resource slots
+ * (func_800C90E0)
  * Address: 0x800C90E0
  * Size: 112 bytes
  *
  * Loops through slots 22-37 (16 slots) and 38-53 (16 slots),
  * cleaning up each one that is active.
  */
-void func_800C90E0(void) {
+void player_cleanup_slots(void) {
     s32 i;
     s32 slot;
 
     for (i = 0; i < 16; i++) {
         /* Cleanup slot (i + 38) in range 38-53 */
-        slot = func_80097694(i + 38, -1);
+        slot = resource_get_slot_state(i + 38, -1);
         if (slot >= 0) {
-            func_800AC840(slot);
+            resource_cleanup(slot);
         }
 
         /* Cleanup slot (i + 22) in range 22-37 */
-        slot = func_80097694(i + 22, -1);
+        slot = resource_get_slot_state(i + 22, -1);
         if (slot >= 0) {
-            func_800AC840(slot);
+            resource_cleanup(slot);
         }
     }
 }
@@ -2691,50 +2695,52 @@ void func_800C90E0(void) {
 
 /**
 /*
- * func_800C9194 - Create and register sync entry
+ * sync_entry_register - Create and register sync entry
+ * (func_800C9194)
  * Address: 0x800C9194
  * Size: 124 bytes
  *
- * Acquires sync on D_80142728, creates new entry via func_80091B00,
+ * Acquires sync on D_80142728, creates new entry via entry_allocate,
  * sets byte2=0, stores params at offsets 4 and 8, releases sync,
  * then signals D_801427A8 with the new entry.
  *
  * @param a0 Value to store at entry offset 4
  * @param a1 Value to store at entry offset 8
  */
-void func_800C9194(s32 a0, s32 a1) {
+void sync_entry_register(s32 a0, s32 a1) {
     void *entry;
 
-    func_80007270(&D_80142728[0], NULL, 1);
+    sync_acquire(&D_80142728[0], NULL, 1);
 
-    entry = func_80091B00(0);
+    entry = entry_allocate(0);
     *(u8*)((u8*)entry + 2) = 0;
     *(s32*)((u8*)entry + 4) = a0;
     *(u8*)((u8*)entry + 8) = (u8)a1;
 
-    func_800075E0(&D_80142728[0], NULL, 0);
-    func_800075E0(&D_80142728[0x80], entry, 0);
+    sync_release(&D_80142728[0], NULL, 0);
+    sync_release(&D_80142728[0x80], entry, 0);
 }
 
 /*
 
 /**
 /*
- * func_800CC804 - Initialize with single flag
+ * init_single_mode_wrapper - Initialize with single flag
+ * (func_800CC804)
  * Address: 0x800CC804
  * Size: 68 bytes
  *
- * Sets up register flags s0=1, s3=1 and calls func_800CBF2C.
+ * Sets up register flags s0=1, s3=1 and calls core_initialization.
  * This is a wrapper for single-player or single-mode initialization.
  *
  * @param arg Passed in a0, stored to s1
  */
-extern void func_800CBF2C(void *menu); /* Core initialization */
+extern void core_initialization(void *menu); /* func_800CBF2C - Core initialization */
 
-void func_800CC804(void *arg) {
+void init_single_mode_wrapper(void *arg) {
     /* Set flags and call core init */
-    /* s0 = 1, s1 = arg, s3 = 1 passed to func_800CBF2C */
-    func_800CBF2C(NULL);
+    /* s0 = 1, s1 = arg, s3 = 1 passed to core_initialization */
+    core_initialization(NULL);
 }
 
 /*
@@ -4981,7 +4987,7 @@ void func_800AB70C(s32 a0, s32 a1, s16 a2, s16 a3, s32 stack) {
  */
 
 void func_800C92DC(void) {
-    func_800C9210(0);
+    speed_set(0);
 }
 
 /*
@@ -4996,7 +5002,7 @@ void func_800C92DC(void) {
  * The FP operations copy f12 to f20 and f14 to f22.
  */
 void func_800C93AC(void) {
-    func_800C9210(0);
+    speed_set(0);
 }
 
 /*
@@ -6462,7 +6468,7 @@ s32 func_800B71D4_alt(void) {
  * func_800C84C0 (60 bytes)
  * Set player state byte(s)
  */
-void func_800C84C0(s32 a0, s8 a1) {
+void player_mode_set(s32 a0, s8 a1) {
     u8 *arr = &D_80159B74;
 
     if (a0 == -1) {
@@ -7638,8 +7644,8 @@ void func_800E7040(void) {
     condition = 0;  /* Preload */
 
     if (condition == 0) {
-        func_800C9158(-1, 1);
-        func_800C84C0(-1, 1);
+        player_state_set(-1, 1);
+        player_mode_set(-1, 1);
     }
 
     *(u8 *)0x80111954 = 1;
@@ -11528,7 +11534,7 @@ void func_800A5D34(void *car, void *ground) {
         dlPtr = (void *)((u8 *)dlPtr + 8);
 
         /* Draw shadow texture */
-        func_800C7110(32, (s32)(carPos[0] - halfWidth), (s32)(shadowY), (s32)(halfWidth * 2), (s32)(halfLength * 2), alpha);
+        draw_ui_element(32, (s32)(carPos[0] - halfWidth), (s32)(shadowY), (s32)(halfWidth * 2), (s32)(halfLength * 2), alpha);
     }
 
     *(void **)(0x80149438) = dlPtr;
@@ -11559,12 +11565,12 @@ void func_800A6094(void *car, s32 lightMask) {
         lightPos[0] = carPos[0] + carDir[0] * 4.0f - carDir[2] * 1.5f;
         lightPos[1] = carPos[1] + 1.0f;
         lightPos[2] = carPos[2] + carDir[2] * 4.0f + carDir[0] * 1.5f;
-        func_800C7110(33, (s32)lightPos[0], (s32)lightPos[1], (s32)lightPos[2], 8, alpha);
+        draw_ui_element(33, (s32)lightPos[0], (s32)lightPos[1], (s32)lightPos[2], 8, alpha);
 
         /* Right headlight */
         lightPos[0] = carPos[0] + carDir[0] * 4.0f + carDir[2] * 1.5f;
         lightPos[2] = carPos[2] + carDir[2] * 4.0f - carDir[0] * 1.5f;
-        func_800C7110(33, (s32)lightPos[0], (s32)lightPos[1], (s32)lightPos[2], 8, alpha);
+        draw_ui_element(33, (s32)lightPos[0], (s32)lightPos[1], (s32)lightPos[2], 8, alpha);
     }
 
     /* Taillights (bits 2-3) */
@@ -11575,12 +11581,12 @@ void func_800A6094(void *car, s32 lightMask) {
         lightPos[0] = carPos[0] - carDir[0] * 4.0f - carDir[2] * 1.5f;
         lightPos[1] = carPos[1] + 1.0f;
         lightPos[2] = carPos[2] - carDir[2] * 4.0f + carDir[0] * 1.5f;
-        func_800C7110(34, (s32)lightPos[0], (s32)lightPos[1], (s32)lightPos[2], 8, alpha);
+        draw_ui_element(34, (s32)lightPos[0], (s32)lightPos[1], (s32)lightPos[2], 8, alpha);
 
         /* Right taillight */
         lightPos[0] = carPos[0] - carDir[0] * 4.0f + carDir[2] * 1.5f;
         lightPos[2] = carPos[2] - carDir[2] * 4.0f - carDir[0] * 1.5f;
-        func_800C7110(34, (s32)lightPos[0], (s32)lightPos[1], (s32)lightPos[2], 8, alpha);
+        draw_ui_element(34, (s32)lightPos[0], (s32)lightPos[1], (s32)lightPos[2], 8, alpha);
     }
 }
 
@@ -15205,48 +15211,48 @@ void func_800C813C(void *hud, s32 elementId) {
 
     switch (elementId) {
         case 0:  /* Speedometer background */
-            func_800C7110(0x10, x, y, width, height, 255);  /* Sprite ID 0x10 */
+            draw_ui_element(0x10, x, y, width, height, 255);  /* Sprite ID 0x10 */
             break;
 
         case 1:  /* Speedometer needle */
             /* Needle rotation handled by speedometer update */
-            func_800C7110(0x11, x, y, width, height, 255);
+            draw_ui_element(0x11, x, y, width, height, 255);
             break;
 
         case 2:  /* Tachometer background */
-            func_800C7110(0x12, x, y, width, height, 255);
+            draw_ui_element(0x12, x, y, width, height, 255);
             break;
 
         case 3:  /* Tachometer needle */
-            func_800C7110(0x13, x, y, width, height, 255);
+            draw_ui_element(0x13, x, y, width, height, 255);
             break;
 
         case 4:  /* Lap counter background */
-            func_800C7110(0x14, x, y, width, height, 255);
+            draw_ui_element(0x14, x, y, width, height, 255);
             break;
 
         case 5:  /* Position indicator */
-            func_800C7110(0x15, x, y, width, height, 255);
+            draw_ui_element(0x15, x, y, width, height, 255);
             break;
 
         case 6:  /* Timer background */
-            func_800C7110(0x16, x, y, width, height, 255);
+            draw_ui_element(0x16, x, y, width, height, 255);
             break;
 
         case 7:  /* Nitro meter */
-            func_800C7110(0x17, x, y, width, height, 255);
+            draw_ui_element(0x17, x, y, width, height, 255);
             break;
 
         case 8:  /* Minimap */
-            func_800C7110(0x18, x, y, width, height, 255);
+            draw_ui_element(0x18, x, y, width, height, 255);
             break;
 
         case 9:  /* Wrong way indicator */
-            func_800C7110(0x19, x, y, width, height, 255);
+            draw_ui_element(0x19, x, y, width, height, 255);
             break;
 
         case 10:  /* Damage indicator */
-            func_800C7110(0x1A, x, y, width, height, 255);
+            draw_ui_element(0x1A, x, y, width, height, 255);
             break;
     }
 }
@@ -15259,7 +15265,7 @@ void func_800C813C(void *hud, s32 elementId) {
  * Updates the speedometer display with current speed.
  * Includes needle animation and digital readout.
  */
-void func_800C84FC(void *hud, f32 speed) {
+void hud_speed_display(void *hud, f32 speed) {
     f32 *needleAngle, *displaySpeed;
     f32 *positions;
     f32 maxSpeed, minAngle, maxAngle, targetAngle;
@@ -15313,7 +15319,7 @@ void func_800C84FC(void *hud, f32 speed) {
     speedText[3] = '\0';
 
     /* Render digital readout */
-    func_800C734C(x + 20, y + 40, speedText, 0xFFFFFFFF);
+    draw_text(x + 20, y + 40, speedText, 0xFFFFFFFF);
 }
 
 /*
@@ -15334,7 +15340,7 @@ void func_800C885C(void) { /* Tachometer update stub */ }
  * Updates the lap counter display with current and total laps.
  * Shows lap time splits and best lap indicator.
  */
-void func_800C8B8C(s32 a, s32 b, s32 c, s32 d, s32 e, f32 f, f32 g, s32 h) {
+void hud_setup(s32 a, s32 b, s32 c, s32 d, s32 e, f32 f, f32 g, s32 h) {
     /* HUD setup stub */
 }
 
@@ -15346,7 +15352,7 @@ void func_800C8B8C(s32 a, s32 b, s32 c, s32 d, s32 e, f32 f, f32 g, s32 h) {
  * Shows the player's race position (1st, 2nd, etc.)
  * with ordinal suffix.
  */
-void func_800C8FA4(s32 flag) { /* Position display stub */ }
+void display_enable(s32 flag) { /* Position display stub */ }
 
 /*
 
@@ -15355,7 +15361,7 @@ void func_800C8FA4(s32 flag) { /* Position display stub */ }
  *
  * Displays race time in MM:SS.CC format.
  */
-void func_800C9158(s32 a, s32 b) {
+void player_state_set(s32 a, s32 b) {
     /* Timer display stub */
 }
 
@@ -15366,7 +15372,7 @@ void func_800C9158(s32 a, s32 b) {
  *
  * Digital speed readout with MPH/KPH unit.
  */
-void func_800C9210(s32 speed) {
+void speed_set(s32 speed) {
     /* Speed display stub */
 }
 
@@ -15567,25 +15573,25 @@ void func_800CF06C(void *menu) {
     /* Draw menu title based on state */
     switch (*menuState) {
         case 0:
-            func_800C734C(baseX, 50, "RUSH 2049", 0xFF8800FF);
+            draw_text(baseX, 50, "RUSH 2049", 0xFF8800FF);
             break;
         case 1:
-            func_800C734C(baseX, 50, "RACE - SELECT TRACK", 0xFF8800FF);
+            draw_text(baseX, 50, "RACE - SELECT TRACK", 0xFF8800FF);
             break;
         case 2:
-            func_800C734C(baseX, 50, "TIME TRIAL - SELECT TRACK", 0xFF8800FF);
+            draw_text(baseX, 50, "TIME TRIAL - SELECT TRACK", 0xFF8800FF);
             break;
         case 3:
-            func_800C734C(baseX, 50, "STUNT MODE - SELECT TRACK", 0xFF8800FF);
+            draw_text(baseX, 50, "STUNT MODE - SELECT TRACK", 0xFF8800FF);
             break;
         case 4:
-            func_800C734C(baseX, 50, "BATTLE - SELECT ARENA", 0xFF8800FF);
+            draw_text(baseX, 50, "BATTLE - SELECT ARENA", 0xFF8800FF);
             break;
         case 10:
-            func_800C734C(baseX, 50, "OPTIONS", 0xFF8800FF);
+            draw_text(baseX, 50, "OPTIONS", 0xFF8800FF);
             break;
         case 20:
-            func_800C734C(baseX, 50, "SELECT CAR", 0xFF8800FF);
+            draw_text(baseX, 50, "SELECT CAR", 0xFF8800FF);
             break;
     }
 
@@ -15607,11 +15613,11 @@ void func_800CF06C(void *menu) {
         switch (*menuState) {
             case 0:  /* Main menu */
                 switch (i) {
-                    case 0: func_800C734C(baseX, itemY, "RACE", color); break;
-                    case 1: func_800C734C(baseX, itemY, "TIME TRIAL", color); break;
-                    case 2: func_800C734C(baseX, itemY, "STUNT MODE", color); break;
-                    case 3: func_800C734C(baseX, itemY, "BATTLE", color); break;
-                    case 4: func_800C734C(baseX, itemY, "OPTIONS", color); break;
+                    case 0: draw_text(baseX, itemY, "RACE", color); break;
+                    case 1: draw_text(baseX, itemY, "TIME TRIAL", color); break;
+                    case 2: draw_text(baseX, itemY, "STUNT MODE", color); break;
+                    case 3: draw_text(baseX, itemY, "BATTLE", color); break;
+                    case 4: draw_text(baseX, itemY, "OPTIONS", color); break;
                 }
                 break;
 
@@ -15619,33 +15625,33 @@ void func_800CF06C(void *menu) {
             case 2:
             case 3:
                 switch (i) {
-                    case 0: func_800C734C(baseX, itemY, "TRACK 1", color); break;
-                    case 1: func_800C734C(baseX, itemY, "TRACK 2", color); break;
-                    case 2: func_800C734C(baseX, itemY, "TRACK 3", color); break;
-                    case 3: func_800C734C(baseX, itemY, "TRACK 4", color); break;
-                    case 4: func_800C734C(baseX, itemY, "TRACK 5", color); break;
-                    case 5: func_800C734C(baseX, itemY, "TRACK 6", color); break;
+                    case 0: draw_text(baseX, itemY, "TRACK 1", color); break;
+                    case 1: draw_text(baseX, itemY, "TRACK 2", color); break;
+                    case 2: draw_text(baseX, itemY, "TRACK 3", color); break;
+                    case 3: draw_text(baseX, itemY, "TRACK 4", color); break;
+                    case 4: draw_text(baseX, itemY, "TRACK 5", color); break;
+                    case 5: draw_text(baseX, itemY, "TRACK 6", color); break;
                 }
                 break;
 
             case 20:  /* Car select */
                 switch (i) {
-                    case 0: func_800C734C(baseX, itemY, "CAR 1", color); break;
-                    case 1: func_800C734C(baseX, itemY, "CAR 2", color); break;
-                    case 2: func_800C734C(baseX, itemY, "CAR 3", color); break;
-                    case 3: func_800C734C(baseX, itemY, "CAR 4", color); break;
+                    case 0: draw_text(baseX, itemY, "CAR 1", color); break;
+                    case 1: draw_text(baseX, itemY, "CAR 2", color); break;
+                    case 2: draw_text(baseX, itemY, "CAR 3", color); break;
+                    case 3: draw_text(baseX, itemY, "CAR 4", color); break;
                 }
                 break;
         }
 
         /* Draw selection arrow */
         if (i == *selectedItem) {
-            func_800C734C(baseX - 20, itemY, ">", color);
+            draw_text(baseX - 20, itemY, ">", color);
         }
     }
 
     /* Draw control hints at bottom */
-    func_800C734C(40, 200, "A: Select  B: Back", 0x888888FF);
+    draw_text(40, 200, "A: Select  B: Back", 0x888888FF);
 }
 
 /*
@@ -15763,22 +15769,22 @@ void func_800D1004(void *menu) {
 
         switch (i) {
             case 0:
-                func_800C734C(60, y, "MARINA", color);
+                draw_text(60, y, "MARINA", color);
                 break;
             case 1:
-                func_800C734C(60, y, "HAIGHT", color);
+                draw_text(60, y, "HAIGHT", color);
                 break;
             case 2:
-                func_800C734C(60, y, "METRO", color);
+                draw_text(60, y, "METRO", color);
                 break;
             case 3:
-                func_800C734C(60, y, "MISSION", color);
+                draw_text(60, y, "MISSION", color);
                 break;
             case 4:
-                func_800C734C(60, y, "TENDERLOIN", color);
+                draw_text(60, y, "TENDERLOIN", color);
                 break;
             case 5:
-                func_800C734C(60, y, "ALCATRAZ", color);
+                draw_text(60, y, "ALCATRAZ", color);
                 break;
         }
     }
@@ -15786,28 +15792,28 @@ void func_800D1004(void *menu) {
     /* Draw track info for selected track */
     switch (*selectedTrack) {
         case 0:
-            func_800C734C(180, 130, "BEGINNER", 0x00FF00FF);
-            func_800C734C(180, 145, "LENGTH: SHORT", 0xAAAAAAFF);
+            draw_text(180, 130, "BEGINNER", 0x00FF00FF);
+            draw_text(180, 145, "LENGTH: SHORT", 0xAAAAAAFF);
             break;
         case 1:
-            func_800C734C(180, 130, "INTERMEDIATE", 0xFFFF00FF);
-            func_800C734C(180, 145, "LENGTH: MEDIUM", 0xAAAAAAFF);
+            draw_text(180, 130, "INTERMEDIATE", 0xFFFF00FF);
+            draw_text(180, 145, "LENGTH: MEDIUM", 0xAAAAAAFF);
             break;
         case 2:
-            func_800C734C(180, 130, "ADVANCED", 0xFF8800FF);
-            func_800C734C(180, 145, "LENGTH: LONG", 0xAAAAAAFF);
+            draw_text(180, 130, "ADVANCED", 0xFF8800FF);
+            draw_text(180, 145, "LENGTH: LONG", 0xAAAAAAFF);
             break;
         case 3:
-            func_800C734C(180, 130, "EXPERT", 0xFF0000FF);
-            func_800C734C(180, 145, "LENGTH: MEDIUM", 0xAAAAAAFF);
+            draw_text(180, 130, "EXPERT", 0xFF0000FF);
+            draw_text(180, 145, "LENGTH: MEDIUM", 0xAAAAAAFF);
             break;
         case 4:
-            func_800C734C(180, 130, "EXTREME", 0xFF00FFFF);
-            func_800C734C(180, 145, "LENGTH: LONG", 0xAAAAAAFF);
+            draw_text(180, 130, "EXTREME", 0xFF00FFFF);
+            draw_text(180, 145, "LENGTH: LONG", 0xAAAAAAFF);
             break;
         case 5:
-            func_800C734C(180, 130, "SECRET", 0x8888FFFF);
-            func_800C734C(180, 145, "LENGTH: ???", 0xAAAAAAFF);
+            draw_text(180, 130, "SECRET", 0x8888FFFF);
+            draw_text(180, 145, "LENGTH: ???", 0xAAAAAAFF);
             break;
     }
 
@@ -15829,10 +15835,10 @@ void func_800D1004(void *menu) {
             timeStr[6] = '0' + (cents % 10);
             timeStr[7] = '\0';
 
-            func_800C734C(180, 170, "BEST:", 0x88FF88FF);
-            func_800C734C(220, 170, timeStr, 0x88FF88FF);
+            draw_text(180, 170, "BEST:", 0x88FF88FF);
+            draw_text(220, 170, timeStr, 0x88FF88FF);
         } else {
-            func_800C734C(180, 170, "BEST: --:--.--", 0x888888FF);
+            draw_text(180, 170, "BEST: --:--.--", 0x888888FF);
         }
     }
 }
@@ -15874,16 +15880,16 @@ void func_800D4DFC(void *menu) {
     /* Draw car name */
     switch (*selectedCar) {
         case 0:
-            func_800C734C(120, 150, "RAZOR", 0xFFFF00FF);
+            draw_text(120, 150, "RAZOR", 0xFFFF00FF);
             break;
         case 1:
-            func_800C734C(120, 150, "VENOM", 0xFF0000FF);
+            draw_text(120, 150, "VENOM", 0xFF0000FF);
             break;
         case 2:
-            func_800C734C(120, 150, "STALLION", 0x00FF00FF);
+            draw_text(120, 150, "STALLION", 0x00FF00FF);
             break;
         case 3:
-            func_800C734C(120, 150, "PHANTOM", 0x8888FFFF);
+            draw_text(120, 150, "PHANTOM", 0x8888FFFF);
             break;
     }
 
@@ -15913,29 +15919,29 @@ void func_800D4DFC(void *menu) {
         }
 
         /* Draw stat bars */
-        func_800C734C(statX, statY, "SPEED:", 0xFFFFFFFF);
+        draw_text(statX, statY, "SPEED:", 0xFFFFFFFF);
         for (i = 0; i < speed; i++) {
-            func_800C734C(statX + 60 + i * 8, statY, "|", 0x00FF00FF);
+            draw_text(statX + 60 + i * 8, statY, "|", 0x00FF00FF);
         }
 
-        func_800C734C(statX, statY + 12, "ACCEL:", 0xFFFFFFFF);
+        draw_text(statX, statY + 12, "ACCEL:", 0xFFFFFFFF);
         for (i = 0; i < accel; i++) {
-            func_800C734C(statX + 60 + i * 8, statY + 12, "|", 0xFFFF00FF);
+            draw_text(statX + 60 + i * 8, statY + 12, "|", 0xFFFF00FF);
         }
 
-        func_800C734C(statX, statY + 24, "HANDLING:", 0xFFFFFFFF);
+        draw_text(statX, statY + 24, "HANDLING:", 0xFFFFFFFF);
         for (i = 0; i < handling; i++) {
-            func_800C734C(statX + 80 + i * 8, statY + 24, "|", 0x00FFFFFF);
+            draw_text(statX + 80 + i * 8, statY + 24, "|", 0x00FFFFFF);
         }
 
-        func_800C734C(statX, statY + 36, "WEIGHT:", 0xFFFFFFFF);
+        draw_text(statX, statY + 36, "WEIGHT:", 0xFFFFFFFF);
         for (i = 0; i < weight; i++) {
-            func_800C734C(statX + 70 + i * 8, statY + 36, "|", 0xFF8800FF);
+            draw_text(statX + 70 + i * 8, statY + 36, "|", 0xFF8800FF);
         }
     }
 
     /* Draw navigation hints */
-    func_800C734C(40, 220, "< > Rotate  A: Select  B: Back", 0x888888FF);
+    draw_text(40, 220, "< > Rotate  A: Select  B: Back", 0x888888FF);
 }
 
 /*
@@ -15970,7 +15976,7 @@ void func_800D5374(void *menu) {
     if (*selectedOption >= optionCount) *selectedOption = 0;
 
     /* Draw title */
-    func_800C734C(100, 50, "OPTIONS", 0xFF8800FF);
+    draw_text(100, 50, "OPTIONS", 0xFF8800FF);
 
     /* Draw option items */
     for (i = 0; i < optionCount; i++) {
@@ -15979,19 +15985,19 @@ void func_800D5374(void *menu) {
 
         switch (i) {
             case 0:
-                func_800C734C(60, y, "AUDIO", color);
+                draw_text(60, y, "AUDIO", color);
                 break;
             case 1:
-                func_800C734C(60, y, "CONTROLS", color);
+                draw_text(60, y, "CONTROLS", color);
                 break;
             case 2:
-                func_800C734C(60, y, "DISPLAY", color);
+                draw_text(60, y, "DISPLAY", color);
                 break;
             case 3:
-                func_800C734C(60, y, "SAVE/LOAD", color);
+                draw_text(60, y, "SAVE/LOAD", color);
                 break;
             case 4:
-                func_800C734C(60, y, "BACK", color);
+                draw_text(60, y, "BACK", color);
                 break;
         }
     }
@@ -16020,39 +16026,39 @@ void func_800D5524(void *menu) {
     stereo = (s32 *)((u8 *)menu + 0x38);
 
     /* Draw title */
-    func_800C734C(100, 50, "AUDIO OPTIONS", 0xFF8800FF);
+    draw_text(100, 50, "AUDIO OPTIONS", 0xFF8800FF);
 
     /* Music volume */
     color = (*selectedOption == 0) ? 0xFFFF00FF : 0xFFFFFFFF;
-    func_800C734C(60, 90, "MUSIC:", color);
+    draw_text(60, 90, "MUSIC:", color);
     for (i = 0; i < 10; i++) {
         u32 barColor = (i < *musicVolume) ? 0x00FF00FF : 0x444444FF;
-        func_800C734C(130 + i * 10, 90, "|", barColor);
+        draw_text(130 + i * 10, 90, "|", barColor);
     }
 
     /* SFX volume */
     color = (*selectedOption == 1) ? 0xFFFF00FF : 0xFFFFFFFF;
-    func_800C734C(60, 110, "SFX:", color);
+    draw_text(60, 110, "SFX:", color);
     for (i = 0; i < 10; i++) {
         u32 barColor = (i < *sfxVolume) ? 0x00FF00FF : 0x444444FF;
-        func_800C734C(130 + i * 10, 110, "|", barColor);
+        draw_text(130 + i * 10, 110, "|", barColor);
     }
 
     /* Stereo toggle */
     color = (*selectedOption == 2) ? 0xFFFF00FF : 0xFFFFFFFF;
-    func_800C734C(60, 130, "MODE:", color);
+    draw_text(60, 130, "MODE:", color);
     if (*stereo) {
-        func_800C734C(130, 130, "STEREO", 0x00FFFFFF);
+        draw_text(130, 130, "STEREO", 0x00FFFFFF);
     } else {
-        func_800C734C(130, 130, "MONO", 0x888888FF);
+        draw_text(130, 130, "MONO", 0x888888FF);
     }
 
     /* Back */
     color = (*selectedOption == 3) ? 0xFFFF00FF : 0xFFFFFFFF;
-    func_800C734C(60, 160, "BACK", color);
+    draw_text(60, 160, "BACK", color);
 
     /* Controls hint */
-    func_800C734C(40, 200, "< > Adjust  A: Toggle  B: Back", 0x888888FF);
+    draw_text(40, 200, "< > Adjust  A: Toggle  B: Back", 0x888888FF);
 }
 
 /*
@@ -16079,7 +16085,7 @@ void func_800D5A04(void *menu) {
     buttonsPressed = D_801520A4;
 
     /* Draw title */
-    func_800C734C(80, 50, "CONTROLLER CONFIG", 0xFF8800FF);
+    draw_text(80, 50, "CONTROLLER CONFIG", 0xFF8800FF);
 
     /* Draw action labels */
     for (i = 0; i < 6; i++) {
@@ -16088,49 +16094,49 @@ void func_800D5A04(void *menu) {
 
         switch (i) {
             case 0:
-                func_800C734C(40, y, "ACCELERATE:", color);
+                draw_text(40, y, "ACCELERATE:", color);
                 break;
             case 1:
-                func_800C734C(40, y, "BRAKE:", color);
+                draw_text(40, y, "BRAKE:", color);
                 break;
             case 2:
-                func_800C734C(40, y, "NITRO:", color);
+                draw_text(40, y, "NITRO:", color);
                 break;
             case 3:
-                func_800C734C(40, y, "WINGS:", color);
+                draw_text(40, y, "WINGS:", color);
                 break;
             case 4:
-                func_800C734C(40, y, "LOOK BACK:", color);
+                draw_text(40, y, "LOOK BACK:", color);
                 break;
             case 5:
-                func_800C734C(40, y, "RESET:", color);
+                draw_text(40, y, "RESET:", color);
                 break;
         }
 
         /* Show current mapping */
         if (*waitingForInput && i == *selectedOption) {
-            func_800C734C(160, y, "PRESS BUTTON...", 0x00FF00FF);
+            draw_text(160, y, "PRESS BUTTON...", 0x00FF00FF);
         } else {
             switch (buttonMappings[i]) {
-                case 0x8000: func_800C734C(160, y, "A", 0x888888FF); break;
-                case 0x4000: func_800C734C(160, y, "B", 0x888888FF); break;
-                case 0x2000: func_800C734C(160, y, "Z", 0x888888FF); break;
-                case 0x0020: func_800C734C(160, y, "L", 0x888888FF); break;
-                case 0x0010: func_800C734C(160, y, "R", 0x888888FF); break;
-                case 0x0008: func_800C734C(160, y, "C-UP", 0x888888FF); break;
-                case 0x0004: func_800C734C(160, y, "C-DOWN", 0x888888FF); break;
-                case 0x0002: func_800C734C(160, y, "C-LEFT", 0x888888FF); break;
-                case 0x0001: func_800C734C(160, y, "C-RIGHT", 0x888888FF); break;
-                default: func_800C734C(160, y, "---", 0x888888FF); break;
+                case 0x8000: draw_text(160, y, "A", 0x888888FF); break;
+                case 0x4000: draw_text(160, y, "B", 0x888888FF); break;
+                case 0x2000: draw_text(160, y, "Z", 0x888888FF); break;
+                case 0x0020: draw_text(160, y, "L", 0x888888FF); break;
+                case 0x0010: draw_text(160, y, "R", 0x888888FF); break;
+                case 0x0008: draw_text(160, y, "C-UP", 0x888888FF); break;
+                case 0x0004: draw_text(160, y, "C-DOWN", 0x888888FF); break;
+                case 0x0002: draw_text(160, y, "C-LEFT", 0x888888FF); break;
+                case 0x0001: draw_text(160, y, "C-RIGHT", 0x888888FF); break;
+                default: draw_text(160, y, "---", 0x888888FF); break;
             }
         }
     }
 
     /* Default/Back options */
     color = (*selectedOption == 6) ? 0xFFFF00FF : 0xFFFFFFFF;
-    func_800C734C(40, 200, "DEFAULTS", color);
+    draw_text(40, 200, "DEFAULTS", color);
     color = (*selectedOption == 7) ? 0xFFFF00FF : 0xFFFFFFFF;
-    func_800C734C(140, 200, "BACK", color);
+    draw_text(140, 200, "BACK", color);
 
     /* Handle input capture mode */
     if (*waitingForInput) {
@@ -16172,7 +16178,7 @@ void func_800D6160(void *menu) {
     operationPending = (s32 *)((u8 *)menu + 0x0C);
 
     /* Draw title */
-    func_800C734C(100, 50, "SAVE/LOAD", 0xFF8800FF);
+    draw_text(100, 50, "SAVE/LOAD", 0xFF8800FF);
 
     /* Draw save slots */
     for (i = 0; i < 4; i++) {
@@ -16181,8 +16187,8 @@ void func_800D6160(void *menu) {
         color = (i == *saveSlotSelected) ? 0xFFFF00FF : 0xFFFFFFFF;
 
         /* Slot number */
-        func_800C734C(40, y, "SLOT", color);
-        func_800C734C(80, y, (i == 0) ? "1" : (i == 1) ? "2" : (i == 2) ? "3" : "4", color);
+        draw_text(40, y, "SLOT", color);
+        draw_text(80, y, (i == 0) ? "1" : (i == 1) ? "2" : (i == 2) ? "3" : "4", color);
 
         /* Slot status */
         if (slotData[0] == 0x52555348) {  /* "RUSH" magic */
@@ -16193,28 +16199,28 @@ void func_800D6160(void *menu) {
             progressStr[1] = '0' + (progress % 10);
             progressStr[2] = '%';
             progressStr[3] = '\0';
-            func_800C734C(120, y, progressStr, 0x00FF00FF);
+            draw_text(120, y, progressStr, 0x00FF00FF);
         } else {
-            func_800C734C(120, y, "EMPTY", 0x888888FF);
+            draw_text(120, y, "EMPTY", 0x888888FF);
         }
     }
 
     /* Operation buttons */
     color = (*selectedOption == 0) ? 0xFFFF00FF : 0xFFFFFFFF;
-    func_800C734C(40, 190, "SAVE", color);
+    draw_text(40, 190, "SAVE", color);
 
     color = (*selectedOption == 1) ? 0xFFFF00FF : 0xFFFFFFFF;
-    func_800C734C(100, 190, "LOAD", color);
+    draw_text(100, 190, "LOAD", color);
 
     color = (*selectedOption == 2) ? 0xFFFF00FF : 0xFFFFFFFF;
-    func_800C734C(160, 190, "DELETE", color);
+    draw_text(160, 190, "DELETE", color);
 
     color = (*selectedOption == 3) ? 0xFFFF00FF : 0xFFFFFFFF;
-    func_800C734C(230, 190, "BACK", color);
+    draw_text(230, 190, "BACK", color);
 
     /* Show operation status */
     if (*operationPending) {
-        func_800C734C(80, 210, "PLEASE WAIT...", 0x00FFFFFF);
+        draw_text(80, 210, "PLEASE WAIT...", 0x00FFFFFF);
     }
 }
 
@@ -16429,7 +16435,7 @@ void func_800D91A0(void *garage) {
     rotAngle = (f32)(*carRotation) * 0.0174533f;
 
     /* Draw title */
-    func_800C734C(100, 30, "GARAGE", 0xFF8800FF);
+    draw_text(100, 30, "GARAGE", 0xFF8800FF);
 
     /* Draw 3D car model (rotating) */
     {
@@ -16438,7 +16444,7 @@ void func_800D91A0(void *garage) {
     }
 
     /* Draw car name */
-    func_800C734C(120, 150, "CAR NAME", 0xFFFFFFFF);
+    draw_text(120, 150, "CAR NAME", 0xFFFFFFFF);
 
     /* Draw customization options */
     for (i = 0; i < 5; i++) {
@@ -16447,19 +16453,19 @@ void func_800D91A0(void *garage) {
 
         switch (i) {
             case 0:
-                func_800C734C(60, y, "PAINT", color);
+                draw_text(60, y, "PAINT", color);
                 break;
             case 1:
-                func_800C734C(60, y, "WHEELS", color);
+                draw_text(60, y, "WHEELS", color);
                 break;
             case 2:
-                func_800C734C(60, y, "WINGS", color);
+                draw_text(60, y, "WINGS", color);
                 break;
             case 3:
-                func_800C734C(60, y, "SPOILER", color);
+                draw_text(60, y, "SPOILER", color);
                 break;
             case 4:
-                func_800C734C(60, y, "BACK", color);
+                draw_text(60, y, "BACK", color);
                 break;
         }
 
@@ -16469,7 +16475,7 @@ void func_800D91A0(void *garage) {
             char numStr[4];
             numStr[0] = '0' + (*carOptions);
             numStr[1] = '\0';
-            func_800C734C(180, y, numStr, 0x888888FF);
+            draw_text(180, y, numStr, 0x888888FF);
         }
     }
 
@@ -16478,13 +16484,13 @@ void func_800D91A0(void *garage) {
         s32 statX = 200;
         s32 statY = 170;
 
-        func_800C734C(statX, statY, "SPD:", 0x888888FF);
-        func_800C734C(statX, statY + 12, "ACC:", 0x888888FF);
-        func_800C734C(statX, statY + 24, "HND:", 0x888888FF);
+        draw_text(statX, statY, "SPD:", 0x888888FF);
+        draw_text(statX, statY + 12, "ACC:", 0x888888FF);
+        draw_text(statX, statY + 24, "HND:", 0x888888FF);
     }
 
     /* Draw controls hint */
-    func_800C734C(30, 230, "< > Change  A: Select  B: Back", 0x888888FF);
+    draw_text(30, 230, "< > Change  A: Select  B: Back", 0x888888FF);
 }
 
 /*
@@ -16928,18 +16934,18 @@ void func_800E23A4(void *replay) {
     }
 
     /* Draw replay header */
-    func_800C734C(110, 20, "REPLAY", 0xFF8800FF);
+    draw_text(110, 20, "REPLAY", 0xFF8800FF);
 
     /* Draw playback state */
     if (*playbackState == 0) {
-        func_800C734C(10, 210, "PAUSED", 0xFFFF00FF);
+        draw_text(10, 210, "PAUSED", 0xFFFF00FF);
     } else if (*playbackState == 1) {
         if (*playbackSpeed == 1) {
-            func_800C734C(10, 210, "PLAYING", 0x00FF00FF);
+            draw_text(10, 210, "PLAYING", 0x00FF00FF);
         } else if (*playbackSpeed == 2) {
-            func_800C734C(10, 210, "2x SPEED", 0x00FF00FF);
+            draw_text(10, 210, "2x SPEED", 0x00FF00FF);
         } else if (*playbackSpeed == -1) {
-            func_800C734C(10, 210, "REWIND", 0x00FFFFFF);
+            draw_text(10, 210, "REWIND", 0x00FFFFFF);
         }
     }
 
@@ -16975,20 +16981,20 @@ void func_800E23A4(void *replay) {
         timeStr[7] = '0' + (cents % 10);
         timeStr[8] = '\0';
 
-        func_800C734C(250, 210, timeStr, 0xFFFFFFFF);
+        draw_text(250, 210, timeStr, 0xFFFFFFFF);
     }
 
     /* Draw camera mode indicator */
     switch (*cameraMode) {
-        case 0: func_800C734C(250, 20, "CHASE", 0x888888FF); break;
-        case 1: func_800C734C(250, 20, "ORBIT", 0x888888FF); break;
-        case 2: func_800C734C(250, 20, "HELI", 0x888888FF); break;
-        case 3: func_800C734C(250, 20, "FRONT", 0x888888FF); break;
-        case 4: func_800C734C(250, 20, "WIDE", 0x888888FF); break;
+        case 0: draw_text(250, 20, "CHASE", 0x888888FF); break;
+        case 1: draw_text(250, 20, "ORBIT", 0x888888FF); break;
+        case 2: draw_text(250, 20, "HELI", 0x888888FF); break;
+        case 3: draw_text(250, 20, "FRONT", 0x888888FF); break;
+        case 4: draw_text(250, 20, "WIDE", 0x888888FF); break;
     }
 
     /* Draw controls hint */
-    func_800C734C(50, 230, "A:Play/Pause B:Exit C:Camera L/R:Speed", 0x666666FF);
+    draw_text(50, 230, "A:Play/Pause B:Exit C:Camera L/R:Speed", 0x666666FF);
 }
 
 /*
@@ -17103,7 +17109,7 @@ void func_800E05F0(f32 intensity) {
 
         /* Render rain drop as line (simplified) */
         /* In actual game, this would use the graphics display list */
-        func_800C7110(0, 0, 0, 0, 0, 0);
+        draw_ui_element(0, 0, 0, 0, 0, 0);
     }
 }
 
@@ -17735,7 +17741,7 @@ void func_800E451C(void *camera, f32 *sunPos) {
         flareY = screenY + (120.0f - screenY) * t;
 
         /* Render flare sprite */
-        func_800C7110(0, 0, 0, 0, 0, 0);
+        draw_ui_element(0, 0, 0, 0, 0, 0);
     }
 }
 
@@ -17847,7 +17853,7 @@ void func_800E5444(void *camera) {
     if (horizonY > 240.0f) horizonY = 240.0f;
 
     /* Render horizon haze line */
-    func_800C7110(0, (s32)horizonY, 320, 0, 255, 200);  /* Haze sprite */
+    draw_ui_element(0, (s32)horizonY, 320, 0, 255, 200);  /* Haze sprite */
 
     /* Render scrolling clouds */
     cloudOffset = (f32)(D_80159A20 % 6400) / 20.0f;
@@ -17864,7 +17870,7 @@ void func_800E5444(void *camera) {
         f32 cloudY = horizonY - 30.0f - (i & 1) * 15.0f;
 
         if (cloudY > 10.0f && cloudY < 200.0f) {
-            func_800C7110(0, 0, 0, 0, 0, 0);  /* Cloud sprite */
+            draw_ui_element(0, 0, 0, 0, 0, 0);  /* Cloud sprite */
         }
     }
 }
@@ -18155,7 +18161,7 @@ void func_800E7B44(f32 *pos, s32 spriteId) {
     if (size > 64) size = 64;
 
     /* Render sprite */
-    func_800C7110(0, 0, 0, 0, 0, 0);
+    draw_ui_element(0, 0, 0, 0, 0, 0);
 }
 
 /*
@@ -19892,7 +19898,7 @@ void func_800F5000(void *car) {
             *totalScore += stuntScore;
 
             /* Display stunt notification */
-            func_800C55E4(*currentStunt, stuntScore, landingBonus);
+            stunt_command_send(*currentStunt, stuntScore, landingBonus);
         }
 
         /* Reset stunt state */
@@ -20080,7 +20086,7 @@ void func_800F6144(void *car, s32 stuntType) {
     }
 
     /* Update HUD combo display */
-    func_800C70BC();
+    scene_cleanup_slots();
 }
 
 /*
@@ -20592,8 +20598,8 @@ void func_800F9A74(void *demo) {
     /* Display "DEMO" text */
     {
         u32 flash = ((D_80142AFC / 30) & 1) ? 0xFFFFFFFF : 0xB4B4B4FF;
-        func_800C734C(140, 20, "DEMO", flash);
-        func_800C734C(105, 220, "PRESS START", 0x969696FF);
+        draw_text(140, 20, "DEMO", flash);
+        draw_text(105, 220, "PRESS START", 0x969696FF);
     }
 }
 
@@ -20650,18 +20656,18 @@ void func_800F9E2C(void) {
     func_800C6E60(0, 0, 320, 240, 0x000000);
 
     /* Draw logo (centered) */
-    func_800C7110(0, 60, 40, 200, 100, logoAlpha);
+    draw_ui_element(0, 60, 40, 200, 100, logoAlpha);
 
     /* Draw "2049" text */
-    func_800C734C(135, 130, "2049", logoAlpha);
+    draw_text(135, 130, "2049", logoAlpha);
 
     /* Draw "PRESS START" */
     if (textAlpha > 0) {
-        func_800C734C(105, 180, "PRESS START", textAlpha);
+        draw_text(105, 180, "PRESS START", textAlpha);
     }
 
     /* Copyright notice */
-    func_800C734C(80, 220, "(C) 2000 MIDWAY GAMES", 0xFFFFFF78);
+    draw_text(80, 220, "(C) 2000 MIDWAY GAMES", 0xFFFFFF78);
 
     D_8015A410 = animFrame;
 }
@@ -20771,16 +20777,16 @@ void func_800FA0D8(void) {
 
             /* Headers in brighter color */
             if (i == 0 || credits[i - 1][0] == '\0') {
-                func_800C734C(credits[i], textX, lineY, alpha);
+                draw_text(credits[i], textX, lineY, alpha);
             } else {
                 /* Names in dimmer color */
-                func_800C734C(credits[i], textX, lineY, (alpha * 180) / 255);
+                draw_text(credits[i], textX, lineY, (alpha * 180) / 255);
             }
         }
     }
 
     /* Draw skip hint */
-    func_800C734C(130, 225, "B: SKIP", 0xFFFFFF64);
+    draw_text(130, 225, "B: SKIP", 0xFFFFFF64);
 
     D_8015A400 = scrollY;
 }
@@ -20815,18 +20821,18 @@ void func_800FA9E4(f32 progress) {
     func_800C6E60(0, 0, 320, 240, 0x101020);
 
     /* Logo at top */
-    func_800C7110(1, 110, 30, 100, 50, 255);
+    draw_ui_element(1, 110, 30, 100, 50, 255);
 
     /* "LOADING" text with animated dots */
     animFrame = D_80142AFC & 0x1F;
     dotCount = (animFrame / 8) + 1;
     if (dotCount > 3) dotCount = 3;
 
-    func_800C734C(125, 100, "LOADING", 0xFFFFFFFF);
+    draw_text(125, 100, "LOADING", 0xFFFFFFFF);
 
     /* Animated dots */
     for (i = 0; i < dotCount; i++) {
-        func_800C734C(".", 175 + i * 8, 100, 255);
+        draw_text(".", 175 + i * 8, 100, 255);
     }
 
     /* Progress bar background */
@@ -20855,13 +20861,13 @@ void func_800FA9E4(f32 progress) {
             percentStr[0] = ' ';
             if (pct < 10) percentStr[1] = ' ';
         }
-        func_800C734C(percentStr, 145, 170, 220);
+        draw_text(percentStr, 145, 170, 220);
     }
 
     /* Loading tip */
     tipIndex = (D_80142AFC / 180) % 8;  /* Change tip every 3 seconds */
-    func_800C734C(60, 205, "TIP:", 0xFFFFFF96);
-    func_800C734C(loadingTips[tipIndex], 95, 205, 180);
+    draw_text(60, 205, "TIP:", 0xFFFFFF96);
+    draw_text(loadingTips[tipIndex], 95, 205, 180);
 
     /* Track name being loaded */
     if (D_80159A08 >= 0 && D_80159A08 < 12) {
@@ -20879,7 +20885,7 @@ void func_800FA9E4(f32 progress) {
         trackNames[10] = "GOLDEN GATE";
         trackNames[11] = "ALCATRAZ";
 
-        func_800C734C(trackNames[D_80159A08], 120, 70, 200);
+        draw_text(trackNames[D_80159A08], 120, 70, 200);
     }
 }
 
@@ -20975,7 +20981,7 @@ void func_800FAEF4(void *pause) {
     func_800C6E60(70, 50, 180, 160, 0x202040);
     func_800C6E60(72, 52, 176, 156, 0x303060);
 
-    func_800C734C(130, 60, "PAUSED", 0xFFFFFFFF);
+    draw_text(130, 60, "PAUSED", 0xFFFFFFFF);
 
     if (confirmState == 0) {
         /* Normal menu */
@@ -20988,16 +20994,16 @@ void func_800FAEF4(void *pause) {
             } else {
                 itemAlpha = 150;
             }
-            func_800C734C(menuItems[i], 100, baseY + i * 22, itemAlpha);
+            draw_text(menuItems[i], 100, baseY + i * 22, itemAlpha);
         }
     } else if (confirmState == 1) {
         /* Restart confirmation */
-        func_800C734C(105, 100, "RESTART RACE?", 0xFFFFFFFF);
-        func_800C734C(100, 140, "A: YES   B: NO", 0xFFFFFFC8);
+        draw_text(105, 100, "RESTART RACE?", 0xFFFFFFFF);
+        draw_text(100, 140, "A: YES   B: NO", 0xFFFFFFC8);
     } else if (confirmState == 2) {
         /* Quit confirmation */
-        func_800C734C(105, 100, "QUIT TO MENU?", 0xFFFFFFFF);
-        func_800C734C(100, 140, "A: YES   B: NO", 0xFFFFFFC8);
+        draw_text(105, 100, "QUIT TO MENU?", 0xFFFFFFFF);
+        draw_text(100, 140, "A: YES   B: NO", 0xFFFFFFC8);
     }
 
     D_80159F40 = selectedOption;
@@ -21146,7 +21152,7 @@ void func_800FC3D8(void *bonus) {
         s32 y = 20;
 
         /* Coin icon */
-        func_800C7110(30, x, y, 16, 16, 255);
+        draw_ui_element(30, x, y, 16, 16, 255);
 
         /* Count text */
         coinStr[0] = '0' + (coinCount / 10);
@@ -21155,7 +21161,7 @@ void func_800FC3D8(void *bonus) {
         coinStr[3] = '0' + (totalCoins / 10);
         coinStr[4] = '0' + (totalCoins % 10);
         coinStr[5] = '\0';
-        func_800C734C(coinStr, x + 20, y + 2, 255);
+        draw_text(coinStr, x + 20, y + 2, 255);
     }
 }
 
@@ -24546,7 +24552,7 @@ void func_800BFD6C(void *camera, f32 *target) {
  * Follows a predefined camera path using interpolation
  * Path structure: array of control points with position and look-at
  */
-void func_800C0288(void *camera, void *path, f32 t) {
+void camera_path_follow(void *camera, void *path, f32 t) {
     f32 *camPos, *camTarget;
     f32 *pathData;
     s32 numPoints, idx0, idx1;
@@ -24602,30 +24608,30 @@ void func_800C0288(void *camera, void *path, f32 t) {
 
 /*
 
- * func_800C0AC4 (1736 bytes)
- * Camera transition
+ * camera_transition (func_800C0AC4)
+ * Size: 1736 bytes
  *
  * Blends between two camera states over time
  */
-void func_800C0AC4(void *camera, void *targetCamera, f32 duration) {
+void camera_transition(void *camera, void *targetCamera, f32 duration) {
     /* Transition - stub */
 }
 
 /*
 
- * func_800C1188 (876 bytes)
- * Camera matrix build
+ * camera_matrix_build (func_800C1188)
+ * Size: 876 bytes
  */
-void func_800C1188(void *camera, f32 *matrix) {
+void camera_matrix_build(void *camera, f32 *matrix) {
     /* Matrix build - stub */
 }
 
 /*
 
- * func_800C14F4 (768 bytes)
- * Camera frustum extract
+ * camera_frustum_extract (func_800C14F4)
+ * Size: 768 bytes
  */
-void func_800C14F4(void *camera, f32 *frustum) {
+void camera_frustum_extract(void *camera, f32 *frustum) {
     f32 *camPos, *camLook, *camUp, *camRight;
     f32 *fov, *aspect, *nearPlane, *farPlane;
     f32 tanHalfFov;
@@ -24698,10 +24704,10 @@ void func_800C14F4(void *camera, f32 *frustum) {
 
 /*
 
- * func_800C17F4 (1224 bytes)
- * Camera viewport setup
+ * camera_viewport_setup (func_800C17F4)
+ * Size: 1224 bytes
  */
-void func_800C17F4(void *camera, s32 x, s32 y, s32 w, s32 h) {
+void camera_viewport_setup(void *camera, s32 x, s32 y, s32 w, s32 h) {
     s32 *viewX, *viewY, *viewW, *viewH;
     f32 *aspect;
     Gfx **dlPtr;
@@ -24760,10 +24766,10 @@ void func_800C17F4(void *camera, s32 x, s32 y, s32 w, s32 h) {
 
 /*
 
- * func_800C1CBC (2392 bytes)
- * Split screen camera
+ * camera_split_screen_setup (func_800C1CBC)
+ * Size: 2392 bytes
  */
-void func_800C1CBC(s32 playerCount) {
+void camera_split_screen_setup(s32 playerCount) {
     void **cameras;
     s32 screenW, screenH;
     s32 i;
@@ -24780,28 +24786,28 @@ void func_800C1CBC(s32 playerCount) {
     switch (playerCount) {
         case 1:
             /* Full screen for single player */
-            func_800C17F4(cameras[0], 0, 0, screenW, screenH);
+            camera_viewport_setup(cameras[0], 0, 0, screenW, screenH);
             break;
 
         case 2:
             /* Top/bottom split for 2 players */
-            func_800C17F4(cameras[0], 0, 0, screenW, screenH / 2);
-            func_800C17F4(cameras[1], 0, screenH / 2, screenW, screenH / 2);
+            camera_viewport_setup(cameras[0], 0, 0, screenW, screenH / 2);
+            camera_viewport_setup(cameras[1], 0, screenH / 2, screenW, screenH / 2);
             break;
 
         case 3:
             /* Top full, bottom split for 3 players */
-            func_800C17F4(cameras[0], 0, 0, screenW, screenH / 2);
-            func_800C17F4(cameras[1], 0, screenH / 2, screenW / 2, screenH / 2);
-            func_800C17F4(cameras[2], screenW / 2, screenH / 2, screenW / 2, screenH / 2);
+            camera_viewport_setup(cameras[0], 0, 0, screenW, screenH / 2);
+            camera_viewport_setup(cameras[1], 0, screenH / 2, screenW / 2, screenH / 2);
+            camera_viewport_setup(cameras[2], screenW / 2, screenH / 2, screenW / 2, screenH / 2);
             break;
 
         case 4:
             /* Quad split for 4 players */
-            func_800C17F4(cameras[0], 0, 0, screenW / 2, screenH / 2);
-            func_800C17F4(cameras[1], screenW / 2, 0, screenW / 2, screenH / 2);
-            func_800C17F4(cameras[2], 0, screenH / 2, screenW / 2, screenH / 2);
-            func_800C17F4(cameras[3], screenW / 2, screenH / 2, screenW / 2, screenH / 2);
+            camera_viewport_setup(cameras[0], 0, 0, screenW / 2, screenH / 2);
+            camera_viewport_setup(cameras[1], screenW / 2, 0, screenW / 2, screenH / 2);
+            camera_viewport_setup(cameras[2], 0, screenH / 2, screenW / 2, screenH / 2);
+            camera_viewport_setup(cameras[3], screenW / 2, screenH / 2, screenW / 2, screenH / 2);
             break;
     }
 
@@ -26807,13 +26813,13 @@ void func_80102250(void) {
     func_800C6E60(0, 0, 320, 240, 0x101030);
 
     /* Title */
-    func_800C734C(100, 20, "RACE RESULTS", 0xFFFFFFFF);
+    draw_text(100, 20, "RACE RESULTS", 0xFFFFFFFF);
 
     /* Column headers */
-    func_800C734C(40, 50, "POS", 0xFFFFFFB4);
-    func_800C734C(90, 50, "PLAYER", 0xFFFFFFB4);
-    func_800C734C(170, 50, "LAPS", 0xFFFFFFB4);
-    func_800C734C(220, 50, "TIME", 0xFFFFFFB4);
+    draw_text(40, 50, "POS", 0xFFFFFFB4);
+    draw_text(90, 50, "PLAYER", 0xFFFFFFB4);
+    draw_text(170, 50, "LAPS", 0xFFFFFFB4);
+    draw_text(220, 50, "TIME", 0xFFFFFFB4);
 
     /* Display each player/racer result */
     for (i = 0; i < 8; i++) {
@@ -26839,7 +26845,7 @@ void func_80102250(void) {
         posStr[0] = '0' + position;
         posStr[1] = '.';
         posStr[2] = '\0';
-        func_800C734C(posStr, 45, y, alpha);
+        draw_text(posStr, 45, y, alpha);
 
         /* Player name */
         if (i < numPlayers) {
@@ -26853,9 +26859,9 @@ void func_80102250(void) {
             pStr[6] = ' ';
             pStr[7] = '1' + i;
             pStr[8] = '\0';
-            func_800C734C(pStr, 90, y, alpha);
+            draw_text(pStr, 90, y, alpha);
         } else {
-            func_800C734C("DRONE", 90, y, alpha - 40);
+            draw_text("DRONE", 90, y, alpha - 40);
         }
 
         /* Laps */
@@ -26865,7 +26871,7 @@ void func_80102250(void) {
             lapStr[1] = '/';
             lapStr[2] = '0' + D_8015A298;
             lapStr[3] = '\0';
-            func_800C734C(lapStr, 175, y, alpha);
+            draw_text(lapStr, 175, y, alpha);
         }
 
         /* Time */
@@ -26881,25 +26887,25 @@ void func_80102250(void) {
             timeStr[5] = '0' + (h / 10);
             timeStr[6] = '0' + (h % 10);
             timeStr[7] = '\0';
-            func_800C734C(timeStr, 215, y, alpha);
+            draw_text(timeStr, 215, y, alpha);
         } else {
-            func_800C734C("DNF", 230, y, 120);
+            draw_text("DNF", 230, y, 120);
         }
     }
 
     /* New record indicator */
     if (D_8015A310) {
         s32 flash = ((animFrame / 10) & 1) ? 255 : 180;
-        func_800C734C(110, 195, "NEW RECORD!", flash);
+        draw_text(110, 195, "NEW RECORD!", flash);
     }
     if (D_8015A314) {
         s32 flash = ((animFrame / 10) & 1) ? 255 : 180;
-        func_800C734C(105, 210, "NEW BEST LAP!", flash);
+        draw_text(105, 210, "NEW BEST LAP!", flash);
     }
 
     /* Continue prompt */
     if (animFrame > 60) {
-        func_800C734C(85, 225, "PRESS A TO CONTINUE", 0xFFFFFF96);
+        draw_text(85, 225, "PRESS A TO CONTINUE", 0xFFFFFF96);
     }
 
     D_8015A420 = animFrame;
@@ -26949,7 +26955,7 @@ void func_80102A74(void) {
             func_800C6E60(40, 30, 240, 180, 0xFF101030);
 
             /* Title */
-            func_800C734C(100, 45, "RACE COMPLETE", 0xFFFFFFFF);
+            draw_text(100, 45, "RACE COMPLETE", 0xFFFFFFFF);
 
             /* Results list */
             yPos = 70;
@@ -26968,17 +26974,17 @@ void func_80102A74(void) {
 
                     /* Draw placing */
                     if (placing == 1) {
-                        func_800C734C("1ST", 60, yPos, 255);
+                        draw_text("1ST", 60, yPos, 255);
                     } else if (placing == 2) {
-                        func_800C734C("2ND", 60, yPos, 200);
+                        draw_text("2ND", 60, yPos, 200);
                     } else if (placing == 3) {
-                        func_800C734C("3RD", 60, yPos, 150);
+                        draw_text("3RD", 60, yPos, 150);
                     } else {
-                        func_800C734C("4TH", 60, yPos, 100);
+                        draw_text("4TH", 60, yPos, 100);
                     }
 
                     /* Draw time */
-                    func_800C734C(timeStr, 120, yPos, 200);
+                    draw_text(timeStr, 120, yPos, 200);
 
                     yPos += 25;
                 }
@@ -27178,25 +27184,25 @@ s32 func_801033D8(void) {
     func_800C6E60(60, 80, 200, 80, 0x202040);
     func_800C6E60(62, 82, 196, 76, 0x303060);
 
-    func_800C734C(120, 95, "CONTINUE?", 0xFFFFFFFF);
+    draw_text(120, 95, "CONTINUE?", 0xFFFFFFFF);
 
     /* Countdown number */
     {
         s32 secs = (countdown / 60) + 1;
         countStr[0] = '0' + secs;
         countStr[1] = '\0';
-        func_800C734C(countStr, 155, 115, 200);
+        draw_text(countStr, 155, 115, 200);
     }
 
     /* Options */
-    func_800C734C("YES", 100, 140, selection == 0 ? 255 : 150);
-    func_800C734C("NO", 190, 140, selection == 1 ? 255 : 150);
+    draw_text("YES", 100, 140, selection == 0 ? 255 : 150);
+    draw_text("NO", 190, 140, selection == 1 ? 255 : 150);
 
     /* Selection indicator */
     if (selection == 0) {
-        func_800C734C(85, 140, ">", 0xFFFFFFFF);
+        draw_text(85, 140, ">", 0xFFFFFFFF);
     } else {
-        func_800C734C(175, 140, ">", 0xFFFFFFFF);
+        draw_text(175, 140, ">", 0xFFFFFFFF);
     }
 
     D_8015A430 = countdown;
@@ -27249,7 +27255,7 @@ void func_80103A08(void) {
             scale = 100;
         }
 
-        func_800C734C("GAME OVER", 95, textY, alpha);
+        draw_text("GAME OVER", 95, textY, alpha);
     }
 
     /* Display final statistics */
@@ -27259,10 +27265,10 @@ void func_80103A08(void) {
             statsAlpha = ((animFrame - 30) * 255) / 60;
         }
 
-        func_800C734C(110, 100, "FINAL STATS", statsAlpha);
+        draw_text(110, 100, "FINAL STATS", statsAlpha);
 
         /* Total races */
-        func_800C734C("RACES:", 80, 125, statsAlpha - 40);
+        draw_text("RACES:", 80, 125, statsAlpha - 40);
         {
             char numStr[8];
             s32 val = D_8015A330;
@@ -27270,11 +27276,11 @@ void func_80103A08(void) {
             numStr[1] = '0' + ((val / 10) % 10);
             numStr[2] = '0' + (val % 10);
             numStr[3] = '\0';
-            func_800C734C(numStr, 180, 125, statsAlpha);
+            draw_text(numStr, 180, 125, statsAlpha);
         }
 
         /* Wins */
-        func_800C734C("WINS:", 80, 145, statsAlpha - 40);
+        draw_text("WINS:", 80, 145, statsAlpha - 40);
         {
             char numStr[8];
             s32 val = D_8015A334;
@@ -27282,11 +27288,11 @@ void func_80103A08(void) {
             numStr[1] = '0' + ((val / 10) % 10);
             numStr[2] = '0' + (val % 10);
             numStr[3] = '\0';
-            func_800C734C(numStr, 180, 145, statsAlpha);
+            draw_text(numStr, 180, 145, statsAlpha);
         }
 
         /* Best finish */
-        func_800C734C("BEST FINISH:", 80, 165, statsAlpha - 40);
+        draw_text("BEST FINISH:", 80, 165, statsAlpha - 40);
         {
             char posStr[4];
             s32 bestPos = D_8015A448;
@@ -27302,9 +27308,9 @@ void func_80103A08(void) {
                     posStr[1] = 'T'; posStr[2] = 'H';
                 }
                 posStr[3] = '\0';
-                func_800C734C(posStr, 200, 165, statsAlpha);
+                draw_text(posStr, 200, 165, statsAlpha);
             } else {
-                func_800C734C(200, 165, "---", statsAlpha);
+                draw_text(200, 165, "---", statsAlpha);
             }
         }
     }
@@ -27315,13 +27321,13 @@ void func_80103A08(void) {
         if (animFrame < 150) {
             thanksAlpha = ((animFrame - 90) * 255) / 60;
         }
-        func_800C734C(75, 200, "THANKS FOR PLAYING!", thanksAlpha);
+        draw_text(75, 200, "THANKS FOR PLAYING!", thanksAlpha);
     }
 
     /* Press button prompt */
     if (animFrame > 120) {
         s32 flash = ((animFrame / 15) & 1) ? 200 : 120;
-        func_800C734C(90, 225, "PRESS ANY BUTTON", flash);
+        draw_text(90, 225, "PRESS ANY BUTTON", flash);
     }
 
     D_8015A440 = animFrame;
@@ -27409,7 +27415,7 @@ void func_80104320(u8 *name) {
     /* Render */
     func_800C6E60(0, 0, 320, 240, 0x101030);
 
-    func_800C734C(75, 25, "ENTER YOUR INITIALS", 0xFFFFFFFF);
+    draw_text(75, 25, "ENTER YOUR INITIALS", 0xFFFFFFFF);
 
     /* Current name display */
     {
@@ -27425,7 +27431,7 @@ void func_80104320(u8 *name) {
             nameDisplay[i * 2 + 1] = ' ';
         }
         nameDisplay[6] = '\0';
-        func_800C734C(nameDisplay, 130, 55, 255);
+        draw_text(nameDisplay, 130, 55, 255);
     }
 
     /* Character grid */
@@ -27443,16 +27449,16 @@ void func_80104320(u8 *name) {
         }
 
         if (i == 39) {
-            func_800C734C("END", gridX - 5, gridY, alpha);
+            draw_text("END", gridX - 5, gridY, alpha);
         } else {
             charBuf[0] = charSet[i];
             charBuf[1] = '\0';
-            func_800C734C(charBuf, gridX, gridY, alpha);
+            draw_text(charBuf, gridX, gridY, alpha);
         }
     }
 
     /* Instructions */
-    func_800C734C(80, 210, "A:SELECT  B:DELETE", 0xFFFFFF96);
+    draw_text(80, 210, "A:SELECT  B:DELETE", 0xFFFFFF96);
 
     D_8015A450 = cursorPos;
     D_8015A454 = selectedChar;
@@ -27515,7 +27521,7 @@ void func_80104A58(s32 position) {
     /* "NEW RECORD!" text with wobble */
     if (position == 1) {
         s32 wobbleX = (s32)(sinf((f32)frame * 0.3f) * 3.0f);
-        func_800C734C("NEW RECORD!", xPos - 40 + wobbleX, yPos - 25, 255);
+        draw_text("NEW RECORD!", xPos - 40 + wobbleX, yPos - 25, 255);
     }
 
     D_8015A4A0 = frame;
@@ -27566,7 +27572,7 @@ void func_80104E84(void *stats) {
     func_800C6E60(30, 20, 260, 200, 0xE0202040);
 
     /* Title */
-    func_800C734C(115, 30, "STATISTICS", 0xFFFFFFFF);
+    draw_text(115, 30, "STATISTICS", 0xFFFFFFFF);
 
     /* Stats list */
     {
@@ -27577,24 +27583,24 @@ void func_80104E84(void *stats) {
         yPos = baseY;
         if (yPos >= 50 && yPos <= 200) {
             sprintf(valueStr, "%d", statData[0]);
-            func_800C734C("RACES:", 50, yPos, 200);
-            func_800C734C(valueStr, 180, yPos, 255);
+            draw_text("RACES:", 50, yPos, 200);
+            draw_text(valueStr, 180, yPos, 255);
         }
 
         /* Wins */
         yPos = baseY + 25;
         if (yPos >= 50 && yPos <= 200) {
             sprintf(valueStr, "%d", statData[1]);
-            func_800C734C("WINS:", 50, yPos, 200);
-            func_800C734C(valueStr, 180, yPos, 255);
+            draw_text("WINS:", 50, yPos, 200);
+            draw_text(valueStr, 180, yPos, 255);
         }
 
         /* Podium finishes */
         yPos = baseY + 50;
         if (yPos >= 50 && yPos <= 200) {
             sprintf(valueStr, "%d", statData[2]);
-            func_800C734C("PODIUMS:", 50, yPos, 200);
-            func_800C734C(valueStr, 180, yPos, 255);
+            draw_text("PODIUMS:", 50, yPos, 200);
+            draw_text(valueStr, 180, yPos, 255);
         }
 
         /* Total time */
@@ -27603,8 +27609,8 @@ void func_80104E84(void *stats) {
             s32 hours = statData[3] / 3600;
             s32 mins = (statData[3] / 60) % 60;
             sprintf(valueStr, "%d:%02d", hours, mins);
-            func_800C734C("TIME PLAYED:", 50, yPos, 200);
-            func_800C734C(valueStr, 180, yPos, 255);
+            draw_text("TIME PLAYED:", 50, yPos, 200);
+            draw_text(valueStr, 180, yPos, 255);
         }
 
         /* Best lap */
@@ -27613,41 +27619,41 @@ void func_80104E84(void *stats) {
             s32 secs = statData[4] / 60;
             s32 ms = ((statData[4] % 60) * 100) / 60;
             sprintf(valueStr, "%d.%02d", secs, ms);
-            func_800C734C("BEST LAP:", 50, yPos, 200);
-            func_800C734C(valueStr, 180, yPos, 255);
+            draw_text("BEST LAP:", 50, yPos, 200);
+            draw_text(valueStr, 180, yPos, 255);
         }
 
         /* Miles driven */
         yPos = baseY + 125;
         if (yPos >= 50 && yPos <= 200) {
             sprintf(valueStr, "%d", statData[5] / 1000);
-            func_800C734C("MILES:", 50, yPos, 200);
-            func_800C734C(valueStr, 180, yPos, 255);
+            draw_text("MILES:", 50, yPos, 200);
+            draw_text(valueStr, 180, yPos, 255);
         }
 
         /* Crashes */
         yPos = baseY + 150;
         if (yPos >= 50 && yPos <= 200) {
             sprintf(valueStr, "%d", statData[6]);
-            func_800C734C("CRASHES:", 50, yPos, 200);
-            func_800C734C(valueStr, 180, yPos, 255);
+            draw_text("CRASHES:", 50, yPos, 200);
+            draw_text(valueStr, 180, yPos, 255);
         }
 
         /* Stunt points */
         yPos = baseY + 175;
         if (yPos >= 50 && yPos <= 200) {
             sprintf(valueStr, "%d", statData[7]);
-            func_800C734C("STUNT PTS:", 50, yPos, 200);
-            func_800C734C(valueStr, 180, yPos, 255);
+            draw_text("STUNT PTS:", 50, yPos, 200);
+            draw_text(valueStr, 180, yPos, 255);
         }
     }
 
     /* Scroll indicator */
     if (scrollY > 0) {
-        func_800C734C(155, 45, "^", 0xFFFFFF96);
+        draw_text(155, 45, "^", 0xFFFFFF96);
     }
     if (scrollY < 200) {
-        func_800C734C(155, 205, "v", 0xFFFFFF96);
+        draw_text(155, 205, "v", 0xFFFFFF96);
     }
 
     D_8015A4B0 = state;
@@ -27867,12 +27873,12 @@ void func_80106260(s32 achievementId) {
     func_800C6E60(72, slideY + 8, 11, 5, (alpha << 24) | 0xFFD700);
 
     /* "ACHIEVEMENT UNLOCKED" text */
-    func_800C734C(95, slideY + 8, "ACHIEVEMENT", alpha);
+    draw_text(95, slideY + 8, "ACHIEVEMENT", alpha);
 
     /* Achievement name */
     if (achievementId >= 0 && achievementId < ACH_COUNT) {
         name = achievementNames[achievementId];
-        func_800C734C(95, slideY + 24, name, alpha);
+        draw_text(95, slideY + 24, name, alpha);
     }
 
     D_8015A544 = timer - 1;
@@ -30328,7 +30334,7 @@ void func_800C2020(void *camera) {
     mode = (s32 *)((u8 *)camera + 0x34);
 
     /* Display camera position */
-    func_800C734C(10, 180, "CAM:", 0xFFFFFFC8);
+    draw_text(10, 180, "CAM:", 0xFFFFFFC8);
 
     /* X position */
     {
@@ -30342,14 +30348,14 @@ void func_800C2020(void *camera) {
         buf[5] = '0' + ((x / 10) % 10);
         buf[6] = '0' + (x % 10);
         buf[7] = '\0';
-        func_800C734C(buf, 45, 180, 180);
+        draw_text(buf, 45, 180, 180);
     }
 
     /* Mode indicator */
     {
         char *modeNames[] = {"DEF", "FP", "TP", "TOP", "CIN", "FREE", "REP"};
         if (*mode >= 0 && *mode < 7) {
-            func_800C734C(modeNames[*mode], 130, 180, 180);
+            draw_text(modeNames[*mode], 130, 180, 180);
         }
     }
 }
@@ -30703,7 +30709,7 @@ void func_800C6404(void *camera, s32 placing) {
 
 /*
 
- * func_800C7110(572 bytes, 0, 0, 0, 0, 0)
+ * draw_ui_element(572 bytes, 0, 0, 0, 0, 0)
  * HUD element draw
  *
  * Draws a HUD element (icon/graphic) at the specified position.
@@ -30720,9 +30726,9 @@ void func_800C6404(void *camera, s32 placing) {
  *   7-15 = Number sprites 0-9
  *   16-25 = Letter sprites (for position: 1st, 2nd, etc.)
  */
-extern void func_80099BFC(void *entity);
+extern void render_entity(void *entity); /* func_80099BFC - Render entity */
 
-void func_800C7110(s32 elementId, s32 x, s32 y, s32 w, s32 h, s32 alpha) {
+void draw_ui_element(s32 elementId, s32 x, s32 y, s32 w, s32 h, s32 alpha) {
     void **spriteTable;
     void *sprite;
 
@@ -30744,19 +30750,19 @@ void func_800C7110(s32 elementId, s32 x, s32 y, s32 w, s32 h, s32 alpha) {
     }
 
     /* Render sprite to display list with specified size and alpha */
-    func_800C7110((s32)(long)sprite, x, y, w, h, alpha);
+    draw_ui_element((s32)(long)sprite, x, y, w, h, alpha);
 }
 
 /*
 
- * func_800C734C (700 bytes)
- * HUD text draw
+ * draw_text (func_800C734C)
+ * Size: 700 bytes
  *
  * Draws text string at specified position using HUD font.
  * Supports uppercase letters, numbers, and basic punctuation.
  */
 
-void func_800C734C(s32 x, s32 y, char *text, u32 color) {
+void draw_text(s32 x, s32 y, char *text, u32 color) {
     s32 charX;
     s32 charIndex;
     char c;
@@ -30801,7 +30807,7 @@ void func_800C734C(s32 x, s32 y, char *text, u32 color) {
         }
 
         /* Draw character */
-        func_800C7110(charIndex + 64, charX, y, D_8015901C, D_80159020, alpha);
+        draw_ui_element(charIndex + 64, charX, y, D_8015901C, D_80159020, alpha);
 
         /* Advance position */
         charX += D_8015901C;
@@ -30810,8 +30816,8 @@ void func_800C734C(s32 x, s32 y, char *text, u32 color) {
 
 /*
 
- * func_800C760C (524 bytes)
- * HUD number draw
+ * draw_number (func_800C760C)
+ * Size: 524 bytes
  *
  * Draws a numeric value at specified position.
  * Leading zeros shown based on digits parameter.
@@ -30820,7 +30826,7 @@ void func_800C734C(s32 x, s32 y, char *text, u32 color) {
  * digits: Minimum digits to show (pads with leading zeros)
  * x, y: Screen position
  */
-void func_800C760C(s32 value, s32 digits, s32 x, s32 y) {
+void draw_number(s32 value, s32 digits, s32 x, s32 y) {
     char buffer[12];
     s32 i, len, startPos;
     s32 absValue;
@@ -30865,13 +30871,13 @@ void func_800C760C(s32 value, s32 digits, s32 x, s32 y) {
     }
 
     /* Draw using text function */
-    func_800C734C(buffer, x, y, 255);
+    draw_text(buffer, x, y, 255);
 }
 
 /*
 
- * func_800C7818 (1724 bytes)
- * HUD speedometer
+ * draw_speedometer (func_800C7818)
+ * Size: 1724 bytes
  *
  * Draws the speedometer dial with needle showing current speed.
  * Speed in game units, converted to MPH for display.
@@ -30898,7 +30904,7 @@ void func_800C7818(f32 speed) {
     dialY = D_80159028;
 
     /* Draw speedometer background */
-    func_800C7110(0, dialX, dialY, 16, 16, 255);  /* Element 0 = speedometer bg */
+    draw_ui_element(0, dialX, dialY, 16, 16, 255);  /* Element 0 = speedometer bg */
 
     /* Calculate needle angle (0-180 degrees mapped to 0-200 mph) */
     /* Needle rotates from 7 o'clock (0 mph) to 5 o'clock (200 mph) */
@@ -30908,7 +30914,7 @@ void func_800C7818(f32 speed) {
     /* Needle sprites: elements 128-143 for 16 angle positions */
     s32 needleElement = 128 + (needleAngle / 12);  /* 180/16 = ~11.25 degrees per sprite */
     if (needleElement > 143) needleElement = 143;
-    func_800C7110(needleElement, dialX + 24, dialY + 24, 255, 0, 0);  /* Center of dial */
+    draw_ui_element(needleElement, dialX + 24, dialY + 24, 255, 0, 0);  /* Center of dial */
 
     /* Draw digital speed readout */
     digitalX = dialX + 12;
@@ -30916,7 +30922,7 @@ void func_800C7818(f32 speed) {
     func_800C760C(speedMph, 3, digitalX, digitalY);
 
     /* Draw "MPH" label */
-    func_800C734C("MPH", digitalX + 30, digitalY, 255);
+    draw_text("MPH", digitalX + 30, digitalY, 255);
 }
 
 /*
@@ -30936,22 +30942,22 @@ void func_800C7ED4(s32 currentLap, s32 totalLaps) {
     y = D_80159034;
 
     /* Draw lap icon/background */
-    func_800C7110(2, x, y, 16, 16, 255);  /* Element 2 = lap indicator */
+    draw_ui_element(2, x, y, 16, 16, 255);  /* Element 2 = lap indicator */
 
     /* Check for final lap */
     if (currentLap == totalLaps) {
         /* Flash "FINAL LAP" */
-        func_800C734C("FINAL", x + 40, y, 255);
-        func_800C734C("LAP", x + 40, y + 12, 255);
+        draw_text("FINAL", x + 40, y, 255);
+        draw_text("LAP", x + 40, y + 12, 255);
     } else {
         /* Show "LAP X/Y" */
-        func_800C734C("LAP", x + 40, y, 255);
+        draw_text("LAP", x + 40, y, 255);
 
         /* Draw current lap number */
         func_800C760C(currentLap, 1, x + 40, y + 12);
 
         /* Draw separator */
-        func_800C734C("/", x + 52, y + 12, 255);
+        draw_text("/", x + 52, y + 12, 255);
 
         /* Draw total laps */
         func_800C760C(totalLaps, 1, x + 60, y + 12);
@@ -30974,7 +30980,7 @@ void func_800C8864(s32 position) {
     y = D_8015903C;
 
     /* Draw position background */
-    func_800C7110(3, x, y, 16, 16, 255);  /* Element 3 = position indicator */
+    draw_ui_element(3, x, y, 16, 16, 255);  /* Element 3 = position indicator */
 
     /* Draw position number */
     func_800C760C(position + 1, 1, x + 8, y + 4);  /* +1 because internal 0 = 1st place */
@@ -30994,7 +31000,7 @@ void func_800C8864(s32 position) {
             suffix = "TH";
             break;
     }
-    func_800C734C(suffix, x + 20, y + 4, 255);
+    draw_text(suffix, x + 20, y + 4, 255);
 }
 
 /*
@@ -31015,7 +31021,7 @@ void func_800C8920(s32 timeMs) {
     y = D_80159044;
 
     /* Draw timer background */
-    func_800C7110(4, x, y, 16, 16, 255);  /* Element 4 = timer background */
+    draw_ui_element(4, x, y, 16, 16, 255);  /* Element 4 = timer background */
 
     /* Convert milliseconds to M:SS.ms */
     if (timeMs < 0) timeMs = 0;
@@ -31031,13 +31037,13 @@ void func_800C8920(s32 timeMs) {
     func_800C760C(minutes, 1, x + 8, y + 4);
 
     /* Draw colon */
-    func_800C734C(":", x + 16, y + 4, 255);
+    draw_text(":", x + 16, y + 4, 255);
 
     /* Draw seconds (2 digits with leading zero) */
     func_800C760C(seconds, 2, x + 22, y + 4);
 
     /* Draw decimal point */
-    func_800C734C(".", x + 38, y + 4, 255);
+    draw_text(".", x + 38, y + 4, 255);
 
     /* Draw centiseconds */
     func_800C760C(ms, 2, x + 44, y + 4);
@@ -31061,7 +31067,7 @@ void func_800C9404(void *player) {
     y = D_8015904C;
 
     /* Draw minimap frame/background */
-    func_800C7110(6, x, y, 16, 16, 255);  /* Element 6 = minimap frame */
+    draw_ui_element(6, x, y, 16, 16, 255);  /* Element 6 = minimap frame */
 
     if (player == NULL) {
         return;
@@ -31084,7 +31090,7 @@ void func_800C9404(void *player) {
     if (dotY > y + 44) dotY = y + 44;
 
     /* Draw player dot (blinking) */
-    func_800C7110(144, dotX - 2, dotY - 2, 255, 0, 0);  /* Element 144 = player dot */
+    draw_ui_element(144, dotX - 2, dotY - 2, 255, 0, 0);  /* Element 144 = player dot */
 }
 
 /*
@@ -31138,7 +31144,7 @@ void func_800CA308(s32 messageId) {
     y = D_8015905C;
 
     /* Draw message */
-    func_800C734C(message, x, y, 255);
+    draw_text(message, x, y, 255);
 }
 
 /*
@@ -32087,7 +32093,7 @@ void func_800CCA04(void *list, s32 count) {
         /* Draw stretched highlight sprite at position */
         x = baseX - 5;
         y = (s32)highlightY - 2;
-        func_800C7110(50, x, y, 16, 16, highlightAlpha);
+        draw_ui_element(50, x, y, 16, 16, highlightAlpha);
     }
 
     /* Draw each menu item */
@@ -32124,62 +32130,62 @@ void func_800CCA04(void *list, s32 count) {
             case 0:  /* Action button */
             case 3:  /* Submenu link */
                 /* Just draw the label */
-                func_800C734C(labelPtr, x, y, itemAlpha);
+                draw_text(labelPtr, x, y, itemAlpha);
                 /* Draw arrow for submenu */
                 if (itemType == 3) {
-                    func_800C7110(51, x + 140, y + 4, 8, 8, itemAlpha);  /* Arrow icon */
+                    draw_ui_element(51, x + 140, y + 4, 8, 8, itemAlpha);  /* Arrow icon */
                 }
                 break;
 
             case 1:  /* Toggle */
                 /* Draw label */
-                func_800C734C(labelPtr, x, y, itemAlpha);
+                draw_text(labelPtr, x, y, itemAlpha);
                 /* Draw on/off indicator */
                 if (itemValue) {
-                    func_800C734C("ON", x + 120, y, itemAlpha);
+                    draw_text("ON", x + 120, y, itemAlpha);
                 } else {
-                    func_800C734C("OFF", x + 120, y, itemAlpha);
+                    draw_text("OFF", x + 120, y, itemAlpha);
                 }
                 break;
 
             case 2:  /* Slider */
                 /* Draw label */
-                func_800C734C(labelPtr, x, y, itemAlpha);
+                draw_text(labelPtr, x, y, itemAlpha);
                 /* Draw slider bar background */
                 sliderWidth = 80;
-                func_800C7110(52, x + 70, y + 6, sliderWidth, 8, itemAlpha / 2);  /* Slider bg */
+                draw_ui_element(52, x + 70, y + 6, sliderWidth, 8, itemAlpha / 2);  /* Slider bg */
                 /* Draw slider fill */
                 sliderFill = (itemValue * sliderWidth) / 100;
-                func_800C7110(53, x + 70, y + 6, sliderFill, 8, itemAlpha);  /* Slider fill */
+                draw_ui_element(53, x + 70, y + 6, sliderFill, 8, itemAlpha);  /* Slider fill */
                 /* Draw value */
                 valueBuf[0] = '0' + (itemValue / 100);
                 valueBuf[1] = '0' + ((itemValue / 10) % 10);
                 valueBuf[2] = '0' + (itemValue % 10);
                 valueBuf[3] = '\0';
-                func_800C734C(valueBuf, x + 155, y, itemAlpha);
+                draw_text(valueBuf, x + 155, y, itemAlpha);
                 break;
 
             case 4:  /* Multi-choice */
                 /* Draw label */
-                func_800C734C(labelPtr, x, y, itemAlpha);
+                draw_text(labelPtr, x, y, itemAlpha);
                 /* Draw current choice (stored in extra data area) */
                 {
                     char *choices;
                     s32 choiceOffset;
                     choices = (char *)(items + count * 4 + count * 16 + i * 64);
                     choiceOffset = itemValue * 16;  /* 16 chars per choice */
-                    func_800C734C(choices + choiceOffset, x + 100, y, itemAlpha);
+                    draw_text(choices + choiceOffset, x + 100, y, itemAlpha);
                     /* Draw arrows if highlighted */
                     if (isHighlighted) {
-                        func_800C7110(54, x + 90, y + 4, 8, 8, itemAlpha);   /* Left arrow */
-                        func_800C7110(55, x + 170, y + 4, 8, 8, itemAlpha);  /* Right arrow */
+                        draw_ui_element(54, x + 90, y + 4, 8, 8, itemAlpha);   /* Left arrow */
+                        draw_ui_element(55, x + 170, y + 4, 8, 8, itemAlpha);  /* Right arrow */
                     }
                 }
                 break;
 
             case 5:  /* Callback/special */
                 /* Draw label only */
-                func_800C734C(labelPtr, x, y, itemAlpha);
+                draw_text(labelPtr, x, y, itemAlpha);
                 break;
         }
 
@@ -32188,7 +32194,7 @@ void func_800CCA04(void *list, s32 count) {
             /* Pulsing cursor */
             s32 cursorAlpha;
             cursorAlpha = 200 + (s32)(55.0f * sinf((f32)D_80159270 * 0.15f));
-            func_800C7110(56, x - 20, y + 2, 12, 12, cursorAlpha);  /* Cursor icon */
+            draw_ui_element(56, x - 20, y + 2, 12, 12, cursorAlpha);  /* Cursor icon */
         }
     }
 }
@@ -32373,16 +32379,16 @@ void func_800CD104(s32 dialogId) {
 
     /* Draw dialog background */
     /* Dark overlay behind dialog */
-    func_800C7110(57, 0, 0, 320, 240, alpha / 2);  /* Screen darken */
+    draw_ui_element(57, 0, 0, 320, 240, alpha / 2);  /* Screen darken */
 
     /* Dialog box */
-    func_800C7110(58, dialogX, dialogY, dialogW, dialogH, alpha);  /* Dialog bg */
+    draw_ui_element(58, dialogX, dialogY, dialogW, dialogH, alpha);  /* Dialog bg */
 
     /* Draw border */
-    func_800C7110(59, dialogX, dialogY, dialogW, 3, alpha);  /* Top border */
-    func_800C7110(59, dialogX, dialogY + dialogH - 3, dialogW, 3, alpha);  /* Bottom */
-    func_800C7110(59, dialogX, dialogY, 3, dialogH, alpha);  /* Left */
-    func_800C7110(59, dialogX + dialogW - 3, dialogY, 3, dialogH, alpha);  /* Right */
+    draw_ui_element(59, dialogX, dialogY, dialogW, 3, alpha);  /* Top border */
+    draw_ui_element(59, dialogX, dialogY + dialogH - 3, dialogW, 3, alpha);  /* Bottom */
+    draw_ui_element(59, dialogX, dialogY, 3, dialogH, alpha);  /* Left */
+    draw_ui_element(59, dialogX + dialogW - 3, dialogY, 3, dialogH, alpha);  /* Right */
 
     /* Skip text rendering during scale animation */
     if (animFrame < 10) {
@@ -32392,11 +32398,11 @@ void func_800CD104(s32 dialogId) {
 
     /* Draw title */
     titleY = dialogY + 10;
-    func_800C734C(title, dialogX + 10, titleY, alpha);
+    draw_text(title, dialogX + 10, titleY, alpha);
 
     /* Draw message */
     messageY = dialogY + 35;
-    func_800C734C(message, dialogX + 10, messageY, alpha);
+    draw_text(message, dialogX + 10, messageY, alpha);
 
     /* Draw buttons */
     buttonY = dialogY + dialogH - 30;
@@ -32405,9 +32411,9 @@ void func_800CD104(s32 dialogId) {
         s32 btnX = dialogX + dialogW / 2 - 20;
         s32 btnAlpha = (selectedButton == 0) ? alpha : alpha * 2 / 3;
         if (selectedButton == 0) {
-            func_800C7110(60, btnX - 5, buttonY - 2, 50, 20, alpha);  /* Highlight */
+            draw_ui_element(60, btnX - 5, buttonY - 2, 50, 20, alpha);  /* Highlight */
         }
-        func_800C734C(button1, btnX, buttonY, btnAlpha);
+        draw_text(button1, btnX, buttonY, btnAlpha);
     } else {
         /* Two buttons */
         s32 btn1X = dialogX + 30;
@@ -32415,12 +32421,12 @@ void func_800CD104(s32 dialogId) {
         s32 btn1Alpha = (selectedButton == 0) ? alpha : alpha * 2 / 3;
         s32 btn2Alpha = (selectedButton == 1) ? alpha : alpha * 2 / 3;
         if (selectedButton == 0) {
-            func_800C7110(60, btn1X - 5, buttonY - 2, 50, 20, alpha);
+            draw_ui_element(60, btn1X - 5, buttonY - 2, 50, 20, alpha);
         } else {
-            func_800C7110(60, btn2X - 5, buttonY - 2, 50, 20, alpha);
+            draw_ui_element(60, btn2X - 5, buttonY - 2, 50, 20, alpha);
         }
-        func_800C734C(button1, btn1X, buttonY, btn1Alpha);
-        func_800C734C(button2, btn2X, buttonY, btn2Alpha);
+        draw_text(button1, btn1X, buttonY, btn1Alpha);
+        draw_text(button2, btn2X, buttonY, btn2Alpha);
     }
 
     D_801592E4 = animFrame + 1;
@@ -33059,7 +33065,7 @@ void func_800CED3C(void) {
     func_800CCA04(NULL, 0);
 
     /* Draw title */
-    func_800C734C(100, 40, "AUDIO SETTINGS", 0xFFFFFFFF);
+    draw_text(100, 40, "AUDIO SETTINGS", 0xFFFFFFFF);
 }
 
 /*
@@ -33100,7 +33106,7 @@ void func_800CF290(void) {
     }
 
     func_800CCA04(NULL, 0);
-    func_800C734C(100, 40, "VIDEO SETTINGS", 0xFFFFFFFF);
+    draw_text(100, 40, "VIDEO SETTINGS", 0xFFFFFFFF);
 }
 
 /*
@@ -33164,7 +33170,7 @@ void func_800CF374(void) {
     }
 
     func_800CCA04(NULL, 0);
-    func_800C734C(90, 40, "CONTROL SETTINGS", 0xFFFFFFFF);
+    draw_text(90, 40, "CONTROL SETTINGS", 0xFFFFFFFF);
 }
 
 /*
@@ -33277,29 +33283,29 @@ void func_800CF69C(void) {
     }
 
     /* Render */
-    func_800C734C(85, 40, "CONTROLLER REMAP", 0xFFFFFFFF);
+    draw_text(85, 40, "CONTROLLER REMAP", 0xFFFFFFFF);
 
     for (i = 0; i < 8; i++) {
         s32 y = 80 + i * 20;
         s32 alpha = (i == selectedItem) ? 255 : 180;
         s32 buttonIdx = D_80159330[i];
-        func_800C734C(actionNames[i], 60, y, alpha);
+        draw_text(actionNames[i], 60, y, alpha);
         if (buttonIdx >= 0 && buttonIdx < 10) {
-            func_800C734C(buttonNames[buttonIdx], 200, y, alpha);
+            draw_text(buttonNames[buttonIdx], 200, y, alpha);
         }
         if (i == selectedItem) {
-            func_800C7110(56, 40, y + 2, 12, 12, 255);
+            draw_ui_element(56, 40, y + 2, 12, 12, 255);
         }
     }
 
     /* Draw reset/back options */
-    func_800C734C("RESET DEFAULTS", 60, 260, (selectedItem == 8) ? 255 : 180);
-    func_800C734C("BACK", 60, 280, (selectedItem == 9) ? 255 : 180);
+    draw_text("RESET DEFAULTS", 60, 260, (selectedItem == 8) ? 255 : 180);
+    draw_text("BACK", 60, 280, (selectedItem == 9) ? 255 : 180);
 
     /* Draw prompt if remapping */
     if (remapState == 1) {
-        func_800C7110(57, 0, 0, 320, 240, 128);  /* Darken */
-        func_800C734C(95, 120, "PRESS A BUTTON", 0xFFFFFFFF);
+        draw_ui_element(57, 0, 0, 320, 240, 128);  /* Darken */
+        draw_text(95, 120, "PRESS A BUTTON", 0xFFFFFFFF);
     }
 }
 
@@ -33457,7 +33463,7 @@ void func_800D000C(void) {
     D_80159A04 = scrollOffset;
 
     /* Render */
-    func_800C734C(100, 30, "SELECT TRACK", 0xFFFFFFFF);
+    draw_text(100, 30, "SELECT TRACK", 0xFFFFFFFF);
 
     /* Render track list */
     for (i = 0; i < visibleTracks && (scrollOffset + i) < numTracks; i++) {
@@ -33472,25 +33478,25 @@ void func_800D000C(void) {
             alpha = alpha / 2;
         }
 
-        func_800C734C(trackNames[trackIdx], 80, y, alpha);
+        draw_text(trackNames[trackIdx], 80, y, alpha);
 
         /* Lock icon for locked tracks */
         if (!unlocked) {
-            func_800C7110(61, 55, y + 2, 16, 16, alpha);  /* Lock icon */
+            draw_ui_element(61, 55, y + 2, 16, 16, alpha);  /* Lock icon */
         }
 
         /* Selection cursor */
         if (trackIdx == selectedTrack) {
-            func_800C7110(56, 40, y + 2, 12, 12, 255);
+            draw_ui_element(56, 40, y + 2, 12, 12, 255);
         }
     }
 
     /* Scroll indicators */
     if (scrollOffset > 0) {
-        func_800C7110(62, 160, 55, 16, 12, 180);  /* Up arrow */
+        draw_ui_element(62, 160, 55, 16, 12, 180);  /* Up arrow */
     }
     if (scrollOffset + visibleTracks < numTracks) {
-        func_800C7110(63, 160, 235, 16, 12, 180);  /* Down arrow */
+        draw_ui_element(63, 160, 235, 16, 12, 180);  /* Down arrow */
     }
 
     /* Render track preview */
@@ -33519,7 +33525,7 @@ void func_800D08E4(s32 trackId) {
     unlocked = func_800D1248(trackId);
 
     /* Draw preview frame */
-    func_800C7110(64, previewX - 2, previewY - 2, previewW + 4, previewH + 4, 255);  /* Border */
+    draw_ui_element(64, previewX - 2, previewY - 2, previewW + 4, previewH + 4, 255);  /* Border */
 
     /* Get track preview texture ID */
     if (unlocked) {
@@ -33529,7 +33535,7 @@ void func_800D08E4(s32 trackId) {
     }
 
     /* Draw track preview image */
-    func_800C7110(textureId, previewX, previewY, previewW, previewH, unlocked ? 255 : 128);
+    draw_ui_element(textureId, previewX, previewY, previewW, previewH, unlocked ? 255 : 128);
 
     /* Draw track number */
     {
@@ -33537,7 +33543,7 @@ void func_800D08E4(s32 trackId) {
         numBuf[0] = '0' + ((trackId + 1) / 10);
         numBuf[1] = '0' + ((trackId + 1) % 10);
         numBuf[2] = '\0';
-        func_800C734C(numBuf, previewX + 5, previewY + 5, 255);
+        draw_text(numBuf, previewX + 5, previewY + 5, 255);
     }
 }
 
@@ -33559,45 +33565,45 @@ void func_800D0BA0(s32 trackId) {
     unlocked = func_800D1248(trackId);
 
     if (!unlocked) {
-        func_800C734C("LOCKED", infoX + 30, infoY + 20, 180);
-        func_800C734C("Complete previous", infoX, infoY + 45, 120);
-        func_800C734C("tracks to unlock", infoX, infoY + 60, 120);
+        draw_text("LOCKED", infoX + 30, infoY + 20, 180);
+        draw_text("Complete previous", infoX, infoY + 45, 120);
+        draw_text("tracks to unlock", infoX, infoY + 60, 120);
         return;
     }
 
     /* Track difficulty */
-    func_800C734C("DIFFICULTY:", infoX, infoY, 200);
+    draw_text("DIFFICULTY:", infoX, infoY, 200);
     switch (trackId) {
         case 0: case 1:
-            func_800C734C("EASY", infoX + 70, infoY, 255);
+            draw_text("EASY", infoX + 70, infoY, 255);
             break;
         case 2: case 3: case 4:
-            func_800C734C("MEDIUM", infoX + 70, infoY, 255);
+            draw_text("MEDIUM", infoX + 70, infoY, 255);
             break;
         case 5: case 6: case 7:
-            func_800C734C("HARD", infoX + 70, infoY, 255);
+            draw_text("HARD", infoX + 70, infoY, 255);
             break;
         default:
-            func_800C734C("EXPERT", infoX + 70, infoY, 255);
+            draw_text("EXPERT", infoX + 70, infoY, 255);
             break;
     }
 
     /* Track length */
-    func_800C734C("LENGTH:", infoX, infoY + 20, 200);
+    draw_text("LENGTH:", infoX, infoY + 20, 200);
     switch (trackId) {
-        case 0: func_800C734C("2.1 mi", infoX + 50, infoY + 20, 255); break;
-        case 1: func_800C734C("2.4 mi", infoX + 50, infoY + 20, 255); break;
-        case 2: func_800C734C("2.8 mi", infoX + 50, infoY + 20, 255); break;
-        case 3: func_800C734C("3.2 mi", infoX + 50, infoY + 20, 255); break;
-        case 4: func_800C734C("2.9 mi", infoX + 50, infoY + 20, 255); break;
-        case 5: func_800C734C("3.5 mi", infoX + 50, infoY + 20, 255); break;
-        case 6: func_800C734C("3.8 mi", infoX + 50, infoY + 20, 255); break;
-        case 7: func_800C734C("4.2 mi", infoX + 50, infoY + 20, 255); break;
-        default: func_800C734C("2.0 mi", infoX + 50, infoY + 20, 255); break;
+        case 0: draw_text("2.1 mi", infoX + 50, infoY + 20, 255); break;
+        case 1: draw_text("2.4 mi", infoX + 50, infoY + 20, 255); break;
+        case 2: draw_text("2.8 mi", infoX + 50, infoY + 20, 255); break;
+        case 3: draw_text("3.2 mi", infoX + 50, infoY + 20, 255); break;
+        case 4: draw_text("2.9 mi", infoX + 50, infoY + 20, 255); break;
+        case 5: draw_text("3.5 mi", infoX + 50, infoY + 20, 255); break;
+        case 6: draw_text("3.8 mi", infoX + 50, infoY + 20, 255); break;
+        case 7: draw_text("4.2 mi", infoX + 50, infoY + 20, 255); break;
+        default: draw_text("2.0 mi", infoX + 50, infoY + 20, 255); break;
     }
 
     /* Best time */
-    func_800C734C("BEST:", infoX, infoY + 40, 200);
+    draw_text("BEST:", infoX, infoY + 40, 200);
     bestTime = D_80159A10[trackId];  /* Best times array */
     if (bestTime > 0) {
         minutes = bestTime / 6000;
@@ -33612,9 +33618,9 @@ void func_800D0BA0(s32 trackId) {
         timeBuf[6] = '0' + (hundredths / 10);
         timeBuf[7] = '0' + (hundredths % 10);
         timeBuf[8] = '\0';
-        func_800C734C(timeBuf, infoX + 40, infoY + 40, 255);
+        draw_text(timeBuf, infoX + 40, infoY + 40, 255);
     } else {
-        func_800C734C("--:--.--", infoX + 40, infoY + 40, 180);
+        draw_text("--:--.--", infoX + 40, infoY + 40, 180);
     }
 }
 
@@ -33754,24 +33760,24 @@ void func_800D138C(void) {
     D_80159A50 = selectedCar;
 
     /* Render */
-    func_800C734C(110, 30, "SELECT CAR", 0xFFFFFFFF);
+    draw_text(110, 30, "SELECT CAR", 0xFFFFFFFF);
 
     /* Render car preview (3D model rotating) */
     func_800D16B0(selectedCar);
 
     /* Render car name */
-    func_800C734C(carNames[selectedCar], 110, 200, 255);
+    draw_text(carNames[selectedCar], 110, 200, 255);
 
     /* Render car stats */
     func_800D18E4(selectedCar);
 
     /* Render left/right arrows */
-    func_800C7110(54, 30, 110, 20, 20, 255);   /* Left */
-    func_800C7110(55, 270, 110, 20, 20, 255);  /* Right */
+    draw_ui_element(54, 30, 110, 20, 20, 255);   /* Left */
+    draw_ui_element(55, 270, 110, 20, 20, 255);  /* Right */
 
     /* Render lock if not unlocked */
     if (!func_800D197C(selectedCar)) {
-        func_800C7110(61, 145, 100, 32, 32, 200);  /* Lock icon centered */
+        draw_ui_element(61, 145, 100, 32, 32, 200);  /* Lock icon centered */
     }
 }
 
@@ -33813,11 +33819,11 @@ void func_800D16B0(s32 carId) {
         /* This would normally set up the RCP and render the model */
         /* For now, just draw a placeholder sprite */
         s32 spriteId = 120 + carId;  /* Car preview sprite */
-        func_800C7110(spriteId, previewX - 60, previewY - 40, 120, 80, 255);
+        draw_ui_element(spriteId, previewX - 60, previewY - 40, 120, 80, 255);
     } else {
         /* Silhouette for locked cars */
         s32 spriteId = 119;  /* Locked car silhouette */
-        func_800C7110(spriteId, previewX - 60, previewY - 40, 120, 80, 128);
+        draw_ui_element(spriteId, previewX - 60, previewY - 40, 120, 80, 128);
     }
 
     /* Draw color swatch */
@@ -33831,10 +33837,10 @@ void func_800D16B0(s32 carId) {
         for (i = 0; i < 8; i++) {
             s32 x = swatchX + i * (swatchSize + 4);
             s32 alpha = (i == colorIdx) ? 255 : 150;
-            func_800C7110(140 + i, x, swatchY, swatchSize, swatchSize, alpha);
+            draw_ui_element(140 + i, x, swatchY, swatchSize, swatchSize, alpha);
             if (i == colorIdx) {
                 /* Draw selection box */
-                func_800C7110(65, x - 2, swatchY - 2, swatchSize + 4, swatchSize + 4, 255);
+                draw_ui_element(65, x - 2, swatchY - 2, swatchSize + 4, swatchSize + 4, 255);
             }
         }
     }
@@ -33872,21 +33878,21 @@ void func_800D18E4(s32 carId) {
     }
 
     /* Draw stat bars */
-    func_800C734C("SPD", statX, statY, 180);
-    func_800C7110(66, statX + 25, statY + 2, barWidth, 10, 100);  /* Background */
-    func_800C7110(67, statX + 25, statY + 2, (speed * barWidth, 0, 0) / 10, 10, 255);  /* Fill */
+    draw_text("SPD", statX, statY, 180);
+    draw_ui_element(66, statX + 25, statY + 2, barWidth, 10, 100);  /* Background */
+    draw_ui_element(67, statX + 25, statY + 2, (speed * barWidth, 0, 0) / 10, 10, 255);  /* Fill */
 
-    func_800C734C("ACC", statX, statY + 14, 180);
-    func_800C7110(66, statX + 25, statY + 16, barWidth, 10, 100);
-    func_800C7110(67, statX + 25, statY + 16, (accel * barWidth, 0, 0) / 10, 10, 255);
+    draw_text("ACC", statX, statY + 14, 180);
+    draw_ui_element(66, statX + 25, statY + 16, barWidth, 10, 100);
+    draw_ui_element(67, statX + 25, statY + 16, (accel * barWidth, 0, 0) / 10, 10, 255);
 
-    func_800C734C("HND", statX, statY + 28, 180);
-    func_800C7110(66, statX + 25, statY + 30, barWidth, 10, 100);
-    func_800C7110(67, statX + 25, statY + 30, (handling * barWidth, 0, 0) / 10, 10, 255);
+    draw_text("HND", statX, statY + 28, 180);
+    draw_ui_element(66, statX + 25, statY + 30, barWidth, 10, 100);
+    draw_ui_element(67, statX + 25, statY + 30, (handling * barWidth, 0, 0) / 10, 10, 255);
 
-    func_800C734C("WGT", statX, statY + 42, 180);
-    func_800C7110(66, statX + 25, statY + 44, barWidth, 10, 100);
-    func_800C7110(67, statX + 25, statY + 44, (weight * barWidth, 0, 0) / 10, 10, 255);
+    draw_text("WGT", statX, statY + 42, 180);
+    draw_ui_element(66, statX + 25, statY + 44, barWidth, 10, 100);
+    draw_ui_element(67, statX + 25, statY + 44, (weight * barWidth, 0, 0) / 10, 10, 255);
 }
 
 /*
@@ -34104,48 +34110,48 @@ void func_800D1CE0(void) {
     D_80159B00[0][0] = selectedItem;
 
     /* Render */
-    func_800C734C(105, 30, "RACE SETUP", 0xFFFFFFFF);
+    draw_text(105, 30, "RACE SETUP", 0xFFFFFFFF);
 
     /* Mode */
-    func_800C734C("MODE:", 50, 70, (selectedItem == 0) ? 255 : 180);
-    func_800C734C(modeNames[D_80159B04], 120, 70, 255);
+    draw_text("MODE:", 50, 70, (selectedItem == 0) ? 255 : 180);
+    draw_text(modeNames[D_80159B04], 120, 70, 255);
 
     /* Laps */
-    func_800C734C("LAPS:", 50, 95, (selectedItem == 1) ? 255 : 180);
-    func_800C734C(lapOptions[D_80159B08], 120, 95, 255);
+    draw_text("LAPS:", 50, 95, (selectedItem == 1) ? 255 : 180);
+    draw_text(lapOptions[D_80159B08], 120, 95, 255);
 
     /* Difficulty */
-    func_800C734C("DIFFICULTY:", 50, 120, (selectedItem == 2) ? 255 : 180);
-    func_800C734C(difficultyNames[D_80159B0C], 140, 120, 255);
+    draw_text("DIFFICULTY:", 50, 120, (selectedItem == 2) ? 255 : 180);
+    draw_text(difficultyNames[D_80159B0C], 140, 120, 255);
 
     /* Mirror mode */
-    func_800C734C("MIRROR:", 50, 145, (selectedItem == 3) ? 255 : 180);
-    func_800C734C(D_80159B10 ? "ON" : "OFF", 120, 145, 255);
+    draw_text("MIRROR:", 50, 145, (selectedItem == 3) ? 255 : 180);
+    draw_text(D_80159B10 ? "ON" : "OFF", 120, 145, 255);
 
     /* Weather */
-    func_800C734C("WEATHER:", 50, 170, (selectedItem == 4) ? 255 : 180);
+    draw_text("WEATHER:", 50, 170, (selectedItem == 4) ? 255 : 180);
     {
         char *weatherNames[4] = {"CLEAR", "RAIN", "FOG", "NIGHT"};
-        func_800C734C(weatherNames[D_80159B14], 130, 170, 255);
+        draw_text(weatherNames[D_80159B14], 130, 170, 255);
     }
 
     /* Time of day */
-    func_800C734C("TIME:", 50, 195, (selectedItem == 5) ? 255 : 180);
+    draw_text("TIME:", 50, 195, (selectedItem == 5) ? 255 : 180);
     {
         char *timeNames[3] = {"MORNING", "NOON", "EVENING"};
-        func_800C734C(timeNames[D_80159B18], 100, 195, 255);
+        draw_text(timeNames[D_80159B18], 100, 195, 255);
     }
 
     /* Start button */
-    func_800C734C("START RACE", 100, 225, (selectedItem == 6) ? 255 : 180);
+    draw_text("START RACE", 100, 225, (selectedItem == 6) ? 255 : 180);
     if (selectedItem == 6) {
-        func_800C7110(56, 80, 227, 12, 12, 255);
+        draw_ui_element(56, 80, 227, 12, 12, 255);
     }
 
     /* Draw cursor */
     s32 cursorY = 70 + selectedItem * 25;
     if (selectedItem == 6) cursorY = 227;
-    func_800C7110(56, 30, cursorY, 12, 12, 255);
+    draw_ui_element(56, 30, cursorY, 12, 12, 255);
 }
 
 /*
@@ -34368,56 +34374,56 @@ void func_800D2E94(void) {
     D_80159C00[0] = selectedItem;
 
     /* Render */
-    func_800C734C(80, 30, "MULTIPLAYER SETUP", 0xFFFFFFFF);
+    draw_text(80, 30, "MULTIPLAYER SETUP", 0xFFFFFFFF);
 
     /* Player count */
     {
         char numBuf[2];
         numBuf[0] = '0' + numPlayers;
         numBuf[1] = '\0';
-        func_800C734C("PLAYERS:", 50, 70, (selectedItem == 0) ? 255 : 180);
-        func_800C734C(numBuf, 140, 70, 255);
+        draw_text("PLAYERS:", 50, 70, (selectedItem == 0) ? 255 : 180);
+        draw_text(numBuf, 140, 70, 255);
     }
 
     /* Split screen mode */
-    func_800C734C("SCREEN:", 50, 95, (selectedItem == 1) ? 255 : 180);
+    draw_text("SCREEN:", 50, 95, (selectedItem == 1) ? 255 : 180);
     {
         char *splitModes[3] = {"HORIZONTAL", "VERTICAL", "QUAD"};
-        func_800C734C(splitModes[D_80159C08], 130, 95, 255);
+        draw_text(splitModes[D_80159C08], 130, 95, 255);
     }
 
     /* Handicap */
-    func_800C734C("HANDICAP:", 50, 120, (selectedItem == 2) ? 255 : 180);
-    func_800C734C(D_80159C0C ? "ON" : "OFF", 145, 120, 255);
+    draw_text("HANDICAP:", 50, 120, (selectedItem == 2) ? 255 : 180);
+    draw_text(D_80159C0C ? "ON" : "OFF", 145, 120, 255);
 
     /* Team mode */
-    func_800C734C("TEAMS:", 50, 145, (selectedItem == 3) ? 255 : 180);
-    func_800C734C(D_80159C10 ? "ON" : "OFF", 120, 145, 255);
+    draw_text("TEAMS:", 50, 145, (selectedItem == 3) ? 255 : 180);
+    draw_text(D_80159C10 ? "ON" : "OFF", 120, 145, 255);
 
     /* Continue */
-    func_800C734C("CONTINUE", 100, 180, (selectedItem == 4) ? 255 : 180);
+    draw_text("CONTINUE", 100, 180, (selectedItem == 4) ? 255 : 180);
 
     /* Back */
-    func_800C734C("BACK", 100, 205, (selectedItem == 5) ? 255 : 180);
+    draw_text("BACK", 100, 205, (selectedItem == 5) ? 255 : 180);
 
     /* Player preview boxes */
     for (i = 0; i < numPlayers; i++) {
         s32 boxX = 200 + (i % 2) * 55;
         s32 boxY = 70 + (i / 2) * 55;
-        func_800C7110(68, boxX, boxY, 50, 50, 200);  /* Player box */
+        draw_ui_element(68, boxX, boxY, 50, 50, 200);  /* Player box */
         {
             char pNum[3];
             pNum[0] = 'P';
             pNum[1] = '1' + i;
             pNum[2] = '\0';
-            func_800C734C(pNum, boxX + 18, boxY + 18, 255);
+            draw_text(pNum, boxX + 18, boxY + 18, 255);
         }
     }
 
     /* Draw cursor */
     s32 cursorY = 70 + selectedItem * 25;
     if (selectedItem >= 4) cursorY = 180 + (selectedItem - 4) * 25;
-    func_800C7110(56, 30, cursorY, 12, 12, 255);
+    draw_ui_element(56, 30, cursorY, 12, 12, 255);
 }
 
 /*
@@ -34500,7 +34506,7 @@ void func_800D349C(void) {
     }
 
     /* Render */
-    func_800C734C(70, 30, "PRESS START TO JOIN", 0xFFFFFFFF);
+    draw_text(70, 30, "PRESS START TO JOIN", 0xFFFFFFFF);
 
     /* Render player slots */
     for (i = 0; i < numPlayers; i++) {
@@ -34518,7 +34524,7 @@ void func_800D349C(void) {
         } else {
             alpha = 255;  /* Ready */
         }
-        func_800C7110(69, slotX, slotY, 120, 75, alpha);
+        draw_ui_element(69, slotX, slotY, 120, 75, alpha);
 
         /* Draw player number */
         playerStr[0] = 'P';
@@ -34530,16 +34536,16 @@ void func_800D349C(void) {
         playerStr[6] = ' ';
         playerStr[7] = '1' + i;
         playerStr[8] = '\0';
-        func_800C734C(playerStr, slotX + 20, slotY + 10, alpha);
+        draw_text(playerStr, slotX + 20, slotY + 10, alpha);
 
         /* Draw status */
         if (state == 0) {
-            func_800C734C("PRESS START", slotX + 10, slotY + 40, alpha);
+            draw_text("PRESS START", slotX + 10, slotY + 40, alpha);
         } else if (state == 1) {
-            func_800C734C("JOINED", slotX + 30, slotY + 40, alpha);
-            func_800C734C("START=READY", slotX + 8, slotY + 55, 150);
+            draw_text("JOINED", slotX + 30, slotY + 40, alpha);
+            draw_text("START=READY", slotX + 8, slotY + 55, 150);
         } else {
-            func_800C734C("READY!", slotX + 35, slotY + 40, 255);
+            draw_text("READY!", slotX + 35, slotY + 40, 255);
         }
     }
 
@@ -34549,10 +34555,10 @@ void func_800D349C(void) {
         char countBuf[2];
         countBuf[0] = '0' + countdown;
         countBuf[1] = '\0';
-        func_800C734C(100, 200, "STARTING IN", 0xFFFFFFFF);
-        func_800C734C(countBuf, 155, 220, 255);
+        draw_text(100, 200, "STARTING IN", 0xFFFFFFFF);
+        draw_text(countBuf, 155, 220, 255);
     } else if (joinedPlayers < 2) {
-        func_800C734C(90, 210, "NEED 2+ PLAYERS", 0xFFFFFFB4);
+        draw_text(90, 210, "NEED 2+ PLAYERS", 0xFFFFFFB4);
     }
 }
 
@@ -34690,22 +34696,22 @@ void func_800D3B28(void) {
         }
 
         /* Render stunt setup menu */
-        func_800C734C(105, 20, "STUNT MODE", 0xFFFFFFFF);
+        draw_text(105, 20, "STUNT MODE", 0xFFFFFFFF);
 
         /* Arena selection */
-        func_800C734C("ARENA", 40, 55, selectedOption == 0 ? 255 : 180);
-        func_800C734C(arenaNames[selectedArena], 140, 55, arenaUnlocked[selectedArena] ? 255 : 100);
+        draw_text("ARENA", 40, 55, selectedOption == 0 ? 255 : 180);
+        draw_text(arenaNames[selectedArena], 140, 55, arenaUnlocked[selectedArena] ? 255 : 100);
         if (!arenaUnlocked[selectedArena]) {
-            func_800C7110(61, 230, 53, 16, 16, 180);  /* Lock icon */
+            draw_ui_element(61, 230, 53, 16, 16, 180);  /* Lock icon */
         }
         /* Arrow indicators */
-        func_800C734C("<", 125, 55, selectedOption == 0 ? 200 : 100);
-        func_800C734C(">", 250, 55, selectedOption == 0 ? 200 : 100);
+        draw_text("<", 125, 55, selectedOption == 0 ? 200 : 100);
+        draw_text(">", 250, 55, selectedOption == 0 ? 200 : 100);
 
         /* Time limit */
-        func_800C734C("TIME LIMIT", 40, 80, selectedOption == 1 ? 255 : 180);
+        draw_text("TIME LIMIT", 40, 80, selectedOption == 1 ? 255 : 180);
         if (timeLimits[timeLimit] == 0) {
-            func_800C734C(160, 80, "UNLIMITED", 0xFFFFFFFF);
+            draw_text(160, 80, "UNLIMITED", 0xFFFFFFFF);
         } else {
             s32 mins = timeLimits[timeLimit] / 60;
             s32 secs = timeLimits[timeLimit] % 60;
@@ -34714,31 +34720,31 @@ void func_800D3B28(void) {
             timeStr[2] = '0' + (secs / 10);
             timeStr[3] = '0' + (secs % 10);
             timeStr[4] = '\0';
-            func_800C734C(timeStr, 175, 80, 255);
+            draw_text(timeStr, 175, 80, 255);
         }
-        func_800C734C("<", 145, 80, selectedOption == 1 ? 200 : 100);
-        func_800C734C(">", 220, 80, selectedOption == 1 ? 200 : 100);
+        draw_text("<", 145, 80, selectedOption == 1 ? 200 : 100);
+        draw_text(">", 220, 80, selectedOption == 1 ? 200 : 100);
 
         /* Target score */
-        func_800C734C("TARGET SCORE", 40, 105, selectedOption == 2 ? 255 : 180);
+        draw_text("TARGET SCORE", 40, 105, selectedOption == 2 ? 255 : 180);
         if (targetScores[targetScore] == 0) {
-            func_800C734C(180, 105, "NONE", 0xFFFFFFFF);
+            draw_text(180, 105, "NONE", 0xFFFFFFFF);
         } else {
             func_800A2CE4((void**)scoreStr);  /* TODO: stub */
-            func_800C734C(scoreStr, 165, 105, 255);
+            draw_text(scoreStr, 165, 105, 255);
         }
-        func_800C734C("<", 150, 105, selectedOption == 2 ? 200 : 100);
-        func_800C734C(">", 225, 105, selectedOption == 2 ? 200 : 100);
+        draw_text("<", 150, 105, selectedOption == 2 ? 200 : 100);
+        draw_text(">", 225, 105, selectedOption == 2 ? 200 : 100);
 
         /* Wings toggle */
-        func_800C734C("WINGS", 40, 130, selectedOption == 3 ? 255 : 180);
-        func_800C734C(wingEnabled ? "ON" : "OFF", 180, 130, wingEnabled ? 200 : 150);
+        draw_text("WINGS", 40, 130, selectedOption == 3 ? 255 : 180);
+        draw_text(wingEnabled ? "ON" : "OFF", 180, 130, wingEnabled ? 200 : 150);
 
         /* Start button */
-        func_800C734C("START STUNT MODE", 75, 165, selectedOption == 4 ? 255 : 180);
+        draw_text("START STUNT MODE", 75, 165, selectedOption == 4 ? 255 : 180);
 
         /* Tutorial button */
-        func_800C734C("STUNT TUTORIAL", 85, 190, selectedOption == 5 ? 255 : 180);
+        draw_text("STUNT TUTORIAL", 85, 190, selectedOption == 5 ? 255 : 180);
 
         /* Arena preview */
         func_800D3E50(selectedArena);
@@ -34751,25 +34757,25 @@ void func_800D3B28(void) {
             menuState = 0;
         }
 
-        func_800C734C(95, 20, "STUNT TUTORIAL", 0xFFFFFFFF);
-        func_800C734C(60, 50, "TRICKS AND SCORING:", 0xFFFFFFFF);
+        draw_text(95, 20, "STUNT TUTORIAL", 0xFFFFFFFF);
+        draw_text(60, 50, "TRICKS AND SCORING:", 0xFFFFFFFF);
 
-        func_800C734C(40, 75, "BARREL ROLL", 0xFFFFFFDC);
-        func_800C734C(40, 88, "- Spin car while airborne", 0xFFFFFFB4);
-        func_800C734C(40, 101, "- 500 pts per rotation", 0xFFFFFFB4);
+        draw_text(40, 75, "BARREL ROLL", 0xFFFFFFDC);
+        draw_text(40, 88, "- Spin car while airborne", 0xFFFFFFB4);
+        draw_text(40, 101, "- 500 pts per rotation", 0xFFFFFFB4);
 
-        func_800C734C(40, 120, "FLIP", 0xFFFFFFDC);
-        func_800C734C(40, 133, "- Front/back flip in air", 0xFFFFFFB4);
-        func_800C734C(40, 146, "- 750 pts per flip", 0xFFFFFFB4);
+        draw_text(40, 120, "FLIP", 0xFFFFFFDC);
+        draw_text(40, 133, "- Front/back flip in air", 0xFFFFFFB4);
+        draw_text(40, 146, "- 750 pts per flip", 0xFFFFFFB4);
 
-        func_800C734C(40, 165, "WING GLIDE", 0xFFFFFFDC);
-        func_800C734C(40, 178, "- Hold Z to deploy wings", 0xFFFFFFB4);
-        func_800C734C(40, 191, "- 100 pts per second", 0xFFFFFFB4);
+        draw_text(40, 165, "WING GLIDE", 0xFFFFFFDC);
+        draw_text(40, 178, "- Hold Z to deploy wings", 0xFFFFFFB4);
+        draw_text(40, 191, "- 100 pts per second", 0xFFFFFFB4);
 
-        func_800C734C(40, 210, "COMBO BONUS", 0xFFFFFFDC);
-        func_800C734C(40, 223, "- Chain tricks for 2x-5x", 0xFFFFFFB4);
+        draw_text(40, 210, "COMBO BONUS", 0xFFFFFFDC);
+        draw_text(40, 223, "- Chain tricks for 2x-5x", 0xFFFFFFB4);
 
-        func_800C734C(85, 250, "PRESS B TO RETURN", 0xFFFFFF96);
+        draw_text(85, 250, "PRESS B TO RETURN", 0xFFFFFF96);
     }
 
     D_80159E00 = menuState;
@@ -34792,19 +34798,19 @@ void func_800D3E50(s32 arenaId) {
     s32 previewH = 60;
 
     /* Draw preview frame */
-    func_800C7110(70, previewX - 2, previewY - 2, previewW + 4, previewH + 4, 200);
+    draw_ui_element(70, previewX - 2, previewY - 2, previewW + 4, previewH + 4, 200);
 
     /* Load arena preview texture */
     func_800C7454(arenaId + 200, previewX, previewY, previewW, previewH, 255);
 
     /* Arena difficulty indicator */
-    func_800C734C(165, 225, "DIFF:", 0xFFFFFFB4);
+    draw_text(165, 225, "DIFF:", 0xFFFFFFB4);
     if (arenaId < 2) {
-        func_800C734C(205, 225, "EASY", 0xFFFFFF64);
+        draw_text(205, 225, "EASY", 0xFFFFFF64);
     } else if (arenaId < 5) {
-        func_800C734C(205, 225, "MEDIUM", 0xFFFFFFC8);
+        draw_text(205, 225, "MEDIUM", 0xFFFFFFC8);
     } else {
-        func_800C734C(205, 225, "HARD", 0xFFFFFFFF);
+        draw_text(205, 225, "HARD", 0xFFFFFFFF);
     }
 }
 
@@ -34916,31 +34922,31 @@ void func_800D4EF4(void) {
     }
 
     /* Render */
-    func_800C734C(100, 20, "BATTLE MODE", 0xFFFFFFFF);
+    draw_text(100, 20, "BATTLE MODE", 0xFFFFFFFF);
 
     /* Arena */
-    func_800C734C("ARENA", 40, 55, selectedOption == 0 ? 255 : 180);
-    func_800C734C(arenaNames[selectedArena], 150, 55, 255);
-    func_800C734C("<", 135, 55, selectedOption == 0 ? 200 : 100);
-    func_800C734C(">", 240, 55, selectedOption == 0 ? 200 : 100);
+    draw_text("ARENA", 40, 55, selectedOption == 0 ? 255 : 180);
+    draw_text(arenaNames[selectedArena], 150, 55, 255);
+    draw_text("<", 135, 55, selectedOption == 0 ? 200 : 100);
+    draw_text(">", 240, 55, selectedOption == 0 ? 200 : 100);
 
     /* Frag limit */
-    func_800C734C("FRAG LIMIT", 40, 80, selectedOption == 1 ? 255 : 180);
+    draw_text("FRAG LIMIT", 40, 80, selectedOption == 1 ? 255 : 180);
     if (fragLimits[fragLimit] == 0) {
-        func_800C734C(160, 80, "UNLIMITED", 0xFFFFFFFF);
+        draw_text(160, 80, "UNLIMITED", 0xFFFFFFFF);
     } else {
         fragStr[0] = '0' + (fragLimits[fragLimit] / 10);
         fragStr[1] = '0' + (fragLimits[fragLimit] % 10);
         fragStr[2] = '\0';
-        func_800C734C(fragStr, 185, 80, 255);
+        draw_text(fragStr, 185, 80, 255);
     }
-    func_800C734C("<", 145, 80, selectedOption == 1 ? 200 : 100);
-    func_800C734C(">", 215, 80, selectedOption == 1 ? 200 : 100);
+    draw_text("<", 145, 80, selectedOption == 1 ? 200 : 100);
+    draw_text(">", 215, 80, selectedOption == 1 ? 200 : 100);
 
     /* Time limit */
-    func_800C734C("TIME LIMIT", 40, 105, selectedOption == 2 ? 255 : 180);
+    draw_text("TIME LIMIT", 40, 105, selectedOption == 2 ? 255 : 180);
     if (timeLimits[timeLimit] == 0) {
-        func_800C734C(160, 105, "UNLIMITED", 0xFFFFFFFF);
+        draw_text(160, 105, "UNLIMITED", 0xFFFFFFFF);
     } else {
         s32 mins = timeLimits[timeLimit] / 60;
         timeStr[0] = '0' + (mins / 10);
@@ -34949,23 +34955,23 @@ void func_800D4EF4(void) {
         timeStr[3] = '0';
         timeStr[4] = '0';
         timeStr[5] = '\0';
-        func_800C734C(timeStr, 170, 105, 255);
+        draw_text(timeStr, 170, 105, 255);
     }
-    func_800C734C("<", 155, 105, selectedOption == 2 ? 200 : 100);
-    func_800C734C(">", 225, 105, selectedOption == 2 ? 200 : 100);
+    draw_text("<", 155, 105, selectedOption == 2 ? 200 : 100);
+    draw_text(">", 225, 105, selectedOption == 2 ? 200 : 100);
 
     /* Weapons toggle */
-    func_800C734C("WEAPONS", 40, 130, selectedOption == 3 ? 255 : 180);
-    func_800C734C(weaponsEnabled ? "ON" : "OFF", 180, 130, weaponsEnabled ? 200 : 150);
+    draw_text("WEAPONS", 40, 130, selectedOption == 3 ? 255 : 180);
+    draw_text(weaponsEnabled ? "ON" : "OFF", 180, 130, weaponsEnabled ? 200 : 150);
 
     /* Start button */
-    func_800C734C("START BATTLE", 90, 165, selectedOption == 4 ? 255 : 180);
+    draw_text("START BATTLE", 90, 165, selectedOption == 4 ? 255 : 180);
     if (D_80159C18 < 2) {
-        func_800C734C(75, 180, "(NEED 2+ PLAYERS)", 0xFFFFFF78);
+        draw_text(75, 180, "(NEED 2+ PLAYERS)", 0xFFFFFF78);
     }
 
     /* Player select */
-    func_800C734C("SELECT PLAYERS", 85, 200, selectedOption == 5 ? 255 : 180);
+    draw_text("SELECT PLAYERS", 85, 200, selectedOption == 5 ? 255 : 180);
 
     D_80159E20 = selectedOption;
     D_80159E24 = selectedArena;
@@ -35075,18 +35081,18 @@ void func_800D510C(void) {
     }
 
     /* Render */
-    func_800C734C(105, 20, "GHOST RACE", 0xFFFFFFFF);
+    draw_text(105, 20, "GHOST RACE", 0xFFFFFFFF);
 
     /* Track selection */
-    func_800C734C("TRACK", 40, 55, selectedOption == 0 ? 255 : 180);
-    func_800C734C(trackNames[selectedTrack], 140, 55, 255);
-    func_800C734C("<", 125, 55, selectedOption == 0 ? 200 : 100);
-    func_800C734C(">", 240, 55, selectedOption == 0 ? 200 : 100);
+    draw_text("TRACK", 40, 55, selectedOption == 0 ? 255 : 180);
+    draw_text(trackNames[selectedTrack], 140, 55, 255);
+    draw_text("<", 125, 55, selectedOption == 0 ? 200 : 100);
+    draw_text(">", 240, 55, selectedOption == 0 ? 200 : 100);
 
     /* Ghost selection */
-    func_800C734C("GHOST", 40, 80, selectedOption == 1 ? 255 : 180);
+    draw_text("GHOST", 40, 80, selectedOption == 1 ? 255 : 180);
     if (ghostCount > 0) {
-        func_800C734C(ghostNames[selectedGhost], 140, 80, 255);
+        draw_text(ghostNames[selectedGhost], 140, 80, 255);
 
         /* Format ghost time */
         s32 ghostTime = ghostTimes[selectedGhost];
@@ -35101,32 +35107,32 @@ void func_800D510C(void) {
         timeStr[5] = '0' + (cents / 10);
         timeStr[6] = '0' + (cents % 10);
         timeStr[7] = '\0';
-        func_800C734C(timeStr, 140, 95, 200);
+        draw_text(timeStr, 140, 95, 200);
 
-        func_800C734C("<", 125, 80, selectedOption == 1 ? 200 : 100);
-        func_800C734C(">", 240, 80, selectedOption == 1 ? 200 : 100);
+        draw_text("<", 125, 80, selectedOption == 1 ? 200 : 100);
+        draw_text(">", 240, 80, selectedOption == 1 ? 200 : 100);
     } else {
-        func_800C734C(120, 80, "NO GHOSTS SAVED", 0xFFFFFF78);
+        draw_text(120, 80, "NO GHOSTS SAVED", 0xFFFFFF78);
     }
 
     /* Start button */
-    func_800C734C("START RACE", 95, 130, selectedOption == 2 ? 255 : 180);
+    draw_text("START RACE", 95, 130, selectedOption == 2 ? 255 : 180);
     if (ghostCount == 0) {
-        func_800C734C(100, 145, "(NO GHOST)", 0xFFFFFF78);
+        draw_text(100, 145, "(NO GHOST)", 0xFFFFFF78);
     }
 
     /* Delete button */
-    func_800C734C("DELETE GHOST", 90, 165, selectedOption == 3 ? 255 : 180);
+    draw_text("DELETE GHOST", 90, 165, selectedOption == 3 ? 255 : 180);
 
     /* Ghost count indicator */
-    func_800C734C(40, 200, "SAVED GHOSTS:", 0xFFFFFFB4);
+    draw_text(40, 200, "SAVED GHOSTS:", 0xFFFFFFB4);
     {
         char countStr[4];
         countStr[0] = '0' + ghostCount;
         countStr[1] = '/';
         countStr[2] = '4';
         countStr[3] = '\0';
-        func_800C734C(countStr, 160, 200, 200);
+        draw_text(countStr, 160, 200, 200);
     }
 
     D_80159E40 = selectedOption;
@@ -35218,9 +35224,9 @@ void func_800D58CC(void) {
     D_80159D04 = selectedTrack;
 
     /* Render tabs */
-    func_800C734C("TIMES", 50, 30, (selectedTab == 0) ? 255 : 150);
-    func_800C734C("SCORES", 130, 30, (selectedTab == 1) ? 255 : 150);
-    func_800C734C("STATS", 220, 30, (selectedTab == 2) ? 255 : 150);
+    draw_text("TIMES", 50, 30, (selectedTab == 0) ? 255 : 150);
+    draw_text("SCORES", 130, 30, (selectedTab == 1) ? 255 : 150);
+    draw_text("STATS", 220, 30, (selectedTab == 2) ? 255 : 150);
 
     /* Render content based on tab */
     switch (selectedTab) {
@@ -35235,7 +35241,7 @@ void func_800D58CC(void) {
             break;
     }
 
-    func_800C734C(80, 220, "L/R: CHANGE TAB", 0xFFFFFF96);
+    draw_text(80, 220, "L/R: CHANGE TAB", 0xFFFFFF96);
 }
 
 /*
@@ -35263,12 +35269,12 @@ void func_800D5BB0(s32 trackId) {
     trackNames[10] = "BONUS 3";
     trackNames[11] = "STUNT ARENA";
 
-    func_800C734C(105, 55, "BEST TIMES", 0xFFFFFFFF);
-    func_800C734C(trackNames[trackId], 100, 80, 255);
+    draw_text(105, 55, "BEST TIMES", 0xFFFFFFFF);
+    draw_text(trackNames[trackId], 100, 80, 255);
 
     /* Best race time */
     bestTime = D_80159A10[trackId];
-    func_800C734C(60, 110, "RACE:", 0xFFFFFFC8);
+    draw_text(60, 110, "RACE:", 0xFFFFFFC8);
     if (bestTime > 0) {
         s32 m = bestTime / 6000;
         s32 s = (bestTime / 100) % 60;
@@ -35279,14 +35285,14 @@ void func_800D5BB0(s32 trackId) {
         timeBuf[5] = '.';
         timeBuf[6] = '0' + h / 10; timeBuf[7] = '0' + h % 10;
         timeBuf[8] = '\0';
-        func_800C734C(timeBuf, 120, 110, 255);
+        draw_text(timeBuf, 120, 110, 255);
     } else {
-        func_800C734C(120, 110, "--:--.--", 0xFFFFFF96);
+        draw_text(120, 110, "--:--.--", 0xFFFFFF96);
     }
 
     /* Best lap time */
     bestLap = D_80159D10[trackId];
-    func_800C734C(60, 135, "LAP:", 0xFFFFFFC8);
+    draw_text(60, 135, "LAP:", 0xFFFFFFC8);
     if (bestLap > 0) {
         s32 m = bestLap / 6000;
         s32 s = (bestLap / 100) % 60;
@@ -35297,13 +35303,13 @@ void func_800D5BB0(s32 trackId) {
         timeBuf[5] = '.';
         timeBuf[6] = '0' + h / 10; timeBuf[7] = '0' + h % 10;
         timeBuf[8] = '\0';
-        func_800C734C(timeBuf, 110, 135, 255);
+        draw_text(timeBuf, 110, 135, 255);
     } else {
-        func_800C734C(110, 135, "--:--.--", 0xFFFFFF96);
+        draw_text(110, 135, "--:--.--", 0xFFFFFF96);
     }
 
     /* Navigation hint */
-    func_800C734C(85, 180, "UP/DOWN: TRACK", 0xFFFFFF96);
+    draw_text(85, 180, "UP/DOWN: TRACK", 0xFFFFFF96);
 }
 
 /*
@@ -35317,7 +35323,7 @@ void func_800D5C90(s32 trackId) {
     char scoreBuf[12];
     char nameBuf[8];
 
-    func_800C734C(100, 55, "HIGH SCORES", 0xFFFFFFFF);
+    draw_text(100, 55, "HIGH SCORES", 0xFFFFFFFF);
 
     /* Display top 5 scores */
     for (i = 0; i < 5; i++) {
@@ -35327,7 +35333,7 @@ void func_800D5C90(s32 trackId) {
         rankBuf[0] = '1' + i;
         rankBuf[1] = '.';
         rankBuf[2] = '\0';
-        func_800C734C(rankBuf, 50, y, 200);
+        draw_text(rankBuf, 50, y, 200);
 
         /* Get name and score from save data */
         score = D_80159D40[trackId * 5 + i];
@@ -35340,13 +35346,13 @@ void func_800D5C90(s32 trackId) {
                 tmp = tmp / 10;
             }
             scoreBuf[8] = '\0';
-            func_800C734C(scoreBuf, 130, y, 255);
+            draw_text(scoreBuf, 130, y, 255);
 
             /* Name would be stored elsewhere */
-            func_800C734C("---", 80, y, 200);
+            draw_text("---", 80, y, 200);
         } else {
-            func_800C734C("---", 80, y, 150);
-            func_800C734C("--------", 130, y, 150);
+            draw_text("---", 80, y, 150);
+            draw_text("--------", 130, y, 150);
         }
     }
 }
@@ -35368,10 +35374,10 @@ void func_800D616C(void) {
     totalStunts = D_80159D88;
     totalDistance = D_80159D8C;  /* In meters */
 
-    func_800C734C(105, 55, "STATISTICS", 0xFFFFFFFF);
+    draw_text(105, 55, "STATISTICS", 0xFFFFFFFF);
 
     /* Total races */
-    func_800C734C(60, 90, "RACES:", 0xFFFFFFC8);
+    draw_text(60, 90, "RACES:", 0xFFFFFFC8);
     {
         s32 tmp = totalRaces;
         s32 i;
@@ -35380,11 +35386,11 @@ void func_800D616C(void) {
             tmp = tmp / 10;
         }
         numBuf[6] = '\0';
-        func_800C734C(numBuf, 140, 90, 255);
+        draw_text(numBuf, 140, 90, 255);
     }
 
     /* Wins */
-    func_800C734C(60, 115, "WINS:", 0xFFFFFFC8);
+    draw_text(60, 115, "WINS:", 0xFFFFFFC8);
     {
         s32 tmp = totalWins;
         s32 i;
@@ -35393,7 +35399,7 @@ void func_800D616C(void) {
             tmp = tmp / 10;
         }
         numBuf[6] = '\0';
-        func_800C734C(numBuf, 130, 115, 255);
+        draw_text(numBuf, 130, 115, 255);
     }
 
     /* Win percentage */
@@ -35403,11 +35409,11 @@ void func_800D616C(void) {
         numBuf[1] = '0' + (pct % 10);
         numBuf[2] = '%';
         numBuf[3] = '\0';
-        func_800C734C(numBuf, 210, 115, 255);
+        draw_text(numBuf, 210, 115, 255);
     }
 
     /* Stunts */
-    func_800C734C(60, 140, "STUNTS:", 0xFFFFFFC8);
+    draw_text(60, 140, "STUNTS:", 0xFFFFFFC8);
     {
         s32 tmp = totalStunts;
         s32 i;
@@ -35416,11 +35422,11 @@ void func_800D616C(void) {
             tmp = tmp / 10;
         }
         numBuf[6] = '\0';
-        func_800C734C(numBuf, 150, 140, 255);
+        draw_text(numBuf, 150, 140, 255);
     }
 
     /* Distance */
-    func_800C734C(60, 165, "DISTANCE:", 0xFFFFFFC8);
+    draw_text(60, 165, "DISTANCE:", 0xFFFFFFC8);
     {
         s32 km = totalDistance / 1000;
         s32 i;
@@ -35432,7 +35438,7 @@ void func_800D616C(void) {
         numBuf[7] = 'K';
         numBuf[8] = 'M';
         numBuf[9] = '\0';
-        func_800C734C(numBuf, 165, 165, 255);
+        draw_text(numBuf, 165, 165, 255);
     }
 }
 
@@ -35486,7 +35492,7 @@ void func_800D63F4(void) {
 
     D_80159DA0 = scrollOffset;
 
-    func_800C734C(95, 30, "ACHIEVEMENTS", 0xFFFFFFFF);
+    draw_text(95, 30, "ACHIEVEMENTS", 0xFFFFFFFF);
 
     /* Display achievements */
     for (i = 0; i < 6 && (scrollOffset + i) < numAchievements; i++) {
@@ -35496,20 +35502,20 @@ void func_800D63F4(void) {
         unlocked = D_80159DA4 & (1 << achIdx);
 
         if (unlocked) {
-            func_800C7110(70, 50, y, 16, 16, 255);  /* Trophy icon */
-            func_800C734C(achievementNames[achIdx], 75, y, 255);
+            draw_ui_element(70, 50, y, 16, 16, 255);  /* Trophy icon */
+            draw_text(achievementNames[achIdx], 75, y, 255);
         } else {
-            func_800C7110(71, 50, y, 16, 16, 100);  /* Locked icon */
-            func_800C734C("???", 75, y, 100);
+            draw_ui_element(71, 50, y, 16, 16, 100);  /* Locked icon */
+            draw_text("???", 75, y, 100);
         }
     }
 
     /* Scroll indicators */
     if (scrollOffset > 0) {
-        func_800C7110(62, 160, 55, 16, 12, 180);
+        draw_ui_element(62, 160, 55, 16, 12, 180);
     }
     if (scrollOffset < numAchievements - 6) {
-        func_800C7110(63, 160, 220, 16, 12, 180);
+        draw_ui_element(63, 160, 220, 16, 12, 180);
     }
 }
 
@@ -35532,7 +35538,7 @@ void func_800D6698(void) {
     }
 
     /* Title */
-    func_800C734C(120, 20, "CREDITS", 0xFFFFFFFF);
+    draw_text(120, 20, "CREDITS", 0xFFFFFFFF);
 }
 
 /*
@@ -35585,7 +35591,7 @@ void func_800D67C0(void) {
             } else if (y > 190) {
                 alpha = (230 - y) * 255 / 40;
             }
-            func_800C734C(credits[i], 80, y, alpha);
+            draw_text(credits[i], 80, y, alpha);
         }
     }
 }
@@ -35618,13 +35624,13 @@ void func_800D691C(s32 percent) {
     func_800C6E60(80, 40, 160, 60, 0xFF202040);
 
     /* "LOADING" text */
-    func_800C734C(125, 120, "LOADING", 0xFFFFFFFF);
+    draw_text(125, 120, "LOADING", 0xFFFFFFFF);
 
     /* Animated dots */
     dotPhase = (frame / 20) % 4;
-    if (dotPhase >= 1) func_800C734C(185, 120, ".", 0xFFFFFFFF);
-    if (dotPhase >= 2) func_800C734C(195, 120, ".", 0xFFFFFFFF);
-    if (dotPhase >= 3) func_800C734C(205, 120, ".", 0xFFFFFFFF);
+    if (dotPhase >= 1) draw_text(185, 120, ".", 0xFFFFFFFF);
+    if (dotPhase >= 2) draw_text(195, 120, ".", 0xFFFFFFFF);
+    if (dotPhase >= 3) draw_text(205, 120, ".", 0xFFFFFFFF);
 
     /* Progress bar background */
     func_800C6E60(60, 150, 200, 20, 0xFF404040);
@@ -35640,7 +35646,7 @@ void func_800D691C(s32 percent) {
     {
         char percentStr[8];
         sprintf(percentStr, "%d%%", percent);
-        func_800C734C(percentStr, 145, 180, 200);
+        draw_text(percentStr, 145, 180, 200);
     }
 
     D_8015A700 = frame;
@@ -35673,8 +35679,8 @@ void func_800D6E7C(void) {
 
     /* Display tip */
     func_800C6E60(40, 200, 240, 25, 0xC0303050);
-    func_800C734C(50, 207, "TIP:", 0xFFFFFFFF);
-    func_800C734C(90, 207, tip, 0xFFFFFFFF);
+    draw_text(50, 207, "TIP:", 0xFFFFFFFF);
+    draw_text(90, 207, tip, 0xFFFFFFFF);
 }
 
 /*
@@ -35737,7 +35743,7 @@ void func_800D71D0(void) {
     func_800C6E60(92, 62, 136, 116, 0xE0303070);
 
     /* Title */
-    func_800C734C(130, 70, "PAUSED", 0xFFFFFFFF);
+    draw_text(130, 70, "PAUSED", 0xFFFFFFFF);
 
     /* Options */
     for (i = 0; i < numOptions; i++) {
@@ -35746,10 +35752,10 @@ void func_800D71D0(void) {
 
         if (i == selection) {
             func_800C6E60(100, yPos - 3, 120, 20, 0x80404080);
-            func_800C734C(105, yPos, ">", 255);
+            draw_text(105, yPos, ">", 255);
         }
 
-        func_800C734C(115, yPos, (char*)options[i], alpha);
+        draw_text(115, yPos, (char*)options[i], alpha);
     }
 
     D_8015A714 = selection;
@@ -35871,7 +35877,7 @@ void func_800D9060(void) {
     func_800C6E60(0, 0, 320, 240, 0xFF101030);
 
     /* Title */
-    func_800C734C(100, 30, "RACE RESULTS", 0xFFFFFFFF);
+    draw_text(100, 30, "RACE RESULTS", 0xFFFFFFFF);
 
     /* Results list */
     carBase = (u8 *)&D_80152818;
@@ -35895,7 +35901,7 @@ void func_800D9060(void) {
     if (timer > 180) {
         s32 blink = (timer / 30) & 1;
         if (blink) {
-            func_800C734C(80, 210, "PRESS A TO CONTINUE", 0xFFFFFFC8);
+            draw_text(80, 210, "PRESS A TO CONTINUE", 0xFFFFFFC8);
         }
     }
 
@@ -35930,7 +35936,7 @@ void func_800DA0CC(s32 position) {
             break;
     }
 
-    func_800C734C(posStr, 60, 70 + (position - 1) * 35, (color >> 16) & 0xFF);
+    draw_text(posStr, 60, 70 + (position - 1) * 35, (color >> 16) & 0xFF);
 }
 
 /*
@@ -35946,7 +35952,7 @@ void func_800DA174(s32 timeMs) {
     ms = ((timeMs % 60) * 100) / 60;
 
     sprintf(timeStr, "%d:%02d.%02d", mins, secs, ms);
-    func_800C734C(timeStr, 150, 70, 255);
+    draw_text(timeStr, 150, 70, 255);
 }
 
 /*
@@ -35963,7 +35969,7 @@ void func_800DA2D0(void) {
 
     carBase = (u8 *)&D_80152818;
 
-    func_800C734C(220, 50, "POINTS", 0xFFFFFFC8);
+    draw_text(220, 50, "POINTS", 0xFFFFFFC8);
 
     for (i = 0; i < 4; i++) {
         s32 position = *(s32 *)(carBase + i * 0x400 + 0x1A4);
@@ -35976,7 +35982,7 @@ void func_800DA2D0(void) {
         D_8015A740[i] += points;
 
         sprintf(pointsStr, "+%d", points);
-        func_800C734C(pointsStr, 220, 70 + i * 35, 255);
+        draw_text(pointsStr, 220, 70 + i * 35, 255);
     }
 }
 
@@ -36017,15 +36023,15 @@ void func_800DABDC(void) {
     func_800C6E60(60, 90, 200, 60, 0xE0202050);
     func_800C6E60(62, 92, 196, 56, 0xE0303070);
 
-    func_800C734C(110, 100, "SAVE REPLAY?", 0xFFFFFFFF);
+    draw_text(110, 100, "SAVE REPLAY?", 0xFFFFFFFF);
 
-    func_800C734C("YES", 100, 130, selection == 0 ? 255 : 150);
-    func_800C734C("NO", 190, 130, selection == 1 ? 255 : 150);
+    draw_text("YES", 100, 130, selection == 0 ? 255 : 150);
+    draw_text("NO", 190, 130, selection == 1 ? 255 : 150);
 
     if (selection == 0) {
-        func_800C734C(85, 130, ">", 0xFFFFFFFF);
+        draw_text(85, 130, ">", 0xFFFFFFFF);
     } else {
-        func_800C734C(175, 130, ">", 0xFFFFFFFF);
+        draw_text(175, 130, ">", 0xFFFFFFFF);
     }
 
     D_8015A754 = selection;
@@ -36064,9 +36070,9 @@ s32 func_800DB758(void) {
     }
 
     /* Display */
-    func_800C734C(120, 120, "CONTINUE?", 0xFFFFFFFF);
+    draw_text(120, 120, "CONTINUE?", 0xFFFFFFFF);
     sprintf(countStr, "%d", (countdown / 60) + 1);
-    func_800C734C(countStr, 155, 145, 200);
+    draw_text(countStr, 155, 145, 200);
 
     D_8015A760 = countdown;
     return -1;  /* Still waiting */
@@ -36097,14 +36103,14 @@ void func_800DC248(void) {
 
     /* Display */
     func_800C6E60(50, 50, 220, 140, 0xE0202050);
-    func_800C734C(70, 60, "CHAMPIONSHIP STANDINGS", 0xFFFFFFFF);
+    draw_text(70, 60, "CHAMPIONSHIP STANDINGS", 0xFFFFFFFF);
 
     for (i = 0; i < 4; i++) {
         s32 playerIdx = sorted[i];
         s32 yPos = 90 + i * 25;
 
         sprintf(pointsStr, "PLAYER %d: %d PTS", playerIdx + 1, D_8015A770[playerIdx]);
-        func_800C734C(pointsStr, 70, yPos, 200);
+        draw_text(pointsStr, 70, yPos, 200);
     }
 }
 
@@ -36117,24 +36123,24 @@ void func_800DC3F8(s32 placing) {
 
     func_800C6E60(80, 60, 160, 120, 0xE0303060);
 
-    func_800C734C(105, 70, "CHAMPIONSHIP", 0xFFFFFFFF);
+    draw_text(105, 70, "CHAMPIONSHIP", 0xFFFFFFFF);
 
     switch (placing) {
         case 1:
-            func_800C734C(125, 100, "WINNER!", 0xFFFFFFFF);
+            draw_text(125, 100, "WINNER!", 0xFFFFFFFF);
             func_8010306C(1);  /* Gold trophy */
             break;
         case 2:
-            func_800C734C(115, 100, "2ND PLACE", 0xFFFFFFC8);
+            draw_text(115, 100, "2ND PLACE", 0xFFFFFFC8);
             func_8010306C(2);  /* Silver trophy */
             break;
         case 3:
-            func_800C734C(115, 100, "3RD PLACE", 0xFFFFFF96);
+            draw_text(115, 100, "3RD PLACE", 0xFFFFFF96);
             func_8010306C(3);  /* Bronze trophy */
             break;
         default:
             sprintf(placeStr, "%dTH PLACE", placing);
-            func_800C734C(placeStr, 110, 100, 150);
+            draw_text(placeStr, 110, 100, 150);
             break;
     }
 }
@@ -36161,7 +36167,7 @@ void func_800DC794(s32 unlockId) {
 
     func_800C6E60(60, 100, 200, 40, 0xE0FFD700);
     func_800C6E60(62, 102, 196, 36, 0xE0604000);
-    func_800C734C(80, 112, msg, 0xFFFFFFFF);
+    draw_text(80, 112, msg, 0xFFFFFFFF);
 
     func_800CC3C0(20);  /* Unlock jingle */
 }
@@ -36196,11 +36202,11 @@ void func_800DC88C(void) {
     switch (state) {
         case 0:  /* Title screen */
             func_800C6E60(0, 0, 320, 240, 0xFF000020);
-            func_800C734C(85, 80, "SAN FRANCISCO", 0xFFFFFFFF);
-            func_800C734C(105, 110, "RUSH 2049", 0xFFFFFFFF);
+            draw_text(85, 80, "SAN FRANCISCO", 0xFFFFFFFF);
+            draw_text(105, 110, "RUSH 2049", 0xFFFFFFFF);
 
             if ((timer / 60) & 1) {
-                func_800C734C(100, 180, "PRESS START", 0xFFFFFFC8);
+                draw_text(100, 180, "PRESS START", 0xFFFFFFC8);
             }
 
             if (timer > 300) {
@@ -36222,7 +36228,7 @@ void func_800DC88C(void) {
 
         case 2:  /* High scores */
             func_800C6E60(0, 0, 320, 240, 0xFF101030);
-            func_800C734C(105, 40, "HIGH SCORES", 0xFFFFFFFF);
+            draw_text(105, 40, "HIGH SCORES", 0xFFFFFFFF);
             /* func_800AXXXX(); display high score table */
 
             if (timer > 300) {
@@ -36431,8 +36437,8 @@ void func_800DD4AC(void) {
     func_800DDFAC();  /* Animate logo */
 
     /* Draw title text */
-    func_800C734C("SAN FRANCISCO", 85, logoY - 20, alpha);
-    func_800C734C("RUSH 2049", 105, logoY + 10, alpha);
+    draw_text("SAN FRANCISCO", 85, logoY - 20, alpha);
+    draw_text("RUSH 2049", 105, logoY + 10, alpha);
 
     /* Button prompt after logo settles */
     if (frame > 90) {
@@ -36440,7 +36446,7 @@ void func_800DD4AC(void) {
     }
 
     /* Copyright */
-    func_800C734C(80, 220, "(C) 1999 ATARI GAMES", 0xFFFFFF96);
+    draw_text(80, 220, "(C) 1999 ATARI GAMES", 0xFFFFFF96);
 
     D_8015A7B0 = frame;
 }
@@ -36498,7 +36504,7 @@ void func_800DE20C(void) {
     if (alpha > 255) alpha = 255;
     if (alpha < 50) alpha = 50;
 
-    func_800C734C(100, 180, "PRESS START", alpha);
+    draw_text(100, 180, "PRESS START", alpha);
 }
 
 /*
@@ -36615,7 +36621,7 @@ void func_800DEC8C(void) {
     func_800C6E60(0, 0, 320, 240, 0xFF101030);
 
     /* Title */
-    func_800C734C(115, 30, "MAIN MENU", 0xFFFFFFFF);
+    draw_text(115, 30, "MAIN MENU", 0xFFFFFFFF);
 
     /* Menu options */
     for (i = 0; i < MAIN_MENU_COUNT; i++) {
@@ -36625,14 +36631,14 @@ void func_800DEC8C(void) {
         if (i == selection) {
             /* Selection highlight */
             func_800C6E60(80, yPos - 5, 160, 25, 0x80404080);
-            func_800C734C(90, yPos, ">", 255);
+            draw_text(90, yPos, ">", 255);
         }
 
-        func_800C734C(100, yPos, mainMenuOptions[i], alpha);
+        draw_text(100, yPos, mainMenuOptions[i], alpha);
     }
 
     /* Footer */
-    func_800C734C(90, 210, "A:SELECT  B:BACK", 0xFFFFFF96);
+    draw_text(90, 210, "A:SELECT  B:BACK", 0xFFFFFF96);
 }
 
 /*
@@ -36657,28 +36663,28 @@ void func_800DEF68(void) {
     /* Title based on mode */
     switch (D_8015A7D4) {
         case 0:  /* Race */
-            func_800C734C(115, 30, "RACE MODE", 0xFFFFFFFF);
-            func_800C734C("SINGLE RACE", 110, 80, selection == 0 ? 255 : 150);
-            func_800C734C("CHAMPIONSHIP", 105, 110, selection == 1 ? 255 : 150);
-            func_800C734C("TIME TRIAL", 115, 140, selection == 2 ? 255 : 150);
+            draw_text(115, 30, "RACE MODE", 0xFFFFFFFF);
+            draw_text("SINGLE RACE", 110, 80, selection == 0 ? 255 : 150);
+            draw_text("CHAMPIONSHIP", 105, 110, selection == 1 ? 255 : 150);
+            draw_text("TIME TRIAL", 115, 140, selection == 2 ? 255 : 150);
             break;
 
         case 1:  /* Battle */
-            func_800C734C(110, 30, "BATTLE MODE", 0xFFFFFFFF);
-            func_800C734C("DEATHMATCH", 110, 80, selection == 0 ? 255 : 150);
-            func_800C734C("TEAM BATTLE", 110, 110, selection == 1 ? 255 : 150);
-            func_800C734C("LAST MAN", 115, 140, selection == 2 ? 255 : 150);
+            draw_text(110, 30, "BATTLE MODE", 0xFFFFFFFF);
+            draw_text("DEATHMATCH", 110, 80, selection == 0 ? 255 : 150);
+            draw_text("TEAM BATTLE", 110, 110, selection == 1 ? 255 : 150);
+            draw_text("LAST MAN", 115, 140, selection == 2 ? 255 : 150);
             break;
 
         case 2:  /* Stunt */
-            func_800C734C(115, 30, "STUNT MODE", 0xFFFFFFFF);
-            func_800C734C("FREESTYLE", 115, 80, selection == 0 ? 255 : 150);
-            func_800C734C("TRICK ATTACK", 105, 110, selection == 1 ? 255 : 150);
+            draw_text(115, 30, "STUNT MODE", 0xFFFFFFFF);
+            draw_text("FREESTYLE", 115, 80, selection == 0 ? 255 : 150);
+            draw_text("TRICK ATTACK", 105, 110, selection == 1 ? 255 : 150);
             break;
     }
 
     /* Selection cursor */
-    func_800C734C(">", 90, 80 + selection * 30, 255);
+    draw_text(">", 90, 80 + selection * 30, 255);
 }
 
 /*
@@ -39093,7 +39099,7 @@ void func_800FCA00(void) {
     buf[4] = '0' + (D_80143B00 / 10);
     buf[5] = '0' + (D_80143B00 % 10);
     buf[6] = '\0';
-    func_800C734C(buf, 10, 10, 255);
+    draw_text(buf, 10, 10, 255);
 
     /* Frame counter */
     buf[0] = 'F'; buf[1] = ':';
@@ -39107,7 +39113,7 @@ void func_800FCA00(void) {
         buf[2] = '0' + (f / 10);
         buf[8] = '\0';
     }
-    func_800C734C(buf, 10, 25, 200);
+    draw_text(buf, 10, 25, 200);
 
     /* Memory usage */
     func_800FCDF8();
@@ -39136,7 +39142,7 @@ void func_800FCDF8(void) {
         buf[6] = '0' + ((used / 1000) % 10);
         buf[7] = 'K';
         buf[8] = '\0';
-        func_800C734C(buf, 10, 40, 180);
+        draw_text(buf, 10, 40, 180);
     }
 }
 
@@ -39455,7 +39461,7 @@ void func_800FEA08(void) {
     timeBuf[8] = '\0';
 
     /* Display timer */
-    func_800C734C(timeBuf, 130, 15, 255);
+    draw_text(timeBuf, 130, 15, 255);
 }
 
 /*
@@ -39481,10 +39487,10 @@ void func_800FECA4(void) {
     if (countdown > 0) {
         numBuf[0] = '0' + countdown;
         numBuf[1] = '\0';
-        func_800C734C(numBuf, 155, 100, 255);
+        draw_text(numBuf, 155, 100, 255);
         func_800CC3C0(10 + countdown);  /* Countdown sound */
     } else if (countdown == 0 && D_80159A08 < 240) {
-        func_800C734C(140, 100, "GO!", 0xFFFFFFFF);
+        draw_text(140, 100, "GO!", 0xFFFFFFFF);
         if (D_80159A08 == 180) {
             func_800CC3C0(13);  /* GO sound */
             D_80159A04 = 1;     /* Start race */
@@ -39537,7 +39543,7 @@ void func_800FEE04(s32 splitTime) {
     splitBuf[i] = '\0';
 
     /* Display split time */
-    func_800C734C(splitBuf, 135, 35, (color >> 24) & 0xFF);
+    draw_text(splitBuf, 135, 35, (color >> 24) & 0xFF);
 }
 
 /*
@@ -39637,9 +39643,9 @@ void func_800FFDF8(void) {
     D_80159E14 = cursorPos;
 
     /* Draw UI */
-    func_800C734C(105, 40, "ENTER NAME", 0xFFFFFFFF);
-    func_800C734C(D_80159E18, 140, 80, 255);
-    func_800C734C(alphabet, 40, 140, 200);
+    draw_text(105, 40, "ENTER NAME", 0xFFFFFFFF);
+    draw_text(D_80159E18, 140, 80, 255);
+    draw_text(alphabet, 40, 140, 200);
 }
 
 /*
@@ -40768,7 +40774,7 @@ void func_80108154(void) {
         posStr[4] = '0' + carNum + 1;
         posStr[5] = '\0';
 
-        func_800C734C(posStr, 260, y, (carNum == 0) ? 255 : 180);
+        draw_text(posStr, 260, y, (carNum == 0) ? 255 : 180);
         y += 12;
     }
 }
