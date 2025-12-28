@@ -22375,7 +22375,7 @@ s32 cpak_init(s32 controller) {
  * func_800B0180 (868 bytes)
  * Controller pak read - read data from controller pak
  */
-s32 func_800B0180(s32 controller, void *buffer, s32 offset, s32 size) {
+s32 cpak_read(s32 controller, void *buffer, s32 offset, s32 size) {
     OSPfs pfs;
     s32 result;
 
@@ -22407,7 +22407,7 @@ s32 func_800B0180(s32 controller, void *buffer, s32 offset, s32 size) {
  * func_800B0904 (396 bytes)
  * Audio init subsystem - initialize N64 audio
  */
-void func_800B0904(void) {
+void audio_init(void) {
     s32 *audioState;
     s32 *channelStates;
     s32 i;
@@ -22443,7 +22443,7 @@ void func_800B0904(void) {
  * func_800B0A90 (440 bytes)
  * Audio shutdown - cleanup audio system
  */
-void func_800B0A90(void) {
+void audio_shutdown(void) {
     s32 *audioState;
     s32 *channelStates;
     s32 i;
@@ -22470,7 +22470,7 @@ void func_800B0A90(void) {
  * func_800B0C48 (800 bytes)
  * Audio frame update - process audio each frame
  */
-void func_800B0C48(void) {
+void audio_frame_update(void) {
     s32 *audioState;
     s32 *channelStates;
     s32 i;
@@ -22535,7 +22535,7 @@ void func_800B0C48(void) {
  * func_800B0F68 (364 bytes)
  * Sound bank load - load sound bank from ROM
  */
-void func_800B0F68(s32 bankId) {
+void sound_bank_load(s32 bankId) {
     s32 *bankState;
     u32 *bankTable;
     u32 romAddr, ramAddr, size;
@@ -22572,7 +22572,7 @@ void func_800B0F68(s32 bankId) {
  * func_800B10D4 (1248 bytes)
  * Sound bank unload - free sound bank memory
  */
-void func_800B10D4(s32 bankId) {
+void sound_bank_unload(s32 bankId) {
     s32 *bankState;
     s32 *channelStates;
     s32 i;
@@ -22605,7 +22605,7 @@ void func_800B10D4(s32 bankId) {
  * func_800B15B4 (1428 bytes)
  * Music sequence load - load music sequence from ROM
  */
-void func_800B15B4(s32 seqId) {
+void music_seq_load(s32 seqId) {
     s32 *audioState;
     s32 *seqState;
     u32 *seqTable;
@@ -22644,7 +22644,7 @@ void func_800B15B4(s32 seqId) {
  * func_800B1B48 (1020 bytes)
  * Music playback control - control music playback
  */
-void func_800B1B48(s32 cmd, s32 param) {
+void music_control(s32 cmd, s32 param) {
     s32 *audioState;
     s32 *seqState;
 
@@ -22696,7 +22696,7 @@ void func_800B1B48(s32 cmd, s32 param) {
  * func_800B1F44 (200 bytes)
  * Music volume
  */
-void func_800B1F44(f32 volume) {
+void music_volume_set(f32 volume) {
     f32 *musicVolume;
     f32 *masterVolume;
     s32 i;
@@ -22729,7 +22729,7 @@ void func_800B1F44(f32 volume) {
  * func_800B200C (1612 bytes)
  * Music tempo
  */
-void func_800B200C(f32 tempo) {
+void music_tempo_set(f32 tempo) {
     f32 *musicTempo;
     f32 *baseTickRate;
     f32 *currentTickRate;
@@ -22779,7 +22779,7 @@ void func_800B200C(f32 tempo) {
  * func_800B2658 (464 bytes)
  * Sound effect play
  */
-void func_800B2658(s32 soundId, f32 volume, f32 pan) {
+void sfx_play(s32 soundId, f32 volume, f32 pan) {
     s32 *sfxChannels;
     s32 i;
     s32 freeChannel;
@@ -22851,7 +22851,7 @@ void func_800B2658(s32 soundId, f32 volume, f32 pan) {
  * func_800B2828 (256 bytes)
  * Sound effect stop
  */
-void func_800B2828(s32 handle) {
+void sfx_stop(s32 handle) {
     s32 *channelState;
     s32 *channelSound;
     s32 i;
@@ -22881,7 +22881,7 @@ void func_800B2828(s32 handle) {
  * func_800B2928 (1016 bytes)
  * 3D sound position
  */
-void func_800B2928(s32 handle, f32 *pos) {
+void sfx_position_3d(s32 handle, f32 *pos) {
     f32 *channelPos;
     f32 *channelVolume;
     f32 *channelPan;
@@ -22951,7 +22951,7 @@ void func_800B2928(s32 handle, f32 *pos) {
  * func_800B2D20 (216 bytes)
  * Sound listener position
  */
-void func_800B2D20(f32 *pos, f32 *forward) {
+void listener_position_set(f32 *pos, f32 *forward) {
     f32 *listenerPos;
     f32 *listenerFwd;
     f32 len;
@@ -22998,7 +22998,7 @@ void func_800B2D20(f32 *pos, f32 *forward) {
  *   0x20C: engine sound state (0=off, 1=idle, 2=revving, 3=redline)
  */
 
-void func_800B2DF8(void *car) {
+void engine_sound_update(void *car) {
     f32 rpm;
     f32 throttle;
     s32 *soundHandle;
@@ -23081,7 +23081,7 @@ void func_800B2DF8(void *car) {
  *   0x210: tire squeal handles [4]
  *   0x220: tire squeal volumes [4]
  */
-void func_800B338C(void *car) {
+void tire_sound_update(void *car) {
     f32 *tireForces;
     s32 *squealHandles;
     s32 *squealVolumes;
@@ -23146,7 +23146,7 @@ void func_800B338C(void *car) {
  *   Heavy (> 0.6): Big crash
  */
 
-void func_800B3710(void *car, f32 intensity) {
+void collision_sound_play(void *car, f32 intensity) {
     s32 soundId;
     s32 volume;
     s32 *lastBumpTime;
@@ -23200,7 +23200,7 @@ void func_800B3710(void *car, f32 intensity) {
  *   0x234: wind sound handle
  *   0x238: wind sound volume
  */
-void func_800B39BC(void *car) {
+void wind_sound_update(void *car) {
     f32 *vel;
     f32 speed;
     s32 *windHandle;
@@ -23254,7 +23254,7 @@ void func_800B39BC(void *car) {
  * Plays crowd cheer sounds for stunts and checkpoints.
  * Different sounds based on intensity/achievement.
  */
-void func_800B3B4C(s32 intensity) {
+void crowd_cheer_play(s32 intensity) {
     s32 soundId;
     s32 volume;
 
@@ -23295,7 +23295,7 @@ void func_800B3B4C(s32 intensity) {
  *   4 = Wind gust
  */
 
-void func_800B3D20(s32 ambientId, f32 volume) {
+void ambient_sound_set(s32 ambientId, f32 volume) {
     s32 intVolume;
     s32 soundId;
 
@@ -23362,7 +23362,7 @@ extern s32 D_80158150;          /* Voice fade timer */
 
 /* External audio functions */
 
-void func_800B4208(s32 voiceId) {
+void voice_play(s32 voiceId) {
     s32 soundId;
     s32 priority;
     s32 baseSoundId;
@@ -23447,7 +23447,7 @@ void func_800B4208(s32 voiceId) {
  * Stops the currently playing voice and clears the queue.
  * Similar to arcade kill_announcer[] usage in game.c.
  */
-void func_800B4738(void) {
+void voice_stop(void) {
     /* Stop current voice */
     if (D_80158140 != 0) {
         func_800B358C(D_80158140, 0.0f);
@@ -23480,7 +23480,7 @@ void func_800B4738(void) {
 extern f32 D_80158160[8][4];    /* Bus levels [bus][channel] */
 extern s32 D_801581E0;          /* Bus dirty flags */
 
-void func_800B4818(s32 bus, f32 *levels) {
+void audio_bus_mix(s32 bus, f32 *levels) {
     f32 left, right, center, sub;
     f32 finalLeft, finalRight;
 
