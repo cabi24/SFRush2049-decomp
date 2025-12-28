@@ -5574,7 +5574,7 @@ void effect_system_init(void) {
 extern u8 D_80140BDC;  /* Object type count */
 extern s32 audio_sequence_play(void*, void*, s32, s8, s32); /* Object setup with type */
 extern void func_800B362C(s32 channel, f32 pan); /* Object alternate init */
-extern f32 func_800B65B8(f32 distance, f32 maxDist);  /* Audio distance attenuation */
+extern f32 audio_distance_atten(f32 distance, f32 maxDist);  /* Audio distance attenuation */
 
 /**
 /*
@@ -23816,7 +23816,7 @@ void sound_loop_set(s32 handle, s32 loop) {
 /*
  * Sound pitch set helper
  */
-void func_800B58A0(s32 handle, f32 pitch) {
+void sound_pitch_set(s32 handle, f32 pitch) {
     s32 pitchVal;
 
     /* Validate handle */
@@ -23848,7 +23848,7 @@ void func_800B58A0(s32 handle, f32 pitch) {
  * Sets volume for a playing sound.
  * volume: 0.0 = silent, 1.0 = full volume
  */
-void func_800B5948(s32 handle, f32 volume) {
+void sound_volume_set(s32 handle, f32 volume) {
     s32 volumeVal;
 
     /* Validate handle */
@@ -23882,7 +23882,7 @@ extern f32 D_8015825C[3];       /* Listener position (camera) */
 extern f32 D_80158268[3];       /* Listener velocity */
 extern f32 D_80158274[3];       /* Listener forward vector */
 
-void func_800B59F8(s32 handle, f32 *pos, f32 *velocity) {
+void audio_spatialize(s32 handle, f32 *pos, f32 *velocity) {
     f32 dx, dy, dz;
     f32 distance;
     f32 rightDot, forwardDot;
@@ -23923,7 +23923,7 @@ void func_800B59F8(s32 handle, f32 *pos, f32 *velocity) {
     if (pan > 1.0f) pan = 1.0f;
 
     /* Calculate volume based on distance attenuation */
-    volume = func_800B65B8(distance, 500.0f);
+    volume = audio_distance_atten(distance, 500.0f);
 
     /* Calculate forward dot for front/back attenuation */
     forwardDot = dx * D_80158274[0] + dy * D_80158274[1] + dz * D_80158274[2];
@@ -23974,7 +23974,7 @@ void func_800B59F8(s32 handle, f32 *pos, f32 *velocity) {
 
 /*
 
- * func_800B65B8 (464 bytes)
+ * audio_distance_atten (464 bytes)
  * Audio distance attenuation
  *
  * Calculates volume attenuation based on distance.
@@ -23985,7 +23985,7 @@ void func_800B59F8(s32 handle, f32 *pos, f32 *velocity) {
  *
  * Returns: Volume multiplier 0.0-1.0
  */
-f32 func_800B65B8(f32 distance, f32 maxDist) {
+f32 audio_distance_atten(f32 distance, f32 maxDist) {
     f32 minDist;
     f32 rolloff;
     f32 attenuation;
@@ -24034,7 +24034,7 @@ f32 func_800B65B8(f32 distance, f32 maxDist) {
  *
  * Returns: Pitch multiplier (1.0 = no shift, >1.0 = higher pitch, <1.0 = lower)
  */
-f32 func_800B6788(f32 *listenerPos, f32 *listenerVel, f32 *sourcePos, f32 *sourceVel) {
+f32 audio_doppler(f32 *listenerPos, f32 *listenerVel, f32 *sourcePos, f32 *sourceVel) {
     f32 dx, dy, dz;
     f32 dist, invDist;
     f32 dirX, dirY, dirZ;
@@ -24095,7 +24095,7 @@ f32 func_800B6788(f32 *listenerPos, f32 *listenerVel, f32 *sourcePos, f32 *sourc
 
 /*
 
- * func_800B6BEC (1520 bytes)
+ * audio_occlusion (1520 bytes)
  * Audio occlusion
  *
  * Calculates audio occlusion (blocking) between listener and source.
@@ -24105,7 +24105,7 @@ f32 func_800B6788(f32 *listenerPos, f32 *listenerVel, f32 *sourcePos, f32 *sourc
  * Returns: Occlusion factor 0.0-1.0 (1.0 = no occlusion, 0.0 = fully blocked)
  */
 
-f32 func_800B6BEC(f32 *listenerPos, f32 *sourcePos) {
+f32 audio_occlusion(f32 *listenerPos, f32 *sourcePos) {
     f32 dx, dy, dz;
     f32 dist;
     f32 occlusion;
@@ -24254,7 +24254,7 @@ void func_800B71DC(void *entity) {
         }
 
         /* Calculate occlusion */
-        occlusion = func_800B6BEC(D_8015825C, sourcePos);
+        occlusion = audio_occlusion(D_8015825C, sourcePos);
 
         /* Base volume with occlusion */
         volume = occlusion;
