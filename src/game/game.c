@@ -30888,7 +30888,7 @@ void draw_number(s32 value, s32 digits, s32 x, s32 y) {
  *   - Digital readout below
  */
 
-void func_800C7818(f32 speed) {
+void draw_speedometer(f32 speed) {
     s32 speedMph;
     s32 needleAngle;
     s32 dialX, dialY;
@@ -30919,7 +30919,7 @@ void func_800C7818(f32 speed) {
     /* Draw digital speed readout */
     digitalX = dialX + 12;
     digitalY = dialY + 50;
-    func_800C760C(speedMph, 3, digitalX, digitalY);
+    draw_number(speedMph, 3, digitalX, digitalY);
 
     /* Draw "MPH" label */
     draw_text("MPH", digitalX + 30, digitalY, 255);
@@ -30927,14 +30927,14 @@ void func_800C7818(f32 speed) {
 
 /*
 
- * func_800C7ED4 (2540 bytes)
- * HUD lap counter
+ * draw_lap_counter (func_800C7ED4)
+ * Size: 2540 bytes
  *
  * Displays current lap / total laps.
  * Shows "FINAL LAP" text when on last lap.
  */
 
-void func_800C7ED4(s32 currentLap, s32 totalLaps) {
+void draw_lap_counter(s32 currentLap, s32 totalLaps) {
     s32 x, y;
     char lapText[16];
 
@@ -30954,25 +30954,25 @@ void func_800C7ED4(s32 currentLap, s32 totalLaps) {
         draw_text("LAP", x + 40, y, 255);
 
         /* Draw current lap number */
-        func_800C760C(currentLap, 1, x + 40, y + 12);
+        draw_number(currentLap, 1, x + 40, y + 12);
 
         /* Draw separator */
         draw_text("/", x + 52, y + 12, 255);
 
         /* Draw total laps */
-        func_800C760C(totalLaps, 1, x + 60, y + 12);
+        draw_number(totalLaps, 1, x + 60, y + 12);
     }
 }
 
 /*
 
- * func_800C8864 (188 bytes)
- * HUD position display
+ * draw_position (func_800C8864)
+ * Size: 188 bytes
  *
  * Shows race position (1st, 2nd, 3rd, etc.)
  */
 
-void func_800C8864(s32 position) {
+void draw_position(s32 position) {
     s32 x, y;
     char *suffix;
 
@@ -30983,7 +30983,7 @@ void func_800C8864(s32 position) {
     draw_ui_element(3, x, y, 16, 16, 255);  /* Element 3 = position indicator */
 
     /* Draw position number */
-    func_800C760C(position + 1, 1, x + 8, y + 4);  /* +1 because internal 0 = 1st place */
+    draw_number(position + 1, 1, x + 8, y + 4);  /* +1 because internal 0 = 1st place */
 
     /* Draw suffix (st, nd, rd, th) */
     switch (position) {
@@ -31005,14 +31005,14 @@ void func_800C8864(s32 position) {
 
 /*
 
- * func_800C8920 (228 bytes)
- * HUD timer display
+ * draw_timer (func_800C8920)
+ * Size: 228 bytes
  *
  * Shows race time in MM:SS.ms format.
  * timeMs is in milliseconds.
  */
 
-void func_800C8920(s32 timeMs) {
+void draw_timer(s32 timeMs) {
     s32 x, y;
     s32 minutes, seconds, ms;
     char timeStr[16];
@@ -31034,30 +31034,30 @@ void func_800C8920(s32 timeMs) {
     if (minutes > 99) minutes = 99;
 
     /* Draw minutes */
-    func_800C760C(minutes, 1, x + 8, y + 4);
+    draw_number(minutes, 1, x + 8, y + 4);
 
     /* Draw colon */
     draw_text(":", x + 16, y + 4, 255);
 
     /* Draw seconds (2 digits with leading zero) */
-    func_800C760C(seconds, 2, x + 22, y + 4);
+    draw_number(seconds, 2, x + 22, y + 4);
 
     /* Draw decimal point */
     draw_text(".", x + 38, y + 4, 255);
 
     /* Draw centiseconds */
-    func_800C760C(ms, 2, x + 44, y + 4);
+    draw_number(ms, 2, x + 44, y + 4);
 }
 
 /*
 
- * func_800C9404 (300 bytes)
- * HUD minimap update
+ * draw_minimap (func_800C9404)
+ * Size: 300 bytes
  *
  * Draws a minimap showing track outline and car positions.
  */
 
-void func_800C9404(void *player) {
+void draw_minimap(void *player) {
     s32 x, y;
     f32 *playerPos;
     f32 mapX, mapY;
@@ -31121,7 +31121,7 @@ static char *hudMessages[] = {
     "NEW RECORD!"
 };
 
-void func_800CA308(s32 messageId) {
+void draw_message(s32 messageId) {
     s32 x, y;
     char *message;
     s32 msgLen, charWidth;
@@ -31149,14 +31149,14 @@ void func_800CA308(s32 messageId) {
 
 /*
 
- * func_800CADA4 (2468 bytes)
- * HUD full render
+ * hud_render (func_800CADA4)
+ * Size: 2468 bytes
  *
  * Main HUD rendering function - draws all HUD elements.
  * Called every frame during gameplay.
  */
 
-void func_800CADA4(void) {
+void hud_render(void) {
     void *player;
     f32 *velocity;
     f32 speed;
@@ -31182,23 +31182,23 @@ void func_800CADA4(void) {
     position = *(s32 *)((u8 *)player + 0x5C);
 
     /* Draw speedometer */
-    func_800C7818(speed);
+    draw_speedometer(speed);
 
     /* Draw lap counter */
-    func_800C7ED4(currentLap, D_801582E8);
+    draw_lap_counter(currentLap, D_801582E8);
 
     /* Draw position */
-    func_800C8864(position);
+    draw_position(position);
 
     /* Draw timer */
-    func_800C8920(D_801582B0);
+    draw_timer(D_801582B0);
 
     /* Draw minimap */
-    func_800C9404(player);
+    draw_minimap(player);
 
     /* Draw any active message */
     if (D_80159064 >= 0 && D_80159068 > 0) {
-        func_800CA308(D_80159064);
+        draw_message(D_80159064);
         D_80159068--;
 
         if (D_80159068 <= 0) {
