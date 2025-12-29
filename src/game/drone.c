@@ -28,6 +28,9 @@ extern s32 trackno;
 
 /* External math */
 extern f32 sqrtf(f32 x);
+extern f32 atan2f(f32 y, f32 x);
+extern f32 sinf(f32 x);
+extern f32 cosf(f32 x);
 
 /* Drone control data */
 DroneControl drone_ctl[MAX_CARS];
@@ -193,6 +196,10 @@ void drone_do_maxpath(s32 car_index) {
 
     /* Calculate steering to reach next waypoint */
     /* This is a simplified version - arcade uses spline interpolation */
+    (void)dx;
+    (void)dz;
+    (void)dist_sq;
+    drone_maxpath_controls(car_index);
 }
 
 /**
@@ -418,6 +425,421 @@ void drone_find_path_dist(s32 car_index, f32 dist, f32 *pos_out) {
     pos_out[0] = points[seg].pos[0];
     pos_out[1] = points[seg].pos[1];
     pos_out[2] = points[seg].pos[2];
+}
+
+/**
+ * drone_target_speed - Calculate target speed from path data
+ *
+ * @param car_index Car index
+ * @return Target speed
+ */
+f32 drone_target_speed(s32 car_index) {
+    DroneControl *ctl;
+    MaxPathHeader *header;
+    MaxPathPoint *points;
+    s32 seg;
+    s32 next;
+    f32 speed0, speed1;
+    f32 dx, dz;
+    f32 seg_len;
+    f32 t;
+    f32 target_speed;
+    f32 yrel_abs;
+    f32 off_path_scale;
+
+    if (car_index < 0 || car_index >= MAX_LINKS) {
+        return 0.0f;
+    }
+
+    ctl = &drone_ctl[car_index];
+    if (ctl->mpath_index < 0 || ctl->mpath_index >= gNumMPaths) {
+        return 0.0f;
+    }
+
+    header = gMPathHeaders[ctl->mpath_index];
+    points = gMPathTables[ctl->mpath_index];
+    if (header == NULL || points == NULL || header->num_points <= 1) {
+        return 0.0f;
+    }
+
+    seg = ctl->mpath_segment;
+    if (seg < 0) {
+        seg = header->lap_start;
+    }
+    if (seg >= header->num_points - 1) {
+        seg = header->lap_start;
+    }
+
+    next = seg + 1;
+    if (next >= header->num_points) {
+        next = header->lap_start;
+    }
+
+    speed0 = points[seg].speed;
+    speed1 = points[next].speed;
+
+    dx = points[next].pos[0] - points[seg].pos[0];
+    dz = points[next].pos[2] - points[seg].pos[2];
+    seg_len = sqrtf(dx * dx + dz * dz);
+
+    if (seg_len > 0.0001f) {
+        t = ctl->xrel / seg_len;
+        if (t < 0.0f) {
+            t = 0.0f;
+        }
+        if (t > 1.0f) {
+            t = 1.0f;
+        }
+    } else {
+        t = 0.0f;
+    }
+
+    target_speed = speed0 + t * (speed1 - speed0);
+
+    yrel_abs = ctl->yrel;
+    if (yrel_abs < 0.0f) {
+        yrel_abs = -yrel_abs;
+    }
+
+    if (yrel_abs > 5.0f) {
+        off_path_scale = 1.0f - (yrel_abs - 5.0f) * 0.02f;
+        if (off_path_scale < 0.5f) {
+            off_path_scale = 0.5f;
+        }
+        target_speed *= off_path_scale;
+    }
+
+    if (target_speed < 28.0f) {
+        target_speed = 28.0f;
+    }
+
+    return target_speed * PATH_SPEED_SCALE;
+}
+
+/**
+ * drone_target_steer_pos - Calculate steering target position
+ *
+ * @param car_index Car index
+ * @param target_pos Output: world position [3]
+ */
+void drone_target_steer_pos(s32 car_index, f32 *target_pos) {
+    if (target_pos == NULL) {
+        return;
+    }
+
+    drone_find_path_dist(car_index, PATH_LOOKAHEAD, target_pos);
+}
+
+/**
+ * drone_adjust_speed - Convert target speed to throttle/brake
+ *
+ * @param car_index Car index
+ * @param target_speed Desired speed
+ * @param throttle_out Output: throttle (0.0 to 1.0)
+ * @param brake_out Output: brake (0.0 to 1.0)
+ */
+void drone_adjust_speed(s32 car_index, f32 target_speed, f32 *throttle_out, f32 *brake_out) {
+    CarData *car;
+    f32 current_speed;
+    f32 speed_diff;
+
+    if (throttle_out == NULL || brake_out == NULL) {
+        return;
+    }
+
+    *throttle_out = 0.0f;
+    *brake_out = 0.0f;
+
+    if (car_index < 0 || car_index >= MAX_LINKS) {
+        return;
+    }
+
+    car = &car_array[car_index];
+    current_speed = car->mph;
+    speed_diff = target_speed - current_speed;
+
+    if (speed_diff > 5.0f) {
+        *throttle_out = 1.0f;
+        *brake_out = 0.0f;
+    } else if (speed_diff > 0.0f) {
+        *throttle_out = speed_diff / 5.0f;
+        *brake_out = 0.0f;
+    } else if (speed_diff > -10.0f) {
+        *throttle_out = 0.0f;
+        *brake_out = 0.0f;
+    } else if (speed_diff > -30.0f) {
+        *throttle_out = 0.0f;
+        *brake_out = (-speed_diff - 10.0f) / 20.0f;
+    } else {
+        *throttle_out = 0.0f;
+        *brake_out = 1.0f;
+    }
+
+    if (*throttle_out < 0.0f) {
+        *throttle_out = 0.0f;
+    }
+    if (*throttle_out > 1.0f) {
+        *throttle_out = 1.0f;
+    }
+    if (*brake_out < 0.0f) {
+        *brake_out = 0.0f;
+    }
+    if (*brake_out > 1.0f) {
+        *brake_out = 1.0f;
+    }
+}
+
+/**
+ * drone_adjust_steer - Convert target position to steering wheel input
+ *
+ * @param car_index Car index
+ * @param target_pos World position to steer toward
+ * @return Steering value (-1.0 to 1.0)
+ */
+f32 drone_adjust_steer(s32 car_index, f32 *target_pos) {
+    CarData *car;
+    f32 dx, dz;
+    f32 angle_to_target;
+    f32 angle_diff;
+    f32 wheel;
+
+    if (target_pos == NULL) {
+        return 0.0f;
+    }
+
+    if (car_index < 0 || car_index >= MAX_LINKS) {
+        return 0.0f;
+    }
+
+    car = &car_array[car_index];
+
+    dx = target_pos[0] - car->dr_pos[0];
+    dz = target_pos[2] - car->dr_pos[2];
+
+    angle_to_target = atan2f(dx, dz);
+    angle_diff = angle_to_target - car->yaw;
+
+    while (angle_diff > 3.14159f) {
+        angle_diff -= 6.28318f;
+    }
+    while (angle_diff < -3.14159f) {
+        angle_diff += 6.28318f;
+    }
+
+    wheel = angle_diff / 0.5f;
+
+    if (wheel < -1.0f) {
+        wheel = -1.0f;
+    }
+    if (wheel > 1.0f) {
+        wheel = 1.0f;
+    }
+
+    return wheel;
+}
+
+/**
+ * drone_maxpath_controls - Generate AI inputs from path data
+ *
+ * @param car_index Car index
+ */
+void drone_maxpath_controls(s32 car_index) {
+    DroneControl *ctl;
+    f32 target_pos[3];
+    f32 target_speed;
+    f32 throttle;
+    f32 brake;
+    f32 wheel;
+
+    if (car_index < 0 || car_index >= MAX_LINKS) {
+        return;
+    }
+
+    ctl = &drone_ctl[car_index];
+
+    drone_find_interval(car_index);
+    drone_interval_pos(car_index, &ctl->xrel, &ctl->yrel);
+
+    target_speed = drone_target_speed(car_index);
+    drone_target_steer_pos(car_index, target_pos);
+    drone_adjust_speed(car_index, target_speed, &throttle, &brake);
+    wheel = drone_adjust_steer(car_index, target_pos);
+
+    ctl->throttle_target = throttle;
+    ctl->brake_target = brake;
+    ctl->steer_target = wheel;
+    ctl->path_speed = target_speed;
+
+    drone_avoid_areas(car_index);
+    drone_avoid_walls(car_index);
+}
+
+/**
+ * drone_get_avoid_strength - Avoidance aggressiveness by hint
+ *
+ * @param hint Current path hint type
+ * @return Avoidance strength (0.0 to 1.0)
+ */
+f32 drone_get_avoid_strength(HintType hint) {
+    switch (hint) {
+        case HINT_STAY_ON_MPATH:
+            return 0.3f;
+        case HINT_STAY_PARALLEL:
+            return 1.0f;
+        case HINT_GET_ON_MPATH:
+        case HINT_EASE_ON_MPATH:
+            return 0.6f;
+        case HINT_STAY_WITHIN_WIDTH:
+        default:
+            return 1.0f;
+    }
+}
+
+/**
+ * drone_avoid_areas - Collision avoidance with other cars
+ *
+ * @param car_index Car to update
+ */
+void drone_avoid_areas(s32 car_index) {
+    DroneControl *ctl;
+    CarData *my_car;
+    CarData *other_car;
+    f32 dx, dz;
+    f32 dist_sq;
+    f32 avoid_dist;
+    f32 min_dist;
+    f32 steer_adjust;
+    f32 speed_adjust;
+    f32 heading_x, heading_z;
+    f32 forward_dist;
+    f32 lateral_dist;
+    f32 dist;
+    f32 urgency;
+    f32 avoid_strength;
+    s32 i;
+
+    if (car_index < 0 || car_index >= MAX_LINKS) {
+        return;
+    }
+
+    ctl = &drone_ctl[car_index];
+    my_car = &car_array[car_index];
+
+    avoid_dist = 30.0f;
+    min_dist = 10.0f;
+    steer_adjust = 0.0f;
+    speed_adjust = 1.0f;
+
+    avoid_strength = drone_get_avoid_strength(HINT_STAY_WITHIN_WIDTH);
+    if (ctl->mpath_index >= 0 && ctl->mpath_index < gNumMPaths) {
+        MaxPathPoint *points = gMPathTables[ctl->mpath_index];
+        MaxPathHeader *header = gMPathHeaders[ctl->mpath_index];
+        if (points != NULL && header != NULL && header->num_points > 0) {
+            s32 seg = ctl->mpath_segment;
+            if (seg < 0) {
+                seg = header->lap_start;
+            }
+            if (seg >= header->num_points) {
+                seg = header->lap_start;
+            }
+            avoid_strength = drone_get_avoid_strength((HintType)points[seg].hints);
+        }
+    }
+
+    heading_x = sinf(my_car->yaw);
+    heading_z = cosf(my_car->yaw);
+
+    for (i = 0; i < num_active_cars; i++) {
+        if (i == car_index) {
+            continue;
+        }
+
+        other_car = &car_array[i];
+        dx = other_car->dr_pos[0] - my_car->dr_pos[0];
+        dz = other_car->dr_pos[2] - my_car->dr_pos[2];
+        dist_sq = dx * dx + dz * dz;
+
+        if (dist_sq > avoid_dist * avoid_dist) {
+            continue;
+        }
+
+        dist = sqrtf(dist_sq);
+        forward_dist = dx * heading_x + dz * heading_z;
+        if (forward_dist < -5.0f) {
+            continue;
+        }
+
+        lateral_dist = dx * heading_z - dz * heading_x;
+
+        if (dist < min_dist) {
+            if (lateral_dist > 0.0f) {
+                steer_adjust -= 0.5f * avoid_strength;
+            } else {
+                steer_adjust += 0.5f * avoid_strength;
+            }
+            speed_adjust = 0.7f;
+        } else {
+            urgency = 1.0f - (dist - min_dist) / (avoid_dist - min_dist);
+            if (urgency < 0.0f) {
+                urgency = 0.0f;
+            }
+            if (lateral_dist > 0.0f) {
+                steer_adjust -= 0.3f * urgency * avoid_strength;
+            } else {
+                steer_adjust += 0.3f * urgency * avoid_strength;
+            }
+            speed_adjust = 1.0f - 0.2f * urgency * avoid_strength;
+        }
+    }
+
+    ctl->steer_target += steer_adjust;
+    if (ctl->steer_target < -1.0f) {
+        ctl->steer_target = -1.0f;
+    }
+    if (ctl->steer_target > 1.0f) {
+        ctl->steer_target = 1.0f;
+    }
+
+    ctl->throttle_target *= speed_adjust;
+    if (ctl->throttle_target < 0.0f) {
+        ctl->throttle_target = 0.0f;
+    }
+    if (ctl->throttle_target > 1.0f) {
+        ctl->throttle_target = 1.0f;
+    }
+}
+
+/**
+ * drone_avoid_walls - Avoid track boundaries based on lateral offset
+ *
+ * @param car_index Car to update
+ */
+void drone_avoid_walls(s32 car_index) {
+    DroneControl *ctl;
+    f32 track_half_width;
+    f32 edge_margin;
+
+    if (car_index < 0 || car_index >= MAX_LINKS) {
+        return;
+    }
+
+    ctl = &drone_ctl[car_index];
+
+    track_half_width = 20.0f;
+    edge_margin = 5.0f;
+
+    if (ctl->yrel > track_half_width - edge_margin) {
+        ctl->steer_target -= 0.3f * (ctl->yrel - (track_half_width - edge_margin)) / edge_margin;
+    } else if (ctl->yrel < -(track_half_width - edge_margin)) {
+        ctl->steer_target += 0.3f * (-(track_half_width - edge_margin) - ctl->yrel) / edge_margin;
+    }
+
+    if (ctl->steer_target < -1.0f) {
+        ctl->steer_target = -1.0f;
+    }
+    if (ctl->steer_target > 1.0f) {
+        ctl->steer_target = 1.0f;
+    }
 }
 
 /**

@@ -81,6 +81,15 @@ void drone_do_maxpath(s32 car_index);
 s32 drone_find_interval(s32 car_index);
 void drone_interval_pos(s32 car_index, f32 *xrel_out, f32 *yrel_out);
 void drone_find_path_dist(s32 car_index, f32 dist, f32 *pos_out);
+/* Path controls */
+f32 drone_target_speed(s32 car_index);
+void drone_target_steer_pos(s32 car_index, f32 *target_pos);
+void drone_adjust_speed(s32 car_index, f32 target_speed, f32 *throttle_out, f32 *brake_out);
+f32 drone_adjust_steer(s32 car_index, f32 *target_pos);
+void drone_maxpath_controls(s32 car_index);
+void drone_avoid_areas(s32 car_index);
+f32 drone_get_avoid_strength(HintType hint);
+void drone_avoid_walls(s32 car_index);
 
 /* Catch-up system */
 void drone_set_catchup(void);

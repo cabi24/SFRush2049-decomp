@@ -478,6 +478,7 @@ player_slots = 0x80144030; // type:data player state slots
 //   +0x18-0x1E: additional analog values
 //   +0x1A: "new data" flag
 input_buffer = 0x80140BF0; // type:data per-player input state (4 players, 32 bytes each)
+sound_state_array = 0x80140BF0; // type:data N64 sound state array (overlaps input_buffer, 0x20 bytes per entry)
 
 // gstate bitmask state machine (from Codex analysis 2025-12-07)
 gstate = 0x801174B4; // type:data game state bitmask (110 refs, only func_800CA3B4 writes)
@@ -538,26 +539,27 @@ Input_RegisterActivePad = 0x800B3590; // type:func marks pad slot active (byte 0
 // Car physics functions (from Codex analysis 2025-12-07)
 // game_car[] array: base 0x80152818, stride 0x3B8 (952 bytes)
 // Fields: pos_x/y/z at 0x4C/0x50/0x54, vel_x/y at 0x08/0x0C, flags at 0x0EF/0x359
-Car_UpdatePosVel_A = 0x8008B69C; // type:func accesses pos_x, vel_x, vel_y (712 bytes)
-Car_UpdatePosVel_B = 0x8008B964; // type:func accesses pos_x/y/z, vel_x/y
-Car_UpdatePosVel_C = 0x8008BA84; // type:func accesses pos_x/y/z, vel_x
-Car_UpdatePosVel_D = 0x8008BB8C; // type:func accesses pos_x/y/z, vel_x
-Car_UpdatePosVel_E = 0x8008BC94; // type:func accesses pos_x/y/z, vel_x
-Car_UpdatePosVel_F = 0x8008BD9C; // type:func accesses pos_x/y/z, vel_x/y
-Car_UpdatePosVel_G = 0x8008C884; // type:func accesses pos_x, vel_x/y
-Car_UpdatePosVel_H = 0x8008D120; // type:func accesses pos_x, vel_x/y
-Car_UpdatePosVel_I = 0x8008D93C; // type:func accesses pos_x/y, vel_x/y
-Car_UpdateVelOnly_A = 0x8008E398; // type:func accesses vel_x only
-Car_UpdatePosVel_J = 0x8008EA10; // type:func accesses pos_x/y/z, vel_x/y
-Car_UpdatePosVel_K = 0x80090310; // type:func accesses pos_z, vel_x/y
-Car_UpdatePosVel_L = 0x800908A0; // type:func accesses pos_x/y/z, vel_x/y
-Car_FlagVel_Handler_A = 0x80090B70; // type:func accesses flags_0EF, vel_x/y (812 bytes)
-Car_FlagPosVel_Handler_B = 0x80090FEC; // type:func accesses flags_0EF, pos_x/y/z, vel_x/y
-Car_UpdatePosVel_M = 0x80091874; // type:func accesses pos_x/y/z, vel_x/y
-Car_UpdatePosVel_N = 0x800924F4; // type:func accesses pos_x, vel_x/y
-Car_UpdatePosVel_O = 0x800930A4; // type:func accesses pos_x/y, vel_x/y
-Car_FlagPosVel_Handler_C = 0x80093B20; // type:func accesses flags_0EF, pos_x, vel_x/y
-Car_UpdatePosVel_P = 0x800A2680; // type:func accesses pos_x/z, vel_x/y
+// Motion integration helpers (arcade: drivsym.c velocities/positions)
+physics_velocities_A = 0x8008B69C; // type:func integrate accel to velocity (712 bytes)
+physics_velocities_B = 0x8008B964; // type:func integrate accel to velocity
+physics_velocities_C = 0x8008BA84; // type:func integrate accel to velocity
+physics_velocities_D = 0x8008BB8C; // type:func integrate accel to velocity
+physics_velocities_E = 0x8008BC94; // type:func integrate accel to velocity
+physics_velocities_F = 0x8008BD9C; // type:func integrate accel to velocity
+physics_velocities_G = 0x8008C884; // type:func integrate accel to velocity
+physics_velocities_H = 0x8008D120; // type:func integrate accel to velocity
+physics_velocities_I = 0x8008D93C; // type:func integrate accel to velocity
+physics_accelerations_A = 0x8008E398; // type:func F=ma acceleration calc
+physics_velocities_J = 0x8008EA10; // type:func integrate accel to velocity
+physics_velocities_K = 0x80090310; // type:func integrate accel to velocity
+physics_velocities_L = 0x800908A0; // type:func integrate accel to velocity
+physics_forces_handler_A = 0x80090B70; // type:func force accumulation (812 bytes)
+physics_forces_handler_B = 0x80090FEC; // type:func force accumulation with flags
+physics_velocities_M = 0x80091874; // type:func integrate accel to velocity
+physics_velocities_N = 0x800924F4; // type:func integrate accel to velocity
+physics_velocities_O = 0x800930A4; // type:func integrate accel to velocity
+physics_forces_handler_C = 0x80093B20; // type:func force accumulation with flags
+physics_velocities_P = 0x800A2680; // type:func integrate accel to velocity
 
 // ============================================
 // Game State Machine (from Codex deep analysis 2025-12-07)
@@ -625,9 +627,9 @@ PhysicsObjectList_Update = 0x800B0868; // type:func - walks linked list at 0x801
 Effects_UpdateEmitters = 0x800B811C; // type:func - loops over 152-byte effect slots at 0x80150B70
 RaceStateMachine_Update = 0x800DB81C; // type:func size:2148 - jump-table state machine on 0x801170FC (cases 0-8)
 
-// Object/Effect data globals:
-D_80159788 = 0x80159788; // active_object_count
-D_80159450 = 0x80159450; // active_objects_array
+// Object/Effect data globals (also used by sound system as active_sound_count/active_sound_list):
+active_sound_count = 0x80159788; // active object/sound count
+active_sound_list = 0x80159450; // active objects/sounds array
 D_801491F0 = 0x801491F0; // physics_object_list_head (linked list)
 D_80150B70 = 0x80150B70; // effect_emitters_array (152-byte stride)
 
@@ -644,8 +646,8 @@ preplay_setup = 0x800FBC30; // type:func pre-race setup
 render_object = 0x80099BFC; // type:func 3D object rendering (10KB)
 input_handler = 0x800C9AE0; // type:func controller/init handler
 checkpoint_check = 0x800C85F0; // type:func checkpoint collision
-collision_check = 0x800B8C14; // type:func car collision handler
-physics_calc = 0x800BAE24; // type:func physics calculations
+// Note: collision_check at 0x800B8C14 duplicates physics_sym - now using physics_sym
+physics_forces = 0x800BAE24; // type:func force calculation (arcade: forces in drivsym.c:382)
 camera_transform = 0x80097CA0; // type:func camera/view transformation
 // audio_processing at 0x800974EC - renamed to audio_task_complete above
 // vehicle_physics at 0x80097798 - renamed to audio_frame_sync above (dual purpose)
@@ -655,18 +657,18 @@ load_texture_data = 0x8008A650; // type:func pulls texture data into memory
 audio_call_wrapper = 0x8008A750; // type:func forwards to downstream audio routine
 audio_process = 0x8008AA20; // type:func higher-level audio processing call
 audio_chain_dispatch = 0x8008AD48; // type:func chains to additional audio handlers
-physics_floats = 0x8008B474; // type:func floating-point physics helper
+physics_floats_helper = 0x8008B474; // type:func floating-point physics helper (arcade: drivsym.c utility)
 fmath_helper = 0x8008E440; // type:func heavy FP math helper
-physics_step = 0x80095240; // type:func float operations for physics integration
+physics_forces1 = 0x80095240; // type:func tire/drag forces (arcade: forces1 in drivsym.c:391)
 sfx_play = 0x80095360; // type:func play sound effect
 poll_input = 0x80095380; // type:func controller/button polling - controller/button polling
 draw_sprites = 0x800953A0; // type:func sprite rendering
-apply_gravity_collision = 0x800953C0; // type:func physics with gravity and collision forces
+physics_forces2 = 0x800953C0; // type:func sum all forces (arcade: forces2 in drivsym.c:494)
 gfx_setup_e700 = 0x800954A8; // type:func display list setup (E700 clear)
 ai_enemy_move = 0x800954E0; // type:func enemy movement logic
 hud_update = 0x80095600; // type:func HUD element refresh
 anim_frame_update = 0x80095720; // type:func animation frame stepping
-physics_integrate = 0x80095840; // type:func velocity/position integration step
+physics_torques = 0x80095840; // type:func calculate moments (arcade: torques in drivsym.c:530)
 bgm_playback = 0x80095960; // type:func background music handling
 ui_render = 0x80095A80; // type:func UI rendering
 jump_handler = 0x80095BA0; // type:func jump mechanic logic
@@ -1094,18 +1096,21 @@ audio_helper = 0x80097384; // type:func audio processing helper
 // sound_control at 0x800B37E8 - see audio system section
 
 // Vehicle/physics functions (arcade: drivsym.c, tires.c)
+// Main physics loop functions (arcade: drivsym.c)
+physics_sym = 0x800B8C14; // type:func main per-frame physics update (arcade: sym in drivsym.c:186)
+physics_regular = 0x800B9000; // type:func standard physics cycle (arcade: regular in drivsym.c:285)
+physics_positions = 0x800B9400; // type:func integrate velocity to position (arcade: positions in drivsym.c:594)
 vehicle_physics_sync = 0x80097798; // type:func vehicle physics/collision sync
-update_car_physics = 0x800B8C14; // type:func main car physics update (arcade: sym/drivsym.c)
-apply_forces = 0x800B9000; // type:func physics force application (arcade: regular)
-integrate_position = 0x800B9400; // type:func position integration (arcade: positions)
-tire_physics = 0x800BA000; // type:func tire force simulation (arcade: dotireforce)
-suspension_update = 0x800BA800; // type:func suspension compression calc (arcade: suscomp)
+
+// Tire model functions (arcade: tires.c)
+tire_calc_force = 0x800BA000; // type:func full tire force calculation (arcade: dotireforce in tires.c:120)
+tire_suspension_update = 0x800BA800; // type:func suspension compression calc (arcade: suscomp)
 
 // Collision functions (arcade: collision.c)
-check_collisions = 0x800BB000; // type:func main collision detection (arcade: collision)
-car_car_collision = 0x800BB400; // type:func car-to-car collision (arcade: setFBCollisionForce)
-car_wall_collision = 0x800BB800; // type:func car-to-wall collision (arcade: ForceApart)
-point_in_body = 0x800BBC00; // type:func point inside collision box test (arcade: PointInBody)
+collision_detect = 0x800BB000; // type:func main collision detection (arcade: collision)
+collision_car_car = 0x800BB400; // type:func car-to-car collision (arcade: setFBCollisionForce)
+collision_car_wall = 0x800BB800; // type:func car-to-wall collision (arcade: ForceApart)
+collision_point_in_body = 0x800BBC00; // type:func point inside collision box test (arcade: PointInBody)
 
 // AI/drone functions
 func_800A0000 = 0x800A0000; // type:func do_drones - AI main update

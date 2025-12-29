@@ -761,9 +761,9 @@ typedef struct N64SoundState {
 } N64SoundState;  /* 0x20 bytes per entry */
 
 /* External N64 sound data */
-extern s32 D_80159788;              /* Active sound count */
-extern N64SoundHandle* D_80159450[];/* Active sound list */
-extern N64SoundState D_80140BF0[];  /* Sound state array */
+extern s32 active_sound_count;              /* Active sound count */
+extern N64SoundHandle* active_sound_list[]; /* Active sound list */
+extern N64SoundState sound_state_array[];   /* Sound state array */
 
 /**
  * sound_handle_stop - Stop a sound handle (N64 ROM function)
@@ -790,13 +790,13 @@ void sound_handle_stop(N64SoundHandle *sound) {
 
     /* Process this sound and all linked sounds */
     do {
-        count = D_80159788;
+        count = active_sound_count;
 
         /* Find sound in active list */
         i = 0;
         if (count > 0) {
             while (i < count) {
-                if (D_80159450[i] == current) {
+                if (active_sound_list[i] == current) {
                     break;
                 }
                 i++;
@@ -804,13 +804,13 @@ void sound_handle_stop(N64SoundHandle *sound) {
         }
 
         /* Mark sound state as stopped (2) */
-        D_80140BF0[current->state_index].status = 2;
+        sound_state_array[current->state_index].status = 2;
 
         /* Remove from list by swapping with last entry */
         last_idx = count - 1;
-        D_80159450[i] = D_80159450[last_idx];
-        D_80159450[last_idx] = current;
-        D_80159788 = last_idx;
+        active_sound_list[i] = active_sound_list[last_idx];
+        active_sound_list[last_idx] = current;
+        active_sound_count = last_idx;
 
         /* Move to linked sound */
         current = current->linked;
