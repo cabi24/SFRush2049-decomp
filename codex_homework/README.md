@@ -112,7 +112,10 @@ codex_homework/
 
 | Index | Title | Status | Assigned | Completed |
 |-------|-------|--------|----------|-----------|
-| - | - | - | - | - |
+| 001 | Analyze Remaining D_80 Globals | Pending | 2025-12-29 | - |
+| 002 | Document Drivetrain System | Pending | 2025-12-29 | - |
+| 003 | Catalog Sound Effect IDs | Pending | 2025-12-29 | - |
+| 004 | Analyze Collision Detection | Pending | 2025-12-29 | - |
 
 (Claude: update this table as assignments are created/completed)
 
