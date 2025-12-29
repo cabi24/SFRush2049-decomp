@@ -10,8 +10,8 @@
 #include "PR/os_message.h"
 
 /* Auto-generated extern declarations for missing variables */
-extern s32 D_80020000;
-extern s32 D_80020010;
+extern s32 dma_io_msg;
+extern s32 dma_queue;
 extern s32 D_80086A70;
 extern s32 D_80086A88;
 extern void *D_8008AD48[];
@@ -24,10 +24,10 @@ extern s32 D_80130000;
 extern s32 D_80140A10;
 extern void *D_80144031[];
 extern void *D_80146170[];
-extern s32 D_801461D0;
+extern s32 game_sync;
 extern s32 D_80148000;
-extern void **D_801491F0;
-extern void **D_801492C8;
+extern void **active_object_list;
+extern void **render_list;
 extern s32 D_8014C094;
 extern s32 D_8014C238;
 extern s32 D_80151AD4;
@@ -40,41 +40,41 @@ extern s32 D_80152800;
 extern f32 D_80153F48[];
 extern f32 D_80153F68[];
 extern s32 D_80154190;
-extern s32 D_80154660;
+extern s32 object_slots;
 extern s32 D_80154FD8;
-extern void *D_801551F0[];
-extern void *D_80155220[];
+extern void *callback_data[];
+extern void *object_pool[];
 extern void *D_80155290[];
 extern void *D_80156D44[];
 extern s8 D_80156D39[];
-extern void *D_80158100[];
+extern void *sound_handles[];
 extern s32 D_80158104;
 extern s32 D_80158108;
 extern s32 D_8015810C;
-extern void *D_80158120[];
+extern void *sound_volumes[];
 extern s32 D_801581E4;
 extern void *D_801581EC[];
 extern void *D_80158208[];
-extern f32 D_80158230[5];
+extern f32 audio_duck_targets[5];
 extern f32 D_80158280[3];  /* Listener right vector */
 extern s32 D_8015828C;
 extern s32 D_80158290;
 extern s32 D_801582A0;
 extern s32 D_801582B0;
-extern void *D_801582C0[];
-extern s32 D_801582E0;
+extern void *car_pointers[];
+extern s32 race_car_count;
 extern s32 D_801582E4;
 extern s32 D_801582E8;
 extern s32 D_801582EC;
 extern s32 D_801582F0;
 extern s32 D_801582F4;
 extern s32 D_801582F8;
-extern s32 D_80158FC0;
+extern s32 leaderboard_track;
 extern s32 D_80159000;
 extern void *D_80159010[];
 extern s32 D_80159014;
 extern s32 D_80159018;
-extern s32 D_8015901C;
+extern s32 font_char_width;
 extern s32 D_80159020;
 extern void *D_80159024[];
 extern s32 D_80159028;
@@ -89,32 +89,32 @@ extern s32 D_80159048;
 extern s32 D_8015904C;
 extern s32 D_80159050;
 extern s32 D_80159054;
-extern f32 D_80159058[16][6];  /* Script keyframes */
+extern f32 camera_keyframes[16][6];  /* Script keyframes */
 extern s32 D_8015905C;
-extern s32 D_80159060;
-extern s32 D_80159064;
-extern s32 D_80159068;
-extern s32 D_80159200;  /* Multi-use: button state / save data / base address */
-extern s32 D_80159204;
-extern s32 D_80159208;
-extern s32 D_80159210;
-extern s32 D_80159214;
-extern s32 D_80159218;
+extern s32 message_active;
+extern s32 message_id;
+extern s32 message_timer;
+extern s32 buttons_state;  /* Multi-use: button state / save data / base address */
+extern s32 repeat_counter;
+extern s32 input_repeat_delay;
+extern s32 menu_selection;
+extern s32 menu_item_count;
+extern s32 menu_items_ptr;
 extern s32 D_8015921C;
-extern s32 D_80159220;
+extern s32 menu_stack_depth;
 extern void *D_80159224[];
 extern s32 D_80159230;
 extern s32 D_80159234;
-extern s32 D_80159238;
-extern s32 D_8015923C;
+extern s32 transition_state;
+extern s32 transition_anim_frame;
 extern s32 D_80159240;
-extern s32 D_80159244;
-extern s32 D_80159248;
+extern s32 transition_x_offset;
+extern s32 transition_alpha;
 extern void *D_8015924C[];
 extern s32 D_80159260;
-extern s32 D_80159264;
+extern s32 transition_y_offset;
 extern s32 D_80159268;
-extern s32 D_80159270;
+extern s32 cursor_anim_frame;
 extern s32 D_80159280;
 extern s32 D_80159284;
 extern s32 D_80159288;
@@ -127,27 +127,27 @@ extern s32 D_801592D0;
 extern s32 D_801592D4;
 extern s32 D_801592D8;
 extern s32 D_801592DC;
-extern s32 D_801592E0;
-extern s32 D_801592E4;
-extern s32 D_801592E8;
+extern s32 confirm_dialog_active;
+extern s32 confirm_dialog_anim;
+extern s32 confirm_dialog_selection;
 extern s32 D_801592EC;
 extern s32 D_801592F0;
 extern s32 D_801592F4;
 extern s32 D_801592F8;
 extern s32 D_801592FC;
-extern s32 D_80159300;
-extern s32 D_80159304;
-extern s32 D_80159308;
-extern s32 D_8015930C;
-extern s32 D_80159310;
-extern s32 D_80159314;
+extern s32 sfx_volume;
+extern s32 music_volume;
+extern s32 controller_config;
+extern s32 vibration_setting;
+extern s32 display_mode_setting;
+extern s32 misc_flags;
 extern s32 D_80159318;
 extern s32 D_8015931C;
 extern s32 D_80159320;
 extern s32 D_80159324;
 extern s32 D_80159328;
 extern s32 D_8015932C;
-extern void *D_80159330[];
+extern void *control_mapping[];
 extern s32 D_80159334;
 extern s32 D_80159338;
 extern s32 D_8015933C;
@@ -158,18 +158,18 @@ extern s32 D_80159354;
 extern s32 D_80159358;
 extern s32 D_80159360;
 extern s32 D_80159364;
-extern s32 D_80159368;
-extern void *D_80159370[];
+extern s32 motor_vibe_state;
+extern void *motor_pak_handles[];
 extern void *D_80159400[];
 extern s32 D_80159414;
 extern void *D_80159428[];
 extern s32 D_80159450;
 extern s32 D_80159480;
 extern s32 D_80159500;
-extern s32 D_80159600;
-extern s32 D_80159604;
-extern s32 D_80159608;
-extern void *D_8015960C[];
+extern s32 net_host_state;
+extern s32 session_id;
+extern s32 net_player_count;
+extern void *player_slots[];
 extern s32 D_80159700;
 extern s32 D_80159788;
 extern s32 D_8015978C;
@@ -183,24 +183,24 @@ extern s32 D_80159904;
 extern s32 D_80159908;
 extern s32 D_8015990C;
 extern s32 D_80159910;
-extern s32 D_80159914;
-extern s32 D_80159918;
-extern void *D_8015991C[];
+extern s32 text_cursor_pos;
+extern s32 text_anim_frame;
+extern void *text_input_buffer[];
 extern s32 D_80159940;
 extern s32 D_80159944;
 extern s32 D_80159948;
 extern s32 D_8015994C;
 extern s32 D_80159950;
 extern s32 D_80159954;
-extern s32 D_80159A00;
-extern s32 D_80159A04;
-extern s32 D_80159A08;
-extern s32 D_80159A0C;
-extern u32 D_80159A10[12];  /* Race times */
+extern s32 race_time;
+extern s32 game_mode;
+extern s32 trackno;
+extern s32 car_selection;
+extern u32 best_race_times[12];  /* Race times */
 extern u32 D_80159A14[32];  /* Data array */
 extern s32 D_80159A18;
 extern s32 D_80159A1C;
-extern s32 D_80159A20;
+extern s32 random_seed2;
 extern s32 D_80159A24;
 extern s32 D_80159A28;
 extern s32 D_80159A30;
@@ -213,13 +213,13 @@ extern s32 D_80159A60;
 extern void *D_80159A70[];
 extern s32 D_80159A80;
 extern s32 D_80159A84;
-extern u64 D_80159B00[8][6];  /* Timer data */
-extern s32 D_80159B04;
-extern s32 D_80159B08;
-extern s32 D_80159B0C;
+extern u64 timer_data[8][6];  /* Timer data */
+extern s32 race_mode_selection;
+extern s32 lap_count_selection;
+extern s32 difficulty_selection;
 extern s32 D_80159B10;
-extern s32 D_80159B14;
-extern s32 D_80159B18;
+extern s32 weather_selection;
+extern s32 time_of_day_selection;
 extern s32 D_80159B1C;
 extern s32 D_80159B20;
 extern s32 D_80159B24;
@@ -236,32 +236,32 @@ extern s32 D_80159B4C;
 extern s32 D_80159B70;
 extern s32 D_80159B74;
 extern s32 D_80159B80;
-extern u32 D_80159C00[32];  /* Data array */
-extern s32 D_80159C04;
-extern s32 D_80159C08;
-extern s32 D_80159C0C;
-extern s32 D_80159C10;
-extern s32 D_80159C14;
-extern s32 D_80159C18;
-extern void *D_80159C20[];
-extern u32 D_80159D00[32];  /* Data array */
-extern s32 D_80159D04;
-extern u32 D_80159D10[12];  /* Lap times */
-extern void *D_80159D40[];
+extern u32 split_screen_config[32];  /* Data array */
+extern s32 split_num_players;
+extern s32 split_layout_mode;
+extern s32 split_toggle;
+extern s32 split_param1;
+extern s32 split_param2;
+extern s32 mp_player_count;
+extern void *effect_slots[];
+extern u32 ghost_data_buffer[32];  /* Data array */
+extern s32 ghost_frame_count;
+extern u32 best_lap_times[12];  /* Lap times */
+extern void *track_scores[];
 extern s32 D_80159D80;
 extern s32 D_80159D84;
 extern s32 D_80159D88;
 extern s32 D_80159D8C;
-extern s32 D_80159D90;
-extern s32 D_80159DA0;
+extern s32 setup_result;
+extern s32 setup_type;
 extern s32 D_80159DA4;
 extern s32 D_80159DC0;
-extern s32 D_80159E00;
+extern s32 menu_enabled;
 extern s32 D_80159E04;
 extern s32 D_80159E08;
 extern s32 D_80159E0C;
-extern s32 D_80159E10;
-extern s32 D_80159E14;
+extern s32 hiscore_char_pos;
+extern s32 wing_enabled;
 extern s32 D_80159E20;
 extern s32 D_80159E24;
 extern s32 D_80159E28;
@@ -270,17 +270,17 @@ extern s32 D_80159E30;
 extern s32 D_80159E40;
 extern s32 D_80159E44;
 extern s32 D_80159E48;
-extern void *D_80159F00[];
+extern void *menu_callback_array[];
 extern s32 D_80159F40;
-extern s32 D_80159F44;
+extern s32 confirm_state;
 extern s32 D_80159F48;
 extern s32 D_80159F50;
 extern s32 D_80159F54;
 extern s32 D_80159F58;
-extern s32 D_8015A000;
-extern s32 D_8015A004;
-extern s32 D_8015A008;
-extern s32 D_8015A00C;
+extern s32 pause_accumulator;
+extern s32 race_start_frame;
+extern s32 current_race_time;
+extern s32 current_lap_time;
 extern s32 D_8015A010;
 extern void *D_8015A020[];
 extern s32 D_8015A030[4];
@@ -295,19 +295,19 @@ extern s32 D_8015A090;
 extern s32 D_8015A094;
 extern s32 D_8015A098;
 extern s32 D_8015A09C;
-extern void *D_8015A100[];
-extern s32 D_8015A108;
+extern void *unlock_bits[];
+extern s32 player_count;
 extern void *D_8015A10C[];
-extern s32 D_8015A110;
-extern s32 D_8015A114;
-extern s32 D_8015A118;
-extern s32 D_8015A11C;
-extern void *D_8015A200[];
-extern void *D_8015A210[];
-extern void *D_8015A220[];
-extern void *D_8015A230[];
-extern void *D_8015A240[];
-extern void *D_8015A250[];
+extern s32 game_unlock_id;
+extern s32 unlock_display_timer;
+extern s32 save_queue_flag;
+extern s32 unlock_message_id;
+extern void *player_status[];
+extern void *player_lap_count[];
+extern void *player_checkpoint[];
+extern void *player_race_time[];
+extern void *player_finished_flag[];
+extern void *player_entries[];
 extern void *D_8015A260[];
 extern s32 D_8015A280;
 extern s32 D_8015A290;
@@ -336,70 +336,70 @@ extern s32 D_8015A430;
 extern s32 D_8015A434;
 extern s32 D_8015A440;
 extern s32 D_8015A448;
-extern s32 D_8015A450;
-extern s32 D_8015A454;
+extern s32 ui_cursor_state;
+extern s32 ui_cursor_frame;
 extern s32 D_8015A478;
-extern s32 D_8015A500;
+extern s32 cam_mode;
 extern s32 D_8015A504;
 extern s32 D_8015A508;
 extern s32 D_8015A510;
 extern s32 D_8015A514;
 extern s32 D_8015A518;
-extern s32 D_8015A520;
-extern void *D_8015A524[];
+extern s32 cam_target_car;
+extern void *achievement_queue[];
 extern s32 D_8015A530;
 extern s32 D_8015A534;
 extern s32 D_8015A538;
 extern s32 D_8015A540;
 extern s32 D_8015B254;
-extern f32 D_80160080[16];  /* Audio channel volumes */
-extern f32 D_801600C0[16];  /* Audio channel pans */
-extern f32 D_80160100[16];  /* Audio channel pitches */
-extern f32 D_80160180[3];  /* Listener position */
-extern u32 D_80160000[16];  /* Channel states */
-extern u32 D_80160040[16];  /* Channel params */
-extern s32 D_80160300;   /* Current reverb type */
-extern f32 D_80160304;   /* Reverb wet/dry mix */
-extern f32 D_80160308;   /* Reverb decay time */
-extern f32 D_8016030C;   /* Reverb pre-delay */
-extern f32 D_80160310;   /* Reverb diffusion */
+extern f32 channel_volumes[16];  /* Audio channel volumes */
+extern f32 channel_pans[16];  /* Audio channel pans */
+extern f32 channel_pitches[16];  /* Audio channel pitches */
+extern f32 listener_pos[3];  /* Listener position */
+extern u32 audio_channel_states[16];  /* Channel states */
+extern u32 audio_channel_params[16];  /* Channel params */
+extern s32 reverb_type;   /* Current reverb type */
+extern f32 reverb_mix;   /* Reverb wet/dry mix */
+extern f32 reverb_decay_time;   /* Reverb decay time */
+extern f32 reverb_pre_delay;   /* Reverb pre-delay */
+extern f32 reverb_diffusion;   /* Reverb diffusion */
 extern u32 D_80160700;       /* Stream ROM offset */
 extern u32 D_80160704;       /* Stream total size */
-extern u32 D_80160708;       /* Stream bytes read */
-extern void *D_8016070C[2];  /* Stream double buffers */
-extern u32 D_80160720;       /* Stream table offset */
-extern s32 D_80160714;       /* Active buffer index */
-extern s32 D_80160718;       /* Stream state */
-extern u32 D_8016071C;       /* Buffer size */
-extern s32 D_80160800;       /* Sequence state */
+extern u32 stream_bytes_read;       /* Stream bytes read */
+extern void *stream_buffers[2];  /* Stream double buffers */
+extern u32 stream_table_offset;       /* Stream table offset */
+extern s32 stream_active_buf;       /* Active buffer index */
+extern s32 stream_state;       /* Stream state */
+extern u32 stream_buffer_size;       /* Buffer size */
+extern s32 sequence_state;       /* Sequence state */
 extern s32 D_80160804;       /* Current sequence ID */
 extern u32 D_80160808;       /* Sequence position (ticks) */
 extern s32 D_8016080C;       /* Sequence tempo multiplier */
 extern s16 *D_801608E0;  /* Output buffer L */
 extern s16 *D_801608E4;  /* Output buffer R */
 extern s32 D_801608E8;   /* Output buffer size */
-extern u32 D_80160900;  /* Active effects bitfield */
-extern s32 D_80160928;
-extern f32 D_80170000;  /* Camera shake intensity */
-extern f32 D_80170004;  /* Shake timer */
-extern f32 D_80170008;  /* Shake decay rate */
-extern void *D_80170020;  /* Active camera pointer */
-extern f32 D_80158000[3];  /* Camera position */
+extern u32 audio_fx_active;  /* Active effects bitfield */
+extern s32 audio_buffer_size_2;
+extern f32 shake_intensity;  /* Camera shake intensity */
+extern f32 shake_timer;  /* Shake timer */
+extern f32 shake_decay;  /* Shake decay rate */
+extern void *active_camera;  /* Active camera pointer */
+extern f32 camera_pos[3];  /* Camera position */
 extern s32 D_80157814;
-extern Gfx **D_80149438;   /* Display list pointer */
-extern Gfx *D_80149430;    /* Display list base */
-extern OSTask D_80149440;  /* Graphics task */
-extern u32 D_80143500;  /* Random seed */
+extern Gfx **gfx_dl_ptr;   /* Display list pointer */
+extern Gfx *gfx_dl_base;    /* Display list base */
+extern OSTask gfx_task;  /* Graphics task */
+extern u32 random_seed;  /* Random seed */
 extern f32 D_80143404;     /* Player distance */
 extern s32 D_8014B000;
 extern s32 D_8014B008;
 extern s32 D_8014B00C[4];  /* Player scores */
-extern s32 D_8014B01C[4];  /* Player lives */
+extern s32 player_lives[4];  /* Player lives */
 extern s32 D_8014C000;
 extern s32 D_8014C00C[4];  /* Player stunt scores */
-extern s32 D_80160400;
-extern s32 D_80160404;
-extern void *D_80160408[4];
+extern s32 audio_buffer_ptr;
+extern s32 sample_heap_remaining;
+extern void *sample_cache[4];
 extern s32 D_8016040C;
 extern s32 D_80160410;
 extern s32 D_80160414;
@@ -412,7 +412,7 @@ extern s32 D_80160444;
 extern s32 D_80160450;
 extern s32 D_80160460;
 extern u32 D_80160508[64];  /* Sample sizes in bytes */
-extern s32 D_80162100;
+extern s32 particle_pool_index;
 extern s32 D_8016B254;
 extern s32 D_C;
 
@@ -430,7 +430,7 @@ extern void render_scene(s32 track, f32 angle, s32 x, s32 y); /* render_scene - 
 s32 track_lod_select(f32 distance);  /* LOD distance calculator */
 
 /* Additional extern declarations */
-extern s32 D_8013E6E0;
+extern s32 scene_object_ptr;
 
 void game_mode_handler(void);  /* func_800C9AE0 */
 void draw_text(s32 x, s32 y, char *text, u32 color);  /* func_800C734C */
@@ -449,10 +449,10 @@ extern GameStruct game_struct;         /* 0x801461D0 - main game structure */
 extern u32 frame_counter;              /* 0x80142AFC - frame counter */
 
 /* Additional external data for game_loop */
-extern s8  D_801146EC;   /* Init flag */
+extern s8  gstate_byte;   /* Init flag */
 extern s32 D_801146E8;   /* Sound handle */
-extern s32 D_801170FC;   /* Render enable flag */
-extern u32 D_80142AFC;   /* Frame counter */
+extern s32 render_enable;   /* Render enable flag */
+extern u32 frame_counter;   /* Frame counter */
 extern s16 D_8003EB70;   /* Wait flag */
 extern u32 D_8003E8E8;   /* Timer/tick */
 extern u32 D_8003AFB8;   /* Timing constant (float as u32) */
@@ -460,8 +460,8 @@ extern u32 D_80159438;   /* Some state value */
 extern u32 D_801597C8;   /* Another state value */
 extern u32 D_801597F4;   /* State copy */
 extern s8  D_801146C4[]; /* Sound params array */
-extern u32 D_801174B4;   /* gstate - current state bitmask (for game_loop) */
-extern u32 D_801174B8;   /* gstate_pending - next state (for game_loop) */
+extern u32 gstate_mask;   /* gstate - current state bitmask (for game_loop) */
+extern u32 gstate_prev;   /* gstate_pending - next state (for game_loop) */
 extern void sound_stop(s32 channel, f32 volume);    /* sound_stop */
 extern void state_dispatch(void);                   /* game_pause */
 extern void update_active_objects(void);            /* objects_update */
@@ -497,14 +497,14 @@ s32 game_loop(void) {
     s32 sound_handle;
 
     /* First-time initialization */
-    if (D_801146EC == 0) {
-        D_80142AFC = 0;  /* Clear frame counter */
-        D_801146EC = 1;  /* Set init flag */
+    if (gstate_byte == 0) {
+        frame_counter = 0;  /* Clear frame counter */
+        gstate_byte = 1;  /* Set init flag */
     }
 
     /* Load current and pending state */
-    gstate_cur = D_801174B4;
-    gstate_next = D_801174B8;
+    gstate_cur = gstate_mask;
+    gstate_next = gstate_prev;
 
     /* If no state change pending, just call mode handler and return */
     if (gstate_cur == gstate_next) {
@@ -534,7 +534,7 @@ s32 game_loop(void) {
     /* Check if elapsed time > 300.0 (5 seconds at 60fps) */
     if (elapsed_time < 300.0f) {
         /* Check if we need to manage sound */
-        if (!(D_801174B4 & 0x4000000F)) {
+        if (!(gstate_mask & 0x4000000F)) {
             sound_handle = D_801146E8;
             if (sound_handle == 0) {
                 /* Start sound - call with params */
@@ -554,13 +554,13 @@ s32 game_loop(void) {
     playgame_handler();  /* PlayGame_HandleStateChange */
 
     /* Check state flags for additional processing */
-    gstate_cur = D_801174B4;
+    gstate_cur = gstate_mask;
 
     /* Check if any of the main state bits are set */
     if (gstate_cur & 0x7C03FFFE) {
         /* Call state dispatch for active states */
         game_pause();  /* state_dispatch */
-        gstate_cur = D_801174B4;
+        gstate_cur = gstate_mask;
     }
 
     /* Check attract/race bits (0x00200000 or 0x00400000) */
@@ -569,7 +569,7 @@ s32 game_loop(void) {
         attract_handler();  /* RaceStateMachine_Update */
 
         /* Check if rendering is enabled */
-        if (D_801170FC != 0) {
+        if (render_enable != 0) {
             objects_update();  /* UpdateActiveObjects */
             physics_update();  /* PhysicsObjectList_Update */
             effects_update();  /* Effects_UpdateEmitters */
@@ -579,16 +579,16 @@ s32 game_loop(void) {
     }
 
     /* Reload state */
-    gstate_cur = D_801174B4;
+    gstate_cur = gstate_mask;
 
     /* Check high score bits (0x03FC0000) */
     if (gstate_cur & 0x03FC0000) {
         hiscore_entry();  /* state_transition / high score */
-        gstate_cur = D_801174B4;
+        gstate_cur = gstate_mask;
     }
 
     /* Check if state matches pending (steady state) */
-    gstate_next = D_801174B8;
+    gstate_next = gstate_prev;
     if (gstate_cur == gstate_next) {
         /* In steady state - call countdown and update functions */
         countdown_start();  /* Countdown handler */
@@ -600,7 +600,7 @@ s32 game_loop(void) {
     }
 
     /* Increment frame counter */
-    D_80142AFC++;
+    frame_counter++;
 
     return result;
 }
@@ -702,15 +702,15 @@ extern void* voice_stop(void *buffer, s32 samples); /* Object allocate (uses reg
 
 /* Additional data and functions */
 extern u32 D_801174BC;
-extern s32 D_80114650;
-extern s32 D_80156994;
+extern s32 race_started_flag;
+extern s32 game_mode_flag;
 extern s32 D_80146115;
 extern s32 D_80146114;
 extern s32 D_801461F8;
 extern s32 D_80146205;
 extern s32 D_80159774;
 extern s32 D_801597C4;
-extern s32 D_80151AD0;
+extern s32 active_player_count;
 extern s32 D_80151AD8;
 extern void hud_speed_display(void *hud, f32 speed); /* func_800C84FC - HUD speed display */
 
@@ -747,8 +747,8 @@ void playgame_handler(void) {
     s8 mode_flag;
 
     /* Load current and pending state */
-    gstate_current = D_801174B4;
-    gstate_next = D_801174B8;
+    gstate_current = gstate_mask;
+    gstate_next = gstate_prev;
 
     /* If no state change, return early */
     if (gstate_current == gstate_next) {
@@ -759,8 +759,8 @@ void playgame_handler(void) {
     state_change_preprocess();
 
     /* Store pending state as current */
-    gstate_next = D_801174B8;
-    D_801174B4 = gstate_next;
+    gstate_next = gstate_prev;
+    gstate_mask = gstate_next;
 
     /* State bit 0x0001: Enter gameplay initialization */
     if (gstate_next & 0x0001) {
@@ -774,7 +774,7 @@ void playgame_handler(void) {
 
         camera_set_pos();
 
-        mode_flag = D_80156994;
+        mode_flag = game_mode_flag;
         if (mode_flag == 0) {
             /* Normal mode - setup HUD at 32,16 with specific params */
             hud_setup(32, 16, 16, 5, 64, 1.0f, 200.0f, 0);
@@ -784,8 +784,8 @@ void playgame_handler(void) {
         display_enable(1);
 
         /* Set initial state values */
-        D_8015A108 = 1;
-        D_80151AD0 = 1;
+        player_count = 1;
+        active_player_count = 1;
 
         game_init_state();
         interrupt_set(30.0f);
@@ -798,8 +798,8 @@ void playgame_handler(void) {
         state_finalize();
 
         /* Set next state to 0x0002 */
-        D_801174B8 = 2;
-        gstate_current = D_801174B4;
+        gstate_prev = 2;
+        gstate_current = gstate_mask;
         goto done;
     }
 
@@ -808,7 +808,7 @@ void playgame_handler(void) {
         player_cleanup_slots();
         camera_set_pos();
 
-        mode_flag = D_80156994;
+        mode_flag = game_mode_flag;
         if (mode_flag == 0) {
             hud_setup(32, 16, 16, 5, 64, 1.0f, 200.0f, 0);
             hud_init();
@@ -825,7 +825,7 @@ void playgame_handler(void) {
         player_state_set(0, 1);
         player_mode_set(-1, 1);
 
-        gstate_current = D_801174B4;
+        gstate_current = gstate_mask;
         goto done;
     }
 
@@ -839,7 +839,7 @@ void playgame_handler(void) {
         player_cleanup_slots();
         camera_set_pos();
 
-        mode_flag = D_80156994;
+        mode_flag = game_mode_flag;
         if (mode_flag == 0) {
             hud_setup(32, 16, 16, 5, 64, 1.0f, 200.0f, 0);
             hud_init();
@@ -852,11 +852,11 @@ void playgame_handler(void) {
 
         /* Check additional flags and process cars */
         if (!(D_801174BC & 0x007CDFC0)) {
-            player_count = D_8015A108;
+            player_count = player_count;
             if (player_count > 0) {
                 for (i = 0; i < player_count; i++) {
                     /* Process each player's car */
-                    void *car_ptr = (void*)((u8*)D_8015A118 + i * 76);
+                    void *car_ptr = (void*)((u8*)save_queue_flag + i * 76);
                     if (car_ptr) {
                         void *car_data = *(void**)((u8*)car_ptr + 72);
                         if (car_data) {
@@ -873,7 +873,7 @@ void playgame_handler(void) {
         player_mode_set(-1, 1);
 
         /* Check for specific mode */
-        mode_flag = D_80156994;
+        mode_flag = game_mode_flag;
         if (mode_flag != 0) {
             if (!(D_801174BC & 0x007C0000)) {
                 s8 val1 = D_80146114 + 14;
@@ -887,14 +887,14 @@ void playgame_handler(void) {
         }
 
         D_80151AD8 = 0;
-        gstate_current = D_801174B4;
+        gstate_current = gstate_mask;
         goto done;
     }
 
     /* State bit 0x0008: Cleanup/exit */
     if (gstate_next & 0x0008) {
         /* Walk object list and clean up */
-        void *obj = D_8013E6E0;
+        void *obj = scene_object_ptr;
         while (obj != NULL) {
             object_render_cleanup(obj);
             void *next = *(void**)obj;
@@ -905,18 +905,18 @@ void playgame_handler(void) {
         player_cleanup_slots();
         camera_set_pos();
 
-        mode_flag = D_80156994;
+        mode_flag = game_mode_flag;
         if (mode_flag == 0) {
             hud_setup(8, 8, 0, 0, 0, 1.0f, 200.0f, 0);
         }
 
         display_enable(0);
 
-        if (D_80156994 != 0) {
+        if (game_mode_flag != 0) {
             track_bounds_check();
         }
 
-        gstate_current = D_801174B4;
+        gstate_current = gstate_mask;
         goto done;
     }
 
@@ -925,13 +925,13 @@ void playgame_handler(void) {
         player_state_set(-1, 0);
         player_state_set(0, 1);
         player_mode_set(-1, 1);
-        gstate_current = D_801174B4;
+        gstate_current = gstate_mask;
         goto done;
     }
 
     /* State bit 0x0020: Multi-player setup */
     if (gstate_next & 0x0020) {
-        player_count = D_8015A108;
+        player_count = player_count;
         for (i = 0; i < player_count; i++) {
             player_state_set(i, 1);
             player_mode_set(i, 1);
@@ -940,7 +940,7 @@ void playgame_handler(void) {
         for (; i < 4; i++) {
             player_state_set(i, 0);
         }
-        gstate_current = D_801174B4;
+        gstate_current = gstate_mask;
         goto done;
     }
 
@@ -948,7 +948,7 @@ void playgame_handler(void) {
     if (gstate_next & 0x0040) {
         player_state_set(-1, 0);
         player_state_set(0, 1);
-        gstate_current = D_801174B4;
+        gstate_current = gstate_mask;
         goto done;
     }
 
@@ -963,7 +963,7 @@ void playgame_handler(void) {
     /* State bit 0x4000: Sound/effect trigger */
     if (gstate_next & 0x4000) {
         sprite_draw(57, 0, 0, 0, 0);
-        gstate_current = D_801174B4;
+        gstate_current = gstate_mask;
         goto done;
     }
 
@@ -971,7 +971,7 @@ void playgame_handler(void) {
     if (gstate_next & 0x0100) {
         sprite_draw(56, 0, 0, 0, 0);
 
-        player_count = D_8015A108;
+        player_count = player_count;
         for (i = 0; i < player_count; i++) {
             player_state_set(i, 1);
             player_mode_set(i, 1);
@@ -979,7 +979,7 @@ void playgame_handler(void) {
         for (; i < 4; i++) {
             player_state_set(i, 0);
         }
-        gstate_current = D_801174B4;
+        gstate_current = gstate_mask;
         goto done;
     }
 
@@ -988,13 +988,13 @@ void playgame_handler(void) {
         sprite_draw(60, 0, 0, 0, 0);
         player_state_set(-1, 0);
         player_state_set(0, 1);
-        gstate_current = D_801174B4;
+        gstate_current = gstate_mask;
         goto done;
     }
 
     /* State bit 0x40000: PLAYGAME active (main gameplay) */
     if ((gstate_next << 13) < 0) { /* Check bit 0x40000 */
-        s8 state_byte = D_80114650;
+        s8 state_byte = race_started_flag;
 
         if (state_byte == 0) {
             scene_cleanup_slots();
@@ -1005,17 +1005,17 @@ void playgame_handler(void) {
         display_enable(0);
 
         if (state_byte == 0) {
-            mode_flag = D_80156994;
+            mode_flag = game_mode_flag;
             if (mode_flag == 0) {
-                s32 game_mode = D_8015A110;
+                s32 game_mode = game_unlock_id;
                 if (game_mode != 6 && game_mode != 4 && game_mode != 5) {
                     hud_setup(8, 8, 0, 0, 0, 1.0f, 200.0f, 0);
                 }
             }
 
-            mode_flag = D_80156994;
+            mode_flag = game_mode_flag;
             if (mode_flag == 0) {
-                s32 game_mode = D_8015A110;
+                s32 game_mode = game_unlock_id;
                 if (game_mode == 6) {
                     hud_speed_display(NULL, 0.0f);
                 }
@@ -1025,14 +1025,14 @@ void playgame_handler(void) {
         }
 
         /* Check game mode for specific handling */
-        s32 game_mode = D_8015A110;
+        s32 game_mode = game_unlock_id;
         if (game_mode != 6 && game_mode != 4 && game_mode != 5) {
-            if (D_80156994 == 0) {
+            if (game_mode_flag == 0) {
                 track_bounds_check();
             }
         }
 
-        state_byte = D_80114650;
+        state_byte = race_started_flag;
         if (state_byte == 0) {
             /* Dispose objects */
             object_create(13);
@@ -1047,24 +1047,24 @@ void playgame_handler(void) {
             object_create(8);
 
             /* Initialize memory regions */
-            state_get(&D_801461D0, 0, 1);
+            state_get(&game_sync, 0, 1);
             voice_stop(NULL, 0);
-            state_set(&D_801461D0, 0, 0);
+            state_set(&game_sync, 0, 0);
 
-            state_get(&D_801461D0, 0, 1);
+            state_get(&game_sync, 0, 1);
             voice_stop(NULL, 0);
-            state_set(&D_801461D0, 0, 0);
+            state_set(&game_sync, 0, 0);
 
-            state_get(&D_801461D0, 0, 1);
+            state_get(&game_sync, 0, 1);
             voice_stop(NULL, 0);
-            state_set(&D_801461D0, 0, 0);
+            state_set(&game_sync, 0, 0);
         }
 
         player_state_set(-1, 0);
         player_state_set(0, 1);
         player_mode_set(-1, 1);
 
-        gstate_current = D_801174B4;
+        gstate_current = gstate_mask;
     }
 
 done:
@@ -1076,7 +1076,7 @@ done:
 
 /* External data for countdown function */
 extern s32 D_801613B0;     /* Found player index */
-extern s32 D_801146F8;     /* Countdown timer */
+extern s32 countdown_timer;     /* Countdown timer */
 extern void* D_8018A4E0[]; /* Display object pointer array */
 
 /* External functions for countdown */
@@ -1092,7 +1092,7 @@ extern s16 sound_apply_effect(s32 channel, s32 effectType, f32 amount); /* sound
  * Address: 0x800FBC30
  * Size: 8 bytes (just loads mode and falls through)
  *
- * This is just a label - loads D_8015A110 then falls into func_800FBC38.
+ * This is just a label - loads game_unlock_id then falls into func_800FBC38.
  */
 
 /**
@@ -1115,11 +1115,11 @@ void countdown_display(void) {
     s32 result;
     u32 state_flags;
 
-    /* Get player count - 1 if mode is 2, otherwise from D_8015A108 */
-    if (D_8015A110 == 2) {
+    /* Get player count - 1 if mode is 2, otherwise from player_count */
+    if (game_unlock_id == 2) {
         player_count = 1;
     } else {
-        player_count = D_8015A108;
+        player_count = player_count;
     }
 
     /* Find first inactive player slot */
@@ -1142,7 +1142,7 @@ void countdown_display(void) {
     if (i >= player_count) {
         /* All players accounted for - set countdown to 320 (5.3 sec at 60fps) */
         countdown_val = 320;
-        D_801146F8 = countdown_val;
+        countdown_timer = countdown_val;
         return;
     }
 
@@ -1160,7 +1160,7 @@ void countdown_display(void) {
         s32 height = *(s32 *)((u8 *)display_data + 0x1FC);
         s32 extra = *(s32 *)((u8 *)display_data + 0x200);
 
-        countdown_val = D_801146F8;
+        countdown_val = countdown_timer;
         sprintf(format_buf, D_8012030C, str_buf, x_pos, y_pos, countdown_val, width, height, extra);
     }
 
@@ -1168,37 +1168,37 @@ void countdown_display(void) {
     camera_near_set(format_buf, *(s32 *)((u8 *)display_data + 0x200));
 
     /* Create display object */
-    state_get(&D_801461D0, 0, 1);
+    state_get(&game_sync, 0, 1);
     voice_stop(NULL, 0);
-    state_set(&D_801461D0, 0, 0);
+    state_set(&game_sync, 0, 0);
 
     /* Set display type */
     entity_collision_test(NULL, NULL);
 
     /* Check state flags for color selection */
-    state_flags = D_801174B4;
+    state_flags = gstate_mask;
 
     if ((state_flags & 0x0001) || (state_flags & 0x0002) ||
         ((state_flags << 1) < 0) ||   /* bit 0x80000000 */
         (state_flags & 0x0004) || (state_flags & 0x0008)) {
         /* Special state - color 8 (darker) */
-        countdown_val = D_801146F8;
+        countdown_val = countdown_timer;
         audio_sync();
     } else {
         /* Normal state - color 205 (0xCD, brighter) */
-        countdown_val = D_801146F8;
+        countdown_val = countdown_timer;
         audio_sync();
     }
 
     /* Finalize display and decrement countdown */
-    countdown_val = D_801146F8;
+    countdown_val = countdown_timer;
     sound_apply_effect(0, -1, 0.0f);
     countdown_val--;
-    D_801146F8 = countdown_val;
+    countdown_timer = countdown_val;
 
     /* Reset countdown if it goes too negative */
     if (countdown_val < -result) {
-        D_801146F8 = 320;
+        countdown_timer = 320;
     }
 }
 
@@ -1231,18 +1231,18 @@ void* object_create(s32 type) {
     s8 saved_type;
 
     /* Lock memory region */
-    state_get(&D_801461D0, 0, 1);
+    state_get(&game_sync, 0, 1);
 
     /* Set object type (simulates s2 register setup) */
-    saved_type = D_80159DA0;
-    D_80159DA0 = (s8)type;
+    saved_type = setup_type;
+    setup_type = (s8)type;
 
     /* Allocate object of specified type */
     obj = voice_stop(NULL, 0);
 
     /* Restore and unlock */
-    D_80159DA0 = saved_type;
-    state_set(&D_801461D0, 0, 0);
+    setup_type = saved_type;
+    state_set(&game_sync, 0, 0);
 
     return obj;
 }
@@ -1308,8 +1308,8 @@ void visual_objects_update(s32 flag) {
 /*
 
 /* External data for race state machine */
-extern s32 D_80159D98;       /* Race sub-state */
-extern s32 D_8015698C;       /* Current player index */
+extern s32 race_sub_state;       /* Race sub-state */
+extern s32 current_player_index;       /* Current player index */
 extern s8  D_80117350;       /* Player active flag */
 extern s8  D_80117354;       /* Secondary active flag */
 extern void* D_80143FD8;     /* Object list head */
@@ -1355,7 +1355,7 @@ void race_state_machine(void) {
 
     /* Initialize state */
     hud_element_render(0, 0);
-    race_state = D_801170FC;
+    race_state = render_enable;
 
     /* Validate state range */
     if (race_state >= 9) {
@@ -1366,7 +1366,7 @@ void race_state_machine(void) {
     switch (race_state) {
 
     case 0:  /* Initialize race - find first active player */
-        player_count = D_80151AD0;
+        player_count = active_player_count;
         if (player_count <= 0) {
             goto exit_func;
         }
@@ -1380,7 +1380,7 @@ void race_state_machine(void) {
             /* Check if player slot is active */
             if ((player_flags & 0x0001) || player_status[i * 16] == 0) {
                 /* Found active player */
-                D_8015698C = i;
+                current_player_index = i;
                 D_80117350 = (player_status[i * 16] == 0) ? 1 : 0;
                 break;
             }
@@ -1392,14 +1392,14 @@ void race_state_machine(void) {
 
         /* Initialize race */
         audio_music_play(1);
-        D_80159D98 = 0;
+        race_sub_state = 0;
         timer_init();
 
         /* Lock and allocate race object */
-        state_get(&D_801461D0, 0, 1);
+        state_get(&game_sync, 0, 1);
         alloc_obj = object_alloc(0);
         *(u8 *)((u8 *)alloc_obj + 2) = 7;  /* Set object type */
-        state_set(&D_801461D0, 0, 0);
+        state_set(&game_sync, 0, 0);
         state_set((void *)0x801427A8, alloc_obj, 0);
 
         /* Setup race timing */
@@ -1439,7 +1439,7 @@ void race_state_machine(void) {
         break;
 
     case 5:  /* Main racing state - nested switch */
-        player_idx = D_8015698C;
+        player_idx = current_player_index;
         player_flags = *(u32 *)(0x8015A11C + player_idx * 76);
 
         if (!(player_flags & 0x0002)) {
@@ -1448,7 +1448,7 @@ void race_state_machine(void) {
 
         sound_effect_play(37);  /* Racing sound */
 
-        sub_state = D_80159D98;
+        sub_state = race_sub_state;
         if (sub_state >= 8) {
             goto state5_default;
         }
@@ -1459,14 +1459,14 @@ void race_state_machine(void) {
             timer_tick();
             mempak_operation(0);
 
-            state_get(&D_801461D0, 0, 1);
+            state_get(&game_sync, 0, 1);
             alloc_obj = object_alloc(0);
             *(u8 *)((u8 *)alloc_obj + 2) = 9;
-            state_set(&D_801461D0, 0, 0);
+            state_set(&game_sync, 0, 0);
             state_set((void *)0x801427A8, alloc_obj, 0);
 
             menu_saveload(1);
-            if (!(D_801174B4 & 0x00200000)) {
+            if (!(gstate_mask & 0x00200000)) {
                 menu_saveload(0);
 }
             scene_stub_empty();
@@ -1476,15 +1476,15 @@ void race_state_machine(void) {
         case 1:  /* Countdown timer check */
             timer_val = D_801543CC;
             if (timer_val >= 15.0f) {
-                D_80114650 = 1;
+                race_started_flag = 1;
             }
             break;
 
         case 2:  /* Countdown in progress */
             timer_val = D_801543CC;
             if (timer_val >= 15.0f) {
-                D_80114650 = 0;
-                if (D_801174B4 & 0x00200000) {
+                race_started_flag = 0;
+                if (gstate_mask & 0x00200000) {
                     goto state5_case7;
                 }
             }
@@ -1503,7 +1503,7 @@ void race_state_machine(void) {
             break;
 
         case 6:  /* Position update */
-            *(u8 *)(0x8015418C + D_8015698C) = 1;
+            *(u8 *)(0x8015418C + current_player_index) = 1;
             audio_music_play(4);
             break;
 
@@ -1517,21 +1517,21 @@ void race_state_machine(void) {
         break;
 
     case 6:  /* Race complete - menu navigation */
-        player_idx = D_8015698C;
+        player_idx = current_player_index;
         player_flags = *(u32 *)(0x8015A11C + player_idx * 76);
 
         if (player_flags & 0x0400) {
             menu_prev(0);  /* Previous */
-            sub_state = D_80159D98;
+            sub_state = race_sub_state;
             sub_state--;
             if (sub_state < 0) sub_state = 7;
-            D_80159D98 = sub_state;
+            race_sub_state = sub_state;
         } else if (player_flags & 0x0800) {
             menu_prev(0);  /* Next */
-            sub_state = D_80159D98;
+            sub_state = race_sub_state;
             sub_state++;
             if (sub_state >= 8) sub_state = 0;
-            D_80159D98 = sub_state;
+            race_sub_state = sub_state;
         } else if (player_flags & 0x0005) {
             menu_confirm();  /* Confirm */
             goto case0_init;
@@ -1539,7 +1539,7 @@ void race_state_machine(void) {
         break;
 
     case 7:  /* Results/standings */
-        player_idx = D_8015698C;
+        player_idx = current_player_index;
         player_flags = *(u32 *)(0x8015A11C + player_idx * 76);
 
         if (player_flags & 0x3000) {
@@ -1548,7 +1548,7 @@ void race_state_machine(void) {
 
         if (player_flags & 0x0002) {
             if (D_80117354 != 0) {
-                if ((D_801174B4 & 0x00200000) && race_state == 8) {
+                if ((gstate_mask & 0x00200000) && race_state == 8) {
                     goto state7_restart;
                 }
             }
@@ -1561,29 +1561,29 @@ void race_state_machine(void) {
         audio_music_play(0);
         timer_tick();
 
-        state_get(&D_801461D0, 0, 1);
+        state_get(&game_sync, 0, 1);
         alloc_obj = object_alloc(0);
         *(u8 *)((u8 *)alloc_obj + 2) = 7;
-        state_set(&D_801461D0, 0, 0);
+        state_set(&game_sync, 0, 0);
         state_set((void *)0x801427A8, alloc_obj, 0);
         goto exit_common;
 
     state7_common:
-        D_80114650 = (race_state == 7) ? 1 : 0;
+        race_started_flag = (race_state == 7) ? 1 : 0;
         audio_music_play(0);
         timer_tick();
 
-        state_get(&D_801461D0, 0, 1);
+        state_get(&game_sync, 0, 1);
         alloc_obj = object_alloc(0);
         *(u8 *)((u8 *)alloc_obj + 2) = 7;
-        state_set(&D_801461D0, 0, 0);
+        state_set(&game_sync, 0, 0);
         state_set((void *)0x801427A8, alloc_obj, 0);
         menu_controller_config(NULL);
         break;
 
     case 8:
     default:
-        player_idx = D_8015698C;
+        player_idx = current_player_index;
         player_flags = *(u32 *)(0x8015A11C + player_idx * 76);
 
         if (player_flags & 0x0007) {
@@ -1596,9 +1596,9 @@ void race_state_machine(void) {
 case0_init:
 exit_common:
     /* Common exit - check player status changes */
-    race_state = D_801170FC;
+    race_state = render_enable;
     if (race_state != 0) {
-        player_idx = D_8015698C;
+        player_idx = current_player_index;
         player_status = (u8 *)(0x80156CF0 + player_idx * 16);
         s8 current_status = (*player_status == 0) ? 1 : 0;
 
@@ -1614,14 +1614,14 @@ exit_common:
 
     /* Check for reset flag */
     if (*(s8 *)0x80157244 != 0) {
-        D_80114650 = 0;
+        race_started_flag = 0;
         audio_music_play(0);
         timer_tick();
 
-        state_get(&D_801461D0, 0, 1);
+        state_get(&game_sync, 0, 1);
         alloc_obj = object_alloc(0);
         *(u8 *)((u8 *)alloc_obj + 2) = 7;
-        state_set(&D_801461D0, 0, 0);
+        state_set(&game_sync, 0, 0);
         state_set((void *)0x801427A8, alloc_obj, 0);
         menu_controller_config(NULL);
     }
@@ -1756,7 +1756,7 @@ void update_game_systems(s32 sound_update, s32 physics_update) {
  */
 
 void *physics_get_list_head(void) {
-    return D_801491F0;
+    return active_object_list;
 }
 
 /*
@@ -1768,7 +1768,7 @@ void *physics_get_list_head(void) {
  * Address: 0x800B0870
  * Size: 108 bytes
  *
- * Traverses the physics object linked list starting from D_801491F0.
+ * Traverses the physics object linked list starting from active_object_list.
  * For each object with an update callback at offset 0x14, calls it
  * with (object, 1).
  *
@@ -1784,7 +1784,7 @@ void physics_update_all(void) {
     void (*update_callback)(void*, s32);
 
     /* Get list head (loaded by physics_update into v0) */
-    current = D_801491F0;
+    current = active_object_list;
 
     /* Get next pointer for iteration */
     if (current != NULL) {
@@ -1827,7 +1827,7 @@ void physics_update_all(void) {
  *   1. Copies current position to previous position
  *   2. Calls update function (audio_stream_stop)
  *   3. Updates velocity with acceleration
- *   4. Conditionally spawns particles if D_801170FC == 0
+ *   4. Conditionally spawns particles if render_enable == 0
  *   5. Calls cleanup functions at end
  *
  * Emitter structure (152 bytes per emitter):
@@ -1856,7 +1856,7 @@ void effects_update_emitters(void) {
     f32 *prev_pos;
     f32 *vel;
 
-    count = D_80151AD0;
+    count = active_player_count;
     if (count <= 0) {
         goto end_loop;
     }
@@ -1881,7 +1881,7 @@ void effects_update_emitters(void) {
         /* The disassembly shows additions to vel.x/y/z from other offsets */
 
         /* Conditionally spawn particles */
-        if (D_801170FC == 0) {
+        if (render_enable == 0) {
             particles_spawn(i);
         }
 
@@ -1890,7 +1890,7 @@ void effects_update_emitters(void) {
         emitter2 += 152;
 
         /* Re-read count in case it changed */
-        count = D_80151AD0;
+        count = active_player_count;
     }
 
 end_loop:
@@ -1913,12 +1913,12 @@ end_loop:
  * Address: 0x800C9528
  * Size: 8 bytes
  *
- * Just loads D_801147C4 into t6 for func_800C9530.
+ * Just loads input_initialized_flag into t6 for func_800C9530.
  */
-extern s8 D_801147C4;  /* Input system initialized flag */
+extern s8 input_initialized_flag;  /* Input system initialized flag */
 
 s8 input_init_flag_get(void) {
-    return D_801147C4;
+    return input_initialized_flag;
 }
 
 /*
@@ -1930,12 +1930,12 @@ s8 input_init_flag_get(void) {
  * Size: 96 bytes
  *
  * Iterates through an array of input handler function pointers
- * from D_801551E8 to D_80155210 (10 entries, 40 bytes).
+ * from input_callback_table to D_80155210 (10 entries, 40 bytes).
  * Calls each non-NULL callback in sequence.
  *
- * If D_801147C4 == 0, first calls debris_spawn for initialization.
+ * If input_initialized_flag == 0, first calls debris_spawn for initialization.
  */
-extern void (*D_801551E8[])(void);  /* Input callback table start */
+extern void (*input_callback_table[])(void);  /* Input callback table start */
 extern void (*D_80155210)(void);    /* Input callback table end marker */
 extern void input_system_init(void); /* debris_spawn - Input system init */
 
@@ -1944,12 +1944,12 @@ void input_handlers_process(void) {
     void (*callback)(void);
 
     /* One-time initialization if not yet done */
-    if (D_801147C4 == 0) {
+    if (input_initialized_flag == 0) {
         input_system_init();
     }
 
     /* Iterate through callback table */
-    callback_ptr = D_801551E8;
+    callback_ptr = input_callback_table;
 
     while (callback_ptr != &D_80155210) {
         callback = *callback_ptr;
@@ -2121,7 +2121,7 @@ void ambient_sounds_clear(void) {
  * Size: 112 bytes
  *
  * Calls entity_get_float, then clears key fields of each player's
- * state entry in the array at D_8015A118 (76 bytes per player).
+ * state entry in the array at save_queue_flag (76 bytes per player).
  *
  * Player state entry structure (partial):
  *   offset 0x04: s32 field_04
@@ -2130,7 +2130,7 @@ void ambient_sounds_clear(void) {
  *   offset 0x10: f32 field_10
  *   offset 0x14: f32 field_14
  */
-/* D_8015A118 declared earlier as void* - cast to u8* for array access */
+/* save_queue_flag declared earlier as void* - cast to u8* for array access */
 extern f32 entity_get_float(void *entity, s32 index); /* Pre-reset function */
 
 void player_states_reset(void) {
@@ -2142,13 +2142,13 @@ void player_states_reset(void) {
     entity_get_float(0, 0);
 
     /* Get player count */
-    count = D_8015A108;
+    count = player_count;
     if (count <= 0) {
         return;
     }
 
     /* Clear each player's state fields */
-    entry = (u8*)D_8015A118;
+    entry = (u8*)save_queue_flag;
     for (i = 0; i < count; i++) {
         *(s32*)(entry + 0x08) = 0;
         *(s32*)(entry + 0x04) = 0;
@@ -2157,7 +2157,7 @@ void player_states_reset(void) {
         *(f32*)(entry + 0x14) = 0.0f;
 
         entry += 76;  /* Next player entry */
-        count = D_8015A108;  /* Re-read count in case it changed */
+        count = player_count;  /* Re-read count in case it changed */
     }
 }
 
@@ -2271,12 +2271,12 @@ void sound_handles_clear(s32 clear_all) {
  * on each active player (entry[0x7C8] != 0 and entry[0x359] >= 2).
  *
  * Player entry layout:
- *   Base: D_8015A250
+ *   Base: player_entries
  *   Size: 2056 bytes per player (0x808)
  *   Race valid at offset 0x7C8 (s16)
- *   Status at offset 0x359 + (idx * 952) in secondary array D_80152818
+ *   Status at offset 0x359 + (idx * 952) in secondary array game_car
  */
-extern u8 D_80152818[];       /* Secondary player data */
+extern u8 game_car[];       /* Secondary player data */
 extern void menu_car_select(void *menu); /* Process player race state */
 
 void players_race_update(void) {
@@ -2286,7 +2286,7 @@ void players_race_update(void) {
     s8 status;
     s32 secondary_offset;
 
-    player_entry = D_8015A250;
+    player_entry = player_entries;
 
     for (i = 0; i < 6; i++) {
         /* Check if player has valid race data at offset 0x7C8 */
@@ -2297,7 +2297,7 @@ void players_race_update(void) {
             secondary_offset = i * 952;
 
             /* Check status at secondary array offset 0x359 */
-            status = *(s8*)(D_80152818 + secondary_offset + 0x359);
+            status = *(s8*)(game_car + secondary_offset + 0x359);
 
             if (status >= 2) {
                 /* Process this player's race state */
@@ -2328,7 +2328,7 @@ void players_race_update(void) {
  *
  * @param obj Object pointer, or -1 to do nothing
  */
-extern u8 D_80142728[];       /* Sync structure */
+extern u8 object_sync[];       /* Sync structure */
 extern u8 D_80146188[];       /* Object pool 1 */
 
 extern void menu_stub_empty(); /* Object pre-process */
@@ -2348,7 +2348,7 @@ void object_activate(void *obj) {
     obj_ptr = (u8*)obj;
 
     /* Acquire sync lock */
-    state_get(D_80142728, NULL, 1);
+    state_get(object_sync, NULL, 1);
 
     /* Pre-process object */
     menu_stub_empty();
@@ -2368,7 +2368,7 @@ void object_activate(void *obj) {
     obj_ptr[8] = 1;
 
     /* Release sync lock */
-    state_set(D_80142728, NULL, 0);
+    state_set(object_sync, NULL, 0);
 }
 
 /*
@@ -2380,11 +2380,11 @@ void object_activate(void *obj) {
  * Size: 144 bytes
  *
  * Clears D_801525F0, then iterates through all active players
- * (count at D_80152744) and calls menu_audio_options for each.
+ * (count at active_car_count) and calls menu_audio_options for each.
  * If game state has bit 0x0008 set, also calls state_update_extra.
  */
-extern s8  D_80152744;        /* Active player count */
-/* D_8015A250 declared elsewhere - player entries */
+extern s8  active_car_count;        /* Active player count */
+/* player_entries declared elsewhere - player entries */
 extern void menu_audio_options(void *menu); /* Per-player update */
 extern void state_update_extra(void);   /* Additional update (when bit 0x0008 set) */
 
@@ -2397,13 +2397,13 @@ void players_frame_update(void) {
     D_801525F0 = 0;
 
     /* Get active player count */
-    player_count = D_80152744;
+    player_count = active_car_count;
     if (player_count <= 0) {
         goto check_state;
     }
 
     /* Update each active player */
-    player_entry = D_8015A250;
+    player_entry = player_entries;
     for (i = 0; i < player_count; i++) {
         menu_audio_options(player_entry);
         player_entry += 2056;
@@ -2411,7 +2411,7 @@ void players_frame_update(void) {
 
 check_state:
     /* Check game state bit 0x0008 */
-    if ((D_801174B4 & 0x0008) != 0) {
+    if ((gstate_mask & 0x0008) != 0) {
         return;
     }
 
@@ -2440,13 +2440,13 @@ s32 players_finish_check(void) {
     u8 *player_entry;
     s8 status;
 
-    player_count = D_80152744;
+    player_count = active_car_count;
     if (player_count <= 0) {
         return 0;
     }
 
     finished_count = 0;
-    player_entry = D_8015A250;
+    player_entry = player_entries;
 
     for (i = 0; i < player_count; i++) {
         /* Check completion status at offset 0x7C8 */
@@ -2610,7 +2610,7 @@ void object_render_cleanup(void *obj_ptr) {
  * Address: 0x800C55E4
  * Size: 96 bytes
  *
- * If D_8015A110 is 4 or 6, sends a command via external handler.
+ * If game_unlock_id is 4 or 6, sends a command via external handler.
  * Arguments are sign-extended from bytes to s32.
  *
  * @param cmd Command byte
@@ -2622,7 +2622,7 @@ extern void external_command_handler(s32, s32, s32);  /* func_803914B4 - Externa
 void stunt_command_send(s8 cmd, s8 arg1, s8 arg2) {
     s32 mode;
 
-    mode = D_8015A110;
+    mode = game_unlock_id;
 
     /* Only send command in modes 4 or 6 */
     if (mode == 6 || mode == 4) {
@@ -2700,7 +2700,7 @@ void player_cleanup_slots(void) {
  * Address: 0x800C9194
  * Size: 124 bytes
  *
- * Acquires sync on D_80142728, creates new entry via entry_allocate,
+ * Acquires sync on object_sync, creates new entry via entry_allocate,
  * sets byte2=0, stores params at offsets 4 and 8, releases sync,
  * then signals D_801427A8 with the new entry.
  *
@@ -2710,15 +2710,15 @@ void player_cleanup_slots(void) {
 void sync_entry_register(s32 a0, s32 a1) {
     void *entry;
 
-    sync_acquire(&D_80142728[0], NULL, 1);
+    sync_acquire(&object_sync[0], NULL, 1);
 
     entry = entry_allocate(0);
     *(u8*)((u8*)entry + 2) = 0;
     *(s32*)((u8*)entry + 4) = a0;
     *(u8*)((u8*)entry + 8) = (u8)a1;
 
-    sync_release(&D_80142728[0], NULL, 0);
-    sync_release(&D_80142728[0x80], entry, 0);
+    sync_release(&object_sync[0], NULL, 0);
+    sync_release(&object_sync[0x80], entry, 0);
 }
 
 /*
@@ -2867,7 +2867,7 @@ void sound_position_set(f32 *pos, s32 a1) {
  * Address: 0x800C878C
  * Size: 104 bytes
  *
- * Acquires sync on D_80142728, allocates via object_alloc,
+ * Acquires sync on object_sync, allocates via object_alloc,
  * sets type to 7, releases sync, then registers with D_801427A8.
  *
  * Type 7 appears to be a specific object category.
@@ -2877,10 +2877,10 @@ extern s32 D_801427A8;    /* Object registry B */
 void object_type7_create(void) {
     void *obj;
 
-    state_get(D_80142728, 0, 1);   /* Acquire sync */
+    state_get(object_sync, 0, 1);   /* Acquire sync */
     obj = object_alloc(0);
     *((u8*)obj + 2) = 7;               /* Set type to 7 */
-    state_set(D_80142728, 0, 0);   /* Release sync */
+    state_set(object_sync, 0, 0);   /* Release sync */
     state_set(obj, 0, 0);  /* Register object */
 }
 
@@ -2898,10 +2898,10 @@ void object_type7_create(void) {
 void object_type1_create(void) {
     void *obj;
 
-    state_get(D_80142728, 0, 1);   /* Acquire sync */
+    state_get(object_sync, 0, 1);   /* Acquire sync */
     obj = object_alloc(0);
     *((u8*)obj + 2) = 1;               /* Set type to 1 */
-    state_set(D_80142728, 0, 0);   /* Release sync */
+    state_set(object_sync, 0, 0);   /* Release sync */
     state_set(obj, 0, 0);  /* Register object */
 }
 
@@ -2953,10 +2953,10 @@ void physics_init_mode1(void) {
 void object_type7_create_alt(void) {
     void *obj;
 
-    state_get(D_80142728, 0, 1);   /* Acquire sync */
+    state_get(object_sync, 0, 1);   /* Acquire sync */
     obj = object_alloc(0);
     *((u8*)obj + 2) = 7;               /* Set type to 7 */
-    state_set(D_80142728, 0, 0);   /* Release sync */
+    state_set(object_sync, 0, 0);   /* Release sync */
     state_set(obj, 0, 0);  /* Register object */
 }
 
@@ -3105,16 +3105,16 @@ s32 resource_slot_get(s32 a0) {
  * Size: 40 bytes
  *
  * Calls func_800B3D18 with t0=0, then returns byte at offset 2
- * from D_801597F0.
+ * from current_object.
  *
  * @return Type byte 2 from current object
  */
 extern void sound_update_channel(s32 channel, f32 volume); /* func_800B3D18 - Audio update/sync */
-extern u8 *D_801597F0;            /* Current object pointer */
+extern u8 *current_object;            /* Current object pointer */
 
 u8 object_type_byte2_get(void) {
     sound_update_channel(0, 0.0f);
-    return *(D_801597F0 + 2);
+    return *(current_object + 2);
 }
 
 /*
@@ -3131,7 +3131,7 @@ u8 object_type_byte2_get(void) {
  */
 u8 object_type_byte3_get(void) {
     sound_update_channel(0, 0.0f);
-    return *(D_801597F0 + 3);
+    return *(current_object + 3);
 }
 
 /*
@@ -3410,12 +3410,12 @@ void mode_flags_clear(void) {
  * Size: 88 bytes
  *
  * Calls model_transform(a0, 0, 0), then calculates slot address
- * at D_80156D38 + (a0 * 20), calls model_set_matrix with slot[12],
+ * at model_slot_array + (a0 * 20), calls model_set_matrix with slot[12],
  * and clears slot[2].
  *
  * @param a0 Slot index
  */
-extern u8 D_80156D38[];  /* Slot array, 20 bytes per entry */
+extern u8 model_slot_array[];  /* Slot array, 20 bytes per entry */
 extern void model_set_matrix(s32, s32);
 
 void slot_deactivate(s32 a0) {
@@ -3423,7 +3423,7 @@ void slot_deactivate(s32 a0) {
 
     model_transform(a0, 0, 0);
 
-    slot = D_80156D38 + (a0 * 20);
+    slot = model_slot_array + (a0 * 20);
     model_set_matrix(*(s32*)(slot + 12), 1);
     slot[2] = 0;
 }
@@ -3551,18 +3551,18 @@ s32 lookup_with_output(s32 a0, s32 a1, s32 *a2) {
  * Address: 0x800960D4
  * Size: 92 bytes
  *
- * Acquires sync on D_80152770, calls model_render(a0, 0),
+ * Acquires sync on model_sync, calls model_render(a0, 0),
  * then releases sync.
  *
  * @param a0 Parameter for model_render
  */
-extern u8 D_80152770[];  /* Sync structure */
+extern u8 model_sync[];  /* Sync structure */
 extern void model_render(s32, s32);
 
 void synced_process_call(s32 a0, s32 a1) {
-    state_get(D_80152770, 0, 1);
+    state_get(model_sync, 0, 1);
     model_render(a0, a1);
-    state_set(D_80152770, 0, 0);
+    state_set(model_sync, 0, 0);
 }
 
 /*
@@ -3584,7 +3584,7 @@ void slot_activate(s32 a0) {
 
     model_transform(a0, 0, 0);
 
-    slot = D_80156D38 + (a0 * 20);
+    slot = model_slot_array + (a0 * 20);
     model_set_matrix(*(s32*)(slot + 12), 0);
     slot[2] = 1;
 }
@@ -3598,7 +3598,7 @@ void slot_activate(s32 a0) {
  * Size: 104 bytes
  *
  * If t6 (condition) is non-zero:
- *   - Acquires sync on D_80152770
+ *   - Acquires sync on model_sync
  *   - Calls model_render(0x8039A400, 0)
  *   - Releases sync
  *   - Clears D_8011ED04
@@ -3609,9 +3609,9 @@ extern u8 D_8011ED04;  /* Mode flag */
 
 void conditional_synced_clear(s32 condition) {
     if (condition != 0) {
-        state_get(D_80152770, 0, 1);
+        state_get(model_sync, 0, 1);
         model_render(0x8039A400, 0);
-        state_set(D_80152770, 0, 0);
+        state_set(model_sync, 0, 0);
         D_8011ED04 = 0;
     }
 }
@@ -3776,7 +3776,7 @@ void resource_type_select_simple(s32 a0) {
  *
  * If a0 (as signed 16-bit) is negative:
  *   - Calls func_800B3D18 with t0=0
- *   - Sets D_80159B70 = D_801597F0[8]
+ *   - Sets D_80159B70 = current_object[8]
  * Otherwise:
  *   - Sets D_80159B70 = a0
  *
@@ -3786,7 +3786,7 @@ void resource_type_select_simple(s32 a0) {
 void mode_byte_set(s16 a0) {
     if (a0 < 0) {
         sound_update_channel(0, 0.0f);
-        D_80159B70 = *(D_801597F0 + 8);
+        D_80159B70 = *(current_object + 8);
     } else {
         D_80159B70 = (u8)a0;
     }
@@ -3800,18 +3800,18 @@ void mode_byte_set(s16 a0) {
  * Address: 0x800ED7B4
  * Size: 80 bytes
  *
- * Same as mode_byte_set but reads offset 4 and writes to D_80159B60.
+ * Same as mode_byte_set but reads offset 4 and writes to mode_byte_2.
  *
  * @param a0 Mode value or -1 to use current object
  */
-extern u8 D_80159B60;  /* Mode byte 2 */
+extern u8 mode_byte_2;  /* Mode byte 2 */
 
 void mode_byte2_set(s16 a0) {
     if (a0 < 0) {
         sound_update_channel(0, 0.0f);
-        D_80159B60 = *(D_801597F0 + 4);
+        mode_byte_2 = *(current_object + 4);
     } else {
-        D_80159B60 = (u8)a0;
+        mode_byte_2 = (u8)a0;
     }
 }
 
@@ -3825,9 +3825,9 @@ void mode_byte2_set(s16 a0) {
  *
  * If t6 (condition) is zero:
  *   - Sets D_801147C0 = 1
- *   - Calls dma_start(D_801461D0, D_801461FC, 1)
- *   - Releases sync on D_801461D0
- * Always sets D_80159DA0 = -1
+ *   - Calls dma_start(game_sync, D_801461FC, 1)
+ *   - Releases sync on game_sync
+ * Always sets setup_type = -1
  *
  * NOTE: Uses t6 register as condition (set by caller).
  */
@@ -3838,10 +3838,10 @@ extern void dma_start(void*, void*, s32);
 void sync_init_conditional(s32 condition) {
     if (condition == 0) {
         D_801147C0 = 1;
-        dma_start(&D_801461D0, D_801461FC, 1);
-        state_set(&D_801461D0, NULL, 0);
+        dma_start(&game_sync, D_801461FC, 1);
+        state_set(&game_sync, NULL, 0);
     }
-    D_80159DA0 = -1;
+    setup_type = -1;
 }
 
 /*
@@ -3900,14 +3900,14 @@ void object_counter_decrement(s32 id) {
     void *obj;
     u8 counter;
 
-    state_get(&D_80152770, NULL, 1);
+    state_get(&model_sync, NULL, 1);
     obj = model_draw(id);
     obj = model_set_anim(obj, NULL, 0);
     counter = *((u8*)obj + 22);
     if (counter > 0) {
         *((u8*)obj + 22) = counter - 1;
     }
-    state_set(&D_80152770, NULL, 0);
+    state_set(&model_sync, NULL, 0);
 }
 
 /*
@@ -3927,14 +3927,14 @@ void object_counter_increment(s32 id) {
     void *obj;
     u8 counter;
 
-    state_get(&D_80152770, NULL, 1);
+    state_get(&model_sync, NULL, 1);
     obj = model_draw(id);
     obj = model_set_anim(obj, NULL, 0);
     counter = *((u8*)obj + 22);
     if (counter < 255) {
         *((u8*)obj + 22) = counter + 1;
     }
-    state_set(&D_80152770, NULL, 0);
+    state_set(&model_sync, NULL, 0);
 }
 
 /*
@@ -4387,7 +4387,7 @@ void dual_call_reshuffled(s32 a0, s32 a1, s32 a2, void *a3) {
  * Size: 64 bytes
  *
  * Sign-extends a0 to byte, calls func_800B3D18,
- * saves old byte at D_801597F0+9, stores new value, returns old.
+ * saves old byte at current_object+9, stores new value, returns old.
  *
  * @param a0 New value (sign-extended to byte)
  * @return Previous value at offset 9
@@ -4395,8 +4395,8 @@ void dual_call_reshuffled(s32 a0, s32 a1, s32 a2, void *a3) {
 s8 object_byte9_set(s8 a0) {
     s8 old;
     sound_update_channel(0, 0.0f);
-    old = *((s8*)D_801597F0 + 9);
-    *((s8*)D_801597F0 + 9) = a0;
+    old = *((s8*)current_object + 9);
+    *((s8*)current_object + 9) = a0;
     return old;
 }
 
@@ -4408,32 +4408,32 @@ s8 object_byte9_set(s8 a0) {
  * Address: 0x80097470
  * Size: 124 bytes
  *
- * Acquires sync on D_80152770, looks up resource via color_set.
- * If a0 is 0, uses D_801527C8 as default lookup key.
+ * Acquires sync on model_sync, looks up resource via color_set.
+ * If a0 is 0, uses object_list_head as default lookup key.
  * Releases sync and returns result.
  *
  * @param a0 Lookup mode (0 = use default)
  * @param a1 Resource parameter
  * @return Lookup result
  */
-extern void **D_801527C8;
+extern void **object_list_head;
 extern void *color_set(void*, void*);
 
 void *resource_lookup_synced(s32 a0, void *a1) {
     void *result;
     void *lookup;
 
-    state_get(&D_80152770[0], NULL, 1);
+    state_get(&model_sync[0], NULL, 1);
 
     if (a0 != 0) {
         lookup = (void*)a0;
     } else {
-        lookup = D_801527C8;
+        lookup = object_list_head;
     }
 
     result = color_set(a1, lookup);
 
-    state_set(&D_80152770[0], NULL, 0);
+    state_set(&model_sync[0], NULL, 0);
 
     return result;
 }
@@ -4502,7 +4502,7 @@ void physics_struct_reset(void *a0) {
  * Address: 0x800BF024
  * Size: 128 bytes
  *
- * Acquires sync on D_80142728, looks up via object_init.
+ * Acquires sync on object_sync, looks up via object_init.
  * If found, calls camera_stub_empty with field64, releases sync,
  * then calls object_destroy. If not found, just releases sync.
  *
@@ -4514,17 +4514,17 @@ extern void *object_init(void*, void*);
 void synced_lookup_process(void *a0) {
     void *result;
 
-    state_get(&D_80142728[0], NULL, 1);
+    state_get(&object_sync[0], NULL, 1);
 
-    result = object_init(a0, &D_80142728[0]);
+    result = object_init(a0, &object_sync[0]);
 
     if (result == NULL) {
-        state_set(&D_80142728[0], NULL, 0);
+        state_set(&object_sync[0], NULL, 0);
         return;
     }
 
     camera_stub_empty();
-    state_set(&D_80142728[0], NULL, 0);
+    state_set(&object_sync[0], NULL, 0);
     object_destroy(a0);
 }
 
@@ -4536,7 +4536,7 @@ void synced_lookup_process(void *a0) {
  * Address: 0x80091C04
  * Size: 160 bytes
  *
- * Acquires sync on D_80142728, looks up key via object_init.
+ * Acquires sync on object_sync, looks up key via object_init.
  * If found, calls object_alloc, sets result->byte2 = 6,
  * stores original key at offset 4, increments counter at offset 26.
  * Then releases sync and optionally signals D_801427A8.
@@ -4547,7 +4547,7 @@ void resource_register_synced(void *a0) {
     void *result;
     void *savedResult;
 
-    state_get(&D_80142728[0], NULL, 1);
+    state_get(&object_sync[0], NULL, 1);
 
     result = object_init(a0, NULL);
     savedResult = NULL;
@@ -4560,10 +4560,10 @@ void resource_register_synced(void *a0) {
         savedResult = result;
     }
 
-    state_set(&D_80142728[0], NULL, 0);
+    state_set(&object_sync[0], NULL, 0);
 
     if (savedResult != NULL) {
-        state_set(&D_80142728[0x80], savedResult, 0);
+        state_set(&object_sync[0x80], savedResult, 0);
     }
 }
 
@@ -4621,16 +4621,16 @@ s32 struct_init_and_call(void *a0, s16 a1, void *a2) {
  * Size: 72 bytes
  *
  * Calls func_800B3D18 twice, gets bytes at offset 2 and 3
- * of D_801597F0, returns their sum as s16.
+ * of current_object, returns their sum as s16.
  *
- * @return (s16)(D_801597F0[2] + D_801597F0[3])
+ * @return (s16)(current_object[2] + current_object[3])
  */
 s16 object_bytes23_sum(void) {
     u8 byte2, byte3;
     sound_update_channel(0, 0.0f);
-    byte2 = *((u8*)D_801597F0 + 2);
+    byte2 = *((u8*)current_object + 2);
     sound_update_channel(0, 0.0f);
-    byte3 = *((u8*)D_801597F0 + 3);
+    byte3 = *((u8*)current_object + 3);
     return (s16)(byte2 + byte3);
 }
 
@@ -4744,16 +4744,16 @@ void init_wait_completion(void) {
  * Address: 0x800B0618
  * Size: 84 bytes
  *
- * Loops through D_801491F0 linked list calling vertex_set(item, 1),
+ * Loops through active_object_list linked list calling vertex_set(item, 1),
  * then calls savedata_write.
  */
 extern void vertex_set(void *a0, s32 a1);
 
 void list_process_and_call(s32 trackId, void *ghostData) {
-    void *item = D_801491F0;
+    void *item = active_object_list;
     while (item != NULL) {
         vertex_set(item, 1);
-        item = D_801491F0;
+        item = active_object_list;
     }
     savedata_write(0, ghostData, 0);
 }
@@ -4766,7 +4766,7 @@ void list_process_and_call(s32 trackId, void *ghostData) {
  * Address: 0x800B3F50
  * Size: 84 bytes
  *
- * Returns (s16)(D_80159B60 + D_801597F0[2] + D_801597F0[3]).
+ * Returns (s16)(mode_byte_2 + current_object[2] + current_object[3]).
  *
  * @return Sum as signed 16-bit
  */
@@ -4775,10 +4775,10 @@ s16 object_bytes_sum_global(void) {
     u8 byte2, byte3;
     s8 offset;
     sound_update_channel(0, 0.0f);
-    byte3 = *((u8*)D_801597F0 + 3);
+    byte3 = *((u8*)current_object + 3);
     sound_update_channel(0, 0.0f);
-    byte2 = *((u8*)D_801597F0 + 2);
-    offset = D_80159B60;
+    byte2 = *((u8*)current_object + 2);
+    offset = mode_byte_2;
     return (s16)(offset + byte2 + byte3);
 }
 
@@ -4792,14 +4792,14 @@ s16 object_bytes_sum_global(void) {
  * Address: 0x8010FCC0
  * Size: 92 bytes
  *
- * Acquires sync on D_80152770, calls model_render(a0, 0), releases sync.
+ * Acquires sync on model_sync, calls model_render(a0, 0), releases sync.
  *
  * @param a0 Parameter for model_render
  */
 void synced_call_95fd8(void *a0) {
-    state_get(&D_80152770, NULL, 1);
+    state_get(&model_sync, NULL, 1);
     model_render(a0, 0);
-    state_set(&D_80152770, NULL, 0);
+    state_set(&model_sync, NULL, 0);
 }
 
 /*
@@ -4860,7 +4860,7 @@ void pool_linked_list_init(void *a0) {
  * Address: 0x800B0580
  * Size: 152 bytes
  *
- * Iterates through active list at D_80155220, calling cleanup functions.
+ * Iterates through active list at object_pool, calling cleanup functions.
  * Then reinitializes the pool with default values.
  * Finally clears the secondary pool area at D_80155290.
  */
@@ -4871,20 +4871,20 @@ void pool_system_reset(s32 slot, void *data, s32 size) {
     void *node;
 
     /* Process and remove all nodes from active list */
-    node = *(void**)(&D_80155220[0x10]);
+    node = *(void**)(&object_pool[0x10]);
     while (node != NULL) {
         audio_update(*(s32*)((u8*)node + 0x0C));
-        path_follow(&D_80155220[0], node);
-        node = *(void**)(&D_80155220[0x10]);
+        path_follow(&object_pool[0], node);
+        node = *(void**)(&object_pool[0x10]);
     }
 
     /* Reinitialize pool control structure */
-    D_80155220[0] = 1;                                      /* type/flag */
-    *(s32*)(&D_80155220[0x08]) = 36;                       /* stride = 36 bytes */
-    *(s32*)(&D_80155220[0x04]) = 100;                      /* count = 100 entries */
-    *(void**)(&D_80155220[0x0C]) = (void*)&D_80155B30[0];  /* base pointer */
+    object_pool[0] = 1;                                      /* type/flag */
+    *(s32*)(&object_pool[0x08]) = 36;                       /* stride = 36 bytes */
+    *(s32*)(&object_pool[0x04]) = 100;                      /* count = 100 entries */
+    *(void**)(&object_pool[0x0C]) = (void*)&D_80155B30[0];  /* base pointer */
 
-    collision_resolve(&D_80155220[0]);
+    collision_resolve(&object_pool[0]);
 
     /* Clear secondary pool area (2208 bytes) */
     memset_custom(&D_80155290[0], 0, 2208);
@@ -5036,7 +5036,7 @@ s32 struct_callback_init(void *a0) {
  * Address: 0x8010B560
  * Size: 112 bytes
  *
- * Checks D_80159D98 global and updates a0->byte26 accordingly.
+ * Checks race_sub_state global and updates a0->byte26 accordingly.
  * If state changed, calls texture_load.
  * If byte26 becomes 0, sets field4 to D_80117358 and clears field40.
  *
@@ -5049,7 +5049,7 @@ s32 state_update_global(void *a0) {
     s32 globalState;
     s8 currentState;
 
-    globalState = (D_80159D98 != 0) ? 1 : 0;
+    globalState = (race_sub_state != 0) ? 1 : 0;
     currentState = *(s8*)((u8*)a0 + 26);
 
     if (globalState != currentState) {
@@ -5104,7 +5104,7 @@ void state_cleanup_reset(void) {
  * Address: 0x80091F34
  * Size: 136 bytes
  *
- * Acquires sync on D_80142728, calls object_free with parameters,
+ * Acquires sync on object_sync, calls object_free with parameters,
  * then releases sync.
  *
  * @param a0 First parameter (passed to object_free)
@@ -5113,9 +5113,9 @@ void state_cleanup_reset(void) {
 extern void object_free(void*);
 
 void synced_call_91ca4(void *a0, s32 a1) {
-    state_get(&D_80142728[0], NULL, 1);
+    state_get(&object_sync[0], NULL, 1);
     object_free(a0);
-    state_set(&D_80142728[0], NULL, 0);
+    state_set(&object_sync[0], NULL, 0);
 }
 
 /*
@@ -5126,12 +5126,12 @@ void synced_call_91ca4(void *a0, s32 a1) {
  * Address: 0x800AC668
  * Size: 140 bytes
  *
- * Sets up D_80159D90 to -1, calls several setup functions,
+ * Sets up setup_result to -1, calls several setup functions,
  * stores result to D_80159B80, then calls additional init functions.
  *
  * @param a0 First parameter
  * @param a1 Second parameter
- * @return Value of D_80159D90 (s16)
+ * @return Value of setup_result (s16)
  */
 extern void camera_far_set(void*, void*);
 extern void *model_bounds_get(void*, void*, void*, s32, void*);
@@ -5143,7 +5143,7 @@ s16 callback_setup_complex(void *a0, s16 a1) {
     u8 buf2[4];
     void *result;
 
-    D_80159D90 = -1;
+    setup_result = -1;
     camera_far_set(buf1, a0);
 
     result = model_bounds_get(buf2, (void*)D_80159818, NULL, 0, NULL);
@@ -5152,7 +5152,7 @@ s16 callback_setup_complex(void *a0, s16 a1) {
     vehicle_update(D_80159B80, a1);
     wheel_update();
 
-    return D_80159D90;
+    return setup_result;
 }
 
 /*
@@ -5163,14 +5163,14 @@ s16 callback_setup_complex(void *a0, s16 a1) {
  * Address: 0x800A4AC4
  * Size: 124 bytes
  *
- * Iterates through 64 slots in D_80156D38 array, calling matrix_push
+ * Iterates through 64 slots in model_slot_array array, calling matrix_push
  * for each slot that has field_0C set and field_06 != a0.
  *
  * @param a0 Filter value for field_06 comparison
  */
 
 void slot_array_iterate(s32 a0) {
-    u8 *slot = &D_80156D38[0];
+    u8 *slot = &model_slot_array[0];
     s32 i;
 
     for (i = 0; i < 64; i++) {
@@ -5191,14 +5191,14 @@ void slot_array_iterate(s32 a0) {
  * Address: 0x8009DC50
  * Size: 200 bytes
  *
- * Recursively searches through a tree structure in D_8013E700.
+ * Recursively searches through a tree structure in scene_tree_data.
  * Uses bit mask (256 << a1) to check node flags.
  *
  * @param a0 Pointer to node structure
  * @param a1 Bit position for mask creation
  * @return 1 if found, 0 otherwise
  */
-extern u8 D_8013E700[];
+extern u8 scene_tree_data[];
 
 s32 tree_search_recursive(void *a0, s32 a1) {
     s32 flags;
@@ -5219,7 +5219,7 @@ s32 tree_search_recursive(void *a0, s32 a1) {
         leftIdx = *(s16*)((u8*)node + 0x16);
         if (leftIdx >= 0) {
             /* Recurse on left child */
-            if (tree_search_recursive(&D_8013E700[leftIdx * 68], a1) != 0) {
+            if (tree_search_recursive(&scene_tree_data[leftIdx * 68], a1) != 0) {
                 return 1;
             }
         }
@@ -5230,7 +5230,7 @@ s32 tree_search_recursive(void *a0, s32 a1) {
         }
 
         /* Continue with right child (tail recursion optimization) */
-        node = &D_8013E700[rightIdx * 68];
+        node = &scene_tree_data[rightIdx * 68];
     }
 }
 
@@ -5266,7 +5266,7 @@ s32 tree_node_check(void *a0, s32 a1) {
         return 0;
     }
 
-    if (tree_search_recursive(&D_8013E700[idx * 68], a1) != 0) {
+    if (tree_search_recursive(&scene_tree_data[idx * 68], a1) != 0) {
         return 1;
     }
 
@@ -5281,7 +5281,7 @@ s32 tree_node_check(void *a0, s32 a1) {
  * Address: 0x800BF148
  * Size: 128 bytes
  *
- * Acquires sync on D_80142728, calls object_init to lookup.
+ * Acquires sync on object_sync, calls object_init to lookup.
  * If found, calls camera_stub_empty and camera_shake_apply.
  * Returns lookup result.
  *
@@ -5306,17 +5306,17 @@ extern void collision_broadphase(void *world); /* Setup call */
 void *synced_lookup_and_process(void *a0) {
     void *result;
 
-    state_get(&D_80142728[0], NULL, 1);
+    state_get(&object_sync[0], NULL, 1);
 
-    result = object_init(a0, &D_80142728[0]);
+    result = object_init(a0, &object_sync[0]);
 
     if (result == NULL) {
-        state_set(&D_80142728[0], NULL, 0);
+        state_set(&object_sync[0], NULL, 0);
         return NULL;
     }
 
     camera_stub_empty();
-    state_set(&D_80142728[0], NULL, 0);
+    state_set(&object_sync[0], NULL, 0);
     camera_shake_apply(a0, 0, 0);
 
     return result;
@@ -5457,15 +5457,15 @@ s32 object_status_check(void **a0, s32 a1) {
 void object_type11_alloc_signal(s32 a0) {
     void *obj;
 
-    state_get(&D_80142728[0], NULL, 1);
+    state_get(&object_sync[0], NULL, 1);
 
     obj = object_alloc(0);
 
     *(u8*)((u8*)obj + 2) = 11;
     *(u8*)((u8*)obj + 4) = (u8)a0;
 
-    state_set(&D_80142728[0], NULL, 0);
-    state_set(&D_80142728[0x80], obj, 0);
+    state_set(&object_sync[0], NULL, 0);
+    state_set(&object_sync[0x80], obj, 0);
 }
 
 /*
@@ -5482,13 +5482,13 @@ void object_type11_alloc_signal(s32 a0) {
 void object_type9_alloc_signal(void) {
     void *obj;
 
-    state_get(&D_80142728[0], NULL, 1);
+    state_get(&object_sync[0], NULL, 1);
 
     obj = object_alloc(0);
     *(u8*)((u8*)obj + 2) = 9;
 
-    state_set(&D_80142728[0], NULL, 0);
-    state_set(&D_80142728[0x80], obj, 0);
+    state_set(&object_sync[0], NULL, 0);
+    state_set(&object_sync[0x80], obj, 0);
 }
 
 /*
@@ -5517,7 +5517,7 @@ void object_countdown_process(void *a0, s16 a1) {
         vertex_set(a0, 1);
     }
 
-    if (D_801170FC != 0) {
+    if (render_enable != 0) {
         return;
     }
 
@@ -5538,7 +5538,7 @@ void object_countdown_process(void *a0, s16 a1) {
 /*
 
 /* Effect/visual system arrays */
-extern u32 D_801569B8[];        /* Effect slot array (4 slots, 124 bytes each) */
+extern u32 fx_slot_array[];        /* Effect slot array (4 slots, 124 bytes each) */
 extern f32 D_8016139C;          /* Effect timing float */
 
 extern void memset_custom(void*, s32, s32);  /* memset */
@@ -5558,7 +5558,7 @@ void effect_system_init(void) {
     memset_custom(D_80152038, 0, 480);
 
     /* Initialize each 124-byte effect slot */
-    for (ptr = D_801569B8; ptr < (u32*)((u8*)D_801569B8 + 496); ptr = (u32*)((u8*)ptr + 124)) {
+    for (ptr = fx_slot_array; ptr < (u32*)((u8*)fx_slot_array + 496); ptr = (u32*)((u8*)ptr + 124)) {
         memset_custom(ptr, 0, 124);
         *ptr |= 0x15000000;
     }
@@ -5611,7 +5611,7 @@ void object_type_setup_init(void *a0, void *a1, s32 a2) {
  * (132 bytes)
  *
  * Copies bytes from offset 4 of each 12-byte entry in D_80159800 array
- * into the output buffer, null-terminated. Count comes from D_801597F0[12].
+ * into the output buffer, null-terminated. Count comes from current_object[12].
  */
 void string_build_from_array(u8 *output) {
     void *data;
@@ -5622,7 +5622,7 @@ void string_build_from_array(u8 *output) {
 
     sound_update_channel(0, 0.0f);
 
-    data = (void*)D_801597F0;
+    data = (void*)current_object;
     i = 0;
     offset = 0;
     count = *(u8*)((u8*)data + 12);
@@ -5632,7 +5632,7 @@ void string_build_from_array(u8 *output) {
         output[i] = *(u8*)((u8*)arr + offset + 4);
         i++;
         offset += 12;
-        data = (void*)D_801597F0;
+        data = (void*)current_object;
         count = *(u8*)((u8*)data + 12);
     }
 
@@ -5664,7 +5664,7 @@ void timer_value_update(void) {
     D_80152032 = value;
 
     if (value <= 0) {
-        D_801174B8 = 0x00100000;
+        gstate_prev = 0x00100000;
     }
 }
 
@@ -5675,7 +5675,7 @@ void timer_value_update(void) {
  * list_item_remove_synced - Remove item from synchronized linked list
  * (172 bytes)
  *
- * Removes an object from the linked list at D_801527C8.
+ * Removes an object from the linked list at object_list_head.
  * If a0 is NULL, removes the head item instead.
  * Uses sync primitives for thread safety.
  */
@@ -5684,17 +5684,17 @@ void list_item_remove_synced(void *a0) {
     void *curr;
     void *next;
 
-    state_get(&D_80142728[0], NULL, 1);
+    state_get(&object_sync[0], NULL, 1);
 
     /* Get item to remove */
     if (a0 != NULL) {
         item = a0;
     } else {
-        item = *D_801527C8;
+        item = *object_list_head;
     }
 
     /* Traverse list to find and unlink item */
-    curr = *D_801527C8;
+    curr = *object_list_head;
     if (curr != NULL) {
         while (1) {
             next = *(void**)((u8*)curr + 4);
@@ -5710,7 +5710,7 @@ void list_item_remove_synced(void *a0) {
     }
 
     model_render(item, 1);
-    state_set(&D_80142728[0], NULL, 0);
+    state_set(&object_sync[0], NULL, 0);
 }
 
 /*
@@ -5738,11 +5738,11 @@ void player_coords_update(void) {
 
     pre_update();
 
-    if (D_8015A110 != 2) {
+    if (game_unlock_id != 2) {
         goto done;
     }
 
-    if (D_8015A108 < 2) {
+    if (player_count < 2) {
         goto done;
     }
 
@@ -5751,7 +5751,7 @@ void player_coords_update(void) {
     dst = (u8*)0x80152C20;
     i = 1;
 
-    while (i < D_8015A108) {
+    while (i < player_count) {
         audio_stream_update(*(srcBase + 123), src, dst);  /* offset 246 = 123 shorts */
         i++;
         srcBase = (s16*)((u8*)srcBase + 952);
@@ -5770,7 +5770,7 @@ done:
  * object_spawn_linked - Spawn and initialize linked object
  * (192 bytes)
  *
- * Creates a new object via object_alloc_free_list, links it into D_801491F0 list,
+ * Creates a new object via object_alloc_free_list, links it into active_object_list list,
  * initializes fields from indexed data array D_80117530, and finalizes
  * with save_game_to_pak.
  */
@@ -5802,9 +5802,9 @@ void object_spawn_linked(void *a0) {
     *(u8*)((u8*)a0 + 4) &= 0xFFF9;
 
     /* Link into list */
-    oldHead = *D_801491F0;
+    oldHead = *active_object_list;
     *(void**)obj = oldHead;
-    *D_801491F0 = obj;
+    *active_object_list = obj;
 
     /* Finalize with callback */
     save_game_to_pak();
@@ -5871,10 +5871,10 @@ void *pool_object_alloc(s32 type) {
 /*
 
 /* Object deactivation globals */
-extern void **D_801491F0;   /* Active object list head */
-extern void **D_801492C8;   /* Free object list head */
-extern s16 D_8013E66C;      /* Active object count */
-extern s16 D_8013E678;      /* Maximum active objects seen */
+extern void **active_object_list;   /* Active object list head */
+extern void **render_list;   /* Free object list head */
+extern s16 active_object_count;      /* Active object count */
+extern s16 max_active_objects;      /* Maximum active objects seen */
 extern void sound_param_set(s16 texId, s32 mode, s32 flags); /* Sound stop function */
 
 /**
@@ -5907,11 +5907,11 @@ void object_deactivate_free(void *a0, s32 a1) {
 
     /* Remove from active list if requested */
     if (a1 != 0) {
-        curr = *D_801491F0;
+        curr = *active_object_list;
 
         /* Check if we're the head */
         if (a0 == curr) {
-            *D_801491F0 = *(void**)a0;
+            *active_object_list = *(void**)a0;
         } else {
             /* Search list for our predecessor */
             prev = NULL;
@@ -5933,14 +5933,14 @@ void object_deactivate_free(void *a0, s32 a1) {
     }
 
     /* Add to free list */
-    *(void**)a0 = *D_801492C8;
-    *D_801492C8 = a0;
+    *(void**)a0 = *render_list;
+    *render_list = a0;
 
     /* Update count and max tracking */
-    D_8013E66C--;
-    count = D_8013E66C;
-    if (D_8013E678 < count) {
-        D_8013E678 = count;
+    active_object_count--;
+    count = active_object_count;
+    if (max_active_objects < count) {
+        max_active_objects = count;
     }
 }
 
@@ -5969,7 +5969,7 @@ void *object_spawn_new(s32 a0) {
     void *subObj;
     void *result;
 
-    state_get(&D_80142728[0], NULL, 1);
+    state_get(&object_sync[0], NULL, 1);
 
     obj = pool_object_alloc(0);
 
@@ -5999,8 +5999,8 @@ void *object_spawn_new(s32 a0) {
     /* Get result before releasing sync */
     result = *(void**)((u8*)subObj + 12);
 
-    state_set(&D_80142728[0], NULL, 0);
-    state_set(&D_80142728[0x80], obj, 0);
+    state_set(&object_sync[0], NULL, 0);
+    state_set(&object_sync[0x80], obj, 0);
 
     return result;
 }
@@ -6037,7 +6037,7 @@ void matrix3x3_copy(f32 *src, f32 *dst) {
  * object_alloc_free_list - Allocate object from free list
  * (132 bytes)
  *
- * Pops an object from the free list at D_801492C8, initializes it,
+ * Pops an object from the free list at render_list, initializes it,
  * and updates count tracking. The complementary function to object_deactivate_free.
  *
  * @return Pointer to allocated object, or NULL if list empty
@@ -6047,21 +6047,21 @@ void *object_alloc_free_list(s32 soundId, s32 flags) {
     void *next;
     s16 count;
 
-    obj = *D_801492C8;
+    obj = *render_list;
     if (obj == NULL) {
         return NULL;
     }
 
     /* Increment count and update max */
-    D_8013E66C++;
-    count = D_8013E66C;
-    if (D_8013E678 < count) {
-        D_8013E678 = count;
+    active_object_count++;
+    count = active_object_count;
+    if (max_active_objects < count) {
+        max_active_objects = count;
     }
 
     /* Pop from free list */
     next = *(void**)obj;
-    *D_801492C8 = next;
+    *render_list = next;
 
     /* Initialize object fields */
     *(void**)obj = NULL;           /* next pointer */
@@ -6127,20 +6127,20 @@ void effects_system_init(void) {
     u32 *end;
 
     /* Check if already initialized */
-    if (D_801147C4 != 0) {
+    if (input_initialized_flag != 0) {
         return;
     }
 
     /* Mark as initialized */
-    D_801147C4 = 1;
+    input_initialized_flag = 1;
 
     /* Clear effect counters */
-    *(s32*)&D_801551F0[6] = 0;  /* D_801551EC equivalent */
-    *(s32*)&D_801551E8[0] = 0;  /* D_801551E8 counter */
+    *(s32*)&callback_data[6] = 0;  /* D_801551EC equivalent */
+    *(s32*)&input_callback_table[0] = 0;  /* input_callback_table counter */
 
     /* Clear effect data array (32 bytes, 8 words) */
-    ptr = D_801551F0;
-    end = D_801551F0 + 8;
+    ptr = callback_data;
+    end = callback_data + 8;
 
     do {
         ptr[0] = 0;
@@ -6199,7 +6199,7 @@ void emitter_array_clear(void) {
     void **ptr;
     void **end;
 
-    count = D_80151AD0;
+    count = active_player_count;
     ptr = D_80124FD0;
 
     if (count <= 0) {
@@ -6405,7 +6405,7 @@ extern void *D_8012EA18;  /* Source data */
  *
  */
 s32 game_state_flags_get(void) {
-    return D_801174B4;
+    return gstate_mask;
 }
 
 /*
@@ -6510,11 +6510,11 @@ void *synced_element_lookup(void *input) {
     void *result;
     void *data;
 
-    sync_acquire(&D_80152770, 0, 1);
+    sync_acquire(&model_sync, 0, 1);
     temp = model_draw(0);
     result = model_set_anim(temp, NULL, 0);
     data = *(void **)((u8 *)result + 12);
-    sync_release(&D_80152770, 0, 0);
+    sync_release(&model_sync, 0, 0);
     return data;
 }
 
@@ -6581,11 +6581,11 @@ void resource_arrays_init(void) {
     /* Initialize 6 slot entries with -1 */
     for (i = 0; i < 6; i++) {
         *(s32 *)((u8 *)&D_80154FD8 + (i * 60)) = -1;
-        *(s32 *)((u8 *)&D_80154660 + (i * 400) + 0) = -1;
-        *(s32 *)((u8 *)&D_80154660 + (i * 400) + 84) = -1;
-        *(s32 *)((u8 *)&D_80154660 + (i * 400) + 168) = -1;
-        *(s32 *)((u8 *)&D_80154660 + (i * 400) + 252) = -1;
-        *(s32 *)((u8 *)&D_80154660 + (i * 400) + 336) = -1;
+        *(s32 *)((u8 *)&object_slots + (i * 400) + 0) = -1;
+        *(s32 *)((u8 *)&object_slots + (i * 400) + 84) = -1;
+        *(s32 *)((u8 *)&object_slots + (i * 400) + 168) = -1;
+        *(s32 *)((u8 *)&object_slots + (i * 400) + 252) = -1;
+        *(s32 *)((u8 *)&object_slots + (i * 400) + 336) = -1;
     }
 
     D_8014C094 = 0;
@@ -6606,16 +6606,16 @@ void tree_node_insert(s16 a0, s16 a1) {
             D_8016B254 = a0;
         } else {
             new_idx = audio_channel_init();
-            *(s16 *)((u8 *)&D_8013E700 + (new_idx * 68) + 24) = a0;
+            *(s16 *)((u8 *)&scene_tree_data + (new_idx * 68) + 24) = a0;
         }
     } else {
         /* Insert at indexed slot if empty, else allocate new node */
-        entry = (u8 *)&D_8013E700 + (a1 * 68);
+        entry = (u8 *)&scene_tree_data + (a1 * 68);
         if (*(s16 *)(entry + 22) == -1) {
             *(s16 *)(entry + 22) = a0;
         } else {
             new_idx = audio_channel_init();
-            *(s16 *)((u8 *)&D_8013E700 + (new_idx * 68) + 24) = a0;
+            *(s16 *)((u8 *)&scene_tree_data + (new_idx * 68) + 24) = a0;
         }
     }
 }
@@ -7896,7 +7896,7 @@ void game_full_reset(void) {
 
     /* Clear all player cars */
     for (i = 0; i < 4; i++) {
-        car = (void *)(D_80152818 + i * 0x400);
+        car = (void *)(game_car + i * 0x400);
         memset(car, 0, 0x400);
     }
 
@@ -9513,7 +9513,7 @@ void audio_channel_setup(void *params, s32 channel) {
     channelState[5] = (s32)audioParams[4];  /* Priority */
 
     /* Trigger audio hardware update */
-    D_80160400 |= (1 << channel);
+    audio_buffer_ptr |= (1 << channel);
 }
 
 /*
@@ -9562,12 +9562,12 @@ void sound_effect_play(s32 soundId, s32 priority) {
     channelState[0] = 1;  /* Active */
     channelState[5] = priority;
     channelState[6] = soundId;
-    *(f32 *)&channelState[1] = D_80159300 / 100.0f;  /* SFX volume setting */
+    *(f32 *)&channelState[1] = sfx_volume / 100.0f;  /* SFX volume setting */
     *(f32 *)&channelState[2] = 0.5f;  /* Center pan */
 
     /* Trigger playback */
-    D_80160400 |= (1 << channel);
-    D_80160404 = soundId;
+    audio_buffer_ptr |= (1 << channel);
+    sample_heap_remaining = soundId;
 }
 
 /*
@@ -9596,13 +9596,13 @@ void audio_volume_pan(s32 channel, f32 volume, f32 pan) {
     if (pan > 1.0f) pan = 1.0f;
 
     /* Apply master volume */
-    volume = volume * (D_80159300 / 100.0f);
+    volume = volume * (sfx_volume / 100.0f);
 
     *(f32 *)&channelState[1] = volume;
     *(f32 *)&channelState[2] = pan;
 
     /* Mark channel for update */
-    *(s32*)&D_80160408[0] |= (1 << channel);
+    *(s32*)&sample_cache[0] |= (1 << channel);
 }
 
 /*
@@ -9766,7 +9766,7 @@ void music_track_control(s32 trackId, s32 cmd) {
                 musicState[0] = 1;
                 musicState[1] = trackId;
                 musicState[2] = 0;  /* Position */
-                *(f32 *)&musicState[3] = D_80159304 / 100.0f;  /* Music volume */
+                *(f32 *)&musicState[3] = music_volume / 100.0f;  /* Music volume */
                 D_80160420 = trackId;
             }
             break;
@@ -9858,7 +9858,7 @@ void audio_timing_sync(void) {
     s32 drift;
 
     audioFrame = D_80160440;
-    videoFrame = D_80142AFC;
+    videoFrame = frame_counter;
 
     drift = videoFrame - audioFrame;
 
@@ -9977,7 +9977,7 @@ void audio_state_save(s32 cmd) {
                 channelState[j] = stateBuffer[i * 16 + j];
             }
         }
-        D_80160400 = 0xFFFF;  /* Mark all channels for update */
+        audio_buffer_ptr = 0xFFFF;  /* Mark all channels for update */
     }
 }
 
@@ -10853,9 +10853,9 @@ void track_segment_load(s32 segmentId) {
     destAddr = (u8 *)(0x80180000 + (segmentId * 0x8000));
 
     /* DMA segment data from ROM */
-    osPiStartDma(&D_80020000, OS_MESG_PRI_NORMAL, OS_READ,
-                 romAddr, destAddr, segmentSize, &D_80020010);
-    osRecvMesg(&D_80020010, NULL, OS_MESG_BLOCK);
+    osPiStartDma(&dma_io_msg, OS_MESG_PRI_NORMAL, OS_READ,
+                 romAddr, destAddr, segmentSize, &dma_queue);
+    osRecvMesg(&dma_queue, NULL, OS_MESG_BLOCK);
 
     /* Mark segment as loaded */
     loadedFlags[segmentId] = 1;
@@ -11448,7 +11448,7 @@ void engine_particle_effect(void *car, s32 effectType) {
     carPos = (f32 *)((u8 *)car + 0x24);
     carDir = (f32 *)((u8 *)car + 0x60);
     particlePool = (s32 *)0x80162000;
-    particleIndex = D_80162100;
+    particleIndex = particle_pool_index;
 
     /* Spawn particles based on effect type */
     switch (effectType) {
@@ -11501,7 +11501,7 @@ void engine_particle_effect(void *car, s32 effectType) {
             break;
     }
 
-    D_80162100 = particleIndex;
+    particle_pool_index = particleIndex;
 }
 
 /*
@@ -11532,7 +11532,7 @@ void exhaust_smoke_effect(void *car, f32 *exhaustPos) {
     }
 
     particlePool = (s32 *)0x80162000;
-    particleIndex = D_80162100;
+    particleIndex = particle_pool_index;
     particle = &particlePool[particleIndex * 16];
 
     /* Spawn exhaust particle */
@@ -11546,7 +11546,7 @@ void exhaust_smoke_effect(void *car, f32 *exhaustPos) {
     particle[7] = 20;
     particle[8] = 3;  /* Type: exhaust */
 
-    D_80162100 = (particleIndex + 1) % 64;
+    particle_pool_index = (particleIndex + 1) % 64;
 }
 
 /*
@@ -12403,7 +12403,7 @@ void ai_update_car(void *car, void *target) {
     } else {
         /* Use next waypoint from path */
         s32 waypointIdx = aiState[0];
-        track_get_node_pos(D_80159A08, waypointIdx, &dx, NULL, &dz);
+        track_get_node_pos(trackno, waypointIdx, &dx, NULL, &dz);
         targetPos = (f32 *)aiState + 4;
         targetPos[0] = dx;
         targetPos[2] = dz;
@@ -12500,7 +12500,7 @@ void ai_follow_path(void *car, void *path) {
     currentWaypoint = aiState[0];
 
     /* Get current waypoint position */
-    track_get_node_pos(D_80159A08, currentWaypoint, &waypointPos[0], &waypointPos[1], &waypointPos[2]);
+    track_get_node_pos(trackno, currentWaypoint, &waypointPos[0], &waypointPos[1], &waypointPos[2]);
 
     /* Check distance to current waypoint */
     dx = waypointPos[0] - carPos[0];
@@ -12516,7 +12516,7 @@ void ai_follow_path(void *car, void *path) {
     /* Lookahead - get position slightly ahead on path */
     lookahead = 30.0f;  /* Look 30 units ahead */
     nextWaypoint = (currentWaypoint + 1) % 100;
-    track_get_node_pos(D_80159A08, nextWaypoint, &nextPos[0], &nextPos[1], &nextPos[2]);
+    track_get_node_pos(trackno, nextWaypoint, &nextPos[0], &nextPos[1], &nextPos[2]);
 
     /* Interpolate between current and next waypoint */
     f32 t = distance / (distance + lookahead);
@@ -12549,11 +12549,11 @@ void ai_avoid_obstacles(void *car, void *obstacles) {
     avoidStrength = 0.0f;
 
     /* Get number of active cars */
-    numCars = D_801582E0;
+    numCars = race_car_count;
 
     /* Check each other car */
     for (i = 0; i < numCars; i++) {
-        void *otherCar = D_801582C0[i];
+        void *otherCar = car_pointers[i];
         if (otherCar == NULL || otherCar == car) continue;
 
         f32 *otherPos = (f32 *)((u8 *)otherCar + 0x24);
@@ -12633,9 +12633,9 @@ void ai_optimize_racing_line(void *car, void *track) {
         s32 idx3 = (waypointIdx + i + 2) % 100;
 
         f32 p1[3], p2[3], p3[3];
-        track_get_node_pos(D_80159A08, idx1, &p1[0], &p1[1], &p1[2]);
-        track_get_node_pos(D_80159A08, idx2, &p2[0], &p2[1], &p2[2]);
-        track_get_node_pos(D_80159A08, idx3, &p3[0], &p3[1], &p3[2]);
+        track_get_node_pos(trackno, idx1, &p1[0], &p1[1], &p1[2]);
+        track_get_node_pos(trackno, idx2, &p2[0], &p2[1], &p2[2]);
+        track_get_node_pos(trackno, idx3, &p3[0], &p3[1], &p3[2]);
 
         /* Calculate angle between segments */
         f32 dx1 = p2[0] - p1[0];
@@ -12735,7 +12735,7 @@ void ai_decide_strategy(void *car) {
     if (aiMode == 2 && raceProgress < 0.9f) {
         /* Behind and not near finish - maybe use shortcut */
         s32 shortcutChance = difficulty * 30 + 10;  /* 10-70% based on difficulty */
-        if ((D_80142AFC % 100) < shortcutChance) {
+        if ((frame_counter % 100) < shortcutChance) {
             aiState[17] = 1;  /* Enable shortcut seeking */
         }
     } else {
@@ -13453,7 +13453,7 @@ void race_calc_positions(void) {
     void *tempCar;
     f32 tempDist;
 
-    numCars = D_801582E0;
+    numCars = race_car_count;
     if (numCars <= 0 || numCars > 8) {
         return;
     }
@@ -13465,7 +13465,7 @@ void race_calc_positions(void) {
 
     /* Calculate total distance for each car */
     for (i = 0; i < numCars; i++) {
-        car = D_801582C0[i];
+        car = car_pointers[i];
         if (car == NULL) {
             distances[i] = 0.0f;
             positions[i] = i;
@@ -13496,14 +13496,14 @@ void race_calc_positions(void) {
 
     /* Assign positions (0 = 1st place, 1 = 2nd, etc.) */
     for (i = 0; i < numCars; i++) {
-        car = D_801582C0[positions[i]];
+        car = car_pointers[positions[i]];
         if (car != NULL) {
             *(s32 *)((u8 *)car + 0x5C) = i;
         }
     }
 
     /* Check if player moved into/out of first place for audio cue */
-    car = D_801582C0[0];  /* Assume player is car 0 */
+    car = car_pointers[0];  /* Assume player is car 0 */
     if (car != NULL) {
         s32 *playerPos = (s32 *)((u8 *)car + 0x5C);
         static s32 lastPos = -1;
@@ -13601,7 +13601,7 @@ void race_finish_player(void *player) {
     }
 
     /* Check if this is the player's car */
-    if (player == D_801582C0[0]) {
+    if (player == car_pointers[0]) {
         /* Player finished - trigger results */
         if (currentPos == 0) {
             /* Winner! */
@@ -13616,7 +13616,7 @@ void race_finish_player(void *player) {
     }
 
     /* Check if all cars finished */
-    if (D_801582EC >= D_801582E0) {
+    if (D_801582EC >= race_car_count) {
         D_801582F0 = 1;  /* Race complete */
         race_show_results();  /* Show results */
     }
@@ -13647,8 +13647,8 @@ void race_show_results(void) {
     screen_transition(5);  /* Results screen type */
 
     /* Gather and display results for each car */
-    for (i = 0; i < D_801582E0; i++) {
-        car = D_801582C0[i];
+    for (i = 0; i < race_car_count; i++) {
+        car = car_pointers[i];
         if (car == NULL) {
             continue;
         }
@@ -13677,7 +13677,7 @@ void race_show_results(void) {
  * Leaderboard entry structure (per track):
  *   name[8], time (u32), date (u32)
  */
-extern u8 D_80158300[12][10][16];   /* Leaderboard entries [track][rank][data] */
+extern u8 leaderboard[12][10][16];   /* Leaderboard entries [track][rank][data] */
 
 void leaderboard_update(void) {
     s32 i, j;
@@ -13688,11 +13688,11 @@ void leaderboard_update(void) {
     u8 *leaderboard;
 
     /* Get current track leaderboard */
-    leaderboard = D_80158300[D_80158FC0][0];
+    leaderboard = leaderboard[leaderboard_track][0];
 
     /* Check each car for potential leaderboard entry */
-    for (i = 0; i < D_801582E0; i++) {
-        car = D_801582C0[i];
+    for (i = 0; i < race_car_count; i++) {
+        car = car_pointers[i];
         if (car == NULL) {
             continue;
         }
@@ -13707,7 +13707,7 @@ void leaderboard_update(void) {
         /* Find rank on leaderboard */
         rank = -1;
         for (j = 0; j < 10; j++) {
-            u32 *entryTime = (u32 *)&D_80158300[D_80158FC0][j][8];
+            u32 *entryTime = (u32 *)&leaderboard[leaderboard_track][j][8];
             if (*entryTime == 0 || finishTime < *entryTime) {
                 rank = j;
                 break;
@@ -13720,14 +13720,14 @@ void leaderboard_update(void) {
             for (j = 9; j > rank; j--) {
                 s32 k;
                 for (k = 0; k < 16; k++) {
-                    D_80158300[D_80158FC0][j][k] = D_80158300[D_80158FC0][j-1][k];
+                    leaderboard[leaderboard_track][j][k] = leaderboard[leaderboard_track][j-1][k];
                 }
             }
 
             /* Insert new entry */
             /* Name will be filled by high score entry screen */
-            *(u32 *)&D_80158300[D_80158FC0][rank][8] = finishTime;
-            *(u32 *)&D_80158300[D_80158FC0][rank][12] = 0;  /* Date placeholder */
+            *(u32 *)&leaderboard[leaderboard_track][rank][8] = finishTime;
+            *(u32 *)&leaderboard[leaderboard_track][rank][12] = 0;  /* Date placeholder */
         }
     }
 }
@@ -13750,7 +13750,7 @@ s32 hiscore_check_rank(s32 time) {
 
     /* Check against current track leaderboard */
     for (j = 0; j < 10; j++) {
-        u32 *entryTime = (u32 *)&D_80158300[D_80158FC0][j][8];
+        u32 *entryTime = (u32 *)&leaderboard[leaderboard_track][j][8];
 
         if (*entryTime == 0) {
             /* Empty slot - qualifies */
@@ -13796,12 +13796,12 @@ void hiscore_insert_entry(s32 position, u8 *name, s32 time) {
     /* Shift entries down */
     for (j = 9; j > rank; j--) {
         for (k = 0; k < 16; k++) {
-            D_80158300[D_80158FC0][j][k] = D_80158300[D_80158FC0][j-1][k];
+            leaderboard[leaderboard_track][j][k] = leaderboard[leaderboard_track][j-1][k];
         }
     }
 
     /* Insert new entry */
-    entry = D_80158300[D_80158FC0][rank];
+    entry = leaderboard[leaderboard_track][rank];
 
     /* Copy name (up to 8 characters) */
     for (k = 0; k < 8; k++) {
@@ -15212,7 +15212,7 @@ void camera_shake_apply(void *camera, f32 intensity, f32 duration) {
         *shakeIntensity = intensity;
 
         /* Initialize shake state with pseudo-random values */
-        seed = D_80159A20 & 0xFFFF;
+        seed = random_seed2 & 0xFFFF;
         shakeState[0] = (f32)(seed % 1000) / 1000.0f * 6.28318f;
         shakeState[1] = (f32)((seed >> 4) % 1000) / 1000.0f * 6.28318f;
         shakeState[2] = (f32)((seed >> 8) % 1000) / 1000.0f * 6.28318f;
@@ -15582,13 +15582,13 @@ void menu_system_update(void *menu) {
             case 3:  /* Track select for Stunt */
                 /* Proceed to car select */
                 *menuState = 20;
-                D_80159A08 = *selectedItem;  /* Set selected track */
+                trackno = *selectedItem;  /* Set selected track */
                 *selectedItem = 0;
                 break;
 
             case 20:  /* Car select */
                 /* Start game */
-                D_80159A0C = *selectedItem;  /* Set selected car */
+                car_selection = *selectedItem;  /* Set selected car */
                 *menuState = 100;  /* Transition to game */
                 break;
         }
@@ -16349,9 +16349,9 @@ void mempak_operation(s32 operation) {
                 slotData[0] = 0x52555348;  /* "RUSH" */
 
                 /* Copy save data to slot buffer */
-                slotData[1] = D_80159200;  /* Progress */
-                slotData[2] = D_80159204;  /* Unlocks */
-                slotData[3] = D_80159208;  /* Best times pointer */
+                slotData[1] = buttons_state;  /* Progress */
+                slotData[2] = repeat_counter;  /* Unlocks */
+                slotData[3] = input_repeat_delay;  /* Best times pointer */
 
                 /* Write to controller pak */
                 result = osPfsWriteFile(pfs, slot, 0, 0x100, (u8 *)slotData);
@@ -16373,8 +16373,8 @@ void mempak_operation(s32 operation) {
                 result = osPfsReadFile(pfs, slot, 0, 0x100, (u8 *)slotData);
                 if (result == 0 && slotData[0] == 0x52555348) {
                     /* Restore game state */
-                    D_80159200 = slotData[1];
-                    D_80159204 = slotData[2];
+                    buttons_state = slotData[1];
+                    repeat_counter = slotData[2];
                     *operationResult = 1;
                     sound_start(0x04, 0, NULL, 0);
                 } else {
@@ -16435,7 +16435,7 @@ void profile_manage(void *profile) {
 
     /* Initialize new profile */
     if (*profileId == 0) {
-        *profileId = D_80159A20;  /* Use frame counter as ID */
+        *profileId = random_seed2;  /* Use frame counter as ID */
 
         /* Default name "PLAYER" */
         playerName[0] = 'P';
@@ -17108,8 +17108,8 @@ void weather_update(void *weather) {
     }
 
     /* Update wind direction slightly */
-    windDir[0] += (((D_80159A20 & 0xFF) / 255.0f) - 0.5f) * 0.01f;
-    windDir[2] += (((D_80159A20 >> 8 & 0xFF) / 255.0f) - 0.5f) * 0.01f;
+    windDir[0] += (((random_seed2 & 0xFF) / 255.0f) - 0.5f) * 0.01f;
+    windDir[2] += (((random_seed2 >> 8 & 0xFF) / 255.0f) - 0.5f) * 0.01f;
 
     /* Normalize wind direction */
     f32 windLen = sqrtf(windDir[0] * windDir[0] + windDir[2] * windDir[2]);
@@ -17166,7 +17166,7 @@ void rain_render(f32 intensity) {
     if (numDrops > 200) numDrops = 200;
 
     /* Initialize random seed from frame counter */
-    seed = D_80159A20;
+    seed = random_seed2;
 
     for (i = 0; i < numDrops; i++) {
         /* Generate pseudo-random position around camera */
@@ -17303,7 +17303,7 @@ void explosion_spawn(f32 *pos, f32 size) {
     if (numParticles < 5) numParticles = 5;
     if (numParticles > 50) numParticles = 50;
 
-    seed = D_80159A20;
+    seed = random_seed2;
 
     /* Spawn explosion particles */
     for (i = 0; i < numParticles; i++) {
@@ -17387,7 +17387,7 @@ void debris_spawn(void *car, s32 debrisType) {
             numDebris = 5;
     }
 
-    seed = D_80159A20;
+    seed = random_seed2;
 
     for (i = 0; i < numDebris; i++) {
         s32 *particle = &particlePool[(*particleIndex) * 16];
@@ -17443,8 +17443,8 @@ void sparks_spawn(f32 *pos, f32 *velocity) {
     particlePool = (s32 *)0x80162000;
     particleIndex = (s32 *)0x80162100;
 
-    numSparks = 5 + (D_80159A20 & 0x7);
-    seed = D_80159A20;
+    numSparks = 5 + (random_seed2 & 0x7);
+    seed = random_seed2;
 
     if (velocity != NULL) {
         baseVelX = velocity[0];
@@ -17502,7 +17502,7 @@ void smoke_puff_spawn(f32 *pos, f32 size) {
 
     particlePool = (s32 *)0x80162000;
     particleIndex = (s32 *)0x80162100;
-    seed = D_80159A20;
+    seed = random_seed2;
 
     particle = &particlePool[(*particleIndex) * 16];
 
@@ -17556,7 +17556,7 @@ void dust_cloud_spawn(f32 *pos, f32 *velocity, f32 size) {
     if (numParticles < 3) numParticles = 3;
     if (numParticles > 20) numParticles = 20;
 
-    seed = D_80159A20;
+    seed = random_seed2;
 
     if (velocity != NULL) {
         baseVelX = velocity[0] * 0.3f;
@@ -17624,7 +17624,7 @@ void water_splash_spawn(f32 *pos, f32 size) {
     if (numParticles < 5) numParticles = 5;
     if (numParticles > 30) numParticles = 30;
 
-    seed = D_80159A20;
+    seed = random_seed2;
 
     for (i = 0; i < numParticles; i++) {
         s32 *particle = &particlePool[(*particleIndex) * 16];
@@ -17931,7 +17931,7 @@ void horizon_render(void *camera) {
     draw_ui_element(0, (s32)horizonY, 320, 0, 255, 200);  /* Haze sprite */
 
     /* Render scrolling clouds */
-    cloudOffset = (f32)(D_80159A20 % 6400) / 20.0f;
+    cloudOffset = (f32)(random_seed2 % 6400) / 20.0f;
 
     for (i = 0; i < 5; i++) {
         f32 cloudX = (f32)(i * 80) - cloudOffset;
@@ -18152,7 +18152,7 @@ void crowd_render(void *crowd) {
     if (numSpectators > 64) numSpectators = 64;
 
     /* Animation offset based on frame */
-    animOffset = (D_80159A20 >> 3) % 4;
+    animOffset = (random_seed2 >> 3) % 4;
 
     for (i = 0; i < numSpectators; i++) {
         f32 *pos = &positions[i * 3];
@@ -18997,7 +18997,7 @@ void net_state_sync(void *state) {
 
     /* Serialize each player's car state */
     for (i = 0; i < *numPlayers && i < 4; i++) {
-        playerCar = (void *)(D_80152818 + i * 0x400);
+        playerCar = (void *)(game_car + i * 0x400);
 
         carPos = (f32 *)((u8 *)playerCar + 0x24);
         carVel = (f32 *)((u8 *)playerCar + 0x34);
@@ -19110,7 +19110,7 @@ void net_player_join(s32 playerSlot) {
     }
 
     /* Get player car slot */
-    playerCar = (void *)(D_80152818 + playerSlot * 0x400);
+    playerCar = (void *)(game_car + playerSlot * 0x400);
     playerActive = (s32 *)((u8 *)playerCar + 0x00);
     playerController = (s32 *)((u8 *)playerCar + 0x04);
     carPos = (f32 *)((u8 *)playerCar + 0x24);
@@ -19152,7 +19152,7 @@ void net_player_leave(s32 playerSlot) {
     }
 
     /* Get player car slot */
-    playerCar = (void *)(D_80152818 + playerSlot * 0x400);
+    playerCar = (void *)(game_car + playerSlot * 0x400);
     playerActive = (s32 *)((u8 *)playerCar + 0x00);
 
     /* Mark player as inactive */
@@ -19473,7 +19473,7 @@ void ghost_record_frame(void *ghost) {
     }
 
     /* Get player car */
-    playerCar = (void *)D_80152818;
+    playerCar = (void *)game_car;
     if (playerCar == NULL) {
         return;
     }
@@ -19549,7 +19549,7 @@ void ghost_playback(void *ghost) {
     frame1 = frame0 + 1;
 
     /* Calculate interpolation factor (sub-frame position) */
-    frameCount = (s32 *)D_80159A20;
+    frameCount = (s32 *)random_seed2;
     t = (f32)((*frameCount) & 1) * 0.5f;
 
     /* Frame data layout: 9 floats per frame (pos[3], rot[3], vel[3]) */
@@ -20522,9 +20522,9 @@ void attract_camera_update(void *camera) {
     camTarget = (f32 *)((u8 *)camera + 12);
     camAngle = (f32 *)((u8 *)camera + 24);
 
-    camMode = D_8015A500;
+    camMode = cam_mode;
     camTimer = D_8015A504;
-    trackId = D_80159A08;
+    trackId = trackno;
 
     camTimer++;
 
@@ -20578,7 +20578,7 @@ void attract_camera_update(void *camera) {
 
         case 2:  /* Follow car (if any) */
             {
-                void *car = D_8015A520;
+                void *car = cam_target_car;
                 if (car != NULL) {
                     f32 *carPos = (f32 *)((u8 *)car + 0x10);
                     f32 *carDir = (f32 *)((u8 *)car + 0x40);
@@ -20597,13 +20597,13 @@ void attract_camera_update(void *camera) {
 
         case 3:  /* Static scenic view */
             {
-                s32 viewIdx = D_8015A524;
+                s32 viewIdx = achievement_queue;
                 track_get_direction(NULL, NULL, 0);
             }
             break;
     }
 
-    D_8015A500 = camMode;
+    cam_mode = camMode;
     D_8015A504 = camTimer;
 }
 
@@ -20624,11 +20624,11 @@ void demo_playback(void *demo) {
     demoLength = *(s32 *)demoData;  /* First 4 bytes = length */
 
     /* Check for user input to skip */
-    input = (s32)(long)D_80158100[0] & 0xFFFF;
+    input = (s32)(long)sound_handles[0] & 0xFFFF;
     if (input & 0x9000) {  /* START or A */
         D_8015A530 = 0;
         D_8015A534 = 0;  /* Demo ended */
-        D_801146EC = 1;  /* Go to menu */
+        gstate_byte = 1;  /* Go to menu */
         return;
     }
 
@@ -20640,13 +20640,13 @@ void demo_playback(void *demo) {
         D_8015A538++;
         if (D_8015A538 >= 3) {
             D_8015A538 = 0;
-            D_801146EC = 0;  /* Back to ATTRACT/title */
+            gstate_byte = 0;  /* Back to ATTRACT/title */
         }
         return;
     }
 
     /* Get player car */
-    car = D_8015A520;
+    car = cam_target_car;
     if (car == NULL) {
         return;
     }
@@ -20672,7 +20672,7 @@ void demo_playback(void *demo) {
 
     /* Display "DEMO" text */
     {
-        u32 flash = ((D_80142AFC / 30) & 1) ? 0xFFFFFFFF : 0xB4B4B4FF;
+        u32 flash = ((frame_counter / 30) & 1) ? 0xFFFFFFFF : 0xB4B4B4FF;
         draw_text(140, 20, "DEMO", flash);
         draw_text(105, 220, "PRESS START", 0x969696FF);
     }
@@ -20693,12 +20693,12 @@ void title_screen(void) {
     animFrame = D_8015A410;
 
     /* Handle input */
-    input = (s32)(long)D_80158100[0] & 0xFFFF;
+    input = (s32)(long)sound_handles[0] & 0xFFFF;
 
     /* Any button press goes to main menu */
     if (input & 0x9000) {  /* START or A */
         sound_play_menu(10);
-        D_801146EC = 1;  /* TRKSEL / main menu state */
+        gstate_byte = 1;  /* TRKSEL / main menu state */
         D_8015A410 = 0;
         return;
     }
@@ -20707,7 +20707,7 @@ void title_screen(void) {
     animFrame++;
     if (animFrame > 600) {
         /* After 10 seconds, go to attract mode */
-        D_801146EC = 0;  /* ATTRACT */
+        gstate_byte = 0;  /* ATTRACT */
         D_8015A410 = 0;
         return;
     }
@@ -20799,7 +20799,7 @@ void credits_display(void) {
     scrollY = D_8015A400;
 
     /* Handle input */
-    input = (s32)(long)D_80158100[0] & 0xFFFF;
+    input = (s32)(long)sound_handles[0] & 0xFFFF;
 
     /* Speed up with A button */
     if (input & 0x8000) {
@@ -20899,7 +20899,7 @@ void loading_screen(f32 progress) {
     draw_ui_element(1, 110, 30, 100, 50, 255);
 
     /* "LOADING" text with animated dots */
-    animFrame = D_80142AFC & 0x1F;
+    animFrame = frame_counter & 0x1F;
     dotCount = (animFrame / 8) + 1;
     if (dotCount > 3) dotCount = 3;
 
@@ -20940,12 +20940,12 @@ void loading_screen(f32 progress) {
     }
 
     /* Loading tip */
-    tipIndex = (D_80142AFC / 180) % 8;  /* Change tip every 3 seconds */
+    tipIndex = (frame_counter / 180) % 8;  /* Change tip every 3 seconds */
     draw_text(60, 205, "TIP:", 0xFFFFFF96);
     draw_text(loadingTips[tipIndex], 95, 205, 180);
 
     /* Track name being loaded */
-    if (D_80159A08 >= 0 && D_80159A08 < 12) {
+    if (trackno >= 0 && trackno < 12) {
         char *trackNames[12];
         trackNames[0] = "MARINA";
         trackNames[1] = "HAIGHT";
@@ -20960,7 +20960,7 @@ void loading_screen(f32 progress) {
         trackNames[10] = "GOLDEN GATE";
         trackNames[11] = "ALCATRAZ";
 
-        draw_text(trackNames[D_80159A08], 120, 70, 200);
+        draw_text(trackNames[trackno], 120, 70, 200);
     }
 }
 
@@ -20987,9 +20987,9 @@ void pause_menu(void *pause) {
     numItems = 5;
 
     selectedOption = D_80159F40;
-    confirmState = D_80159F44;
+    confirmState = confirm_state;
 
-    input = controller_get_input(D_80158100);
+    input = controller_get_input(sound_handles);
 
     if (confirmState == 0) {
         /* Normal pause menu */
@@ -21019,7 +21019,7 @@ void pause_menu(void *pause) {
                 confirmState = 2;
             }
             sound_play_menu(10);
-        } else if (input == 2 || ((s32)(long)D_80158100[0] & 0x1000)) {  /* B or START */
+        } else if (input == 2 || ((s32)(long)sound_handles[0] & 0x1000)) {  /* B or START */
             /* Resume */
             pause_toggle(0);
 }
@@ -21027,8 +21027,8 @@ void pause_menu(void *pause) {
         /* Restart confirmation */
         if (input == 1) {  /* A - yes */
             /* Restart race */
-            D_80159F44 = 0;
-            D_801146EC = 7;  /* PREPLAY */
+            confirm_state = 0;
+            gstate_byte = 7;  /* PREPLAY */
             pause_toggle(0);
             sound_play_menu(10);
         } else if (input == 2) {  /* B - no */
@@ -21038,8 +21038,8 @@ void pause_menu(void *pause) {
     } else if (confirmState == 2) {
         /* Quit confirmation */
         if (input == 1) {  /* A - yes */
-            D_80159F44 = 0;
-            D_801146EC = 1;  /* TRKSEL or menu */
+            confirm_state = 0;
+            gstate_byte = 1;  /* TRKSEL or menu */
             pause_toggle(0);
             sound_play_menu(10);
         } else if (input == 2) {  /* B - no */
@@ -21082,7 +21082,7 @@ void pause_menu(void *pause) {
     }
 
     D_80159F40 = selectedOption;
-    D_80159F44 = confirmState;
+    confirm_state = confirmState;
 }
 
 /*
@@ -21099,11 +21099,11 @@ void pause_toggle(s32 pause) {
     if (pause && !prevPause) {
         /* Entering pause */
         D_80159F40 = 0;  /* Reset menu selection */
-        D_80159F44 = 0;  /* Reset confirm state */
+        confirm_state = 0;  /* Reset confirm state */
         D_80159F48 = 0;  /* Reset submenu state */
 
         /* Pause game timer */
-        D_80159F54 = D_80142AFC;  /* Store pause start time */
+        D_80159F54 = frame_counter;  /* Store pause start time */
 
         /* Stop audio */
         sound_start(0, 0, NULL, 0);  /* Pause music */
@@ -21117,8 +21117,8 @@ void pause_toggle(s32 pause) {
         s32 pauseDuration;
 
         /* Calculate pause duration and adjust game timer */
-        pauseDuration = D_80142AFC - D_80159F54;
-        D_8015A000 = D_8015A000 + pauseDuration;  /* Add to pause accumulator */
+        pauseDuration = frame_counter - D_80159F54;
+        pause_accumulator = pause_accumulator + pauseDuration;  /* Add to pause accumulator */
 
         /* Resume audio */
         sound_start(1, 0, NULL, 0);  /* Resume music */
@@ -21144,20 +21144,20 @@ void game_timer_update(void) {
         return;
     }
 
-    currentFrame = D_80142AFC;
+    currentFrame = frame_counter;
 
     /* Calculate race time (excluding pause time) */
-    elapsedTime = currentFrame - D_8015A004;  /* Start time */
-    elapsedTime = elapsedTime - D_8015A000;   /* Subtract pause time */
+    elapsedTime = currentFrame - race_start_frame;  /* Start time */
+    elapsedTime = elapsedTime - pause_accumulator;   /* Subtract pause time */
 
     /* Convert frames to hundredths (60fps) */
     raceTime = (elapsedTime * 100) / 60;
 
     /* Store current race time */
-    D_8015A008 = raceTime;
+    current_race_time = raceTime;
 
     /* Update lap time */
-    D_8015A00C = raceTime - D_8015A010;  /* Current lap = race - last lap total */
+    current_lap_time = raceTime - D_8015A010;  /* Current lap = race - last lap total */
 
     /* Update split times for display */
     for (i = 0; i < 4; i++) {
@@ -21179,8 +21179,8 @@ void game_timer_update(void) {
     }
 
     /* Best lap tracking */
-    if (D_8015A00C > 0 && D_8015A00C < D_8015A044) {
-        D_8015A044 = D_8015A00C;  /* New best lap */
+    if (current_lap_time > 0 && current_lap_time < D_8015A044) {
+        D_8015A044 = current_lap_time;  /* New best lap */
     }
 }
 
@@ -21195,7 +21195,7 @@ void bonus_mode_update(void *bonus) {
     s32 i;
     s32 trackId;
 
-    trackId = D_80159A08;
+    trackId = trackno;
     coinCount = 0;
     totalCoins = D_8015A050[trackId];  /* Total coins on track */
 
@@ -21267,7 +21267,7 @@ s32 unlock_check(s32 unlockId) {
     }
 
     /* Check unlock bits from save data */
-    unlockWord = D_8015A100[unlockId / 32];
+    unlockWord = unlock_bits[unlockId / 32];
     bitIndex = unlockId % 32;
 
     if (unlockWord & (1 << bitIndex)) {
@@ -21295,41 +21295,41 @@ void unlock_trigger(s32 unlockId) {
     }
 
     /* Set unlock bit */
-    unlockWord = &D_8015A100[unlockId / 32];
+    unlockWord = &unlock_bits[unlockId / 32];
     bitIndex = unlockId % 32;
     *unlockWord = *unlockWord | (1 << bitIndex);
 
     /* Show unlock notification */
-    D_8015A110 = unlockId;
-    D_8015A114 = 300;  /* Show for 5 seconds */
+    game_unlock_id = unlockId;
+    unlock_display_timer = 300;  /* Show for 5 seconds */
 
     /* Play unlock sound */
     sound_play_menu(25);
 
     /* Queue save */
-    D_8015A118 = 1;
+    save_queue_flag = 1;
 
     /* Set unlock message based on ID */
     if (unlockId >= 0 && unlockId < 12) {
         /* Track unlock */
-        D_8015A11C = 0;  /* "NEW TRACK UNLOCKED!" */
+        unlock_message_id = 0;  /* "NEW TRACK UNLOCKED!" */
     } else if (unlockId >= 12 && unlockId < 20) {
         /* Car unlock */
-        D_8015A11C = 1;  /* "NEW CAR UNLOCKED!" */
+        unlock_message_id = 1;  /* "NEW CAR UNLOCKED!" */
     } else if (unlockId >= 20 && unlockId < 32) {
         /* Bonus unlock */
-        D_8015A11C = 2;  /* "BONUS UNLOCKED!" */
+        unlock_message_id = 2;  /* "BONUS UNLOCKED!" */
     } else if (unlockId >= 32 && unlockId < 40) {
         /* Arena unlock */
-        D_8015A11C = 3;  /* "NEW ARENA UNLOCKED!" */
+        unlock_message_id = 3;  /* "NEW ARENA UNLOCKED!" */
     } else if (unlockId >= 40 && unlockId < 48) {
         /* Paint job */
-        D_8015A11C = 4;  /* "NEW PAINT UNLOCKED!" */
+        unlock_message_id = 4;  /* "NEW PAINT UNLOCKED!" */
     } else if (unlockId >= 48 && unlockId < 56) {
         /* Cheat */
-        D_8015A11C = 5;  /* "CHEAT UNLOCKED!" */
+        unlock_message_id = 5;  /* "CHEAT UNLOCKED!" */
     } else {
-        D_8015A11C = 6;  /* "SECRET UNLOCKED!" */
+        unlock_message_id = 6;  /* "SECRET UNLOCKED!" */
     }
 }
 
@@ -21345,10 +21345,10 @@ void progress_save(void) {
     u16 checksum;
 
     /* Check if save needed */
-    if (D_8015A118 == 0) {
+    if (save_queue_flag == 0) {
         return;
     }
-    D_8015A118 = 0;
+    save_queue_flag = 0;
 
     /* Build save data block */
     offset = 0;
@@ -21365,7 +21365,7 @@ void progress_save(void) {
 
     /* Unlock bits (8 bytes = 64 unlocks) */
     for (i = 0; i < 2; i++) {
-        u32 unlockWord = D_8015A100[i];
+        u32 unlockWord = unlock_bits[i];
         saveData[offset++] = (unlockWord >> 24) & 0xFF;
         saveData[offset++] = (unlockWord >> 16) & 0xFF;
         saveData[offset++] = (unlockWord >> 8) & 0xFF;
@@ -21374,7 +21374,7 @@ void progress_save(void) {
 
     /* Best times (12 tracks * 4 bytes = 48 bytes) */
     for (i = 0; i < 12; i++) {
-        s32 time = D_80159A10[i];
+        s32 time = best_race_times[i];
         saveData[offset++] = (time >> 24) & 0xFF;
         saveData[offset++] = (time >> 16) & 0xFF;
         saveData[offset++] = (time >> 8) & 0xFF;
@@ -21383,7 +21383,7 @@ void progress_save(void) {
 
     /* Best laps (12 tracks * 4 bytes = 48 bytes) */
     for (i = 0; i < 12; i++) {
-        s32 time = D_80159D10[i];
+        s32 time = best_lap_times[i];
         saveData[offset++] = (time >> 24) & 0xFF;
         saveData[offset++] = (time >> 16) & 0xFF;
         saveData[offset++] = (time >> 8) & 0xFF;
@@ -21391,12 +21391,12 @@ void progress_save(void) {
     }
 
     /* Options (8 bytes) */
-    saveData[offset++] = D_80159300;  /* Music volume */
-    saveData[offset++] = D_80159304;  /* SFX volume */
-    saveData[offset++] = D_80159308;  /* Controller config */
-    saveData[offset++] = D_8015930C;  /* Vibration */
-    saveData[offset++] = D_80159310;  /* Display mode */
-    saveData[offset++] = D_80159314;  /* Misc flags */
+    saveData[offset++] = sfx_volume;  /* Music volume */
+    saveData[offset++] = music_volume;  /* SFX volume */
+    saveData[offset++] = controller_config;  /* Controller config */
+    saveData[offset++] = vibration_setting;  /* Vibration */
+    saveData[offset++] = display_mode_setting;  /* Display mode */
+    saveData[offset++] = misc_flags;  /* Misc flags */
     saveData[offset++] = 0;
     saveData[offset++] = 0;
 
@@ -21423,16 +21423,16 @@ void race_init(void *race) {
     s32 trackId;
     s32 numLaps;
 
-    trackId = D_80159A08;
-    numLaps = D_80159A0C;
-    numPlayers = D_80159C18;
+    trackId = trackno;
+    numLaps = car_selection;
+    numPlayers = mp_player_count;
     if (numPlayers < 1) numPlayers = 1;
 
     /* Reset timer state */
-    D_8015A000 = 0;  /* Pause accumulator */
-    D_8015A004 = D_80142AFC;  /* Race start frame */
-    D_8015A008 = 0;  /* Race time */
-    D_8015A00C = 0;  /* Lap time */
+    pause_accumulator = 0;  /* Pause accumulator */
+    race_start_frame = frame_counter;  /* Race start frame */
+    current_race_time = 0;  /* Race time */
+    current_lap_time = 0;  /* Lap time */
     D_8015A010 = 0;  /* Last lap total */
     D_8015A040 = 0;  /* Time expired flag */
     D_8015A044 = 0x7FFFFFFF;  /* Best lap (max) */
@@ -21445,12 +21445,12 @@ void race_init(void *race) {
 
     /* Initialize player race state */
     for (i = 0; i < 4; i++) {
-        D_8015A200[i] = 0;  /* Position */
-        D_8015A210[i] = 0;  /* Lap count */
-        D_8015A220[i] = 0;  /* Checkpoint */
-        D_8015A230[i] = 0;  /* Race time */
-        D_8015A240[i] = 0;  /* Finished flag */
-        D_8015A250[i] = 0;  /* DNF flag */
+        player_status[i] = 0;  /* Position */
+        player_lap_count[i] = 0;  /* Lap count */
+        player_checkpoint[i] = 0;  /* Checkpoint */
+        player_race_time[i] = 0;  /* Race time */
+        player_finished_flag[i] = 0;  /* Finished flag */
+        player_entries[i] = 0;  /* DNF flag */
         D_8015A260[i] = 0;  /* Respawn count */
     }
 
@@ -21482,7 +21482,7 @@ void race_init(void *race) {
     D_8015A298 = numLaps;
 
     /* Initialize stunt score if stunt mode */
-    if (D_80159A04 == 2) {  /* Stunt mode */
+    if (game_mode == 2) {  /* Stunt mode */
         for (i = 0; i < 4; i++) {
             D_8015A2A0[i] = 0;  /* Score */
             D_8015A2B0[i] = 0;  /* Combo */
@@ -21491,7 +21491,7 @@ void race_init(void *race) {
     }
 
     /* Initialize battle mode if battle */
-    if (D_80159A04 == 3) {  /* Battle mode */
+    if (game_mode == 3) {  /* Battle mode */
         for (i = 0; i < 4; i++) {
             D_8015A2D0[i] = 0;  /* Frags */
             D_8015A2E0[i] = 0;  /* Deaths */
@@ -21500,7 +21500,7 @@ void race_init(void *race) {
     }
 
     /* Reset ghost recording if time attack */
-    if (D_80159A14 == 0 && D_80159A04 == 1) {  /* Time attack, not playing ghost */
+    if (D_80159A14 == 0 && game_mode == 1) {  /* Time attack, not playing ghost */
         D_8015A300 = 0;  /* Ghost frame count */
         D_8015A304 = 1;  /* Recording flag */
     }
@@ -21531,62 +21531,62 @@ void race_cleanup(void) {
     s32 bestLap;
     s32 numPlayers;
 
-    trackId = D_80159A08;
-    raceTime = D_8015A008;
+    trackId = trackno;
+    raceTime = current_race_time;
     bestLap = D_8015A044;
-    numPlayers = D_80159C18;
+    numPlayers = mp_player_count;
     if (numPlayers < 1) numPlayers = 1;
 
     /* Stop music */
     sound_start(2, 0, NULL, 0);  /* Stop */
 
     /* Save ghost data if recording */
-    if (D_8015A304 && D_8015A240[0]) {
+    if (D_8015A304 && player_finished_flag[0]) {
         /* Player finished, save ghost */
         wind_sound(trackId, D_8015A300);
         D_8015A304 = 0;
     }
 
     /* Check for new records */
-    if (D_80159A04 == 0 || D_80159A04 == 1) {
+    if (game_mode == 0 || game_mode == 1) {
         /* Circuit or Time Attack */
 
         /* Check best race time */
-        if (D_8015A240[0] && raceTime > 0) {
-            if (D_80159A10[trackId] == 0 || raceTime < D_80159A10[trackId]) {
-                D_80159A10[trackId] = raceTime;
-                D_8015A118 = 1;  /* Queue save */
+        if (player_finished_flag[0] && raceTime > 0) {
+            if (best_race_times[trackId] == 0 || raceTime < best_race_times[trackId]) {
+                best_race_times[trackId] = raceTime;
+                save_queue_flag = 1;  /* Queue save */
                 D_8015A310 = 1;  /* New record flag */
             }
         }
 
         /* Check best lap */
         if (bestLap < 0x7FFFFFFF) {
-            if (D_80159D10[trackId] == 0 || bestLap < D_80159D10[trackId]) {
-                D_80159D10[trackId] = bestLap;
-                D_8015A118 = 1;  /* Queue save */
+            if (best_lap_times[trackId] == 0 || bestLap < best_lap_times[trackId]) {
+                best_lap_times[trackId] = bestLap;
+                save_queue_flag = 1;  /* Queue save */
                 D_8015A314 = 1;  /* New lap record flag */
             }
         }
     }
 
     /* Check for stunt high score */
-    if (D_80159A04 == 2) {
+    if (game_mode == 2) {
         s32 score = D_8015A2A0[0];
-        if (score > D_80159D40[trackId * 5]) {
+        if (score > track_scores[trackId * 5]) {
             /* New high score - shift others down */
             for (i = 4; i > 0; i--) {
-                D_80159D40[trackId * 5 + i] = D_80159D40[trackId * 5 + i - 1];
+                track_scores[trackId * 5 + i] = track_scores[trackId * 5 + i - 1];
             }
-            D_80159D40[trackId * 5] = score;
-            D_8015A118 = 1;
+            track_scores[trackId * 5] = score;
+            save_queue_flag = 1;
             D_8015A318 = 1;  /* New stunt record flag */
         }
     }
 
     /* Check unlock conditions */
     /* Finishing first on a track unlocks next track */
-    if (D_8015A200[0] == 1 && D_8015A240[0]) {
+    if (player_status[0] == 1 && player_finished_flag[0]) {
         s32 nextTrack = trackId + 1;
         if (nextTrack < 12 && !unlock_check(nextTrack)) {
             unlock_trigger(nextTrack);
@@ -21603,7 +21603,7 @@ void race_cleanup(void) {
 
     /* Update statistics */
     D_8015A330++;  /* Total races */
-    if (D_8015A200[0] == 1 && D_8015A240[0]) {
+    if (player_status[0] == 1 && player_finished_flag[0]) {
         D_8015A334++;  /* Wins */
     }
     D_8015A338 = D_8015A338 + D_8015A33C;  /* Add distance traveled */
@@ -23158,7 +23158,7 @@ void collision_sound_play(void *car, f32 intensity) {
     lastBumpTime = (s32 *)((u8 *)car + 0x230);
 
     /* Debounce - don't play too frequently */
-    /* Assume frame counter at D_80142AFC */
+    /* Assume frame counter at frame_counter */
     if (*lastBumpTime > 0) {
         (*lastBumpTime)--;
         return;
@@ -23310,10 +23310,10 @@ void ambient_sound_set(s32 ambientId, f32 volume) {
 
     /* Stop if volume is zero */
     if (intVolume == 0) {
-        if (D_80158100[ambientId] != 0) {
-            sound_stop(D_80158100[ambientId], 0.0f);
-            D_80158100[ambientId] = 0;
-            D_80158120[ambientId] = 0;
+        if (sound_handles[ambientId] != 0) {
+            sound_stop(sound_handles[ambientId], 0.0f);
+            sound_handles[ambientId] = 0;
+            sound_volumes[ambientId] = 0;
         }
         return;
     }
@@ -23322,14 +23322,14 @@ void ambient_sound_set(s32 ambientId, f32 volume) {
     soundId = 60 + ambientId;
 
     /* Start ambient if needed */
-    if (D_80158100[ambientId] == 0) {
-        D_80158100[ambientId] = gfx_set_mode(soundId, 0x8000);  /* Loop */
+    if (sound_handles[ambientId] == 0) {
+        sound_handles[ambientId] = gfx_set_mode(soundId, 0x8000);  /* Loop */
     }
 
     /* Update volume */
-    if (D_80158100[ambientId] != 0 && intVolume != D_80158120[ambientId]) {
-        gfx_set_color(D_80158100[ambientId], intVolume);
-        D_80158120[ambientId] = intVolume;
+    if (sound_handles[ambientId] != 0 && intVolume != sound_volumes[ambientId]) {
+        gfx_set_color(sound_handles[ambientId], intVolume);
+        sound_volumes[ambientId] = intVolume;
     }
 }
 
@@ -23354,7 +23354,7 @@ void ambient_sound_set(s32 ambientId, f32 volume) {
  *
  * Reference: Arcade announcer_sound[] and kill_announcer[] in game.c
  */
-extern s32 D_80158140;          /* Current voice handle */
+extern s32 voice_handle;          /* Current voice handle */
 extern s32 D_80158144;          /* Voice playing flag */
 extern s32 D_80158148;          /* Voice queue */
 extern s32 D_8015814C;          /* Voice priority */
@@ -23417,25 +23417,25 @@ void voice_play(s32 voiceId) {
         }
 
         /* Stop current voice (fade out quickly) */
-        if (D_80158140 != 0) {
-            sound_stop(D_80158140, 0.0f);
-            D_80158140 = 0;
+        if (voice_handle != 0) {
+            sound_stop(voice_handle, 0.0f);
+            voice_handle = 0;
         }
     }
 
     /* Start new voice */
-    D_80158140 = gfx_set_mode(soundId, 0x0000);  /* One-shot, no loop */
+    voice_handle = gfx_set_mode(soundId, 0x0000);  /* One-shot, no loop */
 
-    if (D_80158140 != 0) {
+    if (voice_handle != 0) {
         D_80158144 = 1;
         D_8015814C = priority;
         D_80158150 = 0;
 
         /* Set full volume for voices */
-        gfx_set_color(D_80158140, 127);
+        gfx_set_color(voice_handle, 127);
 
         /* Center pitch */
-        gfx_set_alpha(D_80158140, 0x1000);
+        gfx_set_alpha(voice_handle, 0x1000);
     }
 }
 
@@ -23449,9 +23449,9 @@ void voice_play(s32 voiceId) {
  */
 void voice_stop(void) {
     /* Stop current voice */
-    if (D_80158140 != 0) {
-        sound_stop(D_80158140, 0.0f);
-        D_80158140 = 0;
+    if (voice_handle != 0) {
+        sound_stop(voice_handle, 0.0f);
+        voice_handle = 0;
     }
 
     /* Clear state */
@@ -23660,7 +23660,7 @@ void audio_pause(s32 pause) {
  */
 extern s32 D_80158228;          /* Current duck priority */
 extern f32 D_8015822C;          /* Duck amount (0-1) */
-extern f32 D_80158244[5];       /* Duck current values */
+extern f32 audio_duck_current[5];       /* Duck current values */
 extern s32 D_80158258;          /* Duck timer */
 
 void audio_ducking(s32 priority) {
@@ -23703,30 +23703,30 @@ void audio_ducking(s32 priority) {
     /* Set duck targets per bus */
     /* Bus 0 = Music */
     if (priority >= 3) {
-        D_80158230[0] = 1.0f - (duckAmount * 0.6f);  /* Music ducks 60% */
+        audio_duck_targets[0] = 1.0f - (duckAmount * 0.6f);  /* Music ducks 60% */
     } else {
-        D_80158230[0] = 1.0f;
+        audio_duck_targets[0] = 1.0f;
     }
 
     /* Bus 1 = SFX (engine, tire, collision) */
     if (priority >= 2) {
-        D_80158230[1] = 1.0f - (duckAmount * 0.4f);  /* SFX duck 40% */
+        audio_duck_targets[1] = 1.0f - (duckAmount * 0.4f);  /* SFX duck 40% */
     } else {
-        D_80158230[1] = 1.0f;
+        audio_duck_targets[1] = 1.0f;
     }
 
     /* Bus 2 = Voice - never ducks */
-    D_80158230[2] = 1.0f;
+    audio_duck_targets[2] = 1.0f;
 
     /* Bus 3 = Ambient */
     if (priority >= 1) {
-        D_80158230[3] = 1.0f - (duckAmount * 0.8f);  /* Ambient ducks 80% */
+        audio_duck_targets[3] = 1.0f - (duckAmount * 0.8f);  /* Ambient ducks 80% */
     } else {
-        D_80158230[3] = 1.0f;
+        audio_duck_targets[3] = 1.0f;
     }
 
     /* Bus 4 = UI */
-    D_80158230[4] = 1.0f;
+    audio_duck_targets[4] = 1.0f;
 
     /* Smooth transitions - attack fast, release slow */
     attackRate = 0.2f;   /* ~5 frames to duck */
@@ -23734,19 +23734,19 @@ void audio_ducking(s32 priority) {
 
     /* Update current values toward targets */
     for (i = 0; i < 5; i++) {
-        targetLevel = D_80158230[i];
+        targetLevel = audio_duck_targets[i];
 
-        if (D_80158244[i] > targetLevel) {
+        if (audio_duck_current[i] > targetLevel) {
             /* Ducking - fast attack */
-            D_80158244[i] -= attackRate;
-            if (D_80158244[i] < targetLevel) {
-                D_80158244[i] = targetLevel;
+            audio_duck_current[i] -= attackRate;
+            if (audio_duck_current[i] < targetLevel) {
+                audio_duck_current[i] = targetLevel;
             }
-        } else if (D_80158244[i] < targetLevel) {
+        } else if (audio_duck_current[i] < targetLevel) {
             /* Releasing - slow release */
-            D_80158244[i] += releaseRate;
-            if (D_80158244[i] > targetLevel) {
-                D_80158244[i] = targetLevel;
+            audio_duck_current[i] += releaseRate;
+            if (audio_duck_current[i] > targetLevel) {
+                audio_duck_current[i] = targetLevel;
             }
         }
 
@@ -25325,9 +25325,9 @@ void font_load(s32 fontId) {
     }
 
     /* DMA font texture data (4KB per font) */
-    osPiStartDma(&D_80020000, OS_MESG_PRI_NORMAL, OS_READ,
-                 fontRomAddr, fontDest, fontSize, &D_80020010);
-    osRecvMesg(&D_80020010, NULL, OS_MESG_BLOCK);
+    osPiStartDma(&dma_io_msg, OS_MESG_PRI_NORMAL, OS_READ,
+                 fontRomAddr, fontDest, fontSize, &dma_queue);
+    osRecvMesg(&dma_queue, NULL, OS_MESG_BLOCK);
 
     /* Set up default character widths */
     for (i = 0; i < 96; i++) {
@@ -26095,9 +26095,9 @@ void cutscene_play(s32 cutsceneId) {
 
         if (romAddr != 0 && size != 0) {
             *cutsceneData = (void *)0x80178000;  /* Cutscene buffer */
-            osPiStartDma(&D_80020000, OS_MESG_PRI_NORMAL, OS_READ,
-                        romAddr, *cutsceneData, size, &D_80020010);
-            osRecvMesg(&D_80020010, NULL, OS_MESG_BLOCK);
+            osPiStartDma(&dma_io_msg, OS_MESG_PRI_NORMAL, OS_READ,
+                        romAddr, *cutsceneData, size, &dma_queue);
+            osRecvMesg(&dma_queue, NULL, OS_MESG_BLOCK);
         }
     }
 
@@ -26573,7 +26573,7 @@ void timer_init(void) {
     timerCountdown = (s32 *)0x8015A10C;
 
     /* Get current frame from global counter */
-    *timerStartFrame = D_80142AFC;
+    *timerStartFrame = frame_counter;
     *timerElapsed = 0;
     *timerPaused = 0;
     *timerCountdown = 0;
@@ -26604,7 +26604,7 @@ s32 timer_get_elapsed(void) {
         return *(s32 *)0x8015A104;
     }
 
-    currentFrame = D_80142AFC;
+    currentFrame = frame_counter;
     elapsed = currentFrame - *timerStartFrame;
 
     /* Convert frames to centiseconds (assuming 60fps) */
@@ -26626,7 +26626,7 @@ void timer_reset(void) {
     timerElapsed = (s32 *)0x8015A104;
     timerPaused = (s32 *)0x8015A108;
 
-    *timerStartFrame = D_80142AFC;
+    *timerStartFrame = frame_counter;
     *timerElapsed = 0;
     *timerPaused = 0;
 }
@@ -26863,23 +26863,23 @@ void race_results_display(void) {
     char posStr[8];
     s32 y;
 
-    numPlayers = D_80159C18;
+    numPlayers = mp_player_count;
     if (numPlayers < 1) numPlayers = 1;
 
     animFrame = D_8015A420;
     animFrame++;
 
-    input = controller_get_input(D_80158100);
+    input = controller_get_input(sound_handles);
 
     /* Skip after timeout or button press */
     if (animFrame > 600 || (animFrame > 60 && (input == 1 || input == 2))) {
         D_8015A420 = 0;
         if (D_8015A310 || D_8015A314) {
             /* New record - go to name entry */
-            D_801146EC = 9;  /* HISCORE state */
+            gstate_byte = 9;  /* HISCORE state */
         } else {
             /* Back to menu or next race */
-            D_801146EC = 1;  /* TRKSEL */
+            gstate_byte = 1;  /* TRKSEL */
         }
         return;
     }
@@ -26898,10 +26898,10 @@ void race_results_display(void) {
 
     /* Display each player/racer result */
     for (i = 0; i < 8; i++) {
-        s32 position = D_8015A200[i];
-        s32 lapCount = D_8015A210[i];
-        s32 raceTime = D_8015A230[i];
-        s32 finished = D_8015A240[i];
+        s32 position = player_status[i];
+        s32 lapCount = player_lap_count[i];
+        s32 raceTime = player_race_time[i];
+        s32 finished = player_finished_flag[i];
         s32 alpha;
 
         if (position == 0) continue;  /* Not in race */
@@ -27005,9 +27005,9 @@ void award_ceremony(void) {
     s32 alpha;
     char timeStr[12];
 
-    state = D_8015A450;
-    frame = D_8015A454;
-    input = controller_get_input(D_80158100);
+    state = ui_cursor_state;
+    frame = ui_cursor_frame;
+    input = controller_get_input(sound_handles);
 
     frame++;
 
@@ -27084,15 +27084,15 @@ void award_ceremony(void) {
             draw_fill_rect(40, 30, 240, 180, (alpha << 24) | 0x101030);
 
             if (frame >= 30) {
-                D_8015A450 = 0;
-                D_8015A454 = 0;
+                ui_cursor_state = 0;
+                ui_cursor_frame = 0;
                 return;
             }
             break;
     }
 
-    D_8015A450 = state;
-    D_8015A454 = frame;
+    ui_cursor_state = state;
+    ui_cursor_frame = frame;
 }
 
 /*
@@ -27231,7 +27231,7 @@ s32 continue_prompt(void) {
         selection = 0;  /* Default: Continue */
     }
 
-    input = controller_get_input(D_80158100);
+    input = controller_get_input(sound_handles);
 
     /* Navigate selection */
     if (input == 6 || input == 7) {  /* Left/Right */
@@ -27300,12 +27300,12 @@ void game_over_screen(void) {
     animFrame = D_8015A440;
     animFrame++;
 
-    input = controller_get_input(D_80158100);
+    input = controller_get_input(sound_handles);
 
     /* Exit after timeout or button press */
     if (animFrame > 480 || (animFrame > 120 && (input == 1 || input == 2))) {
         D_8015A440 = 0;
-        D_801146EC = 0;  /* ATTRACT */
+        gstate_byte = 0;  /* ATTRACT */
         return;
     }
 
@@ -27436,11 +27436,11 @@ void name_entry_screen(u8 *name) {
     charSet[39] = '\0';  /* END marker */
     charCount = 40;
 
-    cursorPos = D_8015A450;
-    selectedChar = D_8015A454;
-    blinkPhase = D_80142AFC & 0x10;
+    cursorPos = ui_cursor_state;
+    selectedChar = ui_cursor_frame;
+    blinkPhase = frame_counter & 0x10;
 
-    input = controller_get_input(D_80158100);
+    input = controller_get_input(sound_handles);
 
     /* Navigate character selection */
     if (input == 4) {  /* Up */
@@ -27462,8 +27462,8 @@ void name_entry_screen(u8 *name) {
     } else if (input == 1) {  /* A - select */
         if (selectedChar == 39) {
             /* END selected */
-            D_8015A450 = 0;
-            D_8015A454 = 0;
+            ui_cursor_state = 0;
+            ui_cursor_frame = 0;
             D_8015A458[0] = 1;  /* Done flag */
             sound_play_menu(10);
             return;
@@ -27535,8 +27535,8 @@ void name_entry_screen(u8 *name) {
     /* Instructions */
     draw_text(80, 210, "A:SELECT  B:DELETE", 0xFFFFFF96);
 
-    D_8015A450 = cursorPos;
-    D_8015A454 = selectedChar;
+    ui_cursor_state = cursorPos;
+    ui_cursor_frame = selectedChar;
 }
 
 /*
@@ -27628,7 +27628,7 @@ void statistics_display(void *stats) {
     statData = (s32 *)stats;
     state = D_8015A4B0;
     scrollY = D_8015A4B4;
-    input = controller_get_input(D_80158100);
+    input = controller_get_input(sound_handles);
 
     /* Navigation */
     if (input == 4) {  /* Up */
@@ -27770,7 +27770,7 @@ void achievements_check(void *player) {
     }
 
     playerStats = (s32 *)player;
-    unlocked = D_8015A500;
+    unlocked = cam_mode;
 
     /* Extract stats */
     races = playerStats[0];
@@ -27839,7 +27839,7 @@ void achievements_check(void *player) {
         achievement_unlock(ACH_VETERAN);
     }
 
-    D_8015A500 = unlocked;
+    cam_mode = unlocked;
 }
 
 /*
@@ -27851,7 +27851,7 @@ void achievements_check(void *player) {
  *
  * @param achievementId ID of the unlocked achievement
  */
-extern s32 D_8015A544;      /* Notification display timer */
+extern s32 notification_timer;      /* Notification display timer */
 
 /* Achievement names */
 static const char *achievementNames[ACH_COUNT] = {
@@ -27875,13 +27875,13 @@ void achievement_unlock(s32 achievementId) {
         return;
     }
 
-    queueHead = D_8015A520;
+    queueHead = cam_target_car;
 
     /* Find empty slot in queue */
     for (i = 0; i < 8; i++) {
         s32 slot = (queueHead + i) % 8;
-        if (D_8015A524[slot] == -1) {
-            D_8015A524[slot] = achievementId;
+        if (achievement_queue[slot] == -1) {
+            achievement_queue[slot] = achievementId;
             break;
         }
     }
@@ -27890,8 +27890,8 @@ void achievement_unlock(s32 achievementId) {
     sound_play_menu(20);  /* Achievement unlock jingle */
 
     /* Start display timer if not already showing */
-    if (D_8015A544 <= 0) {
-        D_8015A544 = 180;  /* 3 seconds */
+    if (notification_timer <= 0) {
+        notification_timer = 180;  /* 3 seconds */
     }
 }
 
@@ -27912,7 +27912,7 @@ void achievement_display(s32 achievementId) {
     s32 alpha;
     const char *name;
 
-    timer = D_8015A544;
+    timer = notification_timer;
     frame = D_8015A548;
 
     if (timer <= 0) {
@@ -27956,19 +27956,19 @@ void achievement_display(s32 achievementId) {
         draw_text(95, slideY + 24, name, alpha);
     }
 
-    D_8015A544 = timer - 1;
+    notification_timer = timer - 1;
     D_8015A548 = frame;
 
     /* When done, advance queue */
     if (timer <= 1) {
-        s32 nextSlot = (D_8015A520 + 1) % 8;
-        D_8015A524[D_8015A520] = -1;
-        D_8015A520 = nextSlot;
+        s32 nextSlot = (cam_target_car + 1) % 8;
+        achievement_queue[cam_target_car] = -1;
+        cam_target_car = nextSlot;
         D_8015A548 = 0;
 
         /* Check if more in queue */
-        if (D_8015A524[nextSlot] != -1) {
-            D_8015A544 = 180;
+        if (achievement_queue[nextSlot] != -1) {
+            notification_timer = 180;
         }
     }
 }
@@ -28039,8 +28039,8 @@ void profile_stats_update(void *profile, void *raceStats) {
 
     /* No-crash achievement check */
     if (crashes == 0 && placing <= 3) {
-        if (!(D_8015A500 & (1 << ACH_NO_CRASH))) {
-            D_8015A500 |= (1 << ACH_NO_CRASH);
+        if (!(cam_mode & (1 << ACH_NO_CRASH))) {
+            cam_mode |= (1 << ACH_NO_CRASH);
             achievement_unlock(ACH_NO_CRASH);
         }
     }
@@ -28293,32 +28293,32 @@ void matchmaking(void *players) {
  *
  * @return Session ID or -1 on failure
  */
-extern s32 D_8015961C;      /* Host player index */
+extern s32 host_player_index;      /* Host player index */
 
 s32 session_host(void) {
     s32 i;
 
     /* Check if already in session */
-    if (D_80159600 != 0) {
+    if (net_host_state != 0) {
         return -1;
     }
 
     /* Initialize session */
-    D_80159600 = 1;  /* Hosting */
-    D_80159604 = D_80142AFC & 0xFFFF;  /* Session ID from frame counter */
-    D_80159608 = 1;  /* Start with host only */
-    D_8015961C = 0;  /* Host is player 0 */
+    net_host_state = 1;  /* Hosting */
+    session_id = frame_counter & 0xFFFF;  /* Session ID from frame counter */
+    net_player_count = 1;  /* Start with host only */
+    host_player_index = 0;  /* Host is player 0 */
 
     /* Initialize player slots */
-    D_8015960C[0] = 1;  /* Host active */
+    player_slots[0] = 1;  /* Host active */
     for (i = 1; i < 4; i++) {
-        D_8015960C[i] = 0;  /* Empty */
+        player_slots[i] = 0;  /* Empty */
     }
 
     /* Play session start sound */
     sound_play_menu(15);
 
-    return D_80159604;
+    return session_id;
 }
 
 /*
@@ -28335,18 +28335,18 @@ s32 session_join(s32 sessionId) {
     s32 slot = -1;
 
     /* Must have a hosted session */
-    if (D_80159600 != 1) {
+    if (net_host_state != 1) {
         return -1;
     }
 
     /* Already full */
-    if (D_80159608 >= 4) {
+    if (net_player_count >= 4) {
         return -1;
     }
 
     /* Find empty slot */
     for (i = 1; i < 4; i++) {
-        if (D_8015960C[i] == 0) {
+        if (player_slots[i] == 0) {
             slot = i;
             break;
         }
@@ -28357,8 +28357,8 @@ s32 session_join(s32 sessionId) {
     }
 
     /* Assign slot */
-    D_8015960C[slot] = 1;
-    D_80159608++;
+    player_slots[slot] = 1;
+    net_player_count++;
 
     /* Play join sound */
     sound_play_menu(16);
@@ -28375,17 +28375,17 @@ s32 session_join(s32 sessionId) {
 void session_leave(void) {
     s32 i;
 
-    if (D_80159600 == 0) {
+    if (net_host_state == 0) {
         return;
     }
 
     /* Clear session */
-    D_80159600 = 0;
-    D_80159604 = 0;
-    D_80159608 = 0;
+    net_host_state = 0;
+    session_id = 0;
+    net_player_count = 0;
 
     for (i = 0; i < 4; i++) {
-        D_8015960C[i] = 0;
+        player_slots[i] = 0;
     }
 
     /* Play leave sound */
@@ -28408,16 +28408,16 @@ void network_sync_full(void) {
     s32 *position;
     s32 *checkpoint;
 
-    if (D_80159600 == 0) {
+    if (net_host_state == 0) {
         return;
     }
 
-    numPlayers = D_80159608;
-    carBase = (u8 *)&D_80152818;
+    numPlayers = net_player_count;
+    carBase = (u8 *)&game_car;
 
     /* Sync race positions and checkpoints */
     for (i = 0; i < numPlayers; i++) {
-        if (D_8015960C[i] == 0) {
+        if (player_slots[i] == 0) {
             continue;
         }
 
@@ -28430,7 +28430,7 @@ void network_sync_full(void) {
         s32 myPosition = 1;
 
         for (j = 0; j < numPlayers; j++) {
-            if (i == j || D_8015960C[j] == 0) {
+            if (i == j || player_slots[j] == 0) {
                 continue;
             }
 
@@ -28476,23 +28476,23 @@ void disconnection_handling(s32 playerId) {
         return;
     }
 
-    if (D_8015960C[playerId] == 0) {
+    if (player_slots[playerId] == 0) {
         return;  /* Already disconnected */
     }
 
     /* Mark slot as empty */
-    D_8015960C[playerId] = 0;
-    D_80159608--;
+    player_slots[playerId] = 0;
+    net_player_count--;
 
     /* Set car to AI control or remove */
-    carBase = (u8 *)&D_80152818;
+    carBase = (u8 *)&game_car;
     *(s32 *)(carBase + playerId * 0x400 + 0x240) = 2;  /* AI_CONTROLLED */
 
     /* Show disconnect message */
     /* func_800C734C would show "PLAYER X DISCONNECTED" */
 
     /* If host disconnected, end session */
-    if (playerId == D_8015961C) {
+    if (playerId == host_player_index) {
         session_leave();
     }
 }
@@ -28512,7 +28512,7 @@ s32 reconnection_attempt(void) {
     /* Check all controller ports */
     for (i = 0; i < 4; i++) {
         /* Skip active players */
-        if (D_8015960C[i] != 0) {
+        if (player_slots[i] != 0) {
             continue;
         }
 
@@ -28520,7 +28520,7 @@ s32 reconnection_attempt(void) {
         controllerState = controller_get_input(i);
         if (controllerState != 0) {
             /* Controller active, rejoin */
-            return session_join(D_80159604);
+            return session_join(session_id);
         }
     }
 
@@ -28537,7 +28537,7 @@ void final_cleanup(void) {
     s32 i;
 
     /* End any active session */
-    if (D_80159600 != 0) {
+    if (net_host_state != 0) {
         session_leave();
     }
 
@@ -28557,16 +28557,16 @@ void final_cleanup(void) {
     }
 
     /* Reset game state */
-    D_801146EC = 0;  /* ATTRACT mode */
+    gstate_byte = 0;  /* ATTRACT mode */
 
     /* Clear car states */
     for (i = 0; i < 4; i++) {
-        u8 *carBase = (u8 *)&D_80152818 + i * 0x400;
+        u8 *carBase = (u8 *)&game_car + i * 0x400;
         *(s32 *)(carBase + 0x00) = 0;  /* Inactive */
     }
 
     /* Reset timers */
-    D_80142AFC = 0;
+    frame_counter = 0;
 }
 
 /*
@@ -28581,7 +28581,7 @@ void audio_queue_add(s32 sndId) {
     if (D_801547C4 != 0) {
         debris_spawn();
     }
-    for (ptr = &D_801551E8[0]; ptr < &D_801551E8[10]; ptr++) {
+    for (ptr = &input_callback_table[0]; ptr < &input_callback_table[10]; ptr++) {
         if (*ptr == 0) {
             *ptr = sndId;
             return;
@@ -28603,11 +28603,11 @@ void audio_channel_setup(s32 channel, s32 param) {
     }
 
     /* Initialize channel parameters */
-    D_80160000[channel] = 0;         /* Clear state */
-    D_80160040[channel] = param;     /* Set param flags */
-    D_80160080[channel] = 1.0f;      /* Default volume */
-    D_801600C0[channel] = 0.0f;      /* Center pan */
-    D_80160100[channel] = 1.0f;      /* Normal pitch */
+    audio_channel_states[channel] = 0;         /* Clear state */
+    audio_channel_params[channel] = param;     /* Set param flags */
+    channel_volumes[channel] = 1.0f;      /* Default volume */
+    channel_pans[channel] = 0.0f;      /* Center pan */
+    channel_pitches[channel] = 1.0f;      /* Normal pitch */
 }
 
 /*
@@ -28627,7 +28627,7 @@ void audio_volume_control(s32 channel, f32 volume) {
     if (volume < 0.0f) volume = 0.0f;
     if (volume > 1.0f) volume = 1.0f;
 
-    D_80160080[channel] = volume;
+    channel_volumes[channel] = volume;
 }
 
 /*
@@ -28647,7 +28647,7 @@ void audio_pan_control(s32 channel, f32 pan) {
     if (pan < -1.0f) pan = -1.0f;
     if (pan > 1.0f) pan = 1.0f;
 
-    D_801600C0[channel] = pan;
+    channel_pans[channel] = pan;
 }
 
 /*
@@ -28668,7 +28668,7 @@ void audio_pitch_control(s32 channel, f32 pitch) {
     if (pitch < 0.25f) pitch = 0.25f;
     if (pitch > 4.0f) pitch = 4.0f;
 
-    D_80160100[channel] = pitch;
+    channel_pitches[channel] = pitch;
 
     /* Calculate effective sample rate */
     D_80160140[channel] = (u32)(22050.0f * pitch);  /* Base rate * pitch */
@@ -28695,24 +28695,24 @@ void audio_3d_position(s32 channel, f32 *pos) {
     }
 
     /* Vector from listener to source */
-    dx = pos[0] - D_80160180[0];
-    dy = pos[1] - D_80160180[1];
-    dz = pos[2] - D_80160180[2];
+    dx = pos[0] - listener_pos[0];
+    dy = pos[1] - listener_pos[1];
+    dz = pos[2] - listener_pos[2];
 
     /* Calculate distance */
     dist = sqrtf(dx*dx + dy*dy + dz*dz);
 
     if (dist < 1.0f) {
         /* Very close - full volume, center pan */
-        D_80160080[channel] = 1.0f;
-        D_801600C0[channel] = 0.0f;
+        channel_volumes[channel] = 1.0f;
+        channel_pans[channel] = 0.0f;
         return;
     }
 
     /* Distance attenuation (inverse square falloff with min distance) */
     attenuation = 100.0f / (100.0f + dist);
     if (attenuation > 1.0f) attenuation = 1.0f;
-    D_80160080[channel] = attenuation;
+    channel_volumes[channel] = attenuation;
 
     /* Calculate pan from dot product with listener right vector */
     invDist = 1.0f / dist;
@@ -28721,7 +28721,7 @@ void audio_3d_position(s32 channel, f32 *pos) {
     /* Clamp and apply pan */
     if (rightDot < -1.0f) rightDot = -1.0f;
     if (rightDot > 1.0f) rightDot = 1.0f;
-    D_801600C0[channel] = rightDot;
+    channel_pans[channel] = rightDot;
 }
 
 /*
@@ -28745,9 +28745,9 @@ void audio_doppler_effect(s32 channel, f32 *velocity) {
     }
 
     /* Direction from source to listener */
-    dx = D_80160180[0] - D_801601B0[channel][0];
-    dy = D_80160180[1] - D_801601B0[channel][1];
-    dz = D_80160180[2] - D_801601B0[channel][2];
+    dx = listener_pos[0] - D_801601B0[channel][0];
+    dy = listener_pos[1] - D_801601B0[channel][1];
+    dz = listener_pos[2] - D_801601B0[channel][2];
 
     dist = sqrtf(dx*dx + dy*dy + dz*dz);
     if (dist < 0.1f) {
@@ -28773,7 +28773,7 @@ void audio_doppler_effect(s32 channel, f32 *velocity) {
     if (dopplerFactor < 0.5f) dopplerFactor = 0.5f;
     if (dopplerFactor > 2.0f) dopplerFactor = 2.0f;
 
-    D_80160100[channel] *= dopplerFactor;
+    channel_pitches[channel] *= dopplerFactor;
 }
 
 /*
@@ -28789,45 +28789,45 @@ void audio_reverb_setup(s32 reverbType, f32 amount) {
     if (amount < 0.0f) amount = 0.0f;
     if (amount > 1.0f) amount = 1.0f;
 
-    D_80160300 = reverbType;
-    D_80160304 = amount;
+    reverb_type = reverbType;
+    reverb_mix = amount;
 
     /* Set reverb parameters based on type */
     switch (reverbType) {
         case 0:  /* None */
-            D_80160308 = 0.0f;
-            D_8016030C = 0.0f;
-            D_80160310 = 0.0f;
+            reverb_decay_time = 0.0f;
+            reverb_pre_delay = 0.0f;
+            reverb_diffusion = 0.0f;
             break;
 
         case 1:  /* Small Room */
-            D_80160308 = 0.3f;
-            D_8016030C = 0.01f;
-            D_80160310 = 0.5f;
+            reverb_decay_time = 0.3f;
+            reverb_pre_delay = 0.01f;
+            reverb_diffusion = 0.5f;
             break;
 
         case 2:  /* Large Room */
-            D_80160308 = 0.8f;
-            D_8016030C = 0.02f;
-            D_80160310 = 0.6f;
+            reverb_decay_time = 0.8f;
+            reverb_pre_delay = 0.02f;
+            reverb_diffusion = 0.6f;
             break;
 
         case 3:  /* Hall */
-            D_80160308 = 1.5f;
-            D_8016030C = 0.03f;
-            D_80160310 = 0.7f;
+            reverb_decay_time = 1.5f;
+            reverb_pre_delay = 0.03f;
+            reverb_diffusion = 0.7f;
             break;
 
         case 4:  /* Cave */
-            D_80160308 = 2.0f;
-            D_8016030C = 0.05f;
-            D_80160310 = 0.9f;
+            reverb_decay_time = 2.0f;
+            reverb_pre_delay = 0.05f;
+            reverb_diffusion = 0.9f;
             break;
 
         case 5:  /* Outdoor */
-            D_80160308 = 0.5f;
-            D_8016030C = 0.0f;
-            D_80160310 = 0.3f;
+            reverb_decay_time = 0.5f;
+            reverb_pre_delay = 0.0f;
+            reverb_diffusion = 0.3f;
             break;
 
         default:
@@ -28853,7 +28853,7 @@ s32 audio_sample_load(s32 sampleId) {
     }
 
     /* Check if already loaded */
-    if (D_80160408[sampleId] != NULL) {
+    if (sample_cache[sampleId] != NULL) {
         return sampleId;  /* Already in memory */
     }
 
@@ -28862,14 +28862,14 @@ s32 audio_sample_load(s32 sampleId) {
     sampleSize = *(u32 *)(D_80160608 + sampleId * 8 + 4);
 
     /* Check heap space */
-    if (sampleSize > D_80160404) {
+    if (sampleSize > sample_heap_remaining) {
         return -1;  /* Not enough memory */
     }
 
     /* Allocate from audio heap */
-    destPtr = (void *)D_80160400;
-    D_80160400 += (sampleSize + 15) & ~15;  /* Align to 16 bytes */
-    D_80160404 -= (sampleSize + 15) & ~15;
+    destPtr = (void *)audio_buffer_ptr;
+    audio_buffer_ptr += (sampleSize + 15) & ~15;  /* Align to 16 bytes */
+    sample_heap_remaining -= (sampleSize + 15) & ~15;
 
     /* DMA from ROM */
     osPiStartDma(&D_80086A70, OS_MESG_PRI_NORMAL, OS_READ,
@@ -28877,7 +28877,7 @@ s32 audio_sample_load(s32 sampleId) {
     osRecvMesg(&D_80086A88, NULL, OS_MESG_BLOCK);
 
     /* Store pointer and size */
-    D_80160408[sampleId] = destPtr;
+    sample_cache[sampleId] = destPtr;
     D_80160508[sampleId] = sampleSize;
 
     return sampleId;
@@ -28899,27 +28899,27 @@ s32 audio_stream_init(s32 streamId) {
     }
 
     /* Get stream info from table */
-    tableEntry = D_80160720 + streamId * 12;
+    tableEntry = stream_table_offset + streamId * 12;
     D_80160700 = *(u32 *)tableEntry;        /* ROM offset */
     D_80160704 = *(u32 *)(tableEntry + 4);  /* Total size */
-    D_80160708 = 0;                          /* Reset read position */
+    stream_bytes_read = 0;                          /* Reset read position */
 
     /* Allocate double buffers if not already */
-    D_8016071C = 0x2000;  /* 8KB per buffer */
-    if (D_8016070C[0] == NULL) {
-        D_8016070C[0] = channel_stop(D_8016071C);
-        D_8016070C[1] = channel_stop(D_8016071C);
+    stream_buffer_size = 0x2000;  /* 8KB per buffer */
+    if (stream_buffers[0] == NULL) {
+        stream_buffers[0] = channel_stop(stream_buffer_size);
+        stream_buffers[1] = channel_stop(stream_buffer_size);
     }
 
-    if (D_8016070C[0] == NULL || D_8016070C[1] == NULL) {
+    if (stream_buffers[0] == NULL || stream_buffers[1] == NULL) {
         return -1;  /* Allocation failed */
     }
 
     /* Fill first buffer */
-    D_80160714 = 0;
-    audio_stream_fill(D_8016070C[0], D_8016071C);
+    stream_active_buf = 0;
+    audio_stream_fill(stream_buffers[0], stream_buffer_size);
 
-    D_80160718 = 1;  /* Start playing */
+    stream_state = 1;  /* Start playing */
 
     return streamId;
 }
@@ -28932,35 +28932,35 @@ s32 audio_stream_init(s32 streamId) {
  * Called each frame to manage streaming buffer refills
  */
 void audio_stream_update(void) {
-    extern s32 D_80160724;       /* Buffer consumed flag */
+    extern s32 buffer_consumed_flag;       /* Buffer consumed flag */
     s32 nextBuffer;
     u32 remaining;
 
     /* Skip if not playing */
-    if (D_80160718 != 1) {
+    if (stream_state != 1) {
         return;
     }
 
     /* Check if current buffer consumed */
-    if (!D_80160724) {
+    if (!buffer_consumed_flag) {
         return;
     }
 
     /* Switch to next buffer */
-    nextBuffer = (D_80160714 + 1) & 1;
-    D_80160714 = nextBuffer;
-    D_80160724 = 0;
+    nextBuffer = (stream_active_buf + 1) & 1;
+    stream_active_buf = nextBuffer;
+    buffer_consumed_flag = 0;
 
     /* Start filling the now-inactive buffer */
-    remaining = D_80160704 - D_80160708;
+    remaining = D_80160704 - stream_bytes_read;
     if (remaining > 0) {
-        u32 toRead = (remaining < D_8016071C) ? remaining : D_8016071C;
+        u32 toRead = (remaining < stream_buffer_size) ? remaining : stream_buffer_size;
         s32 fillBuffer = (nextBuffer + 1) & 1;
-        audio_stream_fill(D_8016070C[fillBuffer], toRead);
+        audio_stream_fill(stream_buffers[fillBuffer], toRead);
     } else {
         /* Stream ended - loop or stop */
-        D_80160708 = 0;  /* Loop back to start */
-        audio_stream_fill(D_8016070C[(nextBuffer + 1) & 1], D_8016071C);
+        stream_bytes_read = 0;  /* Loop back to start */
+        audio_stream_fill(stream_buffers[(nextBuffer + 1) & 1], stream_buffer_size);
     }
 }
 
@@ -28981,14 +28981,14 @@ void audio_stream_fill(void *buffer, s32 size) {
     }
 
     /* Calculate ROM address */
-    romAddr = D_80160700 + D_80160708;
+    romAddr = D_80160700 + stream_bytes_read;
 
     /* Initiate async DMA */
     osPiStartDma(&D_80160748, OS_MESG_PRI_NORMAL, OS_READ,
                  romAddr, buffer, size, &D_80160730);
 
     /* Update read position */
-    D_80160708 += size;
+    stream_bytes_read += size;
 
     /* Invalidate data cache for DMA destination */
     osInvalDCache(buffer, size);
@@ -29003,29 +29003,29 @@ void audio_stream_fill(void *buffer, s32 size) {
  * Commands: 0=Stop, 1=Play, 2=Pause, 3=Resume, 4=SetPosition
  */
 void music_seq_control(s32 seqCmd) {
-    /* Note: D_80160800-D_8016080C declared globally */
+    /* Note: sequence_state-D_8016080C declared globally */
 
     switch (seqCmd & 0xFF) {
         case 0:  /* Stop */
-            D_80160800 = 0;
+            sequence_state = 0;
             D_80160808 = 0;
             break;
 
         case 1:  /* Play */
             D_80160804 = (seqCmd >> 8) & 0xFF;
-            D_80160800 = 1;
+            sequence_state = 1;
             D_80160808 = 0;
             break;
 
         case 2:  /* Pause */
-            if (D_80160800 == 1) {
-                D_80160800 = 2;
+            if (sequence_state == 1) {
+                sequence_state = 2;
             }
             break;
 
         case 3:  /* Resume */
-            if (D_80160800 == 2) {
-                D_80160800 = 1;
+            if (sequence_state == 2) {
+                sequence_state = 1;
             }
             break;
 
@@ -29106,7 +29106,7 @@ s32 audio_channel_alloc(s32 priority) {
 
     /* First, look for an idle channel */
     for (i = 0; i < 16; i++) {
-        if (D_80160000[i] == 0) {
+        if (audio_channel_states[i] == 0) {
             freeChannel = i;
             break;
         }
@@ -29127,7 +29127,7 @@ s32 audio_channel_alloc(s32 priority) {
 
     if (stealChannel >= 0) {
         /* Stop current sound and steal channel */
-        D_80160000[stealChannel] = 0;
+        audio_channel_states[stealChannel] = 0;
         D_80160840[stealChannel] = priority;
         return stealChannel;
     }
@@ -29152,13 +29152,13 @@ void *channel_stop(s32 size) {
     /* Align to 16 bytes */
     size = (size + 15) & ~15;
 
-    if ((u32)size > D_80160404) {
+    if ((u32)size > sample_heap_remaining) {
         return NULL;  /* Not enough space */
     }
 
-    ptr = (void *)D_80160400;
-    D_80160400 += size;
-    D_80160404 -= size;
+    ptr = (void *)audio_buffer_ptr;
+    audio_buffer_ptr += size;
+    sample_heap_remaining -= size;
 
     return ptr;
 }
@@ -29191,23 +29191,23 @@ void audio_mixer_main(void) {
 
     /* Mix each active channel */
     for (i = 0; i < 16; i++) {
-        if (D_80160000[i] == 0) {
+        if (audio_channel_states[i] == 0) {
             continue;  /* Channel not active */
         }
 
         sampleId = D_80160860[i];
-        if (sampleId < 0 || D_80160408[sampleId] == NULL) {
-            D_80160000[i] = 0;  /* Invalid sample - stop channel */
+        if (sampleId < 0 || sample_cache[sampleId] == NULL) {
+            audio_channel_states[i] = 0;  /* Invalid sample - stop channel */
             continue;
         }
 
-        sampleData = (s16 *)D_80160408[sampleId];
+        sampleData = (s16 *)sample_cache[sampleId];
         samplePos = D_801608A0[i];
         sampleLen = D_80160508[sampleId] / 2;  /* Bytes to samples */
 
-        vol = D_80160080[i];
-        pan = D_801600C0[i];
-        pitch = D_80160100[i];
+        vol = channel_volumes[i];
+        pan = channel_pans[i];
+        pitch = channel_pitches[i];
 
         /* Calculate stereo volumes */
         leftVol = vol * (1.0f - pan) * 0.5f;
@@ -29216,7 +29216,7 @@ void audio_mixer_main(void) {
         /* Mix samples into output */
         for (j = 0; j < D_801608E8; j++) {
             if (samplePos >= sampleLen) {
-                D_80160000[i] = 0;  /* Sample ended */
+                audio_channel_states[i] = 0;  /* Sample ended */
                 break;
             }
 
@@ -29241,13 +29241,13 @@ void audio_mixer_main(void) {
  * Applies an audio effect to the output
  */
 void audio_effect_apply(s32 effectId) {
-    extern u32 D_80160900;  /* Active effects bitfield */
+    extern u32 audio_fx_active;  /* Active effects bitfield */
 
     if (effectId < 0 || effectId >= 32) {
         return;
     }
 
-    D_80160900 |= (1 << effectId);
+    audio_fx_active |= (1 << effectId);
 }
 
 /*
@@ -29263,7 +29263,7 @@ void audio_effect_remove(s32 effectId) {
         return;
     }
 
-    D_80160900 &= ~(1 << effectId);
+    audio_fx_active &= ~(1 << effectId);
 }
 
 /*
@@ -29274,8 +29274,8 @@ void audio_effect_remove(s32 effectId) {
  * Processes audio through effects chain (reverb, EQ, etc.)
  */
 void audio_dsp_process(void *dspBuffer) {
-    extern s16 D_80160910[512]; /* Reverb delay buffer */
-    extern s32 D_80160B10;   /* Delay buffer write position */
+    extern s16 reverb_delay_buffer[512]; /* Reverb delay buffer */
+    extern s32 reverb_write_pos;   /* Delay buffer write position */
     s16 *buf = (s16 *)dspBuffer;
     s32 bufferSize = 184;  /* N64 audio frame size in samples */
     s32 i, delayIdx;
@@ -29287,23 +29287,23 @@ void audio_dsp_process(void *dspBuffer) {
     }
 
     /* Apply reverb if active (effect bit 0) */
-    if (D_80160900 & 0x01) {
-        wet = D_80160304;
+    if (audio_fx_active & 0x01) {
+        wet = reverb_mix;
         dry = 1.0f - wet;
 
         for (i = 0; i < bufferSize; i++) {
             sample = buf[i];
 
             /* Read from delay buffer */
-            delayIdx = (D_80160B10 - 200 + 512) & 511;
-            delayed = D_80160910[delayIdx];
+            delayIdx = (reverb_write_pos - 200 + 512) & 511;
+            delayed = reverb_delay_buffer[delayIdx];
 
             /* Mix dry and wet (delayed) signals */
             buf[i] = (s16)(sample * dry + delayed * wet);
 
             /* Write to delay buffer with decay */
-            D_80160910[D_80160B10] = (s16)(sample + delayed * D_80160308);
-            D_80160B10 = (D_80160B10 + 1) & 511;
+            reverb_delay_buffer[reverb_write_pos] = (s16)(sample + delayed * reverb_decay_time);
+            reverb_write_pos = (reverb_write_pos + 1) & 511;
         }
     }
 }
@@ -29316,35 +29316,35 @@ void audio_dsp_process(void *dspBuffer) {
  * Configures audio output mode (mono, stereo, surround)
  */
 void audio_output_setup(s32 outputMode) {
-    extern s32 D_80160920;  /* Output mode */
-    extern s32 D_80160924;  /* Sample rate */
-    extern s32 D_80160928;  /* Buffer size */
+    extern s32 audio_output_mode;  /* Output mode */
+    extern s32 audio_sample_rate;  /* Sample rate */
+    extern s32 audio_buffer_size_2;  /* Buffer size */
 
-    D_80160920 = outputMode;
+    audio_output_mode = outputMode;
 
     switch (outputMode) {
         case 0:  /* Mono */
-            D_80160924 = 22050;
-            D_80160928 = 368;  /* ~60fps at 22kHz */
+            audio_sample_rate = 22050;
+            audio_buffer_size_2 = 368;  /* ~60fps at 22kHz */
             break;
 
         case 1:  /* Stereo */
-            D_80160924 = 22050;
-            D_80160928 = 368;
+            audio_sample_rate = 22050;
+            audio_buffer_size_2 = 368;
             break;
 
         case 2:  /* Surround (simulated via phase) */
-            D_80160924 = 22050;
-            D_80160928 = 368;
+            audio_sample_rate = 22050;
+            audio_buffer_size_2 = 368;
             break;
 
         default:
-            D_80160920 = 1;  /* Default to stereo */
+            audio_output_mode = 1;  /* Default to stereo */
             break;
     }
 
     /* Configure AI output */
-    osAiSetFrequency(D_80160924);
+    osAiSetFrequency(audio_sample_rate);
 }
 
 /*
@@ -29361,13 +29361,13 @@ void audio_hw_sync(void) {
 
     /* Interleave L/R into DMA buffer for AI */
     dmaOut = (s16 *)D_80160930;
-    for (i = 0; i < D_80160928; i++) {
+    for (i = 0; i < audio_buffer_size_2; i++) {
         dmaOut[i * 2] = D_801608E0[i];
         dmaOut[i * 2 + 1] = D_801608E4[i];
     }
 
     /* Submit to audio interface */
-    osAiSetNextBuffer(D_80160930, D_80160928 * 4);
+    osAiSetNextBuffer(D_80160930, audio_buffer_size_2 * 4);
 }
 
 /*
@@ -29626,15 +29626,15 @@ void camera_collision_check(void *camera) {
  * Initiates a camera shake effect (impacts, explosions, etc.)
  */
 void camera_shake_start(f32 intensity, f32 duration) {
-    /* Note: D_80170000-D_80170008 declared globally */
-    D_80170000 = intensity;
-    D_80170004 = duration;
+    /* Note: shake_intensity-shake_decay declared globally */
+    shake_intensity = intensity;
+    shake_timer = duration;
 
     /* Calculate decay rate */
     if (duration > 0.0f) {
-        D_80170008 = intensity / (duration * 60.0f);  /* Per-frame decay */
+        shake_decay = intensity / (duration * 60.0f);  /* Per-frame decay */
     } else {
-        D_80170008 = intensity;
+        shake_decay = intensity;
     }
 }
 
@@ -29646,33 +29646,33 @@ void camera_shake_start(f32 intensity, f32 duration) {
  * Updates camera shake each frame
  */
 void camera_shake_update(void *camera) {
-    extern u32 D_80143500;  /* Random seed */
+    extern u32 random_seed;  /* Random seed */
     f32 *pos;
     f32 offsetX, offsetY;
 
-    if (camera == NULL || D_80170000 <= 0.0f) {
+    if (camera == NULL || shake_intensity <= 0.0f) {
         return;
     }
 
     pos = (f32 *)camera;
 
     /* Random offsets */
-    D_80143500 = D_80143500 * 1103515245 + 12345;
-    offsetX = ((f32)(D_80143500 & 0xFFFF) / 65535.0f - 0.5f) * D_80170000;
-    D_80143500 = D_80143500 * 1103515245 + 12345;
-    offsetY = ((f32)(D_80143500 & 0xFFFF) / 65535.0f - 0.5f) * D_80170000;
+    random_seed = random_seed * 1103515245 + 12345;
+    offsetX = ((f32)(random_seed & 0xFFFF) / 65535.0f - 0.5f) * shake_intensity;
+    random_seed = random_seed * 1103515245 + 12345;
+    offsetY = ((f32)(random_seed & 0xFFFF) / 65535.0f - 0.5f) * shake_intensity;
 
     /* Apply shake offset */
     pos[0] += offsetX;
     pos[1] += offsetY;
 
     /* Decay shake */
-    D_80170000 -= D_80170008;
-    D_80170004 -= 0.0166f;
+    shake_intensity -= shake_decay;
+    shake_timer -= 0.0166f;
 
-    if (D_80170004 <= 0.0f || D_80170000 <= 0.0f) {
-        D_80170000 = 0.0f;
-        D_80170004 = 0.0f;
+    if (shake_timer <= 0.0f || shake_intensity <= 0.0f) {
+        shake_intensity = 0.0f;
+        shake_timer = 0.0f;
     }
 }
 
@@ -29764,11 +29764,11 @@ void camera_cinematic_mode(s32 cinematicId) {
     extern f32 D_8017002C[32][6];  /* Keyframe data (pos + target) */
     s32 *mode;
 
-    if (D_80170020 == NULL) {
+    if (active_camera == NULL) {
         return;
     }
 
-    mode = (s32 *)((u8 *)D_80170020 + 0x34);
+    mode = (s32 *)((u8 *)active_camera + 0x34);
     *mode = 4;  /* Cinematic mode */
 
     D_80170024 = cinematicId;
@@ -29816,7 +29816,7 @@ void camera_blend_between(void *cam1, void *cam2, f32 t) {
     f32 *pos1, *pos2, *target1, *target2;
     f32 *outPos, *outTarget;
 
-    if (cam1 == NULL || cam2 == NULL || D_80170020 == NULL) {
+    if (cam1 == NULL || cam2 == NULL || active_camera == NULL) {
         return;
     }
 
@@ -29829,8 +29829,8 @@ void camera_blend_between(void *cam1, void *cam2, f32 t) {
     pos2 = (f32 *)cam2;
     target2 = (f32 *)((u8 *)cam2 + 0x0C);
 
-    outPos = (f32 *)D_80170020;
-    outTarget = (f32 *)((u8 *)D_80170020 + 0x0C);
+    outPos = (f32 *)active_camera;
+    outTarget = (f32 *)((u8 *)active_camera + 0x0C);
 
     /* Linear interpolation */
     outPos[0] = pos1[0] + (pos2[0] - pos1[0]) * t;
@@ -30011,7 +30011,7 @@ void camera_top_down(void *camera) {
     camTarget = (f32 *)((u8 *)camera + 0x0C);
     mode = (s32 *)((u8 *)camera + 0x34);
 
-    playerPos = (f32 *)((u8 *)&D_80152818 + 0x24);
+    playerPos = (f32 *)((u8 *)&game_car + 0x24);
 
     /* Position directly above player */
     camPos[0] = playerPos[0];
@@ -30090,7 +30090,7 @@ void camera_free_look(void *camera, s32 input) {
  * Playback camera from recorded replay data
  */
 void camera_replay_mode(void *camera, s32 frame) {
-    extern f32 D_80170100[3600][6];  /* Replay camera data (60 sec @ 60fps) */
+    extern f32 replay_camera_data[3600][6];  /* Replay camera data (60 sec @ 60fps) */
     f32 *camPos, *camTarget;
     s32 *mode;
 
@@ -30105,13 +30105,13 @@ void camera_replay_mode(void *camera, s32 frame) {
     *mode = 6;  /* Replay mode */
 
     /* Load position from replay data */
-    camPos[0] = D_80170100[frame][0];
-    camPos[1] = D_80170100[frame][1];
-    camPos[2] = D_80170100[frame][2];
+    camPos[0] = replay_camera_data[frame][0];
+    camPos[1] = replay_camera_data[frame][1];
+    camPos[2] = replay_camera_data[frame][2];
 
-    camTarget[0] = D_80170100[frame][3];
-    camTarget[1] = D_80170100[frame][4];
-    camTarget[2] = D_80170100[frame][5];
+    camTarget[0] = replay_camera_data[frame][3];
+    camTarget[1] = replay_camera_data[frame][4];
+    camTarget[2] = replay_camera_data[frame][5];
 }
 
 /*
@@ -30255,11 +30255,11 @@ void camera_update(void *camera) {
             break;
 
         case 1:  /* First person */
-            camera_first_person(camera, &D_80152818);
+            camera_first_person(camera, &game_car);
             break;
 
         case 2:  /* Third person */
-            camera_auto_follow(camera, &D_80152818);
+            camera_auto_follow(camera, &game_car);
             camera_collision_check(camera);  /* Collision avoidance */
             break;
 
@@ -30400,7 +30400,7 @@ void camera_debug_display(void *camera) {
     s32 *mode;
     char buf[32];
 
-    if (!D_80159E00 || camera == NULL) {
+    if (!menu_enabled || camera == NULL) {
         return;
     }
 
@@ -30574,40 +30574,40 @@ void camera_split_screen_config(s32 numPlayers) {
 void camera_scene_manager(void) {
     static s32 lastGState = -1;
 
-    if (D_80170020 == NULL) {
+    if (active_camera == NULL) {
         return;
     }
 
     /* Detect state change */
-    if (D_801146EC != lastGState) {
-        lastGState = D_801146EC;
+    if (gstate_byte != lastGState) {
+        lastGState = gstate_byte;
 
-        switch (D_801146EC) {
+        switch (gstate_byte) {
             case 0:  /* ATTRACT */
-                camera_reset(D_80170020);  /* Reset camera */
-                *(s32 *)((u8 *)D_80170020 + 0x34) = 0;  /* Default mode */
+                camera_reset(active_camera);  /* Reset camera */
+                *(s32 *)((u8 *)active_camera + 0x34) = 0;  /* Default mode */
                 break;
 
             case 1:  /* TRKSEL */
             case 2:  /* CARSEL */
                 /* Menu camera - fixed position */
-                camera_reset(D_80170020);
+                camera_reset(active_camera);
                 break;
 
             case 5:  /* COUNTDOWN */
                 /* Starting grid camera */
-                *(s32 *)((u8 *)D_80170020 + 0x34) = 4;  /* Cinematic */
+                *(s32 *)((u8 *)active_camera + 0x34) = 4;  /* Cinematic */
                 camera_play_script(0);  /* Start sequence */
                 break;
 
             case 6:  /* PLAYGAME */
                 /* Switch to chase camera */
-                *(s32 *)((u8 *)D_80170020 + 0x34) = 2;  /* Third person */
+                *(s32 *)((u8 *)active_camera + 0x34) = 2;  /* Third person */
                 break;
 
             case 7:  /* ENDGAME */
                 /* Victory camera */
-                camera_victory(D_80170020, 1);
+                camera_victory(active_camera, 1);
                 break;
 
             default:
@@ -30616,7 +30616,7 @@ void camera_scene_manager(void) {
     }
 
     /* Update active camera */
-    camera_update(D_80170020);
+    camera_update(active_camera);
 }
 
 /*
@@ -30708,18 +30708,18 @@ void camera_follow_path(void *camera, void *path) {
  * Plays a scripted camera sequence (intro, finish, replay)
  */
 void camera_play_script(s32 scriptId) {
-    extern f32 D_80159058[16][6]; /* Script keyframes */
+    extern f32 camera_keyframes[16][6]; /* Script keyframes */
     s32 *mode;
     f32 *camPos, *camTarget;
     s32 frame;
     s32 keyframe, nextKeyframe;
     f32 t;
 
-    if (D_80170020 == NULL) {
+    if (active_camera == NULL) {
         return;
     }
 
-    mode = (s32 *)((u8 *)D_80170020 + 0x34);
+    mode = (s32 *)((u8 *)active_camera + 0x34);
     *mode = 4;  /* Cinematic mode */
 
     D_80159050 = scriptId;
@@ -30732,17 +30732,17 @@ void camera_play_script(s32 scriptId) {
     if (nextKeyframe > 15) nextKeyframe = 15;
     t = (f32)(frame % 60) / 60.0f;
 
-    camPos = (f32 *)D_80170020;
-    camTarget = (f32 *)((u8 *)D_80170020 + 0x0C);
+    camPos = (f32 *)active_camera;
+    camTarget = (f32 *)((u8 *)active_camera + 0x0C);
 
     /* Interpolate between keyframes */
-    camPos[0] = D_80159058[keyframe][0] + (D_80159058[nextKeyframe][0] - D_80159058[keyframe][0]) * t;
-    camPos[1] = D_80159058[keyframe][1] + (D_80159058[nextKeyframe][1] - D_80159058[keyframe][1]) * t;
-    camPos[2] = D_80159058[keyframe][2] + (D_80159058[nextKeyframe][2] - D_80159058[keyframe][2]) * t;
+    camPos[0] = camera_keyframes[keyframe][0] + (camera_keyframes[nextKeyframe][0] - camera_keyframes[keyframe][0]) * t;
+    camPos[1] = camera_keyframes[keyframe][1] + (camera_keyframes[nextKeyframe][1] - camera_keyframes[keyframe][1]) * t;
+    camPos[2] = camera_keyframes[keyframe][2] + (camera_keyframes[nextKeyframe][2] - camera_keyframes[keyframe][2]) * t;
 
-    camTarget[0] = D_80159058[keyframe][3] + (D_80159058[nextKeyframe][3] - D_80159058[keyframe][3]) * t;
-    camTarget[1] = D_80159058[keyframe][4] + (D_80159058[nextKeyframe][4] - D_80159058[keyframe][4]) * t;
-    camTarget[2] = D_80159058[keyframe][5] + (D_80159058[nextKeyframe][5] - D_80159058[keyframe][5]) * t;
+    camTarget[0] = camera_keyframes[keyframe][3] + (camera_keyframes[nextKeyframe][3] - camera_keyframes[keyframe][3]) * t;
+    camTarget[1] = camera_keyframes[keyframe][4] + (camera_keyframes[nextKeyframe][4] - camera_keyframes[keyframe][4]) * t;
+    camTarget[2] = camera_keyframes[keyframe][5] + (camera_keyframes[nextKeyframe][5] - camera_keyframes[keyframe][5]) * t;
 }
 
 /*
@@ -30767,10 +30767,10 @@ void camera_victory(void *camera, s32 placing) {
 
     camPos = (f32 *)camera;
     camTarget = (f32 *)((u8 *)camera + 0x0C);
-    carPos = (f32 *)((u8 *)&D_80152818 + 0x24);
+    carPos = (f32 *)((u8 *)&game_car + 0x24);
 
     /* Orbit around the car */
-    orbitAngle = (f32)D_80142AFC * 0.02f;  /* Slow rotation */
+    orbitAngle = (f32)frame_counter * 0.02f;  /* Slow rotation */
 
     camPos[0] = carPos[0] + sinf(orbitAngle) * 150.0f;
     camPos[1] = carPos[1] + 50.0f + (placing == 1 ? 30.0f : 0.0f);  /* Higher for 1st place */
@@ -30873,19 +30873,19 @@ void draw_text(s32 x, s32 y, char *text, u32 color) {
             charIndex = 40;
         } else if (c == ' ') {
             /* Space - just advance position */
-            charX += D_8015901C;
+            charX += font_char_width;
             continue;
         } else {
             /* Unknown character - skip */
-            charX += D_8015901C;
+            charX += font_char_width;
             continue;
         }
 
         /* Draw character */
-        draw_ui_element(charIndex + 64, charX, y, D_8015901C, D_80159020, alpha);
+        draw_ui_element(charIndex + 64, charX, y, font_char_width, D_80159020, alpha);
 
         /* Advance position */
-        charX += D_8015901C;
+        charX += font_char_width;
     }
 }
 
@@ -31214,8 +31214,8 @@ void draw_message(s32 messageId) {
     }
 
     /* Center horizontally */
-    charWidth = D_8015901C;
-    x = D_80159058 - (msgLen * charWidth) / 2;
+    charWidth = font_char_width;
+    x = camera_keyframes - (msgLen * charWidth) / 2;
     y = D_8015905C;
 
     /* Draw message */
@@ -31238,12 +31238,12 @@ void hud_render(void) {
     s32 currentLap, position;
 
     /* Check if HUD is enabled */
-    if (D_80159060 == 0) {
+    if (message_active == 0) {
         return;
     }
 
     /* Get player car */
-    player = D_801582C0[0];
+    player = car_pointers[0];
     if (player == NULL) {
         return;
     }
@@ -31272,12 +31272,12 @@ void hud_render(void) {
     draw_minimap(player);
 
     /* Draw any active message */
-    if (D_80159064 >= 0 && D_80159068 > 0) {
-        draw_message(D_80159064);
-        D_80159068--;
+    if (message_id >= 0 && message_timer > 0) {
+        draw_message(message_id);
+        message_timer--;
 
-        if (D_80159068 <= 0) {
-            D_80159064 = -1;  /* Clear message */
+        if (message_timer <= 0) {
+            message_id = -1;  /* Clear message */
         }
     }
 }
@@ -31310,7 +31310,7 @@ s32 menu_process_input(s32 input) {
 
     /* Check for A button - select */
     if (buttons & 0x8000) {
-        if ((D_80159200 & 0x8000) == 0) {
+        if ((buttons_state & 0x8000) == 0) {
             result = 1;  /* Select pressed */
             sound_play_menu(10);  /* Menu select sound */
         }
@@ -31318,7 +31318,7 @@ s32 menu_process_input(s32 input) {
 
     /* Check for B button - back */
     if (buttons & 0x4000) {
-        if ((D_80159200 & 0x4000) == 0) {
+        if ((buttons_state & 0x4000) == 0) {
             result = 2;  /* Back pressed */
             sound_play_menu(11);  /* Menu back sound */
         }
@@ -31326,89 +31326,89 @@ s32 menu_process_input(s32 input) {
 
     /* Check for Start button - pause/confirm */
     if (buttons & 0x1000) {
-        if ((D_80159200 & 0x1000) == 0) {
+        if ((buttons_state & 0x1000) == 0) {
             result = 3;  /* Start pressed */
         }
     }
 
     /* Check D-pad up or stick up */
     if ((buttons & 0x0800) || stickY > 50) {
-        repeatDelay = D_80159204;
+        repeatDelay = repeat_counter;
         if (repeatDelay == 0 || repeatDelay > 15) {
             result = 4;  /* Up */
             sound_play_menu(12);  /* Menu move sound */
             if (repeatDelay == 0) {
-                D_80159204 = 1;
+                repeat_counter = 1;
             }
         }
         if (repeatDelay > 0) {
-            D_80159204 = repeatDelay + 1;
+            repeat_counter = repeatDelay + 1;
         }
     }
     /* Check D-pad down or stick down */
     else if ((buttons & 0x0400) || stickY < -50) {
-        repeatDelay = D_80159204;
+        repeatDelay = repeat_counter;
         if (repeatDelay == 0 || repeatDelay > 15) {
             result = 5;  /* Down */
             sound_play_menu(12);  /* Menu move sound */
             if (repeatDelay == 0) {
-                D_80159204 = 1;
+                repeat_counter = 1;
             }
         }
         if (repeatDelay > 0) {
-            D_80159204 = repeatDelay + 1;
+            repeat_counter = repeatDelay + 1;
         }
     }
     else {
-        D_80159204 = 0;  /* Reset repeat counter */
+        repeat_counter = 0;  /* Reset repeat counter */
     }
 
     /* Check D-pad left or stick left */
     if ((buttons & 0x0200) || stickX < -50) {
-        repeatDelay = D_80159208;
+        repeatDelay = input_repeat_delay;
         if (repeatDelay == 0 || repeatDelay > 10) {
             result = 6;  /* Left */
             if (repeatDelay == 0) {
-                D_80159208 = 1;
+                input_repeat_delay = 1;
             }
         }
         if (repeatDelay > 0) {
-            D_80159208 = repeatDelay + 1;
+            input_repeat_delay = repeatDelay + 1;
         }
     }
     /* Check D-pad right or stick right */
     else if ((buttons & 0x0100) || stickX > 50) {
-        repeatDelay = D_80159208;
+        repeatDelay = input_repeat_delay;
         if (repeatDelay == 0 || repeatDelay > 10) {
             result = 7;  /* Right */
             if (repeatDelay == 0) {
-                D_80159208 = 1;
+                input_repeat_delay = 1;
             }
         }
         if (repeatDelay > 0) {
-            D_80159208 = repeatDelay + 1;
+            input_repeat_delay = repeatDelay + 1;
         }
     }
     else {
-        D_80159208 = 0;  /* Reset repeat counter */
+        input_repeat_delay = 0;  /* Reset repeat counter */
     }
 
     /* Check L trigger - page up */
     if (buttons & 0x0020) {
-        if ((D_80159200 & 0x0020) == 0) {
+        if ((buttons_state & 0x0020) == 0) {
             result = 8;  /* L trigger */
         }
     }
 
     /* Check R trigger - page down */
     if (buttons & 0x0010) {
-        if ((D_80159200 & 0x0010) == 0) {
+        if ((buttons_state & 0x0010) == 0) {
             result = 9;  /* R trigger */
         }
     }
 
     /* Store previous button state */
-    D_80159200 = buttons;
+    buttons_state = buttons;
 
     return result;
 }
@@ -31428,9 +31428,9 @@ void menu_cursor_move(s32 direction) {
     s32 wrapAround;
     s32 i;
 
-    currentIndex = D_80159210;
-    itemCount = D_80159214;
-    menuItems = (s32 *)D_80159218;
+    currentIndex = menu_selection;
+    itemCount = menu_item_count;
+    menuItems = (s32 *)menu_items_ptr;
     wrapAround = D_8015921C;
 
     if (itemCount <= 0) {
@@ -31530,7 +31530,7 @@ void menu_cursor_move(s32 direction) {
     if (newIndex != currentIndex) {
         /* Update highlight */
         font_load(newIndex);
-        D_80159210 = newIndex;
+        menu_selection = newIndex;
     }
 }
 
@@ -31549,12 +31549,12 @@ void menu_item_select(s32 itemIndex) {
     s32 targetMenu;
     void (*callback)(s32);
 
-    menuItems = (s32 *)D_80159218;
+    menuItems = (s32 *)menu_items_ptr;
     if (menuItems == NULL) {
         return;
     }
 
-    if (itemIndex < 0 || itemIndex >= D_80159214) {
+    if (itemIndex < 0 || itemIndex >= menu_item_count) {
         return;
     }
 
@@ -31576,7 +31576,7 @@ void menu_item_select(s32 itemIndex) {
             /* Execute action */
             switch (itemAction) {
                 case 1:  /* Start race */
-                    D_801146EC = 3;  /* PREPLAY state */
+                    gstate_byte = 3;  /* PREPLAY state */
                     menu_transition(-1);  /* Close menu */
                     break;
                 case 2:  /* Options */
@@ -31589,7 +31589,7 @@ void menu_item_select(s32 itemIndex) {
                     menu_transition(4);  /* Go to car select */
                     break;
                 case 5:  /* Exit */
-                    D_801146EC = 0;  /* ATTRACT state */
+                    gstate_byte = 0;  /* ATTRACT state */
                     menu_transition(-1);
                     break;
                 case 6:  /* Controller Pak */
@@ -31613,13 +31613,13 @@ void menu_item_select(s32 itemIndex) {
             sound_play_menu(14);  /* Toggle sound */
             /* Apply setting immediately */
             if (itemAction == 10) {  /* Music toggle */
-                D_80159300 = itemValue;
+                sfx_volume = itemValue;
             } else if (itemAction == 11) {  /* SFX toggle */
-                D_80159304 = itemValue;
+                music_volume = itemValue;
             } else if (itemAction == 12) {  /* Vibration */
-                D_80159308 = itemValue;
+                controller_config = itemValue;
             } else if (itemAction == 13) {  /* Widescreen */
-                D_8015930C = itemValue;
+                vibration_setting = itemValue;
             }
             break;
 
@@ -31662,7 +31662,7 @@ void menu_back(void) {
     s32 prevMenu;
     s32 stackDepth;
 
-    stackDepth = D_80159220;
+    stackDepth = menu_stack_depth;
     if (stackDepth <= 0) {
         /* At root menu, back returns to game */
         D_80159230 = 0;  /* Hide menu */
@@ -31671,7 +31671,7 @@ void menu_back(void) {
 
     /* Pop menu from stack */
     stackDepth = stackDepth - 1;
-    D_80159220 = stackDepth;
+    menu_stack_depth = stackDepth;
 
     /* Get previous menu ID */
     prevMenu = D_80159224[stackDepth];
@@ -31696,60 +31696,60 @@ void menu_transition(s32 toMenuId) {
     /* Special case: close menu */
     if (toMenuId < 0) {
         D_80159230 = 0;  /* Hide menu */
-        D_80159238 = 1;  /* Transition state: closing */
-        D_8015923C = 0;  /* Animation frame */
-        D_80159220 = 0;  /* Clear stack */
+        transition_state = 1;  /* Transition state: closing */
+        transition_anim_frame = 0;  /* Animation frame */
+        menu_stack_depth = 0;  /* Clear stack */
         return;
     }
 
     /* Push current menu to stack if navigating forward */
     if (toMenuId != currentMenu && currentMenu >= 0) {
-        stackDepth = D_80159220;
+        stackDepth = menu_stack_depth;
         if (stackDepth < 8) {  /* Max stack depth */
             D_80159224[stackDepth] = currentMenu;
-            D_80159220 = stackDepth + 1;
+            menu_stack_depth = stackDepth + 1;
         }
     }
 
     /* Start transition animation */
-    D_80159238 = 2;  /* Transition state: switching */
-    D_8015923C = 0;  /* Animation frame */
+    transition_state = 2;  /* Transition state: switching */
+    transition_anim_frame = 0;  /* Animation frame */
     D_80159240 = toMenuId;  /* Target menu */
 
     /* Load menu data */
     switch (toMenuId) {
         case 0:  /* Main menu */
-            D_80159218 = (u32)&D_80159400;  /* Main menu items */
-            D_80159214 = 5;  /* Item count */
+            menu_items_ptr = (u32)&D_80159400;  /* Main menu items */
+            menu_item_count = 5;  /* Item count */
             break;
         case 1:  /* Pause menu */
-            D_80159218 = (u32)&D_80159480;  /* Pause menu items */
-            D_80159214 = 4;
+            menu_items_ptr = (u32)&D_80159480;  /* Pause menu items */
+            menu_item_count = 4;
             break;
         case 2:  /* Options menu */
-            D_80159218 = (u32)&D_80159500;  /* Options items */
-            D_80159214 = 8;
+            menu_items_ptr = (u32)&D_80159500;  /* Options items */
+            menu_item_count = 8;
             break;
         case 3:  /* Track select */
-            D_80159218 = (u32)&D_80159600;  /* Track items */
-            D_80159214 = 8;
+            menu_items_ptr = (u32)&net_host_state;  /* Track items */
+            menu_item_count = 8;
             break;
         case 4:  /* Car select */
-            D_80159218 = (u32)&D_80159700;  /* Car items */
-            D_80159214 = 12;
+            menu_items_ptr = (u32)&D_80159700;  /* Car items */
+            menu_item_count = 12;
             break;
         case 5:  /* Save/load menu */
-            D_80159218 = (u32)&D_80159800;
-            D_80159214 = 4;
+            menu_items_ptr = (u32)&D_80159800;
+            menu_item_count = 4;
             break;
         default:
-            D_80159218 = 0;
-            D_80159214 = 0;
+            menu_items_ptr = 0;
+            menu_item_count = 0;
             break;
     }
 
     /* Reset cursor */
-    D_80159210 = 0;
+    menu_selection = 0;
     D_80159234 = toMenuId;
 }
 
@@ -31773,8 +31773,8 @@ void menu_animation_update(void) {
     f32 highlightX;
     f32 highlightWidth;
 
-    transitionState = D_80159238;
-    animFrame = D_8015923C;
+    transitionState = transition_state;
+    animFrame = transition_anim_frame;
 
     /* No animation needed */
     if (transitionState == 0) {
@@ -31782,30 +31782,30 @@ void menu_animation_update(void) {
     }
 
     animFrame = animFrame + 1;
-    D_8015923C = animFrame;
+    transition_anim_frame = animFrame;
 
     /* Transition: closing */
     if (transitionState == 1) {
         targetFrame = 15;
         if (animFrame >= targetFrame) {
-            D_80159238 = 0;
-            D_8015923C = 0;
+            transition_state = 0;
+            transition_anim_frame = 0;
             return;
         }
         /* Slide out animation */
         t = (f32)animFrame / (f32)targetFrame;
         easedT = t * t;  /* Ease in (accelerate) */
-        D_80159244 = (s32)(320.0f * easedT);  /* X offset slides right */
-        D_80159248 = (s32)(255.0f * (1.0f - t));  /* Fade out */
+        transition_x_offset = (s32)(320.0f * easedT);  /* X offset slides right */
+        transition_alpha = (s32)(255.0f * (1.0f - t));  /* Fade out */
     }
     /* Transition: switching */
     else if (transitionState == 2) {
         targetFrame = 20;
         if (animFrame >= targetFrame) {
-            D_80159238 = 0;
-            D_8015923C = 0;
-            D_80159244 = 0;
-            D_80159248 = 255;
+            transition_state = 0;
+            transition_anim_frame = 0;
+            transition_x_offset = 0;
+            transition_alpha = 255;
             return;
         }
         /* Two-phase: slide out then slide in */
@@ -31813,36 +31813,36 @@ void menu_animation_update(void) {
             /* Phase 1: slide out */
             t = (f32)animFrame / 10.0f;
             easedT = t * t;
-            D_80159244 = (s32)(-320.0f * easedT);  /* Slide left */
-            D_80159248 = (s32)(255.0f * (1.0f - t * 0.5f));
+            transition_x_offset = (s32)(-320.0f * easedT);  /* Slide left */
+            transition_alpha = (s32)(255.0f * (1.0f - t * 0.5f));
         } else {
             /* Phase 2: slide in */
             t = (f32)(animFrame - 10) / 10.0f;
             easedT = 1.0f - (1.0f - t) * (1.0f - t);  /* Ease out */
-            D_80159244 = (s32)(320.0f * (1.0f - easedT));  /* Slide from right */
-            D_80159248 = (s32)(128.0f + 127.0f * easedT);
+            transition_x_offset = (s32)(320.0f * (1.0f - easedT));  /* Slide from right */
+            transition_alpha = (s32)(128.0f + 127.0f * easedT);
         }
     }
     /* Transition: opening */
     else if (transitionState == 3) {
         targetFrame = 15;
         if (animFrame >= targetFrame) {
-            D_80159238 = 0;
-            D_8015923C = 0;
-            D_80159244 = 0;
-            D_80159248 = 255;
+            transition_state = 0;
+            transition_anim_frame = 0;
+            transition_x_offset = 0;
+            transition_alpha = 255;
             D_80159230 = 1;  /* Menu now visible */
             return;
         }
         t = (f32)animFrame / (f32)targetFrame;
         easedT = 1.0f - (1.0f - t) * (1.0f - t);  /* Ease out */
-        D_80159244 = (s32)(-320.0f * (1.0f - easedT));  /* Slide from left */
-        D_80159248 = (s32)(255.0f * easedT);
+        transition_x_offset = (s32)(-320.0f * (1.0f - easedT));  /* Slide from left */
+        transition_alpha = (s32)(255.0f * easedT);
     }
 
     /* Animate menu items (staggered entry) */
-    menuItems = (s32 *)D_80159218;
-    itemCount = D_80159214;
+    menuItems = (s32 *)menu_items_ptr;
+    itemCount = menu_item_count;
     if (menuItems != NULL && transitionState != 1) {
         for (i = 0; i < itemCount; i++) {
             /* Calculate staggered delay */
@@ -31866,20 +31866,20 @@ void menu_animation_update(void) {
 
     /* Animate highlight bar */
     highlightX = D_80159260;
-    targetY = (f32)(D_80159210 * 24 + 80);  /* 24px per item, 80px top offset */
-    if (D_80159264 != targetY) {
+    targetY = (f32)(menu_selection * 24 + 80);  /* 24px per item, 80px top offset */
+    if (transition_y_offset != targetY) {
         f32 diff;
-        diff = targetY - D_80159264;
+        diff = targetY - transition_y_offset;
         if (diff > 0) {
             if (diff > 8.0f) diff = 8.0f;
         } else {
             if (diff < -8.0f) diff = -8.0f;
         }
-        D_80159264 = D_80159264 + diff;
+        transition_y_offset = transition_y_offset + diff;
     }
     /* Pulse highlight width */
-    D_80159268 = 150.0f + 10.0f * sinf((f32)D_80159270 * 0.1f);
-    D_80159270 = D_80159270 + 1;
+    D_80159268 = 150.0f + 10.0f * sinf((f32)cursor_anim_frame * 0.1f);
+    cursor_anim_frame = cursor_anim_frame + 1;
 }
 
 /*
@@ -31895,7 +31895,7 @@ void sound_play_menu(s32 soundId) {
     u32 handle;
 
     /* Check if SFX enabled */
-    if (D_80159304 == 0) {
+    if (music_volume == 0) {
         return;
     }
 
@@ -32092,8 +32092,8 @@ void menu_highlight_set(s32 itemIndex) {
     s32 targetY;
     f32 startY;
 
-    prevIndex = D_80159210;
-    itemCount = D_80159214;
+    prevIndex = menu_selection;
+    itemCount = menu_item_count;
 
     /* Bounds check */
     if (itemIndex < 0 || itemIndex >= itemCount) {
@@ -32114,10 +32114,10 @@ void menu_highlight_set(s32 itemIndex) {
     targetY = itemIndex * 24 + 80;  /* 24 pixels per item, 80 top offset */
 
     /* If jumping multiple items, start smooth transition */
-    startY = D_80159264;
+    startY = transition_y_offset;
     if (startY == 0.0f) {
         /* First time, snap to position */
-        D_80159264 = (f32)targetY;
+        transition_y_offset = (f32)targetY;
     }
     /* Otherwise animation update will smooth it */
 
@@ -32125,7 +32125,7 @@ void menu_highlight_set(s32 itemIndex) {
     D_801592C0 = targetY;
 
     /* Reset highlight pulse phase */
-    D_80159270 = 0;
+    cursor_anim_frame = 0;
 
     /* Reset text scroll state for new item */
     D_80159280 = 0;
@@ -32166,13 +32166,13 @@ void menu_list_render(void *list, s32 count) {
     }
 
     items = (s32 *)list;
-    baseX = 85 + D_80159244;  /* Base X with transition offset */
+    baseX = 85 + transition_x_offset;  /* Base X with transition offset */
     baseY = 80;
-    globalAlpha = D_80159248;
-    highlightY = D_80159264;
+    globalAlpha = transition_alpha;
+    highlightY = transition_y_offset;
 
     /* Draw highlight bar first (behind items) */
-    if (D_80159210 >= 0) {
+    if (menu_selection >= 0) {
         highlightAlpha = (globalAlpha * 180) / 255;
         /* func_800C7110 draws HUD elements */
         /* Draw stretched highlight sprite at position */
@@ -32191,7 +32191,7 @@ void menu_list_render(void *list, s32 count) {
         x = baseX;
         y = baseY + i * 24;
 
-        isHighlighted = (i == D_80159210);
+        isHighlighted = (i == menu_selection);
         isDisabled = (itemFlags & 1);
 
         /* Get per-item alpha from animation */
@@ -32278,7 +32278,7 @@ void menu_list_render(void *list, s32 count) {
         if (isHighlighted && !isDisabled) {
             /* Pulsing cursor */
             s32 cursorAlpha;
-            cursorAlpha = 200 + (s32)(55.0f * sinf((f32)D_80159270 * 0.15f));
+            cursorAlpha = 200 + (s32)(55.0f * sinf((f32)cursor_anim_frame * 0.15f));
             draw_ui_element(56, x - 20, y + 2, 12, 12, cursorAlpha);  /* Cursor icon */
         }
     }
@@ -32370,12 +32370,12 @@ void menu_dialog_display(s32 dialogId) {
     s32 selectedButton;
 
     /* Check if dialog is active */
-    if (D_801592E0 == 0) {
+    if (confirm_dialog_active == 0) {
         return;
     }
 
-    animFrame = D_801592E4;
-    selectedButton = D_801592E8;
+    animFrame = confirm_dialog_anim;
+    selectedButton = confirm_dialog_selection;
 
     /* Dialog dimensions */
     dialogW = 200;
@@ -32478,7 +32478,7 @@ void menu_dialog_display(s32 dialogId) {
 
     /* Skip text rendering during scale animation */
     if (animFrame < 10) {
-        D_801592E4 = animFrame + 1;
+        confirm_dialog_anim = animFrame + 1;
         return;
     }
 
@@ -32515,7 +32515,7 @@ void menu_dialog_display(s32 dialogId) {
         draw_text(button2, btn2X, buttonY, btn2Alpha);
     }
 
-    D_801592E4 = animFrame + 1;
+    confirm_dialog_anim = animFrame + 1;
 }
 
 /*
@@ -32533,40 +32533,40 @@ s32 menu_confirm_dialog(char *message) {
     result = -1;  /* -1 = still waiting, 0 = no, 1 = yes */
 
     /* Check if dialog is not yet open */
-    if (D_801592E0 == 0) {
+    if (confirm_dialog_active == 0) {
         /* Open dialog */
-        D_801592E0 = 1;
+        confirm_dialog_active = 1;
         D_801592EC = (u32)message;  /* Store custom message pointer */
-        D_801592E4 = 0;  /* Reset animation */
-        D_801592E8 = 0;  /* Default to first button (YES) */
+        confirm_dialog_anim = 0;  /* Reset animation */
+        confirm_dialog_selection = 0;  /* Default to first button (YES) */
         D_801592F0 = 2;  /* Two buttons */
         sound_play_menu(16);  /* Dialog open sound */
         return result;
     }
 
     /* Wait for animation to complete */
-    if (D_801592E4 < 10) {
+    if (confirm_dialog_anim < 10) {
         return result;
     }
 
-    selectedButton = D_801592E8;
+    selectedButton = confirm_dialog_selection;
     buttonCount = D_801592F0;
 
     /* Handle input */
-    input = controller_get_input(D_80158100);
+    input = controller_get_input(sound_handles);
 
     /* Left/right to switch buttons */
     if (input == 6) {  /* Left */
         if (selectedButton > 0) {
             selectedButton--;
-            D_801592E8 = selectedButton;
+            confirm_dialog_selection = selectedButton;
             sound_play_menu(12);
         }
     }
     else if (input == 7) {  /* Right */
         if (selectedButton < buttonCount - 1) {
             selectedButton++;
-            D_801592E8 = selectedButton;
+            confirm_dialog_selection = selectedButton;
             sound_play_menu(12);
         }
     }
@@ -32597,9 +32597,9 @@ void menu_dialog_close(void) {
     sound_play_menu(17);  /* Dialog close sound */
 
     /* Actually close after short delay */
-    D_801592E0 = 0;  /* Dialog inactive */
+    confirm_dialog_active = 0;  /* Dialog inactive */
     D_801592EC = 0;  /* Clear message pointer */
-    D_801592E8 = 0;  /* Reset selection */
+    confirm_dialog_selection = 0;  /* Reset selection */
     D_801592F0 = 0;  /* Reset button count */
 
     /* Return focus to menu */
@@ -32628,12 +32628,12 @@ void keyboard_init(void) {
     D_80159908 = 6;  /* Columns per row */
     D_8015990C = 6;  /* Number of rows */
     D_80159910 = 0;  /* Keyboard visible */
-    D_80159914 = 0;  /* Current cursor position in text buffer */
-    D_80159918 = 0;  /* Animation frame */
+    text_cursor_pos = 0;  /* Current cursor position in text buffer */
+    text_anim_frame = 0;  /* Animation frame */
 
     /* Clear preview buffer */
     for (i = 0; i < 16; i++) {
-        D_8015991C[i] = '\0';
+        text_input_buffer[i] = '\0';
     }
 
     /* Set keyboard character map */
@@ -32749,18 +32749,18 @@ void menu_text_input(char *buffer, s32 maxLen) {
     if (D_80159910 == 0) {
         text_width();  /* Init keyboard */
         D_80159910 = 1;
-        D_80159914 = 0;
+        text_cursor_pos = 0;
         /* Copy existing buffer content to preview */
         for (i = 0; i < maxLen && i < 16 && buffer[i] != '\0'; i++) {
-            D_8015991C[i] = buffer[i];
-            D_80159914 = i + 1;
+            text_input_buffer[i] = buffer[i];
+            text_cursor_pos = i + 1;
         }
         return;
     }
 
     /* Get input */
-    input = controller_get_input(D_80158100);
-    cursorPos = D_80159914;
+    input = controller_get_input(sound_handles);
+    cursorPos = text_cursor_pos;
 
     /* Process keyboard input */
     c = text_draw(input);
@@ -32768,7 +32768,7 @@ void menu_text_input(char *buffer, s32 maxLen) {
     if (c == '\n') {
         /* OK pressed - copy preview to buffer and close */
         for (i = 0; i < maxLen && i < 16; i++) {
-            buffer[i] = D_8015991C[i];
+            buffer[i] = text_input_buffer[i];
         }
         if (maxLen > 0) {
             buffer[maxLen - 1] = '\0';
@@ -32780,20 +32780,20 @@ void menu_text_input(char *buffer, s32 maxLen) {
         /* Backspace */
         if (cursorPos > 0) {
             cursorPos--;
-            D_8015991C[cursorPos] = '\0';
-            D_80159914 = cursorPos;
+            text_input_buffer[cursorPos] = '\0';
+            text_cursor_pos = cursorPos;
         }
     }
     else if (c != '\0' && cursorPos < maxLen - 1 && cursorPos < 15) {
         /* Add character */
-        D_8015991C[cursorPos] = c;
+        text_input_buffer[cursorPos] = c;
         cursorPos++;
-        D_8015991C[cursorPos] = '\0';
-        D_80159914 = cursorPos;
+        text_input_buffer[cursorPos] = '\0';
+        text_cursor_pos = cursorPos;
     }
 
     /* Update animation frame */
-    D_80159918 = D_80159918 + 1;
+    text_anim_frame = text_anim_frame + 1;
 }
 
 /*
@@ -32808,9 +32808,9 @@ void menu_option_toggle(s32 optionId) {
     /* Get current value based on option ID */
     switch (optionId) {
         case 0:  /* Music */
-            currentValue = D_80159300;
+            currentValue = sfx_volume;
             newValue = (currentValue == 0) ? 1 : 0;
-            D_80159300 = newValue;
+            sfx_volume = newValue;
             /* Apply: mute/unmute music channel */
             if (newValue == 0) {
                 sound_pan_set(1);  /* Mute music */
@@ -32820,15 +32820,15 @@ void menu_option_toggle(s32 optionId) {
             break;
 
         case 1:  /* Sound effects */
-            currentValue = D_80159304;
+            currentValue = music_volume;
             newValue = (currentValue == 0) ? 1 : 0;
-            D_80159304 = newValue;
+            music_volume = newValue;
             break;
 
         case 2:  /* Vibration/rumble */
-            currentValue = D_80159308;
+            currentValue = controller_config;
             newValue = (currentValue == 0) ? 1 : 0;
-            D_80159308 = newValue;
+            controller_config = newValue;
             /* Test vibration when enabled */
             if (newValue == 1) {
                 menu_vibration_test();  /* Short rumble test */
@@ -32836,27 +32836,27 @@ void menu_option_toggle(s32 optionId) {
             break;
 
         case 3:  /* Widescreen mode */
-            currentValue = D_8015930C;
+            currentValue = vibration_setting;
             newValue = (currentValue == 0) ? 1 : 0;
-            D_8015930C = newValue;
+            vibration_setting = newValue;
             break;
 
         case 4:  /* HUD display */
-            currentValue = D_80159060;
+            currentValue = message_active;
             newValue = (currentValue == 0) ? 1 : 0;
-            D_80159060 = newValue;
+            message_active = newValue;
             break;
 
         case 5:  /* Minimap */
-            currentValue = D_80159310;
+            currentValue = display_mode_setting;
             newValue = (currentValue == 0) ? 1 : 0;
-            D_80159310 = newValue;
+            display_mode_setting = newValue;
             break;
 
         case 6:  /* Speedometer units (mph/kph) */
-            currentValue = D_80159314;
+            currentValue = misc_flags;
             newValue = (currentValue == 0) ? 1 : 0;
-            D_80159314 = newValue;
+            misc_flags = newValue;
             break;
 
         case 7:  /* Camera auto-center */
@@ -32896,26 +32896,26 @@ void menu_save_options(void) {
     saveData[3] = 0x00;  /* Reserved */
 
     /* Audio settings */
-    saveData[4] = (u8)D_80159300;   /* Music on/off */
-    saveData[5] = (u8)D_80159304;   /* SFX on/off */
+    saveData[4] = (u8)sfx_volume;   /* Music on/off */
+    saveData[5] = (u8)music_volume;   /* SFX on/off */
     saveData[6] = (u8)D_80159320;   /* Music volume */
     saveData[7] = (u8)D_80159324;   /* SFX volume */
 
     /* Video settings */
-    saveData[8] = (u8)D_8015930C;   /* Widescreen */
-    saveData[9] = (u8)D_80159060;   /* HUD enabled */
-    saveData[10] = (u8)D_80159310;  /* Minimap */
-    saveData[11] = (u8)D_80159314;  /* Speed units */
+    saveData[8] = (u8)vibration_setting;   /* Widescreen */
+    saveData[9] = (u8)message_active;   /* HUD enabled */
+    saveData[10] = (u8)display_mode_setting;  /* Minimap */
+    saveData[11] = (u8)misc_flags;  /* Speed units */
 
     /* Control settings */
-    saveData[12] = (u8)D_80159308;  /* Vibration */
+    saveData[12] = (u8)controller_config;  /* Vibration */
     saveData[13] = (u8)D_80159318;  /* Camera auto */
     saveData[14] = (u8)D_80159328;  /* Steering sensitivity */
     saveData[15] = (u8)D_8015932C;  /* Invert Y */
 
     /* Controller mapping (8 bytes) */
     for (i = 0; i < 8; i++) {
-        saveData[16 + i] = (u8)D_80159330[i];
+        saveData[16 + i] = (u8)control_mapping[i];
     }
 
     /* Misc settings */
@@ -32982,24 +32982,24 @@ void menu_load_options(void) {
     }
 
     /* Unpack options */
-    D_80159300 = saveData[4];   /* Music on/off */
-    D_80159304 = saveData[5];   /* SFX on/off */
+    sfx_volume = saveData[4];   /* Music on/off */
+    music_volume = saveData[5];   /* SFX on/off */
     D_80159320 = saveData[6];   /* Music volume */
     D_80159324 = saveData[7];   /* SFX volume */
 
-    D_8015930C = saveData[8];   /* Widescreen */
-    D_80159060 = saveData[9];   /* HUD enabled */
-    D_80159310 = saveData[10];  /* Minimap */
-    D_80159314 = saveData[11];  /* Speed units */
+    vibration_setting = saveData[8];   /* Widescreen */
+    message_active = saveData[9];   /* HUD enabled */
+    display_mode_setting = saveData[10];  /* Minimap */
+    misc_flags = saveData[11];  /* Speed units */
 
-    D_80159308 = saveData[12];  /* Vibration */
+    controller_config = saveData[12];  /* Vibration */
     D_80159318 = saveData[13];  /* Camera auto */
     D_80159328 = saveData[14];  /* Steering sensitivity */
     D_8015932C = saveData[15];  /* Invert Y */
 
     /* Controller mapping */
     for (i = 0; i < 8; i++) {
-        D_80159330[i] = saveData[16 + i];
+        control_mapping[i] = saveData[16 + i];
     }
 
     D_8015931C = saveData[24];  /* Subtitles */
@@ -33022,14 +33022,14 @@ void menu_options_screen(void) {
     animation_update();
 
     /* Handle dialog if active */
-    if (D_801592E0 != 0) {
+    if (confirm_dialog_active != 0) {
         text_center(D_80159340);
         return;
     }
 
     /* Get input */
-    input = controller_get_input(D_80158100);
-    selectedItem = D_80159210;
+    input = controller_get_input(sound_handles);
+    selectedItem = menu_selection;
 
     /* Handle navigation */
     if (input >= 4 && input <= 7) {
@@ -33050,26 +33050,26 @@ void menu_options_screen(void) {
                 break;
             case 3:  /* Save options */
                 D_80159340 = 1;  /* Save confirm dialog */
-                D_801592E0 = 1;
-                D_801592E4 = 0;
-                D_801592E8 = 0;
+                confirm_dialog_active = 1;
+                confirm_dialog_anim = 0;
+                confirm_dialog_selection = 0;
                 break;
             case 4:  /* Load options */
                 D_80159340 = 2;  /* Load confirm dialog */
-                D_801592E0 = 1;
-                D_801592E4 = 0;
-                D_801592E8 = 0;
+                confirm_dialog_active = 1;
+                confirm_dialog_anim = 0;
+                confirm_dialog_selection = 0;
                 break;
             case 5:  /* Reset defaults */
                 /* Reset all options to defaults */
-                D_80159300 = 1;  /* Music on */
-                D_80159304 = 1;  /* SFX on */
+                sfx_volume = 1;  /* Music on */
+                music_volume = 1;  /* SFX on */
                 D_80159320 = 80; /* Music volume */
                 D_80159324 = 100; /* SFX volume */
-                D_8015930C = 0;  /* Widescreen off */
-                D_80159060 = 1;  /* HUD on */
-                D_80159310 = 1;  /* Minimap on */
-                D_80159308 = 1;  /* Vibration on */
+                vibration_setting = 0;  /* Widescreen off */
+                message_active = 1;  /* HUD on */
+                display_mode_setting = 1;  /* Minimap on */
+                controller_config = 1;  /* Vibration on */
                 sound_play_menu(10);
                 break;
             case 6:  /* Back */
@@ -33101,9 +33101,9 @@ void menu_audio_settings(void) {
     animation_update();
 
     /* Get input */
-    input = controller_get_input(D_80158100);
-    selectedItem = D_80159210;
-    menuItems = (s32 *)D_80159218;
+    input = controller_get_input(sound_handles);
+    selectedItem = menu_selection;
+    menuItems = (s32 *)menu_items_ptr;
 
     /* Handle navigation */
     if (input >= 4 && input <= 7) {
@@ -33138,7 +33138,7 @@ void menu_audio_settings(void) {
                 /* Apply volume change */
                 if (selectedItem == 2) {
                     D_80159320 = value;  /* Music volume */
-                    sound_update_channel(D_80158140, value);  /* Apply to music */
+                    sound_update_channel(voice_handle, value);  /* Apply to music */
                 } else if (selectedItem == 3) {
                     D_80159324 = value;  /* SFX volume */
                 }
@@ -33168,8 +33168,8 @@ void menu_video_settings(void) {
 
     animation_update();
 
-    input = controller_get_input(D_80158100);
-    selectedItem = D_80159210;
+    input = controller_get_input(sound_handles);
+    selectedItem = menu_selection;
 
     if (input >= 4 && input <= 7) {
         input_poll(input);
@@ -33211,9 +33211,9 @@ void menu_control_settings(void) {
 
     animation_update();
 
-    input = controller_get_input(D_80158100);
-    selectedItem = D_80159210;
-    menuItems = (s32 *)D_80159218;
+    input = controller_get_input(sound_handles);
+    selectedItem = menu_selection;
+    menuItems = (s32 *)menu_items_ptr;
 
     if (input >= 4 && input <= 7) {
         input_poll(input);
@@ -33301,11 +33301,11 @@ void menu_controller_remap(void) {
     animation_update();
 
     remapState = D_80159350;
-    selectedItem = D_80159210;
+    selectedItem = menu_selection;
 
     if (remapState == 0) {
         /* Normal navigation */
-        input = controller_get_input(D_80158100);
+        input = controller_get_input(sound_handles);
 
         if (input >= 4 && input <= 5) {
             input_poll(input);
@@ -33320,14 +33320,14 @@ void menu_controller_remap(void) {
                 sound_play_menu(10);
             } else if (selectedItem == 8) {
                 /* Reset to defaults */
-                D_80159330[0] = 0;  /* A = accelerate */
-                D_80159330[1] = 1;  /* B = brake */
-                D_80159330[2] = 2;  /* Z = handbrake */
-                D_80159330[3] = 5;  /* R = look back */
-                D_80159330[4] = 4;  /* L = change view */
-                D_80159330[5] = 6;  /* C-UP = horn */
-                D_80159330[6] = 7;  /* C-DOWN = reset */
-                D_80159330[7] = 3;  /* START = pause */
+                control_mapping[0] = 0;  /* A = accelerate */
+                control_mapping[1] = 1;  /* B = brake */
+                control_mapping[2] = 2;  /* Z = handbrake */
+                control_mapping[3] = 5;  /* R = look back */
+                control_mapping[4] = 4;  /* L = change view */
+                control_mapping[5] = 6;  /* C-UP = horn */
+                control_mapping[6] = 7;  /* C-DOWN = reset */
+                control_mapping[7] = 3;  /* START = pause */
                 sound_play_menu(10);
             } else if (selectedItem == 9) {
                 /* Back */
@@ -33340,7 +33340,7 @@ void menu_controller_remap(void) {
     }
     else {
         /* Waiting for button press */
-        buttons = (s32)(long)D_80158100[0] & 0xFFFF;
+        buttons = (s32)(long)sound_handles[0] & 0xFFFF;
         D_80159358 = D_80159358 - 1;
 
         if (D_80159358 <= 0) {
@@ -33364,7 +33364,7 @@ void menu_controller_remap(void) {
 
             if (buttonId >= 0) {
                 /* Assign button to action */
-                D_80159330[D_80159354] = buttonId;
+                control_mapping[D_80159354] = buttonId;
                 D_80159350 = 0;
                 sound_play_menu(10);
             }
@@ -33377,7 +33377,7 @@ void menu_controller_remap(void) {
     for (i = 0; i < 8; i++) {
         s32 y = 80 + i * 20;
         s32 alpha = (i == selectedItem) ? 255 : 180;
-        s32 buttonIdx = D_80159330[i];
+        s32 buttonIdx = control_mapping[i];
         draw_text(actionNames[i], 60, y, alpha);
         if (buttonIdx >= 0 && buttonIdx < 10) {
             draw_text(buttonNames[buttonIdx], 200, y, alpha);
@@ -33418,54 +33418,54 @@ void menu_vibration_test(void) {
         vibeState = 1;
         vibeTimer = 0;
         vibePattern = 0;
-        D_80159368 = 0;
-        osMotorStart(&D_80159370[controller]);  /* Start motor */
+        motor_vibe_state = 0;
+        osMotorStart(&motor_pak_handles[controller]);  /* Start motor */
     }
 
     vibeTimer = vibeTimer + 1;
 
     /* Vibration pattern: short-short-long */
-    vibePattern = D_80159368;
+    vibePattern = motor_vibe_state;
     switch (vibePattern) {
         case 0:  /* First short pulse */
             if (vibeTimer >= 10) {
-                osMotorStop(&D_80159370[controller]);
+                osMotorStop(&motor_pak_handles[controller]);
                 vibeTimer = 0;
-                D_80159368 = 1;
+                motor_vibe_state = 1;
             }
             break;
         case 1:  /* First pause */
             if (vibeTimer >= 5) {
-                osMotorStart(&D_80159370[controller]);
+                osMotorStart(&motor_pak_handles[controller]);
                 vibeTimer = 0;
-                D_80159368 = 2;
+                motor_vibe_state = 2;
             }
             break;
         case 2:  /* Second short pulse */
             if (vibeTimer >= 10) {
-                osMotorStop(&D_80159370[controller]);
+                osMotorStop(&motor_pak_handles[controller]);
                 vibeTimer = 0;
-                D_80159368 = 3;
+                motor_vibe_state = 3;
             }
             break;
         case 3:  /* Second pause */
             if (vibeTimer >= 5) {
-                osMotorStart(&D_80159370[controller]);
+                osMotorStart(&motor_pak_handles[controller]);
                 vibeTimer = 0;
-                D_80159368 = 4;
+                motor_vibe_state = 4;
             }
             break;
         case 4:  /* Long pulse */
             if (vibeTimer >= 30) {
-                osMotorStop(&D_80159370[controller]);
+                osMotorStop(&motor_pak_handles[controller]);
                 vibeTimer = 0;
-                D_80159368 = 5;
+                motor_vibe_state = 5;
                 vibeState = 0;  /* Done */
             }
             break;
         default:
             vibeState = 0;
-            osMotorStop(&D_80159370[controller]);
+            osMotorStop(&motor_pak_handles[controller]);
             break;
     }
 
@@ -33505,12 +33505,12 @@ void track_select_screen(void) {
 
     numTracks = 12;
     visibleTracks = 6;
-    selectedTrack = D_80159A00;
-    scrollOffset = D_80159A04;
+    selectedTrack = race_time;
+    scrollOffset = game_mode;
 
     animation_update();  /* Update animations */
 
-    input = controller_get_input(D_80158100);
+    input = controller_get_input(sound_handles);
 
     /* Navigation */
     if (input == 4) {  /* Up */
@@ -33537,7 +33537,7 @@ void track_select_screen(void) {
     else if (input == 1) {  /* Select */
         trackUnlocked = menu_update(selectedTrack);
         if (trackUnlocked) {
-            D_80159A08 = selectedTrack;  /* Store selected track */
+            trackno = selectedTrack;  /* Store selected track */
             menu_transition(4);  /* Go to car select */
             sound_play_menu(10);
         } else {
@@ -33548,8 +33548,8 @@ void track_select_screen(void) {
         menu_back();
     }
 
-    D_80159A00 = selectedTrack;
-    D_80159A04 = scrollOffset;
+    race_time = selectedTrack;
+    game_mode = scrollOffset;
 
     /* Render */
     draw_text(100, 30, "SELECT TRACK", 0xFFFFFFFF);
@@ -33693,7 +33693,7 @@ void track_info_display(s32 trackId) {
 
     /* Best time */
     draw_text("BEST:", infoX, infoY + 40, 200);
-    bestTime = D_80159A10[trackId];  /* Best times array */
+    bestTime = best_race_times[trackId];  /* Best times array */
     if (bestTime > 0) {
         minutes = bestTime / 6000;
         seconds = (bestTime / 100) % 60;
@@ -33738,7 +33738,7 @@ s32 track_unlock_check(s32 trackId) {
     /* Check if previous track has been completed */
     if (trackId > 0) {
         /* Check if player has a best time on previous track */
-        if (D_80159A10[trackId - 1] > 0) {
+        if (best_race_times[trackId - 1] > 0) {
             return 1;
         }
     }
@@ -33748,7 +33748,7 @@ s32 track_unlock_check(s32 trackId) {
         /* Unlock if all regular tracks completed */
         s32 allCompleted = 1;
         for (i = 0; i < 8; i++) {
-            if (D_80159A10[i] == 0) {
+            if (best_race_times[i] == 0) {
                 allCompleted = 0;
                 break;
             }
@@ -33760,7 +33760,7 @@ s32 track_unlock_check(s32 trackId) {
     if (trackId == 11) {
         s32 completedCount = 0;
         for (i = 0; i < 8; i++) {
-            if (D_80159A10[i] > 0) {
+            if (best_race_times[i] > 0) {
                 completedCount++;
             }
         }
@@ -33801,7 +33801,7 @@ void car_select_screen(void) {
 
     animation_update();
 
-    input = controller_get_input(D_80158100);
+    input = controller_get_input(sound_handles);
 
     /* Navigation left/right to cycle cars */
     if (input == 6) {  /* Left */
@@ -34009,7 +34009,7 @@ s32 car_unlock_check(s32 carId) {
     /* Count completed tracks */
     tracksCompleted = 0;
     for (i = 0; i < 12; i++) {
-        if (D_80159A10[i] > 0) {
+        if (best_race_times[i] > 0) {
             tracksCompleted++;
         }
     }
@@ -34036,7 +34036,7 @@ s32 car_unlock_check(s32 carId) {
         s32 goldCount = 0;
         for (i = 0; i < 8; i++) {
             s32 goldTime = D_80159A70[i];  /* Gold times array */
-            if (D_80159A10[i] > 0 && D_80159A10[i] <= goldTime) {
+            if (best_race_times[i] > 0 && best_race_times[i] <= goldTime) {
                 goldCount++;
             }
         }
@@ -34137,11 +34137,11 @@ void race_setup_screen(void) {
     difficultyNames[3] = "EXPERT";
 
     numItems = 7;  /* Mode, Laps, Difficulty, Mirror, Weather, Time, Start */
-    selectedItem = D_80159B00;
+    selectedItem = timer_data;
 
     animation_update();
 
-    input = controller_get_input(D_80158100);
+    input = controller_get_input(sound_handles);
 
     /* Navigation */
     if (input == 4) {
@@ -34159,27 +34159,27 @@ void race_setup_screen(void) {
         s32 delta = (input == 6) ? -1 : 1;
         switch (selectedItem) {
             case 0:  /* Mode */
-                D_80159B04 = (D_80159B04 + delta + 4) % 4;
-                race_mode_select(D_80159B04);
+                race_mode_selection = (race_mode_selection + delta + 4) % 4;
+                race_mode_select(race_mode_selection);
                 break;
             case 1:  /* Laps */
-                D_80159B08 = (D_80159B08 + delta + 5) % 5;
-                lap_count_select(D_80159B08);
+                lap_count_selection = (lap_count_selection + delta + 5) % 5;
+                lap_count_select(lap_count_selection);
                 break;
             case 2:  /* Difficulty */
-                D_80159B0C = (D_80159B0C + delta + 4) % 4;
-                difficulty_select(D_80159B0C);
+                difficulty_selection = (difficulty_selection + delta + 4) % 4;
+                difficulty_select(difficulty_selection);
                 break;
             case 3:  /* Mirror */
                 mirror_mode_toggle();
                 break;
             case 4:  /* Weather */
-                D_80159B14 = (D_80159B14 + delta + 4) % 4;
-                weather_select(D_80159B14);
+                weather_selection = (weather_selection + delta + 4) % 4;
+                weather_select(weather_selection);
                 break;
             case 5:  /* Time of day */
-                D_80159B18 = (D_80159B18 + delta + 3) % 3;
-                time_of_day_select(D_80159B18);
+                time_of_day_selection = (time_of_day_selection + delta + 3) % 3;
+                time_of_day_select(time_of_day_selection);
                 break;
         }
         sound_play_menu(14);
@@ -34187,7 +34187,7 @@ void race_setup_screen(void) {
     else if (input == 1) {
         if (selectedItem == 6) {
             /* Start race */
-            D_801146EC = 7;  /* PREPLAY state */
+            gstate_byte = 7;  /* PREPLAY state */
             menu_transition(-1);  /* Close menu */
             sound_play_menu(10);
         }
@@ -34196,22 +34196,22 @@ void race_setup_screen(void) {
         menu_back();
     }
 
-    D_80159B00[0][0] = selectedItem;
+    timer_data[0][0] = selectedItem;
 
     /* Render */
     draw_text(105, 30, "RACE SETUP", 0xFFFFFFFF);
 
     /* Mode */
     draw_text("MODE:", 50, 70, (selectedItem == 0) ? 255 : 180);
-    draw_text(modeNames[D_80159B04], 120, 70, 255);
+    draw_text(modeNames[race_mode_selection], 120, 70, 255);
 
     /* Laps */
     draw_text("LAPS:", 50, 95, (selectedItem == 1) ? 255 : 180);
-    draw_text(lapOptions[D_80159B08], 120, 95, 255);
+    draw_text(lapOptions[lap_count_selection], 120, 95, 255);
 
     /* Difficulty */
     draw_text("DIFFICULTY:", 50, 120, (selectedItem == 2) ? 255 : 180);
-    draw_text(difficultyNames[D_80159B0C], 140, 120, 255);
+    draw_text(difficultyNames[difficulty_selection], 140, 120, 255);
 
     /* Mirror mode */
     draw_text("MIRROR:", 50, 145, (selectedItem == 3) ? 255 : 180);
@@ -34221,14 +34221,14 @@ void race_setup_screen(void) {
     draw_text("WEATHER:", 50, 170, (selectedItem == 4) ? 255 : 180);
     {
         char *weatherNames[4] = {"CLEAR", "RAIN", "FOG", "NIGHT"};
-        draw_text(weatherNames[D_80159B14], 130, 170, 255);
+        draw_text(weatherNames[weather_selection], 130, 170, 255);
     }
 
     /* Time of day */
     draw_text("TIME:", 50, 195, (selectedItem == 5) ? 255 : 180);
     {
         char *timeNames[3] = {"MORNING", "NOON", "EVENING"};
-        draw_text(timeNames[D_80159B18], 100, 195, 255);
+        draw_text(timeNames[time_of_day_selection], 100, 195, 255);
     }
 
     /* Start button */
@@ -34250,7 +34250,7 @@ void race_setup_screen(void) {
  */
 void race_mode_select(s32 modeId) {
     /* Store selected mode */
-    D_80159B04 = modeId;
+    race_mode_selection = modeId;
 
     /* Configure mode-specific defaults */
     switch (modeId) {
@@ -34289,7 +34289,7 @@ void race_mode_select(s32 modeId) {
 void lap_count_select(s32 laps) {
     s32 lapCounts[5] = {1, 3, 5, 7, 10};
 
-    D_80159B08 = laps;
+    lap_count_selection = laps;
     if (laps >= 0 && laps < 5) {
         D_801582E8 = lapCounts[laps];  /* Store actual lap count */
     }
@@ -34301,7 +34301,7 @@ void lap_count_select(s32 laps) {
  * Difficulty select - sets AI difficulty and rubber-banding
  */
 void difficulty_select(s32 difficulty) {
-    D_80159B0C = difficulty;
+    difficulty_selection = difficulty;
 
     /* Configure AI based on difficulty */
     switch (difficulty) {
@@ -34346,7 +34346,7 @@ void mirror_mode_toggle(void) {
  * Weather select - sets weather conditions
  */
 void weather_select(s32 weather) {
-    D_80159B14 = weather;
+    weather_selection = weather;
 
     switch (weather) {
         case 0:  /* Clear */
@@ -34378,7 +34378,7 @@ void weather_select(s32 weather) {
  * Time of day select - sets lighting conditions
  */
 void time_of_day_select(s32 timeOfDay) {
-    D_80159B18 = timeOfDay;
+    time_of_day_selection = timeOfDay;
 
     switch (timeOfDay) {
         case 0:  /* Morning */
@@ -34407,12 +34407,12 @@ void multiplayer_setup(void) {
     s32 numPlayers;
     s32 i;
 
-    selectedItem = D_80159C00;
-    numPlayers = D_80159C04;
+    selectedItem = split_screen_config;
+    numPlayers = split_num_players;
 
     animation_update();
 
-    input = controller_get_input(D_80158100);
+    input = controller_get_input(sound_handles);
 
     /* Navigation */
     if (input == 4) {
@@ -34432,16 +34432,16 @@ void multiplayer_setup(void) {
                 numPlayers = numPlayers + delta;
                 if (numPlayers < 2) numPlayers = 4;
                 if (numPlayers > 4) numPlayers = 2;
-                D_80159C04 = numPlayers;
+                split_num_players = numPlayers;
                 break;
             case 1:  /* Split screen mode */
-                D_80159C08 = (D_80159C08 + delta + 3) % 3;  /* Horizontal/Vertical/Quad */
+                split_layout_mode = (split_layout_mode + delta + 3) % 3;  /* Horizontal/Vertical/Quad */
                 break;
             case 2:  /* Handicap */
-                D_80159C0C = (D_80159C0C == 0) ? 1 : 0;
+                split_toggle = (split_toggle == 0) ? 1 : 0;
                 break;
             case 3:  /* Team mode */
-                D_80159C10 = (D_80159C10 == 0) ? 1 : 0;
+                split_param1 = (split_param1 == 0) ? 1 : 0;
                 break;
         }
         sound_play_menu(14);
@@ -34460,7 +34460,7 @@ void multiplayer_setup(void) {
         menu_back();
     }
 
-    D_80159C00[0] = selectedItem;
+    split_screen_config[0] = selectedItem;
 
     /* Render */
     draw_text(80, 30, "MULTIPLAYER SETUP", 0xFFFFFFFF);
@@ -34478,16 +34478,16 @@ void multiplayer_setup(void) {
     draw_text("SCREEN:", 50, 95, (selectedItem == 1) ? 255 : 180);
     {
         char *splitModes[3] = {"HORIZONTAL", "VERTICAL", "QUAD"};
-        draw_text(splitModes[D_80159C08], 130, 95, 255);
+        draw_text(splitModes[split_layout_mode], 130, 95, 255);
     }
 
     /* Handicap */
     draw_text("HANDICAP:", 50, 120, (selectedItem == 2) ? 255 : 180);
-    draw_text(D_80159C0C ? "ON" : "OFF", 145, 120, 255);
+    draw_text(split_toggle ? "ON" : "OFF", 145, 120, 255);
 
     /* Team mode */
     draw_text("TEAMS:", 50, 145, (selectedItem == 3) ? 255 : 180);
-    draw_text(D_80159C10 ? "ON" : "OFF", 120, 145, 255);
+    draw_text(split_param1 ? "ON" : "OFF", 120, 145, 255);
 
     /* Continue */
     draw_text("CONTINUE", 100, 180, (selectedItem == 4) ? 255 : 180);
@@ -34527,14 +34527,14 @@ void player_join_screen(void) {
     s32 allReady;
     u32 controllerInput[4];
 
-    numPlayers = D_80159C04;
+    numPlayers = split_num_players;
     joinedPlayers = 0;
     allReady = 1;
 
     animation_update();
 
     /* Read all controller inputs */
-    controllerInput[0] = D_80158100;
+    controllerInput[0] = sound_handles;
     controllerInput[1] = D_80158104;
     controllerInput[2] = D_80158108;
     controllerInput[3] = D_8015810C;
@@ -34545,48 +34545,48 @@ void player_join_screen(void) {
 
         /* Check for Start button to join */
         if (buttons & 0x1000) {
-            if (D_80159C20[i] == 0) {
+            if (effect_slots[i] == 0) {
                 /* Player joining */
-                D_80159C20[i] = 1;
+                effect_slots[i] = 1;
                 sound_play_menu(10);
-            } else if (D_80159C20[i] == 1) {
+            } else if (effect_slots[i] == 1) {
                 /* Player ready */
-                D_80159C20[i] = 2;
+                effect_slots[i] = 2;
                 sound_play_menu(10);
             }
         }
 
         /* Check for B button to leave */
         if (buttons & 0x4000) {
-            if (D_80159C20[i] == 2) {
-                D_80159C20[i] = 1;  /* Unready */
+            if (effect_slots[i] == 2) {
+                effect_slots[i] = 1;  /* Unready */
                 sound_play_menu(11);
-            } else if (D_80159C20[i] == 1) {
-                D_80159C20[i] = 0;  /* Leave */
+            } else if (effect_slots[i] == 1) {
+                effect_slots[i] = 0;  /* Leave */
                 sound_play_menu(11);
             }
         }
 
         /* Count joined and check ready */
-        if (D_80159C20[i] >= 1) {
+        if (effect_slots[i] >= 1) {
             joinedPlayers++;
         }
-        if (D_80159C20[i] != 2) {
+        if (effect_slots[i] != 2) {
             allReady = 0;
         }
     }
 
     /* Check if all required players are ready */
     if (joinedPlayers >= 2 && allReady) {
-        D_80159C14 = D_80159C14 + 1;  /* Countdown timer */
-        if (D_80159C14 >= 90) {  /* 1.5 seconds */
+        split_param2 = split_param2 + 1;  /* Countdown timer */
+        if (split_param2 >= 90) {  /* 1.5 seconds */
             /* Start game */
-            D_80159C18 = joinedPlayers;
-            D_801146EC = 7;  /* PREPLAY state */
+            mp_player_count = joinedPlayers;
+            gstate_byte = 7;  /* PREPLAY state */
             menu_transition(-1);
         }
     } else {
-        D_80159C14 = 0;
+        split_param2 = 0;
     }
 
     /* Player 1 can press B to go back if no one joined */
@@ -34601,7 +34601,7 @@ void player_join_screen(void) {
     for (i = 0; i < numPlayers; i++) {
         s32 slotX = 40 + (i % 2) * 140;
         s32 slotY = 70 + (i / 2) * 90;
-        s32 state = D_80159C20[i];
+        s32 state = effect_slots[i];
         s32 alpha;
         char playerStr[12];
 
@@ -34640,7 +34640,7 @@ void player_join_screen(void) {
 
     /* Show countdown if all ready */
     if (joinedPlayers >= 2 && allReady) {
-        s32 countdown = 3 - (D_80159C14 / 30);
+        s32 countdown = 3 - (split_param2 / 30);
         char countBuf[2];
         countBuf[0] = '0' + countdown;
         countBuf[1] = '\0';
@@ -34694,12 +34694,12 @@ void stunt_mode_setup(void) {
     timeLimits[3] = 300;  /* 5 minutes */
     timeLimits[4] = 0;    /* No limit */
 
-    menuState = D_80159E00;
+    menuState = menu_enabled;
     selectedOption = D_80159E04;
     selectedArena = D_80159E08;
     timeLimit = D_80159E0C;
-    targetScore = D_80159E10;
-    wingEnabled = D_80159E14;
+    targetScore = hiscore_char_pos;
+    wingEnabled = wing_enabled;
 
     animation_update();
 
@@ -34708,7 +34708,7 @@ void stunt_mode_setup(void) {
         arenaUnlocked[i] = menu_save(i, 0, NULL, NULL, 0);
     }
 
-    input = controller_get_input(D_80158100);
+    input = controller_get_input(sound_handles);
 
     if (menuState == 0) {
         /* Main stunt setup menu */
@@ -34770,10 +34770,10 @@ void stunt_mode_setup(void) {
                 if (arenaUnlocked[selectedArena]) {
                     D_80159E08 = selectedArena;
                     D_80159E0C = timeLimit;
-                    D_80159E10 = targetScore;
-                    D_80159E14 = wingEnabled;
-                    D_80159A08 = selectedArena + 100;  /* Stunt arena IDs */
-                    D_801146EC = 7;  /* PREPLAY */
+                    hiscore_char_pos = targetScore;
+                    wing_enabled = wingEnabled;
+                    trackno = selectedArena + 100;  /* Stunt arena IDs */
+                    gstate_byte = 7;  /* PREPLAY */
                     menu_transition(-1);
                 }
             } else if (selectedOption == 5) {
@@ -34840,7 +34840,7 @@ void stunt_mode_setup(void) {
 
     } else if (menuState == 1) {
         /* Stunt tutorial screen */
-        input = controller_get_input(D_80158100);
+        input = controller_get_input(sound_handles);
 
         if (input == 2 || input == 1) {  /* B or A to go back */
             menuState = 0;
@@ -34867,12 +34867,12 @@ void stunt_mode_setup(void) {
         draw_text(85, 250, "PRESS B TO RETURN", 0xFFFFFF96);
     }
 
-    D_80159E00 = menuState;
+    menu_enabled = menuState;
     D_80159E04 = selectedOption;
     D_80159E08 = selectedArena;
     D_80159E0C = timeLimit;
-    D_80159E10 = targetScore;
-    D_80159E14 = wingEnabled;
+    hiscore_char_pos = targetScore;
+    wing_enabled = wingEnabled;
 }
 
 /*
@@ -34945,7 +34945,7 @@ void battle_mode_setup(void) {
 
     animation_update();
 
-    input = controller_get_input(D_80158100);
+    input = controller_get_input(sound_handles);
 
     if (input == 4) {  /* Up */
         selectedOption--;
@@ -34991,13 +34991,13 @@ void battle_mode_setup(void) {
     } else if (input == 1) {  /* A - select */
         if (selectedOption == 4) {
             /* Player count check */
-            if (D_80159C18 >= 2) {
+            if (mp_player_count >= 2) {
                 D_80159E24 = selectedArena;
                 D_80159E28 = fragLimit;
                 D_80159E2C = timeLimit;
                 D_80159E30 = weaponsEnabled;
-                D_80159A08 = selectedArena + 200;  /* Battle arena IDs */
-                D_801146EC = 7;  /* PREPLAY */
+                trackno = selectedArena + 200;  /* Battle arena IDs */
+                gstate_byte = 7;  /* PREPLAY */
                 menu_transition(-1);
             } else {
                 sound_play_menu(13);  /* Error sound */
@@ -35055,7 +35055,7 @@ void battle_mode_setup(void) {
 
     /* Start button */
     draw_text("START BATTLE", 90, 165, selectedOption == 4 ? 255 : 180);
-    if (D_80159C18 < 2) {
+    if (mp_player_count < 2) {
         draw_text(75, 180, "(NEED 2+ PLAYERS)", 0xFFFFFF78);
     }
 
@@ -35108,7 +35108,7 @@ void ghost_race_setup(void) {
     /* Get available ghosts for selected track */
     ghostCount = menu_controls(selectedTrack, ghostNames, ghostTimes);
 
-    input = controller_get_input(D_80158100);
+    input = controller_get_input(sound_handles);
 
     if (input == 4) {  /* Up */
         selectedOption--;
@@ -35148,9 +35148,9 @@ void ghost_race_setup(void) {
             if (ghostCount > 0) {
                 D_80159E44 = selectedTrack;
                 D_80159E48 = selectedGhost;
-                D_80159A08 = selectedTrack;
+                trackno = selectedTrack;
                 D_80159A14[0] = 1;  /* Ghost mode enabled */
-                D_801146EC = 7;  /* PREPLAY */
+                gstate_byte = 7;  /* PREPLAY */
                 menu_transition(-1);
             } else {
                 sound_play_menu(13);  /* Error - no ghost */
@@ -35240,7 +35240,7 @@ s32 ghost_data_get(s32 trackId, char **names, s32 *times) {
 
     /* Read ghost data from controller pak */
     for (i = 0; i < 4; i++) {
-        s32 ghostData = D_80159F00[trackId * 4 + i];
+        s32 ghostData = menu_callback_array[trackId * 4 + i];
         if (ghostData != 0) {
             /* Ghost exists */
             times[count] = ghostData & 0xFFFFFF;  /* Time in lower 24 bits */
@@ -35263,9 +35263,9 @@ void ghost_data_delete(s32 trackId, s32 ghostIndex) {
 
     /* Shift ghosts down */
     for (i = ghostIndex; i < 3; i++) {
-        D_80159F00[baseIdx + i] = D_80159F00[baseIdx + i + 1];
+        menu_callback_array[baseIdx + i] = menu_callback_array[baseIdx + i + 1];
     }
-    D_80159F00[baseIdx + 3] = 0;  /* Clear last slot */
+    menu_callback_array[baseIdx + 3] = 0;  /* Clear last slot */
 }
 
 /*
@@ -35278,12 +35278,12 @@ void records_screen(void) {
     s32 selectedTab;
     s32 selectedTrack;
 
-    selectedTab = D_80159D00;
-    selectedTrack = D_80159D04;
+    selectedTab = ghost_data_buffer;
+    selectedTrack = ghost_frame_count;
 
     animation_update();
 
-    input = controller_get_input(D_80158100);
+    input = controller_get_input(sound_handles);
 
     /* Tab navigation with L/R */
     if (input == 8) {  /* L */
@@ -35309,8 +35309,8 @@ void records_screen(void) {
         menu_back();
     }
 
-    D_80159D00[0] = selectedTab;
-    D_80159D04 = selectedTrack;
+    ghost_data_buffer[0] = selectedTab;
+    ghost_frame_count = selectedTrack;
 
     /* Render tabs */
     draw_text("TIMES", 50, 30, (selectedTab == 0) ? 255 : 150);
@@ -35362,7 +35362,7 @@ void best_times_display(s32 trackId) {
     draw_text(trackNames[trackId], 100, 80, 255);
 
     /* Best race time */
-    bestTime = D_80159A10[trackId];
+    bestTime = best_race_times[trackId];
     draw_text(60, 110, "RACE:", 0xFFFFFFC8);
     if (bestTime > 0) {
         s32 m = bestTime / 6000;
@@ -35380,7 +35380,7 @@ void best_times_display(s32 trackId) {
     }
 
     /* Best lap time */
-    bestLap = D_80159D10[trackId];
+    bestLap = best_lap_times[trackId];
     draw_text(60, 135, "LAP:", 0xFFFFFFC8);
     if (bestLap > 0) {
         s32 m = bestLap / 6000;
@@ -35425,7 +35425,7 @@ void high_scores_display(s32 trackId) {
         draw_text(rankBuf, 50, y, 200);
 
         /* Get name and score from save data */
-        score = D_80159D40[trackId * 5 + i];
+        score = track_scores[trackId * 5 + i];
         if (score > 0) {
             /* Format score */
             s32 tmp = score;
@@ -35559,11 +35559,11 @@ void achievements_screen(void) {
     achievementNames[12] = NULL;
 
     numAchievements = 12;
-    scrollOffset = D_80159DA0;
+    scrollOffset = setup_type;
 
     animation_update();
 
-    input = controller_get_input(D_80158100);
+    input = controller_get_input(sound_handles);
 
     if (input == 4) {
         scrollOffset--;
@@ -35579,7 +35579,7 @@ void achievements_screen(void) {
         menu_back();
     }
 
-    D_80159DA0 = scrollOffset;
+    setup_type = scrollOffset;
 
     draw_text(95, 30, "ACHIEVEMENTS", 0xFFFFFFFF);
 
@@ -35619,7 +35619,7 @@ void credits_screen(void) {
     animation_update();
     credits_scroll();  /* Update scroll */
 
-    input = controller_get_input(D_80158100);
+    input = controller_get_input(sound_handles);
 
     /* Any button to exit */
     if (input == 1 || input == 2) {
@@ -35763,7 +35763,7 @@ void loading_tips(void) {
     const char *tip;
 
     /* Select tip based on frame counter */
-    tipIndex = (D_80142AFC / 60) % NUM_TIPS;
+    tipIndex = (frame_counter / 60) % NUM_TIPS;
     tip = loadingTips[tipIndex];
 
     /* Display tip */
@@ -35792,7 +35792,7 @@ void pause_menu(void) {
     }
 
     selection = D_8015A714;
-    input = controller_get_input(D_80158100);
+    input = controller_get_input(sound_handles);
 
     /* Navigation */
     if (input == 4) {  /* Up */
@@ -35878,7 +35878,7 @@ void pause_restart(void) {
     D_8015A718 = 0;  /* Clear pause */
 
     /* Reset all cars to start positions */
-    carBase = (u8 *)&D_80152818;
+    carBase = (u8 *)&game_car;
     for (i = 0; i < 4; i++) {
         f32 *pos = (f32 *)(carBase + i * 0x400 + 0x24);
         f32 *vel = (f32 *)(carBase + i * 0x400 + 0x34);
@@ -35906,10 +35906,10 @@ void pause_restart(void) {
     }
 
     /* Reset race timer */
-    D_80142AFC = 0;
+    frame_counter = 0;
 
     /* Go to countdown state */
-    D_801146EC = 5;  /* COUNTDOWN */
+    gstate_byte = 5;  /* COUNTDOWN */
 
     sound_play_menu(14);  /* Restart sound */
 }
@@ -35928,7 +35928,7 @@ void pause_quit(void) {
     final_cleanup();
 
     /* Return to attract mode */
-    D_801146EC = 0;  /* ATTRACT */
+    gstate_byte = 0;  /* ATTRACT */
 
     sound_play_menu(17);  /* Quit sound */
 }
@@ -35949,7 +35949,7 @@ void results_screen(void) {
 
     state = D_8015A730;
     timer = D_8015A734;
-    input = controller_get_input(D_80158100);
+    input = controller_get_input(sound_handles);
 
     timer++;
 
@@ -35969,7 +35969,7 @@ void results_screen(void) {
     draw_text(100, 30, "RACE RESULTS", 0xFFFFFFFF);
 
     /* Results list */
-    carBase = (u8 *)&D_80152818;
+    carBase = (u8 *)&game_car;
     for (i = 0; i < 4; i++) {
         s32 position = *(s32 *)(carBase + i * 0x400 + 0x1A4);
         s32 raceTime = *(s32 *)(carBase + i * 0x400 + 0x1AC);
@@ -36056,7 +36056,7 @@ void points_award(void) {
     u8 *carBase;
     char pointsStr[16];
 
-    carBase = (u8 *)&D_80152818;
+    carBase = (u8 *)&game_car;
 
     draw_text(220, 50, "POINTS", 0xFFFFFFC8);
 
@@ -36087,7 +36087,7 @@ void replay_save_prompt(void) {
     s32 selection;
 
     selection = D_8015A754;
-    input = controller_get_input(D_80158100);
+    input = controller_get_input(sound_handles);
 
     /* Navigation */
     if (input == 6 || input == 7) {  /* Left/Right */
@@ -36130,31 +36130,31 @@ void replay_save_prompt(void) {
  * func_800DB758 (196 bytes)
  * Continue prompt - Quick continue/quit choice
  */
-extern s32 D_8015A760;      /* Continue countdown */
+extern s32 continue_countdown;      /* Continue countdown */
 
 s32 continue_prompt(void) {
     s32 input;
     s32 countdown;
     char countStr[4];
 
-    countdown = D_8015A760;
+    countdown = continue_countdown;
     if (countdown == 0) {
         countdown = 10 * 60;  /* 10 seconds */
     }
 
-    input = controller_get_input(D_80158100);
+    input = controller_get_input(sound_handles);
 
     if (input == 1) {  /* A - continue */
-        D_8015A760 = 0;
+        continue_countdown = 0;
         return 1;
     } else if (input == 2) {  /* B - quit */
-        D_8015A760 = 0;
+        continue_countdown = 0;
         return 0;
     }
 
     countdown--;
     if (countdown <= 0) {
-        D_8015A760 = 0;
+        continue_countdown = 0;
         return 0;  /* Time out = quit */
     }
 
@@ -36163,7 +36163,7 @@ s32 continue_prompt(void) {
     sprintf(countStr, "%d", (countdown / 60) + 1);
     draw_text(countStr, 155, 145, 200);
 
-    D_8015A760 = countdown;
+    continue_countdown = countdown;
     return -1;  /* Still waiting */
 }
 
@@ -36265,8 +36265,8 @@ void unlock_notification(s32 unlockId) {
  * func_800DC88C (1272 bytes)
  * Attract mode start - Initializes attract mode demo
  */
-extern s32 D_8015A780;      /* Attract state */
-extern s32 D_8015A784;      /* Attract timer */
+extern s32 attract_state;      /* Attract state */
+extern s32 attract_timer;      /* Attract timer */
 extern s32 D_8015A788;      /* Demo replay index */
 
 void attract_mode_start(void) {
@@ -36274,15 +36274,15 @@ void attract_mode_start(void) {
     s32 timer;
     s32 input;
 
-    state = D_8015A780;
-    timer = D_8015A784;
-    input = controller_get_input(D_80158100);
+    state = attract_state;
+    timer = attract_timer;
+    input = controller_get_input(sound_handles);
 
     /* Any input exits attract mode */
     if (input != 0) {
-        D_8015A780 = 0;
-        D_8015A784 = 0;
-        D_801146EC = 1;  /* Go to title/menu */
+        attract_state = 0;
+        attract_timer = 0;
+        gstate_byte = 1;  /* Go to title/menu */
         return;
     }
 
@@ -36327,8 +36327,8 @@ void attract_mode_start(void) {
             break;
     }
 
-    D_8015A780 = state;
-    D_8015A784 = timer;
+    attract_state = state;
+    attract_timer = timer;
 }
 
 /*
@@ -36356,7 +36356,7 @@ void attract_demo_play(void) {
 
     /* Apply to player 0 car */
     {
-        u8 *carBase = (u8 *)&D_80152818;
+        u8 *carBase = (u8 *)&game_car;
         f32 *steering = (f32 *)(carBase + 0xC0);
         f32 *throttle = (f32 *)(carBase + 0xC4);
         f32 *brake = (f32 *)(carBase + 0xC8);
@@ -36373,7 +36373,7 @@ void attract_demo_play(void) {
     /* Check for demo end (0xFF marker) */
     if (inputData[frame] == 0xFF) {
         D_8015A790 = 0;
-        D_801146EC = 0;  /* Back to attract */
+        gstate_byte = 0;  /* Back to attract */
     }
 }
 
@@ -36387,7 +36387,7 @@ extern s32 D_8015A7A0;      /* Idle frame counter */
 s32 attract_idle_check(void) {
     s32 input;
 
-    input = controller_get_input(D_80158100);
+    input = controller_get_input(sound_handles);
 
     if (input != 0) {
         D_8015A7A0 = 0;
@@ -36452,8 +36452,8 @@ void attract_sequence_update(void) {
     s32 state;
     s32 timer;
 
-    state = D_8015A780;
-    timer = D_8015A784;
+    state = attract_state;
+    timer = attract_timer;
 
     timer++;
 
@@ -36482,8 +36482,8 @@ void attract_sequence_update(void) {
             break;
     }
 
-    D_8015A780 = state;
-    D_8015A784 = timer;
+    attract_state = state;
+    attract_timer = timer;
 }
 
 /*
@@ -36501,12 +36501,12 @@ void title_screen(void) {
 
     frame = D_8015A7B0;
     frame++;
-    input = controller_get_input(D_80158100);
+    input = controller_get_input(sound_handles);
 
     /* Any button goes to menu */
     if (input != 0) {
         D_8015A7B0 = 0;
-        D_801146EC = 1;  /* TRKSEL or menu */
+        gstate_byte = 1;  /* TRKSEL or menu */
         sound_play_menu(10);
         return;
     }
@@ -36579,7 +36579,7 @@ void title_button_prompt(void) {
     s32 blink;
     s32 alpha;
 
-    frame = D_80142AFC;
+    frame = frame_counter;
     blink = (frame / 30) & 1;
 
     if (blink) {
@@ -36605,7 +36605,7 @@ void title_background(void) {
     s32 i;
     s32 scrollX, scrollY;
 
-    frame = D_80142AFC;
+    frame = frame_counter;
 
     /* Gradient background */
     draw_fill_rect(0, 0, 320, 120, 0xFF000030);
@@ -36642,7 +36642,7 @@ extern s32 D_8015A7C4;      /* Menu state */
 void main_menu_screen(void) {
     s32 input;
 
-    input = controller_get_input(D_80158100);
+    input = controller_get_input(sound_handles);
 
     main_menu_input(input);
     main_menu_render();
@@ -36676,13 +36676,13 @@ void main_menu_input(s32 input) {
         sound_play_menu(10);
         switch (selection) {
             case 0:  /* Race */
-                D_801146EC = 1;  /* TRKSEL */
+                gstate_byte = 1;  /* TRKSEL */
                 break;
             case 1:  /* Battle */
-                D_801146EC = 10;  /* Battle mode */
+                gstate_byte = 10;  /* Battle mode */
                 break;
             case 2:  /* Stunt */
-                D_801146EC = 11;  /* Stunt mode */
+                gstate_byte = 11;  /* Stunt mode */
                 break;
             case 3:  /* Options */
                 D_8015A7C4 = 1;  /* Options submenu */
@@ -36692,7 +36692,7 @@ void main_menu_input(s32 input) {
                 break;
         }
     } else if (input == 2) {  /* B - back to title */
-        D_801146EC = 0;  /* ATTRACT */
+        gstate_byte = 0;  /* ATTRACT */
     }
 
     D_8015A7C0 = selection;
@@ -36742,7 +36742,7 @@ void mode_select_screen(void) {
     s32 selection;
 
     selection = D_8015A7D0;
-    input = controller_get_input(D_80158100);
+    input = controller_get_input(sound_handles);
 
     mode_select_input(input);
 
@@ -36795,10 +36795,10 @@ void mode_select_input(s32 input) {
     } else if (input == 1) {  /* A - select */
         sound_play_menu(10);
         /* Proceed to track/arena selection */
-        D_801146EC = 1;  /* TRKSEL */
+        gstate_byte = 1;  /* TRKSEL */
     } else if (input == 2) {  /* B - back */
         D_8015A7D0 = 0;
-        D_801146EC = 0;  /* Back to menu */
+        gstate_byte = 0;  /* Back to menu */
     }
 
     D_8015A7D0 = selection;
@@ -36839,22 +36839,22 @@ void world_object_destroy(void *object) {
  *
  * Based on arcade collision.c - iterates all cars and applies physics
  * Data structures:
- *   D_80152744 - number of active cars
- *   D_8015A250 - car state array base (stride 0x808)
+ *   active_car_count - number of active cars
+ *   player_entries - car state array base (stride 0x808)
  *   D_80153E88 - car data array (stride 8)
  */
 void world_physics_tick(void) {
     s32 i;
     s32 numCars;
 
-    numCars = D_80152744;
+    numCars = active_car_count;
     if (numCars <= 0) {
         return;
     }
 
     /* Process each car's physics */
     for (i = 0; i < numCars; i++) {
-        u8 *carState = &D_8015A250[i * 0x808];
+        u8 *carState = &player_entries[i * 0x808];
 
         /* Check if car is active (offset 0x7CC) */
         if (carState[0x7CC] == 0) {
@@ -37219,7 +37219,7 @@ void world_trigger_activate(s32 triggerId) {
     /* Get trigger type (offset 0x00) */
     triggerType = trigger[0x00];
 
-    playerPos = (f32 *)(&D_80152818[0x24]);
+    playerPos = (f32 *)(&game_car[0x24]);
 
     switch (triggerType) {
         case 0:  /* Checkpoint */
@@ -37228,7 +37228,7 @@ void world_trigger_activate(s32 triggerId) {
             break;
 
         case 1:  /* Shortcut entry */
-            D_80152818[0x1E0] = 1;  /* Set shortcut flag */
+            game_car[0x1E0] = 1;  /* Set shortcut flag */
             break;
 
         case 2:  /* Boost pad */
@@ -37477,7 +37477,7 @@ void particle_update(void *emitter) {
     /* Check if we should spawn a new particle */
     if (currentCount < maxParticles && (frame % spawnRate) == 0) {
         /* LCG random for position jitter */
-        seed = D_80142AFC * 0x41C64E6D + 12345;
+        seed = frame_counter * 0x41C64E6D + 12345;
 
         /* Add random offset to spawn position */
         spawnPos[0] = emitPos[0] + ((seed >> 8) & 0xFF) * 0.05f - 6.4f;
@@ -37583,7 +37583,7 @@ void spark_effect(f32 *pos, s32 count) {
         return;
     }
 
-    seed = D_80142AFC;
+    seed = frame_counter;
 
     for (i = 0; i < count; i++) {
         effect = effect_spawn(1, pos);  /* Type 1 = spark */
@@ -37643,7 +37643,7 @@ void explosion_effect(f32 *pos, f32 radius) {
     }
 
     /* Create smoke ring */
-    seed = D_80142AFC;
+    seed = frame_counter;
     for (i = 0; i < 8; i++) {
         seed = seed * 0x41C64E6D + 12345;
         sparkPos[0] = pos[0] + ((seed >> 8) & 0xFF) * 0.1f - 12.8f;
@@ -37684,7 +37684,7 @@ void dust_cloud_effect(f32 *pos) {
         return;
     }
 
-    seed = D_80142AFC;
+    seed = frame_counter;
 
     /* Create multiple dust particles */
     for (i = 0; i < 5; i++) {
@@ -37724,7 +37724,7 @@ void skid_mark_render(void *tire) {
     extern u8 D_80155800[];    /* Skid mark buffer */
     extern s32 D_80155C00;     /* Skid mark count */
     extern s32 D_80155C04;     /* Max skid marks */
-    extern Gfx **D_80149438;   /* Display list pointer */
+    extern Gfx **gfx_dl_ptr;   /* Display list pointer */
     u8 *tireData = (u8 *)tire;
     u8 *skidMark;
     f32 *tirePos;
@@ -37831,12 +37831,12 @@ void trail_effect(void *object) {
 void weather_rain(void) {
     extern u8 D_80156800[];    /* Rain particle buffer */
     extern s32 D_80156C00;     /* Active rain drops */
-    extern f32 D_80158000[];   /* Camera position */
+    extern f32 camera_pos[];   /* Camera position */
     s32 i;
     s32 seed;
     f32 *drop;
 
-    seed = D_80142AFC;
+    seed = frame_counter;
 
     /* Update and spawn rain drops around camera */
     for (i = 0; i < 100; i++) {
@@ -37846,9 +37846,9 @@ void weather_rain(void) {
         if (drop[1] < 0.0f) {
             /* Respawn at top near camera */
             seed = seed * 0x41C64E6D + 12345;
-            drop[0] = D_80158000[0] + ((seed >> 8) & 0xFF) - 128.0f;
-            drop[1] = D_80158000[1] + 50.0f;
-            drop[2] = D_80158000[2] + ((seed >> 16) & 0xFF) - 128.0f;
+            drop[0] = camera_pos[0] + ((seed >> 8) & 0xFF) - 128.0f;
+            drop[1] = camera_pos[1] + 50.0f;
+            drop[2] = camera_pos[2] + ((seed >> 16) & 0xFF) - 128.0f;
             drop[3] = 0.0f;  /* Reset fall distance */
         }
 
@@ -37875,11 +37875,11 @@ void weather_snow(void) {
     f32 *flake;
     f32 drift;
 
-    seed = D_80142AFC;
+    seed = frame_counter;
 
     /* Update wind with slow sine wave */
-    D_80157404 = sinf(D_80142AFC * 0.01f) * 2.0f;
-    D_80157408 = cosf(D_80142AFC * 0.015f) * 1.5f;
+    D_80157404 = sinf(frame_counter * 0.01f) * 2.0f;
+    D_80157408 = cosf(frame_counter * 0.015f) * 1.5f;
 
     /* Update and spawn snowflakes */
     for (i = 0; i < 80; i++) {
@@ -37889,15 +37889,15 @@ void weather_snow(void) {
         if (flake[1] < 0.0f) {
             /* Respawn at top near camera */
             seed = seed * 0x41C64E6D + 12345;
-            flake[0] = D_80158000[0] + ((seed >> 8) & 0xFF) - 128.0f;
-            flake[1] = D_80158000[1] + 40.0f;
-            flake[2] = D_80158000[2] + ((seed >> 16) & 0xFF) - 128.0f;
+            flake[0] = camera_pos[0] + ((seed >> 8) & 0xFF) - 128.0f;
+            flake[1] = camera_pos[1] + 40.0f;
+            flake[2] = camera_pos[2] + ((seed >> 16) & 0xFF) - 128.0f;
             flake[3] = ((seed >> 4) & 0xFF) * 0.01f;  /* Random phase for wobble */
             flake[4] = 1.0f + ((seed >> 24) & 0x0F) * 0.1f;  /* Size */
         }
 
         /* Move flake with wind and wobble */
-        drift = sinf(D_80142AFC * 0.1f + flake[3]) * 0.5f;
+        drift = sinf(frame_counter * 0.1f + flake[3]) * 0.5f;
         flake[0] += D_80157404 + drift;
         flake[1] -= 1.5f;  /* Slow fall */
         flake[2] += D_80157408;
@@ -37912,7 +37912,7 @@ void weather_snow(void) {
  * Configures RDP fog settings for distance fog effect
  */
 void weather_fog(f32 density) {
-    extern Gfx **D_80149438;   /* Display list pointer */
+    extern Gfx **gfx_dl_ptr;   /* Display list pointer */
     extern u8 D_80157500;      /* Fog R */
     extern u8 D_80157501;      /* Fog G */
     extern u8 D_80157502;      /* Fog B */
@@ -37939,7 +37939,7 @@ void weather_fog(f32 density) {
     if (fogMax < fogMin + 50) fogMax = fogMin + 50;
 
     /* Apply fog to display list */
-    gfx = *D_80149438;
+    gfx = *gfx_dl_ptr;
 
     /* Set fog color */
     gDPSetFogColor(gfx++, D_80157500, D_80157501, D_80157502, 255);
@@ -37947,7 +37947,7 @@ void weather_fog(f32 density) {
     /* Set fog parameters - simplified */
     gSPFogPosition(gfx++, fogMin, fogMax);
 
-    *D_80149438 = gfx;
+    *gfx_dl_ptr = gfx;
 }
 
 /*
@@ -37958,41 +37958,41 @@ void weather_fog(f32 density) {
  * Updates current weather effects each frame
  */
 void weather_update(void) {
-    extern s32 D_80157600;     /* Current weather type: 0=clear, 1=rain, 2=snow, 3=fog */
-    extern f32 D_80157604;     /* Weather intensity 0-1 */
-    extern f32 D_80157608;     /* Target intensity */
+    extern s32 weather_type;     /* Current weather type: 0=clear, 1=rain, 2=snow, 3=fog */
+    extern f32 weather_intensity;     /* Weather intensity 0-1 */
+    extern f32 weather_target;     /* Target intensity */
     extern s32 D_8015760C;     /* Weather transition timer */
 
     /* Smooth transition between intensities */
-    if (D_80157604 < D_80157608) {
-        D_80157604 += 0.01f;
-        if (D_80157604 > D_80157608) {
-            D_80157604 = D_80157608;
+    if (weather_intensity < weather_target) {
+        weather_intensity += 0.01f;
+        if (weather_intensity > weather_target) {
+            weather_intensity = weather_target;
         }
-    } else if (D_80157604 > D_80157608) {
-        D_80157604 -= 0.01f;
-        if (D_80157604 < D_80157608) {
-            D_80157604 = D_80157608;
+    } else if (weather_intensity > weather_target) {
+        weather_intensity -= 0.01f;
+        if (weather_intensity < weather_target) {
+            weather_intensity = weather_target;
         }
     }
 
     /* Update based on weather type */
-    switch (D_80157600) {
+    switch (weather_type) {
         case 0:  /* Clear - no weather effects */
             break;
 
         case 1:  /* Rain */
             weather_rain();
-            weather_fog(D_80157604 * 0.3f);  /* Light fog with rain */
+            weather_fog(weather_intensity * 0.3f);  /* Light fog with rain */
             break;
 
         case 2:  /* Snow */
             weather_snow();
-            weather_fog(D_80157604 * 0.5f);  /* More fog with snow */
+            weather_fog(weather_intensity * 0.5f);  /* More fog with snow */
             break;
 
         case 3:  /* Fog only */
-            weather_fog(D_80157604);
+            weather_fog(weather_intensity);
             break;
     }
 }
@@ -38005,7 +38005,7 @@ void weather_update(void) {
  * Configures scene lighting for rendering
  */
 void lighting_setup(void) {
-    extern Gfx **D_80149438;
+    extern Gfx **gfx_dl_ptr;
     extern u8 D_80157800[];    /* Ambient light RGB */
     extern u8 D_80157804[];    /* Directional light RGB */
     extern f32 D_80157808[];   /* Light direction (normalized) */
@@ -38015,7 +38015,7 @@ void lighting_setup(void) {
     f32 sunAngle;
     f32 brightness;
 
-    gfx = *D_80149438;
+    gfx = *gfx_dl_ptr;
     timeOfDay = D_80157814;
 
     /* Calculate sun angle based on time of day */
@@ -38041,7 +38041,7 @@ void lighting_setup(void) {
     /* Apply to RSP */
     gSPNumLights(gfx++, 1);
 
-    *D_80149438 = gfx;
+    *gfx_dl_ptr = gfx;
 }
 
 /*
@@ -38052,7 +38052,7 @@ void lighting_setup(void) {
  * Renders a blob shadow under an object
  */
 void shadow_render(void *object) {
-    extern Gfx **D_80149438;
+    extern Gfx **gfx_dl_ptr;
     u8 *objData = (u8 *)object;
     f32 *objPos;
     f32 groundY;
@@ -38112,9 +38112,9 @@ void lens_flare(f32 *sunPos) {
     }
 
     /* Calculate vector to sun */
-    toSun[0] = sunPos[0] - D_80158000[0];
-    toSun[1] = sunPos[1] - D_80158000[1];
-    toSun[2] = sunPos[2] - D_80158000[2];
+    toSun[0] = sunPos[0] - camera_pos[0];
+    toSun[1] = sunPos[1] - camera_pos[1];
+    toSun[2] = sunPos[2] - camera_pos[2];
 
     /* Normalize */
     dist = sqrtf(toSun[0] * toSun[0] + toSun[1] * toSun[1] + toSun[2] * toSun[2]);
@@ -38155,7 +38155,7 @@ void lens_flare(f32 *sunPos) {
  * Configures RSP for environment mapping on reflective surfaces
  */
 void environment_map_setup(void *object) {
-    extern Gfx **D_80149438;
+    extern Gfx **gfx_dl_ptr;
     extern u8 D_80158200[];    /* Envmap texture */
     u8 *objData = (u8 *)object;
     Gfx *gfx;
@@ -38171,7 +38171,7 @@ void environment_map_setup(void *object) {
         return;
     }
 
-    gfx = *D_80149438;
+    gfx = *gfx_dl_ptr;
 
     /* Set up texture generation for environment mapping */
     gSPTexture(gfx++, 0x8000, 0x8000, 0, G_TX_RENDERTILE, G_ON);
@@ -38183,7 +38183,7 @@ void environment_map_setup(void *object) {
     /* Set envmap texture */
     gDPSetTextureImage(gfx++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 32, D_80158200);
 
-    *D_80149438 = gfx;
+    *gfx_dl_ptr = gfx;
 }
 
 /*
@@ -38194,7 +38194,7 @@ void environment_map_setup(void *object) {
  * Configures planar reflection rendering for wet surfaces
  */
 void reflection_setup(void) {
-    extern Gfx **D_80149438;
+    extern Gfx **gfx_dl_ptr;
     extern s32 D_80158400;     /* Reflection enabled */
     extern f32 D_80158404;     /* Reflection plane Y */
     extern f32 D_80158408;     /* Reflection intensity */
@@ -38204,7 +38204,7 @@ void reflection_setup(void) {
         return;
     }
 
-    gfx = *D_80149438;
+    gfx = *gfx_dl_ptr;
 
     /* Set up reflection blend mode */
     gDPSetRenderMode(gfx++, G_RM_XLU_SURF, G_RM_XLU_SURF2);
@@ -38213,7 +38213,7 @@ void reflection_setup(void) {
     /* Set reflection alpha */
     gDPSetPrimColor(gfx++, 0, 0, 255, 255, 255, (s32)(D_80158408 * 128.0f));
 
-    *D_80149438 = gfx;
+    *gfx_dl_ptr = gfx;
 }
 
 /*
@@ -38224,7 +38224,7 @@ void reflection_setup(void) {
  * Renders animated water surface with wave distortion
  */
 void water_surface_render(void) {
-    extern Gfx **D_80149438;
+    extern Gfx **gfx_dl_ptr;
     extern f32 D_80158500;     /* Water level Y */
     extern s32 D_80158504;     /* Water tile count X */
     extern s32 D_80158508;     /* Water tile count Z */
@@ -38232,10 +38232,10 @@ void water_surface_render(void) {
     f32 waveOffset;
     s32 wavePhase;
 
-    gfx = *D_80149438;
+    gfx = *gfx_dl_ptr;
 
     /* Calculate wave animation offset */
-    wavePhase = D_80142AFC & 0x3F;  /* 64 frame cycle */
+    wavePhase = frame_counter & 0x3F;  /* 64 frame cycle */
     waveOffset = sinf(wavePhase * 0.098f) * 0.5f;
 
     /* Set up water render mode - translucent with texture */
@@ -38250,7 +38250,7 @@ void water_surface_render(void) {
         (s32)(waveOffset * 32.0f) << 2, 0,
         (31 + (s32)(waveOffset * 32.0f)) << 2, 31 << 2);
 
-    *D_80149438 = gfx;
+    *gfx_dl_ptr = gfx;
 }
 
 /*
@@ -38261,7 +38261,7 @@ void water_surface_render(void) {
  * Renders the skybox around the camera
  */
 void skybox_render(void *camera) {
-    extern Gfx **D_80149438;
+    extern Gfx **gfx_dl_ptr;
     extern u8 D_80158600[];    /* Skybox texture data */
     extern s32 D_80158604;     /* Skybox type: 0=day, 1=sunset, 2=night */
     u8 *camData = (u8 *)camera;
@@ -38274,7 +38274,7 @@ void skybox_render(void *camera) {
         return;
     }
 
-    gfx = *D_80149438;
+    gfx = *gfx_dl_ptr;
     camPos = (f32 *)(camData + 0x00);
     camRot = (f32 *)(camData + 0x30);
     skyType = D_80158604;
@@ -38302,7 +38302,7 @@ void skybox_render(void *camera) {
     /* Re-enable Z buffer */
     gSPSetGeometryMode(gfx++, G_ZBUFFER);
 
-    *D_80149438 = gfx;
+    *gfx_dl_ptr = gfx;
 }
 
 /*
@@ -38424,22 +38424,22 @@ s32 track_lod_select(f32 distance) {
  * Streams track geometry data from ROM to RSP
  */
 void track_geometry_stream(void) {
-    extern Gfx **D_80149438;
-    extern s32 D_80159100;     /* Current stream position */
-    extern s32 D_80159104;     /* Total geometry size */
+    extern Gfx **gfx_dl_ptr;
+    extern s32 geometry_stream_pos;     /* Current stream position */
+    extern s32 geometry_total_size;     /* Total geometry size */
     Gfx *gfx;
     s32 chunkSize;
 
-    gfx = *D_80149438;
+    gfx = *gfx_dl_ptr;
 
     /* Calculate chunk to stream this frame */
     chunkSize = 0x1000;  /* 4KB per frame */
-    if (D_80159100 + chunkSize > D_80159104) {
-        chunkSize = D_80159104 - D_80159100;
+    if (geometry_stream_pos + chunkSize > geometry_total_size) {
+        chunkSize = geometry_total_size - geometry_stream_pos;
     }
 
     if (chunkSize <= 0) {
-        D_80159100 = 0;  /* Reset to beginning */
+        geometry_stream_pos = 0;  /* Reset to beginning */
         return;
     }
 
@@ -38447,11 +38447,11 @@ void track_geometry_stream(void) {
     /* (would normally call osPiStartDma) */
 
     /* Add geometry display list */
-    gSPDisplayList(gfx++, (Gfx*)((u8*)&D_80159200 + D_80159100));
+    gSPDisplayList(gfx++, (Gfx*)((u8*)&buttons_state + geometry_stream_pos));
 
-    D_80159100 += chunkSize;
+    geometry_stream_pos += chunkSize;
 
-    *D_80149438 = gfx;
+    *gfx_dl_ptr = gfx;
 }
 
 /*
@@ -38462,7 +38462,7 @@ void track_geometry_stream(void) {
  * Loads track texture into TMEM
  */
 void track_texture_load(s32 textureId) {
-    extern Gfx **D_80149438;
+    extern Gfx **gfx_dl_ptr;
     extern s32 D_80159404;     /* Current loaded texture */
     Gfx *gfx;
     u8 *texData;
@@ -38481,7 +38481,7 @@ void track_texture_load(s32 textureId) {
         return;
     }
 
-    gfx = *D_80149438;
+    gfx = *gfx_dl_ptr;
     D_80159404 = textureId;
 
     /* Load texture to TMEM */
@@ -38493,7 +38493,7 @@ void track_texture_load(s32 textureId) {
     gDPSetTile(gfx++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0,
                G_TX_RENDERTILE, 0, G_TX_WRAP, 5, 0, G_TX_WRAP, 5, 0);
 
-    *D_80149438 = gfx;
+    *gfx_dl_ptr = gfx;
 }
 
 /*
@@ -38504,7 +38504,7 @@ void track_texture_load(s32 textureId) {
  * Renders a camera-facing billboard sprite
  */
 void billboard_render(void *billboard) {
-    extern Gfx **D_80149438;
+    extern Gfx **gfx_dl_ptr;
     u8 *bbData = (u8 *)billboard;
     Gfx *gfx;
     f32 *bbPos;
@@ -38516,13 +38516,13 @@ void billboard_render(void *billboard) {
         return;
     }
 
-    gfx = *D_80149438;
+    gfx = *gfx_dl_ptr;
     bbPos = (f32 *)(bbData + 0x00);
     size = *(f32 *)(bbData + 0x10);
 
     /* Calculate angle to face camera */
-    dx = D_80158000[0] - bbPos[0];
-    dz = D_80158000[2] - bbPos[2];
+    dx = camera_pos[0] - bbPos[0];
+    dz = camera_pos[2] - bbPos[2];
 
     /* Set up billboard transform matrix */
     /* (would build rotation matrix to face camera) */
@@ -38535,7 +38535,7 @@ void billboard_render(void *billboard) {
     gSPVertex(gfx++, bbData + 0x40, 4, 0);
     gSP2Triangles(gfx++, 0, 1, 2, 0, 0, 2, 3, 0);
 
-    *D_80149438 = gfx;
+    *gfx_dl_ptr = gfx;
 }
 
 /*
@@ -38582,7 +38582,7 @@ void props_render(void *camera) {
     camPos = (f32 *)(camData + 0x00);
 
     /* Render each visible prop */
-    for (i = 0; i < D_80159600; i++) {
+    for (i = 0; i < net_host_state; i++) {
         u8 *prop = &D_80159610[i * 0x30];
         f32 *propPos = (f32 *)(prop + 0x00);
         s32 propType = *(s32 *)(prop + 0x10);
@@ -38618,17 +38618,17 @@ void props_render(void *camera) {
  * Renders animated crowd sprites along the track
  */
 void crowd_render(void) {
-    extern Gfx **D_80149438;
+    extern Gfx **gfx_dl_ptr;
     extern u8 D_80159810[];    /* Crowd section data */
     Gfx *gfx;
     s32 i;
     s32 animFrame;
     f32 dx, dz, distSq;
 
-    gfx = *D_80149438;
+    gfx = *gfx_dl_ptr;
 
     /* Animation frame (4 frames, cycle every 8 game frames) */
-    animFrame = (D_80142AFC >> 3) & 0x03;
+    animFrame = (frame_counter >> 3) & 0x03;
 
     /* Render each crowd section */
     for (i = 0; i < D_80159800; i++) {
@@ -38637,8 +38637,8 @@ void crowd_render(void) {
         s32 crowdCount = *(s32 *)(crowd + 0x10);
 
         /* Distance cull */
-        dx = crowdPos[0] - D_80158000[0];
-        dz = crowdPos[2] - D_80158000[2];
+        dx = crowdPos[0] - camera_pos[0];
+        dz = crowdPos[2] - camera_pos[2];
         distSq = dx * dx + dz * dz;
 
         if (distSq > 22500.0f) {  /* 150 units */
@@ -38653,7 +38653,7 @@ void crowd_render(void) {
         gSPDisplayList(gfx++, crowd + 0x30);
     }
 
-    *D_80149438 = gfx;
+    *gfx_dl_ptr = gfx;
 }
 
 /*
@@ -38664,7 +38664,7 @@ void crowd_render(void) {
  * Renders the car body mesh with paint/decals
  */
 void car_body_render(void *car) {
-    extern Gfx **D_80149438;
+    extern Gfx **gfx_dl_ptr;
     u8 *carData = (u8 *)car;
     Gfx *gfx;
     s32 carModel;
@@ -38675,7 +38675,7 @@ void car_body_render(void *car) {
         return;
     }
 
-    gfx = *D_80149438;
+    gfx = *gfx_dl_ptr;
 
     /* Get car model ID (offset 0x00) */
     carModel = *(s32 *)(carData + 0x00);
@@ -38687,7 +38687,7 @@ void car_body_render(void *car) {
     bodyMesh = (u8 *)(*(s32 *)(carData + 0x80));
 
     if (bodyMesh == NULL) {
-        *D_80149438 = gfx;
+        *gfx_dl_ptr = gfx;
         return;
     }
 
@@ -38703,7 +38703,7 @@ void car_body_render(void *car) {
     /* Draw body mesh display list */
     gSPDisplayList(gfx++, bodyMesh);
 
-    *D_80149438 = gfx;
+    *gfx_dl_ptr = gfx;
 }
 
 /*
@@ -38714,7 +38714,7 @@ void car_body_render(void *car) {
  * Renders the four wheels with rotation and steering
  */
 void car_wheels_render(void *car) {
-    extern Gfx **D_80149438;
+    extern Gfx **gfx_dl_ptr;
     u8 *carData = (u8 *)car;
     Gfx *gfx;
     f32 steerAngle;
@@ -38725,7 +38725,7 @@ void car_wheels_render(void *car) {
         return;
     }
 
-    gfx = *D_80149438;
+    gfx = *gfx_dl_ptr;
 
     /* Get steering angle (offset 0xC0) */
     steerAngle = *(f32 *)(carData + 0xC0);
@@ -38754,7 +38754,7 @@ void car_wheels_render(void *car) {
         skid_mark_render(wheelData);
     }
 
-    *D_80149438 = gfx;
+    *gfx_dl_ptr = gfx;
 }
 
 /*
@@ -38765,7 +38765,7 @@ void car_wheels_render(void *car) {
  * Renders visual damage on car (dents, scratches, missing parts)
  */
 void car_damage_render(void *car) {
-    extern Gfx **D_80149438;
+    extern Gfx **gfx_dl_ptr;
     u8 *carData = (u8 *)car;
     Gfx *gfx;
     s32 damageLevel;
@@ -38782,7 +38782,7 @@ void car_damage_render(void *car) {
         return;  /* No damage */
     }
 
-    gfx = *D_80149438;
+    gfx = *gfx_dl_ptr;
 
     /* Get damage overlay mesh based on level */
     if (damageLevel < 3) {
@@ -38799,7 +38799,7 @@ void car_damage_render(void *car) {
         gSPDisplayList(gfx++, damageMesh);
     }
 
-    *D_80149438 = gfx;
+    *gfx_dl_ptr = gfx;
 }
 
 /*
@@ -38810,7 +38810,7 @@ void car_damage_render(void *car) {
  * Renders car headlights, taillights, and brake lights
  */
 void car_lights_render(void *car) {
-    extern Gfx **D_80149438;
+    extern Gfx **gfx_dl_ptr;
     u8 *carData = (u8 *)car;
     Gfx *gfx;
     f32 *carPos;
@@ -38821,7 +38821,7 @@ void car_lights_render(void *car) {
         return;
     }
 
-    gfx = *D_80149438;
+    gfx = *gfx_dl_ptr;
     carPos = (f32 *)(carData + 0x24);
 
     /* Check if braking (offset 0xCC) */
@@ -38847,7 +38847,7 @@ void car_lights_render(void *car) {
 
     /* (would render taillight billboards) */
 
-    *D_80149438 = gfx;
+    *gfx_dl_ptr = gfx;
 }
 
 /*
@@ -38903,7 +38903,7 @@ void car_exhaust_render(void *car) {
  * Renders flexible car antenna with physics-based wobble
  */
 void car_antenna_render(void *car) {
-    extern Gfx **D_80149438;
+    extern Gfx **gfx_dl_ptr;
     u8 *carData = (u8 *)car;
     Gfx *gfx;
     f32 *antennaBase;
@@ -38930,12 +38930,12 @@ void car_antenna_render(void *car) {
     if (wobbleZ > 0.3f) wobbleZ = 0.3f;
     if (wobbleZ < -0.3f) wobbleZ = -0.3f;
 
-    gfx = *D_80149438;
+    gfx = *gfx_dl_ptr;
 
     /* Draw antenna line segments */
     /* (would build line strip with wobble offset) */
 
-    *D_80149438 = gfx;
+    *gfx_dl_ptr = gfx;
 }
 
 /*
@@ -38946,7 +38946,7 @@ void car_antenna_render(void *car) {
  * Renders nitro boost flames and trail effect
  */
 void car_nitro_effect(void *car) {
-    extern Gfx **D_80149438;
+    extern Gfx **gfx_dl_ptr;
     u8 *carData = (u8 *)car;
     Gfx *gfx;
     f32 *exhaustPos;
@@ -38965,7 +38965,7 @@ void car_nitro_effect(void *car) {
         return;  /* No nitro active */
     }
 
-    gfx = *D_80149438;
+    gfx = *gfx_dl_ptr;
 
     /* Get exhaust positions (offset 0x200, 0x20C for dual exhaust) */
     exhaustPos = (f32 *)(carData + 0x200);
@@ -38986,14 +38986,14 @@ void car_nitro_effect(void *car) {
     drone_ai(exhaustPos, vel);
 
     /* Spawn sparks occasionally */
-    if ((D_80142AFC & 0x03) == 0) {
+    if ((frame_counter & 0x03) == 0) {
         drone_path(exhaustPos, 3);
     }
 
     /* Update trail effect */
     drone_spawn(car);
 
-    *D_80149438 = gfx;
+    *gfx_dl_ptr = gfx;
 }
 
 /*
@@ -39005,7 +39005,7 @@ void car_nitro_effect(void *car) {
  */
 void scene_render_main(void) {
     extern s32 D_80143A00;    /* Current render mode */
-    /* Note: D_80149438 declared globally */
+    /* Note: gfx_dl_ptr declared globally */
 
     /* Begin frame */
     frame_start();
@@ -39040,10 +39040,10 @@ void scene_render_main(void) {
  * Configures RDP Z-buffer for depth testing
  */
 void zbuffer_setup(void) {
-    extern Gfx **D_80149438;  /* Display list pointer */
+    extern Gfx **gfx_dl_ptr;  /* Display list pointer */
     Gfx *dl;
 
-    dl = *D_80149438;
+    dl = *gfx_dl_ptr;
 
     /* Set Z-buffer mode */
     gDPSetDepthSource(dl++, G_ZS_PIXEL);
@@ -39059,7 +39059,7 @@ void zbuffer_setup(void) {
     /* Restore color image */
     gDPSetColorImage(dl++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 320, 0x80200000);
 
-    *D_80149438 = dl;
+    *gfx_dl_ptr = dl;
 }
 
 /*
@@ -39070,13 +39070,13 @@ void zbuffer_setup(void) {
  * Initializes display list for new frame
  */
 void frame_start(void) {
-    /* Note: D_80149430, D_80149438 declared globally */
+    /* Note: gfx_dl_base, gfx_dl_ptr declared globally */
     Gfx *dl;
 
-    D_80142AFC++;
+    frame_counter++;
 
     /* Reset display list to base */
-    dl = D_80149430;
+    dl = gfx_dl_base;
 
     /* Initialize RSP and RDP */
     gSPSegment(dl++, 0, 0x00000000);
@@ -39090,7 +39090,7 @@ void frame_start(void) {
     gDPSetAlphaCompare(dl++, G_AC_NONE);
     gDPPipeSync(dl++);
 
-    *D_80149438 = dl;
+    *gfx_dl_ptr = dl;
 }
 
 /*
@@ -39101,16 +39101,16 @@ void frame_start(void) {
  * Finalizes display list and submits to RDP
  */
 void frame_end(void) {
-    /* Note: D_80149438, D_80149440 declared globally */
+    /* Note: gfx_dl_ptr, gfx_task declared globally */
     Gfx *dl;
 
-    dl = *D_80149438;
+    dl = *gfx_dl_ptr;
 
     /* End display list */
     gDPFullSync(dl++);
     gSPEndDisplayList(dl++);
 
-    *D_80149438 = dl;
+    *gfx_dl_ptr = dl;
 
     /* Flush display list */
     display_list_flush();
@@ -39141,8 +39141,8 @@ void vsync_wait(void) {
  * Submits display list to RSP/RDP
  */
 void display_list_flush(void) {
-    extern Gfx **D_80149438;  /* Display list pointer */
-    OSTask *task = &D_80149440;
+    extern Gfx **gfx_dl_ptr;  /* Display list pointer */
+    OSTask *task = &gfx_task;
 
     /* Configure task */
     task->t.type = M_GFXTASK;
@@ -39156,8 +39156,8 @@ void display_list_flush(void) {
     task->t.dram_stack_size = 0;
     task->t.output_buff = NULL;
     task->t.output_buff_size = NULL;
-    task->t.data_ptr = (u64 *)D_80149430;
-    task->t.data_size = ((u8 *)*D_80149438 - (u8 *)D_80149430);
+    task->t.data_ptr = (u64 *)gfx_dl_base;
+    task->t.data_size = ((u8 *)*gfx_dl_ptr - (u8 *)gfx_dl_base);
     task->t.yield_data_ptr = NULL;
     task->t.yield_data_size = 0;
 
@@ -39179,7 +39179,7 @@ void debug_overlay(void) {
     extern s32 D_80143B00;  /* FPS counter */
     char buf[32];
 
-    if (!D_80159E00) {
+    if (!menu_enabled) {
         return;
     }
 
@@ -39193,7 +39193,7 @@ void debug_overlay(void) {
     /* Frame counter */
     buf[0] = 'F'; buf[1] = ':';
     {
-        s32 f = D_80142AFC;
+        s32 f = frame_counter;
         buf[7] = '0' + (f % 10); f /= 10;
         buf[6] = '0' + (f % 10); f /= 10;
         buf[5] = '0' + (f % 10); f /= 10;
@@ -39218,13 +39218,13 @@ void debug_overlay(void) {
 void debug_stats(void) {
     char buf[32];
 
-    if (!D_80159E00) {
+    if (!menu_enabled) {
         return;
     }
 
     /* Audio heap usage */
     {
-        u32 used = D_80160400 - 0x80160400;  /* Assuming base */
+        u32 used = audio_buffer_ptr - 0x80160400;  /* Assuming base */
         buf[0] = 'A'; buf[1] = 'U'; buf[2] = 'D'; buf[3] = ':';
         buf[4] = '0' + ((used / 100000) % 10);
         buf[5] = '0' + ((used / 10000) % 10);
@@ -39278,12 +39278,12 @@ void debug_ai_paths(void) {
  */
 void random_seed(u32 seed) {
 
-    D_80143500 = seed;
+    random_seed = seed;
 
     /* Warm up the generator */
-    D_80143500 = D_80143500 * 1103515245 + 12345;
-    D_80143500 = D_80143500 * 1103515245 + 12345;
-    D_80143500 = D_80143500 * 1103515245 + 12345;
+    random_seed = random_seed * 1103515245 + 12345;
+    random_seed = random_seed * 1103515245 + 12345;
+    random_seed = random_seed * 1103515245 + 12345;
 }
 
 /*
@@ -39295,9 +39295,9 @@ void random_seed(u32 seed) {
  */
 s32 random_int(void) {
 
-    D_80143500 = D_80143500 * 1103515245 + 12345;
+    random_seed = random_seed * 1103515245 + 12345;
 
-    return (s32)D_80143500;
+    return (s32)random_seed;
 }
 
 /*
@@ -39309,10 +39309,10 @@ s32 random_int(void) {
  */
 f32 random_float(void) {
 
-    D_80143500 = D_80143500 * 1103515245 + 12345;
+    random_seed = random_seed * 1103515245 + 12345;
 
     /* Convert to float 0-1 */
-    return (f32)(D_80143500 & 0x7FFFFF) / (f32)0x800000;
+    return (f32)(random_seed & 0x7FFFFF) / (f32)0x800000;
 }
 
 /*
@@ -39329,10 +39329,10 @@ s32 random_range(s32 min, s32 max) {
         return min;
     }
 
-    D_80143500 = D_80143500 * 1103515245 + 12345;
+    random_seed = random_seed * 1103515245 + 12345;
     range = max - min + 1;
 
-    return min + (s32)((D_80143500 >> 16) % range);
+    return min + (s32)((random_seed >> 16) % range);
 }
 
 /*
@@ -39341,7 +39341,7 @@ s32 random_range(s32 min, s32 max) {
  * Timer start
  *
  * Starts a game timer
- * Timer struct at D_80159B00[id]:
+ * Timer struct at timer_data[id]:
  *   0x00: state (0=stopped, 1=running, 2=paused)
  *   0x04: start time (OS ticks)
  *   0x08: elapsed time
@@ -39349,15 +39349,15 @@ s32 random_range(s32 min, s32 max) {
  *   0x2C: lap count
  */
 void game_timer_start(s32 timerId) {
-    extern u64 D_80159B00[8][6];  /* Timer data */
+    extern u64 timer_data[8][6];  /* Timer data */
 
     if (timerId < 0 || timerId >= 8) {
         return;
     }
 
-    D_80159B00[timerId][0] = 1;  /* Running */
-    D_80159B00[timerId][1] = osGetTime();  /* Start time */
-    D_80159B00[timerId][2] = 0;  /* Elapsed */
+    timer_data[timerId][0] = 1;  /* Running */
+    timer_data[timerId][1] = osGetTime();  /* Start time */
+    timer_data[timerId][2] = 0;  /* Elapsed */
 }
 
 /*
@@ -39368,18 +39368,18 @@ void game_timer_start(s32 timerId) {
  * Stops a game timer
  */
 void game_timer_stop(s32 timerId) {
-    extern u64 D_80159B00[8][6];  /* Timer data */
+    extern u64 timer_data[8][6];  /* Timer data */
 
     if (timerId < 0 || timerId >= 8) {
         return;
     }
 
-    if (D_80159B00[timerId][0] == 1) {
+    if (timer_data[timerId][0] == 1) {
         /* Update elapsed before stopping */
-        D_80159B00[timerId][2] = osGetTime() - D_80159B00[timerId][1];
+        timer_data[timerId][2] = osGetTime() - timer_data[timerId][1];
     }
 
-    D_80159B00[timerId][0] = 0;  /* Stopped */
+    timer_data[timerId][0] = 0;  /* Stopped */
 }
 
 /*
@@ -39390,20 +39390,20 @@ void game_timer_stop(s32 timerId) {
  * Resets a game timer
  */
 void game_timer_reset(s32 timerId) {
-    extern u64 D_80159B00[8][6];  /* Timer data */
+    extern u64 timer_data[8][6];  /* Timer data */
     s32 i;
 
     if (timerId < 0 || timerId >= 8) {
         return;
     }
 
-    D_80159B00[timerId][0] = 0;  /* Stopped */
-    D_80159B00[timerId][1] = 0;  /* Start time */
-    D_80159B00[timerId][2] = 0;  /* Elapsed */
+    timer_data[timerId][0] = 0;  /* Stopped */
+    timer_data[timerId][1] = 0;  /* Start time */
+    timer_data[timerId][2] = 0;  /* Elapsed */
 
     /* Clear lap times */
     for (i = 3; i < 6; i++) {
-        D_80159B00[timerId][i] = 0;
+        timer_data[timerId][i] = 0;
     }
 }
 
@@ -39415,7 +39415,7 @@ void game_timer_reset(s32 timerId) {
  * Returns elapsed time in centiseconds
  */
 s32 game_timer_elapsed(s32 timerId) {
-    extern u64 D_80159B00[8][6];  /* Timer data */
+    extern u64 timer_data[8][6];  /* Timer data */
     u64 elapsed;
     s32 centisecs;
 
@@ -39423,12 +39423,12 @@ s32 game_timer_elapsed(s32 timerId) {
         return 0;
     }
 
-    if (D_80159B00[timerId][0] == 1) {
+    if (timer_data[timerId][0] == 1) {
         /* Running - calculate current elapsed */
-        elapsed = osGetTime() - D_80159B00[timerId][1];
+        elapsed = osGetTime() - timer_data[timerId][1];
     } else {
         /* Stopped/paused - return stored elapsed */
-        elapsed = D_80159B00[timerId][2];
+        elapsed = timer_data[timerId][2];
     }
 
     /* Convert OS ticks to centiseconds (46.875 MHz counter) */
@@ -39445,16 +39445,16 @@ s32 game_timer_elapsed(s32 timerId) {
  * Pauses a game timer
  */
 void game_timer_pause(s32 timerId) {
-    extern u64 D_80159B00[8][6];  /* Timer data */
+    extern u64 timer_data[8][6];  /* Timer data */
 
     if (timerId < 0 || timerId >= 8) {
         return;
     }
 
-    if (D_80159B00[timerId][0] == 1) {
+    if (timer_data[timerId][0] == 1) {
         /* Store elapsed time */
-        D_80159B00[timerId][2] = osGetTime() - D_80159B00[timerId][1];
-        D_80159B00[timerId][0] = 2;  /* Paused */
+        timer_data[timerId][2] = osGetTime() - timer_data[timerId][1];
+        timer_data[timerId][0] = 2;  /* Paused */
     }
 }
 
@@ -39466,16 +39466,16 @@ void game_timer_pause(s32 timerId) {
  * Resumes a paused timer
  */
 void game_timer_resume(s32 timerId) {
-    extern u64 D_80159B00[8][6];  /* Timer data */
+    extern u64 timer_data[8][6];  /* Timer data */
 
     if (timerId < 0 || timerId >= 8) {
         return;
     }
 
-    if (D_80159B00[timerId][0] == 2) {
+    if (timer_data[timerId][0] == 2) {
         /* Adjust start time to account for pause */
-        D_80159B00[timerId][1] = osGetTime() - D_80159B00[timerId][2];
-        D_80159B00[timerId][0] = 1;  /* Running */
+        timer_data[timerId][1] = osGetTime() - timer_data[timerId][2];
+        timer_data[timerId][0] = 1;  /* Running */
     }
 }
 
@@ -39487,7 +39487,7 @@ void game_timer_resume(s32 timerId) {
  * Records a lap time and returns lap number
  */
 s32 game_timer_lap(s32 timerId) {
-    extern u64 D_80159B00[8][6];  /* Timer data */
+    extern u64 timer_data[8][6];  /* Timer data */
     s32 lapNum;
     s32 lapTime;
 
@@ -39495,7 +39495,7 @@ s32 game_timer_lap(s32 timerId) {
         return 0;
     }
 
-    lapNum = D_80159C00[timerId];
+    lapNum = split_screen_config[timerId];
     if (lapNum >= 8) {
         return lapNum;  /* Max laps recorded */
     }
@@ -39504,9 +39504,9 @@ s32 game_timer_lap(s32 timerId) {
     lapTime = game_timer_elapsed(timerId);
 
     /* Store lap time */
-    D_80159B00[timerId][3 + (lapNum / 2)] |= ((u64)lapTime << ((lapNum & 1) * 32));
+    timer_data[timerId][3 + (lapNum / 2)] |= ((u64)lapTime << ((lapNum & 1) * 32));
 
-    D_80159C00[timerId]++;
+    split_screen_config[timerId]++;
 
     return lapNum + 1;
 }
@@ -39523,21 +39523,21 @@ void race_timer_update(void) {
     s32 m, s, h;
 
     /* Only update during gameplay */
-    if (D_801146EC != 6) {  /* Not PLAYGAME */
+    if (gstate_byte != 6) {  /* Not PLAYGAME */
         return;
     }
 
-    if (!D_80159A04) {
+    if (!game_mode) {
         return;
     }
 
     /* Get current race time */
-    D_80159A00 = game_timer_elapsed(0);  /* Timer 0 = race timer */
+    race_time = game_timer_elapsed(0);  /* Timer 0 = race timer */
 
     /* Format time display */
-    m = D_80159A00 / 6000;
-    s = (D_80159A00 / 100) % 60;
-    h = D_80159A00 % 100;
+    m = race_time / 6000;
+    s = (race_time / 100) % 60;
+    h = race_time % 100;
 
     timeBuf[0] = '0' + (m / 10);
     timeBuf[1] = '0' + (m % 10);
@@ -39564,25 +39564,25 @@ void countdown_display(void) {
     s32 countdown;
     char numBuf[2];
 
-    if (D_80159A04) {
+    if (game_mode) {
         return;  /* Race already started */
     }
 
-    D_80159A08++;
+    trackno++;
 
     /* 60fps, 1 second per count */
-    countdown = 3 - (D_80159A08 / 60);
+    countdown = 3 - (trackno / 60);
 
     if (countdown > 0) {
         numBuf[0] = '0' + countdown;
         numBuf[1] = '\0';
         draw_text(numBuf, 155, 100, 255);
         sound_play_menu(10 + countdown);  /* Countdown sound */
-    } else if (countdown == 0 && D_80159A08 < 240) {
+    } else if (countdown == 0 && trackno < 240) {
         draw_text(140, 100, "GO!", 0xFFFFFFFF);
-        if (D_80159A08 == 180) {
+        if (trackno == 180) {
             sound_play_menu(13);  /* GO sound */
-            D_80159A04 = 1;     /* Start race */
+            game_mode = 1;     /* Start race */
             game_timer_start(0);   /* Start race timer */
         }
     }
@@ -39604,8 +39604,8 @@ void split_time_display(s32 splitTime) {
     s32 i = 0;
 
     /* Calculate difference from best */
-    if (D_80159D10[D_80159A0C] > 0) {
-        diff = splitTime - D_80159D10[D_80159A0C];
+    if (best_lap_times[car_selection] > 0) {
+        diff = splitTime - best_lap_times[car_selection];
     } else {
         diff = 0;  /* No best time yet */
     }
@@ -39648,8 +39648,8 @@ s32 best_lap_check(s32 lapTime) {
         return 0;
     }
 
-    if (D_80159D10[D_80159A0C] == 0 || lapTime < D_80159D10[D_80159A0C]) {
-        D_80159D10[D_80159A0C] = lapTime;
+    if (best_lap_times[car_selection] == 0 || lapTime < best_lap_times[car_selection]) {
+        best_lap_times[car_selection] = lapTime;
         return 1;  /* New best! */
     }
 
@@ -39670,20 +39670,20 @@ void record_save(void) {
     /* Pack times into save data */
     for (i = 0; i < 12; i++) {
         /* Race times */
-        saveData[i * 4] = (D_80159A10[i] >> 24) & 0xFF;
-        saveData[i * 4 + 1] = (D_80159A10[i] >> 16) & 0xFF;
-        saveData[i * 4 + 2] = (D_80159A10[i] >> 8) & 0xFF;
-        saveData[i * 4 + 3] = D_80159A10[i] & 0xFF;
+        saveData[i * 4] = (best_race_times[i] >> 24) & 0xFF;
+        saveData[i * 4 + 1] = (best_race_times[i] >> 16) & 0xFF;
+        saveData[i * 4 + 2] = (best_race_times[i] >> 8) & 0xFF;
+        saveData[i * 4 + 3] = best_race_times[i] & 0xFF;
 
         /* Lap times */
-        saveData[48 + i * 4] = (D_80159D10[i] >> 24) & 0xFF;
-        saveData[48 + i * 4 + 1] = (D_80159D10[i] >> 16) & 0xFF;
-        saveData[48 + i * 4 + 2] = (D_80159D10[i] >> 8) & 0xFF;
-        saveData[48 + i * 4 + 3] = D_80159D10[i] & 0xFF;
+        saveData[48 + i * 4] = (best_lap_times[i] >> 24) & 0xFF;
+        saveData[48 + i * 4 + 1] = (best_lap_times[i] >> 16) & 0xFF;
+        saveData[48 + i * 4 + 2] = (best_lap_times[i] >> 8) & 0xFF;
+        saveData[48 + i * 4 + 3] = best_lap_times[i] & 0xFF;
     }
 
     /* Write to controller pak */
-    osPfsReadWriteFile(&D_80159F00, 0, PFS_WRITE, 0, 96, saveData);
+    osPfsReadWriteFile(&menu_callback_array, 0, PFS_WRITE, 0, 96, saveData);
 }
 
 /*
@@ -39702,8 +39702,8 @@ void high_score_entry(void) {
 
     animation_update();
 
-    input = controller_get_input(D_80158100);
-    cursorPos = D_80159E14;
+    input = controller_get_input(sound_handles);
+    cursorPos = wing_enabled;
 
     /* Handle input */
     if (input == 3) {  /* Left */
@@ -39713,23 +39713,23 @@ void high_score_entry(void) {
         cursorPos++;
         if (cursorPos >= alphabetLen) cursorPos = 0;
     } else if (input == 1) {  /* A - select letter */
-        if (D_80159E10 < 3) {
-            D_80159E18[D_80159E10] = alphabet[cursorPos];
-            D_80159E10++;
+        if (hiscore_char_pos < 3) {
+            D_80159E18[hiscore_char_pos] = alphabet[cursorPos];
+            hiscore_char_pos++;
         }
-        if (D_80159E10 >= 3) {
+        if (hiscore_char_pos >= 3) {
             D_80159E18[3] = '\0';
             /* Save high score */
             record_save();
         }
     } else if (input == 2) {  /* B - backspace */
-        if (D_80159E10 > 0) {
-            D_80159E10--;
-            D_80159E18[D_80159E10] = '_';
+        if (hiscore_char_pos > 0) {
+            hiscore_char_pos--;
+            D_80159E18[hiscore_char_pos] = '_';
         }
     }
 
-    D_80159E14 = cursorPos;
+    wing_enabled = cursorPos;
 
     /* Draw UI */
     draw_text(105, 40, "ENTER NAME", 0xFFFFFFFF);
@@ -39890,15 +39890,15 @@ s32 trick_detect(void *car) {
  * Trick register - Records completed trick and awards points
  *
  * Global stunt data addresses:
- *   D_80158000: Stunt score table [16] (points per trick type)
- *   D_80158040: Current stunt score
- *   D_80158044: Combo multiplier
- *   D_80158048: Trick history [8] (for combo detection)
+ *   camera_pos: Stunt score table [16] (points per trick type)
+ *   stunt_score: Current stunt score
+ *   combo_multiplier: Combo multiplier
+ *   trick_history: Trick history [8] (for combo detection)
  *   D_80158068: Trick history index
  */
-extern s32 D_80158040;       /* Current score */
-extern s32 D_80158044;       /* Combo multiplier */
-extern s32 D_80158048[8];    /* Trick history */
+extern s32 stunt_score;       /* Current score */
+extern s32 combo_multiplier;       /* Combo multiplier */
+extern s32 trick_history[8];    /* Trick history */
 extern s32 D_80158068;       /* History index */
 
 void trick_register(s32 trickId) {
@@ -39911,22 +39911,22 @@ void trick_register(s32 trickId) {
     }
 
     /* Get base points for this trick type */
-    basePoints = D_80158000[trickId];
+    basePoints = camera_pos[trickId];
 
     /* Apply combo multiplier */
-    finalPoints = basePoints * D_80158044;
+    finalPoints = basePoints * combo_multiplier;
 
     /* Add to score */
-    D_80158040 += finalPoints;
+    stunt_score += finalPoints;
 
     /* Record in trick history */
     historyIdx = D_80158068;
-    D_80158048[historyIdx] = trickId;
+    trick_history[historyIdx] = trickId;
     D_80158068 = (historyIdx + 1) % 8;
 
     /* Increase combo multiplier (caps at 8x) */
-    if (D_80158044 < 8) {
-        D_80158044++;
+    if (combo_multiplier < 8) {
+        combo_multiplier++;
     }
 }
 
@@ -40195,7 +40195,7 @@ s32 landing_bonus_calc(void *car) {
     if (landingAngle < 0.0f) {
         /* Crashed - no bonus, reset combo */
         *comboMult = 1;
-        D_80158044 = 1;  /* Reset global combo */
+        combo_multiplier = 1;  /* Reset global combo */
         return 0;
     }
 
@@ -40230,7 +40230,7 @@ s32 landing_bonus_calc(void *car) {
     finalBonus = baseBonus * angleMult * timeMult;
 
     /* Apply combo multiplier */
-    finalBonus *= D_80158044;
+    finalBonus *= combo_multiplier;
 
     return finalBonus;
 }
@@ -40290,7 +40290,7 @@ void combo_trick_add(void *car) {
         (*comboCount)++;
 
         /* Update global combo multiplier */
-        D_80158044 = *comboCount + 1;
+        combo_multiplier = *comboCount + 1;
     }
 
     /* Reset combo timer */
@@ -40700,12 +40700,12 @@ void lap_complete(void *car) {
     bestLap = (s32 *)(carData + 0x1B0);
 
     /* Verify all required checkpoints were hit */
-    if ((*cpMask & D_80159A00) != D_80159A00) {
+    if ((*cpMask & race_time) != race_time) {
         return;  /* Shortcut detected - invalid lap */
     }
 
     /* Record lap time */
-    s32 currentLapTime = (s32)D_80142AFC - *lapTime;
+    s32 currentLapTime = (s32)frame_counter - *lapTime;
 
     /* Check for best lap */
     if (*bestLap == 0 || currentLapTime < *bestLap) {
@@ -40717,11 +40717,11 @@ void lap_complete(void *car) {
 
     /* Reset for next lap */
     *cpMask = 0;
-    *lapTime = (s32)D_80142AFC;
+    *lapTime = (s32)frame_counter;
     *(s32 *)(carData + 0x1A0) = -1;  /* Reset last checkpoint */
 
     /* Check for race finish */
-    if (*lapCount >= D_80159A04) {
+    if (*lapCount >= game_mode) {
         race_finish(car);  /* Race finish */
     } else {
         /* Play lap complete sound */
@@ -40760,16 +40760,16 @@ void race_finish(void *car) {
 
     /* Record finish */
     *raceState = 2;  /* Finished state */
-    *raceTime = (s32)D_80142AFC;
-    *finishPos = D_80159A10;
+    *raceTime = (s32)frame_counter;
+    *finishPos = best_race_times;
 
     /* Record in global arrays */
     if (carIdx >= 0 && carIdx < 8) {
         D_80159A14[carIdx] = *raceTime;
-        D_80159A34[carIdx] = D_80159A10;
+        D_80159A34[carIdx] = best_race_times;
     }
 
-    D_80159A10[0]++;
+    best_race_times[0]++;
 
     /* Play finish sound based on position */
     if (*finishPos == 0) {
@@ -40780,7 +40780,7 @@ void race_finish(void *car) {
 
     /* Check if this is the player */
     if (carIdx == 0) {
-        D_801146EC = 7;  /* Transition to ENDGAME state */
+        gstate_byte = 7;  /* Transition to ENDGAME state */
     }
 }
 
@@ -40797,14 +40797,14 @@ void position_update(void) {
     f32 progress[8];
     s32 positions[8];
 
-    numCars = D_80152744;
+    numCars = active_car_count;
     if (numCars <= 0 || numCars > 8) {
         return;
     }
 
     /* Calculate progress for each car */
     for (i = 0; i < numCars; i++) {
-        u8 *car = &D_80152818[i * 0x808];
+        u8 *car = &game_car[i * 0x808];
         s32 lap = *(s32 *)(car + 0x1A8);
         s32 cp = *(s32 *)(car + 0x1A0);
         f32 cpProgress = *(f32 *)(car + 0x1C4);  /* Progress within checkpoint */
@@ -40824,7 +40824,7 @@ void position_update(void) {
 
     /* Write positions back to cars */
     for (i = 0; i < numCars; i++) {
-        u8 *car = &D_80152818[i * 0x808];
+        u8 *car = &game_car[i * 0x808];
         *(s32 *)(car + 0x1CC) = positions[i];  /* Current race position */
     }
 }
@@ -40841,7 +40841,7 @@ void standings_display(void) {
     s32 numCars;
     s32 y;
 
-    numCars = D_80152744;
+    numCars = active_car_count;
     if (numCars <= 0) {
         return;
     }
@@ -40850,7 +40850,7 @@ void standings_display(void) {
 
     /* Draw position for each car sorted by position */
     for (i = 0; i < numCars && i < 4; i++) {
-        u8 *car = &D_80152818[i * 0x808];
+        u8 *car = &game_car[i * 0x808];
         s32 pos = *(s32 *)(car + 0x1CC);
         s32 carNum = *(s32 *)(car + 0x08);
 
@@ -40895,7 +40895,7 @@ void car_respawn(void *car) {
     carVel = (f32 *)(carData + 0x34);
 
     /* Get checkpoint position */
-    cpPos = (f32 *)&D_80159B00[lastCp * 0x20];
+    cpPos = (f32 *)&timer_data[lastCp * 0x20];
 
     /* Set car position to checkpoint */
     carPos[0] = cpPos[0];
@@ -41114,7 +41114,7 @@ s32 wrong_way_detect(void *car) {
     nextCp = (lastCp + 1) % 16;
 
     /* Get checkpoint positions */
-    nextCpPos = (f32 *)&D_80159B00[nextCp * 0x20];
+    nextCpPos = (f32 *)&timer_data[nextCp * 0x20];
 
     /* Calculate direction to next checkpoint */
     toNext[0] = nextCpPos[0] - carPos[0];
@@ -41157,12 +41157,12 @@ s32 out_of_bounds_check(void *car) {
     carPos = (f32 *)(carData + 0x24);
 
     /* Check X bounds */
-    if (carPos[0] < (f32)D_80159C00[0] || carPos[0] > (f32)D_80159C04) {
+    if (carPos[0] < (f32)split_screen_config[0] || carPos[0] > (f32)split_num_players) {
         return 1;
     }
 
     /* Check Z bounds */
-    if (carPos[2] < (f32)D_80159C08 || carPos[2] > (f32)D_80159C0C) {
+    if (carPos[2] < (f32)split_layout_mode || carPos[2] > (f32)split_toggle) {
         return 1;
     }
 
@@ -41188,16 +41188,16 @@ s32 track_zone_get(f32 *pos) {
     }
 
     /* Convert world position to grid cell */
-    gridX = (s32)((pos[0] - (f32)D_80159D10[0]) / D_80159D0C);
+    gridX = (s32)((pos[0] - (f32)best_lap_times[0]) / D_80159D0C);
     gridZ = (s32)((pos[2] - D_80159D14) / D_80159D0C);
 
     /* Bounds check */
-    if (gridX < 0 || gridX >= D_80159D04 || gridZ < 0 || gridZ >= D_80159D08) {
+    if (gridX < 0 || gridX >= ghost_frame_count || gridZ < 0 || gridZ >= D_80159D08) {
         return 0;  /* Out of grid = road */
     }
 
-    idx = gridZ * D_80159D04 + gridX;
-    return D_80159D00[idx];
+    idx = gridZ * ghost_frame_count + gridX;
+    return ghost_data_buffer[idx];
 }
 
 /*
@@ -41763,11 +41763,11 @@ void ai_obstacle_avoid(void *car) {
 
     carPos = (f32 *)((u8 *)car + 0x24);
     steer = (f32 *)((u8 *)car + 0x114);
-    numCars = D_80152744;
+    numCars = active_car_count;
 
     /* Check distance to other cars */
     for (i = 0; i < numCars; i++) {
-        u8 *otherCar = &D_80152818[i * 0x144];
+        u8 *otherCar = &game_car[i * 0x144];
 
         if (otherCar == car) {
             continue;  /* Skip self */
@@ -42062,8 +42062,8 @@ void ai_error_inject(void *car) {
     accuracy = (f32 *)((u8 *)car + 0x130);
 
     /* Simple LCG random */
-    D_80143500 = D_80143500 * 1103515245 + 12345;
-    rand = D_80143500;
+    random_seed = random_seed * 1103515245 + 12345;
+    rand = random_seed;
 
     /* Error magnitude based on inverse accuracy */
     errorMag = (1.0f - *accuracy) * 0.2f;
@@ -42140,7 +42140,7 @@ void battle_mode_update(void) {
     extern s32 D_8014B004;    /* Battle timer (frames) */
     extern s32 D_8014B008;    /* Battle mode type */
     extern s32 D_8014B00C[4]; /* Player scores */
-    extern s32 D_8014B01C[4]; /* Player lives */
+    extern s32 player_lives[4]; /* Player lives */
     extern s32 D_8014B02C[4]; /* Player weapons */
     extern s32 D_8014B03C[4]; /* Player ammo */
     s32 i, j;
@@ -42160,7 +42160,7 @@ void battle_mode_update(void) {
 
     /* Process each player */
     for (i = 0; i < 4; i++) {
-        car = (void *)((u8 *)&D_80152818 + i * 0x400);
+        car = (void *)((u8 *)&game_car + i * 0x400);
         if (car == NULL) {
             continue;
         }
@@ -42171,14 +42171,14 @@ void battle_mode_update(void) {
         ammo = &D_8014B03C[i];
 
         /* Skip eliminated players in Last Man Standing */
-        if (D_8014B008 == 2 && D_8014B01C[i] <= 0) {
+        if (D_8014B008 == 2 && player_lives[i] <= 0) {
             continue;
         }
 
         /* Check health */
         if (*health <= 0) {
             /* Player destroyed */
-            D_8014B01C[i]--;
+            player_lives[i]--;
 
             /* Find attacker and award point */
             /* (simplified - award to closest other player) */
@@ -42187,7 +42187,7 @@ void battle_mode_update(void) {
 
             for (j = 0; j < 4; j++) {
                 if (j == i) continue;
-                void *otherCar = (void *)((u8 *)&D_80152818 + j * 0x400);
+                void *otherCar = (void *)((u8 *)&game_car + j * 0x400);
                 if (otherCar == NULL) continue;
 
                 otherPos = (f32 *)((u8 *)otherCar + 0x24);
@@ -42207,7 +42207,7 @@ void battle_mode_update(void) {
             }
 
             /* Respawn player (if lives remaining or not Last Man Standing) */
-            if (D_8014B008 != 2 || D_8014B01C[i] > 0) {
+            if (D_8014B008 != 2 || player_lives[i] > 0) {
                 battle_respawn(car, i);  /* Respawn at battle arena spawn point */
                 *health = 100;
                 *weapon = 0;  /* Reset weapon */
@@ -42286,7 +42286,7 @@ void stunt_mode_update(void) {
 
     /* Process each player */
     for (i = 0; i < 4; i++) {
-        car = (void *)((u8 *)&D_80152818 + i * 0x400);
+        car = (void *)((u8 *)&game_car + i * 0x400);
         if (car == NULL) {
             continue;
         }
@@ -42384,7 +42384,7 @@ void stunt_mode_update(void) {
  *   - Reset game state variables
  */
 void game_state_reset(void) {
-    extern s32 D_801461D0;    /* Main game state */
+    extern s32 game_sync;    /* Main game state */
     s32 i;
 
     /* Stop all audio */
@@ -42398,7 +42398,7 @@ void game_state_reset(void) {
 
     /* Reset car states */
     for (i = 0; i < 4; i++) {
-        void *car = (void *)((u8 *)&D_80152818 + i * 0x400);
+        void *car = (void *)((u8 *)&game_car + i * 0x400);
         if (car != NULL) {
             /* Clear car memory */
             u8 *carBytes = (u8 *)car;
@@ -42410,13 +42410,13 @@ void game_state_reset(void) {
     }
 
     /* Reset display list to base address */
-    D_80149438 = (void *)0x80160000;
+    gfx_dl_ptr = (void *)0x80160000;
 
     /* Reset game state */
-    D_801461D0 = 0;
-    D_801146EC = 0;  /* ATTRACT state */
-    D_801174B4 = 0;
-    D_80142AFC = 0;
+    game_sync = 0;
+    gstate_byte = 0;  /* ATTRACT state */
+    gstate_mask = 0;
+    frame_counter = 0;
 
     /* Clear any pending messages */
     heap_alloc();  /* Flush message queues */
@@ -42534,7 +42534,7 @@ void battle_win_check(void) {
     /* Check Last Man Standing */
     if (D_8014B008 == 2) {
         for (i = 0; i < 4; i++) {
-            if (D_8014B01C[i] > 0) {
+            if (player_lives[i] > 0) {
                 alivePlayers++;
                 winner = i;
             }
