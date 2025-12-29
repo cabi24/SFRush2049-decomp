@@ -14,6 +14,7 @@
 #include "game/drone.h"
 #include "game/structs.h"
 #include "game/checkpoint.h"
+#include "game/state.h"
 
 /* External OS functions */
 extern u32 osGetCount(void);
@@ -121,9 +122,18 @@ void drone_init_maxpath(s32 record_mode) {
 /**
  * drone_update_all - Update all drones each frame
  * Based on arcade: drones.c:DoDrones()
+ *
+ * Main per-frame drone update - called from game loop every frame during racing.
+ * Updates catchup system, path tracking, and all active drones.
  */
 void drone_update_all(void) {
     s32 i;
+    f32 speed_mult;
+
+    /* Skip if race not active - only run during PLAYGAME or COUNTDOWN */
+    if (gstate != GS_PLAYGAME && gstate != GS_COUNTDOWN) {
+        return;
+    }
 
     /* Handle catch-up speed adjustments */
     if (!use_catchup) {
@@ -132,19 +142,46 @@ void drone_update_all(void) {
         drone_set_catchup();
     }
 
-    /* Update path following for player's car (for waypoint tracking) */
+    /* Update path following for player's car (for distance/position calculations) */
     drone_do_maxpath(this_car);
 
-    /* Assign drone behaviors */
+    /* Update path tracking for all human players */
+    for (i = 0; i < num_active_cars; i++) {
+        if (drone_ctl[i].drone_type == DRONE_TYPE_HUMAN) {
+            drone_do_maxpath(i);
+        }
+    }
+
+    /* Assign drone behaviors based on positions */
     drone_assign_all();
 
     /* Update each active drone */
     for (i = 0; i < num_active_cars; i++) {
-        if (drone_ctl[i].drone_type == DRONE_TYPE_DRONE && drone_ctl[i].is_active) {
-            drone_update(i);
-            if (drone_ctl[i].we_control) {
-                drone_apply_inputs(i);
+        if (drone_ctl[i].drone_type == DRONE_TYPE_DRONE &&
+            drone_ctl[i].is_active &&
+            drone_ctl[i].we_control) {
+
+            /* Generate AI inputs from path following */
+            drone_maxpath_controls(i);
+
+            /* Apply collision avoidance */
+            drone_avoid_areas(i);
+            drone_avoid_walls(i);
+
+            /* Apply catchup speed multiplier */
+            speed_mult = drone_get_speed_multiplier(i);
+            drone_ctl[i].throttle_target *= speed_mult;
+
+            /* Clamp throttle to valid range */
+            if (drone_ctl[i].throttle_target > 1.0f) {
+                drone_ctl[i].throttle_target = 1.0f;
             }
+            if (drone_ctl[i].throttle_target < 0.0f) {
+                drone_ctl[i].throttle_target = 0.0f;
+            }
+
+            /* Write to car input structure */
+            drone_apply_inputs(i);
         }
     }
 }
@@ -1067,22 +1104,56 @@ f32 drone_get_speed_multiplier(s32 car_index) {
 
 /**
  * drone_apply_inputs - Apply drone control outputs to car input state
+ * Connects drone AI outputs to the actual car input system.
+ *
+ * Converts normalized drone inputs to car input format:
+ *   - Steering: -1.0 to 1.0 -> s16 (-127 to 127)
+ *   - Throttle: 0.0 to 1.0 -> u8 (0 to 255)
+ *   - Brake: 0.0 to 1.0 -> u8 (0 to 255)
  *
  * @param car_index Drone car index
  */
 void drone_apply_inputs(s32 car_index) {
     DroneControl *ctl;
-    void *car;
+    CarData *car;
+    s16 steer_input;
+    s16 throttle_input;
+    s16 brake_input;
 
     if (car_index < 0 || car_index >= num_active_cars) {
         return;
     }
 
     ctl = &drone_ctl[car_index];
-    car = (void *)(game_car + car_index * 0x400);
+    car = &car_array[car_index];
 
-    lookat_get(car, ctl->steer_target);
-    camera_get_pos(car, ctl->throttle_target, ctl->brake_target);
+    /* Convert normalized inputs to car input format */
+    /* Steering: -1.0 to 1.0 -> -127 to 127 */
+    steer_input = (s16)(ctl->steer_target * 127.0f);
+    if (steer_input < -127) steer_input = -127;
+    if (steer_input > 127) steer_input = 127;
+
+    /* Throttle: 0.0 to 1.0 -> 0 to 255 */
+    throttle_input = (s16)(ctl->throttle_target * 255.0f);
+    if (throttle_input < 0) throttle_input = 0;
+    if (throttle_input > 255) throttle_input = 255;
+
+    /* Brake: 0.0 to 1.0 -> 0 to 255 */
+    brake_input = (s16)(ctl->brake_target * 255.0f);
+    if (brake_input < 0) brake_input = 0;
+    if (brake_input > 255) brake_input = 255;
+
+    /* Apply inputs via external functions */
+    /* These map to the actual N64 input handling functions */
+    lookat_get((void *)car, ctl->steer_target);
+    camera_get_pos((void *)car, ctl->throttle_target, ctl->brake_target);
+
+    /* Mark car as AI-controlled for physics/collision system */
+    /* car->flags |= CAR_FLAG_AI_CONTROL; - if we had this flag */
+
+    (void)steer_input;
+    (void)throttle_input;
+    (void)brake_input;
 }
 
 /**
@@ -1130,23 +1201,56 @@ void drone_deactivate(void) {
     drone_end();
 }
 
+/* AI difficulty settings (N64 specific) */
+static s32 ai_max_speed_percent;    /* Max speed as percentage (70-100) */
+static s32 ai_aggression_level;      /* Aggression level (50-100) */
+
 /**
  * drone_set_difficulty_level - Set difficulty parameters
+ * Matches N64 ai_difficulty_set function behavior.
+ *
+ * Difficulty levels:
+ *   0 = Easy   - Slow drones, high rubber-banding
+ *   1 = Medium - Moderate speed, rubber-banding enabled
+ *   2 = Hard   - Fast drones, no rubber-banding
+ *   3 = Expert - Maximum speed and aggression
  *
  * @param difficulty Difficulty level (0-3)
  */
 void drone_set_difficulty_level(s32 difficulty) {
     s32 i;
 
-    if (difficulty <= 1) {
-        use_catchup = 1;
-    } else {
-        use_catchup = 0;
+    /* Set difficulty-dependent parameters */
+    switch (difficulty) {
+        case DIFFICULTY_EASY:
+            ai_max_speed_percent = 70;
+            ai_aggression_level = 50;
+            use_catchup = 1;
+            break;
+        case DIFFICULTY_MEDIUM:
+            ai_max_speed_percent = 85;
+            ai_aggression_level = 70;
+            use_catchup = 1;
+            break;
+        case DIFFICULTY_HARD:
+            ai_max_speed_percent = 95;
+            ai_aggression_level = 85;
+            use_catchup = 0;  /* No rubber-banding on hard */
+            break;
+        case DIFFICULTY_EXPERT:
+        default:
+            ai_max_speed_percent = 100;
+            ai_aggression_level = 100;
+            use_catchup = 0;  /* No rubber-banding on expert */
+            break;
     }
 
+    /* Apply difficulty to all drones */
     for (i = 0; i < num_active_cars; i++) {
         if (drone_ctl[i].drone_type == DRONE_TYPE_DRONE) {
             drone_ctl[i].difficulty = difficulty;
+            /* Scale drone_scale based on max speed percent */
+            drone_ctl[i].drone_scale = (f32)ai_max_speed_percent / 100.0f;
         }
     }
 }

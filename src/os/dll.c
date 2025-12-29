@@ -65,12 +65,12 @@ typedef struct {
 } TimerQueueHead;
 
 /* Global timer queue state */
-extern TimerQueueHead *D_8002C3F0;  /* Timer queue head pointer */
-extern s32 D_80037C50;
-extern s32 D_80037C54;
-extern s32 D_80037C58;
-extern s32 D_80037C5C;
-extern u32 D_80037C60;              /* Last update timestamp */
+extern TimerQueueHead *__osTimerList;   /* Timer queue head pointer (D_8002C3F0) */
+extern s32 timer_unused_50;             /* Reserved/unused (D_80037C50) */
+extern s32 timer_unused_54;             /* Reserved/unused (D_80037C54) */
+extern s32 timer_unused_58;             /* Reserved/unused (D_80037C58) */
+extern s32 timer_unused_5C;             /* Reserved/unused (D_80037C5C) */
+extern u32 __osTimerCounter;            /* Last update timestamp (D_80037C60) */
 
 /* External functions */
 extern u32 osGetCount(void);                        /* Get CP0 Count register */
@@ -109,12 +109,12 @@ void dll_remove(DLLNode **list, DLLNode *node) {
  * Sets up an empty circular timer queue where head->next points to itself.
  */
 void dll_init(void) {
-    TimerQueueHead *q = D_8002C3F0;
+    TimerQueueHead *q = __osTimerList;
 
-    D_80037C50 = 0;
-    D_80037C54 = 0;
-    D_80037C58 = 0;
-    D_80037C5C = 0;
+    timer_unused_50 = 0;
+    timer_unused_54 = 0;
+    timer_unused_58 = 0;
+    timer_unused_5C = 0;
 
     /* Initialize circular list - next/prev point to self */
     q->tail = (TimerNode *)q;
@@ -145,7 +145,7 @@ void dll_init(void) {
  * 4. Repeats until no more expired timers
  */
 void dll_update(void) {
-    TimerQueueHead *q = D_8002C3F0;
+    TimerQueueHead *q = __osTimerList;
     TimerNode *node;
     u32 current_time;
     u32 elapsed;
@@ -162,14 +162,14 @@ loop:
     node = q->head;
     if (node == (TimerNode *)q) {
         __osSetCompare(0);
-        D_80037C60 = 0;
+        __osTimerCounter = 0;
         return;
     }
 
     /* Get current time and calculate elapsed since last update */
     current_time = osGetCount();
-    elapsed = current_time - D_80037C60;
-    D_80037C60 = current_time;
+    elapsed = current_time - __osTimerCounter;
+    __osTimerCounter = current_time;
 
     /* Check if head timer has time remaining */
     delta_hi = node->delta_hi;
@@ -231,7 +231,7 @@ void dll_reschedule(u32 hi, u32 lo) {
     savedMask = __osDisableInt();
 
     current_time = osGetCount();
-    D_80037C60 = current_time;
+    __osTimerCounter = current_time;
 
     /* Calculate absolute wake time: current + delta */
     wake_time_lo = current_time + lo;
@@ -256,7 +256,7 @@ void dll_reschedule(u32 hi, u32 lo) {
  */
 void dll_insert(TimerNode *node) {
     s32 savedMask;
-    TimerQueueHead *q = D_8002C3F0;
+    TimerQueueHead *q = __osTimerList;
     TimerNode *curr;
     u32 delta_hi, delta_lo;
     u32 node_hi, node_lo;
@@ -314,10 +314,10 @@ void dll_insert(TimerNode *node) {
  * @return Thread priority
  */
 s32 dll_get_priority(void *thread) {
-    extern void *D_8002C3E0;  /* Current thread pointer */
+    extern void *__osRunningThread;  /* Current running thread (D_8002C3E0) */
 
     if (thread == NULL) {
-        thread = D_8002C3E0;
+        thread = __osRunningThread;
     }
     /* Return offset 0x04 in thread structure (priority) */
     return *(s32 *)((u8 *)thread + 4);
