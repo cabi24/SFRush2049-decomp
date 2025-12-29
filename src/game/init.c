@@ -42,46 +42,46 @@ static void game_init(void *arg);
 static void game_thread_entry(void *arg);
 
 /* Thread structures */
-extern u8 D_80034BA0[];  /* Thread 1 struct (idle thread) */
-extern u8 D_80034D50[];  /* Thread 6 struct (game_init thread) */
-extern u8 D_80034690[];  /* Thread 8 struct */
-extern u8 D_80034840[];  /* Thread 5 struct */
-extern u8 D_800344E0[];  /* Thread 7 struct (main game thread) */
+extern u8 gIdleThread[];    /* Thread 1 struct (idle thread) */
+extern u8 gInitThread[];    /* Thread 6 struct (game_init thread) */
+extern u8 gAudioThread[];   /* Thread 8 struct (audio thread) */
+extern u8 gRenderThread[];  /* Thread 5 struct (render thread) */
+extern u8 gGameThread[];    /* Thread 7 struct (main game thread) */
 
 /* Thread stacks */
-extern u8 D_8002F660[];  /* Stack for thread 1 */
-extern u8 D_80030150[];  /* Stack for thread 6 */
-extern u8 D_8002F7F0[];  /* Stack for thread 8 */
-extern u8 D_80031D70[];  /* Stack for thread 5 */
-extern u8 D_80030AB0[];  /* Stack for thread 7 */
+extern u8 gIdleThreadStack[];    /* Stack for thread 1 (idle) */
+extern u8 gInitThreadStack[];    /* Stack for thread 6 (init) */
+extern u8 gAudioThreadStack[];   /* Stack for thread 8 (audio) */
+extern u8 gRenderThreadStack[];  /* Stack for thread 5 (render) */
+extern u8 gGameThreadStack[];    /* Stack for thread 7 (game) */
 
 /* Message queues */
-extern OSMesgQueue D_80035410;   /* DMA message queue */
-extern OSMesgQueue D_80035428;   /* Inflate I/O queue */
-extern OSMesgQueue D_8002ECF8;   /* Retrace queue */
-extern OSMesgQueue D_8002ECC0;   /* Unknown queue */
-extern OSMesgQueue D_80035440;   /* Event queue */
+extern OSMesgQueue gDmaMesgQueue;       /* DMA message queue */
+extern OSMesgQueue gInflateMesgQueue;   /* Inflate I/O queue */
+extern OSMesgQueue gRetraceMesgQueue;   /* Retrace/VBlank queue */
+extern OSMesgQueue gEventMesgQueue;     /* Event message queue */
+extern OSMesgQueue gSyncMesgQueue;      /* Sync signal queue */
 
 /* Message queue message storage */
-extern OSMesg D_8002F140[];  /* 8 messages for D_80035410 */
-extern OSMesg D_8002F160[];  /* 8 messages for D_80035428 */
-extern OSMesg D_8002ED10[];  /* 60 messages for D_8002ECF8 */
-extern OSMesg D_8002ECD8[];  /* 8 messages for D_8002ECC0 */
-extern OSMesg D_8002F180[];  /* 1 message for D_80035440 */
+extern OSMesg gDmaMesgBuf[];       /* 8 messages for gDmaMesgQueue */
+extern OSMesg gInflateMesgBuf[];   /* 8 messages for gInflateMesgQueue */
+extern OSMesg gRetraceMesgBuf[];   /* 60 messages for gRetraceMesgQueue */
+extern OSMesg gEventMesgBuf[];     /* 8 messages for gEventMesgQueue */
+extern OSMesg gSyncMesgBuf[];      /* 1 message for gSyncMesgQueue */
 
 /* Memory regions */
-extern u8 D_80086A50[];    /* Start of decompressed data */
-extern u8 D_8010FD80[];    /* End of decompressed region 1 */
-extern u8 D_801249F0[];    /* Start of BSS region */
-extern u8 D_8017A640[];    /* End of BSS region */
+extern u8 gDecompressedDataStart[];  /* Start of decompressed game code */
+extern u8 gDecompressedDataEnd1[];   /* End of decompressed region 1 */
+extern u8 gBssStart[];               /* Start of BSS region */
+extern u8 gBssEnd[];                 /* End of BSS region */
 
 /* ROM data */
 #define ROM_COMPRESSED_DATA 0xB0CB10
 
 /* State variables */
-extern u8 D_8002B028;      /* Init flag */
-extern u16 D_80142D90;     /* Magic value for sync */
-extern u8 D_80035472;      /* Game state flag */
+extern u8 gInitFlag;         /* Init mode flag (0 = normal boot) */
+extern u16 gSyncMagic;       /* Magic value for sync (0x0ABF/0x0ABE) */
+extern u8 gGameStateFlag;    /* Game state flag */
 
 /* Thread entry points - forward declarations */
 static void thread1_entry(void *arg);
@@ -109,9 +109,9 @@ void main(void *arg) {
     }
 
     /* Create and start idle thread (thread 1) */
-    osCreateThread(D_80034BA0, 1, thread1_entry, arg,
-                   D_8002F660 + 0x190, 2);
-    osStartThread(D_80034BA0);
+    osCreateThread(gIdleThread, 1, thread1_entry, arg,
+                   gIdleThreadStack + 0x190, 2);
+    osStartThread(gIdleThread);
 
     /* Never returns - idle loop would be here */
 }
@@ -128,9 +128,9 @@ static void thread1_entry(void *arg) {
     osScSetVideoMode(0, 0);
 
     /* Create game_init thread (thread 6) */
-    osCreateThread(D_80034D50, 6, game_init, arg,
-                   D_80030150 + 0x960, 4);
-    osStartThread(D_80034D50);
+    osCreateThread(gInitThread, 6, game_init, arg,
+                   gInitThreadStack + 0x960, 4);
+    osStartThread(gInitThread);
 
     /* Infinite loop - thread 1 becomes idle */
     for (;;) {
@@ -152,69 +152,69 @@ static void game_init(void *arg) {
     __setfpcsr(0x1000E00);
 
     /* Initialize message queues */
-    osCreateMesgQueue(&D_80035410, D_8002F140, 8);     /* DMA queue */
-    osCreateMesgQueue(&D_80035428, D_8002F160, 8);     /* Inflate I/O queue */
-    osCreateMesgQueue(&D_8002ECF8, D_8002ED10, 60);    /* Retrace queue */
-    osCreateMesgQueue(&D_8002ECC0, D_8002ECD8, 8);     /* Unknown queue */
+    osCreateMesgQueue(&gDmaMesgQueue, gDmaMesgBuf, 8);         /* DMA queue */
+    osCreateMesgQueue(&gInflateMesgQueue, gInflateMesgBuf, 8); /* Inflate I/O queue */
+    osCreateMesgQueue(&gRetraceMesgQueue, gRetraceMesgBuf, 60);/* Retrace queue */
+    osCreateMesgQueue(&gEventMesgQueue, gEventMesgBuf, 8);     /* Event queue */
 
     /* Get frame counter and set up timer interrupts */
     frame_counter = (void *)osScGetFrameCount();
     osScCreateThread((void *)0x8002E8E8, (void *)0x800344E0, 12, frame_counter, 1);
 
     /* Finalize DMA for first region */
-    dma_finalize(D_80086A50, (u32)(D_8010FD80 - D_80086A50));
+    dma_finalize(gDecompressedDataStart, (u32)(gDecompressedDataEnd1 - gDecompressedDataStart));
 
     /* Invalidate D-cache for region to be decompressed into */
-    osInvalDCache(D_8010FD80, (u32)(D_801249F0 - D_8010FD80));
+    osInvalDCache(gDecompressedDataEnd1, (u32)(gBssStart - gDecompressedDataEnd1));
 
     /* Decompress main game data from ROM */
-    inflate_entry((void *)ROM_COMPRESSED_DATA, D_80086A50, 0);
+    inflate_entry((void *)ROM_COMPRESSED_DATA, gDecompressedDataStart, 0);
 
     /* Clear BSS section */
-    bzero(D_801249F0, (u32)(D_8017A640 - D_801249F0));
+    bzero(gBssStart, (u32)(gBssEnd - gBssStart));
 
     /* More initialization */
-    osScStartRetrace((void *)0x8002E8E8, &msg, &D_8002ECF8);
+    osScStartRetrace((void *)0x8002E8E8, &msg, &gRetraceMesgQueue);
 
     /* Create audio thread (thread 8) */
-    osCreateThread(D_80034690, 8, (void *)0x800AC75C, NULL,
-                   D_8002F7F0 + 0x960, 3);
+    osCreateThread(gAudioThread, 8, (void *)0x800AC75C, NULL,
+                   gAudioThreadStack + 0x960, 3);
 
     /* Set up event message queue */
-    osCreateMesgQueue(&D_80035440, D_8002F180, 1);
-    osJamMesg(&D_80035440, NULL, 1);
+    osCreateMesgQueue(&gSyncMesgQueue, gSyncMesgBuf, 1);
+    osJamMesg(&gSyncMesgQueue, NULL, 1);
 
     /* Start audio thread */
-    osStartThread(D_80034690);
+    osStartThread(gAudioThread);
 
     /* Create render thread (thread 5) */
-    osCreateThread(D_80034840, 5, (void *)0x800E7808, NULL,
-                   D_80031D70 + 0x960, 7);
-    osStartThread(D_80034840);
+    osCreateThread(gRenderThread, 5, (void *)0x800E7808, NULL,
+                   gRenderThreadStack + 0x960, 7);
+    osStartThread(gRenderThread);
 
     /* Late initialization */
     game_late_init();
     sound_init();
 
     /* Create main game thread (thread 7) */
-    osCreateThread(D_800344E0, 7, (void *)game_thread_entry, arg,
-                   D_80030AB0 + 0x12C0, 5);
+    osCreateThread(gGameThread, 7, (void *)game_thread_entry, arg,
+                   gGameThreadStack + 0x12C0, 5);
 
     /* Write magic sync value */
-    D_80142D90 = 0x0ABF;
+    gSyncMagic = 0x0ABF;
 
     /* Start main game thread if not in some special mode */
-    if (D_8002B028 == 0) {
-        osStartThread(D_800344E0);
+    if (gInitFlag == 0) {
+        osStartThread(gGameThread);
     }
 
     /* Wait for sync signal (0x0ABE) */
     do {
-        osRecvMesg(&D_8002ECF8, &msg, 1);
+        osRecvMesg(&gRetraceMesgQueue, &msg, 1);
     } while (*(s16 *)msg != 0x0ABE);
 
     /* Clear game state flag */
-    D_80035472 = 0;
+    gGameStateFlag = 0;
 
     /* Start audio */
     audio_start();

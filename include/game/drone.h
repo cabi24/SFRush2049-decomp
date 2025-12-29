@@ -26,9 +26,13 @@
 #define DRONE_PERS_PASSIVE  2   /* Hangs back */
 
 /* Catch-up constants */
-#define CATCHUP_DISTANCE    500.0f  /* Distance for catchup to activate */
-#define CATCHUP_MAX_BOOST   1.1f    /* Max speed boost */
-#define CATCHUP_MIN_BOOST   0.9f    /* Min speed (brake) */
+#define CATCHUP_DISTANCE        300.0f /* Distance for full catchup effect */
+#define CATCHUP_MAX_BOOST       1.15f  /* Maximum speed boost */
+#define CATCHUP_MIN_BOOST       0.85f  /* Maximum slowdown */
+#define CATCHUP_SMOOTHING       0.03f  /* Smoothing factor per frame */
+#define CATCHUP_SCALE_DEFAULT   0.10f  /* Default catchup strength */
+#define CATCHUP_ZONE_DEFAULT    500.0f /* Distance zone for full effect */
+#define CATCHUP_SOLO_BOOST      1.05f  /* Solo player boost */
 
 /* Maxpath constants */
 #define PATH_LOOKAHEAD  80.0f   /* Look-ahead for steering */
@@ -95,6 +99,13 @@ void drone_avoid_walls(s32 car_index);
 void drone_set_catchup(void);
 void drone_no_catchup(void);
 void drone_calc_catchup(s32 car_index);
+f32 drone_scale_catchup_by_difficulty(s32 car_index, f32 base_catchup);
+void drone_assign_targets(void);
+f32 drone_get_speed_multiplier(s32 car_index);
+void drone_apply_inputs(s32 car_index);
+void drone_activate_for_race(void);
+void drone_deactivate(void);
+void drone_set_difficulty_level(s32 difficulty);
 
 /* Drone assignment */
 void drone_assign_all(void);

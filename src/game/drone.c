@@ -25,12 +25,19 @@ extern CarData car_array[];
 extern s32 num_active_cars;
 extern s32 this_car;
 extern s32 trackno;
+extern u8 game_car[];
+extern s32 active_player_count;
+extern s32 race_difficulty;
 
 /* External math */
 extern f32 sqrtf(f32 x);
 extern f32 atan2f(f32 y, f32 x);
 extern f32 sinf(f32 x);
 extern f32 cosf(f32 x);
+
+/* External car input handlers */
+extern void lookat_get(void *car, f32 steerInput);
+extern void camera_get_pos(void *car, f32 throttle, f32 brake);
 
 /* Drone control data */
 DroneControl drone_ctl[MAX_CARS];
@@ -135,6 +142,9 @@ void drone_update_all(void) {
     for (i = 0; i < num_active_cars; i++) {
         if (drone_ctl[i].drone_type == DRONE_TYPE_DRONE && drone_ctl[i].is_active) {
             drone_update(i);
+            if (drone_ctl[i].we_control) {
+                drone_apply_inputs(i);
+            }
         }
     }
 }
@@ -149,6 +159,7 @@ void drone_update(s32 car_index) {
     CarData *car;
     f32 target_steer;
     f32 target_throttle;
+    f32 speed_mult;
 
     ctl = &drone_ctl[car_index];
     car = &car_array[car_index];
@@ -160,19 +171,23 @@ void drone_update(s32 car_index) {
     /* Follow maxpath waypoints */
     drone_do_maxpath(car_index);
 
-    /* Calculate catch-up boost */
-    drone_calc_catchup(car_index);
-
     /* Apply speed scaling */
     /* In arcade, this modifies the car's torque curve */
     /* For N64, we'll scale the throttle input */
-    target_throttle = ctl->throttle_target * ctl->drone_scale * ctl->time_boost;
+    speed_mult = drone_get_speed_multiplier(car_index);
+    target_throttle = ctl->throttle_target * speed_mult;
+    if (target_throttle > 1.0f) {
+        target_throttle = 1.0f;
+    }
 
     /* Smooth the steering */
     target_steer = ctl->steer_target;
 
     /* Apply drone inputs to car */
     /* These would be written to the car's input structure */
+    (void)car;
+    (void)target_steer;
+    (void)target_throttle;
 }
 
 /**
@@ -851,72 +866,70 @@ void drone_avoid_walls(s32 car_index) {
  */
 void drone_set_catchup(void) {
     s32 i;
-    s32 my_place;
-    s32 target_car;
-    f32 place_scale;
-    f32 diff_scale;
-    f32 max_boost, min_boost;
-    f32 max_brake, min_brake;
+    s32 leader_index;
+    s32 human_count;
+    f32 leader_dist;
+    f32 my_dist;
     f32 delta_dist;
-    f32 time_scale, scale;
+    f32 target_catchup;
     DroneControl *ctl;
+
+    leader_index = -1;
+    leader_dist = -999999.0f;
+    human_count = 0;
+
+    for (i = 0; i < num_active_cars; i++) {
+        if (drone_ctl[i].drone_type == DRONE_TYPE_HUMAN) {
+            human_count++;
+            if (car_array[i].distance > leader_dist) {
+                leader_dist = car_array[i].distance;
+                leader_index = i;
+            }
+        }
+    }
+
+    if (leader_index < 0) {
+        for (i = 0; i < num_active_cars; i++) {
+            if (car_array[i].distance > leader_dist) {
+                leader_dist = car_array[i].distance;
+                leader_index = i;
+            }
+        }
+    }
+
+    if (human_count == 1 && leader_index >= 0) {
+        if (drone_ctl[leader_index].drone_type == DRONE_TYPE_HUMAN) {
+            drone_ctl[leader_index].catchup_boost = CATCHUP_SOLO_BOOST;
+        }
+    }
 
     for (i = 0; i < num_active_cars; i++) {
         ctl = &drone_ctl[i];
 
-        if (ctl->drone_type != DRONE_TYPE_DRONE) {
+        if (ctl->drone_type == DRONE_TYPE_HUMAN) {
             continue;
         }
 
-        if (!ctl->we_control) {
+        if (!ctl->is_active) {
             continue;
         }
 
-        my_place = car_array[i].place;
-        target_car = ctl->target_car;
+        my_dist = car_array[i].distance;
+        delta_dist = leader_dist - my_dist;
 
-        /* Place scale: first place = 0, last place = 1 */
-        place_scale = (f32)my_place / (f32)(num_active_cars - 1);
-
-        /* Difficulty scale: 0 = hard, 1 = easy */
-        diff_scale = (f32)ctl->difficulty / 7.0f;
-
-        /* Calculate boost/brake limits based on place and difficulty */
-        /* From arcade: complex formula based on place and difficulty */
-        max_boost = (1.0f - 1.1f) * diff_scale + 1.1f - place_scale * ((0.15f - 0.05f) * diff_scale + 0.05f);
-        min_boost = 1.0f - place_scale * ((0.06f - 0.02f) * diff_scale + 0.02f);
-        max_brake = 0.9f - place_scale * ((0.6f - 0.1f) * diff_scale + 0.1f);
-        min_brake = (0.96f - 1.0f) * diff_scale + 1.0f - place_scale * ((0.05f - 0.02f) * diff_scale + 0.02f);
-
-        /* Calculate distance to target */
-        delta_dist = car_array[i].distance - car_array[target_car].distance;
-
-        /* Apply catch-up based on distance to target human */
-        if (target_car != i) {
-            if (delta_dist < -20.0f) {
-                /* Human in front of drone, speed up */
-                time_scale = linear_interp(-300.0f, -60.0f, max_boost, min_boost, delta_dist);
-                scale = min_brake;
-            } else {
-                /* Drone ahead of or near human, slow down */
-                scale = linear_interp(200.0f, 60.0f, max_brake, min_brake, delta_dist);
-                time_scale = min_boost;
-            }
+        if (delta_dist > CATCHUP_ZONE_DEFAULT) {
+            target_catchup = CATCHUP_MAX_BOOST;
+        } else if (delta_dist < -CATCHUP_ZONE_DEFAULT) {
+            target_catchup = CATCHUP_MIN_BOOST;
+        } else if (delta_dist > 0.0f) {
+            target_catchup = 1.0f + (delta_dist / CATCHUP_ZONE_DEFAULT) * (CATCHUP_MAX_BOOST - 1.0f);
         } else {
-            /* No target - use place-based scaling */
-            if (my_place < num_active_cars / 2) {
-                /* Leading - slow down */
-                time_scale = min_boost;
-                scale = min_brake;
-            } else {
-                /* Trailing - speed up */
-                time_scale = max_boost;
-                scale = min_brake;
-            }
+            target_catchup = 1.0f + (delta_dist / CATCHUP_ZONE_DEFAULT) * (1.0f - CATCHUP_MIN_BOOST);
         }
 
-        ctl->catchup_boost = time_scale;
-        ctl->drone_scale = scale;
+        target_catchup = drone_scale_catchup_by_difficulty(i, target_catchup);
+        ctl->catchup_boost = ctl->catchup_boost * (1.0f - CATCHUP_SMOOTHING) +
+                             target_catchup * CATCHUP_SMOOTHING;
     }
 }
 
@@ -977,17 +990,177 @@ void drone_calc_catchup(s32 car_index) {
 }
 
 /**
+ * drone_scale_catchup_by_difficulty - Apply difficulty scaling to catchup
+ *
+ * @param car_index Drone index
+ * @param base_catchup Base catchup value
+ * @return Scaled catchup value
+ */
+f32 drone_scale_catchup_by_difficulty(s32 car_index, f32 base_catchup) {
+    DroneControl *ctl;
+    f32 diff_scale;
+
+    if (car_index < 0 || car_index >= MAX_LINKS) {
+        return base_catchup;
+    }
+
+    ctl = &drone_ctl[car_index];
+    diff_scale = (f32)ctl->difficulty / 7.0f;
+
+    if (base_catchup > 1.0f) {
+        return 1.0f + (base_catchup - 1.0f) * (1.0f - diff_scale * 0.5f);
+    }
+
+    return 1.0f - (1.0f - base_catchup) * (diff_scale * 0.5f + 0.5f);
+}
+
+/**
+ * drone_assign_targets - Assign target human for each drone
+ */
+void drone_assign_targets(void) {
+    s32 i, j;
+    s32 human_indices[MAX_CARS];
+    s32 human_count;
+
+    human_count = 0;
+    for (i = 0; i < num_active_cars; i++) {
+        if (drone_ctl[i].drone_type == DRONE_TYPE_HUMAN) {
+            human_indices[human_count++] = i;
+        }
+    }
+
+    if (human_count == 0) {
+        return;
+    }
+
+    j = 0;
+    for (i = 0; i < num_active_cars; i++) {
+        if (drone_ctl[i].drone_type == DRONE_TYPE_DRONE) {
+            drone_ctl[i].target_car = human_indices[j % human_count];
+            j++;
+        }
+    }
+}
+
+/**
+ * drone_get_speed_multiplier - Combine catchup, difficulty, and boosts
+ *
+ * @param car_index Drone index
+ * @return Speed multiplier
+ */
+f32 drone_get_speed_multiplier(s32 car_index) {
+    DroneControl *ctl;
+    f32 multiplier;
+
+    if (car_index < 0 || car_index >= MAX_LINKS) {
+        return 1.0f;
+    }
+
+    ctl = &drone_ctl[car_index];
+    multiplier = ctl->catchup_boost;
+    multiplier = drone_scale_catchup_by_difficulty(car_index, multiplier);
+    multiplier *= ctl->drone_scale;
+    multiplier *= ctl->time_boost;
+
+    return multiplier;
+}
+
+/**
+ * drone_apply_inputs - Apply drone control outputs to car input state
+ *
+ * @param car_index Drone car index
+ */
+void drone_apply_inputs(s32 car_index) {
+    DroneControl *ctl;
+    void *car;
+
+    if (car_index < 0 || car_index >= num_active_cars) {
+        return;
+    }
+
+    ctl = &drone_ctl[car_index];
+    car = (void *)(game_car + car_index * 0x400);
+
+    lookat_get(car, ctl->steer_target);
+    camera_get_pos(car, ctl->throttle_target, ctl->brake_target);
+}
+
+/**
+ * drone_activate_for_race - Activate drones when race starts
+ */
+void drone_activate_for_race(void) {
+    s32 i;
+
+    num_humans = 0;
+    num_drones = 0;
+
+    for (i = 0; i < num_active_cars; i++) {
+        drone_init_car(i);
+    }
+
+    for (i = 0; i < num_active_cars; i++) {
+        if (i < active_player_count || i == this_car) {
+            drone_ctl[i].drone_type = DRONE_TYPE_HUMAN;
+            drone_ctl[i].we_control = 0;
+            num_humans++;
+        } else {
+            drone_ctl[i].drone_type = DRONE_TYPE_DRONE;
+            drone_ctl[i].we_control = 1;
+            drone_ctl[i].is_active = 1;
+            num_drones++;
+        }
+    }
+
+    drone_assign_default_paths();
+    drone_assign_targets();
+    drone_set_difficulty_level(race_difficulty);
+}
+
+/**
+ * drone_deactivate - Deactivate drones at race end
+ */
+void drone_deactivate(void) {
+    s32 i;
+
+    for (i = 0; i < num_active_cars; i++) {
+        drone_ctl[i].is_active = 0;
+        drone_ctl[i].we_control = 0;
+    }
+
+    drone_end();
+}
+
+/**
+ * drone_set_difficulty_level - Set difficulty parameters
+ *
+ * @param difficulty Difficulty level (0-3)
+ */
+void drone_set_difficulty_level(s32 difficulty) {
+    s32 i;
+
+    if (difficulty <= 1) {
+        use_catchup = 1;
+    } else {
+        use_catchup = 0;
+    }
+
+    for (i = 0; i < num_active_cars; i++) {
+        if (drone_ctl[i].drone_type == DRONE_TYPE_DRONE) {
+            drone_ctl[i].difficulty = difficulty;
+        }
+    }
+}
+
+/**
  * drone_assign_all - Assign drone behaviors and targets
  * Based on arcade: drones.c:assign_drones()
  */
 void drone_assign_all(void) {
     s32 i;
-    s32 cars_in_order[MAX_CARS];
-    s32 humans[MAX_CARS];
-    s32 drones[MAX_CARS];
 
     /* Count humans and drones, get race order */
     drone_place_in_order();
+    drone_assign_targets();
 
     /* Assign default paths to drones */
     drone_assign_default_paths();
@@ -995,10 +1168,14 @@ void drone_assign_all(void) {
     /* Early in race, spread drones out */
     if (frame_counter < 5 * 60) {  /* First 5 seconds */
         for (i = 0; i < num_drones; i++) {
-            s32 idx = drones[i];
             s32 j = num_drones - i - 1;
-            drone_ctl[idx].time_boost = 0.98f + (f32)j * 0.02f;
-            drone_ctl[idx].drone_scale = 1.0f;
+            s32 idx = i;
+            if (idx >= 0 && idx < num_active_cars) {
+                if (drone_ctl[idx].drone_type == DRONE_TYPE_DRONE) {
+                    drone_ctl[idx].time_boost = 0.98f + (f32)j * 0.02f;
+                    drone_ctl[idx].drone_scale = 1.0f;
+                }
+            }
         }
     }
 }

@@ -893,6 +893,7 @@ void playgame_handler(void) {
 
     /* State bit 0x0008: Cleanup/exit */
     if (gstate_next & 0x0008) {
+        drone_deactivate();
         /* Walk object list and clean up */
         void *obj = scene_object_ptr;
         while (obj != NULL) {
@@ -1328,6 +1329,9 @@ extern void* object_alloc(s32 type);      /* Allocate object */
 extern void *sound_effect_play(s32 arg); /* Object allocation */
 extern void menu_options(void *menu); /* Race setup 1 */
 extern void players_frame_update(void); /* Race setup 2 */
+extern void drone_update_all(void);
+extern void drone_activate_for_race(void);
+extern void drone_deactivate(void);
 extern void mempak_operation(s32 operation); /* Track init */
 extern void menu_saveload(void *menu); /* Visual init */
 extern void scene_stub_empty(void); /* Scene setup */
@@ -1408,6 +1412,7 @@ void race_state_machine(void) {
         /* Initialize race systems */
         menu_options(NULL);
         players_frame_update();
+        drone_activate_for_race();
 
         /* Initialize object list */
         obj = object_list_head;
@@ -1732,6 +1737,7 @@ void update_game_systems(s32 sound_update, s32 physics_update) {
 
     /* Update physics objects if requested */
     if (physics_update != 0) {
+        drone_update_all();
         physics_update();  /* Starts physics linked list traversal */
     }
 
