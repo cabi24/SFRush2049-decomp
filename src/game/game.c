@@ -12,36 +12,36 @@
 /* Auto-generated extern declarations for missing variables */
 extern s32 dma_io_msg;
 extern s32 dma_queue;
-extern s32 D_80086A70;
+extern s32 dma_io_mesg;
 extern s32 dma_message_queue;
-extern void *D_8008AD48[];
+extern void *data_ptr_array[];
 extern void *indexed_data_array[];
-extern s32 D_80120308;
-extern s32 D_8012030C;
+extern s32 format_string_1;
+extern s32 format_string_2;
 extern void *object_ptr_table[];
-extern s32 D_80128E20;
-extern s32 D_80130000;
+extern s32 game_data_buffer;
+extern s32 car_model_display_list;
 extern s32 camera_angle_copy;
-extern void *D_80144031[];
+extern void *object_status_array[];
 extern void *object_pool_data[];
 extern s32 game_sync;
 extern s32 track_data_ptr;
 extern void **active_object_list;
 extern void **render_list;
-extern s32 D_8014C094;
-extern s32 D_8014C238;
-extern s32 D_80151AD4;
-extern void *D_80152038[];
-extern s32 D_801520A0;
+extern s32 resource_alloc_count;
+extern s32 resource_ptr_array;
+extern s32 camera_matrix_ptr;
+extern void *effect_buffer_main[];
+extern s32 controller_buttons;
 extern s32 buttons_pressed;
 extern s32 per_frame_flag;
-extern s32 D_80152738;
-extern s32 D_80152800;
-extern f32 D_80153F48[];
-extern f32 D_80153F68[];
-extern s32 D_80154190;
+extern s32 effect_counter;
+extern s32 camera_ptr;
+extern f32 camera_floats_b[];
+extern f32 camera_floats_c[];
+extern s32 camera_timer_copy;
 extern s32 object_slots;
-extern s32 D_80154FD8;
+extern s32 slot_entry_base;
 extern void *callback_data[];
 extern void *object_pool[];
 extern void *pool_secondary[];
@@ -53,8 +53,8 @@ extern s32 controller_input_2;
 extern s32 controller_input_3;
 extern void *sound_volumes[];
 extern s32 reverb_type;
-extern void *D_801581EC[];
-extern void *D_80158208[];
+extern void *audio_effect_handles[];
+extern void *audio_priority_list[];
 extern f32 audio_duck_targets[5];
 extern f32 listener_right_vec[3];  /* Listener right vector */
 extern s32 speed_of_sound;
@@ -73,7 +73,7 @@ extern s32 leaderboard_track;
 extern s32 num_input_players;
 extern void *sprite_table_data[];
 extern s32 sprite_table_valid;
-extern s32 D_80159018;
+extern s32 sprite_cache_index;
 extern s32 font_char_width;
 extern s32 num_players_active;
 extern void *multi_view_cameras[];
@@ -175,7 +175,7 @@ extern s32 object_update_count;
 extern s32 current_player_idx;
 extern s32 object_state_flag;
 extern void *sync_state_array[];
-extern s32 D_801597FC;
+extern s32 menu_rebuild_flag;
 extern void **menu_items_array;
 extern s32 model_bounds_ptr;
 extern s32 keyboard_col;
@@ -201,7 +201,7 @@ extern u32 finish_time_by_car[32];  /* Data array */
 extern s32 race_time_limit;
 extern s32 race_difficulty;
 extern s32 random_seed2;
-extern s32 D_80159A24;
+extern s32 random_seed3;
 extern s32 time_of_day;
 extern s32 gfx_ptr_temp;
 extern s32 unlocked_tracks;
@@ -291,10 +291,10 @@ extern void *track_coin_state[];
 extern s32 collected_coin_count;
 extern s32 total_coin_count;
 extern s32 coins_complete_flag;
-extern s32 D_8015A090;
-extern s32 D_8015A094;
-extern s32 D_8015A098;
-extern s32 D_8015A09C;
+extern s32 coin_bonus_1;
+extern s32 coin_bonus_2;
+extern s32 stunt_combo_timer;
+extern s32 stunt_combo_count;
 extern void *unlock_bits[];
 extern s32 player_count;
 extern void *player_data_ptr[];
@@ -453,13 +453,13 @@ extern s8  gstate_byte;   /* Init flag */
 extern s32 menu_sound_handle;   /* Sound handle */
 extern s32 render_enable;   /* Render enable flag */
 extern u32 frame_counter;   /* Frame counter */
-extern s16 D_8003EB70;   /* Wait flag */
-extern u32 D_8003E8E8;   /* Timer/tick */
-extern u32 D_8003AFB8;   /* Timing constant (float as u32) */
+extern s16 wait_flag;   /* Wait flag */
+extern u32 timing_tick;   /* Timer/tick */
+extern u32 timing_constant;   /* Timing constant (float as u32) */
 extern u32 attract_render_state;   /* Some state value */
 extern u32 state_value_src;   /* Another state value */
 extern u32 state_value_copy;   /* State copy */
-extern s8  D_801146C4[]; /* Sound params array */
+extern s8  sound_params_array[]; /* Sound params array */
 extern u32 gstate_mask;   /* gstate - current state bitmask (for game_loop) */
 extern u32 gstate_prev;   /* gstate_pending - next state (for game_loop) */
 extern void sound_stop(s32 channel, f32 volume);    /* sound_stop */
@@ -513,7 +513,7 @@ s32 game_loop(void) {
     }
 
     /* State change in progress - wait for something to clear */
-    while (D_8003EB70 != 0) {
+    while (wait_flag != 0) {
         /* Spin wait - checking flag */
     }
 
@@ -528,7 +528,7 @@ s32 game_loop(void) {
     process_inputs();
 
     /* Timing check - calculate elapsed time */
-    timing_diff = D_8003E8E8 - D_8003AFB8;
+    timing_diff = timing_tick - timing_constant;
     elapsed_time = (f32)(s32)timing_diff;
 
     /* Check if elapsed time > 300.0 (5 seconds at 60fps) */
@@ -538,7 +538,7 @@ s32 game_loop(void) {
             sound_handle = menu_sound_handle;
             if (sound_handle == 0) {
                 /* Start sound - call with params */
-                menu_sound_handle = sound_start(0, 0, &D_801146C4, 1);
+                menu_sound_handle = sound_start(0, 0, &sound_params_array, 1);
             }
         } else {
             /* State requires stopping sound */
@@ -608,10 +608,10 @@ s32 game_loop(void) {
 /*
 
 /* External data/functions for func_800C9AE0 */
-extern s8  D_80035472;   /* Mode flag 1 */
+extern s8  mode_flag_1;   /* Mode flag 1 */
 extern s8  mode_flag_loop;   /* Mode flag 2 */
-extern s8  D_80035470;   /* Mode flag 3 */
-extern void* D_8003ECF8; /* Some pointer */
+extern s8  mode_flag_3;   /* Mode flag 3 */
+extern void* state_pointer; /* Some pointer */
 extern void* state_read_ptr; /* Another pointer */
 extern s32 state_set(void*, void*, s32); /* Memory operation */
 extern s32 state_get(void*, void*, s32); /* Memory operation 2 */
@@ -633,10 +633,10 @@ void game_mode_handler(void) {
     s32 result;
 
     /* Set mode flag */
-    D_80035472 = 1;
+    mode_flag_1 = 1;
 
     /* Call memory operation with value */
-    state_set(&D_8003ECF8, &temp_val, 1);
+    state_set(&state_pointer, &temp_val, 1);
 
     /* Clear another flag */
     mode_flag_loop = 0;
@@ -656,7 +656,7 @@ void game_mode_handler(void) {
 
     /* Set flags after loop */
     mode_flag_loop = 1;
-    D_80035470 = 0;
+    mode_flag_3 = 0;
 
     /* Save state value */
     state_value_copy = state_value_src;
@@ -706,12 +706,12 @@ extern s32 race_started_flag;
 extern s32 game_mode_flag;
 extern s32 speed_factor;
 extern s32 speed_offset;
-extern s32 D_801461F8;
-extern s32 D_80146205;
+extern s32 object_flag_1;
+extern s32 object_flag_2;
 extern s32 render_update_flag;
 extern s32 physics_update_flag;
 extern s32 active_player_count;
-extern s32 D_80151AD8;
+extern s32 matrix_stack_depth;
 extern void hud_speed_display(void *hud, f32 speed); /* func_800C84FC - HUD speed display */
 
 /**
@@ -765,8 +765,8 @@ void playgame_handler(void) {
     /* State bit 0x0001: Enter gameplay initialization */
     if (gstate_next & 0x0001) {
         /* Clear various flags */
-        D_801461F8 = 0;
-        D_80146205 = 0;
+        object_flag_1 = 0;
+        object_flag_2 = 0;
         effect_update_flag = 0;
         render_update_flag = 0;
         object_state_flag = 0;
@@ -886,7 +886,7 @@ void playgame_handler(void) {
             }
         }
 
-        D_80151AD8 = 0;
+        matrix_stack_depth = 0;
         gstate_current = gstate_mask;
         goto done;
     }
@@ -1147,7 +1147,7 @@ void countdown_display(void) {
     }
 
     /* Format player string */
-    sprintf(str_buf, D_80120308, i + 1);
+    sprintf(str_buf, format_string_1, i + 1);
 
     /* Get display parameters from global */
     display_data = display_object_array[1];  /* offset 4 = array[1] */
@@ -1161,7 +1161,7 @@ void countdown_display(void) {
         s32 extra = *(s32 *)((u8 *)display_data + 0x200);
 
         countdown_val = countdown_timer;
-        sprintf(format_buf, D_8012030C, str_buf, x_pos, y_pos, countdown_val, width, height, extra);
+        sprintf(format_buf, format_string_2, str_buf, x_pos, y_pos, countdown_val, width, height, extra);
     }
 
     /* Call rendering function */
@@ -1311,8 +1311,8 @@ void visual_objects_update(s32 flag) {
 extern s32 race_sub_state;       /* Race sub-state */
 extern s32 current_player_index;       /* Current player index */
 extern s8  player_active_flag;       /* Player active flag */
-extern s8  D_80117354;       /* Secondary active flag */
-extern void* D_80143FD8;     /* Object list head */
+extern s8  secondary_active_flag;       /* Secondary active flag */
+extern void* object_list_head;     /* Object list head */
 extern f32 game_timer_value;       /* Timer value */
 
 /* External functions for race states */
@@ -1410,7 +1410,7 @@ void race_state_machine(void) {
         players_frame_update();
 
         /* Initialize object list */
-        obj = D_80143FD8;
+        obj = object_list_head;
         while (obj != NULL) {
             *(u8 *)((u8 *)obj + 100) = 2;
             *(s32 *)((u8 *)obj + 96) = -1;
@@ -1547,7 +1547,7 @@ void race_state_machine(void) {
         }
 
         if (player_flags & 0x0002) {
-            if (D_80117354 != 0) {
+            if (secondary_active_flag != 0) {
                 if ((gstate_mask & 0x00200000) && race_state == 8) {
                     goto state7_restart;
                 }
@@ -1839,7 +1839,7 @@ void physics_update_all(void) {
 
 /* Emitter array at 0x80150B70, secondary at 0x80150BA0 */
 extern u8  emitter_array_base[];          /* Emitter array base */
-extern u8  D_80150BA0[];          /* Secondary emitter array */
+extern u8  secondary_emitter_array[];          /* Secondary emitter array */
 
 extern void emitter_update(f32 *src, f32 *dst); /* audio_stream_stop - Emitter update */
 extern void particles_spawn(s32 a0); /* func_800B80C8 - Spawn particles for emitter */
@@ -1862,7 +1862,7 @@ void effects_update_emitters(void) {
     }
 
     emitter = emitter_array_base;
-    emitter2 = D_80150BA0;
+    emitter2 = secondary_emitter_array;
 
     for (i = 0; i < count; i++) {
         /* Copy current position to previous position */
@@ -2079,7 +2079,7 @@ void all_player_sounds_clear(void) {
  * Size: 120 bytes
  *
  * Stops and clears the ambient sound handle at ambient_sound_handle,
- * then iterates through 4 additional handles at ambient_sound_extra-D_80114638
+ * then iterates through 4 additional handles at ambient_sound_extra-ambient_sound_extra
  * and stops/clears each one.
  */
 extern void *ambient_sound_handle;      /* Main ambient sound handle */
@@ -2172,9 +2172,9 @@ void player_states_reset(void) {
  * Clears effect system globals and reinitializes effect pools.
  * Called during level transitions or game resets.
  */
-extern void *D_80143A18;      /* Effect pool 1 */
-extern void *D_80143A20;      /* Effect pool 2 */
-extern void *D_80143A28;      /* Effect pool 3 */
+extern void *effect_pool_1;      /* Effect pool 1 */
+extern void *effect_pool_2;      /* Effect pool 2 */
+extern void *effect_pool_3;      /* Effect pool 3 */
 extern u8 effect_state_buffer[];       /* Effect state buffer (44 bytes) */
 
 extern void engine_sound_update(void); /* Effect pre-reset */
@@ -2190,9 +2190,9 @@ void effects_reset(s32 unused) {
     engine_sound_update();
 
     /* Clear effect pools */
-    matrix_push(D_80143A18);
-    matrix_push(D_80143A20);
-    matrix_push(D_80143A28);
+    matrix_push(effect_pool_1);
+    matrix_push(effect_pool_2);
+    matrix_push(effect_pool_3);
 
     /* Zero out effect state buffer */
     bzero(effect_state_buffer, 44);
@@ -2207,7 +2207,7 @@ void effects_reset(s32 unused) {
  * Size: 176 bytes
  *
  * Iterates through an array of objects (32 bytes each) from
- * object_sound_array to D_80116FE4 and stops/clears sound handles
+ * object_sound_array to object_sound_array and stops/clears sound handles
  * at offset 0x0C of each entry.
  *
  * @param clear_all If 0, only clear if entry[1] is 0
@@ -2329,7 +2329,7 @@ void players_race_update(void) {
  * @param obj Object pointer, or -1 to do nothing
  */
 extern u8 object_sync[];       /* Sync structure */
-extern u8 D_80146188[];       /* Object pool 1 */
+extern u8 object_pool_1[];       /* Object pool 1 */
 
 extern void menu_stub_empty(); /* Object pre-process */
 extern void model_setup(void*, void*);  /* Object cleanup */
@@ -2356,7 +2356,7 @@ void object_activate(void *obj) {
     /* Check if object needs cleanup */
     cleanup_flag = obj_ptr[9];
     if (cleanup_flag != 0) {
-        model_setup(D_80146188, obj);
+        model_setup(object_pool_1, obj);
         obj_ptr[9] = 0;
     }
 
@@ -2430,8 +2430,8 @@ check_state:
  * Iterates through players checking if they've completed the race.
  * Returns 1 if all active players have finished, 0 otherwise.
  */
-extern s8  D_80117480;        /* Players finished count */
-extern s8  D_80117484;        /* Expected finish count */
+extern s8  players_finished_count;        /* Players finished count */
+extern s8  expected_finish_count;        /* Expected finish count */
 
 s32 players_finish_check(void) {
     s32 i;
@@ -2459,10 +2459,10 @@ s32 players_finish_check(void) {
         player_entry += 2056;
     }
 
-    D_80117480 = finished_count;
+    players_finished_count = finished_count;
 
     /* Return 1 if all players finished */
-    if (finished_count >= D_80117484) {
+    if (finished_count >= expected_finish_count) {
         return 1;
     }
 
@@ -3465,8 +3465,8 @@ void vector_copy_scale(f32 *src, f32 *dst) {
  */
 extern s32 render_state_1;    /* Render state 1 */
 extern f32 render_scale_float;    /* Render float */
-extern s16 D_80140618;    /* Mode short */
-extern s32 D_801406B8;    /* Data pointer */
+extern s16 mode_short;    /* Mode short */
+extern s32 data_pointer;    /* Data pointer */
 extern void camera_distance_set(void);
 
 void render_state_init(void) {
@@ -3474,8 +3474,8 @@ void render_state_init(void) {
     render_state_2 = -1;
     camera_distance_set();
     render_scale_float = 1.0f;
-    D_80140618 = 0;
-    D_801406B8 = 0x8011EA18;  /* Constant pointer */
+    mode_short = 0;
+    data_pointer = 0x8011EA18;  /* Constant pointer */
 }
 
 /*
@@ -4308,7 +4308,7 @@ void conditional_reset_callbacks(s32 a0, s32 a1) {
     }
     os_timer_callback(a1);
     dma_read();
-    matrix_push(D_80151AD4);
+    matrix_push(camera_matrix_ptr);
     timer_callback_state = -1;
 }
 
@@ -4865,7 +4865,7 @@ void pool_linked_list_init(void *a0) {
  * Finally clears the secondary pool area at pool_secondary.
  */
 extern void path_follow(void*, void*);
-extern u8 D_80155B30[];
+extern u8 pool_storage_buffer[];
 
 void pool_system_reset(s32 slot, void *data, s32 size) {
     void *node;
@@ -4882,7 +4882,7 @@ void pool_system_reset(s32 slot, void *data, s32 size) {
     object_pool[0] = 1;                                      /* type/flag */
     *(s32*)(&object_pool[0x08]) = 36;                       /* stride = 36 bytes */
     *(s32*)(&object_pool[0x04]) = 100;                      /* count = 100 entries */
-    *(void**)(&object_pool[0x0C]) = (void*)&D_80155B30[0];  /* base pointer */
+    *(void**)(&object_pool[0x0C]) = (void*)&pool_storage_buffer[0];  /* base pointer */
 
     collision_resolve(&object_pool[0]);
 
@@ -5294,12 +5294,12 @@ extern void camera_shake_apply(void *camera, f32 intensity, f32 duration);
 extern void menu_track_select(void *menu); /* Setup call before init */
 
 /* Global scaling factors */
-extern f32 D_8011416C;
-extern f32 D_80114170;
+extern f32 scale_factor_x;
+extern f32 scale_factor_y;
 
 /* Float arrays for camera/visual data */
-extern f32 D_80153F28[6];
-extern s16 D_80154182;
+extern f32 game_float_array_1[6];
+extern s16 game_selection_index;
 
 extern void collision_broadphase(void *world); /* Setup call */
 
@@ -5361,7 +5361,7 @@ void object_scale_init(void *a0) {
 
     /* Calculate timing value from object field and global factors */
     val = *(f32*)((u8*)a0 + 0x408);
-    result = (s16)(val * D_8011416C * D_80114170);
+    result = (s16)(val * scale_factor_x * scale_factor_y);
     *(s16*)((u8*)a0 + 0x7D0) = result;
 }
 
@@ -5384,14 +5384,14 @@ void camera_arrays_reset(void) {
 
     /* Clear all three 6-element float arrays */
     for (i = 0; i < 6; i++) {
-        D_80153F28[i] = zero;
-        D_80153F48[i] = zero;
-        D_80153F68[i] = zero;
+        game_float_array_1[i] = zero;
+        camera_floats_b[i] = zero;
+        camera_floats_c[i] = zero;
     }
 
     /* Copy initial value and set state to -1 */
-    D_80154190 = game_timer_value;
-    D_80154182 = -1;
+    camera_timer_copy = game_timer_value;
+    game_selection_index = -1;
 }
 
 /*
@@ -5429,7 +5429,7 @@ s32 object_status_check(void **a0, s32 a1) {
     index = *(u8*)((u8*)childData + 16);
 
     /* Calculate array offset: index * 772 + 0x4031 */
-    status = D_80144031[index * 772];
+    status = object_status_array[index * 772];
 
     if (status == 0) {
         return 0;
@@ -5555,7 +5555,7 @@ void effect_system_init(void) {
     u32 *ptr;
 
     /* Clear main effect buffer */
-    memset_custom(D_80152038, 0, 480);
+    memset_custom(effect_buffer_main, 0, 480);
 
     /* Initialize each 124-byte effect slot */
     for (ptr = fx_slot_array; ptr < (u32*)((u8*)fx_slot_array + 496); ptr = (u32*)((u8*)ptr + 124)) {
@@ -5565,13 +5565,13 @@ void effect_system_init(void) {
 
     /* Reset timing and counter */
     effect_timing_float = 0.0f;
-    D_80152738 = 0;
+    effect_counter = 0;
 }
 
 /*
 
 /* Object initialization external references */
-extern u8 D_80140BDC;  /* Object type count */
+extern u8 object_type_count;  /* Object type count */
 extern s32 audio_sequence_play(void*, void*, s32, s8, s32); /* Object setup with type */
 extern void sound_channel_set(s32 channel, f32 pan); /* Object alternate init */
 extern f32 audio_distance_atten(f32 distance, f32 maxDist);  /* Audio distance attenuation */
@@ -5593,7 +5593,7 @@ void object_type_setup_init(void *a0, void *a1, s32 a2) {
     *(void**)a0 = a1;
 
     if (a2 != 0) {
-        objType = (s8)(D_80140BDC - 1);
+        objType = (s8)(object_type_count - 1);
         result = audio_sequence_play(a1, (void*)((u8*)a0 + 12), 0, objType, 1);
         *(s32*)((u8*)a0 + 8) = result;
     } else {
@@ -5643,8 +5643,8 @@ void string_build_from_array(u8 *output) {
 
 /* Timer calculation external references */
 extern f32 frame_sync(void);  /* Get elapsed time */
-extern f32 D_801247F8;           /* Time multiplier */
-extern f32 D_801249C0;           /* Object init float constant */
+extern f32 time_multiplier;           /* Time multiplier */
+extern f32 object_init_constant;           /* Object init float constant */
 
 /**
 /*
@@ -5659,7 +5659,7 @@ void timer_value_update(void) {
     s16 value;
 
     time = frame_sync();
-    time *= D_801247F8;
+    time *= time_multiplier;
     value = (s16)time;
     emitter_count_2 = value;
 
@@ -5796,7 +5796,7 @@ void object_spawn_linked(void *a0) {
     *(s16*)((u8*)obj + 4) = 0;
     *(void**)((u8*)obj + 12) = a0;
     *(void**)((u8*)obj + 20) = *(void**)(indexedData + 12);
-    *(f32*)((u8*)obj + 16) = D_801249C0;
+    *(f32*)((u8*)obj + 16) = object_init_constant;
 
     /* Clear bits 1 and 2 of byte at offset 4 */
     *(u8*)((u8*)a0 + 4) &= 0xFFF9;
@@ -5819,7 +5819,7 @@ void object_spawn_linked(void *a0) {
 
 /* Pool allocator globals */
 extern u8 object_pool_base[];   /* Object pool base (24-byte slots) */
-extern u8 D_801439D8[];   /* Pool end marker */
+extern u8 pool_end_marker[];   /* Pool end marker */
 
 /**
 /*
@@ -5834,7 +5834,7 @@ extern u8 D_801439D8[];   /* Pool end marker */
  */
 void *pool_object_alloc(s32 type) {
     u8 *base = object_pool_base;
-    u8 *end = D_801439D8;
+    u8 *end = pool_end_marker;
     u8 *ptr = base;
 
     while (ptr < end) {
@@ -5947,7 +5947,7 @@ void object_deactivate_free(void *a0, s32 a1) {
 /*
 
 /* Object spawn globals */
-extern u8 D_8012F5CC[];  /* Type lookup table */
+extern u8 type_lookup_table[];  /* Type lookup table */
 extern void *bounds_check(void);  /* Allocate sub-object */
 
 /**
@@ -5989,7 +5989,7 @@ void *object_spawn_new(s32 a0) {
     *(s32*)((u8*)subObj + 16) = 1;   /* Active flag */
     *(u8*)((u8*)subObj + 24) = 0;
     *(u8*)((u8*)subObj + 26) = 1;
-    *(u8*)((u8*)subObj + 25) = D_8012F5CC[a0];  /* Type from lookup */
+    *(u8*)((u8*)subObj + 25) = type_lookup_table[a0];  /* Type from lookup */
 
     /* Store float constants at object offsets 8, 12, 16 */
     *(f32*)((u8*)obj + 8) = 1.0f;
@@ -6135,7 +6135,7 @@ void effects_system_init(void) {
     input_initialized_flag = 1;
 
     /* Clear effect counters */
-    *(s32*)&callback_data[6] = 0;  /* D_801551EC equivalent */
+    *(s32*)&callback_data[6] = 0;  /* callback_extra_data equivalent */
     *(s32*)&input_callback_table[0] = 0;  /* input_callback_table counter */
 
     /* Clear effect data array (32 bytes, 8 words) */
@@ -6311,8 +6311,8 @@ extern void leaderboard_update(void *a0); /* Clear structure */
 
 /**
 
-extern s32 D_801513B4;    /* Global flag A */
-extern void *D_8012EA18;  /* Source data */
+extern s32 global_flag_a;    /* Global flag A */
+extern void *source_data_ptr;  /* Source data */
 
 /**
 
@@ -6493,13 +6493,13 @@ extern s32 input_callback_end;    /* Sound buffer end */
 
 
 
-extern s32 D_8012EAA0;
+extern s32 extended_data_ptr;
 
 
 
 
 
-extern s8 D_8014978C;
+extern s8 object_subtype;
 
 /*
  * synced_element_lookup (104 bytes)
@@ -6575,12 +6575,12 @@ void resource_arrays_init(void) {
     /* Allocate 50 resources and store in array */
     for (i = 0; i < 50; i++) {
         result = viewport_clear();
-        *(void **)((u8 *)&D_8014C238 + (i * 4)) = result;
+        *(void **)((u8 *)&resource_ptr_array + (i * 4)) = result;
     }
 
     /* Initialize 6 slot entries with -1 */
     for (i = 0; i < 6; i++) {
-        *(s32 *)((u8 *)&D_80154FD8 + (i * 60)) = -1;
+        *(s32 *)((u8 *)&slot_entry_base + (i * 60)) = -1;
         *(s32 *)((u8 *)&object_slots + (i * 400) + 0) = -1;
         *(s32 *)((u8 *)&object_slots + (i * 400) + 84) = -1;
         *(s32 *)((u8 *)&object_slots + (i * 400) + 168) = -1;
@@ -6588,7 +6588,7 @@ void resource_arrays_init(void) {
         *(s32 *)((u8 *)&object_slots + (i * 400) + 336) = -1;
     }
 
-    D_8014C094 = 0;
+    resource_alloc_count = 0;
 }
 
 /*
@@ -8511,8 +8511,8 @@ void audio_sync_init(void *param) {
     void *syncObj2;
     u32 temp;
 
-    syncObj1 = (void *)0x80152788;  /* D_80152788 */
-    syncObj2 = (void *)0x801527A8;  /* D_801527A8 */
+    syncObj1 = (void *)0x80152788;  /* sync_object_1 */
+    syncObj2 = (void *)0x801527A8;  /* sync_object_2 */
 
     /* Initialize sync objects */
     sync_init(syncObj1, syncObj2, 8);
@@ -8785,7 +8785,8 @@ void entity_render_setup(void *entity, s32 mode) {
     entityType = *(s16 *)((u8 *)entity + 4);
 
     /* Check special rendering flag */
-    flags = *(s8 *)(0x801613A8);  /* D_801613A8 */
+    extern s8 special_render_flag;
+    flags = special_render_flag;
     if (flags != 0) {
         /* Check frame timing flag */
         s32 frameFlag = *(s32 *)0x801174B4;
@@ -13272,7 +13273,7 @@ void player_update(void *player, f32 dt) {
  *   0x24: is finish line (s32)
  */
 extern s32 total_checkpoints;          /* Total checkpoints */
-extern s32 D_801582B8;          /* Finish line checkpoint index */
+extern s32 finish_checkpoint_index;          /* Finish line checkpoint index */
 extern void voice_play(s32 voiceId); /* Play voice */
 
 void checkpoint_check_collision(void *car, void *checkpoint) {
@@ -15509,7 +15510,7 @@ void menu_system_update(void *menu) {
     animTimer = (s32 *)((u8 *)menu + 0x14);
 
     /* Get controller input */
-    buttons = D_801520A0;
+    buttons = controller_buttons;
     buttonsPressed = buttons_pressed;
 
     /* Update animation timer */
@@ -17338,7 +17339,7 @@ void explosion_spawn(f32 *pos, f32 size) {
     }
 
     /* Camera shake based on size */
-    void *camera = (void *)D_80152800;
+    void *camera = (void *)camera_ptr;
     if (camera != NULL) {
         camera_shake_apply(camera, size * 0.5f, 0.5f);
     }
@@ -19806,7 +19807,7 @@ void ghost_render(void *ghost) {
 
     /* Draw ghost car model (bluish tint) */
     if (carModel >= 0 && carModel < 8) {
-        gSPDisplayList(gfx++, D_80130000 + carModel * 0x1000);
+        gSPDisplayList(gfx++, car_model_display_list + carModel * 0x1000);
     }
 
     /* Pop matrix */
@@ -27104,8 +27105,8 @@ void award_ceremony(void) {
  *
  * @param place Placing (1=gold, 2=silver, 3=bronze)
  */
-extern f32 D_8015A47C;      /* Trophy Y offset (bobbing) */
-extern void *D_8012D000;    /* Trophy model data */
+extern f32 trophy_y_offset;      /* Trophy Y offset (bobbing) */
+extern void *trophy_model_data;    /* Trophy model data */
 
 void trophy_animate(s32 place) {
     u32 *dlPtr;
@@ -27548,7 +27549,7 @@ void name_entry_screen(u8 *name) {
  * @param position Leaderboard position (1-10)
  */
 extern s32 hiscore_anim_frame;  /* HS animation frame */
-extern s32 D_8015A4A4;  /* Sparkle positions */
+extern s32 sparkle_positions;  /* Sparkle positions */
 
 void highscore_animation(s32 position) {
     s32 frame;
@@ -28575,10 +28576,10 @@ void final_cleanup(void) {
  * Audio queue add
  */
 void audio_queue_add(s32 sndId) {
-    extern u32 D_801547C4;
+    extern u32 render_flag;
     s32 *ptr;
 
-    if (D_801547C4 != 0) {
+    if (render_flag != 0) {
         debris_spawn();
     }
     for (ptr = &input_callback_table[0]; ptr < &input_callback_table[10]; ptr++) {
@@ -28682,7 +28683,7 @@ void audio_pitch_control(s32 channel, f32 pitch) {
  * Sets 3D position for spatial audio effects
  * Calculates distance attenuation and stereo panning from listener
  */
-extern f32 D_8016018C[3];   /* Listener forward */
+extern f32 listener_forward_vec[3];   /* Listener forward */
 extern f32 audio_listener_right[3];   /* Listener right */
 void audio_3d_position(s32 channel, f32 *pos) {
     f32 dx, dy, dz;
@@ -28872,7 +28873,7 @@ s32 audio_sample_load(s32 sampleId) {
     sample_heap_remaining -= (sampleSize + 15) & ~15;
 
     /* DMA from ROM */
-    osPiStartDma(&D_80086A70, OS_MESG_PRI_NORMAL, OS_READ,
+    osPiStartDma(&dma_io_mesg, OS_MESG_PRI_NORMAL, OS_READ,
                  romOffset, destPtr, sampleSize, &dma_message_queue);
     osRecvMesg(&dma_message_queue, NULL, OS_MESG_BLOCK);
 
@@ -29761,7 +29762,7 @@ void camera_auto_follow(void *camera, void *target) {
 void camera_cinematic_mode(s32 cinematicId) {
     extern s32 cinematic_state;    /* Cinematic state */
     extern s32 cinematic_frame;    /* Cinematic frame */
-    extern f32 D_8017002C[32][6];  /* Keyframe data (pos + target) */
+    extern f32 keyframe_data[32][6];  /* Keyframe data (pos + target) */
     s32 *mode;
 
     if (active_camera == NULL) {
@@ -35776,7 +35777,7 @@ void loading_tips(void) {
  * func_800D71D0 (3256 bytes)
  * Pause menu - Full pause menu with options
  */
-extern s32 D_8015A710;      /* Pause menu state */
+extern s32 pause_menu_state;      /* Pause menu state */
 extern s32 menu_selected_option;      /* Selected option */
 extern s32 pause_active_flag;      /* Pause active flag */
 
@@ -35861,7 +35862,7 @@ void pause_resume(void) {
     sound_start(0, 0, NULL, 0);  /* Restore audio state */
 
     /* Resume timers */
-    /* D_8015A720 = osGetTime(); */
+    /* resume_time = osGetTime(); */
 
     /* Play resume sound */
     sound_play_menu(11);
@@ -36336,7 +36337,7 @@ void attract_mode_start(void) {
  * Attract demo play - Plays back recorded demo race
  */
 extern s32 demo_playback_frame;      /* Demo playback frame */
-extern s32 D_8015A794;      /* Demo input buffer index */
+extern s32 demo_input_index;      /* Demo input buffer index */
 extern u8 *demo_input_data;      /* Demo input data pointer */
 
 void attract_demo_play(void) {
@@ -36491,7 +36492,7 @@ void attract_sequence_update(void) {
  * Title screen - Main title screen display
  */
 extern s32 title_anim_frame;      /* Title animation frame */
-extern s32 D_8015A7B4;      /* Title state */
+extern s32 title_screen_state;      /* Title state */
 
 void title_screen(void) {
     s32 frame;
@@ -36841,7 +36842,7 @@ void world_object_destroy(void *object) {
  * Data structures:
  *   active_car_count - number of active cars
  *   player_entries - car state array base (stride 0x808)
- *   D_80153E88 - car data array (stride 8)
+ *   car_data_array - car data array (stride 8)
  */
 void world_physics_tick(void) {
     s32 i;
@@ -36921,29 +36922,29 @@ s32 world_collision_detect(void *a, void *b) {
  * Returns 1 if in bounds, 0 if out of bounds
  */
 s32 world_bounds_check(f32 *pos) {
-    extern f32 D_80124500;  /* World min X */
-    extern f32 D_80124504;  /* World max X */
-    extern f32 D_80124508;  /* World min Y */
-    extern f32 D_8012450C;  /* World max Y */
-    extern f32 D_80124510;  /* World min Z */
-    extern f32 D_80124514;  /* World max Z */
+    extern f32 world_min_x;  /* World min X */
+    extern f32 world_max_x;  /* World max X */
+    extern f32 world_min_y;  /* World min Y */
+    extern f32 world_max_y;  /* World max Y */
+    extern f32 world_min_z;  /* World min Z */
+    extern f32 world_max_z;  /* World max Z */
 
     if (pos == NULL) {
         return 0;
     }
 
     /* Check X bounds */
-    if (pos[0] < D_80124500 || pos[0] > D_80124504) {
+    if (pos[0] < world_min_x || pos[0] > world_max_x) {
         return 0;
     }
 
     /* Check Y bounds (height) */
-    if (pos[1] < D_80124508 || pos[1] > D_8012450C) {
+    if (pos[1] < world_min_y || pos[1] > world_max_y) {
         return 0;
     }
 
     /* Check Z bounds */
-    if (pos[2] < D_80124510 || pos[2] > D_80124514) {
+    if (pos[2] < world_min_z || pos[2] > world_max_z) {
         return 0;
     }
 
@@ -37196,17 +37197,17 @@ void world_trigger_check(void *player) {
  * Based on arcade checkpoint.c trigger handling
  */
 void world_trigger_activate(s32 triggerId) {
-    extern u8 D_80153D00[];    /* Trigger state array */
-    extern s32 D_80153D80;     /* Number of triggers */
+    extern u8 trigger_state_array[];    /* Trigger state array */
+    extern s32 trigger_count;     /* Number of triggers */
     u8 *trigger;
     s32 triggerType;
     f32 *playerPos;
 
-    if (triggerId < 0 || triggerId >= D_80153D80) {
+    if (triggerId < 0 || triggerId >= trigger_count) {
         return;
     }
 
-    trigger = &D_80153D00[triggerId * 0x20];
+    trigger = &trigger_state_array[triggerId * 0x20];
 
     /* Check if already activated */
     if (trigger[0x1C] != 0) {
@@ -37259,9 +37260,9 @@ void world_trigger_activate(s32 triggerId) {
  * Effect types: 0=smoke, 1=spark, 2=explosion, 3=dust, 4=trail
  */
 void *effect_spawn(s32 effectType, f32 *pos) {
-    extern u8 D_80154800[];    /* Effect pool */
-    extern s32 D_80154C00;     /* Effect pool count */
-    extern s32 D_80154C04;     /* Max effects */
+    extern u8 effect_pool_data[];    /* Effect pool */
+    extern s32 effect_pool_count;     /* Effect pool count */
+    extern s32 max_effects;     /* Max effects */
     u8 *effect;
     s32 i;
 
@@ -37270,8 +37271,8 @@ void *effect_spawn(s32 effectType, f32 *pos) {
     }
 
     /* Find free slot in effect pool */
-    for (i = 0; i < D_80154C04; i++) {
-        effect = &D_80154800[i * 0x40];
+    for (i = 0; i < max_effects; i++) {
+        effect = &effect_pool_data[i * 0x40];
         if (effect[0x00] == 0) {  /* Inactive slot */
             /* Initialize effect */
             effect[0x00] = 1;  /* Active */
@@ -37293,7 +37294,7 @@ void *effect_spawn(s32 effectType, f32 *pos) {
                 default: effect[0x3C] = 30; break;
             }
 
-            D_80154C00++;
+            effect_pool_count++;
             return (void *)effect;
         }
     }
@@ -37380,9 +37381,9 @@ void world_effect_update(void *effect) {
  * Types: 0=smoke trail, 1=spark shower, 2=fire, 3=steam, 4=exhaust
  */
 void *drone_destroy(s32 type, f32 *pos) {
-    extern u8 D_80155000[];    /* Emitter pool */
-    extern s32 D_80155400;     /* Emitter count */
-    extern s32 D_80155404;     /* Max emitters */
+    extern u8 emitter_pool[];    /* Emitter pool */
+    extern s32 emitter_count;     /* Emitter count */
+    extern s32 emitter_max;     /* Max emitters */
     u8 *emitter;
     s32 i;
 
@@ -37391,8 +37392,8 @@ void *drone_destroy(s32 type, f32 *pos) {
     }
 
     /* Find free slot */
-    for (i = 0; i < D_80155404; i++) {
-        emitter = &D_80155000[i * 0x80];
+    for (i = 0; i < emitter_max; i++) {
+        emitter = &emitter_pool[i * 0x80];
         if (emitter[0x00] == 0) {
             /* Initialize emitter */
             emitter[0x00] = 1;  /* Active */
@@ -37433,7 +37434,7 @@ void *drone_destroy(s32 type, f32 *pos) {
                     break;
             }
 
-            D_80155400++;
+            emitter_count++;
             return (void *)emitter;
         }
     }
@@ -37721,9 +37722,9 @@ void dust_cloud_effect(f32 *pos) {
  * Uses decal-style rendering on track geometry
  */
 void skid_mark_render(void *tire) {
-    extern u8 D_80155800[];    /* Skid mark buffer */
+    extern u8 skid_mark_buffer[];    /* Skid mark buffer */
     extern s32 skid_mark_count;     /* Skid mark count */
-    extern s32 D_80155C04;     /* Max skid marks */
+    extern s32 skid_mark_max;     /* Max skid marks */
     extern Gfx **gfx_dl_ptr;   /* Display list pointer */
     u8 *tireData = (u8 *)tire;
     u8 *skidMark;
@@ -37747,7 +37748,7 @@ void skid_mark_render(void *tire) {
     }
 
     /* Find or create skid mark slot */
-    if (skid_mark_count >= D_80155C04) {
+    if (skid_mark_count >= skid_mark_max) {
         /* Buffer full - overwrite oldest */
         slot = 0;
     } else {
@@ -37755,7 +37756,7 @@ void skid_mark_render(void *tire) {
         skid_mark_count++;
     }
 
-    skidMark = &D_80155800[slot * 0x40];
+    skidMark = &skid_mark_buffer[slot * 0x40];
 
     /* Store skid mark data */
     *(f32 *)(skidMark + 0x00) = tirePos[0];
@@ -37830,7 +37831,7 @@ void trail_effect(void *object) {
  */
 void weather_rain(void) {
     extern u8 rain_particle_buffer[];    /* Rain particle buffer */
-    extern s32 D_80156C00;     /* Active rain drops */
+    extern s32 active_rain_drops;     /* Active rain drops */
     extern f32 camera_pos[];   /* Camera position */
     s32 i;
     s32 seed;
@@ -37867,7 +37868,7 @@ void weather_rain(void) {
  */
 void weather_snow(void) {
     extern u8 snow_particle_buffer[];    /* Snow particle buffer */
-    extern s32 D_80157400;     /* Active snowflakes */
+    extern s32 active_snowflakes;     /* Active snowflakes */
     extern f32 wind_x;     /* Wind X */
     extern f32 wind_z;     /* Wind Z */
     s32 i;
@@ -37917,8 +37918,8 @@ void weather_fog(f32 density) {
     extern u8 fog_color_g;      /* Fog G */
     extern u8 fog_color_b;      /* Fog B */
     extern f32 fog_density;     /* Current fog density */
-    extern f32 D_80157508;     /* Fog near */
-    extern f32 D_8015750C;     /* Fog far */
+    extern f32 fog_near_distance;     /* Fog near */
+    extern f32 fog_far_distance;     /* Fog far */
     Gfx *gfx;
     s32 fogMin, fogMax;
 
@@ -37961,7 +37962,7 @@ void weather_update(void) {
     extern s32 weather_type;     /* Current weather type: 0=clear, 1=rain, 2=snow, 3=fog */
     extern f32 weather_intensity;     /* Weather intensity 0-1 */
     extern f32 weather_target;     /* Target intensity */
-    extern s32 D_8015760C;     /* Weather transition timer */
+    extern s32 weather_transition_timer;     /* Weather transition timer */
 
     /* Smooth transition between intensities */
     if (weather_intensity < weather_target) {
@@ -38196,7 +38197,7 @@ void environment_map_setup(void *object) {
 void reflection_setup(void) {
     extern Gfx **gfx_dl_ptr;
     extern s32 reflection_enabled;     /* Reflection enabled */
-    extern f32 D_80158404;     /* Reflection plane Y */
+    extern f32 reflection_plane_y;     /* Reflection plane Y */
     extern f32 reflection_intensity;     /* Reflection intensity */
     Gfx *gfx;
 
@@ -38225,9 +38226,9 @@ void reflection_setup(void) {
  */
 void water_surface_render(void) {
     extern Gfx **gfx_dl_ptr;
-    extern f32 D_80158500;     /* Water level Y */
-    extern s32 D_80158504;     /* Water tile count X */
-    extern s32 D_80158508;     /* Water tile count Z */
+    extern f32 water_level_y;     /* Water level Y */
+    extern s32 water_tile_count_x;     /* Water tile count X */
+    extern s32 water_tile_count_z;     /* Water tile count Z */
     Gfx *gfx;
     f32 waveOffset;
     s32 wavePhase;
@@ -38262,7 +38263,7 @@ void water_surface_render(void) {
  */
 void skybox_render(void *camera) {
     extern Gfx **gfx_dl_ptr;
-    extern u8 D_80158600[];    /* Skybox texture data */
+    extern u8 skybox_texture_data[];    /* Skybox texture data */
     extern s32 skybox_type;     /* Skybox type: 0=day, 1=sunset, 2=night */
     u8 *camData = (u8 *)camera;
     Gfx *gfx;
@@ -39004,7 +39005,7 @@ void car_nitro_effect(void *car) {
  * Main render function - sets up frame and renders all scene elements
  */
 void scene_render_main(void) {
-    extern s32 D_80143A00;    /* Current render mode */
+    extern s32 current_render_mode;    /* Current render mode */
     /* Note: gfx_dl_ptr declared globally */
 
     /* Begin frame */
@@ -39127,10 +39128,10 @@ void frame_end(void) {
  * Waits for vertical blank period
  */
 void vsync_wait(void) {
-    extern OSMesgQueue D_80086AC0;  /* VI message queue */
+    extern OSMesgQueue vi_message_queue;  /* VI message queue */
     OSMesg msg;
 
-    osRecvMesg(&D_80086AC0, &msg, OS_MESG_BLOCK);
+    osRecvMesg(&vi_message_queue, &msg, OS_MESG_BLOCK);
 }
 
 /*
@@ -41679,7 +41680,7 @@ void ai_input_generate(void *car) {
  */
 void ai_waypoint_next(void *car) {
     extern u8 path_data_array[];  /* Path data array */
-    extern s16 D_80143200;   /* Number of waypoints per path */
+    extern s16 waypoints_per_path;   /* Number of waypoints per path */
     s32 *waypointIdx, *pathId;
     f32 *targetPos;
     f32 *pathData;
@@ -41693,7 +41694,7 @@ void ai_waypoint_next(void *car) {
     pathId = (s32 *)((u8 *)car + 0x110);
     targetPos = (f32 *)((u8 *)car + 0x104);
 
-    numWaypoints = D_80143200;
+    numWaypoints = waypoints_per_path;
     if (numWaypoints <= 0) {
         numWaypoints = 20;  /* Default */
     }
@@ -41859,7 +41860,7 @@ void ai_defend(void *car) {
  * to keep races competitive (slower when ahead, faster when behind)
  */
 void ai_rubber_band(void *car) {
-    extern f32 D_80143400;  /* Lead car distance */
+    extern f32 lead_car_distance;  /* Lead car distance */
     extern f32 player_distance;  /* Player distance */
     f32 *throttle, *maxSpeed;
     f32 distanceGap, speedMod;
@@ -41874,7 +41875,7 @@ void ai_rubber_band(void *car) {
     racePosition = (s32 *)((u8 *)car + 0x128);
 
     /* Calculate gap to player */
-    distanceGap = D_80143400 - player_distance;
+    distanceGap = lead_car_distance - player_distance;
 
     /* Adjust speed based on gap */
     if (distanceGap > 50.0f) {
@@ -42137,12 +42138,12 @@ void ai_catch_up(void *car) {
  */
 void battle_mode_update(void) {
     extern s32 battle_mode_state;    /* Battle mode state */
-    extern s32 D_8014B004;    /* Battle timer (frames) */
+    extern s32 battle_timer_frames;    /* Battle timer (frames) */
     extern s32 battle_mode_type;    /* Battle mode type */
     extern s32 player_battle_scores[4]; /* Player scores */
     extern s32 player_lives[4]; /* Player lives */
-    extern s32 D_8014B02C[4]; /* Player weapons */
-    extern s32 D_8014B03C[4]; /* Player ammo */
+    extern s32 player_weapons[4]; /* Player weapons */
+    extern s32 player_ammo[4]; /* Player ammo */
     s32 i, j;
     void *car;
     f32 *pos, *otherPos;
@@ -42156,7 +42157,7 @@ void battle_mode_update(void) {
     }
 
     /* Update battle timer */
-    D_8014B004++;
+    battle_timer_frames++;
 
     /* Process each player */
     for (i = 0; i < 4; i++) {
@@ -42167,8 +42168,8 @@ void battle_mode_update(void) {
 
         pos = (f32 *)((u8 *)car + 0x24);
         health = (s32 *)((u8 *)car + 0x1F0);
-        weapon = &D_8014B02C[i];
-        ammo = &D_8014B03C[i];
+        weapon = &player_weapons[i];
+        ammo = &player_ammo[i];
 
         /* Skip eliminated players in Last Man Standing */
         if (battle_mode_type == 2 && player_lives[i] <= 0) {
@@ -42255,9 +42256,9 @@ void battle_mode_update(void) {
 void stunt_mode_update(void) {
     extern s32 stunt_mode_state;    /* Stunt mode state */
     extern s32 stunt_session_timer;    /* Session timer (frames) */
-    extern s32 D_8014C008;    /* Session time limit */
+    extern s32 session_time_limit;    /* Session time limit */
     extern s32 player_stunt_scores[4]; /* Player stunt scores */
-    extern s32 D_8014C01C[4]; /* Player combo multipliers */
+    extern s32 player_combo_mult[4]; /* Player combo multipliers */
     extern s32 player_best_trick[4]; /* Player best single trick */
     extern s32 player_best_combo[4]; /* Player best combo */
     s32 i;
@@ -42278,7 +42279,7 @@ void stunt_mode_update(void) {
     stunt_session_timer++;
 
     /* Check time limit */
-    if (stunt_session_timer >= D_8014C008) {
+    if (stunt_session_timer >= session_time_limit) {
         /* Session over - determine winner */
         stunt_session_end();  /* End stunt session */
         return;
@@ -42345,7 +42346,7 @@ void stunt_mode_update(void) {
             landingBonus = landing_bonus(car);
 
             /* Apply combo multiplier */
-            trickScore *= D_8014C01C[i];
+            trickScore *= player_combo_mult[i];
             trickScore += landingBonus;
 
             /* Track best single trick */
@@ -42436,7 +42437,7 @@ void game_state_reset(void) {
  */
 void battle_respawn(void *car, s32 playerIdx) {
     extern f32 spawn_positions[4][3];  /* Spawn positions */
-    extern f32 D_8014B130[4];     /* Spawn rotations */
+    extern f32 spawn_rotations[4];     /* Spawn rotations */
     f32 *pos;
     f32 *vel;
     f32 *rot;
@@ -42460,7 +42461,7 @@ void battle_respawn(void *car, s32 playerIdx) {
     vel[2] = 0.0f;
 
     /* Set spawn rotation */
-    rot[1] = D_8014B130[playerIdx];
+    rot[1] = spawn_rotations[playerIdx];
 
     /* Brief invincibility after spawn */
     *(s32 *)((u8 *)car + 0x1F4) = 180;  /* 3 seconds invincibility */
@@ -42516,14 +42517,14 @@ void battle_fire_weapon(void *car, s32 weaponType, s32 playerIdx) {
  * Battle win check - Checks if any player has won
  */
 void battle_win_check(void) {
-    extern s32 D_8014B04C;    /* Score limit */
+    extern s32 battle_score_limit;    /* Score limit */
     s32 i;
     s32 alivePlayers = 0;
     s32 winner = -1;
 
     /* Check score limit */
     for (i = 0; i < 4; i++) {
-        if (player_battle_scores[i] >= D_8014B04C) {
+        if (player_battle_scores[i] >= battle_score_limit) {
             /* Player reached score limit */
             winner = i;
             battle_mode_state = 2;  /* End battle, show results */

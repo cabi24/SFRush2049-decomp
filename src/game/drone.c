@@ -86,6 +86,10 @@ void drone_init_car(s32 car_index) {
     ctl->catchup_boost = 1.0f;
     ctl->mpath_index = 0;
     ctl->mpath_segment = 0;
+    ctl->xrel = 0.0f;
+    ctl->yrel = 0.0f;
+    ctl->path_speed = 0.0f;
+    ctl->path_curvature = 0.0f;
     ctl->steer_target = 0.0f;
     ctl->throttle_target = 1.0f;
     ctl->brake_target = 0.0f;
@@ -189,6 +193,231 @@ void drone_do_maxpath(s32 car_index) {
 
     /* Calculate steering to reach next waypoint */
     /* This is a simplified version - arcade uses spline interpolation */
+}
+
+/**
+ * drone_find_interval - Find current path segment for a car
+ *
+ * @param car_index Car to check
+ * @return Current segment index
+ */
+s32 drone_find_interval(s32 car_index) {
+    DroneControl *ctl;
+    MaxPathHeader *header;
+    MaxPathPoint *points;
+    s32 seg;
+    s32 next;
+    f32 xrel, yrel;
+    f32 dx, dy, dz;
+    f32 seg_len;
+
+    if (car_index < 0 || car_index >= MAX_LINKS) {
+        return 0;
+    }
+
+    ctl = &drone_ctl[car_index];
+    if (ctl->mpath_index < 0 || ctl->mpath_index >= gNumMPaths) {
+        return ctl->mpath_segment;
+    }
+
+    header = gMPathHeaders[ctl->mpath_index];
+    points = gMPathTables[ctl->mpath_index];
+    if (header == NULL || points == NULL || header->num_points <= 1) {
+        return ctl->mpath_segment;
+    }
+
+    seg = ctl->mpath_segment;
+    if (seg < 0) {
+        seg = header->lap_start;
+    }
+    if (seg >= header->num_points - 1) {
+        seg = header->lap_start;
+    }
+
+    next = seg + 1;
+    if (next >= header->num_points) {
+        next = header->lap_start;
+    }
+
+    drone_interval_pos(car_index, &xrel, &yrel);
+    ctl->xrel = xrel;
+    ctl->yrel = yrel;
+
+    dx = points[next].pos[0] - points[seg].pos[0];
+    dy = points[next].pos[1] - points[seg].pos[1];
+    dz = points[next].pos[2] - points[seg].pos[2];
+    seg_len = sqrtf(dx * dx + dy * dy + dz * dz);
+
+    if (xrel >= seg_len) {
+        seg++;
+        if (seg >= header->num_points) {
+            seg = header->lap_start;
+        }
+    } else if (xrel < 0.0f) {
+        seg--;
+        if (seg < 0) {
+            seg = 0;
+        }
+    }
+
+    ctl->mpath_segment = seg;
+    return seg;
+}
+
+/**
+ * drone_interval_pos - Calculate car position relative to path segment
+ *
+ * @param car_index Car to calculate for
+ * @param xrel_out Output: forward distance along segment
+ * @param yrel_out Output: lateral offset from path
+ */
+void drone_interval_pos(s32 car_index, f32 *xrel_out, f32 *yrel_out) {
+    DroneControl *ctl;
+    CarData *car;
+    MaxPathHeader *header;
+    MaxPathPoint *points;
+    s32 seg;
+    s32 next;
+    f32 seg_vec[3];
+    f32 car_vec[3];
+    f32 seg_len;
+    f32 seg_len_sq;
+    f32 dot;
+
+    if (xrel_out != NULL) {
+        *xrel_out = 0.0f;
+    }
+    if (yrel_out != NULL) {
+        *yrel_out = 0.0f;
+    }
+
+    if (car_index < 0 || car_index >= MAX_LINKS) {
+        return;
+    }
+
+    ctl = &drone_ctl[car_index];
+    car = &car_array[car_index];
+
+    if (ctl->mpath_index < 0 || ctl->mpath_index >= gNumMPaths) {
+        return;
+    }
+
+    header = gMPathHeaders[ctl->mpath_index];
+    points = gMPathTables[ctl->mpath_index];
+    if (header == NULL || points == NULL || header->num_points <= 1) {
+        return;
+    }
+
+    seg = ctl->mpath_segment;
+    if (seg < 0) {
+        seg = header->lap_start;
+    }
+    if (seg >= header->num_points - 1) {
+        seg = header->lap_start;
+    }
+
+    next = seg + 1;
+    if (next >= header->num_points) {
+        next = header->lap_start;
+    }
+
+    seg_vec[0] = points[next].pos[0] - points[seg].pos[0];
+    seg_vec[1] = points[next].pos[1] - points[seg].pos[1];
+    seg_vec[2] = points[next].pos[2] - points[seg].pos[2];
+
+    car_vec[0] = car->dr_pos[0] - points[seg].pos[0];
+    car_vec[1] = car->dr_pos[1] - points[seg].pos[1];
+    car_vec[2] = car->dr_pos[2] - points[seg].pos[2];
+
+    seg_len_sq = seg_vec[0] * seg_vec[0] + seg_vec[1] * seg_vec[1] + seg_vec[2] * seg_vec[2];
+    if (seg_len_sq < 0.0001f) {
+        return;
+    }
+
+    seg_len = sqrtf(seg_len_sq);
+    dot = car_vec[0] * seg_vec[0] + car_vec[1] * seg_vec[1] + car_vec[2] * seg_vec[2];
+
+    if (xrel_out != NULL) {
+        *xrel_out = dot / seg_len;
+    }
+    if (yrel_out != NULL) {
+        *yrel_out = (car_vec[0] * seg_vec[2] - car_vec[2] * seg_vec[0]) / seg_len;
+    }
+}
+
+/**
+ * drone_find_path_dist - Find point a given distance ahead on path
+ *
+ * @param car_index Car index
+ * @param dist Distance to look ahead
+ * @param pos_out Output position [3]
+ */
+void drone_find_path_dist(s32 car_index, f32 dist, f32 *pos_out) {
+    DroneControl *ctl;
+    MaxPathHeader *header;
+    MaxPathPoint *points;
+    s32 seg;
+    s32 next;
+    s32 i;
+    f32 remaining;
+    f32 dx, dy, dz;
+    f32 seg_len;
+
+    if (pos_out == NULL) {
+        return;
+    }
+
+    pos_out[0] = 0.0f;
+    pos_out[1] = 0.0f;
+    pos_out[2] = 0.0f;
+
+    if (car_index < 0 || car_index >= MAX_LINKS) {
+        return;
+    }
+
+    ctl = &drone_ctl[car_index];
+    if (ctl->mpath_index < 0 || ctl->mpath_index >= gNumMPaths) {
+        return;
+    }
+
+    header = gMPathHeaders[ctl->mpath_index];
+    points = gMPathTables[ctl->mpath_index];
+    if (header == NULL || points == NULL || header->num_points <= 1) {
+        return;
+    }
+
+    seg = ctl->mpath_segment;
+    if (seg < 0 || seg >= header->num_points) {
+        seg = header->lap_start;
+    }
+
+    remaining = dist;
+    for (i = 0; i < header->num_points; i++) {
+        next = seg + 1;
+        if (next >= header->num_points) {
+            next = header->lap_start;
+        }
+
+        dx = points[next].pos[0] - points[seg].pos[0];
+        dy = points[next].pos[1] - points[seg].pos[1];
+        dz = points[next].pos[2] - points[seg].pos[2];
+        seg_len = sqrtf(dx * dx + dz * dz);
+
+        if (seg_len > 0.0001f && remaining <= seg_len) {
+            f32 t = remaining / seg_len;
+            pos_out[0] = points[seg].pos[0] + t * dx;
+            pos_out[1] = points[seg].pos[1] + t * dy;
+            pos_out[2] = points[seg].pos[2] + t * dz;
+            return;
+        }
+
+        remaining -= seg_len;
+        seg = next;
+    }
+
+    pos_out[0] = points[seg].pos[0];
+    pos_out[1] = points[seg].pos[1];
+    pos_out[2] = points[seg].pos[2];
 }
 
 /**

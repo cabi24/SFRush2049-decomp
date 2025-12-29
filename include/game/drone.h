@@ -51,6 +51,10 @@ typedef struct DroneControl {
     f32     catchup_boost;      /* Catch-up speed boost */
     s32     mpath_index;        /* Current maxpath waypoint */
     s32     mpath_segment;      /* Current path segment */
+    f32     xrel;               /* Forward position on segment */
+    f32     yrel;               /* Lateral offset from path */
+    f32     path_speed;         /* Target speed from path */
+    f32     path_curvature;     /* Path curvature at current point */
     f32     steer_target;       /* Target steering angle */
     f32     throttle_target;    /* Target throttle (0-1) */
     f32     brake_target;       /* Target brake (0-1) */
@@ -73,6 +77,10 @@ void drone_init_maxpath(s32 record_mode);
 void drone_update_all(void);
 void drone_update(s32 car_index);
 void drone_do_maxpath(s32 car_index);
+/* Path helpers */
+s32 drone_find_interval(s32 car_index);
+void drone_interval_pos(s32 car_index, f32 *xrel_out, f32 *yrel_out);
+void drone_find_path_dist(s32 car_index, f32 dist, f32 *pos_out);
 
 /* Catch-up system */
 void drone_set_catchup(void);
