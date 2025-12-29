@@ -13,7 +13,7 @@
 extern s32 dma_io_msg;
 extern s32 dma_queue;
 extern s32 D_80086A70;
-extern s32 D_80086A88;
+extern s32 dma_message_queue;
 extern void *D_8008AD48[];
 extern void *D_80117530[];
 extern s32 D_80120308;
@@ -60,7 +60,7 @@ extern f32 D_80158280[3];  /* Listener right vector */
 extern s32 D_8015828C;
 extern s32 D_80158290;
 extern s32 D_801582A0;
-extern s32 D_801582B0;
+extern s32 current_race_time;
 extern void *car_pointers[];
 extern s32 race_car_count;
 extern s32 D_801582E4;
@@ -71,7 +71,7 @@ extern s32 D_801582F4;
 extern s32 D_801582F8;
 extern s32 leaderboard_track;
 extern s32 D_80159000;
-extern void *D_80159010[];
+extern void *sprite_table_data[];
 extern s32 D_80159014;
 extern s32 D_80159018;
 extern s32 font_char_width;
@@ -115,7 +115,7 @@ extern s32 D_80159260;
 extern s32 transition_y_offset;
 extern s32 D_80159268;
 extern s32 cursor_anim_frame;
-extern s32 D_80159280;
+extern s32 credits_scroll_state;
 extern s32 D_80159284;
 extern s32 D_80159288;
 extern s32 D_8015928C;
@@ -141,21 +141,21 @@ extern s32 controller_config;
 extern s32 vibration_setting;
 extern s32 display_mode_setting;
 extern s32 misc_flags;
-extern s32 D_80159318;
-extern s32 D_8015931C;
-extern s32 D_80159320;
-extern s32 D_80159324;
+extern s32 camera_auto_enabled;
+extern s32 subtitles_enabled;
+extern s32 music_volume_level;
+extern s32 sfx_volume_level;
 extern s32 D_80159328;
-extern s32 D_8015932C;
+extern s32 invert_y_enabled;
 extern void *control_mapping[];
 extern s32 D_80159334;
 extern s32 D_80159338;
 extern s32 D_8015933C;
 extern s32 D_80159340;
 extern void *D_80159344[];
-extern s32 D_80159350;
+extern s32 button_remap_state;
 extern s32 D_80159354;
-extern s32 D_80159358;
+extern s32 remap_timeout_frames;
 extern s32 D_80159360;
 extern s32 D_80159364;
 extern s32 motor_vibe_state;
@@ -163,7 +163,7 @@ extern void *motor_pak_handles[];
 extern void *D_80159400[];
 extern s32 D_80159414;
 extern void *D_80159428[];
-extern s32 D_80159450;
+extern s32 active_sound_list;
 extern s32 D_80159480;
 extern s32 D_80159500;
 extern s32 net_host_state;
@@ -176,13 +176,13 @@ extern s32 D_8015978C;
 extern s32 D_80159794;
 extern void *D_801597D0[];
 extern s32 D_801597FC;
-extern void **D_80159800;
+extern void **menu_items_array;
 extern s32 D_80159818;
 extern s32 D_80159900;
 extern s32 D_80159904;
 extern s32 D_80159908;
 extern s32 D_8015990C;
-extern s32 D_80159910;
+extern s32 keyboard_visible;
 extern s32 text_cursor_pos;
 extern s32 text_anim_frame;
 extern void *text_input_buffer[];
@@ -207,7 +207,7 @@ extern s32 D_80159A30;
 extern s32 D_80159A40;
 extern s32 D_80159A50;
 extern s32 D_80159A54;
-extern s32 D_80159A58;
+extern s32 car_color_index;
 extern s32 D_80159A5C;
 extern s32 D_80159A60;
 extern void *D_80159A70[];
@@ -217,25 +217,25 @@ extern u64 timer_data[8][6];  /* Timer data */
 extern s32 race_mode_selection;
 extern s32 lap_count_selection;
 extern s32 difficulty_selection;
-extern s32 D_80159B10;
+extern s32 music_enabled;
 extern s32 weather_selection;
 extern s32 time_of_day_selection;
-extern s32 D_80159B1C;
-extern s32 D_80159B20;
-extern s32 D_80159B24;
-extern s32 D_80159B28;
-extern s32 D_80159B2C;
-extern s32 D_80159B30;
-extern s32 D_80159B34;
+extern s32 opponents_enabled;
+extern s32 checkpoints_enabled;
+extern s32 stunt_scoring_enabled;
+extern s32 battle_mode_enabled;
+extern s32 ai_max_speed_percent;
+extern s32 ai_aggression_level;
+extern s32 ai_rubberbanding;
 extern s32 D_80159B38;
-extern s32 D_80159B3C;
-extern s32 D_80159B40;
-extern s32 D_80159B44;
+extern s32 rain_enabled;
+extern s32 track_visibility_dist;
+extern s32 track_light_brightness;
 extern s32 D_80159B48;
 extern s32 D_80159B4C;
-extern s32 D_80159B70;
+extern s32 current_object_flags;
 extern s32 D_80159B74;
-extern s32 D_80159B80;
+extern s32 vehicle_data_ptr;
 extern u32 split_screen_config[32];  /* Data array */
 extern s32 split_num_players;
 extern s32 split_layout_mode;
@@ -258,7 +258,7 @@ extern s32 D_80159DA4;
 extern s32 D_80159DC0;
 extern s32 menu_enabled;
 extern s32 D_80159E04;
-extern s32 D_80159E08;
+extern s32 selected_arena_index;
 extern s32 D_80159E0C;
 extern s32 hiscore_char_pos;
 extern s32 wing_enabled;
@@ -274,7 +274,7 @@ extern void *menu_callback_array[];
 extern s32 D_80159F40;
 extern s32 confirm_state;
 extern s32 D_80159F48;
-extern s32 D_80159F50;
+extern s32 game_pause_state;
 extern s32 D_80159F54;
 extern s32 D_80159F58;
 extern s32 pause_accumulator;
@@ -285,7 +285,7 @@ extern s32 D_8015A010;
 extern void *D_8015A020[];
 extern s32 D_8015A030[4];
 extern s32 D_8015A040;
-extern s32 D_8015A044;
+extern s32 best_lap_time;
 extern void *D_8015A050[];
 extern void *D_8015A060[];
 extern s32 D_8015A080;
@@ -329,11 +329,11 @@ extern s32 D_8015A330;
 extern s32 D_8015A334;
 extern s32 D_8015A338;
 extern s32 D_8015A33C;
-extern s32 D_8015A400;
-extern s32 D_8015A410;
+extern s32 attract_scroll_y;
+extern s32 attract_anim_frame;
 extern s32 D_8015A420;
-extern s32 D_8015A430;
-extern s32 D_8015A434;
+extern s32 gameover_countdown;
+extern s32 gameover_selection;
 extern s32 D_8015A440;
 extern s32 D_8015A448;
 extern s32 ui_cursor_state;
@@ -347,7 +347,7 @@ extern s32 D_8015A514;
 extern s32 D_8015A518;
 extern s32 cam_target_car;
 extern void *achievement_queue[];
-extern s32 D_8015A530;
+extern s32 demo_frame_counter;
 extern s32 D_8015A534;
 extern s32 D_8015A538;
 extern s32 D_8015A540;
@@ -373,11 +373,11 @@ extern s32 stream_state;       /* Stream state */
 extern u32 stream_buffer_size;       /* Buffer size */
 extern s32 sequence_state;       /* Sequence state */
 extern s32 D_80160804;       /* Current sequence ID */
-extern u32 D_80160808;       /* Sequence position (ticks) */
+extern u32 audio_sequence_position;       /* Sequence position (ticks) */
 extern s32 D_8016080C;       /* Sequence tempo multiplier */
-extern s16 *D_801608E0;  /* Output buffer L */
-extern s16 *D_801608E4;  /* Output buffer R */
-extern s32 D_801608E8;   /* Output buffer size */
+extern s16 *audio_output_buffer_left;  /* Output buffer L */
+extern s16 *audio_output_buffer_right;  /* Output buffer R */
+extern s32 audio_output_buffer_size;   /* Output buffer size */
 extern u32 audio_fx_active;  /* Active effects bitfield */
 extern s32 audio_buffer_size_2;
 extern f32 shake_intensity;  /* Camera shake intensity */
@@ -385,18 +385,18 @@ extern f32 shake_timer;  /* Shake timer */
 extern f32 shake_decay;  /* Shake decay rate */
 extern void *active_camera;  /* Active camera pointer */
 extern f32 camera_pos[3];  /* Camera position */
-extern s32 D_80157814;
+extern s32 track_time_of_day;
 extern Gfx **gfx_dl_ptr;   /* Display list pointer */
 extern Gfx *gfx_dl_base;    /* Display list base */
 extern OSTask gfx_task;  /* Graphics task */
 extern u32 random_seed;  /* Random seed */
 extern f32 D_80143404;     /* Player distance */
-extern s32 D_8014B000;
-extern s32 D_8014B008;
+extern s32 battle_mode_state;
+extern s32 battle_mode_type;
 extern s32 D_8014B00C[4];  /* Player scores */
 extern s32 player_lives[4];  /* Player lives */
 extern s32 D_8014C000;
-extern s32 D_8014C00C[4];  /* Player stunt scores */
+extern s32 player_stunt_scores[4];  /* Player stunt scores */
 extern s32 audio_buffer_ptr;
 extern s32 sample_heap_remaining;
 extern void *sample_cache[4];
@@ -408,7 +408,7 @@ extern s32 D_80160424;
 extern s32 D_80160430;
 extern s32 D_80160434;
 extern s32 D_80160440;
-extern s32 D_80160444;
+extern s32 time_scale_direction;
 extern s32 D_80160450;
 extern s32 D_80160460;
 extern u32 D_80160508[64];  /* Sample sizes in bytes */
@@ -450,7 +450,7 @@ extern u32 frame_counter;              /* 0x80142AFC - frame counter */
 
 /* Additional external data for game_loop */
 extern s8  gstate_byte;   /* Init flag */
-extern s32 D_801146E8;   /* Sound handle */
+extern s32 menu_sound_handle;   /* Sound handle */
 extern s32 render_enable;   /* Render enable flag */
 extern u32 frame_counter;   /* Frame counter */
 extern s16 D_8003EB70;   /* Wait flag */
@@ -535,17 +535,17 @@ s32 game_loop(void) {
     if (elapsed_time < 300.0f) {
         /* Check if we need to manage sound */
         if (!(gstate_mask & 0x4000000F)) {
-            sound_handle = D_801146E8;
+            sound_handle = menu_sound_handle;
             if (sound_handle == 0) {
                 /* Start sound - call with params */
-                D_801146E8 = sound_start(0, 0, &D_801146C4, 1);
+                menu_sound_handle = sound_start(0, 0, &D_801146C4, 1);
             }
         } else {
             /* State requires stopping sound */
-            sound_handle = D_801146E8;
+            sound_handle = menu_sound_handle;
             if (sound_handle != 0) {
                 sound_stop(sound_handle, 0.0f);
-                D_801146E8 = 0;
+                menu_sound_handle = 0;
             }
         }
     }
@@ -1639,7 +1639,7 @@ exit_func:
  * Address: 0x800F7344
  * Size: 184 bytes
  *
- * Iterates through active sound list (D_80159450) and calls each
+ * Iterates through active sound list (active_sound_list) and calls each
  * object's update callback. If callback returns 0, the sound is
  * stopped and removed via sound_handle_stop.
  *
@@ -1661,7 +1661,7 @@ void active_sounds_update(void) {
     }
 
     /* Start at beginning of sound list */
-    cur_ptr = &D_80159450;
+    cur_ptr = &active_sound_list;
 
     while (1) {
         sound_obj = *cur_ptr;
@@ -1683,7 +1683,7 @@ void active_sounds_update(void) {
 
                     /* Recalculate end pointer (list may have shifted) */
                     count = D_80159788;
-                    end_ptr = &D_80159450 + count;
+                    end_ptr = &active_sound_list + count;
 
                     /* Back up pointer since list shifted */
                     cur_ptr--;
@@ -1694,7 +1694,7 @@ void active_sounds_update(void) {
 
         /* Calculate end pointer */
         count = D_80159788;
-        end_ptr = &D_80159450 + count;
+        end_ptr = &active_sound_list + count;
 
     next_iter:
         cur_ptr++;
@@ -2031,13 +2031,13 @@ void car_sounds_clear(void) {
  * Loops through all 4 players and clears their car-related state:
  *   1. Clears D_8015418C[player] and D_8015A10C[player] to 0
  *   2. Calls menu_main to clear all sound handles
- *   3. Stops global sound handle at D_80113ED8 if active
- *   4. Clears D_80113ED8 and D_80113ED4
+ *   3. Stops global sound handle at global_sound_handle if active
+ *   4. Clears global_sound_handle and D_80113ED4
  *
  * Called during race end, game reset, or mode transitions.
  */
 extern u8 D_8015418C[];      /* Per-player flags array 1 */
-extern void *D_80113ED8;     /* Global sound handle */
+extern void *global_sound_handle;     /* Global sound handle */
 extern u8 D_80113ED4;        /* Global sound flag */
 
 void all_player_sounds_clear(void) {
@@ -2060,10 +2060,10 @@ void all_player_sounds_clear(void) {
     }
 
     /* Stop global sound handle if active */
-    sound_handle = D_80113ED8;
+    sound_handle = global_sound_handle;
     if (sound_handle != NULL) {
         sound_stop(sound_handle, 0.0f);
-        D_80113ED8 = NULL;
+        global_sound_handle = NULL;
     }
 
     /* Clear global sound flag */
@@ -2184,7 +2184,7 @@ extern void bzero(void*, s32);         /* memset_custom */
 void effects_reset(s32 unused) {
     /* Clear effect state flags */
     D_80159818 = 0;
-    D_80159B80 = 0;
+    vehicle_data_ptr = 0;
 
     /* Call pre-reset function */
     engine_sound_update();
@@ -3390,14 +3390,14 @@ void stack_call_wrapper(s32 a0, s32 a1, s32 a2, s32 a3) {
  * Address: 0x800BAF64
  * Size: 44 bytes
  *
- * Clears D_80110680[0] and D_80110680[1], then calls collision_narrowphase.
+ * Clears collision_mode_flags[0] and collision_mode_flags[1], then calls collision_narrowphase.
  */
-extern u8 D_80110680[];  /* Mode/state flags */
+extern u8 collision_mode_flags[];  /* Mode/state flags */
 extern void collision_narrowphase(void *pairA, void *pairB);
 
 void mode_flags_clear(void) {
-    D_80110680[0] = 0;
-    D_80110680[1] = 0;
+    collision_mode_flags[0] = 0;
+    collision_mode_flags[1] = 0;
     collision_narrowphase(NULL, NULL);
 }
 
@@ -3776,9 +3776,9 @@ void resource_type_select_simple(s32 a0) {
  *
  * If a0 (as signed 16-bit) is negative:
  *   - Calls func_800B3D18 with t0=0
- *   - Sets D_80159B70 = current_object[8]
+ *   - Sets current_object_flags = current_object[8]
  * Otherwise:
- *   - Sets D_80159B70 = a0
+ *   - Sets current_object_flags = a0
  *
  * @param a0 Mode value or -1 to use current object
  */
@@ -3786,9 +3786,9 @@ void resource_type_select_simple(s32 a0) {
 void mode_byte_set(s16 a0) {
     if (a0 < 0) {
         sound_update_channel(0, 0.0f);
-        D_80159B70 = *(current_object + 8);
+        current_object_flags = *(current_object + 8);
     } else {
-        D_80159B70 = (u8)a0;
+        current_object_flags = (u8)a0;
     }
 }
 
@@ -5077,21 +5077,21 @@ s32 state_update_global(void *a0) {
  * Size: 76 bytes
  *
  * Calls race_update, then sound_volume_set(1).
- * If D_8011472C is non-NULL, calls sound_stop and clears it.
+ * If current_sound_handle is non-NULL, calls sound_stop and clears it.
  * Finally clears D_80114728 byte.
  */
 extern void race_update(void);
 extern void sound_volume_set(s32 clear_all);
-extern void *D_8011472C;
+extern void *current_sound_handle;
 extern u8 D_80114728;
 
 void state_cleanup_reset(void) {
     race_update();
     sound_volume_set(1);
 
-    if (D_8011472C != NULL) {
-        sound_stop(D_8011472C, 0.0f);
-        D_8011472C = NULL;
+    if (current_sound_handle != NULL) {
+        sound_stop(current_sound_handle, 0.0f);
+        current_sound_handle = NULL;
     }
     D_80114728 = 0;
 }
@@ -5127,7 +5127,7 @@ void synced_call_91ca4(void *a0, s32 a1) {
  * Size: 140 bytes
  *
  * Sets up setup_result to -1, calls several setup functions,
- * stores result to D_80159B80, then calls additional init functions.
+ * stores result to vehicle_data_ptr, then calls additional init functions.
  *
  * @param a0 First parameter
  * @param a1 Second parameter
@@ -5147,9 +5147,9 @@ s16 callback_setup_complex(void *a0, s16 a1) {
     camera_far_set(buf1, a0);
 
     result = model_bounds_get(buf2, (void*)D_80159818, NULL, 0, NULL);
-    D_80159B80 = *(void**)result;
+    vehicle_data_ptr = *(void**)result;
 
-    vehicle_update(D_80159B80, a1);
+    vehicle_update(vehicle_data_ptr, a1);
     wheel_update();
 
     return setup_result;
@@ -5610,7 +5610,7 @@ void object_type_setup_init(void *a0, void *a1, s32 a2) {
  * string_build_from_array - Build string from object array
  * (132 bytes)
  *
- * Copies bytes from offset 4 of each 12-byte entry in D_80159800 array
+ * Copies bytes from offset 4 of each 12-byte entry in menu_items_array array
  * into the output buffer, null-terminated. Count comes from current_object[12].
  */
 void string_build_from_array(u8 *output) {
@@ -5628,7 +5628,7 @@ void string_build_from_array(u8 *output) {
     count = *(u8*)((u8*)data + 12);
 
     while (i < count) {
-        arr = (void*)D_80159800;
+        arr = (void*)menu_items_array;
         output[i] = *(u8*)((u8*)arr + offset + 4);
         i++;
         offset += 12;
@@ -9864,11 +9864,11 @@ void audio_timing_sync(void) {
 
     /* Adjust audio timing if drifted */
     if (drift > 2) {
-        D_80160444 = 1;  /* Speed up */
+        time_scale_direction = 1;  /* Speed up */
     } else if (drift < -2) {
-        D_80160444 = -1;  /* Slow down */
+        time_scale_direction = -1;  /* Slow down */
     } else {
-        D_80160444 = 0;  /* Normal */
+        time_scale_direction = 0;  /* Normal */
     }
 
     D_80160440 = videoFrame;
@@ -13329,7 +13329,7 @@ void checkpoint_check_collision(void *car, void *checkpoint) {
     }
 
     /* Checkpoint passed! Record time */
-    cpTimes[cpIndex] = D_801582B0;
+    cpTimes[cpIndex] = current_race_time;
 
     /* Award bonus time */
     if (bonusTime > 0) {
@@ -13396,7 +13396,7 @@ void lap_record_time(void *player, s32 lapNum) {
     totalTime = (u32 *)((u8 *)player + 0xCC);
 
     /* Get current race time */
-    currentTime = D_801582B0;
+    currentTime = current_race_time;
 
     /* Calculate lap time (difference from previous lap end) */
     if (lapNum == 1) {
@@ -13582,7 +13582,7 @@ void race_finish_player(void *player) {
 
     /* Mark as finished */
     *finished = 1;
-    *finishTime = D_801582B0;
+    *finishTime = current_race_time;
     *finishPos = D_801582EC;  /* Finish order */
 
     currentPos = *position;
@@ -20620,13 +20620,13 @@ void demo_playback(void *demo) {
     void *car;
 
     demoData = (u8 *)demo;
-    demoFrame = D_8015A530;
+    demoFrame = demo_frame_counter;
     demoLength = *(s32 *)demoData;  /* First 4 bytes = length */
 
     /* Check for user input to skip */
     input = (s32)(long)sound_handles[0] & 0xFFFF;
     if (input & 0x9000) {  /* START or A */
-        D_8015A530 = 0;
+        demo_frame_counter = 0;
         D_8015A534 = 0;  /* Demo ended */
         gstate_byte = 1;  /* Go to menu */
         return;
@@ -20634,7 +20634,7 @@ void demo_playback(void *demo) {
 
     /* Check if demo finished */
     if (demoFrame >= demoLength) {
-        D_8015A530 = 0;
+        demo_frame_counter = 0;
         D_8015A534 = 0;
         /* Cycle to next demo or title screen */
         D_8015A538++;
@@ -20665,7 +20665,7 @@ void demo_playback(void *demo) {
 
     /* Advance frame */
     demoFrame++;
-    D_8015A530 = demoFrame;
+    demo_frame_counter = demoFrame;
 
     /* Update camera to follow demo car */
     attract_camera_update(D_8015A540);
@@ -20690,7 +20690,7 @@ void title_screen(void) {
     s32 textAlpha;
     s32 flashPhase;
 
-    animFrame = D_8015A410;
+    animFrame = attract_anim_frame;
 
     /* Handle input */
     input = (s32)(long)sound_handles[0] & 0xFFFF;
@@ -20699,7 +20699,7 @@ void title_screen(void) {
     if (input & 0x9000) {  /* START or A */
         sound_play_menu(10);
         gstate_byte = 1;  /* TRKSEL / main menu state */
-        D_8015A410 = 0;
+        attract_anim_frame = 0;
         return;
     }
 
@@ -20708,7 +20708,7 @@ void title_screen(void) {
     if (animFrame > 600) {
         /* After 10 seconds, go to attract mode */
         gstate_byte = 0;  /* ATTRACT */
-        D_8015A410 = 0;
+        attract_anim_frame = 0;
         return;
     }
 
@@ -20744,7 +20744,7 @@ void title_screen(void) {
     /* Copyright notice */
     draw_text(80, 220, "(C) 2000 MIDWAY GAMES", 0xFFFFFF78);
 
-    D_8015A410 = animFrame;
+    attract_anim_frame = animFrame;
 }
 
 /*
@@ -20796,7 +20796,7 @@ void credits_display(void) {
     credits[31] = "";
     numLines = 32;
 
-    scrollY = D_8015A400;
+    scrollY = attract_scroll_y;
 
     /* Handle input */
     input = (s32)(long)sound_handles[0] & 0xFFFF;
@@ -20810,14 +20810,14 @@ void credits_display(void) {
 
     /* Skip with B button */
     if (input & 0x4000) {
-        D_8015A400 = 0;
+        attract_scroll_y = 0;
         menu_back();
         return;
     }
 
     /* Check if credits finished */
     if (scrollY > numLines * 25 + 240) {
-        D_8015A400 = 0;
+        attract_scroll_y = 0;
         menu_back();
         return;
     }
@@ -20863,7 +20863,7 @@ void credits_display(void) {
     /* Draw skip hint */
     draw_text(130, 225, "B: SKIP", 0xFFFFFF64);
 
-    D_8015A400 = scrollY;
+    attract_scroll_y = scrollY;
 }
 
 /*
@@ -21093,8 +21093,8 @@ void pause_menu(void *pause) {
 void pause_toggle(s32 pause) {
     s32 prevPause;
 
-    prevPause = D_80159F50;
-    D_80159F50 = pause;
+    prevPause = game_pause_state;
+    game_pause_state = pause;
 
     if (pause && !prevPause) {
         /* Entering pause */
@@ -21140,7 +21140,7 @@ void game_timer_update(void) {
     s32 i;
 
     /* Skip if paused */
-    if (D_80159F50) {
+    if (game_pause_state) {
         return;
     }
 
@@ -21179,8 +21179,8 @@ void game_timer_update(void) {
     }
 
     /* Best lap tracking */
-    if (current_lap_time > 0 && current_lap_time < D_8015A044) {
-        D_8015A044 = current_lap_time;  /* New best lap */
+    if (current_lap_time > 0 && current_lap_time < best_lap_time) {
+        best_lap_time = current_lap_time;  /* New best lap */
     }
 }
 
@@ -21435,7 +21435,7 @@ void race_init(void *race) {
     current_lap_time = 0;  /* Lap time */
     D_8015A010 = 0;  /* Last lap total */
     D_8015A040 = 0;  /* Time expired flag */
-    D_8015A044 = 0x7FFFFFFF;  /* Best lap (max) */
+    best_lap_time = 0x7FFFFFFF;  /* Best lap (max) */
 
     /* Clear split times */
     for (i = 0; i < 4; i++) {
@@ -21515,7 +21515,7 @@ void race_init(void *race) {
     sound_stop(trackId, 0.0f);
 
     /* Clear pause state */
-    D_80159F50 = 0;
+    game_pause_state = 0;
     D_80159F58 = 0;
 }
 
@@ -21533,7 +21533,7 @@ void race_cleanup(void) {
 
     trackId = trackno;
     raceTime = current_race_time;
-    bestLap = D_8015A044;
+    bestLap = best_lap_time;
     numPlayers = mp_player_count;
     if (numPlayers < 1) numPlayers = 1;
 
@@ -23477,7 +23477,7 @@ void voice_stop(void) {
  * levels[] array: [left, right, center, sub] for each bus
  * Values 0.0-1.0
  */
-extern f32 D_80158160[8][4];    /* Bus levels [bus][channel] */
+extern f32 audio_bus_levels[8][4];    /* Bus levels [bus][channel] */
 extern s32 D_801581E0;          /* Bus dirty flags */
 
 void audio_bus_mix(s32 bus, f32 *levels) {
@@ -23511,10 +23511,10 @@ void audio_bus_mix(s32 bus, f32 *levels) {
     if (sub > 1.0f) sub = 1.0f;
 
     /* Store levels */
-    D_80158160[bus][0] = left;
-    D_80158160[bus][1] = right;
-    D_80158160[bus][2] = center;
-    D_80158160[bus][3] = sub;
+    audio_bus_levels[bus][0] = left;
+    audio_bus_levels[bus][1] = right;
+    audio_bus_levels[bus][2] = center;
+    audio_bus_levels[bus][3] = sub;
 
     /* Mark bus as dirty */
     D_801581E0 |= (1 << bus);
@@ -23625,18 +23625,18 @@ void reverb_setup(s32 reverbType, f32 amount) {
  * Pauses or resumes all game audio.
  * Used for pause menu, attract mode transitions, etc.
  */
-extern s32 D_80158224;          /* Audio paused flag */
+extern s32 audio_paused_flag;          /* Audio paused flag */
 
 void audio_pause(s32 pause) {
     /* Set paused state */
     if (pause != 0) {
-        if (D_80158224 == 0) {
-            D_80158224 = 1;
+        if (audio_paused_flag == 0) {
+            audio_paused_flag = 1;
             object_free(1);  /* Pause audio system */
         }
     } else {
-        if (D_80158224 != 0) {
-            D_80158224 = 0;
+        if (audio_paused_flag != 0) {
+            audio_paused_flag = 0;
             object_free(0);  /* Resume audio system */
         }
     }
@@ -23878,7 +23878,7 @@ void sound_volume_set(s32 handle, f32 volume) {
  * pos[3]: World position of sound source
  * velocity[3]: Velocity of sound source (for doppler)
  */
-extern f32 D_8015825C[3];       /* Listener position (camera) */
+extern f32 audio_listener_pos[3];       /* Listener position (camera) */
 extern f32 D_80158268[3];       /* Listener velocity */
 extern f32 D_80158274[3];       /* Listener forward vector */
 
@@ -23897,9 +23897,9 @@ void audio_spatialize(s32 handle, f32 *pos, f32 *velocity) {
     }
 
     /* Calculate vector from listener to source */
-    dx = pos[0] - D_8015825C[0];
-    dy = pos[1] - D_8015825C[1];
-    dz = pos[2] - D_8015825C[2];
+    dx = pos[0] - audio_listener_pos[0];
+    dy = pos[1] - audio_listener_pos[1];
+    dz = pos[2] - audio_listener_pos[2];
 
     /* Calculate distance */
     distance = sqrtf(dx * dx + dy * dy + dz * dz);
@@ -24254,7 +24254,7 @@ void entity_audio_update(void *entity) {
         }
 
         /* Calculate occlusion */
-        occlusion = audio_occlusion(D_8015825C, sourcePos);
+        occlusion = audio_occlusion(audio_listener_pos, sourcePos);
 
         /* Base volume with occlusion */
         volume = occlusion;
@@ -27222,8 +27222,8 @@ s32 continue_prompt(void) {
     s32 selection;
     char countStr[4];
 
-    countdown = D_8015A430;
-    selection = D_8015A434;
+    countdown = gameover_countdown;
+    selection = gameover_selection;
 
     if (countdown == 0) {
         /* Initialize */
@@ -27241,8 +27241,8 @@ s32 continue_prompt(void) {
 
     /* Confirm selection */
     if (input == 1) {  /* A */
-        D_8015A430 = 0;
-        D_8015A434 = 0;
+        gameover_countdown = 0;
+        gameover_selection = 0;
         sound_play_menu(10);
         return selection;  /* 0 = continue, 1 = quit */
     }
@@ -27250,8 +27250,8 @@ s32 continue_prompt(void) {
     /* Countdown */
     countdown--;
     if (countdown <= 0) {
-        D_8015A430 = 0;
-        D_8015A434 = 0;
+        gameover_countdown = 0;
+        gameover_selection = 0;
         return 1;  /* Time's up - quit */
     }
 
@@ -27280,8 +27280,8 @@ s32 continue_prompt(void) {
         draw_text(175, 140, ">", 0xFFFFFFFF);
     }
 
-    D_8015A430 = countdown;
-    D_8015A434 = selection;
+    gameover_countdown = countdown;
+    gameover_selection = selection;
 
     return -1;  /* Still waiting */
 }
@@ -28734,7 +28734,7 @@ void audio_3d_position(s32 channel, f32 *pos) {
  */
 void audio_doppler_effect(s32 channel, f32 *velocity) {
     extern f32 D_801601A4[3];   /* Listener velocity */
-    extern f32 D_801601B0[16][3]; /* Source positions (cached) */
+    extern f32 audio_source_positions[16][3]; /* Source positions (cached) */
     f32 dx, dy, dz, dist, invDist;
     f32 relVel;
     f32 dopplerFactor;
@@ -28745,9 +28745,9 @@ void audio_doppler_effect(s32 channel, f32 *velocity) {
     }
 
     /* Direction from source to listener */
-    dx = listener_pos[0] - D_801601B0[channel][0];
-    dy = listener_pos[1] - D_801601B0[channel][1];
-    dz = listener_pos[2] - D_801601B0[channel][2];
+    dx = listener_pos[0] - audio_source_positions[channel][0];
+    dy = listener_pos[1] - audio_source_positions[channel][1];
+    dz = listener_pos[2] - audio_source_positions[channel][2];
 
     dist = sqrtf(dx*dx + dy*dy + dz*dz);
     if (dist < 0.1f) {
@@ -28873,8 +28873,8 @@ s32 audio_sample_load(s32 sampleId) {
 
     /* DMA from ROM */
     osPiStartDma(&D_80086A70, OS_MESG_PRI_NORMAL, OS_READ,
-                 romOffset, destPtr, sampleSize, &D_80086A88);
-    osRecvMesg(&D_80086A88, NULL, OS_MESG_BLOCK);
+                 romOffset, destPtr, sampleSize, &dma_message_queue);
+    osRecvMesg(&dma_message_queue, NULL, OS_MESG_BLOCK);
 
     /* Store pointer and size */
     sample_cache[sampleId] = destPtr;
@@ -29008,13 +29008,13 @@ void music_seq_control(s32 seqCmd) {
     switch (seqCmd & 0xFF) {
         case 0:  /* Stop */
             sequence_state = 0;
-            D_80160808 = 0;
+            audio_sequence_position = 0;
             break;
 
         case 1:  /* Play */
             D_80160804 = (seqCmd >> 8) & 0xFF;
             sequence_state = 1;
-            D_80160808 = 0;
+            audio_sequence_position = 0;
             break;
 
         case 2:  /* Pause */
@@ -29030,7 +29030,7 @@ void music_seq_control(s32 seqCmd) {
             break;
 
         case 4:  /* Set position */
-            D_80160808 = (seqCmd >> 8) & 0xFFFFFF;
+            audio_sequence_position = (seqCmd >> 8) & 0xFFFFFF;
             break;
 
         default:
@@ -29098,7 +29098,7 @@ void music_fade(f32 duration, s32 fadeIn) {
  * Higher priority sounds can steal channels from lower
  */
 s32 audio_channel_alloc(s32 priority) {
-    extern s32 D_80160840[16];  /* Channel priorities */
+    extern s32 audio_channel_priorities[16];  /* Channel priorities */
     s32 i;
     s32 freeChannel = -1;
     s32 lowestPri = priority;
@@ -29113,14 +29113,14 @@ s32 audio_channel_alloc(s32 priority) {
     }
 
     if (freeChannel >= 0) {
-        D_80160840[freeChannel] = priority;
+        audio_channel_priorities[freeChannel] = priority;
         return freeChannel;
     }
 
     /* No free channels - try to steal lowest priority */
     for (i = 0; i < 16; i++) {
-        if (D_80160840[i] < lowestPri) {
-            lowestPri = D_80160840[i];
+        if (audio_channel_priorities[i] < lowestPri) {
+            lowestPri = audio_channel_priorities[i];
             stealChannel = i;
         }
     }
@@ -29128,7 +29128,7 @@ s32 audio_channel_alloc(s32 priority) {
     if (stealChannel >= 0) {
         /* Stop current sound and steal channel */
         audio_channel_states[stealChannel] = 0;
-        D_80160840[stealChannel] = priority;
+        audio_channel_priorities[stealChannel] = priority;
         return stealChannel;
     }
 
@@ -29174,7 +29174,7 @@ void *channel_stop(s32 size) {
 void audio_mixer_main(void) {
     extern s32 D_80160860[16];  /* Channel sample IDs */
     extern u32 D_801608A0[16];  /* Channel sample positions */
-    /* Note: D_801608E0-D_801608E8 declared globally */
+    /* Note: audio_output_buffer_left-audio_output_buffer_size declared globally */
     s32 i, j;
     s32 sampleId;
     s16 *sampleData;
@@ -29184,9 +29184,9 @@ void audio_mixer_main(void) {
     s32 sampleValue;
 
     /* Clear output buffers */
-    for (i = 0; i < D_801608E8; i++) {
-        D_801608E0[i] = 0;
-        D_801608E4[i] = 0;
+    for (i = 0; i < audio_output_buffer_size; i++) {
+        audio_output_buffer_left[i] = 0;
+        audio_output_buffer_right[i] = 0;
     }
 
     /* Mix each active channel */
@@ -29214,15 +29214,15 @@ void audio_mixer_main(void) {
         rightVol = vol * (1.0f + pan) * 0.5f;
 
         /* Mix samples into output */
-        for (j = 0; j < D_801608E8; j++) {
+        for (j = 0; j < audio_output_buffer_size; j++) {
             if (samplePos >= sampleLen) {
                 audio_channel_states[i] = 0;  /* Sample ended */
                 break;
             }
 
             sampleValue = sampleData[samplePos];
-            D_801608E0[j] += (s16)(sampleValue * leftVol);
-            D_801608E4[j] += (s16)(sampleValue * rightVol);
+            audio_output_buffer_left[j] += (s16)(sampleValue * leftVol);
+            audio_output_buffer_right[j] += (s16)(sampleValue * rightVol);
 
             /* Advance sample position by pitch */
             samplePos += (u32)(pitch * 256.0f);
@@ -29362,8 +29362,8 @@ void audio_hw_sync(void) {
     /* Interleave L/R into DMA buffer for AI */
     dmaOut = (s16 *)D_80160930;
     for (i = 0; i < audio_buffer_size_2; i++) {
-        dmaOut[i * 2] = D_801608E0[i];
-        dmaOut[i * 2 + 1] = D_801608E4[i];
+        dmaOut[i * 2] = audio_output_buffer_left[i];
+        dmaOut[i * 2 + 1] = audio_output_buffer_right[i];
     }
 
     /* Submit to audio interface */
@@ -29380,7 +29380,7 @@ void audio_hw_sync(void) {
 void audio_interrupt_handler(void) {
 
     /* Signal audio thread to mix next buffer */
-    osSendMesg(&D_80086A88, (OSMesg)1, OS_MESG_NOBLOCK);
+    osSendMesg(&dma_message_queue, (OSMesg)1, OS_MESG_NOBLOCK);
 
     /* Update stream buffers if streaming */
     audio_stream_update();
@@ -30807,7 +30807,7 @@ void draw_ui_element(s32 elementId, s32 x, s32 y, s32 w, s32 h, s32 alpha) {
     void **spriteTable;
     void *sprite;
 
-    if (D_80159010 == NULL || D_80159014 == NULL) {
+    if (sprite_table_data == NULL || D_80159014 == NULL) {
         return;
     }
 
@@ -30817,7 +30817,7 @@ void draw_ui_element(s32 elementId, s32 x, s32 y, s32 w, s32 h, s32 alpha) {
     }
 
     /* Get sprite from table */
-    spriteTable = (void **)D_80159010;
+    spriteTable = (void **)sprite_table_data;
     sprite = spriteTable[elementId];
 
     if (sprite == NULL) {
@@ -31266,7 +31266,7 @@ void hud_render(void) {
     draw_position(position);
 
     /* Draw timer */
-    draw_timer(D_801582B0);
+    draw_timer(current_race_time);
 
     /* Draw minimap */
     draw_minimap(player);
@@ -31739,7 +31739,7 @@ void menu_transition(s32 toMenuId) {
             menu_item_count = 12;
             break;
         case 5:  /* Save/load menu */
-            menu_items_ptr = (u32)&D_80159800;
+            menu_items_ptr = (u32)&menu_items_array;
             menu_item_count = 4;
             break;
         default:
@@ -32005,7 +32005,7 @@ void menu_text_scroll(char *text, s32 maxWidth) {
     visibleChars = maxWidth / charWidth;
 
     /* Get current scroll state for this text */
-    scrollState = D_80159280;
+    scrollState = credits_scroll_state;
     scrollOffset = D_80159284;
     scrollDelay = D_80159288;
     pauseFrames = D_8015928C;
@@ -32014,7 +32014,7 @@ void menu_text_scroll(char *text, s32 maxWidth) {
     if (textWidth <= maxWidth) {
         /* Just render the text as-is */
         D_80159290 = 0;  /* No scroll offset */
-        D_80159280 = 0;
+        credits_scroll_state = 0;
         return;
     }
 
@@ -32063,7 +32063,7 @@ void menu_text_scroll(char *text, s32 maxWidth) {
     }
 
     /* Store state */
-    D_80159280 = scrollState;
+    credits_scroll_state = scrollState;
     D_80159284 = scrollOffset;
     D_80159288 = scrollDelay;
     D_8015928C = pauseFrames;
@@ -32128,7 +32128,7 @@ void menu_highlight_set(s32 itemIndex) {
     cursor_anim_frame = 0;
 
     /* Reset text scroll state for new item */
-    D_80159280 = 0;
+    credits_scroll_state = 0;
     D_80159284 = 0;
     D_80159288 = 0;
     D_8015928C = 0;
@@ -32627,7 +32627,7 @@ void keyboard_init(void) {
     D_80159904 = 0;  /* Current row */
     D_80159908 = 6;  /* Columns per row */
     D_8015990C = 6;  /* Number of rows */
-    D_80159910 = 0;  /* Keyboard visible */
+    keyboard_visible = 0;  /* Keyboard visible */
     text_cursor_pos = 0;  /* Current cursor position in text buffer */
     text_anim_frame = 0;  /* Animation frame */
 
@@ -32746,9 +32746,9 @@ void menu_text_input(char *buffer, s32 maxLen) {
     s32 i;
 
     /* Initialize if not already active */
-    if (D_80159910 == 0) {
+    if (keyboard_visible == 0) {
         text_width();  /* Init keyboard */
-        D_80159910 = 1;
+        keyboard_visible = 1;
         text_cursor_pos = 0;
         /* Copy existing buffer content to preview */
         for (i = 0; i < maxLen && i < 16 && buffer[i] != '\0'; i++) {
@@ -32773,7 +32773,7 @@ void menu_text_input(char *buffer, s32 maxLen) {
         if (maxLen > 0) {
             buffer[maxLen - 1] = '\0';
         }
-        D_80159910 = 0;  /* Close keyboard */
+        keyboard_visible = 0;  /* Close keyboard */
         sound_play_menu(10);  /* Confirm sound */
     }
     else if (c == '\b') {
@@ -32860,15 +32860,15 @@ void menu_option_toggle(s32 optionId) {
             break;
 
         case 7:  /* Camera auto-center */
-            currentValue = D_80159318;
+            currentValue = camera_auto_enabled;
             newValue = (currentValue == 0) ? 1 : 0;
-            D_80159318 = newValue;
+            camera_auto_enabled = newValue;
             break;
 
         case 8:  /* Subtitles */
-            currentValue = D_8015931C;
+            currentValue = subtitles_enabled;
             newValue = (currentValue == 0) ? 1 : 0;
-            D_8015931C = newValue;
+            subtitles_enabled = newValue;
             break;
 
         default:
@@ -32898,8 +32898,8 @@ void menu_save_options(void) {
     /* Audio settings */
     saveData[4] = (u8)sfx_volume;   /* Music on/off */
     saveData[5] = (u8)music_volume;   /* SFX on/off */
-    saveData[6] = (u8)D_80159320;   /* Music volume */
-    saveData[7] = (u8)D_80159324;   /* SFX volume */
+    saveData[6] = (u8)music_volume_level;   /* Music volume */
+    saveData[7] = (u8)sfx_volume_level;   /* SFX volume */
 
     /* Video settings */
     saveData[8] = (u8)vibration_setting;   /* Widescreen */
@@ -32909,9 +32909,9 @@ void menu_save_options(void) {
 
     /* Control settings */
     saveData[12] = (u8)controller_config;  /* Vibration */
-    saveData[13] = (u8)D_80159318;  /* Camera auto */
+    saveData[13] = (u8)camera_auto_enabled;  /* Camera auto */
     saveData[14] = (u8)D_80159328;  /* Steering sensitivity */
-    saveData[15] = (u8)D_8015932C;  /* Invert Y */
+    saveData[15] = (u8)invert_y_enabled;  /* Invert Y */
 
     /* Controller mapping (8 bytes) */
     for (i = 0; i < 8; i++) {
@@ -32919,7 +32919,7 @@ void menu_save_options(void) {
     }
 
     /* Misc settings */
-    saveData[24] = (u8)D_8015931C;  /* Subtitles */
+    saveData[24] = (u8)subtitles_enabled;  /* Subtitles */
     saveData[25] = (u8)D_80159334;  /* Difficulty */
     saveData[26] = (u8)D_80159338;  /* Laps count */
     saveData[27] = (u8)D_8015933C;  /* AI difficulty */
@@ -32984,8 +32984,8 @@ void menu_load_options(void) {
     /* Unpack options */
     sfx_volume = saveData[4];   /* Music on/off */
     music_volume = saveData[5];   /* SFX on/off */
-    D_80159320 = saveData[6];   /* Music volume */
-    D_80159324 = saveData[7];   /* SFX volume */
+    music_volume_level = saveData[6];   /* Music volume */
+    sfx_volume_level = saveData[7];   /* SFX volume */
 
     vibration_setting = saveData[8];   /* Widescreen */
     message_active = saveData[9];   /* HUD enabled */
@@ -32993,16 +32993,16 @@ void menu_load_options(void) {
     misc_flags = saveData[11];  /* Speed units */
 
     controller_config = saveData[12];  /* Vibration */
-    D_80159318 = saveData[13];  /* Camera auto */
+    camera_auto_enabled = saveData[13];  /* Camera auto */
     D_80159328 = saveData[14];  /* Steering sensitivity */
-    D_8015932C = saveData[15];  /* Invert Y */
+    invert_y_enabled = saveData[15];  /* Invert Y */
 
     /* Controller mapping */
     for (i = 0; i < 8; i++) {
         control_mapping[i] = saveData[16 + i];
     }
 
-    D_8015931C = saveData[24];  /* Subtitles */
+    subtitles_enabled = saveData[24];  /* Subtitles */
     D_80159334 = saveData[25];  /* Difficulty */
     D_80159338 = saveData[26];  /* Laps count */
     D_8015933C = saveData[27];  /* AI difficulty */
@@ -33064,8 +33064,8 @@ void menu_options_screen(void) {
                 /* Reset all options to defaults */
                 sfx_volume = 1;  /* Music on */
                 music_volume = 1;  /* SFX on */
-                D_80159320 = 80; /* Music volume */
-                D_80159324 = 100; /* SFX volume */
+                music_volume_level = 80; /* Music volume */
+                sfx_volume_level = 100; /* SFX volume */
                 vibration_setting = 0;  /* Widescreen off */
                 message_active = 1;  /* HUD on */
                 display_mode_setting = 1;  /* Minimap on */
@@ -33137,10 +33137,10 @@ void menu_audio_settings(void) {
                 menuItems[selectedItem * 4 + 1] = value;
                 /* Apply volume change */
                 if (selectedItem == 2) {
-                    D_80159320 = value;  /* Music volume */
+                    music_volume_level = value;  /* Music volume */
                     sound_update_channel(voice_handle, value);  /* Apply to music */
                 } else if (selectedItem == 3) {
-                    D_80159324 = value;  /* SFX volume */
+                    sfx_volume_level = value;  /* SFX volume */
                 }
             }
         }
@@ -33227,7 +33227,7 @@ void menu_control_settings(void) {
                 menu_option_toggle(7);
                 break;
             case 2:  /* Invert Y axis */
-                D_8015932C = (D_8015932C == 0) ? 1 : 0;
+                invert_y_enabled = (invert_y_enabled == 0) ? 1 : 0;
                 sound_play_menu(14);
                 break;
             case 3:  /* Remap controls */
@@ -33300,7 +33300,7 @@ void menu_controller_remap(void) {
 
     animation_update();
 
-    remapState = D_80159350;
+    remapState = button_remap_state;
     selectedItem = menu_selection;
 
     if (remapState == 0) {
@@ -33314,9 +33314,9 @@ void menu_controller_remap(void) {
             if (selectedItem < 8) {
                 /* Start remapping this action */
                 remapState = 1;
-                D_80159350 = 1;
+                button_remap_state = 1;
                 D_80159354 = selectedItem;  /* Action being remapped */
-                D_80159358 = 60;  /* Timeout frames */
+                remap_timeout_frames = 60;  /* Timeout frames */
                 sound_play_menu(10);
             } else if (selectedItem == 8) {
                 /* Reset to defaults */
@@ -33341,11 +33341,11 @@ void menu_controller_remap(void) {
     else {
         /* Waiting for button press */
         buttons = (s32)(long)sound_handles[0] & 0xFFFF;
-        D_80159358 = D_80159358 - 1;
+        remap_timeout_frames = remap_timeout_frames - 1;
 
-        if (D_80159358 <= 0) {
+        if (remap_timeout_frames <= 0) {
             /* Timeout - cancel remap */
-            D_80159350 = 0;
+            button_remap_state = 0;
             sound_play_menu(13);
         }
         else if (buttons != 0) {
@@ -33365,7 +33365,7 @@ void menu_controller_remap(void) {
             if (buttonId >= 0) {
                 /* Assign button to action */
                 control_mapping[D_80159354] = buttonId;
-                D_80159350 = 0;
+                button_remap_state = 0;
                 sound_play_menu(10);
             }
         }
@@ -33833,7 +33833,7 @@ void car_select_screen(void) {
     }
     /* Up/down for color selection */
     else if (input == 4 || input == 5) {
-        s32 colorIdx = D_80159A58;
+        s32 colorIdx = car_color_index;
         if (input == 4) {
             colorIdx--;
             if (colorIdx < 0) colorIdx = 7;
@@ -33841,7 +33841,7 @@ void car_select_screen(void) {
             colorIdx++;
             if (colorIdx > 7) colorIdx = 0;
         }
-        D_80159A58 = colorIdx;
+        car_color_index = colorIdx;
         car_color_select(colorIdx);
         sound_play_menu(12);
     }
@@ -33917,7 +33917,7 @@ void car_preview_render(s32 carId) {
 
     /* Draw color swatch */
     {
-        s32 colorIdx = D_80159A58;
+        s32 colorIdx = car_color_index;
         s32 swatchX = previewX - 50;
         s32 swatchY = previewY + 50;
         s32 swatchSize = 12;
@@ -34100,7 +34100,7 @@ void car_color_select(s32 colorId) {
     /* Store selected colors */
     D_80159A80 = primaryColor;
     D_80159A84 = secondaryColor;
-    D_80159A58 = colorId;
+    car_color_index = colorId;
 
     /* Update car model material colors */
     /* This would normally update the RDP combiner or vertex colors */
@@ -34215,7 +34215,7 @@ void race_setup_screen(void) {
 
     /* Mirror mode */
     draw_text("MIRROR:", 50, 145, (selectedItem == 3) ? 255 : 180);
-    draw_text(D_80159B10 ? "ON" : "OFF", 120, 145, 255);
+    draw_text(music_enabled ? "ON" : "OFF", 120, 145, 255);
 
     /* Weather */
     draw_text("WEATHER:", 50, 170, (selectedItem == 4) ? 255 : 180);
@@ -34255,28 +34255,28 @@ void race_mode_select(s32 modeId) {
     /* Configure mode-specific defaults */
     switch (modeId) {
         case 0:  /* Circuit */
-            D_80159B1C = 1;  /* Enable opponents */
-            D_80159B20 = 1;  /* Enable checkpoints */
-            D_80159B24 = 0;  /* Disable stunt scoring */
-            D_80159B28 = 0;  /* Disable battle mode */
+            opponents_enabled = 1;  /* Enable opponents */
+            checkpoints_enabled = 1;  /* Enable checkpoints */
+            stunt_scoring_enabled = 0;  /* Disable stunt scoring */
+            battle_mode_enabled = 0;  /* Disable battle mode */
             break;
         case 1:  /* Time Attack */
-            D_80159B1C = 0;  /* No opponents */
-            D_80159B20 = 1;  /* Enable checkpoints */
-            D_80159B24 = 0;  /* No stunt scoring */
-            D_80159B28 = 0;
+            opponents_enabled = 0;  /* No opponents */
+            checkpoints_enabled = 1;  /* Enable checkpoints */
+            stunt_scoring_enabled = 0;  /* No stunt scoring */
+            battle_mode_enabled = 0;
             break;
         case 2:  /* Stunt */
-            D_80159B1C = 0;  /* No opponents */
-            D_80159B20 = 0;  /* No checkpoints */
-            D_80159B24 = 1;  /* Enable stunt scoring */
-            D_80159B28 = 0;
+            opponents_enabled = 0;  /* No opponents */
+            checkpoints_enabled = 0;  /* No checkpoints */
+            stunt_scoring_enabled = 1;  /* Enable stunt scoring */
+            battle_mode_enabled = 0;
             break;
         case 3:  /* Battle */
-            D_80159B1C = 1;  /* Enable opponents */
-            D_80159B20 = 0;  /* No checkpoints */
-            D_80159B24 = 0;
-            D_80159B28 = 1;  /* Enable battle mode */
+            opponents_enabled = 1;  /* Enable opponents */
+            checkpoints_enabled = 0;  /* No checkpoints */
+            stunt_scoring_enabled = 0;
+            battle_mode_enabled = 1;  /* Enable battle mode */
             break;
     }
 }
@@ -34306,24 +34306,24 @@ void difficulty_select(s32 difficulty) {
     /* Configure AI based on difficulty */
     switch (difficulty) {
         case 0:  /* Easy */
-            D_80159B2C = 70;   /* AI max speed % */
-            D_80159B30 = 50;   /* AI aggression */
-            D_80159B34 = 1;    /* Heavy rubber-banding */
+            ai_max_speed_percent = 70;   /* AI max speed % */
+            ai_aggression_level = 50;   /* AI aggression */
+            ai_rubberbanding = 1;    /* Heavy rubber-banding */
             break;
         case 1:  /* Normal */
-            D_80159B2C = 85;
-            D_80159B30 = 70;
-            D_80159B34 = 1;
+            ai_max_speed_percent = 85;
+            ai_aggression_level = 70;
+            ai_rubberbanding = 1;
             break;
         case 2:  /* Hard */
-            D_80159B2C = 95;
-            D_80159B30 = 85;
-            D_80159B34 = 0;
+            ai_max_speed_percent = 95;
+            ai_aggression_level = 85;
+            ai_rubberbanding = 0;
             break;
         case 3:  /* Expert */
-            D_80159B2C = 100;
-            D_80159B30 = 100;
-            D_80159B34 = 0;
+            ai_max_speed_percent = 100;
+            ai_aggression_level = 100;
+            ai_rubberbanding = 0;
             break;
     }
 }
@@ -34334,10 +34334,10 @@ void difficulty_select(s32 difficulty) {
  * Mirror mode toggle - flips track left-right
  */
 void mirror_mode_toggle(void) {
-    D_80159B10 = (D_80159B10 == 0) ? 1 : 0;
+    music_enabled = (music_enabled == 0) ? 1 : 0;
 
     /* Set mirror transform flag */
-    D_80159B38 = D_80159B10;
+    D_80159B38 = music_enabled;
 }
 
 /*
@@ -34350,24 +34350,24 @@ void weather_select(s32 weather) {
 
     switch (weather) {
         case 0:  /* Clear */
-            D_80159B3C = 0;     /* No rain */
-            D_80159B40 = 1000;  /* Max visibility */
-            D_80159B44 = 255;   /* Full brightness */
+            rain_enabled = 0;     /* No rain */
+            track_visibility_dist = 1000;  /* Max visibility */
+            track_light_brightness = 255;   /* Full brightness */
             break;
         case 1:  /* Rain */
-            D_80159B3C = 1;     /* Rain enabled */
-            D_80159B40 = 600;   /* Reduced visibility */
-            D_80159B44 = 200;   /* Dimmer */
+            rain_enabled = 1;     /* Rain enabled */
+            track_visibility_dist = 600;   /* Reduced visibility */
+            track_light_brightness = 200;   /* Dimmer */
             break;
         case 2:  /* Fog */
-            D_80159B3C = 0;
-            D_80159B40 = 300;   /* Low visibility */
-            D_80159B44 = 180;
+            rain_enabled = 0;
+            track_visibility_dist = 300;   /* Low visibility */
+            track_light_brightness = 180;
             break;
         case 3:  /* Night */
-            D_80159B3C = 0;
-            D_80159B40 = 400;   /* Limited visibility */
-            D_80159B44 = 80;    /* Dark */
+            rain_enabled = 0;
+            track_visibility_dist = 400;   /* Limited visibility */
+            track_light_brightness = 80;    /* Dark */
             break;
     }
 }
@@ -34696,7 +34696,7 @@ void stunt_mode_setup(void) {
 
     menuState = menu_enabled;
     selectedOption = D_80159E04;
-    selectedArena = D_80159E08;
+    selectedArena = selected_arena_index;
     timeLimit = D_80159E0C;
     targetScore = hiscore_char_pos;
     wingEnabled = wing_enabled;
@@ -34768,7 +34768,7 @@ void stunt_mode_setup(void) {
             if (selectedOption == 4) {
                 /* Start stunt mode */
                 if (arenaUnlocked[selectedArena]) {
-                    D_80159E08 = selectedArena;
+                    selected_arena_index = selectedArena;
                     D_80159E0C = timeLimit;
                     hiscore_char_pos = targetScore;
                     wing_enabled = wingEnabled;
@@ -34869,7 +34869,7 @@ void stunt_mode_setup(void) {
 
     menu_enabled = menuState;
     D_80159E04 = selectedOption;
-    D_80159E08 = selectedArena;
+    selected_arena_index = selectedArena;
     D_80159E0C = timeLimit;
     hiscore_char_pos = targetScore;
     wing_enabled = wingEnabled;
@@ -35778,7 +35778,7 @@ void loading_tips(void) {
  */
 extern s32 D_8015A710;      /* Pause menu state */
 extern s32 D_8015A714;      /* Selected option */
-extern s32 D_8015A718;      /* Pause active flag */
+extern s32 pause_active_flag;      /* Pause active flag */
 
 void pause_menu(void) {
     s32 input;
@@ -35787,7 +35787,7 @@ void pause_menu(void) {
     const char *options[] = {"RESUME", "RESTART", "OPTIONS", "QUIT"};
     s32 numOptions = 4;
 
-    if (!D_8015A718) {
+    if (!pause_active_flag) {
         return;
     }
 
@@ -35855,7 +35855,7 @@ void pause_menu(void) {
  * Pause resume - Resumes game from pause
  */
 void pause_resume(void) {
-    D_8015A718 = 0;  /* Clear pause flag */
+    pause_active_flag = 0;  /* Clear pause flag */
 
     /* Resume audio */
     sound_start(0, 0, NULL, 0);  /* Restore audio state */
@@ -35875,7 +35875,7 @@ void pause_restart(void) {
     s32 i;
     u8 *carBase;
 
-    D_8015A718 = 0;  /* Clear pause */
+    pause_active_flag = 0;  /* Clear pause */
 
     /* Reset all cars to start positions */
     carBase = (u8 *)&game_car;
@@ -35919,7 +35919,7 @@ void pause_restart(void) {
  * Pause quit - Quits to main menu
  */
 void pause_quit(void) {
-    D_8015A718 = 0;  /* Clear pause */
+    pause_active_flag = 0;  /* Clear pause */
 
     /* Stop all game sounds */
     ambient_sounds_clear();
@@ -36080,13 +36080,13 @@ void points_award(void) {
  * Replay save prompt - Asks user to save replay
  */
 extern s32 D_8015A750;      /* Replay prompt state */
-extern s32 D_8015A754;      /* Replay selection */
+extern s32 replay_selection;      /* Replay selection */
 
 void replay_save_prompt(void) {
     s32 input;
     s32 selection;
 
-    selection = D_8015A754;
+    selection = replay_selection;
     input = controller_get_input(sound_handles);
 
     /* Navigation */
@@ -36100,11 +36100,11 @@ void replay_save_prompt(void) {
             sound_play_menu(10);
         }
         D_8015A750 = 0;
-        D_8015A754 = 0;
+        replay_selection = 0;
         return;
     } else if (input == 2) {  /* B - cancel */
         D_8015A750 = 0;
-        D_8015A754 = 0;
+        replay_selection = 0;
         return;
     }
 
@@ -36123,7 +36123,7 @@ void replay_save_prompt(void) {
         draw_text(175, 130, ">", 0xFFFFFFFF);
     }
 
-    D_8015A754 = selection;
+    replay_selection = selection;
 }
 
 /*
@@ -36381,7 +36381,7 @@ void attract_demo_play(void) {
  * func_800DCD94 (96 bytes)
  * Attract idle check - Returns 1 if no input for idle timeout
  */
-extern s32 D_8015A7A0;      /* Idle frame counter */
+extern s32 idle_frame_counter;      /* Idle frame counter */
 #define IDLE_TIMEOUT (30 * 60)  /* 30 seconds */
 
 s32 attract_idle_check(void) {
@@ -36390,14 +36390,14 @@ s32 attract_idle_check(void) {
     input = controller_get_input(sound_handles);
 
     if (input != 0) {
-        D_8015A7A0 = 0;
+        idle_frame_counter = 0;
         return 0;
     }
 
-    D_8015A7A0++;
+    idle_frame_counter++;
 
-    if (D_8015A7A0 >= IDLE_TIMEOUT) {
-        D_8015A7A0 = 0;
+    if (idle_frame_counter >= IDLE_TIMEOUT) {
+        idle_frame_counter = 0;
         return 1;  /* Idle timeout reached */
     }
 
@@ -36734,14 +36734,14 @@ void main_menu_render(void) {
  * func_800DEF68 (2976 bytes)
  * Mode select screen - Race/Battle/Stunt mode configuration
  */
-extern s32 D_8015A7D0;      /* Mode select selection */
+extern s32 mode_select_selection;      /* Mode select selection */
 extern s32 D_8015A7D4;      /* Selected mode type */
 
 void mode_select_screen(void) {
     s32 input;
     s32 selection;
 
-    selection = D_8015A7D0;
+    selection = mode_select_selection;
     input = controller_get_input(sound_handles);
 
     mode_select_input(input);
@@ -36781,7 +36781,7 @@ void mode_select_screen(void) {
  * Mode select input - Handles mode selection input
  */
 void mode_select_input(s32 input) {
-    s32 selection = D_8015A7D0;
+    s32 selection = mode_select_selection;
     s32 maxOptions = (D_8015A7D4 == 2) ? 2 : 3;
 
     if (input == 4) {  /* Up */
@@ -36797,11 +36797,11 @@ void mode_select_input(s32 input) {
         /* Proceed to track/arena selection */
         gstate_byte = 1;  /* TRKSEL */
     } else if (input == 2) {  /* B - back */
-        D_8015A7D0 = 0;
+        mode_select_selection = 0;
         gstate_byte = 0;  /* Back to menu */
     }
 
-    D_8015A7D0 = selection;
+    mode_select_selection = selection;
 }
 
 /*
@@ -37782,7 +37782,7 @@ void skid_mark_render(void *tire) {
 void trail_effect(void *object) {
     extern u8 D_80156000[];    /* Trail buffer */
     extern s32 D_80156400;     /* Trail segment count */
-    extern s32 D_80156404;     /* Max trail segments */
+    extern s32 trail_max_segments;     /* Max trail segments */
     u8 *objData = (u8 *)object;
     u8 *trail;
     f32 *objPos;
@@ -37796,7 +37796,7 @@ void trail_effect(void *object) {
     objPos = (f32 *)(objData + 0x24);
 
     /* Shift existing trail segments */
-    for (i = D_80156404 - 1; i > 0; i--) {
+    for (i = trail_max_segments - 1; i > 0; i--) {
         trail = &D_80156000[i * 0x20];
         u8 *prevTrail = &D_80156000[(i - 1) * 0x20];
 
@@ -37806,7 +37806,7 @@ void trail_effect(void *object) {
         *(f32 *)(trail + 0x08) = *(f32 *)(prevTrail + 0x08);
 
         /* Fade alpha */
-        trail[0x10] = (u8)(255 * (D_80156404 - i) / D_80156404);
+        trail[0x10] = (u8)(255 * (trail_max_segments - i) / trail_max_segments);
     }
 
     /* Add new segment at head */
@@ -37816,7 +37816,7 @@ void trail_effect(void *object) {
     *(f32 *)(trail + 0x08) = objPos[2];
     trail[0x10] = 255;  /* Full alpha at head */
 
-    if (D_80156400 < D_80156404) {
+    if (D_80156400 < trail_max_segments) {
         D_80156400++;
     }
 }
@@ -38009,14 +38009,14 @@ void lighting_setup(void) {
     extern u8 D_80157800[];    /* Ambient light RGB */
     extern u8 D_80157804[];    /* Directional light RGB */
     extern f32 D_80157808[];   /* Light direction (normalized) */
-    extern s32 D_80157814;     /* Time of day (0-2400) */
+    extern s32 track_time_of_day;     /* Time of day (0-2400) */
     Gfx *gfx;
     s32 timeOfDay;
     f32 sunAngle;
     f32 brightness;
 
     gfx = *gfx_dl_ptr;
-    timeOfDay = D_80157814;
+    timeOfDay = track_time_of_day;
 
     /* Calculate sun angle based on time of day */
     sunAngle = (timeOfDay / 2400.0f) * 3.14159f;
@@ -38327,7 +38327,7 @@ void track_render(void *camera) {
 
     /* Iterate through track sections */
     for (i = 0; i < D_80159000; i++) {
-        u8 *section = &D_80159010[i * 0x40];
+        u8 *section = &sprite_table_data[i * 0x40];
         f32 *sectionPos = (f32 *)(section + 0x00);
 
         /* Frustum cull check */
@@ -38372,7 +38372,7 @@ s32 track_section_visible(s32 sectionId, void *camera) {
         return 0;
     }
 
-    section = &D_80159010[sectionId * 0x40];
+    section = &sprite_table_data[sectionId * 0x40];
     camPos = (f32 *)(camData + 0x00);
     camFwd = (f32 *)(camData + 0x30);
     sectionPos = (f32 *)(section + 0x00);
@@ -38631,7 +38631,7 @@ void crowd_render(void) {
     animFrame = (frame_counter >> 3) & 0x03;
 
     /* Render each crowd section */
-    for (i = 0; i < D_80159800; i++) {
+    for (i = 0; i < menu_items_array; i++) {
         u8 *crowd = &D_80159810[i * 0x40];
         f32 *crowdPos = (f32 *)(crowd + 0x00);
         s32 crowdCount = *(s32 *)(crowd + 0x10);
@@ -38828,7 +38828,7 @@ void car_lights_render(void *car) {
     isBraking = *(s32 *)(carData + 0xCC) > 0;
 
     /* Lights on at night or in tunnels */
-    lightsOn = (D_80157814 < 600 || D_80157814 > 1800);
+    lightsOn = (track_time_of_day < 600 || track_time_of_day > 1800);
 
     if (lightsOn) {
         /* Headlights - bright white glow */
@@ -39165,7 +39165,7 @@ void display_list_flush(void) {
     osSpTaskStart(task);
 
     /* Wait for completion */
-    osRecvMesg(&D_80086A88, NULL, OS_MESG_BLOCK);
+    osRecvMesg(&dma_message_queue, NULL, OS_MESG_BLOCK);
 }
 
 /*
@@ -39261,7 +39261,7 @@ void debug_collision(void) {
  */
 void debug_ai_paths(void) {
 
-    if (!D_80159E08) {
+    if (!selected_arena_index) {
         return;
     }
 
@@ -39694,7 +39694,7 @@ void record_save(void) {
  * High score name entry screen
  */
 void high_score_entry(void) {
-    extern char D_80159E18[4]; /* Entered name */
+    extern char hiscore_entered_name[4]; /* Entered name */
     s32 input;
     s32 cursorPos;
     char *alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ";
@@ -39714,18 +39714,18 @@ void high_score_entry(void) {
         if (cursorPos >= alphabetLen) cursorPos = 0;
     } else if (input == 1) {  /* A - select letter */
         if (hiscore_char_pos < 3) {
-            D_80159E18[hiscore_char_pos] = alphabet[cursorPos];
+            hiscore_entered_name[hiscore_char_pos] = alphabet[cursorPos];
             hiscore_char_pos++;
         }
         if (hiscore_char_pos >= 3) {
-            D_80159E18[3] = '\0';
+            hiscore_entered_name[3] = '\0';
             /* Save high score */
             record_save();
         }
     } else if (input == 2) {  /* B - backspace */
         if (hiscore_char_pos > 0) {
             hiscore_char_pos--;
-            D_80159E18[hiscore_char_pos] = '_';
+            hiscore_entered_name[hiscore_char_pos] = '_';
         }
     }
 
@@ -39733,7 +39733,7 @@ void high_score_entry(void) {
 
     /* Draw UI */
     draw_text(105, 40, "ENTER NAME", 0xFFFFFFFF);
-    draw_text(D_80159E18, 140, 80, 255);
+    draw_text(hiscore_entered_name, 140, 80, 255);
     draw_text(alphabet, 40, 140, 200);
 }
 
@@ -42136,9 +42136,9 @@ void ai_catch_up(void *car) {
  *   4 = Speed boost
  */
 void battle_mode_update(void) {
-    extern s32 D_8014B000;    /* Battle mode state */
+    extern s32 battle_mode_state;    /* Battle mode state */
     extern s32 D_8014B004;    /* Battle timer (frames) */
-    extern s32 D_8014B008;    /* Battle mode type */
+    extern s32 battle_mode_type;    /* Battle mode type */
     extern s32 D_8014B00C[4]; /* Player scores */
     extern s32 player_lives[4]; /* Player lives */
     extern s32 D_8014B02C[4]; /* Player weapons */
@@ -42151,7 +42151,7 @@ void battle_mode_update(void) {
     s32 *weapon, *ammo;
 
     /* Check if battle mode active */
-    if (D_8014B000 == 0) {
+    if (battle_mode_state == 0) {
         return;
     }
 
@@ -42171,7 +42171,7 @@ void battle_mode_update(void) {
         ammo = &D_8014B03C[i];
 
         /* Skip eliminated players in Last Man Standing */
-        if (D_8014B008 == 2 && player_lives[i] <= 0) {
+        if (battle_mode_type == 2 && player_lives[i] <= 0) {
             continue;
         }
 
@@ -42207,7 +42207,7 @@ void battle_mode_update(void) {
             }
 
             /* Respawn player (if lives remaining or not Last Man Standing) */
-            if (D_8014B008 != 2 || player_lives[i] > 0) {
+            if (battle_mode_type != 2 || player_lives[i] > 0) {
                 battle_respawn(car, i);  /* Respawn at battle arena spawn point */
                 *health = 100;
                 *weapon = 0;  /* Reset weapon */
@@ -42256,7 +42256,7 @@ void stunt_mode_update(void) {
     extern s32 D_8014C000;    /* Stunt mode state */
     extern s32 D_8014C004;    /* Session timer (frames) */
     extern s32 D_8014C008;    /* Session time limit */
-    extern s32 D_8014C00C[4]; /* Player stunt scores */
+    extern s32 player_stunt_scores[4]; /* Player stunt scores */
     extern s32 D_8014C01C[4]; /* Player combo multipliers */
     extern s32 D_8014C02C[4]; /* Player best single trick */
     extern s32 D_8014C03C[4]; /* Player best combo */
@@ -42359,7 +42359,7 @@ void stunt_mode_update(void) {
             }
 
             /* Add to session score */
-            D_8014C00C[i] += trickScore;
+            player_stunt_scores[i] += trickScore;
 
             /* Reset for next air session */
             wing_update(car);  /* Reset trick accumulators */
@@ -42526,13 +42526,13 @@ void battle_win_check(void) {
         if (D_8014B00C[i] >= D_8014B04C) {
             /* Player reached score limit */
             winner = i;
-            D_8014B000 = 2;  /* End battle, show results */
+            battle_mode_state = 2;  /* End battle, show results */
             return;
         }
     }
 
     /* Check Last Man Standing */
-    if (D_8014B008 == 2) {
+    if (battle_mode_type == 2) {
         for (i = 0; i < 4; i++) {
             if (player_lives[i] > 0) {
                 alivePlayers++;
@@ -42540,7 +42540,7 @@ void battle_win_check(void) {
             }
         }
         if (alivePlayers <= 1) {
-            D_8014B000 = 2;  /* End battle */
+            battle_mode_state = 2;  /* End battle */
         }
     }
 }
@@ -42561,8 +42561,8 @@ void stunt_session_end(void) {
 
     /* Find highest scorer */
     for (i = 0; i < 4; i++) {
-        if (D_8014C00C[i] > highScore) {
-            highScore = D_8014C00C[i];
+        if (player_stunt_scores[i] > highScore) {
+            highScore = player_stunt_scores[i];
             winner = i;
         }
     }
