@@ -322,9 +322,9 @@ __osInsertTimer = 0x8000E390; // type:func insert timer into sorted timer queue
 func_800FD464 = 0x800FD464; // game - main per-frame game state machine (704 bytes)
 
 // Game state handlers called from game_loop
-func_800C9AE0 = 0x800C9AE0; // game_mode_handler - in_game_mode handling (arcade: game.c:620)
-func_800EDDC0 = 0x800EDDC0; // attract_or_transition - attract mode/state transition
-func_800C997C = 0x800C997C; // process_inputs - ProcessPDUs equivalent or state switch
+game_mode_handler = 0x800C9AE0; // type:func - in_game_mode handling (arcade: game.c:620)
+attract_or_transition = 0x800EDDC0; // type:func attract mode/state transition - attract mode/state transition
+process_inputs = 0x800C997C; // type:func ProcessPDUs equivalent or state switch - ProcessPDUs equivalent or state switch
 
 
 // Large game functions (from analysis 2025-12-07)
@@ -336,14 +336,14 @@ render_scene = 0x800A04C4; // type:func (2720 bytes) - scene setup, viewport mod
 // Gameplay functions (maps to game/game.c)
 func_800CA3B4 = 0x800CA3B4; // PlayGame_HandleStateChange - walks global mode flags, handles enter/exit gameplay (2544 bytes)
 func_800F733C = 0x800F733C; // UpdateActiveObjects - per-frame scene object dispatcher (accesses 0x80159788 + 0x80159450 arrays)
-func_800B0868 = 0x800B0868; // PhysicsObjectList_Update - per-frame physics/vehicle list updater
+PhysicsObjectList_Update = 0x800B0868; // type:func per-frame physics/vehicle list updater
 func_800B811C = 0x800B811C; // Effects_UpdateEmitters - particle/trail/FX system updater
 func_800DB81C = 0x800DB81C; // RaceStateMachine_Update - race progression/checkpoint/finalization controller (2148 bytes)
 func_800FBF88 = 0x800FBF88; // state_transition - conditional state transition
 
 // Audio system
-func_800B37E8 = 0x800B37E8; // sound_control - audio/sound (called with -1 as stop signal)
-func_800B358C = 0x800B358C; // sound_stop - stop sound (called when engine stops)
+sound_control = 0x800B37E8; // type:func audio/sound (called with -1 as stop signal)
+sound_stop = 0x800B358C; // type:func stop sound (called when engine stops)
 
 // High-frequency utility functions (called 100+ times)
 func_800B4200 = 0x800B4200; // slot_state_setup - player/slot state management (171 calls)
@@ -355,7 +355,7 @@ func_800B3F50 = 0x800B3F50; // object_helper - object helper (77 calls)
 func_8008D6B0 = 0x8008D6B0; // math_utility - math/vector utility (67 calls)
 render_helper = 0x800B65B4; // type:func rendering helper (65 calls)
 func_8008AE8C = 0x8008AE8C; // model_utility - model/mesh utility (63 calls)
-func_80094EC8 = 0x80094EC8; // input_handler - input processing (60 calls)
+input_handler = 0x80094EC8; // type:func input processing (60 calls) - input processing (60 calls)
 
 // Key global variables in game data section
 D_801461D0 = 0x801461D0; // Most referenced global (160 refs) - likely main game struct
@@ -383,8 +383,8 @@ D_80142AFC = 0x80142AFC; // Frame counter (incremented each frame in game_loop)
 //   Both are perpetual main loop shells
 
 // Message queue functions in game code (from Codex analysis)
-func_8008A6D0 = 0x8008A6D0; // audio_msg_send - sends audio message via osJamMesg
-func_8008A710 = 0x8008A710; // audio_task_sync - audio task synchronization (Jam+Recv)
+audio_msg_send = 0x8008A6D0; // type:func sends audio message via osJamMesg
+audio_task_sync = 0x8008A710; // type:func audio task synchronization (Jam+Recv)
 render_task_sync = 0x8008A77C; // type:func render task synchronization (Jam+Recv)
 func_8008AA40 = 0x8008AA40; // wait_for_msg - waits for message via osRecvMesg
 func_8008AC74 = 0x8008AC74; // task_complete_notify - task completion notification
@@ -397,12 +397,12 @@ func_800924F4 = 0x800924F4; // buffer_swap - buffer swap with message
 func_800960D4 = 0x800960D4; // dma_queue_sync - DMA queue synchronization
 func_8009614C = 0x8009614C; // dma_complete_wait - DMA completion wait
 func_800962D4 = 0x800962D4; // dma_request - DMA request with queue
-func_80097184 = 0x80097184; // audio_queue_recv - audio queue receive only
-func_8009731C = 0x8009731C; // audio_buffer_sync - audio buffer synchronization
-func_80097470 = 0x80097470; // audio_dma_sync - audio DMA synchronization
-func_800974EC = 0x800974EC; // audio_task_complete - audio task completion
-func_80097798 = 0x80097798; // audio_frame_sync - audio per-frame sync
-func_80098AE4 = 0x80098AE4; // engine_sync - engine/sound synchronization
+audio_queue_recv = 0x80097184; // type:func audio queue receive only
+audio_buffer_sync = 0x8009731C; // type:func audio buffer synchronization
+audio_dma_sync = 0x80097470; // type:func audio DMA synchronization
+audio_task_complete = 0x800974EC; // type:func audio task completion
+audio_frame_sync = 0x80097798; // type:func audio per-frame sync
+engine_sound_sync = 0x80098AE4; // type:func engine/sound synchronization
 
 // Additional Codex analysis findings (2025-12-07)
 // Game state machine analysis - uses BITMASK LADDER not jump table
@@ -438,18 +438,18 @@ vi_retrace_callback = 0x800DE4DC; // type:func retrace video timing config
 
 // Controller input handling (from controls.c analysis)
 func_800C95DC = 0x800C95DC; // controller_poll - per-frame pad poll/state clear (928 bytes)
-func_800C997C = 0x800C997C; // process_inputs - game loop input entry point (356 bytes)
+process_inputs = 0x800C997C; // type:func ProcessPDUs equivalent or state switch - game loop input entry point (356 bytes)
 // Input buffer at 0x80140BF0, stride 0x20 per player
 //   +0x00, +0x08: button states
 //   +0x0A-0x12: 16-bit axes (steering, throttle, brake)
 //   +0x18-0x1E: additional analog values
 //   +0x1A: "new data" flag
-func_80094E00 = 0x80094E00; // input_analog_write - write primary analog values
-func_80094DB0 = 0x80094DB0; // input_status_update - update status bytes/edge tracking
-func_80094D68 = 0x80094D68; // input_button_adjust - adjust button bits
-func_80094D20 = 0x80094D20; // input_connected_check - handle pad connection/reset
-func_80094F88 = 0x80094F88; // input_new_data_wrapper - toggle new data flag
-func_80094FF0 = 0x80094FF0; // input_dispatch - dispatch from raw pad to input buffer
+input_analog_write = 0x80094E00; // type:func write primary analog values - write primary analog values
+input_status_update = 0x80094DB0; // type:func update status bytes/edge tracking - update status bytes/edge tracking
+input_button_adjust = 0x80094D68; // type:func adjust button bits - adjust button bits
+input_connected_check = 0x80094D20; // type:func handle pad connection/reset - handle pad connection/reset
+input_new_data_wrapper = 0x80094F88; // type:func toggle new data flag - toggle new data flag
+input_dispatch = 0x80094FF0; // type:func dispatch from raw pad to input buffer - dispatch from raw pad to input buffer
 
 // Controller Pak functions (BFE0.s analysis)
 // Already defined above: osPfsChecker, __osPfsCheckPages, __osPfsPageCheck
@@ -500,7 +500,7 @@ race_active = 0x801170FC; // type:data non-zero enables race loop path
 // State handler functions
 func_800FBF90 = 0x800FBF90; // state_init_handler - GSTATE_INIT (0x00040000)
 func_800FBFE4 = 0x800FBFE4; // state_setup_handler - GSTATE_SETUP (0x00080000)
-func_800FC0EC = 0x800FC0EC; // state_menu_handler - GSTATE_MENU (0x00100000)
+state_menu_handler = 0x800FC0EC; // type:func GSTATE_MENU handler (0x00100000) - GSTATE_MENU (0x00100000)
 func_800FC038 = 0x800FC038; // state_camera_handler - GSTATE_CAMERA (0x00200000)
 func_800FC228 = 0x800FC228; // state_ready_handler - GSTATE_READY (0x00400000)
 func_800FC25C = 0x800FC25C; // state_play_handler - GSTATE_PLAY (0x00800000)
@@ -510,7 +510,7 @@ func_800FC960 = 0x800FC960; // state_finish_handler - GSTATE_FINISH (0x02000000)
 // Functions called from game_loop
 func_800C9AE0 = 0x800C9AE0; // game_mode_same - called when state == prev_state
 func_800EDDC0 = 0x800EDDC0; // game_mode_changed - called on state transition
-func_800FD238 = 0x800FD238; // input_aux_handler - fast-path for bits 0x7C03FFFE
+input_aux_handler = 0x800FD238; // type:func fast-path for bits 0x7C03FFFE - fast-path for bits 0x7C03FFFE
 func_800FBC30 = 0x800FBC30; // game_mode_post - post-processing after state match
 func_800F8D9C = 0x800F8D9C; // camera_race_setup - camera setup for race
 func_800EC0DC = 0x800EC0DC; // race_init_helper - race initialization
@@ -573,13 +573,13 @@ Car_UpdatePosVel_P = 0x800A2680; // type:func accesses pos_x/z, vel_x/y
 
 // game_loop (0x800FD464) internal helpers:
 func_800CA300 = 0x800CA300; // type:func state_change_preprocess - called when gstate != gstate_prev
-func_800B37E8 = 0x800B37E8; // type:func heap_object_create - timer check creates/uses heap object
-func_800B358C = 0x800B358C; // type:func heap_object_use - if heap object already exists
+// sound_control at 0x800B37E8 - also called as heap_object_create (timer check creates/uses heap object)
+// sound_stop at 0x800B358C - also called as heap_object_use (if heap object already exists)
 func_800FD238 = 0x800FD238; // type:func input_aux_handler - called if "fast-path" bits (0x7C03FFFE) set
 
 // Race loop functions (called when bits 0x00200000 or 0x00400000 set AND race_active):
 func_800F733C = 0x800F733C; // type:func race_per_frame_update - called in race loop
-func_800B0868 = 0x800B0868; // type:func car_physics_update - called in race loop
+car_physics_update = 0x800B0868; // type:func car physics update - called in race loop
 func_800B811C = 0x800B811C; // type:func visual_effects_update - called in race loop
 
 // State machine dispatcher (mask 0x03FC0000 -> handler):
@@ -593,11 +593,11 @@ func_800B811C = 0x800B811C; // type:func visual_effects_update - called in race 
 //   0x02000000 -> 0x800FC960 (calls 0x800F64D4 or 0x800F8B70)
 
 func_800FBF90 = 0x800FBF90; // type:func State_0x40000_Handler - state transition init (2664 bytes)
-func_800FBFE4 = 0x800FBFE4; // type:func State_0x80000_Handler - track/car selection setup
-func_800FC0EC = 0x800FC0EC; // type:func State_0x100000_Handler - UI/input handling block
+track_car_selection_setup = 0x800FBFE4; // type:func State_0x80000_Handler - track/car selection setup
+ui_input_handler_block = 0x800FC0EC; // type:func State_0x100000_Handler - UI/input handling block
 func_800FC038 = 0x800FC038; // type:func State_0x200000_Handler - camera/race setup block
 func_800FC228 = 0x800FC228; // type:func State_0x400000_Handler - set state, copy float
-func_800FC25C = 0x800FC25C; // type:func State_0x800000_Handler - gameplay/menu block
+gameplay_menu_handler = 0x800FC25C; // type:func State_0x800000_Handler - gameplay/menu block
 func_800FC89C = 0x800FC89C; // type:func State_0x1000000_Handler - car list iteration
 func_800FC960 = 0x800FC960; // type:func State_0x2000000_Handler - final state handler
 
@@ -649,78 +649,78 @@ checkpoint_check = 0x800C85F0; // type:func checkpoint collision
 collision_check = 0x800B8C14; // type:func car collision handler
 physics_calc = 0x800BAE24; // type:func physics calculations
 camera_transform = 0x80097CA0; // type:func camera/view transformation
-audio_processing = 0x800974EC; // type:func audio processing
-vehicle_physics = 0x80097798; // type:func vehicle physics/collision
+// audio_processing at 0x800974EC - renamed to audio_task_complete above
+// vehicle_physics at 0x80097798 - renamed to audio_frame_sync above (dual purpose)
 
 // Cleaned symbols appended from ollama_analysis/cleaned_symbols.txt
 func_8008A650 = 0x8008A650; // load_texture_data - pulls texture data into memory
-func_8008A750 = 0x8008A750; // audio_call_wrapper - forwards to downstream audio routine
-func_8008AA20 = 0x8008AA20; // audio_process - higher-level audio processing call
-func_8008AD48 = 0x8008AD48; // audio_chain_dispatch - chains to additional audio handlers
-func_8008B474 = 0x8008B474; // physics_floats - floating-point physics helper
-func_8008E440 = 0x8008E440; // fmath_helper - heavy FP math helper
-func_80095240 = 0x80095240; // physics_step - float operations for physics
-func_80095360 = 0x80095360; // play_sfx - play sound effect
-func_80095380 = 0x80095380; // poll_input - controller/button polling
+audio_call_wrapper = 0x8008A750; // type:func forwards to downstream audio routine
+audio_process = 0x8008AA20; // type:func higher-level audio processing call
+audio_chain_dispatch = 0x8008AD48; // type:func chains to additional audio handlers
+physics_floats = 0x8008B474; // type:func floating-point physics helper
+fmath_helper = 0x8008E440; // type:func heavy FP math helper
+physics_step = 0x80095240; // type:func float operations for physics integration
+sfx_play = 0x80095360; // type:func play sound effect
+poll_input = 0x80095380; // type:func controller/button polling - controller/button polling
 draw_sprites = 0x800953A0; // type:func sprite rendering
-func_800953C0 = 0x800953C0; // apply_gravity_collision - physics with gravity/collision
+apply_gravity_collision = 0x800953C0; // type:func physics with gravity and collision forces
 gfx_setup_e700 = 0x800954A8; // type:func display list setup (E700 clear)
 func_800954E0 = 0x800954E0; // ai_enemy_move - enemy movement logic
 hud_update = 0x80095600; // type:func HUD element refresh
 func_80095720 = 0x80095720; // anim_frame_update - animation frame stepping
-func_80095840 = 0x80095840; // physics_integrate - velocity/position integration
-func_80095960 = 0x80095960; // bgm_playback - background music handling
+physics_integrate = 0x80095840; // type:func velocity/position integration step
+bgm_playback = 0x80095960; // type:func background music handling
 ui_render = 0x80095A80; // type:func UI rendering
 func_80095BA0 = 0x80095BA0; // jump_handler - jump mechanic logic
 func_80095CC0 = 0x80095CC0; // npc_interaction - NPC interaction handler
 func_80095DE0 = 0x80095DE0; // particles_animate - particle effect animation
-func_80095F00 = 0x80095F00; // voice_playback - voice line playback
+voice_playback = 0x80095F00; // type:func voice line playback
 func_800979A8 = 0x800979A8; // ai_pathfinding - AI path/decision logic
 hud_render = 0x80097AFC; // type:func HUD rendering/display update
 func_80098574 = 0x80098574; // camera_update_a - nested camera update helper
 func_80098620 = 0x80098620; // camera_update_b - nested camera update helper
-func_80098FC0 = 0x80098FC0; // world_collision - collision detection/handling
+world_collision = 0x80098FC0; // type:func world/environment collision detection
 track_render = 0x800992AC; // type:func track generation/rendering
 func_8009C5BC = 0x8009C5BC; // camera_update_c - camera update helper
 func_8009C5E0 = 0x8009C5E0; // camera_update_d - camera update helper
 func_8009C8F0 = 0x8009C8F0; // particle_system - particle system/effects
-func_8009DC50 = 0x8009DC50; // track_collision - track object collision
-func_8009DD18 = 0x8009DD18; // track_collision_a - track collision helper
-func_8009DD88 = 0x8009DD88; // track_collision_b - track collision helper
-func_8009EA70 = 0x8009EA70; // track_collision_c - track collision helper
+track_collision = 0x8009DC50; // type:func track/road surface collision
+track_collision_edge = 0x8009DD18; // type:func track edge collision helper
+track_collision_wall = 0x8009DD88; // type:func track wall collision helper
+track_collision_curb = 0x8009EA70; // type:func track curb/bump collision
 gfx_setup_fc = 0x8009EB18; // type:func display list setup (E7/FC)
-func_8009EBC0 = 0x8009EBC0; // physics_float_helper - float-heavy physics helper
-func_8009FDC4 = 0x8009FDC4; // audio_lui_init - audio init stub (LUI)
+physics_float_calc = 0x8009EBC0; // type:func float-heavy physics calculation
+audio_init_stub = 0x8009FDC4; // type:func audio init stub (LUI)
 func_800A0BAC = 0x800A0BAC; // ai_branch_logic - AI branch handler
 gfx_lui_setup = 0x800A12D4; // type:func graphics register setup
-func_800A153C = 0x800A153C; // physics_step_b - physics with float ops/branches
+physics_step_forces = 0x800A153C; // type:func physics force accumulation step
 gfx_store_word = 0x800A1660; // type:func graphics store helper
-func_800A17F4 = 0x800A17F4; // audio_branch - audio conditional handler
+audio_branch_handler = 0x800A17F4; // type:func audio conditional handler
 func_800A19E4 = 0x800A19E4; // ai_branch - AI branch handler
 gfx_lui = 0x800A1D38; // type:func graphics register load
-func_800A214C = 0x800A214C; // physics_float_branch - physics float conditional
+physics_contact_test = 0x800A214C; // type:func physics contact conditional test
 gfx_store = 0x800A2564; // type:func graphics store helper
-func_800A27AC = 0x800A27AC; // audio_branch_b - audio conditional handler
-func_800A29A8 = 0x800A29A8; // physics_float_branch_b - physics float conditional
+audio_branch_handler_b = 0x800A27AC; // type:func audio conditional handler
+physics_force_limit = 0x800A29A8; // type:func physics force limit conditional
 func_800A2B30 = 0x800A2B30; // ai_branch_b - AI branch handler
 gfx_store_b = 0x800A2D1C; // type:func graphics store helper
-func_800A2E64 = 0x800A2E64; // audio_branch_c - audio conditional handler
+audio_branch_handler_c = 0x800A2E64; // type:func audio conditional handler
 gfx_lui_b = 0x800A30AC; // type:func graphics register load
 func_800C8A00 = 0x800C8A00; // track_logic - track handling logic
-func_800F4604 = 0x800F4604; // physics_chunk - large physics routine
+physics_update_all = 0x800F4604; // type:func large physics update routine
 graphics_chunk = 0x800F497C; // type:func graphics routine
 graphics_chunk_b = 0x800F4B8C; // type:func graphics routine
-func_800F4D94 = 0x800F4D94; // audio_chunk - audio routine
+audio_update_a = 0x800F4D94; // type:func audio update routine
 func_800F4FEC = 0x800F4FEC; // ai_chunk - AI routine
 func_800F54C0 = 0x800F54C0; // ai_chunk_b - AI routine
 graphics_chunk_c = 0x800F7344; // type:func graphics routine
-func_800F73FC = 0x800F73FC; // audio_chunk_b - audio routine
-func_800F7454 = 0x800F7454; // physics_chunk_b - physics routine
+audio_update_b = 0x800F73FC; // type:func audio update routine
+physics_post_update = 0x800F7454; // type:func physics post-update routine
 func_800F7C28 = 0x800F7C28; // ai_chunk_c - AI routine
-func_800F7E70 = 0x800F7E70; // audio_chunk_c - audio routine
+audio_update_c = 0x800F7E70; // type:func audio update routine
 graphics_chunk_d = 0x800F7F44; // type:func graphics routine
 func_800F8588 = 0x800F8588; // ai_chunk_d - AI routine
-func_800F8754 = 0x800F8754; // audio_chunk_d - audio routine
+audio_update_d = 0x800F8754; // type:func audio update routine
 func_800F87AC = 0x800F87AC; // ai_chunk_e - AI routine
 func_8010FBF4 = 0x8010FBF4; // save_context_stub - stack frame setup helper
 func_8010FC1C = 0x8010FC1C; // call_80007C68 - helper calling 0x80007C68 with size 64
@@ -1087,27 +1087,27 @@ func_800C3594 = 0x800C3594; // from overnight1 decompilation
 // render_large already defined above
 // render_object already defined above
 
-// Audio/sound functions  
-func_80097384 = 0x80097384; // type:func audio_helper
-func_800974EC = 0x800974EC; // type:func audio_processing - sound processing helper
-func_80095360 = 0x80095360; // type:func play_sfx - sound effect playback
-func_80095960 = 0x80095960; // type:func bgm_playback - background music handler
-func_8008A750 = 0x8008A750; // type:func audio_wrapper - audio system wrapper
-func_800B37E8 = 0x800B37E8; // type:func sound_control - main sound control
+// Audio/sound functions (now renamed - see named definitions earlier in file)
+audio_helper = 0x80097384; // type:func audio processing helper
+// audio_task_complete at 0x800974EC - see audio system section
+// sfx_play at 0x80095360 - defined above
+// bgm_playback at 0x80095960 - defined above
+// audio_call_wrapper at 0x8008A750 - defined above
+// sound_control at 0x800B37E8 - see audio system section
 
-// Vehicle/physics functions
-func_80097798 = 0x80097798; // type:func vehicle_physics - collision detection helper
-func_800B8C14 = 0x800B8C14; // type:func update_car_physics - physics update
-func_800B9000 = 0x800B9000; // type:func apply_forces - physics force application  
-func_800B9400 = 0x800B9400; // type:func integrate_position - position integration
-func_800BA000 = 0x800BA000; // type:func tire_physics - tire simulation
-func_800BA800 = 0x800BA800; // type:func suspension_update - suspension calc
+// Vehicle/physics functions (arcade: drivsym.c, tires.c)
+vehicle_physics_sync = 0x80097798; // type:func vehicle physics/collision sync
+update_car_physics = 0x800B8C14; // type:func main car physics update (arcade: sym/drivsym.c)
+apply_forces = 0x800B9000; // type:func physics force application (arcade: regular)
+integrate_position = 0x800B9400; // type:func position integration (arcade: positions)
+tire_physics = 0x800BA000; // type:func tire force simulation (arcade: dotireforce)
+suspension_update = 0x800BA800; // type:func suspension compression calc (arcade: suscomp)
 
-// Collision functions
-func_800BB000 = 0x800BB000; // type:func check_collisions - main collision check
-func_800BB400 = 0x800BB400; // type:func car_car_collision - car-to-car collision
-func_800BB800 = 0x800BB800; // type:func car_wall_collision - car-to-wall collision
-func_800BBC00 = 0x800BBC00; // type:func point_in_body - point inside body test
+// Collision functions (arcade: collision.c)
+check_collisions = 0x800BB000; // type:func main collision detection (arcade: collision)
+car_car_collision = 0x800BB400; // type:func car-to-car collision (arcade: setFBCollisionForce)
+car_wall_collision = 0x800BB800; // type:func car-to-wall collision (arcade: ForceApart)
+point_in_body = 0x800BBC00; // type:func point inside collision box test (arcade: PointInBody)
 
 // AI/drone functions
 func_800A0000 = 0x800A0000; // type:func do_drones - AI main update
@@ -1119,4 +1119,68 @@ func_800A1800 = 0x800A1800; // type:func avoid_obstacles - obstacle avoidance
 func_800C0000 = 0x800C0000; // type:func check_cps - checkpoint detection
 
 // Additional game code functions
-func_800140B0 = 0x800140B0; // type:func read_controllers - controller input reading
+read_controllers = 0x800140B0; // type:func controller input reading - controller input reading
+
+// ============================================
+// Menu/UI Functions (from game.c analysis 2025-12-29)
+// ============================================
+
+// UI Drawing Functions
+draw_text = 0x800C734C; // type:func draw text string at x,y with color
+draw_ui_element = 0x800C7110; // type:func draw UI sprite element (id, x, y, w, h, alpha)
+
+// HUD Functions
+hud_setup = 0x800C8B8C; // type:func HUD initialization with positioning and parameters
+hud_speed_display = 0x800C84FC; // type:func render speedometer with speed value
+hud_element_render = 0x800C7350; // type:func render HUD element by ID
+hud_tachometer_update = 0x800C8DA0; // type:func update tachometer display
+hud_full_update = 0x800C8F00; // type:func full HUD refresh
+hud_nitro_update = 0x800C8E50; // type:func update nitro gauge
+hud_fade_effect = 0x800C8F80; // type:func HUD fade/transition effect
+
+// Menu System Functions
+menu_system_update = 0x800CF000; // type:func main menu system update (large, ~12KB)
+menu_render = 0x800D0000; // type:func render active menu screen
+menu_input_handle = 0x800D1000; // type:func process menu controller input
+menu_track_select = 0x800D2000; // type:func track selection screen handler
+menu_car_select = 0x800D3000; // type:func car selection screen handler
+menu_options = 0x800D4000; // type:func options menu handler
+menu_saveload = 0x800D5000; // type:func save/load menu handler
+menu_controller_config = 0x800D6000; // type:func controller config menu handler
+menu_prev = 0x800D7000; // type:func navigate to previous menu item
+menu_confirm = 0x800D7100; // type:func confirm current menu selection
+menu_toggle = 0x800D7200; // type:func toggle menu option value
+menu_audio_options = 0x800D7300; // type:func audio options sub-menu
+menu_credits = 0x800D7400; // type:func credits screen handler
+menu_load = 0x800D7500; // type:func load menu data/resources
+menu_stub_empty = 0x800D7600; // type:func empty menu stub function
+menu_main = 0x800D7700; // type:func main menu entry point
+menu_state_dispatch = 0x800D7800; // type:func menu state machine dispatcher
+
+// Display/Visibility Functions
+display_enable = 0x800C8FA4; // type:func enable/disable display output
+object_render_cleanup = 0x800C7308; // type:func cleanup object render reference
+scene_cleanup_slots = 0x800C70BC; // type:func scene slot cleanup
+
+// Player/Mode Functions (UI-related)
+player_mode_set = 0x800C84C0; // type:func set player display mode
+player_state_set = 0x800C9158; // type:func set player UI state
+player_cleanup_slots = 0x800C90E0; // type:func cleanup player mode slots
+
+// Resource Management (menu-related)
+speed_set = 0x800C9210; // type:func set menu animation speed
+resource_slots_clear_multiple = 0x800C937C; // type:func clear multiple resource slots
+resource_type_select = 0x800C9334; // type:func select resource type for menu
+speed_mode0_wrapper = 0x800C92DC; // type:func speed mode 0 wrapper
+speed_mode1_wrapper = 0x800C93AC; // type:func speed mode 1 wrapper
+
+// Replay UI Functions
+replay_ui_draw = 0x800D8000; // type:func draw replay interface elements
+
+// State Handlers (menu-related states)
+state_menu_handler = 0x800FC0EC; // type:func GSTATE_MENU handler (UI/input chain)
+state_change_preprocess = 0x800CA300; // type:func state change preprocessing (HUD fade)
+game_state_check_handler = 0x800FBBFC; // type:func check game state for menu transitions
+
+// Sync/Registration (menu integration)
+sync_entry_register = 0x800C9194; // type:func create and register sync entry for menu state

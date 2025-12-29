@@ -14,6 +14,7 @@
 #define DRONE_H
 
 #include "types.h"
+#include "game/maxpath.h"
 
 /* Drone types */
 #define DRONE_TYPE_HUMAN    0   /* Player-controlled */
@@ -28,6 +29,14 @@
 #define CATCHUP_DISTANCE    500.0f  /* Distance for catchup to activate */
 #define CATCHUP_MAX_BOOST   1.1f    /* Max speed boost */
 #define CATCHUP_MIN_BOOST   0.9f    /* Min speed (brake) */
+
+/* Maxpath constants */
+#define PATH_LOOKAHEAD  80.0f   /* Look-ahead for steering */
+#define PATH_SPEED_SCALE 1.0f   /* Speed scaling factor */
+
+/* Arcade-compatible aliases */
+typedef MaxPathPoint MPATH;
+typedef MaxPathHeader MPHEADER;
 
 /* Drone control structure */
 typedef struct DroneControl {
@@ -49,16 +58,6 @@ typedef struct DroneControl {
     s8      is_active;          /* Is drone active? */
     u8      pad[2];
 } DroneControl;
-
-/* Maxpath waypoint structure */
-typedef struct MaxPathPoint {
-    f32     pos[3];             /* World position */
-    f32     dir[3];             /* Direction at this point */
-    f32     speed_hint;         /* Suggested speed */
-    f32     width;              /* Track width at point */
-    s16     flags;              /* Special flags */
-    s16     next;               /* Next waypoint index */
-} MaxPathPoint;
 
 /* External drone data */
 extern DroneControl drone_ctl[];

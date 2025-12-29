@@ -100,8 +100,8 @@ void drone_init_car(s32 car_index) {
  * @param record_mode Recording mode (-1 = none)
  */
 void drone_init_maxpath(s32 record_mode) {
-    /* Maxpath waypoints are loaded from track data */
-    /* For N64, these are in the compressed game code */
+    /* Delegate to maxpath system init */
+    maxpath_init(record_mode);
 }
 
 /**
@@ -356,8 +356,23 @@ void drone_assign_all(void) {
  * drone_assign_default_paths - Assign default maxpath to drones
  */
 void drone_assign_default_paths(void) {
-    /* Each drone gets assigned a path segment based on their position */
-    /* In arcade, there are multiple paths (fast/slow/medium) */
+    s32 i;
+    s32 path_index;
+
+    if (gNumMPaths <= 0) {
+        return;
+    }
+
+    for (i = 0; i < num_active_cars; i++) {
+        path_index = i % gNumMPaths;
+
+        gMPCtl[i].path_index = path_index;
+        gMPCtl[i].active = 1;
+
+        if (drone_ctl[i].drone_type == DRONE_TYPE_DRONE) {
+            drone_ctl[i].is_active = 1;
+        }
+    }
 }
 
 /**
