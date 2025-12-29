@@ -46,51 +46,51 @@ extern void *callback_data[];
 extern void *object_pool[];
 extern void *pool_secondary[];
 extern void *model_data_array[];
-extern s8 D_80156D39[];
+extern s8 player_state_array[];
 extern void *sound_handles[];
-extern s32 D_80158104;
-extern s32 D_80158108;
-extern s32 D_8015810C;
+extern s32 controller_input_1;
+extern s32 controller_input_2;
+extern s32 controller_input_3;
 extern void *sound_volumes[];
-extern s32 D_801581E4;
+extern s32 reverb_type;
 extern void *D_801581EC[];
 extern void *D_80158208[];
 extern f32 audio_duck_targets[5];
 extern f32 listener_right_vec[3];  /* Listener right vector */
 extern s32 speed_of_sound;
-extern s32 D_80158290;
-extern s32 D_801582A0;
+extern s32 doppler_scale;
+extern s32 audio_zone_type;
 extern s32 current_race_time;
 extern void *car_pointers[];
 extern s32 race_car_count;
-extern s32 D_801582E4;
+extern s32 track_total_dist;
 extern s32 total_lap_count;
 extern s32 race_finish_order;
-extern s32 D_801582F0;
-extern s32 D_801582F4;
-extern s32 D_801582F8;
+extern s32 race_complete_flag;
+extern s32 results_screen_state;
+extern s32 results_anim_frame;
 extern s32 leaderboard_track;
 extern s32 num_input_players;
 extern void *sprite_table_data[];
-extern s32 D_80159014;
+extern s32 sprite_table_valid;
 extern s32 D_80159018;
 extern s32 font_char_width;
 extern s32 num_players_active;
 extern void *multi_view_cameras[];
-extern s32 D_80159028;
-extern s32 D_8015902C;
-extern s32 D_80159030;
-extern s32 D_80159034;
-extern s32 D_80159038;
-extern s32 D_8015903C;
+extern s32 dial_y_pos;
+extern s32 speed_mph_scale;
+extern s32 lap_display_x;
+extern s32 lap_display_y;
+extern s32 position_display_x;
+extern s32 position_display_y;
 extern s32 camera_script_time;
 extern s32 cam_script_delta;
-extern s32 D_80159048;
-extern s32 D_8015904C;
+extern s32 minimap_x;
+extern s32 minimap_y;
 extern s32 minimap_scale;
 extern s32 camera_frame_count;
 extern f32 camera_keyframes[16][6];  /* Script keyframes */
-extern s32 D_8015905C;
+extern s32 message_y_pos;
 extern s32 message_active;
 extern s32 message_id;
 extern s32 message_timer;
@@ -100,41 +100,41 @@ extern s32 input_repeat_delay;
 extern s32 menu_selection;
 extern s32 menu_item_count;
 extern s32 menu_items_ptr;
-extern s32 D_8015921C;
+extern s32 menu_wrap_around;
 extern s32 menu_stack_depth;
 extern void *menu_stack[];
 extern s32 menu_visible_flag;
 extern s32 current_menu_id;
 extern s32 transition_state;
 extern s32 transition_anim_frame;
-extern s32 D_80159240;
+extern s32 target_menu_id;
 extern s32 transition_x_offset;
 extern s32 transition_alpha;
 extern void *menu_item_alpha[];
-extern s32 D_80159260;
+extern s32 highlight_x;
 extern s32 transition_y_offset;
-extern s32 D_80159268;
+extern s32 highlight_width;
 extern s32 cursor_anim_frame;
 extern s32 credits_scroll_state;
 extern s32 scroll_offset;
 extern s32 scroll_delay_timer;
 extern s32 pause_frame_count;
 extern s32 scroll_pixel_offset;
-extern s32 D_80159294;
+extern s32 text_render_buffer;
 extern void *item_highlight_state[];
-extern s32 D_801592C0;
-extern s32 D_801592D0;
-extern s32 D_801592D4;
-extern s32 D_801592D8;
+extern s32 menu_target_y;
+extern s32 slider_snap_value;
+extern s32 slider_min;
+extern s32 slider_max;
 extern s32 slider_percent;
 extern s32 confirm_dialog_active;
 extern s32 confirm_dialog_anim;
 extern s32 confirm_dialog_selection;
 extern s32 message_ptr;
 extern s32 button_press_count;
-extern s32 D_801592F4;
-extern s32 D_801592F8;
-extern s32 D_801592FC;
+extern s32 dialog_closing_state;
+extern s32 dialog_anim_frame;
+extern s32 dialog_closed_flag;
 extern s32 sfx_volume;
 extern s32 music_volume;
 extern s32 controller_config;
@@ -152,7 +152,7 @@ extern s32 setting_difficulty;
 extern s32 setting_lap_count;
 extern s32 ai_difficulty;
 extern s32 save_load_dialog;
-extern void *D_80159344[];
+extern void *settings_action_table[];
 extern s32 button_remap_state;
 extern s32 remap_action_idx;
 extern s32 remap_timeout_frames;
@@ -161,11 +161,11 @@ extern s32 rumble_timer;
 extern s32 motor_vibe_state;
 extern void *motor_pak_handles[];
 extern void *texture_data_array[];
-extern s32 D_80159414;
+extern s32 effect_update_flag;
 extern void *effect_handle_array[];
 extern s32 active_sound_list;
-extern s32 D_80159480;
-extern s32 D_80159500;
+extern s32 pause_menu_items;
+extern s32 options_menu_items;
 extern s32 net_host_state;
 extern s32 session_id;
 extern s32 net_player_count;
@@ -456,7 +456,7 @@ extern u32 frame_counter;   /* Frame counter */
 extern s16 D_8003EB70;   /* Wait flag */
 extern u32 D_8003E8E8;   /* Timer/tick */
 extern u32 D_8003AFB8;   /* Timing constant (float as u32) */
-extern u32 D_80159438;   /* Some state value */
+extern u32 attract_render_state;   /* Some state value */
 extern u32 state_value_src;   /* Another state value */
 extern u32 state_value_copy;   /* State copy */
 extern s8  D_801146C4[]; /* Sound params array */
@@ -518,7 +518,7 @@ s32 game_loop(void) {
     }
 
     /* Clear render state and call transition handler */
-    D_80159438 = 0;
+    attract_render_state = 0;
     attract_or_transition();
 
     /* Save state value */
@@ -767,7 +767,7 @@ void playgame_handler(void) {
         /* Clear various flags */
         D_801461F8 = 0;
         D_80146205 = 0;
-        D_80159414 = 0;
+        effect_update_flag = 0;
         render_update_flag = 0;
         object_state_flag = 0;
         physics_update_flag = 0;
@@ -3231,7 +3231,7 @@ void player_indexed_update(void *a0, void *a1) {
  */
 s8 player_state_get(s32 a0) {
     model_transform(a0, 0, 0);
-    return D_80156D39[a0 * 20];
+    return player_state_array[a0 * 20];
 }
 
 /*
@@ -13114,7 +13114,7 @@ void player_update_state(void *player) {
  * Calculates respawn position based on last checkpoint.
  * Places car on track near last valid position.
  */
-extern void *D_80158FD0[16];    /* Checkpoint data array */
+extern void *checkpoint_data_array[16];    /* Checkpoint data array */
 
 void player_get_respawn_pos(void *player, f32 *respawnPos) {
     s32 lastCheckpoint;
@@ -13132,7 +13132,7 @@ void player_get_respawn_pos(void *player, f32 *respawnPos) {
     }
 
     /* Get checkpoint data */
-    checkpoint = D_80158FD0[lastCheckpoint];
+    checkpoint = checkpoint_data_array[lastCheckpoint];
     if (checkpoint == NULL) {
         /* Default to origin if no checkpoint data */
         respawnPos[0] = 0.0f;
@@ -13271,7 +13271,7 @@ void player_update(void *player, f32 dt) {
  *   0x20: bonus time (u32)
  *   0x24: is finish line (s32)
  */
-extern s32 D_801582B4;          /* Total checkpoints */
+extern s32 total_checkpoints;          /* Total checkpoints */
 extern s32 D_801582B8;          /* Finish line checkpoint index */
 extern void voice_play(s32 voiceId); /* Play voice */
 
@@ -13340,7 +13340,7 @@ void checkpoint_check_collision(void *car, void *checkpoint) {
     *carCpIndex = cpIndex + 1;
 
     /* Check for lap completion */
-    if (*carCpIndex >= D_801582B4) {
+    if (*carCpIndex >= total_checkpoints) {
         *carCpIndex = 0;  /* Wrap to first checkpoint */
     }
 
@@ -13458,7 +13458,7 @@ void race_calc_positions(void) {
         return;
     }
 
-    trackDist = D_801582E4;
+    trackDist = track_total_dist;
     if (trackDist <= 0.0f) {
         trackDist = 10000.0f;  /* Default track length */
     }
@@ -13617,7 +13617,7 @@ void race_finish_player(void *player) {
 
     /* Check if all cars finished */
     if (race_finish_order >= race_car_count) {
-        D_801582F0 = 1;  /* Race complete */
+        race_complete_flag = 1;  /* Race complete */
         race_show_results();  /* Show results */
     }
 }
@@ -13640,8 +13640,8 @@ void race_show_results(void) {
     s32 finished;
 
     /* Set results screen state */
-    D_801582F4 = 1;
-    D_801582F8 = 0;
+    results_screen_state = 1;
+    results_anim_frame = 0;
 
     /* Trigger screen transition */
     screen_transition(5);  /* Results screen type */
@@ -23478,7 +23478,7 @@ void voice_stop(void) {
  * Values 0.0-1.0
  */
 extern f32 audio_bus_levels[8][4];    /* Bus levels [bus][channel] */
-extern s32 D_801581E0;          /* Bus dirty flags */
+extern s32 bus_dirty_flags;          /* Bus dirty flags */
 
 void audio_bus_mix(s32 bus, f32 *levels) {
     f32 left, right, center, sub;
@@ -23517,7 +23517,7 @@ void audio_bus_mix(s32 bus, f32 *levels) {
     audio_bus_levels[bus][3] = sub;
 
     /* Mark bus as dirty */
-    D_801581E0 |= (1 << bus);
+    bus_dirty_flags |= (1 << bus);
 
     /* Calculate stereo mix (N64 is stereo only, no center/sub) */
     /* Center channel mixed equally to L/R */
@@ -23551,7 +23551,7 @@ void audio_bus_mix(s32 bus, f32 *levels) {
  *
  * N64 audio uses AL_FX_BIGROOM, AL_FX_SMALLROOM, etc.
  */
-extern f32 D_801581E8;          /* Current reverb amount */
+extern f32 reverb_amount;          /* Current reverb amount */
 
 void reverb_setup(s32 reverbType, f32 amount) {
     f32 decay, diffusion, wet;
@@ -23566,8 +23566,8 @@ void reverb_setup(s32 reverbType, f32 amount) {
     if (amount > 1.0f) amount = 1.0f;
 
     /* Store current settings */
-    D_801581E4 = reverbType;
-    D_801581E8 = amount;
+    reverb_type = reverbType;
+    reverb_amount = amount;
 
     /* Get reverb parameters based on type */
     switch (reverbType) {
@@ -23658,10 +23658,10 @@ void audio_pause(s32 pause) {
  *   3 = High priority (music ducks)
  *   4 = Critical (everything ducks except voice)
  */
-extern s32 D_80158228;          /* Current duck priority */
-extern f32 D_8015822C;          /* Duck amount (0-1) */
+extern s32 duck_priority;          /* Current duck priority */
+extern f32 duck_amount;          /* Duck amount (0-1) */
 extern f32 audio_duck_current[5];       /* Duck current values */
-extern s32 D_80158258;          /* Duck timer */
+extern s32 duck_timer;          /* Duck timer */
 
 void audio_ducking(s32 priority) {
     f32 duckAmount;
@@ -23674,7 +23674,7 @@ void audio_ducking(s32 priority) {
     if (priority > 4) priority = 4;
 
     /* Store priority */
-    D_80158228 = priority;
+    duck_priority = priority;
 
     /* Calculate duck amount based on priority */
     switch (priority) {
@@ -23698,7 +23698,7 @@ void audio_ducking(s32 priority) {
             break;
     }
 
-    D_8015822C = duckAmount;
+    duck_amount = duckAmount;
 
     /* Set duck targets per bus */
     /* Bus 0 = Music */
@@ -23755,7 +23755,7 @@ void audio_ducking(s32 priority) {
 }
 
     /* Update timer */
-    D_80158258++;
+    duck_timer++;
 }
 
 /*
@@ -23943,7 +23943,7 @@ void audio_spatialize(s32 handle, f32 *pos, f32 *velocity) {
         closingSpeed = relVelListener - relVelSource;
 
         /* Doppler ratio */
-        doppler = (speed_of_sound + closingSpeed * D_80158290) / speed_of_sound;
+        doppler = (speed_of_sound + closingSpeed * doppler_scale) / speed_of_sound;
 
         /* Clamp doppler to reasonable range */
         if (doppler < 0.5f) doppler = 0.5f;
@@ -24132,7 +24132,7 @@ f32 audio_occlusion(f32 *listenerPos, f32 *sourcePos) {
     occlusion = 1.0f;
 
     /* Check zone-based occlusion */
-    switch (D_801582A0) {
+    switch (audio_zone_type) {
         case 0:  /* Normal outdoor */
             /* No extra occlusion */
             break;
@@ -30807,7 +30807,7 @@ void draw_ui_element(s32 elementId, s32 x, s32 y, s32 w, s32 h, s32 alpha) {
     void **spriteTable;
     void *sprite;
 
-    if (sprite_table_data == NULL || D_80159014 == NULL) {
+    if (sprite_table_data == NULL || sprite_table_valid == NULL) {
         return;
     }
 
@@ -30970,13 +30970,13 @@ void draw_speedometer(f32 speed) {
     s32 digitalX, digitalY;
 
     /* Convert speed to MPH */
-    speedMph = (s32)(speed * D_8015902C);
+    speedMph = (s32)(speed * speed_mph_scale);
     if (speedMph < 0) speedMph = 0;
     if (speedMph > 200) speedMph = 200;
 
     /* Get dial position */
     dialX = multi_view_cameras;
-    dialY = D_80159028;
+    dialY = dial_y_pos;
 
     /* Draw speedometer background */
     draw_ui_element(0, dialX, dialY, 16, 16, 255);  /* Element 0 = speedometer bg */
@@ -31013,8 +31013,8 @@ void draw_lap_counter(s32 currentLap, s32 totalLaps) {
     s32 x, y;
     char lapText[16];
 
-    x = D_80159030;
-    y = D_80159034;
+    x = lap_display_x;
+    y = lap_display_y;
 
     /* Draw lap icon/background */
     draw_ui_element(2, x, y, 16, 16, 255);  /* Element 2 = lap indicator */
@@ -31051,8 +31051,8 @@ void draw_position(s32 position) {
     s32 x, y;
     char *suffix;
 
-    x = D_80159038;
-    y = D_8015903C;
+    x = position_display_x;
+    y = position_display_y;
 
     /* Draw position background */
     draw_ui_element(3, x, y, 16, 16, 255);  /* Element 3 = position indicator */
@@ -31138,8 +31138,8 @@ void draw_minimap(void *player) {
     f32 mapX, mapY;
     s32 dotX, dotY;
 
-    x = D_80159048;
-    y = D_8015904C;
+    x = minimap_x;
+    y = minimap_y;
 
     /* Draw minimap frame/background */
     draw_ui_element(6, x, y, 16, 16, 255);  /* Element 6 = minimap frame */
@@ -31216,7 +31216,7 @@ void draw_message(s32 messageId) {
     /* Center horizontally */
     charWidth = font_char_width;
     x = camera_keyframes - (msgLen * charWidth) / 2;
-    y = D_8015905C;
+    y = message_y_pos;
 
     /* Draw message */
     draw_text(message, x, y, 255);
@@ -31431,7 +31431,7 @@ void menu_cursor_move(s32 direction) {
     currentIndex = menu_selection;
     itemCount = menu_item_count;
     menuItems = (s32 *)menu_items_ptr;
-    wrapAround = D_8015921C;
+    wrapAround = menu_wrap_around;
 
     if (itemCount <= 0) {
         return;
@@ -31714,7 +31714,7 @@ void menu_transition(s32 toMenuId) {
     /* Start transition animation */
     transition_state = 2;  /* Transition state: switching */
     transition_anim_frame = 0;  /* Animation frame */
-    D_80159240 = toMenuId;  /* Target menu */
+    target_menu_id = toMenuId;  /* Target menu */
 
     /* Load menu data */
     switch (toMenuId) {
@@ -31723,11 +31723,11 @@ void menu_transition(s32 toMenuId) {
             menu_item_count = 5;  /* Item count */
             break;
         case 1:  /* Pause menu */
-            menu_items_ptr = (u32)&D_80159480;  /* Pause menu items */
+            menu_items_ptr = (u32)&pause_menu_items;  /* Pause menu items */
             menu_item_count = 4;
             break;
         case 2:  /* Options menu */
-            menu_items_ptr = (u32)&D_80159500;  /* Options items */
+            menu_items_ptr = (u32)&options_menu_items;  /* Options items */
             menu_item_count = 8;
             break;
         case 3:  /* Track select */
@@ -31865,7 +31865,7 @@ void menu_animation_update(void) {
     }
 
     /* Animate highlight bar */
-    highlightX = D_80159260;
+    highlightX = highlight_x;
     targetY = (f32)(menu_selection * 24 + 80);  /* 24px per item, 80px top offset */
     if (transition_y_offset != targetY) {
         f32 diff;
@@ -31878,7 +31878,7 @@ void menu_animation_update(void) {
         transition_y_offset = transition_y_offset + diff;
     }
     /* Pulse highlight width */
-    D_80159268 = 150.0f + 10.0f * sinf((f32)cursor_anim_frame * 0.1f);
+    highlight_width = 150.0f + 10.0f * sinf((f32)cursor_anim_frame * 0.1f);
     cursor_anim_frame = cursor_anim_frame + 1;
 }
 
@@ -32070,7 +32070,7 @@ void menu_text_scroll(char *text, s32 maxWidth) {
     scroll_pixel_offset = scrollOffset * charWidth;  /* Pixel offset for rendering */
 
     /* Copy visible portion to render buffer */
-    dst = (char *)D_80159294;
+    dst = (char *)text_render_buffer;
     src = text + scrollOffset;
     for (i = 0; i < visibleChars && *src != '\0'; i++) {
         *dst = *src;
@@ -32122,7 +32122,7 @@ void menu_highlight_set(s32 itemIndex) {
     /* Otherwise animation update will smooth it */
 
     /* Store target for animation */
-    D_801592C0 = targetY;
+    menu_target_y = targetY;
 
     /* Reset highlight pulse phase */
     cursor_anim_frame = 0;
@@ -32334,9 +32334,9 @@ s32 menu_slider_clamp(s32 current, s32 min, s32 max) {
     }
 
     /* Store for visual feedback */
-    D_801592D0 = snapValue;
-    D_801592D4 = min;
-    D_801592D8 = max;
+    slider_snap_value = snapValue;
+    slider_min = min;
+    slider_max = max;
 
     /* Calculate fill percentage for rendering */
     if (range > 0) {
@@ -32592,8 +32592,8 @@ s32 menu_confirm_dialog(char *message) {
  */
 void menu_dialog_close(void) {
     /* Start close animation */
-    D_801592F4 = 1;  /* Closing state */
-    D_801592F8 = 0;  /* Animation frame */
+    dialog_closing_state = 1;  /* Closing state */
+    dialog_anim_frame = 0;  /* Animation frame */
     sound_play_menu(17);  /* Dialog close sound */
 
     /* Actually close after short delay */
@@ -32603,7 +32603,7 @@ void menu_dialog_close(void) {
     button_press_count = 0;  /* Reset button count */
 
     /* Return focus to menu */
-    D_801592FC = 1;  /* Flag that dialog just closed */
+    dialog_closed_flag = 1;  /* Flag that dialog just closed */
 }
 
 /*
@@ -33037,7 +33037,7 @@ void menu_options_screen(void) {
     }
     /* Handle selection */
     else if (input == 1) {
-        action = D_80159344[selectedItem];
+        action = settings_action_table[selectedItem];
         switch (action) {
             case 0:  /* Audio settings */
                 menu_transition(10);  /* Go to audio submenu */
@@ -34535,9 +34535,9 @@ void player_join_screen(void) {
 
     /* Read all controller inputs */
     controllerInput[0] = sound_handles;
-    controllerInput[1] = D_80158104;
-    controllerInput[2] = D_80158108;
-    controllerInput[3] = D_8015810C;
+    controllerInput[1] = controller_input_1;
+    controllerInput[2] = controller_input_2;
+    controllerInput[3] = controller_input_3;
 
     /* Check each player slot */
     for (i = 0; i < numPlayers; i++) {
@@ -37829,7 +37829,7 @@ void trail_effect(void *object) {
  * Renders falling rain particles
  */
 void weather_rain(void) {
-    extern u8 D_80156800[];    /* Rain particle buffer */
+    extern u8 rain_particle_buffer[];    /* Rain particle buffer */
     extern s32 D_80156C00;     /* Active rain drops */
     extern f32 camera_pos[];   /* Camera position */
     s32 i;
@@ -37840,7 +37840,7 @@ void weather_rain(void) {
 
     /* Update and spawn rain drops around camera */
     for (i = 0; i < 100; i++) {
-        drop = (f32 *)&D_80156800[i * 0x10];
+        drop = (f32 *)&rain_particle_buffer[i * 0x10];
 
         /* Check if drop needs respawn */
         if (drop[1] < 0.0f) {
@@ -37866,7 +37866,7 @@ void weather_rain(void) {
  * Renders falling snow particles with wind drift
  */
 void weather_snow(void) {
-    extern u8 D_80157000[];    /* Snow particle buffer */
+    extern u8 snow_particle_buffer[];    /* Snow particle buffer */
     extern s32 D_80157400;     /* Active snowflakes */
     extern f32 wind_x;     /* Wind X */
     extern f32 wind_z;     /* Wind Z */
@@ -37883,7 +37883,7 @@ void weather_snow(void) {
 
     /* Update and spawn snowflakes */
     for (i = 0; i < 80; i++) {
-        flake = (f32 *)&D_80157000[i * 0x14];
+        flake = (f32 *)&snow_particle_buffer[i * 0x14];
 
         /* Check if flake needs respawn */
         if (flake[1] < 0.0f) {
@@ -37913,10 +37913,10 @@ void weather_snow(void) {
  */
 void weather_fog(f32 density) {
     extern Gfx **gfx_dl_ptr;   /* Display list pointer */
-    extern u8 D_80157500;      /* Fog R */
-    extern u8 D_80157501;      /* Fog G */
-    extern u8 D_80157502;      /* Fog B */
-    extern f32 D_80157504;     /* Current fog density */
+    extern u8 fog_color_r;      /* Fog R */
+    extern u8 fog_color_g;      /* Fog G */
+    extern u8 fog_color_b;      /* Fog B */
+    extern f32 fog_density;     /* Current fog density */
     extern f32 D_80157508;     /* Fog near */
     extern f32 D_8015750C;     /* Fog far */
     Gfx *gfx;
@@ -37928,7 +37928,7 @@ void weather_fog(f32 density) {
         density = 1.0f;
     }
 
-    D_80157504 = density;
+    fog_density = density;
 
     /* Calculate fog range based on density */
     /* Higher density = closer fog start */
@@ -37942,7 +37942,7 @@ void weather_fog(f32 density) {
     gfx = *gfx_dl_ptr;
 
     /* Set fog color */
-    gDPSetFogColor(gfx++, D_80157500, D_80157501, D_80157502, 255);
+    gDPSetFogColor(gfx++, fog_color_r, fog_color_g, fog_color_b, 255);
 
     /* Set fog parameters - simplified */
     gSPFogPosition(gfx++, fogMin, fogMax);
@@ -38156,7 +38156,7 @@ void lens_flare(f32 *sunPos) {
  */
 void environment_map_setup(void *object) {
     extern Gfx **gfx_dl_ptr;
-    extern u8 D_80158200[];    /* Envmap texture */
+    extern u8 envmap_texture[];    /* Envmap texture */
     u8 *objData = (u8 *)object;
     Gfx *gfx;
     s32 useEnvmap;
@@ -38181,7 +38181,7 @@ void environment_map_setup(void *object) {
     gDPSetCombineMode(gfx++, G_CC_MODULATERGBA, G_CC_MODULATERGBA);
 
     /* Set envmap texture */
-    gDPSetTextureImage(gfx++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 32, D_80158200);
+    gDPSetTextureImage(gfx++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 32, envmap_texture);
 
     *gfx_dl_ptr = gfx;
 }
@@ -38195,12 +38195,12 @@ void environment_map_setup(void *object) {
  */
 void reflection_setup(void) {
     extern Gfx **gfx_dl_ptr;
-    extern s32 D_80158400;     /* Reflection enabled */
+    extern s32 reflection_enabled;     /* Reflection enabled */
     extern f32 D_80158404;     /* Reflection plane Y */
-    extern f32 D_80158408;     /* Reflection intensity */
+    extern f32 reflection_intensity;     /* Reflection intensity */
     Gfx *gfx;
 
-    if (!D_80158400) {
+    if (!reflection_enabled) {
         return;
     }
 
@@ -38211,7 +38211,7 @@ void reflection_setup(void) {
     gDPSetCombineMode(gfx++, G_CC_MODULATEIA, G_CC_MODULATEIA);
 
     /* Set reflection alpha */
-    gDPSetPrimColor(gfx++, 0, 0, 255, 255, 255, (s32)(D_80158408 * 128.0f));
+    gDPSetPrimColor(gfx++, 0, 0, 255, 255, 255, (s32)(reflection_intensity * 128.0f));
 
     *gfx_dl_ptr = gfx;
 }
@@ -38263,7 +38263,7 @@ void water_surface_render(void) {
 void skybox_render(void *camera) {
     extern Gfx **gfx_dl_ptr;
     extern u8 D_80158600[];    /* Skybox texture data */
-    extern s32 D_80158604;     /* Skybox type: 0=day, 1=sunset, 2=night */
+    extern s32 skybox_type;     /* Skybox type: 0=day, 1=sunset, 2=night */
     u8 *camData = (u8 *)camera;
     Gfx *gfx;
     f32 *camPos;
@@ -38277,7 +38277,7 @@ void skybox_render(void *camera) {
     gfx = *gfx_dl_ptr;
     camPos = (f32 *)(camData + 0x00);
     camRot = (f32 *)(camData + 0x30);
-    skyType = D_80158604;
+    skyType = skybox_type;
 
     /* Disable Z buffer for skybox (always behind) */
     gDPSetRenderMode(gfx++, G_RM_OPA_SURF, G_RM_OPA_SURF2);
