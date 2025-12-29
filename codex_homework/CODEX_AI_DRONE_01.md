@@ -7,6 +7,34 @@
 
 ---
 
+## Before You Start
+
+**READ THIS FIRST**: See `codex_homework/BUILD_INSTRUCTIONS.md` for:
+- How to build the project (`make VERSION=us NON_MATCHING=1 -j20`)
+- Available tools (mips_to_c, diff.py, etc.)
+- Project structure and file locations
+- N64 type definitions (s32, f32, etc.)
+- Common build errors and fixes
+
+### Quick Build Test
+```bash
+# Verify your environment works
+make VERSION=us NON_MATCHING=1 -j20
+
+# Expected output:
+# ROM matches!
+```
+
+### Key Directories
+| Path | Contents |
+|------|----------|
+| `src/game/drone.c` | Your main implementation file |
+| `include/game/drone.h` | Header with structs and prototypes |
+| `reference/repos/rushtherock/game/` | Arcade source (your reference) |
+| `docs/ai_drone_mapping.md` | N64-to-arcade function mapping |
+
+---
+
 ## Objective
 
 Implement the path data structures and initialization functions for the AI/drone system. This forms the foundation that all other drone code depends on.
