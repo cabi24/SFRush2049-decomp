@@ -12,8 +12,8 @@
 #include "types.h"
 #include "PR/os_time.h"
 
-/* External data */
-extern OSTimer *__osTimerList;  /* D_8002C3F0: First timer in list */
+/* External data - Timer list head (standard libultra name) */
+extern OSTimer *__osTimerList;  /* 0x8002C3F0 */
 
 /* External functions */
 extern OSTime __osInsertTimer(OSTimer *timer);          /* func_8000C308 */

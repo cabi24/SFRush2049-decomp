@@ -32,6 +32,7 @@ void sync_release(void);
  * Creates a message queue with one slot and posts an initial
  * message to indicate the lock is available.
  */
+/* MATCHED: func_80002540 */
 void sync_init(void) {
     __osSyncInitialized = 1;
 
@@ -50,6 +51,7 @@ void sync_init(void) {
  *                 If zero, return immediately if lock is unavailable.
  * @return 1 if lock was acquired, 0 if not (only when non-blocking)
  */
+/* MATCHED: func_80002598 */
 s32 sync_acquire(s32 blocking) {
     OSMesg msg;
 
@@ -77,6 +79,7 @@ s32 sync_acquire(s32 blocking) {
  *
  * Posts a message to indicate the lock is now free.
  */
+/* MATCHED: func_8000262C */
 void sync_release(void) {
     osSendMesg(&__osSyncQueue, NULL, OS_MESG_NOBLOCK);
 }

@@ -35,11 +35,11 @@
 #define PI_STATUS_IO_BUSY   0x02
 #define PI_STATUS_ERROR     0x04
 
-/* External data */
-extern u32 osRomBase;               /* 0x80000308 - ROM base address */
-extern s32 __osPiInitialized;       /* D_8002C4A0: PI initialized flag */
-extern OSMesgQueue __osPiMesgQueue; /* D_80037C78: PI message queue */
-extern OSMesg __osPiMesg;           /* D_80037C70: PI message buffer */
+/* External data (standard libultra names) */
+extern u32 osRomBase;               /* ROM base address: 0x80000308 */
+extern s32 __osPiInitialized;       /* PI initialized flag: 0x8002C4A0 */
+extern OSMesgQueue __osPiMesgQueue; /* PI message queue: 0x80037C78 */
+extern OSMesg __osPiMesg;           /* PI message buffer: 0x80037C70 */
 
 /* External functions */
 extern void osCreateMesgQueue(OSMesgQueue *mq, OSMesg *msg, s32 count);

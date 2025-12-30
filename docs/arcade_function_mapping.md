@@ -516,3 +516,151 @@ These are candidate renames inferred from comments and module intent; confirm wi
 - `src/game/game.c`: `func_80100E60` -> `stunt_score`
 - `src/game/game.c`: `func_8010190C` -> `combo_multiplier`
 - `src/game/game.c`: `func_80101D8C` -> `trick_detect`
+
+## 18. New Function Matches (2025-12-30 Analysis)
+
+This section documents new function matches identified by comparing arcade source code with N64 decompiled functions.
+
+### MDrive / Physics Pipeline (mdrive.c)
+
+The arcade `mdrive.c` implements the car physics model lifecycle. Key function matches:
+
+| N64 Function/Name | Address | Arcade Equivalent | Confidence | Notes |
+|-------------------|---------|-------------------|------------|-------|
+| `Init_MDrive` | - | `Init_MDrive(S16 mode, S16 drone_index)` | High | Initializes car model state, camera, resurrection data |
+| `Update_MDrive` | - | `Update_MDrive(void)` | High | Reads gas/brake, calls `check_if_finished_resurrecting`, `multicomm`, `update_game_data`, `CheckCameraView` |
+| `init_cars` | - | `init_cars()` | High | Sets up model[] and game_car[] arrays for all MAX_LINKS cars |
+| `fake_init` | - | `fake_init(S16 trk)` | Medium | Attract mode car initialization |
+| `multiinit` | - | `static void multiinit(S16 mode, S16 drone_index)` | High | Helper for Init_MDrive: sets polepos, calls `set_resurrection_data`, `resurrect_car` |
+| `multicomm` | - | `void multicomm(void)` | High | Wraps `communication()` for network sync |
+| `communication` | - | `void communication(void)` | High | Syncs model data with hardware (wheel pos, RPM, controls) |
+| `model_iteration` | - | `void model_iteration(void)` | High | Called by model task: `gnUpdate`, `sndUpdate`, `PotsRead`, network sync |
+
+### Controls System (controls.c)
+
+The arcade `controls.c` is straightforward and matches N64 input handling:
+
+| N64 Function/Name | Address | Arcade Equivalent | Confidence | Notes |
+|-------------------|---------|-------------------|------------|-------|
+| `controls` | - | `void controls(MODELDAT *m)` | High | Reads steering, throttle, brake; applies to model. Handles coast/endgame braking |
+| `initcontrols` | - | `void initcontrols(MODELDAT *m)` | High | Initializes control inputs to defaults (wheel=0, gear=1, throttle=1) |
+
+Key behavior from arcade `controls.c`:
+- `m->dt = m->fastin.modeltime` - delta time from physics timestep
+- `m->steerangle = m->steergain * CTLSCALE * intswangle` - steering angle calculation
+- Brake rolloff at low speeds: `rolloff = (angvel < 2) ? 0.2 : angvel * 0.1`
+- Coast/endgame: gradual brake increase with `pow(.999, dt*200)`
+
+### Resurrection System (resurrect.c)
+
+The arcade `resurrect.c` handles crash/respawn logic:
+
+| N64 Function/Name | Address | Arcade Equivalent | Confidence | Notes |
+|-------------------|---------|-------------------|------------|-------|
+| `resurrect_car` | - | `void resurrect_car(MODELDAT *m)` | High | Places car on valid respawn location using pole positions and quaternion orientation |
+| `set_resurrection_data` | - | `void set_resurrection_data(S16 mode, MODELDAT *m)` | High | Saves position/orientation for respawn |
+| `CheckCrash` | - | `void CheckCrash(S16 drone_index)` | High | Crash detection and respawn trigger |
+| `check_if_finished_resurrecting` | - | `void check_if_finished_resurrecting(void)` | High | Monitors respawn sequence completion |
+| `are_we_dead_or_dying` | - | `BOOL are_we_dead_or_dying(S16 node)` | Medium | State query for death/respawn |
+
+Key data from arcade `resurrect.c`:
+- `pole_pos_offset[MAX_LINKS*2][3]` - Starting line and respawn grid offsets
+- `POLEVDIST`, `POLEHDIST` - Pole position spacing constants
+- Uses quaternions for smooth orientation during respawn
+
+### Select Screens (select.c)
+
+The arcade `select.c` handles track and car selection UI:
+
+| N64 Function/Name | Address | Arcade Equivalent | Confidence | Notes |
+|-------------------|---------|-------------------|------------|-------|
+| `TrackSel` | - | `void TrackSel(void)` | High | Track selection with wheel steering, negotiation for linked play |
+| `CarSel` | - | `void CarSel(void)` (not shown but referenced) | High | Car selection on rotating pads |
+| `InitSelect` | - | `void InitSelect(void)` | High | Loads select mode assets, creates car objects, sets camera |
+| `InitTrkSel` | - | `void InitTrkSel(void)` | High | Initializes global selection state (locked flags, drones, catchup) |
+| `ShowTrackSelect` | - | `void ShowTrackSelect(BOOL active)` | Medium | Creates/removes track selection blit overlay |
+| `TrackSelForce` | - | `void TrackSelForce(void)` | Medium | Steering wheel force feedback during track select |
+| `track_negotiation` | - | `void track_negotiation(void)` | Medium | Network negotiation for linked play track agreement |
+
+Key defines from arcade `select.c`:
+- `TRK_SELECT_TIME`, `CAR_DELAY_TIME`, `TRK_DELAY_TIME` - Countdown timers
+- `WHEEL_THIRD`, `WHEEL_SLICE` - Wheel section mapping for selection
+- `GAS_TRIGGER`, `CLUTCH_TRIGGER` - Pedal thresholds for selection confirmation
+
+### N64-Specific Function Matches from game.c Analysis
+
+Based on analyzing the N64 `game.c` decompilation, these additional matches are proposed:
+
+| N64 Function | Address | Arcade Equivalent | Confidence | Notes |
+|--------------|---------|-------------------|------------|-------|
+| `game_state_handler` | 0x800F8C44 | `game()` state switch | High | Main gstate switch with ATTRACT, TRKSEL, etc. |
+| `update_game_systems` | 0x800F73FC | `playgame()` inner loop | High | Updates sounds, physics, effects, then renders |
+| `physics_update_all` | 0x800B0870 | `Update_MDrive()` + `sym()` loop | High | Traverses physics object linked list |
+| `effects_update_emitters` | 0x800B811C | `UpdateVisuals()` particle section | Medium | Emitter array traversal, particle spawning |
+| `active_sounds_update` | 0x800F7344 | Car sound update in `DoCarSounds()` | Medium | Active sound callback traversal |
+| `input_handlers_process` | 0x800C9530 | Input callback table processing | Medium | Iterates input callback table |
+| `race_state_machine` | 0x800F6310 | Race state transitions in `playgame()` | High | Complex nested switch for race states 0-8 |
+| `countdown_display` | 0x800FBC38 | `CountDown()` timer display | High | Formats and displays countdown timer |
+| `player_states_reset` | 0x800B6138 | Player data reset during preplay | Medium | Clears player state fields (76 bytes each) |
+| `players_frame_update` | 0x800D5798 | Per-frame player update loop | Medium | Iterates active players, calls per-player update |
+| `players_finish_check` | 0x800D60B4 | Race completion check | Medium | Checks if all players finished |
+| `car_sounds_clear` | 0x800D7D40 | Sound cleanup per car | Medium | Clears 17 sound handles (64 bytes each) per player |
+| `all_player_sounds_clear` | 0x800D7DC4 | Global sound cleanup | Medium | Clears all 4 players' sounds plus global handle |
+| `visual_objects_update` | 0x800B55FC | `UpdateVisuals()` object iteration | Medium | Object array traversal with vtable update calls |
+| `object_create` | 0x800B42F0 | Object allocation wrapper | Low | Sync-locked object allocation with type setting |
+
+### Global Variable Mappings
+
+| N64 Global | Address | Arcade Equivalent | Notes |
+|------------|---------|-------------------|-------|
+| `gstate_mask` | 0x801461D0 | `gstate` | Current game state bitmask |
+| `gstate_current` | varies | `gstate` | Active state after bit testing |
+| `active_player_count` | varies | `num_active_cars` | Number of active cars |
+| `game_unlock_id` | varies | Game mode ID | Mode identifier (race, stunt, etc.) |
+| `player_count` | varies | Similar to `num_active_cars` | Player count for iterations |
+| `race_started_flag` | varies | Race started indicator | 0 = not started, 1 = race active |
+| `countdown_timer` | varies | Countdown value | Timer for pre-race countdown |
+| `per_frame_flag` | varies | Per-frame update flag | Cleared each frame |
+| `render_enable` | varies | Render state | Controls visual updates |
+
+### Structure Size Matches
+
+From N64 code analysis, these structure sizes align with arcade:
+
+| Structure | N64 Size | Arcade Equivalent | Notes |
+|-----------|----------|-------------------|-------|
+| Player entry | 2056 bytes | `CAR_DATA` + extras | Per-player game state |
+| Player state | 76 bytes | Per-player state subset | Used in player loops |
+| Car state entry | 1088 bytes (17*64) | Per-car sound handles | 17 sub-entries of 64 bytes |
+| Emitter entry | 152 bytes | Visual/particle emitter | Position, velocity, state |
+| Object sound array entry | 32 bytes | Sound object entry | Status + 5 handles |
+
+### Rendering Pipeline Cross-Reference
+
+| N64 Stage | Address | Arcade Equivalent | Notes |
+|-----------|---------|-------------------|-------|
+| Scene render | 0x800A04C4 | `DrawBlits()` + 3D render | RDP command setup |
+| Object render | 0x80099BFC | ZOID object draw | 10KB function with G_DL commands |
+| Large render | 0x80087A08 | Major scene render | 10KB function for complex scenes |
+
+### Race State Machine Details (0x800F6310)
+
+The N64 race state machine at 0x800F6310 has these states matching arcade:
+
+| State | N64 Behavior | Arcade Equivalent |
+|-------|--------------|-------------------|
+| 0 | Initialize race, find active player | `preplay()` initialization |
+| 1 | Pre-race setup | Car setup calls |
+| 2 | Track loading | Track init |
+| 3 | Car setup | Additional car config |
+| 4 | Countdown prep | Pre-countdown setup |
+| 5 | Main racing (nested switch 0-7) | `playgame()` active loop |
+| 6 | Race complete, menu nav | Post-race menu handling |
+| 7 | Results/standings | Results display |
+| 8 | Final state | Cleanup transition |
+
+The nested sub-states in state 5 handle:
+- 0: Race start audio + object allocation
+- 1-2: Countdown timer check (15.0f threshold)
+- 3-6: Active race with lap/position handling
+- 7: Exit sub-state

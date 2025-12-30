@@ -786,7 +786,10 @@ void particles_sparks(f32 *pos, f32 *dir, s32 count) {
 }
 
 void particles_smoke_puff(f32 *pos, f32 size) {
-    f32 vel[3] = { RANDF_RANGE(-0.5f, 0.5f), RANDF_RANGE(1.0f, 2.0f), RANDF_RANGE(-0.5f, 0.5f) };
+    f32 vel[3];
+    vel[0] = RANDF_RANGE(-0.5f, 0.5f);
+    vel[1] = RANDF_RANGE(1.0f, 2.0f);
+    vel[2] = RANDF_RANGE(-0.5f, 0.5f);
     particles_spawn(PARTICLE_SMOKE, pos, vel, size, 2.0f);
 }
 
@@ -820,7 +823,10 @@ void particles_debris(f32 *pos, f32 *vel, s32 count) {
 }
 
 void particles_burnout_smoke(f32 *pos, f32 intensity) {
-    f32 vel[3] = { RANDF_RANGE(-0.3f, 0.3f), RANDF_RANGE(0.5f, 1.5f), RANDF_RANGE(-0.3f, 0.3f) };
+    f32 vel[3];
+    vel[0] = RANDF_RANGE(-0.3f, 0.3f);
+    vel[1] = RANDF_RANGE(0.5f, 1.5f);
+    vel[2] = RANDF_RANGE(-0.3f, 0.3f);
     particles_spawn(PARTICLE_TIRE_SMOKE, pos, vel, 0.6f * intensity, 1.0f);
 }
 

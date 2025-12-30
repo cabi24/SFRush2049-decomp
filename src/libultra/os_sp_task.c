@@ -163,9 +163,11 @@ void *__osSpGetContext(void) {
  */
 void osSpTaskLoad(void *task) {
     u8 *ctx;
+    u8 *tp;  /* task pointer as u8* for arithmetic */
     u32 flags;
 
     ctx = (u8 *)__osSpGetContext();
+    tp = (u8 *)task;
 
     /* Check if task was previously yielded */
     flags = *(u32 *)(ctx + 4);
@@ -173,11 +175,11 @@ void osSpTaskLoad(void *task) {
         /* Task was yielded - restore from yield buffer */
         *(u32 *)(ctx + 0x18) = *(u32 *)(ctx + 0x38);
         *(u32 *)(ctx + 0x1C) = *(u32 *)(ctx + 0x3C);
-        *(u32 *)(task + 4) = *(u32 *)(task + 4) & ~1;
+        *(u32 *)(tp + 4) = *(u32 *)(tp + 4) & ~1;
 
         /* Check if flag 4 is set - copy yield data */
         if (flags & 4) {
-            *(u32 *)(ctx + 0x10) = *(u32 *)((*(u32 *)(task + 0x38) + 0xBFC) | 0xA0000000);
+            *(u32 *)(ctx + 0x10) = *(u32 *)((*(u32 *)(tp + 0x38) + 0xBFC) | 0xA0000000);
         }
     }
 

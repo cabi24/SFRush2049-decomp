@@ -17,8 +17,8 @@ extern void __osRestoreInt(s32 mask);
 extern void __osDispatchThread(void);                           /* func_8000CFC4 */
 extern void __osDequeueThread(OSThread **queue, OSThread *t);   /* func_8000C050 */
 
-/* External data */
-extern OSThread *__osRunningThread;  /* D_8002C3E0: Current running thread */
+/* External data - Current running thread (standard libultra name) */
+extern OSThread *__osRunningThread;  /* 0x8002C3E0 */
 
 /**
  * Yield/stop current thread

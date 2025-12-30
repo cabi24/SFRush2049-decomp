@@ -11,10 +11,10 @@
 #include "types.h"
 #include "PR/os_pfs.h"
 
-/* External data */
-extern u8 __osContLastChannel;  /* D_8002C4C0: Last accessed channel */
-extern u8 __osPfsRequestType;   /* D_80037AE0: Controller read in progress flag */
-extern u8 __osPfsBuffer[64];    /* D_80037F60: PIF command buffer */
+/* External data (standard libultra names) */
+extern u8 __osContLastChannel;  /* Last accessed channel: 0x8002C4C0 */
+extern u8 __osPfsRequestType;   /* Controller read in progress flag: 0x80037AE0 */
+extern u8 __osPfsBuffer[64];    /* PIF command buffer: 0x80037F60 */
 
 /* External functions */
 extern void __osSiGetAccess(void);                           /* func_8000E5B0 */

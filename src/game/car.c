@@ -63,33 +63,36 @@ const TorqueCurve gDirtTorqueCurve = {
  * DEFAULT TIRE PARAMETERS
  * ======================================================================== */
 
-/* Front tire template */
-static const TireDes sFrontTire = {
-    1.0f,           /* tradius */
-    340 * 12,       /* springK */
-    200,            /* rubdamp */
-    16000,          /* PaveCstiff */
-    1.15f,          /* PaveCfmax */
-    16000,          /* Cstiff */
-    1.15f,          /* Cfmax */
-    0.1f,           /* invmi */
-    /* Runtime state initialized to 0 */
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-};
+/* Tire templates as macros for use in static initializers (C89 compatible) */
+#define FRONT_TIRE_INIT { \
+    1.0f,           /* tradius */ \
+    340 * 12,       /* springK */ \
+    200,            /* rubdamp */ \
+    16000,          /* PaveCstiff */ \
+    1.15f,          /* PaveCfmax */ \
+    16000,          /* Cstiff */ \
+    1.15f,          /* Cfmax */ \
+    0.1f,           /* invmi */ \
+    /* Runtime state initialized to 0 */ \
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 \
+}
 
-/* Rear tire template - higher grip */
-static const TireDes sRearTire = {
-    1.0f,           /* tradius */
-    340 * 12,       /* springK */
-    200,            /* rubdamp */
-    50000,          /* PaveCstiff */
-    1.3f,           /* PaveCfmax */
-    50000,          /* Cstiff */
-    1.3f,           /* Cfmax */
-    0.1f,           /* invmi */
-    /* Runtime state initialized to 0 */
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-};
+#define REAR_TIRE_INIT { \
+    1.0f,           /* tradius */ \
+    340 * 12,       /* springK */ \
+    200,            /* rubdamp */ \
+    50000,          /* PaveCstiff */ \
+    1.3f,           /* PaveCfmax */ \
+    50000,          /* Cstiff */ \
+    1.3f,           /* Cfmax */ \
+    0.1f,           /* invmi */ \
+    /* Runtime state initialized to 0 */ \
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 \
+}
+
+/* Static tire templates for reference */
+static const TireDes sFrontTire = FRONT_TIRE_INIT;
+static const TireDes sRearTire = REAR_TIRE_INIT;
 
 /* ========================================================================
  * CAR DEFINITIONS
@@ -141,7 +144,7 @@ const Car gCarDefs[NUM_CAR_TYPES] = {
         32.0f,          /* rollresist */
 
         /* Tires */
-        { sFrontTire, sFrontTire, sRearTire, sRearTire },
+        { FRONT_TIRE_INIT, FRONT_TIRE_INIT, REAR_TIRE_INIT, REAR_TIRE_INIT },
 
         /* Geometry - shorter wheelbase */
         {
@@ -188,7 +191,7 @@ const Car gCarDefs[NUM_CAR_TYPES] = {
         14.0f, 4.0f, 4, 0x10, 0x100, 0,
         0.0087f, 36.0f,
 
-        { sFrontTire, sFrontTire, sRearTire, sRearTire },
+        { FRONT_TIRE_INIT, FRONT_TIRE_INIT, REAR_TIRE_INIT, REAR_TIRE_INIT },
 
         {
             { 4.5f,  2.75f, 1.5f },
@@ -224,7 +227,7 @@ const Car gCarDefs[NUM_CAR_TYPES] = {
         16.0f, 3.0f, 4, 0x10, 0x80, 0,
         0.0095f, 40.0f,
 
-        { sFrontTire, sFrontTire, sRearTire, sRearTire },
+        { FRONT_TIRE_INIT, FRONT_TIRE_INIT, REAR_TIRE_INIT, REAR_TIRE_INIT },
 
         {
             { 4.8f,  2.9f, 1.6f },
@@ -260,7 +263,7 @@ const Car gCarDefs[NUM_CAR_TYPES] = {
         12.0f, 5.0f, 4, 0x10, 0x100, 0,
         0.0078f, 28.0f,
 
-        { sFrontTire, sFrontTire, sRearTire, sRearTire },
+        { FRONT_TIRE_INIT, FRONT_TIRE_INIT, REAR_TIRE_INIT, REAR_TIRE_INIT },
 
         {
             { 4.0f,  2.4f, 1.3f },
@@ -296,7 +299,7 @@ const Car gCarDefs[NUM_CAR_TYPES] = {
         14.0f, 4.0f, 4, 0x10, 0x100, 0,
         0.0085f, 34.0f,
 
-        { sFrontTire, sFrontTire, sRearTire, sRearTire },
+        { FRONT_TIRE_INIT, FRONT_TIRE_INIT, REAR_TIRE_INIT, REAR_TIRE_INIT },
 
         {
             { 4.4f,  2.7f, 1.45f },
@@ -332,7 +335,7 @@ const Car gCarDefs[NUM_CAR_TYPES] = {
         13.0f, 4.5f, 4, 0x10, 0x100, 0,
         0.0080f, 35.0f,
 
-        { sFrontTire, sFrontTire, sRearTire, sRearTire },
+        { FRONT_TIRE_INIT, FRONT_TIRE_INIT, REAR_TIRE_INIT, REAR_TIRE_INIT },
 
         {
             { 4.3f,  2.65f, 1.4f },
@@ -368,7 +371,7 @@ const Car gCarDefs[NUM_CAR_TYPES] = {
         11.0f, 5.5f, 4, 0x10, 0x100, 0,
         0.0075f, 30.0f,
 
-        { sFrontTire, sFrontTire, sRearTire, sRearTire },
+        { FRONT_TIRE_INIT, FRONT_TIRE_INIT, REAR_TIRE_INIT, REAR_TIRE_INIT },
 
         {
             { 4.1f,  2.5f, 1.35f },
@@ -404,7 +407,7 @@ const Car gCarDefs[NUM_CAR_TYPES] = {
         13.0f, 4.5f, 4, 0x10, 0x100, 0,
         0.0076f, 31.0f,
 
-        { sFrontTire, sFrontTire, sRearTire, sRearTire },
+        { FRONT_TIRE_INIT, FRONT_TIRE_INIT, REAR_TIRE_INIT, REAR_TIRE_INIT },
 
         {
             { 4.25f,  2.55f, 1.38f },

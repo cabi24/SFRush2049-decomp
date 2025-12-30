@@ -8,24 +8,19 @@
  *
  * These are typically implemented as inline assembly or
  * handwritten assembly functions.
+ *
+ * NOTE: For matching builds with IDO, these should be kept as
+ * pure assembly files. This C version is for reference only.
  */
 
 #include "types.h"
 
+#ifdef NON_MATCHING
+/* GCC inline assembly version - for non-matching builds */
+
 /**
  * Set CP0 Status register
  * (func_8000D770 - __osSetSR)
- *
- * The Status register controls:
- * - Interrupt enable (IE bit 0)
- * - Interrupt mask (IM bits 8-15)
- * - Kernel/User mode
- * - 64-bit addressing mode
- * - Coprocessor usability
- *
- * @param sr New Status register value
- *
- * Assembly: mtc0 $a0, $12; nop; jr $ra; nop
  */
 void __osSetSR(u32 sr) {
     __asm__ volatile("mtc0 %0, $12" : : "r"(sr));
@@ -34,10 +29,6 @@ void __osSetSR(u32 sr) {
 /**
  * Get CP0 Status register
  * (func_8000D780 - __osGetSR)
- *
- * @return Current Status register value
- *
- * Assembly: mfc0 $v0, $12; jr $ra; nop
  */
 u32 __osGetSR(void) {
     u32 sr;
@@ -48,18 +39,6 @@ u32 __osGetSR(void) {
 /**
  * Set FPU Control/Status register
  * (func_800049F0 - __osSetFpcCsr)
- *
- * The FPU CSR controls:
- * - Rounding mode (bits 0-1)
- * - Exception flags (bits 2-6)
- * - Exception enables (bits 7-11)
- * - Exception causes (bits 12-17)
- * - Condition bit (bit 23)
- * - Flush-to-zero (bit 24)
- *
- * @param csr New FPU CSR value
- *
- * Assembly: ctc1 $a0, $31; jr $ra; nop
  */
 void __osSetFpcCsr(u32 csr) {
     __asm__ volatile("ctc1 %0, $31" : : "r"(csr));
@@ -68,12 +47,6 @@ void __osSetFpcCsr(u32 csr) {
 /**
  * Get FPU Control/Status register
  * (func_8000D790 - __osGetFpcCsr)
- *
- * Reads the current FPU CSR value.
- *
- * Assembly: cfc1 $v0, $31; jr $ra; nop
- *
- * @return Current FPU CSR value
  */
 u32 __osGetFpcCsr(void) {
     u32 csr;
@@ -84,20 +57,40 @@ u32 __osGetFpcCsr(void) {
 /**
  * Get CP0 Cause register
  * (func_8000DBB0 - __osGetCause)
- *
- * The Cause register indicates the cause of the most recent
- * exception. Contains:
- * - Exception code (bits 2-6)
- * - Pending hardware interrupts (bits 8-15)
- * - Coprocessor error (bits 28-29)
- * - Branch delay slot (bit 31)
- *
- * @return Current Cause register value
- *
- * Assembly: mfc0 $v0, $13; jr $ra; nop
  */
 u32 __osGetCause(void) {
     u32 cause;
     __asm__ volatile("mfc0 %0, $13" : "=r"(cause));
     return cause;
 }
+
+#else
+/* IDO version - stub implementations for compilation testing */
+/* For matching builds, use the assembly in asm/us/*.s */
+
+void __osSetSR(u32 sr) {
+    /* Stub - actual implementation in assembly */
+    (void)sr;
+}
+
+u32 __osGetSR(void) {
+    /* Stub - actual implementation in assembly */
+    return 0;
+}
+
+void __osSetFpcCsr(u32 csr) {
+    /* Stub - actual implementation in assembly */
+    (void)csr;
+}
+
+u32 __osGetFpcCsr(void) {
+    /* Stub - actual implementation in assembly */
+    return 0;
+}
+
+u32 __osGetCause(void) {
+    /* Stub - actual implementation in assembly */
+    return 0;
+}
+
+#endif /* NON_MATCHING */

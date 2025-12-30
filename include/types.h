@@ -121,19 +121,13 @@ typedef f32 Mat4f[4][4];
 typedef f32 MtxF[4][4];
 
 /* N64 Controller Pak (PFS) - see include/PR/os_pfs.h for full definition */
-/* Forward declaration for files that don't need the full struct */
+/* Forward declaration only - typedef is in os_pfs.h */
+#ifndef _OS_PFS_H_
 struct OSPfs;
-typedef struct OSPfs OSPfs;
+#endif
 
-/* N64 OS timer structure */
-typedef struct {
-    void *next;
-    void *prev;
-    u64 interval;
-    u64 value;
-    void *mq;
-    void *msg;
-} OSTimer;
+/* N64 OS timer - defined in include/PR/os_time.h */
+/* Include os_time.h for OSTimer definition */
 
 /* N64 RSP task type constants */
 #define M_GFXTASK   1
@@ -169,16 +163,8 @@ typedef struct {
 #define OS_MESG_PRI_NORMAL 0
 #define OS_MESG_PRI_HIGH   1
 
-/* N64 I/O Message structure for DMA */
-typedef struct {
-    s16 type;
-    s16 pri;
-    s32 status;
-    void *mq;
-    void *devAddr;
-    void *dramAddr;
-    u32 size;
-} OSIoMesg;
+/* N64 I/O Message - defined in include/PR/os_pi.h */
+/* Include os_pi.h for OSIoMesg definition */
 
 /* External RSP boot/ucode symbols */
 extern u8 rspbootTextStart[], rspbootTextEnd[];

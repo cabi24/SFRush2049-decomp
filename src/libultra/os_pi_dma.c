@@ -11,8 +11,8 @@
 #include "types.h"
 #include "PR/os_pi.h"
 
-/* External data */
-extern s32 __osPiInitialized;   /* D_8002C380: PI initialized flag */
+/* External data (standard libultra name) */
+extern s32 __osPiInitialized;   /* PI initialized flag: 0x8002C380 */
 
 /* External functions */
 extern OSPiHandle *__osPiGetHandle(void);                              /* func_8000E390 */

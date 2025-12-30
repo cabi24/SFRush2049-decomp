@@ -111,11 +111,13 @@ void osDpWait(void) {
  *                 [2] = DPC_PIPEBUSY_REG (pipe busy cycles)
  *                 [3] = DPC_TMEM_REG (TMEM busy cycles)
  */
+/* MATCHED: func_800099B0 */
 void osDpGetCounters(u32 *counters) {
     counters[0] = DPC_CLOCK_REG;
-    counters[1] = DPC_BUFBUSY_REG;
-    counters[2] = DPC_PIPEBUSY_REG;
-    counters[3] = DPC_TMEM_REG;
+    counters += 3;
+    counters[-2] = DPC_BUFBUSY_REG;
+    counters[-1] = DPC_PIPEBUSY_REG;
+    counters[0] = DPC_TMEM_REG;
 }
 
 /**

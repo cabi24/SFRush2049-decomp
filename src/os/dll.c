@@ -64,13 +64,13 @@ typedef struct {
     s32 field_1C;               /* 0x1C */
 } TimerQueueHead;
 
-/* Global timer queue state */
-extern TimerQueueHead *__osTimerList;   /* Timer queue head pointer (D_8002C3F0) */
-extern s32 timer_unused_50;             /* Reserved/unused (D_80037C50) */
-extern s32 timer_unused_54;             /* Reserved/unused (D_80037C54) */
-extern s32 timer_unused_58;             /* Reserved/unused (D_80037C58) */
-extern s32 timer_unused_5C;             /* Reserved/unused (D_80037C5C) */
-extern u32 __osTimerCounter;            /* Last update timestamp (D_80037C60) */
+/* Global timer queue state (standard libultra names) */
+extern TimerQueueHead *__osTimerList;   /* Timer queue head pointer: 0x8002C3F0 */
+extern s32 timer_unused_50;             /* Reserved/unused: 0x80037C50 */
+extern s32 timer_unused_54;             /* Reserved/unused: 0x80037C54 */
+extern s32 timer_unused_58;             /* Reserved/unused: 0x80037C58 */
+extern s32 timer_unused_5C;             /* Reserved/unused: 0x80037C5C */
+extern u32 __osTimerCounter;            /* Last update timestamp: 0x80037C60 */
 
 /* External functions */
 extern u32 osGetCount(void);                        /* Get CP0 Count register */
@@ -260,6 +260,8 @@ void dll_insert(TimerNode *node) {
     TimerNode *curr;
     u32 delta_hi, delta_lo;
     u32 node_hi, node_lo;
+    u32 curr_hi, curr_lo;
+    u32 borrow;
 
     savedMask = __osDisableInt();
 
@@ -269,8 +271,8 @@ void dll_insert(TimerNode *node) {
 
     /* Find insertion point - walk list while our delta > current delta */
     while (curr != (TimerNode *)q) {
-        u32 curr_hi = curr->delta_hi;
-        u32 curr_lo = curr->delta_lo;
+        curr_hi = curr->delta_hi;
+        curr_lo = curr->delta_lo;
 
         /* 64-bit comparison: if node_delta < curr_delta, insert here */
         if (node_hi < curr_hi ||
@@ -279,7 +281,7 @@ void dll_insert(TimerNode *node) {
         }
 
         /* Subtract current node's delta from ours */
-        u32 borrow = (node_lo < curr_lo) ? 1 : 0;
+        borrow = (node_lo < curr_lo) ? 1 : 0;
         node_lo -= curr_lo;
         node_hi -= curr_hi + borrow;
 
@@ -292,7 +294,7 @@ void dll_insert(TimerNode *node) {
 
     /* If not inserting at end, adjust next node's delta */
     if (curr != (TimerNode *)q) {
-        u32 borrow = (curr->delta_lo < node_lo) ? 1 : 0;
+        borrow = (curr->delta_lo < node_lo) ? 1 : 0;
         curr->delta_hi -= node_hi + borrow;
         curr->delta_lo -= node_lo;
     }
@@ -314,7 +316,7 @@ void dll_insert(TimerNode *node) {
  * @return Thread priority
  */
 s32 dll_get_priority(void *thread) {
-    extern void *__osRunningThread;  /* Current running thread (D_8002C3E0) */
+    extern void *__osRunningThread;  /* Current running thread: 0x8002C3E0 */
 
     if (thread == NULL) {
         thread = __osRunningThread;

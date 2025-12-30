@@ -10,6 +10,7 @@
 /* External PI access check */
 extern s32 __osPiDeviceBusy(void);
 
+#ifdef NON_MATCHING
 /**
  * Get and set FPU control/status register
  * (func_8000D790 - __osSetFpcCsr)
@@ -20,7 +21,7 @@ extern s32 __osPiDeviceBusy(void);
  * @param value New FPCSR value
  * @return Previous FPCSR value
  */
-u32 __osSetFpcCsr(u32 value) {
+u32 __osGetSetFpcCsr(u32 value) {
     u32 old;
 
     /* CFC1 - read FPCSR into old */
@@ -31,6 +32,13 @@ u32 __osSetFpcCsr(u32 value) {
 
     return old;
 }
+#else
+/* Stub for IDO - actual implementation in assembly */
+u32 __osGetSetFpcCsr(u32 value) {
+    (void)value;
+    return 0;
+}
+#endif
 
 /**
  * Read word from PI uncached address

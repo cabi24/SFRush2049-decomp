@@ -19,11 +19,11 @@ extern s32 lzss_decode(void *src, void *dst);
 extern s32 inflate_entry(void *src, void *dst, s32 use_heap);
 
 /* DMA message queue */
-extern OSMesgQueue D_8002F190;
-extern OSMesg D_8002F1A8[];
+extern OSMesgQueue gDmaMessageQueue;      /* D_8002F190 */
+extern OSMesg gDmaMessageBuffer[];        /* D_8002F1A8 */
 
 /* DMA initialized flag */
-extern u8 D_8002B030;
+extern u8 gDmaInitialized;                /* D_8002B030 */
 
 /**
  * Initialize DMA message queue
@@ -33,9 +33,9 @@ extern u8 D_8002B030;
  * posts an initial message to indicate ready state.
  */
 void dma_queue_init(void) {
-    D_8002B030 = 1;
-    osCreateMesgQueue(&D_8002F190, D_8002F1A8, 1);
-    osJamMesg(&D_8002F190, NULL, 0);
+    gDmaInitialized = 1;
+    osCreateMesgQueue(&gDmaMessageQueue, gDmaMessageBuffer, 1);
+    osJamMesg(&gDmaMessageQueue, NULL, 0);
 }
 
 /**
@@ -52,16 +52,16 @@ s32 dma_wait(s32 blocking) {
     OSMesg msg;
 
     /* Initialize queue if not done */
-    if (D_8002B030 == 0) {
+    if (gDmaInitialized == 0) {
         dma_queue_init();
     }
 
     if (blocking != 0) {
         /* Blocking receive */
-        osRecvMesg(&D_8002F190, &msg, 1);
+        osRecvMesg(&gDmaMessageQueue, &msg, 1);
     } else {
         /* Non-blocking receive */
-        if (osRecvMesg(&D_8002F190, &msg, 0) == -1) {
+        if (osRecvMesg(&gDmaMessageQueue, &msg, 0) == -1) {
             return 0;  /* Not ready */
         }
     }
@@ -75,7 +75,7 @@ s32 dma_wait(s32 blocking) {
  * Posts a message to indicate DMA transfer is complete.
  */
 void dma_signal(void) {
-    osJamMesg(&D_8002F190, NULL, 0);
+    osJamMesg(&gDmaMessageQueue, NULL, 0);
 }
 
 /**

@@ -7,6 +7,10 @@
 
 #include "types.h"
 
+/* NaN constant (0x7FBFFFFF as float) */
+static const u32 sNaNBits = 0x7FBFFFFF;
+#define GET_NAN_F32() (*(f32 *)&sNaNBits)
+
 /**
  * Split double into integer and fractional parts
  * @param value Input value
@@ -251,7 +255,7 @@ f32 sinf(f32 x) {
         /* Very large, infinity, or NaN */
         /* Check if x == x (false for NaN) */
         if (x != x) {
-            return *(f32 *)&(u32){0x7FBFFFFF};  /* Return NaN (D_8002D880) */
+            return GET_NAN_F32();  /* Return NaN (D_8002D880) */
         }
         return 0.0f;  /* D_8002D790 */
     }
@@ -295,7 +299,7 @@ f32 cosf(f32 x) {
     if (exp >= 0x136) {
         /* Very large, infinity, or NaN */
         if (x != x) {
-            return *(f32 *)&(u32){0x7FBFFFFF};  /* Return NaN */
+            return GET_NAN_F32();  /* Return NaN */
         }
         return 1.0f;  /* D_8002D7E0 */
     }

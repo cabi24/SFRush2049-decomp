@@ -71,6 +71,6 @@ void __osEnqueueThread(OSThread **queue, OSThread *thread);
 
 /* External thread pointers */
 extern OSThread *__osRunningThread;
-extern OSThread *__osActiveQueue;
+extern OSThread **__osActiveQueue;
 
 #endif /* _OS_THREAD_H_ */

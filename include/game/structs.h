@@ -33,9 +33,9 @@
 #define UNLOCK_MIRROR_MODE  0x0100
 
 /* Forward declarations */
-typedef struct CarParams CarParams;
-typedef struct CarData CarData;
-typedef struct Reckon Reckon;
+struct CarParams;
+struct CarData;
+struct Reckon;
 
 /**
  * Dead Reckoning Data - Used for network/prediction

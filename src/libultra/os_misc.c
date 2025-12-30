@@ -40,12 +40,19 @@ extern void *__osActiveQueue;  /* Active thread queue pointer */
  * Note: This requires inline assembly or compiler intrinsic.
  * The function is 3 instructions: mfc0 $v0, $9; jr $ra; nop
  */
+#ifdef NON_MATCHING
 u32 osGetCount(void) {
     u32 count;
     /* GCC inline assembly for mfc0 */
     __asm__ volatile("mfc0 %0, $9" : "=r"(count));
     return count;
 }
+#else
+/* Stub for IDO - actual implementation in assembly */
+u32 osGetCount(void) {
+    return 0;
+}
+#endif
 
 /**
  * Check if RDP DMA is busy
@@ -55,6 +62,7 @@ u32 osGetCount(void) {
  *
  * @return 1 if busy, 0 if not busy
  */
+/* MATCHED: func_8000D740 */
 s32 osDpIsBusy(void) {
     u32 status;
 

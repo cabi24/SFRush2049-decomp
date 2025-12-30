@@ -29,10 +29,10 @@ extern s32 __osContAddressCrc(u16 addr);
 extern s32 __osCheckId(OSPfs *pfs);
 
 /* PIF buffer for motor commands (64 bytes per controller, 4 controllers) */
-extern u8 __osMotorPifBuf[256];  /* D_80037B30 */
+extern u8 __osMotorPifBuf[256];  /* 0x80037B30 */
 
 /* Global motor probe byte */
-extern s8 __osMotorProbe;  /* D_80037AE0 */
+extern s8 __osMotorProbe;  /* 0x80037AE0 */
 
 /**
  * Initialize rumble pak motor

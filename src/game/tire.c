@@ -6,7 +6,11 @@
  */
 
 #include "game/tire.h"
-#include <math.h>
+
+/* Math function declarations (from libm) */
+extern f32 sqrtf(f32 x);
+extern f32 sinf(f32 x);
+extern f32 cosf(f32 x);
 
 /* Local math helpers */
 static f32 xxsqrt(f32 x) {

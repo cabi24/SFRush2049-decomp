@@ -10,8 +10,8 @@ This file helps Claude maintain context across sessions for the Rush 2049 N64 de
 
 ## Current Status
 
-**Phase**: 2 - Decompilation Ready (MATCHING BUILD ACHIEVED!)
-**Last Updated**: 2025-12-27
+**Phase**: 3-4 - IDO Compiler Setup Complete (92% files compiling!)
+**Last Updated**: 2025-12-29
 
 ### Completed
 - [x] Project planning via Spec Kit (constitution, spec, plan, tasks)
@@ -29,13 +29,27 @@ This file helps Claude maintain context across sessions for the Rush 2049 N64 de
 - [x] Set up OptiPlex 3080 (20 cores, 31GB RAM) for fast builds
 - [x] Created hardware_regs.ld with N64 MMIO addresses
 - [x] Created tools/diff.py for function comparison
+- [x] All 88 assembly files now have C equivalents (111 C files total, 126% coverage)
+- [x] **IDO 5.3 compiler setup on x86 watchman machine**
+- [x] **102/111 C files (92%) compiling with IDO**
 
 ### In Progress
+- [ ] Refactor game.c for C89 compatibility (remaining ~9 files)
 - [ ] Match functions to arcade source
 - [ ] Refine function implementations for matching builds
 
-### Recently Completed
-- [x] All 88 assembly files now have C equivalents (111 C files total, 126% coverage)
+### Phase 4 Setup Notes
+**IDO Compiler Location**: `ssh watchman` -> `/home/cburnes/projects/rush2049-decomp/tools/ido-static-recomp/build/out/`
+**Build Command**: `make COMPILER=ido cc` (on watchman, x86 machine)
+**Pi 5 Limitation**: IDO recompiled binaries don't work on Pi 5 due to 16KB page size (needs 4KB pages)
+**Sync Command**: `rsync -avz /home/cburnes/projects/rush2049-decomp/ watchman:/home/cburnes/projects/rush2049-decomp/`
+
+**C89 Compatibility Issues Fixed**:
+- Removed GNU inline assembly (used stubs with #ifdef NON_MATCHING)
+- Moved variable declarations to function top (C89 requirement)
+- Replaced compound literals with static constants
+- Fixed duplicate struct typedef conflicts
+- Replaced system `<math.h>` with local declarations
 
 ### Identified Functions (228/228 = 100% coverage! updated 2025-12-07)
 | Category | Count | Examples |

@@ -21,36 +21,41 @@
  */
 u16 __osSumcalc(u8 *data, s32 len) {
     u32 sum = 0;
+    u32 result;
     u8 *ptr = data;
-    s32 i = 0;
-    s32 remainder;
+    register s32 count = 0;
+    register s32 limit;
 
     if (len <= 0) {
-        return (u16)sum;
+        goto done;
     }
 
-    /* Handle non-aligned prefix (0-3 bytes) */
-    remainder = len & 3;
-    if (remainder != 0) {
-        for (i = 0; i < remainder; i++) {
+    if (((limit = len & 3)) != 0) {
+        do {
             sum += *ptr++;
-        }
-        if (i == len) {
-            return (u16)sum;
+            count++;
+        } while (count != limit);
+
+        if (count == len) {
+            result = sum;
+            goto done;
         }
     }
-
-    /* Process 4 bytes at a time */
-    while (i != len) {
+    for (;;) {
         sum += ptr[0];
         sum += ptr[1];
         sum += ptr[2];
         sum += ptr[3];
+        count += 4;
         ptr += 4;
-        i += 4;
+        if (count == len) {
+            break;
+        }
     }
 
-    return (u16)sum;
+done:
+    result = sum;
+    return (u16)result;
 }
 
 /**

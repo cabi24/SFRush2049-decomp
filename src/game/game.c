@@ -8,6 +8,57 @@
 #include "types.h"
 #include "game/structs.h"
 #include "PR/os_message.h"
+#include "PR/os_pfs.h"
+#include <math.h>
+#include <string.h>
+#include <stdlib.h>
+
+/* GBI graphics command stubs - these are normally macros in gbi.h */
+#define gDPSetRenderMode(gfx, mode1, mode2)
+#define gDPSetPrimColor(gfx, m, l, r, g, b, a)
+#define gDPSetCombineMode(gfx, mode1, mode2)
+#define gSPMatrix(gfx, mtx, param)
+#define gSPDisplayList(gfx, dl)
+#define gSPPopMatrix(gfx, param)
+#define gDPSetFogColor(gfx, r, g, b, a)
+#define gSPFogPosition(gfx, min, max)
+#define gSPNumLights(gfx, n)
+#define gSPTexture(gfx, s, t, level, tile, on)
+#define gDPSetTexturePersp(gfx, enable)
+#define gDPSetTextureImage(gfx, fmt, size, width, addr)
+#define gDPSetTileSize(gfx, tile, uls, ult, lrs, lrt)
+#define gSPClearGeometryMode(gfx, mode)
+#define gSPSetGeometryMode(gfx, mode)
+#define gDPLoadSync(gfx)
+#define gDPLoadBlock(gfx, tile, uls, ult, lrs, dxt)
+#define gDPSetTile(gfx, fmt, size, line, tmem, tile, palette, cmt, maskt, shiftt, cms, masks, shifts)
+#define gSPVertex(gfx, vtx, n, v0)
+#define gSP2Triangles(gfx, v0, v1, v2, flag0, v3, v4, v5, flag1)
+#define gDPSetDepthSource(gfx, source)
+#define gDPSetDepthImage(gfx, addr)
+#define gDPSetColorImage(gfx, fmt, size, width, addr)
+#define gDPSetFillColor(gfx, color)
+#define gDPFillRectangle(gfx, x1, y1, x2, y2)
+#define gDPPipeSync(gfx)
+#define gSPSegment(gfx, seg, addr)
+#define gDPSetCycleType(gfx, type)
+#define gDPSetTextureLOD(gfx, mode)
+#define gDPSetTextureLUT(gfx, type)
+#define gDPSetTextureDetail(gfx, type)
+#define gDPSetTextureConvert(gfx, mode)
+#define gDPSetCombineKey(gfx, key)
+#define gDPSetAlphaCompare(gfx, mode)
+#define gDPFullSync(gfx)
+#define gSPEndDisplayList(gfx)
+#define OS_K0_TO_PHYSICAL(addr) ((u32)(addr) & 0x1FFFFFFF)
+
+/* libultra matrix functions */
+extern void guTranslateF(f32 *mtx, f32 x, f32 y, f32 z);
+extern void guRotateRPYF(f32 *mtx, f32 r, f32 p, f32 y);
+extern void osMotorStart(void *pak);
+extern void osMotorStop(void *pak);
+extern void osSpTaskStart(void *task);
+extern u64 osGetTime(void);
 
 /* Auto-generated extern declarations for missing variables */
 extern s32 dma_io_msg;
@@ -318,7 +369,7 @@ extern void *player_combo[];
 extern void *player_multiplier[];
 extern void *player_frags[];
 extern void *player_deaths[];
-extern void *player_lives[];
+/* player_lives declared below with proper type */
 extern s32 ghost_frame_count;
 extern s32 ghost_recording_flag;
 extern s32 new_record_flag;
@@ -461,7 +512,7 @@ extern u32 state_value_src;   /* Another state value */
 extern u32 state_value_copy;   /* State copy */
 extern s8  sound_params_array[]; /* Sound params array */
 extern u32 gstate_mask;   /* gstate - current state bitmask (for game_loop) */
-extern u32 gstate_prev;   /* gstate_pending - next state (for game_loop) */
+/* gstate_prev already declared above as u8 */
 extern void sound_stop(s32 channel, f32 volume);    /* sound_stop */
 extern void state_dispatch(void);                   /* game_pause */
 extern void update_active_objects(void);            /* objects_update */
@@ -2185,7 +2236,7 @@ extern u8 effect_state_buffer[];       /* Effect state buffer (44 bytes) */
 
 extern void engine_sound_update(void); /* Effect pre-reset */
 extern void matrix_push(void*);      /* Effect pool clear */
-extern void bzero(void*, s32);         /* memset_custom */
+/* bzero already declared in string.h */
 
 void effects_reset(s32 unused) {
     /* Clear effect state flags */

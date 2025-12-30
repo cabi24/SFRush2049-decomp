@@ -31,6 +31,35 @@ fcvt = 0x80002CD0; // type:func convert float to string
 __ecvt_internal = 0x80003C3C; // type:func float to string internal helper
 __round_helper = 0x80004674; // type:func rounding helper for float conversion
 
+// libm/libgcc floating-point constants (34A0.s, 9330.s)
+gSinCoeffs = 0x8002D750; // type:data sine polynomial coefficients array
+gTwoOverPi = 0x8002D778; // type:data 2/pi constant (f64)
+gPiOver2Hi = 0x8002D780; // type:data pi/2 high part (f64)
+gPiOver2Lo = 0x8002D788; // type:data pi/2 low part (f64)
+gNaN = 0x8002D790; // type:data NaN value (f64)
+gInfinity = 0x8002D800; // type:data infinity constant (f64)
+gNegInfinity = 0x8002D808; // type:data negative infinity (f64)
+gFcvtBuffer = 0x8002D4D0; // type:data fcvt output buffer
+gFcvtDigits = 0x8002D4E0; // type:data fcvt digit buffer
+gFcvtSign = 0x8002D4F0; // type:data fcvt sign flag
+gFcvtDecpt = 0x8002D4F4; // type:data fcvt decimal point position
+gFcvtTemp1 = 0x8002D4F8; // type:data fcvt temp buffer 1
+gFcvtTemp2 = 0x8002D50C; // type:data fcvt temp buffer 2
+gFcvtTemp3 = 0x8002D514; // type:data fcvt temp buffer 3
+gFcvtTemp4 = 0x8002D528; // type:data fcvt temp buffer 4
+gFcvtTemp5 = 0x8002D53C; // type:data fcvt temp buffer 5
+gPerspFov = 0x8002D6C0; // type:data perspective FOV constant (f64)
+gPerspAspect = 0x8002D6C8; // type:data perspective aspect ratio (f64)
+gExceptionMask = 0x8002D6D0; // type:data exception/interrupt mask (u16)
+gOrthoScale = 0x8002D7F0; // type:data orthographic scale constant (f64)
+gExceptionFlag = 0x8002D810; // type:data exception handler flag (u8)
+
+// Viewport scale constants (21F0.s)
+gViewportFloatA = 0x8002D4C0; // type:data viewport float constant A
+gViewportFloatB = 0x8002D4C4; // type:data viewport float constant B
+gViewportFloatC = 0x8002D4C8; // type:data viewport float constant C (PAL)
+gViewportFloatD = 0x8002D4CC; // type:data viewport float constant D (NTSC)
+
 // libultra OS functions
 osCreateMesgQueue = 0x80006A00; // type:func
 osSetEventMesg = 0x80006A30; // type:func set event message
@@ -81,6 +110,13 @@ osPiReadWord = 0x8000DC80; // type:func read word from cartridge
 osPiStartDma = 0x8000DCD0; // type:func start PI DMA transfer
 osPiSetDeviceTiming = 0x8000DDA0; // type:func configure PI bus timing registers
 __osPiRawStartDma = 0x80008630; // type:func PI raw DMA request via message queue
+
+// PI global state (os_pi.c, os_pi_dma.c)
+__osPiInitialized = 0x8002C4A0; // type:data PI initialized flag (s32) - os_pi.c
+__osPiInitialized2 = 0x8002C380; // type:data PI initialized flag (s32) - os_pi_dma.c
+__osPiMesgQueue = 0x80037C78; // type:data PI message queue (OSMesgQueue)
+__osPiMesg = 0x80037C70; // type:data PI message buffer (OSMesg)
+
 __osTlbFlush = 0x8000D840; // type:func flush all TLB entries
 __osTlbInit = 0x8000D890; // type:func initialize TLB for 0xC0000000 region
 osPhysicalToVirtual = 0x80009C00; // type:func convert physical address to KSEG0 virtual
@@ -104,6 +140,17 @@ __osContRamRead = 0x8000E8D0; // type:func read from controller pak RAM
 __osContRamWrite = 0x8000EA98; // type:func write to controller pak RAM
 __osContAddressCrc = 0x8000F9F0; // type:func calculate address CRC for controller pak
 __osContDataCrc = 0x8000FA4C; // type:func calculate data CRC for controller pak
+
+// Controller/PFS global state (os_pfs_rw.c, os_motor.c)
+__osContLastChannel = 0x8002C4C0; // type:data last accessed controller channel (u8)
+__osPfsRequestType = 0x80037AE0; // type:data controller read in progress flag (u8)
+__osPfsRequestType2 = 0x80037AE1; // type:data secondary controller request type (u8)
+__osPfsBuffer = 0x80037F60; // type:data PIF command buffer (u8[64])
+__osMotorPifBuf = 0x80037B30; // type:data motor PIF command buffer (u8[256])
+__osMotorProbe = 0x80037AE0; // type:data motor probe byte (s8) - same as __osPfsRequestType
+__osSiDmaBuffer = 0x80037AA0; // type:data SI DMA buffer for controller reads (24 refs)
+__osSiDmaRetry = 0x80037ADC; // type:data SI DMA retry counter
+
 __osSetFpcCsr = 0x8000D790; // type:func set FP control/status register
 __osSetSR = 0x8000D770; // type:func set CP0 Status register
 __osGetSR = 0x8000D780; // type:func get CP0 Status register
@@ -157,6 +204,31 @@ timer_unused_5C = 0x80037C5C; // type:data reserved/unused timer field
 
 // Thread state
 __osRunningThread = 0x8002C3E0; // type:data current running thread (OSThread*)
+__osActiveQueue = 0x8002C3D8; // type:data active thread queue head (OSThread**)
+__osGlobalIntMask = 0x8002C370; // type:data global interrupt mask (u32)
+
+// VI manager state (D140.s, D270.s)
+__osViMode = 0x8002C400; // type:data VI mode structure (96 bytes)
+__osViModeTable = 0x8002C430; // type:data VI mode table pointer
+__osViModeInfo = 0x8002C460; // type:data VI mode info pointer (osViGetCurrentFramebuffer)
+__osViContext = 0x8002C464; // type:data VI context pointer (current VI settings)
+__osViModePending = 0x8002C4E0; // type:data pending VI mode change
+__osViModeNext = 0x8002C530; // type:data next VI mode to apply
+__osViModeBuffer = 0x8002C580; // type:data VI mode buffer
+
+// VI mode table entries (8440.s) - osViModeTableGet
+osViModeNtscLan1_Data = 0x80036700; // type:data NTSC LAN1 mode data
+osViModeNtscLpn1_Data = 0x800366A0; // type:data NTSC LPN1 mode data
+gViModeTempBuffer = 0x80036790; // type:data VI mode temp copy buffer (64 bytes)
+gViModePtr0 = 0x800367A0; // type:data VI mode pointer slot 0
+gViModePtr1 = 0x800367A8; // type:data VI mode pointer slot 1
+gViModePtr2 = 0x800367B0; // type:data VI mode pointer slot 2
+gViModePtr3 = 0x800367B8; // type:data VI mode pointer slot 3
+gViModePtr4 = 0x800367BC; // type:data VI mode pointer slot 4
+gViModePtr5 = 0x800367C0; // type:data VI mode pointer slot 5
+gViModePtr6 = 0x800367C8; // type:data VI mode pointer slot 6
+gViModeMessage = 0x800368D0; // type:data VI mode message buffer
+gViModeIndex = 0x80036710; // type:data VI mode index
 
 // Thread queue management (D550.s)
 __osEnqueueThread = 0x8000D0C4; // type:func enqueue thread to priority queue
@@ -169,6 +241,11 @@ dma_wait = 0x80002598; // type:func wait for DMA completion
 dma_signal = 0x8000262C; // type:func signal DMA complete
 lzss_decompress = 0x80002660; // type:func LZSS decompress with DMA
 inflate_decompress = 0x800026C0; // type:func inflate decompress with DMA
+
+// DMA global state (dma.c)
+gDmaMessageQueue = 0x8002F190; // type:data DMA message queue (OSMesgQueue)
+gDmaMessageBuffer = 0x8002F1A8; // type:data DMA message buffer array (OSMesg[])
+gDmaInitialized = 0x8002B030; // type:data DMA initialized flag (u8)
 
 // Inflate/decompression (5610.s)
 inflate_entry = 0x80006814; // type:func main decompression entry point
@@ -196,6 +273,41 @@ update_viewport = 0x80001F2C; // type:func update viewport with bounds checking
 gDisplayListHead = 0x800354C4; // type:data pointer to start of display list buffer
 gDisplayListSize = 0x800354C8; // type:data current size/offset in display list
 gDisplayListEnd = 0x800354CC; // type:data pointer to end of display list buffer
+
+// Viewport/display globals (21F0.s) - used in display_update
+gViewportDataPtr = 0x8002B014; // type:data viewport data buffer pointer (46 refs)
+gViewportBuffer = 0x8002EC00; // type:data viewport data buffer base
+gViewportX = 0x8002EBF8; // type:data viewport X position (s16)
+gViewportY = 0x8002EBFA; // type:data viewport Y position (s16)
+gViewportStruct = 0x8002EBFC; // type:data viewport data structure pointer
+gViewportScale = 0x8002ECAC; // type:data viewport scale factor (s16)
+gViewportScaleX = 0x8002ECB0; // type:data viewport X scale (s16)
+gViewportScaleY = 0x8002ECB2; // type:data viewport Y scale (s16)
+gViewportOffsetX = 0x8002AFFC; // type:data viewport X offset table (s16[])
+gViewportOffsetY = 0x8002AFFE; // type:data viewport Y offset table (s16[])
+gViewportHeight = 0x8002AFB4; // type:data viewport height (f32)
+gViewportWidth = 0x8002AFB8; // type:data viewport width (f32)
+gViewportUpdateFlag = 0x8002AFB0; // type:data viewport update flag
+
+// VI timing state (1050.s) - used by viUpdateTime
+gViTickCounter = 0x8002EB64; // type:data VI tick counter (osGetCount value)
+gViFrameDelta = 0x8002EB98; // type:data VI frame time delta
+gViAccumTime = 0x8002EB9C; // type:data VI accumulated time (secondary)
+gViAccumTotal = 0x8002EBA0; // type:data VI accumulated total time
+gViLastTick = 0x8002EBA4; // type:data VI last tick snapshot
+
+// Inflate state globals (5610.s)
+gInflateInPtr = 0x800354B0; // type:data inflate input pointer
+gInflateInEnd = 0x800354B4; // type:data inflate input buffer end
+gInflateOutPtr = 0x800354B8; // type:data inflate output write position
+gInflateBitBuf = 0x800354BC; // type:data inflate bit accumulator (u32)
+gInflateBitCount = 0x800354C0; // type:data valid bits in buffer (u32)
+gInflateSrc = 0x800354D0; // type:data compressed source pointer
+gInflateToggle = 0x800354D4; // type:data double-buffer toggle
+gInflateDmaState = 0x800354D8; // type:data DMA state structure
+gInflateMsgQueue = 0x80035428; // type:data inflate message queue
+gInflateBufferA = 0x80084A50; // type:data inflate double-buffer A (4KB)
+gInflateBufferB = 0x80085A50; // type:data inflate double-buffer B (4KB)
 
 // Matrix functions (9DE0.s)
 guMtxF2L = 0x800091E0; // type:func convert float matrix to N64 fixed-point
@@ -267,6 +379,15 @@ osPfsFileState = 0x8000F3A4; // type:func get/verify controller pak file state
 // Init/boot functions (2CF0.s) - identified via Codex analysis
 idle_thread_entry = 0x800021A4; // type:func boot idle thread: inits PI manager, creates game thread, loops forever
 audio_thread_entry = 0x800024FC; // type:func audio thread entry point (priority 5)
+
+// OS thread structures (2CF0.s) - created by boot code
+gIdleThread = 0x80034BA0; // type:data idle thread OSThread structure
+gGameThread = 0x80034D50; // type:data game thread OSThread structure
+gAudioThread = 0x80034690; // type:data audio thread OSThread structure
+gSchedulerThread = 0x80034840; // type:data scheduler thread OSThread structure
+gStackIdle = 0x8002F660; // type:data idle thread stack base
+gStackGame = 0x80030150; // type:data game thread stack base
+gStackAudio = 0x8002F7F0; // type:data audio thread stack base
 
 // OS manager init functions (8E10.s)
 osCreatePiManager = 0x80008210; // type:func create PI DMA manager thread and queues
@@ -346,7 +467,7 @@ process_inputs = 0x800C997C; // type:func ProcessPDUs equivalent or state switch
 // Large game functions (from analysis 2025-12-07)
 // Rendering system (maps to ZOID/visuals in arcade)
 render_object = 0x80099BFC; // type:func (10236 bytes) - 3D model rendering, uses G_DL
-render_large = 0x80087A08; // type:func (10048 bytes) - large rendering function
+object_render = 0x80087A08; // type:func (10048 bytes) - 3D object rendering with transforms
 render_scene = 0x800A04C4; // type:func (2720 bytes) - scene setup, viewport modes, uses G_SETGEOMETRYMODE
 
 // Gameplay functions (maps to game/game.c)
@@ -373,15 +494,15 @@ render_helper = 0x800B65B4; // type:func rendering helper (65 calls)
 model_utility = 0x8008AE8C; // type:func model/mesh utility (63 calls)
 input_handler = 0x80094EC8; // type:func input processing (60 calls) - input processing (60 calls)
 
-// Key global variables in game data section
-D_801461D0 = 0x801461D0; // Most referenced global (160 refs) - likely main game struct
-D_801174B4 = 0x801174B4; // gstate - game state bitmask (110 refs) - uses bit encoding for state machine
-D_80152818 = 0x80152818; // Frequently used (89 refs) - player/car state?
-D_80152770 = 0x80152770; // Frequently used (86 refs) - player/car state?
-D_80142728 = 0x80142728; // (77 refs)
-D_8014A110 = 0x8014A110; // (74 refs) - paired with A250
-D_8014A250 = 0x8014A250; // (74 refs) - paired with A110
-D_80142AFC = 0x80142AFC; // Frame counter (incremented each frame in game_loop)
+// Key global variables in game data section (renamed from D_80XXXXXX)
+gMainGameStruct = 0x801461D0; // type:data most referenced global (160 refs) - main game state structure
+gstate = 0x801174B4; // type:data game state bitmask (110 refs) - uses bit encoding for state machine
+gPlayerCarState1 = 0x80152818; // type:data player/car state array 1 (89 refs)
+gPlayerCarState2 = 0x80152770; // type:data player/car state array 2 (86 refs)
+gRaceControlData = 0x80142728; // type:data race control/timing data (77 refs)
+gTrackDataA = 0x8014A110; // type:data track data array A (74 refs) - paired with B
+gTrackDataB = 0x8014A250; // type:data track data array B (74 refs) - paired with A
+gFrameCounter = 0x80142AFC; // type:data frame counter (incremented each frame in game_loop)
 
 // Arcade source mapping (from Codex analysis 2025-12-07)
 // N64 address -> arcade equivalent (confidence level)
@@ -401,7 +522,7 @@ D_80142AFC = 0x80142AFC; // Frame counter (incremented each frame in game_loop)
 // Message queue functions in game code (from Codex analysis)
 audio_msg_send = 0x8008A6D0; // type:func sends audio message via osJamMesg
 audio_task_sync = 0x8008A710; // type:func audio task synchronization (Jam+Recv)
-render_task_sync = 0x8008A77C; // type:func render task synchronization (Jam+Recv)
+audio_queue_process = 0x8008A77C; // type:func audio queue processing (676 bytes)
 wait_for_msg = 0x8008AA40; // type:func waits for message via osRecvMesg
 task_complete_notify = 0x8008AC74; // type:func task completion notification
 scheduler_recv = 0x80091C04; // type:func scheduler message receive
@@ -424,7 +545,7 @@ engine_sound_sync = 0x80098AE4; // type:func engine/sound synchronization
 // Game state machine analysis - uses BITMASK LADDER not jump table
 // Note: game_loop defined above at line 322
 state_dispatch = 0x800FD238; // type:func state machine bitmask ladder
-D_801174B8 = 0x801174B8; // gstate_requested - requested game state (bitfield)
+gstate_requested = 0x801174B8; // type:data requested game state (bitfield)
 // State bit mappings in state_dispatch:
 //   0x0002 -> handler at 0x8039A2A0 (proposed ATTRACT)
 //   0x8000 -> handler at 0x8038A400 (likely service/diag)
@@ -444,11 +565,11 @@ D_801174B8 = 0x801174B8; // gstate_requested - requested game state (bitfield)
 //   +0x71C, +0x720: flags
 
 // Rendering functions (RDP command emitters)
-render_geometry = 0x80087A08; // type:func main geometry builder (10048 bytes)
+// object_render = 0x80087A08 - defined above at line 470
 render_sync_pipeline = 0x8008A474; // type:func sync/pipeline setup (464 bytes)
 render_display_list = 0x80099BFC; // type:func large display list builder (10236 bytes)
 viewport_perspective = 0x8009F064; // type:func calls guPerspective (5216 bytes)
-render_state_helpers = 0x80087118; // type:func state helpers (1772 bytes)
+render_mode_setup = 0x80087118; // type:func RDP render mode setup (1772 bytes)
 vi_config_offset = 0x80094C30; // type:func writes VI offsets 0x18/0x1A
 vi_retrace_callback = 0x800DE4DC; // type:func retrace video timing config
 
@@ -644,10 +765,10 @@ Effects_UpdateEmitters = 0x800B811C; // type:func - loops over 152-byte effect s
 RaceStateMachine_Update = 0x800DB81C; // type:func size:2148 - jump-table state machine on 0x801170FC (cases 0-8)
 
 // Object/Effect data globals (also used by sound system as active_sound_count/active_sound_list):
-active_sound_count = 0x80159788; // active object/sound count
-active_sound_list = 0x80159450; // active objects/sounds array
-D_801491F0 = 0x801491F0; // physics_object_list_head (linked list)
-D_80150B70 = 0x80150B70; // effect_emitters_array (152-byte stride)
+active_sound_count = 0x80159788; // type:data active object/sound count
+active_sound_list = 0x80159450; // type:data active objects/sounds array
+gPhysicsObjectListHead = 0x801491F0; // type:data physics object linked list head
+gEffectEmittersArray = 0x80150B70; // type:data effect emitters array (152-byte stride)
 
 // ============================================
 // Arcade game.c Function Mapping (from Codex analysis 2025-12-07)
@@ -744,78 +865,78 @@ call_osjammsg = 0x8010FC2C; // type:func helper calling osJamMesg with size 1
 clear_region = 0x8010FC34; // type:func zeroes region at 0x8003E928
 
 // === Overnight1 batch (350 functions from game code) ===
-func_80087068 = 0x80087068; // from overnight1 decompilation
-// render_state_helpers = 0x80087118 - defined above
-func_800878EC = 0x800878EC; // from overnight1 decompilation
-func_8008A398 = 0x8008A398; // from overnight1 decompilation
+render_init_setup = 0x80087068; // type:func render initialization setup
+// render_mode_setup = 0x80087118 - defined above
+render_flush_buffer = 0x800878EC; // type:func render buffer flush operation
+audio_sync_wait = 0x8008A398; // type:func audio synchronization wait (76 bytes)
 // render_sync_pipeline = 0x8008A474 - defined above
-func_8008A650 = 0x8008A650; // from overnight1 decompilation
+texture_load_start = 0x8008A650; // type:func texture loading start
 sync_release_video = 0x8008A6D0; // type:func simple sync release wrapper (44 bytes)
-func_8008A710 = 0x8008A710; // from overnight1 decompilation
-// render_task_sync = 0x8008A77C - defined above
+audio_task_start = 0x8008A710; // type:func audio task start handler
+// audio_queue_process = 0x8008A77C - defined above
 controller_rumble_thunk = 0x8008AA20; // type:func thunk to controller_rumble (32 bytes)
-func_8008AA40 = 0x8008AA40; // from overnight1 decompilation
-func_8008ABF4 = 0x8008ABF4; // from overnight1 decompilation
-func_8008AC74 = 0x8008AC74; // from overnight1 decompilation
+dma_wait_complete = 0x8008AA40; // type:func wait for DMA completion
+message_send_async = 0x8008ABF4; // type:func asynchronous message send
+task_complete_signal = 0x8008AC74; // type:func task completion signal
 pointer_offset_wrapper = 0x8008AD48; // type:func adds offset 4 and calls sound_position_set (36 bytes)
-func_8008AE8C = 0x8008AE8C; // from overnight1 decompilation
-func_8008B0D8 = 0x8008B0D8; // from overnight1 decompilation
-func_8008B26C = 0x8008B26C; // from overnight1 decompilation
+model_data_load = 0x8008AE8C; // type:func model/mesh data loading
+model_transform_setup = 0x8008B0D8; // type:func model transform matrix setup
+model_bounds_calc = 0x8008B26C; // type:func model bounding box calculation
 vector_copy_scale = 0x8008B474; // type:func vector copy with scale (80 bytes)
-func_8008B4C4 = 0x8008B4C4; // from overnight1 decompilation
+vector_normalize_length = 0x8008B4C4; // type:func vector normalize and get length
 vector3d_store_transform = 0x8008B660; // type:func vector transform and store
-func_8008B69C = 0x8008B69C; // from overnight1 decompilation
-func_8008B964 = 0x8008B964; // from overnight1 decompilation
-func_8008BA84 = 0x8008BA84; // from overnight1 decompilation
-func_8008BB8C = 0x8008BB8C; // from overnight1 decompilation
-func_8008BC94 = 0x8008BC94; // from overnight1 decompilation
-func_8008BD9C = 0x8008BD9C; // from overnight1 decompilation
-func_8008C688 = 0x8008C688; // from overnight1 decompilation
-func_8008C724 = 0x8008C724; // from overnight1 decompilation
-func_8008C76C = 0x8008C76C; // from overnight1 decompilation
+physics_velocity_integrate_a = 0x8008B69C; // type:func physics velocity integration
+physics_velocity_integrate_b = 0x8008B964; // type:func physics velocity integration variant
+physics_velocity_integrate_c = 0x8008BA84; // type:func physics velocity integration variant
+physics_velocity_integrate_d = 0x8008BB8C; // type:func physics velocity integration variant
+physics_velocity_integrate_e = 0x8008BC94; // type:func physics velocity integration variant
+physics_velocity_integrate_f = 0x8008BD9C; // type:func physics velocity integration variant
+audio_channel_update = 0x8008C688; // type:func audio channel state update
+audio_buffer_process = 0x8008C724; // type:func audio buffer processing (68 bytes)
+audio_param_apply = 0x8008C76C; // type:func apply audio parameters
 entity_render_setup = 0x8008C884; // type:func entity rendering setup (736 bytes)
 entity_process_main = 0x8008D120; // type:func major entity processing (1524 bytes)
-func_8008D714 = 0x8008D714; // from overnight1 decompilation
+matrix_rotation_build = 0x8008D714; // type:func build rotation matrix
 euler_to_matrix = 0x8008D764; // type:func euler angle to rotation matrix (372 bytes)
-func_8008D8D8 = 0x8008D8D8; // from overnight1 decompilation
+matrix_scale_apply = 0x8008D8D8; // type:func apply scale to matrix
 anim_state_update = 0x8008D93C; // type:func entity animation state update (796 bytes)
-func_8008E0C8 = 0x8008E0C8; // from overnight1 decompilation
-func_8008E19C = 0x8008E19C; // from overnight1 decompilation
-func_8008E280 = 0x8008E280; // from overnight1 decompilation
-func_8008E398 = 0x8008E398; // from overnight1 decompilation
+render_flag_check = 0x8008E0C8; // type:func check render flags
+render_mode_select = 0x8008E19C; // type:func select render mode
+render_state_init = 0x8008E280; // type:func initialize render state
+sign_extend_call = 0x8008E398; // type:func sign extend and call (40 bytes)
 render_state_process = 0x8008E440; // type:func major render state processing (1472 bytes)
 entity_spawn_init = 0x8008EA10; // type:func entity spawn and initialization (1656 bytes)
-func_80090088 = 0x80090088; // from overnight1 decompilation
-func_80090228 = 0x80090228; // from overnight1 decompilation
-func_80090254 = 0x80090254; // from overnight1 decompilation
+entity_spawn_callback = 0x80090088; // type:func entity spawn callback handler
+sound_call_simple = 0x80090228; // type:func sign-extends param, calls gfx_flush (44 bytes)
+sound_call_minimal = 0x80090254; // type:func sign-extends param, calls gfx_flush (48 bytes)
 entity_callback_register = 0x80090310; // type:func entity with callback registration (1036 bytes)
-func_8009079C = 0x8009079C; // from overnight1 decompilation
+entity_transform_apply = 0x8009079C; // type:func apply entity transformation matrix
 entity_physics_update = 0x800908A0; // type:func entity movement/physics update (716 bytes)
 entity_collision_detect = 0x80090B70; // type:func entity collision detection (820 bytes)
-func_80090EA4 = 0x80090EA4; // from overnight1 decompilation
-func_80090F4C = 0x80090F4C; // from overnight1 decompilation
+entity_frame_advance = 0x80090EA4; // type:func entity frame advance processing
+entity_callback_invoke = 0x80090F4C; // type:func invoke entity callback function
 entity_update_callback = 0x80090FEC; // type:func entity update callback (2184 bytes)
 entity_anim_texture = 0x80091874; // type:func entity animation with texture loading (616 bytes)
-func_80091C04 = 0x80091C04; // from overnight1 decompilation
-func_80091CA4 = 0x80091CA4; // from overnight1 decompilation
+entity_timer_update = 0x80091C04; // type:func update entity timers
+entity_transform_calc = 0x80091CA4; // type:func calculate entity transforms
 entity_scale_sync = 0x80091E5C; // type:func entity scale/transform with sync (560 bytes)
-func_80091F34 = 0x80091F34; // from overnight1 decompilation
+entity_hierarchy_update = 0x80091F34; // type:func update entity parent-child hierarchy
 entity_state_init = 0x8009229C; // type:func entity state initialization (600 bytes)
-func_80092360 = 0x80092360; // from overnight1 decompilation
+entity_flags_apply = 0x80092360; // type:func apply entity flag settings
 entity_spawn_full = 0x800924F4; // type:func entity spawn with full initialization (1636 bytes)
-func_80092C58 = 0x80092C58; // from overnight1 decompilation
+entity_name_copy = 0x80092C58; // type:func copy entity name string
 string_copy_format = 0x80092E2C; // type:func string/name copy with formatting (720 bytes)
 entity_tick_main = 0x800930A4; // type:func major entity processing loop (2684 bytes)
 drone_ai_update = 0x80093B20; // type:func entity AI/behavior update for drones (3440 bytes)
 audio_channel_setup = 0x80094890; // type:func audio parameter setup (460 bytes)
-func_80094A54 = 0x80094A54; // from overnight1 decompilation
+audio_channel_priority = 0x80094A54; // type:func set audio channel priority
 audio_volume_pan = 0x80094C30; // type:func audio volume and pan control (668 bytes)
-func_80094EC8 = 0x80094EC8; // from overnight1 decompilation
-func_80094F88 = 0x80094F88; // from overnight1 decompilation
+audio_param_update = 0x80094EC8; // type:func audio parameter update helper
+object_byte26_set = 0x80094F88; // type:func sets byte at object offset 26
 audio_channel_reset = 0x80094FF0; // type:func audio channel stop and reset (156 bytes)
-func_8009508C = 0x8009508C; // from overnight1 decompilation
-func_80095120 = 0x80095120; // from overnight1 decompilation
-func_8009515C = 0x8009515C; // from overnight1 decompilation
+pointer_compare_thunk = 0x8009508C; // type:func thunk calling sound_position_set (32 bytes)
+validate_and_call = 0x80095120; // type:func validates pointers, calls triangle_draw (52 bytes)
+sound_volume_helper = 0x8009515C; // type:func sound volume calculation helper (60 bytes)
 sound_position_update = 0x800951E0; // type:func 3D sound position update (492 bytes)
 audio_fade_control = 0x800953CC; // type:func audio fade control over time (220 bytes)
 sound_channel_enable = 0x800954A8; // type:func sound enable/disable channel (128 bytes)
@@ -823,49 +944,49 @@ music_track_control = 0x80095528; // type:func music track playback control (484
 audio_bus_route = 0x8009570C; // type:func audio bus routing (244 bytes)
 audio_effect_setup = 0x80095800; // type:func reverb/effect setup (292 bytes)
 audio_timing_sync = 0x80095924; // type:func audio timing sync with video (184 bytes)
-func_800959DC = 0x800959DC; // from overnight1 decompilation
+audio_pitch_adjust = 0x800959DC; // type:func audio pitch adjustment (72 bytes)
 sound_priority_set = 0x80095A24; // type:func sound priority management (236 bytes)
 audio_stream_control = 0x80095B10; // type:func audio streaming control (236 bytes)
 audio_buffer_manage = 0x80095BFC; // type:func audio DMA buffer management (268 bytes)
 audio_state_save = 0x80095D04; // type:func audio state save/restore (468 bytes)
-func_80095FD8 = 0x80095FD8; // from overnight1 decompilation
-func_800960D4 = 0x800960D4; // from overnight1 decompilation
+audio_reverb_update = 0x80095FD8; // type:func reverb state update
+audio_effect_process = 0x800960D4; // type:func audio effect processing
 entity_sound_attach = 0x8009614C; // type:func entity sound attachment with sync (216 bytes)
-func_80096240 = 0x80096240; // from overnight1 decompilation
-func_80096298 = 0x80096298; // from overnight1 decompilation
-func_800962D4 = 0x800962D4; // from overnight1 decompilation
-func_8009638C = 0x8009638C; // from overnight1 decompilation
+sound_3d_update = 0x80096240; // type:func 3D sound position/volume update
+slot_value_get = 0x80096298; // type:func get value from slot array
+audio_loop_control = 0x800962D4; // type:func audio loop point control
+display_list_alloc = 0x8009638C; // type:func display list memory allocation
 display_list_traverse = 0x800963E8; // type:func display list traversal (452 bytes)
 entity_render_mode = 0x800965BC; // type:func entity render setup (244 bytes)
 entity_lod_select = 0x80096734; // type:func entity LOD selection by distance (716 bytes)
 entity_cull_check = 0x80096A00; // type:func entity view frustum culling (348 bytes)
-func_80096B5C = 0x80096B5C; // from overnight1 decompilation
+lookup_with_output = 0x80096B5C; // type:func table lookup with output pointer
 entity_render_transform = 0x80096CC4; // type:func entity render with transforms (1216 bytes)
 entity_collision_response = 0x80097184; // type:func entity collision response (876 bytes)
-func_8009731C = 0x8009731C; // from overnight1 decompilation
-func_80097470 = 0x80097470; // from overnight1 decompilation
+entity_bounds_update = 0x8009731C; // type:func update entity bounding box
+entity_visibility_calc = 0x80097470; // type:func calculate entity visibility state
 mp_interval_pos = 0x800979A8; // type:func calc car position relative to maxpath interval (arcade: maxpath.c:mp_interval_pos)
 MP_TargetSteerPos = 0x80097AFC; // type:func calc target steering position from maxpath (arcade: maxpath.c:MP_TargetSteerPos)
 resource_process_thunk = 0x80098554; // type:func thunk to texture_set
-func_800985F4 = 0x800985F4; // from overnight1 decompilation
-func_80098620 = 0x80098620; // from overnight1 decompilation
-func_800986B0 = 0x800986B0; // from overnight1 decompilation
+param_reshuffle_wrapper = 0x800985F4; // type:func reorganize params, call matrix_translate (44 bytes)
+matrix_push_offset = 0x80098620; // type:func push matrix with offset
+pointer_offset8_call = 0x800986B0; // type:func call matrix_identity with offset (36 bytes)
 entity_state_check = 0x800987E8; // type:func simple state check (140 bytes)
 entity_flag_check = 0x80098874; // type:func entity flag check (108 bytes)
 entity_damage_update = 0x800988E0; // type:func entity damage/health update (516 bytes)
 entity_physics_step = 0x80098AE4; // type:func entity physics integration step (1244 bytes)
 entity_ground_check = 0x80098FC0; // type:func entity ground raycast (708 bytes)
 entity_ai_pathfind = 0x800992AC; // type:func entity AI pathfinding (2388 bytes)
-func_8009C5BC = 0x8009C5BC; // from overnight1 decompilation
-func_8009C5E0 = 0x8009C5E0; // from overnight1 decompilation
-func_8009C8F0 = 0x8009C8F0; // from overnight1 decompilation
-func_8009DC50 = 0x8009DC50; // from overnight1 decompilation
-func_8009DD18 = 0x8009DD18; // from overnight1 decompilation
-func_8009DD88 = 0x8009DD88; // from overnight1 decompilation
-func_8009EA70 = 0x8009EA70; // from overnight1 decompilation
-func_8009EB18 = 0x8009EB18; // from overnight1 decompilation
-func_8009EBC0 = 0x8009EBC0; // from overnight1 decompilation
-func_8009F064 = 0x8009F064; // from overnight1 decompilation
+lighting_setup = 0x8009C5BC; // type:func lighting setup helper
+lighting_calc = 0x8009C5E0; // type:func surface lighting calculation (1560 bytes)
+track_geometry_process = 0x8009C8F0; // type:func track geometry processing for rendering (5368 bytes)
+track_segment_setup = 0x8009DC50; // type:func track segment initialization
+track_texture_setup = 0x8009DD18; // type:func track texture loading and setup
+track_segment_render = 0x8009DD88; // type:func render single track segment with display list (3304 bytes)
+track_bounds_check = 0x8009EA70; // type:func check position within track boundaries (168 bytes)
+track_height_query = 0x8009EB18; // type:func get terrain height at position (168 bytes)
+track_surface_type = 0x8009EBC0; // type:func get surface material type at position (1188 bytes)
+track_collision_test = 0x8009F064; // type:func raycast against track geometry (8600 bytes)
 MP_TargetSpeed = 0x800A0F74; // type:func calc target speed from maxpath (arcade: maxpath.c:MP_TargetSpeed)
 NextMaxPath = 0x800A0FDC; // type:func get next maxpath index wrapping at lap end (arcade: maxpath.c:NextMaxPath)
 PrevMaxPath = 0x800A11E4; // type:func get previous maxpath index (arcade: maxpath.c:PrevMaxPath)
@@ -873,10 +994,10 @@ InitMaxPath = 0x800A1244; // type:func initialize maxpath system for drones (arc
 assign_default_paths = 0x800A12D4; // type:func assign default paths to drones (arcade: maxpath.c:assign_default_paths)
 sync_maxpath_to_checkpoint = 0x800A133C; // type:func sync maxpath index to checkpoint (arcade: maxpath.c)
 check_mpath_save = 0x800A13E8; // type:func check if lap faster and save maxpath (arcade: maxpath.c)
-MaxPath = 0x800A1648; // type:func main maxpath update per frame (arcade: maxpath.c:MaxPath)
-RecordMaxPath = 0x800A1A60; // type:func record maxpath during drone training (arcade: maxpath.c)
-SaveMaxPathData = 0x800A1F18; // type:func save pos/speed to maxpath point (arcade: maxpath.c)
-PrintMaxPath = 0x800A21A4; // type:func debug print maxpath data (arcade: maxpath.c)
+track_segment_load = 0x800A1648; // type:func (2256 bytes) load track segment from ROM, GZIP decompression
+// RecordMaxPath = 0x800A1A60; // type:func record maxpath during drone training (arcade: maxpath.c)
+track_data_decompress = 0x800A1F18; // type:func (644 bytes) decompress GZIP/ZLIB/LZSS track data
+track_collision_setup = 0x800A21A4; // type:func (732 bytes) setup 64x64 collision height/surface grids
 MaxPathZeroControls = 0x800A2378; // type:func zero out drone controls (arcade: maxpath.c)
 slot_state_lookup = 0x800A2504; // type:func accesses player/slot state array (58 calls)
 AdjustSteer = 0x800A25C0; // type:func adjust drone steering toward target pos (arcade: maxpath.c:AdjustSteer)
@@ -884,38 +1005,39 @@ AdjustSpeed = 0x800A2680; // type:func adjust drone throttle/brake to target spe
 drone_set_catchup = 0x800A2990; // type:func set catchup speed scaling for drone (arcade: drones.c)
 set_catchup = 0x800A2CE4; // type:func set catchup mode for drones (arcade: drones.c:set_catchup)
 no_catchup = 0x800A2D0C; // type:func disable catchup for tournament mode (arcade: drones.c:no_catchup)
-InitDrones = 0x800A2D4C; // type:func initialize drone system (arcade: drones.c:InitDrones)
-EndDrones = 0x800A3654; // type:func cleanup drone system (arcade: drones.c:EndDrones)
+track_process_main = 0x800A2D4C; // type:func (3116 bytes) per-frame track segment processing
+track_spline_interp = 0x800A3654; // type:func (296 bytes) Catmull-Rom spline interpolation
 drone_rwtobod = 0x800A373C; // type:func convert real-world to body coords for drone (arcade: vecmath)
-drone_magnitude = 0x800A377C; // type:func calculate vector magnitude for drone calcs (arcade: vecmath)
-func_800A4508 = 0x800A4508; // from overnight1 decompilation
-func_800A4940 = 0x800A4940; // from overnight1 decompilation
+track_render_process = 0x800A377C; // type:func (3156 bytes) per-frame track rendering
+car_lod_select = 0x800A4508; // type:func car model LOD selection (visuals: level-of-detail)
+wheel_rotation_update = 0x800A4940; // type:func update wheel rotation and slip (tires: visual rotation)
 func_800A4AC4 = 0x800A4AC4; // from overnight1 decompilation
-func_800A4B48 = 0x800A4B48; // from overnight1 decompilation
+resource_update_global = 0x800A4B48; // type:func update global resource via matrix stack
 func_800A4B6C = 0x800A4B6C; // from overnight1 decompilation
-func_800A4C54 = 0x800A4C54; // from overnight1 decompilation
-func_800A4CC0 = 0x800A4CC0; // from overnight1 decompilation
-func_800A4E60 = 0x800A4E60; // from overnight1 decompilation
+init_wait_completion = 0x800A4C54; // type:func wait for initialization completion
+suspension_update = 0x800A4CC0; // type:func suspension compression update (tires.c: dotireforce)
+tire_skid_mark = 0x800A4E60; // type:func tire skid mark generation (visuals: DoSkid)
 func_800A501C = 0x800A501C; // from overnight1 decompilation
 func_800A511C = 0x800A511C; // from overnight1 decompilation
 func_800A5160 = 0x800A5160; // from overnight1 decompilation
-func_800A51E0 = 0x800A51E0; // from overnight1 decompilation
-func_800A5588 = 0x800A5588; // from overnight1 decompilation
-func_800A5744 = 0x800A5744; // from overnight1 decompilation
+car_damage_visual = 0x800A51E0; // type:func car damage visual update (visuals: damage deformation)
+engine_particle_effect = 0x800A5588; // type:func engine particle effect spawn (visuals: dust/sparks/smoke)
+exhaust_smoke_effect = 0x800A5744; // type:func exhaust smoke effect render (visuals: StartSmoke)
 func_800A5908 = 0x800A5908; // from overnight1 decompilation
 func_800A5A74 = 0x800A5A74; // from overnight1 decompilation
-func_800A5B60 = 0x800A5B60; // from overnight1 decompilation
+render_state_init = 0x800A5B60; // type:func initialize render state variables
 func_800A5BB8 = 0x800A5BB8; // from overnight1 decompilation
-func_800A5D34 = 0x800A5D34; // from overnight1 decompilation
-func_800A6094 = 0x800A6094; // from overnight1 decompilation
-func_800A6244 = 0x800A6244; // from overnight1 decompilation
-func_800A6404 = 0x800A6404; // from overnight1 decompilation
+car_shadow_render = 0x800A5D34; // type:func car shadow rendering (visuals: shadow)
+car_lights_render = 0x800A6094; // type:func headlight/taillight rendering (visuals)
+brake_light_update = 0x800A6244; // type:func brake light update (visuals: App_M_BRAKE_LIGHTS)
+car_render_full = 0x800A6404; // type:func car full render with effects (visuals: main car render)
 func_800A6BE4 = 0x800A6BE4; // from overnight1 decompilation
 func_800A78C8 = 0x800A78C8; // from overnight1 decompilation
 func_800A7AE4 = 0x800A7AE4; // from overnight1 decompilation
-func_800A7C9C = 0x800A7C9C; // from overnight1 decompilation
-func_800A7D88 = 0x800A7D88; // from overnight1 decompilation
-func_800A7DF0 = 0x800A7DF0; // from overnight1 decompilation
+car_gear_shift = 0x800A7C9C; // type:func car gear shift handler (drivetrain: transmission)
+car_get_gear = 0x800A7D88; // type:func get current gear (drivetrain)
+object_process_thunk = 0x800A7DF0; // type:func thunk to camera_target_set
+tire_force_calc = 0x800A7E00; // type:func (1200 bytes) tire force calculation using friction circle model (tires.c)
 func_800A80D0 = 0x800A80D0; // from overnight1 decompilation
 func_800A8D9C = 0x800A8D9C; // from overnight1 decompilation
 func_800A8F64 = 0x800A8F64; // from overnight1 decompilation
@@ -927,19 +1049,19 @@ func_800AAB44 = 0x800AAB44; // from overnight1 decompilation
 func_800AAE68 = 0x800AAE68; // from overnight1 decompilation
 func_800AB544 = 0x800AB544; // from overnight1 decompilation
 func_800AB70C = 0x800AB70C; // from overnight1 decompilation
-func_800AB758 = 0x800AB758; // from overnight1 decompilation
+object_transform_set = 0x800AB758; // type:func set object transform matrix
 func_800AB7D8 = 0x800AB7D8; // from overnight1 decompilation
 func_800ABBD0 = 0x800ABBD0; // from overnight1 decompilation
 func_800ABCC8 = 0x800ABCC8; // from overnight1 decompilation
 func_800AC3D8 = 0x800AC3D8; // from overnight1 decompilation
 func_800AC668 = 0x800AC668; // from overnight1 decompilation
-func_800AC6F4 = 0x800AC6F4; // from overnight1 decompilation
+fp_call_wrapper = 0x800AC6F4; // type:func function pointer call wrapper
 func_800AC75C = 0x800AC75C; // from overnight1 decompilation
-func_800AC820 = 0x800AC820; // from overnight1 decompilation
-func_800AC840 = 0x800AC840; // from overnight1 decompilation
-func_800AC898 = 0x800AC898; // from overnight1 decompilation
+resource_slot_get = 0x800AC820; // type:func get resource slot value
+slot_deactivate = 0x800AC840; // type:func deactivate model slot
+player_state_get = 0x800AC898; // type:func get player state value
 func_800ACA9C = 0x800ACA9C; // from overnight1 decompilation
-func_800ACB74 = 0x800ACB74; // from overnight1 decompilation
+vector_diff_process = 0x800ACB74; // type:func process vector difference
 func_800ACC18 = 0x800ACC18; // from overnight1 decompilation
 func_800AD008 = 0x800AD008; // from overnight1 decompilation
 func_800AD0A0 = 0x800AD0A0; // from overnight1 decompilation
@@ -947,43 +1069,48 @@ func_800AD128 = 0x800AD128; // from overnight1 decompilation
 func_800AD734 = 0x800AD734; // from overnight1 decompilation
 func_800ADD58 = 0x800ADD58; // from overnight1 decompilation
 func_800AEB54 = 0x800AEB54; // from overnight1 decompilation
-func_800AED2C = 0x800AED2C; // from overnight1 decompilation
+object_init_cleared = 0x800AED2C; // type:func initialize cleared object
 func_800AED64 = 0x800AED64; // from overnight1 decompilation
 func_800AEFE8 = 0x800AEFE8; // from overnight1 decompilation
-func_800AF06C = 0x800AF06C; // from overnight1 decompilation
+save_write_data = 0x800AF06C; // type:func save game data to buffer
 func_800AF51C = 0x800AF51C; // from overnight1 decompilation
-func_800AF5E0 = 0x800AF5E0; // from overnight1 decompilation
-func_800AF690 = 0x800AF690; // from overnight1 decompilation
-func_800AF8CC = 0x800AF8CC; // from overnight1 decompilation
-func_800AFB38 = 0x800AFB38; // from overnight1 decompilation
-func_800AFD5C = 0x800AFD5C; // from overnight1 decompilation
-func_800B0180 = 0x800B0180; // from overnight1 decompilation
-func_800B0550 = 0x800B0550; // from overnight1 decompilation
-func_800B0580 = 0x800B0580; // from overnight1 decompilation
-func_800B0618 = 0x800B0618; // from overnight1 decompilation
-func_800B066C = 0x800B066C; // from overnight1 decompilation
-func_800B0870 = 0x800B0870; // from overnight1 decompilation
-func_800B0904 = 0x800B0904; // from overnight1 decompilation
-func_800B0A90 = 0x800B0A90; // from overnight1 decompilation
-func_800B0C48 = 0x800B0C48; // from overnight1 decompilation
-func_800B0F68 = 0x800B0F68; // from overnight1 decompilation
-func_800B10D4 = 0x800B10D4; // from overnight1 decompilation
-func_800B15B4 = 0x800B15B4; // from overnight1 decompilation
-func_800B1B48 = 0x800B1B48; // from overnight1 decompilation
-func_800B1F44 = 0x800B1F44; // from overnight1 decompilation
-func_800B200C = 0x800B200C; // from overnight1 decompilation
-func_800B24EC = 0x800B24EC; // from overnight1 decompilation
-func_800B2658 = 0x800B2658; // from overnight1 decompilation
-func_800B2828 = 0x800B2828; // from overnight1 decompilation
-func_800B2928 = 0x800B2928; // from overnight1 decompilation
-func_800B2D20 = 0x800B2D20; // from overnight1 decompilation
-func_800B2DF8 = 0x800B2DF8; // from overnight1 decompilation
-func_800B338C = 0x800B338C; // from overnight1 decompilation
-func_800B362C = 0x800B362C; // from overnight1 decompilation
-sound_effect_manager = 0x800B3710; // type:func sound effect management function
-sound_channel_update = 0x800B39BC; // type:func update sound channel state
-sound_volume_adjust = 0x800B3B4C; // type:func adjust sound volume level
-sound_update_channel = 0x800B3D20; // type:func audio update and sync function
+save_slot_valid = 0x800AF5E0; // type:func check save slot validity
+save_load_data = 0x800AF690; // type:func load save from controller pak
+save_delete = 0x800AF8CC; // type:func delete save from slot
+save_validate = 0x800AFB38; // type:func validate save data integrity
+cpak_init = 0x800AFD5C; // type:func controller pak initialization
+// ============================================
+// Audio System Functions (0x800B0180 - 0x800B3xxx)
+// Based on arcade sounds.c and game.c analysis
+// ============================================
+cpak_read = 0x800B0180; // type:func controller pak read - read data from controller pak (868 bytes)
+struct_fields_init = 0x800B0550; // type:func initialize structure fields (see game.c comment)
+func_800B0580 = 0x800B0580; // type:func audio helper sub-function
+func_800B0618 = 0x800B0618; // type:func audio helper sub-function
+func_800B066C = 0x800B066C; // type:func audio helper sub-function
+physics_update_all = 0x800B0870; // type:func physics object linked list update (called when physics_update != 0)
+audio_init = 0x800B0904; // type:func audio system initialization - set up channels and hardware (396 bytes)
+audio_shutdown = 0x800B0A90; // type:func audio system shutdown - stop all sounds and disable audio (440 bytes)
+audio_frame_update = 0x800B0C48; // type:func per-frame audio update - process fades and channel timers (800 bytes)
+sound_bank_load = 0x800B0F68; // type:func load sound bank from ROM via DMA (364 bytes)
+sound_bank_unload = 0x800B10D4; // type:func unload sound bank and stop dependent sounds (1248 bytes)
+music_seq_load = 0x800B15B4; // type:func load music sequence from ROM (1428 bytes)
+music_control = 0x800B1B48; // type:func music playback control - stop/play/pause/resume/restart/fade (1020 bytes)
+music_volume_set = 0x800B1F44; // type:func set music volume level 0.0-1.0 (200 bytes)
+music_tempo_set = 0x800B200C; // type:func set music tempo/playback speed (1612 bytes)
+sfx_play = 0x800B24EC; // type:func play sound effect with volume and pan (464 bytes)
+sfx_stop = 0x800B2658; // type:func stop sound effect by handle or sound ID (256 bytes)
+sfx_volume_set = 0x800B2828; // type:func set sound effect volume (196 bytes)
+sfx_position_3d = 0x800B2928; // type:func 3D sound position - calculates attenuation and pan from distance (1016 bytes)
+listener_position_set = 0x800B2D20; // type:func set audio listener position and forward vector (216 bytes)
+engine_sound_update = 0x800B2DF8; // type:func update engine sound pitch/volume from RPM - arcade: DoEngineSound (1428 bytes)
+tire_sound_update = 0x800B338C; // type:func update tire squeal sounds from slip - arcade: DoTireSqueals (900 bytes)
+collision_sound_play = 0x800B362C; // type:func trigger collision/impact sound based on intensity (684 bytes)
+// Sound effect management (0x800B3710 - 0x800B3xxx)
+wind_sound_update = 0x800B3710; // type:func update wind noise based on car speed - arcade: sndWindNoise (684 bytes)
+crowd_cheer_play = 0x800B39BC; // type:func play crowd cheer sound for stunts/checkpoints (396 bytes)
+ambient_sound_set = 0x800B3B4C; // type:func set ambient/environment sound volume by ID (468 bytes)
+voice_play = 0x800B3D20; // type:func play announcer voice clip - start/position/lap announcements (488 bytes)
 object_type_byte2_get = 0x800B3F00; // type:func returns byte at offset 2 from current object
 object_type_byte3_get = 0x800B3F28; // type:func returns byte at offset 3 from current object
 object_bytes_sum_global = 0x800B3F50; // type:func returns sum of mode_byte_2 + current_object offsets
@@ -991,96 +1118,102 @@ object_manager_update = 0x800B3FA4; // type:func object management update (107 c
 object_byte9_set = 0x800B41C0; // type:func sets byte at current_object+9
 slot_state_init = 0x800B4208; // type:func player slot state initialization
 object_create = 0x800B42F0; // type:func allocate and initialize object wrapper
-func_800B4360 = 0x800B4360; // fcvt_wrapper - float to string conversion wrapper (57 calls)
-func_800B438C = 0x800B438C; // from overnight1 decompilation
+fcvt_wrapper = 0x800B4360; // type:func float to string conversion wrapper (57 calls)
+voice_stop = 0x800B438C; // type:func stop currently playing voice and clear queue (224 bytes)
 sound_handles_clear = 0x800B45BC; // type:func stops and clears sound handles in object array
-func_800B466C = 0x800B466C; // format_string_parse - format string parser with jump table (55 calls)
-text_format_helper = 0x800B4738; // type:func text formatting helper function
-text_render_string = 0x800B4818; // type:func render text string to screen
-text_draw_with_shadow = 0x800B4B94; // type:func draw text with shadow effect
-func_800B4DAC = 0x800B4DAC; // from overnight1 decompilation
-func_800B4E70 = 0x800B4E70; // from overnight1 decompilation
-func_800B4FB0 = 0x800B4FB0; // from overnight1 decompilation
+format_string_parse = 0x800B466C; // type:func format string parser with jump table (55 calls)
+// Text/UI Functions (0x800B4700 - 0x800B5xxx)
+voice_stop_2 = 0x800B4738; // type:func text formatting helper function (224 bytes)
+audio_bus_mix = 0x800B4818; // type:func set volume levels for audio buses/categories (892 bytes)
+reverb_setup = 0x800B4B94; // type:func configure reverb effect for environment type (536 bytes)
+audio_pause = 0x800B4DAC; // type:func pause/resume all game audio
+audio_ducking = 0x800B4E70; // type:func audio ducking - reduce lower priority sounds
+sound_priority_set = 0x800B4FB0; // type:func set priority for sound handle
 ambient_sounds_clear = 0x800B557C; // type:func clear all ambient and environment sound handles
 visual_objects_update = 0x800B55FC; // type:func iterates and updates visual objects
-ui_element_update = 0x800B5694; // type:func update UI element state
-ui_element_render = 0x800B574C; // type:func render UI element to display list
-func_800B58A0 = 0x800B58A0; // from overnight1 decompilation
-ui_transition_update = 0x800B5948; // type:func update UI transition animation
-func_800B59F8 = 0x800B59F8; // from overnight1 decompilation
-func_800B5F4C = 0x800B5F4C; // from overnight1 decompilation
-func_800B5F88 = 0x800B5F88; // from overnight1 decompilation
+sound_priority_mgr = 0x800B5694; // type:func sound priority management (184 bytes)
+sound_loop_set = 0x800B574C; // type:func enable/disable looping for playing sound (340 bytes)
+sound_pitch_set = 0x800B58A0; // type:func set pitch for playing sound (float to N64 fixed-point)
+sound_volume_set = 0x800B5948; // type:func set volume 0.0-1.0 for playing sound (176 bytes)
+audio_spatialize = 0x800B59F8; // type:func 3D sound spatialization - pan/attenuation/doppler (1472 bytes)
+audio_distance_atten = 0x800B5F4C; // type:func calculate volume attenuation from distance (464 bytes)
+audio_doppler = 0x800B5F88; // type:func calculate doppler pitch shift from relative motion
 resource_type_select = 0x800B5FC4; // type:func select resource type based on bit flags
-func_800B6024 = 0x800B6024; // from overnight1 decompilation
-func_800B6138 = 0x800B6138; // from overnight1 decompilation
+audio_occlusion = 0x800B6024; // type:func calculate audio occlusion between listener and source
+entity_audio_update = 0x800B6138; // type:func update all audio for game entity (car/drone/object)
 resource_alloc_conditional = 0x800B61B0; // type:func conditionally allocate resource or return -1
-func_800B61FC = 0x800B61FC; // from overnight1 decompilation
+audio_doppler_full = 0x800B61FC; // type:func full doppler calculation with velocity
 render_helper_main = 0x800B65B8; // type:func rendering helper function (65 calls)
-menu_state_update = 0x800B6788; // type:func update menu state machine
+audio_doppler_calc = 0x800B6788; // type:func doppler calculation - listener/source velocity (1124 bytes)
 menu_input_process = 0x800B6BEC; // type:func process menu controller input
 object_bytes23_sum = 0x800B7128; // type:func returns sum of bytes at offsets 2 and 3
 sound_pitch_diff_calc = 0x800B7170; // type:func calculate difference with sound_pitch_set result
 sound_pitch_diff_halved = 0x800B71A0; // type:func calculate halved difference with sound_pitch_set
 sound_state_helper = 0x800B71DC; // type:func sound state helper function (125 calls)
-func_800B7440 = 0x800B7440; // from overnight1 decompilation
+audio_listener_update = 0x800B7440; // type:func update audio listener state from camera
 event_dispatch_handler = 0x800B74A0; // type:func event dispatch handler (152 calls)
-func_800B78F8 = 0x800B78F8; // from overnight1 decompilation
-func_800B7A40 = 0x800B7A40; // from overnight1 decompilation
-func_800B8000 = 0x800B8000; // from overnight1 decompilation
-func_800B811C = 0x800B811C; // from overnight1 decompilation
-func_800B821C = 0x800B821C; // from overnight1 decompilation
-func_800B82C8 = 0x800B82C8; // from overnight1 decompilation
-func_800B8374 = 0x800B8374; // from overnight1 decompilation
-func_800B8650 = 0x800B8650; // from overnight1 decompilation
-func_800B8820 = 0x800B8820; // from overnight1 decompilation
-func_800B9130 = 0x800B9130; // from overnight1 decompilation
-func_800B9194 = 0x800B9194; // from overnight1 decompilation
-func_800B93A8 = 0x800B93A8; // from overnight1 decompilation
-func_800B9774 = 0x800B9774; // from overnight1 decompilation
-func_800B9A0C = 0x800B9A0C; // from overnight1 decompilation
-func_800B9D68 = 0x800B9D68; // from overnight1 decompilation
-func_800BA00C = 0x800BA00C; // from overnight1 decompilation
-func_800BA2E8 = 0x800BA2E8; // from overnight1 decompilation
-func_800BA46C = 0x800BA46C; // from overnight1 decompilation
-func_800BA644 = 0x800BA644; // from overnight1 decompilation
-func_800BA7C4 = 0x800BA7C4; // from overnight1 decompilation
-func_800BAAA0 = 0x800BAAA0; // from overnight1 decompilation
-func_800BAD58 = 0x800BAD58; // from overnight1 decompilation
-func_800BADE0 = 0x800BADE0; // from overnight1 decompilation
-func_800BAF64 = 0x800BAF64; // from overnight1 decompilation
-func_800BAF98 = 0x800BAF98; // from overnight1 decompilation
-func_800BB044 = 0x800BB044; // from overnight1 decompilation
-func_800BB140 = 0x800BB140; // from overnight1 decompilation
-func_800BB69C = 0x800BB69C; // from overnight1 decompilation
-func_800BB834 = 0x800BB834; // from overnight1 decompilation
-func_800BB9BC = 0x800BB9BC; // from overnight1 decompilation
-func_800BC1E8 = 0x800BC1E8; // from overnight1 decompilation
-func_800BC2BC = 0x800BC2BC; // from overnight1 decompilation
-func_800BCBB8 = 0x800BCBB8; // from overnight1 decompilation
-func_800BCEE4 = 0x800BCEE4; // from overnight1 decompilation
-func_800BD104 = 0x800BD104; // from overnight1 decompilation
-func_800BD2D0 = 0x800BD2D0; // from overnight1 decompilation
-func_800BDAA8 = 0x800BDAA8; // from overnight1 decompilation
-func_800BDDFC = 0x800BDDFC; // from overnight1 decompilation
-func_800BDEBC = 0x800BDEBC; // from overnight1 decompilation
-func_800BE078 = 0x800BE078; // from overnight1 decompilation
-race_timer_init = 0x800BE4B4; // type:func initialize race timer
-race_timer_update = 0x800BE4F8; // type:func update race timer
+// Particle/Effect System (0x800B78xx - 0x800B8xxx)
+particles_init = 0x800B78F8; // type:func initialize particle system
+particles_update = 0x800B7A40; // type:func update all active particles
+particles_spawn = 0x800B8000; // type:func spawn new particle emitter
+particle_type_set = 0x800B811C; // type:func set particle type/behavior
+particle_position_set = 0x800B821C; // type:func set particle spawn position
+particle_velocity_set = 0x800B82C8; // type:func set particle initial velocity
+particle_lifetime_set = 0x800B8374; // type:func set particle lifetime in frames
+particle_render = 0x800B8650; // type:func render particle sprites
+particle_collision = 0x800B8820; // type:func particle collision detection
+// Physics Functions (0x800B9xxx)
+physics_step = 0x800B9130; // type:func single physics integration step
+physics_collision_test = 0x800B9194; // type:func test physics collision between objects
+physics_response = 0x800B93A8; // type:func calculate physics collision response
+physics_ground_trace = 0x800B9774; // type:func trace ray to ground for terrain contact
+physics_velocity_clamp = 0x800B9A0C; // type:func clamp velocity to maximum
+physics_friction_apply = 0x800B9D68; // type:func apply friction force to object
+// Audio Mixer Functions (0x800BAxxx)
+audio_channel_alloc = 0x800BA00C; // type:func allocate audio channel based on priority
+audio_channel_free = 0x800BA2E8; // type:func free audio channel
+audio_priority_find = 0x800BA46C; // type:func find channel for sound based on priority (472 bytes)
+audio_heap_alloc = 0x800BA644; // type:func allocate memory from audio heap (380 bytes)
+audio_mixer_main = 0x800BA7C4; // type:func main audio mixer - mix all channels to output (1996 bytes)
+audio_effect_apply = 0x800BAAA0; // type:func apply audio effect to output (172 bytes)
+audio_effect_remove = 0x800BAD58; // type:func remove audio effect (252 bytes)
+audio_dsp_process = 0x800BADE0; // type:func DSP processing - reverb/EQ effects chain (1372 bytes)
+mode_flags_clear = 0x800BAF64; // type:func clear audio mode flags
+audio_output_setup = 0x800BAF98; // type:func configure audio output mode (408 bytes)
+audio_hw_sync = 0x800BB044; // type:func sync audio buffer submission with hardware (392 bytes)
+audio_interrupt_handler = 0x800BB140; // type:func audio DMA interrupt handler (756 bytes)
+// Camera Functions (0x800BBxxx - 0x800BCxxx)
+camera_reset = 0x800BB69C; // type:func reset camera to default state (292 bytes)
+camera_lerp_position = 0x800BB834; // type:func lerp camera position toward target (808 bytes)
+camera_orbit_delta = 0x800BB9BC; // type:func orbit camera around target by delta angles (548 bytes)
+player_flag_clear_process = 0x800BC1E8; // type:func process player flag clear
+camera_dolly = 0x800BC2BC; // type:func move camera along view direction/zoom (460 bytes)
+camera_follow_target = 0x800BCBB8; // type:func camera follows target with look-ahead (7640 bytes)
+camera_collision_avoid = 0x800BCEE4; // type:func prevent camera clipping through geometry (1596 bytes)
+camera_smooth_follow = 0x800BD104; // type:func smooth interpolation to follow position (872 bytes)
+camera_collision_check = 0x800BD2D0; // type:func raycast collision check from target to camera (1976 bytes)
+camera_shake_start = 0x800BDAA8; // type:func initiate camera shake effect (852 bytes)
+camera_shake_update = 0x800BDDFC; // type:func update camera shake per frame (192 bytes)
+camera_zoom_fov = 0x800BDEBC; // type:func adjust camera FOV for zoom effect (444 bytes)
+camera_auto_follow = 0x800BE078; // type:func smooth auto-follow with spring physics (1136 bytes)
+// Camera cinematic/cut functions (0x800BExxx - 0x800BFxxx)
+camera_cinematic_mode = 0x800BE4B4; // type:func set up camera for cinematic sequences (936 bytes)
+camera_cut_to = 0x800BE4F8; // type:func instant camera cut to new position/target
 race_position_update = 0x800BE7BC; // type:func update race position
-race_lap_check = 0x800BE9A0; // type:func check lap completion
-race_finish_check = 0x800BE9E8; // type:func check race finish condition
-race_results_init = 0x800BEE2C; // type:func initialize race results screen
+music_fade = 0x800BE9A0; // type:func music fade in/out over duration (388 bytes)
+music_tempo_adjust = 0x800BE9E8; // type:func adjust music playback tempo
+camera_blend_between = 0x800BEE2C; // type:func blend between two camera states (924 bytes)
 results_screen_update = 0x800BF024; // type:func update results screen display
 results_time_display = 0x800BF0A4; // type:func display race time on results
 leaderboard_update = 0x800BF148; // type:func update leaderboard display
-leaderboard_entry_add = 0x800BF1C8; // type:func add entry to leaderboard
-hiscore_check = 0x800BF2B8; // type:func check for high score
-hiscore_entry_init = 0x800BF394; // type:func initialize high score entry
-hiscore_name_input = 0x800BF45C; // type:func handle high score name input
-track_select_init = 0x800BF838; // type:func initialize track selection screen
-car_select_init = 0x800BFBEC; // type:func initialize car selection screen
+camera_fov_control = 0x800BF1C8; // type:func set camera field of view (236 bytes)
+camera_clip_planes = 0x800BF2B8; // type:func set camera near/far clipping planes (220 bytes)
+camera_aspect_ratio = 0x800BF394; // type:func set camera aspect ratio (200 bytes)
+camera_look_at_point = 0x800BF45C; // type:func orient camera to look at target point (988 bytes)
+camera_first_person = 0x800BF838; // type:func first person view from inside vehicle (948 bytes)
+camera_third_person = 0x800BFBEC; // type:func third person chase camera behind vehicle (380 bytes)
 select_screen_update = 0x800BFD68; // type:func update selection screen state
-select_confirm_handler = 0x800BFD94; // type:func handle selection confirmation
+camera_top_down = 0x800BFD94; // type:func top-down overhead camera view (844 bytes)
 camera_free_look = 0x800C00E0; // type:func free camera controlled by player input
 camera_replay_mode = 0x800C02A0; // type:func playback camera from recorded replay data
 camera_track_spline = 0x800C04CC; // type:func moves camera along a spline path
@@ -1204,6 +1337,81 @@ game_state_check_handler = 0x800FBBFC; // type:func check game state for menu tr
 // Sync/Registration (menu integration)
 sync_entry_register = 0x800C9194; // type:func create and register sync entry for menu state
 
+// Camera Functions (0x800C00E0 - 0x800C3000 range)
+camera_path_follow = 0x800C0288; // type:func follow predefined camera path with interpolation (2124 bytes)
+camera_transition = 0x800C0AC4; // type:func blend between two camera states over time (1736 bytes)
+camera_matrix_build = 0x800C1188; // type:func build view matrix from camera state (876 bytes)
+camera_frustum_extract = 0x800C14F4; // type:func extract frustum planes from camera (768 bytes)
+camera_viewport_setup = 0x800C17F4; // type:func set viewport for camera rendering (1224 bytes)
+camera_split_screen_setup = 0x800C1CBC; // type:func configure split-screen for multiplayer (2392 bytes)
+camera_trigger_check = 0x800C4200; // type:func check camera trigger zones (1232 bytes)
+camera_follow_path = 0x800C46D0; // type:func camera following path logic (3956 bytes)
+camera_play_script = 0x800C5644; // type:func execute scripted camera sequence (3520 bytes)
+camera_victory = 0x800C6404; // type:func victory lap camera mode (1468 bytes)
+
+// Entity Functions (0x800C6000 range)
+entity_iterate = 0x800C69C0; // type:func iterate all entities with callback (224 bytes)
+entity_update = 0x800C6AA0; // type:func full entity physics and state update (1564 bytes)
+
+// HUD Drawing Functions (0x800C7000-0x800C9000 range)
+draw_number = 0x800C760C; // type:func draw numeric value at position (524 bytes)
+draw_speedometer = 0x800C7818; // type:func draw speedometer dial with needle (1724 bytes)
+draw_lap_counter = 0x800C7ED4; // type:func display current/total laps (2540 bytes)
+draw_position = 0x800C8864; // type:func show race position (1st, 2nd, etc.) (188 bytes)
+draw_timer = 0x800C8920; // type:func show race time MM:SS.ms (228 bytes)
+draw_minimap = 0x800C9404; // type:func draw track minimap with car positions (300 bytes)
+draw_message = 0x800CA308; // type:func draw centered HUD message (checkpoint, etc.) (172 bytes)
+hud_render = 0x800CADA4; // type:func main HUD rendering function (2468 bytes)
+
+// Menu Input Functions (0x800CB000 range)
+menu_process_input = 0x800CB400; // type:func handle controller input for menus (628 bytes)
+menu_cursor_move = 0x800CB680; // type:func navigate between menu items (516 bytes)
+menu_item_select = 0x800CBBD4; // type:func execute selection on menu item (564 bytes)
+menu_back = 0x800CBE08; // type:func return to previous menu (132 bytes)
+menu_transition = 0x800CBE8C; // type:func switch to new menu with animation (340 bytes)
+menu_animation_update = 0x800CC000; // type:func handle menu transitions and element animations (900 bytes)
+
+// Menu Sound Functions
+sound_play_menu = 0x800CC3C0; // type:func play menu sound effects (380 bytes)
+
+// Menu Text Functions
+menu_text_scroll = 0x800CC540; // type:func scroll long text horizontally (904 bytes)
+menu_highlight_set = 0x800CC880; // type:func set highlight state for menu item (316 bytes)
+menu_list_render = 0x800CC9AC; // type:func render entire menu with items (1112 bytes)
+
+// Dialog Functions (0x800CD000 range)
+menu_confirm_render = 0x800CD300; // type:func render confirmation dialog (580 bytes)
+menu_confirm_dialog = 0x800CD544; // type:func show confirmation and handle input (412 bytes)
+menu_dialog_close = 0x800CD6E0; // type:func close active dialog with animation (184 bytes)
+
+// Keyboard/Text Input Functions
+keyboard_init = 0x800CD738; // type:func initialize on-screen keyboard (340 bytes)
+keyboard_input_process = 0x800CD88C; // type:func handle keyboard navigation and selection (500 bytes)
+menu_text_input = 0x800CDAE0; // type:func handle full text entry with keyboard (460 bytes)
+
+// Options Functions (0x800CE000 range)
+menu_option_toggle = 0x800CDCAC; // type:func toggle game option and apply immediately (576 bytes)
+menu_save_options = 0x800CDEEC; // type:func save game options to Controller Pak (764 bytes)
+menu_load_options = 0x800CE1EC; // type:func load game options from Controller Pak (364 bytes)
+menu_options_screen = 0x800CE358; // type:func main options menu handler (2532 bytes)
+menu_audio_settings = 0x800CED3C; // type:func audio options submenu (1364 bytes)
+menu_video_settings = 0x800CF290; // type:func video options submenu (228 bytes)
+menu_control_settings = 0x800CF374; // type:func controller options submenu (808 bytes)
+menu_controller_remap = 0x800CF69C; // type:func controller button remapping screen (1976 bytes)
+menu_vibration_test = 0x800CFE74; // type:func test controller rumble feature (404 bytes)
+
+// Additional 0x800C Functions (from game.c analysis 2025-12-29)
+input_callback_process = 0x800C9530; // type:func process input callback table
+resource_slot_clear = 0x800C9334; // type:func clear a resource slot by ID
+menu_render_list = 0x800CB9A0; // type:func render menu item list
+effect_cleanup = 0x800C55E4; // type:func cleanup effect slots
+menu_item_value_get = 0x800CC804; // type:func get menu item value
+object_data_allocate = 0x800CD748; // type:func allocate object data
+object_type7_create = 0x800C878C; // type:func create object type 7
+object_type1_create = 0x800C87F4; // type:func create object type 1
+object_byte71_set_sync = 0x800CDA90; // type:func set object byte 71 with sync
+effect_system_init = 0x800C3614; // type:func initialize effect system
+
 // ============================================================================
 // init.c - Game initialization globals (renamed from D_80XXXXXX placeholders)
 // ============================================================================
@@ -1272,68 +1480,292 @@ weather_select = 0x800D2CDC; // type:func sets weather conditions (240 bytes)
 time_of_day_select = 0x800D2DCC; // type:func sets lighting conditions (200 bytes)
 multiplayer_setup = 0x800D2E94; // type:func configures multiplayer game options (1544 bytes)
 
-// Game State and Race Logic
-attract_state_machine = 0x800D349C; // type:func attract mode state machine (1676 bytes)
-preplay_setup = 0x800D3B28; // type:func pre-race initialization (5068 bytes) - arcade: preplay()
-preplay_cars_init = 0x800D3E50; // type:func initialize cars for race (384 bytes)
-countdown_tick = 0x800D4EF4; // type:func countdown timer tick (532 bytes) - arcade: CountDown()
+// Multiplayer and Stunt Setup
+player_join_screen = 0x800D349C; // type:func players press start to join (1676 bytes)
+stunt_mode_setup = 0x800D3B28; // type:func configure stunt arena and scoring (5068 bytes)
+stunt_arena_preview = 0x800D3E50; // type:func render stunt arena preview (384 bytes)
+battle_mode_setup = 0x800D4EF4; // type:func configure battle arena and rules (532 bytes)
 
-// Player/Race Management
+// Player/Race Management and Menu Screens
 players_race_update = 0x800D5050; // type:func update player race progress
-players_race_state = 0x800D510C; // type:func player race state update (716 bytes)
+ghost_race_setup = 0x800D510C; // type:func race against saved ghosts setup (716 bytes)
 object_activate = 0x800D52D4; // type:func activate game object
 player_conditional_call = 0x800D54BC; // type:func conditional function call helper
 player_conditional_check = 0x800D54E0; // type:func conditional check based on parameter
 players_frame_update = 0x800D5798; // type:func per-frame player update
 player_state_clear = 0x800D5894; // type:func clear player state
-players_race_time = 0x800D58CC; // type:func update race time for players (740 bytes)
-players_position_update = 0x800D5BB0; // type:func update player positions (224 bytes)
-players_lap_update = 0x800D5C90; // type:func update lap counts (220 bytes)
+records_screen = 0x800D58CC; // type:func displays best times and high scores (740 bytes)
+best_times_display = 0x800D5BB0; // type:func shows best lap and race times (224 bytes)
+high_scores_display = 0x800D5C90; // type:func shows stunt high scores (220 bytes)
 players_finish_check = 0x800D60B4; // type:func check if players finished race
 physics_init_mode0 = 0x800D6290; // type:func physics initialization mode 0
 physics_init_mode1 = 0x800D62EC; // type:func physics initialization mode 1 (passes t0=1)
 object_action_clear = 0x800D63C4; // type:func clear object action state
-players_checkpoint_update = 0x800D63F4; // type:func update checkpoint progress (676 bytes)
+achievements_screen = 0x800D63F4; // type:func shows unlocked achievements (676 bytes)
 
-// Rendering/Visual
-render_track_segment = 0x800D6698; // type:func render track segment (296 bytes)
-render_track_objects = 0x800D67C0; // type:func render track objects (348 bytes)
-render_race_hud = 0x800D691C; // type:func render race HUD elements (1376 bytes)
-render_position_indicator = 0x800D6E7C; // type:func render position/place indicator (852 bytes)
-render_minimap = 0x800D71D0; // type:func render minimap/radar (3256 bytes)
+// UI Screens and Menu Functions
+credits_screen = 0x800D6698; // type:func displays game credits (296 bytes)
+credits_scroll = 0x800D67C0; // type:func scrolls credits text (348 bytes)
+loading_screen = 0x800D691C; // type:func displays loading progress bar (1376 bytes)
+loading_tips = 0x800D6E7C; // type:func shows random gameplay tip during loading (852 bytes)
+pause_menu = 0x800D71D0; // type:func full pause menu with options (3256 bytes)
 render_replay_ui = 0x800D7D40; // type:func render replay interface
 render_results_screen = 0x800D7DC4; // type:func render race results screen
-render_leaderboard = 0x800D7E88; // type:func render leaderboard/standings (788 bytes)
-render_countdown_timer = 0x800D8184; // type:func render countdown display (2772 bytes)
-render_split_times = 0x800D8C58; // type:func render split time display (1032 bytes)
-render_game_over = 0x800D9060; // type:func render game over screen (4204 bytes) - arcade: gameover()
+pause_resume = 0x800D7E88; // type:func resumes game from pause (788 bytes)
+pause_restart = 0x800D8184; // type:func restarts current race (2772 bytes)
+pause_quit = 0x800D8C58; // type:func quits to main menu (1032 bytes)
+results_screen = 0x800D9060; // type:func displays race results (4204 bytes)
 
-// Endgame/Results
-endgame_init = 0x800DA0CC; // type:func initialize endgame state (168 bytes)
-endgame_update = 0x800DA174; // type:func update endgame state (348 bytes)
-endgame_results = 0x800DA2D0; // type:func display race results (2316 bytes) - arcade: do_endgame()
-hiscore_entry_screen = 0x800DABDC; // type:func high score entry screen (2940 bytes) - arcade: EnterHighScore()
+// Results Display
+position_result_display = 0x800DA0CC; // type:func displays finishing position (168 bytes)
+time_result_display = 0x800DA174; // type:func displays race time (348 bytes)
+points_award = 0x800DA2D0; // type:func calculates and displays points earned (2316 bytes)
+replay_save_prompt = 0x800DABDC; // type:func asks user to save replay (2940 bytes)
+continue_prompt = 0x800DB758; // type:func quick continue/quit choice (196 bytes)
 object_type7_create_alt = 0x800DB7B4; // type:func create object type 7 alternative
 
-// Audio/Sound
-sound_race_init = 0x800DC248; // type:func initialize race sounds (432 bytes)
-sound_race_update = 0x800DC3F8; // type:func update race sounds (924 bytes)
+// Championship and Unlock UI
+championship_standings = 0x800DC248; // type:func shows championship points (432 bytes)
+trophy_award_championship = 0x800DC3F8; // type:func awards championship trophy (924 bytes)
 sound_handles_array_clear = 0x800DC720; // type:func clear sound handle array
-sound_engine_update = 0x800DC794; // type:func update engine sounds (248 bytes)
-sound_collision_play = 0x800DC88C; // type:func play collision sound (1272 bytes)
-sound_ambient_update = 0x800DC99C; // type:func update ambient sounds (1016 bytes)
+unlock_notification = 0x800DC794; // type:func shows unlock popup (248 bytes)
+attract_mode_start = 0x800DC88C; // type:func initializes attract mode demo (1272 bytes)
+attract_demo_play = 0x800DC99C; // type:func plays back recorded demo race (1016 bytes)
 mode_enable_flagged = 0x800DCD1C; // type:func enable mode with flag check
-sound_checkpoint_play = 0x800DCD94; // type:func play checkpoint sound (96 bytes)
-sound_position_update = 0x800DCDF4; // type:func update 3D sound positions (732 bytes)
+attract_idle_check = 0x800DCD94; // type:func returns 1 if no input for idle timeout (96 bytes)
+attract_video_play = 0x800DCDF4; // type:func plays FMV or pre-rendered video (732 bytes)
 
-// Video/Timing
-video_mode_update = 0x800DD0D0; // type:func update video mode settings (988 bytes)
-video_retrace_handler = 0x800DD4AC; // type:func VI retrace callback handler (2816 bytes)
-video_fade_effect = 0x800DDFAC; // type:func screen fade effect (608 bytes)
-video_transition = 0x800DE20C; // type:func video transition effect (724 bytes)
-vi_timing_setup = 0x800DE868; // type:func VI timing setup (836 bytes)
-vi_mode_set = 0x800DEBAC; // type:func set VI mode (224 bytes)
-vi_buffer_swap = 0x800DEC8C; // type:func swap framebuffers (732 bytes)
-vi_display_config = 0x800DEF68; // type:func configure display parameters (2976 bytes)
-vi_sync_wait = 0x800DFB08; // type:func wait for VI sync (188 bytes)
-vi_frame_update = 0x800DFBC4; // type:func per-frame VI update (1868 bytes)
+// Attract Mode and Title Screen
+attract_sequence_update = 0x800DD0D0; // type:func updates attract mode state machine (988 bytes)
+title_screen = 0x800DD4AC; // type:func main title screen display (2816 bytes)
+title_logo_animate = 0x800DDFAC; // type:func animates the game logo (608 bytes)
+title_button_prompt = 0x800DE20C; // type:func shows PRESS START with blinking (724 bytes)
+title_background = 0x800DE4DC; // type:func renders animated title background (908 bytes)
+main_menu_screen = 0x800DE868; // type:func handles main menu logic (836 bytes)
+main_menu_input = 0x800DEBAC; // type:func processes main menu input (224 bytes)
+main_menu_render = 0x800DEC8C; // type:func draws the main menu (732 bytes)
+mode_select_screen = 0x800DEF68; // type:func race/battle/stunt mode configuration (2976 bytes)
+mode_select_input = 0x800DFB08; // type:func handles mode selection input (188 bytes)
+profile_select_screen = 0x800DFBC4; // type:func profile select screen (1868 bytes)
+
+// ============================================================================
+// 0x800E* World/Physics/Effects Functions
+// (Renamed from func_800EXXXX placeholders based on game.c analysis)
+// ============================================================================
+
+// World Physics System
+cursor_move = 0x800E051C; // type:func keyboard cursor move (212 bytes)
+world_object_destroy = 0x800EB690; // type:func world object destroy (396 bytes)
+world_physics_tick = 0x800EC2F8; // type:func world physics tick - iterates cars and applies physics (1584 bytes)
+world_collision_detect = 0x800EC928; // type:func world collision detect - bounding sphere check (588 bytes)
+world_bounds_check = 0x800ECB74; // type:func world bounds check - position in bounds (164 bytes)
+world_gravity_apply = 0x800ECC18; // type:func world gravity apply - applies gravity to velocity (2652 bytes)
+world_friction_apply = 0x800ED674; // type:func world friction apply - applies drag to velocity (400 bytes)
+world_velocity_integrate = 0x800ED804; // type:func world velocity integrate - Euler integration (712 bytes)
+world_collision_response = 0x800EDACC; // type:func world collision response - impulse-based elastic collision (540 bytes)
+world_trigger_check = 0x800EDCE8; // type:func world trigger check - checks player in trigger volumes (2292 bytes)
+world_trigger_activate = 0x800EE5DC; // type:func world trigger activate - activates checkpoint/shortcut/boost (580 bytes)
+
+// Particle/Effects System
+world_effect_update = 0x800EE8B4; // type:func world effect update - updates particle position/lifetime (456 bytes)
+particle_update = 0x800EEDB0; // type:func particle update - updates emitter particles (1240 bytes)
+explosion_effect = 0x800EF8F4; // type:func explosion effect - creates fireball/smoke/sparks (1460 bytes)
+dust_cloud_effect = 0x800EFEA8; // type:func dust cloud effect - creates settling dust particles (600 bytes)
+
+// ============================================================================
+// 0x800F* Rendering/Track/Timer/Debug Functions
+// (Renamed from func_800FXXXX placeholders based on game.c analysis)
+// ============================================================================
+
+// Rendering Effects
+skid_mark_render = 0x800F0100; // type:func skid mark render - tire skid decals on track (1396 bytes)
+
+// Network/Multiplayer
+net_message_recv = 0x800F0698; // type:func network message receive - dequeue from buffer (1408 bytes)
+net_state_sync = 0x800F0C18; // type:func network state sync - synchronize game state (2036 bytes)
+net_lobby_update = 0x800F13F0; // type:func network lobby update - handle lobby/player management (1364 bytes)
+net_player_update = 0x800F1944; // type:func network player update (852 bytes)
+net_latency_check = 0x800F1C98; // type:func network latency check (676 bytes)
+net_input_sync = 0x800F1F3C; // type:func network input synchronization (2208 bytes)
+net_game_tick = 0x800F20A0; // type:func network game tick (1664 bytes)
+net_packet_send = 0x800F2720; // type:func network packet send (376 bytes)
+net_packet_recv = 0x800F2890; // type:func network packet receive (408 bytes)
+net_connection_update = 0x800F27DC; // type:func network connection update (1632 bytes)
+net_state_validate = 0x800F2A28; // type:func network state validate (2736 bytes)
+net_error_handle = 0x800F2E3C; // type:func network error handle (784 bytes)
+net_session_init = 0x800F314C; // type:func network session init (1084 bytes)
+net_session_update = 0x800F34D8; // type:func network session update (3576 bytes)
+net_player_join_handler = 0x800F3588; // type:func network player join handler (836 bytes)
+net_game_state_send = 0x800F38BC; // type:func network game state send (1912 bytes)
+net_race_sync = 0x800F4034; // type:func network race sync (1536 bytes)
+
+// LOD and Track Rendering
+lod_select = 0x800F42D0; // type:func LOD level selection based on distance (260 bytes)
+lod_object_detail = 0x800F43D4; // type:func LOD object detail level (560 bytes)
+track_geometry_stream = 0x800F4604; // type:func track geometry stream - streams from ROM to RSP (6540 bytes)
+track_vertex_load = 0x800F4634; // type:func track vertex load (908 bytes)
+track_section_render = 0x800F49C0; // type:func track section render (876 bytes)
+track_surface_setup = 0x800F4D2C; // type:func track surface setup (752 bytes)
+track_render_main = 0x800F5000; // type:func track render main - large rendering (3832 bytes)
+track_texture_load = 0x800F5F90; // type:func track texture load - loads texture to TMEM (1348 bytes)
+track_lighting_setup = 0x800F5EF8; // type:func track lighting setup (588 bytes)
+track_culling_update = 0x800F6144; // type:func track culling update (1888 bytes)
+
+// Billboard/Sign/Prop Rendering
+billboard_render = 0x800F64D4; // type:func billboard render - camera-facing sprite (1120 bytes)
+sign_render = 0x800F6894; // type:func sign render - roadside signs (580 bytes)
+sign_render_main = 0x800F6934; // type:func sign render main (388 bytes)
+props_render = 0x800F6AB8; // type:func props render - track props (cones/barriers/trees) (2460 bytes)
+prop_instance_render = 0x800F6AD8; // type:func prop instance render (740 bytes)
+prop_batch_render = 0x800F6DBC; // type:func prop batch render (1168 bytes)
+prop_visibility_check = 0x800F724C; // type:func prop visibility check (252 bytes)
+
+// Render Pipeline
+render_pipeline_main = 0x800F7454; // type:func render pipeline main (1996 bytes)
+render_large_objects = 0x800F93A0; // type:func render large objects (5652 bytes)
+render_car_body = 0x800F9428; // type:func render car body (1604 bytes)
+render_car_wheels = 0x800F9A74; // type:func render car wheels (952 bytes)
+render_car_shadow = 0x800F9E2C; // type:func render car shadow (684 bytes)
+render_scene_setup = 0x800FA0D8; // type:func render scene setup (2356 bytes)
+render_viewport_init = 0x800FA9B4; // type:func render viewport init (948 bytes)
+render_framebuffer = 0x800FA9E4; // type:func render framebuffer (1296 bytes)
+render_display_update = 0x800FAD58; // type:func render display update (136 bytes)
+render_post_process = 0x800FADE0; // type:func render post process (1108 bytes)
+render_flush = 0x800FAEF4; // type:func render flush (1808 bytes)
+
+// Display/VSync
+vsync_wait = 0x800FB234; // type:func vsync wait - waits for vertical blank (148 bytes)
+display_list_flush = 0x800FB2C8; // type:func display list flush - submits DL to RSP/RDP (5944 bytes)
+
+// HUD Rendering
+hud_render_main = 0x800FB5F4; // type:func HUD render main (820 bytes)
+hud_timer_display = 0x800FB928; // type:func HUD timer display (712 bytes)
+
+// State Handlers
+state_handler_alt = 0x800FC3D8; // type:func state handler alternate (1516 bytes)
+state_transition_check = 0x800FC9B8; // type:func state transition check (1284 bytes)
+state_update_loop = 0x800FCEB0; // type:func state update loop (948 bytes)
+state_exit_handler = 0x800FD264; // type:func state exit handler (512 bytes)
+
+// Debug Functions
+debug_overlay = 0x800FCA00; // type:func debug overlay - FPS/frame counter display (1016 bytes)
+debug_stats = 0x800FCDF8; // type:func debug stats - memory/performance stats (556 bytes)
+debug_collision = 0x800FD024; // type:func debug collision - collision wireframes (540 bytes)
+debug_ai_paths = 0x800FD240; // type:func debug AI paths - waypoint visualization (552 bytes)
+
+// Random Number Generator
+random_seed_init = 0x800FD7E8; // type:func random seed init - sets RNG seed (244 bytes)
+random_int = 0x800FD8DC; // type:func random int - returns random 32-bit integer (284 bytes)
+random_float = 0x800FD9F8; // type:func random float - returns random float [0,1) (1436 bytes)
+random_range = 0x800FDF94; // type:func random range - returns random int in [min,max] (248 bytes)
+
+// Game Timer System
+game_timer_start = 0x800FE08C; // type:func game timer start (1072 bytes)
+game_timer_stop = 0x800FE4BC; // type:func game timer stop (100 bytes)
+game_timer_reset = 0x800FE520; // type:func game timer reset (144 bytes)
+game_timer_elapsed = 0x800FE5B0; // type:func game timer elapsed - returns centiseconds (412 bytes)
+game_timer_pause = 0x800FE7A4; // type:func game timer pause (164 bytes)
+game_timer_resume = 0x800FE848; // type:func game timer resume (220 bytes)
+game_timer_lap = 0x800FE924; // type:func game timer lap - records lap time (228 bytes)
+game_timer_split = 0x800FEA08; // type:func game timer split (668 bytes)
+game_timer_display = 0x800FECA4; // type:func game timer display (352 bytes)
+
+// Game Results Screen
+game_results_init = 0x800FEC78; // type:func game results init (1808 bytes)
+game_results_update = 0x800FEE04; // type:func game results update (1172 bytes)
+game_results_render = 0x800FF298; // type:func game results render (1164 bytes)
+game_results_input = 0x800FF724; // type:func game results input (1748 bytes)
+game_results_exit = 0x800FFDF8; // type:func game results exit (1900 bytes)
+
+// Large Update Routines
+large_update_routine = 0x800FDA90; // type:func large update routine (4560 bytes)
+
+// Additional 0x800E* functions found in game.c
+collision_check_thunk = 0x800EE88C; // type:func collision check thunk (456 bytes)
+mode_byte_set = 0x800ED764; // type:func mode byte set
+mode_byte2_set = 0x800ED7B4; // type:func mode byte 2 set
+sync_init_conditional = 0x800EE7C4; // type:func sync init conditional
+object_update_full = 0x800E2A64; // type:func object update full
+
+// Additional 0x800F* functions found in game.c
+game_mode_post = 0x800FBC38; // type:func game mode post-processing
+track_render_alt = 0x800F6310; // type:func track render alternate
+memory_regions_clear = 0x800F7E70; // type:func memory regions clear
+game_state_check_handler = 0x800FBBFC; // type:func game state check handler
+resource_type_select_simple = 0x800FEC60; // type:func resource type select simple
+
+// ============================================
+// Game Data Symbols (from game.c analysis 2025-12-30)
+// High-frequency hardcoded addresses renamed to descriptive symbols
+// ============================================
+
+// Display List Management (RDP command generation)
+gDisplayListPtr = 0x80149438; // type:data current display list write pointer (44 refs in game.c)
+gDisplayListBuffer = 0x80180000; // type:data display list buffer base address (6 refs)
+
+// Audio System State
+gAudioChannelState = 0x80160000; // type:data audio channel state array (36 refs), 64 bytes per channel, 16 channels
+gAudioState = 0x80130000; // type:data audio system global state (6 refs)
+gListenerPosition = 0x80161000; // type:data audio listener position float[3] (8 refs)
+gListenerDirection = 0x8016100C; // type:data audio listener forward vector float[3]
+gVoiceTable = 0x80170000; // type:data audio voice allocation table (voice/priority/active)
+gNetworkSendSize = 0x80163FF8; // type:data network send buffer size
+gNetworkRecvSize = 0x80164FF8; // type:data network receive buffer size
+
+// Particle Effects System
+gParticlePool = 0x80162000; // type:data particle system pool (8 refs)
+gParticlePoolIndex = 0x80162100; // type:data particle pool allocation index (6 refs)
+
+// Entity/Object System
+gEntityPool = 0x80157000; // type:data entity pool array (7 refs), 256 entity slots
+gEntityPoolIndex = 0x80157400; // type:data entity pool allocation index
+
+// Player/Race State
+gPlayerStatusArray = 0x80156CF0; // type:data player status array (16 bytes per player)
+gPlayerFlagsArray = 0x8015A11C; // type:data player flags array (76 bytes per player)
+gPlayerInputArray = 0x8015A118; // type:data player input/state array
+gPlayerEntityArray = 0x8015A250; // type:data player entity table
+
+// Race/Track Timing
+gCheckpointTimes = 0x80155000; // type:data checkpoint time array (20 entries)
+gLapCounts = 0x80155100; // type:data lap count per player (4 entries)
+gBestLapTimes = 0x80155110; // type:data best lap time per player (4 entries)
+gCurrentLapTimes = 0x80155120; // type:data current lap time per player (4 entries)
+gTimerQueue = 0x80156000; // type:data timer queue array (32 entries)
+gRaceTimer = 0x80142B00; // type:data race timer/time scale
+gPauseState = 0x80114700; // type:data pause state flag
+
+// Save/Settings Data
+gUnlockFlags = 0x80159000; // type:data unlock flags bitmask (5 refs)
+gBestTimes = 0x80159100; // type:data best times per track (16 tracks)
+gSettingsData = 0x80159200; // type:data game settings (audio, controls, etc.)
+gUnlockedPaints = 0x80159204; // type:data unlocked car paints bitmask
+
+// Network/Multiplayer State
+gNetworkState = 0x80166000; // type:data network connection state (3 refs)
+gNumPlayers = 0x80166004; // type:data number of active players (3 refs)
+
+// Sync Objects
+gRenderSync = 0x801427A8; // type:data render sync object (5 refs)
+
+// Viewport/Camera State
+gViewportArray = 0x80159870; // type:data viewport struct array (per-player viewports)
+gViewportAlt = 0x80159B58; // type:data alternate viewport struct
+gCameraPosition = 0x8015B000; // type:data camera position float[3] (5 refs)
+gWorldBoundsMin = 0x8015B000; // type:data world bounds min (overlaps camera in different contexts)
+gWorldBoundsMax = 0x8015B00C; // type:data world bounds max
+
+// Collision Grid
+gTrackBounds = 0x8015C000; // type:data track bounds (minX, minZ, gridSizeX, gridSizeZ, numTris, numQuads)
+gHeightGrid = 0x8015C100; // type:data height grid (64x64 float array)
+gSurfaceGrid = 0x8015D000; // type:data surface type grid (64x64 byte array)
+
+// Clip Rectangle (RDP scissor bounds)
+gClipMinX = 0x8012E60C; // type:data clip rectangle min X
+gClipMaxX = 0x8012E610; // type:data clip rectangle max X
+gClipMinY = 0x8012E668; // type:data clip rectangle min Y
+gClipMaxY = 0x8012E674; // type:data clip rectangle max Y
+
+// Object Tracking
+gObjectMaxCount = 0x801569A8; // type:data maximum active object count
+gObjectSlotTable = 0x801569B8; // type:data object slot table (124 bytes per entry)

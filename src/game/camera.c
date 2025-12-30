@@ -454,5 +454,5 @@ void camera_interpolate(f32 from[3], f32 to[3], f32 t, f32 out[3]) {
 /* Stub declarations for original disassembled functions */
 void render_scene(void);  /* TODO: Full decompile */
 void camera_state_update(void);  /* TODO: Decompile */
-void camera_init(u32 param);  /* TODO: Decompile */
+/* camera_init is already defined above with void parameter */
 void camera_mode_switch(u32 a0, u32 a1);  /* TODO: Decompile */

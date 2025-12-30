@@ -148,16 +148,21 @@ void countdown_init(s32 start_value) {
  * @return Current countdown value (3,2,1,0=GO, -1=done)
  */
 s32 countdown_update(void) {
+    u32 current;
+    u32 elapsed;
+    s32 elapsed_frames;
+    s32 new_value;
+
     if (countdown_value < 0) {
         return -1;  /* Already finished */
     }
 
-    u32 current = osGetCount();
-    u32 elapsed = current - countdown_start;
-    s32 elapsed_frames = (s32)(elapsed / (COUNT_PER_SEC / TIMER_HZ));
+    current = osGetCount();
+    elapsed = current - countdown_start;
+    elapsed_frames = (s32)(elapsed / (COUNT_PER_SEC / TIMER_HZ));
 
     /* Each number lasts 1 second (60 frames) */
-    s32 new_value = 3 - (elapsed_frames / TIMER_HZ);
+    new_value = 3 - (elapsed_frames / TIMER_HZ);
 
     if (new_value < -1) {
         new_value = -1;

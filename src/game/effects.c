@@ -112,6 +112,8 @@ void effects_update(void) {
     Particle *p;
     Emitter *e;
     f32 life_t;
+    f32 vel[3];
+    f32 speed, angle1, angle2;
 
     if (!gEffects.effects_enabled) {
         return;
@@ -130,10 +132,9 @@ void effects_update(void) {
             e->accumulator -= 256;
 
             /* Spawn particle */
-            f32 vel[3];
-            f32 speed = rand_range(e->speed_min, e->speed_max);
-            f32 angle1 = rand_range(-e->spread, e->spread);
-            f32 angle2 = rand_range(-e->spread, e->spread);
+            speed = rand_range(e->speed_min, e->speed_max);
+            angle1 = rand_range(-e->spread, e->spread);
+            angle2 = rand_range(-e->spread, e->spread);
 
             vel[0] = e->dir[0] * speed + sinf(angle1) * speed * 0.5f;
             vel[1] = e->dir[1] * speed + cosf(angle1) * speed * 0.5f;
