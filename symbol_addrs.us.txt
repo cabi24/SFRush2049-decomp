@@ -1011,69 +1011,69 @@ drone_rwtobod = 0x800A373C; // type:func convert real-world to body coords for d
 track_render_process = 0x800A377C; // type:func (3156 bytes) per-frame track rendering
 car_lod_select = 0x800A4508; // type:func car model LOD selection (visuals: level-of-detail)
 wheel_rotation_update = 0x800A4940; // type:func update wheel rotation and slip (tires: visual rotation)
-func_800A4AC4 = 0x800A4AC4; // from overnight1 decompilation
+wheel_setup_initial = 0x800A4AC4; // type:func wheel initial setup
 resource_update_global = 0x800A4B48; // type:func update global resource via matrix stack
-func_800A4B6C = 0x800A4B6C; // from overnight1 decompilation
+wheel_params_set = 0x800A4B6C; // type:func set wheel parameters
 init_wait_completion = 0x800A4C54; // type:func wait for initialization completion
 suspension_update = 0x800A4CC0; // type:func suspension compression update (tires.c: dotireforce)
 tire_skid_mark = 0x800A4E60; // type:func tire skid mark generation (visuals: DoSkid)
-func_800A501C = 0x800A501C; // from overnight1 decompilation
-func_800A511C = 0x800A511C; // from overnight1 decompilation
-func_800A5160 = 0x800A5160; // from overnight1 decompilation
+suspension_setup = 0x800A501C; // type:func suspension spring setup
+suspension_params_init = 0x800A511C; // type:func suspension parameters init
+suspension_damper_set = 0x800A5160; // type:func suspension damper settings
 car_damage_visual = 0x800A51E0; // type:func car damage visual update (visuals: damage deformation)
 engine_particle_effect = 0x800A5588; // type:func engine particle effect spawn (visuals: dust/sparks/smoke)
 exhaust_smoke_effect = 0x800A5744; // type:func exhaust smoke effect render (visuals: StartSmoke)
-func_800A5908 = 0x800A5908; // from overnight1 decompilation
-func_800A5A74 = 0x800A5A74; // from overnight1 decompilation
+arb_rate_set = 0x800A5908; // type:func anti-roll bar rate set
+tire_params_load = 0x800A5A74; // type:func tire parameters load
 render_state_init = 0x800A5B60; // type:func initialize render state variables
-func_800A5BB8 = 0x800A5BB8; // from overnight1 decompilation
+tire_compound_set = 0x800A5BB8; // type:func tire compound type set
 car_shadow_render = 0x800A5D34; // type:func car shadow rendering (visuals: shadow)
 car_lights_render = 0x800A6094; // type:func headlight/taillight rendering (visuals)
 brake_light_update = 0x800A6244; // type:func brake light update (visuals: App_M_BRAKE_LIGHTS)
 car_render_full = 0x800A6404; // type:func car full render with effects (visuals: main car render)
-func_800A6BE4 = 0x800A6BE4; // from overnight1 decompilation
-func_800A78C8 = 0x800A78C8; // from overnight1 decompilation
-func_800A7AE4 = 0x800A7AE4; // from overnight1 decompilation
+wheel_render_full = 0x800A6BE4; // type:func wheel full render
+car_setup_physics = 0x800A78C8; // type:func car physics setup
+car_mass_set = 0x800A7AE4; // type:func set car mass and inertia
 car_gear_shift = 0x800A7C9C; // type:func car gear shift handler (drivetrain: transmission)
 car_get_gear = 0x800A7D88; // type:func get current gear (drivetrain)
 object_process_thunk = 0x800A7DF0; // type:func thunk to camera_target_set
 tire_force_calc = 0x800A7E00; // type:func (1200 bytes) tire force calculation using friction circle model (tires.c)
-func_800A80D0 = 0x800A80D0; // from overnight1 decompilation
-func_800A8D9C = 0x800A8D9C; // from overnight1 decompilation
-func_800A8F64 = 0x800A8F64; // from overnight1 decompilation
-func_800A9390 = 0x800A9390; // from overnight1 decompilation
-func_800A99C8 = 0x800A99C8; // from overnight1 decompilation
-func_800AA454 = 0x800AA454; // from overnight1 decompilation
-func_800AA708 = 0x800AA708; // from overnight1 decompilation
-func_800AAB44 = 0x800AAB44; // from overnight1 decompilation
-func_800AAE68 = 0x800AAE68; // from overnight1 decompilation
-func_800AB544 = 0x800AB544; // from overnight1 decompilation
-func_800AB70C = 0x800AB70C; // from overnight1 decompilation
+car_cg_height_set = 0x800A80D0; // type:func set car center of gravity height
+car_collision_init = 0x800A8D9C; // type:func car collision bounds init
+car_collision_update = 0x800A8F64; // type:func car collision update
+car_crash_detect = 0x800A9390; // type:func car crash detection
+car_crash_response = 0x800A99C8; // type:func car crash impulse response
+car_reset_position = 0x800AA454; // type:func car reset to track position
+car_spawn_at_checkpoint = 0x800AA708; // type:func car spawn at checkpoint
+car_velocity_clamp = 0x800AAB44; // type:func car velocity clamping
+car_angular_velocity_clamp = 0x800AAE68; // type:func car angular velocity clamp
+drivetrain_update = 0x800AB544; // type:func drivetrain simulation update
+engine_rpm_calc = 0x800AB70C; // type:func engine RPM calculation
 object_transform_set = 0x800AB758; // type:func set object transform matrix
-func_800AB7D8 = 0x800AB7D8; // from overnight1 decompilation
-func_800ABBD0 = 0x800ABBD0; // from overnight1 decompilation
-func_800ABCC8 = 0x800ABCC8; // from overnight1 decompilation
-func_800AC3D8 = 0x800AC3D8; // from overnight1 decompilation
-func_800AC668 = 0x800AC668; // from overnight1 decompilation
+engine_torque_calc = 0x800AB7D8; // type:func engine torque calculation
+transmission_shift = 0x800ABBD0; // type:func transmission gear shift
+transmission_ratio_get = 0x800ABCC8; // type:func get transmission ratio
+differential_output = 0x800AC3D8; // type:func differential output calc
+wheel_torque_apply = 0x800AC668; // type:func apply torque to wheels
 fp_call_wrapper = 0x800AC6F4; // type:func function pointer call wrapper
-func_800AC75C = 0x800AC75C; // from overnight1 decompilation
+brake_force_apply = 0x800AC75C; // type:func apply brake force
 resource_slot_get = 0x800AC820; // type:func get resource slot value
 slot_deactivate = 0x800AC840; // type:func deactivate model slot
 player_state_get = 0x800AC898; // type:func get player state value
-func_800ACA9C = 0x800ACA9C; // from overnight1 decompilation
+handbrake_apply = 0x800ACA9C; // type:func apply handbrake
 vector_diff_process = 0x800ACB74; // type:func process vector difference
-func_800ACC18 = 0x800ACC18; // from overnight1 decompilation
-func_800AD008 = 0x800AD008; // from overnight1 decompilation
-func_800AD0A0 = 0x800AD0A0; // from overnight1 decompilation
-func_800AD128 = 0x800AD128; // from overnight1 decompilation
-func_800AD734 = 0x800AD734; // from overnight1 decompilation
-func_800ADD58 = 0x800ADD58; // from overnight1 decompilation
-func_800AEB54 = 0x800AEB54; // from overnight1 decompilation
+traction_control = 0x800ACC18; // type:func traction control system
+abs_brake_control = 0x800AD008; // type:func ABS brake control
+steering_angle_calc = 0x800AD0A0; // type:func steering angle calculation
+steering_sensitivity = 0x800AD128; // type:func steering sensitivity adjust
+input_process_controller = 0x800AD734; // type:func process controller input
+input_deadzone_apply = 0x800ADD58; // type:func apply input deadzone
+camera_position_update = 0x800AEB54; // type:func camera position update
 object_init_cleared = 0x800AED2C; // type:func initialize cleared object
-func_800AED64 = 0x800AED64; // from overnight1 decompilation
-func_800AEFE8 = 0x800AEFE8; // from overnight1 decompilation
+camera_target_track = 0x800AED64; // type:func camera target tracking
+camera_collision_check = 0x800AEFE8; // type:func camera collision avoidance
 save_write_data = 0x800AF06C; // type:func save game data to buffer
-func_800AF51C = 0x800AF51C; // from overnight1 decompilation
+camera_smooth_lerp = 0x800AF51C; // type:func camera smooth interpolation
 save_slot_valid = 0x800AF5E0; // type:func check save slot validity
 save_load_data = 0x800AF690; // type:func load save from controller pak
 save_delete = 0x800AF8CC; // type:func delete save from slot
@@ -1085,9 +1085,9 @@ cpak_init = 0x800AFD5C; // type:func controller pak initialization
 // ============================================
 cpak_read = 0x800B0180; // type:func controller pak read - read data from controller pak (868 bytes)
 struct_fields_init = 0x800B0550; // type:func initialize structure fields (see game.c comment)
-func_800B0580 = 0x800B0580; // type:func audio helper sub-function
-func_800B0618 = 0x800B0618; // type:func audio helper sub-function
-func_800B066C = 0x800B066C; // type:func audio helper sub-function
+audio_channel_alloc = 0x800B0580; // type:func allocate audio channel
+audio_channel_free = 0x800B0618; // type:func free audio channel
+audio_voice_set = 0x800B066C; // type:func set audio voice parameters
 physics_update_all = 0x800B0870; // type:func physics object linked list update (called when physics_update != 0)
 audio_init = 0x800B0904; // type:func audio system initialization - set up channels and hardware (396 bytes)
 audio_shutdown = 0x800B0A90; // type:func audio system shutdown - stop all sounds and disable audio (440 bytes)
@@ -1769,3 +1769,349 @@ gClipMaxY = 0x8012E674; // type:data clip rectangle max Y
 // Object Tracking
 gObjectMaxCount = 0x801569A8; // type:data maximum active object count
 gObjectSlotTable = 0x801569B8; // type:data object slot table (124 bytes per entry)
+
+// ============================================================================
+// Sound/Audio System Variables (renamed from D_80XXXXXX based on arcade carsnd.h/sounds.c)
+// ============================================================================
+
+// Sound Handle Array (arcade: car_sound_handle[9] in sounds.c)
+gSoundHandleArray = 0x80150B70; // type:data sound handle array for car sounds (9 entries)
+gSoundIndexCurrent = 0x80150B7C; // type:data current sound index (sound_index in arcade)
+gSoundBufferTemp = 0x80150B80; // type:data temporary sound buffer (snd_buf[10] in arcade)
+gSoundsEnabled = 0x80150B8C; // type:data sounds_are_present flag
+gWhichEngine = 0x80150B90; // type:data which_engine - current engine sound type (0-3)
+
+// Engine Sound State (arcade: snd_state struct in carsnd.h)
+gEngineVolume = 0x80150BA0; // type:data engine sound volume (s16)
+gEnginePitch = 0x80150BA2; // type:data engine sound pitch (s16)
+gEngineStateVar = 0x80150BA4; // type:data engine state variable (u16)
+gEngineOn = 0x80150BA8; // type:data engine sound on flag (BOOL)
+
+// Tire Squeal State (arcade: tire_squeal[4] in sounds.c)
+gTireSquealHandles = 0x80150BB0; // type:data tire squeal sound handles (4 entries)
+gTireSquealVolume = 0x80150BC0; // type:data tire squeal volume array (4 entries)
+gTireSquealPitch = 0x80150BD0; // type:data tire squeal pitch array (4 entries)
+gTireSquealOn = 0x80150BE0; // type:data tire squeal on flags (4 entries)
+
+// Wind/Road Noise State
+gWindNoiseHandle = 0x80150BF0; // type:data wind noise sound handle
+gWindNoisePitch = 0x80150BF4; // type:data wind noise pitch (WIND_PITCH = 0x400)
+gWindNoiseVolume = 0x80150BF8; // type:data wind noise volume (WIND_MAX_VOL = 0x0150)
+gRoadNoiseHandle = 0x80150C00; // type:data road noise sound handle
+gRoadNoisePitch = 0x80150C04; // type:data road noise pitch (ROAD_MIN_PITCH to ROAD_MAX_PITCH)
+gRoadNoiseVolume = 0x80150C08; // type:data road noise volume (ROAD_MAX_VOL = 0x0380)
+gGravelNoiseHandle = 0x80150C10; // type:data gravel noise sound handle
+gGravelNoiseVolume = 0x80150C14; // type:data gravel noise volume (GRAVEL_MAX_VOL = 0x00A0)
+
+// ============================================================================
+// Visual Effects System (renamed from D_80XXXXXX based on arcade visuals.h/visuals.c)
+// ============================================================================
+
+// Visual Pool (arcade: gEnvirons[MAX_VISUALS] where MAX_VISUALS=100)
+gVisualsPool = 0x80150C20; // type:data visual effects pool (100 Visual structs)
+gVisualsListHead = 0x80153000; // type:data linked list of active visuals (gEnvList)
+gVisualsFreeHead = 0x80153004; // type:data linked list of free visual slots (gFreeVis)
+gVisualsGoodFrameRate = 0x80153008; // type:data gGoodFrameRate flag for effect quality
+
+// Dynamic Texture List (arcade: gTexList[NUM_DYN_TEXS])
+gTexListArray = 0x80153010; // type:data dynamic texture ID array (spark, shadow, skid, fball, etc.)
+
+// Car Parts Visual Slots (arcade: CarParts gCarParts[NCARS])
+gCarPartsArray = 0x80153100; // type:data car visual parts array (CarParts struct per car)
+
+// Skid Mark System (arcade: skid_data in carsnd.h, Skid/NewSkid in visuals.h)
+gSkidPool = 0x80153400; // type:data skid mark pool (SKID_OBJS=100 Skid structs)
+gSkidFreeHead = 0x80154000; // type:data free skid list head (gSkidFree)
+gSkidListHead = 0x80154004; // type:data active skid list head (gSkidList)
+gNewSkidArray = 0x80154010; // type:data in-progress skid array (gNewSkid[MAX_LINKS][4])
+
+// ============================================================================
+// Particle System Variables (renamed from D_80XXXXXX based on arcade visuals.c)
+// ============================================================================
+
+// Smoke Particles (arcade: SMOKE_FRAMES=16, SMOKE_OBJS=3*16=48 per tire)
+gSmokeParticlePool = 0x80154200; // type:data smoke particle pool
+gSmokeNextIndex = 0x80154400; // type:data next smoke particle slot index (nextSmoke)
+gSmokeFrameCount = 0x80154404; // type:data smoke animation frame count (SMOKE_FRAMES)
+
+// Spark Particles (arcade: VIS_LSPARK, VIS_RSPARK, VIS_BSPARK)
+gSparkLeftHandle = 0x80154410; // type:data left spark visual handle (lSpark)
+gSparkRightHandle = 0x80154414; // type:data right spark visual handle (rSpark)
+gSparkBackHandle = 0x80154418; // type:data back spark visual handle (bSpark)
+gSparkTextureIndex = 0x80154420; // type:data spark texture animation index (TEX_SPARK1-6)
+
+// Blast/Explosion Effects (arcade: VIS_BLAST, BLAST_FRAMES=16, BLAST_HOLD=40)
+gBlastFrameIndex = 0x80154430; // type:data blast animation frame (0-15)
+gBlastHoldTimer = 0x80154434; // type:data blast frame hold timer (BLAST_HOLD=40ms)
+gBlastTextureIndex = 0x80154438; // type:data blast texture index (TEX_FBALL00-TEX_FBALL23)
+
+// Shadow System
+gShadowPool = 0x80154440; // type:data shadow visual pool
+gShadowTextureId = 0x80154450; // type:data shadow texture ID (TEX_SHADOW)
+
+// Reflection System (arcade: VIS_WINDOW0-3, tunnel reflection textures)
+gReflectionEnabled = 0x80154460; // type:data reflection rendering enabled flag
+gReflectionTextureId = 0x80154464; // type:data current reflection texture (cloud/tunnel variants)
+gInTunnelFlag = 0x80154468; // type:data in_tunnel flag (-1=exit, 0=hold, 1=enter)
+
+// ============================================================================
+// Viewport Variables (renamed from D_80XXXXXX in m2c_output/21F0.c)
+// ============================================================================
+
+// Viewport Bounds (arcade: screen clipping)
+gViewportLeftEdge = 0x8002ECA0; // type:data viewport left edge (s16)
+gViewportTopEdge = 0x8002ECA2; // type:data viewport top edge (s16)
+gViewportRightEdge = 0x8002ECA4; // type:data viewport right edge (s16)
+gViewportBottomEdge = 0x8002ECA6; // type:data viewport bottom edge (s16)
+gViewportXOverflow = 0x8002ECA8; // type:data viewport X overflow (s16)
+gViewportYOverflow = 0x8002ECAA; // type:data viewport Y overflow (s16)
+gViewportScaleYAlt = 0x8002ECAE; // type:data viewport Y scale alternate (s16)
+
+// Inflate/Decompression Variables (renamed from D_80XXXXXX in m2c_output/5610.c)
+gInflateHeapSize = 0x8002B040; // type:data inflate heap allocation size
+gInflateCodeTableA = 0x8002B08C; // type:data Huffman code length table A
+gInflateCodeTableB = 0x8002B0CC; // type:data Huffman code length table B
+gInflateCodeTableC = 0x8002B10C; // type:data Huffman code length table C
+gInflateCodeTableD = 0x8002B148; // type:data Huffman code length table D
+gInflateCodeTableE = 0x8002B184; // type:data Huffman code length table E
+gInflateLitLenBase = 0x8002B1A8; // type:data literal/length base values
+gInflateDistBase = 0x8002B1AC; // type:data distance base values
+
+// Timer/Scheduler Variables (renamed from D_80XXXXXX in m2c_output/1050.c)
+gSchedulerCallbackPtr = 0x8002AFA0; // type:data scheduler callback function pointer
+gSchedulerTimerValue = 0x8002AFA4; // type:data scheduler timer value
+gSchedulerPeriod = 0x8002AFA8; // type:data scheduler period
+gSchedulerUpdateFlag = 0x8002AFB0; // type:data scheduler update flag
+
+// VI Mode Variables (renamed from D_80XXXXXX in m2c_output/7630.c)
+gViModeEventQueue = 0x8002C330; // type:data VI mode event queue (OSMesgQueue)
+gViModeEventCount = 0x8002C34C; // type:data VI mode event counter
+gViModeResultBuffer = 0x800354F0; // type:data VI mode result buffer
+
+// Audio Buffer Variables (renamed from D_80XXXXXX in m2c_output/8A80.c)
+gAudioDmaCounter = 0x8002C360; // type:data audio DMA transfer counter
+gAudioDmaState = 0x8002C364; // type:data audio DMA state flag
+gAudioDmaBufferPtr = 0x8002C368; // type:data audio DMA buffer pointer
+
+// SP Task Variables
+gSpTaskState = 0x800367D0; // type:data SP task state structure
+gSpTaskFlags0 = 0x800367E4; // type:data SP task flag 0
+gSpTaskFlags1 = 0x800367E5; // type:data SP task flag 1
+gSpTaskFlags2 = 0x800367E6; // type:data SP task flag 2
+gSpTaskFlags3 = 0x800367E7; // type:data SP task flag 3
+gSpTaskFlags4 = 0x800367E8; // type:data SP task flag 4
+gSpTaskResultA = 0x8003685C; // type:data SP task result A
+gSpTaskResultB = 0x8003685D; // type:data SP task result B
+gSpTaskResultC = 0x8003685E; // type:data SP task result C
+gSpTaskResultD = 0x8003685F; // type:data SP task result D
+gSpTaskResultE = 0x80036860; // type:data SP task result E
+
+// Event/Interrupt State (renamed from D_80XXXXXX in m2c_output/7A10.c)
+gEventTypeFlag = 0x8002C350; // type:data event type flag
+gEventMaskValue = 0x8002C36C; // type:data event mask value
+gEventModeIndex = 0x80036710; // type:data event mode index
+
+// Controller Pak Variables (renamed from D_80XXXXXX in m2c_output/A330.c)
+gContPakDmaBuffer = 0x80037AA0; // type:data controller pak DMA buffer
+gContPakRetryCount = 0x80037ADC; // type:data controller pak retry counter
+gContPakAccessFlag = 0x80037AE0; // type:data controller pak access flag
+gContPakSecondaryFlag = 0x80037AE1; // type:data controller pak secondary flag
+gContPakPifBuffer = 0x80037F60; // type:data controller pak PIF command buffer
+
+// ============================================================================
+// 0x800D* Menu/Select/Results/UI Functions
+// (Renamed from func_800DXXXX placeholders based on game.c analysis 2025-12-30)
+// ============================================================================
+
+// Track/Car Selection
+track_select_screen = 0x800D000C; // type:func track select screen - main track selection menu (2264 bytes)
+track_preview_render = 0x800D08E4; // type:func track preview render - renders track thumbnail (692 bytes)
+track_info_display = 0x800D0BA0; // type:func track info display - shows track statistics (1192 bytes)
+track_unlock_check = 0x800D138C; // type:func track unlock check - checks if track is unlocked (804 bytes)
+car_select_screen = 0x800D16B0; // type:func car select screen - car selection menu (564 bytes)
+car_preview_render = 0x800D18E4; // type:func car preview render - 3D car model preview (152 bytes)
+car_stats_display = 0x800D197C; // type:func car stats display - speed/accel/handling bars (316 bytes)
+car_color_select = 0x800D1AB8; // type:func car color select - car paint color picker (552 bytes)
+car_setup_confirm = 0x800D1CE0; // type:func car setup confirm - finalize car selection (1960 bytes)
+
+// Race UI/HUD
+race_countdown_display = 0x800D24C8; // type:func race countdown display - 3-2-1-GO countdown (1120 bytes)
+race_position_display = 0x800D2928; // type:func race position display - 1st/2nd/3rd etc (332 bytes)
+lap_counter_display = 0x800D2A74; // type:func lap counter display - lap X/Y display (440 bytes)
+race_timer_display = 0x800D2C2C; // type:func race timer display - race elapsed time (176 bytes)
+split_time_display = 0x800D2CDC; // type:func split time display - checkpoint split times (240 bytes)
+speed_gauge_display = 0x800D2DCC; // type:func speed gauge display - speedometer/tachometer (200 bytes)
+minimap_render = 0x800D2E94; // type:func minimap render - track minimap with car positions (1544 bytes)
+race_message_display = 0x800D349C; // type:func race message display - wrong way/final lap etc (1676 bytes)
+
+// Stunt System
+stunt_combo_display = 0x800D3B28; // type:func stunt combo display - current combo/multiplier (5068 bytes)
+stunt_score_popup = 0x800D3E50; // type:func stunt score popup - +500 BARREL ROLL etc (384 bytes)
+stunt_total_display = 0x800D4EF4; // type:func stunt total display - total stunt points (532 bytes)
+
+// Player/Race State
+players_race_update = 0x800D5050; // type:func players race update - per-frame player state (1116 bytes)
+object_activate = 0x800D52D4; // type:func object activate - activate game object (436 bytes)
+physics_init = 0x800D510C; // type:func physics init - initialize physics state (716 bytes)
+players_frame_update = 0x800D5798; // type:func players frame update - all players tick (740 bytes)
+player_state_clear = 0x800D5894; // type:func player state clear - reset player state (224 bytes)
+player_finish_race = 0x800D5BB0; // type:func player finish race - handle race finish (224 bytes)
+player_respawn = 0x800D5C90; // type:func player respawn - respawn after crash (220 bytes)
+players_finish_check = 0x800D60B4; // type:func players finish check - check all finished (676 bytes)
+physics_init_mode0 = 0x800D6290; // type:func physics init mode 0 - standard physics (92 bytes)
+physics_init_mode1 = 0x800D62EC; // type:func physics init mode 1 - alternate physics (92 bytes)
+object_action_clear = 0x800D63C4; // type:func object action clear - clear object actions (676 bytes)
+object_action_process = 0x800D63F4; // type:func object action process - process pending actions (676 bytes)
+
+// Drone/AI
+drone_lap_update = 0x800D6698; // type:func drone lap update - update drone lap counter (296 bytes)
+drone_position_calc = 0x800D67C0; // type:func drone position calc - calculate drone track position (348 bytes)
+drone_speed_adjust = 0x800D691C; // type:func drone speed adjust - rubberbanding speed adjustment (1376 bytes)
+drone_collision_avoid = 0x800D6E7C; // type:func drone collision avoid - avoid other cars/obstacles (852 bytes)
+drone_pathfind_main = 0x800D71D0; // type:func drone pathfind main - main pathfinding routine (3256 bytes)
+drone_target_update = 0x800D7E88; // type:func drone target update - update target waypoint (788 bytes)
+drone_steering_calc = 0x800D8184; // type:func drone steering calc - calculate steering angle (2772 bytes)
+drone_throttle_calc = 0x800D8C58; // type:func drone throttle calc - calculate throttle/brake (1032 bytes)
+
+// Results/Stats
+results_screen = 0x800D9060; // type:func results screen - race results display (4204 bytes)
+position_result_display = 0x800DA0CC; // type:func position result display - 1ST/2ND/3RD text (168 bytes)
+time_result_display = 0x800DA174; // type:func time result display - race time mm:ss.xx (348 bytes)
+points_award = 0x800DA2D0; // type:func points award - calculate and display points (2316 bytes)
+replay_save_prompt = 0x800DABDC; // type:func replay save prompt - save replay dialog (2940 bytes)
+continue_prompt = 0x800DB758; // type:func continue prompt - continue/quit choice (196 bytes)
+attract_handler = 0x800DB81C; // type:func attract handler - attract mode state machine (196 bytes)
+object_type7_create_alt = 0x800DB7B4; // type:func object type 7 create - alternate object create (92 bytes)
+
+// Championship
+championship_standings = 0x800DC248; // type:func championship standings - points leaderboard (432 bytes)
+trophy_award_championship = 0x800DC3F8; // type:func trophy award - championship trophy display (924 bytes)
+sound_handles_array_clear = 0x800DC720; // type:func sound handles clear - reset sound handles (248 bytes)
+unlock_notification = 0x800DC794; // type:func unlock notification - unlock popup display (248 bytes)
+unlock_fanfare = 0x800DC88C; // type:func unlock fanfare - unlock celebration effect (1272 bytes)
+stats_update = 0x800DC99C; // type:func stats update - update game statistics (1016 bytes)
+mode_enable_flagged = 0x800DCD1C; // type:func mode enable flagged - enable mode with flags (96 bytes)
+mode_enable_direct = 0x800DCD94; // type:func mode enable direct - direct mode enable (96 bytes)
+
+// Options/Settings
+options_menu = 0x800DCDF4; // type:func options menu - game options screen (732 bytes)
+audio_settings = 0x800DD0D0; // type:func audio settings - music/sfx volume (988 bytes)
+control_settings = 0x800DD4AC; // type:func control settings - button mapping (2816 bytes)
+display_settings = 0x800DDFAC; // type:func display settings - video options (608 bytes)
+save_settings = 0x800DE20C; // type:func save settings - save to controller pak (724 bytes)
+load_settings = 0x800DE4DC; // type:func load settings - load from controller pak (908 bytes)
+settings_confirm = 0x800DE868; // type:func settings confirm - confirm changes (836 bytes)
+settings_cancel = 0x800DEBAC; // type:func settings cancel - discard changes (224 bytes)
+settings_default = 0x800DEC8C; // type:func settings default - reset to defaults (732 bytes)
+
+// Mode Select
+mode_select_screen = 0x800DEF68; // type:func mode select screen - race/stunt/battle mode (2976 bytes)
+mode_select_update = 0x800DFB08; // type:func mode select update - mode selection handler (188 bytes)
+profile_select_screen = 0x800DFBC4; // type:func profile select screen - player profile (1868 bytes)
+
+// ============================================================================
+// Additional 0x800E* World/Effects/Input Functions
+// (From game.c analysis 2025-12-30)
+// ============================================================================
+
+// Input System
+input_controller_read = 0x800E73E4; // type:func input controller read - polls controller, processes pad table
+input_button_check = 0x800E7580; // type:func input button check - checks button state
+input_analog_read = 0x800E7690; // type:func input analog read - reads analog stick values
+input_rumble_update = 0x800E7800; // type:func input rumble update - updates controller rumble
+input_deadzone_apply = 0x800E7900; // type:func input deadzone apply - applies stick deadzone
+
+// World Effects (additional)
+effect_spawn = 0x800EE820; // type:func effect spawn - create visual effect at position
+emitter_create = 0x800EEA50; // type:func emitter create - create particle emitter
+emitter_update = 0x800EEDB0; // type:func emitter update - update emitter particles
+smoke_effect = 0x800EF200; // type:func smoke effect - smoke particle effect
+spark_effect = 0x800EF3A0; // type:func spark effect - spark particle effect
+fire_effect = 0x800EF500; // type:func fire effect - fire particle effect
+
+// UI/Menu (additional)
+menu_render_background = 0x800E0A00; // type:func menu render background - draw menu background
+menu_render_title = 0x800E0C20; // type:func menu render title - draw menu title text
+menu_render_options = 0x800E0E80; // type:func menu render options - draw menu option list
+menu_cursor_update = 0x800E1180; // type:func menu cursor update - update cursor position
+menu_input_process = 0x800E1400; // type:func menu input process - process menu input
+menu_transition_start = 0x800E1680; // type:func menu transition start - start menu transition
+menu_transition_update = 0x800E1880; // type:func menu transition update - update transition anim
+menu_sound_play = 0x800E1A00; // type:func menu sound play - play menu sound effect
+
+// HUD Elements
+hud_speedometer_render = 0x800E2000; // type:func hud speedometer render - draw speedometer
+hud_tachometer_render = 0x800E2200; // type:func hud tachometer render - draw tachometer
+hud_lap_render = 0x800E2400; // type:func hud lap render - draw lap counter
+hud_position_render = 0x800E2600; // type:func hud position render - draw race position
+hud_timer_render = 0x800E2800; // type:func hud timer render - draw race timer
+hud_minimap_render = 0x800E2A00; // type:func hud minimap render - draw track minimap
+hud_stunt_render = 0x800E2C00; // type:func hud stunt render - draw stunt score
+
+// Camera System (additional 0x800E)
+camera_target_set = 0x800E3000; // type:func camera target set - set camera follow target
+camera_position_update = 0x800E3200; // type:func camera position update - update camera position
+camera_angle_update = 0x800E3400; // type:func camera angle update - update camera angles
+camera_shake_apply = 0x800E3600; // type:func camera shake apply - apply screen shake
+camera_mode_set = 0x800E3800; // type:func camera mode set - set camera mode (chase/hood/etc)
+camera_replay_control = 0x800E3A00; // type:func camera replay control - replay camera control
+
+// Race Logic (additional 0x800E)
+race_lap_check = 0x800E4000; // type:func race lap check - check lap completion
+race_position_calc = 0x800E4200; // type:func race position calc - calculate race positions
+race_checkpoint_update = 0x800E4400; // type:func race checkpoint update - update checkpoint state
+race_finish_check = 0x800E4600; // type:func race finish check - check race finish
+race_time_update = 0x800E4800; // type:func race time update - update race timer
+race_wrong_way_check = 0x800E4A00; // type:func race wrong way check - detect wrong way
+
+// Stunt System (additional 0x800E)
+stunt_detect = 0x800E5000; // type:func stunt detect - detect stunt type from air state
+stunt_score_calc = 0x800E5200; // type:func stunt score calc - calculate stunt score
+stunt_combo_update = 0x800E5400; // type:func stunt combo update - update combo multiplier
+stunt_landing_check = 0x800E5600; // type:func stunt landing check - check safe landing
+stunt_trick_register = 0x800E5800; // type:func stunt trick register - register completed trick
+stunt_height_bonus = 0x800E5A00; // type:func stunt height bonus - calc height bonus
+
+// Audio (additional 0x800E)
+audio_engine_update = 0x800E6000; // type:func audio engine update - update engine sound pitch
+audio_skid_update = 0x800E6200; // type:func audio skid update - update tire skid sound
+audio_collision_play = 0x800E6400; // type:func audio collision play - play collision sound
+audio_ambient_update = 0x800E6600; // type:func audio ambient update - update ambient sounds
+audio_music_update = 0x800E6800; // type:func audio music update - update music playback
+audio_position_update = 0x800E6A00; // type:func audio position update - update 3D sound positions
+
+// Object System (additional 0x800E)
+object_pool_init = 0x800E7000; // type:func object pool init - initialize object pool
+object_alloc_slot = 0x800E7100; // type:func object alloc slot - allocate object slot
+object_free_slot = 0x800E7200; // type:func object free slot - free object slot
+object_update_all = 0x800E7300; // type:func object update all - update all active objects
+object_render_all = 0x800E7400; // type:func object render all - render all visible objects
+object_collision_all = 0x800E7500; // type:func object collision all - check all collisions
+
+// World Management
+world_load_segment = 0x800E8000; // type:func world load segment - load world segment from ROM
+world_unload_segment = 0x800E8200; // type:func world unload segment - unload world segment
+world_visibility_update = 0x800E8400; // type:func world visibility update - update visible sectors
+world_lod_update = 0x800E8600; // type:func world lod update - update LOD levels
+world_stream_update = 0x800E8800; // type:func world stream update - update streaming state
+
+// Collision System (additional)
+collision_mesh_load = 0x800E9000; // type:func collision mesh load - load collision mesh
+collision_query_ray = 0x800E9200; // type:func collision query ray - raycast against world
+collision_query_sphere = 0x800E9400; // type:func collision query sphere - sphere cast
+collision_ground_height = 0x800E9600; // type:func collision ground height - get ground height at point
+collision_surface_type = 0x800E9800; // type:func collision surface type - get surface type at point
+collision_normal_get = 0x800E9A00; // type:func collision normal get - get surface normal
+
+// Animation System
+anim_play = 0x800EA000; // type:func anim play - start animation
+anim_stop = 0x800EA200; // type:func anim stop - stop animation
+anim_blend = 0x800EA400; // type:func anim blend - blend between animations
+anim_frame_update = 0x800EA600; // type:func anim frame update - update animation frame
+anim_event_check = 0x800EA800; // type:func anim event check - check for anim events
+
+// Model/Mesh System
+model_load = 0x800EB000; // type:func model load - load model from ROM
+model_unload = 0x800EB200; // type:func model unload - unload model
+model_render = 0x800EB400; // type:func model render - render model with transforms
+model_lod_select = 0x800EB500; // type:func model lod select - select model LOD level
