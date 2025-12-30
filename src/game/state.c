@@ -33,7 +33,7 @@ extern void CheckCPs(void);
 
 /* External functions - mapped from N64 addresses */
 extern void attract_handler(void);   /* func_800DB81C - attract mode handler */
-extern void playgame_handler(void);  /* func_800CA3B4 - playgame handler */
+extern void playgame_handler(void);  /* playgame_state_change - playgame handler */
 extern void hiscore_handler(void);   /* func_800FBF88 - high score handler */
 extern void countdown_handler(void); /* func_800FBC30 - countdown display */
 

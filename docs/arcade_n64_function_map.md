@@ -51,16 +51,142 @@ N64 uses bitmask encoding for states in gstate (0x801174B4):
 
 ---
 
-## Menu and Selection
+## Attract Mode and Title Screen (attract.c)
+
+The arcade attract() function [attract.c:812-1187] is the main attract mode loop that cycles through various screens: ATR_ATARILOGO, ATR_HISCORE1-7, ATR_DEMO, ATR_CREDITS, ATR_JOIN, etc. It uses the attractFunc state variable, ShowAttract() to display/hide screens, SetCountdownTimer() for screen timing, and chk_start() for game start detection.
+
+### Attract Mode State Machine
 
 | N64 Address | N64 Name | Arcade File | Arcade Function | Confidence | Notes |
 |-------------|----------|-------------|-----------------|------------|-------|
-| 0x800D000C | track_select_screen | game/sselect.c:715 | TrackSel() | **High** | Track selection menu, 2264 bytes |
-| 0x800D138C | car_select_screen | game/sselect.c:2252 | CarSel() | **High** | Car selection menu, 804 bytes |
-| 0x800D08E4 | track_preview_render | game/sselect.c | track preview | **Medium** | Renders track thumbnail |
-| 0x800D16B0 | car_preview_render | game/sselect.c | car preview | **Medium** | Renders rotating 3D car |
-| 0x800D18E4 | car_stats_display | game/sselect.c | car stats | **Medium** | Shows performance stats |
-| 0x800D197C | car_unlock_check | game/sselect.c | unlock check | **Medium** | Checks if car is unlocked |
+| 0x800DC88C | attract_mode_handler | game/attract.c:812 | attract() | **High** | Main attract state machine, 1272 bytes |
+| 0x800DC99C | attract_demo_handler | game/attract.c | play_demogame() | **High** | Demo race playback, 1016 bytes |
+| 0x800DCD94 | attract_idle_handler | game/attract.c | TimeOut() | **Medium** | Idle timeout check, 96 bytes |
+| 0x800DCDF4 | attract_video_handler | game/attract.c | AttractMovie() | **Medium** | Video/FMV playback, 732 bytes |
+| 0x800DD0D0 | attract_sequence_handler | game/attract.c | ShowAttract() | **Medium** | Screen sequencing, 988 bytes |
+
+### Title Screen
+
+| N64 Address | N64 Name | Arcade File | Arcade Function | Confidence | Notes |
+|-------------|----------|-------------|-----------------|------------|-------|
+| 0x800DD4AC | title_screen_handler | game/attract.c:1193 | ShowLogo()/ShowJoin() | **High** | Main title screen, 2816 bytes |
+| 0x800DDFAC | title_logo_handler | game/attract.c:1221 | AnimateLogo() | **Medium** | Logo animation, 608 bytes |
+| 0x800DE20C | title_prompt_handler | game/attract.c | AddJoinNow() | **Medium** | PRESS START prompt, 724 bytes |
+| 0x800DE4DC | title_background_handler | game/attract.c | title background | **Low** | Background effects, 908 bytes |
+
+### Main Menu (N64-specific)
+
+The N64 has a main menu structure not present in the arcade version. The arcade transitions directly from attract mode to track selection via chk_start().
+
+| N64 Address | N64 Name | Arcade File | Arcade Function | Confidence | Notes |
+|-------------|----------|-------------|-----------------|------------|-------|
+| 0x800DE868 | main_menu_handler | N64-specific | - | N/A | Main menu screen, 836 bytes |
+| 0x800DEBAC | main_menu_input_handler | N64-specific | - | N/A | Menu input, 224 bytes |
+| 0x800DEC8C | main_menu_render_handler | N64-specific | - | N/A | Menu rendering, 732 bytes |
+| 0x800DEF68 | mode_select_handler | N64-specific | - | N/A | Race/Battle/Stunt mode select, 2976 bytes |
+| 0x800DFB08 | mode_select_input_handler | N64-specific | - | N/A | Mode selection input, 188 bytes |
+| 0x800DFBC4 | profile_select_handler | N64-specific | - | N/A | Profile selection, 1868 bytes |
+
+---
+
+## High Score System (hiscore.c)
+
+The arcade hiscore() function handles the high score entry screen when gstate=HISCORE. EnterHighScore() manages character input for name entry using a keyboard layout and saves scores to NVRAM.
+
+| N64 Address | N64 Name | Arcade File | Arcade Function | Confidence | Notes |
+|-------------|----------|-------------|-----------------|------------|-------|
+| 0x800FBF88 | hiscore_entry_handler | game/hiscore.c | hiscore()/EnterHighScore() | **High** | High score entry |
+| 0x800DBFC0 | hiscore_check_handler | game/hiscore.c | CheckHighScore() | **Medium** | Check if score qualifies |
+| 0x800DC000 | hiscore_display_handler | game/hiscore.c | ShowHighScores() | **Medium** | Display high score table |
+| 0x800DC100 | hiscore_insert_handler | game/hiscore.c | InsertHighScore() | **Medium** | Insert new entry |
+
+---
+
+## Countdown and Race Start
+
+| N64 Address | N64 Name | Arcade File | Arcade Function | Confidence | Notes |
+|-------------|----------|-------------|-----------------|------------|-------|
+| 0x800FBC30 | countdown_handler | game/game.c:1000+ | CountDown() | **High** | Race countdown 3-2-1-GO |
+| 0x800FBC60 | countdown_display_handler | game/game.c | countdown display | **Medium** | Countdown number display |
+
+---
+
+## Pause Menu (N64-specific)
+
+The N64 version has a pause menu not present in the arcade (arcade games cannot pause). This allows in-race options.
+
+| N64 Address | N64 Name | Arcade File | Arcade Function | Confidence | Notes |
+|-------------|----------|-------------|-----------------|------------|-------|
+| 0x800FAEF4 | pause_menu_handler | N64-specific | - | N/A | In-race pause menu, 1808 bytes |
+| 0x800FB5F4 | pause_toggle_handler | N64-specific | - | N/A | Pause state toggle, 820 bytes |
+| 0x800FB928 | game_timer_update | N64-specific | - | N/A | Timer update (pauses during pause), 712 bytes |
+
+---
+
+## Game Over and Results
+
+| N64 Address | N64 Name | Arcade File | Arcade Function | Confidence | Notes |
+|-------------|----------|-------------|-----------------|------------|-------|
+| 0x800FEE04 | gameover_handler | game/game.c | gameover() | **High** | Game over screen |
+| 0x800FEC78 | game_results_init | game/game.c | endgame setup | **Medium** | Results initialization, 1808 bytes |
+| 0x800FF298 | game_results_render | game/game.c | results display | **Medium** | Results rendering, 1164 bytes |
+| 0x800FF724 | game_results_input | game/game.c | results input | **Medium** | Results input handling, 1748 bytes |
+| 0x800FFDF8 | game_results_exit | game/game.c | results exit | **Medium** | Exit results screen, 1900 bytes |
+
+---
+
+## Options Menu
+
+| N64 Address | N64 Name | Arcade File | Arcade Function | Confidence | Notes |
+|-------------|----------|-------------|-----------------|------------|-------|
+| 0x800D4000 | options_menu_handler | game/game.c:494 | game_init() options | **Low** | Game options menu |
+| 0x800CED3C | menu_audio_settings | N64-specific | - | N/A | Audio options submenu, 1364 bytes |
+| 0x800CF290 | menu_video_settings | N64-specific | - | N/A | Video options submenu, 228 bytes |
+| 0x800CF374 | menu_control_settings | N64-specific | - | N/A | Controller options, 808 bytes |
+| 0x800CF69C | menu_controller_remap | N64-specific | - | N/A | Button remapping, 1976 bytes |
+| 0x800CFE74 | menu_vibration_test | N64-specific | - | N/A | Rumble test, 404 bytes |
+
+---
+
+## Loading and Transitions
+
+| N64 Address | N64 Name | Arcade File | Arcade Function | Confidence | Notes |
+|-------------|----------|-------------|-----------------|------------|-------|
+| 0x800FA9E4 | loading_screen_handler | game/attract.c:1479 | ShowTransit() | **Medium** | Loading/transition screen, 1296 bytes |
+
+---
+
+## Menu and Selection
+
+### Track Selection (arcade: sselect.c:TrackSel)
+
+The arcade TrackSel() [sselect.c:123-1002] sets gstate=TRKSEL, handles input (SW_EAST/WEST/SELECT/START), updates trackno, calls ShowTrackSelect(true), and runs track_negotiation() for link play.
+
+| N64 Address | N64 Name | Arcade File | Arcade Function | Confidence | Notes |
+|-------------|----------|-------------|-----------------|------------|-------|
+| 0x800D000C | track_select_handler | game/sselect.c:123 | TrackSel() | **High** | Main track selection menu, 2264 bytes |
+| 0x800D08E4 | track_preview_handler | game/sselect.c | ShowTrackSelect() | **Medium** | Renders track thumbnail/preview, 692 bytes |
+| 0x800D0BA0 | track_info_handler | game/sselect.c | track stats display | **Medium** | Shows track statistics, 1192 bytes |
+
+### Car Selection (arcade: sselect.c:init_car_select, AnimateCarSel)
+
+The arcade init_car_select() [sselect.c:1190-1284] sets gstate=CARSEL, SetCountdownTimer(CAR_SELECT_TIME), ShowCarSelect(true), and create_cars() for 3D car models on rotating platform. AnimateCarSel [sselect.c:1373-1504] animates the car turntable and handles gPickPad selection.
+
+| N64 Address | N64 Name | Arcade File | Arcade Function | Confidence | Notes |
+|-------------|----------|-------------|-----------------|------------|-------|
+| 0x800D138C | car_select_handler | game/sselect.c:1190 | init_car_select()/CarSel() | **High** | Car selection menu, 804 bytes |
+| 0x800D16B0 | car_preview_handler | game/sselect.c:1373 | AnimateCarSel() | **Medium** | Renders rotating 3D car model, 564 bytes |
+| 0x800D18E4 | car_stats_handler | game/sselect.c | car stats | **Medium** | Shows car performance stats, 152 bytes |
+| 0x800D197C | car_unlock_handler | game/sselect.c | unlock check | **Medium** | Checks if car is unlocked, 316 bytes |
+| 0x800D1AB8 | car_color_handler | game/sselect.c | color select | **Medium** | Car color/paint selection, 552 bytes |
+
+### Race Setup
+
+| N64 Address | N64 Name | Arcade File | Arcade Function | Confidence | Notes |
+|-------------|----------|-------------|-----------------|------------|-------|
+| 0x800D1CE0 | race_setup_screen | game/sselect.c | race options | **Medium** | Configure race options, 1960 bytes |
+| 0x800D24C8 | lap_count_screen | game/sselect.c | lap count | **Medium** | Lap count selection, 1120 bytes |
+| 0x800D2928 | difficulty_select | game/game.c | difficulty | **Low** | Difficulty selection, 332 bytes |
 
 ---
 

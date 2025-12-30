@@ -111,7 +111,7 @@ extern f32 listener_right_vec[3];  /* Listener right vector */
 extern s32 speed_of_sound;
 extern s32 doppler_scale;
 extern s32 audio_zone_type;
-extern s32 current_race_time;
+extern s32 gCurrentRaceTime;          /* current_race_time - current race elapsed time */
 extern void *car_pointers[];
 extern s32 race_car_count;
 extern s32 track_total_dist;
@@ -329,14 +329,15 @@ extern s32 game_pause_state;
 extern s32 pause_start_frame;
 extern s32 pause_overlay_mode;
 extern s32 pause_accumulator;
-extern s32 race_start_frame;
-extern s32 current_race_time;
-extern s32 current_lap_time;
-extern s32 last_lap_total;
+/* Race Timing Globals (arcade: checkpoint.c, select.c) - mapped in symbol_addrs.us.txt */
+extern s32 gRaceStartFrame;           /* 0x80142B68 - race_start_frame - frame when race started */
+extern s32 gCurrentRaceTime;          /* current_race_time - current race elapsed time */
+extern s32 gCurrentLapTime;           /* 0x80142B1C - current_lap_time */
+extern s32 gLastLapTime;              /* 0x80142B24 - last_lap_total */
 extern void *split_display_active[];
-extern s32 split_time_frames[4];
-extern s32 time_expired_flag;
-extern s32 best_lap_time;
+extern s32 gSplitTimeFrames[4];       /* 0x80142B30 - split_time_frames */
+extern s32 gTimeExpiredFlag;          /* 0x80142B40 - time_expired_flag */
+extern s32 gBestLapTime;              /* 0x80142B20 - best_lap_time */
 extern void *track_total_coins[];
 extern void *track_coin_state[];
 extern s32 collected_coin_count;
@@ -354,16 +355,16 @@ extern s32 unlock_display_timer;
 extern s32 save_queue_flag;
 extern s32 unlock_message_id;
 extern void *player_status[];
-extern void *player_lap_count[];
-extern void *player_checkpoint[];
-extern void *player_race_time[];
+extern void *gPlayerLapCount[];       /* 0x80142B78 - player_lap_count */
+extern void *gPlayerCheckpoint[];     /* 0x80142B88 - player_checkpoint */
+extern void *gPlayerRaceTime[];       /* 0x80142B98 - player_race_time */
 extern void *player_finished_flag[];
 extern void *player_entries[];
 extern void *player_respawn_count[];
 extern s32 num_drones;
-extern s32 race_phase;
-extern s32 countdown_ticks;
-extern s32 race_num_laps;
+extern s32 gRacePhase;                /* 0x80142B6C - race_phase */
+extern s32 gCountdownTicks;           /* 0x80142B10 - countdown_ticks */
+extern s32 gRaceNumLaps;              /* 0x80142B70 - race_num_laps */
 extern void *player_score_array[];
 extern void *player_combo[];
 extern void *player_multiplier[];
@@ -373,9 +374,9 @@ extern void *player_deaths[];
 extern s32 ghost_frame_count;
 extern s32 ghost_recording_flag;
 extern s32 new_record_flag;
-extern s32 new_best_lap_flag;
+extern s32 gNewBestLapFlag;           /* 0x80142B74 - new_best_lap_flag */
 extern s32 new_stunt_record_flag;
-extern void *track_par_times[];
+extern void *gTrackParTimes[];        /* 0x80142BB0 - track_par_times */
 extern s32 total_races;
 extern s32 total_wins;
 extern s32 total_distance;
@@ -383,7 +384,7 @@ extern s32 session_distance;
 extern s32 attract_scroll_y;
 extern s32 attract_anim_frame;
 extern s32 race_results_anim_frame;
-extern s32 gameover_countdown;
+extern s32 gGameoverCountdown;        /* 0x80142BA8 - gameover_countdown */
 extern s32 gameover_selection;
 extern s32 gameover_anim_frame;
 extern s32 best_position;
@@ -472,7 +473,7 @@ extern void *audio_alloc(s32 size);           /* channel_stop - Audio memory all
 extern void attract_or_transition(void);      /* func_800EDDC0 - Rendering/game logic */
 extern void process_inputs(void);             /* state_handler - Screen/state update */
 extern s32  sound_start(s32 action, s32 type, void *data, s32 flag); /* sound_start - Audio/sound control */
-extern void attract_handler(void);            /* func_800DB81C - Attract mode */
+extern void attract_handler(void);            /* attract_handler - Attract mode */
 extern void hiscore_handler(void);            /* hiscore_entry - High score entry */
 extern void countdown_handler(void);          /* countdown_start - Countdown timer */
 extern void render_scene(s32 track, f32 angle, s32 x, s32 y); /* render_scene - Viewport/camera setup */
@@ -483,9 +484,9 @@ s32 track_lod_select(f32 distance);  /* LOD distance calculator */
 /* Additional extern declarations */
 extern s32 scene_object_ptr;
 
-void game_mode_handler(void);  /* func_800C9AE0 */
-void draw_text(s32 x, s32 y, char *text, u32 color);  /* func_800C734C */
-void draw_ui_element(s32 elementId, s32 x, s32 y, s32 w, s32 h, s32 alpha);  /* func_800C7110 */
+void game_mode_handler(void);  /* game_mode_handler @ 0x800C9AE0 */
+void draw_text(s32 x, s32 y, char *text, u32 color);  /* draw_text @ 0x800C734C */
+void draw_ui_element(s32 elementId, s32 x, s32 y, s32 w, s32 h, s32 alpha);  /* draw_ui_element @ 0x800C7110 */
 
 /* State handler declarations */
 extern void state_init_handler(void);   /* func_800FBF90 - GSTATE_INIT handler */
@@ -533,7 +534,7 @@ extern void *physics_update(void);                  /* physics_update */
 extern void effects_update_emitters(void);          /* effects_update */
 
 /* Forward declarations */
-void playgame_handler(void);  /* func_800CA3B4 */
+void playgame_handler(void);  /* playgame_state_change @ 0x800CA3B4 */
 
 /**
 /*
@@ -671,7 +672,7 @@ s32 game_loop(void) {
 
 /*
 
-/* External data/functions for func_800C9AE0 */
+/* External data/functions for game_mode_handler */
 extern s8  mode_flag_1;   /* Mode flag 1 */
 extern s8  mode_flag_loop;   /* Mode flag 2 */
 extern s8  mode_flag_3;   /* Mode flag 3 */
@@ -685,7 +686,7 @@ extern s8 input_flag_get(void); /* State update / input flag */
 /**
 /*
  * game_mode_handler - Game mode handler
- * (func_800C9AE0)
+ * (game_mode_handler)
  * Address: 0x800C9AE0
  * Size: 256 bytes
  *
@@ -742,21 +743,21 @@ void game_mode_handler(void) {
  */
 extern void state_change_preprocess(void); /* hud_fade_effect - State change pre-process */
 extern void object_init_render(void);       /* camera_set_pos - Object render init */
-extern void hud_setup(s32 a, s32 b, s32 c, s32 d, s32 e, f32 f, f32 g, s32 h); /* func_800C8B8C - HUD setup */
+extern void hud_setup(s32 a, s32 b, s32 c, s32 d, s32 e, f32 f, f32 g, s32 h); /* hud_setup - HUD setup */
 extern void hud_init(void); /* hud_tachometer_update - HUD init */
-extern void display_enable(s32 flag); /* func_800C8FA4 - Enable/disable display */
+extern void display_enable(s32 flag); /* display_enable - Enable/disable display */
 extern void game_init_state(void); /* hud_full_update - Game state init */
 extern void float_process(f32);        /* interrupt_set - Float function */
 extern void state_finalize(void); /* hud_nitro_update - State finalize */
-extern void player_cleanup_slots(void); /* func_800C90E0 - Mode transition */
-extern void speed_set(s32 speed); /* func_800C9210 - Speed param function */
-extern void resource_slots_clear_multiple(void); /* func_800C937C - Clear multiple resource slots */
-extern void player_state_set(s32 a, s32 b); /* func_800C9158 - Player state set */
-extern void player_mode_set(s32 a0, s8 a1); /* func_800C84C0 - Player mode set */
-void sync_entry_register(s32, s32);          /* func_800C9194 - Create and register sync entry (defined below) */
+extern void player_cleanup_slots(void); /* player_cleanup_slots - Mode transition */
+extern void speed_set(s32 speed); /* speed_set - Speed param function */
+extern void resource_slots_clear_multiple(void); /* resource_slots_clear_multiple - Clear multiple resource slots */
+extern void player_state_set(s32 a, s32 b); /* player_state_set - Player state set */
+extern void player_mode_set(s32 a0, s8 a1); /* player_mode_set - Player mode set */
+void sync_entry_register(s32, s32);          /* sync_entry_register - Create and register sync entry (defined below) */
 extern void frustum_cull(s32, s32);   /* Car update function */
-extern void object_render_cleanup(void *obj_ptr); /* func_800C7308 - Object cleanup */
-extern void scene_cleanup_slots(void); /* func_800C70BC - Scene cleanup */
+extern void object_render_cleanup(void *obj_ptr); /* object_render_cleanup - Object cleanup */
+extern void scene_cleanup_slots(void); /* scene_cleanup_slots - Scene cleanup */
 extern void track_bounds_check(void);       /* Render function */
 extern s32 sprite_draw(s32, s32, s32, s32, s32); /* Sound/effect */
 extern void visual_objects_update(s32 flag); /* Visual update */
@@ -776,12 +777,12 @@ extern s32 render_update_flag;
 extern s32 physics_update_flag;
 extern s32 active_player_count;
 extern s32 matrix_stack_depth;
-extern void hud_speed_display(void *hud, f32 speed); /* func_800C84FC - HUD speed display */
+extern void hud_speed_display(void *hud, f32 speed); /* hud_speed_display - HUD speed display */
 
 /**
 /*
  * playgame_handler - Game state change handler (playgame equivalent)
- * (func_800CA3B4)
+ * (playgame_state_change)
  * Address: 0x800CA3B4
  * Size: 2544 bytes
  *
@@ -1141,7 +1142,7 @@ done:
 
 /* External data for countdown function */
 extern s32 found_player_index;     /* Found player index */
-extern s32 countdown_timer;     /* Countdown timer */
+extern s32 gCountdownTimer;     /* 0x80142B0C - countdown_timer - 3-2-1 countdown in frames */
 extern void* display_object_array[]; /* Display object pointer array */
 
 /* External functions for countdown */
@@ -1207,7 +1208,7 @@ void countdown_display(void) {
     if (i >= player_count) {
         /* All players accounted for - set countdown to 320 (5.3 sec at 60fps) */
         countdown_val = 320;
-        countdown_timer = countdown_val;
+        gCountdownTimer = countdown_val;
         return;
     }
 
@@ -1225,7 +1226,7 @@ void countdown_display(void) {
         s32 height = *(s32 *)((u8 *)display_data + 0x1FC);
         s32 extra = *(s32 *)((u8 *)display_data + 0x200);
 
-        countdown_val = countdown_timer;
+        countdown_val = gCountdownTimer;
         sprintf(format_buf, format_string_2, str_buf, x_pos, y_pos, countdown_val, width, height, extra);
     }
 
@@ -1247,23 +1248,23 @@ void countdown_display(void) {
         ((state_flags << 1) < 0) ||   /* bit 0x80000000 */
         (state_flags & 0x0004) || (state_flags & 0x0008)) {
         /* Special state - color 8 (darker) */
-        countdown_val = countdown_timer;
+        countdown_val = gCountdownTimer;
         audio_sync();
     } else {
         /* Normal state - color 205 (0xCD, brighter) */
-        countdown_val = countdown_timer;
+        countdown_val = gCountdownTimer;
         audio_sync();
     }
 
     /* Finalize display and decrement countdown */
-    countdown_val = countdown_timer;
+    countdown_val = gCountdownTimer;
     sound_apply_effect(0, -1, 0.0f);
     countdown_val--;
-    countdown_timer = countdown_val;
+    gCountdownTimer = countdown_val;
 
     /* Reset countdown if it goes too negative */
     if (countdown_val < -result) {
-        countdown_timer = 320;
+        gCountdownTimer = 320;
     }
 }
 
@@ -1784,14 +1785,14 @@ void active_sounds_update(void) {
  * This is the main per-frame render update entry point.
  * Orchestrates all visual updates:
  *   1. If sound_update != 0, update active sounds (objects_update -> func_800F7344)
- *   2. If physics_update != 0, update physics objects (physics_update -> func_800B0870)
+ *   2. If physics_update != 0, update physics objects (physics_update -> physics_update_all)
  *   3. Always update particle/effect emitters (effects_update)
  *   4. Always run main scene render (render_scene)
  *
  * @param sound_update   Whether to update sounds (arg a0)
  * @param physics_update Whether to update physics (arg a1)
  */
-extern void physics_update_all(void); /* func_800B0870 - Physics object linked list update */
+extern void physics_update_all(void); /* physics_update_all - Physics object linked list update */
 
 void update_game_systems(s32 sound_update, s32 physics_update) {
     /* Update active sounds if requested */
@@ -1834,7 +1835,7 @@ void *physics_get_list_head(void) {
 /**
 /*
  * physics_update_all - Update all physics objects in linked list
- * (func_800B0870)
+ * (physics_update_all)
  * Address: 0x800B0870
  * Size: 108 bytes
  *
@@ -1912,7 +1913,7 @@ extern u8  emitter_array_base[];          /* Emitter array base */
 extern u8  secondary_emitter_array[];          /* Secondary emitter array */
 
 extern void emitter_update(f32 *src, f32 *dst); /* audio_stream_stop - Emitter update */
-extern void particles_spawn(s32 a0); /* func_800B80C8 - Spawn particles for emitter */
+extern void particles_spawn_emitter(s32 a0); /* 0x800B80C8 - Spawn particles for specific emitter index */
 extern s32 particles_cleanup(void); /* explosion_spawn - Particle cleanup */
 extern void entity_set_position(void *entity, f32 *vec); /* Final cleanup */
 extern s16 emitter_count_2;                    /* Second emitter count */
@@ -1952,7 +1953,7 @@ void effects_update_emitters(void) {
 
         /* Conditionally spawn particles */
         if (render_enable == 0) {
-            particles_spawn(i);
+            particles_spawn_emitter(i);
         }
 
         /* Advance to next emitter (152 bytes each) */
@@ -1983,7 +1984,7 @@ end_loop:
  * Address: 0x800C9528
  * Size: 8 bytes
  *
- * Just loads input_initialized_flag into t6 for func_800C9530.
+ * Just loads input_initialized_flag into t6 for input_callback_process.
  */
 extern s8 input_initialized_flag;  /* Input system initialized flag */
 
@@ -1995,7 +1996,7 @@ s8 input_init_flag_get(void) {
 
 /**
 /*
- * func_800C9530 - Process input callback table
+ * input_callback_process - Process input callback table
  * Address: 0x800C9530
  * Size: 96 bytes
  *
@@ -2333,7 +2334,7 @@ void sound_handles_clear(s32 clear_all) {
 
 /**
 /*
- * players_race_update (func_800D5050)
+ * players_race_update @ 0x800D5050
  * Address: 0x800D5050
  * Size: 148 bytes
  *
@@ -2384,7 +2385,7 @@ void players_race_update(void) {
 
 /**
 /*
- * object_activate (func_800D52D4)
+ * object_activate @ 0x800D52D4
  * Address: 0x800D52D4
  * Size: 152 bytes
  *
@@ -2445,7 +2446,7 @@ void object_activate(void *obj) {
 
 /**
 /*
- * players_frame_update (func_800D5798)
+ * players_frame_update @ 0x800D5798
  * Address: 0x800D5798
  * Size: 144 bytes
  *
@@ -2493,7 +2494,7 @@ check_state:
 
 /**
 /*
- * players_finish_check (func_800D60B4)
+ * players_finish_check @ 0x800D60B4
  * Address: 0x800D60B4
  * Size: 172 bytes
  *
@@ -2543,7 +2544,7 @@ s32 players_finish_check(void) {
 
 /**
 /*
- * func_800C9334 - Clear a resource slot by ID
+ * resource_slot_clear - Clear a resource slot by ID
  * Address: 0x800C9334
  * Size: 72 bytes
  *
@@ -2576,7 +2577,7 @@ void resource_slot_clear(void) {
 /**
 /*
  * resource_slots_clear_multiple - Clear multiple resource slots
- * (func_800C937C)
+ * (resource_slots_clear_multiple)
  * Address: 0x800C937C
  * Size: 48 bytes
  *
@@ -2610,7 +2611,7 @@ void resource_slots_clear_multiple(void) {
 /**
 /*
  * object_secondary_release - Release object's secondary reference
- * (func_800CB9A0)
+ * (menu_render_list)
  * Address: 0x800CB9A0
  * Size: 48 bytes
  *
@@ -2637,7 +2638,7 @@ void object_secondary_release(void *obj) {
 
 /**
 /*
- * func_800C7308 - Cleanup object render reference
+ * object_render_cleanup - Cleanup object render reference
  * Address: 0x800C7308
  * Size: 68 bytes
  *
@@ -2646,7 +2647,7 @@ void object_secondary_release(void *obj) {
  *
  * @param obj_ptr Pointer to object pointer
  */
-extern void render_resource_release(void*);  /* func_800A25C0 - Release render resource */
+extern void render_resource_release(void*);  /* AdjustSteer (0x800A25C0) - adjust drone steering toward target pos */
 
 void object_render_cleanup(void *obj_ptr) {
     void *obj;
@@ -2676,7 +2677,7 @@ void object_render_cleanup(void *obj_ptr) {
 /**
 /*
  * stunt_command_send - Send command based on game mode
- * (func_800C55E4)
+ * (effect_cleanup)
  * Address: 0x800C55E4
  * Size: 96 bytes
  *
@@ -2705,14 +2706,14 @@ void stunt_command_send(s8 cmd, s8 arg1, s8 arg2) {
 /**
 /*
  * scene_cleanup_slots - Cleanup scene resource slots
- * (func_800C70BC)
+ * (scene_cleanup_slots)
  * Address: 0x800C70BC
  * Size: 84 bytes
  *
  * Gets slots 54, 58, 59 and calls resource_cleanup to clean up each.
  * This is the scene/level cleanup counterpart to resource_slots_clear_multiple.
  */
-extern void resource_cleanup(s32 a0); /* func_800AC840 - Resource cleanup */
+extern void resource_cleanup(s32 a0); /* slot_deactivate (0x800AC840) - deactivate model slot */
 
 void scene_cleanup_slots(void) {
     s32 slot;
@@ -2735,7 +2736,7 @@ void scene_cleanup_slots(void) {
 /**
 /*
  * player_cleanup_slots - Cleanup all player/game resource slots
- * (func_800C90E0)
+ * (player_cleanup_slots)
  * Address: 0x800C90E0
  * Size: 112 bytes
  *
@@ -2766,7 +2767,7 @@ void player_cleanup_slots(void) {
 /**
 /*
  * sync_entry_register - Create and register sync entry
- * (func_800C9194)
+ * (sync_entry_register)
  * Address: 0x800C9194
  * Size: 124 bytes
  *
@@ -2796,7 +2797,7 @@ void sync_entry_register(s32 a0, s32 a1) {
 /**
 /*
  * init_single_mode_wrapper - Initialize with single flag
- * (func_800CC804)
+ * (menu_item_value_get)
  * Address: 0x800CC804
  * Size: 68 bytes
  *
@@ -2817,7 +2818,7 @@ void init_single_mode_wrapper(void *arg) {
 
 /**
 /*
- * object_data_allocate (func_800CD748)
+ * object_data_allocate (object_data_allocate)
  * Address: 0x800CD748
  * Size: 80 bytes
  *
@@ -2866,7 +2867,7 @@ void object_data_allocate(void *obj) {
 
 /**
 /*
- * object_action_clear (func_800D63C4)
+ * object_action_clear @ 0x800D63C4
  * Address: 0x800D63C4
  * Size: 40 bytes
  *
@@ -2885,7 +2886,7 @@ void object_action_clear(void *a0, void *a1) {
 
 /**
 /*
- * player_state_clear (func_800D5894)
+ * player_state_clear @ 0x800D5894
  * Address: 0x800D5894
  * Size: 48 bytes
  *
@@ -2933,7 +2934,7 @@ void sound_position_set(f32 *pos, s32 a1) {
 
 /**
 /*
- * object_type7_create (func_800C878C)
+ * object_type7_create (object_type7_create)
  * Address: 0x800C878C
  * Size: 104 bytes
  *
@@ -2958,11 +2959,11 @@ void object_type7_create(void) {
 
 /**
 /*
- * object_type1_create (func_800C87F4)
+ * object_type1_create (object_type1_create)
  * Address: 0x800C87F4
  * Size: 104 bytes
  *
- * Same pattern as func_800C878C but sets type to 1 instead of 7.
+ * Same pattern as object_type7_create but sets type to 1 instead of 7.
  * Type 1 appears to be another object category.
  */
 void object_type1_create(void) {
@@ -2979,7 +2980,7 @@ void object_type1_create(void) {
 
 /**
 /*
- * physics_init_mode0 (func_800D6290)
+ * physics_init_mode0 @ 0x800D6290
  * Address: 0x800D6290
  * Size: 92 bytes
  *
@@ -2997,11 +2998,11 @@ void physics_init_mode0(void) {
 
 /**
 /*
- * physics_init_mode1 (func_800D62EC)
+ * physics_init_mode1 @ 0x800D62EC
  * Address: 0x800D62EC
  * Size: 92 bytes
  *
- * Same wrapper as func_800D6290 but passes t0 = 1.
+ * Same wrapper as physics_init_mode0 but passes t0 = 1.
  * Different physics initialization mode.
  */
 void physics_init_mode1(void) {
@@ -3013,7 +3014,7 @@ void physics_init_mode1(void) {
 
 /**
 /*
- * object_type7_create_alt (func_800DB7B4)
+ * object_type7_create_alt @ 0x800DB7B4
  * Address: 0x800DB7B4
  * Size: 104 bytes
  *
@@ -3034,7 +3035,7 @@ void object_type7_create_alt(void) {
 
 /**
 /*
- * mode_enable_flagged (func_800DCD1C)
+ * mode_enable_flagged @ 0x800DCD1C
  * Address: 0x800DCD1C
  * Size: 52 bytes
  *
@@ -3057,7 +3058,7 @@ void mode_enable_flagged(s32 a0) {
 
 /**
 /*
- * sound_handles_array_clear (func_800DC720)
+ * sound_handles_array_clear @ 0x800DC720
  * Address: 0x800DC720
  * Size: 116 bytes
  *
@@ -3128,7 +3129,7 @@ void dma_wait_thunk(void) {
 
 /**
 /*
- * resource_process_thunk (func_80098554)
+ * resource_process_thunk (resource_process_thunk)
  * Address: 0x80098554
  * Size: 32 bytes
  *
@@ -3144,7 +3145,7 @@ void resource_process_thunk(void) {
 
 /**
 /*
- * resource_slot_get (func_800AC820)
+ * resource_slot_get - get resource slot value
  * Address: 0x800AC820
  * Size: 32 bytes
  *
@@ -3162,16 +3163,16 @@ s32 resource_slot_get(s32 a0) {
 
 /**
 /*
- * object_type_byte2_get (func_800B3F00)
+ * object_type_byte2_get (object_type_byte2_get)
  * Address: 0x800B3F00
  * Size: 40 bytes
  *
- * Calls func_800B3D18 with t0=0, then returns byte at offset 2
+ * Calls sound_update_channel with t0=0, then returns byte at offset 2
  * from current_object.
  *
  * @return Type byte 2 from current object
  */
-extern void sound_update_channel(s32 channel, f32 volume); /* func_800B3D18 - Audio update/sync */
+extern void sound_update_channel(s32 channel, f32 volume); /* sound_update_channel - Audio update/sync */
 extern u8 *current_object;            /* Current object pointer */
 
 u8 object_type_byte2_get(void) {
@@ -3183,7 +3184,7 @@ u8 object_type_byte2_get(void) {
 
 /**
 /*
- * object_type_byte3_get (func_800B3F28)
+ * object_type_byte3_get (object_type_byte3_get)
  * Address: 0x800B3F28
  * Size: 40 bytes
  *
@@ -3200,7 +3201,7 @@ u8 object_type_byte3_get(void) {
 
 /**
 /*
- * func_800B7170 - Calculate difference with sound_pitch_set result
+ * sound_pitch_diff_calc - Calculate difference with sound_pitch_set result
  * Address: 0x800B7170
  * Size: 48 bytes
  *
@@ -3232,7 +3233,7 @@ void replay_update_dual(s32 a0) {
 
 /**
 /*
- * object_byte26_set (func_80094F88)
+ * object_byte26_set (object_byte26_set (input_new_data_wrapper))
  * Address: 0x80094F88
  * Size: 60 bytes
  *
@@ -3260,7 +3261,7 @@ s8 object_byte26_set(void *a0, s8 a1) {
 
 /**
 /*
- * player_indexed_update (func_800A2D0C)
+ * player_indexed_update - no_catchup for tournament mode
  * Address: 0x800A2D0C
  * Size: 56 bytes
  *
@@ -3285,7 +3286,7 @@ void player_indexed_update(void *a0, void *a1) {
 
 /**
 /*
- * player_state_get (func_800AC898)
+ * player_state_get - get player state value
  * Address: 0x800AC898
  * Size: 60 bytes
  *
@@ -3329,7 +3330,7 @@ void resource_type_select(s32 a0) {
 
 /**
 /*
- * resource_alloc_conditional (func_800B61B0)
+ * resource_alloc_conditional (resource_alloc_conditional)
  * Address: 0x800B61B0
  * Size: 76 bytes
  *
@@ -3356,7 +3357,7 @@ void resource_alloc_conditional(s32 a0, s32 a1, s32 a2, u8 a3) {
 
 /**
 /*
- * player_flag_clear_process (func_800BC1E8)
+ * player_flag_clear_process (player_flag_clear_process)
  * Address: 0x800BC1E8
  * Size: 52 bytes
  *
@@ -3390,7 +3391,7 @@ void collision_check_thunk(void) {
 
 /**
 /*
- * resource_update_global (func_800A4B48)
+ * resource_update_global - update global resource via matrix stack
  * Address: 0x800A4B48
  * Size: 36 bytes
  *
@@ -3423,7 +3424,7 @@ void object_process_thunk(void) {
 
 /**
 /*
- * stack_call_wrapper (func_800B4360)
+ * stack_call_wrapper (fcvt_wrapper)
  * Address: 0x800B4360
  * Size: 44 bytes
  *
@@ -3448,7 +3449,7 @@ void stack_call_wrapper(s32 a0, s32 a1, s32 a2, s32 a3) {
 
 /**
 /*
- * mode_flags_clear (func_800BAF64)
+ * mode_flags_clear (mode_flags_clear)
  * Address: 0x800BAF64
  * Size: 44 bytes
  *
@@ -3467,7 +3468,7 @@ void mode_flags_clear(void) {
 
 /**
 /*
- * slot_deactivate (func_800AC840)
+ * slot_deactivate - deactivate model slot
  * Address: 0x800AC840
  * Size: 88 bytes
  *
@@ -3514,7 +3515,7 @@ void vector_copy_scale(f32 *src, f32 *dst) {
 
 /**
 /*
- * render_state_init (func_800A5B60)
+ * render_state_init - initialize render state variables
  * Address: 0x800A5B60
  * Size: 80 bytes
  *
@@ -3540,7 +3541,7 @@ void render_state_init(void) {
 
 /**
 /*
- * vector_diff_process (func_800ACB74)
+ * vector_diff_process - process vector difference
  * Address: 0x800ACB74
  * Size: 80 bytes
  *
@@ -3565,7 +3566,7 @@ void vector_diff_process(f32 *a3, f32 *t0) {
 
 /**
 /*
- * lookup_with_output (func_80096B5C)
+ * lookup_with_output (lookup_with_output)
  * Address: 0x80096B5C
  * Size: 96 bytes
  *
@@ -3710,7 +3711,7 @@ void complex_init_multi(s32 s0, s32 s1, s32 s2, s8 *s3, s32 s4, s32 a2) {
 
 /**
 /*
- * object_transform_set (func_800AB758)
+ * object_transform_set - set object transform matrix
  * Address: 0x800AB758
  * Size: 120 bytes
  *
@@ -3746,7 +3747,7 @@ void object_transform_set(s32 a0, f32 *rotation, f32 *position, void *a3, u8 *ba
 
 /**
 /*
- * fp_call_wrapper (func_800AC6F4)
+ * fp_call_wrapper - function pointer call wrapper
  * Address: 0x800AC6F4
  * Size: 104 bytes
  *
@@ -3833,7 +3834,7 @@ void resource_type_select_simple(s32 a0) {
  * Size: 80 bytes
  *
  * If a0 (as signed 16-bit) is negative:
- *   - Calls func_800B3D18 with t0=0
+ *   - Calls sound_update_channel with t0=0
  *   - Sets current_object_flags = current_object[8]
  * Otherwise:
  *   - Sets current_object_flags = a0
@@ -4040,7 +4041,7 @@ void sign_extend_call(void *a0, void *a1, s16 a2) {
 
 /**
 /*
- * sound_call_simple (func_80090228)
+ * sound_call_simple (sound_call_simple)
  * Address: 0x80090228
  * Size: 44 bytes
  *
@@ -4057,7 +4058,7 @@ void sound_call_simple(s16 a0) {
 
 /**
 /*
- * sound_call_minimal (func_80090254)
+ * sound_call_minimal (sound_call_minimal)
  * Address: 0x80090254
  * Size: 48 bytes
  *
@@ -4073,7 +4074,7 @@ void sound_call_minimal(s16 a0) {
 
 /**
 /*
- * pointer_compare_thunk (func_8009508C)
+ * pointer_compare_thunk (pointer_compare_thunk)
  * Address: 0x8009508C
  * Size: 32 bytes
  *
@@ -4117,7 +4118,7 @@ void object_derived_call(void **a0) {
 /**
 /**
 /*
- * pointer_offset8_call (func_800986B0)
+ * pointer_offset8_call (pointer_offset8_call)
  * Address: 0x800986B0
  * Size: 36 bytes
  *
@@ -4137,7 +4138,7 @@ void pointer_offset8_call(void *a0, void *a1) {
 /**
 /**
 /*
- * param_reshuffle_wrapper (func_800985F4)
+ * param_reshuffle_wrapper (param_reshuffle_wrapper)
  * Address: 0x800985F4
  * Size: 44 bytes
  *
@@ -4197,7 +4198,7 @@ void sync_acquire_menu(void) {
 
 /**
 /*
- * struct_fields_init (func_800B0550)
+ * struct_fields_init (struct_fields_init)
  * Address: 0x800B0550
  * Size: 48 bytes
  *
@@ -4225,7 +4226,7 @@ void struct_fields_init(void *a0, s32 a1, s32 a2, s32 a3, u8 stack) {
 /**
 /**
 /*
- * validate_and_call (func_80095120)
+ * validate_and_call (validate_and_call)
  * Address: 0x80095120
  * Size: 52 bytes
  *
@@ -4249,11 +4250,11 @@ s32 validate_and_call(void *a0, void *a1) {
 
 /**
 /*
- * diff_halved_calc (func_800B71A0)
+ * diff_halved_calc (sound_pitch_diff_halved)
  * Address: 0x800B71A0
  * Size: 52 bytes
  *
- * Similar to func_800B7170 but divides result by 2 before subtracting.
+ * Similar to sound_pitch_diff_calc but divides result by 2 before subtracting.
  *
  * @param a0 First parameter
  * @param a1 Value whose high halfword is used
@@ -4271,7 +4272,7 @@ s16 diff_halved_calc(void *a0, s32 a1) {
 /**
 /**
 /*
- * object_init_cleared (func_800AED2C)
+ * object_init_cleared - initialize cleared object
  * Address: 0x800AED2C
  * Size: 56 bytes
  *
@@ -4325,7 +4326,7 @@ void vector3d_store_transform(void *a0, void *a1, f32 x, f32 y, f32 z) {
 
 /**
 /*
- * slot_value_get (func_80096298)
+ * slot_value_get (slot_value_get)
  * Address: 0x80096298
  * Size: 60 bytes
  *
@@ -4418,7 +4419,7 @@ void resource_request_41_or_44(s32 a0) {
 /**
 /**
 /*
- * dual_call_reshuffled (func_800BE4B4)
+ * dual_call_reshuffled (camera_cinematic_mode)
  * Address: 0x800BE4B4
  * Size: 60 bytes
  *
@@ -4440,11 +4441,11 @@ void dual_call_reshuffled(s32 a0, s32 a1, s32 a2, void *a3) {
 
 /**
 /*
- * object_byte9_set (func_800B41C0)
+ * object_byte9_set (object_byte9_set)
  * Address: 0x800B41C0
  * Size: 64 bytes
  *
- * Sign-extends a0 to byte, calls func_800B3D18,
+ * Sign-extends a0 to byte, calls sound_update_channel,
  * saves old byte at current_object+9, stores new value, returns old.
  *
  * @param a0 New value (sign-extended to byte)
@@ -4522,7 +4523,7 @@ void *resource_alloc_init(void *a0, void *a1) {
 
 /**
 /*
- * func_800D54E0 - Conditional function call based on a1
+ * player_conditional_check - Conditional function call based on a1
  * Address: 0x800D54E0
  * Size: 68 bytes
  *
@@ -4674,11 +4675,11 @@ s32 struct_init_and_call(void *a0, s16 a1, void *a2) {
 
 /**
 /*
- * object_bytes23_sum (func_800B7128)
+ * object_bytes23_sum (object_bytes23_sum)
  * Address: 0x800B7128
  * Size: 72 bytes
  *
- * Calls func_800B3D18 twice, gets bytes at offset 2 and 3
+ * Calls sound_update_channel twice, gets bytes at offset 2 and 3
  * of current_object, returns their sum as s16.
  *
  * @return (s16)(current_object[2] + current_object[3])
@@ -4696,7 +4697,7 @@ s16 object_bytes23_sum(void) {
 
 /**
 /*
- * object_byte71_set_sync (func_800CDA90)
+ * object_byte71_set_sync (object_byte71_set_sync)
  * Address: 0x800CDA90
  * Size: 80 bytes
  *
@@ -4727,7 +4728,7 @@ void object_byte71_set_sync(void **a0, u8 a1) {
 /**
 /**
 /*
- * func_800BE9A0 - Build buffer and call B71D4
+ * music_fade - Build buffer and call B71D4
  * Address: 0x800BE9A0
  * Size: 72 bytes
  *
@@ -4751,7 +4752,7 @@ void buffer_build_and_call(s32 a0) {
 
 /**
 /*
- * buffer_build_2cd0_call (func_800BE9E8)
+ * buffer_build_2cd0_call (music_tempo_adjust)
  * Address: 0x800BE9E8
  * Size: 72 bytes
  *
@@ -4775,7 +4776,7 @@ void buffer_build_2cd0_call(s32 a0, s32 a1, void *a2, s32 a3) {
 
 /**
 /*
- * init_wait_completion (func_800A4C54)
+ * init_wait_completion - wait for initialization completion
  * Address: 0x800A4C54
  * Size: 84 bytes
  *
@@ -4820,7 +4821,7 @@ void list_process_and_call(s32 trackId, void *ghostData) {
 
 /**
 /*
- * object_bytes_sum_global (func_800B3F50)
+ * object_bytes_sum_global (object_bytes_sum_global)
  * Address: 0x800B3F50
  * Size: 84 bytes
  *
@@ -5036,11 +5037,11 @@ void params_transform_call(s32 a0, s32 a1, s16 a2, s16 a3, s32 stack) {
 
 /**
 /*
- * speed_mode0_wrapper - Call func_800C9210 with mode (1, 0)
+ * speed_mode0_wrapper - Call speed_set with mode (1, 0)
  * Address: 0x800C92DC
  * Size: 88 bytes
  *
- * Wrapper that sets s1=1, s2=0 and calls func_800C9210.
+ * Wrapper that sets s1=1, s2=0 and calls speed_set.
  * The FP operations copy f12 to f20 and f14 to f22.
  */
 
@@ -5052,11 +5053,11 @@ void speed_mode0_wrapper(void) {
 
 /**
 /*
- * speed_mode1_wrapper - Call func_800C9210 with mode (0, 1)
+ * speed_mode1_wrapper - Call speed_set with mode (0, 1)
  * Address: 0x800C93AC
  * Size: 88 bytes
  *
- * Wrapper that sets s1=0, s2=1 and calls func_800C9210.
+ * Wrapper that sets s1=0, s2=1 and calls speed_set.
  * The FP operations copy f12 to f20 and f14 to f22.
  */
 void speed_mode1_wrapper(void) {
@@ -5603,7 +5604,7 @@ extern void memset_custom(void*, s32, s32);  /* memset */
 
 /**
 /*
- * effect_system_init (func_800C3614)
+ * effect_system_init (effect_system_init)
  * Size: 140 bytes
  *
  * Clears effect state buffers and initializes all effect slots with
@@ -6306,7 +6307,7 @@ extern s32 vertex_color(s32, s32);  /* Sound lookup function */
 /**
 
 /**
-extern void game_mode_handler(void); /* func_800C9AE0 - State handler */
+extern void game_mode_handler(void); /* game_mode_handler - State handler */
 
 /**
 
@@ -6523,7 +6524,7 @@ s32 state_get_zero(void) {
 
 
 /*
- * func_800C84C0 (60 bytes)
+ * player_mode_set (60 bytes)
  * Set player state byte(s)
  */
 void player_mode_set(s32 a0, s8 a1) {
@@ -6691,8 +6692,9 @@ void tree_node_insert(s16 a0, s16 a1) {
  */
 
 /*
- * func_800991C04 placeholder
- * Note: Complex function - needs analysis
+ * entity_timer_update (scheduler_recv)
+ * Address: 0x80091C04
+ * Updates entity timers and handles scheduler message receive
  */
 
 /*
@@ -6701,13 +6703,15 @@ void tree_node_insert(s16 a0, s16 a1) {
  */
 
 /*
- * func_8009515C (60 bytes)
- * Note: Copy/init operation - needs analysis
+ * sound_volume_helper (60 bytes)
+ * Address: 0x8009515C
+ * Sound volume calculation helper function
  */
 
 /*
- * func_800959DC (72 bytes)
- * Note: Render setup - needs analysis
+ * audio_pitch_adjust (72 bytes)
+ * Address: 0x800959DC
+ * Audio pitch adjustment for sound effects
  */
 
 /*
@@ -7348,7 +7352,7 @@ void player_array_process(void) {
 
 /*
 
- * effect_slot_init (func_800C3594)
+ * effect_slot_init (effect_slot_init)
  * Size: 120 bytes
  * Initialize effect slot with index
  */
@@ -7447,7 +7451,7 @@ void entity_type_dispatch(void *entity) {
 
 /*
 
- * entity_iterate (func_800C69C0)
+ * entity_iterate (entity_iterate)
  * Size: 224 bytes
  * Entity iterator with callback
  */
@@ -7468,7 +7472,7 @@ void entity_iterate(void (*callback)(void *)) {
 
 /*
 
- * entity_update (func_800C6AA0)
+ * entity_update (entity_update)
  * Size: 1564 bytes
  * Full entity physics and state update
  */
@@ -9047,7 +9051,7 @@ void entity_spawn_init(void *params, s32 type) {
 
  * entity_callback_register (1036 bytes)
  * Process entity with callback registration
- * func_80090310
+ * entity_callback_register (physics_velocities_K)
  */
 void entity_callback_register(void *entity) {
     void *result;
@@ -9068,7 +9072,7 @@ void entity_callback_register(void *entity) {
 
  * entity_physics_update (716 bytes)
  * Entity movement/physics update
- * func_800908A0
+ * entity_physics_update (physics_velocities_L)
  */
 void entity_physics_update(void *entity, s16 flags) {
     f32 *pos, *vel, *accel;
@@ -9143,7 +9147,7 @@ void entity_physics_update(void *entity, s16 flags) {
 
  * entity_collision_detect (820 bytes)
  * Entity collision detection
- * func_80090B70
+ * entity_collision_detect (physics_forces_handler_A)
  */
 void entity_collision_detect(void *entity) {
     f32 *pos;
@@ -9212,7 +9216,7 @@ void entity_collision_detect(void *entity) {
 
  * entity_update_callback (2184 bytes)
  * Entity update callback
- * func_80090FEC
+ * entity_update_callback (physics_forces_handler_B)
  */
 void entity_update_callback(void *entity, s16 param) {
     s32 globalFlag;
@@ -9229,7 +9233,7 @@ void entity_update_callback(void *entity, s16 param) {
 
  * entity_anim_texture (616 bytes)
  * Entity animation update with texture loading
- * func_80091874
+ * entity_anim_texture (physics_velocities_M)
  */
 void entity_anim_texture(void *entity, s16 animFrame) {
     s16 entityId;
@@ -9262,7 +9266,7 @@ void entity_anim_texture(void *entity, s16 animFrame) {
 
  * entity_scale_sync (560 bytes)
  * Entity scale/transform with sync
- * func_80091E5C
+ * entity_scale_sync (client_sync)
  */
 void entity_scale_sync(f32 scale) {
     /* Acquire sync */
@@ -9282,7 +9286,7 @@ void entity_scale_sync(f32 scale) {
 
  * entity_state_init (600 bytes)
  * Entity state initialization
- * func_8009229C
+ * entity_state_init (entity_flags_apply)
  */
 void entity_state_init(void *entity, void *params) {
     u32 flags;
@@ -9311,7 +9315,7 @@ void entity_state_init(void *entity, void *params) {
 
  * entity_spawn_full (1636 bytes)
  * Entity spawn with full initialization
- * func_800924F4
+ * entity_spawn_full (buffer_swap)
  */
 void entity_spawn_full(void *entity, s16 spawnType) {
     s16 entityId;
@@ -9339,7 +9343,7 @@ void entity_spawn_full(void *entity, s16 spawnType) {
 
  * string_copy_format (720 bytes)
  * String/name copy with formatting
- * func_80092E2C
+ * string_copy_format (entity_name_copy)
  */
 void string_copy_format(void *dest, u8 *src, s8 x, s8 y, s8 z) {
     u8 *tempBuf;
@@ -9364,7 +9368,7 @@ void string_copy_format(void *dest, u8 *src, s8 x, s8 y, s8 z) {
 
  * entity_tick_main (2684 bytes)
  * Major entity processing loop - comprehensive entity tick
- * func_800930A4
+ * entity_tick_main (physics_velocities_O)
  */
 void entity_tick_main(void *entity, s32 mode) {
     s32 *entityFlags;
@@ -9438,7 +9442,7 @@ void entity_tick_main(void *entity, s32 mode) {
 
  * drone_ai_update (3440 bytes)
  * Entity AI/behavior update - drone car AI
- * func_80093B20
+ * drone_ai_update (physics_forces_handler_C)
  */
 void drone_ai_update(void *entity) {
     s32 *aiState;
@@ -9547,7 +9551,7 @@ void drone_ai_update(void *entity) {
 
  * audio_channel_setup (460 bytes)
  * Audio parameter setup - configure audio channel parameters
- * func_80094890
+ * audio_channel_setup
  */
 void audio_channel_setup(void *params, s32 channel) {
     f32 *audioParams;
@@ -9630,7 +9634,7 @@ void sound_effect_play(s32 soundId, s32 priority) {
 
  * audio_volume_pan (668 bytes)
  * Audio volume/pan control - adjust channel volume and pan
- * func_80094C30
+ * audio_volume_pan (vi_config_offset)
  */
 void audio_volume_pan(s32 channel, f32 volume, f32 pan) {
     s32 *channelState;
@@ -9665,7 +9669,7 @@ void audio_volume_pan(s32 channel, f32 volume, f32 pan) {
 
  * audio_channel_reset (156 bytes)
  * Audio channel reset - stop and reset a channel
- * func_80094FF0
+ * audio_channel_reset (input_dispatch)
  */
 void audio_channel_reset(s32 channel) {
     s32 *channelState;
@@ -9690,7 +9694,7 @@ void audio_channel_reset(s32 channel) {
 
  * sound_position_update (492 bytes)
  * Sound position update - update 3D sound position for entity
- * func_800951E0
+ * sound_position_update
  */
 void sound_position_update(void *entity, f32 *pos) {
     f32 *listenerPos;
@@ -9745,7 +9749,7 @@ void sound_position_update(void *entity, f32 *pos) {
 
  * audio_fade_control (220 bytes)
  * Audio fade control - fade channel volume over time
- * func_800953CC
+ * audio_fade_control
  */
 void audio_fade_control(s32 channel, f32 targetVol, f32 duration) {
     s32 *channelState;
@@ -9781,7 +9785,7 @@ void audio_fade_control(s32 channel, f32 targetVol, f32 duration) {
 
  * sound_channel_enable (128 bytes)
  * Sound enable/disable - enable or disable a sound channel
- * func_800954A8
+ * sound_channel_enable (gfx_setup_e700)
  */
 void sound_channel_enable(s32 channel, s32 enable) {
     s32 *channelState;
@@ -9805,7 +9809,7 @@ void sound_channel_enable(s32 channel, s32 enable) {
 
  * music_track_control (484 bytes)
  * Music track control - control music playback
- * func_80095528
+ * music_track_control
  */
 void music_track_control(s32 trackId, s32 cmd) {
     s32 *musicState = (s32 *)0x80161100;
@@ -9855,7 +9859,7 @@ void music_track_control(s32 trackId, s32 cmd) {
 
  * audio_bus_route (244 bytes)
  * Audio bus routing - route audio between buses
- * func_8009570C
+ * audio_bus_route
  */
 void audio_bus_route(s32 srcBus, s32 destBus) {
     s32 *busMatrix = (s32 *)0x80161200;
@@ -9872,7 +9876,7 @@ void audio_bus_route(s32 srcBus, s32 destBus) {
 
  * audio_effect_setup (292 bytes)
  * Reverb/effect setup - configure audio effects
- * func_80095800
+ * audio_effect_setup
  */
 void audio_effect_setup(s32 effectId, f32 param) {
     s32 *effectState = (s32 *)0x80161300;
@@ -9906,7 +9910,7 @@ void audio_effect_setup(s32 effectId, f32 param) {
 
  * audio_timing_sync (184 bytes)
  * Audio timing sync - synchronize audio with video
- * func_80095924
+ * audio_timing_sync
  */
 void audio_timing_sync(void) {
     s32 audioFrame;
@@ -9934,7 +9938,7 @@ void audio_timing_sync(void) {
 
  * sound_priority_set (236 bytes)
  * Sound priority management - set channel priority
- * func_80095A24
+ * sound_priority_set
  */
 void sound_priority_set(s32 channel, s32 priority) {
     s32 *channelState;
@@ -9951,7 +9955,7 @@ void sound_priority_set(s32 channel, s32 priority) {
 
  * audio_stream_control (236 bytes)
  * Audio stream control - control streaming audio
- * func_80095B10
+ * audio_stream_control
  */
 void audio_stream_control(s32 streamId, s32 cmd) {
     s32 *streamState = (s32 *)(0x80161400 + streamId * 32);
@@ -9986,7 +9990,7 @@ void audio_stream_control(s32 streamId, s32 cmd) {
 
  * audio_buffer_manage (268 bytes)
  * Audio buffer management - manage audio DMA buffers
- * func_80095BFC
+ * audio_buffer_manage
  */
 void audio_buffer_manage(void *buffer, s32 size) {
     s32 *bufferInfo = (s32 *)0x80161500;
@@ -10009,7 +10013,7 @@ void audio_buffer_manage(void *buffer, s32 size) {
 
  * audio_state_save (468 bytes)
  * Audio state save/restore - save or restore audio state
- * func_80095D04
+ * audio_state_save
  */
 void audio_state_save(s32 cmd) {
     s32 *stateBuffer = (s32 *)0x80161600;
@@ -10041,7 +10045,7 @@ void audio_state_save(s32 cmd) {
 
  * entity_sound_attach (216 bytes)
  * Entity sound attachment with sync
- * func_8009614C
+ * entity_sound_attach (dma_complete_wait)
  */
 void entity_sound_attach(void *a0, void *a1, void *a2, void *entity) {
     s16 waitFlag;
@@ -10066,7 +10070,7 @@ void entity_sound_attach(void *a0, void *a1, void *a2, void *entity) {
 
  * display_list_traverse (452 bytes)
  * Display list traversal
- * func_800963E8
+ * display_list_traverse
  */
 void display_list_traverse(u32 *dlPtr, void *param1, void *param2, void *param3) {
     u32 cmd;
@@ -10099,7 +10103,7 @@ void display_list_traverse(u32 *dlPtr, void *param1, void *param2, void *param3)
 
  * entity_render_mode (244 bytes)
  * Entity render setup
- * func_800965BC
+ * entity_render_mode
  */
 void entity_render_mode(void *entity) {
     void *tableEntry;
@@ -10123,7 +10127,7 @@ void entity_render_mode(void *entity) {
 
  * entity_lod_select (716 bytes)
  * Entity LOD selection - chooses detail level based on distance
- * func_80096734
+ * entity_lod_select
  */
 void entity_lod_select(void *entity, f32 distance) {
     s32 *lodLevel;
@@ -10177,7 +10181,7 @@ void entity_lod_select(void *entity, f32 distance) {
 
  * entity_cull_check (348 bytes)
  * Entity cull check - tests entity against view frustum
- * func_80096A00
+ * entity_cull_check
  */
 s32 entity_cull_check(void *entity, void *camera) {
     f32 *entityPos;
@@ -10252,7 +10256,7 @@ s32 entity_cull_check(void *entity, void *camera) {
 
  * entity_render_transform (1216 bytes)
  * Entity render with transforms
- * func_80096CC4
+ * entity_render_transform
  */
 void entity_render_transform(void *entity, void *matrix) {
     /* Render with transforms - stub */
@@ -10262,7 +10266,7 @@ void entity_render_transform(void *entity, void *matrix) {
 
  * entity_collision_response (876 bytes)
  * Entity collision response
- * func_80097184
+ * entity_collision_response (audio_queue_recv)
  */
 void entity_collision_response(void *entity, s32 collisionType) {
     void *tableEntry;
@@ -10281,7 +10285,7 @@ void entity_collision_response(void *entity, s32 collisionType) {
 
  * entity_state_machine (692 bytes)
  * Entity state machine update
- * func_800974EC
+ * entity_state_machine (audio_task_complete)
  */
 void entity_state_machine(void *entity, s32 newState) {
     void *currentPtr;
@@ -10306,7 +10310,7 @@ void entity_state_machine(void *entity, s32 newState) {
 
  * entity_pos_validate (264 bytes)
  * Entity position validation
- * func_800979A8
+ * entity_pos_validate (mp_interval_pos)
  */
 void entity_pos_validate(void *entity, s32 flags) {
     s32 checkFlag;
@@ -10329,7 +10333,7 @@ void entity_pos_validate(void *entity, s32 flags) {
 
  * entity_velocity_update (364 bytes)
  * Entity velocity update - applies velocity to entity position
- * func_80097AFC
+ * entity_velocity_update
  */
 void entity_velocity_update(void *entity, f32 *velocity) {
     f32 *pos;
@@ -10388,7 +10392,7 @@ void entity_velocity_update(void *entity, f32 *velocity) {
 
  * entity_state_check (140 bytes)
  * Simple state check
- * func_800987E8
+ * entity_state_check
  */
 s32 entity_state_check(void *entity) {
     s32 state;
@@ -10401,7 +10405,7 @@ s32 entity_state_check(void *entity) {
 
  * entity_flag_check (108 bytes)
  * Entity flag check
- * func_80098874
+ * entity_flag_check
  */
 s32 entity_flag_check(void *entity, s32 flagMask) {
     s32 flags;
@@ -10414,7 +10418,7 @@ s32 entity_flag_check(void *entity, s32 flagMask) {
 
  * entity_damage_update (516 bytes)
  * Entity damage/health update - processes damage and effects
- * func_800988E0
+ * entity_damage_update
  */
 void entity_damage_update(void *entity, s32 damage) {
     s32 *health;
@@ -10476,7 +10480,7 @@ void entity_damage_update(void *entity, s32 damage) {
 
  * entity_physics_step (1244 bytes)
  * Entity physics step - integrates physics for one timestep
- * func_80098AE4
+ * entity_physics_step (engine_sound_sync)
  */
 void entity_physics_step(void *entity, f32 dt) {
     f32 *pos;
@@ -10571,7 +10575,7 @@ void entity_physics_step(void *entity, f32 dt) {
 
  * entity_ground_check (708 bytes)
  * Entity ground check - raycasts down to find ground
- * func_80098FC0
+ * entity_ground_check (world_collision)
  */
 s32 entity_ground_check(void *entity, f32 *groundNormal) {
     f32 *pos;
@@ -10648,7 +10652,7 @@ s32 entity_ground_check(void *entity, f32 *groundNormal) {
 
  * entity_ai_pathfind (2388 bytes)
  * Entity AI pathfinding - calculates path to target
- * func_800992AC
+ * entity_ai_pathfind (track_render)
  */
 void entity_ai_pathfind(void *entity, void *target) {
     f32 *entityPos;
@@ -10765,7 +10769,7 @@ void entity_ai_pathfind(void *entity, void *target) {
 
  * entity_render_main (10220 bytes)
  * Major entity render function
- * func_80099BFC
+ * entity_render_main (render_object)
  */
 void entity_render_main(void *entity) {
     void *dlPtr;
@@ -10796,7 +10800,7 @@ void entity_render_main(void *entity) {
 
  * lighting_calc (1560 bytes)
  * Lighting/shading calculation - computes surface lighting
- * func_8009C5E0
+ * lighting_calc (camera_update_d)
  */
 void lighting_calc(f32 *color, f32 *normal, f32 *lightDir) {
     f32 ambient[3];
@@ -10873,8 +10877,8 @@ void lighting_calc(f32 *color, f32 *normal, f32 *lightDir) {
 /*
 
  * track_segment_load (2256 bytes)
- * Track segment loading
- * func_800A1648
+ * Track segment loading - load track segment from ROM with GZIP decompression
+ * Address: 0x800A1648
  */
 void track_segment_load(s32 segmentId) {
     u32 *segmentTable;
@@ -10926,8 +10930,8 @@ void track_segment_load(s32 segmentId) {
 /*
 
  * track_data_decompress (644 bytes)
- * Track data decompression
- * func_800A1F18
+ * Track data decompression - decompress GZIP/ZLIB/LZSS track data
+ * Address: 0x800A1F18
  */
 void track_data_decompress(void *dest, void *src, s32 size) {
     u8 *srcPtr, *destPtr;
@@ -10977,8 +10981,8 @@ void track_data_decompress(void *dest, void *src, s32 size) {
 /*
 
  * track_collision_setup (732 bytes)
- * Track collision setup
- * func_800A21A4
+ * Track collision setup - setup 64x64 collision height/surface grids
+ * Address: 0x800A21A4
  */
 void track_collision_setup(void *trackData) {
     u8 *data;
@@ -11048,8 +11052,8 @@ void track_collision_setup(void *trackData) {
 /*
 
  * track_process_main (3116 bytes)
- * Major track processing
- * func_800A2D4C
+ * Per-frame track segment processing
+ * Address: 0x800A2D4C
  */
 void track_process_main(void *a0, void *a1, void *a2, void *a3) {
     s8 initFlag;
@@ -11068,8 +11072,8 @@ void track_process_main(void *a0, void *a1, void *a2, void *a3) {
 /*
 
  * track_spline_interp (296 bytes)
- * Track spline interpolation
- * func_800A3654
+ * Track spline interpolation - Catmull-Rom spline interpolation
+ * Address: 0x800A3654
  */
 void track_spline_interp(void *spline, f32 t, f32 *outPos) {
     f32 *controlPoints;
@@ -11130,8 +11134,8 @@ void track_spline_interp(void *spline, f32 t, f32 *outPos) {
 /*
 
  * track_render_process (3156 bytes)
- * Track render processing
- * func_800A377C
+ * Per-frame track rendering
+ * Address: 0x800A377C
  */
 void track_render_process(void *track, s32 mode) {
     s8 renderFlag;
@@ -11147,8 +11151,8 @@ void track_render_process(void *track, s32 mode) {
 /*
 
  * car_lod_select (568 bytes)
- * Car model LOD selection
- * func_800A4508
+ * Car model LOD selection - level-of-detail based on camera distance
+ * Address: 0x800A4508
  */
 void car_lod_select(void *car, f32 distance) {
     s32 *currentLod;
@@ -11196,8 +11200,8 @@ void car_lod_select(void *car, f32 distance) {
 /*
 
  * wheel_rotation_update (388 bytes)
- * Wheel rotation update
- * func_800A4940
+ * Wheel rotation update - update wheel visual rotation and slip
+ * Address: 0x800A4940
  *
  * Updates wheel visual rotation based on angular velocity.
  * Also handles tire slip angle calculations for force model.
@@ -11272,8 +11276,8 @@ void wheel_rotation_update(void *wheel, f32 dt) {
 /*
 
  * suspension_update (412 bytes)
- * Suspension compression update
- * func_800A4CC0
+ * Suspension compression update - based on arcade tires.c dotireforce()
+ * Address: 0x800A4CC0
  *
  * Based on arcade tires.c dotireforce() function.
  * Calculates suspension spring and damper forces.
@@ -11367,8 +11371,8 @@ void suspension_update(void *suspension, f32 newCompression) {
 /*
 
  * tire_skid_mark (444 bytes)
- * Tire skid mark generation
- * func_800A4E60
+ * Tire skid mark generation - based on arcade visuals DoSkid
+ * Address: 0x800A4E60
  *
  * Creates visual skid marks on the ground based on tire slip.
  * Based on arcade tires.c screech calculations.
@@ -11433,7 +11437,7 @@ void tire_skid_mark(void *tire, f32 *pos, f32 intensity) {
 
  * car_damage_visual (932 bytes)
  * Car damage visual update - apply damage effects to car model
- * func_800A51E0
+ * Address: 0x800A51E0
  */
 void car_damage_visual(void *car, s32 damageLevel) {
     f32 *bodyOffset;
@@ -11489,8 +11493,8 @@ void car_damage_visual(void *car, s32 damageLevel) {
 /*
 
  * engine_particle_effect (444 bytes)
- * Engine particle effect - spawn particles from car
- * func_800A5588
+ * Engine particle effect - spawn particles (dust/sparks/smoke)
+ * Address: 0x800A5588
  */
 void engine_particle_effect(void *car, s32 effectType) {
     f32 *carPos;
@@ -11563,8 +11567,8 @@ void engine_particle_effect(void *car, s32 effectType) {
 /*
 
  * exhaust_smoke_effect (488 bytes)
- * Exhaust smoke effect - render exhaust from car
- * func_800A5744
+ * Exhaust smoke effect - arcade visuals StartSmoke
+ * Address: 0x800A5744
  */
 void exhaust_smoke_effect(void *car, f32 *exhaustPos) {
     f32 *carVel;
@@ -11609,7 +11613,7 @@ void exhaust_smoke_effect(void *car, f32 *exhaustPos) {
 
  * car_shadow_render (1116 bytes)
  * Car shadow rendering - render blob shadow under car
- * func_800A5D34
+ * Address: 0x800A5D34
  */
 void car_shadow_render(void *car, void *ground) {
     f32 *carPos;
@@ -11666,7 +11670,7 @@ void car_shadow_render(void *car, void *ground) {
 
  * car_lights_render (428 bytes)
  * Headlight/taillight rendering - render car lights
- * func_800A6094
+ * Address: 0x800A6094
  */
 void car_lights_render(void *car, s32 lightMask) {
     f32 *carPos;
@@ -11716,8 +11720,8 @@ void car_lights_render(void *car, s32 lightMask) {
 /*
 
  * brake_light_update (448 bytes)
- * Brake light update - update brake light state
- * func_800A6244
+ * Brake light update - arcade visuals App_M_BRAKE_LIGHTS
+ * Address: 0x800A6244
  */
 void brake_light_update(void *car, s32 braking) {
     s32 *lightState;
@@ -11746,7 +11750,7 @@ void brake_light_update(void *car, s32 braking) {
 
  * car_render_full (2016 bytes)
  * Car full render - render complete car with all effects
- * func_800A6404
+ * Address: 0x800A6404
  */
 void car_render_full(void *car) {
     f32 *carPos;
@@ -12212,8 +12216,8 @@ void throttle_brake_input(void *car, f32 throttle, f32 brake) {
 /*
 
  * car_gear_shift (236 bytes)
- * Car gear shift
- * func_800A7C9C
+ * Car gear shift handler - drivetrain transmission
+ * Address: 0x800A7C9C
  *
  * Based on arcade transmission code.
  * Handles manual and automatic gear changes.
@@ -12296,8 +12300,8 @@ void car_gear_shift(void *car, s32 newGear) {
 /*
 
  * car_get_gear (104 bytes)
- * Get current gear
- * func_800A7D88
+ * Get current gear - drivetrain
+ * Address: 0x800A7D88
  */
 s32 car_get_gear(void *car) {
     return *(s32 *)((u8 *)car + 0x48);
@@ -12305,9 +12309,9 @@ s32 car_get_gear(void *car) {
 
 /*
 
- * tire_force_calc (1200 bytes - estimated)
- * Tire force calculation (friction circle model)
- * func_800A7E00
+ * tire_force_calc (1200 bytes)
+ * Tire force calculation - friction circle model from arcade tires.c
+ * Address: 0x800A7E00
  *
  * Based on arcade tires.c frictioncircle() function.
  * Calculates lateral and longitudinal tire forces using
@@ -14109,7 +14113,7 @@ void sound_set_channel_pan(s32 channel, f32 pan) {
 /*
 
  * sound_update_channel - Audio sync/update
- * (func_800B3D18 - 228 bytes)
+ * (sound_update_channel - 228 bytes)
  * Synchronizes audio state, called periodically.
  */
 void sound_update_channel(s32 channel, f32 volume) {
@@ -15390,7 +15394,7 @@ void hud_element_render(void *hud, s32 elementId) {
 
 /*
 
- * func_800C84FC (868 bytes)
+ * hud_speed_display (868 bytes)
  * Speedometer update
  *
  * Updates the speedometer display with current speed.
@@ -15465,7 +15469,7 @@ void hud_tachometer_update(void) { /* Tachometer update stub */ }
 
 /*
 
- * func_800C8B8C (1048 bytes)
+ * hud_setup (1048 bytes)
  * Lap counter update
  *
  * Updates the lap counter display with current and total laps.
@@ -15477,7 +15481,7 @@ void hud_setup(s32 a, s32 b, s32 c, s32 d, s32 e, f32 f, f32 g, s32 h) {
 
 /*
 
- * func_800C8FA4 (316 bytes)
+ * display_enable (316 bytes)
  * Position display update
  *
  * Shows the player's race position (1st, 2nd, etc.)
@@ -15487,7 +15491,7 @@ void display_enable(s32 flag) { /* Position display stub */ }
 
 /*
 
- * func_800C9158 (184 bytes)
+ * player_state_set (184 bytes)
  * Timer display
  *
  * Displays race time in MM:SS.CC format.
@@ -15498,7 +15502,7 @@ void player_state_set(s32 a, s32 b) {
 
 /*
 
- * func_800C9210 (204 bytes)
+ * speed_set (204 bytes)
  * Speed display
  *
  * Digital speed readout with MPH/KPH unit.
@@ -21817,7 +21821,7 @@ void audio_queue_process(void *queue) {
                 break;
 
             case 3:  /* Set pan */
-                /* func_800B38XX(param1, param2); */
+                /* sound_pan_set(param1, param2); - address unknown */
                 break;
 
             case 4:  /* Set pitch */
@@ -21837,7 +21841,7 @@ void audio_queue_process(void *queue) {
 }
 
 /*
- * func_8009C8F0 (5368 bytes)
+ * track_geometry_process (particle_system) (5368 bytes)
  * Track geometry processing - Builds track geometry for rendering
  *
  * Processes track segment data and builds display lists for rendering.
@@ -21882,7 +21886,7 @@ void track_geometry_process(void *track) {
 }
 
 /*
- * func_8009DD88 (3304 bytes)
+ * track_segment_render (track_collision_wall) (3304 bytes)
  * Track segment render - Renders a single track segment
  *
  * Builds and executes display list for one track segment including
@@ -21949,7 +21953,7 @@ void track_segment_render(void *segment) {
 
 /*
 
- * func_8009EA70 (168 bytes)
+ * track_bounds_check (track_collision_curb) (168 bytes)
  * Track bounds check - check if position is within track boundaries
  */
 s32 track_bounds_check(f32 *pos) {
@@ -21985,7 +21989,7 @@ s32 track_bounds_check(f32 *pos) {
 
 /*
 
- * func_8009EB18 (168 bytes)
+ * track_height_query (gfx_setup_fc) (168 bytes)
  * Track height query - get terrain height at position
  */
 f32 track_height_query(f32 x, f32 z) {
@@ -22019,7 +22023,7 @@ f32 track_height_query(f32 x, f32 z) {
 
 /*
 
- * func_8009EBC0 (1188 bytes)
+ * track_surface_type (physics_float_calc) (1188 bytes)
  * Track surface type query - get surface material at position
  */
 s32 track_surface_type(f32 *pos) {
@@ -22067,7 +22071,7 @@ s32 track_surface_type(f32 *pos) {
 
 /*
 
- * func_8009F064 (8600 bytes)
+ * track_collision_test (viewport_perspective) (8600 bytes)
  * Track collision test - raycast against track geometry
  */
 s32 track_collision_test(f32 *start, f32 *end, f32 *hitPoint) {
@@ -22144,8 +22148,9 @@ s32 track_collision_test(f32 *start, f32 *end, f32 *hitPoint) {
 
 /*
 
- * func_800AF06C (1396 bytes)
+ * save_write_data (1396 bytes)
  * Save game data - write save structure to buffer
+ * Address: 0x800AF06C
  */
 void save_write_data(void *saveData) {
     u8 *data;
@@ -22223,8 +22228,9 @@ void save_write_data(void *saveData) {
 
 /*
 
- * func_800AF5E0 (176 bytes)
+ * save_slot_valid (176 bytes)
  * Save slot check - verify if save slot has valid data
+ * Address: 0x800AF5E0
  */
 s32 save_slot_valid(s32 slot) {
     OSPfs pfs;
@@ -22260,8 +22266,9 @@ s32 save_slot_valid(s32 slot) {
 
 /*
 
- * func_800AF690 (572 bytes)
+ * save_load_data (572 bytes)
  * Load game data - read save from controller pak
+ * Address: 0x800AF690
  */
 s32 save_load_data(void *saveData, s32 slot) {
     OSPfs pfs;
@@ -22318,8 +22325,9 @@ s32 save_load_data(void *saveData, s32 slot) {
 
 /*
 
- * func_800AF8CC (620 bytes)
+ * save_delete (620 bytes)
  * Delete save - erase save data from slot
+ * Address: 0x800AF8CC
  */
 void save_delete(s32 slot) {
     OSPfs pfs;
@@ -22352,8 +22360,9 @@ void save_delete(s32 slot) {
 
 /*
 
- * func_800AFB38 (548 bytes)
+ * save_validate (548 bytes)
  * Save validation - verify save data integrity
+ * Address: 0x800AFB38
  */
 s32 save_validate(void *saveData) {
     u8 *data;
@@ -22397,8 +22406,9 @@ s32 save_validate(void *saveData) {
 
 /*
 
- * func_800AFD5C (1060 bytes)
+ * cpak_init (1060 bytes)
  * Controller pak init - initialize controller pak
+ * Address: 0x800AFD5C
  */
 s32 cpak_init(s32 controller) {
     OSPfs pfs;
@@ -22428,7 +22438,7 @@ s32 cpak_init(s32 controller) {
 
 /*
 
- * func_800B0180 (868 bytes)
+ * cpak_read (868 bytes)
  * Controller pak read - read data from controller pak
  */
 s32 cpak_read(s32 controller, void *buffer, s32 offset, s32 size) {
@@ -22460,7 +22470,7 @@ s32 cpak_read(s32 controller, void *buffer, s32 offset, s32 size) {
 
 /*
 
- * func_800B0904 (396 bytes)
+ * audio_init (396 bytes)
  * Audio init subsystem - initialize N64 audio
  */
 void audio_init(void) {
@@ -22496,7 +22506,7 @@ void audio_init(void) {
 
 /*
 
- * func_800B0A90 (440 bytes)
+ * audio_shutdown (440 bytes)
  * Audio shutdown - cleanup audio system
  */
 void audio_shutdown(void) {
@@ -22523,7 +22533,7 @@ void audio_shutdown(void) {
 
 /*
 
- * func_800B0C48 (800 bytes)
+ * audio_frame_update (800 bytes)
  * Audio frame update - process audio each frame
  */
 void audio_frame_update(void) {
@@ -22588,7 +22598,7 @@ void audio_frame_update(void) {
 
 /*
 
- * func_800B0F68 (364 bytes)
+ * sound_bank_load (364 bytes)
  * Sound bank load - load sound bank from ROM
  */
 void sound_bank_load(s32 bankId) {
@@ -22625,7 +22635,7 @@ void sound_bank_load(s32 bankId) {
 
 /*
 
- * func_800B10D4 (1248 bytes)
+ * sound_bank_unload (1248 bytes)
  * Sound bank unload - free sound bank memory
  */
 void sound_bank_unload(s32 bankId) {
@@ -22658,7 +22668,7 @@ void sound_bank_unload(s32 bankId) {
 
 /*
 
- * func_800B15B4 (1428 bytes)
+ * music_seq_load (1428 bytes)
  * Music sequence load - load music sequence from ROM
  */
 void music_seq_load(s32 seqId) {
@@ -22749,7 +22759,7 @@ void music_control(s32 cmd, s32 param) {
 
 /*
 
- * func_800B1F44 (200 bytes)
+ * music_volume_set (200 bytes)
  * Music volume
  */
 void music_volume_set(f32 volume) {
@@ -22782,7 +22792,7 @@ void music_volume_set(f32 volume) {
 
 /*
 
- * func_800B200C (1612 bytes)
+ * music_tempo_set (1612 bytes)
  * Music tempo
  */
 void music_tempo_set(f32 tempo) {
@@ -22934,7 +22944,7 @@ void sfx_stop(s32 handle) {
 
 /*
 
- * func_800B2928 (1016 bytes)
+ * sfx_position_3d (1016 bytes)
  * 3D sound position
  */
 void sfx_position_3d(s32 handle, f32 *pos) {
@@ -23004,7 +23014,7 @@ void sfx_position_3d(s32 handle, f32 *pos) {
 
 /*
 
- * func_800B2D20 (216 bytes)
+ * listener_position_set (216 bytes)
  * Sound listener position
  */
 void listener_position_set(f32 *pos, f32 *forward) {
@@ -23190,7 +23200,7 @@ void tire_sound_update(void *car) {
 
 /*
 
- * func_800B3710 (684 bytes)
+ * wind_sound_update (684 bytes)
  * Collision sound trigger
  *
  * Based on arcade carsnd.c car bump sounds.
@@ -23245,7 +23255,7 @@ void collision_sound_play(void *car, f32 intensity) {
 
 /*
 
- * func_800B39BC (396 bytes)
+ * crowd_cheer_play (396 bytes)
  * Wind sound update
  *
  * Wind noise that increases with speed.
@@ -23304,7 +23314,7 @@ void wind_sound_update(void *car) {
 
 /*
 
- * func_800B3B4C (468 bytes)
+ * ambient_sound_set (468 bytes)
  * Crowd cheer trigger
  *
  * Plays crowd cheer sounds for stunts and checkpoints.
@@ -23338,7 +23348,7 @@ void crowd_cheer_play(s32 intensity) {
 
 /*
 
- * func_800B3D20 (488 bytes)
+ * voice_play (488 bytes)
  * Ambient sound control
  *
  * Controls environmental ambient sounds (city noise, track ambience).
@@ -23497,7 +23507,7 @@ void voice_play(s32 voiceId) {
 
 /*
 
- * func_800B4738 (224 bytes)
+ * voice_stop_2 (224 bytes)
  * Voice stop
  *
  * Stops the currently playing voice and clears the queue.
@@ -23519,7 +23529,7 @@ void voice_stop(void) {
 
 /*
 
- * func_800B4818 (892 bytes)
+ * audio_bus_mix (892 bytes)
  * Audio bus mix
  *
  * Sets volume levels for different audio buses (categories).
@@ -23590,7 +23600,7 @@ void audio_bus_mix(s32 bus, f32 *levels) {
 
 /*
 
- * func_800B4B94 (536 bytes)
+ * reverb_setup (536 bytes)
  * Reverb setup
  *
  * Configures reverb effect for different environments.
@@ -23816,7 +23826,7 @@ void audio_ducking(s32 priority) {
 
 /*
 
- * func_800B5694 (184 bytes)
+ * sound_priority_mgr (184 bytes)
  * Sound priority set
  *
  * Sets priority for a sound handle.
@@ -23839,7 +23849,7 @@ void sound_priority_set(s32 handle, s32 priority) {
 
 /*
 
- * func_800B574C (340 bytes)
+ * sound_loop_set (340 bytes)
  * Sound loop control
  *
  * Enables or disables looping for a playing sound.
@@ -23898,7 +23908,7 @@ void sound_pitch_set(s32 handle, f32 pitch) {
 
 /*
 
- * func_800B5948 (176 bytes)
+ * sound_volume_set (176 bytes)
  * Sound volume set
  *
  * Sets volume for a playing sound.
@@ -24080,7 +24090,7 @@ f32 audio_distance_atten(f32 distance, f32 maxDist) {
 
 /*
 
- * func_800B6788 (1124 bytes)
+ * audio_doppler_calc (1124 bytes)
  * Audio doppler effect
  *
  * Calculates doppler pitch shift based on relative motion.
@@ -24328,7 +24338,7 @@ void entity_audio_update(void *entity) {
 
 /*
 
- * func_800BC3E0 (7640 bytes)
+ * camera_follow_target (7640 bytes)
  * Camera main update
  *
  * Based on arcade camera.c - updates camera position/orientation to follow target
@@ -24677,7 +24687,7 @@ void camera_lookat(void *camera, f32 *target) {
 
 /*
 
- * func_800C0288 (2124 bytes)
+ * camera_path_follow (2124 bytes)
  * Camera path follow
  *
  * Follows a predefined camera path using interpolation
@@ -24739,7 +24749,7 @@ void camera_path_follow(void *camera, void *path, f32 t) {
 
 /*
 
- * camera_transition (func_800C0AC4)
+ * camera_transition (camera_transition)
  * Size: 1736 bytes
  *
  * Blends between two camera states over time
@@ -24750,7 +24760,7 @@ void camera_transition(void *camera, void *targetCamera, f32 duration) {
 
 /*
 
- * camera_matrix_build (func_800C1188)
+ * camera_matrix_build (camera_matrix_build)
  * Size: 876 bytes
  */
 void camera_matrix_build(void *camera, f32 *matrix) {
@@ -24759,7 +24769,7 @@ void camera_matrix_build(void *camera, f32 *matrix) {
 
 /*
 
- * camera_frustum_extract (func_800C14F4)
+ * camera_frustum_extract (camera_frustum_extract)
  * Size: 768 bytes
  */
 void camera_frustum_extract(void *camera, f32 *frustum) {
@@ -24835,7 +24845,7 @@ void camera_frustum_extract(void *camera, f32 *frustum) {
 
 /*
 
- * camera_viewport_setup (func_800C17F4)
+ * camera_viewport_setup (camera_viewport_setup)
  * Size: 1224 bytes
  */
 void camera_viewport_setup(void *camera, s32 x, s32 y, s32 w, s32 h) {
@@ -24897,7 +24907,7 @@ void camera_viewport_setup(void *camera, s32 x, s32 y, s32 w, s32 h) {
 
 /*
 
- * camera_split_screen_setup (func_800C1CBC)
+ * camera_split_screen_setup (camera_split_screen_setup)
  * Size: 2392 bytes
  */
 void camera_split_screen_setup(s32 playerCount) {
@@ -25516,7 +25526,7 @@ void menu_render(void *menu) {
         return;
     }
 
-    /* Menu structure from func_800CC880 */
+    /* Menu structure from menu_highlight_set */
     numItems = (s32 *)((u8 *)menu + 0x10);
     selectedItem = (s32 *)((u8 *)menu + 0x0C);
     itemPositions = (f32 *)((u8 *)menu + 0x14);
@@ -28545,7 +28555,7 @@ void disconnection_handling(s32 playerId) {
     *(s32 *)(carBase + playerId * 0x400 + 0x240) = 2;  /* AI_CONTROLLED */
 
     /* Show disconnect message */
-    /* func_800C734C would show "PLAYER X DISCONNECTED" */
+    /* draw_text would show "PLAYER X DISCONNECTED" */
 
     /* If host disconnected, end session */
     if (playerId == host_player_index) {
@@ -29147,7 +29157,7 @@ void music_fade(f32 duration, s32 fadeIn) {
 
 /*
 
- * func_800BA46C (472 bytes)
+ * audio_priority_find (472 bytes)
  * Audio priority system
  *
  * Finds a channel for a sound with given priority
@@ -29221,7 +29231,7 @@ void *channel_stop(s32 size) {
 
 /*
 
- * func_800BA7C4 (1996 bytes)
+ * audio_mixer_main (1996 bytes)
  * Audio main mixer
  *
  * Mixes all active audio channels into output buffer
@@ -29632,7 +29642,7 @@ void camera_dolly(void *camera, f32 distance) {
 
 /*
 
- * func_800BD2D0 (1976 bytes)
+ * camera_collision_check (1976 bytes)
  * Camera collision avoidance
  *
  * Prevents camera from clipping through world geometry
@@ -29836,7 +29846,7 @@ void camera_cinematic_mode(s32 cinematicId) {
 
 /*
 
- * func_800BEAA0 (908 bytes)
+ * race_setup_2 (908 bytes)
  * Camera cut to
  *
  * Instantly moves camera to new position and target
@@ -29863,7 +29873,7 @@ void camera_cut_to(void *camera, f32 *pos, f32 *look) {
 
 /*
 
- * func_800BEE2C (924 bytes)
+ * camera_blend_between (924 bytes)
  * Camera blend between
  *
  * Blends between two camera states
@@ -29900,7 +29910,7 @@ void camera_blend_between(void *cam1, void *cam2, f32 t) {
 
 /*
 
- * func_800BF1C8 (236 bytes)
+ * camera_fov_control (236 bytes)
  * Camera FOV control
  *
  * Sets camera field of view
@@ -29923,7 +29933,7 @@ void camera_fov_control(void *camera, f32 fov) {
 
 /*
 
- * func_800BF2B8 (220 bytes)
+ * camera_clip_planes (220 bytes)
  * Camera near/far planes
  *
  * Sets camera clipping planes
@@ -29948,7 +29958,7 @@ void camera_clip_planes(void *camera, f32 nearVal, f32 farVal) {
 
 /*
 
- * func_800BF394 (200 bytes)
+ * camera_aspect_ratio (200 bytes)
  * Camera aspect ratio
  *
  * Sets camera aspect ratio
@@ -29971,7 +29981,7 @@ void camera_aspect_ratio(void *camera, f32 aspect) {
 
 /*
 
- * func_800BF45C (988 bytes)
+ * camera_look_at_point (988 bytes)
  * Camera look at
  *
  * Orients camera to look at target point
@@ -29992,7 +30002,7 @@ void camera_look_at_point(void *camera, f32 *target) {
 
 /*
 
- * func_800BF838 (948 bytes)
+ * camera_first_person (948 bytes)
  * Camera first person
  *
  * First person view from inside vehicle
@@ -30028,7 +30038,7 @@ void camera_first_person(void *camera, void *player) {
 
 /*
 
- * func_800BFBEC (380 bytes)
+ * camera_third_person (380 bytes)
  * Camera third person
  *
  * Third person chase camera behind vehicle
@@ -30049,7 +30059,7 @@ void camera_third_person(void *camera, void *player) {
 
 /*
 
- * func_800BFD94 (844 bytes)
+ * camera_top_down (844 bytes)
  * Camera top down
  *
  * Top-down overhead view
@@ -30084,7 +30094,7 @@ void camera_top_down(void *camera) {
 
 /*
 
- * camera_free_look (func_800C00E0)
+ * camera_free_look (camera_free_look)
  * Size: 444 bytes
  *
  * Free camera controlled by player input
@@ -30140,7 +30150,7 @@ void camera_free_look(void *camera, s32 input) {
 
 /*
 
- * camera_replay_mode (func_800C02A0)
+ * camera_replay_mode (camera_replay_mode)
  * Size: 556 bytes
  *
  * Playback camera from recorded replay data
@@ -30172,7 +30182,7 @@ void camera_replay_mode(void *camera, s32 frame) {
 
 /*
 
- * camera_track_spline (func_800C04CC)
+ * camera_track_spline (camera_track_spline)
  * Size: 912 bytes
  *
  * Moves camera along a spline path
@@ -30237,8 +30247,8 @@ void camera_track_spline(void *camera, void *spline, f32 t) {
 
 /*
 
- * func_800C085C (612 bytes)
- * camera_build_view_matrix (func_800C085C)
+ * camera_build_view_matrix (612 bytes)
+ * camera_build_view_matrix (camera_build_view_matrix)
  *
  * Builds view matrix from camera state
  */
@@ -30291,7 +30301,7 @@ void camera_build_view_matrix(void *camera, f32 *matrix) {
 
 /*
 
- * camera_update (func_800C0AC0)
+ * camera_update (camera_update)
  * Size: 2884 bytes
  *
  * Main camera update - calls appropriate mode handler
@@ -30345,7 +30355,7 @@ void camera_update(void *camera) {
 
 /*
 
- * camera_process_input (func_800C1604)
+ * camera_process_input (camera_process_input)
  * Size: 1416 bytes
  *
  * Processes player input for camera control
@@ -30409,7 +30419,7 @@ void camera_process_input(void *camera, void *input) {
 
 /*
 
- * camera_check_constraints (func_800C1B8C)
+ * camera_check_constraints (camera_check_constraints)
  * Size: 1172 bytes
  *
  * Enforces camera position constraints
@@ -30446,7 +30456,7 @@ void camera_check_constraints(void *camera) {
 
 /*
 
- * camera_debug_display (func_800C2020)
+ * camera_debug_display (camera_debug_display)
  * Size: 520 bytes
  *
  * Shows camera debug information (position, target, mode)
@@ -30493,7 +30503,7 @@ void camera_debug_display(void *camera) {
 
 /*
 
- * camera_save_state (func_800C2228)
+ * camera_save_state (camera_save_state)
  * Size: 548 bytes
  *
  * Saves camera state for replay or undo
@@ -30517,7 +30527,7 @@ void camera_save_state(void *camera, void *state) {
 
 /*
 
- * camera_restore_state (func_800C244C)
+ * camera_restore_state (camera_restore_state)
  * Size: 660 bytes
  *
  * Restores camera state from saved data
@@ -30541,7 +30551,7 @@ void camera_restore_state(void *camera, void *state) {
 
 /*
 
- * camera_multi_view_setup (func_800C26E0)
+ * camera_multi_view_setup (camera_multi_view_setup)
  * Size: 644 bytes
  *
  * Sets up camera for multi-view (split screen) rendering
@@ -30599,7 +30609,7 @@ void camera_multi_view_setup(s32 viewIndex, void *camera) {
 
 /*
 
- * camera_split_screen_config (func_800C2960)
+ * camera_split_screen_config (camera_split_screen_config)
  * Size: 644 bytes
  *
  * Configures split screen mode for multiplayer
@@ -30622,7 +30632,7 @@ void camera_split_screen_config(s32 numPlayers) {
 
 /*
 
- * camera_scene_manager (func_800C2BE0)
+ * camera_scene_manager (camera_scene_manager)
  * Size: 5664 bytes
  *
  * Manages camera state transitions between game states
@@ -30677,7 +30687,7 @@ void camera_scene_manager(void) {
 
 /*
 
- * camera_trigger_check (func_800C4200)
+ * camera_trigger_check (camera_trigger_check)
  * Size: 1232 bytes
  *
  * Checks if camera has entered any trigger zones
@@ -30729,7 +30739,7 @@ void camera_trigger_check(void *camera, void *triggers) {
 
 /*
 
- * camera_follow_path (func_800C46D0)
+ * camera_follow_path (camera_follow_path)
  * Size: 3956 bytes
  *
  * Makes camera follow a predefined path
@@ -30758,7 +30768,7 @@ void camera_follow_path(void *camera, void *path) {
 
 /*
 
- * camera_play_script (func_800C5644)
+ * camera_play_script (camera_play_script)
  * Size: 3516 bytes
  *
  * Plays a scripted camera sequence (intro, finish, replay)
@@ -30803,7 +30813,7 @@ void camera_play_script(s32 scriptId) {
 
 /*
 
- * camera_victory (func_800C6404)
+ * camera_victory (camera_victory)
  * Size: 780 bytes
  *
  * Victory camera for race finish
@@ -30857,7 +30867,7 @@ void camera_victory(void *camera, s32 placing) {
  *   7-15 = Number sprites 0-9
  *   16-25 = Letter sprites (for position: 1st, 2nd, etc.)
  */
-extern void render_entity(void *entity); /* func_80099BFC - Render entity */
+extern void render_entity(void *entity); /* entity_render_main (render_object) - Render entity */
 
 void draw_ui_element(s32 elementId, s32 x, s32 y, s32 w, s32 h, s32 alpha) {
     void **spriteTable;
@@ -30886,7 +30896,7 @@ void draw_ui_element(s32 elementId, s32 x, s32 y, s32 w, s32 h, s32 alpha) {
 
 /*
 
- * draw_text (func_800C734C)
+ * draw_text (draw_text)
  * Size: 700 bytes
  *
  * Draws text string at specified position using HUD font.
@@ -30947,7 +30957,7 @@ void draw_text(s32 x, s32 y, char *text, u32 color) {
 
 /*
 
- * draw_number (func_800C760C)
+ * draw_number (draw_number)
  * Size: 524 bytes
  *
  * Draws a numeric value at specified position.
@@ -31007,7 +31017,7 @@ void draw_number(s32 value, s32 digits, s32 x, s32 y) {
 
 /*
 
- * draw_speedometer (func_800C7818)
+ * draw_speedometer (draw_speedometer)
  * Size: 1724 bytes
  *
  * Draws the speedometer dial with needle showing current speed.
@@ -31058,7 +31068,7 @@ void draw_speedometer(f32 speed) {
 
 /*
 
- * draw_lap_counter (func_800C7ED4)
+ * draw_lap_counter (draw_lap_counter)
  * Size: 2540 bytes
  *
  * Displays current lap / total laps.
@@ -31097,7 +31107,7 @@ void draw_lap_counter(s32 currentLap, s32 totalLaps) {
 
 /*
 
- * draw_position (func_800C8864)
+ * draw_position (draw_position)
  * Size: 188 bytes
  *
  * Shows race position (1st, 2nd, 3rd, etc.)
@@ -31136,7 +31146,7 @@ void draw_position(s32 position) {
 
 /*
 
- * draw_timer (func_800C8920)
+ * draw_timer (draw_timer)
  * Size: 228 bytes
  *
  * Shows race time in MM:SS.ms format.
@@ -31182,7 +31192,7 @@ void draw_timer(s32 timeMs) {
 
 /*
 
- * draw_minimap (func_800C9404)
+ * draw_minimap (draw_minimap)
  * Size: 300 bytes
  *
  * Draws a minimap showing track outline and car positions.
@@ -31226,7 +31236,7 @@ void draw_minimap(void *player) {
 
 /*
 
- * func_800CA308 (172 bytes)
+ * draw_message (172 bytes)
  * HUD message display
  *
  * Shows a centered message on screen (checkpoint, wrong way, etc.)
@@ -31280,7 +31290,7 @@ void draw_message(s32 messageId) {
 
 /*
 
- * hud_render (func_800CADA4)
+ * hud_render (hud_render)
  * Size: 2468 bytes
  *
  * Main HUD rendering function - draws all HUD elements.
@@ -31592,7 +31602,7 @@ void menu_cursor_move(s32 direction) {
 
 /*
 
- * menu_item_select (func_800CBBD4)
+ * menu_item_select (menu_item_select)
  * Size: 564 bytes
  * Handles selection action for current menu item
  */
@@ -31710,7 +31720,7 @@ void menu_item_select(s32 itemIndex) {
 
 /*
 
- * menu_back (func_800CBE08)
+ * menu_back (menu_back)
  * Size: 132 bytes
  * Returns to previous menu in stack
  */
@@ -31739,7 +31749,7 @@ void menu_back(void) {
 
 /*
 
- * menu_transition (func_800CBE8C)
+ * menu_transition (menu_transition)
  * Size: 340 bytes
  * Switches to a new menu with animation
  */
@@ -31940,7 +31950,7 @@ void menu_animation_update(void) {
 
 /*
 
- * sound_play_menu (func_800CC3C0)
+ * sound_play_menu (sound_play_menu)
  * Size: 380 bytes
  * Plays menu sound effects
  */
@@ -32025,7 +32035,7 @@ void sound_play_menu(s32 soundId) {
 
 /*
 
- * menu_text_scroll (func_800CC540)
+ * menu_text_scroll (menu_text_scroll)
  * Size: 904 bytes
  * Scrolls long text horizontally
  */
@@ -32230,7 +32240,7 @@ void menu_list_render(void *list, s32 count) {
     /* Draw highlight bar first (behind items) */
     if (menu_selection >= 0) {
         highlightAlpha = (globalAlpha * 180) / 255;
-        /* func_800C7110 draws HUD elements */
+        /* draw_ui_element draws HUD elements */
         /* Draw stretched highlight sprite at position */
         x = baseX - 5;
         y = (s32)highlightY - 2;
@@ -32576,7 +32586,7 @@ void menu_dialog_display(s32 dialogId) {
 
 /*
 
- * func_800CD544 (412 bytes)
+ * menu_confirm_dialog (412 bytes)
  * Menu confirm dialog - shows confirmation and handles input
  */
 s32 menu_confirm_dialog(char *message) {
@@ -32642,7 +32652,7 @@ s32 menu_confirm_dialog(char *message) {
 
 /*
 
- * menu_dialog_close (func_800CD6E0)
+ * menu_dialog_close (menu_dialog_close)
  * Size: 184 bytes
  * Closes active dialog with animation
  */
@@ -32792,7 +32802,7 @@ char keyboard_input_process(s32 input) {
 
 /*
 
- * func_800CDAE0 (460 bytes)
+ * menu_text_input (460 bytes)
  * Menu text input - handles full text entry with on-screen keyboard
  */
 void menu_text_input(char *buffer, s32 maxLen) {
@@ -32854,7 +32864,7 @@ void menu_text_input(char *buffer, s32 maxLen) {
 
 /*
 
- * func_800CDCAC (576 bytes)
+ * menu_option_toggle (576 bytes)
  * Menu option toggle - toggles a game option and applies it immediately
  */
 void menu_option_toggle(s32 optionId) {
@@ -32936,7 +32946,7 @@ void menu_option_toggle(s32 optionId) {
 
 /*
 
- * func_800CDEEC (764 bytes)
+ * menu_save_options (764 bytes)
  * Menu save options - saves game options to Controller Pak
  */
 void menu_save_options(void) {
@@ -33005,7 +33015,7 @@ void menu_save_options(void) {
 
 /*
 
- * func_800CE1EC (364 bytes)
+ * menu_load_options (364 bytes)
  * Menu load options - loads game options from Controller Pak
  */
 void menu_load_options(void) {
@@ -33066,7 +33076,7 @@ void menu_load_options(void) {
 
 /*
 
- * func_800CE358 (2532 bytes)
+ * menu_options_screen (2532 bytes)
  * Menu options screen - main options menu handler
  */
 void menu_options_screen(void) {
@@ -33144,7 +33154,7 @@ void menu_options_screen(void) {
 
 /*
 
- * func_800CED3C (1364 bytes)
+ * menu_audio_settings (1364 bytes)
  * Menu audio settings - audio options submenu
  */
 void menu_audio_settings(void) {
@@ -33215,7 +33225,7 @@ void menu_audio_settings(void) {
 
 /*
 
- * func_800CF290 (228 bytes)
+ * menu_video_settings (228 bytes)
  * Menu video settings - video options submenu
  */
 void menu_video_settings(void) {
@@ -33256,7 +33266,7 @@ void menu_video_settings(void) {
 
 /*
 
- * func_800CF374 (808 bytes)
+ * menu_control_settings (808 bytes)
  * Menu control settings - controller options submenu
  */
 void menu_control_settings(void) {
@@ -33320,7 +33330,7 @@ void menu_control_settings(void) {
 
 /*
 
- * func_800CF69C (1976 bytes)
+ * menu_controller_remap (1976 bytes)
  * Menu controller remap - controller button remapping screen
  */
 void menu_controller_remap(void) {
@@ -33456,7 +33466,7 @@ void menu_controller_remap(void) {
 
 /*
 
- * func_800CFE74 (404 bytes)
+ * menu_vibration_test (404 bytes)
  * Menu vibration test - tests controller rumble feature
  */
 void menu_vibration_test(void) {
@@ -33530,8 +33540,7 @@ void menu_vibration_test(void) {
 }
 
 /*
-
- * func_800D000C (2264 bytes)
+ * track_select_screen (2264 bytes) @ 0x800D000C
  * Track select screen - main track selection menu
  */
 void track_select_screen(void) {
@@ -33653,7 +33662,7 @@ void track_select_screen(void) {
 
 /*
 
- * func_800D08E4 (692 bytes)
+ * track_preview_render (692 bytes) @ 0x800D08E4
  * Track preview render - renders track thumbnail/preview image
  */
 void track_preview_render(s32 trackId) {
@@ -33694,7 +33703,7 @@ void track_preview_render(s32 trackId) {
 
 /*
 
- * func_800D0BA0 (1192 bytes)
+ * track_info_display (1192 bytes) @ 0x800D0BA0
  * Track info display - shows track statistics and info
  */
 void track_info_display(s32 trackId) {
@@ -33828,7 +33837,7 @@ s32 track_unlock_check(s32 trackId) {
 
 /*
 
- * func_800D138C (804 bytes)
+ * car_select_screen (804 bytes) @ 0x800D138C
  * Car select screen - main car selection menu
  */
 void car_select_screen(void) {
@@ -33928,7 +33937,7 @@ void car_select_screen(void) {
 
 /*
 
- * func_800D16B0 (564 bytes)
+ * car_preview_render (564 bytes) @ 0x800D16B0
  * Car preview render - renders rotating 3D car model
  */
 void car_preview_render(s32 carId) {
@@ -33993,7 +34002,7 @@ void car_preview_render(s32 carId) {
 
 /*
 
- * func_800D18E4 (152 bytes)
+ * car_stats_display (152 bytes) @ 0x800D18E4
  * Car stats display - shows car performance stats
  */
 void car_stats_display(s32 carId) {
@@ -34042,7 +34051,7 @@ void car_stats_display(s32 carId) {
 
 /*
 
- * func_800D197C (316 bytes)
+ * car_unlock_check (316 bytes) @ 0x800D197C
  * Car unlock check - checks if car is unlocked
  */
 s32 car_unlock_check(s32 carId) {
@@ -34106,7 +34115,7 @@ s32 car_unlock_check(s32 carId) {
 
 /*
 
- * func_800D1AB8 (552 bytes)
+ * car_color_select (552 bytes) @ 0x800D1AB8
  * Car color select - applies selected color to car preview
  */
 void car_color_select(s32 colorId) {
@@ -34165,7 +34174,7 @@ void car_color_select(s32 colorId) {
 
 /*
 
- * func_800D1CE0 (1960 bytes)
+ * race_setup_screen (1960 bytes) @ 0x800D1CE0
  * Race setup screen - configure race options before starting
  */
 void race_setup_screen(void) {
@@ -34301,7 +34310,7 @@ void race_setup_screen(void) {
 
 /*
 
- * func_800D24C8 (1120 bytes)
+ * race_mode_select (1120 bytes) @ 0x800D24C8
  * Race mode select - configures race mode settings
  */
 void race_mode_select(s32 modeId) {
@@ -34339,7 +34348,7 @@ void race_mode_select(s32 modeId) {
 
 /*
 
- * func_800D2928 (332 bytes)
+ * lap_count_select (332 bytes) @ 0x800D2928
  * Lap count select - sets number of laps for race
  */
 void lap_count_select(s32 laps) {
@@ -34353,7 +34362,7 @@ void lap_count_select(s32 laps) {
 
 /*
 
- * func_800D2A74 (440 bytes)
+ * difficulty_select (440 bytes) @ 0x800D2A74
  * Difficulty select - sets AI difficulty and rubber-banding
  */
 void difficulty_select(s32 difficulty) {
@@ -34386,7 +34395,7 @@ void difficulty_select(s32 difficulty) {
 
 /*
 
- * func_800D2C2C (176 bytes)
+ * mirror_mode_toggle (176 bytes) @ 0x800D2C2C
  * Mirror mode toggle - flips track left-right
  */
 void mirror_mode_toggle(void) {
@@ -34398,7 +34407,7 @@ void mirror_mode_toggle(void) {
 
 /*
 
- * func_800D2CDC (240 bytes)
+ * weather_select (240 bytes) @ 0x800D2CDC
  * Weather select - sets weather conditions
  */
 void weather_select(s32 weather) {
@@ -34430,7 +34439,7 @@ void weather_select(s32 weather) {
 
 /*
 
- * func_800D2DCC (200 bytes)
+ * time_of_day_select (200 bytes) @ 0x800D2DCC
  * Time of day select - sets lighting conditions
  */
 void time_of_day_select(s32 timeOfDay) {
@@ -34454,7 +34463,7 @@ void time_of_day_select(s32 timeOfDay) {
 
 /*
 
- * func_800D2E94 (1544 bytes)
+ * multiplayer_setup (1544 bytes) @ 0x800D2E94
  * Multiplayer setup - configures multiplayer game options
  */
 void multiplayer_setup(void) {
@@ -34573,7 +34582,7 @@ void multiplayer_setup(void) {
 
 /*
 
- * func_800D349C (1676 bytes)
+ * player_join_screen (1676 bytes) @ 0x800D349C
  * Player join screen - players press start to join
  */
 void player_join_screen(void) {
@@ -34709,7 +34718,7 @@ void player_join_screen(void) {
 
 /*
 
- * func_800D3B28 (5068 bytes)
+ * stunt_mode_setup (5068 bytes) @ 0x800D3B28
  * Stunt mode setup - configure stunt arena and scoring
  */
 void stunt_mode_setup(void) {
@@ -34933,7 +34942,7 @@ void stunt_mode_setup(void) {
 
 /*
 
- * func_800D3E50 (384 bytes)
+ * stunt_arena_preview (384 bytes) @ 0x800D3E50
  * Render stunt arena preview
  */
 void stunt_arena_preview(s32 arenaId) {
@@ -34961,7 +34970,7 @@ void stunt_arena_preview(s32 arenaId) {
 
 /*
 
- * func_800D4EF4 (532 bytes)
+ * battle_mode_setup (532 bytes) @ 0x800D4EF4
  * Battle mode setup - configure battle arena and rules
  */
 void battle_mode_setup(void) {
@@ -35127,7 +35136,7 @@ void battle_mode_setup(void) {
 
 /*
 
- * func_800D510C (716 bytes)
+ * ghost_race_setup (716 bytes) @ 0x800D510C
  * Ghost race setup - race against saved ghosts
  */
 void ghost_race_setup(void) {
@@ -35326,7 +35335,7 @@ void ghost_data_delete(s32 trackId, s32 ghostIndex) {
 
 /*
 
- * func_800D58CC (740 bytes)
+ * records_screen (740 bytes) @ 0x800D58CC
  * Records screen - displays best times and high scores
  */
 void records_screen(void) {
@@ -35391,7 +35400,7 @@ void records_screen(void) {
 
 /*
 
- * func_800D5BB0 (224 bytes)
+ * best_times_display (224 bytes) @ 0x800D5BB0
  * Best times display - shows best lap and race times
  */
 void best_times_display(s32 trackId) {
@@ -35459,7 +35468,7 @@ void best_times_display(s32 trackId) {
 
 /*
 
- * func_800D5C90 (220 bytes)
+ * high_scores_display (220 bytes) @ 0x800D5C90
  * High scores display - shows stunt high scores
  */
 void high_scores_display(s32 trackId) {
@@ -35589,7 +35598,7 @@ void stats_display_screen(void) {
 
 /*
 
- * func_800D63F4 (676 bytes)
+ * achievements_screen (676 bytes) @ 0x800D63F4
  * Achievements screen - shows unlocked achievements
  */
 void achievements_screen(void) {
@@ -35666,7 +35675,7 @@ void achievements_screen(void) {
 
 /*
 
- * func_800D6698 (296 bytes)
+ * credits_screen (296 bytes) @ 0x800D6698
  * Credits screen - displays game credits
  */
 void credits_screen(void) {
@@ -35688,7 +35697,7 @@ void credits_screen(void) {
 
 /*
 
- * func_800D67C0 (348 bytes)
+ * credits_scroll (348 bytes) @ 0x800D67C0
  * Credits scroll - scrolls credits text
  */
 void credits_scroll(void) {
@@ -35742,7 +35751,7 @@ void credits_scroll(void) {
 }
 
 /*
- * func_800D691C (1376 bytes)
+ * loading_screen (1376 bytes) @ 0x800D691C
  * Loading screen - Displays loading progress bar
  *
  * @param percent Loading progress (0-100)
@@ -35799,7 +35808,7 @@ void loading_screen(s32 percent) {
 }
 
 /*
- * func_800D6E7C (852 bytes)
+ * loading_tips (852 bytes) @ 0x800D6E7C
  * Loading tips - Shows random gameplay tip during loading
  */
 static const char *loadingTips[] = {
@@ -35829,7 +35838,7 @@ void loading_tips(void) {
 }
 
 /*
- * func_800D71D0 (3256 bytes)
+ * pause_menu (3256 bytes) @ 0x800D71D0
  * Pause menu - Full pause menu with options
  */
 extern s32 pause_menu_state;      /* Pause menu state */
@@ -35907,7 +35916,7 @@ void pause_menu(void) {
 }
 
 /*
- * func_800D7E88 (788 bytes)
+ * pause_resume (788 bytes) @ 0x800D7E88
  * Pause resume - Resumes game from pause
  */
 void pause_resume(void) {
@@ -35924,7 +35933,7 @@ void pause_resume(void) {
 }
 
 /*
- * func_800D8184 (2772 bytes)
+ * pause_restart (2772 bytes) @ 0x800D8184
  * Pause restart - Restarts current race
  */
 void pause_restart(void) {
@@ -35971,7 +35980,7 @@ void pause_restart(void) {
 }
 
 /*
- * func_800D8C58 (1032 bytes)
+ * pause_quit (1032 bytes) @ 0x800D8C58
  * Pause quit - Quits to main menu
  */
 void pause_quit(void) {
@@ -35990,7 +35999,7 @@ void pause_quit(void) {
 }
 
 /*
- * func_800D9060 (4204 bytes)
+ * results_screen (4204 bytes) @ 0x800D9060
  * Results screen - Displays race results
  */
 extern s32 results_state;      /* Results state */
@@ -36055,7 +36064,7 @@ void results_screen(void) {
 }
 
 /*
- * func_800DA0CC (168 bytes)
+ * position_result_display (168 bytes) @ 0x800DA0CC
  * Position result - Displays finishing position
  */
 void position_result_display(s32 position) {
@@ -36085,7 +36094,7 @@ void position_result_display(s32 position) {
 }
 
 /*
- * func_800DA174 (348 bytes)
+ * time_result_display (348 bytes) @ 0x800DA174
  * Time result - Displays race time
  */
 void time_result_display(s32 timeMs) {
@@ -36101,7 +36110,7 @@ void time_result_display(s32 timeMs) {
 }
 
 /*
- * func_800DA2D0 (2316 bytes)
+ * points_award (2316 bytes) @ 0x800DA2D0
  * Points award - Calculates and displays points earned
  */
 extern s32 player_points[4];   /* Points per player */
@@ -36132,7 +36141,7 @@ void points_award(void) {
 }
 
 /*
- * func_800DABDC (2940 bytes)
+ * replay_save_prompt (2940 bytes) @ 0x800DABDC
  * Replay save prompt - Asks user to save replay
  */
 extern s32 replay_prompt_state;      /* Replay prompt state */
@@ -36183,7 +36192,7 @@ void replay_save_prompt(void) {
 }
 
 /*
- * func_800DB758 (196 bytes)
+ * continue_prompt (196 bytes) @ 0x800DB758
  * Continue prompt - Quick continue/quit choice
  */
 extern s32 continue_countdown;      /* Continue countdown */
@@ -36224,7 +36233,7 @@ s32 continue_prompt(void) {
 }
 
 /*
- * func_800DC248 (432 bytes)
+ * championship_standings (432 bytes) @ 0x800DC248
  * Championship standings - Shows championship points
  */
 extern s32 champ_points[4];   /* Championship points per player */
@@ -36260,7 +36269,7 @@ void championship_standings(void) {
 }
 
 /*
- * func_800DC3F8 (924 bytes)
+ * trophy_award_championship (924 bytes) @ 0x800DC3F8
  * Trophy award - Awards championship trophy
  */
 void trophy_award_championship(s32 placing) {
@@ -36291,7 +36300,7 @@ void trophy_award_championship(s32 placing) {
 }
 
 /*
- * func_800DC794 (248 bytes)
+ * unlock_notification (248 bytes) @ 0x800DC794
  * Unlock notification - Shows unlock popup
  */
 static const char *unlockNames[] = {
@@ -36318,7 +36327,7 @@ void unlock_notification(s32 unlockId) {
 }
 
 /*
- * func_800DC88C (1272 bytes)
+ * attract_mode_start (1272 bytes) @ 0x800DC88C
  * Attract mode start - Initializes attract mode demo
  */
 extern s32 attract_state;      /* Attract state */
@@ -36374,7 +36383,7 @@ void attract_mode_start(void) {
         case 2:  /* High scores */
             draw_fill_rect(0, 0, 320, 240, 0xFF101030);
             draw_text(105, 40, "HIGH SCORES", 0xFFFFFFFF);
-            /* func_800AXXXX(); display high score table */
+            /* TODO: call high score table display function */
 
             if (timer > 300) {
                 state = 0;
@@ -36388,7 +36397,7 @@ void attract_mode_start(void) {
 }
 
 /*
- * func_800DC99C (1016 bytes)
+ * attract_demo_play (1016 bytes) @ 0x800DC99C
  * Attract demo play - Plays back recorded demo race
  */
 extern s32 demo_playback_frame;      /* Demo playback frame */
@@ -36434,7 +36443,7 @@ void attract_demo_play(void) {
 }
 
 /*
- * func_800DCD94 (96 bytes)
+ * attract_idle_check (96 bytes) @ 0x800DCD94
  * Attract idle check - Returns 1 if no input for idle timeout
  */
 extern s32 idle_frame_counter;      /* Idle frame counter */
@@ -36461,7 +36470,7 @@ s32 attract_idle_check(void) {
 }
 
 /*
- * func_800DCDF4 (732 bytes)
+ * attract_video_play (732 bytes) @ 0x800DCDF4
  * Attract video play - Plays FMV or pre-rendered video sequence
  */
 extern s32 attract_video_frame;      /* Video playback frame */
@@ -36501,7 +36510,7 @@ void attract_video_play(s32 videoId) {
 }
 
 /*
- * func_800DD0D0 (988 bytes)
+ * attract_sequence_update (988 bytes) @ 0x800DD0D0
  * Attract sequence update - Updates attract mode state machine
  */
 void attract_sequence_update(void) {
@@ -36543,7 +36552,7 @@ void attract_sequence_update(void) {
 }
 
 /*
- * func_800DD4AC (2816 bytes)
+ * title_screen (2816 bytes) @ 0x800DD4AC
  * Title screen - Main title screen display
  */
 extern s32 title_anim_frame;      /* Title animation frame */
@@ -36597,7 +36606,7 @@ void title_screen(void) {
 }
 
 /*
- * func_800DDFAC (608 bytes)
+ * title_logo_animate (608 bytes) @ 0x800DDFAC
  * Title logo animate - Animates the game logo
  */
 extern s32 logo_anim_phase;      /* Logo animation phase */
@@ -36627,7 +36636,7 @@ void title_logo_animate(void) {
 }
 
 /*
- * func_800DE20C (724 bytes)
+ * title_button_prompt (724 bytes) @ 0x800DE20C
  * Title button prompt - Shows "PRESS START" with blinking
  */
 void title_button_prompt(void) {
@@ -36653,7 +36662,7 @@ void title_button_prompt(void) {
 }
 
 /*
- * func_800DE4DC (908 bytes)
+ * title_background (908 bytes) @ 0x800DE4DC
  * Title background - Renders animated title background
  */
 void title_background(void) {
@@ -36689,7 +36698,7 @@ void title_background(void) {
 }
 
 /*
- * func_800DE868 (836 bytes)
+ * main_menu_screen (836 bytes) @ 0x800DE868
  * Main menu screen - Handles main menu logic
  */
 extern s32 main_menu_selection;      /* Menu selection */
@@ -36705,7 +36714,7 @@ void main_menu_screen(void) {
 }
 
 /*
- * func_800DEBAC (224 bytes)
+ * main_menu_input (224 bytes) @ 0x800DEBAC
  * Main menu input - Processes main menu input
  */
 static const char *mainMenuOptions[] = {
@@ -36755,7 +36764,7 @@ void main_menu_input(s32 input) {
 }
 
 /*
- * func_800DEC8C (732 bytes)
+ * main_menu_render (732 bytes) @ 0x800DEC8C
  * Main menu render - Draws the main menu
  */
 void main_menu_render(void) {
@@ -36787,7 +36796,7 @@ void main_menu_render(void) {
 }
 
 /*
- * func_800DEF68 (2976 bytes)
+ * mode_select_screen (2976 bytes) @ 0x800DEF68
  * Mode select screen - Race/Battle/Stunt mode configuration
  */
 extern s32 mode_select_selection;      /* Mode select selection */
@@ -36833,7 +36842,7 @@ void mode_select_screen(void) {
 }
 
 /*
- * func_800DFB08 (188 bytes)
+ * mode_select_update (188 bytes) @ 0x800DFB08
  * Mode select input - Handles mode selection input
  */
 void mode_select_input(s32 input) {
@@ -36862,7 +36871,7 @@ void mode_select_input(s32 input) {
 
 /*
 
- * func_800DFBC4 (1868 bytes)
+ * profile_select_screen (1868 bytes) @ 0x800DFBC4
  * Profile select screen
  */
 void profile_select_screen(void) {

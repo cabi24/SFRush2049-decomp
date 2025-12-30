@@ -428,6 +428,119 @@ The arcade Rush: The Rock source (`reference/repos/rushtherock/`) does NOT conta
 
 ---
 
+## Function Address Reference
+
+### Core Stunt Functions
+
+| Address | Function | Size | Description |
+|---------|----------|------|-------------|
+| 0x800F5000 | stunt_update | 3832 | Main stunt system update per frame |
+| 0x800F5EF8 | stunt_calc_score | 588 | Calculate base score for trick type |
+| 0x800F6144 | stunt_combo_update | 1888 | Update combo chain and multipliers |
+| 0x800F6894 | wing_deploy | 580 | Deploy/retract wings |
+| 0x800F6AD8 | trick_detect | 740 | Detect current trick from rotation |
+| 0x800F6DBC | landing_detect | 1168 | Evaluate landing quality |
+| 0x800F724C | stunt_multiplier | 252 | Calculate total score multiplier |
+| 0x80101D8C | trick_detect_main | 1168 | Main stunt detection dispatcher |
+| 0x8010221C | trick_register | 564 | Record completed trick and award points |
+| 0x80102450 | air_time_track | 1336 | Update air time and rotation accumulator |
+| 0x801019AC | landing_bonus_calc | 1040 | Calculate landing bonus points |
+| 0x80101370 | combo_trick_add | 2412 | Add trick to combo chain |
+
+### Menu/UI Functions
+
+| Address | Function | Size | Description |
+|---------|----------|------|-------------|
+| 0x800D3B28 | stunt_mode_setup | 5068 | Stunt mode configuration menu |
+| 0x800D3E50 | stunt_arena_preview | 384 | Render arena preview in menu |
+| 0x800D5C90 | high_scores_display | 220 | Show stunt high scores |
+| 0x800E2C00 | hud_stunt_render | - | Draw stunt score on HUD |
+| 0x800DEF68 | mode_select_screen | 2976 | Race/Battle/Stunt mode selection |
+
+### Detection Subsystem Functions
+
+| Address | Function | Description |
+|---------|----------|-------------|
+| 0x800E5000 | stunt_detect | Detect stunt type from air state |
+| 0x800E5200 | stunt_score_calc | Calculate stunt score |
+| 0x800E5400 | stunt_combo_update | Update combo multiplier |
+| 0x800E5600 | stunt_landing_check | Check for safe landing |
+| 0x800E5800 | stunt_trick_register | Register completed trick |
+| 0x800E5A00 | stunt_height_bonus | Calculate height bonus |
+
+### Support Functions
+
+| Address | Function | Size | Description |
+|---------|----------|------|-------------|
+| 0x800B39BC | crowd_cheer_play | 396 | Play crowd cheer sound for stunts |
+
+---
+
+## Stunt Mode Setup Details
+
+From `stunt_mode_setup()` at 0x800D3B28:
+
+### Arena Selection
+
+| Arena ID | Name | Difficulty |
+|----------|------|------------|
+| 0 | Alcatraz | Easy |
+| 1 | Metro | Easy |
+| 2 | Pier 39 | Medium |
+| 3 | Golden Gate | Medium |
+| 4 | Twin Peaks | Medium |
+| 5 | Downtown | Hard |
+| 6 | Obstacle | Hard |
+| 7 | Freeform | Hard |
+
+### Time Limits
+
+| Option | Time (seconds) |
+|--------|----------------|
+| 0 | 60 (1 minute) |
+| 1 | 120 (2 minutes) |
+| 2 | 180 (3 minutes) |
+| 3 | 300 (5 minutes) |
+| 4 | 0 (Unlimited) |
+
+### Target Scores
+
+| Option | Score |
+|--------|-------|
+| 0 | 10,000 |
+| 1 | 25,000 |
+| 2 | 50,000 |
+| 3 | 100,000 |
+| 4 | 250,000 |
+| 5 | None (unlimited) |
+
+---
+
+## Stunt Tutorial Content
+
+The in-game tutorial (displayed from stunt_mode_setup menu) shows:
+
+```
+TRICKS AND SCORING:
+
+BARREL ROLL
+- Spin car while airborne
+- 500 pts per rotation
+
+FLIP
+- Front/back flip in air
+- 750 pts per flip
+
+WING GLIDE
+- Hold Z to deploy wings
+- 100 pts per second
+
+COMBO BONUS
+- Chain tricks for 2x-5x
+```
+
+---
+
 ## Technical Notes
 
 1. **Frame Rate**: All timers assume 60 FPS operation
@@ -435,3 +548,14 @@ The arcade Rush: The Rock source (`reference/repos/rushtherock/`) does NOT conta
 3. **Height Units**: All heights in feet (consistent with arcade physics)
 4. **Combo Window**: 3 seconds (180 frames) between tricks to maintain combo
 5. **Wing Physics**: Simplified aerodynamic model (lift/drag coefficients)
+6. **Stunt Arena Track IDs**: Base track ID for stunt arenas is 100+ (track ID = arena index + 100)
+7. **Wheel Contact Check**: All 4 wheels must have road code = 4 (AIR) for airborne status
+
+---
+
+## Revision History
+
+| Date | Change |
+|------|--------|
+| 2025-12-30 | Added function addresses, stunt mode setup details, arena list |
+| Previous | Initial documentation from decompilation analysis |

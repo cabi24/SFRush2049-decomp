@@ -767,7 +767,7 @@ extern N64SoundState sound_state_array[];   /* Sound state array */
 
 /**
  * sound_handle_stop - Stop a sound handle (N64 ROM function)
- * (func_800B358C)
+ * (sound_stop @ 0x800B358C)
  * Address: 0x800B358C
  * Size: 156 bytes
  *

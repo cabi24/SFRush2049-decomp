@@ -11,8 +11,8 @@
  * - Aerodynamic drag
  *
  * Key N64 functions:
- * - func_800B0868 (PhysicsObjectList_Update) - per-frame physics
- * - func_800B811C (Effects_UpdateEmitters) - particle/trail FX
+ * - PhysicsObjectList_Update @ 0x800B0868 - per-frame physics
+ * - Effects_UpdateEmitters @ 0x800B811C - particle/trail FX
  */
 
 #include "types.h"

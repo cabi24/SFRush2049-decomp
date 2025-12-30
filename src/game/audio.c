@@ -6,10 +6,10 @@
  * Handles sound effects, music, engine sounds
  *
  * Key functions:
- * - func_800B37E8 (sound_control) - main audio dispatcher
- * - func_800B358C (sound_stop) - stop sounds
- * - func_8008A6D0 (audio_msg_send) - send audio messages
- * - func_8008A710 (audio_task_sync) - audio task sync
+ * - sound_control @ 0x800B37E8 - main audio dispatcher
+ * - sound_stop @ 0x800B358C - stop sounds
+ * - audio_msg_send @ 0x8008A6D0 - send audio messages
+ * - audio_task_sync @ 0x8008A710 - audio task sync
  */
 
 #include "types.h"

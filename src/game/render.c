@@ -6,9 +6,9 @@
  * Handles model rendering, display list construction
  *
  * Key functions:
- * - func_80099BFC (render_object) - 10KB, main model render
- * - func_80087A08 (render_large) - 10KB, large render function
- * - func_800B65B4 (render_helper) - rendering utility
+ * - render_object @ 0x80099BFC - 10KB, main model render
+ * - render_large @ 0x80087A08 - 10KB, large render function
+ * - render_helper @ 0x800B65B4 - rendering utility
  *
  * Uses F3DEX2 microcode:
  * - gSPMatrix, gSPVertex, gSP2Triangles

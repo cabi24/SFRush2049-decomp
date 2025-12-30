@@ -509,6 +509,119 @@ gFrameCounter = 0x80142AFC; // type:data frame counter (incremented each frame i
 // Note: N64 game_init (0x80002238) does NOT map to arcade game_init (game.c:494-601)
 // N64 game_init is a low-level OS bootstrap, arcade game_init is gameplay state setup
 
+// ============================================================================
+// ARCADE MENU/UI FUNCTION MAPPINGS (from analysis 2025-12-30)
+// Reference: rushtherock/game/sselect.c, hiscore.c, attract.c
+// ============================================================================
+
+// --- TRACK SELECTION (arcade: sselect.c:TrackSel) ---
+// N64 track_select_screen (0x800D000C) maps to arcade TrackSel() [sselect.c:123-1002]
+// Arcade TrackSel: Sets gstate=TRKSEL, handles input (SW_EAST/WEST/SELECT/START),
+//   updates trackno, calls ShowTrackSelect(true), runs track_negotiation() for link play.
+// N64: Uses menu_system_update + state handlers, similar logic adapted for N64 controller.
+track_select_handler = 0x800D000C; // type:func arcade:TrackSel() - track selection menu (2264 bytes)
+track_preview_handler = 0x800D08E4; // type:func arcade:ShowTrackSelect - renders track thumbnail (692 bytes)
+track_info_handler = 0x800D0BA0; // type:func arcade:track stats display (1192 bytes)
+
+// --- CAR SELECTION (arcade: sselect.c:init_car_select, AnimateCarSel) ---
+// N64 car_select_screen (0x800D138C) maps to arcade CarSel/init_car_select [sselect.c:1190-1284]
+// Arcade init_car_select: gstate=CARSEL, SetCountdownTimer(CAR_SELECT_TIME),
+//   ShowCarSelect(true), create_cars() for 3D car models on rotating platform.
+// Arcade AnimateCarSel [sselect.c:1373-1504]: Animates car turntable, handles gPickPad selection.
+car_select_handler = 0x800D138C; // type:func arcade:CarSel/init_car_select (804 bytes)
+car_preview_handler = 0x800D16B0; // type:func arcade:AnimateCarSel - rotating 3D car model (564 bytes)
+car_stats_handler = 0x800D18E4; // type:func arcade:car performance stats (152 bytes)
+car_unlock_handler = 0x800D197C; // type:func arcade:car unlock check (316 bytes)
+car_color_handler = 0x800D1AB8; // type:func arcade:car color selection (552 bytes)
+
+// --- ATTRACT MODE (arcade: attract.c:attract) ---
+// N64 attract_mode_start (0x800DC88C) maps to arcade attract() [attract.c:812-1187]
+// Arcade attract: Main attract mode loop, cycles through ATR_* screens:
+//   ATR_ATARILOGO, ATR_HISCORE1-7, ATR_DEMO, ATR_CREDITS, ATR_JOIN, etc.
+// Uses attractFunc state variable, ShowAttract() to display/hide screens,
+//   SetCountdownTimer() for screen timing, chk_start() for game start detection.
+attract_mode_handler = 0x800DC88C; // type:func arcade:attract() - attract mode state machine (1272 bytes)
+attract_demo_handler = 0x800DC99C; // type:func arcade:play_demogame - demo race playback (1016 bytes)
+attract_idle_handler = 0x800DCD94; // type:func arcade:TimeOut check (96 bytes)
+attract_video_handler = 0x800DCDF4; // type:func arcade:AttractMovie - video playback (732 bytes)
+attract_sequence_handler = 0x800DD0D0; // type:func arcade:attract screen sequencing (988 bytes)
+
+// --- TITLE SCREEN (arcade: attract.c:ShowLogo, ShowJoin) ---
+// N64 title_screen (0x800DD4AC) maps to arcade ShowLogo/ShowJoin [attract.c:1193-1473]
+// Arcade ShowJoin: Creates JoinBlit, shows "INSERT COIN" / "PRESS START".
+// Arcade AnimateLogo: Animates game logo with roll/rotation.
+title_screen_handler = 0x800DD4AC; // type:func arcade:ShowLogo/ShowJoin (2816 bytes)
+title_logo_handler = 0x800DDFAC; // type:func arcade:AnimateLogo (608 bytes)
+title_prompt_handler = 0x800DE20C; // type:func arcade:AddJoinNow - PRESS START prompt (724 bytes)
+title_background_handler = 0x800DE4DC; // type:func arcade:title background effects (908 bytes)
+
+// --- MAIN MENU (arcade: attract.c after start detected) ---
+// N64 main_menu_screen (0x800DE868) handles main menu after title.
+// Arcade transitions from attract to TRKSEL via chk_start() in attract().
+main_menu_handler = 0x800DE868; // type:func main menu screen (836 bytes)
+main_menu_input_handler = 0x800DEBAC; // type:func main menu input processing (224 bytes)
+main_menu_render_handler = 0x800DEC8C; // type:func main menu rendering (732 bytes)
+mode_select_handler = 0x800DEF68; // type:func race/battle/stunt mode select (2976 bytes)
+mode_select_input_handler = 0x800DFB08; // type:func mode selection input (188 bytes)
+profile_select_handler = 0x800DFBC4; // type:func profile selection (1868 bytes)
+
+// --- HIGH SCORE (arcade: hiscore.c:hiscore, EnterHighScore) ---
+// N64 hiscore_entry (0x800FBF88) maps to arcade hiscore/EnterHighScore [hiscore.c]
+// Arcade hiscore(): gstate=HISCORE, displays high score entry screen.
+// Arcade EnterHighScore(): Handles character input for name entry,
+//   uses keyboard layout, saves score to NVRAM.
+hiscore_entry_handler = 0x800FBF88; // type:func arcade:hiscore/EnterHighScore (state_transition)
+hiscore_check_handler = 0x800DBFC0; // type:func arcade:CheckHighScore - check if score qualifies
+hiscore_display_handler = 0x800DC000; // type:func arcade:ShowHighScores - display high score table
+hiscore_insert_handler = 0x800DC100; // type:func arcade:InsertHighScore - insert new entry
+
+// --- COUNTDOWN (arcade: game.c:CountDown) ---
+// N64 countdown_start (0x800FBC30) maps to arcade CountDown() [game.c:1000+]
+// Arcade CountDown: gstate=COUNTDOWN, displays 3-2-1-GO countdown,
+//   plays countdown sounds, transitions to PLAYGAME when complete.
+countdown_handler = 0x800FBC30; // type:func arcade:CountDown() - race countdown timer
+countdown_display_handler = 0x800FBC60; // type:func countdown number display
+
+// --- GAME OVER (arcade: game.c:gameover) ---
+// N64 gameover handling in game_results_* functions.
+// Arcade gameover(): gstate=GAMEOVER, shows race results, offers continue.
+gameover_handler = 0x800FEE04; // type:func arcade:gameover() - game over screen
+
+// --- OPTIONS MENU ---
+// N64 menu_options (0x800D4000) handles game options.
+// Arcade uses NVRAM options set in game_init [game.c:494-601].
+options_menu_handler = 0x800D4000; // type:func game options menu
+
+// --- PAUSE MENU (N64-specific, arcade has no pause) ---
+// N64 pause_menu (0x800FAEF4) - in-race pause screen.
+// No direct arcade equivalent (arcade games don't pause).
+pause_menu_handler = 0x800FAEF4; // type:func N64-specific pause menu (1808 bytes)
+pause_toggle_handler = 0x800FB5F4; // type:func pause state toggle (820 bytes)
+
+// --- LOADING SCREEN ---
+// N64 loading_screen (0x800FA9E4) shows loading progress.
+// Arcade uses ShowTransit() [attract.c:1479+] for transitions.
+loading_screen_handler = 0x800FA9E4; // type:func arcade:ShowTransit (1296 bytes)
+
+// ============================================================================
+// ARCADE GAME STATE EQUIVALENTS
+// Reference: rushtherock/game/game.h GState enum
+// ============================================================================
+
+// Arcade GState enum values (game.h):
+//   ATTRACT=0, TRKSEL=1, CARSEL=2, PLAYGAME=3, ENDGAME=4,
+//   GAMEOVER=5, HISCORE=6, PREPLAY=7, PREPLAY2=8, COUNTDOWN=9
+
+// N64 uses bitmask state machine at gstate (0x801174B4):
+//   0x00040000 = GSTATE_INIT (setup phase)
+//   0x00080000 = GSTATE_SETUP (loading phase)
+//   0x00100000 = GSTATE_MENU (menu handling) - maps to arcade TRKSEL/CARSEL
+//   0x00200000 = GSTATE_CAMERA (camera setup)
+//   0x00400000 = GSTATE_READY (race ready) - maps to arcade PREPLAY
+//   0x00800000 = GSTATE_PLAY (gameplay) - maps to arcade PLAYGAME
+//   0x01000000 = GSTATE_CARS (car iteration)
+//   0x02000000 = GSTATE_FINISH (race complete) - maps to arcade ENDGAME
+
 // N64 init sequence -> arcade equivalents:
 // 0x800020F0 (main) -> arcade start() (init.c) - Medium confidence
 //   Both are reset/entry scaffolds that kick off later stages
@@ -619,7 +732,7 @@ input_buffer = 0x80140BF0; // type:data per-player input state (4 players, 32 by
 sound_state_array = 0x80140BF0; // type:data N64 sound state array (overlaps input_buffer, 0x20 bytes per entry)
 
 // gstate bitmask state machine (from Codex analysis 2025-12-07)
-gstate = 0x801174B4; // type:data game state bitmask (110 refs, only func_800CA3B4 writes)
+gstate = 0x801174B4; // type:data game state bitmask (110 refs, only playgame_state_change writes)
 gstate_prev = 0x801174B8; // type:data previous game state (for transition detection)
 gstate_init_flag = 0x801146EC; // type:data byte init flag (set once on first game_loop call)
 frame_counter = 0x80142AFC; // type:data frame counter (cleared on init)
@@ -647,7 +760,7 @@ state_cars_handler = 0x800FC89C; // type:func GSTATE_CARS (0x01000000)
 state_finish_handler = 0x800FC960; // type:func GSTATE_FINISH (0x02000000)
 
 // Functions called from game_loop
-game_mode_same = 0x800C9AE0; // type:func called when state == prev_state
+// game_mode_same = 0x800C9AE0; // DUPLICATE - use game_mode_handler // type:func called when state == prev_state
 game_mode_changed = 0x800EDDC0; // type:func called on state transition
 input_aux_handler = 0x800FD238; // type:func fast-path for bits 0x7C03FFFE - fast-path for bits 0x7C03FFFE
 game_mode_post = 0x800FBC30; // type:func post-processing after state match
@@ -758,9 +871,9 @@ steady_state_handler = 0x800FBC30; // type:func called when state unchanged
 // ============================================
 // Large Game Functions (from Codex analysis 2025-12-07)
 // ============================================
-// Note: 86 functions access gstate (0x801174B4), only func_800CA3B4 writes to it
+// Note: 86 functions access gstate (0x801174B4), only playgame_state_change writes to it
 
-PlayGame_HandleStateChange = 0x800CA3B4; // type:func size:2544 - main gameplay state controller, ONLY writer to gstate
+// PlayGame_HandleStateChange = 0x800CA3B4; // DUPLICATE - use playgame_state_change // type:func size:2544 - main gameplay state controller, ONLY writer to gstate
 UpdateActiveObjects = 0x800F733C; // type:func - loads object count at 0x80159788, iterates array at 0x80159450
 PhysicsObjectList_Update = 0x800B0868; // type:func - walks linked list at 0x801491F0, physics update
 Effects_UpdateEmitters = 0x800B811C; // type:func - loops over 152-byte effect slots at 0x80150B70
@@ -778,12 +891,12 @@ gEffectEmittersArray = 0x80150B70; // type:data effect emitters array (152-byte 
 
 // Game code functions (from Ollama analysis - game code at 0x80086A50+)
 game_loop = 0x800FD464; // type:func main game state machine (arcade: game/game.c:game)
-game_update = 0x800CA3B4; // type:func per-frame gameplay update (arcade: game/game.c:playgame)
+// game_update = 0x800CA3B4; // DUPLICATE - use playgame_state_change // type:func per-frame gameplay update (arcade: game/game.c:playgame)
 attract_mode = 0x800DB81C; // type:func demo/title screen handler (arcade: game/game.c:attract)
 countdown = 0x800FBF88; // type:func race countdown handler
 preplay_setup = 0x800FBC30; // type:func pre-race setup
 render_object = 0x80099BFC; // type:func 3D object rendering (10KB)
-input_handler = 0x800C9AE0; // type:func controller/init handler
+// input_handler = 0x800C9AE0; // DUPLICATE - use game_mode_handler // type:func controller/init handler
 checkpoint_check = 0x800C85F0; // type:func checkpoint collision
 // Note: collision_check at 0x800B8C14 duplicates physics_sym - now using physics_sym
 physics_forces = 0x800BAE24; // type:func force calculation (arcade: forces in drivsym.c:382)
@@ -1163,6 +1276,7 @@ collision_sound_play = 0x800B362C; // type:func trigger collision/impact sound b
 wind_sound_update = 0x800B3710; // type:func update wind noise based on car speed - arcade: sndWindNoise (684 bytes)
 crowd_cheer_play = 0x800B39BC; // type:func play crowd cheer sound for stunts/checkpoints (396 bytes)
 ambient_sound_set = 0x800B3B4C; // type:func set ambient/environment sound volume by ID (468 bytes)
+sound_update_channel = 0x800B3D18; // type:func audio sync/update - synchronizes audio state (228 bytes)
 voice_play = 0x800B3D20; // type:func play announcer voice clip - start/position/lap announcements (488 bytes)
 object_type_byte2_get = 0x800B3F00; // type:func returns byte at offset 2 from current object
 object_type_byte3_get = 0x800B3F28; // type:func returns byte at offset 3 from current object
@@ -1209,6 +1323,7 @@ event_dispatch_handler = 0x800B74A0; // type:func event dispatch handler (152 ca
 particles_init = 0x800B78F8; // type:func initialize particle system
 particles_update = 0x800B7A40; // type:func update all active particles
 particles_spawn = 0x800B8000; // type:func spawn new particle emitter
+particles_spawn_emitter = 0x800B80C8; // type:func spawn particles for specific emitter index
 particle_type_set = 0x800B811C; // type:func set particle type/behavior
 particle_position_set = 0x800B821C; // type:func set particle spawn position
 particle_velocity_set = 0x800B82C8; // type:func set particle initial velocity
@@ -2510,3 +2625,86 @@ gReflectionMode = 0x800379D0; // type:data reflection mode (0=off, 1=cloud, 2=tu
 gReflectionTexCloud = 0x800379D4; // type:data cloud reflection texture ID
 gReflectionTexTunnel = 0x800379D8; // type:data tunnel reflection texture ID
 gInTunnelState = 0x800379DC; // type:data in tunnel state (-1=exit, 0=hold, 1=enter)
+
+// ============================================================================
+// Additional Game State Variables (from game.c hardcoded addresses 2025-12-30)
+// ============================================================================
+
+// Object Manager Array (visual_objects_update iteration)
+gObjectArrayStart = 0x80144D60; // type:data object manager array start (16-byte entries)
+gObjectArrayEnd = 0x80144DA0; // type:data object manager array end
+
+// Player Race State (set in race state machine case 6)
+gPlayerRacePositionFlags = 0x8015418C; // type:data player race position flags (u8 per player)
+
+// Race Control Flags
+gRaceControlByte = 0x80142699; // type:data race control byte (set in state 7 restart)
+gRaceResetFlag = 0x80157244; // type:data race reset flag (triggers race restart)
+
+// ============================================================================
+// Race Timing and Lap Tracking Variables (arcade: checkpoint.c, select.c)
+// Cross-referenced from arcade source: play_time, start_time, number_checkpoints, etc.
+// Added 2025-12-30 based on arcade checkpoint.c and game.c analysis
+// ============================================================================
+
+// Core Race Timer (arcade: play_time, start_time in select.c)
+gPlayTime = 0x80142B04; // type:data play_time - time remaining to play in msec (u32, arcade: select.c:582)
+gStartTime = 0x80142B08; // type:data start_time - IRQTIME when game started (u32, arcade: select.c:581)
+gCountdownTimer = 0x80142B0C; // type:data countdown_timer - 3-2-1 countdown in frames (s32)
+gCountdownTicks = 0x80142B10; // type:data countdown_ticks - countdown value for display (s32)
+
+// Elapsed Time Functions (arcade: GetElapsedTime, GetCountdownTime)
+gElapsedTime = 0x80142B14; // type:data elapsed race time in msec (u32)
+gRaceTimeLimit = 0x80142B18; // type:data race_time_limit - max race time in msec (s32)
+
+// Lap Timing (arcade: checkpoint.c - laptime, bestlap tracking)
+gCurrentLapTime = 0x80142B1C; // type:data current_lap_time - current lap elapsed time (s32)
+gBestLapTime = 0x80142B20; // type:data best_lap_time - best lap this race (s32)
+gLastLapTime = 0x80142B24; // type:data last_lap_total - last completed lap time (s32)
+gLapStartTime = 0x80142B28; // type:data lap start timestamp in msec (u32)
+
+// Split Times (per-checkpoint timing)
+gSplitTimeFrames = 0x80142B30; // type:data split_time_frames[4] - checkpoint split times array (s32[4])
+gTimeExpiredFlag = 0x80142B40; // type:data time_expired_flag - race time expired (s32)
+
+// Checkpoint System (arcade: checkpoint.c globals)
+gNumberCheckpoints = 0x80142B44; // type:data number_checkpoints - total checkpoints on track (u32, arcade: checkpoint.c:284)
+gLastCheckpointTime = 0x80142B48; // type:data last_checkpoint_time - time of last checkpoint hit (u32, arcade: checkpoint.c:284)
+gGlobalLaps = 0x80142B4C; // type:data global_laps - global lap counter for time award (s16, arcade: checkpoint.c:301)
+gGlobalLastCp = 0x80142B4E; // type:data global_last_cp - last checkpoint passed globally (s16, arcade: checkpoint.c:301)
+gGlobalNextCp = 0x80142B50; // type:data global_next_cp - next checkpoint to reach (s16, arcade: checkpoint.c:301)
+gLapLoopIndex = 0x80142B52; // type:data lap_loop_index - checkpoint index for lap loop (s16, arcade: checkpoint.c:302)
+
+// Checkpoint Bonus Time (arcade: checkpoint.c - time_to_be_given, total_time_given)
+gTimeToBeGiven = 0x80142B54; // type:data time_to_be_given - total bonus time allocated (u32, arcade: checkpoint.c:304)
+gTotalTimeGiven = 0x80142B58; // type:data total_time_given - bonus time awarded so far (u32, arcade: checkpoint.c:304)
+gTotalTimeBoxTime = 0x80142B5C; // type:data total_time_box_time - time from time boxes (u32, arcade: checkpoint.c:304)
+
+// First Place Tracking (arcade: checkpoint.c)
+gFirstPlaceTime = 0x80142B60; // type:data first_place_time - time when entered first (s32, arcade: checkpoint.c:288)
+gInFirstPlace = 0x80142B64; // type:data in_first_place - currently in first place flag (s32, arcade: checkpoint.c:289)
+
+// Race Start Frame (for timing sync)
+gRaceStartFrame = 0x80142B68; // type:data race_start_frame - frame when race started (s32)
+
+// Race State
+gRacePhase = 0x80142B6C; // type:data race_phase - current race phase (s32: 0=pre, 1=countdown, 2=racing, 3=finished)
+gRaceNumLaps = 0x80142B70; // type:data race_num_laps - total laps for this race (s32)
+gNewBestLapFlag = 0x80142B74; // type:data new_best_lap_flag - set when new best lap achieved (s32)
+
+// Per-Player Timing Arrays (arcade: checkpoint.c per-car tracking)
+gPlayerLapCount = 0x80142B78; // type:data player_lap_count[4] - lap count per player (void*[4])
+gPlayerCheckpoint = 0x80142B88; // type:data player_checkpoint[4] - current checkpoint per player (void*[4])
+gPlayerRaceTime = 0x80142B98; // type:data player_race_time[4] - race time per player (void*[4])
+
+// Game Over / Continue Countdown
+gGameoverCountdown = 0x80142BA8; // type:data gameover_countdown - frames until game over screen (s32)
+gContinueCountdown = 0x80142BAC; // type:data continue_countdown - continue countdown timer (s32)
+
+// Track Par Times (arcade: track_cp_times_best, track_cp_times_par)
+gTrackParTimes = 0x80142BB0; // type:data track_par_times[8] - par times per track (void*[8])
+gTrackBestLap = 0x80142BD0; // type:data track_best_lap[8] - best lap times per track (u32[8])
+
+// Finish Time Recording
+gPlayerFinishTimes = 0x80142BF0; // type:data player_finish_times[4] - player finish times (s32[4])
+gFinishTimeByPlace = 0x80142C00; // type:data finish_time_by_car[8] - finish times by position (u32[8])
