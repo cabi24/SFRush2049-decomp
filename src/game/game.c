@@ -499,6 +499,17 @@ extern CarData car_array[];            /* 0x80152818 - array of car data */
 extern GameStruct game_struct;         /* 0x801461D0 - main game structure */
 extern u32 frame_counter;              /* 0x80142AFC - frame counter */
 
+/* Initialization flags (0x80111xxx range) */
+extern u8 gSyncInitFlag;               /* 0x8011194C - sync initialization flag */
+extern u8 gWaitCompleteStatus;         /* 0x80111950 - wait completion status */
+extern u8 gPlayerInitFlag;             /* 0x80111954 - player init complete */
+extern s8 gDmaInitFlag;                /* 0x80111968 - DMA init flag */
+extern u32 gRandomSeed;                /* 0x8011735C - random number seed */
+extern u32 gRenderDataPtr;             /* 0x8011EA18 - render data pointer */
+extern s32 gPlayerInputEnabled;        /* 0x801147C8 - player input enabled flag */
+extern s32 gPauseState;                /* 0x80114700 - pause state flag */
+extern s32 race_active;                /* 0x801170FC - race active flag */
+
 /* Additional external data for game_loop */
 extern s8  gstate_byte;   /* Init flag */
 extern s32 menu_sound_handle;   /* Sound handle */
@@ -3087,11 +3098,7 @@ void sound_handles_array_clear(void *obj) {
 }
 
 /*
-
-/**
-/*
- * sync_release_video (func_8008A6D0)
- * Address: 0x8008A6D0
+ * sync_release_video @ 0x8008A6D0
  * Size: 44 bytes
  *
  * Simple wrapper that releases sync on sync_state_array with
@@ -3103,11 +3110,7 @@ void sync_release_video(void) {
 }
 
 /*
-
-/**
-/*
- * dma_wait_thunk (func_8008AA20)
- * Address: 0x8008AA20
+ * controller_rumble_thunk @ 0x8008AA20
  * Size: 32 bytes
  *
  * Simple thunk to controller_rumble.
@@ -3486,11 +3489,7 @@ void slot_deactivate(s32 a0) {
 }
 
 /*
-
-/**
-/*
- * vector_copy_scale (func_8008B474)
- * Address: 0x8008B474
+ * vector_copy_scale @ 0x8008B474
  * Size: 80 bytes
  *
  * Calls sound_priority_set, then copies src vector to dst with
@@ -3532,7 +3531,7 @@ void render_state_init(void) {
     camera_distance_set();
     render_scale_float = 1.0f;
     mode_short = 0;
-    data_pointer = 0x8011EA18;  /* Constant pointer */
+    data_pointer = (u32)&gRenderDataPtr;  /* Render data constant pointer */
 }
 
 /*
@@ -3999,8 +3998,8 @@ void object_counter_increment(s32 id) {
 /**
 /**
 /*
- * pointer_offset_wrapper (func_8008AD48)
- * Address: 0x8008AD48
+ * pointer_offset_wrapper @ 0x8008AD48
+ * 
  * Size: 36 bytes
  *
  * Adds 4 to both pointers and calls sound_position_set.
@@ -4019,8 +4018,8 @@ void pointer_offset_wrapper(void *a0, void *a1) {
 
 /**
 /*
- * sign_extend_call (func_8008E398)
- * Address: 0x8008E398
+ * sign_extend_call @ 0x8008E398
+ * 
  * Size: 40 bytes
  *
  * Sign-extends the third parameter from 16 bits and calls audio_init.
@@ -4295,8 +4294,8 @@ void *object_init_cleared(void *a0, void *a1) {
 /**
 /**
 /*
- * vector3d_store_transform (func_8008B660)
- * Address: 0x8008B660
+ * vector3d_store_transform @ 0x8008B660
+ * 
  * Size: 60 bytes
  *
  * Stores f12, f14, f16 at a1+36/40/44, calls sound_reverb_set,
@@ -6678,14 +6677,15 @@ void tree_node_insert(s16 a0, s16 a1) {
 }
 
 /*
-
- * func_8008A398 (76 bytes)
- * Note: Audio sync related - needs analysis
+ * audio_sync_wait (76 bytes) @ 0x8008A398
+ * Audio synchronization wait function
+ * Named in symbol_addrs.us.txt
  */
 
 /*
- * func_8008C724 (68 bytes)
- * Note: Audio processing - needs analysis
+ * audio_buffer_process (68 bytes) @ 0x8008C724
+ * Audio buffer processing function
+ * Named in symbol_addrs.us.txt
  */
 
 /*
@@ -6796,11 +6796,11 @@ void rdp_primdepth_set(s16 depth) {
  * t6 preloaded with flag from v0
  */
 void sync_init_conditional(void) {
-    u8 flag = *(u8 *)0x8011194C;  /* t6 from v0 */
+    u8 flag = gSyncInitFlag;
     s32 outVal;
 
     if (flag == 0) {
-        *(u8 *)0x8011194C = 1;
+        gSyncInitFlag = 1;
         sync_init((void *)0x801497D0, (void *)0x801527E4, 1);
         sync_release((void *)0x801497D0, 0, 0);
     }
@@ -7707,21 +7707,21 @@ void player_state_sync_init(void) {
         player_mode_set(-1, 1);
     }
 
-    *(u8 *)0x80111954 = 1;
+    gPlayerInitFlag = 1;
 
     /* Initialize 8 bytes with 0x46 */
     for (i = 0; i < 8; i++) {
         *(u8 *)(0x80159AF8 + i) = 0x46;
     }
 
-    if (*(s8 *)0x80111968 == 0) {
-        *(s8 *)0x80111968 = 1;
+    if (gDmaInitFlag == 0) {
+        gDmaInitFlag = 1;
         dma_start((void *)0x801597A8, (void *)0x80152730, 1);
         state_set((void *)0x801597A8, 0, 0);
     }
 
-    /* Wait for byte to equal 128 */
-    while (*(u8 *)0x80111950 != 128) {
+    /* Wait for wait completion status to equal 128 */
+    while (gWaitCompleteStatus != 128) {
         /* Spin */
     }
 
@@ -7912,8 +7912,8 @@ void hiscore_mode_update(void) {
  * Reset game state to attract mode
  */
 void game_reset_attract(void) {
-    *(s32 *)0x801146EC = 0;  /* Set to ATTRACT */
-    *(u32 *)0x80142AFC = 0;  /* Clear frame counter */
+    gstate = 0;               /* Set to ATTRACT */
+    frame_counter = 0;        /* Clear frame counter */
     game_unpause();
 }
 
@@ -7946,10 +7946,10 @@ void game_full_reset(void) {
     s32 *audioState;
 
     /* Reset game state */
-    *(s32 *)0x801146EC = 0;        /* gstate = ATTRACT */
-    *(s32 *)0x80142AFC = 0;        /* Frame counter */
+    gstate = 0;                    /* gstate = ATTRACT */
+    frame_counter = 0;             /* Frame counter */
     *(s32 *)0x80142B00 = 0;        /* Race timer */
-    *(s32 *)0x80114700 = 0;        /* Pause state */
+    gPauseState = 0;               /* Pause state */
 
     /* Clear all player cars */
     for (i = 0; i < 4; i++) {
@@ -8226,15 +8226,13 @@ void matrix_pop_stack(void) {
  * Random number generator (LCG)
  */
 s32 rand_int(void) {
-    u32 *seed;
     u32 val;
 
-    seed = (u32 *)0x8011735C;
-    val = *seed;
+    val = gRandomSeed;
 
     /* LCG: val = val * 0x41C64E6D + 12345 */
     val = val * 0x41C64E6D + 12345;
-    *seed = val;
+    gRandomSeed = val;
 
     return (val >> 16) & 0x7FFF;
 }
@@ -8245,16 +8243,14 @@ s32 rand_int(void) {
  * Random float in range [0, 1)
  */
 f32 rand_float(void) {
-    u32 *seed;
     u32 val;
     s32 randInt;
     f32 result;
 
-    seed = (u32 *)0x8011735C;
-    val = *seed;
+    val = gRandomSeed;
 
     val = val * 0x41C64E6D + 12345;
-    *seed = val;
+    gRandomSeed = val;
     randInt = (val >> 16) & 0x7FFF;
 
     /* Convert to float and scale to [0, 1) */
@@ -8829,7 +8825,7 @@ f32 float_compare(f32 a, f32 b) {
 
  * entity_render_setup (736 bytes)
  * Large entity rendering setup
- * func_8008C884
+ * entity_render_setup @ 0x8008C884
  */
 void entity_render_setup(void *entity, s32 mode) {
     s16 entityId;
@@ -8846,7 +8842,7 @@ void entity_render_setup(void *entity, s32 mode) {
     flags = special_render_flag;
     if (flags != 0) {
         /* Check frame timing flag */
-        s32 frameFlag = *(s32 *)0x801174B4;
+        s32 frameFlag = gstate_mask;
         if (frameFlag < 0) {
             return;
         }
@@ -8859,7 +8855,7 @@ void entity_render_setup(void *entity, s32 mode) {
 
  * entity_process_main (1524 bytes)
  * Major entity processing function
- * func_8008D120
+ * entity_process_main @ 0x8008D120
  */
 void entity_process_main(void *entity, s32 param1, s32 param2) {
     /* Large entity processing - stub */
@@ -8869,7 +8865,7 @@ void entity_process_main(void *entity, s32 param1, s32 param2) {
 
  * euler_to_matrix (372 bytes)
  * Euler angle to rotation matrix conversion
- * func_8008D764
+ * euler_to_matrix @ 0x8008D764
  */
 void euler_to_matrix(f32 *matrix, f32 *angles) {
     f32 sinX, cosX;
@@ -8902,7 +8898,7 @@ void euler_to_matrix(f32 *matrix, f32 *angles) {
 
  * anim_state_update (796 bytes)
  * Entity animation state update
- * func_8008D93C
+ * anim_state_update @ 0x8008D93C
  */
 void anim_state_update(void *entity, s16 animState) {
     s16 entityId;
@@ -8928,7 +8924,7 @@ void anim_state_update(void *entity, s16 animState) {
 
  * render_state_process (1472 bytes)
  * Major render state processing
- * func_8008E440
+ * render_state_process @ 0x8008E440
  */
 void render_state_process(void *a0, s32 mode, s32 flags, s32 index) {
     void *tableEntry;
@@ -8961,7 +8957,7 @@ void render_state_process(void *a0, s32 mode, s32 flags, s32 index) {
 
  * entity_spawn_init (1656 bytes)
  * Entity spawn/initialization - create and initialize new entity
- * func_8008EA10
+ * entity_spawn_init @ 0x8008EA10
  */
 void entity_spawn_init(void *params, s32 type) {
     void *entity;
@@ -11056,13 +11052,13 @@ void track_collision_setup(void *trackData) {
 void track_process_main(void *a0, void *a1, void *a2, void *a3) {
     s8 initFlag;
 
-    initFlag = *(s8 *)(0x8011194C);
+    initFlag = gSyncInitFlag;
     if (initFlag != 0) {
         return;
     }
 
     /* Set init flag */
-    *(s8 *)(0x8011194C) = 1;
+    gSyncInitFlag = 1;
 
     /* Process track segments... */
 }
@@ -21680,7 +21676,7 @@ void race_cleanup(void) {
 
 /*
 
- * func_80087118 (1772 bytes)
+ * render_mode_setup @ 0x80087118 (1772 bytes)
  * Major RDP render mode setup
  */
 void render_mode_setup(s32 mode, s32 flags) {
@@ -21696,7 +21692,7 @@ void render_mode_setup(s32 mode, s32 flags) {
 }
 
 /*
- * func_80087A08 (10048 bytes)
+ * object_render @ 0x80087A08 (10048 bytes)
  * Major object rendering function - Renders 3D objects with transforms
  *
  * Handles model rendering with transformation matrix, lighting, and texturing.
@@ -21777,7 +21773,7 @@ void object_render(void *object, void *matrix) {
 }
 
 /*
- * func_8008A77C (676 bytes)
+ * audio_queue_process @ 0x8008A77C (676 bytes)
  * Audio queue processing - Processes pending audio commands
  *
  * Dequeues and executes audio commands from the audio subsystem queue.
@@ -26160,7 +26156,7 @@ void cutscene_play(s32 cutsceneId) {
     }
 
     /* Disable player input during cutscene */
-    *(s32 *)0x801147C8 = 0;
+    gPlayerInputEnabled = 0;
 
     /* Play cutscene music */
     sfx_stop(1, cutsceneId + 100);

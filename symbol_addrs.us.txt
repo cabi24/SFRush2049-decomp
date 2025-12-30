@@ -491,7 +491,7 @@ object_utility = 0x800B3FA4; // type:func object management (107 calls)
 object_helper = 0x800B3F50; // type:func object helper (77 calls)
 math_utility = 0x8008D6B0; // type:func math/vector utility (67 calls)
 render_helper = 0x800B65B4; // type:func rendering helper (65 calls)
-model_utility = 0x8008AE8C; // type:func model/mesh utility (63 calls)
+// model_utility = 0x8008AE8C; // DUPE: see model_data_load below
 input_handler = 0x80094EC8; // type:func input processing (60 calls) - input processing (60 calls)
 
 // Key global variables in game data section (renamed from D_80XXXXXX)
@@ -520,11 +520,12 @@ gFrameCounter = 0x80142AFC; // type:data frame counter (incremented each frame i
 //   Both are perpetual main loop shells
 
 // Message queue functions in game code (from Codex analysis)
-audio_msg_send = 0x8008A6D0; // type:func sends audio message via osJamMesg
-audio_task_sync = 0x8008A710; // type:func audio task synchronization (Jam+Recv)
+// Note: Some duplicated below with better names
+// audio_msg_send = 0x8008A6D0; // DUPE: see sync_release_video below
+// audio_task_sync = 0x8008A710; // DUPE: see audio_task_start below
 audio_queue_process = 0x8008A77C; // type:func audio queue processing (676 bytes)
-wait_for_msg = 0x8008AA40; // type:func waits for message via osRecvMesg
-task_complete_notify = 0x8008AC74; // type:func task completion notification
+// wait_for_msg = 0x8008AA40; // DUPE: see dma_wait_complete below
+// task_complete_notify = 0x8008AC74; // DUPE: see task_complete_signal below
 scheduler_recv = 0x80091C04; // type:func scheduler message receive
 scheduler_jam = 0x80091CA4; // type:func scheduler message send
 client_sync = 0x80091E5C; // type:func client synchronization (Jam+Recv)
@@ -677,17 +678,18 @@ Input_RegisterActivePad = 0x800B3590; // type:func marks pad slot active (byte 0
 // game_car[] array: base 0x80152818, stride 0x3B8 (952 bytes)
 // Fields: pos_x/y/z at 0x4C/0x50/0x54, vel_x/y at 0x08/0x0C, flags at 0x0EF/0x359
 // Motion integration helpers (arcade: drivsym.c velocities/positions)
-physics_velocities_A = 0x8008B69C; // type:func integrate accel to velocity (712 bytes)
-physics_velocities_B = 0x8008B964; // type:func integrate accel to velocity
-physics_velocities_C = 0x8008BA84; // type:func integrate accel to velocity
-physics_velocities_D = 0x8008BB8C; // type:func integrate accel to velocity
-physics_velocities_E = 0x8008BC94; // type:func integrate accel to velocity
-physics_velocities_F = 0x8008BD9C; // type:func integrate accel to velocity
-physics_velocities_G = 0x8008C884; // type:func integrate accel to velocity
-physics_velocities_H = 0x8008D120; // type:func integrate accel to velocity
-physics_velocities_I = 0x8008D93C; // type:func integrate accel to velocity
-physics_accelerations_A = 0x8008E398; // type:func F=ma acceleration calc
-physics_velocities_J = 0x8008EA10; // type:func integrate accel to velocity
+// Note: Better names provided in later batch - these are duplicates
+// physics_velocities_A = 0x8008B69C; // DUPE: see physics_velocity_integrate_a
+// physics_velocities_B = 0x8008B964; // DUPE: see physics_velocity_integrate_b
+// physics_velocities_C = 0x8008BA84; // DUPE: see physics_velocity_integrate_c
+// physics_velocities_D = 0x8008BB8C; // DUPE: see physics_velocity_integrate_d
+// physics_velocities_E = 0x8008BC94; // DUPE: see physics_velocity_integrate_e
+// physics_velocities_F = 0x8008BD9C; // DUPE: see physics_velocity_integrate_f
+// physics_velocities_G = 0x8008C884; // DUPE: see entity_render_setup
+// physics_velocities_H = 0x8008D120; // DUPE: see entity_process_main
+// physics_velocities_I = 0x8008D93C; // DUPE: see anim_state_update
+// physics_accelerations_A = 0x8008E398; // DUPE: see sign_extend_call
+// physics_velocities_J = 0x8008EA10; // DUPE: see entity_spawn_init
 physics_velocities_K = 0x80090310; // type:func integrate accel to velocity
 physics_velocities_L = 0x800908A0; // type:func integrate accel to velocity
 physics_forces_handler_A = 0x80090B70; // type:func force accumulation (812 bytes)
@@ -790,12 +792,13 @@ camera_transform = 0x80097CA0; // type:func camera/view transformation
 // vehicle_physics at 0x80097798 - renamed to audio_frame_sync above (dual purpose)
 
 // Cleaned symbols appended from ollama_analysis/cleaned_symbols.txt
-load_texture_data = 0x8008A650; // type:func pulls texture data into memory
+// Note: Duplicate entries consolidated - keeping better names from later batches
+// load_texture_data = 0x8008A650; // DUPE: see texture_load_start below
 audio_call_wrapper = 0x8008A750; // type:func forwards to downstream audio routine
-audio_process = 0x8008AA20; // type:func higher-level audio processing call
-audio_chain_dispatch = 0x8008AD48; // type:func chains to additional audio handlers
-physics_floats_helper = 0x8008B474; // type:func floating-point physics helper (arcade: drivsym.c utility)
-fmath_helper = 0x8008E440; // type:func heavy FP math helper
+// audio_process = 0x8008AA20; // DUPE: see controller_rumble_thunk below
+// audio_chain_dispatch = 0x8008AD48; // DUPE: see pointer_offset_wrapper below
+// physics_floats_helper = 0x8008B474; // DUPE: see vector_copy_scale below
+// fmath_helper = 0x8008E440; // DUPE: see render_state_process below
 physics_forces1 = 0x80095240; // type:func tire/drag forces (arcade: forces1 in drivsym.c:391)
 sfx_play = 0x80095360; // type:func play sound effect
 poll_input = 0x80095380; // type:func controller/button polling - controller/button polling
@@ -863,6 +866,15 @@ save_context_stub = 0x8010FBF4; // type:func stack frame setup helper
 call_memcpy = 0x8010FC1C; // type:func helper calling memcpy with size 64
 call_osjammsg = 0x8010FC2C; // type:func helper calling osJamMesg with size 1
 clear_region = 0x8010FC34; // type:func zeroes region at 0x8003E928
+
+// === Additional 0x80100000+ Functions (from game.c analysis 2025-12-30) ===
+callback_init = 0x80100D30; // type:func initialize object callback (44 bytes) - stores callback_ptr, calls texture_load
+struct_callback_init = 0x8010B528; // type:func initialize structure with callback (56 bytes) - sets texture_callback_array
+state_update_global = 0x8010B560; // type:func update state based on global flag (112 bytes) - checks race_sub_state, updates byte26
+sync_acquire_menu = 0x8010FBB4; // type:func acquire menu sync lock (44 bytes) - calls state_get with menu_sync_object
+resource_alloc_init = 0x8010FC80; // type:func allocate and initialize resource (64 bytes) - calls resource_lookup_synced then model_set_matrix
+synced_model_render = 0x8010FCC0; // type:func render model with sync (92 bytes) - acquires model_sync, calls model_render
+struct_init_and_call = 0x8010FD1C; // type:func initialize struct and call sound_start_3d (68 bytes) - sound_3d_struct setup
 
 // === Overnight1 batch (350 functions from game code) ===
 render_init_setup = 0x80087068; // type:func render initialization setup
@@ -1083,6 +1095,7 @@ cpak_init = 0x800AFD5C; // type:func controller pak initialization
 // Audio System Functions (0x800B0180 - 0x800B3xxx)
 // Based on arcade sounds.c and game.c analysis
 // ============================================
+pool_linked_list_init = 0x800B04D0; // type:func initialize pool as linked list (128 bytes) - sets up element chain in pre-allocated pool
 cpak_read = 0x800B0180; // type:func controller pak read - read data from controller pak (868 bytes)
 struct_fields_init = 0x800B0550; // type:func initialize structure fields (see game.c comment)
 audio_channel_alloc = 0x800B0580; // type:func allocate audio channel
@@ -1293,6 +1306,7 @@ hud_fade_effect = 0x800C8F80; // type:func HUD fade/transition effect
 // Menu System Functions
 menu_system_update = 0x800CF000; // type:func main menu system update (large, ~12KB)
 menu_render = 0x800D0000; // type:func render active menu screen
+sound_position_set = 0x800D03DC; // type:func set 3D sound position (72 bytes) - applies Y/X/Z coords to sound system
 menu_input_handle = 0x800D1000; // type:func process menu controller input
 menu_track_select = 0x800D2000; // type:func track selection screen handler
 menu_car_select = 0x800D3000; // type:func car selection screen handler
@@ -1401,6 +1415,7 @@ menu_controller_remap = 0x800CF69C; // type:func controller button remapping scr
 menu_vibration_test = 0x800CFE74; // type:func test controller rumble feature (404 bytes)
 
 // Additional 0x800C Functions (from game.c analysis 2025-12-29)
+input_init_flag_get = 0x800C9528; // type:func load input initialized flag (8 bytes) - prologue for input_callback_process
 input_callback_process = 0x800C9530; // type:func process input callback table
 resource_slot_clear = 0x800C9334; // type:func clear a resource slot by ID
 menu_render_list = 0x800CB9A0; // type:func render menu item list
@@ -1681,11 +1696,14 @@ game_results_exit = 0x800FFDF8; // type:func game results exit (1900 bytes)
 large_update_routine = 0x800FDA90; // type:func large update routine (4560 bytes)
 
 // Additional 0x800E* functions found in game.c
+replay_update_dual = 0x800E2A3C; // type:func update both replay UI and camera (40 bytes) - calls replay_ui_draw and replay_camera_update
+object_update_full = 0x800E2A64; // type:func object update full
+object_counter_decrement = 0x800E7914; // type:func decrement object reference counter (108 bytes) - synced decrement at offset 22
+object_counter_increment = 0x800E7980; // type:func increment object reference counter (112 bytes) - synced increment at offset 22
 collision_check_thunk = 0x800EE88C; // type:func collision check thunk (456 bytes)
 mode_byte_set = 0x800ED764; // type:func mode byte set
 mode_byte2_set = 0x800ED7B4; // type:func mode byte 2 set
 sync_init_conditional = 0x800EE7C4; // type:func sync init conditional
-object_update_full = 0x800E2A64; // type:func object update full
 
 // Additional 0x800F* functions found in game.c
 game_mode_post = 0x800FBC38; // type:func game mode post-processing
@@ -1734,6 +1752,19 @@ gCurrentLapTimes = 0x80155120; // type:data current lap time per player (4 entri
 gTimerQueue = 0x80156000; // type:data timer queue array (32 entries)
 gRaceTimer = 0x80142B00; // type:data race timer/time scale
 gPauseState = 0x80114700; // type:data pause state flag
+gPlayerInputEnabled = 0x801147C8; // type:data player input enabled flag (0 = disabled during cutscene)
+
+// Initialization Flags (0x80111xxx range)
+gSyncInitFlag = 0x8011194C; // type:data sync initialization flag (set once on first sync_init call)
+gWaitCompleteStatus = 0x80111950; // type:data wait completion status (waits until equals 128)
+gPlayerInitFlag = 0x80111954; // type:data player initialization complete flag
+gDmaInitFlag = 0x80111968; // type:data DMA initialization flag (set once on first DMA start)
+
+// Random Number Generator
+gRandomSeed = 0x8011735C; // type:data random seed for LCG (val * 0x41C64E6D + 12345)
+
+// Render Data Pointer
+gRenderDataPtr = 0x8011EA18; // type:data constant render data pointer (set during render_state_init)
 
 // Save/Settings Data
 gUnlockFlags = 0x80159000; // type:data unlock flags bitmask (5 refs)
@@ -2115,3 +2146,143 @@ model_load = 0x800EB000; // type:func model load - load model from ROM
 model_unload = 0x800EB200; // type:func model unload - unload model
 model_render = 0x800EB400; // type:func model render - render model with transforms
 model_lod_select = 0x800EB500; // type:func model lod select - select model LOD level
+
+// ============================================================================
+// Car/Vehicle State Global Data (from arcade drivsym.h, modeldat.h, cars.c)
+// Based on MODELDAT structure and CAR_DATA structure analysis
+// ============================================================================
+
+// Car State Arrays (arcade: CAR_DATA car_data[MAX_LINKS], MODELDAT model[MAX_LINKS])
+// game_car = 0x80152818 already defined above - this is the main car state array
+// Stride: 0x3B8 (952 bytes) per car, 6 entries (4 players + 2 drones)
+gCarVelocity = 0x80152820; // type:data car velocity vector (f32[3]) - arcade: V[3] body velocity
+gCarPosition = 0x80152848; // type:data car position vector (f32[3]) - arcade: RWR[3] real world position
+gCarOrientation = 0x80152858; // type:data car orientation matrix (f32[3][3]) - arcade: UV unit vectors
+gCarAngularVelocity = 0x8015287C; // type:data car angular velocity (f32[3]) - arcade: W[3] yaw/pitch/roll rates
+gCarAcceleration = 0x80152888; // type:data car acceleration (f32[3]) - arcade: A[3] body acceleration
+gCarMass = 0x80152894; // type:data car mass in slugs (f32) - arcade: mass
+gCarMassInverse = 0x80152898; // type:data 1/mass (f32) - arcade: massinv
+gCarMomentOfInertia = 0x8015289C; // type:data moment of inertia (f32[3]) - arcade: I[3]
+gCarInertiaInverse = 0x801528A8; // type:data inverse moment of inertia (f32[3]) - arcade: INVI[3]
+
+// Tire State (4 tires per car: FR=0, FL=1, RR=2, RL=3)
+gTireForce = 0x801528B8; // type:data tire force vectors (f32[4][3]) - arcade: TIREFORCE[4][3]
+gTirePosition = 0x801528E8; // type:data tire positions body coords (f32[4][3]) - arcade: TIRER[4][3]
+gTirePositionWorld = 0x80152918; // type:data tire positions world coords (f32[4][3]) - arcade: TIRERWR[4][3]
+gTireVelocity = 0x80152948; // type:data tire velocity (f32[4][3]) - arcade: TIREV[4][3]
+gTireAngularVelocity = 0x80152978; // type:data tire angular velocity (f32[4]) - arcade: tires[].angvel
+gTireSlipAngle = 0x80152988; // type:data tire slip angle (f32[4]) - arcade: tire slip calculation
+gTireSlipFlag = 0x80152998; // type:data tire slip flags (s8[4]) - arcade: tires[].slipflag
+gTireSlipTorque = 0x8015299C; // type:data tire slip torque (f32[4]) - arcade: tires[].sliptorque
+gTireTraction = 0x801529AC; // type:data tire traction (f32[4]) - arcade: tires[].traction
+gTireSideForce = 0x801529BC; // type:data tire side force (f32[4]) - arcade: tires[].sideforce
+gTireRadius = 0x801529CC; // type:data tire radius (f32[4]) - arcade: tires[].tradius
+gTireCornStiff = 0x801529DC; // type:data tire cornering stiffness (f32[4]) - arcade: tires[].Cstiff
+gTireFrictionMax = 0x801529EC; // type:data tire max friction coeff (f32[4]) - arcade: tires[].Cfmax
+
+// Suspension State
+gSuspensionCompression = 0x801529FC; // type:data suspension compression (f32[4]) - arcade: suscomp[4]
+gSuspensionVelocity = 0x80152A0C; // type:data suspension velocity (f32[4]) - arcade: susvel[4]
+gSpringRate = 0x80152A1C; // type:data spring rate per wheel (f32[4]) - arcade: springrate[4]
+gDampingCompression = 0x80152A2C; // type:data compression damping (f32[4]) - arcade: cdamping[4]
+gDampingRebound = 0x80152A3C; // type:data rebound damping (f32[4]) - arcade: rdamping[4]
+gRideHeight = 0x80152A4C; // type:data ride height (f32[4]) - arcade: rideheight[4]
+gAirDistance = 0x80152A5C; // type:data distance to ground (f32[4]) - arcade: airdist[4] for shadow
+gAntiRollBarFront = 0x80152A6C; // type:data front anti-roll bar rate (f32) - arcade: farspringrate
+gAntiRollBarRear = 0x80152A70; // type:data rear anti-roll bar rate (f32) - arcade: rarspringrate
+
+// Steering System
+gSteerAngle = 0x80152A74; // type:data steering angle (f32) - arcade: steerangle
+gSteerRatio = 0x80152A78; // type:data steering ratio wheel/kingpin (f32) - arcade: steerratio
+gSteerWheelTorque = 0x80152A7C; // type:data steering wheel torque (s32) - arcade: swtorque
+gSteerWheelDamping = 0x80152A80; // type:data steering wheel damping (s32) - arcade: swdamp
+gSteerWheelFriction = 0x80152A84; // type:data steering wheel friction (s32) - arcade: swfrict
+gSteerWheelPosition = 0x80152A88; // type:data steering wheel position -1.0 to 1.0 (f32) - arcade: wheel
+
+// Engine/Drivetrain State
+gEngineRPM = 0x80152A8C; // type:data engine RPM (s16) - arcade: rpm
+gEngineTorque = 0x80152A90; // type:data engine torque (f32) - arcade: engtorque
+gEngineAngularVelocity = 0x80152A94; // type:data engine angular velocity rad/s (f32) - arcade: engangvel
+gThrottle = 0x80152A98; // type:data throttle position 0-1 (f32) - arcade: throttle
+gBrake = 0x80152A9C; // type:data brake position 0-1 (f32) - arcade: brake
+gClutch = 0x80152AA0; // type:data clutch position 0-1 (f32) - arcade: clutch
+gGear = 0x80152AA4; // type:data current gear -1=R,0=N,1-4=fwd (s16) - arcade: gear
+gAutoTrans = 0x80152AA8; // type:data automatic transmission flag (s16) - arcade: autotrans
+gDifferentialRatio = 0x80152AAC; // type:data differential gear ratio (f32) - arcade: dwratio
+gTransmissionRatio = 0x80152AB0; // type:data current transmission ratio (f32) - arcade: transratio
+gTotalGearRatio = 0x80152AB4; // type:data total gear ratio diff*trans (f32) - arcade: totalratio
+gDriveWheelTorque = 0x80152AB8; // type:data torque at drive wheels (f32) - arcade: dwtorque
+gDriveWheelAngVel = 0x80152ABC; // type:data drive wheel angular velocity (f32) - arcade: dwangvel
+gClutchTorque = 0x80152AC0; // type:data clutch torque (f32) - arcade: clutchtorque
+gUpshiftRPM = 0x80152AC4; // type:data upshift RPM threshold (f32) - arcade: upshiftangvel
+gDownshiftRPM = 0x80152AC8; // type:data downshift RPM threshold (f32) - arcade: downshiftangvel
+
+// Physics Forces (body axis)
+gBodyForce = 0x80152ACC; // type:data total body force (f32[3]) - arcade: F[3]
+gBodyMoment = 0x80152AD8; // type:data total body moment (f32[3]) - arcade: M[3]
+gDragForce = 0x80152AE4; // type:data drag force vector (f32[3]) - arcade: D[3]
+gGravityBody = 0x80152AF0; // type:data gravity in body coords (f32[3]) - arcade: G[3]
+gGravityWorld = 0x80152AFC; // type:data gravity in world coords (f32[3]) - arcade: GRW[3]
+gCenterForce = 0x80152B08; // type:data force through CG (f32[3]) - arcade: CENTERFORCE[3]
+gCenterMoment = 0x80152B14; // type:data moment through CG (f32[3]) - arcade: CENTERMOMENT[3]
+gAeroDrag = 0x80152B20; // type:data aero drag coefficient (f32) - arcade: srefpcybo2
+gRollingResistance = 0x80152B24; // type:data rolling resistance (f32) - arcade: rollresist
+
+// Car Collision State
+gCarCrashFlag = 0x80152B28; // type:data crash flag (s32) - arcade: crashflag
+gCarCrashThreshold = 0x80152B2C; // type:data crash threshold (s32) - arcade: crashthreshold
+gCarThumpFlag = 0x80152B30; // type:data thump/bump flag (s32) - arcade: thumpflag
+gCarForceAverage = 0x80152B34; // type:data force average for crash (f32) - arcade: forceavg
+gCarCollisionRadius = 0x80152B38; // type:data collision radius (f32) - arcade: colrad
+gCarCollidable = 0x80152B3C; // type:data is car collidable (s16) - arcade: collidable
+gCarBodyForce = 0x80152B40; // type:data body corner forces (f32[4][3]) - arcade: BODYFORCE[4][3]
+gCarBodyPosition = 0x80152B70; // type:data body corner positions (f32[4][3]) - arcade: BODYR[4][3]
+
+// Car Timing/State
+gCarTime = 0x80152BA0; // type:data car simulation time (f32) - arcade: thetime
+gCarDeltaTime = 0x80152BA4; // type:data simulation delta time (f32) - arcade: dt
+gCarAirTime = 0x80152BA8; // type:data last time in air (f32) - arcade: airtime
+gCarMPH = 0x80152BAC; // type:data speedometer reading (f32) - arcade: mph
+gCarMagnitudeVelocity = 0x80152BB0; // type:data velocity magnitude (f32) - arcade: magvel
+gCarGameOver = 0x80152BB4; // type:data game over flag (s16) - arcade: gameover
+gCarCatchup = 0x80152BB8; // type:data catchup factor 0-1 (f32) - arcade: catchup
+gCarTimeBoost = 0x80152BBC; // type:data time boost multiplier (f32) - arcade: time_boost
+
+// Drone/AI State (arcade: MPCTL maxpath control)
+gDroneMaxPathIndex = 0x80152BC0; // type:data current maxpath index (s32) - arcade: mpath.mpi
+gDroneTargetSpeed = 0x80152BC4; // type:data target speed (f32) - arcade: mpath.tgtspd
+gDroneTargetPosition = 0x80152BC8; // type:data target position (f32[3]) - arcade: mpath.tgtpos[3]
+gDroneSteerRelative = 0x80152BD4; // type:data relative steering offset (f32) - arcade: mpath.xrel
+gDroneForwardRelative = 0x80152BD8; // type:data forward offset to target (f32) - arcade: mpath.yrel
+gDroneType = 0x80152BDC; // type:data drone type 0=none,1=drone,2=human (s16) - arcade: drone_type
+gDroneTarget = 0x80152BE0; // type:data drone target player index (s16) - arcade: drone_target
+gDroneScale = 0x80152BE4; // type:data drone velocity scale (f32) - arcade: drone_scale
+
+// Car Appearance/Visual
+gCarAppearance = 0x80152BE8; // type:data car appearance flags (u32) - arcade: appearance
+gCarEngineType = 0x80152BEC; // type:data engine type for sound (s16) - arcade: engine_type
+gCarBodyType = 0x80152BF0; // type:data car body style (s16) - arcade: body_type
+gCarPlace = 0x80152BF4; // type:data race position 1-6 (s8) - arcade: place
+
+// Road/Surface State (per tire)
+gRoadCode = 0x80152BF8; // type:data road surface code (s32[4]) - arcade: roadcode[4]
+gRoadBoost = 0x80152C08; // type:data road boost value (u16[4]) - arcade: roadboost[4]
+gSurfaceVisCode = 0x80152C10; // type:data surface visual code (u16[4]) - arcade: sviscode[4]
+gRoadUnitVectors = 0x80152C18; // type:data road unit vectors per tire (f32[4][3][3]) - arcade: roaduvs[4]
+
+// ============================================================================
+// Car Definition Data (const car struct from arcade cars.c)
+// ============================================================================
+gCarDefinitionArray = 0x80160000; // type:data car definition array (struct car[12])
+gTorqueCurveStandard = 0x80160800; // type:data standard torque curve (s16[10][12]) - arcade: stdtorquecurve
+gTorqueCurveDirt = 0x80160900; // type:data dirt torque curve (s16[10][12]) - arcade: stddirttorquecurve
+gTorqueCurveRush = 0x80160A00; // type:data rush torque curve (s16[10][12]) - arcade: rushtorquecurve
+gCarCollisionSizes = 0x80160B00; // type:data car collision sizes (COLLSIZE[12]) - arcade: gCollSize
+
+// ============================================================================
+// Anti-Spin/Stability Control (arcade: drivsym.c antispin)
+// ============================================================================
+gAntiSpinRoadTable = 0x80160C00; // type:data anti-spin road values (f32[4][3]) - arcade: as_road
+gAntiSpinAirTable = 0x80160C30; // type:data anti-spin air values (f32[4][3]) - arcade: as_air
+gAntiSpinScaleTable = 0x80160C60; // type:data anti-spin scale per car (f32[4]) - arcade: as_scale
+
