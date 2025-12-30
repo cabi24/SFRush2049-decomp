@@ -11,6 +11,12 @@ NON_MATCHING ?= 0
 COMPARE      ?= 1
 VERBOSE      ?= 0
 
+# Compiler selection: ido (matching) or gcc (non-matching)
+# ido - Uses SGI IDO 5.3 compiler (required for matching builds)
+# gcc - Uses mips-linux-gnu-gcc (faster iteration, non-matching)
+COMPILER     ?= ido
+$(if $(filter $(COMPILER),ido gcc),,$(error Invalid COMPILER: $(COMPILER). Valid: ido gcc))
+
 # Directories
 BUILD_DIR    := build/$(VERSION)
 SRC_DIR      := src
@@ -28,26 +34,58 @@ LD_SCRIPT    := rush2049.$(VERSION).ld
 # Tools
 CROSS        ?= mips-linux-gnu-
 AS           := $(CROSS)as
-CC           := $(CROSS)gcc
 LD           := $(CROSS)ld
 OBJCOPY      := $(CROSS)objcopy
 OBJDUMP      := $(CROSS)objdump
 PYTHON       := python3
 
+# Compiler-specific configuration
+ifeq ($(COMPILER),ido)
+  # IDO 5.3 recompiled compiler (matching builds)
+  IDO_ROOT     := $(TOOLS_DIR)/ido-static-recomp/build/out
+  CC           := $(IDO_ROOT)/cc
+  ACPP         := $(IDO_ROOT)/acpp
+  COPT         := $(IDO_ROOT)/copt
+  MIPSISET     := -mips2
+  OPT_FLAGS    := -O2
+else
+  # GCC compiler (non-matching builds)
+  CC           := $(CROSS)gcc
+  MIPSISET     := -mips3
+  OPT_FLAGS    := -O2
+  NON_MATCHING := 1
+endif
+
 # Assembler flags
 ASFLAGS      := -march=vr4300 -mabi=32 -I$(INCLUDE_DIR)
 
-# C compiler flags (GCC for now, IDO needed for matching)
-# -march=vr4300: MIPS VR4300 (N64 CPU)
-# -mabi=32: Use 32-bit ABI (o32)
-# -G 0: No global pointer optimization
-# -mno-abicalls: No PIC/ABI call sequences
-# -fno-PIC: No position independent code
-CFLAGS       := -march=vr4300 -mabi=32 -G 0 -mno-abicalls -fno-PIC \
-                -I$(INCLUDE_DIR) -I$(INCLUDE_DIR)/PR \
-                -D_LANGUAGE_C -D__USE_ISOC99 \
-                -fno-builtin -ffreestanding -O2 \
-                -Wall -Wno-unused-variable -Wno-unused-function
+# C compiler flags
+# Common include paths and defines
+INCLUDE_CFLAGS := -I$(INCLUDE_DIR) -I$(INCLUDE_DIR)/PR -D_LANGUAGE_C
+
+ifeq ($(COMPILER),ido)
+  # IDO compiler flags (matching builds)
+  # -G 0: No global pointer optimization
+  # -Wab,-r4300_mul: Use R4300 multiply instructions
+  # -non_shared: Don't use shared libraries
+  CFLAGS := -G 0 $(MIPSISET) $(OPT_FLAGS) -non_shared \
+            $(INCLUDE_CFLAGS) \
+            -Wab,-r4300_mul -Xcpluscomm
+else
+  # GCC compiler flags (non-matching builds)
+  # -march=vr4300: MIPS VR4300 (N64 CPU)
+  # -mabi=32: Use 32-bit ABI (o32)
+  # -mno-abicalls: No PIC/ABI call sequences
+  # -fno-PIC: No position independent code
+  CFLAGS := -march=vr4300 -mabi=32 -G 0 -mno-abicalls -fno-PIC \
+            $(INCLUDE_CFLAGS) -D__USE_ISOC99 \
+            -fno-builtin -ffreestanding $(OPT_FLAGS) \
+            -Wall -Wno-unused-variable -Wno-unused-function
+endif
+
+ifeq ($(NON_MATCHING),1)
+  CFLAGS += -DNON_MATCHING
+endif
 
 # Symbol files for undefined references (will be converted to linker script format)
 UNDEFINED_SYMS := undefined_syms_auto.$(VERSION).txt
@@ -117,6 +155,8 @@ help:
 	@echo ""
 	@echo "Options:"
 	@echo "  VERSION=us          - Target version (default: us)"
+	@echo "  COMPILER=ido        - Use IDO 5.3 compiler (matching, default)"
+	@echo "  COMPILER=gcc        - Use GCC compiler (non-matching)"
 	@echo "  NON_MATCHING=1      - Build non-matching ROM"
 	@echo "  COMPARE=0           - Skip hash verification"
 	@echo "  VERBOSE=1           - Show all commands"
@@ -156,6 +196,11 @@ $(BUILD_DIR)/$(SRC_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	@echo "CC $<"
 	$(V)$(CC) -c $(CFLAGS) -o $@ $<
+
+# os_sync.c matches with debug-style codegen; disable optimization for this file.
+$(BUILD_DIR)/src/libultra/os_sync.o: CFLAGS := -G 0 $(MIPSISET) -g -non_shared \
+            $(INCLUDE_CFLAGS) \
+            -Wab,-r4300_mul -Xcpluscomm
 
 # Convert binary files to objects (using MIPS big-endian ELF format)
 # Use elf32-big for binary files to avoid ABI conflicts
@@ -229,8 +274,13 @@ setup:
 	@echo "[x] Python dependencies:"
 	@echo "    pip install splat64 spimdisasm"
 	@echo ""
+ifeq ($(wildcard $(TOOLS_DIR)/ido-static-recomp/build/out/cc),)
 	@echo "[ ] IDO compiler (for matching builds):"
-	@echo "    Required for byte-matching decompilation"
+	@echo "    Run: cd tools/ido-static-recomp && make setup && make VERSION=5.3"
+else
+	@echo "[x] IDO 5.3 compiler (ready for matching builds)"
+	@echo "    Location: $(TOOLS_DIR)/ido-static-recomp/build/out/"
+endif
 
 # ============================================================
 # Development helpers

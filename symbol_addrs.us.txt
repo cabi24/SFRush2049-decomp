@@ -876,6 +876,46 @@ resource_alloc_init = 0x8010FC80; // type:func allocate and initialize resource 
 synced_model_render = 0x8010FCC0; // type:func render model with sync (92 bytes) - acquires model_sync, calls model_render
 struct_init_and_call = 0x8010FD1C; // type:func initialize struct and call sound_start_3d (68 bytes) - sound_3d_struct setup
 
+// === Timer and Scoring Functions (0x80100000+ from game.c comments) ===
+timer_reset = 0x80100DF0; // type:func timer reset (244 bytes) - resets race timer to 0
+countdown_start = 0x80100EE4; // type:func countdown timer start (776 bytes) - starts 3-2-1 countdown
+lap_timer_split = 0x801011DC; // type:func lap timer split (1340 bytes) - records lap completion time
+best_time_check = 0x80101700; // type:func best time check (588 bytes) - checks if time beats leaderboard
+best_time_record = 0x8010194C; // type:func record new best (812 bytes) - saves new best time to leaderboard
+leaderboard_display = 0x80101C78; // type:func leaderboard display (1472 bytes) - shows top 5 times
+
+// === Race Results and End Game UI (0x80102000+) ===
+race_results_screen = 0x80102250; // type:func race results screen (2084 bytes) - displays finish times and positions
+award_ceremony = 0x80102A74; // type:func award ceremony (1524 bytes) - displays race results and trophies
+trophy_animation = 0x8010306C; // type:func trophy animation (876 bytes) - renders animated trophy for winner
+continue_prompt = 0x801033D8; // type:func continue prompt (1616 bytes) - ask player to continue or quit
+game_over_screen = 0x80103A08; // type:func game over screen (2328 bytes) - displays final stats and options
+name_entry_screen = 0x80104320; // type:func name entry screen (1844 bytes) - enter initials for high score
+highscore_entry_anim = 0x80104A58; // type:func high score entry animation (1036 bytes) - animates new high score effect
+statistics_display = 0x80104E84; // type:func statistics display (2464 bytes) - shows player game statistics
+achievements_check = 0x80105858; // type:func achievements check (1692 bytes) - checks and unlocks achievements
+achievement_unlock = 0x80105EF4; // type:func achievement unlock (876 bytes) - shows unlock notification popup
+achievement_display = 0x80106260; // type:func achievement display (1484 bytes) - renders achievement popup on screen
+profile_stats_update = 0x801068F4; // type:func profile stats update (2144 bytes) - updates player profile with race results
+
+// === AI/Difficulty Functions (0x80107000+) ===
+difficulty_scaling = 0x80107110; // type:func difficulty scaling (1248 bytes) - scales game difficulty
+ai_difficulty_adjust = 0x80107600; // type:func AI difficulty adjust (924 bytes) - adjusts AI based on player skill
+rubber_banding = 0x801079AC; // type:func rubber banding (1768 bytes) - adjusts AI speed based on player position
+dynamic_difficulty = 0x80108098; // type:func dynamic difficulty (2356 bytes) - adjusts difficulty during race
+catchup_logic = 0x801089CC; // type:func catch-up logic (1432 bytes) - implements catch-up mechanics
+skill_rating_update = 0x80108F6C; // type:func skill rating update (876 bytes) - updates player skill rating
+matchmaking = 0x801092D8; // type:func matchmaking (1984 bytes) - player skill-based matchmaking
+
+// === Multiplayer/Network Functions (0x80109000+) ===
+session_host = 0x80109A98; // type:func session host (1124 bytes) - initializes multiplayer session as host
+session_join = 0x80109EFC; // type:func session join (1476 bytes) - joins existing multiplayer session
+session_leave = 0x8010A4C0; // type:func session leave (892 bytes) - removes player from session
+network_sync_full = 0x8010A83C; // type:func network sync full (2648 bytes) - synchronizes game state between players
+ping_measurement = 0x8010B284; // type:func ping measurement (676 bytes) - measures input lag/response time
+disconnect_handler = 0x8010B874; // type:func disconnection handling (1548 bytes) - handles player disconnect
+reconnect_attempt = 0x8010BE7C; // type:func reconnection attempt (1152 bytes) - attempts to reconnect player
+
 // === Overnight1 batch (350 functions from game code) ===
 render_init_setup = 0x80087068; // type:func render initialization setup
 // render_mode_setup = 0x80087118 - defined above
@@ -2286,3 +2326,187 @@ gAntiSpinRoadTable = 0x80160C00; // type:data anti-spin road values (f32[4][3]) 
 gAntiSpinAirTable = 0x80160C30; // type:data anti-spin air values (f32[4][3]) - arcade: as_air
 gAntiSpinScaleTable = 0x80160C60; // type:data anti-spin scale per car (f32[4]) - arcade: as_scale
 
+
+// ============================================================================
+// Rendering System Global Variables
+// (Based on arcade visuals.c/h, camera.c, dis.h, hud.c analysis - 2025-12-30)
+// ============================================================================
+
+// Framebuffer/Color Image (N64 display lists use gDPSetColorImage)
+gFramebufferA = 0x80200000; // type:data primary framebuffer A (320x240 RGBA16 = 153600 bytes)
+gFramebufferB = 0x80225800; // type:data secondary framebuffer B (double buffering)
+gZBuffer = 0x8024B000; // type:data Z-buffer / depth buffer (320x240 u16)
+gCurrentFramebuffer = 0x80035500; // type:data pointer to current render target
+gFramebufferIndex = 0x80035504; // type:data framebuffer swap index (0 or 1)
+gFrameWidth = 0x80035508; // type:data screen width in pixels (320)
+gFrameHeight = 0x8003550C; // type:data screen height in pixels (240)
+gFrameBytesPerPixel = 0x80035510; // type:data bytes per pixel (2 for RGBA16)
+
+// Display List Buffers (gfx.c globals)
+gGfxDisplayListA = 0x80035520; // type:data display list buffer A (OSGfx[])
+gGfxDisplayListB = 0x80039520; // type:data display list buffer B (double buffered)
+gGfxMasterDL = 0x8003D520; // type:data master display list head
+gGfxCurrentDL = 0x8003D524; // type:data current display list write position
+gGfxEndDL = 0x8003D528; // type:data display list buffer end (overflow guard)
+gGfxTaskPtr = 0x8003D52C; // type:data current graphics task pointer (OSTask*)
+
+// Matrix Stack (N64 uses gSPMatrix for transforms)
+gMatrixStack = 0x80035530; // type:data matrix stack buffer (32 matrices, 64 bytes each)
+gMatrixStackPtr = 0x80036530; // type:data matrix stack pointer (current depth)
+gMatrixStackDepth = 0x80036534; // type:data matrix stack depth counter (0-31)
+gProjectionMatrix = 0x80036540; // type:data current projection matrix (Mtx format)
+gModelViewMatrix = 0x80036580; // type:data current modelview matrix (Mtx format)
+gViewMatrix = 0x800365C0; // type:data view matrix from camera (Mtx format)
+
+// Camera State (arcade: camera.c - fcam, gCamPos, gCamUvs)
+gCameraMatrix = 0x80036600; // type:data camera 4x4 transform matrix (f32[16])
+gCameraPosition = 0x80036640; // type:data camera world position (f32[3])
+gCameraTarget = 0x8003664C; // type:data camera look-at target (f32[3])
+gCameraUp = 0x80036658; // type:data camera up vector (f32[3])
+gCameraForward = 0x80036664; // type:data camera forward vector (f32[3])
+gCameraRight = 0x80036670; // type:data camera right vector (f32[3])
+gCameraPitch = 0x8003667C; // type:data camera pitch angle (f32)
+gCameraYaw = 0x80036680; // type:data camera yaw angle (f32)
+gCameraRoll = 0x80036684; // type:data camera roll angle (f32)
+gCameraFov = 0x80036688; // type:data camera field of view (f32, degrees)
+gCameraAspect = 0x8003668C; // type:data camera aspect ratio (f32, width/height)
+gCameraNear = 0x80036690; // type:data near clip plane distance (f32)
+gCameraFar = 0x80036694; // type:data far clip plane distance (f32)
+gCameraView = 0x80036698; // type:data current camera view mode (s8) - arcade: view variable
+gCameraSaveView = 0x80036699; // type:data saved camera view (s8) - arcade: saveview
+
+// Fog Settings (arcade: sdebug.c - dbgFogColor, dbgFogMinDist, dbgFogMaxDist)
+gFogEnabled = 0x800366A0; // type:data fog enabled flag (s32)
+gFogColor = 0x800366A4; // type:data fog color RGB packed (u32)
+gFogColorR = 0x800366A8; // type:data fog color red component (u8)
+gFogColorG = 0x800366A9; // type:data fog color green component (u8)
+gFogColorB = 0x800366AA; // type:data fog color blue component (u8)
+gFogColorA = 0x800366AB; // type:data fog color alpha component (u8)
+gFogNear = 0x800366AC; // type:data fog start distance (f32)
+gFogFar = 0x800366B0; // type:data fog end distance (f32)
+gFogDensity = 0x800366B4; // type:data fog density/level (f32)
+gFogMin = 0x800366B8; // type:data fog minimum (s32, RDP G_MWO_FOG)
+gFogMax = 0x800366BC; // type:data fog maximum (s32, RDP G_MWO_FOG)
+
+// Lighting State (N64 uses gSPNumLights, gSPLight)
+gLightingEnabled = 0x800366C0; // type:data lighting enabled flag (s32)
+gNumLights = 0x800366C4; // type:data number of active lights (s32, 0-7)
+gAmbientLight = 0x800366C8; // type:data ambient light RGBA (u8[4])
+gDirectionalLight = 0x800366CC; // type:data directional light direction (f32[3])
+gLightColor = 0x800366D8; // type:data primary light color RGBA (u8[4])
+gLightIntensity = 0x800366DC; // type:data light intensity multiplier (f32)
+
+// Render Mode State (N64 RDP render modes)
+gRenderMode = 0x800366E0; // type:data current render mode bits (u32)
+gCycleType = 0x800366E4; // type:data cycle type (G_CYC_1CYCLE/G_CYC_2CYCLE)
+gAlphaCompare = 0x800366E8; // type:data alpha compare mode (u32)
+gDepthEnabled = 0x800366EC; // type:data depth test enabled (s32)
+gDepthWrite = 0x800366F0; // type:data depth write enabled (s32)
+gBlendMode = 0x800366F4; // type:data blend mode flags (u32)
+gCullMode = 0x800366F8; // type:data backface cull mode (u32)
+
+// Texture State
+gCurrentTextureId = 0x80036700; // type:data current bound texture ID (s32)
+gTextureScaleS = 0x80036704; // type:data texture scale S (u16)
+gTextureScaleT = 0x80036706; // type:data texture scale T (u16)
+gTextureTile = 0x80036708; // type:data current texture tile (s32)
+gTextureFormat = 0x8003670C; // type:data texture format (G_IM_FMT_*)
+gTextureBitSize = 0x80036710; // type:data texture bit size (G_IM_SIZ_*)
+gTextureLodEnabled = 0x80036714; // type:data texture LOD enabled (s32)
+gTextureWrapS = 0x80036718; // type:data S wrap mode (clamp/wrap/mirror)
+gTextureWrapT = 0x8003671C; // type:data T wrap mode (clamp/wrap/mirror)
+
+// Split Screen / Viewport (for multiplayer)
+gSplitScreenMode = 0x80036720; // type:data split screen mode (0=off, 1=vert, 2=horiz, 3=4way)
+gSplitScreenCount = 0x80036724; // type:data number of split screen panels (1-4)
+gCurrentViewportIdx = 0x80036728; // type:data current viewport index being rendered (0-3)
+gViewportRectX = 0x8003672C; // type:data current viewport X offset (s16)
+gViewportRectY = 0x80036730; // type:data current viewport Y offset (s16)
+gViewportRectW = 0x80036734; // type:data current viewport width (s16)
+gViewportRectH = 0x80036738; // type:data current viewport height (s16)
+
+// Object Rendering State (arcade: dis.h DynamicObjName)
+gRenderObjectCount = 0x80036740; // type:data number of objects to render (s32)
+gRenderObjectList = 0x80036744; // type:data pointer to render object list
+gVisibleObjectCount = 0x80036748; // type:data visible objects after culling (s32)
+gRenderPassIndex = 0x8003674C; // type:data current render pass (0=opaque, 1=translucent)
+gSortedObjectList = 0x80036750; // type:data sorted object list for translucency
+
+// Car Rendering (arcade: visuals.c - CarParts, gCarParts)
+gCarPartsSlots = 0x80036760; // type:data car parts slots array (CarParts[12])
+gCarBodyModels = 0x80037760; // type:data car body model IDs (s32[12])
+gCarWheelModels = 0x80037790; // type:data car wheel model IDs (s32[12])
+gWheelRotation = 0x800377C0; // type:data wheel rotation angles (f32[4] per car)
+gWheelSteerAngle = 0x80037880; // type:data wheel steer angle (f32 per car)
+gSuspensionOffset = 0x800378B0; // type:data suspension compression offset (f32[4] per car)
+
+// HUD Rendering State (arcade: hud.c)
+gHudEnabled = 0x80037900; // type:data HUD enabled flag (s32)
+gHudBlitList = 0x80037904; // type:data HUD blit element list pointer
+gHudBlitCount = 0x80037908; // type:data number of HUD elements (s32)
+gSpeedometerValue = 0x8003790C; // type:data current speed display value (s16)
+gTachometerValue = 0x80037910; // type:data current RPM display value (s16)
+gLapDisplayValue = 0x80037914; // type:data current lap display (s8)
+gLapTotalValue = 0x80037918; // type:data total laps display (s8)
+gPositionDisplayValue = 0x8003791C; // type:data current race position display (s8)
+gTimerDisplayValue = 0x80037920; // type:data race timer in msec (s32)
+gWrongWayFlag = 0x80037924; // type:data wrong way indicator flag (s8)
+gMinimapEnabled = 0x80037928; // type:data minimap visible flag (s32)
+gMinimapCenterX = 0x8003792C; // type:data minimap center X (s16)
+gMinimapCenterY = 0x80037930; // type:data minimap center Y (s16)
+
+// Track Visual State
+gTrackVisibleSegments = 0x80037940; // type:data visible track segment bitmask
+gTrackLodLevel = 0x80037944; // type:data current track LOD level (s32)
+gTrackTextureSet = 0x80037948; // type:data track texture set index (s32)
+gTrackAmbientColor = 0x8003794C; // type:data track ambient lighting color (u32)
+gTrackTimeOfDay = 0x80037950; // type:data time of day setting (0=day, 1=dusk, 2=night)
+gTrackWeather = 0x80037954; // type:data weather setting (0=clear, 1=rain)
+
+// Transformation Constants (for fixed-point matrix math)
+gScaleFactorX = 0x80037960; // type:data X scale factor for screen (f32)
+gScaleFactorY = 0x80037964; // type:data Y scale factor for screen (f32)
+gTranslateX = 0x80037968; // type:data X translation offset (f32)
+gTranslateY = 0x8003796C; // type:data Y translation offset (f32)
+gScreenCenterX = 0x80037970; // type:data screen center X in pixels (s16)
+gScreenCenterY = 0x80037974; // type:data screen center Y in pixels (s16)
+
+// Render Statistics (debug)
+gTrianglesRendered = 0x80037980; // type:data triangles rendered this frame (s32)
+gVerticesTransformed = 0x80037984; // type:data vertices transformed this frame (s32)
+gDisplayListCommands = 0x80037988; // type:data display list commands this frame (s32)
+gTextureLoads = 0x8003798C; // type:data texture loads this frame (s32)
+gCulledObjects = 0x80037990; // type:data objects culled by frustum (s32)
+
+// Visual Effects Pool (arcade: visuals.c - gEnvirons, MAX_VISUALS=100)
+gEffectsPoolBase = 0x80150000; // type:data visual effects pool base (Visual[100])
+gEffectsPoolEnd = 0x80154000; // type:data visual effects pool end
+gActiveEffectList = 0x80037994; // type:data active effects linked list head
+gFreeEffectList = 0x80037998; // type:data free effects linked list head
+gEffectFrameRate = 0x8003799C; // type:data effect quality (true=good framerate)
+
+// Skid Mark Rendering (arcade: visuals.c - gSkid, SKID_OBJS=100)
+gSkidMarkPoolBase = 0x80155000; // type:data skid mark pool base (Skid[100])
+gSkidMarkActiveList = 0x800379A0; // type:data active skid list head
+gSkidMarkFreeList = 0x800379A4; // type:data free skid list head
+gSkidMarkTextureId = 0x800379A8; // type:data skid mark texture ID (TEX_SKID)
+
+// Particle Systems
+gParticlePoolBase = 0x80156000; // type:data particle pool base
+gParticleActiveCount = 0x800379AC; // type:data active particle count
+gSmokeEmitterList = 0x800379B0; // type:data smoke emitter list head
+gSparkEmitterList = 0x800379B4; // type:data spark emitter list head
+gDustEmitterList = 0x800379B8; // type:data dust emitter list head
+gSplashEmitterList = 0x800379BC; // type:data water splash emitter list head
+
+// Shadow System
+gShadowEnabled = 0x800379C0; // type:data shadow rendering enabled (s32)
+gShadowTextureId = 0x800379C4; // type:data shadow blur texture ID
+gShadowIntensity = 0x800379C8; // type:data shadow opacity (0-255)
+gShadowOffset = 0x800379CC; // type:data shadow Y offset from ground (f32)
+
+// Reflection System (arcade: visuals.c - reflection textures)
+gReflectionMode = 0x800379D0; // type:data reflection mode (0=off, 1=cloud, 2=tunnel)
+gReflectionTexCloud = 0x800379D4; // type:data cloud reflection texture ID
+gReflectionTexTunnel = 0x800379D8; // type:data tunnel reflection texture ID
+gInTunnelState = 0x800379DC; // type:data in tunnel state (-1=exit, 0=hold, 1=enter)

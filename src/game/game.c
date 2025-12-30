@@ -509,6 +509,8 @@ extern u32 gRenderDataPtr;             /* 0x8011EA18 - render data pointer */
 extern s32 gPlayerInputEnabled;        /* 0x801147C8 - player input enabled flag */
 extern s32 gPauseState;                /* 0x80114700 - pause state flag */
 extern s32 race_active;                /* 0x801170FC - race active flag */
+extern s32 gNumPlayers;                /* 0x80166004 - number of players */
+extern s32 gNetworkState;              /* 0x80166000 - network state */
 
 /* Additional external data for game_loop */
 extern s8  gstate_byte;   /* Init flag */
@@ -9215,7 +9217,7 @@ void entity_collision_detect(void *entity) {
 void entity_update_callback(void *entity, s16 param) {
     s32 globalFlag;
 
-    globalFlag = *(s32 *)0x801170FC;
+    globalFlag = race_active;
     if (globalFlag != 0) {
         return;
     }
@@ -19234,21 +19236,21 @@ void net_player_leave(s32 playerSlot) {
  */
 void net_game_start(void) {
     u8 startMsg[32];
-    s32 *gstate;
+    s32 *gstate_ptr;  /* Pointer to global gstate */
     s32 *selectedTrack;
     s32 *selectedLaps;
     s32 *numPlayers;
     s32 *randomSeed;
     s32 i;
 
-    gstate = (s32 *)0x801146EC;
+    gstate_ptr = (s32 *)&gstate;  /* Use address of global */
     selectedTrack = (s32 *)0x80166010;
     selectedLaps = (s32 *)0x80166014;
-    numPlayers = (s32 *)0x80166004;
+    numPlayers = (s32 *)&gNumPlayers;
     randomSeed = (s32 *)0x80166018;
 
     /* Generate random seed for synchronized randomness */
-    *randomSeed = *((s32 *)0x80142AFC) ^ 0x12345678;
+    *randomSeed = frame_counter ^ 0x12345678;
 
     /* Build game start message */
     startMsg[0] = 0x20;  /* Game start message type */
@@ -19372,12 +19374,12 @@ void net_error_handle(s32 errorCode) {
     s32 *netState;
     s32 *errorCount;
     s32 *lastError;
-    s32 *gstate;
+    s32 *gstate_ptr;  /* Pointer to global gstate */
 
-    netState = (s32 *)0x80166000;
+    netState = (s32 *)&gNetworkState;
     errorCount = (s32 *)0x80166024;
     lastError = (s32 *)0x80166028;
-    gstate = (s32 *)0x801146EC;
+    gstate_ptr = (s32 *)&gstate;
 
     *lastError = errorCode;
     (*errorCount)++;
