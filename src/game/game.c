@@ -470,7 +470,7 @@ extern s32 D_C;
 
 /* External function declarations */
 extern void *audio_alloc(s32 size);           /* channel_stop - Audio memory allocator */
-extern void attract_or_transition(void);      /* func_800EDDC0 - Rendering/game logic */
+extern void attract_or_transition(void);      /* 0x800EDDC0 - Rendering/game logic */
 extern void process_inputs(void);             /* state_handler - Screen/state update */
 extern s32  sound_start(s32 action, s32 type, void *data, s32 flag); /* sound_start - Audio/sound control */
 extern void attract_handler(void);            /* attract_handler - Attract mode */
@@ -1408,7 +1408,7 @@ extern void audio_stream_start(s32 streamId, void *data); /* Audio stream start 
 
 /*
  * race_state_machine - Race state machine
- * (func_800F6310)
+ * Address: 0x800F6310
  * Handles race initialization and state transitions.
  */
 void race_state_machine(void) {
@@ -1705,7 +1705,6 @@ exit_func:
 /**
 /*
  * active_sounds_update - Update all active sound objects
- * (func_800F7344)
  * Address: 0x800F7344
  * Size: 184 bytes
  *
@@ -1778,13 +1777,13 @@ void active_sounds_update(void) {
 
 /**
 /*
- * func_800F73FC - Main render pipeline dispatcher
+ * update_game_systems - Main render pipeline dispatcher
  * Address: 0x800F73FC
  * Size: 76 bytes
  *
  * This is the main per-frame render update entry point.
  * Orchestrates all visual updates:
- *   1. If sound_update != 0, update active sounds (objects_update -> func_800F7344)
+ *   1. If sound_update != 0, update active sounds (objects_update -> active_sounds_update)
  *   2. If physics_update != 0, update physics objects (physics_update -> physics_update_all)
  *   3. Always update particle/effect emitters (effects_update)
  *   4. Always run main scene render (render_scene)
@@ -1797,7 +1796,7 @@ extern void physics_update_all(void); /* physics_update_all - Physics object lin
 void update_game_systems(s32 sound_update, s32 physics_update) {
     /* Update active sounds if requested */
     if (sound_update != 0) {
-        objects_update();  /* Loads count then calls func_800F7344 */
+        objects_update();  /* Loads count then calls active_sounds_update */
     }
 
     /* Update physics objects if requested */
@@ -3375,9 +3374,9 @@ void player_flag_clear_process(void) {
 
 /**
 /*
- * collision_check_thunk (func_800EE88C)
+ * collision_check_thunk (0x800EE88C, 32 bytes)
+ *
  * Address: 0x800EE88C
- * Size: 32 bytes
  *
  * Simple thunk to collision_response_calc.
  */
@@ -3767,7 +3766,7 @@ void fp_call_wrapper(s32 a0) {
 
 /**
 /*
- * memory_regions_clear (func_800F7E70)
+ * memory_regions_clear
  * Address: 0x800F7E70
  * Size: 64 bytes
  *
@@ -3829,9 +3828,9 @@ void resource_type_select_simple(s32 a0) {
 
 /**
 /*
- * mode_byte_set (func_800ED764)
+ * mode_byte_set (0x800ED764, 80 bytes)
+ *
  * Address: 0x800ED764
- * Size: 80 bytes
  *
  * If a0 (as signed 16-bit) is negative:
  *   - Calls sound_update_channel with t0=0
@@ -3855,9 +3854,9 @@ void mode_byte_set(s16 a0) {
 
 /**
 /*
- * mode_byte2_set (func_800ED7B4)
+ * mode_byte2_set (0x800ED7B4, 80 bytes)
+ *
  * Address: 0x800ED7B4
- * Size: 80 bytes
  *
  * Same as mode_byte_set but reads offset 4 and writes to mode_byte_2.
  *
@@ -3878,9 +3877,9 @@ void mode_byte2_set(s16 a0) {
 
 /**
 /*
- * sync_init_conditional (func_800EE7C4)
+ * sync_init_conditional (0x800EE7C4, 92 bytes)
+ *
  * Address: 0x800EE7C4
- * Size: 92 bytes
  *
  * If t6 (condition) is zero:
  *   - Sets dma_init_flag = 1
@@ -19564,9 +19563,9 @@ void ghost_record_frame(void *ghost) {
 }
 
 /*
-
- * func_800F4034 (1536 bytes)
- * Ghost playback - interpolates ghost car position from recorded data
+ * ghost_playback - interpolates ghost car position from recorded data
+ * Address: 0x800F4034
+ * Size: 1536 bytes
  */
 void ghost_playback(void *ghost) {
     s32 *frameCount;
@@ -19638,9 +19637,9 @@ void ghost_playback(void *ghost) {
 }
 
 /*
-
- * func_800F4634 (908 bytes)
- * Ghost save - saves ghost data to controller pak
+ * ghost_save - saves ghost data to controller pak
+ * Address: 0x800F4634
+ * Size: 908 bytes
  */
 void ghost_save(void *ghost, s32 slot) {
     s32 *maxFrames;
@@ -19711,9 +19710,9 @@ void ghost_save(void *ghost, s32 slot) {
 }
 
 /*
-
- * func_800F49C0 (876 bytes)
- * Ghost load - loads ghost data from controller pak
+ * ghost_load - loads ghost data from controller pak
+ * Address: 0x800F49C0
+ * Size: 876 bytes
  */
 s32 ghost_load(void *ghost, s32 slot) {
     s32 *maxFrames;
@@ -19800,9 +19799,9 @@ s32 ghost_load(void *ghost, s32 slot) {
 }
 
 /*
-
- * func_800F4D2C (752 bytes)
- * Ghost render - renders translucent ghost car
+ * ghost_render - renders translucent ghost car
+ * Address: 0x800F4D2C
+ * Size: 752 bytes
  */
 void ghost_render(void *ghost) {
     s32 *playbackState;
@@ -19880,9 +19879,9 @@ void ghost_render(void *ghost) {
 }
 
 /*
-
- * func_800F5000 (3832 bytes)
- * Stunt system - detects and scores aerial stunts
+ * stunt_update - detects and scores aerial stunts
+ * Address: 0x800F5000
+ * Size: 3832 bytes
  */
 void stunt_update(void *car) {
     f32 *carPos;
@@ -20051,9 +20050,9 @@ void stunt_update(void *car) {
 }
 
 /*
-
- * func_800F5EF8 (588 bytes)
- * Stunt score - calculates point value for stunt type
+ * stunt_calc_score - calculates point value for stunt type
+ * Address: 0x800F5EF8
+ * Size: 588 bytes
  */
 s32 stunt_calc_score(s32 stuntType) {
     s32 score;
@@ -20125,9 +20124,9 @@ s32 stunt_calc_score(s32 stuntType) {
 }
 
 /*
-
- * func_800F6144 (1888 bytes)
- * Stunt combo - tracks and chains stunts together
+ * stunt_combo_update - tracks and chains stunts together
+ * Address: 0x800F6144
+ * Size: 1888 bytes
  */
 void stunt_combo_update(void *car, s32 stuntType) {
     s32 *comboCount;
@@ -20225,9 +20224,9 @@ void stunt_combo_update(void *car, s32 stuntType) {
 }
 
 /*
-
- * func_800F6894 (580 bytes)
- * Wing deploy - extends/retracts car wings for air control
+ * wing_deploy - extends/retracts car wings for air control
+ * Address: 0x800F6894
+ * Size: 580 bytes
  */
 void wing_deploy(void *car, s32 deploy) {
     s32 *wingState;
@@ -20299,9 +20298,9 @@ void wing_deploy(void *car, s32 deploy) {
 }
 
 /*
-
- * func_800F6AD8 (740 bytes)
- * Trick detection - identifies trick type from car state
+ * trick_detect - identifies trick type from car state
+ * Address: 0x800F6AD8
+ * Size: 740 bytes
  */
 s32 trick_detect(void *car) {
     f32 *carRot;
@@ -20386,9 +20385,9 @@ s32 trick_detect(void *car) {
 }
 
 /*
-
- * func_800F6DBC (1168 bytes)
- * Landing detection - evaluates landing quality after aerial
+ * landing_detect - evaluates landing quality after aerial
+ * Address: 0x800F6DBC
+ * Size: 1168 bytes
  */
 s32 landing_detect(void *car) {
     f32 *carPos;
@@ -20500,9 +20499,9 @@ s32 landing_detect(void *car) {
 }
 
 /*
-
- * func_800F724C (252 bytes)
- * Stunt multiplier - calculates score multiplier based on conditions
+ * stunt_multiplier - calculates score multiplier based on conditions
+ * Address: 0x800F724C
+ * Size: 252 bytes
  */
 f32 stunt_multiplier(void *car) {
     s32 *comboCount;
@@ -25918,9 +25917,14 @@ void virtual_keyboard(u8 *buffer, s32 maxLen) {
 }
 
 /*
-
- * func_800E051C (212 bytes)
- * Keyboard cursor move
+ * cursor_move (func_800E051C)
+ * Address: 0x800E051C
+ * Size: 212 bytes
+ *
+ * Keyboard cursor move - handles virtual keyboard cursor navigation.
+ *
+ * @param dx Horizontal movement delta (-1, 0, or 1)
+ * @param dy Vertical movement delta (-1, 0, or 1)
  */
 void cursor_move(s32 dx, s32 dy) {
     /* Cursor move - stub */
@@ -36890,8 +36894,14 @@ void *pre_render(s32 objectType, f32 *pos) {
 
 /*
 
- * func_800EB690 (396 bytes)
- * World object destroy
+/**
+/*
+ * world_object_destroy (func_800EB690)
+ * Address: 0x800EB690
+ * Size: 396 bytes
+ *
+ * Destroys a world object and frees associated resources.
+ * Based on arcade object management - handles cleanup of spawned objects.
  */
 void world_object_destroy(void *object) {
     /* Object destroy - stub */
@@ -36899,7 +36909,7 @@ void world_object_destroy(void *object) {
 
 /*
 
- * func_800EC2F8 (1584 bytes)
+ * world_physics_tick (0x800EC2F8, 1584 bytes)
  * World physics tick
  *
  * Based on arcade collision.c - iterates all cars and applies physics
@@ -36939,7 +36949,7 @@ void world_physics_tick(void) {
 
 /*
 
- * func_800EC928 (588 bytes)
+ * world_collision_detect (0x800EC928, 588 bytes)
  * World collision detect
  *
  * Based on arcade collision() - check if two objects' bounding spheres overlap
@@ -36979,7 +36989,7 @@ s32 world_collision_detect(void *a, void *b) {
 
 /*
 
- * func_800ECB74 (164 bytes)
+ * world_bounds_check (0x800ECB74, 164 bytes)
  * World bounds check
  *
  * Check if position is within world bounds
@@ -37017,7 +37027,7 @@ s32 world_bounds_check(f32 *pos) {
 
 /*
 
- * func_800ECC18 (2652 bytes)
+ * world_gravity_apply (0x800ECC18, 2652 bytes)
  * World gravity apply
  *
  * Based on arcade physics - applies gravity acceleration to velocity
@@ -37053,7 +37063,7 @@ void world_gravity_apply(void *object) {
 
 /*
 
- * func_800ED674 (400 bytes)
+ * world_friction_apply (0x800ED674, 400 bytes)
  * World friction apply
  *
  * Applies friction/drag to reduce velocity over time
@@ -37096,7 +37106,7 @@ void world_friction_apply(void *object) {
 
 /*
 
- * func_800ED804 (712 bytes)
+ * world_velocity_integrate (0x800ED804, 712 bytes)
  * World velocity integrate
  *
  * Integrates velocity to update position (Euler integration)
@@ -37121,7 +37131,7 @@ void world_velocity_integrate(void *object, f32 dt) {
 
 /*
 
- * func_800EDACC (540 bytes)
+ * world_collision_response (0x800EDACC, 540 bytes)
  * World collision response
  *
  * Based on arcade setCollisionForce() - applies impulse to separate objects
@@ -37206,7 +37216,7 @@ void world_collision_response(void *a, void *b) {
 
 /*
 
- * func_800EDCE8 (2292 bytes)
+ * world_trigger_check (0x800EDCE8, 2292 bytes)
  * World trigger check
  *
  * Checks if player has entered any trigger volumes (checkpoints, pickups, etc.)
@@ -37254,7 +37264,7 @@ void world_trigger_check(void *player) {
 
 /*
 
- * func_800EE5DC (580 bytes)
+ * world_trigger_activate (0x800EE5DC, 580 bytes)
  * World trigger activate
  *
  * Activates a world trigger by ID - used for checkpoints, shortcuts, etc.
@@ -37368,7 +37378,7 @@ void *effect_spawn(s32 effectType, f32 *pos) {
 
 /*
 
- * func_800EE8B4 (456 bytes)
+ * world_effect_update (0x800EE8B4, 456 bytes)
  * World effect update
  *
  * Updates a single effect - position, animation, lifetime
@@ -37508,7 +37518,7 @@ void *drone_destroy(s32 type, f32 *pos) {
 
 /*
 
- * func_800EEDB0 (1240 bytes)
+ * particle_update (0x800EEDB0, 1240 bytes)
  * Particle update
  *
  * Updates all particles from an emitter and spawns new ones
@@ -37678,7 +37688,7 @@ void spark_effect(f32 *pos, s32 count) {
 
 /*
 
- * func_800EF8F4 (1460 bytes)
+ * explosion_effect (0x800EF8F4, 1460 bytes)
  * Explosion effect
  *
  * Creates a large explosion with fireball, smoke, and sparks
@@ -37733,7 +37743,7 @@ void explosion_effect(f32 *pos, f32 radius) {
 
 /*
 
- * func_800EFEA8 (600 bytes)
+ * dust_cloud_effect (0x800EFEA8, 600 bytes)
  * Dust cloud effect
  *
  * Creates a settling dust cloud (from crashes, off-road driving)
@@ -38418,10 +38428,9 @@ void track_render(void *camera) {
 
 /*
 
- * func_800F42D0 (260 bytes)
- * Track section visible
- *
- * Checks if a track section is within camera frustum
+ * track_section_visible - Checks if a track section is within camera frustum
+ * Address: 0x800F42D0
+ * Size: 260 bytes
  */
 s32 track_section_visible(s32 sectionId, void *camera) {
     u8 *camData = (u8 *)camera;
@@ -38464,10 +38473,9 @@ s32 track_section_visible(s32 sectionId, void *camera) {
 
 /*
 
- * func_800F43D4 (560 bytes)
- * Track LOD select
- *
- * Selects appropriate LOD level based on distance from camera
+ * track_lod_select - Selects appropriate LOD level based on distance from camera
+ * Address: 0x800F43D4
+ * Size: 560 bytes
  */
 s32 track_lod_select(f32 distance) {
     /* LOD thresholds */
@@ -38483,10 +38491,9 @@ s32 track_lod_select(f32 distance) {
 
 /*
 
- * func_800F4604 (6540 bytes)
- * Track geometry stream
- *
- * Streams track geometry data from ROM to RSP
+ * track_geometry_stream - Streams track geometry data from ROM to RSP
+ * Address: 0x800F4604
+ * Size: 6540 bytes
  */
 void track_geometry_stream(void) {
     extern Gfx **gfx_dl_ptr;
@@ -38521,10 +38528,9 @@ void track_geometry_stream(void) {
 
 /*
 
- * func_800F5F90 (1348 bytes)
- * Track texture load
- *
- * Loads track texture into TMEM
+ * track_texture_load - Loads track texture into TMEM
+ * Address: 0x800F5F90
+ * Size: 1348 bytes
  */
 void track_texture_load(s32 textureId) {
     extern Gfx **gfx_dl_ptr;
@@ -38563,10 +38569,9 @@ void track_texture_load(s32 textureId) {
 
 /*
 
- * func_800F64D4 (1120 bytes)
- * Billboard render
- *
- * Renders a camera-facing billboard sprite
+ * billboard_render - Renders a camera-facing billboard sprite
+ * Address: 0x800F64D4
+ * Size: 1120 bytes
  */
 void billboard_render(void *billboard) {
     extern Gfx **gfx_dl_ptr;
@@ -38605,10 +38610,9 @@ void billboard_render(void *billboard) {
 
 /*
 
- * func_800F6934 (388 bytes)
- * Sign render
- *
- * Renders roadside signs (speed limits, directions, etc.)
+ * sign_render - Renders roadside signs (speed limits, directions, etc.)
+ * Address: 0x800F6934
+ * Size: 388 bytes
  */
 void sign_render(void *sign) {
     u8 *signData = (u8 *)sign;
@@ -38628,10 +38632,9 @@ void sign_render(void *sign) {
 
 /*
 
- * func_800F6AB8 (2460 bytes)
- * Props render
- *
- * Renders track props (cones, barriers, trees, etc.)
+ * props_render - Renders track props (cones, barriers, trees, etc.)
+ * Address: 0x800F6AB8
+ * Size: 2460 bytes
  */
 void props_render(void *camera) {
     extern u8 prop_data_array[];    /* Prop data array */
@@ -38676,11 +38679,9 @@ void props_render(void *camera) {
 }
 
 /*
-
- * func_800F7454 (1996 bytes)
- * Crowd render
- *
- * Renders animated crowd sprites along the track
+ * crowd_render - Renders animated crowd sprites along the track
+ * Address: 0x800F7454
+ * Size: 1996 bytes
  */
 void crowd_render(void) {
     extern Gfx **gfx_dl_ptr;
