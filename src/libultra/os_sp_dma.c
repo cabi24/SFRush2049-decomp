@@ -22,12 +22,12 @@
 #define SP_DMA_READ         1   /* SP -> RDRAM */
 
 /* External functions */
-extern s32 __osSpDeviceBusy(void);  /* func_8000D710 */
+extern s32 __osSpDeviceBusy(void);  /* 0x8000D710 */
 extern u32 osVirtualToPhysical(void *addr);
 
 /**
  * Start SP DMA transfer
- * (func_8000D680 - osSpRawStartDma)
+ * (0x8000D680 - osSpRawStartDma)
  *
  * Initiates a DMA transfer between RDRAM and SP memory (IMEM/DMEM).
  * Used by the RSP task system for loading microcode and data.

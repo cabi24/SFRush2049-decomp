@@ -104,7 +104,7 @@ void dll_remove(DLLNode **list, DLLNode *node) {
 
 /**
  * Initialize the global timer queue
- * (func_8000C090)
+ * (0x8000C090)
  *
  * Sets up an empty circular timer queue where head->next points to itself.
  */
@@ -133,7 +133,7 @@ void dll_init(void) {
 
 /**
  * Process expired timers (delta queue maintenance)
- * (func_8000C11C - dll_update)
+ * (0x8000C11C - dll_update)
  *
  * This is the main timer tick function. It:
  * 1. Gets the current time and calculates elapsed time (delta)
@@ -216,7 +216,7 @@ loop:
 
 /**
  * Reschedule timer interrupt
- * (func_8000C294)
+ * (0x8000C294)
  *
  * Called to update the hardware timer based on the next expiry time.
  *
@@ -247,7 +247,7 @@ void dll_reschedule(u32 hi, u32 lo) {
 
 /**
  * Insert a timer node into the delta queue
- * (func_8000C308)
+ * (0x8000C308)
  *
  * Inserts the node in sorted order by expiry time.
  * Adjusts delta values of surrounding nodes accordingly.
@@ -310,7 +310,7 @@ void dll_insert(TimerNode *node) {
 
 /**
  * Get thread priority (helper)
- * (func_8000C490)
+ * (0x8000C490)
  *
  * @param thread Thread to query, or NULL for current thread
  * @return Thread priority

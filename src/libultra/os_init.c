@@ -72,7 +72,7 @@ extern u32 __osSiRawReadIo(void);
 
 /**
  * Save PI timing parameters
- * (func_80008128 - __osInitialize_common)
+ * (0x80008128 - __osInitialize_common)
  *
  * Saves the current PI BSD (bus speed) timing parameters for both
  * cartridge and expansion domains.
@@ -95,7 +95,7 @@ static void __osSavePiTiming(void) {
 
 /**
  * Initialize N64 operating system
- * (func_80007E80 - osInitialize)
+ * (0x80007E80 - osInitialize)
  *
  * Performs complete system initialization:
  * - Sets up CPU registers (SR, Cause)

@@ -9,18 +9,18 @@
 #include "PR/os_pfs.h"
 
 /* External functions */
-extern s32 __osCheckId(OSPfs *pfs);                         /* func_8000F2D0 */
-extern s32 __osPfsSelectBank(OSPfs *pfs, u8 bank);          /* func_8000E850 */
-extern s32 __osContRamRead(OSMesgQueue *mq, s32 channel,    /* func_8000E8D0 */
+extern s32 __osCheckId(OSPfs *pfs);                         /* 0x8000F2D0 */
+extern s32 __osPfsSelectBank(OSPfs *pfs, u8 bank);          /* 0x8000E850 */
+extern s32 __osContRamRead(OSMesgQueue *mq, s32 channel,    /* 0x8000E8D0 */
                            u16 addr, u8 *data);
-extern s32 __osPfsRWInode(OSPfs *pfs, __OSInode *inode,     /* func_8000F3A4 */
+extern s32 __osPfsRWInode(OSPfs *pfs, __OSInode *inode,     /* 0x8000F3A4 */
                           u8 flag, u8 bank);
-extern s32 __osPfsGetStatus(OSMesgQueue *mq, s32 channel);  /* func_8000E620 */
-extern void bcopy(void *src, void *dst, s32 len);           /* func_8000D2B0 */
+extern s32 __osPfsGetStatus(OSMesgQueue *mq, s32 channel);  /* 0x8000E620 */
+extern void bcopy(void *src, void *dst, s32 len);           /* 0x8000D2B0 */
 
 /**
  * Get file state/info from Controller Pak
- * (func_8000A520 - osPfsFileState)
+ * (0x8000A520 - osPfsFileState)
  *
  * Retrieves information about a file on the Controller Pak including
  * file size, company code, game code, and file names.

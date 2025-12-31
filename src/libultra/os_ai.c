@@ -30,7 +30,7 @@ extern u32 osVirtualToPhysical(void *addr);  /* Convert virtual to physical */
 
 /**
  * Set audio DMA buffer
- * (func_8000BE70 - osAiSetNextBuffer)
+ * (0x8000BE70 - osAiSetNextBuffer)
  *
  * Queues an audio buffer for DMA to the AI.
  * Uses double buffering with 0x2000 byte alignment.
@@ -73,7 +73,7 @@ s32 osAiSetNextBuffer(void *addr, u32 size) {
 
 /**
  * Set audio sample rate
- * (func_8000BF00 - osAiSetFrequency)
+ * (0x8000BF00 - osAiSetFrequency)
  *
  * Configures the AI DAC rate and bit rate for the specified
  * output frequency.

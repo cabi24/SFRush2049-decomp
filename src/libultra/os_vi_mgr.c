@@ -74,7 +74,7 @@ static void vi_manager_thread(void *arg);
 
 /**
  * Initialize Video Interface
- * (func_80006A30 - osViInit)
+ * (0x80006A30 - osViInit)
  *
  * Sets up the VI manager which handles vertical retrace
  * interrupts and coordinates with the display.
@@ -145,7 +145,7 @@ void osViInit(s32 mode) {
 
 /**
  * VI Manager Thread
- * (func_80006BB0)
+ * (0x80006BB0)
  *
  * Handles VI retrace and counter/timer events.
  * Runs as a high-priority thread to ensure timely

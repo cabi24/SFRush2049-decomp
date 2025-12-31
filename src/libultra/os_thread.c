@@ -28,7 +28,7 @@ extern u32 __osExceptionReturn;
 
 /**
  * Set thread priority
- * (func_80006D40 - osSetThreadPri)
+ * (0x80006D40 - osSetThreadPri)
  *
  * Updates the priority of a thread and re-enqueues it
  * in the active thread queue.
@@ -62,7 +62,7 @@ OSPri osSetThreadPri(OSThread *thread, OSPri priority) {
 
 /**
  * Set interrupt mask
- * (func_80006DA0 - osSetIntMask)
+ * (0x80006DA0 - osSetIntMask)
  *
  * Enables or disables interrupts globally.
  *
@@ -89,7 +89,7 @@ void osSetIntMask(s32 mask) {
 
 /**
  * Create a new thread
- * (func_80006F30 - osCreateThread)
+ * (0x80006F30 - osCreateThread)
  *
  * Initializes a thread structure with entry point, stack, and priority.
  *
@@ -157,7 +157,7 @@ void osCreateThread(OSThread *thread, s32 id, void (*entry)(void *),
 
 /**
  * Start a thread
- * (func_80007080 - osStartThread)
+ * (0x80007080 - osStartThread)
  *
  * Transitions a thread from stopped to runnable state and
  * enqueues it for scheduling.
@@ -216,7 +216,7 @@ extern void __osSwitchThread(s32 runnable);
 
 /**
  * Yield the current thread
- * (func_8000BD90 - osYieldThread)
+ * (0x8000BD90 - osYieldThread)
  *
  * Causes the current thread to voluntarily give up the CPU.
  * If thread is NULL, yields current thread to idle.
@@ -256,7 +256,7 @@ void osYieldThread(OSThread *thread) {
 
 /**
  * Get thread priority
- * (func_8000BE50 - osGetThreadPri)
+ * (0x8000BE50 - osGetThreadPri)
  *
  * Returns the priority of the specified thread.
  * If thread is NULL, returns current thread's priority.
@@ -276,7 +276,7 @@ OSPri osGetThreadPri(OSThread *thread) {
 
 /**
  * Get thread ID
- * (func_8000C490 - osGetThreadId)
+ * (0x8000C490 - osGetThreadId)
  *
  * Returns the ID of the specified thread.
  * If thread is NULL, returns current thread's ID.

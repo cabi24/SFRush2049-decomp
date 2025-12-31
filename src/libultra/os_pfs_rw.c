@@ -17,18 +17,18 @@ extern u8 __osPfsRequestType;   /* Controller read in progress flag: 0x80037AE0 
 extern u8 __osPfsBuffer[64];    /* PIF command buffer: 0x80037F60 */
 
 /* External functions */
-extern void __osSiGetAccess(void);                           /* func_8000E5B0 */
-extern void __osSiRelAccess(void);                           /* func_8000E5F4 */
-extern s32 __osPfsGetStatus(OSMesgQueue *mq, s32 channel);   /* func_8000E620 */
-extern u8 __osPfsAddressChecksum(u16 addr);                  /* func_8000F9F0 */
-extern s32 __osSiRawStartDma(s32 direction, u8 *buffer);     /* func_8000E4B0 */
-extern s32 __osSiSync(s32 channel, s32 pad, s32 flag);       /* func_80007270 */
-extern u8 __osPfsDataChecksum(u8 *data);                     /* func_8000FAC0 */
-extern void bcopy(void *src, void *dst, s32 len);            /* func_8000D2B0 */
+extern void __osSiGetAccess(void);                           /* 0x8000E5B0 */
+extern void __osSiRelAccess(void);                           /* 0x8000E5F4 */
+extern s32 __osPfsGetStatus(OSMesgQueue *mq, s32 channel);   /* 0x8000E620 */
+extern u8 __osPfsAddressChecksum(u16 addr);                  /* 0x8000F9F0 */
+extern s32 __osSiRawStartDma(s32 direction, u8 *buffer);     /* 0x8000E4B0 */
+extern s32 __osSiSync(s32 channel, s32 pad, s32 flag);       /* 0x80007270 */
+extern u8 __osPfsDataChecksum(u8 *data);                     /* 0x8000FAC0 */
+extern void bcopy(void *src, void *dst, s32 len);            /* 0x8000D2B0 */
 
 /**
  * Read a page from Controller Pak
- * (func_8000E8D0 - __osContRamRead)
+ * (0x8000E8D0 - __osContRamRead)
  *
  * Low-level function to read a single page (32 bytes) from Controller Pak.
  * This communicates directly with the PIF to send the read command and
@@ -123,7 +123,7 @@ retry:
 
 /**
  * Write a page to Controller Pak
- * (func_8000F680 - __osContRamWrite)
+ * (0x8000F680 - __osContRamWrite)
  *
  * Low-level function to write a single page (32 bytes) to Controller Pak.
  *

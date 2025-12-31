@@ -27,7 +27,7 @@ extern void __osViSwapContext(void);
 
 /**
  * Initialize Video Interface
- * (func_8000C540 - osViInit)
+ * (0x8000C540 - osViInit)
  *
  * Sets up the VI hardware and thread structures.
  */

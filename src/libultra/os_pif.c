@@ -8,13 +8,13 @@
 #include "types.h"
 
 /* External functions */
-extern void osPiGetAccess(void);                   /* func_8000DC10 */
-extern s32 osPiReadWord(u32 addr, u32 *data);      /* func_8000DC80 */
-extern void osPiReleaseAccess(void);               /* func_8000DC54 */
+extern void osPiGetAccess(void);                   /* 0x8000DC10 */
+extern s32 osPiReadWord(u32 addr, u32 *data);      /* 0x8000DC80 */
+extern void osPiReleaseAccess(void);               /* 0x8000DC54 */
 
 /**
  * Read word from PIF RAM
- * (func_800081D0)
+ * (0x800081D0)
  *
  * Reads a 32-bit value from PIF RAM at the specified address.
  *

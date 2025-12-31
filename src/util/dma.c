@@ -27,7 +27,7 @@ extern u8 gDmaInitialized;                /* D_8002B030 */
 
 /**
  * Initialize DMA message queue
- * (func_80002540 - dma_queue_init)
+ * (0x80002540 - dma_queue_init)
  *
  * Creates a message queue for DMA synchronization and
  * posts an initial message to indicate ready state.
@@ -40,7 +40,7 @@ void dma_queue_init(void) {
 
 /**
  * Wait for DMA completion
- * (func_80002598 - dma_wait)
+ * (0x80002598 - dma_wait)
  *
  * Waits for a DMA transfer to complete. If blocking is requested,
  * blocks until complete. Otherwise polls.
@@ -70,7 +70,7 @@ s32 dma_wait(s32 blocking) {
 
 /**
  * Signal DMA complete
- * (func_8000262C - dma_signal)
+ * (0x8000262C - dma_signal)
  *
  * Posts a message to indicate DMA transfer is complete.
  */
@@ -80,7 +80,7 @@ void dma_signal(void) {
 
 /**
  * LZSS decompress with DMA synchronization
- * (func_80002660 - lzss_decompress)
+ * (0x80002660 - lzss_decompress)
  *
  * Waits for DMA ready, performs LZSS decompression,
  * then signals completion.
@@ -104,7 +104,7 @@ s32 lzss_decompress(void *src, void *dst) {
 
 /**
  * Inflate decompress with DMA synchronization
- * (func_800026C0 - inflate_decompress)
+ * (0x800026C0 - inflate_decompress)
  *
  * Waits for DMA ready, performs inflate decompression,
  * then signals completion.

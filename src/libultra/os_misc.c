@@ -29,7 +29,7 @@ extern void *__osActiveQueue;  /* Active thread queue pointer */
 
 /**
  * Get CP0 Count register (hardware timer)
- * (func_8000C970 - osGetCount)
+ * (0x8000C970 - osGetCount)
  *
  * Reads the MIPS R4300i Count register which increments
  * at half the CPU clock rate (~46.875 MHz on NTSC N64).
@@ -56,13 +56,13 @@ u32 osGetCount(void) {
 
 /**
  * Check if RDP DMA is busy
- * (func_8000D740 - osDpIsBusy / __osDpDeviceBusy)
+ * (0x8000D740 - osDpIsBusy / __osDpDeviceBusy)
  *
  * Checks if the RDP's DMA is currently transferring data.
  *
  * @return 1 if busy, 0 if not busy
  */
-/* MATCHED: func_8000D740 */
+/* MATCHED: 0x8000D740 */
 s32 osDpIsBusy(void) {
     u32 status;
 
@@ -82,7 +82,7 @@ extern u32 __osTLBLookup(void *addr);
 
 /**
  * Convert virtual address to physical
- * (func_8000D5C0 - osVirtualToPhysical)
+ * (0x8000D5C0 - osVirtualToPhysical)
  *
  * Converts a virtual address to a physical address by
  * checking which memory segment it's in:
@@ -114,7 +114,7 @@ u32 osVirtualToPhysical(void *addr) {
 
 /**
  * Get active queue
- * (func_8000C660 - osGetActiveQueue)
+ * (0x8000C660 - osGetActiveQueue)
  *
  * Returns the current active thread/event queue.
  *
@@ -126,7 +126,7 @@ void *osGetActiveQueue(void) {
 
 /**
  * Convert physical address to virtual (KSEG0)
- * (func_80009C00 - osPhysicalToVirtual)
+ * (0x80009C00 - osPhysicalToVirtual)
  *
  * Converts a 29-bit physical address to a cached KSEG0
  * virtual address by ORing with 0x80000000.

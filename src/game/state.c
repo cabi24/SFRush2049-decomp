@@ -5,8 +5,8 @@
  * Handles game state transitions and per-state logic
  *
  * Key functions:
- * - func_800DB81C (attract/race_state_machine) - 2148 bytes
- * - func_800FBF88 (state_transition)
+ * - 0x800DB81C (attract/race_state_machine) - 2148 bytes
+ * - 0x800FBF88 (state_transition)
  *
  * Arcade state flow:
  *   ATTRACT -> TRKSEL -> CARSEL -> PREPLAY -> COUNTDOWN ->
@@ -32,10 +32,10 @@ extern void init_cp_time(void);
 extern void CheckCPs(void);
 
 /* External functions - mapped from N64 addresses */
-extern void attract_handler(void);   /* func_800DB81C - attract mode handler */
+extern void attract_handler(void);   /* 0x800DB81C - attract mode handler */
 extern void playgame_handler(void);  /* playgame_state_change - playgame handler */
-extern void hiscore_handler(void);   /* func_800FBF88 - high score handler */
-extern void countdown_handler(void); /* func_800FBC30 - countdown display */
+extern void hiscore_handler(void);   /* 0x800FBF88 - high score handler */
+extern void countdown_handler(void); /* 0x800FBC30 - countdown display */
 
 /* Game state flags (N64 uses bitmask, not enum) */
 #define GSTATE_INIT     0x40000

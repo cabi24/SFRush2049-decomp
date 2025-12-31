@@ -20,7 +20,7 @@ extern void __osEnqueueAndYield(OSThread **queue);
 
 /**
  * Jam message to front of queue
- * (func_80007440 - osJamMesg)
+ * (0x80007440 - osJamMesg)
  *
  * Sends a message to the front of a message queue (high priority).
  * If the queue is full and OS_MESG_BLOCK is specified, blocks until space.
@@ -70,7 +70,7 @@ s32 osJamMesg(OSMesgQueue *mq, OSMesg msg, s32 flags) {
 
 /**
  * Set thread message queue
- * (func_80007590 - __osSetThreadMesgQueue)
+ * (0x80007590 - __osSetThreadMesgQueue)
  *
  * Associates a message queue with the current thread.
  *

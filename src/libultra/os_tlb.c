@@ -14,7 +14,7 @@
 
 /**
  * Initialize TLB entries
- * (func_8000D890 - __osTlbInit)
+ * (0x8000D890 - __osTlbInit)
  *
  * Sets up initial TLB mappings for the system.
  * This creates a mapping for the KUSEG address space.
@@ -59,7 +59,7 @@ void __osTlbInit(void);
 
 /**
  * TLB Lookup function
- * (func_8000FCB0 - __osTLBLookup)
+ * (0x8000FCB0 - __osTLBLookup)
  *
  * Looks up a virtual address in the TLB to get the physical address.
  * Used by osVirtualToPhysical for KUSEG addresses that are not in
@@ -74,7 +74,7 @@ u32 __osTLBLookup(void *addr);
 
 /**
  * Map TLB entry
- * (func_8000D440 - osTLBMapTLB)
+ * (0x8000D440 - osTLBMapTLB)
  *
  * Creates a TLB mapping from a virtual address to physical address.
  *
@@ -88,7 +88,7 @@ void osTLBMapTLB(s32 index, u32 pageMask, u32 entryHi, u32 entryLo0, u32 entryLo
 
 /**
  * Unmap TLB entry
- * (func_8000D4B0 - osTLBUnmapTLB)
+ * (0x8000D4B0 - osTLBUnmapTLB)
  *
  * Invalidates a TLB entry.
  *

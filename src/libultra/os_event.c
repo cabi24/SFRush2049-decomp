@@ -66,7 +66,7 @@ extern void __osRestoreInt(s32 mask);
 
 /**
  * Set event message
- * (func_80006E10 - osSetEventMesg)
+ * (0x80006E10 - osSetEventMesg)
  *
  * Registers a message queue to receive messages when
  * a specific hardware event occurs.

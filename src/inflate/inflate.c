@@ -168,7 +168,7 @@ static void dump_bits(u32 n) {
 
 /**
  * Build Huffman decoding tables from code lengths
- * (huft_build - func_80004D98)
+ * (huft_build - 0x80004D98)
  */
 s32 huft_build(u32 *b, u32 n, u32 s, u16 *d, u8 *e, struct huft **t, s32 *m) {
     u32 a;
@@ -334,7 +334,7 @@ static s32 inflate_codes(struct huft *tl, struct huft *td, s32 bl, s32 bd);
 
 /**
  * Read next 16-bit word from input with buffer management
- * (func_800066D4 - read_word helper)
+ * (0x800066D4 - read_word helper)
  */
 static u32 read_word(void) {
     OSMesg msg;
@@ -455,7 +455,7 @@ static s32 inflate_codes(struct huft *tl, struct huft *td, s32 bl, s32 bd) {
 
 /**
  * Handle stored (uncompressed) block - type 0
- * (func_8000595C)
+ * (0x8000595C)
  */
 static s32 inflate_stored(void) {
     u32 n;      /* number of bytes in block */
@@ -490,7 +490,7 @@ static s32 inflate_stored(void) {
 
 /**
  * Handle fixed Huffman block - type 1
- * (func_80005B7C)
+ * (0x80005B7C)
  */
 static s32 inflate_fixed(void) {
     s32 i;
@@ -536,7 +536,7 @@ static s32 inflate_fixed(void) {
 
 /**
  * Handle dynamic Huffman block - type 2
- * (func_80005D44)
+ * (0x80005D44)
  */
 static s32 inflate_dynamic(void) {
     s32 i, j;
@@ -652,7 +652,7 @@ static s32 inflate_dynamic(void) {
 
 /**
  * Decompress one DEFLATE block
- * (func_800064D4)
+ * (0x800064D4)
  *
  * @param e Output: 1 if this is the last block, 0 otherwise
  * @return 0 on success, non-zero on error
@@ -684,7 +684,7 @@ static s32 inflate_block(s32 *e) {
 
 /**
  * Main inflate loop - process all blocks
- * (func_80006678)
+ * (0x80006678)
  *
  * @return 0 on success, non-zero on error
  */
@@ -707,7 +707,7 @@ static s32 inflate_loop(void) {
 }
 
 /**
- * Main inflate entry point (func_80006814)
+ * Main inflate entry point (0x80006814)
  */
 s32 inflate_entry(void *src, void *dst, s32 use_heap) {
     void *huft_mem;
@@ -757,7 +757,7 @@ s32 inflate_entry(void *src, void *dst, s32 use_heap) {
 }
 
 /**
- * Alternative inflate entry point (func_8000697C)
+ * Alternative inflate entry point (0x8000697C)
  * Always uses heap allocation for Huffman tables
  * Takes input buffer directly instead of ROM source
  */

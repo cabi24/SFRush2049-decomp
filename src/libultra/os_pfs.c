@@ -2,7 +2,7 @@
  * @file os_pfs.c
  * @brief Controller Pak (PFS) filesystem functions
  *
- * Decompiled from asm/us/A810.s (func_80009C10 - func_8000B918)
+ * Decompiled from asm/us/A810.s (0x80009C10 - 0x8000B918)
  * Handles Controller Pak initialization, reading, and writing.
  *
  * The Controller Pak is a 32KB memory card with:
@@ -30,7 +30,7 @@ static s32 __osPfsGetStatus(OSPfs *pfs);
 
 /**
  * osPfsInitPak - Initialize controller pak
- * (func_80009C10)
+ * (0x80009C10)
  *
  * @param mq      Message queue for SI operations
  * @param pfs     Pointer to OSPfs structure to initialize
@@ -142,7 +142,7 @@ done:
 
 /**
  * __osPfsGetStatus - Get controller pak status
- * (func_80009E18)
+ * (0x80009E18)
  *
  * @param pfs  PFS structure
  * @return     0 on success, error code on failure
@@ -174,7 +174,7 @@ static s32 __osPfsGetStatus(OSPfs *pfs) {
 
 /**
  * __osPfsSelectBank - Select controller pak bank
- * (func_8000E850)
+ * (0x8000E850)
  *
  * @param pfs  PFS structure
  * @param bank Bank number to select
@@ -206,7 +206,7 @@ s32 __osPfsSelectBank(OSPfs *pfs, u8 bank) {
 
 /**
  * osPfsReadWriteFile - Read or write a file on controller pak
- * (func_8000A970)
+ * (0x8000A970)
  *
  * @param pfs      PFS structure
  * @param fileNo   File number (0-15)

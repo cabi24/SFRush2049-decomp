@@ -20,7 +20,7 @@
 
 /**
  * Set CP0 Status register
- * (func_8000D770 - __osSetSR)
+ * (0x8000D770 - __osSetSR)
  */
 void __osSetSR(u32 sr) {
     __asm__ volatile("mtc0 %0, $12" : : "r"(sr));
@@ -28,7 +28,7 @@ void __osSetSR(u32 sr) {
 
 /**
  * Get CP0 Status register
- * (func_8000D780 - __osGetSR)
+ * (0x8000D780 - __osGetSR)
  */
 u32 __osGetSR(void) {
     u32 sr;
@@ -38,7 +38,7 @@ u32 __osGetSR(void) {
 
 /**
  * Set FPU Control/Status register
- * (func_800049F0 - __osSetFpcCsr)
+ * (0x800049F0 - __osSetFpcCsr)
  */
 void __osSetFpcCsr(u32 csr) {
     __asm__ volatile("ctc1 %0, $31" : : "r"(csr));
@@ -46,7 +46,7 @@ void __osSetFpcCsr(u32 csr) {
 
 /**
  * Get FPU Control/Status register
- * (func_8000D790 - __osGetFpcCsr)
+ * (0x8000D790 - __osGetFpcCsr)
  */
 u32 __osGetFpcCsr(void) {
     u32 csr;
@@ -56,7 +56,7 @@ u32 __osGetFpcCsr(void) {
 
 /**
  * Get CP0 Cause register
- * (func_8000DBB0 - __osGetCause)
+ * (0x8000DBB0 - __osGetCause)
  */
 u32 __osGetCause(void) {
     u32 cause;

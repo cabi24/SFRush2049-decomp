@@ -16,12 +16,12 @@
 extern OSTimer *__osTimerList;  /* 0x8002C3F0 */
 
 /* External functions */
-extern OSTime __osInsertTimer(OSTimer *timer);          /* func_8000C308 */
-extern void __osSetCompare(u32 hi, u32 lo);             /* func_8000C294 */
+extern OSTime __osInsertTimer(OSTimer *timer);          /* 0x8000C308 */
+extern void __osSetCompare(u32 hi, u32 lo);             /* 0x8000C294 */
 
 /**
  * Initialize and start a timer
- * (func_8000E3D0 - osSetTimer)
+ * (0x8000E3D0 - osSetTimer)
  *
  * Sets up a timer structure and inserts it into the timer list.
  * When the timer expires, a message is sent to the specified queue.

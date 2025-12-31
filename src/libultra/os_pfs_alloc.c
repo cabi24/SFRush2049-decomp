@@ -12,14 +12,14 @@
 #include "PR/os_pfs.h"
 
 /* External functions */
-extern s32 __osCheckId(OSPfs *pfs);                         /* func_8000F2D0 */
-extern s32 __osPfsSelectBank(OSPfs *pfs, u8 bank);          /* func_8000E850 */
-extern s32 __osPfsRWInode(OSPfs *pfs, __OSInode *inode,     /* func_8000F3A4 */
+extern s32 __osCheckId(OSPfs *pfs);                         /* 0x8000F2D0 */
+extern s32 __osPfsSelectBank(OSPfs *pfs, u8 bank);          /* 0x8000E850 */
+extern s32 __osPfsRWInode(OSPfs *pfs, __OSInode *inode,     /* 0x8000F3A4 */
                           u8 flag, u8 bank);
 
 /**
  * Get next page in allocation chain
- * (func_8000ADF0 - internal helper)
+ * (0x8000ADF0 - internal helper)
  *
  * Follows the inode chain to get the next page, loading bank if needed.
  *
@@ -68,7 +68,7 @@ s32 __osPfsGetNextPage(OSPfs *pfs, u8 *currentBank,
 
 /**
  * Resize file on Controller Pak
- * (func_8000AEC4 - osPfsReAllocate / osPfsReSizeFile)
+ * (0x8000AEC4 - osPfsReAllocate / osPfsReSizeFile)
  *
  * Changes the size of an existing file by allocating or freeing pages.
  *

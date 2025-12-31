@@ -6,10 +6,10 @@
  * Handles chase cam, cockpit view, replay cameras
  *
  * Key functions:
- * - func_800A04C4 (render_scene) - viewport/camera setup, 2720 bytes
- * - func_800A0BAC - camera state update
- * - func_800A0F74 - camera initialization
- * - func_800A0FDC - camera mode switching
+ * - 0x800A04C4 (render_scene) - viewport/camera setup, 2720 bytes
+ * - 0x800A0BAC - camera state update
+ * - 0x800A0F74 - camera initialization
+ * - 0x800A0FDC - camera mode switching
  */
 
 #include "types.h"

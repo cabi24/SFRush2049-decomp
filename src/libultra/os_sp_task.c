@@ -39,7 +39,7 @@ extern void *__osViContext;  /* Current VI context pointer */
 
 /**
  * Check if RSP task is done or yielded
- * (func_80007730 - osSpTaskYielded)
+ * (0x80007730 - osSpTaskYielded)
  *
  * Checks if the RSP task has completed or yielded.
  * If yielded, updates the task flags.
@@ -71,7 +71,7 @@ s32 osSpTaskYielded(void *task) {
 
 /**
  * Get current framebuffer with interrupt protection
- * (func_80007790 - osViGetCurrentFramebuffer variant)
+ * (0x80007790 - osViGetCurrentFramebuffer variant)
  *
  * Returns the current framebuffer pointer from the VI context.
  * Disables interrupts during access.
@@ -116,7 +116,7 @@ extern s32 __osSpTaskData;          /* Task data pointer */
 
 /**
  * Get SP task context
- * (func_80007840 - __osSpGetContext)
+ * (0x80007840 - __osSpGetContext)
  *
  * Prepares the SP task context by converting virtual addresses
  * to physical addresses for DMA transfers.
@@ -154,7 +154,7 @@ void *__osSpGetContext(void) {
 
 /**
  * Load and start an RSP task
- * (func_8000794C - osSpTaskLoad)
+ * (0x8000794C - osSpTaskLoad)
  *
  * Loads the microcode and data into SP memory and starts execution.
  * Handles both fresh loads and yields by checking task flags.
@@ -212,7 +212,7 @@ void osSpTaskLoad(void *task) {
 
 /**
  * Start RSP execution
- * (func_80007AB4 - osSpTaskStartGo)
+ * (0x80007AB4 - osSpTaskStartGo)
  *
  * Clears the halt bit to start RSP execution after task loading.
  *

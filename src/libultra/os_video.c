@@ -9,7 +9,7 @@
 
 /**
  * Create scheduler
- * (func_80008210 - osCreateScheduler)
+ * (0x80008210 - osCreateScheduler)
  *
  * Creates and initializes the OS scheduler for video and task management.
  *
@@ -28,7 +28,7 @@ void osCreateScheduler(s32 mode, void *stack, void *pri, s32 numClients) {
 
 /**
  * Set scheduler video mode
- * (func_80008380 - osScSetVideoMode)
+ * (0x80008380 - osScSetVideoMode)
  *
  * Configures the scheduler's video mode settings.
  *
@@ -43,7 +43,7 @@ void osScSetVideoMode(s32 mode, s32 flags) {
 
 /**
  * Scheduler update
- * (func_80008460 - osScUpdate)
+ * (0x80008460 - osScUpdate)
  *
  * Updates the scheduler state, typically called each frame.
  */

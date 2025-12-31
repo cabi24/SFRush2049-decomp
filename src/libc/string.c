@@ -14,7 +14,7 @@
  * @param num Number of bytes to search
  * @return Pointer to first occurrence, or NULL if not found
  *
- * MATCHING: func_80002730 (asm/us/3330.s)
+ * MATCHING: 0x80002730 (asm/us/3330.s)
  * - ptr stored on stack (volatile pattern)
  * - pre-decrement in delay slot pattern
  */
@@ -48,7 +48,7 @@ void *memchr(void *ptr, s32 value, u32 num) {
  * @param num Number of bytes to set
  * @return ptr
  *
- * MATCHING: func_80002790 (asm/us/3390.s)
+ * MATCHING: 0x80002790 (asm/us/3390.s)
  * - ptr stored on stack at sp+12
  * - align stored on stack at sp+8
  * - aligned_ptr stored on stack at sp+4
@@ -116,7 +116,7 @@ done:
  * @param c Character to find
  * @return Pointer to character, or NULL if not found
  *
- * MATCHING: func_80007C00 (asm/us/8800.s)
+ * MATCHING: 0x80007C00 (asm/us/8800.s)
  * - Uses branch-likely pattern
  * - Checks char before null terminator check
  */
@@ -149,7 +149,7 @@ char *strchr(const char *str, s32 c) {
  * @param str Null-terminated string
  * @return Length of string (not including null terminator)
  *
- * MATCHING: func_80007C40 (asm/us/8800.s)
+ * MATCHING: 0x80007C40 (asm/us/8800.s)
  * - Uses branch-likely for loop optimization
  * - Loads next byte in delay slot
  */
@@ -178,7 +178,7 @@ done:
  * @param num Number of bytes to copy
  * @return dest
  *
- * MATCHING: func_80007C68 (asm/us/8800.s)
+ * MATCHING: 0x80007C68 (asm/us/8800.s)
  * - Simple byte-by-byte copy
  * - Uses post-increment pattern with sb offset
  */

@@ -18,7 +18,7 @@ extern OSThread *__osRunningThread; /* Currently executing thread */
 
 /**
  * Disable interrupts
- * (func_8000C4B0 - __osDisableInt)
+ * (0x8000C4B0 - __osDisableInt)
  *
  * Disables all CPU interrupts by clearing the IE bit (bit 0) in
  * the CP0 Status register. Returns the previous IE state so it
@@ -68,7 +68,7 @@ s32 __osDisableInt(void) {
 
 /**
  * Restore interrupts
- * (func_8000C520 - __osRestoreInt)
+ * (0x8000C520 - __osRestoreInt)
  *
  * Restores the interrupt enable state by OR-ing the provided value
  * into the CP0 Status register.

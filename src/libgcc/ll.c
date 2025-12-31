@@ -12,7 +12,7 @@
 
 /**
  * Logical right shift for 64-bit unsigned integers
- * (func_8000D8F0 - __lshrdi3)
+ * (0x8000D8F0 - __lshrdi3)
  */
 u64 __lshrdi3(u64 a, u32 shift) {
     return a >> shift;
@@ -20,7 +20,7 @@ u64 __lshrdi3(u64 a, u32 shift) {
 
 /**
  * Unsigned 64-bit modulo
- * (func_8000D91C - __umoddi3)
+ * (0x8000D91C - __umoddi3)
  */
 u64 __umoddi3(u64 a, u64 b) {
     return a % b;
@@ -28,7 +28,7 @@ u64 __umoddi3(u64 a, u64 b) {
 
 /**
  * Unsigned 64-bit division
- * (func_8000D958 - __udivdi3)
+ * (0x8000D958 - __udivdi3)
  */
 u64 __udivdi3(u64 a, u64 b) {
     return a / b;
@@ -36,7 +36,7 @@ u64 __udivdi3(u64 a, u64 b) {
 
 /**
  * Arithmetic left shift for 64-bit integers
- * (func_8000D994 - __ashldi3)
+ * (0x8000D994 - __ashldi3)
  */
 s64 __ashldi3(s64 a, u32 shift) {
     return a << shift;
@@ -44,7 +44,7 @@ s64 __ashldi3(s64 a, u32 shift) {
 
 /**
  * Signed 64-bit division
- * (func_8000D9FC - __divdi3)
+ * (0x8000D9FC - __divdi3)
  */
 s64 __divdi3(s64 a, s64 b) {
     return a / b;
@@ -52,7 +52,7 @@ s64 __divdi3(s64 a, s64 b) {
 
 /**
  * 64-bit multiplication
- * (func_8000DA58 - __muldi3)
+ * (0x8000DA58 - __muldi3)
  */
 s64 __muldi3(s64 a, s64 b) {
     return a * b;
@@ -60,7 +60,7 @@ s64 __muldi3(s64 a, s64 b) {
 
 /**
  * Unsigned 64-bit divmod (returns quotient, stores remainder)
- * (func_8000DA88 - __udivmoddi4)
+ * (0x8000DA88 - __udivmoddi4)
  *
  * @param quotient Pointer to store quotient
  * @param remainder Pointer to store remainder
@@ -74,7 +74,7 @@ void __udivmoddi4(u64 *quotient, u64 *remainder, u64 a, u16 b) {
 
 /**
  * Signed 64-bit modulo
- * (func_8000DAE8 - __moddi3)
+ * (0x8000DAE8 - __moddi3)
  */
 s64 __moddi3(s64 a, s64 b) {
     return a % b;
@@ -82,7 +82,7 @@ s64 __moddi3(s64 a, s64 b) {
 
 /**
  * Arithmetic right shift for 64-bit signed integers
- * (func_8000DB84 - __ashrdi3)
+ * (0x8000DB84 - __ashrdi3)
  */
 s64 __ashrdi3(s64 a, u32 shift) {
     return a >> shift;
@@ -95,7 +95,7 @@ s64 __ashrdi3(s64 a, u32 shift) {
 
 /**
  * Convert double to signed 64-bit integer (truncate toward zero)
- * (func_800099F0 - __fixdfdi)
+ * (0x800099F0 - __fixdfdi)
  *
  * Uses MIPS trunc.l.d instruction for direct conversion.
  * Returns value in v0:v1 (hi:lo) register pair.
@@ -106,7 +106,7 @@ s64 __fixdfdi(f64 a) {
 
 /**
  * Convert float to signed 64-bit integer (truncate toward zero)
- * (func_80009A0C - __fixsfdi)
+ * (0x80009A0C - __fixsfdi)
  *
  * Uses MIPS trunc.l.s instruction for direct conversion.
  */
@@ -116,7 +116,7 @@ s64 __fixsfdi(f32 a) {
 
 /**
  * Convert double to unsigned 64-bit integer
- * (func_80009A28 - __fixunsdfdi)
+ * (0x80009A28 - __fixunsdfdi)
  *
  * Handles the full unsigned range by subtracting 2^63 for large values,
  * converting, then adding the high bit back via OR.
@@ -128,7 +128,7 @@ u64 __fixunsdfdi(f64 a) {
 
 /**
  * Convert float to unsigned 64-bit integer
- * (func_80009AC8 - __fixunssfdi)
+ * (0x80009AC8 - __fixunssfdi)
  *
  * Similar to __fixunsdfdi but for single precision.
  */
@@ -138,7 +138,7 @@ u64 __fixunssfdi(f32 a) {
 
 /**
  * Convert signed 64-bit integer to double
- * (func_80009B64 - __floatdidf)
+ * (0x80009B64 - __floatdidf)
  *
  * Uses MIPS cvt.d.l instruction for direct conversion.
  * Takes value in a0:a1 (hi:lo), stores on stack as 64-bit,
@@ -150,7 +150,7 @@ f64 __floatdidf(s64 a) {
 
 /**
  * Convert signed 64-bit integer to float
- * (func_80009B7C - __floatdisf)
+ * (0x80009B7C - __floatdisf)
  *
  * Uses MIPS cvt.s.l instruction for direct conversion.
  */
@@ -160,7 +160,7 @@ f32 __floatdisf(s64 a) {
 
 /**
  * Convert unsigned 64-bit integer to double
- * (func_80009B94 - __floatundidf)
+ * (0x80009B94 - __floatundidf)
  *
  * Handles the full unsigned range by checking sign bit
  * and adding 2^64 correction for negative (high-bit-set) values.
@@ -171,7 +171,7 @@ f64 __floatundidf(u64 a) {
 
 /**
  * Convert unsigned 64-bit integer to float
- * (func_80009BC8 - __floatundisf)
+ * (0x80009BC8 - __floatundisf)
  *
  * Similar to __floatundidf but for single precision result.
  */

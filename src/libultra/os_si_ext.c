@@ -9,7 +9,7 @@
 
 /**
  * Read data from SI
- * (func_80008730 - osSiReadData)
+ * (0x80008730 - osSiReadData)
  *
  * Reads data from the Serial Interface (controller/PIF).
  *
@@ -24,7 +24,7 @@ s32 osSiReadData(void *data) {
 
 /**
  * Write data to SI
- * (func_800088F0 - osSiWriteData)
+ * (0x800088F0 - osSiWriteData)
  *
  * Writes data to the Serial Interface (controller/PIF).
  *

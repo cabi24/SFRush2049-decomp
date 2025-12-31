@@ -15,7 +15,7 @@
 
 /**
  * Enqueue thread into priority queue
- * (func_8000D0C4 - __osEnqueueThread)
+ * (0x8000D0C4 - __osEnqueueThread)
  *
  * Inserts a thread into a priority-ordered queue.
  * Threads with higher priority values come first.
@@ -46,7 +46,7 @@ void __osEnqueueThread(OSThread **queue, OSThread *thread) {
 
 /**
  * Pop first thread from queue
- * (func_8000D10C - __osPopThread)
+ * (0x8000D10C - __osPopThread)
  *
  * Removes and returns the first (highest priority) thread
  * from the queue.
@@ -65,7 +65,7 @@ OSThread *__osPopThread(OSThread **queue) {
 
 /**
  * Dispatch next thread (context switch)
- * (func_8000D11C - __osDispatchThread)
+ * (0x8000D11C - __osDispatchThread)
  *
  * Pops the highest priority thread from the active queue
  * and performs a context switch to it. This function does

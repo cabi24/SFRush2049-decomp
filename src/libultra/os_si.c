@@ -48,7 +48,7 @@ void __osContParseResponse(s32 ctrlNum, u8 *out);
 
 /**
  * Start SI DMA transfer
- * (func_8000E4B0 - __osSiRawStartDma)
+ * (0x8000E4B0 - __osSiRawStartDma)
  *
  * Initiates a DMA transfer between RDRAM and PIF RAM.
  *
@@ -94,7 +94,7 @@ s32 __osSiRawStartDma(s32 direction, void *dramAddr) {
 
 /**
  * Initialize SI subsystem
- * (func_8000E560 - __osSiInit / osSiInit)
+ * (0x8000E560 - __osSiInit / osSiInit)
  *
  * Sets up the SI message queue for async operations.
  */
@@ -110,7 +110,7 @@ void __osSiCreateAccessQueue(void) {
 
 /**
  * Get SI access (wait for SI to be free)
- * (func_8000E5B0 - __osSiGetAccess)
+ * (0x8000E5B0 - __osSiGetAccess)
  *
  * Initializes SI if needed, then waits for it to be free.
  */
@@ -127,7 +127,7 @@ void __osSiGetAccess(void) {
 
 /**
  * Release SI access
- * (func_8000E5F4 - __osSiRelAccess)
+ * (0x8000E5F4 - __osSiRelAccess)
  *
  * Signals that SI is now available for other operations.
  */
@@ -137,7 +137,7 @@ void __osSiRelAccess(void) {
 
 /**
  * Read controller status
- * (func_8000E620 - osContStartReadData / osContGetReadData)
+ * (0x8000E620 - osContStartReadData / osContGetReadData)
  *
  * Polls controller for button state and stick position.
  *
@@ -188,7 +188,7 @@ s32 osContStartReadData(OSMesgQueue *mq, s32 ctrlNum) {
 
 /**
  * Build controller request packet
- * (func_8000E6F0 - __osContBuildRequest / __osPackRequestData)
+ * (0x8000E6F0 - __osContBuildRequest / __osPackRequestData)
  *
  * Fills the PIF buffer with a controller request command.
  *
@@ -241,7 +241,7 @@ copy_packet:
 
 /**
  * Parse controller response
- * (func_8000E7B4 - __osContParseResponse / __osContGetInitData)
+ * (0x8000E7B4 - __osContParseResponse / __osContGetInitData)
  *
  * Extracts button and stick data from PIF response.
  *

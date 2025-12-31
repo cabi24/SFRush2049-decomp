@@ -1,6 +1,6 @@
 /**
  * input.c - Controller input handling
- * Decompiled from func_80094D20, func_80094D68, func_80094DB0, func_80094E00
+ * Decompiled from 0x80094D20, 0x80094D68, 0x80094DB0, 0x80094E00
  */
 
 #include "types.h"

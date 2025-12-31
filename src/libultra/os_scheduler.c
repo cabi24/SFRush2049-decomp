@@ -2,7 +2,7 @@
  * @file os_scheduler.c
  * @brief N64 OS Scheduler implementation
  *
- * Decompiled from asm/us/1050.s (func_80000450 - func_80001578)
+ * Decompiled from asm/us/1050.s (0x80000450 - 0x80001578)
  * The scheduler manages RSP/RDP tasks and VI retrace timing.
  */
 
@@ -151,7 +151,7 @@ typedef struct OSScClient_s {
 
 /**
  * Create and initialize the scheduler
- * (func_80000450 - osCreateScheduler)
+ * (0x80000450 - osCreateScheduler)
  *
  * @param sc Scheduler structure to initialize
  * @param stack Stack for scheduler thread
@@ -225,7 +225,7 @@ void osCreateScheduler(void *sc, void *stack, s32 stackSize, u8 viMode, u8 numFi
 
 /**
  * Add a client to receive scheduler notifications
- * (func_800005D4 - osScAddClient)
+ * (0x800005D4 - osScAddClient)
  *
  * @param sc Scheduler
  * @param client Client to add
@@ -246,7 +246,7 @@ void osScAddClient(void *sc, OSScClient *client, OSMesgQueue *msgQueue) {
 
 /**
  * Main scheduler loop
- * (func_8000063C - __scMain)
+ * (0x8000063C - __scMain)
  */
 static void __scMain(void *arg) {
     u8 *sc = (u8 *)arg;
@@ -301,7 +301,7 @@ static void __scMain(void *arg) {
 
 /**
  * Schedule pending tasks
- * (func_80000780 - __scSchedule)
+ * (0x80000780 - __scSchedule)
  */
 static void __scSchedule(void *arg) {
     u8 *sc = (u8 *)arg;
@@ -333,7 +333,7 @@ static void __scSchedule(void *arg) {
 
 /**
  * Handle VI retrace interrupt
- * (func_80000880 - __scHandleRetrace)
+ * (0x80000880 - __scHandleRetrace)
  */
 static void __scHandleRetrace(void *arg) {
     u8 *sc = (u8 *)arg;
@@ -361,7 +361,7 @@ static void __scHandleRetrace(void *arg) {
 
 /**
  * Handle RSP task completion
- * (func_80000950 - __scHandleRSP)
+ * (0x80000950 - __scHandleRSP)
  *
  * Called when the RSP finishes processing a task.
  * Handles yield checks and reschedules pending tasks.
@@ -410,7 +410,7 @@ static void __scHandleRSP(void *arg) {
 
 /**
  * Handle RDP task completion
- * (func_80000ACC - __scHandleRDP)
+ * (0x80000ACC - __scHandleRDP)
  *
  * Called when the RDP finishes processing a task.
  */
@@ -452,7 +452,7 @@ extern void __osScViSync(void);  /* VI sync/update */
 
 /**
  * Check if buffer swap is ready
- * (func_80000BA4 - __scCheckSwap)
+ * (0x80000BA4 - __scCheckSwap)
  */
 static s32 __scCheckSwap(void *sc, s32 flag) {
     u8 *scheduler = (u8 *)sc;
@@ -479,7 +479,7 @@ static s32 __scCheckSwap(void *sc, s32 flag) {
 
 /**
  * Complete a task and notify client
- * (func_80000C54 - __scTaskComplete)
+ * (0x80000C54 - __scTaskComplete)
  */
 static s32 __scTaskComplete(void *arg, void *task) {
     u8 *sc = (u8 *)arg;
@@ -516,7 +516,7 @@ static s32 __scTaskComplete(void *arg, void *task) {
 
 /**
  * Append task to appropriate queue
- * (func_80000D6C - __scAppendList)
+ * (0x80000D6C - __scAppendList)
  */
 static void __scAppendList(void *arg, void *msg) {
     u8 *sc = (u8 *)arg;
@@ -561,7 +561,7 @@ extern void osSpClearStatus(void);
 
 /**
  * Execute RSP/RDP tasks
- * (func_80000E20 - __scExec)
+ * (0x80000E20 - __scExec)
  */
 static void __scExec(void *arg, void *rspTask, void *rdpTask) {
     u8 *sc = (u8 *)arg;
@@ -603,7 +603,7 @@ static void __scExec(void *arg, void *rspTask, void *rdpTask) {
 
 /**
  * Request current RSP task to yield
- * (func_80000F88 - __scYield)
+ * (0x80000F88 - __scYield)
  */
 static void __scYield(void *arg) {
     u8 *sc = (u8 *)arg;
@@ -620,7 +620,7 @@ static void __scYield(void *arg) {
 
 /**
  * Core scheduling algorithm
- * (func_80000FE8 - __scScheduleCore)
+ * (0x80000FE8 - __scScheduleCore)
  *
  * Determines which tasks to run next based on queue state.
  *
@@ -667,7 +667,7 @@ static s32 __scScheduleCore(void *sc, void **rsp, void **rdp, s32 flags) {
 
 /**
  * Reset time tracking
- * (func_80001350)
+ * (0x80001350)
  */
 void osScResetTime(void) {
     s32 saved;
@@ -685,7 +685,7 @@ void osScResetTime(void) {
 
 /**
  * Enable time accumulation
- * (func_800013C0)
+ * (0x800013C0)
  */
 void osScEnableTime(void) {
     __osScTimeEnabled = 1;
@@ -693,7 +693,7 @@ void osScEnableTime(void) {
 
 /**
  * Disable time accumulation
- * (func_800013DC)
+ * (0x800013DC)
  */
 void osScDisableTime(void) {
     __osScTimeEnabled = 0;
@@ -701,7 +701,7 @@ void osScDisableTime(void) {
 
 /**
  * Update frame timing
- * (func_800013F4)
+ * (0x800013F4)
  */
 void osScUpdateTime(void) {
     __osScDeltaFrames = __osScFrameCount - __osScLastCount;
@@ -725,7 +725,7 @@ void osScUpdateTime(void) {
 
 /**
  * Set deadline timer
- * (func_800014F0)
+ * (0x800014F0)
  */
 void osScSetDeadline(f32 time) {
     __osScStartCount = __osScFrameCount;
@@ -734,7 +734,7 @@ void osScSetDeadline(f32 time) {
 
 /**
  * Add time to deadline
- * (func_8000153C)
+ * (0x8000153C)
  */
 void osScAddDeadline(f32 time) {
     __osScDeadlineCount += (s32)(time * __osScTicksPerSecond);
@@ -742,7 +742,7 @@ void osScAddDeadline(f32 time) {
 
 /**
  * Get time remaining until deadline
- * (func_80001578)
+ * (0x80001578)
  */
 f32 osScGetTimeRemaining(void) {
     return (f32)(__osScDeadlineCount - __osScFrameCount) * __osScSecondsPerTick;
@@ -750,7 +750,7 @@ f32 osScGetTimeRemaining(void) {
 
 /**
  * Check if deadline has passed
- * (func_800015BC)
+ * (0x800015BC)
  */
 s32 osScDeadlinePassed(void) {
     return (__osScDeadlineCount - __osScFrameCount) < 1;
@@ -758,7 +758,7 @@ s32 osScDeadlinePassed(void) {
 
 /**
  * Stub function
- * (func_800015DC)
+ * (0x800015DC)
  */
 void osScStub(void) {
     /* Empty */

@@ -10,7 +10,7 @@
 
 /**
  * Calculate 8-bit sum checksum
- * (func_8000EB00 - __osSumcalc / checksum8)
+ * (0x8000EB00 - __osSumcalc / checksum8)
  *
  * Sums all bytes in the buffer, returning the lower 16 bits.
  * Uses loop unrolling (4 bytes at a time) for performance.
@@ -60,7 +60,7 @@ done:
 
 /**
  * Calculate Adler-like checksum (similar to Adler-32)
- * (func_8000EB74 - __osIdCheckSum)
+ * (0x8000EB74 - __osIdCheckSum)
  *
  * Computes a rolling checksum using sum and complement sum.
  * Processes 32 bytes (0x1C + initial 4 bytes) of header data.

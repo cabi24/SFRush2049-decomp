@@ -9,13 +9,13 @@
 #include "PR/os_pfs.h"
 
 /* External functions */
-extern s32 __osCheckId(OSPfs *pfs);                         /* func_8000F2D0 */
-extern s32 __osPfsRWInode(OSPfs *pfs, __OSInode *inode,     /* func_8000F3A4 */
+extern s32 __osCheckId(OSPfs *pfs);                         /* 0x8000F2D0 */
+extern s32 __osPfsRWInode(OSPfs *pfs, __OSInode *inode,     /* 0x8000F3A4 */
                           u8 flag, u8 bank);
 
 /**
  * Get number of free blocks on Controller Pak
- * (func_8000B240 - osPfsFreeBlocks)
+ * (0x8000B240 - osPfsFreeBlocks)
  *
  * Counts the number of free (unused) blocks in the filesystem.
  * Free pages are marked with ipage value of 3.

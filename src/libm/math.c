@@ -171,7 +171,7 @@ static const f64 pi_over_2_lo = 6.123233995736766e-17; /* D_8002D788: π/2 low *
 
 /**
  * Compute sine of angle (single precision)
- * (func_80008730 - sinf)
+ * (0x80008730 - sinf)
  *
  * Uses polynomial approximation with range reduction.
  * For small angles (|x| < 2^-12), returns x directly.
@@ -263,7 +263,7 @@ f32 sinf(f32 x) {
 
 /**
  * Single precision square root
- * (func_8000E3C0 - sqrtf)
+ * (0x8000E3C0 - sqrtf)
  *
  * Uses the hardware sqrt.s instruction on MIPS.
  *
@@ -276,7 +276,7 @@ f32 sqrtf(f32 x) {
 
 /**
  * Compute cosine of angle (single precision)
- * (func_800088F0 - cosf)
+ * (0x800088F0 - cosf)
  *
  * Uses polynomial approximation with range reduction.
  * Similar to sinf but offset by π/2.

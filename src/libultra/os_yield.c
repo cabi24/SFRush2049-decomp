@@ -14,15 +14,15 @@
 /* External functions */
 extern s32 __osDisableInt(void);
 extern void __osRestoreInt(s32 mask);
-extern void __osDispatchThread(void);                           /* func_8000CFC4 */
-extern void __osDequeueThread(OSThread **queue, OSThread *t);   /* func_8000C050 */
+extern void __osDispatchThread(void);                           /* 0x8000CFC4 */
+extern void __osDequeueThread(OSThread **queue, OSThread *t);   /* 0x8000C050 */
 
 /* External data - Current running thread (standard libultra name) */
 extern OSThread *__osRunningThread;  /* 0x8002C3E0 */
 
 /**
  * Yield/stop current thread
- * (func_8000BD90 - osStopThread)
+ * (0x8000BD90 - osStopThread)
  *
  * Causes a thread to stop executing. If thread is NULL, stops
  * the current running thread. The thread is removed from its
@@ -62,7 +62,7 @@ void osStopThread(OSThread *thread) {
 
 /**
  * Get thread priority
- * (func_8000BE50 - osGetThreadPri)
+ * (0x8000BE50 - osGetThreadPri)
  *
  * Returns the priority of a thread.
  *

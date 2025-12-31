@@ -20,7 +20,7 @@
 
 /**
  * Writeback data cache region
- * (func_80007CA0 - osWritebackDCache)
+ * (0x80007CA0 - osWritebackDCache)
  *
  * Writes back (flushes) dirty cache lines to memory. If the size
  * is larger than the cache (8KB), writes back the entire cache.
@@ -77,7 +77,7 @@ void osWritebackDCache(void *addr, u32 size) {
 
 /**
  * Invalidate instruction cache
- * (func_80007810 - osInvalICache)
+ * (0x80007810 - osInvalICache)
  *
  * Invalidates the entire 8KB instruction cache.
  * Uses cache instruction 0x01 (Index_Invalidate_I).
@@ -100,7 +100,7 @@ void osInvalICache(void) {
 
 /**
  * Invalidate data cache region
- * (func_800084E0 - osInvalDCache)
+ * (0x800084E0 - osInvalDCache)
  *
  * Invalidates a range of the data cache. If the size is larger
  * than the cache (8KB), invalidates the entire cache.
@@ -180,7 +180,7 @@ void osInvalDCache(void *addr, u32 size) {
 
 /**
  * Zero-fill memory block
- * (func_80008590 - bzero)
+ * (0x80008590 - bzero)
  *
  * Optimized zero-fill that uses 32-byte unrolled loops for
  * large blocks, with special handling for alignment.

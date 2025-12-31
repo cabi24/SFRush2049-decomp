@@ -35,7 +35,7 @@ s32 __osDpDeviceBusy(void);
 
 /**
  * Set RDP display list buffer
- * (func_80007B00 - osDpSetNextBuffer)
+ * (0x80007B00 - osDpSetNextBuffer)
  *
  * Submits a display list to the RDP for processing.
  * Waits for any previous operations to complete first.
@@ -84,7 +84,7 @@ s32 osDpSetNextBuffer(void *cmdList, s32 arg1, s32 arg2, s32 size) {
 
 /**
  * Wait for RDP to be ready
- * (func_80007B80)
+ * (0x80007B80)
  *
  * Delays for a fixed number of cycles before checking DP status.
  */
@@ -100,7 +100,7 @@ void osDpWait(void) {
 
 /**
  * Get RDP performance counters
- * (func_800099B0 - osDpGetCounters)
+ * (0x800099B0 - osDpGetCounters)
  *
  * Reads the DPC performance counter registers and stores
  * them in the provided array.
@@ -111,7 +111,7 @@ void osDpWait(void) {
  *                 [2] = DPC_PIPEBUSY_REG (pipe busy cycles)
  *                 [3] = DPC_TMEM_REG (TMEM busy cycles)
  */
-/* MATCHED: func_800099B0 */
+/* MATCHED: 0x800099B0 */
 void osDpGetCounters(u32 *counters) {
     counters[0] = DPC_CLOCK_REG;
     counters += 3;
@@ -122,7 +122,7 @@ void osDpGetCounters(u32 *counters) {
 
 /**
  * Check if RDP DMA is busy
- * (func_8000D740 - __osDpDeviceBusy)
+ * (0x8000D740 - __osDpDeviceBusy)
  *
  * Checks the DPC_STATUS_REG for the DMA_BUSY bit.
  *

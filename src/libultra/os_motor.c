@@ -36,7 +36,7 @@ extern s8 __osMotorProbe;  /* 0x80037AE0 */
 
 /**
  * Initialize rumble pak motor
- * (func_80009F20 - osMotorInit)
+ * (0x80009F20 - osMotorInit)
  *
  * Probes the controller pak to detect if a Rumble Pak is connected.
  * Sends probe commands via SI and checks the response.
@@ -110,7 +110,7 @@ s32 osMotorInit(OSPfs *pfs, s32 value) {
 
 /**
  * Build rumble pak PIF command
- * (func_8000A088 - __osMotorAccess)
+ * (0x8000A088 - __osMotorAccess)
  *
  * Builds a PIF command buffer for rumble pak communication.
  * The command writes to controller pak address 0xC000 with CRC.
@@ -181,7 +181,7 @@ s32 __osMotorAccess(s32 channel, u8 *buffer) {
 
 /**
  * Start rumble pak motor
- * (func_8000A194 - osMotorStart)
+ * (0x8000A194 - osMotorStart)
  *
  * Initializes the motor pak and turns on the motor.
  * First probes to ensure a Rumble Pak is connected.
@@ -261,7 +261,7 @@ s32 osMotorStart(OSMesgQueue *mq, OSPfs *pfs, s32 channel) {
 
 /**
  * Stop rumble pak motor
- * (func_8000A2F0 - osMotorStop)
+ * (0x8000A2F0 - osMotorStop)
  *
  * Turns off the Rumble Pak motor.
  *

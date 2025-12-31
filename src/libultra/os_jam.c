@@ -19,7 +19,7 @@ extern void osStartThread(OSThread *thread);
 
 /**
  * Insert message at front of queue
- * (func_800075E0 - osJamMesg)
+ * (0x800075E0 - osJamMesg)
  *
  * Like osSendMesg, but inserts at the front of the queue rather
  * than the back. This gives the message higher priority.

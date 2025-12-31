@@ -9,14 +9,14 @@
 #include "PR/os_pfs.h"
 
 /* External functions */
-extern s32 __osPfsSelectBank(OSPfs *pfs, u8 bank);           /* func_8000E850 */
-extern s32 __osContRamRead(OSMesgQueue *mq, s32 channel,     /* func_8000E8D0 */
+extern s32 __osPfsSelectBank(OSPfs *pfs, u8 bank);           /* 0x8000E850 */
+extern s32 __osContRamRead(OSMesgQueue *mq, s32 channel,     /* 0x8000E8D0 */
                            u16 addr, u8 *data);
-extern s32 __osPfsRWInode(OSPfs *pfs, __OSInode *inode,      /* func_8000F3A4 */
+extern s32 __osPfsRWInode(OSPfs *pfs, __OSInode *inode,      /* 0x8000F3A4 */
                           u8 flag, u8 bank);
-extern s32 __osContRamWrite(OSMesgQueue *mq, s32 channel,    /* func_8000F680 */
+extern s32 __osContRamWrite(OSMesgQueue *mq, s32 channel,    /* 0x8000F680 */
                             u16 addr, u8 *data, u8 pfs_flag);
-extern void bzero(void *ptr, s32 size);                      /* func_80008590 */
+extern void bzero(void *ptr, s32 size);                      /* 0x80008590 */
 
 /* Forward declaration */
 static s32 __osPfsReleasePages(OSPfs *pfs, __OSInode *inode, u8 startPage,
@@ -24,7 +24,7 @@ static s32 __osPfsReleasePages(OSPfs *pfs, __OSInode *inode, u8 startPage,
 
 /**
  * Delete a file from Controller Pak
- * (func_8000A700 - osPfsDeleteFile)
+ * (0x8000A700 - osPfsDeleteFile)
  *
  * Deletes a file from the Controller Pak filesystem by:
  * 1. Finding the file in the directory
@@ -123,7 +123,7 @@ s32 osPfsDeleteFile(OSPfs *pfs, u16 companyCode, u32 gameCode,
 
 /**
  * Release pages in the inode chain
- * (__osPfsReleasePages / func_8000A8D8)
+ * (__osPfsReleasePages / 0x8000A8D8)
  *
  * Marks pages as free (value 3) and returns the next page in the chain.
  *

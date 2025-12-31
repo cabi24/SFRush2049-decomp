@@ -11,11 +11,11 @@
 #include "types.h"
 
 /* External TLB lookup function */
-extern u32 __osTlbLookup(void *addr);  /* func_8000FCB0 */
+extern u32 __osTlbLookup(void *addr);  /* 0x8000FCB0 */
 
 /**
  * Convert virtual address to physical address
- * (func_8000D5C0 - osVirtualToPhysical)
+ * (0x8000D5C0 - osVirtualToPhysical)
  *
  * Converts a virtual address to its physical equivalent.
  *

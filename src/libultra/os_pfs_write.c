@@ -13,7 +13,7 @@ extern s32 __osContRamWrite(OSMesgQueue *mq, s32 channel, u16 addr, u8 *data, u8
 
 /**
  * Write pages to Controller Pak
- * (func_8000E850 - __osPfsWrite)
+ * (0x8000E850 - __osPfsWrite)
  *
  * Writes a fill pattern to Controller Pak, typically used for
  * clearing or initializing memory pages.

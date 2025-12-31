@@ -9,14 +9,14 @@
 #include "PR/os_pfs.h"
 
 /* External functions */
-extern s32 __osCheckId(OSPfs *pfs);                         /* func_8000F2D0 */
-extern s32 __osContRamRead(OSMesgQueue *mq, s32 channel,    /* func_8000E8D0 */
+extern s32 __osCheckId(OSPfs *pfs);                         /* 0x8000F2D0 */
+extern s32 __osContRamRead(OSMesgQueue *mq, s32 channel,    /* 0x8000E8D0 */
                            u16 addr, u8 *data);
-extern s32 __osPfsGetStatus(OSMesgQueue *mq, s32 channel);  /* func_8000E620 */
+extern s32 __osPfsGetStatus(OSMesgQueue *mq, s32 channel);  /* 0x8000E620 */
 
 /**
  * Find a file on Controller Pak
- * (func_8000A350 - osPfsFindFile)
+ * (0x8000A350 - osPfsFindFile)
  *
  * Searches the Controller Pak for a file matching the given criteria.
  *

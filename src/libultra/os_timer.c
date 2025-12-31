@@ -26,7 +26,7 @@ extern OSThread *__osTimerThread;           /* Timer service thread */
 
 /**
  * Set up a timer event
- * (func_80006E10 - osSetTimer)
+ * (0x80006E10 - osSetTimer)
  *
  * Configures a timer slot with a message queue and callback value.
  * Timer slot 0xE (14) has special handling for system initialization.
@@ -63,7 +63,7 @@ void osSetTimer(s32 timer, OSMesgQueue *mq, s32 msg) {
 
 /**
  * Set timer interrupt parameters
- * (func_80006ED0 - osSetTimerIntr)
+ * (0x80006ED0 - osSetTimerIntr)
  *
  * Configures timer interrupt for a thread.
  *
@@ -103,7 +103,7 @@ extern u32 osGetCount(void);      /* Read CP0 Count register */
 
 /**
  * Get current system time
- * (func_800073B0 - osGetTime)
+ * (0x800073B0 - osGetTime)
  *
  * Returns the current system time as a 64-bit value.
  * Combines the accumulated time with elapsed cycles since last update.

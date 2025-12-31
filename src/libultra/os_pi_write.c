@@ -11,11 +11,11 @@
 #include "PR/os_pi.h"
 
 /* External PI access check */
-extern s32 __osPiDeviceBusy(void);  /* func_8000FD70 */
+extern s32 __osPiDeviceBusy(void);  /* 0x8000FD70 */
 
 /**
  * Write word to PI address
- * (func_8000D7F0 - osPiWriteIo)
+ * (0x8000D7F0 - osPiWriteIo)
  *
  * Writes a 32-bit value directly to a PI (cartridge) address.
  * Waits for PI to be idle before writing.

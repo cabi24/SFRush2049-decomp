@@ -22,7 +22,7 @@ extern f32 sqrtf(f32 x);
 
 /**
  * Create orthographic projection matrix (float)
- * (func_80008A60 - guOrthoF)
+ * (0x80008A60 - guOrthoF)
  *
  * Creates an orthographic projection matrix for 2D rendering.
  * Used for UI elements, text, and HUD overlays.
@@ -58,7 +58,7 @@ void guOrthoF(f32 mf[4][4], f32 l, f32 r, f32 b, f32 t, f32 n, f32 f, f32 scale)
 
 /**
  * Create orthographic projection matrix (fixed-point)
- * (func_80008BB4 - guOrtho)
+ * (0x80008BB4 - guOrtho)
  *
  * Wrapper that creates float matrix then converts to N64 format.
  *
@@ -80,7 +80,7 @@ void guOrtho(u16 *m, f32 l, f32 r, f32 b, f32 t, f32 n, f32 f, f32 scale) {
 
 /**
  * Create perspective projection matrix (float)
- * (func_80008C20 - guPerspectiveF)
+ * (0x80008C20 - guPerspectiveF)
  *
  * Creates a perspective projection matrix for 3D rendering.
  * Objects farther away appear smaller.
@@ -130,7 +130,7 @@ void guPerspectiveF(f32 mf[4][4], u16 *perspNorm, f32 fovy, f32 aspect,
 
 /**
  * Create perspective projection matrix (fixed-point)
- * (func_80008E50 - guPerspective)
+ * (0x80008E50 - guPerspective)
  *
  * Wrapper that creates float matrix then converts to N64 format.
  *
@@ -152,7 +152,7 @@ void guPerspective(u16 *m, u16 *perspNorm, f32 fovy, f32 aspect,
 
 /**
  * Create look-at view matrix (float)
- * (func_80008EB0 - guLookAtF)
+ * (0x80008EB0 - guLookAtF)
  *
  * Creates a view matrix that positions the camera at (xEye,yEye,zEye)
  * looking toward (xAt,yAt,zAt) with the up vector (xUp,yUp,zUp).
@@ -238,7 +238,7 @@ void guLookAtF(f32 mf[4][4], f32 xEye, f32 yEye, f32 zEye,
 
 /**
  * Create look-at view matrix (fixed-point)
- * (func_80009168 - guLookAt)
+ * (0x80009168 - guLookAt)
  *
  * Wrapper that creates float matrix then converts to N64 format.
  *

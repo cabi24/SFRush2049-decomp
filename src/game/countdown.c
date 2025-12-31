@@ -1,6 +1,6 @@
 /**
  * countdown.c - Countdown timer state handler
- * Decompiled from func_800FBC30 with Ollama assistance
+ * Decompiled from 0x800FBC30 with Ollama assistance
  */
 
 #include "types.h"
@@ -11,7 +11,7 @@
 
 // External declarations
 extern s8 gstate;  // 0x801146EC
-extern s32 countdown_check_complete(void);  // func_800FB908 - Check if countdown complete
+extern s32 countdown_check_complete(void);  // 0x800FB908 - Check if countdown complete
 
 /**
  * CountDown - Handle countdown state (3, 2, 1, GO!)

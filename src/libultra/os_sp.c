@@ -31,7 +31,7 @@
 
 /**
  * Set RSP status register
- * (func_8000D640 - __osSpSetStatus)
+ * (0x8000D640 - __osSpSetStatus)
  *
  * Writes directly to the SP_STATUS_REG to set/clear status bits.
  *
@@ -43,7 +43,7 @@ void __osSpSetStatus(u32 status) {
 
 /**
  * Set RSP program counter
- * (func_8000D650 - osSpTaskLoad / __osSpSetPc)
+ * (0x8000D650 - osSpTaskLoad / __osSpSetPc)
  *
  * Sets the RSP program counter if the RSP is halted.
  *
@@ -67,7 +67,7 @@ s32 __osSpSetPc(u32 pc) {
 
 /**
  * Check if RSP device is busy
- * (func_8000D710 - __osSpDeviceBusy)
+ * (0x8000D710 - __osSpDeviceBusy)
  *
  * Checks DMA_BUSY, DMA_FULL, and IO_FULL bits.
  *
@@ -96,7 +96,7 @@ extern u32 osVirtualToPhysical(void *addr);
 
 /**
  * Transfer data between RSP DMEM/IMEM and RDRAM
- * (func_8000D680 - __osSpDma)
+ * (0x8000D680 - __osSpDma)
  *
  * Performs DMA transfer between RSP memory and main RAM.
  *

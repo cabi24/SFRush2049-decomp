@@ -10,7 +10,7 @@
 
 /**
  * Profile start hook
- * (func_800086F0 - __osProfileStart)
+ * (0x800086F0 - __osProfileStart)
  *
  * Debug profiling entry point stub.
  * Saves arguments to stack and returns - actual profiling disabled.
@@ -27,7 +27,7 @@ void __osProfileStart(u32 a0, u32 a1, u32 a2, u32 a3) {
 
 /**
  * Profile end hook
- * (func_8000870C - __osProfileEnd)
+ * (0x8000870C - __osProfileEnd)
  *
  * Debug profiling exit point stub.
  * Saves arguments to stack and returns - actual profiling disabled.

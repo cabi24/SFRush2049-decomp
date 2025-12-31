@@ -25,7 +25,7 @@ typedef struct {
 
 /**
  * Get RDP performance counters
- * (func_800099B0 - osDpGetCounters)
+ * (0x800099B0 - osDpGetCounters)
  *
  * Reads all RDP performance counters into a structure.
  *

@@ -17,7 +17,7 @@ extern void osSetIntMask(s32 mask);
 extern void osViSetSpecialFeatures(s32 val);
 
 /* Game display functions */
-extern void viewport_scale(f32 a0, f32 a1);  /* func_800A7508 */
+extern void viewport_scale(f32 a0, f32 a1);  /* 0x800A7508 */
 
 /* TV type from libultra */
 extern s32 osTvType;
@@ -76,7 +76,7 @@ extern DisplayState gDisplayModeTable[];    /* Display mode parameters (0x50 byt
 
 /**
  * Update display list with viewport interpolation
- * (func_800015F0 - display_update)
+ * (0x800015F0 - display_update)
  *
  * Main display update function that:
  * - Calculates viewport scaling ratios
@@ -179,7 +179,7 @@ void display_update(void) {
 
 /**
  * Set up viewport parameters
- * (func_80001B44 - viewport_setup)
+ * (0x80001B44 - viewport_setup)
  *
  * @param mode Display mode (0=low res, 1=high res)
  * @param player Player/viewport index
@@ -233,7 +233,7 @@ void viewport_setup(s32 mode, s32 player, s32 width, s32 height) {
 
 /**
  * Process pending display updates
- * (func_80001D60)
+ * (0x80001D60)
  */
 void display_process(void) {
     if (gDisplayUpdateCounter == 0) {
@@ -255,7 +255,7 @@ void display_process(void) {
 
 /**
  * Get TV type offset for frame timing
- * (func_80001DFC)
+ * (0x80001DFC)
  *
  * @return Frame offset based on TV type (0=PAL, 14=NTSC-J, 28=NTSC-U)
  */
@@ -274,7 +274,7 @@ s32 get_tv_offset(void) {
 
 /**
  * Set thread priority for display state
- * (func_80001E58)
+ * (0x80001E58)
  */
 void display_set_priority(void) {
     osSetThreadPri(gReferenceDisplayState, 0);
@@ -282,7 +282,7 @@ void display_set_priority(void) {
 
 /**
  * Get current viewport position
- * (func_80001E84 - get_viewport_pos)
+ * (0x80001E84 - get_viewport_pos)
  *
  * @param out_x Output X position
  * @param out_y Output Y position
@@ -294,7 +294,7 @@ void get_viewport_pos(s32 *out_x, s32 *out_y) {
 
 /**
  * Get viewport offset from base position
- * (func_80001ECC - get_viewport_offset)
+ * (0x80001ECC - get_viewport_offset)
  *
  * @param out_x Output X offset
  * @param out_y Output Y offset
@@ -306,7 +306,7 @@ void get_viewport_offset(s32 *out_x, s32 *out_y) {
 
 /**
  * Update viewport with bounds checking
- * (func_80001F2C - update_viewport)
+ * (0x80001F2C - update_viewport)
  *
  * @param delta_x X position delta
  * @param delta_y Y position delta

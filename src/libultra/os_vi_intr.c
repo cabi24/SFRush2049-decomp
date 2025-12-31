@@ -9,7 +9,7 @@
 
 /**
  * Swap VI context
- * (func_8000C670 - __osViSwapContext)
+ * (0x8000C670 - __osViSwapContext)
  *
  * Swaps between the current and next VI contexts.
  * Called during VI retrace interrupt to switch display buffers.

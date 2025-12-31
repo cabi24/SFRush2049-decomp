@@ -16,7 +16,7 @@ extern void __osRestoreInt(s32 mask);
 
 /**
  * Get current interrupt mask
- * (func_800077D0)
+ * (0x800077D0)
  *
  * Returns the interrupt mask from the current thread's context.
  *

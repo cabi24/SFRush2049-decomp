@@ -10,7 +10,7 @@
 
 /**
  * Copy memory with overlap handling (bcopy/memmove)
- * (func_8000D2B0 - bcopy)
+ * (0x8000D2B0 - bcopy)
  *
  * Copies n bytes from src to dst, handling overlapping regions correctly.
  * Uses optimized 32-byte and 16-byte block copies when properly aligned.

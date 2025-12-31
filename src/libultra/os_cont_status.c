@@ -9,7 +9,7 @@
 
 /**
  * Get controller status
- * (func_80009450 - osContGetStatus)
+ * (0x80009450 - osContGetStatus)
  *
  * Returns the status of the controller subsystem.
  *
@@ -22,12 +22,12 @@ s32 osContGetStatus(void) {
 
 /**
  * Parse controller status response
- * (func_800095AC) - Note: may be duplicated in os_cont.c
+ * (0x800095AC) - Note: may be duplicated in os_cont.c
  */
 
 /**
  * Reset controller RAM
- * (func_80009658 - osContRamReset)
+ * (0x80009658 - osContRamReset)
  *
  * Resets the controller RAM (used for Controller Pak).
  */

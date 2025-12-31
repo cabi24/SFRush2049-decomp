@@ -25,7 +25,7 @@ extern void bzero(void *ptr, s32 size);
 
 /**
  * Check filesystem consistency
- * (func_8000B3E0 - osPfsChecker)
+ * (0x8000B3E0 - osPfsChecker)
  *
  * Verifies the Controller Pak filesystem by:
  * 1. Checking pack ID
@@ -64,7 +64,7 @@ s32 osPfsChecker(OSPfs *pfs) {
 
 /**
  * Repair filesystem ID
- * (func_8000B918 - osPfsRepairId)
+ * (0x8000B918 - osPfsRepairId)
  *
  * Attempts to repair a damaged pack ID by rewriting it.
  *
@@ -88,7 +88,7 @@ s32 osPfsRepairId(OSPfs *pfs) {
 
 /**
  * Get filesystem label
- * (func_8000BBF0 - osPfsGetLabel)
+ * (0x8000BBF0 - osPfsGetLabel)
  *
  * Retrieves the user-defined label from the Controller Pak.
  *

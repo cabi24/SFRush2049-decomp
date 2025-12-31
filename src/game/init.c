@@ -21,21 +21,21 @@ extern void osInvalDCache(void *addr, u32 size);
 extern void dma_finalize(void *dst, u32 size);
 
 /* libultra OS functions */
-extern void osInitialize(void);                                    /* func_80007E80 */
-extern s32 osPiRawReadWord(u32 addr, u32 *out);                   /* func_800081D0 */
-extern void osCreateScheduler(s32 a0, void *a1, void *a2, s32 a3); /* func_80008210 */
-extern void osScSetVideoMode(s32 a0, s32 a1);                      /* func_80008380 */
-extern void *osScGetFrameCount(void);                              /* func_80001DFC */
-extern void osScCreateThread(void *a0, void *a1, s32 a2, void *a3, s32 a4);  /* func_80000450 */
-extern void osScStartRetrace(void *a0, void *a1, void *a2);        /* func_800005D4 */
-extern void osJamMesg(OSMesgQueue *mq, OSMesg msg, s32 flags);     /* func_800075E0 */
+extern void osInitialize(void);                                    /* 0x80007E80 */
+extern s32 osPiRawReadWord(u32 addr, u32 *out);                   /* 0x800081D0 */
+extern void osCreateScheduler(s32 a0, void *a1, void *a2, s32 a3); /* 0x80008210 */
+extern void osScSetVideoMode(s32 a0, s32 a1);                      /* 0x80008380 */
+extern void *osScGetFrameCount(void);                              /* 0x80001DFC */
+extern void osScCreateThread(void *a0, void *a1, s32 a2, void *a3, s32 a4);  /* 0x80000450 */
+extern void osScStartRetrace(void *a0, void *a1, void *a2);        /* 0x800005D4 */
+extern void osJamMesg(OSMesgQueue *mq, OSMesg msg, s32 flags);     /* 0x800075E0 */
 
 /* Game-specific initialization functions */
-extern void game_late_init(void);    /* func_800EEA7C */
-extern void sound_init(void);        /* func_800A4934 */
-extern void audio_start(void);       /* func_800A48C8 */
-extern void game_frame_update(void); /* func_800EE5DC - per-frame game logic */
-extern void game_loop(void);         /* func_800FD464 - main game loop */
+extern void game_late_init(void);    /* 0x800EEA7C */
+extern void sound_init(void);        /* 0x800A4934 */
+extern void audio_start(void);       /* 0x800A48C8 */
+extern void game_frame_update(void); /* 0x800EE5DC - per-frame game logic */
+extern void game_loop(void);         /* 0x800FD464 - main game loop */
 
 /* Forward declarations for functions in this file */
 static void game_init(void *arg);
@@ -89,7 +89,7 @@ static void thread6_entry(void *arg);
 
 /**
  * Main entry point (called from entrypoint after BSS clear)
- * func_800020F0 - Sets up first thread and starts OS
+ * 0x800020F0 - Sets up first thread and starts OS
  *
  * @param arg Argument passed from entrypoint
  */
@@ -118,7 +118,7 @@ void main(void *arg) {
 
 /**
  * Idle thread entry (thread 1)
- * func_800021A4 - Sets up video and creates game_init thread
+ * 0x800021A4 - Sets up video and creates game_init thread
  *
  * @param arg Argument from main
  */
@@ -142,7 +142,7 @@ static void thread1_entry(void *arg) {
 
 /**
  * Main game initialization (thread 6)
- * func_80002238 - Initializes all game subsystems
+ * 0x80002238 - Initializes all game subsystems
  *
  * @param arg Argument passed through from main
  */
@@ -232,7 +232,7 @@ static void game_init(void *arg) {
 
 /**
  * Main game thread entry (thread 7)
- * func_800024FC - Runs main game rendering loop
+ * 0x800024FC - Runs main game rendering loop
  *
  * @param arg Argument passed through
  */

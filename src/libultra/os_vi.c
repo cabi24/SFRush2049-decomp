@@ -55,7 +55,7 @@ extern struct OSViContext *__osViPending;  /* Pending VI context */
 
 /**
  * Get the configured framebuffer address
- * (func_800077D0 - osViGetFramebuffer)
+ * (0x800077D0 - osViGetFramebuffer)
  *
  * Returns the framebuffer pointer from the VI context.
  * This differs from osViGetCurrentFramebuffer which returns
@@ -75,7 +75,7 @@ void *osViGetFramebuffer(void) {
 
 /**
  * Set the VI mode
- * (func_80007590 - osViSetMode)
+ * (0x80007590 - osViSetMode)
  *
  * Sets the video mode for the display.
  *
@@ -100,7 +100,7 @@ void osViSetMode(void *mode) {
 
 /**
  * Enable or disable black screen
- * (func_80006DA0 - osViBlack)
+ * (0x80006DA0 - osViBlack)
  *
  * When enabled, the VI outputs black regardless of framebuffer content.
  *
@@ -134,7 +134,7 @@ extern u32 __osViGetStatus(void);  /* Read VI_STATUS_REG */
 
 /**
  * Set VI special features
- * (func_80007D20 - osViSetSpecialFeatures)
+ * (0x80007D20 - osViSetSpecialFeatures)
  *
  * Enables or disables special video interface features:
  * - Gamma correction
@@ -203,7 +203,7 @@ void osViSetSpecialFeatures(u32 features) {
 
 /**
  * Set VI swap buffer callback
- * (func_80006ED0 - osViSetSwapBuffer)
+ * (0x80006ED0 - osViSetSwapBuffer)
  *
  * Configures the VI retrace callback settings.
  * This is called during scheduler setup to register

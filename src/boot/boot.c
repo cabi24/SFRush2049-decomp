@@ -6,10 +6,10 @@
  * The actual entrypoint is handwritten assembly that clears BSS
  * and jumps to main(). This file exists for build system completeness.
  *
- * func_80000400 (entrypoint):
+ * 0x80000400 (entrypoint):
  * - Clears 0x58170 bytes starting at D_8002E8E0
  * - Sets stack pointer to D_80086A50
- * - Jumps to func_800020F0 (main)
+ * - Jumps to 0x800020F0 (main)
  */
 
 #include "types.h"

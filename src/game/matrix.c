@@ -21,7 +21,7 @@
 
 /**
  * Initialize a 4x4 identity matrix (float)
- * (func_80009394 - guMtxIdentF / mtxf_identity)
+ * (0x80009394 - guMtxIdentF / mtxf_identity)
  *
  * Creates a 4x4 identity matrix:
  *   | 1  0  0  0 |
@@ -49,7 +49,7 @@ void guMtxIdentF(f32 mtx[4][4]) {
 
 /**
  * Convert float matrix to N64 fixed-point format
- * (func_800091E0 - guMtxF2L / mtxf_to_mtx)
+ * (0x800091E0 - guMtxF2L / mtxf_to_mtx)
  *
  * Converts a 4x4 float matrix to N64's 16.16 fixed-point Mtx format.
  * The scale factor is 65536.0 (0x10000).
@@ -85,7 +85,7 @@ void guMtxF2L(f32 src[4][4], u16 *dst) {
 
 /**
  * Convert N64 fixed-point matrix to float
- * (func_800092E0 - guMtxL2F / mtx_to_mtxf)
+ * (0x800092E0 - guMtxL2F / mtx_to_mtxf)
  *
  * Converts N64's 16.16 fixed-point Mtx format back to floats.
  * The scale factor is 1/65536.0 (0x37800000).
@@ -120,7 +120,7 @@ void guMtxL2F(u16 *src, f32 dst[4][4]) {
 
 /**
  * Initialize N64 identity matrix (fixed-point)
- * (func_8000941C - guMtxIdent)
+ * (0x8000941C - guMtxIdent)
  *
  * Creates an identity matrix directly in N64 Mtx format.
  * Equivalent to: guMtxIdentF(temp); guMtxF2L(temp, mtx);

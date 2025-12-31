@@ -50,7 +50,7 @@ extern s32 __osPiDeviceBusy(void);
 
 /**
  * Initialize PI for DMA operations
- * (func_8000DBC0 - osPiInit / __osPiInit)
+ * (0x8000DBC0 - osPiInit / __osPiInit)
  *
  * Sets up the PI message queue for async operations.
  */
@@ -66,7 +66,7 @@ void osPiInit(void) {
 
 /**
  * Get PI access (wait for previous operation)
- * (func_8000DC10 - osPiGetAccess)
+ * (0x8000DC10 - osPiGetAccess)
  *
  * Initializes PI if needed, then waits for it to be free.
  */
@@ -83,7 +83,7 @@ void osPiGetAccess(void) {
 
 /**
  * Release PI access
- * (func_8000DC54 - osPiReleaseAccess)
+ * (0x8000DC54 - osPiReleaseAccess)
  *
  * Signals that PI is now available for other operations.
  */
@@ -93,7 +93,7 @@ void osPiReleaseAccess(void) {
 
 /**
  * Read 32-bit word from ROM
- * (func_8000DC80 - osPiReadWord)
+ * (0x8000DC80 - osPiReadWord)
  *
  * Performs a direct (non-DMA) read from cartridge ROM.
  * Waits for PI to be idle before reading.
@@ -126,7 +126,7 @@ s32 osPiReadWord(u32 offset, u32 *dest) {
 
 /**
  * Write 32-bit word to ROM/cartridge
- * (func_8000D7F0 - osPiWriteWord)
+ * (0x8000D7F0 - osPiWriteWord)
  *
  * Performs a direct (non-DMA) write to cartridge space.
  * Waits for PI to be idle before writing.
@@ -156,7 +156,7 @@ s32 osPiWriteWord(u32 offset, u32 value) {
 
 /**
  * Read 32-bit word from physical address (I/O space)
- * (func_8000D7A0 - osPiReadIo)
+ * (0x8000D7A0 - osPiReadIo)
  *
  * Performs a direct read from any physical address in KSEG1 (uncached).
  * Waits for PI to be idle before reading.
@@ -186,7 +186,7 @@ s32 osPiReadIo(u32 physAddr, u32 *dest) {
 
 /**
  * Synchronized read 32-bit word from ROM
- * (func_800081D0 - osPiRawReadWord)
+ * (0x800081D0 - osPiRawReadWord)
  *
  * Performs a synchronized ROM read with proper PI access control.
  * Gets PI access, reads word, then releases access.
@@ -207,7 +207,7 @@ s32 osPiRawReadWord(u32 offset, u32 *dest) {
 
 /**
  * Start PI DMA transfer (low-level)
- * (func_8000DCD0 - __osPiRawStartDma)
+ * (0x8000DCD0 - __osPiRawStartDma)
  *
  * Initiates a DMA transfer between DRAM and cartridge ROM.
  * This is the low-level version without message queue handling.
@@ -259,7 +259,7 @@ s32 __osPiRawStartDma(s32 direction, u32 romOffset, void *dramAddr, u32 size) {
 
 /**
  * Set PI device timing parameters
- * (func_8000DDA0 - osPiSetDeviceTiming / __osPiDevConfig)
+ * (0x8000DDA0 - osPiSetDeviceTiming / __osPiDevConfig)
  *
  * Configures the PI bus timing registers for a device.
  * Only updates registers that have changed from current config.

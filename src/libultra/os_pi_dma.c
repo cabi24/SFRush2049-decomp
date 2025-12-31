@@ -15,13 +15,13 @@
 extern s32 __osPiInitialized;   /* PI initialized flag: 0x8002C380 */
 
 /* External functions */
-extern OSPiHandle *__osPiGetHandle(void);                              /* func_8000E390 */
-extern s32 __osPiQueueRequest(OSPiHandle *handle, OSIoMesg *mb, s32 flags);  /* func_80007440 */
-extern s32 __osPiQueueRequestAlt(OSPiHandle *handle, OSIoMesg *mb, s32 flags); /* func_800075E0 */
+extern OSPiHandle *__osPiGetHandle(void);                              /* 0x8000E390 */
+extern s32 __osPiQueueRequest(OSPiHandle *handle, OSIoMesg *mb, s32 flags);  /* 0x80007440 */
+extern s32 __osPiQueueRequestAlt(OSPiHandle *handle, OSIoMesg *mb, s32 flags); /* 0x800075E0 */
 
 /**
  * Start PI DMA transfer
- * (func_80008630 - osPiStartDma)
+ * (0x80008630 - osPiStartDma)
  *
  * Initiates a DMA transfer between cartridge ROM and RDRAM.
  * The transfer is queued and executed asynchronously.

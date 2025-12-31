@@ -13,7 +13,7 @@ extern s32 __osPiDeviceBusy(void);
 #ifdef NON_MATCHING
 /**
  * Get and set FPU control/status register
- * (func_8000D790 - __osSetFpcCsr)
+ * (0x8000D790 - __osSetFpcCsr)
  *
  * Sets the FPU control/status register to a new value
  * and returns the old value.
@@ -42,7 +42,7 @@ u32 __osGetSetFpcCsr(u32 value) {
 
 /**
  * Read word from PI uncached address
- * (func_8000D7A0 - osPiReadIo)
+ * (0x8000D7A0 - osPiReadIo)
  *
  * Reads a 32-bit value from an uncached PI address.
  *
