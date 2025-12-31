@@ -50,9 +50,9 @@ gFcvtTemp4 = 0x8002D528; // type:data fcvt temp buffer 4
 gFcvtTemp5 = 0x8002D53C; // type:data fcvt temp buffer 5
 gPerspFov = 0x8002D6C0; // type:data perspective FOV constant (f64)
 gPerspAspect = 0x8002D6C8; // type:data perspective aspect ratio (f64)
-gExceptionMask = 0x8002D6D0; // type:data exception/interrupt mask (u16)
+// NOTE: gExceptionMask at 0x8002D6D0 renamed to __osRcpImTable (see Exception handler state section)
 gOrthoScale = 0x8002D7F0; // type:data orthographic scale constant (f64)
-gExceptionFlag = 0x8002D810; // type:data exception handler flag (u8)
+// NOTE: gExceptionFlag at 0x8002D810 renamed to __osIntOffTable (see Exception handler state section)
 
 // Viewport scale constants (21F0.s)
 gViewportFloatA = 0x8002D4C0; // type:data viewport float constant A
@@ -113,9 +113,11 @@ __osPiRawStartDma = 0x80008630; // type:func PI raw DMA request via message queu
 
 // PI global state (os_pi.c, os_pi_dma.c)
 __osPiInitialized = 0x8002C4A0; // type:data PI initialized flag (s32) - os_pi.c
-__osPiInitialized2 = 0x8002C380; // type:data PI initialized flag (s32) - os_pi_dma.c
+__osPiMgrState = 0x8002C380; // type:data size:0x1C PI manager state struct (flag+queues+funcs) - osCreatePiManager
 __osPiMesgQueue = 0x80037C78; // type:data PI message queue (OSMesgQueue)
 __osPiMesg = 0x80037C70; // type:data PI message buffer (OSMesg)
+__osPiDmaQueue = 0x80037A80; // type:data size:0x18 PI DMA event message queue (OSMesgQueue) - osCreatePiManager
+__osPiDmaMesg = 0x80037A98; // type:data size:0x4 PI DMA message buffer (OSMesg) - capacity 1
 
 __osTlbFlush = 0x8000D840; // type:func flush all TLB entries
 __osTlbInit = 0x8000D890; // type:func initialize TLB for 0xC0000000 region
@@ -164,9 +166,26 @@ osViModeTableGet = 0x80007840; // type:func get VI mode from table
 osViModeNtscLan1 = 0x8000794C; // type:func get NTSC LAN1 VI mode
 osViModeNtscLpn1 = 0x80007AB4; // type:func get NTSC LPN1 VI mode
 
-// OS/SP task functions (8A80.s)
-osSpTaskLoad = 0x80007E80; // type:func load RSP task into DMEM
-__osPiReadDeviceType = 0x80008128; // type:func read PI BSD DOM2 timing registers
+// OS initialization functions (8A80.s)
+__osInitialize_common = 0x80007E80; // type:func OS init: installs exception vectors, sets up PI/AI timing
+__osPiReadDeviceType = 0x80008128; // type:func save PI BSD DOM1/DOM2 timing registers to globals
+
+// N64 Exception Vectors (copied from __osException during boot)
+// These are the MIPS R4300 exception vector locations in KSEG0
+g_tlb_exception_vector = 0x80000000; // type:data size:16 TLB refill exception handler code (16 bytes)
+g_xtlb_exception_vector = 0x80000080; // type:data size:16 XTLB refill exception handler code (16 bytes)
+g_cache_exception_vector = 0x80000100; // type:data size:16 Cache error exception handler code (16 bytes)
+g_general_exception_vector = 0x80000180; // type:data size:16 General exception handler code (16 bytes)
+
+// N64 OS Boot Parameters (set by IPL, read during osInitialize)
+osTvType = 0x80000300; // type:data size:4 TV type (0=PAL, 1=NTSC, 2=MPAL)
+osRomType = 0x80000304; // type:data size:4 ROM type
+osRomBase = 0x80000308; // type:data size:4 ROM base address
+osResetType = 0x8000030C; // type:data size:4 Reset type (0=cold, 1=warm NMI)
+osCicId = 0x80000310; // type:data size:4 CIC chip ID
+osVersion = 0x80000314; // type:data size:4 OS version
+osMemSize = 0x80000318; // type:data size:4 Memory size in bytes
+osAppNMIBuffer = 0x8000031C; // type:data size:64 NMI buffer (preserved across warm reset)
 
 // Controller pak (osPfs) functions
 osPfsInitPak = 0x80009C10; // type:func initialize controller pak
@@ -197,15 +216,27 @@ __osSetCompare = 0x8000FB90; // type:func set CP0 Compare register for timer
 // Timer queue global state
 __osTimerList = 0x8002C3F0; // type:data timer queue head pointer (TimerQueueHead*)
 __osTimerCounter = 0x80037C60; // type:data last timer update timestamp (osGetCount value)
-timer_unused_50 = 0x80037C50; // type:data reserved/unused timer field
-timer_unused_54 = 0x80037C54; // type:data reserved/unused timer field
-timer_unused_58 = 0x80037C58; // type:data reserved/unused timer field
-timer_unused_5C = 0x80037C5C; // type:data reserved/unused timer field
+gViTimeAccumHi = 0x80037C50; // type:data VI time accumulator high word (64-bit time, hi part)
+gViTimeAccumLo = 0x80037C54; // type:data VI time accumulator low word (64-bit time, lo part)
+gViLastCount = 0x80037C58; // type:data VI last osGetCount value for delta calculation
+gViRetraceCount = 0x80037C5C; // type:data VI retrace tick counter (incremented each retrace)
 
 // Thread state
 __osRunningThread = 0x8002C3E0; // type:data current running thread (OSThread*)
 __osActiveQueue = 0x8002C3D8; // type:data active thread queue head (OSThread**)
 __osGlobalIntMask = 0x8002C370; // type:data global interrupt mask (u32)
+
+// Exception handler state (D580.s) - __osException globals
+__osExceptionSaveArea = 0x80037DB0; // type:data size:432 exception preamble temp save area (OSThread-like)
+__osFaultedThread = 0x8002C3E4; // type:data faulted thread pointer (OSThread*) - set on CPU fault
+__osShutdown = 0x8002C36C; // type:data shutdown/pre-NMI flag (u32) - set when NMI received
+__osIntOffTable = 0x8002D810; // type:data size:32 interrupt handler offset table (u8[32])
+__osIntTable = 0x8002D830; // type:data size:36 interrupt handler jump table (void*[9])
+__osHwIntTable = 0x8002C470; // type:data size:20 hardware interrupt callback table (func_ptr[5])
+__osPiIntHandler = 0x8002C498; // type:data size:8 PI interrupt handler entry (callback, stack)
+__osRcpImTable = 0x8002D6D0; // type:data size:128 RCP interrupt mask lookup table (u16[64])
+__osEventStateTab = 0x80036710; // type:data size:128 event state table array (__OSEventState[16])
+
 
 // VI manager state (D140.s, D270.s)
 __osViMode = 0x8002C400; // type:data VI mode structure (96 bytes)
@@ -216,9 +247,12 @@ __osViModePending = 0x8002C4E0; // type:data pending VI mode change
 __osViModeNext = 0x8002C530; // type:data next VI mode to apply
 __osViModeBuffer = 0x8002C580; // type:data VI mode buffer
 
-// VI mode table entries (8440.s) - osViModeTableGet
-osViModeNtscLan1_Data = 0x80036700; // type:data NTSC LAN1 mode data
-osViModeNtscLpn1_Data = 0x800366A0; // type:data NTSC LPN1 mode data
+// VI manager queue structures (7630.s - osSetEventMesg, vi_manager_main)
+gViMgrMesgQueue = 0x800366A0; // type:data size:24 VI manager message queue (OSMesgQueue)
+gViMgrMesgBuffer = 0x800366B8; // type:data size:20 VI manager message buffer array (5 OSMesg)
+gViMgrEventDP = 0x800366D0; // type:data size:8 VI manager DP event message (type=0xD OS_EVENT_DP)
+gViMgrEventSP = 0x800366E8; // type:data size:8 VI manager SP event message (type=0xE OS_EVENT_SP)
+gViMgrRetraceCounter = 0x80036700; // type:data size:2 VI manager retrace counter (u16, decremented per retrace)
 gViModeTempBuffer = 0x80036790; // type:data VI mode temp copy buffer (64 bytes)
 gViModePtr0 = 0x800367A0; // type:data VI mode pointer slot 0
 gViModePtr1 = 0x800367A8; // type:data VI mode pointer slot 1
@@ -228,7 +262,7 @@ gViModePtr4 = 0x800367BC; // type:data VI mode pointer slot 4
 gViModePtr5 = 0x800367C0; // type:data VI mode pointer slot 5
 gViModePtr6 = 0x800367C8; // type:data VI mode pointer slot 6
 gViModeMessage = 0x800368D0; // type:data VI mode message buffer
-gViModeIndex = 0x80036710; // type:data VI mode index
+// NOTE: 0x80036710 is __osEventStateTab (see Exception handler state section), not gViModeIndex
 
 // Thread queue management (D550.s)
 __osEnqueueThread = 0x8000D0C4; // type:func enqueue thread to priority queue
@@ -285,9 +319,14 @@ gViewportScaleX = 0x8002ECB0; // type:data viewport X scale (s16)
 gViewportScaleY = 0x8002ECB2; // type:data viewport Y scale (s16)
 gViewportOffsetX = 0x8002AFFC; // type:data viewport X offset table (s16[])
 gViewportOffsetY = 0x8002AFFE; // type:data viewport Y offset table (s16[])
-gViewportHeight = 0x8002AFB4; // type:data viewport height (f32)
-gViewportWidth = 0x8002AFB8; // type:data viewport width (f32)
-gViewportUpdateFlag = 0x8002AFB0; // type:data viewport update flag
+gScaleTicksPerSecond = 0x8002AFB4; // type:data size:4 ticks-to-seconds scale factor (f32), set by viewport_setup
+gScaleSecondsPerTick = 0x8002AFB8; // type:data size:4 seconds-per-tick scale factor (f32), set by viewport_setup
+gScTimeEnabled = 0x8002AFB0; // type:data size:4 scheduler time accumulation enabled (0/1)
+gViewportPendingFrames = 0x8002B010; // type:data size:2 viewport pending frame countdown (s16)
+gViModeTableBase = 0x8002B1B0; // type:data size:0x190 VI mode table (5 entries x 80 bytes each)
+gViewportBoundsTable = 0x8002AFC8; // type:data size:32 viewport bounds rect array (16 bytes x 2 entries)
+gViewportOffsetXExtra = 0x8002AFF8; // type:data size:2 viewport X offset extra (s16 in 8-byte table)
+gViewportOffsetYExtra = 0x8002AFFA; // type:data size:2 viewport Y offset extra (s16 in 8-byte table)
 
 // VI timing state (1050.s) - used by viUpdateTime
 gViTickCounter = 0x8002EB64; // type:data VI tick counter (osGetCount value)
@@ -308,6 +347,11 @@ gInflateDmaState = 0x800354D8; // type:data DMA state structure
 gInflateMsgQueue = 0x80035428; // type:data inflate message queue
 gInflateBufferA = 0x80084A50; // type:data inflate double-buffer A (4KB)
 gInflateBufferB = 0x80085A50; // type:data inflate double-buffer B (4KB)
+
+// LZSS decompression state globals (5610.s - lzss_decode)
+gLzssSrc = 0x800354A0; // type:data size:4 LZSS compressed source pointer (advances by 4KB per buffer)
+gLzssToggle = 0x80035480; // type:data size:4 LZSS double-buffer toggle (0 or 1)
+gLzssDmaState = 0x80035488; // type:data size:24 LZSS DMA state structure (passed to __osPiRawStartDma)
 
 // Matrix functions (9DE0.s)
 guMtxF2L = 0x800091E0; // type:func convert float matrix to N64 fixed-point
@@ -1625,6 +1669,18 @@ gInitFlag = 0x8002B028; // Init mode flag (0 = normal boot)
 gSyncMagic = 0x80142D90; // Magic sync value (0x0ABF/0x0ABE handshake)
 gGameStateFlag = 0x80035472; // Game state flag
 
+// Scheduler and video structures (from 2CF0.s / init.c analysis)
+gScheduler = 0x8002E8E8; // type:data size:0x50 OSSched scheduler structure passed to osScCreateThread and osScStartRetrace
+gViModeTable = 0x8002EE08; // type:data size:0x18 video mode table base pointer (passed to osCreateScheduler arg1)
+gViModeLan1 = 0x8002EE20; // type:data size:0x50 OSViMode structure for LAN1 mode (passed to osCreateScheduler arg2)
+gSchedulerStack = 0x80033EA0; // type:data size:0x640 scheduler thread stack area (used with +0x640 offset)
+
+// Thread entry point functions (from init.c)
+render_thread_entry = 0x800E7808; // type:func render thread entry point (thread 5)
+
+// ROM data offsets
+gRomCompressedData = 0xB0CB10; // type:data compressed game code in ROM (DEFLATE compressed, decompresses to 0x80086A50)
+
 // ============================================================================
 // game.c - Game functions in 0x800D0000-0x800E0000 range
 // (Renamed from func_800DXXXX placeholders based on arcade source analysis)
@@ -2053,26 +2109,37 @@ gViewportXOverflow = 0x8002ECA8; // type:data viewport X overflow (s16)
 gViewportYOverflow = 0x8002ECAA; // type:data viewport Y overflow (s16)
 gViewportScaleYAlt = 0x8002ECAE; // type:data viewport Y scale alternate (s16)
 
-// Inflate/Decompression Variables (renamed from D_80XXXXXX in m2c_output/5610.c)
-gInflateHeapSize = 0x8002B040; // type:data inflate heap allocation size
-gInflateCodeTableA = 0x8002B08C; // type:data Huffman code length table A
-gInflateCodeTableB = 0x8002B0CC; // type:data Huffman code length table B
-gInflateCodeTableC = 0x8002B10C; // type:data Huffman code length table C
-gInflateCodeTableD = 0x8002B148; // type:data Huffman code length table D
-gInflateCodeTableE = 0x8002B184; // type:data Huffman code length table E
-gInflateLitLenBase = 0x8002B1A8; // type:data literal/length base values
-gInflateDistBase = 0x8002B1AC; // type:data distance base values
+// Inflate/Decompression Static Tables (5610.s - DEFLATE RFC 1951)
+// These are the standard DEFLATE lookup tables for Huffman decoding
+gInflateBorder = 0x8002B040; // type:data size:76 code length alphabet order (19 entries as u32, RFC 1951 Table 2)
+gInflateCplens = 0x8002B08C; // type:data size:64 copy length base values (u16[31], cplens[], RFC 1951 Table 1)
+gInflateCplext = 0x8002B0CC; // type:data size:64 copy length extra bits (u8[31], cplext[], RFC 1951 Table 1)
+gInflateCpdist = 0x8002B10C; // type:data size:60 copy distance base values (u16[30], cpdist[], RFC 1951 Table 2)
+gInflateCpdext = 0x8002B148; // type:data size:60 copy distance extra bits (u8[30], cpdext[], RFC 1951 Table 2)
+gInflateMaskBits = 0x8002B184; // type:data size:34 bit mask lookup table (u16[17], mask_bits[], for fast bit extraction)
+gInflateHuftPointerLit = 0x8002B1A8; // type:data size:4 fixed Huffman literal/length table pointer (struct huft*)
+gInflateHuftPointerDist = 0x8002B1AC; // type:data size:4 fixed Huffman distance table pointer (struct huft*)
 
-// Timer/Scheduler Variables (renamed from D_80XXXXXX in m2c_output/1050.c)
-gSchedulerCallbackPtr = 0x8002AFA0; // type:data scheduler callback function pointer
-gSchedulerTimerValue = 0x8002AFA4; // type:data scheduler timer value
-gSchedulerPeriod = 0x8002AFA8; // type:data scheduler period
-gSchedulerUpdateFlag = 0x8002AFB0; // type:data scheduler update flag
+// Scheduler globals (1050.s - os_scheduler.c)
+// These are used by the osCreateScheduler/osSched API for RSP/RDP task management
+__osScCurAudioTask = 0x8002AFA0; // type:data size:4 current audio task pointer (OSScTask*)
+__osScPendingSwap = 0x8002AFA4; // type:data size:4 pending framebuffer swap address
+__osScSwapCount = 0x8002AFA8; // type:data size:4 retrace count at last swap
+__osScRetraceTimeHi = 0x8002E8E0; // type:data size:4 retrace time high 32 bits
+__osScRetraceTimeLo = 0x8002E8E4; // type:data size:4 retrace time low 32 bits
+__osScTaskCount = 0x8002EB70; // type:data size:2 pending graphics task count (s16)
+__osScAudioStartHi = 0x8002EB78; // type:data size:4 audio task start time high 32 bits
+__osScAudioStartLo = 0x8002EB7C; // type:data size:4 audio task start time low 32 bits
+__osScFrameTimeHi = 0x8002EB80; // type:data size:4 frame time accumulator high 32 bits
+__osScFrameTimeLo = 0x8002EB84; // type:data size:4 frame time accumulator low 32 bits
+__osScElapsedTime = 0x8002EB90; // type:data size:4 elapsed time since start (f32)
+__osScDeltaTime = 0x8002EB94; // type:data size:4 delta time this frame (f32)
+__osScFrameTimeResult = 0x80124F70; // type:data size:4 frame time output for profiling
 
-// VI Mode Variables (renamed from D_80XXXXXX in m2c_output/7630.c)
-gViModeEventQueue = 0x8002C330; // type:data VI mode event queue (OSMesgQueue)
-gViModeEventCount = 0x8002C34C; // type:data VI mode event counter
-gViModeResultBuffer = 0x800354F0; // type:data VI mode result buffer
+// VI Manager State (7630.s - osSetEventMesg, vi_manager_main)
+gViMgrState = 0x8002C330; // type:data size:32 VI manager state struct (flag + queue/thread ptrs)
+gViMgrEventCount = 0x8002C34C; // type:data size:4 VI manager event counter (cleared on init)
+gViMgrThreadArg = 0x800354F0; // type:data size:4 VI manager thread argument (passed to osStartThread)
 
 // Audio Buffer Variables (renamed from D_80XXXXXX in m2c_output/8A80.c)
 gAudioDmaCounter = 0x8002C360; // type:data audio DMA transfer counter
@@ -2094,8 +2161,8 @@ gSpTaskResultE = 0x80036860; // type:data SP task result E
 
 // Event/Interrupt State (renamed from D_80XXXXXX in m2c_output/7A10.c)
 gEventTypeFlag = 0x8002C350; // type:data event type flag
-gEventMaskValue = 0x8002C36C; // type:data event mask value
-gEventModeIndex = 0x80036710; // type:data event mode index
+// NOTE: 0x8002C36C is __osShutdown (see Exception handler state section)
+// NOTE: 0x80036710 is __osEventStateTab (see Exception handler state section)
 
 // Controller Pak Variables (renamed from D_80XXXXXX in m2c_output/A330.c)
 gContPakDmaBuffer = 0x80037AA0; // type:data controller pak DMA buffer
@@ -2490,43 +2557,15 @@ gCameraFar = 0x80036694; // type:data far clip plane distance (f32)
 gCameraView = 0x80036698; // type:data current camera view mode (s8) - arcade: view variable
 gCameraSaveView = 0x80036699; // type:data saved camera view (s8) - arcade: saveview
 
-// Fog Settings (arcade: sdebug.c - dbgFogColor, dbgFogMinDist, dbgFogMaxDist)
-gFogEnabled = 0x800366A0; // type:data fog enabled flag (s32)
-gFogColor = 0x800366A4; // type:data fog color RGB packed (u32)
-gFogColorR = 0x800366A8; // type:data fog color red component (u8)
-gFogColorG = 0x800366A9; // type:data fog color green component (u8)
-gFogColorB = 0x800366AA; // type:data fog color blue component (u8)
-gFogColorA = 0x800366AB; // type:data fog color alpha component (u8)
-gFogNear = 0x800366AC; // type:data fog start distance (f32)
-gFogFar = 0x800366B0; // type:data fog end distance (f32)
-gFogDensity = 0x800366B4; // type:data fog density/level (f32)
-gFogMin = 0x800366B8; // type:data fog minimum (s32, RDP G_MWO_FOG)
-gFogMax = 0x800366BC; // type:data fog maximum (s32, RDP G_MWO_FOG)
-
-// Lighting State (N64 uses gSPNumLights, gSPLight)
-gLightingEnabled = 0x800366C0; // type:data lighting enabled flag (s32)
-gNumLights = 0x800366C4; // type:data number of active lights (s32, 0-7)
-gAmbientLight = 0x800366C8; // type:data ambient light RGBA (u8[4])
-gDirectionalLight = 0x800366CC; // type:data directional light direction (f32[3])
-gLightColor = 0x800366D8; // type:data primary light color RGBA (u8[4])
-gLightIntensity = 0x800366DC; // type:data light intensity multiplier (f32)
-
-// Render Mode State (N64 RDP render modes)
-gRenderMode = 0x800366E0; // type:data current render mode bits (u32)
-gCycleType = 0x800366E4; // type:data cycle type (G_CYC_1CYCLE/G_CYC_2CYCLE)
-gAlphaCompare = 0x800366E8; // type:data alpha compare mode (u32)
-gDepthEnabled = 0x800366EC; // type:data depth test enabled (s32)
-gDepthWrite = 0x800366F0; // type:data depth write enabled (s32)
-gBlendMode = 0x800366F4; // type:data blend mode flags (u32)
-gCullMode = 0x800366F8; // type:data backface cull mode (u32)
-
-// Texture State
-gCurrentTextureId = 0x80036700; // type:data current bound texture ID (s32)
+// NOTE: Addresses 0x800366A0-0x80036700 are VI manager structures (see line ~221)
+// Previous fog/lighting/render/texture entries at these addresses were INCORRECT
+// These addresses are used by gViMgrMesgQueue, gViMgrMesgBuffer, gViMgrEventDP,
+// gViMgrEventSP, and gViMgrRetraceCounter in the VI manager system (7630.s)
 gTextureScaleS = 0x80036704; // type:data texture scale S (u16)
 gTextureScaleT = 0x80036706; // type:data texture scale T (u16)
 gTextureTile = 0x80036708; // type:data current texture tile (s32)
 gTextureFormat = 0x8003670C; // type:data texture format (G_IM_FMT_*)
-gTextureBitSize = 0x80036710; // type:data texture bit size (G_IM_SIZ_*)
+// NOTE: 0x80036710 is __osEventStateTab (see Exception handler state section)
 gTextureLodEnabled = 0x80036714; // type:data texture LOD enabled (s32)
 gTextureWrapS = 0x80036718; // type:data S wrap mode (clamp/wrap/mirror)
 gTextureWrapT = 0x8003671C; // type:data T wrap mode (clamp/wrap/mirror)
