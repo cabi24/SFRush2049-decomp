@@ -5,7 +5,7 @@ s32 func_80007270(? *, ? *, ?);                     /* extern */
 ? func_800084E0(? *, ?, s32);                       /* extern */
 ? func_80008630(? *, ?, ?, s32, ? *, s32, ? *);     /* extern */
 ? func_800960D4(s32);                               /* extern */
-s32 func_800CC3C0(?, ?, u32);                       /* extern */
+s32 sound_play_menu(?, ?, u32);                       /* extern */
 s32 func_800066D4();                                /* static */
 extern s32 D_8002B040;
 extern ? D_8002B08C;
@@ -1364,7 +1364,7 @@ s32 func_80006814(s32 arg0, u8 *arg1, s32 arg2) {
     func_800084E0((? *) D_800354B0, 0x1000, arg0);
     func_80008630(&D_800354D8, 0, 0, D_800354D0, (? *) D_800354B0, 0x1000, &D_80035428);
     if (arg2 != 0) {
-        temp_v0 = func_800CC3C0(0, 0x2EE0);
+        temp_v0 = sound_play_menu(0, 0x2EE0);
         sp40 = temp_v0;
         func_80004D50(temp_v0, 0x2EE0);
     } else {
@@ -1390,7 +1390,7 @@ s32 func_8000697C(u32 arg0, s32 arg1, u8 *arg2) {
     D_800354B8 = arg2;
     D_800354B0 = arg0;
     D_800354B4 = D_800354B0 + arg1;
-    temp_v0 = func_800CC3C0(0, 0x2EE0, arg0);
+    temp_v0 = sound_play_menu(0, 0x2EE0, arg0);
     sp1C = temp_v0;
     func_80004D50(temp_v0, 0x2EE0);
     func_80006678();

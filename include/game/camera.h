@@ -37,7 +37,24 @@
 #define CAM_ELASTICITY2     0.35f   /* Secondary elasticity */
 #define CAM_MAX_VEL         80      /* Max velocity for camera */
 
-/* Camera data structure */
+/**
+ * Camera data structure
+ *
+ * Arcade equivalents (from camera.c globals):
+ *   pos[3]          -> fcam.mat3.pos (camera world position)
+ *   target[3]       -> look-at target (computed from LookInDir)
+ *   uvs[3][3]       -> fcam.mat3.uvs (camera orientation matrix)
+ *   offset[3]       -> computed from wormoff_y/z, driveroff_x/y/z
+ *   elasticity      -> elasticity (static, 0=rigid, 1=loose)
+ *   elastic_factor  -> elastic_factor (static, velocity-based)
+ *   acc[3]          -> cur_acc[3] (camera shake from collisions)
+ *   view            -> view (S8, current view mode 1-10)
+ *   saved_view      -> saveview (S8, saved for restore)
+ *   view_time       -> view_3_time (time in current view)
+ *   rear_view_time  -> rear_view_time (time in rear view)
+ *   rear_x          -> rear_x (chase cam distance, default 16)
+ *   rear_y          -> rear_y (chase cam height, default 6)
+ */
 typedef struct CameraData {
     f32     pos[3];             /* Camera position (world coords) */
     f32     target[3];          /* Look-at target position */
@@ -58,10 +75,26 @@ typedef struct CameraData {
     u8      pad[2];
 } CameraData;
 
-/* External camera globals */
+/* External camera globals (arcade: gCamPos, gCamUvs) */
 extern CameraData gCamera;
-extern f32 gCamPos[3];
-extern f32 gCamUvs[3][3];
+extern f32 gCamPos[3];      /* Global camera position for rendering */
+extern f32 gCamUvs[3][3];   /* Global camera orientation matrix */
+
+/**
+ * Arcade function mappings:
+ *   camera_init         -> init_view() + init_view3()
+ *   camera_init_view    -> init_view() partial
+ *   camera_init_view3   -> init_view3()
+ *   camera_update       -> setcamview()
+ *   camera_check_view_change -> CheckCameraView()
+ *   camera_set_view     -> setcamview()
+ *   camera_update_chase -> View3Cam() / update_rear_camera()
+ *   camera_update_hood  -> case 2 in setcamview()
+ *   camera_update_death -> DeathCam()
+ *   camera_select_screen -> SelectCam()
+ *   camera_look_in_dir  -> LookInDir()
+ *   camera_interpolate  -> interpolate() from vecmath
+ */
 
 /* Initialization */
 void camera_init(void);

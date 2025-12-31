@@ -90,6 +90,7 @@ osDpGetCounters = 0x800099B0; // type:func get RDP performance counters
 // Audio interface functions
 osAiSetNextBuffer = 0x8000BE70; // type:func set AI DMA buffer
 osAiSetFrequency = 0x8000BF00; // type:func set AI sample rate
+__osAiDeviceBusy = 0x8000FB60; // type:func check if AI FIFO is full (returns 1 if busy)
 __setfpcsr = 0x800049F0; // type:func
 osInvalDCache = 0x800084E0; // type:func invalidate D-cache
 bzero = 0x80008590; // type:func optimized zero-fill
@@ -121,8 +122,14 @@ __osPiDmaMesg = 0x80037A98; // type:data size:0x4 PI DMA message buffer (OSMesg)
 
 __osTlbFlush = 0x8000D840; // type:func flush all TLB entries
 __osTlbInit = 0x8000D890; // type:func initialize TLB for 0xC0000000 region
+__osTLBLookup = 0x8000FCB0; // type:func TLB lookup for virtual to physical translation
 osPhysicalToVirtual = 0x80009C00; // type:func convert physical address to KSEG0 virtual
 osVirtualToPhysical = 0x8000D5C0; // type:func convert virtual address to physical
+__osPiDeviceBusy = 0x8000FD70; // type:func check if PI device is busy (returns status)
+osEPiRawWriteIo = 0x8000FDA0; // type:func raw PI I/O write (no device manager, direct HW access)
+osEPiRawStartDma = 0x8000FE00; // type:func raw PI DMA start (no device manager, direct HW access)
+osEPiRawReadIo = 0x8000FF60; // type:func raw PI I/O read (no device manager, direct HW access)
+__osPiGetCmdQueue = 0x800100C0; // type:func get PI command queue for device manager
 __osSpDma = 0x8000D680; // type:func SP DMA transfer (RSP <-> RDRAM)
 __osSiRawStartDma = 0x8000E4B0; // type:func SI raw DMA to/from PIF
 osSiInit = 0x8000E560; // type:func serial interface initialization
@@ -139,9 +146,12 @@ osContStartReadData2 = 0x800097D0; // type:func alternative start controller rea
 osContGetReadData = 0x80009854; // type:func parse PIF response into OSContPad
 __osPackReadData = 0x800098E0; // type:func pack read-buttons command into PIF buffer
 __osContRamRead = 0x8000E8D0; // type:func read from controller pak RAM
-__osContRamWrite = 0x8000EA98; // type:func write to controller pak RAM
+__osContRamWrite = 0x8000F680; // type:func write to controller pak RAM (PFS page write)
 __osContAddressCrc = 0x8000F9F0; // type:func calculate address CRC for controller pak
 __osContDataCrc = 0x8000FA4C; // type:func calculate data CRC for controller pak
+__osPfsDataChecksum = 0x8000FAC0; // type:func calculate PFS page data checksum (32 bytes)
+__osPfsRWInode = 0x8000F3A4; // type:func read/write controller pak inode table
+bcmp = 0x8000F8D0; // type:func compare two memory regions (returns 0 if equal, 1 otherwise)
 
 // Controller/PFS global state (os_pfs_rw.c, os_motor.c)
 __osContLastChannel = 0x8002C4C0; // type:data last accessed controller channel (u8)
@@ -268,6 +278,8 @@ gViModeMessage = 0x800368D0; // type:data VI mode message buffer
 __osEnqueueThread = 0x8000D0C4; // type:func enqueue thread to priority queue
 __osPopThread = 0x8000D10C; // type:func pop highest priority thread
 __osDispatchThread = 0x8000D11C; // type:func dispatch next runnable thread
+__osEnqueueAndYield = 0x8000FBA0; // type:func save thread context, enqueue to queue, yield to scheduler (asm)
+osYieldThread = 0x80010110; // type:func yield current thread (calls __osEnqueueAndYield with __osRunQueue)
 
 // DMA/decompression wrappers (3140.s)
 dma_queue_init = 0x80002540; // type:func initialize DMA message queue
@@ -295,10 +307,12 @@ lzss_decode = 0x80004AFC; // type:func LZSS back-reference decoder
 
 // Game initialization (2CF0.s)
 game_init = 0x80002238; // type:func main game initialization, creates threads
+game_late_init = 0x800EEA7C; // type:func late-stage game init (called after decompression)
 
 // Display/rendering (21F0.s)
 display_update = 0x800015F0; // type:func update display list with viewport interpolation
 viewport_setup = 0x80001B44; // type:func camera/viewport bounds setup
+viewport_scale = 0x800A7508; // type:func scale viewport dimensions (display.c)
 get_viewport_pos = 0x80001E84; // type:func get current viewport position
 get_viewport_offset = 0x80001ECC; // type:func get viewport offset from base
 update_viewport = 0x80001F2C; // type:func update viewport with bounds checking
@@ -447,9 +461,9 @@ vi_manager_main = 0x80006BB0; // type:func VI manager main loop (handles VI_RETR
 // Inflate/decompression helpers (5610.s)
 inflate_read_bits = 0x800066D4; // type:func read compressed bits from buffered DMA stream
 
-// Additional inflate helpers (5610.s)
-inflate_needbits = 0x80004878; // type:func ensure enough bits available in buffer
-inflate_getbits = 0x80004990; // type:func get n bits from inflate stream
+// Float-to-string helpers (34A0.s - used by fcvt/ecvt)
+__write_exponent = 0x80004878; // type:func write exponent string (e+XX or e-XX)
+sprintf = 0x80004990; // type:func sprintf wrapper (calls fcvt)
 inflate_io_wait = 0x80004A10; // type:func wait for DMA buffer ready
 inflate_flush_window = 0x80004D50; // type:func flush output window to destination
 inflate_free_window = 0x80005464; // type:func free huffman decode tables
@@ -487,8 +501,8 @@ dll_set_data = 0x8000CFC4; // type:func set data in dll node
 // String utility (DE20.s)
 bzero_alt = 0x8000D2A0; // type:func alternative bzero (zeroes memory)
 
-// Timer functions (E5A0.s)
-__osGetTimerValue = 0x8000D9C0; // type:func get current timer value
+// libgcc 64-bit arithmetic (E4F0.s) - duplicate of __umoddi3
+__umoddi3_alt = 0x8000D9C0; // type:func unsigned 64-bit modulo (duplicate)
 
 // SP task functions (EB70.s)
 osSpTaskLoad_full = 0x8000DF80; // type:func load RSP task microcode and data
@@ -519,12 +533,13 @@ playgame_state_change = 0x800CA3B4; // type:func walks global mode flags, handle
 update_active_objects = 0x800F733C; // type:func per-frame scene object dispatcher (accesses 0x80159788 + 0x80159450 arrays)
 PhysicsObjectList_Update = 0x800B0868; // type:func per-frame physics/vehicle list updater
 effects_update_emitters = 0x800B811C; // type:func particle/trail/FX system updater
-race_state_update = 0x800DB81C; // type:func race progression/checkpoint/finalization controller (2148 bytes)
 state_transition = 0x800FBF88; // type:func conditional state transition
 
 // Audio system
 sound_control = 0x800B37E8; // type:func audio/sound (called with -1 as stop signal)
 sound_stop = 0x800B358C; // type:func stop sound (called when engine stops)
+audio_start = 0x800A48C8; // type:func start audio subsystem (called from init.c)
+sound_init = 0x800A4934; // type:func initialize sound system (called from init.c)
 
 // High-frequency utility functions (called 100+ times)
 slot_state_setup = 0x800B4200; // type:func player/slot state management (171 calls)
@@ -941,7 +956,6 @@ countdown = 0x800FBF88; // type:func race countdown handler
 preplay_setup = 0x800FBC30; // type:func pre-race setup
 render_object = 0x80099BFC; // type:func 3D object rendering (10KB)
 // input_handler = 0x800C9AE0; // DUPLICATE - use game_mode_handler // type:func controller/init handler
-checkpoint_check = 0x800C85F0; // type:func checkpoint collision
 // Note: collision_check at 0x800B8C14 duplicates physics_sym - now using physics_sym
 physics_forces = 0x800BAE24; // type:func force calculation (arcade: forces in drivsym.c:382)
 camera_transform = 0x80097CA0; // type:func camera/view transformation
@@ -1474,17 +1488,60 @@ collision_car_wall = 0x800BB800; // type:func car-to-wall collision (arcade: For
 collision_point_in_body = 0x800BBC00; // type:func point inside collision box test (arcade: PointInBody)
 
 // AI/drone functions (arcade: drones.c, maxpath.c)
+// Main drone control functions
 DoDrones = 0x800A0000; // type:func main drone housekeeping per frame (arcade: drones.c:DoDrones)
+InitDrones = 0x8009FF00; // type:func initialize drone system for race (arcade: drones.c:InitDrones) - calls InitMaxPath
+EndDrones = 0x800A0100; // type:func cleanup drone system at race end (arcade: drones.c:EndDrones) - trivial
 drone_steering_calc = 0x800A0800; // type:func calculate drone steering angle (arcade: maxpath.c:AdjustSteer)
-MaxPathControls = 0x800A1000; // type:func drone path following controller (arcade: maxpath.c:MaxPathControls)
-avoid_areas = 0x800A1800; // type:func obstacle avoidance for drones (arcade: maxpath.c:avoid_areas)
 
+// Maxpath (drone path following) functions
+MaxPath = 0x800A0B00; // type:func main maxpath update per frame (arcade: maxpath.c:MaxPath) - wraps RecordMaxPath
+MaxPathControls = 0x800A1000; // type:func drone path following controller (arcade: maxpath.c:MaxPathControls)
+MP_FindInterval = 0x800A0C00; // type:func find current maxpath interval (arcade: maxpath.c:MP_FindInterval)
+MP_IntervalPos = 0x800A0D00; // type:func calc position relative to maxpath interval (arcade: maxpath.c:MP_IntervalPos)
+prev_maxpath = 0x800A1180; // type:func prev maxpath index with loop flag (arcade: maxpath.c:prev_maxpath)
+adjust_maxpath_due_to_lap = 0x800A14C0; // type:func adjust maxpath for lap crossing (arcade: maxpath.c:adjust_maxpath_due_to_lap)
+
+// Obstacle avoidance
+avoid_areas = 0x800A1800; // type:func obstacle avoidance for drones (arcade: maxpath.c:avoid_areas)
+next_maxpath = 0x800A1080; // type:func next maxpath index with loop flag (arcade: maxpath.c:next_maxpath)
+// ============================================================================
 // Checkpoint functions (arcade: checkpoint.c)
-CheckCPs = 0x800C0000; // type:func check checkpoint crossing (arcade: checkpoint.c:CheckCPs)
+// Cross-referenced with reference/repos/rushtherock/game/checkpoint.c
+// Added 2025-12-31 based on arcade-N64 function comparison
+// ============================================================================
+
+// Core checkpoint detection (per-frame)
+CheckCPs = 0x800C0000; // type:func main checkpoint detection per frame (arcade: checkpoint.c:866 CheckCPs)
+checkpoint_check = 0x800C85F0; // type:func checkpoint collision/plane test (arcade: checkpoint.c:866 CheckCPs inner loop)
+
+// Race lap/checkpoint state (0x800E4xxx range)
+race_lap_check = 0x800E4000; // type:func check lap completion (arcade: checkpoint.c:1098 PassedCP finish line handling)
+race_position_calc = 0x800E4200; // type:func calculate race positions (arcade: checkpoint.c:940-960 CheckCPs position sorting)
+race_checkpoint_update = 0x800E4400; // type:func update checkpoint state per frame (arcade: checkpoint.c:check_everyones_checkpoints)
+race_finish_check = 0x800E4600; // type:func check race finish condition (arcade: checkpoint.c:CarReportsGameOver trigger)
+race_time_update = 0x800E4800; // type:func update race timer (arcade: checkpoint.c:last_checkpoint_time updates)
+race_wrong_way_check = 0x800E4A00; // type:func detect wrong way driving (arcade: checkpoint.c:direction check)
+
+// World trigger system (handles checkpoint triggers)
+world_trigger_check = 0x800EDCE8; // type:func check player in trigger volumes (2292 bytes) (arcade: checkpoint.c:CheckCPs radius check)
+world_trigger_activate = 0x800EE5DC; // type:func activate checkpoint/shortcut/boost trigger (580 bytes) (arcade: checkpoint.c:PassedCP)
+
+// Checkpoint hit/lap functions (0x80107xxx range - in game code segment)
+checkpoint_hit = 0x801073D8; // type:func record checkpoint passage, validate sequence (580 bytes) (arcade: checkpoint.c:PassedCP validation)
+lap_complete = 0x8010761C; // type:func handle lap completion (1240 bytes) (arcade: checkpoint.c:PassedCP finish line, update_lap_counter)
+race_finish = 0x80107AF4; // type:func handle car finishing race (1000 bytes) (arcade: checkpoint.c:CarReportsGameOver)
+
+// Race state machine related to checkpoints
+race_state_update = 0x800DB81C; // type:func race progression/checkpoint/finalization controller (2148 bytes) (arcade: checkpoint.c:check_everyones_checkpoints)
+
+// HUD checkpoint display functions
+draw_lap_counter = 0x800C7ED4; // type:func display current/total laps (2540 bytes) (arcade: checkpoint.c:update_lap_counter)
+split_time_display = 0x800D2CDC; // type:func checkpoint split times (240 bytes) (arcade: checkpoint.c:ShowCheckpointTime)
+lap_counter_display = 0x800D2A74; // type:func lap X/Y display (440 bytes) (arcade: checkpoint.c:update_lap_counter Do_it)
 
 // Additional game code functions
 read_controllers = 0x800140B0; // type:func controller input reading - controller input reading
-
 // ============================================
 // Menu/UI Functions (from game.c analysis 2025-12-29)
 // ============================================
@@ -1569,7 +1626,6 @@ entity_update = 0x800C6AA0; // type:func full entity physics and state update (1
 // HUD Drawing Functions (0x800C7000-0x800C9000 range)
 draw_number = 0x800C760C; // type:func draw numeric value at position (524 bytes)
 draw_speedometer = 0x800C7818; // type:func draw speedometer dial with needle (1724 bytes)
-draw_lap_counter = 0x800C7ED4; // type:func display current/total laps (2540 bytes)
 draw_position = 0x800C8864; // type:func show race position (1st, 2nd, etc.) (188 bytes)
 draw_timer = 0x800C8920; // type:func show race time MM:SS.ms (228 bytes)
 draw_minimap = 0x800C9404; // type:func draw track minimap with car positions (300 bytes)
@@ -1789,8 +1845,6 @@ world_gravity_apply = 0x800ECC18; // type:func world gravity apply - applies gra
 world_friction_apply = 0x800ED674; // type:func world friction apply - applies drag to velocity (400 bytes)
 world_velocity_integrate = 0x800ED804; // type:func world velocity integrate - Euler integration (712 bytes)
 world_collision_response = 0x800EDACC; // type:func world collision response - impulse-based elastic collision (540 bytes)
-world_trigger_check = 0x800EDCE8; // type:func world trigger check - checks player in trigger volumes (2292 bytes)
-world_trigger_activate = 0x800EE5DC; // type:func world trigger activate - activates checkpoint/shortcut/boost (580 bytes)
 
 // Particle/Effects System
 world_effect_update = 0x800EE8B4; // type:func world effect update - updates particle position/lifetime (456 bytes)
@@ -2190,10 +2244,7 @@ car_setup_confirm = 0x800D1CE0; // type:func car setup confirm - finalize car se
 // Race UI/HUD
 race_countdown_display = 0x800D24C8; // type:func race countdown display - 3-2-1-GO countdown (1120 bytes)
 race_position_display = 0x800D2928; // type:func race position display - 1st/2nd/3rd etc (332 bytes)
-lap_counter_display = 0x800D2A74; // type:func lap counter display - lap X/Y display (440 bytes)
 race_timer_display = 0x800D2C2C; // type:func race timer display - race elapsed time (176 bytes)
-split_time_display = 0x800D2CDC; // type:func split time display - checkpoint split times (240 bytes)
-speed_gauge_display = 0x800D2DCC; // type:func speed gauge display - speedometer/tachometer (200 bytes)
 minimap_render = 0x800D2E94; // type:func minimap render - track minimap with car positions (1544 bytes)
 race_message_display = 0x800D349C; // type:func race message display - wrong way/final lap etc (1676 bytes)
 
@@ -2310,12 +2361,6 @@ camera_mode_set = 0x800E3800; // type:func camera mode set - set camera mode (ch
 camera_replay_control = 0x800E3A00; // type:func camera replay control - replay camera control
 
 // Race Logic (additional 0x800E)
-race_lap_check = 0x800E4000; // type:func race lap check - check lap completion
-race_position_calc = 0x800E4200; // type:func race position calc - calculate race positions
-race_checkpoint_update = 0x800E4400; // type:func race checkpoint update - update checkpoint state
-race_finish_check = 0x800E4600; // type:func race finish check - check race finish
-race_time_update = 0x800E4800; // type:func race time update - update race timer
-race_wrong_way_check = 0x800E4A00; // type:func race wrong way check - detect wrong way
 
 // Stunt System (additional 0x800E)
 stunt_detect = 0x800E5000; // type:func stunt detect - detect stunt type from air state
@@ -2557,6 +2602,20 @@ gCameraFar = 0x80036694; // type:data far clip plane distance (f32)
 gCameraView = 0x80036698; // type:data current camera view mode (s8) - arcade: view variable
 gCameraSaveView = 0x80036699; // type:data saved camera view (s8) - arcade: saveview
 
+// Additional Camera State (arcade: camera.c globals - addresses TBD, likely in game code section)
+// These arcade camera.c globals need N64 addresses found via disassembly:
+//   gCameraAccOffset[3] - arcade: cur_acc[3] - camera shake/collision offset (f32[3])
+//   gCameraRearDistX - arcade: rear_x - rear camera X distance (f32)
+//   gCameraRearDistY - arcade: rear_y - rear camera Y distance (f32)
+//   gCameraRearDistXPrev - arcade: old_rear_x - previous rear X distance (f32)
+//   gCameraListenerPos[3] - arcade: mcam[3] - listener position for audio (f32[3])
+//   gCameraVelSmooth - arcade: old_vec0 - velocity smoothing (f32)
+//   gCameraView3Time - arcade: view_3_time - time in view 3 mode (s32)
+//   gCameraRearViewTime - arcade: rear_view_time - time in rear view (s32)
+//   gCameraView3Switch - arcade: view3_switch - view 3 state toggle (s32)
+//   gCameraElasticity - arcade: elasticity - camera lag factor 0-1 (f32, static)
+//   gCameraElasticFactor - arcade: elastic_factor - secondary elasticity (f32, static)
+
 // NOTE: Addresses 0x800366A0-0x80036700 are VI manager structures (see line ~221)
 // Previous fog/lighting/render/texture entries at these addresses were INCORRECT
 // These addresses are used by gViMgrMesgQueue, gViMgrMesgBuffer, gViMgrEventDP,
@@ -2747,3 +2806,41 @@ gTrackBestLap = 0x80142BD0; // type:data track_best_lap[8] - best lap times per 
 // Finish Time Recording
 gPlayerFinishTimes = 0x80142BF0; // type:data player_finish_times[4] - player finish times (s32[4])
 gFinishTimeByPlace = 0x80142C00; // type:data finish_time_by_car[8] - finish times by position (u32[8])
+
+// ============================================================================
+// Additional Drone/AI Globals (arcade: drones.c, maxpath.c)
+// ============================================================================
+
+// Drone System Control
+gUseCatchup = 0x80153000; // type:data catchup enabled flag (s32) - arcade: drones.c:gUseCatchup
+gNumDrones = 0x80153004; // type:data number of drone cars (s16) - arcade: drones.c:num_drones
+gNumHumans = 0x80153006; // type:data number of human players (s16) - arcade: drones.c:num_humans
+gDroneDiff = 0x80153008; // type:data drone difficulty level 0-3 (s16) - arcade: drones.c:drone_diff
+gDroneAbortTimer = 0x8015300C; // type:data frames since drone stuck (s32) - arcade: mpctl.interval_time
+gOldDroneScale = 0x80153020; // type:data size:0x20 old drone scale for smoothing (f32[8]) - arcade: old_drone_scale[MAX_LINKS]
+gOldBoost = 0x80153040; // type:data size:0x20 old boost for smoothing (f32[8]) - arcade: old_boost[MAX_LINKS]
+gLastWheel = 0x80153060; // type:data size:0x20 last wheel input per car (s32[8]) - arcade: lastwheel[MAX_LINKS]
+gLastBrake = 0x80153080; // type:data size:0x20 last brake input per car (s32[8]) - arcade: lastbrake[MAX_LINKS]
+gLastThrottle = 0x801530A0; // type:data size:0x20 last throttle input per car (s32[8]) - arcade: lastthrottle[MAX_LINKS]
+
+// Maxpath Path Data (arcade: maxpath.c globals)
+gNumMPaths = 0x801530C0; // type:data number of active paths (s16) - arcade: num_mpaths
+gMPathRecording = 0x801530C2; // type:data maxpath recording active (s16) - arcade: mprecording
+gMPathIndex = 0x801530C4; // type:data current maxpath waypoint index (s16) - arcade: maxpath_index
+gDroneDoneCount = 0x801530C6; // type:data drones finished count (s16) - arcade: drone_done_count
+gCurrentDrone = 0x801530C8; // type:data current drone being updated (s16) - arcade: current_drone
+gBestLoopTime = 0x801530CC; // type:data best lap time for maxpath (s32) - arcade: best_loop_time
+gLoopStamp = 0x801530D0; // type:data lap start timestamp (s32) - arcade: loop_stamp
+gLastMPathTime = 0x801530D4; // type:data last maxpath update time (s32) - arcade: last_mpath_time
+
+// Maxpath Header/Data Pointers (arcade: maxpath.c)
+gMaxPath = 0x801530E0; // type:data main maxpath header pointer (void*) - arcade: gMaxPath
+gMPath = 0x801530E4; // type:data main maxpath waypoint array (void*) - arcade: mpath
+gMPathNum = 0x801530E8; // type:data pointer to num_points (s32*) - arcade: mpathnum
+gMPathHeaderTab = 0x801530F0; // type:data size:0x20 maxpath header table (void*[8]) - arcade: mpheader_tab[MAX_MPATHS]
+gMPathTab = 0x80153110; // type:data size:0x20 maxpath waypoint tables (void*[8]) - arcade: mpath_tab[MAX_MPATHS]
+gMPathActiveList = 0x80153130; // type:data size:0x10 active path indices (s16[8]) - arcade: mpaths[MAX_MPATHS]
+
+// Maxpath Control State per-car (arcade: MPCTL mpctl[MAX_LINKS])
+gMPCtl = 0x80153140; // type:data size:0x200 maxpath control array (MPCTL[8]) - arcade: mpctl[MAX_LINKS]
+gWeightTable = 0x80153340; // type:data size:0x180 weight table per track/car (MPWEIGHT[4][8]) - arcade: weight_table[NTRACKS][MAX_LINKS]
