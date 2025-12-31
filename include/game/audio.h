@@ -5,10 +5,10 @@
  * Handles sound effects, music, engine sounds
  *
  * Key functions:
- * - func_800B37E8 (sound_control) - main audio dispatcher
- * - func_800B358C (sound_stop) - stop sounds
+ * - sound_control (0x800B37E8) - main audio dispatcher
+ * - sound_stop (0x800B358C) - stop sounds
  * - audio_msg_send - send audio messages via OS
- * - func_8008A710 (audio_task_sync) - audio task sync
+ * - audio_task_sync (0x8008A710) - audio task sync
  */
 
 #ifndef AUDIO_H
@@ -32,7 +32,7 @@ extern void *audio_msg_queue;
  * Called every frame to process audio state.
  * -1 parameter stops all sounds.
  */
-void func_800B37E8(void);  /* TODO: Decompile */
+void sound_control(void);  /* 0x800B37E8 - TODO: Decompile */
 
 /**
  * Stop sound
@@ -40,7 +40,7 @@ void func_800B37E8(void);  /* TODO: Decompile */
  *
  * Called when stopping a specific sound channel.
  */
-void func_800B358C(void);  /* TODO: Decompile */
+void sound_stop(void);  /* 0x800B358C - TODO: Decompile */
 
 /**
  * Send audio message via OS message queue
@@ -58,6 +58,6 @@ void audio_msg_send(void);
  *
  * Synchronizes audio task with main thread.
  */
-void func_8008A710(void);  /* TODO: Decompile */
+void audio_task_sync(void);  /* 0x8008A710 - TODO: Decompile */
 
 #endif /* AUDIO_H */
