@@ -47,6 +47,11 @@ extern u8 gInitThread[];    /* Thread 6 struct (game_init thread) */
 extern u8 gAudioThread[];   /* Thread 8 struct (audio thread) */
 extern u8 gRenderThread[];  /* Thread 5 struct (render thread) */
 extern u8 gGameThread[];    /* Thread 7 struct (main game thread) */
+extern u8 gScheduler[];     /* 0x8002E8E8 - OSSched scheduler structure */
+
+/* Thread entry points */
+extern void audio_thread_proc(void *);
+extern void render_thread_entry(void *);
 
 /* Thread stacks */
 extern u8 gIdleThreadStack[];    /* Stack for thread 1 (idle) */
@@ -160,7 +165,6 @@ static void game_init(void *arg) {
     osCreateMesgQueue(&gEventMesgQueue, gEventMesgBuf, 8);     /* Event queue */
 
     /* Get frame counter and set up timer interrupts */
-    extern u8 gScheduler[];  /* 0x8002E8E8 - OSSched scheduler structure */
     frame_counter = (void *)osScGetFrameCount();
     osScCreateThread(gScheduler, gGameThread, 12, frame_counter, 1);
 
@@ -180,7 +184,6 @@ static void game_init(void *arg) {
     osScStartRetrace(gScheduler, &msg, &gRetraceMesgQueue);
 
     /* Create audio thread (thread 8) */
-    extern void audio_thread_proc(void *);
     osCreateThread(gAudioThread, 8, audio_thread_proc, NULL,
                    gAudioThreadStack + 0x960, 3);
 
@@ -192,7 +195,6 @@ static void game_init(void *arg) {
     osStartThread(gAudioThread);
 
     /* Create render thread (thread 5) */
-    extern void render_thread_entry(void *);
     osCreateThread(gRenderThread, 5, render_thread_entry, NULL,
                    gRenderThreadStack + 0x960, 7);
     osStartThread(gRenderThread);

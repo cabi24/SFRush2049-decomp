@@ -9,9 +9,25 @@
 #include "game/structs.h"
 #include "PR/os_message.h"
 #include "PR/os_pfs.h"
-#include <math.h>
-#include <string.h>
-#include <stdlib.h>
+
+/* Math function declarations (avoid system math.h for IDO compatibility) */
+extern f64 sin(f64);
+extern f64 cos(f64);
+extern f64 atan2(f64, f64);
+extern f64 pow(f64, f64);
+extern f32 sinf(f32);
+extern f32 cosf(f32);
+extern f32 sqrtf(f32);
+extern f32 fabsf(f32);
+extern f32 atan2f(f32, f32);
+
+/* String function declarations */
+extern void *memcpy(void *, const void *, u32);
+extern void *memset(void *, s32, u32);
+
+/* Stdlib function declarations */
+extern s32 abs(s32);
+extern void free(void *);
 
 /* GBI graphics command stubs - these are normally macros in gbi.h */
 #define gDPSetRenderMode(gfx, mode1, mode2)
@@ -2057,7 +2073,7 @@ extern void sound_stop_by_handle(s16, s32, s32);  /* gfx_flush - Stop sound */
 
 /* This function uses non-standard calling - player_idx in s4 */
 void car_sounds_clear(void) {
-    register s8 player_idx asm("s4");  /* Player index passed in s4 */
+    s8 player_idx;  /* Player index passed in s4 */
     u8 *car_state;
     s32 offset;
     s32 handle;
@@ -2121,7 +2137,7 @@ void all_player_sounds_clear(void) {
         /* Clear this player's car sounds
          * NOTE: menu_main expects player index in s4 register */
         {
-            register s8 player_reg asm("s4") = (s8)i;
+            s8 player_reg = (s8)i;
             (void)player_reg;  /* Force register allocation */
             menu_main();
         }
@@ -2554,7 +2570,7 @@ extern s32 resource_get_slot_state(s32, s32);   /* uv_set - Get slot state */
 extern void resource_register_slot(s32 a0); /* matrix_pop - Register slot */
 
 void resource_slot_clear(void) {
-    register s32 slot_id asm("t0");  /* Slot ID in t0 */
+    s32 slot_id;  /* Slot ID in t0 */
     s32 result;
 
     /* Check slot state */
@@ -2569,10 +2585,7 @@ void resource_slot_clear(void) {
     }
 }
 
-/*
-
 /**
-/*
  * resource_slots_clear_multiple - Clear multiple resource slots
  * (resource_slots_clear_multiple)
  * Address: 0x800C937C
@@ -2583,21 +2596,21 @@ void resource_slot_clear(void) {
 void resource_slots_clear_multiple(void) {
     /* Clear slot 54 */
     {
-        register s32 slot asm("t0") = 54;
+        s32 slot = 54;
         (void)slot;
         resource_slot_clear();
     }
 
     /* Clear slot 58 */
     {
-        register s32 slot asm("t0") = 58;
+        s32 slot = 58;
         (void)slot;
         resource_slot_clear();
     }
 
     /* Clear slot 59 */
     {
-        register s32 slot asm("t0") = 59;
+        s32 slot = 59;
         (void)slot;
         resource_slot_clear();
     }
@@ -8813,28 +8826,29 @@ f32 float_compare(f32 a, f32 b) {
     return result;
 }
 
-/*
-
+/**
  * entity_render_setup (736 bytes)
  * Large entity rendering setup
  * entity_render_setup @ 0x8008C884
  */
+extern s8 special_render_flag;
+
 void entity_render_setup(void *entity, s32 mode) {
     s16 entityId;
     s16 entityType;
     void *tableEntry;
     void *renderData;
     s32 flags;
+    s32 frameFlag;
 
     entityId = *(s16 *)((u8 *)entity + 8);
     entityType = *(s16 *)((u8 *)entity + 4);
 
     /* Check special rendering flag */
-    extern s8 special_render_flag;
     flags = special_render_flag;
     if (flags != 0) {
         /* Check frame timing flag */
-        s32 frameFlag = gstate_mask;
+        frameFlag = gstate_mask;
         if (frameFlag < 0) {
             return;
         }
@@ -10119,6 +10133,7 @@ void entity_lod_select(void *entity, f32 distance) {
     s32 *lodLevel;
     s32 *modelIndex;
     s32 baseModel;
+    s32 entityType;
     f32 lodDist0, lodDist1, lodDist2;
 
     if (entity == NULL) {
@@ -10150,7 +10165,7 @@ void entity_lod_select(void *entity, f32 distance) {
     }
 
     /* Adjust for entity type */
-    s32 entityType = *((s32 *)((u8 *)entity + 0x08));
+    entityType = *((s32 *)((u8 *)entity + 0x08));
     if (entityType == 1) {  /* Car - use tighter thresholds */
         if (distance < 50.0f) {
             *lodLevel = 0;
@@ -10179,6 +10194,8 @@ s32 entity_cull_check(void *entity, void *camera) {
     f32 dotProduct;
     f32 fov;
     f32 nearPlane, farPlane;
+    f32 coneAngle;
+    f32 radiusMargin;
 
     if (entity == NULL || camera == NULL) {
         return 1;  /* Cull if invalid */
@@ -10228,8 +10245,8 @@ s32 entity_cull_check(void *entity, void *camera) {
     }
 
     /* Check if within field of view (with radius margin) */
-    f32 coneAngle = cosf(fov);
-    f32 radiusMargin = entityRadius / dist;
+    coneAngle = cosf(fov);
+    radiusMargin = entityRadius / dist;
 
     if (dotProduct + radiusMargin < coneAngle) {
         return 1;  /* Outside FOV - cull */
@@ -12433,8 +12450,12 @@ void ai_update_car(void *car, void *target) {
     f32 steerInput;
     f32 throttleInput;
     f32 brakeInput;
+    f32 speed;
+    f32 maxSpeed;
+    f32 turnFactor;
     s32 *aiState;
     s32 difficulty;
+    s32 waypointIdx;
 
     if (car == NULL) return;
 
@@ -12449,7 +12470,7 @@ void ai_update_car(void *car, void *target) {
         targetPos = (f32 *)((u8 *)target + 0x24);
     } else {
         /* Use next waypoint from path */
-        s32 waypointIdx = aiState[0];
+        waypointIdx = aiState[0];
         track_get_node_pos(trackno, waypointIdx, &dx, NULL, &dz);
         targetPos = (f32 *)aiState + 4;
         targetPos[0] = dx;
@@ -12484,10 +12505,9 @@ void ai_update_car(void *car, void *target) {
     if (steerInput < -1.0f) steerInput = -1.0f;
 
     /* Calculate speed */
-    f32 speed = sqrtf(carVel[0] * carVel[0] + carVel[2] * carVel[2]);
+    speed = sqrtf(carVel[0] * carVel[0] + carVel[2] * carVel[2]);
 
     /* Speed control based on difficulty */
-    f32 maxSpeed;
     switch (difficulty) {
         case 0: maxSpeed = 60.0f; break;
         case 1: maxSpeed = 80.0f; break;
@@ -12496,7 +12516,7 @@ void ai_update_car(void *car, void *target) {
     }
 
     /* Slow down for turns */
-    f32 turnFactor = 1.0f - (fabsf(angleDiff) / 3.14159f) * 0.5f;
+    turnFactor = 1.0f - (fabsf(angleDiff) / 3.14159f) * 0.5f;
     maxSpeed *= turnFactor;
 
     /* Throttle and brake control */
@@ -12539,6 +12559,7 @@ void ai_follow_path(void *car, void *path) {
     f32 dx, dz;
     f32 distance;
     f32 lookahead;
+    f32 t;
 
     if (car == NULL || path == NULL) return;
 
@@ -12566,7 +12587,7 @@ void ai_follow_path(void *car, void *path) {
     track_get_node_pos(trackno, nextWaypoint, &nextPos[0], &nextPos[1], &nextPos[2]);
 
     /* Interpolate between current and next waypoint */
-    f32 t = distance / (distance + lookahead);
+    t = distance / (distance + lookahead);
     aiState[4] = (s32)(waypointPos[0] * (1.0f - t) + nextPos[0] * t);  /* Target X */
     aiState[6] = (s32)(waypointPos[2] * (1.0f - t) + nextPos[2] * t);  /* Target Z */
 }
@@ -12580,6 +12601,14 @@ void ai_avoid_obstacles(void *car, void *obstacles) {
     f32 *carPos;
     f32 *carDir;
     f32 *carVel;
+    void *otherCar;
+    f32 *otherPos;
+    f32 dx, dz, dist;
+    f32 dotFwd;
+    f32 weight;
+    f32 nx, nz;
+    f32 perpX, perpZ;
+    f32 side;
     s32 i;
     s32 numCars;
     f32 avoidX, avoidZ;
@@ -12600,34 +12629,34 @@ void ai_avoid_obstacles(void *car, void *obstacles) {
 
     /* Check each other car */
     for (i = 0; i < numCars; i++) {
-        void *otherCar = car_pointers[i];
+        otherCar = car_pointers[i];
         if (otherCar == NULL || otherCar == car) continue;
 
-        f32 *otherPos = (f32 *)((u8 *)otherCar + 0x24);
+        otherPos = (f32 *)((u8 *)otherCar + 0x24);
 
         /* Calculate distance */
-        f32 dx = otherPos[0] - carPos[0];
-        f32 dz = otherPos[2] - carPos[2];
-        f32 dist = sqrtf(dx * dx + dz * dz);
+        dx = otherPos[0] - carPos[0];
+        dz = otherPos[2] - carPos[2];
+        dist = sqrtf(dx * dx + dz * dz);
 
         /* Check if in danger zone */
         if (dist < 30.0f && dist > 1.0f) {
             /* Check if ahead of us */
-            f32 dotFwd = dx * carDir[0] + dz * carDir[2];
+            dotFwd = dx * carDir[0] + dz * carDir[2];
             if (dotFwd > 0.0f) {
                 /* Other car is ahead */
-                f32 weight = (30.0f - dist) / 30.0f;
+                weight = (30.0f - dist) / 30.0f;
 
                 /* Push away from obstacle */
-                f32 nx = -dx / dist;
-                f32 nz = -dz / dist;
+                nx = -dx / dist;
+                nz = -dz / dist;
 
                 /* Perpendicular direction for avoidance */
-                f32 perpX = -carDir[2];
-                f32 perpZ = carDir[0];
+                perpX = -carDir[2];
+                perpZ = carDir[0];
 
                 /* Determine which side to avoid to */
-                f32 side = nx * perpX + nz * perpZ;
+                side = nx * perpX + nz * perpZ;
                 if (side > 0) {
                     avoidX += perpX * weight;
                     avoidZ += perpZ * weight;
