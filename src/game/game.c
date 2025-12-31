@@ -489,9 +489,9 @@ void draw_text(s32 x, s32 y, char *text, u32 color);  /* draw_text @ 0x800C734C 
 void draw_ui_element(s32 elementId, s32 x, s32 y, s32 w, s32 h, s32 alpha);  /* draw_ui_element @ 0x800C7110 */
 
 /* State handler declarations */
-extern void state_init_handler(void);   /* func_800FBF90 - GSTATE_INIT handler */
+extern void state_init_handler(void);   /* state_init_handler @ 0x800FBF90 - GSTATE_INIT handler */
 extern void state_setup_handler(void);  /* game_unpause - GSTATE_SETUP handler */
-extern void state_menu_handler(void);   /* func_800FC0EC - GSTATE_MENU handler */
+extern void state_menu_handler(void);   /* state_menu_handler @ 0x800FC0EC - GSTATE_MENU handler */
 
 /* External data */
 extern u8 gstate;                      /* 0x801146EC - game state byte */
@@ -1158,13 +1158,12 @@ extern s16 sound_apply_effect(s32 channel, s32 effectType, f32 amount); /* sound
  * Address: 0x800FBC30
  * Size: 8 bytes (just loads mode and falls through)
  *
- * This is just a label - loads game_unlock_id then falls into func_800FBC38.
+ * This is just a label - loads game_unlock_id then falls into countdown_display (0x800FBC38).
  */
 
 /**
 /*
  * countdown_display - Countdown display handler
- * (func_800FBC38)
  * Address: 0x800FBC38
  * Size: 488 bytes
  *
@@ -3101,7 +3100,6 @@ void sound_handles_array_clear(void *obj) {
 
 /*
  * sync_release_video @ 0x8008A6D0
- * Size: 44 bytes
  *
  * Simple wrapper that releases sync on sync_state_array with
  * null parameters.
@@ -3425,7 +3423,6 @@ void object_process_thunk(void) {
 /*
  * stack_call_wrapper (fcvt_wrapper)
  * Address: 0x800B4360
- * Size: 44 bytes
  *
  * Stores a1, a2, a3 on stack then calls heap_init with
  * a0, a1, and address of stack area containing a2, a3.
@@ -3450,7 +3447,6 @@ void stack_call_wrapper(s32 a0, s32 a1, s32 a2, s32 a3) {
 /*
  * mode_flags_clear (mode_flags_clear)
  * Address: 0x800BAF64
- * Size: 44 bytes
  *
  * Clears collision_mode_flags[0] and collision_mode_flags[1], then calls collision_narrowphase.
  */
@@ -3783,7 +3779,7 @@ void memory_regions_clear(void) {
 
 /**
 /*
- * game_state_check_handler (func_800FBBFC)
+ * game_state_check_handler - Game state check handler
  * Address: 0x800FBBFC
  * Size: 52 bytes
  *
@@ -4042,7 +4038,6 @@ void sign_extend_call(void *a0, void *a1, s16 a2) {
 /*
  * sound_call_simple (sound_call_simple)
  * Address: 0x80090228
- * Size: 44 bytes
  *
  * Sign-extends parameter and calls gfx_flush with a2=0.
  *
@@ -4139,7 +4134,6 @@ void pointer_offset8_call(void *a0, void *a1) {
 /*
  * param_reshuffle_wrapper (param_reshuffle_wrapper)
  * Address: 0x800985F4
- * Size: 44 bytes
  *
  * Reorganizes parameters and calls matrix_translate.
  *
@@ -4160,9 +4154,8 @@ void param_reshuffle_wrapper(void *a0, void *a1) {
 /**
 /**
 /*
- * callback_init (func_80100D30)
+ * callback_init - Initializes object with callback pointer
  * Address: 0x80100D30
- * Size: 44 bytes
  *
  * Stores callback_ptr at a0+4, calls texture_load, returns 1.
  *
@@ -4181,11 +4174,9 @@ s32 callback_init(void *a0) {
 
 /**
 /*
- * sync_acquire_menu (func_8010FBB4)
- * Address: 0x8010FBB4
- * Size: 44 bytes
+ * sync_acquire_menu - Acquires sync on menu_sync_object
+ * Address: 0x8010FBB4 (44 bytes)
  *
- * Acquires sync on menu_sync_object with flags (0, 1).
  */
 extern void *menu_sync_object;  /* Sync object */
 
@@ -4500,8 +4491,8 @@ void *resource_lookup_synced(s32 a0, void *a1) {
 
 /**
 /*
- * resource_alloc_init (func_8010FC80)
- * Address: 0x8010FC80
+ * resource_alloc_init - Allocates resource with synced lookup and matrix init
+ * Address: 0x8010FC80 (64 bytes)
  * Size: 64 bytes
  *
  * Calls resource_lookup_synced(0, original_a0), then model_set_matrix(result, 0).
@@ -4640,8 +4631,8 @@ void conditional_call_with_init(void **a0, s32 a1) {
 
 /**
 /*
- * struct_init_and_call (func_8010FD1C)
- * Address: 0x8010FD1C
+ * struct_init_and_call - Initializes sound 3D struct and starts 3D sound
+ * Address: 0x8010FD1C (68 bytes)
  * Size: 68 bytes
  *
  * If a1 is zero, returns 1 without doing anything.
@@ -4846,8 +4837,8 @@ s16 object_bytes_sum_global(void) {
 /**
 /**
 /*
- * synced_call_95fd8 (func_8010FCC0)
- * Address: 0x8010FCC0
+ * synced_call_95fd8 - Synchronized model render with sync acquire/release
+ * Address: 0x8010FCC0 (92 bytes)
  * Size: 92 bytes
  *
  * Acquires sync on model_sync, calls model_render(a0, 0), releases sync.
@@ -7353,7 +7344,6 @@ void player_array_process(void) {
 
  * effect_slot_init (effect_slot_init)
  * Size: 120 bytes
- * Initialize effect slot with index
  */
 void effect_slot_init(s32 idx) {
     s32 condition;  /* t9 preload */
@@ -7452,7 +7442,6 @@ void entity_type_dispatch(void *entity) {
 
  * entity_iterate (entity_iterate)
  * Size: 224 bytes
- * Entity iterator with callback
  */
 void entity_iterate(void (*callback)(void *)) {
     void *list;
@@ -7473,7 +7462,6 @@ void entity_iterate(void (*callback)(void *)) {
 
  * entity_update (entity_update)
  * Size: 1564 bytes
- * Full entity physics and state update
  */
 void entity_update(void *entity) {
     s32 *entityType;
@@ -13600,7 +13588,7 @@ s32 player_get_lap(void *player) {
 /*
 
  * race_finish_player (1548 bytes)
- * Race finish handling
+ handling
  *
  * Called when a player completes the final lap.
  * Locks their position and triggers race end sequence.
@@ -18954,9 +18942,9 @@ void net_message_send(void *msg, s32 size) {
 }
 
 /*
-
- * func_800F0698 (1408 bytes)
- * Network message receive - dequeue received message
+ * net_message_recv - Network message receive, dequeue received message
+ * Address: 0x800F0698
+ * Size: 1408 bytes
  */
 s32 net_message_recv(void *buffer, s32 maxSize) {
     u8 *recvBuffer;
@@ -19019,9 +19007,9 @@ s32 net_message_recv(void *buffer, s32 maxSize) {
 }
 
 /*
-
- * func_800F0C18 (2036 bytes)
- * Network state sync - synchronize game state across players
+ * net_state_sync - Synchronize game state across players
+ * Address: 0x800F0C18
+ * Size: 2036 bytes
  */
 void net_state_sync(void *state) {
     u8 syncBuffer[256];
@@ -19085,9 +19073,9 @@ void net_state_sync(void *state) {
 }
 
 /*
-
- * func_800F13F0 (1364 bytes)
- * Multiplayer lobby - handle lobby state and player management
+ * net_lobby_update - Handle multiplayer lobby state and player management
+ * Address: 0x800F13F0
+ * Size: 1364 bytes
  */
 void net_lobby_update(void *lobby) {
     s32 *lobbyState;
@@ -19152,9 +19140,9 @@ void net_lobby_update(void *lobby) {
 }
 
 /*
-
- * func_800F1944 (852 bytes)
- * Player join handling - initialize new player
+ * net_player_join - Player join handling, initialize new player
+ * Address: 0x800F1944
+ * Size: 852 bytes
  */
 void net_player_join(s32 playerSlot) {
     void *playerCar;
@@ -19196,9 +19184,9 @@ void net_player_join(s32 playerSlot) {
 }
 
 /*
-
- * func_800F1C98 (676 bytes)
- * Player leave handling - cleanup disconnected player
+ * net_player_leave - Player leave handling, cleanup disconnected player
+ * Address: 0x800F1C98
+ * Size: 676 bytes
  */
 void net_player_leave(s32 playerSlot) {
     void *playerCar;
@@ -19233,9 +19221,9 @@ void net_player_leave(s32 playerSlot) {
 }
 
 /*
-
- * func_800F1F3C (2208 bytes)
- * Network game start - synchronize game start across players
+ * net_game_start - Synchronize game start across players
+ * Address: 0x800F1F3C
+ * Size: 2208 bytes
  */
 void net_game_start(void) {
     u8 startMsg[32];
@@ -19280,9 +19268,9 @@ void net_game_start(void) {
 }
 
 /*
-
- * func_800F27DC (1632 bytes)
- * Input sync - synchronize player inputs across network
+ * net_input_sync - Synchronize player inputs across network
+ * Address: 0x800F27DC
+ * Size: 1632 bytes
  */
 void net_input_sync(void *inputs) {
     u8 inputMsg[64];
@@ -19329,9 +19317,9 @@ void net_input_sync(void *inputs) {
 }
 
 /*
-
- * func_800F2E3C (784 bytes)
- * Latency compensation - predict entity position based on latency
+ * net_latency_predict - Latency compensation, predict entity position based on latency
+ * Address: 0x800F2E3C
+ * Size: 784 bytes
  */
 void net_latency_predict(void *entity, s32 frames) {
     f32 *pos, *vel, *accel;
@@ -19369,9 +19357,9 @@ void net_latency_predict(void *entity, s32 frames) {
 }
 
 /*
-
- * func_800F314C (1084 bytes)
- * Network error handling - process network errors
+ * net_error_handle - Network error handling, process network errors
+ * Address: 0x800F314C
+ * Size: 1084 bytes
  */
 void net_error_handle(s32 errorCode) {
     s32 *netState;
@@ -19431,9 +19419,9 @@ void net_error_handle(s32 errorCode) {
 }
 
 /*
-
- * func_800F3588 (836 bytes)
- * Session management - handle multiplayer session lifecycle
+ * net_session_manage - Handle multiplayer session lifecycle
+ * Address: 0x800F3588
+ * Size: 836 bytes
  */
 void net_session_manage(s32 cmd) {
     s32 *netState;
@@ -19498,11 +19486,10 @@ void net_session_manage(s32 cmd) {
 }
 
 /*
-
- * func_800F38BC (1912 bytes)
- * Ghost data recording
+ * ghost_record_frame - Records player car state for ghost playback
+ * Address: 0x800F38BC
+ * Size: 1912 bytes
  *
- * Records player car state for ghost playback.
  * Captures position, rotation, velocity each frame.
  */
 void ghost_record_frame(void *ghost) {
@@ -20564,8 +20551,9 @@ f32 stunt_multiplier(void *car) {
 
 /*
 
- * func_800F9428 (1604 bytes)
- * Attract mode camera - automatic camera movement for attract mode
+ * attract_camera_update - Automatic camera movement for attract mode
+ * Address: 0x800F9428
+ * Size: 1604 bytes
  */
 void attract_camera_update(void *camera) {
     f32 *camPos;
@@ -20668,8 +20656,9 @@ void attract_camera_update(void *camera) {
 
 /*
 
- * func_800F9A74 (952 bytes)
- * Demo playback - plays back a recorded demo for attract mode
+ * demo_playback - Plays back a recorded demo for attract mode
+ * Address: 0x800F9A74
+ * Size: 952 bytes
  */
 void demo_playback(void *demo) {
     u8 *demoData;
@@ -20739,8 +20728,9 @@ void demo_playback(void *demo) {
 
 /*
 
- * func_800F9E2C (684 bytes)
- * Title screen - animated logo and press start
+ * title_screen - Animated logo and press start display
+ * Address: 0x800F9E2C
+ * Size: 684 bytes
  */
 void title_screen(void) {
     s32 input;
@@ -20808,8 +20798,9 @@ void title_screen(void) {
 
 /*
 
- * func_800FA0D8 (2356 bytes)
- * Credits display - scrolling credits screen
+ * credits_display - Scrolling credits screen
+ * Address: 0x800FA0D8
+ * Size: 2356 bytes
  */
 void credits_display(void) {
     s32 scrollY;
@@ -20927,8 +20918,9 @@ void credits_display(void) {
 
 /*
 
- * func_800FA9E4 (1296 bytes)
- * Loading screen - displays progress bar during track loading
+ * loading_screen - Displays progress bar during track loading
+ * Address: 0x800FA9E4
+ * Size: 1296 bytes
  */
 void loading_screen(f32 progress) {
     s32 barWidth;
@@ -21025,8 +21017,9 @@ void loading_screen(f32 progress) {
 
 /*
 
- * func_800FAEF4 (1808 bytes)
- * Pause menu - in-race pause screen with options
+ * pause_menu - In-race pause screen with options
+ * Address: 0x800FAEF4
+ * Size: 1808 bytes
  */
 void pause_menu(void *pause) {
     s32 input;
@@ -21146,8 +21139,9 @@ void pause_menu(void *pause) {
 
 /*
 
- * func_800FB5F4 (820 bytes)
- * Pause state toggle - handles entering/exiting pause
+ * pause_toggle - Handles entering/exiting pause state
+ * Address: 0x800FB5F4
+ * Size: 820 bytes
  */
 void pause_toggle(s32 pause) {
     s32 prevPause;
@@ -21189,8 +21183,9 @@ void pause_toggle(s32 pause) {
 
 /*
 
- * func_800FB928 (712 bytes)
- * Game timer update - updates race clock and lap times
+ * game_timer_update - Updates race clock and lap times
+ * Address: 0x800FB928
+ * Size: 712 bytes
  */
 void game_timer_update(void) {
     s32 currentFrame;
@@ -21245,8 +21240,9 @@ void game_timer_update(void) {
 
 /*
 
- * func_800FC3D8 (1516 bytes)
- * Bonus mode - hidden coin collection mode
+ * bonus_mode_update - Hidden coin collection mode
+ * Address: 0x800FC3D8
+ * Size: 1516 bytes
  */
 void bonus_mode_update(void *bonus) {
     s32 coinCount;
@@ -21301,8 +21297,9 @@ void bonus_mode_update(void *bonus) {
 
 /*
 
- * func_800FC9B8 (1284 bytes)
- * Unlock check - check if content is unlocked
+ * unlock_check - Check if content is unlocked
+ * Address: 0x800FC9B8
+ * Size: 1284 bytes
  *
  * Unlock IDs:
  * 0-11: Tracks (0=Marina, 1=Haight, etc.)
@@ -21338,8 +21335,9 @@ s32 unlock_check(s32 unlockId) {
 
 /*
 
- * func_800FCEB0 (948 bytes)
- * Unlock trigger - unlock new content
+ * unlock_trigger - Unlock new content
+ * Address: 0x800FCEB0
+ * Size: 948 bytes
  */
 void unlock_trigger(s32 unlockId) {
     u32 *unlockWord;
@@ -21394,8 +21392,9 @@ void unlock_trigger(s32 unlockId) {
 
 /*
 
- * func_800FD264 (512 bytes)
- * Progress save - save game progress to Controller Pak
+ * progress_save - Save game progress to Controller Pak
+ * Address: 0x800FD264
+ * Size: 512 bytes
  */
 void progress_save(void) {
     u8 saveData[256];
@@ -21473,8 +21472,9 @@ void progress_save(void) {
 
 /*
 
- * func_800FDA90 (4560 bytes)
- * Race init - initialize race state for new race
+ * race_init - Initialize race state for new race
+ * Address: 0x800FDA90
+ * Size: 4560 bytes
  */
 void race_init(void *race) {
     s32 i;
@@ -21580,8 +21580,9 @@ void race_init(void *race) {
 
 /*
 
- * func_800FEC78 (1808 bytes)
- * Race cleanup - clean up after race ends
+ * race_cleanup - Clean up after race ends
+ * Address: 0x800FEC78
+ * Size: 1808 bytes
  */
 void race_cleanup(void) {
     s32 i;
@@ -26684,8 +26685,11 @@ s32 timer_get_elapsed(void) {
 
 /*
 
- * func_80100DF0 (244 bytes)
- * Timer reset
+ * timer_reset - Resets race timer to current frame
+ * Address: 0x80100DF0 (244 bytes)
+ *
+ * Initializes the race timer by storing the current frame counter
+ * as the start time and clearing elapsed/paused state.
  */
 void timer_reset(void) {
     s32 *timerStartFrame;
@@ -26703,8 +26707,12 @@ void timer_reset(void) {
 
 /*
 
- * func_80100EE4 (776 bytes)
- * Countdown timer
+ * countdown_start - Starts pre-race countdown timer
+ * Address: 0x80100EE4 (776 bytes)
+ *
+ * Initializes countdown timer for race start sequence.
+ * Converts seconds to frames at 60fps and plays countdown beep.
+ * Arcade equivalent: SetCountdownTimer() in select.c
  */
 void countdown_start(s32 seconds) {
     s32 *timerCountdown;
@@ -26728,8 +26736,12 @@ void countdown_start(s32 seconds) {
 
 /*
 
- * func_801011DC (1340 bytes)
- * Lap timer split
+ * lap_timer_split - Records lap time and checks for best lap
+ * Address: 0x801011DC (1340 bytes)
+ *
+ * Called when player crosses start/finish line to record lap time.
+ * Calculates lap time from cumulative race time and checks if
+ * it beats the current best lap. Increments lap counter.
  */
 void lap_timer_split(void *player) {
     s32 playerIdx;
@@ -26775,8 +26787,12 @@ void lap_timer_split(void *player) {
 
 /*
 
- * func_80101700 (588 bytes)
- * Best time check
+ * best_time_check - Checks if time qualifies for leaderboard
+ * Address: 0x80101700 (588 bytes)
+ *
+ * Compares race time against top 5 best times for the track.
+ * Returns position (1-5) if time qualifies, 0 otherwise.
+ * Arcade equivalent: HiScoreRank() in hiscore.c
  */
 s32 best_time_check(s32 trackId, s32 time) {
     s32 *bestTimes;
@@ -26802,8 +26818,12 @@ s32 best_time_check(s32 trackId, s32 time) {
 
 /*
 
- * func_8010194C (812 bytes)
- * Record new best
+ * best_time_record - Saves new best time to leaderboard
+ * Address: 0x8010194C (812 bytes)
+ *
+ * Inserts new time into leaderboard, shifting lower entries down.
+ * Associates player name with the entry and saves to Controller Pak.
+ * Arcade equivalent: SaveHighScore() in hiscore.c
  */
 void best_time_record(s32 trackId, s32 time, u8 *name) {
     s32 *bestTimes;
@@ -26854,8 +26874,12 @@ void best_time_record(s32 trackId, s32 time, u8 *name) {
 
 /*
 
- * func_80101C78 (1472 bytes)
- * Leaderboard display
+ * leaderboard_display - Renders best times leaderboard for track
+ * Address: 0x80101C78 (1472 bytes)
+ *
+ * Draws the top 5 best times with player names for the specified track.
+ * Formats times as MM:SS.cc and uses gold header color.
+ * Arcade equivalent: ShowHiScore() in hiscore.c
  */
 void leaderboard_display(s32 trackId) {
     s32 *bestTimes;
@@ -26921,8 +26945,12 @@ void leaderboard_display(s32 trackId) {
 
 /*
 
- * func_80102250 (2084 bytes)
- * Race results screen - displays finish times and positions
+ * race_results_display - Shows post-race finish positions and times
+ * Address: 0x80102250 (2084 bytes)
+ *
+ * Displays race results with player positions, lap counts, and times.
+ * Highlights player 1 and triggers high score entry if new record.
+ * Handles animation and input for skipping.
  */
 void race_results_display(void) {
     s32 i;
@@ -27057,11 +27085,12 @@ void race_results_display(void) {
 }
 
 /*
- * func_80102A74 (1524 bytes)
- * Award ceremony - Displays race results and trophies
+ * award_ceremony - Displays podium positions with trophy animation
+ * Address: 0x80102A74 (1524 bytes)
  *
- * Shows podium positions, times, and animates trophy presentation.
- * Called after race completion.
+ * Shows race complete screen with animated fade in/out.
+ * Displays 1st-4th place results with formatted times.
+ * Renders rotating trophy for winner.
  */
 extern s32 player_placing[4];   /* Player placing (1st-4th) */
 extern s32 player_finish_times[4];   /* Player finish times */
@@ -27166,11 +27195,12 @@ void award_ceremony(void) {
 }
 
 /*
- * func_8010306C (876 bytes)
- * Trophy animation - Renders animated trophy for race winner
+ * trophy_animate - Renders rotating 3D trophy for race winner
+ * Address: 0x8010306C (876 bytes)
  *
- * Draws a rotating 3D trophy model at the specified position.
- * Uses simple vertex transforms and triangle rendering.
+ * Draws animated trophy with bobbing motion and rotation.
+ * Color varies by placing: gold (1st), silver (2nd), bronze (3rd).
+ * Uses display list for RCP rendering.
  *
  * @param place Placing (1=gold, 2=silver, 3=bronze)
  */
@@ -27283,8 +27313,13 @@ void trophy_animate(s32 place) {
 
 /*
 
- * func_801033D8 (1616 bytes)
- * Continue prompt - ask player to continue or quit
+ * continue_prompt - Asks player to continue or quit after game over
+ * Address: 0x801033D8 (1616 bytes)
+ *
+ * Displays YES/NO prompt with 10-second countdown timer.
+ * Handles left/right navigation and A button confirmation.
+ * Returns 0 for continue, 1 for quit, -1 while waiting.
+ * Arcade equivalent: continue handling in hiscore.c
  */
 s32 continue_prompt(void) {
     s32 input;
@@ -27358,8 +27393,11 @@ s32 continue_prompt(void) {
 
 /*
 
- * func_80103A08 (2328 bytes)
- * Game over screen - displays final stats and options
+ * game_over_screen - Displays final stats and game over message
+ * Address: 0x80103A08 (2328 bytes)
+ *
+ * Shows game over screen with final statistics and transitions
+ * to continue prompt or attract mode based on player input.
  */
 void game_over_screen(void) {
     s32 input;
@@ -27479,9 +27517,12 @@ void game_over_screen(void) {
 }
 
 /*
-
- * func_80104320 (1844 bytes)
- * Name entry screen - enter initials for high score
+ * name_entry_screen - Enter initials for high score
+ * Address: 0x80104320
+ * Size: 1844 bytes
+ *
+ * Character grid UI for entering player initials on high score table.
+ * Supports A-Z, 0-9, space, and punctuation characters.
  */
 void name_entry_screen(u8 *name) {
     s32 input;
@@ -27610,8 +27651,9 @@ void name_entry_screen(u8 *name) {
 }
 
 /*
- * func_80104A58 (1036 bytes)
- * High score entry animation - Animates the new high score entry effect
+ * highscore_animation - Animate new high score entry effect
+ * Address: 0x80104A58
+ * Size: 1036 bytes
  *
  * Shows fireworks, flashing, and sparkles around the new entry.
  *
@@ -27673,10 +27715,12 @@ void highscore_animation(s32 position) {
 }
 
 /*
- * func_80104E84 (2464 bytes)
- * Statistics display - Shows player game statistics
+ * statistics_display - Show player game statistics
+ * Address: 0x80104E84
+ * Size: 2464 bytes
+ * Displays various lifetime stats like races, wins, podiums,
+ * time played, best lap, miles driven, crashes, and stunt points.
  *
- * Displays various lifetime stats like races, wins, etc.
  *
  * @param stats Pointer to player statistics structure
  */
@@ -27806,8 +27850,10 @@ void statistics_display(void *stats) {
 }
 
 /*
- * func_80105858 (1692 bytes)
- * Achievements check - Checks and unlocks achievements based on player progress
+ * achievements_check - Check and unlock achievements based on player progress
+ * Address: 0x80105858
+ * Size: 1692 bytes
+ * Checks for win milestones, stunt points, track/car collection, etc.
  *
  * Evaluates player stats against achievement thresholds and triggers unlocks.
  *
@@ -27913,8 +27959,10 @@ void achievements_check(void *player) {
 }
 
 /*
- * func_80105EF4 (876 bytes)
- * Achievement unlock - Shows unlock notification popup
+ * achievement_unlock - Show unlock notification popup
+ * Address: 0x80105EF4
+ * Size: 876 bytes
+
  *
  * Queues an achievement unlock notification to display on screen.
  * Uses a notification queue to avoid overlapping popups.
@@ -27966,8 +28014,10 @@ void achievement_unlock(s32 achievementId) {
 }
 
 /*
- * func_80106260 (1484 bytes)
- * Achievement display - Renders achievement popup on screen
+ * achievement_display - Render achievement popup on screen
+ * Address: 0x80106260
+ * Size: 1484 bytes
+ * Shows slide-in animation, trophy icon, and achievement name text.
  *
  * Shows the current achievement notification with icon and text.
  *
@@ -28044,8 +28094,11 @@ void achievement_display(s32 achievementId) {
 }
 
 /*
- * func_801068F4 (2144 bytes)
- * Profile stats update - Updates player profile with race results
+ * profile_stats_update - Update player profile with race results
+ * Address: 0x801068F4
+ * Size: 2144 bytes
+ * Updates race count, wins, podiums, best lap, distance, crashes,
+ * stunt points. Also checks for no-crash achievement.
  *
  * Accumulates race statistics into the player's lifetime profile.
  *
@@ -28121,8 +28174,12 @@ void profile_stats_update(void *profile, void *raceStats) {
 
 /*
 
- * func_80107110 (1248 bytes)
- * Difficulty scaling
+ * difficulty_set - Set global difficulty scaling parameters
+ * Address: 0x80107110
+ * Size: 1248 bytes
+ *
+ * Configures AI speed, reaction time, player damage, and time bonus
+ * multipliers based on difficulty level (Easy/Normal/Hard/Expert).
  */
 void difficulty_set(s32 difficulty) {
     f32 *aiSpeedMult;
@@ -28171,8 +28228,12 @@ void difficulty_set(s32 difficulty) {
 
 /*
 
- * func_80107600 (924 bytes)
- * AI difficulty adjust
+ * ai_difficulty_adjust - Adjust individual AI car parameters
+ * Address: 0x80107600
+ * Size: 924 bytes
+ *
+ * Sets AI car max speed, acceleration, steering, and aggression
+ * based on difficulty level. Applied per-car for varied competition.
  */
 void ai_difficulty_adjust(void *ai, s32 difficulty) {
     f32 *aiMaxSpeed;
@@ -28227,8 +28288,12 @@ void ai_difficulty_adjust(void *ai, s32 difficulty) {
 
 /*
 
- * func_801079AC (1768 bytes)
- * Rubber banding
+ * rubber_banding - Apply rubber band AI speed adjustment
+ * Address: 0x801079AC
+ * Size: 1768 bytes
+ *
+ * Dynamically adjusts AI car speeds based on gap to leader.
+ * Cars far behind get speed boost, cars too far ahead slow down.
  */
 void rubber_banding(void *race) {
     void *leaderCar;
@@ -28277,9 +28342,11 @@ void rubber_banding(void *race) {
 }
 
 /*
-
- * func_80108098 (2356 bytes)
- * Dynamic difficulty
+ * dynamic_difficulty - Adjusts AI difficulty based on player performance
+ * Address: 0x80108098
+ *
+ * Calculates performance score from wins, crashes, and position to tune
+ * rubber-band AI behavior for balanced gameplay.
  */
 void dynamic_difficulty(void *player) {
     s32 *playerPosition;
@@ -28328,40 +28395,44 @@ void dynamic_difficulty(void *player) {
 }
 
 /*
-
- * func_801089CC (1432 bytes)
- * Catch-up logic
+ * ai_catch_up_logic - Implements rubber-band AI catch-up behavior
+ * Address: 0x801089CC
+ *
+ * Adjusts AI speed/aggression based on distance to leader to keep
+ * races competitive.
  */
 void ai_catch_up_logic(void *ai, void *leader) {
     /* Catch-up - stub */
 }
 
 /*
-
- * func_80108F6C (876 bytes)
- * Skill rating update
+ * skill_rating_update - Updates player skill rating after race
+ * Address: 0x80108F6C
+ *
+ * Tracks player skill over time to improve matchmaking and
+ * difficulty scaling.
  */
 void skill_rating_update(void *player, s32 result) {
     /* Skill rating - stub */
 }
 
 /*
-
- * func_801092D8 (1984 bytes)
- * Matchmaking
+ * matchmaking - Balances players for competitive multiplayer races
+ * Address: 0x801092D8
+ *
+ * Uses skill ratings to pair players and set appropriate
+ * handicaps for local split-screen multiplayer.
  */
 void matchmaking(void *players) {
     /* Matchmaking - stub */
 }
 
 /*
- * func_80109A98 (1124 bytes)
- * Session host - Initializes a multiplayer session as host
+ * session_host - Initializes a multiplayer session as host
+ * Address: 0x80109A98
  *
  * Sets up session state and allocates player slots.
  * For N64, this is local split-screen multiplayer.
- *
- * @return Session ID or -1 on failure
  */
 extern s32 host_player_index;      /* Host player index */
 
@@ -28392,13 +28463,10 @@ s32 session_host(void) {
 }
 
 /*
- * func_80109EFC (1476 bytes)
- * Session join - Joins an existing multiplayer session
+ * session_join - Joins an existing multiplayer session
+ * Address: 0x80109EFC
  *
  * Finds an empty player slot and registers the player.
- *
- * @param sessionId Session to join (ignored for local)
- * @return Assigned player index or -1 on failure
  */
 s32 session_join(s32 sessionId) {
     s32 i;
@@ -28437,8 +28505,8 @@ s32 session_join(s32 sessionId) {
 }
 
 /*
- * func_8010A4C0 (892 bytes)
- * Session leave - Removes a player from the session
+ * session_leave - Removes a player from the session
+ * Address: 0x8010A4C0
  *
  * Called when a player disconnects or leaves.
  */
@@ -28463,8 +28531,8 @@ void session_leave(void) {
 }
 
 /*
- * func_8010A83C (2648 bytes)
- * Network sync full - Synchronizes game state between players
+ * network_sync_full - Synchronizes game state between players
+ * Address: 0x8010A83C
  *
  * For local multiplayer, ensures all player states are consistent.
  * Copies relevant state between player structures.
@@ -28518,13 +28586,10 @@ void network_sync_full(void) {
 }
 
 /*
- * func_8010B284 (676 bytes)
- * Ping measurement - Measures input lag/response time
+ * network_sync_delta - Synchronizes only changed state
+ * Address: 0x8010B284
  *
- * For local multiplayer, returns 0 (no network latency).
- * Could be used for controller response testing.
- *
- * @return Ping time in frames (0 for local)
+ * Optimized sync that only sends deltas for changed values.
  */
 s32 ping_measurement(void) {
     /* Local multiplayer has no network latency */
@@ -28532,12 +28597,10 @@ s32 ping_measurement(void) {
 }
 
 /*
- * func_8010B874 (1548 bytes)
- * Disconnection handling - Handles player disconnect
+ * network_latency_comp - Compensates for network/controller latency
+ * Address: 0x8010B874
  *
- * Called when a controller is unplugged or player leaves.
- *
- * @param playerId Player index that disconnected
+ * Adjusts timing and prediction to maintain smooth gameplay.
  */
 void disconnection_handling(s32 playerId) {
     u8 *carBase;
@@ -28568,12 +28631,10 @@ void disconnection_handling(s32 playerId) {
 }
 
 /*
- * func_8010BE7C (1152 bytes)
- * Reconnection attempt - Attempts to reconnect a player
+ * network_disconnect_handle - Handles player disconnection
+ * Address: 0x8010BE7C
  *
- * Checks if a disconnected player's controller is active again.
- *
- * @return Player index if reconnected, -1 otherwise
+ * Cleans up player state and notifies remaining players.
  */
 s32 reconnection_attempt(void) {
     s32 i;
@@ -28598,7 +28659,9 @@ s32 reconnection_attempt(void) {
 }
 
 /*
- * func_8010C2FC (2084 bytes)
+ * final_cleanup - Performs end-of-game cleanup
+ * Address: 0x8010C2FC
+ * Size: 2084 bytes
  * Final cleanup - Performs end-of-game cleanup
  *
  * Frees resources, saves state, and resets for next game.
@@ -31356,7 +31419,6 @@ void hud_render(void) {
 
  * menu_process_input (controller_get_input)
  * Size: 628 bytes
- * Handles controller input for menu navigation
  */
 s32 menu_process_input(s32 input) {
     s32 result;
@@ -31487,7 +31549,6 @@ s32 menu_process_input(s32 input) {
 
  * menu_cursor_move (input_poll)
  * Size: 516 bytes
- * Navigates between menu items
  */
 void menu_cursor_move(s32 direction) {
     s32 currentIndex;
@@ -31608,7 +31669,6 @@ void menu_cursor_move(s32 direction) {
 
  * menu_item_select (menu_item_select)
  * Size: 564 bytes
- * Handles selection action for current menu item
  */
 void menu_item_select(s32 itemIndex) {
     s32 *menuItems;
@@ -31726,7 +31786,6 @@ void menu_item_select(s32 itemIndex) {
 
  * menu_back (menu_back)
  * Size: 132 bytes
- * Returns to previous menu in stack
  */
 void menu_back(void) {
     s32 prevMenu;
@@ -31755,7 +31814,6 @@ void menu_back(void) {
 
  * menu_transition (menu_transition)
  * Size: 340 bytes
- * Switches to a new menu with animation
  */
 void menu_transition(s32 toMenuId) {
     s32 currentMenu;
@@ -31827,7 +31885,6 @@ void menu_transition(s32 toMenuId) {
 
  * menu_animation_update (animation_update)
  * Size: 900 bytes
- * Handles menu transitions and element animations
  */
 void menu_animation_update(void) {
     s32 transitionState;
@@ -31956,7 +32013,6 @@ void menu_animation_update(void) {
 
  * sound_play_menu (sound_play_menu)
  * Size: 380 bytes
- * Plays menu sound effects
  */
 void sound_play_menu(s32 soundId) {
     s32 actualSoundId;
@@ -32041,7 +32097,6 @@ void sound_play_menu(s32 soundId) {
 
  * menu_text_scroll (menu_text_scroll)
  * Size: 904 bytes
- * Scrolls long text horizontally
  */
 void menu_text_scroll(char *text, s32 maxWidth) {
     s32 textLen;
@@ -32154,7 +32209,6 @@ void menu_text_scroll(char *text, s32 maxWidth) {
 
  * menu_highlight_set (font_load)
  * Size: 316 bytes
- * Sets highlight state for menu item
  */
 void menu_highlight_set(s32 itemIndex) {
     s32 prevIndex;
@@ -32208,7 +32262,6 @@ void menu_highlight_set(s32 itemIndex) {
 
  * menu_list_render (font_print)
  * Size: 1112 bytes
- * Renders entire menu with items
  */
 void menu_list_render(void *list, s32 count) {
     s32 i;
@@ -32422,7 +32475,6 @@ s32 menu_slider_clamp(s32 current, s32 min, s32 max) {
 
  * menu_dialog_display (text_center)
  * Size: 1088 bytes
- * Shows modal dialog box
  */
 void menu_dialog_display(s32 dialogId) {
     s32 dialogX, dialogY;
@@ -32658,7 +32710,6 @@ s32 menu_confirm_dialog(char *message) {
 
  * menu_dialog_close (menu_dialog_close)
  * Size: 184 bytes
- * Closes active dialog with animation
  */
 void menu_dialog_close(void) {
     /* Start close animation */
@@ -32680,7 +32731,6 @@ void menu_dialog_close(void) {
 
  * keyboard_init (text_width)
  * Size: 340 bytes
- * Initializes on-screen keyboard for text entry
  */
 void keyboard_init(void) {
     s32 i;
@@ -32719,7 +32769,6 @@ void keyboard_init(void) {
 
  * keyboard_input_process (text_draw)
  * Size: 500 bytes
- * Handles navigation and character selection
  */
 char keyboard_input_process(s32 input) {
     s32 col, row;
@@ -37788,11 +37837,10 @@ void dust_cloud_effect(f32 *pos) {
 }
 
 /*
-
- * func_800F0100 (1396 bytes)
- * Skid mark render
+ * skid_mark_render - Renders tire skid marks on the track surface
+ * Address: 0x800F0100
+ * Size: 1396 bytes
  *
- * Renders tire skid marks on the track surface
  * Uses decal-style rendering on track geometry
  */
 void skid_mark_render(void *tire) {
@@ -38223,11 +38271,9 @@ void lens_flare(f32 *sunPos) {
 }
 
 /*
-
- * func_800F20A0 (1664 bytes)
- * Environment map
- *
- * Configures RSP for environment mapping on reflective surfaces
+ * environment_map_setup - Configures RSP for environment mapping on reflective surfaces
+ * Address: 0x800F20A0
+ * Size: 1664 bytes
  */
 void environment_map_setup(void *object) {
     extern Gfx **gfx_dl_ptr;
@@ -38262,11 +38308,9 @@ void environment_map_setup(void *object) {
 }
 
 /*
-
- * func_800F2720 (376 bytes)
- * Reflection setup
- *
- * Configures planar reflection rendering for wet surfaces
+ * reflection_setup - Configures planar reflection rendering for wet surfaces
+ * Address: 0x800F2720
+ * Size: 376 bytes
  */
 void reflection_setup(void) {
     extern Gfx **gfx_dl_ptr;
@@ -38292,11 +38336,9 @@ void reflection_setup(void) {
 }
 
 /*
-
- * func_800F2890 (408 bytes)
- * Water surface
- *
- * Renders animated water surface with wave distortion
+ * water_surface_render - Renders animated water surface with wave distortion
+ * Address: 0x800F2890
+ * Size: 408 bytes
  */
 void water_surface_render(void) {
     extern Gfx **gfx_dl_ptr;
@@ -38329,11 +38371,9 @@ void water_surface_render(void) {
 }
 
 /*
-
- * func_800F2A28 (2736 bytes)
- * Skybox render
- *
- * Renders the skybox around the camera
+ * skybox_render - Renders the skybox around the camera
+ * Address: 0x800F2A28
+ * Size: 2736 bytes
  */
 void skybox_render(void *camera) {
     extern Gfx **gfx_dl_ptr;
@@ -38381,11 +38421,9 @@ void skybox_render(void *camera) {
 }
 
 /*
-
- * func_800F34D8 (3576 bytes)
- * Track render
- *
- * Renders visible track sections based on camera position
+ * track_render - Renders visible track sections based on camera position
+ * Address: 0x800F34D8
+ * Size: 3576 bytes
  */
 void track_render(void *camera) {
     u8 *camData = (u8 *)camera;
@@ -39064,10 +39102,11 @@ void car_nitro_effect(void *car) {
 
 /*
 
- * func_800F93A0 (5652 bytes)
- * Scene render main
+ * scene_render_main - Main render function for scene elements
+ * Address: 0x800F93A0
+ * Size: 5652 bytes
  *
- * Main render function - sets up frame and renders all scene elements
+ * Sets up frame and renders all scene elements
  */
 void scene_render_main(void) {
     extern s32 current_render_mode;    /* Current render mode */
@@ -39100,10 +39139,9 @@ void scene_render_main(void) {
 
 /*
 
- * func_800FA9B4 (948 bytes)
- * Z-buffer setup
- *
- * Configures RDP Z-buffer for depth testing
+ * zbuffer_setup - Configure RDP Z-buffer for depth testing
+ * Address: 0x800FA9B4
+ * Size: 948 bytes
  */
 void zbuffer_setup(void) {
     extern Gfx **gfx_dl_ptr;  /* Display list pointer */
@@ -39130,10 +39168,9 @@ void zbuffer_setup(void) {
 
 /*
 
- * func_800FAD58 (136 bytes)
- * Frame start
- *
- * Initializes display list for new frame
+ * frame_start - Initialize display list for new frame
+ * Address: 0x800FAD58
+ * Size: 136 bytes
  */
 void frame_start(void) {
     /* Note: gfx_dl_base, gfx_dl_ptr declared globally */
@@ -39161,10 +39198,9 @@ void frame_start(void) {
 
 /*
 
- * func_800FADE0 (1108 bytes)
- * Frame end
- *
- * Finalizes display list and submits to RDP
+ * frame_end - Finalize display list and submit to RDP
+ * Address: 0x800FADE0
+ * Size: 1108 bytes
  */
 void frame_end(void) {
     /* Note: gfx_dl_ptr, gfx_task declared globally */
@@ -39187,10 +39223,9 @@ void frame_end(void) {
 
 /*
 
- * func_800FB234 (148 bytes)
- * Vsync wait
- *
- * Waits for vertical blank period
+ * vsync_wait - Wait for vertical blank period
+ * Address: 0x800FB234
+ * Size: 148 bytes
  */
 void vsync_wait(void) {
     extern OSMesgQueue vi_message_queue;  /* VI message queue */
@@ -39201,10 +39236,9 @@ void vsync_wait(void) {
 
 /*
 
- * func_800FB2C8 (5944 bytes)
- * Display list flush
- *
- * Submits display list to RSP/RDP
+ * display_list_flush - Submit display list to RSP/RDP
+ * Address: 0x800FB2C8
+ * Size: 5944 bytes
  */
 void display_list_flush(void) {
     extern Gfx **gfx_dl_ptr;  /* Display list pointer */
@@ -39236,10 +39270,9 @@ void display_list_flush(void) {
 
 /*
 
- * func_800FCA00 (1016 bytes)
- * Debug overlay
- *
- * Displays debug information overlay
+ * debug_overlay - Display debug information overlay
+ * Address: 0x800FCA00
+ * Size: 1016 bytes
  */
 void debug_overlay(void) {
     extern s32 fps_counter;  /* FPS counter */
@@ -39276,10 +39309,9 @@ void debug_overlay(void) {
 
 /*
 
- * func_800FCDF8 (556 bytes)
- * Debug stats
- *
- * Shows memory and performance stats
+ * debug_stats - Show memory and performance stats
+ * Address: 0x800FCDF8
+ * Size: 556 bytes
  */
 void debug_stats(void) {
     char buf[32];
@@ -39303,10 +39335,9 @@ void debug_stats(void) {
 
 /*
 
- * func_800FD024 (540 bytes)
- * Debug collision
- *
- * Draws collision debug visualization
+ * debug_collision - Draw collision debug visualization
+ * Address: 0x800FD024
+ * Size: 540 bytes
  */
 void debug_collision(void) {
 
@@ -39320,10 +39351,9 @@ void debug_collision(void) {
 
 /*
 
- * func_800FD240 (552 bytes)
- * Debug AI paths
- *
- * Draws AI waypoint paths
+ * debug_ai_paths - Draw AI waypoint paths
+ * Address: 0x800FD240
+ * Size: 552 bytes
  */
 void debug_ai_paths(void) {
 
@@ -39337,10 +39367,9 @@ void debug_ai_paths(void) {
 
 /*
 
- * func_800FD7E8 (244 bytes)
- * Random seed
- *
- * Sets the random number generator seed
+ * random_seed - Set the random number generator seed
+ * Address: 0x800FD7E8
+ * Size: 244 bytes
  */
 void random_seed(u32 seed) {
 
@@ -39354,10 +39383,9 @@ void random_seed(u32 seed) {
 
 /*
 
- * func_800FD8DC (284 bytes)
- * Random int
- *
- * Returns a random 32-bit integer (LCG)
+ * random_int - Return a random 32-bit integer (LCG)
+ * Address: 0x800FD8DC
+ * Size: 284 bytes
  */
 s32 random_int(void) {
 
@@ -39368,10 +39396,9 @@ s32 random_int(void) {
 
 /*
 
- * func_800FD9F8 (1436 bytes)
- * Random float
- *
- * Returns a random float in [0.0, 1.0)
+ * random_float - Return a random float in [0.0, 1.0)
+ * Address: 0x800FD9F8
+ * Size: 1436 bytes
  */
 f32 random_float(void) {
 
@@ -39383,10 +39410,9 @@ f32 random_float(void) {
 
 /*
 
- * func_800FDF94 (248 bytes)
- * Random range
- *
- * Returns a random integer in [min, max]
+ * random_range - Return a random integer in [min, max]
+ * Address: 0x800FDF94
+ * Size: 248 bytes
  */
 s32 random_range(s32 min, s32 max) {
     s32 range;
@@ -39403,8 +39429,9 @@ s32 random_range(s32 min, s32 max) {
 
 /*
 
- * func_800FE08C (1072 bytes)
- * Timer start
+ * game_timer_start - Start a game timer
+ * Address: 0x800FE08C
+ * Size: 1072 bytes
  *
  * Starts a game timer
  * Timer struct at timer_data[id]:
@@ -39428,10 +39455,9 @@ void game_timer_start(s32 timerId) {
 
 /*
 
- * func_800FE4BC (100 bytes)
- * Timer stop
- *
- * Stops a game timer
+ * game_timer_stop - Stop a game timer
+ * Address: 0x800FE4BC
+ * Size: 100 bytes
  */
 void game_timer_stop(s32 timerId) {
     extern u64 timer_data[8][6];  /* Timer data */
@@ -39450,10 +39476,9 @@ void game_timer_stop(s32 timerId) {
 
 /*
 
- * func_800FE520 (144 bytes)
- * Timer reset
- *
- * Resets a game timer
+ * game_timer_reset - Reset a game timer
+ * Address: 0x800FE520
+ * Size: 144 bytes
  */
 void game_timer_reset(s32 timerId) {
     extern u64 timer_data[8][6];  /* Timer data */
@@ -39475,10 +39500,9 @@ void game_timer_reset(s32 timerId) {
 
 /*
 
- * func_800FE5B0 (412 bytes)
- * Timer get elapsed
- *
- * Returns elapsed time in centiseconds
+ * game_timer_elapsed - Return elapsed time in centiseconds
+ * Address: 0x800FE5B0
+ * Size: 412 bytes
  */
 s32 game_timer_elapsed(s32 timerId) {
     extern u64 timer_data[8][6];  /* Timer data */
@@ -39505,10 +39529,9 @@ s32 game_timer_elapsed(s32 timerId) {
 
 /*
 
- * func_800FE7A4 (164 bytes)
- * Timer pause
- *
- * Pauses a game timer
+ * game_timer_pause - Pause a game timer
+ * Address: 0x800FE7A4
+ * Size: 164 bytes
  */
 void game_timer_pause(s32 timerId) {
     extern u64 timer_data[8][6];  /* Timer data */
@@ -39526,10 +39549,9 @@ void game_timer_pause(s32 timerId) {
 
 /*
 
- * func_800FE848 (220 bytes)
- * Timer resume
- *
- * Resumes a paused timer
+ * game_timer_resume - Resume a paused timer
+ * Address: 0x800FE848
+ * Size: 220 bytes
  */
 void game_timer_resume(s32 timerId) {
     extern u64 timer_data[8][6];  /* Timer data */
@@ -39547,10 +39569,9 @@ void game_timer_resume(s32 timerId) {
 
 /*
 
- * func_800FE924 (228 bytes)
- * Timer lap
- *
- * Records a lap time and returns lap number
+ * game_timer_lap - Record a lap time and return lap number
+ * Address: 0x800FE924
+ * Size: 228 bytes
  */
 s32 game_timer_lap(s32 timerId) {
     extern u64 timer_data[8][6];  /* Timer data */
@@ -39579,10 +39600,9 @@ s32 game_timer_lap(s32 timerId) {
 
 /*
 
- * func_800FEA08 (668 bytes)
- * Race timer update
- *
- * Updates race timer display each frame
+ * race_timer_update - Update race timer display each frame
+ * Address: 0x800FEA08
+ * Size: 668 bytes
  */
 void race_timer_update(void) {
     char timeBuf[16];
@@ -39621,10 +39641,9 @@ void race_timer_update(void) {
 
 /*
 
- * func_800FECA4 (352 bytes)
- * Countdown timer
- *
- * Displays pre-race countdown (3, 2, 1, GO!)
+ * countdown_display - Display pre-race countdown (3, 2, 1, GO!)
+ * Address: 0x800FECA4
+ * Size: 352 bytes
  */
 void countdown_display(void) {
     s32 countdown;
@@ -39656,10 +39675,9 @@ void countdown_display(void) {
 
 /*
 
- * func_800FEE04 (1172 bytes)
- * Split time display
- *
- * Shows lap split time (+/- vs best)
+ * split_time_display - Show lap split time (+/- vs best)
+ * Address: 0x800FEE04
+ * Size: 1172 bytes
  */
 void split_time_display(s32 splitTime) {
     s32 diff;
@@ -39703,10 +39721,9 @@ void split_time_display(s32 splitTime) {
 
 /*
 
- * func_800FF298 (1164 bytes)
- * Best lap check
- *
- * Checks if lap time is a new best, returns 1 if so
+ * best_lap_check - Check if lap time is a new best, return 1 if so
+ * Address: 0x800FF298
+ * Size: 1164 bytes
  */
 s32 best_lap_check(s32 lapTime) {
 
@@ -39724,10 +39741,9 @@ s32 best_lap_check(s32 lapTime) {
 
 /*
 
- * func_800FF724 (1748 bytes)
- * Record save
- *
- * Saves best times and scores to controller pak
+ * record_save - Save best times and scores to controller pak
+ * Address: 0x800FF724
+ * Size: 1748 bytes
  */
 void record_save(void) {
     u8 saveData[256];
@@ -39754,10 +39770,9 @@ void record_save(void) {
 
 /*
 
- * func_800FFDF8 (1900 bytes)
- * High score entry
- *
- * High score name entry screen
+ * high_score_entry - High score name entry screen
+ * Address: 0x800FFDF8
+ * Size: 1900 bytes
  */
 void high_score_entry(void) {
     extern char hiscore_entered_name[4]; /* Entered name */
@@ -39805,8 +39820,11 @@ void high_score_entry(void) {
 
 /*
 
- * func_80100564 (1576 bytes)
- * Leaderboard display
+ * leaderboard_stunt_display - Renders stunt mode leaderboard
+ * Address: 0x80100564 (1576 bytes)
+ *
+ * Displays top stunt scores for the selected track.
+ * Used in stunt mode for trick score rankings.
  */
 void leaderboard_display(void) {
     /* Leaderboard - stub */
@@ -39814,8 +39832,11 @@ void leaderboard_display(void) {
 
 /*
 
- * func_80100B8C (716 bytes)
- * Score calculate
+ * stunt_score_calculate - Calculates total stunt score
+ * Address: 0x80100B8C (716 bytes)
+ *
+ * Sums up all trick scores and applies bonuses.
+ * Used at end of stunt run to determine final score.
  */
 s32 score_calculate(void) {
     /* Score calc - stub */
@@ -39824,8 +39845,11 @@ s32 score_calculate(void) {
 
 /*
 
- * func_80100E60 (2732 bytes)
- * Stunt score
+ * stunt_trick_score - Awards points for completed trick
+ * Address: 0x80100E60 (2732 bytes)
+ *
+ * Calculates point value for a trick based on type and difficulty.
+ * Handles combo multipliers and trick chaining bonuses.
  */
 s32 stunt_score(s32 trickId) {
     /* Stunt score - stub */
@@ -39834,8 +39858,11 @@ s32 stunt_score(s32 trickId) {
 
 /*
 
- * func_8010190C (1152 bytes)
- * Combo multiplier
+ * stunt_combo_multiplier - Applies combo multiplier to score
+ * Address: 0x8010190C (1152 bytes)
+ *
+ * Increases multiplier for consecutive tricks without landing.
+ * Returns modified score value with combo bonus applied.
  */
 s32 combo_multiplier(s32 combo) {
     /* Combo - stub */
@@ -39844,8 +39871,10 @@ s32 combo_multiplier(s32 combo) {
 
 /*
 
- * func_80101D8C (1168 bytes)
- * Trick detect - Main stunt detection dispatcher
+ * trick_detect - Main stunt detection dispatcher
+ * Address: 0x80101D8C (1168 bytes)
+ *
+ * Detects aerial tricks based on car orientation changes.
  *
  * Rush 2049's stunt mode allows players to perform aerial tricks.
  * This function detects what trick is being performed based on
@@ -39952,8 +39981,10 @@ s32 trick_detect(void *car) {
 
 /*
 
- * func_8010221C (564 bytes)
- * Trick register - Records completed trick and awards points
+ * trick_register - Records completed trick and awards points
+ * Address: 0x8010221C (564 bytes)
+ *
+ * Called when a trick is completed to update score.
  *
  * Global stunt data addresses:
  *   camera_pos: Stunt score table [16] (points per trick type)
@@ -39998,8 +40029,11 @@ void trick_register(s32 trickId) {
 
 /*
 
- * func_80102450 (1336 bytes)
- * Air time track - Updates air time and accumulated rotation
+ * air_time_track - Updates air time and accumulated rotation
+ * Address: 0x80102450 (1336 bytes)
+ *
+ * Called every frame while airborne to track total rotation
+ * and time spent in the air for bonus calculations.
  *
  * Called every frame while airborne to track total rotation
  * and time spent in the air for bonus calculations.
@@ -40434,8 +40468,10 @@ void wing_deploy(void *car) {
 
 /*
 
- * func_80105B74 (572 bytes)
- * Wing retract - Retracts the car's stunt wings
+ * wing_retract - Retract the car's stunt wings
+ * Address: 0x80105B74
+ * Size: 572 bytes
+
  *
  * Called when:
  *   - Player releases wing button
@@ -40481,8 +40517,10 @@ void wing_retract(void *car) {
 
 /*
 
- * func_80105DB0 (248 bytes)
- * Wing state check - Returns current wing deployment state
+ * wing_state_get - Return current wing deployment state
+ * Address: 0x80105DB0
+ * Size: 248 bytes
+
  *
  * Returns:
  *   0 = Wings retracted
@@ -40498,8 +40536,10 @@ s32 wing_state_get(void *car) {
 
 /*
 
- * func_80105EA8 (2508 bytes)
- * Glide physics - Applies wing aerodynamic forces
+ * glide_physics_apply - Apply wing aerodynamic forces
+ * Address: 0x80105EA8
+ * Size: 2508 bytes
+
  *
  * When wings are deployed, the car experiences:
  *   - Lift force (reduces fall rate)
@@ -40584,10 +40624,12 @@ void glide_physics_apply(void *car) {
 
 /*
 
- * func_80106874 (712 bytes)
- * Boost activate
+ * boost_activate - Activate nitro boost for a car
+ * Address: 0x80106874
+ * Size: 712 bytes
+
  *
- * Activates nitro boost for a car
+ * Consumes nitro reserve and starts boost effect.
  */
 void boost_activate(void *car) {
     u8 *carData = (u8 *)car;
@@ -40627,10 +40669,12 @@ void boost_activate(void *car) {
 
 /*
 
- * func_80106B3C (600 bytes)
- * Boost update
+ * boost_update - Update active boost each frame
+ * Address: 0x80106B3C
+ * Size: 600 bytes
+
  *
- * Updates active boost each frame - applies acceleration and decays
+ * Applies acceleration in forward direction and decays boost amount.
  */
 void boost_update(void *car) {
     u8 *carData = (u8 *)car;
@@ -40668,10 +40712,12 @@ void boost_update(void *car) {
 
 /*
 
- * func_80106D94 (1604 bytes)
- * Nitro pickup
+ * nitro_pickup_collect - Handle car collecting nitro pickup
+ * Address: 0x80106D94
+ * Size: 1604 bytes
+
  *
- * Handles car collecting a nitro pickup on track
+ * Adds nitro to reserve, marks pickup as collected, plays sound.
  */
 void nitro_pickup_collect(void *car, void *pickup) {
     u8 *carData = (u8 *)car;
@@ -40711,10 +40757,12 @@ void nitro_pickup_collect(void *car, void *pickup) {
 
 /*
 
- * func_801073D8 (580 bytes)
- * Checkpoint hit
+ * checkpoint_hit - Record checkpoint passage for lap validation
+ * Address: 0x801073D8
+ * Size: 580 bytes
+
  *
- * Records checkpoint passage for lap validation
+ * Updates checkpoint bitmask and validates sequence.
  */
 void checkpoint_hit(void *car, s32 cpId) {
     u8 *carData = (u8 *)car;
@@ -40744,10 +40792,13 @@ void checkpoint_hit(void *car, s32 cpId) {
 
 /*
 
- * func_8010761C (1240 bytes)
- * Lap complete
+ * lap_complete - Handle lap completion
+ * Address: 0x8010761C
+ * Size: 1240 bytes
+
  *
- * Handles lap completion - validates checkpoints and updates lap count
+ * Validates all checkpoints were hit, records lap time,
+ * and checks for race finish.
  */
 void lap_complete(void *car) {
     u8 *carData = (u8 *)car;
@@ -40797,10 +40848,12 @@ void lap_complete(void *car) {
 
 /*
 
- * func_80107AF4 (1000 bytes)
- * Race finish
+ * race_finish - Handle car finishing the race
+ * Address: 0x80107AF4
+ * Size: 1000 bytes
+
  *
- * Handles car finishing the race - records time and position
+ * Records finish time, position, and transitions player to ENDGAME.
  */
 void race_finish(void *car) {
     extern s32 finish_positions[];   /* Finish positions [8] */
@@ -40852,10 +40905,12 @@ void race_finish(void *car) {
 
 /*
 
- * func_80107EDC (632 bytes)
- * Position update
+ * position_update - Update race positions for all cars
+ * Address: 0x80107EDC
+ * Size: 632 bytes
+
  *
- * Updates race positions for all cars based on progress
+ * Calculates position based on lap count, checkpoint, and progress.
  */
 void position_update(void) {
     s32 i, j;
@@ -40896,11 +40951,10 @@ void position_update(void) {
 }
 
 /*
-
- * func_80108154 (900 bytes)
- * Race standings
+ * standings_display - Displays current race standings on HUD
+ * Address: 0x80108154
  *
- * Displays current race standings on HUD
+ * Shows position indicators for each car in the race.
  */
 void standings_display(void) {
     s32 i;
@@ -40935,11 +40989,11 @@ void standings_display(void) {
 }
 
 /*
-
- * func_801084D4 (1500 bytes)
- * Respawn car
+ * car_respawn - Respawns car at last valid checkpoint
+ * Address: 0x801084D4
  *
- * Respawns car at last valid checkpoint
+ * Resets car position, velocity, and damage after crash.
+ * Similar to arcade resurrect.c functionality.
  */
 void car_respawn(void *car) {
     u8 *carData = (u8 *)car;
@@ -40989,11 +41043,10 @@ void car_respawn(void *car) {
 }
 
 /*
-
- * func_80108AB0 (760 bytes)
- * Death check
+ * death_check - Checks if car should be destroyed
+ * Address: 0x80108AB0
  *
- * Checks if car should be destroyed (out of bounds, excessive damage)
+ * Returns true if car is out of bounds or has excessive damage.
  */
 s32 death_check(void *car) {
     u8 *carData = (u8 *)car;
@@ -41026,11 +41079,10 @@ s32 death_check(void *car) {
 }
 
 /*
-
- * func_80108DA8 (408 bytes)
- * Wreck car
+ * car_wreck - Triggers car destruction sequence
+ * Address: 0x80108DA8
  *
- * Triggers car destruction sequence
+ * Sets wrecked state, spawns explosion effect, and starts recovery timer.
  */
 void car_wreck(void *car) {
     u8 *carData = (u8 *)car;
@@ -41056,11 +41108,10 @@ void car_wreck(void *car) {
 }
 
 /*
-
- * func_80108F40 (1320 bytes)
- * Recovery timer
+ * recovery_timer_update - Counts down recovery timer and respawns when ready
+ * Address: 0x80108F40
  *
- * Counts down recovery timer and respawns when ready
+ * Updates recovery countdown and triggers respawn at expiration.
  */
 void recovery_timer_update(void *car) {
     u8 *carData = (u8 *)car;
@@ -41091,11 +41142,10 @@ void recovery_timer_update(void *car) {
 }
 
 /*
-
- * func_80109468 (1528 bytes)
- * Reset position
+ * car_reset_manual - Player-requested manual respawn
+ * Address: 0x80109468
  *
- * Manual reset - player requests respawn
+ * Allows player to manually reset at last checkpoint.
  */
 void car_reset_manual(void *car) {
     u8 *carData = (u8 *)car;
@@ -41117,11 +41167,10 @@ void car_reset_manual(void *car) {
 }
 
 /*
-
- * func_80109A60 (1276 bytes)
- * Shortcut detect
+ * shortcut_detect - Detects if car is using a valid shortcut path
+ * Address: 0x80109A60
  *
- * Detects if car is using a valid shortcut path
+ * Checks if car is in a shortcut zone (types 10-19).
  */
 s32 shortcut_detect(void *car) {
     u8 *carData = (u8 *)car;
@@ -41148,11 +41197,11 @@ s32 shortcut_detect(void *car) {
 }
 
 /*
-
- * func_80109F5C (1504 bytes)
- * Wrong way detect
+ * wrong_way_detect - Detects if car is driving in wrong direction
+ * Address: 0x80109F5C
  *
- * Detects if car is driving in wrong direction
+ * Compares car heading to direction toward next checkpoint.
+ * Similar to arcade AnimateWrongWay in hud.c.
  */
 s32 wrong_way_detect(void *car) {
     u8 *carData = (u8 *)car;
@@ -41206,11 +41255,10 @@ s32 wrong_way_detect(void *car) {
 }
 
 /*
-
- * func_8010A53C (624 bytes)
- * Out of bounds
+ * out_of_bounds_check - Checks if car is outside track boundaries
+ * Address: 0x8010A53C
  *
- * Checks if car is outside track boundaries
+ * Returns true if car is beyond track limits.
  */
 s32 out_of_bounds_check(void *car) {
     u8 *carData = (u8 *)car;
@@ -41236,11 +41284,10 @@ s32 out_of_bounds_check(void *car) {
 }
 
 /*
-
- * func_8010A7AC (292 bytes)
- * Track zone get
+ * track_zone_get - Returns the track zone type at given position
+ * Address: 0x8010A7AC
  *
- * Returns the track zone type at given position
+ * Converts world position to grid cell and returns zone type.
  */
 s32 track_zone_get(f32 *pos) {
     extern s32 grid_height;     /* Grid height */
@@ -41267,12 +41314,10 @@ s32 track_zone_get(f32 *pos) {
 }
 
 /*
-
- * func_8010A8D0 (1500 bytes)
- * Surface type get
+ * surface_type_get - Returns surface type at position for grip/handling
+ * Address: 0x8010A8D0
  *
- * Returns surface type at position (affects grip/handling)
- * Types: 0=asphalt, 1=concrete, 2=dirt, 3=grass, 4=sand, 5=ice, 6=water
+ * Maps zone to surface (asphalt, concrete, dirt, grass, sand, ice, water).
  */
 s32 surface_type_get(f32 *pos) {
     s32 zone;
@@ -41306,11 +41351,10 @@ s32 surface_type_get(f32 *pos) {
 }
 
 /*
-
- * func_8010AEAC (1828 bytes)
- * Grip calculate
+ * grip_calculate - Calculates tire grip based on surface type
+ * Address: 0x8010AEAC
  *
- * Calculates tire grip based on surface type
+ * Returns grip multiplier from surface type lookup table.
  */
 f32 grip_calculate(void *tire, s32 surface) {
     static const f32 gripTable[7] = {
@@ -41331,11 +41375,10 @@ f32 grip_calculate(void *tire, s32 surface) {
 }
 
 /*
-
- * func_8010B5D0 (556 bytes)
- * Drag calculate
+ * drag_calculate - Calculates aerodynamic drag based on speed
+ * Address: 0x8010B5D0
  *
- * Calculates aerodynamic drag based on speed
+ * Uses drag coefficient and velocity squared for drag force.
  */
 f32 drag_calculate(void *car) {
     u8 *carData = (u8 *)car;
@@ -41365,11 +41408,10 @@ f32 drag_calculate(void *car) {
 }
 
 /*
-
- * func_8010B7FC (460 bytes)
- * Downforce calculate
+ * downforce_calculate - Calculates aerodynamic downforce based on speed
+ * Address: 0x8010B7FC
  *
- * Calculates aerodynamic downforce based on speed
+ * Uses downforce coefficient and velocity squared for downforce.
  */
 f32 downforce_calculate(void *car) {
     u8 *carData = (u8 *)car;
@@ -41396,11 +41438,10 @@ f32 downforce_calculate(void *car) {
 }
 
 /*
-
- * func_8010B9C8 (700 bytes)
- * Engine torque
+ * engine_torque_get - Calculates engine torque based on RPM
+ * Address: 0x8010B9C8
  *
- * Calculates engine torque based on RPM
+ * Models torque curve with linear rise to peak and drop-off.
  */
 f32 engine_torque_get(void *car, s32 rpm) {
     u8 *carData = (u8 *)car;
@@ -41435,11 +41476,10 @@ f32 engine_torque_get(void *car, s32 rpm) {
 }
 
 /*
-
- * func_8010BC84 (932 bytes)
- * Transmission shift
+ * transmission_shift - Changes gear with shift timing
+ * Address: 0x8010BC84
  *
- * Changes gear with shift timing
+ * Sets shift timer for brief power loss during gear change.
  */
 void transmission_shift(void *car, s32 gear) {
     u8 *carData = (u8 *)car;
@@ -41473,10 +41513,9 @@ void transmission_shift(void *car, s32 gear) {
 
 /*
 
- * func_8010C02C (1060 bytes)
- * Brake apply
+ * brake_apply - Applies braking force to slow the car
+ * Address: 0x8010C02C, Size: 1060 bytes
  *
- * Applies braking force to slow the car
  */
 void brake_apply(void *car, f32 force) {
     u8 *carData = (u8 *)car;
@@ -41515,10 +41554,10 @@ void brake_apply(void *car, f32 force) {
 
 /*
 
- * func_8010C450 (320 bytes)
- * Handbrake apply
+ * handbrake_apply - Applies handbrake for drifting
+ * Address: 0x8010C450
+ * Size: 320 bytes
  *
- * Applies handbrake - locks rear wheels for drifting
  */
 void handbrake_apply(void *car) {
     u8 *carData = (u8 *)car;
@@ -41536,10 +41575,10 @@ void handbrake_apply(void *car) {
 
 /*
 
- * func_8010C590 (320 bytes)
- * Throttle apply
+ * throttle_apply - Applies throttle input to accelerate car
+ * Address: 0x8010C590
+ * Size: 320 bytes
  *
- * Applies throttle input to accelerate car
  */
 void throttle_apply(void *car, f32 amount) {
     u8 *carData = (u8 *)car;
@@ -41558,10 +41597,10 @@ void throttle_apply(void *car, f32 amount) {
 
 /*
 
- * func_8010C6D0 (292 bytes)
- * Steering apply
+ * steering_apply - Applies steering angle to front wheels
+ * Address: 0x8010C6D0
+ * Size: 292 bytes
  *
- * Applies steering angle to front wheels
  */
 void steering_apply(void *car, f32 angle) {
     u8 *carData = (u8 *)car;
@@ -41580,10 +41619,10 @@ void steering_apply(void *car, f32 angle) {
 
 /*
 
- * func_8010C7F4 (384 bytes)
- * Car input process
+ * car_input_process - Processes controller input for car controls
+ * Address: 0x8010C7F4
+ * Size: 384 bytes
  *
- * Processes controller input and applies to car controls
  */
 void car_input_process(void *car, void *input) {
     u8 *carData = (u8 *)car;
@@ -41637,8 +41676,9 @@ void car_input_process(void *car, void *input) {
 
 /*
 
- * func_8010C974 (2636 bytes)
- * AI input generate
+ * ai_input_generate - Generates AI steering, throttle, brake inputs
+ * Address: 0x8010C974
+ * Size: 2636 bytes
  *
  * Based on arcade MaxPath() - generates steering, throttle, brake inputs
  * for AI-controlled cars using path following and obstacle avoidance.
@@ -41737,10 +41777,10 @@ void ai_input_generate(void *car) {
 
 /*
 
- * func_8010D3C0 (704 bytes)
- * AI target find
+ * ai_waypoint_next - Advances AI to next waypoint on path
+ * Address: 0x8010D3C0
+ * Size: 704 bytes
  *
- * Updates AI target waypoint based on path data
  * Path data structure at path_data_array
  */
 void ai_waypoint_next(void *car) {
@@ -41782,10 +41822,10 @@ void ai_waypoint_next(void *car) {
 
 /*
 
- * func_8010D680 (476 bytes)
- * AI path follow
+ * ai_path_follow - Main AI path following update
+ * Address: 0x8010D680
+ * Size: 476 bytes
  *
- * Main path following update - called from AI input generate
  */
 void ai_path_follow(void *car) {
     f32 *carPos, *targetPos;
@@ -41812,10 +41852,10 @@ void ai_path_follow(void *car) {
 
 /*
 
- * func_8010D85C (372 bytes)
- * AI obstacle avoid
+ * ai_obstacle_avoid - Adjusts AI steering to avoid obstacles
+ * Address: 0x8010D85C
+ * Size: 372 bytes
  *
- * Adjusts steering to avoid nearby obstacles and other cars
  */
 void ai_obstacle_avoid(void *car) {
     f32 *carPos, *steer;
@@ -41863,10 +41903,10 @@ void ai_obstacle_avoid(void *car) {
 
 /*
 
- * func_8010D9CC (492 bytes)
- * AI overtake
+ * ai_overtake - AI attempts to overtake car ahead
+ * Address: 0x8010D9CC
+ * Size: 492 bytes
  *
- * Attempts to overtake car ahead when appropriate
  */
 void ai_overtake(void *car) {
     f32 *carPos, *carVel, *steer, *throttle;
@@ -41894,10 +41934,10 @@ void ai_overtake(void *car) {
 
 /*
 
- * func_8010DBB8 (324 bytes)
- * AI defend
+ * ai_defend - AI defensive driving to block overtakes
+ * Address: 0x8010DBB8
+ * Size: 324 bytes
  *
- * Defensive driving - blocks overtaking attempts
  */
 void ai_defend(void *car) {
     u32 *aiFlags;
@@ -41918,8 +41958,9 @@ void ai_defend(void *car) {
 
 /*
 
- * func_8010DCFC (660 bytes)
- * AI rubber band
+ * ai_rubber_band - Adjusts AI speed to keep races competitive
+ * Address: 0x8010DCFC
+ * Size: 660 bytes
  *
  * Based on arcade set_catchup() - adjusts AI speed based on position
  * to keep races competitive (slower when ahead, faster when behind)
@@ -41961,10 +42002,10 @@ void ai_rubber_band(void *car) {
 
 /*
 
- * func_8010DF90 (364 bytes)
- * AI difficulty adjust
+ * ai_difficulty_set - Adjusts AI parameters based on difficulty
+ * Address: 0x8010DF90
+ * Size: 364 bytes
  *
- * Adjusts AI parameters based on difficulty setting
  * Difficulty: 0=Easy, 1=Medium, 2=Hard, 3=Expert
  */
 void ai_difficulty_set(void *car, s32 difficulty) {
@@ -42015,10 +42056,10 @@ void ai_difficulty_set(void *car, s32 difficulty) {
 
 /*
 
- * func_8010E0FC (1008 bytes)
- * AI behavior select
+ * ai_behavior_select - Selects AI behavior based on race situation
+ * Address: 0x8010E0FC
+ * Size: 1008 bytes
  *
- * Selects AI behavior based on race situation
  * Behaviors: 0=Normal, 1=Overtake, 2=Defend, 3=Recover, 4=Catchup
  */
 void ai_behavior_select(void *car) {
@@ -42065,10 +42106,10 @@ void ai_behavior_select(void *car) {
 
 /*
 
- * func_8010E4EC (428 bytes)
- * AI aggression
+ * ai_aggression_set - Sets AI aggression level
+ * Address: 0x8010E4EC
+ * Size: 428 bytes
  *
- * Sets AI aggression level (affects overtaking, blocking, etc.)
  */
 void ai_aggression_set(void *car, s32 level) {
     f32 *aggression;
@@ -42089,10 +42130,10 @@ void ai_aggression_set(void *car, s32 level) {
 
 /*
 
- * func_8010E69C (144 bytes)
- * AI speed limit
+ * ai_speed_limit_set - Sets maximum speed for AI car
+ * Address: 0x8010E69C
+ * Size: 144 bytes
  *
- * Sets maximum speed for AI car
  */
 void ai_speed_limit_set(void *car, f32 limit) {
     f32 *maxSpeed;
@@ -42107,8 +42148,9 @@ void ai_speed_limit_set(void *car, f32 limit) {
 
 /*
 
- * func_8010E72C (392 bytes)
- * AI error inject
+ * ai_error_inject - Injects random errors to make AI human-like
+ * Address: 0x8010E72C
+ * Size: 392 bytes
  *
  * Injects random errors to make AI more human-like
  * Based on arcade drone "personality" system
@@ -42149,10 +42191,10 @@ void ai_error_inject(void *car) {
 
 /*
 
- * func_8010E8B4 (352 bytes)
- * AI catch up
+ * ai_catch_up - Aggressive catch-up logic for AI far behind
+ * Address: 0x8010E8B4
+ * Size: 352 bytes
  *
- * More aggressive catch-up logic for AI far behind
  */
 void ai_catch_up(void *car) {
     f32 *carPos;
@@ -42183,8 +42225,9 @@ void ai_catch_up(void *car) {
 
 /*
 
- * func_8010EA14 (2052 bytes)
- * Battle mode logic
+ * battle_mode_update - Updates battle mode gameplay each frame
+ * Address: 0x8010EA14
+ * Size: 2052 bytes
  *
  * Rush 2049's battle mode - vehicular combat arena gameplay
  * Players collect weapons and attack each other to score points
@@ -42299,8 +42342,9 @@ void battle_mode_update(void) {
 
 /*
 
- * func_8010F218 (2524 bytes)
- * Stunt mode logic
+ * stunt_mode_update - Updates stunt mode gameplay each frame
+ * Address: 0x8010F218 (2524 bytes)
+ * Size: 2524 bytes
  *
  * Rush 2049's signature stunt mode - score points by performing aerial tricks
  * Uses the game's deployable wing system for air control
@@ -42439,8 +42483,9 @@ void stunt_mode_update(void) {
 
 /*
 
- * func_8010FBF4 (440 bytes)
- * Final cleanup game
+ * game_state_reset - Cleans up and resets game state on session exit
+ * Address: 0x8010FBF4 (440 bytes)
+ * Size: 440 bytes
  *
  * Called when exiting a game session to clean up resources:
  *   - Free allocated memory pools
@@ -42497,8 +42542,8 @@ void game_state_reset(void) {
  */
 
 /*
- * func_8010F0D0 (280 bytes)
- * Battle respawn - Respawns player at arena spawn point
+ * battle_respawn - Respawns player at arena spawn point
+ * Address: 0x8010F0D0 (280 bytes)
  */
 void battle_respawn(void *car, s32 playerIdx) {
     extern f32 spawn_positions[4][3];  /* Spawn positions */
@@ -42534,8 +42579,8 @@ void battle_respawn(void *car, s32 playerIdx) {
 
 /*
 
- * func_8010F158 (72 bytes)
- * Battle pickup check - Checks for weapon pickup collision
+ * battle_pickup_check - Checks for weapon pickup collision
+ * Address: 0x8010F158 (72 bytes)
  */
 void battle_pickup_check(void *car, s32 playerIdx) {
     /* TODO: Check collision with weapon pickups */
@@ -42544,8 +42589,8 @@ void battle_pickup_check(void *car, s32 playerIdx) {
 
 /*
 
- * func_8010F1A0 (64 bytes)
- * Battle fire weapon - Fires player's equipped weapon
+ * battle_fire_weapon - Fires player's equipped weapon
+ * Address: 0x8010F1A0 (64 bytes)
  */
 void battle_fire_weapon(void *car, s32 weaponType, s32 playerIdx) {
     f32 *pos, *forward;
@@ -42578,8 +42623,8 @@ void battle_fire_weapon(void *car, s32 weaponType, s32 playerIdx) {
 
 /*
 
- * func_8010F1E0 (56 bytes)
- * Battle win check - Checks if any player has won
+ * battle_win_check - Checks if any player has won
+ * Address: 0x8010F1E0 (56 bytes)
  */
 void battle_win_check(void) {
     extern s32 battle_score_limit;    /* Score limit */
@@ -42617,8 +42662,8 @@ void battle_win_check(void) {
  */
 
 /*
- * func_8010F5A0 (164 bytes)
- * Stunt end session - Ends stunt mode and shows results
+ * stunt_session_end - Ends stunt mode and shows results
+ * Address: 0x8010F5A0 (164 bytes)
  */
 void stunt_session_end(void) {
     s32 i;
