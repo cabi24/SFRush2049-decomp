@@ -55,7 +55,10 @@ CheckPoint TrackCPs[MAX_TRACKS][MAX_CHECKPOINTS];
 Track CP_Track[MAX_TRACKS];
 TrackData track_data[MAX_TRACKS];
 
-/* Path data */
+/* Path data (arcade: extern in checkpoint.c) */
+u16 path_start;                     /* Start index in path array */
+u16 path_end;                       /* End index in path array */
+u16 path_loop;                      /* Loop point for lap restart */
 s16 path_dist_index[MAX_CHECKPOINTS];
 u16 path_dist[MAX_PATH_POINTS];
 s16 path_index[MAX_PATH_POINTS];
@@ -93,24 +96,28 @@ u32 get_next_checkpoint(u32 cur_checkpoint) {
  */
 s16 get_next_center(s16 t_index, s16 t_direction) {
     /* Clamp to valid range */
-    if (t_index < 0) {
-        t_index = 0;
+    if (t_index < (s16)path_start) {
+        t_index = path_start;
+    } else if (t_index > (s16)path_end) {
+        t_index = path_end;
     }
 
     switch (t_direction) {
         case -1:
-            /* Track runs backwards through indices */
-            if (t_index <= 0) {
-                t_index = num_path_points - 1;
+            if (t_index <= (s16)path_start) {
+                if (path_loop == path_start) {
+                    t_index = path_end;
+                } else {
+                    t_index = path_loop;
+                }
             } else {
                 t_index--;
             }
             break;
 
         case 1:
-            /* Track runs forward through indices */
-            if (t_index >= num_path_points - 1) {
-                t_index = lap_loop_index;
+            if (t_index >= (s16)path_end) {
+                t_index = path_loop;
             } else {
                 t_index++;
             }
@@ -130,26 +137,30 @@ s16 get_next_center(s16 t_index, s16 t_direction) {
  */
 s16 get_prev_center(s16 t_index, s16 t_direction) {
     /* Clamp to valid range */
-    if (t_index < 0) {
-        t_index = 0;
+    if (t_index < (s16)path_start) {
+        t_index = path_start;
+    } else if (t_index > (s16)path_end) {
+        t_index = path_end;
     }
 
     switch (t_direction) {
         case -1:
-            /* Track runs backwards - prev is forward in indices */
-            if (t_index >= num_path_points - 1) {
-                t_index = num_path_points - 1;
-            } else {
+            if ((t_index == (s16)path_loop) && (path_loop != path_start)) {
+                t_index = path_start;
+            } else if (t_index < (s16)path_end) {
                 t_index++;
+            } else {
+                t_index = path_end;
             }
             break;
 
         case 1:
-            /* Track runs forward - prev is backward in indices */
-            if (t_index <= lap_loop_index) {
-                t_index = num_path_points - 1;
-            } else {
+            if (t_index == (s16)path_loop) {
+                t_index = path_end;
+            } else if (t_index > (s16)path_start) {
                 t_index--;
+            } else {
+                t_index = path_start;
             }
             break;
     }
@@ -197,6 +208,9 @@ void InitCPS(void) {
 /**
  * init_cp_time - Initialize checkpoint timing
  * Based on arcade: checkpoint.c:init_cp_time()
+ *
+ * Note: arcade version has unused local variables (i, j, num, temp)
+ * that were likely for removed debug/setup code.
  */
 void init_cp_time(void) {
     last_checkpoint_time = IRQTIME;
