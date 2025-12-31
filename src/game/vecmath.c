@@ -36,6 +36,27 @@ extern f32 sinf(f32 x);
 extern f32 cosf(f32 x);
 extern f32 sqrtf(f32 x);
 
+/******* MATH HELPERS (from d3math.c) *******/
+
+/**
+ * xxsqrt - Square root wrapper (arcade name)
+ * Based on arcade: d3math.c:xxsqrt()
+ */
+f32 xxsqrt(f32 x) {
+    return sqrtf(x);
+}
+
+/**
+ * invsqr - Inverse square root with zero protection
+ * Based on arcade: d3math.c:invsqr()
+ */
+f32 invsqr(f32 val) {
+    if (val < 1e-4f && val > -1e-4f) {
+        val = (val < 0.0f) ? -1e-4f : 1e-4f;
+    }
+    return 1.0f / xxsqrt(val);
+}
+
 /******* VECTOR OPERATIONS *******/
 
 /**
@@ -507,9 +528,17 @@ void direction(f32 vec[3], f32 dir[3]) {
  * @param r Output vector: a * b
  */
 void scalmul(f32 *a, f32 b, f32 *r) {
-    r[0] = a[0] * b;
-    r[1] = a[1] * b;
-    r[2] = a[2] * b;
+    register s32 i;
+    register f32 *ap, *bp, *rp;
+    f32 bval;
+
+    ap = a;
+    bval = b;
+    bp = &bval;
+    rp = r;
+    for (i = 0; i < 3; ++i) {
+        *rp++ = *ap++ * *bp;
+    }
 }
 
 /**
@@ -521,30 +550,57 @@ void scalmul(f32 *a, f32 b, f32 *r) {
  * @param r Output vector: a / b
  */
 void scaldiv(f32 *a, f32 b, f32 *r) {
-    f32 binv = 1.0f / b;
-    r[0] = a[0] * binv;
-    r[1] = a[1] * binv;
-    r[2] = a[2] * binv;
+    register s32 i;
+    register f32 *ap, *bp, *rp;
+    f32 binv;
+
+    ap = a;
+    binv = 1.0f / b;
+    bp = &binv;
+    rp = r;
+    for (i = 0; i < 3; ++i) {
+        *rp++ = *ap++ * *bp;
+    }
 }
 
 /**
  * vecadd - Vector add (arcade name)
  * Based on arcade: vecmath.c:vecadd()
  */
-void vecadd(f32 *ap, f32 *bp, f32 *rp) {
-    rp[0] = ap[0] + bp[0];
-    rp[1] = ap[1] + bp[1];
-    rp[2] = ap[2] + bp[2];
+void vecadd(register f32 *ap, register f32 *bp, register f32 *rp) {
+    *rp++ = *ap++ + *bp++;
+    *rp++ = *ap++ + *bp++;
+    *rp++ = *ap++ + *bp++;
 }
 
 /**
  * vecsub - Vector subtract (arcade name)
  * Based on arcade: vecmath.c:vecsub()
  */
-void vecsub(f32 *ap, f32 *bp, f32 *rp) {
-    rp[0] = ap[0] - bp[0];
-    rp[1] = ap[1] - bp[1];
-    rp[2] = ap[2] - bp[2];
+void vecsub(register f32 *ap, register f32 *bp, register f32 *rp) {
+    *rp++ = *ap++ - *bp++;
+    *rp++ = *ap++ - *bp++;
+    *rp++ = *ap++ - *bp++;
+}
+
+/**
+ * ivecadd - Integer vector add (arcade name)
+ * Based on arcade: vecmath.c:ivecadd()
+ */
+void ivecadd(register s32 *ap, register s32 *bp, register s32 *rp) {
+    *rp++ = *bp++ + *ap++;
+    *rp++ = *bp++ + *ap++;
+    *rp++ = *bp++ + *ap++;
+}
+
+/**
+ * ivecsub - Integer vector subtract (arcade name)
+ * Based on arcade: vecmath.c:ivecsub()
+ */
+void ivecsub(register s32 *ap, register s32 *bp, register s32 *rp) {
+    *rp++ = *ap++ - *bp++;
+    *rp++ = *ap++ - *bp++;
+    *rp++ = *ap++ - *bp++;
 }
 
 /**
@@ -575,9 +631,59 @@ f32 dotprod(f32 a[3], f32 b[3]) {
  * Based on arcade: vecmath.c:veccopy()
  */
 void veccopy(f32 *a, f32 *r) {
-    r[0] = a[0];
-    r[1] = a[1];
-    r[2] = a[2];
+    register s32 i;
+    register f32 *ap, *rp;
+
+    ap = a;
+    rp = r;
+    for (i = 0; i < 3; ++i) {
+        *rp++ = *ap++;
+    }
+}
+
+/******* SHORT INTEGER VECTOR OPS (Fixed-point 0x4000=1.0) *******/
+
+/**
+ * smagnitude - Short integer vector magnitude
+ * Based on arcade: vecmath.c:smagnitude()
+ */
+f32 smagnitude(s16 vec[3]) {
+    return xxsqrt((f32)vec[0] * (f32)vec[0] +
+                  (f32)vec[1] * (f32)vec[1] +
+                  (f32)vec[2] * (f32)vec[2]);
+}
+
+/**
+ * invsmagnitude - Inverse short integer vector magnitude
+ * Based on arcade: vecmath.c:invsmagnitude()
+ */
+f32 invsmagnitude(s16 vec[3]) {
+    return invsqr((f32)vec[0] * (f32)vec[0] +
+                  (f32)vec[1] * (f32)vec[1] +
+                  (f32)vec[2] * (f32)vec[2]);
+}
+
+/**
+ * sdirection - Normalize short integer vector (0x4000 = 1.0 scale)
+ * Based on arcade: vecmath.c:sdirection()
+ */
+void sdirection(s16 vec[3], s16 dir[3]) {
+    f32 invmag;
+
+    invmag = invsmagnitude(vec) * 0x4000;
+    dir[0] = (s16)(vec[0] * invmag);
+    dir[1] = (s16)(vec[1] * invmag);
+    dir[2] = (s16)(vec[2] * invmag);
+}
+
+/**
+ * scrossprod - Short integer cross product (0x4000 = 1.0 scale)
+ * Based on arcade: vecmath.c:scrossprod()
+ */
+void scrossprod(s16 a[3], s16 b[3], s16 r[3]) {
+    r[0] = (s16)(((f32)a[1] * (f32)b[2] - (f32)a[2] * (f32)b[1]) * (1.0f / 0x4000));
+    r[1] = (s16)(((f32)a[2] * (f32)b[0] - (f32)a[0] * (f32)b[2]) * (1.0f / 0x4000));
+    r[2] = (s16)(((f32)a[0] * (f32)b[1] - (f32)a[1] * (f32)b[0]) * (1.0f / 0x4000));
 }
 
 /******* COORDINATE TRANSFORMS *******/
