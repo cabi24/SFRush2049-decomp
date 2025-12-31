@@ -10838,7 +10838,8 @@ void lighting_calc(f32 *color, f32 *normal, f32 *lightDir) {
 
     if (rDotV > 0.0f) {
         f32 spec = 1.0f;
-        for (s32 i = 0; i < 5; i++) {  /* Approximate pow(rDotV, 32) */
+        s32 i;
+        for (i = 0; i < 5; i++) {  /* Approximate pow(rDotV, 32) */
             spec *= rDotV;
         }
         specular[0] = diffuse[0] * spec * 0.5f;
@@ -16498,8 +16499,11 @@ void profile_manage(void *profile) {
         *stuntsCompleted = 0;
 
         /* No best times yet */
-        for (s32 i = 0; i < 6; i++) {
-            bestLapTime[i] = 0;
+        {
+            s32 i;
+            for (i = 0; i < 6; i++) {
+                bestLapTime[i] = 0;
+            }
         }
 
         /* Start with first track and car unlocked */
@@ -16520,7 +16524,8 @@ void profile_manage(void *profile) {
     {
         s32 totalStuntScore = 0;
         s32 *stuntScores = (s32 *)((u8 *)profile + 0x80);
-        for (s32 i = 0; i < 16; i++) {
+        s32 i;
+        for (i = 0; i < 16; i++) {
             totalStuntScore += stuntScores[i];
         }
         *((s32 *)((u8 *)profile + 0x4C)) = totalStuntScore;

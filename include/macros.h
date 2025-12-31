@@ -15,7 +15,7 @@
  * Usage:
  *   #ifdef NON_MATCHING
  *   void my_func(void) {
- *       // Functional C implementation
+ *       /* Functional C implementation */
  *   }
  *   #else
  *   GLOBAL_ASM("asm/nonmatching/my_func.s")

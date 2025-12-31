@@ -5,13 +5,13 @@
 
 #include "types.h"
 
-// Game state values (from arcade game.h)
+/* Game state values (from arcade game.h) */
 #define COUNTDOWN 5
 #define PREPLAY2  6
 
-// External declarations
-extern s8 gstate;  // 0x801146EC
-extern s32 countdown_check_complete(void);  // 0x800FB908 - Check if countdown complete
+/* External declarations */
+extern s8 gstate;  /* 0x801146EC */
+extern s32 countdown_check_complete(void);  /* 0x800FB908 - Check if countdown complete */
 
 /**
  * CountDown - Handle countdown state (3, 2, 1, GO!)

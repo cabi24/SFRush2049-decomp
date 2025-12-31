@@ -5,8 +5,8 @@
 
 #include "types.h"
 
-// Controller pad structure (32 bytes each)
-// Located at 0x80140BF0
+/* Controller pad structure (32 bytes each) */
+/* Located at 0x80140BF0 */
 typedef struct {
     /* 0x00 */ u16 buttons_pressed;
     /* 0x02 */ u16 buttons_held;
@@ -23,14 +23,14 @@ typedef struct {
     /* 0x1A */ s16 analog_max;
     /* 0x1C */ s16 deadzone_min;
     /* 0x1E */ s16 deadzone_max;
-} PadEntry;  // size = 0x20 (32 bytes)
+} PadEntry;  /* size = 0x20 (32 bytes) */
 
-// Flag definitions
+/* Flag definitions */
 #define PAD_FLAG_ENABLED   0x80
 #define PAD_FLAG_SECONDARY 0x04
 
-// External pad array
-extern PadEntry pad_array[];  // 0x80140BF0
+/* External pad array */
+extern PadEntry pad_array[];  /* 0x80140BF0 */
 
 /**
  * Input_SetPadEnabledFlag - Enable or disable a controller pad
@@ -76,20 +76,20 @@ void Input_ConfigRepeatTimers(s32 pad_index, s32 has_repeat, s32 repeat_delay, u
     PadEntry *pad = &pad_array[pad_index];
     u16 timer_val = (u16)repeat_timer;
 
-    // Mode 2 means repeat is already configured, skip
+    /* Mode 2 means repeat is already configured, skip */
     if (pad->mode == 2) {
         return;
     }
 
-    // Set repeat mode (0 or 1) based on has_repeat
+    /* Set repeat mode (0 or 1) based on has_repeat */
     pad->mode = (has_repeat != 0) ? 1 : 0;
 
-    // Set repeat delay if non-negative
+    /* Set repeat delay if non-negative */
     if (repeat_delay >= 0) {
         pad->repeat_delay = (u8)repeat_delay;
     }
 
-    // Set timer value if not 0xFFFF
+    /* Set timer value if not 0xFFFF */
     if (timer_val != 0xFFFF) {
         pad->repeat_timer = timer_val;
     }
@@ -108,7 +108,7 @@ void Input_SetAnalogBounds(s32 pad_index, s16 analog_min, s16 analog_max,
                            s16 deadzone_min, s16 deadzone_max) {
     PadEntry *pad = &pad_array[pad_index];
 
-    // Only set if analog_min >= 0 (negative means skip)
+    /* Only set if analog_min >= 0 (negative means skip) */
     if (analog_min >= 0) {
         pad->analog_min = analog_min;
         pad->analog_max = analog_max;
