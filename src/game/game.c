@@ -9,6 +9,7 @@
 #include "game/structs.h"
 #include "PR/os_message.h"
 #include "PR/os_pfs.h"
+#include "PR/os_pi.h"
 
 /* Math function declarations (avoid system math.h for IDO compatibility) */
 extern f64 sin(f64);
@@ -492,6 +493,7 @@ extern s32  sound_start(s32 action, s32 type, void *data, s32 flag); /* sound_st
 extern void attract_handler(void);            /* attract_handler - Attract mode */
 extern void hiscore_handler(void);            /* hiscore_entry - High score entry */
 extern void countdown_handler(void);          /* countdown_start - Countdown timer */
+extern void drone_deactivate(void);           /* drone_deactivate - Deactivate drones */
 extern void render_scene(s32 track, f32 angle, s32 x, s32 y); /* render_scene - Viewport/camera setup */
 
 /* Forward declarations for functions defined in this file */
@@ -823,8 +825,17 @@ void playgame_handler(void) {
     u32 gstate_next;
     s32 i;
     s32 player_count;
+    s32 game_mode;
     f32 ftemp;
     s8 mode_flag;
+    s8 state_byte;
+    void *obj;
+    void *next;
+    void *car_ptr;
+    void *car_data;
+    s32 car_obj;
+    s8 val1;
+    s8 val2;
 
     /* Load current and pending state */
     gstate_current = gstate_mask;
@@ -936,11 +947,11 @@ void playgame_handler(void) {
             if (player_count > 0) {
                 for (i = 0; i < player_count; i++) {
                     /* Process each player's car */
-                    void *car_ptr = (void*)((u8*)save_queue_flag + i * 76);
+                    car_ptr = (void*)((u8*)save_queue_flag + i * 76);
                     if (car_ptr) {
-                        void *car_data = *(void**)((u8*)car_ptr + 72);
+                        car_data = *(void**)((u8*)car_ptr + 72);
                         if (car_data) {
-                            s32 car_obj = *(s32*)((u8*)car_data + 8);
+                            car_obj = *(s32*)((u8*)car_data + 8);
                             frustum_cull(car_obj, 0);
                         }
                     }
@@ -956,9 +967,9 @@ void playgame_handler(void) {
         mode_flag = game_mode_flag;
         if (mode_flag != 0) {
             if (!(game_state_flags & 0x007C0000)) {
-                s8 val1 = speed_offset + 14;
+                val1 = speed_offset + 14;
                 if (val1 < 13) {
-                    s8 val2 = speed_offset + 12;
+                    val2 = speed_offset + 12;
                     ftemp = 10.0f * (f32)val2;
                     speed_set(ftemp);
                     sync_entry_register(6, 1);
@@ -975,10 +986,10 @@ void playgame_handler(void) {
     if (gstate_next & 0x0008) {
         drone_deactivate();
         /* Walk object list and clean up */
-        void *obj = scene_object_ptr;
+        obj = scene_object_ptr;
         while (obj != NULL) {
             object_render_cleanup(obj);
-            void *next = *(void**)obj;
+            next = *(void**)obj;
             obj = *(void**)next;
         }
 
@@ -1088,7 +1099,7 @@ void playgame_handler(void) {
         if (state_byte == 0) {
             mode_flag = game_mode_flag;
             if (mode_flag == 0) {
-                s32 game_mode = game_unlock_id;
+                game_mode = game_unlock_id;
                 if (game_mode != 6 && game_mode != 4 && game_mode != 5) {
                     hud_setup(8, 8, 0, 0, 0, 1.0f, 200.0f, 0);
                 }
@@ -1096,7 +1107,7 @@ void playgame_handler(void) {
 
             mode_flag = game_mode_flag;
             if (mode_flag == 0) {
-                s32 game_mode = game_unlock_id;
+                game_mode = game_unlock_id;
                 if (game_mode == 6) {
                     hud_speed_display(NULL, 0.0f);
                 }
@@ -1106,7 +1117,7 @@ void playgame_handler(void) {
         }
 
         /* Check game mode for specific handling */
-        s32 game_mode = game_unlock_id;
+        game_mode = game_unlock_id;
         if (game_mode != 6 && game_mode != 4 && game_mode != 5) {
             if (game_mode_flag == 0) {
                 track_bounds_check();
@@ -1410,7 +1421,6 @@ extern void menu_options(void *menu); /* Race setup 1 */
 extern void players_frame_update(void); /* Race setup 2 */
 extern void drone_update_all(void);
 extern void drone_activate_for_race(void);
-extern void drone_deactivate(void);
 extern void mempak_operation(s32 operation); /* Track init */
 extern void menu_saveload(void *menu); /* Visual init */
 extern void scene_stub_empty(void); /* Scene setup */
@@ -1435,6 +1445,7 @@ void race_state_machine(void) {
     void *obj;
     void *alloc_obj;
     f32 timer_val;
+    s8 current_status;
 
     /* Initialize state */
     hud_element_render(0, 0);
@@ -1684,7 +1695,7 @@ exit_common:
     if (race_state != 0) {
         player_idx = current_player_index;
         player_status = (u8 *)(0x80156CF0 + player_idx * 16);
-        s8 current_status = (*player_status == 0) ? 1 : 0;
+        current_status = (*player_status == 0) ? 1 : 0;
 
         if (current_status != player_active_flag) {
             player_active_flag = current_status;
@@ -1816,7 +1827,7 @@ void update_game_systems(s32 sound_update, s32 physics_update) {
     /* Update physics objects if requested */
     if (physics_update != 0) {
         drone_update_all();
-        physics_update();  /* Starts physics linked list traversal */
+        physics_update_all();  /* Starts physics linked list traversal */
     }
 
     /* Always update particle/effect emitters */
@@ -4018,8 +4029,6 @@ void object_counter_increment(s32 id) {
  * @param a0 First pointer (offset by 4)
  * @param a1 Second pointer (offset by 4)
  */
-extern s32 sound_position_set(u8 *a0, u8 *a1);
-
 void pointer_offset_wrapper(void *a0, void *a1) {
     sound_position_set(0, 0);
 }
@@ -4477,7 +4486,6 @@ s8 object_byte9_set(s8 a0) {
  * @param a1 Resource parameter
  * @return Lookup result
  */
-extern void **object_list_head;
 extern void *color_set(void*, void*);
 
 void *resource_lookup_synced(s32 a0, void *a1) {
@@ -8739,6 +8747,8 @@ void entity_tick_update(void *entity, void *data) {
     f32 *pos, *vel, *accel;
     f32 dt;
     s32 updateFlags;
+    void *camera;
+    s32 culled;
 
     if (entity == NULL) {
         return;
@@ -8787,8 +8797,8 @@ void entity_tick_update(void *entity, void *data) {
 
     /* Visibility check */
     if (updateFlags & 0x10) {
-        void *camera = (void *)0x8015B000;
-        s32 culled = entity_cull_check(entity, camera);
+        camera = (void *)0x8015B000;
+        culled = entity_cull_check(entity, camera);
         if (culled) {
             *flags &= ~0x200;  /* Not visible */
         } else {
@@ -12688,6 +12698,10 @@ void ai_optimize_racing_line(void *car, void *track) {
     f32 *carPos;
     s32 *aiState;
     s32 waypointIdx;
+    s32 idx1, idx2, idx3;
+    f32 p1[3], p2[3], p3[3];
+    f32 dx1, dz1, dx2, dz2;
+    f32 cross, dot, angle;
     f32 cornerAngle;
     f32 entrySpeed;
     f32 apexOffset;
@@ -12704,24 +12718,23 @@ void ai_optimize_racing_line(void *car, void *track) {
     /* Look ahead several waypoints to detect corner */
     cornerAngle = 0.0f;
     for (i = 0; i < 5; i++) {
-        s32 idx1 = (waypointIdx + i) % 100;
-        s32 idx2 = (waypointIdx + i + 1) % 100;
-        s32 idx3 = (waypointIdx + i + 2) % 100;
+        idx1 = (waypointIdx + i) % 100;
+        idx2 = (waypointIdx + i + 1) % 100;
+        idx3 = (waypointIdx + i + 2) % 100;
 
-        f32 p1[3], p2[3], p3[3];
         track_get_node_pos(trackno, idx1, &p1[0], &p1[1], &p1[2]);
         track_get_node_pos(trackno, idx2, &p2[0], &p2[1], &p2[2]);
         track_get_node_pos(trackno, idx3, &p3[0], &p3[1], &p3[2]);
 
         /* Calculate angle between segments */
-        f32 dx1 = p2[0] - p1[0];
-        f32 dz1 = p2[2] - p1[2];
-        f32 dx2 = p3[0] - p2[0];
-        f32 dz2 = p3[2] - p2[2];
+        dx1 = p2[0] - p1[0];
+        dz1 = p2[2] - p1[2];
+        dx2 = p3[0] - p2[0];
+        dz2 = p3[2] - p2[2];
 
-        f32 cross = dx1 * dz2 - dz1 * dx2;
-        f32 dot = dx1 * dx2 + dz1 * dz2;
-        f32 angle = atan2f(cross, dot);
+        cross = dx1 * dz2 - dz1 * dx2;
+        dot = dx1 * dx2 + dz1 * dz2;
+        angle = atan2f(cross, dot);
 
         if (fabsf(angle) > fabsf(cornerAngle)) {
             cornerAngle = angle;
@@ -12895,6 +12908,7 @@ void ai_attempt_overtake(void *car, void *opponent) {
     f32 dx, dz, dist;
     f32 relSpeed;
     f32 approach;
+    f32 ourSpeed, theirSpeed;
     s32 *aiState;
     s32 overtakeState;
     f32 steerAdjust;
@@ -12914,8 +12928,8 @@ void ai_attempt_overtake(void *car, void *opponent) {
     dist = sqrtf(dx * dx + dz * dz);
 
     /* Calculate relative speed (positive = catching up) */
-    f32 ourSpeed = sqrtf(carVel[0] * carVel[0] + carVel[2] * carVel[2]);
-    f32 theirSpeed = sqrtf(oppVel[0] * oppVel[0] + oppVel[2] * oppVel[2]);
+    ourSpeed = sqrtf(carVel[0] * carVel[0] + carVel[2] * carVel[2]);
+    theirSpeed = sqrtf(oppVel[0] * oppVel[0] + oppVel[2] * oppVel[2]);
     relSpeed = ourSpeed - theirSpeed;
 
     /* Check if opponent is ahead */
@@ -13239,6 +13253,8 @@ void player_update(void *player, f32 dt) {
     f32 steering, throttle, brake;
     s32 wingDeploy;
     f32 respawnPos[3];
+    f32 *pos;
+    f32 *vel;
 
     if (player == NULL) {
         return;
@@ -13293,13 +13309,13 @@ void player_update(void *player, f32 dt) {
             /* Check if countdown finished */
             if (*(s32 *)((u8 *)player + 0x10C) <= 0) {
                 /* Move to respawn position */
-                f32 *pos = (f32 *)((u8 *)player + 0x24);
+                pos = (f32 *)((u8 *)player + 0x24);
                 pos[0] = respawnPos[0];
                 pos[1] = respawnPos[1];
                 pos[2] = respawnPos[2];
 
                 /* Reset velocity */
-                f32 *vel = (f32 *)((u8 *)player + 0x34);
+                vel = (f32 *)((u8 *)player + 0x34);
                 vel[0] = 0.0f;
                 vel[1] = 0.0f;
                 vel[2] = 0.0f;
@@ -14893,6 +14909,13 @@ void collision_narrowphase(void *pairA, void *pairB) {
     s32 minAxis, i, j;
     f32 contactNormal[3], contactPoint[3];
     f32 penetration;
+    s32 aIdx, bIdx;
+    f32 *axisA, *axisB;
+    f32 len;
+    f32 *axis;
+    f32 axisLen;
+    f32 centerProj;
+    f32 dot;
 
     if (pairA == NULL || pairB == NULL) {
         return;
@@ -14932,19 +14955,19 @@ void collision_narrowphase(void *pairA, void *pairB) {
 
     /* Cross products (simplified - just checking major axes for N64) */
     for (i = 0; i < 9; i++) {
-        s32 aIdx = i / 3;
-        s32 bIdx = i % 3;
-        f32 *axisA = axes[aIdx];
-        f32 *axisB = axes[3 + bIdx];
+        aIdx = i / 3;
+        bIdx = i % 3;
+        axisA = axes[aIdx];
+        axisB = axes[3 + bIdx];
 
         axes[6 + i][0] = axisA[1] * axisB[2] - axisA[2] * axisB[1];
         axes[6 + i][1] = axisA[2] * axisB[0] - axisA[0] * axisB[2];
         axes[6 + i][2] = axisA[0] * axisB[1] - axisA[1] * axisB[0];
 
         /* Normalize */
-        f32 len = sqrtf(axes[6 + i][0] * axes[6 + i][0] +
-                       axes[6 + i][1] * axes[6 + i][1] +
-                       axes[6 + i][2] * axes[6 + i][2]);
+        len = sqrtf(axes[6 + i][0] * axes[6 + i][0] +
+                   axes[6 + i][1] * axes[6 + i][1] +
+                   axes[6 + i][2] * axes[6 + i][2]);
         if (len > 0.001f) {
             axes[6 + i][0] /= len;
             axes[6 + i][1] /= len;
@@ -14957,8 +14980,8 @@ void collision_narrowphase(void *pairA, void *pairB) {
 
     /* Test all 15 axes */
     for (i = 0; i < 15; i++) {
-        f32 *axis = axes[i];
-        f32 axisLen = sqrtf(axis[0] * axis[0] + axis[1] * axis[1] + axis[2] * axis[2]);
+        axis = axes[i];
+        axisLen = sqrtf(axis[0] * axis[0] + axis[1] * axis[1] + axis[2] * axis[2]);
 
         if (axisLen < 0.001f) {
             continue;  /* Degenerate axis */
@@ -14975,7 +14998,7 @@ void collision_narrowphase(void *pairA, void *pairB) {
                 fabsf(boundsB[2] * (rotB[6] * axis[0] + rotB[7] * axis[1] + rotB[8] * axis[2]));
 
         /* Project center difference onto axis */
-        f32 centerProj = fabsf(centerDiff[0] * axis[0] + centerDiff[1] * axis[1] + centerDiff[2] * axis[2]);
+        centerProj = fabsf(centerDiff[0] * axis[0] + centerDiff[1] * axis[1] + centerDiff[2] * axis[2]);
 
         overlap = projA + projB - centerProj;
 
@@ -14997,9 +15020,9 @@ void collision_narrowphase(void *pairA, void *pairB) {
         contactNormal[2] = axes[minAxis][2];
 
         /* Ensure normal points from A to B */
-        f32 dot = contactNormal[0] * centerDiff[0] +
-                  contactNormal[1] * centerDiff[1] +
-                  contactNormal[2] * centerDiff[2];
+        dot = contactNormal[0] * centerDiff[0] +
+              contactNormal[1] * centerDiff[1] +
+              contactNormal[2] * centerDiff[2];
         if (dot < 0.0f) {
             contactNormal[0] = -contactNormal[0];
             contactNormal[1] = -contactNormal[1];
@@ -15031,16 +15054,34 @@ void collision_narrowphase(void *pairA, void *pairB) {
  * Returns: surface type (0 = off track, 1+ = valid surface)
  */
 s32 track_surface_query(f32 *pos, f32 *normal, f32 *height) {
-    void *trackData = (void *)track_data_ptr;  /* Track geometry data */
+    void *trackData;
     s32 *triangleList;
     s32 numTriangles;
     f32 *vertices;
     f32 queryX, queryZ;
-    s32 foundSurface = 0;
-    f32 bestHeight = -99999.0f;
-    f32 bestNormal[3] = {0.0f, 1.0f, 0.0f};
-    s32 bestSurfaceType = 0;
+    s32 foundSurface;
+    f32 bestHeight;
+    f32 bestNormal[3];
+    s32 bestSurfaceType;
     s32 i;
+    s32 *tri;
+    s32 idx0, idx1, idx2, surfaceType;
+    f32 x0, y0, z0, x1, y1, z1, x2, y2, z2;
+    f32 v0x, v0z, v1x, v1z, v2x, v2z;
+    f32 dot00, dot01, dot02, dot11, dot12;
+    f32 invDenom;
+    f32 u, v;
+    f32 h;
+    f32 e1x, e1y, e1z, e2x, e2y, e2z;
+    f32 len;
+
+    trackData = (void *)track_data_ptr;
+    foundSurface = 0;
+    bestHeight = -99999.0f;
+    bestNormal[0] = 0.0f;
+    bestNormal[1] = 1.0f;
+    bestNormal[2] = 0.0f;
+    bestSurfaceType = 0;
 
     if (pos == NULL || trackData == NULL) {
         if (height != NULL) {
@@ -15063,49 +15104,49 @@ s32 track_surface_query(f32 *pos, f32 *normal, f32 *height) {
 
     /* Iterate through triangles to find one containing query point */
     for (i = 0; i < numTriangles && i < 4096; i++) {
-        s32 *tri = &triangleList[i * 4];  /* v0, v1, v2, surfaceType */
-        s32 idx0 = tri[0] * 3;
-        s32 idx1 = tri[1] * 3;
-        s32 idx2 = tri[2] * 3;
-        s32 surfaceType = tri[3];
+        tri = &triangleList[i * 4];  /* v0, v1, v2, surfaceType */
+        idx0 = tri[0] * 3;
+        idx1 = tri[1] * 3;
+        idx2 = tri[2] * 3;
+        surfaceType = tri[3];
 
-        f32 x0 = vertices[idx0 + 0];
-        f32 y0 = vertices[idx0 + 1];
-        f32 z0 = vertices[idx0 + 2];
-        f32 x1 = vertices[idx1 + 0];
-        f32 y1 = vertices[idx1 + 1];
-        f32 z1 = vertices[idx1 + 2];
-        f32 x2 = vertices[idx2 + 0];
-        f32 y2 = vertices[idx2 + 1];
-        f32 z2 = vertices[idx2 + 2];
+        x0 = vertices[idx0 + 0];
+        y0 = vertices[idx0 + 1];
+        z0 = vertices[idx0 + 2];
+        x1 = vertices[idx1 + 0];
+        y1 = vertices[idx1 + 1];
+        z1 = vertices[idx1 + 2];
+        x2 = vertices[idx2 + 0];
+        y2 = vertices[idx2 + 1];
+        z2 = vertices[idx2 + 2];
 
         /* Point in triangle test (2D, XZ plane) using barycentric coords */
-        f32 v0x = x2 - x0;
-        f32 v0z = z2 - z0;
-        f32 v1x = x1 - x0;
-        f32 v1z = z1 - z0;
-        f32 v2x = queryX - x0;
-        f32 v2z = queryZ - z0;
+        v0x = x2 - x0;
+        v0z = z2 - z0;
+        v1x = x1 - x0;
+        v1z = z1 - z0;
+        v2x = queryX - x0;
+        v2z = queryZ - z0;
 
-        f32 dot00 = v0x * v0x + v0z * v0z;
-        f32 dot01 = v0x * v1x + v0z * v1z;
-        f32 dot02 = v0x * v2x + v0z * v2z;
-        f32 dot11 = v1x * v1x + v1z * v1z;
-        f32 dot12 = v1x * v2x + v1z * v2z;
+        dot00 = v0x * v0x + v0z * v0z;
+        dot01 = v0x * v1x + v0z * v1z;
+        dot02 = v0x * v2x + v0z * v2z;
+        dot11 = v1x * v1x + v1z * v1z;
+        dot12 = v1x * v2x + v1z * v2z;
 
-        f32 invDenom = dot00 * dot11 - dot01 * dot01;
+        invDenom = dot00 * dot11 - dot01 * dot01;
         if (fabsf(invDenom) < 0.0001f) {
             continue;  /* Degenerate triangle */
         }
         invDenom = 1.0f / invDenom;
 
-        f32 u = (dot11 * dot02 - dot01 * dot12) * invDenom;
-        f32 v = (dot00 * dot12 - dot01 * dot02) * invDenom;
+        u = (dot11 * dot02 - dot01 * dot12) * invDenom;
+        v = (dot00 * dot12 - dot01 * dot02) * invDenom;
 
         /* Check if point is in triangle */
         if (u >= 0.0f && v >= 0.0f && (u + v) <= 1.0f) {
             /* Interpolate height */
-            f32 h = y0 + u * (y2 - y0) + v * (y1 - y0);
+            h = y0 + u * (y2 - y0) + v * (y1 - y0);
 
             /* Take highest surface at this point (for bridges, etc.) */
             if (h > bestHeight) {
@@ -15113,21 +15154,21 @@ s32 track_surface_query(f32 *pos, f32 *normal, f32 *height) {
                 bestSurfaceType = surfaceType;
 
                 /* Calculate normal from triangle edges */
-                f32 e1x = x1 - x0;
-                f32 e1y = y1 - y0;
-                f32 e1z = z1 - z0;
-                f32 e2x = x2 - x0;
-                f32 e2y = y2 - y0;
-                f32 e2z = z2 - z0;
+                e1x = x1 - x0;
+                e1y = y1 - y0;
+                e1z = z1 - z0;
+                e2x = x2 - x0;
+                e2y = y2 - y0;
+                e2z = z2 - z0;
 
                 bestNormal[0] = e1y * e2z - e1z * e2y;
                 bestNormal[1] = e1z * e2x - e1x * e2z;
                 bestNormal[2] = e1x * e2y - e1y * e2x;
 
                 /* Normalize */
-                f32 len = sqrtf(bestNormal[0] * bestNormal[0] +
-                               bestNormal[1] * bestNormal[1] +
-                               bestNormal[2] * bestNormal[2]);
+                len = sqrtf(bestNormal[0] * bestNormal[0] +
+                           bestNormal[1] * bestNormal[1] +
+                           bestNormal[2] * bestNormal[2]);
                 if (len > 0.001f) {
                     bestNormal[0] /= len;
                     bestNormal[1] /= len;
@@ -15180,6 +15221,10 @@ void camera_track_target(void *camera, void *target) {
     f32 lookahead;
     f32 desiredPos[3];
     f32 desiredTarget[3];
+    f32 speed;
+    f32 turnRate;
+    f32 upLen;
+    f32 groundHeight;
 
     if (camera == NULL || target == NULL) {
         return;
@@ -15201,9 +15246,9 @@ void camera_track_target(void *camera, void *target) {
     }
 
     /* Calculate speed for lookahead */
-    f32 speed = sqrtf(targetVel[0] * targetVel[0] +
-                     targetVel[1] * targetVel[1] +
-                     targetVel[2] * targetVel[2]);
+    speed = sqrtf(targetVel[0] * targetVel[0] +
+                 targetVel[1] * targetVel[1] +
+                 targetVel[2] * targetVel[2]);
     lookahead = speed * (*lookaheadScale);
 
     /* Desired camera position: behind and above target */
@@ -15227,13 +15272,13 @@ void camera_track_target(void *camera, void *target) {
     camTarget[2] += (desiredTarget[2] - camTarget[2]) * smoothFactor * 1.5f;
 
     /* Keep up vector mostly vertical with slight tilt on turns */
-    f32 turnRate = targetVel[0] * targetDir[2] - targetVel[2] * targetDir[0];
+    turnRate = targetVel[0] * targetDir[2] - targetVel[2] * targetDir[0];
     camUp[0] = -turnRate * 0.01f;
     camUp[1] = 1.0f;
     camUp[2] = 0.0f;
 
     /* Normalize up vector */
-    f32 upLen = sqrtf(camUp[0] * camUp[0] + camUp[1] * camUp[1] + camUp[2] * camUp[2]);
+    upLen = sqrtf(camUp[0] * camUp[0] + camUp[1] * camUp[1] + camUp[2] * camUp[2]);
     if (upLen > 0.001f) {
         camUp[0] /= upLen;
         camUp[1] /= upLen;
@@ -15241,7 +15286,6 @@ void camera_track_target(void *camera, void *target) {
     }
 
     /* Ground collision for camera */
-    f32 groundHeight;
     if (track_surface_query(camPos, NULL, &groundHeight) != 0) {
         if (camPos[1] < groundHeight + 2.0f) {
             camPos[1] = groundHeight + 2.0f;
@@ -15272,6 +15316,7 @@ void camera_shake_apply(void *camera, f32 intensity, f32 duration) {
     f32 currentTime, elapsed, decay;
     f32 shakeX, shakeY, shakeZ;
     s32 seed;
+    f32 freq1, freq2;
 
     if (camera == NULL || intensity <= 0.0f) {
         return;
@@ -15301,8 +15346,8 @@ void camera_shake_apply(void *camera, f32 intensity, f32 duration) {
         decay = decay * decay;  /* Quadratic for smoother falloff */
 
         /* Oscillating shake with multiple frequencies */
-        f32 freq1 = 15.0f;  /* Fast shake */
-        f32 freq2 = 8.0f;   /* Slower shake */
+        freq1 = 15.0f;  /* Fast shake */
+        freq2 = 8.0f;   /* Slower shake */
 
         shakeX = sinf(shakeState[0] + elapsed * freq1) * 0.6f +
                  sinf(shakeState[0] * 1.7f + elapsed * freq2) * 0.4f;
@@ -16006,6 +16051,7 @@ void menu_car_select(void *menu) {
     s32 carCount;
     s32 i;
     f32 rotAngle;
+    static f32 billboardPos[3] = {160.0f, 100.0f, 0.0f};
 
     if (menu == NULL) {
         return;
@@ -16026,7 +16072,7 @@ void menu_car_select(void *menu) {
     if (*selectedCar >= carCount) *selectedCar = 0;
 
     /* Draw 3D car preview (rotating) */
-    billboard_render((f32[]){160.0f, 100.0f, 0.0f}, *selectedCar);
+    billboard_render(billboardPos, *selectedCar);
 
     /* Draw car name */
     switch (*selectedCar) {
@@ -17165,6 +17211,8 @@ void weather_update(void *weather) {
     f32 *windDir, *windSpeed;
     f32 *transitionTimer, *targetIntensity;
     s32 type;
+    f32 currentInt;
+    f32 windLen;
 
     if (weather == NULL) {
         return;
@@ -17182,7 +17230,7 @@ void weather_update(void *weather) {
     /* Handle weather transitions */
     if (*transitionTimer > 0.0f) {
         *transitionTimer -= 1.0f / 60.0f;
-        f32 currentInt = (f32)(*intensity);
+        currentInt = (f32)(*intensity);
         currentInt += (*targetIntensity - currentInt) * 0.02f;
         *intensity = (s32)currentInt;
     }
@@ -17192,7 +17240,7 @@ void weather_update(void *weather) {
     windDir[2] += (((random_seed2 >> 8 & 0xFF) / 255.0f) - 0.5f) * 0.01f;
 
     /* Normalize wind direction */
-    f32 windLen = sqrtf(windDir[0] * windDir[0] + windDir[2] * windDir[2]);
+    windLen = sqrtf(windDir[0] * windDir[0] + windDir[2] * windDir[2]);
     if (windLen > 0.001f) {
         windDir[0] /= windLen;
         windDir[2] /= windLen;
@@ -17370,6 +17418,7 @@ void explosion_spawn(f32 *pos, f32 size) {
     s32 numParticles, i;
     f32 angle, speed;
     s32 seed;
+    void *camera;
 
     if (pos == NULL || size <= 0.0f) {
         return;
@@ -17418,7 +17467,7 @@ void explosion_spawn(f32 *pos, f32 size) {
     }
 
     /* Camera shake based on size */
-    void *camera = (void *)camera_ptr;
+    camera = (void *)camera_ptr;
     if (camera != NULL) {
         camera_shake_apply(camera, size * 0.5f, 0.5f);
     }
@@ -17992,6 +18041,7 @@ void horizon_render(void *camera) {
     f32 horizonY;
     s32 i;
     f32 cloudOffset;
+    f32 cloudX, cloudY;
 
     if (camera == NULL) {
         return;
@@ -18014,7 +18064,7 @@ void horizon_render(void *camera) {
     cloudOffset = (f32)(random_seed2 % 6400) / 20.0f;
 
     for (i = 0; i < 5; i++) {
-        f32 cloudX = (f32)(i * 80) - cloudOffset;
+        cloudX = (f32)(i * 80) - cloudOffset;
         while (cloudX < -40.0f) {
             cloudX += 400.0f;
         }
@@ -18022,7 +18072,7 @@ void horizon_render(void *camera) {
             cloudX -= 400.0f;
         }
 
-        f32 cloudY = horizonY - 30.0f - (i & 1) * 15.0f;
+        cloudY = horizonY - 30.0f - (i & 1) * 15.0f;
 
         if (cloudY > 10.0f && cloudY < 200.0f) {
             draw_ui_element(0, 0, 0, 0, 0, 0);  /* Cloud sprite */
@@ -18158,6 +18208,8 @@ void shadow_project(void *object, f32 *lightDir) {
     f32 groundY;
     f32 lightDirNorm[3], lightLen;
     s32 i;
+    f32 cornerX, cornerY, cornerZ, t;
+    f32 *shadowData;
 
     if (object == NULL || lightDir == NULL) {
         return;
@@ -18183,12 +18235,12 @@ void shadow_project(void *object, f32 *lightDir) {
 
     /* Generate bounding box corners */
     for (i = 0; i < 8; i++) {
-        f32 cornerX = objPos[0] + ((i & 1) ? objBounds[0] : -objBounds[0]);
-        f32 cornerY = objPos[1] + ((i & 2) ? objBounds[1] : -objBounds[1]);
-        f32 cornerZ = objPos[2] + ((i & 4) ? objBounds[2] : -objBounds[2]);
+        cornerX = objPos[0] + ((i & 1) ? objBounds[0] : -objBounds[0]);
+        cornerY = objPos[1] + ((i & 2) ? objBounds[1] : -objBounds[1]);
+        cornerZ = objPos[2] + ((i & 4) ? objBounds[2] : -objBounds[2]);
 
         /* Project corner onto ground along light direction */
-        f32 t = (cornerY - groundY) / (-lightDirNorm[1] + 0.001f);
+        t = (cornerY - groundY) / (-lightDirNorm[1] + 0.001f);
 
         shadowVerts[i][0] = cornerX + lightDirNorm[0] * t;
         shadowVerts[i][1] = groundY + 0.1f;  /* Slight offset to avoid z-fighting */
@@ -18196,7 +18248,7 @@ void shadow_project(void *object, f32 *lightDir) {
     }
 
     /* Store shadow vertices for rendering */
-    f32 *shadowData = (f32 *)((u8 *)object + 0x100);
+    shadowData = (f32 *)((u8 *)object + 0x100);
     for (i = 0; i < 8; i++) {
         shadowData[i * 3 + 0] = shadowVerts[i][0];
         shadowData[i * 3 + 1] = shadowVerts[i][1];
@@ -37939,11 +37991,14 @@ void trail_effect(void *object) {
     extern u8 tire_trail_buffer[];    /* Trail buffer */
     extern s32 trail_segment_count;     /* Trail segment count */
     extern s32 trail_max_segments;     /* Max trail segments */
-    u8 *objData = (u8 *)object;
+    u8 *objData;
     u8 *trail;
+    u8 *prevTrail;
     f32 *objPos;
     s32 slot;
     s32 i;
+
+    objData = (u8 *)object;
 
     if (objData == NULL) {
         return;
@@ -37954,7 +38009,7 @@ void trail_effect(void *object) {
     /* Shift existing trail segments */
     for (i = trail_max_segments - 1; i > 0; i--) {
         trail = &tire_trail_buffer[i * 0x20];
-        u8 *prevTrail = &tire_trail_buffer[(i - 1) * 0x20];
+        prevTrail = &tire_trail_buffer[(i - 1) * 0x20];
 
         /* Copy position from previous */
         *(f32 *)(trail + 0x00) = *(f32 *)(prevTrail + 0x00);
@@ -38209,12 +38264,15 @@ void lighting_setup(void) {
  */
 void shadow_render(void *object) {
     extern Gfx **gfx_dl_ptr;
-    u8 *objData = (u8 *)object;
+    u8 *objData;
     f32 *objPos;
     f32 groundY;
     f32 shadowScale;
     f32 height;
+    f32 baseSize;
+    f32 shadowSize;
 
+    objData = (u8 *)object;
     if (objData == NULL) {
         return;
     }
@@ -38235,8 +38293,8 @@ void shadow_render(void *object) {
     shadowScale = 1.0f - (height / 50.0f);
 
     /* Get base shadow size from object (offset 0x48) */
-    f32 baseSize = *(f32 *)(objData + 0x48);
-    f32 shadowSize = baseSize * shadowScale * 0.8f;
+    baseSize = *(f32 *)(objData + 0x48);
+    shadowSize = baseSize * shadowScale * 0.8f;
 
     /* Draw shadow decal at ground level */
     draw_fill_rect(
