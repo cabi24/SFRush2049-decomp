@@ -12,6 +12,9 @@ extern f32 sqrtf(f32 x);
 extern f32 sinf(f32 x);
 extern f32 cosf(f32 x);
 
+/* Arcade constants */
+#define DAMPSPEED 400           /* Speed threshold for slip angle damping */
+
 /* Local math helpers */
 static f32 xxsqrt(f32 x) {
     if (x <= 0.0f) return 0.0f;
@@ -119,24 +122,39 @@ void tire_constants(TireDes *tire) {
  * ======================================================================== */
 
 /**
- * Calculate slip angle from tire velocity
+ * calcalpha - Calculate slip angle from tire velocity
+ * Based on arcade: tires.c:calcalpha()
+ *
  * tirev: velocity in tire coordinates (X=forward, Y=lateral, Z=vertical)
+ * Uses DAMPSPEED threshold to limit slip angle at high speeds
  */
-f32 tire_calc_alpha(f32 tirev[3]) {
-    f32 vx = tirev[XCOMP];
-    f32 vy = tirev[YCOMP];
+f32 calcalpha(f32 tirev[3]) {
+    f32 alpha;
 
-    if (vx < 1.0f && vx > -1.0f) {
-        /* Low speed - use ratio directly */
-        if (vx >= 0.0f) {
-            return -vy / 1.0f;
+    alpha = tirev[YCOMP];
+
+    if (tirev[XCOMP] > 0.0f) {
+        if (tirev[XCOMP] < DAMPSPEED) {
+            alpha = tirev[YCOMP] / tirev[XCOMP];  /* find tire alpha */
         } else {
-            return vy / 1.0f;
+            alpha = tirev[YCOMP] * (1.0f / DAMPSPEED);  /* damped alpha */
         }
     }
 
-    /* Normal case - atan approximation */
-    return -vy / vx;
+    if (tirev[XCOMP] < 0.0f) {
+        if (tirev[XCOMP] > -DAMPSPEED) {
+            alpha = -tirev[YCOMP] / tirev[XCOMP];  /* find tire alpha */
+        } else {
+            alpha = tirev[YCOMP] * (1.0f / DAMPSPEED);  /* damped alpha */
+        }
+    }
+
+    return alpha;
+}
+
+/* N64 wrapper for arcade function name */
+f32 tire_calc_alpha(f32 tirev[3]) {
+    return calcalpha(tirev);
 }
 
 /* ========================================================================
@@ -276,7 +294,7 @@ void tire_friction_circle(
     l3 = k3;
     maxf = Cfmax * normalforce;
 
-    alpha = tire_calc_alpha(tirev);
+    alpha = calcalpha(tirev);
     tire->sliptorque = 0.0f;
 
     /* Calculate lateral force based on slip angle */
@@ -308,11 +326,13 @@ void tire_friction_circle(
             ydot = -p * tire->patchy - tirev[YCOMP];
             tire->patchy += ydot * m->dt;
             *sideforce = tire->springK * tire->patchy + tire->rubdamp * ydot;
+            tire->slipflag += 100;  /* Arcade: transient marker */
         } else {
             /* Steady state - polynomial tire curve */
             *sideforce = -(tire->k1 * alpha - k2 * alpha * alpha +
                            k3 * alpha * alpha * alpha) * normalforce;
             tire->patchy = *sideforce / tire->springK;
+            tire->slipflag += 200;  /* Arcade: steady state marker */
         }
     } else {
         /* Negative slip angle */
@@ -341,12 +361,30 @@ void tire_friction_circle(
             ydot = -p * tire->patchy - tirev[YCOMP];
             tire->patchy += ydot * m->dt;
             *sideforce = tire->springK * tire->patchy + tire->rubdamp * ydot;
+            tire->slipflag += 100;  /* Arcade: transient marker */
         } else {
             *sideforce = (tire->k1 * alpha + k2 * alpha * alpha +
                           k3 * alpha * alpha * alpha) * normalforce;
             tire->patchy = *sideforce / tire->springK;
+            tire->slipflag += 200;  /* Arcade: steady state marker */
         }
     }
+}
+
+/**
+ * frictioncircle - Arcade-compatible alias
+ * Based on arcade: tires.c:frictioncircle()
+ */
+void frictioncircle(
+    ModelDat *m,
+    f32 tirev[3],
+    f32 normalforce,
+    f32 torque,
+    TireDes *tire,
+    f32 *sfp,
+    f32 *trp
+) {
+    tire_friction_circle(m, tirev, normalforce, torque, tire, sfp, trp);
 }
 
 /* ========================================================================
