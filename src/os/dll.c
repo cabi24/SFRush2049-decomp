@@ -66,10 +66,10 @@ typedef struct {
 
 /* Global timer queue state (standard libultra names) */
 extern TimerQueueHead *__osTimerList;   /* Timer queue head pointer: 0x8002C3F0 */
-extern s32 timer_unused_50;             /* Reserved/unused: 0x80037C50 */
-extern s32 timer_unused_54;             /* Reserved/unused: 0x80037C54 */
-extern s32 timer_unused_58;             /* Reserved/unused: 0x80037C58 */
-extern s32 timer_unused_5C;             /* Reserved/unused: 0x80037C5C */
+extern s32 gViTimeAccumHi;              /* VI time accumulator high word: 0x80037C50 */
+extern s32 gViTimeAccumLo;              /* VI time accumulator low word: 0x80037C54 */
+extern s32 gViLastCount;                /* VI last osGetCount value: 0x80037C58 */
+extern s32 gViRetraceCount;             /* VI retrace tick counter: 0x80037C5C */
 extern u32 __osTimerCounter;            /* Last update timestamp: 0x80037C60 */
 
 /* External functions */
@@ -111,10 +111,10 @@ void dll_remove(DLLNode **list, DLLNode *node) {
 void dll_init(void) {
     TimerQueueHead *q = __osTimerList;
 
-    timer_unused_50 = 0;
-    timer_unused_54 = 0;
-    timer_unused_58 = 0;
-    timer_unused_5C = 0;
+    gViTimeAccumHi = 0;
+    gViTimeAccumLo = 0;
+    gViLastCount = 0;
+    gViRetraceCount = 0;
 
     /* Initialize circular list - next/prev point to self */
     q->tail = (TimerNode *)q;

@@ -1,5 +1,9 @@
 /* N64 Hardware Registers and libultra OS Symbols */
 
+/* MIPS Memory Segments (R4300) */
+KSEG0_BASE = 0x80000000;    /* Cached, unmapped kernel segment (512MB) */
+KSEG1_BASE = 0xA0000000;    /* Uncached, unmapped kernel segment (512MB) */
+
 /* OS Variables (typical addresses from libultra) */
 osTvType = 0x80000300;
 osRomBase = 0x80000308;

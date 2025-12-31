@@ -124,7 +124,9 @@ void main(void *arg) {
  */
 static void thread1_entry(void *arg) {
     /* Initialize video system */
-    osCreateScheduler(0x96, (void *)0x8002EE08, (void *)0x8002EE20, 0xC8);
+    extern u8 gViModeTable[];   /* 0x8002EE08 - video mode table */
+    extern u8 gViModeLan1[];    /* 0x8002EE20 - NTSC LAN1 mode */
+    osCreateScheduler(0x96, gViModeTable, gViModeLan1, 0xC8);
     osScSetVideoMode(0, 0);
 
     /* Create game_init thread (thread 6) */
@@ -158,8 +160,9 @@ static void game_init(void *arg) {
     osCreateMesgQueue(&gEventMesgQueue, gEventMesgBuf, 8);     /* Event queue */
 
     /* Get frame counter and set up timer interrupts */
+    extern u8 gScheduler[];  /* 0x8002E8E8 - OSSched scheduler structure */
     frame_counter = (void *)osScGetFrameCount();
-    osScCreateThread((void *)0x8002E8E8, (void *)0x800344E0, 12, frame_counter, 1);
+    osScCreateThread(gScheduler, gGameThread, 12, frame_counter, 1);
 
     /* Finalize DMA for first region */
     dma_finalize(gDecompressedDataStart, (u32)(gDecompressedDataEnd1 - gDecompressedDataStart));
@@ -174,10 +177,11 @@ static void game_init(void *arg) {
     bzero(gBssStart, (u32)(gBssEnd - gBssStart));
 
     /* More initialization */
-    osScStartRetrace((void *)0x8002E8E8, &msg, &gRetraceMesgQueue);
+    osScStartRetrace(gScheduler, &msg, &gRetraceMesgQueue);
 
     /* Create audio thread (thread 8) */
-    osCreateThread(gAudioThread, 8, (void *)0x800AC75C, NULL,
+    extern void audio_thread_proc(void *);
+    osCreateThread(gAudioThread, 8, audio_thread_proc, NULL,
                    gAudioThreadStack + 0x960, 3);
 
     /* Set up event message queue */
@@ -188,7 +192,8 @@ static void game_init(void *arg) {
     osStartThread(gAudioThread);
 
     /* Create render thread (thread 5) */
-    osCreateThread(gRenderThread, 5, (void *)0x800E7808, NULL,
+    extern void render_thread_entry(void *);
+    osCreateThread(gRenderThread, 5, render_thread_entry, NULL,
                    gRenderThreadStack + 0x960, 7);
     osStartThread(gRenderThread);
 

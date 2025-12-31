@@ -25,8 +25,8 @@ modf = 0x800028A0; // type:func split double into integer and fractional parts
 modff = 0x80002A64; // type:func float version of modf
 __isinf = 0x80002BF0; // type:func
 __isnan = 0x80002C60; // type:func
-sinf = 0x80008730; // type:func sine approximation using polynomial
-cosf = 0x800088F0; // type:func cosine approximation using polynomial
+sinf = 0x80008730; // type:func sine approximation using polynomial arcade:fmath.c:fsin()
+cosf = 0x800088F0; // type:func cosine approximation using polynomial arcade:fmath.c:fcos()
 fcvt = 0x80002CD0; // type:func convert float to string
 __ecvt_internal = 0x80003C3C; // type:func float to string internal helper
 __round_helper = 0x80004674; // type:func rounding helper for float conversion
@@ -37,6 +37,12 @@ gTwoOverPi = 0x8002D778; // type:data 2/pi constant (f64)
 gPiOver2Hi = 0x8002D780; // type:data pi/2 high part (f64)
 gPiOver2Lo = 0x8002D788; // type:data pi/2 low part (f64)
 gNaN = 0x8002D790; // type:data NaN value (f64)
+gCosCoeffs = 0x8002D7A0; // type:data cosine polynomial coefficients array (f64[5])
+gCosAngleScale = 0x8002D7C8; // type:data cosf angle reduction scale (f64)
+gCosPiOver2Hi = 0x8002D7D0; // type:data cosf pi/2 high part (f64)
+gCosPiOver2Lo = 0x8002D7D8; // type:data cosf pi/2 low part (f64)
+gCosOne = 0x8002D7E0; // type:data cosf result 1.0 constant (f32)
+gNaNf = 0x8002D880; // type:data NaN value (f32) - returned for invalid trig input
 gInfinity = 0x8002D800; // type:data infinity constant (f64)
 gNegInfinity = 0x8002D808; // type:data negative infinity (f64)
 gFcvtBuffer = 0x8002D4D0; // type:data fcvt output buffer
@@ -162,6 +168,16 @@ __osMotorPifBuf = 0x80037B30; // type:data motor PIF command buffer (u8[256])
 __osMotorProbe = 0x80037AE0; // type:data motor probe byte (s8) - same as __osPfsRequestType
 __osSiDmaBuffer = 0x80037AA0; // type:data SI DMA buffer for controller reads (24 refs)
 __osSiDmaRetry = 0x80037ADC; // type:data SI DMA retry counter
+__osContQueryMsgQ = 0x80037B08; // type:data controller query message queue (OSMesgQueue)
+__osContQueryMesg = 0x80037B20; // type:data controller query message buffer (OSMesg)
+__osSiMesgQueue = 0x80037C90; // type:data SI event message queue (OSMesgQueue)
+__osSiMesg = 0x80037C98; // type:data SI event message buffer (OSMesg)
+__osContPifInode = 0x80037CB0; // type:data controller pak inode buffer
+
+// SI/controller init state (F160.s - osSiInit)
+__osSiInitialized = 0x8002C4B0; // type:data SI initialized flag (s32)
+__osSiLastChannel = 0x8002C4D0; // type:data last SI channel accessed (s32)
+__osSiChannelMask = 0x8002C4D4; // type:data SI channel mask byte (u8) - 0xFA = all channels
 
 __osSetFpcCsr = 0x8000D790; // type:func set FP control/status register
 __osSetSR = 0x8000D770; // type:func set CP0 Status register
@@ -183,6 +199,9 @@ __osPiReadDeviceType = 0x80008128; // type:func save PI BSD DOM1/DOM2 timing reg
 // N64 Exception Vectors (copied from __osException during boot)
 // These are the MIPS R4300 exception vector locations in KSEG0
 g_tlb_exception_vector = 0x80000000; // type:data size:16 TLB refill exception handler code (16 bytes)
+g_tlb_exception_instr1 = 0x80000004; // type:data exception vector instruction word 1
+g_tlb_exception_instr2 = 0x80000008; // type:data exception vector instruction word 2
+g_tlb_exception_instr3 = 0x8000000C; // type:data exception vector instruction word 3
 g_xtlb_exception_vector = 0x80000080; // type:data size:16 XTLB refill exception handler code (16 bytes)
 g_cache_exception_vector = 0x80000100; // type:data size:16 Cache error exception handler code (16 bytes)
 g_general_exception_vector = 0x80000180; // type:data size:16 General exception handler code (16 bytes)
@@ -234,7 +253,16 @@ gViRetraceCount = 0x80037C5C; // type:data VI retrace tick counter (incremented 
 // Thread state
 __osRunningThread = 0x8002C3E0; // type:data current running thread (OSThread*)
 __osActiveQueue = 0x8002C3D8; // type:data active thread queue head (OSThread**)
+__osRunQueue = 0x8002C3DC; // type:data run queue head (OSThread*) - pending runnable threads
 __osGlobalIntMask = 0x8002C370; // type:data global interrupt mask (u32)
+__osEmptyMesgQueue = 0x8002C3D0; // type:data empty message queue sentinel (OSMesgQueue)
+
+// PI device manager state (os_pi.c, E9A0.s)
+__osPiDevList = 0x8002C3A0; // type:data PI device list array (OSPiHandle*[])
+__osContPifBuf = 0x8002C3B0; // type:data controller PIF command buffer pointer
+
+// AI buffer state (CA70.s - osAiSetNextBuffer)
+__osAiNeedsAlign = 0x8002C3C0; // type:data AI buffer alignment flag (u8)
 
 // Exception handler state (D580.s) - __osException globals
 __osExceptionSaveArea = 0x80037DB0; // type:data size:432 exception preamble temp save area (OSThread-like)
@@ -246,6 +274,11 @@ __osHwIntTable = 0x8002C470; // type:data size:20 hardware interrupt callback ta
 __osPiIntHandler = 0x8002C498; // type:data size:8 PI interrupt handler entry (callback, stack)
 __osRcpImTable = 0x8002D6D0; // type:data size:128 RCP interrupt mask lookup table (u16[64])
 __osEventStateTab = 0x80036710; // type:data size:128 event state table array (__OSEventState[16])
+
+// Exception handler code labels (D580.s) - internal entry points within __osException
+__osExceptionPreamble = 0x8000C990; // type:func exception preamble - saves context to __osExceptionSaveArea then running thread
+__osExceptionPanic = 0x8000D298; // type:func exception panic - called after ERET falls through (should not happen)
+__osSendInterrupt = 0x8000CEDC; // type:func send interrupt message to event state table queue (called from exception handler)
 
 
 // VI manager state (D140.s, D270.s)
@@ -274,10 +307,11 @@ gViModePtr6 = 0x800367C8; // type:data VI mode pointer slot 6
 gViModeMessage = 0x800368D0; // type:data VI mode message buffer
 // NOTE: 0x80036710 is __osEventStateTab (see Exception handler state section), not gViModeIndex
 
-// Thread queue management (D550.s)
+// Thread queue management (D550.s, D580.s)
 __osEnqueueThread = 0x8000D0C4; // type:func enqueue thread to priority queue
 __osPopThread = 0x8000D10C; // type:func pop highest priority thread
 __osDispatchThread = 0x8000D11C; // type:func dispatch next runnable thread
+__osDispatchThreadYield = 0x8000D298; // type:func dispatch thread after yield (jump target in exception handler)
 __osEnqueueAndYield = 0x8000FBA0; // type:func save thread context, enqueue to queue, yield to scheduler (asm)
 osYieldThread = 0x80010110; // type:func yield current thread (calls __osEnqueueAndYield with __osRunQueue)
 
@@ -380,7 +414,7 @@ guPerspectiveF = 0x80008C20; // type:func perspective projection matrix (float)
 guPerspective = 0x80008E50; // type:func perspective projection matrix (fixed-point)
 guLookAtF = 0x80008EB0; // type:func look-at view matrix (float)
 guLookAt = 0x80009168; // type:func look-at view matrix (fixed-point)
-sqrtf = 0x8000E3C0; // type:func square root (float)
+sqrtf = 0x8000E3C0; // type:func square root (float) arcade:fmath.c:fsqrt()
 
 // Communication/data parsing (AB20.s)
 osMotorInit = 0x80009F20; // type:func rumble pak motor initialization
@@ -494,9 +528,10 @@ osPfsGetFileSize = 0x8000AEC4; // type:func get controller pak file size
 osPfsChecker_full = 0x8000BD90; // type:func validate controller pak filesystem
 osPfsReAllocate = 0x8000BE50; // type:func reallocate controller pak file pages
 
-// DLL linked list functions (D890.s)
-dll_get_data = 0x8000CEDC; // type:func get data from dll node
-dll_set_data = 0x8000CFC4; // type:func set data in dll node
+// Exception context save functions (D580.s)
+// NOTE: dll_get_data and dll_set_data were misidentified - these are exception handler internal functions
+// __osSendInterrupt = 0x8000CEDC already defined in Exception handler code labels section
+__osCleanupThread = 0x8000CFC4; // type:func save thread context and check for dispatch (exception cleanup)
 
 // String utility (DE20.s)
 bzero_alt = 0x8000D2A0; // type:func alternative bzero (zeroes memory)
@@ -548,7 +583,7 @@ dispatch_handler = 0x800B74A0; // type:func event dispatch (152 calls)
 state_utility = 0x800B71D4; // type:func state helper (125 calls)
 object_utility = 0x800B3FA4; // type:func object management (107 calls)
 object_helper = 0x800B3F50; // type:func object helper (77 calls)
-math_utility = 0x8008D6B0; // type:func math/vector utility (67 calls)
+math_utility = 0x8008D6B0; // type:func math/vector utility (67 calls) arcade:math.c
 render_helper = 0x800B65B4; // type:func rendering helper (65 calls)
 // model_utility = 0x8008AE8C; // DUPE: see model_data_load below
 input_handler = 0x80094EC8; // type:func input processing (60 calls) - input processing (60 calls)
@@ -1105,9 +1140,9 @@ pointer_offset_wrapper = 0x8008AD48; // type:func adds offset 4 and calls sound_
 model_data_load = 0x8008AE8C; // type:func model/mesh data loading
 model_transform_setup = 0x8008B0D8; // type:func model transform matrix setup
 model_bounds_calc = 0x8008B26C; // type:func model bounding box calculation
-vector_copy_scale = 0x8008B474; // type:func vector copy with scale (80 bytes)
-vector_normalize_length = 0x8008B4C4; // type:func vector normalize and get length
-vector3d_store_transform = 0x8008B660; // type:func vector transform and store
+vector_copy_scale = 0x8008B474; // type:func vector copy with scale (80 bytes) arcade:vecmath.c:scalmul()
+vector_normalize_length = 0x8008B4C4; // type:func vector normalize and get length arcade:fmath.c:SlowNormalVector()
+vector3d_store_transform = 0x8008B660; // type:func vector transform and store arcade:unitvecs.c:bodtorw()
 physics_velocity_integrate_a = 0x8008B69C; // type:func physics velocity integration
 physics_velocity_integrate_b = 0x8008B964; // type:func physics velocity integration variant
 physics_velocity_integrate_c = 0x8008BA84; // type:func physics velocity integration variant
@@ -1119,9 +1154,9 @@ audio_buffer_process = 0x8008C724; // type:func audio buffer processing (68 byte
 audio_param_apply = 0x8008C76C; // type:func apply audio parameters
 entity_render_setup = 0x8008C884; // type:func entity rendering setup (736 bytes)
 entity_process_main = 0x8008D120; // type:func major entity processing (1524 bytes)
-matrix_rotation_build = 0x8008D714; // type:func build rotation matrix
-euler_to_matrix = 0x8008D764; // type:func euler angle to rotation matrix (372 bytes)
-matrix_scale_apply = 0x8008D8D8; // type:func apply scale to matrix
+matrix_rotation_build = 0x8008D714; // type:func build rotation matrix arcade:fmath.c:CreateRYPMatrix()
+euler_to_matrix = 0x8008D764; // type:func euler angle to rotation matrix (372 bytes) arcade:fmath.c:CreatePYRMatrix()
+matrix_scale_apply = 0x8008D8D8; // type:func apply scale to matrix arcade:fmath.c:ScaleUV()
 anim_state_update = 0x8008D93C; // type:func entity animation state update (796 bytes)
 render_flag_check = 0x8008E0C8; // type:func check render flags
 render_mode_select = 0x8008E19C; // type:func select render mode
@@ -1230,7 +1265,7 @@ set_catchup = 0x800A2CE4; // type:func set catchup mode for drones (arcade: dron
 no_catchup = 0x800A2D0C; // type:func disable catchup for tournament mode (arcade: drones.c:no_catchup)
 track_process_main = 0x800A2D4C; // type:func (3116 bytes) per-frame track segment processing
 track_spline_interp = 0x800A3654; // type:func (296 bytes) Catmull-Rom spline interpolation
-drone_rwtobod = 0x800A373C; // type:func convert real-world to body coords for drone (arcade: vecmath)
+drone_rwtobod = 0x800A373C; // type:func convert real-world to body coords for drone arcade:unitvecs.c:rwtobod()
 track_render_process = 0x800A377C; // type:func (3156 bytes) per-frame track rendering
 car_lod_select = 0x800A4508; // type:func car model LOD selection (visuals: level-of-detail)
 wheel_rotation_update = 0x800A4940; // type:func update wheel rotation and slip (tires: visual rotation)
@@ -1257,8 +1292,8 @@ car_render_full = 0x800A6404; // type:func car full render with effects (visuals
 wheel_render_full = 0x800A6BE4; // type:func wheel full render
 car_setup_physics = 0x800A78C8; // type:func car physics setup
 car_mass_set = 0x800A7AE4; // type:func set car mass and inertia
-car_gear_shift = 0x800A7C9C; // type:func car gear shift handler (drivetrain: transmission)
-car_get_gear = 0x800A7D88; // type:func get current gear (drivetrain)
+car_gear_shift = 0x800A7C9C; // type:func arcade:drivetra.c:autoshift manual gear shift handler - sets commandgear and triggers shift
+car_get_gear = 0x800A7D88; // type:func arcade:drivetra.c return current gear value (-1=R,0=N,1-4=fwd)
 object_process_thunk = 0x800A7DF0; // type:func thunk to camera_target_set
 tire_force_calc = 0x800A7E00; // type:func (1200 bytes) tire force calculation using friction circle model (tires.c)
 car_cg_height_set = 0x800A80D0; // type:func set car center of gravity height
@@ -1270,14 +1305,18 @@ car_reset_position = 0x800AA454; // type:func car reset to track position
 car_spawn_at_checkpoint = 0x800AA708; // type:func car spawn at checkpoint
 car_velocity_clamp = 0x800AAB44; // type:func car velocity clamping
 car_angular_velocity_clamp = 0x800AAE68; // type:func car angular velocity clamp
-drivetrain_update = 0x800AB544; // type:func drivetrain simulation update
-engine_rpm_calc = 0x800AB70C; // type:func engine RPM calculation
+drivetrain_update = 0x800AB544; // type:func arcade:drivetra.c:drivetrain main drivetrain simulation - engine, trans, clutch, differential
+engine_rpm_calc = 0x800AB70C; // type:func arcade:drivetra.c:engine engine torque calculation with gear-specific scaling
 object_transform_set = 0x800AB758; // type:func set object transform matrix
-engine_torque_calc = 0x800AB7D8; // type:func engine torque calculation
-transmission_shift = 0x800ABBD0; // type:func transmission gear shift
-transmission_ratio_get = 0x800ABCC8; // type:func get transmission ratio
-differential_output = 0x800AC3D8; // type:func differential output calc
-wheel_torque_apply = 0x800AC668; // type:func apply torque to wheels
+engine_torque_calc = 0x800AB7D8; // type:func arcade:drivetra.c:enginetorque bilinear torque curve lookup with RPM/throttle interpolation
+clutch_slip_calc = 0x800ABA18; // type:func arcade:drivetra.c:whatslips clutch slip calculation - determines torque transfer engine to driveshaft
+autoshift_update = 0x800ABB04; // type:func arcade:drivetra.c:autoshift automatic transmission shift logic - throttle-dependent shift points
+transmission_shift = 0x800ABBD0; // type:func arcade:drivetra.c:upshift,downshift gear shift with 1 second timing delay
+transmission_ratio_get = 0x800ABCC8; // type:func arcade:drivetra.c:transmission calculate transratio and totalratio from gear array
+find_best_gear = 0x800ABD60; // type:func arcade:drivetra.c:find_best_gear find appropriate gear for current speed when shifting out of N/R
+drivetrain_interp = 0x800ABDE8; // type:func arcade:drivetra.c:interp linear interpolation helper for torque curve lookup
+differential_output = 0x800AC3D8; // type:func arcade:drivetra.c:drivetrain(39-57) magic differential - load-sensitive torque split
+wheel_torque_apply = 0x800AC668; // type:func arcade:drivetra.c:drivetrain(41-56) apply dwtorque to drive wheels with differential split
 fp_call_wrapper = 0x800AC6F4; // type:func function pointer call wrapper
 brake_force_apply = 0x800AC75C; // type:func apply brake force
 resource_slot_get = 0x800AC820; // type:func get resource slot value
@@ -1327,11 +1366,11 @@ sfx_stop = 0x800B2658; // type:func stop sound effect by handle or sound ID (256
 sfx_volume_set = 0x800B2828; // type:func set sound effect volume (196 bytes)
 sfx_position_3d = 0x800B2928; // type:func 3D sound position - calculates attenuation and pan from distance (1016 bytes)
 listener_position_set = 0x800B2D20; // type:func set audio listener position and forward vector (216 bytes)
-engine_sound_update = 0x800B2DF8; // type:func update engine sound pitch/volume from RPM - arcade: DoEngineSound (1428 bytes)
-tire_sound_update = 0x800B338C; // type:func update tire squeal sounds from slip - arcade: DoTireSqueals (900 bytes)
-collision_sound_play = 0x800B362C; // type:func trigger collision/impact sound based on intensity (684 bytes)
+engine_sound_update = 0x800B2DF8; // type:func arcade:carsnd.c:DoEngineSound update engine sound pitch/volume from RPM (1428 bytes)
+tire_sound_update = 0x800B338C; // type:func arcade:carsnd.c:DoTireSqueals update tire squeal sounds from slip (900 bytes)
+collision_sound_play = 0x800B362C; // type:func arcade:carsnd.c:do_bump_sounds trigger collision/impact sound based on intensity (684 bytes)
 // Sound effect management (0x800B3710 - 0x800B3xxx)
-wind_sound_update = 0x800B3710; // type:func update wind noise based on car speed - arcade: sndWindNoise (684 bytes)
+wind_sound_update = 0x800B3710; // type:func arcade:carsnd.c:DoCarSounds update wind noise based on car speed (684 bytes)
 crowd_cheer_play = 0x800B39BC; // type:func play crowd cheer sound for stunts/checkpoints (396 bytes)
 ambient_sound_set = 0x800B3B4C; // type:func set ambient/environment sound volume by ID (468 bytes)
 sound_update_channel = 0x800B3D18; // type:func audio sync/update - synchronizes audio state (228 bytes)
@@ -1350,7 +1389,7 @@ format_string_parse = 0x800B466C; // type:func format string parser with jump ta
 // Text/UI Functions (0x800B4700 - 0x800B5xxx)
 voice_stop_2 = 0x800B4738; // type:func text formatting helper function (224 bytes)
 audio_bus_mix = 0x800B4818; // type:func set volume levels for audio buses/categories (892 bytes)
-reverb_setup = 0x800B4B94; // type:func configure reverb effect for environment type (536 bytes)
+reverb_setup = 0x800B4B94; // type:func arcade:carsnd.c:init_reverb configure reverb effect for environment type (536 bytes)
 audio_pause = 0x800B4DAC; // type:func pause/resume all game audio
 audio_ducking = 0x800B4E70; // type:func audio ducking - reduce lower priority sounds
 sound_priority_set = 0x800B4FB0; // type:func set priority for sound handle
@@ -1443,7 +1482,7 @@ camera_top_down = 0x800BFD94; // type:func top-down overhead camera view (844 by
 camera_free_look = 0x800C00E0; // type:func free camera controlled by player input
 camera_replay_mode = 0x800C02A0; // type:func playback camera from recorded replay data
 camera_track_spline = 0x800C04CC; // type:func moves camera along a spline path
-camera_build_view_matrix = 0x800C085C; // type:func builds view matrix from camera state
+camera_build_view_matrix = 0x800C085C; // type:func builds view matrix from camera state arcade:fmath.c:MulMat()
 camera_update = 0x800C0AC0; // type:func main camera update - calls appropriate mode handler
 camera_process_input = 0x800C1604; // type:func processes player input for camera control
 camera_check_constraints = 0x800C1B8C; // type:func enforces camera position constraints
@@ -1860,23 +1899,36 @@ dust_cloud_effect = 0x800EFEA8; // type:func dust cloud effect - creates settlin
 // Rendering Effects
 skid_mark_render = 0x800F0100; // type:func skid mark render - tire skid decals on track (1396 bytes)
 
-// Network/Multiplayer
-net_message_recv = 0x800F0698; // type:func network message receive - dequeue from buffer (1408 bytes)
-net_state_sync = 0x800F0C18; // type:func network state sync - synchronize game state (2036 bytes)
+// Network/Multiplayer (N64 local multiplayer equivalent to arcade pdu.c)
+// NOTE: Arcade used DIS Protocol Data Units (PDUs) for linked cabinet networking.
+// N64 uses local controller input sharing and direct memory state sync instead.
+// Reference: rushtherock/game/pdu.c - network protocol packet handling
+//
+// Arcade pdu.c function mapping to N64 equivalents:
+//   PutEntityStatePDU    -> net_state_sync (serialize car pos/vel/rot to sync buffer)
+//   ParseEntityStatePDU  -> net_message_recv (deserialize car state from buffer)
+//   PutEventReportPDU    -> net_game_state_send (checkpoint, lap, score events)
+//   ParseEventReportPDU  -> net_message_recv (parse event data from buffer)
+//   SendPDU              -> net_packet_send (low-level send)
+//   GetTimeStamp         -> gElapsedTime at 0x80142B14 (uses osGetTime)
+//   ReportPDUError       -> net_error_handle (error reporting/recovery)
+//
+net_message_recv = 0x800F0698; // type:func arcade:pdu.c:ParseEntityStatePDU/ParseEventReportPDU - dequeue from buffer (1408 bytes)
+net_state_sync = 0x800F0C18; // type:func arcade:pdu.c:PutEntityStatePDU - serialize car state (pos/vel/rot/inputs) to sync buffer (2036 bytes)
 net_lobby_update = 0x800F13F0; // type:func network lobby update - handle lobby/player management (1364 bytes)
-net_player_update = 0x800F1944; // type:func network player update (852 bytes)
-net_latency_check = 0x800F1C98; // type:func network latency check (676 bytes)
-net_input_sync = 0x800F1F3C; // type:func network input synchronization (2208 bytes)
-net_game_tick = 0x800F20A0; // type:func network game tick (1664 bytes)
-net_packet_send = 0x800F2720; // type:func network packet send (376 bytes)
-net_packet_recv = 0x800F2890; // type:func network packet receive (408 bytes)
+net_player_update = 0x800F1944; // type:func arcade:pdu.c:EntityStatePDU handling - update remote player state (852 bytes)
+net_latency_check = 0x800F1C98; // type:func arcade:pdu.c timing - N64 frame sync (676 bytes)
+net_input_sync = 0x800F1F3C; // type:func arcade:pdu.c:EntityStatePDU inputs - input state synchronization (2208 bytes)
+net_game_tick = 0x800F20A0; // type:func arcade:pdu.c main loop - per-frame net update (1664 bytes)
+net_packet_send = 0x800F2720; // type:func arcade:pdu.c:SendPDU - low-level packet send (376 bytes)
+net_packet_recv = 0x800F2890; // type:func arcade:pdu.c:GetPDU - low-level packet receive (408 bytes)
 net_connection_update = 0x800F27DC; // type:func network connection update (1632 bytes)
-net_state_validate = 0x800F2A28; // type:func network state validate (2736 bytes)
-net_error_handle = 0x800F2E3C; // type:func network error handle (784 bytes)
+net_state_validate = 0x800F2A28; // type:func arcade:pdu.c:RTEST/LTEST - validate state data bounds (2736 bytes)
+net_error_handle = 0x800F2E3C; // type:func arcade:pdu.c:ReportPDUError - error handling (784 bytes)
 net_session_init = 0x800F314C; // type:func network session init (1084 bytes)
 net_session_update = 0x800F34D8; // type:func network session update (3576 bytes)
-net_player_join_handler = 0x800F3588; // type:func network player join handler (836 bytes)
-net_game_state_send = 0x800F38BC; // type:func network game state send (1912 bytes)
+net_player_join_handler = 0x800F3588; // type:func arcade:pdu.c:AcknowledgePDU handling - player join (836 bytes)
+net_game_state_send = 0x800F38BC; // type:func arcade:pdu.c:PutEventReportPDU - send game events (checkpoint/lap/score) (1912 bytes)
 net_race_sync = 0x800F4034; // type:func network race sync (1536 bytes)
 
 // LOD and Track Rendering
@@ -2036,8 +2088,8 @@ gUnlockFlags = 0x80159000; // type:data unlock flags bitmask (5 refs)
 gBestTimes = 0x80159100; // type:data best times per track (16 tracks)
 gSettingsData = 0x80159200; // type:data game settings (audio, controls, etc.)
 gUnlockedPaints = 0x80159204; // type:data unlocked car paints bitmask
-
 // Network/Multiplayer State
+
 gNetworkState = 0x80166000; // type:data network connection state (3 refs)
 gNumPlayers = 0x80166004; // type:data number of active players (3 refs)
 
@@ -2466,23 +2518,24 @@ gSteerWheelDamping = 0x80152A80; // type:data steering wheel damping (s32) - arc
 gSteerWheelFriction = 0x80152A84; // type:data steering wheel friction (s32) - arcade: swfrict
 gSteerWheelPosition = 0x80152A88; // type:data steering wheel position -1.0 to 1.0 (f32) - arcade: wheel
 
-// Engine/Drivetrain State
-gEngineRPM = 0x80152A8C; // type:data engine RPM (s16) - arcade: rpm
-gEngineTorque = 0x80152A90; // type:data engine torque (f32) - arcade: engtorque
-gEngineAngularVelocity = 0x80152A94; // type:data engine angular velocity rad/s (f32) - arcade: engangvel
-gThrottle = 0x80152A98; // type:data throttle position 0-1 (f32) - arcade: throttle
+// Engine/Drivetrain State (arcade:drivetra.c variables from MODELDAT struct)
+gEngineRPM = 0x80152A8C; // type:data arcade:drivetra.c:enginetorque rpm parameter - engine RPM (s16)
+gEngineTorque = 0x80152A90; // type:data arcade:drivetra.c:engine engtorque - output from engine() scaled by gear (f32)
+gEngineAngularVelocity = 0x80152A94; // type:data arcade:drivetra.c:whatslips engangvel - engine angular velocity rad/s (f32)
+gThrottle = 0x80152A98; // type:data arcade:drivetra.c:engine throttle - pedal position 0-1 (f32)
 gBrake = 0x80152A9C; // type:data brake position 0-1 (f32) - arcade: brake
-gClutch = 0x80152AA0; // type:data clutch position 0-1 (f32) - arcade: clutch
-gGear = 0x80152AA4; // type:data current gear -1=R,0=N,1-4=fwd (s16) - arcade: gear
-gAutoTrans = 0x80152AA8; // type:data automatic transmission flag (s16) - arcade: autotrans
-gDifferentialRatio = 0x80152AAC; // type:data differential gear ratio (f32) - arcade: dwratio
-gTransmissionRatio = 0x80152AB0; // type:data current transmission ratio (f32) - arcade: transratio
-gTotalGearRatio = 0x80152AB4; // type:data total gear ratio diff*trans (f32) - arcade: totalratio
-gDriveWheelTorque = 0x80152AB8; // type:data torque at drive wheels (f32) - arcade: dwtorque
-gDriveWheelAngVel = 0x80152ABC; // type:data drive wheel angular velocity (f32) - arcade: dwangvel
-gClutchTorque = 0x80152AC0; // type:data clutch torque (f32) - arcade: clutchtorque
-gUpshiftRPM = 0x80152AC4; // type:data upshift RPM threshold (f32) - arcade: upshiftangvel
-gDownshiftRPM = 0x80152AC8; // type:data downshift RPM threshold (f32) - arcade: downshiftangvel
+gClutch = 0x80152AA0; // type:data arcade:drivetra.c:whatslips clutch - pedal position 0-1 manual trans (f32)
+gGear = 0x80152AA4; // type:data arcade:drivetra.c gear - current gear -1=R,0=N,1-4=fwd (s16)
+gAutoTrans = 0x80152AA8; // type:data arcade:drivetra.c:whatslips autotrans - automatic transmission flag (s16)
+gDifferentialRatio = 0x80152AAC; // type:data arcade:drivetra.c:drivetrain dwratio - differential gear ratio (f32)
+gTransmissionRatio = 0x80152AB0; // type:data arcade:drivetra.c:transmission transratio - current gear ratio from transarray (f32)
+gTotalGearRatio = 0x80152AB4; // type:data arcade:drivetra.c:transmission totalratio - transratio*dwratio (f32)
+gDriveWheelTorque = 0x80152AB8; // type:data arcade:drivetra.c:whatslips dwtorque - clutchtorque*totalratio to wheels (f32)
+gDriveWheelAngVel = 0x80152ABC; // type:data arcade:drivetra.c:drivetrain dwangvel - avg rear wheel angular velocity (f32)
+gClutchTorque = 0x80152AC0; // type:data arcade:drivetra.c:whatslips clutchtorque - torque through clutch (f32)
+gClutchAngVel = 0x80152ABE; // type:data arcade:drivetra.c:whatslips clutchangvel - clutch output angular velocity (f32)
+gUpshiftRPM = 0x80152AC4; // type:data arcade:drivetra.c:autoshift upshiftangvel - upshift threshold rad/s (f32)
+gDownshiftRPM = 0x80152AC8; // type:data arcade:drivetra.c:autoshift downshiftangvel - downshift threshold rad/s (f32)
 
 // Physics Forces (body axis)
 gBodyForce = 0x80152ACC; // type:data total body force (f32[3]) - arcade: F[3]
@@ -2541,9 +2594,9 @@ gRoadUnitVectors = 0x80152C18; // type:data road unit vectors per tire (f32[4][3
 // Car Definition Data (const car struct from arcade cars.c)
 // ============================================================================
 gCarDefinitionArray = 0x80160000; // type:data car definition array (struct car[12])
-gTorqueCurveStandard = 0x80160800; // type:data standard torque curve (s16[10][12]) - arcade: stdtorquecurve
-gTorqueCurveDirt = 0x80160900; // type:data dirt torque curve (s16[10][12]) - arcade: stddirttorquecurve
-gTorqueCurveRush = 0x80160A00; // type:data rush torque curve (s16[10][12]) - arcade: rushtorquecurve
+gTorqueCurveStandard = 0x80160800; // type:data arcade:drivetra.c:enginetorque torquecurve - 10x12 RPM/throttle lookup table (s16[10][12])
+gTorqueCurveDirt = 0x80160900; // type:data arcade:drivetra.c:engine dirttorquecurve - reduced torque for off-road (s16[10][12])
+gTorqueCurveRush = 0x80160A00; // type:data arcade:drivetra.c:enginetorque rushtorquecurve - aggressive torque curve (s16[10][12])
 gCarCollisionSizes = 0x80160B00; // type:data car collision sizes (COLLSIZE[12]) - arcade: gCollSize
 
 // ============================================================================
@@ -2844,3 +2897,510 @@ gMPathActiveList = 0x80153130; // type:data size:0x10 active path indices (s16[8
 // Maxpath Control State per-car (arcade: MPCTL mpctl[MAX_LINKS])
 gMPCtl = 0x80153140; // type:data size:0x200 maxpath control array (MPCTL[8]) - arcade: mpctl[MAX_LINKS]
 gWeightTable = 0x80153340; // type:data size:0x180 weight table per track/car (MPWEIGHT[4][8]) - arcade: weight_table[NTRACKS][MAX_LINKS]
+
+// ============================================================================
+// Math/Vector Function Mappings (arcade: math.c, fmath.c, vecmath.c)
+// ============================================================================
+// Reference source files:
+//   - reference/repos/rushtherock/game/math.c - Fixed-point trig, rotation matrices, vectors
+//   - reference/repos/rushtherock/LIB/fmath.c - Float matrix/vector ops, coordinate transforms
+//   - reference/repos/rushtherock/game/vecmath.c - Vector utility functions
+//   - reference/repos/rushtherock/game/unitvecs.c - Coordinate transform functions
+
+// --- Fixed-Point Trigonometry (arcade: math.c) ---
+// N64 likely uses libm sinf/cosf instead of fixed-point tables
+// sinf = 0x80008730; // type:func - already defined, uses polynomial approximation
+// cosf = 0x800088F0; // type:func - already defined, uses polynomial approximation
+// sqrtf = 0x8000E3C0; // type:func - already defined
+
+// --- Integer/Long Square Root (arcade: math.c:lsqrt) ---
+// lsqrt = likely inlined or part of compressed game code
+// FastDst = likely inlined, used for quick 2D distance approximation
+
+// --- Vector Math Functions (arcade: math.c, fmath.c) ---
+// Summary of arcade to N64 mappings:
+//   scalmul() -> vector_copy_scale (0x8008B474)
+//   SlowNormalVector() -> vector_normalize_length (0x8008B4C4)
+//   bodtorw() -> vector3d_store_transform (0x8008B660)
+//   rwtobod() -> drone_rwtobod (0x800A373C)
+
+// --- Matrix Creation/Rotation (arcade: fmath.c) ---
+// Summary of arcade to N64 mappings:
+//   CreateRYPMatrix() -> matrix_rotation_build (0x8008D714)
+//   CreatePYRMatrix() -> euler_to_matrix (0x8008D764)
+//   ScaleUV() -> matrix_scale_apply (0x8008D8D8)
+//   MulMat() -> camera_build_view_matrix (0x800C085C)
+
+// --- Dot/Cross Products (arcade: math.c:DotProduct*, CrossProduct*) ---
+// These are typically inlined in N64 code - see game.c:vec3_dot(), vec3_cross()
+// DotProduct14/16/32 -> inlined in physics code
+// CrossProduct14/16/32 -> inlined in physics code
+
+// --- Coordinate Transform Constants (arcade: fmath.c) ---
+gUnitUVS = 0x8002F680; // type:data unit identity 3x3 matrix (f32[3][3]) arcade:fmath.c:unituvs
+gZeroVector = 0x8002F6A4; // type:data zero vector constant (f32[3]) arcade:fmath.c:zerovector
+gUpVector = 0x8002F6B0; // type:data Y-up unit vector (f32[3]) arcade:fmath.c:uvector
+gForwardVector = 0x8002F6BC; // type:data Z-forward unit vector (f32[3]) arcade:fmath.c:fvector
+
+// --- Trigonometry Lookup Tables (arcade: math.c references trigtab.h) ---
+// gSinCoeffs = 0x8002D750 - already defined, polynomial coeffs for sinf
+// gCosCoeffs = 0x8002D7A0 - already defined, polynomial coeffs for cosf
+
+// --- Rotation Functions (arcade: math.c:yaw/pitch/roll) ---
+// YawUV() -> mtx_yaw in vecmath.c
+// PitchUV() -> mtx_pitch in vecmath.c
+// RollUV() -> mtx_roll in vecmath.c
+// WYawUV/WPitchUV/WRollUV -> mtx_world_* in vecmath.c
+
+// --- Euler Angle Extraction (arcade: math.c:GetEuler, GetEuler32) ---
+// GetEuler() -> likely inlined in camera code
+// ExtractRYP() -> used in camera_matrix_build
+
+// ============================================================================
+// Arcade money.c Function Equivalents
+// Reference: rushtherock/game/money.c
+// ============================================================================
+// NOTE: N64 is a console game - no coin handling needed. The arcade money.c
+// functions for credits/coins have no direct equivalent. However, N64 has
+// equivalent functionality for:
+// - Game session initialization (replaces init_credits)
+// - Start button detection (replaces chk_start/EnoughCredit)
+// - Continue prompt after game over (replaces ContinueMode/CanContinue)
+// - Unlock/achievement system (replaces "free game" rewards)
+//
+// Arcade money.c functions:
+//   init_credits() - Initialize coin/credit state, clear gFreeGame/gPlayingFree
+//   get_credits()  - Handle coin drops, play sounds, update credit display
+//   chk_start()    - Check if game should start (credits + start button)
+//   EnoughCredit() - Return true if enough credits to play
+//   ContinueMode() - Return true if in continue mode (continue_flag set)
+//   CanContinue()  - Return true if player can continue with discounted credits
+
+// --- N64 Equivalents for money.c ---
+
+// Arcade init_credits() equivalent: N64 initializes game session state
+// N64 doesn't need credit variables, but initializes similar session flags.
+// See: game_init (0x80002238), attract_reset, session state initialization
+session_flags_init = 0x800C9BE0; // type:func arcade:money.c:init_credits N64 session/flags initialization (init_state_begin)
+
+// Arcade chk_start() equivalent: N64 checks Start button in attract mode
+// Arcade checks credits + start button; N64 just checks Start button.
+// The attract mode handler checks for input to exit attract and start game.
+start_button_check = 0x800DCD94; // type:func arcade:money.c:chk_start N64 start/input check (attract_idle_check)
+
+// Arcade EnoughCredit() equivalent: N64 always returns true (console)
+// N64 has no credits - any player can always start a game.
+// The unlock system gates content instead of credits gating play.
+// See: car_unlock_check (0x800D197C), track_unlock_check (0x800D138C)
+
+// Arcade ContinueMode()/CanContinue() equivalent: N64 continue prompt
+// Arcade offers continue with discounted credits after game over.
+// N64 offers continue/quit choice after race (no credit cost).
+// continue_prompt = 0x800DB758 already defined above (line ~1841)
+// continue_prompt = 0x801033D8 already defined above (line ~1096)
+
+// Arcade gFreeGame/gPlayingFree equivalent: N64 unlock system
+// Arcade awards "free game" for winning. N64 unlocks cars/tracks/modes.
+// gUnlockFlags = 0x80159000 already defined above (line ~2068)
+
+// --- Continue/Game Over State Variables ---
+// These replace arcade's credit-based continue system
+// gGameoverCountdown = 0x80142BA8 already defined above (line ~2834)
+// gContinueCountdown = 0x80142BAC already defined above (line ~2835)
+
+// Session start handler - called when transitioning from attract to game
+session_start_handler = 0x800EDDC0; // type:func arcade:money.c:chk_start->true game start transition (attract_or_transition)
+
+// Game mode unlock handler - replaces arcade's free game reward
+mode_unlock_handler = 0x80105858; // type:func arcade:money.c:gFreeGame reward unlock check (achievements_check)
+unlock_reward_show = 0x80105EF4; // type:func arcade:money.c:gFreeGame display unlock notification (achievement_unlock)
+
+// ============================================================================
+// Tournament/Championship Mode (arcade: tourney.c mappings)
+// ============================================================================
+// NOTE: Arcade tourney.c is for linked cabinet tournaments (up to 8 cabinets
+// over network). N64 uses local split-screen multiplayer instead.
+// The following maps conceptually similar N64 functions to arcade tourney.c.
+
+// Tournament/Championship State Machine
+// arcade:tourney.c:InitTourney -> N64 championship init (conceptual)
+tournament_init = 0x800DC100; // type:func arcade:tourney.c:InitTourney - init tournament state
+
+// arcade:tourney.c:LoadTourneySettings/SaveTourneySettings -> N64 Controller Pak save/load
+// These handle tournament configuration persistence
+tournament_save_settings = 0x800DE20C; // type:func arcade:tourney.c:SaveTourneySettings - save tournament config to Controller Pak
+tournament_load_settings = 0x800DE4DC; // type:func arcade:tourney.c:LoadTourneySettings - load tournament config from Controller Pak
+
+// arcade:tourney.c:TourneyOn -> N64 check if championship mode active
+tournament_is_active = 0x800DC200; // type:func arcade:tourney.c:TourneyOn - check if tournament mode active
+
+// arcade:tourney.c:ParseTourneyFlags -> N64 parse tournament options flags
+// Decodes tournament settings from packed flags format
+tournament_parse_flags = 0x800DC220; // type:func arcade:tourney.c:ParseTourneyFlags - parse tournament option flags
+
+// Championship Results and Standings (arcade: tourney scoring equivalent)
+// arcade:tourney.c:HandleTourneySetup menu equivalent
+tournament_standings_display = 0x800DC248; // type:func arcade:tourney.c - championship standings display (432 bytes)
+tournament_trophy_award = 0x800DC3F8; // type:func arcade:tourney.c - award championship trophy (924 bytes)
+tournament_points_calc = 0x800DA2D0; // type:func arcade:tourney.c - calculate tournament points (2316 bytes)
+
+// Unlock System (tournament progression rewards)
+tournament_unlock_check = 0x800DC794; // type:func arcade:tourney.c unlock progression - show unlock notification (248 bytes)
+
+// Tournament Data Globals
+gTournamentState = 0x80159300; // type:data tournament state struct (Tourney) - arcade: gTourney
+gTournamentActive = 0x80159304; // type:data tournament active flag (s32) - arcade: tourney.cabinets
+gTournamentRaces = 0x80159308; // type:data tournament race count (s32)
+gTournamentCurrentRace = 0x8015930C; // type:data current race in tournament (s32)
+gTournamentPoints = 0x80159310; // type:data size:0x10 tournament points per player (s32[4])
+gTournamentStandings = 0x80159320; // type:data size:0x10 tournament standings per player (s32[4])
+
+// Circuit/Championship Definitions (arcade: Tourney struct fields)
+gCircuitTrackList = 0x80159340; // type:data size:0x20 circuit track order (s32[8]) - arcade: tourney.track
+gCircuitLaps = 0x80159360; // type:data size:0x20 laps per circuit race (s32[8]) - arcade: TourneyLaps
+gCircuitDifficulty = 0x80159380; // type:data circuit AI difficulty (s32) - arcade: drone_diff in tourney context
+
+// Points Award Tables (arcade: standard racing points)
+gPointsTableStandard = 0x80159390; // type:data size:0x20 standard points table 10,8,6,5,4,3,2,1 (s32[8])
+gPointsTableF1 = 0x801593B0; // type:data size:0x28 F1-style points 25,18,15,12,10,8,6,4,2,1 (s32[10])
+
+// Tournament Join/Settings (arcade: ext_start, free play equivalents)
+// NOTE: Arcade-specific cabinet linking not applicable to N64
+gTournamentFreePlay = 0x801593D8; // type:data free play mode flag (s32) - arcade: tourney.free
+gTournamentJoinMode = 0x801593DC; // type:data join mode 0=any, 1=timed (s32) - arcade: tourney.ext_start
+
+// Car/Track Restrictions (arcade: tourney.car, tourney.track, tourney.tranny)
+gTournamentCarRestrict = 0x801593E0; // type:data car restriction -1=any (s32) - arcade: tourney.car
+gTournamentTrackRestrict = 0x801593E4; // type:data track restriction -1=any (s32) - arcade: tourney.track
+gTournamentTransRestrict = 0x801593E8; // type:data transmission -1=any, 0=manual, 1=auto (s32) - arcade: tourney.tranny
+
+// Drone/Catchup Settings (arcade: tourney.drones, tourney.catchup)
+gTournamentDronesEnabled = 0x801593EC; // type:data drones enabled -1=normal, 0=off, 1=on (s32) - arcade: tourney.drones
+gTournamentCatchupEnabled = 0x801593F0; // type:data catchup enabled -1=normal, 0=off, 1=on (s32) - arcade: tourney.catchup
+
+// ============================================================================
+// Arcade-Specific Tournament Functions (No Direct N64 Equivalent)
+// ============================================================================
+// These arcade functions handle linked cabinet network features:
+// - tourney.c:TourneyNode() - check cabinet node status (arcade network)
+// - tourney.c:ResetTourneyStatus() - reset cabinet status (arcade network)
+// - tourney.c:CheckTourneyBox() - external switch box for tournaments (arcade hardware)
+// - tourney.c:ShowTourneySetup() - linked cabinet setup screen (arcade)
+// - tourney.c:HandleTourneySetup() - menu navigation for cabinet linking (arcade)
+// - tourney.c:HandleLights() - arcade cabinet light control
+// - tourney.c:AnimateMenu/AnimateTXxx() - arcade menu UI animations (BLIT system)
+// - tourney.c:BadTourneyData() - NVRAM validation (arcade uses BRAM, N64 uses EEPROM/CPak)
+
+// ============================================================================
+// Car Sound Functions (arcade: carsnd.c)
+// Cross-referenced with reference/repos/rushtherock/game/carsnd.c
+// Added 2025-12-31 for Rush 2049 decompilation project
+// ============================================================================
+
+// --- Engine Sound Control ---
+// arcade: StartEngineSound() [carsnd.c:887-901] - starts engine sound loop
+engine_sound_start = 0x800B2D80; // type:func arcade:carsnd.c:StartEngineSound start engine sound for car (120 bytes)
+// arcade: DoEngineSound() [carsnd.c:905-962] - updates engine pitch/volume from RPM
+// Already mapped: engine_sound_update = 0x800B2DF8 (see Audio System Functions section)
+// arcade: StopEngineSound() [carsnd.c:965-968] - stops engine sound
+engine_sound_stop = 0x800B3340; // type:func arcade:carsnd.c:StopEngineSound stop engine sound (76 bytes)
+// arcade: DoIntCarSounds() [carsnd.c:296-299] - high priority car sounds (calls DoEngineSound)
+car_sounds_interrupt = 0x800B2D60; // type:func arcade:carsnd.c:DoIntCarSounds high-priority car sounds wrapper (32 bytes)
+
+// --- Tire Squeal/Skid Sounds ---
+// arcade: DoTireSqueals() [carsnd.c:974-1190] - tire squeal based on slip/force
+// Already mapped: tire_sound_update = 0x800B338C (see Audio System Functions section)
+// arcade: init_skids() [carsnd.c:1196-1217] - initialize/clear skid sound state
+skid_sounds_init = 0x800B3700; // type:func arcade:carsnd.c:init_skids initialize skid sounds for car (16 bytes)
+
+// --- Wind/Road Noise ---
+// arcade: DoCarSounds() [carsnd.c:303-422] - updates wind, road, gravel, water sounds
+// Already mapped: wind_sound_update = 0x800B3710 (see Audio System Functions section)
+// arcade: InitCarSnds() [carsnd.c:257-275] - initialize all car sound states for player
+car_sounds_init = 0x800B2C40; // type:func arcade:carsnd.c:InitCarSnds initialize car sounds for player (224 bytes)
+// arcade: InitSndState() [carsnd.c:248-254] - zero out snd_state struct
+sound_state_init = 0x800B2C20; // type:func arcade:carsnd.c:InitSndState initialize sound state struct (32 bytes)
+
+// --- Collision/Bump Sounds ---
+// arcade: do_bump_sounds() [carsnd.c:430-638] - collision bump/scrape sounds
+// Already mapped: collision_sound_play = 0x800B362C (see Audio System Functions section)
+// arcade: init_bump_sounds() [carsnd.c:281-291] - initialize bump sound states
+bump_sounds_init = 0x800B35A0; // type:func arcade:carsnd.c:init_bump_sounds initialize bump collision sounds (140 bytes)
+// arcade: init_bump() [carsnd.c:720-725] - initialize single bump state slot
+bump_state_init = 0x800B3598; // type:func arcade:carsnd.c:init_bump initialize bump state by index (8 bytes)
+// arcade: check_forces_on_car() [carsnd.c:646-662] - check collision forces on car corners
+collision_force_check = 0x800B34C0; // type:func arcade:carsnd.c:check_forces_on_car check collision forces (204 bytes)
+// arcade: get_force_and_peak() [carsnd.c:671-713] - get force vector and peak detection
+collision_peak_detect = 0x800B3590; // type:func arcade:carsnd.c:get_force_and_peak force peak detection (8 bytes)
+// arcade: kill_scrape_sound() [carsnd.c:731-738] - stop scraping sound
+scrape_sound_stop = 0x800B3620; // type:func arcade:carsnd.c:kill_scrape_sound stop scrape sound (12 bytes)
+
+// --- Target/Object Collision Sounds ---
+// arcade: target_sound() [carsnd.c:772-872] - play sound when hitting targets (cones, trees, etc)
+target_sound_play = 0x800B3A40; // type:func arcade:carsnd.c:target_sound target collision sound (380 bytes)
+// arcade: target_inside_box() [carsnd.c:748-762] - check if target inside car bbox
+target_in_car_check = 0x800B3A00; // type:func arcade:carsnd.c:target_inside_box target-car collision test (64 bytes)
+
+// --- Reverb/Environment Sounds ---
+// arcade: init_reverb() [carsnd.c:1235-1248] - initialize reverb parameters
+// Already mapped: reverb_setup = 0x800B4B94 (see Audio System Functions section)
+// arcade: handle_reverb() [carsnd.c:1254-1308] - update reverb based on tunnel proximity
+reverb_update = 0x800B4C80; // type:func arcade:carsnd.c:handle_reverb update reverb from environment (240 bytes)
+
+// --- Radio/Music Control ---
+// arcade: StartRadio() [carsnd.c:1226-1228] - start radio music
+radio_start = 0x800B1BC0; // type:func arcade:carsnd.c:StartRadio start radio/music by station (72 bytes)
+// arcade: StopRadio() [carsnd.c:1220-1223] - stop radio music
+radio_stop = 0x800B1B90; // type:func arcade:carsnd.c:StopRadio stop radio/music (48 bytes)
+
+// ============================================================================
+// Car Sound Data Variables (arcade: carsnd.c global variables)
+// ============================================================================
+
+// Sound state structures (arcade: snd_state rdnoise_state, wind_state, scrch_state)
+gRoadNoiseState = 0x80150C20; // type:data arcade:carsnd.c:rdnoise_state road noise sound state (snd_state 8 bytes)
+gWindNoiseState = 0x80150C28; // type:data arcade:carsnd.c:wind_state wind noise sound state (snd_state 8 bytes)
+gTireSquealState = 0x80150C30; // type:data arcade:carsnd.c:scrch_state[MAX_LINKS][4] tire squeal states (snd_state[8][4] = 256 bytes)
+
+// Bump collision state (arcade: bump_state car_bump[5])
+gCarBumpState = 0x80150D30; // type:data arcade:carsnd.c:car_bump[5] bump collision state array (bump_state 24 bytes * 5 = 120 bytes)
+gScrapeState = 0x80150DA8; // type:data arcade:carsnd.c:scrape_state current scrape sound state (s16)
+gScrapeTime = 0x80150DAC; // type:data arcade:carsnd.c:scrape_time scrape sound timestamp (s32)
+gBumpTime = 0x80150DB0; // type:data arcade:carsnd.c:bump_time bump sound timestamp (s32)
+
+// Skid/smoke intensity (arcade: skid_intensity, smoke_intensity)
+gSkidIntensity = 0x80150DC0; // type:data arcade:carsnd.c:skid_intensity[MAX_LINKS][4][2] skid mark intensity (s16[8][4][2] = 128 bytes)
+gSmokeIntensity = 0x80150E40; // type:data arcade:carsnd.c:smoke_intensity[MAX_LINKS][4][2] smoke intensity (s16[8][4][2] = 128 bytes)
+
+// Engine sound tuning (arcade: rpm_fix, torque_fix, dbg* variables)
+gRpmFix = 0x80150EC0; // type:data arcade:carsnd.c:rpm_fix RPM scaling factor (f32)
+gTorqueFix = 0x80150EC4; // type:data arcade:carsnd.c:torque_fix torque scaling factor (f32)
+
+// ============================================================================
+// Car Sound Constants (arcade: carsnd.h defines)
+// ============================================================================
+// WIND_PITCH = 0x400
+// WIND_MAX_VOL = 0x0150
+// ROAD_MAX_PITCH = 0x03ff
+// ROAD_MIN_PITCH = 0x0100
+// ROAD_MAX_VOL = 0x0380
+// GRAVEL_MAX_VOL = 0x00A0
+// MAX_ENG_RPM_SCL = 0x1E00
+// VOL_FADE_VAL = 0x0020
+
+// ============================================================================
+// Force Feedback / Steering Wheel Mapping (arcade: fswheel.c)
+// ============================================================================
+// NOTE: Arcade fswheel.c handles force feedback steering wheel.
+// N64 uses Rumble Pak (osMotor*) + analog stick for equivalent functionality.
+// The arcade wheel force feedback maps to N64 rumble patterns.
+//
+// Key mappings:
+//   fswheel.c:InitSW() -> N64 osMotorInit() + rumble state init
+//   fswheel.c:wheelpos() -> N64 Input_GetStickX() (analog stick)
+//   fswheel.c:setswforce() -> N64 rumble intensity via osMotorStart/Stop
+//   fswheel.c:ModelSteerForce() -> N64 gameplay rumble patterns
+//   fswheel.c:OverrideForce() -> N64 menu selection rumble
+//   fswheel.c:WheelSection() -> N64 menu selection from stick position
+
+// Steering/Force Feedback State Variables (arcade: fswheel.c globals)
+// These map arcade steering wheel state to N64 analog stick + rumble
+gSWpos = 0x80140DA0; // type:data steering wheel position (s16) - arcade:fswheel.c:gSWpos N64: analog stick X
+gSWforce = 0x80140DA2; // type:data steering wheel force (s16) - arcade:fswheel.c:gSWforce N64: rumble intensity
+gSWtorque = 0x80140DA4; // type:data steering wheel torque (s16) - arcade:fswheel.c:gSWtorque N64: collision rumble
+gSWfrict = 0x80140DA6; // type:data steering wheel friction (s16) - arcade:fswheel.c:gSWfrict N64: surface rumble
+gSWdamp = 0x80140DA8; // type:data steering wheel damping (s16) - arcade:fswheel.c:gSWdamp N64: smoothing
+gSWvel = 0x80140DAA; // type:data steering wheel velocity (s16) - arcade:fswheel.c:swvel N64: stick delta
+
+// Force Feedback Rumble State (N64-specific replacements for fswheel.c)
+rumble_state = 0x80142A20; // type:data rumble state machine (s32) - arcade:fswheel.c force state
+rumble_timer = 0x80142A24; // type:data rumble duration counter (s32) - arcade:fswheel.c force duration
+rumble_intensity = 0x80142A28; // type:data rumble intensity 0-127 (s32) - arcade:fswheel.c:last_swforce
+rumble_pattern = 0x80142A2C; // type:data rumble pattern index (s32) - arcade:fswheel.c notch patterns
+motor_vibe_state = 0x80142A30; // type:data motor vibration state (s32) - arcade:fswheel.c:doing_notch
+motor_pak_handles = 0x80142A40; // type:data size:0x10 motor pak handle array (void*[4]) - per-controller rumble pak
+
+// Force Feedback Configuration (arcade: fswheel.c:force_frac table)
+gFeedbackLevel = 0x80140DB0; // type:data force feedback level 0-2 (s16) - arcade:fswheel.c:gFeedbackLevel
+gForceOffset = 0x80140DB2; // type:data force offset 0-2 (s16) - arcade:fswheel.c:gForceOffset
+gFscale = 0x80140DB4; // type:data force scale percent (s16) - arcade:fswheel.c:gFscale
+recenter_flag = 0x80140DB6; // type:data wheel recenter active (s16) - arcade:fswheel.c:recenter_flag
+
+// Analog Input Velocity Tracking (arcade: fswheel.c wheel velocity)
+rawswvel = 0x80140DC0; // type:data raw steering velocity (s16) - arcade:fswheel.c:rawswvel
+avg_sw_vel = 0x80140DC4; // type:data average steering velocity (s32) - arcade:fswheel.c:avg_sw_vel
+avg_sw_force = 0x80140DC8; // type:data average steering force (u32) - arcade:fswheel.c:avg_sw_force
+playpos = 0x80140DCC; // type:data play-adjusted position (s16) - arcade:fswheel.c:playpos
+
+// Menu Selection State (arcade: fswheel.c:WheelSection/OverrideForce)
+prev_notch = 0x80140DD0; // type:data previous menu notch (s32) - arcade:fswheel.c:prev_notch
+doing_notch = 0x80140DD4; // type:data notch transition active (s16) - arcade:fswheel.c:doing_notch
+last_notch = 0x80140DD8; // type:data last notch position (s32) - arcade:fswheel.c:last_notch
+
+// Functions (N64 equivalents to arcade fswheel.c functions)
+// NOTE: N64 replaces arcade force feedback with Rumble Pak patterns
+
+// osMotorInit (0x80009F20) - arcade:fswheel.c:InitSW() equivalent
+// Initialize rumble pak, set initial state (already defined above)
+
+// osMotorStart (0x8000A194) - arcade:fswheel.c:setswforce(force>0)
+// Turn on rumble motor (already defined above)
+
+// osMotorStop (0x8000A2F0) - arcade:fswheel.c:setswforce(force=0) / freewheel()
+// Turn off rumble motor (already defined above)
+
+// N64 rumble pattern functions (equivalents to arcade force feedback)
+// input_rumble_update = 0x800E7800 - arcade:fswheel.c:ModelSteerForce - N64 gameplay rumble (defined above)
+// menu_vibration_test = 0x800CFE74 - arcade:fswheel.c:OverrideForce - N64 menu rumble test (defined above)
+// controller_rumble_thunk = 0x8008AA20 - arcade:fswheel.c:doforcewheel - N64 rumble dispatch (defined above)
+
+// Steering input functions (N64 analog stick replaces arcade wheel)
+steering_apply = 0x8010C6D0; // type:func arcade:fswheel.c:wheelpos N64 steering angle from stick (292 bytes)
+car_steering_response = 0x800A6100; // type:func arcade:fswheel.c:PotWheelPos N64 car steering response (580 bytes)
+
+// Collision/impact rumble (arcade: crash -> force spike on wheel)
+collision_rumble_trigger = 0x800E6450; // type:func arcade:fswheel.c:crash_force N64 collision rumble trigger
+landing_rumble_trigger = 0x800E6480; // type:func arcade:fswheel.c:landing_force N64 landing rumble trigger
+
+// High score entry wheel section (arcade: WheelSection for character select)
+hiscore_input_analog = 0x800FBB00; // type:func arcade:fswheel.c:WheelSection N64 hiscore analog selection
+
+// ============================================================================
+// Arcade PDU (Protocol Data Unit) Mappings (arcade: pdu.c, dis.h)
+// ============================================================================
+// The arcade Rush The Rock used DIS (Distributed Interactive Simulation) 
+// protocol for linked cabinet multiplayer. N64 lacks networking hardware,
+// so equivalent functionality uses local memory sharing and OSMessage queues.
+//
+// PDU Types (arcade dis.h kXXXPDU enum):
+//   kEntityStatePDU      - Car state (pos, vel, rot, appearance) - N64: net_state_sync
+//   kAcknowledgePDU      - Ack/Nack response - N64: net_player_join_handler  
+//   kEventReportPDU      - Events (checkpoint, lap, score) - N64: net_game_state_send
+//   kEntityAppearancePDU - Visual/audio appearance - N64: entity_state_dispatch
+//   kMessagePDU          - General messages - N64: net_message_recv
+//
+// EntityStatePDU Fields (arcade pdu.c) -> N64 car state struct:
+//   velocity[3]    -> car+0x34 (f32[3])
+//   location[3]    -> car+0x24 (f32[3])  
+//   accel[3]       -> car+0x44 (f32[3])
+//   angularV[3]    -> car+0x54 (f32[3])
+//   quat[4]        -> car+0x60 (f32[4]) - quaternion rotation
+//   checkpoint     -> car+0x1CC (s16)
+//   lap            -> car+0x1CE (s16)
+//   tireV[4]       -> car+0x180 (f32[4]) - tire angular velocity
+//   suscomp[4]     -> car+0x190 (f32[4]) - suspension compression
+//   shadow_h[4]    -> car+0x1A0 (f32[4]) - shadow height per wheel
+//   torque         -> car+0x1B0 (f32)
+//   rpm            -> car+0x1B4 (f32)
+//   steerangle     -> car+0x1B8 (f32)
+//   appearance     -> car+0x1BC (u32) - bitfield
+//   timeStamp      -> gElapsedTime (0x80142B14)
+//
+// EventReportItem Fields (arcade pdu.c EventReportItem enum):
+//   Report_Node        -> gNodeNumber (player slot)
+//   Report_Track       -> gCurrentTrack
+//   Report_Channel     -> gNumPlayers
+//   Report_CarType     -> gPlayerCarType
+//   Report_RaceFlags   -> gRaceFlags
+//   Report_Count       -> gCountdownTimer
+//   Report_Score       -> gPlayerRaceTime
+//   Report_CheckPoint  -> gPlayerCheckpoint
+//   Report_Lap         -> gPlayerLapCount
+//   Report_Difficulty  -> gDroneDiff
+//   Report_NumberLaps  -> gRaceNumLaps
+
+// PDU-equivalent data structures (N64 local multiplayer state)
+gPlayerEntityState = 0x80152818; // type:data arcade:pdu.c:EntityStatePDU equivalent - per-player car state array (stride 0x400)
+gEntityStateBuffer = 0x80164000; // type:data arcade:pdu.c send buffer - serialized entity state for sync (4KB)
+gEntityRecvBuffer = 0x80165000; // type:data arcade:pdu.c recv buffer - received entity state (4KB)
+gNetSendHead = 0x80163FF0; // type:data arcade:pdu.c - send buffer head pointer (s32)
+gNetSendTail = 0x80163FF4; // type:data arcade:pdu.c - send buffer tail pointer (s32)
+gNetSendSize = 0x80163FF8; // type:data arcade:pdu.c - send buffer current size (s32)
+gNetRecvHead = 0x80164FF0; // type:data arcade:pdu.c - recv buffer head pointer (s32)
+gNetRecvTail = 0x80164FF4; // type:data arcade:pdu.c - recv buffer tail pointer (s32)
+gNetRecvSize = 0x80164FF8; // type:data arcade:pdu.c - recv buffer current size (s32)
+
+// PDU Event Report equivalents
+gEventReportType = 0x80166010; // type:data arcade:pdu.c:EventTypeID - current event type (s32)
+gEventReportItems = 0x80166014; // type:data arcade:pdu.c:PDUDataItem - event data items array
+gEventReportCount = 0x80166080; // type:data arcade:pdu.c:numFixedRecs - number of event items (s32)
+
+// PDU timing (arcade: GetTimeStamp, GetElapsedTime)
+// gElapsedTime = 0x80142B14 // defined above in timing section
+gNetTimeStamp = 0x80166090; // type:data arcade:pdu.c:GetTimeStamp - last sync timestamp (u32)
+gNetTimeFudge = 0x80166094; // type:data arcade:pdu.c:timeFudge - dead reckoning time adjustment (f32)
+
+// PDU error tracking (arcade: ReportPDUError, totalErrors)
+gPDUErrorCount = 0x801660A0; // type:data arcade:pdu.c:totalErrors - total PDU/sync errors (u32)
+gPDULastError = 0x801660A4; // type:data arcade:pdu.c error code - last error type (s16)
+
+// ============================================================================
+// Game Statistics System (arcade: stats.c mappings)
+// Cross-referenced with reference/repos/rushtherock/game/stats.c
+// Added 2025-12-31 based on arcade-N64 function comparison
+// Note: N64 console version uses simplified stats vs arcade operator stats
+// Arcade stats.c focuses on operator statistics (NVRAM, coins, time-of-day).
+// N64 version tracks race times, lap records, and player profile stats.
+// ============================================================================
+
+// --- Statistics Functions (arcade: stats.c) ---
+// N64 equivalents for race time/lap tracking and record keeping
+
+// Race Time Tracking (arcade: stats.c:stat_playgame, stat_endgame, stat_preplay)
+// Arcade stat_preplay(): initializes curstat timing for new race
+// Arcade stat_playgame(): updates curstat.play_time each frame
+// Arcade stat_endgame(): records final race time, updates track records
+// N64 equivalent: game timer system tracks race/lap times
+stat_race_start = 0x800FE08C; // type:func arcade:stats.c:stat_preplay race timing init (same as game_timer_start)
+stat_race_update = 0x800FE5B0; // type:func arcade:stats.c:stat_playgame per-frame time update (same as game_timer_elapsed)
+stat_race_end = 0x800FE4BC; // type:func arcade:stats.c:stat_endgame race completion (same as game_timer_stop)
+
+// Lap Time Recording (arcade: stats.c:update_total_game_time, update_track_time)
+// Arcade update_track_time(): checks if lap is new record, updates NVRAM
+// N64 equivalent: lap timer system with Controller Pak save
+stat_lap_complete = 0x800FE924; // type:func arcade:stats.c:lap_complete lap time recording (same as game_timer_lap)
+stat_lap_split = 0x800FEA08; // type:func arcade:stats.c:stat_playgame checkpoint split (same as game_timer_split)
+stat_best_lap_check = 0x80101700; // type:func arcade:stats.c:update_track_time check vs best lap (same as best_time_check)
+stat_best_lap_save = 0x8010194C; // type:func arcade:stats.c:update_track_time save new best (same as best_time_record)
+
+// Win/Loss and Position Records (arcade: stats.c:stat_endgame)
+// Arcade tracks wins in curstat.win_count, total_races in curstat.game_count
+// N64 equivalent: profile update saves finish position
+stat_finish_position = 0x800DA0CC; // type:func arcade:stats.c:stat_endgame finish position record (same as position_result_display)
+stat_results_display = 0x800D9060; // type:func arcade:stats.c:stat_endgame results screen (same as results_screen)
+stat_profile_update = 0x801068F4; // type:func arcade:stats.c:update_total_game_time profile stats (same as profile_stats_update)
+
+// Speed Records (arcade: stats.c:update_track_time for time records)
+// Arcade compares against track_times[track].best_lap/best_race
+// N64 uses similar comparison against gTrackBestLap
+stat_speed_record_check = 0x80101700; // type:func arcade:stats.c speed record comparison (reuses best_time_check logic)
+
+// Statistics Display (arcade: stats.c:UpdateStats for operator test menu)
+// Arcade UpdateStats(): displays coin counts, time-of-day histograms (operator use)
+// N64 equivalent: player-facing statistics screen in profile menu
+stat_display_screen = 0x80104E84; // type:func arcade:stats.c:UpdateStats equivalent (same as statistics_display)
+stat_records_screen = 0x800D58CC; // type:func arcade:stats.c records display (same as records_screen)
+stat_best_times_show = 0x800D5BB0; // type:func arcade:stats.c best times display (same as best_times_display)
+
+// Per-Game Statistics Update (arcade: stats.c curstat structure management)
+// Arcade: stat_attract(), stat_trksel(), stat_carsel(), stat_playgame(), stat_endgame()
+// These state-specific functions track time spent in each game state.
+// N64 uses simpler per-race tracking with single update function
+stat_game_update = 0x800DC99C; // type:func arcade:stats.c:stat_* per-state update (same as stats_update)
+
+// --- Statistics Data Globals (arcade: stats.c global variables) ---
+// N64 equivalents for race/lap timing globals
+// Note: Arcade uses NVRAM for persistence, N64 uses Controller Pak
+
+// Race Timing State (arcade: stats.c:curstat members)
+// Arcade curstat: race_time, play_time, lap_time, game_count, win_count
+gStatRaceTime = 0x80142B08; // type:data arcade:stats.c:curstat.race_time current race time (s32)
+gStatLapTime = 0x80142B24; // type:data arcade:stats.c:curstat.lap_time current lap time (s32)
+gStatBestLap = 0x80142BD0; // type:data arcade:stats.c:curstat.best_lap best lap per track (u32[8])
+gStatTotalRaces = 0x80159000; // type:data arcade:stats.c:total_games total races played counter
+gStatTotalWins = 0x80159004; // type:data arcade:stats.c:total_wins total first place finishes
+gStatPlayTime = 0x80142B04; // type:data arcade:stats.c:curstat.play_time total play time (same as gPlayTime)
+
+// Per-Track Best Times (arcade: stats.c:track_times array)
+// Arcade: track_times[NUM_TRACKS].best_lap, best_race, race_count
+gStatTrackBest = 0x80159100; // type:data arcade:stats.c:track_times best times per track (same as gBestTimes)

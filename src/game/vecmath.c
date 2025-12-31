@@ -1,14 +1,29 @@
 /**
  * vecmath.c - Vector and matrix math utilities
  *
- * Based on arcade LIB/fmath.c
- * Adapted for N64 platform with proper types
+ * Based on arcade source files:
+ *   - game/vecmath.c: magnitude, invmagnitude, direction, scalmul, scaldiv,
+ *                     vecadd, vecsub, crossprod, dotprod, veccopy
+ *   - game/unitvecs.c: bodtorw, rwtobod, rotateuv, fmatcopy
+ *   - game/d3math.c: CopyUV, TransposeUV, ScaleUV, FixRowUV, FixColumnUV,
+ *                    RotateUV, YawUV, PitchUV, RollUV, WYawUV, WPitchUV, WRollUV,
+ *                    BodyVector, WorldVector
+ *   - LIB/fmath.c: xxsqrt, invsqr
  *
- * These functions are used throughout the game for:
- * - Car orientation/rotation
+ * Adapted for N64 platform with proper types. These functions are used for:
+ * - Car orientation/rotation (UV matrix system)
  * - Camera transforms
  * - Physics calculations
  * - Collision detection
+ *
+ * N64 ROM addresses mapped to arcade equivalents:
+ *   0x8008B474 vector_copy_scale -> vecmath.c:scalmul()
+ *   0x8008B4C4 vector_normalize_length -> fmath.c:SlowNormalVector()
+ *   0x8008B660 vector3d_store_transform -> unitvecs.c:bodtorw()
+ *   0x8008D714 matrix_rotation_build -> fmath.c:CreateRYPMatrix()
+ *   0x8008D764 euler_to_matrix -> fmath.c:CreatePYRMatrix()
+ *   0x8008D8D8 matrix_scale_apply -> fmath.c:ScaleUV()
+ *   0x800A373C drone_rwtobod -> unitvecs.c:rwtobod()
  */
 
 #include "types.h"

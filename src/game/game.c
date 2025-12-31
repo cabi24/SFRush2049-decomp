@@ -2,7 +2,7 @@
  * game.c - Main game state machine and game loop
  *
  * Based on arcade game/game.c
- * N64 main loop at func_800FD464, state handlers at 0x800FB* area
+ * N64 main loop at game_loop (0x800FD464), state handlers at 0x800FB* area
  */
 
 #include "types.h"
@@ -539,7 +539,6 @@ void playgame_handler(void);  /* playgame_state_change @ 0x800CA3B4 */
 /**
 /*
  * game_loop - Main per-frame game loop
- * (func_800FD464)
  * Address: 0x800FD464
  * Size: 704 bytes
  *
@@ -1146,7 +1145,7 @@ extern s32 gCountdownTimer;     /* 0x80142B0C - countdown_timer - 3-2-1 countdow
 extern void* display_object_array[]; /* Display object pointer array */
 
 /* External functions for countdown */
-extern void sprintf(s8 *buf, s8 *fmt, ...); /* func_80004990 */
+extern void sprintf(s8 *buf, s8 *fmt, ...); /* libc sprintf at 0x80004990 */
 extern void camera_near_set(s8 *buf, s32 val);
 extern void entity_collision_test(void *entity, void *world);
 extern s32 audio_sync();
@@ -2686,7 +2685,7 @@ void object_render_cleanup(void *obj_ptr) {
  * @param arg1 Argument 1 byte
  * @param arg2 Argument 2 byte
  */
-extern void external_command_handler(s32, s32, s32);  /* func_803914B4 - External command handler */
+extern void external_command_handler(s32, s32, s32);  /* 0x803914B4 - External command handler */
 
 void stunt_command_send(s8 cmd, s8 arg1, s8 arg2) {
     s32 mode;
@@ -3798,7 +3797,7 @@ void game_state_check_handler(void) {
 
 /**
 /*
- * resource_type_select_simple (func_800FEC60)
+ * resource_type_select_simple (0x800FEC60)
  * Address: 0x800FEC60
  * Size: 60 bytes
  *
@@ -3902,7 +3901,7 @@ void sync_init_conditional(s32 condition) {
 
 /**
 /*
- * object_update_full (func_800E2A64)
+ * object_update_full (0x800E2A64)
  * Address: 0x800E2A64
  * Size: 96 bytes
  *
@@ -25918,7 +25917,7 @@ void virtual_keyboard(u8 *buffer, s32 maxLen) {
 }
 
 /*
- * cursor_move (func_800E051C)
+ * cursor_move (0x800E051C)
  * Address: 0x800E051C
  * Size: 212 bytes
  *
@@ -35931,7 +35930,7 @@ void pause_menu(void) {
                 pause_restart();
                 return;
             case 2:  /* Options */
-                /* func_800DXXXX(); */
+                /* options_menu_open(); - TODO: identify actual function */
                 break;
             case 3:  /* Quit */
                 pause_quit();
@@ -36214,7 +36213,7 @@ void replay_save_prompt(void) {
     } else if (input == 1) {  /* A - confirm */
         if (selection == 0) {
             /* Save replay */
-            /* func_800DXXXX(); */
+            /* replay_save_to_pak(); - TODO: identify actual function */
             sound_play_menu(10);
         }
         replay_prompt_state = 0;
@@ -36425,7 +36424,7 @@ void attract_mode_start(void) {
         case 1:  /* Demo playback */
             /* Play back recorded demo */
             demo_cycle_index = (demo_cycle_index + 1) % 3;  /* Cycle through demos */
-            /* func_800DXXXX(demo_cycle_index); */
+            /* demo_play(demo_cycle_index); - TODO: identify actual function */
 
             if (timer > 900) {  /* 15 seconds demo */
                 state = 2;
@@ -36945,7 +36944,7 @@ void *pre_render(s32 objectType, f32 *pos) {
 
 /**
 /*
- * world_object_destroy (func_800EB690)
+ * world_object_destroy (0x800EB690)
  * Address: 0x800EB690
  * Size: 396 bytes
  *

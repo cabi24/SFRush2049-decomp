@@ -1,7 +1,18 @@
 /**
  * vecmath.h - Vector and matrix math utilities
  *
- * Based on arcade LIB/fmath.h
+ * Based on arcade source files:
+ *   - game/vecmath.c: magnitude, invmagnitude, direction, scalmul, scaldiv,
+ *                     vecadd, vecsub, crossprod, dotprod, veccopy
+ *   - game/unitvecs.c: bodtorw, rwtobod, rotateuv, rotuv, mkuv, matcopy,
+ *                      matmul, fmatcopy, frot, furot, fyaw, fpitch, froll
+ *   - game/d3math.c: CopyUV, TransposeUV, ScaleUV, FixRowUV, FixColumnUV,
+ *                    RotateUV, YawUV, PitchUV, RollUV, WYawUV, WPitchUV, WRollUV,
+ *                    BodyVector, WorldVector, CreatePYRMatrix, CreateRYPMatrix,
+ *                    SlowNormalVector, NormalVector
+ *   - LIB/fmath.c: xxsqrt, invsqr, fcos, fsin, hypotsincos
+ *   - LIB/fmath.h: Vector/Matrix macros (SubVector, AddVector, ScaleVector, etc.)
+ *
  * Used for car physics, camera transforms, and collision detection
  */
 
