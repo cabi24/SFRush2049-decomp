@@ -115,11 +115,11 @@ extern void *object_pool[];
 extern void *pool_secondary[];
 extern void *model_data_array[];
 extern s8 player_state_array[];
-extern void *sound_handles[];
+extern s32 sound_handles[];
 extern s32 controller_input_1;
 extern s32 controller_input_2;
 extern s32 controller_input_3;
-extern void *sound_volumes[];
+extern s32 sound_volumes[];
 extern s32 reverb_type;
 extern void *audio_effect_handles[];
 extern void *audio_priority_list[];
@@ -311,7 +311,7 @@ extern s32 split_toggle;
 extern s32 split_param1;
 extern s32 split_param2;
 extern s32 mp_player_count;
-extern void *effect_slots[];
+extern s32 effect_slots[];
 extern u32 ghost_data_buffer[32];  /* Data array */
 extern s32 ghost_frame_count;
 extern u32 best_lap_times[12];  /* Lap times */
@@ -415,7 +415,7 @@ extern s32 attract_center_x;
 extern s32 attract_center_y;
 extern s32 attract_center_z;
 extern s32 cam_target_car;
-extern void *achievement_queue[];
+extern s32 achievement_queue[];
 extern s32 demo_frame_counter;
 extern s32 demo_active_flag;
 extern s32 demo_cycle_count;
@@ -20869,6 +20869,9 @@ void demo_playback(void *demo) {
     }
 }
 
+/* Forward declaration */
+extern void sound_play_menu(s32 soundId);
+
 /*
 
  * title_screen - Animated logo and press start display
@@ -20938,6 +20941,9 @@ void title_screen(void) {
 
     attract_anim_frame = animFrame;
 }
+
+/* Forward declaration */
+extern void menu_back(void);
 
 /*
 
@@ -23246,7 +23252,7 @@ void listener_position_set(f32 *pos, f32 *forward) {
  *   0x20C: engine sound state (0=off, 1=idle, 2=revving, 3=redline)
  */
 
-void engine_sound_update(void *car) {
+void engine_sound_update_car(void *car) {
     f32 rpm;
     f32 throttle;
     s32 *soundHandle;
@@ -25695,12 +25701,15 @@ void text_color_set(u8 r, u8 g, u8 b, u8 a) {
     *shadowEnabled = (a > 128) ? 1 : 0;
 }
 
+/* Forward declaration */
+extern void selection_highlight(s32 x, s32 y, s32 w, s32 h);
+
 /*
 
- * menu_render (15548 bytes)
+ * menu_render_full (15548 bytes)
  * Full menu render
  */
-void menu_render(void *menu) {
+void menu_render_full(void *menu) {
     s32 *numItems, *selectedItem;
     u8 **itemLabels;
     f32 *itemPositions, *itemAlphas;
@@ -26361,7 +26370,7 @@ void cutscene_play(s32 cutsceneId) {
     gPlayerInputEnabled = 0;
 
     /* Play cutscene music */
-    sfx_stop(1, cutsceneId + 100);
+    sfx_stop(cutsceneId + 100);
 }
 
 /*
@@ -26899,7 +26908,7 @@ void timer_reset(void) {
  * Converts seconds to frames at 60fps and plays countdown beep.
  * Arcade equivalent: SetCountdownTimer() in select.c
  */
-void countdown_start(s32 seconds) {
+void countdown_start_seconds(s32 seconds) {
     s32 *timerCountdown;
     s32 *countdownActive;
     s32 frames;
@@ -27279,6 +27288,7 @@ void race_results_display(void) {
  */
 extern s32 player_placing[4];   /* Player placing (1st-4th) */
 extern s32 player_finish_times[4];   /* Player finish times */
+extern void trophy_animate(s32 place);  /* Forward declaration */
 
 void award_ceremony(void) {
     s32 state;
@@ -27506,6 +27516,9 @@ void trophy_animate(s32 place) {
  * Returns 0 for continue, 1 for quit, -1 while waiting.
  * Arcade equivalent: continue handling in hiscore.c
  */
+extern s32 gameover_countdown;   /* Game over countdown timer */
+extern s32 gameover_selection;   /* Game over menu selection */
+
 s32 continue_prompt(void) {
     s32 input;
     s32 countdown;
@@ -28875,7 +28888,7 @@ void final_cleanup(void) {
     /* Save any pending data */
     if (save_pending_flag != 0) {
         /* Trigger save */
-        matrix_rotate(NULL, 0);
+        matrix_rotate(0, 0);
         save_pending_flag = 0;
     }
 
@@ -28902,9 +28915,9 @@ void audio_queue_add(s32 sndId) {
     s32 *ptr;
 
     if (render_flag != 0) {
-        debris_spawn();
+        debris_spawn(NULL, 0);
     }
-    for (ptr = &input_callback_table[0]; ptr < &input_callback_table[10]; ptr++) {
+    for (ptr = (s32 *)&input_callback_table[0]; ptr < (s32 *)&input_callback_table[10]; ptr++) {
         if (*ptr == 0) {
             *ptr = sndId;
             return;
@@ -28920,7 +28933,7 @@ void audio_queue_add(s32 sndId) {
  * Configures an audio channel for playback
  * N64 uses 16 software-mixed channels via the audio library
  */
-void audio_channel_setup(s32 channel, s32 param) {
+void audio_channel_setup_params(s32 channel, s32 param) {
     if (channel < 0 || channel >= 16) {
         return;
     }
@@ -29206,6 +29219,10 @@ s32 audio_sample_load(s32 sampleId) {
     return sampleId;
 }
 
+/* Forward declarations */
+extern void audio_stream_fill(void *buffer, s32 size);
+extern void *channel_stop(s32 size);
+
 /*
 
  * audio_stream_init (972 bytes)
@@ -29249,12 +29266,12 @@ s32 audio_stream_init(s32 streamId) {
 
 /*
 
- * audio_stream_update (664 bytes)
+ * audio_stream_update_frame (664 bytes)
  * Audio stream update
  *
  * Called each frame to manage streaming buffer refills
  */
-void audio_stream_update(void) {
+void audio_stream_update_frame(void) {
     extern s32 buffer_consumed_flag;       /* Buffer consumed flag */
     s32 nextBuffer;
     u32 remaining;
@@ -29706,7 +29723,7 @@ void audio_interrupt_handler(void) {
     osSendMesg(&dma_message_queue, (OSMesg)1, OS_MESG_NOBLOCK);
 
     /* Update stream buffers if streaming */
-    audio_stream_update();
+    audio_stream_update_frame();
 }
 
 /*
@@ -29727,7 +29744,7 @@ void audio_interrupt_handler(void) {
  *   0x38: shake intensity
  *   0x3C: shake timer
  */
-void camera_reset(void *camera) {
+void camera_reset_defaults(void *camera) {
     f32 *pos, *target, *up;
     f32 *fov, *near, *far, *aspect;
     s32 *mode;
@@ -30560,12 +30577,12 @@ void camera_build_view_matrix(void *camera, f32 *matrix) {
 
 /*
 
- * camera_update (camera_update)
+ * camera_update_frame (camera_update)
  * Size: 2884 bytes
  *
  * Main camera update - calls appropriate mode handler
  */
-void camera_update(void *camera) {
+void camera_update_frame(void *camera) {
     s32 *mode;
 
     if (camera == NULL) {
@@ -30889,6 +30906,10 @@ void camera_split_screen_config(s32 numPlayers) {
     }
 }
 
+/* Forward declarations */
+extern void camera_play_script(s32 scriptId);
+extern void camera_victory(void *camera, s32 placing);
+
 /*
 
  * camera_scene_manager (camera_scene_manager)
@@ -31132,7 +31153,7 @@ void draw_ui_element(s32 elementId, s32 x, s32 y, s32 w, s32 h, s32 alpha) {
     void **spriteTable;
     void *sprite;
 
-    if (sprite_table_data == NULL || sprite_table_valid == NULL) {
+    if (sprite_table_data[0] == NULL || sprite_table_valid == 0) {
         return;
     }
 
@@ -31858,6 +31879,9 @@ void menu_cursor_move(s32 direction) {
     }
 }
 
+/* Forward declaration */
+extern void menu_transition_to(s32 toMenuId);
+
 /*
 
  * menu_item_select (menu_item_select)
@@ -31900,29 +31924,29 @@ void menu_item_select(s32 itemIndex) {
             switch (itemAction) {
                 case 1:  /* Start race */
                     gstate_byte = 3;  /* PREPLAY state */
-                    menu_transition(-1);  /* Close menu */
+                    menu_transition_to(-1);  /* Close menu */
                     break;
                 case 2:  /* Options */
-                    menu_transition(2);  /* Go to options menu */
+                    menu_transition_to(2);  /* Go to options menu */
                     break;
                 case 3:  /* Track select */
-                    menu_transition(3);  /* Go to track select */
+                    menu_transition_to(3);  /* Go to track select */
                     break;
                 case 4:  /* Car select */
-                    menu_transition(4);  /* Go to car select */
+                    menu_transition_to(4);  /* Go to car select */
                     break;
                 case 5:  /* Exit */
                     gstate_byte = 0;  /* ATTRACT state */
-                    menu_transition(-1);
+                    menu_transition_to(-1);
                     break;
                 case 6:  /* Controller Pak */
-                    menu_transition(5);  /* Go to save menu */
+                    menu_transition_to(5);  /* Go to save menu */
                     break;
                 case 7:  /* Sound test */
-                    menu_transition(6);
+                    menu_transition_to(6);
                     break;
                 case 8:  /* Credits */
-                    menu_transition(7);
+                    menu_transition_to(7);
                     break;
                 default:
                     break;
@@ -31952,7 +31976,7 @@ void menu_item_select(s32 itemIndex) {
 
         case 3:  /* Submenu */
             targetMenu = itemAction;
-            menu_transition(targetMenu);
+            menu_transition_to(targetMenu);
             break;
 
         case 4:  /* Multi-choice */
@@ -31999,16 +32023,16 @@ void menu_back(void) {
     prevMenu = menu_stack[stackDepth];
 
     /* Transition to previous menu */
-    menu_transition(prevMenu);
+    menu_transition_to(prevMenu);
     sound_play_menu(11);  /* Back sound */
 }
 
 /*
 
- * menu_transition (menu_transition)
+ * menu_transition_to (menu_transition)
  * Size: 340 bytes
  */
-void menu_transition(s32 toMenuId) {
+void menu_transition_to(s32 toMenuId) {
     s32 currentMenu;
     s32 stackDepth;
 
@@ -32833,6 +32857,9 @@ void menu_dialog_display(s32 dialogId) {
     confirm_dialog_anim = animFrame + 1;
 }
 
+/* Forward declaration */
+extern void menu_dialog_close(void);
+
 /*
 
  * menu_confirm_dialog (412 bytes)
@@ -33108,6 +33135,30 @@ void menu_text_input(char *buffer, s32 maxLen) {
     text_anim_frame = text_anim_frame + 1;
 }
 
+/* Forward declarations for menu functions */
+extern void menu_vibration_test(void);
+extern void track_preview_render(s32 trackId);
+extern void track_info_display(s32 trackId);
+extern void car_preview_render(s32 carId);
+extern void car_stats_display(s32 carId);
+extern void car_color_select(s32 colorId);
+extern void race_mode_select(s32 modeId);
+extern void lap_count_select(s32 laps);
+extern void difficulty_select(s32 difficulty);
+extern void mirror_mode_toggle(void);
+extern void weather_select(s32 weather);
+extern void time_of_day_select(s32 timeOfDay);
+extern void stunt_arena_preview(s32 arenaId);
+extern void best_times_display(s32 trackId);
+extern void high_scores_display(s32 trackId);
+extern void credits_scroll(void);
+extern void pause_resume(void);
+extern void pause_restart(void);
+extern void pause_quit(void);
+extern void position_result_display(s32 position);
+extern void time_result_display(s32 timeMs);
+extern void points_award(void);
+
 /*
 
  * menu_option_toggle (576 bytes)
@@ -33352,13 +33403,13 @@ void menu_options_screen(void) {
         action = settings_action_table[selectedItem];
         switch (action) {
             case 0:  /* Audio settings */
-                menu_transition(10);  /* Go to audio submenu */
+                menu_transition_to(10);  /* Go to audio submenu */
                 break;
             case 1:  /* Video settings */
-                menu_transition(11);  /* Go to video submenu */
+                menu_transition_to(11);  /* Go to video submenu */
                 break;
             case 2:  /* Control settings */
-                menu_transition(12);  /* Go to controls submenu */
+                menu_transition_to(12);  /* Go to controls submenu */
                 break;
             case 3:  /* Save options */
                 save_load_dialog = 1;  /* Save confirm dialog */
@@ -33543,7 +33594,7 @@ void menu_control_settings(void) {
                 sound_play_menu(14);
                 break;
             case 3:  /* Remap controls */
-                menu_transition(13);  /* Go to remap screen */
+                menu_transition_to(13);  /* Go to remap screen */
                 break;
             case 4:  /* Test vibration */
                 menu_vibration_test();
@@ -33849,7 +33900,7 @@ void track_select_screen(void) {
         trackUnlocked = menu_update(selectedTrack);
         if (trackUnlocked) {
             trackno = selectedTrack;  /* Store selected track */
-            menu_transition(4);  /* Go to car select */
+            menu_transition_to(4);  /* Go to car select */
             sound_play_menu(10);
         } else {
             sound_play_menu(13);  /* Locked sound */
@@ -34133,7 +34184,7 @@ void car_select_screen(void) {
         carUnlocked = car_unlock_check(selectedCar);
         if (carUnlocked) {
             selected_car_store = selectedCar;  /* Store selected car */
-            menu_transition(5);  /* Go to color select or race setup */
+            menu_transition_to(5);  /* Go to color select or race setup */
             sound_play_menu(10);
         } else {
             sound_play_menu(13);
@@ -34500,7 +34551,7 @@ void race_setup_screen(void) {
         if (selectedItem == 6) {
             /* Start race */
             gstate_byte = 7;  /* PREPLAY state */
-            menu_transition(-1);  /* Close menu */
+            menu_transition_to(-1);  /* Close menu */
             sound_play_menu(10);
         }
     }
@@ -34763,7 +34814,7 @@ void multiplayer_setup(void) {
     else if (input == 1) {
         if (selectedItem == 4) {
             /* Continue to player join */
-            menu_transition(20);  /* Player join screen */
+            menu_transition_to(20);  /* Player join screen */
             sound_play_menu(10);
         } else if (selectedItem == 5) {
             /* Back */
@@ -34897,7 +34948,7 @@ void player_join_screen(void) {
             /* Start game */
             mp_player_count = joinedPlayers;
             gstate_byte = 7;  /* PREPLAY state */
-            menu_transition(-1);
+            menu_transition_to(-1);
         }
     } else {
         split_param2 = 0;
@@ -35088,7 +35139,7 @@ void stunt_mode_setup(void) {
                     wing_enabled = wingEnabled;
                     trackno = selectedArena + 100;  /* Stunt arena IDs */
                     gstate_byte = 7;  /* PREPLAY */
-                    menu_transition(-1);
+                    menu_transition_to(-1);
                 }
             } else if (selectedOption == 5) {
                 /* Stunt tutorial */
@@ -35312,13 +35363,13 @@ void battle_mode_setup(void) {
                 battle_weapons_enabled = weaponsEnabled;
                 trackno = selectedArena + 200;  /* Battle arena IDs */
                 gstate_byte = 7;  /* PREPLAY */
-                menu_transition(-1);
+                menu_transition_to(-1);
             } else {
                 sound_play_menu(13);  /* Error sound */
             }
         } else if (selectedOption == 5) {
             /* Go to player join */
-            menu_transition(15);
+            menu_transition_to(15);
         }
     } else if (input == 2) {  /* B - back */
         menu_back();
@@ -35466,7 +35517,7 @@ void ghost_race_setup(void) {
                 trackno = selectedTrack;
                 finish_time_by_car[0] = 1;  /* Ghost mode enabled */
                 gstate_byte = 7;  /* PREPLAY */
-                menu_transition(-1);
+                menu_transition_to(-1);
             } else {
                 sound_play_menu(13);  /* Error - no ghost */
             }
@@ -35641,7 +35692,7 @@ void records_screen(void) {
             high_scores_display(selectedTrack);
             break;
         case 2:
-            menu_options();
+            menu_options(NULL);
             break;
     }
 
@@ -36009,7 +36060,7 @@ void credits_scroll(void) {
 extern s32 loading_anim_frame;      /* Loading animation frame */
 extern s32 loading_last_percent;      /* Last percent shown */
 
-void loading_screen(s32 percent) {
+void loading_screen_percent(s32 percent) {
     s32 frame;
     s32 barWidth;
     s32 dotPhase;
@@ -36095,7 +36146,7 @@ extern s32 pause_menu_state;      /* Pause menu state */
 extern s32 menu_selected_option;      /* Selected option */
 extern s32 pause_active_flag;      /* Pause active flag */
 
-void pause_menu(void) {
+void pause_menu_handle(void) {
     s32 input;
     s32 selection;
     s32 i;
@@ -36442,12 +36493,12 @@ void replay_save_prompt(void) {
 }
 
 /*
- * continue_prompt (196 bytes) @ 0x800DB758
+ * continue_prompt_quick (196 bytes) @ 0x800DB758
  * Continue prompt - Quick continue/quit choice
  */
 extern s32 continue_countdown;      /* Continue countdown */
 
-s32 continue_prompt(void) {
+s32 continue_prompt_quick(void) {
     s32 input;
     s32 countdown;
     char countStr[4];
