@@ -24935,7 +24935,7 @@ void camera_path_follow(void *camera, void *path, f32 t) {
     }
 
     /* Update look direction */
-    particle_update(camera, camTarget);
+    camera_look_update(camera, camTarget);
 }
 
 /*
@@ -36859,7 +36859,12 @@ void attract_sequence_update(void) {
 extern s32 title_anim_frame;      /* Title animation frame */
 extern s32 title_screen_state;      /* Title state */
 
-void title_screen(void) {
+/* Forward declarations for title screen helper functions */
+extern void title_background(void);
+extern void title_logo_animate(void);
+extern void title_button_prompt(void);
+
+void title_screen_display(void) {
     s32 frame;
     s32 input;
     s32 logoY;
@@ -37005,6 +37010,10 @@ void title_background(void) {
 extern s32 main_menu_selection;      /* Menu selection */
 extern s32 menu_state;      /* Menu state */
 
+/* Forward declarations for main menu helper functions */
+extern void main_menu_input(s32 input);
+extern void main_menu_render(void);
+
 void main_menu_screen(void) {
     s32 input;
 
@@ -37102,6 +37111,9 @@ void main_menu_render(void) {
  */
 extern s32 mode_select_selection;      /* Mode select selection */
 extern s32 selected_mode_type;      /* Selected mode type */
+
+/* Forward declaration for mode select input */
+extern void mode_select_input(s32 input);
 
 void mode_select_screen(void) {
     s32 input;
@@ -37203,6 +37215,11 @@ void *pre_render(s32 objectType, f32 *pos) {
 void world_object_destroy(void *object) {
     /* Object destroy - stub */
 }
+
+/* Forward declarations for world physics functions */
+extern void world_gravity_apply(void *object);
+extern void world_friction_apply(void *object);
+extern void world_velocity_integrate(void *object, f32 dt);
 
 /*
 
@@ -37511,6 +37528,9 @@ void world_collision_response(void *a, void *b) {
     velB[2] -= impulse * massA * nz;
 }
 
+/* Forward declaration for trigger activation */
+extern void world_trigger_activate(s32 triggerId);
+
 /*
 
  * world_trigger_check (0x800EDCE8, 2292 bytes)
@@ -37569,7 +37589,7 @@ void world_trigger_check(void *player) {
  */
 void world_trigger_activate(s32 triggerId) {
     extern u8 trigger_state_array[];    /* Trigger state array */
-    extern s32 trigger_count;     /* Number of triggers */
+    extern s16 trigger_count;     /* Number of triggers (matches earlier decl) */
     u8 *trigger;
     s32 triggerType;
     f32 *playerPos;
@@ -37812,6 +37832,11 @@ void *drone_destroy(s32 type, f32 *pos) {
 
     return NULL;
 }
+
+/* Forward declarations for effect functions */
+extern void smoke_effect(f32 *pos, f32 *vel);
+extern void spark_effect(f32 *pos, s32 count);
+extern void dust_cloud_effect(f32 *pos);
 
 /*
 
@@ -38327,11 +38352,11 @@ void weather_fog(f32 density) {
 /*
 
  * weather_update (252 bytes)
- * Weather update
+ * Weather update frame
  *
  * Updates current weather effects each frame
  */
-void weather_update(void) {
+void weather_update_frame(void) {
     extern s32 weather_type;     /* Current weather type: 0=clear, 1=rain, 2=snow, 3=fog */
     extern f32 weather_intensity;     /* Weather intensity 0-1 */
     extern f32 weather_target;     /* Target intensity */
@@ -38674,6 +38699,9 @@ void skybox_render(void *camera) {
     *gfx_dl_ptr = gfx;
 }
 
+/* Forward declaration for track texture loading */
+extern void track_texture_load(s32 textureId);
+
 /*
  * track_render - Renders visible track sections based on camera position
  * Address: 0x800F34D8
@@ -38971,13 +38999,14 @@ void props_render(void *camera) {
 }
 
 /*
- * crowd_render - Renders animated crowd sprites along the track
+ * crowd_render_all - Renders all animated crowd sprites along the track
  * Address: 0x800F7454
  * Size: 1996 bytes
  */
-void crowd_render(void) {
+void crowd_render_all(void) {
     extern Gfx **gfx_dl_ptr;
     extern u8 crowd_section_data[];    /* Crowd section data */
+    extern s32 crowd_section_count;    /* Number of crowd sections */
     Gfx *gfx;
     s32 i;
     s32 animFrame;
@@ -38989,7 +39018,7 @@ void crowd_render(void) {
     animFrame = (frame_counter >> 3) & 0x03;
 
     /* Render each crowd section */
-    for (i = 0; i < menu_items_array; i++) {
+    for (i = 0; i < crowd_section_count; i++) {
         u8 *crowd = &crowd_section_data[i * 0x40];
         f32 *crowdPos = (f32 *)(crowd + 0x00);
         s32 crowdCount = *(s32 *)(crowd + 0x10);
@@ -39162,12 +39191,12 @@ void car_damage_render(void *car) {
 
 /*
 
- * car_lights_render (964 bytes)
- * Car lights render
+ * car_lights_render_single (964 bytes)
+ * Car lights render single car
  *
  * Renders car headlights, taillights, and brake lights
  */
-void car_lights_render(void *car) {
+void car_lights_render_single(void *car) {
     extern Gfx **gfx_dl_ptr;
     u8 *carData = (u8 *)car;
     Gfx *gfx;
@@ -39354,6 +39383,11 @@ void car_nitro_effect(void *car) {
     *gfx_dl_ptr = gfx;
 }
 
+/* Forward declarations for render pipeline functions */
+extern void frame_start(void);
+extern void zbuffer_setup(void);
+extern void frame_end(void);
+
 /*
 
  * scene_render_main - Main render function for scene elements
@@ -39450,6 +39484,10 @@ void frame_start(void) {
     *gfx_dl_ptr = dl;
 }
 
+/* Forward declarations for frame completion functions */
+extern void display_list_flush(void);
+extern void vsync_wait(void);
+
 /*
 
  * frame_end - Finalize display list and submit to RDP
@@ -39521,6 +39559,9 @@ void display_list_flush(void) {
     /* Wait for completion */
     osRecvMesg(&dma_message_queue, NULL, OS_MESG_BLOCK);
 }
+
+/* Forward declaration for debug stats */
+extern void debug_stats(void);
 
 /*
 
@@ -39619,20 +39660,23 @@ void debug_ai_paths(void) {
     /* (Simplified - actual implementation draws debug lines) */
 }
 
+/* Need to reference the variable - local alias to avoid name conflict */
+extern u32 rng_seed_value;
+
 /*
 
- * random_seed - Set the random number generator seed
+ * random_seed_set - Set the random number generator seed
  * Address: 0x800FD7E8
  * Size: 244 bytes
  */
-void random_seed(u32 seed) {
+void random_seed_set(u32 seed) {
 
-    random_seed = seed;
+    rng_seed_value = seed;
 
     /* Warm up the generator */
-    random_seed = random_seed * 1103515245 + 12345;
-    random_seed = random_seed * 1103515245 + 12345;
-    random_seed = random_seed * 1103515245 + 12345;
+    rng_seed_value = rng_seed_value * 1103515245 + 12345;
+    rng_seed_value = rng_seed_value * 1103515245 + 12345;
+    rng_seed_value = rng_seed_value * 1103515245 + 12345;
 }
 
 /*
@@ -39895,11 +39939,11 @@ void race_timer_update(void) {
 
 /*
 
- * countdown_display - Display pre-race countdown (3, 2, 1, GO!)
+ * countdown_display_numbers - Display pre-race countdown (3, 2, 1, GO!)
  * Address: 0x800FECA4
  * Size: 352 bytes
  */
-void countdown_display(void) {
+void countdown_display_numbers(void) {
     s32 countdown;
     char numBuf[2];
 
@@ -40080,7 +40124,7 @@ void high_score_entry(void) {
  * Displays top stunt scores for the selected track.
  * Used in stunt mode for trick score rankings.
  */
-void leaderboard_display(void) {
+void leaderboard_display_stunt(void) {
     /* Leaderboard - stub */
 }
 
@@ -40105,7 +40149,7 @@ s32 score_calculate(void) {
  * Calculates point value for a trick based on type and difficulty.
  * Handles combo multipliers and trick chaining bonuses.
  */
-s32 stunt_score(s32 trickId) {
+s32 stunt_score_calc(s32 trickId) {
     /* Stunt score - stub */
     return 0;
 }
@@ -40118,7 +40162,7 @@ s32 stunt_score(s32 trickId) {
  * Increases multiplier for consecutive tricks without landing.
  * Returns modified score value with combo bonus applied.
  */
-s32 combo_multiplier(s32 combo) {
+s32 combo_mult_calc(s32 combo) {
     /* Combo - stub */
     return combo;
 }
@@ -40159,7 +40203,7 @@ s32 combo_multiplier(s32 combo) {
  *   7 = Corkscrew
  *   8 = Super flip
  */
-s32 trick_detect(void *car) {
+s32 trick_detect_advanced(void *car) {
     s32 *roadCode;
     s32 *stuntState;
     f32 *accumRot;
@@ -40510,6 +40554,10 @@ s32 spin_detect(void *car) {
     return trickId;
 }
 
+/* Forward declarations for stunt variables */
+extern s32 stunt_score;
+extern s32 combo_multiplier;
+
 /*
 
  * landing_bonus (1040 bytes)
@@ -40651,6 +40699,9 @@ void combo_trick_add(void *car) {
     *comboTimer = 2.0f;  /* 2 second window for next trick */
 }
 
+/* Forward declaration for glide physics */
+extern void glide_physics_apply(void *car);
+
 /*
 
  * wing_deploy (1780 bytes)
@@ -40671,7 +40722,7 @@ void combo_trick_add(void *car) {
  *   0x1E0: wing lift coefficient
  *   0x1E4: wing drag coefficient
  */
-void wing_deploy(void *car) {
+void wing_deploy_update(void *car) {
     s32 *wingState;
     f32 *deployTimer;
     f32 *wingAngle;
@@ -41043,6 +41094,9 @@ void checkpoint_hit(void *car, s32 cpId) {
         sound_play_menu(15);
     }
 }
+
+/* Forward declaration for race_finish */
+extern void race_finish(void *car);
 
 /*
 
@@ -41932,6 +41986,11 @@ void car_input_process(void *car, void *input) {
     }
 }
 
+/* Forward declarations for AI helper functions */
+extern void ai_waypoint_next(void *car);
+extern void ai_obstacle_avoid(void *car);
+extern void ai_rubber_band(void *car);
+
 /*
 
  * ai_input_generate - Generates AI steering, throttle, brake inputs
@@ -42481,6 +42540,12 @@ void ai_catch_up(void *car) {
     }
 }
 
+/* Forward declarations for battle mode functions */
+extern void battle_respawn(void *car, s32 playerId);
+extern void battle_pickup_check(void *car, s32 playerId);
+extern void battle_fire_weapon(void *car, s32 weapon, s32 playerId);
+extern void battle_win_check(void);
+
 /*
 
  * battle_mode_update - Updates battle mode gameplay each frame
@@ -42600,6 +42665,9 @@ void battle_mode_update(void) {
     /* Check win condition */
     battle_win_check();
 }
+
+/* Forward declaration for stunt session end */
+extern void stunt_session_end(void);
 
 /*
 
@@ -42760,8 +42828,8 @@ void game_state_reset(void) {
     s32 i;
 
     /* Stop all audio */
-    music_volume(0);  /* Stop all sounds */
-    sfx_play(0);      /* Stop music */
+    music_volume_set(0.0f);  /* Stop all sounds */
+    sound_stop(0, 0.0f);     /* Stop music */
 
     /* Clear all particle effects */
     for (i = 0; i < 256; i++) {
