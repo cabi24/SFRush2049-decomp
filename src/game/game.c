@@ -315,7 +315,7 @@ extern void *effect_slots[];
 extern u32 ghost_data_buffer[32];  /* Data array */
 extern s32 ghost_frame_count;
 extern u32 best_lap_times[12];  /* Lap times */
-extern void *track_scores[];
+extern s32 track_scores[];
 extern s32 stats_total_races;
 extern s32 stats_total_wins;
 extern s32 stats_total_stunts;
@@ -351,7 +351,7 @@ extern s32 gRaceStartFrame;           /* 0x80142B68 - race_start_frame - frame w
 extern s32 gCurrentRaceTime;          /* current_race_time - current race elapsed time */
 extern s32 gCurrentLapTime;           /* 0x80142B1C - current_lap_time */
 extern s32 gLastLapTime;              /* 0x80142B24 - last_lap_total */
-extern void *split_display_active[];
+extern s32 split_display_active[];
 extern s32 gSplitTimeFrames[4];       /* 0x80142B30 - split_time_frames */
 extern s32 gTimeExpiredFlag;          /* 0x80142B40 - time_expired_flag */
 extern s32 gBestLapTime;              /* 0x80142B20 - best_lap_time */
@@ -371,29 +371,29 @@ extern s32 game_unlock_id;
 extern s32 unlock_display_timer;
 extern s32 save_queue_flag;
 extern s32 unlock_message_id;
-extern void *player_status[];
-extern void *gPlayerLapCount[];       /* 0x80142B78 - player_lap_count */
-extern void *gPlayerCheckpoint[];     /* 0x80142B88 - player_checkpoint */
-extern void *gPlayerRaceTime[];       /* 0x80142B98 - player_race_time */
-extern void *player_finished_flag[];
-extern void *player_entries[];
-extern void *player_respawn_count[];
+extern s32 player_status[];
+extern s32 gPlayerLapCount[];       /* 0x80142B78 - player_lap_count */
+extern s32 gPlayerCheckpoint[];     /* 0x80142B88 - player_checkpoint */
+extern s32 gPlayerRaceTime[];       /* 0x80142B98 - player_race_time */
+extern s32 player_finished_flag[];
+extern s32 player_entries[];
+extern s32 player_respawn_count[];
 extern s32 num_drones;
 extern s32 gRacePhase;                /* 0x80142B6C - race_phase */
 extern s32 gCountdownTicks;           /* 0x80142B10 - countdown_ticks */
 extern s32 gRaceNumLaps;              /* 0x80142B70 - race_num_laps */
-extern void *player_score_array[];
-extern void *player_combo[];
-extern void *player_multiplier[];
-extern void *player_frags[];
-extern void *player_deaths[];
+extern s32 player_score_array[];
+extern s32 player_combo[];
+extern s32 player_multiplier[];
+extern s32 player_frags[];
+extern s32 player_deaths[];
 /* player_lives declared below with proper type */
 extern s32 ghost_frame_count;
 extern s32 ghost_recording_flag;
 extern s32 new_record_flag;
 extern s32 gNewBestLapFlag;           /* 0x80142B74 - new_best_lap_flag */
 extern s32 new_stunt_record_flag;
-extern void *gTrackParTimes[];        /* 0x80142BB0 - track_par_times */
+extern s32 gTrackParTimes[];        /* 0x80142BB0 - track_par_times */
 extern s32 total_races;
 extern s32 total_wins;
 extern s32 total_distance;
@@ -1403,7 +1403,7 @@ extern s32 race_sub_state;       /* Race sub-state */
 extern s32 current_player_index;       /* Current player index */
 extern s8  player_active_flag;       /* Player active flag */
 extern s8  secondary_active_flag;       /* Secondary active flag */
-extern void* object_list_head;     /* Object list head */
+extern void** object_list_head;     /* Object list head */
 extern f32 game_timer_value;       /* Timer value */
 
 /* External functions for race states */
@@ -1990,7 +1990,7 @@ void effects_update_emitters(void) {
 
 end_loop:
     /* Call cleanup functions */
-    explosion_spawn();
+    particles_cleanup();
 
     /* Call final cleanup with flag based on second emitter count */
     {
@@ -5610,8 +5610,6 @@ void object_countdown_process(void *a0, s16 a1) {
 extern u32 fx_slot_array[];        /* Effect slot array (4 slots, 124 bytes each) */
 extern f32 effect_timing_float;          /* Effect timing float */
 
-extern void memset_custom(void*, s32, s32);  /* memset */
-
 /**
 /*
  * effect_system_init (effect_system_init)
@@ -5786,7 +5784,7 @@ void list_item_remove_synced(void *a0) {
 
 /* Multi-player coordinate update external references */
 extern void pre_update(void); /* Pre-update function */
-extern void audio_stream_update(s16, void*, void*);  /* Coordinate transform */
+extern void player_coords_transform(s16, void*, void*);  /* Coordinate transform */
 extern void post_update(s32 soundId); /* Post-update function */
 
 /**
@@ -5821,7 +5819,7 @@ void player_coords_update(void) {
     i = 1;
 
     while (i < player_count) {
-        audio_stream_update(*(srcBase + 123), src, dst);  /* offset 246 = 123 shorts */
+        player_coords_transform(*(srcBase + 123), src, dst);  /* offset 246 = 123 shorts */
         i++;
         srcBase = (s16*)((u8*)srcBase + 952);
         src += 952;
@@ -5844,6 +5842,7 @@ done:
  * with save_game_to_pak.
  */
 extern void *object_alloc_free_list(s32 soundId, s32 flags);
+extern void save_game_to_pak(void);
 
 void object_spawn_linked(void *a0) {
     s16 index;
@@ -6350,7 +6349,6 @@ extern void pool_system_reset(s32 slot, void *data, s32 size); /* Write save dat
 
 /**
 extern void particle_spawn(void *a0); /* Process with flag */
-extern void object_destroy(void *a0); /* Process without flag */
 extern void leaderboard_update(void *a0); /* Clear structure */
 
 /**
@@ -6807,13 +6805,15 @@ void rdp_primdepth_set(s16 depth) {
 
 /*
 
- * sync_init_conditional (100 bytes)
- * Conditional sync initialization
+ * sync_init_global (100 bytes)
+ * Global sync initialization with no parameter
  * t6 preloaded with flag from v0
  */
-void sync_init_conditional(void) {
-    u8 flag = gSyncInitFlag;
+void sync_init_global(void) {
+    u8 flag;
     s32 outVal;
+
+    flag = gSyncInitFlag;
 
     if (flag == 0) {
         gSyncInitFlag = 1;
@@ -7220,15 +7220,17 @@ void vector_rotate_axis2(f32 angle, f32 *vec) {
  */
 void sync_rom_load_cond(void) {
     s32 flag;  /* t6 preload */
+    void *modelAddr;
 
     flag = 0;  /* Preload */
+    modelAddr = (void *)(u32)0x8039A400;
 
     if (flag == 0) {
         return;
     }
 
     state_get((void *)0x80152770, 0, 1);  /* sync_acquire */
-    model_render((void *)0x8039A400, 0);
+    model_render(modelAddr, 0);
     state_set((void *)0x80152770, 0, 0);  /* sync_release */
 
     *(u8 *)0x8012ED00 = 0;
@@ -7930,6 +7932,9 @@ void game_reset_attract(void) {
     game_unpause();
 }
 
+/* Forward declaration */
+extern void game_full_reset(void);
+
 /*
 
  * game_cleanup_reset (264 bytes)
@@ -8106,6 +8111,9 @@ void save_game_to_pak() {
         return;
     }
 }
+
+/* Forward declaration */
+extern void texture_dl_process(void *texData);
 
 /*
 
@@ -9374,6 +9382,9 @@ void string_copy_format(void *dest, u8 *src, s8 x, s8 y, s8 z) {
     }
 }
 
+/* Forward declaration */
+extern void drone_ai_update(void *entity);
+
 /*
 
  * entity_tick_main (2684 bytes)
@@ -9588,11 +9599,11 @@ void audio_channel_setup(void *params, s32 channel) {
 
 /*
 
- * sound_effect_play (472 bytes)
- * Sound effect trigger - play a sound effect
+ * sound_effect_play_priority (472 bytes)
+ * Sound effect trigger - play a sound effect with priority
  * dl_push
  */
-void sound_effect_play(s32 soundId, s32 priority) {
+void sound_effect_play_priority(s32 soundId, s32 priority) {
     s32 channel;
     s32 *channelState;
     s32 lowestPri;
@@ -9946,11 +9957,11 @@ void audio_timing_sync(void) {
 
 /*
 
- * sound_priority_set (236 bytes)
+ * sound_priority_set_channel (236 bytes)
  * Sound priority management - set channel priority
- * sound_priority_set
+ * sound_priority_set_channel
  */
-void sound_priority_set(s32 channel, s32 priority) {
+void sound_priority_set_channel(s32 channel, s32 priority) {
     s32 *channelState;
 
     if (channel < 0 || channel >= 16) {
@@ -10339,7 +10350,7 @@ void entity_pos_validate(void *entity, s32 flags) {
     }
 
     /* Process position validation... */
-    sprite_draw(entity + 10, 0, 0, 0, 0);
+    sprite_draw((u8 *)entity + 10, 0, 0, 0, 0);
 }
 
 /*
@@ -10426,6 +10437,9 @@ s32 entity_flag_check(void *entity, s32 flagMask) {
     flags = *(s32 *)((u8 *)entity + 0x0C);
     return (flags & flagMask) != 0;
 }
+
+/* Forward declaration for explosion_spawn */
+extern void explosion_spawn(f32 *pos, s32 type, s32 count);
 
 /*
 
@@ -10894,6 +10908,9 @@ void lighting_calc(f32 *color, f32 *normal, f32 *lightDir) {
  * Track segment loading - load track segment from ROM with GZIP decompression
  * Address: 0x800A1648
  */
+/* Forward declaration */
+extern void track_data_decompress(void *dest, void *src, s32 size);
+
 void track_segment_load(s32 segmentId) {
     u32 *segmentTable;
     u32 romAddr, segmentSize;
@@ -11446,6 +11463,9 @@ void tire_skid_mark(void *tire, f32 *pos, f32 intensity) {
     /* Advance index (circular buffer) */
     *skidIndex = (idx + 1) % 64;  /* 64 entry buffer */
 }
+
+/* Forward declaration */
+extern void engine_particle_effect(void *car, s32 effectType);
 
 /*
 
@@ -12442,6 +12462,9 @@ void tire_force_calc(void *tire, f32 normalForce, f32 driveTorque) {
     *lonForce = tractionForce;
 }
 
+/* Forward declaration */
+extern void ai_avoid_obstacles(void *car, void *obstacles);
+
 /*
 
  * ai_update_car (3276 bytes)
@@ -12772,6 +12795,8 @@ void ai_optimize_racing_line(void *car, void *track) {
  * ai_decide_strategy (2700 bytes)
  * AI decision making - high-level race decisions
  */
+extern s32 race_num_laps;  /* Number of laps in current race */
+
 void ai_decide_strategy(void *car) {
     s32 *aiState;
     s32 position;
@@ -13240,6 +13265,9 @@ void player_get_respawn_pos(void *player, f32 *respawnPos) {
     respawnPos[2] = cpPos[2] - cpNormal[2] * 20.0f;
 }
 
+/* Forward declaration for wing_deploy */
+extern void wing_deploy(void *car, s32 deploy);
+
 /*
 
  * player_update (2708 bytes)
@@ -13286,7 +13314,7 @@ void player_update(void *player, f32 dt) {
 
             /* Handle wing deployment (Rush 2049 feature) */
             if (wingDeploy != 0) {
-                wing_deploy(player);  /* Deploy wings */
+                wing_deploy(player, wingDeploy);  /* Deploy wings */
             }
 
             /* Update physics */
@@ -13366,6 +13394,10 @@ void player_update(void *player, f32 dt) {
 extern s32 total_checkpoints;          /* Total checkpoints */
 extern s32 finish_checkpoint_index;          /* Finish line checkpoint index */
 extern void voice_play(s32 voiceId); /* Play voice */
+extern s32 current_race_time;          /* Current race elapsed time */
+
+/* Forward declarations */
+extern void lap_record_time(void *player, s32 lapNum);
 
 void checkpoint_check_collision(void *car, void *checkpoint) {
     f32 *carPos, *cpPos, *cpNormal;
@@ -13630,6 +13662,9 @@ s32 player_get_lap(void *player) {
     return *(s32 *)((u8 *)player + 0x58);
 }
 
+/* Forward declaration */
+extern void race_show_results(void);
+
 /*
 
  * race_finish_player (1548 bytes)
@@ -13760,8 +13795,8 @@ void race_show_results(void) {
 
 /*
 
- * leaderboard_update (3580 bytes)
- * Leaderboard update
+ * leaderboard_process_race (3580 bytes)
+ * Leaderboard update after race
  *
  * Updates the race leaderboard with current standings.
  * Manages the top 10 best times per track.
@@ -13769,18 +13804,18 @@ void race_show_results(void) {
  * Leaderboard entry structure (per track):
  *   name[8], time (u32), date (u32)
  */
-extern u8 leaderboard[12][10][16];   /* Leaderboard entries [track][rank][data] */
+extern u8 leaderboard_data[12][10][16];   /* Leaderboard entries [track][rank][data] */
 
-void leaderboard_update(void) {
+void leaderboard_process_race(void) {
     s32 i, j;
     void *car;
     u32 finishTime;
     s32 finished;
     s32 rank;
-    u8 *leaderboard;
+    u8 *trackBoard;
 
     /* Get current track leaderboard */
-    leaderboard = leaderboard[leaderboard_track][0];
+    trackBoard = leaderboard_data[leaderboard_track][0];
 
     /* Check each car for potential leaderboard entry */
     for (i = 0; i < race_car_count; i++) {
@@ -13799,7 +13834,7 @@ void leaderboard_update(void) {
         /* Find rank on leaderboard */
         rank = -1;
         for (j = 0; j < 10; j++) {
-            u32 *entryTime = (u32 *)&leaderboard[leaderboard_track][j][8];
+            u32 *entryTime = (u32 *)&leaderboard_data[leaderboard_track][j][8];
             if (*entryTime == 0 || finishTime < *entryTime) {
                 rank = j;
                 break;
@@ -13812,14 +13847,14 @@ void leaderboard_update(void) {
             for (j = 9; j > rank; j--) {
                 s32 k;
                 for (k = 0; k < 16; k++) {
-                    leaderboard[leaderboard_track][j][k] = leaderboard[leaderboard_track][j-1][k];
+                    leaderboard_data[leaderboard_track][j][k] = leaderboard_data[leaderboard_track][j-1][k];
                 }
             }
 
             /* Insert new entry */
             /* Name will be filled by high score entry screen */
-            *(u32 *)&leaderboard[leaderboard_track][rank][8] = finishTime;
-            *(u32 *)&leaderboard[leaderboard_track][rank][12] = 0;  /* Date placeholder */
+            *(u32 *)&leaderboard_data[leaderboard_track][rank][8] = finishTime;
+            *(u32 *)&leaderboard_data[leaderboard_track][rank][12] = 0;  /* Date placeholder */
         }
     }
 }
@@ -13842,7 +13877,7 @@ s32 hiscore_check_rank(s32 time) {
 
     /* Check against current track leaderboard */
     for (j = 0; j < 10; j++) {
-        u32 *entryTime = (u32 *)&leaderboard[leaderboard_track][j][8];
+        u32 *entryTime = (u32 *)&leaderboard_data[leaderboard_track][j][8];
 
         if (*entryTime == 0) {
             /* Empty slot - qualifies */
@@ -13858,6 +13893,9 @@ s32 hiscore_check_rank(s32 time) {
     /* Didn't qualify */
     return 0;
 }
+
+/* Forward declaration */
+extern void hiscore_save_pending(void);
 
 /*
 
@@ -13888,12 +13926,12 @@ void hiscore_insert_entry(s32 position, u8 *name, s32 time) {
     /* Shift entries down */
     for (j = 9; j > rank; j--) {
         for (k = 0; k < 16; k++) {
-            leaderboard[leaderboard_track][j][k] = leaderboard[leaderboard_track][j-1][k];
+            leaderboard_data[leaderboard_track][j][k] = leaderboard_data[leaderboard_track][j-1][k];
         }
     }
 
     /* Insert new entry */
-    entry = leaderboard[leaderboard_track][rank];
+    entry = leaderboard_data[leaderboard_track][rank];
 
     /* Copy name (up to 8 characters) */
     for (k = 0; k < 8; k++) {
@@ -14303,7 +14341,7 @@ void audio_stream_start(s32 streamId, void *data) {
 
     /* Start DMA for first buffer */
     osPiStartDma((OSIoMesg *)0x80170900, 0, OS_READ,
-                 (u32)data + 4, (void *)0x80171000 + streamId * 0x1000,
+                 (u32)data + 4, (void *)(0x80171000 + streamId * 0x1000),
                  0x1000, NULL);
 }
 
@@ -14355,7 +14393,7 @@ s32 audio_stream_update(s32 streamId) {
         /* Start DMA for next buffer */
         osPiStartDma((OSIoMesg *)0x80170900, 0, OS_READ,
                      (u32)streamData[streamId] + 4 + streamPos[streamId],
-                     (void *)0x80171000 + streamId * 0x1000,
+                     (void *)(0x80171000 + streamId * 0x1000),
                      bytesToRead, NULL);
 
         streamPos[streamId] += bytesToRead;
@@ -16039,6 +16077,9 @@ void menu_track_select(void *menu) {
     }
 }
 
+/* Forward declaration for billboard_render */
+extern void billboard_render(f32 *pos, s32 spriteId);
+
 /*
 
  * menu_car_select (1228 bytes)
@@ -16514,7 +16555,7 @@ void mempak_operation(s32 operation) {
                 /* Clear magic number */
                 slotData[0] = 0;
 
-                result = osPfsDeleteFile(pfs, 0, slot);
+                result = osPfsDeleteFile(pfs, 0, slot, (u8 *)"RUSH2049", (u8 *)"SAV");
                 *operationResult = (result == 0) ? 1 : -5;
             }
             break;
@@ -17198,6 +17239,9 @@ void replay_ui_draw(void *replay) {
     draw_text(50, 230, "A:Play/Pause B:Exit C:Camera L/R:Speed", 0x666666FF);
 }
 
+/* Forward declaration */
+extern void rain_render(f32 intensity);
+
 /*
 
  * weather_update (1440 bytes)
@@ -17406,13 +17450,13 @@ void particles_update(void *particles) {
 
 /*
 
- * explosion_spawn (1176 bytes)
+ * explosion_spawn_at_pos (1176 bytes)
  * Explosion effect
  *
  * Creates an explosion at the given position.
  * Spawns particles, camera shake, and sound.
  */
-void explosion_spawn(f32 *pos, f32 size) {
+void explosion_spawn_at_pos(f32 *pos, f32 size) {
     s32 *particlePool;
     s32 *particleIndex;
     s32 numParticles, i;
@@ -17949,6 +17993,9 @@ void lens_flare_render(void *camera, f32 *sunPos) {
     }
 }
 
+/* Forward declaration for horizon_render */
+extern void horizon_render(void *camera);
+
 /*
 
  * sky_render (2284 bytes)
@@ -18271,6 +18318,9 @@ void crowd_render(void *crowd) {
     f32 *cameraPos;
     f32 dx, dz, dist;
     s32 animOffset;
+    f32 *pos;
+    s32 baseFrame;
+    s32 spriteId;
 
     if (crowd == NULL) {
         return;
@@ -18287,8 +18337,8 @@ void crowd_render(void *crowd) {
     animOffset = (random_seed2 >> 3) % 4;
 
     for (i = 0; i < numSpectators; i++) {
-        f32 *pos = &positions[i * 3];
-        s32 baseFrame = animFrames[i];
+        pos = &positions[i * 3];
+        baseFrame = animFrames[i];
 
         /* Distance culling */
         dx = pos[0] - cameraPos[0];
@@ -18300,7 +18350,6 @@ void crowd_render(void *crowd) {
         }
 
         /* LOD - use simpler sprite at distance */
-        s32 spriteId;
         if (dist > 100.0f) {
             spriteId = 0x60;  /* Distant crowd sprite */
         } else {
@@ -18327,6 +18376,8 @@ void billboard_render(f32 *pos, s32 spriteId) {
     f32 screenX, screenY;
     f32 scale;
     s32 size;
+    f32 dot;
+    f32 invDist;
 
     if (pos == NULL) {
         return;
@@ -18346,13 +18397,13 @@ void billboard_render(f32 *pos, s32 spriteId) {
     }
 
     /* Check if in front of camera */
-    f32 dot = dx * cameraDir[0] + dy * cameraDir[1] + dz * cameraDir[2];
+    dot = dx * cameraDir[0] + dy * cameraDir[1] + dz * cameraDir[2];
     if (dot < 0.0f) {
         return;  /* Behind camera */
     }
 
     /* Project to screen (simplified perspective) */
-    f32 invDist = 200.0f / dist;
+    invDist = 200.0f / dist;
     screenX = 160.0f + dx * invDist;
     screenY = 120.0f - dy * invDist;
 
@@ -19157,6 +19208,10 @@ void net_state_sync(void *state) {
     net_message_send(syncBuffer, bufferPos);
 }
 
+/* Forward declarations for network functions */
+extern void net_player_join(s32 playerSlot);
+extern void net_game_start(void);
+
 /*
  * net_lobby_update - Handle multiplayer lobby state and player management
  * Address: 0x800F13F0
@@ -19349,7 +19404,7 @@ void net_game_start(void) {
     net_message_send(startMsg, 12);
 
     /* Transition to countdown state */
-    *gstate = 8;  /* COUNTDOWN state */
+    *gstate_ptr = 8;  /* COUNTDOWN state */
 }
 
 /*
@@ -19494,7 +19549,7 @@ void net_error_handle(s32 errorCode) {
         case 5:  /* Host disconnected */
             /* End multiplayer session */
             *netState = 0;
-            *gstate = 0;  /* Return to attract/menu */
+            *gstate_ptr = 0;  /* Return to attract/menu */
             break;
 
         default:
@@ -19949,6 +20004,9 @@ void ghost_render(void *ghost) {
     /* Update display list pointer */
     *((Gfx **)gfx_ptr_temp) = gfx;
 }
+
+/* Forward declaration for stunt_combo_update */
+extern void stunt_combo_update(void *car, s32 stuntType);
 
 /*
  * stunt_update - detects and scores aerial stunts
@@ -21100,6 +21158,9 @@ void loading_screen(f32 progress) {
     }
 }
 
+/* Forward declaration for pause_toggle */
+extern void pause_toggle(s32 pause);
+
 /*
 
  * pause_menu - In-race pause screen with options
@@ -21266,6 +21327,16 @@ void pause_toggle(s32 pause) {
     }
 }
 
+/* Race timing globals */
+extern s32 race_start_frame;
+extern s32 last_lap_total;
+extern s32 split_time_frames[];
+extern s32 time_expired_flag;
+extern s32 current_lap_time;
+extern s32 race_time_limit;
+extern s32 best_lap_time;
+extern s32 pause_accumulator;
+
 /*
 
  * game_timer_update - Updates race clock and lap times
@@ -21322,6 +21393,9 @@ void game_timer_update(void) {
         best_lap_time = current_lap_time;  /* New best lap */
     }
 }
+
+/* Forward declaration for unlock_trigger */
+extern void unlock_trigger(s32 unlockId);
 
 /*
 
@@ -21555,6 +21629,14 @@ void progress_save(void) {
     savedata_write(0, saveData, offset);
 }
 
+/* Race init globals (non-duplicate) */
+extern s32 player_lap_count[];
+extern s32 player_checkpoint[];
+extern s32 player_race_time[];
+extern s32 race_phase;
+extern s32 countdown_ticks;
+extern s32 player_lives[];
+
 /*
 
  * race_init - Initialize race state for new race
@@ -21662,6 +21744,18 @@ void race_init(void *race) {
     game_pause_state = 0;
     pause_overlay_mode = 0;
 }
+
+/* Race globals (non-duplicate) */
+extern s32 track_par_times[];
+extern s32 total_races;
+extern s32 total_wins;
+extern s32 session_distance;
+extern s32 total_distance;
+extern s32 ghost_recording_flag;
+extern s32 ghost_frame_count;
+extern s32 save_queue_flag;
+extern s32 new_record_flag;
+extern s32 new_best_lap_flag;
 
 /*
 
@@ -21864,14 +21958,14 @@ void object_render(void *object, void *matrix) {
 }
 
 /*
- * audio_queue_process @ 0x8008A77C (676 bytes)
+ * audio_queue_dispatch @ 0x8008A77C (676 bytes)
  * Audio queue processing - Processes pending audio commands
  *
  * Dequeues and executes audio commands from the audio subsystem queue.
  *
  * @param queue Audio command queue structure
  */
-void audio_queue_process(void *queue) {
+void audio_queue_dispatch(void *queue) {
     u8 *queueData;
     s32 head, tail;
     s32 *cmdPtr;
@@ -21924,6 +22018,9 @@ void audio_queue_process(void *queue) {
 
     *(s32 *)(queueData + 0x00) = head;
 }
+
+/* Forward declaration for track_segment_render */
+extern void track_segment_render(void *segment);
 
 /*
  * track_geometry_process (particle_system) (5368 bytes)
@@ -22038,10 +22135,10 @@ void track_segment_render(void *segment) {
 
 /*
 
- * track_bounds_check (track_collision_curb) (168 bytes)
+ * track_bounds_check_pos (track_collision_curb) (168 bytes)
  * Track bounds check - check if position is within track boundaries
  */
-s32 track_bounds_check(f32 *pos) {
+s32 track_bounds_check_pos(f32 *pos) {
     f32 *trackBounds;
     f32 x, y, z;
 
@@ -22218,7 +22315,7 @@ s32 track_collision_test(f32 *start, f32 *end, f32 *hitPoint) {
         }
 
         /* Check bounds */
-        if (track_bounds_check(testPos) != 0) {
+        if (track_bounds_check_pos(testPos) != 0) {
             if (hitPoint != NULL) {
                 hitPoint[0] = testPos[0];
                 hitPoint[1] = testPos[1];
@@ -22439,7 +22536,7 @@ void save_delete(s32 slot) {
     result = osPfsReadWriteFile(&pfs, slot, PFS_WRITE, 0, 140, emptyData);
     if (result != 0) {
         /* Write failed, try to delete file entry */
-        osPfsDeleteFile(&pfs, 0, slot, "RUSH2049");
+        osPfsDeleteFile(&pfs, 0, slot, (u8 *)"RUSH2049", (u8 *)"SAV");
     }
 }
 
@@ -22555,10 +22652,10 @@ s32 cpak_read(s32 controller, void *buffer, s32 offset, s32 size) {
 
 /*
 
- * audio_init (396 bytes)
+ * audio_subsystem_init (396 bytes)
  * Audio init subsystem - initialize N64 audio
  */
-void audio_init(void) {
+void audio_subsystem_init(void) {
     s32 *audioState;
     s32 *channelStates;
     s32 i;
@@ -22713,7 +22810,7 @@ void sound_bank_load(s32 bankId) {
     }
 
     /* DMA load from ROM */
-    osPiStartDma(0, OS_READ, romAddr, (void *)ramAddr, size, 0);
+    osPiStartDma(NULL, 0, OS_READ, romAddr, (void *)ramAddr, size, NULL);
 
     *bankState = 1;  /* Mark as loaded */
 }
@@ -22779,7 +22876,7 @@ void music_seq_load(s32 seqId) {
     }
 
     /* Load sequence to RAM */
-    osPiStartDma(0, OS_READ, romAddr, (void *)0x80135000, size, 0);
+    osPiStartDma(NULL, 0, OS_READ, romAddr, (void *)0x80135000, size, NULL);
 
     /* Store current sequence */
     seqState[0] = seqId;
@@ -23592,13 +23689,13 @@ void voice_play(s32 voiceId) {
 
 /*
 
- * voice_stop_2 (224 bytes)
+ * voice_stop_all (224 bytes)
  * Voice stop
  *
  * Stops the currently playing voice and clears the queue.
  * Similar to arcade kill_announcer[] usage in game.c.
  */
-void voice_stop(void) {
+void voice_stop_all(void) {
     /* Stop current voice */
     if (voice_handle != 0) {
         sound_stop(voice_handle, 0.0f);
@@ -23918,7 +24015,7 @@ void audio_ducking(s32 priority) {
  * Higher priority sounds won't be stolen by lower priority.
  */
 
-void sound_priority_set(s32 handle, s32 priority) {
+void sound_priority_set_handle(s32 handle, s32 priority) {
     /* Validate handle */
     if (handle == 0) {
         return;
@@ -23967,7 +24064,7 @@ void sound_loop_set(s32 handle, s32 loop) {
 /*
  * Sound pitch set helper
  */
-void sound_pitch_set(s32 handle, f32 pitch) {
+void sound_pitch_set_value(s32 handle, f32 pitch) {
     s32 pitchVal;
 
     /* Validate handle */
@@ -23993,13 +24090,13 @@ void sound_pitch_set(s32 handle, f32 pitch) {
 
 /*
 
- * sound_volume_set (176 bytes)
+ * sound_volume_set_value (176 bytes)
  * Sound volume set
  *
  * Sets volume for a playing sound.
  * volume: 0.0 = silent, 1.0 = full volume
  */
-void sound_volume_set(s32 handle, f32 volume) {
+void sound_volume_set_value(s32 handle, f32 volume) {
     s32 volumeVal;
 
     /* Validate handle */
@@ -24363,6 +24460,7 @@ void entity_audio_update(void *entity) {
     s32 i;
     f32 occlusion, volume;
     s32 handle;
+    f32 sourcePos[3];
 
     if (entity == NULL) {
         return;
@@ -24391,7 +24489,6 @@ void entity_audio_update(void *entity) {
         }
 
         /* Get sound source position (relative to entity or absolute) */
-        f32 sourcePos[3];
         if ((flags & (0x100 << i)) != 0) {
             /* Absolute position */
             sourcePos[0] = soundPos[i * 3 + 0];
@@ -24420,6 +24517,9 @@ void entity_audio_update(void *entity) {
         }
     }
 }
+
+/* Forward declaration for camera_collision_avoid */
+extern void camera_collision_avoid(void *camera);
 
 /*
 
@@ -24577,7 +24677,7 @@ void camera_smooth_follow(void *camera, f32 *targetPos, f32 smoothing) {
  * Switches between camera modes (chase, first-person, orbit, etc.)
  * Mode values: 0=chase, 1=first-person, 2=orbit, 3=cinematic
  */
-void camera_mode_set(void *camera, s32 mode) {
+void camera_mode_switch(void *camera, s32 mode) {
     s32 *camMode;
     f32 *distance, *yaw, *pitch;
 
@@ -24692,12 +24792,12 @@ void camera_zoom_set(void *camera, f32 zoom) {
 
 /*
 
- * camera_fov_set (420 bytes)
+ * camera_fov_set_value (420 bytes)
  * Camera FOV set
  *
  * Sets camera field of view in radians
  */
-void camera_fov_set(void *camera, f32 fov) {
+void camera_fov_set_value(void *camera, f32 fov) {
     f32 *camFov;
     f32 minFov, maxFov;
 
@@ -28630,6 +28730,11 @@ void network_sync_full(void) {
     s32 *lapCount;
     s32 *position;
     s32 *checkpoint;
+    s32 myProgress;
+    s32 myPosition;
+    s32 *otherLap;
+    s32 *otherCP;
+    s32 otherProgress;
 
     if (net_host_state == 0) {
         return;
@@ -28649,17 +28754,17 @@ void network_sync_full(void) {
         checkpoint = (s32 *)(carBase + i * 0x400 + 0x1A8);
 
         /* Calculate race position based on progress */
-        s32 myProgress = (*lapCount * 100) + *checkpoint;
-        s32 myPosition = 1;
+        myProgress = (*lapCount * 100) + *checkpoint;
+        myPosition = 1;
 
         for (j = 0; j < numPlayers; j++) {
             if (i == j || player_slots[j] == 0) {
                 continue;
             }
 
-            s32 *otherLap = (s32 *)(carBase + j * 0x400 + 0x1A0);
-            s32 *otherCP = (s32 *)(carBase + j * 0x400 + 0x1A8);
-            s32 otherProgress = (*otherLap * 100) + *otherCP;
+            otherLap = (s32 *)(carBase + j * 0x400 + 0x1A0);
+            otherCP = (s32 *)(carBase + j * 0x400 + 0x1A8);
+            otherProgress = (*otherLap * 100) + *otherCP;
 
             if (otherProgress > myProgress) {
                 myPosition++;
@@ -30386,9 +30491,11 @@ void camera_track_spline(void *camera, void *spline, f32 t) {
 
     /* Target slightly ahead on spline */
     {
-        f32 aheadT = t + 0.05f;
+        f32 aheadT;
+        s32 aSeg;
+        aheadT = t + 0.05f;
         if (aheadT > 1.0f) aheadT = 1.0f;
-        s32 aSeg = (s32)(aheadT * (numPoints - 3));
+        aSeg = (s32)(aheadT * (numPoints - 3));
         if (aSeg > numPoints - 4) aSeg = numPoints - 4;
 
         camTarget[0] = points[(aSeg+1)*3];
@@ -31186,6 +31293,7 @@ void draw_speedometer(f32 speed) {
     s32 needleAngle;
     s32 dialX, dialY;
     s32 digitalX, digitalY;
+    s32 needleElement;
 
     /* Convert speed to MPH */
     speedMph = (s32)(speed * speed_mph_scale);
@@ -31205,7 +31313,7 @@ void draw_speedometer(f32 speed) {
 
     /* Draw needle (element varies by angle) */
     /* Needle sprites: elements 128-143 for 16 angle positions */
-    s32 needleElement = 128 + (needleAngle / 12);  /* 180/16 = ~11.25 degrees per sprite */
+    needleElement = 128 + (needleAngle / 12);  /* 180/16 = ~11.25 degrees per sprite */
     if (needleElement > 143) needleElement = 143;
     draw_ui_element(needleElement, dialX + 24, dialY + 24, 255, 0, 0);  /* Center of dial */
 
@@ -34322,6 +34430,7 @@ void race_setup_screen(void) {
     char *modeNames[4];
     char *lapOptions[5];
     char *difficultyNames[4];
+    s32 cursorY;
 
     modeNames[0] = "CIRCUIT";
     modeNames[1] = "TIME ATTACK";
@@ -34441,7 +34550,7 @@ void race_setup_screen(void) {
     }
 
     /* Draw cursor */
-    s32 cursorY = 70 + selectedItem * 25;
+    cursorY = 70 + selectedItem * 25;
     if (selectedItem == 6) cursorY = 227;
     draw_ui_element(56, 30, cursorY, 12, 12, 255);
 }
@@ -34609,6 +34718,8 @@ void multiplayer_setup(void) {
     s32 selectedItem;
     s32 numPlayers;
     s32 i;
+    s32 delta;
+    s32 cursorY;
 
     selectedItem = split_screen_config;
     numPlayers = split_num_players;
@@ -34629,7 +34740,7 @@ void multiplayer_setup(void) {
         sound_play_menu(12);
     }
     else if (input == 6 || input == 7) {
-        s32 delta = (input == 6) ? -1 : 1;
+        delta = (input == 6) ? -1 : 1;
         switch (selectedItem) {
             case 0:  /* Player count */
                 numPlayers = numPlayers + delta;
@@ -34713,7 +34824,7 @@ void multiplayer_setup(void) {
     }
 
     /* Draw cursor */
-    s32 cursorY = 70 + selectedItem * 25;
+    cursorY = 70 + selectedItem * 25;
     if (selectedItem >= 4) cursorY = 180 + (selectedItem - 4) * 25;
     draw_ui_element(56, 30, cursorY, 12, 12, 255);
 }
@@ -35288,6 +35399,7 @@ void ghost_race_setup(void) {
     char *ghostNames[4];
     s32 ghostTimes[4];
     char timeStr[12];
+    s32 ghostTime, mins, secs, cents;
 
     trackNames[0] = "MARINA";
     trackNames[1] = "HAIGHT";
@@ -35387,10 +35499,10 @@ void ghost_race_setup(void) {
         draw_text(ghostNames[selectedGhost], 140, 80, 255);
 
         /* Format ghost time */
-        s32 ghostTime = ghostTimes[selectedGhost];
-        s32 mins = ghostTime / 6000;
-        s32 secs = (ghostTime / 100) % 60;
-        s32 cents = ghostTime % 100;
+        ghostTime = ghostTimes[selectedGhost];
+        mins = ghostTime / 6000;
+        secs = (ghostTime / 100) % 60;
+        cents = ghostTime % 100;
         timeStr[0] = '0' + mins;
         timeStr[1] = ':';
         timeStr[2] = '0' + (secs / 10);
@@ -38698,11 +38810,11 @@ void track_texture_load(s32 textureId) {
 
 /*
 
- * billboard_render - Renders a camera-facing billboard sprite
+ * billboard_object_render - Renders a camera-facing billboard sprite object
  * Address: 0x800F64D4
  * Size: 1120 bytes
  */
-void billboard_render(void *billboard) {
+void billboard_object_render(void *billboard) {
     extern Gfx **gfx_dl_ptr;
     u8 *bbData = (u8 *)billboard;
     Gfx *gfx;
@@ -38756,7 +38868,7 @@ void sign_render(void *sign) {
     signType = *(s32 *)(signData + 0x0C);
 
     /* Render as billboard facing camera */
-    billboard_render(sign);
+    billboard_object_render(sign);
 }
 
 /*
@@ -38797,7 +38909,7 @@ void props_render(void *camera) {
         switch (propType) {
             case 0:  /* Cone */
             case 1:  /* Barrier */
-                billboard_render(prop);  /* As billboard */
+                billboard_object_render(prop);  /* As billboard */
                 break;
             case 2:  /* Tree */
             case 3:  /* Building */
@@ -40892,12 +41004,14 @@ void checkpoint_hit(void *car, s32 cpId) {
  * and checks for race finish.
  */
 void lap_complete(void *car) {
-    u8 *carData = (u8 *)car;
+    u8 *carData;
     s32 *cpMask;
     s32 *lapCount;
     s32 *lapTime;
     s32 *bestLap;
+    s32 currentLapTime;
 
+    carData = (u8 *)car;
     if (carData == NULL) {
         return;
     }
@@ -40913,7 +41027,7 @@ void lap_complete(void *car) {
     }
 
     /* Record lap time */
-    s32 currentLapTime = (s32)frame_counter - *lapTime;
+    currentLapTime = (s32)frame_counter - *lapTime;
 
     /* Check for best lap */
     if (*bestLap == 0 || currentLapTime < *bestLap) {
@@ -41304,6 +41418,7 @@ s32 wrong_way_detect(void *car) {
     f32 *nextCpPos;
     f32 toNext[3];
     f32 dot;
+    f32 len;
 
     if (carData == NULL) {
         return 0;
@@ -41327,7 +41442,7 @@ s32 wrong_way_detect(void *car) {
     toNext[2] = nextCpPos[2] - carPos[2];
 
     /* Normalize */
-    f32 len = sqrtf(toNext[0] * toNext[0] + toNext[2] * toNext[2]);
+    len = sqrtf(toNext[0] * toNext[0] + toNext[2] * toNext[2]);
     if (len < 0.001f) {
         return 0;
     }
@@ -41613,6 +41728,7 @@ void brake_apply(void *car, f32 force) {
     f32 *velocity;
     f32 speed;
     f32 decel;
+    f32 factor;
 
     if (carData == NULL || force <= 0.0f) {
         return;
@@ -41633,7 +41749,7 @@ void brake_apply(void *car, f32 force) {
     decel = force * 30.0f * (1.0f / 60.0f);  /* Max 30 m/s^2 */
 
     /* Apply deceleration in velocity direction */
-    f32 factor = 1.0f - (decel / speed);
+    factor = 1.0f - (decel / speed);
     if (factor < 0.0f) factor = 0.0f;
 
     velocity[0] *= factor;
@@ -42345,8 +42461,11 @@ void battle_mode_update(void) {
     extern s32 player_ammo[4]; /* Player ammo */
     s32 i, j;
     void *car;
+    void *otherCar;
     f32 *pos, *otherPos;
     f32 dx, dy, dz, dist;
+    f32 closestDist;
+    s32 closestPlayer;
     s32 *health;
     s32 *weapon, *ammo;
 
@@ -42382,12 +42501,12 @@ void battle_mode_update(void) {
 
             /* Find attacker and award point */
             /* (simplified - award to closest other player) */
-            f32 closestDist = 999999.0f;
-            s32 closestPlayer = -1;
+            closestDist = 999999.0f;
+            closestPlayer = -1;
 
             for (j = 0; j < 4; j++) {
                 if (j == i) continue;
-                void *otherCar = (void *)((u8 *)&game_car + j * 0x400);
+                otherCar = (void *)((u8 *)&game_car + j * 0x400);
                 if (otherCar == NULL) continue;
 
                 otherPos = (f32 *)((u8 *)otherCar + 0x24);
