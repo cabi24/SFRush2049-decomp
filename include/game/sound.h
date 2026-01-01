@@ -33,6 +33,10 @@
 #define SFX_MENU_BACK       0x62
 #define SFX_BOOST           0x70
 #define SFX_WING_EXTEND     0x71
+#define SFX_WING_DEPLOY     0x71    /* Alias for extend */
+#define SFX_WING_RETRACT    0x72
+#define SFX_WING_WHOOSH     0x73
+#define SFX_WING_DAMAGE     0x74
 
 /* Music track IDs */
 #define MUS_MENU            0x00
@@ -303,8 +307,12 @@ void handle_reverb(void);
 void StartRadio(u8 radio_station);
 void StopRadio(u8 radio_station);
 void music(s32 action, u8 station);
+#ifndef Do_it
 #define Do_it       1
+#endif
+#ifndef Undo_it
 #define Undo_it     0
+#endif
 
 /* Arcade helper function (external, for coordinate transform) */
 void sound_wparms(u16 cmd, s32 nargs, u16 *parms);
