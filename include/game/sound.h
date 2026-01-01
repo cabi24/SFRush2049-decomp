@@ -442,6 +442,114 @@ s32 sndStartManualEngine(u16 engineID, u16 rpm, u16 etorque);
 s32 sndUpdateManualEngine(u16 rpm, s16 etorque);
 
 /* Kill sound */
-s32 sndKillSound(u8 handle);
+s32 sndKillMoob(u16 handle);
+s32 sndKillAllMoobs(void);
+
+/* Engine crash sound */
+s32 sndEngineCrash(u16 speed);
+
+/* Test sound (for debugging) */
+s32 doSndTest(u16 snd_id, u16 pitch, u16 volume);
+
+/* MOOB (Motion Object) update for drone engines */
+s32 sndUpdateMoobEngine(u16 objID, u8 handle, u8 priority,
+                        s32 x, s32 y,
+                        u16 velocity, u16 vel_angle, u16 rpm, u16 etorque);
+
+/* ========================================================================
+ * Additional Arcade Sound Constants (sounds.c/sounds.h)
+ * ======================================================================== */
+
+/* Maximum volume constant */
+#define MAX_VOLUME          255
+
+/* Engine sound IDs (from arcade own_engine[] table) */
+#define S_AUDREY            0x8030      /* VW engine */
+#define S_GHR               0x8031      /* Standard engine */
+#define S_NSX               0x8032      /* NSX engine */
+#define S_TPM               0x8033      /* TPM engine */
+#define S_M_MULTIIDLE       0x8034      /* Multi-car idle */
+
+/* Tire squeal sound IDs */
+#define S_SQUEAL_LEFT       0x8070
+#define S_SQUEAL_RIGHT      0x8071
+#define S_SKID_CUSTOM1      0x8072
+#define S_PEELOUT           0x8073
+
+/* Road surface sound IDs */
+#define S_ROADNOISE         0x8074
+#define S_GRAVELNOISE       0x8075
+#define S_WINDNOISE         0x8076
+#define S_WATERROAD         0x8077
+
+/* Engine control commands */
+#define S_ENGINE_STOP       0x8023
+#define S_ENGINE_CRASH      0x8024
+
+/* MOOB control commands */
+#define S_MOOB_KILL_OBJECT  0x8011
+#define S_MOOB_KILL_ALL     0x8012
+#define S_MOOB_CHANGE_POSITION  0x8013
+#define S_MOOB_CHANGE_VELOCITY  0x8014
+#define S_MOOB_CHANGE_PITCH     0x8015
+#define S_MOOB_CHANGE_FILTER    0x8016
+
+/* Stop all sounds command */
+#define S_STOP_ALL_SNDS     0x8000
+
+/* ========================================================================
+ * Sound Handle Management (sounds.c)
+ * ======================================================================== */
+
+/* Car sound handles (for managing car sound channels) */
+extern u8 car_sound_handle[9];
+extern s16 sound_index;
+extern s32 sounds_are_present;
+
+/* Sound handle initialization */
+void init_car_sound_handles(void);
+u8 get_next_handle(void);
+
+/* Wait for sound queue to empty */
+void wait_for_sounds(void);
+
+/* Test if sounds are present */
+void test_sounds(void);
+
+/* Sound queue element */
+typedef struct sndEl {
+    s16 d[16];
+    u8  cnt;
+} sndEl;
+
+/* Sound queue structure */
+typedef struct sndQueue {
+    u32 head;
+    u32 tail;
+    sndEl q[SND_Q_SIZE];
+} sndQueue;
+
+/* ========================================================================
+ * Target Object Sound Types (carsnd.c)
+ * ======================================================================== */
+
+/* Object types for collision sounds (enum values match arcade target_types) */
+#define OBJ_CONE1           1
+#define OBJ_METER1          2
+#define OBJ_TREEA1          3
+#define OBJ_TREEB1          4
+#define OBJ_TREEC1          5
+#define OBJ_TREED1          6
+#define OBJ_TREEE1          7
+#define OBJ_WINDOWA1        8
+#define OBJ_WINDOWB1        9
+#define OBJ_FENCE1          10
+#define OBJ_POLE1           11
+#define OBJ_TLIGHT1         12
+#define OBJ_SLIGHT1         13
+
+/* External flags (from game state) */
+extern s32 demo_game;
+extern s32 coast_flag;
 
 #endif /* SOUND_H */

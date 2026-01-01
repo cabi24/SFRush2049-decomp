@@ -934,13 +934,63 @@ s32 sndUpdateManualEngine(u16 rpm, s16 etorque) {
 }
 
 /**
- * sndKillSound - Kill a sound by handle
- * Arcade: sounds.c kill sound functionality
+ * sndKillMoob - Kill a motion object sound by handle
+ * Arcade: sounds.c:sndKillMoob()
  */
-s32 sndKillSound(u8 handle) {
-    /* On N64, we don't track handles the same way */
+#ifdef NON_MATCHING
+s32 sndKillMoob(u16 handle) {
+    /* N64 stub - would send kill command to audio system */
     return 0;
 }
+#endif
+
+/**
+ * sndKillAllMoobs - Kill all motion object sounds
+ * Arcade: sounds.c:sndKillAllMoobs()
+ */
+#ifdef NON_MATCHING
+s32 sndKillAllMoobs(void) {
+    sound_stop_all();
+    return 0;
+}
+#endif
+
+/**
+ * sndEngineCrash - Engine crash sound (reduce speed suddenly)
+ * Arcade: sounds.c:sndEngineCrash()
+ */
+#ifdef NON_MATCHING
+s32 sndEngineCrash(u16 speed) {
+    /* N64 stub - would modulate engine sound down */
+    return 0;
+}
+#endif
+
+/**
+ * doSndTest - Test sound playback
+ * Arcade: sounds.c:doSndTest()
+ */
+#ifdef NON_MATCHING
+s32 doSndTest(u16 snd_id, u16 pitch, u16 volume) {
+    if (volume > 0) {
+        sound_play_vol(snd_id, (u8)(volume >> 1));
+    }
+    return 0;
+}
+#endif
+
+/**
+ * sndUpdateMoobEngine - Update drone engine sound with position
+ * Arcade: sounds.c:sndUpdateMoobEngine()
+ */
+#ifdef NON_MATCHING
+s32 sndUpdateMoobEngine(u16 objID, u8 handle, u8 priority,
+                        s32 x, s32 y,
+                        u16 velocity, u16 vel_angle, u16 rpm, u16 etorque) {
+    /* N64 stub - would update drone engine with 3D position */
+    return 0;
+}
+#endif
 
 /******* ARCADE-COMPATIBLE CAR SOUND FUNCTIONS (carsnd.c) *******/
 
@@ -1691,6 +1741,66 @@ void StartRadio(u8 radio_station) {
  */
 void StopRadio(u8 radio_station) {
     music(Undo_it, radio_station);
+}
+
+/* ========================================================================
+ * Sound Handle Management (sounds.c)
+ * ======================================================================== */
+
+/* Car sound handles for tire/road/wind sounds */
+u8 car_sound_handle[9];
+s16 sound_index;
+s32 sounds_are_present = 1;
+
+/* Next available handle counter */
+static u8 next_handle = 0;
+
+/**
+ * get_next_handle - Get next available sound handle
+ * Arcade: moobs.c:get_next_handle()
+ */
+u8 get_next_handle(void) {
+    u8 handle;
+    handle = next_handle;
+    next_handle++;
+    if (next_handle > 127) {
+        next_handle = 0;
+    }
+    return handle;
+}
+
+/**
+ * init_car_sound_handles - Initialize handles for car sounds
+ * Arcade: sounds.c:init_car_sound_handles()
+ */
+void init_car_sound_handles(void) {
+    s16 i;
+    for (i = 0; i < 9; i++) {
+        car_sound_handle[i] = get_next_handle();
+    }
+}
+
+/**
+ * wait_for_sounds - Wait until sound queue is empty
+ * Arcade: sounds.c:wait_for_sounds()
+ */
+void wait_for_sounds(void) {
+    s32 timeout;
+    timeout = IRQTIME;
+    /* Wait up to 0.5 seconds for sounds to finish */
+    while (IRQTIME - timeout < ONE_SEC / 2) {
+        /* N64: Would check audio queue here */
+        break;  /* Stub - exit immediately */
+    }
+}
+
+/**
+ * test_sounds - Check if sound hardware is present
+ * Arcade: sounds.c:test_sounds()
+ */
+void test_sounds(void) {
+    /* N64: Sound hardware is always present */
+    sounds_are_present = 1;
 }
 
 /******* DECOMPILED ROM FUNCTIONS *******/
