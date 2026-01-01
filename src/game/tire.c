@@ -546,3 +546,233 @@ s32 tire_is_spinning(TireState *tire) {
     return (tire->force.slipflag >= SLIP_ACCEL_SPIN &&
             tire->force.slipflag <= SLIP_BRAKE_SPIN);
 }
+
+/* ========================================================================
+ * ARCADE-COMPATIBLE FUNCTIONS (tires.c)
+ * ======================================================================== */
+
+/* Include physics header for MODELDAT definition */
+#include "game/physics.h"
+
+/**
+ * calctireuv - Calculate tire unit vectors and velocity
+ * Based on arcade: tires.c:calctireuv()
+ *
+ * Calculates the tire orientation relative to the road surface
+ * and transforms the tire velocity into tire coordinates.
+ */
+void calctireuv(f32 v[3], f32 w[3], f32 r[3], f32 steer,
+                UVect *caruvs, UVect *roaduvs,
+                UVect *tireuvs, f32 tirev[3]) {
+    f32 cartirev[3];
+    s16 ivec[3], roadz[3];
+    s16 sang, ssteer, csteer, cptch, sptch;
+
+    /* Calculate rotational velocity component at tire */
+    crossprod(w, r, cartirev);
+    /* Add translational velocity */
+    vecadd(cartirev, v, cartirev);
+
+    if (steer != 0.0f) {
+        /* Integer scaled steer angle */
+        sang = (s16)(steer * radtosdeg);
+
+        /* Integer sin and cos of steer angle */
+        ssteer = mssin(sang);
+        csteer = mscos(sang);
+
+        /* Build steered tire unit vectors */
+        tireuvs->uvs[0][0] = csteer;
+        tireuvs->uvs[1][0] = ssteer;
+        tireuvs->uvs[2][0] = 0;
+        tireuvs->uvs[0][1] = -ssteer;
+        tireuvs->uvs[1][1] = csteer;
+        tireuvs->uvs[2][1] = 0;
+        tireuvs->uvs[0][2] = 0;
+        tireuvs->uvs[1][2] = 0;
+        tireuvs->uvs[2][2] = 0x4000;
+    } else {
+        /* Identity matrix (no steer) */
+        tireuvs->uvs[0][0] = 0x4000;
+        tireuvs->uvs[1][0] = 0;
+        tireuvs->uvs[2][0] = 0;
+        tireuvs->uvs[0][1] = 0;
+        tireuvs->uvs[1][1] = 0x4000;
+        tireuvs->uvs[2][1] = 0;
+        tireuvs->uvs[0][2] = 0;
+        tireuvs->uvs[1][2] = 0;
+        tireuvs->uvs[2][2] = 0x4000;
+    }
+
+    /* Get road Z vector in universe coords */
+    ivec[XCOMP] = roaduvs->uvs[0][2];
+    ivec[YCOMP] = roaduvs->uvs[1][2];
+    ivec[ZCOMP] = roaduvs->uvs[2][2];
+
+    /* Transform to car body coords */
+    srwtobod(ivec, roadz, caruvs);
+
+    /* Calculate pitch from road normal */
+    shypotsincos(roadz[XCOMP], roadz[ZCOMP], &sptch, &cptch);
+
+    /* Pitch tire unit vectors to match road */
+    mpitch(sptch, cptch, tireuvs->uvs);
+
+    /* Generate floating point unit vectors */
+    makefpuvs(tireuvs);
+
+    /* Convert tire velocity to wheel coords */
+    rwtobod(cartirev, tirev, tireuvs);
+}
+
+/**
+ * dotireforce - Calculate tire forces with suspension
+ * Based on arcade: tires.c:dotireforce()
+ *
+ * Main tire force calculation including:
+ * - Suspension forces (spring + damping)
+ * - Anti-roll bar forces
+ * - Friction circle forces (lateral + traction)
+ */
+void dotireforce(MODELDAT *m, f32 tirev[3], f32 ottirev[3], UVect *tireuvs,
+                 tiredes *tire, f32 torque, f32 forcevec[3], f32 suscomp,
+                 f32 otsuscomp, f32 springrate, f32 arspringrate,
+                 f32 cdamping, f32 rdamping, s32 poortract, f32 airfact) {
+    f32 normal, damping, arforce;
+    f32 sideforce, traction;
+    f32 tireforcevec[3];
+    s32 i;
+
+    /* Reset tire constants to pavement if needed */
+    if (tire->Cstiff != tire->PaveCstiff) {
+        tire->Cstiff = tire->PaveCstiff;
+        tire->Cfmax = tire->PaveCfmax;
+        tire_constants(tire);
+    }
+
+    /* Calculate anti-roll bar force */
+    if ((suscomp > 0.0f) && (otsuscomp > 0.0f)) {
+        arforce = (suscomp - otsuscomp) * arspringrate;
+    } else {
+        arforce = 0.0f;
+    }
+
+    /* Select compression or rebound damping */
+    if (tirev[ZCOMP] > 0.0f) {
+        damping = cdamping;
+    } else {
+        damping = rdamping;
+    }
+
+    /* Calculate vertical (suspension) force */
+    if (suscomp > 10.0f) {
+        /* Bump stop region */
+        if (tirev[ZCOMP] > -1.0f) {
+            tireforcevec[ZCOMP] = (tirev[ZCOMP] + 1.0f) * m->mass * -0.25f * m->idt;
+        } else {
+            tireforcevec[ZCOMP] = arforce + suscomp * springrate + damping * tirev[ZCOMP];
+        }
+    } else if (suscomp > 0.0f) {
+        tireforcevec[ZCOMP] = arforce + suscomp * springrate + damping * tirev[ZCOMP];
+    } else {
+        tireforcevec[ZCOMP] = 0.0f;
+    }
+
+    /* Normal force is negative of vertical force */
+    normal = -tireforcevec[ZCOMP];
+
+    /* Clamp normal force */
+    if (normal < 0.0f) {
+        normal = 0.0f;
+        tireforcevec[ZCOMP] = 0.0f;
+    } else if (normal > m->weight) {
+        normal = m->weight;
+    }
+
+    /* Calculate friction circle forces */
+    frictioncircle_m(m, tirev, normal, torque, tire, &sideforce, &traction);
+
+    tireforcevec[XCOMP] = traction;
+    tireforcevec[YCOMP] = sideforce;
+
+    /* Convert force to car body coords */
+    bodtorw(tireforcevec, forcevec, tireuvs);
+
+    /* Store for sound effects */
+    tire->sideforce = sideforce;
+    tire->traction = traction;
+}
+
+/**
+ * make_tire_road_uvs - Create tire-road unit vectors
+ * Based on arcade: tires.c:make_tire_road_uvs()
+ *
+ * Creates unit vectors for a tire aligned with the road surface
+ * but rotated by the steering angle.
+ */
+void make_tire_road_uvs(UVect *caruvs, f32 steer, UVect *roaduvs, UVect *truvs) {
+    UVect tmpuvs;
+    s16 ssteer, csteer, uvarray[3][3];
+    s32 sang, tempvec[3], rdvec[3];
+
+    /* Copy car unit vectors */
+    matcopy((s16 *)(caruvs->uvs), (s16 *)(tmpuvs.uvs));
+
+    if (steer != 0.0f) {
+        /* Integer scaled steer angle */
+        sang = (s32)(steer * radtosdeg);
+        /* Integer sin and cos of steer angle */
+        ssteer = mssin((s16)sang);
+        csteer = mscos((s16)sang);
+        /* Apply yaw rotation for steering */
+        myaw(ssteer, csteer, tmpuvs.uvs);
+    }
+
+    /* Make integer tire Y vector in universe frame */
+    tempvec[XCOMP] = tmpuvs.uvs[0][1];
+    tempvec[YCOMP] = tmpuvs.uvs[1][1];
+    tempvec[ZCOMP] = tmpuvs.uvs[2][1];
+
+    /* Transform to road frame */
+    irwtobod(tempvec, rdvec, roaduvs);
+    rdvec[ZCOMP] = 0;  /* Project to XY plane */
+    ibodtorw(rdvec, tempvec, roaduvs);
+
+    /* Y vector into transposed uvarray */
+    veccopy((f32 *)(&tempvec[0]), (f32 *)(&uvarray[1][0]));
+    /* Normalize Y vector */
+    sdirection(uvarray[1], uvarray[1]);
+
+    /* Road Z vector into uvarray */
+    uvarray[2][0] = roaduvs->uvs[0][2];
+    uvarray[2][1] = roaduvs->uvs[1][2];
+    uvarray[2][2] = roaduvs->uvs[2][2];
+
+    /* Make X vector perpendicular to Y and Z */
+    scrossprod(uvarray[1], uvarray[2], uvarray[0]);
+
+    /* Un-transpose into tire-road unit vectors */
+    transpose(uvarray, truvs->uvs);
+    /* Generate floating point unit vectors */
+    makefpuvs(truvs);
+    truvs->uvs[0][0] = 0;  /* fixcnt = 0 in arcade */
+}
+
+/**
+ * frictioncircle_m - Friction circle calculation with MODELDAT pointer
+ * Based on arcade: tires.c:frictioncircle()
+ *
+ * Wrapper for tire_friction_circle that uses MODELDAT pointer.
+ */
+void frictioncircle_m(MODELDAT *m, f32 tirev[3], f32 normalforce, f32 torque,
+                      tiredes *tire, f32 *sfp, f32 *trp) {
+    ModelDat mdat;
+
+    /* Extract needed fields from MODELDAT */
+    mdat.mass = m->mass;
+    mdat.weight = m->weight;
+    mdat.dt = m->dt;
+    mdat.idt = m->idt;
+
+    tire_friction_circle(&mdat, tirev, normalforce, torque, tire, sfp, trp);
+}

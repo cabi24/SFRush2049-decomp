@@ -159,4 +159,99 @@ void tire_update_constants(TireState *tire, u8 surface);
 s32 tire_get_screech_level(TireState *tire);
 s32 tire_is_spinning(TireState *tire);
 
+/* ========================================================================
+ * Arcade-compatible function aliases (tires.c)
+ * ======================================================================== */
+
+/* Forward declare MODELDAT from physics.h for arcade compatibility */
+struct CarPhysics;
+typedef struct CarPhysics MODELDAT;
+
+/* Tire description alias (arcade uses lowercase) */
+typedef TireDes tiredes;
+
+/* Arcade constants */
+#define radtosdeg       (16384.0f / 3.14159265f)    /* Radians to short degrees */
+#define DIDDLE          0                           /* Debug flag (disabled) */
+
+/* Unit vector short operations (arcade uvect.c) */
+extern s16 mssin(s16 ang);
+extern s16 mscos(s16 ang);
+extern void mpitch(s16 sptch, s16 cptch, s16 uvs[3][3]);
+extern void myaw(s16 syaw, s16 cyaw, s16 uvs[3][3]);
+extern void matcopy(s16 *src, s16 *dst);
+extern void transpose(s16 src[3][3], s16 dst[3][3]);
+extern void makefpuvs(UVect *uv);
+extern void shypotsincos(s16 x, s16 y, s16 *sval, s16 *cval);
+extern void sdirection(s16 *vec, s16 *result);
+extern void scrossprod(s16 *a, s16 *b, s16 *result);
+
+/* Vector operations (arcade vecmath.c) */
+extern void crossprod(f32 *a, f32 *b, f32 *result);
+extern void vecadd(f32 *a, f32 *b, f32 *result);
+extern void vecsub(f32 *a, f32 *b, f32 *result);
+extern void veccopy(f32 *src, f32 *dst);
+extern void bodtorw(f32 *bod, f32 *rw, UVect *uv);
+extern void rwtobod(f32 *rw, f32 *bod, UVect *uv);
+extern void srwtobod(s16 *rw, s16 *bod, UVect *uv);
+extern void irwtobod(s32 *rw, s32 *bod, UVect *uv);
+extern void ibodtorw(s32 *bod, s32 *rw, UVect *uv);
+
+/* Arcade tire functions (tires.c) */
+
+/**
+ * calctireuv - Calculate tire unit vectors and velocity
+ * Based on arcade: tires.c:calctireuv()
+ *
+ * @param v     Body velocity
+ * @param w     Angular velocity
+ * @param r     Tire position from CG
+ * @param steer Steer angle (radians)
+ * @param caruvs    Car orientation
+ * @param roaduvs   Road surface orientation
+ * @param tireuvs   Output: tire orientation
+ * @param tirev     Output: tire velocity in tire coords
+ */
+void calctireuv(f32 v[3], f32 w[3], f32 r[3], f32 steer,
+                UVect *caruvs, UVect *roaduvs,
+                UVect *tireuvs, f32 tirev[3]);
+
+/**
+ * dotireforce - Calculate tire forces with suspension
+ * Based on arcade: tires.c:dotireforce()
+ *
+ * @param m         Model data (mass, dt, etc.)
+ * @param tirev     Tire velocity in tire coords
+ * @param ottirev   Other tire velocity (for anti-roll)
+ * @param tireuvs   Tire orientation
+ * @param tire      Tire parameters
+ * @param torque    Applied torque
+ * @param forcevec  Output: force in car coords
+ * @param suscomp   Suspension compression
+ * @param otsuscomp Other tire suspension compression
+ * @param springrate Suspension spring rate
+ * @param arspringrate Anti-roll bar spring rate
+ * @param cdamping  Compression damping
+ * @param rdamping  Rebound damping
+ * @param poortract Poor traction flag
+ * @param airfact   Air factor (0-1)
+ */
+void dotireforce(MODELDAT *m, f32 tirev[3], f32 ottirev[3], UVect *tireuvs,
+                 tiredes *tire, f32 torque, f32 forcevec[3], f32 suscomp,
+                 f32 otsuscomp, f32 springrate, f32 arspringrate,
+                 f32 cdamping, f32 rdamping, s32 poortract, f32 airfact);
+
+/**
+ * make_tire_road_uvs - Create tire-road unit vectors
+ * Based on arcade: tires.c:make_tire_road_uvs()
+ */
+void make_tire_road_uvs(UVect *caruvs, f32 steer, UVect *roaduvs, UVect *truvs);
+
+/**
+ * frictioncircle - Friction circle calculation (MODELDAT version)
+ * Based on arcade: tires.c:frictioncircle()
+ */
+void frictioncircle_m(MODELDAT *m, f32 tirev[3], f32 normalforce, f32 torque,
+                      tiredes *tire, f32 *sfp, f32 *trp);
+
 #endif /* TIRE_H */
