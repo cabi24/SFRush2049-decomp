@@ -13,47 +13,47 @@ nonmatching func_800015F0, 0x554
 glabel func_800015F0
     /* 21F0 800015F0 27BDFFC8 */  addiu      $sp, $sp, -0x38
     /* 21F4 800015F4 AFBF0014 */  sw         $ra, 0x14($sp)
-    /* 21F8 800015F8 3C0E8003 */  lui        $t6, %hi(D_8002EBFC)
-    /* 21FC 800015FC 8DCEEBFC */  lw         $t6, %lo(D_8002EBFC)($t6)
+    /* 21F8 800015F8 3C0E8003 */  lui        $t6, %hi(gViewportStruct)
+    /* 21FC 800015FC 8DCEEBFC */  lw         $t6, %lo(gViewportStruct)($t6)
     /* 2200 80001600 15C00003 */  bnez       $t6, .L80001610
     /* 2204 80001604 00000000 */   nop
     /* 2208 80001608 1000014A */  b          .L80001B34
     /* 220C 8000160C 00000000 */   nop
   .L80001610:
-    /* 2210 80001610 3C0F8003 */  lui        $t7, %hi(D_8002ECA0)
-    /* 2214 80001614 3C188003 */  lui        $t8, %hi(D_8002ECB0)
-    /* 2218 80001618 8718ECB0 */  lh         $t8, %lo(D_8002ECB0)($t8)
-    /* 221C 8000161C 85EFECA0 */  lh         $t7, %lo(D_8002ECA0)($t7)
+    /* 2210 80001610 3C0F8003 */  lui        $t7, %hi(gViewportLeftEdge)
+    /* 2214 80001614 3C188003 */  lui        $t8, %hi(gViewportScaleX)
+    /* 2218 80001618 8718ECB0 */  lh         $t8, %lo(gViewportScaleX)($t8)
+    /* 221C 8000161C 85EFECA0 */  lh         $t7, %lo(gViewportLeftEdge)($t7)
     /* 2220 80001620 01F8C821 */  addu       $t9, $t7, $t8
     /* 2224 80001624 AFB90030 */  sw         $t9, 0x30($sp)
-    /* 2228 80001628 3C088003 */  lui        $t0, %hi(D_8002ECA4)
-    /* 222C 8000162C 3C098003 */  lui        $t1, %hi(D_8002ECB0)
-    /* 2230 80001630 8529ECB0 */  lh         $t1, %lo(D_8002ECB0)($t1)
-    /* 2234 80001634 8508ECA4 */  lh         $t0, %lo(D_8002ECA4)($t0)
-    /* 2238 80001638 3C0B8003 */  lui        $t3, %hi(D_8002ECA8)
-    /* 223C 8000163C 856BECA8 */  lh         $t3, %lo(D_8002ECA8)($t3)
+    /* 2228 80001628 3C088003 */  lui        $t0, %hi(gViewportRightEdge)
+    /* 222C 8000162C 3C098003 */  lui        $t1, %hi(gViewportScaleX)
+    /* 2230 80001630 8529ECB0 */  lh         $t1, %lo(gViewportScaleX)($t1)
+    /* 2234 80001634 8508ECA4 */  lh         $t0, %lo(gViewportRightEdge)($t0)
+    /* 2238 80001638 3C0B8003 */  lui        $t3, %hi(gViewportXOverflow)
+    /* 223C 8000163C 856BECA8 */  lh         $t3, %lo(gViewportXOverflow)($t3)
     /* 2240 80001640 01095021 */  addu       $t2, $t0, $t1
     /* 2244 80001644 014B6021 */  addu       $t4, $t2, $t3
     /* 2248 80001648 AFAC0028 */  sw         $t4, 0x28($sp)
-    /* 224C 8000164C 3C0D8003 */  lui        $t5, %hi(D_8002ECA2)
-    /* 2250 80001650 3C0E8003 */  lui        $t6, %hi(D_8002ECB2)
-    /* 2254 80001654 85CEECB2 */  lh         $t6, %lo(D_8002ECB2)($t6)
-    /* 2258 80001658 85ADECA2 */  lh         $t5, %lo(D_8002ECA2)($t5)
+    /* 224C 8000164C 3C0D8003 */  lui        $t5, %hi(gViewportTopEdge)
+    /* 2250 80001650 3C0E8003 */  lui        $t6, %hi(gViewportScaleY)
+    /* 2254 80001654 85CEECB2 */  lh         $t6, %lo(gViewportScaleY)($t6)
+    /* 2258 80001658 85ADECA2 */  lh         $t5, %lo(gViewportTopEdge)($t5)
     /* 225C 8000165C 01AE7821 */  addu       $t7, $t5, $t6
     /* 2260 80001660 AFAF002C */  sw         $t7, 0x2C($sp)
-    /* 2264 80001664 3C188003 */  lui        $t8, %hi(D_8002ECA6)
-    /* 2268 80001668 3C198003 */  lui        $t9, %hi(D_8002ECB2)
-    /* 226C 8000166C 8739ECB2 */  lh         $t9, %lo(D_8002ECB2)($t9)
-    /* 2270 80001670 8718ECA6 */  lh         $t8, %lo(D_8002ECA6)($t8)
-    /* 2274 80001674 3C098003 */  lui        $t1, %hi(D_8002ECAA)
-    /* 2278 80001678 8529ECAA */  lh         $t1, %lo(D_8002ECAA)($t1)
+    /* 2264 80001664 3C188003 */  lui        $t8, %hi(gViewportBottomEdge)
+    /* 2268 80001668 3C198003 */  lui        $t9, %hi(gViewportScaleY)
+    /* 226C 8000166C 8739ECB2 */  lh         $t9, %lo(gViewportScaleY)($t9)
+    /* 2270 80001670 8718ECA6 */  lh         $t8, %lo(gViewportBottomEdge)($t8)
+    /* 2274 80001674 3C098003 */  lui        $t1, %hi(gViewportYOverflow)
+    /* 2278 80001678 8529ECAA */  lh         $t1, %lo(gViewportYOverflow)($t1)
     /* 227C 8000167C 03194021 */  addu       $t0, $t8, $t9
     /* 2280 80001680 01095021 */  addu       $t2, $t0, $t1
     /* 2284 80001684 AFAA0024 */  sw         $t2, 0x24($sp)
-    /* 2288 80001688 3C0B8003 */  lui        $t3, %hi(D_8002ECA4)
-    /* 228C 8000168C 3C0C8003 */  lui        $t4, %hi(D_8002ECA0)
-    /* 2290 80001690 858CECA0 */  lh         $t4, %lo(D_8002ECA0)($t4)
-    /* 2294 80001694 856BECA4 */  lh         $t3, %lo(D_8002ECA4)($t3)
+    /* 2288 80001688 3C0B8003 */  lui        $t3, %hi(gViewportRightEdge)
+    /* 228C 8000168C 3C0C8003 */  lui        $t4, %hi(gViewportLeftEdge)
+    /* 2290 80001690 858CECA0 */  lh         $t4, %lo(gViewportLeftEdge)($t4)
+    /* 2294 80001694 856BECA4 */  lh         $t3, %lo(gViewportRightEdge)($t3)
     /* 2298 80001698 8FAE0028 */  lw         $t6, 0x28($sp)
     /* 229C 8000169C 8FAF0030 */  lw         $t7, 0x30($sp)
     /* 22A0 800016A0 016C6823 */  subu       $t5, $t3, $t4
@@ -64,10 +64,10 @@ glabel func_800015F0
     /* 22B4 800016B4 468042A0 */  cvt.s.w    $ft3, $ft2
     /* 22B8 800016B8 460A3403 */  div.s      $ft4, $ft1, $ft3
     /* 22BC 800016BC E7B0001C */  swc1       $ft4, 0x1C($sp)
-    /* 22C0 800016C0 3C198003 */  lui        $t9, %hi(D_8002ECA6)
-    /* 22C4 800016C4 3C088003 */  lui        $t0, %hi(D_8002ECA2)
-    /* 22C8 800016C8 8508ECA2 */  lh         $t0, %lo(D_8002ECA2)($t0)
-    /* 22CC 800016CC 8739ECA6 */  lh         $t9, %lo(D_8002ECA6)($t9)
+    /* 22C0 800016C0 3C198003 */  lui        $t9, %hi(gViewportBottomEdge)
+    /* 22C4 800016C4 3C088003 */  lui        $t0, %hi(gViewportTopEdge)
+    /* 22C8 800016C8 8508ECA2 */  lh         $t0, %lo(gViewportTopEdge)($t0)
+    /* 22CC 800016CC 8739ECA6 */  lh         $t9, %lo(gViewportBottomEdge)($t9)
     /* 22D0 800016D0 8FAA0024 */  lw         $t2, 0x24($sp)
     /* 22D4 800016D4 8FAB002C */  lw         $t3, 0x2C($sp)
     /* 22D8 800016D8 03284823 */  subu       $t1, $t9, $t0
@@ -81,32 +81,32 @@ glabel func_800015F0
     /* 22F8 800016F8 0C001C74 */  jal        func_800071D0
     /* 22FC 800016FC 24040001 */   addiu     $a0, $zero, 0x1
     /* 2300 80001700 AFA20034 */  sw         $v0, 0x34($sp)
-    /* 2304 80001704 3C0E8003 */  lui        $t6, %hi(D_8002B014)
-    /* 2308 80001708 8DCEB014 */  lw         $t6, %lo(D_8002B014)($t6)
-    /* 230C 8000170C 3C0D8003 */  lui        $t5, %hi(D_8002EC00)
-    /* 2310 80001710 25ADEC00 */  addiu      $t5, $t5, %lo(D_8002EC00)
+    /* 2304 80001704 3C0E8003 */  lui        $t6, %hi(gViewportDataPtr)
+    /* 2308 80001708 8DCEB014 */  lw         $t6, %lo(gViewportDataPtr)($t6)
+    /* 230C 8000170C 3C0D8003 */  lui        $t5, %hi(gViewportBuffer)
+    /* 2310 80001710 25ADEC00 */  addiu      $t5, $t5, %lo(gViewportBuffer)
     /* 2314 80001714 15AE0007 */  bne        $t5, $t6, .L80001734
     /* 2318 80001718 00000000 */   nop
-    /* 231C 8000171C 3C0F8003 */  lui        $t7, %hi(D_8002EC00)
-    /* 2320 80001720 25EFEC00 */  addiu      $t7, $t7, %lo(D_8002EC00)
+    /* 231C 8000171C 3C0F8003 */  lui        $t7, %hi(gViewportBuffer)
+    /* 2320 80001720 25EFEC00 */  addiu      $t7, $t7, %lo(gViewportBuffer)
     /* 2324 80001724 25F80050 */  addiu      $t8, $t7, 0x50
-    /* 2328 80001728 3C018003 */  lui        $at, %hi(D_8002B014)
+    /* 2328 80001728 3C018003 */  lui        $at, %hi(gViewportDataPtr)
     /* 232C 8000172C 10000005 */  b          .L80001744
-    /* 2330 80001730 AC38B014 */   sw        $t8, %lo(D_8002B014)($at)
+    /* 2330 80001730 AC38B014 */   sw        $t8, %lo(gViewportDataPtr)($at)
   .L80001734:
-    /* 2334 80001734 3C198003 */  lui        $t9, %hi(D_8002EC00)
-    /* 2338 80001738 2739EC00 */  addiu      $t9, $t9, %lo(D_8002EC00)
-    /* 233C 8000173C 3C018003 */  lui        $at, %hi(D_8002B014)
-    /* 2340 80001740 AC39B014 */  sw         $t9, %lo(D_8002B014)($at)
+    /* 2334 80001734 3C198003 */  lui        $t9, %hi(gViewportBuffer)
+    /* 2338 80001738 2739EC00 */  addiu      $t9, $t9, %lo(gViewportBuffer)
+    /* 233C 8000173C 3C018003 */  lui        $at, %hi(gViewportDataPtr)
+    /* 2340 80001740 AC39B014 */  sw         $t9, %lo(gViewportDataPtr)($at)
   .L80001744:
-    /* 2344 80001744 3C048003 */  lui        $a0, %hi(D_8002B014)
-    /* 2348 80001748 3C058003 */  lui        $a1, %hi(D_8002EBFC)
-    /* 234C 8000174C 8CA5EBFC */  lw         $a1, %lo(D_8002EBFC)($a1)
-    /* 2350 80001750 8C84B014 */  lw         $a0, %lo(D_8002B014)($a0)
+    /* 2344 80001744 3C048003 */  lui        $a0, %hi(gViewportDataPtr)
+    /* 2348 80001748 3C058003 */  lui        $a1, %hi(gViewportStruct)
+    /* 234C 8000174C 8CA5EBFC */  lw         $a1, %lo(gViewportStruct)($a1)
+    /* 2350 80001750 8C84B014 */  lw         $a0, %lo(gViewportDataPtr)($a0)
     /* 2354 80001754 0C001F1A */  jal        func_80007C68
     /* 2358 80001758 24060050 */   addiu     $a2, $zero, 0x50
-    /* 235C 8000175C 3C088003 */  lui        $t0, %hi(D_8002B014)
-    /* 2360 80001760 8D08B014 */  lw         $t0, %lo(D_8002B014)($t0)
+    /* 235C 8000175C 3C088003 */  lui        $t0, %hi(gViewportDataPtr)
+    /* 2360 80001760 8D08B014 */  lw         $t0, %lo(gViewportDataPtr)($t0)
     /* 2364 80001764 8D090020 */  lw         $t1, 0x20($t0)
     /* 2368 80001768 44898000 */  mtc1       $t1, $ft4
     /* 236C 8000176C 05210005 */  bgez       $t1, .L80001784
@@ -116,8 +116,8 @@ glabel func_800015F0
     /* 237C 8000177C 00000000 */  nop
     /* 2380 80001780 46089480 */  add.s      $ft5, $ft5, $ft2
   .L80001784:
-    /* 2384 80001784 3C0A8003 */  lui        $t2, %hi(D_8002EBFC)
-    /* 2388 80001788 8D4AEBFC */  lw         $t2, %lo(D_8002EBFC)($t2)
+    /* 2384 80001784 3C0A8003 */  lui        $t2, %hi(gViewportStruct)
+    /* 2388 80001788 8D4AEBFC */  lw         $t2, %lo(gViewportStruct)($t2)
     /* 238C 8000178C 8D4B0020 */  lw         $t3, 0x20($t2)
     /* 2390 80001790 448B2000 */  mtc1       $t3, $ft0
     /* 2394 80001794 05610005 */  bgez       $t3, .L800017AC
@@ -144,17 +144,17 @@ glabel func_800015F0
     /* 23E4 800017E4 AFAE0030 */  sw         $t6, 0x30($sp)
     /* 23E8 800017E8 8FAF0030 */  lw         $t7, 0x30($sp)
     /* 23EC 800017EC 8FB90028 */  lw         $t9, 0x28($sp)
-    /* 23F0 800017F0 3C098003 */  lui        $t1, %hi(D_8002B014)
-    /* 23F4 800017F4 8D29B014 */  lw         $t1, %lo(D_8002B014)($t1)
+    /* 23F0 800017F0 3C098003 */  lui        $t1, %hi(gViewportDataPtr)
+    /* 23F4 800017F4 8D29B014 */  lw         $t1, %lo(gViewportDataPtr)($t1)
     /* 23F8 800017F8 000FC400 */  sll        $t8, $t7, 16
     /* 23FC 800017FC 03194025 */  or         $t0, $t8, $t9
     /* 2400 80001800 AD28001C */  sw         $t0, 0x1C($t1)
-    /* 2404 80001804 3C0A8003 */  lui        $t2, %hi(D_8002ECAC)
-    /* 2408 80001808 854AECAC */  lh         $t2, %lo(D_8002ECAC)($t2)
+    /* 2404 80001804 3C0A8003 */  lui        $t2, %hi(gViewportScale)
+    /* 2408 80001808 854AECAC */  lh         $t2, %lo(gViewportScale)($t2)
     /* 240C 8000180C C7A8001C */  lwc1       $ft2, 0x1C($sp)
-    /* 2410 80001810 3C018003 */  lui        $at, %hi(D_8002D4C0)
+    /* 2410 80001810 3C018003 */  lui        $at, %hi(gViewportFloatA)
     /* 2414 80001814 448A5000 */  mtc1       $t2, $ft3
-    /* 2418 80001818 C430D4C0 */  lwc1       $ft4, %lo(D_8002D4C0)($at)
+    /* 2418 80001818 C430D4C0 */  lwc1       $ft4, %lo(gViewportFloatA)($at)
     /* 241C 8000181C 240C0001 */  addiu      $t4, $zero, 0x1
     /* 2420 80001820 468051A0 */  cvt.s.w    $ft1, $ft3
     /* 2424 80001824 46083482 */  mul.s      $ft5, $ft1, $ft2
@@ -196,32 +196,32 @@ glabel func_800015F0
     /* 24AC 800018AC 0580FFFB */  bltz       $t4, .L8000189C
     /* 24B0 800018B0 00000000 */   nop
   .L800018B4:
-    /* 24B4 800018B4 3C0D8003 */  lui        $t5, %hi(D_8002B014)
-    /* 24B8 800018B8 8DADB014 */  lw         $t5, %lo(D_8002B014)($t5)
+    /* 24B4 800018B4 3C0D8003 */  lui        $t5, %hi(gViewportDataPtr)
+    /* 24B8 800018B8 8DADB014 */  lw         $t5, %lo(gViewportDataPtr)($t5)
     /* 24BC 800018BC 44CBF800 */  ctc1       $t3, $31
     /* 24C0 800018C0 ADAC0020 */  sw         $t4, 0x20($t5)
     /* 24C4 800018C4 00000000 */  nop
     /* 24C8 800018C8 8FAE002C */  lw         $t6, 0x2C($sp)
     /* 24CC 800018CC 8FB90024 */  lw         $t9, 0x24($sp)
-    /* 24D0 800018D0 3C0A8003 */  lui        $t2, %hi(D_8002B014)
-    /* 24D4 800018D4 8D4AB014 */  lw         $t2, %lo(D_8002B014)($t2)
+    /* 24D0 800018D0 3C0A8003 */  lui        $t2, %hi(gViewportDataPtr)
+    /* 24D4 800018D4 8D4AB014 */  lw         $t2, %lo(gViewportDataPtr)($t2)
     /* 24D8 800018D8 31CF03FF */  andi       $t7, $t6, 0x3FF
     /* 24DC 800018DC 000FC400 */  sll        $t8, $t7, 16
     /* 24E0 800018E0 332803FF */  andi       $t0, $t9, 0x3FF
     /* 24E4 800018E4 03084825 */  or         $t1, $t8, $t0
     /* 24E8 800018E8 AD490030 */  sw         $t1, 0x30($t2)
-    /* 24EC 800018EC 3C0B8003 */  lui        $t3, %hi(D_8002ECAC)
-    /* 24F0 800018F0 856BECAC */  lh         $t3, %lo(D_8002ECAC)($t3)
-    /* 24F4 800018F4 3C0D8003 */  lui        $t5, %hi(D_8002B014)
-    /* 24F8 800018F8 8DADB014 */  lw         $t5, %lo(D_8002B014)($t5)
+    /* 24EC 800018EC 3C0B8003 */  lui        $t3, %hi(gViewportScale)
+    /* 24F0 800018F0 856BECAC */  lh         $t3, %lo(gViewportScale)($t3)
+    /* 24F4 800018F4 3C0D8003 */  lui        $t5, %hi(gViewportDataPtr)
+    /* 24F8 800018F8 8DADB014 */  lw         $t5, %lo(gViewportDataPtr)($t5)
     /* 24FC 800018FC 000B6040 */  sll        $t4, $t3, 1
     /* 2500 80001900 ADAC0028 */  sw         $t4, 0x28($t5)
-    /* 2504 80001904 3C0E8003 */  lui        $t6, %hi(D_8002ECAE)
-    /* 2508 80001908 85CEECAE */  lh         $t6, %lo(D_8002ECAE)($t6)
+    /* 2504 80001904 3C0E8003 */  lui        $t6, %hi(gViewportScaleYAlt)
+    /* 2508 80001908 85CEECAE */  lh         $t6, %lo(gViewportScaleYAlt)($t6)
     /* 250C 8000190C C7B20018 */  lwc1       $ft5, 0x18($sp)
-    /* 2510 80001910 3C018003 */  lui        $at, %hi(D_8002D4C4)
+    /* 2510 80001910 3C018003 */  lui        $at, %hi(gViewportFloatB)
     /* 2514 80001914 448E3000 */  mtc1       $t6, $ft1
-    /* 2518 80001918 C424D4C4 */  lwc1       $ft0, %lo(D_8002D4C4)($at)
+    /* 2518 80001918 C424D4C4 */  lwc1       $ft0, %lo(gViewportFloatB)($at)
     /* 251C 8000191C 3C014184 */  lui        $at, (0x41840000 >> 16)
     /* 2520 80001920 46803220 */  cvt.s.w    $ft2, $ft1
     /* 2524 80001924 44813000 */  mtc1       $at, $ft1
@@ -269,22 +269,22 @@ glabel func_800015F0
     /* 25C0 800019C0 44CFF800 */  ctc1       $t7, $31
     /* 25C4 800019C4 AFB90020 */  sw         $t9, 0x20($sp)
     /* 25C8 800019C8 00000000 */  nop
-    /* 25CC 800019CC 3C188003 */  lui        $t8, %hi(D_8002EBFC)
-    /* 25D0 800019D0 8F18EBFC */  lw         $t8, %lo(D_8002EBFC)($t8)
+    /* 25CC 800019CC 3C188003 */  lui        $t8, %hi(gViewportStruct)
+    /* 25D0 800019D0 8F18EBFC */  lw         $t8, %lo(gViewportStruct)($t8)
     /* 25D4 800019D4 8F08003C */  lw         $t0, 0x3C($t8)
     /* 25D8 800019D8 8F090028 */  lw         $t1, 0x28($t8)
     /* 25DC 800019DC 11090011 */  beq        $t0, $t1, .L80001A24
     /* 25E0 800019E0 00000000 */   nop
-    /* 25E4 800019E4 3C0A8003 */  lui        $t2, %hi(D_8002ECAC)
-    /* 25E8 800019E8 854AECAC */  lh         $t2, %lo(D_8002ECAC)($t2)
-    /* 25EC 800019EC 3C0C8003 */  lui        $t4, %hi(D_8002B014)
-    /* 25F0 800019F0 8D8CB014 */  lw         $t4, %lo(D_8002B014)($t4)
+    /* 25E4 800019E4 3C0A8003 */  lui        $t2, %hi(gViewportScale)
+    /* 25E8 800019E8 854AECAC */  lh         $t2, %lo(gViewportScale)($t2)
+    /* 25EC 800019EC 3C0C8003 */  lui        $t4, %hi(gViewportDataPtr)
+    /* 25F0 800019F0 8D8CB014 */  lw         $t4, %lo(gViewportDataPtr)($t4)
     /* 25F4 800019F4 000A5880 */  sll        $t3, $t2, 2
     /* 25F8 800019F8 AD8B003C */  sw         $t3, 0x3C($t4)
-    /* 25FC 800019FC 3C0D8003 */  lui        $t5, %hi(D_8002ECAC)
-    /* 2600 80001A00 85ADECAC */  lh         $t5, %lo(D_8002ECAC)($t5)
-    /* 2604 80001A04 3C0F8003 */  lui        $t7, %hi(D_8002B014)
-    /* 2608 80001A08 8DEFB014 */  lw         $t7, %lo(D_8002B014)($t7)
+    /* 25FC 800019FC 3C0D8003 */  lui        $t5, %hi(gViewportScale)
+    /* 2600 80001A00 85ADECAC */  lh         $t5, %lo(gViewportScale)($t5)
+    /* 2604 80001A04 3C0F8003 */  lui        $t7, %hi(gViewportDataPtr)
+    /* 2608 80001A08 8DEFB014 */  lw         $t7, %lo(gViewportDataPtr)($t7)
     /* 260C 80001A0C 000D7040 */  sll        $t6, $t5, 1
     /* 2610 80001A10 ADEE0008 */  sw         $t6, 0x8($t7)
     /* 2614 80001A14 8FB90020 */  lw         $t9, 0x20($sp)
@@ -292,31 +292,31 @@ glabel func_800015F0
     /* 261C 80001A1C 1000000C */  b          .L80001A50
     /* 2620 80001A20 AFB80020 */   sw        $t8, 0x20($sp)
   .L80001A24:
-    /* 2624 80001A24 3C088003 */  lui        $t0, %hi(D_8002ECAC)
-    /* 2628 80001A28 8508ECAC */  lh         $t0, %lo(D_8002ECAC)($t0)
-    /* 262C 80001A2C 3C0A8003 */  lui        $t2, %hi(D_8002B014)
-    /* 2630 80001A30 8D4AB014 */  lw         $t2, %lo(D_8002B014)($t2)
+    /* 2624 80001A24 3C088003 */  lui        $t0, %hi(gViewportScale)
+    /* 2628 80001A28 8508ECAC */  lh         $t0, %lo(gViewportScale)($t0)
+    /* 262C 80001A2C 3C0A8003 */  lui        $t2, %hi(gViewportDataPtr)
+    /* 2630 80001A30 8D4AB014 */  lw         $t2, %lo(gViewportDataPtr)($t2)
     /* 2634 80001A34 00084840 */  sll        $t1, $t0, 1
     /* 2638 80001A38 AD49003C */  sw         $t1, 0x3C($t2)
-    /* 263C 80001A3C 3C0B8003 */  lui        $t3, %hi(D_8002ECAC)
-    /* 2640 80001A40 3C0C8003 */  lui        $t4, %hi(D_8002B014)
-    /* 2644 80001A44 8D8CB014 */  lw         $t4, %lo(D_8002B014)($t4)
-    /* 2648 80001A48 856BECAC */  lh         $t3, %lo(D_8002ECAC)($t3)
+    /* 263C 80001A3C 3C0B8003 */  lui        $t3, %hi(gViewportScale)
+    /* 2640 80001A40 3C0C8003 */  lui        $t4, %hi(gViewportDataPtr)
+    /* 2644 80001A44 8D8CB014 */  lw         $t4, %lo(gViewportDataPtr)($t4)
+    /* 2648 80001A48 856BECAC */  lh         $t3, %lo(gViewportScale)($t3)
     /* 264C 80001A4C AD8B0008 */  sw         $t3, 0x8($t4)
   .L80001A50:
-    /* 2650 80001A50 3C0D8003 */  lui        $t5, %hi(D_8002B014)
-    /* 2654 80001A54 8DADB014 */  lw         $t5, %lo(D_8002B014)($t5)
+    /* 2650 80001A50 3C0D8003 */  lui        $t5, %hi(gViewportDataPtr)
+    /* 2654 80001A54 8DADB014 */  lw         $t5, %lo(gViewportDataPtr)($t5)
     /* 2658 80001A58 8DAE0004 */  lw         $t6, 0x4($t5)
     /* 265C 80001A5C 31CF0040 */  andi       $t7, $t6, 0x40
     /* 2660 80001A60 11E0000D */  beqz       $t7, .L80001A98
     /* 2664 80001A64 00000000 */   nop
     /* 2668 80001A68 8FB9002C */  lw         $t9, 0x2C($sp)
     /* 266C 80001A6C 8FAA0024 */  lw         $t2, 0x24($sp)
-    /* 2670 80001A70 3C0E8003 */  lui        $t6, %hi(D_8002B014)
+    /* 2670 80001A70 3C0E8003 */  lui        $t6, %hi(gViewportDataPtr)
     /* 2674 80001A74 27380002 */  addiu      $t8, $t9, 0x2
     /* 2678 80001A78 330803FF */  andi       $t0, $t8, 0x3FF
     /* 267C 80001A7C 254B0002 */  addiu      $t3, $t2, 0x2
-    /* 2680 80001A80 8DCEB014 */  lw         $t6, %lo(D_8002B014)($t6)
+    /* 2680 80001A80 8DCEB014 */  lw         $t6, %lo(gViewportDataPtr)($t6)
     /* 2684 80001A84 316C03FF */  andi       $t4, $t3, 0x3FF
     /* 2688 80001A88 00084C00 */  sll        $t1, $t0, 16
     /* 268C 80001A8C 012C6825 */  or         $t5, $t1, $t4
@@ -325,8 +325,8 @@ glabel func_800015F0
   .L80001A98:
     /* 2698 80001A98 8FAF002C */  lw         $t7, 0x2C($sp)
     /* 269C 80001A9C 8FA80024 */  lw         $t0, 0x24($sp)
-    /* 26A0 80001AA0 3C098003 */  lui        $t1, %hi(D_8002B014)
-    /* 26A4 80001AA4 8D29B014 */  lw         $t1, %lo(D_8002B014)($t1)
+    /* 26A0 80001AA0 3C098003 */  lui        $t1, %hi(gViewportDataPtr)
+    /* 26A4 80001AA4 8D29B014 */  lw         $t1, %lo(gViewportDataPtr)($t1)
     /* 26A8 80001AA8 31F903FF */  andi       $t9, $t7, 0x3FF
     /* 26AC 80001AAC 0019C400 */  sll        $t8, $t9, 16
     /* 26B0 80001AB0 310A03FF */  andi       $t2, $t0, 0x3FF
@@ -336,16 +336,16 @@ glabel func_800015F0
     /* 26BC 80001ABC 8FAC0020 */  lw         $t4, 0x20($sp)
     /* 26C0 80001AC0 318DFFF0 */  andi       $t5, $t4, 0xFFF0
     /* 26C4 80001AC4 AFAD0020 */  sw         $t5, 0x20($sp)
-    /* 26C8 80001AC8 3C0E8003 */  lui        $t6, %hi(D_8002B014)
-    /* 26CC 80001ACC 8DCEB014 */  lw         $t6, %lo(D_8002B014)($t6)
+    /* 26C8 80001AC8 3C0E8003 */  lui        $t6, %hi(gViewportDataPtr)
+    /* 26CC 80001ACC 8DCEB014 */  lw         $t6, %lo(gViewportDataPtr)($t6)
     /* 26D0 80001AD0 8FA80020 */  lw         $t0, 0x20($sp)
     /* 26D4 80001AD4 3C01FFFF */  lui        $at, (0xFFFF0000 >> 16)
     /* 26D8 80001AD8 8DCF002C */  lw         $t7, 0x2C($t6)
     /* 26DC 80001ADC 01E1C824 */  and        $t9, $t7, $at
     /* 26E0 80001AE0 0328C025 */  or         $t8, $t9, $t0
     /* 26E4 80001AE4 ADD8002C */  sw         $t8, 0x2C($t6)
-    /* 26E8 80001AE8 3C0A8003 */  lui        $t2, %hi(D_8002B014)
-    /* 26EC 80001AEC 8D4AB014 */  lw         $t2, %lo(D_8002B014)($t2)
+    /* 26E8 80001AE8 3C0A8003 */  lui        $t2, %hi(gViewportDataPtr)
+    /* 26EC 80001AEC 8D4AB014 */  lw         $t2, %lo(gViewportDataPtr)($t2)
     /* 26F0 80001AF0 8FAC0020 */  lw         $t4, 0x20($sp)
     /* 26F4 80001AF4 3C01FFFF */  lui        $at, (0xFFFF0000 >> 16)
     /* 26F8 80001AF8 8D4B0040 */  lw         $t3, 0x40($t2)
@@ -353,10 +353,10 @@ glabel func_800015F0
     /* 2700 80001B00 012C6825 */  or         $t5, $t1, $t4
     /* 2704 80001B04 AD4D0040 */  sw         $t5, 0x40($t2)
     /* 2708 80001B08 240F0002 */  addiu      $t7, $zero, 0x2
-    /* 270C 80001B0C 3C018003 */  lui        $at, %hi(D_8002B010)
-    /* 2710 80001B10 A42FB010 */  sh         $t7, %lo(D_8002B010)($at)
-    /* 2714 80001B14 3C048003 */  lui        $a0, %hi(D_8002B014)
-    /* 2718 80001B18 8C84B014 */  lw         $a0, %lo(D_8002B014)($a0)
+    /* 270C 80001B0C 3C018003 */  lui        $at, %hi(gViewportPendingFrames)
+    /* 2710 80001B10 A42FB010 */  sh         $t7, %lo(gViewportPendingFrames)($at)
+    /* 2714 80001B14 3C048003 */  lui        $a0, %hi(gViewportDataPtr)
+    /* 2718 80001B18 8C84B014 */  lw         $a0, %lo(gViewportDataPtr)($a0)
     /* 271C 80001B1C 0C001F28 */  jal        func_80007CA0
     /* 2720 80001B20 24050050 */   addiu     $a1, $zero, 0x50
     /* 2724 80001B24 0C001C74 */  jal        func_800071D0
@@ -384,108 +384,108 @@ glabel func_80001B44
     /* 2764 80001B64 00000000 */   nop
     /* 2768 80001B68 3C014248 */  lui        $at, (0x42480000 >> 16)
     /* 276C 80001B6C 44812000 */  mtc1       $at, $ft0
-    /* 2770 80001B70 3C018003 */  lui        $at, %hi(D_8002AFB4)
-    /* 2774 80001B74 E424AFB4 */  swc1       $ft0, %lo(D_8002AFB4)($at)
-    /* 2778 80001B78 3C018003 */  lui        $at, %hi(D_8002D4C8)
-    /* 277C 80001B7C C426D4C8 */  lwc1       $ft1, %lo(D_8002D4C8)($at)
-    /* 2780 80001B80 3C018003 */  lui        $at, %hi(D_8002AFB8)
+    /* 2770 80001B70 3C018003 */  lui        $at, %hi(gScaleTicksPerSecond)
+    /* 2774 80001B74 E424AFB4 */  swc1       $ft0, %lo(gScaleTicksPerSecond)($at)
+    /* 2778 80001B78 3C018003 */  lui        $at, %hi(gViewportFloatC)
+    /* 277C 80001B7C C426D4C8 */  lwc1       $ft1, %lo(gViewportFloatC)($at)
+    /* 2780 80001B80 3C018003 */  lui        $at, %hi(gScaleSecondsPerTick)
     /* 2784 80001B84 10000009 */  b          .L80001BAC
-    /* 2788 80001B88 E426AFB8 */   swc1      $ft1, %lo(D_8002AFB8)($at)
+    /* 2788 80001B88 E426AFB8 */   swc1      $ft1, %lo(gScaleSecondsPerTick)($at)
   .L80001B8C:
     /* 278C 80001B8C 3C014270 */  lui        $at, (0x42700000 >> 16)
     /* 2790 80001B90 44814000 */  mtc1       $at, $ft2
-    /* 2794 80001B94 3C018003 */  lui        $at, %hi(D_8002AFB4)
-    /* 2798 80001B98 E428AFB4 */  swc1       $ft2, %lo(D_8002AFB4)($at)
-    /* 279C 80001B9C 3C018003 */  lui        $at, %hi(D_8002D4CC)
-    /* 27A0 80001BA0 C42AD4CC */  lwc1       $ft3, %lo(D_8002D4CC)($at)
-    /* 27A4 80001BA4 3C018003 */  lui        $at, %hi(D_8002AFB8)
-    /* 27A8 80001BA8 E42AAFB8 */  swc1       $ft3, %lo(D_8002AFB8)($at)
+    /* 2794 80001B94 3C018003 */  lui        $at, %hi(gScaleTicksPerSecond)
+    /* 2798 80001B98 E428AFB4 */  swc1       $ft2, %lo(gScaleTicksPerSecond)($at)
+    /* 279C 80001B9C 3C018003 */  lui        $at, %hi(gViewportFloatD)
+    /* 27A0 80001BA0 C42AD4CC */  lwc1       $ft3, %lo(gViewportFloatD)($at)
+    /* 27A4 80001BA4 3C018003 */  lui        $at, %hi(gScaleSecondsPerTick)
+    /* 27A8 80001BA8 E42AAFB8 */  swc1       $ft3, %lo(gScaleSecondsPerTick)($at)
   .L80001BAC:
     /* 27AC 80001BAC 8FAF0018 */  lw         $t7, 0x18($sp)
-    /* 27B0 80001BB0 3C018003 */  lui        $at, %hi(D_8002EBF8)
-    /* 27B4 80001BB4 A42FEBF8 */  sh         $t7, %lo(D_8002EBF8)($at)
+    /* 27B0 80001BB0 3C018003 */  lui        $at, %hi(gViewportX)
+    /* 27B4 80001BB4 A42FEBF8 */  sh         $t7, %lo(gViewportX)($at)
     /* 27B8 80001BB8 8FB8001C */  lw         $t8, 0x1C($sp)
-    /* 27BC 80001BBC 3C018003 */  lui        $at, %hi(D_8002EBFA)
-    /* 27C0 80001BC0 A438EBFA */  sh         $t8, %lo(D_8002EBFA)($at)
+    /* 27BC 80001BBC 3C018003 */  lui        $at, %hi(gViewportY)
+    /* 27C0 80001BC0 A438EBFA */  sh         $t8, %lo(gViewportY)($at)
     /* 27C4 80001BC4 8FB9001C */  lw         $t9, 0x1C($sp)
-    /* 27C8 80001BC8 3C098003 */  lui        $t1, %hi(D_8002B1B0)
-    /* 27CC 80001BCC 2529B1B0 */  addiu      $t1, $t1, %lo(D_8002B1B0)
+    /* 27C8 80001BC8 3C098003 */  lui        $t1, %hi(gViModeTableBase)
+    /* 27CC 80001BCC 2529B1B0 */  addiu      $t1, $t1, %lo(gViModeTableBase)
     /* 27D0 80001BD0 00194080 */  sll        $t0, $t9, 2
     /* 27D4 80001BD4 01194021 */  addu       $t0, $t0, $t9
     /* 27D8 80001BD8 00084100 */  sll        $t0, $t0, 4
     /* 27DC 80001BDC 01095021 */  addu       $t2, $t0, $t1
-    /* 27E0 80001BE0 3C018003 */  lui        $at, %hi(D_8002EBFC)
-    /* 27E4 80001BE4 AC2AEBFC */  sw         $t2, %lo(D_8002EBFC)($at)
-    /* 27E8 80001BE8 3C0B8003 */  lui        $t3, %hi(D_8002EBFC)
-    /* 27EC 80001BEC 8D6BEBFC */  lw         $t3, %lo(D_8002EBFC)($t3)
-    /* 27F0 80001BF0 3C018003 */  lui        $at, %hi(D_8002ECA0)
+    /* 27E0 80001BE0 3C018003 */  lui        $at, %hi(gViewportStruct)
+    /* 27E4 80001BE4 AC2AEBFC */  sw         $t2, %lo(gViewportStruct)($at)
+    /* 27E8 80001BE8 3C0B8003 */  lui        $t3, %hi(gViewportStruct)
+    /* 27EC 80001BEC 8D6BEBFC */  lw         $t3, %lo(gViewportStruct)($t3)
+    /* 27F0 80001BF0 3C018003 */  lui        $at, %hi(gViewportLeftEdge)
     /* 27F4 80001BF4 8D6C001C */  lw         $t4, 0x1C($t3)
     /* 27F8 80001BF8 000C6C02 */  srl        $t5, $t4, 16
     /* 27FC 80001BFC 31AE03FF */  andi       $t6, $t5, 0x3FF
-    /* 2800 80001C00 A42EECA0 */  sh         $t6, %lo(D_8002ECA0)($at)
-    /* 2804 80001C04 3C0F8003 */  lui        $t7, %hi(D_8002EBFC)
-    /* 2808 80001C08 8DEFEBFC */  lw         $t7, %lo(D_8002EBFC)($t7)
-    /* 280C 80001C0C 3C018003 */  lui        $at, %hi(D_8002ECA4)
+    /* 2800 80001C00 A42EECA0 */  sh         $t6, %lo(gViewportLeftEdge)($at)
+    /* 2804 80001C04 3C0F8003 */  lui        $t7, %hi(gViewportStruct)
+    /* 2808 80001C08 8DEFEBFC */  lw         $t7, %lo(gViewportStruct)($t7)
+    /* 280C 80001C0C 3C018003 */  lui        $at, %hi(gViewportRightEdge)
     /* 2810 80001C10 8DF8001C */  lw         $t8, 0x1C($t7)
     /* 2814 80001C14 331903FF */  andi       $t9, $t8, 0x3FF
-    /* 2818 80001C18 A439ECA4 */  sh         $t9, %lo(D_8002ECA4)($at)
-    /* 281C 80001C1C 3C088003 */  lui        $t0, %hi(D_8002EBFC)
-    /* 2820 80001C20 8D08EBFC */  lw         $t0, %lo(D_8002EBFC)($t0)
-    /* 2824 80001C24 3C018003 */  lui        $at, %hi(D_8002ECA2)
+    /* 2818 80001C18 A439ECA4 */  sh         $t9, %lo(gViewportRightEdge)($at)
+    /* 281C 80001C1C 3C088003 */  lui        $t0, %hi(gViewportStruct)
+    /* 2820 80001C20 8D08EBFC */  lw         $t0, %lo(gViewportStruct)($t0)
+    /* 2824 80001C24 3C018003 */  lui        $at, %hi(gViewportTopEdge)
     /* 2828 80001C28 8D090030 */  lw         $t1, 0x30($t0)
     /* 282C 80001C2C 00095402 */  srl        $t2, $t1, 16
     /* 2830 80001C30 314B03FF */  andi       $t3, $t2, 0x3FF
-    /* 2834 80001C34 A42BECA2 */  sh         $t3, %lo(D_8002ECA2)($at)
-    /* 2838 80001C38 3C0C8003 */  lui        $t4, %hi(D_8002EBFC)
-    /* 283C 80001C3C 8D8CEBFC */  lw         $t4, %lo(D_8002EBFC)($t4)
-    /* 2840 80001C40 3C018003 */  lui        $at, %hi(D_8002ECA6)
+    /* 2834 80001C34 A42BECA2 */  sh         $t3, %lo(gViewportTopEdge)($at)
+    /* 2838 80001C38 3C0C8003 */  lui        $t4, %hi(gViewportStruct)
+    /* 283C 80001C3C 8D8CEBFC */  lw         $t4, %lo(gViewportStruct)($t4)
+    /* 2840 80001C40 3C018003 */  lui        $at, %hi(gViewportBottomEdge)
     /* 2844 80001C44 8D8D0030 */  lw         $t5, 0x30($t4)
     /* 2848 80001C48 31AE03FF */  andi       $t6, $t5, 0x3FF
-    /* 284C 80001C4C A42EECA6 */  sh         $t6, %lo(D_8002ECA6)($at)
-    /* 2850 80001C50 3C0F8003 */  lui        $t7, %hi(D_8002B014)
-    /* 2854 80001C54 8DEFB014 */  lw         $t7, %lo(D_8002B014)($t7)
+    /* 284C 80001C4C A42EECA6 */  sh         $t6, %lo(gViewportBottomEdge)($at)
+    /* 2850 80001C50 3C0F8003 */  lui        $t7, %hi(gViewportDataPtr)
+    /* 2854 80001C54 8DEFB014 */  lw         $t7, %lo(gViewportDataPtr)($t7)
     /* 2858 80001C58 15E00022 */  bnez       $t7, .L80001CE4
     /* 285C 80001C5C 00000000 */   nop
-    /* 2860 80001C60 3C188003 */  lui        $t8, %hi(D_8002EBF8)
-    /* 2864 80001C64 8718EBF8 */  lh         $t8, %lo(D_8002EBF8)($t8)
-    /* 2868 80001C68 3C088003 */  lui        $t0, %hi(D_8002AFF8)
-    /* 286C 80001C6C 3C018003 */  lui        $at, %hi(D_8002ECA8)
+    /* 2860 80001C60 3C188003 */  lui        $t8, %hi(gViewportX)
+    /* 2864 80001C64 8718EBF8 */  lh         $t8, %lo(gViewportX)($t8)
+    /* 2868 80001C68 3C088003 */  lui        $t0, %hi(gViewportOffsetXExtra)
+    /* 286C 80001C6C 3C018003 */  lui        $at, %hi(gViewportXOverflow)
     /* 2870 80001C70 0018C8C0 */  sll        $t9, $t8, 3
     /* 2874 80001C74 01194021 */  addu       $t0, $t0, $t9
-    /* 2878 80001C78 8508AFF8 */  lh         $t0, %lo(D_8002AFF8)($t0)
-    /* 287C 80001C7C A428ECA8 */  sh         $t0, %lo(D_8002ECA8)($at)
-    /* 2880 80001C80 3C098003 */  lui        $t1, %hi(D_8002EBF8)
-    /* 2884 80001C84 8529EBF8 */  lh         $t1, %lo(D_8002EBF8)($t1)
-    /* 2888 80001C88 3C0B8003 */  lui        $t3, %hi(D_8002AFFA)
-    /* 288C 80001C8C 3C018003 */  lui        $at, %hi(D_8002ECAA)
+    /* 2878 80001C78 8508AFF8 */  lh         $t0, %lo(gViewportOffsetXExtra)($t0)
+    /* 287C 80001C7C A428ECA8 */  sh         $t0, %lo(gViewportXOverflow)($at)
+    /* 2880 80001C80 3C098003 */  lui        $t1, %hi(gViewportX)
+    /* 2884 80001C84 8529EBF8 */  lh         $t1, %lo(gViewportX)($t1)
+    /* 2888 80001C88 3C0B8003 */  lui        $t3, %hi(gViewportOffsetYExtra)
+    /* 288C 80001C8C 3C018003 */  lui        $at, %hi(gViewportYOverflow)
     /* 2890 80001C90 000950C0 */  sll        $t2, $t1, 3
     /* 2894 80001C94 016A5821 */  addu       $t3, $t3, $t2
-    /* 2898 80001C98 856BAFFA */  lh         $t3, %lo(D_8002AFFA)($t3)
-    /* 289C 80001C9C A42BECAA */  sh         $t3, %lo(D_8002ECAA)($at)
-    /* 28A0 80001CA0 3C0C8003 */  lui        $t4, %hi(D_8002EBF8)
-    /* 28A4 80001CA4 858CEBF8 */  lh         $t4, %lo(D_8002EBF8)($t4)
-    /* 28A8 80001CA8 3C0E8003 */  lui        $t6, %hi(D_8002AFFC)
-    /* 28AC 80001CAC 3C018003 */  lui        $at, %hi(D_8002ECB0)
+    /* 2898 80001C98 856BAFFA */  lh         $t3, %lo(gViewportOffsetYExtra)($t3)
+    /* 289C 80001C9C A42BECAA */  sh         $t3, %lo(gViewportYOverflow)($at)
+    /* 28A0 80001CA0 3C0C8003 */  lui        $t4, %hi(gViewportX)
+    /* 28A4 80001CA4 858CEBF8 */  lh         $t4, %lo(gViewportX)($t4)
+    /* 28A8 80001CA8 3C0E8003 */  lui        $t6, %hi(gViewportOffsetX)
+    /* 28AC 80001CAC 3C018003 */  lui        $at, %hi(gViewportScaleX)
     /* 28B0 80001CB0 000C68C0 */  sll        $t5, $t4, 3
     /* 28B4 80001CB4 01CD7021 */  addu       $t6, $t6, $t5
-    /* 28B8 80001CB8 85CEAFFC */  lh         $t6, %lo(D_8002AFFC)($t6)
-    /* 28BC 80001CBC A42EECB0 */  sh         $t6, %lo(D_8002ECB0)($at)
-    /* 28C0 80001CC0 3C0F8003 */  lui        $t7, %hi(D_8002EBF8)
-    /* 28C4 80001CC4 85EFEBF8 */  lh         $t7, %lo(D_8002EBF8)($t7)
-    /* 28C8 80001CC8 3C198003 */  lui        $t9, %hi(D_8002AFFE)
-    /* 28CC 80001CCC 3C018003 */  lui        $at, %hi(D_8002ECB2)
+    /* 28B8 80001CB8 85CEAFFC */  lh         $t6, %lo(gViewportOffsetX)($t6)
+    /* 28BC 80001CBC A42EECB0 */  sh         $t6, %lo(gViewportScaleX)($at)
+    /* 28C0 80001CC0 3C0F8003 */  lui        $t7, %hi(gViewportX)
+    /* 28C4 80001CC4 85EFEBF8 */  lh         $t7, %lo(gViewportX)($t7)
+    /* 28C8 80001CC8 3C198003 */  lui        $t9, %hi(gViewportOffsetY)
+    /* 28CC 80001CCC 3C018003 */  lui        $at, %hi(gViewportScaleY)
     /* 28D0 80001CD0 000FC0C0 */  sll        $t8, $t7, 3
     /* 28D4 80001CD4 0338C821 */  addu       $t9, $t9, $t8
-    /* 28D8 80001CD8 8739AFFE */  lh         $t9, %lo(D_8002AFFE)($t9)
+    /* 28D8 80001CD8 8739AFFE */  lh         $t9, %lo(gViewportOffsetY)($t9)
     /* 28DC 80001CDC 10000012 */  b          .L80001D28
-    /* 28E0 80001CE0 A439ECB2 */   sh        $t9, %lo(D_8002ECB2)($at)
+    /* 28E0 80001CE0 A439ECB2 */   sh        $t9, %lo(gViewportScaleY)($at)
   .L80001CE4:
     /* 28E4 80001CE4 8FA80020 */  lw         $t0, 0x20($sp)
-    /* 28E8 80001CE8 3C098003 */  lui        $t1, %hi(D_8002ECAC)
-    /* 28EC 80001CEC 8529ECAC */  lh         $t1, %lo(D_8002ECAC)($t1)
+    /* 28E8 80001CE8 3C098003 */  lui        $t1, %hi(gViewportScale)
+    /* 28EC 80001CEC 8529ECAC */  lh         $t1, %lo(gViewportScale)($t1)
     /* 28F0 80001CF0 44888000 */  mtc1       $t0, $ft4
-    /* 28F4 80001CF4 3C0B8003 */  lui        $t3, %hi(D_8002ECAE)
-    /* 28F8 80001CF8 856BECAE */  lh         $t3, %lo(D_8002ECAE)($t3)
+    /* 28F4 80001CF4 3C0B8003 */  lui        $t3, %hi(gViewportScaleYAlt)
+    /* 28F8 80001CF8 856BECAE */  lh         $t3, %lo(gViewportScaleYAlt)($t3)
     /* 28FC 80001CFC 8FAA0024 */  lw         $t2, 0x24($sp)
     /* 2900 80001D00 468084A0 */  cvt.s.w    $ft5, $ft4
     /* 2904 80001D04 44892000 */  mtc1       $t1, $ft0
@@ -499,11 +499,11 @@ glabel func_80001B44
     /* 2924 80001D24 46045383 */   div.s     $fa1, $ft3, $ft0
   .L80001D28:
     /* 2928 80001D28 8FAC0020 */  lw         $t4, 0x20($sp)
-    /* 292C 80001D2C 3C018003 */  lui        $at, %hi(D_8002ECAC)
-    /* 2930 80001D30 A42CECAC */  sh         $t4, %lo(D_8002ECAC)($at)
+    /* 292C 80001D2C 3C018003 */  lui        $at, %hi(gViewportScale)
+    /* 2930 80001D30 A42CECAC */  sh         $t4, %lo(gViewportScale)($at)
     /* 2934 80001D34 8FAD0024 */  lw         $t5, 0x24($sp)
-    /* 2938 80001D38 3C018003 */  lui        $at, %hi(D_8002ECAE)
-    /* 293C 80001D3C A42DECAE */  sh         $t5, %lo(D_8002ECAE)($at)
+    /* 2938 80001D38 3C018003 */  lui        $at, %hi(gViewportScaleYAlt)
+    /* 293C 80001D3C A42DECAE */  sh         $t5, %lo(gViewportScaleYAlt)($at)
     /* 2940 80001D40 0C00057C */  jal        func_800015F0
     /* 2944 80001D44 00000000 */   nop
     /* 2948 80001D48 10000001 */  b          .L80001D50
@@ -520,25 +520,25 @@ nonmatching func_80001D60, 0x9C
 glabel func_80001D60
     /* 2960 80001D60 27BDFFE8 */  addiu      $sp, $sp, -0x18
     /* 2964 80001D64 AFBF0014 */  sw         $ra, 0x14($sp)
-    /* 2968 80001D68 3C0E8003 */  lui        $t6, %hi(D_8002B010)
-    /* 296C 80001D6C 85CEB010 */  lh         $t6, %lo(D_8002B010)($t6)
+    /* 2968 80001D68 3C0E8003 */  lui        $t6, %hi(gViewportPendingFrames)
+    /* 296C 80001D6C 85CEB010 */  lh         $t6, %lo(gViewportPendingFrames)($t6)
     /* 2970 80001D70 15C00003 */  bnez       $t6, .L80001D80
     /* 2974 80001D74 00000000 */   nop
     /* 2978 80001D78 1000001C */  b          .L80001DEC
     /* 297C 80001D7C 00000000 */   nop
   .L80001D80:
-    /* 2980 80001D80 3C0F8003 */  lui        $t7, %hi(D_8002B010)
-    /* 2984 80001D84 85EFB010 */  lh         $t7, %lo(D_8002B010)($t7)
-    /* 2988 80001D88 3C018003 */  lui        $at, %hi(D_8002B010)
+    /* 2980 80001D80 3C0F8003 */  lui        $t7, %hi(gViewportPendingFrames)
+    /* 2984 80001D84 85EFB010 */  lh         $t7, %lo(gViewportPendingFrames)($t7)
+    /* 2988 80001D88 3C018003 */  lui        $at, %hi(gViewportPendingFrames)
     /* 298C 80001D8C 25F8FFFF */  addiu      $t8, $t7, -0x1
     /* 2990 80001D90 0018CC00 */  sll        $t9, $t8, 16
     /* 2994 80001D94 00194403 */  sra        $t0, $t9, 16
     /* 2998 80001D98 15000012 */  bnez       $t0, .L80001DE4
-    /* 299C 80001D9C A438B010 */   sh        $t8, %lo(D_8002B010)($at)
-    /* 29A0 80001DA0 3C098003 */  lui        $t1, %hi(D_8002EBFC)
-    /* 29A4 80001DA4 3C0C8003 */  lui        $t4, %hi(D_8002B014)
-    /* 29A8 80001DA8 8D8CB014 */  lw         $t4, %lo(D_8002B014)($t4)
-    /* 29AC 80001DAC 8D29EBFC */  lw         $t1, %lo(D_8002EBFC)($t1)
+    /* 299C 80001D9C A438B010 */   sh        $t8, %lo(gViewportPendingFrames)($at)
+    /* 29A0 80001DA0 3C098003 */  lui        $t1, %hi(gViewportStruct)
+    /* 29A4 80001DA4 3C0C8003 */  lui        $t4, %hi(gViewportDataPtr)
+    /* 29A8 80001DA8 8D8CB014 */  lw         $t4, %lo(gViewportDataPtr)($t4)
+    /* 29AC 80001DAC 8D29EBFC */  lw         $t1, %lo(gViewportStruct)($t1)
     /* 29B0 80001DB0 8D8D002C */  lw         $t5, 0x2C($t4)
     /* 29B4 80001DB4 8D2A002C */  lw         $t2, 0x2C($t1)
     /* 29B8 80001DB8 31AEFFFF */  andi       $t6, $t5, 0xFFFF
@@ -548,9 +548,9 @@ glabel func_80001D60
     /* 29C8 80001DC8 0C001B68 */  jal        func_80006DA0
     /* 29CC 80001DCC 00002025 */   or        $a0, $zero, $zero
   .L80001DD0:
-    /* 29D0 80001DD0 3C048003 */  lui        $a0, %hi(D_8002B014)
+    /* 29D0 80001DD0 3C048003 */  lui        $a0, %hi(gViewportDataPtr)
     /* 29D4 80001DD4 0C001B50 */  jal        func_80006D40
-    /* 29D8 80001DD8 8C84B014 */   lw        $a0, %lo(D_8002B014)($a0)
+    /* 29D8 80001DD8 8C84B014 */   lw        $a0, %lo(gViewportDataPtr)($a0)
     /* 29DC 80001DDC 0C001F48 */  jal        func_80007D20
     /* 29E0 80001DE0 240400AA */   addiu     $a0, $zero, 0xAA
   .L80001DE4:
@@ -600,9 +600,9 @@ nonmatching func_80001E58, 0x2C
 glabel func_80001E58
     /* 2A58 80001E58 27BDFFE8 */  addiu      $sp, $sp, -0x18
     /* 2A5C 80001E5C AFBF0014 */  sw         $ra, 0x14($sp)
-    /* 2A60 80001E60 3C048003 */  lui        $a0, %hi(D_8002EBFC)
+    /* 2A60 80001E60 3C048003 */  lui        $a0, %hi(gViewportStruct)
     /* 2A64 80001E64 0C001B50 */  jal        func_80006D40
-    /* 2A68 80001E68 8C84EBFC */   lw        $a0, %lo(D_8002EBFC)($a0)
+    /* 2A68 80001E68 8C84EBFC */   lw        $a0, %lo(gViewportStruct)($a0)
     /* 2A6C 80001E6C 10000001 */  b          .L80001E74
     /* 2A70 80001E70 00000000 */   nop
   .L80001E74:
@@ -615,19 +615,19 @@ endlabel func_80001E58
 nonmatching func_80001E84, 0x48
 
 glabel func_80001E84
-    /* 2A84 80001E84 3C0E8003 */  lui        $t6, %hi(D_8002EBF8)
-    /* 2A88 80001E88 85CEEBF8 */  lh         $t6, %lo(D_8002EBF8)($t6)
-    /* 2A8C 80001E8C 3C188003 */  lui        $t8, %hi(D_8002AFFC)
+    /* 2A84 80001E84 3C0E8003 */  lui        $t6, %hi(gViewportX)
+    /* 2A88 80001E88 85CEEBF8 */  lh         $t6, %lo(gViewportX)($t6)
+    /* 2A8C 80001E8C 3C188003 */  lui        $t8, %hi(gViewportOffsetX)
     /* 2A90 80001E90 000E78C0 */  sll        $t7, $t6, 3
     /* 2A94 80001E94 030FC021 */  addu       $t8, $t8, $t7
-    /* 2A98 80001E98 8718AFFC */  lh         $t8, %lo(D_8002AFFC)($t8)
+    /* 2A98 80001E98 8718AFFC */  lh         $t8, %lo(gViewportOffsetX)($t8)
     /* 2A9C 80001E9C AC980000 */  sw         $t8, 0x0($a0)
-    /* 2AA0 80001EA0 3C198003 */  lui        $t9, %hi(D_8002EBF8)
-    /* 2AA4 80001EA4 8739EBF8 */  lh         $t9, %lo(D_8002EBF8)($t9)
-    /* 2AA8 80001EA8 3C098003 */  lui        $t1, %hi(D_8002AFFE)
+    /* 2AA0 80001EA0 3C198003 */  lui        $t9, %hi(gViewportX)
+    /* 2AA4 80001EA4 8739EBF8 */  lh         $t9, %lo(gViewportX)($t9)
+    /* 2AA8 80001EA8 3C098003 */  lui        $t1, %hi(gViewportOffsetY)
     /* 2AAC 80001EAC 001940C0 */  sll        $t0, $t9, 3
     /* 2AB0 80001EB0 01284821 */  addu       $t1, $t1, $t0
-    /* 2AB4 80001EB4 8529AFFE */  lh         $t1, %lo(D_8002AFFE)($t1)
+    /* 2AB4 80001EB4 8529AFFE */  lh         $t1, %lo(gViewportOffsetY)($t1)
     /* 2AB8 80001EB8 ACA90000 */  sw         $t1, 0x0($a1)
     /* 2ABC 80001EBC 03E00008 */  jr         $ra
     /* 2AC0 80001EC0 00000000 */   nop
@@ -638,24 +638,24 @@ endlabel func_80001E84
 nonmatching func_80001ECC, 0x60
 
 glabel func_80001ECC
-    /* 2ACC 80001ECC 3C0F8003 */  lui        $t7, %hi(D_8002EBF8)
-    /* 2AD0 80001ED0 85EFEBF8 */  lh         $t7, %lo(D_8002EBF8)($t7)
-    /* 2AD4 80001ED4 3C198003 */  lui        $t9, %hi(D_8002AFFC)
-    /* 2AD8 80001ED8 3C0E8003 */  lui        $t6, %hi(D_8002ECB0)
+    /* 2ACC 80001ECC 3C0F8003 */  lui        $t7, %hi(gViewportX)
+    /* 2AD0 80001ED0 85EFEBF8 */  lh         $t7, %lo(gViewportX)($t7)
+    /* 2AD4 80001ED4 3C198003 */  lui        $t9, %hi(gViewportOffsetX)
+    /* 2AD8 80001ED8 3C0E8003 */  lui        $t6, %hi(gViewportScaleX)
     /* 2ADC 80001EDC 000FC0C0 */  sll        $t8, $t7, 3
     /* 2AE0 80001EE0 0338C821 */  addu       $t9, $t9, $t8
-    /* 2AE4 80001EE4 8739AFFC */  lh         $t9, %lo(D_8002AFFC)($t9)
-    /* 2AE8 80001EE8 85CEECB0 */  lh         $t6, %lo(D_8002ECB0)($t6)
+    /* 2AE4 80001EE4 8739AFFC */  lh         $t9, %lo(gViewportOffsetX)($t9)
+    /* 2AE8 80001EE8 85CEECB0 */  lh         $t6, %lo(gViewportScaleX)($t6)
     /* 2AEC 80001EEC 01D94023 */  subu       $t0, $t6, $t9
     /* 2AF0 80001EF0 AC880000 */  sw         $t0, 0x0($a0)
-    /* 2AF4 80001EF4 3C0A8003 */  lui        $t2, %hi(D_8002EBF8)
-    /* 2AF8 80001EF8 854AEBF8 */  lh         $t2, %lo(D_8002EBF8)($t2)
-    /* 2AFC 80001EFC 3C0C8003 */  lui        $t4, %hi(D_8002AFFE)
-    /* 2B00 80001F00 3C098003 */  lui        $t1, %hi(D_8002ECB2)
+    /* 2AF4 80001EF4 3C0A8003 */  lui        $t2, %hi(gViewportX)
+    /* 2AF8 80001EF8 854AEBF8 */  lh         $t2, %lo(gViewportX)($t2)
+    /* 2AFC 80001EFC 3C0C8003 */  lui        $t4, %hi(gViewportOffsetY)
+    /* 2B00 80001F00 3C098003 */  lui        $t1, %hi(gViewportScaleY)
     /* 2B04 80001F04 000A58C0 */  sll        $t3, $t2, 3
     /* 2B08 80001F08 018B6021 */  addu       $t4, $t4, $t3
-    /* 2B0C 80001F0C 858CAFFE */  lh         $t4, %lo(D_8002AFFE)($t4)
-    /* 2B10 80001F10 8529ECB2 */  lh         $t1, %lo(D_8002ECB2)($t1)
+    /* 2B0C 80001F0C 858CAFFE */  lh         $t4, %lo(gViewportOffsetY)($t4)
+    /* 2B10 80001F10 8529ECB2 */  lh         $t1, %lo(gViewportScaleY)($t1)
     /* 2B14 80001F14 012C6823 */  subu       $t5, $t1, $t4
     /* 2B18 80001F18 ACAD0000 */  sw         $t5, 0x0($a1)
     /* 2B1C 80001F1C 03E00008 */  jr         $ra
@@ -671,43 +671,43 @@ glabel func_80001F2C
     /* 2B30 80001F30 AFBF0014 */  sw         $ra, 0x14($sp)
     /* 2B34 80001F34 AFA40028 */  sw         $a0, 0x28($sp)
     /* 2B38 80001F38 AFA5002C */  sw         $a1, 0x2C($sp)
-    /* 2B3C 80001F3C 3C0E8003 */  lui        $t6, %hi(D_8002B014)
-    /* 2B40 80001F40 8DCEB014 */  lw         $t6, %lo(D_8002B014)($t6)
+    /* 2B3C 80001F3C 3C0E8003 */  lui        $t6, %hi(gViewportDataPtr)
+    /* 2B40 80001F40 8DCEB014 */  lw         $t6, %lo(gViewportDataPtr)($t6)
     /* 2B44 80001F44 15C00003 */  bnez       $t6, .L80001F54
     /* 2B48 80001F48 00000000 */   nop
     /* 2B4C 80001F4C 10000063 */  b          .L800020DC
     /* 2B50 80001F50 00000000 */   nop
   .L80001F54:
-    /* 2B54 80001F54 3C0F8003 */  lui        $t7, %hi(D_8002ECA0)
-    /* 2B58 80001F58 85EFECA0 */  lh         $t7, %lo(D_8002ECA0)($t7)
+    /* 2B54 80001F54 3C0F8003 */  lui        $t7, %hi(gViewportLeftEdge)
+    /* 2B58 80001F58 85EFECA0 */  lh         $t7, %lo(gViewportLeftEdge)($t7)
     /* 2B5C 80001F5C 8FB80028 */  lw         $t8, 0x28($sp)
     /* 2B60 80001F60 01F8C821 */  addu       $t9, $t7, $t8
     /* 2B64 80001F64 AFB90024 */  sw         $t9, 0x24($sp)
-    /* 2B68 80001F68 3C088003 */  lui        $t0, %hi(D_8002ECA2)
-    /* 2B6C 80001F6C 8508ECA2 */  lh         $t0, %lo(D_8002ECA2)($t0)
+    /* 2B68 80001F68 3C088003 */  lui        $t0, %hi(gViewportTopEdge)
+    /* 2B6C 80001F6C 8508ECA2 */  lh         $t0, %lo(gViewportTopEdge)($t0)
     /* 2B70 80001F70 8FA9002C */  lw         $t1, 0x2C($sp)
     /* 2B74 80001F74 01095021 */  addu       $t2, $t0, $t1
     /* 2B78 80001F78 AFAA0020 */  sw         $t2, 0x20($sp)
-    /* 2B7C 80001F7C 3C0B8003 */  lui        $t3, %hi(D_8002ECA4)
-    /* 2B80 80001F80 856BECA4 */  lh         $t3, %lo(D_8002ECA4)($t3)
+    /* 2B7C 80001F7C 3C0B8003 */  lui        $t3, %hi(gViewportRightEdge)
+    /* 2B80 80001F80 856BECA4 */  lh         $t3, %lo(gViewportRightEdge)($t3)
     /* 2B84 80001F84 8FAC0028 */  lw         $t4, 0x28($sp)
-    /* 2B88 80001F88 3C0E8003 */  lui        $t6, %hi(D_8002ECA8)
-    /* 2B8C 80001F8C 85CEECA8 */  lh         $t6, %lo(D_8002ECA8)($t6)
+    /* 2B88 80001F88 3C0E8003 */  lui        $t6, %hi(gViewportXOverflow)
+    /* 2B8C 80001F8C 85CEECA8 */  lh         $t6, %lo(gViewportXOverflow)($t6)
     /* 2B90 80001F90 016C6821 */  addu       $t5, $t3, $t4
     /* 2B94 80001F94 01AE7821 */  addu       $t7, $t5, $t6
     /* 2B98 80001F98 AFAF001C */  sw         $t7, 0x1C($sp)
-    /* 2B9C 80001F9C 3C188003 */  lui        $t8, %hi(D_8002ECA6)
-    /* 2BA0 80001FA0 8718ECA6 */  lh         $t8, %lo(D_8002ECA6)($t8)
+    /* 2B9C 80001F9C 3C188003 */  lui        $t8, %hi(gViewportBottomEdge)
+    /* 2BA0 80001FA0 8718ECA6 */  lh         $t8, %lo(gViewportBottomEdge)($t8)
     /* 2BA4 80001FA4 8FB9002C */  lw         $t9, 0x2C($sp)
-    /* 2BA8 80001FA8 3C098003 */  lui        $t1, %hi(D_8002ECAA)
-    /* 2BAC 80001FAC 8529ECAA */  lh         $t1, %lo(D_8002ECAA)($t1)
+    /* 2BA8 80001FA8 3C098003 */  lui        $t1, %hi(gViewportYOverflow)
+    /* 2BAC 80001FAC 8529ECAA */  lh         $t1, %lo(gViewportYOverflow)($t1)
     /* 2BB0 80001FB0 03194021 */  addu       $t0, $t8, $t9
     /* 2BB4 80001FB4 01095021 */  addu       $t2, $t0, $t1
     /* 2BB8 80001FB8 AFAA0018 */  sw         $t2, 0x18($sp)
-    /* 2BBC 80001FBC 3C0C8003 */  lui        $t4, %hi(D_8002EBF8)
-    /* 2BC0 80001FC0 858CEBF8 */  lh         $t4, %lo(D_8002EBF8)($t4)
-    /* 2BC4 80001FC4 3C0E8003 */  lui        $t6, %hi(D_8002AFC8)
-    /* 2BC8 80001FC8 25CEAFC8 */  addiu      $t6, $t6, %lo(D_8002AFC8)
+    /* 2BBC 80001FBC 3C0C8003 */  lui        $t4, %hi(gViewportX)
+    /* 2BC0 80001FC0 858CEBF8 */  lh         $t4, %lo(gViewportX)($t4)
+    /* 2BC4 80001FC4 3C0E8003 */  lui        $t6, %hi(gViewportBoundsTable)
+    /* 2BC8 80001FC8 25CEAFC8 */  addiu      $t6, $t6, %lo(gViewportBoundsTable)
     /* 2BCC 80001FCC 000C6900 */  sll        $t5, $t4, 4
     /* 2BD0 80001FD0 01AE7821 */  addu       $t7, $t5, $t6
     /* 2BD4 80001FD4 85F80000 */  lh         $t8, 0x0($t7)
@@ -728,21 +728,21 @@ glabel func_80001F2C
     /* 2C10 80002010 010A082A */  slt        $at, $t0, $t2
     /* 2C14 80002014 1020000B */  beqz       $at, .L80002044
     /* 2C18 80002018 00000000 */   nop
-    /* 2C1C 8000201C 3C0C8003 */  lui        $t4, %hi(D_8002EBF8)
-    /* 2C20 80002020 858CEBF8 */  lh         $t4, %lo(D_8002EBF8)($t4)
-    /* 2C24 80002024 3C0E8003 */  lui        $t6, %hi(D_8002AFFC)
+    /* 2C1C 8000201C 3C0C8003 */  lui        $t4, %hi(gViewportX)
+    /* 2C20 80002020 858CEBF8 */  lh         $t4, %lo(gViewportX)($t4)
+    /* 2C24 80002024 3C0E8003 */  lui        $t6, %hi(gViewportOffsetX)
     /* 2C28 80002028 8FB80028 */  lw         $t8, 0x28($sp)
     /* 2C2C 8000202C 000C68C0 */  sll        $t5, $t4, 3
     /* 2C30 80002030 01CD7021 */  addu       $t6, $t6, $t5
-    /* 2C34 80002034 85CEAFFC */  lh         $t6, %lo(D_8002AFFC)($t6)
-    /* 2C38 80002038 3C018003 */  lui        $at, %hi(D_8002ECB0)
+    /* 2C34 80002034 85CEAFFC */  lh         $t6, %lo(gViewportOffsetX)($t6)
+    /* 2C38 80002038 3C018003 */  lui        $at, %hi(gViewportScaleX)
     /* 2C3C 8000203C 01D85821 */  addu       $t3, $t6, $t8
-    /* 2C40 80002040 A42BECB0 */  sh         $t3, %lo(D_8002ECB0)($at)
+    /* 2C40 80002040 A42BECB0 */  sh         $t3, %lo(gViewportScaleX)($at)
   .L80002044:
-    /* 2C44 80002044 3C098003 */  lui        $t1, %hi(D_8002EBF8)
-    /* 2C48 80002048 8529EBF8 */  lh         $t1, %lo(D_8002EBF8)($t1)
-    /* 2C4C 8000204C 3C088003 */  lui        $t0, %hi(D_8002AFC8)
-    /* 2C50 80002050 2508AFC8 */  addiu      $t0, $t0, %lo(D_8002AFC8)
+    /* 2C44 80002044 3C098003 */  lui        $t1, %hi(gViewportX)
+    /* 2C48 80002048 8529EBF8 */  lh         $t1, %lo(gViewportX)($t1)
+    /* 2C4C 8000204C 3C088003 */  lui        $t0, %hi(gViewportBoundsTable)
+    /* 2C50 80002050 2508AFC8 */  addiu      $t0, $t0, %lo(gViewportBoundsTable)
     /* 2C54 80002054 00097900 */  sll        $t7, $t1, 4
     /* 2C58 80002058 01E85021 */  addu       $t2, $t7, $t0
     /* 2C5C 8000205C 854C0008 */  lh         $t4, 0x8($t2)
@@ -763,16 +763,16 @@ glabel func_80001F2C
     /* 2C98 80002098 01CB082A */  slt        $at, $t6, $t3
     /* 2C9C 8000209C 1020000B */  beqz       $at, .L800020CC
     /* 2CA0 800020A0 00000000 */   nop
-    /* 2CA4 800020A4 3C098003 */  lui        $t1, %hi(D_8002EBF8)
-    /* 2CA8 800020A8 8529EBF8 */  lh         $t1, %lo(D_8002EBF8)($t1)
-    /* 2CAC 800020AC 3C088003 */  lui        $t0, %hi(D_8002AFFE)
+    /* 2CA4 800020A4 3C098003 */  lui        $t1, %hi(gViewportX)
+    /* 2CA8 800020A8 8529EBF8 */  lh         $t1, %lo(gViewportX)($t1)
+    /* 2CAC 800020AC 3C088003 */  lui        $t0, %hi(gViewportOffsetY)
     /* 2CB0 800020B0 8FAC002C */  lw         $t4, 0x2C($sp)
     /* 2CB4 800020B4 000978C0 */  sll        $t7, $t1, 3
     /* 2CB8 800020B8 010F4021 */  addu       $t0, $t0, $t7
-    /* 2CBC 800020BC 8508AFFE */  lh         $t0, %lo(D_8002AFFE)($t0)
-    /* 2CC0 800020C0 3C018003 */  lui        $at, %hi(D_8002ECB2)
+    /* 2CBC 800020BC 8508AFFE */  lh         $t0, %lo(gViewportOffsetY)($t0)
+    /* 2CC0 800020C0 3C018003 */  lui        $at, %hi(gViewportScaleY)
     /* 2CC4 800020C4 010CC821 */  addu       $t9, $t0, $t4
-    /* 2CC8 800020C8 A439ECB2 */  sh         $t9, %lo(D_8002ECB2)($at)
+    /* 2CC8 800020C8 A439ECB2 */  sh         $t9, %lo(gViewportScaleY)($at)
   .L800020CC:
     /* 2CCC 800020CC 0C00057C */  jal        func_800015F0
     /* 2CD0 800020D0 00000000 */   nop
