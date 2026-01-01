@@ -22,6 +22,20 @@
 #define COL_SPRING_K    (-10000.0f) /* Spring constant for collisions */
 #define COL_DAMP_K      (-50.0f)    /* Damping constant for collisions */
 
+/* Arcade collision constants (collision.c) */
+#define g_Kcs           (-10000.0f) /* Compression spring constant */
+#define g_Krs           (-11000.0f) /* Rebound spring constant */
+#define g_Kcd           (-50.0f)    /* Compression damping constant */
+#define g_Krd           (0.0f)      /* Rebound damping constant */
+
+/* Collision box dimensions */
+#define COLL_TOP_DIST   (-5.0f)     /* Top of collision box (body Z) */
+#define COLL_BOT_DIST   (1.0f)      /* Bottom of collision box */
+
+/* Damage thresholds */
+#define DAMAGE1_FORCE   (40000.0f)  /* Damage level 1 force threshold */
+#define DAMAGE2_FORCE   (155000.0f) /* Damage level 2 force threshold */
+
 /* Collision data stored per-car */
 typedef struct CollisionData {
     f32     colrad;             /* Collision radius (bounding sphere) */
@@ -72,5 +86,26 @@ void ForceApart(s32 car1, s32 car2, f32 dir[3]);
 void set_collision_damage(s32 car_index);
 f32 get_collision_radius(s32 car_index);
 void set_collision_radius(s32 car_index, f32 radius);
+
+/* ========================================================================
+ * Arcade-compatible function aliases (collision.c)
+ * ======================================================================== */
+
+/* Point-in-body test (arcade: PointInBody) */
+s32 PointInBody(s32 car_index, f32 pt[3]);
+
+/* Collision force functions */
+void setFBCollisionForce(s32 m, s32 m1, s32 m2, f32 dir[3], f32 pos[3]);
+void setCollisionDamage(s32 car_index);
+void simpleCollForce(s32 car1, s32 car2, f32 dir[3]);
+void setCenterForce(s32 m, s32 m1, s32 m2, f32 dir[3], f32 pos[3]);
+
+/* Force calculation helpers */
+f32 collForceNormal(s32 car_index, u32 coll_alg, f32 din, f32 vin);
+void distributeForce(f32 force, f32 offset, f32 width, f32 *fpos, f32 *fneg);
+
+/* Corner collision force */
+void CollForceMineIn(s32 car1, s32 car2, f32 vec[3], s32 corner);
+void CollForceOtherIn(s32 car1, s32 car2, f32 vec[3], s32 corner);
 
 #endif /* COLLISION_H */

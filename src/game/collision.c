@@ -557,3 +557,327 @@ void set_collision_radius(s32 car_index, f32 radius) {
         col_data[car_index].colrad = radius;
     }
 }
+
+/* ========================================================================
+ * Arcade-compatible function aliases (collision.c)
+ * ======================================================================== */
+
+/**
+ * PointInBody - Check if point is inside car's bounding box (arcade name)
+ * Wrapper for point_in_body()
+ */
+s32 PointInBody(s32 car_index, f32 pt[3]) {
+    return point_in_body(car_index, pt);
+}
+
+/**
+ * setFBCollisionForce - Set front/back collision force (arcade name)
+ * Based on arcade: collision.c:setFBCollisionForce()
+ */
+void setFBCollisionForce(s32 m, s32 m1, s32 m2, f32 dir[3], f32 pos[3]) {
+    set_collision_force(m, m2, dir, pos);
+}
+
+/**
+ * setCollisionDamage - Set collision damage (arcade name)
+ * Wrapper for set_collision_damage()
+ */
+void setCollisionDamage(s32 car_index) {
+    set_collision_damage(car_index);
+}
+
+/**
+ * simpleCollForce - Simple collision force calculation (arcade name)
+ * Based on arcade: collision.c:simpleCollForce()
+ *
+ * @param car1 Car to apply force to
+ * @param car2 Other car
+ * @param dir Direction vector from car1 to car2
+ */
+void simpleCollForce(s32 car1, s32 car2, f32 dir[3]) {
+    CollisionData *c1;
+    CarData *d1, *d2;
+    f32 invdist, vin, force;
+    f32 rvec[3];
+    s32 i;
+
+    c1 = &col_data[car1];
+    d1 = &car_array[car1];
+    d2 = &car_array[car2];
+
+    /* Normalize direction vector */
+    invdist = dir[0]*dir[0] + dir[1]*dir[1] + dir[2]*dir[2];
+    if (invdist < 0.0001f) {
+        /* Coincident centers, bounce up */
+        dir[0] = 0.0f;
+        dir[1] = 0.0f;
+        dir[2] = -1.0f;
+        invdist = 1.0f;
+    } else {
+        invdist = 1.0f / sqrtf(invdist);
+        for (i = 0; i < 3; i++) {
+            dir[i] = dir[i] * invdist;
+        }
+    }
+
+    /* Get relative velocity between car centers */
+    for (i = 0; i < 3; i++) {
+        rvec[i] = d2->RWV[i] - d1->RWV[i];
+    }
+    vin = rvec[0]*dir[0] + rvec[1]*dir[1] + rvec[2]*dir[2];
+
+    /* Calculate force */
+    force = (vin + 5.0f) * 80000.0f;
+    if (force < 0.0f) {
+        force = 0.0f;
+    } else if (force > 100000.0f) {
+        force = 100000.0f;
+    }
+
+    /* Apply force to center */
+    for (i = 0; i < 3; i++) {
+        rvec[i] = force * dir[i];
+    }
+    world_to_body(rvec, c1->CENTERFORCE, d1->dr_uvs, d1->RWR);
+}
+
+/**
+ * setCenterForce - Set center collision force (arcade name)
+ * Based on arcade: collision.c:setCenterForce()
+ */
+void setCenterForce(s32 m, s32 m1, s32 m2, f32 dir[3], f32 pos[3]) {
+    CollisionData *c;
+    CarData *d, *d2;
+    f32 del[6], rvec[3], dist, invdist, v1, force;
+    s32 i, side, mul, comp;
+
+    c = &col_data[m];
+    d = &car_array[m];
+    d2 = &car_array[m2];
+
+    /* Find closest side (inside = negative) */
+    del[0] = pos[0] - c->BODYR[0][0];
+    del[1] = pos[1] - c->BODYR[0][1];
+    del[2] = -10.0f;
+    del[3] = c->BODYR[3][0] - pos[0];
+    del[4] = c->BODYR[3][1] - pos[1];
+    del[5] = -10.0f;
+
+    /* Find closest side */
+    dist = -10.0f;
+    side = 0;
+    for (i = 0; i < 6; i++) {
+        if ((del[i] < 0.0f) && (del[i] > dist)) {
+            dist = del[i];
+            side = i;
+        }
+    }
+
+    mul = (side < 3) ? 1 : -1;
+    comp = (side < 3) ? side : (side - 3);
+
+    /* Normalize direction vector */
+    invdist = dir[0]*dir[0] + dir[1]*dir[1] + dir[2]*dir[2];
+    if (invdist < 0.0001f) {
+        dir[0] = 0.0f;
+        dir[1] = 0.0f;
+        dir[2] = -1.0f;
+        invdist = 1.0f;
+    } else {
+        invdist = 1.0f / sqrtf(invdist);
+        for (i = 0; i < 3; i++) {
+            dir[i] = dir[i] * invdist;
+        }
+    }
+
+    /* Get relative velocity */
+    for (i = 0; i < 3; i++) {
+        rvec[i] = d2->RWV[i] - d->RWV[i];
+    }
+    v1 = rvec[0]*dir[0] + rvec[1]*dir[1] + rvec[2]*dir[2];
+
+    /* Calculate force */
+    v1 += 5.0f;
+    force = (v1 > 0.0f) ? v1 * 100.0f * 50.0f : 0.0f;  /* mass * 50 */
+
+    for (i = 0; i < 3; i++) {
+        pos[i] = force * dir[i];
+    }
+    world_to_body(pos, c->CENTERFORCE, d->dr_uvs, d->RWR);
+}
+
+/**
+ * collForceNormal - Calculate collision force based on algorithm (arcade name)
+ * Based on arcade: collision.c:collForceNormal()
+ */
+f32 collForceNormal(s32 car_index, u32 coll_alg, f32 din, f32 vin) {
+    f32 force, vout;
+    f32 mass = 100.0f;  /* Car mass in slugs */
+    f32 idt = 60.0f;    /* Inverse dt (1/60 fps) */
+
+    switch (coll_alg) {
+        case COLL_ALG_SOFTWALL:
+            if (vin < 0.0f) {
+                /* Compression */
+                force = (din * g_Kcs) - (vin * vin * g_Kcd);
+            } else {
+                /* Rebound */
+                force = (din * g_Krs) + (vin * vin * g_Krd);
+            }
+            force *= 2.0f;
+            if (force < 0.0f) {
+                force = 0.0f;
+            }
+            break;
+
+        case COLL_ALG_HARDWALL:
+            vout = (din * 4.0f) + 1.0f;  /* 5fps @ 1 foot */
+            force = (vin + vout) * mass * 0.5f * idt;
+            if (force < 0.0f) {
+                force = 0.0f;
+            }
+            break;
+
+        case COLL_ALG_CARBODY:
+            force = 50000.0f;
+            if (force < 0.0f) {
+                force = 0.0f;
+            }
+            break;
+
+        default:
+            force = 0.0f;
+            break;
+    }
+
+    return force;
+}
+
+/**
+ * distributeForce - Distribute force between two corners (arcade name)
+ * Based on arcade: collision.c:distributeForce()
+ */
+void distributeForce(f32 force, f32 offset, f32 width, f32 *fpos, f32 *fneg) {
+    f32 interp_val;
+
+    interp_val = (width + offset) / (width * 2.0f);
+    if (interp_val > 1.0f) {
+        interp_val = 1.0f;
+    } else if (interp_val < 0.0f) {
+        interp_val = 0.0f;
+    }
+    *fpos = interp_val * force;
+    interp_val = 1.0f - interp_val;
+    *fneg = interp_val * force;
+}
+
+/**
+ * CollForceMineIn - Force when my corner is in other car (arcade name)
+ * Based on arcade: collision.c:CollForceMineIn()
+ */
+void CollForceMineIn(s32 car1, s32 car2, f32 vec[3], s32 corner) {
+    CollisionData *c1, *c2;
+    CarData *d1, *d2;
+    f32 del[6], rvec[3], dist, mul, v1, force;
+    s32 i, side, dir_idx;
+
+    c1 = &col_data[car1];
+    c2 = &col_data[car2];
+    d1 = &car_array[car1];
+    d2 = &car_array[car2];
+
+    /* Find closest side */
+    del[0] = vec[0] - c2->BODYR[0][0];
+    del[1] = vec[1] - c2->BODYR[0][1];
+    del[2] = -10.0f;
+    del[3] = c2->BODYR[3][0] - vec[0];
+    del[4] = c2->BODYR[3][1] - vec[1];
+    del[5] = -10.0f;
+
+    dist = -10.0f;
+    side = 0;
+    for (i = 0; i < 6; i++) {
+        if ((del[i] < 0.0f) && (del[i] > dist)) {
+            dist = del[i];
+            side = i;
+        }
+    }
+
+    mul = (side < 3) ? 1.0f : -1.0f;
+    dir_idx = (side < 3) ? side : (side - 3);
+
+    /* Get relative velocity */
+    for (i = 0; i < 3; i++) {
+        vec[i] = d1->RWV[i] - d2->RWV[i];
+    }
+    world_to_body(vec, rvec, d2->dr_uvs, d2->RWR);
+    v1 = rvec[dir_idx] * mul;
+
+    /* Calculate force */
+    force = collForceNormal(car1, COLL_ALG_SOFTWALL, dist, v1);
+    for (i = 0; i < 3; i++) {
+        vec[i] = (i == dir_idx) ? (force * mul) : 0.0f;
+    }
+    body_to_world(vec, rvec, d2->dr_uvs, d2->RWR);
+    world_to_body(rvec, c1->BODYFORCE[corner], d1->dr_uvs, d1->RWR);
+}
+
+/**
+ * CollForceOtherIn - Force when other car's corner is in me (arcade name)
+ * Based on arcade: collision.c:CollForceOtherIn()
+ */
+void CollForceOtherIn(s32 car1, s32 car2, f32 vec[3], s32 corner) {
+    CollisionData *c1;
+    CarData *d1, *d2;
+    f32 del[6], rvec[3], vvec[3], dist, mul, v1, force;
+    s32 i, side, dir_idx;
+
+    c1 = &col_data[car1];
+    d1 = &car_array[car1];
+    d2 = &car_array[car2];
+
+    /* Find closest side */
+    del[0] = vec[0] - c1->BODYR[0][0];
+    del[1] = vec[1] - c1->BODYR[0][1];
+    del[2] = -10.0f;
+    del[3] = c1->BODYR[3][0] - vec[0];
+    del[4] = c1->BODYR[3][1] - vec[1];
+    del[5] = -10.0f;
+
+    dist = -10.0f;
+    side = 0;
+    for (i = 0; i < 6; i++) {
+        if ((del[i] < 0.0f) && (del[i] > dist)) {
+            dist = del[i];
+            side = i;
+        }
+    }
+
+    mul = (side < 3) ? 1.0f : -1.0f;
+    dir_idx = (side < 3) ? side : (side - 3);
+
+    /* Get relative velocity */
+    for (i = 0; i < 3; i++) {
+        vvec[i] = d2->RWV[i] - d1->RWV[i];
+    }
+    world_to_body(vvec, rvec, d1->dr_uvs, d1->RWR);
+    v1 = rvec[dir_idx] * mul;
+
+    /* Calculate force */
+    force = collForceNormal(car1, COLL_ALG_SOFTWALL, dist, v1);
+
+    /* Distribute force to body corners */
+    if (side == 0) {
+        distributeForce(-force, vec[1], c1->BODYR[0][1],
+                        &c1->BODYFORCE[0][0], &c1->BODYFORCE[1][0]);
+    } else if (side == 1) {
+        distributeForce(-force, vec[0], c1->BODYR[0][0],
+                        &c1->BODYFORCE[0][1], &c1->BODYFORCE[2][1]);
+    } else if (side == 3) {
+        distributeForce(force, vec[1], c1->BODYR[0][1],
+                        &c1->BODYFORCE[2][0], &c1->BODYFORCE[3][0]);
+    } else if (side == 4) {
+        distributeForce(force, vec[0], c1->BODYR[0][0],
+                        &c1->BODYFORCE[1][1], &c1->BODYFORCE[3][1]);
+    }
+}
