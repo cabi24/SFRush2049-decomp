@@ -16,12 +16,20 @@
 #define GEAR_NEUTRAL    0
 #define MIN_GEAR        1           /* Minimum forward gear */
 
+/* Arcade-compatible gear aliases */
+#define NEUTRALGEAR     GEAR_NEUTRAL
+#define REVERSEGEAR     GEAR_REVERSE
+#define MINGEAR         MIN_GEAR
+
 /* Transmission loss for auto not in top gear (torque converter) */
 #define AUTO_TRANS_LOSS 0.925f
+#define AUTOLOSS        AUTO_TRANS_LOSS     /* Arcade alias */
 
 /* RPM conversion constants */
 #define RPM_TO_RDPS     (2.0f * 3.141592654f / 60.0f)   /* RPM to rad/sec */
 #define RDPS_TO_RPM     (60.0f / (2.0f * 3.141592654f)) /* rad/sec to RPM */
+#define rpmtordps       RPM_TO_RDPS         /* Arcade alias */
+#define rdpstorpm       RDPS_TO_RPM         /* Arcade alias */
 
 /* Clutch parameters */
 #define CLUTCH_FRICTION_POINT   0.8f    /* Friction engagement point */
@@ -143,5 +151,25 @@ void drivetrain_set_gear(DrivetrainState *dt, s32 gear);
 f32 drivetrain_get_rpm(DrivetrainState *dt);
 f32 drivetrain_get_wheel_rpm(DrivetrainState *dt);
 s32 drivetrain_is_clutch_slipping(DrivetrainState *dt);
+
+/* ========================================================================
+ * Arcade-compatible function aliases (drivetra.c)
+ * ======================================================================== */
+
+/* Core drivetrain functions */
+void whatslips(DrivetrainState *m);         /* Clutch slip calculation */
+void autoshift(DrivetrainState *m);         /* Automatic shifting */
+void transmission(DrivetrainState *m);      /* Transmission ratio */
+void engine(DrivetrainState *m);            /* Engine torque */
+
+/* Gear shifting */
+void find_best_gear(DrivetrainState *m, f32 usang, f32 dsang);
+void upshift(DrivetrainState *m);
+void downshift(DrivetrainState *m);
+
+/* Helpers */
+s16 enginetorque(DrivetrainState *m, s16 rpm, s16 throttle, s16 ignition,
+                 s16 start, const s16 *torquecurve);
+s16 interp(s32 a, s32 b, s32 rem, s32 total);
 
 #endif /* DRIVETRAIN_H */

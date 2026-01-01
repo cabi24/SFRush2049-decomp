@@ -593,3 +593,80 @@ s32 drivetrain_is_clutch_slipping(DrivetrainState *dt) {
     /* Slipping if difference exceeds threshold */
     return (diff > (50.0f * RPM_TO_RDPS));
 }
+
+/* ========================================================================
+ * Arcade-compatible function aliases (drivetra.c)
+ * ======================================================================== */
+
+/**
+ * whatslips - Clutch slip calculation (arcade name)
+ * Wrapper for drivetrain_clutch()
+ */
+void whatslips(DrivetrainState *m) {
+    drivetrain_clutch(m);
+}
+
+/**
+ * autoshift - Automatic transmission shift logic (arcade name)
+ * Wrapper for drivetrain_autoshift()
+ */
+void autoshift(DrivetrainState *m) {
+    drivetrain_autoshift(m);
+}
+
+/**
+ * transmission - Transmission ratio calculation (arcade name)
+ * Wrapper for drivetrain_transmission()
+ */
+void transmission(DrivetrainState *m) {
+    drivetrain_transmission(m);
+}
+
+/**
+ * engine - Engine torque calculation (arcade name)
+ * Wrapper for drivetrain_engine()
+ */
+void engine(DrivetrainState *m) {
+    drivetrain_engine(m);
+}
+
+/**
+ * find_best_gear - Find optimal gear for current speed (arcade name)
+ * Wrapper for drivetrain_find_best_gear()
+ */
+void find_best_gear(DrivetrainState *m, f32 usang, f32 dsang) {
+    drivetrain_find_best_gear(m, usang, dsang);
+}
+
+/**
+ * upshift - Shift up one gear (arcade name)
+ * Wrapper for drivetrain_upshift()
+ */
+void upshift(DrivetrainState *m) {
+    drivetrain_upshift(m);
+}
+
+/**
+ * downshift - Shift down one gear (arcade name)
+ * Wrapper for drivetrain_downshift()
+ */
+void downshift(DrivetrainState *m) {
+    drivetrain_downshift(m);
+}
+
+/**
+ * enginetorque - Engine torque curve lookup (arcade name)
+ * Wrapper for drivetrain_engine_torque()
+ */
+s16 enginetorque(DrivetrainState *m, s16 rpm, s16 throttle, s16 ignition,
+                 s16 start, const s16 *torquecurve) {
+    return drivetrain_engine_torque(m, rpm, throttle, ignition, start, torquecurve);
+}
+
+/**
+ * interp - Linear interpolation helper (arcade name)
+ * Matches arcade: interp(int a, int b, int rem, int total)
+ */
+s16 interp(s32 a, s32 b, s32 rem, s32 total) {
+    return drivetrain_interp(a, b, rem, total);
+}
