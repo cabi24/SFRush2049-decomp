@@ -104,3 +104,15 @@ DPS_TBIST_REG = 0xA4200000;
 DPS_TEST_MODE_REG = 0xA4200004;
 DPS_BUFTEST_ADDR_REG = 0xA4200008;
 DPS_BUFTEST_DATA_REG = 0xA420000C;
+
+/* libultra Serial Interface Data */
+__osSiInitialized = 0x8002C4B0;
+__osSiLastChannel = 0x8002C4D0;
+__osSiChannelMask = 0x8002C4D4;
+__osSiMesgQueue = 0x80037C90;
+__osSiMesg = 0x80037C98;
+
+/* libultra Controller Pak (PFS) Data */
+__osPfsRequestType = 0x80037AE0;
+__osPfsBuffer = 0x80037F60;
+__osContPifInode = 0x80037CB0;

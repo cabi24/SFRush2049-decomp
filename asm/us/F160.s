@@ -14,16 +14,16 @@ glabel func_8000E560
     /* F160 8000E560 27BDFFE8 */  addiu      $sp, $sp, -0x18
     /* F164 8000E564 AFBF0014 */  sw         $ra, 0x14($sp)
     /* F168 8000E568 240E0001 */  addiu      $t6, $zero, 0x1
-    /* F16C 8000E56C 3C018003 */  lui        $at, %hi(D_8002C4B0)
-    /* F170 8000E570 3C048003 */  lui        $a0, %hi(D_80037C98)
-    /* F174 8000E574 3C058003 */  lui        $a1, %hi(D_80037C90)
-    /* F178 8000E578 AC2EC4B0 */  sw         $t6, %lo(D_8002C4B0)($at)
-    /* F17C 8000E57C 24A57C90 */  addiu      $a1, $a1, %lo(D_80037C90)
-    /* F180 8000E580 24847C98 */  addiu      $a0, $a0, %lo(D_80037C98)
+    /* F16C 8000E56C 3C018003 */  lui        $at, %hi(__osSiInitialized)
+    /* F170 8000E570 3C048003 */  lui        $a0, %hi(__osSiMesg)
+    /* F174 8000E574 3C058003 */  lui        $a1, %hi(__osSiMesgQueue)
+    /* F178 8000E578 AC2EC4B0 */  sw         $t6, %lo(__osSiInitialized)($at)
+    /* F17C 8000E57C 24A57C90 */  addiu      $a1, $a1, %lo(__osSiMesgQueue)
+    /* F180 8000E580 24847C98 */  addiu      $a0, $a0, %lo(__osSiMesg)
     /* F184 8000E584 0C001A80 */  jal        func_80006A00
     /* F188 8000E588 24060001 */   addiu     $a2, $zero, 0x1
-    /* F18C 8000E58C 3C048003 */  lui        $a0, %hi(D_80037C98)
-    /* F190 8000E590 24847C98 */  addiu      $a0, $a0, %lo(D_80037C98)
+    /* F18C 8000E58C 3C048003 */  lui        $a0, %hi(__osSiMesg)
+    /* F190 8000E590 24847C98 */  addiu      $a0, $a0, %lo(__osSiMesg)
     /* F194 8000E594 00002825 */  or         $a1, $zero, $zero
     /* F198 8000E598 0C001D78 */  jal        func_800075E0
     /* F19C 8000E59C 00003025 */   or        $a2, $zero, $zero
@@ -36,8 +36,8 @@ endlabel func_8000E560
 nonmatching func_8000E5B0, 0x44
 
 glabel func_8000E5B0
-    /* F1B0 8000E5B0 3C0E8003 */  lui        $t6, %hi(D_8002C4B0)
-    /* F1B4 8000E5B4 8DCEC4B0 */  lw         $t6, %lo(D_8002C4B0)($t6)
+    /* F1B0 8000E5B0 3C0E8003 */  lui        $t6, %hi(__osSiInitialized)
+    /* F1B4 8000E5B4 8DCEC4B0 */  lw         $t6, %lo(__osSiInitialized)($t6)
     /* F1B8 8000E5B8 27BDFFE0 */  addiu      $sp, $sp, -0x20
     /* F1BC 8000E5BC AFBF0014 */  sw         $ra, 0x14($sp)
     /* F1C0 8000E5C0 15C00003 */  bnez       $t6, .L8000E5D0
@@ -45,8 +45,8 @@ glabel func_8000E5B0
     /* F1C8 8000E5C8 0C003958 */  jal        func_8000E560
     /* F1CC 8000E5CC 00000000 */   nop
   .L8000E5D0:
-    /* F1D0 8000E5D0 3C048003 */  lui        $a0, %hi(D_80037C98)
-    /* F1D4 8000E5D4 24847C98 */  addiu      $a0, $a0, %lo(D_80037C98)
+    /* F1D0 8000E5D0 3C048003 */  lui        $a0, %hi(__osSiMesg)
+    /* F1D4 8000E5D4 24847C98 */  addiu      $a0, $a0, %lo(__osSiMesg)
     /* F1D8 8000E5D8 27A5001C */  addiu      $a1, $sp, 0x1C
     /* F1DC 8000E5DC 0C001C9C */  jal        func_80007270
     /* F1E0 8000E5E0 24060001 */   addiu     $a2, $zero, 0x1
@@ -61,8 +61,8 @@ nonmatching func_8000E5F4, 0x2C
 glabel func_8000E5F4
     /* F1F4 8000E5F4 27BDFFE8 */  addiu      $sp, $sp, -0x18
     /* F1F8 8000E5F8 AFBF0014 */  sw         $ra, 0x14($sp)
-    /* F1FC 8000E5FC 3C048003 */  lui        $a0, %hi(D_80037C98)
-    /* F200 8000E600 24847C98 */  addiu      $a0, $a0, %lo(D_80037C98)
+    /* F1FC 8000E5FC 3C048003 */  lui        $a0, %hi(__osSiMesg)
+    /* F200 8000E600 24847C98 */  addiu      $a0, $a0, %lo(__osSiMesg)
     /* F204 8000E604 00002825 */  or         $a1, $zero, $zero
     /* F208 8000E608 0C001D78 */  jal        func_800075E0
     /* F20C 8000E60C 00003025 */   or        $a2, $zero, $zero
@@ -80,21 +80,21 @@ glabel func_8000E620
     /* F228 8000E628 AFBF0014 */  sw         $ra, 0x14($sp)
     /* F22C 8000E62C AFA50034 */  sw         $a1, 0x34($sp)
     /* F230 8000E630 240E00FA */  addiu      $t6, $zero, 0xFA
-    /* F234 8000E634 3C018003 */  lui        $at, %hi(D_8002C4D4)
+    /* F234 8000E634 3C018003 */  lui        $at, %hi(__osSiChannelMask)
     /* F238 8000E638 00A02025 */  or         $a0, $a1, $zero
-    /* F23C 8000E63C A02EC4D4 */  sb         $t6, %lo(D_8002C4D4)($at)
+    /* F23C 8000E63C A02EC4D4 */  sb         $t6, %lo(__osSiChannelMask)($at)
     /* F240 8000E640 0C0039BC */  jal        func_8000E6F0
     /* F244 8000E644 00002825 */   or        $a1, $zero, $zero
-    /* F248 8000E648 3C058003 */  lui        $a1, %hi(D_80037F60)
-    /* F24C 8000E64C 24A57F60 */  addiu      $a1, $a1, %lo(D_80037F60)
+    /* F248 8000E648 3C058003 */  lui        $a1, %hi(__osPfsBuffer)
+    /* F24C 8000E64C 24A57F60 */  addiu      $a1, $a1, %lo(__osPfsBuffer)
     /* F250 8000E650 0C00392C */  jal        func_8000E4B0
     /* F254 8000E654 24040001 */   addiu     $a0, $zero, 0x1
     /* F258 8000E658 8FA40030 */  lw         $a0, 0x30($sp)
     /* F25C 8000E65C 27A50028 */  addiu      $a1, $sp, 0x28
     /* F260 8000E660 0C001C9C */  jal        func_80007270
     /* F264 8000E664 24060001 */   addiu     $a2, $zero, 0x1
-    /* F268 8000E668 3C058003 */  lui        $a1, %hi(D_80037F60)
-    /* F26C 8000E66C 24A57F60 */  addiu      $a1, $a1, %lo(D_80037F60)
+    /* F268 8000E668 3C058003 */  lui        $a1, %hi(__osPfsBuffer)
+    /* F26C 8000E66C 24A57F60 */  addiu      $a1, $a1, %lo(__osPfsBuffer)
     /* F270 8000E670 0C00392C */  jal        func_8000E4B0
     /* F274 8000E674 00002025 */   or        $a0, $zero, $zero
     /* F278 8000E678 AFA2002C */  sw         $v0, 0x2C($sp)
@@ -137,12 +137,12 @@ nonmatching func_8000E6F0, 0xC4
 
 glabel func_8000E6F0
     /* F2F0 8000E6F0 27BDFFE8 */  addiu      $sp, $sp, -0x18
-    /* F2F4 8000E6F4 3C068003 */  lui        $a2, %hi(D_80037F60)
+    /* F2F4 8000E6F4 3C068003 */  lui        $a2, %hi(__osPfsBuffer)
     /* F2F8 8000E6F8 240700FE */  addiu      $a3, $zero, 0xFE
-    /* F2FC 8000E6FC 3C018003 */  lui        $at, %hi(D_80037AE0)
-    /* F300 8000E700 24C27F60 */  addiu      $v0, $a2, %lo(D_80037F60)
+    /* F2FC 8000E6FC 3C018003 */  lui        $at, %hi(__osPfsRequestType)
+    /* F300 8000E700 24C27F60 */  addiu      $v0, $a2, %lo(__osPfsBuffer)
     /* F304 8000E704 AFA5001C */  sw         $a1, 0x1C($sp)
-    /* F308 8000E708 A0277AE0 */  sb         $a3, %lo(D_80037AE0)($at)
+    /* F308 8000E708 A0277AE0 */  sb         $a3, %lo(__osPfsRequestType)($at)
     /* F30C 8000E70C 240F0001 */  addiu      $t7, $zero, 0x1
     /* F310 8000E710 AC4F003C */  sw         $t7, 0x3C($v0)
     /* F314 8000E714 24180001 */  addiu      $t8, $zero, 0x1
@@ -193,9 +193,9 @@ endlabel func_8000E6F0
 nonmatching func_8000E7B4, 0x98
 
 glabel func_8000E7B4
-    /* F3B4 8000E7B4 3C028003 */  lui        $v0, %hi(D_80037F60)
+    /* F3B4 8000E7B4 3C028003 */  lui        $v0, %hi(__osPfsBuffer)
     /* F3B8 8000E7B8 27BDFFE8 */  addiu      $sp, $sp, -0x18
-    /* F3BC 8000E7BC 24427F60 */  addiu      $v0, $v0, %lo(D_80037F60)
+    /* F3BC 8000E7BC 24427F60 */  addiu      $v0, $v0, %lo(__osPfsBuffer)
     /* F3C0 8000E7C0 1880000B */  blez       $a0, .L8000E7F0
     /* F3C4 8000E7C4 00001825 */   or        $v1, $zero, $zero
     /* F3C8 8000E7C8 30870003 */  andi       $a3, $a0, 0x3
