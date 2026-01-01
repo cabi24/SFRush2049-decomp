@@ -942,6 +942,757 @@ s32 sndKillSound(u8 handle) {
     return 0;
 }
 
+/******* ARCADE-COMPATIBLE CAR SOUND FUNCTIONS (carsnd.c) *******/
+
+/* ========================================================================
+ * Car Sound State Variables
+ * ======================================================================== */
+
+/* Road/wind noise state */
+snd_state rdnoise_state;
+snd_state wind_state;
+
+/* Per-car screech state (4 tire positions per car) */
+snd_state scrch_state[MAX_LINKS][4];
+
+/* Collision bump state (4 corners + 1 for car-to-car) */
+bump_state car_bump[5];
+
+/* Scrape state and timing */
+s16 scrape_state;
+s32 scrape_time;
+s32 bump_time;
+
+/* Skid and smoke intensities [car][tire][left/right pair] */
+s16 skid_intensity[MAX_LINKS][4][2];
+s16 smoke_intensity[MAX_LINKS][4][2];
+
+/* Tunnel/reverb state */
+s32 in_tunnel;
+
+/* Current player's car index (set by game code) */
+s32 this_node;
+
+/* Engine sound state */
+static f32 rpm_fix;
+static f32 torque_fix;
+
+/* Demo/attract flags (external) */
+extern s32 demo_game;
+extern s16 which_engine;
+extern s32 coast_flag;
+
+/* Velocity squared (from physics, for wind calculations) */
+static s32 velsq;
+
+/* ========================================================================
+ * Tire Smoke/Skid Constants (from arcade carsnd.c)
+ * ======================================================================== */
+
+/* Tire smoke appearance flags by tire index */
+static const u32 tire_smoke_tab[4] = {
+    App_M_LR_SMOKE,
+    App_M_RR_SMOKE,
+    App_M_LF_SMOKE | App_M_RF_SMOKE,
+    App_M_LR_SMOKE | App_M_RR_SMOKE
+};
+
+/* Tire skid appearance flags by tire index */
+static const u32 tire_skid_tab[4] = {
+    App_M_LF_SKID | App_M_LR_SKID,
+    App_M_RF_SKID | App_M_RR_SKID,
+    App_M_LF_SKID | App_M_RF_SKID,
+    App_M_LR_SKID | App_M_RR_SKID
+};
+
+/* Tire pair index lookup [tire_position][0=primary, 1=secondary] */
+static const u32 tire_tab[4][2] = {
+    {1, 3}, {2, 0}, {0, 1}, {3, 2}
+};
+
+/* Target sound IDs by object type */
+static const s16 target_snd[7] = {
+    S_CONES, S_GLASS, S_PMETER, S_BUSH,
+    S_LIGHTPOLE, S_TREE, S_FENCE
+};
+
+/* Target volume by object type */
+static const s16 target_volume[6] = {
+    255, 255, 255, 255, 255, 230
+};
+
+/* Bump position table - maps corner index to angle (0-512 = 0-360 degrees) */
+static const s16 thump_tab[16] = {
+    0, 64, 448, 0, 192, 128, 0, 64, 320, 0, 384, 448, 256, 192, 320, 0
+};
+
+/* Bump direction table - maps force direction to angle */
+static const s16 bump_tab[16] = {
+    0, 0, 256, 0, 128, 64, 192, 128, 384, 448, 320, 384, 0, 0, 256, 0
+};
+
+/* Skid data per tire position (left, right, front, rear) */
+static const skid_data skid_tab[4] = {
+    /* Left side */
+    {
+        {1500, 1700, 1900, 2200, 2600},
+        1240, 800,  /* pitch_h, pitch_l */
+        255, 1,     /* vol_h, vol_l */
+        160, 250    /* skid thresh, smoke thresh */
+    },
+    /* Right side */
+    {
+        {1500, 1700, 1900, 2200, 2600},
+        1240, 800,
+        255, 1,
+        160, 250
+    },
+    /* Front tires */
+    {
+        {800, 975, 1250, 1325, 1500},
+        1340, 800,
+        255, 1,
+        128, 250
+    },
+    /* Rear tires */
+    {
+        {2400, 2225, 2050, 1875, 1700},
+        1140, 800,
+        255, 1,
+        120, 190
+    }
+};
+
+/* ========================================================================
+ * Helper Macros
+ * ======================================================================== */
+
+#define get_max(a, b)       ((a) > (b) ? (a) : (b))
+#define range(a, b, c)      ((a) < (b) ? (b) : ((a) > (c) ? (c) : (a)))
+#define sign(a)             ((a) < 0 ? -1 : 1)
+
+/* Absolute value for float */
+#ifndef fabs
+static f32 fabs_local(f32 x) {
+    return x < 0.0f ? -x : x;
+}
+#define fabs(x) fabs_local(x)
+#endif
+
+/* Absolute value for int */
+#ifndef abs
+#define abs(x) ((x) < 0 ? -(x) : (x))
+#endif
+
+/* Square root stub (would use libm in full build) */
+#ifndef fsqrt
+static f32 fsqrt_local(f32 x) {
+    /* Newton-Raphson approximation */
+    f32 guess;
+    s32 i;
+    if (x <= 0.0f) return 0.0f;
+    guess = x / 2.0f;
+    for (i = 0; i < 10; i++) {
+        guess = (guess + x / guess) / 2.0f;
+    }
+    return guess;
+}
+#define fsqrt(x) fsqrt_local(x)
+#endif
+
+/* ========================================================================
+ * Car Sound Initialization Functions
+ * ======================================================================== */
+
+/**
+ * InitSndState - Initialize a sound state structure
+ * Arcade: carsnd.c:InitSndState()
+ */
+void InitSndState(snd_state *sndst) {
+    sndst->volume = 0;
+    sndst->pitch = 0;
+    sndst->on = 0;
+    sndst->state_var = 0;
+}
+
+/**
+ * InitCarSnds - Initialize car sound state for a car
+ * Arcade: carsnd.c:InitCarSnds()
+ */
+void InitCarSnds(s16 drone_index) {
+    InitSndState(&rdnoise_state);
+
+    if (drone_index == this_node) {
+        sndGravelNoise(0, 0);
+        sndRoadNoise(0, 0);
+        sndSplashNoise(0, 0);
+    }
+
+    InitSndState(&wind_state);
+
+    if (drone_index == this_node) {
+        sndWindNoise(0, 0);
+    }
+
+    init_skids(drone_index);
+}
+
+/**
+ * init_bump_sounds - Initialize car bump/collision sounds
+ * Arcade: carsnd.c:init_bump_sounds()
+ */
+void init_bump_sounds(void) {
+    s16 i;
+
+    for (i = 0; i < 5; i++) {
+        init_bump(i);
+    }
+
+    kill_scrape_sound();
+    bump_time = 0;
+}
+
+/**
+ * init_bump - Initialize a single bump state slot
+ * Arcade: carsnd.c:init_bump()
+ */
+void init_bump(s16 index) {
+    car_bump[index].peak = 0.0f;
+    car_bump[index].time = 0;
+    car_bump[index].bump_it = 0;
+}
+
+/**
+ * init_skids - Stop all skid sounds for a car
+ * Arcade: carsnd.c:init_skids()
+ */
+void init_skids(s16 drone_index) {
+    s16 i;
+
+    for (i = 0; i < 4; i++) {
+        if (scrch_state[drone_index][i].volume != 0 ||
+            scrch_state[drone_index][i].pitch != 0 ||
+            scrch_state[drone_index][i].on != 0 ||
+            scrch_state[drone_index][i].state_var != 0) {
+            InitSndState(&scrch_state[drone_index][i]);
+        }
+
+        skid_intensity[drone_index][tire_tab[i][0]][0] = 0;
+        skid_intensity[drone_index][tire_tab[i][1]][1] = 0;
+        smoke_intensity[drone_index][tire_tab[i][0]][0] = 0;
+        smoke_intensity[drone_index][tire_tab[i][1]][1] = 0;
+
+        if (drone_index == this_node) {
+            sndDoSkid(i, 0, 0);
+        }
+    }
+}
+
+/* ========================================================================
+ * Engine Sound Functions
+ * ======================================================================== */
+
+/**
+ * StartEngineSound - Start engine sound for player's car
+ * Arcade: carsnd.c:StartEngineSound()
+ */
+void StartEngineSound(void) {
+    if (demo_game == 0) {
+        sndStartManualEngine(which_engine, 250, 100);
+    }
+
+    rpm_fix = 0.8f;
+    torque_fix = 0.3f;
+}
+
+/**
+ * DoEngineSound - Update engine sound
+ * Arcade: carsnd.c:DoEngineSound()
+ *
+ * Called every model iteration to update engine RPM and torque sounds.
+ */
+void DoEngineSound(void) {
+    u16 clip_rpm;
+    s16 clip_torque;
+    s32 rpm_val;
+    s32 torque_val;
+    f32 engine_torque;
+
+    /* Get current RPM (would come from model) */
+    rpm_val = 2000;  /* Placeholder - arcade uses abs(rpm) */
+
+    if (rpm_val > 9000) {
+        clip_rpm = 9000;
+    } else {
+        clip_rpm = (u16)rpm_val;
+    }
+
+    /* Get engine torque (would come from model[this_node].engtorque) */
+    engine_torque = 1000.0f;  /* Placeholder */
+
+    if (engine_torque > 0.0f) {
+        torque_val = (s32)engine_torque;
+    } else {
+        torque_val = (s32)engine_torque;
+    }
+
+    if (torque_val > 0x7FFF) {
+        clip_torque = 0x7FFF;
+    } else if (torque_val < -0x7FFF) {
+        clip_torque = -0x7FFF;
+    } else {
+        clip_torque = (s16)torque_val;
+    }
+
+    if (demo_game == 0) {
+        if (coast_flag) {
+            sndUpdateManualEngine(0, 0);
+        } else {
+            sndUpdateManualEngine(clip_rpm, clip_torque);
+        }
+    }
+}
+
+/**
+ * DoIntCarSounds - High-priority car sounds (every model frame)
+ * Arcade: carsnd.c:DoIntCarSounds()
+ */
+void DoIntCarSounds(void) {
+    DoEngineSound();
+}
+
+/**
+ * StopEngineSound - Stop engine sound
+ * Arcade: carsnd.c:StopEngineSound()
+ */
+void StopEngineSound(void) {
+    sndStopEngine();
+}
+
+/**
+ * sndStopEngine - Stop engine sound (low-level)
+ */
+void sndStopEngine(void) {
+    sound_stop_engine(0);
+}
+
+/* ========================================================================
+ * Road Surface Sound Functions
+ * ======================================================================== */
+
+/**
+ * sndGravelNoise - Play gravel/dirt road noise
+ * Arcade: sounds.c:sndGravelNoise()
+ */
+void sndGravelNoise(s16 pitch, s16 volume) {
+    /* N64 implementation - would trigger dirt surface sound */
+    if (volume > 0) {
+        sound_play_vol(SFX_TIRE_SKID, (u8)(volume >> 1));
+    }
+}
+
+/**
+ * sndRoadNoise - Play pavement road noise
+ * Arcade: sounds.c:sndRoadNoise()
+ */
+void sndRoadNoise(s16 pitch, s16 volume) {
+    /* N64 implementation - road noise at low volume */
+    /* Usually just engine noise dominates on pavement */
+}
+
+/**
+ * sndSplashNoise - Play water splash noise
+ * Arcade: sounds.c:sndSplashNoise()
+ */
+void sndSplashNoise(s16 pitch, s16 volume) {
+    /* N64 implementation - water splash sound */
+    if (volume > 0) {
+        sound_play_vol(S_SPLASH, (u8)(volume >> 1));
+    }
+}
+
+/**
+ * sndWindNoise - Play wind noise
+ * Arcade: sounds.c:sndWindNoise()
+ */
+void sndWindNoise(s16 pitch, s16 volume) {
+    /* N64 implementation - wind rushing sound */
+    /* Typically only audible at high speed or airborne */
+}
+
+/* ========================================================================
+ * Tire Sound Functions
+ * ======================================================================== */
+
+/**
+ * sndDoSkid - Play tire skid sound
+ * Arcade: sounds.c:sndDoSkid()
+ */
+void sndDoSkid(s16 tire_num, s16 pitch, s16 volume) {
+    if (volume > 0) {
+        sound_tire_screech(this_node, (f32)volume / 255.0f);
+    }
+}
+
+/**
+ * DoTireSqueals - Update tire squeal sounds for a car
+ * Arcade: carsnd.c:DoTireSqueals()
+ *
+ * Calculates tire forces and generates appropriate sounds.
+ */
+void DoTireSqueals(s16 drone_index) {
+    s16 tnum;
+    s16 index;
+    u16 force;
+    s32 force_h, force_l;
+    s32 pitch_h, pitch_l, vol_h, vol_l, delta;
+    s32 v_thresh, intensity;
+    s32 make_noise;
+    const skid_data *sk_tab;
+    snd_state *screech_state;
+
+    screech_state = &scrch_state[drone_index][0];
+
+    make_noise = (drone_index == this_node) &&
+                 (demo_game == 0 || (demo_game != 0 && attract_effects == 1));
+
+    /* Process each tire position */
+    for (tnum = 0; tnum < 4; tnum++) {
+        sk_tab = &skid_tab[tnum];
+
+        /* Get tire force (placeholder - would come from tire physics) */
+        force = 500;  /* Placeholder value */
+
+        if (force >= sk_tab->force_tab[0]) {
+            screech_state[tnum].on = 1;
+
+            /* Clamp to max */
+            if (force > sk_tab->force_tab[4]) {
+                force = sk_tab->force_tab[4];
+            }
+
+            /* Find interpolation segment */
+            for (index = 0; index < 4; index++) {
+                if (force <= sk_tab->force_tab[index + 1]) {
+                    break;
+                }
+            }
+
+            force_h = sk_tab->force_tab[index + 1];
+            force_l = sk_tab->force_tab[index];
+
+            /* Interpolate pitch */
+            delta = (sk_tab->pitch_h - sk_tab->pitch_l) >> 2;
+            pitch_l = sk_tab->pitch_l + delta * index;
+            pitch_h = pitch_l + delta;
+
+            /* Interpolate volume */
+            delta = (sk_tab->vol_h - sk_tab->vol_l) >> 2;
+            vol_l = sk_tab->vol_l + delta * index;
+            vol_h = vol_l + delta;
+
+            /* Linear interpolation */
+            screech_state[tnum].pitch = (s16)((pitch_h - pitch_l) * force / (force_h - force_l) -
+                                              (pitch_h - pitch_l) * force_l / (force_h - force_l) + pitch_l);
+            screech_state[tnum].volume = (s16)((vol_h - vol_l) * force / (force_h - force_l) -
+                                               (vol_h - vol_l) * force_l / (force_h - force_l) + vol_l);
+
+            if (make_noise) {
+                sndDoSkid(tnum, screech_state[tnum].pitch, screech_state[tnum].volume);
+            }
+
+            /* Update skid intensity */
+            v_thresh = sk_tab->gr_skid_thresh;
+            if (screech_state[tnum].volume > v_thresh) {
+                intensity = (screech_state[tnum].volume - v_thresh) * 256 / (256 - v_thresh);
+                skid_intensity[drone_index][tire_tab[tnum][0]][0] = (s16)intensity;
+                skid_intensity[drone_index][tire_tab[tnum][1]][1] = (s16)intensity;
+            } else {
+                skid_intensity[drone_index][tire_tab[tnum][0]][0] = 0;
+                skid_intensity[drone_index][tire_tab[tnum][1]][1] = 0;
+            }
+
+            /* Update smoke intensity */
+            v_thresh = sk_tab->gr_smoke_thresh;
+            if (screech_state[tnum].volume > v_thresh) {
+                intensity = (screech_state[tnum].volume - v_thresh) * 256 / (256 - v_thresh);
+                smoke_intensity[drone_index][tire_tab[tnum][0]][0] = (s16)intensity;
+                smoke_intensity[drone_index][tire_tab[tnum][1]][1] = (s16)intensity;
+            } else {
+                smoke_intensity[drone_index][tire_tab[tnum][0]][0] = 0;
+                smoke_intensity[drone_index][tire_tab[tnum][1]][1] = 0;
+            }
+
+        } else if (screech_state[tnum].on) {
+            /* Fade out sound */
+            screech_state[tnum].volume -= VOL_FADE_VAL;
+
+            if (screech_state[tnum].volume <= 0) {
+                screech_state[tnum].volume = 0;
+                screech_state[tnum].on = 0;
+            }
+
+            if (make_noise) {
+                sndDoSkid(tnum, screech_state[tnum].pitch, screech_state[tnum].volume);
+            }
+
+            /* Clear intensities when faded out */
+            if (screech_state[tnum].volume <= 0) {
+                skid_intensity[drone_index][tire_tab[tnum][0]][0] = 0;
+                skid_intensity[drone_index][tire_tab[tnum][1]][1] = 0;
+                smoke_intensity[drone_index][tire_tab[tnum][0]][0] = 0;
+                smoke_intensity[drone_index][tire_tab[tnum][1]][1] = 0;
+            }
+        }
+    }
+}
+
+/* ========================================================================
+ * Collision Sound Functions
+ * ======================================================================== */
+
+/**
+ * kill_scrape_sound - Kill scrape and locked sounds
+ * Arcade: carsnd.c:kill_scrape_sound()
+ */
+void kill_scrape_sound(void) {
+    if (scrape_state != 0 || scrape_time != 0) {
+        sndPositionSound(S_KSCRAPELOOP, 0, 0);
+    }
+    scrape_state = 0;
+    scrape_time = 0;
+}
+
+/**
+ * get_force_and_peak - Calculate force magnitude and update peak state
+ * Arcade: carsnd.c:get_force_and_peak()
+ */
+void get_force_and_peak(s16 index, f32 vec[3], f32 threshold) {
+    f32 force;
+
+    if (car_bump[index].bump_it == 0) {
+        /* Check if force has cleared (time was set but peak is clear) */
+        if (car_bump[index].time && car_bump[index].peak == 0.0f) {
+            if (vec[0] == 0.0f && vec[1] == 0.0f && vec[2] == 0.0f) {
+                if (IRQTIME - car_bump[index].time > ONE_SEC / 2) {
+                    car_bump[index].time = 0;
+                }
+            } else {
+                car_bump[index].time = IRQTIME;
+            }
+        } else {
+            if (vec[0] != 0.0f || vec[1] != 0.0f || vec[2] != 0.0f) {
+                force = fsqrt(vec[0] * vec[0] + vec[1] * vec[1] + vec[2] * vec[2]);
+
+                if (threshold < force) {
+                    if (force > car_bump[index].peak) {
+                        car_bump[index].peak = force;
+                        car_bump[index].peak_vec[0] = vec[0];
+                        car_bump[index].peak_vec[1] = vec[1];
+                        car_bump[index].peak_vec[2] = vec[2];
+                        car_bump[index].time = IRQTIME;
+                    }
+                }
+            }
+
+            if (car_bump[index].time && (IRQTIME - car_bump[index].time > ONE_SEC / 10)) {
+                car_bump[index].bump_it = 1;
+                car_bump[index].time = IRQTIME;
+            }
+        }
+    }
+}
+
+/**
+ * do_bump_sounds - Process collision sounds
+ * Arcade: carsnd.c:do_bump_sounds()
+ */
+void do_bump_sounds(s16 update_car_sounds) {
+    s16 i;
+    s16 volume;
+    s16 bump_index;
+    s16 scrape_side;
+    s16 scrape_snd;
+    f32 high_force;
+
+    if (update_car_sounds == 0) {
+        init_bump_sounds();
+        return;
+    }
+
+    /* Process wall/barrier bumps */
+    bump_index = 0;
+    volume = 0;
+    high_force = 0.0f;
+
+    if (bump_time != 0) {
+        if (IRQTIME - bump_time > ONE_SEC) {
+            bump_time = 0;
+        }
+    }
+
+    /* Find highest force */
+    for (i = 0; i < 4; i++) {
+        if (car_bump[i].bump_it && car_bump[i].peak > high_force) {
+            high_force = car_bump[i].peak;
+        }
+    }
+
+    volume = (s16)range(high_force * 0.01f, 150, 235);
+
+    /* Build bump index from corners that exceeded threshold */
+    for (i = 0; i < 4; i++) {
+        if (car_bump[i].bump_it) {
+            if (car_bump[i].peak > high_force * 0.5f) {
+                bump_index |= (1 << i);
+            }
+            car_bump[i].peak = 0.0f;
+            car_bump[i].bump_it = 0;
+        }
+    }
+
+    if (bump_index) {
+        if (bump_time == 0) {
+            sndPositionSound(S_CARBUMP, thump_tab[bump_index], (s16)(volume * 0.8f));
+            sndPositionSound(S_BOOM, thump_tab[bump_index], volume);
+            bump_time = IRQTIME;
+        } else {
+            sndPositionSound(S_CARSMASH, thump_tab[bump_index], volume);
+            sndPositionSound(S_BOOM, thump_tab[bump_index], volume);
+            bump_time = 0;
+        }
+    } else {
+        /* Check car-to-car collision */
+        if (car_bump[4].bump_it) {
+            high_force = 0.0f;
+
+            for (i = 0; i < 3; i++) {
+                if (fabs(car_bump[4].peak_vec[i]) > high_force) {
+                    high_force = fabs(car_bump[4].peak_vec[i]);
+                }
+            }
+
+            volume = (s16)range(high_force * 0.001f, 190, 255);
+            bump_index = 0;
+
+            if (fabs(car_bump[4].peak_vec[0]) > high_force * 0.5f) {
+                if (car_bump[4].peak_vec[0] < 0) {
+                    bump_index |= 0x1;
+                } else {
+                    bump_index |= 0x2;
+                }
+            }
+
+            if (fabs(car_bump[4].peak_vec[1]) > high_force * 0.5f) {
+                if (car_bump[4].peak_vec[1] < 0) {
+                    bump_index |= 0x4;
+                } else {
+                    bump_index |= 0x8;
+                }
+            }
+
+            if (fabs(car_bump[4].peak_vec[2]) > high_force * 0.5f) {
+                bump_index |= 0x1;
+            }
+
+            car_bump[4].peak = 0.0f;
+            car_bump[4].bump_it = 0;
+
+            if (bump_index) {
+                sndPositionSound(S_CARSMASH, bump_tab[bump_index], volume);
+                sndPositionSound(S_BOOM, bump_tab[bump_index], volume);
+            }
+        }
+    }
+}
+
+/**
+ * DoCarSounds - Main car sound update (per frame)
+ * Arcade: carsnd.c:DoCarSounds()
+ */
+void DoCarSounds(s16 update_car_sounds, s8 skids_only) {
+    if (update_car_sounds == 0) {
+        InitCarSnds(this_node);
+        return;
+    }
+
+    if (skids_only == 0) {
+        /* Full sound update: wind, road noise, etc. */
+        /* Would check surface type and airborne status */
+    }
+
+    /* Always update tire squeals */
+    DoTireSqueals(this_node);
+}
+
+/* ========================================================================
+ * Reverb Functions
+ * ======================================================================== */
+
+/**
+ * init_reverb - Initialize reverb settings
+ * Arcade: carsnd.c:init_reverb()
+ */
+void init_reverb(void) {
+    u16 cmd_tab[2];
+
+    /* Set reverb parameters */
+    cmd_tab[0] = 6;
+    sound_wparms(S_REVERB_PARMS, 1, cmd_tab);
+
+    cmd_tab[0] = 0;
+    cmd_tab[1] = 0;
+    sound_wparms(S_REVERB_RETURN_VOL, 2, cmd_tab);
+
+    in_tunnel = 0;
+}
+
+/**
+ * handle_reverb - Update reverb based on car position
+ * Arcade: carsnd.c:handle_reverb()
+ */
+void handle_reverb(void) {
+    /* N64 stub - reverb handled differently on N64 */
+}
+
+/**
+ * sound_wparms - Send sound command with parameters
+ */
+void sound_wparms(u16 cmd, s32 nargs, u16 *parms) {
+    /* N64 stub - parameter-based sounds not directly supported */
+}
+
+/* ========================================================================
+ * Radio Functions
+ * ======================================================================== */
+
+/**
+ * music - Control radio music
+ */
+void music(s32 action, u8 station) {
+    if (action == Do_it) {
+        music_play(MUS_RACE_1 + station);
+    } else {
+        music_stop();
+    }
+}
+
+/**
+ * StartRadio - Start radio on given station
+ * Arcade: carsnd.c:StartRadio()
+ */
+void StartRadio(u8 radio_station) {
+    music(Do_it, radio_station);
+}
+
+/**
+ * StopRadio - Stop radio
+ * Arcade: carsnd.c:StopRadio()
+ */
+void StopRadio(u8 radio_station) {
+    music(Undo_it, radio_station);
+}
+
 /******* DECOMPILED ROM FUNCTIONS *******/
 
 /* N64 Sound handle structure (from ROM analysis) */

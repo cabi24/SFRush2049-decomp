@@ -117,6 +117,198 @@ void sound_enable(s32 enable);
 
 /******* ARCADE-COMPATIBLE SOUND INTERFACE *******/
 
+/* ========================================================================
+ * Car Sound Types and Constants (carsnd.c)
+ * ======================================================================== */
+
+/* Maximum cars/links for sound tracking */
+#define MAX_LINKS           12      /* Max cars for sound tracking */
+#define MAX_DRONES          12      /* Synonym for MAX_LINKS */
+
+/* Surface/visual codes for tire sounds */
+#define PAVEMENT            0       /* On paved road */
+#define DIRT                1       /* Off-road (gravel) */
+#define WATER               2       /* In water */
+#define AIR                 3       /* Airborne */
+
+/* Wind noise parameters */
+#define WIND_MAX_VOL        255
+#define WIND_PITCH          1024
+
+/* Road noise parameters */
+#define ROAD_MIN_PITCH      200
+#define ROAD_MAX_PITCH      1600
+#define ROAD_MAX_VOL        200
+
+/* Skid sound decay rate */
+#define VOL_FADE_VAL        16
+
+/* Scrape volume */
+#define SCRAPE_VOL          165
+
+/* Engine RPM scaling */
+#define MAX_ENG_RPM_SCL     0x1700  /* Max RPM to prevent CAGE overload */
+
+/* Timer macros (N64 adaptation) */
+#ifndef ONE_SEC
+#define ONE_SEC             60      /* Frames per second on N64 */
+#endif
+#ifndef IRQTIME
+extern u32 frame_counter;
+#define IRQTIME             frame_counter
+#endif
+
+/* Target/object types for collision sounds */
+typedef enum {
+    OBJ_TARGET_CONE = 0,
+    OBJ_TARGET_GLASS,
+    OBJ_TARGET_PMETER,
+    OBJ_TARGET_BUSH,
+    OBJ_TARGET_LIGHTPOLE,
+    OBJ_TARGET_TREE,
+    OBJ_TARGET_FENCE,
+    OBJ_NUM_TARGETS
+} TargetSoundType;
+
+/* Sound state structure (per sound channel) */
+typedef struct snd_state {
+    s16     volume;         /* Current volume (0-255) */
+    s16     pitch;          /* Current pitch */
+    s16     on;             /* Sound is active */
+    s16     state_var;      /* State variable (surface type, etc.) */
+} snd_state;
+
+/* Bump/collision state structure */
+typedef struct bump_state {
+    f32     peak;           /* Peak force magnitude */
+    f32     peak_vec[3];    /* Peak force vector */
+    u32     time;           /* Time of peak */
+    s32     bump_it;        /* Flag: ready to make sound */
+} bump_state;
+
+/* Skid data table entry (per tire position) */
+typedef struct skid_data {
+    s16     force_tab[5];       /* Force thresholds for interpolation */
+    s16     pitch_h;            /* High pitch */
+    s16     pitch_l;            /* Low pitch */
+    s16     vol_h;              /* High volume */
+    s16     vol_l;              /* Low volume */
+    s16     gr_skid_thresh;     /* Graphic skid threshold */
+    s16     gr_smoke_thresh;    /* Graphic smoke threshold */
+} skid_data;
+
+/* Sound ID constants (arcade S_* defines) */
+#define S_CONES             0x8050
+#define S_GLASS             0x8051
+#define S_PMETER            0x8052
+#define S_BUSH              0x8053
+#define S_LIGHTPOLE         0x8054
+#define S_TREE              0x8055
+#define S_FENCE             0x8056
+#define S_SPLASH            0x8057
+#define S_CARBUMP           0x8058
+#define S_BOOM              0x8059
+#define S_CARSMASH          0x805A
+#define S_CARSCRAPE         0x805B
+#define S_CURBWHUMP         0x805C
+#define S_BOTTOMOUT         0x805D
+#define S_REVERB_PARMS      0x805E
+#define S_REVERB_RETURN_VOL 0x805F
+
+/* Model appearance flags (tire smoke/skid marks) */
+#define App_M_LF_SKID       0x0001
+#define App_M_RF_SKID       0x0002
+#define App_M_LR_SKID       0x0004
+#define App_M_RR_SKID       0x0008
+#define App_M_LF_SMOKE      0x0010
+#define App_M_RF_SMOKE      0x0020
+#define App_M_LR_SMOKE      0x0040
+#define App_M_RR_SMOKE      0x0080
+#define App_M_TIRE_SMOKE    0x00F0
+#define App_M_SKID_MARK     0x000F
+
+/* Sound flags for reverb (from arcade) */
+#define LF_REVERB_MASK      0x0100
+#define RT_REVERB_MASK      0x0200
+#define ALL_REVERB_MASK     0x0300
+#define LF_DIST_MASK        0x0C00
+#define RT_DIST_MASK        0x3000
+#define ALL_DIST_MASK       0x3C00
+#define LF_DIST_SHIFT       10
+#define RT_DIST_SHIFT       12
+
+/* ========================================================================
+ * Car Sound External State (carsnd.c)
+ * ======================================================================== */
+
+/* Per-car sound states */
+extern snd_state rdnoise_state;
+extern snd_state wind_state;
+extern snd_state scrch_state[MAX_LINKS][4];
+extern bump_state car_bump[5];
+extern s16 scrape_state;
+extern s16 skid_intensity[MAX_LINKS][4][2];
+extern s16 smoke_intensity[MAX_LINKS][4][2];
+extern s32 scrape_time;
+extern s32 bump_time;
+extern s32 in_tunnel;
+extern s32 this_node;
+
+/* ========================================================================
+ * Car Sound Function Prototypes (carsnd.c)
+ * ======================================================================== */
+
+/* Sound state initialization */
+void InitSndState(snd_state *sndst);
+void InitCarSnds(s16 drone_index);
+void init_bump_sounds(void);
+void init_bump(s16 index);
+void init_skids(s16 drone_index);
+
+/* Car sound updates (per frame) */
+void DoIntCarSounds(void);
+void DoCarSounds(s16 update_car_sounds, s8 skids_only);
+void do_bump_sounds(s16 update_car_sounds);
+
+/* Engine sounds */
+void StartEngineSound(void);
+void DoEngineSound(void);
+void StopEngineSound(void);
+void sndStopEngine(void);
+
+/* Tire squeals */
+void DoTireSqueals(s16 drone_index);
+
+/* Collision sounds */
+void check_forces_on_car(void *m);
+void get_force_and_peak(s16 index, f32 vec[3], f32 threshold);
+void kill_scrape_sound(void);
+void target_sound(void *t, s16 slot);
+s32 target_inside_box(s16 slot, void *t);
+
+/* Road surface sounds */
+void sndGravelNoise(s16 pitch, s16 volume);
+void sndRoadNoise(s16 pitch, s16 volume);
+void sndSplashNoise(s16 pitch, s16 volume);
+void sndWindNoise(s16 pitch, s16 volume);
+
+/* Tire skid sounds */
+void sndDoSkid(s16 tire_num, s16 pitch, s16 volume);
+
+/* Reverb control */
+void init_reverb(void);
+void handle_reverb(void);
+
+/* Radio control */
+void StartRadio(u8 radio_station);
+void StopRadio(u8 radio_station);
+void music(s32 action, u8 station);
+#define Do_it       1
+#define Undo_it     0
+
+/* Arcade helper function (external, for coordinate transform) */
+void sound_wparms(u16 cmd, s32 nargs, u16 *parms);
+
 /* Arcade coordinate transforms (sounds.c) */
 #define X_COORD_TRANS(x)          ((s16)(((x)*3)/10))     /* feet to meters */
 #define Y_COORD_TRANS(y)          ((s16)(((y)*3)/10))     /* feet to meters */
