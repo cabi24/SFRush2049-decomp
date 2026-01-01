@@ -45,8 +45,7 @@ DroneControl drone_ctl[MAX_CARS];
 s32 num_drones;
 s32 num_humans;
 
-/* Catch-up state */
-static s32 use_catchup = 1;
+/* Note: gUseCatchup is defined in symbol_addrs.us.txt at 0x80153000 */
 
 /* Old drone scale/boost for smoothing */
 static f32 old_drone_scale[MAX_CARS];
@@ -136,7 +135,7 @@ void drone_update_all(void) {
     }
 
     /* Handle catch-up speed adjustments */
-    if (!use_catchup) {
+    if (!gUseCatchup) {
         drone_no_catchup();
     } else {
         drone_set_catchup();
@@ -997,7 +996,7 @@ void drone_calc_catchup(s32 car_index) {
     ctl = &drone_ctl[car_index];
     target = ctl->target_car;
 
-    if (target == car_index || !use_catchup) {
+    if (target == car_index || !gUseCatchup) {
         ctl->drone_scale = 1.0f;
         return;
     }
@@ -1225,23 +1224,23 @@ void drone_set_difficulty_level(s32 difficulty) {
         case DIFFICULTY_EASY:
             ai_max_speed_percent = 70;
             ai_aggression_level = 50;
-            use_catchup = 1;
+            gUseCatchup = 1;
             break;
         case DIFFICULTY_MEDIUM:
             ai_max_speed_percent = 85;
             ai_aggression_level = 70;
-            use_catchup = 1;
+            gUseCatchup = 1;
             break;
         case DIFFICULTY_HARD:
             ai_max_speed_percent = 95;
             ai_aggression_level = 85;
-            use_catchup = 0;  /* No rubber-banding on hard */
+            gUseCatchup = 0;  /* No rubber-banding on hard */
             break;
         case DIFFICULTY_EXPERT:
         default:
             ai_max_speed_percent = 100;
             ai_aggression_level = 100;
-            use_catchup = 0;  /* No rubber-banding on expert */
+            gUseCatchup = 0;  /* No rubber-banding on expert */
             break;
     }
 
@@ -1448,4 +1447,535 @@ f32 linear_interp(f32 in_bound1, f32 in_bound2, f32 out_bound1, f32 out_bound2, 
     offset = out_bound1 - slope * in_bound1;
 
     return slope * input + offset;
+}
+
+/* ========================================================================
+ * Arcade-compatible function implementations (drones.c)
+ * These match the arcade function signatures and behavior exactly.
+ * ======================================================================== */
+
+/* Arcade tscale array for free game pacer drones */
+const f32 tscale[MAX_TRACKS][4] = {
+    {0.986f, 0.993f, 1.0f, 1.06f},   /* Track 1 */
+    {0.98f,  0.99f,  0.996f, 1.02f}, /* Track 2 */
+    {0.985f, 0.99f,  0.997f, 1.03f}, /* Track 3 */
+    {0.985f, 0.99f,  0.997f, 1.03f}, /* Track 4 */
+    {0.985f, 0.99f,  0.997f, 1.03f}, /* Track 5 */
+    {0.985f, 0.99f,  0.997f, 1.03f}, /* Track 6 */
+    {0.985f, 0.99f,  0.997f, 1.03f}, /* Track 7 */
+    {0.985f, 0.99f,  0.997f, 1.03f}  /* Track 8 */
+};
+
+/* Arcade-compatible old_drone_scale and old_boost arrays */
+static f32 arcade_old_drone_scale[MAX_LINKS];
+static f32 arcade_old_boost[MAX_LINKS];
+
+/* Arcade hint types text (for debug) */
+static const char hint_types[][20] = {
+    "STAY_WITHIN_WIDTH",
+    "GET_ON_MPATH",
+    "STAY_ON_MPATH",
+    "STAY_PARALLEL",
+    "RESET_PARALLEL",
+    "EASE_ON_MPATH"
+};
+
+/* Arcade color palettes (for txt_str debug output) */
+#define GRN_PAL     1
+#define WHT_PALB    2
+#define YEL_PALB    3
+#define CYN_PALB    4
+
+/* Arcade debug switches */
+#define SW_DEBUG1   0x0001
+#define SW_DEBUG2   0x0002
+#define SW_DEBUG10  0x0200
+#define SW_DEBUG12  0x0800
+#define SW_DEBUG13  0x1000
+#define SW_DEBUG14  0x2000
+#define SW_VIEW1    0x0001
+
+/* Arcade globals - stubs for N64 */
+MPCTL mpctl[MAX_LINKS];
+s32 this_node = 0;
+s32 gThisNode = 0;
+s32 gThisCar = 0;
+s32 drone_diff = 0;
+s32 win_opts = 0;
+s32 demo_game = 0;
+s32 coast_flag = 0;
+s32 end_game_flag = 0;
+s32 lap_flag = 0;
+s32 dlevels = 0;
+s32 levels = 0;
+
+/* Arcade catchup flag - mapped to 0x80153000 */
+s32 gUseCatchup = 1;
+
+/**
+ * InitDrones - Initialize drone system
+ * Based on arcade: drones.c:InitDrones()
+ */
+void InitDrones(void) {
+    s32 i, record;
+
+    /* Handle debug switches for path recording */
+    if ((dlevels & SW_DEBUG10) && (levels & SW_VIEW1)) {
+        record  = (SW_DEBUG12 & dlevels) ? 4 : 0;
+        record += (SW_DEBUG13 & dlevels) ? 2 : 0;
+        record += (SW_DEBUG14 & dlevels) ? 1 : 0;
+    } else {
+        record = -1;
+    }
+
+    /* Initialize maxpath system */
+    maxpath_init(record);
+
+    /* Initialize drone scaling arrays */
+    for (i = 0; i < MAX_LINKS; i++) {
+        arcade_old_drone_scale[i] = 1.0f;
+        arcade_old_boost[i] = 1.0f;
+    }
+}
+
+/**
+ * DoDrones - Main per-frame drone update
+ * Based on arcade: drones.c:DoDrones()
+ */
+void DoDrones(void) {
+    /* Handle catchup mode */
+    if (!gUseCatchup) {
+        drone_no_catchup();
+    } else {
+        drone_set_catchup();
+    }
+
+    /* Update maxpath for this node */
+    drone_do_maxpath(gThisNode);
+
+    /* Assign drone behaviors */
+    assign_drones();
+}
+
+/**
+ * EndDrones - Cleanup drone system
+ * Based on arcade: drones.c:EndDrones()
+ */
+void EndDrones(void) {
+    /* Nothing to clean up in arcade version */
+}
+
+/**
+ * assign_default_paths - Assign default maxpath to drones
+ * Based on arcade: drones.c logic
+ */
+void assign_default_paths(s32 num_drones_count, s32 drones_arr[]) {
+    s32 i;
+    s32 path_idx;
+
+    if (gNumMPaths <= 0) {
+        return;
+    }
+
+    /* Assign each drone to a path in round-robin fashion */
+    for (i = 0; i < num_drones_count; i++) {
+        path_idx = i % gNumMPaths;
+        if (drones_arr[i] >= 0 && drones_arr[i] < MAX_LINKS) {
+            mpctl[drones_arr[i]].mpath_index = path_idx;
+            mpctl[drones_arr[i]].active = 1;
+        }
+    }
+}
+
+/**
+ * place_cars_in_order - Sort cars by race position
+ * Based on arcade: drones.c:place_cars_in_order() equivalent
+ */
+void place_cars_in_order(s32 cars_in_order[], s32 humans[], s32 drones_arr[],
+                         s32 *num_humans_out, s32 *num_drones_out) {
+    s32 i, j, temp;
+    s32 human_count, drone_count;
+    s32 slot;
+
+    human_count = 0;
+    drone_count = 0;
+
+    /* Build lists of humans and drones, and cars_in_order by position */
+    for (i = 0; i < num_active_cars; i++) {
+        slot = i;
+        cars_in_order[i] = slot;
+
+        if (drone_ctl[slot].drone_type == DRONE_TYPE_HUMAN) {
+            humans[human_count++] = slot;
+        } else {
+            drones_arr[drone_count++] = slot;
+        }
+    }
+
+    /* Sort cars_in_order by race position (simple bubble sort) */
+    for (i = 0; i < num_active_cars - 1; i++) {
+        for (j = i + 1; j < num_active_cars; j++) {
+            if (car_array[cars_in_order[j]].distance > car_array[cars_in_order[i]].distance) {
+                temp = cars_in_order[i];
+                cars_in_order[i] = cars_in_order[j];
+                cars_in_order[j] = temp;
+            }
+        }
+    }
+
+    *num_humans_out = human_count;
+    *num_drones_out = drone_count;
+}
+
+/**
+ * assign_drones - Assign drone behaviors and speed scaling
+ * Based on arcade: drones.c:assign_drones()
+ *
+ * This is a complex function that:
+ * 1. Places cars in order by position
+ * 2. Assigns drone difficulty based on human positions
+ * 3. Assigns drone targets (which human they follow)
+ * 4. Calculates speed scaling (drone_scale and time_boost)
+ */
+void assign_drones(void) {
+    s32 i, j, k, indx, index, index2, index3, temp;
+    s32 high_place, my_place;
+    s32 humans[MAX_LINKS], drones_arr[MAX_LINKS];
+    s32 car_in_conflict[MAX_LINKS], cars_in_order[MAX_LINKS];
+    s32 num_humans_count, num_drones_count, num_to_assign;
+    s32 humans_ahead, humans_behind;
+    f32 scale, delta_dist, delta_dist2, target_dist;
+    f32 max_brake, min_brake, max_boost, min_boost, temp1;
+    f32 place_scale, diff_scale;
+    f32 time_scale;
+    f32 delta[3];
+    f32 car_distance[MAX_LINKS][MAX_LINKS];
+
+    /* Initialize variables */
+    scale = 1.0f;
+    time_scale = 1.0f;
+    (void)high_place;
+
+    /* Place cars in order and build human/drone lists */
+    place_cars_in_order(cars_in_order, humans, drones_arr,
+                        &num_humans_count, &num_drones_count);
+
+    /* Assign weight index to each drone */
+    for (i = 0; i < num_drones_count; i++) {
+        drone_ctl[drones_arr[i]].weight_index = i;
+    }
+
+    /* Assign default paths */
+    assign_default_paths(num_drones_count, drones_arr);
+
+    /* If training or demo, ignore other cars */
+    if ((SW_DEBUG1 & dlevels) || demo_game) {
+        for (i = 0; i < num_active_cars; i++) {
+            index = i;
+            if (drone_ctl[index].drone_type == DRONE_TYPE_DRONE) {
+                drone_ctl[index].drone_scale = 1.0f;
+            }
+        }
+        return;
+    }
+
+    /* No drones - nothing to do */
+    if (num_drones_count == 0) {
+        return;
+    }
+
+    /* Spread drones out at start of race (first 5 seconds) */
+    if (frame_counter < 5 * ONE_SEC) {
+        for (i = 0; i < num_drones_count; i++) {
+            j = num_drones_count - i - 1;
+            drone_ctl[drones_arr[i]].time_boost = ((f32)j * 0.02f) + 0.98f;
+            drone_ctl[drones_arr[i]].drone_scale = 1.0f;
+        }
+        return;
+    }
+
+    /* Assign difficulty settings based on human's place (0=hard, 7=easy) */
+    num_to_assign = (s32)(((f32)num_drones_count / (f32)num_humans_count) + 0.5f);
+    for (i = 0, j = 0; i < num_humans_count; i++) {
+        for (k = 0; k < num_to_assign; k++) {
+            if (j < num_drones_count) {
+                drone_ctl[drones_arr[j++]].difficulty = car_array[humans[i]].place;
+            }
+        }
+    }
+
+    /* Calculate distances between all cars */
+    for (i = 0; i < num_active_cars; i++) {
+        index = i;
+        car_in_conflict[index] = 0;
+
+        for (j = i; j < num_active_cars; j++) {
+            index2 = j;
+            if (index == index2) {
+                car_distance[index][index2] = 99999999.0f;
+            } else {
+                delta[0] = car_array[index].dr_pos[0] - car_array[index2].dr_pos[0];
+                delta[1] = car_array[index].dr_pos[1] - car_array[index2].dr_pos[1];
+                delta[2] = car_array[index].dr_pos[2] - car_array[index2].dr_pos[2];
+
+                delta_dist = delta[0]*delta[0] + delta[1]*delta[1] + delta[2]*delta[2];
+                car_distance[index][index2] = delta_dist;
+                car_distance[index2][index] = delta_dist;
+            }
+        }
+    }
+
+    /* Init drone targets to self */
+    for (i = 0; i < num_drones_count; i++) {
+        drone_ctl[drones_arr[i]].target_car = drones_arr[i];
+    }
+
+    /* Check for human to human conflicts (within 70 ft) */
+    for (i = 0; i < num_humans_count; i++) {
+        for (j = i + 1; j < num_humans_count; j++) {
+            if (car_distance[humans[i]][humans[j]] < 70.0f * 70.0f) {
+                car_in_conflict[humans[i]] += 10;
+                car_in_conflict[humans[j]] += 10;
+            }
+        }
+    }
+
+    /* Don't assign lead drone if free game is enabled */
+    if (win_opts && num_drones_count > 0) {
+        car_in_conflict[drones_arr[0]] = 10;
+    }
+
+    /* Assign drone ahead or behind to human not in a conflict */
+    for (i = 0; i < num_humans_count; i++) {
+        if (car_in_conflict[humans[i]] < 10) {
+            index = humans[i];
+            my_place = car_array[index].place;
+            index2 = -1;
+            index3 = -1;
+
+            /* Look behind for drone */
+            if (my_place > 0) {
+                j = cars_in_order[my_place - 1];
+                if (drone_ctl[j].drone_type == DRONE_TYPE_DRONE && car_in_conflict[j] == 0) {
+                    index2 = j;
+                }
+            }
+
+            /* Look ahead for drone */
+            if (my_place < num_active_cars - 1) {
+                j = cars_in_order[my_place + 1];
+                if (drone_ctl[j].drone_type == DRONE_TYPE_DRONE && car_in_conflict[j] == 0) {
+                    index3 = j;
+                }
+            }
+
+            /* Pick the closer one */
+            if (index2 != -1 && index3 != -1) {
+                if (car_distance[index3][index] < car_distance[index2][index]) {
+                    index2 = index3;
+                }
+            } else if (index2 == -1) {
+                index2 = index3;
+            }
+
+            if (index2 != -1) {
+                car_in_conflict[index]++;
+                car_in_conflict[index2]++;
+                drone_ctl[index2].target_car = index;
+            }
+        }
+    }
+
+    /* Process each drone's speed scaling */
+    for (indx = 0; indx < num_active_cars; indx++) {
+        index = indx;
+
+        /* Only process drones we control */
+        if (drone_ctl[index].drone_type != DRONE_TYPE_DRONE ||
+            !drone_ctl[index].we_control) {
+            continue;
+        }
+
+        index2 = drone_ctl[index].target_car;
+        my_place = car_array[index].place;
+
+        /* Calculate place and difficulty scales */
+        place_scale = (f32)my_place / (f32)(num_active_cars - 1);
+        diff_scale = (f32)drone_ctl[index].difficulty / 7.0f;
+
+        /* Set max brake and boost values based on difficulty */
+        max_boost = (1.0f - 1.1f) * diff_scale + 1.1f - place_scale * ((0.15f - 0.05f) * diff_scale + 0.05f);
+        min_boost = 1.0f - place_scale * ((0.06f - 0.02f) * diff_scale + 0.02f);
+        max_brake = 0.9f - place_scale * ((0.6f - 0.1f) * diff_scale + 0.1f);
+        min_brake = (0.96f - 1.0f) * diff_scale + 1.0f - place_scale * ((0.05f - 0.02f) * diff_scale + 0.02f);
+
+        /* Free game pacer drone handling */
+        if (win_opts && num_drones_count > 0 && drones_arr[0] == index) {
+            /* Lead drone uses tscale from table */
+            if (cars_in_order[0] == drones_arr[0]) {
+                index2 = cars_in_order[1];
+                delta_dist = car_array[drones_arr[0]].distance - car_array[index2].distance;
+
+                if (delta_dist < 700.0f) {
+                    time_scale = tscale[trackno][drone_diff];
+                    scale = 1.0f;
+                } else {
+                    time_scale = 1.0f;
+                    scale = linear_interp(1500.0f, 700.0f, 1.0f, 0.5f, delta_dist);
+                }
+            } else {
+                time_scale = tscale[trackno][drone_diff];
+                scale = 1.0f;
+            }
+        }
+        /* Drone has human target */
+        else if (index2 != index) {
+            delta_dist = car_array[index].distance - car_array[index2].distance;
+
+            if (delta_dist < -20.0f) {
+                /* Human in front of drone, speed up */
+                if (delta_dist < -300.0f) {
+                    max_boost *= 1.2f;
+                }
+                time_scale = linear_interp(-300.0f, -60.0f, max_boost, min_boost, delta_dist);
+                scale = min_brake;
+            } else {
+                /* Drone ahead or close to human */
+                if (car_in_conflict[index2] <= 1) {
+                    scale = linear_interp(200.0f, 60.0f, max_brake, min_brake, delta_dist);
+                    time_scale = min_boost;
+                } else {
+                    scale = min_brake;
+                    time_scale = min_boost;
+                }
+            }
+        }
+        /* Spread other drones out */
+        else {
+            if (my_place == 0) {
+                /* First place drone */
+                index2 = cars_in_order[1];
+                delta_dist = car_array[index].distance - car_array[index2].distance;
+
+                if (delta_dist < 200.0f) {
+                    time_scale = linear_interp(200.0f, 0.0f, min_boost, max_boost, delta_dist);
+                    scale = min_brake;
+                } else {
+                    scale = linear_interp(500.0f, 200.0f, max_brake, min_brake, delta_dist);
+                    time_scale = min_boost;
+                }
+            } else if (my_place == num_active_cars - 1) {
+                /* Last place drone */
+                index2 = cars_in_order[num_active_cars - 2];
+                delta_dist = car_array[index].distance - car_array[index2].distance;
+
+                if (delta_dist < -150.0f) {
+                    if (delta_dist < -300.0f) {
+                        max_boost *= 1.2f;
+                    }
+                    time_scale = linear_interp(-150.0f, -300.0f, min_boost, max_boost, delta_dist);
+                    scale = min_brake;
+                } else {
+                    scale = linear_interp(-150.0f, 0.0f, min_brake, max_brake, delta_dist);
+                    time_scale = min_boost;
+                }
+            } else {
+                /* Middle of pack - stay between cars ahead and behind */
+                index2 = cars_in_order[my_place - 1];
+                delta_dist = car_array[index].distance - car_array[index2].distance;
+
+                index3 = cars_in_order[my_place + 1];
+                delta_dist2 = car_array[index].distance - car_array[index3].distance;
+
+                if (delta_dist > -150.0f && delta_dist2 < 150.0f) {
+                    target_dist = (delta_dist + delta_dist2) / 2.0f;
+                    if (target_dist < 0.0f) {
+                        time_scale = linear_interp(delta_dist - target_dist, -200.0f, min_boost, max_boost, delta_dist);
+                        scale = min_brake;
+                    } else {
+                        scale = linear_interp(delta_dist2 - target_dist, 200.0f, min_brake, max_brake, delta_dist2);
+                        time_scale = min_boost;
+                    }
+                } else {
+                    /* Go toward most humans */
+                    humans_ahead = 0;
+                    humans_behind = 0;
+                    for (i = 0; i < my_place; i++) {
+                        if (drone_ctl[cars_in_order[i]].drone_type == DRONE_TYPE_HUMAN) {
+                            humans_ahead++;
+                        }
+                    }
+                    for (i = my_place; i < num_active_cars; i++) {
+                        if (drone_ctl[cars_in_order[i]].drone_type == DRONE_TYPE_HUMAN) {
+                            humans_behind++;
+                        }
+                    }
+
+                    if (humans_ahead >= humans_behind) {
+                        if (delta_dist < -150.0f) {
+                            if (delta_dist < -300.0f) {
+                                max_boost *= 1.2f;
+                            }
+                            time_scale = linear_interp(-150.0f, -300.0f, min_boost, max_boost, delta_dist);
+                            scale = min_brake;
+                        } else {
+                            scale = linear_interp(-150.0f, 0.0f, min_brake, max_brake, delta_dist);
+                            time_scale = min_boost;
+                        }
+                    } else {
+                        if (delta_dist2 < 150.0f) {
+                            time_scale = linear_interp(150.0f, 0.0f, min_boost, max_boost, delta_dist2);
+                            scale = min_brake;
+                        } else {
+                            scale = linear_interp(500.0f, 150.0f, max_brake, min_brake, delta_dist2);
+                            time_scale = min_boost;
+                        }
+                    }
+                }
+            }
+        }
+
+        /* Handle coast and end game flags */
+        if (coast_flag || end_game_flag) {
+            time_scale = min_boost;
+        }
+
+        /* If lap flag set and humans behind drone, slow down */
+        if (lap_flag && num_humans_count > 0) {
+            if (car_array[humans[num_humans_count - 1]].place > car_array[index].place) {
+                scale = min_brake;
+                time_scale = min_boost;
+            }
+        }
+
+        /* Smooth drone_scale transition */
+        temp1 = drone_ctl[index].drone_scale;
+        if (temp1 > scale) {
+            temp1 -= 0.01f;
+            if (temp1 < scale) {
+                temp1 = scale;
+            }
+        } else {
+            temp1 += 0.01f;
+            if (temp1 > scale) {
+                temp1 = scale;
+            }
+        }
+        drone_ctl[index].drone_scale = temp1;
+
+        /* Smooth time_boost transition */
+        temp1 = drone_ctl[index].time_boost;
+        if (temp1 > time_scale) {
+            temp1 -= 0.01f;
+            if (temp1 < time_scale) {
+                temp1 = time_scale;
+            }
+        } else {
+            temp1 += 0.01f;
+            if (temp1 > time_scale) {
+                temp1 = time_scale;
+            }
+        }
+        drone_ctl[index].time_boost = temp1;
+    }
 }

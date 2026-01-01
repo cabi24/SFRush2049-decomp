@@ -42,6 +42,17 @@
 typedef MaxPathPoint MPATH;
 typedef MaxPathHeader MPHEADER;
 
+/* Arcade drone types (game.h) */
+#define HUMAN           0       /* Human-controlled car */
+#define DRONE           1       /* AI-controlled car */
+
+/* Arcade game constants */
+#define ONE_SEC         60      /* Frames per second */
+#define MAX_TRACKS      8       /* Max number of tracks */
+
+/* Arcade tscale array for free game pacer drones */
+extern const f32 tscale[MAX_TRACKS][4];
+
 /* Drone control structure */
 typedef struct DroneControl {
     s32     car_index;          /* Which car this controls */
@@ -138,5 +149,97 @@ void drone_end(void);
  * @return Interpolated output value
  */
 f32 linear_interp(f32 in_bound1, f32 in_bound2, f32 out_bound1, f32 out_bound2, f32 input);
+
+/* ========================================================================
+ * Arcade-compatible function declarations (drones.c)
+ * These match the arcade function signatures exactly
+ * ======================================================================== */
+
+/* Include physics header for MODELDAT/CarPhysics definition */
+#include "game/physics.h"
+
+/* Forward declaration for CAR_DATA from game structures */
+struct CAR_DATA;
+
+/* Arcade MPCTL structure (per-car maxpath control) */
+typedef struct MPCTL {
+    s32     mpath_index;        /* Which maxpath index (0-7) */
+    s32     mpi;                /* Current point index in maxpath */
+    s32     path_index;         /* Assigned path for this car */
+    s32     active;             /* Is this car's path control active? */
+    f32     xrel;               /* Forward position on segment */
+    f32     yrel;               /* Lateral offset from path */
+} MPCTL;
+
+/* External arcade globals */
+extern MPCTL mpctl[];
+extern MODELDAT model[];
+extern struct CAR_DATA game_car[];
+extern s32 num_active_cars;
+extern s32 this_node;
+extern s32 gThisNode;
+extern s32 gThisCar;
+extern s32 trackno;
+extern s32 drone_diff;
+extern s32 win_opts;
+extern s32 demo_game;
+extern s32 coast_flag;
+extern s32 end_game_flag;
+extern s32 lap_flag;
+extern s32 dlevels;
+extern s32 levels;
+
+/* Arcade catchup flag - from symbol_addrs.us.txt at 0x80153000 */
+extern s32 gUseCatchup;
+
+/* External arcade functions */
+extern void InitMaxPath(s32 record);
+extern void MaxPath(MODELDAT *m);
+extern void no_catchup(void);
+extern void set_catchup(void);
+extern void txt_str(s32 x, s32 y, const char *str, s32 palette);
+extern const char* get_cur_hint(s32 index);
+extern s32 GetElapsedTime(void);
+
+/**
+ * InitDrones - Initialize drone system
+ * Based on arcade: drones.c:InitDrones()
+ * Called at race start to initialize all drones.
+ */
+void InitDrones(void);
+
+/**
+ * DoDrones - Main per-frame drone update
+ * Based on arcade: drones.c:DoDrones()
+ * Called every frame during racing to update all drones.
+ */
+void DoDrones(void);
+
+/**
+ * EndDrones - Cleanup drone system
+ * Based on arcade: drones.c:EndDrones()
+ * Called at race end for cleanup.
+ */
+void EndDrones(void);
+
+/**
+ * assign_drones - Assign drone behaviors and speed scaling
+ * Based on arcade: drones.c:assign_drones()
+ * Complex function that assigns drone targets, difficulty, and speed scaling.
+ */
+void assign_drones(void);
+
+/**
+ * assign_default_paths - Assign default maxpath to drones
+ * Based on arcade: drones.c logic in assign_drones()
+ */
+void assign_default_paths(s32 num_drones, s32 drones[]);
+
+/**
+ * place_cars_in_order - Sort cars by race position
+ * Based on arcade: drones.c:place_cars_in_order() logic
+ */
+void place_cars_in_order(s32 cars_in_order[], s32 humans[], s32 drones[],
+                         s32 *num_humans, s32 *num_drones);
 
 #endif /* DRONE_H */
