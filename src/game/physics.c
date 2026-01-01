@@ -931,3 +931,228 @@ void init_car_from_params(CarPhysics *m, const Car *car) {
 /* Stub declarations for original disassembled functions */
 void physics_object_list_update(void);  /* TODO: Decompile */
 void effects_emitters_update(void);  /* TODO: Decompile */
+
+/* ========================================================================
+ * Arcade-compatible function implementations (drivsym.c)
+ * ======================================================================== */
+
+/**
+ * syminit - Initialize physics simulation
+ * Arcade: drivsym.c:syminit()
+ */
+void syminit(MODELDAT *m) {
+    physics_syminit(m);
+}
+
+/**
+ * initialize - Initialize physics state
+ * Arcade: initiali.c:initialize()
+ */
+void initialize(MODELDAT *m) {
+    physics_init(m);
+}
+
+/**
+ * sym - Main physics simulation step
+ * Arcade: drivsym.c:sym()
+ */
+void sym(MODELDAT *m) {
+    physics_sym(m);
+}
+
+/**
+ * regular - Standard physics update cycle
+ * Arcade: drivsym.c:regular()
+ */
+void regular(MODELDAT *m) {
+    physics_regular(m);
+}
+
+/**
+ * forces - Calculate all forces on vehicle
+ * Arcade: drivsym.c:forces()
+ */
+void forces(MODELDAT *m) {
+    physics_forces(m);
+}
+
+/**
+ * forces1 - Calculate tire and drag forces
+ * Arcade: drivsym.c:forces1()
+ */
+void forces1(MODELDAT *m) {
+    physics_forces1(m);
+}
+
+/**
+ * forces2 - Sum all forces
+ * Arcade: drivsym.c:forces2()
+ */
+void forces2(MODELDAT *m) {
+    physics_forces2(m);
+}
+
+/**
+ * antispin - Calculate anti-spin stabilization torque
+ * Arcade: drivsym.c:antispin()
+ */
+void antispin(MODELDAT *m) {
+    physics_antispin(m);
+}
+
+/**
+ * torques - Calculate moments from forces
+ * Arcade: drivsym.c:torques()
+ */
+void torques(MODELDAT *m) {
+    physics_torques(m);
+}
+
+/**
+ * accelerations - Calculate accelerations from forces
+ * Arcade: drivsym.c:accelerations()
+ */
+void accelerations(MODELDAT *m) {
+    physics_accelerations(m);
+}
+
+/**
+ * velocities - Integrate accelerations to velocities
+ * Arcade: drivsym.c:velocities()
+ */
+void velocities(MODELDAT *m) {
+    physics_velocities(m);
+}
+
+/**
+ * positions - Integrate velocities to positions
+ * Arcade: drivsym.c:positions()
+ */
+void positions(MODELDAT *m) {
+    physics_positions(m);
+}
+
+/**
+ * controls - Apply control inputs
+ * Arcade: controls.c:controls()
+ */
+void controls(MODELDAT *m) {
+    physics_controls(m);
+}
+
+/**
+ * road - Determine road surface under tires
+ * Arcade: road.c:road()
+ */
+void road(MODELDAT *m) {
+    physics_road(m);
+}
+
+/**
+ * mcommunication - Communicate results for display/network
+ * Arcade: communic.c:mcommunication()
+ */
+void mcommunication(MODELDAT *m) {
+    physics_mcommunication(m);
+}
+
+/**
+ * checkok - Validate physics values are in range
+ * Arcade: drivsym.c:checkok()
+ */
+void checkok(MODELDAT *m) {
+    physics_checkok(m);
+}
+
+/**
+ * drivetrain - Calculate engine and wheel torques
+ * Arcade: drivetra.c:drivetrain()
+ */
+void drivetrain(MODELDAT *m) {
+    physics_drivetrain(m);
+}
+
+/**
+ * calctireuv - Calculate tire unit vectors and velocity
+ * Arcade: tires.c:calctireuv()
+ */
+void calctireuv(f32 V[3], f32 W[3], f32 tireR[3], f32 steer,
+                UVect *carUV, UVect *roadUV, UVect *tireUV, f32 tireV[3]) {
+    /* Calculate tire velocity: tireV = V + W x tireR */
+    f32 wxr[3];
+    vec_cross(W, tireR, wxr);
+    vec_add(V, wxr, tireV);
+
+    /* Tire UV would be rotated by steer angle - simplified */
+    /* Full implementation needs rotation matrix */
+    tireUV->fpuvs[0][0] = carUV->fpuvs[0][0];
+    tireUV->fpuvs[0][1] = carUV->fpuvs[0][1];
+    tireUV->fpuvs[0][2] = carUV->fpuvs[0][2];
+    tireUV->fpuvs[1][0] = carUV->fpuvs[1][0];
+    tireUV->fpuvs[1][1] = carUV->fpuvs[1][1];
+    tireUV->fpuvs[1][2] = carUV->fpuvs[1][2];
+    tireUV->fpuvs[2][0] = carUV->fpuvs[2][0];
+    tireUV->fpuvs[2][1] = carUV->fpuvs[2][1];
+    tireUV->fpuvs[2][2] = carUV->fpuvs[2][2];
+}
+
+/**
+ * dotireforce - Calculate tire force
+ * Arcade: tires.c:dotireforce()
+ */
+void dotireforce(MODELDAT *m, f32 tireV[3], f32 otherV[3],
+                 UVect *tireUV, TireDes *tire, f32 torque,
+                 f32 force[3], f32 comp, f32 otherComp,
+                 f32 spring, f32 farspring, f32 cdamp, f32 rdamp,
+                 s32 poortract, f32 airfact) {
+    /* Simplified tire force - full Milliken model is complex */
+    /* Would calculate slip angle, longitudinal slip, etc. */
+    force[XCOMP] = torque * 0.1f;
+    force[YCOMP] = 0.0f;
+    force[ZCOMP] = m->mass * GRAVITY * 0.25f;
+}
+
+/**
+ * calcaa - Calculate angular acceleration from moment
+ * Arcade: drivsym.c:calcaa()
+ */
+void calcaa(MODELDAT *m, f32 M[3], f32 AA[3]) {
+    /* AA = I^-1 * M (simplified - no full inertia tensor) */
+    AA[XCOMP] = M[XCOMP] * 0.0001f;  /* Roll */
+    AA[YCOMP] = M[YCOMP] * 0.0001f;  /* Pitch */
+    AA[ZCOMP] = M[ZCOMP] * 0.00005f; /* Yaw */
+}
+
+/* Vector math arcade aliases */
+void vecadd(f32 a[3], f32 b[3], f32 out[3]) {
+    vec_add(a, b, out);
+}
+
+void vecsub(f32 a[3], f32 b[3], f32 out[3]) {
+    vec_sub(a, b, out);
+}
+
+void veccopy(f32 src[3], f32 dst[3]) {
+    vec_copy(src, dst);
+}
+
+void scalmul(f32 v[3], f32 s, f32 out[3]) {
+    vec_scale(v, s, out);
+}
+
+void crossprod(f32 a[3], f32 b[3], f32 out[3]) {
+    vec_cross(a, b, out);
+}
+
+f32 magnitude(f32 v[3]) {
+    return vec_magnitude(v);
+}
+
+/* Coordinate transform arcade aliases */
+void rwtobod(f32 rw[3], f32 body[3], UVect *uv) {
+    rw_to_body(rw, body, uv);
+}
+
+void bodtorw(f32 body[3], f32 rw[3], UVect *uv) {
+    body_to_rw(body, rw, uv);
+}

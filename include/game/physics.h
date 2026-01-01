@@ -41,6 +41,12 @@
 #define DT_PHYSICS      (1.0f/60.0f)  /* Physics timestep at 60Hz */
 #define CTLSCALE        (1.0f/32767.0f) /* Control input scale */
 
+/* Arcade drivsym.c constants */
+#define maxrwr          10.0f       /* Max value for extended precision on RWR */
+#define AIR             ROAD_AIR    /* Arcade road code alias */
+#define DIRT            ROAD_DIRT   /* Arcade road code alias */
+#define PAVE            ROAD_ASPHALT /* Arcade road code alias */
+
 /* Anti-spin table - per car type and difficulty */
 #define NUM_CAR_TYPES   4
 #define NUM_DIFF_OPT    3
@@ -355,5 +361,69 @@ f32 get_engine_torque(const s16 curve[10][12], f32 throttle, s32 rpm, s32 rpm_pe
  * init_car_from_params - Initialize car physics from Car parameters
  */
 void init_car_from_params(CarPhysics *m, const Car *car);
+
+/* ========================================================================
+ * Arcade-compatible function aliases (drivsym.c)
+ * ======================================================================== */
+
+/* Arcade type aliases */
+typedef CarPhysics MODELDAT;    /* Arcade uses MODELDAT for physics state */
+
+/* Initialization (drivsym.c) */
+void syminit(MODELDAT *m);
+void initialize(MODELDAT *m);
+
+/* Main simulation (drivsym.c) */
+void sym(MODELDAT *m);
+void regular(MODELDAT *m);
+
+/* Force calculation (drivsym.c) */
+void forces(MODELDAT *m);
+void forces1(MODELDAT *m);
+void forces2(MODELDAT *m);
+void antispin(MODELDAT *m);
+void torques(MODELDAT *m);
+
+/* Motion integration (drivsym.c) */
+void accelerations(MODELDAT *m);
+void velocities(MODELDAT *m);
+void positions(MODELDAT *m);
+
+/* Controls and road (drivsym.c) */
+void controls(MODELDAT *m);
+void road(MODELDAT *m);
+
+/* Communication (communic.c) */
+void mcommunication(MODELDAT *m);
+
+/* Validation (drivsym.c) */
+void checkok(MODELDAT *m);
+
+/* Drivetrain (drivetra.c) */
+void drivetrain(MODELDAT *m);
+
+/* Tire force calculation (tires.c) */
+void calctireuv(f32 V[3], f32 W[3], f32 tireR[3], f32 steer,
+                UVect *carUV, UVect *roadUV, UVect *tireUV, f32 tireV[3]);
+void dotireforce(MODELDAT *m, f32 tireV[3], f32 otherV[3],
+                 UVect *tireUV, TireDes *tire, f32 torque,
+                 f32 force[3], f32 comp, f32 otherComp,
+                 f32 spring, f32 farspring, f32 cdamp, f32 rdamp,
+                 s32 poortract, f32 airfact);
+
+/* Angular acceleration (drivsym.c) */
+void calcaa(MODELDAT *m, f32 M[3], f32 AA[3]);
+
+/* Vector math (vecmath.c arcade aliases) */
+void vecadd(f32 a[3], f32 b[3], f32 out[3]);
+void vecsub(f32 a[3], f32 b[3], f32 out[3]);
+void veccopy(f32 src[3], f32 dst[3]);
+void scalmul(f32 v[3], f32 s, f32 out[3]);
+void crossprod(f32 a[3], f32 b[3], f32 out[3]);
+f32  magnitude(f32 v[3]);
+
+/* Coordinate transform (drivsym.c) */
+void rwtobod(f32 rw[3], f32 body[3], UVect *uv);
+void bodtorw(f32 body[3], f32 rw[3], UVect *uv);
 
 #endif /* PHYSICS_H */
