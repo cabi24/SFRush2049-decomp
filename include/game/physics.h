@@ -15,17 +15,18 @@
 #define PHYSICS_H
 
 #include "types.h"
+#include "game/car.h"   /* For TireDes, Car, CollSize, NUM_GEARS */
 
 /* Coordinate system indices */
 #define XCOMP   0   /* Forward direction */
 #define YCOMP   1   /* Left direction */
 #define ZCOMP   2   /* Up direction */
 
-/* Tire indices */
-#define FLTIRE  0   /* Front left */
-#define FRTIRE  1   /* Front right */
-#define RLTIRE  2   /* Rear left */
-#define RRTIRE  3   /* Rear right */
+/* Tire indices (alternative names) */
+#define FLTIRE  TIRE_LF   /* Front left */
+#define FRTIRE  TIRE_RF   /* Front right */
+#define RLTIRE  TIRE_LR   /* Rear left */
+#define RRTIRE  TIRE_RR   /* Rear right */
 
 /* Road surface types */
 #define ROAD_ASPHALT    0
@@ -48,111 +49,18 @@
 #define PAVE            ROAD_ASPHALT /* Arcade road code alias */
 
 /* Anti-spin table - per car type and difficulty */
-#define NUM_CAR_TYPES   4
+#define NUM_CAR_TYPES_PHYS  4       /* Different from car.h NUM_CAR_TYPES */
 #define NUM_DIFF_OPT    3
 
-/* Gear and transmission limits */
-#define MAXGEAR         6       /* Maximum number of gears */
+/* Gear and transmission limits (use NUM_GEARS from car.h) */
+#define MAXGEAR         (MAX_GEAR)  /* Maximum forward gears (from car.h) */
 
 /******* ARCADE CAR PARAMETER STRUCTURES *******/
-/* Based on arcade drivsym.h Car and tiredes structs */
-
-/**
- * TireDes - Tire parameters for physics model
- * Based on arcade: tiredes.h
- *
- * The Milliken tire model uses slip angle and longitudinal
- * slip to compute lateral and tractive forces.
- */
-typedef struct TireDes {
-    f32     tradius;        /* Tire radius (feet) */
-    f32     springK;        /* Static lateral stiffness (lbs/ft) */
-    f32     rubdamp;        /* Lateral damping coefficient */
-    f32     PaveCstiff;     /* Cornering stiffness on pavement (lbs/rad) */
-    f32     PaveCfmax;      /* Max cornering friction on pavement (g) */
-    f32     Cstiff;         /* Current cornering stiffness */
-    f32     Cfmax;          /* Current max cornering friction */
-    f32     invmi;          /* 1/moment of inertia of wheel */
-    f32     Zforce;         /* Vertical loading for cornering */
-    f32     Afmax;          /* Slip angle at max force */
-    f32     k1, k2, k3;     /* Lateral force polynomial coefficients */
-    f32     l2, l3;         /* Derivative coefficients */
-    f32     m1, m2, m3, m4; /* Aligning torque coefficients */
-    f32     patchy;         /* Contact patch deformation */
-    f32     angvel;         /* Current angular velocity */
-    f32     sliptorque;     /* Torque from tire slipping */
-    f32     sideforce;      /* For tire squeal sound */
-    s32     slipflag;       /* Tire slipping flag */
-} TireDes;
-
-/**
- * Car - Complete car parameter definition
- * Based on arcade: drivsym.h struct car
- *
- * Defines all physical properties for a vehicle type.
- */
-typedef struct Car {
-    char    *name;              /* Name of car */
-    f32     mass;               /* Mass in slugs (weight/32.2) */
-    f32     I[3];               /* Moment of inertia (roll, pitch, yaw) */
-
-    f32     springrate[4];      /* Suspension spring rates (lbs/ft) */
-    f32     farspringrate;      /* Front anti-roll bar rate */
-    f32     rarspringrate;      /* Rear anti-roll bar rate */
-    f32     cdamping[4];        /* Compression damping (lbs-sec/ft) */
-    f32     rdamping[4];        /* Rebound damping */
-
-    f32     steerratio;         /* Steering ratio (deg/deg) */
-    f32     swtpg;              /* Steering wheel torque per G */
-    s16     maxswdamp;          /* Max steering damping */
-    s16     minswfrict;         /* Min steering friction */
-    s16     maxswfrict;         /* Max steering friction */
-    s16     pad;                /* Alignment */
-
-    f32     srefpcybo2;         /* Aerodynamic drag factor */
-    f32     rollresist;         /* Rolling resistance (lbs) */
-
-    TireDes tires[4];           /* Tire descriptions (FR, FL, RR, RL) */
-    f32     TIRER[4][3];        /* Tire positions relative to CG */
-
-    f32     brakebal;           /* Front brake balance (0-1) */
-    f32     engmi;              /* Engine flywheel moment of inertia */
-    f32     dwratio;            /* Differential gear ratio */
-    f32     clutchmaxt;         /* Max clutch torque */
-    f32     viewheight;         /* Observer height above CG */
-
-    s8      nothrusttorque;     /* Flag for zero yaw torque from thrust */
-    s8      magicdif;           /* Magic load-sensitive differential */
-    s8      pad2[2];
-
-    f32     fgtorquescale;      /* Torque scale in 1st gear */
-    f32     sgtorquescale;      /* Torque scale in 2nd gear */
-    f32     torquescale;        /* Torque scale in higher gears */
-    f32     dirttorquescale;    /* Torque scale off-road */
-    f32     transarray[MAXGEAR+2]; /* Transmission gear ratios */
-
-    const s16 *torquecp;        /* Engine torque curve pointer */
-    const s16 *dirttorquecp;    /* Dirt torque curve pointer */
-    s16     rpmperent;          /* RPM per torque curve entry */
-    s16     topgear;            /* Top gear for auto transmission */
-    f32     upshiftangvel;      /* Upshift angular velocity */
-    f32     downshiftangvel;    /* Downshift angular velocity */
-} Car;
-
-/**
- * CollSize - Car collision box dimensions
- * Based on arcade: drivsym.h COLLSIZE
- */
-typedef struct CollSize {
-    f32     colfront;           /* Distance to front */
-    f32     colrear;            /* Distance to rear */
-    f32     colside;            /* Half-width */
-    f32     colheight;          /* Height */
-} CollSize;
+/* TireDes, Car, CollSize are defined in game/car.h */
 
 /* External car parameter tables */
-extern const s16 stdtorquecurve[10][12];    /* Standard torque curve */
-extern const s16 rushtorquecurve[10][12];   /* Rush-style torque curve */
+extern const s16 stdtorquecurve[TORQUE_THROTTLE_STEPS][TORQUE_RPM_STEPS];
+extern const s16 rushtorquecurve[TORQUE_THROTTLE_STEPS][TORQUE_RPM_STEPS];
 extern const Car *carlist[];                /* Available cars */
 extern const CollSize car_collsizes[];      /* Collision box sizes */
 
