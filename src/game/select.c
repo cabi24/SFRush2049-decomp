@@ -2,12 +2,60 @@
  * select.c - Track and car selection for Rush 2049 N64
  *
  * Handles track selection, car selection, and transmission choice.
- * Based on arcade sselect.c patterns.
+ * Based on arcade sselect.c patterns from rushtherock/game/sselect.c
+ *
+ * Key arcade functions matched:
+ *   InitSelect, InitTrkSel, TrackSel, ShowTrackSelect, TrackSelForce
+ *   init_car_select, CarSel, ShowCarSelect, CarSelForce, ClutchSel
+ *   create_cars, SelectCam, track_negotiation, race_negotiation
+ *   waiting_for_others, SetCountdownTimer, GetCountdownTime, TimeOut
  */
 
 #include "game/select.h"
 #include "game/game.h"
 #include "game/input.h"
+
+/* ========================== ARCADE-COMPATIBLE GLOBALS ========================== */
+/* These match the arcade sselect.c globals for reference/matching */
+
+u32 start_time;                     /* IRQTIME when game started */
+u32 play_time;                      /* Milliseconds of time to play */
+u8 gFeedbackLevel;                  /* Force feedback level (0-2) */
+s16 gThisCar;                       /* Currently selected car index */
+s32 gCarLocked;                     /* Car selection locked flag (arcade: BOOL) */
+s32 gClutchLocked;                  /* Transmission locked flag (arcade: BOOL) */
+s32 gTrackLocked;                   /* Track selection locked flag (arcade: BOOL) */
+s16 num_pads;                       /* Number of selectable car pads */
+s8 negotiate_track;                 /* Track negotiation phase */
+s8 negotiate_race;                  /* Race negotiation phase */
+s16 trackno;                        /* Current track number */
+s32 gMirror;                        /* Mirror mode flag */
+s32 solo_flag;                      /* Solo play (no link) flag */
+s32 autotrans;                      /* Automatic transmission flag */
+u8 drones_flag;                     /* Drones enabled flag */
+u8 catchup_flag;                    /* Catchup enabled flag */
+
+/* Static arcade globals (from sselect.c) */
+static s16 gLitPad;                 /* Currently highlighted pad */
+static s16 gLastCar;                /* Last car index */
+static s16 gPickPad;                /* Picked pad index */
+static s16 gCarMove;                /* Car movement animation state */
+static s16 gCarFirstSel;            /* First car in current bank */
+static u32 gPickTime;               /* Time when car was picked */
+static u32 gBeginTime;              /* Time when selection began */
+static f32 gPadPitch;               /* Pad pitch angle */
+static s32 gSoundOn;                /* Turntable sound playing */
+static s32 gAltCars;                /* Alternate cars visible */
+static s32 gCameraTransition;       /* Camera transitioning */
+static s16 gCurCam;                 /* Current camera index */
+static s16 gNextCam;                /* Next camera index */
+static s16 gCamFrames;              /* Frames until next camera */
+static s16 oldTrack;                /* Previous track selection */
+static s16 old_num_on;              /* Previous number of linked players */
+static s32 tlock_sound_delay;       /* Track lock sound delay timer */
+static s32 twait_delay;             /* Waiting sound delay timer */
+static s32 all_tracks_locked_time;  /* Time all tracks were locked */
+static u32 countdown_timer;         /* Selection countdown timer */
 
 /* Global state */
 SelectState gSelect;
@@ -618,3 +666,468 @@ void select_draw_countdown(void)
         }
     }
 }
+
+/* ========================== ARCADE-COMPATIBLE FUNCTIONS ========================== */
+/* These are stub implementations matching arcade sselect.c signatures */
+/* Marked with #ifdef NON_MATCHING for decompilation workflow */
+
+#ifdef NON_MATCHING
+
+/*
+ * InitSelect - Called each time select mode is initially entered
+ * Arcade: sselect.c line ~586
+ * Loads models and prepares for the select process
+ */
+void InitSelect(void)
+{
+    s32 i;
+
+    /* Give audio cue when game starts (arcade: SOUND(S_RUSHWHISPER)) */
+    /* sound_play(SFX_RUSH_WHISPER); */
+
+    num_pads = 0;
+
+    /* Load the data from disk (arcade: Load(3)) */
+    gTrackLocked = 0;
+    /* gstate = TRKSEL; - handled by game state machine */
+
+    /* Initialize visuals (arcade: InitVisuals(false)) */
+
+    gPickTime = 0;
+    gPadPitch = 0.0f;
+    gCameraTransition = 0;
+    gCarMove = CM_NOT;
+    gLitPad = -1;
+    gSoundOn = 0;
+    oldTrack = -1;
+    all_tracks_locked_time = 0;
+
+    /* Set up camera */
+    gCurCam = 0;
+    gNextCam = 0;
+    gCamFrames = 0;
+    SelectCam();
+
+    /* Prepare to select */
+    SetCountdownTimer(TRK_SELECT_TIME);
+
+    /* Create car select room objects (arcade uses MBOX_NewObject) */
+    num_pads = NPADS;
+    create_cars();
+}
+
+/*
+ * InitTrkSel - Initialize global variables for track selection
+ * Arcade: sselect.c line ~647
+ * Called once at init time
+ */
+void InitTrkSel(void)
+{
+    gTrackLocked = 0;
+    gCarLocked = 0;
+    gClutchLocked = 0;
+    drones_flag = 1;            /* Drones enabled by default */
+    gFeedbackLevel = DEFAULT_FEEDBACK_LEVEL;
+    catchup_flag = 1;           /* Catchup enabled by default */
+    solo_flag = 0;
+    gMirror = 0;
+}
+
+/*
+ * TrackSel - Track selection state handler
+ * Arcade: sselect.c line ~715
+ * Called every frame during TRKSEL state
+ */
+void TrackSel(void)
+{
+    /* Handle force feedback (arcade steering wheel) */
+    TrackSelForce();
+    SelectCam();
+
+    /* Check for initialization */
+    if (oldTrack == -1) {
+        /* First frame initialization */
+        gCarLocked = 0;
+        gClutchLocked = 0;
+        autotrans = 1;              /* Default to automatic */
+        gThisCar = -1;
+        gCarFirstSel = 0;
+        gFeedbackLevel = DEFAULT_FEEDBACK_LEVEL;
+        old_num_on = 0;
+        tlock_sound_delay = 0;
+
+        SetCountdownTimer(TRK_SELECT_TIME);
+
+        /* Get initial track from controller input */
+        trackno = WheelSection(NTRACKS, 1);
+        oldTrack = trackno;
+
+        /* Set initial car selection */
+        gPickPad = RawWheelSection(NPADS, 1);
+        gThisCar = gPickPad + gCarFirstSel;
+
+        gBeginTime = 0;  /* Would be IRQTIME in arcade */
+
+        num_pads = NPADS;
+        create_cars();
+
+        negotiate_track = 0;
+        negotiate_race = 0;
+    }
+
+    /* If track already locked, handle waiting/transition */
+    if (gTrackLocked) {
+        ShowTrackSelect(1);
+
+        if (solo_flag) {
+            /* Immediately go to car select in solo mode */
+            init_car_select();
+            return;
+        }
+
+        /* Handle negotiation phases */
+        if (negotiate_track > 1) {
+            track_negotiation();
+            return;
+        }
+        negotiate_track = 1;
+
+        /* Check timeout */
+        if (TimeOut()) {
+            negotiate_track = 2;
+        }
+        return;
+    }
+
+    /* Check for lock trigger (gas pressed or timeout) */
+    if (GasPressed(1) || TimeOut()) {
+        gTrackLocked = 1;
+        /* Play lock sound */
+        return;
+    }
+
+    /* Still selecting - show UI and handle input */
+    ShowTrackSelect(1);
+
+    /* Update track selection from input */
+    trackno = WheelSection(NTRACKS, 1);
+
+    /* Update car preview selection */
+    gPickPad = RawWheelSection(NPADS, 1);
+    gThisCar = gPickPad + gCarFirstSel;
+
+    /* Check for track change */
+    if (trackno != oldTrack) {
+        oldTrack = trackno;
+        /* Play track change sound */
+    }
+}
+
+/*
+ * ShowTrackSelect - Show or hide track select screen
+ * Arcade: sselect.c line ~661
+ */
+void ShowTrackSelect(s32 active)
+{
+    if (active) {
+        /* Create track select UI if not already visible */
+        /* Arcade: NewMultiBlit(TrackMultiBlit) */
+        if (gSelect.track.state == SELECT_STATE_IDLE) {
+            gSelect.track.state = SELECT_STATE_ACTIVE;
+        }
+    } else {
+        /* Remove track select UI */
+        gSelect.track.state = SELECT_STATE_IDLE;
+    }
+}
+
+/*
+ * TrackSelForce - Handle force feedback during track selection
+ * Arcade: sselect.c line ~699
+ * N64 has no force feedback - stub implementation
+ */
+void TrackSelForce(void)
+{
+    /* No force feedback on N64 - stub */
+}
+
+/*
+ * init_car_select - Initialize car selection state
+ * Arcade: sselect.c line ~1190
+ */
+void init_car_select(void)
+{
+    s32 i;
+
+    /* gstate = CARSEL; - handled by game state machine */
+    SetCountdownTimer(CAR_SELECT_TIME);
+    ShowTrackSelect(0);
+    gCameraTransition = 1;
+    ShowCarSelect(1);
+
+    negotiate_race = 0;
+    negotiate_track = 3;  /* Holdoff phase */
+
+    for (i = 0; i < MAX_LINKS; i++) {
+        /* Reset negotiation data */
+    }
+}
+
+/*
+ * CarSel - Car selection state handler
+ * Arcade: sselect.c line ~2252
+ * Called every frame during CARSEL state
+ */
+void CarSel(void)
+{
+    CarSelForce();
+    SelectCam();
+
+    /* If car already locked, handle transmission select */
+    if (gCarLocked) {
+        ClutchSel();
+        return;
+    }
+
+    /* Check for lock trigger */
+    if (GasPressed(1) || TimeOut()) {
+        gCarLocked = 1;
+        gPickTime = 1;  /* Mark pick time */
+
+        SetCountdownTimer(CLUTCH_SEL_TIME + GetCountdownTime());
+
+        /* Play car select sound */
+        gSoundOn = 0;
+
+        /* Set flags based on options */
+        return;
+    }
+
+    /* Still selecting - update from input */
+    gPickPad = WheelSection(NPADS, 1);
+    gThisCar = gPickPad + gCarFirstSel;
+}
+
+/*
+ * ShowCarSelect - Show or hide car select screen
+ * Arcade: sselect.c line ~2188
+ */
+void ShowCarSelect(s32 active)
+{
+    if (active) {
+        if (gSelect.car.state == SELECT_STATE_IDLE) {
+            gSelect.car.state = SELECT_STATE_ACTIVE;
+            SetCountdownTimer(CAR_SELECT_TIME);
+            gBeginTime = 0;
+            /* Play garage ambient sound */
+        }
+    } else {
+        gSelect.car.state = SELECT_STATE_IDLE;
+    }
+}
+
+/*
+ * CarSelForce - Handle force feedback during car selection
+ * Arcade: sselect.c line ~2225
+ * N64 has no force feedback - stub implementation
+ */
+void CarSelForce(void)
+{
+    /* No force feedback on N64 - stub */
+}
+
+/*
+ * ClutchSel - Transmission selection
+ * Arcade: sselect.c line ~2426
+ * Handles auto/manual transmission choice
+ */
+void ClutchSel(void)
+{
+    /* If already locked, wait for race start */
+    if (gClutchLocked) {
+        if (negotiate_race == 3) {
+            /* Ready to start race */
+            /* gstate = PREPLAY; */
+            ShowCarSelect(0);
+        }
+
+        if (negotiate_race > 1) {
+            race_negotiation();
+            return;
+        }
+
+        negotiate_race = 1;
+
+        if (TimeOut()) {
+            if (solo_flag) {
+                negotiate_race = 3;
+            } else {
+                negotiate_race = 2;
+            }
+        }
+        return;
+    }
+
+    /* Check for lock trigger */
+    if (GasPressed(1) || TimeOut()) {
+        /* Get transmission choice from input */
+        autotrans = !WheelSection(2, 3);  /* 0=manual, 1=auto */
+        gClutchLocked = 1;
+    }
+}
+
+/*
+ * create_cars - Create all cars for car select
+ * Arcade: sselect.c line ~1218
+ */
+void create_cars(void)
+{
+    s32 i;
+
+    gLastCar = -1;
+
+    /* Create cars on each pad */
+    for (i = 0; i < NPADS; i++) {
+        /* CreateCar, SetupCar, StartCar for each pad */
+        /* Also create alternate car banks (arcade has 3 banks of 4) */
+    }
+}
+
+/*
+ * SelectCam - Update selection screen camera
+ * Arcade: called from TrackSel/CarSel
+ */
+void SelectCam(void)
+{
+    /* Handle camera transitions */
+    if (gCameraTransition) {
+        gCamFrames++;
+        if (gCamFrames >= 30) {
+            gCameraTransition = 0;
+            gCurCam = gNextCam;
+        }
+    }
+}
+
+/*
+ * track_negotiation - Negotiate track selection with linked players
+ * Arcade: sselect.c line ~1008
+ * N64 single-player - stub implementation
+ */
+void track_negotiation(void)
+{
+    /* No network on N64 - immediately proceed to car select */
+    negotiate_track = 3;
+    init_car_select();
+}
+
+/*
+ * race_negotiation - Negotiate race start with linked players
+ * Arcade: sselect.c (similar to track_negotiation)
+ * N64 single-player - stub implementation
+ */
+void race_negotiation(void)
+{
+    /* No network on N64 - immediately proceed */
+    negotiate_race = 3;
+}
+
+/*
+ * waiting_for_others - Play "waiting for others" sound
+ * Arcade: sselect.c line ~1293
+ * N64 single-player - stub implementation
+ */
+void waiting_for_others(s16 type)
+{
+    /* No multiplayer on N64 - stub */
+    (void)type;
+}
+
+/*
+ * SetCountdownTimer - Set the countdown timer
+ * Arcade: used throughout sselect.c
+ */
+void SetCountdownTimer(u32 time)
+{
+    countdown_timer = time;
+}
+
+/*
+ * GetCountdownTime - Get remaining countdown time
+ * Arcade: used throughout sselect.c
+ */
+u32 GetCountdownTime(void)
+{
+    return countdown_timer;
+}
+
+/*
+ * TimeOut - Check if timer has expired
+ * Arcade: used throughout sselect.c
+ */
+s32 TimeOut(void)
+{
+    if (countdown_timer > 0) {
+        countdown_timer--;
+        return 0;
+    }
+    return 1;
+}
+
+/*
+ * ShowCountdown - Show/hide countdown display
+ * Arcade: used for race start countdown
+ */
+void ShowCountdown(s32 active)
+{
+    /* Update countdown display visibility */
+    (void)active;
+}
+
+/*
+ * start_countdown - Start the race countdown
+ * Arcade: called when all players ready
+ */
+void start_countdown(void)
+{
+    /* Begin 3-2-1 countdown sequence */
+    ShowCountdown(1);
+}
+
+/*
+ * WheelSection - Get wheel position section
+ * Arcade: divides steering wheel range into sections
+ * N64: Maps controller stick to sections
+ */
+s32 WheelSection(s32 sections, s32 snap)
+{
+    /* TODO: Read controller stick and map to section */
+    /* For now, return center section */
+    (void)snap;
+    return sections / 2;
+}
+
+/*
+ * RawWheelSection - Get raw wheel section without smoothing
+ * Arcade: similar to WheelSection but without filtering
+ */
+s32 RawWheelSection(s32 sections, s32 snap)
+{
+    /* TODO: Read controller stick directly */
+    (void)snap;
+    return sections / 2;
+}
+
+/*
+ * GasPressed - Check if gas/confirm button pressed
+ * Arcade: checks gas pedal position
+ * N64: checks A button
+ */
+s32 GasPressed(s32 check)
+{
+    /* TODO: Read controller A button */
+    (void)check;
+    return 0;
+}
+
+#endif /* NON_MATCHING */
