@@ -198,9 +198,11 @@ $(BUILD_DIR)/$(SRC_DIR)/%.o: $(SRC_DIR)/%.c
 	$(V)$(CC) -c $(CFLAGS) -o $@ $<
 
 # os_sync.c matches with debug-style codegen; disable optimization for this file.
+ifeq ($(COMPILER),ido)
 $(BUILD_DIR)/src/libultra/os_sync.o: CFLAGS := -G 0 $(MIPSISET) -g -non_shared \
             $(INCLUDE_CFLAGS) \
             -Wab,-r4300_mul -Xcpluscomm
+endif
 
 # Convert binary files to objects (using MIPS big-endian ELF format)
 # Use elf32-big for binary files to avoid ABI conflicts
