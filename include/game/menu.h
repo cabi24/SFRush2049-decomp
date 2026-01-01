@@ -223,4 +223,62 @@ void menu_cb_audio(s32 value);
 void menu_cb_video(s32 value);
 void menu_cb_controls(s32 value);
 
+/* ========================================================================
+ * ARCADE-COMPATIBLE DEFINITIONS (menus.h)
+ * Based on arcade: game/menus.h
+ * ======================================================================== */
+
+/* Command function modes (from arcade game.h:CmdFunc enum) */
+#define MENU_CMD_INITIALIZE     0   /* Initialize = init important menu data */
+#define MENU_CMD_ALLOCATE       1   /* Allocate resources */
+#define MENU_CMD_DO_IT          2   /* Do_it = check keystroke and act on key */
+#define MENU_CMD_UNDO_IT        3   /* Undo_it = clear menu area */
+#define MENU_CMD_DEALLOCATE     4   /* Deallocate resources */
+#define MENU_CMD_CLEANUP        5   /* Cleanup */
+
+/* Arcade menu palette colors (from arcade OS/config.h) */
+#define MENU_PAL_GREEN      0x0800  /* GRN_PAL - palette 2 */
+#define MENU_PAL_CYAN       0x0C00  /* CYN_PAL - palette 3 */
+#define MENU_PAL_RED        0x1000  /* RED_PAL - palette 4 */
+#define MENU_PAL_YELLOW     0x1800  /* YEL_PAL - palette 6 */
+#define MENU_PAL_WHITE      0x1C00  /* WHT_PAL - palette 7 */
+
+/* Arcade menu structure (from arcade menus.h) */
+typedef struct ArcadeMenu {
+    char *label_txt;        /* Display label text */
+    char *help_txt;         /* Help text shown at bottom */
+    void (*rout)(s16);      /* Menu item routine */
+    void *child_menu;       /* Child submenu pointer */
+} ArcadeMenu;
+
+/* Arcade menu globals */
+extern s16 cp_edit;                 /* Menu editing enabled flag */
+extern s16 cur_selection;           /* Current selected item */
+extern s16 num_selections;          /* Number of menu items */
+extern s16 menu_depth;              /* Current menu depth */
+extern s16 menu_txt_index[10];      /* Text position indices */
+extern s16 display_pos_data;        /* Display position data flag */
+extern s16 clear_pos_data;          /* Clear position data flag */
+extern s16 disp_sw_bar;             /* Display switch bar flag */
+extern ArcadeMenu *cur_arcade_menu; /* Current menu pointer */
+extern ArcadeMenu *menu_tab[10];    /* Menu stack (10 levels max) */
+extern char menu_buf[66];           /* Menu text buffer */
+
+/* Arcade menu functions (from arcade menus.c) */
+void check_menu(s16 mode, ArcadeMenu *menu_pntr);
+void display_menu_arcade(s16 mode, ArcadeMenu *menu);
+void clear_display(void);
+void clear_menu(void);
+
+/* External arcade dependencies (stubs on N64) */
+extern void txt_str(s16 x, s16 y, const char *str, s16 palette);
+extern u32 IRQTIME;                 /* IRQ counter for animation */
+extern u32 levels;                  /* Switch levels */
+extern u32 last_levels;             /* Previous switch levels */
+extern u32 edges;                   /* Rising edge switch detections */
+extern u32 trailing_edges;          /* Falling edge switch detections */
+extern u32 dlevels;                 /* Debug switch levels */
+extern u32 dedges;                  /* Debug rising edges */
+extern u32 trailing_dedges;         /* Debug falling edges */
+
 #endif /* MENU_H */

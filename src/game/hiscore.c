@@ -791,3 +791,511 @@ void hiscore_filter_name(char *name) {
     /* Ensure null terminator */
     name[MAX_NAME_LENGTH] = '\0';
 }
+
+/* ========================================================================
+ * ARCADE-COMPATIBLE FUNCTIONS (hiscore.c)
+ * These match the arcade function signatures exactly
+ * ======================================================================== */
+
+/* String functions */
+extern s32 strlen(const char *s);
+extern char *strcpy(char *dst, const char *src);
+extern char *strncpy(char *dst, const char *src, s32 n);
+extern s32 strncmp(const char *s1, const char *s2, s32 n);
+extern void *memmove(void *dst, const void *src, s32 n);
+
+/* Arcade global state */
+s32 gEnteringName;                      /* True if entering name in High Score */
+s32 continue_flag;                      /* Continue mode active */
+s32 continue_carry;                     /* Continue carried over */
+
+/* Score tables */
+HiScore gScoreTable[NTRACKS][NSCORES];
+s32 InThisGame[NTRACKS][NSCORES];
+
+/* Private state */
+static s16 gThisRank;                   /* Current score to highlight */
+static s16 gThisTrack;
+static char gCurName[NLENGTH + 5];      /* Current name being entered */
+static s16 gNameIndex;                  /* Place to put next char */
+static s16 gCurLetter;
+static u32 gThisScore;
+static s16 gLetterTries;
+static s16 nextBlit;
+static s16 char_on_left, char_on_right, last_section;
+static s16 delta_x, old_delta_x;
+static s32 left_side_active, right_side_active, holdoff_force;
+
+/* Valid characters for name entry (arcade) */
+static const char font_list[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!?.{}";
+
+/**
+ * revcpy - Reverse copy a string (for mirror mode)
+ * Based on arcade: hiscore.c:revcpy()
+ */
+void revcpy(char *dest, char *src) {
+    s32 i, len;
+
+    len = strlen(src);
+    for (i = 0; i < len; i++) {
+        dest[len - 1 - i] = src[i];
+    }
+    dest[len] = '\0';
+}
+
+/**
+ * cvt_time_str - Convert time to string format
+ * Based on arcade: hiscore.c:cvt_time_str()
+ *
+ * @param t     Time in milliseconds (0.001 second units)
+ * @param dest  Output buffer (at least 9 bytes)
+ * @param format Format character:
+ *               's' - MM:SS (seconds only)
+ *               'h' - M:SS.hh (default, with hundredths)
+ *               'c' - SSS (countdown timer)
+ *               'f' - MM:SS.hh (full format)
+ * @return Number of digits set
+ */
+u8 cvt_time_str(s32 t, u8 *dest, char format) {
+    s32 sec, min;
+    u8 ret;
+
+    ret = 0;
+
+    if (t < 0) {
+        t = 0;
+    }
+
+    switch (format) {
+        case 'c':
+            sec = t;
+            if (sec > 999) {
+                sec = 999;
+            }
+            dest[0] = (u8)((sec / 100) % 10) + '0';
+            dest[1] = (u8)((sec / 10) % 10) + '0';
+            dest[2] = (u8)(sec % 10) + '0';
+            ret = 3;
+            break;
+
+        case 'f':
+            if (t >= (s32)MAX_HSCORE) {
+                strcpy((char *)dest, "99:59.99");
+                return 8;
+            }
+            dest[5] = '.';
+            dest[6] = (u8)((t / 100) % 10) + '0';
+            dest[7] = (u8)((t / 10) % 10) + '0';
+            dest[8] = 0;
+            ret = 8;
+            sec = t / 1000;
+            min = sec / 60;
+            sec %= 60;
+            dest[0] = (u8)(min / 10) % 10 + '0';
+            dest[1] = (u8)(min % 10) + '0';
+            dest[2] = ':';
+            dest[3] = (u8)(sec / 10) + '0';
+            dest[4] = (u8)(sec % 10) + '0';
+            break;
+
+        case 'h':
+            if (t >= (s32)MAX_SCORE) {
+                strcpy((char *)dest, "9:99.99");
+                return 7;
+            }
+            dest[4] = '.';
+            dest[5] = (u8)((t / 100) % 10) + '0';
+            dest[6] = (u8)((t / 10) % 10) + '0';
+            dest[7] = 0;
+            ret = 7;
+            /* Fall through to do seconds */
+
+        case 's':
+            sec = t / 1000;
+            min = (sec / 60) % 60;
+            sec %= 60;
+            dest[0] = (u8)(min % 10) + '0';
+            dest[1] = ':';
+            dest[2] = (u8)(sec / 10) + '0';
+            dest[3] = (u8)(sec % 10) + '0';
+            if (!ret) {
+                dest[4] = 0;
+                ret = 4;
+            }
+            break;
+
+        default:
+            break;
+    }
+
+    return ret;
+}
+
+/**
+ * InitGameScores - Clear old players from high score table
+ * Based on arcade: hiscore.c:InitGameScores()
+ */
+void InitGameScores(void) {
+    s32 i, j;
+
+    for (j = 0; j < NTRACKS; j++) {
+        for (i = 0; i < NSCORES; i++) {
+            InThisGame[j][i] = 0;
+        }
+    }
+    gThisRank = -1;
+    gThisTrack = -1;
+}
+
+/**
+ * HiScoreRank - Get rank for a given score on a given track
+ * Based on arcade: hiscore.c:HiScoreRank()
+ *
+ * @param score Player's score (time in ms)
+ * @param track Track number
+ * @return Rank (0 = best), or -1 if not on table
+ */
+s16 HiScoreRank(u32 score, s16 track) {
+    s16 i;
+
+    if (score == 0) {
+        return -1;
+    }
+
+    for (i = 0; i < NSCORES; i++) {
+        if (gScoreTable[track][i].score >= score) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+/**
+ * ClearAScore - Clear a high score entry to default values
+ * Based on arcade: hiscore.c:ClearAScore() (static in arcade)
+ */
+static void ClearAScore(HiScore *s, const char *name) {
+    s->score = MAX_SCORE;
+    strcpy(s->name, name);
+    s->deaths = 0;
+    s->mirror = 0;
+    s->car = 0;  /* gThisNode << 4 in arcade */
+}
+
+/**
+ * ClearHighScores - Clear high score table to default values
+ * Based on arcade: hiscore.c:ClearHighScores()
+ */
+void ClearHighScores(void) {
+    s16 i, trk;
+    static const char * const defNames[32] = {
+        "CAPIZZI", "GIZMO", "SPOO", "ROBMAN", "GUMMER", "RAY",
+        "ALAN", "JOHN", "AARON", "SKRID", "SPENCE", "TOM", "ROB", "PETE",
+        "FORREST", "DAVE", "PAUL", "JRG", "JAM", "PIXEL", "BINKLEY",
+        "FRENZY", "KAYA", "KENNA", "DECAL", "NITE", "ALIEN",
+        "SCRODER", "MAGGIE", "MARGE", "HOMER", "ZIGGY"
+    };
+    u32 rand_idx;
+
+    /* Initialize with random default names */
+    for (trk = 0; trk < NTRACKS; trk++) {
+        for (i = 0; i < NSCORES; i++) {
+            /* Simple pseudo-random selection */
+            rand_idx = (u32)((trk * NSCORES + i) * 7 + 3) % 32;
+            ClearAScore(&gScoreTable[trk][i], defNames[rand_idx]);
+        }
+    }
+
+    InitGameScores();
+}
+
+/**
+ * LoadHighScores - Load high score table from NVRAM
+ * Based on arcade: hiscore.c:LoadHighScores()
+ *
+ * Note: N64 uses Controller Pak, arcade uses BRAM
+ */
+void LoadHighScores(void) {
+    s32 trk, i;
+    HiScore *hs;
+
+    /* For N64, use default scores initially */
+    /* TODO: Implement Controller Pak load */
+
+    ClearHighScores();
+
+    /* Validate loaded scores */
+    for (trk = 0; trk < NTRACKS; trk++) {
+        for (i = 0; i < NSCORES; i++) {
+            hs = &gScoreTable[trk][i];
+
+            /* Check for invalid scores */
+            if (hs->score < MIN_SCORE || hs->score > MAX_SCORE) {
+                ClearAScore(hs, "DEFAULT");
+            }
+            if (i < NSCORES - 1 && hs->score > gScoreTable[trk][i + 1].score) {
+                /* Scores out of order - clear rest */
+                ClearAScore(hs, "DEFAULT");
+            }
+        }
+    }
+
+    InitGameScores();
+}
+
+/**
+ * SaveHighScore - Save a high score table entry
+ * Based on arcade: hiscore.c:SaveHighScore()
+ *
+ * @param name Player name
+ * @param score Time in milliseconds
+ * @param track Track number
+ * @param deaths Death count
+ * @param mirror Mirror mode flag
+ * @param car Car type and player node
+ * @param flags 2 = don't mark InThisGame
+ * @return Rank, or -1 if not saved
+ */
+s32 SaveHighScore(char *name, u32 score, u32 track, u32 deaths, u32 mirror, u32 car, u32 flags) {
+    s32 rank;
+    HiScore *hs;
+    s32 i;
+
+    rank = HiScoreRank(score, (s16)track);
+
+    if (rank < 0) {
+        return -1;
+    }
+
+    /* Check if score already exists in table (reject duplicates) */
+    hs = &gScoreTable[track][rank];
+    for (i = rank; i < NSCORES; i++, hs++) {
+        if (hs->score != score) {
+            break;
+        }
+        if (hs->mirror == (u8)mirror && hs->deaths == (u16)deaths &&
+            hs->car == (u8)car && strncmp(hs->name, name, NLENGTH) == 0) {
+            return -1;  /* Duplicate entry */
+        }
+    }
+
+    /* Move other scores down */
+    hs = &gScoreTable[track][rank];
+    if (rank < NSCORES - 1) {
+        memmove(&gScoreTable[track][rank + 1], hs,
+                sizeof(HiScore) * (NSCORES - 1 - rank));
+        memmove(&InThisGame[track][rank + 1], &InThisGame[track][rank],
+                sizeof(s32) * (NSCORES - 1 - rank));
+
+        if ((s32)track == gThisTrack && rank < gThisRank) {
+            gThisRank++;
+        }
+    }
+
+    /* Insert new entry */
+    strncpy(hs->name, name, NLENGTH - 1);
+    hs->name[NLENGTH - 1] = 0;
+    hs->score = score;
+    hs->deaths = (u16)deaths;
+    hs->mirror = (u8)mirror;
+    hs->car = (u8)car;
+
+    if (!(flags & 2)) {
+        InThisGame[track][rank] = 1;
+    }
+
+    /* TODO: Write to Controller Pak */
+
+    return rank;
+}
+
+/**
+ * EnterHighScore - Take score and enter into high score table
+ * Based on arcade: hiscore.c:EnterHighScore()
+ */
+void EnterHighScore(s16 track, u32 score, char *name, u32 deaths, u32 mirror, u32 car) {
+    s32 rank;
+
+    /* Assume not entering name */
+    gEnteringName = 0;
+    continue_flag = 1;
+
+    /* Check if score qualifies */
+    if (score == 0 || score >= MAX_SCORE) {
+        return;
+    }
+
+    /* Get rank for this score */
+    rank = HiScoreRank(score, track);
+
+    gThisRank = (s16)rank;
+    gThisTrack = track;
+    gThisScore = score;
+
+    if (rank < 0) {
+        gThisRank = 100;  /* Didn't make table */
+        return;
+    }
+
+    /* Top ten name? */
+    if (rank < NNAMES) {
+        /* Setup for entry of name */
+        holdoff_force = 1;
+        gEnteringName = 1;
+        gCurName[0] = 0;
+        gNameIndex = 0;
+        gLetterTries = 6;
+        gCurLetter = 'M' - 'A';
+        char_on_left = gCurLetter - (NUM_HENTRY_POS - 4 - 1) / 2;
+        char_on_right = gCurLetter + (NUM_HENTRY_POS - 4 - 1) / 2;
+        last_section = (NUM_HENTRY_POS - 4 - 1) / 2 + 1;
+        old_delta_x = 0;
+    } else {
+        /* Not top 10 - save with default name */
+        SaveHighScore("GIZMO", score, track, deaths, mirror, car, 0);
+    }
+}
+
+/**
+ * ShowHiScore - Display or remove the High Score screen
+ * Based on arcade: hiscore.c:ShowHiScore()
+ *
+ * Note: N64 version is simplified - no blit system
+ */
+void ShowHiScore(s32 show, s16 track) {
+    if (show) {
+        /* Start display */
+        gHiScore.state = HISCORE_STATE_DISPLAY;
+        gHiScore.display.current_track = track;
+        gHiScore.display.display_timer = 0;
+    } else {
+        /* Stop display */
+        gHiScore.state = HISCORE_STATE_IDLE;
+        continue_carry = continue_flag;
+        continue_flag = 0;
+    }
+}
+
+/**
+ * ShowScoreEntry - Display or remove the high score entry screen
+ * Based on arcade: hiscore.c:ShowScoreEntry()
+ */
+void ShowScoreEntry(s32 show) {
+    if (show) {
+        gHiScore.state = HISCORE_STATE_ENTRY;
+        gCurName[0] = 0;
+        gNameIndex = 0;
+        gLetterTries = 6;
+        gCurLetter = 'M' - 'A';
+        char_on_left = gCurLetter - (NUM_HENTRY_POS - 4 - 1) / 2;
+        char_on_right = gCurLetter + (NUM_HENTRY_POS - 4 - 1) / 2;
+        last_section = (NUM_HENTRY_POS - 4 - 1) / 2 + 1;
+        old_delta_x = 0;
+    } else {
+        gHiScore.state = HISCORE_STATE_IDLE;
+        gEnteringName = 0;
+    }
+}
+
+/**
+ * GetHighScoreName - Process name entry each frame
+ * Based on arcade: hiscore.c:GetHighScoreName()
+ *
+ * Note: N64 version uses different input system
+ */
+void GetHighScoreName(void) {
+    s16 sections;
+
+    sections = (s16)(sizeof(font_list) - 1);
+
+    /* Clamp letter selection */
+    if (gCurLetter < 0) {
+        gCurLetter = 0;
+    }
+    if (gCurLetter > sections - 1) {
+        gCurLetter = sections - 1;
+    }
+
+    /* Check if entered all letters - force to END */
+    if (strlen(gCurName) == NLENGTH - 1) {
+        gCurLetter = sections - 1;  /* END position */
+        left_side_active = 0;
+        right_side_active = 0;
+    }
+
+    /* Adjust bounds for scrolling letter display */
+    if (gCurLetter < char_on_left) {
+        char_on_left--;
+        char_on_right--;
+    } else if (gCurLetter > char_on_right) {
+        char_on_left++;
+        char_on_right++;
+    }
+
+    /* Deactivate arrows if at bounds */
+    if (char_on_left == 0) {
+        left_side_active = 0;
+    } else if (char_on_right == sections - 1) {
+        right_side_active = 0;
+    }
+
+    holdoff_force = 0;
+}
+
+/**
+ * HiScoreForce - Handle steering wheel force during name entry
+ * Based on arcade: hiscore.c:HiScoreForce()
+ *
+ * Note: N64 version is a stub - no force feedback
+ */
+void HiScoreForce(void) {
+    /* N64 doesn't have force feedback */
+}
+
+/**
+ * InitMsgs - Initialize message system
+ * Based on arcade: hiscore.c:InitMsgs()
+ *
+ * Note: N64 version is a stub - different display system
+ */
+void InitMsgs(s16 fontNum, s32 reset) {
+    if (reset) {
+        nextBlit = 0;
+    }
+    /* N64: font selection would go here */
+    (void)fontNum;
+}
+
+/**
+ * AddMsg - Add a message to display
+ * Based on arcade: hiscore.c:AddMsg()
+ *
+ * Note: N64 version is a stub - different display system
+ */
+void AddMsg(s32 x, s32 y, const char *txt, s32 AnimID, void *AnimFunc, s32 data) {
+    /* N64: Would add text to display list */
+    (void)x;
+    (void)y;
+    (void)txt;
+    (void)AnimID;
+    (void)AnimFunc;
+    (void)data;
+}
+
+/**
+ * RemoveMsgs - Remove all messages
+ * Based on arcade: hiscore.c:RemoveMsgs()
+ */
+void RemoveMsgs(void) {
+    nextBlit = 0;
+}
+
+/**
+ * check_ctrs - Check if tables should be auto-cleared
+ * Based on arcade: hiscore.c:check_ctrs()
+ */
+s32 check_ctrs(void) {
+    /* N64: Simplified - no EER counters */
+    /* Return 0 = don't auto-clear */
+    return 0;
+}

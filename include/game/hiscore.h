@@ -21,6 +21,80 @@
 #define MAX_SCORE_TIME      (10 * 60 * 60)      /* 10 minute maximum */
 #define MAX_DISPLAY_TIME    (100 * 60 * 60)     /* 99:59.99 display max */
 
+/* ========================================================================
+ * ARCADE-COMPATIBLE CONSTANTS (hiscore.c)
+ * ======================================================================== */
+
+/* Arcade time constants (in milliseconds, 1000 = 1 second) */
+#define ONE_SEC             1000
+#define MIN_SCORE           (1L * 60 * ONE_SEC)     /*  1 minute */
+#define MAX_SCORE           (10L * 60 * ONE_SEC)    /* 10 minutes */
+#define MAX_HSCORE          (100L * 60 * ONE_SEC)   /* 99:59.99 display max */
+
+/* Arcade score table limits */
+#define NNAMES              10      /* Number of names on high score screen */
+#define SSCORES             9       /* Number of scrolling scores visible */
+#define NSCORES             100     /* Total scores per track */
+#define NLENGTH             8       /* Name length (7 chars + null) */
+#define NTRACKS             8       /* Number of tracks */
+
+/* High score entry screen */
+#define NUM_HENTRY_POS      13      /* Selectable positions in entry screen */
+#define HSCORE_LWIDTH       32      /* Letter width in entry screen */
+
+/* High score display positions */
+#define HI_SCORE_X          45      /* X position for top 10 */
+#define LO_SCORE_X          360     /* X position for scrolling scores */
+
+/* Auto-clear counters */
+#define MAX_GAME_CNT        1000    /* Games before auto-clear check */
+#define MAX_HI_CNT          100     /* High scores before auto-clear */
+#define MAX_MSG_CHARS       256     /* Maximum message characters */
+
+/* NVRAM table base (arcade specific, may need N64 adaptation) */
+#define TABLE_BASE          ((u32 *)0)              /* Placeholder */
+#define TABLE_SIZE          (sizeof(HiScore) * NSCORES)
+
+/* ========================================================================
+ * ARCADE-COMPATIBLE STRUCTURES (hiscore.c)
+ * ======================================================================== */
+
+/**
+ * HiScore - Arcade high score entry structure
+ * Based on arcade: hiscore.c:HiScore
+ *
+ * Note: NLENGTH is 8 (7 chars + null) in arcade
+ */
+typedef struct HiScore {
+    char    name[NLENGTH];      /* Player name (7 chars + null) */
+    u32     score;              /* Time in milliseconds */
+    u16     deaths;             /* Death count during race */
+    u8      mirror;             /* Mirror mode flag */
+    u8      car;                /* Car type and player node */
+} HiScore;
+
+/**
+ * ScoreBlitEntry - Arcade blit entry for score display
+ * Based on arcade: hiscore.c:ScoreBlitEntry
+ */
+typedef struct ScoreBlitEntry {
+    void    *name[NLENGTH];     /* Name blit pointers */
+    void    *score[8];          /* Score blit pointers (m:ss.hh format) */
+    s16     nlen;               /* Name length */
+    s16     slen;               /* Score length */
+} ScoreBlitEntry;
+
+/**
+ * LoScoreBlitEntry - Arcade low score blit entry
+ * Based on arcade: hiscore.c:LoScoreBlitEntry
+ */
+typedef struct LoScoreBlitEntry {
+    void    *name[4];           /* Name blit pointers (abbreviated) */
+    void    *score[8];          /* Score blit pointers */
+    s16     nlen;               /* Name length */
+    s16     slen;               /* Score length */
+} LoScoreBlitEntry;
+
 /* High score state */
 #define HISCORE_STATE_IDLE          0
 #define HISCORE_STATE_DISPLAY       1   /* Showing high scores */
@@ -177,5 +251,44 @@ char hiscore_index_to_char(s32 index);
 s32 hiscore_char_to_index(char c);
 s32 hiscore_validate_name(const char *name);
 void hiscore_filter_name(char *name);
+
+/* ========================================================================
+ * ARCADE-COMPATIBLE FUNCTION DECLARATIONS (hiscore.c)
+ * ======================================================================== */
+
+/* Global arcade state */
+extern s32 gEnteringName;               /* True if entering name in High Score */
+extern s32 continue_flag;               /* Continue mode active */
+extern s32 continue_carry;              /* Continue carried over */
+
+/* Arcade score table (NTRACKS x NSCORES) */
+extern HiScore gScoreTable[NTRACKS][NSCORES];
+extern s32 InThisGame[NTRACKS][NSCORES];
+
+/* String utilities */
+void revcpy(char *dest, char *src);
+u8 cvt_time_str(s32 t, u8 *dest, char format);
+
+/* Score table management */
+void InitGameScores(void);
+s16 HiScoreRank(u32 score, s16 track);
+void ClearHighScores(void);
+void LoadHighScores(void);
+s32 SaveHighScore(char *name, u32 score, u32 track, u32 deaths, u32 mirror, u32 car, u32 flags);
+
+/* High score entry */
+void EnterHighScore(s16 track, u32 score, char *name, u32 deaths, u32 mirror, u32 car);
+void ShowHiScore(s32 show, s16 track);
+void ShowScoreEntry(s32 show);
+void GetHighScoreName(void);
+void HiScoreForce(void);
+
+/* Message utilities (arcade display system) */
+void InitMsgs(s16 fontNum, s32 reset);
+void AddMsg(s32 x, s32 y, const char *txt, s32 AnimID, void *AnimFunc, s32 data);
+void RemoveMsgs(void);
+
+/* Counter check for auto-clear */
+s32 check_ctrs(void);
 
 #endif /* HISCORE_H */

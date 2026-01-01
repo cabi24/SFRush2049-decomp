@@ -902,3 +902,357 @@ void menu_cb_controls(s32 value)
 {
     menu_push(&gControlsMenu);
 }
+
+/* ========================================================================
+ * ARCADE-COMPATIBLE FUNCTIONS (menus.c)
+ * Based on arcade: game/menus.c
+ * ======================================================================== */
+
+/* Arcade menu globals */
+s16 cp_edit;                        /* Menu editing enabled flag */
+s16 cur_selection;                  /* Current selected item */
+s16 num_selections;                 /* Number of menu items */
+s16 menu_depth;                     /* Current menu depth */
+s16 menu_txt_index[10];             /* Text position indices */
+s16 display_pos_data;               /* Display position data flag */
+s16 clear_pos_data;                 /* Clear position data flag */
+s16 disp_sw_bar;                    /* Display switch bar flag */
+ArcadeMenu *cur_arcade_menu;        /* Current menu pointer */
+ArcadeMenu *menu_tab[10];           /* Menu stack (10 levels max) */
+char menu_buf[66];                  /* Menu text buffer */
+
+/* Stub implementations for arcade dependencies */
+/* These would be implemented in a proper N64 text rendering system */
+u32 IRQTIME = 0;
+u32 levels = 0;
+u32 last_levels = 0;
+u32 edges = 0;
+u32 trailing_edges = 0;
+u32 dlevels = 0;
+u32 dedges = 0;
+u32 trailing_dedges = 0;
+
+/* Arcade switch definitions (subset for N64) */
+#define SW_DEBUG3       0x00080000
+#define SW_DEBUG15      0x40000000
+#define SW_VIEW1        0x00000001
+#define SW_VIEW2        0x00000002
+#define SW_VIEW3        0x00000004
+#define SW_MUSIC        0x00000008
+#define SW_ABORT        0x00040000
+#define SW_REVERSE      0x00200000
+#define MENU_KEYS       (SW_ABORT | SW_REVERSE | SW_MUSIC | SW_VIEW1 | SW_VIEW2 | SW_VIEW3)
+
+/**
+ * txt_str - Stub for arcade text string rendering
+ * N64 implementation would use display list text rendering
+ */
+void txt_str(s16 x, s16 y, const char *str, s16 palette)
+{
+    /* TODO: Implement with N64 display list text rendering */
+    /* For now this is a stub - actual text rendering would go to RDP */
+}
+
+/**
+ * sprintf_safe - Local sprintf implementation for menu strings
+ */
+static void sprintf_menu(char *buf, const char *fmt, const char *arg)
+{
+    s32 i = 0;
+    s32 j = 0;
+    s32 k;
+
+    while (fmt[i] != '\0') {
+        if (fmt[i] == '%' && fmt[i+1] == 's') {
+            /* Insert string argument */
+            k = 0;
+            while (arg[k] != '\0') {
+                buf[j++] = arg[k++];
+            }
+            i += 2;
+        } else if (fmt[i] == '%' && fmt[i+1] == '-') {
+            /* Left-justify with width */
+            i += 2;
+            while (fmt[i] >= '0' && fmt[i] <= '9') i++;
+            if (fmt[i] == 's') {
+                k = 0;
+                while (arg[k] != '\0') {
+                    buf[j++] = arg[k++];
+                }
+                i++;
+            }
+        } else if (fmt[i] == ' ') {
+            buf[j++] = ' ';
+            i++;
+        } else {
+            buf[j++] = fmt[i++];
+        }
+    }
+    buf[j] = '\0';
+}
+
+/**
+ * strlen_menu - Local strlen for menu strings
+ */
+static s32 strlen_menu(const char *str)
+{
+    s32 len = 0;
+    while (str[len] != '\0') len++;
+    return len;
+}
+
+/**
+ * check_menu - Enable/disable menu and handle keystrokes
+ * Based on arcade: menus.c:check_menu()
+ *
+ * @param mode Initialize = init menu data, Do_it = process input
+ * @param menu_pntr Menu to check/display
+ */
+void check_menu(s16 mode, ArcadeMenu *menu_pntr)
+{
+    if (mode == MENU_CMD_INITIALIZE) {
+        cp_edit = 0;
+        menu_depth = 0;
+        display_pos_data = 0;
+        clear_pos_data = 0;
+        disp_sw_bar = 0;
+        cur_arcade_menu = NULL;
+        return;
+    }
+
+    /* Check debug switch 3 for position data display */
+    if (dlevels & SW_DEBUG3) {
+        display_pos_data = 1;
+
+        if (dlevels & SW_DEBUG15) {
+            disp_sw_bar = 1;
+            dedges &= ~SW_DEBUG15;
+            dlevels &= ~SW_DEBUG15;
+        } else {
+            disp_sw_bar = 0;
+        }
+    } else {
+        display_pos_data = 0;
+    }
+
+    if (trailing_dedges & SW_DEBUG3) {
+        clear_pos_data = 1;
+    }
+
+    /* Menu switch just turned on */
+    if (dedges & SW_DEBUG15) {
+        cp_edit = 1;
+        if (cur_arcade_menu == NULL) {
+            cur_arcade_menu = menu_pntr;
+            cur_selection = 1;
+        }
+
+        /* Initialize menu display and run root menu's routine */
+        display_menu_arcade(MENU_CMD_INITIALIZE, cur_arcade_menu);
+
+        if (cur_arcade_menu == NULL) {
+            cp_edit = 0;
+            txt_str(2, 37, "Bad menu data!  No biscuit! ", MENU_PAL_RED);
+        }
+    } else if (trailing_dedges & SW_DEBUG15) {
+        /* Menu switch just turned off */
+        cp_edit = 0;
+        display_menu_arcade(MENU_CMD_UNDO_IT, cur_arcade_menu);
+    }
+
+    /* Are menus on? */
+    if (cp_edit) {
+        /* Yes, update current selection with blinking highlight */
+        sprintf_menu(menu_buf, " %s", cur_arcade_menu[cur_selection].label_txt);
+        txt_str(menu_txt_index[cur_selection], 38, menu_buf,
+                (IRQTIME & 0x100) ? MENU_PAL_YELLOW : MENU_PAL_RED);
+
+        /* Update root menu's routine */
+        if (cur_arcade_menu[0].rout != NULL) {
+            (cur_arcade_menu[0].rout)(MENU_CMD_DO_IT);
+        }
+
+        /* Highlight menu item to the left */
+        if (edges & SW_VIEW1) {
+            if (--cur_selection < 1) {
+                cur_selection = num_selections;
+            }
+            display_menu_arcade(MENU_CMD_DO_IT, cur_arcade_menu);
+        }
+
+        /* Highlight menu item to the right */
+        if (edges & SW_VIEW3) {
+            if (++cur_selection > num_selections) {
+                cur_selection = 1;
+            }
+            display_menu_arcade(MENU_CMD_DO_IT, cur_arcade_menu);
+        }
+
+        /* Select current menu item */
+        if (edges & (SW_ABORT | SW_VIEW2)) {
+            /* If sub-menu exists, go into it */
+            if (cur_arcade_menu[cur_selection].child_menu != NULL) {
+                clear_display();
+
+                menu_tab[menu_depth++] = cur_arcade_menu;
+                cur_arcade_menu = (ArcadeMenu *)cur_arcade_menu[cur_selection].child_menu;
+                cur_selection = 1;
+
+                display_menu_arcade(MENU_CMD_INITIALIZE, cur_arcade_menu);
+
+                if (cur_arcade_menu == NULL) {
+                    cp_edit = 0;
+                    txt_str(2, 37, "Bad menu data!  ", MENU_PAL_RED);
+                }
+            } else {
+                /* If no sub-menu, just run routine (if any) */
+                if (cur_arcade_menu[cur_selection].rout != NULL) {
+                    (cur_arcade_menu[cur_selection].rout)(MENU_CMD_INITIALIZE);
+                }
+            }
+        }
+
+        /* Go back one menu level */
+        if (edges & (SW_REVERSE | SW_MUSIC)) {
+            /* At root? */
+            if (menu_depth != 0) {
+                /* No, back up one level */
+                clear_display();
+
+                cur_arcade_menu = menu_tab[--menu_depth];
+                cur_selection = 1;
+
+                display_menu_arcade(MENU_CMD_INITIALIZE, cur_arcade_menu);
+
+                if (cur_arcade_menu == NULL) {
+                    cp_edit = 0;
+                    txt_str(2, 37, "Bad menu data!  ", MENU_PAL_RED);
+                }
+            } else {
+                /* If no previous menu, just run routine (if any) */
+                if (cur_arcade_menu[cur_selection].rout != NULL) {
+                    (cur_arcade_menu[cur_selection].rout)(MENU_CMD_INITIALIZE);
+                }
+            }
+        }
+
+        /* Clear menu keys from switch state */
+        levels &= ~MENU_KEYS;
+        last_levels &= ~MENU_KEYS;
+        edges &= ~MENU_KEYS;
+        trailing_edges &= ~MENU_KEYS;
+    }
+}
+
+/**
+ * display_menu_arcade - Update current menu display
+ * Based on arcade: menus.c:display_menu()
+ *
+ * @param mode Do_it = display menu, Undo_it = clear menu area
+ * @param menu Menu to display
+ */
+void display_menu_arcade(s16 mode, ArcadeMenu *menu)
+{
+    s16 index;
+    s32 i;
+
+    switch (mode) {
+        case MENU_CMD_INITIALIZE:
+            if (menu[0].rout != NULL) {
+                (menu[0].rout)(MENU_CMD_INITIALIZE);
+            }
+            /* Fall through to Do_it */
+
+        case MENU_CMD_DO_IT:
+            index = 0;
+            clear_menu();
+
+            /* Display menu title (row 37) */
+            for (i = 0; i < 60 && menu[0].label_txt[i] != '\0'; i++) {
+                menu_buf[i] = menu[0].label_txt[i];
+            }
+            while (i < 60) menu_buf[i++] = ' ';
+            menu_buf[60] = '\0';
+            txt_str(2, 37, menu_buf, MENU_PAL_CYAN);
+
+            if (menu[0].label_txt == NULL) {
+                cur_arcade_menu = NULL;
+                break;
+            }
+
+            num_selections = 0;
+            menu_txt_index[1] = 1;
+
+            /* Display menu items (row 38) */
+            while (menu[++index].label_txt != NULL) {
+                num_selections++;
+
+                menu_txt_index[index + 1] = menu_txt_index[index] +
+                                            strlen_menu(menu[index].label_txt) + 1;
+
+                sprintf_menu(menu_buf, " %s", menu[index].label_txt);
+                txt_str(menu_txt_index[index], 38, menu_buf, MENU_PAL_YELLOW);
+            }
+
+            if (num_selections == 0) {
+                cur_arcade_menu = NULL;
+                break;
+            }
+
+            /* Display help text (row 39) */
+            for (i = 0; i < 60 && menu[cur_selection].help_txt != NULL &&
+                 menu[cur_selection].help_txt[i] != '\0'; i++) {
+                menu_buf[i] = menu[cur_selection].help_txt[i];
+            }
+            while (i < 60) menu_buf[i++] = ' ';
+            menu_buf[60] = '\0';
+            txt_str(2, 39, menu_buf, MENU_PAL_GREEN);
+            break;
+
+        case MENU_CMD_UNDO_IT:
+            /* Clear display and menu areas */
+            clear_display();
+            clear_menu();
+            break;
+    }
+}
+
+/**
+ * clear_display - Clear display area (rows 15-36)
+ * Based on arcade: menus.c:clear_display()
+ */
+void clear_display(void)
+{
+    s16 i;
+    s32 j;
+
+    /* Fill buffer with spaces */
+    for (j = 0; j < 60; j++) {
+        menu_buf[j] = ' ';
+    }
+    menu_buf[60] = '\0';
+
+    for (i = 15; i < 37; i++) {
+        txt_str(2, i, menu_buf, MENU_PAL_WHITE);
+    }
+}
+
+/**
+ * clear_menu - Clear menu area (rows 37-39)
+ * Based on arcade: menus.c:clear_menu()
+ */
+void clear_menu(void)
+{
+    s16 i;
+    s32 j;
+
+    /* Fill buffer with spaces */
+    for (j = 0; j < 60; j++) {
+        menu_buf[j] = ' ';
+    }
+    menu_buf[60] = '\0';
+
+    for (i = 37; i < 40; i++) {
+        txt_str(2, i, menu_buf, MENU_PAL_WHITE);
+    }
+}

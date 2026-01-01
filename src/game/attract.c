@@ -631,3 +631,500 @@ u32 attract_get_demo_track(void) {
 u32 attract_get_demo_car(void) {
     return gAttract.demo.car_type;
 }
+
+/* ========================================================================
+ * ARCADE-COMPATIBLE IMPLEMENTATIONS
+ * Based on rushtherock/game/attract.c
+ * ======================================================================== */
+
+/* Arcade globals */
+const f32 gVersion = 1.00f;
+
+AttractMode attractFunc = ATR_MOVIE4;
+
+u8   gStartDuringLoad = 0;
+s32  gFreeGame = 0;
+s32  gPlayingFree = 0;
+s32  gContinuedGame = 0;
+s32  explosion_state = 0;
+s32  explosion_time = 0;
+u8   skip = 4;
+s32  gTourneyJoin = 0;
+
+s16  gAttractTimes[NUM_ATTRACTS];
+
+/* Countdown timer for attract mode */
+static u32 countdown_timer = 0;
+static u32 countdown_start = 0;
+
+/* Demo game state */
+static s32 demo_game = 0;
+static s32 gDemoInited = 0;
+static s16 gLastFunc = -1;
+
+/* Tourney mode state */
+static s32 tourney_setup = 0;
+static Tourney gTourney;
+
+/**
+ * InitAttract - Initialize attract mode globals
+ * Based on arcade: attract.c:InitAttract()
+ *
+ * Called once at game startup to initialize all attract mode state.
+ */
+void InitAttract(void) {
+    attractFunc = ATR_MOVIE4;
+    SetCountdownTimer(8 * ONE_SEC);
+    gLastFunc = -1;
+    demo_game = 0;
+    gDemoInited = 0;
+    gStartDuringLoad = 0;
+    gFreeGame = 0;
+    skip = 4;
+
+    /* Set default times for each attract mode */
+    gAttractTimes[ATR_HSENTRY] = 20;
+    gAttractTimes[ATR_HISCORE1] = 20;
+    gAttractTimes[ATR_HISCORE2] = 20;
+    gAttractTimes[ATR_HISCORE3] = 20;
+    gAttractTimes[ATR_HISCORE4] = 20;
+    gAttractTimes[ATR_HISCORE5] = 20;
+    gAttractTimes[ATR_HISCORE6] = 20;
+    gAttractTimes[ATR_HISCORE7] = 20;
+    gAttractTimes[ATR_ATARILOGO] = 10;
+    gAttractTimes[ATR_ATARILOGO2] = 10;
+    gAttractTimes[ATR_ATARILOGO3] = 10;
+    gAttractTimes[ATR_MOVIE2] = 6;      /* Car 1 rotating */
+    gAttractTimes[ATR_MOVIE3] = 6;      /* Car 2 rotating */
+    gAttractTimes[ATR_MOVIE4] = 10;     /* Intro movie */
+    gAttractTimes[ATR_MOVIE5] = 20;     /* Rush logo */
+    gAttractTimes[ATR_MOVIE52] = 20;
+    gAttractTimes[ATR_MOVIE53] = 20;
+    gAttractTimes[ATR_OCREDITS] = 8;
+    gAttractTimes[ATR_CREDITS] = 8;
+    gAttractTimes[ATR_MIRROR] = 8;
+    gAttractTimes[ATR_CARS] = 8;
+    gAttractTimes[ATR_ADVISORY] = 8;
+    gAttractTimes[ATR_ADVERT] = 8;
+    gAttractTimes[ATR_3DFXLOGO] = 3;
+    gAttractTimes[ATR_DEMO] = 35;
+    gAttractTimes[ATR_DEMO2] = 35;
+    gAttractTimes[ATR_TEAM] = 10;
+    gAttractTimes[ATR_OTEAM] = 5;
+    gAttractTimes[ATR_JOIN] = 15;
+    gAttractTimes[ATR_TOURNEY] = 999;
+    gAttractTimes[ATR_TRANSIT] = 999;
+    gAttractTimes[ATR_GAMESTAT] = 999;
+
+    /* Also initialize N64-specific attract state */
+    attract_init();
+}
+
+/**
+ * attract - Main attract mode handler
+ * Based on arcade: attract.c:attract()
+ *
+ * Called every frame during attract mode.
+ * Handles transitions between attract screens and checks for game start.
+ */
+void attract(void) {
+    s32 start_game;
+
+    /* Handle steering wheel forces */
+    AttractForce();
+
+    /* Check for state timeout */
+    if (TimeOut() || attractFunc == ATR_HSENTRY) {
+        ResetJoinIn();
+        gTourneyJoin = 0;
+
+        /* Advance to next attract mode */
+        do {
+            attractFunc++;
+            if (attractFunc >= ATR_TOURNEY) {
+                skip++;
+                attractFunc = ATR_HSENTRY + 1;
+            }
+        } while ((skip % 5) && (attractFunc == ATR_CREDITS ||
+                 attractFunc == ATR_3DFXLOGO || attractFunc == ATR_OTEAM ||
+                 attractFunc == ATR_OCREDITS || attractFunc == ATR_TEAM));
+
+        SetCountdownTimer(gAttractTimes[attractFunc] * ONE_SEC);
+        gTourneyJoin = 0;
+    }
+
+    /* If changing modes, update display */
+    if (gLastFunc != attractFunc) {
+        ShowAttract(gLastFunc, 0);
+        ShowAttract(attractFunc, 1);
+    }
+
+    /* Check for game start */
+    start_game = chk_start();
+    if (gStartDuringLoad || start_game) {
+        explosion_state = 0;
+
+        /* Remove current screen and show transition */
+        ShowAttract(gLastFunc, 0);
+        ShowAttract(ATR_TRANSIT, 1);
+        attractFunc = ATR_TRANSIT;
+
+        demo_game = 0;
+        gDemoInited = 0;
+        gLastFunc = -1;
+    } else {
+        /* Update current attract mode */
+        switch (attractFunc) {
+            case ATR_DEMO:
+            case ATR_DEMO2:
+            case ATR_HISCORE1:
+            case ATR_HISCORE2:
+            case ATR_HISCORE3:
+            case ATR_HISCORE4:
+            case ATR_HISCORE5:
+            case ATR_HISCORE6:
+            case ATR_HISCORE7:
+            case ATR_ADVERT:
+            case ATR_ADVISORY:
+                play_demogame(1, 0, -1, 0);
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+/**
+ * AttractForce - Handle steering wheel forces in attract mode
+ * Based on arcade: attract.c:AttractForce()
+ *
+ * Applies gentle centering force to steering wheel during attract.
+ */
+void AttractForce(void) {
+    /* N64 doesn't have force feedback steering, so this is a stub */
+    /* On arcade: force_wheel_to_center(0, 5, 11, 20); */
+}
+
+/**
+ * ShowAttract - Show or hide an attract screen
+ * Based on arcade: attract.c:ShowAttract()
+ *
+ * @param func AttractMode enum value for the screen
+ * @param show 1 to show, 0 to hide
+ */
+void ShowAttract(s16 func, s32 show) {
+    gDemoInited = 0;
+
+    switch (func) {
+        case ATR_HSENTRY:
+            ShowScoreEntry(show);
+            break;
+        case ATR_HISCORE1:
+            ShowHiScore(show, 0);
+            break;
+        case ATR_HISCORE2:
+            ShowHiScore(show, 1);
+            break;
+        case ATR_HISCORE3:
+            ShowHiScore(show, 2);
+            break;
+        case ATR_HISCORE4:
+            ShowHiScore(show, 3);
+            break;
+        case ATR_HISCORE5:
+            ShowHiScore(show, 4);
+            break;
+        case ATR_HISCORE6:
+            ShowHiScore(show, 5);
+            break;
+        case ATR_HISCORE7:
+            ShowHiScore(show, 6);
+            break;
+        case ATR_CREDITS:
+        case ATR_OCREDITS:
+            ShowCredits(show);
+            break;
+        case ATR_TEAM:
+        case ATR_OTEAM:
+            ShowTeam(show);
+            break;
+        case ATR_3DFXLOGO:
+        case ATR_ATARILOGO:
+        case ATR_ATARILOGO2:
+        case ATR_ATARILOGO3:
+            ShowMovie(show, 1);
+            break;
+        case ATR_MOVIE2:
+        case ATR_MOVIE3:
+        case ATR_MOVIE4:
+        case ATR_MOVIE5:
+        case ATR_MOVIE52:
+        case ATR_MOVIE53:
+            ShowMovie(show, func - ATR_MOVIE2 + 2);
+            break;
+        case ATR_ADVISORY:
+            ShowAdvisory(show);
+            break;
+        case ATR_ADVERT:
+            ShowAdvert(show);
+            break;
+        case ATR_DEMO:
+        case ATR_DEMO2:
+            play_demogame(show, 1, -1, 1);
+            break;
+        case ATR_TRANSIT:
+            ShowTransit(show, 1);
+            break;
+        case ATR_TOURNEY:
+            ShowTourneySetup(show);
+            break;
+        case ATR_JOIN:
+            ShowJoin(show);
+            break;
+        case ATR_GAMESTAT:
+            ShowGameStats(show);
+            break;
+        default:
+            break;
+    }
+
+    if (show) {
+        gLastFunc = func;
+    } else {
+        gLastFunc = -1;
+    }
+}
+
+/**
+ * ShowTransit - Show or hide the transition screen
+ * Based on arcade: attract.c:ShowTransit()
+ */
+void ShowTransit(s32 show, s16 num) {
+    if (show) {
+        /* Set up transition fade */
+        attract_fade_in();
+    } else {
+        attract_fade_out();
+    }
+}
+
+/**
+ * ShowJoin - Show or hide the join-in screen
+ * Based on arcade: attract.c:ShowJoin()
+ */
+void ShowJoin(s32 show) {
+    if (show) {
+        attract_set_state(ATTRACT_STATE_JOIN);
+    }
+}
+
+/**
+ * ShowCredits - Show or hide the credits screen
+ * Based on arcade: attract.c:ShowCredits()
+ */
+void ShowCredits(s32 show) {
+    if (show) {
+        attract_set_state(ATTRACT_STATE_CREDITS);
+    }
+}
+
+/**
+ * ShowHiScore - Show or hide high score for a track
+ * Based on arcade: attract.c:ShowHiScore()
+ */
+void ShowHiScore(s32 show, s32 track) {
+    if (show) {
+        gAttract.hiscore_track = track;
+        attract_set_state(ATTRACT_STATE_HISCORE);
+    }
+}
+
+/**
+ * ShowScoreEntry - Show or hide the score entry screen
+ * Based on arcade: attract.c:ShowScoreEntry()
+ */
+void ShowScoreEntry(s32 show) {
+    /* Uses hiscore.c functions for actual implementation */
+    if (show) {
+        attract_set_state(ATTRACT_STATE_HISCORE);
+    }
+}
+
+/**
+ * ShowTeam - Show or hide team credits
+ * Based on arcade: attract.c:ShowTeam()
+ */
+void ShowTeam(s32 show) {
+    if (show) {
+        attract_set_state(ATTRACT_STATE_CREDITS);
+    }
+}
+
+/**
+ * ShowAdvisory - Show or hide advisory screen
+ * Based on arcade: attract.c:ShowAdvisory()
+ */
+void ShowAdvisory(s32 show) {
+    if (show) {
+        /* Show ESRB rating or similar advisory */
+        attract_set_state(ATTRACT_STATE_LOGO);
+    }
+}
+
+/**
+ * ShowAdvert - Show or hide advertisement screen
+ * Based on arcade: attract.c:ShowAdvert()
+ */
+void ShowAdvert(s32 show) {
+    if (show) {
+        /* N64 doesn't have advertisements, show logo instead */
+        attract_set_state(ATTRACT_STATE_LOGO);
+    }
+}
+
+/**
+ * ShowMovie - Show or hide a movie/video screen
+ * Based on arcade: attract.c:ShowMovie()
+ */
+void ShowMovie(s32 show, s32 num) {
+    if (show) {
+        /* N64 uses static logos instead of FMV */
+        attract_set_state(ATTRACT_STATE_LOGO);
+    }
+}
+
+/**
+ * play_demogame - Run the demo game
+ * Based on arcade: attract.c (calls to play_demogame)
+ */
+void play_demogame(s32 run, s32 init, s32 track, s32 attract_mode_flag) {
+    if (init) {
+        gDemoInited = 1;
+        attract_start_demo();
+    }
+
+    if (run && gDemoInited) {
+        attract_update_demo();
+    }
+}
+
+/**
+ * TimeOut - Check if countdown timer has expired
+ * Based on arcade timeout logic
+ */
+s32 TimeOut(void) {
+    if (countdown_timer == 0) {
+        return 0;
+    }
+    return (gAttract.total_timer >= countdown_start + countdown_timer);
+}
+
+/**
+ * SetCountdownTimer - Set the countdown timer
+ * Based on arcade: SetCountdownTimer()
+ */
+void SetCountdownTimer(u32 time) {
+    countdown_start = gAttract.total_timer;
+    countdown_timer = time;
+}
+
+/**
+ * chk_start - Check if start button was pressed
+ * Based on arcade: chk_start()
+ */
+s32 chk_start(void) {
+    return attract_check_start();
+}
+
+/**
+ * EnoughCredit - Check if player has enough credits
+ * Based on arcade: EnoughCredit()
+ */
+s32 EnoughCredit(void) {
+    /* N64 doesn't use credits, always return true */
+    return 1;
+}
+
+/**
+ * ResetJoinIn - Reset join-in state
+ * Based on arcade: ResetJoinIn()
+ */
+void ResetJoinIn(void) {
+    /* Reset any join-in flags */
+}
+
+/**
+ * TourneyOn - Check if tournament mode is active
+ * Based on arcade: TourneyOn()
+ */
+s32 TourneyOn(void) {
+    /* N64 doesn't have tournament mode */
+    return 0;
+}
+
+/**
+ * TourneyNode - Check if a node is in the tournament
+ * Based on arcade: TourneyNode()
+ */
+s32 TourneyNode(s32 node) {
+    return 0;
+}
+
+/**
+ * ChkGameStats - Check for game stats mode
+ * Based on arcade: ChkGameStats()
+ */
+s32 ChkGameStats(void) {
+    return 0;
+}
+
+/**
+ * ShowGameStats - Show or hide game statistics
+ * Based on arcade: ShowGameStats()
+ */
+void ShowGameStats(s32 show) {
+    /* N64 doesn't have arcade game stats */
+}
+
+/**
+ * HandleTourneySetup - Handle tournament setup screen
+ * Based on arcade: HandleTourneySetup()
+ */
+void HandleTourneySetup(void) {
+    /* N64 doesn't have tournament mode */
+}
+
+/**
+ * ShowTourneySetup - Show or hide tournament setup
+ * Based on arcade: ShowTourneySetup()
+ */
+void ShowTourneySetup(s32 show) {
+    /* N64 doesn't have tournament mode */
+}
+
+/**
+ * AnimateTimer - Animate countdown timer display
+ * Based on arcade: AnimateTimer()
+ */
+s32 AnimateTimer(void *blt) {
+    /* Update timer display */
+    return 1;
+}
+
+/**
+ * AnimateTransit - Animate transition screen
+ * Based on arcade: AnimateTransit()
+ */
+s32 AnimateTransit(void *blt) {
+    attract_update_fade();
+    return 1;
+}
+
+/**
+ * AnimateCreds - Animate credits display
+ * Based on arcade: AnimateCreds()
+ */
+s32 AnimateCreds(void *blt) {
+    /* Update credits counter display */
+    return 1;
+}

@@ -2,7 +2,7 @@
  * attract.h - Attract mode (demo/title screen) for Rush 2049 N64
  *
  * Handles attract sequence, demo gameplay, and title screens.
- * Based on arcade attract.c patterns.
+ * Based on arcade attract.c/attract.h patterns.
  */
 
 #ifndef ATTRACT_H
@@ -10,7 +10,73 @@
 
 #include "types.h"
 
-/* Attract mode states */
+/* ========================================================================
+ * ARCADE-COMPATIBLE DEFINES (from rushtherock/game/attract.h)
+ * ======================================================================== */
+
+/* Attract mode enumeration - matches arcade AttractMode enum */
+typedef enum AttractMode {
+    ATR_HSSETUP = -1,       /* High score setup (internal) */
+    ATR_HSENTRY = 0,        /* High score entry */
+    ATR_HISCORE1,           /* High score track 1 */
+    ATR_ATARILOGO,          /* Atari logo movie 1 */
+    ATR_HISCORE2,           /* High score track 2 */
+    ATR_MOVIE5,             /* Rush logo movie */
+    ATR_HISCORE3,           /* High score track 3 */
+    ATR_TEAM,               /* Team credits */
+    ATR_OTEAM,              /* Old team credits */
+    ATR_ATARILOGO2,         /* Atari logo movie 2 */
+    ATR_ADVERT,             /* Advertisement screen */
+    ATR_MOVIE2,             /* Car 1 rotating movie */
+    ATR_HISCORE4,           /* High score track 4 */
+    ATR_MIRROR,             /* Mirror mode screen */
+    ATR_HISCORE5,           /* High score track 5 */
+    ATR_MOVIE52,            /* Rush logo movie 2 */
+    ATR_HISCORE6,           /* High score track 6 */
+    ATR_OCREDITS,           /* Old credits */
+    ATR_3DFXLOGO,           /* 3dfx logo (N64: Nintendo logo) */
+    ATR_ATARILOGO3,         /* Atari logo movie 3 */
+    ATR_HISCORE7,           /* High score track 7 */
+    ATR_MOVIE4,             /* Girl movie */
+    ATR_DEMO,               /* Demo game 1 */
+    ATR_CREDITS,            /* Credits screen */
+    ATR_MOVIE53,            /* Rush logo movie 3 */
+    ATR_ADVISORY,           /* Advisory screen */
+    ATR_MOVIE3,             /* Car 2 rotating movie */
+    ATR_DEMO2,              /* Demo game 2 */
+    ATR_CARS,               /* Cars screen */
+    /* Special modes after this point */
+    ATR_TOURNEY,            /* Tourney setup */
+    ATR_TRANSIT,            /* Transition screen */
+    ATR_JOIN,               /* Join-in screen */
+    ATR_GAMESTAT,           /* Game statistics */
+    NUM_ATTRACTS            /* Total count */
+} AttractMode;
+
+/* Model types for loading - matches arcade ModelType enum */
+typedef enum ModelTypes {
+    MT_NONE = 0,
+    MT_ATTRACT,
+    MT_HISCORE,
+    MT_HUD,
+    MT_STATIC
+} ModelType;
+
+/* Arcade timing constants (ONE_SEC = 1000 ms on arcade, 60 frames on N64) */
+#define ONE_SEC_ARCADE      1000    /* Arcade uses milliseconds */
+#define ONE_SEC             60      /* N64 uses frames at 60fps */
+
+/* High score defines from arcade attract.h */
+#define NSCORES             100     /* Number of scores saved */
+#define MAX_GAME_CNT        2000    /* Max games before auto HSCORE reset */
+#define MAX_HI_CNT          200     /* Max non-HS games before reset */
+#define NLENGTH             9       /* Max length of high score name + 1 */
+
+/* ========================================================================
+ * N64-SPECIFIC DEFINES
+ * ======================================================================== */
+
+/* Attract mode states (simplified for N64) */
 #define ATTRACT_STATE_INIT          0
 #define ATTRACT_STATE_LOGO          1   /* Title logo display */
 #define ATTRACT_STATE_CREDITS       2   /* Game credits display */
@@ -26,13 +92,15 @@
 #define DEMO_MODE_AI                2   /* AI-controlled demo */
 #define DEMO_MODE_ATTRACT           3   /* Attract-specific demo */
 
-/* Attract timing (frames at 60fps) */
-#define ATTRACT_LOGO_TIME           (60 * 5)    /* 5 seconds on logo */
-#define ATTRACT_CREDITS_TIME        (60 * 4)    /* 4 seconds on credits */
-#define ATTRACT_HISCORE_TIME        (60 * 5)    /* 5 seconds per track */
-#define ATTRACT_DEMO_TIME           (60 * 30)   /* 30 seconds demo */
-#define ATTRACT_JOIN_TIME           (60 * 10)   /* 10 seconds join prompt */
-#define ATTRACT_TRANSITION_TIME     (60 / 2)    /* 0.5 second transition */
+/* Attract timing (frames at 60fps) - based on arcade gAttractTimes[] */
+#define ATTRACT_LOGO_TIME           (ONE_SEC * 10)  /* Logo: 10 seconds */
+#define ATTRACT_CREDITS_TIME        (ONE_SEC * 8)   /* Credits: 8 seconds */
+#define ATTRACT_HISCORE_TIME        (ONE_SEC * 20)  /* High score: 20 seconds */
+#define ATTRACT_DEMO_TIME           (ONE_SEC * 35)  /* Demo: 35 seconds */
+#define ATTRACT_JOIN_TIME           (ONE_SEC * 15)  /* Join: 15 seconds */
+#define ATTRACT_TRANSITION_TIME     (ONE_SEC / 2)   /* Transition: 0.5 second */
+#define ATTRACT_ADVISORY_TIME       (ONE_SEC * 8)   /* Advisory: 8 seconds */
+#define ATTRACT_3DFX_TIME           (ONE_SEC * 3)   /* 3dfx/Nintendo: 3 seconds */
 
 /* Attract flags */
 #define ATTRACT_FLAG_ACTIVE         0x01
@@ -193,5 +261,97 @@ void attract_update_fade(void);
 /* Utility */
 u32 attract_get_demo_track(void);
 u32 attract_get_demo_car(void);
+
+/* ========================================================================
+ * ARCADE-COMPATIBLE STRUCTURES (from rushtherock/game/attract.h)
+ * ======================================================================== */
+
+/* High score structure - matches arcade HiScore typedef */
+typedef struct HiScore {
+    u32     score;                  /* Score value */
+    char    name[NLENGTH];          /* Player name */
+    s8      deaths;                 /* Number of deaths */
+    u8      mirror;                 /* TRUE if mirror mode race */
+    s8      car;                    /* High nibble = node, low nibble = car */
+} HiScore;
+
+/* Tourney mode structure - matches arcade Tourney typedef */
+typedef struct Tourney {
+    s32     free;                   /* 0=pay each time, 1=free play */
+    s8      ext_start;              /* 0=player select, 1=external switch, 2=quick join */
+    u32     cabinets;               /* Bitmask: 1<<node if node is in tourney */
+    s16     laps;                   /* >0=lap count, 0=no limit, <0=normal */
+    s8      track;                  /* >=0=track, <0=external switch */
+    s8      car;                    /* >=0=car, <0=any car */
+    s8      tranny;                 /* >=0=tranny, <0=any tranny */
+    s8      drones;                 /* 1=drones, 0=none, <0=normal */
+    s8      catchup;                /* 1=catchup, 0=none, <0=normal */
+    u32     sanity;                 /* If != 0xDEADBEEF, invalid */
+} Tourney;
+
+/* ========================================================================
+ * ARCADE-COMPATIBLE GLOBALS (from rushtherock/game/attract.c)
+ * ======================================================================== */
+
+/* Current attract function/mode */
+extern AttractMode attractFunc;
+
+/* Global attract state flags */
+extern u8   gStartDuringLoad;       /* Start button pressed during load */
+extern s32  gFreeGame;              /* Player won a free game */
+extern s32  gPlayingFree;           /* Playing a free game */
+extern s32  gContinuedGame;         /* Playing a continued game */
+extern s32  explosion_state;        /* Explosion effects active */
+extern s32  explosion_time;         /* Explosion timer */
+extern u8   skip;                   /* Skip counter for attract screens */
+extern s32  gTourneyJoin;           /* Tourney join flag */
+
+/* Attract timing array - indexed by AttractMode */
+extern s16  gAttractTimes[NUM_ATTRACTS];
+
+/* Version number */
+extern const f32 gVersion;
+
+/* ========================================================================
+ * ARCADE-COMPATIBLE FUNCTIONS (from rushtherock/game/attract.c)
+ * ======================================================================== */
+
+/* Main attract functions - match arcade prototypes */
+void InitAttract(void);             /* Initialize attract mode globals */
+void attract(void);                 /* Main attract mode handler */
+void AttractForce(void);            /* Handle steering wheel forces in attract */
+
+/* Show/hide functions - match arcade static functions (made public for N64) */
+void ShowAttract(s16 func, s32 show);   /* Show/hide attract screen by func */
+void ShowTransit(s32 show, s16 num);    /* Show/hide transition screen */
+void ShowJoin(s32 show);                /* Show/hide join-in screen */
+void ShowCredits(s32 show);             /* Show/hide credits screen */
+void ShowHiScore(s32 show, s32 track);  /* Show/hide high score for track */
+void ShowScoreEntry(s32 show);          /* Show/hide score entry screen */
+void ShowTeam(s32 show);                /* Show/hide team credits */
+void ShowAdvisory(s32 show);            /* Show/hide advisory screen */
+void ShowAdvert(s32 show);              /* Show/hide advertisement screen */
+void ShowMovie(s32 show, s32 num);      /* Show/hide movie screen */
+
+/* Demo game functions */
+void play_demogame(s32 run, s32 init, s32 track, s32 attract_mode);
+
+/* Utility functions */
+s32 TimeOut(void);                  /* Check if countdown timer expired */
+void SetCountdownTimer(u32 time);   /* Set countdown timer */
+s32 chk_start(void);                /* Check if start button pressed */
+s32 EnoughCredit(void);             /* Check if enough credits to play */
+void ResetJoinIn(void);             /* Reset join-in state */
+s32 TourneyOn(void);                /* Check if tourney mode is on */
+s32 TourneyNode(s32 node);          /* Check if node is in tourney */
+s32 ChkGameStats(void);             /* Check for game stats mode */
+void ShowGameStats(s32 show);       /* Show/hide game stats */
+void HandleTourneySetup(void);      /* Handle tourney setup screen */
+void ShowTourneySetup(s32 show);    /* Show/hide tourney setup */
+
+/* Animation functions - match arcade BlitFunc prototypes */
+s32 AnimateTimer(void *blt);        /* Animate countdown timer */
+s32 AnimateTransit(void *blt);      /* Animate transition screen */
+s32 AnimateCreds(void *blt);        /* Animate credits display */
 
 #endif /* ATTRACT_H */
