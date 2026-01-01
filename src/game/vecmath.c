@@ -36,6 +36,7 @@
 extern f32 sinf(f32 x);
 extern f32 cosf(f32 x);
 extern f32 sqrtf(f32 x);
+extern f32 atan2f(f32 y, f32 x);
 
 /* Global for sdirection (arcade compatibility) */
 static f32 invmag_global;
@@ -1381,4 +1382,101 @@ void fyaw(f32 sint, f32 cost, f32 uv[3][3]) {
  */
 void fuyaw(f32 sint, f32 cost, f32 uv[3][3]) {
     furot(sint, cost, &uv[0][0], &uv[1][0]);
+}
+
+/******* TRIGONOMETRY HELPERS (from d3math.c) *******/
+
+/**
+ * mssin - Short angle sine function
+ * Based on arcade: d3math.c:mssin()
+ *
+ * Takes a short angle (0x8000 = pi radians) and returns
+ * sine scaled to 0x4000 = 1.0
+ *
+ * @param val Angle in short degrees (0x8000 = pi)
+ * @return Sine value scaled (0x4000 = 1.0)
+ */
+s16 mssin(s16 val) {
+    return (s16)(sinf(sdegtorad * val) * (f32)0x4000);
+}
+
+/**
+ * mscos - Short angle cosine function
+ * Based on arcade: d3math.c:mscos()
+ *
+ * Takes a short angle (0x8000 = pi radians) and returns
+ * cosine scaled to 0x4000 = 1.0
+ *
+ * @param val Angle in short degrees (0x8000 = pi)
+ * @return Cosine value scaled (0x4000 = 1.0)
+ */
+s16 mscos(s16 val) {
+    return (s16)(cosf(sdegtorad * val) * (f32)0x4000);
+}
+
+/**
+ * hypotsincos - Calculate sine and cosine from x,y coordinates
+ * Based on arcade: d3math.c:hypotsincos()
+ *
+ * Given x and y, returns the sine and cosine of the angle adjacent to x
+ *
+ * @param x X coordinate
+ * @param y Y coordinate
+ * @param sinp Output sine
+ * @param cosp Output cosine
+ */
+void hypotsincos(f32 x, f32 y, f32 *sinp, f32 *cosp) {
+    f32 angle;
+
+    angle = atan2f(x, y);
+    *sinp = sinf(angle);
+    *cosp = cosf(angle);
+}
+
+/**
+ * shypotsincos - Calculate sine and cosine from short x,y coordinates
+ * Based on arcade: d3math.c:shypotsincos()
+ *
+ * Given x and y (shorts), returns sine and cosine scaled to 0x4000 = 1.0
+ *
+ * @param x X coordinate (short)
+ * @param y Y coordinate (short)
+ * @param sinp Output sine (0x4000 = 1.0)
+ * @param cosp Output cosine (0x4000 = 1.0)
+ */
+void shypotsincos(s16 x, s16 y, s16 *sinp, s16 *cosp) {
+    f32 fx, fy;
+    f32 invhypot;
+
+    fx = (f32)x;
+    fy = (f32)y;
+    invhypot = 0x4000 * invsqr(fx * fx + fy * fy);
+    *sinp = (s16)(fx * invhypot);
+    *cosp = (s16)(fy * invhypot);
+}
+
+/**
+ * sincosptp - Calculate sine/cosine for phi, theta, psi angles
+ * Based on arcade: d3math.c:sincosptp()
+ *
+ * @param phi Roll angle (short degrees)
+ * @param theta Pitch angle (short degrees)
+ * @param psi Yaw angle (short degrees)
+ * @param sphip Output sine of phi
+ * @param cphip Output cosine of phi
+ * @param sthetap Output sine of theta
+ * @param cthetap Output cosine of theta
+ * @param spsip Output sine of psi
+ * @param cpsip Output cosine of psi
+ */
+void sincosptp(s16 phi, s16 theta, s16 psi,
+               s16 *sphip, s16 *cphip,
+               s16 *sthetap, s16 *cthetap,
+               s16 *spsip, s16 *cpsip) {
+    *sthetap = mssin(theta);
+    *cthetap = mscos(theta);
+    *sphip = mssin(phi);
+    *cphip = mscos(phi);
+    *spsip = mssin(psi);
+    *cpsip = mscos(psi);
 }
