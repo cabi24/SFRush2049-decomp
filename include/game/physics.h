@@ -239,6 +239,43 @@ typedef struct CarPhysics {
     f32     clutch;             /* Clutch position (0-1) */
     f32     steerangle;         /* Steering angle (radians) */
 
+    /* Extended drivetrain state (arcade drivetra.c) */
+    f32     engangvel;          /* Engine angular velocity (rad/sec) */
+    f32     engtorque;          /* Engine output torque */
+    f32     enginvmi;           /* Engine inverse moment of inertia */
+    f32     clutchangvel;       /* Clutch angular velocity */
+    f32     clutchtorque;       /* Torque through clutch */
+    f32     clutchmaxt;         /* Max clutch torque capacity */
+    f32     dwangvel;           /* Driveshaft angular velocity */
+    f32     dwratio;            /* Differential ratio */
+    f32     dwtorque;           /* Driveshaft torque */
+    f32     dwinvmi;            /* Differential inverse MOI */
+    f32     efdwinvmi;          /* Effective diff inverse MOI */
+    f32     transratio;         /* Current transmission ratio */
+    f32     totalratio;         /* Total ratio (trans * diff) */
+    s32     gear;               /* Current gear (-1=R, 0=N, 1-4=fwd) */
+    s32     commandgear;        /* Commanded gear (for manual) */
+    s32     topgear;            /* Top forward gear */
+    f32     shifttime;          /* Time of last shift */
+    f32     upshiftangvel;      /* Auto upshift threshold */
+    f32     downshiftangvel;    /* Auto downshift threshold */
+    f32     transarray[MAXGEAR+2]; /* Gear ratios */
+    const s16 *torquecurve;     /* Engine torque curve */
+    const s16 *dirttorquecurve; /* Dirt torque curve */
+    f32     rpmperent;          /* RPM per torque curve entry */
+    f32     fgtorquescale;      /* First gear torque scale */
+    f32     sgtorquescale;      /* Second gear torque scale */
+    f32     torquescale;        /* Gear 3+ torque scale */
+    f32     dirttorquescale;    /* Off-road torque scale */
+    s32     ignition;           /* Ignition on */
+    s32     startermotor;       /* Starter motor engaged */
+    s32     magicdif;           /* Magic load-sensing differential */
+    f32     amperes;            /* Ammeter reading */
+    f32     oilpressure;        /* Oil pressure */
+    f32     enginetemp;         /* Engine temperature */
+    f32     weight;             /* Vehicle weight (mass * g) */
+    f32     idt;                /* Inverse timestep (1/dt) */
+
     /* Vehicle parameters */
     f32     mass;               /* Vehicle mass */
     f32     massinv;            /* 1/mass */

@@ -670,3 +670,403 @@ s16 enginetorque(DrivetrainState *m, s16 rpm, s16 throttle, s16 ignition,
 s16 interp(s32 a, s32 b, s32 rem, s32 total) {
     return drivetrain_interp(a, b, rem, total);
 }
+
+/* ========================================================================
+ * MODELDAT pointer-based arcade functions (drivetra.c)
+ * These match the arcade function signatures exactly using MODELDAT (CarPhysics)
+ * ======================================================================== */
+
+#include "game/physics.h"
+
+/**
+ * drivetrain_m - Main drivetrain update function
+ * Based on arcade: drivetra.c:drivetrain()
+ *
+ * This is the main entry point called each physics frame.
+ * Updates engine, transmission, clutch, and distributes torque to wheels.
+ */
+void drivetrain_m(MODELDAT *m) {
+    f32 rearload;
+
+    /* Automatic shifting if enabled */
+    if (m->autotrans) {
+        autoshift_m(m);
+    }
+
+    /* Engine torque calculation */
+    engine_m(m);
+
+    /* Transmission ratio */
+    transmission_m(m);
+
+    /* Average driveshaft angular velocity from rear tires */
+    m->dwangvel = (m->tires[2].angvel + m->tires[3].angvel) * 0.5f;
+
+    /* Clutch slip calculation */
+    whatslips_m(m);
+
+    /* Calculate rear load for differential */
+    rearload = m->TIREFORCE[2][ZCOMP] + m->TIREFORCE[3][ZCOMP];
+
+    /* Magic rear differential with load sensitive torque split */
+    if ((!m->magicdif) || (rearload > -500.0f)) {
+        /* Standard 50/50 split */
+        m->torque[2] += m->dwtorque * 0.5f;
+        m->torque[3] += m->dwtorque * 0.5f;
+    } else {
+        /* Load-proportional split for better traction */
+        if (m->TIREFORCE[2][ZCOMP] >= 0.0f) {
+            /* Left rear unloaded - all torque to right */
+            m->torque[2] = 0.0f;
+            m->torque[3] = m->dwtorque;
+        } else if (m->TIREFORCE[3][ZCOMP] >= 0.0f) {
+            /* Right rear unloaded - all torque to left */
+            m->torque[2] = m->dwtorque;
+            m->torque[3] = 0.0f;
+        } else {
+            /* Split proportional to load */
+            m->torque[2] = (m->dwtorque * m->TIREFORCE[2][ZCOMP]) / rearload;
+            m->torque[3] = (m->dwtorque * m->TIREFORCE[3][ZCOMP]) / rearload;
+        }
+    }
+
+    /* Update effective inverse MOI for tires (simplified) */
+    m->tires[2].radius = m->efdwinvmi * 2.0f;  /* This isn't correct!!! (arcade comment) */
+    m->tires[3].radius = m->efdwinvmi * 2.0f;
+}
+
+/**
+ * whatslips_m - Clutch slip calculation
+ * Based on arcade: drivetra.c:whatslips()
+ *
+ * Determines clutch engagement and torque transfer based on
+ * engine vs driveshaft angular velocities.
+ */
+void whatslips_m(MODELDAT *m) {
+    f32 totratsq, centrifvel, curclmaxt;
+
+    totratsq = m->totalratio * m->totalratio;
+
+    /* Neutral gear - no torque transfer */
+    if (m->gear == NEUTRALGEAR) {
+        m->clutchtorque = 0.0f;
+        m->dwtorque = 0.0f;
+        m->clutchangvel = m->engangvel;
+        m->engangvel += m->engtorque * m->enginvmi * m->dt;
+        m->efdwinvmi = m->dwinvmi;
+        return;
+    }
+
+    /* Clutch output angular velocity */
+    m->clutchangvel = m->dwangvel * m->totalratio;
+
+    /* Calculate current clutch max torque */
+    if (m->autotrans) {
+        /* Centrifugal clutch behavior */
+        if (m->engangvel < (m->clutchangvel - (100.0f * rpmtordps))) {
+            /* Engine dragging - full clutch engagement */
+            curclmaxt = m->clutchmaxt;
+        } else {
+            /* Centrifugal engagement based on engine RPM */
+            centrifvel = m->engangvel - (m->clutchangvel * 0.25f);
+
+            if (centrifvel < (1500.0f * rpmtordps)) {
+                curclmaxt = 0.0f;
+            } else if (centrifvel > (3000.0f * rpmtordps)) {
+                curclmaxt = m->clutchmaxt;
+            } else {
+                /* Linear ramp between 1500 and 3000 RPM */
+                curclmaxt = (m->clutchmaxt * (1.0f / (1500.0f * rpmtordps))) *
+                    (centrifvel - (1500.0f * rpmtordps));
+            }
+        }
+    } else {
+        /* Manual clutch */
+        if (m->clutch < 0.0f) {
+            curclmaxt = m->clutchmaxt;
+        } else if (m->clutch > 0.8f) {
+            /* Friction point at 0.8 */
+            curclmaxt = 0.0f;
+        } else {
+            curclmaxt = (1.0f / 0.8f) * (0.8f - m->clutch) * m->clutchmaxt;
+        }
+    }
+
+    if (curclmaxt < 0.0f) {
+        curclmaxt = 0.0f;
+    }
+
+    /* Slip logic - engine faster than driveshaft */
+    if (m->engangvel > m->clutchangvel) {
+        m->clutchtorque = curclmaxt;
+        m->engangvel += (m->engtorque - m->clutchtorque) * m->enginvmi * m->dt;
+
+        if (m->engangvel < m->clutchangvel) {
+            /* Engine slowed below clutch - check for lockup */
+            if (m->engtorque < -curclmaxt) {
+                m->clutchtorque = -curclmaxt;
+                /* We just did this, why now? (arcade comment) */
+                m->engangvel += (m->engtorque - m->clutchtorque) * m->enginvmi * m->dt;
+                m->efdwinvmi = m->dwinvmi;
+            } else {
+                /* Locked together */
+                m->engangvel = m->clutchangvel;
+                m->clutchtorque = m->engtorque;
+                m->efdwinvmi = 1.0f / (1.0f / m->dwinvmi + totratsq / m->enginvmi);
+            }
+        } else {
+            /* Clutch slipping, so why engine? (arcade comment) */
+            m->efdwinvmi = 1.0f / (1.0f / m->dwinvmi + totratsq / m->enginvmi);
+        }
+    } else {
+        /* Driveshaft faster than engine */
+        m->clutchtorque = -curclmaxt;
+        m->engangvel += (m->engtorque - m->clutchtorque) * m->enginvmi * m->dt;
+
+        if (m->engangvel > m->clutchangvel) {
+            /* Engine sped up past clutch */
+            if (m->engtorque > curclmaxt) {
+                m->clutchtorque = curclmaxt;
+                m->engangvel += (m->engtorque - m->clutchtorque) * m->enginvmi * m->dt;
+                m->efdwinvmi = m->dwinvmi;
+            } else {
+                /* Locked together */
+                m->engangvel = m->clutchangvel;
+                m->clutchtorque = m->engtorque;
+                m->efdwinvmi = 1.0f / (1.0f / m->dwinvmi + totratsq / m->enginvmi);
+            }
+        } else {
+            /* Still slipping (reverse direction) */
+            m->efdwinvmi = 1.0f / (1.0f / m->dwinvmi + totratsq / m->enginvmi);
+        }
+    }
+
+    /* Drive wheel torque */
+    m->dwtorque = m->clutchtorque * m->totalratio;
+}
+
+/**
+ * autoshift_m - Automatic transmission shift logic
+ * Based on arcade: drivetra.c:autoshift()
+ */
+void autoshift_m(MODELDAT *m) {
+    f32 modupshiftangvel, moddownshiftangvel, fact;
+
+    /* Modify shift points for throttle position */
+    fact = (3.0f + m->throttle) * 0.25f;
+    modupshiftangvel = m->upshiftangvel * fact;
+    moddownshiftangvel = m->downshiftangvel * fact;
+
+    /* Handle neutral and reverse as direct commands */
+    if ((m->commandgear == NEUTRALGEAR) || (m->commandgear == REVERSEGEAR)) {
+        m->gear = m->commandgear;
+    } else {
+        /* In forward gears - auto shift */
+        if ((m->gear == NEUTRALGEAR) || (m->gear == REVERSEGEAR)) {
+            /* Find appropriate gear when coming out of N/R */
+            find_best_gear_m(m, modupshiftangvel, moddownshiftangvel);
+        }
+
+        /* Check for shifts */
+        if (m->engangvel > modupshiftangvel) {
+            upshift_m(m);
+        }
+        if (m->engangvel < moddownshiftangvel) {
+            downshift_m(m);
+        }
+    }
+}
+
+/**
+ * transmission_m - Transmission ratio calculation
+ * Based on arcade: drivetra.c:transmission()
+ */
+void transmission_m(MODELDAT *m) {
+    /* Gear ratio from array (index = gear + 1 to handle reverse at -1) */
+    m->transratio = m->transarray[m->gear + 1];
+    m->totalratio = m->transratio * m->dwratio;
+}
+
+/**
+ * find_best_gear_m - Find optimal gear for current speed
+ * Based on arcade: drivetra.c:find_best_gear()
+ */
+void find_best_gear_m(MODELDAT *m, f32 usang, f32 dsang) {
+    f32 angvel, tstratio;
+
+    for (m->gear = 1; m->gear < m->topgear; m->gear++) {
+        tstratio = m->dwratio * m->transarray[m->gear + 1];
+        angvel = m->dwangvel * tstratio;
+        if (angvel < usang) {
+            break;
+        }
+    }
+}
+
+/**
+ * upshift_m - Shift up one gear
+ * Based on arcade: drivetra.c:upshift()
+ */
+void upshift_m(MODELDAT *m) {
+    if ((m->gear < m->topgear) && (m->thetime > m->shifttime)) {
+        m->shifttime = m->thetime + 1.0f;
+        m->gear++;
+    }
+}
+
+/**
+ * downshift_m - Shift down one gear
+ * Based on arcade: drivetra.c:downshift()
+ */
+void downshift_m(MODELDAT *m) {
+    if ((m->gear > MINGEAR) && (m->thetime > m->shifttime)) {
+        m->shifttime = m->thetime + 1.0f;
+        m->gear--;
+    }
+}
+
+/**
+ * engine_m - Engine torque calculation
+ * Based on arcade: drivetra.c:engine()
+ */
+void engine_m(MODELDAT *m) {
+    s16 rpm_val, throttle_val;
+    const s16 *curve;
+    f32 scale;
+
+    rpm_val = (s16)(m->engangvel * rdpstorpm);
+    throttle_val = (s16)(m->throttle * 128.0f);
+
+    /* Select torque curve and scale based on surface and gear */
+    /* Don't do dirt slowdown if under 40 fps (~28 mph) */
+    if ((m->roadcode[2] == DIRT) && (m->roadcode[3] == DIRT) && (m->magvel > 40.0f)) {
+        /* Both rear tires on dirt at speed */
+        curve = m->dirttorquecurve;
+        scale = m->dirttorquescale;
+    } else {
+        /* Normal pavement */
+        curve = m->torquecurve;
+
+        /* Gear-specific torque scaling */
+        if (m->gear == 1) {
+            scale = m->fgtorquescale;
+        } else if (m->gear == 2) {
+            scale = m->sgtorquescale;
+        } else {
+            scale = m->torquescale;
+        }
+    }
+
+    /* Get engine torque from curve */
+    m->engtorque = scale * (f32)enginetorque_m(m, rpm_val, throttle_val,
+        (s16)m->ignition, (s16)m->startermotor, curve);
+
+    /* Reduce transmission torque if in auto and not top gear
+       (car has locking torque converter which locks in top gear) */
+    if (m->autotrans && (m->gear != m->topgear)) {
+        m->engtorque *= AUTOLOSS;
+    }
+}
+
+/**
+ * enginetorque_m - Engine torque curve lookup with bilinear interpolation
+ * Based on arcade: drivetra.c:enginetorque()
+ */
+s16 enginetorque_m(MODELDAT *m, s16 rpm, s16 throttle, s16 ignition,
+                   s16 start, const s16 *torquecurve) {
+    s16 rindex, tindex, rrem, trem;
+    s16 left, right;
+    const s16 *low_ptr, *hi_ptr;
+    const s16 *zzp, *fnp;
+
+    zzp = torquecurve;
+    fnp = torquecurve + 11;
+
+    /* Dashboard gauge updates */
+    if (rpm < 2000) {
+        m->amperes = ((10.0f / 2000.0f) * (f32)rpm) - 10.0f;
+        m->oilpressure = (40.0f / 2000.0f) * (f32)rpm;
+    } else {
+        m->oilpressure = 40.0f;
+        m->amperes = 10.0f;
+    }
+
+    if (start) {
+        m->amperes = -50.0f;
+    }
+
+    /* Very low RPM handling */
+    if (rpm < 500) {
+        if (rpm >= 0) {
+            if (start) {
+                return *zzp;
+            } else {
+                return (s16)((-(*zzp) * rpm) / 500);
+            }
+        }
+
+        m->oilpressure = 0.0f;
+
+        if (rpm >= -1000) {
+            if (start) {
+                return *zzp + (s16)((*fnp * rpm) / 1000);
+            } else {
+                return (s16)((*fnp * rpm) / 1000);
+            }
+        }
+        return 70;
+    }
+
+    /* Engine temperature warmup */
+    if (m->thetime < 60.0f) {
+        m->enginetemp = 70.0f + ((130.0f / 60.0f) * m->thetime);
+    } else {
+        m->enginetemp = 200.0f;
+    }
+
+    /* Ignition off */
+    if (!ignition) {
+        return -(*zzp);
+    }
+
+    /* Starter motor cranking */
+    if ((rpm < 1000) && start) {
+        return *zzp;
+    }
+
+    /* Bilinear interpolation from torque table */
+    rindex = rpm / (s16)m->rpmperent;
+    rrem = rpm % (s16)m->rpmperent;
+
+    if (rindex < 0) {
+        rindex = 0;
+        rrem = 0;
+    }
+    if (rindex >= 11) {
+        rindex = 10;
+        rrem = (s16)m->rpmperent - 1;
+    }
+
+    tindex = throttle / 14;
+    trem = throttle % 14;
+
+    if (tindex >= 9) {
+        tindex = 8;
+        trem = 13;
+    }
+
+    /* Interpolate in RPM direction first */
+    low_ptr = torquecurve + (tindex * 12) + rindex;
+    hi_ptr = torquecurve + (tindex * 12) + rindex + 1;
+    left = interp(*low_ptr, *hi_ptr, rrem, (s32)m->rpmperent - 1);
+
+    /* Then interpolate in throttle direction */
+    low_ptr = torquecurve + ((tindex + 1) * 12) + rindex;
+    hi_ptr = torquecurve + ((tindex + 1) * 12) + rindex + 1;
+    right = interp(*low_ptr, *hi_ptr, rrem, (s32)m->rpmperent - 1);
+
+    /* Final interpolation between throttle rows */
+    right = interp(left, right, trem, 14);
+
+    return right;
+}

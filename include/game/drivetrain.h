@@ -172,4 +172,73 @@ s16 enginetorque(DrivetrainState *m, s16 rpm, s16 throttle, s16 ignition,
                  s16 start, const s16 *torquecurve);
 s16 interp(s32 a, s32 b, s32 rem, s32 total);
 
+/* ========================================================================
+ * MODELDAT pointer-based arcade functions (drivetra.c)
+ * These match the arcade function signatures exactly using MODELDAT (CarPhysics)
+ * ======================================================================== */
+
+/* Forward declare MODELDAT if physics.h not included */
+#ifndef PHYSICS_H
+struct CarPhysics;
+typedef struct CarPhysics MODELDAT;
+#endif
+
+/**
+ * drivetrain_m - Main drivetrain update function (arcade)
+ * Based on arcade: drivetra.c:drivetrain()
+ *
+ * Calls autoshift, engine, transmission, whatslips in sequence.
+ * Distributes driveshaft torque to rear wheels via differential.
+ */
+void drivetrain_m(MODELDAT *m);
+
+/**
+ * whatslips_m - Clutch slip calculation (MODELDAT version)
+ * Based on arcade: drivetra.c:whatslips()
+ */
+void whatslips_m(MODELDAT *m);
+
+/**
+ * autoshift_m - Automatic transmission shift logic (MODELDAT version)
+ * Based on arcade: drivetra.c:autoshift()
+ */
+void autoshift_m(MODELDAT *m);
+
+/**
+ * transmission_m - Transmission ratio calculation (MODELDAT version)
+ * Based on arcade: drivetra.c:transmission()
+ */
+void transmission_m(MODELDAT *m);
+
+/**
+ * engine_m - Engine torque calculation (MODELDAT version)
+ * Based on arcade: drivetra.c:engine()
+ */
+void engine_m(MODELDAT *m);
+
+/**
+ * find_best_gear_m - Find optimal gear for current speed (MODELDAT version)
+ * Based on arcade: drivetra.c:find_best_gear()
+ */
+void find_best_gear_m(MODELDAT *m, f32 usang, f32 dsang);
+
+/**
+ * upshift_m - Shift up one gear (MODELDAT version)
+ * Based on arcade: drivetra.c:upshift()
+ */
+void upshift_m(MODELDAT *m);
+
+/**
+ * downshift_m - Shift down one gear (MODELDAT version)
+ * Based on arcade: drivetra.c:downshift()
+ */
+void downshift_m(MODELDAT *m);
+
+/**
+ * enginetorque_m - Engine torque curve lookup (MODELDAT version)
+ * Based on arcade: drivetra.c:enginetorque()
+ */
+s16 enginetorque_m(MODELDAT *m, s16 rpm, s16 throttle, s16 ignition,
+                   s16 start, const s16 *torquecurve);
+
 #endif /* DRIVETRAIN_H */
