@@ -3,6 +3,8 @@
  *
  * Manages multi-race championship series with point standings,
  * unlockable content, and progression systems.
+ *
+ * Arcade source reference: reference/repos/rushtherock/game/tourney.c
  */
 
 #ifndef TOURNAMENT_H
@@ -10,6 +12,81 @@
 
 #include "types.h"
 #include "game/structs.h"  /* For difficulty and unlock constants */
+
+/* ========================================================================== */
+/* Arcade-compatible Tourney definitions (from rushtherock/game/attract.h)    */
+/* ========================================================================== */
+
+/* Tourney constants (arcade-compatible) */
+#define TOURNEY_MAX_LINKS       8   /* Max cabinets in linked play */
+#define TOURNEY_MAX_TRACKS      8   /* Max selectable tracks */
+#define TOURNEY_MAX_CARS        12  /* Max selectable cars */
+#define TOURNEY_SANITY_VALUE    0xDEADBEEF  /* Magic value for valid data */
+#define TOURNEY_MAX_LAPS        99  /* Maximum lap count */
+
+/* Tourney menu items (arcade-compatible) */
+#define TOURNEY_MENU_COIN       0   /* Coin mode selection */
+#define TOURNEY_MENU_CAB        1   /* Cabinet selection */
+#define TOURNEY_MENU_JOIN       2   /* Join-in mode */
+#define TOURNEY_MENU_TSEL       3   /* Track selection */
+#define TOURNEY_MENU_CSEL       4   /* Car selection */
+#define TOURNEY_MENU_TRANS      5   /* Transmission selection */
+#define TOURNEY_MENU_LEN1       6   /* Track 1 laps */
+#define TOURNEY_MENU_LEN2       7   /* Track 2 laps */
+#define TOURNEY_MENU_LEN3       8   /* Track 3 laps */
+#define TOURNEY_MENU_DRONE      9   /* Drones on/off */
+#define TOURNEY_MENU_SPEED      10  /* Catchup on/off */
+#define TOURNEY_MENU_EXIT       11  /* Exit menu */
+#define TOURNEY_NUM_MENUS       12
+
+/* Tourney exit options */
+#define TOURNEY_EXIT_CANCEL     0
+#define TOURNEY_EXIT_RESTORE    1
+#define TOURNEY_EXIT_SAVE       2
+
+/* Join-in modes */
+#define TOURNEY_JOIN_ANY        0   /* Each player selects */
+#define TOURNEY_JOIN_REMOTE     1   /* External switch controls join */
+#define TOURNEY_JOIN_QUICK      2   /* Quick join (minimal delays) */
+
+/**
+ * Arcade Tourney structure (from rushtherock/game/attract.h)
+ * Settings for linked cabinet tournament mode.
+ */
+typedef struct ArcadeTourney {
+    s32  free;       /* 0 = pay each time, 1 = free play */
+    s8   ext_start;  /* 0 = player select, 1 = remote switch, 2 = quick */
+    u32  cabinets;   /* Bitmask: 1 << node if node is in tourney */
+    s16  laps;       /* > 0 = lap count, 0 = no limit, < 0 = normal */
+    s8   track;      /* >= 0 = track ID, < 0 = any/external switch */
+    s8   car;        /* >= 0 = car ID, < 0 = any car */
+    s8   tranny;     /* >= 0 = transmission, < 0 = any */
+    s8   drones;     /* 1 = on, 0 = off, < 0 = normal setting */
+    s8   catchup;    /* 1 = on, 0 = off, < 0 = normal setting */
+    u32  sanity;     /* Magic value 0xDEADBEEF for valid data */
+} ArcadeTourney;
+
+/* Global arcade tourney state */
+extern ArcadeTourney gArcadeTourney;
+extern s32 gTourneyLaps[TOURNEY_MAX_TRACKS];
+extern s8 gTourneyInTourney[TOURNEY_MAX_LINKS];
+
+/* Arcade tourney functions (from rushtherock/game/tourney.c) */
+void tourney_init_arcade(void);
+void tourney_load_settings(void);
+void tourney_save_settings(void);
+void tourney_show_setup(s32 show);
+void tourney_handle_setup(void);
+s32  tourney_is_on(void);
+s32  tourney_is_node_active(u32 node);
+void tourney_reset_status(u32 node, s32 val);
+void tourney_check_box(void);
+void tourney_parse_flags(u32 flags, s16 laps);
+s32  tourney_bad_data(ArcadeTourney *t);
+
+/* ========================================================================== */
+/* N64 Tournament/Championship mode (multi-race series)                       */
+/* ========================================================================== */
 
 /* Tournament types */
 #define TOURNAMENT_SINGLE_RACE      0   /* Single race (quick race) */

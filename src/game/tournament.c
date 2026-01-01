@@ -790,3 +790,247 @@ s32 tournament_get_type(void) {
 s32 tournament_get_circuit(void) {
     return gTournament.circuit;
 }
+
+/* ========================================================================== */
+/* Arcade Tourney Functions (from rushtherock/game/tourney.c)                 */
+/* ========================================================================== */
+
+/* Global arcade tourney state */
+ArcadeTourney gArcadeTourney;
+s32 gTourneyLaps[TOURNEY_MAX_TRACKS];
+s8 gTourneyInTourney[TOURNEY_MAX_LINKS];
+
+/* Menu state for arcade tourney setup */
+static s8 sTourneyCurMenu;
+static s8 sTourneyCurSelect[TOURNEY_NUM_MENUS];
+
+/* Number of choices per menu item */
+static const s8 sTourneyNumMenuChoices[TOURNEY_NUM_MENUS] = {
+    2,  /* COIN: Normal, Free */
+    8,  /* CAB: 8 cabinets */
+    3,  /* JOIN: Any, Remote, Quick */
+    4,  /* TSEL: T1-T3 + Remote */
+    9,  /* CSEL: Any + 8 cars */
+    3,  /* TRANS: Any, Manual, Auto */
+    5,  /* LEN1: Norm, -5, -1, +1, +5 */
+    5,  /* LEN2: Norm, -5, -1, +1, +5 */
+    5,  /* LEN3: Norm, -5, -1, +1, +5 */
+    3,  /* DRONE: Norm, Off, On */
+    3,  /* SPEED: Norm, Off, On */
+    3   /* EXIT: Cancel, Restore, Save */
+};
+
+#ifdef NON_MATCHING
+
+/**
+ * Check if tourney data is valid
+ * Arcade: BadTourneyData (tourney.c:236)
+ */
+s32 tourney_bad_data(ArcadeTourney *t) {
+    if (t->sanity != TOURNEY_SANITY_VALUE) {
+        return 1;
+    }
+    if (t->ext_start > 2 || t->ext_start < 0) {
+        return 1;
+    }
+    if (t->cabinets >= (1 << TOURNEY_MAX_LINKS)) {
+        return 1;
+    }
+    if (t->laps > TOURNEY_MAX_LAPS || t->laps < 0) {
+        return 1;
+    }
+    if (t->track >= TOURNEY_MAX_TRACKS || t->track < -1) {
+        return 1;
+    }
+    if (t->car >= TOURNEY_MAX_CARS || t->car < -1) {
+        return 1;
+    }
+    if (t->tranny > 1 || t->tranny < -1) {
+        return 1;
+    }
+    if (t->drones > 1 || t->drones < -1) {
+        return 1;
+    }
+    if (t->catchup > 1 || t->catchup < -1) {
+        return 1;
+    }
+    return 0;
+}
+
+/**
+ * Initialize arcade tourney system
+ * Arcade: InitTourney (tourney.c:223)
+ */
+void tourney_init_arcade(void) {
+    sTourneyCurMenu = 0;
+    /* TourneyBlit = nil in arcade */
+    tourney_load_settings();
+}
+
+/**
+ * Load tourney settings from NVRAM
+ * Arcade: LoadTourneySettings (tourney.c:269)
+ */
+void tourney_load_settings(void) {
+    s32 i;
+
+    /* Check for bad data and reset to defaults */
+    if (tourney_bad_data(&gArcadeTourney)) {
+        gArcadeTourney.free = 0;        /* Pay each time */
+        gArcadeTourney.ext_start = 0;   /* Player select */
+        gArcadeTourney.track = -1;      /* Any track */
+        gArcadeTourney.car = -1;        /* Any car */
+        gArcadeTourney.tranny = -1;     /* Any transmission */
+        gArcadeTourney.laps = 0;        /* Normal laps */
+        gArcadeTourney.drones = -1;     /* Normal drones */
+        gArcadeTourney.catchup = -1;    /* Normal catchup */
+        gArcadeTourney.cabinets = 0;    /* No cabinets */
+        tourney_save_settings();
+    }
+
+    /* Set up menu with current values */
+    sTourneyCurSelect[TOURNEY_MENU_COIN] = (s8)gArcadeTourney.free;
+    sTourneyCurSelect[TOURNEY_MENU_CAB] = 0; /* This node */
+    sTourneyCurSelect[TOURNEY_MENU_JOIN] = gArcadeTourney.ext_start;
+    sTourneyCurSelect[TOURNEY_MENU_TSEL] = (gArcadeTourney.track < 0) ? 3 : gArcadeTourney.track;
+    sTourneyCurSelect[TOURNEY_MENU_CSEL] = gArcadeTourney.car + 1;
+    sTourneyCurSelect[TOURNEY_MENU_TRANS] = gArcadeTourney.tranny + 1;
+    sTourneyCurSelect[TOURNEY_MENU_DRONE] = gArcadeTourney.drones + 1;
+    sTourneyCurSelect[TOURNEY_MENU_SPEED] = gArcadeTourney.catchup + 1;
+    sTourneyCurSelect[TOURNEY_MENU_EXIT] = 0;
+    sTourneyCurSelect[TOURNEY_MENU_LEN1] = (gArcadeTourney.laps <= 0) ? 0 : 3;
+    sTourneyCurSelect[TOURNEY_MENU_LEN2] = (gArcadeTourney.laps <= 0) ? 0 : 3;
+    sTourneyCurSelect[TOURNEY_MENU_LEN3] = (gArcadeTourney.laps <= 0) ? 0 : 3;
+
+    for (i = 0; i < TOURNEY_MAX_LINKS; i++) {
+        gTourneyInTourney[i] = ((1 << i) & gArcadeTourney.cabinets) != 0;
+    }
+    for (i = 0; i < TOURNEY_MAX_TRACKS; i++) {
+        gTourneyLaps[i] = gArcadeTourney.laps;
+    }
+}
+
+/**
+ * Save tourney settings to NVRAM
+ * Arcade: SaveTourneySettings (tourney.c:341)
+ */
+void tourney_save_settings(void) {
+    gArcadeTourney.sanity = TOURNEY_SANITY_VALUE;
+    /* Would write to EEPROM/Controller Pak on N64 */
+}
+
+/**
+ * Show or hide tourney setup screen
+ * Arcade: ShowTourneySetup (tourney.c:358)
+ */
+void tourney_show_setup(s32 show) {
+    if (show) {
+        /* Would create blit objects and menu text */
+        tourney_load_settings();
+    } else {
+        /* Would remove blit objects */
+    }
+}
+
+/**
+ * Handle tourney setup input
+ * Arcade: HandleTourneySetup (tourney.c:500)
+ */
+void tourney_handle_setup(void) {
+    /* Would handle:
+     * - Up/down to change menu item
+     * - Left/right to change selection
+     * - Abort to toggle cabinet or save/cancel
+     * In arcade this handles SW_VIEW1, SW_VIEW2, SW_VIEW3, SW_MUSIC, SW_ABORT
+     */
+}
+
+/**
+ * Check if tourney mode is active for this node
+ * Arcade: TourneyOn (tourney.c:624)
+ */
+s32 tourney_is_on(void) {
+    return tourney_is_node_active(0); /* gThisNode in arcade */
+}
+
+/**
+ * Check if tourney mode is active for a specific node
+ * Arcade: TourneyNode (tourney.c:633)
+ */
+s32 tourney_is_node_active(u32 node) {
+    return ((gArcadeTourney.cabinets & (1 << node)) != 0);
+}
+
+/**
+ * Set tourney status for a cabinet
+ * Arcade: ResetTourneyStatus (tourney.c:642)
+ */
+void tourney_reset_status(u32 node, s32 val) {
+    if (val) {
+        gArcadeTourney.cabinets |= (1 << node);
+    } else {
+        gArcadeTourney.cabinets &= ~(1 << node);
+    }
+}
+
+/**
+ * Check external tourney box switches
+ * Arcade: CheckTourneyBox (tourney.c:654)
+ */
+void tourney_check_box(void) {
+    /* Would check SW_JOIN, SW_TRACK1-4 for linked cabinet control */
+}
+
+/**
+ * Parse network-coded tourney flags
+ * Arcade: ParseTourneyFlags (tourney.c:690)
+ */
+void tourney_parse_flags(u32 flags, s16 laps) {
+    u32 cab;
+
+    cab = (flags >> 16) & 0xff;
+
+    /* Parse the flags, save settings */
+    gArcadeTourney.free = 0; /* Always 0 in late arcade versions */
+    gArcadeTourney.ext_start = (s8)((flags >> 1) & 3);
+
+    gArcadeTourney.track = (s8)((flags >> 3) & 7);
+    if (gArcadeTourney.track >= TOURNEY_MAX_TRACKS) {
+        gArcadeTourney.track = -1;
+    }
+
+    gArcadeTourney.car = (s8)((flags >> 6) & 15);
+    if (gArcadeTourney.car >= TOURNEY_MAX_CARS) {
+        gArcadeTourney.car = -1;
+    }
+
+    gArcadeTourney.tranny = (s8)((flags >> 10) & 3);
+    if (gArcadeTourney.tranny > 1) {
+        gArcadeTourney.tranny = -1;
+    }
+
+    gArcadeTourney.drones = (s8)((flags >> 12) & 3);
+    if (gArcadeTourney.drones > 1) {
+        gArcadeTourney.drones = -1;
+    }
+
+    gArcadeTourney.catchup = (s8)((flags >> 14) & 3);
+    if (gArcadeTourney.catchup > 1) {
+        gArcadeTourney.catchup = -1;
+    }
+
+    gArcadeTourney.cabinets = cab;
+
+    /* Range check laps */
+    if (laps < 0) {
+        gArcadeTourney.laps = 0;
+    } else if (laps > TOURNEY_MAX_LAPS) {
+        gArcadeTourney.laps = TOURNEY_MAX_LAPS;
+    } else {
+        gArcadeTourney.laps = laps;
+    }
+
+    tourney_save_settings();
+}
+
+#endif /* NON_MATCHING */
