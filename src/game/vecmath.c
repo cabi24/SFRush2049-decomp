@@ -27,6 +27,7 @@
  */
 
 #include "types.h"
+#include "game/vecmath.h"
 
 /* Small angle threshold for rotation optimizations */
 #define ANGLE_EPSILON 0.001f
@@ -35,6 +36,9 @@
 extern f32 sinf(f32 x);
 extern f32 cosf(f32 x);
 extern f32 sqrtf(f32 x);
+
+/* Global for sdirection (arcade compatibility) */
+static f32 invmag_global;
 
 /******* MATH HELPERS (from d3math.c) *******/
 
@@ -722,14 +726,659 @@ void finvtransvec(f32 in[3], f32 out[3], f32 uvs[3][3]) {
 
 /**
  * fmatcopy - Copy 3x3 float matrix
- * Based on arcade: camera.c reference
+ * Based on arcade: unitvecs.c:fmatcopy()
  *
  * @param src Source matrix (as float pointer)
  * @param dst Destination matrix (as float pointer)
  */
-void fmatcopy(f32 *src, f32 *dst) {
+void fmatcopy(f32 *ap, f32 *bp) {
+    *bp++ = *ap++;
+    *bp++ = *ap++;
+    *bp++ = *ap++;
+
+    *bp++ = *ap++;
+    *bp++ = *ap++;
+    *bp++ = *ap++;
+
+    *bp++ = *ap++;
+    *bp++ = *ap++;
+    *bp++ = *ap++;
+}
+
+/******* UNIT VECTOR STRUCTURE OPERATIONS (from unitvecs.c) *******/
+
+/**
+ * Unit identity matrix constant
+ * Based on arcade: unitvecs.c:munituvs
+ */
+const struct uvect munituvs = {
+    {
+        {0x4000, 0, 0},
+        {0, 0x4000, 0},
+        {0, 0, 0x4000}
+    },
+    {
+        {1.0f, 0.0f, 0.0f},
+        {0.0f, 1.0f, 0.0f},
+        {0.0f, 0.0f, 1.0f}
+    },
+    ROTSPERFIX
+};
+
+/**
+ * bodtorw - Convert vector from body to real world coordinates
+ * Based on arcade: unitvecs.c:bodtorw()
+ *
+ * @param v Input vector (body coords)
+ * @param vprime Output vector (world coords)
+ * @param uvst Unit vector structure
+ */
+void bodtorw(f32 *v, f32 *vprime, struct uvect *uvst) {
+    f32 *uvp, r;
     s32 i;
-    for (i = 0; i < 9; i++) {
-        dst[i] = src[i];
+
+    uvp = uvst->fpuvs[0];
+
+    i = 3;
+    do {
+        r = *v++ * *uvp++;
+        r += *v++ * *uvp++;
+        *vprime++ = r + *v++ * *uvp++;
+        v -= 3;
+    } while (--i);
+}
+
+/**
+ * rwtobod - Convert vector from real world to body coordinates
+ * Based on arcade: unitvecs.c:rwtobod()
+ *
+ * @param vprime Input vector (world coords)
+ * @param v Output vector (body coords)
+ * @param uvst Unit vector structure
+ */
+void rwtobod(f32 *vprime, f32 *v, struct uvect *uvst) {
+    f32 *uvp, r;
+    s32 i;
+
+    uvp = uvst->fpuvs[0];
+
+    i = 3;
+    do {
+        r = *vprime++ * *uvp;
+        uvp += 3;
+        r += *vprime++ * *uvp;
+        uvp += 3;
+        *v++ = r + *vprime++ * *uvp;
+        uvp -= 5;
+        vprime -= 3;
+    } while (--i);
+}
+
+/**
+ * ibodtorw - Convert integer vector from body to real world coordinates
+ * Based on arcade: unitvecs.c:ibodtorw()
+ *
+ * @param v Input vector (body coords, integer)
+ * @param vprime Output vector (world coords, integer)
+ * @param uvst Unit vector structure
+ */
+void ibodtorw(s32 *v, s32 *vprime, struct uvect *uvst) {
+    s16 *uvp;
+    s32 i;
+    f32 r;
+
+    uvp = uvst->uvs[0];
+    i = 3;
+    do {
+        r = (f32)*v++ * (f32)*uvp++;
+        r += (f32)*v++ * (f32)*uvp++;
+        *vprime++ = (s32)((r + (f32)*v++ * (f32)*uvp++) * INV_FIXSCALE);
+        v -= 3;
+    } while (--i);
+}
+
+/**
+ * irwtobod - Convert integer vector from real world to body coordinates
+ * Based on arcade: unitvecs.c:irwtobod()
+ *
+ * @param vprime Input vector (world coords, integer)
+ * @param v Output vector (body coords, integer)
+ * @param uvst Unit vector structure
+ */
+void irwtobod(s32 *vprime, s32 *v, struct uvect *uvst) {
+    s16 *uvp;
+    s32 i;
+    f32 r;
+
+    uvp = uvst->uvs[0];
+    i = 3;
+    do {
+        r = (f32)*vprime++ * (f32)*uvp;
+        uvp += 3;
+
+        r += (f32)*vprime++ * (f32)*uvp;
+        uvp += 3;
+
+        *v++ = (s32)((r + (f32)*vprime++ * (f32)*uvp) * INV_FIXSCALE);
+        vprime -= 3;
+        uvp -= 5;
+    } while (--i);
+}
+
+/**
+ * sbodtorw - Convert short vector from body to real world coordinates
+ * Based on arcade: unitvecs.c:sbodtorw()
+ *
+ * @param v Input vector (body coords, short)
+ * @param vprime Output vector (world coords, short)
+ * @param uvst Unit vector structure
+ */
+void sbodtorw(s16 *v, s16 *vprime, struct uvect *uvst) {
+    s16 *uvp;
+    s32 i;
+    f32 r;
+
+    uvp = uvst->uvs[0];
+    i = 3;
+    do {
+        r = (f32)*v++ * (f32)*uvp++;
+        r += (f32)*v++ * (f32)*uvp++;
+        *vprime++ = (s16)((r + (f32)*v++ * (f32)*uvp++) * INV_FIXSCALE);
+        v -= 3;
+    } while (--i);
+}
+
+/**
+ * srwtobod - Convert short vector from real world to body coordinates
+ * Based on arcade: unitvecs.c:srwtobod()
+ *
+ * @param vprime Input vector (world coords, short)
+ * @param v Output vector (body coords, short)
+ * @param uvst Unit vector structure
+ */
+void srwtobod(s16 *vprime, s16 *v, struct uvect *uvst) {
+    s16 *uvp;
+    s32 i;
+    f32 r;
+
+    uvp = uvst->uvs[0];
+    i = 3;
+    do {
+        r = (f32)*vprime++ * (f32)*uvp;
+        uvp += 3;
+
+        r += (f32)*vprime++ * (f32)*uvp;
+        uvp += 3;
+
+        *v++ = (s16)((r + (f32)*vprime++ * (f32)*uvp) * INV_FIXSCALE);
+        vprime -= 3;
+        uvp -= 5;
+    } while (--i);
+}
+
+/**
+ * fbodtorw - Convert float vector from body to world using float matrix
+ *
+ * @param v Input vector (body coords)
+ * @param vprime Output vector (world coords)
+ * @param uvs 3x3 float rotation matrix
+ */
+void fbodtorw(f32 *v, f32 *vprime, f32 uvs[3][3]) {
+    f32 *uvp, r;
+    s32 i;
+
+    uvp = uvs[0];
+
+    i = 3;
+    do {
+        r = *v++ * *uvp++;
+        r += *v++ * *uvp++;
+        *vprime++ = r + *v++ * *uvp++;
+        v -= 3;
+    } while (--i);
+}
+
+/**
+ * frwtobod - Convert float vector from world to body using float matrix
+ *
+ * @param vprime Input vector (world coords)
+ * @param v Output vector (body coords)
+ * @param uvs 3x3 float rotation matrix
+ */
+void frwtobod(f32 *vprime, f32 *v, f32 uvs[3][3]) {
+    f32 *uvp, r;
+    s32 i;
+
+    uvp = uvs[0];
+
+    i = 3;
+    do {
+        r = *vprime++ * *uvp;
+        uvp += 3;
+        r += *vprime++ * *uvp;
+        uvp += 3;
+        *v++ = r + *vprime++ * *uvp;
+        uvp -= 5;
+        vprime -= 3;
+    } while (--i);
+}
+
+/******* UNIT VECTOR ROTATION (from unitvecs.c) *******/
+
+/**
+ * rotateuv - Rotate float 3x3 unit vector by rotation vector in body axis
+ * Based on arcade: unitvecs.c:rotateuv()
+ *
+ * @param rv Rotation vector [roll, pitch, yaw] in radians
+ * @param uvs 3x3 float unit vector matrix
+ */
+void rotateuv(f32 rv[3], f32 uvs[3][3]) {
+    if (rv[ZCOMP]) {
+        fyaw(sinf(rv[ZCOMP]), cosf(rv[ZCOMP]), uvs);
     }
+    if (rv[YCOMP]) {
+        fpitch(sinf(rv[YCOMP]), cosf(rv[YCOMP]), uvs);
+    }
+    if (rv[XCOMP]) {
+        froll(sinf(rv[XCOMP]), cosf(rv[XCOMP]), uvs);
+    }
+}
+
+/**
+ * rotuv - Rotate uvect structure by rotation vector in body axis
+ * Based on arcade: unitvecs.c:rotuv()
+ *
+ * @param rv Rotation vector in radians
+ * @param uvstruct Unit vector structure to rotate
+ */
+void rotuv(f32 rv[3], struct uvect *uvstruct) {
+    s16 fixed[3][3];
+
+    if (rv[ZCOMP]) {
+        fyaw(sinf(rv[ZCOMP]), cosf(rv[ZCOMP]), uvstruct->fpuvs);
+    }
+    if (rv[YCOMP]) {
+        fpitch(sinf(rv[YCOMP]), cosf(rv[YCOMP]), uvstruct->fpuvs);
+    }
+    if (rv[XCOMP]) {
+        froll(sinf(rv[XCOMP]), cosf(rv[XCOMP]), uvstruct->fpuvs);
+    }
+
+    makesuvs(uvstruct);
+
+    if (uvstruct->fixcnt <= 0) {
+        uvstruct->fixcnt = ROTSPERFIX;
+        matfix(uvstruct->uvs, fixed);
+        matcopy((s16 *)(fixed), (s16 *)(uvstruct->uvs));
+        makefpuvs(uvstruct);
+    } else {
+        uvstruct->fixcnt--;
+    }
+}
+
+/**
+ * urotuv - Rotate uvect structure by rotation vector in universe axis
+ * Based on arcade: unitvecs.c:urotuv()
+ *
+ * @param rv Rotation vector in radians
+ * @param uvstruct Unit vector structure to rotate
+ */
+void urotuv(f32 rv[3], struct uvect *uvstruct) {
+    s16 fixed[3][3];
+
+    if (rv[ZCOMP]) {
+        fuyaw(sinf(rv[ZCOMP]), cosf(rv[ZCOMP]), uvstruct->fpuvs);
+    }
+    if (rv[YCOMP]) {
+        fupitch(sinf(rv[YCOMP]), cosf(rv[YCOMP]), uvstruct->fpuvs);
+    }
+    if (rv[XCOMP]) {
+        furoll(sinf(rv[XCOMP]), cosf(rv[XCOMP]), uvstruct->fpuvs);
+    }
+
+    makesuvs(uvstruct);
+
+    if (uvstruct->fixcnt <= 0) {
+        uvstruct->fixcnt = ROTSPERFIX;
+        matfix(uvstruct->uvs, fixed);
+        matcopy((s16 *)(fixed), (s16 *)(uvstruct->uvs));
+        makefpuvs(uvstruct);
+    } else {
+        uvstruct->fixcnt--;
+    }
+}
+
+/**
+ * mkuv - Create unit vector structure from Euler angles
+ * Based on arcade: unitvecs.c:mkuv()
+ *
+ * @param phi Roll angle (short, 0x8000 = pi)
+ * @param theta Pitch angle
+ * @param psi Yaw angle
+ * @param uvstruct Output unit vector structure
+ */
+void mkuv(s16 phi, s16 theta, s16 psi, struct uvect *uvstruct) {
+    f32 rotv[3];
+    *uvstruct = munituvs;
+
+    rotv[0] = phi * sdegtorad;
+    rotv[1] = theta * sdegtorad;
+    rotv[2] = psi * sdegtorad;
+
+    rotuv(rotv, uvstruct);
+}
+
+/**
+ * makefpuvs - Generate float UVs from short UVs
+ * Based on arcade: unitvecs.c:makefpuvs()
+ *
+ * @param uvstruct Unit vector structure
+ */
+void makefpuvs(struct uvect *uvstruct) {
+    s16 *suvp;
+    f32 *fpuvp;
+    s32 i;
+
+    for (i = 9 + 1, suvp = uvstruct->uvs[0], fpuvp = uvstruct->fpuvs[0];
+         --i;) {
+        *fpuvp++ = *suvp++ * INV_FIXSCALE;
+    }
+}
+
+/**
+ * makesuvs - Generate short UVs from float UVs
+ * Based on arcade: unitvecs.c:makesuvs()
+ *
+ * @param uvstruct Unit vector structure
+ */
+void makesuvs(struct uvect *uvstruct) {
+    s16 *suvp;
+    f32 *fpuvp;
+    s32 i;
+
+    for (i = 9 + 1, suvp = uvstruct->uvs[0], fpuvp = uvstruct->fpuvs[0];
+         --i;) {
+        *suvp++ = (s16)(*fpuvp++ * 16384.0f);
+    }
+}
+
+/**
+ * matcopy - Copy 3x3 short matrix
+ * Based on arcade: unitvecs.c:matcopy()
+ *
+ * @param ap Source matrix
+ * @param bp Destination matrix
+ */
+void matcopy(s16 *ap, s16 *bp) {
+    *bp++ = *ap++;
+    *bp++ = *ap++;
+    *bp++ = *ap++;
+
+    *bp++ = *ap++;
+    *bp++ = *ap++;
+    *bp++ = *ap++;
+
+    *bp++ = *ap++;
+    *bp++ = *ap++;
+    *bp++ = *ap++;
+}
+
+/**
+ * matmul - Multiply two 3x3 short matrices
+ * Based on arcade: unitvecs.c:matmul()
+ *
+ * @param a First matrix
+ * @param b Second matrix
+ * @param result Output matrix (a * b)
+ */
+void matmul(s16 a[3][3], s16 b[3][3], s16 result[3][3]) {
+    s16 *resp, *ap, *bp;
+    s32 i;
+    s32 j;
+
+    for (j = 3, resp = result[0], ap = a[0]; j--; ap += 3) {
+        for (i = 3, bp = b[0]; i--; bp++, resp++) {
+            *resp = (s16)((ap[0] * bp[0] + ap[1] * bp[3] + ap[2] * bp[6]) >> 14);
+        }
+    }
+}
+
+/**
+ * matfix - Orthonormalize short matrix
+ * Based on arcade: unitvecs.c:matfix()
+ *
+ * @param uv Input matrix
+ * @param result Output orthonormalized matrix
+ */
+void matfix(s16 uv[3][3], s16 result[3][3]) {
+    scrossprod(uv[0], uv[1], result[2]);   /* Make all vectors perp */
+    scrossprod(result[2], uv[0], result[1]);
+    scrossprod(result[1], result[2], result[0]);
+
+    sdirection(result[0], result[0]);      /* Make vectors of length 1 */
+    sdirection(result[1], result[1]);
+    sdirection(result[2], result[2]);
+}
+
+/**
+ * transpose - Transpose short 3x3 matrix
+ * Based on arcade: unitvecs.c:transpose()
+ *
+ * @param uv Input matrix
+ * @param result Output transposed matrix
+ */
+void transpose(s16 uv[3][3], s16 result[3][3]) {
+    s32 i;
+    s16 *resp, *uvp;
+
+    resp = (s16 *)(&(uv[0][0]));
+    uvp = (s16 *)(&(result[0][0]));
+    for (i = 3; --i >= 0;) {
+        *resp++ = *uvp;
+        uvp += 3;
+        *resp++ = *uvp;
+        uvp += 3;
+        *resp++ = *uvp;
+        uvp -= 5;
+    }
+}
+
+/******* ROTATION PRIMITIVES (from unitvecs.c) *******/
+
+/**
+ * rot - Rotate short unit vector in object frame
+ * Based on arcade: unitvecs.c:rot()
+ */
+void rot(f32 sint, f32 cost, s16 *p1, s16 *p2) {
+    f32 f1, f2;
+
+    f1 = *p1;
+    f2 = *p2;
+    *p1 = (s16)(f1 * cost + f2 * sint);
+    p1 += 3;
+    *p2 = (s16)(f2 * cost - f1 * sint);
+    p2 += 3;
+
+    f1 = *p1;
+    f2 = *p2;
+    *p1 = (s16)(f1 * cost + f2 * sint);
+    p1 += 3;
+    *p2 = (s16)(f2 * cost - f1 * sint);
+    p2 += 3;
+
+    f1 = *p1;
+    f2 = *p2;
+    *p1 = (s16)(f1 * cost + f2 * sint);
+    *p2 = (s16)(f2 * cost - f1 * sint);
+}
+
+/**
+ * urot - Rotate short unit vector in universe frame
+ * Based on arcade: unitvecs.c:urot()
+ */
+void urot(f32 sint, f32 cost, s16 *p1, s16 *p2) {
+    f32 f1, f2;
+
+    f1 = *p1;
+    f2 = *p2;
+    *p1++ = (s16)(f1 * cost + f2 * sint);
+    *p2++ = (s16)(f2 * cost - f1 * sint);
+
+    f1 = *p1;
+    f2 = *p2;
+    *p1++ = (s16)(f1 * cost + f2 * sint);
+    *p2++ = (s16)(f2 * cost - f1 * sint);
+
+    f1 = *p1;
+    f2 = *p2;
+    *p1 = (s16)(f1 * cost + f2 * sint);
+    *p2 = (s16)(f2 * cost - f1 * sint);
+}
+
+/**
+ * mroll - Rotate short unit vectors around X body axis
+ * Based on arcade: unitvecs.c:mroll()
+ */
+void mroll(s16 sint, s16 cost, s16 uv[3][3]) {
+    rot(sint * INV_FIXSCALE, cost * INV_FIXSCALE, &uv[0][1], &uv[0][2]);
+}
+
+/**
+ * muroll - Rotate short unit vectors around X universe axis
+ * Based on arcade: unitvecs.c:muroll()
+ */
+void muroll(s16 sint, s16 cost, s16 uv[3][3]) {
+    urot(sint * INV_FIXSCALE, cost * INV_FIXSCALE, &uv[1][0], &uv[2][0]);
+}
+
+/**
+ * mpitch - Rotate short unit vectors around Y body axis
+ * Based on arcade: unitvecs.c:mpitch()
+ */
+void mpitch(s16 sint, s16 cost, s16 uv[3][3]) {
+    /* Pitch has signs reversed for some reason */
+    rot(-sint * INV_FIXSCALE, cost * INV_FIXSCALE, &uv[0][0], &uv[0][2]);
+}
+
+/**
+ * mupitch - Rotate short unit vectors around Y universe axis
+ * Based on arcade: unitvecs.c:mupitch()
+ */
+void mupitch(s16 sint, s16 cost, s16 uv[3][3]) {
+    /* Pitch has signs reversed for some reason */
+    urot(-sint * INV_FIXSCALE, cost * INV_FIXSCALE, &uv[0][0], &uv[2][0]);
+}
+
+/**
+ * myaw - Rotate short unit vectors around Z body axis
+ * Based on arcade: unitvecs.c:myaw()
+ */
+void myaw(s16 sint, s16 cost, s16 uv[3][3]) {
+    rot(sint * INV_FIXSCALE, cost * INV_FIXSCALE, &uv[0][1], &uv[0][0]);
+}
+
+/**
+ * muyaw - Rotate short unit vectors around Z universe axis
+ * Based on arcade: unitvecs.c:muyaw()
+ */
+void muyaw(s16 sint, s16 cost, s16 uv[3][3]) {
+    urot(sint * INV_FIXSCALE, cost * INV_FIXSCALE, &uv[1][0], &uv[0][0]);
+}
+
+/**
+ * frot - Rotate float unit vector in object frame
+ * Based on arcade: unitvecs.c:frot()
+ */
+void frot(f32 sint, f32 cost, f32 *p1, f32 *p2) {
+    f32 ut;
+
+    ut = *p1 * cost + *p2 * sint;
+    *p2 = *p2 * cost - *p1 * sint;
+    p2 += 3;
+    *p1 = ut;
+    p1 += 3;
+
+    ut = *p1 * cost + *p2 * sint;
+    *p2 = *p2 * cost - *p1 * sint;
+    p2 += 3;
+    *p1 = ut;
+    p1 += 3;
+
+    ut = *p1 * cost + *p2 * sint;
+    *p2 = *p2 * cost - *p1 * sint;
+    *p1 = ut;
+}
+
+/**
+ * furot - Rotate float unit vector in universe frame
+ * Based on arcade: unitvecs.c:furot()
+ */
+void furot(f32 sint, f32 cost, f32 *p1, f32 *p2) {
+    f32 ut;
+
+    ut = *p1 * cost + *p2 * sint;
+    *p2 = *p2 * cost - *p1 * sint;
+    p2++;
+    *p1 = ut;
+    p1++;
+
+    ut = *p1 * cost + *p2 * sint;
+    *p2 = *p2 * cost - *p1 * sint;
+    p2++;
+    *p1 = ut;
+    p1++;
+
+    ut = *p1 * cost + *p2 * sint;
+    *p2 = *p2 * cost - *p1 * sint;
+    *p1 = ut;
+}
+
+/**
+ * froll - Rotate float unit vectors around X body axis
+ * Based on arcade: unitvecs.c:froll()
+ */
+void froll(f32 sint, f32 cost, f32 uv[3][3]) {
+    frot(sint, cost, &uv[0][1], &uv[0][2]);
+}
+
+/**
+ * furoll - Rotate float unit vectors around X universe axis
+ * Based on arcade: unitvecs.c:furoll()
+ */
+void furoll(f32 sint, f32 cost, f32 uv[3][3]) {
+    furot(sint, cost, &uv[1][0], &uv[2][0]);
+}
+
+/**
+ * fpitch - Rotate float unit vectors around Y body axis
+ * Based on arcade: unitvecs.c:fpitch()
+ */
+void fpitch(f32 sint, f32 cost, f32 uv[3][3]) {
+    /* Pitch doesn't work unless signs reversed */
+    frot(-sint, cost, &uv[0][0], &uv[0][2]);
+}
+
+/**
+ * fupitch - Rotate float unit vectors around Y universe axis
+ * Based on arcade: unitvecs.c:fupitch()
+ */
+void fupitch(f32 sint, f32 cost, f32 uv[3][3]) {
+    /* Pitch doesn't work unless signs reversed */
+    furot(-sint, cost, &uv[0][0], &uv[2][0]);
+}
+
+/**
+ * fyaw - Rotate float unit vectors around Z body axis
+ * Based on arcade: unitvecs.c:fyaw()
+ */
+void fyaw(f32 sint, f32 cost, f32 uv[3][3]) {
+    frot(sint, cost, &uv[0][0], &uv[0][1]);
+}
+
+/**
+ * fuyaw - Rotate float unit vectors around Z universe axis
+ * Based on arcade: unitvecs.c:fuyaw()
+ */
+void fuyaw(f32 sint, f32 cost, f32 uv[3][3]) {
+    furot(sint, cost, &uv[0][0], &uv[1][0]);
 }
