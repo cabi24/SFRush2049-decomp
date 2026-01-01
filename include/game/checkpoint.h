@@ -33,15 +33,8 @@
 #define SW_DEBUG11          0x0400  /* Checkpoint path errors */
 #define SW_DEBUG14          0x2000  /* Show checkpoint objects */
 
-/* Arcade type aliases for portability */
-typedef s8  S8;
-typedef s16 S16;
-typedef s32 S32;
-typedef u8  U8;
-typedef u16 U16;
-typedef u32 U32;
-typedef f32 F32;
-typedef s8  BOOL;
+/* Arcade type aliases - defined in types.h */
+/* S8, S16, S32, U8, U16, U32, F32, BOOL */
 
 /* ========================================================================
  * Arcade-compatible structures (from rushtherock/game/checkpoint.h)

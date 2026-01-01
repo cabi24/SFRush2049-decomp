@@ -943,3 +943,459 @@ s32 save_get_last_error(s32 controller) {
     }
     return gSave.pak[controller].last_error;
 }
+
+/* ============================================================================
+ * Arcade-compatible game statistics functions
+ * Based on rushtherock/game/stats.c
+ *
+ * These functions track gameplay statistics in a manner compatible with
+ * the arcade version's NVRAM statistics system.
+ * ============================================================================ */
+
+#ifdef NON_MATCHING
+
+/* Global arcade statistics state */
+ArcadeGameStat gCurStat;            /* Running stats for current game */
+ArcadeStat     gArcadeStat;         /* Saved statistics (NVRAM equivalent) */
+s32            gGameStats;          /* Statistics display active flag */
+
+/* External game state (from game.c) */
+extern s32 gstate;                  /* Current game state */
+extern s32 trackno;                 /* Current track number */
+extern s32 gThisNode;               /* This player's node/slot */
+extern s32 IRQTIME;                 /* Millisecond timer */
+
+/**
+ * init_game_stats - Initialize game statistics system
+ * Called at game startup. Loads stats from Controller Pak.
+ * (arcade: stats.c:init_game_stats)
+ */
+void init_game_stats(void) {
+    s32 i;
+
+    /* Clear running stats */
+    for (i = 0; i < (s32)sizeof(ArcadeGameStat); i++) {
+        ((u8 *)&gCurStat)[i] = 0;
+    }
+
+    /* Load saved statistics from Controller Pak */
+    load_gamestats();
+
+    /* Initialize current session */
+    gCurStat.attract_mstime = 0;  /* Would be IRQTIME in full impl */
+    gCurStat.game_in_progress = 0;
+    gCurStat.next_gstate = 1;     /* TRKSEL */
+}
+
+/**
+ * game_stats - Per-frame statistics tracking
+ * Called each frame to update statistics based on game state.
+ * (arcade: stats.c:game_stats)
+ */
+void game_stats(void) {
+    /* Route to appropriate state handler */
+    /* Note: GState values from arcade game.h */
+    switch (gstate) {
+        case 0:  stat_attract();  break;  /* ATTRACT */
+        case 1:  stat_trksel();   break;  /* TRKSEL */
+        case 2:  stat_carsel();   break;  /* CARSEL */
+        case 7:  stat_preplay();  break;  /* PREPLAY */
+        case 3:  stat_playgame(); break;  /* PLAYGAME */
+        case 5:  stat_gameover(); break;  /* GAMEOVER */
+        default: break;
+    }
+}
+
+/**
+ * stat_attract - Track attract mode statistics
+ * Updates attract time and saves stats periodically.
+ * (arcade: stats.c:stat_attract)
+ */
+void stat_attract(void) {
+    gCurStat.game_in_progress = 0;
+    gCurStat.next_gstate = 1;  /* TRKSEL */
+
+    /* In arcade, saves stats every 10 seconds of attract mode */
+    /* Simplified for N64 - would check IRQTIME delta */
+}
+
+/**
+ * stat_trksel - Track selection statistics
+ * Records when player enters track selection.
+ * (arcade: stats.c:stat_trksel)
+ */
+void stat_trksel(void) {
+    if (gCurStat.next_gstate == 1) {  /* TRKSEL */
+        gCurStat.trksel_mstime = 0;   /* Would be IRQTIME */
+        gCurStat.game_in_progress = 1;
+        gCurStat.next_gstate = 2;     /* CARSEL */
+    }
+}
+
+/**
+ * stat_carsel - Car selection statistics
+ * Records track selection time and enters car selection.
+ * (arcade: stats.c:stat_carsel)
+ */
+void stat_carsel(void) {
+    if (gCurStat.next_gstate == 2) {  /* CARSEL */
+        gCurStat.trk_num = (trackno < STAT_NUM_TRACKS) ? (u32)trackno : STAT_NUM_TRACKS - 1;
+        gCurStat.carsel_mstime = 0;   /* Would be IRQTIME */
+        gCurStat.next_gstate = 7;     /* PREPLAY */
+    }
+}
+
+/**
+ * stat_preplay - Pre-play statistics
+ * Records car/transmission selection.
+ * (arcade: stats.c:stat_preplay)
+ */
+void stat_preplay(void) {
+    if (gCurStat.next_gstate == 7 && gCurStat.game_in_progress) {  /* PREPLAY */
+        gCurStat.transel_mstime = 0;  /* Would be delta from carsel */
+        gCurStat.race_mstime = 0;     /* Would be IRQTIME */
+        gCurStat.next_gstate = 3;     /* PLAYGAME */
+    }
+}
+
+/**
+ * stat_playgame - Gameplay statistics
+ * Tracks active gameplay.
+ * (arcade: stats.c:stat_playgame)
+ */
+void stat_playgame(void) {
+    if (gCurStat.next_gstate == 3 && gCurStat.game_in_progress) {  /* PLAYGAME */
+        gCurStat.next_gstate = 5;     /* GAMEOVER */
+        /* Running stats (music, views, etc.) would be grabbed here */
+    }
+}
+
+/**
+ * stat_gameover - Game over statistics
+ * Finalizes and saves session statistics.
+ * (arcade: stats.c:stat_gameover)
+ */
+void stat_gameover(void) {
+    if (gCurStat.next_gstate == 5 && gCurStat.game_in_progress) {  /* GAMEOVER */
+        /* Finalize timing */
+        gCurStat.attract_mstime = 0;  /* Would be IRQTIME for new attract */
+        gCurStat.game_in_progress = 0;
+        gCurStat.next_gstate = 0;     /* ATTRACT */
+
+        /* Update persistent statistics */
+        stat_update();
+    }
+}
+
+/**
+ * stat_update - Update persistent statistics
+ * Called at game over to update saved stats.
+ * (arcade: stats.c:stat_update)
+ */
+void stat_update(void) {
+    ArcadeTrackStat *tp;
+    u32 time_bin;
+
+    /* Validate track number */
+    if (gCurStat.trk_num >= STAT_NUM_TRACKS) {
+        return;
+    }
+
+    tp = &gArcadeStat.trk[gCurStat.trk_num];
+
+    /* Update counters */
+    tp->games++;
+    if (gCurStat.autotrans) {
+        tp->autotrans++;
+    }
+    if (gCurStat.finish) {
+        tp->finish++;
+    }
+    if (gCurStat.hiscore) {
+        tp->hiscore++;
+    }
+    if (gCurStat.linked) {
+        tp->linked++;
+    }
+
+    /* Update car selection histogram */
+    if (gCurStat.car_num < STAT_NUM_CARS) {
+        tp->car[gCurStat.car_num]++;
+    }
+
+    /* Save to Controller Pak */
+    save_gamestats();
+}
+
+/**
+ * reset_gamestats - Reset all statistics to zero
+ * Called when operator resets statistics.
+ * (arcade: stats.c:reset_gamestats)
+ */
+void reset_gamestats(void) {
+    s32 i;
+
+    /* Clear all arcade statistics */
+    for (i = 0; i < (s32)sizeof(ArcadeStat); i++) {
+        ((u8 *)&gArcadeStat)[i] = 0;
+    }
+
+    /* Save cleared statistics */
+    save_gamestats();
+}
+
+/**
+ * save_gamestats - Save statistics to Controller Pak
+ * Writes arcade stats to persistent storage.
+ * (arcade: stats.c:save_gamestats - writes to NVRAM)
+ */
+void save_gamestats(void) {
+    /* On N64, we would write to Controller Pak here */
+    /* For now, mark save data as modified */
+    save_mark_modified();
+}
+
+/**
+ * load_gamestats - Load statistics from Controller Pak
+ * Reads arcade stats from persistent storage.
+ * (arcade: stats.c:load_gamestats - reads from NVRAM)
+ */
+void load_gamestats(void) {
+    /* On N64, we would read from Controller Pak here */
+    /* Statistics would be loaded during save_init() */
+}
+
+/**
+ * ChkGameStats - Check for game statistics display activation
+ * Checks for button sequence to enter statistics display.
+ * (arcade: stats.c:ChkGameStats)
+ */
+s32 ChkGameStats(void) {
+    /* Button sequence check would go here */
+    /* Returns 1 if stats display should be shown */
+    return gGameStats;
+}
+
+/**
+ * ShowGameStats - Show/hide statistics display
+ * Renders the operator statistics screen.
+ * (arcade: stats.c:ShowGameStats)
+ */
+void ShowGameStats(s32 show) {
+    if (!show) {
+        stat_erase();
+        return;
+    }
+
+    stat_disp();
+}
+
+/**
+ * stat_erase - Clear statistics display
+ * Clears the debug text display.
+ * (arcade: stats.c:stat_erase)
+ */
+void stat_erase(void) {
+    /* Would clear debug text overlay */
+}
+
+/**
+ * stat_disp - Draw statistics display
+ * Renders the current statistics page.
+ * (arcade: stats.c:stat_disp)
+ */
+void stat_disp(void) {
+    /* Would render statistics using debug text */
+}
+
+/**
+ * HiScoreRank - Get rank for a given score
+ * Returns position in high score table (0-99) or -1 if doesn't qualify.
+ * (arcade: hiscore.c:HiScoreRank)
+ */
+s32 HiScoreRank(u32 score, s16 track) {
+    /* Delegate to N64 save system */
+    if (track < 0 || track >= SAVE_MAX_TRACKS) {
+        return -1;
+    }
+    return save_check_score(track, score);
+}
+
+/**
+ * LoadHighScores - Load high scores from Controller Pak
+ * Called at game startup.
+ * (arcade: hiscore.c:LoadHighScores)
+ */
+void LoadHighScores(void) {
+    /* High scores are loaded as part of save_init() */
+}
+
+/**
+ * ClearHighScores - Reset high scores to defaults
+ * Called when operator clears high scores.
+ * (arcade: hiscore.c:ClearHighScores)
+ */
+void ClearHighScores(void) {
+    save_clear_all_scores();
+    save_set_defaults();
+    save_write();
+}
+
+/**
+ * SaveHighScore - Save a high score entry
+ * Adds score to table and writes to Controller Pak.
+ * (arcade: hiscore.c:SaveHighScore)
+ */
+s32 SaveHighScore(char *name, u32 score, u32 track, u32 deaths,
+                  u32 mirror, u32 car, u32 flags) {
+    s32 rank;
+
+    if (track >= SAVE_MAX_TRACKS) {
+        return -1;
+    }
+
+    rank = HiScoreRank(score, (s16)track);
+    if (rank < 0) {
+        return -1;
+    }
+
+    /* Add the score using N64 save system */
+    save_add_score((s32)track, name, score, (u8)car, (u8)mirror);
+
+    /* Auto-save */
+    save_write();
+
+    return rank;
+}
+
+/**
+ * EnterHighScore - Process end-of-game high score
+ * Checks if score qualifies and initiates name entry.
+ * (arcade: hiscore.c:EnterHighScore)
+ */
+void EnterHighScore(s16 track, u32 score, char *name,
+                    u32 deaths, u32 mirror, u32 car) {
+    s32 rank;
+
+    /* Check if score qualifies */
+    rank = HiScoreRank(score, track);
+    if (rank < 0) {
+        return;
+    }
+
+    /* For top 10, would initiate name entry */
+    /* For now, use provided name or default */
+    if (name == (char *)0 || name[0] == '\0') {
+        SaveHighScore("AAA", score, (u32)track, deaths, mirror, car, 0);
+    } else {
+        SaveHighScore(name, score, (u32)track, deaths, mirror, car, 0);
+    }
+}
+
+/**
+ * InitGameScores - Initialize game scores for new game
+ * Clears "in this game" markers for high score display.
+ * (arcade: hiscore.c:InitGameScores)
+ */
+void InitGameScores(void) {
+    /* Clear session-specific score markers */
+}
+
+/**
+ * cvt_time_str - Convert time to string format
+ * Converts milliseconds to various time string formats.
+ * (arcade: hiscore.c:cvt_time_str)
+ *
+ * format: 's' = MM:SS, 'h' = MM:SS.hh, 'c' = SSS countdown, 'f' = full
+ */
+u8 cvt_time_str(s32 t, u8 *dest, char format) {
+    s32 sec, min;
+    u8 ret;
+
+    if (t < 0) {
+        t = 0;
+    }
+
+    ret = 0;
+    switch (format) {
+        case 'c':  /* Countdown: SSS */
+            sec = t / 1000;
+            if (sec > 999) sec = 999;
+            dest[0] = (u8)((sec / 100) % 10) + '0';
+            dest[1] = (u8)((sec / 10) % 10) + '0';
+            dest[2] = (u8)(sec % 10) + '0';
+            dest[3] = '\0';
+            ret = 3;
+            break;
+
+        case 'h':  /* Hundredths: M:SS.hh */
+        default:
+            if (t >= MAX_SCORE) {
+                dest[0] = '9'; dest[1] = ':';
+                dest[2] = '9'; dest[3] = '9';
+                dest[4] = '.'; dest[5] = '9';
+                dest[6] = '9'; dest[7] = '\0';
+                return 7;
+            }
+            dest[4] = '.';
+            dest[5] = (u8)((t / 100) % 10) + '0';
+            dest[6] = (u8)((t / 10) % 10) + '0';
+            dest[7] = '\0';
+            ret = 7;
+            /* Fall through for MM:SS portion */
+
+        case 's':  /* Seconds only: M:SS */
+            sec = t / 1000;
+            min = (sec / 60) % 60;
+            sec %= 60;
+            dest[0] = (u8)(min % 10) + '0';
+            dest[1] = ':';
+            dest[2] = (u8)(sec / 10) + '0';
+            dest[3] = (u8)(sec % 10) + '0';
+            if (ret == 0) {
+                dest[4] = '\0';
+                ret = 4;
+            }
+            break;
+    }
+
+    return ret;
+}
+
+/**
+ * ShowHiScore - Show high score table display
+ * Renders the high score screen for a track.
+ * (arcade: hiscore.c:ShowHiScore)
+ */
+void ShowHiScore(s32 show, s16 track) {
+    /* Would render high score table */
+}
+
+/**
+ * ShowScoreEntry - Show high score name entry screen
+ * Renders the name entry interface.
+ * (arcade: hiscore.c:ShowScoreEntry)
+ */
+void ShowScoreEntry(s32 show) {
+    /* Would render name entry interface */
+}
+
+/**
+ * GetHighScoreName - Process name entry input
+ * Handles player input for name entry.
+ * (arcade: hiscore.c:GetHighScoreName)
+ */
+void GetHighScoreName(void) {
+    /* Would process controller input for name entry */
+}
+
+/**
+ * HiScoreForce - Update force feedback during name entry
+ * For arcade steering wheel - N64 equivalent would use rumble.
+ * (arcade: hiscore.c:HiScoreForce)
+ */
+void HiScoreForce(void) {
+    /* Would update rumble pak state */
+}
+
+#endif /* NON_MATCHING */

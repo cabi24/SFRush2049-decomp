@@ -4,11 +4,14 @@
  * Handles game save/load using the N64 Controller Pak (PFS).
  * Stores high scores, unlocked content, options, and statistics.
  *
+ * Based on arcade NVRAM save system from rushtherock/game/stats.c
+ * and rushtherock/game/hiscore.c.
+ *
  * Save data structure:
  * - Game options (sound, controls)
  * - High score tables (per track)
  * - Unlocked cars and tracks
- * - Player statistics
+ * - Player statistics (arcade-compatible)
  * - Ghost replay data (separate file)
  */
 
@@ -16,6 +19,55 @@
 #define SAVE_H
 
 #include "types.h"
+
+/* ============================================================================
+ * Arcade-compatible constants (from rushtherock/game/stats.h)
+ * ============================================================================ */
+
+/* Statistics dimensions (matching arcade) */
+#define STAT_NUM_HOURS          24          /* Hours in a day */
+#define STAT_NUM_DAYS           7           /* Days in a week */
+#define STAT_NUM_TRACKS         8           /* Track count */
+#define STAT_NUM_CARS           4           /* Car difficulty levels */
+#define STAT_NUM_TIMES          32          /* Time histogram bins */
+#define STAT_BIN_SECS           15          /* Seconds per time bin */
+
+/* Drone options (arcade) */
+#define STAT_NUM_DRONE_OPTIONS  3
+#define STAT_DRONE_REG          0
+#define STAT_DRONE_NONE         1
+#define STAT_DRONE_RACERX       2
+
+/* Force feedback options (arcade) - N64 uses rumble instead */
+#define STAT_NUM_FORCE_OPTIONS  3
+#define STAT_FORCE_REG          0
+#define STAT_FORCE_MORE         1
+#define STAT_FORCE_FULL         2
+
+/* Catch-up/rubber-banding options */
+#define STAT_NUM_KETCHUP_OPTIONS 2
+#define STAT_KETCHUP_ON         0
+#define STAT_KETCHUP_OFF        1
+
+/* View and music options */
+#define STAT_NUM_TUNES          7
+#define STAT_NUM_VIEWS          3
+
+/* High score constants (from arcade hiscore.c) */
+#define NLENGTH                 8           /* Name length (arcade: 7 chars + null) */
+#define NSCORES                 100         /* Scores per track (arcade has 100) */
+#define NNAMES                  10          /* Names shown on screen at once */
+#define MIN_SCORE               (1L*60*1000)    /* 1 minute minimum */
+#define MAX_SCORE               (10L*60*1000)   /* 10 minute maximum */
+#define MAX_HSCORE              (100L*60*1000)  /* 100 minute absolute max */
+#define ONE_SEC                 1000            /* Milliseconds per second */
+
+/* High score table NVRAM constants (arcade) */
+#define TABLE_SIZE              ((NLENGTH + 8) * NSCORES)
+
+/* Game counters for auto-clear (arcade) */
+#define MAX_GAME_CNT            64
+#define MAX_HI_CNT              32
 
 /* Controller Pak constants */
 #define SAVE_COMPANY_CODE       0x3031      /* "01" */
@@ -90,6 +142,90 @@
 #define UNLOCK_STUNT_ARENAS     (1 << 1)
 #define UNLOCK_BATTLE_ARENAS    (1 << 2)
 #define UNLOCK_ALL_MUSIC        (1 << 3)
+
+/* ============================================================================
+ * Arcade-compatible game statistics (from rushtherock/game/stats.h)
+ * ============================================================================ */
+
+/**
+ * Per-track statistics (arcade TRKSTAT equivalent)
+ * Tracks gameplay patterns for operator statistics display.
+ */
+typedef struct ArcadeTrackStat {
+    u32     games;                          /* Total games on this track */
+    u32     trksel_secs;                    /* Time spent in track select */
+    u32     carsel_secs;                    /* Time spent in car select */
+    u32     transsel_secs;                  /* Time in transmission select */
+    u32     race_secs;                      /* Total racing time */
+    u32     hiscore_secs;                   /* Time in high score entry */
+    u32     finish;                         /* Race finishes */
+    u32     hiscore;                        /* High score entries */
+    u32     linked;                         /* Linked/multiplayer games */
+    u32     autotrans;                      /* Auto transmission uses */
+    u32     reverse;                        /* Reverse direction uses */
+    u32     abort_count;                    /* Aborted games */
+    u32     crash;                          /* Total crashes */
+    u32     car[STAT_NUM_CARS];             /* Car selection histogram */
+    u32     music_secs[STAT_NUM_TUNES];     /* Music track play time */
+    u32     view_secs[STAT_NUM_VIEWS];      /* Camera view time */
+    u32     drone_opt[STAT_NUM_DRONE_OPTIONS];   /* Drone option selections */
+    u32     force_opt[STAT_NUM_FORCE_OPTIONS];   /* Force feedback options (rumble) */
+    u32     ketchup_opt[STAT_NUM_KETCHUP_OPTIONS]; /* Catch-up option selections */
+    u32     tc_hist[STAT_NUM_TIMES][STAT_NUM_CARS]; /* Time x car histogram */
+} ArcadeTrackStat;
+
+/**
+ * Global statistics (arcade STAT equivalent)
+ * Saved to Controller Pak / NVRAM.
+ */
+typedef struct ArcadeStat {
+    u32             attract_secs;           /* Total attract mode time */
+    u32             tod_hist[STAT_NUM_HOURS][STAT_NUM_DAYS]; /* Time-of-day histogram */
+    ArcadeTrackStat trk[STAT_NUM_TRACKS];   /* Per-track statistics */
+} ArcadeStat;
+
+/**
+ * Running game statistics (arcade GAMESTAT equivalent)
+ * Tracks current game session, saved on game over.
+ */
+typedef struct ArcadeGameStat {
+    u8      game_in_progress;               /* Currently playing */
+    u8      pad1;
+    s16     next_gstate;                    /* Expected next game state */
+    u32     attract_mstime;                 /* Attract mode start time */
+    u32     trksel_mstime;                  /* Track select start time */
+    u32     carsel_mstime;                  /* Car select start time */
+    u32     transel_mstime;                 /* Trans select start time */
+    u32     race_mstime;                    /* Race start time */
+    u32     hiscore_mstime;                 /* High score entry start */
+    u32     trk_num;                        /* Current track number */
+    u32     car_num;                        /* Current car number */
+    u32     autotrans;                      /* Using auto transmission */
+    u32     linked;                         /* In linked/multiplayer mode */
+    u32     reverse_cnt;                    /* Reverse uses this game */
+    u32     abort_cnt;                      /* Abort count this game */
+    u32     death_cnt;                      /* Deaths this game */
+    u32     finish;                         /* Finished the race */
+    u32     hiscore;                        /* Made high score table */
+    u32     music_mstime[STAT_NUM_TUNES];   /* Music track start times */
+    u32     view_mstime[STAT_NUM_VIEWS];    /* View mode start times */
+} ArcadeGameStat;
+
+/**
+ * Arcade-style high score entry (matching arcade HiScore struct)
+ */
+typedef struct ArcadeHiScore {
+    char    name[NLENGTH];                  /* Player name (7 chars + null) */
+    u32     score;                          /* Time in milliseconds */
+    u8      deaths;                         /* Death count during race */
+    u8      mirror;                         /* Mirror mode flag */
+    u8      car;                            /* Car ID in low nibble, node in high */
+    u8      pad;
+} ArcadeHiScore;
+
+/* ============================================================================
+ * N64-specific save structures
+ * ============================================================================ */
 
 /* High score entry */
 typedef struct SaveScore {
@@ -284,5 +420,56 @@ void save_set_auto_save(u8 enabled);
 /* Error handling */
 const char* save_get_error_string(s32 error);
 s32 save_get_last_error(s32 controller);
+
+/* ============================================================================
+ * Arcade-compatible game statistics functions
+ * Based on rushtherock/game/stats.c
+ * ============================================================================ */
+
+/* Global arcade statistics state */
+extern ArcadeGameStat gCurStat;         /* Running stats for current game */
+extern ArcadeStat     gArcadeStat;      /* Saved statistics (NVRAM equivalent) */
+extern s32            gGameStats;       /* Statistics display active flag */
+
+/* Arcade stats initialization (stats.c:init_game_stats) */
+void init_game_stats(void);
+
+/* Per-state statistics tracking (stats.c:game_stats) */
+void game_stats(void);
+void stat_attract(void);
+void stat_trksel(void);
+void stat_carsel(void);
+void stat_preplay(void);
+void stat_playgame(void);
+void stat_gameover(void);
+
+/* Statistics update and persistence */
+void stat_update(void);
+void reset_gamestats(void);
+void save_gamestats(void);
+void load_gamestats(void);
+
+/* Statistics display (operator menu) */
+s32  ChkGameStats(void);
+void ShowGameStats(s32 show);
+void stat_erase(void);
+void stat_disp(void);
+
+/* High score functions (arcade hiscore.c compatible) */
+s32  HiScoreRank(u32 score, s16 track);
+void LoadHighScores(void);
+void ClearHighScores(void);
+s32  SaveHighScore(char *name, u32 score, u32 track, u32 deaths,
+                   u32 mirror, u32 car, u32 flags);
+void EnterHighScore(s16 track, u32 score, char *name,
+                    u32 deaths, u32 mirror, u32 car);
+void InitGameScores(void);
+u8   cvt_time_str(s32 t, u8 *dest, char format);
+
+/* High score name entry (arcade) */
+void ShowHiScore(s32 show, s16 track);
+void ShowScoreEntry(s32 show);
+void GetHighScoreName(void);
+void HiScoreForce(void);
 
 #endif /* SAVE_H */
