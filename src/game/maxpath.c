@@ -9,6 +9,18 @@
  * - Speed hints for each waypoint
  * - Track width info for passing/avoidance
  * - Multiple path options (fast/slow/alternate routes)
+ *
+ * Key arcade functions ported:
+ * - InitMaxPath()        - Initialize path system
+ * - MaxPath()            - Main update during recording
+ * - MaxPathControls()    - Generate steering/throttle from path
+ * - MP_FindInterval()    - Find current path segment
+ * - MP_IntervalPos()     - Calculate relative position on segment
+ * - MP_TargetSpeed()     - Get target speed from path data
+ * - MP_TargetSteerPos()  - Get target steering position
+ * - AdjustSpeed()        - Convert target speed to throttle/brake
+ * - AdjustSteer()        - Convert target position to steering
+ * - avoid_areas()        - Collision avoidance with other cars
  */
 
 #include "types.h"
@@ -21,9 +33,21 @@ extern CarData car_array[];
 extern s32 num_active_cars;
 extern s32 trackno;
 extern u32 frame_counter;
+extern s32 this_node;
 
 /* External math */
 extern f32 sqrtf(f32 x);
+extern f32 fabsf(f32 x);
+
+/* Arcade timing constant */
+#define ONE_SEC         60      /* Frames per second */
+#define IRQTIME         frame_counter  /* Alias for frame counter */
+
+/* Arcade speed scaling */
+static const f32 g_MPspdscale = 1.0f;
+
+/* Look-ahead distance for steering */
+static const f32 g_lookahd = 80.0f;
 
 /* Hint type names for debugging */
 const char *gHintNames[] = {
@@ -62,6 +86,43 @@ static const f32 sUnitUvs[3][3] = {
     {0.0f, 1.0f, 0.0f},
     {0.0f, 0.0f, 1.0f}
 };
+
+/* ========================================================================
+ * Arcade-compatible per-car control state (mpctl array)
+ * Based on arcade maxpath.c:MPCTL structure
+ * ======================================================================== */
+
+/* Arcade MPCTL structure (extended for N64) */
+typedef struct ArcadeMPCTL {
+    s32     mpi;                /* Current maxpath index */
+    s32     mpath_index;        /* Which path (0-7) */
+    s32     default_path;       /* Default assigned path */
+    s32     new_mpi;            /* New index to sync to (-1 = none) */
+    f32     xrel;               /* Forward position on segment */
+    f32     yrel;               /* Lateral offset from path */
+    f32     cyrel;              /* Path curvature (y relative to next) */
+    f32     len;                /* Current segment length */
+    f32     tgtspd;             /* Target speed */
+    f32     tgtpos[3];          /* Target steering position */
+    u32     interval_time;      /* Time of last interval update */
+} ArcadeMPCTL;
+
+/* Per-car arcade control state */
+static ArcadeMPCTL arcade_mpctl[MAX_LINKS];
+
+/* Last control outputs (for smoothing) */
+static s32 lastwheel[MAX_LINKS];
+static s32 lastbrake[MAX_LINKS];
+static s32 lastthrottle[MAX_LINKS];
+
+/* Last relative positions (for avoidance) */
+static f32 last_rwr[MAX_LINKS][MAX_LINKS][3];
+static f32 last_dir[MAX_LINKS][3];
+static f32 last_relpos[MAX_LINKS][MAX_LINKS][3];
+
+/* Best lap time for recording */
+static s32 best_loop_time = 9999999;
+static s32 loop_stamp = 0;
 
 /* Clamp macro */
 #define CLAMP(v, lo, hi) (((v) < (lo)) ? (lo) : (((v) > (hi)) ? (hi) : (v)))
@@ -947,4 +1008,691 @@ f32 maxpath_interpolate_speed(s32 p1, s32 p2, f32 t) {
 
     points = gMPathTables[0];
     return points[p1].speed + (points[p2].speed - points[p1].speed) * t;
+}
+
+/* ========================================================================
+ * Arcade-compatible function implementations
+ * Based on arcade maxpath.c - these match arcade signatures and behavior
+ * ======================================================================== */
+
+/**
+ * PrevMaxPath - Get previous maxpath index with lap wrap
+ * Based on arcade: maxpath.c:PrevMaxPath()
+ *
+ * @param mpi Current index
+ * @param path_index Path to use
+ * @return Previous index
+ */
+s32 PrevMaxPath(s32 mpi, s16 path_index) {
+    MaxPathHeader *header;
+
+    if (path_index < 0 || path_index >= gNumMPaths) {
+        return 0;
+    }
+
+    header = gMPathHeaders[path_index];
+    if (header == NULL) {
+        return 0;
+    }
+
+    if (mpi <= 0) {
+        return header->lap_end;
+    }
+    return mpi - 1;
+}
+
+/**
+ * NextMaxPath - Get next maxpath index with lap wrap
+ * Based on arcade: maxpath.c:NextMaxPath()
+ *
+ * @param mpi Current index
+ * @param path_index Path to use
+ * @return Next index
+ */
+s32 NextMaxPath(s32 mpi, s16 path_index) {
+    MaxPathHeader *header;
+
+    if (path_index < 0 || path_index >= gNumMPaths) {
+        return 0;
+    }
+
+    header = gMPathHeaders[path_index];
+    if (header == NULL) {
+        return 0;
+    }
+
+    if (mpi < header->lap_end) {
+        return mpi + 1;
+    }
+    return header->lap_start;
+}
+
+/**
+ * mp_interval_pos - Calculate car position relative to path segment
+ * Based on arcade: maxpath.c:mp_interval_pos()
+ *
+ * This calculates:
+ * - xrel: forward distance along segment
+ * - yrel: lateral offset from path centerline
+ * - cyrel: path curvature at this point
+ *
+ * @param RWR Real world position [3]
+ * @param cp Control structure to update
+ */
+void mp_interval_pos(f32 *RWR, ArcadeMPCTL *cp) {
+    MaxPathPoint *mp, *nmp, *nnmp;
+    s32 nmpi, nnmpi;
+    f32 nx, ny, invdist;
+    f32 x, y;
+
+    if (cp->mpath_index < 0 || cp->mpath_index >= gNumMPaths) {
+        return;
+    }
+    if (gMPathTables[cp->mpath_index] == NULL) {
+        return;
+    }
+
+    /* Setup pointers for current and next waypoint */
+    mp = &gMPathTables[cp->mpath_index][cp->mpi];
+    nmpi = NextMaxPath(cp->mpi, cp->mpath_index);
+    nmp = &gMPathTables[cp->mpath_index][nmpi];
+
+    /* Direction vector for interval (XZ plane for N64, XY for arcade) */
+    /* Note: N64 uses Y-up, arcade uses Z-up */
+    nx = nmp->pos[0] - mp->pos[0];
+    ny = nmp->pos[2] - mp->pos[2];  /* Use Z for N64 (arcade uses Y) */
+    cp->len = sqrtf(nx * nx + ny * ny);
+
+    /* Prevent divide by zero */
+    invdist = (cp->len > 0.01f) ? (1.0f / cp->len) : 0.0f;
+    nx *= invdist;
+    ny *= invdist;
+
+    /* Real world distance to car CG */
+    x = RWR[0] - mp->pos[0];
+    y = RWR[2] - mp->pos[2];  /* Z for N64 */
+
+    /* CG relative to interval (simplified matrix multiply in XZ plane) */
+    cp->xrel = x * nx + y * ny;
+    cp->yrel = y * nx - x * ny;
+
+    /* Get path curvature */
+    nnmpi = NextMaxPath(nmpi, cp->mpath_index);
+    nnmp = &gMPathTables[cp->mpath_index][nnmpi];
+    cp->cyrel = (nnmp->pos[2] - mp->pos[2]) * nx - (nnmp->pos[0] - mp->pos[0]) * ny;
+}
+
+/**
+ * MP_FindInterval - Find and update current path segment
+ * Based on arcade: maxpath.c:MP_FindInterval()
+ *
+ * Updates the car's position on the path, advancing or retreating
+ * through waypoints as needed.
+ *
+ * @param car_index Car to update
+ */
+void MP_FindInterval(s32 car_index) {
+    ArcadeMPCTL *cp;
+    CarData *car;
+    f32 RWR[3];
+
+    if (car_index < 0 || car_index >= MAX_LINKS) {
+        return;
+    }
+
+    cp = &arcade_mpctl[car_index];
+    car = &car_array[car_index];
+
+    /* Get car position */
+    RWR[0] = car->dr_pos[0];
+    RWR[1] = car->dr_pos[1];
+    RWR[2] = car->dr_pos[2];
+
+    /* Check if we need to resync to a new maxpath index */
+    if (cp->new_mpi >= 0) {
+        cp->mpi = cp->new_mpi;
+        cp->interval_time = IRQTIME;
+        cp->new_mpi = -1;
+    }
+
+    /* Calculate position relative to current segment */
+    mp_interval_pos(RWR, cp);
+
+    /* Check if we've moved past the current segment */
+    if (cp->xrel >= cp->len) {
+        cp->mpi = NextMaxPath(cp->mpi, cp->mpath_index);
+        cp->interval_time = IRQTIME;
+        mp_interval_pos(RWR, cp);
+    } else if (cp->xrel < 0.0f) {
+        cp->mpi = PrevMaxPath(cp->mpi, cp->mpath_index);
+        mp_interval_pos(RWR, cp);
+    }
+}
+
+/**
+ * MP_TargetSpeed - Calculate target speed from path data
+ * Based on arcade: maxpath.c:MP_TargetSpeed()
+ *
+ * Interpolates speed between waypoints and applies off-path slowdown.
+ *
+ * @param car_index Car to update
+ */
+void MP_TargetSpeed(s32 car_index) {
+    ArcadeMPCTL *cp;
+    MaxPathPoint *mp, *nmp;
+    s32 nmpi;
+    f32 interp, yrel, offsc;
+
+    if (car_index < 0 || car_index >= MAX_LINKS) {
+        return;
+    }
+
+    cp = &arcade_mpctl[car_index];
+    if (cp->mpath_index < 0 || gMPathTables[cp->mpath_index] == NULL) {
+        cp->tgtspd = 100.0f;
+        return;
+    }
+
+    mp = &gMPathTables[cp->mpath_index][cp->mpi];
+    nmpi = NextMaxPath(cp->mpi, cp->mpath_index);
+    nmp = &gMPathTables[cp->mpath_index][nmpi];
+
+    /* Interpolate speed in current interval */
+    if (cp->len > 0.001f) {
+        interp = cp->xrel / cp->len;
+    } else {
+        interp = 0.0f;
+    }
+    if (interp < 0.0f) {
+        interp = 0.0f;
+    } else if (interp > 1.0f) {
+        interp = 1.0f;
+    }
+
+    cp->tgtspd = mp->speed + (interp * (nmp->speed - mp->speed));
+    cp->tgtspd *= g_MPspdscale;
+
+    /* Slow down if off target line */
+    yrel = (cp->yrel > 0.0f) ? cp->yrel : -cp->yrel;
+    if (yrel < 0.1f) {
+        offsc = 1.0f;
+    } else if (yrel > 80.0f) {
+        offsc = 0.8f;
+    } else {
+        /* offsc = 1 - (yrel/30)^2 simplified */
+        offsc = 1.0f - (yrel * yrel * 0.00003125f);
+    }
+
+    cp->tgtspd *= offsc;
+
+    /* Minimum speed (28 mph = ~41 fps at 1.4667 fps/mph) */
+    if (cp->tgtspd < 28.0f) {
+        cp->tgtspd = 28.0f;
+    }
+}
+
+/**
+ * MP_TargetSteerPos - Calculate target steering position
+ * Based on arcade: maxpath.c:MP_TargetSteerPos()
+ *
+ * Looks ahead on the path and calculates target position for steering.
+ *
+ * @param car_index Car to update
+ */
+void MP_TargetSteerPos(s32 car_index) {
+    ArcadeMPCTL *cp;
+    MaxPathPoint *mp, *nmp;
+    s32 nmpi;
+    f32 x, y, z, dist, tgtdist, interp;
+    s32 iter;
+
+    if (car_index < 0 || car_index >= MAX_LINKS) {
+        return;
+    }
+
+    cp = &arcade_mpctl[car_index];
+    if (cp->mpath_index < 0 || gMPathTables[cp->mpath_index] == NULL) {
+        return;
+    }
+
+    mp = &gMPathTables[cp->mpath_index][cp->mpi];
+    nmpi = NextMaxPath(cp->mpi, cp->mpath_index);
+    nmp = &gMPathTables[cp->mpath_index][nmpi];
+
+    /* Look ahead g_lookahd feet and interpolate steer position */
+    tgtdist = g_lookahd + cp->xrel;
+    dist = cp->len;
+    tgtdist -= dist;
+
+    /* Walk forward through waypoints until we've covered lookahead distance */
+    iter = 0;
+    while (tgtdist > 0.0f && iter < 100) {
+        mp = nmp;
+        nmpi = NextMaxPath(nmpi, cp->mpath_index);
+        nmp = &gMPathTables[cp->mpath_index][nmpi];
+
+        x = nmp->pos[0] - mp->pos[0];
+        y = nmp->pos[1] - mp->pos[1];
+        z = nmp->pos[2] - mp->pos[2];
+        dist = sqrtf(x * x + y * y + z * z);
+        tgtdist -= dist;
+        iter++;
+    }
+
+    /* Calculate interpolation factor */
+    if (dist < 1e-5f) {
+        interp = 1.0f;
+    } else {
+        interp = (dist + tgtdist) / dist;
+    }
+
+    if (interp < 0.0f) {
+        interp = 0.0f;
+    } else if (interp > 1.0f) {
+        interp = 1.0f;
+    }
+
+    /* Interpolate target position */
+    cp->tgtpos[0] = mp->pos[0] + (interp * (nmp->pos[0] - mp->pos[0]));
+    cp->tgtpos[1] = mp->pos[1] + (interp * (nmp->pos[1] - mp->pos[1]));
+    cp->tgtpos[2] = mp->pos[2] + (interp * (nmp->pos[2] - mp->pos[2]));
+}
+
+/**
+ * AdjustSpeed - Convert target speed to throttle/brake inputs
+ * Based on arcade: maxpath.c:AdjustSpeed()
+ *
+ * Uses proportional control to match current speed to target.
+ *
+ * @param car_index Car index
+ * @param tspd Target speed
+ */
+void AdjustSpeed(s32 car_index, f32 tspd) {
+    CarData *car;
+    f32 dspd, delta_speed;
+
+    if (car_index < 0 || car_index >= MAX_LINKS) {
+        return;
+    }
+
+    car = &car_array[car_index];
+
+    /* Scale up target slightly for responsiveness */
+    tspd *= 1.05f;
+
+    /* Get current speed */
+    dspd = car->mph;
+
+    /* Calculate speed difference */
+    delta_speed = tspd - dspd;
+
+    /* Reduce responsiveness when slowing down */
+    if (delta_speed < 0.0f) {
+        delta_speed *= 0.5f;
+    }
+
+    /* Update throttle with proportional control */
+    lastthrottle[car_index] += (s32)(delta_speed * 750.0f);
+
+    /* Apply brake if throttle is very negative */
+    if (lastthrottle[car_index] < -3000) {
+        lastbrake[car_index] -= (lastthrottle[car_index] + 3000) / 4;
+    } else {
+        lastbrake[car_index] = 0;
+    }
+
+    /* Clamp throttle to valid range (0 to 0x1000) */
+    if (lastthrottle[car_index] < 0) {
+        lastthrottle[car_index] = 0;
+    } else if (lastthrottle[car_index] > 0x1000) {
+        lastthrottle[car_index] = 0x1000;
+    }
+
+    /* Clamp brake to valid range */
+    if (lastbrake[car_index] < 0) {
+        lastbrake[car_index] = 0;
+    } else if (lastbrake[car_index] > 0x1000) {
+        lastbrake[car_index] = 0x1000;
+    }
+}
+
+/**
+ * AdjustSteer - Convert target position to steering wheel input
+ * Based on arcade: maxpath.c:AdjustSteer()
+ *
+ * Calculates angle to target and converts to steering wheel position.
+ *
+ * @param car_index Car index
+ * @param pos Target position (relative to car) [3]
+ */
+void AdjustSteer(s32 car_index, f32 *pos) {
+    f32 angle;
+    f32 dx, dz;
+
+    if (car_index < 0 || car_index >= MAX_LINKS) {
+        return;
+    }
+
+    /* Apply lateral bias for smoother steering */
+    /* pos[1] is lateral in arcade (model Y), pos[0] is forward (model X) */
+    /* For N64 we'll use pos[0] = X lateral, pos[2] = Z forward */
+
+    /* Get direction to target */
+    dx = pos[0];  /* lateral */
+    dz = pos[2];  /* forward */
+
+    /* Calculate angle using atan2 (returns -PI to PI) */
+    /* Simplified: use ratio for small angles */
+    if (dz > 0.001f || dz < -0.001f) {
+        angle = dx / dz;
+    } else {
+        angle = (dx > 0) ? 1.0f : -1.0f;
+    }
+
+    /* Scale angle to wheel range (-0x1000 to 0x1000) */
+    /* Multiply by ~2600 to match arcade scaling */
+    lastwheel[car_index] = (s32)(angle * 2607.6f);
+
+    /* Clamp to valid range */
+    if (lastwheel[car_index] < -0x1000) {
+        lastwheel[car_index] = -0x1000;
+    }
+    if (lastwheel[car_index] > 0x1000) {
+        lastwheel[car_index] = 0x1000;
+    }
+}
+
+/**
+ * MaxPathControls - Generate AI inputs from path following
+ * Based on arcade: maxpath.c:MaxPathControls()
+ *
+ * Main entry point for drone control - combines all path following logic.
+ *
+ * @param car_index Car index
+ */
+void MaxPathControls(s32 car_index) {
+    ArcadeMPCTL *cp;
+    CarData *car;
+    f32 tspd;
+    f32 rpos[3];  /* Relative position to target */
+
+    if (car_index < 0 || car_index >= MAX_LINKS) {
+        return;
+    }
+
+    if (gMPRecording) {
+        /* During recording, zero out controls */
+        lastthrottle[car_index] = 0;
+        lastbrake[car_index] = 0;
+        lastwheel[car_index] = 0;
+        return;
+    }
+
+    cp = &arcade_mpctl[car_index];
+    car = &car_array[car_index];
+
+    /* Update current path segment */
+    MP_FindInterval(car_index);
+
+    /* Calculate target speed */
+    MP_TargetSpeed(car_index);
+
+    /* Calculate target steering position */
+    MP_TargetSteerPos(car_index);
+
+    /* Apply drone speed scaling */
+    tspd = cp->tgtspd;
+
+    /* Minimum speed cap */
+    if (tspd < 100.0f) {
+        if (cp->tgtspd < 100.0f) {
+            tspd = cp->tgtspd;
+        } else {
+            tspd = 100.0f;
+        }
+    }
+
+    /* Convert target position to relative coordinates */
+    rpos[0] = cp->tgtpos[0] - car->dr_pos[0];
+    rpos[1] = cp->tgtpos[1] - car->dr_pos[1];
+    rpos[2] = cp->tgtpos[2] - car->dr_pos[2];
+
+    /* Apply speed and steering control */
+    AdjustSpeed(car_index, tspd);
+    AdjustSteer(car_index, rpos);
+
+    /* Check for abort condition (stuck too long) */
+    /* Arcade: abort if interval_time > 1 second and past first few points */
+    if ((IRQTIME - cp->interval_time > ONE_SEC) && (cp->mpi > 10)) {
+        /* Mark as needing abort/reset */
+    }
+
+    /* Check for way off path */
+    if (fabsf(cp->xrel) > 100.0f || fabsf(cp->yrel) > 100.0f) {
+        /* Way off path - needs reset */
+    }
+}
+
+/**
+ * InitMaxPath - Initialize maxpath system for race
+ * Based on arcade: maxpath.c:InitMaxPath()
+ *
+ * @param record Recording mode (-1 = playback, >=0 = record to that slot)
+ */
+void InitMaxPath(s32 record) {
+    s32 i, j;
+    MaxPathHeader *header;
+    MaxPathPoint *mp;
+
+    gNumMPaths = 0;
+
+    /* Set up path tables and count active paths */
+    for (i = 0; i < MAX_MPATHS; i++) {
+        if (gMPathHeaders[i] != NULL && gMPathHeaders[i]->mpath_active) {
+            gMPathList[gNumMPaths] = i;
+            gNumMPaths++;
+        }
+    }
+
+    /* Initialize recording state */
+    if (record != -1) {
+        gMPRecording = 1;
+        gMPRecordIndex = 0;
+    } else {
+        gMPRecording = 0;
+
+        /* Initialize per-car control state */
+        for (i = 0; i < MAX_LINKS; i++) {
+            arcade_mpctl[i].mpi = 0;
+            arcade_mpctl[i].mpath_index = 0;
+            arcade_mpctl[i].default_path = 0;
+            arcade_mpctl[i].new_mpi = -1;
+            arcade_mpctl[i].xrel = 0.0f;
+            arcade_mpctl[i].yrel = 0.0f;
+            arcade_mpctl[i].cyrel = 0.0f;
+            arcade_mpctl[i].len = 0.0f;
+            arcade_mpctl[i].tgtspd = 100.0f;
+            arcade_mpctl[i].interval_time = IRQTIME;
+
+            lastwheel[i] = 0;
+            lastbrake[i] = 0;
+            lastthrottle[i] = 0;
+        }
+    }
+
+    loop_stamp = 0;
+    best_loop_time = 9999999;
+}
+
+/**
+ * CalcTargetPoint - Calculate world position for steering target
+ * Based on arcade target point calculation logic
+ *
+ * @param car_index Car index
+ * @param out_pos Output world position [3]
+ */
+void CalcTargetPoint(s32 car_index, f32 *out_pos) {
+    ArcadeMPCTL *cp;
+
+    if (car_index < 0 || car_index >= MAX_LINKS) {
+        out_pos[0] = 0.0f;
+        out_pos[1] = 0.0f;
+        out_pos[2] = 0.0f;
+        return;
+    }
+
+    cp = &arcade_mpctl[car_index];
+
+    out_pos[0] = cp->tgtpos[0];
+    out_pos[1] = cp->tgtpos[1];
+    out_pos[2] = cp->tgtpos[2];
+}
+
+/**
+ * GetPathNodePosition - Get world position of a path node
+ *
+ * @param path_index Which path
+ * @param node_index Which node on path
+ * @param out_pos Output position [3]
+ */
+void GetPathNodePosition(s32 path_index, s32 node_index, f32 *out_pos) {
+    MaxPathPoint *mp;
+
+    if (path_index < 0 || path_index >= gNumMPaths) {
+        out_pos[0] = 0.0f;
+        out_pos[1] = 0.0f;
+        out_pos[2] = 0.0f;
+        return;
+    }
+
+    if (gMPathTables[path_index] == NULL) {
+        out_pos[0] = 0.0f;
+        out_pos[1] = 0.0f;
+        out_pos[2] = 0.0f;
+        return;
+    }
+
+    mp = &gMPathTables[path_index][node_index];
+    out_pos[0] = mp->pos[0];
+    out_pos[1] = mp->pos[1];
+    out_pos[2] = mp->pos[2];
+}
+
+/**
+ * sync_maxpath_to_last_checkpoint - Sync car to checkpoint on path
+ * Based on arcade: maxpath.c:sync_maxpath_to_last_checkpoint()
+ *
+ * @param node Car index
+ */
+void sync_maxpath_to_last_checkpoint(s16 node) {
+    s32 index;
+    ArcadeMPCTL *cp;
+
+    if (node < 0 || node >= MAX_LINKS) {
+        return;
+    }
+
+    cp = &arcade_mpctl[node];
+
+    /* Find nearest maxpath point to last checkpoint */
+    /* In full implementation, would use path_to_maxpath mapping */
+    index = cp->mpi;  /* Placeholder - keep current */
+
+    cp->new_mpi = index;
+    cp->mpi = index;
+}
+
+/**
+ * GetMPathControlSteer - Get steering value for a car
+ *
+ * @param car_index Car index
+ * @return Steering value (-1.0 to 1.0)
+ */
+f32 GetMPathControlSteer(s32 car_index) {
+    if (car_index < 0 || car_index >= MAX_LINKS) {
+        return 0.0f;
+    }
+    return (f32)lastwheel[car_index] / 4096.0f;
+}
+
+/**
+ * GetMPathControlThrottle - Get throttle value for a car
+ *
+ * @param car_index Car index
+ * @return Throttle value (0.0 to 1.0)
+ */
+f32 GetMPathControlThrottle(s32 car_index) {
+    if (car_index < 0 || car_index >= MAX_LINKS) {
+        return 0.0f;
+    }
+    return (f32)lastthrottle[car_index] / 4096.0f;
+}
+
+/**
+ * GetMPathControlBrake - Get brake value for a car
+ *
+ * @param car_index Car index
+ * @return Brake value (0.0 to 1.0)
+ */
+f32 GetMPathControlBrake(s32 car_index) {
+    if (car_index < 0 || car_index >= MAX_LINKS) {
+        return 0.0f;
+    }
+    return (f32)lastbrake[car_index] / 4096.0f;
+}
+
+/**
+ * GetMPathCurrentIndex - Get current path index for a car
+ *
+ * @param car_index Car index
+ * @return Current waypoint index
+ */
+s32 GetMPathCurrentIndex(s32 car_index) {
+    if (car_index < 0 || car_index >= MAX_LINKS) {
+        return 0;
+    }
+    return arcade_mpctl[car_index].mpi;
+}
+
+/**
+ * GetMPathTargetSpeed - Get target speed for a car
+ *
+ * @param car_index Car index
+ * @return Target speed in mph
+ */
+f32 GetMPathTargetSpeed(s32 car_index) {
+    if (car_index < 0 || car_index >= MAX_LINKS) {
+        return 100.0f;
+    }
+    return arcade_mpctl[car_index].tgtspd;
+}
+
+/**
+ * SetMPathIndex - Set car to specific path index
+ *
+ * @param car_index Car index
+ * @param new_mpi New waypoint index
+ */
+void SetMPathIndex(s32 car_index, s32 new_mpi) {
+    if (car_index < 0 || car_index >= MAX_LINKS) {
+        return;
+    }
+    arcade_mpctl[car_index].new_mpi = new_mpi;
+}
+
+/**
+ * SetMPathPath - Set which path a car follows
+ *
+ * @param car_index Car index
+ * @param path_index Path to follow (0-7)
+ */
+void SetMPathPath(s32 car_index, s32 path_index) {
+    if (car_index < 0 || car_index >= MAX_LINKS) {
+        return;
+    }
+    if (path_index < 0 || path_index >= MAX_MPATHS) {
+        return;
+    }
+    arcade_mpctl[car_index].mpath_index = path_index;
+    arcade_mpctl[car_index].default_path = path_index;
 }

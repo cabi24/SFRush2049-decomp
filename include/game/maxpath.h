@@ -167,4 +167,125 @@ void maxpath_interpolate_pos(s32 p1, s32 p2, f32 t, f32 *out);
 void maxpath_interpolate_dir(s32 p1, s32 p2, f32 t, f32 *out);
 f32 maxpath_interpolate_speed(s32 p1, s32 p2, f32 t);
 
+/* ========================================================================
+ * Arcade-compatible function declarations (maxpath.c)
+ * These match the arcade function signatures exactly
+ * ======================================================================== */
+
+/**
+ * InitMaxPath - Initialize maxpath system for race
+ * Based on arcade: maxpath.c:InitMaxPath()
+ *
+ * @param record Recording mode (-1 = playback, >=0 = record to that slot)
+ */
+void InitMaxPath(s32 record);
+
+/**
+ * MaxPathControls - Generate AI inputs from path following
+ * Based on arcade: maxpath.c:MaxPathControls()
+ *
+ * Main entry point for drone control - combines all path following logic.
+ *
+ * @param car_index Car index
+ */
+void MaxPathControls(s32 car_index);
+
+/**
+ * MP_FindInterval - Find and update current path segment
+ * Based on arcade: maxpath.c:MP_FindInterval()
+ *
+ * @param car_index Car to update
+ */
+void MP_FindInterval(s32 car_index);
+
+/**
+ * MP_TargetSpeed - Calculate target speed from path data
+ * Based on arcade: maxpath.c:MP_TargetSpeed()
+ *
+ * @param car_index Car to update
+ */
+void MP_TargetSpeed(s32 car_index);
+
+/**
+ * MP_TargetSteerPos - Calculate target steering position
+ * Based on arcade: maxpath.c:MP_TargetSteerPos()
+ *
+ * @param car_index Car to update
+ */
+void MP_TargetSteerPos(s32 car_index);
+
+/**
+ * AdjustSpeed - Convert target speed to throttle/brake inputs
+ * Based on arcade: maxpath.c:AdjustSpeed()
+ *
+ * @param car_index Car index
+ * @param tspd Target speed
+ */
+void AdjustSpeed(s32 car_index, f32 tspd);
+
+/**
+ * AdjustSteer - Convert target position to steering wheel input
+ * Based on arcade: maxpath.c:AdjustSteer()
+ *
+ * @param car_index Car index
+ * @param pos Target position (relative to car) [3]
+ */
+void AdjustSteer(s32 car_index, f32 *pos);
+
+/**
+ * PrevMaxPath - Get previous maxpath index with lap wrap
+ * Based on arcade: maxpath.c:PrevMaxPath()
+ *
+ * @param mpi Current index
+ * @param path_index Path to use
+ * @return Previous index
+ */
+s32 PrevMaxPath(s32 mpi, s16 path_index);
+
+/**
+ * NextMaxPath - Get next maxpath index with lap wrap
+ * Based on arcade: maxpath.c:NextMaxPath()
+ *
+ * @param mpi Current index
+ * @param path_index Path to use
+ * @return Next index
+ */
+s32 NextMaxPath(s32 mpi, s16 path_index);
+
+/**
+ * CalcTargetPoint - Calculate world position for steering target
+ *
+ * @param car_index Car index
+ * @param out_pos Output world position [3]
+ */
+void CalcTargetPoint(s32 car_index, f32 *out_pos);
+
+/**
+ * GetPathNodePosition - Get world position of a path node
+ *
+ * @param path_index Which path
+ * @param node_index Which node on path
+ * @param out_pos Output position [3]
+ */
+void GetPathNodePosition(s32 path_index, s32 node_index, f32 *out_pos);
+
+/**
+ * sync_maxpath_to_last_checkpoint - Sync car to checkpoint on path
+ * Based on arcade: maxpath.c:sync_maxpath_to_last_checkpoint()
+ *
+ * @param node Car index
+ */
+void sync_maxpath_to_last_checkpoint(s16 node);
+
+/* Control output accessors */
+f32 GetMPathControlSteer(s32 car_index);
+f32 GetMPathControlThrottle(s32 car_index);
+f32 GetMPathControlBrake(s32 car_index);
+s32 GetMPathCurrentIndex(s32 car_index);
+f32 GetMPathTargetSpeed(s32 car_index);
+
+/* Control setters */
+void SetMPathIndex(s32 car_index, s32 new_mpi);
+void SetMPathPath(s32 car_index, s32 path_index);
+
 #endif /* MAXPATH_H */
