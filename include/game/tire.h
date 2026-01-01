@@ -248,10 +248,44 @@ void dotireforce(MODELDAT *m, f32 tirev[3], f32 ottirev[3], UVect *tireuvs,
 void make_tire_road_uvs(UVect *caruvs, f32 steer, UVect *roaduvs, UVect *truvs);
 
 /**
- * frictioncircle - Friction circle calculation (MODELDAT version)
+ * frictioncircle - Friction circle calculation (original arcade signature)
  * Based on arcade: tires.c:frictioncircle()
+ *
+ * This is the core tire force calculation using the Milliken friction circle model.
+ * The friction circle limits total tire force based on normal force and friction
+ * coefficient. Traction and lateral forces share this limit.
+ *
+ * @param m         Model data (mass, dt, weight, idt)
+ * @param tirev     Tire velocity in tire coords (X=forward, Y=lateral, Z=vertical)
+ * @param normalforce   Normal force on tire (lbs)
+ * @param torque    Applied torque (ft-lbs)
+ * @param tire      Tire parameters
+ * @param sfp       Output: sideforce (lateral force, lbs)
+ * @param trp       Output: traction force (longitudinal force, lbs)
+ */
+void frictioncircle(ModelDat *m, f32 tirev[3], f32 normalforce, f32 torque,
+                    TireDes *tire, f32 *sfp, f32 *trp);
+
+/**
+ * frictioncircle_m - Friction circle calculation with MODELDAT pointer
+ * Based on arcade: tires.c:frictioncircle()
+ *
+ * Wrapper for tire_friction_circle that uses the full MODELDAT/CarPhysics pointer.
+ * Extracts mass, weight, dt, and idt fields for the calculation.
  */
 void frictioncircle_m(MODELDAT *m, f32 tirev[3], f32 normalforce, f32 torque,
                       tiredes *tire, f32 *sfp, f32 *trp);
+
+/**
+ * calcalpha - Calculate slip angle from tire velocity
+ * Based on arcade: tires.c:calcalpha()
+ *
+ * Computes the slip angle (lateral slip) from the tire velocity vector.
+ * Uses DAMPSPEED threshold to prevent numerical instability at low speeds.
+ *
+ * @param tirev     Tire velocity in tire coords
+ * @return          Slip angle (radians, positive = counterclockwise)
+ */
+f32 calcalpha(f32 tirev[3]);
 
 #endif /* TIRE_H */
