@@ -59,6 +59,27 @@
 #define BOOST_METER_PICKUP      50.0f   /* Meter from pickup */
 #define BOOST_METER_STUNT       25.0f   /* Meter from stunt */
 
+/*
+ * Arcade-compatible boost constants from reference/repos/rushtherock/game/
+ * See: stree.h, modeldat.h, mdrive.c
+ */
+
+/* Surface boost mask from arcade stree.h */
+#define SURF_BOOST_MASK         0x0F00  /* 4-bit boost value in surface flags */
+#define SURF_BOOST_SHIFT        8       /* Shift to extract boost value */
+#define SURF_BOOST_MAX          15      /* Maximum roadboost value (0-15) */
+
+/* Arcade time_fudge calculation constants from mdrive.c:
+ * m->time_fudge = m->catchup * m->time_boost * (1.0 + (F32)m->roadboost[0] * 0.06667)
+ * This scales the model time to make cars faster/slower
+ */
+#define ROADBOOST_SCALE         0.06667f    /* Per-level roadboost multiplier */
+#define ROADBOOST_BASE          1.0f        /* Base multiplier (no boost) */
+#define ROADBOOST_MAX_MULT      2.0f        /* Maximum from roadboost (1.0 + 15*0.06667) */
+
+/* Number of wheels for surface detection */
+#define NUM_WHEELS              4
+
 /* Active boost effect */
 typedef struct ActiveBoost {
     u8      active;             /* Boost is active */
@@ -211,5 +232,32 @@ void boost_draw_pads(void);
 /* Debug */
 void boost_debug_print(s32 player);
 void boost_give_full(s32 player);
+
+/*
+ * Arcade-compatible roadboost surface system
+ * From reference/repos/rushtherock/game/modeldat.h and mdrive.c
+ *
+ * The arcade stores per-wheel boost values from the road surface.
+ * These are combined with catchup and time_boost to form time_fudge.
+ */
+
+/* Per-car road boost data (arcade: part of MODELDAT structure) */
+typedef struct RoadBoostData {
+    u16     roadboost[NUM_WHEELS];  /* 4-bit boost per wheel (0=none, 15=max) */
+    f32     time_boost;             /* Player-controlled boost (1.0 = normal) */
+    f32     catchup;                /* AI catchup boost (1.0 = normal) */
+    f32     time_fudge;             /* Combined: catchup * time_boost * roadboost */
+} RoadBoostData;
+
+/* Roadboost functions (arcade-compatible) */
+void roadboost_init(RoadBoostData *rb);
+void roadboost_reset(RoadBoostData *rb);
+void roadboost_set_wheel(RoadBoostData *rb, s32 wheel, u16 boost_value);
+void roadboost_clear_all(RoadBoostData *rb);
+f32 roadboost_calc_time_fudge(RoadBoostData *rb);
+u16 roadboost_extract_from_surface(u16 surface_flags);
+
+/* Global roadboost data for each car slot */
+extern RoadBoostData gRoadBoost[4];
 
 #endif /* BOOST_H */

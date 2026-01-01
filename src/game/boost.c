@@ -948,3 +948,152 @@ void boost_give_full(s32 player) {
     pb->meter = BOOST_METER_MAX;
     pb->charges = pb->max_charges;
 }
+
+/*
+ * =============================================================================
+ * Arcade-compatible roadboost surface system
+ * From reference/repos/rushtherock/game/mdrive.c and stree.c
+ *
+ * The arcade uses a per-wheel roadboost value extracted from surface flags.
+ * Combined with catchup and time_boost to form the final time_fudge multiplier.
+ * =============================================================================
+ */
+
+/* Global roadboost data for each car slot */
+RoadBoostData gRoadBoost[4];
+
+/**
+ * roadboost_init - Initialize road boost data
+ * Arcade: Part of init_model() in mdrive.c line 581
+ */
+#ifdef NON_MATCHING
+void roadboost_init(RoadBoostData *rb) {
+    s32 i;
+
+    if (rb == NULL) {
+        return;
+    }
+
+    for (i = 0; i < NUM_WHEELS; i++) {
+        rb->roadboost[i] = 0;
+    }
+    rb->time_boost = 1.0f;
+    rb->catchup = 1.0f;
+    rb->time_fudge = 1.0f;
+}
+#else
+INCLUDE_ASM("asm/us/nonmatchings/game/boost", roadboost_init);
+#endif
+
+/**
+ * roadboost_reset - Reset road boost to defaults
+ * Arcade: Part of init_model() reset path
+ */
+#ifdef NON_MATCHING
+void roadboost_reset(RoadBoostData *rb) {
+    s32 i;
+
+    if (rb == NULL) {
+        return;
+    }
+
+    for (i = 0; i < NUM_WHEELS; i++) {
+        rb->roadboost[i] = 0;
+    }
+    /* Keep time_boost and catchup, just clear surface boosts */
+    rb->time_fudge = rb->catchup * rb->time_boost;
+}
+#else
+INCLUDE_ASM("asm/us/nonmatchings/game/boost", roadboost_reset);
+#endif
+
+/**
+ * roadboost_set_wheel - Set roadboost value for a wheel
+ * Arcade: stree.c line 323
+ *   m->roadboost[whl] = (savesp->flags & SURF_BOOST_MASK) >> SURF_BOOST_SHIFT;
+ */
+#ifdef NON_MATCHING
+void roadboost_set_wheel(RoadBoostData *rb, s32 wheel, u16 boost_value) {
+    if (rb == NULL) {
+        return;
+    }
+    if (wheel < 0 || wheel >= NUM_WHEELS) {
+        return;
+    }
+
+    /* Clamp to 4-bit value (0-15) */
+    if (boost_value > SURF_BOOST_MAX) {
+        boost_value = SURF_BOOST_MAX;
+    }
+
+    rb->roadboost[wheel] = boost_value;
+}
+#else
+INCLUDE_ASM("asm/us/nonmatchings/game/boost", roadboost_set_wheel);
+#endif
+
+/**
+ * roadboost_clear_all - Clear roadboost for all wheels
+ * Arcade: road.c line 44
+ *   m->roadboost[i] = 0;
+ */
+#ifdef NON_MATCHING
+void roadboost_clear_all(RoadBoostData *rb) {
+    s32 i;
+
+    if (rb == NULL) {
+        return;
+    }
+
+    for (i = 0; i < NUM_WHEELS; i++) {
+        rb->roadboost[i] = 0;
+    }
+}
+#else
+INCLUDE_ASM("asm/us/nonmatchings/game/boost", roadboost_clear_all);
+#endif
+
+/**
+ * roadboost_calc_time_fudge - Calculate combined time multiplier
+ * Arcade: mdrive.c line 1086-1087
+ *   // scaled roadboost = 1.0 to 2.0
+ *   m->time_fudge = m->catchup * m->time_boost * (1.0 + (F32)m->roadboost[0] * 0.06667);
+ *
+ * Uses wheel 0 (front-left) for the boost value, matching arcade behavior.
+ * Returns the combined multiplier for physics time scaling.
+ */
+#ifdef NON_MATCHING
+f32 roadboost_calc_time_fudge(RoadBoostData *rb) {
+    f32 roadboost_mult;
+
+    if (rb == NULL) {
+        return 1.0f;
+    }
+
+    /* Calculate roadboost multiplier: 1.0 to ~2.0 based on roadboost[0] */
+    roadboost_mult = ROADBOOST_BASE + ((f32)rb->roadboost[0] * ROADBOOST_SCALE);
+
+    /* Combine all factors */
+    rb->time_fudge = rb->catchup * rb->time_boost * roadboost_mult;
+
+    return rb->time_fudge;
+}
+#else
+INCLUDE_ASM("asm/us/nonmatchings/game/boost", roadboost_calc_time_fudge);
+#endif
+
+/**
+ * roadboost_extract_from_surface - Extract boost value from surface flags
+ * Arcade: stree.c line 323
+ *   m->roadboost[whl] = (savesp->flags & SURF_BOOST_MASK) >> SURF_BOOST_SHIFT;
+ *
+ * @param surface_flags Raw surface flags from track data
+ * @return Boost value (0-15)
+ */
+#ifdef NON_MATCHING
+u16 roadboost_extract_from_surface(u16 surface_flags) {
+    return (surface_flags & SURF_BOOST_MASK) >> SURF_BOOST_SHIFT;
+}
+#else
+INCLUDE_ASM("asm/us/nonmatchings/game/boost", roadboost_extract_from_surface);
+#endif
