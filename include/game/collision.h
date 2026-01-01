@@ -77,8 +77,7 @@ void world_to_body(f32 world_pos[3], f32 body_pos[3], f32 uvs[3][3], f32 rwr[3])
 /* Wall collisions */
 void check_wall_collision(s32 car_index);
 
-/* Utility */
-f32 vec_dist_sq(f32 a[3], f32 b[3]);
+/* Utility - note: vec_dist_sq declared in vecmath.h */
 void apply_collision_forces(s32 car_index);
 void set_car_collidable(s32 car_index, s32 collidable);
 void set_car_in_game(s32 car_index, s32 in_game);
@@ -91,12 +90,16 @@ void set_collision_radius(s32 car_index, f32 radius);
  * Arcade-compatible function aliases (collision.c)
  * ======================================================================== */
 
-/* Forward declare MODELDAT from physics.h for arcade compatibility */
-struct CarPhysics;
-typedef struct CarPhysics MODELDAT;
+/* Include physics.h for MODELDAT (CarPhysics) definition
+ * physics.h defines CarPhysics/MODELDAT and includes the arcade
+ * dead reckoning (PhysReckon) and collision fields.
+ */
+#include "game/physics.h"
+#include "game/vecmath.h"
 
-/* Maximum linked cars (arcade MAX_LINKS) */
-#define MAX_LINKS       8
+/* Damage appearance masks and shifts (defined in collision.c) */
+extern const u32 gDamageMask[5];    /* Damage bitmasks per quad (0-3) and top (4) */
+extern const s16 gDamageShift[5];   /* Bit shift per damage quad */
 
 /* Point-in-body test (arcade: PointInBody) - index-based */
 s32 PointInBody(s32 car_index, f32 pt[3]);
@@ -144,8 +147,5 @@ void CollForceOtherIn_m(MODELDAT *m, MODELDAT *m2, f32 vec[3], s32 corner);
 
 /* Force calculation - MODELDAT pointer version */
 f32 collForceNormal_m(MODELDAT *m, u32 coll_alg, f32 din, f32 vin);
-
-/* Vector math aliases (arcade vecmath.c) */
-#define dotprod(a, b)       vec_dot((a), (b))
 
 #endif /* COLLISION_H */

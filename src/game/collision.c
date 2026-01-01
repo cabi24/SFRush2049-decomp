@@ -18,6 +18,8 @@
 #include "types.h"
 #include "game/collision.h"
 #include "game/structs.h"
+#include "game/vecmath.h"
+#include <math.h>
 
 /* External OS functions */
 extern u32 osGetCount(void);
@@ -29,7 +31,7 @@ extern CarData car_array[];
 extern GameStruct game_struct;
 extern s32 num_active_cars;
 
-/* External vector math */
+/* External vector math (local declarations for existing functions) */
 extern f32 vec_dot(const f32 a[3], const f32 b[3]);
 extern void vec_sub(const f32 a[3], const f32 b[3], f32 result[3]);
 extern void vec_add(const f32 a[3], const f32 b[3], f32 result[3]);
@@ -38,6 +40,29 @@ extern void vec_copy(const f32 src[3], f32 dst[3]);
 
 /* Collision data for all cars */
 CollisionData col_data[MAX_CARS];
+
+/* Model array (physics state for all cars) - arcade name for car_physics */
+CarPhysics model[MAX_LINKS];
+
+/* Damage appearance masks and shifts (arcade collision.c)
+ * Damage level is stored in the appearance field as 2 bits per quadrant.
+ * Quads: 0=FR, 1=FL, 2=RR, 3=RL, 4=Top
+ */
+const u32 gDamageMask[5] = {
+    0x0003,     /* Quad 0 (front-right): bits 0-1 */
+    0x000C,     /* Quad 1 (front-left):  bits 2-3 */
+    0x0030,     /* Quad 2 (rear-right):  bits 4-5 */
+    0x00C0,     /* Quad 3 (rear-left):   bits 6-7 */
+    0x0300      /* Quad 4 (top):         bits 8-9 */
+};
+
+const s16 gDamageShift[5] = {
+    0,          /* Quad 0: shift 0 */
+    2,          /* Quad 1: shift 2 */
+    4,          /* Quad 2: shift 4 */
+    6,          /* Quad 3: shift 6 */
+    8           /* Quad 4: shift 8 */
+};
 
 /* Default collision box dimensions (half-sizes in feet) */
 static const f32 default_body_corners[4][3] = {
@@ -105,7 +130,7 @@ void init_all_collisions(void) {
  * @param b Second point
  * @return Squared distance
  */
-f32 vec_dist_sq(f32 a[3], f32 b[3]) {
+f32 vec_dist_sq(const f32 a[3], const f32 b[3]) {
     f32 dx = a[0] - b[0];
     f32 dy = a[1] - b[1];
     f32 dz = a[2] - b[2];

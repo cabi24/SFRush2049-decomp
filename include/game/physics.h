@@ -183,11 +183,52 @@ typedef struct UVect {
     f32     fpuvs[3][3];    /* Forward, Left, Up vectors in world coords */
 } UVect;
 
+/**
+ * PhysReckon - Dead reckoning data for physics (arcade RECKON)
+ * Used for network synchronization and collision detection
+ */
+typedef struct PhysReckon {
+    /* Base data for dead reckoning */
+    s32     base_time;          /* Base time (10 microsec units) */
+    f32     base_fudge;         /* Time fudge factor */
+    f32     base_RWA[3];        /* Base real world acceleration */
+    f32     base_RWV[3];        /* Base real world velocity */
+    f32     base_RWR[3];        /* Base real world position */
+    f32     base_W[3];          /* Base angular velocity */
+    f32     base_UV[3][3];      /* Base rotation matrix */
+    f32     base_airdist[4];    /* Shadow distance per tire */
+    f32     base_airvel[4];     /* Shadow velocity per tire */
+    f32     base_quat[4];       /* Base quaternion */
+    f32     delta_quat[4];      /* Delta quaternion */
+    s16     num_quat_steps;     /* Steps to target quat */
+    s16     torque_rk;          /* Engine torque (ft*lbs) */
+    u16     rpm_rk;             /* Engine RPM */
+    u16     pad_rk;             /* Padding */
+    f32     steerangle_rk;      /* Front tire steering angle */
+    f32     tireW[4];           /* Tire rolling velocity */
+    f32     suscomp[4];         /* Suspension compression */
+    f32     airdist[4];         /* Distance to road per tire */
+    u32     look;               /* Engine type/spare */
+    u32     appearance_rk;      /* Visual appearance */
+    /* Dead reckoned data (current state) */
+    f32     RWV[3];             /* Real world velocity */
+    f32     RWR[3];             /* Real world position */
+    f32     UV[3][3];           /* Rotation matrix */
+} PhysReckon;
+
+/* Forward declaration for track pieces (arcade STREETYP) */
+struct StreetType;
+typedef struct StreetType STREETYP;
+
 /* Car physics state - simplified MODELDAT */
 typedef struct CarPhysics {
     /* Position and orientation */
     f32     RWR[3];         /* Real world position (center of mass) */
     UVect   UV;             /* Orientation matrix */
+
+    /* World-frame velocities (arcade RWV, RWA) */
+    f32     RWV[3];         /* Real world velocity (ft/sec) */
+    f32     RWA[3];         /* Real world acceleration (ft/sec^2) */
 
     /* Velocities (body frame) */
     f32     V[3];           /* Linear velocity */
@@ -311,12 +352,35 @@ typedef struct CarPhysics {
     f32     peak_center_force[2][3];    /* Min/max center forces */
     f32     peak_body_force[2][3];      /* Min/max body forces */
 
+    /* Network/linking data (arcade modeldat.h) */
+    s16     slot;               /* Index into gLink array */
+    s16     in_game;            /* Player in current game */
+    s16     collidable;         /* Collision enabled flag */
+    s16     drone_type;         /* 0=no car, 1=drone, 2=human */
+    s16     engine_type;        /* Engine sound model type */
+    s16     body_type;          /* Car body style */
+    u32     appearance;         /* Visual appearance flags (damage, etc) */
+
+    /* Track reference (for collision init) */
+    STREETYP *lasttp[4];        /* Last track piece per tire */
+
+    /* Dead reckoning data (arcade RECKON) */
+    PhysReckon reckon;          /* Dead reckoning state */
+
 } CarPhysics;
+
+/* Maximum linked cars (arcade MAX_LINKS) */
+#define MAX_LINKS       8
 
 /* External physics state */
 extern CarPhysics car_physics[];
+extern CarPhysics model[];          /* Arcade-compatible model array alias */
 extern const f32 as_scale[];
 extern const f32 as_road[][NUM_DIFF_OPT];
+
+/* Damage appearance masks and shifts (arcade collision.c) */
+extern const u32 gDamageMask[5];    /* Damage bitmasks per quad (0-3) and top (4) */
+extern const s16 gDamageShift[5];   /* Bit shift per damage quad */
 extern const f32 as_air[][NUM_DIFF_OPT];
 
 /* Initialization */
@@ -364,13 +428,8 @@ void physics_checkok(CarPhysics *m);
 /* Communication (network/display) */
 void physics_mcommunication(CarPhysics *m);
 
-/* Vector math helpers */
-void vec_add(f32 a[3], f32 b[3], f32 out[3]);
-void vec_sub(f32 a[3], f32 b[3], f32 out[3]);
-void vec_copy(f32 src[3], f32 dst[3]);
-void vec_scale(f32 v[3], f32 s, f32 out[3]);
-void vec_cross(f32 a[3], f32 b[3], f32 out[3]);
-f32  vec_magnitude(f32 v[3]);
+/* Vector math helpers - see game/vecmath.h for full declarations */
+/* Note: vec_add, vec_sub, vec_copy, vec_scale, vec_cross are declared in vecmath.h */
 void rw_to_body(f32 rw[3], f32 body[3], UVect *uv);
 void body_to_rw(f32 body[3], f32 rw[3], UVect *uv);
 
@@ -451,16 +510,7 @@ void dotireforce(MODELDAT *m, f32 tireV[3], f32 otherV[3],
 /* Angular acceleration (drivsym.c) */
 void calcaa(MODELDAT *m, f32 M[3], f32 AA[3]);
 
-/* Vector math (vecmath.c arcade aliases) */
-void vecadd(f32 a[3], f32 b[3], f32 out[3]);
-void vecsub(f32 a[3], f32 b[3], f32 out[3]);
-void veccopy(f32 src[3], f32 dst[3]);
-void scalmul(f32 v[3], f32 s, f32 out[3]);
-void crossprod(f32 a[3], f32 b[3], f32 out[3]);
-f32  magnitude(f32 v[3]);
-
-/* Coordinate transform (drivsym.c) */
-void rwtobod(f32 rw[3], f32 body[3], UVect *uv);
-void bodtorw(f32 body[3], f32 rw[3], UVect *uv);
+/* Vector math and coordinate transforms - see game/vecmath.h for full declarations */
+/* Arcade names: vecadd, vecsub, veccopy, scalmul, crossprod, magnitude, rwtobod, bodtorw */
 
 #endif /* PHYSICS_H */
