@@ -24,6 +24,12 @@
 #define ROAD_WALL       9   /* Wall collision */
 #define ROAD_SHORTCUT   10  /* Shortcut surface */
 
+/* Arcade road.c constants */
+#define degtosdeg       (0x4000/90)     /* Degrees to short degrees */
+#define PAVE            ROAD_ASPHALT    /* Arcade alias for pavement */
+#define AIR             ROAD_AIR        /* Arcade alias for air */
+#define DIRT            ROAD_DIRT       /* Arcade alias for dirt */
+
 /* Road interaction flags */
 #define ROAD_FLAG_BOOST     0x01    /* Surface provides boost */
 #define ROAD_FLAG_SHORTCUT  0x02    /* On shortcut path */
@@ -115,5 +121,31 @@ void init_road(CarPhysics *m);
 /* Vector interpolation helpers */
 void uvinterp(s16 *uv1, s32 c1, s32 s1, s16 *uv2, s16 *res);
 void vecinterp(s32 v1[3], s32 c1, s32 s1, s32 v2[3], s32 res[3]);
+
+/* ========================================================================
+ * Arcade-compatible function aliases (road.c)
+ * ======================================================================== */
+
+/* Arcade type alias */
+typedef CarPhysics MODELDAT;    /* Defined in physics.h but needed here */
+
+/* Main road functions (road.c) */
+void road(MODELDAT *m);
+
+/* Surface detection (stree.c in arcade) */
+void tiresurf(MODELDAT *m, f32 *tire_rwr, f32 *igpos,
+              u8 *roadcode, f32 road_uvs[3][3], s32 tire_index);
+void bodysurf(MODELDAT *m, f32 *body_rwr, f32 *body_rwv,
+              f32 uvs[3][3], s32 corner_index);
+
+/* Unit vector helpers (unitvecs.c in arcade) */
+void makesuvs(UVect *uv);
+void fmatcopy(f32 *src, f32 *dst);
+
+/* Extended precision vector copy */
+void epveccopy(f32 src[3], f32 dst[3]);
+
+/* Collision call (from road.c) */
+void collision(MODELDAT *m);
 
 #endif /* ROAD_H */

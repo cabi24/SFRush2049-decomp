@@ -423,3 +423,100 @@ void vecinterp(s32 v1[3], s32 c1, s32 s1, s32 v2[3], s32 res[3]) {
         res[i] = (s32)((v1[i] * fc1 + v2[i] * fc2) * fis1);
     }
 }
+
+/* ========================================================================
+ * Arcade-compatible function implementations (road.c)
+ * ======================================================================== */
+
+/**
+ * road - Main road interaction update
+ * Arcade: road.c:road()
+ *
+ * Handles tire surface detection, body collision, suspension updates,
+ * and calls collision detection.
+ */
+void road(MODELDAT *m) {
+    road_update(m);
+}
+
+/**
+ * tiresurf - Find tire-to-ground interaction
+ * Arcade: stree.c:tiresurf()
+ *
+ * @param m Car physics state
+ * @param tire_rwr World position of tire
+ * @param igpos Output: ground position beneath tire
+ * @param roadcode Output: surface type code
+ * @param road_uvs Output: road surface orientation
+ * @param tire_index Which tire (0-3)
+ */
+void tiresurf(MODELDAT *m, f32 *tire_rwr, f32 *igpos,
+              u8 *roadcode, f32 road_uvs[3][3], s32 tire_index) {
+    road_tire_surface(m, tire_rwr, igpos, roadcode, road_uvs, tire_index);
+}
+
+/**
+ * bodysurf - Find body corner collision
+ * Arcade: stree.c:bodysurf()
+ *
+ * @param m Car physics state
+ * @param body_rwr World position of body corner
+ * @param body_rwv Velocity of body corner
+ * @param uvs Output: surface orientation
+ * @param corner_index Which corner (0-3)
+ */
+void bodysurf(MODELDAT *m, f32 *body_rwr, f32 *body_rwv,
+              f32 uvs[3][3], s32 corner_index) {
+    road_body_surface(m, body_rwr, body_rwv, uvs, corner_index);
+}
+
+/**
+ * makesuvs - Make short unit vectors from float unit vectors
+ * Arcade: unitvecs.c:makesuvs()
+ *
+ * Converts floating point orientation matrix to short integer format.
+ * Not needed on N64 (we use floats throughout), so this is a no-op.
+ *
+ * @param uv Unit vector structure to convert
+ */
+void makesuvs(UVect *uv) {
+    /* On N64, we keep everything as floats, so this is a no-op */
+    /* Arcade version converts fpuvs to short suvs for fixed-point math */
+}
+
+/**
+ * fmatcopy - Copy float matrix (9 elements)
+ * Arcade: unitvecs.c:fmatcopy()
+ *
+ * @param src Source matrix (3x3 as linear array)
+ * @param dst Destination matrix
+ */
+void fmatcopy(f32 *src, f32 *dst) {
+    s32 i;
+    for (i = 0; i < 9; i++) {
+        dst[i] = src[i];
+    }
+}
+
+/**
+ * epveccopy - Extended precision vector copy
+ * Arcade: road.c uses this for RWR with extended precision
+ *
+ * On N64, regular float precision is sufficient, so this is just a copy.
+ *
+ * @param src Source vector
+ * @param dst Destination vector
+ */
+void epveccopy(f32 src[3], f32 dst[3]) {
+    dst[0] = src[0];
+    dst[1] = src[1];
+    dst[2] = src[2];
+}
+
+/**
+ * collision - Check and apply car-car collisions
+ * Arcade: collision.c:collision()
+ *
+ * This is a forward declaration - actual implementation in collision.c
+ */
+/* collision() is declared extern at top of file */
