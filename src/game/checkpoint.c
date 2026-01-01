@@ -1,7 +1,7 @@
 /**
  * checkpoint.c - Checkpoint and lap counting for Rush 2049 N64
  *
- * Based on arcade game/checkpoint.c
+ * Based on arcade game/checkpoint.c (1996 Time Warner Interactive)
  * Handles checkpoint detection, lap counting, race positions
  *
  * Key functions mapped from arcade:
@@ -10,6 +10,8 @@
  * - CheckCPs -> per-frame checkpoint detection
  * - PassedCP -> checkpoint crossing handler
  * - get_next_checkpoint -> checkpoint sequence
+ *
+ * Arcade source: reference/repos/rushtherock/game/checkpoint.c
  */
 
 #include "types.h"
@@ -28,17 +30,59 @@ extern GameStruct game_struct;
 /* External from vecmath */
 extern f32 vec_dot(const f32 a[3], const f32 b[3]);
 extern void vec_sub(const f32 a[3], const f32 b[3], f32 result[3]);
+extern f32 vec_magnitude(const f32 v[3]);
+extern void vec_direction(const f32 v[3], f32 result[3]);
 
 /* Track-related externals (from track data) */
 extern s32 trackno;                 /* Current track index */
 extern s32 num_active_cars;         /* Number of cars in race */
 extern s32 this_node;               /* Local player index */
+extern s32 gThisNode;               /* Arcade: local node */
+extern s32 gMirrorMode;             /* Mirror mode flag */
+extern s32 demo_game;               /* Demo mode flag */
+extern s32 attract_effects;         /* Attract mode sound effects */
+extern s32 mpath_edit;              /* Maxpath editor mode */
+
+/* Path data from track (arcade: extern in checkpoint.c) */
+typedef struct PathPoint {
+    s32 pos[3];                     /* Position (z, x, -y) in 1/40 units */
+} PathPoint;
+extern PathPoint *path;             /* Path point array */
+
+/* External functions from other modules */
+extern void init_stree(void);       /* Initialize stree data */
+extern u32 lsqrt(u32 val);          /* Integer square root */
+extern void find_maxpath_intervals(void);
+extern void check_mpath_save(s8 cancel);
+extern void set_maxpath_index(void *m, s32 index);
 
 /* Timing externals */
 #define ONE_SEC     60              /* Frames per second */
 #define IRQTIME     frame_counter   /* Current time in frames */
 
-/* Checkpoint system state */
+/* Arcade sound codes (stubs) */
+#define S_FINALL        0x100
+#define S_2L            0x101
+#define S_3L            0x102
+#define S_4L            0x103
+#define S_5L            0x104
+#define S_6L            0x105
+#define S_7L            0x106
+#define S_8L            0x107
+#define S_9L            0x108
+#define S_CHKPNTSTATIC  0x110
+#define S_WINNER        0x111
+#define S_BEEP1         0x112
+#define S_LEADERLIGHT   0x113
+#define S_KLEADERLIGHT  0x114
+#define S_KWINNER       0x115
+
+/* Sound macro (stub on N64) */
+#define SOUND(x)        /* No-op for now */
+
+/* ========================================================================
+ * Checkpoint system state (arcade globals from checkpoint.c)
+ * ======================================================================== */
 u32 number_checkpoints;
 u32 last_checkpoint_time;
 s32 first_place_time;
@@ -50,24 +94,255 @@ u32 time_to_be_given;
 u32 total_time_given;
 u32 total_time_box_time;
 
-/* Track/checkpoint data */
+/* Additional arcade globals */
+u32 old_last_cp_index;
+u32 index1, index2;
+s16 closest_cp_index[MAX_CPS + 2];
+u32 post_object[8];
+s8  in_first_place;
+s8  cancel_mpath_lap;
+f32 lap_loop_distance;
+s16 close_chkpnt;
+s16 path_point_index;
+s8  end_game_flag;
+s8  lap_flag;
+
+/* Track/checkpoint data arrays */
 CheckPoint TrackCPs[MAX_TRACKS][MAX_CHECKPOINTS];
 Track CP_Track[MAX_TRACKS];
 TrackData track_data[MAX_TRACKS];
 
-/* Path data (arcade: extern in checkpoint.c) */
-u16 path_start;                     /* Start index in path array */
-u16 path_end;                       /* End index in path array */
-u16 path_loop;                      /* Loop point for lap restart */
+/* Path data for position calculation */
+u16 path_start;
+u16 path_end;
+u16 path_loop;
 s16 path_dist_index[MAX_CHECKPOINTS];
 u16 path_dist[MAX_PATH_POINTS];
 s16 path_index[MAX_PATH_POINTS];
 s16 path_to_maxpath[MAX_PATH_POINTS];
 s16 num_path_points;
 
-/* Local state */
-static s8 in_first_place;
-static s8 end_game_flag;
+/* Arcade laps_to_go sound array (arcade: checkpoint.c:305) */
+const s16 laps_to_go[10] = {
+    S_FINALL, S_2L, S_3L, S_4L, S_5L,
+    S_6L, S_7L, S_8L, S_9L, 0
+};
+
+/* Track lengths (laps) - placeholder until track data loaded */
+s16 track_len[MAX_TRACKS] = { 3, 3, 3, 3, 3, 3, 3, 3 };
+s16 difficulty[MAX_TRACKS] = { 0, 0, 0, 0, 0, 0, 0, 0 };
+
+/* Init checkpoint data (extern, defined in track data) */
+InitCheckPoint *InitCP_Track[MAX_TRACKS];
+Init_Track_Data init_track_data[MAX_TRACKS];
+
+/* ========================================================================
+ * init_cp_data - Initialize all checkpoint structures
+ * Based on arcade: checkpoint.c:init_cp_data() (lines 318-530)
+ *
+ * This is called once at game startup to:
+ * 1. Link CP_Track pointers to TrackCPs arrays
+ * 2. Copy Init_Track_Data to Track_Data (converting seconds to frames)
+ * 3. Copy InitCheckPoint to CheckPoint for current track
+ * 4. Calculate checkpoint UVS matrices for plane tests
+ * 5. Find closest track center for each checkpoint
+ * ======================================================================== */
+void init_cp_data(void) {
+    s16 i, j, k;
+    s16 t_cent, t_fwd, t_back;
+    s32 temp[3];
+    f32 delta1[3], delta2[3], pos[3];
+    f32 dist[MAX_CPS];
+    f32 x, y, z, dx, dy, dz, cur_dist;
+    f32 px, py, pz;
+    CheckPoint *chkpnt;
+    InitCheckPoint *initchkpnt;
+    Track_Data *trck;
+    s32 itrk;
+
+    /* Link CP_Track checkpoint pointers to TrackCPs arrays */
+    for (i = 0; i < MAX_TRACKS; i++) {
+        CP_Track[i].chk_point = &TrackCPs[i][0];
+    }
+
+    trck = &track_data[trackno];
+
+    /* Initialize data for target track (convert seconds to frames) */
+    itrk = trackno;
+    for (i = 0; i < 8; i++) {
+        trck->start_time[i] = init_track_data[itrk].start_time[i] * ONE_SEC;
+        trck->end_time[i] = init_track_data[itrk].end_time[i] * ONE_SEC;
+    }
+
+    trck->loop_chkpnt = init_track_data[itrk].loop_chkpnt;
+    trck->finish_line = init_track_data[itrk].finish_line;
+    trck->before_finish = init_track_data[itrk].before_finish;
+
+    /* Initialize checkpoint structure for current track */
+    initchkpnt = InitCP_Track[itrk];
+    chkpnt = CP_Track[trackno].chk_point;
+
+    /* Skip if init data not set up yet */
+    if (initchkpnt == NULL) {
+        CP_Track[trackno].num_checkpoints = 0;
+        return;
+    }
+
+    /* Copy init checkpoint data to runtime checkpoint data */
+    for (j = 0; j < MAX_CPS; j++) {
+        chkpnt[j].logical_cp = initchkpnt[j].logical_cp;
+        for (k = 0; k < 2; k++) {
+            chkpnt[j].bonus_t[k] = initchkpnt[j].best_t[k] * ONE_SEC;
+        }
+        chkpnt[j].radius = initchkpnt[j].radius;
+
+        if (chkpnt[j].logical_cp == -1) {
+            break;
+        }
+    }
+
+    CP_Track[trackno].num_checkpoints = j;
+
+    /* Initialize important track data (path_end etc.) */
+    init_stree();
+
+    /* Reload pointers after init_stree may have modified them */
+    initchkpnt = InitCP_Track[itrk];
+    chkpnt = CP_Track[trackno].chk_point;
+
+    /* Initialize distance array */
+    for (i = 0; i < CP_Track[trackno].num_checkpoints; i++) {
+        dist[i] = 9999999.0f;
+    }
+
+    px = py = pz = 99999.0f * 40.0f;
+
+    /* Determine closest track center for each checkpoint (linear search) */
+    for (i = (s16)path_start; i < (s16)path_end; i++) {
+        /* Convert path coordinates (path is in 1/40 foot units, z/x/-y order) */
+        x = (f32)path[i].pos[1] / 40.0f;
+        y = (f32)(-path[i].pos[2]) / 40.0f;
+        z = (f32)path[i].pos[0] / 40.0f;
+
+        px = x;
+        py = y;
+        pz = z;
+
+        for (j = 0; j < CP_Track[trackno].num_checkpoints; j++) {
+            /* Swap checkpoint x for mirrored tracks */
+            if (gMirrorMode) {
+                dx = -initchkpnt[j].pos[0] - x;
+            } else {
+                dx = initchkpnt[j].pos[0] - x;
+            }
+            dy = initchkpnt[j].pos[1] - y;
+            dz = initchkpnt[j].pos[2] - z;
+
+            cur_dist = dx * dx + dy * dy + dz * dz;
+
+            if (cur_dist < dist[j]) {
+                dist[j] = cur_dist;
+                chkpnt[j].track_cent = i;
+            }
+        }
+    }
+
+    /* Determine track direction from checkpoint ordering */
+    k = 0;
+    for (j = 0; j < CP_Track[trackno].num_checkpoints; j++) {
+        i = chkpnt[j].track_cent;
+
+        if (j != 0) {
+            k += (i < chkpnt[j - 1].track_cent);
+        }
+
+        /* Save checkpoint position from nearest path point */
+        chkpnt[j].pos[0] = (f32)path[i].pos[1] / 40.0f;
+        chkpnt[j].pos[1] = (f32)(-path[i].pos[2]) / 40.0f;
+        chkpnt[j].pos[2] = (f32)path[i].pos[0] / 40.0f;
+    }
+
+    /* Set track direction based on checkpoint ordering */
+    if (k > 1) {
+        CP_Track[trackno].direction = -1;
+    } else {
+        CP_Track[trackno].direction = 1;
+    }
+
+    /* Calculate UVS matrices for all checkpoints */
+    for (k = 0; k < CP_Track[trackno].num_checkpoints; k++) {
+        t_cent = chkpnt[k].track_cent;
+        t_fwd = get_next_center(t_cent, CP_Track[trackno].direction);
+        t_back = get_prev_center(t_cent, CP_Track[trackno].direction);
+
+        /* delta1 = cent - back */
+        temp[0] = path[t_cent].pos[0] - path[t_back].pos[0];
+        temp[1] = path[t_cent].pos[1] - path[t_back].pos[1];
+        temp[2] = path[t_cent].pos[2] - path[t_back].pos[2];
+        delta1[0] = ((f32)temp[1]) / 40.0f;
+        delta1[1] = 0.0f;
+        delta1[2] = ((f32)temp[0]) / 40.0f;
+
+        /* delta2 = forward - cent */
+        temp[0] = path[t_fwd].pos[0] - path[t_cent].pos[0];
+        temp[1] = path[t_fwd].pos[1] - path[t_cent].pos[1];
+        temp[2] = path[t_fwd].pos[2] - path[t_cent].pos[2];
+        delta2[0] = ((f32)temp[1]) / 40.0f;
+        delta2[1] = 0.0f;
+        delta2[2] = ((f32)temp[0]) / 40.0f;
+
+        /* Normalize deltas - use simple normalization */
+        {
+            f32 mag1 = delta1[0] * delta1[0] + delta1[2] * delta1[2];
+            f32 mag2 = delta2[0] * delta2[0] + delta2[2] * delta2[2];
+
+            if (mag1 > 0.01f) {
+                f32 inv_mag = 1.0f / (f32)lsqrt((u32)(mag1 * 1000000.0f)) * 1000.0f;
+                delta1[0] *= inv_mag;
+                delta1[2] *= inv_mag;
+            }
+            if (mag2 > 0.01f) {
+                f32 inv_mag = 1.0f / (f32)lsqrt((u32)(mag2 * 1000000.0f)) * 1000.0f;
+                delta2[0] *= inv_mag;
+                delta2[2] *= inv_mag;
+            }
+        }
+
+        /* Average two deltas to get forward direction */
+        pos[0] = (delta1[0] + delta2[0]) / 2.0f;
+        pos[1] = 0.0f;
+        pos[2] = (delta1[2] + delta2[2]) / 2.0f;
+
+        /* Normalize averaged direction */
+        {
+            f32 mag = pos[0] * pos[0] + pos[2] * pos[2];
+            if (mag < 0.01f) {
+                pos[0] = 0.0f;
+                pos[2] = 1.0f;
+            } else {
+                f32 inv_mag = 1.0f / (f32)lsqrt((u32)(mag * 1000000.0f)) * 1000.0f;
+                pos[0] *= inv_mag;
+                pos[2] *= inv_mag;
+            }
+        }
+
+        /* Build UVS matrix (X = right, Y = up, Z = forward) */
+        /* X axis (perpendicular to forward, in XZ plane) */
+        chkpnt[k].uvs[0][0] = pos[2];
+        chkpnt[k].uvs[1][0] = 0.0f;
+        chkpnt[k].uvs[2][0] = pos[0];
+
+        /* Y axis (up) */
+        chkpnt[k].uvs[0][1] = 0.0f;
+        chkpnt[k].uvs[1][1] = 1.0f;
+        chkpnt[k].uvs[2][1] = 0.0f;
+
+        /* Z axis (forward - used for plane test) */
+        chkpnt[k].uvs[0][2] = -pos[0];
+        chkpnt[k].uvs[1][2] = 0.0f;
+        chkpnt[k].uvs[2][2] = pos[2];
+    }
+}
 
 /**
  * get_next_checkpoint - Get next checkpoint in sequence
@@ -745,4 +1020,108 @@ void update_all_positions(void) {
     } else {
         in_first_place = 0;
     }
+}
+
+/* ========================================================================
+ * Arcade Debug/Display Functions (stubs for N64)
+ * These are from arcade checkpoint.c but not needed on N64
+ * ======================================================================== */
+
+/**
+ * FPutCheckpoints - Place checkpoint debug objects
+ * Arcade: checkpoint.c:FPutCheckpoints() (line 1136)
+ *
+ * On arcade, this places checkpoint visualization objects.
+ * Stub on N64 since we don't have the debug display system.
+ */
+void FPutCheckpoints(s16 track) {
+    /* Stub - no debug checkpoint objects on N64 */
+    (void)track;
+}
+
+/**
+ * FPlaceOneCP - Place one checkpoint object
+ * Arcade: checkpoint.c:FPlaceOneCP() (line 1157)
+ *
+ * @param chkpnt Checkpoint to place
+ * @param cp_objnum Object index
+ * @return Object handle (0 on N64 since not implemented)
+ */
+u32 FPlaceOneCP(CheckPoint *chkpnt, s32 cp_objnum) {
+    /* Stub - would return MBOX_NewObject on arcade */
+    (void)chkpnt;
+    (void)cp_objnum;
+    return 0;
+}
+
+/**
+ * display_chkpnts - Display checkpoint table (debug)
+ * Arcade: checkpoint.c:display_chkpnts() (line 1434)
+ */
+void display_chkpnts(s16 mode) {
+    /* Stub - arcade debug display */
+    (void)mode;
+}
+
+/**
+ * add_chkpnt - Add checkpoint (debug editor)
+ * Arcade: checkpoint.c:add_chkpnt() (line 1498)
+ */
+void add_chkpnt(s16 mode) {
+    /* Stub - arcade checkpoint editor */
+    (void)mode;
+}
+
+/**
+ * del_chkpnt - Delete checkpoint (debug editor)
+ * Arcade: checkpoint.c:del_chkpnt() (line 1503)
+ */
+void del_chkpnt(s16 mode) {
+    /* Stub - arcade checkpoint editor */
+    (void)mode;
+}
+
+/**
+ * fwd_chkpnt - Forward checkpoint (debug editor)
+ * Arcade: checkpoint.c:fwd_chkpnt() (line 1508)
+ */
+void fwd_chkpnt(s16 mode) {
+    /* Stub - arcade checkpoint editor */
+    (void)mode;
+}
+
+/**
+ * back_chkpnt - Back checkpoint (debug editor)
+ * Arcade: checkpoint.c:back_chkpnt() (line 1537)
+ */
+void back_chkpnt(s16 mode) {
+    /* Stub - arcade checkpoint editor */
+    (void)mode;
+}
+
+/**
+ * display_path_points - Display path point table (debug)
+ * Arcade: checkpoint.c:display_path_points() (line 1572)
+ */
+void display_path_points(s16 mode) {
+    /* Stub - arcade debug display */
+    (void)mode;
+}
+
+/**
+ * fwd_path_points - Forward path points (debug)
+ * Arcade: checkpoint.c:fwd_path_points() (line 1609)
+ */
+void fwd_path_points(s16 mode) {
+    /* Stub - arcade path editor */
+    (void)mode;
+}
+
+/**
+ * back_path_points - Back path points (debug)
+ * Arcade: checkpoint.c:back_path_points() (line 1625)
+ */
+void back_path_points(s16 mode) {
+    /* Stub - arcade path editor */
+    (void)mode;
 }
