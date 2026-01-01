@@ -117,12 +117,33 @@ void sound_enable(s32 enable);
 
 /******* ARCADE-COMPATIBLE SOUND INTERFACE *******/
 
+/* Arcade coordinate transforms (sounds.c) */
+#define X_COORD_TRANS(x)          ((s16)(((x)*3)/10))     /* feet to meters */
+#define Y_COORD_TRANS(y)          ((s16)(((y)*3)/10))     /* feet to meters */
+#define LX_COORD_TRANS(x)         ((s32)(((x)*3)/10))     /* feet to meters (long) */
+#define LY_COORD_TRANS(y)         ((s32)(((y)*3)/10))     /* feet to meters (long) */
+#define ANGLE_COORD_TRANS(t)      (128 - (0x1ff & ((t) >> 7)))
+#define MOOB_VELOCITY_XFORM(v)    ((s16)(((v)*447)/120))  /* mph to mm/frame */
+#define ENGINE_VELOCITY_XFORM(v)  ((v)<<1)
+
+/* Sound queue constants */
+#define SND_Q_SIZE          4096
+#define SND_Q_MASK          (SND_Q_SIZE-1)
+
+/* Engine and radio counts */
+#define NUM_ENGINES         4
+#define MAX_RADIO           7
+
 /* GUTS system commands */
 #define S_STOP_ALL          0x8000
 #define S_ATTRACT_MODE      0x8001
 #define S_GAME_MODE         0x8002
 #define S_SET_GAME_VOL      0x8006
 #define S_SET_ATTR_VOL      0x8007
+#define S_MOOB_LISTENER     0x8010
+#define S_ENGINE_CHANGE_PF  0x8020
+#define S_ENGINE_CHANGE_PFV 0x8021
+#define S_ENGINE_CHANGE_AUTO 0x8022
 
 /* Music commands */
 #define S_SELECT            0x8046
@@ -188,5 +209,47 @@ void start_select_music(void);
 void stop_select_music(void);
 void start_car_select_music(void);
 void stop_car_select_music(void);
+
+/* ========================================================================
+ * Arcade-compatible function aliases (sounds.c)
+ * ======================================================================== */
+
+/* Per-frame update */
+void sndUpdate(void);
+
+/* Listener (camera) position */
+s32 sndListenerUpdate(s32 x, s32 y, u16 velocity, u16 vel_angle, u16 facing_angle);
+
+/* Static sound (non-moving source) */
+s32 sndStartStaticUnpitched(u16 objID, u8 handle, u8 priority, s16 x, s16 y);
+s32 sndStartStaticPitched(u16 objID, u8 handle, u8 priority,
+                          s32 x, s32 y, u16 pitch, u8 filter, u8 Q);
+
+/* Doppler sound (moving source) */
+s32 sndStartDopplerUnpitched(u16 objID, u8 handle, u8 priority,
+                             s32 x, s32 y, u16 velocity, u16 vel_angle);
+s32 sndStartDopplerPitched(u16 objID, u8 handle, u8 priority,
+                           s32 x, s32 y, u16 velocity, u16 vel_angle,
+                           u16 pitch, u8 filter, u8 Q);
+
+/* Sound modification */
+s32 sndPositionSound(u16 objId, u16 angle, u16 volume);
+s32 sndChangePosition(u8 handle, s16 x, s16 y);
+s32 sndChangeVelocity(u8 handle, u16 velocity, u16 vel_angle);
+s32 sndChangePitch(u8 handle, u16 pitch);
+s32 sndChangeFilter(u8 handle, u8 filter, u8 Q);
+
+/* Engine sounds */
+s32 sndStartEngine(u16 engineID, u16 pitch, u8 filter_frequency, u8 filter_Q);
+s32 sndChangeEngine_PF(u16 pitch, u8 filter_frequency, u8 filter_Q);
+s32 sndStartEngineWithVolume(u16 engineID, u16 pitch,
+                             u8 filter_frequency, u8 filter_Q, u8 volume);
+s32 sndChangeEngineWithVolume(u16 pitch, u8 filter_frequency, u8 filter_Q, u8 volume);
+s32 sndUpdateAutoEngine(u16 speed);
+s32 sndStartManualEngine(u16 engineID, u16 rpm, u16 etorque);
+s32 sndUpdateManualEngine(u16 rpm, s16 etorque);
+
+/* Kill sound */
+s32 sndKillSound(u8 handle);
 
 #endif /* SOUND_H */

@@ -741,6 +741,207 @@ void stop_car_select_music(void) {
     SOUND(S_KCARSELECT);
 }
 
+/* ========================================================================
+ * Arcade-compatible function implementations (sounds.c)
+ * ======================================================================== */
+
+/**
+ * sndUpdate - Per-frame sound queue update
+ * Arcade: sounds.c:sndUpdate()
+ */
+void sndUpdate(void) {
+    sound_update();
+}
+
+/**
+ * sndListenerUpdate - Update listener (camera) position
+ * Arcade: sounds.c:sndListenerUpdate()
+ */
+s32 sndListenerUpdate(s32 x, s32 y, u16 velocity, u16 vel_angle, u16 facing_angle) {
+    /* On N64, 3D audio positioning is handled differently */
+    /* For now, just acknowledge the update */
+    return 0;
+}
+
+/**
+ * sndStartStaticUnpitched - Start static unpitched sound
+ * Arcade: sounds.c:sndStartStaticUnpitched()
+ */
+s32 sndStartStaticUnpitched(u16 objID, u8 handle, u8 priority, s16 x, s16 y) {
+    f32 pos[3];
+    pos[0] = (f32)x;
+    pos[1] = (f32)y;
+    pos[2] = 0.0f;
+    sound_play_3d(objID, pos);
+    return 0;
+}
+
+/**
+ * sndStartStaticPitched - Start static pitched sound
+ * Arcade: sounds.c:sndStartStaticPitched()
+ */
+s32 sndStartStaticPitched(u16 objID, u8 handle, u8 priority,
+                          s32 x, s32 y, u16 pitch, u8 filter, u8 Q) {
+    f32 pos[3];
+    pos[0] = (f32)x;
+    pos[1] = (f32)y;
+    pos[2] = 0.0f;
+    sound_play_3d(objID, pos);
+    /* Pitch and filter would be applied via N64 audio */
+    return 0;
+}
+
+/**
+ * sndStartDopplerUnpitched - Start doppler unpitched sound
+ * Arcade: sounds.c:sndStartDopplerUnpitched()
+ */
+s32 sndStartDopplerUnpitched(u16 objID, u8 handle, u8 priority,
+                             s32 x, s32 y, u16 velocity, u16 vel_angle) {
+    f32 pos[3];
+    pos[0] = (f32)x;
+    pos[1] = (f32)y;
+    pos[2] = 0.0f;
+    sound_play_3d(objID, pos);
+    return 0;
+}
+
+/**
+ * sndStartDopplerPitched - Start doppler pitched sound
+ * Arcade: sounds.c:sndStartDopplerPitched()
+ */
+s32 sndStartDopplerPitched(u16 objID, u8 handle, u8 priority,
+                           s32 x, s32 y, u16 velocity, u16 vel_angle,
+                           u16 pitch, u8 filter, u8 Q) {
+    f32 pos[3];
+    pos[0] = (f32)x;
+    pos[1] = (f32)y;
+    pos[2] = 0.0f;
+    sound_play_3d(objID, pos);
+    return 0;
+}
+
+/**
+ * sndPositionSound - Position a sound in space
+ * Arcade: sounds.c:sndPositionSound()
+ */
+s32 sndPositionSound(u16 objId, u16 angle, u16 volume) {
+    sound_play_vol(objId, (u8)(volume >> 1));
+    return 0;
+}
+
+/**
+ * sndChangePosition - Change sound position
+ * Arcade: sounds.c:sndChangePosition()
+ */
+s32 sndChangePosition(u8 handle, s16 x, s16 y) {
+    /* Position changes not directly supported on N64 */
+    return 0;
+}
+
+/**
+ * sndChangeVelocity - Change sound velocity (for doppler)
+ * Arcade: sounds.c:sndChangeVelocity()
+ */
+s32 sndChangeVelocity(u8 handle, u16 velocity, u16 vel_angle) {
+    /* Velocity changes not directly supported on N64 */
+    return 0;
+}
+
+/**
+ * sndChangePitch - Change sound pitch
+ * Arcade: sounds.c:sndChangePitch()
+ */
+s32 sndChangePitch(u8 handle, u16 pitch) {
+    /* Would apply pitch via alSndpSetPitch */
+    return 0;
+}
+
+/**
+ * sndChangeFilter - Change sound filter
+ * Arcade: sounds.c:sndChangeFilter()
+ */
+s32 sndChangeFilter(u8 handle, u8 filter, u8 Q) {
+    /* Filters not directly supported on N64 */
+    return 0;
+}
+
+/**
+ * sndStartEngine - Start engine sound
+ * Arcade: sounds.c:sndStartEngine()
+ */
+s32 sndStartEngine(u16 engineID, u16 pitch, u8 filter_frequency, u8 filter_Q) {
+    sound_start_engine(0);  /* Start engine for car 0 */
+    return 0;
+}
+
+/**
+ * sndChangeEngine_PF - Change engine pitch and filter
+ * Arcade: sounds.c:sndChangeEngine_PF()
+ */
+s32 sndChangeEngine_PF(u16 pitch, u8 filter_frequency, u8 filter_Q) {
+    /* Engine pitch change via N64 audio */
+    return 0;
+}
+
+/**
+ * sndStartEngineWithVolume - Start engine with volume
+ * Arcade: sounds.c:sndStartEngineWithVolume()
+ */
+s32 sndStartEngineWithVolume(u16 engineID, u16 pitch,
+                             u8 filter_frequency, u8 filter_Q, u8 volume) {
+    sound_start_engine(0);
+    return 0;
+}
+
+/**
+ * sndChangeEngineWithVolume - Change engine with volume
+ * Arcade: sounds.c:sndChangeEngineWithVolume()
+ */
+s32 sndChangeEngineWithVolume(u16 pitch, u8 filter_frequency, u8 filter_Q, u8 volume) {
+    return 0;
+}
+
+/**
+ * sndUpdateAutoEngine - Update automatic engine model
+ * Arcade: sounds.c:sndUpdateAutoEngine()
+ */
+s32 sndUpdateAutoEngine(u16 speed) {
+    /* Convert speed to RPM-like value */
+    f32 rpm = (f32)speed * 50.0f + 1000.0f;
+    sound_update_engine(0, rpm, 1.0f);
+    return 0;
+}
+
+/**
+ * sndStartManualEngine - Start manual engine model
+ * Arcade: sounds.c:sndStartManualEngine()
+ */
+s32 sndStartManualEngine(u16 engineID, u16 rpm, u16 etorque) {
+    sound_start_engine(0);
+    sound_update_engine(0, (f32)rpm, (f32)etorque / 32768.0f);
+    return 0;
+}
+
+/**
+ * sndUpdateManualEngine - Update manual engine model
+ * Arcade: sounds.c:sndUpdateManualEngine()
+ */
+s32 sndUpdateManualEngine(u16 rpm, s16 etorque) {
+    f32 throttle;
+    throttle = (etorque > 0) ? ((f32)etorque / 32768.0f) : 0.0f;
+    sound_update_engine(0, (f32)rpm, throttle);
+    return 0;
+}
+
+/**
+ * sndKillSound - Kill a sound by handle
+ * Arcade: sounds.c kill sound functionality
+ */
+s32 sndKillSound(u8 handle) {
+    /* On N64, we don't track handles the same way */
+    return 0;
+}
+
 /******* DECOMPILED ROM FUNCTIONS *******/
 
 /* N64 Sound handle structure (from ROM analysis) */
