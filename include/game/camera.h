@@ -37,6 +37,27 @@
 #define CAM_ELASTICITY2     0.35f   /* Secondary elasticity */
 #define CAM_MAX_VEL         80      /* Max velocity for camera */
 
+/* Arcade camera constants (camera.c) */
+#define wormoff_y           CAM_WORM_OFFSET_Y       /* Arcade alias */
+#define wormoff_z           CAM_WORM_OFFSET_Z       /* Arcade alias */
+#define driveroff_x         CAM_DRIVER_OFFSET_X     /* Arcade alias */
+#define driveroff_y         CAM_DRIVER_OFFSET_Y     /* Arcade alias */
+#define driveroff_z         CAM_DRIVER_OFFSET_Z     /* Arcade alias */
+#define acc_elasticity      CAM_ELASTICITY          /* Arcade alias */
+#define acc_elasticity2     CAM_ELASTICITY2         /* Arcade alias */
+#define MAX_VEL             CAM_MAX_VEL             /* Arcade alias */
+
+/* View 3 camera constants (arcade: camera.c) */
+#define V3_MAX_MAGVEL       100.0f      /* Max velocity for distance scaling */
+#define V3_MAX_STRECH       0.125f      /* Max stretch factor */
+#define V3_VEL_SCALE        (V3_MAX_STRECH / V3_MAX_MAGVEL)
+#define V3_MIN_ELAS         0.2f        /* Min elasticity */
+#define V3_MAX_ELAS         0.8f        /* Max elasticity */
+#define V3_DEL_ELAS         (V3_MAX_ELAS - V3_MIN_ELAS)
+
+/* Suspension-based camera offset */
+#define BOTTOM_OUT          0.5f        /* Suspension bottom-out threshold */
+
 /**
  * Camera data structure
  *
@@ -123,5 +144,41 @@ void camera_look_at(f32 target[3]);
 void camera_look_in_dir(f32 dir[3]);
 f32  camera_get_distance_behind(s32 car_index);
 void camera_interpolate(f32 from[3], f32 to[3], f32 t, f32 out[3]);
+
+/* ========================================================================
+ * Arcade-compatible function aliases (camera.c)
+ * ======================================================================== */
+
+/* Initialization */
+void init_view(void);
+void init_view3(void);
+void ZeroCamera(void);
+void SetMCamera(s16 mode);
+
+/* Camera update */
+void CheckCameraView(void);
+void setcamview(void);
+void UpdateCam(void);
+
+/* View-specific cameras */
+void View3Cam(f32 pos[3], f32 uvs[3][3]);
+void DeathCam(f32 pos[3], f32 uvs[3][3]);
+void UpdateCarObj(f32 pos[3], f32 uvs[3][3]);
+
+/* Demo/attract cameras */
+void SelectCam(void);
+void circle_camera_around_car(f32 pos[3], f32 uvs[3][3]);
+void init_camera_on_track(void);
+void fix_camera_in_space(s16 mode, f32 pos[3], f32 uvs[3][3]);
+void init_steady_move_cam(void);
+void steady_move_cam(s16 mode, f32 pos[3], f32 uvs[3][3]);
+void init_maxpath_cam(void);
+void maxpath_cam(s16 mode, f32 pos[3], f32 uvs[3][3]);
+
+/* Helpers */
+void update_car_object(f32 pos[3], f32 uvs[3][3]);
+void point_at_car(f32 pos[3], f32 uvs[3][3], f32 res[3]);
+void LookInDir(f32 lookdir[3], void *mat);
+s32  view1_suscomp_offset(void *m);
 
 #endif /* CAMERA_H */

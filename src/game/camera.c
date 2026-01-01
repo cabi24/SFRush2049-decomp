@@ -456,3 +456,446 @@ void render_scene(void);  /* TODO: Full decompile */
 void camera_state_update(void);  /* TODO: Decompile */
 /* camera_init is already defined above with void parameter */
 void camera_mode_switch(u32 a0, u32 a1);  /* TODO: Decompile */
+
+/* ========================================================================
+ * Arcade-compatible function aliases (camera.c)
+ * ======================================================================== */
+
+/**
+ * init_view - Initialize camera system (arcade name)
+ * Wrapper for camera_init()
+ */
+void init_view(void) {
+    camera_init();
+}
+
+/**
+ * init_view3 - Initialize default chase camera (arcade name)
+ * Wrapper for camera_init_view3()
+ */
+void init_view3(void) {
+    camera_init_view3();
+}
+
+/**
+ * ZeroCamera - Zero out camera position (arcade name)
+ * Wrapper for camera_zero()
+ */
+void ZeroCamera(void) {
+    camera_zero();
+}
+
+/**
+ * SetMCamera - Set camera mode (arcade name)
+ * Based on arcade: camera.c:SetMCamera()
+ */
+void SetMCamera(s16 mode) {
+    s16 i, j;
+
+    if (mode == 0) {  /* Initialize mode */
+        gCamPos[0] = 0.0f;
+        gCamPos[1] = 2.2f;
+        gCamPos[2] = 0.0f;
+
+        for (i = 0; i < 3; i++) {
+            for (j = 0; j < 3; j++) {
+                gCamUvs[i][j] = (i == j) ? 1.0f : 0.0f;
+            }
+        }
+    }
+
+    cur_acc[0] = 0.0f;
+    cur_acc[1] = 0.0f;
+    cur_acc[2] = 0.0f;
+}
+
+/**
+ * CheckCameraView - Check for view change button (arcade name)
+ * Wrapper for camera_check_view_change()
+ */
+void CheckCameraView(void) {
+    camera_check_view_change();
+}
+
+/**
+ * setcamview - Set camera view (arcade name)
+ * Wrapper for camera_set_view()
+ */
+void setcamview(void) {
+    camera_set_view();
+}
+
+/**
+ * UpdateCam - Update camera (arcade name)
+ * Based on arcade: camera.c:UpdateCam()
+ */
+void UpdateCam(void) {
+    /* Simple update - just ensure camera is valid */
+    camera_update();
+}
+
+/**
+ * View3Cam - View 3 (chase) camera (arcade name)
+ * Based on arcade: camera.c:View3Cam()
+ */
+void View3Cam(f32 pos[3], f32 uvs[3][3]) {
+    f32 rear_dist, up_dist;
+    f32 magvel, scale, rad;
+    f32 camoff[3];
+    s32 i;
+
+    /* Default chase camera distances */
+    rear_dist = 16.0f;
+    up_dist = 6.0f;
+
+    /* Use velocity to scale distance from car */
+    magvel = sqrtf(camera_velocity[0]*camera_velocity[0] +
+                   camera_velocity[1]*camera_velocity[1] +
+                   camera_velocity[2]*camera_velocity[2]);
+
+    scale = (magvel > V3_MAX_MAGVEL) ? V3_MAX_STRECH : magvel * V3_VEL_SCALE;
+    rad = sqrtf(rear_dist*rear_dist + up_dist*up_dist);
+    rad *= (1.0f + scale);
+    rear_dist *= (1.0f + scale);
+    up_dist *= (1.0f + scale);
+
+    /* Calculate camera offset */
+    camoff[0] = 0.0f;
+    camoff[1] = up_dist;
+    camoff[2] = -rear_dist;
+
+    /* Apply offset to position */
+    for (i = 0; i < 3; i++) {
+        gCamera.pos[i] = pos[i] + camoff[i];
+    }
+}
+
+/**
+ * DeathCam - Death/crash camera (arcade name)
+ * Based on arcade: camera.c:DeathCam()
+ */
+void DeathCam(f32 pos[3], f32 uvs[3][3]) {
+    f32 rpos[3], carpos[3];
+    f32 elasticity_val = 0.13f;
+    s32 i;
+
+    /* Car position */
+    for (i = 0; i < 3; i++) {
+        carpos[i] = pos[i];
+    }
+
+    /* Get offset relative to car (30 behind, 8 up) */
+    rpos[0] = 0.0f;
+    rpos[1] = 8.0f;
+    rpos[2] = -30.0f;
+
+    /* Follow the car with elasticity */
+    for (i = 0; i < 3; i++) {
+        gCamera.pos[i] = gCamera.pos[i] * (1.0f - elasticity_val) +
+                         (carpos[i] + rpos[i]) * elasticity_val;
+    }
+
+    /* Look at car */
+    gCamera.target[0] = carpos[0];
+    gCamera.target[1] = carpos[1];
+    gCamera.target[2] = carpos[2];
+}
+
+/**
+ * UpdateCarObj - Update car object position (arcade name)
+ * Based on arcade: camera.c:UpdateCarObj()
+ */
+void UpdateCarObj(f32 pos[3], f32 uvs[3][3]) {
+    f32 rpos[3], carpos[3], res[3];
+    f32 elasticity_val;
+    s32 i;
+
+    /* Update car object */
+    update_car_object(pos, uvs);
+
+    /* Car position */
+    for (i = 0; i < 3; i++) {
+        carpos[i] = pos[i];
+    }
+
+    /* Get offset relative to car */
+    res[0] = 0.0f;
+    res[1] = gCamera.rear_y;
+    res[2] = -gCamera.rear_x;
+
+    elasticity_val = 0.6f * gCamera.elastic_factor;
+
+    /* Follow the car */
+    for (i = 0; i < 3; i++) {
+        gCamera.pos[i] = gCamera.pos[i] * elasticity_val +
+                         (carpos[i] + res[i]) * (1.0f - elasticity_val);
+        rpos[i] = carpos[i] - gCamera.pos[i];
+    }
+
+    /* Look at car */
+    LookInDir(rpos, &gCamera);
+}
+
+/**
+ * SelectCam - Camera for select screens (arcade name)
+ * Wrapper for camera_select_screen()
+ */
+void SelectCam(void) {
+    camera_select_screen();
+}
+
+/**
+ * circle_camera_around_car - Orbit camera around car (arcade name)
+ * Based on arcade: camera.c:circle_camera_around_car()
+ */
+void circle_camera_around_car(f32 pos[3], f32 uvs[3][3]) {
+    f32 res[3], ang;
+    f32 radius = 30.0f;
+    f32 height = 20.0f;
+
+    /* Calculate angle based on frame counter */
+    ang = 2.0f * 3.1415926535f * ((f32)(frame_counter % 360) / 360.0f);
+
+    res[0] = cosf(ang) * radius;
+    res[1] = height;
+    res[2] = sinf(ang) * radius;
+
+    point_at_car(pos, uvs, res);
+}
+
+/**
+ * init_camera_on_track - Initialize fixed camera on track (arcade name)
+ * Based on arcade: camera.c:init_camera_on_track()
+ */
+void init_camera_on_track(void) {
+    f32 pos[3], uvs[3][3];
+
+    pos[0] = 0.0f;
+    pos[1] = 12.0f;
+    pos[2] = 0.0f;
+
+    fix_camera_in_space(0, pos, uvs);  /* Initialize mode */
+}
+
+/**
+ * fix_camera_in_space - Fixed camera in space (arcade name)
+ * Based on arcade: camera.c:fix_camera_in_space()
+ */
+void fix_camera_in_space(s16 mode, f32 pos[3], f32 uvs[3][3]) {
+    static f32 cam_pos[3];
+    f32 res[3];
+    s32 i;
+
+    if (mode == 0) {  /* Initialize */
+        for (i = 0; i < 3; i++) {
+            cam_pos[i] = pos[i];
+        }
+    } else {
+        for (i = 0; i < 3; i++) {
+            res[i] = cam_pos[i] - pos[i];
+        }
+        point_at_car(pos, uvs, res);
+    }
+}
+
+/**
+ * init_steady_move_cam - Initialize steady move camera (arcade name)
+ * Based on arcade: camera.c:init_steady_move_cam()
+ */
+void init_steady_move_cam(void) {
+    f32 pos[3], uvs[3][3];
+
+    pos[0] = 0.0f;
+    pos[1] = 5.0f;
+    pos[2] = 0.0f;
+
+    uvs[0][0] = 0.0f;
+
+    steady_move_cam(0, pos, uvs);  /* Initialize mode */
+}
+
+/**
+ * steady_move_cam - Steady moving camera (arcade name)
+ * Based on arcade: camera.c:steady_move_cam()
+ */
+void steady_move_cam(s16 mode, f32 pos[3], f32 uvs[3][3]) {
+    static f32 cam_pos[3], delta[3];
+    static s16 count;
+    f32 res[3];
+    s32 i;
+
+    if (mode == 0) {  /* Initialize */
+        for (i = 0; i < 3; i++) {
+            cam_pos[i] = pos[i];
+            gCamera.pos[i] = pos[i];
+        }
+        count = -1;
+    } else {
+        if (count == 0) {
+            init_view3();
+        } else {
+            if (count == -1) {
+                count = 30;
+                for (i = 0; i < 3; i++) {
+                    delta[i] = (pos[i] - cam_pos[i]) / (f32)count;
+                }
+            }
+
+            count--;
+            for (i = 0; i < 3; i++) {
+                cam_pos[i] += delta[i];
+                res[i] = cam_pos[i] - pos[i];
+            }
+            point_at_car(pos, uvs, res);
+        }
+    }
+}
+
+/**
+ * init_maxpath_cam - Initialize maxpath camera (arcade name)
+ * Based on arcade: camera.c:init_maxpath_cam()
+ */
+void init_maxpath_cam(void) {
+    f32 pos[3], uvs[3][3];
+
+    pos[0] = 0.0f;
+
+    gCamera.elastic_factor = 0.0f;
+
+    maxpath_cam(0, pos, uvs);  /* Initialize mode */
+}
+
+/**
+ * maxpath_cam - Maxpath camera (arcade name)
+ * Based on arcade: camera.c:maxpath_cam()
+ */
+void maxpath_cam(s16 mode, f32 pos[3], f32 uvs[3][3]) {
+    static f32 cam_pos[3], delta[3];
+    static s16 count;
+    f32 res[3], new_pos[3];
+    s32 i;
+
+    if (mode == 0) {  /* Initialize */
+        count = 0;
+    } else {
+        if (count == 0) {
+            count = 2;
+            /* Would get position from maxpath here */
+            for (i = 0; i < 3; i++) {
+                cam_pos[i] = pos[i];
+                new_pos[i] = pos[i];
+            }
+            cam_pos[1] += 10.0f;
+            new_pos[1] += 10.0f;
+
+            for (i = 0; i < 3; i++) {
+                delta[i] = (new_pos[i] - cam_pos[i]) / (f32)count;
+            }
+        }
+
+        count--;
+        for (i = 0; i < 3; i++) {
+            cam_pos[i] += delta[i];
+            res[i] = cam_pos[i] - pos[i];
+        }
+        point_at_car(pos, uvs, res);
+    }
+}
+
+/**
+ * update_car_object - Update car visual object (arcade name)
+ * Based on arcade: camera.c:update_car_object()
+ */
+void update_car_object(f32 pos[3], f32 uvs[3][3]) {
+    /* In arcade, this calls ZOID_UpdateObject */
+    /* For N64, this would update the car model position */
+}
+
+/**
+ * point_at_car - Point camera at car with offset (arcade name)
+ * Based on arcade: camera.c:point_at_car()
+ */
+void point_at_car(f32 pos[3], f32 uvs[3][3], f32 res[3]) {
+    f32 rpos[3], carpos[3];
+    f32 elasticity_val;
+    s32 i;
+
+    update_car_object(pos, uvs);
+
+    /* Car position */
+    for (i = 0; i < 3; i++) {
+        carpos[i] = pos[i];
+    }
+
+    elasticity_val = 0.6f * gCamera.elastic_factor;
+
+    /* Follow the car */
+    for (i = 0; i < 3; i++) {
+        gCamera.pos[i] = gCamera.pos[i] * elasticity_val +
+                         (carpos[i] + res[i]) * (1.0f - elasticity_val);
+        rpos[i] = carpos[i] - gCamera.pos[i];
+    }
+
+    /* Look at car */
+    LookInDir(rpos, &gCamera);
+}
+
+/**
+ * LookInDir - Point camera in direction (arcade name)
+ * Based on arcade: camera.c:LookInDir()
+ *
+ * Creates a view matrix looking in the specified direction
+ */
+void LookInDir(f32 lookdir[3], void *mat) {
+    f32 length;
+    f32 xuv[3], yuv[3], zuv[3];
+    s32 i;
+
+    /* Normalize look direction to get Z axis */
+    length = sqrtf(lookdir[0]*lookdir[0] + lookdir[1]*lookdir[1] + lookdir[2]*lookdir[2]);
+    if (length > 0.001f) {
+        for (i = 0; i < 3; i++) {
+            zuv[i] = lookdir[i] / length;
+        }
+    } else {
+        zuv[0] = 0.0f;
+        zuv[1] = 0.0f;
+        zuv[2] = 1.0f;
+    }
+
+    /* Create X axis perpendicular to look direction (cross with up) */
+    xuv[0] = lookdir[2];
+    xuv[1] = 0.0f;
+    xuv[2] = -lookdir[0];
+
+    length = sqrtf(xuv[0]*xuv[0] + xuv[2]*xuv[2]);
+    if (length <= 0.1f) {
+        /* Looking straight up/down, use right vector */
+        xuv[0] = 1.0f;
+        xuv[1] = 0.0f;
+        xuv[2] = 0.0f;
+    } else {
+        xuv[0] /= length;
+        xuv[2] /= length;
+    }
+
+    /* Y axis is cross of Z and X */
+    yuv[0] = zuv[1] * xuv[2] - zuv[2] * xuv[1];
+    yuv[1] = zuv[2] * xuv[0] - zuv[0] * xuv[2];
+    yuv[2] = zuv[0] * xuv[1] - zuv[1] * xuv[0];
+
+    /* Copy to camera UVs */
+    gCamUvs[0][0] = xuv[0]; gCamUvs[0][1] = xuv[1]; gCamUvs[0][2] = xuv[2];
+    gCamUvs[1][0] = yuv[0]; gCamUvs[1][1] = yuv[1]; gCamUvs[1][2] = yuv[2];
+    gCamUvs[2][0] = zuv[0]; gCamUvs[2][1] = zuv[1]; gCamUvs[2][2] = zuv[2];
+}
+
+/**
+ * view1_suscomp_offset - View 1 suspension compensation offset (arcade name)
+ * Based on arcade: camera.c:view1_suscomp_offset()
+ */
+s32 view1_suscomp_offset(void *m) {
+    /* Returns suspension-based camera offset */
+    /* In arcade, this uses m->reckon.suscomp to adjust camera height */
+    return 0;
+}
