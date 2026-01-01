@@ -91,10 +91,17 @@ void set_collision_radius(s32 car_index, f32 radius);
  * Arcade-compatible function aliases (collision.c)
  * ======================================================================== */
 
-/* Point-in-body test (arcade: PointInBody) */
+/* Forward declare MODELDAT from physics.h for arcade compatibility */
+struct CarPhysics;
+typedef struct CarPhysics MODELDAT;
+
+/* Maximum linked cars (arcade MAX_LINKS) */
+#define MAX_LINKS       8
+
+/* Point-in-body test (arcade: PointInBody) - index-based */
 s32 PointInBody(s32 car_index, f32 pt[3]);
 
-/* Collision force functions */
+/* Collision force functions - index-based */
 void setFBCollisionForce(s32 m, s32 m1, s32 m2, f32 dir[3], f32 pos[3]);
 void setCollisionDamage(s32 car_index);
 void simpleCollForce(s32 car1, s32 car2, f32 dir[3]);
@@ -104,8 +111,41 @@ void setCenterForce(s32 m, s32 m1, s32 m2, f32 dir[3], f32 pos[3]);
 f32 collForceNormal(s32 car_index, u32 coll_alg, f32 din, f32 vin);
 void distributeForce(f32 force, f32 offset, f32 width, f32 *fpos, f32 *fneg);
 
-/* Corner collision force */
+/* Corner collision force - index-based */
 void CollForceMineIn(s32 car1, s32 car2, f32 vec[3], s32 corner);
 void CollForceOtherIn(s32 car1, s32 car2, f32 vec[3], s32 corner);
+
+/* ========================================================================
+ * MODELDAT pointer-based arcade functions (collision.c)
+ * These match the arcade function signatures exactly
+ * ======================================================================== */
+
+/* Initialization */
+void init_collision_m(MODELDAT *m);
+
+/* Main collision detection */
+void collision_m(MODELDAT *m);
+
+/* Point in body test - MODELDAT pointer version */
+s32 PointInBody_m(MODELDAT *m, f32 pt[3]);
+
+/* Force apart overlapping cars */
+void ForceApart_m(MODELDAT *m, MODELDAT *m1, MODELDAT *m2, f32 dir[3], f32 pos[3]);
+
+/* Collision force calculation - MODELDAT pointer versions */
+void setFBCollisionForce_m(MODELDAT *m, MODELDAT *m1, MODELDAT *m2, f32 dir[3], f32 pos[3]);
+void setCollisionDamage_m(MODELDAT *m);
+void simpleCollForce_m(MODELDAT *m, MODELDAT *m2, f32 dir[3]);
+void setCenterForce_m(MODELDAT *m, MODELDAT *m1, MODELDAT *m2, f32 dir[3], f32 pos[3]);
+
+/* Force at corners - MODELDAT pointer versions */
+void CollForceMineIn_m(MODELDAT *m, MODELDAT *m2, f32 vec[3], s32 corner);
+void CollForceOtherIn_m(MODELDAT *m, MODELDAT *m2, f32 vec[3], s32 corner);
+
+/* Force calculation - MODELDAT pointer version */
+f32 collForceNormal_m(MODELDAT *m, u32 coll_alg, f32 din, f32 vin);
+
+/* Vector math aliases (arcade vecmath.c) */
+#define dotprod(a, b)       vec_dot((a), (b))
 
 #endif /* COLLISION_H */
