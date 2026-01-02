@@ -1,0 +1,193 @@
+# inflate_entry
+
+## Quick Info
+
+| Property | Value |
+|----------|-------|
+| **Address** | `0x80006814` |
+| **Category** | `inflate` |
+| **Status** | `TODO` |
+| **Instructions** | ~90 |
+
+## Description
+
+main decompression entry point
+
+## Compiler Settings
+
+```bash
+-g0 -O2 -mips2 -G 0 -non_shared
+```
+
+These flags were determined by matching other functions in the `inflate` category.
+
+## Files in This Directory
+
+| File | Purpose |
+|------|---------|
+| `README.md` | This file - all context needed to work on this function |
+| `base.c` | Your C implementation (edit this!) |
+| `target.s` | Target assembly to match |
+| `types.h` | Common type definitions |
+| `compile.sh` | Script to compile and compare |
+| `STATUS` | Current status (TODO/WIP/MATCHING) |
+
+## How to Match This Function
+
+### Step 1: Understand the Target
+
+Look at `target.s` - this is the assembly your C code must produce.
+
+Key things to note:
+- Function prologue/epilogue (stack frame size)
+- Register usage patterns
+- Branch instructions (beq vs bne vs beql)
+- Memory access patterns
+
+### Step 2: Write Your Implementation
+
+Edit `base.c` with your C implementation. Include `types.h` for common types.
+
+```c
+#include "types.h"
+
+// Your implementation here
+```
+
+### Step 3: Compile and Compare
+
+```bash
+# On watchman (x86 build machine):
+cd /home/cburnes/projects/rush2049-decomp
+./work/inflate/inflate_entry/compile.sh
+
+# Or use asmdiff for side-by-side view:
+python3 tools/asmdiff.py work/inflate/inflate_entry
+
+# Watch mode (auto-refresh on save):
+python3 tools/asmdiff.py work/inflate/inflate_entry --watch
+```
+
+### Step 4: Update Status
+
+When done, update the `STATUS` file:
+- `MATCHING` - Byte-for-byte match achieved
+- `CLOSE` - Compiles, minor differences
+- `WIP` - Still working on it
+
+## Reference Materials
+
+No specific reference available.
+
+### Useful Resources
+
+- Symbol table: `symbol_addrs.us.txt`
+- Original assembly: `asm/us/*.s`
+- Arcade source: `reference/repos/rushtherock/`
+
+## Target Assembly
+
+```mips
+# Source: 5610.s
+# Address: 0x80006814
+
+glabel func_80006814
+    /* 7414 80006814 27BDFFB8 */  addiu      $sp, $sp, -0x48
+    /* 7418 80006818 AFA5004C */  sw         $a1, 0x4C($sp)
+    /* 741C 8000681C 8FAE004C */  lw         $t6, 0x4C($sp)
+    /* 7420 80006820 3C018003 */  lui        $at, %hi(D_800354B8)
+    /* 7424 80006824 AFB00028 */  sw         $s0, 0x28($sp)
+    /* 7428 80006828 AC2E54B8 */  sw         $t6, %lo(D_800354B8)($at)
+    /* 742C 8000682C 3C018003 */  lui        $at, %hi(D_800354D0)
+    /* 7430 80006830 3C108003 */  lui        $s0, %hi(D_800354B0)
+    /* 7434 80006834 00803825 */  or         $a3, $a0, $zero
+    /* 7438 80006838 3C0F8008 */  lui        $t7, %hi(D_80084A50)
+    /* 743C 8000683C 25EF4A50 */  addiu      $t7, $t7, %lo(D_80084A50)
+    /* 7440 80006840 AC2754D0 */  sw         $a3, %lo(D_800354D0)($at)
+    /* 7444 80006844 261054B0 */  addiu      $s0, $s0, %lo(D_800354B0)
+    /* 7448 80006848 AE0F0000 */  sw         $t7, 0x0($s0)
+    /* 744C 8000684C 8E040000 */  lw         $a0, 0x0($s0)
+    /* 7450 80006850 3C018003 */  lui        $at, %hi(D_800354B4)
+    /* 7454 80006854 AFBF0034 */  sw         $ra, 0x34($sp)
+    /* 7458 80006858 AC2454B4 */  sw         $a0, %lo(D_800354B4)($at)
+    /* 745C 8000685C 3C018003 */  lui        $at, %hi(D_800354D4)
+    /* 7460 80006860 AFB1002C */  sw         $s1, 0x2C($sp)
+    /* 7464 80006864 24180001 */  addiu      $t8, $zero, 0x1
+    /* 7468 80006868 AC3854D4 */  sw         $t8, %lo(D_800354D4)($at)
+    /* 746C 8000686C 00C08825 */  or         $s1, $a2, $zero
+    /* 7470 80006870 24051000 */  addiu      $a1, $zero, 0x1000
+    /* 7474 80006874 0C002138 */  jal        func_800084E0
+    /* 7478 80006878 AFB20030 */   sw        $s2, 0x30($sp)
+    /* 747C 8000687C 8E190000 */  lw         $t9, 0x0($s0)
+    /* 7480 80006880 3C128003 */  lui        $s2, %hi(D_80035428)
+    /* 7484 80006884 26525428 */  addiu      $s2, $s2, %lo(D_80035428)
+    /* 7488 80006888 3C048003 */  lui        $a0, %hi(D_800354D8)
+    /* 748C 8000688C 3C078003 */  lui        $a3, %hi(D_800354D0)
+    /* 7490 80006890 24081000 */  addiu      $t0, $zero, 0x1000
+    /* 7494 80006894 AFA80014 */  sw         $t0, 0x14($sp)
+    /* 7498 80006898 8CE754D0 */  lw         $a3, %lo(D_800354D0)($a3)
+    /* 749C 8000689C 248454D8 */  addiu      $a0, $a0, %lo(D_800354D8)
+    /* 74A0 800068A0 AFB20018 */  sw         $s2, 0x18($sp)
+    /* 74A4 800068A4 00002825 */  or         $a1, $zero, $zero
+    /* 74A8 800068A8 00003025 */  or         $a2, $zero, $zero
+    /* 74AC 800068AC 0C00218C */  jal        func_80008630
+    /* 74B0 800068B0 AFB90010 */   sw        $t9, 0x10($sp)
+    /* 74B4 800068B4 1220000A */  beqz       $s1, .L800068E0
+    /* 74B8 800068B8 00000000 */   nop
+    /* 74BC 800068BC 24052EE0 */  addiu      $a1, $zero, 0x2EE0
+    /* 74C0 800068C0 0C0330F0 */  jal        func_800CC3C0
+    /* 74C4 800068C4 24040000 */   addiu     $a0, $zero, 0x0
+    /* 74C8 800068C8 AFA20040 */  sw         $v0, 0x40($sp)
+    /* 74CC 800068CC 00402025 */  or         $a0, $v0, $zero
+    /* 74D0 800068D0 0C001354 */  jal        func_80004D50
+    /* 74D4 800068D4 24052EE0 */   addiu     $a1, $zero, 0x2EE0
+    /* 74D8 800068D8 10000005 */  b          .L800068F0
+    /* 74DC 800068DC 00000000 */   nop
+  .L800068E0:
+    /* 74E0 800068E0 3C04803F */  lui        $a0, (0x803FD120 >> 16)
+    /* 74E4 800068E4 3484D120 */  ori        $a0, $a0, (0x803FD120 & 0xFFFF)
+    /* 74E8 800068E8 0C001354 */  jal        func_80004D50
+    /* 74EC 800068EC 24052EE0 */   addiu     $a1, $zero, 0x2EE0
+  .L800068F0:
+    /* 74F0 800068F0 0C00199E */  jal        func_80006678
+    /* 74F4 800068F4 00000000 */   nop
+    /* 74F8 800068F8 12200003 */  beqz       $s1, .L80006908
+    /* 74FC 800068FC 00000000 */   nop
+    /* 7500 80006900 0C025835 */  jal        func_800960D4
+    /* 7504 80006904 8FA40040 */   lw        $a0, 0x40($sp)
+  .L80006908:
+    /* 7508 80006908 27B00044 */  addiu      $s0, $sp, 0x44
+    /* 750C 8000690C 02002825 */  or         $a1, $s0, $zero
+    /* 7510 80006910 02402025 */  or         $a0, $s2, $zero
+    /* 7514 80006914 0C001C9C */  jal        func_80007270
+    /* 7518 80006918 00003025 */   or        $a2, $zero, $zero
+    /* 751C 8000691C 2411FFFF */  addiu      $s1, $zero, -0x1
+    /* 7520 80006920 14510007 */  bne        $v0, $s1, .L80006940
+    /* 7524 80006924 00000000 */   nop
+  .L80006928:
+    /* 7528 80006928 02402025 */  or         $a0, $s2, $zero
+    /* 752C 8000692C 02002825 */  or         $a1, $s0, $zero
+    /* 7530 80006930 0C001C9C */  jal        func_80007270
+    /* 7534 80006934 00003025 */   or        $a2, $zero, $zero
+    /* 7538 80006938 1051FFFB */  beq        $v0, $s1, .L80006928
+    /* 753C 8000693C 00000000 */   nop
+  .L80006940:
+    /* 7540 80006940 3C098003 */  lui        $t1, %hi(D_800354B8)
+    /* 7544 80006944 8D2954B8 */  lw         $t1, %lo(D_800354B8)($t1)
+    /* 7548 80006948 8FA4004C */  lw         $a0, 0x4C($sp)
+    /* 754C 8000694C 0C002118 */  jal        func_80008460
+    /* 7550 80006950 01242823 */   subu      $a1, $t1, $a0
+    /* 7554 80006954 8FBF0034 */  lw         $ra, 0x34($sp)
+    /* 7558 80006958 3C0A8003 */  lui        $t2, %hi(D_800354B8)
+    /* 755C 8000695C 8D4A54B8 */  lw         $t2, %lo(D_800354B8)($t2)
+    /* 7560 80006960 8FAB004C */  lw         $t3, 0x4C($sp)
+    /* 7564 80006964 8FB00028 */  lw         $s0, 0x28($sp)
+    /* 7568 80006968 8FB1002C */  lw         $s1, 0x2C($sp)
+    /* 756C 8000696C 8FB20030 */  lw         $s2, 0x30($sp)
+    /* 7570 80006970 27BD0048 */  addiu      $sp, $sp, 0x48
+    /* 7574 80006974 03E00008 */  jr         $ra
+    /* 7578 80006978 014B1023 */   subu      $v0, $t2, $t3
+```
+
+## Tips for This Category
+

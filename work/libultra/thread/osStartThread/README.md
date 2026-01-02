@@ -1,0 +1,188 @@
+# osStartThread
+
+## Quick Info
+
+| Property | Value |
+|----------|-------|
+| **Address** | `0x80007080` |
+| **Category** | `libultra/thread` |
+| **Status** | `TODO` |
+| **Instructions** | ~84 |
+
+## Description
+
+start thread
+
+## Compiler Settings
+
+```bash
+-g0 -O1 -mips2 -G 0 -non_shared
+```
+
+These flags were determined by matching other functions in the `libultra/thread` category.
+
+## Files in This Directory
+
+| File | Purpose |
+|------|---------|
+| `README.md` | This file - all context needed to work on this function |
+| `base.c` | Your C implementation (edit this!) |
+| `target.s` | Target assembly to match |
+| `types.h` | Common type definitions |
+| `compile.sh` | Script to compile and compare |
+| `STATUS` | Current status (TODO/WIP/MATCHING) |
+
+## How to Match This Function
+
+### Step 1: Understand the Target
+
+Look at `target.s` - this is the assembly your C code must produce.
+
+Key things to note:
+- Function prologue/epilogue (stack frame size)
+- Register usage patterns
+- Branch instructions (beq vs bne vs beql)
+- Memory access patterns
+
+### Step 2: Write Your Implementation
+
+Edit `base.c` with your C implementation. Include `types.h` for common types.
+
+```c
+#include "types.h"
+
+// Your implementation here
+```
+
+### Step 3: Compile and Compare
+
+```bash
+# On watchman (x86 build machine):
+cd /home/cburnes/projects/rush2049-decomp
+./work/libultra/thread/osStartThread/compile.sh
+
+# Or use asmdiff for side-by-side view:
+python3 tools/asmdiff.py work/libultra/thread/osStartThread
+
+# Watch mode (auto-refresh on save):
+python3 tools/asmdiff.py work/libultra/thread/osStartThread --watch
+```
+
+### Step 4: Update Status
+
+When done, update the `STATUS` file:
+- `MATCHING` - Byte-for-byte match achieved
+- `CLOSE` - Compiles, minor differences
+- `WIP` - Still working on it
+
+## Reference Materials
+
+Standard N64 libultra function - check other decomp projects (sm64, oot)
+
+### Useful Resources
+
+- Symbol table: `symbol_addrs.us.txt`
+- Original assembly: `asm/us/*.s`
+- Arcade source: `reference/repos/rushtherock/`
+
+## Target Assembly
+
+```mips
+# Source: 7C80.s
+# Address: 0x80007080
+
+glabel func_80007080
+    /* 7C80 80007080 27BDFFD8 */  addiu      $sp, $sp, -0x28
+    /* 7C84 80007084 AFBF001C */  sw         $ra, 0x1C($sp)
+    /* 7C88 80007088 AFA40028 */  sw         $a0, 0x28($sp)
+    /* 7C8C 8000708C AFB10018 */  sw         $s1, 0x18($sp)
+    /* 7C90 80007090 0C00312C */  jal        func_8000C4B0
+    /* 7C94 80007094 AFB00014 */   sw        $s0, 0x14($sp)
+    /* 7C98 80007098 8FAE0028 */  lw         $t6, 0x28($sp)
+    /* 7C9C 8000709C 24010001 */  addiu      $at, $zero, 0x1
+    /* 7CA0 800070A0 00408025 */  or         $s0, $v0, $zero
+    /* 7CA4 800070A4 95D10010 */  lhu        $s1, 0x10($t6)
+    /* 7CA8 800070A8 1221000C */  beq        $s1, $at, .L800070DC
+    /* 7CAC 800070AC 24010008 */   addiu     $at, $zero, 0x8
+    /* 7CB0 800070B0 1621002A */  bne        $s1, $at, .L8000715C
+    /* 7CB4 800070B4 00000000 */   nop
+    /* 7CB8 800070B8 8FB80028 */  lw         $t8, 0x28($sp)
+    /* 7CBC 800070BC 240F0002 */  addiu      $t7, $zero, 0x2
+    /* 7CC0 800070C0 3C048003 */  lui        $a0, %hi(D_8002C3D8)
+    /* 7CC4 800070C4 A70F0010 */  sh         $t7, 0x10($t8)
+    /* 7CC8 800070C8 8FA50028 */  lw         $a1, 0x28($sp)
+    /* 7CCC 800070CC 0C003431 */  jal        func_8000D0C4
+    /* 7CD0 800070D0 2484C3D8 */   addiu     $a0, $a0, %lo(D_8002C3D8)
+    /* 7CD4 800070D4 10000021 */  b          .L8000715C
+    /* 7CD8 800070D8 00000000 */   nop
+  .L800070DC:
+    /* 7CDC 800070DC 8FB90028 */  lw         $t9, 0x28($sp)
+    /* 7CE0 800070E0 8F280008 */  lw         $t0, 0x8($t9)
+    /* 7CE4 800070E4 11000005 */  beqz       $t0, .L800070FC
+    /* 7CE8 800070E8 00000000 */   nop
+    /* 7CEC 800070EC 3C098003 */  lui        $t1, %hi(D_8002C3D8)
+    /* 7CF0 800070F0 2529C3D8 */  addiu      $t1, $t1, %lo(D_8002C3D8)
+    /* 7CF4 800070F4 1509000A */  bne        $t0, $t1, .L80007120
+    /* 7CF8 800070F8 00000000 */   nop
+  .L800070FC:
+    /* 7CFC 800070FC 8FAB0028 */  lw         $t3, 0x28($sp)
+    /* 7D00 80007100 240A0002 */  addiu      $t2, $zero, 0x2
+    /* 7D04 80007104 3C048003 */  lui        $a0, %hi(D_8002C3D8)
+    /* 7D08 80007108 A56A0010 */  sh         $t2, 0x10($t3)
+    /* 7D0C 8000710C 8FA50028 */  lw         $a1, 0x28($sp)
+    /* 7D10 80007110 0C003431 */  jal        func_8000D0C4
+    /* 7D14 80007114 2484C3D8 */   addiu     $a0, $a0, %lo(D_8002C3D8)
+    /* 7D18 80007118 10000010 */  b          .L8000715C
+    /* 7D1C 8000711C 00000000 */   nop
+  .L80007120:
+    /* 7D20 80007120 8FAD0028 */  lw         $t5, 0x28($sp)
+    /* 7D24 80007124 240C0008 */  addiu      $t4, $zero, 0x8
+    /* 7D28 80007128 A5AC0010 */  sh         $t4, 0x10($t5)
+    /* 7D2C 8000712C 8FAE0028 */  lw         $t6, 0x28($sp)
+    /* 7D30 80007130 8DC40008 */  lw         $a0, 0x8($t6)
+    /* 7D34 80007134 0C003431 */  jal        func_8000D0C4
+    /* 7D38 80007138 01C02825 */   or        $a1, $t6, $zero
+    /* 7D3C 8000713C 8FAF0028 */  lw         $t7, 0x28($sp)
+    /* 7D40 80007140 0C003443 */  jal        func_8000D10C
+    /* 7D44 80007144 8DE40008 */   lw        $a0, 0x8($t7)
+    /* 7D48 80007148 00408825 */  or         $s1, $v0, $zero
+    /* 7D4C 8000714C 3C048003 */  lui        $a0, %hi(D_8002C3D8)
+    /* 7D50 80007150 2484C3D8 */  addiu      $a0, $a0, %lo(D_8002C3D8)
+    /* 7D54 80007154 0C003431 */  jal        func_8000D0C4
+    /* 7D58 80007158 02202825 */   or        $a1, $s1, $zero
+  .L8000715C:
+    /* 7D5C 8000715C 3C188003 */  lui        $t8, %hi(D_8002C3E0)
+    /* 7D60 80007160 8F18C3E0 */  lw         $t8, %lo(D_8002C3E0)($t8)
+    /* 7D64 80007164 17000005 */  bnez       $t8, .L8000717C
+    /* 7D68 80007168 00000000 */   nop
+    /* 7D6C 8000716C 0C003447 */  jal        func_8000D11C
+    /* 7D70 80007170 00000000 */   nop
+    /* 7D74 80007174 1000000F */  b          .L800071B4
+    /* 7D78 80007178 00000000 */   nop
+  .L8000717C:
+    /* 7D7C 8000717C 3C198003 */  lui        $t9, %hi(D_8002C3E0)
+    /* 7D80 80007180 3C098003 */  lui        $t1, %hi(D_8002C3D8)
+    /* 7D84 80007184 8D29C3D8 */  lw         $t1, %lo(D_8002C3D8)($t1)
+    /* 7D88 80007188 8F39C3E0 */  lw         $t9, %lo(D_8002C3E0)($t9)
+    /* 7D8C 8000718C 8D2A0004 */  lw         $t2, 0x4($t1)
+    /* 7D90 80007190 8F280004 */  lw         $t0, 0x4($t9)
+    /* 7D94 80007194 010A082A */  slt        $at, $t0, $t2
+    /* 7D98 80007198 10200006 */  beqz       $at, .L800071B4
+    /* 7D9C 8000719C 00000000 */   nop
+    /* 7DA0 800071A0 240B0002 */  addiu      $t3, $zero, 0x2
+    /* 7DA4 800071A4 3C048003 */  lui        $a0, %hi(D_8002C3D8)
+    /* 7DA8 800071A8 A72B0010 */  sh         $t3, 0x10($t9)
+    /* 7DAC 800071AC 0C0033F1 */  jal        func_8000CFC4
+    /* 7DB0 800071B0 2484C3D8 */   addiu     $a0, $a0, %lo(D_8002C3D8)
+  .L800071B4:
+    /* 7DB4 800071B4 0C003148 */  jal        func_8000C520
+    /* 7DB8 800071B8 02002025 */   or        $a0, $s0, $zero
+    /* 7DBC 800071BC 8FBF001C */  lw         $ra, 0x1C($sp)
+    /* 7DC0 800071C0 8FB00014 */  lw         $s0, 0x14($sp)
+    /* 7DC4 800071C4 8FB10018 */  lw         $s1, 0x18($sp)
+    /* 7DC8 800071C8 03E00008 */  jr         $ra
+    /* 7DCC 800071CC 27BD0028 */   addiu     $sp, $sp, 0x28
+```
+
+## Tips for This Category
+

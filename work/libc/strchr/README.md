@@ -1,0 +1,117 @@
+# strchr
+
+## Quick Info
+
+| Property | Value |
+|----------|-------|
+| **Address** | `0x80007C00` |
+| **Category** | `libc` |
+| **Status** | `TODO` |
+| **Instructions** | ~16 |
+
+## Description
+
+find char in string
+
+## Compiler Settings
+
+```bash
+-g0 -O2 -mips2 -G 0 -non_shared
+```
+
+These flags were determined by matching other functions in the `libc` category.
+
+## Files in This Directory
+
+| File | Purpose |
+|------|---------|
+| `README.md` | This file - all context needed to work on this function |
+| `base.c` | Your C implementation (edit this!) |
+| `target.s` | Target assembly to match |
+| `types.h` | Common type definitions |
+| `compile.sh` | Script to compile and compare |
+| `STATUS` | Current status (TODO/WIP/MATCHING) |
+
+## How to Match This Function
+
+### Step 1: Understand the Target
+
+Look at `target.s` - this is the assembly your C code must produce.
+
+Key things to note:
+- Function prologue/epilogue (stack frame size)
+- Register usage patterns
+- Branch instructions (beq vs bne vs beql)
+- Memory access patterns
+
+### Step 2: Write Your Implementation
+
+Edit `base.c` with your C implementation. Include `types.h` for common types.
+
+```c
+#include "types.h"
+
+// Your implementation here
+```
+
+### Step 3: Compile and Compare
+
+```bash
+# On watchman (x86 build machine):
+cd /home/cburnes/projects/rush2049-decomp
+./work/libc/strchr/compile.sh
+
+# Or use asmdiff for side-by-side view:
+python3 tools/asmdiff.py work/libc/strchr
+
+# Watch mode (auto-refresh on save):
+python3 tools/asmdiff.py work/libc/strchr --watch
+```
+
+### Step 4: Update Status
+
+When done, update the `STATUS` file:
+- `MATCHING` - Byte-for-byte match achieved
+- `CLOSE` - Compiles, minor differences
+- `WIP` - Still working on it
+
+## Reference Materials
+
+Standard C library function - should match common implementations
+
+### Useful Resources
+
+- Symbol table: `symbol_addrs.us.txt`
+- Original assembly: `asm/us/*.s`
+- Arcade source: `reference/repos/rushtherock/`
+
+## Target Assembly
+
+```mips
+# Source: 8800.s
+# Address: 0x80007C00
+
+glabel func_80007C00
+    /* 8800 80007C00 90830000 */  lbu        $v1, 0x0($a0)
+    /* 8804 80007C04 30AE00FF */  andi       $t6, $a1, 0xFF
+    /* 8808 80007C08 30A200FF */  andi       $v0, $a1, 0xFF
+    /* 880C 80007C0C 51C3000A */  beql       $t6, $v1, .L80007C38
+    /* 8810 80007C10 00801025 */   or        $v0, $a0, $zero
+  .L80007C14:
+    /* 8814 80007C14 54600004 */  bnel       $v1, $zero, .L80007C28
+    /* 8818 80007C18 90830001 */   lbu       $v1, 0x1($a0)
+    /* 881C 80007C1C 03E00008 */  jr         $ra
+    /* 8820 80007C20 00001025 */   or        $v0, $zero, $zero
+    /* 8824 80007C24 90830001 */  lbu        $v1, 0x1($a0)
+  .L80007C28:
+    /* 8828 80007C28 24840001 */  addiu      $a0, $a0, 0x1
+    /* 882C 80007C2C 1443FFF9 */  bne        $v0, $v1, .L80007C14
+    /* 8830 80007C30 00000000 */   nop
+    /* 8834 80007C34 00801025 */  or         $v0, $a0, $zero
+  .L80007C38:
+    /* 8838 80007C38 03E00008 */  jr         $ra
+    /* 883C 80007C3C 00000000 */   nop
+```
+
+## Tips for This Category
+

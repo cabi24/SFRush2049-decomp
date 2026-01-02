@@ -1,0 +1,129 @@
+# __isinf
+
+## Quick Info
+
+| Property | Value |
+|----------|-------|
+| **Address** | `0x80002BF0` |
+| **Category** | `libm` |
+| **Status** | `TODO` |
+| **Instructions** | ~28 |
+
+## Description
+
+No description available.
+
+## Compiler Settings
+
+```bash
+-g0 -O2 -mips2 -G 0 -non_shared
+```
+
+These flags were determined by matching other functions in the `libm` category.
+
+## Files in This Directory
+
+| File | Purpose |
+|------|---------|
+| `README.md` | This file - all context needed to work on this function |
+| `base.c` | Your C implementation (edit this!) |
+| `target.s` | Target assembly to match |
+| `types.h` | Common type definitions |
+| `compile.sh` | Script to compile and compare |
+| `STATUS` | Current status (TODO/WIP/MATCHING) |
+
+## How to Match This Function
+
+### Step 1: Understand the Target
+
+Look at `target.s` - this is the assembly your C code must produce.
+
+Key things to note:
+- Function prologue/epilogue (stack frame size)
+- Register usage patterns
+- Branch instructions (beq vs bne vs beql)
+- Memory access patterns
+
+### Step 2: Write Your Implementation
+
+Edit `base.c` with your C implementation. Include `types.h` for common types.
+
+```c
+#include "types.h"
+
+// Your implementation here
+```
+
+### Step 3: Compile and Compare
+
+```bash
+# On watchman (x86 build machine):
+cd /home/cburnes/projects/rush2049-decomp
+./work/libm/__isinf/compile.sh
+
+# Or use asmdiff for side-by-side view:
+python3 tools/asmdiff.py work/libm/__isinf
+
+# Watch mode (auto-refresh on save):
+python3 tools/asmdiff.py work/libm/__isinf --watch
+```
+
+### Step 4: Update Status
+
+When done, update the `STATUS` file:
+- `MATCHING` - Byte-for-byte match achieved
+- `CLOSE` - Compiles, minor differences
+- `WIP` - Still working on it
+
+## Reference Materials
+
+No specific reference available.
+
+### Useful Resources
+
+- Symbol table: `symbol_addrs.us.txt`
+- Original assembly: `asm/us/*.s`
+- Arcade source: `reference/repos/rushtherock/`
+
+## Target Assembly
+
+```mips
+# Source: 34A0.s
+# Address: 0x80002BF0
+
+glabel func_80002BF0
+    /* 37F0 80002BF0 27BDFFF8 */  addiu      $sp, $sp, -0x8
+    /* 37F4 80002BF4 F7AC0000 */  sdc1       $fa0, 0x0($sp)
+    /* 37F8 80002BF8 8FAE0000 */  lw         $t6, 0x0($sp)
+    /* 37FC 80002BFC 240107FF */  addiu      $at, $zero, 0x7FF
+    /* 3800 80002C00 000E7840 */  sll        $t7, $t6, 1
+    /* 3804 80002C04 000FC542 */  srl        $t8, $t7, 21
+    /* 3808 80002C08 1701000F */  bne        $t8, $at, .L80002C48
+    /* 380C 80002C0C 00000000 */   nop
+    /* 3810 80002C10 97B90000 */  lhu        $t9, 0x0($sp)
+    /* 3814 80002C14 3328800F */  andi       $t0, $t9, 0x800F
+    /* 3818 80002C18 A7A80000 */  sh         $t0, 0x0($sp)
+    /* 381C 80002C1C D7A40000 */  ldc1       $ft0, 0x0($sp)
+    /* 3820 80002C20 44803800 */  mtc1       $zero, $ft1f
+    /* 3824 80002C24 44803000 */  mtc1       $zero, $ft1
+    /* 3828 80002C28 00001025 */  or         $v0, $zero, $zero
+    /* 382C 80002C2C 46262032 */  c.eq.d     $ft0, $ft1
+    /* 3830 80002C30 00000000 */  nop
+    /* 3834 80002C34 45010002 */  bc1t       .L80002C40
+    /* 3838 80002C38 00000000 */   nop
+    /* 383C 80002C3C 24020001 */  addiu      $v0, $zero, 0x1
+  .L80002C40:
+    /* 3840 80002C40 10000005 */  b          .L80002C58
+    /* 3844 80002C44 00000000 */   nop
+  .L80002C48:
+    /* 3848 80002C48 10000003 */  b          .L80002C58
+    /* 384C 80002C4C 00001025 */   or        $v0, $zero, $zero
+    /* 3850 80002C50 10000001 */  b          .L80002C58
+    /* 3854 80002C54 00000000 */   nop
+  .L80002C58:
+    /* 3858 80002C58 03E00008 */  jr         $ra
+    /* 385C 80002C5C 27BD0008 */   addiu     $sp, $sp, 0x8
+```
+
+## Tips for This Category
+

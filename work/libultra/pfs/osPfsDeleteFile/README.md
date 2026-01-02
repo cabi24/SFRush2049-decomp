@@ -1,0 +1,232 @@
+# osPfsDeleteFile
+
+## Quick Info
+
+| Property | Value |
+|----------|-------|
+| **Address** | `0x8000A520` |
+| **Category** | `libultra/pfs` |
+| **Status** | `TODO` |
+| **Instructions** | ~119 |
+
+## Description
+
+delete controller pak file
+
+## Compiler Settings
+
+```bash
+-g0 -O1 -mips2 -G 0 -non_shared
+```
+
+These flags were determined by matching other functions in the `libultra/pfs` category.
+
+## Files in This Directory
+
+| File | Purpose |
+|------|---------|
+| `README.md` | This file - all context needed to work on this function |
+| `base.c` | Your C implementation (edit this!) |
+| `target.s` | Target assembly to match |
+| `types.h` | Common type definitions |
+| `compile.sh` | Script to compile and compare |
+| `STATUS` | Current status (TODO/WIP/MATCHING) |
+
+## How to Match This Function
+
+### Step 1: Understand the Target
+
+Look at `target.s` - this is the assembly your C code must produce.
+
+Key things to note:
+- Function prologue/epilogue (stack frame size)
+- Register usage patterns
+- Branch instructions (beq vs bne vs beql)
+- Memory access patterns
+
+### Step 2: Write Your Implementation
+
+Edit `base.c` with your C implementation. Include `types.h` for common types.
+
+```c
+#include "types.h"
+
+// Your implementation here
+```
+
+### Step 3: Compile and Compare
+
+```bash
+# On watchman (x86 build machine):
+cd /home/cburnes/projects/rush2049-decomp
+./work/libultra/pfs/osPfsDeleteFile/compile.sh
+
+# Or use asmdiff for side-by-side view:
+python3 tools/asmdiff.py work/libultra/pfs/osPfsDeleteFile
+
+# Watch mode (auto-refresh on save):
+python3 tools/asmdiff.py work/libultra/pfs/osPfsDeleteFile --watch
+```
+
+### Step 4: Update Status
+
+When done, update the `STATUS` file:
+- `MATCHING` - Byte-for-byte match achieved
+- `CLOSE` - Compiles, minor differences
+- `WIP` - Still working on it
+
+## Reference Materials
+
+Standard N64 libultra function - check other decomp projects (sm64, oot)
+
+### Useful Resources
+
+- Symbol table: `symbol_addrs.us.txt`
+- Original assembly: `asm/us/*.s`
+- Arcade source: `reference/repos/rushtherock/`
+
+## Target Assembly
+
+```mips
+# Source: B120.s
+# Address: 0x8000A520
+
+glabel func_8000A520
+    /* B120 8000A520 27BDFEA0 */  addiu      $sp, $sp, -0x160
+    /* B124 8000A524 AFBF002C */  sw         $ra, 0x2C($sp)
+    /* B128 8000A528 AFB40028 */  sw         $s4, 0x28($sp)
+    /* B12C 8000A52C AFB30024 */  sw         $s3, 0x24($sp)
+    /* B130 8000A530 AFB20020 */  sw         $s2, 0x20($sp)
+    /* B134 8000A534 AFB1001C */  sw         $s1, 0x1C($sp)
+    /* B138 8000A538 AFB00018 */  sw         $s0, 0x18($sp)
+    /* B13C 8000A53C AFA60168 */  sw         $a2, 0x168($sp)
+    /* B140 8000A540 8C8E0050 */  lw         $t6, 0x50($a0)
+    /* B144 8000A544 00A08025 */  or         $s0, $a1, $zero
+    /* B148 8000A548 00809825 */  or         $s3, $a0, $zero
+    /* B14C 8000A54C 00AE082A */  slt        $at, $a1, $t6
+    /* B150 8000A550 10200003 */  beqz       $at, .L8000A560
+    /* B154 8000A554 00000000 */   nop
+    /* B158 8000A558 04A30004 */  bgezl      $a1, .L8000A56C
+    /* B15C 8000A55C 8E6F0000 */   lw        $t7, 0x0($s3)
+  .L8000A560:
+    /* B160 8000A560 1000005E */  b          .L8000A6DC
+    /* B164 8000A564 24020005 */   addiu     $v0, $zero, 0x5
+    /* B168 8000A568 8E6F0000 */  lw         $t7, 0x0($s3)
+  .L8000A56C:
+    /* B16C 8000A56C 31F80001 */  andi       $t8, $t7, 0x1
+    /* B170 8000A570 17000003 */  bnez       $t8, .L8000A580
+    /* B174 8000A574 00000000 */   nop
+    /* B178 8000A578 10000058 */  b          .L8000A6DC
+    /* B17C 8000A57C 24020005 */   addiu     $v0, $zero, 0x5
+  .L8000A580:
+    /* B180 8000A580 0C003CB4 */  jal        func_8000F2D0
+    /* B184 8000A584 02602025 */   or        $a0, $s3, $zero
+    /* B188 8000A588 50400004 */  beql       $v0, $zero, .L8000A59C
+    /* B18C 8000A58C 92790065 */   lbu       $t9, 0x65($s3)
+    /* B190 8000A590 10000053 */  b          .L8000A6E0
+    /* B194 8000A594 8FBF002C */   lw        $ra, 0x2C($sp)
+    /* B198 8000A598 92790065 */  lbu        $t9, 0x65($s3)
+  .L8000A59C:
+    /* B19C 8000A59C 02602025 */  or         $a0, $s3, $zero
+    /* B1A0 8000A5A0 53200008 */  beql       $t9, $zero, .L8000A5C4
+    /* B1A4 8000A5A4 8E68005C */   lw        $t0, 0x5C($s3)
+    /* B1A8 8000A5A8 0C003A14 */  jal        func_8000E850
+    /* B1AC 8000A5AC 00002825 */   or        $a1, $zero, $zero
+    /* B1B0 8000A5B0 50400004 */  beql       $v0, $zero, .L8000A5C4
+    /* B1B4 8000A5B4 8E68005C */   lw        $t0, 0x5C($s3)
+    /* B1B8 8000A5B8 10000049 */  b          .L8000A6E0
+    /* B1BC 8000A5BC 8FBF002C */   lw        $ra, 0x2C($sp)
+    /* B1C0 8000A5C0 8E68005C */  lw         $t0, 0x5C($s3)
+  .L8000A5C4:
+    /* B1C4 8000A5C4 8E640004 */  lw         $a0, 0x4($s3)
+    /* B1C8 8000A5C8 8E650008 */  lw         $a1, 0x8($s3)
+    /* B1CC 8000A5CC 01103021 */  addu       $a2, $t0, $s0
+    /* B1D0 8000A5D0 30C9FFFF */  andi       $t1, $a2, 0xFFFF
+    /* B1D4 8000A5D4 01203025 */  or         $a2, $t1, $zero
+    /* B1D8 8000A5D8 0C003A34 */  jal        func_8000E8D0
+    /* B1DC 8000A5DC 27A70038 */   addiu     $a3, $sp, 0x38
+    /* B1E0 8000A5E0 10400003 */  beqz       $v0, .L8000A5F0
+    /* B1E4 8000A5E4 97AA003C */   lhu       $t2, 0x3C($sp)
+    /* B1E8 8000A5E8 1000003D */  b          .L8000A6E0
+    /* B1EC 8000A5EC 8FBF002C */   lw        $ra, 0x2C($sp)
+  .L8000A5F0:
+    /* B1F0 8000A5F0 11400003 */  beqz       $t2, .L8000A600
+    /* B1F4 8000A5F4 8FAB0038 */   lw        $t3, 0x38($sp)
+    /* B1F8 8000A5F8 15600003 */  bnez       $t3, .L8000A608
+    /* B1FC 8000A5FC 27B40034 */   addiu     $s4, $sp, 0x34
+  .L8000A600:
+    /* B200 8000A600 10000036 */  b          .L8000A6DC
+    /* B204 8000A604 24020005 */   addiu     $v0, $zero, 0x5
+  .L8000A608:
+    /* B208 8000A608 27AC003E */  addiu      $t4, $sp, 0x3E
+    /* B20C 8000A60C 95810000 */  lhu        $at, 0x0($t4)
+    /* B210 8000A610 00009025 */  or         $s2, $zero, $zero
+    /* B214 8000A614 241000FF */  addiu      $s0, $zero, 0xFF
+    /* B218 8000A618 27B10058 */  addiu      $s1, $sp, 0x58
+    /* B21C 8000A61C A6810000 */  sh         $at, 0x0($s4)
+  .L8000A620:
+    /* B220 8000A620 97AF0034 */  lhu        $t7, 0x34($sp)
+    /* B224 8000A624 8E780060 */  lw         $t8, 0x60($s3)
+    /* B228 8000A628 93B90034 */  lbu        $t9, 0x34($sp)
+    /* B22C 8000A62C 02602025 */  or         $a0, $s3, $zero
+    /* B230 8000A630 01F8082A */  slt        $at, $t7, $t8
+    /* B234 8000A634 14200011 */  bnez       $at, .L8000A67C
+    /* B238 8000A638 02202825 */   or        $a1, $s1, $zero
+    /* B23C 8000A63C 12190008 */  beq        $s0, $t9, .L8000A660
+    /* B240 8000A640 00003025 */   or        $a2, $zero, $zero
+    /* B244 8000A644 03208025 */  or         $s0, $t9, $zero
+    /* B248 8000A648 0C003CE9 */  jal        func_8000F3A4
+    /* B24C 8000A64C 332700FF */   andi      $a3, $t9, 0xFF
+    /* B250 8000A650 50400004 */  beql       $v0, $zero, .L8000A664
+    /* B254 8000A654 93A80035 */   lbu       $t0, 0x35($sp)
+    /* B258 8000A658 10000021 */  b          .L8000A6E0
+    /* B25C 8000A65C 8FBF002C */   lw        $ra, 0x2C($sp)
+  .L8000A660:
+    /* B260 8000A660 93A80035 */  lbu        $t0, 0x35($sp)
+  .L8000A664:
+    /* B264 8000A664 26520001 */  addiu      $s2, $s2, 0x1
+    /* B268 8000A668 00084840 */  sll        $t1, $t0, 1
+    /* B26C 8000A66C 02295021 */  addu       $t2, $s1, $t1
+    /* B270 8000A670 95410000 */  lhu        $at, 0x0($t2)
+    /* B274 8000A674 1000FFEA */  b          .L8000A620
+    /* B278 8000A678 A6810000 */   sh        $at, 0x0($s4)
+  .L8000A67C:
+    /* B27C 8000A67C 97AC0034 */  lhu        $t4, 0x34($sp)
+    /* B280 8000A680 24010001 */  addiu      $at, $zero, 0x1
+    /* B284 8000A684 8FA20168 */  lw         $v0, 0x168($sp)
+    /* B288 8000A688 11810003 */  beq        $t4, $at, .L8000A698
+    /* B28C 8000A68C 00127200 */   sll       $t6, $s2, 8
+    /* B290 8000A690 10000012 */  b          .L8000A6DC
+    /* B294 8000A694 24020003 */   addiu     $v0, $zero, 0x3
+  .L8000A698:
+    /* B298 8000A698 AC4E0000 */  sw         $t6, 0x0($v0)
+    /* B29C 8000A69C 97AF003C */  lhu        $t7, 0x3C($sp)
+    /* B2A0 8000A6A0 27A40048 */  addiu      $a0, $sp, 0x48
+    /* B2A4 8000A6A4 2445000E */  addiu      $a1, $v0, 0xE
+    /* B2A8 8000A6A8 A44F0008 */  sh         $t7, 0x8($v0)
+    /* B2AC 8000A6AC 8FB80038 */  lw         $t8, 0x38($sp)
+    /* B2B0 8000A6B0 24060010 */  addiu      $a2, $zero, 0x10
+    /* B2B4 8000A6B4 0C0034AC */  jal        func_8000D2B0
+    /* B2B8 8000A6B8 AC580004 */   sw        $t8, 0x4($v0)
+    /* B2BC 8000A6BC 8FA50168 */  lw         $a1, 0x168($sp)
+    /* B2C0 8000A6C0 27A40044 */  addiu      $a0, $sp, 0x44
+    /* B2C4 8000A6C4 24060004 */  addiu      $a2, $zero, 0x4
+    /* B2C8 8000A6C8 0C0034AC */  jal        func_8000D2B0
+    /* B2CC 8000A6CC 24A5000A */   addiu     $a1, $a1, 0xA
+    /* B2D0 8000A6D0 8E640004 */  lw         $a0, 0x4($s3)
+    /* B2D4 8000A6D4 0C003988 */  jal        func_8000E620
+    /* B2D8 8000A6D8 8E650008 */   lw        $a1, 0x8($s3)
+  .L8000A6DC:
+    /* B2DC 8000A6DC 8FBF002C */  lw         $ra, 0x2C($sp)
+  .L8000A6E0:
+    /* B2E0 8000A6E0 8FB00018 */  lw         $s0, 0x18($sp)
+    /* B2E4 8000A6E4 8FB1001C */  lw         $s1, 0x1C($sp)
+    /* B2E8 8000A6E8 8FB20020 */  lw         $s2, 0x20($sp)
+    /* B2EC 8000A6EC 8FB30024 */  lw         $s3, 0x24($sp)
+    /* B2F0 8000A6F0 8FB40028 */  lw         $s4, 0x28($sp)
+    /* B2F4 8000A6F4 03E00008 */  jr         $ra
+    /* B2F8 8000A6F8 27BD0160 */   addiu     $sp, $sp, 0x160
+```
+
+## Tips for This Category
+

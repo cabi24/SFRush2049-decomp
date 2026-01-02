@@ -1,0 +1,130 @@
+# inflate_entry_alt
+
+## Quick Info
+
+| Property | Value |
+|----------|-------|
+| **Address** | `0x8000697C` |
+| **Category** | `inflate` |
+| **Status** | `TODO` |
+| **Instructions** | ~32 |
+
+## Description
+
+alternative entry (heap alloc)
+
+## Compiler Settings
+
+```bash
+-g0 -O2 -mips2 -G 0 -non_shared
+```
+
+These flags were determined by matching other functions in the `inflate` category.
+
+## Files in This Directory
+
+| File | Purpose |
+|------|---------|
+| `README.md` | This file - all context needed to work on this function |
+| `base.c` | Your C implementation (edit this!) |
+| `target.s` | Target assembly to match |
+| `types.h` | Common type definitions |
+| `compile.sh` | Script to compile and compare |
+| `STATUS` | Current status (TODO/WIP/MATCHING) |
+
+## How to Match This Function
+
+### Step 1: Understand the Target
+
+Look at `target.s` - this is the assembly your C code must produce.
+
+Key things to note:
+- Function prologue/epilogue (stack frame size)
+- Register usage patterns
+- Branch instructions (beq vs bne vs beql)
+- Memory access patterns
+
+### Step 2: Write Your Implementation
+
+Edit `base.c` with your C implementation. Include `types.h` for common types.
+
+```c
+#include "types.h"
+
+// Your implementation here
+```
+
+### Step 3: Compile and Compare
+
+```bash
+# On watchman (x86 build machine):
+cd /home/cburnes/projects/rush2049-decomp
+./work/inflate/inflate_entry_alt/compile.sh
+
+# Or use asmdiff for side-by-side view:
+python3 tools/asmdiff.py work/inflate/inflate_entry_alt
+
+# Watch mode (auto-refresh on save):
+python3 tools/asmdiff.py work/inflate/inflate_entry_alt --watch
+```
+
+### Step 4: Update Status
+
+When done, update the `STATUS` file:
+- `MATCHING` - Byte-for-byte match achieved
+- `CLOSE` - Compiles, minor differences
+- `WIP` - Still working on it
+
+## Reference Materials
+
+No specific reference available.
+
+### Useful Resources
+
+- Symbol table: `symbol_addrs.us.txt`
+- Original assembly: `asm/us/*.s`
+- Arcade source: `reference/repos/rushtherock/`
+
+## Target Assembly
+
+```mips
+# Source: 5610.s
+# Address: 0x8000697C
+
+glabel func_8000697C
+    /* 757C 8000697C 27BDFFE0 */  addiu      $sp, $sp, -0x20
+    /* 7580 80006980 AFA60028 */  sw         $a2, 0x28($sp)
+    /* 7584 80006984 8FAE0028 */  lw         $t6, 0x28($sp)
+    /* 7588 80006988 3C028003 */  lui        $v0, %hi(D_800354B0)
+    /* 758C 8000698C 3C018003 */  lui        $at, %hi(D_800354B8)
+    /* 7590 80006990 244254B0 */  addiu      $v0, $v0, %lo(D_800354B0)
+    /* 7594 80006994 00803825 */  or         $a3, $a0, $zero
+    /* 7598 80006998 AC2E54B8 */  sw         $t6, %lo(D_800354B8)($at)
+    /* 759C 8000699C AC470000 */  sw         $a3, 0x0($v0)
+    /* 75A0 800069A0 8C4F0000 */  lw         $t7, 0x0($v0)
+    /* 75A4 800069A4 3C018003 */  lui        $at, %hi(D_800354B4)
+    /* 75A8 800069A8 AFBF0014 */  sw         $ra, 0x14($sp)
+    /* 75AC 800069AC 01E5C021 */  addu       $t8, $t7, $a1
+    /* 75B0 800069B0 AC3854B4 */  sw         $t8, %lo(D_800354B4)($at)
+    /* 75B4 800069B4 24052EE0 */  addiu      $a1, $zero, 0x2EE0
+    /* 75B8 800069B8 0C0330F0 */  jal        func_800CC3C0
+    /* 75BC 800069BC 24040000 */   addiu     $a0, $zero, 0x0
+    /* 75C0 800069C0 AFA2001C */  sw         $v0, 0x1C($sp)
+    /* 75C4 800069C4 00402025 */  or         $a0, $v0, $zero
+    /* 75C8 800069C8 0C001354 */  jal        func_80004D50
+    /* 75CC 800069CC 24052EE0 */   addiu     $a1, $zero, 0x2EE0
+    /* 75D0 800069D0 0C00199E */  jal        func_80006678
+    /* 75D4 800069D4 00000000 */   nop
+    /* 75D8 800069D8 0C025835 */  jal        func_800960D4
+    /* 75DC 800069DC 8FA4001C */   lw        $a0, 0x1C($sp)
+    /* 75E0 800069E0 8FBF0014 */  lw         $ra, 0x14($sp)
+    /* 75E4 800069E4 3C198003 */  lui        $t9, %hi(D_800354B8)
+    /* 75E8 800069E8 8F3954B8 */  lw         $t9, %lo(D_800354B8)($t9)
+    /* 75EC 800069EC 8FA80028 */  lw         $t0, 0x28($sp)
+    /* 75F0 800069F0 27BD0020 */  addiu      $sp, $sp, 0x20
+    /* 75F4 800069F4 03E00008 */  jr         $ra
+    /* 75F8 800069F8 03281023 */   subu      $v0, $t9, $t0
+```
+
+## Tips for This Category
+

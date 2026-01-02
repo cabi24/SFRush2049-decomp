@@ -1,0 +1,196 @@
+# osCreateScheduler
+
+## Quick Info
+
+| Property | Value |
+|----------|-------|
+| **Address** | `0x80000450` |
+| **Category** | `libultra/os` |
+| **Status** | `TODO` |
+| **Instructions** | ~97 |
+
+## Description
+
+create OSSc-like scheduler struct, sets up msg queues and events
+
+## Compiler Settings
+
+```bash
+-g0 -O1 -mips2 -G 0 -non_shared
+```
+
+These flags were determined by matching other functions in the `libultra/os` category.
+
+## Files in This Directory
+
+| File | Purpose |
+|------|---------|
+| `README.md` | This file - all context needed to work on this function |
+| `base.c` | Your C implementation (edit this!) |
+| `target.s` | Target assembly to match |
+| `types.h` | Common type definitions |
+| `compile.sh` | Script to compile and compare |
+| `STATUS` | Current status (TODO/WIP/MATCHING) |
+
+## How to Match This Function
+
+### Step 1: Understand the Target
+
+Look at `target.s` - this is the assembly your C code must produce.
+
+Key things to note:
+- Function prologue/epilogue (stack frame size)
+- Register usage patterns
+- Branch instructions (beq vs bne vs beql)
+- Memory access patterns
+
+### Step 2: Write Your Implementation
+
+Edit `base.c` with your C implementation. Include `types.h` for common types.
+
+```c
+#include "types.h"
+
+// Your implementation here
+```
+
+### Step 3: Compile and Compare
+
+```bash
+# On watchman (x86 build machine):
+cd /home/cburnes/projects/rush2049-decomp
+./work/libultra/os/osCreateScheduler/compile.sh
+
+# Or use asmdiff for side-by-side view:
+python3 tools/asmdiff.py work/libultra/os/osCreateScheduler
+
+# Watch mode (auto-refresh on save):
+python3 tools/asmdiff.py work/libultra/os/osCreateScheduler --watch
+```
+
+### Step 4: Update Status
+
+When done, update the `STATUS` file:
+- `MATCHING` - Byte-for-byte match achieved
+- `CLOSE` - Compiles, minor differences
+- `WIP` - Still working on it
+
+## Reference Materials
+
+Standard N64 libultra function - check other decomp projects (sm64, oot)
+
+### Useful Resources
+
+- Symbol table: `symbol_addrs.us.txt`
+- Original assembly: `asm/us/*.s`
+- Arcade source: `reference/repos/rushtherock/`
+
+## Target Assembly
+
+```mips
+# Source: 1050.s
+# Address: 0x80000450
+
+glabel func_80000450
+    /* 1050 80000450 27BDFFE0 */  addiu      $sp, $sp, -0x20
+    /* 1054 80000454 AFBF001C */  sw         $ra, 0x1C($sp)
+    /* 1058 80000458 AFA40020 */  sw         $a0, 0x20($sp)
+    /* 105C 8000045C AFA50024 */  sw         $a1, 0x24($sp)
+    /* 1060 80000460 AFA60028 */  sw         $a2, 0x28($sp)
+    /* 1064 80000464 AFA7002C */  sw         $a3, 0x2C($sp)
+    /* 1068 80000468 3C018003 */  lui        $at, %hi(D_8002EB70)
+    /* 106C 8000046C A420EB70 */  sh         $zero, %lo(D_8002EB70)($at)
+    /* 1070 80000470 8FAE0020 */  lw         $t6, 0x20($sp)
+    /* 1074 80000474 ADC00274 */  sw         $zero, 0x274($t6)
+    /* 1078 80000478 8FAF0020 */  lw         $t7, 0x20($sp)
+    /* 107C 8000047C ADE00278 */  sw         $zero, 0x278($t7)
+    /* 1080 80000480 8FB80020 */  lw         $t8, 0x20($sp)
+    /* 1084 80000484 AF000260 */  sw         $zero, 0x260($t8)
+    /* 1088 80000488 8FB90020 */  lw         $t9, 0x20($sp)
+    /* 108C 8000048C AF20027C */  sw         $zero, 0x27C($t9)
+    /* 1090 80000490 8FA80020 */  lw         $t0, 0x20($sp)
+    /* 1094 80000494 AD000264 */  sw         $zero, 0x264($t0)
+    /* 1098 80000498 8FA90020 */  lw         $t1, 0x20($sp)
+    /* 109C 8000049C AD200268 */  sw         $zero, 0x268($t1)
+    /* 10A0 800004A0 8FAA0020 */  lw         $t2, 0x20($sp)
+    /* 10A4 800004A4 AD40026C */  sw         $zero, 0x26C($t2)
+    /* 10A8 800004A8 8FAB0020 */  lw         $t3, 0x20($sp)
+    /* 10AC 800004AC AD600270 */  sw         $zero, 0x270($t3)
+    /* 10B0 800004B0 8FAD0020 */  lw         $t5, 0x20($sp)
+    /* 10B4 800004B4 240C0001 */  addiu      $t4, $zero, 0x1
+    /* 10B8 800004B8 A5AC0000 */  sh         $t4, 0x0($t5)
+    /* 10BC 800004BC 8FAF0020 */  lw         $t7, 0x20($sp)
+    /* 10C0 800004C0 240E0004 */  addiu      $t6, $zero, 0x4
+    /* 10C4 800004C4 A5EE0020 */  sh         $t6, 0x20($t7)
+    /* 10C8 800004C8 8FB80020 */  lw         $t8, 0x20($sp)
+    /* 10CC 800004CC 24060008 */  addiu      $a2, $zero, 0x8
+    /* 10D0 800004D0 27040040 */  addiu      $a0, $t8, 0x40
+    /* 10D4 800004D4 0C001A80 */  jal        func_80006A00
+    /* 10D8 800004D8 27050058 */   addiu     $a1, $t8, 0x58
+    /* 10DC 800004DC 8FB90020 */  lw         $t9, 0x20($sp)
+    /* 10E0 800004E0 24060008 */  addiu      $a2, $zero, 0x8
+    /* 10E4 800004E4 27240078 */  addiu      $a0, $t9, 0x78
+    /* 10E8 800004E8 0C001A80 */  jal        func_80006A00
+    /* 10EC 800004EC 27250090 */   addiu     $a1, $t9, 0x90
+    /* 10F0 800004F0 0C001A8C */  jal        func_80006A30
+    /* 10F4 800004F4 240400FE */   addiu     $a0, $zero, 0xFE
+    /* 10F8 800004F8 93A8002F */  lbu        $t0, 0x2F($sp)
+    /* 10FC 800004FC 3C0A8003 */  lui        $t2, %hi(D_8002B1B0)
+    /* 1100 80000500 254AB1B0 */  addiu      $t2, $t2, %lo(D_8002B1B0)
+    /* 1104 80000504 00084880 */  sll        $t1, $t0, 2
+    /* 1108 80000508 01284821 */  addu       $t1, $t1, $t0
+    /* 110C 8000050C 00094900 */  sll        $t1, $t1, 4
+    /* 1110 80000510 0C001B50 */  jal        func_80006D40
+    /* 1114 80000514 012A2021 */   addu      $a0, $t1, $t2
+    /* 1118 80000518 0C001B68 */  jal        func_80006DA0
+    /* 111C 8000051C 24040001 */   addiu     $a0, $zero, 0x1
+    /* 1120 80000520 8FA50020 */  lw         $a1, 0x20($sp)
+    /* 1124 80000524 24040004 */  addiu      $a0, $zero, 0x4
+    /* 1128 80000528 2406029B */  addiu      $a2, $zero, 0x29B
+    /* 112C 8000052C 0C001B84 */  jal        func_80006E10
+    /* 1130 80000530 24A50040 */   addiu     $a1, $a1, 0x40
+    /* 1134 80000534 8FA50020 */  lw         $a1, 0x20($sp)
+    /* 1138 80000538 24040009 */  addiu      $a0, $zero, 0x9
+    /* 113C 8000053C 2406029C */  addiu      $a2, $zero, 0x29C
+    /* 1140 80000540 0C001B84 */  jal        func_80006E10
+    /* 1144 80000544 24A50040 */   addiu     $a1, $a1, 0x40
+    /* 1148 80000548 8FA50020 */  lw         $a1, 0x20($sp)
+    /* 114C 8000054C 2404000E */  addiu      $a0, $zero, 0xE
+    /* 1150 80000550 2406029D */  addiu      $a2, $zero, 0x29D
+    /* 1154 80000554 0C001B84 */  jal        func_80006E10
+    /* 1158 80000558 24A50040 */   addiu     $a1, $a1, 0x40
+    /* 115C 8000055C 8FA50020 */  lw         $a1, 0x20($sp)
+    /* 1160 80000560 00002025 */  or         $a0, $zero, $zero
+    /* 1164 80000564 2406029E */  addiu      $a2, $zero, 0x29E
+    /* 1168 80000568 0C001B84 */  jal        func_80006E10
+    /* 116C 8000056C 24A50040 */   addiu     $a1, $a1, 0x40
+    /* 1170 80000570 8FA40020 */  lw         $a0, 0x20($sp)
+    /* 1174 80000574 2405029A */  addiu      $a1, $zero, 0x29A
+    /* 1178 80000578 93A60033 */  lbu        $a2, 0x33($sp)
+    /* 117C 8000057C 0C001BB4 */  jal        func_80006ED0
+    /* 1180 80000580 24840040 */   addiu     $a0, $a0, 0x40
+    /* 1184 80000584 8FAB0020 */  lw         $t3, 0x20($sp)
+    /* 1188 80000588 8FAC0024 */  lw         $t4, 0x24($sp)
+    /* 118C 8000058C 8FAD0028 */  lw         $t5, 0x28($sp)
+    /* 1190 80000590 3C068000 */  lui        $a2, %hi(func_8000063C)
+    /* 1194 80000594 24C6063C */  addiu      $a2, $a2, %lo(func_8000063C)
+    /* 1198 80000598 24050004 */  addiu      $a1, $zero, 0x4
+    /* 119C 8000059C 256400B0 */  addiu      $a0, $t3, 0xB0
+    /* 11A0 800005A0 01603825 */  or         $a3, $t3, $zero
+    /* 11A4 800005A4 AFAC0010 */  sw         $t4, 0x10($sp)
+    /* 11A8 800005A8 0C001BCC */  jal        func_80006F30
+    /* 11AC 800005AC AFAD0014 */   sw        $t5, 0x14($sp)
+    /* 11B0 800005B0 8FA40020 */  lw         $a0, 0x20($sp)
+    /* 11B4 800005B4 0C001C20 */  jal        func_80007080
+    /* 11B8 800005B8 248400B0 */   addiu     $a0, $a0, 0xB0
+    /* 11BC 800005BC 10000001 */  b          .L800005C4
+    /* 11C0 800005C0 00000000 */   nop
+  .L800005C4:
+    /* 11C4 800005C4 8FBF001C */  lw         $ra, 0x1C($sp)
+    /* 11C8 800005C8 27BD0020 */  addiu      $sp, $sp, 0x20
+    /* 11CC 800005CC 03E00008 */  jr         $ra
+    /* 11D0 800005D0 00000000 */   nop
+```
+
+## Tips for This Category
+
