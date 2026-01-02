@@ -2,17 +2,25 @@
  * Function: osDpIsBusy
  * Address:  0x8000D740
  * Category: libultra/dp
- * Status:   TODO
+ * Status:   WIP
  *
- * check if RDP is busy
+ * Check if RDP (Reality Display Processor) is busy
+ * Returns 1 if busy, 0 if idle
  *
  * Compiler flags: -g0 -O1 -mips2 -G 0 -non_shared
  */
 
-/* Add includes as needed */
-/* #include "types.h" */
+#include "types.h"
 
-/* TODO: Implement this function */
-void osDpIsBusy(void) {
-    /* Stub implementation */
+/* DPC (Display Processor Command) Status Register */
+#define DPC_STATUS_REG (*(volatile u32 *)0xA410000C)
+
+/* Status bit for command busy */
+#define DPC_STATUS_CMDBSY 0x100
+
+s32 osDpIsBusy(void) {
+    if (DPC_STATUS_REG & DPC_STATUS_CMDBSY) {
+        return 1;
+    }
+    return 0;
 }

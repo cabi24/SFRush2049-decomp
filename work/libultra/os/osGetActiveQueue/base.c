@@ -2,17 +2,18 @@
  * Function: osGetActiveQueue
  * Address:  0x8000C660
  * Category: libultra/os
- * Status:   TODO
+ * Status:   WIP
  *
- * get active thread queue
+ * Get the active thread queue pointer
  *
  * Compiler flags: -g0 -O1 -mips2 -G 0 -non_shared
  */
 
-/* Add includes as needed */
-/* #include "types.h" */
+#include "types.h"
 
-/* TODO: Implement this function */
-void osGetActiveQueue(void) {
-    /* Stub implementation */
+/* External reference to active thread queue */
+extern void *__osActiveQueue;
+
+void *osGetActiveQueue(void) {
+    return __osActiveQueue;
 }

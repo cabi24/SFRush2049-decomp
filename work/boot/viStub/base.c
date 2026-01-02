@@ -2,17 +2,13 @@
  * Function: viStub
  * Address:  0x800015DC
  * Category: boot
- * Status:   TODO
+ * Status:   WIP
  *
- * no-op stub
+ * Empty no-op stub function
  *
  * Compiler flags: -g0 -O2 -mips2 -G 0 -non_shared
  */
 
-/* Add includes as needed */
-/* #include "types.h" */
-
-/* TODO: Implement this function */
 void viStub(void) {
-    /* Stub implementation */
+    /* Empty stub - just returns */
 }
