@@ -2,17 +2,21 @@
  * Function: dma_signal
  * Address:  0x8000262C
  * Category: boot
- * Status:   TODO
+ * Status:   WIP
  *
- * signal DMA complete
+ * Signal DMA complete by sending message to DMA queue.
  *
  * Compiler flags: -g0 -O2 -mips2 -G 0 -non_shared
  */
 
-/* Add includes as needed */
-/* #include "types.h" */
+#include "types.h"
 
-/* TODO: Implement this function */
+typedef void *OSMesgQueue;
+typedef void *OSMesg;
+
+extern OSMesgQueue D_8002F190;  /* DMA completion queue */
+extern s32 osJamMesg(OSMesgQueue *mq, OSMesg msg, s32 flag);
+
 void dma_signal(void) {
-    /* Stub implementation */
+    osJamMesg(&D_8002F190, NULL, 0);
 }
