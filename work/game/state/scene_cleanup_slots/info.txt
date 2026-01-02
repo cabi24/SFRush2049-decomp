@@ -1,0 +1,5 @@
+name: scene_cleanup_slots
+address: 0x800C70BC
+category: game/state
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: scene slot cleanup

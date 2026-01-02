@@ -1,0 +1,5 @@
+name: ghost_race_setup
+address: 0x800D510C
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: race against saved ghosts setup (716 bytes)

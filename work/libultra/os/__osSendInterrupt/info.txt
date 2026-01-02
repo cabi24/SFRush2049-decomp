@@ -1,0 +1,5 @@
+name: __osSendInterrupt
+address: 0x8000CEDC
+category: libultra/os
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: send interrupt message to event state table queue (called from exception handler)

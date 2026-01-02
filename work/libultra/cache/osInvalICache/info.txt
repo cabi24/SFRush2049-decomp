@@ -1,0 +1,5 @@
+name: osInvalICache
+address: 0x80007810
+category: libultra/cache
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: invalidate I-cache

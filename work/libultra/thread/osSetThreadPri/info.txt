@@ -1,0 +1,5 @@
+name: osSetThreadPri
+address: 0x80006D40
+category: libultra/thread
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: set thread priority

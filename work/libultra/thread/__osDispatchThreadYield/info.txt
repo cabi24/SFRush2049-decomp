@@ -1,0 +1,5 @@
+name: __osDispatchThreadYield
+address: 0x8000D298
+category: libultra/thread
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: dispatch thread after yield (jump target in exception handler)

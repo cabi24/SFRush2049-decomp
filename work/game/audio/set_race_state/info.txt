@@ -1,0 +1,5 @@
+name: set_race_state
+address: 0x800B6138
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: may set 0x00200000 state

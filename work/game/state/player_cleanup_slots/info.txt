@@ -1,0 +1,5 @@
+name: player_cleanup_slots
+address: 0x800C90E0
+category: game/state
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: cleanup player mode slots

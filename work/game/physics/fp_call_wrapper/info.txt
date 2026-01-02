@@ -1,0 +1,5 @@
+name: fp_call_wrapper
+address: 0x800AC6F4
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: function pointer call wrapper

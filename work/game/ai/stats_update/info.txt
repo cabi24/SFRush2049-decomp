@@ -1,0 +1,5 @@
+name: stats_update
+address: 0x800DC99C
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: stats update - update game statistics (1016 bytes)

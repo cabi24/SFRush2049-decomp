@@ -1,0 +1,5 @@
+name: wheel_torque_apply
+address: 0x800AC668
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:drivetra.c:drivetrain(41-56) apply dwtorque to drive wheels with differential split

@@ -1,0 +1,5 @@
+name: input_new_data_wrapper
+address: 0x80094F88
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: toggle new data flag - toggle new data flag

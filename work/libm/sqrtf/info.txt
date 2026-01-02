@@ -1,0 +1,5 @@
+name: sqrtf
+address: 0x8000E3C0
+category: libm
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: square root (float) arcade:fmath.c:fsqrt()

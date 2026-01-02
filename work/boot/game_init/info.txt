@@ -1,0 +1,5 @@
+name: game_init
+address: 0x80002238
+category: boot
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: main game initialization, creates threads

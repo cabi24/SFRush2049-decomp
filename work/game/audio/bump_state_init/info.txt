@@ -1,0 +1,5 @@
+name: bump_state_init
+address: 0x800B3598
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:carsnd.c:init_bump initialize bump state by index (8 bytes)

@@ -1,0 +1,5 @@
+name: players_frame_update
+address: 0x800D5798
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: players frame update - all players tick (740 bytes)

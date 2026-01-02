@@ -1,0 +1,5 @@
+name: __round_helper
+address: 0x80004674
+category: libm
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: rounding helper for float conversion

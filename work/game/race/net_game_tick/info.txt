@@ -1,0 +1,5 @@
+name: net_game_tick
+address: 0x800F20A0
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:pdu.c main loop - per-frame net update (1664 bytes)

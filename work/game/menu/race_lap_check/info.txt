@@ -1,0 +1,5 @@
+name: race_lap_check
+address: 0x800E4000
+category: game/menu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: check lap completion (arcade: checkpoint.c:1098 PassedCP finish line handling)

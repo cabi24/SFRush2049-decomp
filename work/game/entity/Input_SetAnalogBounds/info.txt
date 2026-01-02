@@ -1,0 +1,5 @@
+name: Input_SetAnalogBounds
+address: 0x80094E00
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: sets analog/deadzone bounds at offsets 0x18-0x1E

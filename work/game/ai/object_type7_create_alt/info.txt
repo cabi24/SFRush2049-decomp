@@ -1,0 +1,5 @@
+name: object_type7_create_alt
+address: 0x800DB7B4
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: object type 7 create - alternate object create (92 bytes)

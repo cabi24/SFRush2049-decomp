@@ -1,0 +1,5 @@
+name: __osSpSetPc
+address: 0x8000D650
+category: libultra/sp
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: set RSP program counter (only if halted)

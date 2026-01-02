@@ -1,0 +1,5 @@
+name: object_bytes23_sum
+address: 0x800B7128
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: returns sum of bytes at offsets 2 and 3

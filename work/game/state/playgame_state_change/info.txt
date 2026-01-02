@@ -1,0 +1,5 @@
+name: playgame_state_change
+address: 0x800CA3B4
+category: game/state
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: walks global mode flags, handles enter/exit gameplay (2544 bytes)

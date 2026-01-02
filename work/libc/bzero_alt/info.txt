@@ -1,0 +1,5 @@
+name: bzero_alt
+address: 0x8000D2A0
+category: libc
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: alternative bzero (zeroes memory)

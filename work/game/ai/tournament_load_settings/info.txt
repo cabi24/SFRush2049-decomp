@@ -1,0 +1,5 @@
+name: tournament_load_settings
+address: 0x800DE4DC
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:tourney.c:LoadTourneySettings - load tournament config from Controller Pak

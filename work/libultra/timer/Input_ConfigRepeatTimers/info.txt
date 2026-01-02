@@ -1,0 +1,5 @@
+name: Input_ConfigRepeatTimers
+address: 0x80094DB0
+category: libultra/timer
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: writes repeat/debounce params to pad entry offsets 0x0E/0x14/0x16

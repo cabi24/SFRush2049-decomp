@@ -1,0 +1,5 @@
+name: render_post_process
+address: 0x800FADE0
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: render post process (1108 bytes)

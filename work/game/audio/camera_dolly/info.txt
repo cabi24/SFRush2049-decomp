@@ -1,0 +1,5 @@
+name: camera_dolly
+address: 0x800BC2BC
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: move camera along view direction/zoom (460 bytes)

@@ -1,0 +1,5 @@
+name: scrape_sound_stop
+address: 0x800B3620
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:carsnd.c:kill_scrape_sound stop scrape sound (12 bytes)

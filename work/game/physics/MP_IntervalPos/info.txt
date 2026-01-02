@@ -1,0 +1,5 @@
+name: MP_IntervalPos
+address: 0x800A0D00
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: calc position relative to maxpath interval (arcade: maxpath.c:MP_IntervalPos)

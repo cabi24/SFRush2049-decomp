@@ -1,0 +1,5 @@
+name: results_time_display
+address: 0x800BF0A4
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: display race time on results

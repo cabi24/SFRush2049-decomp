@@ -1,0 +1,5 @@
+name: unlock_reward_show
+address: 0x80105EF4
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:money.c:gFreeGame display unlock notification (achievement_unlock)

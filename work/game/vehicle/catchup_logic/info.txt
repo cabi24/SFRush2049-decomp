@@ -1,0 +1,5 @@
+name: catchup_logic
+address: 0x801089CC
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: catch-up logic (1432 bytes) - implements catch-up mechanics

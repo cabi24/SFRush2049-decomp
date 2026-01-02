@@ -1,0 +1,5 @@
+name: physics_ground_trace
+address: 0x800B9774
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: trace ray to ground for terrain contact

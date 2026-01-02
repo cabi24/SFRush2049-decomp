@@ -1,0 +1,5 @@
+name: attract_mode_handler
+address: 0x800DC88C
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:attract() - attract mode state machine (1272 bytes)

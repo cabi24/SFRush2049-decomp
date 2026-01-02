@@ -1,0 +1,5 @@
+name: guOrtho
+address: 0x80008BB4
+category: libultra/gu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: orthographic projection matrix (fixed-point)

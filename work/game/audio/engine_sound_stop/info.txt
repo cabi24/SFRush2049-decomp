@@ -1,0 +1,5 @@
+name: engine_sound_stop
+address: 0x800B3340
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:carsnd.c:StopEngineSound stop engine sound (76 bytes)

@@ -1,0 +1,5 @@
+name: osPiRawReadWord
+address: 0x800081D0
+category: libultra/pi
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: synchronized ROM word read with PI access control

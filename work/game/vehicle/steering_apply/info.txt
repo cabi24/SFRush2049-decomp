@@ -1,0 +1,5 @@
+name: steering_apply
+address: 0x8010C6D0
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:fswheel.c:wheelpos N64 steering angle from stick (292 bytes)

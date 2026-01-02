@@ -1,0 +1,5 @@
+name: pause_quit
+address: 0x800D8C58
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: quits to main menu (1032 bytes)

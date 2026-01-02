@@ -1,0 +1,5 @@
+name: camera_top_down
+address: 0x800BFD94
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: top-down overhead camera view (844 bytes)

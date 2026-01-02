@@ -1,0 +1,5 @@
+name: results_screen
+address: 0x800D9060
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: results screen - race results display (4204 bytes)

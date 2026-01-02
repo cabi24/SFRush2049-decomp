@@ -1,0 +1,5 @@
+name: huft_alloc
+address: 0x80004D6C
+category: inflate
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: allocate Huffman table memory

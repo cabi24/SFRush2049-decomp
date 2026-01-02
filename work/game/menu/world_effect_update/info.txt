@@ -1,0 +1,5 @@
+name: world_effect_update
+address: 0x800EE8B4
+category: game/menu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: world effect update - updates particle position/lifetime (456 bytes)

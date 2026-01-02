@@ -1,0 +1,5 @@
+name: place_cars_in_order
+address: 0x800F54C0
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: sort cars by race position (arcade: drones.c:place_cars_in_order)

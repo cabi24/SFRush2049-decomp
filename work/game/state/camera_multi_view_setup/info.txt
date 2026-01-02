@@ -1,0 +1,5 @@
+name: camera_multi_view_setup
+address: 0x800C26E0
+category: game/state
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: sets up camera for split screen rendering

@@ -1,0 +1,5 @@
+name: race_results_screen
+address: 0x80102250
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: race results screen (2084 bytes) - displays finish times and positions

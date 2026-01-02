@@ -1,0 +1,5 @@
+name: drone_path_select
+address: 0x800A19E4
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: drone path selection logic (arcade: maxpath.c)

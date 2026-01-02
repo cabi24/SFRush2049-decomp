@@ -1,0 +1,5 @@
+name: countdown_start
+address: 0x80100EE4
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: countdown timer start (776 bytes) - starts 3-2-1 countdown

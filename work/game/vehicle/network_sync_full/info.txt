@@ -1,0 +1,5 @@
+name: network_sync_full
+address: 0x8010A83C
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: network sync full (2648 bytes) - synchronizes game state between players

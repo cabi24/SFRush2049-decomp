@@ -1,0 +1,5 @@
+name: render_flush_buffer
+address: 0x800878EC
+category: game/render
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: render buffer flush operation

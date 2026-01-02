@@ -1,0 +1,5 @@
+name: entity_state_init
+address: 0x8009229C
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: entity state initialization (600 bytes)

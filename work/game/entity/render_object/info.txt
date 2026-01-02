@@ -1,0 +1,5 @@
+name: render_object
+address: 0x80099BFC
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: 3D object rendering (10KB)

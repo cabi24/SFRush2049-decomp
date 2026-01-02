@@ -1,0 +1,5 @@
+name: tournament_standings_display
+address: 0x800DC248
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:tourney.c - championship standings display (432 bytes)

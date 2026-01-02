@@ -1,0 +1,5 @@
+name: battle_mode_setup
+address: 0x800D4EF4
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: configure battle arena and rules (532 bytes)

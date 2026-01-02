@@ -1,0 +1,5 @@
+name: viGetTimeToDeadline
+address: 0x80001578
+category: boot
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: get float time until deadline

@@ -1,0 +1,5 @@
+name: net_game_state_send
+address: 0x800F38BC
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:pdu.c:PutEventReportPDU - send game events (checkpoint/lap/score) (1912 bytes)

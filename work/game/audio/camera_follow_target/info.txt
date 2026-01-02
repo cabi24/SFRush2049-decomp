@@ -1,0 +1,5 @@
+name: camera_follow_target
+address: 0x800BCBB8
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: camera follows target with look-ahead (7640 bytes)

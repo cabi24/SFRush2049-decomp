@@ -1,0 +1,5 @@
+name: stunt_score_popup
+address: 0x800D3E50
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: stunt score popup - +500 BARREL ROLL etc (384 bytes)

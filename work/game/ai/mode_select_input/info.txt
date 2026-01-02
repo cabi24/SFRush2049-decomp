@@ -1,0 +1,5 @@
+name: mode_select_input
+address: 0x800DFB08
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: handles mode selection input (188 bytes)

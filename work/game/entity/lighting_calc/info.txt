@@ -1,0 +1,5 @@
+name: lighting_calc
+address: 0x8009C5E0
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: surface lighting calculation (1560 bytes)

@@ -1,0 +1,5 @@
+name: stat_display_screen
+address: 0x80104E84
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:stats.c:UpdateStats equivalent (same as statistics_display)

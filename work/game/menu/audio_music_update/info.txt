@@ -1,0 +1,5 @@
+name: audio_music_update
+address: 0x800E6800
+category: game/menu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: audio music update - update music playback

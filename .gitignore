@@ -62,3 +62,17 @@ python3/
 # CODEX notes (internal)
 CODEX.md
 tools/decomp-permuter/
+
+# IDO compiler binaries (too large for repo)
+tools/ido-static-recomp/
+tools/ido5.3_compiler/
+tools/ido7.1/
+
+# Temporary task files
+tools/CODEX_*.md
+
+# Permuter output directories  
+permuter/*/output-*/
+
+# Compiled objects in work directories
+work/**/*.o

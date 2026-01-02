@@ -1,0 +1,5 @@
+name: state_change_preprocess
+address: 0x800CA300
+category: game/state
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: state change preprocessing (HUD fade)

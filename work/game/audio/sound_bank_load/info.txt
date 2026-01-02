@@ -1,0 +1,5 @@
+name: sound_bank_load
+address: 0x800B0F68
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: load sound bank from ROM via DMA (364 bytes)

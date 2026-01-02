@@ -1,0 +1,5 @@
+name: sound_pitch_set
+address: 0x800B58A0
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: set pitch for playing sound (float to N64 fixed-point)

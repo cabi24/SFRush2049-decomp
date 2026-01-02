@@ -1,0 +1,5 @@
+name: task_complete_signal
+address: 0x8008AC74
+category: game/render
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: task completion signal

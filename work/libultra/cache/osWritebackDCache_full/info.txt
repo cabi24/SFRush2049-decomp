@@ -1,0 +1,5 @@
+name: osWritebackDCache_full
+address: 0x800086F0
+category: libultra/cache
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: writeback data cache region

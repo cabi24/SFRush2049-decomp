@@ -1,0 +1,5 @@
+name: finish_state_alt
+address: 0x800F8B70
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: alternate finish handler

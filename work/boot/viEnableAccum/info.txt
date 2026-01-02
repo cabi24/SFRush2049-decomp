@@ -1,0 +1,5 @@
+name: viEnableAccum
+address: 0x800013C0
+category: boot
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: enable time accumulation

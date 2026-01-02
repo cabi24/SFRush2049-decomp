@@ -1,0 +1,5 @@
+name: __osPackReadData
+address: 0x800098E0
+category: libultra/os
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: pack read-buttons command into PIF buffer

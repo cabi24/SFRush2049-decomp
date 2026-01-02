@@ -1,0 +1,5 @@
+name: draw_message
+address: 0x800CA308
+category: game/state
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: draw centered HUD message (checkpoint, etc.) (172 bytes)

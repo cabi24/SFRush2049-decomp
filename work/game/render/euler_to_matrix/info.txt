@@ -1,0 +1,5 @@
+name: euler_to_matrix
+address: 0x8008D764
+category: game/render
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: euler angle to rotation matrix (372 bytes) arcade:fmath.c:CreatePYRMatrix()

@@ -1,0 +1,5 @@
+name: object_action_process
+address: 0x800D63F4
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: object action process - process pending actions (676 bytes)

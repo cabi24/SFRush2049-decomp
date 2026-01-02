@@ -1,0 +1,5 @@
+name: sound_channel_enable
+address: 0x800954A8
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: sound enable/disable channel (128 bytes)

@@ -1,0 +1,5 @@
+name: RaceStateMachine_Update
+address: 0x800DB81C
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: size:2148 - jump-table state machine on 0x801170FC (cases 0-8)

@@ -1,0 +1,5 @@
+name: name_entry_screen
+address: 0x80104320
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: name entry screen (1844 bytes) - enter initials for high score

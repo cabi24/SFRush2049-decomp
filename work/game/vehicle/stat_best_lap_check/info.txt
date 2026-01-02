@@ -1,0 +1,5 @@
+name: stat_best_lap_check
+address: 0x80101700
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:stats.c:update_track_time check vs best lap (same as best_time_check)

@@ -1,0 +1,5 @@
+name: render_flag_check
+address: 0x8008E0C8
+category: game/render
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: check render flags

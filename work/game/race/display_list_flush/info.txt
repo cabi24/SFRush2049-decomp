@@ -1,0 +1,5 @@
+name: display_list_flush
+address: 0x800FB2C8
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: display list flush - submits DL to RSP/RDP (5944 bytes)

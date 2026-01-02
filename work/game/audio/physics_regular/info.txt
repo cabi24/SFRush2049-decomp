@@ -1,0 +1,5 @@
+name: physics_regular
+address: 0x800B9000
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: standard physics cycle (arcade: regular in drivsym.c:285)

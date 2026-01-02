@@ -1,0 +1,5 @@
+name: particles_spawn_emitter
+address: 0x800B80C8
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: spawn particles for specific emitter index

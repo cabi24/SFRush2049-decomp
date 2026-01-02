@@ -1,0 +1,5 @@
+name: tire_params_load
+address: 0x800A5A74
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: tire parameters load

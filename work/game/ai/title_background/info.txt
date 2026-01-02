@@ -1,0 +1,5 @@
+name: title_background
+address: 0x800DE4DC
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: renders animated title background (908 bytes)

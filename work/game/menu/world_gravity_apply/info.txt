@@ -1,0 +1,5 @@
+name: world_gravity_apply
+address: 0x800ECC18
+category: game/menu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: world gravity apply - applies gravity to velocity (2652 bytes)

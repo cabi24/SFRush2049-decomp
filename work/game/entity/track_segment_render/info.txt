@@ -1,0 +1,5 @@
+name: track_segment_render
+address: 0x8009DD88
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: render single track segment with display list (3304 bytes)

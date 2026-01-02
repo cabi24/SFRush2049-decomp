@@ -1,0 +1,5 @@
+name: menu_text_scroll
+address: 0x800CC540
+category: game/state
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: scroll long text horizontally (904 bytes)

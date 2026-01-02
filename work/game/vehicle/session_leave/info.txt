@@ -1,0 +1,5 @@
+name: session_leave
+address: 0x8010A4C0
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: session leave (892 bytes) - removes player from session

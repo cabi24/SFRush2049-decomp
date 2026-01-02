@@ -1,0 +1,5 @@
+name: object_counter_increment
+address: 0x800E7980
+category: game/menu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: increment object reference counter (112 bytes) - synced increment at offset 22

@@ -1,0 +1,5 @@
+name: model_render
+address: 0x800EB400
+category: game/menu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: model render - render model with transforms

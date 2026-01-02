@@ -1,0 +1,5 @@
+name: slot_state_setup
+address: 0x800B4200
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: player/slot state management (171 calls)

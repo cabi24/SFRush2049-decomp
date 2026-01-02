@@ -1,0 +1,5 @@
+name: race_position_update
+address: 0x800BE7BC
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: update race position

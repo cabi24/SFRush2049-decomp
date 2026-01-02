@@ -1,0 +1,5 @@
+name: reconnect_attempt
+address: 0x8010BE7C
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: reconnection attempt (1152 bytes) - attempts to reconnect player

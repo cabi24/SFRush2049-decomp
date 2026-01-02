@@ -1,0 +1,5 @@
+name: __scMain
+address: 0x8000063C
+category: scheduler
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: scheduler thread main loop (handles events 0x29A-0x29E)

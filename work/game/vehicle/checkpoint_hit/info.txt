@@ -1,0 +1,5 @@
+name: checkpoint_hit
+address: 0x801073D8
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: record checkpoint passage, validate sequence (580 bytes) (arcade: checkpoint.c:PassedCP validation)

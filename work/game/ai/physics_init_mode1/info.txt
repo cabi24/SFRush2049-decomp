@@ -1,0 +1,5 @@
+name: physics_init_mode1
+address: 0x800D62EC
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: physics init mode 1 - alternate physics (92 bytes)

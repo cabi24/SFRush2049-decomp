@@ -1,0 +1,5 @@
+name: collision_force_check
+address: 0x800B34C0
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:carsnd.c:check_forces_on_car check collision forces (204 bytes)

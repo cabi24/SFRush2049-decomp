@@ -1,0 +1,5 @@
+name: collision_peak_detect
+address: 0x800B3590
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:carsnd.c:get_force_and_peak force peak detection (8 bytes)

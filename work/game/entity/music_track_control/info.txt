@@ -1,0 +1,5 @@
+name: music_track_control
+address: 0x80095528
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: music track playback control (484 bytes)

@@ -1,0 +1,5 @@
+name: inflate_block
+address: 0x800064D4
+category: inflate
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: decode one deflate block

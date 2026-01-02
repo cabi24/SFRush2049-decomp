@@ -1,0 +1,5 @@
+name: achievements_check
+address: 0x80105858
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: achievements check (1692 bytes) - checks and unlocks achievements

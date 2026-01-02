@@ -1,0 +1,5 @@
+name: entity_tick_main
+address: 0x800930A4
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: major entity processing loop (2684 bytes)

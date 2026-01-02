@@ -1,0 +1,5 @@
+name: attract_handler
+address: 0x800DB81C
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: attract handler - attract mode state machine (196 bytes)

@@ -1,0 +1,5 @@
+name: net_player_update
+address: 0x800F1944
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:pdu.c:EntityStatePDU handling - update remote player state (852 bytes)

@@ -1,0 +1,5 @@
+name: sound_handles_array_clear
+address: 0x800DC720
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: sound handles clear - reset sound handles (248 bytes)

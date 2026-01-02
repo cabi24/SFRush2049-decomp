@@ -1,0 +1,5 @@
+name: idle_thread_entry
+address: 0x800021A4
+category: libultra/thread
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: boot idle thread: inits PI manager, creates game thread, loops forever

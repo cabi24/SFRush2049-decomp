@@ -1,0 +1,5 @@
+name: menu_animation_update
+address: 0x800CC000
+category: game/state
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: handle menu transitions and element animations (900 bytes)

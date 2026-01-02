@@ -1,0 +1,5 @@
+name: menu_confirm
+address: 0x800D7100
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: confirm current menu selection

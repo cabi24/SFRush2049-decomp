@@ -1,0 +1,5 @@
+name: unlock_notification
+address: 0x800DC794
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: unlock notification - unlock popup display (248 bytes)

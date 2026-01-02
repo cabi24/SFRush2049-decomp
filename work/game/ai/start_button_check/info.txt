@@ -1,0 +1,5 @@
+name: start_button_check
+address: 0x800DCD94
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:money.c:chk_start N64 start/input check (attract_idle_check)

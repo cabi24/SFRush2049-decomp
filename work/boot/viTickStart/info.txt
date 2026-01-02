@@ -1,0 +1,5 @@
+name: viTickStart
+address: 0x80001350
+category: boot
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: snapshot counter, compute frame duration

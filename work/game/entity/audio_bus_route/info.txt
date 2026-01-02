@@ -1,0 +1,5 @@
+name: audio_bus_route
+address: 0x8009570C
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: audio bus routing (244 bytes)

@@ -1,0 +1,5 @@
+name: MaxPath
+address: 0x800A0B00
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: main maxpath update per frame (arcade: maxpath.c:MaxPath) - wraps RecordMaxPath

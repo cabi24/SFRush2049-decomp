@@ -1,0 +1,5 @@
+name: car_gear_shift
+address: 0x800A7C9C
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:drivetra.c:autoshift manual gear shift handler - sets commandgear and triggers shift

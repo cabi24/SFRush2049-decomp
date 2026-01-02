@@ -1,0 +1,5 @@
+name: dll_remove
+address: 0x8000C050
+category: dll
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: remove node from singly-linked list

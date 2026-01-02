@@ -1,0 +1,5 @@
+name: matrix_scale_apply
+address: 0x8008D8D8
+category: game/render
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: apply scale to matrix arcade:fmath.c:ScaleUV()

@@ -1,0 +1,5 @@
+name: camera_zoom_fov
+address: 0x800BDEBC
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: adjust camera FOV for zoom effect (444 bytes)

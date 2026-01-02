@@ -1,0 +1,5 @@
+name: InitMaxPath
+address: 0x800A1244
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: initialize maxpath system for drones (arcade: maxpath.c:InitMaxPath)

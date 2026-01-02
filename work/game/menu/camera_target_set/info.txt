@@ -1,0 +1,5 @@
+name: camera_target_set
+address: 0x800E3000
+category: game/menu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: camera target set - set camera follow target

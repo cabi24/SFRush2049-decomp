@@ -1,0 +1,5 @@
+name: stat_results_display
+address: 0x800D9060
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:stats.c:stat_endgame results screen (same as results_screen)

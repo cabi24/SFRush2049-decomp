@@ -1,0 +1,5 @@
+name: attract_demo_play
+address: 0x800DC99C
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: plays back recorded demo race (1016 bytes)

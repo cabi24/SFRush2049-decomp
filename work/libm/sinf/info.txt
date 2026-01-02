@@ -1,0 +1,5 @@
+name: sinf
+address: 0x80008730
+category: libm
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: sine approximation using polynomial arcade:fmath.c:fsin()

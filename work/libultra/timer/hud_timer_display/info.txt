@@ -1,0 +1,5 @@
+name: hud_timer_display
+address: 0x800FB928
+category: libultra/timer
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: HUD timer display (712 bytes)

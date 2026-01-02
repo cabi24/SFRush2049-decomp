@@ -1,0 +1,5 @@
+name: reverb_setup
+address: 0x800B4B94
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:carsnd.c:init_reverb configure reverb effect for environment type (536 bytes)

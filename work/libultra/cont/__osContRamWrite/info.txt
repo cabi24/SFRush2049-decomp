@@ -1,0 +1,5 @@
+name: __osContRamWrite
+address: 0x8000F680
+category: libultra/cont
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: write to controller pak RAM (PFS page write)

@@ -1,0 +1,5 @@
+name: sound_stop
+address: 0x800B358C
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: stop sound (called when engine stops)

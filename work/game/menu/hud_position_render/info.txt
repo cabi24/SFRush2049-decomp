@@ -1,0 +1,5 @@
+name: hud_position_render
+address: 0x800E2600
+category: game/menu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: hud position render - draw race position

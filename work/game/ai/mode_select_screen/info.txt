@@ -1,0 +1,5 @@
+name: mode_select_screen
+address: 0x800DEF68
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: mode select screen - race/stunt/battle mode (2976 bytes)

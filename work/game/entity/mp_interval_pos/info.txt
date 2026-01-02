@@ -1,0 +1,5 @@
+name: mp_interval_pos
+address: 0x800979A8
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: calc car position relative to maxpath interval (arcade: maxpath.c:mp_interval_pos)

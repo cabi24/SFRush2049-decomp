@@ -1,0 +1,5 @@
+name: sound_handles_clear
+address: 0x800B45BC
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: stops and clears sound handles in object array

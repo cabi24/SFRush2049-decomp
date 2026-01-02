@@ -1,0 +1,18 @@
+/*
+ * Function: object_data_allocate
+ * Address:  0x800CD748
+ * Category: game/state
+ * Status:   TODO
+ *
+ * allocate object data
+ *
+ * Compiler flags: -g0 -O2 -mips2 -G 0 -non_shared
+ */
+
+/* Add includes as needed */
+/* #include "types.h" */
+
+/* TODO: Implement this function */
+void object_data_allocate(void) {
+    /* Stub implementation */
+}

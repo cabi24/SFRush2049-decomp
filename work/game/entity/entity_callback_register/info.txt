@@ -1,0 +1,5 @@
+name: entity_callback_register
+address: 0x80090310
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: entity with callback registration (1036 bytes)

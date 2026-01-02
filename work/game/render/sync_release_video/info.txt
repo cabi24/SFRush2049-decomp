@@ -1,0 +1,5 @@
+name: sync_release_video
+address: 0x8008A6D0
+category: game/render
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: simple sync release wrapper (44 bytes)

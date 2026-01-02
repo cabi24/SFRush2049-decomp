@@ -1,0 +1,5 @@
+name: render_car_body
+address: 0x800F9428
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: render car body (1604 bytes)

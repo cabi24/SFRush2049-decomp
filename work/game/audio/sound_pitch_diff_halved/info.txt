@@ -1,0 +1,5 @@
+name: sound_pitch_diff_halved
+address: 0x800B71A0
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: calculate halved difference with sound_pitch_set

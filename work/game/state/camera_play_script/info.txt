@@ -1,0 +1,5 @@
+name: camera_play_script
+address: 0x800C5644
+category: game/state
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: execute scripted camera sequence (3520 bytes)

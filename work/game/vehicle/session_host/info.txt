@@ -1,0 +1,5 @@
+name: session_host
+address: 0x80109A98
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: session host (1124 bytes) - initializes multiplayer session as host

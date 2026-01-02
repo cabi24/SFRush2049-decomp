@@ -1,0 +1,5 @@
+name: drone_rwtobod
+address: 0x800A373C
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: convert real-world to body coords for drone arcade:unitvecs.c:rwtobod()

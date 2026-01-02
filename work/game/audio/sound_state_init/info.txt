@@ -1,0 +1,5 @@
+name: sound_state_init
+address: 0x800B2C20
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:carsnd.c:InitSndState initialize sound state struct (32 bytes)

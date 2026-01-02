@@ -1,0 +1,5 @@
+name: display_mode_tick
+address: 0x80001D60
+category: boot
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: countdown and apply pending display mode

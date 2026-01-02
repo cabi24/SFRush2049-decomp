@@ -1,0 +1,5 @@
+name: ping_measurement
+address: 0x8010B284
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: ping measurement (676 bytes) - measures input lag/response time

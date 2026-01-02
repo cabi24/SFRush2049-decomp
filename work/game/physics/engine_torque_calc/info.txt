@@ -1,0 +1,5 @@
+name: engine_torque_calc
+address: 0x800AB7D8
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:drivetra.c:enginetorque bilinear torque curve lookup with RPM/throttle interpolation

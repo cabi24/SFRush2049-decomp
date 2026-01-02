@@ -1,0 +1,5 @@
+name: osPfsReAllocate
+address: 0x8000BE50
+category: libultra/pfs
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: reallocate controller pak file pages

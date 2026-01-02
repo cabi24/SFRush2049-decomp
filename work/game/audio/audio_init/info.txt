@@ -1,0 +1,5 @@
+name: audio_init
+address: 0x800B0904
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: audio system initialization - set up channels and hardware (396 bytes)

@@ -1,0 +1,5 @@
+name: settings_default
+address: 0x800DEC8C
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: settings default - reset to defaults (732 bytes)

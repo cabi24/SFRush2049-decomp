@@ -1,0 +1,5 @@
+name: audio_channel_priority
+address: 0x80094A54
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: set audio channel priority

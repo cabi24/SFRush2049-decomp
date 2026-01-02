@@ -1,0 +1,5 @@
+name: Input_ProcessGameplayPad
+address: 0x800A04C4
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: per-frame gameplay/menu input (2720 bytes), reads button masks at 0x0E/0x10/0x14

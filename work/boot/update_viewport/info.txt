@@ -1,0 +1,5 @@
+name: update_viewport
+address: 0x80001F2C
+category: boot
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: update viewport with bounds checking

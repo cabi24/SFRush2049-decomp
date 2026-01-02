@@ -1,0 +1,5 @@
+name: cpak_read
+address: 0x800B0180
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: controller pak read - read data from controller pak (868 bytes)

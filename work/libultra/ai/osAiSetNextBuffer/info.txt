@@ -1,0 +1,5 @@
+name: osAiSetNextBuffer
+address: 0x8000BE70
+category: libultra/ai
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: set AI DMA buffer

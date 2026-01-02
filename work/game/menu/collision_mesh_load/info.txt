@@ -1,0 +1,5 @@
+name: collision_mesh_load
+address: 0x800E9000
+category: game/menu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: collision mesh load - load collision mesh

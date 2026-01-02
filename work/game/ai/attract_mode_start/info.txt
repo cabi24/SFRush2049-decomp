@@ -1,0 +1,5 @@
+name: attract_mode_start
+address: 0x800DC88C
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: initializes attract mode demo (1272 bytes)

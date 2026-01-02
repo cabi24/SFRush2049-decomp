@@ -1,0 +1,5 @@
+name: race_state_update
+address: 0x800DB81C
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: race progression/checkpoint/finalization controller (2148 bytes) (arcade: checkpoint.c:check_everyones_checkpoints)

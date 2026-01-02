@@ -1,0 +1,5 @@
+name: sound_priority_set
+address: 0x80095A24
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: sound priority management (236 bytes)

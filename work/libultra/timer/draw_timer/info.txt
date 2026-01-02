@@ -1,0 +1,5 @@
+name: draw_timer
+address: 0x800C8920
+category: libultra/timer
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: show race time MM:SS.ms (228 bytes)

@@ -1,0 +1,5 @@
+name: world_bounds_check
+address: 0x800ECB74
+category: game/menu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: world bounds check - position in bounds (164 bytes)

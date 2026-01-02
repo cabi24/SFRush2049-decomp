@@ -1,0 +1,5 @@
+name: inflate_free_window
+address: 0x80005464
+category: inflate
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: free huffman decode tables

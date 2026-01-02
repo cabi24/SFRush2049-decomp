@@ -1,0 +1,5 @@
+name: poll_input
+address: 0x80095380
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: controller/button polling - controller/button polling

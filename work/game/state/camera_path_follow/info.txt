@@ -1,0 +1,5 @@
+name: camera_path_follow
+address: 0x800C0288
+category: game/state
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: follow predefined camera path with interpolation (2124 bytes)

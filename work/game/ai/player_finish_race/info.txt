@@ -1,0 +1,5 @@
+name: player_finish_race
+address: 0x800D5BB0
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: player finish race - handle race finish (224 bytes)

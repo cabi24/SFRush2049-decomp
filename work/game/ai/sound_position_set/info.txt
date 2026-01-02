@@ -1,0 +1,5 @@
+name: sound_position_set
+address: 0x800D03DC
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: set 3D sound position (72 bytes) - applies Y/X/Z coords to sound system

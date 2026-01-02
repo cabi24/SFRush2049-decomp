@@ -1,0 +1,5 @@
+name: model_lod_select
+address: 0x800EB500
+category: game/menu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: model lod select - select model LOD level

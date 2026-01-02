@@ -1,0 +1,5 @@
+name: osViGetFramebuffer
+address: 0x800077D0
+category: libultra/vi
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: get configured framebuffer from context

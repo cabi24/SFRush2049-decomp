@@ -1,0 +1,5 @@
+name: collision_ground_height
+address: 0x800E9600
+category: game/menu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: collision ground height - get ground height at point

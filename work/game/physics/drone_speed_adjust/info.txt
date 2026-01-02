@@ -1,0 +1,5 @@
+name: drone_speed_adjust
+address: 0x800A2B30
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: adjust drone speed based on target (arcade: maxpath.c:AdjustSpeed)

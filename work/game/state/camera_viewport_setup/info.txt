@@ -1,0 +1,5 @@
+name: camera_viewport_setup
+address: 0x800C17F4
+category: game/state
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: set viewport for camera rendering (1224 bytes)

@@ -1,0 +1,5 @@
+name: net_race_sync
+address: 0x800F4034
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: network race sync (1536 bytes)

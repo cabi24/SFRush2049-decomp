@@ -1,0 +1,5 @@
+name: lap_complete
+address: 0x8010761C
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: handle lap completion (1240 bytes) (arcade: checkpoint.c:PassedCP finish line, update_lap_counter)

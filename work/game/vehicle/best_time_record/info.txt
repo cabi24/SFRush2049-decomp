@@ -1,0 +1,5 @@
+name: best_time_record
+address: 0x8010194C
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: record new best (812 bytes) - saves new best time to leaderboard

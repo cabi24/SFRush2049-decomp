@@ -1,0 +1,5 @@
+name: track_surface_type
+address: 0x8009EBC0
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: get surface material type at position (1188 bytes)

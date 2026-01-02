@@ -1,0 +1,5 @@
+name: world_friction_apply
+address: 0x800ED674
+category: game/menu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: world friction apply - applies drag to velocity (400 bytes)

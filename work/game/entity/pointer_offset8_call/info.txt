@@ -1,0 +1,5 @@
+name: pointer_offset8_call
+address: 0x800986B0
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: call matrix_identity with offset (36 bytes)

@@ -1,0 +1,5 @@
+name: minimap_render
+address: 0x800D2E94
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: minimap render - track minimap with car positions (1544 bytes)

@@ -1,0 +1,5 @@
+name: profile_stats_update
+address: 0x801068F4
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: profile stats update (2144 bytes) - updates player profile with race results

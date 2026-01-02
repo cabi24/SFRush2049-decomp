@@ -1,0 +1,5 @@
+name: attract_mode
+address: 0x800DB81C
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: demo/title screen handler (arcade: game/game.c:attract)

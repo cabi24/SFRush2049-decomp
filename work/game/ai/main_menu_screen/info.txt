@@ -1,0 +1,5 @@
+name: main_menu_screen
+address: 0x800DE868
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: handles main menu logic (836 bytes)

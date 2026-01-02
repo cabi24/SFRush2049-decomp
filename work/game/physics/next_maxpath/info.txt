@@ -1,0 +1,5 @@
+name: next_maxpath
+address: 0x800A1080
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: next maxpath index with loop flag (arcade: maxpath.c:next_maxpath)

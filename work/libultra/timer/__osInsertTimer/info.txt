@@ -1,0 +1,5 @@
+name: __osInsertTimer
+address: 0x8000E390
+category: libultra/timer
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: insert timer into sorted timer queue

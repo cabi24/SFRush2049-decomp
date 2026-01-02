@@ -1,0 +1,5 @@
+name: net_state_validate
+address: 0x800F2A28
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:pdu.c:RTEST/LTEST - validate state data bounds (2736 bytes)

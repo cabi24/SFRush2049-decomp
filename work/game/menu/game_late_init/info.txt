@@ -1,0 +1,5 @@
+name: game_late_init
+address: 0x800EEA7C
+category: game/menu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: late-stage game init (called after decompression)

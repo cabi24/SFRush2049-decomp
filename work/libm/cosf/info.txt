@@ -1,0 +1,5 @@
+name: cosf
+address: 0x800088F0
+category: libm
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: cosine approximation using polynomial arcade:fmath.c:fcos()

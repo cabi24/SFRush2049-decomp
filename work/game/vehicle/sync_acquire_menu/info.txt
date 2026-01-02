@@ -1,0 +1,5 @@
+name: sync_acquire_menu
+address: 0x8010FBB4
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: acquire menu sync lock (44 bytes) - calls state_get with menu_sync_object

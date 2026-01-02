@@ -1,0 +1,5 @@
+name: osAiSetFrequency
+address: 0x8000BF00
+category: libultra/ai
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: set AI sample rate

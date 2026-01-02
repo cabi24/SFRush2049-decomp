@@ -1,0 +1,5 @@
+name: mode_byte2_set
+address: 0x800ED7B4
+category: game/menu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: mode byte 2 set

@@ -1,0 +1,5 @@
+name: osStartThread
+address: 0x80007080
+category: libultra/thread
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: start thread

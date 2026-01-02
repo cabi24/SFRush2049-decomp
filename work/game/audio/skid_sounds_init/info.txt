@@ -1,0 +1,5 @@
+name: skid_sounds_init
+address: 0x800B3700
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:carsnd.c:init_skids initialize skid sounds for car (16 bytes)

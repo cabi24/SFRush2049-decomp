@@ -1,0 +1,5 @@
+name: options_menu_handler
+address: 0x800D4000
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: game options menu

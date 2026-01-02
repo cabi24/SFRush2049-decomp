@@ -1,0 +1,5 @@
+name: world_trigger_check
+address: 0x800EDCE8
+category: game/menu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: check player in trigger volumes (2292 bytes) (arcade: checkpoint.c:CheckCPs radius check)

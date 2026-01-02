@@ -1,0 +1,5 @@
+name: model_transform_setup
+address: 0x8008B0D8
+category: game/render
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: model transform matrix setup

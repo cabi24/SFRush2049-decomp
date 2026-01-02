@@ -1,0 +1,5 @@
+name: camera_track_spline
+address: 0x800C04CC
+category: game/state
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: moves camera along a spline path

@@ -1,0 +1,5 @@
+name: pointer_compare_thunk
+address: 0x8009508C
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: thunk calling sound_position_set (32 bytes)

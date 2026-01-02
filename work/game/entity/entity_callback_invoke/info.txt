@@ -1,0 +1,5 @@
+name: entity_callback_invoke
+address: 0x80090F4C
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: invoke entity callback function

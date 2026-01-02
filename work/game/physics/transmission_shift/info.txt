@@ -1,0 +1,5 @@
+name: transmission_shift
+address: 0x800ABBD0
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:drivetra.c:upshift,downshift gear shift with 1 second timing delay

@@ -1,0 +1,5 @@
+name: smoke_effect
+address: 0x800EF200
+category: game/menu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: smoke effect - smoke particle effect

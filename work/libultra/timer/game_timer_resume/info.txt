@@ -1,0 +1,5 @@
+name: game_timer_resume
+address: 0x800FE848
+category: libultra/timer
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: game timer resume (220 bytes)

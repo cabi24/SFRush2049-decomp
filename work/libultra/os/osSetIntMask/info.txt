@@ -1,0 +1,5 @@
+name: osSetIntMask
+address: 0x80006DA0
+category: libultra/os
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: set interrupt mask

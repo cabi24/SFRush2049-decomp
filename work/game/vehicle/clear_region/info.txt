@@ -1,0 +1,5 @@
+name: clear_region
+address: 0x8010FC34
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: zeroes region at 0x8003E928

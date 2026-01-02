@@ -1,0 +1,5 @@
+name: achievement_unlock
+address: 0x80105EF4
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: achievement unlock (876 bytes) - shows unlock notification popup

@@ -1,0 +1,5 @@
+name: assign_drones
+address: 0x800F4FEC
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: assign drone tasks and speed adjustment (arcade: drones.c:assign_drones)

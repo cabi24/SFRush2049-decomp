@@ -1,0 +1,5 @@
+name: guPerspective
+address: 0x80008E50
+category: libultra/gu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: perspective projection matrix (fixed-point)

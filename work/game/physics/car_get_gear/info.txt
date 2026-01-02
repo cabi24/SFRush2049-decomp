@@ -1,0 +1,5 @@
+name: car_get_gear
+address: 0x800A7D88
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:drivetra.c return current gear value (-1=R,0=N,1-4=fwd)

@@ -1,0 +1,5 @@
+name: resource_alloc_conditional
+address: 0x800B61B0
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: conditionally allocate resource or return -1

@@ -1,0 +1,5 @@
+name: player_flag_clear_process
+address: 0x800BC1E8
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: process player flag clear

@@ -1,0 +1,5 @@
+name: osViSetSpecialFeatures
+address: 0x80007D20
+category: libultra/vi
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: set VI special features (gamma, dither, etc.)

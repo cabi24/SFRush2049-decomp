@@ -1,0 +1,5 @@
+name: menu_options_screen
+address: 0x800CE358
+category: game/state
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: main options menu handler (2532 bytes)

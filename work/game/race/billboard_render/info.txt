@@ -1,0 +1,5 @@
+name: billboard_render
+address: 0x800F64D4
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: billboard render - camera-facing sprite (1120 bytes)

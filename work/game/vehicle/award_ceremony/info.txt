@@ -1,0 +1,5 @@
+name: award_ceremony
+address: 0x80102A74
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: award ceremony (1524 bytes) - displays race results and trophies

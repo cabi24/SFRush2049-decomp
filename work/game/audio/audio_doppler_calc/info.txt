@@ -1,0 +1,5 @@
+name: audio_doppler_calc
+address: 0x800B6788
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: doppler calculation - listener/source velocity (1124 bytes)

@@ -1,0 +1,5 @@
+name: camera_smooth_follow
+address: 0x800BD104
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: smooth interpolation to follow position (872 bytes)

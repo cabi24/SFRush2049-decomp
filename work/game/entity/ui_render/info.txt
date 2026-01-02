@@ -1,0 +1,5 @@
+name: ui_render
+address: 0x80095A80
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: UI rendering

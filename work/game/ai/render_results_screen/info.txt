@@ -1,0 +1,5 @@
+name: render_results_screen
+address: 0x800D7DC4
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: render race results screen

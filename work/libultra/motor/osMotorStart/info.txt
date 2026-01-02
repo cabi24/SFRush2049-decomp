@@ -1,0 +1,5 @@
+name: osMotorStart
+address: 0x8000A194
+category: libultra/motor
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: start rumble pak motor (writes 0x01 to 0xC000)

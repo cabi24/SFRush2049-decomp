@@ -1,0 +1,5 @@
+name: bcmp
+address: 0x8000F8D0
+category: boot
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: compare two memory regions (returns 0 if equal, 1 otherwise)

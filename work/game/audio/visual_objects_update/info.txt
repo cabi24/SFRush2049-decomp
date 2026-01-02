@@ -1,0 +1,5 @@
+name: visual_objects_update
+address: 0x800B55FC
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: iterates and updates visual objects

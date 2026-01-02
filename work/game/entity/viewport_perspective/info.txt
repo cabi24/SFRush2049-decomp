@@ -1,0 +1,5 @@
+name: viewport_perspective
+address: 0x8009F064
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: calls guPerspective (5216 bytes)

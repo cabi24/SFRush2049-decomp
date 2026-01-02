@@ -1,0 +1,5 @@
+name: sound_volume_set
+address: 0x800B5948
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: set volume 0.0-1.0 for playing sound (176 bytes)

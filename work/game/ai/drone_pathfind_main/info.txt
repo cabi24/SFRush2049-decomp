@@ -1,0 +1,5 @@
+name: drone_pathfind_main
+address: 0x800D71D0
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: drone pathfind main - main pathfinding routine (3256 bytes)

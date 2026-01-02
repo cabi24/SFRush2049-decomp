@@ -1,0 +1,5 @@
+name: __osTLBLookup
+address: 0x8000FCB0
+category: libultra/tlb
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: TLB lookup for virtual to physical translation

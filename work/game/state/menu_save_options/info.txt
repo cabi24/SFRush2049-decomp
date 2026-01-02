@@ -1,0 +1,5 @@
+name: menu_save_options
+address: 0x800CDEEC
+category: game/state
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: save game options to Controller Pak (764 bytes)

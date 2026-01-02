@@ -1,0 +1,5 @@
+name: entity_process_main
+address: 0x8008D120
+category: game/render
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: major entity processing (1524 bytes)

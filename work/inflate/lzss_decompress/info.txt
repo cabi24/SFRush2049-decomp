@@ -1,0 +1,5 @@
+name: lzss_decompress
+address: 0x80002660
+category: inflate
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: LZSS decompress with DMA

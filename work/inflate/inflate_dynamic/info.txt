@@ -1,0 +1,5 @@
+name: inflate_dynamic
+address: 0x80005D44
+category: inflate
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: handle dynamic Huffman block (type 2)

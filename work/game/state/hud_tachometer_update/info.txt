@@ -1,0 +1,5 @@
+name: hud_tachometer_update
+address: 0x800C8DA0
+category: game/state
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: update tachometer display

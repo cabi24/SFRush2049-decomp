@@ -1,0 +1,5 @@
+name: update_active_objects
+address: 0x800F733C
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: per-frame scene object dispatcher (accesses 0x80159788 + 0x80159450 arrays)

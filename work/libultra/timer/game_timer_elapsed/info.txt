@@ -1,0 +1,5 @@
+name: game_timer_elapsed
+address: 0x800FE5B0
+category: libultra/timer
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: game timer elapsed - returns centiseconds (412 bytes)

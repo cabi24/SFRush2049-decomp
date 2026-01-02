@@ -1,0 +1,5 @@
+name: net_error_handle
+address: 0x800F2E3C
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:pdu.c:ReportPDUError - error handling (784 bytes)

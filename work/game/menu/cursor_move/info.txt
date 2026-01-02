@@ -1,0 +1,5 @@
+name: cursor_move
+address: 0x800E051C
+category: game/menu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: keyboard cursor move (212 bytes)

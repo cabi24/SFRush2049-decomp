@@ -1,0 +1,5 @@
+name: Input_RegisterActivePad
+address: 0x800B3590
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: marks pad slot active (byte 0x16 = 2), inserts into active controller lists

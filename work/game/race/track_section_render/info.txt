@@ -1,0 +1,5 @@
+name: track_section_render
+address: 0x800F49C0
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: track section render (876 bytes)

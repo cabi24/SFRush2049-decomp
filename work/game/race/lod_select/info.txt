@@ -1,0 +1,5 @@
+name: lod_select
+address: 0x800F42D0
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: LOD level selection based on distance (260 bytes)

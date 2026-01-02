@@ -1,0 +1,5 @@
+name: audio_fade_control
+address: 0x800953CC
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: audio fade control over time (220 bytes)

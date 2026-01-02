@@ -1,0 +1,5 @@
+name: __osViSwapContext
+address: 0x8000C670
+category: libultra/vi
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: swap VI context (writes to VI hardware registers)

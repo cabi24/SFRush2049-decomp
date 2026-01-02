@@ -1,0 +1,5 @@
+name: resource_update_global
+address: 0x800A4B48
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: update global resource via matrix stack

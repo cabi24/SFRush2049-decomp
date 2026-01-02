@@ -1,0 +1,5 @@
+name: object_alloc_slot
+address: 0x800E7100
+category: game/menu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: object alloc slot - allocate object slot

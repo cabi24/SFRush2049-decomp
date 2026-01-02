@@ -1,0 +1,5 @@
+name: listener_position_set
+address: 0x800B2D20
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: set audio listener position and forward vector (216 bytes)

@@ -1,0 +1,5 @@
+name: object_counter_decrement
+address: 0x800E7914
+category: game/menu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: decrement object reference counter (108 bytes) - synced decrement at offset 22

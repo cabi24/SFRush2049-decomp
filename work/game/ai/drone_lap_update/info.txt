@@ -1,0 +1,5 @@
+name: drone_lap_update
+address: 0x800D6698
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: drone lap update - update drone lap counter (296 bytes)

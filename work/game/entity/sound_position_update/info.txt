@@ -1,0 +1,5 @@
+name: sound_position_update
+address: 0x800951E0
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: 3D sound position update (492 bytes)

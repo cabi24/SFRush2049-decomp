@@ -1,0 +1,5 @@
+name: audio_dsp_process
+address: 0x800BADE0
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: DSP processing - reverb/EQ effects chain (1372 bytes)

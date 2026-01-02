@@ -1,0 +1,5 @@
+name: car_spawn_at_checkpoint
+address: 0x800AA708
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: car spawn at checkpoint

@@ -1,0 +1,5 @@
+name: physics_velocities_N
+address: 0x800924F4
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: integrate accel to velocity

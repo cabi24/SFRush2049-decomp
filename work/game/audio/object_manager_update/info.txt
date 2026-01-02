@@ -1,0 +1,5 @@
+name: object_manager_update
+address: 0x800B3FA4
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: object management update (107 calls)

@@ -1,0 +1,5 @@
+name: lap_count_select
+address: 0x800D2928
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: sets number of laps for race (332 bytes)

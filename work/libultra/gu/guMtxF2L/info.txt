@@ -1,0 +1,5 @@
+name: guMtxF2L
+address: 0x800091E0
+category: libultra/gu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: convert float matrix to N64 fixed-point

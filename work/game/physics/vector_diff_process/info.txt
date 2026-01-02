@@ -1,0 +1,5 @@
+name: vector_diff_process
+address: 0x800ACB74
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: process vector difference

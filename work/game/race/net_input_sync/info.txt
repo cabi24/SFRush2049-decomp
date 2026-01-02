@@ -1,0 +1,5 @@
+name: net_input_sync
+address: 0x800F1F3C
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:pdu.c:EntityStatePDU inputs - input state synchronization (2208 bytes)

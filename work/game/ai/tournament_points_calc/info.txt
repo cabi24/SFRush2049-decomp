@@ -1,0 +1,5 @@
+name: tournament_points_calc
+address: 0x800DA2D0
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:tourney.c - calculate tournament points (2316 bytes)

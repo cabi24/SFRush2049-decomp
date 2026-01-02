@@ -1,0 +1,5 @@
+name: guMtxIdent
+address: 0x8000941C
+category: libultra/gu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: create N64 identity matrix (fixed-point)

@@ -1,0 +1,5 @@
+name: __osTlbFlush
+address: 0x8000D840
+category: libultra/tlb
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: flush all TLB entries

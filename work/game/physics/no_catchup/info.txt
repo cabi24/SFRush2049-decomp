@@ -1,0 +1,5 @@
+name: no_catchup
+address: 0x800A2D0C
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: disable catchup for tournament mode (arcade: drones.c:no_catchup)

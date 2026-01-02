@@ -1,0 +1,5 @@
+name: menu_confirm_dialog
+address: 0x800CD544
+category: game/state
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: show confirmation and handle input (412 bytes)

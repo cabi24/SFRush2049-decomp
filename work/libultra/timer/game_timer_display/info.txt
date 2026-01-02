@@ -1,0 +1,5 @@
+name: game_timer_display
+address: 0x800FECA4
+category: libultra/timer
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: game timer display (352 bytes)

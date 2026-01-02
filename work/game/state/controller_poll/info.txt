@@ -1,0 +1,5 @@
+name: controller_poll
+address: 0x800C95DC
+category: game/state
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: per-frame pad poll/state clear (928 bytes)

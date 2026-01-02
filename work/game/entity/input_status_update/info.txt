@@ -1,0 +1,5 @@
+name: input_status_update
+address: 0x80094DB0
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: update status bytes/edge tracking - update status bytes/edge tracking

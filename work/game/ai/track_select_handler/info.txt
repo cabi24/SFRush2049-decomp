@@ -1,0 +1,5 @@
+name: track_select_handler
+address: 0x800D000C
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:TrackSel() - track selection menu (2264 bytes)

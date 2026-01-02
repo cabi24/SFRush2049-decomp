@@ -1,0 +1,5 @@
+name: stat_best_lap_save
+address: 0x8010194C
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:stats.c:update_track_time save new best (same as best_time_record)

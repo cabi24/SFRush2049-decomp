@@ -1,0 +1,5 @@
+name: physics_forces_handler_B
+address: 0x80090FEC
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: force accumulation with flags

@@ -1,0 +1,5 @@
+name: track_bounds_check
+address: 0x8009EA70
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: check position within track boundaries (168 bytes)

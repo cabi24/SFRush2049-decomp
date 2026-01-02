@@ -1,0 +1,5 @@
+name: stat_race_start
+address: 0x800FE08C
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:stats.c:stat_preplay race timing init (same as game_timer_start)

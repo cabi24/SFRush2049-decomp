@@ -1,0 +1,5 @@
+name: physics_forces2
+address: 0x800953C0
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: sum all forces (arcade: forces2 in drivsym.c:494)

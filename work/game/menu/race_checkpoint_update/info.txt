@@ -1,0 +1,5 @@
+name: race_checkpoint_update
+address: 0x800E4400
+category: game/menu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: update checkpoint state per frame (arcade: checkpoint.c:check_everyones_checkpoints)

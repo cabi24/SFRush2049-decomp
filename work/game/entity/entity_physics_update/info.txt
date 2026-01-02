@@ -1,0 +1,5 @@
+name: entity_physics_update
+address: 0x800908A0
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: entity movement/physics update (716 bytes)

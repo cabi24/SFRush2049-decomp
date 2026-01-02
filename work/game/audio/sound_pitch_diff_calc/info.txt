@@ -1,0 +1,5 @@
+name: sound_pitch_diff_calc
+address: 0x800B7170
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: calculate difference with sound_pitch_set result

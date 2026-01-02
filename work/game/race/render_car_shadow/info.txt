@@ -1,0 +1,5 @@
+name: render_car_shadow
+address: 0x800F9E2C
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: render car shadow (684 bytes)

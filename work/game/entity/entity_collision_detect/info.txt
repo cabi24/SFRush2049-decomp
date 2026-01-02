@@ -1,0 +1,5 @@
+name: entity_collision_detect
+address: 0x80090B70
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: entity collision detection (820 bytes)

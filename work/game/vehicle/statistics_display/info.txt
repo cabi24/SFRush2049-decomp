@@ -1,0 +1,5 @@
+name: statistics_display
+address: 0x80104E84
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: statistics display (2464 bytes) - shows player game statistics

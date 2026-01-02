@@ -1,0 +1,5 @@
+name: sound_control
+address: 0x800B37E8
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: audio/sound (called with -1 as stop signal)

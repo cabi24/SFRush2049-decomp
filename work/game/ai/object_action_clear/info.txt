@@ -1,0 +1,5 @@
+name: object_action_clear
+address: 0x800D63C4
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: object action clear - clear object actions (676 bytes)

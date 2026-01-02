@@ -1,0 +1,5 @@
+name: tire_force_calc
+address: 0x800A7E00
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: (1200 bytes) tire force calculation using friction circle model (tires.c)

@@ -1,0 +1,5 @@
+name: drone_move_update
+address: 0x800954E0
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: drone movement/position update (arcade: maxpath.c AI)

@@ -1,0 +1,5 @@
+name: loading_tips
+address: 0x800D6E7C
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: shows random gameplay tip during loading (852 bytes)

@@ -1,0 +1,5 @@
+name: replay_save_prompt
+address: 0x800DABDC
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: replay save prompt - save replay dialog (2940 bytes)

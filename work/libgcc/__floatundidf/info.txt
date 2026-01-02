@@ -1,0 +1,5 @@
+name: __floatundidf
+address: 0x80009B94
+category: libgcc
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: unsigned long long to double

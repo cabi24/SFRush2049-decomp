@@ -1,0 +1,5 @@
+name: camera_smooth_lerp
+address: 0x800AF51C
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: camera smooth interpolation

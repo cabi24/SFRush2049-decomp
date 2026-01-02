@@ -1,0 +1,5 @@
+name: model_load
+address: 0x800EB000
+category: game/menu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: model load - load model from ROM

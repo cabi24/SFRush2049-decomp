@@ -1,0 +1,5 @@
+name: difficulty_scaling
+address: 0x80107110
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: difficulty scaling (1248 bytes) - scales game difficulty

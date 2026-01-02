@@ -1,0 +1,5 @@
+name: __osContDataCrc
+address: 0x8000FA4C
+category: libultra/cont
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: calculate data CRC for controller pak

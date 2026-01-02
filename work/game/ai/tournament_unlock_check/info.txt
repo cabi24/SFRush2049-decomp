@@ -1,0 +1,5 @@
+name: tournament_unlock_check
+address: 0x800DC794
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:tourney.c unlock progression - show unlock notification (248 bytes)

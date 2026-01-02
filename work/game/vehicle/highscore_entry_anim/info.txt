@@ -1,0 +1,5 @@
+name: highscore_entry_anim
+address: 0x80104A58
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: high score entry animation (1036 bytes) - animates new high score effect

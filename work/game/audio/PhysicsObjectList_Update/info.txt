@@ -1,0 +1,5 @@
+name: PhysicsObjectList_Update
+address: 0x800B0868
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: - walks linked list at 0x801491F0, physics update

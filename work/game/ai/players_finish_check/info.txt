@@ -1,0 +1,5 @@
+name: players_finish_check
+address: 0x800D60B4
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: players finish check - check all finished (676 bytes)

@@ -1,0 +1,5 @@
+name: mode_enable_flagged
+address: 0x800DCD1C
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: mode enable flagged - enable mode with flags (96 bytes)

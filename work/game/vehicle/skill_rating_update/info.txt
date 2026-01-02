@@ -1,0 +1,5 @@
+name: skill_rating_update
+address: 0x80108F6C
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: skill rating update (876 bytes) - updates player skill rating

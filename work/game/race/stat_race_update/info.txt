@@ -1,0 +1,5 @@
+name: stat_race_update
+address: 0x800FE5B0
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:stats.c:stat_playgame per-frame time update (same as game_timer_elapsed)

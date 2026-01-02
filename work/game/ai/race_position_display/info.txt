@@ -1,0 +1,5 @@
+name: race_position_display
+address: 0x800D2928
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: race position display - 1st/2nd/3rd etc (332 bytes)

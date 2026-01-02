@@ -1,0 +1,5 @@
+name: tournament_is_active
+address: 0x800DC200
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:tourney.c:TourneyOn - check if tournament mode active

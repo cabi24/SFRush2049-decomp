@@ -1,0 +1,5 @@
+name: anim_play
+address: 0x800EA000
+category: game/menu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: anim play - start animation

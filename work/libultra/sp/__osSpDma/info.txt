@@ -1,0 +1,5 @@
+name: __osSpDma
+address: 0x8000D680
+category: libultra/sp
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: SP DMA transfer (RSP <-> RDRAM)

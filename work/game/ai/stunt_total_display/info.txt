@@ -1,0 +1,5 @@
+name: stunt_total_display
+address: 0x800D4EF4
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: stunt total display - total stunt points (532 bytes)

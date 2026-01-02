@@ -1,0 +1,5 @@
+name: render_replay_ui
+address: 0x800D7D40
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: render replay interface

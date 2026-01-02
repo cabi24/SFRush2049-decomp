@@ -1,0 +1,5 @@
+name: camera_save_state
+address: 0x800C2228
+category: game/state
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: saves camera state for replay or undo

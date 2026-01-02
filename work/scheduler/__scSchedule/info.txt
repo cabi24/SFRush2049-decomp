@@ -1,0 +1,5 @@
+name: __scSchedule
+address: 0x80000780
+category: scheduler
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: drain command queue, append tasks to pending lists

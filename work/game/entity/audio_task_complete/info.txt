@@ -1,0 +1,5 @@
+name: audio_task_complete
+address: 0x800974EC
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: audio task completion

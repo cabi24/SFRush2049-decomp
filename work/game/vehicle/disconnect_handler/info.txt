@@ -1,0 +1,5 @@
+name: disconnect_handler
+address: 0x8010B874
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: disconnection handling (1548 bytes) - handles player disconnect

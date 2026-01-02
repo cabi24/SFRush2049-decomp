@@ -1,0 +1,5 @@
+name: menu_list_render
+address: 0x800CC9AC
+category: game/state
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: render entire menu with items (1112 bytes)

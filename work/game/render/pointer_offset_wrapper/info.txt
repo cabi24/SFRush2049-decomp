@@ -1,0 +1,5 @@
+name: pointer_offset_wrapper
+address: 0x8008AD48
+category: game/render
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: adds offset 4 and calls sound_position_set (36 bytes)

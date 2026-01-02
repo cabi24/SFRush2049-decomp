@@ -1,0 +1,5 @@
+name: audio_ambient_update
+address: 0x800E6600
+category: game/menu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: audio ambient update - update ambient sounds

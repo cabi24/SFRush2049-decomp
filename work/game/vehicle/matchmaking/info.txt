@@ -1,0 +1,5 @@
+name: matchmaking
+address: 0x801092D8
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: matchmaking (1984 bytes) - player skill-based matchmaking

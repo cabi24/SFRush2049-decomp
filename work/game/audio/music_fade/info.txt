@@ -1,0 +1,5 @@
+name: music_fade
+address: 0x800BE9A0
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: music fade in/out over duration (388 bytes)

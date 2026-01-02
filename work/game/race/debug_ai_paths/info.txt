@@ -1,0 +1,5 @@
+name: debug_ai_paths
+address: 0x800FD240
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: debug AI paths - waypoint visualization (552 bytes)

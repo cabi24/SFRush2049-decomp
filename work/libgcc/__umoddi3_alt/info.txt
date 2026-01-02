@@ -1,0 +1,5 @@
+name: __umoddi3_alt
+address: 0x8000D9C0
+category: libgcc
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: unsigned 64-bit modulo (duplicate)

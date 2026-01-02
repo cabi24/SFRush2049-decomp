@@ -1,0 +1,5 @@
+name: voice_stop_2
+address: 0x800B4738
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: text formatting helper function (224 bytes)

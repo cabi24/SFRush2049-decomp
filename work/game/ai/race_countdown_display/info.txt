@@ -1,0 +1,5 @@
+name: race_countdown_display
+address: 0x800D24C8
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: race countdown display - 3-2-1-GO countdown (1120 bytes)

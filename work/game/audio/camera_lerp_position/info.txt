@@ -1,0 +1,5 @@
+name: camera_lerp_position
+address: 0x800BB834
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: lerp camera position toward target (808 bytes)

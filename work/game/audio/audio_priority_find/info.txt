@@ -1,0 +1,5 @@
+name: audio_priority_find
+address: 0x800BA46C
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: find channel for sound based on priority (472 bytes)

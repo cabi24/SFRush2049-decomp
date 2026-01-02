@@ -1,0 +1,5 @@
+name: track_surface_setup
+address: 0x800F4D2C
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: track surface setup (752 bytes)

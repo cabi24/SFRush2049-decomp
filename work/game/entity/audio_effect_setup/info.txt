@@ -1,0 +1,5 @@
+name: audio_effect_setup
+address: 0x80095800
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: reverb/effect setup (292 bytes)

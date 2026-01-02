@@ -1,0 +1,5 @@
+name: game_over_screen
+address: 0x80103A08
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: game over screen (2328 bytes) - displays final stats and options

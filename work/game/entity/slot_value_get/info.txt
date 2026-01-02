@@ -1,0 +1,5 @@
+name: slot_value_get
+address: 0x80096298
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: get value from slot array

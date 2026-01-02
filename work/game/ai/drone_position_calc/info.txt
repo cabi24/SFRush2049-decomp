@@ -1,0 +1,5 @@
+name: drone_position_calc
+address: 0x800D67C0
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: drone position calc - calculate drone track position (348 bytes)

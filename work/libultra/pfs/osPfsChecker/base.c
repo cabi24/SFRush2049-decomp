@@ -1,0 +1,18 @@
+/*
+ * Function: osPfsChecker
+ * Address:  0x8000B3E0
+ * Category: libultra/pfs
+ * Status:   TODO
+ *
+ * check controller pak integrity
+ *
+ * Compiler flags: -g0 -O1 -mips2 -G 0 -non_shared
+ */
+
+/* Add includes as needed */
+/* #include "types.h" */
+
+/* TODO: Implement this function */
+void osPfsChecker(void) {
+    /* Stub implementation */
+}

@@ -1,0 +1,5 @@
+name: menu_render_list
+address: 0x800CB9A0
+category: game/state
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: render menu item list

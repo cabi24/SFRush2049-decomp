@@ -1,0 +1,5 @@
+name: race_timer_display
+address: 0x800D2C2C
+category: libultra/timer
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: race timer display - race elapsed time (176 bytes)

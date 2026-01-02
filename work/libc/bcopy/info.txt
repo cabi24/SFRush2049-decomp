@@ -1,0 +1,5 @@
+name: bcopy
+address: 0x8000D2B0
+category: libc
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: copy memory with overlap handling (memmove)

@@ -1,0 +1,5 @@
+name: drone_collision_avoid
+address: 0x800D6E7C
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: drone collision avoid - avoid other cars/obstacles (852 bytes)

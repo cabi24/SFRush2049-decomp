@@ -1,0 +1,5 @@
+name: vector3d_store_transform
+address: 0x8008B660
+category: game/render
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: vector transform and store arcade:unitvecs.c:bodtorw()

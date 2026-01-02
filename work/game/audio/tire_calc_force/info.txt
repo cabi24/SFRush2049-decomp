@@ -1,0 +1,5 @@
+name: tire_calc_force
+address: 0x800BA000
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: full tire force calculation (arcade: dotireforce in tires.c:120)

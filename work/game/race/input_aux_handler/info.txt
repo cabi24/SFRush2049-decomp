@@ -1,0 +1,5 @@
+name: input_aux_handler
+address: 0x800FD238
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: fast-path for bits 0x7C03FFFE - fast-path for bits 0x7C03FFFE

@@ -1,0 +1,5 @@
+name: apply_display_mode
+address: 0x80001E58
+category: boot
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: apply current display mode settings

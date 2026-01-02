@@ -1,0 +1,5 @@
+name: camera_collision_check
+address: 0x800AEFE8
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: camera collision avoidance

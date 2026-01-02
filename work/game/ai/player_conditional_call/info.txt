@@ -1,0 +1,5 @@
+name: player_conditional_call
+address: 0x800D54BC
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: conditional function call helper

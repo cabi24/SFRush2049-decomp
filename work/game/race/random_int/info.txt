@@ -1,0 +1,5 @@
+name: random_int
+address: 0x800FD8DC
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: random int - returns random 32-bit integer (284 bytes)

@@ -1,0 +1,5 @@
+name: track_unlock_check
+address: 0x800D138C
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: track unlock check - checks if track is unlocked (804 bytes)

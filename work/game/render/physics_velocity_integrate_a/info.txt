@@ -1,0 +1,5 @@
+name: physics_velocity_integrate_a
+address: 0x8008B69C
+category: game/render
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: physics velocity integration

@@ -1,0 +1,5 @@
+name: __osPopThread
+address: 0x8000D10C
+category: libultra/thread
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: pop highest priority thread

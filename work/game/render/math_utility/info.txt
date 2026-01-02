@@ -1,0 +1,5 @@
+name: math_utility
+address: 0x8008D6B0
+category: game/render
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: math/vector utility (67 calls) arcade:math.c

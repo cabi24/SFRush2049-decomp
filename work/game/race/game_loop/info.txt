@@ -1,0 +1,5 @@
+name: game_loop
+address: 0x800FD464
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: main game state machine (arcade: game/game.c:game)

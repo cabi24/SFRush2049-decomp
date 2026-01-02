@@ -1,0 +1,5 @@
+name: target_in_car_check
+address: 0x800B3A00
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:carsnd.c:target_inside_box target-car collision test (64 bytes)

@@ -1,0 +1,5 @@
+name: track_texture_load
+address: 0x800F5F90
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: track texture load - loads texture to TMEM (1348 bytes)

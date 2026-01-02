@@ -1,0 +1,5 @@
+name: draw_ui_element
+address: 0x800C7110
+category: game/state
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: draw UI sprite element (id, x, y, w, h, alpha)

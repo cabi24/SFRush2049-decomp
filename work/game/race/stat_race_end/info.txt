@@ -1,0 +1,5 @@
+name: stat_race_end
+address: 0x800FE4BC
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:stats.c:stat_endgame race completion (same as game_timer_stop)

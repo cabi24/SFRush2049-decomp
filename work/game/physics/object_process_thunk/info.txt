@@ -1,0 +1,5 @@
+name: object_process_thunk
+address: 0x800A7DF0
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: thunk to camera_target_set

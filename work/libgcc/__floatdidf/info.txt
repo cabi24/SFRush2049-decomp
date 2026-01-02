@@ -1,0 +1,5 @@
+name: __floatdidf
+address: 0x80009B64
+category: libgcc
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: long long to double

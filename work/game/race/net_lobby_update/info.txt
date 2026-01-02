@@ -1,0 +1,5 @@
+name: net_lobby_update
+address: 0x800F13F0
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: network lobby update - handle lobby/player management (1364 bytes)

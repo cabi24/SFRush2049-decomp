@@ -1,0 +1,5 @@
+name: exhaust_smoke_effect
+address: 0x800A5744
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: exhaust smoke effect render (visuals: StartSmoke)

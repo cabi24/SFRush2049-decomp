@@ -1,0 +1,5 @@
+name: stat_records_screen
+address: 0x800D58CC
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:stats.c records display (same as records_screen)

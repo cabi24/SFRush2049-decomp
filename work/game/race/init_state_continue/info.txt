@@ -1,0 +1,5 @@
+name: init_state_continue
+address: 0x800FAF6C
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: called after init_state_begin

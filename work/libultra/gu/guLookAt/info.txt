@@ -1,0 +1,5 @@
+name: guLookAt
+address: 0x80009168
+category: libultra/gu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: look-at view matrix (fixed-point)

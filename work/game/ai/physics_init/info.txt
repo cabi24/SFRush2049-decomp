@@ -1,0 +1,5 @@
+name: physics_init
+address: 0x800D510C
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: physics init - initialize physics state (716 bytes)

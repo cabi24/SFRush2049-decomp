@@ -1,0 +1,5 @@
+name: clutch_slip_calc
+address: 0x800ABA18
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:drivetra.c:whatslips clutch slip calculation - determines torque transfer engine to driveshaft

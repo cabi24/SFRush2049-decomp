@@ -1,0 +1,5 @@
+name: audio_mixer_main
+address: 0x800BA7C4
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: main audio mixer - mix all channels to output (1996 bytes)

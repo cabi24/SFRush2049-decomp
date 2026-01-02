@@ -1,0 +1,5 @@
+name: render_sync_pipeline
+address: 0x8008A474
+category: game/render
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: sync/pipeline setup (464 bytes)

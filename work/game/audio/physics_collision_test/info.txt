@@ -1,0 +1,5 @@
+name: physics_collision_test
+address: 0x800B9194
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: test physics collision between objects

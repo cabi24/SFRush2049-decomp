@@ -1,0 +1,5 @@
+name: entity_state_check
+address: 0x800987E8
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: simple state check (140 bytes)

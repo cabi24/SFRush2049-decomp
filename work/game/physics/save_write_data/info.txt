@@ -1,0 +1,5 @@
+name: save_write_data
+address: 0x800AF06C
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: save game data to buffer

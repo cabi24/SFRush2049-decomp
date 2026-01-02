@@ -1,0 +1,5 @@
+name: hiscore_input_analog
+address: 0x800FBB00
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:fswheel.c:WheelSection N64 hiscore analog selection

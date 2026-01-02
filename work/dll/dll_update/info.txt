@@ -1,0 +1,5 @@
+name: dll_update
+address: 0x8000C11C
+category: dll
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: process expired timers (delta queue maintenance)

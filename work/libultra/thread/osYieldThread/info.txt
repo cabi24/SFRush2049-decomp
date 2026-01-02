@@ -1,0 +1,5 @@
+name: osYieldThread
+address: 0x80010110
+category: libultra/thread
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: yield current thread (calls __osEnqueueAndYield with __osRunQueue)

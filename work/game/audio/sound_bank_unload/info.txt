@@ -1,0 +1,5 @@
+name: sound_bank_unload
+address: 0x800B10D4
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: unload sound bank and stop dependent sounds (1248 bytes)

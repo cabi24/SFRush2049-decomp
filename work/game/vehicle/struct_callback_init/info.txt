@@ -1,0 +1,5 @@
+name: struct_callback_init
+address: 0x8010B528
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: initialize structure with callback (56 bytes) - sets texture_callback_array

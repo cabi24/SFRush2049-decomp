@@ -1,0 +1,5 @@
+name: validate_and_call
+address: 0x80095120
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: validates pointers, calls triangle_draw (52 bytes)

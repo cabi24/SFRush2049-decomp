@@ -1,0 +1,5 @@
+name: __osGetSR
+address: 0x8000D780
+category: libultra/os
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: get CP0 Status register

@@ -1,0 +1,5 @@
+name: menu_text_input
+address: 0x800CDAE0
+category: game/state
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: handle full text entry with keyboard (460 bytes)

@@ -1,0 +1,5 @@
+name: tournament_save_settings
+address: 0x800DE20C
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:tourney.c:SaveTourneySettings - save tournament config to Controller Pak

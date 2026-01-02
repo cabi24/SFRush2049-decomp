@@ -1,0 +1,5 @@
+name: camera_check_constraints
+address: 0x800C1B8C
+category: game/state
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: enforces camera position constraints

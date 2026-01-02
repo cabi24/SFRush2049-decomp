@@ -1,0 +1,5 @@
+name: continue_prompt
+address: 0x801033D8
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: continue prompt (1616 bytes) - ask player to continue or quit

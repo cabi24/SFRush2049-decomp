@@ -1,0 +1,5 @@
+name: effects_update_emitters
+address: 0x800B811C
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: particle/trail/FX system updater

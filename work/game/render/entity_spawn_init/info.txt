@@ -1,0 +1,5 @@
+name: entity_spawn_init
+address: 0x8008EA10
+category: game/render
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: entity spawn and initialization (1656 bytes)

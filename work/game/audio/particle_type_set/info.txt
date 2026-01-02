@@ -1,0 +1,5 @@
+name: particle_type_set
+address: 0x800B811C
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: set particle type/behavior

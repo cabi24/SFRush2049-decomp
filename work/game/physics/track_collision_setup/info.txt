@@ -1,0 +1,5 @@
+name: track_collision_setup
+address: 0x800A21A4
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: (732 bytes) setup 64x64 collision height/surface grids

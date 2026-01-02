@@ -1,0 +1,5 @@
+name: format_string_parse
+address: 0x800B466C
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: format string parser with jump table (55 calls)

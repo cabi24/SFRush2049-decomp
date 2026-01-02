@@ -1,0 +1,5 @@
+name: particle_update
+address: 0x800EEDB0
+category: game/menu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: particle update - updates emitter particles (1240 bytes)

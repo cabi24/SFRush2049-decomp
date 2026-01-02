@@ -1,0 +1,5 @@
+name: draw_speedometer
+address: 0x800C7818
+category: game/state
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: draw speedometer dial with needle (1724 bytes)

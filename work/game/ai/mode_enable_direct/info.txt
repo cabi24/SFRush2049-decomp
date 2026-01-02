@@ -1,0 +1,5 @@
+name: mode_enable_direct
+address: 0x800DCD94
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: mode enable direct - direct mode enable (96 bytes)

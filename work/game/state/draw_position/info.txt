@@ -1,0 +1,5 @@
+name: draw_position
+address: 0x800C8864
+category: game/state
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: show race position (1st, 2nd, etc.) (188 bytes)

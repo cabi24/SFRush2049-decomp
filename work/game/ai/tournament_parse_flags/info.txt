@@ -1,0 +1,5 @@
+name: tournament_parse_flags
+address: 0x800DC220
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:tourney.c:ParseTourneyFlags - parse tournament option flags

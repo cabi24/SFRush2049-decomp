@@ -1,0 +1,5 @@
+name: audio_sync_wait
+address: 0x8008A398
+category: game/render
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: audio synchronization wait (76 bytes)

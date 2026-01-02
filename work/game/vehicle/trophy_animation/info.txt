@@ -1,0 +1,5 @@
+name: trophy_animation
+address: 0x8010306C
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: trophy animation (876 bytes) - renders animated trophy for winner

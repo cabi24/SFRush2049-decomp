@@ -1,0 +1,5 @@
+name: world_collision_response
+address: 0x800EDACC
+category: game/menu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: world collision response - impulse-based elastic collision (540 bytes)

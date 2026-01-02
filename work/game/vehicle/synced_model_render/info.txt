@@ -1,0 +1,5 @@
+name: synced_model_render
+address: 0x8010FCC0
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: render model with sync (92 bytes) - acquires model_sync, calls model_render

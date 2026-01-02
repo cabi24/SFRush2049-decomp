@@ -1,0 +1,5 @@
+name: audio_buffer_manage
+address: 0x80095BFC
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: audio DMA buffer management (268 bytes)

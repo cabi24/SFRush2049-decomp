@@ -1,0 +1,5 @@
+name: osSetTimerIntr
+address: 0x80006ED0
+category: libultra/timer
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: set timer interrupt

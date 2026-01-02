@@ -1,0 +1,5 @@
+name: MP_TargetSpeed
+address: 0x800A0F74
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: calc target speed from maxpath (arcade: maxpath.c:MP_TargetSpeed)

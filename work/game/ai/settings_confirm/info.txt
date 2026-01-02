@@ -1,0 +1,5 @@
+name: settings_confirm
+address: 0x800DE868
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: settings confirm - confirm changes (836 bytes)

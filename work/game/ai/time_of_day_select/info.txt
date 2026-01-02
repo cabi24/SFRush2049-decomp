@@ -1,0 +1,5 @@
+name: time_of_day_select
+address: 0x800D2DCC
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: sets lighting conditions (200 bytes)

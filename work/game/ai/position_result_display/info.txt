@@ -1,0 +1,5 @@
+name: position_result_display
+address: 0x800DA0CC
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: position result display - 1ST/2ND/3RD text (168 bytes)

@@ -1,0 +1,5 @@
+name: audio_start
+address: 0x800A48C8
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: start audio subsystem (called from init.c)

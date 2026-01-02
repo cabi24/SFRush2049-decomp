@@ -1,0 +1,5 @@
+name: guMtxIdentF
+address: 0x80009394
+category: libultra/gu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: create 4x4 identity matrix (float)

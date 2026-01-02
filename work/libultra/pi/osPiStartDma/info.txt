@@ -1,0 +1,5 @@
+name: osPiStartDma
+address: 0x8000DCD0
+category: libultra/pi
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: start PI DMA transfer

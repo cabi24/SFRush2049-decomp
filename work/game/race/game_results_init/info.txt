@@ -1,0 +1,5 @@
+name: game_results_init
+address: 0x800FEC78
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: game results init (1808 bytes)

@@ -1,0 +1,5 @@
+name: __osDispatchThread
+address: 0x8000D11C
+category: libultra/thread
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: dispatch next runnable thread

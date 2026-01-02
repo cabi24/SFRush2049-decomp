@@ -1,0 +1,5 @@
+name: osViSetMode
+address: 0x80007590
+category: libultra/vi
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: set VI mode

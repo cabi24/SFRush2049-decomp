@@ -1,0 +1,5 @@
+name: net_session_init
+address: 0x800F314C
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: network session init (1084 bytes)

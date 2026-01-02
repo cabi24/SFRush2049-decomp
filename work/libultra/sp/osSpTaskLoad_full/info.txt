@@ -1,0 +1,5 @@
+name: osSpTaskLoad_full
+address: 0x8000DF80
+category: libultra/sp
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: load RSP task microcode and data

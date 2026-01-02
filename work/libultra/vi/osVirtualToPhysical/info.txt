@@ -1,0 +1,5 @@
+name: osVirtualToPhysical
+address: 0x8000D5C0
+category: libultra/vi
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: convert virtual address to physical

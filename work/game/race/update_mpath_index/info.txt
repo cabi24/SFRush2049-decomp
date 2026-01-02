@@ -1,0 +1,5 @@
+name: update_mpath_index
+address: 0x800F8588
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: update maxpath index for car (arcade: maxpath.c:update_mpath_index)

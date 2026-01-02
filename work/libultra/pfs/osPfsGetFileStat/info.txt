@@ -1,0 +1,5 @@
+name: osPfsGetFileStat
+address: 0x8000ADF0
+category: libultra/pfs
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: get controller pak file status

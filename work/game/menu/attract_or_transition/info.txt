@@ -1,0 +1,5 @@
+name: attract_or_transition
+address: 0x800EDDC0
+category: game/menu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: attract mode/state transition - attract mode/state transition

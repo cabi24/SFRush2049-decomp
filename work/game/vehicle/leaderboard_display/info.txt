@@ -1,0 +1,5 @@
+name: leaderboard_display
+address: 0x80101C78
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: leaderboard display (1472 bytes) - shows top 5 times

@@ -1,0 +1,5 @@
+name: inflate_flush_window
+address: 0x80004D50
+category: inflate
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: flush output window to destination

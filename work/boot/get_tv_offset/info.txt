@@ -1,0 +1,5 @@
+name: get_tv_offset
+address: 0x80001DFC
+category: boot
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: return TV-type specific offset (0 for PAL=0, 0xE for NTSC, 0x1C for other)

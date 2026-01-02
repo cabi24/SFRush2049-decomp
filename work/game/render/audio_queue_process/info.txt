@@ -1,0 +1,5 @@
+name: audio_queue_process
+address: 0x8008A77C
+category: game/render
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: audio queue processing (676 bytes)

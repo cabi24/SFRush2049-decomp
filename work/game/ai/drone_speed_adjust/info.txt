@@ -1,0 +1,5 @@
+name: drone_speed_adjust
+address: 0x800D691C
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: drone speed adjust - rubberbanding speed adjustment (1376 bytes)

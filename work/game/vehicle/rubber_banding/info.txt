@@ -1,0 +1,5 @@
+name: rubber_banding
+address: 0x801079AC
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: rubber banding (1768 bytes) - adjusts AI speed based on player position

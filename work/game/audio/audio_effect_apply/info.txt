@@ -1,0 +1,5 @@
+name: audio_effect_apply
+address: 0x800BAAA0
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: apply audio effect to output (172 bytes)

@@ -1,0 +1,5 @@
+name: __floatundisf
+address: 0x80009BC8
+category: libgcc
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: unsigned long long to float

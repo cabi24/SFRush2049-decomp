@@ -1,0 +1,5 @@
+name: session_flags_init
+address: 0x800C9BE0
+category: game/state
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:money.c:init_credits N64 session/flags initialization (init_state_begin)

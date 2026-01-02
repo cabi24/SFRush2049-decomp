@@ -1,0 +1,5 @@
+name: call_memcpy
+address: 0x8010FC1C
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: helper calling memcpy with size 64

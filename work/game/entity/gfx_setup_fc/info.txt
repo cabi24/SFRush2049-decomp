@@ -1,0 +1,5 @@
+name: gfx_setup_fc
+address: 0x8009EB18
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: display list setup (E7/FC)

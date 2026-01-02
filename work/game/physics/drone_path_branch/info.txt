@@ -1,0 +1,5 @@
+name: drone_path_branch
+address: 0x800A0BAC
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: drone path branching decision (arcade: maxpath.c branch logic)

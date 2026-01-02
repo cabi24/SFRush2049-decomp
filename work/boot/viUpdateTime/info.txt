@@ -1,0 +1,5 @@
+name: viUpdateTime
+address: 0x800013F4
+category: boot
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: update frame delta timing

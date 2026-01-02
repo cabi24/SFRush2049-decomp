@@ -1,0 +1,5 @@
+name: matrix_rotation_build
+address: 0x8008D714
+category: game/render
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: build rotation matrix arcade:fmath.c:CreateRYPMatrix()

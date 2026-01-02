@@ -1,0 +1,5 @@
+name: MP_TargetSteerPos
+address: 0x80097AFC
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: calc target steering position from maxpath (arcade: maxpath.c:MP_TargetSteerPos)

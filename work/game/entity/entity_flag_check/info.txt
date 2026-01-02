@@ -1,0 +1,5 @@
+name: entity_flag_check
+address: 0x80098874
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: entity flag check (108 bytes)

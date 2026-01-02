@@ -1,0 +1,5 @@
+name: lookup_with_output
+address: 0x80096B5C
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: table lookup with output pointer

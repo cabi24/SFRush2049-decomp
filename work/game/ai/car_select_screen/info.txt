@@ -1,0 +1,5 @@
+name: car_select_screen
+address: 0x800D16B0
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: car select screen - car selection menu (564 bytes)

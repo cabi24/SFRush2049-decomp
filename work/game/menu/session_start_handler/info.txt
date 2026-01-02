@@ -1,0 +1,5 @@
+name: session_start_handler
+address: 0x800EDDC0
+category: game/menu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:money.c:chk_start->true game start transition (attract_or_transition)

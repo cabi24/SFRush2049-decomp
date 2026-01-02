@@ -1,0 +1,5 @@
+name: viDisableAccum
+address: 0x800013DC
+category: boot
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: disable time accumulation

@@ -1,0 +1,5 @@
+name: voice_stop
+address: 0x800B438C
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: stop currently playing voice and clear queue (224 bytes)

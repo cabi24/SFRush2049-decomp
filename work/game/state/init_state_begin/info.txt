@@ -1,0 +1,5 @@
+name: init_state_begin
+address: 0x800C9BE0
+category: game/state
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: called from GSTATE_INIT

@@ -1,0 +1,5 @@
+name: anim_state_update
+address: 0x8008D93C
+category: game/render
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: entity animation state update (796 bytes)

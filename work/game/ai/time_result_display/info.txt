@@ -1,0 +1,5 @@
+name: time_result_display
+address: 0x800DA174
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: time result display - race time mm:ss.xx (348 bytes)

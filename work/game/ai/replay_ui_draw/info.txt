@@ -1,0 +1,5 @@
+name: replay_ui_draw
+address: 0x800D8000
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: draw replay interface elements

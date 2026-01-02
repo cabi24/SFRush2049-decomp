@@ -1,0 +1,5 @@
+name: title_button_prompt
+address: 0x800DE20C
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: shows PRESS START with blinking (724 bytes)

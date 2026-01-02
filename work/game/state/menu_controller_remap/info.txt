@@ -1,0 +1,5 @@
+name: menu_controller_remap
+address: 0x800CF69C
+category: game/state
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: controller button remapping screen (1976 bytes)

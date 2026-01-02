@@ -1,0 +1,5 @@
+name: effect_spawn
+address: 0x800EE820
+category: game/menu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: effect spawn - create visual effect at position

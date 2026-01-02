@@ -1,0 +1,5 @@
+name: model_bounds_calc
+address: 0x8008B26C
+category: game/render
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: model bounding box calculation

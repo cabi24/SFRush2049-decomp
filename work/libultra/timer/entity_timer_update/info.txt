@@ -1,0 +1,5 @@
+name: entity_timer_update
+address: 0x80091C04
+category: libultra/timer
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: update entity timers

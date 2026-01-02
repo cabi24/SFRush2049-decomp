@@ -1,0 +1,5 @@
+name: arb_rate_set
+address: 0x800A5908
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: anti-roll bar rate set

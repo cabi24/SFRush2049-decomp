@@ -1,0 +1,5 @@
+name: camera_split_screen_setup
+address: 0x800C1CBC
+category: game/state
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: configure split-screen for multiplayer (2392 bytes)

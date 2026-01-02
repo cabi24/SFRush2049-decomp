@@ -1,0 +1,5 @@
+name: audio_interrupt_handler
+address: 0x800BB140
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: audio DMA interrupt handler (756 bytes)

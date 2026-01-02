@@ -1,0 +1,5 @@
+name: spark_effect
+address: 0x800EF3A0
+category: game/menu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: spark effect - spark particle effect

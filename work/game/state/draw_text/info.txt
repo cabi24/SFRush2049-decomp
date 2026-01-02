@@ -1,0 +1,5 @@
+name: draw_text
+address: 0x800C734C
+category: game/state
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: draw text string at x,y with color

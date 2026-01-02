@@ -1,0 +1,5 @@
+name: string_copy_format
+address: 0x80092E2C
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: string/name copy with formatting (720 bytes)

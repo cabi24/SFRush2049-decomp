@@ -1,0 +1,5 @@
+name: sound_call_simple
+address: 0x80090228
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: sign-extends param, calls gfx_flush (44 bytes)

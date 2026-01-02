@@ -1,0 +1,5 @@
+name: sprintf
+address: 0x80004990
+category: boot
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: sprintf wrapper (calls fcvt)

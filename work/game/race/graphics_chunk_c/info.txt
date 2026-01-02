@@ -1,0 +1,5 @@
+name: graphics_chunk_c
+address: 0x800F7344
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: graphics routine

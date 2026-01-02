@@ -1,0 +1,5 @@
+name: inflate_fixed
+address: 0x80005B7C
+category: inflate
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: handle fixed Huffman block (type 1)

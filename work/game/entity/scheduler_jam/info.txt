@@ -1,0 +1,5 @@
+name: scheduler_jam
+address: 0x80091CA4
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: scheduler message send

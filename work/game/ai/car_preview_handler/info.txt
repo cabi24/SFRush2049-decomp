@@ -1,0 +1,5 @@
+name: car_preview_handler
+address: 0x800D16B0
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:AnimateCarSel - rotating 3D car model (564 bytes)

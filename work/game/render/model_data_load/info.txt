@@ -1,0 +1,5 @@
+name: model_data_load
+address: 0x8008AE8C
+category: game/render
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: model/mesh data loading

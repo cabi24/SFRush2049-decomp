@@ -1,0 +1,5 @@
+name: camera_victory
+address: 0x800C6404
+category: game/state
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: victory lap camera mode (1468 bytes)

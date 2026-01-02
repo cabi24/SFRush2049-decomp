@@ -1,0 +1,5 @@
+name: __osPfsPageCheck
+address: 0x8000BBF0
+category: libultra/pfs
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: validate inode references, detect duplicates

@@ -1,0 +1,5 @@
+name: stat_game_update
+address: 0x800DC99C
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:stats.c:stat_* per-state update (same as stats_update)

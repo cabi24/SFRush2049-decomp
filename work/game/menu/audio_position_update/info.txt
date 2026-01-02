@@ -1,0 +1,5 @@
+name: audio_position_update
+address: 0x800E6A00
+category: game/menu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: audio position update - update 3D sound positions

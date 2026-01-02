@@ -1,0 +1,5 @@
+name: game_results_render
+address: 0x800FF298
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: game results render (1164 bytes)

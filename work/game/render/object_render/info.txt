@@ -1,0 +1,5 @@
+name: object_render
+address: 0x80087A08
+category: game/render
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: (10048 bytes) - 3D object rendering with transforms

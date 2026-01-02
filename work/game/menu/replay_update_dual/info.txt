@@ -1,0 +1,5 @@
+name: replay_update_dual
+address: 0x800E2A3C
+category: game/menu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: update both replay UI and camera (40 bytes) - calls replay_ui_draw and replay_camera_update

@@ -1,0 +1,5 @@
+name: __osSpDeviceBusy
+address: 0x8000D710
+category: libultra/sp
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: check if RSP is busy (bits 0x1C)

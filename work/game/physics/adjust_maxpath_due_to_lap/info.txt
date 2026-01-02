@@ -1,0 +1,5 @@
+name: adjust_maxpath_due_to_lap
+address: 0x800A14C0
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: adjust maxpath for lap crossing (arcade: maxpath.c:adjust_maxpath_due_to_lap)

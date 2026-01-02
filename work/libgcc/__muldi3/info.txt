@@ -1,0 +1,5 @@
+name: __muldi3
+address: 0x8000DA58
+category: libgcc
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: multiply

@@ -1,0 +1,5 @@
+name: main_menu_input
+address: 0x800DEBAC
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: processes main menu input (224 bytes)

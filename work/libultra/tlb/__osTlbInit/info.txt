@@ -1,0 +1,5 @@
+name: __osTlbInit
+address: 0x8000D890
+category: libultra/tlb
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: initialize TLB for 0xC0000000 region

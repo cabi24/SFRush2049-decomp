@@ -1,0 +1,5 @@
+name: vi_config_offset
+address: 0x80094C30
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: writes VI offsets 0x18/0x1A

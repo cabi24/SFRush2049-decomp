@@ -1,0 +1,5 @@
+name: track_data_decompress
+address: 0x800A1F18
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: (644 bytes) decompress GZIP/ZLIB/LZSS track data

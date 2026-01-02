@@ -1,0 +1,5 @@
+name: entity_spawn_callback
+address: 0x80090088
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: entity spawn callback handler

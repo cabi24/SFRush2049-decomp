@@ -1,0 +1,5 @@
+name: track_segment_load
+address: 0x800A1648
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: (2256 bytes) load track segment from ROM, GZIP decompression

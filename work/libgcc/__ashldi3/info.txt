@@ -1,0 +1,5 @@
+name: __ashldi3
+address: 0x8000D994
+category: libgcc
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arithmetic left shift

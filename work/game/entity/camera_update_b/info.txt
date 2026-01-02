@@ -1,0 +1,5 @@
+name: camera_update_b
+address: 0x80098620
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: nested camera update helper

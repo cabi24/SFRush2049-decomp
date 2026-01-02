@@ -1,0 +1,5 @@
+name: reverb_update
+address: 0x800B4C80
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:carsnd.c:handle_reverb update reverb from environment (240 bytes)

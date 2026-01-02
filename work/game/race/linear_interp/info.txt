@@ -1,0 +1,5 @@
+name: linear_interp
+address: 0x800F7C28
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: linear interpolation for drone speeds (arcade: drones.c:linear_interp)

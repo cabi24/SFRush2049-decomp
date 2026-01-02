@@ -1,0 +1,5 @@
+name: wind_sound_update
+address: 0x800B3710
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:carsnd.c:DoCarSounds update wind noise based on car speed (684 bytes)

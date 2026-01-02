@@ -1,0 +1,5 @@
+name: menu_highlight_set
+address: 0x800CC880
+category: game/state
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: set highlight state for menu item (316 bytes)

@@ -1,0 +1,5 @@
+name: save_delete
+address: 0x800AF8CC
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: delete save from slot

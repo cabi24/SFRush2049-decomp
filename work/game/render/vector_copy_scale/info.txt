@@ -1,0 +1,5 @@
+name: vector_copy_scale
+address: 0x8008B474
+category: game/render
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: vector copy with scale (80 bytes) arcade:vecmath.c:scalmul()

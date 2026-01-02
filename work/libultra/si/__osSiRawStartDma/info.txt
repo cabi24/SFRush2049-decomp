@@ -1,0 +1,5 @@
+name: __osSiRawStartDma
+address: 0x8000E4B0
+category: libultra/si
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: SI raw DMA to/from PIF

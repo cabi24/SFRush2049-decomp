@@ -1,0 +1,5 @@
+name: sound_priority_set
+address: 0x800B4FB0
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: set priority for sound handle

@@ -1,0 +1,5 @@
+name: session_join
+address: 0x80109EFC
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: session join (1476 bytes) - joins existing multiplayer session

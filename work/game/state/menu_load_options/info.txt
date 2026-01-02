@@ -1,0 +1,5 @@
+name: menu_load_options
+address: 0x800CE1EC
+category: game/state
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: load game options from Controller Pak (364 bytes)

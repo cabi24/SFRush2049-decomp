@@ -1,0 +1,5 @@
+name: memchr
+address: 0x80002730
+category: libc
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: 

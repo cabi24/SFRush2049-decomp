@@ -1,0 +1,5 @@
+name: __osPiDeviceBusy
+address: 0x8000FD70
+category: libultra/pi
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: check if PI device is busy (returns status)

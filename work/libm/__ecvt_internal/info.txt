@@ -1,0 +1,5 @@
+name: __ecvt_internal
+address: 0x80003C3C
+category: libm
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: float to string internal helper

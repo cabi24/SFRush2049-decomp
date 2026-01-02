@@ -1,0 +1,5 @@
+name: state_menu_handler
+address: 0x800FC0EC
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: GSTATE_MENU handler (UI/input chain)

@@ -1,0 +1,5 @@
+name: entity_render_setup
+address: 0x8008C884
+category: game/render
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: entity rendering setup (736 bytes)

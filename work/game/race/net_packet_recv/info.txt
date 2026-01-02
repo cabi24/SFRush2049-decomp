@@ -1,0 +1,5 @@
+name: net_packet_recv
+address: 0x800F2890
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:pdu.c:GetPDU - low-level packet receive (408 bytes)

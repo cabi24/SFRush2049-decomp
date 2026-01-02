@@ -1,0 +1,5 @@
+name: audio_shutdown
+address: 0x800B0A90
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: audio system shutdown - stop all sounds and disable audio (440 bytes)

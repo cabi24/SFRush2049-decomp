@@ -1,0 +1,5 @@
+name: get_viewport_pos
+address: 0x80001E84
+category: boot
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: get current viewport position

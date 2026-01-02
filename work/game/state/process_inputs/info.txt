@@ -1,0 +1,5 @@
+name: process_inputs
+address: 0x800C997C
+category: game/state
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: ProcessPDUs equivalent or state switch - game loop input entry point (356 bytes)

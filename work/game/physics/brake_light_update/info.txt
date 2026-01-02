@@ -1,0 +1,5 @@
+name: brake_light_update
+address: 0x800A6244
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: brake light update (visuals: App_M_BRAKE_LIGHTS)

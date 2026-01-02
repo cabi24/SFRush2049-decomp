@@ -1,0 +1,5 @@
+name: render_state_process
+address: 0x8008E440
+category: game/render
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: major render state processing (1472 bytes)

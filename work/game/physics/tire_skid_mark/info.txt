@@ -1,0 +1,5 @@
+name: tire_skid_mark
+address: 0x800A4E60
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: tire skid mark generation (visuals: DoSkid)

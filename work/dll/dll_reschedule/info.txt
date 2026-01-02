@@ -1,0 +1,5 @@
+name: dll_reschedule
+address: 0x8000C294
+category: dll
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: reschedule timer interrupt (__osSetTimerIntr)

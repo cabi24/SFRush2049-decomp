@@ -1,0 +1,5 @@
+name: stunt_mode_setup
+address: 0x800D3B28
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: configure stunt arena and scoring (5068 bytes)

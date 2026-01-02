@@ -1,0 +1,5 @@
+name: hiscore_display_handler
+address: 0x800DC000
+category: game/ai
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:ShowHighScores - display high score table

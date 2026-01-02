@@ -1,0 +1,5 @@
+name: physics_positions
+address: 0x800B9400
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: integrate velocity to position (arcade: positions in drivsym.c:594)

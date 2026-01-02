@@ -1,0 +1,5 @@
+name: sound_volume_helper
+address: 0x8009515C
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: sound volume calculation helper (60 bytes)

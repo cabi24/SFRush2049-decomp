@@ -1,0 +1,5 @@
+name: track_geometry_stream
+address: 0x800F4604
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: track geometry stream - streams from ROM to RSP (6540 bytes)

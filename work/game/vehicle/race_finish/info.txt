@@ -1,0 +1,5 @@
+name: race_finish
+address: 0x80107AF4
+category: game/vehicle
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: handle car finishing race (1000 bytes) (arcade: checkpoint.c:CarReportsGameOver)

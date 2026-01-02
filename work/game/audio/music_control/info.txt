@@ -1,0 +1,5 @@
+name: music_control
+address: 0x800B1B48
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: music playback control - stop/play/pause/resume/restart/fade (1020 bytes)

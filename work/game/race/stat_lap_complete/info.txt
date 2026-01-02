@@ -1,0 +1,5 @@
+name: stat_lap_complete
+address: 0x800FE924
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:stats.c:lap_complete lap time recording (same as game_timer_lap)

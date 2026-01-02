@@ -1,0 +1,5 @@
+name: voice_play
+address: 0x800B3D20
+category: game/audio
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: play announcer voice clip - start/position/lap announcements (488 bytes)

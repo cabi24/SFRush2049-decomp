@@ -1,0 +1,5 @@
+name: engine_rpm_calc
+address: 0x800AB70C
+category: game/physics
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:drivetra.c:engine engine torque calculation with gear-specific scaling

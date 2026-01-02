@@ -1,0 +1,5 @@
+name: landing_rumble_trigger
+address: 0x800E6480
+category: game/menu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: arcade:fswheel.c:landing_force N64 landing rumble trigger

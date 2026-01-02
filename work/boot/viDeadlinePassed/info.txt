@@ -1,0 +1,5 @@
+name: viDeadlinePassed
+address: 0x800015BC
+category: boot
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: check if deadline passed

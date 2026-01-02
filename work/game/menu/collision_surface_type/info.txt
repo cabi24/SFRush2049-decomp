@@ -1,0 +1,5 @@
+name: collision_surface_type
+address: 0x800E9800
+category: game/menu
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: collision surface type - get surface type at point

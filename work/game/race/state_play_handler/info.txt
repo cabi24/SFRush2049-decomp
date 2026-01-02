@@ -1,0 +1,5 @@
+name: state_play_handler
+address: 0x800FC25C
+category: game/race
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: GSTATE_PLAY (0x00800000)

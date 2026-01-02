@@ -1,0 +1,5 @@
+name: __osAiDeviceBusy
+address: 0x8000FB60
+category: libultra/ai
+compiler_flags: -g0 -O1 -mips2 -G 0 -non_shared
+comment: check if AI FIFO is full (returns 1 if busy)

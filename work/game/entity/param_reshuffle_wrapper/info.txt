@@ -1,0 +1,5 @@
+name: param_reshuffle_wrapper
+address: 0x800985F4
+category: game/entity
+compiler_flags: -g0 -O2 -mips2 -G 0 -non_shared
+comment: reorganize params, call matrix_translate (44 bytes)
