@@ -40,9 +40,17 @@ This file helps Claude maintain context across sessions for the Rush 2049 N64 de
 
 ### Phase 4 Setup Notes
 **IDO Compiler Location**: `ssh watchman` -> `/home/cburnes/projects/rush2049-decomp/tools/ido-static-recomp/build/out/`
+**IDO 7.1 Also Available**: `ssh watchman` -> `/home/cburnes/projects/rush2049-decomp/tools/ido7.1/`
 **Build Command**: `make COMPILER=ido cc` (on watchman, x86 machine)
 **Pi 5 Limitation**: IDO recompiled binaries don't work on Pi 5 due to 16KB page size (needs 4KB pages)
 **Sync Command**: `rsync -avz /home/cburnes/projects/rush2049-decomp/ watchman:/home/cburnes/projects/rush2049-decomp/`
+
+**CRITICAL: Mixed Optimization Levels Discovered (2026-01-02)**:
+The game uses DIFFERENT optimization levels for different source files:
+- **libc (string functions)**: `-g0 -O2 -mips2 -G 0 -non_shared` (strlen PERFECT MATCH)
+- **libultra/os**: `-g0 -O1 -mips2 -G 0 -non_shared` (osCreateMesgQueue PERFECT MATCH)
+- **libultra/gu**: `-g0 -O2 -mips2 -G 0 -non_shared` (guMtxIdentF PERFECT MATCH)
+- See `docs/COMPILER_SETTINGS.md` for full details
 
 **C89 Compatibility Issues Fixed**:
 - Removed GNU inline assembly (used stubs with #ifdef NON_MATCHING)
