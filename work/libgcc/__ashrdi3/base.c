@@ -2,17 +2,17 @@
  * Function: __ashrdi3
  * Address:  0x8000DB84
  * Category: libgcc
- * Status:   TODO
+ * Status:   WIP
  *
- * arithmetic right shift
+ * 64-bit arithmetic right shift (sign-extending).
+ * Returns (value >> shift) with sign extension.
  *
  * Compiler flags: -g0 -O2 -mips2 -G 0 -non_shared
  */
 
-/* Add includes as needed */
-/* #include "types.h" */
+#include "types.h"
 
-/* TODO: Implement this function */
-void __ashrdi3(void) {
-    /* Stub implementation */
+/* 64-bit arithmetic right shift */
+s64 __ashrdi3(s64 value, s32 shift) {
+    return value >> shift;
 }

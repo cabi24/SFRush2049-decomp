@@ -2,17 +2,17 @@
  * Function: __muldi3
  * Address:  0x8000DA58
  * Category: libgcc
- * Status:   TODO
+ * Status:   WIP
  *
- * multiply
+ * 64-bit unsigned multiplication.
+ * Returns (a * b) using dmultu instruction.
  *
  * Compiler flags: -g0 -O2 -mips2 -G 0 -non_shared
  */
 
-/* Add includes as needed */
-/* #include "types.h" */
+#include "types.h"
 
-/* TODO: Implement this function */
-void __muldi3(void) {
-    /* Stub implementation */
+/* 64-bit multiplication */
+u64 __muldi3(u64 a, u64 b) {
+    return a * b;
 }
