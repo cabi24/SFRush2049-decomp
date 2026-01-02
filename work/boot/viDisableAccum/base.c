@@ -2,17 +2,18 @@
  * Function: viDisableAccum
  * Address:  0x800013DC
  * Category: boot
- * Status:   TODO
+ * Status:   WIP
  *
- * disable time accumulation
+ * Disable VI time accumulation
+ * Sets global flag gViAccumEnabled to 0
  *
  * Compiler flags: -g0 -O2 -mips2 -G 0 -non_shared
  */
 
-/* Add includes as needed */
-/* #include "types.h" */
+#include "types.h"
 
-/* TODO: Implement this function */
+extern s32 gViAccumEnabled;
+
 void viDisableAccum(void) {
-    /* Stub implementation */
+    gViAccumEnabled = 0;
 }

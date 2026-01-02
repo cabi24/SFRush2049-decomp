@@ -2,17 +2,18 @@
  * Function: viEnableAccum
  * Address:  0x800013C0
  * Category: boot
- * Status:   TODO
+ * Status:   WIP
  *
- * enable time accumulation
+ * Enable VI time accumulation
+ * Sets global flag gViAccumEnabled to 1
  *
  * Compiler flags: -g0 -O2 -mips2 -G 0 -non_shared
  */
 
-/* Add includes as needed */
-/* #include "types.h" */
+#include "types.h"
 
-/* TODO: Implement this function */
+extern s32 gViAccumEnabled;
+
 void viEnableAccum(void) {
-    /* Stub implementation */
+    gViAccumEnabled = 1;
 }
