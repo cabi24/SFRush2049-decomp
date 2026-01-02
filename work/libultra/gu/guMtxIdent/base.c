@@ -2,17 +2,23 @@
  * Function: guMtxIdent
  * Address:  0x8000941C
  * Category: libultra/gu
- * Status:   TODO
+ * Status:   WIP
  *
- * create N64 identity matrix (fixed-point)
+ * Create N64 fixed-point identity matrix
+ * Calls guMtxIdentF to create float identity, then guMtxF2L to convert
  *
  * Compiler flags: -g0 -O2 -mips2 -G 0 -non_shared
  */
 
-/* Add includes as needed */
-/* #include "types.h" */
+#include "types.h"
 
-/* TODO: Implement this function */
-void guMtxIdent(void) {
-    /* Stub implementation */
+/* Forward declarations */
+extern void guMtxIdentF(f32 mf[4][4]);
+extern void guMtxF2L(f32 mf[4][4], u32 *m);
+
+void guMtxIdent(u32 *m) {
+    f32 mf[4][4];
+
+    guMtxIdentF(mf);
+    guMtxF2L(mf, m);
 }
