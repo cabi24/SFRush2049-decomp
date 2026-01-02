@@ -2,17 +2,19 @@
  * Function: osCauseGet
  * Address:  0x8000DBB0
  * Category: libultra/os
- * Status:   TODO
+ * Status:   WIP
  *
- * read CP0 Cause register
+ * Read CP0 Cause register ($13)
+ * NOTE: Same as __osGetCause (alias at same address)
  *
  * Compiler flags: -g0 -O1 -mips2 -G 0 -non_shared
  */
 
-/* Add includes as needed */
-/* #include "types.h" */
+#include "types.h"
 
-/* TODO: Implement this function */
-void osCauseGet(void) {
-    /* Stub implementation */
+/* Read the CP0 Cause register */
+u32 osCauseGet(void) {
+    u32 cause;
+    __asm__ volatile("mfc0 %0, $13" : "=r"(cause));
+    return cause;
 }

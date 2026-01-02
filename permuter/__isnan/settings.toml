@@ -1,0 +1,8 @@
+# Permuter settings for __isnan
+[general]
+compiler_arch = "mips"
+randomize_singletons = false
+
+[randomization]
+keep_prob = 0.3
+seed_factor = 100

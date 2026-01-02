@@ -194,6 +194,7 @@ f32  calc_car_distance(s32 car_index);
 void sort_race_positions(void);         /* Sort active cars by distance */
 void sort_finished_positions(void);     /* Sort finished cars by time */
 void update_all_positions(void);        /* Full position update */
+s32  race_position_calc(s32 car_index); /* Calculate 1-based position */
 s32  get_race_position(s32 car_index);  /* Get car's position */
 s32  get_race_leader(void);             /* Get leader's car index */
 s32  is_in_first_place(void);           /* Check if player is leading */

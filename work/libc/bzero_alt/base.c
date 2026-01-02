@@ -1,18 +1,20 @@
 /*
- * Function: bzero_alt
+ * Function: bzero_alt (actually __osSpGetStatus!)
  * Address:  0x8000D2A0
- * Category: libc
- * Status:   TODO
+ * Category: libc (should be libultra/sp)
+ * Status:   WIP
  *
- * alternative bzero (zeroes memory)
+ * MISNAMED: This actually reads SP_STATUS_REG and returns it.
+ * Real name should be __osSpGetStatus.
  *
  * Compiler flags: -g0 -O2 -mips2 -G 0 -non_shared
  */
 
-/* Add includes as needed */
-/* #include "types.h" */
+#include "types.h"
 
-/* TODO: Implement this function */
-void bzero_alt(void) {
-    /* Stub implementation */
+#define SP_STATUS_REG (*(volatile u32 *)0xA4040010)
+
+/* Returns SP status register value */
+u32 bzero_alt(void) {
+    return SP_STATUS_REG;
 }

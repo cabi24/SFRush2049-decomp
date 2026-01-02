@@ -2,17 +2,25 @@
  * Function: __osRestoreInt
  * Address:  0x8000C520
  * Category: libultra/os
- * Status:   TODO
+ * Status:   WIP
  *
- * restore interrupt state
+ * Restore interrupt state by ORing bits back into Status register
  *
  * Compiler flags: -g0 -O1 -mips2 -G 0 -non_shared
  */
 
-/* Add includes as needed */
-/* #include "types.h" */
+#include "types.h"
 
-/* TODO: Implement this function */
-void __osRestoreInt(void) {
-    /* Stub implementation */
+/* OR the given bits into CP0 Status register */
+void __osRestoreInt(u32 mask) {
+    u32 sr;
+    __asm__ volatile(
+        "mfc0 %0, $12\n\t"
+        "or %0, %0, %1\n\t"
+        "mtc0 %0, $12\n\t"
+        "nop\n\t"
+        "nop"
+        : "=&r"(sr)
+        : "r"(mask)
+    );
 }

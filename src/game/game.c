@@ -495,6 +495,7 @@ extern void hiscore_handler(void);            /* hiscore_entry - High score entr
 extern void countdown_handler(void);          /* countdown_start - Countdown timer */
 extern void drone_deactivate(void);           /* drone_deactivate - Deactivate drones */
 extern void render_scene(s32 track, f32 angle, s32 x, s32 y); /* render_scene - Viewport/camera setup */
+extern void sound_race_start(s32 countdown);  /* sound.c */
 
 /* Forward declarations for functions defined in this file */
 s32 track_lod_select(f32 distance);  /* LOD distance calculator */
@@ -1197,100 +1198,38 @@ extern s16 sound_apply_effect(s32 channel, s32 effectType, f32 amount); /* sound
  * Finds active player, formats countdown text, and displays it.
  */
 void countdown_display(void) {
-    s32 player_count;
-    s32 i;
-    s8 str_buf[80];      /* sp+0x50 */
-    s8 format_buf[88];   /* sp+0x58 */
-    void *display_data;
-    s32 countdown_val;
-    s32 result;
-    u32 state_flags;
+#ifdef NON_MATCHING
+    s32 seconds;
+    s32 countdown;
+    static s32 last_count = -1;
+    char num_buf[2];
 
-    /* Get player count - 1 if mode is 2, otherwise from player_count */
-    if (game_unlock_id == 2) {
-        player_count = 1;
-    } else {
-        player_count = player_count;
-    }
+    if (gCountdownTimer > 0) {
+        seconds = (gCountdownTimer + 59) / 60;
+        if (seconds <= 3) {
+            countdown = seconds;
+            num_buf[0] = '0' + countdown;
+            num_buf[1] = '\0';
+            draw_text(155, 100, num_buf, 0xFFFFFFFF);
 
-    /* Find first inactive player slot */
-    i = 0;
-    if (player_count > 0) {
-        s8 *player_ptr = (s8 *)0x80156CF0;
-        while (i < player_count) {
-            if (*player_ptr == 0) {
-                break;  /* Found inactive slot */
+            if (countdown != last_count) {
+                sound_race_start(countdown);
+                last_count = countdown;
             }
-            i++;
-            player_ptr += 16;
+        }
+    } else {
+        if (gCountdownTimer >= -60) {
+            draw_text(140, 100, "GO!", 0xFFFFFFFF);
+        }
+
+        if (last_count != 0) {
+            sound_race_start(0);
+            last_count = 0;
         }
     }
 
-    /* Store found player index */
-    found_player_index = i;
-
-    /* Check if we found a slot before count */
-    if (i >= player_count) {
-        /* All players accounted for - set countdown to 320 (5.3 sec at 60fps) */
-        countdown_val = 320;
-        gCountdownTimer = countdown_val;
-        return;
-    }
-
-    /* Format player string */
-    sprintf(str_buf, format_string_1, i + 1);
-
-    /* Get display parameters from global */
-    display_data = display_object_array[1];  /* offset 4 = array[1] */
-
-    /* Format display text with position params */
-    {
-        s32 x_pos = *(s32 *)((u8 *)display_data + 0x1F0);
-        s32 y_pos = *(s32 *)((u8 *)display_data + 0x1F4);
-        s32 width = *(s32 *)((u8 *)display_data + 0x1F8);
-        s32 height = *(s32 *)((u8 *)display_data + 0x1FC);
-        s32 extra = *(s32 *)((u8 *)display_data + 0x200);
-
-        countdown_val = gCountdownTimer;
-        sprintf(format_buf, format_string_2, str_buf, x_pos, y_pos, countdown_val, width, height, extra);
-    }
-
-    /* Call rendering function */
-    camera_near_set(format_buf, *(s32 *)((u8 *)display_data + 0x200));
-
-    /* Create display object */
-    state_get(&game_sync, 0, 1);
-    voice_stop(NULL, 0);
-    state_set(&game_sync, 0, 0);
-
-    /* Set display type */
-    entity_collision_test(NULL, NULL);
-
-    /* Check state flags for color selection */
-    state_flags = gstate_mask;
-
-    if ((state_flags & 0x0001) || (state_flags & 0x0002) ||
-        ((state_flags << 1) < 0) ||   /* bit 0x80000000 */
-        (state_flags & 0x0004) || (state_flags & 0x0008)) {
-        /* Special state - color 8 (darker) */
-        countdown_val = gCountdownTimer;
-        audio_sync();
-    } else {
-        /* Normal state - color 205 (0xCD, brighter) */
-        countdown_val = gCountdownTimer;
-        audio_sync();
-    }
-
-    /* Finalize display and decrement countdown */
-    countdown_val = gCountdownTimer;
-    sound_apply_effect(0, -1, 0.0f);
-    countdown_val--;
-    gCountdownTimer = countdown_val;
-
-    /* Reset countdown if it goes too negative */
-    if (countdown_val < -result) {
-        gCountdownTimer = 320;
-    }
+    gCountdownTimer--;
+#endif
 }
 
 /*

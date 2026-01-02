@@ -2,17 +2,26 @@
  * Function: osInvalICache
  * Address:  0x80007810
  * Category: libultra/cache
- * Status:   TODO
+ * Status:   WIP
  *
- * invalidate I-cache
+ * Invalidate entire I-cache (8KB)
+ * Loops through cache lines using cache instruction
  *
  * Compiler flags: -g0 -O1 -mips2 -G 0 -non_shared
  */
 
-/* Add includes as needed */
-/* #include "types.h" */
+#include "types.h"
 
-/* TODO: Implement this function */
+/* Cache line size */
+#define ICACHE_LINESIZE 16
+#define ICACHE_SIZE     0x2000
+
 void osInvalICache(void) {
-    /* Stub implementation */
+    u32 addr = 0x80000000;
+    u32 end = addr + ICACHE_SIZE - ICACHE_LINESIZE;
+
+    do {
+        __asm__ volatile("cache 0x01, 0(%0)" : : "r"(addr));
+        addr += ICACHE_LINESIZE;
+    } while (addr < end);
 }

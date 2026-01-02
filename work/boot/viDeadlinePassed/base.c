@@ -2,17 +2,20 @@
  * Function: viDeadlinePassed
  * Address:  0x800015BC
  * Category: boot
- * Status:   TODO
+ * Status:   WIP
  *
- * check if deadline passed
+ * Check if VI deadline has passed
+ * Returns 1 if deadline <= currentTime, 0 otherwise
  *
  * Compiler flags: -g0 -O2 -mips2 -G 0 -non_shared
  */
 
-/* Add includes as needed */
-/* #include "types.h" */
+#include "types.h"
 
-/* TODO: Implement this function */
-void viDeadlinePassed(void) {
-    /* Stub implementation */
+extern s32 gViDeadline;
+extern s32 gViCurrentTime;
+
+s32 viDeadlinePassed(void) {
+    s32 remaining = gViDeadline - gViCurrentTime;
+    return remaining < 1;
 }

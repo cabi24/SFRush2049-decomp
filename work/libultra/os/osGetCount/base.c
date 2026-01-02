@@ -2,17 +2,18 @@
  * Function: osGetCount
  * Address:  0x8000C970
  * Category: libultra/os
- * Status:   TODO
+ * Status:   WIP
  *
- * read CP0 Count register
+ * Read CP0 Count register ($9)
  *
  * Compiler flags: -g0 -O1 -mips2 -G 0 -non_shared
  */
 
-/* Add includes as needed */
-/* #include "types.h" */
+#include "types.h"
 
-/* TODO: Implement this function */
-void osGetCount(void) {
-    /* Stub implementation */
+/* Read the CPU cycle counter (CP0 reg 9) */
+u32 osGetCount(void) {
+    u32 count;
+    __asm__ volatile("mfc0 %0, $9" : "=r"(count));
+    return count;
 }

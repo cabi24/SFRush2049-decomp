@@ -2,17 +2,18 @@
  * Function: __osGetSR
  * Address:  0x8000D780
  * Category: libultra/os
- * Status:   TODO
+ * Status:   WIP
  *
- * get CP0 Status register
+ * Get CP0 Status register ($12)
  *
  * Compiler flags: -g0 -O1 -mips2 -G 0 -non_shared
  */
 
-/* Add includes as needed */
-/* #include "types.h" */
+#include "types.h"
 
-/* TODO: Implement this function */
-void __osGetSR(void) {
-    /* Stub implementation */
+/* Read the CP0 Status register */
+u32 __osGetSR(void) {
+    u32 sr;
+    __asm__ volatile("mfc0 %0, $12" : "=r"(sr));
+    return sr;
 }

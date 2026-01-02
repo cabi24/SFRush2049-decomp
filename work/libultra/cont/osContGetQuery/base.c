@@ -2,17 +2,24 @@
  * Function: osContGetQuery
  * Address:  0x800097AC
  * Category: libultra/cont
- * Status:   TODO
+ * Status:   WIP
  *
- * get controller query results (wrapper for __osContGetInitData)
+ * Get controller query results - wrapper for __osContGetStatus
  *
  * Compiler flags: -g0 -O1 -mips2 -G 0 -non_shared
  */
 
-/* Add includes as needed */
-/* #include "types.h" */
+#include "types.h"
 
-/* TODO: Implement this function */
-void osContGetQuery(void) {
-    /* Stub implementation */
+typedef struct {
+    u16 type;
+    u8 status;
+    u8 errno;
+} OSContStatus;
+
+extern void __osContGetStatus(u8 *bitPattern, OSContStatus *status);
+
+void osContGetQuery(OSContStatus *status) {
+    u8 bitPattern;
+    __osContGetStatus(&bitPattern, status);
 }
