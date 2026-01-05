@@ -2,17 +2,17 @@
  * Function: __floatundidf
  * Address:  0x80009B94
  * Category: libgcc
- * Status:   TODO
+ * Status:   WIP
  *
- * unsigned long long to double
+ * Convert unsigned 64-bit integer to double.
+ * If high bit set, adds 2^64 to correct for signed cvt.d.l.
  *
  * Compiler flags: -g0 -O2 -mips2 -G 0 -non_shared
  */
 
-/* Add includes as needed */
-/* #include "types.h" */
+#include "types.h"
 
-/* TODO: Implement this function */
-void __floatundidf(void) {
-    /* Stub implementation */
+/* Convert u64 to f64 */
+f64 __floatundidf(u64 value) {
+    return (f64)value;
 }

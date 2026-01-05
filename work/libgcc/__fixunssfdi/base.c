@@ -2,17 +2,17 @@
  * Function: __fixunssfdi
  * Address:  0x80009AC8
  * Category: libgcc
- * Status:   TODO
+ * Status:   WIP
  *
- * float to unsigned long long
+ * Convert float to unsigned 64-bit integer (truncate toward zero).
+ * Handles full unsigned range by subtracting 2^63 for large values.
  *
  * Compiler flags: -g0 -O2 -mips2 -G 0 -non_shared
  */
 
-/* Add includes as needed */
-/* #include "types.h" */
+#include "types.h"
 
-/* TODO: Implement this function */
-void __fixunssfdi(void) {
-    /* Stub implementation */
+/* Convert f32 to u64 (truncate) */
+u64 __fixunssfdi(f32 value) {
+    return (u64)value;
 }

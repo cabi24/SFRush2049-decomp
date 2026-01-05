@@ -2,17 +2,17 @@
  * Function: __floatundisf
  * Address:  0x80009BC8
  * Category: libgcc
- * Status:   TODO
+ * Status:   WIP
  *
- * unsigned long long to float
+ * Convert unsigned 64-bit integer to float.
+ * If high bit set, adds 2^64 to correct for signed cvt.s.l.
  *
  * Compiler flags: -g0 -O2 -mips2 -G 0 -non_shared
  */
 
-/* Add includes as needed */
-/* #include "types.h" */
+#include "types.h"
 
-/* TODO: Implement this function */
-void __floatundisf(void) {
-    /* Stub implementation */
+/* Convert u64 to f32 */
+f32 __floatundisf(u64 value) {
+    return (f32)value;
 }
