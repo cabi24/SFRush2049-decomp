@@ -2,17 +2,17 @@
  * Function: __umoddi3_alt
  * Address:  0x8000D9C0
  * Category: libgcc
- * Status:   TODO
+ * Status:   WIP
  *
- * unsigned 64-bit modulo (duplicate)
+ * Alternate unsigned 64-bit modulo with stack-based arguments.
+ * Stores argument registers to stack, loads as 64-bit, performs ddivu.
  *
  * Compiler flags: -g0 -O2 -mips2 -G 0 -non_shared
  */
 
-/* Add includes as needed */
-/* #include "types.h" */
+#include "types.h"
 
-/* TODO: Implement this function */
-void __umoddi3_alt(void) {
-    /* Stub implementation */
+/* Alternate entry point for __umoddi3 with explicit stack handling */
+u64 __umoddi3_alt(u64 dividend, u64 divisor) {
+    return dividend % divisor;
 }
