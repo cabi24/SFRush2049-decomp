@@ -29,7 +29,7 @@ This file helps Claude maintain context across sessions for the Rush 2049 N64 de
 - [x] Set up OptiPlex 3080 (20 cores, 31GB RAM) for fast builds
 - [x] Created hardware_regs.ld with N64 MMIO addresses
 - [x] Created tools/diff.py for function comparison
-- [x] All 88 assembly files now have C equivalents (111 C files total, 126% coverage)
+- [x] All 88 assembly files now have C equivalents (120 C files total, 136% coverage)
 - [x] **IDO 5.3 compiler setup on x86 watchman machine**
 - [x] **102/111 C files (92%) compiling with IDO**
 
@@ -84,7 +84,7 @@ The game uses DIFFERENT optimization levels for different source files:
 
 See `symbol_addrs.us.txt` for complete list.
 
-### Decompiled Source Files (111 C files, ~38,751 lines)
+### Decompiled Source Files (120 C files, ~98,517 lines)
 | File | Functions | Status |
 |------|-----------|--------|
 | src/libc/string.c | memchr, memset, strchr, strlen, memcpy | Complete |
@@ -349,13 +349,13 @@ enum GState {
 
 For a detailed breakdown of project progress by phase, see: **[docs/PROGRESS_REPORT.md](docs/PROGRESS_REPORT.md)**
 
-Quick summary (2025-12-27):
-- **Overall**: ~45% complete (Phase 2 of 5)
+Quick summary (2026-01-05):
+- **Overall**: ~50% complete (Phase 2-3)
 - **Phase 1** (Setup): 100% - ROM extracted, build system working
-- **Phase 2** (C Source): 90% - 111 C files, all compiling
-- **Phase 3** (Decompilation): 25% - Many functions still stubs
-- **Phase 4** (Matching): 0% - IDO compiler not set up yet
-- **Phase 5** (Documentation): 10% - Basic docs only
+- **Phase 2** (C Source): 95% - 120 C files, all compiling, ROM matches
+- **Phase 3** (Decompilation): 51% - 671 WIP, 626 TODO functions
+- **Phase 4** (Matching): 0% - IDO compiler required for matching
+- **Phase 5** (Documentation): 15% - Basic docs, CLAUDE.md updated
 
 ## Session Continuity Tips
 
@@ -424,13 +424,13 @@ When starting a new session:
 codex exec --dangerously-bypass-approvals-and-sandbox "Analyze asm/us/XXXX.s and identify functions..."
 ```
 
-**Current stats** (updated 2025-12-28):
+**Current stats** (updated 2026-01-05):
 - Static ROM: 228 functions identified (100% coverage)
-- Dynamic game code: 752 functions extracted from compressed ROM, ~450 decompiled
-- Symbol file: 1,165 entries (~870 named, 0 unnamed func_*)
-- Source files: 111 C files, ~42,500 lines total
-- game.c: 42,578 lines, ~450 functions, ALL NAMED (definitions + call sites)
-- func_80 call sites: 0 remaining (was 764+, now 100% renamed)
+- Dynamic game code: 752 functions extracted from compressed ROM
+- Symbol file: 3,406 entries
+- Source files: 120 C files, ~98,517 lines total
+- Work directory: 1,319 functions (671 WIP, 626 TODO)
+- func_80 call sites: 0 remaining (100% renamed)
 
 **New libultra files added (2025-12-27)**:
 - Controller Pak (PFS): os_pfs_alloc.c, os_pfs_check.c, os_pfs_create.c, os_pfs_delete.c, os_pfs_find.c, os_pfs_free.c, os_pfs_rw.c, os_pfs_state.c, os_pfs_write.c
