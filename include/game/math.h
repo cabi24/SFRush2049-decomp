@@ -131,6 +131,11 @@ u32 posdir32(u32 x, u32 y);
 /******* SQUARE ROOT *******/
 
 /**
+ * sqrtf - Floating-point square root (standard C library function)
+ */
+extern f32 sqrtf(f32 x);
+
+/**
  * lsqrt - Integer square root
  * Returns largest 16-bit integer whose square is <= input
  */

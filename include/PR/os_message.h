@@ -30,5 +30,6 @@ typedef struct OSMesgQueue_s {
 void osCreateMesgQueue(OSMesgQueue *mq, OSMesg *msg, s32 count);
 s32 osSendMesg(OSMesgQueue *mq, OSMesg msg, s32 flags);
 s32 osRecvMesg(OSMesgQueue *mq, OSMesg *msg, s32 flags);
+s32 osJamMesg(OSMesgQueue *mq, OSMesg msg, s32 flags);
 
 #endif /* _OS_MESSAGE_H_ */

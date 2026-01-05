@@ -7,9 +7,7 @@
 
 #include "types.h"
 #include "game/structs.h"
-#include "PR/os_message.h"
-#include "PR/os_pfs.h"
-#include "PR/os_pi.h"
+#include "PR/os.h"
 
 /* Math function declarations (avoid system math.h for IDO compatibility) */
 extern f64 sin(f64);
@@ -69,13 +67,12 @@ extern void free(void *);
 #define gSPEndDisplayList(gfx)
 #define OS_K0_TO_PHYSICAL(addr) ((u32)(addr) & 0x1FFFFFFF)
 
-/* libultra matrix functions */
+/* libultra matrix/motor functions */
 extern void guTranslateF(f32 *mtx, f32 x, f32 y, f32 z);
 extern void guRotateRPYF(f32 *mtx, f32 r, f32 p, f32 y);
 extern void osMotorStart(void *pak);
 extern void osMotorStop(void *pak);
 extern void osSpTaskStart(void *task);
-extern u64 osGetTime(void);
 
 /* Auto-generated extern declarations for missing variables */
 extern s32 dma_io_msg;

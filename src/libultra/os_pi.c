@@ -41,10 +41,7 @@ extern s32 __osPiInitialized;       /* PI initialized flag: 0x8002C4A0 */
 extern OSMesgQueue __osPiMesgQueue; /* PI message queue: 0x80037C78 */
 extern OSMesg __osPiMesg;           /* PI message buffer: 0x80037C70 */
 
-/* External functions */
-extern void osCreateMesgQueue(OSMesgQueue *mq, OSMesg *msg, s32 count);
-extern void osJamMesg(OSMesgQueue *mq, OSMesg msg, s32 flags);
-extern s32 osRecvMesg(OSMesgQueue *mq, OSMesg *msg, s32 flags);
+/* External functions - osCreateMesgQueue, osJamMesg, osRecvMesg from os_message.h */
 extern u32 osVirtualToPhysical(void *addr);
 extern s32 __osPiDeviceBusy(void);
 
