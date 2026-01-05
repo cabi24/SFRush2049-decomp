@@ -2,17 +2,22 @@
  * Function: viScheduleTick
  * Address:  0x800014F0
  * Category: boot
- * Status:   TODO
+ * Status:   WIP
  *
- * schedule next tick deadline
+ * Schedule next tick deadline.
+ * Saves current time snapshot and sets deadline.
  *
  * Compiler flags: -g0 -O2 -mips2 -G 0 -non_shared
  */
 
-/* Add includes as needed */
-/* #include "types.h" */
+#include "types.h"
 
-/* TODO: Implement this function */
-void viScheduleTick(void) {
-    /* Stub implementation */
+extern s32 gViCurrentTime;
+extern s32 gViLastSnapshotTime;
+extern s32 gViDeadline;
+extern f32 gViTickRate;
+
+void viScheduleTick(f32 seconds) {
+    gViLastSnapshotTime = gViCurrentTime;
+    gViDeadline = (s32)(seconds * gViTickRate) + gViCurrentTime;
 }

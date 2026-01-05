@@ -2,17 +2,19 @@
  * Function: viAddTicks
  * Address:  0x8000153C
  * Category: boot
- * Status:   TODO
+ * Status:   WIP
  *
- * add ticks to deadline
+ * Add ticks to VI deadline.
+ * Converts float seconds to ticks using tick rate.
  *
  * Compiler flags: -g0 -O2 -mips2 -G 0 -non_shared
  */
 
-/* Add includes as needed */
-/* #include "types.h" */
+#include "types.h"
 
-/* TODO: Implement this function */
-void viAddTicks(void) {
-    /* Stub implementation */
+extern f32 gViTickRate;
+extern s32 gViDeadline;
+
+void viAddTicks(f32 seconds) {
+    gViDeadline += (s32)(seconds * gViTickRate);
 }
