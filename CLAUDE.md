@@ -350,12 +350,12 @@ enum GState {
 For a detailed breakdown of project progress by phase, see: **[docs/PROGRESS_REPORT.md](docs/PROGRESS_REPORT.md)**
 
 Quick summary (2026-01-05):
-- **Overall**: ~50% complete (Phase 2-3)
+- **Overall**: ~65% complete (Phase 2-3)
 - **Phase 1** (Setup): 100% - ROM extracted, build system working
-- **Phase 2** (C Source): 95% - 120 C files, all compiling, ROM matches
-- **Phase 3** (Decompilation): 51% - 671 WIP, 626 TODO functions
-- **Phase 4** (Matching): 0% - IDO compiler required for matching
-- **Phase 5** (Documentation): 15% - Basic docs, CLAUDE.md updated
+- **Phase 2** (C Source): 100% - 120 C files, all compiling, ROM matches
+- **Phase 3** (Decompilation): 99% - 1,310 WIP, 0 TODO! All target assembly extracted
+- **Phase 4** (Matching): 5% - IDO compiler required for matching
+- **Phase 5** (Documentation): 20% - Docs updated, progress tracked
 
 ## Session Continuity Tips
 
@@ -429,7 +429,8 @@ codex exec --dangerously-bypass-approvals-and-sandbox "Analyze asm/us/XXXX.s and
 - Dynamic game code: 752 functions extracted from compressed ROM
 - Symbol file: 3,406 entries
 - Source files: 120 C files, ~98,517 lines total
-- Work directory: 1,319 functions (671 WIP, 626 TODO)
+- Work directory: 1,319 functions (1,310 WIP, 0 TODO!)
+- Target assembly: Extracted for all game code functions
 - func_80 call sites: 0 remaining (100% renamed)
 
 **New libultra files added (2025-12-27)**:
