@@ -137,8 +137,8 @@ extern s8  cancel_mpath_lap;            /* Cancel maxpath lap recording */
 extern f32 lap_loop_distance;           /* Distance around loop */
 extern s16 close_chkpnt;                /* Close checkpoint index */
 extern s16 path_point_index;            /* Current path point index */
-extern s8  end_game_flag;               /* End of game flag */
-extern s8  lap_flag;                    /* Lap display flag */
+extern s32 end_game_flag;               /* End of game flag */
+extern s32 lap_flag;                    /* Lap display flag */
 
 /* Arcade laps_to_go sound array (from checkpoint.c) */
 extern const s16 laps_to_go[10];
@@ -225,10 +225,11 @@ void back_path_points(s16 mode);        /* Back path points */
 #define CP_UPDATE       1       /* Arcade: Do_it */
 #define CP_CLEANUP      2       /* Arcade: Cleanup */
 
-/* Arcade name aliases */
-#define Initialize      CP_INITIALIZE
-#define Do_it           CP_UPDATE
-#define Cleanup         CP_CLEANUP
+/* Arcade name aliases - commented out to avoid conflicts with car.h
+ * Use CP_INITIALIZE, CP_UPDATE, CP_CLEANUP directly instead */
+/* #define Initialize      CP_INITIALIZE */
+/* #define Do_it           CP_UPDATE */
+/* #define Cleanup         CP_CLEANUP */
 
 /* ========================================================================
  * Arcade timing constants

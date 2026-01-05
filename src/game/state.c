@@ -789,8 +789,8 @@ s32 GetCountdownTime(void) {
  *
  * @return Elapsed time in frames since race start
  */
-u32 GetElapsedTime(void) {
-    return frame_counter - game_start_time;
+s32 GetElapsedTime(void) {
+    return (s32)(frame_counter - game_start_time);
 }
 
 /**

@@ -104,8 +104,8 @@ s8  cancel_mpath_lap;
 f32 lap_loop_distance;
 s16 close_chkpnt;
 s16 path_point_index;
-s8  end_game_flag;
-s8  lap_flag;
+s32 end_game_flag;
+s32 lap_flag;
 
 /* Track/checkpoint data arrays */
 CheckPoint TrackCPs[MAX_TRACKS][MAX_CHECKPOINTS];

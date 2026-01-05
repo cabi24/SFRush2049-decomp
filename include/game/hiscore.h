@@ -26,16 +26,20 @@
  * ======================================================================== */
 
 /* Arcade time constants (in milliseconds, 1000 = 1 second) */
-#define ONE_SEC             1000
-#define MIN_SCORE           (1L * 60 * ONE_SEC)     /*  1 minute */
-#define MAX_SCORE           (10L * 60 * ONE_SEC)    /* 10 minutes */
-#define MAX_HSCORE          (100L * 60 * ONE_SEC)   /* 99:59.99 display max */
+#define ONE_SEC_MS          1000    /* Arcade uses milliseconds */
+#define MIN_SCORE           (1L * 60 * ONE_SEC_MS)     /*  1 minute */
+#define MAX_SCORE           (10L * 60 * ONE_SEC_MS)    /* 10 minutes */
+#define MAX_HSCORE          (100L * 60 * ONE_SEC_MS)   /* 99:59.99 display max */
 
 /* Arcade score table limits */
 #define NNAMES              10      /* Number of names on high score screen */
 #define SSCORES             9       /* Number of scrolling scores visible */
+#ifndef NSCORES
 #define NSCORES             100     /* Total scores per track */
+#endif
+#ifndef NLENGTH
 #define NLENGTH             8       /* Name length (7 chars + null) */
+#endif
 #define NTRACKS             8       /* Number of tracks */
 
 /* High score entry screen */
@@ -46,9 +50,13 @@
 #define HI_SCORE_X          45      /* X position for top 10 */
 #define LO_SCORE_X          360     /* X position for scrolling scores */
 
-/* Auto-clear counters */
+/* Auto-clear counters (may be overridden by attract.h) */
+#ifndef MAX_GAME_CNT
 #define MAX_GAME_CNT        1000    /* Games before auto-clear check */
+#endif
+#ifndef MAX_HI_CNT
 #define MAX_HI_CNT          100     /* High scores before auto-clear */
+#endif
 #define MAX_MSG_CHARS       256     /* Maximum message characters */
 
 /* NVRAM table base (arcade specific, may need N64 adaptation) */
@@ -64,7 +72,10 @@
  * Based on arcade: hiscore.c:HiScore
  *
  * Note: NLENGTH is 8 (7 chars + null) in arcade
+ * Note: May be defined in attract.h - check include order
  */
+#ifndef HISCORE_STRUCT_DEFINED
+#define HISCORE_STRUCT_DEFINED
 typedef struct HiScore {
     char    name[NLENGTH];      /* Player name (7 chars + null) */
     u32     score;              /* Time in milliseconds */
@@ -72,6 +83,7 @@ typedef struct HiScore {
     u8      mirror;             /* Mirror mode flag */
     u8      car;                /* Car type and player node */
 } HiScore;
+#endif
 
 /**
  * ScoreBlitEntry - Arcade blit entry for score display
@@ -278,7 +290,7 @@ s32 SaveHighScore(char *name, u32 score, u32 track, u32 deaths, u32 mirror, u32 
 
 /* High score entry */
 void EnterHighScore(s16 track, u32 score, char *name, u32 deaths, u32 mirror, u32 car);
-void ShowHiScore(s32 show, s16 track);
+void ShowHiScore(s32 show, s32 track);
 void ShowScoreEntry(s32 show);
 void GetHighScoreName(void);
 void HiScoreForce(void);

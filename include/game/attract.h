@@ -67,10 +67,18 @@ typedef enum ModelTypes {
 #define ONE_SEC             60      /* N64 uses frames at 60fps */
 
 /* High score defines from arcade attract.h */
+#ifndef NSCORES
 #define NSCORES             100     /* Number of scores saved */
+#endif
+#ifndef MAX_GAME_CNT
 #define MAX_GAME_CNT        2000    /* Max games before auto HSCORE reset */
+#endif
+#ifndef MAX_HI_CNT
 #define MAX_HI_CNT          200     /* Max non-HS games before reset */
+#endif
+#ifndef NLENGTH
 #define NLENGTH             9       /* Max length of high score name + 1 */
+#endif
 
 /* ========================================================================
  * N64-SPECIFIC DEFINES
@@ -267,6 +275,8 @@ u32 attract_get_demo_car(void);
  * ======================================================================== */
 
 /* High score structure - matches arcade HiScore typedef */
+#ifndef HISCORE_STRUCT_DEFINED
+#define HISCORE_STRUCT_DEFINED
 typedef struct HiScore {
     u32     score;                  /* Score value */
     char    name[NLENGTH];          /* Player name */
@@ -274,6 +284,7 @@ typedef struct HiScore {
     u8      mirror;                 /* TRUE if mirror mode race */
     s8      car;                    /* High nibble = node, low nibble = car */
 } HiScore;
+#endif
 
 /* Tourney mode structure - matches arcade Tourney typedef */
 typedef struct Tourney {

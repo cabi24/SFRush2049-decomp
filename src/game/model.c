@@ -125,7 +125,7 @@ void no_catchup(void) {
 
     /* Set all controlled cars to base speed */
     for (i = 0; i < MAX_LINKS; i++) {
-        if (model[i].we_control_flag) {
+        if (model[i].we_control) {
             model[i].catchup = 1.0f;
         }
     }

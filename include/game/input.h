@@ -86,7 +86,9 @@ typedef enum {
 } POT_TYPES;
 
 /* Wheel range (arcade: controls.h) */
+#ifndef WHEEL_RANGE
 #define WHEEL_RANGE         (0xc00 >> 2)    /* Range of steering wheel choices */
+#endif
 #define RAW_WHEEL_RANGE     2048
 
 /* Switch definitions (arcade: controls.h) */
@@ -145,8 +147,8 @@ typedef struct ControlInput {
 /* Control state for each player */
 extern ControlInput control_input[4];
 
-/* External game state (arcade: globals.h) */
-extern u8 gstate;
+/* External game state (arcade: globals.h) - gstate defined in game.h */
+/* extern u8 gstate; -- use GState from game.h instead */
 extern s32 end_game_flag;
 extern s32 coast_flag;
 

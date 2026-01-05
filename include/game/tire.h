@@ -38,11 +38,14 @@
 #define SURFACE_ICE         4
 #define SURFACE_WATER       5
 
-/* Unit vector structure (integer scaled) */
+/* Unit vector structure for tire calculations */
+#ifndef UVECT_DEFINED
+#define UVECT_DEFINED
 typedef struct UVect {
     s16     uvs[3][3];      /* Short unit vectors */
     f32     fuvs[3][3];     /* Float unit vectors */
 } UVect;
+#endif
 
 /* Tire force output */
 typedef struct TireForce {
@@ -62,6 +65,8 @@ typedef struct SuspensionState {
 } SuspensionState;
 
 /* Per-tire runtime state */
+#ifndef TIRESTATE_DEFINED
+#define TIRESTATE_DEFINED
 typedef struct TireState {
     /* Tire physics */
     TireDes         params;         /* Tire parameters (copy for runtime mods) */
@@ -85,6 +90,7 @@ typedef struct TireState {
     u8              onground;       /* Tire touching ground */
     u8              pad[2];
 } TireState;
+#endif
 
 /* Model data structure (simplified from arcade MODELDAT) */
 typedef struct ModelDat {

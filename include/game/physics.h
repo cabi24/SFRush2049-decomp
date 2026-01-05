@@ -61,10 +61,12 @@
 /* External car parameter tables */
 extern const s16 stdtorquecurve[TORQUE_THROTTLE_STEPS][TORQUE_RPM_STEPS];
 extern const s16 rushtorquecurve[TORQUE_THROTTLE_STEPS][TORQUE_RPM_STEPS];
-extern const Car *carlist[];                /* Available cars */
+extern const Car * const carlist[];         /* Available cars */
 extern const CollSize car_collsizes[];      /* Collision box sizes */
 
-/* Tire state */
+/* Tire state - simplified version (PhysTireState to avoid conflict with tire.h) */
+#ifndef TIRESTATE_DEFINED
+#define TIRESTATE_DEFINED
 typedef struct TireState {
     f32     angvel;         /* Angular velocity (rad/s) */
     f32     slip_ratio;     /* Longitudinal slip */
@@ -76,6 +78,7 @@ typedef struct TireState {
     u8      roadcode;       /* Surface type under tire */
     u8      pad[2];
 } TireState;
+#endif
 
 /* Suspension state */
 typedef struct SuspState {
@@ -86,10 +89,14 @@ typedef struct SuspState {
     f32     travel;         /* Max travel distance */
 } SuspState;
 
-/* Orientation matrix (unit vectors) */
+/* Orientation matrix (unit vectors) - simplified version
+ * Note: If tire.h's UVect is used (with uvs/fuvs), this will be skipped */
+#ifndef UVECT_DEFINED
+#define UVECT_DEFINED
 typedef struct UVect {
     f32     fpuvs[3][3];    /* Forward, Left, Up vectors in world coords */
 } UVect;
+#endif
 
 /**
  * PhysReckon - Dead reckoning data for physics (arcade RECKON)
@@ -255,6 +262,7 @@ typedef struct CarPhysics {
     s32     we_control;         /* Is this car AI-controlled? */
     s32     net_node;           /* Network node ID */
     f32     colrad;             /* Collision radius */
+    f32     catchup;            /* Catch-up speed multiplier (1.0 = normal) */
 
     /* Peak forces (for damage/effects) */
     f32     peak_center_force[2][3];    /* Min/max center forces */

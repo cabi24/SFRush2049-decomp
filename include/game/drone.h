@@ -42,9 +42,13 @@
 typedef MaxPathPoint MPATH;
 typedef MaxPathHeader MPHEADER;
 
-/* Arcade drone types (game.h) */
+/* Arcade drone types (game.h) - guarded to avoid conflicts with car.h */
+#ifndef HUMAN
 #define HUMAN           0       /* Human-controlled car */
+#endif
+#ifndef DRONE
 #define DRONE           1       /* AI-controlled car */
+#endif
 
 /* Arcade game constants */
 #define ONE_SEC         60      /* Frames per second */
@@ -174,7 +178,7 @@ typedef struct MPCTL {
 /* External arcade globals */
 extern MPCTL mpctl[];
 extern MODELDAT model[];
-extern struct CAR_DATA game_car[];
+extern u8 game_car[];       /* Car data array (accessed as byte array) */
 extern s32 num_active_cars;
 extern s32 this_node;
 extern s32 gThisNode;
