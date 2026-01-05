@@ -1,3 +1,76 @@
-# Target assembly not found
+# Source: game_code.bin (decompressed)
 # Address: 0x8008B964
-# Search in asm/us/*.s for this address
+
+glabel physics_velocity_integrate_b
+    /* 8008B964 27BDFFB0 */  addiu $sp, $sp, -80
+    /* 8008B968 AFBF004C */  sw $ra, 76($sp)
+    /* 8008B96C AFB20048 */  sw $s2, 72($sp)
+    /* 8008B970 AFB10044 */  sw $s1, 68($sp)
+    /* 8008B974 AFB00040 */  sw $s0, 64($sp)
+    /* 8008B978 F7B80038 */  .word 0xF7B80038
+    /* 8008B97C F7B60030 */  .word 0xF7B60030
+    /* 8008B980 F7B40028 */  .word 0xF7B40028
+    /* 8008B984 AFA50054 */  sw $a1, 84($sp)
+    /* 8008B988 84820008 */  lh $v0, 8($a0)
+    /* 8008B98C 00056400 */  sll $t4, $a1, 16
+    /* 8008B990 000C7403 */  sra $t6, $t4, 16
+    /* 8008B994 01C06025 */  or $t4, $t6, $zero
+    /* 8008B998 0002CA00 */  sll $t9, $v0, 8
+    /* 8008B99C 3C0E8015 */  lui $t6, 0x8015
+    /* 8008B9A0 0322C821 */  addu $t9, $t9, $v0
+    /* 8008B9A4 0019C8C0 */  sll $t9, $t9, 3
+    /* 8008B9A8 25CEA250 */  addiu $t6, $t6, -23984
+    /* 8008B9AC 032E3821 */  addu $a3, $t9, $t6
+    /* 8008B9B0 C4E403F0 */  lwc1 $f4, 1008($a3)
+    /* 8008B9B4 00027900 */  sll $t7, $v0, 4
+    /* 8008B9B8 01E27823 */  subu $t7, $t7, $v0
+    /* 8008B9BC 4600218D */  .word 0x4600218D
+    /* 8008B9C0 000F78C0 */  sll $t7, $t7, 3
+    /* 8008B9C4 3C188015 */  lui $t8, 0x8015
+    /* 8008B9C8 01E27823 */  subu $t7, $t7, $v0
+    /* 8008B9CC 44063000 */  .word 0x44063000
+    /* 8008B9D0 000F78C0 */  sll $t7, $t7, 3
+    /* 8008B9D4 27182818 */  addiu $t8, $t8, 10264
+    /* 8008B9D8 01F84821 */  addu $t1, $t7, $t8
+    /* 8008B9DC 0006C400 */  sll $t8, $a2, 16
+    /* 8008B9E0 0018CC03 */  sra $t9, $t8, 16
+    /* 8008B9E4 2B23000D */  slti $v1, $t9, 13
+    /* 8008B9E8 386A0001 */  xori $t2, $v1, 0x0001
+    /* 8008B9EC 00805825 */  or $t3, $a0, $zero
+    /* 8008B9F0 11400007 */  beq $t2, $zero, 0x8008BA10
+    /* 8008B9F4 80E80641 */  lb $t0, 1601($a3)
+    /* 8008B9F8 0008502B */  sltu $t2, $zero, $t0
+    /* 8008B9FC 15400004 */  bne $t2, $zero, 0x8008BA10
+    /* 8008BA00 00000000 */  nop
+    /* 8008BA04 8D2A00E8 */  lw $t2, 232($t1)
+    /* 8008BA08 314E0800 */  andi $t6, $t2, 0x0800
+    /* 8008BA0C 000E502B */  sltu $t2, $zero, $t6
+    /* 8008BA10 11000005 */  beq $t0, $zero, 0x8008BA28
+    /* 8008BA14 01608825 */  or $s1, $t3, $zero
+    /* 8008BA18 3C014000 */  lui $at, 0x4000
+    /* 8008BA1C 44810000 */  .word 0x44810000
+    /* 8008BA20 10000003 */  beq $zero, $zero, 0x8008BA30
+    /* 8008BA24 C53200D8 */  lwc1 $f18, 216($t1)
+    /* 8008BA28 C4E00544 */  lwc1 $f0, 1348($a3)
+    /* 8008BA2C C53200D8 */  lwc1 $f18, 216($t1)
+    /* 8008BA30 C53000DC */  lwc1 $f16, 220($t1)
+    /* 8008BA34 4480A000 */  .word 0x4480A000
+    /* 8008BA38 46120580 */  .word 0x46120580
+    /* 8008BA3C 3C014000 */  lui $at, 0x4000
+    /* 8008BA40 44819000 */  .word 0x44819000
+    /* 8008BA44 000C2400 */  sll $a0, $t4, 16
+    /* 8008BA48 0004C403 */  sra $t8, $a0, 16
+    /* 8008BA4C 46128601 */  .word 0x46128601
+    /* 8008BA50 01402825 */  or $a1, $t2, $zero
+    /* 8008BA54 241200C2 */  addiu $s2, $zero, 194
+    /* 8008BA58 0C022DA7 */  jal 0x8008B69C
+    /* 8008BA5C 03002025 */  or $a0, $t8, $zero
+    /* 8008BA60 8FBF004C */  lw $ra, 76($sp)
+    /* 8008BA64 D7B40028 */  .word 0xD7B40028
+    /* 8008BA68 D7B60030 */  .word 0xD7B60030
+    /* 8008BA6C D7B80038 */  .word 0xD7B80038
+    /* 8008BA70 8FB00040 */  lw $s0, 64($sp)
+    /* 8008BA74 8FB10044 */  lw $s1, 68($sp)
+    /* 8008BA78 8FB20048 */  lw $s2, 72($sp)
+    /* 8008BA7C 03E00008 */  jr $ra
+    /* 8008BA80 27BD0050 */  addiu $sp, $sp, 80

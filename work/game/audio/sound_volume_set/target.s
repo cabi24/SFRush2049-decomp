@@ -1,3 +1,44 @@
-# Target assembly not found
+# Source: game_code.bin (decompressed)
 # Address: 0x800B5948
-# Search in asm/us/*.s for this address
+
+glabel sound_volume_set
+    /* 800B5948 27BDFFE0 */  addiu $sp, $sp, -32
+    /* 800B594C AFBF0014 */  sw $ra, 20($sp)
+    /* 800B5950 4604603C */  .word 0x4604603C
+    /* 800B5954 AFA50024 */  sw $a1, 36($sp)
+    /* 800B5958 3C018012 */  lui $at, 0x8012
+    /* 800B595C 45010006 */  .word 0x45010006
+    /* 800B5960 00000000 */  nop
+    /* 800B5964 C4263DC0 */  lwc1 $f6, 15808($at)
+    /* 800B5968 460C303C */  .word 0x460C303C
+    /* 800B596C 00000000 */  nop
+    /* 800B5970 4502001A */  .word 0x4502001A
+    /* 800B5974 8FBF0014 */  lw $ra, 20($sp)
+    /* 800B5978 0C0021CC */  jal 0x80008730
+    /* 800B597C E7AC0020 */  swc1 $f12, 32($sp)
+    /* 800B5980 C7AC0020 */  lwc1 $f12, 32($sp)
+    /* 800B5984 0C00223C */  jal 0x800088F0
+    /* 800B5988 E7A00018 */  swc1 $f0, 24($sp)
+    /* 800B598C C7B00018 */  lwc1 $f16, 24($sp)
+    /* 800B5990 00001825 */  or $v1, $zero, $zero
+    /* 800B5994 8FA20024 */  lw $v0, 36($sp)
+    /* 800B5998 24040003 */  addiu $a0, $zero, 3
+    /* 800B599C C4420000 */  lwc1 $f2, 0($v0)
+    /* 800B59A0 C44C0004 */  lwc1 $f12, 4($v0)
+    /* 800B59A4 24630001 */  addiu $v1, $v1, 1
+    /* 800B59A8 46001202 */  .word 0x46001202
+    /* 800B59AC 2442000C */  addiu $v0, $v0, 12
+    /* 800B59B0 46106282 */  .word 0x46106282
+    /* 800B59B4 00000000 */  nop
+    /* 800B59B8 46101482 */  .word 0x46101482
+    /* 800B59BC 00000000 */  nop
+    /* 800B59C0 46006102 */  .word 0x46006102
+    /* 800B59C4 460A4381 */  .word 0x460A4381
+    /* 800B59C8 E44EFFF4 */  swc1 $f14, -12($v0)
+    /* 800B59CC 46049180 */  .word 0x46049180
+    /* 800B59D0 1464FFF2 */  bne $v1, $a0, 0x800B599C
+    /* 800B59D4 E446FFF8 */  swc1 $f6, -8($v0)
+    /* 800B59D8 8FBF0014 */  lw $ra, 20($sp)
+    /* 800B59DC 27BD0020 */  addiu $sp, $sp, 32
+    /* 800B59E0 03E00008 */  jr $ra
+    /* 800B59E4 00000000 */  nop

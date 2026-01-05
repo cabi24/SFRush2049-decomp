@@ -1,3 +1,73 @@
-# Target assembly not found
+# Source: game_code.bin (decompressed)
 # Address: 0x800A13E8
-# Search in asm/us/*.s for this address
+
+glabel check_mpath_save
+    /* 800A13E8 27BDFFA8 */  addiu $sp, $sp, -88
+    /* 800A13EC 3C028011 */  lui $v0, 0x8011
+    /* 800A13F0 3C018012 */  lui $at, 0x8012
+    /* 800A13F4 2442194C */  addiu $v0, $v0, 6476
+    /* 800A13F8 A020EAE4 */  sb $zero, -5404($at)
+    /* 800A13FC 804E0000 */  lb $t6, 0($v0)
+    /* 800A1400 AFBF002C */  sw $ra, 44($sp)
+    /* 800A1404 AFB40028 */  sw $s4, 40($sp)
+    /* 800A1408 AFB30024 */  sw $s3, 36($sp)
+    /* 800A140C AFB20020 */  sw $s2, 32($sp)
+    /* 800A1410 AFB1001C */  sw $s1, 28($sp)
+    /* 800A1414 15C0000E */  bne $t6, $zero, 0x800A1450
+    /* 800A1418 AFB00018 */  sw $s0, 24($sp)
+    /* 800A141C 240F0001 */  addiu $t7, $zero, 1
+    /* 800A1420 3C048015 */  lui $a0, 0x8015
+    /* 800A1424 3C058015 */  lui $a1, 0x8015
+    /* 800A1428 24A527E4 */  addiu $a1, $a1, 10212
+    /* 800A142C 248497D0 */  addiu $a0, $a0, -26672
+    /* 800A1430 A04F0000 */  sb $t7, 0($v0)
+    /* 800A1434 0C001A80 */  jal 0x80006A00
+    /* 800A1438 24060001 */  addiu $a2, $zero, 1
+    /* 800A143C 3C048015 */  lui $a0, 0x8015
+    /* 800A1440 248497D0 */  addiu $a0, $a0, -26672
+    /* 800A1444 00002825 */  or $a1, $zero, $zero
+    /* 800A1448 0C001D78 */  jal 0x800075E0
+    /* 800A144C 00003025 */  or $a2, $zero, $zero
+    /* 800A1450 3C048015 */  lui $a0, 0x8015
+    /* 800A1454 248497D0 */  addiu $a0, $a0, -26672
+    /* 800A1458 27A50044 */  addiu $a1, $sp, 68
+    /* 800A145C 0C001C9C */  jal 0x80007270
+    /* 800A1460 24060001 */  addiu $a2, $zero, 1
+    /* 800A1464 3C108014 */  lui $s0, 0x8014
+    /* 800A1468 3C148003 */  lui $s4, 0x8003
+    /* 800A146C 26945458 */  addiu $s4, $s4, 21592
+    /* 800A1470 26104030 */  addiu $s0, $s0, 16432
+    /* 800A1474 00009025 */  or $s2, $zero, $zero
+    /* 800A1478 24130004 */  addiu $s3, $zero, 4
+    /* 800A147C 82180006 */  lb $t8, 6($s0)
+    /* 800A1480 2611000C */  addiu $s1, $s0, 12
+    /* 800A1484 02202825 */  or $a1, $s1, $zero
+    /* 800A1488 17000003 */  bne $t8, $zero, 0x800A1498
+    /* 800A148C 02802025 */  or $a0, $s4, $zero
+    /* 800A1490 1000000B */  beq $zero, $zero, 0x800A14C0
+    /* 800A1494 26520001 */  addiu $s2, $s2, 1
+    /* 800A1498 A200007D */  sb $zero, 125($s0)
+    /* 800A149C 0C002865 */  jal 0x8000A194
+    /* 800A14A0 02403025 */  or $a2, $s2, $zero
+    /* 800A14A4 02202025 */  or $a0, $s1, $zero
+    /* 800A14A8 0C0027C8 */  jal 0x80009F20
+    /* 800A14AC 00002825 */  or $a1, $zero, $zero
+    /* 800A14B0 54400003 */  .word 0x54400003
+    /* 800A14B4 26520001 */  addiu $s2, $s2, 1
+    /* 800A14B8 A200007C */  sb $zero, 124($s0)
+    /* 800A14BC 26520001 */  addiu $s2, $s2, 1
+    /* 800A14C0 1653FFEE */  bne $s2, $s3, 0x800A147C
+    /* 800A14C4 26100304 */  addiu $s0, $s0, 772
+    /* 800A14C8 3C048015 */  lui $a0, 0x8015
+    /* 800A14CC 248497D0 */  addiu $a0, $a0, -26672
+    /* 800A14D0 00002825 */  or $a1, $zero, $zero
+    /* 800A14D4 0C001D78 */  jal 0x800075E0
+    /* 800A14D8 00003025 */  or $a2, $zero, $zero
+    /* 800A14DC 8FBF002C */  lw $ra, 44($sp)
+    /* 800A14E0 8FB00018 */  lw $s0, 24($sp)
+    /* 800A14E4 8FB1001C */  lw $s1, 28($sp)
+    /* 800A14E8 8FB20020 */  lw $s2, 32($sp)
+    /* 800A14EC 8FB30024 */  lw $s3, 36($sp)
+    /* 800A14F0 8FB40028 */  lw $s4, 40($sp)
+    /* 800A14F4 03E00008 */  jr $ra
+    /* 800A14F8 27BD0058 */  addiu $sp, $sp, 88

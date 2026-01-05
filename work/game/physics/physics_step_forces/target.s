@@ -1,3 +1,70 @@
-# Target assembly not found
+# Source: game_code.bin (decompressed)
 # Address: 0x800A153C
-# Search in asm/us/*.s for this address
+
+glabel physics_step_forces
+    /* 800A153C 906E0001 */  lbu $t6, 1($v1)
+    /* 800A1540 51C00037 */  .word 0x51C00037
+    /* 800A1544 0049082A */  slt $at, $v0, $t1
+    /* 800A1548 906F0001 */  lbu $t7, 1($v1)
+    /* 800A154C 0004C200 */  sll $t8, $a0, 8
+    /* 800A1550 3C088012 */  lui $t0, 0x8012
+    /* 800A1554 240B0100 */  addiu $t3, $zero, 256
+    /* 800A1558 24630002 */  addiu $v1, $v1, 2
+    /* 800A155C 2508EAEC */  addiu $t0, $t0, -5396
+    /* 800A1560 00003025 */  or $a2, $zero, $zero
+    /* 800A1564 01205025 */  or $t2, $t1, $zero
+    /* 800A1568 01F82825 */  or $a1, $t7, $t8
+    /* 800A156C 95190000 */  lhu $t9, 0($t0)
+    /* 800A1570 54B90006 */  .word 0x54B90006
+    /* 800A1574 24C60001 */  addiu $a2, $a2, 1
+    /* 800A1578 A0E60000 */  sb $a2, 0($a3)
+    /* 800A157C 24E70001 */  addiu $a3, $a3, 1
+    /* 800A1580 10000004 */  beq $zero, $zero, 0x800A1594
+    /* 800A1584 24420001 */  addiu $v0, $v0, 1
+    /* 800A1588 24C60001 */  addiu $a2, $a2, 1
+    /* 800A158C 14CBFFF7 */  bne $a2, $t3, 0x800A156C
+    /* 800A1590 25080002 */  addiu $t0, $t0, 2
+    /* 800A1594 504A0022 */  .word 0x504A0022
+    /* 800A1598 0049082A */  slt $at, $v0, $t1
+    /* 800A159C 90640000 */  lbu $a0, 0($v1)
+    /* 800A15A0 5480FFEA */  .word 0x5480FFEA
+    /* 800A15A4 906F0001 */  lbu $t7, 1($v1)
+    /* 800A15A8 906C0001 */  lbu $t4, 1($v1)
+    /* 800A15AC 5580FFE7 */  .word 0x5580FFE7
+    /* 800A15B0 906F0001 */  lbu $t7, 1($v1)
+    /* 800A15B4 1000001A */  beq $zero, $zero, 0x800A1620
+    /* 800A15B8 0049082A */  slt $at, $v0, $t1
+    /* 800A15BC 11000017 */  beq $t0, $zero, 0x800A161C
+    /* 800A15C0 01205025 */  or $t2, $t1, $zero
+    /* 800A15C4 90640000 */  lbu $a0, 0($v1)
+    /* 800A15C8 240B0100 */  addiu $t3, $zero, 256
+    /* 800A15CC 3C088012 */  lui $t0, 0x8012
+    /* 800A15D0 2508EAEC */  addiu $t0, $t0, -5396
+    /* 800A15D4 00003025 */  or $a2, $zero, $zero
+    /* 800A15D8 00802825 */  or $a1, $a0, $zero
+    /* 800A15DC 950D0000 */  lhu $t5, 0($t0)
+    /* 800A15E0 55A50006 */  .word 0x55A50006
+    /* 800A15E4 24C60001 */  addiu $a2, $a2, 1
+    /* 800A15E8 A0E60000 */  sb $a2, 0($a3)
+    /* 800A15EC 24E70001 */  addiu $a3, $a3, 1
+    /* 800A15F0 10000004 */  beq $zero, $zero, 0x800A1604
+    /* 800A15F4 24420001 */  addiu $v0, $v0, 1
+    /* 800A15F8 24C60001 */  addiu $a2, $a2, 1
+    /* 800A15FC 14CBFFF7 */  bne $a2, $t3, 0x800A15DC
+    /* 800A1600 25080002 */  addiu $t0, $t0, 2
+    /* 800A1604 504A0006 */  .word 0x504A0006
+    /* 800A1608 0049082A */  slt $at, $v0, $t1
+    /* 800A160C 90640001 */  lbu $a0, 1($v1)
+    /* 800A1610 24630001 */  addiu $v1, $v1, 1
+    /* 800A1614 1480FFED */  bne $a0, $zero, 0x800A15CC
+    /* 800A1618 00000000 */  nop
+    /* 800A161C 0049082A */  slt $at, $v0, $t1
+    /* 800A1620 10200006 */  beq $at, $zero, 0x800A163C
+    /* 800A1624 01205025 */  or $t2, $t1, $zero
+    /* 800A1628 24420001 */  addiu $v0, $v0, 1
+    /* 800A162C 004A082A */  slt $at, $v0, $t2
+    /* 800A1630 A0E00000 */  sb $zero, 0($a3)
+    /* 800A1634 1420FFFC */  bne $at, $zero, 0x800A1628
+    /* 800A1638 24E70001 */  addiu $a3, $a3, 1
+    /* 800A163C 03E00008 */  jr $ra
+    /* 800A1640 00000000 */  nop

@@ -1,3 +1,36 @@
-# Target assembly not found
+# Source: game_code.bin (decompressed)
 # Address: 0x80098574
-# Search in asm/us/*.s for this address
+
+glabel camera_update_a
+    /* 80098574 27BDFFD8 */  addiu $sp, $sp, -40
+    /* 80098578 AFB30020 */  sw $s3, 32($sp)
+    /* 8009857C AFB2001C */  sw $s2, 28($sp)
+    /* 80098580 AFB10018 */  sw $s1, 24($sp)
+    /* 80098584 AFB00014 */  sw $s0, 20($sp)
+    /* 80098588 00C08025 */  or $s0, $a2, $zero
+    /* 8009858C 00A08825 */  or $s1, $a1, $zero
+    /* 80098590 00E09025 */  or $s2, $a3, $zero
+    /* 80098594 00809825 */  or $s3, $a0, $zero
+    /* 80098598 AFBF0024 */  sw $ra, 36($sp)
+    /* 8009859C 1220000E */  beq $s1, $zero, 0x800985D8
+    /* 800985A0 02602025 */  or $a0, $s3, $zero
+    /* 800985A4 8E250000 */  lw $a1, 0($s1)
+    /* 800985A8 02003025 */  or $a2, $s0, $zero
+    /* 800985AC 0C02615D */  jal 0x80098574
+    /* 800985B0 02403825 */  or $a3, $s2, $zero
+    /* 800985B4 02202025 */  or $a0, $s1, $zero
+    /* 800985B8 0240F809 */  jalr $ra, $s2
+    /* 800985BC 8E050000 */  lw $a1, 0($s0)
+    /* 800985C0 8E0E0000 */  lw $t6, 0($s0)
+    /* 800985C4 25CF0001 */  addiu $t7, $t6, 1
+    /* 800985C8 AE0F0000 */  sw $t7, 0($s0)
+    /* 800985CC 8E310004 */  lw $s1, 4($s1)
+    /* 800985D0 5620FFF4 */  .word 0x5620FFF4
+    /* 800985D4 02602025 */  or $a0, $s3, $zero
+    /* 800985D8 8FBF0024 */  lw $ra, 36($sp)
+    /* 800985DC 8FB00014 */  lw $s0, 20($sp)
+    /* 800985E0 8FB10018 */  lw $s1, 24($sp)
+    /* 800985E4 8FB2001C */  lw $s2, 28($sp)
+    /* 800985E8 8FB30020 */  lw $s3, 32($sp)
+    /* 800985EC 03E00008 */  jr $ra
+    /* 800985F0 27BD0028 */  addiu $sp, $sp, 40

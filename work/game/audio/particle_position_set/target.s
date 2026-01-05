@@ -1,3 +1,47 @@
-# Target assembly not found
+# Source: game_code.bin (decompressed)
 # Address: 0x800B821C
-# Search in asm/us/*.s for this address
+
+glabel particle_position_set
+    /* 800B821C 27BDFFD8 */  addiu $sp, $sp, -40
+    /* 800B8220 AFA40028 */  sw $a0, 40($sp)
+    /* 800B8224 00047400 */  sll $t6, $a0, 16
+    /* 800B8228 000E2403 */  sra $a0, $t6, 16
+    /* 800B822C 30980001 */  andi $t8, $a0, 0x0001
+    /* 800B8230 13000003 */  beq $t8, $zero, 0x800B8240
+    /* 800B8234 AFBF0014 */  sw $ra, 20($sp)
+    /* 800B8238 1000000C */  beq $zero, $zero, 0x800B826C
+    /* 800B823C 00001025 */  or $v0, $zero, $zero
+    /* 800B8240 30990002 */  andi $t9, $a0, 0x0002
+    /* 800B8244 13200003 */  beq $t9, $zero, 0x800B8254
+    /* 800B8248 30880004 */  andi $t0, $a0, 0x0004
+    /* 800B824C 10000006 */  beq $zero, $zero, 0x800B8268
+    /* 800B8250 24030001 */  addiu $v1, $zero, 1
+    /* 800B8254 11000003 */  beq $t0, $zero, 0x800B8264
+    /* 800B8258 24020003 */  addiu $v0, $zero, 3
+    /* 800B825C 10000001 */  beq $zero, $zero, 0x800B8264
+    /* 800B8260 24020002 */  addiu $v0, $zero, 2
+    /* 800B8264 00401825 */  or $v1, $v0, $zero
+    /* 800B8268 00601025 */  or $v0, $v1, $zero
+    /* 800B826C 00024880 */  sll $t1, $v0, 2
+    /* 800B8270 01224821 */  addu $t1, $t1, $v0
+    /* 800B8274 00094880 */  sll $t1, $t1, 2
+    /* 800B8278 01224823 */  subu $t1, $t1, $v0
+    /* 800B827C 3C0A8015 */  lui $t2, 0x8015
+    /* 800B8280 254A0B70 */  addiu $t2, $t2, 2928
+    /* 800B8284 000948C0 */  sll $t1, $t1, 3
+    /* 800B8288 44800000 */  .word 0x44800000
+    /* 800B828C 012A2821 */  addu $a1, $t1, $t2
+    /* 800B8290 3C048011 */  lui $a0, 0x8011
+    /* 800B8294 A0A20094 */  sb $v0, 148($a1)
+    /* 800B8298 2484418C */  addiu $a0, $a0, 16780
+    /* 800B829C AFA50018 */  sw $a1, 24($sp)
+    /* 800B82A0 E4A00024 */  swc1 $f0, 36($a1)
+    /* 800B82A4 E4A00028 */  swc1 $f0, 40($a1)
+    /* 800B82A8 0C0235AC */  jal 0x8008D6B0
+    /* 800B82AC E4A0002C */  swc1 $f0, 44($a1)
+    /* 800B82B0 8FBF0014 */  lw $ra, 20($sp)
+    /* 800B82B4 8FA50018 */  lw $a1, 24($sp)
+    /* 800B82B8 44800000 */  .word 0x44800000
+    /* 800B82BC 27BD0028 */  addiu $sp, $sp, 40
+    /* 800B82C0 03E00008 */  jr $ra
+    /* 800B82C4 E4A00090 */  swc1 $f0, 144($a1)

@@ -1,3 +1,61 @@
-# Target assembly not found
+# Source: game_code.bin (decompressed)
 # Address: 0x801089CC
-# Search in asm/us/*.s for this address
+
+glabel catchup_logic
+    /* 801089CC 12180005 */  beq $s0, $t8, 0x801089E4
+    /* 801089D0 27AE00D4 */  addiu $t6, $sp, 212
+    /* 801089D4 120E0003 */  beq $s0, $t6, 0x801089E4
+    /* 801089D8 27B900D5 */  addiu $t9, $sp, 213
+    /* 801089DC 5619000A */  .word 0x5619000A
+    /* 801089E0 02358821 */  addu $s1, $s1, $s5
+    /* 801089E4 8FAF00C4 */  lw $t7, 196($sp)
+    /* 801089E8 02AFC021 */  addu $t8, $s5, $t7
+    /* 801089EC 07010003 */  bgez $t8, 0x801089FC
+    /* 801089F0 00187043 */  sra $t6, $t8, 1
+    /* 801089F4 27010001 */  addiu $at, $t8, 1
+    /* 801089F8 00017043 */  sra $t6, $at, 1
+    /* 801089FC 10000002 */  beq $zero, $zero, 0x80108A08
+    /* 80108A00 022E8821 */  addu $s1, $s1, $t6
+    /* 80108A04 02358821 */  addu $s1, $s1, $s5
+    /* 80108A08 26100001 */  addiu $s0, $s0, 1
+    /* 80108A0C 27B900D9 */  addiu $t9, $sp, 217
+    /* 80108A10 5619FFCE */  .word 0x5619FFCE
+    /* 80108A14 92020000 */  lbu $v0, 0($s0)
+    /* 80108A18 3C01BF80 */  lui $at, 0xBF80
+    /* 80108A1C 44816000 */  .word 0x44816000
+    /* 80108A20 0C03B59B */  jal 0x800ED66C
+    /* 80108A24 00000000 */  nop
+    /* 80108A28 3C048015 */  lui $a0, 0x8015
+    /* 80108A2C 84841AD0 */  lh $a0, 6864($a0)
+    /* 80108A30 8FA500B4 */  lw $a1, 180($sp)
+    /* 80108A34 8FA3005C */  lw $v1, 92($sp)
+    /* 80108A38 8FAF0060 */  lw $t7, 96($sp)
+    /* 80108A3C 24A50001 */  addiu $a1, $a1, 1
+    /* 80108A40 00A4082A */  slt $at, $a1, $a0
+    /* 80108A44 25F80004 */  addiu $t8, $t7, 4
+    /* 80108A48 AFB80060 */  sw $t8, 96($sp)
+    /* 80108A4C 1420FEFF */  bne $at, $zero, 0x8010864C
+    /* 80108A50 24630004 */  addiu $v1, $v1, 4
+    /* 80108A54 3C018012 */  lui $at, 0x8012
+    /* 80108A58 240E0003 */  addiu $t6, $zero, 3
+    /* 80108A5C AC2E8E24 */  sw $t6, -29148($at)
+    /* 80108A60 AC208E20 */  sw $zero, -29152($at)
+    /* 80108A64 3C01BF80 */  lui $at, 0xBF80
+    /* 80108A68 44816000 */  .word 0x44816000
+    /* 80108A6C 0C02D96D */  jal 0x800B65B4
+    /* 80108A70 00000000 */  nop
+    /* 80108A74 24020001 */  addiu $v0, $zero, 1
+    /* 80108A78 8FBF004C */  lw $ra, 76($sp)
+    /* 80108A7C D7B40018 */  .word 0xD7B40018
+    /* 80108A80 D7B60020 */  .word 0xD7B60020
+    /* 80108A84 8FB00028 */  lw $s0, 40($sp)
+    /* 80108A88 8FB1002C */  lw $s1, 44($sp)
+    /* 80108A8C 8FB20030 */  lw $s2, 48($sp)
+    /* 80108A90 8FB30034 */  lw $s3, 52($sp)
+    /* 80108A94 8FB40038 */  lw $s4, 56($sp)
+    /* 80108A98 8FB5003C */  lw $s5, 60($sp)
+    /* 80108A9C 8FB60040 */  lw $s6, 64($sp)
+    /* 80108AA0 8FB70044 */  lw $s7, 68($sp)
+    /* 80108AA4 8FBE0048 */  lw $fp, 72($sp)
+    /* 80108AA8 03E00008 */  jr $ra
+    /* 80108AAC 27BD00E0 */  addiu $sp, $sp, 224

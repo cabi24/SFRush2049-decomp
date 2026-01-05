@@ -1,3 +1,71 @@
-# Target assembly not found
+# Source: game_code.bin (decompressed)
 # Address: 0x800B3A40
-# Search in asm/us/*.s for this address
+
+glabel target_sound_play
+    /* 800B3A40 8D0A000C */  lw $t2, 12($t0)
+    /* 800B3A44 24050001 */  addiu $a1, $zero, 1
+    /* 800B3A48 00008825 */  or $s1, $zero, $zero
+    /* 800B3A4C A5450016 */  sh $a1, 22($t2)
+    /* 800B3A50 8D0B0010 */  lw $t3, 16($t0)
+    /* 800B3A54 01008025 */  or $s0, $t0, $zero
+    /* 800B3A58 24120014 */  addiu $s2, $zero, 20
+    /* 800B3A5C A5650014 */  sh $a1, 20($t3)
+    /* 800B3A60 8D030010 */  lw $v1, 16($t0)
+    /* 800B3A64 846C0010 */  lh $t4, 16($v1)
+    /* 800B3A68 258D0001 */  addiu $t5, $t4, 1
+    /* 800B3A6C A46D0010 */  sh $t5, 16($v1)
+    /* 800B3A70 8D030010 */  lw $v1, 16($t0)
+    /* 800B3A74 846E0016 */  lh $t6, 22($v1)
+    /* 800B3A78 25CFFFFE */  addiu $t7, $t6, -2
+    /* 800B3A7C A46F0016 */  sh $t7, 22($v1)
+    /* 800B3A80 8D020014 */  lw $v0, 20($t0)
+    /* 800B3A84 8458000E */  lh $t8, 14($v0)
+    /* 800B3A88 27190001 */  addiu $t9, $t8, 1
+    /* 800B3A8C A459000E */  sh $t9, 14($v0)
+    /* 800B3A90 8D020014 */  lw $v0, 20($t0)
+    /* 800B3A94 844A0010 */  lh $t2, 16($v0)
+    /* 800B3A98 254B0001 */  addiu $t3, $t2, 1
+    /* 800B3A9C A44B0010 */  sh $t3, 16($v0)
+    /* 800B3AA0 8D020014 */  lw $v0, 20($t0)
+    /* 800B3AA4 844C0014 */  lh $t4, 20($v0)
+    /* 800B3AA8 258DFFFE */  addiu $t5, $t4, -2
+    /* 800B3AAC A44D0014 */  sh $t5, 20($v0)
+    /* 800B3AB0 8D020014 */  lw $v0, 20($t0)
+    /* 800B3AB4 844E0016 */  lh $t6, 22($v0)
+    /* 800B3AB8 25CFFFFE */  addiu $t7, $t6, -2
+    /* 800B3ABC A44F0016 */  sh $t7, 22($v0)
+    /* 800B3AC0 8D040018 */  lw $a0, 24($t0)
+    /* 800B3AC4 8498000E */  lh $t8, 14($a0)
+    /* 800B3AC8 84990014 */  lh $t9, 20($a0)
+    /* 800B3ACC 03195021 */  addu $t2, $t8, $t9
+    /* 800B3AD0 254BFFFF */  addiu $t3, $t2, -1
+    /* 800B3AD4 A48B000E */  sh $t3, 14($a0)
+    /* 800B3AD8 8D0C0018 */  lw $t4, 24($t0)
+    /* 800B3ADC A5850014 */  sh $a1, 20($t4)
+    /* 800B3AE0 8D040018 */  lw $a0, 24($t0)
+    /* 800B3AE4 848D0010 */  lh $t5, 16($a0)
+    /* 800B3AE8 25AE0001 */  addiu $t6, $t5, 1
+    /* 800B3AEC A48E0010 */  sh $t6, 16($a0)
+    /* 800B3AF0 8D040018 */  lw $a0, 24($t0)
+    /* 800B3AF4 848F0016 */  lh $t7, 22($a0)
+    /* 800B3AF8 25F8FFFE */  addiu $t8, $t7, -2
+    /* 800B3AFC A4980016 */  sh $t8, 22($a0)
+    /* 800B3B00 8D03001C */  lw $v1, 28($t0)
+    /* 800B3B04 84790010 */  lh $t9, 16($v1)
+    /* 800B3B08 846A0016 */  lh $t2, 22($v1)
+    /* 800B3B0C 032A5821 */  addu $t3, $t9, $t2
+    /* 800B3B10 256CFFFF */  addiu $t4, $t3, -1
+    /* 800B3B14 A46C0010 */  sh $t4, 16($v1)
+    /* 800B3B18 8D0D001C */  lw $t5, 28($t0)
+    /* 800B3B1C A5A50016 */  sh $a1, 22($t5)
+    /* 800B3B20 0C0253B2 */  jal 0x80094EC8
+    /* 800B3B24 8E04000C */  lw $a0, 12($s0)
+    /* 800B3B28 26310004 */  addiu $s1, $s1, 4
+    /* 800B3B2C 1632FFFC */  bne $s1, $s2, 0x800B3B20
+    /* 800B3B30 26100004 */  addiu $s0, $s0, 4
+    /* 800B3B34 8FBF0024 */  lw $ra, 36($sp)
+    /* 800B3B38 8FB00018 */  lw $s0, 24($sp)
+    /* 800B3B3C 8FB1001C */  lw $s1, 28($sp)
+    /* 800B3B40 8FB20020 */  lw $s2, 32($sp)
+    /* 800B3B44 03E00008 */  jr $ra
+    /* 800B3B48 27BD0028 */  addiu $sp, $sp, 40

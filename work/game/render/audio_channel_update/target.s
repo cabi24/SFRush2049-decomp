@@ -1,3 +1,42 @@
-# Target assembly not found
+# Source: game_code.bin (decompressed)
 # Address: 0x8008C688
-# Search in asm/us/*.s for this address
+
+glabel audio_channel_update
+    /* 8008C688 27BDFFE8 */  addiu $sp, $sp, -24
+    /* 8008C68C AFBF0014 */  sw $ra, 20($sp)
+    /* 8008C690 4604603C */  .word 0x4604603C
+    /* 8008C694 46006386 */  .word 0x46006386
+    /* 8008C698 3C018012 */  lui $at, 0x8012
+    /* 8008C69C 45000005 */  .word 0x45000005
+    /* 8008C6A0 00000000 */  nop
+    /* 8008C6A4 0C023178 */  jal 0x8008C5E0
+    /* 8008C6A8 00000000 */  nop
+    /* 8008C6AC 10000019 */  beq $zero, $zero, 0x8008C714
+    /* 8008C6B0 8FBF0014 */  lw $ra, 20($sp)
+    /* 8008C6B4 C42638E8 */  lwc1 $f6, 14568($at)
+    /* 8008C6B8 3C013F80 */  lui $at, 0x3F80
+    /* 8008C6BC 460E303C */  .word 0x460E303C
+    /* 8008C6C0 00000000 */  nop
+    /* 8008C6C4 4502000A */  .word 0x4502000A
+    /* 8008C6C8 44810000 */  .word 0x44810000
+    /* 8008C6CC 3C013F80 */  lui $at, 0x3F80
+    /* 8008C6D0 44810000 */  .word 0x44810000
+    /* 8008C6D4 0C023178 */  jal 0x8008C5E0
+    /* 8008C6D8 460E0303 */  .word 0x460E0303
+    /* 8008C6DC 3C018012 */  lui $at, 0x8012
+    /* 8008C6E0 C42838EC */  lwc1 $f8, 14572($at)
+    /* 8008C6E4 1000000A */  beq $zero, $zero, 0x8008C710
+    /* 8008C6E8 46004001 */  .word 0x46004001
+    /* 8008C6EC 44810000 */  .word 0x44810000
+    /* 8008C6F0 00000000 */  nop
+    /* 8008C6F4 46007281 */  .word 0x46007281
+    /* 8008C6F8 46007100 */  .word 0x46007100
+    /* 8008C6FC 0C023178 */  jal 0x8008C5E0
+    /* 8008C700 46045303 */  .word 0x46045303
+    /* 8008C704 3C018012 */  lui $at, 0x8012
+    /* 8008C708 C42638F0 */  lwc1 $f6, 14576($at)
+    /* 8008C70C 46060000 */  .word 0x46060000
+    /* 8008C710 8FBF0014 */  lw $ra, 20($sp)
+    /* 8008C714 27BD0018 */  addiu $sp, $sp, 24
+    /* 8008C718 03E00008 */  jr $ra
+    /* 8008C71C 00000000 */  nop

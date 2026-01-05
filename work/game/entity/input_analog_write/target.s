@@ -1,3 +1,35 @@
-# Target assembly not found
+# Source: game_code.bin (decompressed)
 # Address: 0x80094E00
-# Search in asm/us/*.s for this address
+
+glabel input_analog_write
+    /* 80094E00 04A10007 */  bgez $a1, 0x80094E20
+    /* 80094E04 0004C140 */  sll $t8, $a0, 5
+    /* 80094E08 3C0F8014 */  lui $t7, 0x8014
+    /* 80094E0C 25EF0BF0 */  addiu $t7, $t7, 3056
+    /* 80094E10 00047140 */  sll $t6, $a0, 5
+    /* 80094E14 01CF1021 */  addu $v0, $t6, $t7
+    /* 80094E18 10000005 */  beq $zero, $zero, 0x80094E30
+    /* 80094E1C A4400018 */  sh $zero, 24($v0)
+    /* 80094E20 3C198014 */  lui $t9, 0x8014
+    /* 80094E24 27390BF0 */  addiu $t9, $t9, 3056
+    /* 80094E28 03191021 */  addu $v0, $t8, $t9
+    /* 80094E2C A4450018 */  sh $a1, 24($v0)
+    /* 80094E30 04E30004 */  .word 0x04E30004
+    /* 80094E34 A447001A */  sh $a3, 26($v0)
+    /* 80094E38 10000002 */  beq $zero, $zero, 0x80094E44
+    /* 80094E3C A440001A */  sh $zero, 26($v0)
+    /* 80094E40 A447001A */  sh $a3, 26($v0)
+    /* 80094E44 04C30006 */  .word 0x04C30006
+    /* 80094E48 A446001C */  sh $a2, 28($v0)
+    /* 80094E4C 84480012 */  lh $t0, 18($v0)
+    /* 80094E50 2509FFFF */  addiu $t1, $t0, -1
+    /* 80094E54 10000002 */  beq $zero, $zero, 0x80094E60
+    /* 80094E58 A449001C */  sh $t1, 28($v0)
+    /* 80094E5C A446001C */  sh $a2, 28($v0)
+    /* 80094E60 8FA30010 */  lw $v1, 16($sp)
+    /* 80094E64 04630006 */  .word 0x04630006
+    /* 80094E68 A443001E */  sh $v1, 30($v0)
+    /* 80094E6C 844A0010 */  lh $t2, 16($v0)
+    /* 80094E70 254BFFFF */  addiu $t3, $t2, -1
+    /* 80094E74 03E00008 */  jr $ra
+    /* 80094E78 A44B001E */  sh $t3, 30($v0)

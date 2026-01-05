@@ -1,3 +1,60 @@
-# Target assembly not found
+# Source: game_code.bin (decompressed)
 # Address: 0x800B4208
-# Search in asm/us/*.s for this address
+
+glabel slot_state_init
+    /* 800B4208 27BDFFE0 */  addiu $sp, $sp, -32
+    /* 800B420C 82330000 */  lb $s3, 0($s1)
+    /* 800B4210 2401FFFF */  addiu $at, $zero, -1
+    /* 800B4214 AFBF001C */  sw $ra, 28($sp)
+    /* 800B4218 1241002A */  beq $s2, $at, 0x800B42C4
+    /* 800B421C A2320000 */  sb $s2, 0($s1)
+    /* 800B4220 82240000 */  lb $a0, 0($s1)
+    /* 800B4224 2405FFFF */  addiu $a1, $zero, -1
+    /* 800B4228 0C025DA5 */  jal 0x80097694
+    /* 800B422C 24840026 */  addiu $a0, $a0, 38
+    /* 800B4230 3C108015 */  lui $s0, 0x8015
+    /* 800B4234 26109780 */  addiu $s0, $s0, -26752
+    /* 800B4238 0441000B */  bgez $v0, 0x800B4268
+    /* 800B423C AE020000 */  sw $v0, 0($s0)
+    /* 800B4240 82240000 */  lb $a0, 0($s1)
+    /* 800B4244 00002825 */  or $a1, $zero, $zero
+    /* 800B4248 00003025 */  or $a2, $zero, $zero
+    /* 800B424C 24070001 */  addiu $a3, $zero, 1
+    /* 800B4250 AFA00010 */  sw $zero, 16($sp)
+    /* 800B4254 0C025DE6 */  jal 0x80097798
+    /* 800B4258 24840026 */  addiu $a0, $a0, 38
+    /* 800B425C AE020000 */  sw $v0, 0($s0)
+    /* 800B4260 0C0258E3 */  jal 0x8009638C
+    /* 800B4264 00402025 */  or $a0, $v0, $zero
+    /* 800B4268 82240000 */  lb $a0, 0($s1)
+    /* 800B426C 2405FFFF */  addiu $a1, $zero, -1
+    /* 800B4270 0C025DA5 */  jal 0x80097694
+    /* 800B4274 24840016 */  addiu $a0, $a0, 22
+    /* 800B4278 3C108015 */  lui $s0, 0x8015
+    /* 800B427C 261097A4 */  addiu $s0, $s0, -26716
+    /* 800B4280 0441000D */  bgez $v0, 0x800B42B8
+    /* 800B4284 AE020000 */  sw $v0, 0($s0)
+    /* 800B4288 3C188011 */  lui $t8, 0x8011
+    /* 800B428C 8F184740 */  lw $t8, 18240($t8)
+    /* 800B4290 82240000 */  lb $a0, 0($s1)
+    /* 800B4294 00002825 */  or $a1, $zero, $zero
+    /* 800B4298 00003025 */  or $a2, $zero, $zero
+    /* 800B429C 00003825 */  or $a3, $zero, $zero
+    /* 800B42A0 AFB80010 */  sw $t8, 16($sp)
+    /* 800B42A4 0C025DE6 */  jal 0x80097798
+    /* 800B42A8 24840016 */  addiu $a0, $a0, 22
+    /* 800B42AC AE020000 */  sw $v0, 0($s0)
+    /* 800B42B0 0C0258E3 */  jal 0x8009638C
+    /* 800B42B4 00402025 */  or $a0, $v0, $zero
+    /* 800B42B8 02724026 */  xor $t0, $s3, $s2
+    /* 800B42BC 0C02CF46 */  jal 0x800B3D18
+    /* 800B42C0 0008402B */  sltu $t0, $zero, $t0
+    /* 800B42C4 56400004 */  .word 0x56400004
+    /* 800B42C8 8FBF001C */  lw $ra, 28($sp)
+    /* 800B42CC 0C02D070 */  jal 0x800B41C0
+    /* 800B42D0 24040001 */  addiu $a0, $zero, 1
+    /* 800B42D4 8FBF001C */  lw $ra, 28($sp)
+    /* 800B42D8 27BD0020 */  addiu $sp, $sp, 32
+    /* 800B42DC 02601025 */  or $v0, $s3, $zero
+    /* 800B42E0 03E00008 */  jr $ra
+    /* 800B42E4 00000000 */  nop

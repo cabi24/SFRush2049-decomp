@@ -1,3 +1,58 @@
-# Target assembly not found
+# Source: game_code.bin (decompressed)
 # Address: 0x80091E5C
-# Search in asm/us/*.s for this address
+
+glabel client_sync
+    /* 80091E5C 27BDFFB8 */  addiu $sp, $sp, -72
+    /* 80091E60 44856000 */  .word 0x44856000
+    /* 80091E64 AFA40048 */  sw $a0, 72($sp)
+    /* 80091E68 AFBF0044 */  sw $ra, 68($sp)
+    /* 80091E6C 3C048014 */  lui $a0, 0x8014
+    /* 80091E70 F7BC0038 */  .word 0xF7BC0038
+    /* 80091E74 F7BA0030 */  .word 0xF7BA0030
+    /* 80091E78 F7B80028 */  .word 0xF7B80028
+    /* 80091E7C F7B60020 */  .word 0xF7B60020
+    /* 80091E80 F7B40018 */  .word 0xF7B40018
+    /* 80091E84 24842728 */  addiu $a0, $a0, 10024
+    /* 80091E88 00002825 */  or $a1, $zero, $zero
+    /* 80091E8C 24060001 */  addiu $a2, $zero, 1
+    /* 80091E90 0C001C9C */  jal 0x80007270
+    /* 80091E94 E7AC004C */  swc1 $f12, 76($sp)
+    /* 80091E98 44800000 */  .word 0x44800000
+    /* 80091E9C C7AC004C */  lwc1 $f12, 76($sp)
+    /* 80091EA0 3C013F80 */  lui $at, 0x3F80
+    /* 80091EA4 4600603C */  .word 0x4600603C
+    /* 80091EA8 00000000 */  nop
+    /* 80091EAC 45020004 */  .word 0x45020004
+    /* 80091EB0 44811000 */  .word 0x44811000
+    /* 80091EB4 1000000B */  beq $zero, $zero, 0x80091EE4
+    /* 80091EB8 46000386 */  .word 0x46000386
+    /* 80091EBC 44811000 */  .word 0x44811000
+    /* 80091EC0 00000000 */  nop
+    /* 80091EC4 460C103C */  .word 0x460C103C
+    /* 80091EC8 00000000 */  nop
+    /* 80091ECC 45020004 */  .word 0x45020004
+    /* 80091ED0 46006006 */  .word 0x46006006
+    /* 80091ED4 10000002 */  beq $zero, $zero, 0x80091EE0
+    /* 80091ED8 46001006 */  .word 0x46001006
+    /* 80091EDC 46006006 */  .word 0x46006006
+    /* 80091EE0 46000386 */  .word 0x46000386
+    /* 80091EE4 3C01C000 */  lui $at, 0xC000
+    /* 80091EE8 4481E000 */  .word 0x4481E000
+    /* 80091EEC 8FA40048 */  lw $a0, 72($sp)
+    /* 80091EF0 46007586 */  .word 0x46007586
+    /* 80091EF4 4600E606 */  .word 0x4600E606
+    /* 80091EF8 0C024729 */  jal 0x80091CA4
+    /* 80091EFC 4600E686 */  .word 0x4600E686
+    /* 80091F00 3C048014 */  lui $a0, 0x8014
+    /* 80091F04 24842728 */  addiu $a0, $a0, 10024
+    /* 80091F08 00002825 */  or $a1, $zero, $zero
+    /* 80091F0C 0C001D78 */  jal 0x800075E0
+    /* 80091F10 00003025 */  or $a2, $zero, $zero
+    /* 80091F14 8FBF0044 */  lw $ra, 68($sp)
+    /* 80091F18 D7B40018 */  .word 0xD7B40018
+    /* 80091F1C D7B60020 */  .word 0xD7B60020
+    /* 80091F20 D7B80028 */  .word 0xD7B80028
+    /* 80091F24 D7BA0030 */  .word 0xD7BA0030
+    /* 80091F28 D7BC0038 */  .word 0xD7BC0038
+    /* 80091F2C 03E00008 */  jr $ra
+    /* 80091F30 27BD0048 */  addiu $sp, $sp, 72

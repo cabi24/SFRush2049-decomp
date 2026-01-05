@@ -1,3 +1,44 @@
-# Target assembly not found
+# Source: game_code.bin (decompressed)
 # Address: 0x80090EA4
-# Search in asm/us/*.s for this address
+
+glabel entity_frame_advance
+    /* 80090EA4 27BDFFE0 */  addiu $sp, $sp, -32
+    /* 80090EA8 AFBF0014 */  sw $ra, 20($sp)
+    /* 80090EAC 4604603C */  .word 0x4604603C
+    /* 80090EB0 AFA50024 */  sw $a1, 36($sp)
+    /* 80090EB4 3C018012 */  lui $at, 0x8012
+    /* 80090EB8 45010006 */  .word 0x45010006
+    /* 80090EBC 00000000 */  nop
+    /* 80090EC0 C42639D4 */  lwc1 $f6, 14804($at)
+    /* 80090EC4 460C303C */  .word 0x460C303C
+    /* 80090EC8 00000000 */  nop
+    /* 80090ECC 4502001A */  .word 0x4502001A
+    /* 80090ED0 8FBF0014 */  lw $ra, 20($sp)
+    /* 80090ED4 0C0021CC */  jal 0x80008730
+    /* 80090ED8 E7AC0020 */  swc1 $f12, 32($sp)
+    /* 80090EDC C7AC0020 */  lwc1 $f12, 32($sp)
+    /* 80090EE0 0C00223C */  jal 0x800088F0
+    /* 80090EE4 E7A00018 */  swc1 $f0, 24($sp)
+    /* 80090EE8 C7B00018 */  lwc1 $f16, 24($sp)
+    /* 80090EEC 00001825 */  or $v1, $zero, $zero
+    /* 80090EF0 8FA20024 */  lw $v0, 36($sp)
+    /* 80090EF4 24040003 */  addiu $a0, $zero, 3
+    /* 80090EF8 C4420018 */  lwc1 $f2, 24($v0)
+    /* 80090EFC C44C0000 */  lwc1 $f12, 0($v0)
+    /* 80090F00 24630001 */  addiu $v1, $v1, 1
+    /* 80090F04 46101202 */  .word 0x46101202
+    /* 80090F08 24420004 */  addiu $v0, $v0, 4
+    /* 80090F0C 46006282 */  .word 0x46006282
+    /* 80090F10 00000000 */  nop
+    /* 80090F14 46001482 */  .word 0x46001482
+    /* 80090F18 00000000 */  nop
+    /* 80090F1C 46106102 */  .word 0x46106102
+    /* 80090F20 460A4380 */  .word 0x460A4380
+    /* 80090F24 E44EFFFC */  swc1 $f14, -4($v0)
+    /* 80090F28 46049181 */  .word 0x46049181
+    /* 80090F2C 1464FFF2 */  bne $v1, $a0, 0x80090EF8
+    /* 80090F30 E4460014 */  swc1 $f6, 20($v0)
+    /* 80090F34 8FBF0014 */  lw $ra, 20($sp)
+    /* 80090F38 27BD0020 */  addiu $sp, $sp, 32
+    /* 80090F3C 03E00008 */  jr $ra
+    /* 80090F40 00000000 */  nop
