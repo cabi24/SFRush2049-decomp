@@ -177,7 +177,9 @@ typedef struct CarPhysics MODELDAT;
 typedef TireDes tiredes;
 
 /* Arcade constants */
+#ifndef radtosdeg
 #define radtosdeg       (16384.0f / 3.14159265f)    /* Radians to short degrees */
+#endif
 #define DIDDLE          0                           /* Debug flag (disabled) */
 
 /* Unit vector short operations (arcade uvect.c) */

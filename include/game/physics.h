@@ -44,9 +44,15 @@
 
 /* Arcade drivsym.c constants */
 #define maxrwr          10.0f       /* Max value for extended precision on RWR */
+#ifndef AIR
 #define AIR             ROAD_AIR    /* Arcade road code alias */
+#endif
+#ifndef DIRT
 #define DIRT            ROAD_DIRT   /* Arcade road code alias */
+#endif
+#ifndef PAVE
 #define PAVE            ROAD_ASPHALT /* Arcade road code alias */
+#endif
 
 /* Anti-spin table - per car type and difficulty */
 #define NUM_CAR_TYPES_PHYS  4       /* Different from car.h NUM_CAR_TYPES */

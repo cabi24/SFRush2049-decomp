@@ -35,18 +35,42 @@
 #endif
 
 /* Angle conversion constants (from d3math.c) */
+#ifndef radtodeg
 #define radtodeg        (180.0f / 3.141592654f)
+#endif
+#ifndef degtorad
 #define degtorad        (3.141592654f / 180.0f)
+#endif
+#ifndef radtoideg
 #define radtoideg       ((0x40000000 * 2.0f) / 3.141592654f)
+#endif
+#ifndef idegtorad
 #define idegtorad       (3.141592654f / (0x40000000 * 2.0f))
+#endif
+#ifndef radtosdeg
 #define radtosdeg       (0x8000 / 3.141592654f)
+#endif
+#ifndef sdegtorad
 #define sdegtorad       (3.141592654f / 0x8000)
+#endif
+#ifndef idegtodeg
 #define idegtodeg       (90.0f / 0x40000000)
+#endif
+#ifndef degtoideg
 #define degtoideg       (0x40000000 / 90.0f)
+#endif
+#ifndef msininv
 #define msininv         (1.0f / 0x7fff)
+#endif
+#ifndef rdpstorpm
 #define rdpstorpm       (60.0f / (2.0f * 3.14159f))
+#endif
+#ifndef rpmtordps
 #define rpmtordps       (2.0f * 3.14159f / 60.0f)
+#endif
+#ifndef pival
 #define pival           3.141592654f
+#endif
 
 /* Fixed-point scale (0x4000 = 1.0) */
 #define FIXSCALE        0x4000

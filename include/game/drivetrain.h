@@ -26,10 +26,18 @@
 #define AUTOLOSS        AUTO_TRANS_LOSS     /* Arcade alias */
 
 /* RPM conversion constants */
+#ifndef RPM_TO_RDPS
 #define RPM_TO_RDPS     (2.0f * 3.141592654f / 60.0f)   /* RPM to rad/sec */
+#endif
+#ifndef RDPS_TO_RPM
 #define RDPS_TO_RPM     (60.0f / (2.0f * 3.141592654f)) /* rad/sec to RPM */
+#endif
+#ifndef rpmtordps
 #define rpmtordps       RPM_TO_RDPS         /* Arcade alias */
+#endif
+#ifndef rdpstorpm
 #define rdpstorpm       RDPS_TO_RPM         /* Arcade alias */
+#endif
 
 /* Clutch parameters */
 #define CLUTCH_FRICTION_POINT   0.8f    /* Friction engagement point */
