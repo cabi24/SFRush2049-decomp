@@ -2,17 +2,17 @@
  * Function: __moddi3
  * Address:  0x8000DAE8
  * Category: libgcc
- * Status:   TODO
+ * Status:   WIP
  *
- * signed modulo
+ * Signed 64-bit modulo.
+ * Uses MIPS III ddiv instruction.
  *
  * Compiler flags: -g0 -O2 -mips2 -G 0 -non_shared
  */
 
-/* Add includes as needed */
-/* #include "types.h" */
+#include "types.h"
 
-/* TODO: Implement this function */
-void __moddi3(void) {
-    /* Stub implementation */
+/* Signed 64-bit modulo */
+s64 __moddi3(s64 dividend, s64 divisor) {
+    return dividend % divisor;
 }
