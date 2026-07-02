@@ -76,3 +76,4 @@ permuter/*/output-*/
 
 # Compiled objects in work directories
 work/**/*.o
+.pytest_cache/
