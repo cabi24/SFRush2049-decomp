@@ -443,3 +443,38 @@ codex exec --dangerously-bypass-approvals-and-sandbox "Analyze asm/us/XXXX.s and
 - Thread/Timer: os_thread_ext.c, os_thread_pri.c, os_timer_set.c, os_yield.c
 - CPU/FPU: os_fpcsr.c, os_phys.c, os_dp_counters.c
 - Other: os_debug.c, os_mesg_jam.c, boot/boot.c
+
+## Conveyor Matching Pipeline (Phase 4 — built 2026-07-02)
+
+The matching phase runs on **conveyor**, a distributed pipeline in `tools/conveyor/`
+(design docs: `specs/001-matching-pipeline/`, ops guide: `tools/conveyor/README.md`,
+bring-up: `specs/001-matching-pipeline/quickstart.md`).
+
+Architecture: coordinator on the Pi (stdlib HTTP + SQLite at `~/.conveyor/`) leases
+self-contained job bundles to ephemeral x86-64 LAN nodes (single-file agent, pull-based,
+toolkit cached by sha256). Watchman = builder node (`--capabilities x86_64,builder --repo`).
+Job types: compile_score (match matrix), flag_sweep, permuter_search, verify_promote.
+
+Key commands (from repo root on the Pi):
+```bash
+python3 -m tools.conveyor.cli serve                    # coordinator
+python3 -m tools.conveyor.cli smoke                    # strlen end-to-end proof
+python3 -m tools.conveyor.pipeline.matrix extract|submit|ingest|report
+python3 -m tools.conveyor.pipeline.cluster run         # local, no nodes needed
+python3 -m tools.conveyor.pipeline.farm run            # steady-state daemon
+python3 -m tools.conveyor.cli report|status|attention|nodes
+pytest tests/conveyor -m "not node_required"           # 39 local tests
+```
+
+Status: 45/48 tasks done. **Blocked on watchman being powered on** for: T019 (real
+IDO smoke test), T048 (hardware walkthrough + 24h soak). First real run: build toolkit
+on watchman (quickstart §2), publish, start agent, `cli smoke`, then `matrix submit`.
+Verified so far on the Pi: 1,131 targets inventoried with target .o blobs, 2,526 arcade
+candidates extracted, 34 clone clusters found (physics_velocity_integrate_c/d/e etc.).
+
+## Active Technologies
+- Python 3.9+ (Pi 5 orchestrator and nodes; no syntax above 3.9 so stock distro Pythons work) + Python stdlib only for coordinator and node agent (`http.server`, `sqlite3`, `tarfile`, `hashlib`, `json`, `urllib`). On compute nodes: decomp-permuter (vendored in repo, used as library), IDO via ido-static-recomp (shipped in toolkit bundle), mips binutils `objdump` (shipped in toolkit bundle). `pycparser` (already a permuter dependency) for arcade function extraction. (001-matching-pipeline)
+- SQLite (WAL mode) on the Pi for all pipeline state — single-writer, queried by CLI/report tools. Content-addressed blob store (sha256-named files on disk, served over HTTP) for bundles, toolkits, and results. (001-matching-pipeline)
+
+## Recent Changes
+- 001-matching-pipeline: Added Python 3.9+ (Pi 5 orchestrator and nodes; no syntax above 3.9 so stock distro Pythons work) + Python stdlib only for coordinator and node agent (`http.server`, `sqlite3`, `tarfile`, `hashlib`, `json`, `urllib`). On compute nodes: decomp-permuter (vendored in repo, used as library), IDO via ido-static-recomp (shipped in toolkit bundle), mips binutils `objdump` (shipped in toolkit bundle). `pycparser` (already a permuter dependency) for arcade function extraction.

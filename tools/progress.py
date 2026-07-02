@@ -254,6 +254,40 @@ def merge_data(symbols, game_funcs, implemented):
 
     return all_functions
 
+def conveyor_stats(data_dir=None):
+    """Verified-match stats from the conveyor pipeline DB, if it exists.
+    Returns dict of status->count or None (conveyor not initialized)."""
+    import sqlite3
+
+    db = Path(data_dir or Path.home() / ".conveyor") / "conveyor.db"
+    if not db.is_file():
+        return None
+    try:
+        conn = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
+        rows = conn.execute(
+            "SELECT status, COUNT(*) FROM function_status GROUP BY status"
+        ).fetchall()
+        conn.close()
+    except sqlite3.Error:
+        return None
+    return dict(rows)
+
+
+def print_conveyor_summary():
+    stats = conveyor_stats()
+    if not stats:
+        return
+    total = sum(stats.values())
+    verified = stats.get("verified", 0)
+    matched = stats.get("matched", 0) + verified
+    print("\nConveyor Pipeline (matching):")
+    print("-" * 60)
+    print(f"  tracked: {total}   matched: {matched} "
+          f"({100 * matched // max(total, 1)}%)   verified: {verified}")
+    print("  " + "  ".join(f"{k}={v}" for k, v in sorted(stats.items())))
+    print("  (details: python3 -m tools.conveyor.cli report)")
+
+
 def print_summary(functions):
     """Print a summary of decompilation progress"""
     total = len(functions)
@@ -502,6 +536,7 @@ def main():
         print_all_functions(functions, status_filter)
     else:
         print_summary(functions)
+        print_conveyor_summary()
 
 if __name__ == "__main__":
     main()
