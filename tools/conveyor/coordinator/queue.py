@@ -21,6 +21,7 @@ from . import db as dbmod
 LEASE_SECONDS = 120
 HEARTBEAT_SECONDS = 30
 DEFAULT_MAX_ATTEMPTS_BATCH = 3
+DEFAULT_ERROR_ATTEMPTS = 5
 
 
 def _now():
@@ -49,9 +50,12 @@ def submit(conn, jobs):
     with dbmod.tx(conn):
         for job in jobs:
             if job.get("batch", True):
+                # Only successful results are cacheable: an error result must
+                # never permanently answer future identical submissions.
                 cached = conn.execute(
                     "SELECT result_sha FROM work_unit "
                     "WHERE manifest_sha = ? AND state = 'DONE' AND result_sha IS NOT NULL "
+                    "AND result_ok = 1 "
                     "ORDER BY updated_at DESC LIMIT 1",
                     (job["manifest_sha"],),
                 ).fetchone()
@@ -183,23 +187,43 @@ def _record_progress(conn, job_id, progress, now_s):
         )
 
 
-def submit_result(conn, job_id, node_id, result_sha):
-    """First result wins. Returns 'accepted', 'duplicate', or None (unknown job)."""
+def submit_result(conn, job_id, node_id, result_sha, result_ok=True):
+    """First *authorized* result wins. Returns 'accepted', 'duplicate',
+    'lease_mismatch', or None (unknown job).
+
+    Authorization: the current lease holder, or anyone while the job is
+    PENDING (its lease expired — the work is idempotent). A node whose lease
+    expired and was re-leased to someone else may NOT post a stale result
+    over the live node's work.
+
+    Error results (result_ok=False) don't complete the job: it returns to
+    PENDING for another attempt, or FAILED past max_attempts — and is never
+    served from the result cache either way.
+    """
     now_s = _iso(_now())
     with dbmod.tx(conn):
         row = conn.execute(
-            "SELECT state, leased_by FROM work_unit WHERE job_id = ?", (job_id,)
+            "SELECT state, leased_by, attempt, max_attempts FROM work_unit"
+            " WHERE job_id = ?", (job_id,)
         ).fetchone()
         if row is None:
             return None
         if row["state"] in ("DONE", "CANCELLED", "FAILED"):
             return "duplicate"
-        # Accept from the lease holder, or from anyone if the job bounced back
-        # to PENDING after an expiry (the work is idempotent; contract allows it).
+        if row["state"] == "LEASED" and row["leased_by"] != node_id:
+            return "lease_mismatch"
+        if result_ok:
+            new_state = "DONE"
+        else:
+            # Unlimited-attempt (search) jobs still get a bounded number of
+            # *error* retries — a persistent infra failure must surface as
+            # FAILED, not loop forever.
+            error_cap = row["max_attempts"] or DEFAULT_ERROR_ATTEMPTS
+            new_state = "FAILED" if row["attempt"] >= error_cap else "PENDING"
         conn.execute(
-            "UPDATE work_unit SET state='DONE', result_sha=?, leased_by=NULL,"
+            "UPDATE work_unit SET state=?, result_sha=?, result_ok=?, leased_by=NULL,"
             " lease_expires=NULL, updated_at=? WHERE job_id=?",
-            (result_sha, now_s, job_id),
+            (new_state, result_sha, int(result_ok), now_s, job_id),
         )
     return "accepted"
 

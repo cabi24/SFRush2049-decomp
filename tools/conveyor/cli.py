@@ -11,12 +11,9 @@ import argparse
 import hashlib
 import json
 import re
-import subprocess
 import sys
 import tempfile
 import time
-import urllib.error
-import urllib.request
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
@@ -38,50 +35,10 @@ SMOKE_FUNCTIONS = {
 }
 
 
-class Client:
-    def __init__(self, base, token):
-        self.base = base.rstrip("/")
-        self.token = token
-
-    def call(self, method, path, body=None, raw=None):
-        headers = {"Authorization": f"Bearer {self.token}"}
-        data = None
-        if body is not None:
-            data = json.dumps(body).encode()
-            headers["Content-Type"] = "application/json"
-        elif raw is not None:
-            data = raw
-            headers["Content-Type"] = "application/gzip"
-        req = urllib.request.Request(self.base + path, data=data, method=method, headers=headers)
-        try:
-            with urllib.request.urlopen(req, timeout=300) as resp:
-                payload = resp.read()
-                return resp.status, json.loads(payload) if payload else None
-        except urllib.error.HTTPError as e:
-            payload = e.read()
-            try:
-                return e.code, json.loads(payload) if payload else None
-            except json.JSONDecodeError:
-                return e.code, None
-
-    def download(self, sha, dest):
-        req = urllib.request.Request(
-            f"{self.base}{API}/blobs/{sha}",
-            headers={"Authorization": f"Bearer {self.token}"},
-        )
-        with urllib.request.urlopen(req, timeout=300) as resp:
-            Path(dest).write_bytes(resp.read())
-
-
 def _client(args):
-    token = args.token
-    if token is None:
-        token_file = DEFAULT_DATA / "token"
-        if token_file.is_file():
-            token = token_file.read_text().strip()
-        else:
-            sys.exit("no --token given and ~/.conveyor/token not found")
-    return Client(args.coordinator, token)
+    from .client import Http, load_token
+
+    return Http(args.coordinator, load_token(args.token))
 
 
 # --- commands ---------------------------------------------------------------
@@ -157,32 +114,40 @@ def cmd_seed(args):
     """Manual seed (FR-015): queue a search from a hand-written source file."""
     from .coordinator import db as dbmod
     from .pipeline import seeds as seedsmod
+    from .pipeline import status as statusmod
 
     conn, store = _open_db(args)
     client = _client(args)
-    status, meta = client.call("GET", f"{API}/meta/toolkit_sha")
-    if status != 200:
-        sys.exit("no toolkit pinned")
-    source = seedsmod.seed_source(Path(args.source_file).read_text())
+    toolkit_sha = client.pinned_toolkit()
     row = conn.execute(
-        "SELECT flagset FROM function_status WHERE target_id=?", (args.target,)
+        "SELECT status, flagset FROM function_status WHERE target_id=?",
+        (args.target,),
     ).fetchone()
-    flagset = args.flagset or (row["flagset"] if row and row["flagset"] else
-                               "-g0 -O2 -mips2 -G 0 -non_shared")
+    if row is None:
+        sys.exit(f"unknown target {args.target}")
+    if row["status"] == "verified" and not args.force:
+        sys.exit(f"{args.target} is already verified (committed to the repo); "
+                 "re-seeding would supersede a promoted match — pass --force "
+                 "if you really mean it")
+    source_text = seedsmod.seed_source(Path(args.source_file).read_text())
+    flagset = args.flagset or row["flagset"] or "-g0 -O2 -mips2 -G 0 -non_shared"
     bundle, m_sha, job = seedsmod.build_search_bundle(
-        conn, store, args.target, source, flagset, meta["value"],
+        conn, store, args.target, source_text, flagset, toolkit_sha,
         budget={"wall_seconds": args.budget, "iterations": None},
     )
     status, out = client.call("POST", f"{API}/blobs", raw=bundle.read_bytes())
     job.update(bundle_sha=out["sha256"], target_id=args.target, priority=5)
     status, submitted = client.call("POST", f"{API}/work", body=[job])
     with dbmod.tx(conn):
+        source_sha = store.put_bytes(source_text.encode())
         conn.execute(
-            "UPDATE function_status SET status='in_search', human_flag=NULL,"
+            "UPDATE function_status SET seed_kind='manual', seed_source_sha=?,"
             " override=json_object('manual_seed', ?),"
             " updated_at=strftime('%Y-%m-%dT%H:%M:%fZ','now') WHERE target_id=?",
-            (args.source_file, args.target),
+            (source_sha, args.source_file, args.target),
         )
+        statusmod.transition(conn, args.target, "in_search",
+                             human_flag=None, force=True)
     print(f"seeded {args.target}: job {submitted[0].get('job_id')}")
 
 
@@ -230,15 +195,26 @@ def cmd_pin_flags(args):
 def cmd_pair(args):
     """Manually pair a target with an arcade candidate (FR-015)."""
     from .coordinator import db as dbmod
+    from .pipeline import status as statusmod
 
     conn, _ = _open_db(args)
+    row = conn.execute(
+        "SELECT status FROM function_status WHERE target_id=?", (args.target,)
+    ).fetchone()
+    if row is None:
+        sys.exit(f"unknown target {args.target}")
+    if row["status"] in ("matched", "verified"):
+        sys.exit(f"{args.target} is already {row['status']}; re-pairing would "
+                 "discard a match — unflag it first if that is intended")
     with dbmod.tx(conn):
         conn.execute(
-            "UPDATE function_status SET best_candidate_id=?, status='candidate_identified',"
-            " human_flag=NULL, override=json_object('manual_pair', ?),"
+            "UPDATE function_status SET best_candidate_id=?,"
+            " override=json_object('manual_pair', ?),"
             " updated_at=strftime('%Y-%m-%dT%H:%M:%fZ','now') WHERE target_id=?",
             (args.candidate, args.candidate, args.target),
         )
+        statusmod.transition(conn, args.target, "candidate_identified",
+                             human_flag=None, force=True)
     print(f"paired {args.target} <- {args.candidate} (manual override)")
 
 
@@ -316,45 +292,15 @@ def extract_target_words(asm_file, label):
 
 
 def assemble_words(words, out_o, func_name):
-    """Assemble raw instruction words into a scoreable .o (needs mips as)."""
-    asm = [".set noreorder", ".text", f".globl {func_name}", f"{func_name}:"]
-    asm += [f"    .word 0x{w}" for w in words]
-    with tempfile.NamedTemporaryFile("w", suffix=".s", delete=False) as f:
-        f.write("\n".join(asm) + "\n")
-        src = f.name
-    subprocess.run(
-        ["mips-linux-gnu-as", "-march=vr4300", "-mabi=32", "-o", str(out_o), src],
-        check=True,
-    )
+    """Single implementation lives beside the target inventory builder."""
+    from .pipeline.targets import assemble_words as _impl
+
+    _impl(words, out_o, func_name)
 
 
-def extract_c_function(source_file, name):
-    """Pull one function's text out of a C file (brace matching)."""
-    text = (REPO / source_file).read_text()
-    m = re.search(rf"^[\w \*]*\b{name}\s*\([^;{{]*\)\s*\{{", text, re.M)
-    if not m:
-        raise SystemExit(f"{name} not found in {source_file}")
-    depth, i = 0, m.start()
-    start = m.start()
-    while i < len(text):
-        if text[i] == "{":
-            depth += 1
-        elif text[i] == "}":
-            depth -= 1
-            if depth == 0:
-                return text[start : i + 1]
-        i += 1
-    raise SystemExit(f"unbalanced braces extracting {name}")
-
-
-SMOKE_PRELUDE = """\
-typedef unsigned char u8;
-typedef unsigned short u16;
-typedef unsigned int u32;
-typedef signed char s8;
-typedef short s16;
-typedef int s32;
-"""
+# The toolkit shim is on every compile's include path, so smoke compiles
+# under the exact same typedefs as matrix/farm/sweep jobs.
+SMOKE_INCLUDE = '#include "conveyor_shim.h"\n\n'
 
 
 def cmd_smoke(args):
@@ -372,10 +318,14 @@ def cmd_smoke(args):
     toolkit_sha = meta["value"]
 
     with tempfile.TemporaryDirectory() as tmp:
+        from .seeds.extract_candidates import extract_named_function
+
         target_o = Path(tmp) / "target.o"
         words = extract_target_words(spec["asm_file"], spec["label"])
         assemble_words(words, target_o, spec["c_name"])
-        source = SMOKE_PRELUDE + extract_c_function(spec["source_file"], spec["c_name"]) + "\n"
+        source = SMOKE_INCLUDE + extract_named_function(
+            REPO / spec["source_file"], spec["c_name"]
+        ) + "\n"
 
         manifest = {
             "job_type": "compile_score",
@@ -473,6 +423,8 @@ def main():
     p = sub.add_parser("seed")
     p.add_argument("target")
     p.add_argument("source_file")
+    p.add_argument("--force", action="store_true",
+                   help="allow re-seeding a verified function")
     p.add_argument("--flagset", default=None)
     p.add_argument("--budget", type=int, default=4 * 3600)
     p.add_argument("--data", default=str(DEFAULT_DATA))

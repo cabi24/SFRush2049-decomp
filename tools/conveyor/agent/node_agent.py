@@ -23,7 +23,6 @@ import sys
 import tarfile
 import tempfile
 import threading
-import time
 import urllib.error
 import urllib.request
 import uuid
@@ -127,18 +126,26 @@ class Agent:
     def run(self, once=False):
         print(f"[agent] node {self.node_id} caps={self.capabilities} cores={self.cores}")
         while not self.stop.is_set():
-            status, job, headers = self.api._request(
-                "POST",
-                f"{API}/work/lease",
-                body={
-                    "node_id": self.node_id,
-                    "hostname": socket.gethostname(),
-                    "cores": self.cores,
-                    "capabilities": self.capabilities,
-                    "cached_toolkits": self._cached_toolkits(),
-                    "agent_version": AGENT_VERSION,
-                },
-            )
+            try:
+                status, job, headers = self.api._request(
+                    "POST",
+                    f"{API}/work/lease",
+                    body={
+                        "node_id": self.node_id,
+                        "hostname": socket.gethostname(),
+                        "cores": self.cores,
+                        "capabilities": self.capabilities,
+                        "cached_toolkits": self._cached_toolkits(),
+                        "agent_version": AGENT_VERSION,
+                    },
+                )
+            except (urllib.error.URLError, OSError) as exc:
+                # Coordinator down / network blip: back off, never die.
+                print(f"[agent] coordinator unreachable ({exc}); retrying in 30s")
+                if once:
+                    return False
+                self.stop.wait(30)
+                continue
             if status == 204 or status == 503:
                 if once:
                     return False
@@ -228,9 +235,15 @@ class Agent:
             body = {"node_id": self.node_id}
             if progress:
                 body["progress"] = progress
-            status, out, _ = self.api._request(
-                "POST", f"{API}/work/{job_id}/heartbeat", body=body
-            )
+            try:
+                status, out, _ = self.api._request(
+                    "POST", f"{API}/work/{job_id}/heartbeat", body=body
+                )
+            except (urllib.error.URLError, OSError) as exc:
+                # A missed heartbeat is recoverable (lease TTL allows several);
+                # a dead heartbeat THREAD is not — keep looping.
+                print(f"[agent] heartbeat failed ({exc}); will retry")
+                continue
             if status == 409 or (status == 200 and out and out.get("action") == "cancel"):
                 print(f"[agent] job {job_id[:8]} cancelled/lost; aborting")
                 proc = proc_holder.get("proc")

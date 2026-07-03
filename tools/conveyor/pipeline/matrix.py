@@ -16,20 +16,16 @@ re-submissions are answered from the result cache (FR-006).
 import argparse
 import hashlib
 import json
-import sys
 import tarfile
 import tempfile
-import urllib.request
 from pathlib import Path
 
-from ..bundles import manifest as manifestmod
 from ..bundles.build_job import build_job_bundle
+from ..client import DEFAULT_DATA, Http, load_token
 from ..coordinator import db as dbmod
 from ..coordinator.store import BlobStore
 from ..seeds import extract_candidates as extractmod
 from . import targets as targetsmod
-
-DEFAULT_DATA = Path("~/.conveyor").expanduser()
 
 # Confirmed baseline flag sets (docs/COMPILER_SETTINGS.md).
 FLAGSETS = (
@@ -48,25 +44,6 @@ HIGH_CONF_MARGIN = 1.25    # ...and runner-up >= margin*best => high confidence
 def _conn_store(data):
     data = Path(data)
     return dbmod.connect(data / "conveyor.db"), BlobStore(data / "blobs")
-
-
-class Http:
-    def __init__(self, base, token):
-        self.base, self.token = base.rstrip("/"), token
-
-    def call(self, method, path, body=None, raw=None):
-        headers = {"Authorization": f"Bearer {self.token}"}
-        data = None
-        if body is not None:
-            data = json.dumps(body).encode()
-        elif raw is not None:
-            data = raw
-            headers["Content-Type"] = "application/gzip"
-        req = urllib.request.Request(self.base + path, data=data, method=method,
-                                     headers=headers)
-        with urllib.request.urlopen(req, timeout=300) as resp:
-            payload = resp.read()
-            return resp.status, json.loads(payload) if payload else None
 
 
 # --- extract ----------------------------------------------------------------
@@ -100,11 +77,10 @@ def _existing_cells(conn, toolkit_sha):
 
 def cmd_submit(args):
     conn, store = _conn_store(args.data)
-    http = Http(args.coordinator, _token(args))
-    status, meta = http.call("GET", "/api/v1/meta/toolkit_sha")
-    if status != 200:
-        sys.exit("no toolkit pinned — publish-toolkit first")
-    toolkit_sha = meta["value"]
+    http = Http(args.coordinator, load_token(args.token, args.data))
+    toolkit_sha = http.pinned_toolkit()
+    target_bytes_cache = {}  # target_o_sha -> bytes, read once per run
+    body_cache = {}          # src_file -> {name: body}, parse each file once
 
     targets = conn.execute(
         "SELECT target_id, insn_count, target_o_sha FROM n64_target"
@@ -134,7 +110,10 @@ def cmd_submit(args):
             for t in matched_targets:
                 o_name = t["target_id"] + ".o"
                 if o_name not in files:
-                    files[o_name] = store.get(t["target_o_sha"]).read_bytes()
+                    sha = t["target_o_sha"]
+                    if sha not in target_bytes_cache:
+                        target_bytes_cache[sha] = store.get(sha).read_bytes()
+                    files[o_name] = target_bytes_cache[sha]
                 cell_targets.append({"target_id": t["target_id"], "file": o_name})
                 cells_planned += 1
             cells.append({
@@ -144,6 +123,11 @@ def cmd_submit(args):
         m = {"job_type": "compile_score", "toolkit_sha": toolkit_sha, "cells": cells}
         with tempfile.TemporaryDirectory() as tmp:
             bundle, m_sha = build_job_bundle(m, files, Path(tmp) / "job.tar.gz")
+            if args.dry_run:
+                # A dry run must not upload anything or grow the blob store.
+                jobs.append({"manifest_sha": m_sha})
+                batch.clear()
+                return
             _, out = http.call("POST", "/api/v1/blobs", raw=bundle.read_bytes())
         jobs.append({
             "job_type": "compile_score", "manifest_sha": m_sha,
@@ -152,11 +136,24 @@ def cmd_submit(args):
         })
         batch.clear()
 
+    def cached_body(cand_id):
+        rel, _, name = cand_id.partition(":")
+        if rel not in body_cache:
+            try:
+                text = (extractmod.ARCADE / rel).read_text(errors="replace")
+            except OSError:
+                body_cache[rel] = {}
+                return None
+            body_cache[rel] = {
+                fn_name: text[start:end]
+                for fn_name, start, end in extractmod.extract_functions(text)
+            }
+        return body_cache[rel].get(name)
+
     for flagset in args.flagsets:
         for (cand_id,) in candidates:
-            try:
-                body = extractmod.get_body(cand_id)
-            except (KeyError, OSError):
+            body = cached_body(cand_id)
+            if body is None:
                 continue
             proxy = _size_estimate(body)
             lo, hi = proxy * SIZE_WINDOW[0], proxy * SIZE_WINDOW[1]
@@ -190,25 +187,38 @@ def cmd_submit(args):
 
 def cmd_ingest(args):
     conn, store = _conn_store(args.data)
+    pinned = dbmod.get_meta(conn, "toolkit_sha")
     rows = conn.execute(
         "SELECT job_id, result_sha, toolkit_sha FROM work_unit"
-        " WHERE job_type='compile_score' AND state='DONE' AND result_sha IS NOT NULL"
+        " WHERE job_type='compile_score' AND state='DONE'"
+        " AND result_sha IS NOT NULL AND ingested_at IS NULL"
     ).fetchall()
-    ingested_key = "matrix_ingested_jobs"
-    seen = set(json.loads(dbmod.get_meta(conn, ingested_key) or "[]"))
-    new_cells, compile_fail = 0, {}
+    new_cells, stale, compile_fail = 0, 0, {}
     for row in rows:
-        if row["job_id"] in seen:
+        # Data-model rule: results from a non-pinned toolkit are never merged
+        # (scores are only comparable within one toolkit, FR-005).
+        if pinned and row["toolkit_sha"] != pinned:
+            with dbmod.tx(conn):
+                conn.execute(
+                    "UPDATE work_unit SET ingested_at=strftime"
+                    "('%Y-%m-%dT%H:%M:%fZ','now') WHERE job_id=?",
+                    (row["job_id"],),
+                )
+            stale += 1
             continue
         path = store.get(row["result_sha"])
         if path is None:
-            continue
+            continue  # blob missing: retry next run, don't mark ingested
         with tarfile.open(path) as tar:
             result = json.loads(tar.extractfile("result.json").read())
-        if result["exit"] != "ok":
-            seen.add(row["job_id"])
-            continue
         with dbmod.tx(conn):
+            conn.execute(
+                "UPDATE work_unit SET ingested_at=strftime"
+                "('%Y-%m-%dT%H:%M:%fZ','now') WHERE job_id=?",
+                (row["job_id"],),
+            )
+            if result["exit"] != "ok":
+                continue
             for cell in result["payload"]["cells"]:
                 key = (cell["candidate_id"], cell["flagset"])
                 if cell["compile"] != "ok":
@@ -223,7 +233,6 @@ def cmd_ingest(args):
                      row["toolkit_sha"], cell["score"]),
                 )
                 new_cells += 1
-        seen.add(row["job_id"])
     with dbmod.tx(conn):
         for (cand_id, flagset), status in compile_fail.items():
             row = conn.execute(
@@ -238,39 +247,44 @@ def cmd_ingest(args):
                 "UPDATE arcade_candidate SET compile_status=? WHERE candidate_id=?",
                 (json.dumps(cs, sort_keys=True), cand_id),
             )
-    dbmod.set_meta(conn, ingested_key, json.dumps(sorted(seen)))
-    print(f"ingested {new_cells} new cells from {len(rows)} done jobs")
-    update_rankings(conn)
+    print(f"ingested {new_cells} new cells from {len(rows)} done jobs"
+          + (f" ({stale} stale-toolkit jobs discarded)" if stale else ""))
+    update_rankings(conn, pinned)
 
 
 # --- rankings / no-ancestry (T024) -------------------------------------------
 
-def rankings_for(conn, target_id, limit=10):
-    """Ranked candidates for one target — stable (score, candidate_id) order."""
+def rankings_for(conn, target_id, limit=10, toolkit_sha=None):
+    """Ranked candidates for one target — stable (score, candidate_id) order,
+    within a single toolkit (scores across toolkits are not comparable)."""
+    toolkit_sha = toolkit_sha or dbmod.get_meta(conn, "toolkit_sha")
     return conn.execute(
         "SELECT candidate_id, flagset, MIN(score) AS score FROM matrix_entry"
-        " WHERE target_id = ? GROUP BY candidate_id"
-        " ORDER BY score, candidate_id LIMIT ?",
-        (target_id, limit),
+        " WHERE target_id = ? AND (? IS NULL OR toolkit_sha = ?)"
+        " GROUP BY candidate_id ORDER BY score, candidate_id LIMIT ?",
+        (target_id, toolkit_sha, toolkit_sha, limit),
     ).fetchall()
 
 
-def update_rankings(conn):
+def update_rankings(conn, toolkit_sha=None):
     """Refresh function_status from matrix state (unmatched->candidate_identified,
-    no-ancestry flagging, SC-001 high-confidence marking)."""
+    no-ancestry flagging, SC-001 high-confidence marking). Status changes go
+    through the transition engine; rows with a manual override keep their
+    pairing fields untouched (FR-015)."""
+    from . import status as statusmod
+
+    toolkit_sha = toolkit_sha or dbmod.get_meta(conn, "toolkit_sha")
     targets = conn.execute(
-        "SELECT t.target_id, t.insn_count, f.status FROM n64_target t"
+        "SELECT t.target_id, t.insn_count, f.status, f.override FROM n64_target t"
         " JOIN function_status f USING (target_id)"
     ).fetchall()
     promoted = flagged = high_conf = 0
     with dbmod.tx(conn):
         for t in targets:
-            top = conn.execute(
-                "SELECT candidate_id, MIN(score) AS score FROM matrix_entry"
-                " WHERE target_id=? GROUP BY candidate_id"
-                " ORDER BY score, candidate_id LIMIT 2",
-                (t["target_id"],),
-            ).fetchall()
+            if t["override"]:
+                continue  # manual pairing/seed: never touched by the matrix
+            top = rankings_for(conn, t["target_id"], limit=2,
+                               toolkit_sha=toolkit_sha)
             if not top or top[0]["score"] is None:
                 continue
             best = top[0]
@@ -280,7 +294,7 @@ def update_rankings(conn):
                     conn.execute(
                         "UPDATE function_status SET human_flag='no_ancestry',"
                         " best_score=?, updated_at=strftime('%Y-%m-%dT%H:%M:%fZ','now')"
-                        " WHERE target_id=? AND override IS NULL",
+                        " WHERE target_id=?",
                         (best["score"], t["target_id"]),
                     )
                     flagged += 1
@@ -291,12 +305,10 @@ def update_rankings(conn):
             if is_high_conf:
                 high_conf += 1
             if t["status"] == "unmatched":
-                conn.execute(
-                    "UPDATE function_status SET status='candidate_identified',"
-                    " best_score=?, best_candidate_id=?, human_flag=NULL,"
-                    " updated_at=strftime('%Y-%m-%dT%H:%M:%fZ','now')"
-                    " WHERE target_id=? AND override IS NULL",
-                    (best["score"], best["candidate_id"], t["target_id"]),
+                statusmod.transition(
+                    conn, t["target_id"], "candidate_identified",
+                    best_score=best["score"],
+                    best_candidate_id=best["candidate_id"],
                 )
                 promoted += 1
     print(f"rankings: {promoted} targets -> candidate_identified, "
@@ -334,15 +346,6 @@ def cmd_report(args):
         print(f"\ntop candidates for {args.target}:")
         for r in rankings_for(conn, args.target):
             print(f"  {r['score']:>7}  {r['candidate_id']}")
-
-
-def _token(args):
-    if args.token:
-        return args.token
-    token_file = DEFAULT_DATA / "token"
-    if token_file.is_file():
-        return token_file.read_text().strip()
-    sys.exit("no --token and ~/.conveyor/token not found")
 
 
 def main():

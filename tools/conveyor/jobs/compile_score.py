@@ -40,19 +40,16 @@ def _ido_cc():
     raise RuntimeError("IDO cc not found in toolkit")
 
 
-def compile_one(source, flagset, out_o, include_dirs=(), extra_env=None):
+def compile_one(source, flagset, out_o, include_dirs=()):
     """Compile a C file with IDO. Returns (ok: bool, message: str)."""
     cc = _ido_cc()
     cmd = [cc, "-c"] + shlex.split(flagset)
     for inc in include_dirs:
         cmd += ["-I", str(inc)]
     cmd += ["-o", str(out_o), str(source)]
-    env = dict(os.environ)
-    if extra_env:
-        env.update(extra_env)
     try:
         proc = subprocess.run(
-            cmd, capture_output=True, text=True, timeout=COMPILE_TIMEOUT, env=env
+            cmd, capture_output=True, text=True, timeout=COMPILE_TIMEOUT
         )
     except subprocess.TimeoutExpired:
         return False, "timeout"

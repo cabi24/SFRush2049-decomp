@@ -14,41 +14,19 @@ Steady-state loop (FR-009/FR-010, no model calls anywhere):
 """
 import argparse
 import json
-import sys
 import tarfile
 import time
-import urllib.request
 import uuid
 from pathlib import Path
 
 from ..bundles.build_job import build_job_bundle
+from ..client import DEFAULT_DATA, Http, load_token
 from ..coordinator import db as dbmod
 from ..coordinator.store import BlobStore
 from ..seeds import extract_candidates as extractmod
 from . import seeds as seedsmod
 
-DEFAULT_DATA = Path("~/.conveyor").expanduser()
 DEFAULT_FLAGSET = "-g0 -O2 -mips2 -G 0 -non_shared"
-LEDGER_KEY = "farm_ingested_jobs"
-
-
-class Http:
-    def __init__(self, base, token):
-        self.base, self.token = base.rstrip("/"), token
-
-    def call(self, method, path, body=None, raw=None):
-        headers = {"Authorization": f"Bearer {self.token}"}
-        data = None
-        if body is not None:
-            data = json.dumps(body).encode()
-        elif raw is not None:
-            data = raw
-            headers["Content-Type"] = "application/gzip"
-        req = urllib.request.Request(self.base + path, data=data, method=method,
-                                     headers=headers)
-        with urllib.request.urlopen(req, timeout=300) as resp:
-            payload = resp.read()
-            return resp.status, json.loads(payload) if payload else None
 
 
 def _now_sql():
@@ -89,31 +67,64 @@ def _flagset_for(conn, target_id):
     return (row["flagset"] if row and row["flagset"] else DEFAULT_FLAGSET)
 
 
+def _mark_ingested(conn, job_id):
+    conn.execute(
+        f"UPDATE work_unit SET ingested_at={_now_sql()} WHERE job_id=?", (job_id,)
+    )
+
+
+def _flag_only(conn, target_id, human_flag):
+    """Set a human-attention flag without moving status."""
+    conn.execute(
+        f"UPDATE function_status SET human_flag=?, updated_at={_now_sql()}"
+        f" WHERE target_id=?",
+        (human_flag, target_id),
+    )
+
+
 def ingest(conn, store, http, toolkit_sha):
-    """Steps 1 and 2: pull finished search/promote jobs into pipeline state."""
-    seen = set(json.loads(dbmod.get_meta(conn, LEDGER_KEY) or "[]"))
+    """Steps 1 and 2: pull finished search/promote jobs into pipeline state.
+
+    Each job is processed and marked ingested in ONE transaction, so a crash
+    mid-run never replays completed work nor skips unprocessed work. Results
+    whose blob is missing are left un-ingested and retried next tick. FAILED
+    jobs (error results past the retry cap) flag the target for attention
+    instead of stranding it in in_search.
+    """
     rows = conn.execute(
-        "SELECT job_id, job_type, target_id, result_sha FROM work_unit"
-        " WHERE state='DONE' AND result_sha IS NOT NULL"
+        "SELECT job_id, job_type, target_id, state, result_sha FROM work_unit"
+        " WHERE state IN ('DONE','FAILED') AND ingested_at IS NULL"
         " AND job_type IN ('permuter_search', 'verify_promote')"
     ).fetchall()
-    harvested = promoted = stalled = rolled_back = 0
+    harvested = promoted = stalled = rolled_back = errored = 0
     for row in rows:
-        if row["job_id"] in seen:
-            continue
-        result, artifacts = _read_result(store, row["result_sha"])
-        seen.add(row["job_id"])
-        if result is None or result["exit"] != "ok":
-            continue
-        payload = result["payload"]
-        target_id = row["target_id"] or payload.get("target_id")
-        if not target_id:
-            continue
+        target_id = row["target_id"]
+        result, artifacts = (None, {})
+        if row["result_sha"]:
+            result, artifacts = _read_result(store, row["result_sha"])
+            if result is None:
+                continue  # blob not present yet: retry next tick, don't mark
+        payload = (result or {}).get("payload", {})
+        target_id = target_id or payload.get("target_id")
 
-        if row["job_type"] == "permuter_search":
-            score = payload.get("final_best_score")
-            best_c = artifacts.get("best.c")
-            with dbmod.tx(conn):
+        with dbmod.tx(conn):
+            _mark_ingested(conn, row["job_id"])
+            if not target_id:
+                continue
+
+            if row["state"] == "FAILED" or (result and result.get("exit") != "ok"):
+                error = (result or {}).get("error") or "job failed with no result"
+                if row["job_type"] == "permuter_search":
+                    _set_status(conn, target_id, "seeded",
+                                human_flag=f"job_error:{error[:80]}")
+                else:
+                    _flag_only(conn, target_id, f"promote_error:{error[:80]}")
+                errored += 1
+                continue
+
+            if row["job_type"] == "permuter_search":
+                score = payload.get("final_best_score")
+                best_c = artifacts.get("best.c")
                 if score == 0 and best_c:
                     source_sha = store.put_bytes(best_c)
                     _set_status(conn, target_id, "matched", best_score=0)
@@ -133,13 +144,12 @@ def ingest(conn, store, http, toolkit_sha):
                                 best_score=score)
                     stalled += 1
 
-        elif row["job_type"] == "verify_promote":
-            outcome = payload.get("outcome") or "rolled_back:unknown"
-            with dbmod.tx(conn):
+            elif row["job_type"] == "verify_promote":
+                outcome = payload.get("outcome") or "rolled_back:unknown"
                 conn.execute(
-                    "INSERT INTO promotion_record (promotion_id, target_id,"
-                    " source_sha, search_job_id, build_ok, sha1_ok, commit_hash,"
-                    f" doc_header_injected, outcome, created_at)"
+                    "INSERT OR IGNORE INTO promotion_record (promotion_id,"
+                    " target_id, source_sha, search_job_id, build_ok, sha1_ok,"
+                    " commit_hash, doc_header_injected, outcome, created_at)"
                     f" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, {_now_sql()})",
                     (str(uuid.uuid4()), target_id,
                      payload.get("source_sha", ""), payload.get("search_job_id"),
@@ -156,25 +166,33 @@ def ingest(conn, store, http, toolkit_sha):
                                 human_flag=f"verify_failed:{outcome[:60]}")
                     rolled_back += 1
 
-    dbmod.set_meta(conn, LEDGER_KEY, json.dumps(sorted(seen)))
     return {"harvested": harvested, "promoted": promoted,
-            "stalled": stalled, "rolled_back": rolled_back}
+            "stalled": stalled, "rolled_back": rolled_back, "errored": errored}
 
 
 def _submit_promotion(conn, store, http, toolkit_sha, target_id, source_sha,
                       search_job_id, search_payload):
     row = conn.execute(
-        "SELECT t.target_o_sha, f.best_candidate_id FROM n64_target t"
+        "SELECT t.target_o_sha, f.best_candidate_id, f.seed_kind FROM n64_target t"
         " JOIN function_status f USING (target_id) WHERE t.target_id=?",
         (target_id,),
     ).fetchone()
+    if row is None or row["target_o_sha"] is None or store.get(row["target_o_sha"]) is None:
+        # A win we cannot promote (target inventory drifted): flag it instead
+        # of crashing the whole ingest run.
+        _flag_only(conn, target_id, "missing_target_object")
+        return
+    if row["seed_kind"] == "sibling":
+        provenance = f"cluster sibling seed (see cluster of {target_id})"
+    else:
+        provenance = row["best_candidate_id"] or "manual seed"
     manifest = {
         "job_type": "verify_promote",
         "toolkit_sha": toolkit_sha,
         "target_id": target_id,
         "source_sha": source_sha,
         "search_job_id": search_job_id,
-        "candidate_id": row["best_candidate_id"] if row else None,
+        "candidate_id": provenance,
         "compile_flags": _flagset_for(conn, target_id),
         "score_history": f"base {search_payload.get('base_score')} -> 0",
     }
@@ -207,24 +225,23 @@ def top_up(conn, store, http, toolkit_sha, max_inflight, budget_seconds):
         return {"started": 0, "inflight": inflight}
 
     prospects = conn.execute(
-        "SELECT f.target_id, f.best_candidate_id, f.best_score, t.insn_count"
+        "SELECT f.target_id, f.best_candidate_id, f.seed_source_sha,"
+        " f.best_score, t.insn_count"
         " FROM function_status f JOIN n64_target t USING (target_id)"
-        " WHERE f.status='candidate_identified' AND f.best_candidate_id IS NOT NULL"
+        " WHERE f.status='candidate_identified'"
+        " AND (f.best_candidate_id IS NOT NULL OR f.seed_source_sha IS NOT NULL)"
         " ORDER BY CAST(f.best_score AS REAL) / MAX(t.insn_count, 1), f.target_id"
         " LIMIT ?",
         (to_start,),
     ).fetchall()
     started = 0
     for p in prospects:
-        if p["best_candidate_id"].startswith("matched:"):
-            # Sibling seed (FR-008): source is the matched member's blob.
-            override = conn.execute(
-                "SELECT override FROM function_status WHERE target_id=?",
-                (p["target_id"],),
-            ).fetchone()["override"]
-            sha = json.loads(override or "{}").get("sibling_seed_sha")
-            blob = store.get(sha) if sha else None
+        if p["seed_source_sha"]:
+            # Sibling/manual seed (FR-008): source is a stored blob.
+            blob = store.get(p["seed_source_sha"])
             if blob is None:
+                with dbmod.tx(conn):
+                    _flag_only(conn, p["target_id"], "seed_blob_missing")
                 continue
             source = seedsmod.seed_source(blob.read_text())
         else:
@@ -232,8 +249,7 @@ def top_up(conn, store, http, toolkit_sha, max_inflight, budget_seconds):
                 body = extractmod.get_body(p["best_candidate_id"])
             except (KeyError, OSError):
                 with dbmod.tx(conn):
-                    _set_status(conn, p["target_id"], "candidate_identified",
-                                human_flag="candidate_body_missing")
+                    _flag_only(conn, p["target_id"], "candidate_body_missing")
                 continue
             source = seedsmod.seed_source(body)
         bundle, m_sha, job = seedsmod.build_search_bundle(
@@ -272,12 +288,8 @@ def main():
     data = Path(args.data)
     conn = dbmod.connect(data / "conveyor.db")
     store = BlobStore(data / "blobs")
-    token = args.token or (data / "token").read_text().strip()
-    http = Http(args.coordinator, token)
-    status, meta = http.call("GET", "/api/v1/meta/toolkit_sha")
-    if status != 200:
-        sys.exit("no toolkit pinned — publish-toolkit first")
-    toolkit_sha = meta["value"]
+    http = Http(args.coordinator, load_token(args.token, data))
+    toolkit_sha = http.pinned_toolkit()
 
     while True:
         stats = run_once(conn, store, http, toolkit_sha,

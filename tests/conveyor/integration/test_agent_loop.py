@@ -92,7 +92,11 @@ def test_agent_executes_job_end_to_end(coord, tmp_path):
     assert "result accepted" in proc.stdout, proc.stdout + proc.stderr
 
     _, job = _call(base, token, "GET", f"{API}/work/{job_id}")
-    assert job["state"] == "DONE"
+    # The stub toolkit has no IDO, so the runner reports a job-level error;
+    # the coordinator records the error result and RE-ISSUES the job rather
+    # than completing it (error results never satisfy or cache a job).
+    assert job["state"] == "PENDING"
+    assert job["result_ok"] == 0
 
     # Toolkit was cached by sha; result envelope reports the compile failure.
     assert (tmp_path / "cache" / "toolkits" / toolkit_sha).is_dir()
@@ -110,3 +114,6 @@ def test_agent_executes_job_end_to_end(coord, tmp_path):
     # the contract envelope rather than crashing the agent or losing the job.
     assert result["exit"] == "error"
     assert "IDO" in result["error"]
+    # Attempt bookkeeping: the failed attempt counted, so the retry budget
+    # will eventually exhaust into FAILED instead of looping forever.
+    assert job["attempt"] == 1 and job["max_attempts"] == 3

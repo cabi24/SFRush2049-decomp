@@ -26,6 +26,9 @@ ALLOWED = {
     ("in_search", "in_search"),               # re-issue
     ("matched", "verified"),
     ("matched", "seeded"),                    # verify rollback (FR-010)
+    ("seeded", "verified"),                   # promotion landed after a manual
+                                              # rollback raced it; the commit
+                                              # is real, so record it
 }
 
 
@@ -36,20 +39,20 @@ class InvalidTransition(ValueError):
 def transition(conn, target_id, new_status, *, human_flag=None,
                best_score=None, best_candidate_id=None, force=False):
     """Move one function to new_status inside the caller's transaction.
-    Manual overrides are respected: automated (non-force) calls never touch a
-    row whose override is set, except to advance it forward (FR-015)."""
+
+    FR-015 (overrides preserved) applies to the *pairing/flag fields*, which
+    automated writers must guard individually (see matrix.update_rankings) —
+    status movement itself is never blocked by an override: a manually seeded
+    function whose search stalls must still travel in_search -> seeded, or it
+    deadlocks invisibly."""
     row = conn.execute(
-        "SELECT status, override FROM function_status WHERE target_id=?",
-        (target_id,),
+        "SELECT status FROM function_status WHERE target_id=?", (target_id,)
     ).fetchone()
     if row is None:
         raise KeyError(f"unknown target {target_id}")
     current = row["status"]
     if not force and (current, new_status) not in ALLOWED:
         raise InvalidTransition(f"{target_id}: {current} -> {new_status}")
-    if (row["override"] and not force
-            and ORDER.index(new_status) < ORDER.index(current)):
-        return False  # automated backward move on an overridden row: refuse
     conn.execute(
         "UPDATE function_status SET status=?, human_flag=?,"
         " best_score=COALESCE(?, best_score),"
@@ -90,4 +93,13 @@ def reconcile(conn):
     ).fetchall()
     for r in orphans:
         problems.append(f"{r['target_id']}: status row without an n64_target")
+    unrecorded = conn.execute(
+        "SELECT p.target_id FROM promotion_record p"
+        " JOIN function_status f USING (target_id)"
+        " WHERE p.outcome='promoted' AND f.status != 'verified'"
+    ).fetchall()
+    for r in unrecorded:
+        problems.append(
+            f"{r['target_id']}: promoted to the repo but status is not verified"
+        )
     return problems

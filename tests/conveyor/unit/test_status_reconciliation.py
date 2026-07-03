@@ -51,15 +51,25 @@ def test_rollback_paths(conn):
                                     human_flag="verify_failed:x")
 
 
-def test_override_blocks_automated_backward_move(conn):
+def test_override_preserves_fields_but_never_freezes_status(conn):
+    """FR-015 protects the *pairing/seed fields*, not status movement: a
+    manually seeded function whose search stalls must still travel
+    in_search -> seeded, or it deadlocks invisibly (review finding)."""
     with dbmod.tx(conn):
         statusmod.transition(conn, "f2", "candidate_identified")
         statusmod.transition(conn, "f2", "in_search")
         conn.execute(
             "UPDATE function_status SET override='{\"manual_seed\":\"x.c\"}'"
             " WHERE target_id='f2'")
-        assert statusmod.transition(conn, "f2", "seeded") is False  # refused
-        assert statusmod.transition(conn, "f2", "seeded", force=True) is True
+        # The stall transition goes through even on an overridden row...
+        assert statusmod.transition(conn, "f2", "seeded",
+                                    human_flag="stalled") is True
+        row = conn.execute(
+            "SELECT status, human_flag, override FROM function_status"
+            " WHERE target_id='f2'").fetchone()
+        assert row["status"] == "seeded" and row["human_flag"] == "stalled"
+        # ...and the override column itself is untouched.
+        assert row["override"] == '{"manual_seed":"x.c"}'
 
 
 def test_reconcile_catches_unbacked_verified(conn):

@@ -4,6 +4,7 @@ against contracts/coordinator-api.md.
 import gzip
 import io
 import json
+import tarfile
 import threading
 import urllib.error
 import urllib.request
@@ -13,6 +14,18 @@ import pytest
 from tools.conveyor.coordinator.server import make_server
 
 API = "/api/v1"
+
+
+def _result_bundle(job_id, exit_status="ok"):
+    """A minimally valid results.tar.gz (the server inspects the envelope)."""
+    envelope = json.dumps({"job_id": job_id, "exit": exit_status,
+                           "payload": {}}).encode()
+    buf = io.BytesIO()
+    with tarfile.open(fileobj=buf, mode="w:gz") as tar:
+        info = tarfile.TarInfo("result.json")
+        info.size = len(envelope)
+        tar.addfile(info, io.BytesIO(envelope))
+    return buf.getvalue()
 
 
 @pytest.fixture
@@ -106,7 +119,7 @@ def test_submit_lease_heartbeat_result_flow(coord):
     )
     assert status == 409
 
-    result = gzip.compress(json.dumps({"job_id": job_id, "exit": "ok"}).encode())
+    result = _result_bundle(job_id)
     status, out = _call(
         base, token, "POST", f"{API}/work/{job_id}/result?node_id=n1", raw=result
     )
@@ -122,13 +135,48 @@ def test_submit_lease_heartbeat_result_flow(coord):
     assert status == 200 and job["state"] == "DONE"
 
 
+def test_stale_node_result_rejected_over_live_lease(coord):
+    base, token = coord
+    submitted = _submit_one(base, token, manifest_sha="s" * 64)
+    job_id = submitted["job_id"]
+    _call(base, token, "POST", f"{API}/work/lease",
+          body={"node_id": "live", "capabilities": ["x86_64"], "cores": 1})
+    # A node that does NOT hold the lease may not complete the job.
+    status, out = _call(
+        base, token, "POST", f"{API}/work/{job_id}/result?node_id=stale",
+        raw=_result_bundle(job_id),
+    )
+    assert status == 200 and out["accepted"] is False
+    assert out["reason"] == "lease_mismatch"
+    status, job = _call(base, token, "GET", f"{API}/work/{job_id}")
+    assert job["state"] == "LEASED" and job["leased_by"] == "live"
+
+
+def test_error_result_reissues_and_never_caches(coord):
+    base, token = coord
+    submitted = _submit_one(base, token, manifest_sha="e" * 64)
+    job_id = submitted["job_id"]
+    _call(base, token, "POST", f"{API}/work/lease",
+          body={"node_id": "n1", "capabilities": ["x86_64"], "cores": 1})
+    status, out = _call(
+        base, token, "POST", f"{API}/work/{job_id}/result?node_id=n1",
+        raw=_result_bundle(job_id, exit_status="error"),
+    )
+    assert status == 200 and out["accepted"] is True
+    status, job = _call(base, token, "GET", f"{API}/work/{job_id}")
+    assert job["state"] == "PENDING"  # re-issued, not completed
+    # And an identical submission is NOT served the error result from cache.
+    again = _submit_one(base, token, manifest_sha="e" * 64)
+    assert "cached_result" not in again
+
+
 def test_cached_result_short_circuit(coord):
     base, token = coord
     first = _submit_one(base, token, manifest_sha="c" * 64)
     _call(base, token, "POST", f"{API}/work/lease",
           body={"node_id": "n1", "capabilities": ["x86_64"], "cores": 1})
     _call(base, token, "POST", f"{API}/work/{first['job_id']}/result?node_id=n1",
-          raw=gzip.compress(b"{}"))
+          raw=_result_bundle(first["job_id"]))
     again = _submit_one(base, token, manifest_sha="c" * 64)
     assert "cached_result" in again
 

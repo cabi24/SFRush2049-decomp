@@ -68,13 +68,20 @@ def run(job_dir, manifest, progress):
                "commit_hash": None, "doc_header_injected": False,
                "outcome": None}
 
+    toolkit = os.environ.get("CONVEYOR_TOOLKIT")
+    if not toolkit:
+        raise RuntimeError(
+            "verify_promote needs CONVEYOR_TOOLKIT (is the builder agent "
+            "running with a toolkit-bearing job?)"
+        )
+
     # 1. Independent byte-identity check (never trust the search's claim).
     progress.update(stage="verify")
     with tempfile.TemporaryDirectory() as tmp:
         out_o = Path(tmp) / "v.o"
         ok, message = compile_score.compile_one(
             inputs / "promoted.c", manifest["compile_flags"], out_o,
-            include_dirs=[Path(os.environ["CONVEYOR_TOOLKIT"]) / "shim"],
+            include_dirs=[Path(toolkit) / "shim"],
         )
         if not ok:
             payload["outcome"] = f"rolled_back:recompile_failed:{message}"
@@ -92,6 +99,11 @@ def run(job_dir, manifest, progress):
     matched_c = work_dir / "matched.c"
     status_file = work_dir / "STATUS"
     written = [matched_c, status_file]
+    # Snapshot prior state so rollback restores it EXACTLY — `git checkout`
+    # only covers tracked files and would race our own unlinks.
+    prior = {
+        p: (p.read_bytes() if p.exists() else None) for p in written
+    }
     try:
         matched_c.write_text(
             _doc_header(manifest) + (inputs / "promoted.c").read_text()
@@ -129,13 +141,16 @@ def run(job_dir, manifest, progress):
         payload["outcome"] = "promoted"
         return payload, {}
     except (RuntimeError, subprocess.CalledProcessError, subprocess.TimeoutExpired) as exc:
-        subprocess.run(
-            ["git", "checkout", "--", "."], cwd=str(repo / "work"),
-            capture_output=True,
-        )
-        for p in written:
-            if p.name == "matched.c" and p.exists():
-                p.unlink()
+        # Restore the exact pre-promotion state of every file we touched:
+        # files that existed get their old bytes back (covers a previously
+        # committed matched.c), files we created are removed (covers STATUS
+        # in a never-committed work dir).
+        for p, content in prior.items():
+            if content is None:
+                if p.exists():
+                    p.unlink()
+            else:
+                p.write_bytes(content)
         if payload["outcome"] is None:
             payload["outcome"] = f"rolled_back:{exc}"[:200]
         return payload, {}

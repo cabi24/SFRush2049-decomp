@@ -12,75 +12,34 @@ FR-015) are never overwritten.
 """
 import argparse
 import json
-import re
 import sys
 import tarfile
 import tempfile
-import urllib.request
 from pathlib import Path
 
 from ..bundles.build_job import build_job_bundle
+from ..client import DEFAULT_DATA, Http, load_token
 from ..coordinator import db as dbmod
 from ..coordinator.store import BlobStore
+from ..seeds.extract_candidates import extract_named_function
 from . import flags as flagsmod
 
 REPO = Path(__file__).resolve().parents[3]
-DEFAULT_DATA = Path("~/.conveyor").expanduser()
-LEDGER_KEY = "sweep_ingested_jobs"
 
-SHIM_TYPES = """\
-typedef unsigned char u8;  typedef signed char s8;
-typedef unsigned short u16; typedef short s16;
-typedef unsigned int u32;  typedef int s32;
-typedef float f32;         typedef double f64;
-"""
-
-
-def extract_c_function(source_path, name):
-    text = Path(source_path).read_text()
-    m = re.search(rf"^[\w \*]*\b{name}\s*\([^;{{]*\)\s*\{{", text, re.M)
-    if not m:
-        raise KeyError(f"{name} not in {source_path}")
-    depth, i = 0, m.start()
-    while i < len(text):
-        if text[i] == "{":
-            depth += 1
-        elif text[i] == "}":
-            depth -= 1
-            if depth == 0:
-                return text[m.start(): i + 1]
-        i += 1
-    raise KeyError(f"unbalanced braces for {name}")
-
-
-class Http:
-    def __init__(self, base, token):
-        self.base, self.token = base.rstrip("/"), token
-
-    def call(self, method, path, body=None, raw=None):
-        headers = {"Authorization": f"Bearer {self.token}"}
-        data = json.dumps(body).encode() if body is not None else raw
-        if raw is not None:
-            headers["Content-Type"] = "application/gzip"
-        req = urllib.request.Request(self.base + path, data=data, method=method,
-                                     headers=headers)
-        with urllib.request.urlopen(req, timeout=300) as resp:
-            payload = resp.read()
-            return resp.status, json.loads(payload) if payload else None
+# The same shim the matrix and farm compile against — sweeping under a
+# different set of typedefs would pin flags chosen from different codegen.
+SHIM_INCLUDE = '#include "conveyor_shim.h"\n\n'
 
 
 def cmd_submit(args):
     data = Path(args.data)
     conn = dbmod.connect(data / "conveyor.db")
     store = BlobStore(data / "blobs")
-    http = Http(args.coordinator, _token(args))
-    status, meta = http.call("GET", "/api/v1/meta/toolkit_sha")
-    if status != 200:
-        sys.exit("no toolkit pinned")
-    toolkit_sha = meta["value"]
+    http = Http(args.coordinator, load_token(args.token, data))
+    toolkit_sha = http.pinned_toolkit()
 
     names = [n.strip() for n in args.functions.split(",") if n.strip()]
-    functions, files = [], {"shimtypes.h": SHIM_TYPES.encode()}
+    functions, files = [], {}
     for name in names:
         row = conn.execute(
             "SELECT target_o_sha FROM n64_target WHERE target_id=?", (name,)
@@ -88,10 +47,12 @@ def cmd_submit(args):
         if row is None or not row["target_o_sha"]:
             print(f"  skip {name}: no target object", file=sys.stderr)
             continue
-        body = extract_c_function(REPO / args.tu, name)
-        files[f"{name}.c"] = (
-            '#include "shimtypes.h"\n\n' + body + "\n"
-        ).encode()
+        try:
+            body = extract_named_function(REPO / args.tu, name)
+        except (KeyError, OSError) as exc:
+            print(f"  skip {name}: {exc}", file=sys.stderr)
+            continue
+        files[f"{name}.c"] = (SHIM_INCLUDE + body + "\n").encode()
         files[f"{name}.o"] = store.get(row["target_o_sha"]).read_bytes()
         functions.append({"name": name, "source": f"{name}.c",
                           "target": f"{name}.o"})
@@ -119,26 +80,28 @@ def cmd_ingest(args):
     data = Path(args.data)
     conn = dbmod.connect(data / "conveyor.db")
     store = BlobStore(data / "blobs")
-    seen = set(json.loads(dbmod.get_meta(conn, LEDGER_KEY) or "[]"))
     rows = conn.execute(
         "SELECT job_id, result_sha FROM work_unit"
-        " WHERE job_type='flag_sweep' AND state='DONE' AND result_sha IS NOT NULL"
+        " WHERE job_type='flag_sweep' AND state='DONE'"
+        " AND result_sha IS NOT NULL AND ingested_at IS NULL"
     ).fetchall()
     pinned = 0
     for row in rows:
-        if row["job_id"] in seen:
-            continue
-        seen.add(row["job_id"])
         path = store.get(row["result_sha"])
         if path is None:
-            continue
+            continue  # blob missing: retry next run
         with tarfile.open(path) as tar:
             result = json.loads(tar.extractfile("result.json").read())
-        if result["exit"] != "ok":
-            continue
-        payload = result["payload"]
-        winner = payload["rankings"][0]["flagset"]
         with dbmod.tx(conn):
+            conn.execute(
+                "UPDATE work_unit SET ingested_at=strftime"
+                "('%Y-%m-%dT%H:%M:%fZ','now') WHERE job_id=?",
+                (row["job_id"],),
+            )
+            if result["exit"] != "ok":
+                continue
+            payload = result["payload"]
+            winner = payload["rankings"][0]["flagset"]
             existing = conn.execute(
                 "SELECT source FROM flag_registry WHERE translation_unit=?",
                 (payload["tu"],),
@@ -153,8 +116,7 @@ def cmd_ingest(args):
                 " evidence=excluded.evidence, source='sweep'",
                 (payload["tu"], winner, json.dumps(payload["rankings"])),
             )
-        pinned += 1
-    dbmod.set_meta(conn, LEDGER_KEY, json.dumps(sorted(seen)))
+            pinned += 1
     print(f"pinned {pinned} translation units")
 
 
@@ -162,15 +124,6 @@ def cmd_show(args):
     conn = dbmod.connect(Path(args.data) / "conveyor.db")
     for r in conn.execute("SELECT * FROM flag_registry ORDER BY translation_unit"):
         print(f"{r['translation_unit']:40} {r['pinned_flagset']:36} [{r['source']}]")
-
-
-def _token(args):
-    if args.token:
-        return args.token
-    tf = DEFAULT_DATA / "token"
-    if tf.is_file():
-        return tf.read_text().strip()
-    sys.exit("no token")
 
 
 def main():

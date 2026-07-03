@@ -7,21 +7,23 @@ serialization must be stable: sorted keys, no whitespace variance.
 import hashlib
 import json
 
+# NOTE: "cluster_score" is reserved in the design (clustering currently runs
+# locally on the Pi — pipeline/cluster.py); it is NOT accepted here until an
+# executor ships in the toolkit, so it can't be submitted and then fail on
+# every node.
 JOB_TYPES = (
     "compile_score",
     "flag_sweep",
-    "cluster_score",
     "permuter_search",
     "verify_promote",
 )
 
 # Batch job types are deterministic pure functions of their manifest.
-BATCH_TYPES = ("compile_score", "flag_sweep", "cluster_score")
+BATCH_TYPES = ("compile_score", "flag_sweep")
 
 _REQUIRED = {
     "compile_score": ("cells",),
     "flag_sweep": ("tu", "flagsets", "functions"),
-    "cluster_score": ("mode", "targets"),
     "permuter_search": ("target_id", "seed_file", "target_file", "compile_flags"),
     "verify_promote": ("target_id", "source_sha", "search_job_id"),
 }

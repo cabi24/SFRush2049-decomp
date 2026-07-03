@@ -12,7 +12,7 @@ python3 -m tools.conveyor.cli serve --port 8323 --data ~/.conveyor
 ```
 
 State lives in `~/.conveyor/` (SQLite DB + blob store). Restart-safe; run under systemd for real use.
-The coordinator and node agent are stdlib-only — no pip installs needed to *serve* or to join nodes. (One exception on the Pi: `matrix extract` uses `pycparser` for arcade source parsing — `pip install pycparser` once, or reuse the copy vendored with decomp-permuter.)
+The coordinator and node agent are stdlib-only — no pip installs needed to *serve* or to join nodes. (One exception on the Pi: `matrix extract` uses `pycparser` for arcade source parsing — `pip install pycparser` once. On watchman, `pycparser` and `toml` must be installed before building the toolkit; they get bundled into it for the nodes.)
 
 ## 2. Build and publish the toolkit bundle (one-time, on watchman)
 
@@ -27,8 +27,9 @@ python3 -m tools.conveyor.bundles.build_toolkit \
     --permuter tools/decomp-permuter \
     --shim tools/conveyor/seeds/shim \
     --out /tmp/toolkit.tar.gz
-python3 -m tools.conveyor.cli publish-toolkit /tmp/toolkit.tar.gz \
-    --coordinator http://<pi>:8323 --token <token>
+python3 -m tools.conveyor.cli --coordinator http://<pi>:8323 --token <token> \
+    publish-toolkit /tmp/toolkit.tar.gz
+# (global flags go BEFORE the subcommand)
 # Prints: toolkit sha256 <SHA> pinned as current
 ```
 
@@ -68,8 +69,9 @@ python3 -m tools.conveyor.cli status
 # compilation as pool jobs):
 python3 -m tools.conveyor.pipeline.matrix extract
 python3 -m tools.conveyor.pipeline.matrix submit           # full matrix (batched)
-python3 -m tools.conveyor.pipeline.cluster submit          # target clustering
-python3 -m tools.conveyor.pipeline.sweep submit --unmatched-only
+python3 -m tools.conveyor.pipeline.cluster run             # target clustering (local)
+python3 -m tools.conveyor.pipeline.sweep submit --tu src/libc/string.c \
+    --functions strlen,memchr                              # per-TU flag sweep
 python3 -m tools.conveyor.pipeline.farm run                # keeps search queue full
 
 # Watch it

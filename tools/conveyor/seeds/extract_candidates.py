@@ -163,6 +163,17 @@ def populate(conn, subdirs=DEFAULT_SUBDIRS, arcade_root=None):
     return {"candidates": count, "files": len(files)}
 
 
+def extract_named_function(source_path, name):
+    """Extract one function's text from any C file using the comment/string-
+    aware brace matcher (the naive regex counters miscount braces inside
+    comments and string literals). Shared by sweep and the smoke path."""
+    text = Path(source_path).read_text(errors="replace")
+    for got_name, start, end in extract_functions(text):
+        if got_name == name:
+            return text[start:end]
+    raise KeyError(f"{name} not found in {source_path}")
+
+
 def get_body(candidate_id, arcade_root=None):
     """Re-extract one candidate's body text (bodies are not stored in the DB)."""
     rel, _, name = candidate_id.partition(":")

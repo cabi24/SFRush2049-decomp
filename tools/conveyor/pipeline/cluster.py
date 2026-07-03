@@ -16,7 +16,6 @@ cluster_score job type exists for scaling out later if the pool is idle):
 import argparse
 import hashlib
 import json
-import struct
 from collections import defaultdict
 from pathlib import Path
 
@@ -149,12 +148,14 @@ def seed_siblings(conn, store, matched_target_id, source_bytes):
     for m in members:
         if m["status"] in ("matched", "verified", "in_search"):
             continue
+        # Dedicated seed columns — never smuggle provenance through the
+        # human-override column or the arcade-candidate pairing field.
         conn.execute(
             "UPDATE function_status SET status='candidate_identified',"
-            " best_candidate_id=?, override=json_object('sibling_seed_sha', ?),"
+            " seed_kind='sibling', seed_source_sha=?,"
             " human_flag=NULL, updated_at=strftime('%Y-%m-%dT%H:%M:%fZ','now')"
             " WHERE target_id=?",
-            (f"matched:{matched_target_id}", source_sha, m["target_id"]),
+            (source_sha, m["target_id"]),
         )
         seeded += 1
     return seeded

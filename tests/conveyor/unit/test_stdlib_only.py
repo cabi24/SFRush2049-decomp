@@ -5,14 +5,21 @@ with `curl | python3`; neither may grow third-party dependencies.
 """
 import ast
 import sys
-import sysconfig
 from pathlib import Path
+
+import pytest
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 GUARDED_DIRS = [
     REPO_ROOT / "tools" / "conveyor" / "coordinator",
     REPO_ROOT / "tools" / "conveyor" / "agent",
 ]
+
+# sys.stdlib_module_names is a 3.10+ API; the *shipped* code keeps the 3.9
+# floor, but this dev-only guard needs the authoritative list, so it runs
+# wherever it's available (CI/dev boxes) and skips on 3.9.
+if not hasattr(sys, "stdlib_module_names"):
+    pytest.skip("stdlib guard needs Python >= 3.10", allow_module_level=True)
 
 STDLIB = set(sys.stdlib_module_names)
 

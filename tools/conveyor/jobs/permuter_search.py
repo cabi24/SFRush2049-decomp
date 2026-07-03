@@ -52,6 +52,12 @@ def _write_compile_sh(perm_dir, flags):
         f'exec "{toolkit}/ido/cc" -c {flags} -I "{toolkit}/shim" "$@"\n'
     )
     script.chmod(0o755)
+    # The permuter's Scorer takes a custom objdump only via settings.toml;
+    # without it, it searches PATH and dies on nodes that (correctly) have no
+    # system mips objdump. Route it to the toolkit-bundled one.
+    (perm_dir / "settings.toml").write_text(
+        f'objdump_command = "{scoring.objdump_command()}"\n'
+    )
 
 
 def _best_output(perm_dir):
@@ -116,16 +122,25 @@ def run(job_dir, manifest, progress):
             }, {"best.c": str(perm_dir / "base.c")}
 
         permuter_py = toolkit / "decomp-permuter" / "permuter.py"
+        # PYTHONPATH: toolkit root carries the permuter's pure-Python deps
+        # (pycparser, toml) so stdlib-only nodes can run it.
+        env = dict(os.environ)
+        env["PYTHONPATH"] = str(toolkit) + (
+            os.pathsep + env["PYTHONPATH"] if env.get("PYTHONPATH") else ""
+        )
+        stderr_log = perm_dir / "permuter-stderr.log"
         proc = subprocess.Popen(
             [sys.executable, str(permuter_py), str(perm_dir),
              "--stop-on-zero", "--best-only", "-j", str(cores)],
-            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
-            cwd=str(perm_dir),
+            stdout=subprocess.DEVNULL, stderr=open(stderr_log, "wb"),
+            cwd=str(perm_dir), env=env,
         )
         started = time.monotonic()
+        we_stopped_it = False
         best_reported = base_score
         while proc.poll() is None:
             if time.monotonic() - started > wall_budget:
+                we_stopped_it = True
                 proc.terminate()
                 try:
                     proc.wait(timeout=30)
@@ -138,10 +153,24 @@ def run(job_dir, manifest, progress):
                 best_reported = score
                 progress.update(best_score=score, best_source=_gz_b64(source))
                 if score == 0:
+                    we_stopped_it = True
                     break
-        proc.poll() is None and proc.kill()
+        if proc.poll() is None:
+            proc.kill()
+            proc.wait(timeout=30)  # reap; no zombies for the agent's lifetime
 
         final_score, final_source = _best_output(perm_dir)
+        # An early nonzero exit with no output is an infrastructure failure,
+        # not a "search that found nothing" — surface it as a job error so
+        # the farm doesn't mislabel the target as stalled.
+        if (not we_stopped_it and proc.returncode not in (0, None)
+                and final_score is None):
+            tail = ""
+            if stderr_log.is_file():
+                tail = stderr_log.read_bytes()[-2000:].decode(errors="replace")
+            raise RuntimeError(
+                f"permuter exited {proc.returncode} without output: {tail}"
+            )
         if final_score is None or final_score >= base_score:
             final_score, final_source = base_score, perm_dir / "base.c"
         # Copy out before perm_dir cleanup.

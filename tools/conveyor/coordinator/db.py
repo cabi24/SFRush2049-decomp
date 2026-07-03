@@ -49,6 +49,8 @@ CREATE TABLE IF NOT EXISTS work_unit (
     best_score INTEGER,
     best_source_sha TEXT,
     result_sha TEXT,
+    result_ok INTEGER,
+    ingested_at TEXT,
     created_at TEXT NOT NULL,
     updated_at TEXT NOT NULL
 );
@@ -104,6 +106,8 @@ CREATE TABLE IF NOT EXISTS function_status (
     status TEXT NOT NULL DEFAULT 'unmatched',
     best_score INTEGER,
     best_candidate_id TEXT,
+    seed_kind TEXT,
+    seed_source_sha TEXT,
     flagset TEXT,
     human_flag TEXT,
     override TEXT,
@@ -123,7 +127,17 @@ CREATE TABLE IF NOT EXISTS promotion_record (
     outcome TEXT NOT NULL,
     created_at TEXT NOT NULL
 );
+CREATE UNIQUE INDEX IF NOT EXISTS idx_one_promotion_per_target
+    ON promotion_record(target_id) WHERE outcome = 'promoted';
 """
+
+# Additive migrations for databases created before these columns existed.
+_MIGRATIONS = (
+    "ALTER TABLE work_unit ADD COLUMN result_ok INTEGER",
+    "ALTER TABLE work_unit ADD COLUMN ingested_at TEXT",
+    "ALTER TABLE function_status ADD COLUMN seed_kind TEXT",
+    "ALTER TABLE function_status ADD COLUMN seed_source_sha TEXT",
+)
 
 
 def connect(db_path):
@@ -136,6 +150,11 @@ def connect(db_path):
     conn.execute("PRAGMA synchronous=NORMAL")
     conn.execute("PRAGMA foreign_keys=ON")
     conn.executescript(_SCHEMA)
+    for migration in _MIGRATIONS:
+        try:
+            conn.execute(migration)
+        except sqlite3.OperationalError:
+            pass  # column already exists
     conn.execute(
         "INSERT OR IGNORE INTO meta(key, value) VALUES ('schema_version', ?)",
         (str(SCHEMA_VERSION),),

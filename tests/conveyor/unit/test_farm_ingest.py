@@ -142,4 +142,44 @@ def test_ingest_is_idempotent(env):
                  {"best.c": b"..."})
     farm.ingest(conn, store, StubHttp(), "t" * 64)
     stats = farm.ingest(conn, store, StubHttp(), "t" * 64)  # second run: no-op
-    assert stats == {"harvested": 0, "promoted": 0, "stalled": 0, "rolled_back": 0}
+    assert stats == {"harvested": 0, "promoted": 0, "stalled": 0,
+                     "rolled_back": 0, "errored": 0}
+
+
+def test_error_result_flags_target_for_attention(env):
+    """A job-level error must never strand the function invisibly in
+    in_search — it returns to seeded with a human flag."""
+    conn, store = env
+    _mk_target(conn, "func_err")
+    result_sha = _result_bundle(
+        store,
+        {"target_id": "func_err"},
+    )
+    # Overwrite the envelope to be an error result.
+    import io as iomod
+    import tarfile as tarmod
+
+    envelope = json.dumps({"job_id": "j", "job_type": "permuter_search",
+                           "exit": "error", "error": "permuter exited 1",
+                           "payload": {"target_id": "func_err"}}).encode()
+    buf = iomod.BytesIO()
+    with tarmod.open(fileobj=buf, mode="w:gz") as tar:
+        info = tarmod.TarInfo("result.json")
+        info.size = len(envelope)
+        tar.addfile(info, iomod.BytesIO(envelope))
+    result_sha = store.put_bytes(buf.getvalue())
+    with dbmod.tx(conn):
+        conn.execute(
+            "INSERT INTO work_unit (job_id, job_type, target_id, manifest_sha,"
+            " state, result_sha, created_at, updated_at)"
+            " VALUES ('job-err', 'permuter_search', 'func_err', 'm', 'FAILED',"
+            " ?, '2026', '2026')",
+            (result_sha,),
+        )
+    stats = farm.ingest(conn, store, StubHttp(), "t" * 64)
+    assert stats["errored"] == 1
+    row = conn.execute(
+        "SELECT status, human_flag FROM function_status WHERE target_id='func_err'"
+    ).fetchone()
+    assert row["status"] == "seeded"
+    assert row["human_flag"].startswith("job_error:")

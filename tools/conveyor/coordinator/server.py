@@ -59,16 +59,35 @@ class Coordinator:
             return queuemod.heartbeat(self.conn, job_id, body["node_id"], progress)
 
     def result(self, job_id, node_id, reader, length):
+        # Stream OUTSIDE the lock: put_stream writes to a unique temp file and
+        # renames atomically, so a slow multi-MB upload must never block
+        # leases/heartbeats (a >120s stall would mass-expire healthy leases).
+        sha = self.store.put_stream(reader, length)
+        result_ok = self._result_exit_ok(sha)
         with self.lock:
-            sha = self.store.put_stream(reader, length)
             self._record_blob(sha, "result")
-            status = queuemod.submit_result(self.conn, job_id, node_id, sha)
+            status = queuemod.submit_result(
+                self.conn, job_id, node_id, sha, result_ok=result_ok
+            )
         return status, sha
+
+    def _result_exit_ok(self, sha):
+        """True iff the uploaded result bundle's envelope says exit == 'ok'.
+        Malformed bundles count as errors — they must not complete a job."""
+        import tarfile
+
+        path = self.store.get(sha)
+        try:
+            with tarfile.open(path) as tar:
+                envelope = json.loads(tar.extractfile("result.json").read())
+            return envelope.get("exit") == "ok"
+        except (tarfile.TarError, KeyError, ValueError, OSError):
+            return False
 
     # -- operator-facing ---------------------------------------------------
     def put_blob(self, reader, length, kind="job"):
+        sha = self.store.put_stream(reader, length)  # outside the lock; see result()
         with self.lock:
-            sha = self.store.put_stream(reader, length)
             self._record_blob(sha, kind)
         return sha
 
@@ -279,7 +298,7 @@ class Handler(BaseHTTPRequestHandler):
         if status is None:
             return self._json(404, {"error": "unknown job"})
         self._json(200, {"accepted": status == "accepted",
-                         **({"reason": "duplicate"} if status == "duplicate" else {})})
+                         **({"reason": status} if status != "accepted" else {})})
 
     def h_cancel(self, params, query):
         if not self.coordinator.cancel(params["job_id"]):

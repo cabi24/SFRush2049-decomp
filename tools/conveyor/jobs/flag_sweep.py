@@ -14,6 +14,7 @@ Each function is a standalone extracted source (compiled per flagset, scored
 against its known target). Aggregate score per flagset = sum over functions;
 lower is better; a perfect flagset scores 0.
 """
+import os
 import sys
 import tempfile
 from pathlib import Path
@@ -26,9 +27,18 @@ import compile_score  # noqa: E402
 import scoring  # noqa: E402
 
 
+def _include_dirs(inputs):
+    dirs = [inputs]
+    toolkit = os.environ.get("CONVEYOR_TOOLKIT")
+    if toolkit and (Path(toolkit) / "shim").is_dir():
+        dirs.append(Path(toolkit) / "shim")  # same shim as compile_score
+    return dirs
+
+
 def run(job_dir, manifest, progress):
     job_dir = Path(job_dir)
     inputs = job_dir / "inputs"
+    include_dirs = _include_dirs(inputs)
     rankings = []
     total = len(manifest["flagsets"])
     for i, flagset in enumerate(manifest["flagsets"]):
@@ -38,7 +48,7 @@ def run(job_dir, manifest, progress):
                 out_o = Path(tmp) / (fn["name"] + ".o")
                 ok, _ = compile_score.compile_one(
                     inputs / fn["source"], flagset, out_o,
-                    include_dirs=[inputs],
+                    include_dirs=include_dirs,
                 )
                 if not ok:
                     failed += 1

@@ -49,6 +49,25 @@ def _ldd_libs(binary):
     return libs
 
 
+def _python_dep_dirs(names=("pycparser", "toml")):
+    """Locate the permuter's pure-Python deps on the build machine so nodes
+    never need pip. Packed at the toolkit root; permuter_search puts the
+    toolkit on PYTHONPATH."""
+    import importlib
+
+    dirs = []
+    for name in names:
+        try:
+            module = importlib.import_module(name)
+        except ImportError:
+            raise SystemExit(
+                f"toolkit build requires the '{name}' package installed here "
+                f"(it gets bundled for the nodes): pip install {name}"
+            )
+        dirs.append((name, Path(module.__file__).parent))
+    return dirs
+
+
 def build_toolkit(ido_dir, objdump_path, permuter_dir, shim_dir, jobs_dir, out_path):
     entries = []  # (archive_name, source_path, mode)
 
@@ -60,6 +79,9 @@ def build_toolkit(ido_dir, objdump_path, permuter_dir, shim_dir, jobs_dir, out_p
         entries.append((f"lib/{lib.name}", lib, 0o644))
     for path, name in _iter_files(permuter_dir, "decomp-permuter"):
         entries.append((name, path, 0o644))
+    for dep_name, dep_dir in _python_dep_dirs():
+        for path, name in _iter_files(dep_dir, dep_name):
+            entries.append((name, path, 0o644))
     for path, name in _iter_files(jobs_dir, "jobs"):
         entries.append((name, path, 0o644))
     for path, name in _iter_files(shim_dir, "shim"):

@@ -42,7 +42,10 @@ Progress rule: for `permuter_search`, a `best_score` improvement SHOULD include 
 
 ### POST /work/{job_id}/result
 Body: result bundle (tar.gz) containing `result.json` + artifacts. Query param `?node_id=uuid`.
-Responses: `200 {"accepted": true}`; `200 {"accepted": false, "reason": "duplicate"}` (idempotent — first result won); `409` lease mismatch after expiry ⇒ result still accepted if job is PENDING-again or discarded if DONE (never errors the node).
+Responses (always `200`; never errors the node):
+- `{"accepted": true}` — recorded. If the envelope's `exit` is `"ok"` the job completes (DONE, cacheable). If it is an **error** (or the bundle is malformed), the result is stored for diagnostics but the job **re-issues** (PENDING, attempt already counted) until the attempt cap (`max_attempts`, or 5 for unlimited search jobs) exhausts into FAILED — error results never satisfy a job and are never served from the result cache.
+- `{"accepted": false, "reason": "duplicate"}` — job already DONE/FAILED/CANCELLED; first result won.
+- `{"accepted": false, "reason": "lease_mismatch"}` — the job is currently LEASED by a *different* node; a stale node whose lease expired and was re-issued may not overwrite the live node's work. (Results *are* accepted from any node while the job is PENDING — the work is idempotent.)
 
 `result.json` common envelope:
 ```json
@@ -53,9 +56,9 @@ Responses: `200 {"accepted": true}`; `200 {"accepted": false, "reason": "duplica
 Per-type `payload`:
 - `compile_score`: `{"cells": [{"candidate_id","flagset","target_id","score","compile":"ok|fail:<reason>"}]}`
 - `flag_sweep`: `{"tu": "src/game/game.c", "rankings": [{"flagset","aggregate_score"}]}`
-- `cluster_score`: `{"pairs": [{"a","b","score"}], "fingerprints": [{"target_id","fp"}]}`
-- `permuter_search`: `{"final_best_score": 0, "iterations": 90210, "seed": 1337, "source_file": "best.c"}` (source in bundle)
-- `verify_promote`: `{"build_ok": true, "sha1_ok": true, "commit_hash": "...", "doc_header_injected": true}`
+- `permuter_search`: `{"target_id","final_best_score","base_score","wall_seconds_used"}` (best source in bundle as `best.c`)
+- `verify_promote`: `{"target_id","build_ok","sha1_ok","commit_hash","doc_header_injected","outcome"}`
+- `cluster_score`: **reserved** — clustering currently runs locally on the orchestrator (`pipeline/cluster.py`); this job type is not accepted until a toolkit executor ships.
 
 ### GET /blobs/{sha256}
 Content-addressed fetch (toolkit and job bundles). `200` gzip stream; `404` unknown. Nodes verify sha256 after download; mismatch = discard and re-fetch.

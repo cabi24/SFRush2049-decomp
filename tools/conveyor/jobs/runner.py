@@ -47,10 +47,6 @@ def _dispatch(job_type):
         import flag_sweep
 
         return flag_sweep.run
-    if job_type == "cluster_score":
-        import cluster_score
-
-        return cluster_score.run
     if job_type == "permuter_search":
         import permuter_search
 
