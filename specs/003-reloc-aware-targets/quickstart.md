@@ -142,3 +142,25 @@ python3 -m pytest tests/conveyor -m "not node_required" -q
 
 Green including `test_target_assembly.py` and `test_supersession.py`. Commit per
 project conventions; leave wiki/status updates to the reviewer.
+
+## 6. Review outcome (2026-07-08, Fable)
+
+Blocker 2 (SC-004) fixed in review: KSEG1 de-symbolization at region-index time
+(see the contract amendments). After the fix: re-extraction superseded 21
+targets / 18 rows, deterministic on rerun (0/0); **`lock verify`: all 12 at
+score 0** (SC-004 ✓); corpus re-score: **12 true-0** (was 8 — the 4 MMIO
+functions joined), 19 reloc_only_diff, attribution `0 mismatched` after the
+new ingest guard dropped the 4 stale late-arriving cells (SC-006 ✓).
+
+Blocker 1 (SC-002/003) stands as Opus analyzed it: reloc **symbol-name**
+mismatch across codebases (target asm `D_8002C3D0` / symbol_addrs
+`__osEmptyMesgQueue` / ultralib `__osThreadTail`). Ruling: SC-002 as written
+was mis-specified — cross-codebase candidates legitimately carry different
+symbol names, so `reloc_blind=0` is the correct ceiling for *corpus* evidence
+on globals-referencing functions; **true 0 is proven at adoption time** (adopt
+the candidate into src/ with our symbol names, then `lock add`), exactly the
+per-function flow used for the 12 locks. Follow-up items on the improvements
+wiki: symbol-name canonicalization (rename target reloc symbols from
+symbol_addrs; requires symbol-name governance between asm, symbol table, and
+src/) and, further out, name-blind bijective reloc scoring for cross-codebase
+true-0.

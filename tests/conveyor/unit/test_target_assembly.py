@@ -234,3 +234,47 @@ def test_populate_second_pass_is_a_noop(tmp_path, monkeypatch):
     assert row2["target_o_sha"] == row1["target_o_sha"]
     assert row2["tier"] == "reloc_aware"
     assert s2["superseded_targets"] == 0 and s2["purged_rows"] == 0
+
+
+# --- KSEG1 de-symbolization (003 review fix) ---------------------------------
+#
+# splat symbolizes MMIO addresses, but IDO emits literal immediates for
+# #define'd KSEG1 addresses (no relocation) — so KSEG1-referencing
+# instructions must be emitted as their raw .word, or the reloc-aware target
+# penalizes every correctly-matched candidate (the SC-004 lock regression).
+
+MMIO_S = """\
+glabel func_800099B0
+    /* A5B0 800099B0 3C0EA410 */  lui        $t6, %hi(DPC_CLOCK_REG)
+    /* A5B4 800099B4 8DCF0010 */  lw         $t7, %lo(DPC_CLOCK_REG)($t6)
+    /* A5B8 800099B8 3C188003 */  lui        $t8, %hi(D_8002C3D0)
+    /* A5BC 800099BC 03E00008 */  jr         $ra
+    /* A5C0 800099C0 271800A4 */   addiu     $t8, $t8, 0xA4
+endlabel func_800099B0
+"""
+
+
+def test_kseg1_refs_become_raw_words(tmp_path, monkeypatch):
+    # DPC_CLOCK_REG resolves via the symbol tables to KSEG1 -> raw .word;
+    # D_8002C3D0 resolves via its name pattern to RAM -> stays symbolic.
+    monkeypatch.setattr(T, "_symbol_map_cache", {"DPC_CLOCK_REG": 0xA4100010})
+    (tmp_path / "a.s").write_text(MMIO_S)
+    region = T.index_asm_regions(tmp_path)[0x800099B0]
+    assert region.lines[0].strip() == ".word 0x3C0EA410"
+    assert region.lines[1].strip() == ".word 0x8DCF0010"
+    assert "%hi(D_8002C3D0)" in region.lines[2]
+
+
+def test_ram_symbols_keep_relocations(tmp_path, monkeypatch):
+    monkeypatch.setattr(T, "_symbol_map_cache", {})
+    (tmp_path / "a.s").write_text(OSCREATE_S)
+    region = T.index_asm_regions(tmp_path)[0x80006A00]
+    assert all(".word" not in l for l in region.lines)
+
+
+def test_resolve_symbol_sources(monkeypatch):
+    monkeypatch.setattr(T, "_symbol_map_cache", {"AI_STATUS_REG": 0xA450000C})
+    assert T._resolve_symbol("AI_STATUS_REG") == 0xA450000C
+    assert T._resolve_symbol("D_8002C3D0") == 0x8002C3D0
+    assert T._resolve_symbol("func_800099B0") == 0x800099B0
+    assert T._resolve_symbol("totally_unknown") is None

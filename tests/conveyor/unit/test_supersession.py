@@ -132,11 +132,15 @@ def test_ingest_stores_echoed_sha_and_null_for_legacy(tmp_path):
     conn = dbmod.connect(data / "conveyor.db")
     store = BlobStore(data / "blobs")
     dbmod.set_meta(conn, "toolkit_sha", TOOLKIT)
+    with dbmod.tx(conn):
+        conn.execute(
+            "INSERT INTO n64_target (target_id, population, target_o_sha)"
+            " VALUES ('foo', 'static', ?)", ("a" * 64,))
 
     cells = [
         {"candidate_id": "c1", "flagset": "-O1", "target_id": "foo",
          "score": 0, "score_reloc_blind": 0, "compile": "ok",
-         "target_o_sha": "a" * 64},                       # echoed
+         "target_o_sha": "a" * 64},                       # echoed, current
         {"candidate_id": "c2", "flagset": "-O1", "target_id": "bar",
          "score": 3, "score_reloc_blind": 1, "compile": "ok"},  # legacy, no key
     ]
@@ -152,6 +156,43 @@ def test_ingest_stores_echoed_sha_and_null_for_legacy(tmp_path):
     rows = {r["target_id"]: r["target_o_sha"] for r in conn.execute(
         "SELECT target_id, target_o_sha FROM matrix_entry")}
     assert rows == {"foo": "a" * 64, "bar": None}
+
+
+def test_ingest_drops_cells_scored_against_superseded_object(tmp_path):
+    """The supersession guard (003 review fix): a late-arriving result computed
+    against a replaced target object must not re-introduce stale evidence
+    after the extract-time purge."""
+    data = tmp_path / "d"
+    conn = dbmod.connect(data / "conveyor.db")
+    store = BlobStore(data / "blobs")
+    dbmod.set_meta(conn, "toolkit_sha", TOOLKIT)
+    with dbmod.tx(conn):
+        conn.execute(
+            "INSERT INTO n64_target (target_id, population, target_o_sha)"
+            " VALUES ('foo', 'static', ?)", ("new0" * 16,))
+
+    cells = [
+        {"candidate_id": "c1", "flagset": "-O1", "target_id": "foo",
+         "score": 0, "score_reloc_blind": 0, "compile": "ok",
+         "target_o_sha": "old0" * 16},  # scored against the superseded object
+        {"candidate_id": "c2", "flagset": "-O1", "target_id": "foo",
+         "score": 5, "score_reloc_blind": 2, "compile": "ok",
+         "target_o_sha": "new0" * 16},  # current object: kept
+    ]
+    result_sha = _compile_result_bundle(store, cells)
+    with dbmod.tx(conn):
+        conn.execute(
+            "INSERT INTO work_unit (job_id, job_type, target_id, manifest_sha,"
+            " toolkit_sha, state, result_sha, created_at, updated_at) VALUES"
+            " ('j','compile_score',NULL,'m',?, 'DONE', ?, '2026','2026')",
+            (TOOLKIT, result_sha))
+
+    matrixmod.cmd_ingest(_args(data))
+    rows = conn.execute(
+        "SELECT candidate_id, target_o_sha FROM matrix_entry").fetchall()
+    assert len(rows) == 1
+    assert rows[0]["candidate_id"] == "c2"
+    assert rows[0]["target_o_sha"] == "new0" * 16
 
 
 # --- reschedule: purged target reschedules, unchanged stays cached ----------

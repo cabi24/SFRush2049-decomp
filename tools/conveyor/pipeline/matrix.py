@@ -199,7 +199,9 @@ def cmd_ingest(args):
         " WHERE job_type='compile_score' AND state='DONE'"
         " AND result_sha IS NOT NULL AND ingested_at IS NULL"
     ).fetchall()
-    new_cells, stale, compile_fail = 0, 0, {}
+    new_cells, stale, stale_target, compile_fail = 0, 0, 0, {}
+    current_o = {r["target_id"]: r["target_o_sha"] for r in conn.execute(
+        "SELECT target_id, target_o_sha FROM n64_target")}
     for row in rows:
         # Data-model rule: results from a non-pinned toolkit are never merged
         # (scores are only comparable within one toolkit, FR-005).
@@ -234,6 +236,15 @@ def cmd_ingest(args):
                     compile_fail.setdefault(key, cell["compile"])
                     continue
                 compile_fail[key] = "ok"
+                # Supersession guard (003): a result computed against a target
+                # object that has since been replaced must not re-introduce
+                # stale evidence after the extract-time purge (late-arriving
+                # results otherwise sneak past it). Attributed cells whose
+                # object is no longer current are dropped, not stored.
+                cell_o = cell.get("target_o_sha")
+                if cell_o is not None and cell_o != current_o.get(cell["target_id"]):
+                    stale_target += 1
+                    continue
                 # score_reloc_blind (002) and target_o_sha (003) are present only
                 # for newer toolkit results; old result blobs lack them and
                 # ingest as NULL (data-model.md). Old blobs are never rejected.
@@ -262,7 +273,9 @@ def cmd_ingest(args):
                 (json.dumps(cs, sort_keys=True), cand_id),
             )
     print(f"ingested {new_cells} new cells from {len(rows)} done jobs"
-          + (f" ({stale} stale-toolkit jobs discarded)" if stale else ""))
+          + (f" ({stale} stale-toolkit jobs discarded)" if stale else "")
+          + (f" ({stale_target} stale-target cells dropped)" if stale_target
+             else ""))
     update_rankings(conn, pinned)
 
 

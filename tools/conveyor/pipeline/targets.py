@@ -147,6 +147,60 @@ class Region:
     words: list        # ROM instruction words, 8-hex strings, in order
 
 
+# KSEG1 de-symbolization (003 review fix). splat symbolizes MMIO addresses
+# (DPC_CLOCK_REG = 0xA4100010, …), but IDO compiles #define'd KSEG1 addresses
+# to literal immediates with NO relocation — so a relocation against a KSEG1
+# symbol in a target is a disassembly artifact, not ROM truth, and it penalizes
+# every correctly-matched candidate (SC-004 regression: 4 locked functions).
+# Rule: an instruction whose %hi/%lo symbol resolves into KSEG1
+# (0xA0000000..0xBFFFFFFF) is emitted as its raw `.word` — the ROM word IS the
+# literal IDO produced. RAM symbols keep their relocations.
+_HILO_SYM_RE = re.compile(r"%(?:hi|lo)\(([A-Za-z_][A-Za-z0-9_]*)")
+_SYM_DEF_RE = re.compile(r"^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=\s*0x([0-9A-Fa-f]+)\s*;")
+_ADDR_NAME_RE = re.compile(r"^(?:D|func|jtbl)_([0-9A-Fa-f]{8})$")
+KSEG1_BASE, KSEG1_END = 0xA0000000, 0xC0000000
+
+_symbol_map_cache = None
+
+
+def _symbol_map():
+    """{name: address} from symbol_addrs.us.txt + hardware_regs.ld (both are
+    `NAME = 0xADDR;` lines). Cached; missing files contribute nothing."""
+    global _symbol_map_cache
+    if _symbol_map_cache is None:
+        m = {}
+        for fname in ("symbol_addrs.us.txt", "hardware_regs.ld"):
+            path = REPO / fname
+            if not path.is_file():
+                continue
+            for line in path.read_text(errors="replace").splitlines():
+                d = _SYM_DEF_RE.match(line)
+                if d:
+                    m.setdefault(d.group(1), int(d.group(2), 16))
+        _symbol_map_cache = m
+    return _symbol_map_cache
+
+
+def _resolve_symbol(name):
+    """Best-effort address for an asm symbol: the symbol tables first, then
+    splat's address-bearing name patterns (D_/func_/jtbl_XXXXXXXX)."""
+    addr = _symbol_map().get(name)
+    if addr is not None:
+        return addr
+    m = _ADDR_NAME_RE.match(name)
+    return int(m.group(1), 16) if m else None
+
+
+def _is_kseg1_ref(mnemonic_text):
+    """True iff the instruction references a %hi/%lo symbol that resolves into
+    KSEG1 (uncached MMIO space — never link-time relocated in a real build)."""
+    m = _HILO_SYM_RE.search(mnemonic_text)
+    if not m:
+        return False
+    addr = _resolve_symbol(m.group(1))
+    return addr is not None and KSEG1_BASE <= addr < KSEG1_END
+
+
 def index_asm_regions(asm_dir=None):
     """{first_instruction_vaddr: Region} over every `asm/us/*.s`.
 
@@ -154,7 +208,9 @@ def index_asm_regions(asm_dir=None):
     (`/* off vaddr word */  mnemonic`) contribute their word to the gate and,
     comment-stripped, their mnemonic to the assembler input; interior label
     lines (`.L…:`) and any blanks/directives are kept verbatim — the assembler
-    tolerates them and the gate judges the result.
+    tolerates them and the gate judges the result. Instructions referencing
+    KSEG1 (MMIO) symbols are emitted as their raw `.word` instead (see
+    _is_kseg1_ref) so the object matches IDO's literal-immediate codegen.
     """
     asm_dir = Path(asm_dir) if asm_dir else ASM_DIR
     regions = {}
@@ -178,10 +234,15 @@ def index_asm_regions(asm_dir=None):
             if m:
                 if cur["vaddr"] is None:
                     cur["vaddr"] = int(m.group(1), 16)
-                cur["words"].append(m.group(2).upper())
+                word = m.group(2).upper()
+                cur["words"].append(word)
                 # Everything after the closing `*/` is the mnemonic; the
                 # comment (the only `*/` on the line in MIPS asm) is dropped.
-                cur["lines"].append(line.split("*/", 1)[1].rstrip())
+                mnemonic = line.split("*/", 1)[1].rstrip()
+                if _is_kseg1_ref(mnemonic):
+                    cur["lines"].append(f"    .word 0x{word}")
+                else:
+                    cur["lines"].append(mnemonic)
             else:
                 cur["lines"].append(line.rstrip())
     return regions

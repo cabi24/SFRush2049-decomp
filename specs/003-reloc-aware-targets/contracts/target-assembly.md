@@ -100,3 +100,33 @@ Dynamic-population targets skip 1–4 entirely (tier `raw_word`,
   `shutil.which("mips-linux-gnu-as")` so CI-less environments skip cleanly) and
   asserts: 12 words, HI16 relocs at word indices 0,1, LO16 at 2,3, gate passes
   against the raw ROM words.
+
+## Amendment (2026-07-08, review): KSEG1 de-symbolization
+
+Review finding from the live acceptance run (SC-004 regression, 4 locked
+functions): splat symbolizes MMIO addresses (`DPC_CLOCK_REG` = 0xA4100010), but
+IDO compiles `#define`'d KSEG1 addresses to **literal immediates with no
+relocation** — so a relocation against a KSEG1 symbol in a target is a
+disassembly artifact, not ROM truth, and it penalizes every correctly-matched
+candidate. The round-trip gate cannot catch this (the object is ROM-faithful;
+it is the *relocation claim* that is wrong).
+
+Rule, applied at region-index time: an instruction whose `%hi/%lo` symbol
+resolves into KSEG1 (`0xA0000000..0xBFFFFFFF`) is emitted as its raw
+`.word 0x<rom-word>` — the ROM word *is* the literal IDO produced. Symbol
+resolution: `symbol_addrs.us.txt` + `hardware_regs.ld` (`NAME = 0xADDR;`
+lines), falling back to splat's address-bearing name patterns
+(`D_/func_/jtbl_XXXXXXXX`); unresolvable names stay symbolic. RAM symbols keep
+their relocations.
+
+Outcome: all 12 locked functions re-verify at score 0 against reloc-aware
+targets; the 4 MMIO functions' corpus candidates also reach true 0 (corpus
+true-0 count 8 → 12).
+
+## Amendment (2026-07-08, review): ingest supersession guard
+
+The extract-time purge has a race: a result computed against a superseded
+object but ingested *after* the purge re-introduces stale evidence (observed
+live: 4 cells). `matrix ingest` therefore drops any attributed cell whose
+`target_o_sha` is not the target's current object (`stale-target cells
+dropped` in the summary line). Legacy cells without the key are unaffected.
