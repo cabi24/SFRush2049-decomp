@@ -479,6 +479,38 @@ on watchman (quickstart §2), publish, start agent, `cli smoke`, then `matrix su
 Verified so far on the Pi: 1,131 targets inventoried with target .o blobs, 2,526 arcade
 candidates extracted, 34 clone clusters found (physics_velocity_integrate_c/d/e etc.).
 
+### Corpus candidates (Phase 4, feature 002 — built 2026-07-08)
+
+Second candidate source beyond arcade: canonical library code from local git clones
+(V1: `reference/repos/ultralib`, decompals/ultralib). Design/tasks in
+`specs/002-corpus-candidates/`; ops note in `tools/conveyor/README.md`. For the ~150
+generic-library targets that are permanently `no_ancestry` in the arcade matrix, it
+name-pairs each target to a same-named canonical function, compiles the candidate's own
+reduced TU + repo headers under the two confirmed flagsets, and scores it. Adds a
+**relocation-blind** secondary score (`matrix_entry.score_reloc_blind`): an
+instruction-identical candidate reads `reloc_blind=0` even when its true score is
+nonzero because the target `.o` holds absolute addresses. Corpus candidates carry
+`origin`+`provenance`; true-0 hits take the normal promotion path; `reloc_blind=0` /
+true>0 hits are flagged `reloc_only_diff` and get a provenance-stamped
+`work/**/corpus_match.c` artifact — **never promoted/locked without true score 0**.
+
+```bash
+python3 -m tools.conveyor.pipeline.corpus register ultralib reference/repos/ultralib \
+    --repo-url https://github.com/decompals/ultralib \
+    --include-dirs include,include/compiler/ido,include/PR
+python3 -m tools.conveyor.pipeline.corpus ingest          # 702 candidates @ e24c8367
+python3 -m tools.conveyor.pipeline.corpus submit          # ~86 name pairings, 2 flagsets
+python3 -m tools.conveyor.pipeline.corpus ingest-results  # shared ingest + flags + artifacts
+python3 -m tools.conveyor.pipeline.corpus report [--target X]
+```
+
+First real run (2026-07-08, toolkit `b613fc5d…`): 85 paired targets, 72 with scored
+evidence, 12 true-0, **19 `reloc_only_diff`** (osCreateMesgQueue: true=20 reloc_blind=0);
+strlen/guMtxIdentF score 0 from ultralib too. SC-001's ≥80 not reached — 13 candidates
+call file-local `static` helpers the reduced-TU strips (sched.c cluster, sprintf, io
+managers); visible split-by-origin in `matrix failures`. A preprocessor-aware extractor
+or keeping static callees would close it (follow-up).
+
 ## Active Technologies
 - Python 3.9+ (Pi 5 orchestrator and nodes; no syntax above 3.9 so stock distro Pythons work) + Python stdlib only for coordinator and node agent (`http.server`, `sqlite3`, `tarfile`, `hashlib`, `json`, `urllib`). On compute nodes: decomp-permuter (vendored in repo, used as library), IDO via ido-static-recomp (shipped in toolkit bundle), mips binutils `objdump` (shipped in toolkit bundle). `pycparser` (already a permuter dependency) for arcade function extraction. (001-matching-pipeline)
 - SQLite (WAL mode) on the Pi for all pipeline state — single-writer, queried by CLI/report tools. Content-addressed blob store (sha256-named files on disk, served over HTTP) for bundles, toolkits, and results. (001-matching-pipeline)

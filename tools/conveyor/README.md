@@ -56,6 +56,45 @@ contract, quickstart). Bring-up: see `specs/001-matching-pipeline/quickstart.md`
   resubmit, and watch coverage climb in `matrix report`. Note a shim change
   is a new toolkit sha, so all cells recompute (correct: the shim can change
   codegen).
+- **Corpus candidates** (`pipeline.corpus`, 002): a second candidate source
+  beyond the arcade tree — canonical library implementations from local git
+  clones (V1: decompals/ultralib). Loop:
+
+  ```bash
+  corpus register ultralib reference/repos/ultralib \
+      --repo-url https://github.com/decompals/ultralib \
+      --include-dirs include,include/compiler/ido,include/PR   # once
+  corpus ingest            # extract functions -> candidates (origin+provenance)
+  corpus submit            # name-pair every target to a same-named candidate,
+                           # compile+score under both confirmed flagsets
+  corpus ingest-results    # shared matrix ingest + reloc flags + artifacts
+  corpus report [--target] # roots, pairing coverage, per-origin compile rate,
+                           # per-target best true/reloc_blind, flag summary
+  ```
+
+  Pairing is by **exact function name** (no size window), so a target that is
+  generic library code (permanently `no_ancestry` in the arcade matrix) gets
+  its canonical source compiled and scored. `submit` builds ordinary
+  `compile_score` jobs (dedupe/caching apply), sources the candidate's own
+  reduced TU + repo headers (comments stripped so IDO accepts `//` without
+  `-Xcpluscomm`), and bundles the target `.o`. Ingest **refuses a dirty,
+  missing, or moved clone** (`--allow-dirty` records a `<sha>-dirty` provenance)
+  because provenance must describe the exact bytes.
+- **`score_reloc_blind`**: every scored cell now also carries a
+  relocation-blind score — the same word diff after masking the fields the
+  candidate's relocations patch (HI16/LO16 low half-words, R_MIPS_26 targets).
+  A candidate instruction-identical to its target except for unresolved
+  addresses reports `reloc_blind=0` even though its true score is nonzero
+  (the target `.o` carries absolute addresses, the candidate zeroes).
+- **`reloc_only_diff`**: a target whose best corpus evidence is `reloc_blind=0`
+  with true score > 0 is flagged `reloc_only_diff` (a review advisory in
+  `function_status.human_flag`, never a promotion state) and gets a
+  `work/<…>/<target>/corpus_match.c` artifact — the candidate source plus a
+  provenance header (origin, source@commit, flags, both scores). It is derived
+  state: regenerated every `ingest-results`, never hand-edited, and it upgrades
+  to real verification automatically when relocation-aware target objects land
+  (re-scoring is content-addressed). **Nothing reaches the lock, a promotion,
+  or `src/` without a true score of 0** — `reloc_only_diff` is not a match.
 
 ## systemd units
 

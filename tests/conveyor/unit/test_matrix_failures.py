@@ -1,9 +1,13 @@
-"""Compile-failure clustering (`pipeline.matrix failures`)."""
+"""Compile-failure clustering + result ingest (`pipeline.matrix`)."""
+import argparse
+import io
 import json
+import tarfile
 
 import pytest
 
 from tools.conveyor.coordinator import db as dbmod
+from tools.conveyor.coordinator.store import BlobStore
 from tools.conveyor.pipeline import matrix as matrixmod
 
 # Realistic cfe stderr, truncated mid-line at the front the way the old
@@ -101,3 +105,76 @@ def test_aggregate_merges_signatures_across_flagsets(conn):
     assert blocked["game/b.c:g"] == {
         "undefined: ATR_JOIN", "undefined: ATR_GAMESTAT", "timeout",
     }
+
+
+# --- result ingest: score_reloc_blind column (T006) -------------------------
+
+TOOLKIT = "t" * 64
+
+
+def _compile_score_result(cells):
+    return {"job_id": "j", "job_type": "compile_score", "exit": "ok",
+            "error": None, "payload": {"cells": cells}}
+
+
+def _put_result(store, result):
+    data = json.dumps(result).encode()
+    buf = io.BytesIO()
+    with tarfile.open(fileobj=buf, mode="w:gz") as tar:
+        info = tarfile.TarInfo("result.json")
+        info.size = len(data)
+        tar.addfile(info, io.BytesIO(data))
+    return store.put_bytes(buf.getvalue())
+
+
+def _mk_done_compile_job(conn, store, cells):
+    result_sha = _put_result(store, _compile_score_result(cells))
+    with dbmod.tx(conn):
+        conn.execute(
+            "INSERT INTO work_unit (job_id, job_type, manifest_sha, toolkit_sha,"
+            " state, result_sha, created_at, updated_at)"
+            " VALUES ('cs-job', 'compile_score', 'm', ?, 'DONE', ?, '2026', '2026')",
+            (TOOLKIT, result_sha),
+        )
+
+
+def test_ingest_stores_reloc_blind_and_tolerates_missing(tmp_path):
+    """A cell carrying score_reloc_blind lands in the column; an old-blob cell
+    without the field ingests as NULL — not rejected (data-model.md FR-007)."""
+    data = tmp_path
+    conn = dbmod.connect(data / "conveyor.db")
+    store = BlobStore(data / "blobs")
+    dbmod.set_meta(conn, "toolkit_sha", TOOLKIT)
+    for tid in ("with_blind", "without_blind"):
+        with dbmod.tx(conn):
+            conn.execute(
+                "INSERT INTO n64_target (target_id, address, population, insn_count,"
+                " target_o_sha) VALUES (?, 1, 'static', 12, '0')", (tid,))
+            conn.execute(
+                "INSERT INTO function_status (target_id, status, updated_at)"
+                " VALUES (?, 'unmatched', strftime('%Y-%m-%dT%H:%M:%fZ','now'))",
+                (tid,))
+    _mk_done_compile_job(conn, store, [
+        {"candidate_id": "ultralib:src/os/f.c:with_blind", "flagset": "-O1",
+         "target_id": "with_blind", "score": 20, "score_reloc_blind": 0,
+         "compile": "ok"},
+        # Simulates an old (pre-002) result blob: no score_reloc_blind key.
+        {"candidate_id": "game/a.c:without_blind", "flagset": "-O1",
+         "target_id": "without_blind", "score": 7, "compile": "ok"},
+    ])
+    conn.commit()
+    conn.close()
+
+    args = argparse.Namespace(data=str(data), coordinator="http://x", token=None)
+    matrixmod.cmd_ingest(args)
+
+    conn = dbmod.connect(data / "conveyor.db")
+    row = conn.execute(
+        "SELECT score, score_reloc_blind FROM matrix_entry WHERE target_id='with_blind'"
+    ).fetchone()
+    assert (row["score"], row["score_reloc_blind"]) == (20, 0)
+    row = conn.execute(
+        "SELECT score, score_reloc_blind FROM matrix_entry WHERE target_id='without_blind'"
+    ).fetchone()
+    assert row["score"] == 7 and row["score_reloc_blind"] is None
+    conn.close()

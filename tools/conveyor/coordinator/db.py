@@ -129,6 +129,17 @@ CREATE TABLE IF NOT EXISTS promotion_record (
 );
 CREATE UNIQUE INDEX IF NOT EXISTS idx_one_promotion_per_target
     ON promotion_record(target_id) WHERE outcome = 'promoted';
+
+-- Corpus roots (002): registered local git clones serving as candidate
+-- sources alongside the arcade tree. See specs/002-corpus-candidates.
+CREATE TABLE IF NOT EXISTS corpus_root (
+    origin TEXT PRIMARY KEY,
+    path TEXT NOT NULL,
+    repo_url TEXT NOT NULL,
+    commit_sha TEXT NOT NULL,
+    include_dirs TEXT NOT NULL DEFAULT '[]',
+    ingested_at TEXT
+);
 """
 
 # Additive migrations for databases created before these columns existed.
@@ -137,6 +148,20 @@ _MIGRATIONS = (
     "ALTER TABLE work_unit ADD COLUMN ingested_at TEXT",
     "ALTER TABLE function_status ADD COLUMN seed_kind TEXT",
     "ALTER TABLE function_status ADD COLUMN seed_source_sha TEXT",
+)
+
+# Additive column migrations for 002 (corpus candidates), guarded by
+# PRAGMA table_info so re-connecting to an already-migrated DB is a no-op.
+# arcade_candidate rows created before 002 read as origin 'arcade' via the
+# column default; matrix_entry cells from pre-002 toolkits carry NULL
+# score_reloc_blind (data-model.md).
+_COLUMN_MIGRATIONS = (
+    ("arcade_candidate", "origin",
+     "ALTER TABLE arcade_candidate ADD COLUMN origin TEXT NOT NULL DEFAULT 'arcade'"),
+    ("arcade_candidate", "provenance",
+     "ALTER TABLE arcade_candidate ADD COLUMN provenance TEXT NOT NULL DEFAULT '{}'"),
+    ("matrix_entry", "score_reloc_blind",
+     "ALTER TABLE matrix_entry ADD COLUMN score_reloc_blind INTEGER"),
 )
 
 
@@ -155,6 +180,10 @@ def connect(db_path):
             conn.execute(migration)
         except sqlite3.OperationalError:
             pass  # column already exists
+    for table, column, ddl in _COLUMN_MIGRATIONS:
+        cols = {r["name"] for r in conn.execute(f"PRAGMA table_info({table})")}
+        if column not in cols:
+            conn.execute(ddl)
     conn.execute(
         "INSERT OR IGNORE INTO meta(key, value) VALUES ('schema_version', ?)",
         (str(SCHEMA_VERSION),),

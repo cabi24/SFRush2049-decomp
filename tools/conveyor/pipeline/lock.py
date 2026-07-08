@@ -37,11 +37,11 @@ from pathlib import Path
 from ..client import DEFAULT_DATA, Http, load_token
 from ..coordinator import db as dbmod
 from ..coordinator.store import BlobStore
+from ..seeds import context as contextmod
 from ..seeds.extract_candidates import REPO, extract_functions
 
 LOCKFILE = REPO / "matched.lock.json"
 INCLUDE_DIRS = ("include", "include/PR")  # mirrors Makefile INCLUDE_CFLAGS
-_INCLUDE_RE = re.compile(r'^\s*#\s*include\s*"([^"]+)"', re.M)
 
 
 # --- source normalization -----------------------------------------------------
@@ -129,41 +129,15 @@ def check(entries, repo=REPO):
 
 # --- verification through the pool ---------------------------------------------
 
-def reduced_tu(text, keep_name):
-    """The TU with every function definition except keep_name removed —
-    headers, types, and file-scope declarations survive untouched."""
-    spans = [
-        (start, end) for name, start, end in extract_functions(text)
-        if name != keep_name
-    ]
-    out, pos = [], 0
-    for start, end in spans:
-        out.append(text[pos:start])
-        pos = end
-    out.append(text[pos:])
-    return "".join(out)
+# The reduced-TU and header-resolution helpers now live in seeds/context.py so
+# the corpus pipeline shares them; the lock binds them to the game repo's
+# include layout here.
+reduced_tu = contextmod.reduced_tu
 
 
 def resolve_headers(tu_path, repo=REPO):
-    """{repo-relative name: text} for the TU's `#include "..."` closure,
-    searched the way the build does (includer's dir, then include dirs)."""
-    repo = Path(repo)
-    found, queue = {}, [Path(tu_path)]
-    while queue:
-        path = queue.pop()
-        text = path.read_text(errors="replace")
-        for inc in _INCLUDE_RE.findall(text):
-            candidates = [path.parent / inc] + [
-                repo / d / inc for d in INCLUDE_DIRS
-            ]
-            for cand in candidates:
-                if cand.is_file():
-                    rel = str(cand.resolve().relative_to(repo.resolve()))
-                    if rel not in found:
-                        found[rel] = cand.read_text(errors="replace")
-                        queue.append(cand)
-                    break
-    return found
+    """The TU's `#include "..."` closure against the game repo's include dirs."""
+    return contextmod.resolve_headers(tu_path, repo, INCLUDE_DIRS)
 
 
 def verify_entry(spec, flagset, target_id, args):

@@ -97,6 +97,9 @@ def run(job_dir, manifest, progress):
                         "flagset": cell["flagset"],
                         "target_id": target["target_id"],
                         "score": value,
+                        "score_reloc_blind": scoring.reloc_blind_score(
+                            inputs / target["file"], out_o
+                        ),
                         "compile": "ok",
                     }
                 )

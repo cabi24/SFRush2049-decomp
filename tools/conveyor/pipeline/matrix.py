@@ -225,15 +225,22 @@ def cmd_ingest(args):
             for cell in result["payload"]["cells"]:
                 key = (cell["candidate_id"], cell["flagset"])
                 if cell["compile"] != "ok":
-                    compile_fail[key] = cell["compile"]
+                    # Keep the first fail message, but never let a fail from one
+                    # job override an "ok" recorded from another (a candidate that
+                    # compiles under some source/toolkit is ok — ok always wins).
+                    compile_fail.setdefault(key, cell["compile"])
                     continue
-                compile_fail.setdefault(key, "ok")
+                compile_fail[key] = "ok"
+                # score_reloc_blind is present only for 002+ toolkit results;
+                # old result blobs lack it and ingest as NULL (data-model.md).
                 conn.execute(
                     "INSERT OR IGNORE INTO matrix_entry"
-                    " (target_id, candidate_id, flagset, toolkit_sha, score)"
-                    " VALUES (?, ?, ?, ?, ?)",
+                    " (target_id, candidate_id, flagset, toolkit_sha, score,"
+                    " score_reloc_blind)"
+                    " VALUES (?, ?, ?, ?, ?, ?)",
                     (cell["target_id"], cell["candidate_id"], cell["flagset"],
-                     row["toolkit_sha"], cell["score"]),
+                     row["toolkit_sha"], cell["score"],
+                     cell.get("score_reloc_blind")),
                 )
                 new_cells += 1
     with dbmod.tx(conn):
@@ -357,15 +364,22 @@ def failure_signatures(message):
     return sigs
 
 
-def aggregate_failures(conn):
+def aggregate_failures(conn, origin=None):
     """(blocked, ok) where blocked maps candidate_id -> signature set for
     every candidate that failed to compile under all tried flagsets, and ok
     counts candidates that compiled under at least one (same semantics as
-    the coverage line in `report`)."""
+    the coverage line in `report`). With origin set, restrict to that origin so
+    corpus failures don't pollute arcade shim-gap analysis (002 edge case)."""
     blocked, ok = {}, 0
-    rows = conn.execute(
-        "SELECT candidate_id, compile_status FROM arcade_candidate"
-    ).fetchall()
+    if origin is None:
+        rows = conn.execute(
+            "SELECT candidate_id, compile_status FROM arcade_candidate"
+        ).fetchall()
+    else:
+        rows = conn.execute(
+            "SELECT candidate_id, compile_status FROM arcade_candidate"
+            " WHERE origin = ?", (origin,)
+        ).fetchall()
     for r in rows:
         cs = json.loads(r["compile_status"])
         if not cs:
@@ -410,24 +424,7 @@ def _locate_identifiers(idents):
     return hints
 
 
-def cmd_failures(args):
-    conn, _ = _conn_store(args.data)
-    blocked, ok = aggregate_failures(conn)
-    if not blocked:
-        print("no compile failures recorded (run `matrix ingest` first)")
-        return
-    print(f"{len(blocked)} candidates fail all tried flagsets ({ok} compile ok)")
-
-    if args.grep:
-        hits = sorted(
-            cid for cid, sigs in blocked.items()
-            if any(args.grep in s for s in sigs)
-        )
-        print(f"\n{len(hits)} blocked candidates match {args.grep!r}:")
-        for cid in hits:
-            print(f"  {cid}")
-        return
-
+def _print_failure_histogram(blocked, args, locate=False):
     counts = Counter()
     for sigs in blocked.values():
         counts.update(sigs)  # each signature counted once per candidate
@@ -442,7 +439,7 @@ def cmd_failures(args):
           f"{covered}/{len(blocked)} blocked candidates "
           "(lower bound: stderr capture is truncated)")
 
-    if args.locate:
+    if locate:
         idents = [
             sig.split(": ", 1)[1] for sig, _ in top
             if sig.startswith("undefined: ")
@@ -451,6 +448,51 @@ def cmd_failures(args):
         print("\narcade definition hints (heuristic):")
         for ident in idents:
             print(f"  {ident:<24} {hints.get(ident, '(not found in headers)')}")
+
+
+def cmd_failures(args):
+    conn, _ = _conn_store(args.data)
+    # Which origins have any recorded compile results.
+    origins = [r["origin"] for r in conn.execute(
+        "SELECT DISTINCT origin FROM arcade_candidate WHERE compile_status != '{}'")]
+    has_corpus = any(o != "arcade" for o in origins)
+
+    if args.grep:
+        blocked, _ = aggregate_failures(conn)
+        hits = sorted(
+            cid for cid, sigs in blocked.items()
+            if any(args.grep in s for s in sigs)
+        )
+        print(f"{len(hits)} blocked candidates match {args.grep!r}:")
+        for cid in hits:
+            print(f"  {cid}")
+        return
+
+    if has_corpus:
+        # Split by origin so corpus compile failures (e.g. reduced-TU static
+        # deps) stay out of the arcade shim-gap histogram (002 edge case).
+        any_blocked = False
+        for origin in sorted(origins):
+            blocked, ok = aggregate_failures(conn, origin)
+            if not blocked and not ok:
+                continue
+            any_blocked = any_blocked or bool(blocked)
+            print(f"\n== origin: {origin} == "
+                  f"{len(blocked)} fail all tried flagsets ({ok} compile ok)")
+            if blocked:
+                # --locate greps the arcade tree, so only meaningful for arcade.
+                _print_failure_histogram(blocked, args,
+                                         locate=args.locate and origin == "arcade")
+        if not any_blocked:
+            print("no compile failures recorded (run `matrix ingest` first)")
+        return
+
+    blocked, ok = aggregate_failures(conn)
+    if not blocked:
+        print("no compile failures recorded (run `matrix ingest` first)")
+        return
+    print(f"{len(blocked)} candidates fail all tried flagsets ({ok} compile ok)")
+    _print_failure_histogram(blocked, args, locate=args.locate)
 
 
 # --- report (T025) -----------------------------------------------------------
@@ -462,19 +504,35 @@ def cmd_report(args):
     n_cells = conn.execute("SELECT COUNT(*) AS n FROM matrix_entry").fetchone()["n"]
     print(f"matrix: {n_cells} cells scored ({n_targets} targets, {n_cands} candidates)")
 
-    rows = conn.execute("SELECT compile_status FROM arcade_candidate").fetchall()
-    ok = fail = untried = 0
+    # Compile coverage, split by origin when corpus candidates exist (002);
+    # arcade-only DBs print the original single line unchanged (SC-006).
+    rows = conn.execute(
+        "SELECT origin, compile_status FROM arcade_candidate").fetchall()
+    by_origin = {}
     for r in rows:
+        acc = by_origin.setdefault(r["origin"], [0, 0, 0])  # ok, fail, untried
         cs = json.loads(r["compile_status"])
         if not cs:
-            untried += 1
+            acc[2] += 1
         elif any(v == "ok" for v in cs.values()):
-            ok += 1
+            acc[0] += 1
         else:
-            fail += 1
-    if ok + fail:
-        print(f"candidate compile coverage (FR-002): {ok} ok, {fail} fail, "
-              f"{untried} untried  ({100 * ok // max(ok + fail, 1)}% of tried)")
+            acc[1] += 1
+    non_arcade = [o for o in by_origin if o != "arcade"]
+    if non_arcade:
+        print("candidate compile coverage (FR-002), by origin:")
+        for origin in sorted(by_origin):
+            ok, fail, untried = by_origin[origin]
+            if ok + fail:
+                print(f"  {origin:12} {ok} ok, {fail} fail, {untried} untried "
+                      f"({100 * ok // max(ok + fail, 1)}% of tried)")
+            elif untried:
+                print(f"  {origin:12} {untried} untried")
+    else:
+        ok, fail, untried = by_origin.get("arcade", [0, 0, 0])
+        if ok + fail:
+            print(f"candidate compile coverage (FR-002): {ok} ok, {fail} fail, "
+                  f"{untried} untried  ({100 * ok // max(ok + fail, 1)}% of tried)")
 
     rows = conn.execute(
         "SELECT status, COUNT(*) AS n FROM function_status GROUP BY status"
