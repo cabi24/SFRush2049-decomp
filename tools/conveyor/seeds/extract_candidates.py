@@ -93,6 +93,11 @@ def extract_functions(text):
 
 def _header_function_name(header):
     """Function name if this top-level header introduces a definition."""
+    # Preprocessor lines don't end in ';' so a file's include/#define
+    # preamble gloms onto the first function's header — drop those lines
+    # instead of rejecting the header (this silently skipped the first
+    # function of every file with a preamble, e.g. memchr in string.c).
+    header = re.sub(r"^\s*#.*$", "", header, flags=re.M)
     if _EXCLUDE_HEADER.search(header):
         return None
     # ANSI: name(args)  |  K&R: name(a, b) int a; char *b;   — in both cases
@@ -122,9 +127,24 @@ def _match_brace(masked, open_idx):
 
 
 def _trim_start(text, boundary):
-    """Skip leading whitespace/newlines so the body starts at the header."""
-    while boundary < len(text) and text[boundary] in " \t\n":
-        boundary += 1
+    """Skip whitespace and preprocessor lines so the body starts at the
+    definition header itself, not the file's include/#define preamble
+    (which precedes a first function with no ';' in between)."""
+    n = len(text)
+    while boundary < n:
+        if text[boundary] in " \t\n":
+            boundary += 1
+        elif text[boundary] == "#":
+            while boundary < n:  # skip the directive + any \ continuations
+                nl = text.find("\n", boundary)
+                if nl == -1:
+                    return n
+                cont = text[nl - 1] == "\\"
+                boundary = nl + 1
+                if not cont:
+                    break
+        else:
+            break
     return boundary
 
 

@@ -37,6 +37,15 @@ contract, quickstart). Bring-up: see `specs/001-matching-pipeline/quickstart.md`
 - **Blob GC**: `gc` reclaims job/result blobs unreferenced by any live state
   and older than `--days` (default 7). Dry-run by default; pass `--apply` to
   delete. Toolkit blobs and anything still reachable are never touched.
+- **Regression lock**: `matched.lock.json` (repo root) pins the normalized
+  source-body hash of every function proven byte-identical. `make
+  check-matched` (or the `.githooks/pre-commit` hook — enable once with
+  `git config core.hooksPath .githooks`) re-hashes locally in milliseconds
+  and fails on drift. Pin new matches with `python3 -m
+  tools.conveyor.pipeline.lock add <file>:<fn> --flags "..."` — add compiles
+  the function through the pool (a reduced TU: real repo headers, all other
+  functions stripped) and refuses to lock without score 0. `lock verify`
+  re-proves existing entries end to end.
 - **Shim iteration loop**: after every `matrix ingest`, run
   `python3 -m tools.conveyor.pipeline.matrix failures` — it clusters candidate
   compile failures by signature (`undefined: gstate`, `unknown type? BLIT`)

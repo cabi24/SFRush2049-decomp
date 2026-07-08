@@ -126,7 +126,7 @@ O_FILES      := $(ASM_O_FILES) $(BIN_O_FILES)
 # Targets
 # ============================================================
 
-.PHONY: all clean extract test progress setup help verify cc
+.PHONY: all clean extract test progress setup help verify cc check-matched
 
 all: $(TARGET)
 ifeq ($(COMPARE),1)
@@ -227,6 +227,11 @@ verify: $(TARGET)
 	@sha1sum -c $(VERSION).sha1 && echo "ROM matches!" || echo "ROM does NOT match"
 
 test: verify
+
+# Fast local check that no verified-matched function has drifted from its
+# pinned form (matched.lock.json). No IDO or network needed.
+check-matched:
+	$(V)$(PYTHON) -m tools.conveyor.pipeline.lock check
 
 # ============================================================
 # Extraction

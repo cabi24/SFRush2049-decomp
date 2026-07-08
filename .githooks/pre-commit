@@ -1,0 +1,4 @@
+#!/bin/sh
+# Block commits that edit a verified-matched function (matched.lock.json).
+# Bypass deliberately with: git commit --no-verify
+exec python3 -m tools.conveyor.pipeline.lock check --quiet
