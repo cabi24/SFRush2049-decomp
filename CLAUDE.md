@@ -444,6 +444,13 @@ codex exec --dangerously-bypass-approvals-and-sandbox "Analyze asm/us/XXXX.s and
 - CPU/FPU: os_fpcsr.c, os_phys.c, os_dp_counters.c
 - Other: os_debug.c, os_mesg_jam.c, boot/boot.c
 
+## Project Wiki
+
+Project docs are mirrored to a DokuWiki at `http://192.168.50.30:8089` (namespace
+`rush2049:`), hosted in a container on the unraid server. **How to read/write it
+from this machine: see `docs/WIKI.md`** (SSH file access, ownership rules, syntax
+gotchas). Update `rush2049:status` at milestones.
+
 ## Conveyor Matching Pipeline (Phase 4 — built 2026-07-02)
 
 The matching phase runs on **conveyor**, a distributed pipeline in `tools/conveyor/`
@@ -475,6 +482,8 @@ candidates extracted, 34 clone clusters found (physics_velocity_integrate_c/d/e 
 ## Active Technologies
 - Python 3.9+ (Pi 5 orchestrator and nodes; no syntax above 3.9 so stock distro Pythons work) + Python stdlib only for coordinator and node agent (`http.server`, `sqlite3`, `tarfile`, `hashlib`, `json`, `urllib`). On compute nodes: decomp-permuter (vendored in repo, used as library), IDO via ido-static-recomp (shipped in toolkit bundle), mips binutils `objdump` (shipped in toolkit bundle). `pycparser` (already a permuter dependency) for arcade function extraction. (001-matching-pipeline)
 - SQLite (WAL mode) on the Pi for all pipeline state — single-writer, queried by CLI/report tools. Content-addressed blob store (sha256-named files on disk, served over HTTP) for bundles, toolkits, and results. (001-matching-pipeline)
+- Python 3.9+ (Pi orchestrator and node agent; no syntax above 3.9) + Python stdlib only on Pi and nodes (`sqlite3`, `tarfile`, (002-corpus-candidates)
+- SQLite (WAL) at `~/.conveyor/conveyor.db`; content-addressed blob store (002-corpus-candidates)
 
 ## Recent Changes
 - 001-matching-pipeline: Added Python 3.9+ (Pi 5 orchestrator and nodes; no syntax above 3.9 so stock distro Pythons work) + Python stdlib only for coordinator and node agent (`http.server`, `sqlite3`, `tarfile`, `hashlib`, `json`, `urllib`). On compute nodes: decomp-permuter (vendored in repo, used as library), IDO via ido-static-recomp (shipped in toolkit bundle), mips binutils `objdump` (shipped in toolkit bundle). `pycparser` (already a permuter dependency) for arcade function extraction.
