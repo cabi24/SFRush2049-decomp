@@ -155,19 +155,13 @@ char *strchr(const char *str, s32 c) {
  */
 u32 strlen(const char *str) {
     const char *p;
-    u8 ch;
 
     p = str;
-    ch = *(u8 *)str;
-    if (ch == 0) {
-        goto done;
+    if (*(u8 *)p != 0) {
+        do {
+            p++;
+        } while (*(u8 *)p != 0);
     }
-    ch = *((u8 *)p + 1);
-    do {
-        p++;
-    } while ((ch = *((u8 *)p + 1)) != 0);
-
-done:
     return (u32)(p - str);
 }
 

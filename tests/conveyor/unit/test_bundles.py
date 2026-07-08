@@ -1,3 +1,4 @@
+import json
 import tarfile
 
 import pytest
@@ -47,12 +48,30 @@ def test_bundle_roundtrip(tmp_path):
         {"seed.c": b"int f(void){return 1;}\n", "target.o": b"\x7fELFfake"},
         tmp_path / "job.tar.gz",
     )
-    assert sha == manifestmod.manifest_sha(m)
     with tarfile.open(out) as tar:
         names = sorted(tar.getnames())
         assert names == ["inputs/seed.c", "inputs/target.o", "manifest.json"]
         extracted = tar.extractfile("inputs/seed.c").read()
         assert extracted == b"int f(void){return 1;}\n"
+        # The returned sha is the identity of the manifest as shipped in the
+        # bundle (with input_shas folded in) — what nodes recompute and the
+        # coordinator uses as the cache key.
+        shipped = json.loads(tar.extractfile("manifest.json").read())
+        assert sha == manifestmod.manifest_sha(shipped)
+        assert set(shipped["input_shas"]) == {"seed.c", "target.o"}
+
+
+def test_bundle_sha_tracks_input_content(tmp_path):
+    """Same manifest, different input bytes -> different manifest_sha.
+
+    Guards the result cache key: without this, editing a source file and
+    resubmitting would short-circuit to the stale cached result."""
+    m = _manifest()
+    _, sha_a = build_job_bundle(m, {"seed.c": b"int f(void){return 1;}\n"},
+                                tmp_path / "a.tar.gz")
+    _, sha_b = build_job_bundle(m, {"seed.c": b"int f(void){return 2;}\n"},
+                                tmp_path / "b.tar.gz")
+    assert sha_a != sha_b
 
 
 def test_bundle_bytes_deterministic(tmp_path):
