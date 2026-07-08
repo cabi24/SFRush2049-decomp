@@ -7,11 +7,91 @@
     "verified": "score0",
     "verified_at": "2026-07-08"
   },
+  "src/game/matrix.c:guMtxL2F": {
+    "body_sha256": "b2d6754cd4fc29ec0f37ef1b5dac944ada44da0438305b4b4a3f574343e381ff",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "guMtxL2F",
+    "toolkit_sha": "b613fc5dc3d01fa7c0c41a542b7617d76e8e41ec9d7611204dbb6f2a5ab6c045",
+    "verified": "score0",
+    "verified_at": "2026-07-08"
+  },
+  "src/libc/string.c:memcpy": {
+    "body_sha256": "3165d008e7c6211654e517cf1c0a25afc217cc749b9d99e88d850824615fab24",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "memcpy",
+    "toolkit_sha": "b613fc5dc3d01fa7c0c41a542b7617d76e8e41ec9d7611204dbb6f2a5ab6c045",
+    "verified": "score0",
+    "verified_at": "2026-07-08"
+  },
+  "src/libc/string.c:strchr": {
+    "body_sha256": "89b19708fce3e440f22662b880e1fede02a524c66dc7ea346d9610eaee97cdca",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "strchr",
+    "toolkit_sha": "b613fc5dc3d01fa7c0c41a542b7617d76e8e41ec9d7611204dbb6f2a5ab6c045",
+    "verified": "score0",
+    "verified_at": "2026-07-08"
+  },
   "src/libc/string.c:strlen": {
     "body_sha256": "2cd8adf42b1bc86e4571a6273bb791b2488b6d787f0dc4d8e02de56d5604d118",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "strlen",
     "toolkit_sha": "23185a790564a5b977b05aa5173d943f2561fba860f1ac664204db56706aa437",
+    "verified": "score0",
+    "verified_at": "2026-07-08"
+  },
+  "src/libultra/os_ai.c:__osAiDeviceBusy": {
+    "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osAiDeviceBusy",
+    "toolkit_sha": "b613fc5dc3d01fa7c0c41a542b7617d76e8e41ec9d7611204dbb6f2a5ab6c045",
+    "verified": "score0",
+    "verified_at": "2026-07-08"
+  },
+  "src/libultra/os_dp_counters.c:osDpGetCounters": {
+    "body_sha256": "956537774ce209281b73bae6ba07f8df610cfb61a10e3ca2fbafb4b44391e42a",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osDpGetCounters",
+    "toolkit_sha": "b613fc5dc3d01fa7c0c41a542b7617d76e8e41ec9d7611204dbb6f2a5ab6c045",
+    "verified": "score0",
+    "verified_at": "2026-07-08"
+  },
+  "src/libultra/os_phys.c:osPhysicalToVirtual": {
+    "body_sha256": "ee341b839f6672126d9519439d15a01bc7c5579afb447876f986de82319a2aa9",
+    "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "target_id": "osPhysicalToVirtual",
+    "toolkit_sha": "b613fc5dc3d01fa7c0c41a542b7617d76e8e41ec9d7611204dbb6f2a5ab6c045",
+    "verified": "score0",
+    "verified_at": "2026-07-08"
+  },
+  "src/libultra/os_sp.c:__osSpDeviceBusy": {
+    "body_sha256": "d1c342cc68a70f8d8a41d6835c9dcba92e19c7a5d4b9a7a2c2ade280e924e416",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osSpDeviceBusy",
+    "toolkit_sha": "b613fc5dc3d01fa7c0c41a542b7617d76e8e41ec9d7611204dbb6f2a5ab6c045",
+    "verified": "score0",
+    "verified_at": "2026-07-08"
+  },
+  "src/libultra/os_sp.c:__osSpSetPc": {
+    "body_sha256": "204f2e4008cc991b80af2877d55a60410791e04162c33c75f306d541dc91ae40",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osSpSetPc",
+    "toolkit_sha": "b613fc5dc3d01fa7c0c41a542b7617d76e8e41ec9d7611204dbb6f2a5ab6c045",
+    "verified": "score0",
+    "verified_at": "2026-07-08"
+  },
+  "src/libultra/os_sp.c:__osSpSetStatus": {
+    "body_sha256": "62f2761b22399a0143c9b49da9ac2d81c7c3995e68bac8bdf05b515e6063e8fe",
+    "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "target_id": "__osSpSetStatus",
+    "toolkit_sha": "b613fc5dc3d01fa7c0c41a542b7617d76e8e41ec9d7611204dbb6f2a5ab6c045",
+    "verified": "score0",
+    "verified_at": "2026-07-08"
+  },
+  "src/util/checksum.c:__osIdCheckSum": {
+    "body_sha256": "2fd547a89c9291bc116283bd4c0a15308d1484125ce5db783114234d67d1c18c",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osIdCheckSum",
+    "toolkit_sha": "b613fc5dc3d01fa7c0c41a542b7617d76e8e41ec9d7611204dbb6f2a5ab6c045",
     "verified": "score0",
     "verified_at": "2026-07-08"
   }

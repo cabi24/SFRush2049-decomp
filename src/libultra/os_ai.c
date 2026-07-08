@@ -24,9 +24,30 @@
 extern u8 __osAiDmaQueueHead;       /* Audio double buffer flag */
 extern u32 osClockRate;             /* System clock frequency (46.875 MHz) */
 
+/* AI status register bits */
+#define AI_STATUS_FIFO_FULL 0x80000000
+
 /* External functions */
-extern s32 __osAiDeviceBusy(void);           /* Check if AI DMA is full */
 extern u32 osVirtualToPhysical(void *addr);  /* Convert virtual to physical */
+
+/**
+ * Check whether the AI DMA FIFO is full
+ * (0x800099F0 - __osAiDeviceBusy)
+ *
+ * MATCHING: IDO -O2
+ * Source: ultralib src/io/ai.c:__osAiDeviceBusy @ e24c8367 (score 0 via conveyor)
+ *
+ * @return 1 if the AI FIFO is full (device busy), 0 otherwise
+ */
+s32 __osAiDeviceBusy(void) {
+    register s32 status = AI_STATUS_REG;
+
+    if (status & AI_STATUS_FIFO_FULL) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
 
 /**
  * Set audio DMA buffer

@@ -14,26 +14,20 @@
 #define DPC_TMEM_REG     (*(vu32 *)0xA410001C)
 
 /**
- * RDP counter structure
- */
-typedef struct {
-    u32 clock;      /* 0x00: Clock cycles */
-    u32 bufbusy;    /* 0x04: Buffer busy cycles */
-    u32 pipebusy;   /* 0x08: Pipeline busy cycles */
-    u32 tmem;       /* 0x0C: TMEM load cycles */
-} OSRdpCounters;
-
-/**
  * Get RDP performance counters
  * (0x800099B0 - osDpGetCounters)
  *
- * Reads all RDP performance counters into a structure.
+ * Reads the four RDP performance counters (clock, buffer busy, pipeline
+ * busy, TMEM load) into a 4-word array, in register order.
  *
- * @param counters Pointer to structure to receive counter values
+ * MATCHING: 0x800099B0 (asm/us/A5B0.s), IDO -O2
+ * Source: ultralib src/io/dpctr.c:osDpGetCounters @ e24c8367 (score 0 via conveyor)
+ *
+ * @param array Destination for the four counter values
  */
-void osDpGetCounters(OSRdpCounters *counters) {
-    counters->clock = DPC_CLOCK_REG;
-    counters->bufbusy = DPC_BUFBUSY_REG;
-    counters->pipebusy = DPC_PIPEBUSY_REG;
-    counters->tmem = DPC_TMEM_REG;
+void osDpGetCounters(u32 *array) {
+    *array++ = DPC_CLOCK_REG;
+    *array++ = DPC_BUFBUSY_REG;
+    *array++ = DPC_PIPEBUSY_REG;
+    *array++ = DPC_TMEM_REG;
 }

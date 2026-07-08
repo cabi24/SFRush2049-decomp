@@ -88,32 +88,32 @@ void guMtxF2L(f32 src[4][4], u16 *dst) {
  * (0x800092E0 - guMtxL2F / mtx_to_mtxf)
  *
  * Converts N64's 16.16 fixed-point Mtx format back to floats.
- * The scale factor is 1/65536.0 (0x37800000).
+ * Note the SDK argument order: destination floats first, source Mtx second.
  *
- * @param src Source N64 Mtx (64 bytes)
- * @param dst Destination float matrix (4x4 = 16 floats)
+ * MATCHING: 0x800092E0 (asm/us/9DE0.s), IDO -O2
+ * Source: ultralib src/gu/mtxutil.c:guMtxL2F @ e24c8367 (score 0 via conveyor)
+ *
+ * @param mf Destination float matrix (4x4 = 16 floats)
+ * @param m Source N64 Mtx (64 bytes: 32 integer, 32 fraction)
  */
-void guMtxL2F(u16 *src, f32 dst[4][4]) {
+void guMtxL2F(f32 mf[4][4], Mtx *m) {
     s32 i, j;
-    f32 invScale = 1.0f / 65536.0f;  /* 0x37800000 */
-    u16 *intSrc = src;
-    u16 *fracSrc = src + 16;
+    u32 e1, e2;
+    u32 *ai, *af;
+    s32 q1, q2;
+
+    ai = (u32 *)&(*m)[0][0];
+    af = (u32 *)&(*m)[2][0];
 
     for (i = 0; i < 4; i++) {
         for (j = 0; j < 2; j++) {
-            u32 intPacked = *(u32 *)intSrc;
-            u32 fracPacked = *(u32 *)fracSrc;
+            e1 = (*ai & 0xffff0000) | ((*af >> 16) & 0xffff);
+            e2 = ((*(ai++) << 16) & 0xffff0000) | (*(af++) & 0xffff);
+            q1 = *(s32 *)&e1;
+            q2 = *(s32 *)&e2;
 
-            /* Unpack first value */
-            s32 int0 = (s32)(intPacked & 0xFFFF0000) | (fracPacked >> 16);
-            /* Unpack second value */
-            s32 int1 = ((s32)(intPacked << 16)) | (fracPacked & 0xFFFF);
-
-            dst[i][j * 2 + 0] = (f32)int0 * invScale;
-            dst[i][j * 2 + 1] = (f32)int1 * invScale;
-
-            intSrc += 2;
-            fracSrc += 2;
+            mf[i][j * 2] = (f32)q1 * (1.0f / (f32)0x00010000);
+            mf[i][j * 2 + 1] = (f32)q2 * (1.0f / (f32)0x00010000);
         }
     }
 }

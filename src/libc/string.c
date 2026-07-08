@@ -116,32 +116,19 @@ done:
  * @param c Character to find
  * @return Pointer to character, or NULL if not found
  *
- * MATCHING: 0x80007C00 (asm/us/8800.s)
- * - Uses branch-likely pattern
- * - Checks char before null terminator check
+ * MATCHING: 0x80007C00 (asm/us/8800.s), IDO -O2
+ * Source: ultralib src/libc/string.c:strchr @ e24c8367 (score 0 via conveyor)
  */
-char *strchr(const char *str, s32 c) {
-    u8 ch;
-    u8 target;
+char *strchr(const char *s, int c) {
+    const char ch = c;
 
-    ch = *(u8 *)str;
-    target = (u8)c;
-
-    /* Check first character immediately */
-    if (target == ch) {
-        return (char *)str;
-    }
-
-    /* Loop until found or end of string */
-    while (ch != 0) {
-        ch = *((u8 *)str + 1);
-        str++;
-        if (target == ch) {
-            return (char *)str;
+    while (*s != ch) {
+        if (*s == 0) {
+            return NULL;
         }
+        s++;
     }
-
-    return NULL;
+    return (char *)s;
 }
 
 /**
@@ -167,35 +154,25 @@ u32 strlen(const char *str) {
 
 /**
  * Copy memory
- * @param dest Destination buffer
- * @param src Source buffer
- * @param num Number of bytes to copy
- * @return dest
+ * @param s1 Destination buffer
+ * @param s2 Source buffer
+ * @param n Number of bytes to copy
+ * @return s1
  *
- * MATCHING: 0x80007C68 (asm/us/8800.s)
- * - Simple byte-by-byte copy
- * - Uses post-increment pattern with sb offset
+ * MATCHING: 0x80007C68 (asm/us/8800.s), IDO -O2
+ * Source: ultralib src/libc/string.c:memcpy @ e24c8367 (score 0 via conveyor)
  */
-void *memcpy(void *dest, const void *src, u32 num) {
-    u8 *d;
-    const u8 *s;
-    u8 byte;
+void *memcpy(void *s1, const void *s2, u32 n) {
+    char *su1 = (char *)s1;
+    const char *su2 = (const char *)s2;
 
-    d = (u8 *)dest;
-    if (num == 0) {
-        goto done;
+    while (n > 0) {
+        *su1 = *su2;
+        su1++;
+        su2++;
+        n--;
     }
-    s = (const u8 *)src;
-    do {
-        byte = *s;
-        num--;
-        d++;
-        s++;
-        *(d - 1) = byte;
-    } while (num != 0);
-
-done:
-    return dest;
+    return (void *)s1;
 }
 
 /**

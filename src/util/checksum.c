@@ -59,72 +59,31 @@ done:
 }
 
 /**
- * Calculate Adler-like checksum (similar to Adler-32)
+ * Controller Pak ID sector checksum
  * (0x8000EB74 - __osIdCheckSum)
  *
- * Computes a rolling checksum using sum and complement sum.
- * Processes 32 bytes (0x1C + initial 4 bytes) of header data.
+ * Sums the ID block's halfwords into a checksum and inverse checksum.
+ * The loop bound is sizeof(__OSPackId) - sizeof(u32) = 28 bytes (the ID
+ * block minus its trailing checksum pair).
  *
- * @param header Pointer to header data (at least 32 bytes)
- * @param out_sum Output: sum of values
- * @param out_comp Output: sum of complements
+ * MATCHING: 0x8000EB74 (asm/us/A810.s), IDO -O2
+ * Source: ultralib src/io/contpfs.c:__osIdCheckSum @ e24c8367 (score 0 via conveyor)
+ *
+ * @param ptr Pointer to the ID block
+ * @param csum Output: sum of halfwords
+ * @param icsum Output: sum of complemented halfwords
  * @return Always 0
  */
-s32 __osIdCheckSum(u16 *header, u16 *out_sum, u16 *out_comp) {
-    u16 sum;
-    u16 comp;
-    u16 val;
-    u16 *ptr;
-    s32 i;
+s32 __osIdCheckSum(u16 *ptr, u16 *csum, u16 *icsum) {
+    u16 data = 0;
+    u32 j;
 
-    *out_sum = 0;
-    *out_comp = 0;
+    *csum = *icsum = 0;
 
-    /* Process first two 16-bit values from header */
-    val = header[0];
-    sum = val;
-    *out_sum = sum;
-    comp = *out_comp + ~val;
-    *out_comp = comp;
-
-    val = header[1];
-    sum = *out_sum + val;
-    *out_sum = sum;
-    comp = *out_comp + ~val;
-    *out_comp = comp;
-
-    /* Process remaining 28 bytes (7 iterations of 4 halfwords each) */
-    ptr = header + 2;
-    for (i = 4; i != 0x1C; i += 8) {
-        /* First halfword */
-        val = ptr[0];
-        sum = *out_sum + val;
-        *out_sum = sum;
-        comp = *out_comp + ~val;
-        *out_comp = comp;
-
-        /* Second halfword */
-        val = ptr[1];
-        sum = *out_sum + val;
-        *out_sum = sum;
-        comp = *out_comp + ~val;
-        *out_comp = comp;
-
-        /* Third halfword */
-        val = ptr[2];
-        sum = *out_sum + val;
-        *out_sum = sum;
-        comp = *out_comp + ~val;
-        *out_comp = comp;
-
-        /* Fourth halfword */
-        val = ptr[3];
-        sum = *out_sum + val;
-        *out_sum = sum;
-        comp = *out_comp + ~val;
-        *out_comp = comp;
-
-        ptr += 4;
+    for (j = 0; j < 28; j += 2) {
+        data = *(u16 *)((u32)ptr + j);
+        *csum += data;
+        *icsum += ~data;
     }
 
     return 0;
