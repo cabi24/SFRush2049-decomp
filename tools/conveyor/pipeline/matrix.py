@@ -117,7 +117,10 @@ def cmd_submit(args):
                     if sha not in target_bytes_cache:
                         target_bytes_cache[sha] = store.get(sha).read_bytes()
                     files[o_name] = target_bytes_cache[sha]
-                cell_targets.append({"target_id": t["target_id"], "file": o_name})
+                # Echo the exact target object identity for attribution (003):
+                # it rides the manifest → result → matrix_entry.target_o_sha.
+                cell_targets.append({"target_id": t["target_id"], "file": o_name,
+                                     "target_o_sha": t["target_o_sha"]})
                 cells_planned += 1
             cells.append({
                 "candidate_id": cand_id, "source": source_name,
@@ -231,16 +234,17 @@ def cmd_ingest(args):
                     compile_fail.setdefault(key, cell["compile"])
                     continue
                 compile_fail[key] = "ok"
-                # score_reloc_blind is present only for 002+ toolkit results;
-                # old result blobs lack it and ingest as NULL (data-model.md).
+                # score_reloc_blind (002) and target_o_sha (003) are present only
+                # for newer toolkit results; old result blobs lack them and
+                # ingest as NULL (data-model.md). Old blobs are never rejected.
                 conn.execute(
                     "INSERT OR IGNORE INTO matrix_entry"
                     " (target_id, candidate_id, flagset, toolkit_sha, score,"
-                    " score_reloc_blind)"
-                    " VALUES (?, ?, ?, ?, ?, ?)",
+                    " score_reloc_blind, target_o_sha)"
+                    " VALUES (?, ?, ?, ?, ?, ?, ?)",
                     (cell["target_id"], cell["candidate_id"], cell["flagset"],
                      row["toolkit_sha"], cell["score"],
-                     cell.get("score_reloc_blind")),
+                     cell.get("score_reloc_blind"), cell.get("target_o_sha")),
                 )
                 new_cells += 1
     with dbmod.tx(conn):

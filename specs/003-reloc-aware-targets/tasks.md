@@ -22,6 +22,36 @@ The toolkit rebuild happens once, inside the acceptance phase.
 - The live DB rules from 002 hold: additive idempotent migrations only; rehearse
   against a copy.
 
+## Implementation status (2026-07-08, Opus)
+
+**T001–T014 done and green** (106 local tests pass incl. the two new files;
+extraction deterministic, reloc_aware=178 ≥ 150, gate/purge/attribution all
+verified live). **T015 STOPPED, T016 REGRESSION** — see below; **T017/T018 held**
+pending a reviewer decision because the live acceptance surfaced two spec-level
+issues, both rooted in the same cause (the target asm's symbolization does not
+align with how corpus candidates reference the same addresses):
+
+- **T015 (SC-002/003): the 18 reloc_only_diff targets do NOT upgrade.**
+  osCreateMesgQueue stays true=20/reloc_blind=0. Cause proven deterministically:
+  reloc **symbol-name** mismatch (target `D_8002C3D0` / symbol_addrs
+  `__osEmptyMesgQueue` / candidate `__osThreadTail` — three names, one address).
+  The permuter is correct; name-matched → true 0. Symbol-name reconciliation is
+  OUT OF SCOPE per spec Assumptions. Stopped per research D6 / HANDOFF rule 5 (no
+  scorer patch, no bar lowering, no scale-out).
+- **T016 (SC-004): 4 of 12 locks REGRESS** (osDpGetCounters=40, __osSpSetPc=20,
+  __osSpDeviceBusy=10, __osSpSetStatus=10). These reference hardware registers;
+  splat symbolized the MMIO addresses so they went reloc_aware, but IDO emits
+  literal immediates for `#define`'d KSEG1 addresses → reloc-aware target scores
+  WORSE than the raw-word target that previously matched. The gate cannot catch
+  this (ROM-faithful ≠ matches-a-literal-candidate). Feature bug per HANDOFF;
+  locks NOT re-pinned.
+
+Deviations recorded in-line where they land: `-dz` in the gate (objdump collapses
+zero runs to `…`, undercounting nops); trailing-nop strip in the gate (assembler
+16-byte `.text` padding vs splat's endlabel); deterministic assemble_error reason
+(strip temp path); `load_work_inventory` dedup by target_id (12 duplicate
+game-code names ping-ponged rows, broke SC-007).
+
 ## Phase 1: Setup
 
 - [ ] T001 Add idempotent migrations to `tools/conveyor/coordinator/db.py`:

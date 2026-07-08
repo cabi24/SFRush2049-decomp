@@ -129,6 +129,50 @@ RestartSec=15
 Farm daemon (Pi), `conveyor-farm.service`: same pattern with
 `ExecStart=/usr/bin/python3 -m tools.conveyor.pipeline.farm run`.
 
+## Reloc-aware targets, the gate, and supersession (003)
+
+Static targets are assembled from their splat asm region (`asm/us/*.s`, matched
+by address) so the target object carries real `%hi/%lo/jal` relocations instead
+of raw ROM words with absolute addresses baked in. `n64_target.tier` records the
+outcome:
+
+- `reloc_aware` — assembled from the region and passed the round-trip gate.
+- `raw_word` — dynamic game-code targets, and any static target that fell back;
+  `gate_reason` says why: `no_asm_region`, `assemble_error: <first as error>`,
+  `word_mismatch@<i>`, `length_mismatch <n> != <m>`.
+
+The **round-trip gate** (`targets.gate_target`) is the safety property: the
+reassembled object's instruction words, masked at its own relocation sites (the
+002 mask helpers, reused verbatim), must equal the ROM words masked identically
+(trailing nop padding ignored; objdump run with `-dz`). A failing target keeps
+its raw-word object — the fallback is a *success* outcome, never softened.
+
+**Supersession**: when a target's object bytes change, `populate()` deletes that
+target's `matrix_entry` rows in the same transaction and prints `superseded: <n>
+targets, <m> evidence rows purged` — stale evidence is scored against an object
+that no longer exists. Result blobs and `work_unit` rows are never touched
+(audit trail; superseded blobs GC out later). A `superseded` count after a
+re-extraction that changed target objects is normal; a second identical
+extraction must print `superseded: 0`. Every scored cell carries
+`matrix_entry.target_o_sha` (submit → node echo → ingest), and `corpus report`
+prints `attribution: <n> cells checked, <k> mismatched (expect 0)`.
+
+**Known gaps surfaced by the first live run (2026-07-08) — not yet resolved:**
+
+- Reloc-aware targets score 0 against a candidate only when the reloc **symbol
+  names match** (or the candidate side is section-relative). Splat's asm names
+  (`D_8002C3D0`) diverge from both `symbol_addrs.us.txt` and the corpus
+  candidates' source names (`__osThreadTail`), so the 18 `reloc_only_diff`
+  targets do not reach true 0 yet — symbol-name reconciliation is a separate,
+  out-of-scope task. See `specs/003-reloc-aware-targets/quickstart.md §3`.
+- Functions that reference hardware registers (MMIO / KSEG1 `#define`d
+  addresses) regress: splat symbolizes the address so the target goes
+  reloc_aware, but IDO emits a literal immediate, so the reloc-aware target
+  scores *worse* than the raw-word one. Four locked functions (`osDpGetCounters`,
+  `__osSpSetPc`, `__osSpDeviceBusy`, `__osSpSetStatus`) fail `lock verify` under
+  003 for this reason. A no-regression guard (keep MMIO-absolute references
+  raw-word) is the likely fix. See quickstart §4.
+
 ## Known V1 limitations
 
 - `verify_promote` lands matched source in `work/<...>/<fn>/matched.c` and

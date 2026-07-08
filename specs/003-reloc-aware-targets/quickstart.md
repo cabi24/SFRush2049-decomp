@@ -24,7 +24,12 @@ Per 002 quickstart §1 on watchman (rsync → build_toolkit → publish-toolkit)
 python3 -m tools.conveyor.cli smoke     # SMOKE PASS, score 0 (SC-005)
 ```
 
-> **MEASURED**: toolkit sha ________, smoke ________
+> **MEASURED (2026-07-08)**: toolkit sha
+> `1e21f523122ef9217aa757221c63a3cd1845965b841fcfe26ed53c51ecc79b01`
+> (first rebuild `10cc7e73…` shipped ARM IDO binaries — an rsync from the Pi had
+> clobbered watchman's x86_64 `ido-static-recomp/build/out`; restored from the
+> cached `b613fc5d` toolkit's `ido/` and rebuilt). smoke: **SMOKE PASS**,
+> `src/libc/string.c:strlen @ -O2 compile=ok score=0` (SC-005 ✓).
 
 ## 2. Re-extraction with the gate
 
@@ -39,7 +44,19 @@ Expected output (new lines from this feature):
 Determinism check (SC-007): run extract again — `superseded: 0 targets, 0 rows`,
 tier counts identical.
 
-> **MEASURED**: tiers ________, fallbacks ________, superseded ________, rerun ________
+> **MEASURED (2026-07-08)**: tiers `reloc_aware=178 raw_word_static=68
+> raw_word_dynamic=885` (SC-001 ✓, 178 ≥ 150). fallbacks (static, 68): `assemble_error=39
+> no_asm_region=18 length_mismatch=10 word_mismatch=1` — the 39 assemble_errors are
+> FP-register / 64-bit-FP libm+gu functions needing splat's `macro.inc` env the
+> minimal preamble omits; the 10 length_mismatches are libgcc 64-bit di3 helpers
+> (`-mabi=32` expands `sd`/`ld` to two ops); all coherent, safe raw-word fallbacks,
+> none acceptance targets. First real extraction superseded `202 targets, 63260
+> evidence rows purged` (22% — under the 40% guard). rerun: `superseded: 0 targets,
+> 0 rows` (SC-007 ✓) — after fixing a latent inventory bug (12 game-code functions
+> share a target_id at different addresses; `load_work_inventory` deduped only by
+> address, so both entries ping-ponged the same row every run; now also deduped by
+> target_id, lowest address wins). osCreateMesgQueue object: `reloc_aware`, 2×HI16
+> + 2×LO16 vs `D_8002C3D0` ✓.
 
 Spot-check one target's object carries relocations:
 
@@ -73,7 +90,25 @@ Expected (SC-002, SC-003):
 - Attribution line: `attribution: <n> cells checked, 0 mismatched` (SC-006).
 - Immediate `corpus submit` again → 100% cache (SC-007 second half).
 
-> **MEASURED**: true-0 ________, flagged 19 → ________, attribution ________
+> **MEASURED (2026-07-08) — SC-002/003 NOT MET; STOPPED per research D6 / HANDOFF
+> rule 5.** osCreateMesgQueue is still **true=20 reloc_blind=0** against the
+> reloc-aware target (was true=20 in 002 — unchanged). Debugged the single pairing:
+> the residual 20 = 4 reloc sites × PENALTY_REGALLOC(5). Reproduced deterministically
+> (vendored Scorer, no IDO): current target `%hi(D_8002C3D0)` vs candidate
+> `%hi(__osThreadTail)` → 20; *name-matched* target vs same candidate → **0**. So the
+> sole cause is a reloc **symbol-name** mismatch: splat's asm names 0x8002C3D0
+> `D_8002C3D0`, `symbol_addrs.us.txt` names it `__osEmptyMesgQueue`, and ultralib's
+> source references `__osThreadTail` — three different names for one address. The
+> permuter only forgives a differing reloc field when the candidate side is
+> section-relative (`.` in field); named-vs-named differences count. The reloc-aware
+> target machinery is correct (relocations present, gate passes, reloc_blind=0); the
+> gap is symbol-name reconciliation between target asm and corpus candidates, which
+> the spec Assumptions place OUT OF SCOPE. Flag summary after re-score: `8 true-0
+> (all leaf: strlen memcpy strchr guMtxIdentF guMtxL2F osPhysicalToVirtual
+> __osAiDeviceBusy __osIdCheckSum), 18 reloc_only_diff (19→18; none upgraded), 46
+> neither`. attribution: `218967 cells checked, 0 mismatched (expect 0), legacy=218821`
+> (SC-006 ✓). Immediate resubmit → 100% cache. Did NOT patch the scorer, lower the
+> bar, or proceed to scale.
 
 ## 4. Lock regression gate (SC-004)
 
@@ -84,7 +119,20 @@ python3 -m tools.conveyor.pipeline.lock check
 
 Both green — the 12 locked functions score 0 against their reloc-aware targets.
 
-> **MEASURED**: ________
+> **MEASURED (2026-07-08) — SC-004 REGRESSION (4 of 12 fail).** `lock verify`:
+> pass@0 → guMtxIdentF, guMtxL2F (raw_word), memcpy, strchr, strlen,
+> __osAiDeviceBusy, osPhysicalToVirtual, __osIdCheckSum (leaf, no relocs);
+> **FAIL → osDpGetCounters=40, __osSpDeviceBusy=10, __osSpSetPc=20,
+> __osSpSetStatus=10**. Root cause: these hardware-register functions became
+> reloc_aware because splat symbolized their MMIO addresses (osDpGetCounters=8
+> relocs, __osSpSetPc=4, the two DeviceBusy/SetStatus=2), but IDO emits *literal*
+> immediates for those `#define`'d KSEG1 addresses (no relocation). The raw-word
+> target baked the same literal → matched at 0; the reloc-aware target renders
+> `%hi(SYM)` vs the candidate's `lui 0xa4..` literal → 4/2/1 reloc-site penalties.
+> The round-trip gate cannot catch this — it verifies ROM-faithfulness (masked
+> words equal), which is true, but ROM-faithful-reloc ≠ matches-a-literal-candidate.
+> Per HANDOFF ("any lock failure is a feature bug; do not re-pin") the locks were
+> NOT re-pinned. `lock check` (source-hash, no pool) stays green.
 
 ## 5. Suite + wrap
 

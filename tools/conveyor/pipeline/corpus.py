@@ -298,7 +298,8 @@ def cmd_submit(args):
                 cells.append({
                     "candidate_id": c["candidate_id"], "source": source_name,
                     "flagset": fs,
-                    "targets": [{"target_id": c["name"], "file": o_name}],
+                    "targets": [{"target_id": c["name"], "file": o_name,
+                                 "target_o_sha": target["target_o_sha"]}],
                 })
                 cells_planned += 1
             n_cands += 1
@@ -550,6 +551,21 @@ def cmd_report(args):
     neither = len(best) - true0 - reloc
     print(f"\nflag summary: {true0} true-0 (promotion path), "
           f"{reloc} reloc_only_diff, {neither} neither")
+
+    # SC-006 attribution invariant: every surviving matrix_entry row must have
+    # been scored against the target's current object. NULLs are pre-003 legacy
+    # cells (excluded from the mismatch count, reported separately). Nonzero
+    # mismatched is a loud warning, not a crash.
+    arow = conn.execute(
+        "SELECT COUNT(*) AS n,"
+        " SUM(CASE WHEN m.target_o_sha IS NULL THEN 1 ELSE 0 END) AS legacy,"
+        " SUM(CASE WHEN m.target_o_sha IS NOT NULL"
+        "     AND m.target_o_sha != t.target_o_sha THEN 1 ELSE 0 END) AS mismatched"
+        " FROM matrix_entry m JOIN n64_target t USING (target_id)"
+    ).fetchone()
+    print(f"attribution: {arow['n']} cells checked, "
+          f"{arow['mismatched'] or 0} mismatched (expect 0), "
+          f"legacy={arow['legacy'] or 0}")
 
 
 def _add_common(p):

@@ -7,16 +7,30 @@ Sources:
                               752-function "extracted" population
 - baserom.us.z64            — static population; ROM offset = vaddr - 0x7FFFF400
 
-Target .o files are built by assembling the raw instruction words (`.word`)
-so no disassembler round-trip can distort them; they land in the coordinator
-blob store and n64_target.target_o_sha points at them.
+Target .o files come in two tiers (003, specs/003-reloc-aware-targets):
+
+- `reloc_aware`: static targets assembled from their splat asm region, which
+  carries `%hi/%lo/jal` symbol operands, so the object carries real
+  relocations. Gated by a per-target round-trip check (masked-word equality
+  against the ROM) before it may replace the raw-word object.
+- `raw_word`: everything else — dynamic game-code targets, and any static
+  target whose region is missing, won't assemble, or fails the gate. Built by
+  assembling the raw instruction words (`.word`) so no disassembler round-trip
+  can distort them (V1 conservatism, preserved as the fallback).
+
+`n64_target.target_o_sha` points at the chosen object; `tier`/`gate_reason`
+record which path it took. When the object bytes change, the target's derived
+`matrix_entry` evidence is superseded (purged) in the same transaction.
 """
+import dataclasses
 import hashlib
+import os
 import re
 import struct
 import subprocess
 import sys
 import tempfile
+from collections import Counter
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[3]
@@ -24,8 +38,17 @@ GAME_CODE_BASE = 0x80086A50
 GAME_CODE_BIN = REPO / "build" / "game_code.bin"
 BASEROM = REPO / "baserom.us.z64"
 STATIC_ROM_DELTA = 0x7FFFF400  # vaddr - delta = ROM offset (verified: strlen)
+ASM_DIR = REPO / "asm" / "us"
 
 _SIZE_RE = re.compile(r"\((\d+)\s*bytes\)")
+
+# A splat instruction line: `/* <off> <vaddr> <word> */  <mnemonic ...>`.
+# We key regions by <vaddr> and gate against <word>.
+_REGION_LINE_RE = re.compile(
+    r"/\*\s*[0-9A-Fa-f]+\s+([0-9A-Fa-f]{8})\s+([0-9A-Fa-f]{8})\s*\*/"
+)
+_GLABEL_RE = re.compile(r"^\s*glabel\s+(\S+)")
+_ENDLABEL_RE = re.compile(r"^\s*endlabel\s+(\S+)")
 
 
 def load_work_inventory(work_dir=None):
@@ -65,7 +88,15 @@ def load_work_inventory(work_dir=None):
             e["size"] = gap if gap is not None else 256
         elif gap is not None:
             e["size"] = min(e["size"], gap)
-    return ordered
+    # target_id (name) is the n64_target primary key, but a handful of game-code
+    # functions share a heuristic name at different addresses. Collapse to one
+    # entry per name (lowest address wins, deterministically) so populate is
+    # idempotent — otherwise two entries upsert the same row and ping-pong its
+    # object every run, faking a supersession churn (breaks FR-010/SC-007).
+    by_name = {}
+    for e in ordered:
+        by_name.setdefault(e["name"], e)
+    return list(by_name.values())
 
 
 _image_cache = {}
@@ -104,15 +135,178 @@ def assemble_words(words, out_o, func_name="func"):
     )
 
 
+# --- reloc-aware assembly from splat asm regions (003) -----------------------
+
+
+@dataclasses.dataclass
+class Region:
+    """One `glabel`..`endlabel` function region from a splat `.s` file."""
+    name: str          # the asm glabel (func_XXXXXXXX), not the target_id
+    vaddr: int         # vaddr of the first instruction (the region key)
+    lines: list        # assembler-ready text (comments stripped from insns)
+    words: list        # ROM instruction words, 8-hex strings, in order
+
+
+def index_asm_regions(asm_dir=None):
+    """{first_instruction_vaddr: Region} over every `asm/us/*.s`.
+
+    A region runs from `glabel <name>` to `endlabel <name>`. Instruction lines
+    (`/* off vaddr word */  mnemonic`) contribute their word to the gate and,
+    comment-stripped, their mnemonic to the assembler input; interior label
+    lines (`.L…:`) and any blanks/directives are kept verbatim — the assembler
+    tolerates them and the gate judges the result.
+    """
+    asm_dir = Path(asm_dir) if asm_dir else ASM_DIR
+    regions = {}
+    for path in sorted(asm_dir.glob("*.s")):
+        cur = None
+        for line in path.read_text(errors="replace").splitlines():
+            g = _GLABEL_RE.match(line)
+            if g:
+                cur = {"name": g.group(1), "vaddr": None, "lines": [], "words": []}
+                continue
+            e = _ENDLABEL_RE.match(line)
+            if e:
+                if cur is not None and cur["vaddr"] is not None:
+                    regions[cur["vaddr"]] = Region(
+                        cur["name"], cur["vaddr"], cur["lines"], cur["words"])
+                cur = None
+                continue
+            if cur is None:
+                continue
+            m = _REGION_LINE_RE.search(line)
+            if m:
+                if cur["vaddr"] is None:
+                    cur["vaddr"] = int(m.group(1), 16)
+                cur["words"].append(m.group(2).upper())
+                # Everything after the closing `*/` is the mnemonic; the
+                # comment (the only `*/` on the line in MIPS asm) is dropped.
+                cur["lines"].append(line.split("*/", 1)[1].rstrip())
+            else:
+                cur["lines"].append(line.rstrip())
+    return regions
+
+
+class AssembleError(Exception):
+    """Assembler rejected a region; carries the first stderr line as the
+    gate_reason detail."""
+
+
+def assemble_region(region, target_id, out_o):
+    """Assemble a region into a relocatable object named `target_id`. Raises
+    AssembleError (first stderr line preserved) on assembler failure."""
+    asm = [
+        ".set noreorder",
+        ".set noat",
+        ".section .text",
+        f".globl {target_id}",
+        f"{target_id}:",
+    ]
+    asm += region.lines
+    with tempfile.NamedTemporaryFile("w", suffix=".s", delete=False) as f:
+        f.write("\n".join(asm) + "\n")
+        src = f.name
+    try:
+        proc = subprocess.run(
+            ["mips-linux-gnu-as", "-march=vr4300", "-mabi=32", "-o", str(out_o), src],
+            capture_output=True, text=True,
+        )
+    finally:
+        os.unlink(src)
+    if proc.returncode != 0:
+        # Preserve the first real error, stripped of the temp-file path so the
+        # gate_reason is deterministic across runs (FR-010). GNU as format:
+        # `<path>:<line>: Error: <msg>` — keep from `<line>:` onward.
+        detail = "assembler failed"
+        for line in (proc.stderr or "").splitlines():
+            if ": Error:" in line:
+                detail = line.split(".s:", 1)[-1].strip() if ".s:" in line \
+                    else line.strip()
+                break
+        raise AssembleError(detail)
+
+
+def _strip_trailing_nops(words):
+    """Drop trailing 0x00000000 (nop) padding words. The assembler pads `.text`
+    to a 16-byte boundary while splat's `endlabel` excludes the ROM's own
+    alignment nops, so a byte-identical region can differ only in trailing
+    padding — bookkeeping the linker owns, not function content (research D3)."""
+    n = len(words)
+    while n > 0 and words[n - 1] == 0:
+        n -= 1
+    return words[:n]
+
+
+def _gate_decide(rom_words, new_words, sites):
+    """Pure gate decision over two int-word lists + the new object's reloc
+    sites: (ok, reason). Trailing nop padding on either side is ignored, then
+    lengths must match and the masked words must be equal. Reuses
+    jobs/scoring's mask helpers — one mask logic in the codebase (research D3).
+    Factored out so tests can drive it without an assembler."""
+    from ..jobs import scoring
+
+    rom = _strip_trailing_nops(list(rom_words))
+    new = _strip_trailing_nops(list(new_words))
+    if len(new) != len(rom):
+        return False, f"length_mismatch {len(new)} != {len(rom)}"
+    if scoring._masked_diff(rom, new, sites) != 0:
+        masked_t, masked_c = list(rom), list(new)
+        for i, mask in sites:
+            if i < len(masked_c):
+                masked_c[i] &= mask
+            if i < len(masked_t):
+                masked_t[i] &= mask
+        idx = next((i for i in range(len(masked_t)) if masked_t[i] != masked_c[i]), 0)
+        return False, f"word_mismatch@{idx}"
+    return True, None
+
+
+def gate_target(rom_words, new_o):
+    """Round-trip gate: (ok, reason). The reassembled object's instruction
+    words, masked at its own relocation sites, must equal the original ROM
+    words masked identically. `rom_words` are 8-hex strings (region ROM words)."""
+    from ..jobs import scoring
+
+    binary = scoring._objdump_path()
+    # -dz (disassemble-zeroes): without it objdump collapses runs of zero words
+    # to `...`, which _parse_text_words skips — undercounting interior/trailing
+    # nops against the raw ROM words and faking a length_mismatch. The permuter
+    # Scorer disassembles with -z for the same reason.
+    new_words = scoring._parse_text_words(scoring._objdump(binary, "-dz", str(new_o)))
+    sites = scoring._parse_relocs(scoring._objdump(binary, "-r", str(new_o)))
+    return _gate_decide([int(w, 16) for w in rom_words], new_words, sites)
+
+
+def _fallback_category(reason):
+    """Coarse bucket of a gate_reason for the coverage histogram."""
+    if reason is None:
+        return None
+    for prefix in ("assemble_error", "word_mismatch", "length_mismatch"):
+        if reason.startswith(prefix):
+            return prefix
+    return reason  # no_asm_region
+
+
 def populate(conn, store, work_dir=None, limit=None):
-    """Fill n64_target rows and build target .o blobs. Returns summary dict."""
+    """Fill n64_target rows and build target .o blobs. Static targets attempt
+    reloc-aware assembly (region → assemble → gate) with a raw-word fallback;
+    dynamic targets stay raw-word. When a target's object bytes change, its
+    matrix_entry evidence is superseded in the same transaction. Returns a
+    summary dict and prints the FR-009 coverage report."""
     from ..coordinator import db as dbmod
 
     inventory = load_work_inventory(work_dir)
     if limit:
         inventory = inventory[:limit]
+    regions = index_asm_regions()
+
     built, skipped = 0, 0
+    tiers = {"reloc_aware": 0, "raw_word_static": 0, "raw_word_dynamic": 0}
+    fallbacks = Counter()
+    superseded_targets, purged_rows = 0, 0
+
     with tempfile.TemporaryDirectory() as tmp:
+        tmpdir = Path(tmp)
         for e in inventory:
             population = (
                 "extracted"
@@ -123,24 +317,83 @@ def populate(conn, store, work_dir=None, limit=None):
                 words = function_words(e["address"], e["size"])
                 if not words:
                     raise ValueError("empty function body")
-                out_o = Path(tmp) / "t.o"
-                assemble_words(words, out_o, e["name"])
-                o_sha = store.put_file(out_o)
-                asm_sha = hashlib.sha256("\n".join(words).encode()).hexdigest()
             except (ValueError, subprocess.CalledProcessError) as exc:
                 print(f"  skip {e['name']}: {exc}", file=sys.stderr)
                 skipped += 1
                 continue
+
+            tier = "raw_word"
+            gate_reason = None
+            o_path = None
+            # Static targets try the reloc-aware path (contract §populate 1-4).
+            if population == "static":
+                region = regions.get(e["address"])
+                if region is None:
+                    gate_reason = "no_asm_region"
+                else:
+                    reloc_o = tmpdir / "reloc.o"
+                    try:
+                        assemble_region(region, e["name"], reloc_o)
+                    except AssembleError as exc:
+                        gate_reason = f"assemble_error: {exc}"
+                    else:
+                        ok, reason = gate_target(region.words, reloc_o)
+                        if ok:
+                            tier, gate_reason, o_path = "reloc_aware", None, reloc_o
+                        else:
+                            gate_reason = reason
+
+            if o_path is None:
+                # Raw-word object: gate fallback (static) or dynamic population.
+                raw_o = tmpdir / "raw.o"
+                try:
+                    assemble_words(words, raw_o, e["name"])
+                except subprocess.CalledProcessError as exc:
+                    print(f"  skip {e['name']}: {exc}", file=sys.stderr)
+                    skipped += 1
+                    continue
+                o_path = raw_o
+                if population != "static":
+                    gate_reason = None  # dynamic targets never attempt the gate
+
+            o_sha = store.put_file(o_path)
+            asm_sha = hashlib.sha256("\n".join(words).encode()).hexdigest()
+
+            if tier == "reloc_aware":
+                tiers["reloc_aware"] += 1
+            elif population == "static":
+                tiers["raw_word_static"] += 1
+                fallbacks[_fallback_category(gate_reason)] += 1
+            else:
+                tiers["raw_word_dynamic"] += 1
+
             with dbmod.tx(conn):
+                prev = conn.execute(
+                    "SELECT target_o_sha FROM n64_target WHERE target_id=?",
+                    (e["name"],),
+                ).fetchone()
+                prev_sha = prev["target_o_sha"] if prev else None
+                if prev_sha != o_sha:
+                    # Supersession: the comparison object changed, so every
+                    # matrix_entry scored against the old one is stale. Purge in
+                    # the same tx as the row update (evidence-supersession.md).
+                    # NULL->sha first builds run this path too (0 rows).
+                    cur = conn.execute(
+                        "DELETE FROM matrix_entry WHERE target_id=?", (e["name"],)
+                    )
+                    superseded_targets += 1
+                    purged_rows += max(cur.rowcount, 0)
                 conn.execute(
                     "INSERT INTO n64_target (target_id, address, population,"
-                    " insn_count, target_asm_sha, target_o_sha)"
-                    " VALUES (?, ?, ?, ?, ?, ?)"
+                    " insn_count, target_asm_sha, target_o_sha, tier, gate_reason)"
+                    " VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
                     " ON CONFLICT(target_id) DO UPDATE SET address=excluded.address,"
                     " population=excluded.population, insn_count=excluded.insn_count,"
                     " target_asm_sha=excluded.target_asm_sha,"
-                    " target_o_sha=excluded.target_o_sha",
-                    (e["name"], e["address"], population, len(words), asm_sha, o_sha),
+                    " target_o_sha=excluded.target_o_sha, tier=excluded.tier,"
+                    " gate_reason=excluded.gate_reason",
+                    (e["name"], e["address"], population, len(words), asm_sha,
+                     o_sha, tier, gate_reason),
                 )
                 conn.execute(
                     "INSERT INTO function_status (target_id, status, updated_at)"
@@ -154,7 +407,22 @@ def populate(conn, store, work_dir=None, limit=None):
                     (o_sha, store.size(o_sha) or 0),
                 )
             built += 1
-    return {"built": built, "skipped": skipped, "total": len(inventory)}
+
+    # FR-009 coverage report.
+    print(f"target tiers: reloc_aware={tiers['reloc_aware']} "
+          f"raw_word_static={tiers['raw_word_static']} "
+          f"raw_word_dynamic={tiers['raw_word_dynamic']}")
+    top = "  ".join(f"{cat}={n}" for cat, n in fallbacks.most_common())
+    print(f"gate fallbacks (static): {tiers['raw_word_static']}"
+          + (f" — top reasons: {top}" if top else ""))
+    print(f"superseded: {superseded_targets} targets, "
+          f"{purged_rows} evidence rows purged")
+
+    return {
+        "built": built, "skipped": skipped, "total": len(inventory),
+        "tiers": tiers, "fallbacks": dict(fallbacks),
+        "superseded_targets": superseded_targets, "purged_rows": purged_rows,
+    }
 
 
 def main():

@@ -79,6 +79,13 @@ def run(job_dir, manifest, progress):
                 inputs / cell["source"], cell["flagset"], out_o, include_dirs
             )
             for target in cell["targets"]:
+                # Echo the target object identity for attribution (003) when the
+                # manifest carries it; absent for pre-003 manifests replayed
+                # from cache, ingested as NULL. Present on ok and fail alike.
+                attribution = (
+                    {"target_o_sha": target["target_o_sha"]}
+                    if "target_o_sha" in target else {}
+                )
                 if not ok:
                     cells_out.append(
                         {
@@ -87,6 +94,7 @@ def run(job_dir, manifest, progress):
                             "target_id": target["target_id"],
                             "score": None,
                             "compile": f"fail:{message}",
+                            **attribution,
                         }
                     )
                     continue
@@ -101,6 +109,7 @@ def run(job_dir, manifest, progress):
                             inputs / target["file"], out_o
                         ),
                         "compile": "ok",
+                        **attribution,
                     }
                 )
             progress.update(stage="compile_score", cells_done=i + 1, cells_total=total)

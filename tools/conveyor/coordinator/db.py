@@ -162,6 +162,14 @@ _COLUMN_MIGRATIONS = (
      "ALTER TABLE arcade_candidate ADD COLUMN provenance TEXT NOT NULL DEFAULT '{}'"),
     ("matrix_entry", "score_reloc_blind",
      "ALTER TABLE matrix_entry ADD COLUMN score_reloc_blind INTEGER"),
+    # 003 (reloc-aware targets): per-target assembly tier + gate outcome, and
+    # per-cell attribution to the exact target object it was scored against.
+    ("n64_target", "tier",
+     "ALTER TABLE n64_target ADD COLUMN tier TEXT NOT NULL DEFAULT 'raw_word'"),
+    ("n64_target", "gate_reason",
+     "ALTER TABLE n64_target ADD COLUMN gate_reason TEXT"),
+    ("matrix_entry", "target_o_sha",
+     "ALTER TABLE matrix_entry ADD COLUMN target_o_sha TEXT"),
 )
 
 

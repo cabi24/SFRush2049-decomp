@@ -157,7 +157,8 @@ def verify_entry(spec, flagset, target_id, args):
     if row is None or not row["target_o_sha"]:
         raise RuntimeError(f"no target .o in inventory for {target_id!r} "
                            "(run `matrix extract` first)")
-    target_o = BlobStore(data / "blobs").get(row["target_o_sha"]).read_bytes()
+    target_o_sha = row["target_o_sha"]
+    target_o = BlobStore(data / "blobs").get(target_o_sha).read_bytes()
 
     files = {"candidate.c": reduced_tu(text, name).encode()}
     for hdr_rel, hdr_text in resolve_headers(tu_path).items():
@@ -172,7 +173,8 @@ def verify_entry(spec, flagset, target_id, args):
         "include_dirs": list(INCLUDE_DIRS),
         "cells": [{
             "candidate_id": spec, "source": "candidate.c", "flagset": flagset,
-            "targets": [{"target_id": target_id, "file": "target.o"}],
+            "targets": [{"target_id": target_id, "file": "target.o",
+                         "target_o_sha": target_o_sha}],
         }],
     }
     with tempfile.TemporaryDirectory() as tmp:

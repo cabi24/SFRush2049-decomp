@@ -511,6 +511,30 @@ call file-local `static` helpers the reduced-TU strips (sched.c cluster, sprintf
 managers); visible split-by-origin in `matrix failures`. A preprocessor-aware extractor
 or keeping static callees would close it (follow-up).
 
+### Reloc-aware targets (Phase 4, feature 003 — built 2026-07-08)
+
+Static targets are now assembled from their splat asm region (`asm/us/*.s`,
+matched by address) so target objects carry real `%hi/%lo/jal` relocations, behind
+a per-target round-trip gate (masked-word equality vs ROM; raw-word fallback with
+`n64_target.tier`/`gate_reason` recorded). When a target object changes,
+`matrix_entry` evidence is superseded (purged) in the same transaction, and every
+cell carries `matrix_entry.target_o_sha` for attribution. Design/tasks/contracts in
+`specs/003-reloc-aware-targets/`; ops note in `tools/conveyor/README.md`.
+
+```bash
+python3 -m tools.conveyor.pipeline.matrix extract   # prints tier + supersede report
+```
+
+Status (first live run, toolkit `1e21f523…`): **reloc_aware=178** static targets
+(gate-passed), deterministic re-extraction (SC-007), attribution 0 mismatched
+(SC-006). **Two blockers left for the reviewer**, both because the target asm's
+symbolization doesn't align with the corpus candidates: (1) reloc **symbol-name**
+mismatch (`D_8002C3D0` vs `__osThreadTail`) blocks the 18 `reloc_only_diff`
+upgrades — out-of-scope symbol reconciliation; (2) 4 hardware-register locks
+(`osDpGetCounters`, `__osSpSetPc`, `__osSpDeviceBusy`, `__osSpSetStatus`) regress
+because splat symbolizes MMIO addresses that IDO emits as literals. Details in
+`specs/003-reloc-aware-targets/quickstart.md`.
+
 ## Active Technologies
 - Python 3.9+ (Pi 5 orchestrator and nodes; no syntax above 3.9 so stock distro Pythons work) + Python stdlib only for coordinator and node agent (`http.server`, `sqlite3`, `tarfile`, `hashlib`, `json`, `urllib`). On compute nodes: decomp-permuter (vendored in repo, used as library), IDO via ido-static-recomp (shipped in toolkit bundle), mips binutils `objdump` (shipped in toolkit bundle). `pycparser` (already a permuter dependency) for arcade function extraction. (001-matching-pipeline)
 - SQLite (WAL mode) on the Pi for all pipeline state — single-writer, queried by CLI/report tools. Content-addressed blob store (sha256-named files on disk, served over HTTP) for bundles, toolkits, and results. (001-matching-pipeline)
