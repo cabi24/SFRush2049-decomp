@@ -542,6 +542,8 @@ because splat symbolizes MMIO addresses that IDO emits as literals. Details in
 - SQLite (WAL) at `~/.conveyor/conveyor.db`; content-addressed blob store (002-corpus-candidates)
 - Python 3.9+ (Pi orchestrator + node agent), stdlib only + `mips-linux-gnu-as` and `mips-linux-gnu-objdump` (003-reloc-aware-targets)
 - SQLite at `~/.conveyor/conveyor.db`; content-addressed blob store (003-reloc-aware-targets)
+- Python 3.9+ (tooling), C89 (TUs), GNU make + splat (already drives extraction; supports `c` (004-promotion-splicing)
+- layout map generated into `build/` + checked-in conversion state (004-promotion-splicing)
 
 ## Recent Changes
 - 001-matching-pipeline: Added Python 3.9+ (Pi 5 orchestrator and nodes; no syntax above 3.9 so stock distro Pythons work) + Python stdlib only for coordinator and node agent (`http.server`, `sqlite3`, `tarfile`, `hashlib`, `json`, `urllib`). On compute nodes: decomp-permuter (vendored in repo, used as library), IDO via ido-static-recomp (shipped in toolkit bundle), mips binutils `objdump` (shipped in toolkit bundle). `pycparser` (already a permuter dependency) for arcade function extraction.
