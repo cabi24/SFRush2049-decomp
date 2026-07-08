@@ -54,8 +54,11 @@ def compile_one(source, flagset, out_o, include_dirs=()):
     except subprocess.TimeoutExpired:
         return False, "timeout"
     if proc.returncode != 0 or not Path(out_o).is_file():
+        # Keep the head: cfe reports each undefined identifier once, in
+        # order of first occurrence, so the first errors carry the signal
+        # the failure-clustering report (pipeline.matrix failures) needs.
         message = (proc.stderr or proc.stdout or "").strip()
-        return False, message[-500:] or f"cc exited {proc.returncode}"
+        return False, message[:2000] or f"cc exited {proc.returncode}"
     return True, "ok"
 
 

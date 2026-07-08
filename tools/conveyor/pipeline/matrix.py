@@ -4,6 +4,7 @@
     python3 -m tools.conveyor.pipeline.matrix submit    # batch jobs -> pool
     python3 -m tools.conveyor.pipeline.matrix ingest    # results -> matrix_entry
     python3 -m tools.conveyor.pipeline.matrix report    # coverage + rankings
+    python3 -m tools.conveyor.pipeline.matrix failures  # compile-fail clusters
 
 Pruning: scoring every pair is ~5.8M cells; a size window (candidate body
 length vs target instruction count) cuts this ~10x with negligible recall
@@ -16,8 +17,10 @@ re-submissions are answered from the result cache (FR-006).
 import argparse
 import hashlib
 import json
+import re
 import tarfile
 import tempfile
+from collections import Counter
 from pathlib import Path
 
 from ..bundles.build_job import build_job_bundle
@@ -315,6 +318,141 @@ def update_rankings(conn, toolkit_sha=None):
           f"{flagged} flagged no_ancestry, {high_conf} high-confidence (SC-001)")
 
 
+# --- failures (compile-failure clustering) ------------------------------------
+
+_UNDEF_RE = re.compile(r"'([A-Za-z_][A-Za-z0-9_]*)' undefined")
+_CFE_RE = re.compile(r"cfe: (?:Error|Fatal)[^:]*: \S+ line \d+: ([^\n]+)")
+_TYPEISH_RE = re.compile(r"\b([A-Z][A-Z0-9_]{2,})\b")
+
+
+def failure_signatures(message):
+    """Cluster one captured compile-failure message into stable signatures.
+
+    The message is IDO cfe stderr, possibly truncated. `'X' undefined`
+    errors (the dominant class — cfe reports each identifier once per
+    file) become ``undefined: X``. Syntax errors are usually an unknown
+    typedef name, and every error after the first is cascade noise, so
+    the first error's context line is mined for a type-like token — but
+    only when the capture starts at the true first error (head capture;
+    tail-truncated messages stay generic). Anything unrecognized (e.g.
+    ``timeout``) falls back to the raw text."""
+    sigs = set()
+    for ident in _UNDEF_RE.findall(message):
+        sigs.add(f"undefined: {ident}")
+    for i, m in enumerate(_CFE_RE.finditer(message)):
+        text = m.group(1).strip().rstrip(".")
+        if "' undefined" in text:
+            continue
+        if text in ("Syntax Error", "Empty declaration specifiers"):
+            if i > 0 or not message.startswith("cfe:"):
+                sigs.add(text)  # cascade or truncated: keep it generic
+                continue
+            context = message[m.end():].split("\n", 2)[1:2]
+            tokens = _TYPEISH_RE.findall(context[0]) if context else []
+            sigs.add(f"unknown type? {tokens[0]}" if tokens else text)
+        else:
+            sigs.add(text[:120])
+    if not sigs:
+        sigs.add(message.strip()[:120] or "empty error output")
+    return sigs
+
+
+def aggregate_failures(conn):
+    """(blocked, ok) where blocked maps candidate_id -> signature set for
+    every candidate that failed to compile under all tried flagsets, and ok
+    counts candidates that compiled under at least one (same semantics as
+    the coverage line in `report`)."""
+    blocked, ok = {}, 0
+    rows = conn.execute(
+        "SELECT candidate_id, compile_status FROM arcade_candidate"
+    ).fetchall()
+    for r in rows:
+        cs = json.loads(r["compile_status"])
+        if not cs:
+            continue
+        if any(v == "ok" for v in cs.values()):
+            ok += 1
+            continue
+        sigs = set()
+        for status in cs.values():
+            _, _, message = status.partition("fail:")
+            sigs |= failure_signatures(message or status)
+        blocked[r["candidate_id"]] = sigs
+    return blocked, ok
+
+
+def _locate_identifiers(idents):
+    """Best-effort hint: first arcade file whose text looks like it defines
+    each identifier (#define / typedef / enum body / declaration)."""
+    hints = {}
+    pats = {
+        i: re.compile(
+            r"(#\s*define\s+{0}\b|typedef\s.*\b{0}\s*;|^\s*{0}\s*[=,]"
+            r"|\b{0}\s*(\[[^]]*\])?\s*[;=])".format(re.escape(i))
+        )
+        for i in idents
+    }
+    for path in sorted(extractmod.ARCADE.rglob("*.h")):
+        if len(hints) == len(idents):
+            break
+        try:
+            text = path.read_text(errors="replace")
+        except OSError:
+            continue
+        for ident, pat in pats.items():
+            if ident in hints or ident not in text:
+                continue
+            for n, line in enumerate(text.splitlines(), 1):
+                if pat.search(line):
+                    rel = path.relative_to(extractmod.ARCADE)
+                    hints[ident] = f"{rel}:{n}: {line.strip()[:80]}"
+                    break
+    return hints
+
+
+def cmd_failures(args):
+    conn, _ = _conn_store(args.data)
+    blocked, ok = aggregate_failures(conn)
+    if not blocked:
+        print("no compile failures recorded (run `matrix ingest` first)")
+        return
+    print(f"{len(blocked)} candidates fail all tried flagsets ({ok} compile ok)")
+
+    if args.grep:
+        hits = sorted(
+            cid for cid, sigs in blocked.items()
+            if any(args.grep in s for s in sigs)
+        )
+        print(f"\n{len(hits)} blocked candidates match {args.grep!r}:")
+        for cid in hits:
+            print(f"  {cid}")
+        return
+
+    counts = Counter()
+    for sigs in blocked.values():
+        counts.update(sigs)  # each signature counted once per candidate
+    top = counts.most_common(args.limit)
+    print(f"\nblocked  signature (top {len(top)} of {len(counts)})")
+    for sig, n in top:
+        print(f"{n:>7}  {sig}")
+
+    top_set = {sig for sig, _ in top}
+    covered = sum(1 for sigs in blocked.values() if sigs <= top_set)
+    print(f"\nfixing all {len(top)} shown clusters unblocks up to "
+          f"{covered}/{len(blocked)} blocked candidates "
+          "(lower bound: stderr capture is truncated)")
+
+    if args.locate:
+        idents = [
+            sig.split(": ", 1)[1] for sig, _ in top
+            if sig.startswith("undefined: ")
+        ]
+        hints = _locate_identifiers(idents)
+        print("\narcade definition hints (heuristic):")
+        for ident in idents:
+            print(f"  {ident:<24} {hints.get(ident, '(not found in headers)')}")
+
+
 # --- report (T025) -----------------------------------------------------------
 
 def cmd_report(args):
@@ -369,6 +507,15 @@ def main():
     p = sub.add_parser("report")
     p.add_argument("--target", default=None)
     p.set_defaults(func=cmd_report)
+
+    p = sub.add_parser("failures")
+    p.add_argument("--limit", type=int, default=30)
+    p.add_argument("--grep", default=None,
+                   help="list blocked candidates whose signatures contain this")
+    p.add_argument("--locate", action="store_true",
+                   help="grep arcade headers for likely definitions of top"
+                        " undefined identifiers")
+    p.set_defaults(func=cmd_failures)
 
     args = parser.parse_args()
     args.func(args)

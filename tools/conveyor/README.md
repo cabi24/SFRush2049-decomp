@@ -14,7 +14,7 @@ contract, quickstart). Bring-up: see `specs/001-matching-pipeline/quickstart.md`
 | `jobs/` | nodes (in toolkit) | executors: compile_score, flag_sweep, permuter_search, verify_promote |
 | `seeds/` | Pi | arcade candidate extractor + compatibility shim |
 | `pipeline/` | Pi | matrix, farm, sweep, cluster, targets, status |
-| `cli.py` | Pi | serve, publish-toolkit, smoke, status, nodes, seed, best, attention, pin-flags, pair |
+| `cli.py` | Pi | serve, publish-toolkit, smoke, status, nodes, seed, best, attention, pin-flags, pair, report, bootstrap-flags, gc |
 
 ## Operating notes
 
@@ -30,6 +30,23 @@ contract, quickstart). Bring-up: see `specs/001-matching-pipeline/quickstart.md`
   fetch the new sha on their next lease. Never mutate node caches by hand.
 - **Builder**: exactly one agent should run with `--capabilities
   x86_64,builder --repo <clone>`; promotions serialize through it.
+- **Flag pins**: `serve` auto-seeds `flag_registry` from the proven pins in
+  `docs/COMPILER_SETTINGS.md` (source `confirmed`), so the sweeper never
+  re-discovers them; `bootstrap-flags` does the same against an already-running
+  coordinator. Both are idempotent and never clobber a `manual_override`.
+- **Blob GC**: `gc` reclaims job/result blobs unreferenced by any live state
+  and older than `--days` (default 7). Dry-run by default; pass `--apply` to
+  delete. Toolkit blobs and anything still reachable are never touched.
+- **Shim iteration loop**: after every `matrix ingest`, run
+  `python3 -m tools.conveyor.pipeline.matrix failures` — it clusters candidate
+  compile failures by signature (`undefined: gstate`, `unknown type? BLIT`)
+  and ranks them by how many candidates each blocks. `--locate` greps the
+  arcade headers for likely definitions of the top undefined identifiers;
+  `--grep <substr>` lists the candidates behind one cluster. Fix the top
+  clusters in `seeds/shim/conveyor_shim.h`, rebuild + re-publish the toolkit,
+  resubmit, and watch coverage climb in `matrix report`. Note a shim change
+  is a new toolkit sha, so all cells recompute (correct: the shim can change
+  codegen).
 
 ## systemd units
 
