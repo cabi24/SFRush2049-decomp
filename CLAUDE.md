@@ -516,6 +516,8 @@ or keeping static callees would close it (follow-up).
 - SQLite (WAL mode) on the Pi for all pipeline state — single-writer, queried by CLI/report tools. Content-addressed blob store (sha256-named files on disk, served over HTTP) for bundles, toolkits, and results. (001-matching-pipeline)
 - Python 3.9+ (Pi orchestrator and node agent; no syntax above 3.9) + Python stdlib only on Pi and nodes (`sqlite3`, `tarfile`, (002-corpus-candidates)
 - SQLite (WAL) at `~/.conveyor/conveyor.db`; content-addressed blob store (002-corpus-candidates)
+- Python 3.9+ (Pi orchestrator + node agent), stdlib only + `mips-linux-gnu-as` and `mips-linux-gnu-objdump` (003-reloc-aware-targets)
+- SQLite at `~/.conveyor/conveyor.db`; content-addressed blob store (003-reloc-aware-targets)
 
 ## Recent Changes
 - 001-matching-pipeline: Added Python 3.9+ (Pi 5 orchestrator and nodes; no syntax above 3.9 so stock distro Pythons work) + Python stdlib only for coordinator and node agent (`http.server`, `sqlite3`, `tarfile`, `hashlib`, `json`, `urllib`). On compute nodes: decomp-permuter (vendored in repo, used as library), IDO via ido-static-recomp (shipped in toolkit bundle), mips binutils `objdump` (shipped in toolkit bundle). `pycparser` (already a permuter dependency) for arcade function extraction.
