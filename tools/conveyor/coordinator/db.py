@@ -170,6 +170,18 @@ _COLUMN_MIGRATIONS = (
      "ALTER TABLE n64_target ADD COLUMN gate_reason TEXT"),
     ("matrix_entry", "target_o_sha",
      "ALTER TABLE matrix_entry ADD COLUMN target_o_sha TEXT"),
+    # 004 (promotion splicing): promotion_record gains full provenance so a
+    # promoted (or refused) function is queryable — source of the body, the
+    # pinned flags, evidence JSON (scores / lock / override reason), and the
+    # ROM-aligned TU it landed in. outcome keeps its existing values.
+    ("promotion_record", "source",
+     "ALTER TABLE promotion_record ADD COLUMN source TEXT"),
+    ("promotion_record", "flags",
+     "ALTER TABLE promotion_record ADD COLUMN flags TEXT"),
+    ("promotion_record", "evidence",
+     "ALTER TABLE promotion_record ADD COLUMN evidence TEXT"),
+    ("promotion_record", "rom_tu",
+     "ALTER TABLE promotion_record ADD COLUMN rom_tu TEXT"),
 )
 
 

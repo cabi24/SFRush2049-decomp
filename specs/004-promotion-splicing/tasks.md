@@ -7,6 +7,44 @@ additive migrations, never `git add -A`, honest task status — blockers ≠ don
 **The one rule above all**: the full-ROM SHA-1 is the only promotion
 authority. If a step tempts you to weaken, mock, or skip it, stop.
 
+## Implementation status (2026-07-09, Opus)
+
+**T001–T004 done and green** (119 local tests pass incl. 9 new in
+`test_layout.py`). **T005–T014 BLOCKED** on a prerequisite that fails on contact
+(HANDOFF rule 1 + "settled research fails → stop and report with evidence").
+
+Done:
+- **T001** asm-processor vendored (`tools/asm-processor/`, pinned from sm64's
+  copy, sha recorded in its README); toy compile deferred to the builder.
+- **T002** `promotion_record` migrations (source/flags/evidence/rom_tu),
+  rehearsed on a live-DB copy.
+- **T003/T004** `pipeline/layout.py` derive/report/coverage + tests. 87/88
+  segments derive cleanly (only the synthetic dynamic entry refuses); 0x8800 =
+  strchr/strlen/memcpy @ -O2; padding-aware tiling, deterministic map + hash.
+
+**BLOCKER (T005/T006 go/no-go):** `layout convert` requires `make extract`
+(splat re-split) to emit `nonmatchings` asm + regenerate the linker script
+(D2/D3); rule 5 forbids hand-editing those generated files. **splat 0.37.1
+cannot run against the current `symbol_addrs.us.txt`** — four independent, hard
+error classes (multi-colon `arcade:` comment tokens ×158; invalid `type:data`;
+duplicate addresses; duplicate names). Sanitizing enough to run would change
+splat's disassembly vs the checked-in asm, so re-split cannot reproduce the ROM
+baseline the hash-neutral skeleton (SC-001/FR-003) is proven against. Full
+evidence in quickstart.md §2.
+
+**Reviewer decision required** (either is a real project, not a T006 wrinkle):
+1. Remediate the extraction inputs so splat re-split is idempotent with the
+   checked-in asm (dedupe/retype `symbol_addrs`, reconcile `reloc_addrs`,
+   confirm the splat/spimdisasm version that produced the current asm) — then
+   T005–T014 proceed unchanged.
+2. Approve a deviation from D2/D3 + rule 5: a targeted `convert` that reuses the
+   known-good checked-in asm (splitting `asm/us/<seg>.s` into per-function
+   `nonmatchings/…` files) and patches the one linker-script object reference,
+   without re-running splat. Rule 5 explicitly names the linker script, so this
+   needs sign-off, not an implementer's unilateral call.
+
+Not started (gated on the above): T005–T014.
+
 ## Phase 1: Setup
 - [ ] T001 Vendor asm-processor into `tools/asm-processor/` at a pinned commit
   (record sha in the README); crib the Makefile integration pattern from
