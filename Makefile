@@ -237,9 +237,14 @@ check-matched:
 # Extraction
 # ============================================================
 
+# splat lives in its own venv (system pip is PEP-668 managed); fall back to
+# the system python if the venv is absent.
+SPLAT_PYTHON ?= $(shell [ -x $(HOME)/.splat-venv/bin/python ] && \
+                echo $(HOME)/.splat-venv/bin/python || echo $(PYTHON))
+
 extract: $(BASEROM)
 	@echo "Running splat..."
-	$(V)$(PYTHON) -m splat split splat.$(VERSION).yaml
+	$(V)$(SPLAT_PYTHON) -m splat split splat.$(VERSION).yaml
 
 # ============================================================
 # Progress tracking

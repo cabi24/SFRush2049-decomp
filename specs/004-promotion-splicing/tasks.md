@@ -43,7 +43,29 @@ evidence in quickstart.md §2.
    without re-running splat. Rule 5 explicitly names the linker script, so this
    needs sign-off, not an implementer's unilateral call.
 
-Not started (gated on the above): T005–T014.
+**REVIEWER RESOLUTION (2026-07-10, Fable) — Option 1 executed; T005–T014 UNBLOCKED.**
+The bar was reframed: asm-text idempotence with a new splat version is neither
+attainable nor required — the ROM hash is the baseline. Done and proven live:
+
+- `tools/sanitize_symbol_addrs.py` (new, idempotent, checked in) normalizes
+  `symbol_addrs.us.txt` for splat: valid attrs kept, `type:data` dropped,
+  colon-bearing prose de-colonized, 268 duplicate addr/name definitions
+  commented out first-wins (1,817 kept).
+- splat 0.41.0 installed in `~/.splat-venv` (system pip is PEP-668 managed);
+  `make extract` now uses it via `SPLAT_PYTHON`.
+- Re-split regenerates 86 asm files + linker script + auto-syms; three stale
+  auto-names in the hand-written `asm/us/1000.s` (hasm = source, not
+  generated) canonicalized (`func_800020F0`→`main` etc.).
+- **`make test`: ROM matches** (SHA-1 exact) on the re-split baseline, and
+  extraction is **idempotent** (split N and N+1 outputs hash-identical).
+- 003 interplay verified: `matrix extract` superseded 134 targets / 630 rows
+  (canonical names changed reloc-aware objects — by design), reloc_aware rose
+  178→180, and **all 12 locks re-verified at score 0** on the pool.
+
+Proceed with T005 (`layout convert` + `make extract` now work as D2/D3
+assumed). Rule 5 stands unmodified.
+
+Not started: T005–T014.
 
 ## Phase 1: Setup
 - [ ] T001 Vendor asm-processor into `tools/asm-processor/` at a pinned commit
