@@ -4,4 +4,21 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_e310/__osSpDeviceBusy.s")
+/* PROMOTED 2026-07-11 — __osSpDeviceBusy
+ * Source:   src/libultra/os_sp.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:src/libultra/os_sp.c:__osSpDeviceBusy (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+s32 __osSpDeviceBusy(void) {
+    u32 status;
+
+    status = SP_STATUS_REG;
+
+    /* Check bits 2-4 (DMA_BUSY, DMA_FULL, IO_FULL) */
+    if (status & 0x1C) {
+        return 1;
+    }
+    return 0;
+}
+

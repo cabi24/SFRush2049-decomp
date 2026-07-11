@@ -7,14 +7,6 @@
     "verified": "score0",
     "verified_at": "2026-07-08"
   },
-  "src/libultra/os_sp.c:__osSpDeviceBusy": {
-    "body_sha256": "d1c342cc68a70f8d8a41d6835c9dcba92e19c7a5d4b9a7a2c2ade280e924e416",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "__osSpDeviceBusy",
-    "toolkit_sha": "b613fc5dc3d01fa7c0c41a542b7617d76e8e41ec9d7611204dbb6f2a5ab6c045",
-    "verified": "score0",
-    "verified_at": "2026-07-08"
-  },
   "src/libultra/os_sp.c:__osSpSetPc": {
     "body_sha256": "204f2e4008cc991b80af2877d55a60410791e04162c33c75f306d541dc91ae40",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -83,6 +75,14 @@
     "body_sha256": "ee341b839f6672126d9519439d15a01bc7c5579afb447876f986de82319a2aa9",
     "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
     "target_id": "osPhysicalToVirtual",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-07-11"
+  },
+  "src/rom/lib_e310.c:__osSpDeviceBusy": {
+    "body_sha256": "d1c342cc68a70f8d8a41d6835c9dcba92e19c7a5d4b9a7a2c2ade280e924e416",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osSpDeviceBusy",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-07-11"
