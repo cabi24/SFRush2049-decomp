@@ -8,6 +8,7 @@
  * the same fact behind 003's KSEG1 de-symbolization. */
 #define SP_STATUS_REG    (*(vu32 *)0xA4040010)
 #define SP_PC_REG        (*(vu32 *)0xA4080000)
+#define SP_STATUS_HALT     0x0001
 #define SP_STATUS_DMA_BUSY 0x0004
 #define SP_STATUS_IO_FULL  0x0010
 #define DPC_CLOCK_REG    (*(vu32 *)0xA4100010)
