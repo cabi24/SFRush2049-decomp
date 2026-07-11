@@ -106,8 +106,8 @@ def cmd_ingest(args):
                 "SELECT source FROM flag_registry WHERE translation_unit=?",
                 (payload["tu"],),
             ).fetchone()
-            if existing and existing["source"] == "manual_override":
-                continue  # FR-015: never clobber a manual pin
+            if existing and existing["source"] in ("manual_override", "confirmed"):
+                continue  # FR-015: never clobber a manual pin or a proven match
             conn.execute(
                 "INSERT INTO flag_registry (translation_unit, pinned_flagset,"
                 " evidence, source) VALUES (?, ?, ?, 'sweep')"

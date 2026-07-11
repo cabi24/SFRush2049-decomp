@@ -44,9 +44,31 @@ def _client(args):
 # --- commands ---------------------------------------------------------------
 
 def cmd_serve(args):
+    from .coordinator import db as dbmod
     from .coordinator.server import serve
+    from .pipeline import flags as flagsmod
 
+    # Seed the proven flag pins before the coordinator accepts work, so the
+    # first sweep never re-discovers what COMPILER_SETTINGS.md already proves.
+    conn = dbmod.connect(Path(args.data) / "conveyor.db")
+    seeded = flagsmod.seed_confirmed(conn)
+    conn.close()
+    if seeded:
+        print(f"seeded {seeded} confirmed flag pin(s) from COMPILER_SETTINGS.md")
     serve(args.data, port=args.port)
+
+
+def cmd_bootstrap_flags(args):
+    """Seed flag_registry with the COMPILER_SETTINGS.md pins (idempotent).
+
+    Automatic on `serve`; this verb exists to seed a coordinator that is
+    already running (or to see what would be seeded) without a restart."""
+    from .pipeline import flags as flagsmod
+
+    conn, _ = _open_db(args)
+    seeded = flagsmod.seed_confirmed(conn)
+    print(f"seeded {seeded} confirmed flag pin(s) "
+          f"({len(flagsmod.CONFIRMED)} known, rest already pinned)")
 
 
 def cmd_publish_toolkit(args):
@@ -267,6 +289,96 @@ def cmd_report(args):
             print(f"  {r['target_id']:32} {r['human_flag']:24} best={r['best_score']}")
 
 
+# --- gc ---------------------------------------------------------------------
+
+def _json_shas(blob, into):
+    """Add every string leaf of a JSON value to `into` (object_shas may nest)."""
+    try:
+        obj = json.loads(blob or "{}")
+    except ValueError:
+        return
+    stack = [obj]
+    while stack:
+        cur = stack.pop()
+        if isinstance(cur, str):
+            into.add(cur)
+        elif isinstance(cur, dict):
+            stack.extend(cur.values())
+        elif isinstance(cur, list):
+            stack.extend(cur)
+
+
+def _referenced_shas(conn):
+    """Every blob sha still reachable from live pipeline state. Any sha here is
+    off-limits to gc, regardless of the blob's recorded kind or age."""
+    refs = set()
+
+    def add(*vals):
+        refs.update(v for v in vals if v)
+
+    for r in conn.execute("SELECT value FROM meta WHERE key='toolkit_sha'"):
+        add(r["value"])
+    for r in conn.execute(
+        "SELECT manifest_sha, bundle_sha, toolkit_sha, best_source_sha,"
+        " result_sha FROM work_unit"):
+        add(r["manifest_sha"], r["bundle_sha"], r["toolkit_sha"],
+            r["best_source_sha"], r["result_sha"])
+    for r in conn.execute("SELECT seed_source_sha FROM function_status"):
+        add(r["seed_source_sha"])
+    for r in conn.execute("SELECT source_sha FROM promotion_record"):
+        add(r["source_sha"])
+    for r in conn.execute("SELECT body_sha, object_shas FROM arcade_candidate"):
+        add(r["body_sha"])
+        _json_shas(r["object_shas"], refs)
+    for r in conn.execute("SELECT target_asm_sha, target_o_sha FROM n64_target"):
+        add(r["target_asm_sha"], r["target_o_sha"])
+    return refs
+
+
+def cmd_gc(args):
+    """Reclaim job/result blobs no longer referenced by any live state.
+
+    Content-addressing makes this safe: a deleted blob can always be rebuilt
+    from its inputs, and anything still reachable (pinned toolkit, in-flight
+    bundles, best-so-far sources, ingested results) is excluded. Toolkit blobs
+    are never touched. Dry-run unless --apply is passed."""
+    from .coordinator import db as dbmod
+
+    conn, store = _open_db(args)
+    referenced = _referenced_shas(conn)
+    rows = conn.execute(
+        "SELECT sha256, kind, size_bytes, created_at FROM blob"
+        " WHERE kind IN ('job','result')"
+        " AND created_at < strftime('%Y-%m-%dT%H:%M:%fZ','now', ?)"
+        " ORDER BY created_at",
+        (f"-{args.days} days",),
+    ).fetchall()
+    victims = [r for r in rows if r["sha256"] not in referenced]
+    reclaim = sum(r["size_bytes"] for r in victims)
+    verb = "deleting" if args.apply else "would delete"
+    print(f"gc: {verb} {len(victims)} blob(s), "
+          f"{reclaim / 1e6:.1f} MB (kind job/result, older than {args.days}d, "
+          f"unreferenced)")
+    if args.verbose:
+        for r in victims:
+            print(f"  {r['sha256'][:12]} {r['kind']:7} "
+                  f"{r['size_bytes'] / 1e6:7.2f} MB  {r['created_at']}")
+    if not victims:
+        return
+    if not args.apply:
+        print("dry-run — pass --apply to delete")
+        return
+    deleted = 0
+    for r in victims:
+        path = store.get(r["sha256"])
+        if path:
+            path.unlink()
+        with dbmod.tx(conn):
+            conn.execute("DELETE FROM blob WHERE sha256=?", (r["sha256"],))
+        deleted += 1
+    print(f"gc: deleted {deleted} blob(s), reclaimed {reclaim / 1e6:.1f} MB")
+
+
 # --- smoke ------------------------------------------------------------------
 
 _WORD_RE = re.compile(r"/\*\s*\w+\s+\w+\s+([0-9A-Fa-f]{8})\s*\*/")
@@ -455,6 +567,20 @@ def main():
     p = sub.add_parser("report")
     p.add_argument("--data", default=str(DEFAULT_DATA))
     p.set_defaults(func=cmd_report)
+
+    p = sub.add_parser("bootstrap-flags",
+                       help="seed flag_registry with COMPILER_SETTINGS.md pins")
+    p.add_argument("--data", default=str(DEFAULT_DATA))
+    p.set_defaults(func=cmd_bootstrap_flags)
+
+    p = sub.add_parser("gc", help="reclaim unreferenced job/result blobs")
+    p.add_argument("--days", type=int, default=7,
+                   help="only blobs older than N days (default 7)")
+    p.add_argument("--apply", action="store_true",
+                   help="actually delete (default is a dry-run)")
+    p.add_argument("--verbose", action="store_true", help="list each blob")
+    p.add_argument("--data", default=str(DEFAULT_DATA))
+    p.set_defaults(func=cmd_gc)
 
     args = parser.parse_args()
     args.func(args)

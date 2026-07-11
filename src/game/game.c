@@ -703,7 +703,7 @@ extern void gfx_set_mode(s32 mode);
 extern void model_lod(void *model, s32 lod);
 
 /**
-/*
+
  * game_loop - Main per-frame game loop
  * Address: 0x800FD464
  * Size: 704 bytes
@@ -835,8 +835,6 @@ s32 game_loop(void) {
     return result;
 }
 
-/*
-
 /* External data/functions for game_mode_handler */
 extern s8  mode_flag_1;   /* Mode flag 1 */
 extern s8  mode_flag_loop;   /* Mode flag 2 */
@@ -849,7 +847,7 @@ extern void timer_sync(void); /* Timer/sync function */
 extern s8 input_flag_get(void); /* State update / input flag */
 
 /**
-/*
+
  * game_mode_handler - Game mode handler
  * (game_mode_handler)
  * Address: 0x800C9AE0
@@ -901,8 +899,6 @@ void game_mode_handler(void) {
     input_flag_get();
 }
 
-/*
-
 /**
  * External functions called by playgame_handler
  */
@@ -945,7 +941,7 @@ extern s32 matrix_stack_depth;
 extern void hud_speed_display(void *hud, f32 speed); /* hud_speed_display - HUD speed display */
 
 /**
-/*
+
  * playgame_handler - Game state change handler (playgame equivalent)
  * (playgame_state_change)
  * Address: 0x800CA3B4
@@ -1312,8 +1308,6 @@ done:
     return;
 }
 
-/*
-
 /* External data for countdown function */
 extern s32 found_player_index;     /* Found player index */
 extern s32 gCountdownTimer;     /* 0x80142B0C - countdown_timer - 3-2-1 countdown in frames */
@@ -1327,7 +1321,7 @@ extern s32 audio_sync();
 extern s16 sound_apply_effect(s32 channel, s32 effectType, f32 amount); /* sound_pitch_set */
 
 /**
-/*
+
  * countdown_start - Countdown wrapper
  * Address: 0x800FBC30
  * Size: 8 bytes (just loads mode and falls through)
@@ -1336,7 +1330,7 @@ extern s16 sound_apply_effect(s32 channel, s32 effectType, f32 amount); /* sound
  */
 
 /**
-/*
+
  * countdown_display - Countdown display handler
  * Address: 0x800FBC38
  * Size: 488 bytes
@@ -1379,13 +1373,11 @@ void countdown_display(void) {
 #endif
 }
 
-/*
+/**
+ * Global for object type - used by voice_stop via register convention */
 
 /**
-/* Global for object type - used by voice_stop via register convention */
 
-/**
-/*
  * object_create - Allocate and initialize object wrapper
  * Address: 0x800B42F0
  * Size: 112 bytes
@@ -1424,13 +1416,11 @@ void* object_create(s32 type) {
     return obj;
 }
 
-/*
-
 /* External for visual update */
 extern void track_get_node_pos(s32 track, s32 node, f32 *x, f32 *y, f32 *z);
 
 /**
-/*
+
  * visual_objects_update - Update visual objects
  * Address: 0x800B55FC
  * Size: 140 bytes
@@ -1481,8 +1471,6 @@ void visual_objects_update(s32 flag) {
         array_ptr += 4;
     }
 }
-
-/*
 
 /* External data for race state machine */
 extern s32 race_sub_state;       /* Race sub-state */
@@ -1811,10 +1799,8 @@ exit_func:
     return;
 }
 
-/*
-
 /**
-/*
+
  * active_sounds_update - Update all active sound objects
  * Address: 0x800F7344
  * Size: 184 bytes
@@ -1884,10 +1870,8 @@ void active_sounds_update(void) {
     }
 }
 
-/*
-
 /**
-/*
+
  * update_game_systems - Main render pipeline dispatcher
  * Address: 0x800F73FC
  * Size: 76 bytes
@@ -1923,10 +1907,8 @@ void update_game_systems(s32 sound_update, s32 physics_update) {
     render_scene(0, 0.0f, 0, 0);
 }
 
-/*
-
 /**
-/*
+
  * physics_get_list_head - Get physics object list head
  * (physics_update)
  * Address: 0x800B0868
@@ -1940,10 +1922,8 @@ void *physics_get_list_head(void) {
     return active_object_list;
 }
 
-/*
-
 /**
-/*
+
  * physics_update_all - Update all physics objects in linked list
  * (physics_update_all)
  * Address: 0x800B0870
@@ -1996,10 +1976,8 @@ void physics_update_all(void) {
     tire_squeal();
 }
 
-/*
-
 /**
-/*
+
  * effects_update - Update all particle emitters
  * Address: 0x800B811C
  * Size: 252 bytes
@@ -2086,10 +2064,8 @@ end_loop:
     }
 }
 
-/*
-
 /**
-/*
+
  * input_flag_get - Load input initialized flag (prologue)
  * Address: 0x800C9528
  * Size: 8 bytes
@@ -2102,10 +2078,8 @@ s8 input_init_flag_get(void) {
     return input_initialized_flag;
 }
 
-/*
-
 /**
-/*
+
  * input_callback_process - Process input callback table
  * Address: 0x800C9530
  * Size: 96 bytes
@@ -2141,10 +2115,8 @@ void input_handlers_process(void) {
     }
 }
 
-/*
-
 /**
-/*
+
  * car_sounds_clear - Clear all sound handles for a player's car
  * (menu_main)
  * Address: 0x800D7D40
@@ -2201,10 +2173,8 @@ void car_sounds_clear(void) {
     player_state_flags[player_idx] = 0;
 }
 
-/*
-
 /**
-/*
+
  * all_player_sounds_clear - Clear all car sounds for all players
  * Address: 0x800D7DC4
  * Size: 196 bytes
@@ -2251,10 +2221,8 @@ void all_player_sounds_clear(void) {
     global_sound_flag = 0;
 }
 
-/*
-
 /**
-/*
+
  * ambient_sounds_clear - Clear all ambient/environment sound handles
  * Address: 0x800B557C
  * Size: 120 bytes
@@ -2293,10 +2261,8 @@ void ambient_sounds_clear(void) {
     }
 }
 
-/*
-
 /**
-/*
+
  * player_states_reset - Reset all player state entries
  * Address: 0x800B6138
  * Size: 112 bytes
@@ -2342,10 +2308,8 @@ void player_states_reset(void) {
     }
 }
 
-/*
-
 /**
-/*
+
  * effects_reset - Reset effect/particle system state
  * Address: 0x800B9130
  * Size: 100 bytes
@@ -2379,10 +2343,8 @@ void effects_reset(s32 unused) {
     bzero(effect_state_buffer, 44);
 }
 
-/*
-
 /**
-/*
+
  * sound_handles_clear (sound_volume_set)
  * Address: 0x800B45BC
  * Size: 176 bytes
@@ -2440,10 +2402,8 @@ void sound_handles_clear(s32 clear_all) {
     }
 }
 
-/*
-
 /**
-/*
+
  * players_race_update @ 0x800D5050
  * Address: 0x800D5050
  * Size: 148 bytes
@@ -2491,10 +2451,8 @@ void players_race_update(void) {
     }
 }
 
-/*
-
 /**
-/*
+
  * object_activate @ 0x800D52D4
  * Address: 0x800D52D4
  * Size: 152 bytes
@@ -2552,10 +2510,8 @@ void object_activate(void *obj) {
     state_set(object_sync, NULL, 0);
 }
 
-/*
-
 /**
-/*
+
  * players_frame_update @ 0x800D5798
  * Address: 0x800D5798
  * Size: 144 bytes
@@ -2600,10 +2556,8 @@ check_state:
     state_update_extra();
 }
 
-/*
-
 /**
-/*
+
  * players_finish_check @ 0x800D60B4
  * Address: 0x800D60B4
  * Size: 172 bytes
@@ -2650,10 +2604,8 @@ s32 players_finish_check(void) {
     return 0;
 }
 
-/*
-
 /**
-/*
+
  * resource_slot_clear - Clear a resource slot by ID
  * Address: 0x800C9334
  * Size: 72 bytes
@@ -2713,10 +2665,8 @@ void resource_slots_clear_multiple(void) {
     }
 }
 
-/*
-
 /**
-/*
+
  * object_secondary_release - Release object's secondary reference
  * (menu_render_list)
  * Address: 0x800CB9A0
@@ -2741,10 +2691,8 @@ void object_secondary_release(void *obj) {
     }
 }
 
-/*
-
 /**
-/*
+
  * object_render_cleanup - Cleanup object render reference
  * Address: 0x800C7308
  * Size: 68 bytes
@@ -2779,10 +2727,8 @@ void object_render_cleanup(void *obj_ptr) {
     *(void**)((u8*)obj + 0x2C) = NULL;
 }
 
-/*
-
 /**
-/*
+
  * stunt_command_send - Send command based on game mode
  * (effect_cleanup)
  * Address: 0x800C55E4
@@ -2808,10 +2754,8 @@ void stunt_command_send(s8 cmd, s8 arg1, s8 arg2) {
     }
 }
 
-/*
-
 /**
-/*
+
  * scene_cleanup_slots - Cleanup scene resource slots
  * (scene_cleanup_slots)
  * Address: 0x800C70BC
@@ -2838,10 +2782,8 @@ void scene_cleanup_slots(void) {
     resource_cleanup(slot);
 }
 
-/*
-
 /**
-/*
+
  * player_cleanup_slots - Cleanup all player/game resource slots
  * (player_cleanup_slots)
  * Address: 0x800C90E0
@@ -2869,10 +2811,8 @@ void player_cleanup_slots(void) {
     }
 }
 
-/*
-
 /**
-/*
+
  * sync_entry_register - Create and register sync entry
  * (sync_entry_register)
  * Address: 0x800C9194
@@ -2899,10 +2839,8 @@ void sync_entry_register(s32 a0, s32 a1) {
     sync_release(&object_sync[0x80], entry, 0);
 }
 
-/*
-
 /**
-/*
+
  * init_single_mode_wrapper - Initialize with single flag
  * (menu_item_value_get)
  * Address: 0x800CC804
@@ -2921,10 +2859,8 @@ void init_single_mode_wrapper(void *arg) {
     core_initialization(NULL);
 }
 
-/*
-
 /**
-/*
+
  * object_data_allocate (object_data_allocate)
  * Address: 0x800CD748
  * Size: 80 bytes
@@ -2970,10 +2906,8 @@ void object_data_allocate(void *obj) {
     track_get_direction(NULL, NULL, 0);
 }
 
-/*
-
 /**
-/*
+
  * object_action_clear @ 0x800D63C4
  * Address: 0x800D63C4
  * Size: 40 bytes
@@ -2989,10 +2923,8 @@ void object_action_clear(void *a0, void *a1) {
     *((u8*)a1 + 8) = 0;
 }
 
-/*
-
 /**
-/*
+
  * player_state_clear @ 0x800D5894
  * Address: 0x800D5894
  * Size: 48 bytes
@@ -3011,10 +2943,8 @@ void player_state_clear(void *a0) {
     }
 }
 
-/*
-
 /**
-/*
+
  * sound_position_set (timer_display)
  * Address: 0x800D03DC
  * Size: 72 bytes
@@ -3037,10 +2967,8 @@ void sound_position_set(f32 *pos, s32 a1) {
     sound_z_set(pos[2], a1);  /* Z coordinate */
 }
 
-/*
-
 /**
-/*
+
  * object_type7_create (object_type7_create)
  * Address: 0x800C878C
  * Size: 104 bytes
@@ -3062,10 +2990,8 @@ void object_type7_create(void) {
     state_set(obj, 0, 0);  /* Register object */
 }
 
-/*
-
 /**
-/*
+
  * object_type1_create (object_type1_create)
  * Address: 0x800C87F4
  * Size: 104 bytes
@@ -3083,10 +3009,8 @@ void object_type1_create(void) {
     state_set(obj, 0, 0);  /* Register object */
 }
 
-/*
-
 /**
-/*
+
  * physics_init_mode0 @ 0x800D6290
  * Address: 0x800D6290
  * Size: 92 bytes
@@ -3101,10 +3025,8 @@ void physics_init_mode0(void) {
     menu_saveload(0);
 }
 
-/*
-
 /**
-/*
+
  * physics_init_mode1 @ 0x800D62EC
  * Address: 0x800D62EC
  * Size: 92 bytes
@@ -3117,10 +3039,8 @@ void physics_init_mode1(void) {
     menu_saveload(1);
 }
 
-/*
-
 /**
-/*
+
  * object_type7_create_alt @ 0x800DB7B4
  * Address: 0x800DB7B4
  * Size: 104 bytes
@@ -3138,10 +3058,8 @@ void object_type7_create_alt(void) {
     state_set(obj, 0, 0);  /* Register object */
 }
 
-/*
-
 /**
-/*
+
  * mode_enable_flagged @ 0x800DCD1C
  * Address: 0x800DCD1C
  * Size: 52 bytes
@@ -3161,10 +3079,8 @@ void mode_enable_flagged(s32 a0) {
     }
 }
 
-/*
-
 /**
-/*
+
  * sound_handles_array_clear @ 0x800DC720
  * Address: 0x800DC720
  * Size: 116 bytes
@@ -3231,10 +3147,8 @@ void dma_wait_thunk(void) {
     controller_rumble();
 }
 
-/*
-
 /**
-/*
+
  * resource_process_thunk (resource_process_thunk)
  * Address: 0x80098554
  * Size: 32 bytes
@@ -3247,10 +3161,8 @@ void resource_process_thunk(void) {
     texture_set();
 }
 
-/*
-
 /**
-/*
+
  * resource_slot_get - get resource slot value
  * Address: 0x800AC820
  * Size: 32 bytes
@@ -3265,10 +3177,8 @@ s32 resource_slot_get(s32 a0) {
     return uv_set(a0, -1);
 }
 
-/*
-
 /**
-/*
+
  * object_type_byte2_get (object_type_byte2_get)
  * Address: 0x800B3F00
  * Size: 40 bytes
@@ -3286,10 +3196,8 @@ u8 object_type_byte2_get(void) {
     return *(current_object + 2);
 }
 
-/*
-
 /**
-/*
+
  * object_type_byte3_get (object_type_byte3_get)
  * Address: 0x800B3F28
  * Size: 40 bytes
@@ -3303,10 +3211,8 @@ u8 object_type_byte3_get(void) {
     return *(current_object + 3);
 }
 
-/*
-
 /**
-/*
+
  * sound_pitch_diff_calc - Calculate difference with sound_pitch_set result
  * Address: 0x800B7170
  * Size: 48 bytes
@@ -3314,11 +3220,10 @@ u8 object_type_byte3_get(void) {
  * Calls sound_pitch_set(a0, -1, 0.0f);
     return (s16)(a1 - (s16)result);
 }
-
-/*
+ */
 
 /**
-/*
+
  * replay_update_dual (screen_transition)
  * Address: 0x800E2A3C
  * Size: 40 bytes
@@ -3335,10 +3240,8 @@ void replay_update_dual(s32 a0) {
     replay_camera_update(a0, 0);
 }
 
-/*
-
 /**
-/*
+
  * object_byte26_set (object_byte26_set (input_new_data_wrapper))
  * Address: 0x80094F88
  * Size: 60 bytes
@@ -3363,10 +3266,8 @@ s8 object_byte26_set(void *a0, s8 a1) {
     return *((s8*)a0 + 26);
 }
 
-/*
-
 /**
-/*
+
  * player_indexed_update - no_catchup for tournament mode
  * Address: 0x800A2D0C
  * Size: 56 bytes
@@ -3388,10 +3289,8 @@ void player_indexed_update(void *a0, void *a1) {
     object_update(a0, value, NULL);
 }
 
-/*
-
 /**
-/*
+
  * player_state_get - get player state value
  * Address: 0x800AC898
  * Size: 60 bytes
@@ -3403,10 +3302,8 @@ s8 player_state_get(s32 a0) {
     return player_state_array[a0 * 20];
 }
 
-/*
-
 /**
-/*
+
  * resource_type_select (menu_confirm)
  * Address: 0x800B5FC4
  * Size: 80 bytes
@@ -3432,10 +3329,8 @@ void resource_type_select(s32 a0) {
     sound_effect_play(resource_type);
 }
 
-/*
-
 /**
-/*
+
  * resource_alloc_conditional (resource_alloc_conditional)
  * Address: 0x800B61B0
  * Size: 76 bytes
@@ -3459,10 +3354,8 @@ void resource_alloc_conditional(s32 a0, s32 a1, s32 a2, u8 a3) {
     sound_effect_play(a0);
 }
 
-/*
-
 /**
-/*
+
  * player_flag_clear_process (player_flag_clear_process)
  * Address: 0x800BC1E8
  * Size: 52 bytes
@@ -3477,10 +3370,8 @@ void player_flag_clear_process(void) {
     track_surface_query(current_player_idx, 0, 1);
 }
 
-/*
-
 /**
-/*
+
  * collision_check_thunk (0x800EE88C, 32 bytes)
  *
  * Address: 0x800EE88C
@@ -3493,10 +3384,8 @@ void collision_check_thunk(void) {
     collision_response_calc(NULL, NULL, NULL);
 }
 
-/*
-
 /**
-/*
+
  * resource_update_global - update global resource via matrix stack
  * Address: 0x800A4B48
  * Size: 36 bytes
@@ -3510,10 +3399,8 @@ void resource_update_global(void) {
     matrix_mul(matrix_stack_ptr);
 }
 
-/*
-
 /**
-/*
+
  * object_process_thunk (viewport_get)
  * Address: 0x800A7DF0
  * Size: 32 bytes
@@ -3526,10 +3413,8 @@ void object_process_thunk(void) {
     camera_target_set();
 }
 
-/*
-
 /**
-/*
+
  * stack_call_wrapper (fcvt_wrapper)
  * Address: 0x800B4360
  *
@@ -3550,10 +3435,8 @@ void stack_call_wrapper(s32 a0, s32 a1, s32 a2, s32 a3) {
     heap_init(a0, a1, stack_args);
 }
 
-/*
-
 /**
-/*
+
  * mode_flags_clear (mode_flags_clear)
  * Address: 0x800BAF64
  *
@@ -3568,10 +3451,8 @@ void mode_flags_clear(void) {
     collision_narrowphase(NULL, NULL);
 }
 
-/*
-
 /**
-/*
+
  * slot_deactivate - deactivate model slot
  * Address: 0x800AC840
  * Size: 88 bytes
@@ -3615,10 +3496,8 @@ void vector_copy_scale(f32 *src, f32 *dst) {
     dst[2] = src[2];
 }
 
-/*
-
 /**
-/*
+
  * render_state_init - initialize render state variables
  * Address: 0x800A5B60
  * Size: 80 bytes
@@ -3641,10 +3520,8 @@ void render_state_init(void) {
     data_pointer = (u32)&gRenderDataPtr;  /* Render data constant pointer */
 }
 
-/*
-
 /**
-/*
+
  * vector_diff_process - process vector difference
  * Address: 0x800ACB74
  * Size: 80 bytes
@@ -3666,10 +3543,8 @@ void vector_diff_process(f32 *a3, f32 *t0) {
     camera_shake(diff);
 }
 
-/*
-
 /**
-/*
+
  * lookup_with_output (lookup_with_output)
  * Address: 0x80096B5C
  * Size: 96 bytes
@@ -3706,10 +3581,8 @@ s32 lookup_with_output(s32 a0, s32 a1, s32 *a2) {
     return *(s32*)((u8*)result + 4);
 }
 
-/*
-
 /**
-/*
+
  * synced_process_call (dl_end)
  * Address: 0x800960D4
  * Size: 92 bytes
@@ -3728,10 +3601,8 @@ void synced_process_call(s32 a0, s32 a1) {
     state_set(model_sync, 0, 0);
 }
 
-/*
-
 /**
-/*
+
  * slot_activate (matrix_pop)
  * Address: 0x8009638C
  * Size: 92 bytes
@@ -3752,10 +3623,8 @@ void slot_activate(s32 a0) {
     slot[2] = 1;
 }
 
-/*
-
 /**
-/*
+
  * conditional_synced_clear (camera_init)
  * Address: 0x800A0F74
  * Size: 104 bytes
@@ -3779,10 +3648,8 @@ void conditional_synced_clear(s32 condition) {
     }
 }
 
-/*
-
 /**
-/*
+
  * complex_init_multi (data_copy)
  * Address: 0x800A11E4
  * Size: 96 bytes
@@ -3811,10 +3678,8 @@ void complex_init_multi(s32 s0, s32 s1, s32 s2, s8 *s3, s32 s4, s32 a2) {
     }
 }
 
-/*
-
 /**
-/*
+
  * object_transform_set - set object transform matrix
  * Address: 0x800AB758
  * Size: 120 bytes
@@ -3847,10 +3712,8 @@ void object_transform_set(s32 a0, f32 *rotation, f32 *position, void *a3, u8 *ba
     *(f32*)(obj + 60) = rotation[2];
 }
 
-/*
-
 /**
-/*
+
  * fp_call_wrapper - function pointer call wrapper
  * Address: 0x800AC6F4
  * Size: 104 bytes
@@ -3867,10 +3730,8 @@ void fp_call_wrapper(s32 a0) {
     normal_set();
 }
 
-/*
-
 /**
-/*
+
  * memory_regions_clear
  * Address: 0x800F7E70
  * Size: 64 bytes
@@ -3884,10 +3745,8 @@ void memory_regions_clear(void) {
     bzero(effect_clear_buffer, 4);
 }
 
-/*
-
 /**
-/*
+
  * game_state_check_handler - Game state check handler
  * Address: 0x800FBBFC
  * Size: 52 bytes
@@ -3903,10 +3762,8 @@ void game_state_check_handler(void) {
     }
 }
 
-/*
-
 /**
-/*
+
  * resource_type_select_simple (0x800FEC60)
  * Address: 0x800FEC60
  * Size: 60 bytes
@@ -3929,10 +3786,8 @@ void resource_type_select_simple(s32 a0) {
     sound_effect_play(resource_type);
 }
 
-/*
-
 /**
-/*
+
  * mode_byte_set (0x800ED764, 80 bytes)
  *
  * Address: 0x800ED764
@@ -3955,10 +3810,8 @@ void mode_byte_set(s16 a0) {
     }
 }
 
-/*
-
 /**
-/*
+
  * mode_byte2_set (0x800ED7B4, 80 bytes)
  *
  * Address: 0x800ED7B4
@@ -3978,10 +3831,8 @@ void mode_byte2_set(s16 a0) {
     }
 }
 
-/*
-
 /**
-/*
+
  * sync_init_conditional (0x800EE7C4, 92 bytes)
  *
  * Address: 0x800EE7C4
@@ -4007,10 +3858,8 @@ void sync_init_conditional(s32 condition) {
     setup_type = -1;
 }
 
-/*
-
 /**
-/*
+
  * object_update_full (0x800E2A64)
  * Address: 0x800E2A64
  * Size: 96 bytes
@@ -4041,12 +3890,8 @@ void object_update_full(void *obj) {
     menu_input_handle(obj, 0);
 }
 
-/*
+/**
 
-/**
-/**
-/**
-/*
  * object_counter_decrement (replay_frame)
  * Address: 0x800E7914
  * Size: 108 bytes
@@ -4073,10 +3918,8 @@ void object_counter_decrement(s32 id) {
     state_set(&model_sync, NULL, 0);
 }
 
-/*
-
 /**
-/*
+
  * object_counter_increment (replay_load)
  * Address: 0x800E7980
  * Size: 112 bytes
@@ -4100,10 +3943,8 @@ void object_counter_increment(s32 id) {
     state_set(&model_sync, NULL, 0);
 }
 
-/*
-
 /**
-/**
+ *
 /*
  * pointer_offset_wrapper @ 0x8008AD48
  * 
@@ -4119,10 +3960,8 @@ void pointer_offset_wrapper(void *a0, void *a1) {
     sound_position_set(0, 0);
 }
 
-/*
-
 /**
-/*
+
  * sign_extend_call @ 0x8008E398
  * 
  * Size: 40 bytes
@@ -4139,10 +3978,8 @@ void sign_extend_call(void *a0, void *a1, s16 a2) {
     audio_init(0);
 }
 
-/*
-
 /**
-/*
+
  * sound_call_simple (sound_call_simple)
  * Address: 0x80090228
  *
@@ -4155,10 +3992,8 @@ void sound_call_simple(s16 a0) {
     gfx_flush(a0, NULL, 0);
 }
 
-/*
-
 /**
-/*
+
  * sound_call_minimal (sound_call_minimal)
  * Address: 0x80090254
  * Size: 48 bytes
@@ -4171,10 +4006,8 @@ void sound_call_minimal(s16 a0) {
     gfx_flush(a0, NULL, 0);
 }
 
-/*
-
 /**
-/*
+
  * pointer_compare_thunk (pointer_compare_thunk)
  * Address: 0x8009508C
  * Size: 32 bytes
@@ -4188,14 +4021,10 @@ void pointer_compare_thunk(void *a0, void *a1) {
     sound_position_set(a0, a1);
 }
 
-/*
-
 /**
+ *
 /**
-/**
-/**
-/**
-/**
+ *
 /*
  * object_derived_call (track_data_get)
  * Address: 0x800A2CE4
@@ -4214,10 +4043,8 @@ void object_derived_call(void **a0) {
     object_property_set(a0, 0, val);
 }
 
-/*
-
 /**
-/**
+ *
 /*
  * pointer_offset8_call (pointer_offset8_call)
  * Address: 0x800986B0
@@ -4234,10 +4061,8 @@ void pointer_offset8_call(void *a0, void *a1) {
     matrix_identity(NULL, NULL, NULL);
 }
 
-/*
-
 /**
-/**
+ *
 /*
  * param_reshuffle_wrapper (param_reshuffle_wrapper)
  * Address: 0x800985F4
@@ -4255,12 +4080,8 @@ void param_reshuffle_wrapper(void *a0, void *a1) {
     matrix_translate(a0, val, &temp, a1);
 }
 
-/*
+/**
 
-/**
-/**
-/**
-/*
  * callback_init - Initializes object with callback pointer
  * Address: 0x80100D30
  *
@@ -4277,10 +4098,8 @@ s32 callback_init(void *a0) {
     return 1;
 }
 
-/*
-
 /**
-/*
+
  * sync_acquire_menu - Acquires sync on menu_sync_object
  * Address: 0x8010FBB4 (44 bytes)
  *
@@ -4291,10 +4110,8 @@ void sync_acquire_menu(void) {
     state_get(&menu_sync_object, NULL, 1);
 }
 
-/*
-
 /**
-/*
+
  * struct_fields_init (struct_fields_init)
  * Address: 0x800B0550
  * Size: 48 bytes
@@ -4316,12 +4133,8 @@ void struct_fields_init(void *a0, s32 a1, s32 a2, s32 a3, u8 stack) {
     collision_resolve(a0);
 }
 
-/*
-
 /**
-/**
-/**
-/**
+ *
 /*
  * validate_and_call (validate_and_call)
  * Address: 0x80095120
@@ -4343,10 +4156,8 @@ s32 validate_and_call(void *a0, void *a1) {
     return triangle_draw(a0, a1, 15);
 }
 
-/*
-
 /**
-/*
+
  * diff_halved_calc (sound_pitch_diff_halved)
  * Address: 0x800B71A0
  * Size: 52 bytes
@@ -4363,12 +4174,8 @@ s16 diff_halved_calc(void *a0, s32 a1) {
     return original - (result >> 1);
 }
 
-/*
+/**
 
-/**
-/**
-/**
-/*
  * object_init_cleared - initialize cleared object
  * Address: 0x800AED2C
  * Size: 56 bytes
@@ -4389,10 +4196,8 @@ void *object_init_cleared(void *a0, void *a1) {
     return a1;
 }
 
-/*
-
 /**
-/**
+ *
 /*
  * vector3d_store_transform @ 0x8008B660
  * 
@@ -4419,10 +4224,8 @@ void vector3d_store_transform(void *a0, void *a1, f32 x, f32 y, f32 z) {
     /* Output stored in f20, f22, f24 by callee - stored back by asm */
 }
 
-/*
-
 /**
-/*
+
  * slot_value_get (slot_value_get)
  * Address: 0x80096298
  * Size: 60 bytes
@@ -4439,10 +4242,8 @@ void *slot_value_get(s32 a0) {
     return model_data_array[a0 * 5];
 }
 
-/*
-
 /**
-/*
+
  * conditional_reset_callbacks (matrix_rotate)
  * Address: 0x80096240
  * Size: 72 bytes
@@ -4468,14 +4269,10 @@ void conditional_reset_callbacks(s32 a0, s32 a1) {
     timer_callback_state = -1;
 }
 
-/*
+/**
+ *
+/**
 
-/**
-/**
-/**
-/**
-/**
-/*
  * resource_request_40_or_39 (menu_prev)
  * Address: 0x800B5F4C
  * Size: 60 bytes
@@ -4492,10 +4289,8 @@ void resource_request_40_or_39(s32 a0) {
     sound_effect_play(type);
 }
 
-/*
-
 /**
-/*
+
  * resource_request_41_or_44 (menu_toggle)
  * Address: 0x800B5F88
  * Size: 60 bytes
@@ -4511,10 +4306,8 @@ void resource_request_41_or_44(s32 a0) {
     sound_effect_play(type);
 }
 
-/*
-
 /**
-/**
+ *
 /*
  * dual_call_reshuffled (camera_cinematic_mode)
  * Address: 0x800BE4B4
@@ -4534,10 +4327,8 @@ void dual_call_reshuffled(s32 a0, s32 a1, s32 a2, void *a3) {
     audio_sync();
 }
 
-/*
-
 /**
-/*
+
  * object_byte9_set (object_byte9_set)
  * Address: 0x800B41C0
  * Size: 64 bytes
@@ -4556,10 +4347,8 @@ s8 object_byte9_set(s8 a0) {
     return old;
 }
 
-/*
-
 /**
-/*
+
  * resource_lookup_synced (vertex_color)
  * Address: 0x80097470
  * Size: 124 bytes
@@ -4593,10 +4382,8 @@ void *resource_lookup_synced(s32 a0, void *a1) {
     return result;
 }
 
-/*
-
 /**
-/*
+
  * resource_alloc_init - Allocates resource with synced lookup and matrix init
  * Address: 0x8010FC80 (64 bytes)
  * Size: 64 bytes
@@ -4615,10 +4402,8 @@ void *resource_alloc_init(void *a0, void *a1) {
     return result;
 }
 
-/*
-
 /**
-/*
+
  * player_conditional_check - Conditional function call based on a1
  * Address: 0x800D54E0
  * Size: 68 bytes
@@ -4631,7 +4416,7 @@ void *resource_alloc_init(void *a0, void *a1) {
  * @param a1 Mode selector
  */
 /**
-/*
+
  * physics_struct_reset (leaderboard_update)
  * Address: 0x800D54BC
  * Size: 36 bytes (leaf function, no prologue)
@@ -4649,10 +4434,8 @@ void physics_struct_reset(void *a0) {
     *(f32*)((u8*)a0 + 16) = -2.0f;
 }
 
-/*
-
 /**
-/*
+
  * synced_lookup_process (particle_spawn)
  * Address: 0x800BF024
  * Size: 128 bytes
@@ -4683,10 +4466,8 @@ void synced_lookup_process(void *a0) {
     object_destroy(a0);
 }
 
-/*
-
 /**
-/*
+
  * resource_register_synced (object_destroy)
  * Address: 0x80091C04
  * Size: 160 bytes
@@ -4733,10 +4514,8 @@ void conditional_call_with_init(void **a0, s32 a1) {
     physics_struct_reset(a0);
 }
 
-/*
-
 /**
-/*
+
  * struct_init_and_call - Initializes sound 3D struct and starts 3D sound
  * Address: 0x8010FD1C (68 bytes)
  * Size: 68 bytes
@@ -4767,10 +4546,8 @@ s32 struct_init_and_call(void *a0, s16 a1, void *a2) {
     return 1;
 }
 
-/*
-
 /**
-/*
+
  * object_bytes23_sum (object_bytes23_sum)
  * Address: 0x800B7128
  * Size: 72 bytes
@@ -4789,10 +4566,8 @@ s16 object_bytes23_sum(void) {
     return (s16)(byte2 + byte3);
 }
 
-/*
-
 /**
-/*
+
  * object_byte71_set_sync (object_byte71_set_sync)
  * Address: 0x800CDA90
  * Size: 80 bytes
@@ -4818,12 +4593,8 @@ void object_byte71_set_sync(void **a0, u8 a1) {
     }
 }
 
-/*
+/**
 
-/**
-/**
-/**
-/*
  * music_fade - Build buffer and call B71D4
  * Address: 0x800BE9A0
  * Size: 72 bytes
@@ -4844,10 +4615,8 @@ void buffer_build_and_call(s32 a0) {
     audio_sync();
 }
 
-/*
-
 /**
-/*
+
  * buffer_build_2cd0_call (music_tempo_adjust)
  * Address: 0x800BE9E8
  * Size: 72 bytes
@@ -4868,10 +4637,8 @@ void buffer_build_2cd0_call(s32 a0, s32 a1, void *a2, s32 a3) {
     audio_sync();
 }
 
-/*
-
 /**
-/*
+
  * init_wait_completion - wait for initialization completion
  * Address: 0x800A4C54
  * Size: 84 bytes
@@ -4891,10 +4658,8 @@ void init_wait_completion(void) {
     }
 }
 
-/*
-
 /**
-/*
+
  * list_process_and_call (wind_sound)
  * Address: 0x800B0618
  * Size: 84 bytes
@@ -4913,10 +4678,8 @@ void list_process_and_call(s32 trackId, void *ghostData) {
     savedata_write(0, ghostData, 0);
 }
 
-/*
-
 /**
-/*
+
  * object_bytes_sum_global (object_bytes_sum_global)
  * Address: 0x800B3F50
  * Size: 84 bytes
@@ -4937,12 +4700,8 @@ s16 object_bytes_sum_global(void) {
     return (s16)(offset + byte2 + byte3);
 }
 
-/*
+/**
 
-/**
-/**
-/**
-/*
  * synced_call_95fd8 - Synchronized model render with sync acquire/release
  * Address: 0x8010FCC0 (92 bytes)
  * Size: 92 bytes
@@ -4957,12 +4716,8 @@ void synced_call_95fd8(void *a0) {
     state_set(&model_sync, NULL, 0);
 }
 
-/*
+/**
 
-/**
-/**
-/**
-/*
  * pool_linked_list_init (collision_resolve)
  * Address: 0x800B04D0
  * Size: 128 bytes
@@ -5007,10 +4762,8 @@ void pool_linked_list_init(void *a0) {
     *(s32*)((u8*)base + (count - 1) * stride) = 0;
 }
 
-/*
-
 /**
-/*
+
  * pool_system_reset - Reset and initialize pool system
  * Address: 0x800B0580
  * Size: 152 bytes
@@ -5045,10 +4798,8 @@ void pool_system_reset(s32 slot, void *data, s32 size) {
     memset_custom(&pool_secondary[0], 0, 2208);
 }
 
-/*
-
 /**
-/**
+ *
 /*
  * mode0_setup_call - Call collision_check with mode 0
  * Address: 0x8009C5BC
@@ -5063,10 +4814,8 @@ void mode0_setup_call(void) {
     collision_check(0);
 }
 
-/*
-
 /**
-/*
+
  * mode1_setup_call - Call collision_check with mode 1
  * Address: 0x800BFD68
  * Size: 36 bytes
@@ -5078,10 +4827,8 @@ void mode1_setup_call(void) {
     collision_check(1);
 }
 
-/*
-
 /**
-/*
+
  * state_update_conditional - Conditional state update
  * Address: 0x800A511C
  * Size: 60 bytes
@@ -5104,10 +4851,8 @@ void state_update_conditional(s32 a0, s32 a1) {
     }
 }
 
-/*
-
 /**
-/*
+
  * params_transform_call - Call audio_init with transformed parameters
  * Address: 0x800AB70C
  * Size: 68 bytes
@@ -5129,10 +4874,8 @@ void params_transform_call(s32 a0, s32 a1, s16 a2, s16 a3, s32 stack) {
     audio_init(0);
 }
 
-/*
-
 /**
-/*
+
  * speed_mode0_wrapper - Call speed_set with mode (1, 0)
  * Address: 0x800C92DC
  * Size: 88 bytes
@@ -5145,10 +4888,8 @@ void speed_mode0_wrapper(void) {
     speed_set(0);
 }
 
-/*
-
 /**
-/*
+
  * speed_mode1_wrapper - Call speed_set with mode (0, 1)
  * Address: 0x800C93AC
  * Size: 88 bytes
@@ -5160,10 +4901,8 @@ void speed_mode1_wrapper(void) {
     speed_set(0);
 }
 
-/*
-
 /**
-/*
+
  * struct_callback_init - Initialize structure with callback pointer
  * Address: 0x8010B528
  * Size: 56 bytes
@@ -5183,10 +4922,8 @@ s32 struct_callback_init(void *a0) {
     return 1;
 }
 
-/*
-
 /**
-/*
+
  * state_update_global - Update state based on global flag
  * Address: 0x8010B560
  * Size: 112 bytes
@@ -5223,10 +4960,8 @@ s32 state_update_global(void *a0) {
     return 1;
 }
 
-/*
-
 /**
-/*
+
  * state_cleanup_reset - Cleanup and reset state
  * Address: 0x800F8754
  * Size: 76 bytes
@@ -5251,10 +4986,8 @@ void state_cleanup_reset(void) {
     sound_cleanup_flag = 0;
 }
 
-/*
-
 /**
-/*
+
  * synced_call_91ca4 - Synchronized call to object_free
  * Address: 0x80091F34
  * Size: 136 bytes
@@ -5273,10 +5006,8 @@ void synced_call_91ca4(void *a0, s32 a1) {
     state_set(&object_sync[0], NULL, 0);
 }
 
-/*
-
 /**
-/*
+
  * callback_setup_complex - Complex initialization with callback setup
  * Address: 0x800AC668
  * Size: 140 bytes
@@ -5310,10 +5041,8 @@ s16 callback_setup_complex(void *a0, s16 a1) {
     return setup_result;
 }
 
-/*
-
 /**
-/*
+
  * slot_array_iterate - Iterate through slot array and call matrix_push
  * Address: 0x800A4AC4
  * Size: 124 bytes
@@ -5338,10 +5067,8 @@ void slot_array_iterate(s32 a0) {
     }
 }
 
-/*
-
 /**
-/*
+
  * tree_search_recursive - Recursive tree/list search
  * Address: 0x8009DC50
  * Size: 200 bytes
@@ -5389,10 +5116,8 @@ s32 tree_search_recursive(void *a0, s32 a1) {
     }
 }
 
-/*
-
 /**
-/*
+
  * tree_node_check - Check node flag and optionally search tree
  * Address: 0x8009DD18
  * Size: 112 bytes
@@ -5428,10 +5153,8 @@ s32 tree_node_check(void *a0, s32 a1) {
     return 0;
 }
 
-/*
-
 /**
-/*
+
  * synced_lookup_and_process - Synchronized lookup and process
  * Address: 0x800BF148
  * Size: 128 bytes
@@ -5477,10 +5200,8 @@ void *synced_lookup_and_process(void *a0) {
     return result;
 }
 
-/*
-
 /**
-/*
+
  * object_scale_init - Initialize object with default scale values
  * (140 bytes)
  *
@@ -5520,10 +5241,8 @@ void object_scale_init(void *a0) {
     *(s16*)((u8*)a0 + 0x7D0) = result;
 }
 
-/*
-
 /**
-/*
+
  * camera_arrays_reset - Reset camera/visual float arrays
  * (136 bytes)
  *
@@ -5549,13 +5268,11 @@ void camera_arrays_reset(void) {
     game_selection_index = -1;
 }
 
-/*
-
 /* Player/car data array indexed by ID */
 extern s32 object_process(void*);  /* Object processing function */
 
 /**
-/*
+
  * object_status_check - Check object status and optionally process
  * (128 bytes)
  *
@@ -5597,10 +5314,8 @@ s32 object_status_check(void **a0, s32 a1) {
     return object_process(child);
 }
 
-/*
-
 /**
-/*
+
  * object_type11_alloc_signal - Allocate and signal type 11 object
  * (116 bytes)
  *
@@ -5623,10 +5338,8 @@ void object_type11_alloc_signal(s32 a0) {
     state_set(&object_sync[0x80], obj, 0);
 }
 
-/*
-
 /**
-/*
+
  * object_type9_alloc_signal - Allocate and signal type 9 object
  * (104 bytes)
  *
@@ -5646,14 +5359,12 @@ void object_type9_alloc_signal(void) {
     state_set(&object_sync[0x80], obj, 0);
 }
 
-/*
-
 /* Global state flags */
 
 extern void timer_display(f32 *pos, s32 a1);
 
 /**
-/*
+
  * object_countdown_process - Process object with countdown timer
  * (132 bytes)
  *
@@ -5690,14 +5401,12 @@ void object_countdown_process(void *a0, s16 a1) {
     }
 }
 
-/*
-
 /* Effect/visual system arrays */
 extern u32 fx_slot_array[];        /* Effect slot array (4 slots, 124 bytes each) */
 extern f32 effect_timing_float;          /* Effect timing float */
 
 /**
-/*
+
  * effect_system_init (effect_system_init)
  * Size: 140 bytes
  *
@@ -5721,8 +5430,6 @@ void effect_system_init(void) {
     effect_counter = 0;
 }
 
-/*
-
 /* Object initialization external references */
 extern u8 object_type_count;  /* Object type count */
 extern s32 audio_sequence_play(void*, void*, s32, s8, s32); /* Object setup with type */
@@ -5730,7 +5437,7 @@ extern void sound_channel_set(s32 channel, f32 pan); /* Object alternate init */
 extern f32 audio_distance_atten(f32 distance, f32 maxDist);  /* Audio distance attenuation */
 
 /**
-/*
+
  * object_type_setup_init - Initialize object with optional type setup
  * (124 bytes)
  *
@@ -5756,10 +5463,8 @@ void object_type_setup_init(void *a0, void *a1, s32 a2) {
     texture_load(a0);
 }
 
-/*
-
 /**
-/*
+
  * string_build_from_array - Build string from object array
  * (132 bytes)
  *
@@ -5792,15 +5497,13 @@ void string_build_from_array(u8 *output) {
     output[i] = 0;
 }
 
-/*
-
 /* Timer calculation external references */
 extern f32 frame_sync(void);  /* Get elapsed time */
 extern f32 time_multiplier;           /* Time multiplier */
 extern f32 object_init_constant;           /* Object init float constant */
 
 /**
-/*
+
  * timer_value_update - Update timer value from elapsed time
  * (92 bytes)
  *
@@ -5821,10 +5524,8 @@ void timer_value_update(void) {
     }
 }
 
-/*
-
 /**
-/*
+
  * list_item_remove_synced - Remove item from synchronized linked list
  * (172 bytes)
  *
@@ -5866,15 +5567,13 @@ void list_item_remove_synced(void *a0) {
     state_set(&object_sync[0], NULL, 0);
 }
 
-/*
-
 /* Multi-player coordinate update external references */
 extern void pre_update(void); /* Pre-update function */
 extern void player_coords_transform(s16, void*, void*);  /* Coordinate transform */
 extern void post_update(s32 soundId); /* Post-update function */
 
 /**
-/*
+
  * player_coords_update - Update player coordinate transforms
  * (180 bytes)
  *
@@ -5916,10 +5615,8 @@ done:
     post_update(0);
 }
 
-/*
-
 /**
-/*
+
  * object_spawn_linked - Spawn and initialize linked object
  * (192 bytes)
  *
@@ -5976,7 +5673,7 @@ extern u8 object_pool_base[];   /* Object pool base (24-byte slots) */
 extern u8 pool_end_marker[];   /* Pool end marker */
 
 /**
-/*
+
  * pool_object_alloc - Allocate object from pool
  * (168 bytes)
  *
@@ -6022,8 +5719,6 @@ void *pool_object_alloc(s32 type) {
     return NULL;
 }
 
-/*
-
 /* Object deactivation globals */
 extern void **active_object_list;   /* Active object list head */
 extern void **render_list;   /* Free object list head */
@@ -6032,7 +5727,7 @@ extern s16 max_active_objects;      /* Maximum active objects seen */
 extern void sound_param_set(s16 texId, s32 mode, s32 flags); /* Sound stop function */
 
 /**
-/*
+
  * object_deactivate_free - Deactivate and free an object
  * (260 bytes)
  *
@@ -6098,14 +5793,12 @@ void object_deactivate_free(void *a0, s32 a1) {
     }
 }
 
-/*
-
 /* Object spawn globals */
 extern u8 type_lookup_table[];  /* Type lookup table */
 extern void *bounds_check(void);  /* Allocate sub-object */
 
 /**
-/*
+
  * object_spawn_new - Spawn a new game object
  * (292 bytes)
  *
@@ -6159,10 +5852,8 @@ void *object_spawn_new(s32 a0) {
     return result;
 }
 
-/*
-
 /**
-/*
+
  * matrix3x3_copy - Copy 3x3 matrix or 9-float vector
  * (76 bytes)
  *
@@ -6184,10 +5875,8 @@ void matrix3x3_copy(f32 *src, f32 *dst) {
     dst[8] = src[8];
 }
 
-/*
-
 /**
-/*
+
  * object_alloc_free_list - Allocate object from free list
  * (132 bytes)
  *
@@ -6229,10 +5918,8 @@ void *object_alloc_free_list(s32 soundId, s32 flags) {
     return obj;
 }
 
-/*
-
 /**
-/*
+
  * string_compare - Compare two strings
  * (68 bytes)
  *
@@ -6266,10 +5953,8 @@ s32 string_compare(u8 *a0, u8 *a1) {
     return c1 - c2;
 }
 
-/*
-
 /**
-/*
+
  * effects_system_init - Initialize effects/emitter system
  * (84 bytes)
  *
@@ -6305,12 +5990,10 @@ void effects_system_init(void) {
     } while (ptr != end);
 }
 
-/*
-
 /* Emitter data arrays */
 
 /**
-/*
+
  * emitter_position_copy - Copy emitter position floats to target
  * (80 bytes)
  *
@@ -6337,12 +6020,10 @@ void emitter_position_copy(s32 a0) {
     *(f32*)((u8*)target + 44) = *(f32*)(emitter + 44);
 }
 
-/*
-
 /* Emitter count */
 
 /**
-/*
+
  * emitter_array_clear - Clear emitter pointer array
  * (48 bytes)
  *
@@ -6368,93 +6049,29 @@ void emitter_array_clear(void) {
     } while (ptr < end);
 }
 
-/*
-
 /* Additional emitter system globals */
-
-/**
-
-/**
-
-/**
-
-/**
-
-/**
-
-/**
-
-/**
-
-/**
 
 /**
 extern s32 vertex_color(s32, s32);  /* Sound lookup function */
 
 /**
-
-/**
-
-/**
-
-/**
-
-/**
-
-/**
 extern void game_mode_handler(void); /* game_mode_handler - State handler */
-
-/**
-
-/**
-
-/**
-
-/**
 
 /**
 extern void pool_system_reset(s32 slot, void *data, s32 size); /* Write save data */
 
 /**
+ *
 
 /**
-/**
-
-/**
-
-/**
-
-/**
-
-/**
-
-/**
-/**
-/**
-/**
+ *
 
 /**
 extern void particle_spawn(void *a0); /* Process with flag */
 extern void leaderboard_update(void *a0); /* Clear structure */
 
 /**
-/**
-/**
-/**
-
-/**
-/**
-/**
-
-/**
-
-/**
-
-/**
-
-/**
-
-/**
+ *
 
 /**
 
@@ -6469,10 +6086,6 @@ extern void *source_data_ptr;  /* Source data */
 
 /**
 
-/**
-
-
-/**
 
 /**
 
@@ -6481,76 +6094,44 @@ extern void *source_data_ptr;  /* Source data */
 
 
 /**
-
-/**
-/**
-
-/**
-
-
-/**
-/**
-/**
-/**
-/**
-/**
-
-/**
-/**
+ *
 
 /**
 
+
 /**
+ *
+/**
+ *
+
+/**
+ *
+
+/**
+ *
+
+/**
+ *
+/**
+ *
+
+/**
+ *
+
+/**
+ *
+
+/**
+ *
+
+/**
+ *
+
+/**
+ *
 
 /**
 
-/**
-
-/**
-/**
-
-/**
-
-/**
-
-/**
-
-/**
-
-/**
-/**
-/**
-/**
-/**
-/**
-
-/**
-/**
-
-/**
-
-/**
-/**
-
-/**
-/**
-/**
-
-/**
-
-/**
-
-/**
-/**
-
-/**
-/**
-
-/**
-/**
-
-/**
-/*
  * game_state_flags_get - Get game state flags
  * (8 bytes)
  *
@@ -6565,7 +6146,7 @@ s32 game_state_flags_get(void) {
 
 
 /**
-/*
+
  * state_get_zero - Get secondary state
  * (8 bytes)
  *
@@ -6575,42 +6156,20 @@ s32 state_get_zero(void) {
     return 0;
 }
 
-/*
+/**
+ *
 
 /**
-/**
-/**
-/**
+ *
 
 /**
+ *
 /**
-
+ *
 /**
+ *
 /**
-/**
-
-/**
-
-/**
-
-/**
-/**
-/**
-
-/**
-/**
-/**
-/**
-/**
-/**
-/**
-/**
-/**
-/**
-
-/**
-/**
-/**
+ *
 
 /**
 
@@ -37287,10 +36846,8 @@ void *pre_render(s32 objectType, f32 *pos) {
     return NULL;
 }
 
-/*
-
 /**
-/*
+
  * world_object_destroy (0x800EB690)
  * Address: 0x800EB690
  * Size: 396 bytes
