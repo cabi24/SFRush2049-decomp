@@ -31,14 +31,6 @@
     "verified": "score0",
     "verified_at": "2026-07-08"
   },
-  "src/libc/string.c:strlen": {
-    "body_sha256": "2cd8adf42b1bc86e4571a6273bb791b2488b6d787f0dc4d8e02de56d5604d118",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "strlen",
-    "toolkit_sha": "23185a790564a5b977b05aa5173d943f2561fba860f1ac664204db56706aa437",
-    "verified": "score0",
-    "verified_at": "2026-07-08"
-  },
   "src/libultra/os_ai.c:__osAiDeviceBusy": {
     "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -86,6 +78,14 @@
     "toolkit_sha": "b613fc5dc3d01fa7c0c41a542b7617d76e8e41ec9d7611204dbb6f2a5ab6c045",
     "verified": "score0",
     "verified_at": "2026-07-08"
+  },
+  "src/rom/lib_8800.c:strlen": {
+    "body_sha256": "2cd8adf42b1bc86e4571a6273bb791b2488b6d787f0dc4d8e02de56d5604d118",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "strlen",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-07-11"
   },
   "src/util/checksum.c:__osIdCheckSum": {
     "body_sha256": "2fd547a89c9291bc116283bd4c0a15308d1484125ce5db783114234d67d1c18c",
