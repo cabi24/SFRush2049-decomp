@@ -41,3 +41,26 @@
 .set $fs4f,         $f29
 .set $fs5,          $f30
 .set $fs5f,         $f31
+
+# Rush 2049 splat-output macros (from include/macro.inc, so asm-processor can
+# assemble splat nonmatchings files that use them without an .include).
+.macro endlabel label
+    .size \label, . - \label
+.endm
+
+.macro nonmatching label, size=1
+    .global \label\().NON_MATCHING
+    .type \label\().NON_MATCHING, @object
+    .size \label\().NON_MATCHING, \size
+    \label\().NON_MATCHING:
+.endm
+
+.macro jlabel label, visibility=global
+    .\visibility \label
+    \label:
+.endm
+
+.macro dlabel label, visibility=global
+    .\visibility \label
+    \label:
+.endm

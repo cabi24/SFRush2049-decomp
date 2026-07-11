@@ -609,7 +609,9 @@ class GlobalAsmBlock:
             self.text_glabels.append(line.split()[1])
         if not line:
             pass # empty line
-        elif line.startswith('glabel ') or line.startswith('dlabel ') or line.startswith('endlabel ') or (' ' not in line and line.endswith(':')):
+        elif line.startswith('glabel ') or line.startswith('dlabel ') or line.startswith('endlabel ') or line.startswith('nonmatching ') or (' ' not in line and line.endswith(':')):
+            # label (incl. this repo's splat `nonmatching name, size` marker —
+            # its prelude macro emits a zero-size symbol, no bytes)
             pass # label
         elif line.startswith('.section') or line in ['.text', '.data', '.rdata', '.rodata', '.bss', '.late_rodata']:
             # section change

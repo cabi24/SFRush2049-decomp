@@ -123,6 +123,27 @@ BIN_O_FILES  := $(patsubst $(ASSETS_DIR)/%.bin,$(BUILD_DIR)/$(ASSETS_DIR)/%.o,$(
 O_FILES      := $(ASM_O_FILES) $(BIN_O_FILES)
 
 # ============================================================
+# ROM-aligned TUs (004 promotion splicing)
+# ============================================================
+# src/rom/*.c are GENERATED TUs (pipeline.layout convert): GLOBAL_ASM
+# passthrough slots + promoted C, compiled via asm-processor + IDO so a
+# zero-promotion TU is byte-identical to the assembly it replaced. Once a
+# segment is converted, the splat linker script references its C object
+# unconditionally — the full ROM build then requires IDO (i.e. the builder;
+# IDO's recompiled binaries don't run on the Pi). Fail loudly, never
+# substitute another compiler into the link.
+SRC_ROM_C    := $(wildcard $(SRC_DIR)/rom/*.c)
+SRC_ROM_O    := $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/$(SRC_DIR)/%.o,$(SRC_ROM_C))
+O_FILES      += $(SRC_ROM_O)
+
+ifneq ($(SRC_ROM_C),)
+  ifneq ($(COMPILER),ido)
+    $(error converted ROM TUs exist ($(SRC_ROM_C)): the ROM build requires \
+COMPILER=ido with IDO present — run on the builder (watchman))
+  endif
+endif
+
+# ============================================================
 # Targets
 # ============================================================
 
@@ -196,6 +217,15 @@ $(BUILD_DIR)/$(SRC_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	@echo "CC $<"
 	$(V)$(CC) -c $(CFLAGS) -o $@ $<
+
+# ROM-aligned TUs: asm-processor injects the GLOBAL_ASM passthroughs into the
+# IDO object post-compile (byte-exact function content from asm/us/nonmatchings).
+# More specific pattern than the generic C rule, so it wins for src/rom/.
+$(BUILD_DIR)/$(SRC_DIR)/rom/%.o: $(SRC_DIR)/rom/%.c
+	@mkdir -p $(dir $@)
+	@echo "ASMPROC $<"
+	$(V)$(PYTHON) $(TOOLS_DIR)/asm-processor/build.py \
+	    $(CC) -- $(AS) $(ASFLAGS) -- -c $(CFLAGS) -o $@ $<
 
 # os_sync.c matches with debug-style codegen; disable optimization for this file.
 ifeq ($(COMPILER),ido)

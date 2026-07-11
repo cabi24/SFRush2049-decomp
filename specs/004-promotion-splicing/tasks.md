@@ -84,11 +84,11 @@ Not started: T005–T014.
 - [ ] T004 [P] [US1] `tests/conveyor/unit/test_layout.py`: derivation on
   fixture inputs (clean tile, gap refusal, unnamed refusal, dynamic-range
   entry), determinism, coverage math.
-- [ ] T005 [US1] Implement `layout convert [--revert]`: yaml edit, splat
+- [x] T005 [US1] Implement `layout convert [--revert]`: yaml edit, splat
   re-split invocation, TU generation (exact format from data-model.md),
   dirty-tree refusal; Makefile: compile `src/rom/*.c` via asm-processor+IDO
   into O_FILES for converted segments; matching-build guard (research D7).
-- [ ] T006 [US1] **Walking skeleton (node_required)**: quickstart §§1–2 —
+- [x] T006 [US1] **Walking skeleton (node_required)**: quickstart §§1–2 —
   convert 0x8800, build on watchman, **SHA-1 must match with zero
   promotions**. Record MEASURED. If it fails: STOP, report (this validates
   D2/D4 for real; expected wrinkles: late_rodata, macro.inc includes in

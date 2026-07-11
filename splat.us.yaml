@@ -112,7 +112,7 @@ segments:
       - [0x8410, asm]
       - [0x8440, asm]
       - [0x8700, asm]
-      - [0x8800, asm]
+      - [0x8800, c, rom/lib_8800]
       - [0x88A0, asm]
       - [0x8920, asm]
       - [0x8A80, asm]
