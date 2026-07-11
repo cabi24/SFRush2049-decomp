@@ -23,4 +23,22 @@ u32 strlen(const char *str) {
     return (u32)(p - str);
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_8800/memcpy.s")
+/* PROMOTED 2026-07-11 — memcpy
+ * Source:   src/libc/string.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:src/libc/string.c:memcpy (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void *memcpy(void *s1, const void *s2, u32 n) {
+    char *su1 = (char *)s1;
+    const char *su2 = (const char *)s2;
+
+    while (n > 0) {
+        *su1 = *su2;
+        su1++;
+        su2++;
+        n--;
+    }
+    return (void *)s1;
+}
+

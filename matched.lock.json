@@ -1,12 +1,4 @@
 {
-  "src/libc/string.c:memcpy": {
-    "body_sha256": "3165d008e7c6211654e517cf1c0a25afc217cc749b9d99e88d850824615fab24",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "memcpy",
-    "toolkit_sha": "b613fc5dc3d01fa7c0c41a542b7617d76e8e41ec9d7611204dbb6f2a5ab6c045",
-    "verified": "score0",
-    "verified_at": "2026-07-08"
-  },
   "src/libc/string.c:strchr": {
     "body_sha256": "89b19708fce3e440f22662b880e1fede02a524c66dc7ea346d9610eaee97cdca",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -62,6 +54,14 @@
     "toolkit_sha": "b613fc5dc3d01fa7c0c41a542b7617d76e8e41ec9d7611204dbb6f2a5ab6c045",
     "verified": "score0",
     "verified_at": "2026-07-08"
+  },
+  "src/rom/lib_8800.c:memcpy": {
+    "body_sha256": "3165d008e7c6211654e517cf1c0a25afc217cc749b9d99e88d850824615fab24",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "memcpy",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-07-11"
   },
   "src/rom/lib_8800.c:strlen": {
     "body_sha256": "2cd8adf42b1bc86e4571a6273bb791b2488b6d787f0dc4d8e02de56d5604d118",
