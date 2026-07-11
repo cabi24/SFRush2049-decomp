@@ -87,12 +87,12 @@
     "verified": "rom-sha1",
     "verified_at": "2026-07-11"
   },
-  "src/util/checksum.c:__osIdCheckSum": {
+  "src/rom/lib_f700.c:__osIdCheckSum": {
     "body_sha256": "2fd547a89c9291bc116283bd4c0a15308d1484125ce5db783114234d67d1c18c",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "__osIdCheckSum",
-    "toolkit_sha": "b613fc5dc3d01fa7c0c41a542b7617d76e8e41ec9d7611204dbb6f2a5ab6c045",
-    "verified": "score0",
-    "verified_at": "2026-07-08"
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-07-11"
   }
 }

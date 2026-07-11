@@ -5,7 +5,27 @@
 #include "rom_tu.h"
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_f700/__osSumcalc.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_f700/__osIdCheckSum.s")
+/* PROMOTED 2026-07-11 — __osIdCheckSum
+ * Source:   src/util/checksum.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:src/util/checksum.c:__osIdCheckSum (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+s32 __osIdCheckSum(u16 *ptr, u16 *csum, u16 *icsum) {
+    u16 data = 0;
+    u32 j;
+
+    *csum = *icsum = 0;
+
+    for (j = 0; j < 28; j += 2) {
+        data = *(u16 *)((u32)ptr + j);
+        *csum += data;
+        *icsum += ~data;
+    }
+
+    return 0;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_f700/__osRepairId.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_f700/__osCheckId.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_f700/__osGetId.s")
