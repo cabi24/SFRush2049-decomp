@@ -7,14 +7,6 @@
     "verified": "score0",
     "verified_at": "2026-07-08"
   },
-  "src/libultra/os_phys.c:osPhysicalToVirtual": {
-    "body_sha256": "ee341b839f6672126d9519439d15a01bc7c5579afb447876f986de82319a2aa9",
-    "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
-    "target_id": "osPhysicalToVirtual",
-    "toolkit_sha": "b613fc5dc3d01fa7c0c41a542b7617d76e8e41ec9d7611204dbb6f2a5ab6c045",
-    "verified": "score0",
-    "verified_at": "2026-07-08"
-  },
   "src/libultra/os_sp.c:__osSpDeviceBusy": {
     "body_sha256": "d1c342cc68a70f8d8a41d6835c9dcba92e19c7a5d4b9a7a2c2ade280e924e416",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -83,6 +75,14 @@
     "body_sha256": "956537774ce209281b73bae6ba07f8df610cfb61a10e3ca2fbafb4b44391e42a",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "osDpGetCounters",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-07-11"
+  },
+  "src/rom/lib_a800.c:osPhysicalToVirtual": {
+    "body_sha256": "ee341b839f6672126d9519439d15a01bc7c5579afb447876f986de82319a2aa9",
+    "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "target_id": "osPhysicalToVirtual",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-07-11"

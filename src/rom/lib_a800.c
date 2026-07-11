@@ -4,4 +4,13 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_a800/osPhysicalToVirtual.s")
+/* PROMOTED 2026-07-11 — osPhysicalToVirtual
+ * Source:   src/libultra/os_phys.c (in-repo, locked)
+ * Flags:    -g0 -O1 -mips2 -G 0 -non_shared
+ * Evidence: lock:src/libultra/os_phys.c:osPhysicalToVirtual (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void *osPhysicalToVirtual(u32 physAddr) {
+    return (void *)(physAddr | 0x80000000);
+}
+
