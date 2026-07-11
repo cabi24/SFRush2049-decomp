@@ -4,7 +4,24 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_8800/strchr.s")
+/* PROMOTED 2026-07-11 — strchr
+ * Source:   src/libc/string.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:src/libc/string.c:strchr (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+char *strchr(const char *s, int c) {
+    const char ch = c;
+
+    while (*s != ch) {
+        if (*s == 0) {
+            return NULL;
+        }
+        s++;
+    }
+    return (char *)s;
+}
+
 /* PROMOTED 2026-07-11 — strlen
  * Source:   src/libc/string.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared

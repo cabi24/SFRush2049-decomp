@@ -1,12 +1,4 @@
 {
-  "src/libc/string.c:strchr": {
-    "body_sha256": "89b19708fce3e440f22662b880e1fede02a524c66dc7ea346d9610eaee97cdca",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "strchr",
-    "toolkit_sha": "b613fc5dc3d01fa7c0c41a542b7617d76e8e41ec9d7611204dbb6f2a5ab6c045",
-    "verified": "score0",
-    "verified_at": "2026-07-08"
-  },
   "src/libultra/os_ai.c:__osAiDeviceBusy": {
     "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -59,6 +51,14 @@
     "body_sha256": "3165d008e7c6211654e517cf1c0a25afc217cc749b9d99e88d850824615fab24",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "memcpy",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-07-11"
+  },
+  "src/rom/lib_8800.c:strchr": {
+    "body_sha256": "89b19708fce3e440f22662b880e1fede02a524c66dc7ea346d9610eaee97cdca",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "strchr",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-07-11"
