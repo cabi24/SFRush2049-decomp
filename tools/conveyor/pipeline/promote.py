@@ -58,8 +58,16 @@ def _build_and_gate(via_builder, tu_rel):
                      f"{BUILDER}:{BUILDER_REPO}/{tu_rel}"])
         if sync.returncode != 0:
             return False, "rsync to builder failed: " + sync.stderr.strip()[:300]
+        # rsync -a preserves the Pi's mtime, which can predate the builder's
+        # last-built object — make would then skip the rebuild and the gate
+        # would verify a STALE ROM (caught live by the SC-003 drill). Touch
+        # the TU so the rebuild is unconditional, and demand the object is
+        # actually newer afterwards.
+        obj_rel = "build/us/" + str(tu_rel)[:-2] + ".o"
         build = _run(["ssh", BUILDER,
-                      f"cd {BUILDER_REPO} && make COMPILER=ido -j16 && make test"])
+                      f"cd {BUILDER_REPO} && touch {tu_rel} && "
+                      f"make COMPILER=ido -j16 && make test && "
+                      f"[ {obj_rel} -nt {tu_rel} ]"])
     else:
         if not _have_local_ido():
             raise Refusal(
@@ -146,6 +154,15 @@ def run_promotion(spec, source, via_builder=False, override_reason=None,
     conn = dbmod.connect(Path(data or DEFAULT_DATA) / "conveyor.db")
     if not ok:
         _run(["git", "checkout", "--", str(tu_rel)])
+        if via_builder:
+            # Leave the builder green too: restore its TU and rebuild so the
+            # next transaction starts from a verified state (drill finding).
+            _run(["rsync", "-az", str(REPO / tu_rel),
+                  f"{BUILDER}:{BUILDER_REPO}/{tu_rel}"])
+            _run(["ssh", BUILDER,
+                  f"cd {BUILDER_REPO} && touch {tu_rel} && "
+                  f"make COMPILER=ido -j16 >/dev/null 2>&1 && make test"],
+                 timeout=1800)
         with dbmod.tx(conn):
             conn.execute(
                 "INSERT INTO promotion_record (target_id, source_sha, build_ok,"

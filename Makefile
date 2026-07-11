@@ -252,9 +252,16 @@ $(TARGET): $(ELF)
 	@echo "Build complete: $@"
 
 # Verify ROM hash
+# The BUILT ROM must hash-match the original. Two historical bugs fixed here
+# (2026-07-11, caught by the 004 rollback drill): this used to check
+# baserom.us.z64 (the original file — always "OK"), and `|| echo` swallowed
+# the exit code so it could never fail the build. The gate now verifies the
+# build output and fails loudly.
 verify: $(TARGET)
-	@echo "Verifying ROM hash..."
-	@sha1sum -c $(VERSION).sha1 && echo "ROM matches!" || echo "ROM does NOT match"
+	@echo "Verifying built ROM hash..."
+	@echo "$$(cut -d' ' -f1 $(VERSION).sha1)  $(TARGET)" | sha1sum -c - \
+	    && echo "ROM matches!" \
+	    || { echo "ROM does NOT match"; exit 1; }
 
 test: verify
 

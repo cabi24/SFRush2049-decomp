@@ -459,12 +459,13 @@ def _run_extract():
 
 
 def _affected_paths(seg):
+    # Only the segment's OWN files: splat.us.yaml and the linker script are
+    # legitimately dirty between conversions in one batch (each convert edits
+    # them), so checking them would wrongly refuse sequential conversions.
     off = int(seg["yaml_name"], 16)
     return [
-        REPO / "splat.us.yaml",
         REPO / f"asm/us/{off:X}.s",
         REPO / "src" / f"{seg['rom_tu']}.c",
-        REPO / "rush2049.us.ld",
     ]
 
 
