@@ -7,14 +7,6 @@
     "verified": "score0",
     "verified_at": "2026-07-08"
   },
-  "src/libultra/os_sp.c:__osSpSetStatus": {
-    "body_sha256": "62f2761b22399a0143c9b49da9ac2d81c7c3995e68bac8bdf05b515e6063e8fe",
-    "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
-    "target_id": "__osSpSetStatus",
-    "toolkit_sha": "b613fc5dc3d01fa7c0c41a542b7617d76e8e41ec9d7611204dbb6f2a5ab6c045",
-    "verified": "score0",
-    "verified_at": "2026-07-08"
-  },
   "src/rom/lib_8800.c:memcpy": {
     "body_sha256": "3165d008e7c6211654e517cf1c0a25afc217cc749b9d99e88d850824615fab24",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -67,6 +59,14 @@
     "body_sha256": "ee341b839f6672126d9519439d15a01bc7c5579afb447876f986de82319a2aa9",
     "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
     "target_id": "osPhysicalToVirtual",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-07-11"
+  },
+  "src/rom/lib_e240.c:__osSpSetStatus": {
+    "body_sha256": "62f2761b22399a0143c9b49da9ac2d81c7c3995e68bac8bdf05b515e6063e8fe",
+    "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "target_id": "__osSpSetStatus",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-07-11"

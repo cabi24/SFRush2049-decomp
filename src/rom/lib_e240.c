@@ -4,4 +4,13 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_e240/__osSpSetStatus.s")
+/* PROMOTED 2026-07-11 — __osSpSetStatus
+ * Source:   src/libultra/os_sp.c (in-repo, locked)
+ * Flags:    -g0 -O1 -mips2 -G 0 -non_shared
+ * Evidence: lock:src/libultra/os_sp.c:__osSpSetStatus (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void __osSpSetStatus(u32 status) {
+    SP_STATUS_REG = status;
+}
+
