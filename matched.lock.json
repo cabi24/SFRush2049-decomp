@@ -1,12 +1,4 @@
 {
-  "src/game/matrix.c:guMtxIdentF": {
-    "body_sha256": "2a83c1f72b77c3fe51dad50c8559ed86f9a7c7589c564d7add2a3be4642cd178",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "guMtxIdentF",
-    "toolkit_sha": "23185a790564a5b977b05aa5173d943f2561fba860f1ac664204db56706aa437",
-    "verified": "score0",
-    "verified_at": "2026-07-08"
-  },
   "src/game/matrix.c:guMtxL2F": {
     "body_sha256": "b2d6754cd4fc29ec0f37ef1b5dac944ada44da0438305b4b4a3f574343e381ff",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -83,6 +75,14 @@
     "body_sha256": "2cd8adf42b1bc86e4571a6273bb791b2488b6d787f0dc4d8e02de56d5604d118",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "strlen",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-07-11"
+  },
+  "src/rom/lib_9de0.c:guMtxIdentF": {
+    "body_sha256": "2a83c1f72b77c3fe51dad50c8559ed86f9a7c7589c564d7add2a3be4642cd178",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "guMtxIdentF",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-07-11"
