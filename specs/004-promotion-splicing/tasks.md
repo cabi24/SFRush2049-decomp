@@ -71,10 +71,17 @@ Not started: T005–T014.
 
 T005-T007, T009-T011 DONE and live: 8 segments converted, **11/12 locked
 functions promoted into a SHA-1-exact ROM**, coverage in `make progress`.
-Remaining: T008 (promote unit tests), T012 (verify_promote job upgrade +
-toolkit rebuild), T013/T014 (docs, final suite pass — suite currently green).
 Two gate bugs found by the SC-003 drill are fixed (see quickstart §3);
 __osAiDeviceBusy deferred (no derived region at 0x8000FB60).
+
+**Closure pass (2026-07-11, Opus):** T008 (`test_promote.py`, 11 tests — real
+transaction, gate mocked; 130 local tests green) and T013 (README + CLAUDE.md
+operating notes; wiki status/improvements updated) DONE. **T012 parked as a
+future improvement** (verify_promote → run_promotion on the builder; needs a
+toolkit rebuild) so the pipeline can be run for steady-state promotion churn
+now — the CLI/library path (`promote run`/`batch`) is complete and gated. Only
+T012 and the __osAiDeviceBusy boundary remain, both non-blocking (wiki
+improvements).
 
 ## Phase 1: Setup
 - [ ] T001 Vendor asm-processor into `tools/asm-processor/` at a pinned commit
@@ -108,7 +115,7 @@ __osAiDeviceBusy deferred (no derived region at 0x8000FB60).
   contracts/promotion-transaction.md: preconditions with named remedies,
   splice with provenance header, build+gate (local IDO or --via-builder),
   lock migration, promotion_record, atomic commit/rollback.
-- [ ] T008 [P] [US2] `tests/conveyor/unit/test_promote.py`: precondition
+- [x] T008 [P] [US2] `tests/conveyor/unit/test_promote.py`: precondition
   refusals, splice text, rollback restores byte-identical TU, lock migration
   add+remove in one step, already-promoted refusal (build mocked; the real
   gate is Phase 4's job).
@@ -127,7 +134,7 @@ __osAiDeviceBusy deferred (no derived region at 0x8000FB60).
   (drop the work/matched.c stopgap); one conveyor-driven promotion end to end
   on the builder (SC-006). Toolkit rebuild required (jobs/ change) — batch it
   with any pending node-side changes.
-- [ ] T013 [P] Docs: README operating note (convert → promote → coverage;
+- [x] T013 [P] Docs: README operating note (convert → promote → coverage;
   refusal remedies), CLAUDE.md conveyor section update.
 - [ ] T014 Full suite green; commit(s) per convention; quickstart MEASURED
   blanks all filled. Wiki/status is the reviewer's.

@@ -173,12 +173,67 @@ prints `attribution: <n> cells checked, <k> mismatched (expect 0)`.
   003 for this reason. A no-regression guard (keep MMIO-absolute references
   raw-word) is the likely fix. See quickstart §4.
 
+## Promotion splicing: matches become ROM (004)
+
+This is how a verified match turns into compiled C linked into the SHA-1-exact
+ROM. The full-ROM hash is the *only* promotion authority.
+
+**Layout map** (`pipeline/layout.py`, derived — never hand-maintained): per
+splat code subsegment, the ordered functions (name/vaddr/size) with
+padding-aware tiling (alignment nops ride with the preceding function; non-zero
+data gaps refuse), the flagset joined from the lockfile, and a deterministic
+structural map hash embedded in each generated TU header.
+
+```bash
+python3 -m tools.conveyor.pipeline.layout derive     # build/layout.us.json
+python3 -m tools.conveyor.pipeline.layout report     # clean vs refused segments
+python3 -m tools.conveyor.pipeline.layout coverage   # linked-C functions/bytes
+```
+
+**Convert** a segment (`asm` → `c` in splat.us.yaml, re-split, generate an
+all-passthrough ROM-aligned TU under `src/rom/`). A zero-promotion TU is
+byte-identical to pure assembly (asm-processor + IDO), so `make test` stays
+SHA-1-exact — the hash-neutral scaffolding. `make extract` (splat re-split)
+requires the sanitized symbols produced by `tools/sanitize_symbol_addrs.py`
+and `SPLAT_PYTHON` (splat 0.41 in `~/.splat-venv`); rule: never hand-edit the
+generated linker script or nonmatchings asm — conversions live in
+`splat.us.yaml`.
+
+```bash
+python3 -m tools.conveyor.pipeline.layout convert 0x8800   # [--revert]
+```
+
+**Promote** one function: splice verified C over its passthrough, full matching
+build + SHA-1 gate, commit on pass / clean rollback on any failure, migrate the
+lock to the ROM-TU path, record provenance. The CLI and the conveyor job call
+the same `run_promotion()` library.
+
+```bash
+python3 -m tools.conveyor.pipeline.promote run 0x8800:strlen \
+    --from src/libc/string.c --via-builder     # matching build on watchman
+python3 -m tools.conveyor.pipeline.promote batch --locked --via-builder
+```
+
+Refusal remedies: *not converted* → `layout convert <seg>`; *no evidence* →
+`lock add` (verify) or `--override --reason`; *no pinned flagset* → per-TU flag
+sweep; *dirty tree* → commit/stash first; *no IDO here* → `--via-builder`. A
+missing MMIO `#define` a promoted body needs goes in `src/rom/rom_tu.h` (the
+designed extension point). `make progress` prints derived linked-C coverage.
+
+> **The gate must never be vacuous.** `make verify` hashes the *built* ROM
+> (`build/us/…z64`), not `baserom`, and a failing hash exits nonzero — a bug
+> where it hashed baserom with failure swallowed by `|| echo` made every
+> "ROM matches!" meaningless for months (caught by the SC-003 rollback drill,
+> commit 17c70f5). On the builder, `--via-builder` touches the TU and asserts
+> the rebuilt object is newer, because rsync-preserved mtimes let `make` skip
+> the rebuild and verify a stale ROM.
+
 ## Known V1 limitations
 
-- `verify_promote` lands matched source in `work/<...>/<fn>/matched.c` and
-  commits it; splicing matched functions into `src/*.c` translation units
-  needs the function→TU layout map (later phase). The full-build gate still
-  runs so the repo can never regress.
+- `verify_promote` still lands matched source in `work/<...>/<fn>/matched.c`
+  (the pre-004 stopgap); upgrading it to call `pipeline.promote.run_promotion`
+  on the builder so pipeline-verified matches splice automatically is tracked
+  as 004 T012 (needs a toolkit rebuild). The full-build gate already runs.
 - Clustering runs locally on the Pi (cheap); the `cluster_score` job type is
   reserved for scaling out if it ever isn't.
 - Flag sweeps take an explicit `--tu <file> --functions a,b,c`; automatic

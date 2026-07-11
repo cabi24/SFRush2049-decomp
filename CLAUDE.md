@@ -535,6 +535,36 @@ upgrades — out-of-scope symbol reconciliation; (2) 4 hardware-register locks
 because splat symbolizes MMIO addresses that IDO emits as literals. Details in
 `specs/003-reloc-aware-targets/quickstart.md`.
 
+### Promotion splicing — matches become ROM (Phase 4, feature 004 — 2026-07-11)
+
+The bridge from a verified match to ROM percentage: a derived layout map
+(`pipeline/layout.py`) → convert a splat `asm` subsegment to a `c` ROM-aligned
+TU (`src/rom/lib_<off>.c`, all-passthrough GLOBAL_ASM via asm-processor + IDO,
+byte-identical by construction) → `pipeline/promote.py run` splices verified C
+over one passthrough, gated by the full-ROM SHA-1, commit-or-rollback, lock
+migrates to the ROM-TU path. Design/contracts in `specs/004-promotion-splicing/`;
+ops in `tools/conveyor/README.md`.
+
+```bash
+python3 -m tools.conveyor.pipeline.layout derive|report|coverage|convert <seg>
+python3 -m tools.conveyor.pipeline.promote run <seg>:<fn> --from <path> --via-builder
+python3 -m tools.conveyor.pipeline.promote batch --locked --via-builder
+make progress | grep linked      # derived linked-C coverage
+```
+
+Status (2026-07-11): **11/12 locked functions promoted into a SHA-1-exact ROM**,
+8 segments converted, coverage 11/230 functions (920/61,440 static bytes ~1%).
+Extraction was remediated so splat re-split runs and is idempotent-to-ROM-hash
+(`tools/sanitize_symbol_addrs.py`, splat 0.41 in `~/.splat-venv` via
+`SPLAT_PYTHON`); asm-text is NOT expected to match a new splat version — the ROM
+hash is the baseline. **The SC-003 drill found the hash gate had been vacuous
+since December** (`make verify` hashed `baserom` not the built ROM; `|| echo`
+swallowed failures; rsync mtimes let `make` skip rebuilds) — all fixed
+(17c70f5). Follow-ups: T012 (verify_promote → run_promotion on the builder),
+T008 done, `__osAiDeviceBusy` has no derived region at 0x8000FB60 (symbol/
+boundary refinement for 12/12). The 19 reloc_only_diff targets promote next
+through the same pipe.
+
 ## Active Technologies
 - Python 3.9+ (Pi 5 orchestrator and nodes; no syntax above 3.9 so stock distro Pythons work) + Python stdlib only for coordinator and node agent (`http.server`, `sqlite3`, `tarfile`, `hashlib`, `json`, `urllib`). On compute nodes: decomp-permuter (vendored in repo, used as library), IDO via ido-static-recomp (shipped in toolkit bundle), mips binutils `objdump` (shipped in toolkit bundle). `pycparser` (already a permuter dependency) for arcade function extraction. (001-matching-pipeline)
 - SQLite (WAL mode) on the Pi for all pipeline state — single-writer, queried by CLI/report tools. Content-addressed blob store (sha256-named files on disk, served over HTTP) for bundles, toolkits, and results. (001-matching-pipeline)
