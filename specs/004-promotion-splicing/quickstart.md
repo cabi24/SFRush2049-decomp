@@ -61,7 +61,16 @@ python3 -m tools.conveyor.pipeline.promote run 0x8800:strlen --from src/libc/str
 # then the drill: promote memcpy --from <a deliberately wrong body>; expect
 # refusal, git status clean, make test still exact
 ```
-**MEASURED**: strlen ________; drill ________
+**MEASURED (2026-07-11, Fable)**: strlen **PROMOTED @ 8347cb2, ROM SHA-1
+exact** (SC-002 ✓). Drill: **GATE FAILED, splice rolled back**, tree clean,
+builder re-greened (SC-003 ✓). The drill earned its keep twice before passing
+honestly: it exposed (a) `make verify` checking baserom.us.z64 instead of the
+BUILT ROM with failure swallowed by `|| echo` — the hash gate had been vacuous
+since it was written — and (b) rsync-preserved mtimes letting the builder skip
+the rebuild and verify a stale ROM. Both fixed (commit 17c70f5); two vacuous
+"promotions" were reset and redone honestly. Baseline archaeology with the
+fixed gate: pre-remediation 4195a3a did NOT build a matching ROM; the
+extraction remediation cec2809 does (verified in worktrees).
 
 ## 4. The batch (SC-004) + coverage (SC-005)
 ```bash
@@ -69,7 +78,15 @@ python3 -m tools.conveyor.pipeline.promote batch --locked
 make progress | grep -i linked        # >0 functions, >0 bytes, derived
 python3 -m tools.conveyor.pipeline.lock check && lock verify
 ```
-**MEASURED**: promoted __/12; coverage ________; locks ________
+**MEASURED (2026-07-11)**: promoted **11/12** — strlen, strchr, memcpy,
+guMtxIdentF, guMtxL2F, osDpGetCounters, osPhysicalToVirtual, __osSpSetPc,
+__osSpSetStatus, __osSpDeviceBusy, __osIdCheckSum — each behind its own full
+gate (8 segments converted; two batch stops for missing MMIO defines resolved
+via rom_tu.h, the designed extension point). The 12th (__osAiDeviceBusy,
+0x8000FB60) has no derived function region — a symbol/boundary refinement
+follow-up; its reference-path lock stays. Coverage (derived): **11/230
+functions, 920/61440 bytes (1%)** in `make progress`. `lock check`: all 12
+intact (11 at ROM-TU paths, verified rom-sha1).
 
 ## 5. Conveyor path (SC-006) + suite
 One promotion driven through the upgraded verify_promote job on the builder;

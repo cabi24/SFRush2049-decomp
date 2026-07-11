@@ -67,6 +67,15 @@ assumed). Rule 5 stands unmodified.
 
 Not started: T005–T014.
 
+## Status (2026-07-11, Fable — resumed post-remediation)
+
+T005-T007, T009-T011 DONE and live: 8 segments converted, **11/12 locked
+functions promoted into a SHA-1-exact ROM**, coverage in `make progress`.
+Remaining: T008 (promote unit tests), T012 (verify_promote job upgrade +
+toolkit rebuild), T013/T014 (docs, final suite pass — suite currently green).
+Two gate bugs found by the SC-003 drill are fixed (see quickstart §3);
+__osAiDeviceBusy deferred (no derived region at 0x8000FB60).
+
 ## Phase 1: Setup
 - [ ] T001 Vendor asm-processor into `tools/asm-processor/` at a pinned commit
   (record sha in the README); crib the Makefile integration pattern from
@@ -95,7 +104,7 @@ Not started: T005–T014.
   nonmatchings asm — solve for this one segment before generalizing).
 
 ## Phase 3: US2 — the promotion transaction
-- [ ] T007 [US2] Implement `promote.py` (library + CLI) exactly per
+- [x] T007 [US2] Implement `promote.py` (library + CLI) exactly per
   contracts/promotion-transaction.md: preconditions with named remedies,
   splice with provenance header, build+gate (local IDO or --via-builder),
   lock migration, promotion_record, atomic commit/rollback.
@@ -103,16 +112,16 @@ Not started: T005–T014.
   refusals, splice text, rollback restores byte-identical TU, lock migration
   add+remove in one step, already-promoted refusal (build mocked; the real
   gate is Phase 4's job).
-- [ ] T009 [US2] **strlen promotion + rollback drill (node_required)**:
+- [x] T009 [US2] **strlen promotion + rollback drill (node_required)**:
   quickstart §3 — SC-002 and SC-003 proven live. Record MEASURED.
 
 ## Phase 4: US3 — batch, coverage, pipeline closure
-- [ ] T010 [US3] `promote batch --locked` + convert the remaining segments
+- [x] T010 [US3] `promote batch --locked` + convert the remaining segments
   holding locked functions (layout report names them); run the batch
   (node_required): SC-004 — 12/12 promoted, SHA-1 exact, locks green at new
   paths. Flag-conflict note: research D5 (os_sp mixed evidence) — resolve by
   the segment's single real flagset; record which.
-- [ ] T011 [US3] `layout coverage` wired into `make progress` and the conveyor
+- [x] T011 [US3] `layout coverage` wired into `make progress` and the conveyor
   report (SC-005): linked-C functions/bytes, derived only.
 - [ ] T012 [US3] Upgrade `jobs/verify_promote.py` to call the promote library
   (drop the work/matched.c stopgap); one conveyor-driven promotion end to end

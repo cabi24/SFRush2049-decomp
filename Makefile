@@ -289,6 +289,7 @@ extract: $(BASEROM)
 
 progress:
 	@echo "=== Rush 2049 Decompilation Progress ==="
+	@$(PYTHON) -m tools.conveyor.pipeline.layout coverage 2>/dev/null | head -1 || true
 	@echo ""
 	@total_asm=$$(find $(ASM_DIR) -name '*.s' | wc -l); \
 	total_c=$$(find $(SRC_DIR) -name '*.c' 2>/dev/null | wc -l); \
