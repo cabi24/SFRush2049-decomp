@@ -81,7 +81,7 @@ SECTIONS
         build/us/asm/us/34A0.o(.text);
         build/us/asm/us/55F0.o(.text);
         build/us/asm/us/5610.o(.text);
-        build/us/asm/us/7600.o(.text);
+        build/us/src/rom/lib_7600.o(.text);
         build/us/asm/us/7630.o(.text);
         build/us/asm/us/7940.o(.text);
         build/us/asm/us/79A0.o(.text);
@@ -171,7 +171,7 @@ SECTIONS
         build/us/asm/us/34A0.o(.data);
         build/us/asm/us/55F0.o(.data);
         build/us/asm/us/5610.o(.data);
-        build/us/asm/us/7600.o(.data);
+        build/us/src/rom/lib_7600.o(.data);
         build/us/asm/us/7630.o(.data);
         build/us/asm/us/7940.o(.data);
         build/us/asm/us/79A0.o(.data);
@@ -261,7 +261,7 @@ SECTIONS
         build/us/asm/us/34A0.o(.rodata);
         build/us/asm/us/55F0.o(.rodata);
         build/us/asm/us/5610.o(.rodata);
-        build/us/asm/us/7600.o(.rodata);
+        build/us/src/rom/lib_7600.o(.rodata);
         build/us/asm/us/7630.o(.rodata);
         build/us/asm/us/7940.o(.rodata);
         build/us/asm/us/79A0.o(.rodata);
@@ -356,7 +356,7 @@ SECTIONS
         build/us/asm/us/34A0.o(.bss);
         build/us/asm/us/55F0.o(.bss);
         build/us/asm/us/5610.o(.bss);
-        build/us/asm/us/7600.o(.bss);
+        build/us/src/rom/lib_7600.o(.bss);
         build/us/asm/us/7630.o(.bss);
         build/us/asm/us/7940.o(.bss);
         build/us/asm/us/79A0.o(.bss);
