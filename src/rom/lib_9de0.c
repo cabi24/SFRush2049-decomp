@@ -55,4 +55,16 @@ void guMtxIdentF(f32 mtx[4][4]) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_9de0/guMtxIdent.s")
+/* PROMOTED 2026-07-12 — guMtxIdent
+ * Source:   src/game/matrix.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:src/game/matrix.c:guMtxIdent (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void guMtxIdent(u16 *mtx) {
+    f32 temp[4][4];
+
+    guMtxIdentF(temp);
+    guMtxF2L(temp, mtx);
+}
+
