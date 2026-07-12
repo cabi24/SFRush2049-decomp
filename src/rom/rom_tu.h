@@ -2,6 +2,11 @@
  * promoted bodies add what they use here (keep it additive and collision-free
  * — one definition per hardware register across all ROM TUs). */
 #include "types.h"
+#include "PR/os_message.h"
+#include "PR/os_thread.h"
+
+/* Data symbols referenced by promoted libultra bodies. */
+extern OSThread *__osEmptyMesgQueue;   /* 0x8002C3D0 — empty mesg queue sentinel */
 
 /* N64 MMIO registers referenced by promoted libultra bodies. IDO compiles
  * these #define'd KSEG1 addresses to literal immediates (no relocation) —
