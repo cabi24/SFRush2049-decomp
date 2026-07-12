@@ -1,4 +1,12 @@
 {
+  "src/game/matrix.c:guMtxIdent": {
+    "body_sha256": "83aea719004123016640913339b4569fa10ff90fd6282ee0236c67e55b9ee1b9",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "guMtxIdent",
+    "toolkit_sha": "1e21f523122ef9217aa757221c63a3cd1845965b841fcfe26ed53c51ecc79b01",
+    "verified": "score0",
+    "verified_at": "2026-07-12"
+  },
   "src/libultra/os_ai.c:__osAiDeviceBusy": {
     "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
