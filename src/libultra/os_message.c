@@ -8,8 +8,8 @@
 #include "PR/os_message.h"
 #include "PR/os_thread.h"
 
-/* Empty thread queue sentinel */
-extern OSThread *__osThreadQueue;
+/* Empty message queue sentinel (0x8002C3D0) */
+extern OSThread *__osEmptyMesgQueue;
 
 /**
  * Initialize a message queue
@@ -18,8 +18,8 @@ extern OSThread *__osThreadQueue;
  * @param count Number of messages the queue can hold
  */
 void osCreateMesgQueue(OSMesgQueue *mq, OSMesg *msg, s32 count) {
-    mq->mtqueue = (OSThread *)&__osThreadQueue;
-    mq->fullqueue = (OSThread *)&__osThreadQueue;
+    mq->mtqueue = (OSThread *)&__osEmptyMesgQueue;
+    mq->fullqueue = (OSThread *)&__osEmptyMesgQueue;
     mq->validCount = 0;
     mq->first = 0;
     mq->msgCount = count;
