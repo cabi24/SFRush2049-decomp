@@ -31,6 +31,13 @@ extern f32 sqrtf(f32 x);
 extern f32 sinf(f32 x);
 extern f32 cosf(f32 x);
 
+/* Forward declarations for local helper functions */
+void vec_copy(f32 src[3], f32 dst[3]);
+void vec_add(f32 a[3], f32 b[3], f32 out[3]);
+void vec_scale(f32 v[3], f32 s, f32 out[3]);
+f32  vec_magnitude(f32 v[3]);
+void vec_cross(f32 a[3], f32 b[3], f32 out[3]);
+
 /* Physics state for all cars */
 CarPhysics car_physics[MAX_CARS];
 

@@ -104,8 +104,8 @@ s8  cancel_mpath_lap;
 f32 lap_loop_distance;
 s16 close_chkpnt;
 s16 path_point_index;
-s8  end_game_flag;
-s8  lap_flag;
+s32 end_game_flag;
+s32 lap_flag;
 
 /* Track/checkpoint data arrays */
 CheckPoint TrackCPs[MAX_TRACKS][MAX_CHECKPOINTS];
@@ -814,6 +814,53 @@ f32 calc_car_distance(s32 car_index) {
     }
 
     return distance;
+}
+
+/**
+ * race_position_calc - Calculate race position for a single car
+ *
+ * Returns 1-8 (1 = first place).
+ */
+s32 race_position_calc(s32 car_index) {
+#ifdef NON_MATCHING
+    s32 i;
+    s32 position;
+    f32 car_dist;
+    f32 car_segment;
+    f32 other_dist;
+    f32 other_segment;
+
+    if (car_index < 0 || car_index >= num_active_cars) {
+        return 0;
+    }
+
+    car_dist = calc_car_distance(car_index);
+    car_segment = car_array[car_index].distance;
+    position = 1;
+
+    for (i = 0; i < num_active_cars; i++) {
+        if (i == car_index) {
+            continue;
+        }
+
+        other_dist = calc_car_distance(i);
+        if (other_dist > car_dist) {
+            position++;
+            continue;
+        }
+
+        if (other_dist == car_dist) {
+            other_segment = car_array[i].distance;
+            if (other_segment > car_segment) {
+                position++;
+            }
+        }
+    }
+
+    return position;
+#else
+    return 0;
+#endif
 }
 
 /**

@@ -304,9 +304,13 @@ s32 CheckAutoShift(s32 car_index, f32 angvel, s32 current_gear);
 /* Maximum active cars in race */
 #define MAX_LINKS       8
 
-/* Car type identifiers */
+/* Car type identifiers - guarded to avoid conflicts with drone.h */
+#ifndef HUMAN
 #define HUMAN           1       /* Human player */
+#endif
+#ifndef DRONE
 #define DRONE           2       /* AI-controlled drone */
+#endif
 
 /* MDrive interface functions */
 void Init_MDrive(s16 mode, s16 drone_index);

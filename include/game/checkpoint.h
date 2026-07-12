@@ -137,8 +137,8 @@ extern s8  cancel_mpath_lap;            /* Cancel maxpath lap recording */
 extern f32 lap_loop_distance;           /* Distance around loop */
 extern s16 close_chkpnt;                /* Close checkpoint index */
 extern s16 path_point_index;            /* Current path point index */
-extern s8  end_game_flag;               /* End of game flag */
-extern s8  lap_flag;                    /* Lap display flag */
+extern s32 end_game_flag;               /* End of game flag */
+extern s32 lap_flag;                    /* Lap display flag */
 
 /* Arcade laps_to_go sound array (from checkpoint.c) */
 extern const s16 laps_to_go[10];
@@ -194,6 +194,7 @@ f32  calc_car_distance(s32 car_index);
 void sort_race_positions(void);         /* Sort active cars by distance */
 void sort_finished_positions(void);     /* Sort finished cars by time */
 void update_all_positions(void);        /* Full position update */
+s32  race_position_calc(s32 car_index); /* Calculate 1-based position */
 s32  get_race_position(s32 car_index);  /* Get car's position */
 s32  get_race_leader(void);             /* Get leader's car index */
 s32  is_in_first_place(void);           /* Check if player is leading */
@@ -224,10 +225,11 @@ void back_path_points(s16 mode);        /* Back path points */
 #define CP_UPDATE       1       /* Arcade: Do_it */
 #define CP_CLEANUP      2       /* Arcade: Cleanup */
 
-/* Arcade name aliases */
-#define Initialize      CP_INITIALIZE
-#define Do_it           CP_UPDATE
-#define Cleanup         CP_CLEANUP
+/* Arcade name aliases - commented out to avoid conflicts with car.h
+ * Use CP_INITIALIZE, CP_UPDATE, CP_CLEANUP directly instead */
+/* #define Initialize      CP_INITIALIZE */
+/* #define Do_it           CP_UPDATE */
+/* #define Cleanup         CP_CLEANUP */
 
 /* ========================================================================
  * Arcade timing constants

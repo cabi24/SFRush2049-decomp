@@ -113,7 +113,7 @@ void ResetCountdownTimer(void);         /* Reset countdown */
 void SetCountdownTimer(s32 time);       /* Set countdown duration */
 void SetCountdownTimerAt0(s32 time);    /* Set countdown at zero start */
 s32 GetCountdownTime(void);             /* Get remaining countdown */
-u32 GetElapsedTime(void);               /* Get elapsed race time */
+s32 GetElapsedTime(void);               /* Get elapsed race time */
 s32 TimeOut(void);                      /* Check if time expired */
 
 /* State queries */

@@ -40,7 +40,7 @@ extern void osScSetVideoMode(s32 a0, s32 a1);
 extern void *osScGetFrameCount(void);
 extern void osScCreateThread(void *a0, void *a1, s32 a2, void *a3, s32 a4);
 extern void osScStartRetrace(void *a0, void *a1, void *a2);
-extern void osJamMesg(OSMesgQueue *mq, OSMesg msg, s32 flags);
+/* osJamMesg now declared in PR/os_message.h */
 
 /*===========================================================================*/
 /*                       ARCADE-COMPATIBLE CONSTANTS                         */

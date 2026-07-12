@@ -14,7 +14,9 @@
 #define MAX_CARS        8       /* Maximum cars in game */
 #define MAX_GEARS       6       /* Max transmission gears (MAXGEAR+2) */
 #define NUM_TIRES       4       /* Tires per car */
+#ifndef MAX_VISUALS
 #define MAX_VISUALS     8       /* Visual effects per car */
+#endif
 
 /* Difficulty levels */
 #define DIFFICULTY_EASY     0

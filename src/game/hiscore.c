@@ -1162,7 +1162,7 @@ void EnterHighScore(s16 track, u32 score, char *name, u32 deaths, u32 mirror, u3
  *
  * Note: N64 version is simplified - no blit system
  */
-void ShowHiScore(s32 show, s16 track) {
+void ShowHiScore(s32 show, s32 track) {
     if (show) {
         /* Start display */
         gHiScore.state = HISCORE_STATE_DISPLAY;

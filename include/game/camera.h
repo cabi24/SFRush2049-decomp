@@ -37,15 +37,8 @@
 #define CAM_ELASTICITY2     0.35f   /* Secondary elasticity */
 #define CAM_MAX_VEL         80      /* Max velocity for camera */
 
-/* Arcade camera constants (camera.c) */
-#define wormoff_y           CAM_WORM_OFFSET_Y       /* Arcade alias */
-#define wormoff_z           CAM_WORM_OFFSET_Z       /* Arcade alias */
-#define driveroff_x         CAM_DRIVER_OFFSET_X     /* Arcade alias */
-#define driveroff_y         CAM_DRIVER_OFFSET_Y     /* Arcade alias */
-#define driveroff_z         CAM_DRIVER_OFFSET_Z     /* Arcade alias */
-#define acc_elasticity      CAM_ELASTICITY          /* Arcade alias */
-#define acc_elasticity2     CAM_ELASTICITY2         /* Arcade alias */
-#define MAX_VEL             CAM_MAX_VEL             /* Arcade alias */
+/* Arcade camera constants - using CAM_* directly
+ * (arcade aliases removed to avoid conflicts with local variables) */
 
 /* View 3 camera constants (arcade: camera.c) */
 #define V3_MAX_MAGVEL       100.0f      /* Max velocity for distance scaling */
