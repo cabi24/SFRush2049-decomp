@@ -185,7 +185,7 @@ def cmd_seed(args):
     rows = conn.execute(
         "SELECT t.target_id, t.address FROM n64_target t"
         " JOIN function_status f USING (target_id)"
-        " WHERE f.status='unmatched' AND t.target_o_sha IS NOT NULL"
+        " WHERE f.status IN ('unmatched','seeded') AND t.target_o_sha IS NOT NULL"
         " AND t.population='static' AND t.insn_count IS NOT NULL"
         " ORDER BY t.insn_count LIMIT ?", (args.limit,)).fetchall()
     counts = {}
