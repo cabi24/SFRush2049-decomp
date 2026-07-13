@@ -28,9 +28,38 @@ from . import farm as farmmod
 
 REPO = Path(__file__).resolve().parents[3]
 ASM_DIR = REPO / "asm" / "us"
-M2C = REPO / "tools" / "m2c.py"
+M2C = REPO / "tools" / "mips_to_c" / "m2c.py"
 SHIM = REPO / "tools" / "conveyor" / "seeds" / "shim" / "conveyor_shim.h"
 _GLABEL_RE = re.compile(r"^\s*glabel\s+(\S+)")
+
+# Preprocessed type context for m2c: the OS headers parse cleanly (the game
+# headers make m2c's parser assert). It gives m2c real struct layouts so
+# struct-using functions type correctly and compile; it also carries the
+# scalar typedefs, so a seed built from it is self-contained for the permuter's
+# `cpp -nostdinc` preprocess (no separate shim needed).
+_CTX_HEADERS = ["types.h"] + [f"PR/{p.name}" for p in
+                              sorted((REPO / "include" / "PR").glob("*.h"))]
+_context_cache = None
+
+
+def _context():
+    """(preprocessed_context_path, context_text), built once."""
+    global _context_cache
+    if _context_cache is not None:
+        return _context_cache
+    import tempfile
+    head = "\n".join(f'#include "{h}"' for h in _CTX_HEADERS) + "\n"
+    src = Path(tempfile.mkdtemp(prefix="m2cctx-")) / "ctx.h"
+    src.write_text(head)
+    out = src.with_name("ctx.c")
+    proc = subprocess.run(
+        ["cpp", "-P", "-nostdinc", "-I", str(REPO / "include"),
+         "-I", str(REPO / "include" / "PR"), "-D_LANGUAGE_C",
+         str(src), "-o", str(out)],
+        capture_output=True, text=True)
+    text = out.read_text() if out.exists() and proc.returncode == 0 else ""
+    _context_cache = (str(out) if text else None, text)
+    return _context_cache
 
 
 def _asm_index():
@@ -52,14 +81,23 @@ def m2c_seed(target_id, vaddr, asm_idx):
     asm_file = asm_idx.get(target_id) or asm_idx.get(f"func_{vaddr:08X}")
     if asm_file is None:
         return None
-    proc = subprocess.run(
-        [sys.executable, str(M2C), str(asm_file), "-f", target_id],
-        capture_output=True, text=True, timeout=120,
-    )
+    ctx_path, ctx_text = _context()
+    cmd = [sys.executable, str(M2C), str(asm_file), "-f", target_id]
+    if ctx_path:
+        cmd += ["--context", ctx_path]
+    proc = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
     body = proc.stdout.strip()
     if proc.returncode != 0 or not body or "def " in body[:20]:
         return None
-    # Inline the shim (not #include) so `cpp -nostdinc` in the permuter works.
+    if ctx_text:
+        # Self-contained via the context (has scalar types + OS structs). Drop
+        # the target's own prototype from the context so it doesn't conflict
+        # with m2c's definition; C89 needs no prototypes for the rest.
+        proto = re.compile(rf"^[^\n]*\b{re.escape(target_id)}\s*\([^;{{]*\)\s*;",
+                           re.M)
+        prelude = proto.sub("", ctx_text)
+        return prelude + "\n" + body + "\n"
+    # Fallback: minimal shim (scalar types only).
     return SHIM.read_text() + "\n" + body + "\n"
 
 
