@@ -93,4 +93,83 @@ extern s16 gViewportOffsetY[32];
 extern s32 dma_wait(s32 blocking);
 extern void dma_signal(void);
 
+/* --- SI DMA retry counter: the last word of the __osSiDmaBuffer/OSPifRam
+ * block (0x80037ADC = __osSiDmaBuffer + 0x3C, i.e. its pifstatus field),
+ * but symbol_addrs.us.txt gives it its own symbol so m2c needs its own
+ * extern too. */
+extern s32 __osSiDmaRetry;
+
+/* --- Real name for func_8000CFC4's body (see __osCleanupThread above;
+ * ultralib's exceptasm.s confirms this is __osEnqueueAndYield, called
+ * directly under its real name elsewhere too). */
+extern void __osEnqueueAndYield(OSThread **queue);
+
+/* --- Controller Pak raw read (PRinternal/controller.h counterpart to
+ * __osContRamWrite above). */
+extern s32 __osContRamRead(OSMesgQueue *mq, s32 channel, u16 address,
+                            u8 *buffer);
+
+/* --- Scheduler internals (src/libultra/os_scheduler.c has the same
+ * layout reconstructed as SCHED_ and TASK_ offset macros operating on
+ * void pointers; m2c needs real field types since it decompiles
+ * __scAppendList/__scExec's own bodies directly from ROM asm, not through
+ * those macros). */
+typedef struct OSScTask_s {
+    struct OSScTask_s *next;   /* 0x00 */
+    s32 state;                  /* 0x04 */
+    s32 flags;                  /* 0x08 */
+    void *framebuffer;          /* 0x0C */
+    s32 type;                   /* 0x10 */
+    u8 pad14[0x38 - 0x14];
+    void *unk38;                 /* 0x38 */
+    s32 *unk3C;                  /* 0x3C */
+    u8 pad40[0x50 - 0x40];
+    OSMesgQueue *msgQueue;        /* 0x50 */
+    OSMesg msg;                    /* 0x54 */
+} OSScTask;
+
+typedef struct OSScClient_s {
+    struct OSScClient_s *next;  /* 0x00 */
+    OSMesgQueue *msgQueue;       /* 0x04 */
+} OSScClient;
+
+typedef struct {
+    s16 state;                        /* 0x00 */
+    u8 pad02[0x20 - 0x02];
+    s16 priority;                     /* 0x20 */
+    u8 pad22[0x40 - 0x22];
+    OSMesgQueue cmdQueue;              /* 0x40 */
+    OSMesg cmdMsgs[8];                 /* 0x58 */
+    OSMesgQueue retQueue;              /* 0x78 */
+    OSMesg retMsgs[8];                 /* 0x90 */
+    u8 padB0[0x260 - 0xB0];            /* thread lives here */
+    OSScClient *clientList;            /* 0x260 */
+    OSScTask *rspTaskHead;             /* 0x264 */
+    OSScTask *rspTaskTail;             /* 0x268 */
+    OSScTask *rdpTaskHead;             /* 0x26C */
+    OSScTask *rdpTaskTail;             /* 0x270 */
+    OSScTask *curRSPTask;              /* 0x274 */
+    OSScTask *curRDPTask;              /* 0x278 */
+    s32 retraceCount;                  /* 0x27C */
+    s32 audioListPending;              /* 0x280 */
+} OSSched;
+
+extern void __scAppendList(OSSched *sc, OSScTask *task);
+extern void __scExec(OSSched *sc, OSScTask *rspTask, OSScTask *rdpTask);
+
+/* osViSetMode/display_mode_tick (symbol_addrs.us.txt names for these two
+ * addresses); osViSetMode's caller here passes a task framebuffer pointer,
+ * not necessarily a real OSViMode*, so keep the param generic. */
+extern void osViSetMode(void *mode);
+extern void display_mode_tick(void);
+
+/* --- Inflate double-buffers + full PI DMA request (this ROM's
+ * __osPiRawStartDma is the 7-arg osPiStartDma-shaped call: mb, priority,
+ * direction, devAddr, dramAddr, size, mq). */
+extern u8 gInflateBufferA[0x1000];
+extern u8 gInflateBufferB[0x1000];
+extern s32 __osPiRawStartDma(void *mb, s32 priority, s32 direction,
+                              u32 devAddr, void *dramAddr, u32 size,
+                              OSMesgQueue *mq);
+
 #endif
