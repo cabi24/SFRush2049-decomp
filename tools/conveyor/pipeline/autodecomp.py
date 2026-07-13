@@ -92,6 +92,52 @@ def _conn(data):
     return dbmod.connect(d / "conveyor.db"), BlobStore(d / "blobs")
 
 
+AUTO_WORK = REPO / "work" / "auto"
+
+
+def cmd_harvest(args):
+    """Direct, robust replacement for the farm's flaky harvest: scan finished
+    permuter searches, and for every score-0 hit save its best.c and mark the
+    function matched. No verify_promote / cluster fan-out (the parts that
+    stalled the farm) — just bank the win so nothing is stranded."""
+    conn, store = _conn(args.data)
+    seen, banked, degenerate = set(), [], []
+    rows = conn.execute(
+        "SELECT target_id, result_sha, created_at FROM work_unit"
+        " WHERE job_type='permuter_search' AND state='DONE'"
+        " AND result_sha IS NOT NULL ORDER BY created_at DESC").fetchall()
+    for r in rows:
+        tid = r["target_id"]
+        if not tid or tid in seen:
+            continue
+        seen.add(tid)
+        result, artifacts = farmmod._read_result(store, r["result_sha"])
+        if not result or result.get("exit") != "ok":
+            continue
+        pl = result.get("payload", {})
+        best_c = artifacts.get("best.c")
+        if pl.get("final_best_score") != 0 or not best_c:
+            continue
+        st = conn.execute("SELECT status FROM function_status WHERE target_id=?",
+                          (tid,)).fetchone()
+        if st and st["status"] in ("matched", "verified"):
+            continue
+        d = AUTO_WORK / tid
+        d.mkdir(parents=True, exist_ok=True)
+        (d / "matched.c").write_bytes(best_c)
+        with dbmod.tx(conn):
+            conn.execute(
+                "UPDATE function_status SET status='matched', best_score=0,"
+                " seed_kind='m2c', updated_at=strftime('%Y-%m-%dT%H:%M:%fZ','now')"
+                " WHERE target_id=?", (tid,))
+        (degenerate if pl.get("base_score") == 0 else banked).append(tid)
+    print(f"harvested {len(banked) + len(degenerate)} score-0 -> {AUTO_WORK}")
+    if banked:
+        print(f"  permuter wins ({len(banked)}): {sorted(banked)}")
+    if degenerate:
+        print(f"  trivial/base-0 ({len(degenerate)}): {sorted(degenerate)}")
+
+
 def cmd_seed(args):
     conn, store = _conn(args.data)
     http = Http(args.coordinator, load_token(args.token, args.data))
@@ -141,6 +187,8 @@ def main():
     s.add_argument("target")
     s.add_argument("--budget", type=int, default=1200)
     s.set_defaults(func=cmd_one)
+    s = sub.add_parser("harvest")
+    s.set_defaults(func=cmd_harvest)
     args = p.parse_args()
     args.func(args)
 
