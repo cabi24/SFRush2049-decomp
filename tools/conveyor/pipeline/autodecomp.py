@@ -39,16 +39,21 @@ _GLABEL_RE = re.compile(r"^\s*glabel\s+(\S+)")
 # `cpp -nostdinc` preprocess (no separate shim needed).
 _CTX_HEADERS = ["types.h"] + [f"PR/{p.name}" for p in
                               sorted((REPO / "include" / "PR").glob("*.h"))]
+# LLM-grown struct/type context (autodecomp #1); included last so it can add
+# globals and structs m2c needs. Regenerating the context picks up edits.
+M2C_TYPES = REPO / "tools" / "conveyor" / "seeds" / "m2c_types.h"
 _context_cache = None
 
 
 def _context():
-    """(preprocessed_context_path, context_text), built once."""
+    """(preprocessed_context_path, context_text), built once per process."""
     global _context_cache
     if _context_cache is not None:
         return _context_cache
     import tempfile
     head = "\n".join(f'#include "{h}"' for h in _CTX_HEADERS) + "\n"
+    if M2C_TYPES.is_file():
+        head += f'#include "{M2C_TYPES}"\n'
     src = Path(tempfile.mkdtemp(prefix="m2cctx-")) / "ctx.h"
     src.write_text(head)
     out = src.with_name("ctx.c")
@@ -145,6 +150,146 @@ def submit_one(conn, store, http, toolkit_sha, target_id, vaddr, asm_idx,
 def _conn(data):
     d = Path(data)
     return dbmod.connect(d / "conveyor.db"), BlobStore(d / "blobs")
+
+
+CLUSTERS_MD = REPO / "build" / "m2c_clusters.md"
+ARCADE = REPO / "reference" / "repos" / "rushtherock"
+_MEMBER_RE = re.compile(r"\b([A-Za-z_]\w*)\s*->")
+_BEFORE_RE = re.compile(r"before ['`]([A-Za-z_*]\w*)")
+# tokens that are never a missing type: C keywords, our scalar types, and
+# m2c's local-variable / register naming conventions.
+_KNOWN = set("void int char short long float double signed unsigned const"
+             " struct union enum static extern return if else while for do"
+             " goto switch case default break continue sizeof typedef".split())
+_KNOWN |= {"u8", "s8", "u16", "s16", "u32", "s32", "u64", "s64", "f32", "f64",
+           "vu8", "vs8", "vu16", "vs16", "vu32", "vs32", "vf32", "OSTime",
+           "UNK_TYPE", "UNK_RET"}
+_LOCAL = re.compile(r"^(var_|arg\d|sp[0-9A-Fa-f]+|temp_|phi_|f\d+$|v[01]$|"
+                    r"a[0-3]$|t\d$|s\d$|ret|pad|dummy|D_[0-9A-Fa-f]+$)")
+
+
+_NOISE = {"unaligned", "bitwise", "aka", "note", "unk", "incomplete", "type",
+          "value", "token", "declaration", "specifiers", "identifier"}
+
+
+def _is_typeish(tok):
+    return (tok and len(tok) >= 4 and tok not in _KNOWN and tok not in _NOISE
+            and not _LOCAL.match(tok) and re.match(r"^[A-Za-z_]\w*$", tok)
+            and not tok[0].isdigit())
+
+
+def _seed_compile_errors(seed):
+    """(ok, [(missing_type, source_line)]) — compile a seed and, on failure,
+    best-effort the undefined *type* behind each error (not the local var)."""
+    import tempfile
+    f = Path(tempfile.mktemp(suffix=".c")); f.write_text(seed)
+    pp = subprocess.run(["cpp", "-P", "-nostdinc", "-DPERMUTER", str(f)],
+                        capture_output=True, text=True)
+    if pp.returncode != 0:
+        return False, []
+    src_lines = pp.stdout.splitlines()
+    g = Path(tempfile.mktemp(suffix=".c")); g.write_text(pp.stdout)
+    cc = subprocess.run(["mips-linux-gnu-gcc", "-c", "-fsyntax-only",
+                         "-std=gnu89", str(g)], capture_output=True, text=True)
+    if cc.returncode == 0:
+        return True, []
+    out, seen = [], set()
+    for el in cc.stderr.splitlines():
+        m = re.search(r":(\d+):\d+: error: (.+)", el)
+        if not m:
+            continue
+        ln, msg = int(m.group(1)), m.group(2)
+        srcline = src_lines[ln - 1].strip() if 1 <= ln <= len(src_lines) else ""
+        tok = None
+        if "not a structure" in msg or "has no member" in msg:
+            mm = _MEMBER_RE.search(srcline)          # `foo->bar`  -> foo
+            tok = mm.group(1) if mm else None
+        elif "undeclared" in msg or "unknown type" in msg:
+            mm = re.search(r"['`]([A-Za-z_]\w*)'", msg)
+            tok = mm.group(1) if mm else None
+        else:
+            # parse error "... before 'X'": the missing type is the identifier
+            # on the source line just before X.
+            mm = _BEFORE_RE.search(msg)
+            after = mm.group(1) if mm else None
+            words = re.findall(r"[A-Za-z_]\w*", srcline)
+            if after and after in words:
+                i = words.index(after)
+                tok = words[i - 1] if i > 0 else None
+            if not _is_typeish(tok):
+                tok = next((w for w in words if _is_typeish(w)), None)
+        if not _is_typeish(tok) or tok in seen:
+            continue
+        seen.add(tok)
+        out.append((tok, srcline[:100]))
+    return False, out
+
+
+def cmd_clusters(args):
+    """Run m2c across the unmatched backlog, and rank the undefined
+    types/symbols blocking compilation by how many functions each blocks —
+    the LLM's worklist (autodecomp #1). Writes an evidence report."""
+    conn, _ = _conn(args.data)
+    asm_idx = _asm_index()
+    rows = conn.execute(
+        "SELECT t.target_id, t.address FROM n64_target t"
+        " JOIN function_status f USING (target_id)"
+        " WHERE f.status IN ('unmatched','seeded') AND t.target_o_sha IS NOT NULL"
+        " AND t.population='static' AND t.insn_count IS NOT NULL"
+        " ORDER BY t.insn_count LIMIT ?", (args.limit,)).fetchall()
+    from collections import defaultdict
+    clusters = defaultdict(lambda: {"fns": set(), "lines": []})
+    compiled = attempted = 0
+    for r in rows:
+        seed = m2c_seed(r["target_id"], r["address"], asm_idx)
+        if not seed:
+            continue
+        attempted += 1
+        ok, errs = _seed_compile_errors(seed)
+        if ok:
+            compiled += 1
+            continue
+        for tok, srcline in errs:
+            cl = clusters[tok]
+            cl["fns"].add(r["target_id"])
+            if srcline and srcline not in cl["lines"] and len(cl["lines"]) < 4:
+                cl["lines"].append(srcline)
+    ranked = sorted(clusters.items(), key=lambda kv: -len(kv[1]["fns"]))
+    CLUSTERS_MD.parent.mkdir(parents=True, exist_ok=True)
+    lines = [f"# m2c compile-failure clusters",
+             f"\nattempted={attempted} compiled={compiled} "
+             f"({100 * compiled // max(attempted, 1)}%) "
+             f"blocked={attempted - compiled}\n",
+             "Each row is an undefined type/symbol; define it in "
+             "`tools/conveyor/seeds/m2c_types.h` to unlock its functions.\n"]
+    for tok, cl in ranked[:args.top]:
+        arc = _arcade_hint(tok)
+        lines.append(f"\n## `{tok}` — blocks {len(cl['fns'])} functions")
+        lines.append(f"functions: {', '.join(sorted(cl['fns'])[:12])}")
+        for sl in cl["lines"]:
+            lines.append(f"    {sl}")
+        if arc:
+            lines.append(f"arcade ref: {arc}")
+    CLUSTERS_MD.write_text("\n".join(lines) + "\n")
+    print(f"attempted={attempted} compiled={compiled} "
+          f"({100 * compiled // max(attempted, 1)}%); "
+          f"top blockers -> {CLUSTERS_MD}")
+    for tok, cl in ranked[:min(args.top, 12)]:
+        print(f"  {len(cl['fns']):3}  {tok}")
+
+
+def _arcade_hint(token):
+    """First arcade/reference line that defines or declares the token."""
+    if not ARCADE.is_dir() or len(token) < 3:
+        return None
+    try:
+        r = subprocess.run(
+            ["grep", "-rIhE", "-m1",
+             rf"(struct|typedef|extern|#define).*\b{re.escape(token)}\b",
+             str(ARCADE)], capture_output=True, text=True, timeout=20)
+        return r.stdout.strip().splitlines()[0][:100] if r.stdout.strip() else None
+    except Exception:
+        return None
 
 
 AUTO_WORK = REPO / "work" / "auto"
@@ -244,6 +389,10 @@ def main():
     s.set_defaults(func=cmd_one)
     s = sub.add_parser("harvest")
     s.set_defaults(func=cmd_harvest)
+    s = sub.add_parser("clusters")
+    s.add_argument("--limit", type=int, default=250)
+    s.add_argument("--top", type=int, default=25)
+    s.set_defaults(func=cmd_clusters)
     args = p.parse_args()
     args.func(args)
 
