@@ -199,4 +199,35 @@ extern void osDpWait(void);
 extern void __setfpcsr(u32 value);
 extern void game_loop(void);
 
+/* --- SI mutex + PIF pack-read (symbol_addrs.us.txt: __osSiGetAccess/
+ * __osSiRelAccess/__osPackReadData are all standard libultra no-arg SI
+ * helpers). */
+extern void __osSiGetAccess(void);
+extern void __osSiRelAccess(void);
+extern void __osPackReadData(void);
+
+/* --- Timer queue head (symbol_addrs.us.txt: "timer queue head pointer
+ * (TimerQueueHead*)"); dll_init (func_8000C090) sets up this node as its
+ * own circular-list sentinel, touching offsets 0x0/0x4/0x10/0x14/0x18/0x1C
+ * -- the same 0x20-byte TimerNode layout documented in src/os/dll.c
+ * (next/prev/reload_hi/reload_lo/delta_hi/delta_lo/msgQueue/msg). */
+typedef struct __OSTimerNode_s {
+    struct __OSTimerNode_s *next;  /* 0x00 */
+    struct __OSTimerNode_s *prev;  /* 0x04 */
+    s32 reload_hi;                  /* 0x08 */
+    s32 reload_lo;                  /* 0x0C */
+    s32 delta_hi;                   /* 0x10 */
+    s32 delta_lo;                   /* 0x14 */
+    OSMesgQueue *msgQueue;           /* 0x18 */
+    OSMesg msg;                       /* 0x1C */
+} __OSTimerNode;
+
+extern __OSTimerNode *__osTimerList;
+
+/* --- idle_thread_entry calls this with (NULL, 0); its own body defaults
+ * a NULL thread arg to __osRunningThread and compares the priority arg
+ * against thread->priority, so it takes an explicit thread + OSPri rather
+ * than the single-arg real SDK osCreateViManager. */
+extern void osCreateViManager(OSThread *thread, OSPri priority);
+
 #endif
