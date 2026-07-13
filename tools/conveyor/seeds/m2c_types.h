@@ -172,4 +172,31 @@ extern s32 __osPiRawStartDma(void *mb, s32 priority, s32 direction,
                               u32 devAddr, void *dramAddr, u32 size,
                               OSMesgQueue *mq);
 
+/* --- PI manager (symbol_addrs.us.txt: osPiInit/osPiGetAccess/
+ * osPiReleaseAccess/__osPiMgrState, standard libultra signatures). */
+typedef struct {
+    s32 flag;   /* 0x00 */
+    u8 pad04[0x8 - 0x4];
+    s32 unk8;   /* 0x08 */
+    u8 pad0C[0x1C - 0xC];
+} __OSPiMgrState;
+
+extern __OSPiMgrState __osPiMgrState;
+extern void osPiInit(void);
+extern void osPiGetAccess(void);
+extern void osPiReleaseAccess(void);
+extern u32 osRomBase;
+
+/* --- RCP/timer/scheduler internals confirmed against ultralib
+ * (os_internal_reg.h, os_internal_rsp.h). */
+extern void __osSetCompare(u32 compare);
+extern void __osSpSetStatus(u32 status);
+extern void osDpWait(void);
+
+/* --- __setfpcsr/game_loop: audio_thread_entry sets the FPU control/status
+ * register once then loops calling the dynamic per-frame game state
+ * machine at 0x800FD464 (symbol_addrs.us.txt: game_loop, 704 bytes). */
+extern void __setfpcsr(u32 value);
+extern void game_loop(void);
+
 #endif
