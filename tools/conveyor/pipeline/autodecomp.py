@@ -75,6 +75,23 @@ def _asm_index():
     return idx
 
 
+# Macros the preprocessed context drops (cpp consumed them) but m2c output uses.
+_PRELUDE = "#define NULL ((void *)0)\n#define TRUE 1\n#define FALSE 0\n"
+
+
+def _clean_m2c(body):
+    """Strip m2c's mechanical output warts so the seed compiles: diagnostic
+    lines that leak into stdout, and `?` placeholders m2c emits for parameter
+    types it couldn't infer (default them to s32 — the permuter fixes the rest;
+    ternary `?` is left alone)."""
+    lines = [l for l in body.splitlines()
+             if not l.lstrip().startswith(("Warning:", "Error:", "GLOBAL_ASM"))]
+    text = "\n".join(lines)
+    # `(? arg` / `, ? arg` (an unknown parameter type) -> s32
+    text = re.sub(r"([(,]\s*)\?(\s+\w)", r"\1s32\2", text)
+    return text
+
+
 def m2c_seed(target_id, vaddr, asm_idx):
     """Self-contained C seed for a target from its own asm, or None if m2c
     can't decompile it (missing asm / failure)."""
@@ -86,7 +103,7 @@ def m2c_seed(target_id, vaddr, asm_idx):
     if ctx_path:
         cmd += ["--context", ctx_path]
     proc = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
-    body = proc.stdout.strip()
+    body = _clean_m2c(proc.stdout.strip())
     if proc.returncode != 0 or not body or "def " in body[:20]:
         return None
     if ctx_text:
@@ -96,9 +113,9 @@ def m2c_seed(target_id, vaddr, asm_idx):
         proto = re.compile(rf"^[^\n]*\b{re.escape(target_id)}\s*\([^;{{]*\)\s*;",
                            re.M)
         prelude = proto.sub("", ctx_text)
-        return prelude + "\n" + body + "\n"
+        return _PRELUDE + prelude + "\n" + body + "\n"
     # Fallback: minimal shim (scalar types only).
-    return SHIM.read_text() + "\n" + body + "\n"
+    return _PRELUDE + SHIM.read_text() + "\n" + body + "\n"
 
 
 def submit_one(conn, store, http, toolkit_sha, target_id, vaddr, asm_idx,
