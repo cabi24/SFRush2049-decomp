@@ -230,4 +230,16 @@ extern __OSTimerNode *__osTimerList;
  * than the single-arg real SDK osCreateViManager. */
 extern void osCreateViManager(OSThread *thread, OSPri priority);
 
+/* --- Already-implemented functions (src/util/dma.c, src/libultra/
+ * os_thread.c, src/libultra/os_vi.c) not visible to m2c's header-only
+ * type context; declare their real signatures so callers type-check. */
+extern void dma_queue_init(void);
+extern void osSetIntMask(s32 mask);
+extern void osViSetSpecialFeatures(u32 features);
+
+/* --- Game thread stack (symbol_addrs.us.txt: "game thread stack base"),
+ * used only for address arithmetic (base + offset) when setting up the
+ * thread's stack pointer. */
+extern u8 gStackGame[0x2000];
+
 #endif
