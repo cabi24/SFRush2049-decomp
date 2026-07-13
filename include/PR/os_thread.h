@@ -55,6 +55,7 @@ typedef struct OSThread_s {
     u16                 flags;      /* Thread flags */
     s32                 id;         /* Thread ID */
     s32                 fp;         /* FP used flag */
+    struct __OSThreadprofile_s *thprof; /* thread profiler workarea (SDK) */
     __OSThreadContext   context;    /* Thread context (registers) */
 } OSThread;
 
