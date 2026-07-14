@@ -17,6 +17,7 @@ extern OSThread *__osEmptyMesgQueue;   /* 0x8002C3D0 — empty mesg queue sentin
 #define SP_STATUS_HALT     0x0001
 #define SP_STATUS_DMA_BUSY 0x0004
 #define SP_STATUS_IO_FULL  0x0010
+#define DPC_STATUS_REG   (*(vu32 *)0xA410000C)
 #define DPC_CLOCK_REG    (*(vu32 *)0xA4100010)
 #define DPC_BUFBUSY_REG  (*(vu32 *)0xA4100014)
 #define DPC_PIPEBUSY_REG (*(vu32 *)0xA4100018)
