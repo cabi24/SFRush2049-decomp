@@ -23,6 +23,14 @@
     "verified": "rom-sha1",
     "verified_at": "2026-07-15"
   },
+  "src/rom/lib_8040.c:osViSetMode": {
+    "body_sha256": "c4815e64651b502767e9c4aa7f7318bb4e27d84cfddcead39d3bfbb8f3f47ca9",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osViSetMode",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-07-15"
+  },
   "src/rom/lib_8800.c:memcpy": {
     "body_sha256": "3165d008e7c6211654e517cf1c0a25afc217cc749b9d99e88d850824615fab24",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -139,14 +147,6 @@
     "body_sha256": "7ae8425702697d01cd06a0fc3e2d6aeb48be40fbf50fbeb87db25967a263d3ba",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "osViGetFramebuffer",
-    "toolkit_sha": "1e21f523122ef9217aa757221c63a3cd1845965b841fcfe26ed53c51ecc79b01",
-    "verified": "score0",
-    "verified_at": "2026-07-14"
-  },
-  "src/rom_auto/osViSetMode.c:osViSetMode": {
-    "body_sha256": "c4815e64651b502767e9c4aa7f7318bb4e27d84cfddcead39d3bfbb8f3f47ca9",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "osViSetMode",
     "toolkit_sha": "1e21f523122ef9217aa757221c63a3cd1845965b841fcfe26ed53c51ecc79b01",
     "verified": "score0",
     "verified_at": "2026-07-14"
