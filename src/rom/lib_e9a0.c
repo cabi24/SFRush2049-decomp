@@ -6,4 +6,16 @@
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_e9a0/osPiSetDeviceTiming.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_e9a0/osSpTaskLoad_full.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_e9a0/__osInsertTimer.s")
+/* PROMOTED 2026-07-15 — __osInsertTimer
+ * Source:   src/rom_auto/__osInsertTimer.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:src/rom_auto/__osInsertTimer.c:__osInsertTimer (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+s32 __osInsertTimer(void) {
+    if (__osPiMgrState.flag == 0) {
+        return 0;
+    }
+    return __osPiMgrState.unk8;
+}
+

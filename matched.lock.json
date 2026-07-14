@@ -119,6 +119,14 @@
     "verified": "rom-sha1",
     "verified_at": "2026-07-11"
   },
+  "src/rom/lib_e9a0.c:__osInsertTimer": {
+    "body_sha256": "94b6b9e34403b46e8a97d9fa93a8f991a7bf86eaec609a784d45638a7e53226e",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osInsertTimer",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-07-15"
+  },
   "src/rom/lib_f700.c:__osIdCheckSum": {
     "body_sha256": "2fd547a89c9291bc116283bd4c0a15308d1484125ce5db783114234d67d1c18c",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -126,14 +134,6 @@
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-07-11"
-  },
-  "src/rom_auto/__osInsertTimer.c:__osInsertTimer": {
-    "body_sha256": "94b6b9e34403b46e8a97d9fa93a8f991a7bf86eaec609a784d45638a7e53226e",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "__osInsertTimer",
-    "toolkit_sha": "1e21f523122ef9217aa757221c63a3cd1845965b841fcfe26ed53c51ecc79b01",
-    "verified": "score0",
-    "verified_at": "2026-07-14"
   },
   "src/rom_auto/osPiRawReadWord.c:osPiRawReadWord": {
     "body_sha256": "fe2d30783494a32fda2a689a63f9133222d0664914f238a7e0be1085233a8935",
