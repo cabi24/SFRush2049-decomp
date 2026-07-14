@@ -364,6 +364,63 @@ def cmd_clusters(args):
         print(f"  {len(cl['fns']):3}  {tok}")
 
 
+NEARMISS_DIR = REPO / "work" / "nearmiss"
+
+
+def cmd_nearmiss(args):
+    """Package the near-miss functions (permuter got close but didn't reach 0)
+    for an LLM to close: the current best source + the target disassembly it
+    must match, per function. These are usually one instruction / cast / order
+    away — cheap, high-yield human/LLM work (autodecomp #2)."""
+    import json
+    conn, store = _conn(args.data)
+    binary = _objdump()
+    rows = conn.execute(
+        "SELECT target_id, result_sha FROM work_unit"
+        " WHERE job_type='permuter_search' AND state='DONE'"
+        " AND result_sha IS NOT NULL ORDER BY created_at DESC").fetchall()
+    seen, items = set(), []
+    for r in rows:
+        tid = r["target_id"]
+        if not tid or tid in seen:
+            continue
+        seen.add(tid)
+        result, artifacts = farmmod._read_result(store, r["result_sha"])
+        if not result or result.get("exit") != "ok":
+            continue
+        best = result.get("payload", {}).get("final_best_score")
+        if best is None or not (1 <= best <= args.max):
+            continue
+        st = conn.execute("SELECT status FROM function_status WHERE target_id=?",
+                          (tid,)).fetchone()
+        if st and st["status"] in ("matched", "verified"):
+            continue
+        tsha = conn.execute("SELECT target_o_sha FROM n64_target WHERE target_id=?",
+                            (tid,)).fetchone()
+        src = (artifacts.get("best.c") or b"").decode(errors="replace")
+        tasm = ""
+        if tsha and tsha["target_o_sha"]:
+            blob = store.get(tsha["target_o_sha"])
+            if blob:
+                tasm = subprocess.run([binary, "-dr", str(blob)],
+                                      capture_output=True, text=True).stdout
+        d = NEARMISS_DIR / tid
+        d.mkdir(parents=True, exist_ok=True)
+        (d / "source.c").write_text(src)
+        (d / "target.asm").write_text(tasm)
+        (d / "flags.txt").write_text(farmmod._flagset_for(conn, tid))
+        items.append((tid, best))
+    items.sort(key=lambda x: x[1])
+    print(f"packaged {len(items)} near-misses (best 1-{args.max}) -> {NEARMISS_DIR}")
+    for tid, best in items:
+        print(f"  best={best:>4}  {tid}")
+
+
+def _objdump():
+    from ..jobs import scoring
+    return scoring._objdump_path()
+
+
 def _arcade_hint(token):
     """First arcade/reference line that defines or declares the token."""
     if not ARCADE.is_dir() or len(token) < 3:
@@ -492,6 +549,9 @@ def main():
     s.set_defaults(func=cmd_clusters)
     s = sub.add_parser("lockmatches")
     s.set_defaults(func=cmd_lockmatches)
+    s = sub.add_parser("nearmiss")
+    s.add_argument("--max", type=int, default=80)
+    s.set_defaults(func=cmd_nearmiss)
     args = p.parse_args()
     args.func(args)
 
