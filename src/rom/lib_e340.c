@@ -4,4 +4,22 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_e340/osDpIsBusy.s")
+/* PROMOTED 2026-07-15 — osDpIsBusy
+ * Source:   work/nearmiss/osDpIsBusy/source.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:work/nearmiss/osDpIsBusy/source.c:osDpIsBusy (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+s32 osDpIsBusy(void)
+{
+    u32 status;
+
+    status = DPC_STATUS_REG;
+
+    if (status & 0x100)
+    {
+        return 1;
+    }
+    return 0;
+}
+

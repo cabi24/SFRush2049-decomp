@@ -135,6 +135,14 @@
     "verified": "rom-sha1",
     "verified_at": "2026-07-11"
   },
+  "src/rom/lib_e340.c:osDpIsBusy": {
+    "body_sha256": "a4ae8d5c05365e24dc3a4c6ac154a41fea29b2deddbbb035e640be861c455dc1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osDpIsBusy",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-07-15"
+  },
   "src/rom/lib_e9a0.c:__osInsertTimer": {
     "body_sha256": "94b6b9e34403b46e8a97d9fa93a8f991a7bf86eaec609a784d45638a7e53226e",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -163,14 +171,6 @@
     "body_sha256": "7ae8425702697d01cd06a0fc3e2d6aeb48be40fbf50fbeb87db25967a263d3ba",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "osViGetFramebuffer",
-    "toolkit_sha": "1e21f523122ef9217aa757221c63a3cd1845965b841fcfe26ed53c51ecc79b01",
-    "verified": "score0",
-    "verified_at": "2026-07-14"
-  },
-  "work/nearmiss/osDpIsBusy/source.c:osDpIsBusy": {
-    "body_sha256": "a4ae8d5c05365e24dc3a4c6ac154a41fea29b2deddbbb035e640be861c455dc1",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "osDpIsBusy",
     "toolkit_sha": "1e21f523122ef9217aa757221c63a3cd1845965b841fcfe26ed53c51ecc79b01",
     "verified": "score0",
     "verified_at": "2026-07-14"
