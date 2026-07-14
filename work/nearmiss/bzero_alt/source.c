@@ -470,8 +470,8 @@ extern void dma_queue_init(void);
 extern void osSetIntMask(s32 mask);
 extern void osViSetSpecialFeatures(u32 features);
 extern u8 gStackGame[0x2000];
-extern s32 SP_STATUS_REG;
+#define SP_STATUS_REG (*(vu32 *) 0xA4040010)
 s32 bzero_alt(void)
 {
- do { return SP_STATUS_REG & 0xFFFFFFFFFFFFFFFFu; } while (0);
+    return SP_STATUS_REG;
 }

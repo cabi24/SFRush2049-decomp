@@ -150,5 +150,13 @@
     "toolkit_sha": "1e21f523122ef9217aa757221c63a3cd1845965b841fcfe26ed53c51ecc79b01",
     "verified": "score0",
     "verified_at": "2026-07-14"
+  },
+  "work/nearmiss/bzero_alt/source.c:bzero_alt": {
+    "body_sha256": "f56e58e58170b1575d05818d86ab0ea75c9e89e1269744c8ddcc5933828c3aaf",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "bzero_alt",
+    "toolkit_sha": "1e21f523122ef9217aa757221c63a3cd1845965b841fcfe26ed53c51ecc79b01",
+    "verified": "score0",
+    "verified_at": "2026-07-14"
   }
 }
