@@ -101,7 +101,7 @@ SECTIONS
         build/us/asm/us/88A0.o(.text);
         build/us/asm/us/8920.o(.text);
         build/us/asm/us/8A80.o(.text);
-        build/us/asm/us/8DD0.o(.text);
+        build/us/src/rom/lib_8dd0.o(.text);
         build/us/asm/us/8E10.o(.text);
         build/us/asm/us/90E0.o(.text);
         build/us/asm/us/9190.o(.text);
@@ -191,7 +191,7 @@ SECTIONS
         build/us/asm/us/88A0.o(.data);
         build/us/asm/us/8920.o(.data);
         build/us/asm/us/8A80.o(.data);
-        build/us/asm/us/8DD0.o(.data);
+        build/us/src/rom/lib_8dd0.o(.data);
         build/us/asm/us/8E10.o(.data);
         build/us/asm/us/90E0.o(.data);
         build/us/asm/us/9190.o(.data);
@@ -281,7 +281,7 @@ SECTIONS
         build/us/asm/us/88A0.o(.rodata);
         build/us/asm/us/8920.o(.rodata);
         build/us/asm/us/8A80.o(.rodata);
-        build/us/asm/us/8DD0.o(.rodata);
+        build/us/src/rom/lib_8dd0.o(.rodata);
         build/us/asm/us/8E10.o(.rodata);
         build/us/asm/us/90E0.o(.rodata);
         build/us/asm/us/9190.o(.rodata);
@@ -376,7 +376,7 @@ SECTIONS
         build/us/asm/us/88A0.o(.bss);
         build/us/asm/us/8920.o(.bss);
         build/us/asm/us/8A80.o(.bss);
-        build/us/asm/us/8DD0.o(.bss);
+        build/us/src/rom/lib_8dd0.o(.bss);
         build/us/asm/us/8E10.o(.bss);
         build/us/asm/us/90E0.o(.bss);
         build/us/asm/us/9190.o(.bss);
