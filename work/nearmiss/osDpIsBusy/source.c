@@ -469,14 +469,16 @@ extern void dma_queue_init(void);
 extern void osSetIntMask(s32 mask);
 extern void osViSetSpecialFeatures(u32 features);
 extern u8 gStackGame[0x2000];
-extern s32 DPC_STATUS_REG;
+#define DPC_STATUS_REG (*(vu32 *) 0xA410000C)
 s32 osDpIsBusy(void)
 {
-  int new_var;
-  new_var = 0;
-  if (((((((((DPC_STATUS_REG & (((((((((((0xFFFF & 0xFFFFFFFFFFFFFFFFu) & 0xFFFFFFFFFFFFFFFFu) & 0xFFFFFFFFFFFFFFFFu) & 0xFFFFFFFFFFFFFFFFu) & 0xFFFFFFFFFFFFFFFFu) & 0xFFFFFFFFFFFFFFFFu) & 0xFFFFFFFFFFFFFFFFu) & 0xFFFFFFFFFFFFFFFFu) & 0xFFFFFFFFFFFFFFFFu) & 0xFFFFFFFFFFFFFFFFu) & 0xFFFFFFFFFFFFFFFFu)) & 0xFFFF) & 0xFFFF) & 0xFFFF) & 0xFFFF) & 0xFFFF) & 0xFFFF) & 0xFFFF) & 0x100)
-  {
-    return 1;
-  }
-  return new_var;
+    u32 status;
+
+    status = DPC_STATUS_REG;
+
+    if (status & 0x100)
+    {
+        return 1;
+    }
+    return 0;
 }
