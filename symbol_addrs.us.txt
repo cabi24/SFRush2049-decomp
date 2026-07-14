@@ -75,7 +75,7 @@ osGetActiveQueue = 0x8000C660; // type:func get active thread queue
 osSetThreadPri = 0x80006D40; // type:func set thread priority
 osSetIntMask = 0x80006DA0; // type:func set interrupt mask
 osSetTimer = 0x8000E3D0; // type:func set timer (initializes OSTimer and inserts to queue)
-osSetTimerIntr = 0x80006ED0; // type:func set timer interrupt [MISATTR: really a VI-event setter (writes __osViContext) — LOCKED under this name, see docs/SYMBOL_MISATTRIBUTION.md]
+osSetTimerIntr = 0x80006ED0; // type:func set timer interrupt [MISATTR really a VI-event setter (writes __osViContext) — LOCKED under this name, see docs/SYMBOL_MISATTRIBUTION.md]
 osCreateThread = 0x80006F30; // type:func create thread
 osStartThread = 0x80007080; // type:func start thread
 osRecvMesg = 0x80007270; // type:func receive message from queue
@@ -236,12 +236,12 @@ __osSumcalc = 0x8000EB00; // type:func byte-sum checksum helper (used by PFS)
 // Timer queue and linked list utilities (CC50.s, D0B0.s)
 // MISATTRIBUTED cluster — verified vs ultralib 2026-07-14, rename gated on
 // watchman/SHA-1 rebuild; see docs/SYMBOL_MISATTRIBUTION.md.
-dll_remove = 0x8000C050; // type:func remove node from singly-linked list [MISATTR: really __osDequeueThread]
-dll_init = 0x8000C090; // type:func initialize timer queue (doubly-linked list) [MISATTR: really __osTimerServicesInit]
-dll_update = 0x8000C11C; // type:func process expired timers (delta queue maintenance) [MISATTR: really __osTimerInterrupt]
-dll_reschedule = 0x8000C294; // type:func reschedule timer interrupt [MISATTR: really __osSetTimerIntr]
-dll_insert = 0x8000C308; // type:func insert timer into delta queue [MISATTR: really __osInsertTimer]
-dll_get_priority = 0x8000C490; // type:func get thread priority helper [MISATTR: really osGetThreadPri]
+dll_remove = 0x8000C050; // type:func remove node from singly-linked list [MISATTR really __osDequeueThread]
+dll_init = 0x8000C090; // type:func initialize timer queue (doubly-linked list) [MISATTR really __osTimerServicesInit]
+dll_update = 0x8000C11C; // type:func process expired timers (delta queue maintenance) [MISATTR really __osTimerInterrupt]
+dll_reschedule = 0x8000C294; // type:func reschedule timer interrupt [MISATTR really __osSetTimerIntr]
+dll_insert = 0x8000C308; // type:func insert timer into delta queue [MISATTR really __osInsertTimer]
+dll_get_priority = 0x8000C490; // type:func get thread priority helper [MISATTR really osGetThreadPri]
 __osSetCompare = 0x8000FB90; // type:func set CP0 Compare register for timer
 
 // Timer queue global state
@@ -514,7 +514,7 @@ __osContGetStatus = 0x800095AC; // type:func get controller status
 __osContRamReset = 0x80009658; // type:func reset controller pak RAM
 
 // Timer internal functions (A9E0.s)
-__osTimerInterrupt = 0x80009E18; // type:func timer interrupt handler [MISATTR: really a PFS/controller fn (__osPfsSelectBank/__osContRamRead) — real __osTimerInterrupt is dll_update @ 0x8000C11C]
+__osTimerInterrupt = 0x80009E18; // type:func timer interrupt handler [MISATTR really a PFS/controller fn (__osPfsSelectBank/__osContRamRead) — real __osTimerInterrupt is dll_update @ 0x8000C11C]
 
 // Controller pak PFS helpers (AF30.s)
 osPfsAllocate = 0x8000A350; // type:func allocate controller pak pages
@@ -545,7 +545,7 @@ __umoddi3_alt = 0x8000D9C0; // type:func unsigned 64-bit modulo (duplicate)
 osSpTaskLoad_full = 0x8000DF80; // type:func load RSP task microcode and data
 
 // More timer functions (EF80.s)
-__osInsertTimer = 0x8000E390; // type:func insert timer into sorted timer queue [MISATTR: really a __osPiMgrState getter, LOCKED under this name — real __osInsertTimer is dll_insert @ 0x8000C308, see docs/SYMBOL_MISATTRIBUTION.md]
+__osInsertTimer = 0x8000E390; // type:func insert timer into sorted timer queue [MISATTR really a __osPiMgrState getter, LOCKED under this name — real __osInsertTimer is dll_insert @ 0x8000C308, see docs/SYMBOL_MISATTRIBUTION.md]
 
 // Compressed game code functions (decompressed at 0x80086A50)
 // Maps to arcade game/game.c structure
