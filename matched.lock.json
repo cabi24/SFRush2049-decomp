@@ -95,6 +95,14 @@
     "verified": "rom-sha1",
     "verified_at": "2026-07-11"
   },
+  "src/rom/lib_cc50.c:dll_get_priority": {
+    "body_sha256": "2c12a312d5e992cd9ae033704f757fb22d27d69d5741ef129dccfb35e47be5ad",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "dll_get_priority",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-07-15"
+  },
   "src/rom/lib_e240.c:__osSpSetStatus": {
     "body_sha256": "62f2761b22399a0143c9b49da9ac2d81c7c3995e68bac8bdf05b515e6063e8fe",
     "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
@@ -155,14 +163,6 @@
     "body_sha256": "f56e58e58170b1575d05818d86ab0ea75c9e89e1269744c8ddcc5933828c3aaf",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "bzero_alt",
-    "toolkit_sha": "1e21f523122ef9217aa757221c63a3cd1845965b841fcfe26ed53c51ecc79b01",
-    "verified": "score0",
-    "verified_at": "2026-07-14"
-  },
-  "work/nearmiss/dll_get_priority/source.c:dll_get_priority": {
-    "body_sha256": "2c12a312d5e992cd9ae033704f757fb22d27d69d5741ef129dccfb35e47be5ad",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "dll_get_priority",
     "toolkit_sha": "1e21f523122ef9217aa757221c63a3cd1845965b841fcfe26ed53c51ecc79b01",
     "verified": "score0",
     "verified_at": "2026-07-14"
