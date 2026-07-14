@@ -265,6 +265,66 @@ def test_submit_counts_unextractable(tmp_path, monkeypatch, capsys):
     assert "unextractable=1" in out
 
 
+def _setup_alias_corpus(tmp_path, monkeypatch):
+    """A corpus whose candidate is the canonical ultralib name, paired to a
+    target carrying the historically-misattributed label via CANONICAL_ALIASES."""
+    repo = _make_clone(
+        tmp_path,
+        body="void __osDequeueThread(void **q, void *t) { *q = t; }\n")
+    data = tmp_path / "data"
+    corpusmod.cmd_register(_args(data, origin="ultralib", path=str(repo),
+                                 repo_url="u", include_dirs="include"))
+    corpusmod.cmd_ingest(_args(data, origin=None, allow_dirty=False))
+    conn = dbmod.connect(data / "conveyor.db")
+    store = BlobStore(data / "blobs")
+    o_sha = store.put_bytes(b"\x7fELFdequeue-target")
+    with dbmod.tx(conn):
+        # Target carries the misattributed label, not the candidate's real name.
+        conn.execute("INSERT INTO n64_target (target_id, address, population,"
+                     " insn_count, target_o_sha) VALUES ('dll_remove', 1,"
+                     " 'static', 3, ?)", (o_sha,))
+    conn.commit()
+    conn.close()
+    stub = StubHttp()
+    monkeypatch.setattr(corpusmod, "Http", lambda *a, **k: stub)
+    monkeypatch.setattr(corpusmod, "load_token", lambda *a, **k: "x")
+    return data, stub
+
+
+def test_submit_pairs_canonical_alias_to_misattributed_target(
+        tmp_path, monkeypatch, capsys):
+    data, stub = _setup_alias_corpus(tmp_path, monkeypatch)
+    corpusmod.cmd_submit(_args(data, origin=None, flagsets=["-O1", "-O2"],
+                               dry_run=True))
+    out = capsys.readouterr().out
+    # __osDequeueThread has no same-named target, but the alias pairs it to
+    # dll_remove's target .o => 1 pairing, 2 cells (one per flagset).
+    assert "1 name pairings" in out
+    assert "no_target_o=0 unextractable=0" in out
+    assert "dry run: 1 jobs (2 cells)" in out
+
+
+def test_alias_dedup_keys_on_target_id_not_candidate_name(
+        tmp_path, monkeypatch, capsys):
+    data, stub = _setup_alias_corpus(tmp_path, monkeypatch)
+    conn = dbmod.connect(data / "conveyor.db")
+    # Pre-scored under the *target* id (dll_remove), not the candidate name.
+    with dbmod.tx(conn):
+        for fs in ("-O1", "-O2"):
+            conn.execute(
+                "INSERT INTO matrix_entry (target_id, candidate_id, flagset,"
+                " toolkit_sha, score) VALUES ('dll_remove',"
+                " 'ultralib:src/os.c:__osDequeueThread', ?, ?, 5)", (fs, TOOLKIT))
+    conn.commit()
+    conn.close()
+    corpusmod.cmd_submit(_args(data, origin=None, flagsets=["-O1", "-O2"],
+                               dry_run=False))
+    out = capsys.readouterr().out
+    # Alias resolves the dedup key to dll_remove => already scored => no cells.
+    assert "1 name pairings; 0 jobs submitted (0 cells)" in out
+    assert stub.posted == []
+
+
 # --- reloc_only_diff flags + artifacts (T015) -------------------------------
 
 def _corpus_env(tmp_path):

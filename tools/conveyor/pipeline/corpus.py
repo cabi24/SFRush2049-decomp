@@ -40,6 +40,21 @@ REPO = extractmod.REPO
 CANDIDATES_PER_JOB = 20
 PRIORITY = 50  # above bulk matrix (100), below verify/smoke (1)
 
+# Canonical-name aliases: ultralib candidate function name -> our target_id.
+# A few N64 targets were historically given generic/wrong labels in
+# symbol_addrs.us.txt, so name-pairing (targets.get(candidate_name)) misses the
+# real libultra source. Verified against ultralib by asm audit (2026-07-14):
+#   dll_remove        @ 0x8000C050 is byte-for-byte __osDequeueThread
+#   dll_get_priority  @ 0x8000C490 is byte-for-byte osGetThreadPri
+# The proper fix is renaming the linker symbol (touches every cross-file `jal`
+# site + 2 locked regression anchors, so it is gated on a full SHA-1 rebuild);
+# until then this lets corpus pair the candidate against the right target .o
+# with zero build/link/lock risk. See docs/SYMBOL_MISATTRIBUTION.md.
+CANONICAL_ALIASES = {
+    "__osDequeueThread": "dll_remove",
+    "osGetThreadPri": "dll_get_priority",
+}
+
 
 def _conn_store(data):
     data = Path(data)
@@ -250,7 +265,12 @@ def cmd_submit(args):
         cells, files, n_cands = [], {}, 0
 
         for c in cands:
-            target = targets.get(c["name"])
+            # tid is the target identity used everywhere downstream (matrix_entry
+            # key, target .o, work dir); c["name"] stays the candidate's own
+            # function name for extraction/reduction. They differ only for the
+            # handful of misattributed symbols in CANONICAL_ALIASES.
+            tid = CANONICAL_ALIASES.get(c["name"], c["name"])
+            target = targets.get(tid)
             if target is None:
                 continue  # not a name pairing
             pairings += 1
@@ -268,7 +288,7 @@ def cmd_submit(args):
                 skip_unextractable += 1
                 continue
             wanted = [fs for fs in args.flagsets
-                      if (c["name"], c["candidate_id"], fs) not in done]
+                      if (tid, c["candidate_id"], fs) not in done]
             if not wanted:
                 continue
 
@@ -288,7 +308,7 @@ def cmd_submit(args):
                     tu_path, abspath, include_dirs).items():
                 files.setdefault(
                     hdr_rel, contextmod.strip_comments(hdr_text).encode())
-            o_name = c["name"] + ".o"
+            o_name = tid + ".o"
             if o_name not in files:
                 sha = target["target_o_sha"]
                 if sha not in target_bytes:
@@ -298,7 +318,7 @@ def cmd_submit(args):
                 cells.append({
                     "candidate_id": c["candidate_id"], "source": source_name,
                     "flagset": fs,
-                    "targets": [{"target_id": c["name"], "file": o_name,
+                    "targets": [{"target_id": tid, "file": o_name,
                                  "target_o_sha": target["target_o_sha"]}],
                 })
                 cells_planned += 1
