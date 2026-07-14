@@ -159,6 +159,14 @@
     "verified": "score0",
     "verified_at": "2026-07-14"
   },
+  "work/nearmiss/dll_get_priority/source.c:dll_get_priority": {
+    "body_sha256": "2c12a312d5e992cd9ae033704f757fb22d27d69d5741ef129dccfb35e47be5ad",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "dll_get_priority",
+    "toolkit_sha": "1e21f523122ef9217aa757221c63a3cd1845965b841fcfe26ed53c51ecc79b01",
+    "verified": "score0",
+    "verified_at": "2026-07-14"
+  },
   "work/nearmiss/osDpIsBusy/source.c:osDpIsBusy": {
     "body_sha256": "a4ae8d5c05365e24dc3a4c6ac154a41fea29b2deddbbb035e640be861c455dc1",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",

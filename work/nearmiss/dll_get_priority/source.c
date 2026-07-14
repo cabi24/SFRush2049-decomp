@@ -470,16 +470,11 @@ extern void dma_queue_init(void);
 extern void osSetIntMask(s32 mask);
 extern void osViSetSpecialFeatures(u32 features);
 extern u8 gStackGame[0x2000];
-s32 dll_get_priority(OSThread *arg0)
+s32 dll_get_priority(void *thread)
 {
-  OSThread *var_a0;
-  var_a0 = arg0;
-  if (var_a0 == ((void *) 0))
-  {
-    var_a0 = (var_a0 = __osRunningThread);
-    if (__osRunningThread)
+    if (thread == ((void *) 0))
     {
+        thread = __osRunningThread;
     }
-    return var_a0->priority;
-  }
+    return *(s32 *) ((u8 *) thread + 4);
 }
