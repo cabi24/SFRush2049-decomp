@@ -301,9 +301,11 @@ def cmd_harvest(args):
     function matched. No verify_promote / cluster fan-out (the parts that
     stalled the farm) — just bank the win so nothing is stranded."""
     conn, store = _conn(args.data)
-    seen, banked, degenerate = set(), [], []
+    asm_idx = _asm_index()
+    seen, banked, base0 = set(), [], []
     rows = conn.execute(
-        "SELECT target_id, result_sha, created_at FROM work_unit"
+        "SELECT target_id, address, result_sha FROM work_unit"
+        " JOIN n64_target USING (target_id)"
         " WHERE job_type='permuter_search' AND state='DONE'"
         " AND result_sha IS NOT NULL ORDER BY created_at DESC").fetchall()
     for r in rows:
@@ -315,13 +317,22 @@ def cmd_harvest(args):
         if not result or result.get("exit") != "ok":
             continue
         pl = result.get("payload", {})
-        best_c = artifacts.get("best.c")
-        if pl.get("final_best_score") != 0 or not best_c:
+        if pl.get("final_best_score") != 0:
             continue
         st = conn.execute("SELECT status FROM function_status WHERE target_id=?",
                           (tid,)).fetchone()
         if st and st["status"] in ("matched", "verified"):
             continue
+        best_c = artifacts.get("best.c")
+        is_base0 = not best_c
+        if is_base0:
+            # base=0: m2c's own seed compiled byte-identical (no permuter step,
+            # so no best.c). m2c is deterministic — regenerate the exact seed
+            # that scored 0 and bank that.
+            seed = m2c_seed(tid, r["address"], asm_idx)
+            if not seed:
+                continue
+            best_c = seed.encode()
         d = AUTO_WORK / tid
         d.mkdir(parents=True, exist_ok=True)
         (d / "matched.c").write_bytes(best_c)
@@ -330,12 +341,12 @@ def cmd_harvest(args):
                 "UPDATE function_status SET status='matched', best_score=0,"
                 " seed_kind='m2c', updated_at=strftime('%Y-%m-%dT%H:%M:%fZ','now')"
                 " WHERE target_id=?", (tid,))
-        (degenerate if pl.get("base_score") == 0 else banked).append(tid)
-    print(f"harvested {len(banked) + len(degenerate)} score-0 -> {AUTO_WORK}")
+        (base0 if is_base0 else banked).append(tid)
+    print(f"harvested {len(banked) + len(base0)} score-0 -> {AUTO_WORK}")
     if banked:
         print(f"  permuter wins ({len(banked)}): {sorted(banked)}")
-    if degenerate:
-        print(f"  trivial/base-0 ({len(degenerate)}): {sorted(degenerate)}")
+    if base0:
+        print(f"  m2c direct-hit / base-0 ({len(base0)}): {sorted(base0)}")
 
 
 def cmd_seed(args):
