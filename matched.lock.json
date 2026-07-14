@@ -7,13 +7,13 @@
     "verified": "score0",
     "verified_at": "2026-07-08"
   },
-  "src/libultra/os_message.c:osCreateMesgQueue": {
+  "src/rom/lib_7600.c:osCreateMesgQueue": {
     "body_sha256": "da4a0a5993c5440ea889075e93bf519da6ab6a272ca04f9fc3aabfae99b34883",
     "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
     "target_id": "osCreateMesgQueue",
-    "toolkit_sha": "1e21f523122ef9217aa757221c63a3cd1845965b841fcfe26ed53c51ecc79b01",
-    "verified": "score0",
-    "verified_at": "2026-07-12"
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-07-14"
   },
   "src/rom/lib_8800.c:memcpy": {
     "body_sha256": "3165d008e7c6211654e517cf1c0a25afc217cc749b9d99e88d850824615fab24",
