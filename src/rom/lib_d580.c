@@ -12,4 +12,14 @@
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_d580/__osPopThread.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_d580/__osDispatchThread.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_d580/__osExceptionPanic.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_d580/bzero_alt.s")
+/* PROMOTED 2026-07-15 — bzero_alt
+ * Source:   work/nearmiss/bzero_alt/source.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:work/nearmiss/bzero_alt/source.c:bzero_alt (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+s32 bzero_alt(void)
+{
+    return SP_STATUS_REG;
+}
+
