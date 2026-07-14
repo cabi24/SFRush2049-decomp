@@ -15,6 +15,14 @@
     "verified": "rom-sha1",
     "verified_at": "2026-07-14"
   },
+  "src/rom/lib_7ad0.c:osSetTimerIntr": {
+    "body_sha256": "e7ce5eba9e17d52da9e6ae1ade883b71410fd4c7d92a24073f08324ce004d77d",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osSetTimerIntr",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-07-15"
+  },
   "src/rom/lib_8800.c:memcpy": {
     "body_sha256": "3165d008e7c6211654e517cf1c0a25afc217cc749b9d99e88d850824615fab24",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -123,14 +131,6 @@
     "body_sha256": "fe2d30783494a32fda2a689a63f9133222d0664914f238a7e0be1085233a8935",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "osPiRawReadWord",
-    "toolkit_sha": "1e21f523122ef9217aa757221c63a3cd1845965b841fcfe26ed53c51ecc79b01",
-    "verified": "score0",
-    "verified_at": "2026-07-14"
-  },
-  "src/rom_auto/osSetTimerIntr.c:osSetTimerIntr": {
-    "body_sha256": "e7ce5eba9e17d52da9e6ae1ade883b71410fd4c7d92a24073f08324ce004d77d",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "osSetTimerIntr",
     "toolkit_sha": "1e21f523122ef9217aa757221c63a3cd1845965b841fcfe26ed53c51ecc79b01",
     "verified": "score0",
     "verified_at": "2026-07-14"
