@@ -2,6 +2,7 @@
  * promoted bodies add what they use here (keep it additive and collision-free
  * — one definition per hardware register across all ROM TUs). */
 #include "types.h"
+#include "rom_auto.h"   /* auto-decomp type context (autodecomp promotion) */
 #include "PR/os_message.h"
 #include "PR/os_thread.h"
 

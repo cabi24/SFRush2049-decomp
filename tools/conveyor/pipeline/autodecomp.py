@@ -41,7 +41,7 @@ _CTX_HEADERS = ["types.h"] + [f"PR/{p.name}" for p in
                               sorted((REPO / "include" / "PR").glob("*.h"))]
 # LLM-grown struct/type context (autodecomp #1); included last so it can add
 # globals and structs m2c needs. Regenerating the context picks up edits.
-M2C_TYPES = REPO / "tools" / "conveyor" / "seeds" / "m2c_types.h"
+M2C_TYPES = REPO / "include" / "m2c_types.h"
 _context_cache = None
 
 
@@ -150,6 +150,92 @@ def submit_one(conn, store, http, toolkit_sha, target_id, vaddr, asm_idx,
 def _conn(data):
     d = Path(data)
     return dbmod.connect(d / "conveyor.db"), BlobStore(d / "blobs")
+
+
+ROM_AUTO = REPO / "src" / "rom_auto"
+
+
+def _extract_fn(m2c_out, target_id):
+    """Just the target's function definition (drop m2c's extern preamble), so
+    it can rely on rom_auto.h for declarations instead of m2c's guessed ones
+    (which conflict with the real headers)."""
+    m = re.search(rf"^[A-Za-z_][\w ,*]*\b{re.escape(target_id)}\s*\([^;{{]*\)\s*\{{",
+                  m2c_out, re.M)
+    if not m:
+        return None
+    i, depth = m.end() - 1, 0
+    for j in range(m.end() - 1, len(m2c_out)):
+        if m2c_out[j] == "{":
+            depth += 1
+        elif m2c_out[j] == "}":
+            depth -= 1
+            if depth == 0:
+                return m2c_out[m.start():j + 1]
+    return None
+
+
+def emit_src(target_id, vaddr, asm_idx):
+    """Clean, promotable C source for a matched function: rom_auto.h (all real
+    types) + the m2c function body. Returns text, or None if m2c can't emit it."""
+    asm_file = asm_idx.get(target_id) or asm_idx.get(f"func_{vaddr:08X}")
+    if asm_file is None:
+        return None
+    ctx_path, _ = _context()
+    cmd = [sys.executable, str(M2C), str(asm_file), "-f", target_id]
+    if ctx_path:
+        cmd += ["--context", ctx_path]
+    proc = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
+    if proc.returncode != 0:
+        return None
+    fn = _extract_fn(_clean_m2c(proc.stdout), target_id)
+    if not fn:
+        return None
+    return f'/* Auto-decompiled by mips_to_c (autodecomp). */\n#include "rom_auto.h"\n\n{fn}\n'
+
+
+def cmd_lockmatches(args):
+    """Emit a clean promotable source for every matched-but-unlocked function
+    and lock it (re-verify score 0 on the pool). Turns auto-decomp matches into
+    real, checked-in, promotable sources."""
+    import json
+    from . import lock as lockmod
+    conn, _ = _conn(args.data)
+    asm_idx = _asm_index()
+    ROM_AUTO.mkdir(parents=True, exist_ok=True)
+    locked = {e.get("target_id") for e in lockmod.load_lock().values()}
+    rows = conn.execute(
+        "SELECT f.target_id, t.address FROM function_status f"
+        " JOIN n64_target t USING (target_id)"
+        " WHERE f.status='matched' AND t.population='static'"
+        " ORDER BY t.insn_count").fetchall()
+    todo = [r for r in rows if r["target_id"] not in locked]
+    print(f"{len(todo)} matched-unlocked functions to emit+lock")
+    ok, emitfail, lockfail = [], [], []
+    for r in todo:
+        tid = r["target_id"]
+        src = emit_src(tid, r["address"], asm_idx)
+        if not src:
+            emitfail.append(tid)
+            continue
+        path = ROM_AUTO / f"{tid}.c"
+        path.write_text(src)
+        flag = farmmod._flagset_for(conn, tid)
+        res = subprocess.run(
+            [sys.executable, "-m", "tools.conveyor.pipeline.lock", "add",
+             f"src/rom_auto/{tid}.c:{tid}", "--flags", flag, "--wait", "180"],
+            cwd=REPO, capture_output=True, text=True, timeout=240)
+        if "score0" in res.stdout or "(score0)" in res.stdout:
+            ok.append(tid)
+        else:
+            lockfail.append((tid, res.stdout.strip().splitlines()[-1] if res.stdout.strip() else "?"))
+            path.unlink(missing_ok=True)
+    print(f"locked {len(ok)}: {sorted(ok)}")
+    if emitfail:
+        print(f"emit-failed {len(emitfail)}: {sorted(emitfail)}")
+    if lockfail:
+        print(f"lock-failed {len(lockfail)}:")
+        for t, why in lockfail[:12]:
+            print(f"  {t}: {why[:70]}")
 
 
 CLUSTERS_MD = REPO / "build" / "m2c_clusters.md"
@@ -404,6 +490,8 @@ def main():
     s.add_argument("--limit", type=int, default=250)
     s.add_argument("--top", type=int, default=25)
     s.set_defaults(func=cmd_clusters)
+    s = sub.add_parser("lockmatches")
+    s.set_defaults(func=cmd_lockmatches)
     args = p.parse_args()
     args.func(args)
 

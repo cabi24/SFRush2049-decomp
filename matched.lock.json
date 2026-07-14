@@ -110,5 +110,45 @@
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-07-11"
+  },
+  "src/rom_auto/__osInsertTimer.c:__osInsertTimer": {
+    "body_sha256": "94b6b9e34403b46e8a97d9fa93a8f991a7bf86eaec609a784d45638a7e53226e",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osInsertTimer",
+    "toolkit_sha": "1e21f523122ef9217aa757221c63a3cd1845965b841fcfe26ed53c51ecc79b01",
+    "verified": "score0",
+    "verified_at": "2026-07-14"
+  },
+  "src/rom_auto/osPiRawReadWord.c:osPiRawReadWord": {
+    "body_sha256": "fe2d30783494a32fda2a689a63f9133222d0664914f238a7e0be1085233a8935",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osPiRawReadWord",
+    "toolkit_sha": "1e21f523122ef9217aa757221c63a3cd1845965b841fcfe26ed53c51ecc79b01",
+    "verified": "score0",
+    "verified_at": "2026-07-14"
+  },
+  "src/rom_auto/osSetTimerIntr.c:osSetTimerIntr": {
+    "body_sha256": "e7ce5eba9e17d52da9e6ae1ade883b71410fd4c7d92a24073f08324ce004d77d",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osSetTimerIntr",
+    "toolkit_sha": "1e21f523122ef9217aa757221c63a3cd1845965b841fcfe26ed53c51ecc79b01",
+    "verified": "score0",
+    "verified_at": "2026-07-14"
+  },
+  "src/rom_auto/osViGetFramebuffer.c:osViGetFramebuffer": {
+    "body_sha256": "7ae8425702697d01cd06a0fc3e2d6aeb48be40fbf50fbeb87db25967a263d3ba",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osViGetFramebuffer",
+    "toolkit_sha": "1e21f523122ef9217aa757221c63a3cd1845965b841fcfe26ed53c51ecc79b01",
+    "verified": "score0",
+    "verified_at": "2026-07-14"
+  },
+  "src/rom_auto/osViSetMode.c:osViSetMode": {
+    "body_sha256": "c4815e64651b502767e9c4aa7f7318bb4e27d84cfddcead39d3bfbb8f3f47ca9",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osViSetMode",
+    "toolkit_sha": "1e21f523122ef9217aa757221c63a3cd1845965b841fcfe26ed53c51ecc79b01",
+    "verified": "score0",
+    "verified_at": "2026-07-14"
   }
 }
