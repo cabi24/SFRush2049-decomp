@@ -574,6 +574,8 @@ through the same pipe.
 - SQLite at `~/.conveyor/conveyor.db`; content-addressed blob store (003-reloc-aware-targets)
 - Python 3.9+ (tooling), C89 (TUs), GNU make + splat (already drives extraction; supports `c` (004-promotion-splicing)
 - layout map generated into `build/` + checked-in conversion state (004-promotion-splicing)
+- Python 3.9+ (Pi orchestrator), stdlib only + `mips-linux-gnu-objdump`/`-as`/`-gcc` (all already (005-game-context-bootstrap)
+- SQLite at `~/.conveyor/conveyor.db`; content-addressed blob store; (005-game-context-bootstrap)
 
 ## Recent Changes
 - 001-matching-pipeline: Added Python 3.9+ (Pi 5 orchestrator and nodes; no syntax above 3.9 so stock distro Pythons work) + Python stdlib only for coordinator and node agent (`http.server`, `sqlite3`, `tarfile`, `hashlib`, `json`, `urllib`). On compute nodes: decomp-permuter (vendored in repo, used as library), IDO via ido-static-recomp (shipped in toolkit bundle), mips binutils `objdump` (shipped in toolkit bundle). `pycparser` (already a permuter dependency) for arcade function extraction.
