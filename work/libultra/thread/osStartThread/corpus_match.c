@@ -4,7 +4,7 @@
  * Origin:      ultralib (https://github.com/decompals/ultralib)
  * Source:      src/os/startthread.c @ e24c8367
  * Flags:       -g0 -O1 -mips2 -G 0 -non_shared
- * Scores:      true=125  reloc_blind=0
+ * Scores:      true=65  reloc_blind=0
  * Upgrade:     re-scores automatically when relocation-aware targets land
  */
 void osStartThread(OSThread* t) {

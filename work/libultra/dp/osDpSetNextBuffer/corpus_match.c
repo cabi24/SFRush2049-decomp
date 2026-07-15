@@ -4,7 +4,7 @@
  * Origin:      ultralib (https://github.com/decompals/ultralib)
  * Source:      src/io/dpsetnextbuf.c @ e24c8367
  * Flags:       -g0 -O2 -mips2 -G 0 -non_shared
- * Scores:      true=15  reloc_blind=0
+ * Scores:      true=5  reloc_blind=0
  * Upgrade:     re-scores automatically when relocation-aware targets land
  */
 s32 osDpSetNextBuffer(void* bufPtr, u64 size) {

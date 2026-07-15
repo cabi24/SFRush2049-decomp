@@ -4,7 +4,7 @@
  * Origin:      ultralib (https://github.com/decompals/ultralib)
  * Source:      src/io/siacs.c @ e24c8367
  * Flags:       -g0 -O1 -mips2 -G 0 -non_shared
- * Scores:      true=30  reloc_blind=0
+ * Scores:      true=25  reloc_blind=0
  * Upgrade:     re-scores automatically when relocation-aware targets land
  */
 void __osSiGetAccess(void) {

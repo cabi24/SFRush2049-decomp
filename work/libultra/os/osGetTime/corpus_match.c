@@ -4,7 +4,7 @@
  * Origin:      ultralib (https://github.com/decompals/ultralib)
  * Source:      src/os/gettime.c @ e24c8367
  * Flags:       -g0 -O1 -mips2 -G 0 -non_shared
- * Scores:      true=45  reloc_blind=0
+ * Scores:      true=30  reloc_blind=0
  * Upgrade:     re-scores automatically when relocation-aware targets land
  */
 OSTime osGetTime(void) {

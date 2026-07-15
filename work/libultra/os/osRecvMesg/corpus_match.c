@@ -4,7 +4,7 @@
  * Origin:      ultralib (https://github.com/decompals/ultralib)
  * Source:      src/os/recvmesg.c @ e24c8367
  * Flags:       -g0 -O1 -mips2 -G 0 -non_shared
- * Scores:      true=40  reloc_blind=0
+ * Scores:      true=5  reloc_blind=0
  * Upgrade:     re-scores automatically when relocation-aware targets land
  */
 s32 osRecvMesg(OSMesgQueue* mq, OSMesg* msg, s32 flags) {

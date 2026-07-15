@@ -4,7 +4,7 @@
  * Origin:      ultralib (https://github.com/decompals/ultralib)
  * Source:      src/io/vigetcurrframebuf.c @ e24c8367
  * Flags:       -g0 -O2 -mips2 -G 0 -non_shared
- * Scores:      true=20  reloc_blind=0
+ * Scores:      true=10  reloc_blind=0
  * Upgrade:     re-scores automatically when relocation-aware targets land
  */
 void* osViGetCurrentFramebuffer(void) {

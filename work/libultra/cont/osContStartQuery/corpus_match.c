@@ -4,7 +4,7 @@
  * Origin:      ultralib (https://github.com/decompals/ultralib)
  * Source:      src/io/contquery.c @ e24c8367
  * Flags:       -g0 -O2 -mips2 -G 0 -non_shared
- * Scores:      true=70  reloc_blind=0
+ * Scores:      true=45  reloc_blind=0
  * Upgrade:     re-scores automatically when relocation-aware targets land
  */
 s32 osContStartQuery(OSMesgQueue* mq) {
