@@ -74,3 +74,24 @@ def test_extracted_flagset_fallback_and_static_fallback(tmp_path):
     assert farm._flagset_for(conn, "static_fn") == farm.DEFAULT_FLAGSET
     assert farm._flagset_for(conn, "extracted_fn") == farm.EXTRACTED_FLAGSETS[0]
     assert farm.EXTRACTED_FLAGSETS[1] == "-g0 -O1 -mips2 -G 0 -non_shared"
+
+
+def test_empty_game_types_keeps_known_good_static_seed_byte_identical(
+        tmp_path, monkeypatch):
+    """SC-005 baseline: extending the header chain must not perturb a seed."""
+    asm_idx = autodecomp._asm_index()
+    assert "osViGetFramebuffer" in asm_idx
+
+    monkeypatch.setattr(autodecomp, "GAME_TYPES", tmp_path / "absent.h")
+    autodecomp._context_cache = None
+    before = autodecomp.m2c_seed("osViGetFramebuffer", 0x800083D0, asm_idx)
+
+    monkeypatch.setattr(
+        autodecomp, "GAME_TYPES", autodecomp.REPO / "include" / "game_types.h"
+    )
+    autodecomp._context_cache = None
+    after = autodecomp.m2c_seed("osViGetFramebuffer", 0x800083D0, asm_idx)
+    autodecomp._context_cache = None
+
+    assert before is not None
+    assert after == before

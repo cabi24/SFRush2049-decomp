@@ -107,7 +107,7 @@ Test-first, and verify the oracle before proceeding.
       static behavior unchanged (assert same SQL predicates / same seed for
       a fixture), `@file` target resolution aborts on unknown names,
       extent-conflict refusal.
-- [ ] T009 Wire the (initially empty) `include/game_types.h` into
+- [x] T009 Wire the (initially empty) `include/game_types.h` into
       `autodecomp._context()`'s header chain (after `m2c_types.h`) and
       capture the SC-005 baseline: generate the m2c seed for one known-good
       static function (pick a farm-matched one, e.g. from `src/rom_auto/`)

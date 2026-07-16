@@ -43,6 +43,7 @@ _CTX_HEADERS = ["types.h"] + [f"PR/{p.name}" for p in
 # LLM-grown struct/type context (autodecomp #1); included last so it can add
 # globals and structs m2c needs. Regenerating the context picks up edits.
 M2C_TYPES = REPO / "include" / "m2c_types.h"
+GAME_TYPES = REPO / "include" / "game_types.h"
 _context_cache = None
 _M2C_DIAGNOSTICS = {}
 
@@ -56,6 +57,8 @@ def _context():
     head = "\n".join(f'#include "{h}"' for h in _CTX_HEADERS) + "\n"
     if M2C_TYPES.is_file():
         head += f'#include "{M2C_TYPES}"\n'
+    if GAME_TYPES.is_file():
+        head += f'#include "{GAME_TYPES}"\n'
     src = Path(tempfile.mkdtemp(prefix="m2cctx-")) / "ctx.h"
     src.write_text(head)
     out = src.with_name("ctx.c")
