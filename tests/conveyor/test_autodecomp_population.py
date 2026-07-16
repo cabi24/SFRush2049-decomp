@@ -1,4 +1,6 @@
 """Population-axis and context-regression tests for autodecomp."""
+import json
+
 import pytest
 
 from tools.conveyor.coordinator import db as dbmod
@@ -110,3 +112,68 @@ def test_empty_game_types_keeps_known_good_static_seed_byte_identical(
 
     assert before is not None
     assert after == before
+
+
+def test_histogram_is_exclusive_complete_and_deterministic(tmp_path, monkeypatch):
+    conn = _database(tmp_path / "conveyor.db")
+    with dbmod.tx(conn):
+        for target_id in ("compiled_fn", "m2c_fail_fn", "scan_overrun_fn"):
+            conn.execute(
+                "INSERT INTO n64_target"
+                " (target_id,address,population,insn_count,target_o_sha,tier)"
+                " VALUES (?,0x80086A50,'extracted',2,?,'raw_word')",
+                (target_id, target_id * 8),
+            )
+    asm = tmp_path / "derived.s"
+    asm.write_text("glabel extracted_fn\n")
+
+    def derive(_conn, target_id):
+        if target_id == "scan_overrun_fn":
+            raise autodecomp.disasmmod.DisassemblyError("scan_overrun")
+        return asm
+
+    def seed(target_id, *args, diagnostics=None, **kwargs):
+        if target_id == "m2c_fail_fn":
+            diagnostics[target_id] = "m2c exploded\nmore detail"
+            return None
+        return target_id
+
+    monkeypatch.setattr(autodecomp.disasmmod, "derive", derive)
+    monkeypatch.setattr(autodecomp, "m2c_seed", seed)
+    monkeypatch.setattr(
+        autodecomp, "_seed_compile_errors",
+        lambda value: ((True, []) if value == "compiled_fn" else
+                       (False, [("Player", "p->speed")])),
+    )
+    monkeypatch.setattr(autodecomp, "_arcade_hint", lambda token: None)
+    monkeypatch.setattr(autodecomp, "_context", lambda: (None, "context"))
+    image = tmp_path / "game_code.bin"
+    image.write_bytes(b"image")
+    monkeypatch.setattr(autodecomp.disasmmod, "GAME_CODE_BIN", image)
+    monkeypatch.setattr(autodecomp, "HISTOGRAM_JSON", tmp_path / "hist.json")
+    monkeypatch.setattr(autodecomp, "HISTOGRAM_MD", tmp_path / "hist.md")
+
+    rows = autodecomp._histogram_rows(conn, None, 0)
+    first = autodecomp._histogram_data(conn, rows)
+    autodecomp._write_histogram(rows, *first)
+    one = json.loads(autodecomp.HISTOGRAM_JSON.read_text())
+    second = autodecomp._histogram_data(conn, rows)
+    autodecomp._write_histogram(rows, *second)
+    two = json.loads(autodecomp.HISTOGRAM_JSON.read_text())
+
+    one["run"].pop("timestamp")
+    two["run"].pop("timestamp")
+    assert one == two
+    assert sum(two["buckets"].values()) == two["run"]["targets"] == 5
+    assert set(two["targets"]) == {
+        "compiled_fn", "extracted_fn", "m2c_fail_fn", "nested_fn",
+        "scan_overrun_fn",
+    }
+    assert two["buckets"] == {
+        "blocked": 1, "compiled": 1, "decompiler_failure": 1,
+        "extent_conflict": 1, "no_disasm": 1,
+    }
+    assert two["targets"]["extracted_fn"]["bucket"] == "blocked"
+    assert two["targets"]["nested_fn"]["bucket"] == "extent_conflict"
+    assert two["targets"]["scan_overrun_fn"]["detail"] == "scan_overrun"
+    assert two["targets"]["m2c_fail_fn"]["detail"] == "m2c exploded"

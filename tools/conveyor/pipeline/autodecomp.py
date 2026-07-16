@@ -15,6 +15,9 @@ ones need better type context; some never converge. But it turns the entire
 unmatched backlog into real, autonomous pool work.
 """
 import argparse
+import datetime
+import hashlib
+import json
 import re
 import subprocess
 import sys
@@ -315,7 +318,8 @@ def cmd_lockmatches(args):
             print(f"  {t}: {why[:70]}")
 
 
-CLUSTERS_MD = REPO / "build" / "m2c_clusters.md"
+HISTOGRAM_JSON = REPO / "build" / "m2c_histogram.json"
+HISTOGRAM_MD = REPO / "build" / "m2c_histogram.md"
 ARCADE = REPO / "reference" / "repos" / "rushtherock"
 _MEMBER_RE = re.compile(r"\b([A-Za-z_]\w*)\s*->")
 _BEFORE_RE = re.compile(r"before ['`]([A-Za-z_*]\w*)")
@@ -388,12 +392,153 @@ def _seed_compile_errors(seed):
     return False, out
 
 
+def _histogram_rows(conn, targets, limit):
+    """The histogram population: every extracted target object, seedable or not."""
+    parameters = []
+    where = ["population='extracted'", "target_o_sha IS NOT NULL"]
+    if targets:
+        where.append("target_id IN (" + ",".join("?" for _ in targets) + ")")
+        parameters.extend(targets)
+    sql = ("SELECT target_id,address,gate_reason FROM n64_target WHERE "
+           + " AND ".join(where) + " ORDER BY target_id")
+    if limit:
+        sql += " LIMIT ?"
+        parameters.append(limit)
+    rows = conn.execute(sql, parameters).fetchall()
+    if targets:
+        by_name = {row["target_id"]: row for row in rows}
+        return [by_name[name] for name in targets if name in by_name]
+    return rows
+
+
+def _first_line(text, fallback):
+    lines = (text or "").strip().splitlines()
+    return lines[0] if lines else fallback
+
+
+def _histogram_data(conn, rows):
+    """Classify rows independently; one broken target must never abort the run."""
+    from collections import defaultdict
+
+    targets = {}
+    blocker_functions = defaultdict(set)
+    blocker_lines = defaultdict(list)
+    for row in rows:
+        target_id = row["target_id"]
+        gate = row["gate_reason"] or ""
+        if gate.startswith("extent_conflict"):
+            targets[target_id] = {"bucket": "extent_conflict", "detail": gate}
+            continue
+        try:
+            asm_file = disasmmod.derive(conn, target_id)
+        except Exception as exc:  # DisassemblyError plus per-target tool failures.
+            targets[target_id] = {
+                "bucket": "no_disasm", "detail": _first_line(str(exc), type(exc).__name__)
+            }
+            continue
+
+        diagnostics = {}
+        try:
+            seed = m2c_seed(target_id, row["address"], {target_id: asm_file},
+                            diagnostics=diagnostics)
+        except Exception as exc:
+            targets[target_id] = {
+                "bucket": "decompiler_failure",
+                "detail": _first_line(str(exc), type(exc).__name__),
+            }
+            continue
+        if seed is None:
+            targets[target_id] = {
+                "bucket": "decompiler_failure",
+                "detail": _first_line(diagnostics.get(target_id), "m2c failed"),
+            }
+            continue
+
+        try:
+            ok, errors = _seed_compile_errors(seed)
+        except Exception as exc:
+            # This is a compile-probe failure, not a disassembly/m2c failure.
+            ok, errors = False, []
+            detail = _first_line(str(exc), type(exc).__name__)
+        else:
+            detail = errors[0][1] if errors and errors[0][1] else "compile failed"
+        if ok:
+            targets[target_id] = {"bucket": "compiled", "detail": ""}
+            continue
+        blockers = sorted({token for token, _ in errors})
+        targets[target_id] = {
+            "bucket": "blocked", "blockers": blockers, "detail": detail,
+        }
+        for token, source_line in errors:
+            blocker_functions[token].add(target_id)
+            if (source_line and source_line not in blocker_lines[token]
+                    and len(blocker_lines[token]) < 4):
+                blocker_lines[token].append(source_line)
+
+    ordered_targets = {name: targets[name] for name in sorted(targets)}
+    bucket_names = ("compiled", "blocked", "decompiler_failure", "no_disasm",
+                    "extent_conflict")
+    buckets = {name: sum(item["bucket"] == name
+                         for item in ordered_targets.values())
+               for name in bucket_names}
+    ranked = sorted(blocker_functions, key=lambda token: (
+        -len(blocker_functions[token]), token))
+    blockers = [{
+        "symbol": token,
+        "count": len(blocker_functions[token]),
+        "functions": sorted(blocker_functions[token]),
+        "arcade_hint": _arcade_hint(token),
+    } for token in ranked]
+    return buckets, ordered_targets, blockers, blocker_lines
+
+
+def _write_histogram(rows, buckets, targets, blockers, blocker_lines):
+    _, context_text = _context()
+    image_sha = disasmmod._sha256(disasmmod.GAME_CODE_BIN)
+    data = {
+        "run": {
+            "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+            "population": "extracted",
+            "game_code_sha": image_sha,
+            "context_sha": hashlib.sha256(context_text.encode()).hexdigest(),
+            "targets": len(rows),
+        },
+        "buckets": buckets,
+        "targets": targets,
+        "blockers": blockers,
+    }
+    HISTOGRAM_JSON.parent.mkdir(parents=True, exist_ok=True)
+    HISTOGRAM_JSON.write_text(json.dumps(data, indent=2, sort_keys=True) + "\n")
+    lines = ["# m2c extracted-population histogram", "",
+             f"targets={len(rows)} " + " ".join(f"{k}={v}" for k, v in buckets.items()),
+             "", "## Ranked blockers"]
+    for blocker in blockers:
+        token = blocker["symbol"]
+        lines += ["", f"### `{token}` — blocks {blocker['count']} functions",
+                  f"functions: {', '.join(blocker['functions'])}"]
+        for source_line in blocker_lines[token]:
+            lines.append(f"    {source_line}")
+        if blocker["arcade_hint"]:
+            lines.append(f"arcade ref: {blocker['arcade_hint']}")
+    HISTOGRAM_MD.write_text("\n".join(lines) + "\n")
+
+
 def cmd_clusters(args):
-    """Run m2c across the unmatched backlog, and rank the undefined
-    types/symbols blocking compilation by how many functions each blocks —
-    the LLM's worklist (autodecomp #1). Writes an evidence report."""
+    """Compile-probe targets and emit the extracted-population histogram."""
     conn, _ = _conn(args.data)
     targets = _resolve_targets(conn, args.population, args.targets)
+    if args.population == "extracted":
+        rows = _histogram_rows(conn, targets, args.limit)
+        buckets, target_map, blockers, blocker_lines = _histogram_data(conn, rows)
+        assert sum(buckets.values()) == len(rows) == len(target_map)
+        _write_histogram(rows, buckets, target_map, blockers, blocker_lines)
+        print(" ".join(f"{name}={count}" for name, count in buckets.items())
+              + f"; histogram -> {HISTOGRAM_MD}")
+        for blocker in blockers[:min(args.top, 12)]:
+            print(f"  {blocker['count']:3}  {blocker['symbol']}")
+        return
+
+    # Preserve the legacy static-population worklist.
     rows = _population_rows(conn, args.population, targets, args.limit)
     asm_idx = _asm_for_rows(conn, args.population, rows)
     from collections import defaultdict
@@ -415,7 +560,8 @@ def cmd_clusters(args):
             if srcline and srcline not in cl["lines"] and len(cl["lines"]) < 4:
                 cl["lines"].append(srcline)
     ranked = sorted(clusters.items(), key=lambda kv: -len(kv[1]["fns"]))
-    CLUSTERS_MD.parent.mkdir(parents=True, exist_ok=True)
+    clusters_md = REPO / "build" / "m2c_clusters.md"
+    clusters_md.parent.mkdir(parents=True, exist_ok=True)
     lines = [f"# m2c compile-failure clusters",
              f"\nattempted={attempted} compiled={compiled} "
              f"({100 * compiled // max(attempted, 1)}%) "
@@ -430,10 +576,10 @@ def cmd_clusters(args):
             lines.append(f"    {sl}")
         if arc:
             lines.append(f"arcade ref: {arc}")
-    CLUSTERS_MD.write_text("\n".join(lines) + "\n")
+    clusters_md.write_text("\n".join(lines) + "\n")
     print(f"attempted={attempted} compiled={compiled} "
           f"({100 * compiled // max(attempted, 1)}%); "
-          f"top blockers -> {CLUSTERS_MD}")
+          f"top blockers -> {clusters_md}")
     for tok, cl in ranked[:min(args.top, 12)]:
         print(f"  {len(cl['fns']):3}  {tok}")
 

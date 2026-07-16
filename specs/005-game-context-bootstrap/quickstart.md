@@ -64,6 +64,20 @@ EOF
 Run twice; bucket counts must be identical. SC-004: read the top-10
 blockers in the md — they should cover a majority of `blocked`.
 
+Actuals (2026-07-16, game-code SHA-256
+`bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d`):
+two consecutive full 885-target runs produced identical JSON after removing
+only `run.timestamp`. Both runs reported `15 compiled, 624 blocked, 49
+decompiler_failure, 0 no_disasm, 197 extent_conflict` (sum 885); the second
+run took 3m26s, comfortably within the 30-minute goal. SC-004 is **not met**:
+the top 10 ranked blockers cover 258 distinct blocked functions (41.3% of
+624), not a majority. The next-highest-value context investment is a bounded
+shared-function declaration/prototype layer, starting with
+`slot_state_setup` (27 functions) and `math_utility` (26), then the common
+dispatch/audio helpers and libc `memset`/`memcpy`; `M2C_ERROR` and
+`saved_reg_s0` are decompiler/inference artifacts rather than game-type
+context and should be handled separately.
+
 ## 3. Cluster seeds compile (SC-001, Pi-only)
 
 ```bash

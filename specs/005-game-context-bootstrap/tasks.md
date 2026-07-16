@@ -175,7 +175,7 @@ blocker report as durable artifacts (SC-003, SC-004).
 **Independent Test**: quickstart.md §2 — full run on the Pi, bucket counts
 sum to population, two consecutive runs identical.
 
-- [ ] T015 [US2] Rework `cmd_clusters` in
+- [x] T015 [US2] Rework `cmd_clusters` in
       `tools/conveyor/pipeline/autodecomp.py` into the bucketed instrument
       per `contracts/seed-derivation.md`: with `--population extracted
       --limit 0`, classify every extracted target with a target object into
@@ -184,7 +184,7 @@ sum to population, two consecutive runs identical.
       line kept) / `no_disasm` (derivation failure reason, e.g.
       `scan_overrun`) / `extent_conflict` (from `gate_reason`); one target's
       crash must not abort the batch (FR-009).
-- [ ] T016 [US2] Emit the two durable artifacts from the same run data:
+- [x] T016 [US2] Emit the two durable artifacts from the same run data:
       `build/m2c_histogram.json` matching the schema in `data-model.md`
       (run header with image/context shas, bucket counts, per-target map,
       ranked blockers with arcade hints via existing `_arcade_hint`) with
@@ -193,7 +193,7 @@ sum to population, two consecutive runs identical.
       counts-sum + determinism (two runs, timestamp field excluded) test to
       `tests/conveyor/test_autodecomp_population.py` using a small fixture
       population.
-- [ ] T017 [US2] Full 885-target run on the Pi
+- [x] T017 [US2] Full 885-target run on the Pi
       (`autodecomp clusters --population extracted --limit 0`), twice;
       verify SC-003 (identical bucket counts) and the ~30-min performance
       goal; evaluate SC-004 from the md (do the top-10 blockers cover a
