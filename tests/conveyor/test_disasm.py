@@ -1,0 +1,96 @@
+"""Contract tests for deterministic extracted-target disassembly."""
+import hashlib
+import struct
+
+from tools.conveyor.coordinator import db as dbmod
+from tools.conveyor.pipeline import disasm
+
+
+BASE = 0x80086A50
+
+
+def _words(*values):
+    return b"".join(struct.pack(">I", value) for value in values)
+
+
+def test_objdump_normalization_labels_registers_branches_and_calls():
+    raw = """
+80086a50: 27bdfff8 addiu sp,sp,-8
+80086a54: 11090002 beq t0,t1,80086a60
+80086a58: 45030001 bc1tl 80086a60
+80086a5c: 0c021ab0 jal 80086ac0
+80086a60: 080246a0 j 80091a80
+"""
+    targets = {0x80086AC0: "known_target"}
+
+    assert disasm.normalize_objdump(raw, "sample", targets) == (
+        "glabel sample\n"
+        ".L80086A50:\n"
+        "    addiu  $sp,$sp,-8\n"
+        ".L80086A54:\n"
+        "    beq    $t0,$t1,.L80086A60\n"
+        ".L80086A58:\n"
+        "    bc1tl  .L80086A60\n"
+        ".L80086A5C:\n"
+        "    jal    known_target\n"
+        ".L80086A60:\n"
+        "    j      func_80091a80\n"
+    )
+
+
+def test_only_committed_game_symbols_are_symbolized():
+    raw = """
+80086a50: 3c088011 lui t0,0x8011
+80086a54: 910846ec lbu t0,0x46ec(t0)
+80086a58: 3c098012 lui t1,0x8012
+80086a5c: 8d291234 lw t1,0x1234(t1)
+"""
+    text = disasm.normalize_objdump(raw, "globals", {})
+
+    assert "lui    $t0,%hi(gstate)" in text
+    assert "lbu    $t0,%lo(gstate)($t0)" in text
+    assert "lui    $t1,0x8012" in text
+    assert "lw     $t1,0x1234($t1)" in text
+
+
+def test_derive_is_deterministic_and_cache_key_covers_all_inputs(
+        tmp_path, monkeypatch):
+    image = tmp_path / "game_code.bin"
+    image.write_bytes(_words(0x27BDFFF8, 0x03E00008, 0))
+    cache = tmp_path / "cache"
+    conn = dbmod.connect(tmp_path / "conveyor.db")
+    conn.execute(
+        "INSERT INTO n64_target"
+        " (target_id,address,population,insn_count,target_o_sha,tier)"
+        " VALUES ('sample',?,'extracted',2,?,'raw_word')",
+        (BASE, "a" * 64),
+    )
+    calls = []
+
+    def fake_run(command, **kwargs):
+        calls.append(command)
+        start = int(command[command.index("--start-address") + 1], 0)
+        count = (int(command[command.index("--stop-address") + 1], 0) - start) // 4
+        lines = [f"{start + i * 4:08x}: 00000000 nop" for i in range(count)]
+        return type("Result", (), {"returncode": 0, "stdout": "\n".join(lines),
+                                    "stderr": ""})()
+
+    monkeypatch.setattr(disasm.subprocess, "run", fake_run)
+    first = disasm.derive(conn, "sample", image_path=image, cache_dir=cache)
+    first_bytes = first.read_bytes()
+    second = disasm.derive(conn, "sample", image_path=image, cache_dir=cache)
+    assert second.read_bytes() == first_bytes
+    assert len(calls) == 1
+
+    conn.execute("UPDATE n64_target SET insn_count=3 WHERE target_id='sample'")
+    disasm.derive(conn, "sample", image_path=image, cache_dir=cache)
+    assert len(calls) == 2
+
+    image.write_bytes(image.read_bytes() + _words(0))
+    disasm.derive(conn, "sample", image_path=image, cache_dir=cache)
+    assert len(calls) == 3
+
+    monkeypatch.setattr(disasm, "symbol_table_sha",
+                        lambda: hashlib.sha256(b"changed").hexdigest())
+    disasm.derive(conn, "sample", image_path=image, cache_dir=cache)
+    assert len(calls) == 4

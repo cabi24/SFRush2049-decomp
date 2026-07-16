@@ -77,7 +77,7 @@ Test-first, and verify the oracle before proceeding.
       and verify `repaired 0` (idempotency, SC-003 precondition). Record the
       agree/repair/conflict counts in
       `specs/005-game-context-bootstrap/quickstart.md`'s §1 as actuals.
-- [ ] T006 [P] Write `tests/conveyor/test_disasm.py` against
+- [x] T006 [P] Write `tests/conveyor/test_disasm.py` against
       `contracts/seed-derivation.md`: the three objdump normalizations
       (column strip, `$`-prefix, `.L<vaddr>:` labels with branch-operand
       rewrite incl. `bc1f/bc1t[l]`); `jal` rewrite to `target_id` when the
