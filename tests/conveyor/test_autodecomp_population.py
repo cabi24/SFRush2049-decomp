@@ -1,0 +1,76 @@
+"""Population-axis and context-regression tests for autodecomp."""
+import pytest
+
+from tools.conveyor.coordinator import db as dbmod
+from tools.conveyor.pipeline import autodecomp
+from tools.conveyor.pipeline import farm
+
+
+def _database(path):
+    conn = dbmod.connect(path)
+    with dbmod.tx(conn):
+        for target_id, population, gate in (
+                ("static_fn", "static", None),
+                ("extracted_fn", "extracted", None),
+                ("nested_fn", "extracted", "extent_conflict:outer")):
+            conn.execute(
+                "INSERT INTO n64_target"
+                " (target_id,address,population,insn_count,target_o_sha,tier,gate_reason)"
+                " VALUES (?,?,?,2,?,'raw_word',?)",
+                (target_id, 0x80086A50, population, target_id * 8, gate),
+            )
+            conn.execute(
+                "INSERT INTO function_status (target_id,status,updated_at)"
+                " VALUES (?,'unmatched','now')", (target_id,),
+            )
+    return conn
+
+
+def test_default_static_selection_keeps_original_query_and_seed(tmp_path,
+                                                                 monkeypatch):
+    conn = _database(tmp_path / "conveyor.db")
+    traced = []
+    conn.set_trace_callback(traced.append)
+    rows = autodecomp._population_rows(conn, "static", None, 200)
+    select = next(sql for sql in traced if "FROM n64_target t" in sql)
+
+    assert "t.population='static'" in select
+    assert "f.status IN ('unmatched','seeded')" in select
+    assert "ORDER BY t.insn_count LIMIT 200" in select
+    assert [row["target_id"] for row in rows] == ["static_fn"]
+
+    monkeypatch.setattr(autodecomp, "_context", lambda: (None, ""))
+    monkeypatch.setattr(autodecomp.subprocess, "run", lambda *a, **k: type(
+        "Result", (), {"returncode": 0, "stdout": "s32 static_fn(void) {}",
+                       "stderr": ""})())
+    asm = tmp_path / "static.s"
+    asm.write_text("glabel static_fn\n")
+    before = autodecomp.m2c_seed("static_fn", 0x80086A50,
+                                 {"static_fn": asm})
+    after = autodecomp.m2c_seed("static_fn", 0x80086A50,
+                                {"static_fn": asm}, diagnostics={})
+    assert after == before
+
+
+def test_at_file_resolution_aborts_on_unknown_target(tmp_path):
+    conn = _database(tmp_path / "conveyor.db")
+    names = tmp_path / "targets.txt"
+    names.write_text("extracted_fn\nmissing_fn\n")
+
+    with pytest.raises(SystemExit, match="missing_fn"):
+        autodecomp._resolve_targets(conn, "extracted", f"@{names}")
+
+
+def test_extent_conflict_is_refused(tmp_path):
+    conn = _database(tmp_path / "conveyor.db")
+
+    with pytest.raises(SystemExit, match="extent_conflict:outer"):
+        autodecomp._resolve_targets(conn, "extracted", "nested_fn")
+
+
+def test_extracted_flagset_fallback_and_static_fallback(tmp_path):
+    conn = _database(tmp_path / "conveyor.db")
+
+    assert farm._flagset_for(conn, "static_fn") == farm.DEFAULT_FLAGSET
+    assert farm._flagset_for(conn, "extracted_fn") == farm.EXTRACTED_FLAGSETS[0]
+    assert farm.EXTRACTED_FLAGSETS[1] == "-g0 -O1 -mips2 -G 0 -non_shared"

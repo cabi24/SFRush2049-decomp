@@ -27,6 +27,10 @@ from ..seeds import extract_candidates as extractmod
 from . import seeds as seedsmod
 
 DEFAULT_FLAGSET = "-g0 -O2 -mips2 -G 0 -non_shared"
+EXTRACTED_FLAGSETS = (
+    "-g0 -O2 -mips2 -G 0 -non_shared",
+    "-g0 -O1 -mips2 -G 0 -non_shared",
+)
 
 
 def _now_sql():
@@ -62,9 +66,15 @@ def _read_result(store, result_sha):
 def _flagset_for(conn, target_id):
     # A pinned per-file flagset wins (FR-007); fall back to the O2 baseline.
     row = conn.execute(
-        "SELECT flagset FROM function_status WHERE target_id=?", (target_id,)
+        "SELECT f.flagset,t.population FROM function_status f"
+        " LEFT JOIN n64_target t USING (target_id) WHERE f.target_id=?",
+        (target_id,)
     ).fetchone()
-    return (row["flagset"] if row and row["flagset"] else DEFAULT_FLAGSET)
+    if row and row["flagset"]:
+        return row["flagset"]
+    if row and row["population"] == "extracted":
+        return EXTRACTED_FLAGSETS[0]
+    return DEFAULT_FLAGSET
 
 
 def _mark_ingested(conn, job_id):

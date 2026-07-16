@@ -94,7 +94,7 @@ Test-first, and verify the oracle before proceeding.
       research/cluster-data-refs.md evidence cited per entry), emit
       `glabel <target_id>` files cached at `build/m2c_asm/<target_id>.s`.
       Make T006 pass.
-- [ ] T008 Population plumbing in `tools/conveyor/pipeline/autodecomp.py`:
+- [x] T008 Population plumbing in `tools/conveyor/pipeline/autodecomp.py`:
       add `--population {static,extracted}` (default `static`) and
       `--targets id1,id2,…|@file` to `seed`, `one`, and `clusters`; asm
       resolver becomes two-branch (static → `_asm_index()` unchanged;

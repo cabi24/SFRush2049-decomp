@@ -25,6 +25,7 @@ from ..coordinator import db as dbmod
 from ..coordinator.store import BlobStore
 from . import seeds as seedsmod
 from . import farm as farmmod
+from . import disasm as disasmmod
 
 REPO = Path(__file__).resolve().parents[3]
 ASM_DIR = REPO / "asm" / "us"
@@ -43,6 +44,7 @@ _CTX_HEADERS = ["types.h"] + [f"PR/{p.name}" for p in
 # globals and structs m2c needs. Regenerating the context picks up edits.
 M2C_TYPES = REPO / "include" / "m2c_types.h"
 _context_cache = None
+_M2C_DIAGNOSTICS = {}
 
 
 def _context():
@@ -97,7 +99,7 @@ def _clean_m2c(body):
     return text
 
 
-def m2c_seed(target_id, vaddr, asm_idx):
+def m2c_seed(target_id, vaddr, asm_idx, diagnostics=None):
     """Self-contained C seed for a target from its own asm, or None if m2c
     can't decompile it (missing asm / failure)."""
     asm_file = asm_idx.get(target_id) or asm_idx.get(f"func_{vaddr:08X}")
@@ -108,6 +110,8 @@ def m2c_seed(target_id, vaddr, asm_idx):
     if ctx_path:
         cmd += ["--context", ctx_path]
     proc = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
+    if diagnostics is not None:
+        diagnostics[target_id] = proc.stderr
     body = _clean_m2c(proc.stdout.strip())
     if proc.returncode != 0 or not body or "def " in body[:20]:
         return None
@@ -123,9 +127,79 @@ def m2c_seed(target_id, vaddr, asm_idx):
     return _PRELUDE + SHIM.read_text() + "\n" + body + "\n"
 
 
+def _resolve_targets(conn, population, specification):
+    """Resolve an id list or @file, rejecting unknown/conflicted targets."""
+    if not specification:
+        return None
+    if specification.startswith("@"):
+        path = Path(specification[1:])
+        try:
+            names = [line.strip() for line in path.read_text().splitlines()
+                     if line.strip()]
+        except OSError as exc:
+            sys.exit(f"cannot read targets {path}: {exc}")
+    else:
+        names = [name.strip() for name in specification.split(",") if name.strip()]
+    if not names:
+        sys.exit("no targets specified")
+    if len(set(names)) != len(names):
+        names = list(dict.fromkeys(names))
+    placeholders = ",".join("?" for _ in names)
+    rows = conn.execute(
+        f"SELECT target_id,population,gate_reason FROM n64_target"
+        f" WHERE target_id IN ({placeholders})", names,
+    ).fetchall()
+    found = {row["target_id"]: row for row in rows}
+    for name in names:
+        row = found.get(name)
+        if row is None or row["population"] != population:
+            sys.exit(f"unknown {population} target: {name}")
+        gate = row["gate_reason"] or ""
+        if gate.startswith("extent_conflict"):
+            sys.exit(f"refusing {name}: {gate}")
+    return names
+
+
+def _population_rows(conn, population, targets, limit):
+    """Select seedable rows; the default static SQL remains the legacy query."""
+    if population == "static" and targets is None:
+        return conn.execute(
+            "SELECT t.target_id, t.address FROM n64_target t"
+            " JOIN function_status f USING (target_id)"
+            " WHERE f.status IN ('unmatched','seeded') AND t.target_o_sha IS NOT NULL"
+            " AND t.population='static' AND t.insn_count IS NOT NULL"
+            " ORDER BY t.insn_count LIMIT ?", (limit,)).fetchall()
+    parameters = [population]
+    where = ["f.status IN ('unmatched','seeded')", "t.target_o_sha IS NOT NULL",
+             "t.population=?", "t.insn_count IS NOT NULL"]
+    if targets:
+        where.append("t.target_id IN (" + ",".join("?" for _ in targets) + ")")
+        parameters.extend(targets)
+    sql = (
+        "SELECT t.target_id,t.address,t.gate_reason FROM n64_target t"
+        " JOIN function_status f USING (target_id) WHERE " + " AND ".join(where)
+        + " ORDER BY t.insn_count"
+    )
+    if limit:
+        sql += " LIMIT ?"
+        parameters.append(limit)
+    rows = conn.execute(sql, parameters).fetchall()
+    if targets:
+        by_name = {row["target_id"]: row for row in rows}
+        return [by_name[name] for name in targets if name in by_name]
+    return rows
+
+
+def _asm_for_rows(conn, population, rows):
+    if population == "static":
+        return _asm_index()
+    return {row["target_id"]: disasmmod.derive(conn, row["target_id"])
+            for row in rows}
+
+
 def submit_one(conn, store, http, toolkit_sha, target_id, vaddr, asm_idx,
                budget_seconds):
-    seed = m2c_seed(target_id, vaddr, asm_idx)
+    seed = m2c_seed(target_id, vaddr, asm_idx, diagnostics=_M2C_DIAGNOSTICS)
     if seed is None:
         return "no_seed"
     try:
@@ -316,18 +390,15 @@ def cmd_clusters(args):
     types/symbols blocking compilation by how many functions each blocks —
     the LLM's worklist (autodecomp #1). Writes an evidence report."""
     conn, _ = _conn(args.data)
-    asm_idx = _asm_index()
-    rows = conn.execute(
-        "SELECT t.target_id, t.address FROM n64_target t"
-        " JOIN function_status f USING (target_id)"
-        " WHERE f.status IN ('unmatched','seeded') AND t.target_o_sha IS NOT NULL"
-        " AND t.population='static' AND t.insn_count IS NOT NULL"
-        " ORDER BY t.insn_count LIMIT ?", (args.limit,)).fetchall()
+    targets = _resolve_targets(conn, args.population, args.targets)
+    rows = _population_rows(conn, args.population, targets, args.limit)
+    asm_idx = _asm_for_rows(conn, args.population, rows)
     from collections import defaultdict
     clusters = defaultdict(lambda: {"fns": set(), "lines": []})
     compiled = attempted = 0
     for r in rows:
-        seed = m2c_seed(r["target_id"], r["address"], asm_idx)
+        seed = m2c_seed(r["target_id"], r["address"], asm_idx,
+                        diagnostics=_M2C_DIAGNOSTICS)
         if not seed:
             continue
         attempted += 1
@@ -496,14 +567,9 @@ def cmd_seed(args):
     conn, store = _conn(args.data)
     http = Http(args.coordinator, load_token(args.token, args.data))
     toolkit_sha = http.pinned_toolkit()
-    asm_idx = _asm_index()
-    # unmatched static functions with a target object, most-tractable first
-    rows = conn.execute(
-        "SELECT t.target_id, t.address FROM n64_target t"
-        " JOIN function_status f USING (target_id)"
-        " WHERE f.status IN ('unmatched','seeded') AND t.target_o_sha IS NOT NULL"
-        " AND t.population='static' AND t.insn_count IS NOT NULL"
-        " ORDER BY t.insn_count LIMIT ?", (args.limit,)).fetchall()
+    targets = _resolve_targets(conn, args.population, args.targets)
+    rows = _population_rows(conn, args.population, targets, args.limit)
+    asm_idx = _asm_for_rows(conn, args.population, rows)
     counts = {}
     for r in rows:
         outcome = submit_one(conn, store, http, toolkit_sha, r["target_id"],
@@ -517,13 +583,18 @@ def cmd_seed(args):
 def cmd_one(args):
     conn, store = _conn(args.data)
     http = Http(args.coordinator, load_token(args.token, args.data))
-    row = conn.execute("SELECT address FROM n64_target WHERE target_id=?",
-                       (args.target,)).fetchone()
-    if row is None:
-        sys.exit(f"no target {args.target}")
-    outcome = submit_one(conn, store, http, http.pinned_toolkit(), args.target,
-                        row["address"], _asm_index(), args.budget)
-    print(f"{args.target}: {outcome}")
+    specification = args.targets or args.target
+    targets = _resolve_targets(conn, args.population, specification)
+    if not targets or len(targets) != 1:
+        sys.exit("one requires exactly one target")
+    rows = _population_rows(conn, args.population, targets, 1)
+    if not rows:
+        sys.exit(f"target is not seedable: {targets[0]}")
+    row = rows[0]
+    asm_idx = _asm_for_rows(conn, args.population, rows)
+    outcome = submit_one(conn, store, http, http.pinned_toolkit(), targets[0],
+                        row["address"], asm_idx, args.budget)
+    print(f"{targets[0]}: {outcome}")
 
 
 def main():
@@ -536,16 +607,25 @@ def main():
     s.add_argument("--limit", type=int, default=200)
     s.add_argument("--budget", type=int, default=1200)
     s.add_argument("--verbose", action="store_true")
+    s.add_argument("--population", choices=("static", "extracted"),
+                   default="static")
+    s.add_argument("--targets")
     s.set_defaults(func=cmd_seed)
     s = sub.add_parser("one")
-    s.add_argument("target")
+    s.add_argument("target", nargs="?")
     s.add_argument("--budget", type=int, default=1200)
+    s.add_argument("--population", choices=("static", "extracted"),
+                   default="static")
+    s.add_argument("--targets")
     s.set_defaults(func=cmd_one)
     s = sub.add_parser("harvest")
     s.set_defaults(func=cmd_harvest)
     s = sub.add_parser("clusters")
     s.add_argument("--limit", type=int, default=250)
     s.add_argument("--top", type=int, default=25)
+    s.add_argument("--population", choices=("static", "extracted"),
+                   default="static")
+    s.add_argument("--targets")
     s.set_defaults(func=cmd_clusters)
     s = sub.add_parser("lockmatches")
     s.set_defaults(func=cmd_lockmatches)
