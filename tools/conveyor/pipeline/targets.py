@@ -144,7 +144,9 @@ def scan_extent(image_bytes, address):
                 furthest = max(furthest, target)
 
         # SPECIAL / JR / rs=$ra.  The delay slot must fit inside both bounds.
-        if (word & 0xFFE0003F) == 0x03E00008 and pc > furthest:
+        # >= not >: a shared-return leaf branches directly to its jr, so
+        # furthest == pc at the true end (contract §3 amendment).
+        if (word & 0xFFE0003F) == 0x03E00008 and pc >= furthest:
             return (pc - address) // 4 + 2 if pc + 8 <= bound else "scan_overrun"
         pc += 4
 

@@ -15,8 +15,16 @@ classification.
    `bc1*`; backward targets don't extend the extent; `j`/`jal` never extend
    it — `j` beyond the scan is a tail call).
 3. On `jr $ra`: the function ends after its delay slot **iff**
-   `pc > furthest` at that point; otherwise continue (early return inside
-   the body).
+   `pc >= furthest` at that point; otherwise continue (early return inside
+   the body). The equality case is load-bearing: a shared-return leaf
+   function branches directly *to* its `jr $ra` (`beqz …, .Lret; …;
+   .Lret: jr $ra`), so `furthest == pc` at the true end — a strict `>`
+   overruns into the next function (verified: `sound_stop` @0x800B358C,
+   whose `beqz` targets its own `jr` at 0x800B3624; 29/885 targets are
+   affected, several cascading into false conflicts).
+   (Amended 2026-07-16 at the A1 review gate: the contract originally said
+   `pc > furthest`, contradicting its own "at/after" prose; the strict form
+   was implemented faithfully and caught empirically.)
 4. `jr $reg` with `reg != ra` (jump table dispatch) never terminates.
 5. Hard bounds: scan aborts at `min(address + 16 KiB, image end)` →
    classification `scan_overrun` (treated as `no_disasm` downstream).

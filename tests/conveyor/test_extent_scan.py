@@ -40,6 +40,21 @@ def test_early_jr_ra_before_furthest_forward_target_does_not_terminate():
     assert T.scan_extent(image, BASE) == 7
 
 
+def test_branch_targeting_jr_itself_terminates_at_that_jr():
+    # Shared-return leaf: beqz jumps directly to the jr $ra, so at the jr
+    # furthest == pc; the extent must end there, not run into what follows.
+    image = _image(
+        _branch(0, 3),  # beqz -> the jr at index 3
+        NOP,
+        NOP,
+        JR_RA,
+        NOP,
+        JR_RA,          # next function's return; must NOT be reached
+        NOP,
+    )
+    assert T.scan_extent(image, BASE) == 5
+
+
 def test_jump_table_jr_non_ra_does_not_terminate():
     image = _image(JR_T9, NOP, JR_RA, NOP)
     assert T.scan_extent(image, BASE) == 4

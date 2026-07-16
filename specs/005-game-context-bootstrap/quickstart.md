@@ -35,6 +35,14 @@ exclusive end addresses matched `contracts/extent-repair.md`, including
 reported `666 agree, 0 repaired, 219 conflict` and `0 targets, 0 evidence
 rows purged`.
 
+Amendment (2026-07-16, A1 review gate): the contract's termination
+condition was corrected from `pc > furthest` to `pc >= furthest`
+(shared-return leaves branch directly to their `jr $ra`; see
+contracts/extent-repair.md §3). Re-extract repaired 26 further extents and
+cleared 22 false conflicts: now `688 agree, 0 repaired, 197 conflict`
+(idempotent), cluster oracle unchanged. Proof case: `sound_stop`
+0x800B358C = 40 insns (was 94, overrunning into the next function).
+
 ## 2. Histogram — the measurement instrument (Pi-only)
 
 ```bash
