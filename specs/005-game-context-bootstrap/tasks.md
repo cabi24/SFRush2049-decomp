@@ -25,7 +25,7 @@ iterations. See Dependencies & Execution Strategy.
 **Purpose**: Confirm the environment matches the plan's assumptions before
 touching evidence.
 
-- [ ] T001 Preflight check (no code): verify `mips-linux-gnu-objdump`,
+- [x] T001 Preflight check (no code): verify `mips-linux-gnu-objdump`,
       `mips-linux-gnu-as`, `mips-linux-gnu-gcc`, and `cpp` run on the Pi;
       verify `build/game_code.bin` exists and record its sha256; verify
       `~/.conveyor/conveyor.db` has 885 `population='extracted'` rows with
