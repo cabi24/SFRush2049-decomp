@@ -20,6 +20,7 @@ def test_objdump_normalization_labels_registers_branches_and_calls():
 80086a58: 45030001 bc1tl 80086a60
 80086a5c: 0c021ab0 jal 80086ac0
 80086a60: 080246a0 j 80091a80
+80086a64: 04110001 bal 80086a6c
 """
     targets = {0x80086AC0: "known_target"}
 
@@ -35,6 +36,8 @@ def test_objdump_normalization_labels_registers_branches_and_calls():
         "    jal    known_target\n"
         ".L80086A60:\n"
         "    j      func_80091a80\n"
+        ".L80086A64:\n"
+        "    bal    .L80086A6C\n"
     )
 
 
@@ -44,6 +47,8 @@ def test_only_committed_game_symbols_are_symbolized():
 80086a54: 910846ec lbu t0,0x46ec(t0)
 80086a58: 3c098012 lui t1,0x8012
 80086a5c: 8d291234 lw t1,0x1234(t1)
+80086a60: 3c0a8012 lui t2,0x8012
+80086a64: 8d4ac8e8 lw t2,-0x3718(t2)
 """
     text = disasm.normalize_objdump(raw, "globals", {})
 
@@ -51,6 +56,8 @@ def test_only_committed_game_symbols_are_symbolized():
     assert "lbu    $t0,%lo(gstate)($t0)" in text
     assert "lui    $t1,0x8012" in text
     assert "lw     $t1,0x1234($t1)" in text
+    assert "lui    $t2,0x8012" in text
+    assert "lw     $t2,-0x3718($t2)" in text
 
 
 def test_derive_is_deterministic_and_cache_key_covers_all_inputs(

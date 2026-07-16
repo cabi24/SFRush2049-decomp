@@ -74,7 +74,7 @@ def _numeric_target(operand):
 
 
 def _is_branch(mnemonic):
-    return mnemonic.startswith("b") and mnemonic not in {"break", "bal"}
+    return mnemonic.startswith("b") and mnemonic != "break"
 
 
 def normalize_objdump(output, target_id, targets):
@@ -109,7 +109,7 @@ def normalize_objdump(output, target_id, targets):
             prior = pending_lui.get(base)
             if prior:
                 low_value = _integer(low.group(2))
-                if low_value & 0x8000:
+                if low_value >= 0 and low_value & 0x8000:
                     low_value -= 0x10000
                 address = (prior[0] << 16) + low_value
                 symbol = GAME_SYMBOLS.get(address)
