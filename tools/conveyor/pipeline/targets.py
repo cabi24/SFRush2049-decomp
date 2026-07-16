@@ -102,6 +102,49 @@ def load_work_inventory(work_dir=None):
 _image_cache = {}
 
 
+def scan_extent(image_bytes, address):
+    """Return the instruction count ending at the first eligible ``jr $ra``.
+
+    ``image_bytes`` is the complete game-code image mapped at
+    :data:`GAME_CODE_BASE`.  A forward direct branch keeps the scan alive
+    through its target; jumps and backward branches do not.  The string
+    ``"scan_overrun"`` denotes reaching the image boundary or 16 KiB cap
+    without a terminating return and its delay slot.
+    """
+    offset = address - GAME_CODE_BASE
+    if offset < 0 or offset % 4 or offset >= len(image_bytes):
+        raise ValueError(f"address {address:#x} outside game-code image")
+
+    image_end = GAME_CODE_BASE + len(image_bytes)
+    bound = min(address + 16 * 1024, image_end)
+    furthest = address - 4
+    pc = address
+    while pc + 4 <= bound:
+        word = struct.unpack_from(">I", image_bytes, pc - GAME_CODE_BASE)[0]
+        opcode = word >> 26
+
+        # Direct PC-relative branch encodings: REGIMM, beq/bne/blez/bgtz,
+        # their likely forms, and bc0/bc1/bc2.  J/JAL are deliberately absent.
+        is_branch = opcode in {0x01, 0x04, 0x05, 0x06, 0x07,
+                               0x14, 0x15, 0x16, 0x17}
+        if opcode in {0x10, 0x11, 0x12} and ((word >> 21) & 0x1F) == 0x08:
+            is_branch = True
+        if is_branch:
+            immediate = word & 0xFFFF
+            if immediate & 0x8000:
+                immediate -= 0x10000
+            target = pc + 4 + immediate * 4
+            if target > pc:
+                furthest = max(furthest, target)
+
+        # SPECIAL / JR / rs=$ra.  The delay slot must fit inside both bounds.
+        if (word & 0xFFE0003F) == 0x03E00008 and pc > furthest:
+            return (pc - address) // 4 + 2 if pc + 8 <= bound else "scan_overrun"
+        pc += 4
+
+    return "scan_overrun"
+
+
 def _image(path):
     if path not in _image_cache:
         _image_cache[path] = path.read_bytes()

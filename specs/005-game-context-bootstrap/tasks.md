@@ -52,7 +52,7 @@ Test-first, and verify the oracle before proceeding.
       is included; backward branches do not extend the extent; 16 KiB
       `scan_overrun` cap; scan is a pure function (same bytes+address ⇒ same
       extent). Use small hand-assembled word lists, not the real blob.
-- [ ] T003 Implement `scan_extent(image_bytes, address)` in
+- [x] T003 Implement `scan_extent(image_bytes, address)` in
       `tools/conveyor/pipeline/targets.py` per `contracts/extent-repair.md`
       (decode big-endian words; track furthest forward branch target across
       all `b*`/`bc1*` forms; end at first `jr $ra`+delay-slot past
