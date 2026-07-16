@@ -27,6 +27,14 @@ EOF
 `countdown` must now read ~668 instructions (was 2). Re-run extract:
 second pass must report `repaired 0` (idempotency / SC-003 determinism).
 
+Actuals (2026-07-16, game-code SHA-256
+`bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d`):
+the first pass reported `243 agree, 423 repaired, 219 conflict`; all 10
+exclusive end addresses matched `contracts/extent-repair.md`, including
+`countdown` at `0x800FC9F8` (668 instructions). The immediate second pass
+reported `666 agree, 0 repaired, 219 conflict` and `0 targets, 0 evidence
+rows purged`.
+
 ## 2. Histogram — the measurement instrument (Pi-only)
 
 ```bash

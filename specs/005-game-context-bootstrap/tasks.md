@@ -71,7 +71,7 @@ Test-first, and verify the oracle before proceeding.
       plus before→after for the 10 cluster targets. Extend
       `tests/conveyor/test_extent_scan.py` with a DB-fixture test proving
       supersession fires and conflict rows are excluded flags-wise.
-- [ ] T005 Run `python3 -m tools.conveyor.pipeline.matrix extract` on the Pi
+- [x] T005 Run `python3 -m tools.conveyor.pipeline.matrix extract` on the Pi
       and verify against the oracle table in `contracts/extent-repair.md`
       (all 10 cluster end addresses exact; `countdown` ≈668 insns); re-run
       and verify `repaired 0` (idempotency, SC-003 precondition). Record the
