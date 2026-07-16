@@ -58,7 +58,7 @@ Test-first, and verify the oracle before proceeding.
       all `b*`/`bc1*` forms; end at first `jr $ra`+delay-slot past
       `furthest`; `j`/`jal` never extend; bounds → `scan_overrun`). Make
       T002 pass.
-- [ ] T004 Integrate the repair pass into the extract flow in
+- [x] T004 Integrate the repair pass into the extract flow in
       `tools/conveyor/pipeline/targets.py`: for each `extracted` target
       classify agree/repair/conflict; on repair update `insn_count`,
       re-carve via `function_words`, re-assemble via `assemble_words`, store

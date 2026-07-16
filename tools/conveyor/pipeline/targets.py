@@ -40,6 +40,12 @@ BASEROM = REPO / "baserom.us.z64"
 STATIC_ROM_DELTA = 0x7FFFF400  # vaddr - delta = ROM offset (verified: strlen)
 ASM_DIR = REPO / "asm" / "us"
 
+EXTENT_REPORT_TARGETS = (
+    "game_loop", "game_mode_handler", "attract_or_transition", "process_inputs",
+    "sound_control", "playgame_state_change", "RaceStateMachine_Update",
+    "countdown", "countdown_handler", "Input_ProcessGameplayPad",
+)
+
 _SIZE_RE = re.compile(r"\((\d+)\s*bytes\)")
 
 # A splat instruction line: `/* <off> <vaddr> <word> */  <mnemonic ...>`.
@@ -391,6 +397,61 @@ def _fallback_category(reason):
     return reason  # no_asm_region
 
 
+def _supersede_target(conn, target_id, previous_sha, new_sha):
+    """Apply feature 003's object-identity supersession contract.
+
+    The caller must invoke this in the same transaction as its n64_target
+    update.  Returns ``(changed, purged_matrix_rows)``.
+    """
+    if previous_sha == new_sha:
+        return False, 0
+    cur = conn.execute("DELETE FROM matrix_entry WHERE target_id=?", (target_id,))
+    return True, max(cur.rowcount, 0)
+
+
+def _extent_plan(conn, inventory):
+    """Scan extracted inventory and return per-name repair metadata."""
+    image = _image(GAME_CODE_BIN)
+    previous = {
+        row["target_id"]: row
+        for row in conn.execute(
+            "SELECT target_id, insn_count, gate_reason FROM n64_target"
+            " WHERE population='extracted'"
+        )
+    }
+    plan = {}
+    for entry in inventory:
+        address = entry["address"]
+        if not (GAME_CODE_BASE <= address < GAME_CODE_BASE + len(image)):
+            continue
+        try:
+            scanned = scan_extent(image, address)
+        except ValueError:
+            scanned = "scan_overrun"
+        plan[entry["name"]] = {
+            "address": address,
+            "scanned": scanned,
+            "previous": previous.get(entry["name"]),
+            "container": None,
+        }
+
+    extents = [
+        (name, item["address"], item["address"] + item["scanned"] * 4)
+        for name, item in plan.items() if isinstance(item["scanned"], int)
+    ]
+    for name, item in plan.items():
+        containers = [
+            extent for extent in extents
+            if extent[0] != name and extent[1] < item["address"] < extent[2]
+        ]
+        if containers:
+            # Name the tightest containing function, deterministically.
+            item["container"] = min(
+                containers, key=lambda extent: (extent[2] - extent[1], extent[1], extent[0])
+            )[0]
+    return plan
+
+
 def populate(conn, store, work_dir=None, limit=None):
     """Fill n64_target rows and build target .o blobs. Static targets attempt
     reloc-aware assembly (region → assemble → gate) with a raw-word fallback;
@@ -403,11 +464,13 @@ def populate(conn, store, work_dir=None, limit=None):
     if limit:
         inventory = inventory[:limit]
     regions = index_asm_regions()
+    extent_plan = _extent_plan(conn, inventory)
 
     built, skipped = 0, 0
     tiers = {"reloc_aware": 0, "raw_word_static": 0, "raw_word_dynamic": 0}
     fallbacks = Counter()
     superseded_targets, purged_rows = 0, 0
+    extent_counts = Counter()
 
     with tempfile.TemporaryDirectory() as tmp:
         tmpdir = Path(tmp)
@@ -417,6 +480,11 @@ def populate(conn, store, work_dir=None, limit=None):
                 if GAME_CODE_BASE <= e["address"] < GAME_CODE_BASE + 0x9E0A0
                 else "static"
             )
+            extent = extent_plan.get(e["name"])
+            if extent is not None:
+                scanned = extent["scanned"]
+                if isinstance(scanned, int):
+                    e = dict(e, size=scanned * 4)
             try:
                 words = function_words(e["address"], e["size"])
                 if not words:
@@ -458,7 +526,17 @@ def populate(conn, store, work_dir=None, limit=None):
                     continue
                 o_path = raw_o
                 if population != "static":
-                    gate_reason = None  # dynamic targets never attempt the gate
+                    previous = extent["previous"] if extent else None
+                    if extent and extent["container"]:
+                        gate_reason = f"extent_conflict:{extent['container']}"
+                    elif extent and extent["scanned"] == "scan_overrun":
+                        gate_reason = "scan_overrun"
+                    elif previous and previous["insn_count"] == len(words):
+                        prior_reason = previous["gate_reason"] or ""
+                        gate_reason = ("extent_repaired"
+                                       if prior_reason == "extent_repaired" else None)
+                    else:
+                        gate_reason = "extent_repaired"
 
             o_sha = store.put_file(o_path)
             asm_sha = hashlib.sha256("\n".join(words).encode()).hexdigest()
@@ -471,22 +549,28 @@ def populate(conn, store, work_dir=None, limit=None):
             else:
                 tiers["raw_word_dynamic"] += 1
 
+            if extent is not None:
+                if extent["container"]:
+                    extent_counts["conflict"] += 1
+                elif extent["scanned"] == "scan_overrun":
+                    extent_counts["scan_overrun"] += 1
+                elif extent["previous"] and extent["previous"]["insn_count"] == len(words):
+                    extent_counts["agree"] += 1
+                else:
+                    extent_counts["repaired"] += 1
+
             with dbmod.tx(conn):
                 prev = conn.execute(
                     "SELECT target_o_sha FROM n64_target WHERE target_id=?",
                     (e["name"],),
                 ).fetchone()
                 prev_sha = prev["target_o_sha"] if prev else None
-                if prev_sha != o_sha:
-                    # Supersession: the comparison object changed, so every
-                    # matrix_entry scored against the old one is stale. Purge in
-                    # the same tx as the row update (evidence-supersession.md).
-                    # NULL->sha first builds run this path too (0 rows).
-                    cur = conn.execute(
-                        "DELETE FROM matrix_entry WHERE target_id=?", (e["name"],)
-                    )
+                changed, purged = _supersede_target(
+                    conn, e["name"], prev_sha, o_sha
+                )
+                if changed:
                     superseded_targets += 1
-                    purged_rows += max(cur.rowcount, 0)
+                    purged_rows += purged
                 conn.execute(
                     "INSERT INTO n64_target (target_id, address, population,"
                     " insn_count, target_asm_sha, target_o_sha, tier, gate_reason)"
@@ -521,11 +605,26 @@ def populate(conn, store, work_dir=None, limit=None):
           + (f" — top reasons: {top}" if top else ""))
     print(f"superseded: {superseded_targets} targets, "
           f"{purged_rows} evidence rows purged")
+    print(f"extents: {extent_counts['agree']} agree, "
+          f"{extent_counts['repaired']} repaired, "
+          f"{extent_counts['conflict']} conflict")
+    for target_id in EXTENT_REPORT_TARGETS:
+        extent = extent_plan.get(target_id)
+        if extent is None:
+            continue
+        before = extent["previous"]["insn_count"] if extent["previous"] else None
+        after = extent["scanned"]
+        before_end = (extent["address"] + before * 4) if before is not None else None
+        after_end = (extent["address"] + after * 4) if isinstance(after, int) else after
+        before_text = f"{before_end:#010x}" if before_end is not None else "missing"
+        after_text = f"{after_end:#010x}" if isinstance(after_end, int) else after_end
+        print(f"  {target_id}: {before_text} -> {after_text}")
 
     return {
         "built": built, "skipped": skipped, "total": len(inventory),
         "tiers": tiers, "fallbacks": dict(fallbacks),
         "superseded_targets": superseded_targets, "purged_rows": purged_rows,
+        "extents": dict(extent_counts),
     }
 
 
