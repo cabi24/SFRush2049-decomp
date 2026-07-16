@@ -61,6 +61,21 @@ def test_at_file_resolution_aborts_on_unknown_target(tmp_path):
         autodecomp._resolve_targets(conn, "extracted", f"@{names}")
 
 
+def test_at_file_resolution_strips_comments(tmp_path):
+    conn = _database(tmp_path / "conveyor.db")
+    names = tmp_path / "targets.txt"
+    names.write_text(
+        "# extracted cluster\n"
+        "extracted_fn  # 0x80086A50\n"
+        "\n"
+        "# another comment\n"
+    )
+
+    assert autodecomp._resolve_targets(
+        conn, "extracted", f"@{names}"
+    ) == ["extracted_fn"]
+
+
 def test_extent_conflict_is_refused(tmp_path):
     conn = _database(tmp_path / "conveyor.db")
 

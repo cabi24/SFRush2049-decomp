@@ -516,10 +516,15 @@ def cmd_failures(args):
 
 def cmd_report(args):
     conn, _ = _conn_store(args.data)
-    n_targets = conn.execute("SELECT COUNT(*) AS n FROM n64_target").fetchone()["n"]
+    target_populations = conn.execute(
+        "SELECT population, COUNT(*) AS n FROM n64_target"
+        " GROUP BY population ORDER BY population").fetchall()
+    n_targets = sum(r["n"] for r in target_populations)
     n_cands = conn.execute("SELECT COUNT(*) AS n FROM arcade_candidate").fetchone()["n"]
     n_cells = conn.execute("SELECT COUNT(*) AS n FROM matrix_entry").fetchone()["n"]
     print(f"matrix: {n_cells} cells scored ({n_targets} targets, {n_cands} candidates)")
+    print("target populations: " + "  ".join(
+        f"{r['population']}={r['n']}" for r in target_populations))
 
     # Compile coverage, split by origin when corpus candidates exist (002);
     # arcade-only DBs print the original single line unchanged (SC-006).
@@ -552,11 +557,18 @@ def cmd_report(args):
                   f"{untried} untried  ({100 * ok // max(ok + fail, 1)}% of tried)")
 
     rows = conn.execute(
-        "SELECT status, COUNT(*) AS n FROM function_status GROUP BY status"
+        "SELECT t.population, f.status, COUNT(*) AS n FROM function_status f"
+        " JOIN n64_target t USING (target_id)"
+        " GROUP BY t.population, f.status ORDER BY t.population, f.status"
     ).fetchall()
-    print("function status: " + "  ".join(f"{r['status']}={r['n']}" for r in rows))
+    print("function status: " + "  ".join(
+        f"{r['population']}:{r['status']}={r['n']}" for r in rows))
     if args.target:
-        print(f"\ntop candidates for {args.target}:")
+        target = conn.execute(
+            "SELECT population FROM n64_target WHERE target_id=?", (args.target,)
+        ).fetchone()
+        population = target["population"] if target else "unknown"
+        print(f"\ntop candidates for [{population}] {args.target}:")
         for r in rankings_for(conn, args.target):
             print(f"  {r['score']:>7}  {r['candidate_id']}")
 

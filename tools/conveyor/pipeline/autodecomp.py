@@ -137,8 +137,8 @@ def _resolve_targets(conn, population, specification):
     if specification.startswith("@"):
         path = Path(specification[1:])
         try:
-            names = [line.strip() for line in path.read_text().splitlines()
-                     if line.strip()]
+            names = [name for line in path.read_text().splitlines()
+                     if (name := line.split("#", 1)[0].strip())]
         except OSError as exc:
             sys.exit(f"cannot read targets {path}: {exc}")
     else:

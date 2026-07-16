@@ -129,12 +129,12 @@ with evidence recorded (SC-001, SC-002).
 builder required); evidence store shows population-tagged scores for cluster
 targets.
 
-- [ ] T010 [P] [US1] Create `tools/conveyor/clusters/game_loop.txt` with the
+- [x] T010 [P] [US1] Create `tools/conveyor/clusters/game_loop.txt` with the
       10 target_ids and address comments from `data-model.md`; implement
       `@file` list parsing (strip `#` comments) where T008 left the hook;
       add a resolution test to
       `tests/conveyor/test_autodecomp_population.py`.
-- [ ] T011 [US1] Compile-probe run:
+- [x] T011 [US1] Compile-probe run:
       `python3 -m tools.conveyor.pipeline.autodecomp clusters
       --population extracted --targets @tools/conveyor/clusters/game_loop.txt`
       on the Pi. Expected per research/m2c-dryrun.md: all 10 derive and m2c
@@ -150,7 +150,7 @@ targets.
       after harvest confirm numeric scores in the evidence store
       attributable to each target (`matrix_entry`/report), artifacts
       retained. This is SC-002.
-- [ ] T013 [US1] Population visibility in reporting: ensure
+- [x] T013 [US1] Population visibility in reporting: ensure
       `python3 -m tools.conveyor.cli report` (and `matrix report` if it
       lists targets) distinguishes `extracted` rows from `static` (spec
       US1/AC3) — add the population column/tag where missing in

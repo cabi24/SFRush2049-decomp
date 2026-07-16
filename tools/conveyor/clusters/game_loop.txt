@@ -1,0 +1,10 @@
+game_loop                 # 0x800FD464 dispatch
+game_mode_handler         # 0x800C9AE0
+attract_or_transition     # 0x800EDDC0
+process_inputs            # 0x800C997C
+sound_control             # 0x800B37E8
+playgame_state_change     # 0x800CA3B4
+RaceStateMachine_Update   # 0x800DB81C
+countdown                 # 0x800FBF88 (extent-repaired, ~668 insns)
+countdown_handler         # 0x800FBC30 (extent-repaired, ~124 insns)
+Input_ProcessGameplayPad  # 0x800A04C4

@@ -268,6 +268,13 @@ def cmd_report(args):
     print(f"functions: {total} tracked, {done} matched "
           f"({100 * done // max(total, 1)}%), {c['verified']} verified")
     print("  " + "  ".join(f"{k}={v}" for k, v in c.items()))
+    populations = conn.execute(
+        "SELECT t.population, COUNT(*) AS n FROM function_status f"
+        " JOIN n64_target t USING (target_id)"
+        " GROUP BY t.population ORDER BY t.population"
+    ).fetchall()
+    print("populations: " + "  ".join(
+        f"{r['population']}={r['n']}" for r in populations))
     n_cells = conn.execute("SELECT COUNT(*) AS n FROM matrix_entry").fetchone()["n"]
     n_clusters = conn.execute("SELECT COUNT(*) AS n FROM cluster").fetchone()["n"]
     n_pins = conn.execute("SELECT COUNT(*) AS n FROM flag_registry").fetchone()["n"]
@@ -280,13 +287,15 @@ def cmd_report(args):
     else:
         print("reconcile: clean")
     rows = conn.execute(
-        "SELECT target_id, human_flag, best_score FROM function_status"
+        "SELECT f.target_id, t.population, f.human_flag, f.best_score"
+        " FROM function_status f JOIN n64_target t USING (target_id)"
         " WHERE human_flag IS NOT NULL ORDER BY best_score IS NULL, best_score"
         " LIMIT 10").fetchall()
     if rows:
         print("needs attention (top 10):")
         for r in rows:
-            print(f"  {r['target_id']:32} {r['human_flag']:24} best={r['best_score']}")
+            print(f"  [{r['population']}] {r['target_id']:32} "
+                  f"{r['human_flag']:24} best={r['best_score']}")
 
 
 # --- gc ---------------------------------------------------------------------
