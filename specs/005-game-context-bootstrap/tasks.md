@@ -45,7 +45,7 @@ first.
 **⚠️ CRITICAL**: T002–T005 rewrite evidence (target objects + supersession).
 Test-first, and verify the oracle before proceeding.
 
-- [ ] T002 [P] Write `tests/conveyor/test_extent_scan.py` against the
+- [x] T002 [P] Write `tests/conveyor/test_extent_scan.py` against the
       normative algorithm in `contracts/extent-repair.md`: early `jr $ra`
       inside a loop does not terminate (furthest-forward-branch rule);
       `jr $t9` jump-table dispatch does not terminate; terminating delay slot
