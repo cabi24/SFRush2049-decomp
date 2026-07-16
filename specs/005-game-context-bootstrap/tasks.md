@@ -85,7 +85,7 @@ Test-first, and verify the oracle before proceeding.
       only for game-symbol-table addresses; byte-identical output across two
       runs; cache invalidation on (extent, image sha, symbol-table sha)
       change. Feed it fixed word lists via a fake image.
-- [ ] T007 Implement `tools/conveyor/pipeline/disasm.py`: carve
+- [x] T007 Implement `tools/conveyor/pipeline/disasm.py`: carve
       `[address, address+4*insn_count)` from `build/game_code.bin`,
       disassemble via `mips-linux-gnu-objdump -D -b binary -m mips:4300 -EB
       --adjust-vma=0x80086A50 --start-address --stop-address`, apply the
