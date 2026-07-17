@@ -237,9 +237,17 @@ still compiles.
   many" as the Track B strategy) — or, if they don't, the report itself
   demonstrates that and redirects the strategy; either way the operator can
   name the next-highest-value context investment from the report alone.
-- **SC-005**: Static-population seeding produces byte-identical seeds for a
-  sampled known-good function before and after the game-context additions
-  (no regression).
+- **SC-005**: Static-population seeding produces a byte-identical
+  decompiler-emitted *function body* for a sampled known-good function
+  before and after the game-context additions (no regression). The seed's
+  shared context prelude may grow — that is the feature working as
+  designed; what must not change is the code the decompiler emits for the
+  function itself. *(Amended 2026-07-17 at the T019 review gate: the
+  original "byte-identical seeds" wording was unsatisfiable for any
+  non-empty game context, because the entire preprocessed context is
+  concatenated into every seed by construction; the compiled machine code
+  for the sampled function was verified byte-identical either way. See
+  research/t019-stall.md root cause 2.)*
 - **SC-006**: No promotion, lock migration, or ROM rebuild occurs from
   extracted-population evidence (verified by inspecting the promotion record
   after the feature's runs).
