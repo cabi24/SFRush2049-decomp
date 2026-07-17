@@ -168,6 +168,12 @@ targets.
       game_types.h shortfall — see T019). §4's scoring path was not run:
       it requires compiling seeds first (T012's coordinator+watchman
       bring-up wasn't needed since there was nothing to submit).
+      **Final outcome (2026-07-17, fourth gate)**: **SC-001 and SC-002 MET**
+      — 8/10 compiled (7 of 60+ insns) after contract §5 amendments 2–4;
+      all 8 scored on Watchman24 with retained artifacts (best 755–40055,
+      permuter refining: process_inputs 8305→755). Accepted failures:
+      RaceStateMachine_Update (m2c jump table), countdown (m2c expression
+      merging). Actuals in quickstart.md §3/§4.
 
 **Checkpoint**: walking skeleton proven end-to-end.
 

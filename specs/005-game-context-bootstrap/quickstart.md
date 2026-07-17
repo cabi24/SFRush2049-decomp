@@ -213,6 +213,21 @@ only — see §5).
 header-only convergence stopped at 1/10, below T014's required 8/10. No claim
 of per-target score coverage is made for this residue run.
 
+**Actuals (2026-07-17, fourth gate — SC-002 MET)**: 9 seeds submitted
+(`no_seed=1`: RaceStateMachine_Update, the accepted m2c failure); all
+searches ran to terminal state on Watchman24 (16 cores, 3600s budget).
+Every compiling cluster seed has a numeric best score recorded with a
+retained best-source artifact, attributable per target: process_inputs
+755, sound_control 925, game_mode_handler 1295, countdown_handler 4480,
+game_loop 6495, attract_or_transition 9115, playgame_state_change 12970,
+Input_ProcessGameplayPad 40055. `countdown` ran but recorded no score
+(its seed does not compile — the second accepted failure). The permuter
+demonstrably refines these seeds (process_inputs 8305→755,
+sound_control 10615→925 within the budget), validating the seeds as
+search starting points. No score-0 yet — expected for a walking
+skeleton; search-pool refinement at scale is explicitly out of scope
+(spec, Out of Scope).
+
 ## 5. Firewall check (SC-006)
 
 ```bash
