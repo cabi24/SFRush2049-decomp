@@ -206,3 +206,32 @@ scalar declaration to. Fixing them would require seed/disassembly/pipeline
 rewriting, which this pass explicitly forbids. Work therefore stopped at the
 iteration limit rather than introducing declarations that do not describe
 the evidence.
+
+# 2026-07-17 second-gate stop (complete survey table)
+
+The second §5 amendment was implemented and the scoped probe was re-derived
+from a cleared cluster cache. Per-consumer LUI rebinding removed the observed
+`game_loop_tick.unk-1718` failure, complete survey symbol coverage removed the
+direct literal-global failures, and the unknown function-pointer cast cleanup
+landed. The best scoped result was:
+
+`compiled=4 blocked=5 decompiler_failure=1 no_disasm=0 extent_conflict=0`
+
+Compiled: `sound_control`, `game_loop`, `game_mode_handler`, and
+`countdown_handler`. `RaceStateMachine_Update` remains the accepted m2c
+jump-table failure. The five remaining compile failures contain classes not
+authorized by the amendment:
+
+- `Input_ProcessGameplayPad`: unsurveyed numeric bases `0x80120000` and
+  `0x80138670`, plus the unrelated `func_8008a148` call expression.
+- `attract_or_transition`: inferred `temp_t6->unk9CC0` member access.
+- `countdown`: malformed inferred chains involving `active_player_count`,
+  `gameplay_mode`, and `player_array` despite correctly matched `%hi/%lo`
+  pairs in the derived assembly.
+- `playgame_state_change`: unrelated `func_800a3424((*D_8014A160)->unk8, ...)`
+  pointee inference.
+- `process_inputs`: inferred local-member chains `unk04` through `unk14`.
+
+Because the probe remained below 8/10 with unsurveyed-address and inferred
+local/call error classes, the contract stop rule fired. No full histogram or
+watchman scoring run was attempted for this second-gate pass.

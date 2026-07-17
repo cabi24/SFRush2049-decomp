@@ -168,6 +168,15 @@ expressions and malformed m2c output outside the four authorized mechanical
 classes, so the stop rule fired; exact source lines are recorded in
 `research/t019-stall.md`.
 
+**Actuals (2026-07-17, second gate)**: per-consumer LUI rebinding, complete
+cluster-survey symbol/type coverage, and unknown function-pointer cast cleanup
+moved the scoped probe to `compiled=4 blocked=5 decompiler_failure=1
+no_disasm=0 extent_conflict=0`. The accepted decompiler failure remains
+`RaceStateMachine_Update`. The remaining failures include unsurveyed numeric
+bases and inferred local/call member chains outside the amendment, so the
+below-8/10 stop rule fired. The two full histograms were therefore not run;
+exact evidence is appended to `research/t019-stall.md`.
+
 ## 4. Cluster seeds score (SC-002 — needs coordinator + builder)
 
 ```bash

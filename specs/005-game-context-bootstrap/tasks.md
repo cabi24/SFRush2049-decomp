@@ -264,6 +264,13 @@ T009's byte-identity test stays green.
       header declaration to retype. Evidence is appended to
       `research/t019-stall.md`; T014 scoring was not rerun because its 8/10
       prerequisite was not reached.
+      **2026-07-17 second-gate follow-up stopped**: per-consumer LUI binding,
+      complete per-function survey coverage, typed padded bases, and the
+      unknown function-pointer cast cleanup are implemented with regressions.
+      The scoped probe reached 4/10 compiled plus the accepted state-machine
+      failure, then stopped on unsurveyed numeric bases and inferred local/call
+      member chains outside the amendment. SC-005 and the non-node conveyor
+      suite remain green; no full histogram or watchman scoring was run.
 
 **Checkpoint**: context bootstrap complete; SC-001/SC-005 satisfied.
 
