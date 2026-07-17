@@ -235,3 +235,137 @@ authorized by the amendment:
 Because the probe remained below 8/10 with unsurveyed-address and inferred
 local/call error classes, the contract stop rule fired. No full histogram or
 watchman scoring run was attempted for this second-gate pass.
+
+# 2026-07-17 third-gate stop (four of five closed; two structural blockers)
+
+Starting from the second-gate's `compiled=4 blocked=5`, this pass closed
+**three** of the five remaining functions purely through `game_types.h` +
+`GAME_SYMBOLS` evidence, bringing the scoped probe to:
+
+`compiled=7 blocked=2 decompiler_failure=1 no_disasm=0 extent_conflict=0`
+
+Compiled (new this pass): `process_inputs`, `attract_or_transition`,
+`playgame_state_change`. Root causes and fixes, each confirmed by a clean
+`mips-linux-gnu-gcc -fsyntax-only` pass on the regenerated seed:
+
+- **`process_inputs`**: the "inferred local-member chains `unk04`..`unk14`"
+  from the second gate were four register-formed array bases the survey
+  missed — `lui $t2..t5,0x8015/0x8014` + `addiu ...,27000/27032/14848/26968`
+  (build/m2c_asm/process_inputs.s .L800C99A0-.L800C99BC) forming
+  `0x80156978`/`0x80156998`/`0x80143A00`/`0x80156958`, each indexed by
+  `sll $reg,$a2,2` or `,3` (player index). Added via the contract's third
+  amendment (direct derived-asm citation) as `s32[4]` / a two-float-struct
+  `[4]` array in `GAME_SYMBOLS` + `game_types.h`.
+- **`attract_or_transition`**: `temp_t6->unk9CC0` traced to a segment table
+  at `0x80156BE0` (.L800EDDD4-.L800EDDD8, clean `lui+addiu`), indexed by
+  `D_8015F72D*128`, with fields at `+0x58` (a second-level pointee, itself
+  written through the same OSMesgQueue-shaped 8-byte-stride idiom `msgq_ptr`
+  already uses elsewhere in this function) and `+0x7C` (passed straight to
+  `osVirtualToPhysical`). Added `D_80156BE0` + two padded struct types.
+- **`playgame_state_change`**: `(*D_8014A160)->unk8` was the double-pointer
+  pointee the second gate named — `D_8014A160` retyped `T**`. The
+  `var_s0 = **var_s0` linked-list walk off `D_8012E6E0` needed a
+  self-referential single-pointer node type instead of `s32`. Both addresses
+  were already in `GAME_SYMBOLS`/the survey; only their `game_types.h` types
+  changed.
+
+`countdown` and `Input_ProcessGameplayPad` remain blocked, and — unlike
+every function closed so far in this feature — their remaining errors are
+**not reachable from `game_types.h`/`GAME_SYMBOLS` content**, evidenced
+per function below. `countdown` did yield one real fix (GameCar's
+previously-blanket `pad000[0x380]` needed two named fields, `+0xE8` a
+read-modify-write flags word and `+0x35B` a byte passed to `cpak_read`,
+both confirmed at build/m2c_asm/countdown.s:1217/1219/1225 — `lw/sw
+232($v0)`, `lb 859($v0)`), which cleared the "`GameCar` has no member
+`unkE8`" errors but left the function still blocked.
+
+## Input_ProcessGameplayPad: two occurrences of a disasm.py gap the
+## amendments don't cover (`lui` + `addu $reg,$reg,$var` + fixed immediate
+## applied at the *final* load, not at pointer formation)
+
+Both `0x80120000` and a second, independent reach of `0x80138670` follow the
+same instruction shape:
+
+```
+lui   $r,hi          <- forms ONLY the upper half; no addiu
+...
+addu  $r,$r,$idx      <- mixes in a runtime index; $r no longer "formed"
+...
+lw/lh $r,IMM($r)      <- the fixed low-half offset is applied HERE
+```
+
+`build/m2c_asm/Input_ProcessGameplayPad.s`:
+- `.L800A0A74`/`.L800A0A7C`/`.L800A0A88` (`lui $s3,0x8012` /
+  `addu $s3,$s3,$t7` / `lhu $s3,-4852($s3)`) — effective base
+  `0x80120000-0x12F4=0x8011ED0C`.
+- `.L800A0C1C`/`.L800A0C40`/`.L800A0C44` (`lui $t7,0x8014` /
+  `addu $t7,$t7,$t6` / `lw $t7,-31120($t7)`) — effective base
+  `0x80140000-0x7990=0x80138670`, i.e. the *same* table `D_80138670` already
+  added this pass via its other, cleanly-`addiu`-formed occurrence
+  (.L800A0CAC/.L800A0CB0) — proving the table itself is now correctly typed
+  and the remaining failure is purely this second access path.
+
+`tools/conveyor/pipeline/disasm.py:normalize_objdump`'s `pending_lui`
+tracking invalidates a register's entry on *any* write other than `lui` or
+a numeric-third-operand `addiu` (`_written_gpr`, disasm.py:124-138) — `addu`
+is not special-cased, so `pending_lui.pop(register)` fires between the `lui`
+and the load, and the load's own `_LOW_RE` match never finds a `pending_lui`
+entry to consult `GAME_SYMBOLS` against. This is a distinct manifestation
+from the two shapes the contract's three amendments already cover
+((a) `lui`+`imm(reg)`, (b) `lui`+`addiu` pointer formation): here the low
+half is a **third, later, independent instruction** separated from the
+register-forming pair by an intervening variable-index `addu`. No
+`GAME_SYMBOLS` entry or `game_types.h` type can reach this — the unresolved
+expression is a numeric literal (`0x80120000`/`0x80140000` plus a negative
+immediate) with no identifier for either file to attach to. Closing it needs
+a fourth disasm.py shape: track `addu $r,$r,$idx` as "still traces to the
+lineage, index unknown" and continue matching subsequent `imm($r)` loads
+against the lineage's base value — out of this task's authorized scope
+(GAME_SYMBOLS content only, not `normalize_objdump` logic).
+
+## countdown: `active_player_count` reads m2c-corrupted by an unrelated
+## expression merge, independent of disasm.py
+
+Unlike `Input_ProcessGameplayPad`, every one of the six `active_player_count`
+reads in `build/m2c_asm/countdown.s` (grepped exhaustively: lines 451/457,
+487/491, 601/627, 798/800, 920/922, 1073/1075) is a clean, self-contained
+`lui %hi(active_player_count)` + `lh %lo(active_player_count)($reg)` pair —
+no intervening write, no `addu`, no alternate low-half consumer. There is no
+raw (unsymbolized) `lui ...,0x8014` left anywhere in the derived asm for this
+function (checked directly), so this is not a missed-symbolization case at
+all: disasm.py already emits the theoretically-ideal derived assembly.
+
+`mips_to_c/m2c/translate.py`'s `record_struct_access`/`has_nonzero_access`
+(translate.py:416-422) is a **per-function, per-expression** flag: once *any*
+use of a given value expression is recorded with a nonzero struct offset
+anywhere in the function, m2c prints *every* occurrence of that
+(deduplicated/interned) expression with explicit `.unk0`/`->unk0` syntax —
+even offset-0 reads that would otherwise print as the bare identifier. Given
+six independently-clean reads of the same global, the only way this fires is
+m2c's own SSA value-numbering/copy-propagation deciding, somewhere else in
+this 2,672-byte, multi-loop function, that a *different* local expression
+(most likely tied to the `player_array[active_player_count]` /
+`(active_player_count * 0x808) + &D_8014A250` pointer-arithmetic sites,
+where `active_player_count` is the scale index for a non-power-of-2 stride)
+is value-equal to an `active_player_count` read and merges their print
+representations. This is internal to `mips_to_c`'s expression analysis, not
+`disasm.py`'s address symbolization — there is no address, symbol, or type
+declaration in `game_types.h`/`GAME_SYMBOLS` that changes which expressions
+m2c decides to unify. (`gameplay_mode` and `player_array`'s remaining
+`countdown` blockers are further errors past this one in the same function —
+`(temp_v1_2*4)+0x80150000)->unk2698` is an unsurveyed table needing its own
+third-amendment entry, and `(*temp_v0_2)->unk28` is a further pointee chain —
+both are individually tractable, but moot while the `active_player_count`
+corruption blocks the function regardless.)
+
+## Disposition
+
+7/10 falls short of the SC-001 gate (≥8/10, ≥4/7 for 60+-instruction
+members — this pass reached 3 new members plus the prior 4, so 4/7 on that
+sub-count remains satisfied even though the overall 8/10 does not). Per the
+task's fallback instruction, stopping here: both remaining blockers are
+evidenced, structural, and outside `game_types.h`/`GAME_SYMBOLS` (one is a
+`disasm.py` address-tracking gap needing a fourth register-lineage shape,
+the other is an `mips_to_c` expression-merging behavior). Closing either
+requires code changes beyond this task's authorized files. No full histogram
+or watchman scoring run was attempted for this third-gate pass.

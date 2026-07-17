@@ -93,10 +93,102 @@ typedef struct {
 extern InputRecord input_rec0;    /* 0x8014A118 */
 extern InputRecord input_rec1;    /* 0x8014A164 */
 
+/* --- process_inputs's per-player lookup tables (T019 residue close-out) ---
+ * Not in research/cluster-data-refs.md's process_inputs table: these bases
+ * are formed by a fixed lui+addiu (constant address) but then dereferenced
+ * with a variable byte offset (sll+addu), which the survey pass's static
+ * offset walk does not model. Evidence is a direct citation of the derived
+ * assembly (third amendment, contracts/seed-derivation.md):
+ * build/m2c_asm/process_inputs.s .L800C99A0-.L800C99B0 (D_80156978),
+ * .L800C999C-.L800C99B4 (D_80156998), .L800C9998-.L800C99B8 (D_80143A00),
+ * .L800C9994-.L800C99BC (D_80156958). Each is indexed by the active_a2/a1
+ * player index (0..3): the first three via `sll $v0,$aN,2` (word stride 4,
+ * one element per player), the last via `sll $tN,$aN,3` (8-byte stride,
+ * two adjacent floats per player read by lwc1 at +0/+4).
+ */
+extern s32 D_80156978[4];
+extern s32 D_80156998[4];
+extern s32 D_80143A00[4];
+typedef struct {
+    f32 unk0;   /* 0x0 - float R, process_inputs var_v1->unk10/var_a0->unk10 */
+    f32 unk4;   /* 0x4 - float R, process_inputs var_v1->unk14/var_a0->unk14 */
+} D_80156958_Entry;
+extern D_80156958_Entry D_80156958[4];
+
+/* --- attract_or_transition's segment table (T019 residue close-out) -------
+ * Not in research/cluster-data-refs.md (indexed via a fixed lui+addiu base
+ * combined with a variable-shifted index, same class as the process_inputs
+ * tables above -- the survey's static offset walk does not model it).
+ * Evidence, direct derived-asm citation (third amendment):
+ * build/m2c_asm/attract_or_transition.s .L800EDDD4-.L800EDDD8
+ * (lui $t9,0x8015 / addiu $t9,$t9,27616 forms 0x80156BE0), indexed by
+ * sll $t8,$t7,7 (D_8015F72D * 128, stride 0x80) then addu $t2,$t8,$t9.
+ * Two fields are dereferenced off the indexed element: +0x58
+ * (.L800EDDE4, lw $t6,88($t2)) is read and then itself used as a pointer
+ * offset by +0x9CC0 (.L800EDE00/.L800EDE08, li $at,0x9cc0 / addu
+ * $t8,$t6,$at) -- a second-level pointee, padded to that single observed
+ * field per FR-004 (no wider claim about its contents); +0x7C
+ * (.L800EE004, lw $a0,124($t8) with $t8 reloaded from the same base saved
+ * at sp+0x48) is passed directly to osVirtualToPhysical(void *).
+ * The +0x9CC0 field itself is immediately used the same way msgq_ptr is
+ * used elsewhere in this function (assigned into msgq_ptr, then advanced
+ * 8 bytes at a time writing word pairs) -- the same OSMesgQueue-shaped
+ * 8-byte-stride idiom the msgq_ptr header note above already documents,
+ * so it is typed OSMesgQueue here too rather than a generic word.
+ */
+typedef struct {
+    u8 pad0000[0x9CC0];
+    OSMesgQueue unk9CC0;   /* 0x9CC0 - written via msgq_ptr's own idiom */
+} SegmentHeader;
+typedef struct {
+    u8 pad00[0x58];
+    SegmentHeader *unk58;  /* 0x58 - pointer R */
+    u8 pad5C[0x7C - 0x5C];
+    void *unk7C;           /* 0x7C - pointer, arg to osVirtualToPhysical */
+} SegmentTableEntry;
+extern SegmentTableEntry D_80156BE0[];  /* 0x80156BE0, element stride 0x80,
+                                         * element count not evidenced */
+
+/* --- playgame_state_change's typed globals (T019 residue close-out) ------
+ * research/cluster-data-refs.md already lists both addresses (word R) for
+ * playgame_state_change; the plain-s32 type from the placeholder-coverage
+ * block doesn't support the pointer chains m2c infers from their actual
+ * call-argument/dereference use, so each gets its own typed declaration
+ * instead (per stall report's "double-pointer pointee" and "local-member
+ * chain" failure classes).
+ *
+ * D_8014A160 (0x8014A160): the seed's call site is
+ * `func_800a3424((*D_8014A160)->unk8, 0, var_a2)` -- a double-pointer
+ * pointee (contract's authorized class): D_8014A160 must be T** so
+ * *D_8014A160 is T* and ->unk8 accesses T. func_800a3424's first parameter
+ * is declared s32 below, so unk8 is typed s32 to match; nothing else about
+ * T is evidenced.
+ */
+typedef struct {
+    u8 pad0[8];
+    s32 unk8;   /* 0x8 - playgame_state_change: passed as func_800a3424's
+                 * first (s32) argument */
+} D_8014A160_Target;
+extern D_8014A160_Target **D_8014A160;  /* 0x8014A160 */
+
+/* D_8012E6E0 (0x8012E6E0): a linked-list head consumed as
+ * `object_render_cleanup((void **) var_s0); var_s0 = **var_s0;` -- each
+ * node's first field is a pointer to the next node (self-referential),
+ * matched here the same way msgq_ptr's OSMesgQueue-shaped idiom is: a
+ * named struct whose first member is `self *next` lets m2c's `**var_s0`
+ * chain (dereference-then-follow) type-check without a cast.
+ */
+typedef struct D_8012E6E0_Node {
+    struct D_8012E6E0_Node *next;  /* 0x0 - list-traversal pointer,
+                                     * see object_render_cleanup's own
+                                     * void ** parameter */
+} D_8012E6E0_Node;
+extern D_8012E6E0_Node *D_8012E6E0;  /* 0x8012E6E0 */
+
 /* --- Partial player/car struct (countdown, 0x800FBF88) --------------------
  * rushtherock CAR_DATA (modeldat.h:403-467) is cited as a shape reference,
  * not layout truth (data-model.md) -- the N64 build's field order/offsets
- * are its own. Only the two offsets countdown actually dereferences off
+ * are its own. Only the offsets countdown actually dereferences off
  * player_array are declared (research/cluster-data-refs.md: base
  * 0x80152818, offsets {0x380,0x3A3}, indexed with a per-element stride of
  * 0x3B8 confirmed via the same function's `x3B8`-scaled address forms);
@@ -104,9 +196,20 @@ extern InputRecord input_rec1;    /* 0x8014A164 */
  * NOT currently symbolized (addiu gap): player_array is formed via
  * lui+addiu wherever the cluster reaches it, so this type does not yet
  * reach the derived seed either.
+ *
+ * T019 residue close-out: two further offsets, evidenced directly from
+ * build/m2c_asm/countdown.s (`&player_array[var_s0_5]` then `lw/sw
+ * 232($v0)` and `lb 859($v0)`, both within the previously-blanket
+ * pad000[0x380] region so must be carved out by name): +0xE8 (word,
+ * read-modify-write with a `& ~8` bitmask -- a flags word) and +0x35B
+ * (byte, read directly into cpak_read's s8 parameter).
  */
 typedef struct {
-    u8 pad000[0x380];
+    u8 pad000[0xE8];
+    s32 unkE8;              /* 0xE8 - word R/W, `& ~8` flag clear */
+    u8 pad0EC[0x35B - 0xEC];
+    u8 unk35B;               /* 0x35B - byte R, cpak_read's s8 argument */
+    u8 pad35C[0x380 - 0x35C];
     u8 unk380;             /* 0x380 */
     u8 pad381[0x3A3 - 0x381];
     u8 unk3A3;              /* 0x3A3 */
@@ -157,9 +260,22 @@ extern CountdownState countdown_state; /* 0x8017A4E0 - countdown_handler:
 extern CountdownObject *countdown_object; /* 0x8017A4E4 - countdown_handler:
                                           * pointee +0x1F0..+0x200 */
 
-typedef struct {
-    void *unk0;
-    void *unk4;
+typedef struct PadConfig_s {
+    struct PadConfig_s *unk0;  /* 0x0 - pointer R; dereferenced at ->unk14
+                                * elsewhere in Input_ProcessGameplayPad
+                                * (func_8008a148's first arg), matching this
+                                * struct's own unk14 -- self-referential
+                                * (research/cluster-data-refs.md already
+                                * records 0x80140BF0/+0x0 as a pointer with
+                                * sub-offsets {0x14,0x1C}, a subset of this
+                                * struct's own fields) */
+    struct PadConfig_s *unk4;  /* 0x4 - pointer R; dereferenced at ->unk14,
+                                * ->unk10, ->unk15 (T019 residue: local
+                                * `temp_v1 = var_s8->unk4` chain) --
+                                * cluster-data-refs.md records 0x80140BF4/+0x4
+                                * as a pointer with sub-offsets
+                                * {0x10,0x12,0x14,0x15,0x16,0x18}, again a
+                                * subset of this struct's own fields */
     s16 unk8;
     s16 unkA;
     s16 unkC;
@@ -177,6 +293,27 @@ typedef struct {
 } PadConfig;
 extern PadConfig pad_config;      /* 0x80140BF0 - Input_ProcessGameplayPad:
                                    * config base fields +0x00..+0x1E */
+
+/* --- Input_ProcessGameplayPad's second config table (T019 residue) --------
+ * Not in research/cluster-data-refs.md (same lui+addiu-base / variable-index
+ * class the other third-amendment entries above cover). Evidence:
+ * build/m2c_asm/Input_ProcessGameplayPad.s .L800A0CAC-.L800A0CB0
+ * (lui $t9,0x8014 / addiu $t9,$t9,-31120 forms 0x80138670), indexed by
+ * sra $t7,$t6,0xa / sll $t8,$t7,3 (stride 8) then addu $v1,$t8,$t9.
+ * +0x0 (.L800A0CD0, lw $v0,0($v1)) is read and immediately dereferenced at
+ * +0x14 (.L800A0CDC, lw $a0,20($v0)) and passed to func_8008a148's first
+ * (s32) argument -- the same role PadConfig's own unk14 plays at every
+ * other func_8008a148 call site in this function, so the pointee is typed
+ * PadConfig* here too (no wider claim). +0x4 (.L800A0CC0, lw $t6,4($v1))
+ * is only ever compared against zero.
+ */
+typedef struct {
+    PadConfig *unk0;  /* 0x0 - pointer R, see above */
+    s32 unk4;          /* 0x4 - word, boolean-checked */
+} D_80138670_Entry;
+extern D_80138670_Entry D_80138670[];  /* 0x80138670, element stride 8,
+                                        * element count not evidenced */
+
 extern s32 game_loop_tick;        /* 0x8002EB64 - game_loop: word R,
                                    * base 0x8002E8E8 + 0x27C */
 extern s16 active_player_count;   /* 0x8014A108 - process_inputs/countdown/
@@ -201,7 +338,7 @@ extern s32 D_801174BC;
 extern u8 D_8011ED0B;
 extern f32 D_80123FB4, D_80123FB8, D_80123FBC, D_801242A8;
 extern u8 D_80124F84;
-extern s32 D_80124FC8, D_8012E6E0;
+extern s32 D_80124FC8;
 extern u8 D_8012E67C, D_8013FECB;
 extern s32 D_80140008;
 extern u16 D_80140618;
@@ -215,7 +352,7 @@ extern f32 D_8014401C;
 extern u8 D_801461F8, D_80146204, D_80146205, D_80149414;
 extern s32 D_80149438;
 extern u8 D_80149774, D_80149794, D_801497C4;
-extern s32 D_801497F4, D_80149D98, D_8014A160;
+extern s32 D_801497F4, D_80149D98;
 extern u8 D_8014B240, D_80150EFC, D_80150F14;
 extern s32 D_80150000;
 extern u16 D_80151AD0;

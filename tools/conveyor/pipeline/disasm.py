@@ -58,6 +58,33 @@ GAME_SYMBOLS.update({
     0x80146108: "D_80146108",        # playgame: byte family +0xc..+0xe
     0x80143FD8: "D_80143FD8",        # race state: pointer fields +0,+2,+0x60,+0x64
     0x8014A250: "D_8014A250",        # countdown: fields +0x7c6,+0x7e8
+    # Third-amendment additions (direct derived-asm citation, T019 residue
+    # close-out): register-formed array bases indexed by a variable (sll+addu),
+    # not the fixed lui+addiu constant the original survey pass covered, so
+    # they never appeared in cluster-data-refs.md. Evidence per entry below.
+    0x80156978: "D_80156978",  # process_inputs.s .L800C99A0/.L800C99B0
+                                # (lui $t2,0x8015 / addiu $t2,$t2,27000); indexed
+                                # by sll $v0,$a2,2 (player*4) then lw 0($t7)
+    0x80156998: "D_80156998",  # process_inputs.s .L800C999C/.L800C99B4
+                                # (lui $t3,0x8015 / addiu $t3,$t3,27032); same
+                                # index pattern as D_80156978
+    0x80143A00: "D_80143A00",  # process_inputs.s .L800C9998/.L800C99B8
+                                # (lui $t4,0x8014 / addiu $t4,$t4,14848); same
+                                # index pattern as D_80156978
+    0x80156958: "D_80156958",  # process_inputs.s .L800C9994/.L800C99BC
+                                # (lui $t5,0x8015 / addiu $t5,$t5,26968); indexed
+                                # by sll $t9,$a2,3 (player*8), read as two
+                                # adjacent floats (lwc1 0/4)
+    0x80156BE0: "D_80156BE0",  # attract_or_transition.s .L800EDDD4/.L800EDDD8
+                                # (lui $t9,0x8015 / addiu $t9,$t9,27616); indexed
+                                # by sll $t8,$t7,7 (D_8015F72D*128) then
+                                # addu $t2,$t8,$t9; fields read at +0x58
+                                # (.L800EDDE4) and +0x7C (.L800EE004)
+    0x80138670: "D_80138670",  # Input_ProcessGameplayPad.s .L800A0CAC/.L800A0CB0
+                                # (lui $t9,0x8014 / addiu $t9,$t9,-31120);
+                                # indexed by sra $t7,$t6,0xa / sll $t8,$t7,3
+                                # then addu $v1,$t8,$t9; fields read at +0x0
+                                # (.L800A0CD0) and +0x4 (.L800A0CC0)
 })
 
 _LINE_RE = re.compile(
