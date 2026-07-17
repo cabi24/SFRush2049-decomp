@@ -256,6 +256,14 @@ T009's byte-identity test stays green.
       regressions landed. Scoped actual remains 0/9/1; full histogram moved
       29->33 compiled and is deterministic across two runs. SC-005 body
       identity and the full non-node conveyor suite are green.
+      **2026-07-17 residue follow-up stopped**: four header/probe iterations
+      moved the cluster from 0/10 to 1/10 (`sound_control` compiled), with
+      SC-005 green after every valid edit. Remaining non-state-machine errors
+      include literal-address void expressions and malformed m2c output that
+      are outside the four authorized mechanical classes and have no named
+      header declaration to retype. Evidence is appended to
+      `research/t019-stall.md`; T014 scoring was not rerun because its 8/10
+      prerequisite was not reached.
 
 **Checkpoint**: context bootstrap complete; SC-001/SC-005 satisfied.
 

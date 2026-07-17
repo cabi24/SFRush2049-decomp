@@ -173,3 +173,36 @@ priority order:
 `game_types.h` as currently populated is ready to benefit from (1)/(2)
 without further edits — every symbol-table type it declares is already
 correct, just not yet reachable by the derived asm.
+
+# 2026-07-17 T019 residue stop (header-only constraint)
+
+The requested residue pass began from `compiled=0 blocked=9
+decompiler_failure=1` and made four header/probe iterations, running
+`test_game_types_keeps_known_good_static_function_body_byte_identical` after
+each change. Extending `InputRecord` through the surveyed byte at `unk4D` did
+not change the count. Typing the record returned by `func_800b3704` from the
+`sound_control` seed made `sound_control` compile, producing the final scoped
+probe `compiled=1 blocked=8 decompiler_failure=1` (the decompiler failure is
+the accepted `RaceStateMachine_Update` jump table).
+
+The residue then hit errors outside the four authorized mechanical classes:
+
+- `game_mode_handler`: `*(void *)0x80035471 = 1` (`invalid use of void
+  expression` on a literal dereference, not a call resolving to an extern
+  prototype).
+- `game_loop`: `game_loop_tick.unk-1718` (`m2c` emitted a subtraction-like,
+  syntactically invalid member suffix rather than an `unkN` byte offset).
+- `process_inputs`: `temp_v0->unk80156978` where `temp_v0` is the local scalar
+  expression `temp_a2 * 4`; it is not a named scalar extern that can be
+  retyped in `game_types.h`.
+- `Input_ProcessGameplayPad`: `((? (*)(void *)) temp_v1)(...)`, plus literal
+  `void *` dereferences such as `(*(void *)0x801406B8)->queue`.
+- `playgame_state_change`, `countdown`, and `countdown_handler` likewise retain
+  literal-address `void` operations (for example `*(void *)0x80156994 != 0`,
+  `(void *)0x8014A250->unk7C6`, and `*(void *)0x801613B0 = var_v1`).
+
+These expressions have no header-visible identifier to attach a struct or
+scalar declaration to. Fixing them would require seed/disassembly/pipeline
+rewriting, which this pass explicitly forbids. Work therefore stopped at the
+iteration limit rather than introducing declarations that do not describe
+the evidence.

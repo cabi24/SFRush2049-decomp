@@ -72,12 +72,7 @@ extern OSMesgQueue *msgq_ptr;     /* 0x801497C8 */
  * role as. Observed N64 shape (research/cluster-data-refs.md, process_inputs
  * table): two base addresses each read/written at offsets
  * {0x01(u8),0x04(s32),0x08(s32),0x0C(s32),0x10(f32),0x14(f32)}, so this
- * struct models exactly that 0x18-byte prefix; input_rec0 additionally
- * shows a byte access at +0x4D, which the process_inputs disassembly
- * reveals is the *next* array element aliasing through pointer arithmetic
- * (var_v1 += 0x98 inside a 2-iteration loop) rather than a real field of
- * this struct -- not modeled here (would require array/stride modeling
- * FR-004 doesn't ask for; see research/t019-stall.md).
+ * struct models the surveyed prefix and the observed byte at +0x4D.
  * NOT currently symbolized (addiu gap): input_rec0/input_rec1 are formed
  * via lui+addiu in process_inputs.s, so this type does not yet reach the
  * derived seed.
@@ -91,6 +86,8 @@ typedef struct {
     s32 unk0C;     /* 0x0C - word W */
     f32 unk10;     /* 0x10 - float W */
     f32 unk14;     /* 0x14 - float W */
+    u8 _pad18[0x4D - 0x18];
+    u8 unk4D;      /* 0x4D - byte R; research/cluster-data-refs.md */
 } InputRecord;
 
 extern InputRecord input_rec0;    /* 0x8014A118 */
@@ -228,7 +225,32 @@ typedef struct SoundClearRecord {
     s32 unk20;                    /* 0x20 */
 } SoundClearRecord;
 
-extern void *sound_control(s16 arg0, s16 arg1, SoundClearRecord *arg2, s16 arg3);
+/* Partial record returned by func_800b3704. Field widths and offsets are
+ * observed via m2c offsets in the sound_control seed. */
+typedef struct SoundState {
+    u8 _pad0[0x4];
+    struct SoundState *unk4;      /* 0x04 - pointer W */
+    s32 (*unk8)(void *);          /* 0x08 - callback W */
+    u8 _padC[0x12 - 0xC];
+    s16 unk12;                    /* 0x12 - halfword W */
+    s16 unk14;                    /* 0x14 - halfword W */
+    s16 unk16;                    /* 0x16 - halfword W */
+    s8 unk18;                     /* 0x18 - byte W */
+    u8 _pad19[0x1C - 0x19];
+    s16 unk1C;                    /* 0x1C - halfword W */
+    s16 unk1E;                    /* 0x1E - halfword W */
+    s16 unk20;                    /* 0x20 - halfword W */
+    s16 unk22;                    /* 0x22 - halfword W */
+    u8 _pad24[0x28 - 0x24];
+    s32 (*unk28)(void *);         /* 0x28 - callback W */
+    s32 unk2C;                    /* 0x2C - word W */
+    u8 _pad30[0x3C - 0x30];
+    struct SoundState *unk3C;     /* 0x3C - pointer W */
+} SoundState;
+
+extern SoundState *func_800b3704(s32, s32, s32, s32); /* observed via m2c
+                                                        * offset in sound_control seed */
+extern SoundState *sound_control(s16 arg0, s16 arg1, SoundClearRecord *arg2, s16 arg3);
 
 /* --- Cluster-internal call graph (game_loop.txt's own 10 targets calling
  * each other) -- every target needs the others' prototypes so callers

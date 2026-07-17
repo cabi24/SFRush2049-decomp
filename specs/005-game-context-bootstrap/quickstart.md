@@ -96,6 +96,11 @@ After removing only `run.timestamp`, both JSON files had SHA-256
 `0e8573b5925bd1a039cc100053256d62b340d9ab23ca4f9d23967cf732a2da10`.
 This is +4 compiled / -4 blocked versus the T018/T019 run.
 
+T019 residue full-run record (2026-07-17, same game-code SHA): `34 compiled,
+605 blocked, 49 decompiler_failure, 0 no_disasm, 197 extent_conflict` (sum
+885). This is +1 compiled / -1 blocked versus the contract §5 amendment and
+corresponds to the newly typed `sound_control` allocation record.
+
 ## 3. Cluster seeds compile (SC-001, Pi-only)
 
 ```bash
@@ -153,6 +158,16 @@ at `0x8017A4E0/0x8017A4E4` share one `lui`, so both correctly remain numeric
 under the normative mismatched-pair refusal. The amended SC-005 function-body
 identity test passes.
 
+**Actuals (2026-07-17, T019 residue)**: four header/probe iterations moved the
+scoped result to `compiled=1 blocked=8 decompiler_failure=1`; `sound_control`
+is the compiling member and `RaceStateMachine_Update` is the accepted m2c
+jump-table failure. SC-001 remains unmet (1/10, including 1 large member).
+SC-005's function-body identity test stayed green after every valid header
+change. The remaining compiler diagnostics include literal-address void
+expressions and malformed m2c output outside the four authorized mechanical
+classes, so the stop rule fired; exact source lines are recorded in
+`research/t019-stall.md`.
+
 ## 4. Cluster seeds score (SC-002 — needs coordinator + builder)
 
 ```bash
@@ -165,6 +180,10 @@ python3 -m tools.conveyor.cli report            # after jobs drain
 Every compiling cluster seed gets a recorded numeric score attributable to
 its target (population-tagged in the report). Score 0 = matched (evidence
 only — see §5).
+
+**Actuals (2026-07-17, T019 residue)**: scoring was not started because the
+header-only convergence stopped at 1/10, below T014's required 8/10. No claim
+of per-target score coverage is made for this residue run.
 
 ## 5. Firewall check (SC-006)
 
