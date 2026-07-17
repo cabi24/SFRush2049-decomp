@@ -102,6 +102,8 @@ def _clean_m2c(body):
     text = "\n".join(lines)
     # `(? arg` / `, ? arg` (an unknown parameter type) -> s32
     text = re.sub(r"([(,]\s*)\?(\s+\w)", r"\1s32\2", text)
+    # Unknown function-pointer casts use `(? (*)(...))`; they are not params.
+    text = text.replace("(? (*)", "(s32 (*)")
     return text
 
 

@@ -184,6 +184,79 @@ extern s16 active_player_count;   /* 0x8014A108 - process_inputs/countdown/
 extern s32 gameplay_mode;         /* 0x8014A110 - countdown and
                                    * playgame_state_change: word R */
 
+/* --- Complete cluster-survey placeholder coverage -----------------------
+ * Every declaration in this block comes directly from the per-function
+ * tables in research/cluster-data-refs.md (second 2026-07-17 gate).  Names
+ * intentionally follow D_<ADDR>; widths are exactly the surveyed widths.
+ */
+extern f32 D_8002AFB4, D_8002AFB8;
+extern s32 D_8002AFC0, D_8002AFC4, D_8002EBB0;
+extern u16 D_8002EB70;
+extern u8 D_80035470, D_80035471, D_80035472;
+extern s32 D_80111958;
+extern u8 D_80114650, D_80114654, D_801146F0;
+extern s32 D_801146F8, D_801170FC;
+extern u8 D_80117350, D_80117354;
+extern s32 D_801174BC;
+extern u8 D_8011ED0B;
+extern f32 D_80123FB4, D_80123FB8, D_80123FBC, D_801242A8;
+extern u8 D_80124F84;
+extern s32 D_80124FC8, D_8012E6E0;
+extern u8 D_8012E67C, D_8013FECB;
+extern s32 D_80140008;
+extern u16 D_80140618;
+extern s32 D_801406B8, D_801407BC, D_80140804, D_80140A00;
+extern s32 D_80140AD8, D_80140B08, D_80140BD8;
+extern u8 D_80140C26;
+extern s32 D_80140D70, D_80141428, D_80142510;
+extern u8 D_80142690, D_80142699, D_80142760;
+extern s32 D_80143F10;
+extern f32 D_8014401C;
+extern u8 D_801461F8, D_80146204, D_80146205, D_80149414;
+extern s32 D_80149438;
+extern u8 D_80149774, D_80149794, D_801497C4;
+extern s32 D_801497F4, D_80149D98, D_8014A160;
+extern u8 D_8014B240, D_80150EFC, D_80150F14;
+extern s32 D_80150000;
+extern u16 D_80151AD0;
+extern u8 D_80151AD8, D_8015256C, D_80152744, D_80152F29;
+extern s32 D_8015204C, D_801520C4, D_80153308;
+extern f32 D_801525F4, D_801543CC;
+extern u16 D_80152734;
+extern s32 D_8015698C;
+extern u8 D_80156994, D_80156CF0, D_80157244, D_8015F72D;
+extern s32 D_8015B250, D_8015B260, D_8015F738;
+extern s32 D_80161380, D_80161398, D_801613A4, D_801613AC;
+extern s32 D_801613B0, D_80161434, D_8017A4B0, D_8017A508;
+extern s32 D_8017A638;
+
+/* Multi-offset bases from research/cluster-data-refs.md.  Only surveyed
+ * offsets are named; every gap is explicit padding. */
+typedef struct {
+    u16 unk00;
+    u16 unk02;
+    u8 pad04[0x60 - 0x04];
+    s32 unk60;
+    s32 unk64;
+} D_80143FD8_Record;
+extern D_80143FD8_Record *D_80143FD8; /* 0x80143FD8, offsets 0,2,0x60,0x64 */
+
+typedef struct {
+    u8 pad000[0x7C6];
+    u16 unk7C6;
+    u8 pad7C8[0x7E8 - 0x7C8];
+    u8 unk7E8;
+} D_8014A250_Record;
+extern D_8014A250_Record D_8014A250; /* 0x8014A250, offsets 0x7C6,0x7E8 */
+
+typedef struct {
+    u8 pad00[0x0C];
+    u8 unk0C;
+    u8 unk0D;
+    u8 unk0E;
+} D_80146108_Record;
+extern D_80146108_Record D_80146108; /* 0x80146108, bytes +0x0C..+0x0E */
+
 /* --- Track_Data (countdown, playgame_state_change) -------------------------
  * rushtherock: game/checkpoint.h:101-109, verbatim (platform-neutral, no
  * N64 divergence noted).

@@ -91,7 +91,7 @@ def test_conflicting_write_invalidates_stale_lui():
     assert "%lo(" not in text
 
 
-def test_one_lui_refuses_mismatched_symbol_pairs():
+def test_one_lui_rebinds_each_consumer_without_mismatched_pairs():
     raw = """
 80086a50: 3c088011 lui t0,0x8011
 80086a54: 8d0946e8 lw t1,0x46e8(t0)
@@ -99,11 +99,38 @@ def test_one_lui_refuses_mismatched_symbol_pairs():
 """
     text = disasm.normalize_objdump(raw, "conflicting_symbols", {})
 
-    assert "lui    $t0,0x8011" in text
-    assert "lw     $t1,0x46e8($t0)" in text
-    assert "lbu    $t2,0x46ec($t0)" in text
-    assert "%hi(" not in text
-    assert "%lo(" not in text
+    assert text.count("%hi(game_state_flags)") == 1
+    assert "lw     $t1,%lo(game_state_flags)($t0)" in text
+    assert "lui    $t0,%hi(gstate)\n    lbu    $t2,%lo(gstate)($t0)" in text
+    assert "%hi(game_state_flags)" in text
+    assert "%lo(gstate)" in text
+
+
+def test_symbol_and_numeric_consumers_restore_original_lui():
+    raw = """
+80086a50: 3c088003 lui t0,0x8003
+80086a54: 8d09eb64 lw t1,-0x149c(t0)
+80086a58: 8d0ae4aa lw t2,-0x1b56(t0)
+"""
+    text = disasm.normalize_objdump(raw, "numeric_co_consumer", {})
+
+    assert text.count("%hi(game_loop_tick)") == 1
+    assert "lw     $t1,%lo(game_loop_tick)($t0)" in text
+    assert "lui    $t0,0x8003\n    lw     $t2,-0x1b56($t0)" in text
+    assert "game_loop_tick.unk" not in text
+
+
+def test_numeric_pointer_formation_then_symbolic_field_rebinds():
+    raw = """
+80086a50: 3c088003 lui t0,0x8003
+80086a54: 2508e8e8 addiu t0,t0,-5912
+80086a58: 8d09e8e8 lw t1,636(t0)
+"""
+    text = disasm.normalize_objdump(raw, "game_loop_shape", {})
+
+    assert "lui    $t0,0x8003\n    addiu  $t0,$t0,-5912" in text
+    assert "lui    $t0,%hi(game_loop_tick)\n    lw     $t1,%lo(game_loop_tick)($t0)" in text
+    assert "game_loop_tick.unk" not in text
 
 
 def test_derive_is_deterministic_and_cache_key_covers_all_inputs(

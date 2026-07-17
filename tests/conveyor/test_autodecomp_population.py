@@ -93,6 +93,14 @@ def test_extracted_flagset_fallback_and_static_fallback(tmp_path):
     assert farm.EXTRACTED_FLAGSETS[1] == "-g0 -O1 -mips2 -G 0 -non_shared"
 
 
+def test_clean_m2c_retypes_unknown_function_pointer_casts():
+    body = "callback = (? (*)(s32)) value;\nfn(? arg);"
+
+    assert autodecomp._clean_m2c(body) == (
+        "callback = (s32 (*)(s32)) value;\nfn(s32 arg);"
+    )
+
+
 def test_game_types_keeps_known_good_static_function_body_byte_identical(
         tmp_path, monkeypatch):
     """SC-005 (as amended 2026-07-17): game-context additions must not change

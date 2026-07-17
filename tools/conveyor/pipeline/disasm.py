@@ -13,9 +13,32 @@ CACHE_DIR = REPO / "build" / "m2c_asm"
 GAME_CODE_BASE = 0x80086A50
 
 # Evidence for every entry: specs/005-game-context-bootstrap/research/
-# cluster-data-refs.md. Keep this intentionally small; unknown data references
-# must remain numeric so raw-word target scoring stays correct.
-GAME_SYMBOLS = {
+# cluster-data-refs.md.  The second 2026-07-17 gate requires complete coverage
+# of that survey; placeholder names deliberately carry no semantic judgment.
+_SURVEYED_PLACEHOLDERS = (
+    0x8002AFB4, 0x8002AFB8, 0x8002AFC0, 0x8002AFC4, 0x8002EB70,
+    0x8002EBB0, 0x80035470, 0x80035471, 0x80035472, 0x80111958,
+    0x80114650, 0x80114654, 0x801146F0, 0x801146F8, 0x801170FC,
+    0x80117350, 0x80117354, 0x801174BC, 0x8011ED0B, 0x80123FB4,
+    0x80123FB8, 0x80123FBC, 0x801242A8, 0x80124F84, 0x80124FC8,
+    0x8012E67C, 0x8012E6E0, 0x8013FECB, 0x80140008, 0x80140618,
+    0x801406B8, 0x801407BC, 0x80140804, 0x80140A00, 0x80140AD8,
+    0x80140B08, 0x80140BD8, 0x80140C26, 0x80140D70, 0x80141428,
+    0x80142510, 0x80142690, 0x80142699, 0x80142760, 0x80143F10,
+    0x80143FD8, 0x8014401C, 0x80146108, 0x801461F8, 0x80146204,
+    0x80146205, 0x80149414, 0x80149438, 0x80149774, 0x80149794,
+    0x801497C4, 0x801497F4, 0x80149D98, 0x8014A160, 0x8014A250,
+    0x8014B240, 0x80150000, 0x80150EFC, 0x80150F14, 0x80151AD0,
+    0x80151AD8, 0x8015204C, 0x801520C4, 0x8015256C, 0x801525F4,
+    0x80152734, 0x80152744, 0x80152F29, 0x80153308, 0x801543CC,
+    0x8015698C, 0x80156994, 0x80156CF0, 0x80157244, 0x8015B250,
+    0x8015B260, 0x8015F72D, 0x8015F738, 0x80161380, 0x80161398,
+    0x801613A4, 0x801613AC, 0x801613B0, 0x80161434, 0x8017A4B0,
+    0x8017A508, 0x8017A638,
+)
+GAME_SYMBOLS = {address: f"D_{address:08X}"
+                for address in _SURVEYED_PLACEHOLDERS}
+GAME_SYMBOLS.update({
     0x801146EC: "gstate",            # game_loop: byte R/W state dispatch
     0x80142AFC: "frame_counter",     # game_loop: word init/read/increment
     0x801146E8: "game_state_flags",  # game_loop: adjacent word R/W
@@ -32,7 +55,10 @@ GAME_SYMBOLS = {
     0x8002EB64: "game_loop_tick",    # game_loop: word R (base 0x8002e8e8 + 0x27c)
     0x8014A108: "active_player_count", # process/countdown/playgame: halfword R/W
     0x8014A110: "gameplay_mode",     # countdown/playgame: word R
-}
+    0x80146108: "D_80146108",        # playgame: byte family +0xc..+0xe
+    0x80143FD8: "D_80143FD8",        # race state: pointer fields +0,+2,+0x60,+0x64
+    0x8014A250: "D_8014A250",        # countdown: fields +0x7c6,+0x7e8
+})
 
 _LINE_RE = re.compile(
     r"^\s*([0-9a-fA-F]+):\s+(?:[0-9a-fA-F]{8}\s+)+([.a-zA-Z0-9_]+)"
@@ -124,9 +150,9 @@ def normalize_objdump(output, target_id, targets):
                 "operands": (match.group(3) or "").strip(),
             })
 
-    # Track address formation first and apply rewrites only after all consumers
-    # are known.  Deferring the edits prevents one LUI from ever acquiring a
-    # %hi(A) while a later consumer is emitted as %lo(B).
+    # Track address formation and annotate every low-half consumer.  m2c binds
+    # a low half to the most recent LUI for that register, so consumers of one
+    # numeric LUI may need private synthetic LUIs when their bindings differ.
     pending_lui = {}
     lineages = []
     for insn in instructions:
@@ -138,11 +164,13 @@ def normalize_objdump(output, target_id, targets):
                 register = pieces[0].lstrip("$")
                 pending_lui.pop(register, None)
                 try:
-                    lineage = {"lui": insn, "symbols": set(), "edits": []}
+                    lineage = {"lui": insn, "register": register,
+                               "consumers": []}
                     lineages.append(lineage)
                     pending_lui[register] = {
                         "value": (_integer(pieces[1]) & 0xFFFF) << 16,
-                        "lineage": lineage,
+                        "lineage": lineage, "formed": False,
+                        "formed_symbol": None,
                     }
                 except ValueError:
                     pass
@@ -157,14 +185,20 @@ def normalize_objdump(output, target_id, targets):
             pending_lui.pop(destination, None)
             if prior:
                 value = prior["value"] + _signed_imm16(addiu.group(3))
-                symbol = GAME_SYMBOLS.get(value)
-                if symbol:
-                    prior["lineage"]["symbols"].add(symbol)
-                    prior["lineage"]["edits"].append(
-                        (insn, f"{addiu.group(1)},{addiu.group(2)},%lo({symbol})")
+                symbol = None
+                if not prior["formed"]:
+                    symbol = GAME_SYMBOLS.get(value)
+                    replacement = None
+                    if symbol:
+                        replacement = (
+                            f"{addiu.group(1)},{addiu.group(2)},%lo({symbol})"
+                        )
+                    prior["lineage"]["consumers"].append(
+                        (insn, source, symbol, replacement)
                     )
                 pending_lui[destination] = {
                     "value": value, "lineage": prior["lineage"],
+                    "formed": True, "formed_symbol": symbol,
                 }
             continue
 
@@ -176,11 +210,15 @@ def normalize_objdump(output, target_id, targets):
                 low_value = _signed_imm16(low.group(2))
                 address = prior["value"] + low_value
                 symbol = GAME_SYMBOLS.get(address)
+                if prior["formed"] and symbol == prior["formed_symbol"]:
+                    symbol = None
+                replacement = None
                 if symbol:
                     prefix = low.group(1) or ""
-                    prior["lineage"]["symbols"].add(symbol)
-                    prior["lineage"]["edits"].append(
-                        (insn, f"{prefix}%lo({symbol})({low.group(3)})")
+                    replacement = f"{prefix}%lo({symbol})({low.group(3)})"
+                if not prior["formed"] or symbol:
+                    prior["lineage"]["consumers"].append(
+                        (insn, base, symbol, replacement)
                     )
 
         written = _written_gpr(mnemonic, operands)
@@ -188,16 +226,36 @@ def normalize_objdump(output, target_id, targets):
             pending_lui.pop(written, None)
 
     for lineage in lineages:
-        if len(lineage["symbols"]) != 1:
-            continue
-        symbol = next(iter(lineage["symbols"]))
-        lui = lineage["lui"]
-        lui["operands"] = lui["operands"].split(",", 1)[0] + f",%hi({symbol})"
-        for consumer, replacement in lineage["edits"]:
-            consumer["operands"] = replacement
+        bindings = {}
+        original_lui = lineage["lui"]
+        original_immediate = original_lui["operands"].split(",", 1)[1]
+        if lineage["consumers"]:
+            first_binding = next(
+                (item[2] for item in lineage["consumers"] if item[2]), None
+            )
+            if first_binding:
+                original_lui["operands"] = (
+                    original_lui["operands"].split(",", 1)[0]
+                    + f",%hi({first_binding})"
+                )
+            bindings[lineage["register"]] = first_binding
+        for consumer, register, symbol, replacement in lineage["consumers"]:
+            binding = symbol  # None means the original numeric high half.
+            if bindings.get(register) != binding:
+                immediate = (f"%hi({symbol})" if symbol else original_immediate)
+                consumer.setdefault("synthetic_before", []).append({
+                    "mnemonic": "lui", "operands": f"{register},{immediate}",
+                })
+                bindings[register] = binding
+            if replacement:
+                consumer["operands"] = replacement
 
     lines = [f"glabel {target_id}"]
     for insn in instructions:
+        lines.append(f".L{insn['address']:08X}:")
+        for synthetic in insn.get("synthetic_before", []):
+            operands = _GPR_RE.sub(r"$\1", synthetic["operands"])
+            lines.append(f"    {synthetic['mnemonic']:<7}{operands}".rstrip())
         mnemonic = insn["mnemonic"]
         operands = insn["operands"]
         pieces = [part.strip() for part in operands.split(",")]
@@ -210,7 +268,6 @@ def normalize_objdump(output, target_id, targets):
                     pieces[-1] = targets.get(address, f"func_{address:08x}")
                 operands = ",".join(pieces)
         operands = _GPR_RE.sub(r"$\1", operands)
-        lines.append(f".L{insn['address']:08X}:")
         lines.append((f"    {mnemonic:<7}{operands}").rstrip())
     return "\n".join(lines) + "\n"
 
