@@ -216,12 +216,19 @@ of per-target score coverage is made for this residue run.
 ## 5. Firewall check (SC-006)
 
 ```bash
-python3 -m tools.conveyor.pipeline.lock add work/whatever/game_loop.c:game_loop  # MUST refuse
+python3 -m tools.conveyor.pipeline.lock add work/whatever/game_loop.c:game_loop \
+    --flags=-g0 --skip-verify  # MUST refuse before reading the source
 python3 -m tools.conveyor.pipeline.promote batch --locked --via-builder          # touches no extracted fn
 ```
 
 The lock/promote guards must reject extracted-population functions with the
 FR-010 error; `promotion_record` must show no extracted entries.
+
+**Actuals (2026-07-17)**: `lock add` refused `game_loop` with
+`error: game_loop is extracted-population — evidence-only (005/FR-010)` and
+exit status 1. A `promotion_record` → `n64_target` population join returned
+zero extracted entries. The live-pool walkthrough intentionally did not invoke
+`promote batch`; its complete-plan preflight is covered by the local guard.
 
 ## 6. Tests
 
@@ -231,3 +238,11 @@ pytest tests/conveyor -m "not node_required"
 
 New: `test_extent_scan.py`, `test_disasm.py`,
 `test_autodecomp_population.py` — plus the full existing suite green.
+
+**Actuals (2026-07-17)**: `162 passed, 5 deselected in 12.07s`.
+Quickstart §1–§3 and §5–§6 reproduced; §1's second extract reported
+`688 agree, 0 repaired, 197 conflict`, two §2 runs both reported
+`42/597/49/0/197` with identical timestamp-normalized JSON hashes, and §3
+reported `compiled=8 blocked=1 decompiler_failure=1`. Section 4 was not run
+because a live scoring harvest was in progress and its actuals are recorded
+separately.

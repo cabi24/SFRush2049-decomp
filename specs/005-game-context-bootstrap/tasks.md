@@ -278,7 +278,7 @@ T009's byte-identity test stays green.
 
 ## Phase 6: Polish & Cross-Cutting
 
-- [ ] T020 [P] Promotion firewall (FR-010/SC-006): in
+- [x] T020 [P] Promotion firewall (FR-010/SC-006): in
       `tools/conveyor/pipeline/lock.py` (`add`) and
       `tools/conveyor/pipeline/promote.py` (`run`/`batch` entry points),
       resolve the function's `n64_target.population` and reject `extracted`
@@ -287,12 +287,12 @@ T009's byte-identity test stays green.
       `tests/conveyor/test_autodecomp_population.py`; verify
       `promotion_record` contains no extracted entries after the feature's
       runs.
-- [ ] T021 [P] Ops documentation: add the 005 section to
+- [x] T021 [P] Ops documentation: add the 005 section to
       `tools/conveyor/README.md` (extent repair semantics + report line,
       `--population`/`--targets` usage, histogram artifacts, firewall), and
       note in `CLAUDE.md`'s conveyor section that extracted extents are now
       scan-derived (info.txt sizes no longer trusted for this population).
-- [ ] T022 Full local suite green: `pytest tests/conveyor -m "not
+- [x] T022 Full local suite green: `pytest tests/conveyor -m "not
       node_required"` (existing + `test_extent_scan.py`, `test_disasm.py`,
       `test_autodecomp_population.py`); then walk quickstart.md §1–§6
       end-to-end and fill in every "actuals" placeholder.

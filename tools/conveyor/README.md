@@ -228,6 +228,37 @@ designed extension point). `make progress` prints derived linked-C coverage.
 > the rebuilt object is newer, because rsync-preserved mtimes let `make` skip
 > the rebuild and verify a stale ROM.
 
+## Game-code context bootstrap (005)
+
+The `extracted` population is carved from `build/game_code.bin`. Its function
+extents are scan-derived: the scanner follows forward branch reach and ends at
+the first return outside that reach, including the delay slot. The `info.txt`
+sizes are repair inputs, not trusted extents. Running `python3 -m
+tools.conveyor.pipeline.matrix extract` reports `extents: N agree, N repaired,
+N conflict`; a healthy immediate second run reports `repaired 0`. Targets
+nested inside a repaired extent are marked `extent_conflict:<container_id>`.
+
+Autodecomp commands accept `--population {static,extracted}` (default
+`static`) and `--targets id1,id2,...|@file`. For example:
+
+```bash
+python3 -m tools.conveyor.pipeline.autodecomp clusters \
+    --population extracted --targets @tools/conveyor/clusters/game_loop.txt
+python3 -m tools.conveyor.pipeline.autodecomp clusters \
+    --population extracted --limit 0
+```
+
+The full-population command writes `build/m2c_histogram.json` (run metadata,
+exclusive buckets, and per-target details) and `build/m2c_histogram.md`
+(ranked blockers with arcade hints). Extracted assembly is normalized using
+the committed game symbol table in `pipeline/disasm.py`; `include/game_types.h`
+supplies shared game types, typed globals, and declarations to compile probes.
+
+Extracted targets are evidence-only and never enter ROM promotion. Both
+`pipeline.lock add` and `pipeline.promote run|batch` resolve
+`n64_target.population` and refuse extracted targets with the 005/FR-010
+error. Static targets retain the score-zero lock and full-ROM SHA-1 gate.
+
 ## Known V1 limitations
 
 - `verify_promote` still lands matched source in `work/<...>/<fn>/matched.c`

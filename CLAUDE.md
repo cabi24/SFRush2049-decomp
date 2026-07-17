@@ -565,6 +565,14 @@ T008 done, `__osAiDeviceBusy` has no derived region at 0x8000FB60 (symbol/
 boundary refinement for 12/12). The 19 reloc_only_diff targets promote next
 through the same pipe.
 
+### Game-code context bootstrap (Phase 4, feature 005 — shipped 2026-07-17)
+
+Feature 005 shipped the extracted game-code context pipeline. Extracted
+function extents are now scan-derived from `build/game_code.bin`; `info.txt`
+sizes are no longer trusted for that population. See
+`specs/005-game-context-bootstrap/` and the 005 operations section in
+`tools/conveyor/README.md`.
+
 ## Active Technologies
 - Python 3.9+ (Pi 5 orchestrator and nodes; no syntax above 3.9 so stock distro Pythons work) + Python stdlib only for coordinator and node agent (`http.server`, `sqlite3`, `tarfile`, `hashlib`, `json`, `urllib`). On compute nodes: decomp-permuter (vendored in repo, used as library), IDO via ido-static-recomp (shipped in toolkit bundle), mips binutils `objdump` (shipped in toolkit bundle). `pycparser` (already a permuter dependency) for arcade function extraction. (001-matching-pipeline)
 - SQLite (WAL mode) on the Pi for all pipeline state — single-writer, queried by CLI/report tools. Content-addressed blob store (sha256-named files on disk, served over HTTP) for bundles, toolkits, and results. (001-matching-pipeline)
