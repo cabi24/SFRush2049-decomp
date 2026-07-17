@@ -78,6 +78,17 @@ dispatch/audio helpers and libc `memset`/`memcpy`; `M2C_ERROR` and
 `saved_reg_s0` are decompiler/inference artifacts rather than game-type
 context and should be handled separately.
 
+Re-run after T018/T019 populated `include/game_types.h` (2026-07-16, same
+game-code SHA): `29 compiled, 610 blocked, 49 decompiler_failure, 0
+no_disasm, 197 extent_conflict` (sum 885, 3m37s) — +14 compiled / -14
+blocked population-wide from the ~75 extern function prototypes + typed
+symbol-table globals added for the cluster (those declarations are shared
+context, so other extracted targets calling the same helpers benefited too).
+None of the game-loop cluster's own 10 targets crossed into `compiled`
+despite this — see research/t019-stall.md for why (a disasm.py
+symbolization gap unrelated to header content, not a shortfall in
+`game_types.h` itself).
+
 ## 3. Cluster seeds compile (SC-001, Pi-only)
 
 ```bash
@@ -99,6 +110,36 @@ python3 -m tools.conveyor.pipeline.autodecomp one viGetTimeToDeadline --dry-run
 
 (or the tasks' chosen known-good static sample) — seed text must be
 byte-identical before/after `game_types.h` lands.
+
+**Actuals (2026-07-16, T018/T019)**: `include/game_types.h` populated
+(GState enum, the full 9-entry symbol-table's types, `Track_Data`, a
+fully-typed `SoundClearRecord` for `sound_control`'s own parameter, and
+~75 extern function prototypes covering every named-symbol blocker in the
+T011 run). Scoped cluster probe after full iteration:
+`compiled=0 blocked=9 decompiler_failure=1` (game_loop.txt, 10 targets) —
+**SC-001 not met**. This is not a header-content shortfall: the T011
+blocker list shrank from 90 distinct symbols to 12 (every `?`-typed
+prototype blocker is gone; `sound_control` itself has zero self-contained
+errors left), but every remaining blocker is a raw numeric address
+(`*(void *)0xADDR`) with no attachable symbol name, caused by a confirmed
+`disasm.py` symbolization gap (register-formed pointers via `lui`+`addiu`
+aren't tracked) plus a few addresses never in the 9-entry symbol table.
+Full analysis, evidence, and unblocking path: research/t019-stall.md.
+`RaceStateMachine_Update` separately fails at the m2c level (unsupported
+jump-table dispatch, `jr $t9` — a decompiler limitation, not a type-context
+gap).
+
+SC-005 as literally coded (exact seed-text byte-identity) **cannot pass for
+any non-empty `game_types.h`** — confirmed structural, not caused by this
+task's specific content (`_context()`/`m2c_seed()` concatenate the entire
+preprocessed context into every seed with no dead-code stripping by
+relevance, so one harmless `extern` anywhere in the chain already changes
+every other seed's source text). The *functional* guarantee holds: compiling
+a known-good static seed's `.c` before/after and `objdump -d`-comparing
+shows byte-identical machine code for the function itself. Details and the
+repro in research/t019-stall.md. The unit test
+(`test_empty_game_types_keeps_known_good_static_seed_byte_identical`) is
+left unmodified pending a decision by whoever owns the SC-005 contract.
 
 ## 4. Cluster seeds score (SC-002 — needs coordinator + builder)
 

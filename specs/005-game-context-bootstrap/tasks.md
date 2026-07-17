@@ -156,12 +156,18 @@ targets.
       US1/AC3) — add the population column/tag where missing in
       `tools/conveyor/pipeline/status.py` or the CLI report path; verify by
       eyeball on the T012 results.
-- [ ] T014 [US1] SC-001 acceptance run (after US3 iterations land): ≥8/10
+- [x] T014 [US1] SC-001 acceptance run (after US3 iterations land): ≥8/10
       cluster seeds compile including ≥4 members of 60+ instructions
       (game_loop, playgame_state_change, RaceStateMachine_Update,
       attract_or_transition, countdown, Input_ProcessGameplayPad,
       sound_control qualify); every compiling seed has a recorded score.
       Record final numbers in quickstart.md §3/§4 as actuals.
+      **Outcome (2026-07-16)**: 0/10 compiled — **SC-001 not met**. Actuals
+      recorded in quickstart.md §3; root cause and evidence in
+      research/t019-stall.md (disasm.py symbolization gap, not a
+      game_types.h shortfall — see T019). §4's scoring path was not run:
+      it requires compiling seeds first (T012's coordinator+watchman
+      bring-up wasn't needed since there was nothing to submit).
 
 **Checkpoint**: walking skeleton proven end-to-end.
 
@@ -212,7 +218,7 @@ regression (SC-005).
 **Independent Test**: US1's blocker list (T011) shrinks after each addition;
 T009's byte-identity test stays green.
 
-- [ ] T018 [P] [US3] Populate `include/game_types.h` — bounded strictly by
+- [x] T018 [P] [US3] Populate `include/game_types.h` — bounded strictly by
       the T011 blocker list (FR-004), content per `data-model.md` and
       `research/arcade-structs.md`: `GState` enum
       (`/* rushtherock: game/game.h:104-117 */`, N64 note: stored as `u8`);
@@ -225,12 +231,24 @@ T009's byte-identity test stays green.
       the game symbol table. Exclude arcade-hardware fields (coin/cabinet
       switches, ZOID objnum, Visual, gnState) with a header comment saying
       why.
-- [ ] T019 [US3] Iterate: re-run the T011 cluster probe after each
+- [x] T019 [US3] Iterate: re-run the T011 cluster probe after each
       game_types.h addition; grow definitions until SC-001's threshold is
       reachable, keeping every definition provenance-stamped and
       cluster-justified; re-run the T009/SC-005 static byte-identity test
       and the T017 histogram once at the end to demonstrate run-over-run
       progress (spec US2/AC3). Hand the final compile list to T014.
+      **Outcome (2026-07-16)**: iterated to convergence (90 -> 12 distinct
+      blocker symbols on the 10-target cluster); SC-001's threshold is not
+      reachable through further header content — every remaining blocker
+      traces to a disasm.py symbolization gap, not a missing type/extern.
+      Stopped per the task's own fallback clause rather than forcing it;
+      full writeup in research/t019-stall.md. T009/SC-005 re-run: the exact
+      byte-identity assertion fails for any non-empty game_types.h (also
+      documented in the stall report, with a compiled-machine-code diff
+      proving no functional regression). Full-885 histogram re-run: 15->29
+      compiled, 624->610 blocked (population-wide benefit from the added
+      function prototypes, though none of the cluster's own 10 targets
+      crossed into `compiled`). Compile list handed to T014: 0/10.
 
 **Checkpoint**: context bootstrap complete; SC-001/SC-005 satisfied.
 
