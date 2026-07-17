@@ -25,6 +25,13 @@ GAME_SYMBOLS = {
     0x8014A164: "input_rec1",        # process_inputs: second record base
     0x80152818: "player_array",      # gameplay pad: indexed player base
     0x801497C8: "msgq_ptr",          # game mode/attract: pointer dereference
+    0x80114658: "playgame_settings", # playgame_state_change: bytes +0x39..+0x3b
+    0x8017A4E0: "countdown_state",   # countdown_handler: pointer fields +0x4/+0xc/+0x10
+    0x8017A4E4: "countdown_object",  # countdown_handler: pointer, fields +0x1f0..+0x200
+    0x80140BF0: "pad_config",        # Input_ProcessGameplayPad: config base/pointer
+    0x8002EB64: "game_loop_tick",    # game_loop: word R (base 0x8002e8e8 + 0x27c)
+    0x8014A108: "active_player_count", # process/countdown/playgame: halfword R/W
+    0x8014A110: "gameplay_mode",     # countdown/playgame: word R
 }
 
 _LINE_RE = re.compile(
@@ -41,6 +48,10 @@ _GPR_RE = re.compile(r"(?<![$\w])(" + "|".join(_GPRS) + r")(?!\w)")
 _NUMERIC_RE = re.compile(r"^(?:0x)?([0-9a-fA-F]{7,8})$")
 _LOW_RE = re.compile(
     r"^(.*?,)?\s*(-?(?:0x[0-9a-fA-F]+|\d+))\((\$?[a-z0-9]+)\)$"
+)
+_ADDIU_RE = re.compile(
+    r"^\s*(\$?[a-z0-9]+)\s*,\s*(\$?[a-z0-9]+)\s*,\s*"
+    r"(-?(?:0x[0-9a-fA-F]+|\d+))\s*$"
 )
 
 
@@ -73,8 +84,32 @@ def _numeric_target(operand):
     return int(match.group(1), 16) if match else None
 
 
+def _signed_imm16(text):
+    value = _integer(text)
+    if value >= 0 and value & 0x8000:
+        value -= 0x10000
+    return value
+
+
 def _is_branch(mnemonic):
     return mnemonic.startswith("b") and mnemonic != "break"
+
+
+def _written_gpr(mnemonic, operands):
+    """Return the conventional destination GPR, if this instruction has one."""
+    if mnemonic in {"jal", "bal"}:
+        return "ra"
+    if mnemonic == "jalr":
+        pieces = [part.strip().lstrip("$") for part in operands.split(",")]
+        return pieces[0] if len(pieces) > 1 else "ra"
+    if (not operands or _is_branch(mnemonic) or mnemonic in {"j", "jr"}
+            or mnemonic.startswith(("mt", "s."))
+            or mnemonic in {"sb", "sh", "sw", "sd", "swl", "swr",
+                            "mult", "multu", "div", "divu", "break",
+                            "syscall", "cache", "pref", "nop"}):
+        return None
+    destination = operands.split(",", 1)[0].strip().lstrip("$")
+    return destination if destination in _GPRS else None
 
 
 def normalize_objdump(output, target_id, targets):
@@ -89,39 +124,77 @@ def normalize_objdump(output, target_id, targets):
                 "operands": (match.group(3) or "").strip(),
             })
 
-    # Symbolize only a proven lui + signed-low access through the same base.
+    # Track address formation first and apply rewrites only after all consumers
+    # are known.  Deferring the edits prevents one LUI from ever acquiring a
+    # %hi(A) while a later consumer is emitted as %lo(B).
     pending_lui = {}
+    lineages = []
     for insn in instructions:
         mnemonic = insn["mnemonic"]
         operands = insn["operands"]
         if mnemonic == "lui":
             pieces = [part.strip() for part in operands.split(",")]
             if len(pieces) == 2:
+                register = pieces[0].lstrip("$")
+                pending_lui.pop(register, None)
                 try:
-                    pending_lui[pieces[0].lstrip("$")] = (
-                        _integer(pieces[1]) & 0xFFFF, insn)
+                    lineage = {"lui": insn, "symbols": set(), "edits": []}
+                    lineages.append(lineage)
+                    pending_lui[register] = {
+                        "value": (_integer(pieces[1]) & 0xFFFF) << 16,
+                        "lineage": lineage,
+                    }
                 except ValueError:
                     pass
             continue
+
+        addiu = _ADDIU_RE.match(operands) if mnemonic == "addiu" else None
+        if addiu:
+            destination = addiu.group(1).lstrip("$")
+            source = addiu.group(2).lstrip("$")
+            prior = pending_lui.get(source)
+            # addiu writes its destination even when its source is untracked.
+            pending_lui.pop(destination, None)
+            if prior:
+                value = prior["value"] + _signed_imm16(addiu.group(3))
+                symbol = GAME_SYMBOLS.get(value)
+                if symbol:
+                    prior["lineage"]["symbols"].add(symbol)
+                    prior["lineage"]["edits"].append(
+                        (insn, f"{addiu.group(1)},{addiu.group(2)},%lo({symbol})")
+                    )
+                pending_lui[destination] = {
+                    "value": value, "lineage": prior["lineage"],
+                }
+            continue
+
         low = _LOW_RE.match(operands)
         if low:
             base = low.group(3).lstrip("$")
             prior = pending_lui.get(base)
             if prior:
-                low_value = _integer(low.group(2))
-                if low_value >= 0 and low_value & 0x8000:
-                    low_value -= 0x10000
-                address = (prior[0] << 16) + low_value
+                low_value = _signed_imm16(low.group(2))
+                address = prior["value"] + low_value
                 symbol = GAME_SYMBOLS.get(address)
                 if symbol:
-                    prior[1]["operands"] = (
-                        prior[1]["operands"].split(",", 1)[0]
-                        + f",%hi({symbol})"
-                    )
                     prefix = low.group(1) or ""
-                    insn["operands"] = (
-                        f"{prefix}%lo({symbol})({low.group(3)})"
+                    prior["lineage"]["symbols"].add(symbol)
+                    prior["lineage"]["edits"].append(
+                        (insn, f"{prefix}%lo({symbol})({low.group(3)})")
                     )
+
+        written = _written_gpr(mnemonic, operands)
+        if written:
+            pending_lui.pop(written, None)
+
+    for lineage in lineages:
+        if len(lineage["symbols"]) != 1:
+            continue
+        symbol = next(iter(lineage["symbols"]))
+        lui = lineage["lui"]
+        lui["operands"] = lui["operands"].split(",", 1)[0] + f",%hi({symbol})"
+        for consumer, replacement in lineage["edits"]:
+            consumer["operands"] = replacement
 
     lines = [f"glabel {target_id}"]
     for insn in instructions:

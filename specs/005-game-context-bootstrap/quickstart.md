@@ -89,6 +89,13 @@ despite this — see research/t019-stall.md for why (a disasm.py
 symbolization gap unrelated to header content, not a shortfall in
 `game_types.h` itself).
 
+Re-run after the 2026-07-17 contract §5 symbolizer amendment (same game-code
+SHA): two consecutive full 885-target runs reported `33 compiled, 606
+blocked, 49 decompiler_failure, 0 no_disasm, 197 extent_conflict` (sum 885).
+After removing only `run.timestamp`, both JSON files had SHA-256
+`0e8573b5925bd1a039cc100053256d62b340d9ab23ca4f9d23967cf732a2da10`.
+This is +4 compiled / -4 blocked versus the T018/T019 run.
+
 ## 3. Cluster seeds compile (SC-001, Pi-only)
 
 ```bash
@@ -129,17 +136,22 @@ Full analysis, evidence, and unblocking path: research/t019-stall.md.
 jump-table dispatch, `jr $t9` — a decompiler limitation, not a type-context
 gap).
 
-SC-005 as literally coded (exact seed-text byte-identity) **cannot pass for
-any non-empty `game_types.h`** — confirmed structural, not caused by this
-task's specific content (`_context()`/`m2c_seed()` concatenate the entire
-preprocessed context into every seed with no dead-code stripping by
-relevance, so one harmless `extern` anywhere in the chain already changes
-every other seed's source text). The *functional* guarantee holds: compiling
-a known-good static seed's `.c` before/after and `objdump -d`-comparing
-shows byte-identical machine code for the function itself. Details and the
-repro in research/t019-stall.md. The unit test
-(`test_empty_game_types_keeps_known_good_static_seed_byte_identical`) is
-left unmodified pending a decision by whoever owns the SC-005 contract.
+The 2026-07-17 SC-005 amendment tests the emitted static function body rather
+than the necessarily growing shared context prelude. The body-identity test
+(`test_game_types_keeps_known_good_static_function_body_byte_identical`) is
+green with the populated header; research/t019-stall.md retains the original
+whole-seed incompatibility analysis that motivated this correction.
+
+**Actuals (2026-07-17, contract §5 amendment)**: the scoped probe reported
+`compiled=0 blocked=9 decompiler_failure=1 no_disasm=0 extent_conflict=0`.
+The repaired state machine now emits symbols for `frame_counter`, `msgq_ptr`,
+`input_rec0`, `input_rec1`, and `player_array` in the cluster assembly, but
+no cluster member crossed into `compiled`; remaining failures are unrelated
+raw addresses, inferred-structure/prototype blockers, or empty-tokenizer
+compile failures. The adjacent `countdown_state`/`countdown_object` consumers
+at `0x8017A4E0/0x8017A4E4` share one `lui`, so both correctly remain numeric
+under the normative mismatched-pair refusal. The amended SC-005 function-body
+identity test passes.
 
 ## 4. Cluster seeds score (SC-002 — needs coordinator + builder)
 

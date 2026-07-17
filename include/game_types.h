@@ -118,6 +118,75 @@ typedef struct {
 
 extern GameCar player_array[8];   /* 0x80152818 - element count not evidenced, N64 max players */
 
+/* --- T019 symbolization-gap additions ------------------------------------
+ * Each declaration is bounded to the access pattern recorded in
+ * research/cluster-data-refs.md; padding represents observed offsets, not
+ * a claim that the complete game structure has been recovered.
+ */
+typedef struct {
+    u8 pad00[0x39];
+    u8 unk39;
+    u8 unk3A;
+    u8 unk3B;
+} PlaygameSettings;
+extern PlaygameSettings playgame_settings; /* 0x80114658 - playgame_state_change:
+                                            * bytes +0x39/+0x3A/+0x3B */
+
+typedef struct {
+    u8 pad000[0x1F0];
+    s32 unk1F0;
+    s32 unk1F4;
+    s32 unk1F8;
+    s32 unk1FC;
+    s32 unk200;
+} CountdownObject;
+typedef struct {
+    u8 pad000[0x19C];
+    void *unk19C;
+    u8 pad1A0[0x200 - 0x1A0];
+    void *unk200;
+    void *unk204;
+    void *unk208;
+} CountdownDetail;
+typedef struct {
+    void *unk0;
+    CountdownDetail *unk4;
+    void *unk8;
+    void *unkC;
+    void **unk10;
+} CountdownState;
+extern CountdownState countdown_state; /* 0x8017A4E0 - countdown_handler:
+                                        * pointer fields +0x04/+0x0C/+0x10 */
+extern CountdownObject *countdown_object; /* 0x8017A4E4 - countdown_handler:
+                                          * pointee +0x1F0..+0x200 */
+
+typedef struct {
+    void *unk0;
+    void *unk4;
+    s16 unk8;
+    s16 unkA;
+    s16 unkC;
+    s16 unkE;
+    s16 unk10;
+    s16 unk12;
+    u8 unk14;
+    u8 unk15;
+    u8 unk16;
+    u8 pad17;
+    s16 unk18;
+    s16 unk1A;
+    s16 unk1C;
+    s16 unk1E;
+} PadConfig;
+extern PadConfig pad_config;      /* 0x80140BF0 - Input_ProcessGameplayPad:
+                                   * config base fields +0x00..+0x1E */
+extern s32 game_loop_tick;        /* 0x8002EB64 - game_loop: word R,
+                                   * base 0x8002E8E8 + 0x27C */
+extern s16 active_player_count;   /* 0x8014A108 - process_inputs/countdown/
+                                   * playgame_state_change: halfword R/W */
+extern s32 gameplay_mode;         /* 0x8014A110 - countdown and
+                                   * playgame_state_change: word R */
+
 /* --- Track_Data (countdown, playgame_state_change) -------------------------
  * rushtherock: game/checkpoint.h:101-109, verbatim (platform-neutral, no
  * N64 divergence noted).

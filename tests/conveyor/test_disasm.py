@@ -60,6 +60,52 @@ def test_only_committed_game_symbols_are_symbolized():
     assert "lw     $t2,-0x3718($t2)" in text
 
 
+def test_addiu_pointer_formation_updates_or_propagates_tracking():
+    raw = """
+80086a50: 3c088014 lui t0,0x8014
+80086a54: 25082afc addiu t0,t0,11004
+80086a58: 3c098014 lui t1,0x8014
+80086a5c: 252a2afc addiu t2,t1,11004
+80086a60: 8d292afc lw t1,11004(t1)
+"""
+    text = disasm.normalize_objdump(raw, "addiu_globals", {})
+
+    assert text.count("%hi(frame_counter)") == 2
+    assert "addiu  $t0,$t0,%lo(frame_counter)" in text
+    assert "addiu  $t2,$t1,%lo(frame_counter)" in text
+    assert "lw     $t1,%lo(frame_counter)($t1)" in text
+
+
+def test_conflicting_write_invalidates_stale_lui():
+    raw = """
+80086a50: 3c088014 lui t0,0x8014
+80086a54: 01004821 addu t1,t0,zero
+80086a58: 24080000 addiu t0,zero,0
+80086a5c: 8d082afc lw t0,11004(t0)
+"""
+    text = disasm.normalize_objdump(raw, "stale_lui", {})
+
+    assert "lui    $t0,0x8014" in text
+    assert "lw     $t0,11004($t0)" in text
+    assert "%hi(" not in text
+    assert "%lo(" not in text
+
+
+def test_one_lui_refuses_mismatched_symbol_pairs():
+    raw = """
+80086a50: 3c088011 lui t0,0x8011
+80086a54: 8d0946e8 lw t1,0x46e8(t0)
+80086a58: 910a46ec lbu t2,0x46ec(t0)
+"""
+    text = disasm.normalize_objdump(raw, "conflicting_symbols", {})
+
+    assert "lui    $t0,0x8011" in text
+    assert "lw     $t1,0x46e8($t0)" in text
+    assert "lbu    $t2,0x46ec($t0)" in text
+    assert "%hi(" not in text
+    assert "%lo(" not in text
+
+
 def test_derive_is_deterministic_and_cache_key_covers_all_inputs(
         tmp_path, monkeypatch):
     image = tmp_path / "game_code.bin"

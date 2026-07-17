@@ -249,6 +249,13 @@ T009's byte-identity test stays green.
       compiled, 624->610 blocked (population-wide benefit from the added
       function prototypes, though none of the cluster's own 10 targets
       crossed into `compiled`). Compile list handed to T014: 0/10.
+      **2026-07-17 amendment follow-up complete**: `normalize_objdump` now
+      tracks both `lui` consumption idioms, propagates/updates `addiu`,
+      invalidates conflicting writes, and refuses mismatched `%hi/%lo`
+      lineages; the seven evidence-backed symbols and typed externs plus
+      regressions landed. Scoped actual remains 0/9/1; full histogram moved
+      29->33 compiled and is deterministic across two runs. SC-005 body
+      identity and the full non-node conveyor suite are green.
 
 **Checkpoint**: context bootstrap complete; SC-001/SC-005 satisfied.
 
