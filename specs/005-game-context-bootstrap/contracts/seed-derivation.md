@@ -83,8 +83,11 @@ Normalization rules (from GNU objdump `-m mips:4300 -EB
    naming judgment, renamed when matched. Types come from the survey's
    access width (byte→`u8`, half→`u16`, word→`s32`/`u32`, float→`f32`);
    surveyed multi-offset bases become padded structs with fields only at
-   surveyed offsets. This remains FR-004-bounded: only addresses in the
-   cluster survey enter the table.
+   surveyed offsets. This remains FR-004-bounded: an address enters the
+   table only with cluster evidence — a row in the survey tables, or
+   (third amendment, 2026-07-17) a direct citation of the derived cluster
+   assembly that forms it (`<target>.s` + instruction address), for
+   accesses the original survey pass missed.
 
 Cache: `build/m2c_asm/<target_id>.s`, invalidated by (extent, image sha,
 symbol-table sha) change. Derivation is deterministic.
