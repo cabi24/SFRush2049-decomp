@@ -42,11 +42,25 @@ Normalization rules (from GNU objdump `-m mips:4300 -EB
    to `$d` while `$r` keeps its `lui` value. Any other instruction that
    writes a tracked register **invalidates** its entry (this closes the
    stale-`lui` false-pairing mechanism the T019 report identified as
-   possible-but-not-yet-observed; a regression test must cover it). One
-   `lui` may legally serve multiple accesses/symbols only when every
-   emitted `%hi` matches its paired `%lo`'s symbol; when consumers resolve
-   to different symbols, leave the `lui` and the conflicting consumers
-   numeric rather than emit a mismatched pair.
+   possible-but-not-yet-observed; a regression test must cover it). A `%hi`/`%lo` pair must always name the same symbol — m2c pairs by the
+   `%hi` symbol and **silently drops** a differently-named `%lo`'s
+   semantics (verified: `lui %hi(symA)` + `lw %lo(symB)` decompiles to
+   `symA * 2`, losing symB). When one `lui` serves consumers that resolve
+   to different symbols (or a mix of symbols and numerics), the derivation
+   **re-emits a synthetic `lui`** immediately before each consumer whose
+   required binding differs from the register's current one: symbolized
+   consumers get `lui $r,%hi(their-symbol)`, numeric consumers get the
+   original numeric `lui` restored. This is safe because derived asm is
+   m2c seed input only — never assembled, never scored — and each
+   consumer's effective address is unchanged; synthetic instructions carry
+   no `.L` label. (Verified: the duplicated-lui form decompiles to
+   `symA + symB`, correct dataflow.) *(Amended 2026-07-17 second gate:
+   the first amendment's mismatched-pair rule was insufficient — a numeric
+   co-consumer of a renamed `%hi` computes `symbol + delta`, which m2c
+   renders as an invalid `sym.unk-NNNN` member expression, observed as
+   `game_loop_tick.unk-1718` in game_loop; and leaving whole groups
+   numeric would strand typed adjacent globals like the
+   `countdown_state`/`countdown_object` pair that share one `lui`.)*
    All other data refs stay numeric — numeric absolute addresses are
    score-correct against raw-word target objects.
 
@@ -57,6 +71,20 @@ Normalization rules (from GNU objdump `-m mips:4300 -EB
    evidence, and each gets a typed extern in `include/game_types.h` with
    the same evidence comment (observed-layout provenance; arcade file:line
    where a plausible arcade counterpart exists).
+
+   *(Amended 2026-07-17 second gate — table coverage policy.)* The table
+   covers **every global the cluster survey enumerates**
+   (research/cluster-data-refs.md per-function tables), not a curated
+   subset: m2c types an unnamed formed pointer as `void *`, so any
+   surveyed-but-untabled global a cluster function touches produces an
+   uncompilable `*(void *)0xADDR` expression. Naming policy: entries with
+   established semantic evidence keep semantic names; all others use the
+   decomp-standard placeholder `D_<ADDR>` (e.g. `D_80035471`) — zero
+   naming judgment, renamed when matched. Types come from the survey's
+   access width (byte→`u8`, half→`u16`, word→`s32`/`u32`, float→`f32`);
+   surveyed multi-offset bases become padded structs with fields only at
+   surveyed offsets. This remains FR-004-bounded: only addresses in the
+   cluster survey enter the table.
 
 Cache: `build/m2c_asm/<target_id>.s`, invalidated by (extent, image sha,
 symbol-table sha) change. Derivation is deterministic.
