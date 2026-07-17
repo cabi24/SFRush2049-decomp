@@ -109,6 +109,10 @@ def run_promotion(spec, source, via_builder=False, override_reason=None,
     file defines the function (e.g. src/libc/string.c). Returns the commit
     hash on success; raises Refusal otherwise."""
     seg_name, _, func = spec.partition(":")
+    entries = lockmod.load_lock()
+    lock_spec = f"{source}:{func}"
+    target_id = entries.get(lock_spec, {}).get("target_id", func)
+    lockmod.require_promotable_population(target_id, data or DEFAULT_DATA)
     mapping = layoutmod.derive()
     seg = layoutmod._segment_by_name(mapping, seg_name)
     if seg is None:
@@ -121,8 +125,6 @@ def run_promotion(spec, source, via_builder=False, override_reason=None,
         raise Refusal(f"refusing: {func} is not in segment {seg_name}")
 
     # Evidence (FR-005): a lock entry for this body, or an explicit override.
-    entries = lockmod.load_lock()
-    lock_spec = f"{source}:{func}"
     evidence = None
     if lock_spec in entries:
         evidence = f"lock:{lock_spec} ({entries[lock_spec]['verified']})"
@@ -228,13 +230,17 @@ def cmd_batch(args):
             if seg["converted"] and any(
                     f["name"] == func and f["state"] == "passthrough"
                     for f in seg["functions"]):
-                plan.append((f"{seg['yaml_name']}:{func}", src))
+                plan.append((f"{seg['yaml_name']}:{func}", src,
+                             e.get("target_id", func)))
     if not plan:
         print("nothing to promote (no locked functions with passthrough "
               "slots in converted segments)")
         return
     print(f"batch: {len(plan)} promotions, one full gate each")
-    for spec, src in plan:
+    # Preflight the complete plan before the first transaction mutates a TU.
+    for _spec, _src, target_id in plan:
+        lockmod.require_promotable_population(target_id, args.data)
+    for spec, src, _target_id in plan:
         run_promotion(spec, src, via_builder=args.via_builder, data=args.data)
 
 

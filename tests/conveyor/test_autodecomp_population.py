@@ -6,6 +6,7 @@ import pytest
 from tools.conveyor.coordinator import db as dbmod
 from tools.conveyor.pipeline import autodecomp
 from tools.conveyor.pipeline import farm
+from tools.conveyor.pipeline import lock
 
 
 def _database(path):
@@ -83,6 +84,21 @@ def test_extent_conflict_is_refused(tmp_path):
 
     with pytest.raises(SystemExit, match="extent_conflict:outer"):
         autodecomp._resolve_targets(conn, "extracted", "nested_fn")
+
+
+def test_promotion_firewall_rejects_extracted_population(tmp_path):
+    conn = _database(tmp_path / "conveyor.db")
+    conn.close()
+
+    with pytest.raises(
+            SystemExit,
+            match=("^error: extracted_fn is extracted-population — "
+                   "evidence-only \\(005/FR-010\\)$")):
+        lock.require_promotable_population("extracted_fn", tmp_path)
+
+    # Static inventory targets and names absent from inventory remain eligible.
+    lock.require_promotable_population("static_fn", tmp_path)
+    lock.require_promotable_population("not_in_inventory", tmp_path)
 
 
 def test_extracted_flagset_fallback_and_static_fallback(tmp_path):

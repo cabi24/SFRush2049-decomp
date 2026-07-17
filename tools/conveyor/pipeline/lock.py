@@ -42,6 +42,23 @@ from ..seeds.extract_candidates import REPO, extract_functions
 
 LOCKFILE = REPO / "matched.lock.json"
 INCLUDE_DIRS = ("include", "include/PR")  # mirrors Makefile INCLUDE_CFLAGS
+EXTRACTED_FIREWALL = (
+    "error: {target_id} is extracted-population — evidence-only (005/FR-010)"
+)
+
+
+def require_promotable_population(target_id, data=DEFAULT_DATA):
+    """Refuse promotion evidence for scan-derived game-code targets."""
+    conn = dbmod.connect(Path(data) / "conveyor.db")
+    try:
+        row = conn.execute(
+            "SELECT population FROM n64_target WHERE target_id=?",
+            (target_id,),
+        ).fetchone()
+    finally:
+        conn.close()
+    if row is not None and row["population"] == "extracted":
+        raise SystemExit(EXTRACTED_FIREWALL.format(target_id=target_id))
 
 
 # --- source normalization -----------------------------------------------------
@@ -257,10 +274,11 @@ def cmd_add(args):
     rel, _, name = args.spec.partition(":")
     if not name:
         sys.exit("spec must be <repo-relative-file>:<function>")
+    target_id = args.target or name
+    require_promotable_population(target_id, args.data)
     sha = body_sha(REPO / rel, name)
     if sha is None:
         sys.exit(f"cannot extract {name!r} from {rel}")
-    target_id = args.target or name
 
     if args.skip_verify:
         verified, toolkit_sha = "unverified", None
