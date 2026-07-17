@@ -36,7 +36,19 @@ Normalization rules (from GNU objdump `-m mips:4300 -EB
    (a) `lui $r, hi` followed by a memory access `imm($r)` — rewrite the
        `lui` operand to `%hi(name)` and the access offset to `%lo(name)`;
    (b) `lui $r, hi` followed by pointer formation `addiu $d, $r, imm` —
-       rewrite to `%hi(name)` / `addiu $d, $r, %lo(name)`.
+       rewrite to `%hi(name)` / `addiu $d, $r, %lo(name)`;
+   (c) *(fourth amendment, 2026-07-17)* `lui $r, hi` followed by runtime
+       indexing `addu $d, $r, $idx` (either operand order) followed by a
+       memory access `imm($d)` where `hi<<16 + imm` is a table symbol —
+       rewrite the `lui` to `%hi(name)` and the access offset to
+       `%lo(name)`; the `addu` is untouched. This is the compiler's
+       indexed-global-array idiom; m2c decompiles the rewritten form to
+       `name[idx]` (verified empirically). The binding requirement
+       attaches to the `lui` register *at the `addu`* (a synthetic `lui`
+       for a conflicting binding is inserted before the `addu`, never
+       before the access, which would clobber the formed pointer). Only a
+       raw-page `lui` propagates through `addu`; a fully-formed
+       (`lui`+`addiu`) pointer does not.
    Register state rules: an `addiu $d,$r,imm` with `$d == $r` updates the
    tracked value for `$r`; with `$d != $r` it propagates the formed address
    to `$d` while `$r` keeps its `lui` value. Any other instruction that

@@ -174,3 +174,64 @@ def test_derive_is_deterministic_and_cache_key_covers_all_inputs(
                         lambda: hashlib.sha256(b"changed").hexdigest())
     disasm.derive(conn, "sample", image_path=image, cache_dir=cache)
     assert len(calls) == 4
+
+
+def test_indexed_addu_idiom_symbolizes_lui_and_access(monkeypatch):
+    # Contract §5 idiom (c): lui + addu $d,$r,$idx + imm($d) — the lui and
+    # the access rewrite; the addu stays untouched. 0x8014<<16 - 31120 =
+    # 0x80138670 (a table symbol).
+    out = "\n".join((
+        "   0:\t3c098014 \tlui\tt9,0x8014",
+        "   4:\t00047080 \tsll\tt6,a0,2",
+        "   8:\t030e1821 \taddu\tv1,t8,t9",
+        "   c:\t8c6f8670 \tlw\tt7,-31120(v1)",
+        "  10:\t03e00008 \tjr\tra",
+        "  14:\t00000000 \tnop",
+    ))
+    text = disasm.normalize_objdump(out, "t", {})
+    assert "lui    $t9,%hi(D_80138670)" in text
+    assert "addu   $v1,$t8,$t9" in text
+    assert "lw     $t7,%lo(D_80138670)($v1)" in text
+
+
+def test_indexed_addu_idiom_dest_equals_base(monkeypatch):
+    out = "\n".join((
+        "   0:\t3c098014 \tlui\tt9,0x8014",
+        "   4:\t03287821 \taddu\tt9,t9,t8",
+        "   8:\t8f2f8670 \tlw\tt7,-31120(t9)",
+        "   c:\t03e00008 \tjr\tra",
+        "  10:\t00000000 \tnop",
+    ))
+    text = disasm.normalize_objdump(out, "t", {})
+    assert "lui    $t9,%hi(D_80138670)" in text
+    assert "lw     $t7,%lo(D_80138670)($t9)" in text
+
+
+def test_indexed_addu_untabled_address_stays_numeric():
+    # Same idiom, but the formed address is not in the table: nothing rewrites.
+    out = "\n".join((
+        "   0:\t3c091234 \tlui\tt9,0x1234",
+        "   4:\t030e1821 \taddu\tv1,t8,t9",
+        "   8:\t8c6f0010 \tlw\tt7,16(v1)",
+        "   c:\t03e00008 \tjr\tra",
+        "  10:\t00000000 \tnop",
+    ))
+    text = disasm.normalize_objdump(out, "t", {})
+    assert "%hi" not in text and "%lo" not in text
+    assert "lui    $t9,0x1234" in text
+    assert "lw     $t7,16($v1)" in text
+
+
+def test_formed_pointer_does_not_propagate_through_addu():
+    # A fully-formed lui+addiu pointer must not tunnel through addu (only
+    # raw-page luis do, per idiom (c)).
+    out = "\n".join((
+        "   0:\t3c098014 \tlui\tt9,0x8014",
+        "   4:\t27398670 \taddiu\tt9,t9,-31120",
+        "   8:\t03287821 \taddu\tt9,t9,t8",
+        "   c:\t8f2f0000 \tlw\tt7,0(t9)",
+        "  10:\t03e00008 \tjr\tra",
+        "  14:\t00000000 \tnop",
+    ))
+    text = disasm.normalize_objdump(out, "t", {})
+    assert "lw     $t7,0($t9)" in text

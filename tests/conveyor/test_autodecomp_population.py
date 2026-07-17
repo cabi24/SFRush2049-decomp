@@ -189,3 +189,16 @@ def test_histogram_is_exclusive_complete_and_deterministic(tmp_path, monkeypatch
     assert two["targets"]["nested_fn"]["bucket"] == "extent_conflict"
     assert two["targets"]["scan_overrun_fn"]["detail"] == "scan_overrun"
     assert two["targets"]["m2c_fail_fn"]["detail"] == "m2c exploded"
+
+
+def test_clean_m2c_rewrites_member_access_on_byte_cursor_locals():
+    body = ("void f(void) {\n"
+            "    u8 *spB4;\n"
+            "    if (a < spB4->unk1C) {}\n"
+            "    if (b < spB4->unk-12F4) {}\n"
+            "    other->unk1C = 1;\n"
+            "}\n")
+    out = autodecomp._clean_m2c(body)
+    assert "(*(s32 *) (spB4 + 0x1C))" in out
+    assert "(*(s32 *) (spB4 - 0x12F4))" in out
+    assert "other->unk1C" in out  # only declared u8* locals rewrite

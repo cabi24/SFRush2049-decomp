@@ -336,6 +336,9 @@ extern s32 D_801146F8, D_801170FC;
 extern u8 D_80117350, D_80117354;
 extern s32 D_801174BC;
 extern u8 D_8011ED0B;
+extern u16 D_8011ED0C[];  /* Input_ProcessGameplayPad.s .L800A0A74/.L800A0A88:
+                             lui+addu runtime index, lhu -4852($s3) —
+                             u16 array adjacent to D_8011ED0B */
 extern f32 D_80123FB4, D_80123FB8, D_80123FBC, D_801242A8;
 extern u8 D_80124F84;
 extern s32 D_80124FC8;

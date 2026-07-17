@@ -104,6 +104,16 @@ def _clean_m2c(body):
     text = re.sub(r"([(,]\s*)\?(\s+\w)", r"\1s32\2", text)
     # Unknown function-pointer casts use `(? (*)(...))`; they are not params.
     text = text.replace("(? (*)", "(s32 (*)")
+    # m2c sometimes declares a byte-cursor local `u8 *x;` yet still emits
+    # `x->unkNN` field reads on it — invalid C by m2c's own construction
+    # (u8 has no members). Rewrite to an explicit offset load; s32 is a
+    # width guess, which is fine for a seed — the search refines it.
+    for name in set(re.findall(r"^\s*u8 \*(\w+);", text, re.M)):
+        def _deref(m, name=name):
+            off = int(m.group(1).lstrip("-"), 16)
+            sign = "-" if m.group(1).startswith("-") else "+"
+            return f"(*(s32 *) ({name} {sign} 0x{off:X}))"
+        text = re.sub(rf"\b{name}->unk(-?[0-9A-Fa-f]+)\b", _deref, text)
     return text
 
 

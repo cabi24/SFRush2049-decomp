@@ -80,6 +80,11 @@ GAME_SYMBOLS.update({
                                 # by sll $t8,$t7,7 (D_8015F72D*128) then
                                 # addu $t2,$t8,$t9; fields read at +0x58
                                 # (.L800EDDE4) and +0x7C (.L800EE004)
+    0x8011ED0C: "D_8011ED0C",  # Input_ProcessGameplayPad.s .L800A0A74/
+                                # .L800A0A7C/.L800A0A88 (lui $s3,0x8012 /
+                                # addu $s3,$s3,$t7 / lhu $s3,-4852($s3)):
+                                # u16 array indexed at runtime, adjacent to
+                                # surveyed byte D_8011ED0B
     0x80138670: "D_80138670",  # Input_ProcessGameplayPad.s .L800A0CAC/.L800A0CB0
                                 # (lui $t9,0x8014 / addiu $t9,$t9,-31120);
                                 # indexed by sra $t7,$t6,0xa / sll $t8,$t7,3
@@ -106,6 +111,14 @@ _ADDIU_RE = re.compile(
     r"^\s*(\$?[a-z0-9]+)\s*,\s*(\$?[a-z0-9]+)\s*,\s*"
     r"(-?(?:0x[0-9a-fA-F]+|\d+))\s*$"
 )
+_ADDU_RE = re.compile(
+    r"^\s*(\$?[a-z0-9]+)\s*,\s*(\$?[a-z0-9]+)\s*,\s*(\$?[a-z0-9]+)\s*$"
+)
+
+# Bumped whenever normalize_objdump's emission changes; part of the cache key
+# so logic changes regenerate cached derivations (the symbol-table sha alone
+# does not cover code changes).
+DERIVATION_VERSION = 2
 
 
 class DisassemblyError(RuntimeError):
@@ -229,6 +242,26 @@ def normalize_objdump(output, target_id, targets):
                 }
             continue
 
+        addu = _ADDU_RE.match(operands) if mnemonic == "addu" else None
+        if addu:
+            destination = addu.group(1).lstrip("$")
+            left, right = (addu.group(2).lstrip("$"), addu.group(3).lstrip("$"))
+            tracked = [pending_lui.get(reg) for reg in (left, right)]
+            # Contract §5 idiom (c): exactly one raw-page lui operand
+            # propagates through runtime indexing; a formed pointer or an
+            # ambiguous pair does not.
+            live = [(reg, state) for reg, state in zip((left, right), tracked)
+                    if state and not state["formed"]]
+            pending_lui.pop(destination, None)
+            if len(live) == 1:
+                base_reg, state = live[0]
+                pending_lui[destination] = {
+                    "value": state["value"], "lineage": state["lineage"],
+                    "formed": False, "formed_symbol": None,
+                    "indexed_via": (insn, base_reg),
+                }
+            continue
+
         low = _LOW_RE.match(operands)
         if low:
             base = low.group(3).lstrip("$")
@@ -243,7 +276,17 @@ def normalize_objdump(output, target_id, targets):
                 if symbol:
                     prefix = low.group(1) or ""
                     replacement = f"{prefix}%lo({symbol})({low.group(3)})"
-                if not prior["formed"] or symbol:
+                indexed_via = prior.get("indexed_via")
+                if indexed_via and symbol:
+                    # Idiom (c): the binding must hold at the addu, on the
+                    # lui's register — never at the access, whose base holds
+                    # the formed pointer. The access offset still rewrites.
+                    addu_insn, lui_reg = indexed_via
+                    prior["lineage"]["consumers"].append(
+                        (addu_insn, lui_reg, symbol, None)
+                    )
+                    insn["operands"] = replacement
+                elif not prior["formed"] or symbol:
                     prior["lineage"]["consumers"].append(
                         (insn, base, symbol, replacement)
                     )
@@ -321,6 +364,7 @@ def derive(conn, target_id, image_path=GAME_CODE_BIN, cache_dir=CACHE_DIR,
         "extent": extent,
         "image_sha": _sha256(image_path),
         "symbol_table_sha": symbol_table_sha(),
+        "derivation_version": DERIVATION_VERSION,
     }
     cache_dir = Path(cache_dir)
     cache_dir.mkdir(parents=True, exist_ok=True)

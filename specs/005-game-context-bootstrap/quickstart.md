@@ -96,6 +96,13 @@ After removing only `run.timestamp`, both JSON files had SHA-256
 `0e8573b5925bd1a039cc100053256d62b340d9ab23ca4f9d23967cf732a2da10`.
 This is +4 compiled / -4 blocked versus the T018/T019 run.
 
+Re-run after the fourth §5 amendment (indexed-`addu` idiom (c) +
+`D_8011ED0C` table addition + byte-cursor `_clean_m2c` rule, 2026-07-17,
+same game-code SHA): two consecutive full runs reported `42 compiled, 597
+blocked, 49 decompiler_failure, 0 no_disasm, 197 extent_conflict` (sum
+885), JSON identical after removing `run.timestamp`. Population-wide
+`compiled` progression across the feature: 15 → 29 → 33 → 42.
+
 T019 residue full-run record (2026-07-17, same game-code SHA): `34 compiled,
 605 blocked, 49 decompiler_failure, 0 no_disasm, 197 extent_conflict` (sum
 885). This is +1 compiled / -1 blocked versus the contract §5 amendment and
@@ -176,6 +183,18 @@ no_disasm=0 extent_conflict=0`. The accepted decompiler failure remains
 bases and inferred local/call member chains outside the amendment, so the
 below-8/10 stop rule fired. The two full histograms were therefore not run;
 exact evidence is appended to `research/t019-stall.md`.
+
+**Actuals (2026-07-17, fourth gate — SC-001 MET)**: scoped probe
+`compiled=8 blocked=1 decompiler_failure=1`. Compiling: game_loop (225
+insns), playgame_state_change (636), attract_or_transition (519),
+Input_ProcessGameplayPad (207), countdown_handler (124), sound_control
+(117), process_inputs (89), game_mode_handler (64) — seven of 60+
+instructions (needed 4). Accepted failures: RaceStateMachine_Update (m2c
+jump-table) and countdown (m2c expression merging; see t019-stall.md).
+Closed by: contract §5 idiom (c) (lui+addu runtime-index symbolization,
+implemented with a derivation-version cache key), the derived-asm-cited
+`D_8011ED0C` u16 array, and a `_clean_m2c` rule rewriting m2c's invalid
+`u8*`-cursor member reads to explicit offset loads.
 
 ## 4. Cluster seeds score (SC-002 — needs coordinator + builder)
 
