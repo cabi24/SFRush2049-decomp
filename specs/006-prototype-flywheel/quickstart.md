@@ -16,6 +16,24 @@ Expect the six-bucket schema with `partial_decomp` > 0 (M2C_ERROR class,
 Scoped probe check: a `--targets` run writes `build/m2c_probe.json` and
 leaves `build/m2c_histogram.json` untouched (compare mtime/sha).
 
+Actual (2026-07-19, T005): two full-population runs both produced
+`37 compiled / 299 blocked / 303 partial_decomp / 49 decompiler_failure /
+0 no_disasm / 197 extent_conflict` (sum 885) with
+`run.population_complete: true`. The complete JSON objects were identical
+after removing only `run.timestamp`; the generated Markdown was byte-identical
+(`sha256 5b9c99fae2704321f8b0ba0a9a3b3d04e5a696eb19aa24f5df143d7df70b0924`).
+All 101 functions in the baseline's visible `M2C_ERROR` blocker class moved to
+`partial_decomp`; raw-output classification exposed another 202 placeholders
+which had previously been masked by an earlier compiler diagnostic.
+
+The diff against `research/baseline.json` reported bucket deltas
+`blocked -298`, `compiled -5`, `partial_decomp +303`, with the other buckets
+unchanged. Its 308 target movements were `293 blocked -> partial_decomp`,
+`10 compiled -> partial_decomp`, and `5 blocked -> compiled`. A scoped probe
+of `Input_AllocPadSlot` wrote `build/m2c_probe.{json,md}` with
+`population_complete: false`; SHA-256 and nanosecond mtime for both population
+artifacts remained unchanged.
+
 ## 2. Declaration layer
 
 ```bash
@@ -59,4 +77,4 @@ waiting flywheel jobs). SC-006: `promotion_record` has zero extracted rows.
 
 ## Actuals
 
-*(recorded per run, dated, as in 005)*
+*T005 actuals are recorded in §1; later task actuals follow their sections.*

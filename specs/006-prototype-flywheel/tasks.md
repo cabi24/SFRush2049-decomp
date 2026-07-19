@@ -53,7 +53,7 @@ order.
 - [x] T004 [US2] Implement `clusters diff` view (contract §6): per-target
       bucket movements, bucket-count deltas, blocker-class deltas,
       deterministic ordering; unit test with two fixture JSONs.
-- [ ] T005 [US2] Full-population run ×2 on the Pi (quickstart §1): verify
+- [x] T005 [US2] Full-population run ×2 on the Pi (quickstart §1): verify
       six-bucket determinism, counts sum to 885, `partial_decomp`
       absorbs the M2C_ERROR class, scoped probe leaves the population
       artifact untouched; record actuals in quickstart.md §1 and diff
