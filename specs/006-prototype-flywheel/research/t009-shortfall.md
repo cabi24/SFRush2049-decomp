@@ -58,3 +58,36 @@ The remaining failures are therefore dominated by unknown-address callees,
 raw data addresses, and m2c member artifacts—not referenced known-target
 callee declarations. Per the stop rule, expanding the hand context or adding
 new symbolization/hygiene rules is out of scope for this task.
+
+## Post-fix addendum (2026-07-19, separator-bug gate)
+
+The T009 residue investigation found a derivation bug upstream of the
+shortfall: seven-plus-character mnemonics (`cvt.s.w`, `trunc.w.s`, ...)
+were emitted with no separator before their operands (`{mnemonic:<7}` pads
+7-wide and concatenates), so m2c parsed one unknown token and emitted
+M2C_ERROR for essentially every FP-converting function. Fixed in `37d1083`
+(DERIVATION_VERSION 2→3); layer regenerated (still 596 declarations,
+byte-stable at `93b72973…`).
+
+Post-fix histogram: `60 compiled / 298 blocked / 281 partial_decomp /
+49 decompiler_failure / 0 no_disasm / 197 extent_conflict`. The fix moved
+48 targets out of `partial_decomp`, but mostly into `blocked` (+46), not
+`compiled` (+2): the newly decompiled FP bodies expose additional unknown
+callees — `func_<addr>` blocker classes rose 161 → 184, all still
+unresolvable to any `n64_target` row. **SC-001 remains not met (60 < 200)
+and the shortfall is structural, not mechanical.**
+
+Residual walls, quantified for the next feature:
+
+1. **Callee closure** (largest): 135+ real blob functions are called by
+   extracted code but have no target rows — the work-inventory was never
+   complete. Registering them via the existing extent-scan machinery makes
+   them both declarable (collapsing the func_ classes) and scoreable
+   (growing the population itself).
+2. **Raw data addresses at scale** (~119 symbols / 84 targets): the 005
+   symbol-table class beyond the surveyed cluster; automatable from
+   derived-asm access widths under the third-amendment evidence rule.
+3. **Remaining M2C_ERROR causes** (sampled): "Read from unset register"
+   (dominant — likely non-standard register-argument conventions in
+   optimized game code), stack-arg detection, `cfc1` coprocessor reads —
+   m2c capability/convention work, not context work.
