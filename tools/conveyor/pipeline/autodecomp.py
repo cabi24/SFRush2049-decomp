@@ -104,11 +104,29 @@ def _clean_m2c(body):
     text = re.sub(r"([(,]\s*)\?(\s+\w)", r"\1s32\2", text)
     # Unknown function-pointer casts use `(? (*)(...))`; they are not params.
     text = text.replace("(? (*)", "(s32 (*)")
-    # m2c sometimes declares a byte-cursor local `u8 *x;` yet still emits
-    # `x->unkNN` field reads on it — invalid C by m2c's own construction
-    # (u8 has no members). Rewrite to an explicit offset load; s32 is a
-    # width guess, which is fine for a seed — the search refines it.
-    for name in set(re.findall(r"^\s*u8 \*(\w+);", text, re.M)):
+    # m2c names unresolved callee-saved spills saved_reg_s0..saved_reg_s7.
+    # Declare only exact referenced names which it did not itself declare.
+    saved = sorted(set(re.findall(r"\bsaved_reg_s[0-7]\b", text)))
+    missing = []
+    for name in saved:
+        declaration = re.compile(
+            rf"^\s*(?:struct\s+\w+|[us](?:8|16|32|64)|f(?:32|64)|"
+            rf"int|unsigned|signed|long|short|char)\s+\**\s*"
+            rf"{name}\s*[;=,\[]",
+            re.M,
+        )
+        if not declaration.search(text):
+            missing.append(name)
+    if missing:
+        declarations = "".join(f"\n    s32 {name};" for name in missing)
+        text = text.replace("{", "{" + declarations, 1)
+
+    # Scalar locals can also be emitted as if they were struct cursors.  Key
+    # the rewrite strictly on declarations in this function, never externs or
+    # typed struct pointers.
+    scalar_local = re.compile(
+        r"^\s*[us](?:8|16|32)\s*\*?\s*([A-Za-z_]\w*)\s*;", re.M)
+    for name in set(scalar_local.findall(text)):
         def _deref(m, name=name):
             off = int(m.group(1).lstrip("-"), 16)
             sign = "-" if m.group(1).startswith("-") else "+"
@@ -130,6 +148,7 @@ def m2c_seed(target_id, vaddr, asm_idx, diagnostics=None):
     proc = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
     if diagnostics is not None:
         diagnostics[target_id] = proc.stderr
+        diagnostics[(target_id, "raw")] = proc.stdout
     body = _clean_m2c(proc.stdout.strip())
     if proc.returncode != 0 or not body or "def " in body[:20]:
         return None
@@ -332,6 +351,8 @@ def cmd_lockmatches(args):
 
 HISTOGRAM_JSON = REPO / "build" / "m2c_histogram.json"
 HISTOGRAM_MD = REPO / "build" / "m2c_histogram.md"
+PROBE_JSON = REPO / "build" / "m2c_probe.json"
+PROBE_MD = REPO / "build" / "m2c_probe.md"
 ARCADE = REPO / "reference" / "repos" / "rushtherock"
 _MEMBER_RE = re.compile(r"\b([A-Za-z_]\w*)\s*->")
 _BEFORE_RE = re.compile(r"before ['`]([A-Za-z_*]\w*)")
@@ -465,6 +486,11 @@ def _histogram_data(conn, rows):
                 "detail": _first_line(diagnostics.get(target_id), "m2c failed"),
             }
             continue
+        if "M2C_ERROR" in diagnostics.get((target_id, "raw"), ""):
+            targets[target_id] = {
+                "bucket": "partial_decomp", "detail": "M2C_ERROR",
+            }
+            continue
 
         try:
             ok, errors = _seed_compile_errors(seed)
@@ -488,8 +514,8 @@ def _histogram_data(conn, rows):
                 blocker_lines[token].append(source_line)
 
     ordered_targets = {name: targets[name] for name in sorted(targets)}
-    bucket_names = ("compiled", "blocked", "decompiler_failure", "no_disasm",
-                    "extent_conflict")
+    bucket_names = ("compiled", "blocked", "partial_decomp",
+                    "decompiler_failure", "no_disasm", "extent_conflict")
     buckets = {name: sum(item["bucket"] == name
                          for item in ordered_targets.values())
                for name in bucket_names}
@@ -504,7 +530,10 @@ def _histogram_data(conn, rows):
     return buckets, ordered_targets, blockers, blocker_lines
 
 
-def _write_histogram(rows, buckets, targets, blockers, blocker_lines):
+def _write_histogram(rows, buckets, targets, blockers, blocker_lines,
+                     population_complete=False, json_path=None, md_path=None):
+    json_path = json_path or HISTOGRAM_JSON
+    md_path = md_path or HISTOGRAM_MD
     _, context_text = _context()
     image_sha = disasmmod._sha256(disasmmod.GAME_CODE_BIN)
     data = {
@@ -514,13 +543,14 @@ def _write_histogram(rows, buckets, targets, blockers, blocker_lines):
             "game_code_sha": image_sha,
             "context_sha": hashlib.sha256(context_text.encode()).hexdigest(),
             "targets": len(rows),
+            "population_complete": population_complete,
         },
         "buckets": buckets,
         "targets": targets,
         "blockers": blockers,
     }
-    HISTOGRAM_JSON.parent.mkdir(parents=True, exist_ok=True)
-    HISTOGRAM_JSON.write_text(json.dumps(data, indent=2, sort_keys=True) + "\n")
+    json_path.parent.mkdir(parents=True, exist_ok=True)
+    json_path.write_text(json.dumps(data, indent=2, sort_keys=True) + "\n")
     lines = ["# m2c extracted-population histogram", "",
              f"targets={len(rows)} " + " ".join(f"{k}={v}" for k, v in buckets.items()),
              "", "## Ranked blockers"]
@@ -532,20 +562,79 @@ def _write_histogram(rows, buckets, targets, blockers, blocker_lines):
             lines.append(f"    {source_line}")
         if blocker["arcade_hint"]:
             lines.append(f"arcade ref: {blocker['arcade_hint']}")
-    HISTOGRAM_MD.write_text("\n".join(lines) + "\n")
+    md_path.write_text("\n".join(lines) + "\n")
+
+
+def _signed(value):
+    return f"{value:+d}"
+
+
+def cmd_clusters_diff(old_path, new_path=None):
+    """Print a deterministic comparison of two histogram artifacts."""
+    old = json.loads(Path(old_path).read_text())
+    new = json.loads(Path(new_path or HISTOGRAM_JSON).read_text())
+    print("bucket deltas:")
+    bucket_names = sorted(set(old.get("buckets", {}))
+                          | set(new.get("buckets", {})))
+    for name in bucket_names:
+        before = old.get("buckets", {}).get(name, 0)
+        after = new.get("buckets", {}).get(name, 0)
+        print(f"  {name}: {before} -> {after} ({_signed(after - before)})")
+
+    print("target movements:")
+    old_targets = old.get("targets", {})
+    new_targets = new.get("targets", {})
+    for name in sorted(set(old_targets) | set(new_targets)):
+        before = old_targets.get(name, {}).get("bucket", "absent")
+        after = new_targets.get(name, {}).get("bucket", "absent")
+        if before != after:
+            print(f"  {name}: {before} -> {after}")
+
+    def _blockers(data):
+        return {item["symbol"]: item for item in data.get("blockers", [])}
+
+    print("blocker deltas:")
+    old_blockers, new_blockers = _blockers(old), _blockers(new)
+    for symbol in sorted(set(old_blockers) | set(new_blockers)):
+        before_item = old_blockers.get(symbol, {})
+        after_item = new_blockers.get(symbol, {})
+        before = before_item.get("count", 0)
+        after = after_item.get("count", 0)
+        removed = sorted(set(before_item.get("functions", []))
+                         - set(after_item.get("functions", [])))
+        added = sorted(set(after_item.get("functions", []))
+                       - set(before_item.get("functions", [])))
+        if before == after and not removed and not added:
+            continue
+        print(f"  {symbol}: {before} -> {after} ({_signed(after - before)}); "
+              f"functions -[{','.join(removed)}] +[{','.join(added)}]")
 
 
 def cmd_clusters(args):
     """Compile-probe targets and emit the extracted-population histogram."""
+    if getattr(args, "diff_paths", None):
+        if args.diff_paths[0] != "diff" or len(args.diff_paths) not in (2, 3):
+            raise SystemExit("usage: clusters diff <old.json> [<new.json>]")
+        cmd_clusters_diff(*args.diff_paths[1:])
+        return
     conn, _ = _conn(args.data)
     targets = _resolve_targets(conn, args.population, args.targets)
     if args.population == "extracted":
         rows = _histogram_rows(conn, targets, args.limit)
+        total = conn.execute(
+            "SELECT COUNT(*) AS n FROM n64_target"
+            " WHERE population='extracted' AND target_o_sha IS NOT NULL"
+        ).fetchone()["n"]
+        population_complete = targets is None and len(rows) == total
+        json_path = HISTOGRAM_JSON if population_complete else PROBE_JSON
+        md_path = HISTOGRAM_MD if population_complete else PROBE_MD
         buckets, target_map, blockers, blocker_lines = _histogram_data(conn, rows)
         assert sum(buckets.values()) == len(rows) == len(target_map)
-        _write_histogram(rows, buckets, target_map, blockers, blocker_lines)
+        _write_histogram(rows, buckets, target_map, blockers, blocker_lines,
+                         population_complete=population_complete,
+                         json_path=json_path, md_path=md_path)
         print(" ".join(f"{name}={count}" for name, count in buckets.items())
-              + f"; histogram -> {HISTOGRAM_MD}")
+              + f"; histogram -> {md_path}")
         for blocker in blockers[:min(args.top, 12)]:
             print(f"  {blocker['count']:3}  {blocker['symbol']}")
         return
@@ -782,6 +871,7 @@ def main():
     s = sub.add_parser("harvest")
     s.set_defaults(func=cmd_harvest)
     s = sub.add_parser("clusters")
+    s.add_argument("diff_paths", nargs="*")
     s.add_argument("--limit", type=int, default=250)
     s.add_argument("--top", type=int, default=25)
     s.add_argument("--population", choices=("static", "extracted"),

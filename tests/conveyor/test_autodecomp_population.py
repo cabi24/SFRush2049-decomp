@@ -117,6 +117,22 @@ def test_clean_m2c_retypes_unknown_function_pointer_casts():
     )
 
 
+def test_clean_m2c_injects_only_missing_saved_register_locals():
+    body = ("s32 f(void) {\n"
+            "    s32 saved_reg_s1;\n"
+            "    saved_reg_s0 = 1;\n"
+            "    saved_reg_s1 = 2;\n"
+            "    saved_reg_s0x = 3;\n"
+            "    return saved_reg_s0;\n"
+            "}\n")
+
+    out = autodecomp._clean_m2c(body)
+
+    assert out.count("s32 saved_reg_s0;") == 1
+    assert out.count("s32 saved_reg_s1;") == 1
+    assert "s32 saved_reg_s0x;" not in out
+
+
 def test_game_types_keeps_known_good_static_function_body_byte_identical(
         tmp_path, monkeypatch):
     """SC-005 (as amended 2026-07-17): game-context additions must not change
@@ -164,6 +180,8 @@ def test_histogram_is_exclusive_complete_and_deterministic(tmp_path, monkeypatch
         if target_id == "m2c_fail_fn":
             diagnostics[target_id] = "m2c exploded\nmore detail"
             return None
+        if target_id == "extracted_fn":
+            diagnostics[(target_id, "raw")] = "M2C_ERROR(something unknown)"
         return target_id
 
     monkeypatch.setattr(autodecomp.disasmmod, "derive", derive)
@@ -178,16 +196,18 @@ def test_histogram_is_exclusive_complete_and_deterministic(tmp_path, monkeypatch
     image = tmp_path / "game_code.bin"
     image.write_bytes(b"image")
     monkeypatch.setattr(autodecomp.disasmmod, "GAME_CODE_BIN", image)
-    monkeypatch.setattr(autodecomp, "HISTOGRAM_JSON", tmp_path / "hist.json")
-    monkeypatch.setattr(autodecomp, "HISTOGRAM_MD", tmp_path / "hist.md")
+    histogram_json = tmp_path / "hist.json"
+    histogram_md = tmp_path / "hist.md"
 
     rows = autodecomp._histogram_rows(conn, None, 0)
     first = autodecomp._histogram_data(conn, rows)
-    autodecomp._write_histogram(rows, *first)
-    one = json.loads(autodecomp.HISTOGRAM_JSON.read_text())
+    autodecomp._write_histogram(rows, *first, population_complete=True,
+                                json_path=histogram_json, md_path=histogram_md)
+    one = json.loads(histogram_json.read_text())
     second = autodecomp._histogram_data(conn, rows)
-    autodecomp._write_histogram(rows, *second)
-    two = json.loads(autodecomp.HISTOGRAM_JSON.read_text())
+    autodecomp._write_histogram(rows, *second, population_complete=True,
+                                json_path=histogram_json, md_path=histogram_md)
+    two = json.loads(histogram_json.read_text())
 
     one["run"].pop("timestamp")
     two["run"].pop("timestamp")
@@ -198,10 +218,11 @@ def test_histogram_is_exclusive_complete_and_deterministic(tmp_path, monkeypatch
         "scan_overrun_fn",
     }
     assert two["buckets"] == {
-        "blocked": 1, "compiled": 1, "decompiler_failure": 1,
-        "extent_conflict": 1, "no_disasm": 1,
+        "blocked": 0, "compiled": 1, "partial_decomp": 1,
+        "decompiler_failure": 1, "extent_conflict": 1, "no_disasm": 1,
     }
-    assert two["targets"]["extracted_fn"]["bucket"] == "blocked"
+    assert two["run"]["population_complete"] is True
+    assert two["targets"]["extracted_fn"]["bucket"] == "partial_decomp"
     assert two["targets"]["nested_fn"]["bucket"] == "extent_conflict"
     assert two["targets"]["scan_overrun_fn"]["detail"] == "scan_overrun"
     assert two["targets"]["m2c_fail_fn"]["detail"] == "m2c exploded"
@@ -218,3 +239,119 @@ def test_clean_m2c_rewrites_member_access_on_byte_cursor_locals():
     assert "(*(s32 *) (spB4 + 0x1C))" in out
     assert "(*(s32 *) (spB4 - 0x12F4))" in out
     assert "other->unk1C" in out  # only declared u8* locals rewrite
+
+
+def test_clean_m2c_rewrites_scalar_cursor_without_struct_pointer_overreach():
+    body = ("void f(void) {\n"
+            "    s32 cursor;\n"
+            "    u16 *halfwords;\n"
+            "    Player *player;\n"
+            "    cursor->unk4 = halfwords->unk-8;\n"
+            "    player->unk4 = global_cursor->unk4;\n"
+            "}\n")
+
+    out = autodecomp._clean_m2c(body)
+
+    assert "(*(s32 *) (cursor + 0x4))" in out
+    assert "(*(s32 *) (halfwords - 0x8))" in out
+    assert "player->unk4" in out
+    assert "global_cursor->unk4" in out
+
+
+def test_partial_decomp_uses_raw_m2c_output_before_hygiene(tmp_path, monkeypatch):
+    conn = _database(tmp_path / "conveyor.db")
+    rows = autodecomp._histogram_rows(conn, ["extracted_fn"], 0)
+    asm = tmp_path / "derived.s"
+    asm.write_text("glabel extracted_fn\n")
+    raw = "s32 extracted_fn(void) { M2C_ERROR(x); return 1; }"
+    monkeypatch.setattr(autodecomp.disasmmod, "derive", lambda *_: asm)
+    monkeypatch.setattr(autodecomp.subprocess, "run", lambda *a, **k: type(
+        "Result", (), {"returncode": 0, "stdout": raw, "stderr": ""})())
+    monkeypatch.setattr(autodecomp, "_context", lambda: (None, ""))
+    monkeypatch.setattr(autodecomp, "_clean_m2c", lambda text: text.replace(
+        "M2C_ERROR(x);", ""))
+    monkeypatch.setattr(autodecomp, "_seed_compile_errors",
+                        lambda _seed: (True, []))
+
+    buckets, targets, _, _ = autodecomp._histogram_data(conn, rows)
+
+    assert buckets["partial_decomp"] == 1
+    assert buckets["compiled"] == buckets["blocked"] == 0
+    assert targets["extracted_fn"]["bucket"] == "partial_decomp"
+
+
+def test_scoped_cluster_routes_to_probe_without_touching_population(
+        tmp_path, monkeypatch):
+    population_json = tmp_path / "m2c_histogram.json"
+    population_md = tmp_path / "m2c_histogram.md"
+    probe_json = tmp_path / "m2c_probe.json"
+    probe_md = tmp_path / "m2c_probe.md"
+    population_json.write_text("population sentinel\n")
+    population_md.write_text("population sentinel\n")
+    conn = _database(tmp_path / "conveyor.db")
+    monkeypatch.setattr(autodecomp, "_conn", lambda _data: (conn, None))
+    monkeypatch.setattr(autodecomp, "HISTOGRAM_JSON", population_json)
+    monkeypatch.setattr(autodecomp, "HISTOGRAM_MD", population_md)
+    monkeypatch.setattr(autodecomp, "PROBE_JSON", probe_json)
+    monkeypatch.setattr(autodecomp, "PROBE_MD", probe_md)
+    monkeypatch.setattr(autodecomp, "_histogram_data", lambda *_: (
+        {"compiled": 1, "blocked": 0, "partial_decomp": 0,
+         "decompiler_failure": 0, "no_disasm": 0, "extent_conflict": 0},
+        {"extracted_fn": {"bucket": "compiled", "detail": ""}}, [], {}))
+    monkeypatch.setattr(autodecomp, "_context", lambda: (None, "context"))
+    image = tmp_path / "game_code.bin"
+    image.write_bytes(b"image")
+    monkeypatch.setattr(autodecomp.disasmmod, "GAME_CODE_BIN", image)
+    args = type("Args", (), {"data": tmp_path, "population": "extracted",
+                              "targets": "extracted_fn", "limit": 0,
+                              "top": 25})()
+
+    autodecomp.cmd_clusters(args)
+
+    assert population_json.read_text() == "population sentinel\n"
+    assert population_md.read_text() == "population sentinel\n"
+    probe = json.loads(probe_json.read_text())
+    assert probe["run"]["population_complete"] is False
+
+
+def test_histogram_diff_reports_sorted_movements_and_deltas(tmp_path, capsys):
+    old = {
+        "buckets": {"blocked": 2, "compiled": 0, "partial_decomp": 0},
+        "targets": {
+            "z_fn": {"bucket": "blocked"},
+            "a_fn": {"bucket": "blocked"},
+        },
+        "blockers": [{"symbol": "ZType", "count": 1,
+                      "functions": ["z_fn"]},
+                     {"symbol": "AType", "count": 2,
+                      "functions": ["a_fn", "z_fn"]}],
+    }
+    new = {
+        "buckets": {"blocked": 0, "compiled": 1, "partial_decomp": 1},
+        "targets": {
+            "z_fn": {"bucket": "partial_decomp"},
+            "a_fn": {"bucket": "compiled"},
+        },
+        "blockers": [{"symbol": "NewType", "count": 1,
+                      "functions": ["a_fn"]}],
+    }
+    old_path = tmp_path / "old.json"
+    new_path = tmp_path / "new.json"
+    old_path.write_text(json.dumps(old))
+    new_path.write_text(json.dumps(new))
+
+    autodecomp.cmd_clusters_diff(old_path, new_path)
+
+    assert capsys.readouterr().out == (
+        "bucket deltas:\n"
+        "  blocked: 2 -> 0 (-2)\n"
+        "  compiled: 0 -> 1 (+1)\n"
+        "  partial_decomp: 0 -> 1 (+1)\n"
+        "target movements:\n"
+        "  a_fn: blocked -> compiled\n"
+        "  z_fn: blocked -> partial_decomp\n"
+        "blocker deltas:\n"
+        "  AType: 2 -> 0 (-2); functions -[a_fn,z_fn] +[]\n"
+        "  NewType: 0 -> 1 (+1); functions -[] +[a_fn]\n"
+        "  ZType: 1 -> 0 (-1); functions -[z_fn] +[]\n"
+    )

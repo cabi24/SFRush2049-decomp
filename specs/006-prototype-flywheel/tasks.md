@@ -35,7 +35,7 @@ order.
 **Goal**: artifact-class rules, `partial_decomp`, protected instrument.
 **Independent Test**: quickstart §1.
 
-- [ ] T002 [P] [US2] Tests first in
+- [x] T002 [P] [US2] Tests first in
       `tests/conveyor/test_autodecomp_population.py`: saved-register rule
       (fires on undeclared use; not when declared; not on near-miss
       names), scalar-cursor generalization (s32-local case; 005 u8* cases
@@ -45,12 +45,12 @@ order.
       run writes `build/m2c_probe.json`, never the population artifact),
       six-bucket exclusivity/coverage/determinism per
       contracts/hygiene-and-flywheel.md §1–5.
-- [ ] T003 [US2] Implement in `tools/conveyor/pipeline/autodecomp.py`:
+- [x] T003 [US2] Implement in `tools/conveyor/pipeline/autodecomp.py`:
       `_clean_m2c` saved-register injection + scalar-cursor
       generalization (contract §1–2); `partial_decomp` classification on
       raw m2c output before hygiene (§3–4); artifact routing with
       `run.population_complete` marker (§5). Make T002 pass.
-- [ ] T004 [US2] Implement `clusters diff` view (contract §6): per-target
+- [x] T004 [US2] Implement `clusters diff` view (contract §6): per-target
       bucket movements, bucket-count deltas, blocker-class deltas,
       deterministic ordering; unit test with two fixture JSONs.
 - [ ] T005 [US2] Full-population run ×2 on the Pi (quickstart §1): verify
