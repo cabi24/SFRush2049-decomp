@@ -29,7 +29,12 @@ def extract_signature(m2c_output, target_id):
     )
     if not match:
         return None
-    return " ".join(match.group(1).split()) + ";"
+    signature = " ".join(match.group(1).split())
+    # m2c can leave the return type of a function-pointer parameter unknown:
+    # `? (*callback)(...)`.  It is the same unknown-parameter artifact that
+    # _clean_m2c defaults to s32, but nested one declarator deeper.
+    signature = re.sub(r"\?(?:32)?", "s32", signature)
+    return signature + ";"
 
 
 def declared_function_names(context_text):
@@ -152,9 +157,11 @@ def generate(data=DEFAULT_DATA, header=HEADER, evidence=EVIDENCE):
     hand_context = autodecomp._context(include_protos=False)
     _, hand_text = hand_context
     hand_names = declared_function_names(hand_text)
+    # Known static/library targets have real declarations/definitions in the
+    # shipped source tree.  Never shadow them with an inferred declaration;
+    # C89 implicit calls remain compatible until their real header is added.
     static_names = {
-        row["target_id"] for row in rows
-        if row["population"] == "static" and row["target_id"] in hand_names
+        row["target_id"] for row in rows if row["population"] == "static"
     }
 
     pass1_signatures, pass1_referenced = _run_pass(conn, rows, hand_context)

@@ -162,10 +162,30 @@ def m2c_seed(target_id, vaddr, asm_idx, diagnostics=None, context=None):
     if asm_file is None:
         return None
     ctx_path, ctx_text = context or _context()
+    # A declaration for the function currently being decompiled makes m2c
+    # merge declared and inferred parameter lists.  Isolate its definition by
+    # omitting only that declaration; the rest of the generated layer remains
+    # active for its callees.
+    own_proto = re.compile(
+        rf"^[^\n]*\b{re.escape(target_id)}\s*\([^;{{]*\)\s*;\s*$", re.M
+    )
+    m2c_context_text = own_proto.sub("", ctx_text)
+    isolated = None
+    if ctx_path and m2c_context_text != ctx_text:
+        import tempfile
+        with tempfile.NamedTemporaryFile(
+                "w", prefix="m2cctx-own-", suffix=".c", delete=False) as tmp:
+            tmp.write(m2c_context_text)
+            isolated = Path(tmp.name)
+        ctx_path = str(isolated)
     cmd = [sys.executable, str(M2C), str(asm_file), "-f", target_id]
     if ctx_path:
         cmd += ["--context", ctx_path]
-    proc = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
+    try:
+        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
+    finally:
+        if isolated is not None:
+            isolated.unlink(missing_ok=True)
     if diagnostics is not None:
         diagnostics[target_id] = proc.stderr
         diagnostics[(target_id, "raw")] = proc.stdout
@@ -176,9 +196,7 @@ def m2c_seed(target_id, vaddr, asm_idx, diagnostics=None, context=None):
         # Self-contained via the context (has scalar types + OS structs). Drop
         # the target's own prototype from the context so it doesn't conflict
         # with m2c's definition; C89 needs no prototypes for the rest.
-        proto = re.compile(rf"^[^\n]*\b{re.escape(target_id)}\s*\([^;{{]*\)\s*;",
-                           re.M)
-        prelude = proto.sub("", ctx_text)
+        prelude = own_proto.sub("", ctx_text)
         return _PRELUDE + prelude + "\n" + body + "\n"
     # Fallback: minimal shim (scalar types only).
     return _PRELUDE + SHIM.read_text() + "\n" + body + "\n"
@@ -400,7 +418,7 @@ def _is_typeish(tok):
             and not tok[0].isdigit())
 
 
-def _seed_compile_errors(seed):
+def _seed_compile_errors(seed, diagnostic_sink=None):
     """(ok, [(missing_type, source_line)]) — compile a seed and, on failure,
     best-effort the undefined *type* behind each error (not the local var)."""
     import tempfile
@@ -408,11 +426,16 @@ def _seed_compile_errors(seed):
     pp = subprocess.run(["cpp", "-P", "-nostdinc", "-DPERMUTER", str(f)],
                         capture_output=True, text=True)
     if pp.returncode != 0:
+        if diagnostic_sink is not None:
+            diagnostic_sink.append(pp.stderr)
         return False, []
     src_lines = pp.stdout.splitlines()
     g = Path(tempfile.mktemp(suffix=".c")); g.write_text(pp.stdout)
     cc = subprocess.run(["mips-linux-gnu-gcc", "-c", "-fsyntax-only",
-                         "-std=gnu89", str(g)], capture_output=True, text=True)
+                         "-fno-builtin", "-std=gnu89", str(g)],
+                        capture_output=True, text=True)
+    if diagnostic_sink is not None:
+        diagnostic_sink.append(cc.stderr)
     if cc.returncode == 0:
         return True, []
     out, seen = [], set()
@@ -516,7 +539,8 @@ def _histogram_data(conn, rows):
             continue
 
         try:
-            ok, errors = _seed_compile_errors(seed)
+            compile_diagnostics = []
+            ok, errors = _seed_compile_errors(seed, compile_diagnostics)
         except Exception as exc:
             # This is a compile-probe failure, not a disassembly/m2c failure.
             ok, errors = False, []
@@ -530,6 +554,9 @@ def _histogram_data(conn, rows):
         targets[target_id] = {
             "bucket": "blocked", "blockers": blockers, "detail": detail,
         }
+        diagnostic_text = "".join(compile_diagnostics).strip()
+        if diagnostic_text:
+            targets[target_id]["diagnostics"] = diagnostic_text
         for token, source_line in errors:
             blocker_functions[token].add(target_id)
             if (source_line and source_line not in blocker_lines[token]

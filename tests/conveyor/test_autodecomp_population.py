@@ -55,6 +55,35 @@ def test_default_static_selection_keeps_original_query_and_seed(tmp_path,
     assert after == before
 
 
+def test_m2c_context_omits_only_the_targets_own_generated_declaration(
+        tmp_path, monkeypatch):
+    asm = tmp_path / "target.s"
+    asm.write_text("glabel target_fn\n")
+    context_path = tmp_path / "context.c"
+    context_text = "s32 callee_fn(s32 arg0);\ns32 target_fn(void);\n"
+    context_path.write_text(context_text)
+    seen = {}
+
+    def run(command, **_kwargs):
+        used = command[command.index("--context") + 1]
+        seen["context"] = open(used).read()
+        return type("Result", (), {
+            "returncode": 0, "stdout": "s32 target_fn(void) { return 0; }",
+            "stderr": "",
+        })()
+
+    monkeypatch.setattr(autodecomp.subprocess, "run", run)
+
+    seed = autodecomp.m2c_seed(
+        "target_fn", 0x80000000, {"target_fn": asm},
+        context=(str(context_path), context_text),
+    )
+
+    assert "callee_fn" in seen["context"]
+    assert "target_fn" not in seen["context"]
+    assert seed.count("target_fn") == 1
+
+
 def test_at_file_resolution_aborts_on_unknown_target(tmp_path):
     conn = _database(tmp_path / "conveyor.db")
     names = tmp_path / "targets.txt"
@@ -218,8 +247,8 @@ def test_histogram_is_exclusive_complete_and_deterministic(tmp_path, monkeypatch
     monkeypatch.setattr(autodecomp, "m2c_seed", seed)
     monkeypatch.setattr(
         autodecomp, "_seed_compile_errors",
-        lambda value: ((True, []) if value == "compiled_fn" else
-                       (False, [("Player", "p->speed")])),
+        lambda value, *_: ((True, []) if value == "compiled_fn" else
+                           (False, [("Player", "p->speed")])),
     )
     monkeypatch.setattr(autodecomp, "_arcade_hint", lambda token: None)
     monkeypatch.setattr(autodecomp, "_context", lambda: (None, "context"))
@@ -303,7 +332,7 @@ def test_partial_decomp_uses_raw_m2c_output_before_hygiene(tmp_path, monkeypatch
     monkeypatch.setattr(autodecomp, "_clean_m2c", lambda text: text.replace(
         "M2C_ERROR(x);", ""))
     monkeypatch.setattr(autodecomp, "_seed_compile_errors",
-                        lambda _seed: (True, []))
+                        lambda _seed, *_: (True, []))
 
     buckets, targets, _, _ = autodecomp._histogram_data(conn, rows)
 

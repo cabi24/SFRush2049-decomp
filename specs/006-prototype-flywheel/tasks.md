@@ -87,7 +87,7 @@ order.
       joins the context-sha cache keys (layer change ⇒ downstream
       regeneration). Extend the SC-005 body-identity test to run with a
       populated layer present (contract §6).
-- [ ] T009 [US1] Acceptance run (quickstart §2): double `generate`
+- [x] T009 [US1] Acceptance run (quickstart §2): double `generate`
       byte-stability; full histogram → `func_<addr>` blockers for known
       targets = 0, compiled ≥ 200 (SC-001), zero redefinition-class
       errors (SC-002); `clusters diff` against `research/baseline.json`

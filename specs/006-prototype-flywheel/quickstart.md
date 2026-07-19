@@ -54,6 +54,26 @@ Attribution (FR-010):
 python3 -m tools.conveyor.pipeline.autodecomp clusters diff <pre.json> build/m2c_histogram.json
 ```
 
+Actual (2026-07-19, T009 stop rule): two corrected full `generate` runs
+produced byte-identical `build/m2c_protos.h` files with SHA-256
+`c95bffd469a910c7d9cf02ad1672e43d7881577fa9622914d2ca70819211aec9`.
+The layer covers 718 symbols as 596 declarations (586 pass-2 own definitions,
+10 fallbacks) and 122 omissions (58 `hand_context`, 64 `static_target`), with
+no declaration/omission overlap and no hand-context leaks.
+
+The full histogram produced `58 compiled / 252 blocked / 329 partial_decomp /
+49 decompiler_failure / 0 no_disasm / 197 extent_conflict` (sum 885).
+Known-target `func_<addr>` blockers were 0, the `math_utility` spot blocker was
+0, and no per-target diagnostic matched `redeclar|conflicting types` (SC-002
+passed). SC-001 failed: 58 compiled is below 200, so work stopped without
+hand-typing context and the residual analysis was recorded in
+`research/t009-shortfall.md`.
+
+Against the committed `research/baseline.json`, `clusters diff` attributed
+`compiled +16`, `blocked -345`, `partial_decomp +329`, with all other buckets
+unchanged. Relative to the post-hygiene T005 actuals in §1, the count movement
+was `compiled +21`, `blocked -47`, `partial_decomp +26`.
+
 ## 3. Local suite
 
 ```bash

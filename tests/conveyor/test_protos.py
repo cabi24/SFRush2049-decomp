@@ -17,6 +17,20 @@ def test_extract_signature_uses_callees_own_definition_line():
     )
 
 
+def test_extract_signature_cleans_nested_unknown_callback_return_type():
+    output = (
+        "void camera_update_a(s32 arg0, ? (*callback)(void *, s32),\n"
+        "                     ? *opaque, ?32 word) {\n"
+        "    callback(0, arg0);\n"
+        "}\n"
+    )
+
+    assert protos.extract_signature(output, "camera_update_a") == (
+        "void camera_update_a(s32 arg0, s32 (*callback)(void *, s32), "
+        "s32 *opaque, s32 word);"
+    )
+
+
 def test_layer_falls_back_for_underivable_known_target():
     artifact = protos.build_layer(
         {"missing_body"}, {}, hand_names=set(), static_names=set(), pass_number=2
