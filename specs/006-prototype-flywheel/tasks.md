@@ -106,14 +106,14 @@ order.
 action; Track A unharmed.
 **Independent Test**: quickstart §4.
 
-- [ ] T010 [P] [US3] Tests first: flywheel selection logic (compiled ∧ no
+- [x] T010 [P] [US3] Tests first: flywheel selection logic (compiled ∧ no
       score evidence ⇒ submit; any score evidence ⇒ never resubmit),
       refusal of non-`population_complete` histogram input, and the
       priority-ladder assert (flywheel constant > every static-path
       constant) per contracts/hygiene-and-flywheel.md §7–8, with a
       DB-fixture test in `tests/conveyor/test_autodecomp_population.py`
       or a new `test_flywheel.py`.
-- [ ] T011 [US3] Implement the flywheel cycle step in
+- [x] T011 [US3] Implement the flywheel cycle step in
       `tools/conveyor/pipeline/farm.py` (priority 60, standard budget,
       existing `submit_one`/harvest paths) and the
       `extracted: compiled N, scored M, in_search K` line in the standard
@@ -128,7 +128,7 @@ action; Track A unharmed.
 
 ## Phase 5: Polish & Cross-Cutting
 
-- [ ] T013 [P] Ops docs: 006 section in `tools/conveyor/README.md`
+- [x] T013 [P] Ops docs: 006 section in `tools/conveyor/README.md`
       (generate command, six buckets, probe vs instrument paths, diff
       view, flywheel + priority ladder) and a CLAUDE.md conveyor note.
 - [ ] T014 Full local suite green

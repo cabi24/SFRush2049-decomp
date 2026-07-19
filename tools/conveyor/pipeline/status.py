@@ -72,6 +72,22 @@ def counts(conn):
     return out
 
 
+def extracted_counts(conn, histogram_path=None):
+    """Flywheel coverage for the standard report."""
+    from . import farm
+
+    selection = farm.flywheel_selection(
+        conn, histogram_path or farm.HISTOGRAM_JSON
+    )
+    return selection.compiled, selection.scored, selection.in_search
+
+
+def extracted_report_line(conn, histogram_path=None):
+    compiled, scored, in_search = extracted_counts(conn, histogram_path)
+    return (f"extracted: compiled {compiled}, scored {scored}, "
+            f"in_search {in_search}")
+
+
 def reconcile(conn):
     """Cross-check status counts against the evidence tables; returns a list
     of discrepancies (empty = healthy). Used by tests and `cli report`."""

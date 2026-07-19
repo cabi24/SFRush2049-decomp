@@ -13,6 +13,7 @@ Steady-state loop (FR-009/FR-010, no model calls anywhere):
      seeds built from their best arcade candidate and enter in_search
 """
 import argparse
+from dataclasses import dataclass
 import json
 import tarfile
 import time
@@ -31,6 +32,88 @@ EXTRACTED_FLAGSETS = (
     "-g0 -O2 -mips2 -G 0 -non_shared",
     "-g0 -O1 -mips2 -G 0 -non_shared",
 )
+REPO = Path(__file__).resolve().parents[3]
+HISTOGRAM_JSON = REPO / "build" / "m2c_histogram.json"
+VERIFY_PRIORITY = 1
+PROMOTE_PRIORITY = 10
+FLYWHEEL_PRIORITY = 60
+STANDARD_SEARCH_BUDGET_SECONDS = seedsmod.DEFAULT_BUDGET["wall_seconds"]
+
+
+@dataclass(frozen=True)
+class FlywheelSelection:
+    targets: tuple
+    compiled: int
+    scored: int
+    in_search: int
+
+
+def flywheel_selection(conn, histogram_path=HISTOGRAM_JSON):
+    """Return compiling targets which have no append-only score evidence."""
+    histogram = json.loads(Path(histogram_path).read_text())
+    if histogram.get("run", {}).get("population_complete") is not True:
+        raise ValueError(
+            f"refusing {histogram_path}: run.population_complete is not true"
+        )
+    compiled_ids = sorted(
+        target_id for target_id, result in histogram.get("targets", {}).items()
+        if result.get("bucket") == "compiled"
+    )
+    search_rows = conn.execute(
+        "SELECT DISTINCT target_id,state FROM work_unit"
+        " WHERE job_type='permuter_search' AND target_id IS NOT NULL"
+    ).fetchall()
+    search_ids = {row["target_id"] for row in search_rows}
+    active_search_ids = {row["target_id"] for row in search_rows
+                         if row["state"] in ("PENDING", "LEASED")}
+    completed_search_ids = {row["target_id"] for row in search_rows
+                            if row["state"] == "DONE"}
+    matrix_ids = {row["target_id"] for row in conn.execute(
+        "SELECT DISTINCT target_id FROM matrix_entry"
+    )}
+    evidence_ids = search_ids | matrix_ids
+    inventory = {row["target_id"]: row for row in conn.execute(
+        "SELECT target_id,address,population,insn_count FROM n64_target"
+    )}
+    targets = tuple(
+        inventory[target_id] for target_id in compiled_ids
+        if target_id not in evidence_ids and target_id in inventory
+    )
+    compiled_set = set(compiled_ids)
+    return FlywheelSelection(
+        targets=targets,
+        compiled=len(compiled_ids),
+        scored=len(compiled_set & (matrix_ids | completed_search_ids)),
+        in_search=len(compiled_set & active_search_ids),
+    )
+
+
+def flywheel_cycle(conn, store, http, toolkit_sha,
+                   histogram_path=HISTOGRAM_JSON):
+    """Submit every newly compiling extracted seed at flywheel priority."""
+    from . import autodecomp
+
+    selection = flywheel_selection(conn, histogram_path)
+    asm_idx = {}
+    for population in sorted({row["population"] for row in selection.targets}):
+        rows = [row for row in selection.targets
+                if row["population"] == population]
+        asm_idx.update(autodecomp._asm_for_rows(conn, population, rows))
+    started = 0
+    for row in selection.targets:
+        outcome = autodecomp.submit_one(
+            conn, store, http, toolkit_sha, row["target_id"], row["address"],
+            asm_idx,
+            budget_seconds=STANDARD_SEARCH_BUDGET_SECONDS,
+            priority=FLYWHEEL_PRIORITY,
+        )
+        started += outcome == "seeded"
+    return {
+        "flywheel_started": started,
+        "compiled": selection.compiled,
+        "scored": selection.scored,
+        "in_search": selection.in_search,
+    }
 
 
 def _now_sql():
@@ -220,7 +303,7 @@ def _submit_promotion(conn, store, http, toolkit_sha, target_id, source_sha,
         "job_type": "verify_promote", "manifest_sha": m_sha,
         "bundle_sha": out["sha256"], "toolkit_sha": toolkit_sha,
         "target_id": target_id, "required_capability": "builder",
-        "priority": 1, "batch": False, "max_attempts": 3,
+        "priority": VERIFY_PRIORITY, "batch": False, "max_attempts": 3,
     }])
 
 
@@ -268,7 +351,7 @@ def top_up(conn, store, http, toolkit_sha, max_inflight, budget_seconds):
         )
         _, out = http.call("POST", "/api/v1/blobs", raw=bundle.read_bytes())
         job.update(bundle_sha=out["sha256"], target_id=p["target_id"],
-                   priority=10)
+                   priority=PROMOTE_PRIORITY)
         http.call("POST", "/api/v1/work", body=[job])
         with dbmod.tx(conn):
             _set_status(conn, p["target_id"], "in_search")
@@ -278,6 +361,7 @@ def top_up(conn, store, http, toolkit_sha, max_inflight, budget_seconds):
 
 def run_once(conn, store, http, toolkit_sha, max_inflight, budget_seconds):
     stats = ingest(conn, store, http, toolkit_sha)
+    stats.update(flywheel_cycle(conn, store, http, toolkit_sha))
     stats.update(top_up(conn, store, http, toolkit_sha, max_inflight, budget_seconds))
     return stats
 

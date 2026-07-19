@@ -48,6 +48,7 @@ _CTX_HEADERS = ["types.h"] + [f"PR/{p.name}" for p in
 M2C_TYPES = REPO / "include" / "m2c_types.h"
 GAME_TYPES = REPO / "include" / "game_types.h"
 M2C_PROTOS = REPO / "build" / "m2c_protos.h"
+STATIC_SEED_PRIORITY = 30
 _context_cache = {}
 _M2C_DIAGNOSTICS = {}
 
@@ -275,7 +276,7 @@ def _asm_for_rows(conn, population, rows):
 
 
 def submit_one(conn, store, http, toolkit_sha, target_id, vaddr, asm_idx,
-               budget_seconds):
+               budget_seconds, priority=STATIC_SEED_PRIORITY):
     seed = m2c_seed(target_id, vaddr, asm_idx, diagnostics=_M2C_DIAGNOSTICS)
     if seed is None:
         return "no_seed"
@@ -287,7 +288,7 @@ def submit_one(conn, store, http, toolkit_sha, target_id, vaddr, asm_idx,
     except KeyError:
         return "no_target_o"
     _, out = http.call("POST", "/api/v1/blobs", raw=bundle.read_bytes())
-    job.update(bundle_sha=out["sha256"], target_id=target_id, priority=30)
+    job.update(bundle_sha=out["sha256"], target_id=target_id, priority=priority)
     http.call("POST", "/api/v1/work", body=[job])
     with dbmod.tx(conn):
         conn.execute(

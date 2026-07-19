@@ -573,6 +573,16 @@ sizes are no longer trusted for that population. See
 `specs/005-game-context-bootstrap/` and the 005 operations section in
 `tools/conveyor/README.md`.
 
+### Prototype flywheel (feature 006)
+
+Generate declarations with `python3 -m tools.conveyor.pipeline.protos generate`,
+then use only an unfiltered extracted `clusters --limit 0` run as the population
+instrument; scoped runs are probes and must not replace its artifact. The farm
+refuses histograms without `run.population_complete=true` and submits compiled,
+unscored extracted seeds at priority 60, below all static work. Keep extracted
+targets evidence-only and behind the promotion firewall. Full operating details
+are in the 006 section of `tools/conveyor/README.md`.
+
 ## Active Technologies
 - Python 3.9+ (Pi 5 orchestrator and nodes; no syntax above 3.9 so stock distro Pythons work) + Python stdlib only for coordinator and node agent (`http.server`, `sqlite3`, `tarfile`, `hashlib`, `json`, `urllib`). On compute nodes: decomp-permuter (vendored in repo, used as library), IDO via ido-static-recomp (shipped in toolkit bundle), mips binutils `objdump` (shipped in toolkit bundle). `pycparser` (already a permuter dependency) for arcade function extraction. (001-matching-pipeline)
 - SQLite (WAL mode) on the Pi for all pipeline state — single-writer, queried by CLI/report tools. Content-addressed blob store (sha256-named files on disk, served over HTTP) for bundles, toolkits, and results. (001-matching-pipeline)

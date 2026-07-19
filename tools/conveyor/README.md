@@ -259,6 +259,50 @@ Extracted targets are evidence-only and never enter ROM promotion. Both
 `n64_target.population` and refuse extracted targets with the 005/FR-010
 error. Static targets retain the score-zero lock and full-ROM SHA-1 gate.
 
+## Prototype layer and extracted flywheel (006)
+
+Generate the declaration layer before a full histogram. The generator makes
+two deterministic passes, omits declarations owned by the hand-written
+context, and writes `build/m2c_protos.h` plus its evidence file:
+
+```bash
+python3 -m tools.conveyor.pipeline.protos generate
+python3 -m tools.conveyor.pipeline.autodecomp clusters \
+    --population extracted --limit 0
+```
+
+The histogram has six exclusive buckets: `compiled`, `blocked`,
+`partial_decomp`, `decompiler_failure`, `no_disasm`, and `extent_conflict`.
+`partial_decomp` is an honesty rule: if raw mips_to_c output contains an
+`M2C_ERROR` placeholder, it stays partial even if cleanup would make the seed
+compile. Never treat it as `compiled` or rewrite the placeholder away.
+
+Only the unfiltered, untruncated command above is an instrument run. It writes
+`build/m2c_histogram.{json,md}` with `run.population_complete=true`. Any
+`--targets` filter or truncating `--limit` is a probe and writes
+`build/m2c_probe.{json,md}` instead, leaving the population instrument intact.
+The farm refuses a probe or incomplete histogram. Compare population runs with:
+
+```bash
+python3 -m tools.conveyor.pipeline.autodecomp clusters diff \
+    specs/006-prototype-flywheel/research/baseline.json \
+    build/m2c_histogram.json
+```
+
+`clusters diff` reports sorted target movements, bucket-count deltas, and
+blocker-class deltas. On each normal `farm run` cycle, the extracted flywheel
+submits every compiled target that has neither a historical `permuter_search`
+work unit nor a scored matrix cell. It uses the existing autodecomp seed path,
+the standard four-hour budget, and never resubmits append-only score evidence.
+`cli report` shows `extracted: compiled N, scored M, in_search K`.
+
+Queue priority is ascending: farm verify `1`, farm promote/static search `10`,
+autodecomp static seed `30`, extracted flywheel `60`, coordinator default
+`100`. Thus all static work has strict precedence over flywheel work. Manual
+re-scoring remains an explicit `autodecomp seed` operation; the flywheel does
+not override evidence, and extracted targets remain behind the promotion
+firewall.
+
 ## Known V1 limitations
 
 - `verify_promote` still lands matched source in `work/<...>/<fn>/matched.c`

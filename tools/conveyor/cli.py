@@ -275,6 +275,7 @@ def cmd_report(args):
     ).fetchall()
     print("populations: " + "  ".join(
         f"{r['population']}={r['n']}" for r in populations))
+    print(statusmod.extracted_report_line(conn))
     n_cells = conn.execute("SELECT COUNT(*) AS n FROM matrix_entry").fetchone()["n"]
     n_clusters = conn.execute("SELECT COUNT(*) AS n FROM cluster").fetchone()["n"]
     n_pins = conn.execute("SELECT COUNT(*) AS n FROM flag_registry").fetchone()["n"]
