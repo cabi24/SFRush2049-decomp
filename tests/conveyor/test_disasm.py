@@ -175,6 +175,16 @@ def test_derive_is_deterministic_and_cache_key_covers_all_inputs(
     disasm.derive(conn, "sample", image_path=image, cache_dir=cache)
     assert len(calls) == 4
 
+    disasm.derive(conn, "sample", image_path=image, cache_dir=cache,
+                  context_sha="context-a")
+    assert len(calls) == 5
+    disasm.derive(conn, "sample", image_path=image, cache_dir=cache,
+                  context_sha="context-a")
+    assert len(calls) == 5
+    disasm.derive(conn, "sample", image_path=image, cache_dir=cache,
+                  context_sha="context-b")
+    assert len(calls) == 6
+
 
 def test_indexed_addu_idiom_symbolizes_lui_and_access(monkeypatch):
     # Contract §5 idiom (c): lui + addu $d,$r,$idx + imm($d) — the lui and

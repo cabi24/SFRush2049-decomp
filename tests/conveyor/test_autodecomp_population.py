@@ -144,6 +144,7 @@ def test_game_types_keeps_known_good_static_function_body_byte_identical(
     assert "osViGetFramebuffer" in asm_idx
 
     monkeypatch.setattr(autodecomp, "GAME_TYPES", tmp_path / "absent.h")
+    monkeypatch.setattr(autodecomp, "M2C_PROTOS", tmp_path / "absent-protos.h")
     autodecomp._context_cache = None
     before = autodecomp.emit_src("osViGetFramebuffer", 0x800083D0, asm_idx)
 
@@ -152,10 +153,39 @@ def test_game_types_keeps_known_good_static_function_body_byte_identical(
     )
     autodecomp._context_cache = None
     after = autodecomp.emit_src("osViGetFramebuffer", 0x800083D0, asm_idx)
+
+    layer = tmp_path / "m2c_protos.h"
+    layer.write_text("s32 unrelated_generated_game_fn(s32 arg0);\n")
+    monkeypatch.setattr(autodecomp, "M2C_PROTOS", layer)
+    autodecomp._context_cache = None
+    with_layer = autodecomp.emit_src(
+        "osViGetFramebuffer", 0x800083D0, asm_idx
+    )
     autodecomp._context_cache = None
 
     assert before is not None
     assert after == before
+    assert with_layer == before
+
+
+def test_generated_layer_is_last_and_its_content_changes_context_sha(
+        tmp_path, monkeypatch):
+    layer = tmp_path / "m2c_protos.h"
+    layer.write_text("s32 generated_a(void);\n")
+    monkeypatch.setattr(autodecomp, "M2C_PROTOS", layer)
+    autodecomp._context_cache = None
+
+    first = autodecomp._context()
+    first_sha = autodecomp._context_sha(first)
+    assert first[1].rstrip().endswith("s32 generated_a(void);")
+
+    layer.write_text("s32 generated_b(void);\n")
+    second = autodecomp._context()
+    second_sha = autodecomp._context_sha(second)
+    autodecomp._context_cache = None
+
+    assert second[1].rstrip().endswith("s32 generated_b(void);")
+    assert second_sha != first_sha
 
 
 def test_histogram_is_exclusive_complete_and_deterministic(tmp_path, monkeypatch):
@@ -171,7 +201,7 @@ def test_histogram_is_exclusive_complete_and_deterministic(tmp_path, monkeypatch
     asm = tmp_path / "derived.s"
     asm.write_text("glabel extracted_fn\n")
 
-    def derive(_conn, target_id):
+    def derive(_conn, target_id, **_kwargs):
         if target_id == "scan_overrun_fn":
             raise autodecomp.disasmmod.DisassemblyError("scan_overrun")
         return asm
@@ -264,7 +294,9 @@ def test_partial_decomp_uses_raw_m2c_output_before_hygiene(tmp_path, monkeypatch
     asm = tmp_path / "derived.s"
     asm.write_text("glabel extracted_fn\n")
     raw = "s32 extracted_fn(void) { M2C_ERROR(x); return 1; }"
-    monkeypatch.setattr(autodecomp.disasmmod, "derive", lambda *_: asm)
+    monkeypatch.setattr(
+        autodecomp.disasmmod, "derive", lambda *_, **_kwargs: asm
+    )
     monkeypatch.setattr(autodecomp.subprocess, "run", lambda *a, **k: type(
         "Result", (), {"returncode": 0, "stdout": raw, "stderr": ""})())
     monkeypatch.setattr(autodecomp, "_context", lambda: (None, ""))

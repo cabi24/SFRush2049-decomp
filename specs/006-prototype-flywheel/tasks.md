@@ -68,7 +68,7 @@ order.
 **Goal**: `func_`/named-callee blockers collapse; compiled ≥ 200.
 **Independent Test**: quickstart §2.
 
-- [ ] T006 [P] [US1] Tests first in `tests/conveyor/test_protos.py`
+- [x] T006 [P] [US1] Tests first in `tests/conveyor/test_protos.py`
       against contracts/declaration-layer.md: signature capture from a
       fixture m2c definition line; fallback `s32 name();` for
       underivable callees; precedence filter omits hand-context and
@@ -76,13 +76,13 @@ order.
       emission (stamp excluded from content stability); coverage
       invariant (every referenced known-target callee in exactly one of
       declarations/omitted).
-- [ ] T007 [US1] Implement `tools/conveyor/pipeline/protos.py`
+- [x] T007 [US1] Implement `tools/conveyor/pipeline/protos.py`
       (`generate` command): reuse the histogram's per-target m2c pass to
       capture own-definition signatures (research D1), two-pass
       generation exactly (D2), precedence-by-omission filter over the
       preprocessed hand context (D3), emit `build/m2c_protos.h` +
       `build/m2c_protos.json` per data-model.md. Make T006 pass.
-- [ ] T008 [US1] Wire consumption in `autodecomp.py`: `_context()`
+- [x] T008 [US1] Wire consumption in `autodecomp.py`: `_context()`
       includes `build/m2c_protos.h` last when present; its content sha
       joins the context-sha cache keys (layer change ⇒ downstream
       regeneration). Extend the SC-005 body-identity test to run with a

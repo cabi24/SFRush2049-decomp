@@ -47,21 +47,34 @@ _CTX_HEADERS = ["types.h"] + [f"PR/{p.name}" for p in
 # globals and structs m2c needs. Regenerating the context picks up edits.
 M2C_TYPES = REPO / "include" / "m2c_types.h"
 GAME_TYPES = REPO / "include" / "game_types.h"
-_context_cache = None
+M2C_PROTOS = REPO / "build" / "m2c_protos.h"
+_context_cache = {}
 _M2C_DIAGNOSTICS = {}
 
 
-def _context():
-    """(preprocessed_context_path, context_text), built once per process."""
+def _context(include_protos=True, protos_path=None):
+    """(preprocessed path, text), cached by every included file's content."""
     global _context_cache
-    if _context_cache is not None:
-        return _context_cache
+    layer = Path(protos_path) if protos_path is not None else M2C_PROTOS
+    inputs = [REPO / "include" / name for name in _CTX_HEADERS]
+    inputs += [path for path in (M2C_TYPES, GAME_TYPES) if path.is_file()]
+    if include_protos and layer.is_file():
+        inputs.append(layer)
+    key = tuple((str(path), hashlib.sha256(path.read_bytes()).hexdigest())
+                for path in inputs)
+    if not isinstance(_context_cache, dict):
+        # Compatibility with tests and callers which historically reset None.
+        _context_cache = {}
+    if key in _context_cache:
+        return _context_cache[key]
     import tempfile
     head = "\n".join(f'#include "{h}"' for h in _CTX_HEADERS) + "\n"
     if M2C_TYPES.is_file():
         head += f'#include "{M2C_TYPES}"\n'
     if GAME_TYPES.is_file():
         head += f'#include "{GAME_TYPES}"\n'
+    if include_protos and layer.is_file():
+        head += f'#include "{layer}"\n'
     src = Path(tempfile.mkdtemp(prefix="m2cctx-")) / "ctx.h"
     src.write_text(head)
     out = src.with_name("ctx.c")
@@ -71,8 +84,15 @@ def _context():
          str(src), "-o", str(out)],
         capture_output=True, text=True)
     text = out.read_text() if out.exists() and proc.returncode == 0 else ""
-    _context_cache = (str(out) if text else None, text)
-    return _context_cache
+    result = (str(out) if text else None, text)
+    _context_cache[key] = result
+    return result
+
+
+def _context_sha(context=None):
+    """Hash the effective preprocessed context used by m2c and cache keys."""
+    _, text = context or _context()
+    return hashlib.sha256(text.encode()).hexdigest()
 
 
 def _asm_index():
@@ -135,13 +155,13 @@ def _clean_m2c(body):
     return text
 
 
-def m2c_seed(target_id, vaddr, asm_idx, diagnostics=None):
+def m2c_seed(target_id, vaddr, asm_idx, diagnostics=None, context=None):
     """Self-contained C seed for a target from its own asm, or None if m2c
     can't decompile it (missing asm / failure)."""
     asm_file = asm_idx.get(target_id) or asm_idx.get(f"func_{vaddr:08X}")
     if asm_file is None:
         return None
-    ctx_path, ctx_text = _context()
+    ctx_path, ctx_text = context or _context()
     cmd = [sys.executable, str(M2C), str(asm_file), "-f", target_id]
     if ctx_path:
         cmd += ["--context", ctx_path]
@@ -230,7 +250,9 @@ def _population_rows(conn, population, targets, limit):
 def _asm_for_rows(conn, population, rows):
     if population == "static":
         return _asm_index()
-    return {row["target_id"]: disasmmod.derive(conn, row["target_id"])
+    context_sha = _context_sha()
+    return {row["target_id"]: disasmmod.derive(
+                conn, row["target_id"], context_sha=context_sha)
             for row in rows}
 
 
@@ -463,7 +485,8 @@ def _histogram_data(conn, rows):
             targets[target_id] = {"bucket": "extent_conflict", "detail": gate}
             continue
         try:
-            asm_file = disasmmod.derive(conn, target_id)
+            asm_file = disasmmod.derive(
+                conn, target_id, context_sha=_context_sha())
         except Exception as exc:  # DisassemblyError plus per-target tool failures.
             targets[target_id] = {
                 "bucket": "no_disasm", "detail": _first_line(str(exc), type(exc).__name__)

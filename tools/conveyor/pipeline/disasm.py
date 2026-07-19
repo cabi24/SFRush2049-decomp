@@ -343,7 +343,7 @@ def normalize_objdump(output, target_id, targets):
 
 
 def derive(conn, target_id, image_path=GAME_CODE_BIN, cache_dir=CACHE_DIR,
-           objdump="mips-linux-gnu-objdump"):
+           objdump="mips-linux-gnu-objdump", context_sha=None):
     """Return the cached assembly path for one extracted database target."""
     row = conn.execute(
         "SELECT address,insn_count,gate_reason FROM n64_target"
@@ -366,6 +366,8 @@ def derive(conn, target_id, image_path=GAME_CODE_BIN, cache_dir=CACHE_DIR,
         "symbol_table_sha": symbol_table_sha(),
         "derivation_version": DERIVATION_VERSION,
     }
+    if context_sha is not None:
+        key["context_sha"] = context_sha
     cache_dir = Path(cache_dir)
     cache_dir.mkdir(parents=True, exist_ok=True)
     asm_path = cache_dir / f"{target_id}.s"
