@@ -21,7 +21,7 @@ order.
 
 ## Phase 1: Setup
 
-- [ ] T001 Preflight (no code): verify the 2026-07-19 baseline reproduces —
+- [x] T001 Preflight (no code): verify the 2026-07-19 baseline reproduces —
       run the full histogram once, confirm buckets
       `42/597/49/0/197` and `func_`-shaped blocker count 289; copy
       `build/m2c_histogram.json` to
