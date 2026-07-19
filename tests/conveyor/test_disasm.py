@@ -27,17 +27,17 @@ def test_objdump_normalization_labels_registers_branches_and_calls():
     assert disasm.normalize_objdump(raw, "sample", targets) == (
         "glabel sample\n"
         ".L80086A50:\n"
-        "    addiu  $sp,$sp,-8\n"
+        "    addiu   $sp,$sp,-8\n"
         ".L80086A54:\n"
-        "    beq    $t0,$t1,.L80086A60\n"
+        "    beq     $t0,$t1,.L80086A60\n"
         ".L80086A58:\n"
-        "    bc1tl  .L80086A60\n"
+        "    bc1tl   .L80086A60\n"
         ".L80086A5C:\n"
-        "    jal    known_target\n"
+        "    jal     known_target\n"
         ".L80086A60:\n"
-        "    j      func_80091a80\n"
+        "    j       func_80091a80\n"
         ".L80086A64:\n"
-        "    bal    .L80086A6C\n"
+        "    bal     .L80086A6C\n"
     )
 
 
@@ -52,12 +52,12 @@ def test_only_committed_game_symbols_are_symbolized():
 """
     text = disasm.normalize_objdump(raw, "globals", {})
 
-    assert "lui    $t0,%hi(gstate)" in text
-    assert "lbu    $t0,%lo(gstate)($t0)" in text
-    assert "lui    $t1,0x8012" in text
-    assert "lw     $t1,0x1234($t1)" in text
-    assert "lui    $t2,0x8012" in text
-    assert "lw     $t2,-0x3718($t2)" in text
+    assert "lui     $t0,%hi(gstate)" in text
+    assert "lbu     $t0,%lo(gstate)($t0)" in text
+    assert "lui     $t1,0x8012" in text
+    assert "lw      $t1,0x1234($t1)" in text
+    assert "lui     $t2,0x8012" in text
+    assert "lw      $t2,-0x3718($t2)" in text
 
 
 def test_addiu_pointer_formation_updates_or_propagates_tracking():
@@ -71,9 +71,9 @@ def test_addiu_pointer_formation_updates_or_propagates_tracking():
     text = disasm.normalize_objdump(raw, "addiu_globals", {})
 
     assert text.count("%hi(frame_counter)") == 2
-    assert "addiu  $t0,$t0,%lo(frame_counter)" in text
-    assert "addiu  $t2,$t1,%lo(frame_counter)" in text
-    assert "lw     $t1,%lo(frame_counter)($t1)" in text
+    assert "addiu   $t0,$t0,%lo(frame_counter)" in text
+    assert "addiu   $t2,$t1,%lo(frame_counter)" in text
+    assert "lw      $t1,%lo(frame_counter)($t1)" in text
 
 
 def test_conflicting_write_invalidates_stale_lui():
@@ -85,8 +85,8 @@ def test_conflicting_write_invalidates_stale_lui():
 """
     text = disasm.normalize_objdump(raw, "stale_lui", {})
 
-    assert "lui    $t0,0x8014" in text
-    assert "lw     $t0,11004($t0)" in text
+    assert "lui     $t0,0x8014" in text
+    assert "lw      $t0,11004($t0)" in text
     assert "%hi(" not in text
     assert "%lo(" not in text
 
@@ -100,8 +100,8 @@ def test_one_lui_rebinds_each_consumer_without_mismatched_pairs():
     text = disasm.normalize_objdump(raw, "conflicting_symbols", {})
 
     assert text.count("%hi(game_state_flags)") == 1
-    assert "lw     $t1,%lo(game_state_flags)($t0)" in text
-    assert "lui    $t0,%hi(gstate)\n    lbu    $t2,%lo(gstate)($t0)" in text
+    assert "lw      $t1,%lo(game_state_flags)($t0)" in text
+    assert "lui     $t0,%hi(gstate)\n    lbu     $t2,%lo(gstate)($t0)" in text
     assert "%hi(game_state_flags)" in text
     assert "%lo(gstate)" in text
 
@@ -115,8 +115,8 @@ def test_symbol_and_numeric_consumers_restore_original_lui():
     text = disasm.normalize_objdump(raw, "numeric_co_consumer", {})
 
     assert text.count("%hi(game_loop_tick)") == 1
-    assert "lw     $t1,%lo(game_loop_tick)($t0)" in text
-    assert "lui    $t0,0x8003\n    lw     $t2,-0x1b56($t0)" in text
+    assert "lw      $t1,%lo(game_loop_tick)($t0)" in text
+    assert "lui     $t0,0x8003\n    lw      $t2,-0x1b56($t0)" in text
     assert "game_loop_tick.unk" not in text
 
 
@@ -128,8 +128,8 @@ def test_numeric_pointer_formation_then_symbolic_field_rebinds():
 """
     text = disasm.normalize_objdump(raw, "game_loop_shape", {})
 
-    assert "lui    $t0,0x8003\n    addiu  $t0,$t0,-5912" in text
-    assert "lui    $t0,%hi(game_loop_tick)\n    lw     $t1,%lo(game_loop_tick)($t0)" in text
+    assert "lui     $t0,0x8003\n    addiu   $t0,$t0,-5912" in text
+    assert "lui     $t0,%hi(game_loop_tick)\n    lw      $t1,%lo(game_loop_tick)($t0)" in text
     assert "game_loop_tick.unk" not in text
 
 
@@ -199,9 +199,9 @@ def test_indexed_addu_idiom_symbolizes_lui_and_access(monkeypatch):
         "  14:\t00000000 \tnop",
     ))
     text = disasm.normalize_objdump(out, "t", {})
-    assert "lui    $t9,%hi(D_80138670)" in text
-    assert "addu   $v1,$t8,$t9" in text
-    assert "lw     $t7,%lo(D_80138670)($v1)" in text
+    assert "lui     $t9,%hi(D_80138670)" in text
+    assert "addu    $v1,$t8,$t9" in text
+    assert "lw      $t7,%lo(D_80138670)($v1)" in text
 
 
 def test_indexed_addu_idiom_dest_equals_base(monkeypatch):
@@ -213,8 +213,8 @@ def test_indexed_addu_idiom_dest_equals_base(monkeypatch):
         "  10:\t00000000 \tnop",
     ))
     text = disasm.normalize_objdump(out, "t", {})
-    assert "lui    $t9,%hi(D_80138670)" in text
-    assert "lw     $t7,%lo(D_80138670)($t9)" in text
+    assert "lui     $t9,%hi(D_80138670)" in text
+    assert "lw      $t7,%lo(D_80138670)($t9)" in text
 
 
 def test_indexed_addu_untabled_address_stays_numeric():
@@ -228,8 +228,8 @@ def test_indexed_addu_untabled_address_stays_numeric():
     ))
     text = disasm.normalize_objdump(out, "t", {})
     assert "%hi" not in text and "%lo" not in text
-    assert "lui    $t9,0x1234" in text
-    assert "lw     $t7,16($v1)" in text
+    assert "lui     $t9,0x1234" in text
+    assert "lw      $t7,16($v1)" in text
 
 
 def test_formed_pointer_does_not_propagate_through_addu():
@@ -244,4 +244,4 @@ def test_formed_pointer_does_not_propagate_through_addu():
         "  14:\t00000000 \tnop",
     ))
     text = disasm.normalize_objdump(out, "t", {})
-    assert "lw     $t7,0($t9)" in text
+    assert "lw      $t7,0($t9)" in text

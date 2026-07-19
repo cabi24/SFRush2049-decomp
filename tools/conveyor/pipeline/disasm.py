@@ -118,7 +118,7 @@ _ADDU_RE = re.compile(
 # Bumped whenever normalize_objdump's emission changes; part of the cache key
 # so logic changes regenerate cached derivations (the symbol-table sha alone
 # does not cover code changes).
-DERIVATION_VERSION = 2
+DERIVATION_VERSION = 3
 
 
 class DisassemblyError(RuntimeError):
@@ -325,7 +325,7 @@ def normalize_objdump(output, target_id, targets):
         lines.append(f".L{insn['address']:08X}:")
         for synthetic in insn.get("synthetic_before", []):
             operands = _GPR_RE.sub(r"$\1", synthetic["operands"])
-            lines.append(f"    {synthetic['mnemonic']:<7}{operands}".rstrip())
+            lines.append(f"    {synthetic['mnemonic']:<7} {operands}".rstrip())
         mnemonic = insn["mnemonic"]
         operands = insn["operands"]
         pieces = [part.strip() for part in operands.split(",")]
@@ -338,7 +338,10 @@ def normalize_objdump(output, target_id, targets):
                     pieces[-1] = targets.get(address, f"func_{address:08x}")
                 operands = ",".join(pieces)
         operands = _GPR_RE.sub(r"$\1", operands)
-        lines.append((f"    {mnemonic:<7}{operands}").rstrip())
+        # A separating space is mandatory: `:<7` alone emits zero separator
+        # for mnemonics of 7+ chars (cvt.s.w, trunc.w.s, ...), which m2c
+        # reads as one unknown token -> M2C_ERROR (T009 shortfall finding).
+        lines.append((f"    {mnemonic:<7} {operands}").rstrip())
     return "\n".join(lines) + "\n"
 
 
