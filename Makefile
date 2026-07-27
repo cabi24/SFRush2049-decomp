@@ -139,7 +139,7 @@ O_FILES      += $(SRC_ROM_O)
 ifneq ($(SRC_ROM_C),)
   ifneq ($(COMPILER),ido)
     $(error converted ROM TUs exist ($(SRC_ROM_C)): the ROM build requires \
-COMPILER=ido with IDO present — run on the builder (watchman))
+COMPILER=ido with IDO present — run on the builder (watchman2))
   endif
 endif
 

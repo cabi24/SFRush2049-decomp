@@ -23,6 +23,7 @@ so promotion never trusts it blindly.
 """
 import argparse
 import json
+import os
 import re
 import sqlite3
 import subprocess
@@ -34,8 +35,8 @@ from ..client import DEFAULT_DATA
 from ..jobs import scoring
 
 REPO = targetsmod.REPO
-BUILDER = "watchman"
-BUILDER_REPO = "~/projects/rush2049-decomp"
+BUILDER = os.environ.get("CONVEYOR_BUILDER", "watchman2")
+BUILDER_REPO = os.environ.get("CONVEYOR_BUILDER_REPO", "~/rush2049/repo")
 BASEROM = REPO / "baserom.us.z64"
 DELTA = targetsmod.STATIC_ROM_DELTA  # vaddr - DELTA = ROM file offset
 CC = "tools/ido-static-recomp/build/out/cc"
