@@ -14,6 +14,7 @@ run_promotion() as a library — one implementation of the transaction.
 import argparse
 import hashlib
 import json
+import os
 import subprocess
 import sys
 import time
@@ -25,8 +26,11 @@ from ..seeds.extract_candidates import REPO, extract_named_function
 from . import layout as layoutmod
 from . import lock as lockmod
 
-BUILDER = "watchman"
-BUILDER_REPO = "~/projects/rush2049-decomp"
+# The x86-64 builder. Overridable so replacing the machine is config, not a
+# patch — the original watchman died 2026-07 and every promotion path had its
+# hostname baked in.
+BUILDER = os.environ.get("CONVEYOR_BUILDER", "watchman2")
+BUILDER_REPO = os.environ.get("CONVEYOR_BUILDER_REPO", "~/rush2049/repo")
 
 
 class Refusal(SystemExit):
