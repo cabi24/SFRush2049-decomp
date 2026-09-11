@@ -19,10 +19,12 @@ The coordinator and node agent are stdlib-only — no pip installs needed to *se
 The toolkit needs x86-64 binaries (IDO, mips objdump), so build it where they run:
 
 ```bash
-ssh watchman
-cd ~/projects/rush2049-decomp
+ssh watchman2            # builder since 2026-07-28 (CONVEYOR_BUILDER); repo at ~/rush2049/repo
+cd ~/rush2049/repo
+# IDO lives in the pinned toolkit's ido/ on this machine; pycparser/toml can
+# come from the same directory via PYTHONPATH. glibc libs are never bundled.
 python3 -m tools.conveyor.bundles.build_toolkit \
-    --ido tools/ido-static-recomp/build/out \
+    --ido ~/rush2049/cache/toolkits/<current-sha>/ido \
     --objdump "$(command -v mips-linux-gnu-objdump)" \
     --permuter tools/decomp-permuter \
     --shim tools/conveyor/seeds/shim \

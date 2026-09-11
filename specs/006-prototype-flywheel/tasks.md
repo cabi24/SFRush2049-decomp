@@ -118,7 +118,7 @@ action; Track A unharmed.
       existing `submit_one`/harvest paths) and the
       `extracted: compiled N, scored M, in_search K` line in the standard
       report (`cli report`/`status.py`). Make T010 pass.
-- [ ] T012 [US3] Unattended window (quickstart §4, needs coordinator +
+- [x] T012 [US3] Unattended window (quickstart §4, needs coordinator +
       watchman): start `farm run`, walk away for one window, then verify
       SC-004 (scored == compiled), SC-005 (no static job displaced —
       queue lease timestamps), SC-006 (zero extracted rows in
@@ -131,7 +131,7 @@ action; Track A unharmed.
 - [x] T013 [P] Ops docs: 006 section in `tools/conveyor/README.md`
       (generate command, six buckets, probe vs instrument paths, diff
       view, flywheel + priority ladder) and a CLAUDE.md conveyor note.
-- [ ] T014 Full local suite green
+- [x] T014 Full local suite green
       (`pytest tests/conveyor -m "not node_required"`) and quickstart
       §1–§3 walkthrough with every actuals placeholder filled; §4 filled
       after T012's window.
