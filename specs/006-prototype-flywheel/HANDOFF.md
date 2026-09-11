@@ -1,5 +1,10 @@
 # Handoff: 006 close-out + 007 launch (written at the Fable gate, 2026-07-19)
 
+> **Status 2026-09-10:** §1 is done and merged to master — see `CLOSEOUT.md`
+> (scorecard) and `quickstart.md` §4 (window actuals + the watchman2 toolkit
+> repair; current toolkit `796ae99a5cb7…`). §2 (run 007) is next; this branch
+> is rebased onto master.
+
 Fable access ends tonight. This documents exactly what remains, in order,
 with the routing that works without Fable: **Codex executes against the
 contracts; an Opus session takes the review gates** (each gate has
