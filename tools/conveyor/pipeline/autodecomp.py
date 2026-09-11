@@ -396,6 +396,7 @@ PROBE_JSON = REPO / "build" / "m2c_probe.json"
 PROBE_MD = REPO / "build" / "m2c_probe.md"
 ARCADE = REPO / "reference" / "repos" / "rushtherock"
 _MEMBER_RE = re.compile(r"\b([A-Za-z_]\w*)\s*->")
+_TMP_PATH_RE = re.compile(r"/tmp/tmp\w+\.c")
 _BEFORE_RE = re.compile(r"before ['`]([A-Za-z_*]\w*)")
 # tokens that are never a missing type: C keywords, our scalar types, and
 # m2c's local-variable / register naming conventions.
@@ -555,7 +556,9 @@ def _histogram_data(conn, rows):
         targets[target_id] = {
             "bucket": "blocked", "blockers": blockers, "detail": detail,
         }
-        diagnostic_text = "".join(compile_diagnostics).strip()
+        # The probe compiles a mktemp'd copy; scrub its random path so the
+        # instrument is byte-deterministic (SC-003) and diffable.
+        diagnostic_text = _TMP_PATH_RE.sub("<seed>.c", "".join(compile_diagnostics)).strip()
         if diagnostic_text:
             targets[target_id]["diagnostics"] = diagnostic_text
         for token, source_line in errors:

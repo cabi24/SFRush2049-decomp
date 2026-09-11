@@ -329,6 +329,48 @@ firewall.
   changes. The strlen fixture now points at
   `asm/us/nonmatchings/rom/lib_8800/strlen.s` (post-004 layout).
 
+## Population closure and generated data symbols (007)
+
+The extracted population is now **closure-derived**: work-inventory names
+are historical labels, and the population's truth is `n64_target` after
+`closure run`.
+
+```bash
+python3 -m tools.conveyor.pipeline.closure run          # j/jal closure to fixpoint
+python3 -m tools.conveyor.pipeline.datasyms generate    # build/m2c_datasyms.json
+python3 -m tools.conveyor.pipeline.protos generate      # now also emits the externs
+python3 -m tools.conveyor.pipeline.autodecomp clusters --population extracted --limit 0
+```
+
+- `closure run` decodes `j`/`jal` from the raw words of every gate-passed
+  extracted extent, gates each unknown in-blob target through the 005 extent
+  scanner, and registers survivors as `func_<ADDR8>` (`gate_reason=
+  'discovered'`, raw-word object) — iterating until an iteration registers
+  nothing (caps 10 iterations / 2000 registrations surface as `cap_hit`).
+  `build/closure_report.json` records every candidate's outcome
+  (`registered`, `inside_existing_extent`, `scan_failure`, `invalid`,
+  `cap_hit`) with discovery provenance. A second run registers zero.
+- **Suffix rule** (amendment found live): an inventory row whose address is
+  strictly inside a discovered extent is a function *suffix* (the inventory's
+  prologue scan started late) and is marked `extent_conflict:<func_id>` —
+  object/evidence untouched. `matrix extract` honours discovered extents as
+  containers, so re-extraction agrees.
+- `datasyms generate` scans the derived asm with the hand table only and
+  emits a typed entry for every formed data address in RDRAM that the hand
+  table does not name (widest access wins; FP-only `f32`/`f64`; same-width
+  int/FP conflicts recorded and typed integer; formation-only `s32`).
+  Non-RAM constants and function-pointer formations are omitted with reason.
+  Byte-stable; never hand-edit it — put judgement in `include/game_types.h`
+  and `disasm.GAME_SYMBOLS`, which win on collision.
+- `disasm.symbol_table()` is the one merged lookup (hand > generated) and
+  `symbol_table_sha()` covers both, so every cached derivation under
+  `build/m2c_asm/` regenerates when either table changes. `protos generate`
+  emits `extern <type> D_<ADDR8>;` for the generated layer ahead of the
+  function declarations, omitting names the hand context already declares.
+
+Order matters: closure → datasyms → protos (twice, byte-stable) → histogram.
+The histogram's denominator reflects the enlarged population automatically.
+
 ## Known V1 limitations
 
 - `verify_promote` still lands matched source in `work/<...>/<fn>/matched.c`

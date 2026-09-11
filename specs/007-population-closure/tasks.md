@@ -56,16 +56,16 @@ blocker remains.
 **Independent Test**: double run byte-stable; `x<addr>` class eliminated
 in the next histogram; zero hand-table collisions.
 
-- [ ] T005 [P] [US2] Tests first in `tests/conveyor/test_datasyms.py`:
+- [x] T005 [P] [US2] Tests first in `tests/conveyor/test_datasyms.py`:
       width rule (word>half>byte, f32/f64, integer-on-conflict with
       conflict recorded), access citations, byte-stability, hand-table
       omission, merged-lookup precedence in disasm, cache-key coverage
       (changing the generated table regenerates derivations).
-- [ ] T006 [US2] Implement `tools/conveyor/pipeline/datasyms.py`
+- [x] T006 [US2] Implement `tools/conveyor/pipeline/datasyms.py`
       (`generate` command) per contract §7–§9, and the `disasm.py` merged
       single lookup + `symbol_table_sha()` extension per §10. Make T005
       pass.
-- [ ] T007 [US2] Extend `protos generate` with the datasyms externs
+- [x] T007 [US2] Extend `protos generate` with the datasyms externs
       section per §11 (subordinate to hand context; never touches
       `game_types.h`); extend `tests/conveyor/test_protos.py`
       accordingly; re-verify 006's zero-redefinition gate over the
@@ -79,7 +79,7 @@ in the next histogram; zero hand-table collisions.
 population; diff attributes movement; flywheel scores new compiles
 unattended.
 
-- [ ] T008 [US3] Full regeneration sequence on the Pi: `datasyms
+- [x] T008 [US3] Full regeneration sequence on the Pi: `datasyms
       generate` → `protos generate` (twice, byte-stability) → full
       histogram ×2 → `clusters diff research/baseline.json`. Gates:
       SC-001 (no in-blob `func_` blockers), SC-002 (`x<addr>`
@@ -97,7 +97,7 @@ unattended.
 
 ## Phase 5: Polish
 
-- [ ] T010 [P] Ops docs: 007 section in `tools/conveyor/README.md`
+- [x] T010 [P] Ops docs: 007 section in `tools/conveyor/README.md`
       (closure run + report, datasyms generate, merged lookup, enlarged
       population semantics) and a CLAUDE.md note (population is now
       closure-derived; work-inventory names are historical).

@@ -583,6 +583,21 @@ unscored extracted seeds at priority 60, below all static work. Keep extracted
 targets evidence-only and behind the promotion firewall. Full operating details
 are in the 006 section of `tools/conveyor/README.md`.
 
+### Population closure (feature 007 — 2026-09-10)
+
+The extracted population is **closure-derived**: `python3 -m
+tools.conveyor.pipeline.closure run` registers every in-blob `j`/`jal` target
+the work inventory missed as `func_<ADDR8>` (`gate_reason='discovered'`), to
+fixpoint, idempotently. Work-inventory names (`work/**`, `info.txt`) are
+historical labels only — 178 of them turned out to be function *suffixes*
+(prologue scan started late) and are `extent_conflict:<func_id>` now. Data
+symbols are generated (`datasyms generate` → `build/m2c_datasyms.json`,
+merged under the hand table in `disasm.GAME_SYMBOLS`; externs ride
+`protos generate`). Never hand-edit generated artifacts; hand judgement goes
+in `include/game_types.h` / `GAME_SYMBOLS`, which win. Sequence: closure →
+datasyms → protos → histogram. Details: 007 section of
+`tools/conveyor/README.md`, actuals in `specs/007-population-closure/quickstart.md`.
+
 ## Active Technologies
 - Python 3.9+ (Pi 5 orchestrator and nodes; no syntax above 3.9 so stock distro Pythons work) + Python stdlib only for coordinator and node agent (`http.server`, `sqlite3`, `tarfile`, `hashlib`, `json`, `urllib`). On compute nodes: decomp-permuter (vendored in repo, used as library), IDO via ido-static-recomp (shipped in toolkit bundle), mips binutils `objdump` (shipped in toolkit bundle). `pycparser` (already a permuter dependency) for arcade function extraction. (001-matching-pipeline)
 - SQLite (WAL mode) on the Pi for all pipeline state — single-writer, queried by CLI/report tools. Content-addressed blob store (sha256-named files on disk, served over HTTP) for bundles, toolkits, and results. (001-matching-pipeline)
