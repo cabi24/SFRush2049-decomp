@@ -123,9 +123,26 @@ def _now_sql():
     return "strftime('%Y-%m-%dT%H:%M:%fZ','now')"
 
 
+def _current_status(conn, target_id):
+    row = conn.execute("SELECT status FROM function_status WHERE target_id=?",
+                       (target_id,)).fetchone()
+    return row["status"] if row else None
+
+
 def _set_status(conn, target_id, status, human_flag=None, best_score=None):
     from . import status as statusmod
 
+    # A search result can only ever move a target FORWARD or stall an active
+    # search: a non-zero/errored result landing on a target that is already
+    # matched/verified (a July search ingested in September; a sibling seed
+    # that lost to a later win) is stale evidence, not a rollback — the only
+    # matched -> seeded move is verify_promote's own rollback path, which
+    # calls transition() directly. Found live at the 007 T009 window: one
+    # ingest tick demoted 17 locked functions to seeded/stalled.
+    if status == "seeded" and _current_status(conn, target_id) in ("matched", "verified"):
+        print(f"farm: ignored stale {human_flag or 'seeded'} result for "
+              f"{target_id} (already {_current_status(conn, target_id)})")
+        return
     try:
         statusmod.transition(conn, target_id, status, human_flag=human_flag,
                              best_score=best_score)
@@ -203,6 +220,22 @@ def ingest(conn, store, http, toolkit_sha):
         payload = (result or {}).get("payload", {})
         target_id = target_id or payload.get("target_id")
 
+        # Talk to the coordinator BEFORE opening the write transaction: the
+        # coordinator shares this SQLite file, so a POST issued while we hold
+        # the write lock deadlocks until its busy timeout and comes back as
+        # RemoteDisconnected — which is what killed every ingest tick since
+        # 005 at the first score-0 row (found at the 007 T009 window).
+        source_sha, promotion = None, None
+        is_win = (row["state"] != "FAILED" and result and result.get("exit") == "ok"
+                  and row["job_type"] == "permuter_search" and target_id
+                  and payload.get("final_best_score") == 0
+                  and artifacts.get("best.c"))
+        if is_win:
+            source_sha = store.put_bytes(artifacts["best.c"])
+            promotion = _prepare_promotion(
+                conn, store, http, toolkit_sha, target_id, source_sha,
+                row["job_id"], payload)
+
         with dbmod.tx(conn):
             _mark_ingested(conn, row["job_id"])
             if not target_id:
@@ -222,10 +255,10 @@ def ingest(conn, store, http, toolkit_sha):
                 score = payload.get("final_best_score")
                 best_c = artifacts.get("best.c")
                 if score == 0 and best_c:
-                    source_sha = store.put_bytes(best_c)
                     _set_status(conn, target_id, "matched", best_score=0)
-                    _submit_promotion(conn, store, http, toolkit_sha, target_id,
-                                      source_sha, row["job_id"], payload)
+                    if promotion is None:
+                        # Target inventory drifted: flag instead of crashing.
+                        _flag_only(conn, target_id, "missing_target_object")
                     # FR-008: a win fans out to unmatched cluster siblings.
                     from . import cluster as clustermod
 
@@ -258,26 +291,32 @@ def ingest(conn, store, http, toolkit_sha):
                     _set_status(conn, target_id, "verified")
                     promoted += 1
                 else:
-                    _set_status(conn, target_id, "seeded",
-                                human_flag=f"verify_failed:{outcome[:60]}")
+                    from . import status as statusmod
+
+                    try:  # the one legitimate matched -> seeded move (FR-010)
+                        statusmod.transition(
+                            conn, target_id, "seeded",
+                            human_flag=f"verify_failed:{outcome[:60]}")
+                    except statusmod.InvalidTransition as exc:
+                        print(f"farm: ignored {exc}")
                     rolled_back += 1
 
     return {"harvested": harvested, "promoted": promoted,
             "stalled": stalled, "rolled_back": rolled_back, "errored": errored}
 
 
-def _submit_promotion(conn, store, http, toolkit_sha, target_id, source_sha,
-                      search_job_id, search_payload):
+def _prepare_promotion(conn, store, http, toolkit_sha, target_id, source_sha,
+                       search_job_id, search_payload):
+    """Build and submit the verify_promote job (HTTP only — call this OUTSIDE
+    any write transaction).  Returns the coordinator's response, or None when
+    the target object is missing (the caller flags the row)."""
     row = conn.execute(
         "SELECT t.target_o_sha, f.best_candidate_id, f.seed_kind FROM n64_target t"
         " JOIN function_status f USING (target_id) WHERE t.target_id=?",
         (target_id,),
     ).fetchone()
     if row is None or row["target_o_sha"] is None or store.get(row["target_o_sha"]) is None:
-        # A win we cannot promote (target inventory drifted): flag it instead
-        # of crashing the whole ingest run.
-        _flag_only(conn, target_id, "missing_target_object")
-        return
+        return None
     if row["seed_kind"] == "sibling":
         provenance = f"cluster sibling seed (see cluster of {target_id})"
     else:
@@ -302,19 +341,24 @@ def _submit_promotion(conn, store, http, toolkit_sha, target_id, source_sha,
             Path(tmp) / "promote.tar.gz",
         )
         _, out = http.call("POST", "/api/v1/blobs", raw=bundle.read_bytes())
-    http.call("POST", "/api/v1/work", body=[{
+    _, submitted = http.call("POST", "/api/v1/work", body=[{
         "job_type": "verify_promote", "manifest_sha": m_sha,
         "bundle_sha": out["sha256"], "toolkit_sha": toolkit_sha,
         "target_id": target_id, "required_capability": "builder",
         "priority": VERIFY_PRIORITY, "batch": False, "max_attempts": 3,
     }])
+    return submitted or True
 
 
 def top_up(conn, store, http, toolkit_sha, max_inflight, budget_seconds):
     """Step 3: keep max_inflight searches running, best prospects first."""
+    # Flywheel (priority 60) jobs are background fill: they must never count
+    # against the static search budget, or a full flywheel queue would starve
+    # static top-up (SC-005 in reverse; seen live with 94 queued seeds).
     inflight = conn.execute(
         "SELECT COUNT(*) AS n FROM work_unit WHERE job_type='permuter_search'"
-        " AND state IN ('PENDING','LEASED')"
+        " AND state IN ('PENDING','LEASED') AND priority < ?",
+        (FLYWHEEL_PRIORITY,)
     ).fetchone()["n"]
     to_start = max(0, max_inflight - inflight)
     if to_start == 0:

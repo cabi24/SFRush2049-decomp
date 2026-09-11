@@ -109,3 +109,51 @@ outside the contract. SC-002: `x<addr>` 151 → 2 (linear-tracker
 control-flow blind spot, recorded). SC-003: determinism held for all
 content; the stored compile `diagnostics` carried the probe's random
 `/tmp/tmpXXXX.c` path, now scrubbed (`_TMP_PATH_RE`); post-fix pair below.
+
+Post-fix determinism pair (2026-09-10 22:32–23:11): two further full runs
+byte-identical modulo `run.timestamp`, Markdown byte-identical
+(`8dc9227998c7221f…`); same buckets. SC-003 holds over the enlarged
+population.
+
+### Flywheel window (T009)
+
+```bash
+nohup python3 -u -m tools.conveyor.pipeline.farm run --interval 300 > ~/.conveyor/farm.007.log 2>&1 &
+python3 -m tools.conveyor.cli report        # extracted: compiled 170, scored M, in_search K
+```
+
+Actual (window opened 2026-09-11 04:13 UTC, builder watchman2, toolkit
+`796ae99a…`): the first daemon cycle selected every compiled target without
+score evidence — **94 seeds** (70 discovered `func_8…`, 24 inventory; 4,012
+instructions, median 29) — and submitted all 94 at priority 60 in one cycle;
+`flywheel_selection` then read `compiled 170 / scored 74 / in_search 98`
+(98 = 94 + the four 006 resubmissions). Every later cycle submitted 0
+(evidence dedupe). Priority ladder observed in the queue: 4 `verify_promote`
+at 1 ahead of 97 pending flywheel searches at 60. **Window-end checks (100%
+scored coverage, zero extracted promotions, static bodies unchanged) are
+pending the drain** — ~94 × 4 h serial on one node; `cli report` is the
+instrument, `promotion_record` the firewall oracle.
+
+Three farm defects surfaced by opening the window (all fixed, tested,
+daemon restarted on the fixed code):
+
+1. **Ingest deadlocked against the coordinator since 005.** `ingest` POSTed
+   the verify_promote bundle to the coordinator while holding its own SQLite
+   write transaction; the coordinator shares the file, waited out its busy
+   timeout and dropped the connection (`RemoteDisconnected`) — every tick
+   died at the first score-0 row, which is why 549 finished searches had
+   `ingested_at IS NULL` and why the 006 daemon "died on RemoteDisconnected".
+   HTTP now happens before the transaction (`_prepare_promotion`);
+   `test_ingest_never_talks_to_the_coordinator_inside_a_write_transaction`.
+   First healthy tick: 549 ingested (4 harvested, 543 stalled, 2 errored).
+2. **Stale results demoted matched targets.** That same tick moved 17
+   locked/promoted functions `matched → seeded/stalled` on July search
+   results. `_set_status` now refuses to move a matched/verified target to
+   `seeded` on search evidence (only verify_promote's rollback may); the 17
+   rows were restored from the pre-007 backup.
+3. **A full flywheel queue starved static top-up.** `top_up` counted
+   priority-60 jobs against `max_inflight`; it now counts static searches
+   only.
+
+Also restarted: the coordinator service (it had been running pre-close-out
+code without the `_record_blob` retry).

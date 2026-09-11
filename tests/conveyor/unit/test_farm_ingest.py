@@ -183,3 +183,72 @@ def test_error_result_flags_target_for_attention(env):
     ).fetchone()
     assert row["status"] == "seeded"
     assert row["human_flag"].startswith("job_error:")
+
+
+def test_ingest_never_talks_to_the_coordinator_inside_a_write_transaction(env):
+    """The coordinator shares the SQLite file: a POST issued while ingest
+    holds the write lock deadlocks until the busy timeout (the since-005
+    RemoteDisconnected). Every HTTP call must see no open transaction."""
+    conn, store = env
+    _mk_target(conn, "func_a")
+    o_sha = store.put_bytes(b"\x7fELFtarget")
+    with dbmod.tx(conn):
+        conn.execute("UPDATE n64_target SET target_o_sha=? WHERE target_id='func_a'",
+                     (o_sha,))
+    _mk_done_job(conn, store, "permuter_search", "func_a",
+                 {"target_id": "func_a", "final_best_score": 0, "base_score": 42},
+                 {"best.c": b"int f(void){return 0;}\n"})
+
+    class GuardedHttp(StubHttp):
+        seen_in_tx = []
+
+        def call(self, method, path, body=None, raw=None):
+            self.seen_in_tx.append(conn.in_transaction)
+            return super().call(method, path, body, raw)
+
+    http = GuardedHttp()
+    stats = farm.ingest(conn, store, http, "t" * 64)
+
+    assert stats["harvested"] == 1 and len(http.submitted) == 1
+    assert http.seen_in_tx and not any(http.seen_in_tx)
+
+
+def test_win_with_missing_target_object_is_flagged_not_crashed(env):
+    conn, store = env
+    _mk_target(conn, "func_a")                     # target_o_sha = zeros, no blob
+    _mk_done_job(conn, store, "permuter_search", "func_a",
+                 {"target_id": "func_a", "final_best_score": 0, "base_score": 1},
+                 {"best.c": b"int f(void){return 0;}\n"})
+    http = StubHttp()
+    stats = farm.ingest(conn, store, http, "t" * 64)
+    assert stats["harvested"] == 1 and http.submitted == []
+    row = conn.execute("SELECT status,human_flag FROM function_status"
+                       " WHERE target_id='func_a'").fetchone()
+    assert (row["status"], row["human_flag"]) == ("matched", "missing_target_object")
+
+
+def test_stale_nonzero_result_never_demotes_a_matched_target(env):
+    conn, store = env
+    _mk_target(conn, "func_a", status="matched")
+    _mk_done_job(conn, store, "permuter_search", "func_a",
+                 {"target_id": "func_a", "final_best_score": 77, "base_score": 99})
+    stats = farm.ingest(conn, store, StubHttp(), "t" * 64)
+    row = conn.execute("SELECT status,human_flag FROM function_status"
+                       " WHERE target_id='func_a'").fetchone()
+    assert (row["status"], row["human_flag"]) == ("matched", None)
+    assert stats["stalled"] == 1                       # counted, ingested, harmless
+    assert conn.execute("SELECT ingested_at IS NOT NULL FROM work_unit"
+                        " WHERE target_id='func_a'").fetchone()[0]
+
+
+def test_verify_rollback_still_demotes_matched(env):
+    conn, store = env
+    _mk_target(conn, "func_a", status="matched")
+    _mk_done_job(conn, store, "verify_promote", "func_a",
+                 {"target_id": "func_a", "outcome": "rolled_back:sha1",
+                  "source_sha": "s", "search_job_id": "j"})
+    stats = farm.ingest(conn, store, StubHttp(), "t" * 64)
+    row = conn.execute("SELECT status,human_flag FROM function_status"
+                       " WHERE target_id='func_a'").fetchone()
+    assert stats["rolled_back"] == 1
+    assert row["status"] == "seeded" and row["human_flag"].startswith("verify_failed")

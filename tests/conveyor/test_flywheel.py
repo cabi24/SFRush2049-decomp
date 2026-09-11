@@ -104,3 +104,27 @@ def test_flywheel_cycle_uses_submit_one_priority_and_standard_budget(
         "budget_seconds": farm.STANDARD_SEARCH_BUDGET_SECONDS,
         "priority": farm.FLYWHEEL_PRIORITY,
     }
+
+
+def test_queued_flywheel_jobs_do_not_consume_the_static_search_budget(tmp_path):
+    conn = _database(tmp_path / "conveyor.db")
+    with dbmod.tx(conn):
+        for index in range(20):                       # a full flywheel queue
+            conn.execute(
+                "INSERT INTO work_unit (job_id,job_type,target_id,manifest_sha,"
+                "priority,state,created_at,updated_at)"
+                " VALUES (?,'permuter_search','fresh','m',60,'PENDING','now','now')",
+                (f"fw{index}",))
+        conn.execute(
+            "INSERT INTO work_unit (job_id,job_type,target_id,manifest_sha,"
+            "priority,state,created_at,updated_at)"
+            " VALUES ('st','permuter_search','scored','m',10,'LEASED','now','now')")
+
+    class NoHttp:
+        def call(self, *a, **k):
+            raise AssertionError("no prospects -> no submissions")
+
+    stats = farm.top_up(conn, None, NoHttp(), "tk", max_inflight=8,
+                        budget_seconds=60)
+
+    assert stats["inflight"] == 1                    # only the static search counts
