@@ -103,3 +103,31 @@ def test_write_artifacts_has_exclusive_complete_coverage(tmp_path):
     assert declared | omitted == candidates
     assert not declared & omitted
     assert header.read_text() == protos.render_header(artifact, stamp)
+
+
+def test_datasyms_section_is_typed_sorted_and_subordinate_to_hand_context():
+    generated = {
+        "80152004": {"name": "D_80152004", "type": "f32"},
+        "80152000": {"name": "D_80152000", "type": "u16"},
+        "801146EC": {"name": "D_801146EC", "type": "u8"},
+    }
+    hand_text = "extern u8 gstate;\nextern s32 D_801146EC;\n"
+    section = protos.build_datasyms_section(generated, hand_text)
+    assert section == {
+        "externs": {"D_80152000": "extern u16 D_80152000;",
+                    "D_80152004": "extern f32 D_80152004;"},
+        "omitted": {"D_801146EC": "hand_context"},
+    }
+    artifact = protos.build_layer(
+        {"a_fn"}, {"a_fn": "void a_fn(void);"},
+        hand_names=set(), static_names=set(), pass_number=2)
+    artifact["datasyms"] = section
+    stamp = {"image_sha": "i", "symbol_table_sha": "s", "context_sha": "c",
+             "derivation_version": 3, "passes": 2}
+    header = protos.render_header(artifact, stamp)
+    assert header.index("extern u16 D_80152000;") < header.index("extern f32 D_80152004;")
+    assert header.index("extern f32 D_80152004;") < header.index("void a_fn(void);")
+    assert "D_801146EC" not in header
+    # No generated layer -> no section, header unchanged in shape.
+    artifact["datasyms"] = protos.build_datasyms_section({}, hand_text)
+    assert "generated data symbols" not in protos.render_header(artifact, stamp)

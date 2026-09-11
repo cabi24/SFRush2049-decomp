@@ -66,6 +66,22 @@ def build_layer(candidates, signatures, hand_names, static_names,
     return {"declarations": declarations, "omitted": omitted}
 
 
+def build_datasyms_section(generated, hand_text):
+    """Typed externs for the generated data-symbol layer (007 contract §11):
+    ``{address8: {name, type}}`` → ``{"externs": {name: decl}, "omitted":
+    {name: reason}}``.  Subordinate to hand context by omission — a name the
+    hand context already declares is never re-declared here."""
+    externs, omitted = {}, {}
+    for address in sorted(generated):
+        entry = generated[address]
+        name = entry["name"]
+        if re.search(rf"\b{re.escape(name)}\b", hand_text):
+            omitted[name] = "hand_context"
+        else:
+            externs[name] = f"extern {entry['type']} {name};"
+    return {"externs": externs, "omitted": omitted}
+
+
 def render_header(artifact, stamp):
     """Render stable content; volatile timestamp deliberately stays in JSON."""
     stable_stamp = " ".join(
@@ -82,6 +98,11 @@ def render_header(artifact, stamp):
         "#define M2C_PROTOS_H",
         "",
     ]
+    datasyms = artifact.get("datasyms", {}).get("externs", {})
+    if datasyms:
+        lines.append("/* generated data symbols (build/m2c_datasyms.json) */")
+        lines.extend(datasyms[name] for name in sorted(datasyms))
+        lines.append("")
     lines.extend(item["signature"]
                  for item in artifact["declarations"].values())
     lines += ["", "#endif", ""]
@@ -139,6 +160,16 @@ def _run_pass(conn, rows, context):
     return signatures, referenced
 
 
+def _generated_entries():
+    """``{address8: {name, type}}`` from build/m2c_datasyms.json (or {})."""
+    try:
+        data = json.loads(Path(disasm.DATASYMS_JSON).read_text())
+    except FileNotFoundError:
+        return {}
+    return {address: {"name": entry["name"], "type": entry["type"]}
+            for address, entry in data.get("symbols", {}).items()}
+
+
 def _stamp(hand_text):
     return {
         "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
@@ -164,9 +195,13 @@ def generate(data=DEFAULT_DATA, header=HEADER, evidence=EVIDENCE):
         row["target_id"] for row in rows if row["population"] == "static"
     }
 
+    generated = _generated_entries()
+    datasyms = build_datasyms_section(generated, hand_text)
+
     pass1_signatures, pass1_referenced = _run_pass(conn, rows, hand_context)
     candidates = set(pass1_signatures) | pass1_referenced
     pass1 = build_layer(candidates, pass1_signatures, hand_names, static_names, 1)
+    pass1["datasyms"] = datasyms
     pass1_stamp = _stamp(hand_text)
     with tempfile.TemporaryDirectory(prefix="m2c-protos-") as directory:
         pass1_path = Path(directory) / "m2c_protos.h"
@@ -184,10 +219,13 @@ def generate(data=DEFAULT_DATA, header=HEADER, evidence=EVIDENCE):
     artifact = build_layer(
         candidates, pass2_signatures, hand_names, static_names, 2
     )
+    artifact["datasyms"] = datasyms
     stamp = _stamp(hand_text)
     write_artifacts(artifact, stamp, header, evidence)
     print(f"declarations={len(artifact['declarations'])} "
-          f"omitted={len(artifact['omitted'])}; layer -> {header}")
+          f"omitted={len(artifact['omitted'])} "
+          f"datasyms_externs={len(datasyms['externs'])} "
+          f"datasyms_omitted={len(datasyms['omitted'])}; layer -> {header}")
     return artifact
 
 

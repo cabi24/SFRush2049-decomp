@@ -125,8 +125,44 @@ class DisassemblyError(RuntimeError):
     """The requested target cannot be derived into assembly."""
 
 
+# --- generated data-symbol layer (007, contract §9-§10) ----------------------
+# build/m2c_datasyms.json is regenerable evidence (pipeline/datasyms.py).  It
+# joins the hand table in ONE merged lookup; the hand table wins on an address
+# collision.  symbol_table_sha() covers both, so every cached derivation
+# regenerates when either changes.
+DATASYMS_JSON = REPO / "build" / "m2c_datasyms.json"
+_generated_cache = {}
+
+
+def generated_symbols(path=None):
+    """``{address: name}`` from the generated layer, or ``{}`` when absent."""
+    path = Path(DATASYMS_JSON if path is None else path)
+    try:
+        raw = path.read_bytes()
+    except FileNotFoundError:
+        return {}
+    digest = hashlib.sha256(raw).hexdigest()
+    cached = _generated_cache.get(str(path))
+    if cached and cached[0] == digest:
+        return cached[1]
+    data = json.loads(raw)
+    table = {int(address, 16): entry["name"]
+             for address, entry in data.get("symbols", {}).items()}
+    _generated_cache[str(path)] = (digest, table)
+    return table
+
+
+def symbol_table(include_generated=True):
+    """The merged lookup: generated entries first, hand entries overwrite."""
+    if not include_generated:
+        return dict(GAME_SYMBOLS)
+    merged = dict(generated_symbols())
+    merged.update(GAME_SYMBOLS)
+    return merged
+
+
 def symbol_table_sha():
-    encoded = json.dumps(sorted(GAME_SYMBOLS.items()), separators=(",", ":"))
+    encoded = json.dumps(sorted(symbol_table().items()), separators=(",", ":"))
     return hashlib.sha256(encoded.encode()).hexdigest()
 
 
@@ -178,8 +214,24 @@ def _written_gpr(mnemonic, operands):
     return destination if destination in _GPRS else None
 
 
-def normalize_objdump(output, target_id, targets):
-    """Normalize GNU objdump text to the dry-run-validated m2c format."""
+def normalize_objdump(output, target_id, targets, symbols=None,
+                      observations=None):
+    """Normalize GNU objdump text to the dry-run-validated m2c format.
+
+    ``symbols`` is the address→name table (default: the merged lookup).
+    When ``observations`` is a list, every formed effective address the
+    tracker recognizes is appended as ``{"vaddr", "mnemonic", "address",
+    "kind": "access"|"formation", "symbol"}`` — the datasyms scan's input
+    (007 contract §7), identical to what the rewrite itself sees."""
+    if symbols is None:
+        symbols = symbol_table()
+
+    def observe(insn, address, kind, symbol):
+        if observations is not None:
+            observations.append({
+                "vaddr": insn["address"], "mnemonic": insn["mnemonic"],
+                "address": address, "kind": kind, "symbol": symbol})
+
     instructions = []
     for line in output.splitlines():
         match = _LINE_RE.match(line)
@@ -227,7 +279,8 @@ def normalize_objdump(output, target_id, targets):
                 value = prior["value"] + _signed_imm16(addiu.group(3))
                 symbol = None
                 if not prior["formed"]:
-                    symbol = GAME_SYMBOLS.get(value)
+                    symbol = symbols.get(value)
+                    observe(insn, value, "formation", symbol)
                     replacement = None
                     if symbol:
                         replacement = (
@@ -269,7 +322,9 @@ def normalize_objdump(output, target_id, targets):
             if prior:
                 low_value = _signed_imm16(low.group(2))
                 address = prior["value"] + low_value
-                symbol = GAME_SYMBOLS.get(address)
+                symbol = symbols.get(address)
+                if not prior["formed"]:
+                    observe(insn, address, "access", symbol)
                 if prior["formed"] and symbol == prior["formed_symbol"]:
                     symbol = None
                 replacement = None
