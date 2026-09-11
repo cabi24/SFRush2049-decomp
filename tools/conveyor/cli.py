@@ -26,8 +26,10 @@ FLAGSET_O2 = "-g0 -O2 -mips2 -G 0 -non_shared"
 # Smoke fixture: strlen — hand-confirmed perfect match at -O2.
 SMOKE_FUNCTIONS = {
     "strlen": {
-        "asm_file": "asm/us/8800.s",
-        "label": "func_80007C40",
+        # 004 converted segment 8800 to a ROM-aligned TU; the per-function
+        # asm now lives under nonmatchings/rom (label is the symbol name).
+        "asm_file": "asm/us/nonmatchings/rom/lib_8800/strlen.s",
+        "label": "strlen",
         "source_file": "src/libc/string.c",
         "c_name": "strlen",
         "flagset": FLAGSET_O2,
@@ -448,6 +450,10 @@ def cmd_smoke(args):
         source = SMOKE_INCLUDE + extract_named_function(
             REPO / spec["source_file"], spec["c_name"]
         ) + "\n"
+        if args.fresh:
+            # Defeat the manifest-sha result cache so a real node has to run
+            # the compile now (proves the node, not the cache).
+            source += f"/* smoke nonce {time.time_ns()} */\n"
 
         manifest = {
             "job_type": "compile_score",
@@ -539,6 +545,8 @@ def main():
 
     p = sub.add_parser("smoke")
     p.add_argument("--function", default="strlen")
+    p.add_argument("--fresh", action="store_true",
+                   help="bypass the result cache; force a node to compile")
     p.add_argument("--wait", type=int, default=600)
     p.set_defaults(func=cmd_smoke)
 

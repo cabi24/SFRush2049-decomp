@@ -303,6 +303,32 @@ re-scoring remains an explicit `autodecomp seed` operation; the flywheel does
 not override evidence, and extracted targets remain behind the promotion
 firewall.
 
+### 006 close-out hardening (2026-09-10)
+
+- The farm daemon wraps each step (`ingest`, `flywheel_cycle`, `top_up`) in
+  `with_transient_retry`: one retry after 5 s on a dropped/refused/timed-out
+  coordinator connection, then log-and-skip that step for the cycle. The
+  loop itself never dies on a flaky coordinator path.
+- The coordinator retries a locked `blob` insert (`_record_blob`, 5 × 0.5 s)
+  on top of the connection's 30 s busy timeout, so a local script holding a
+  long write transaction no longer fails a node's upload.
+- `permuter_search` writes `function.txt` (the manifest's `target_id`), so
+  the permuter never falls back to its regex, which cannot see definitions
+  with function-pointer parameters ("does not contain any function!").
+- **Toolkit portability rule:** `build_toolkit` never bundles glibc's own
+  libraries (`libc`, `libm`, `libpthread`, …). A bundled `libc.so.6` under
+  `LD_LIBRARY_PATH` aborts objdump on any node whose glibc differs from the
+  build host's — this silently killed all scoring on watchman2 (Ubuntu
+  26.04) from the 2026-07-28 retarget until 2026-09-10. Node-side,
+  `scoring._objdump_path` health-checks the bundled objdump once and falls
+  back to the system `mips-linux-gnu-objdump`. Current toolkit:
+  `796ae99a5cb7…`, built on watchman2 (`PYTHONPATH=<old toolkit dir>` supplies
+  `pycparser`/`toml` there; IDO comes from the pinned blob's `ido/`).
+- `cli smoke --fresh` appends a nonce so the compile really runs on a node
+  instead of returning the cached result — use it whenever a node or toolkit
+  changes. The strlen fixture now points at
+  `asm/us/nonmatchings/rom/lib_8800/strlen.s` (post-004 layout).
+
 ## Known V1 limitations
 
 - `verify_promote` still lands matched source in `work/<...>/<fn>/matched.c`

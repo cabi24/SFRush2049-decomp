@@ -15,6 +15,7 @@ import argparse
 import gzip
 import io
 import json
+import re
 import subprocess
 import tarfile
 from pathlib import Path
@@ -31,8 +32,19 @@ def _iter_files(root, prefix):
             yield path, f"{prefix}/{path.relative_to(root)}"
 
 
+# glibc's own libraries must never travel with the toolkit: a node running a
+# different glibc loads the bundled libc.so.6 under its native ld.so via
+# LD_LIBRARY_PATH and aborts ("stack smashing detected"). This killed every
+# scoring job on watchman2 (Ubuntu 26.04) with a toolkit built on 22.04.
+_GLIBC_LIBS = re.compile(
+    r"^(libc|libm|libpthread|libdl|librt|libresolv|libutil|libanl|libnsl|"
+    r"libcrypt|libnss_\w+|ld-linux[\w-]*)\.so(\.\d+)*$"
+)
+
+
 def _ldd_libs(binary):
-    """Shared libraries a binary needs, for copying into the toolkit."""
+    """Shared libraries a binary needs, for copying into the toolkit
+    (glibc's own excluded — see _GLIBC_LIBS)."""
     try:
         out = subprocess.run(
             ["ldd", str(binary)], capture_output=True, text=True, check=True
@@ -46,7 +58,7 @@ def _ldd_libs(binary):
             target = parts[parts.index("=>") + 1]
             if target.startswith("/") and "ld-linux" not in target:
                 libs.append(Path(target))
-    return libs
+    return [lib for lib in libs if not _GLIBC_LIBS.match(lib.name)]
 
 
 def _python_dep_dirs(names=("pycparser", "toml")):

@@ -14,9 +14,12 @@ Steady-state loop (FR-009/FR-010, no model calls anywhere):
 """
 import argparse
 from dataclasses import dataclass
+import http.client
 import json
+import socket
 import tarfile
 import time
+import urllib.error
 import uuid
 from pathlib import Path
 
@@ -359,10 +362,47 @@ def top_up(conn, store, http, toolkit_sha, max_inflight, budget_seconds):
     return {"started": started, "inflight": inflight + started}
 
 
+# Coordinator-path failures the daemon must survive: a dropped connection,
+# a refused/reset socket, a read timeout. Anything else is a real bug and
+# still propagates.
+TRANSIENT_ERRORS = (
+    urllib.error.URLError, http.client.HTTPException, ConnectionError,
+    socket.timeout, TimeoutError,
+)
+TRANSIENT_RETRY_DELAY = 5
+
+
+def with_transient_retry(step, *args, retries=1, delay=TRANSIENT_RETRY_DELAY,
+                         sleep=time.sleep, log=print, **kwargs):
+    """Run one daemon step; on a transient coordinator error retry it once
+    after `delay`, then log and skip (return None). Never raises transient
+    errors, so a flaky coordinator path can't kill the loop (006 T012)."""
+    attempt = 0
+    while True:
+        try:
+            return step(*args, **kwargs)
+        except TRANSIENT_ERRORS as exc:
+            attempt += 1
+            name = getattr(step, "__name__", repr(step))
+            if attempt > retries:
+                log(f"farm: {name} skipped this cycle after {attempt} attempts: "
+                    f"{type(exc).__name__}: {exc}")
+                return None
+            log(f"farm: {name} transient {type(exc).__name__}: {exc}; "
+                f"retrying in {delay}s")
+            sleep(delay)
+
+
 def run_once(conn, store, http, toolkit_sha, max_inflight, budget_seconds):
-    stats = ingest(conn, store, http, toolkit_sha)
-    stats.update(flywheel_cycle(conn, store, http, toolkit_sha))
-    stats.update(top_up(conn, store, http, toolkit_sha, max_inflight, budget_seconds))
+    stats = {}
+    for step, args in (
+            (ingest, (conn, store, http, toolkit_sha)),
+            (flywheel_cycle, (conn, store, http, toolkit_sha)),
+            (top_up, (conn, store, http, toolkit_sha, max_inflight,
+                      budget_seconds))):
+        out = with_transient_retry(step, *args)
+        if out:
+            stats.update(out)
     return stats
 
 

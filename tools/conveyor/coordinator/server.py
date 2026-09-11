@@ -8,7 +8,9 @@ import base64
 import gzip
 import json
 import re
+import sqlite3
 import threading
+import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
@@ -16,6 +18,9 @@ from . import auth as authmod
 from . import db as dbmod
 from . import queue as queuemod
 from .store import BlobStore
+
+BLOB_RECORD_RETRIES = 5
+BLOB_RECORD_RETRY_DELAY = 0.5
 
 API = "/api/v1"
 AGENT_SOURCE = Path(__file__).resolve().parent.parent / "agent" / "node_agent.py"
@@ -185,12 +190,22 @@ class Coordinator:
 
     def _record_blob(self, sha, kind):
         size = self.store.size(sha) or 0
-        self.conn.execute(
-            "INSERT OR IGNORE INTO blob (sha256, kind, size_bytes, created_at)"
-            " VALUES (?, ?, ?, strftime('%Y-%m-%dT%H:%M:%fZ','now'))",
-            (sha, kind, size),
-        )
-        self.conn.commit()
+        # A local pipeline script holding a long write transaction can outlast
+        # the connection's 30 s busy timeout; this one-row insert is safe to
+        # retry rather than fail the upload (006 close-out hardening).
+        for attempt in range(BLOB_RECORD_RETRIES + 1):
+            try:
+                self.conn.execute(
+                    "INSERT OR IGNORE INTO blob (sha256, kind, size_bytes, created_at)"
+                    " VALUES (?, ?, ?, strftime('%Y-%m-%dT%H:%M:%fZ','now'))",
+                    (sha, kind, size),
+                )
+                self.conn.commit()
+                return
+            except sqlite3.OperationalError as exc:
+                if "locked" not in str(exc) or attempt == BLOB_RECORD_RETRIES:
+                    raise
+                time.sleep(BLOB_RECORD_RETRY_DELAY)
 
 
 _ROUTES = [

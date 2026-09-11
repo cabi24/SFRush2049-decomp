@@ -25,23 +25,52 @@ Scorer = _permuter.Scorer
 _MIPS_ARGS = "-drz -m mips:4300"
 
 
+_objdump_path_cache = {}
+
+
+def _runs(binary):
+    """True iff the objdump binary starts and reports a version — the bundled
+    one can be unloadable on a node whose glibc differs from the build host's
+    (foreign libc under LD_LIBRARY_PATH -> SIGABRT), which must fall back to
+    the system objdump instead of failing every job."""
+    try:
+        proc = subprocess.run([str(binary), "--version"], capture_output=True,
+                              text=True, timeout=30)
+    except (OSError, subprocess.SubprocessError):
+        return False
+    return proc.returncode == 0 and "objdump" in proc.stdout
+
+
 def _objdump_path():
     """Path to the mips objdump binary (toolkit preferred, else system), with
     the toolkit's bundled shared libs added to LD_LIBRARY_PATH as a side
-    effect. Shared by the permuter Scorer command and the reloc-blind score."""
+    effect. Shared by the permuter Scorer command and the reloc-blind score.
+    The bundled binary is health-checked once; if it cannot run here the
+    system objdump is used (and LD_LIBRARY_PATH restored)."""
+    if "path" in _objdump_path_cache:
+        return _objdump_path_cache["path"]
     toolkit = os.environ.get("CONVEYOR_TOOLKIT")
     if toolkit:
         bundled = Path(toolkit) / "bin" / "objdump"
         if bundled.is_file():
             lib = Path(toolkit) / "lib"
+            saved = os.environ.get("LD_LIBRARY_PATH")
             if lib.is_dir():
                 # Bundled shared libs travel with the binary.
-                current = os.environ.get("LD_LIBRARY_PATH", "")
-                os.environ["LD_LIBRARY_PATH"] = f"{lib}:{current}" if current else str(lib)
-            return str(bundled)
+                os.environ["LD_LIBRARY_PATH"] = f"{lib}:{saved}" if saved else str(lib)
+            if _runs(bundled):
+                _objdump_path_cache["path"] = str(bundled)
+                return str(bundled)
+            print(f"scoring: bundled objdump {bundled} does not run here; "
+                  "falling back to the system mips objdump", file=sys.stderr)
+            if saved is None:
+                os.environ.pop("LD_LIBRARY_PATH", None)
+            else:
+                os.environ["LD_LIBRARY_PATH"] = saved
     for name in ("mips-linux-gnu-objdump", "mips64-elf-objdump", "mips-elf-objdump"):
         found = shutil.which(name)
         if found:
+            _objdump_path_cache["path"] = found
             return found
     raise RuntimeError("no mips objdump available (toolkit or system)")
 

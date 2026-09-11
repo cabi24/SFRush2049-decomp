@@ -91,6 +91,11 @@ def run(job_dir, manifest, progress):
     try:
         shutil.copy(inputs / manifest["seed_file"], perm_dir / "base.c")
         shutil.copy(inputs / manifest["target_file"], perm_dir / "target.o")
+        # Name the function for the permuter (it reads function.txt). Without
+        # it the permuter regex-scans base.c and fails "does not contain any
+        # function!" on definitions with function-pointer parameters — the
+        # two 006 flywheel failures (display_list_traverse, entity_name_copy).
+        (perm_dir / "function.txt").write_text(manifest["target_id"] + "\n")
         _write_compile_sh(perm_dir, manifest["compile_flags"])
 
         # Baseline: compile the untouched seed and score it, so the farm knows
