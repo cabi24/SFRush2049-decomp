@@ -16,7 +16,7 @@ explicitly.
 
 ## Phase 1: Setup
 
-- [ ] T001 Preflight: confirm the 006 close-out histogram is the current
+- [x] T001 Preflight: confirm the 006 close-out histogram is the current
       population artifact (buckets above) and copy it to
       `specs/007-population-closure/research/baseline.json` (committed
       diff anchor). Verify `build/game_code.bin` sha matches the recorded
@@ -30,18 +30,18 @@ explicitly.
 provenance, second registers zero; after layer regen no in-blob `func_`
 blocker remains.
 
-- [ ] T002 [P] [US1] Tests first in `tests/conveyor/test_closure.py` per
+- [x] T002 [P] [US1] Tests first in `tests/conveyor/test_closure.py` per
       the contract's unit-test obligations: jal/j decode incl. the
       `pc & 0xF0000000` page rule, candidate filter (in-blob, aligned,
       unknown, static-range exclusion), all four outcome classes,
       fixpoint termination, both caps as explicit outcomes, idempotency
       on a fixture DB, no-supersession-side-effects.
-- [ ] T003 [US1] Implement `tools/conveyor/pipeline/closure.py` (`run`
+- [x] T003 [US1] Implement `tools/conveyor/pipeline/closure.py` (`run`
       command) per contract §1–§6: raw-word decode → gate via 005
       `scan_extent` → register through the existing carve/assemble/store
       path with `gate_reason='discovered'` → iterate → emit
       `build/closure_report.json`. Make T002 pass.
-- [ ] T004 [US1] Live closure run on the Pi ×2: record iteration/outcome
+- [x] T004 [US1] Live closure run on the Pi ×2: record iteration/outcome
       counts and idempotency in quickstart-style actuals (create
       `specs/007-population-closure/quickstart.md` §1 with the commands
       and the actuals — mirror 005/006 format); expect ≥135 registered or

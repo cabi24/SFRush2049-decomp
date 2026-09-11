@@ -441,6 +441,16 @@ def _extent_plan(conn, inventory):
         (name, item["address"], item["address"] + item["scanned"] * 4)
         for name, item in plan.items() if isinstance(item["scanned"], int)
     ]
+    # 007: closure-registered functions are containers too — an inventory
+    # row that starts inside one is a function suffix (late prologue scan)
+    # and must stay extent_conflict across re-extraction.
+    extents += [
+        (row["target_id"], row["address"], row["address"] + row["insn_count"] * 4)
+        for row in conn.execute(
+            "SELECT target_id,address,insn_count FROM n64_target"
+            " WHERE population='extracted' AND gate_reason='discovered'"
+            " AND insn_count IS NOT NULL")
+    ]
     for name, item in plan.items():
         containers = [
             extent for extent in extents
