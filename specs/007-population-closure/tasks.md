@@ -87,7 +87,7 @@ unattended.
       population), SC-004 (compiled ≥ 200 — else STOP and write
       `research/t008-shortfall.md` with residual classes per FR-010; do
       not expand scope). Record actuals in quickstart.md.
-- [ ] T009 [US3] Flywheel window over the enlarged compiled set
+- [ ] T009 [US3] (OPEN: window running, see quickstart §3) Flywheel window over the enlarged compiled set
       (coordinator + watchman): verify unattended submission of new
       compiles, evidence dedupe, priority ladder, and SC-005 (100%
       scored coverage; zero extracted promotions; static bodies/
@@ -101,7 +101,7 @@ unattended.
       (closure run + report, datasyms generate, merged lookup, enlarged
       population semantics) and a CLAUDE.md note (population is now
       closure-derived; work-inventory names are historical).
-- [ ] T011 Full local suite green + quickstart walkthrough complete;
+- [x] T011 Full local suite green + quickstart walkthrough complete;
       update the wiki status page at the milestone.
 
 ---
