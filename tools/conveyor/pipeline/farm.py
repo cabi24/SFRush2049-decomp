@@ -42,6 +42,17 @@ PROMOTE_PRIORITY = 10
 FLYWHEEL_PRIORITY = 60
 STANDARD_SEARCH_BUDGET_SECONDS = seedsmod.DEFAULT_BUDGET["wall_seconds"]
 
+# Triage before commitment. One node runs searches serially, so a queue of
+# ~470 compiling seeds at the standard four hours is ~78 days; the score data
+# says that buys very little. Measured over the first window: targets of <=20
+# instructions scored a median of 30 (best 5) and produced both byte-exact
+# matches — one of them within 5 seconds — while targets over 50 instructions
+# have a median of 2095 and have never converged. So every new seed gets a
+# short first pass, smallest first, and only the ones that land close enough
+# earn a full-length search.
+TRIAGE_BUDGET_SECONDS = 20 * 60
+TRIAGE_PROMOTE_MAX_SCORE = 200
+
 
 @dataclass(frozen=True)
 class FlywheelSelection:
@@ -78,10 +89,12 @@ def flywheel_selection(conn, histogram_path=HISTOGRAM_JSON):
     inventory = {row["target_id"]: row for row in conn.execute(
         "SELECT target_id,address,population,insn_count FROM n64_target"
     )}
-    targets = tuple(
-        inventory[target_id] for target_id in compiled_ids
-        if target_id not in evidence_ids and target_id in inventory
-    )
+    # Smallest first: the cheapest seeds are also the likeliest to converge,
+    # so a drained triage pass front-loads every match it is going to find.
+    targets = tuple(sorted(
+        (inventory[target_id] for target_id in compiled_ids
+         if target_id not in evidence_ids and target_id in inventory),
+        key=lambda row: (row["insn_count"] or 0, row["target_id"])))
     compiled_set = set(compiled_ids)
     return FlywheelSelection(
         targets=targets,
@@ -91,28 +104,80 @@ def flywheel_selection(conn, histogram_path=HISTOGRAM_JSON):
     )
 
 
+def _budget_seconds(raw):
+    if not raw:
+        return None
+    try:
+        return (json.loads(raw) or {}).get("wall_seconds")
+    except (ValueError, TypeError):
+        return None
+
+
+def triage_survivors(conn, max_score=TRIAGE_PROMOTE_MAX_SCORE,
+                     triage_seconds=TRIAGE_BUDGET_SECONDS):
+    """Rows whose short pass ended close enough to deserve the full budget.
+
+    A target qualifies when its best triage score is nonzero (zero is already
+    a match) but no worse than `max_score`, and no full-length search has
+    been spent on it yet. Returns inventory rows, smallest first."""
+    searches = conn.execute(
+        "SELECT target_id, budget, state, best_score FROM work_unit"
+        " WHERE job_type='permuter_search' AND target_id IS NOT NULL"
+    ).fetchall()
+    best, had_full = {}, set()
+    for row in searches:
+        seconds = _budget_seconds(row["budget"])
+        if seconds is None or seconds > triage_seconds:
+            had_full.add(row["target_id"])       # unknown budget counts as full
+            continue
+        if row["state"] != "DONE" or row["best_score"] is None:
+            continue
+        current = best.get(row["target_id"])
+        if current is None or row["best_score"] < current:
+            best[row["target_id"]] = row["best_score"]
+    promising = {target for target, score in best.items()
+                 if 0 < score <= max_score and target not in had_full}
+    if not promising:
+        return ()
+    placeholders = ",".join("?" for _ in promising)
+    rows = conn.execute(
+        "SELECT t.target_id, t.address, t.population, t.insn_count"
+        " FROM n64_target t JOIN function_status f USING (target_id)"
+        f" WHERE t.target_id IN ({placeholders})"
+        " AND f.status NOT IN ('matched','verified')",
+        tuple(sorted(promising)),
+    ).fetchall()
+    return tuple(sorted(rows, key=lambda row: (row["insn_count"] or 0,
+                                               row["target_id"])))
+
+
 def flywheel_cycle(conn, store, http, toolkit_sha,
                    histogram_path=HISTOGRAM_JSON):
     """Submit every newly compiling extracted seed at flywheel priority."""
     from . import autodecomp
 
     selection = flywheel_selection(conn, histogram_path)
-    asm_idx = {}
-    for population in sorted({row["population"] for row in selection.targets}):
-        rows = [row for row in selection.targets
-                if row["population"] == population]
-        asm_idx.update(autodecomp._asm_for_rows(conn, population, rows))
-    started = 0
-    for row in selection.targets:
-        outcome = autodecomp.submit_one(
-            conn, store, http, toolkit_sha, row["target_id"], row["address"],
-            asm_idx,
-            budget_seconds=STANDARD_SEARCH_BUDGET_SECONDS,
-            priority=FLYWHEEL_PRIORITY,
-        )
-        started += outcome == "seeded"
+    survivors = triage_survivors(conn)
+
+    def submit(rows, budget_seconds):
+        asm_idx = {}
+        for population in sorted({row["population"] for row in rows}):
+            group = [row for row in rows if row["population"] == population]
+            asm_idx.update(autodecomp._asm_for_rows(conn, population, group))
+        started = 0
+        for row in rows:
+            started += autodecomp.submit_one(
+                conn, store, http, toolkit_sha, row["target_id"],
+                row["address"], asm_idx, budget_seconds=budget_seconds,
+                priority=FLYWHEEL_PRIORITY,
+            ) == "seeded"
+        return started
+
+    promoted = submit(survivors, STANDARD_SEARCH_BUDGET_SECONDS)
+    started = submit(selection.targets, TRIAGE_BUDGET_SECONDS)
     return {
         "flywheel_started": started,
+        "flywheel_promoted": promoted,
         "compiled": selection.compiled,
         "scored": selection.scored,
         "in_search": selection.in_search,

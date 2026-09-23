@@ -303,6 +303,23 @@ re-scoring remains an explicit `autodecomp seed` operation; the flywheel does
 not override evidence, and extracted targets remain behind the promotion
 firewall.
 
+### Triage before commitment (2026-09-23)
+
+One node runs searches serially, so the flywheel spends node-days, not
+node-hours. New seeds therefore get a **20-minute triage pass, smallest
+first** (`TRIAGE_BUDGET_SECONDS`); only a target whose triage score lands at
+or under `TRIAGE_PROMOTE_MAX_SCORE` (200, nonzero — zero is already a match)
+earns a full four-hour search, submitted by the next cycle ahead of new
+triage work. `work_unit.budget` records which pass a job was, and a job with
+no recorded budget counts as a full search already spent, so pre-triage
+history is never redone.
+
+Why these numbers: over the first window, targets of <=20 instructions scored
+a median of 30 (best 5) and produced both byte-exact game-code matches — one
+in 5 seconds — while targets over 50 instructions have a median of 2095 and
+have never converged. `cli report` and the cycle's `flywheel_started` /
+`flywheel_promoted` counters show the two streams separately.
+
 ### 006 close-out hardening (2026-09-10)
 
 - The farm daemon wraps each step (`ingest`, `flywheel_cycle`, `top_up`) in

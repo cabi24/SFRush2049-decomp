@@ -52,5 +52,8 @@ def build_search_bundle(conn, store, target_id, source_text, flagset,
         "toolkit_sha": toolkit_sha,
         "batch": False,          # searches are stochastic: never cache-hit
         "max_attempts": None,    # progress is checkpointed; re-issue freely
+        # Recorded on the work unit too, not just inside the bundle: the farm
+        # reads it back to tell a short triage pass from a full-length search.
+        "budget": manifest["budget"],
     }
     return bundle_path, manifest_sha, job
