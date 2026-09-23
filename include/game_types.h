@@ -485,7 +485,24 @@ extern void Input_ProcessGameplayPad(s32 pad);
  * literal `?` return types are a hard parse error, see t011-blockers.md).
  */
 extern void Effects_UpdateEmitters(void);
-extern void PhysicsObjectList_Update(void);
+/* --- return types corrected against the binary (2026-09-23) ---------------
+ * Eight declarations here said `void` while the function sets $v0 at its
+ * return site (cited per line, from build/m2c_asm/<fn>.s). Because hand
+ * context wins over the generated layer (006 precedence), a wrong `void` is
+ * authoritative: every caller that consumes the value decompiles to
+ * `M2C_ERROR(/* Read from unset register $v0 *\/)`.
+ *
+ * Two are PROVEN by m2c's own output — slot_state_setup (called by 52
+ * functions; three errors in playgame_state_change alone) and
+ * audio_frame_sync (two errors in audio_interrupt_handler). Correcting the
+ * set moved five targets out of partial_decomp, two straight to compiled
+ * (playgame_state_change, object_create).
+ *
+ * The other six are return-site evidence only: they do leave a value in $v0,
+ * but no caller consumes it today, so `void` was harmless-but-false. s32 is
+ * the conservative width — the evidence proves a value is returned, not its
+ * type. `python3 -m tools.conveyor.pipeline.declaudit` re-checks all of this.
+ */extern s32 PhysicsObjectList_Update(void);  /* returns: lw $v0,20($a0) */
 extern void UpdateActiveObjects(void);
 extern void input_aux_handler(void);
 extern void sound_stop(s32 sound_id);   /* also called with a pointer-typed
@@ -494,7 +511,7 @@ extern void sound_stop(s32 sound_id);   /* also called with a pointer-typed
                                           * guessed) call site in game_loop */
 
 /* --- game_mode_handler's callees --- */
-extern void input_init_flag_get(void);
+extern s32 input_init_flag_get(void);  /* returns: lw $v0,%lo(D_801551F0)($s0) */
 extern void viUpdateTime(void);
 
 /* --- attract_or_transition's callees --- */
@@ -514,7 +531,8 @@ extern void InitMaxPath(void);           /* real signature takes s32 record
                                            * passes none -- matches the m2c-
                                            * inferred arity, not the arcade
                                            * one (see header note) */
-extern void audio_frame_sync(s32, s32, s32, s32, s32);
+extern s32 audio_frame_sync(s32, s32, s32, s32, s32);  /* returns: m2c's own evidence -
+ * audio_interrupt_handler stores its $v0 (`*sp5C = ...`) at two call sites */
 extern void display_enable(s32);
 extern void func_800a3424(s32, s32, s32);
 extern void func_800a7480(s32, s32, u8, u8, s32, s32, s32);
@@ -524,8 +542,8 @@ extern void func_800c9480(void);
 extern void hud_setup(s32, s32, s32, s32, s32, f32, f32, s32);
 extern void hud_speed_display(s32, s32, s32, s32, s32);
 extern void init_state_begin(void);       /* also called from countdown */
-extern void object_create(s32);
-extern void object_render_cleanup(void **);
+extern s32 object_create(s32);  /* returns: lw $v0,44($sp) */
+extern s32 object_render_cleanup(void **);  /* returns: lw $v0,28($sp) */
 extern void player_cleanup_slots(void);
 extern void player_mode_set(s32, s32);
 extern void player_state_set(s32, s32);
@@ -545,7 +563,7 @@ extern void billboard_render(void);
 extern void camera_race_setup(void);
 extern void cpak_read(s8);
 extern s32 display_list_flush(s32, s32);
-extern void entity_audio_update(s32);
+extern s32 entity_audio_update(s32);  /* returns: addiu $v0,$v0,76 */
 extern void finish_state_alt(void);
 extern void func_800ab18c(s32, s32);
 extern void func_800b61a8(s32, s32, s32, s32);
@@ -561,7 +579,7 @@ extern void ghost_race_setup(void);
 extern void init_state_continue(void);
 extern void players_frame_update(void);
 extern void race_init_helper(void);
-extern void race_setup_1(void);
+extern s32 race_setup_1(void);  /* returns: addiu $v0,$v0,20 */
 extern void race_setup_2(s16);
 extern void records_screen(void);
 extern void render_viewport_init(void);
@@ -585,7 +603,7 @@ extern void viScheduleTick(f32);          /* two call sites in countdown and
 extern void dispatch_handler(s32);
 extern void func_800a4770(void *, s32);
 extern s32 object_manager_update(void *, s32);
-extern void slot_state_setup(void);
+extern s32 slot_state_setup(void);  /* returns: move $v0,$s3 */
 extern void state_utility(s16, s32, void *);
 extern void sprintf(s8 *buf, s8 *fmt, ...);  /* matches src/game/game.c's
                                                * existing declaration for the
