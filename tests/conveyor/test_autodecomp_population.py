@@ -416,3 +416,44 @@ def test_histogram_diff_reports_sorted_movements_and_deltas(tmp_path, capsys):
         "  NewType: 0 -> 1 (+1); functions -[] +[a_fn]\n"
         "  ZType: 1 -> 0 (-1); functions -[z_fn] +[]\n"
     )
+
+
+def test_seed_uses_valid_syntax_mode_and_carries_its_macro_definitions(tmp_path):
+    """m2c's valid-syntax mode renders untypeable accesses as macros
+    (`M2C_FIELD(expr, s32 *, 0x34)`) — the same memory access as the invented
+    `expr->unk34`, but compilable, which is what lets a seed reach the
+    permuter at all. The definitions must ride in the SEED (cpp reads them)
+    and never in m2c's --context, whose parser rejects directives and fails
+    the whole run."""
+    import inspect
+    from tools.conveyor.pipeline import autodecomp
+
+    source = inspect.getsource(autodecomp.m2c_seed)
+    assert '"--valid-syntax"' in source
+    assert "_macros()" in source
+    macros = autodecomp._macros()
+    assert "#define M2C_FIELD" in macros and "M2C_ERROR" in macros
+    # the context m2c itself parses must stay directive-free
+    _, context_text = autodecomp._context()
+    assert "#define" not in context_text
+
+
+def test_macro_definitions_follow_the_context_that_defines_their_types(tmp_path,
+                                                                       monkeypatch):
+    """M2C_UNK is `typedef s32 M2C_UNK;` — placing the macros before the
+    context makes every one of them an unknown-type error."""
+    from tools.conveyor.pipeline import autodecomp
+
+    monkeypatch.setattr(autodecomp, "_context", lambda *a, **k: (None, ""))
+    monkeypatch.setattr(autodecomp, "_clean_m2c", lambda body: body)
+    monkeypatch.setattr(autodecomp.subprocess, "run",
+                        lambda *a, **k: type("P", (), {
+                            "returncode": 0, "stdout": "void f(void) {}",
+                            "stderr": ""})())
+    monkeypatch.setattr(autodecomp, "SHIM", tmp_path / "shim.h")
+    (tmp_path / "shim.h").write_text("typedef int s32;\n")
+
+    seed = autodecomp.m2c_seed("f", 0x80090000, {"f": tmp_path / "f.s"})
+
+    assert seed.index("typedef int s32;") < seed.index("#define M2C_FIELD")
+    assert seed.index("#define M2C_FIELD") < seed.index("void f(void)")

@@ -111,6 +111,20 @@ def _asm_index():
 
 # Macros the preprocessed context drops (cpp consumed them) but m2c output uses.
 _PRELUDE = "#define NULL ((void *)0)\n#define TRUE 1\n#define FALSE 0\n"
+# m2c's "valid syntax" mode renders what it cannot type as macros instead of
+# invented struct members: `M2C_FIELD(expr, s32 *, 0x34)` is the SAME memory
+# access as `expr->unk34`, but it compiles. Its macro definitions must follow
+# the context (they are written in terms of s32/s8/...) and must never be fed
+# to m2c's own --context, whose C parser rejects preprocessor directives and
+# fails the entire run.
+M2C_MACROS = REPO / "tools" / "mips_to_c" / "m2c_macros.h"
+
+
+def _macros():
+    try:
+        return M2C_MACROS.read_text()
+    except OSError:
+        return ""
 
 
 def _clean_m2c(body):
@@ -179,7 +193,8 @@ def m2c_seed(target_id, vaddr, asm_idx, diagnostics=None, context=None):
             tmp.write(m2c_context_text)
             isolated = Path(tmp.name)
         ctx_path = str(isolated)
-    cmd = [sys.executable, str(M2C), str(asm_file), "-f", target_id]
+    cmd = [sys.executable, str(M2C), str(asm_file), "-f", target_id,
+           "--valid-syntax"]
     if ctx_path:
         cmd += ["--context", ctx_path]
     try:
@@ -198,9 +213,9 @@ def m2c_seed(target_id, vaddr, asm_idx, diagnostics=None, context=None):
         # the target's own prototype from the context so it doesn't conflict
         # with m2c's definition; C89 needs no prototypes for the rest.
         prelude = own_proto.sub("", ctx_text)
-        return _PRELUDE + prelude + "\n" + body + "\n"
+        return _PRELUDE + prelude + "\n" + _macros() + "\n" + body + "\n"
     # Fallback: minimal shim (scalar types only).
-    return _PRELUDE + SHIM.read_text() + "\n" + body + "\n"
+    return _PRELUDE + SHIM.read_text() + "\n" + _macros() + "\n" + body + "\n"
 
 
 def _resolve_targets(conn, population, specification):
