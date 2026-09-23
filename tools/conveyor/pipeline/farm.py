@@ -123,6 +123,13 @@ def _now_sql():
     return "strftime('%Y-%m-%dT%H:%M:%fZ','now')"
 
 
+def _is_extracted(conn, target_id):
+    row = conn.execute(
+        "SELECT population FROM n64_target WHERE target_id=?", (target_id,)
+    ).fetchone()
+    return bool(row) and row["population"] == "extracted"
+
+
 def _current_status(conn, target_id):
     row = conn.execute("SELECT status FROM function_status WHERE target_id=?",
                        (target_id,)).fetchone()
@@ -143,12 +150,40 @@ def _set_status(conn, target_id, status, human_flag=None, best_score=None):
         print(f"farm: ignored stale {human_flag or 'seeded'} result for "
               f"{target_id} (already {_current_status(conn, target_id)})")
         return
+    def apply(new_status, flag, score):
+        statusmod.transition(conn, target_id, new_status, human_flag=flag,
+                             best_score=score)
+
     try:
-        statusmod.transition(conn, target_id, status, human_flag=human_flag,
-                             best_score=best_score)
-    except statusmod.InvalidTransition as exc:
-        # A late result for a function a human already moved on: log, don't die.
-        print(f"farm: ignored {exc}")
+        try:
+            apply(status, human_flag, best_score)
+            return
+        except statusmod.InvalidTransition as exc:
+            first_failure = exc
+        # A single illegal hop is often a legal PATH: a flywheel-seeded
+        # target whose seeding transition was itself refused sits at
+        # `unmatched`, so its eventual score-0 result read
+        # `unmatched -> matched` and was dropped on the floor — the win
+        # vanished (seen live 2026-09-23). Walk the chain forward instead;
+        # a backward or unreachable move is still ignored.
+        current = _current_status(conn, target_id)
+        order = statusmod.ORDER
+        if current not in order or status not in order:
+            print(f"farm: ignored {first_failure}")
+            return
+        begin, stop = order.index(current), order.index(status)
+        if stop <= begin:
+            print(f"farm: ignored {first_failure}")
+            return
+        for step in order[begin + 1:stop + 1]:
+            last = step == status
+            try:
+                apply(step, human_flag if last else None,
+                      best_score if last else None)
+            except statusmod.InvalidTransition:
+                print(f"farm: ignored {first_failure}")
+                return
+        print(f"farm: {target_id} advanced {current} -> {status}")
     except KeyError:
         pass
 
@@ -210,6 +245,7 @@ def ingest(conn, store, http, toolkit_sha):
         " AND job_type IN ('permuter_search', 'verify_promote')"
     ).fetchall()
     harvested = promoted = stalled = rolled_back = errored = 0
+    extracted_wins = 0
     for row in rows:
         target_id = row["target_id"]
         result, artifacts = (None, {})
@@ -225,16 +261,23 @@ def ingest(conn, store, http, toolkit_sha):
         # the write lock deadlocks until its busy timeout and comes back as
         # RemoteDisconnected — which is what killed every ingest tick since
         # 005 at the first score-0 row (found at the 007 T009 window).
-        source_sha, promotion = None, None
+        source_sha, promotion, firewalled = None, None, False
         is_win = (row["state"] != "FAILED" and result and result.get("exit") == "ok"
                   and row["job_type"] == "permuter_search" and target_id
                   and payload.get("final_best_score") == 0
                   and artifacts.get("best.c"))
         if is_win:
             source_sha = store.put_bytes(artifacts["best.c"])
-            promotion = _prepare_promotion(
-                conn, store, http, toolkit_sha, target_id, source_sha,
-                row["job_id"], payload)
+            # 005 FR-010: extracted-population wins are EVIDENCE ONLY — they
+            # must never enter the promotion path (lock/promote enforce this
+            # for hand-driven paths; the farm needs its own check, or a
+            # flywheel win submits verify_promote on its own. Seen live
+            # 2026-09-23: func_80095EC0 / func_800C8738).
+            firewalled = _is_extracted(conn, target_id)
+            if not firewalled:
+                promotion = _prepare_promotion(
+                    conn, store, http, toolkit_sha, target_id, source_sha,
+                    row["job_id"], payload)
 
         with dbmod.tx(conn):
             _mark_ingested(conn, row["job_id"])
@@ -256,7 +299,10 @@ def ingest(conn, store, http, toolkit_sha):
                 best_c = artifacts.get("best.c")
                 if score == 0 and best_c:
                     _set_status(conn, target_id, "matched", best_score=0)
-                    if promotion is None:
+                    if firewalled:
+                        _flag_only(conn, target_id, "extracted_evidence_only")
+                        extracted_wins += 1
+                    elif promotion is None:
                         # Target inventory drifted: flag instead of crashing.
                         _flag_only(conn, target_id, "missing_target_object")
                     # FR-008: a win fans out to unmatched cluster siblings.
@@ -302,7 +348,8 @@ def ingest(conn, store, http, toolkit_sha):
                     rolled_back += 1
 
     return {"harvested": harvested, "promoted": promoted,
-            "stalled": stalled, "rolled_back": rolled_back, "errored": errored}
+            "stalled": stalled, "rolled_back": rolled_back, "errored": errored,
+            "extracted_wins": extracted_wins}
 
 
 def _prepare_promotion(conn, store, http, toolkit_sha, target_id, source_sha,

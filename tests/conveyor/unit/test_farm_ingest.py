@@ -51,12 +51,14 @@ def _result_bundle(store, payload, artifacts=None):
     return store.put_bytes(buf.getvalue())
 
 
-def _mk_target(conn, target_id, status="in_search"):
+def _mk_target(conn, target_id, status="in_search", population="static"):
+    """Static by default: the promotion paths under test are static-only
+    (extracted wins are firewalled, covered by its own test below)."""
     with dbmod.tx(conn):
         conn.execute(
             "INSERT INTO n64_target (target_id, address, population, insn_count,"
-            " target_o_sha) VALUES (?, 1, 'extracted', 10, ?)",
-            (target_id, "0" * 64),
+            " target_o_sha) VALUES (?, 1, ?, 10, ?)",
+            (target_id, population, "0" * 64),
         )
         conn.execute(
             "INSERT INTO function_status (target_id, status, best_candidate_id,"
@@ -142,7 +144,7 @@ def test_ingest_is_idempotent(env):
                  {"best.c": b"..."})
     farm.ingest(conn, store, StubHttp(), "t" * 64)
     stats = farm.ingest(conn, store, StubHttp(), "t" * 64)  # second run: no-op
-    assert stats == {"harvested": 0, "promoted": 0, "stalled": 0,
+    assert stats == {"harvested": 0, "promoted": 0, "stalled": 0, "extracted_wins": 0,
                      "rolled_back": 0, "errored": 0}
 
 
@@ -252,3 +254,49 @@ def test_verify_rollback_still_demotes_matched(env):
                        " WHERE target_id='func_a'").fetchone()
     assert stats["rolled_back"] == 1
     assert row["status"] == "seeded" and row["human_flag"].startswith("verify_failed")
+
+
+def test_extracted_win_is_evidence_only_and_never_submits_a_promotion(env):
+    """005 FR-010 / SC-006: a flywheel win on game-code must record evidence
+    and stop there — the farm is the last path that could smuggle an
+    extracted target into verify_promote (it did, live, 2026-09-23)."""
+    conn, store = env
+    _mk_target(conn, "func_80095EC0", population="extracted")
+    o_sha = store.put_bytes(b"\x7fELFtarget")
+    with dbmod.tx(conn):
+        conn.execute("UPDATE n64_target SET target_o_sha=? WHERE target_id=?",
+                     (o_sha, "func_80095EC0"))
+    _mk_done_job(conn, store, "permuter_search", "func_80095EC0",
+                 {"target_id": "func_80095EC0", "final_best_score": 0,
+                  "base_score": 80},
+                 {"best.c": b"void f(void){}\n"})
+    http = StubHttp()
+
+    stats = farm.ingest(conn, store, http, "t" * 64)
+
+    assert http.submitted == []                       # no verify_promote
+    assert stats["harvested"] == 1 and stats["extracted_wins"] == 1
+    row = conn.execute("SELECT status,human_flag,best_score FROM function_status"
+                       " WHERE target_id='func_80095EC0'").fetchone()
+    assert (row["status"], row["human_flag"], row["best_score"]) == (
+        "matched", "extracted_evidence_only", 0)
+    assert conn.execute("SELECT count(*) FROM promotion_record").fetchone()[0] == 0
+
+
+def test_win_on_an_unseeded_target_still_records_the_match(env):
+    """The flywheel submits straight from `unmatched`; a win then read
+    `unmatched -> matched`, which the state machine refuses one hop at a
+    time. The result must still be recorded (it was silently dropped)."""
+    conn, store = env
+    _mk_target(conn, "func_800C8738", status="unmatched", population="extracted")
+    _mk_done_job(conn, store, "permuter_search", "func_800C8738",
+                 {"target_id": "func_800C8738", "final_best_score": 0,
+                  "base_score": 715},
+                 {"best.c": b"int f(void){return 0;}\n"})
+
+    stats = farm.ingest(conn, store, StubHttp(), "t" * 64)
+
+    assert stats["harvested"] == 1
+    row = conn.execute("SELECT status,best_score FROM function_status"
+                       " WHERE target_id='func_800C8738'").fetchone()
+    assert (row["status"], row["best_score"]) == ("matched", 0)
