@@ -9,6 +9,15 @@
 /* Data symbols referenced by promoted libultra bodies. */
 extern OSThread *__osEmptyMesgQueue;   /* 0x8002C3D0 — empty mesg queue sentinel */
 
+/* Referenced by huft_alloc (inflate's window allocator). C89 makes an
+ * undeclared VARIABLE an error, so a promoted body that touches a global
+ * needs it here even though the body compiles standalone with its own m2c
+ * prelude. Types follow the body's use: a byte offset accumulated into a
+ * base. The names come from symbol_addrs and read as display-list symbols in
+ * inflate code, which is suspect — see docs/SYMBOL_MISATTRIBUTION.md. */
+extern s32 gDisplayListHead;            /* 0x800354C4 */
+extern volatile unsigned int gDisplayListSize;  /* 0x800354C8 */
+
 /* N64 MMIO registers referenced by promoted libultra bodies. IDO compiles
  * these #define'd KSEG1 addresses to literal immediates (no relocation) —
  * the same fact behind 003's KSEG1 de-symbolization. */
