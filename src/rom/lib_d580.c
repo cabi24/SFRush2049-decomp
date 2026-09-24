@@ -9,7 +9,28 @@
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_d580/__osSendInterrupt.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_d580/__osCleanupThread.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_d580/__osEnqueueThread.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_d580/__osPopThread.s")
+/* PROMOTED 2026-09-24 — __osPopThread
+ * Source:   work/auto/__osPopThread/matched.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:work/auto/__osPopThread/matched.c:__osPopThread (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+OSThread *__osPopThread(OSThread **queue)
+{
+  OSThread *temp_v0;
+  short new_var;
+  new_var = !queue;
+  if ((new_var && (!queue)) && (!queue))
+  {
+  }
+  temp_v0 = *queue;
+  *queue = temp_v0->next;
+  return temp_v0;
+  if (new_var)
+  {
+  }
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_d580/__osDispatchThread.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_d580/__osExceptionPanic.s")
 /* PROMOTED 2026-07-15 — bzero_alt
