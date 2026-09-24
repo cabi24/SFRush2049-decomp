@@ -44,8 +44,11 @@ def test_check_refuses_a_body_whose_source_drifted(tmp_path, monkeypatch):
                                        ("gone", "source missing")]
 
 
-def test_generated_region_omits_a_spliced_function(tmp_path):
-    """Its object provides the section; two definitions would not link."""
+def test_a_spliced_function_contributes_its_compiled_bytes(tmp_path):
+    """Spliced C supplies bytes, not a section: IDO pads .text to 16 bytes,
+    so linking its object into the image would overwrite the next function."""
+    import struct
+
     from tools.conveyor.pipeline import blob_tu
 
     region = {"name": "r", "vaddr_start": 0x80086A50, "vaddr_end": 0x80086A60,
@@ -53,14 +56,19 @@ def test_generated_region_omits_a_spliced_function(tmp_path):
                   {"kind": "function", "vaddr": 0x80086A50, "size": 8,
                    "target_id": "kept"},
                   {"kind": "function", "vaddr": 0x80086A58, "size": 8,
-                   "target_id": "gone"}]}
-    image = bytes(16)
+                   "target_id": "compiled"}]}
+    image = struct.pack(">IIII", 0x11111111, 0x22222222, 0x33333333, 0x44444444)
+    body = struct.pack(">II", 0xAAAABBBB, 0xCCCCDDDD)
 
-    text = blob_tu.render_region(region, image, "image.bin", spliced={"gone"})
+    text = blob_tu.render_region(region, image, "image.bin",
+                                 spliced={"compiled": body})
 
-    assert ".section .text.kept" in text
-    assert ".section .text.gone" not in text
-    assert "gone: spliced" in text          # the omission is explained in place
+    assert "    .word 0x11111111" in text          # untouched neighbour
+    assert "    .word 0xAAAABBBB" in text          # compiled body
+    assert "    .word 0x33333333" not in text      # its image words replaced
+    assert "compiled from src/blob/compiled.c" in text
+    # both functions still define their symbols at their own addresses
+    assert text.index(".section .text.kept") < text.index(".section .text.compiled")
 
 
 def test_coverage_counts_only_spliced_functions_and_states_the_caveat(tmp_path, capsys):
