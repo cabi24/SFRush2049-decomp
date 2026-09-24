@@ -303,6 +303,40 @@ re-scoring remains an explicit `autodecomp seed` operation; the flywheel does
 not override evidence, and extracted targets remain behind the promotion
 firewall.
 
+### Reloc-aware extracted targets (2026-09-24)
+
+```bash
+python3 -m tools.conveyor.pipeline.targets --relocate-extracted
+```
+
+Extracted target objects used to be assembled raw-word, with absolute
+addresses baked into the instruction words. A compiled candidate emits a
+relocation with a zeroed field instead, so **every call and every global
+reference read as a permanent mismatch** — any extracted function that
+referenced anything could not score 0 no matter how correct its C. The only
+two that ever did were the only two referencing nothing. Rescoring the 104
+targets with stored results against reloc-aware objects turned 2 matches
+into 17. Evidence:
+`specs/007-population-closure/research/reloc-scoring-finding.md`.
+
+Targets are now assembled from their own derived asm (which already
+symbolizes `jal`/`%hi`/`%lo`) behind feature 003's round-trip gate: masked
+at the new object's relocation sites, the words must equal the ROM's. A
+failure keeps the raw-word object. Live: **891 of 912** gate-passed targets
+are `reloc_aware`; the rest are 8 word-mismatches and 13 length-mismatches,
+left raw-word and reported. The pass is idempotent and supersedes evidence
+when an object changes — the first run purged 61,848 stale matrix scores,
+all of them measured against unreachable targets.
+
+Two derivation details this depends on: m2c's synthetic `lui` re-emissions
+are dropped (the real instruction is the last in each `.L` label block), and
+`c1_fcsr` is renumbered to `$31`, which objdump prints by name and GNU as
+refuses.
+
+**After running it, clear queued searches.** Job bundles embed the target
+object, so anything already queued would still be scored against the old
+one; delete those work units and let the flywheel re-submit.
+
 ### Triage before commitment (2026-09-23)
 
 One node runs searches serially, so the flywheel spends node-days, not

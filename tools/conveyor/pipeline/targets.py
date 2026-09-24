@@ -389,6 +389,152 @@ def gate_target(rom_words, new_o):
     return _gate_decide([int(w, 16) for w in rom_words], new_words, sites)
 
 
+# --- reloc-aware EXTRACTED targets (2026-09-24) ------------------------------
+# A raw-word target bakes absolute addresses into its words: a call reads
+# `0C0296CF`, a global read carries its real %hi/%lo immediates. No compiled
+# candidate can reproduce that — the assembler emits a relocation with a zeroed
+# field — so every call and every global reference counted as a permanent
+# mismatch and any extracted function that referenced anything was incapable of
+# scoring 0. (The only two that ever did were the two that reference nothing.)
+# Evidence: specs/007-population-closure/research/reloc-scoring-finding.md.
+#
+# The derived asm already symbolizes jal/%hi/%lo, so assembling THAT gives a
+# target carrying real relocations against the same names the candidate's
+# declarations use. It is written for mips_to_c, though, and re-emits synthetic
+# `lui`s to fix m2c's %hi/%lo binding; those are not ROM instructions and must
+# be dropped or the target gains words the ROM never had.
+
+_DERIVED_LABEL_RE = re.compile(r"^\.L[0-9A-Fa-f]+:$")
+# objdump prints the FP control register by name; GNU as only accepts the
+# number, so `cfc1 $t6,c1_fcsr` is rejected outright (30 targets).
+_AS_SPELLING = ((r"\bc1_fcsr\b", "$31"), (r"\bc1_fir\b", "$0"))
+
+
+def target_asm_from_derived(derived_text, target_id):
+    """Assembler source for a reloc-aware extracted target.
+
+    normalize_objdump emits, per instruction: its `.L<vaddr>:` label, then any
+    synthetic instructions, then the real one. So the last instruction in each
+    label block is the ROM instruction and the rest are m2c scaffolding. Labels
+    are kept — branches reference them."""
+    lines = [".set noreorder", ".set noat", ".section .text",
+             f".globl {target_id}", f"{target_id}:"]
+    block = []
+
+    def flush():
+        if block:
+            lines.append(block[-1])      # the real instruction; drop synthetics
+            block.clear()
+
+    for line in derived_text.splitlines():
+        stripped = line.strip()
+        if line.startswith("glabel "):
+            continue
+        if _DERIVED_LABEL_RE.match(stripped):
+            flush()
+            lines.append(stripped)
+        elif line.startswith("    ") and stripped:
+            for pattern, replacement in _AS_SPELLING:
+                line = re.sub(pattern, replacement, line)
+            block.append(line)
+    flush()
+    return "\n".join(lines) + "\n"
+
+
+def assemble_text(asm_text, out_o):
+    """Assemble prepared source, raising AssembleError like assemble_region."""
+    with tempfile.NamedTemporaryFile("w", suffix=".s", delete=False) as handle:
+        handle.write(asm_text)
+        src = handle.name
+    try:
+        proc = subprocess.run(
+            ["mips-linux-gnu-as", "-march=vr4300", "-mabi=32", "-o", str(out_o), src],
+            capture_output=True, text=True,
+        )
+    finally:
+        os.unlink(src)
+    if proc.returncode != 0:
+        detail = "assembler failed"
+        for line in (proc.stderr or "").splitlines():
+            if ": Error:" in line:
+                detail = line.split(".s:", 1)[-1].strip() if ".s:" in line else line.strip()
+                break
+        raise AssembleError(detail)
+
+
+def relocate_extracted(conn, store, limit=None, context_sha=None):
+    """Upgrade extracted targets from raw-word to reloc-aware objects.
+
+    Each target is assembled from its derived asm and must pass the same
+    round-trip gate feature 003 uses for static targets: masked at the new
+    object's own relocation sites, its words must equal the ROM's. A failure
+    keeps the existing raw-word object and records why. Objects that change
+    supersede their evidence, exactly as re-extraction does."""
+    from ..coordinator import db as dbmod
+    from . import disasm as disasmmod
+
+    rows = conn.execute(
+        "SELECT target_id, address, insn_count, target_o_sha, tier, gate_reason"
+        " FROM n64_target WHERE population='extracted' AND address IS NOT NULL"
+        " AND insn_count IS NOT NULL ORDER BY address"
+    ).fetchall()
+    summary = Counter()
+    reasons = Counter()
+    superseded_targets = purged_rows = 0
+    with tempfile.TemporaryDirectory() as tmp:
+        out_o = Path(tmp) / "target.o"
+        for row in rows:
+            reason = row["gate_reason"] or ""
+            if reason.startswith("extent_conflict") or reason.startswith("scan_overrun"):
+                summary["skipped_gate"] += 1
+                continue
+            if limit and summary["attempted"] >= limit:
+                break
+            summary["attempted"] += 1
+            target_id = row["target_id"]
+            try:
+                asm_path = disasmmod.derive(conn, target_id, context_sha=context_sha)
+            except Exception as exc:
+                summary["no_disasm"] += 1
+                reasons[f"no_disasm: {type(exc).__name__}"] += 1
+                continue
+            try:
+                assemble_text(target_asm_from_derived(
+                    asm_path.read_text(errors="replace"), target_id), out_o)
+            except AssembleError as exc:
+                summary["assemble_error"] += 1
+                reasons[f"assemble_error: {exc}"] += 1
+                continue
+            rom_words = function_words(row["address"], row["insn_count"] * 4)
+            ok, why = gate_target(rom_words, out_o)
+            if not ok:
+                summary["gate_failed"] += 1
+                reasons[why.split("@")[0]] += 1
+                continue
+            o_sha = store.put_file(out_o)
+            summary["reloc_aware"] += 1
+            if o_sha == row["target_o_sha"] and row["tier"] == "reloc_aware":
+                summary["unchanged"] += 1
+                continue
+            with dbmod.tx(conn):
+                changed, purged = _supersede_target(
+                    conn, target_id, row["target_o_sha"], o_sha)
+                if changed:
+                    superseded_targets += 1
+                    purged_rows += purged
+                conn.execute(
+                    "UPDATE n64_target SET target_o_sha=?, tier='reloc_aware'"
+                    " WHERE target_id=?", (o_sha, target_id))
+                conn.execute(
+                    "INSERT OR IGNORE INTO blob (sha256, kind, size_bytes, created_at)"
+                    " VALUES (?, 'target', ?, strftime('%Y-%m-%dT%H:%M:%fZ','now'))",
+                    (o_sha, store.size(o_sha) or 0))
+            summary["upgraded"] += 1
+    summary["superseded_targets"] = superseded_targets
+    summary["purged_evidence_rows"] = purged_rows
+    return dict(summary), dict(reasons)
+
+
 def _fallback_category(reason):
     """Coarse bucket of a gate_reason for the coverage histogram."""
     if reason is None:
@@ -649,9 +795,20 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data", default=str(Path("~/.conveyor").expanduser()))
     parser.add_argument("--limit", type=int, default=None)
+    parser.add_argument("--relocate-extracted", action="store_true",
+                        help="upgrade extracted targets from raw-word to "
+                             "reloc-aware objects (assembled from derived asm, "
+                             "behind the 003 round-trip gate)")
     args = parser.parse_args()
     conn = dbmod.connect(Path(args.data) / "conveyor.db")
     store = BlobStore(Path(args.data) / "blobs")
+    if args.relocate_extracted:
+        summary, reasons = relocate_extracted(conn, store, limit=args.limit)
+        print("extracted targets: "
+              + "  ".join(f"{k}={v}" for k, v in sorted(summary.items())))
+        for reason, count in sorted(reasons.items(), key=lambda kv: -kv[1])[:8]:
+            print(f"  {count:5d}  {reason}")
+        return
     summary = populate(conn, store, limit=args.limit)
     print(f"targets: {summary['built']} built, {summary['skipped']} skipped, "
           f"{summary['total']} in inventory")
