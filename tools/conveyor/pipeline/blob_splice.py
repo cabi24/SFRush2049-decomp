@@ -373,8 +373,8 @@ def coverage(document=None, lockfile=LOCKFILE):
 def _print_coverage(stats):
     print(f"image coverage: {stats['functions']}/{stats['total_functions']} functions, "
           f"{stats['bytes']}/{stats['image_size']} bytes ({stats['percent']:.2f}%)")
-    print("  NOTE: image coverage is not cartridge coverage — the ROM still "
-          "embeds the original compressed stream (stage 2 is unbuilt).")
+    print("  the ROM's game-code blob is compressed from this image "
+          "(pipeline.blob_rom), so spliced functions are cartridge coverage.")
 
 
 def main():

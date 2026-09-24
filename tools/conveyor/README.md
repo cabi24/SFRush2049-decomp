@@ -495,6 +495,41 @@ Coverage is reported separately from cartridge coverage and says so
 (`make progress`). Nothing here promotes into the ROM; the 005 firewall is
 untouched.
 
+## Game-code blob into the cartridge (009, stage 2)
+
+The cartridge's compressed game-code blob is now **built from sources**. The
+ROM build composes its `data` segment around `build/blob/game_code.deflate`,
+so every function spliced into the game-code image (008) is cartridge
+coverage, gated by the full-ROM SHA-1.
+
+```bash
+python3 -m tools.conveyor.pipeline.blob_rom produce      # Pi: image -> blob, pre-flight
+python3 -m tools.conveyor.pipeline.blob_rom rom          # + sync + builder ROM build + make test
+python3 -m tools.conveyor.pipeline.blob_rom rom --drill  # also prove the gate bites
+python3 -m tools.conveyor.pipeline.blob_rom coverage     # what `make progress` prints
+```
+
+- **Compressor:** vendored zlib 1.0.4, deflate half only
+  (`tools/zlib-1.0.4/`, see its `PROVENANCE.md`), driven by
+  `tools/deflate104` with the cartridge's exact parameters — level 9,
+  windowBits −15, memLevel 8, default strategy. Every later zlib is 140 bytes
+  long. It is a 1996 release with known CVEs: a build-time oracle for our own
+  image, never for untrusted input.
+- **What gets compressed** is the image *linked from sources*, never
+  `build/game_code.bin` — compressing the extracted image would make the
+  pipeline decorative.
+- **No fallback.** `data.o` depends on `GAME_BLOB` and no rule makes it, so a
+  missing blob stops the build (`No rule to make target
+  'build/blob/game_code.deflate'`). `tools/compose_data.py` never reads the
+  original slot bytes and refuses any blob that is not exactly 326,180 bytes.
+- **Where it runs:** the image needs the layout map and cached spliced
+  objects, which live on the Pi, so `produce` runs there and `rom` rsyncs the
+  blob, the Makefile and `compose_data.py` to the builder before `make`.
+- **Drilled:** flipping one bit of the blob makes `make test` fail with `ROM
+  does NOT match` — a hash mismatch, not a build error — and restoring it
+  passes again. The drill checks for that message specifically, because a
+  broken build also "fails" and would prove nothing.
+
 ## Known V1 limitations
 
 - `verify_promote` still lands matched source in `work/<...>/<fn>/matched.c`

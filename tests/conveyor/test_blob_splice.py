@@ -71,7 +71,7 @@ def test_a_spliced_function_contributes_its_compiled_bytes(tmp_path):
     assert text.index(".section .text.kept") < text.index(".section .text.compiled")
 
 
-def test_coverage_counts_only_spliced_functions_and_states_the_caveat(tmp_path, capsys):
+def test_coverage_counts_only_spliced_functions_and_names_the_rom_path(tmp_path, capsys):
     document = {
         "image": {"size": 1000},
         "totals": {"functions": 3},
@@ -91,4 +91,6 @@ def test_coverage_counts_only_spliced_functions_and_states_the_caveat(tmp_path, 
     assert stats["bytes"] == 40 and stats["percent"] == pytest.approx(4.0)
     blob_splice._print_coverage(stats)
     out = capsys.readouterr().out
-    assert "image coverage is not cartridge coverage" in out
+    # Since 009 the ROM's blob is compressed from this image, so the output
+    # says how the functions reach the cartridge instead of disclaiming it.
+    assert "cartridge coverage" in out and "blob_rom" in out

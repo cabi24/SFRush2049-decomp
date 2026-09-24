@@ -598,23 +598,23 @@ in `include/game_types.h` / `GAME_SYMBOLS`, which win. Sequence: closure →
 datasyms → protos → histogram. Details: 007 section of
 `tools/conveyor/README.md`, actuals in `specs/007-population-closure/quickstart.md`.
 
-### Game-code image rebuild (feature 008 — 2026-09-24)
+### Game code in the cartridge (features 008 + 009 — 2026-09-24)
 
-`make progress` now reports **two** coverage numbers and they mean different
-things. Cartridge coverage (19/230 functions) is gated by the ROM SHA-1.
-**Image coverage** (56/912 functions, 0.64% of 647,072 bytes) is gated by the
-decompressed game-code image matching `build/game_code.bin` byte for byte —
-the cartridge still embeds the original compressed stream, so image coverage
-is NOT cartridge coverage. Never quote it as if it were.
+The game code is a raw DEFLATE blob at ROM 0xB0CB10 (326,180 bytes) that
+inflates to a 647,072-byte image at 0x80086A50. **008** links that image from
+sources behind a byte-identity gate; **009** compresses the linked image with
+vendored **zlib 1.0.4** (level 9, windowBits −15, memLevel 8 — every later
+zlib is 140 bytes long) and composes it into the ROM's data segment, so
+spliced game functions ARE cartridge coverage under the full-ROM SHA-1.
+`make progress` reports static and game code separately under one cartridge
+heading (never merge the denominators).
 
-Pipeline: `blob_layout derive` → `blob_tu generate` → `blob_build build` →
-`blob_splice splice --all-matched`. Details and the six traps found while
-building it: the 008 section of `tools/conveyor/README.md` and
-`specs/008-blob-image-rebuild/quickstart.md`.
-
-Stage 2 (reproducing the DEFLATE stream so the cartridge itself rebuilds) is
-unbuilt. The stream is raw DEFLATE, 326,180 bytes at ROM 0xB0CB10; stock zlib
--9 gets within 140 bytes but shares no bitstream.
+Pipeline: `blob_layout derive` → `blob_tu generate` → `blob_splice splice
+--all-matched` → `blob_rom rom`. The ROM build now REQUIRES
+`build/blob/game_code.deflate` (produced on the Pi, synced to the builder by
+`blob_rom rom`) — no fallback to the extracted bytes, by design. zlib 1.0.4
+has known CVEs: build-time oracle only, deflate half only. Details: 008/009
+sections of `tools/conveyor/README.md`.
 
 ## Active Technologies
 - Python 3.9+ (Pi 5 orchestrator and nodes; no syntax above 3.9 so stock distro Pythons work) + Python stdlib only for coordinator and node agent (`http.server`, `sqlite3`, `tarfile`, `hashlib`, `json`, `urllib`). On compute nodes: decomp-permuter (vendored in repo, used as library), IDO via ido-static-recomp (shipped in toolkit bundle), mips binutils `objdump` (shipped in toolkit bundle). `pycparser` (already a permuter dependency) for arcade function extraction. (001-matching-pipeline)

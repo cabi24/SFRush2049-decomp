@@ -239,6 +239,24 @@ endif
 # committed so it reaches the builder via git — promotion rsyncs only the TU.
 -include $(SRC_DIR)/rom/opt_overrides.mk
 
+# 009: the game-code blob is built from sources, not copied from the ROM.
+# pipeline.blob_rom links the game-code image from C + passthroughs (gated on
+# byte identity), compresses it with vendored zlib 1.0.4 at the cartridge's
+# exact parameters, and writes GAME_BLOB. The data segment is composed around
+# it: the original compressed bytes in the slot are never read. A missing blob
+# is a build failure (no rule makes it here) — there is deliberately no
+# fallback to the extracted bytes, or the gate would pass without proving
+# anything.
+GAME_BLOB      := build/blob/game_code.deflate
+GAME_BLOB_SLOT := 0xAFCB10
+GAME_BLOB_LEN  := 326180
+
+$(BUILD_DIR)/$(ASSETS_DIR)/data.o: $(ASSETS_DIR)/data.bin $(GAME_BLOB) tools/compose_data.py | $(BUILD_DIR)/$(ASSETS_DIR)
+	@echo "BIN $< + game-code blob built from sources"
+	$(V)$(PYTHON) tools/compose_data.py $< $(GAME_BLOB) $(BUILD_DIR)/$(ASSETS_DIR)/data.composed.bin \
+	    --slot $(GAME_BLOB_SLOT) --length $(GAME_BLOB_LEN)
+	$(V)$(OBJCOPY) -I binary -O elf32-big $(BUILD_DIR)/$(ASSETS_DIR)/data.composed.bin $@
+
 # Convert binary files to objects (using MIPS big-endian ELF format)
 # Use elf32-big for binary files to avoid ABI conflicts
 $(BUILD_DIR)/$(ASSETS_DIR)/%.o: $(ASSETS_DIR)/%.bin | $(BUILD_DIR)/$(ASSETS_DIR)
@@ -294,10 +312,8 @@ extract: $(BASEROM)
 
 progress:
 	@echo "=== Rush 2049 Decompilation Progress ==="
-	@echo "-- cartridge (ROM hash is the gate) --"
-	@$(PYTHON) -m tools.conveyor.pipeline.layout coverage 2>/dev/null | head -1 || true
-	@echo "-- game-code image (008; NOT in the cartridge yet) --"
-	@$(PYTHON) -m tools.conveyor.pipeline.blob_splice coverage 2>/dev/null || true
+	@echo "-- cartridge coverage (the full-ROM SHA-1 is the gate) --"
+	@$(PYTHON) -m tools.conveyor.pipeline.blob_rom coverage 2>/dev/null || true
 	@echo ""
 	@total_asm=$$(find $(ASM_DIR) -name '*.s' | wc -l); \
 	total_c=$$(find $(SRC_DIR) -name '*.c' 2>/dev/null | wc -l); \
