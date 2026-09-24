@@ -77,3 +77,10 @@ permuter/*/output-*/
 # Compiled objects in work directories
 work/**/*.o
 .pytest_cache/
+
+# 008: the blob image's passthrough asm and linker script are generated from
+# the ROM-derived image plus build/blob_layout.json in well under a second
+# (`blob_layout derive && blob_tu generate`). Spliced C bodies under
+# src/blob/*.c ARE tracked; the scaffolding around them is not.
+asm/us/blob/
+src/blob/blob.ld

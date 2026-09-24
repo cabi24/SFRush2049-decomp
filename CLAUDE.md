@@ -598,6 +598,24 @@ in `include/game_types.h` / `GAME_SYMBOLS`, which win. Sequence: closure →
 datasyms → protos → histogram. Details: 007 section of
 `tools/conveyor/README.md`, actuals in `specs/007-population-closure/quickstart.md`.
 
+### Game-code image rebuild (feature 008 — 2026-09-24)
+
+`make progress` now reports **two** coverage numbers and they mean different
+things. Cartridge coverage (19/230 functions) is gated by the ROM SHA-1.
+**Image coverage** (56/912 functions, 0.64% of 647,072 bytes) is gated by the
+decompressed game-code image matching `build/game_code.bin` byte for byte —
+the cartridge still embeds the original compressed stream, so image coverage
+is NOT cartridge coverage. Never quote it as if it were.
+
+Pipeline: `blob_layout derive` → `blob_tu generate` → `blob_build build` →
+`blob_splice splice --all-matched`. Details and the six traps found while
+building it: the 008 section of `tools/conveyor/README.md` and
+`specs/008-blob-image-rebuild/quickstart.md`.
+
+Stage 2 (reproducing the DEFLATE stream so the cartridge itself rebuilds) is
+unbuilt. The stream is raw DEFLATE, 326,180 bytes at ROM 0xB0CB10; stock zlib
+-9 gets within 140 bytes but shares no bitstream.
+
 ## Active Technologies
 - Python 3.9+ (Pi 5 orchestrator and nodes; no syntax above 3.9 so stock distro Pythons work) + Python stdlib only for coordinator and node agent (`http.server`, `sqlite3`, `tarfile`, `hashlib`, `json`, `urllib`). On compute nodes: decomp-permuter (vendored in repo, used as library), IDO via ido-static-recomp (shipped in toolkit bundle), mips binutils `objdump` (shipped in toolkit bundle). `pycparser` (already a permuter dependency) for arcade function extraction. (001-matching-pipeline)
 - SQLite (WAL mode) on the Pi for all pipeline state — single-writer, queried by CLI/report tools. Content-addressed blob store (sha256-named files on disk, served over HTTP) for bundles, toolkits, and results. (001-matching-pipeline)
