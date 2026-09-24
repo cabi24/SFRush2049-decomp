@@ -121,13 +121,12 @@ def test_ingest_records_scores_and_names_the_matches(tmp_path):
     assert again.get("cells", 0) == 0            # ingested once
 
 
-def test_failed_compiles_are_counted_not_recorded_as_a_score(tmp_path):
+def test_a_cell_without_a_target_id_is_counted_not_recorded(tmp_path):
     conn = dbmod.connect(tmp_path / "db.sqlite")
     store = BlobStore(tmp_path / "blobs")
     _target(conn, "broken", 20, "osha")
     sha = _result_blob(store, [{"candidate_id": "m2c:broken", "flagset": "-O2",
-                                "target_id": "broken", "score": None,
-                                "compile": "fail:syntax"}])
+                                "score": None, "compile": "fail:syntax"}])
     with dbmod.tx(conn):
         conn.execute(
             "INSERT INTO work_unit (job_id,job_type,manifest_sha,state,result_sha,"
@@ -138,3 +137,25 @@ def test_failed_compiles_are_counted_not_recorded_as_a_score(tmp_path):
 
     assert counts["no_score"] == 1 and zeros == []
     assert conn.execute("SELECT count(*) FROM matrix_entry").fetchone()[0] == 0
+
+
+def test_seeds_rejected_by_ido_are_recorded_not_dropped(tmp_path):
+    """The histogram's `compiled` bucket is a gcc syntax check; 96 of 519
+    seeds passed it and were rejected by the real compiler. Recording that
+    keeps the flywheel from searching a seed the node cannot build."""
+    conn = dbmod.connect(tmp_path / "db.sqlite")
+    store = BlobStore(tmp_path / "blobs")
+    _target(conn, "ido_reject", 20, "osha")
+    sha = _result_blob(store, [{"candidate_id": "m2c:ido_reject", "flagset": "-O2",
+                                "target_id": "ido_reject", "score": None,
+                                "compile": "fail:cfe: Error", "target_o_sha": "osha"}])
+    with dbmod.tx(conn):
+        conn.execute(
+            "INSERT INTO work_unit (job_id,job_type,manifest_sha,state,result_sha,"
+            " created_at,updated_at) VALUES ('j','compile_score','m','DONE',?,'n','n')",
+            (sha,))
+
+    counts, zeros = sweep.ingest(conn, store)
+
+    assert counts["compile_failed"] == 1 and zeros == []
+    assert conn.execute("SELECT score FROM matrix_entry").fetchone()[0] == sweep.COMPILE_FAILED

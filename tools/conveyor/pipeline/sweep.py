@@ -38,6 +38,10 @@ HISTOGRAM_JSON = REPO / "build" / "m2c_histogram.json"
 # work with a high hit rate, so it should clear ahead of any long search.
 SWEEP_PRIORITY = 40
 CELLS_PER_JOB = 25
+# Sentinel score for "compiled under gcc's syntax check, rejected by IDO".
+# Large enough never to be mistaken for a near miss, recorded rather than
+# dropped so the flywheel does not keep re-queueing an unbuildable seed.
+COMPILE_FAILED = 999999
 DEFAULT_FLAGSETS = ("-g0 -O2 -mips2 -G 0 -non_shared",
                     "-g0 -O1 -mips2 -G 0 -non_shared")
 
@@ -150,8 +154,25 @@ def ingest(conn, store):
                 score = cell.get("score")
                 target_id = cell.get("target_id") or (
                     cell.get("targets") or [{}])[0].get("target_id")
-                if score is None or target_id is None:
+                if target_id is None:
                     counts["no_score"] += 1
+                    continue
+                if score is None:
+                    # The seed did not compile under IDO. `matrix_entry.score`
+                    # is NOT NULL, so record the sentinel: it is real evidence
+                    # ("tried, cannot build with the real compiler") and it
+                    # keeps the flywheel from spending node-days searching a
+                    # seed the node cannot compile. The histogram's `compiled`
+                    # bucket is measured with mips-linux-gnu-gcc, not IDO, and
+                    # 96 of 519 seeds differ on exactly that.
+                    counts["compile_failed"] += 1
+                    conn.execute(
+                        "INSERT OR REPLACE INTO matrix_entry (target_id,candidate_id,"
+                        " flagset,toolkit_sha,score,target_o_sha)"
+                        " VALUES (?,?,?,?,?,?)",
+                        (target_id, cell["candidate_id"], cell.get("flagset", ""),
+                         result.get("toolkit_sha", ""), COMPILE_FAILED,
+                         cell.get("target_o_sha")))
                     continue
                 conn.execute(
                     "INSERT OR REPLACE INTO matrix_entry (target_id,candidate_id,"
@@ -175,8 +196,11 @@ def report(conn):
         "SELECT m.target_id, min(m.score) best, t.population FROM matrix_entry m"
         " JOIN n64_target t USING (target_id) WHERE m.candidate_id LIKE 'm2c:%'"
         " GROUP BY m.target_id ORDER BY best").fetchall()
+    failed = [r for r in rows if r["best"] >= COMPILE_FAILED]
+    rows = [r for r in rows if r["best"] < COMPILE_FAILED]
     zeros = [r for r in rows if r["best"] == 0]
-    print(f"sweep evidence: {len(rows)} targets scored, {len(zeros)} byte-identical")
+    print(f"sweep evidence: {len(rows)} targets scored, {len(zeros)} byte-identical"
+          + (f", {len(failed)} rejected by IDO" if failed else ""))
     for r in zeros:
         print(f"   MATCH  {r['target_id']} ({r['population']})")
     near = [r for r in rows if 0 < r["best"] <= 30][:15]
