@@ -294,7 +294,10 @@ extract: $(BASEROM)
 
 progress:
 	@echo "=== Rush 2049 Decompilation Progress ==="
+	@echo "-- cartridge (ROM hash is the gate) --"
 	@$(PYTHON) -m tools.conveyor.pipeline.layout coverage 2>/dev/null | head -1 || true
+	@echo "-- game-code image (008; NOT in the cartridge yet) --"
+	@$(PYTHON) -m tools.conveyor.pipeline.blob_splice coverage 2>/dev/null || true
 	@echo ""
 	@total_asm=$$(find $(ASM_DIR) -name '*.s' | wc -l); \
 	total_c=$$(find $(SRC_DIR) -name '*.c' 2>/dev/null | wc -l); \

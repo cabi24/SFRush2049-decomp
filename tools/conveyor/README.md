@@ -422,6 +422,46 @@ python3 -m tools.conveyor.pipeline.autodecomp clusters --population extracted --
 Order matters: closure → datasyms → protos (twice, byte-stable) → histogram.
 The histogram's denominator reflects the enlarged population automatically.
 
+## Game-code image rebuild (008, stage 1)
+
+The game code is not in the cartridge as code: it is a raw DEFLATE stream at
+ROM `0xB0CB10` that inflates at boot to `0x80086A50`. Matched game functions
+were therefore unlinkable and uncounted. Stage 1 links the 647,072-byte
+**image** from sources; reproducing the compressed stream is stage 2 and is
+not built (stock zlib `-9` lands within 140 bytes of the original's 326,180
+but shares no bitstream, so the encoder is zlib-like and unidentified).
+
+```bash
+python3 -m tools.conveyor.pipeline.blob_layout derive     # build/blob_layout.json
+python3 -m tools.conveyor.pipeline.blob_tu generate       # asm/us/blob/*.s + src/blob/blob.ld
+python3 -m tools.conveyor.pipeline.blob_build build       # the gate
+python3 -m tools.conveyor.pipeline.blob_splice splice --all-matched
+python3 -m tools.conveyor.pipeline.blob_splice coverage|check|revert <target>
+```
+
+Everything except the IDO compile runs on the Pi. The map describes the image
+as an ordered, complete list of entries — 912 gate-passed functions (79.5%)
+and 214 opaque runs (20.5%, mostly the 85 KB data tail). Overlaps and
+coverage holes are hard errors: either would corrupt the image silently.
+
+**The gate**: the linked image must equal `build/game_code.bin` byte for
+byte. A failure names the first differing offset, its vram, and the region
+and function that own it. Drilled on purpose (SC-003) before being trusted,
+because 004's ROM hash gate had been vacuous for months.
+
+**Spliced C contributes bytes, not sections.** IDO pads `.text` to 16 bytes,
+so a 72-byte function occupies 80 in its object and the padding overwrites
+its neighbour; truncating the section loses its relocations. Each function is
+linked ALONE at its image address — where `PROVIDE` resolves its data globals
+(inside opaque runs), its calls out to the cartridge, and its sibling game
+functions, 4,346 symbols in all — and the extent decides how many bytes it
+contributes. Splice at the flagset the sweep recorded as scoring 0, not the
+default: a body matches under one optimization level and not the other.
+
+Coverage is reported separately from cartridge coverage and says so
+(`make progress`). Nothing here promotes into the ROM; the 005 firewall is
+untouched.
+
 ## Known V1 limitations
 
 - `verify_promote` still lands matched source in `work/<...>/<fn>/matched.c`

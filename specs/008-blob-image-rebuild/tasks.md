@@ -11,20 +11,20 @@
 
 ## Phase 1: Map
 
-- [ ] T001 Preflight: verify `build/game_code.bin` reproduces from the ROM
+- [x] T001 Preflight: verify `build/game_code.bin` reproduces from the ROM
       (`tools/extract_game_code.py`) and record its sha256; confirm the raw
       DEFLATE stream at `0xB0CB10` (326,180 bytes) inflates to it exactly.
       Correct CLAUDE.md's image end (`0x80124AF0` → `0x801249F0`).
 
-- [ ] T002 [P] Tests first in `tests/conveyor/test_blob_layout.py`: complete
+- [x] T002 [P] Tests first in `tests/conveyor/test_blob_layout.py`: complete
       coverage (every byte in exactly one region), `extent_conflict` rows
       excluded, opaque runs identified, deterministic output across two runs,
       region splitting at large gaps, per-TU flagset carried.
 
-- [ ] T003 Implement `pipeline/blob_layout.py` (`derive`, `report`) emitting
+- [x] T003 Implement `pipeline/blob_layout.py` (`derive`, `report`) emitting
       `build/blob_layout.json`. Make T002 pass.
 
-- [ ] T004 Live derive ×2 on the Pi; record actuals in `quickstart.md` §1
+- [x] T004 Live derive ×2 on the Pi; record actuals in `quickstart.md` §1
       (region count, functions per region, opaque bytes, determinism).
 
 **Checkpoint**: the image is fully described and the description is stable.
@@ -33,22 +33,22 @@
 
 ## Phase 2: Translation units
 
-- [ ] T005 [P] Tests first in `tests/conveyor/test_blob_tu.py`: a generated TU
+- [x] T005 [P] Tests first in `tests/conveyor/test_blob_tu.py`: a generated TU
       is all-passthrough, `.incbin` slices name the right offsets and lengths,
       the linker script places `0x80086A50`, regeneration is byte-identical,
       and a TU never contains a function marked `extent_conflict`.
 
-- [ ] T006 Implement `pipeline/blob_tu.py` (`generate`) writing `src/blob/
+- [x] T006 Implement `pipeline/blob_tu.py` (`generate`) writing `src/blob/
       blob_<vaddr>.c`, `src/blob/blob.ld` and a Makefile fragment. Make T005
       pass.
 
-- [ ] T007 Implement `pipeline/blob_build.py` (`build`): rsync the TU set to
+- [x] T007 Implement `pipeline/blob_build.py` (`build`): rsync the TU set to
       the builder, compile with IDO + asm-processor, link, `objcopy` the
       loaded range, compare sha256 against `build/game_code.bin`. Refuse on
       any difference, naming the first differing offset plus the region and
       function that own it (FR-010).
 
-- [ ] T008 **Gate (SC-001)**: all-passthrough build on the builder produces a
+- [x] T008 **Gate (SC-001)**: all-passthrough build on the builder produces a
       byte-identical image. Record the actuals; if it fails, report the first
       differing offset and stop — do not hand-patch the TUs to force a pass.
 
@@ -58,19 +58,19 @@
 
 ## Phase 3: Splice
 
-- [ ] T009 [P] Tests first in `tests/conveyor/test_blob_splice.py`: splice
+- [x] T009 [P] Tests first in `tests/conveyor/test_blob_splice.py`: splice
       replaces exactly one passthrough, rollback leaves no partial edit, the
       provenance lock records target/score/flagset/toolkit/source-hash, and a
       body whose source hash drifts is refused.
 
-- [ ] T010 Implement splice/revert in `blob_build.py` (`splice <target>
+- [x] T010 Implement splice/revert in `blob_build.py` (`splice <target>
       --from <path>`, `revert <target>`), gated on image hash, committing only
       on success, writing `blob_matched.lock.json`. Make T009 pass.
 
-- [ ] T011 Splice one matched function end to end; verify image hash unchanged
+- [x] T011 Splice one matched function end to end; verify image hash unchanged
       and coverage +1. Then `splice --all-matched`.
 
-- [ ] T012 **Gate (SC-002, SC-005)**: ≥50 of the 76 matched functions spliced
+- [x] T012 **Gate (SC-002, SC-005)**: ≥50 of the 76 matched functions spliced
       with a byte-identical image; each refusal reported with its reason
       (extent conflict, unresolved data reference, flagset mismatch). Revert
       one and confirm the prior hash returns.
@@ -81,21 +81,21 @@
 
 ## Phase 4: Drill, report, document
 
-- [ ] T013 **Gate (SC-003) — corruption drill**: alter one instruction in a
+- [x] T013 **Gate (SC-003) — corruption drill**: alter one instruction in a
       spliced body, confirm the build fails and names the offset, restore.
       The 004 drill found a hash gate that had been vacuous for months; this
       gate is not trusted until it has failed on purpose.
 
-- [ ] T014 Coverage reporting (FR-008, SC-004): image coverage (functions and
+- [x] T014 Coverage reporting (FR-008, SC-004): image coverage (functions and
       bytes of 647,072) reported separately from ROM coverage, with the
       cartridge caveat in the output. Wire into `make progress`.
 
-- [ ] T015 [P] Ops docs: 008 section in `tools/conveyor/README.md` (derive →
+- [x] T015 [P] Ops docs: 008 section in `tools/conveyor/README.md` (derive →
       generate → build → splice, builder requirements, what the gate proves
       and what it does not), plus a CLAUDE.md note that image coverage is not
       cartridge coverage.
 
-- [ ] T016 Full local suite green; quickstart actuals complete; close-out
+- [x] T016 Full local suite green; quickstart actuals complete; close-out
       scorecard naming any SC not met, in the 006/007 format. Update the wiki
       status page.
 
