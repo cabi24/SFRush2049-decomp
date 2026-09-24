@@ -72,7 +72,7 @@ SECTIONS
     {
         FILL(0x00000000);
         main_TEXT_START = .;
-        build/us/asm/us/1050.o(.text);
+        build/us/src/rom/lib_1050.o(.text);
         build/us/asm/us/21F0.o(.text);
         build/us/asm/us/2CF0.o(.text);
         build/us/asm/us/3140.o(.text);
@@ -80,7 +80,7 @@ SECTIONS
         build/us/asm/us/3390.o(.text);
         build/us/asm/us/34A0.o(.text);
         build/us/asm/us/55F0.o(.text);
-        build/us/asm/us/5610.o(.text);
+        build/us/src/rom/lib_5610.o(.text);
         build/us/src/rom/lib_7600.o(.text);
         build/us/asm/us/7630.o(.text);
         build/us/asm/us/7940.o(.text);
@@ -106,7 +106,7 @@ SECTIONS
         build/us/asm/us/90E0.o(.text);
         build/us/asm/us/9190.o(.text);
         build/us/asm/us/9230.o(.text);
-        build/us/asm/us/92F0.o(.text);
+        build/us/src/rom/lib_92f0.o(.text);
         build/us/asm/us/9330.o(.text);
         build/us/asm/us/9660.o(.text);
         build/us/asm/us/9820.o(.text);
@@ -162,7 +162,7 @@ SECTIONS
         main_TEXT_END = .;
         main_TEXT_SIZE = ABSOLUTE(main_TEXT_END - main_TEXT_START);
         main_DATA_START = .;
-        build/us/asm/us/1050.o(.data);
+        build/us/src/rom/lib_1050.o(.data);
         build/us/asm/us/21F0.o(.data);
         build/us/asm/us/2CF0.o(.data);
         build/us/asm/us/3140.o(.data);
@@ -170,7 +170,7 @@ SECTIONS
         build/us/asm/us/3390.o(.data);
         build/us/asm/us/34A0.o(.data);
         build/us/asm/us/55F0.o(.data);
-        build/us/asm/us/5610.o(.data);
+        build/us/src/rom/lib_5610.o(.data);
         build/us/src/rom/lib_7600.o(.data);
         build/us/asm/us/7630.o(.data);
         build/us/asm/us/7940.o(.data);
@@ -196,7 +196,7 @@ SECTIONS
         build/us/asm/us/90E0.o(.data);
         build/us/asm/us/9190.o(.data);
         build/us/asm/us/9230.o(.data);
-        build/us/asm/us/92F0.o(.data);
+        build/us/src/rom/lib_92f0.o(.data);
         build/us/asm/us/9330.o(.data);
         build/us/asm/us/9660.o(.data);
         build/us/asm/us/9820.o(.data);
@@ -252,7 +252,7 @@ SECTIONS
         main_DATA_END = .;
         main_DATA_SIZE = ABSOLUTE(main_DATA_END - main_DATA_START);
         main_RODATA_START = .;
-        build/us/asm/us/1050.o(.rodata);
+        build/us/src/rom/lib_1050.o(.rodata);
         build/us/asm/us/21F0.o(.rodata);
         build/us/asm/us/2CF0.o(.rodata);
         build/us/asm/us/3140.o(.rodata);
@@ -260,7 +260,7 @@ SECTIONS
         build/us/asm/us/3390.o(.rodata);
         build/us/asm/us/34A0.o(.rodata);
         build/us/asm/us/55F0.o(.rodata);
-        build/us/asm/us/5610.o(.rodata);
+        build/us/src/rom/lib_5610.o(.rodata);
         build/us/src/rom/lib_7600.o(.rodata);
         build/us/asm/us/7630.o(.rodata);
         build/us/asm/us/7940.o(.rodata);
@@ -286,7 +286,7 @@ SECTIONS
         build/us/asm/us/90E0.o(.rodata);
         build/us/asm/us/9190.o(.rodata);
         build/us/asm/us/9230.o(.rodata);
-        build/us/asm/us/92F0.o(.rodata);
+        build/us/src/rom/lib_92f0.o(.rodata);
         build/us/asm/us/9330.o(.rodata);
         build/us/asm/us/9660.o(.rodata);
         build/us/asm/us/9820.o(.rodata);
@@ -347,7 +347,7 @@ SECTIONS
     {
         FILL(0x00000000);
         main_BSS_START = .;
-        build/us/asm/us/1050.o(.bss);
+        build/us/src/rom/lib_1050.o(.bss);
         build/us/asm/us/21F0.o(.bss);
         build/us/asm/us/2CF0.o(.bss);
         build/us/asm/us/3140.o(.bss);
@@ -355,7 +355,7 @@ SECTIONS
         build/us/asm/us/3390.o(.bss);
         build/us/asm/us/34A0.o(.bss);
         build/us/asm/us/55F0.o(.bss);
-        build/us/asm/us/5610.o(.bss);
+        build/us/src/rom/lib_5610.o(.bss);
         build/us/src/rom/lib_7600.o(.bss);
         build/us/asm/us/7630.o(.bss);
         build/us/asm/us/7940.o(.bss);
@@ -381,7 +381,7 @@ SECTIONS
         build/us/asm/us/90E0.o(.bss);
         build/us/asm/us/9190.o(.bss);
         build/us/asm/us/9230.o(.bss);
-        build/us/asm/us/92F0.o(.bss);
+        build/us/src/rom/lib_92f0.o(.bss);
         build/us/asm/us/9330.o(.bss);
         build/us/asm/us/9660.o(.bss);
         build/us/asm/us/9820.o(.bss);
