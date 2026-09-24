@@ -25,4 +25,16 @@
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050/viAddTicks.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050/viGetTimeToDeadline.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050/viDeadlinePassed.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050/viStub.s")
+/* PROMOTED 2026-09-24 — viStub
+ * Source:   work/auto/viStub/matched.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:work/auto/viStub/matched.c:viStub (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void viStub(void)
+{
+  int new_var2;
+  unsigned short new_var;
+ new_var2 = 1; new_var2 = 0; new_var = new_var2; if (new_var & (0xFFFF ^ new_var2)) { } if (new_var) { } if (new_var) { } if (new_var) { }
+}
+

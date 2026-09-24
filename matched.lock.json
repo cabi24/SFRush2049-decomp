@@ -7,6 +7,14 @@
     "verified": "score0",
     "verified_at": "2026-07-08"
   },
+  "src/rom/lib_1050.c:viStub": {
+    "body_sha256": "3bb1444602b811a27b01288e45830fafc6386a86e9424f19a9e44d84409eeab1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "viStub",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-09-24"
+  },
   "src/rom/lib_7600.c:osCreateMesgQueue": {
     "body_sha256": "da4a0a5993c5440ea889075e93bf519da6ab6a272ca04f9fc3aabfae99b34883",
     "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
@@ -195,14 +203,6 @@
     "body_sha256": "e29fdc3172e7e8ea8481b4fd260f11149bdc9c5c481758f0d8eabb3354a36ca7",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "osWritebackDCache_full",
-    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
-    "verified": "score0",
-    "verified_at": "2026-09-23"
-  },
-  "work/auto/viStub/matched.c:viStub": {
-    "body_sha256": "3bb1444602b811a27b01288e45830fafc6386a86e9424f19a9e44d84409eeab1",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "viStub",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "score0",
     "verified_at": "2026-09-23"
