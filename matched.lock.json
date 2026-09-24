@@ -15,6 +15,14 @@
     "verified": "rom-sha1",
     "verified_at": "2026-09-24"
   },
+  "src/rom/lib_5610.c:huft_alloc": {
+    "body_sha256": "60ab99564fcb0ab1630f6f17786cb909a38de6e58bff776ed1b5895715c27ab3",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "huft_alloc",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-09-24"
+  },
   "src/rom/lib_7600.c:osCreateMesgQueue": {
     "body_sha256": "da4a0a5993c5440ea889075e93bf519da6ab6a272ca04f9fc3aabfae99b34883",
     "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
@@ -198,13 +206,5 @@
     "toolkit_sha": "1e21f523122ef9217aa757221c63a3cd1845965b841fcfe26ed53c51ecc79b01",
     "verified": "score0",
     "verified_at": "2026-07-14"
-  },
-  "work/auto/huft_alloc/matched.c:huft_alloc": {
-    "body_sha256": "60ab99564fcb0ab1630f6f17786cb909a38de6e58bff776ed1b5895715c27ab3",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "huft_alloc",
-    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
-    "verified": "score0",
-    "verified_at": "2026-09-23"
   }
 }
