@@ -70,4 +70,35 @@ word was restored and the build passes again.
 
 ## 5. Splice (T009-T012)
 
-*(actuals follow)*
+Actual (2026-09-24): **56 of 76 spliced**, image byte-identical throughout —
+SC-002 (≥50) met, SC-005 verified by reverting and re-splicing one function.
+Image coverage **56/912 functions, 4,168/647,072 bytes (0.64%)**.
+
+Getting there took six corrections, every one of them caught by the gate
+rather than by inspection. Recorded because each is a trap for the next
+person:
+
+| # | symptom | cause | fix |
+|---|---|---|---|
+| 1 | `ld` **segfaults**, no message | IDO objects carry `.reginfo` (LINK_ONCE), `.options`, `.mdebug` | strip them at objcopy time, where the failure is attributable |
+| 2 | `undefined reference to 'pad_config'` | data globals live inside opaque runs; nothing declares them | `PROVIDE` the merged symbol table in the script |
+| 3 | one bad body aborted the whole run | `BuildError` escaping the loop | a body that cannot link is a refusal for *that* function |
+| 4 | diff exactly at a function's end | **IDO pads `.text` to 16 bytes**: a 72-byte function occupies 80 in its object and the padding overwrites its neighbour; truncating the section loses its relocations | link each function ALONE at its image address, then cut to the extent — spliced C contributes *bytes*, not a section |
+| 5 | diff at offset 0 of a body that scored 0 | spliced at `-O2` while the match was at `-O1` | use the flagset the sweep recorded as scoring 0, grouped per batch |
+| 6 | 37 × `undefined reference to 'func_…'` | a function linked alone cannot see its siblings | `PROVIDE` every function address from the map too (4,346 symbols total) |
+
+Run-by-run: 6 → 34 → **56**.
+
+### Remaining 20 refusals
+
+- **12 link failures**: unresolved callees that are not in the map —
+  `entity_flags_apply`, `UpdateActiveObjects`, `AdjustSpeed`,
+  `Input_ApplyPadConfig`, `func_803914b4`. These are the `extent_conflict`
+  suffix rows and the out-of-image `0x8038xxxx` class, neither of which has a
+  real address to provide. Closing them needs the 007 residuals, not this
+  feature.
+- **8 image differences**, including `func_80095EC0` and `func_800C8738` —
+  the first two functions ever matched. Their stored score of 0 came from a
+  raw-word target *before* the reloc-aware rebuild, so a body that matched a
+  relocation-blind comparison need not match in place. The gate is right to
+  refuse them; they are re-scoring candidates, not regressions.

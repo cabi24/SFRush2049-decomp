@@ -107,7 +107,7 @@ def describe_difference(document, expected, actual):
 
 
 def build(document=None, image_path=blob_layout.IMAGE, asm_dir=blob_tu.ASM_DIR,
-          script=None, work_dir=None, keep=False):
+          script=None, work_dir=None, keep=False, extra_objects=()):
     """Assemble, link, extract, compare. Returns (ok, sha256, message)."""
     document = document or blob_layout.load()
     expected = Path(image_path).read_bytes()
@@ -129,6 +129,11 @@ def build(document=None, image_path=blob_layout.IMAGE, asm_dir=blob_tu.ASM_DIR,
         out_o = holder / f"{region['name']}.o"
         assemble(source, out_o)
         objects.append(out_o)
+    for extra in extra_objects:
+        extra = Path(extra)
+        if not extra.is_file():
+            raise BuildError(f"missing spliced object {extra}")
+        objects.append(extra)
     elf = holder / "blob.elf"
     link(objects, script, elf)
     built = extract_image(elf, holder / "image.bin")
