@@ -468,7 +468,7 @@ python3 -m tools.conveyor.cli serve                    # coordinator
 python3 -m tools.conveyor.cli smoke                    # strlen end-to-end proof
 python3 -m tools.conveyor.pipeline.matrix extract|submit|ingest|report
 python3 -m tools.conveyor.pipeline.cluster run         # local, no nodes needed
-python3 -m tools.conveyor.pipeline.farm run            # steady-state daemon
+sudo systemctl restart conveyor-farm                   # steady-state daemon (systemd unit; restart after code changes)
 python3 -m tools.conveyor.cli report|status|attention|nodes
 pytest tests/conveyor -m "not node_required"           # 39 local tests
 ```

@@ -126,8 +126,41 @@ Restart=always
 RestartSec=15
 ```
 
-Farm daemon (Pi), `conveyor-farm.service`: same pattern with
-`ExecStart=/usr/bin/python3 -m tools.conveyor.pipeline.farm run`.
+Farm daemon (Pi), `conveyor-farm.service` — **installed and enabled
+2026-09-24.** It was documented here from 001 onward but never installed, so
+the farm ran as a hand-started `nohup` and silently stopped twice (a pause
+for lock-verify jobs that was never undone, and a power outage); finished
+searches then sat un-ingested until someone noticed. The unit:
+
+```ini
+[Unit]
+After=network-online.target conveyor-coordinator.service
+Wants=network-online.target conveyor-coordinator.service
+
+[Service]
+User=cburnes
+WorkingDirectory=/home/cburnes/projects/rush2049-decomp
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/python3 -m tools.conveyor.pipeline.farm run --interval 300
+Restart=always
+RestartSec=30
+```
+
+Operating it:
+
+- **Restart after merging pipeline code** — a running daemon does not pick up
+  new code: `sudo systemctl restart conveyor-farm`.
+- **Pause it with systemctl, never by killing the process** —
+  `sudo systemctl stop conveyor-farm` / `start`. `Restart=always` brings a
+  killed process straight back. While it is stopped, finished results wait
+  in the queue un-ingested; nothing is lost, but nothing is recorded either.
+- Logs: `journalctl -u conveyor-farm -f` (cycle summaries are the
+  `farm: {...}` lines).
+
+watchman2's node agent additionally carries a drop-in,
+`/etc/systemd/system/conveyor-node.service.d/cores.conf`, capping it at
+`--cores 4` and `CPUQuota=400%` so Plex on the same box stays responsive.
+Remove the drop-in and `daemon-reload` to give it the whole machine.
 
 ## Reloc-aware targets, the gate, and supersession (003)
 
