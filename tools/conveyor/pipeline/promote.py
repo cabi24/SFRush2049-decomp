@@ -198,7 +198,18 @@ def run_promotion(spec, source, via_builder=False, override_reason=None,
             "INSERT INTO promotion_record (target_id, source_sha, build_ok,"
             " sha1_ok, outcome, created_at, source, flags, evidence, rom_tu)"
             " VALUES (?, ?, 1, 1, 'promoted',"
-            " strftime('%Y-%m-%dT%H:%M:%fZ','now'), ?, ?, ?, ?)",
+            " strftime('%Y-%m-%dT%H:%M:%fZ','now'), ?, ?, ?, ?)"
+            # idx_one_promotion_per_target is PARTIAL — unique on target_id
+            # only where outcome='promoted' — so the conflict clause must
+            # carry the same predicate. A target can already hold a promoted
+            # row written by the farm's verify_promote ingest, which does NOT
+            # splice into the ROM (004 V1 limitation); this run does, so it
+            # supersedes that claim rather than crashing after the build.
+            " ON CONFLICT(target_id) WHERE outcome = 'promoted' DO UPDATE SET"
+            " source_sha=excluded.source_sha, build_ok=1, sha1_ok=1,"
+            " created_at=excluded.created_at, source=excluded.source,"
+            " flags=excluded.flags, evidence=excluded.evidence,"
+            " rom_tu=excluded.rom_tu",
             (func, hashlib.sha256(body.encode()).hexdigest(), source, flagset,
              json.dumps({"evidence": evidence}), seg["rom_tu"]))
     commit = _run(["git", "commit", "-q", "-m",
