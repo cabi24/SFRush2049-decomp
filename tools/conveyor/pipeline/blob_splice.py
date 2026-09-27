@@ -377,6 +377,36 @@ def _print_coverage(stats):
           "(pipeline.blob_rom), so spliced functions are cartridge coverage.")
 
 
+def winning_search_source(conn, target_id, blobs=None):
+    """The permuter's best.c from a search that reached score 0, or None.
+
+    A permuter win is NOT the m2c seed — the seed scored nonzero and the
+    permuter mutated it into a match — so regenerating the seed for a
+    function the permuter matched splices the wrong body and the gate
+    refuses it. Latest winning search first."""
+    import tarfile
+
+    from ..client import DEFAULT_DATA
+
+    blobs = Path(blobs or Path(DEFAULT_DATA) / "blobs")
+    rows = conn.execute(
+        "SELECT result_sha FROM work_unit WHERE job_type='permuter_search'"
+        " AND target_id=? AND state='DONE' AND result_sha IS NOT NULL"
+        " ORDER BY updated_at DESC", (target_id,)).fetchall()
+    for row in rows:
+        path = blobs / row["result_sha"]
+        try:
+            with tarfile.open(path) as tar:
+                result = json.loads(tar.extractfile("result.json").read())
+                if (result.get("payload") or {}).get("final_best_score") != 0:
+                    continue
+                if "best.c" in tar.getnames():
+                    return tar.extractfile("best.c").read().decode()
+        except (OSError, tarfile.TarError, KeyError, ValueError):
+            continue
+    return None
+
+
 def main():
     from ..coordinator import db as dbmod
     from . import autodecomp, disasm
@@ -442,6 +472,9 @@ def main():
     def source_for(target_id):
         if args.source:
             return Path(args.source).read_text()
+        winner = winning_search_source(conn, target_id)
+        if winner is not None:
+            return winner
         asm = disasm.derive(conn, target_id, context_sha=context_sha)
         seed = autodecomp.m2c_seed(target_id, addresses[target_id],
                                    {target_id: asm})

@@ -1772,6 +1772,7 @@ wheel_render_full:
 .section .text.func_800A7428, "ax", @progbits
 .globl func_800A7428
 func_800A7428:
+    /* compiled from src/blob/func_800A7428.c */
     .word 0x8FAE0018
     .word 0x3C188018
     .word 0x2718A510

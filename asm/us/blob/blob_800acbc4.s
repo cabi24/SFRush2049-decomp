@@ -6343,6 +6343,7 @@ func_800B2CB4:
 .section .text.listener_position_set, "ax", @progbits
 .globl listener_position_set
 listener_position_set:
+    /* compiled from src/blob/listener_position_set.c */
     .word 0x27BDFFD0
     .word 0x3C028015
     .word 0x9442267C

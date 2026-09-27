@@ -5,6 +5,7 @@
 .section .text.track_collision_edge, "ax", @progbits
 .globl track_collision_edge
 track_collision_edge:
+    /* compiled from src/blob/track_collision_edge.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x8C8E0000
@@ -7520,6 +7521,7 @@ suspension_setup:
 .section .text.func_800A510C, "ax", @progbits
 .globl func_800A510C
 func_800A510C:
+    /* compiled from src/blob/func_800A510C.c */
     .word 0x3C048014
     .word 0x3C058014
     .word 0x84A5FEC8

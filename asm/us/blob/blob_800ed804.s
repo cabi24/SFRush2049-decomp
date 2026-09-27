@@ -11202,6 +11202,7 @@ camera_race_setup:
 .section .text.func_800F8E90, "ax", @progbits
 .globl func_800F8E90
 func_800F8E90:
+    /* compiled from src/blob/func_800F8E90.c */
     .word 0x00047400
     .word 0x000E7C03
     .word 0x000FC080

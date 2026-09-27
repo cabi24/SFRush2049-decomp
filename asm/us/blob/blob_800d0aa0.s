@@ -1711,6 +1711,7 @@ func_800D2128:
 .section .text.func_800D2458, "ax", @progbits
 .globl func_800D2458
 func_800D2458:
+    /* compiled from src/blob/func_800D2458.c */
     .word 0x3C0140C0
     .word 0x44812000
     .word 0x3C018014
@@ -5884,6 +5885,7 @@ physics_init_mode1:
 .section .text.object_action_clear, "ax", @progbits
 .globl object_action_clear
 object_action_clear:
+    /* compiled from src/blob/object_action_clear.c */
     .word 0x27BDFFE0
     .word 0xAFBF0014
     .word 0x0C024847

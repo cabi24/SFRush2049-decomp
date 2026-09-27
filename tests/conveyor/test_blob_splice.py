@@ -94,3 +94,39 @@ def test_coverage_counts_only_spliced_functions_and_names_the_rom_path(tmp_path,
     # Since 009 the ROM's blob is compressed from this image, so the output
     # says how the functions reach the cartridge instead of disclaiming it.
     assert "cartridge coverage" in out and "blob_rom" in out
+
+
+def test_a_permuter_win_splices_its_winning_source_not_the_seed(tmp_path):
+    """The seed of a permuter-matched function scored nonzero by definition;
+    splicing it gets refused. Four refusals were exactly this."""
+    import io
+    import tarfile
+
+    from tools.conveyor.coordinator import db as dbmod
+
+    def result_blob(score, body):
+        buf = io.BytesIO()
+        with tarfile.open(fileobj=buf, mode="w:gz") as tar:
+            for name, data in (("result.json", json.dumps(
+                    {"payload": {"final_best_score": score}}).encode()),
+                               ("best.c", body.encode())):
+                info = tarfile.TarInfo(name)
+                info.size = len(data)
+                tar.addfile(info, io.BytesIO(data))
+        return buf.getvalue()
+
+    blobs = tmp_path / "blobs"
+    blobs.mkdir()
+    (blobs / "lose").write_bytes(result_blob(40, "void f(void) { /* stalled */ }"))
+    (blobs / "win").write_bytes(result_blob(0, "void f(void) { /* winner */ }"))
+    conn = dbmod.connect(tmp_path / "db.sqlite")
+    with dbmod.tx(conn):
+        for job, sha, when in (("a", "win", "2026-09-20"), ("b", "lose", "2026-09-26")):
+            conn.execute(
+                "INSERT INTO work_unit (job_id,job_type,target_id,manifest_sha,"
+                "state,result_sha,created_at,updated_at)"
+                " VALUES (?,'permuter_search','f','m','DONE',?,?,?)",
+                (job, sha, when, when))
+
+    assert "winner" in blob_splice.winning_search_source(conn, "f", blobs)
+    assert blob_splice.winning_search_source(conn, "nobody", blobs) is None

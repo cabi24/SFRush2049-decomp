@@ -2977,6 +2977,7 @@ entity_name_copy:
 .section .text.func_80092D80, "ax", @progbits
 .globl func_80092D80
 func_80092D80:
+    /* compiled from src/blob/func_80092D80.c */
     .word 0x00047080
     .word 0x01C47021
     .word 0x3C0F8015

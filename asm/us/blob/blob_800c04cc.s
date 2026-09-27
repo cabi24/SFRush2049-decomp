@@ -8531,6 +8531,7 @@ hud_speed_display:
 .section .text.func_800C8738, "ax", @progbits
 .globl func_800C8738
 func_800C8738:
+    /* compiled from src/blob/func_800C8738.c */
     .word 0x2403001F
     .word 0x240E0001
     .word 0x006E7804

@@ -4343,6 +4343,7 @@ func_800B7FF8:
 .section .text.particles_spawn_emitter, "ax", @progbits
 .globl particles_spawn_emitter
 particles_spawn_emitter:
+    /* compiled from src/blob/particles_spawn_emitter.c */
     .word 0x3C0F8012
     .word 0x25EF4FD0
     .word 0x00047080

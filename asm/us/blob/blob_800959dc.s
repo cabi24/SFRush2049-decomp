@@ -335,6 +335,7 @@ audio_state_save:
 .section .text.func_80095EC0, "ax", @progbits
 .globl func_80095EC0
 func_80095EC0:
+    /* compiled from src/blob/func_80095EC0.c */
     .word 0x00053082
     .word 0x00001025
     .word 0x10C00008

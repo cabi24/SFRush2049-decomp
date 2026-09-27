@@ -6905,6 +6905,7 @@ math_utility:
 .section .text.func_8008D6FC, "ax", @progbits
 .globl func_8008D6FC
 func_8008D6FC:
+    /* compiled from src/blob/func_8008D6FC.c */
     .word 0x00047400
     .word 0x000E7C03
     .word 0x000FC100
@@ -7571,6 +7572,7 @@ func_8008E0B8:
 .section .text.func_8008E144, "ax", @progbits
 .globl func_8008E144
 func_8008E144:
+    /* compiled from src/blob/func_8008E144.c */
     .word 0xAFA40000
     .word 0x00047400
     .word 0x000E2403
