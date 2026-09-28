@@ -61,6 +61,7 @@ save_context_stub:
 .section .text.resource_alloc_init, "ax", @progbits
 .globl resource_alloc_init
 resource_alloc_init:
+    /* compiled from src/blob/resource_alloc_init.c */
     .word 0x27BDFFE0
     .word 0xAFA50024
     .word 0x00802825

@@ -4081,6 +4081,7 @@ menu_confirm_render:
 .section .text.menu_confirm_dialog, "ax", @progbits
 .globl menu_confirm_dialog
 menu_confirm_dialog:
+    /* compiled from src/blob/menu_confirm_dialog.c */
     .word 0x27BDFFD8
     .word 0xAFBF001C
     .word 0xAFB00014

@@ -1057,6 +1057,7 @@ sync_init_conditional:
 .section .text.effect_spawn, "ax", @progbits
 .globl effect_spawn
 effect_spawn:
+    /* compiled from src/blob/effect_spawn.c */
     .word 0x27BDFFD8
     .word 0xAFBF0024
     .word 0xAFB20020

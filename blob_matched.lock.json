@@ -103,6 +103,14 @@
     "verified": "image_gate",
     "verified_at": "2026-09-27"
   },
+  "effect_spawn": {
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "src/blob/effect_spawn.c",
+    "source_sha256": "55938feccdad2a99d40cb842d1baa126edd00c82b4e848a67fe2c76663ec15bf",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-28"
+  },
   "effect_system_init": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/effect_system_init.c",
@@ -278,6 +286,14 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-23"
+  },
+  "func_800B27E4": {
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "src/blob/func_800B27E4.c",
+    "source_sha256": "d0e42c9db8a82a091dbb87b3c20f69d87e3a140035931291f9d56b6760fc2527",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-28"
   },
   "func_800B61A8": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -535,6 +551,14 @@
     "verified": "image_gate",
     "verified_at": "2026-09-23"
   },
+  "menu_confirm_dialog": {
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "src/blob/menu_confirm_dialog.c",
+    "source_sha256": "ba681065a9af1a4cb32dddccbe16a27d54c2d53d0f4d053fd17872b021b66078",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-28"
+  },
   "menu_render_list": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/menu_render_list.c",
@@ -542,6 +566,22 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-27"
+  },
+  "music_fade": {
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "src/blob/music_fade.c",
+    "source_sha256": "d6021f8512ecac7c75752424c83be4c73117d1fda771080e0be6d4057b403074",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-28"
+  },
+  "music_tempo_adjust": {
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "src/blob/music_tempo_adjust.c",
+    "source_sha256": "1858a5066a72292c7ecc3bd72407905a9d7d614710c28c5babcc7f1f1f901a80",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-28"
   },
   "object_action_clear": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -566,6 +606,14 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-23"
+  },
+  "object_render_cleanup": {
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "src/blob/object_render_cleanup.c",
+    "source_sha256": "c5c2c3e7056e8f0f00bb26165a7301eb4b0abdb717563e1589e05ab1d392907b",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-28"
   },
   "object_type1_create": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -694,6 +742,14 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-23"
+  },
+  "resource_alloc_init": {
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "src/blob/resource_alloc_init.c",
+    "source_sha256": "917e04b4794aec6f681ecc4023a4f15ccb9d72bcd76ab9adf258d4989ccae0ef",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-28"
   },
   "resource_process_thunk": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",

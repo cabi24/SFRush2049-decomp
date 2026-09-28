@@ -7200,6 +7200,7 @@ func_800C7200:
 .section .text.object_render_cleanup, "ax", @progbits
 .globl object_render_cleanup
 object_render_cleanup:
+    /* compiled from src/blob/object_render_cleanup.c */
     .word 0x27BDFFE0
     .word 0xAFBF0014
     .word 0x8C820000

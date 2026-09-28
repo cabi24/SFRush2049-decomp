@@ -5989,6 +5989,7 @@ sfx_stop:
 .section .text.func_800B27E4, "ax", @progbits
 .globl func_800B27E4
 func_800B27E4:
+    /* compiled from src/blob/func_800B27E4.c */
     .word 0x24820110
     .word 0x2404FFFF
     .word 0x00001825

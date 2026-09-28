@@ -5445,6 +5445,7 @@ race_position_update:
 .section .text.music_fade, "ax", @progbits
 .globl music_fade
 music_fade:
+    /* compiled from src/blob/music_fade.c */
     .word 0x27BDFF68
     .word 0xAFBF0014
     .word 0xAFA40098
@@ -5467,6 +5468,7 @@ music_fade:
 .section .text.music_tempo_adjust, "ax", @progbits
 .globl music_tempo_adjust
 music_tempo_adjust:
+    /* compiled from src/blob/music_tempo_adjust.c */
     .word 0x27BDFEE0
     .word 0xAFA50124
     .word 0xAFBF0014
