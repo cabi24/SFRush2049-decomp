@@ -130,3 +130,24 @@ def test_a_permuter_win_splices_its_winning_source_not_the_seed(tmp_path):
 
     assert "winner" in blob_splice.winning_search_source(conn, "f", blobs)
     assert blob_splice.winning_search_source(conn, "nobody", blobs) is None
+
+
+def test_image_symbols_keeps_every_name_that_shares_an_address():
+    """A data-symbol label at a function's address must not shadow the
+    function's own name (entity_flags_apply vs frame_sync at 0x80092360)."""
+    document = {"regions": [{"entries": [
+        {"kind": "function", "target_id": "entity_flags_apply",
+         "vaddr": 0x80092360}]}]}
+
+    provides = blob_splice.image_symbols(
+        document, symbols={0x80092360: "frame_sync", 0x80152000: "pad_config"})
+
+    assert provides == {"entity_flags_apply": 0x80092360,
+                        "frame_sync": 0x80092360, "pad_config": 0x80152000}
+
+
+def test_an_address_name_resolves_to_the_address_it_spells():
+    assert blob_splice.address_named("func_803914b4") == 0x803914B4
+    assert blob_splice.address_named("D_80152000") == 0x80152000
+    assert blob_splice.address_named("entity_flags_apply") is None
+    assert blob_splice.address_named("func_8009") is None

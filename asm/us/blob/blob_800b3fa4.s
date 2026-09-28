@@ -2118,6 +2118,7 @@ func_800B59F0:
 .section .text.audio_distance_atten, "ax", @progbits
 .globl audio_distance_atten
 audio_distance_atten:
+    /* compiled from src/blob/audio_distance_atten.c */
     .word 0x27BDFFE8
     .word 0x308E0400
     .word 0x11C00003
@@ -2137,6 +2138,7 @@ audio_distance_atten:
 .section .text.audio_doppler, "ax", @progbits
 .globl audio_doppler
 audio_doppler:
+    /* compiled from src/blob/audio_doppler.c */
     .word 0x27BDFFE8
     .word 0x308E1000
     .word 0x11C00003
@@ -3316,6 +3318,7 @@ object_bytes23_sum:
 .section .text.sound_pitch_diff_calc, "ax", @progbits
 .globl sound_pitch_diff_calc
 sound_pitch_diff_calc:
+    /* compiled from src/blob/sound_pitch_diff_calc.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0xAFA5001C
@@ -3332,6 +3335,7 @@ sound_pitch_diff_calc:
 .section .text.sound_pitch_diff_halved, "ax", @progbits
 .globl sound_pitch_diff_halved
 sound_pitch_diff_halved:
+    /* compiled from src/blob/sound_pitch_diff_halved.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0xAFA5001C

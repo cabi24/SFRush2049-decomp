@@ -2417,6 +2417,7 @@ func_800CB748:
 .section .text.menu_render_list, "ax", @progbits
 .globl menu_render_list
 menu_render_list:
+    /* compiled from src/blob/menu_render_list.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x8C8E0000

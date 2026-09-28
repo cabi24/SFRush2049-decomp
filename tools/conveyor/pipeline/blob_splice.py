@@ -22,6 +22,7 @@ original compressed stream; nothing here promotes anything into the ROM
 import argparse
 import hashlib
 import json
+import re
 import shutil
 import subprocess
 import tempfile
@@ -143,19 +144,27 @@ def compile_on_builder(sources, flagset, builder=BUILDER, toolkit=TOOLKIT,
     return objects, {t: "compile failed under IDO" for t in sorted(failures)}
 
 
-def link_function(object_path, target_id, vaddr, size, symbols=None, work=None):
+def link_function(object_path, target_id, vaddr, size, provides=None, work=None):
     """Bytes a compiled function contributes at its image address.
 
     Linked alone so its relocations resolve against the PROVIDE table (data
     globals inside opaque runs, and libultra/libc out in the cartridge), then
     cut to the extent: IDO pads .text to 16 bytes and that padding is not
-    part of the function."""
-    symbols = blob_tu.data_symbols() if symbols is None else symbols
+    part of the function. `provides` is {name: address}: several names may
+    share an address (a data-symbol label and the function's own target_id),
+    and every one of them must resolve."""
+    if provides is None:
+        provides = {name: addr for addr, name in blob_tu.data_symbols().items()}
+    provides = dict(provides)
+    for name in undefined_symbols(object_path):
+        addr = address_named(name)
+        if name not in provides and addr is not None:
+            provides[name] = addr
     work = Path(work or tempfile.mkdtemp(prefix="blobfn-"))
     work.mkdir(parents=True, exist_ok=True)
     script = work / f"{target_id}.ld"
     provides = "\n".join(f"    PROVIDE({name} = 0x{addr:08X});"
-                          for addr, name in sorted(symbols.items())
+                          for name, addr in sorted(provides.items())
                           if name != target_id)
     script.write_text(
         "SECTIONS\n{\n"
@@ -185,21 +194,47 @@ def link_function(object_path, target_id, vaddr, size, symbols=None, work=None):
     return data[:size]
 
 
+_ADDRESS_NAME = re.compile(r"^(?:func|D)_([0-9A-Fa-f]{8})$")
+
+
+def address_named(name):
+    """The address an m2c-style `func_XXXXXXXX` / `D_XXXXXXXX` name encodes.
+
+    m2c names an unknown callee or global by its address, so the name IS the
+    address — including callees outside the image (static ROM, or the
+    0x8038xxxx overlay range) that no table knows."""
+    match = _ADDRESS_NAME.match(name)
+    return int(match.group(1), 16) if match else None
+
+
+def undefined_symbols(object_path):
+    """Names the object references but does not define."""
+    proc = subprocess.run([blob_build.NM, "-u", str(object_path)],
+                          capture_output=True, text=True)
+    if proc.returncode != 0:
+        raise blob_build.BuildError("nm failed: " + proc.stderr.strip()[:200])
+    return [line.split()[-1] for line in proc.stdout.splitlines()
+            if line.strip()]
+
+
 def image_symbols(document=None, symbols=None):
-    """Everything a standalone function link must resolve.
+    """{name: address} for everything a standalone function link must resolve.
 
     The whole-image link resolves calls between game functions because every
     region defines its own `.globl`s. A function linked ALONE sees only
     itself, so its calls to siblings (func_80091B00, entity_flags_apply, …)
     are undefined — 37 of 42 refusals on the first full run. The map knows
-    every function's address."""
+    every function's address. Keyed by NAME: a data-symbol label often sits
+    at a function's address (`frame_sync` at entity_flags_apply's 0x80092360),
+    and an address-keyed table silently kept only one of the two."""
     document = document or blob_layout.load()
-    merged = dict(blob_tu.data_symbols() if symbols is None else symbols)
+    symbols = blob_tu.data_symbols() if symbols is None else symbols
+    provides = {name: addr for addr, name in symbols.items()}
     for region in document["regions"]:
         for entry in region["entries"]:
             if entry["kind"] == "function":
-                merged.setdefault(entry["vaddr"], entry["target_id"])
-    return merged
+                provides[entry["target_id"]] = entry["vaddr"]
+    return provides
 
 
 def spliced_bodies(lock=None, document=None, symbols=None):

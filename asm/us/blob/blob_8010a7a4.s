@@ -261,6 +261,7 @@ ping_measurement:
 .section .text.struct_callback_init, "ax", @progbits
 .globl struct_callback_init
 struct_callback_init:
+    /* compiled from src/blob/struct_callback_init.c */
     .word 0x27BDFFE8
     .word 0x3C0E8011
     .word 0xAFBF0014

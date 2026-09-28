@@ -29,6 +29,7 @@ BUILD_DIR = REPO / "build" / "blob"
 AS = "mips-linux-gnu-as"
 LD = "mips-linux-gnu-ld"
 OBJCOPY = "mips-linux-gnu-objcopy"
+NM = "mips-linux-gnu-nm"
 
 
 class BuildError(RuntimeError):

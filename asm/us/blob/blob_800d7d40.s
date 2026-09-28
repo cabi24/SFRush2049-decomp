@@ -4865,6 +4865,7 @@ sound_handles_array_clear:
 .section .text.tournament_unlock_check, "ax", @progbits
 .globl tournament_unlock_check
 tournament_unlock_check:
+    /* compiled from src/blob/tournament_unlock_check.c */
     .word 0x27BDFFC8
     .word 0xAFBF0034
     .word 0xAFB60030

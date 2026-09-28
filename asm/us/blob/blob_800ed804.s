@@ -9893,6 +9893,7 @@ UpdateActiveObjects:
 .section .text.audio_update_b, "ax", @progbits
 .globl audio_update_b
 audio_update_b:
+    /* compiled from src/blob/audio_update_b.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x10800003

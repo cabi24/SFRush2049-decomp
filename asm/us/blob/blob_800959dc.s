@@ -584,6 +584,7 @@ func_80096130:
 .section .text.func_80096238, "ax", @progbits
 .globl func_80096238
 func_80096238:
+    /* compiled from src/blob/func_80096238.c */
     .word 0x3C058012
     .word 0x8CA5EAA0
     .word 0x27BDFFE8
@@ -3035,6 +3036,7 @@ camera_update_b:
 .section .text.pointer_offset8_call, "ax", @progbits
 .globl pointer_offset8_call
 pointer_offset8_call:
+    /* compiled from src/blob/pointer_offset8_call.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x00A03025

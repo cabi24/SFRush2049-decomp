@@ -4306,6 +4306,7 @@ stat_lap_split:
 .section .text.resource_type_select_simple, "ax", @progbits
 .globl resource_type_select_simple
 resource_type_select_simple:
+    /* compiled from src/blob/resource_type_select_simple.c */
     .word 0x27BDFFE8
     .word 0x308E0001
     .word 0x11C00003
@@ -5934,6 +5935,7 @@ game_results_exit:
 .section .text.callback_init, "ax", @progbits
 .globl callback_init
 callback_init:
+    /* compiled from src/blob/callback_init.c */
     .word 0x27BDFFE8
     .word 0x3C0E8011
     .word 0xAFBF0014

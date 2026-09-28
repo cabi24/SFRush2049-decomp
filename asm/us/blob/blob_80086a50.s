@@ -4140,6 +4140,7 @@ audio_queue_process:
 .section .text.controller_rumble_thunk, "ax", @progbits
 .globl controller_rumble_thunk
 controller_rumble_thunk:
+    /* compiled from src/blob/controller_rumble_thunk.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x0C008179

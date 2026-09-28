@@ -5298,6 +5298,7 @@ func_800C54F0:
 .section .text.effect_cleanup, "ax", @progbits
 .globl effect_cleanup
 effect_cleanup:
+    /* compiled from src/blob/effect_cleanup.c */
     .word 0x27BDFFE8
     .word 0x3C028015
     .word 0x8C42A110
