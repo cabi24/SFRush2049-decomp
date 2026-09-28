@@ -34,6 +34,8 @@ REPO = Path(__file__).resolve().parents[3]
 ASM_DIR = REPO / "asm" / "us"
 M2C = REPO / "tools" / "mips_to_c" / "m2c.py"
 SHIM = REPO / "tools" / "conveyor" / "seeds" / "shim" / "conveyor_shim.h"
+# Local fixes to the m2c submodule (pinned upstream; the patches live here).
+M2C_PATCHES = REPO / "tools" / "m2c_patches"
 _GLABEL_RE = re.compile(r"^\s*glabel\s+(\S+)")
 
 # Preprocessed type context for m2c: the OS headers parse cleanly (the game
@@ -170,9 +172,38 @@ def _clean_m2c(body):
     return text
 
 
+_M2C_PATCHED = False
+
+
+def ensure_m2c_patched():
+    """Apply tools/m2c_patches/*.patch to the m2c submodule, once.
+
+    Unpatched m2c writes arithmetic on `void *` and compares distinct pointer
+    types -- GNU C that gcc accepts and IDO's cfe rejects, so such seeds
+    could never be scored. A seed from unpatched m2c would silently be the
+    old, uncompilable kind; refuse instead."""
+    global _M2C_PATCHED
+    if _M2C_PATCHED:
+        return
+    root = M2C.parent
+    for patch in sorted(M2C_PATCHES.glob("*.patch")):
+        applied = subprocess.run(
+            ["git", "-C", str(root), "apply", "--check", "--reverse", str(patch)],
+            capture_output=True, text=True)
+        if applied.returncode == 0:
+            continue
+        proc = subprocess.run(["git", "-C", str(root), "apply", str(patch)],
+                              capture_output=True, text=True)
+        if proc.returncode != 0:
+            raise RuntimeError(f"m2c patch {patch.name} does not apply: "
+                               + proc.stderr.strip()[:300])
+    _M2C_PATCHED = True
+
+
 def m2c_seed(target_id, vaddr, asm_idx, diagnostics=None, context=None):
     """Self-contained C seed for a target from its own asm, or None if m2c
     can't decompile it (missing asm / failure)."""
+    ensure_m2c_patched()
     asm_file = asm_idx.get(target_id) or asm_idx.get(f"func_{vaddr:08X}")
     if asm_file is None:
         return None
@@ -435,6 +466,13 @@ def _is_typeish(tok):
             and not tok[0].isdigit())
 
 
+# gcc warnings (no -Werror= name in gcc 12) that are hard errors in IDO's cfe.
+_IDO_REJECTED_WARNINGS = (
+    "comparison of distinct pointer types lacks a cast",
+    "comparison between pointer and integer",
+)
+
+
 def _seed_compile_errors(seed, diagnostic_sink=None):
     """(ok, [(missing_type, source_line)]) — compile a seed and, on failure,
     best-effort the undefined *type* behind each error (not the local var)."""
@@ -448,12 +486,16 @@ def _seed_compile_errors(seed, diagnostic_sink=None):
         return False, []
     src_lines = pp.stdout.splitlines()
     g = Path(tempfile.mktemp(suffix=".c")); g.write_text(pp.stdout)
+    # gcc stands in for IDO here, so it must refuse what IDO's cfe refuses:
+    # arithmetic on void pointers, and comparisons gcc only warns about.
     cc = subprocess.run(["mips-linux-gnu-gcc", "-c", "-fsyntax-only",
-                         "-fno-builtin", "-std=gnu89", str(g)],
+                         "-fno-builtin", "-std=gnu89", "-Werror=pointer-arith",
+                         str(g)],
                         capture_output=True, text=True)
     if diagnostic_sink is not None:
         diagnostic_sink.append(cc.stderr)
-    if cc.returncode == 0:
+    ido_rejects = any(m in cc.stderr for m in _IDO_REJECTED_WARNINGS)
+    if cc.returncode == 0 and not ido_rejects:
         return True, []
     out, seen = [], set()
     for el in cc.stderr.splitlines():

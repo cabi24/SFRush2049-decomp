@@ -1,0 +1,95 @@
+diff --git a/m2c/translate.py b/m2c/translate.py
+index 1de231d..d93b658 100644
+--- a/m2c/translate.py
++++ b/m2c/translate.py
+@@ -1186,6 +1186,13 @@ class BinaryOp(Condition):
+ 
+         # For commutative, left-associative operations, strip unnecessary parentheses.
+         lhs = left_expr.format(fmt)
++        # rush2049: arithmetic on a `void *` (or a pointer to an unsized
++        # type) is a GNU extension; IDO's cfe rejects it ("Unacceptable
++        # operand of '+'"). The types are only final here, after
++        # unification, so this is where the byte offset gets spelled out.
++        if fmt.valid_syntax and self.op in ("+", "-"):
++            if is_unsized_pointer(left_expr) and not right_expr.type.is_pointer_or_array():
++                lhs = f"(u8 *) {lhs}"
+         if (
+             isinstance(left_expr, BinaryOp)
+             and left_expr.op == self.op
+@@ -1198,6 +1205,36 @@ class BinaryOp(Condition):
+             rhs = right_expr.format(fmt, force_dec=True)
+         else:
+             rhs = right_expr.format(fmt)
++        if (
++            fmt.valid_syntax
++            and self.op == "+"
++            and is_unsized_pointer(right_expr)
++            and not left_expr.type.is_pointer_or_array()
++        ):
++            rhs = f"(u8 *) {rhs}"
++        # rush2049: IDO's cfe rejects == / != between distinct pointer types,
++        # or between a pointer and a non-literal integer ("Unacceptable operand
++        # of == or !="); gcc only warns. Comparing the words through (void *)
++        # is legal everywhere and changes no code.
++        if (
++            fmt.valid_syntax
++            and self.op in ("==", "!=")
++            and not isinstance(right_expr, Literal)
++            and not isinstance(left_expr, Literal)
++        ):
++            lp = left_expr.type.is_pointer_or_array()
++            rp = right_expr.type.is_pointer_or_array()
++            # A pointer +/- result's C type is not m2c's type for it (it may
++            # carry the (u8 *) cast above), so treat it as distinct too.
++            arith = any(isinstance(e, BinaryOp) and e.op in ("+", "-")
++                        for e in (left_expr, right_expr))
++            if (lp or rp) and (arith or left_expr.type.format(fmt) != right_expr.type.format(fmt)):
++                if lp and rp:
++                    rhs = f"(void *) {rhs}"
++                elif lp:
++                    rhs = f"(void *) ({rhs})"
++                else:
++                    lhs = f"(void *) ({lhs})"
+ 
+         # These aren't real operators (or functions); format them as a fn call
+         if self.op in PSEUDO_FUNCTION_OPS:
+@@ -2686,6 +2723,14 @@ def balanced_parentheses(string: str) -> bool:
+     return bal == 0
+ 
+ 
++def is_unsized_pointer(expr: Expression) -> bool:
++    """rush2049: a pointer whose `+`/`-` only exists as a GNU extension."""
++    if not expr.type.is_pointer_or_array():
++        return False
++    target = expr.type.get_pointer_target()
++    return target is None or target.is_void() or not target.get_size_bytes()
++
++
+ def format_expr(expr: Expression, fmt: Formatter) -> str:
+     """Stringify an expression, stripping unnecessary parentheses around it."""
+     ret = expr.format(fmt)
+@@ -2712,7 +2757,11 @@ def format_assignment(
+             rhs = source.right
+         elif is_dest(late_unwrap(source.right)) and source.op in ASSOCIATIVE_OPS:
+             rhs = source.left
+-        if rhs is not None:
++        # rush2049: `p += n` on a void pointer can't carry the (u8 *) cast
++        # that makes it portable; spell it `p = (u8 *) p + n`.
++        byte_ptr = (fmt.valid_syntax and source.op in ("+", "-")
++                    and is_unsized_pointer(late_unwrap(source.left if rhs is source.right else source.right)))
++        if rhs is not None and not byte_ptr:
+             return f"{dest.format(fmt)} {source.op}= {format_expr(rhs, fmt)};"
+     return f"{dest.format(fmt)} = {format_expr(source, fmt)};"
+ 
+diff --git a/tests/end_to_end/misc1/irix-o2-validsyntax-out.c b/tests/end_to_end/misc1/irix-o2-validsyntax-out.c
+index 9320db9..4eae98b 100644
+--- a/tests/end_to_end/misc1/irix-o2-validsyntax-out.c
++++ b/tests/end_to_end/misc1/irix-o2-validsyntax-out.c
+@@ -21,6 +21,6 @@ s32 test(s32 arg0, M2C_UNK arg1) {
+     }
+     sp28 = temp_v0_2;
+     func_00400158(sp24, temp_v0_2, temp_a2);
+-    *(&D_410178 + arg0) = 5;
++    *((u8 *) &D_410178 + arg0) = 5;
+     return sp28;
+ }
