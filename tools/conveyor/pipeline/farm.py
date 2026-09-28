@@ -126,6 +126,10 @@ def triage_survivors(conn, max_score=TRIAGE_PROMOTE_MAX_SCORE,
     ).fetchall()
     best, had_full = {}, set()
     for row in searches:
+        if row["state"] == "CANCELLED":
+            # An operator cancel (e.g. to make room for a sweep) spent no
+            # full search: counting it would strand the target in_search.
+            continue
         seconds = _budget_seconds(row["budget"])
         if seconds is None or seconds > triage_seconds:
             had_full.add(row["target_id"])       # unknown budget counts as full

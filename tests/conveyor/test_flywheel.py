@@ -190,6 +190,19 @@ def test_triage_survivor_is_a_close_score_that_never_had_a_full_search(tmp_path)
     assert survivors == ["tiny_close", "close"]      # smallest first
 
 
+def test_a_cancelled_full_search_does_not_count_as_spent(tmp_path):
+    """Cancelling a full search to make room for other work must leave the
+    target eligible, or the flywheel never re-queues it."""
+    conn = _database(tmp_path / "conveyor.db")
+    _sized(conn, "bumped", 12, status="in_search")
+    _search(conn, "t", "bumped", farm.TRIAGE_BUDGET_SECONDS, score=60)
+    _search(conn, "f", "bumped", farm.STANDARD_SEARCH_BUDGET_SECONDS,
+            state="CANCELLED", score=50)
+
+    assert [row["target_id"] for row in farm.triage_survivors(conn)] == [
+        "bumped"]
+
+
 def test_an_unrecorded_budget_counts_as_a_full_search_already_spent(tmp_path):
     """Pre-triage searches stored no budget; re-running them at full length
     would redo work, so absence must not read as 'only had a short pass'."""
