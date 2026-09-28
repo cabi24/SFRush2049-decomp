@@ -3214,6 +3214,7 @@ func_800C3578:
 .section .text.effect_system_init, "ax", @progbits
 .globl effect_system_init
 effect_system_init:
+    /* compiled from src/blob/effect_system_init.c */
     .word 0x27BDFFD8
     .word 0xAFBF0024
     .word 0x3C048015
@@ -3891,6 +3892,7 @@ func_800C3AD0:
 .section .text.func_800C4078, "ax", @progbits
 .globl func_800C4078
 func_800C4078:
+    /* compiled from src/blob/func_800C4078.c */
     .word 0x00047400
     .word 0x000E7C03
     .word 0x000FC100

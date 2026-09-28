@@ -6714,6 +6714,7 @@ net_session_update:
 .section .text.func_800F42C8, "ax", @progbits
 .globl func_800F42C8
 func_800F42C8:
+    /* compiled from src/blob/func_800F42C8.c */
     .word 0x3C0E8015
     .word 0x91CE43D4
     .word 0x27BDFFE0

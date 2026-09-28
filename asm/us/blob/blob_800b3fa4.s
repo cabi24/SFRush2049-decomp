@@ -262,6 +262,7 @@ object_create:
 .section .text.fcvt_wrapper, "ax", @progbits
 .globl fcvt_wrapper
 fcvt_wrapper:
+    /* compiled from src/blob/fcvt_wrapper.c */
     .word 0x27BDFFE0
     .word 0xAFBF0014
     .word 0xAFA60028
@@ -422,6 +423,7 @@ voice_stop:
 .section .text.sound_handles_clear, "ax", @progbits
 .globl sound_handles_clear
 sound_handles_clear:
+    /* compiled from src/blob/sound_handles_clear.c */
     .word 0x27BDFFD0
     .word 0xAFB50028
     .word 0xAFB30020
@@ -1460,6 +1462,7 @@ func_800B4FB0:
 .section .text.ambient_sounds_clear, "ax", @progbits
 .globl ambient_sounds_clear
 ambient_sounds_clear:
+    /* compiled from src/blob/ambient_sounds_clear.c */
     .word 0x27BDFFE0
     .word 0xAFB00014
     .word 0x3C108011
@@ -2158,6 +2161,7 @@ audio_doppler:
 .section .text.resource_type_select, "ax", @progbits
 .globl resource_type_select
 resource_type_select:
+    /* compiled from src/blob/resource_type_select.c */
     .word 0x27BDFFE8
     .word 0x308E0001
     .word 0x11C00003
@@ -2258,6 +2262,7 @@ audio_occlusion:
 .section .text.entity_audio_update, "ax", @progbits
 .globl entity_audio_update
 entity_audio_update:
+    /* compiled from src/blob/entity_audio_update.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x0C02D809
@@ -2290,6 +2295,7 @@ entity_audio_update:
 .section .text.func_800B61A8, "ax", @progbits
 .globl func_800B61A8
 func_800B61A8:
+    /* compiled from src/blob/func_800B61A8.c */
     .word 0x3C0F8011
     .word 0x81EFFFC0
     .word 0x27BDFFE8

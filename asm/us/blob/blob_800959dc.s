@@ -609,6 +609,7 @@ func_80096238:
 .section .text.func_80096288, "ax", @progbits
 .globl func_80096288
 func_80096288:
+    /* compiled from src/blob/func_80096288.c */
     .word 0x10C00001
     .word 0x00000000
     .word 0x03E00008

@@ -5156,6 +5156,7 @@ func_800D5828:
 .section .text.player_state_clear, "ax", @progbits
 .globl player_state_clear
 player_state_clear:
+    /* compiled from src/blob/player_state_clear.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x50800006

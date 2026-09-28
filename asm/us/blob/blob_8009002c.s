@@ -2874,6 +2874,7 @@ buffer_swap:
 .section .text.func_80092B80, "ax", @progbits
 .globl func_80092B80
 func_80092B80:
+    /* compiled from src/blob/func_80092B80.c */
     .word 0xAFA40000
     .word 0x00047400
     .word 0x30B800FF
@@ -3001,6 +3002,7 @@ func_80092D80:
 .section .text.func_80092DCC, "ax", @progbits
 .globl func_80092DCC
 func_80092DCC:
+    /* compiled from src/blob/func_80092DCC.c */
     .word 0x00801025
     .word 0x00A01825
     .word 0x10C00009
@@ -5062,6 +5064,7 @@ Input_SetPadSecondaryFlag:
 .section .text.input_status_update, "ax", @progbits
 .globl input_status_update
 input_status_update:
+    /* compiled from src/blob/input_status_update.c */
     .word 0x3C188014
     .word 0x27180BF0
     .word 0x00047940

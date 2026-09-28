@@ -1199,6 +1199,7 @@ display_list_flush:
 .section .text.game_state_check_handler, "ax", @progbits
 .globl game_state_check_handler
 game_state_check_handler:
+    /* compiled from src/blob/game_state_check_handler.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x0C002F94

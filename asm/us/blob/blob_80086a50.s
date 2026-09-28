@@ -3722,6 +3722,7 @@ func_8008A38C:
 .section .text.func_8008A3E4, "ax", @progbits
 .globl func_8008A3E4
 func_8008A3E4:
+    /* compiled from src/blob/func_8008A3E4.c */
     .word 0x04810004
     .word 0x3C028003
     .word 0x3C018013
@@ -7008,6 +7009,7 @@ euler_to_matrix:
 .section .text.func_8008D870, "ax", @progbits
 .globl func_8008D870
 func_8008D870:
+    /* compiled from src/blob/func_8008D870.c */
     .word 0x00047400
     .word 0x000E7C03
     .word 0xAFA40000
