@@ -695,6 +695,7 @@ car_select_handler:
 .section .text.func_800D14F4, "ax", @progbits
 .globl func_800D14F4
 func_800D14F4:
+    /* compiled from src/blob/func_800D14F4.c */
     .word 0x44807000
     .word 0xC4800000
     .word 0x4600703E
@@ -4756,6 +4757,7 @@ func_800D52CC:
 .section .text.object_activate, "ax", @progbits
 .globl object_activate
 object_activate:
+    /* compiled from src/blob/object_activate.c */
     .word 0x27BDFFE0
     .word 0xAFB00018
     .word 0x2401FFFF
@@ -5700,6 +5702,7 @@ func_800D5E64:
 .section .text.func_800D60AC, "ax", @progbits
 .globl func_800D60AC
 func_800D60AC:
+    /* compiled from src/blob/func_800D60AC.c */
     .word 0x3C028011
     .word 0x8C4274B4
     .word 0x27BDFFD8

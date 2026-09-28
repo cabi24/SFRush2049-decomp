@@ -4494,6 +4494,7 @@ particle_position_set:
 .section .text.particle_velocity_set, "ax", @progbits
 .globl particle_velocity_set
 particle_velocity_set:
+    /* compiled from src/blob/particle_velocity_set.c */
     .word 0x27BDFFD8
     .word 0xAFB30020
     .word 0xAFB2001C
