@@ -1,0 +1,62 @@
+diff --git a/m2c/translate.py b/m2c/translate.py
+--- a/m2c/translate.py
++++ b/m2c/translate.py
+@@ -1240,6 +1240,24 @@
+         if self.op in PSEUDO_FUNCTION_OPS:
+             return f"{self.op}({lhs}, {rhs})"
+ 
++        # rush2049: a machine-level `ptr + n` is a byte offset, but C scales
++        # it by the pointee size: `s32 *p; p += 4` steps 16 bytes. Divide a
++        # literal offset by the stride when it divides evenly; otherwise do
++        # the arithmetic on a byte pointer and cast back.
++        if fmt.valid_syntax and self.op in ("+", "-"):
++            stride = sized_pointer_stride(left_expr)
++            if stride and not right_expr.type.is_pointer_or_array():
++                if isinstance(right_expr, Literal) and right_expr.value % stride == 0:
++                    rhs = Literal(right_expr.value // stride).format(fmt)
++                else:
++                    return f"(({left_expr.type.format(fmt)}) ((u8 *) {left_expr.format(fmt)} {self.op} {rhs}))"
++            stride = sized_pointer_stride(right_expr)
++            if stride and self.op == "+" and not left_expr.type.is_pointer_or_array():
++                if isinstance(left_expr, Literal) and left_expr.value % stride == 0:
++                    lhs = Literal(left_expr.value // stride).format(fmt)
++                else:
++                    return f"(({right_expr.type.format(fmt)}) ({lhs} + (u8 *) {right_expr.format(fmt)}))"
++
+         return f"({lhs} {self.op} {rhs})"
+ 
+ 
+@@ -2757,6 +2775,16 @@
+     else:
+         is_dest = lambda e: var_for_expr(e) == dest
+     source = late_unwrap(source)
++    # rush2049: a scaled pointer step is spelled by BinaryOp.format, which
++    # a compound `p += n` would bypass.
++    if (
++        fmt.valid_syntax
++        and isinstance(source, BinaryOp)
++        and source.op in ("+", "-")
++        and (sized_pointer_stride(late_unwrap(source.left))
++             or sized_pointer_stride(late_unwrap(source.right)))
++    ):
++        return f"{dest.format(fmt)} = {format_expr(source, fmt)};"
+     if isinstance(source, BinaryOp) and source.op in COMPOUND_ASSIGNMENT_OPS:
+         source = source.normalize_for_formatting()
+         rhs = None
+@@ -4786,3 +4814,16 @@
+         pdb.set_trace()
+ 
+     return FunctionInfo(stack_info, flow_graph, return_type, fn_sym)
++
++
++def sized_pointer_stride(expr: Expression) -> Optional[int]:
++    """rush2049: pointee size of a pointer whose C arithmetic scales, or None."""
++    if not expr.type.is_pointer():
++        return None
++    target = expr.type.get_pointer_target()
++    if target is None or target.is_void():
++        return None
++    size = target.get_size_bytes()
++    if not size or size == 1:
++        return None
++    return size

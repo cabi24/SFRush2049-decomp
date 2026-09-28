@@ -55,3 +55,36 @@ def test_m2c_patches_apply_to_the_pinned_submodule():
             ["git", "-C", str(root), "apply", "--check", "--reverse", str(patch)],
             capture_output=True, text=True)
         assert proc.returncode == 0, proc.stderr
+
+
+_STRIDE_ASM = """glabel f
+lui $v0, %hi(D_1000)
+addiu $v0, $v0, %lo(D_1000)
+lui $v1, %hi(D_1010)
+addiu $v1, $v1, %lo(D_1010)
+.L1:
+sw $zero, 0($v0)
+addiu $v0, $v0, 4
+bne $v0, $v1, .L1
+nop
+jr $ra
+nop
+"""
+
+
+def test_m2c_scales_typed_pointer_steps(tmp_path):
+    """m2c's `ptr + n` is a byte offset; C scales it by the pointee size.
+    Before patch 0002 this loop came out as `var_v0 += 4` on an `s32 *`, a
+    16-byte step -- the most common defect in hand-finished near misses."""
+    autodecomp.ensure_m2c_patched()
+    asm = tmp_path / "f.s"
+    asm.write_text(_STRIDE_ASM)
+    ctx = tmp_path / "ctx.c"
+    ctx.write_text("typedef int s32; typedef unsigned char u8;\n"
+                   "extern s32 D_1000;\nextern s32 D_1010;\n")
+    out = subprocess.run(
+        ["python3", str(autodecomp.M2C), str(asm), "-f", "f", "--valid-syntax",
+         "--context", str(ctx)], capture_output=True, text=True, check=True).stdout
+    assert "s32 *var_v0;" in out
+    assert "var_v0 = var_v0 + 1;" in out
+    assert "+= 4" not in out

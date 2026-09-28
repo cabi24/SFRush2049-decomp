@@ -3473,6 +3473,7 @@ random_float:
 .section .text.func_800FDF88, "ax", @progbits
 .globl func_800FDF88
 func_800FDF88:
+    /* compiled from src/blob/func_800FDF88.c */
     .word 0x3C0E8015
     .word 0x91CE43D4
     .word 0x3C188015
