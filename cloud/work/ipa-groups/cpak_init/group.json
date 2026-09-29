@@ -13,7 +13,7 @@
     "__standin_save_validate"
   ],
   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
-  "generated": "blob_group seed from build/ipa_groups.json",
+  "generated": "hand-written from the assembly (cloud Lane A); see STATUS.md",
   "unprototyped": [
     "func_8008C074"
   ]
