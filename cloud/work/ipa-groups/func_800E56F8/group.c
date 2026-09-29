@@ -2547,7 +2547,7 @@ extern s8 D_80152570;
 extern s8 D_80152574;
 extern s32 D_80152578;
 extern s32 D_801525EC;
-extern s32 D_801525F0;
+extern u16 D_801525F0;
 extern s8 D_801525F8;
 extern s32 D_801525FC;
 extern s32 D_80152600;
@@ -2587,7 +2587,7 @@ extern s16 D_801527D8;
 extern s32 D_801527E4;
 extern s32 D_801527E8;
 extern f32 D_80152800;
-extern s16 D_80152808;
+extern s16 D_80152808[];
 extern f32 D_80152820;
 extern f32 D_80152824;
 extern f32 D_80152828;
@@ -2627,7 +2627,7 @@ extern s32 D_80153F68;
 extern f32 D_80153F80;
 extern s32 D_80153F88;
 extern s16 D_80153FD0;
-extern s32 D_80153FD2;
+extern s16 D_80153FD2;
 extern s32 D_80153FD8;
 extern s32 D_80154138;
 extern s16 D_80154180;
@@ -3319,7 +3319,7 @@ void func_800E398C(void);
 s16 func_800E4300(s32 arg1, void *arg2);
 void func_800E451C(s32 arg0);
 void func_800E4B58(void *arg0);
-void func_800E543C(s16 arg0, s16 arg1, void *arg2);
+void func_800E543C(s16 arg0, s16 arg1);
 
 void func_800E5C9C(void *arg0);
 s32 func_800E5D64(s32 arg0, f32 *arg1);
@@ -3702,16 +3702,15 @@ typedef s64 M2C_UNK64;
 
 
 /* group members */
-void func_800E56F8(s16 ipa_s4);
+void func_800E56F8(s32 ipa_s4);
 void func_800E6AF8(void);
 
-void func_800E56F8(s16 ipa_s4) {
+void func_800E56F8(s32 ipa_s4) {
     GameCar *temp_s2;
     f32 temp_f0;
     f32 var_f0;
-    s16 *var_v0;
-    s16 temp_a0;
-    s16 temp_t9;
+    s32 temp_a0;
+    s32 idx;
     s32 *var_v0_2;
     s32 temp_a0_2;
     s32 temp_f6;
@@ -3720,7 +3719,7 @@ void func_800E56F8(s16 ipa_s4) {
     s32 temp_v1;
     s32 var_a0;
     s8 temp_v0;
-    s8 var_v1;
+    s32 var_v1;
     u8 temp_v0_3;
     void *temp_s0;
     void *temp_s0_2;
@@ -3741,16 +3740,12 @@ void func_800E56F8(s16 ipa_s4) {
             *(&D_801440AD + (M2C_FIELD(temp_s3, u8 *, 1) * 0x304)) = 0;
             return;
         }
-        temp_a0 = D_8015274C - 1;
-        if (D_80153F40 < temp_a0) {
-            var_v0 = &(&D_80152808)[D_80153F40];
-            do {
-                temp_t9 = M2C_FIELD(var_v0, s16 *, 2);
-                var_v0 = var_v0 + 1;
-                M2C_FIELD(var_v0, s16 *, -2) = temp_t9;
-            } while ((u32) var_v0 < (u32) &(&D_80152808)[temp_a0]);
+        idx = D_80153F40;
+        var_a0 = D_8015274C - 1;
+        for (; idx < var_a0; idx++) {
+            D_80152808[idx] = D_80152808[idx + 1];
         }
-        D_8015274C = temp_a0;
+        D_8015274C = var_a0;
         D_80153F40 -= 1;
         D_80153F08 -= 1;
         return;
@@ -3760,11 +3755,11 @@ void func_800E56F8(s16 ipa_s4) {
     func_800D1248(temp_s0_2);
     if (((s8) temp_s2->pad0EC[0x26C] == 2) && ((s8) temp_s2->pad0EC[0x26D] <= 0)) {
         func_800D5828(ipa_s4);
-        func_800E543C(2, ipa_s4, M2C_ERROR(/* Read from unset register $a2 */));
+        func_800E543C(2, ipa_s4);
     } else if ((M2C_FIELD(temp_s0_2, s8 *, 0x640) != 0) && ((s8) temp_s2->pad0EC[0x26D] >= 2)) {
         M2C_FIELD(temp_s0_2, s8 *, 0x640) = 0;
     }
-    temp_f0 = (((f32) M2C_FIELD(temp_s0_2, s16 *, 0x624) * D_8012447C) + 1.0f) * (M2C_FIELD(temp_s0_2, f32 *, 0x400) * M2C_FIELD(temp_s0_2, f32 *, 0x7F0));
+    temp_f0 = (M2C_FIELD(temp_s0_2, f32 *, 0x400) * M2C_FIELD(temp_s0_2, f32 *, 0x7F0)) * (((f32) M2C_FIELD(temp_s0_2, s16 *, 0x624) * D_8012447C) + 1.0f);
     M2C_FIELD(temp_s0_2, f32 *, 0x7F4) = temp_f0;
     M2C_FIELD(temp_s0_2, f32 *, 0x718) = (f32) (M2C_FIELD(temp_s0_2, f32 *, 0x718) * temp_f0);
     if (M2C_FIELD(temp_s0_2, s16 *, 0x6C4) >= 0) {
@@ -3781,16 +3776,16 @@ void func_800E56F8(s16 ipa_s4) {
         if (temp_s3 != NULL) {
             func_800E3724(temp_s0_2);
             if ((state_word_a & 0x400000) && ((gameplay_mode != 2) || (temp_v1 = (&D_80152698)[M2C_FIELD(temp_s0_2, s16 *, 0x7C6)], (temp_v1 == 0)) || (M2C_FIELD(*M2C_FIELD(M2C_FIELD(temp_v1, void **, 0), void ***, 0x28), s8 *, 5) < 0))) {
-                temp_f6 = (s32) (fabsf(M2C_FIELD(temp_s0_2, f32 *, 0x18)) + (fabsf(M2C_FIELD(temp_s0_2, f32 *, 0x10)) + fabsf(M2C_FIELD(temp_s0_2, f32 *, 0x14))));
+                temp_f6 = (s32) ((fabsf(M2C_FIELD(temp_s0_2, f32 *, 0x10)) + fabsf(M2C_FIELD(temp_s0_2, f32 *, 0x14))) + fabsf(M2C_FIELD(temp_s0_2, f32 *, 0x18)));
                 var_a0 = temp_f6;
                 if (gameplay_mode == 6) {
-                    temp_a0_2 = temp_f6 / 2;
+                    var_a0 /= 2;
                     if ((s8) temp_s2->pad0EC[0x26C] == 1) {
-                        var_a0 = temp_a0_2 + 0x186A0;
+                        var_a0 += 0x186A0;
                     } else {
                         temp_lo = M2C_FIELD(temp_s2, s16 *, 0x388) * 0x186A0;
                         M2C_FIELD(temp_s2, s16 *, 0x388) = 0;
-                        var_a0 = temp_a0_2 + (temp_lo / 800);
+                        var_a0 += temp_lo / 800;
                     }
                 }
                 var_v0_2 = &D_801163F8;
@@ -3836,14 +3831,14 @@ block_40:
     if (M2C_FIELD(temp_s0_2, s8 *, 0x7EB) == 0) {
         if (M2C_FIELD(temp_s0_2, s16 *, 0x6C4) >= 0) {
             var_f0 = 0.0f;
-            M2C_FIELD(temp_s2, s32 *, 0x30C) = (s32) M2C_FIELD(temp_s0_2, s32 *, 0x714);
+            M2C_FIELD(temp_s2, f32 *, 0x30C) = M2C_FIELD(temp_s0_2, f32 *, 0x714);
         } else {
-            var_f0 = M2C_BITWISE(f32, M2C_FIELD(temp_s0_2, s32 *, 0x714)) - M2C_BITWISE(f32, M2C_FIELD(temp_s2, s32 *, 0x30C));
+            var_f0 = M2C_FIELD(temp_s0_2, f32 *, 0x714) - M2C_FIELD(temp_s2, f32 *, 0x30C);
         }
         if ((((s8) D_8013FECB != 0) || (((gameplay_mode != 6) || (gameplay_mode != 5)) && (var_f0 >= 5.0f)) || (((gameplay_mode == 6) || (gameplay_mode == 5)) && (D_80124480 < var_f0))) && ((temp_v0_3 = *(&D_80153E8F + (M2C_FIELD(temp_s0_2, s16 *, 0x7C6) * 8)), (temp_v0_3 == 0)) || (temp_v0_3 == 6))) {
             M2C_FIELD(temp_s0_2, s8 *, 0x7EA) = 1;
             M2C_FIELD(temp_s0_2, s8 *, 0x7EB) = 1;
-            M2C_FIELD(temp_s2, s32 *, 0x30C) = 0;
+            M2C_FIELD(temp_s2, f32 *, 0x30C) = 0.0f;
         }
     }
 }
@@ -3965,7 +3960,7 @@ block_14:
             var_s8_2 = 0;
             if (var_a0 > 0) {
                 do {
-                    temp_v0_6 = (D_8014A250_Record *) (((&D_80152808)[D_80153F40] * 0x808) + (u8 *) &D_8014A250);
+                    temp_v0_6 = (D_8014A250_Record *) ((D_80152808[D_80153F40] * 0x808) + (u8 *) &D_8014A250);
                     M2C_FIELD(temp_v0_6, f32 *, 0x718) = (f32) ((f32) (D_80143FF4 - M2C_FIELD(temp_v0_6, s32 *, 0x710)) * D_8002AFB8);
                     M2C_FIELD(temp_v0_6, s32 *, 0x710) = (s32) D_80143FF4;
                     M2C_FIELD(temp_v0_6, f32 *, 0x714) = (f32) D_801543CC;

@@ -10,9 +10,9 @@ func_8008B640                      9/23   words differ (size 23/23)
 physics_velocity_integrate_a      64/178  (size 178/178)
 physics_velocity_integrate_b       9/72   (size 72/72; zbuild reports 73 only because it is last in the object)
 physics_velocity_integrate_c       9/66   (size 66/66)
-physics_velocity_integrate_d      10/66   (size 66/66)
-physics_velocity_integrate_e      10/66   (size 66/66)
-physics_velocity_integrate_f      10/66   (size 66/66)
+physics_velocity_integrate_d       9/66   (size 66/66)
+physics_velocity_integrate_e       9/66   (size 66/66)
+physics_velocity_integrate_f       9/66   (size 66/66)
 ```
 
 Every remaining difference is register naming or the order of two independent
