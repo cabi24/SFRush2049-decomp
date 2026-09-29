@@ -32,6 +32,22 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[3]
 MEMBERS_JSON = REPO / "build" / "ipa_members.json"
 GROUPS_JSON = REPO / "build" / "ipa_groups.json"
+M2C_MAP_JSON = REPO / "build" / "ipa_m2c_map.json"
+
+_REG_ORDER = (["at", "v0", "v1"] + [f"t{i}" for i in range(10)]
+              + [f"s{i}" for i in range(8)] + ["s8"] + [f"f{i}" for i in range(32)])
+
+
+def m2c_register_map(members_doc):
+    """{callee: [non-ABI parameter registers in register order]} for m2c's
+    IPA mode (tools/m2c_patches/0004)."""
+    out = {}
+    for callee, regs in members_doc["callees"].items():
+        regs = [r for r in regs if r not in ABI_INPUTS]
+        if regs:
+            out[callee] = sorted(regs, key=lambda r: _REG_ORDER.index(r)
+                                 if r in _REG_ORDER else 99)
+    return out
 GROUP_CAP_INSNS = 1000
 
 # O32 inputs: argument registers, stack/return address, FP argument registers.
@@ -416,6 +432,7 @@ def main():
     doc = scan(conn, asm_for)
     MEMBERS_JSON.parent.mkdir(parents=True, exist_ok=True)
     MEMBERS_JSON.write_text(json.dumps(doc, indent=1, sort_keys=True) + "\n")
+    M2C_MAP_JSON.write_text(json.dumps(m2c_register_map(doc), indent=1, sort_keys=True) + "\n")
     print(f"scanned {doc['scanned']}: {len(doc['members'])} IPA members "
           f"({len(doc['callees'])} callees, {len(doc['preservers'])} preservers, "
           f"{len(doc['callers'])} callers of callees) -> {MEMBERS_JSON}")

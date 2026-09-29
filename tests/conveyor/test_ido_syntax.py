@@ -88,3 +88,47 @@ def test_m2c_scales_typed_pointer_steps(tmp_path):
     assert "s32 *var_v0;" in out
     assert "var_v0 = var_v0 + 1;" in out
     assert "+= 4" not in out
+
+
+_IPA_CALLEE = """glabel callee
+sw $t0,16($a0)
+jr $ra
+nop
+"""
+_IPA_CALLER = """glabel caller
+addiu $sp,$sp,-24
+sw $ra,20($sp)
+jal callee
+li $t0,54
+lw $ra,20($sp)
+jr $ra
+addiu $sp,$sp,24
+"""
+
+
+def _m2c(tmp_path, asm_text, name, env=None):
+    import os
+    asm = tmp_path / f"{name}.s"
+    asm.write_text(asm_text)
+    ctx = tmp_path / "ctx.c"
+    ctx.write_text("typedef int s32; typedef unsigned char u8;\n")
+    return subprocess.run(
+        ["python3", str(autodecomp.M2C), str(asm), "-f", name, "--valid-syntax",
+         "--context", str(ctx)], capture_output=True, text=True, check=True,
+        env=dict(os.environ, **(env or {}))).stdout
+
+
+def test_m2c_ipa_mode_turns_register_parameters_into_c_parameters(tmp_path):
+    """Patch 0004: with M2C_IPA_REGS, a callee's $t0 is a parameter and a
+    call to it passes the value its caller put in $t0."""
+    import json
+    autodecomp.ensure_m2c_patched()
+    regs = tmp_path / "map.json"
+    regs.write_text(json.dumps({"callee": ["t0"]}))
+    env = {"M2C_IPA_REGS": str(regs)}
+    callee = _m2c(tmp_path, _IPA_CALLEE, "callee", env)
+    caller = _m2c(tmp_path, _IPA_CALLER, "caller", env)
+    assert "ipa_t0" in callee and "unset register" not in callee
+    assert "callee(0x36)" in caller
+    plain = _m2c(tmp_path, _IPA_CALLEE, "callee")
+    assert "unset register $t0" in plain          # plain seeds are unchanged

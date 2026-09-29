@@ -18,6 +18,7 @@ import argparse
 import datetime
 import hashlib
 import json
+import os
 import re
 import subprocess
 import sys
@@ -200,7 +201,7 @@ def ensure_m2c_patched():
     _M2C_PATCHED = True
 
 
-def m2c_seed(target_id, vaddr, asm_idx, diagnostics=None, context=None):
+def m2c_seed(target_id, vaddr, asm_idx, diagnostics=None, context=None, ipa=False):
     """Self-contained C seed for a target from its own asm, or None if m2c
     can't decompile it (missing asm / failure)."""
     ensure_m2c_patched()
@@ -228,8 +229,14 @@ def m2c_seed(target_id, vaddr, asm_idx, diagnostics=None, context=None):
            "--valid-syntax"]
     if ctx_path:
         cmd += ["--context", ctx_path]
+    env = None
+    if ipa:
+        # IPA mode (m2c patch 0004): register parameters from the IPA scan,
+        # and caller-save values kept across calls. Only for group seeds.
+        from . import ipa as ipamod
+        env = dict(os.environ, M2C_IPA_REGS=str(ipamod.M2C_MAP_JSON))
     try:
-        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
+        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=120, env=env)
     finally:
         if isolated is not None:
             isolated.unlink(missing_ok=True)

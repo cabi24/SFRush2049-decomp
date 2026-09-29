@@ -68,3 +68,8 @@ def test_units_over_the_cap_are_left_out():
     calls = {"keeper": {"big"}, "big": set()}
     groups = ipa.discover_groups(members_doc, calls, {"keeper": 10, "big": 500}, cap=100)
     assert groups == []
+
+
+def test_m2c_register_map_keeps_non_abi_registers_in_register_order():
+    doc = {"callees": {"f": ["t1", "a0", "t0"], "g": ["s2", "f20"], "h": ["a1"]}}
+    assert ipa.m2c_register_map(doc) == {"f": ["t0", "t1"], "g": ["s2", "f20"]}

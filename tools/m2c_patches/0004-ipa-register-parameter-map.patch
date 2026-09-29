@@ -1,0 +1,124 @@
+diff --git a/m2c/translate.py b/m2c/translate.py
+--- a/m2c/translate.py
++++ b/m2c/translate.py
+@@ -2285,6 +2285,9 @@
+     stack_info: StackInfo = field(repr=False)
+     contents: Dict[Register, RegData] = field(default_factory=dict)
+     read_inherited: Set[Register] = field(default_factory=set)
++    # rush2049 (IPA mode): values a call cleared from caller-save registers;
++    # IPA callers read them after calls to callees that leave them alone.
++    stashed: Dict[Register, RegData] = field(default_factory=dict)
+     _current_instr_ref: Optional[InstrRef] = None
+ 
+     def current_instr_ref(self) -> InstrRef:
+@@ -2315,6 +2318,8 @@
+             return Literal(0)
+         data = self.contents.get(key)
+         if data is None:
++            data = self.stashed.get(key)
++        if data is None:
+             return ErrorExpr(f"Read from unset register {key}")
+         ret = data.value
+         meta = data.meta
+@@ -3611,8 +3616,12 @@
+         return expr
+ 
+     def clear_caller_save_regs(self) -> None:
++        from . import rush_ipa
++        keep = rush_ipa.enabled()
+         for reg in self.stack_info.global_info.arch.temp_regs:
+             if reg in self.regs:
++                if keep:
++                    self.regs.stashed[reg] = self.regs.contents[reg]
+                 del self.regs[reg]
+ 
+     def maybe_clear_local_var_writes(self, func_args: List[Expression]) -> None:
+@@ -3714,6 +3723,7 @@
+     ) -> None:
+         call_instr = self.regs.current_instr_ref()
+         arch = self.stack_info.global_info.arch
++        ipa_target = fn_target
+         fn_target = as_function_ptr(fn_target)
+         fn_sig = fn_target.type.get_function_pointer_signature()
+         assert fn_sig is not None, "known function pointers must have a signature"
+@@ -3783,6 +3793,14 @@
+             assert slot.loc.reg is not None
+             func_args.append(self.regs[slot.loc.reg])
+ 
++        # rush2049: IPA register arguments of the callee (see rush_ipa).
++        from . import rush_ipa
++        target_sym = late_unwrap(ipa_target)
++        if isinstance(target_sym, AddressOf):
++            target_sym = target_sym.expr
++        for reg_name in rush_ipa.regs_for(getattr(target_sym, "symbol_name", None)):
++            func_args.append(self.regs[Register(reg_name)])
++
+         # Add the arguments after a3.
+         # TODO: limit this based on abi.arg_slots. If the function type is known
+         # and not variadic, this list should be empty.
+@@ -4708,6 +4726,15 @@
+                 make_arg(slot.loc, slot.type),
+                 RegMeta(uninteresting=True, initial=True),
+             )
++    # rush2049: IPA register parameters of this function (see rush_ipa).
++    from . import rush_ipa
++    for k, reg_name in enumerate(rush_ipa.regs_for(stack_info.function.name)):
++        loc = ArgLoc(None, 100 + k, Register(reg_name))
++        type = stack_info.add_known_param(loc, f"ipa_{reg_name}", Type.any_reg())
++        state.set_initial_reg(
++            Register(reg_name), make_arg(loc, type),
++            RegMeta(uninteresting=True, initial=True),
++        )
+ 
+ 
+ def translate_to_ast(
+diff --git a/m2c/arch_mips.py b/m2c/arch_mips.py
+--- a/m2c/arch_mips.py
++++ b/m2c/arch_mips.py
+@@ -1031,6 +1031,10 @@
+             # Function call to label
+             assert len(args) == 1
+             inputs = list(cls.argument_regs)
++            # rush2049: IPA register parameters are inputs of the call too.
++            from . import rush_ipa
++            inputs += [Register(r) for r in
++                       rush_ipa.regs_for(getattr(args[0], "symbol_name", None))]
+             outputs = list(cls.all_return_regs)
+             clobbers = list(cls.temp_regs)
+             function_target = args[0]
+diff --git a/m2c/rush_ipa.py b/m2c/rush_ipa.py
+new file mode 100644
+--- /dev/null
++++ b/m2c/rush_ipa.py
+@@ -0,0 +1,31 @@
++"""rush2049: IDO -O3 interprocedural register allocation (IPA) support.
++
++Opt-in via the environment variable M2C_IPA_REGS, naming a JSON file
++{function_name: [register, ...]}: the non-ABI registers in which that
++function receives parameters (e.g. {"resource_slot_clear": ["t0"]}).
++
++With it set, m2c (1) gives a mapped function extra parameters for those
++registers, (2) passes those registers as extra arguments at calls to it, and
++(3) keeps a caller-save register's pre-call value instead of reporting it
++unset, because IPA lets callers keep values live across calls to callees
++known not to clobber them.
++"""
++import json
++import os
++from typing import Dict, List, Optional
++
++_MAP: Optional[Dict[str, List[str]]] = None
++
++
++def enabled() -> bool:
++    return bool(os.environ.get("M2C_IPA_REGS"))
++
++
++def regs_for(name: Optional[str]) -> List[str]:
++    global _MAP
++    if not name or not enabled():
++        return []
++    if _MAP is None:
++        with open(os.environ["M2C_IPA_REGS"]) as f:
++            _MAP = json.load(f)
++    return list(_MAP.get(name, []))

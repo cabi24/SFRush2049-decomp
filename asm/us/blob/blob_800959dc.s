@@ -3150,6 +3150,7 @@ entity_state_check:
 .section .text.entity_flag_check, "ax", @progbits
 .globl entity_flag_check
 entity_flag_check:
+    /* compiled from src/blob/entity_flag_check.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x3C0F8014

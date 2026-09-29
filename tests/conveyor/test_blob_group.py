@@ -108,3 +108,23 @@ def test_builder_script_uses_kp_not_preserve_dead_code():
     script = blob_group.builder_script(spec)
     assert "-kp keep.txt a.u b.u" in script
     assert "-preserve_dead_code" not in script.split("cc.log")[1]
+
+
+def test_a_function_cannot_be_both_member_and_context(tmp_path):
+    d = _group(tmp_path)
+    spec = json.loads((d / "group.json").read_text())
+    spec["context"] = ["f"]
+    (d / "group.json").write_text(json.dumps(spec))
+    with pytest.raises(blob_group.GroupError, match="both member and context"):
+        blob_group.load("grp", tmp_path)
+
+
+def test_context_functions_resolve_calls_but_are_not_spliced(tmp_path):
+    obj = _object(tmp_path)
+    extents = {"f": {"vaddr": 0x80100000, "size": 24},
+               "g": {"vaddr": 0x80200000, "size": 16}}
+    slices, text_ndx = blob_group.member_slices(obj, ["f", "g"], extents)
+    bodies = blob_group.relocate(obj, slices, text_ndx,
+                                 {"D_data": 0x8012FFF0, "ext_fn": 0x80000400})
+    # g as context: f's call into it still resolves to g's image address
+    assert _words(bodies["f"])[0] == 0x0C000000 | (0x80200000 >> 2) & 0x03FFFFFF

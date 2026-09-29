@@ -135,6 +135,15 @@
     "verified": "image_gate",
     "verified_at": "2026-09-28"
   },
+  "entity_flag_check": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "entity_flag_check",
+    "source": "src/blob/groups/entity_flag_check/group.json",
+    "source_sha256": "bc2689a3de793893c833dedfaeb68bdbbb927434842fbcf17e98a277cd711f74",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
   "fcvt_wrapper": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/fcvt_wrapper.c",
