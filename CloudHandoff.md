@@ -131,8 +131,12 @@ generated context). Tasks, in order:
 
 ### Lane B: single-function near misses (steady, parallel)
 
-[cloud/work/near-miss/](cloud/work/near-miss/INDEX.md): 104 functions compiled
-alone at `-O2`/`-O1` whose best source is close (score 5-500). Each has
+[cloud/work/near-miss/](cloud/work/near-miss/INDEX.md): 103 candidates ranked by
+strict word differences, retaining their historical pipeline scores (5-500).
+All 104 original candidates were rescored at their recorded `-O2`/`-O1` flags;
+`func_800C54F0` already matches and is reported separately (it is already locked).
+The ranking includes nonzero excess instructions and retains any verification
+warnings. Rebuild it on x86 with `python3 tools/cloud/rank_near_miss.py`. Each has
 `base.c`, a whole translation unit; edit only the target function (and
 prototypes it needs).
 `python3 tools/cloud/score.py fn cloud/work/near-miss/<f>/base.c <f> --flags "<flags from INDEX>"`.
