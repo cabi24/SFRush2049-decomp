@@ -3736,6 +3736,8 @@ s32 func_800AD4C8(void *arg0, void *arg1, void *arg2, f32 ipa_f18) {
 }
 
 s16 func_800C3AD0(void *ipa_s0, void *ipa_s2, void *ipa_s4, s16 *ipa_s5, void *ipa_s6, void *ipa_s7, f32 *ipa_fp, f32 ipa_f20) {
+    u8 sp[0x100]; /* cloud: the frame itself (m2c addressed stack arrays via sp) */
+    s32 sp3A; /* cloud: stack slot 0x3A (not modelled) */
     f32 sp98;
     f32 sp94;
     f32 sp90;
@@ -3868,6 +3870,10 @@ block_18:
 }
 
 s16 input_process_controller(void *arg3, void *ipa_s1, void *ipa_s2, void *ipa_s3, s16 *ipa_s5, s32 ipa_s6, void *ipa_s7, void *ipa_fp, M2C_UNK ipa_f24) {
+    u8 sp[0x100]; /* cloud: the frame itself (m2c addressed stack arrays via sp) */
+    s32 sp92; /* cloud: stack slot 0x92 (not modelled) */
+    f32 sp7C; /* cloud: stack slot 0x7C (not modelled) */
+    f32 sp78; /* cloud: stack slot 0x78 (not modelled) */
     u16 sp94;
     s16 sp90;
     f32 sp88;
