@@ -1,5 +1,7 @@
 # The zlib cluster (deflate side) in the game code
 
+**Update: done.** Group [`zlib_deflate`](zlib_deflate/STATUS.md) matches all 18 zlib functions (2,908 words) from the zlib 1.0.4 source; the game's driver `car_angular_velocity_clamp` is context. The groups `car_cg_height_set`, `car_collision_update`, `car_crash_response` and `car_collision_init` are superseded by it. The layout notes below were confirmed, with two corrections found while matching: `IPos` is `unsigned short`, and `deflate_slow` has no `flush` parameter (see its STATUS.md).
+
 Found 2026-09-29 by the cloud Lane A pass. Evidence: struct offsets and call
 graph read from the target words; zlib 1.0.4 offsets measured by compiling
 `offsetof` probes with IDO 5.3 against `tools/zlib-1.0.4/deflate.h`.
