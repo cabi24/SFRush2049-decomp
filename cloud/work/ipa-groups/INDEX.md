@@ -6,22 +6,16 @@ Each dir: group.json (members, keep list, flags) + group.c (all members after on
 
 | group | insns | status |
 |---|---|---|
-| menu_highlight_set | 18 | built; words differing per member: {"menu_highlight_set": 18} |
-| save_context_stub | 27 | built; words differing per member: {"save_context_stub": 26} |
-| session_leave | 29 | built; words differing per member: {"session_leave": 28} |
 | menu_back | 33 | built; words differing per member: {"menu_back": 33} |
 | dynamic_difficulty | 47 | BUILD ERROR: m2c produced no seed for dynamic_difficulty |
 | highscore_entry_anim | 47 | built; words differing per member: {"highscore_entry_anim": 42} |
 | catchup_logic | 57 | BUILD ERROR: m2c produced no seed for catchup_logic |
 | reconnect_attempt | 106 | BUILD ERROR: m2c produced no seed for reconnect_attempt |
-| spark_effect | 132 | built; words differing per member: {"spark_effect": 132} |
 | car_collision_init | 137 | BUILD ERROR: group build failed: cfe: Error: group.c, line 3720: Dereferenced a non-pointer. *((*( s32 *)((s8 *)(arg0) + |
-| difficulty_scaling | 178 | BUILD ERROR: group build failed: cfe: Error: group.c, line 3714: Unacceptable operand of a multiplicative operator. (*(  |
 | func_8008B640 | 201 | BUILD ERROR: group build failed: cfe: Error: group.c, line 3763: Syntax Error } --------^ |
 | func_8010A7A4 | 242 | BUILD ERROR: m2c produced no seed for ping_measurement |
 | name_entry_screen | 247 | BUILD ERROR: m2c produced no seed for name_entry_screen |
 | championship_standings | 279 | BUILD ERROR: group build failed: cfe: Warning 709: group.c, line 3725: Incompatible pointer type assignment temp_t6 = (s |
-| session_host | 303 | built; words differing per member: {"session_host": 302} |
 | func_800D2FA8 | 350 | BUILD ERROR: group build failed: cfe: Warning 712: group.c, line 3775: illegal combination of pointer and integer temp_v |
 | audio_frame_update | 361 | BUILD ERROR: group build failed: cfe: Warning 712: group.c, line 3728: illegal combination of pointer and integer temp_v |
 | car_cg_height_set | 481 | BUILD ERROR: group build failed: cfe: Warning 712: group.c, line 3782: illegal combination of pointer and integer var_v1 |

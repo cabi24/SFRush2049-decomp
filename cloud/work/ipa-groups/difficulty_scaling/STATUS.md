@@ -1,5 +1,0 @@
-# difficulty_scaling
-
-Regenerated 2026-09-29 by `blob_group seed` (IPA-mode m2c with patches 0001-0005).
-
-BUILD ERROR: group build failed: cfe: Error: group.c, line 3714: Unacceptable operand of a multiplicative operator. (*( s16 *)((s8 *)(arg0) + ( 0x1C))) = (s16) (s32) ((f32) (*( s16 *)((s8 *)(arg0) + ( 0x1C))) + (arg0 * (f32) temp_t5)); -----------------------------------------------------------------------------
