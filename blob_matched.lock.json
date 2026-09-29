@@ -71,6 +71,14 @@
     "verified": "image_gate",
     "verified_at": "2026-09-23"
   },
+  "camera_race_setup": {
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "src/blob/camera_race_setup.c",
+    "source_sha256": "2267c7d9156be7878bdc9375732de8d8b08a1eb570192936526167151f04d3ea",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-28"
+  },
   "collision_check_thunk": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/collision_check_thunk.c",
@@ -423,6 +431,14 @@
     "verified": "image_gate",
     "verified_at": "2026-09-23"
   },
+  "func_800DC080": {
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "src/blob/func_800DC080.c",
+    "source_sha256": "54cea4304add5940429a957a8daab3af2d090a31d6e3af48a92809870df084f2",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-28"
+  },
   "func_800DDEA4": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_800DDEA4.c",
@@ -591,6 +607,14 @@
     "verified": "image_gate",
     "verified_at": "2026-09-28"
   },
+  "no_catchup": {
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "src/blob/no_catchup.c",
+    "source_sha256": "db6112a8ff9d97738a2a0145b1dee6fb0f206a374a02cd9243b519f8e7e0a18f",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-28"
+  },
   "object_action_clear": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/object_action_clear.c",
@@ -742,6 +766,14 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-23"
+  },
+  "race_init_helper": {
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "src/blob/race_init_helper.c",
+    "source_sha256": "d4c01ed265131d736090031ce4ecf6c5329c0835b6ce53ec95d4d9bb8ca36549",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-28"
   },
   "replay_update_dual": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",

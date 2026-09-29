@@ -5244,6 +5244,7 @@ set_catchup:
 .section .text.no_catchup, "ax", @progbits
 .globl no_catchup
 no_catchup:
+    /* compiled from src/blob/no_catchup.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x8CAE0000

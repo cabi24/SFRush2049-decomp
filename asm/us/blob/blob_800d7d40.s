@@ -4379,6 +4379,7 @@ RaceStateMachine_Update:
 .section .text.func_800DC080, "ax", @progbits
 .globl func_800DC080
 func_800DC080:
+    /* compiled from src/blob/func_800DC080.c */
     .word 0x00047400
     .word 0x000E7C03
     .word 0xAFA40000

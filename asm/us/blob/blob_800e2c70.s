@@ -9555,6 +9555,7 @@ func_800EB90C:
 .section .text.race_init_helper, "ax", @progbits
 .globl race_init_helper
 race_init_helper:
+    /* compiled from src/blob/race_init_helper.c */
     .word 0x27BDFFD0
     .word 0xAFBF002C
     .word 0xAFB40028

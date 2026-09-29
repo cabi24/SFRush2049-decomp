@@ -11140,6 +11140,7 @@ finish_state_alt:
 .section .text.camera_race_setup, "ax", @progbits
 .globl camera_race_setup
 camera_race_setup:
+    /* compiled from src/blob/camera_race_setup.c */
     .word 0x27BDFFC8
     .word 0x3C038015
     .word 0x80632744
