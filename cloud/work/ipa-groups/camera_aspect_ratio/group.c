@@ -3912,6 +3912,8 @@ void camera_update(void *arg0, s16 arg1) {
     f32 spC4;
     f32 spC0;
     f32 spB4;
+    f32 spB8; /* cloud: with spB4/spBC a 3-float scale vector (not modelled) */
+    f32 spBC;
     f32 *var_a0_2;
     f32 temp_f0;
     f32 temp_f0_2;

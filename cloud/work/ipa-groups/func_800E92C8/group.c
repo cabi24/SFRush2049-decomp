@@ -1,3 +1,7 @@
+float fabsf(float); /* cloud: m2c emits fabsf/sqrtf for abs.s/sqrt.s; declare them as IDO intrinsics */
+float sqrtf(float);
+#pragma intrinsic (fabsf)
+#pragma intrinsic (sqrtf)
 #define NULL ((void *)0)
 #define TRUE 1
 #define FALSE 0

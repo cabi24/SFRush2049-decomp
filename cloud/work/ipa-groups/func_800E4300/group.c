@@ -1,3 +1,7 @@
+float fabsf(float); /* cloud: m2c emits fabsf/sqrtf for abs.s/sqrt.s; declare them as IDO intrinsics */
+float sqrtf(float);
+#pragma intrinsic (fabsf)
+#pragma intrinsic (sqrtf)
 #define NULL ((void *)0)
 #define TRUE 1
 #define FALSE 0
@@ -3698,10 +3702,11 @@ typedef s64 M2C_UNK64;
 
 
 /* group members */
-s16 func_800E4300(s32 arg1, s32 arg2, s32 ipa_t0, s32 ipa_t2, s32 ipa_t5);
+s16 func_800E4300(s16 *arg2, s16 ipa_t2, s16 ipa_t5, s16 arg1, s16 ipa_t0);
 void func_800E451C(s32 arg0, void *ipa_s5, void *ipa_s6);
 
-s16 func_800E4300(s32 arg1, s32 arg2, s32 ipa_t0, s32 ipa_t2, s32 ipa_t5) {
+s16 func_800E4300(s16 *arg2, s16 ipa_t2, s16 ipa_t5, s16 arg1, s16 ipa_t0) {
+    /* cloud: params ordered by home slot (sp+0..16 = $a2,$t2,$t5,$a1,$t0); the seed used register order */
     f32 temp_f12;
     f32 temp_f14;
     f32 temp_f16;
@@ -3724,12 +3729,8 @@ s16 func_800E4300(s32 arg1, s32 arg2, s32 ipa_t0, s32 ipa_t2, s32 ipa_t5) {
     void *temp_v0_2;
 
     temp_a2 = arg2;
-    arg3 = arg1;
     temp_a1 = (s16) arg1;
-    arg1 = ipa_t2;
-    arg4 = ipa_t0;
     temp_v0 = (s32 *) ((u8 *) &D_80151CE8 + (temp_a1 * 0x50));
-    arg2 = ipa_t5;
     temp_a0 = (s16) ipa_t0 * 2;
     temp_t3 = (u8 *) temp_v0 + ((s16) ipa_t2 * 2);
     temp_a3 = M2C_FIELD(((u8 *) temp_v0 + temp_a0), s16 *, 0x30) - M2C_FIELD(temp_t3, s16 *, 0x30);
@@ -3796,9 +3797,7 @@ void func_800E451C(s32 arg0, void *ipa_s5, void *ipa_s6) {
     f32 sp78;
     f32 sp74;
     f32 sp6C;
-    s16 sp64;
-    s16 sp62;
-    s16 sp60;
+    s16 sp60[3]; /* cloud: the position passed to func_800E4300 (sp+0x60..0x64) */
     f32 sp3C;
     f32 sp38;
     f32 sp30;
@@ -3888,10 +3887,10 @@ loop_8:
         sp6C = D_801543CC;
         do {
             var_f20 = 0.0f;
-            sp60 = (s16) (s32) M2C_FIELD(ipa_s5, f32 *, 0x794);
-            sp62 = (s16) (s32) M2C_FIELD(ipa_s5, f32 *, 0x798);
-            sp64 = (s16) (s32) M2C_FIELD(ipa_s5, f32 *, 0x79C);
-            temp_v0 = func_800E4300(M2C_ERROR(/* Read from unset register $a0 */), (void *) M2C_FIELD(ipa_s5, s16 *, 0x7E2), var_s3, M2C_FIELD(ipa_s6, s16 *, 0x28), M2C_FIELD(ipa_s6, s16 *, 0x24));
+            sp60[0] = (s16) (s32) M2C_FIELD(ipa_s5, f32 *, 0x794);
+            sp60[1] = (s16) (s32) M2C_FIELD(ipa_s5, f32 *, 0x798);
+            sp60[2] = (s16) (s32) M2C_FIELD(ipa_s5, f32 *, 0x79C);
+            temp_v0 = func_800E4300(sp60, M2C_FIELD(ipa_s6, s16 *, 0x28), M2C_FIELD(ipa_s6, s16 *, 0x24), M2C_FIELD(ipa_s5, s16 *, 0x7E2), var_s3);
             temp_s0 = D_8012E5EC + (temp_v0 * 8);
             temp_f22 = (f32) M2C_FIELD(temp_s0, s16 *, 4);
             temp_f24 = (f32) M2C_FIELD(temp_s0, s16 *, 0);
