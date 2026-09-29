@@ -1,5 +1,7 @@
 # MP_TargetSteerPos
 
+**Update: MATCH with `as1 -r4300_mul`** (the missing `nop` below is the game's VR4300 multiply workaround; see [../../R4300_MUL.md](../../R4300_MUL.md)). `camera_transform` moved to context so `MP_TargetSteerPos` can land.
+
 **BUILDS.** `MP_TargetSteerPos` is one `nop` from matching; `camera_transform`
 is untouched (seed).
 
