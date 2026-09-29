@@ -97,6 +97,7 @@ s32 func_800DC1AC(u32 value, u32 nbits)
 {
     u32 i;
     u8 *p;
+    u16 pos;
 
     if (nbits > 32) {
         return 0;
@@ -107,10 +108,11 @@ s32 func_800DC1AC(u32 value, u32 nbits)
     i = 0;
     if (nbits != 0) {
         do {
+            pos = D_801170F4;
+            p = &D_8012E618[pos >> 3];
+            *p |= (value & 1) << (pos & 7);
             i++;
-            p = &D_8012E618[D_801170F4 >> 3];
-            *p |= (value & 1) << (D_801170F4 & 7);
-            D_801170F4++;
+            D_801170F4 = pos + 1;
             value >>= 1;
         } while (i < nbits);
     }

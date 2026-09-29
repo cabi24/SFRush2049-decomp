@@ -2033,7 +2033,6 @@ extern s32 D_80124FD0;
 extern s16 D_80124FE0;
 extern s16 D_80124FE2;
 extern s32 D_80124FE8;
-extern u16 D_8012E5E8;
 extern s32 D_8012E5EC;
 extern s32 D_8012E608;
 extern s32 D_8012E60C;
@@ -2517,7 +2516,6 @@ extern s32 D_80151AD4;
 extern s32 D_80151ADC;
 extern s32 D_80151AE0;
 extern s32 D_80151AE8;
-extern s32 D_80151CE8;
 extern s16 D_80151CEC;
 extern s16 D_80151CEE;
 extern s32 D_80151CF4;
@@ -3705,87 +3703,93 @@ typedef s64 M2C_UNK64;
 s16 func_800E4300(s16 *arg2, s16 ipa_t2, s16 ipa_t5, s16 arg1, s16 ipa_t0);
 void func_800E451C(s32 arg0, void *ipa_s5, void *ipa_s6);
 
-s16 func_800E4300(s16 *arg2, s16 ipa_t2, s16 ipa_t5, s16 arg1, s16 ipa_t0) {
-    /* cloud: params ordered by home slot (sp+0..16 = $a2,$t2,$t5,$a1,$t0); the seed used register order */
-    f32 temp_f12;
-    f32 temp_f14;
-    f32 temp_f16;
-    f32 temp_f2;
-    f32 var_f0;
-    s16 temp_a1;
-    s16 temp_a3;
-    s16 temp_t1;
-    s16 var_t0;
-    s16 var_t1;
-    s16 var_t2;
-    s16 var_t4;
-    s32 temp_a0;
-    s32 temp_a2;
-    s32 var_a3;
-    u16 *var_a1;
-    u16 var_v0;
-    void *temp_t3;
-    void *temp_v0;
-    void *temp_v0_2;
+typedef struct {
+    /* 0x00 */ u8 pad0[2];
+    /* 0x02 */ s16 last;       /* valid in element 0 */
+    /* 0x04 */ u8 pad4[4];
+    /* 0x08 */ s16 count;      /* valid in element 0 */
+    /* 0x0A */ u8 padA[0x30 - 0xA];
+    /* 0x30 */ s16 start[16];
+} Section;                     /* 0x50 */
 
-    temp_a2 = arg2;
-    temp_a1 = (s16) arg1;
-    temp_v0 = (s32 *) ((u8 *) &D_80151CE8 + (temp_a1 * 0x50));
-    temp_a0 = (s16) ipa_t0 * 2;
-    temp_t3 = (u8 *) temp_v0 + ((s16) ipa_t2 * 2);
-    temp_a3 = M2C_FIELD(((u8 *) temp_v0 + temp_a0), s16 *, 0x30) - M2C_FIELD(temp_t3, s16 *, 0x30);
-    if ((temp_a1 + 1) == M2C_FIELD(&D_80151CE8, s16 *, 8)) {
-        var_a1 = (u16 *) ((u8 *) &D_8012E5E8 + ((s16) ipa_t0 * 8));
-        var_v0 = *var_a1;
-        var_t4 = (var_v0 - *((u16 *) ((u8 *) &D_8012E5E8 + ((s16) ipa_t2 * 8)))) - temp_a3;
+typedef struct {
+    /* 0x0 */ s16 x, y, z;
+    /* 0x6 */ u8 flag;
+    /* 0x7 */ u8 pad7;
+} TrackPt;
+
+typedef struct {
+    /* 0x0 */ u16 numPoints;
+    /* 0x2 */ u16 pad2;
+    /* 0x4 */ TrackPt *points;
+} Track;
+
+extern Section D_80151CE8[];
+extern Track D_8012E5E8[];
+
+s16 func_800E4300(s16 *pos, s16 ipa_t2, s16 ipa_t5, s16 player, s16 ipa_t0) {
+    /* cloud: params ordered by home slot (sp+0..16 = $a2,$t2,$t5,$a1,$t0); the seed used register order */
+    Section *ent;
+    Track *tbl;
+    s16 d;
+    s16 diff;
+    s16 win;
+    s16 cnt;
+    s16 best;
+    s32 idx;
+    u16 n;
+    s32 k; s32 cn;
+    f32 bestd;
+    f32 dx, dy, dz, dist;
+    TrackPt *pt;
+
+    ent = &D_80151CE8[player];
+    d = ent->start[ipa_t0] - ent->start[ipa_t2];
+    if (player + 1 == D_80151CE8[0].count) {
+        tbl = &D_8012E5E8[ipa_t0];
+        n = tbl->numPoints;
+        diff = (n - D_8012E5E8[ipa_t2].numPoints) - d;
     } else {
-        var_a1 = (u16 *) (((s16) ipa_t0 * 8) + (u8 *) &D_8012E5E8);
-        var_t4 = (D_8012E668 - M2C_FIELD(temp_t3, s16 *, 0x80)) - temp_a3;
-        var_v0 = *var_a1;
+        diff = (ent[1].start[ipa_t0] - ent[1].start[ipa_t2]) - d;
+        tbl = &D_8012E5E8[ipa_t0];
+        n = tbl->numPoints;
     }
-    if (var_t4 < 0) {
-        var_t4 *= -1;
+    if (diff < 0) {
+        diff = -diff;
     }
-    var_f0 = D_8012443C;
-    var_t0 = 0;
-    if (var_t4 < 5) {
-        var_t1 = 5;
+    bestd = D_8012443C;
+    best = 0;
+    if (diff < 5) {
+        win = 5;
     } else {
-        var_t1 = var_t4;
+        win = diff;
     }
-    var_t2 = ((s16) ipa_t5 + temp_a3) - var_t1;
-    if (var_t2 < 0) {
-        do {
-            var_t2 += var_v0;
-        } while (var_t2 < 0);
+    idx = ipa_t5 + d - win;
+    while (idx < 0) {
+        idx += n;
     }
-    temp_t1 = (var_t1 * 2) + 1;
-    if (var_t2 >= (s32) var_v0) {
-        do {
-            var_t2 -= var_v0;
-        } while (var_t2 >= (s32) var_v0);
+    cnt = win * 2 + 1;
+    while (idx >= n) {
+        idx -= n;
     }
-    var_a3 = 0;
-    if (temp_t1 > 0) {
-        do {
-            temp_v0_2 = M2C_FIELD(var_a1, s32 *, 4) + (var_t2 * 8);
-            var_a3 += 1;
-            temp_f2 = (f32) (M2C_FIELD(temp_v0_2, s16 *, 0) - M2C_FIELD(temp_a2, s16 *, 0));
-            temp_f12 = (f32) (M2C_FIELD(temp_v0_2, s16 *, 2) - M2C_FIELD(temp_a2, s16 *, 2));
-            temp_f14 = (f32) (M2C_FIELD(temp_v0_2, s16 *, 4) - M2C_FIELD(temp_a2, s16 *, 4));
-            temp_f16 = (temp_f2 * temp_f2) + (temp_f12 * temp_f12) + (temp_f14 * temp_f14);
-            if (temp_f16 < var_f0) {
-                var_f0 = temp_f16;
-                var_t0 = var_t2;
-            }
-            if (var_t2 == (var_v0 - 1)) {
-                var_t2 = M2C_FIELD(((s32 *) ((u8 *) &D_80151CE8 + (M2C_FIELD(&D_80151CE8, s16 *, 2) * 0x50)) + temp_a0), s16 *, 0x30);
-            } else {
-                var_t2 += 1;
-            }
-        } while (var_a3 != temp_t1);
+    k = 0; if (cnt > 0) for (;;) {
+        pt = &tbl->points[idx];
+        dx = (f32) (pt->x - pos[0]);
+        dy = (f32) (pt->y - pos[1]);
+        dz = (f32) (pt->z - pos[2]);
+        dist = dx * dx + dy * dy + dz * dz;
+        if (dist < bestd) {
+            bestd = dist;
+            best = idx;
+        }
+        if (idx == n - 1) {
+            idx = D_80151CE8[D_80151CE8[0].last].start[ipa_t0];
+        } else {
+            idx++;
+        }
+        if (++k == cnt) break;
     }
-    return var_t0;
+    return best;
 }
 
 void func_800E451C(s32 arg0, void *ipa_s5, void *ipa_s6) {

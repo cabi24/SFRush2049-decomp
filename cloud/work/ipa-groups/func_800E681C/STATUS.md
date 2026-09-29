@@ -4,7 +4,7 @@
 matching yet. With `-r4300_mul` ([../../R4300_MUL.md](../../R4300_MUL.md)):
 
 ```
-func_800E627C   92/121
+func_800E627C   15/121   (was 92/121; cloud pass 3)
 func_800E6460  149/239
 func_800E681C  173/179
 ```
@@ -27,10 +27,39 @@ recreates that itself.
 
 ## Known remaining differences
 
-- `func_800E627C`: `x` and `prev` are in `$f0`/`$f2` the other way round,
-  and the three-way branch for `steerSrc == 0x19` joins the tail
-  differently. Declaration order does not change the FP registers.
-- The other two are untuned.
+- `func_800E627C` (**15/121**, all but the relocation-masked words are FP
+  register naming). What fixed 77 words:
+  - `x = 0.0;` (a **double** literal; also `(f32) 0`) instead of `x = 0.0f;`:
+    with `0.0f` uopt copies the shared zero constant (`mov.s`), with the
+    double it emits the target's separate `mtc1 zero,$f2` and the extra
+    words (size 117 -> 121);
+  - `/ 127` (int constant) instead of `/ 127.0f` reloads the 127.0 constant
+    like the target instead of CSE'ing it, and also swaps `x`/`prev` into
+    `$f2`/`$f0` (the swap the old note asked about);
+  - the dead-band as `if (A < d) prev = r; else if (d < B) prev = r;` (two
+    assignments, not `||`);
+  - `D_80151AD8` is `s8` (`lb`, not `lbu`);
+  - a block-local `f32 c = D_8012449C; x += c;` for the steering offset moves
+    that load into `$f12` like the target (22 -> 15 words).
+  Left: the target has `t = q +- 0.5` in `$f14`, `r` in `$f2` (reusing `x`'s
+  register) and `d` in `$f12`; we get `t` `$f2`, `r` `$f12`, `d` `$f14`
+  (a rotation). It reads as if `x` were still live when `t` is defined. Variable
+  reuse (`x`/`q` in place of `t`/`r`), an `int n = (s32) t`, `q +- h` with a
+  phi'd `h`, ternary and local copies of the other constants did not help
+  (the register choice is per web, not per name).
+- `func_800E6460`: the target does **not** CSE `st->throttle`/`st->brake`
+  across the `if (q < 0)` arms (three separate `lwc1`+`mul.s 15.0f`, the tails
+  of the source chain fall through into the rounding code with no reload),
+  and holds `0.0`/`1.0`/`255.0` in `$f2`/`$f0`/`$f12` (ours `$f12`/`$f2`/`$f14`).
+  We emit 231 words against 239: our chain ends each arm with `b; lwc1 $f0,...`
+  (one hoisted load). Rewriting the rounding with the field re-read in each arm
+  and as a ternary does not change the word count (142-149/239).
+- `func_800E681C`: the target multiplies `car * 0x3B8` with shifts
+  (`sll 4; subu; sll 3; subu; sll 3`) and rebuilds `&player_array` inside the
+  loop; ours hoists `952` into `$a3` and uses `multu`. The target's `$a2` is
+  the constant 2 and `$a3` a pointer, so the constant/pointer register
+  assignment (IPA) differs; the frame is 32 bytes against our 40 (we use
+  `s0..s3`, target `s0`,`s1`). Untuned.
 
 ## Relocations (for review; resolved by the strict scorer)
 

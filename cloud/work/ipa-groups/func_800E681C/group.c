@@ -70,7 +70,7 @@ extern u32 D_801403C0[];
 extern s32 D_8014A110;
 extern f32 D_80140620[][2];             /* analog stick per pad */
 extern f32 D_80124498, D_8012449C, D_801244A0, D_801244A4, D_801244A8, D_801244AC;
-extern u8 D_80151AD8;
+extern s8 D_80151AD8;
 extern s8 D_80140A04;
 extern s8 D_8013F1D9;
 extern s8 D_8013F2FC;
@@ -85,7 +85,7 @@ void func_800E627C(CarState *st, InputRecord *in)
 {
     f32 x;
     f32 q;
-    f32 r;
+    f32 t;
     f32 d;
     f32 prev;
 
@@ -96,26 +96,29 @@ void func_800E627C(CarState *st, InputRecord *in)
     x = D_80140620[in->pad][0];
     prev = st->steer;
     if (in->steerSrc == 0x19) {
+        f32 c = D_8012449C;
         if (x < D_80124498) {
-            x += D_8012449C;
+            x += c;
         } else if (D_801244A0 < x) {
             x -= D_801244A0;
         } else {
-            x = 0.0f;
+            x = 0.0;
         }
     } else {
         x = (x >= 0.0f ? x : -x) * (x >= 0.0f ? x : -x) * x;
     }
     q = x * 127.0f;
     if (q < 0.0f) {
-        q -= 0.5f;
+        t = q - 0.5f;
     } else {
-        q += 0.5f;
+        t = q + 0.5f;
     }
-    r = (f32) (s32) q / 127.0f;
-    d = r - prev;
-    if (D_801244A4 < d || d < D_801244A8) {
-        prev = r;
+    x = (f32) (s32) t / 127;
+    d = x - prev;
+    if (D_801244A4 < d) {
+        prev = x;
+    } else if (d < D_801244A8) {
+        prev = x;
     }
     if ((D_80151AD8 != 0 || D_80140A04 != 0) &&
         (D_80151AD8 == 0 || D_80140A04 == 0 || D_8013F1D9 != 0)) {
