@@ -7,3 +7,5 @@ BUILD ERROR: group build failed: cfe: Error: group.c, line 3796: Dereferenced a 
 ## zlib (cloud pass, 2026-09-29)
 
 All members of this group are zlib deflate functions. See [../ZLIB.md](../ZLIB.md) for the mapping, the game's trimmed struct layout, and why this group should be merged into one zlib unit instead of being fixed from the m2c seed.
+
+**Superseded by [../zlib_deflate](../zlib_deflate/STATUS.md)**, which matches every member of this group together with the rest of the zlib unit. Do not splice from this directory.

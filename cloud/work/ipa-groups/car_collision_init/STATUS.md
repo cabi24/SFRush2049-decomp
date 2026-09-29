@@ -48,3 +48,5 @@ The whole range around 0x800A7xxx-0x800A9xxx looks like zlib `trees.c` /
 that range and are likely matchable from the same source.
 
 The seed m2c output is kept at the previous commit of this file.
+
+**Superseded by [../zlib_deflate](../zlib_deflate/STATUS.md)**, which matches every member of this group together with the rest of the zlib unit. Do not splice from this directory.
