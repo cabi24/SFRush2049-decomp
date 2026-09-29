@@ -30,10 +30,29 @@ AS = "mips-linux-gnu-as"
 LD = "mips-linux-gnu-ld"
 OBJCOPY = "mips-linux-gnu-objcopy"
 NM = "mips-linux-gnu-nm"
+READELF = "mips-linux-gnu-readelf"
 
 
 class BuildError(RuntimeError):
     pass
+
+
+def function_symbols(obj):
+    """{name: (value, section index)} for defined ELF function symbols only.
+
+    Function sizes may omit padding; the next function or section end bounds
+    a compiled body. Local code labels and section symbols are not boundaries.
+    """
+    proc = subprocess.run([READELF, "-sW", str(obj)], capture_output=True, text=True)
+    if proc.returncode:
+        raise BuildError("readelf failed: " + proc.stderr.strip()[:200])
+    functions = {}
+    for line in proc.stdout.splitlines():
+        fields = line.split()
+        if (len(fields) >= 8 and fields[0].rstrip(":").isdigit()
+                and fields[3] == "FUNC" and fields[6].isdigit()):
+            functions[fields[7]] = (int(fields[1], 16), fields[6])
+    return functions
 
 
 def assemble(asm_path, out_o):

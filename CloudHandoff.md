@@ -57,6 +57,12 @@ Resolved instructions must match in full, **including stack offsets and frame
 sizes**. Unknown symbols, unsupported relocations, and unpaired HI16 records
 fail verification.
 
+The compiled function ends at the next function symbol or the end of `.text`.
+Words beyond the target length must be zero padding; any nonzero excess
+reports `N extra words` and fails, including with `--allow-unverified`.
+A shorter function cannot borrow instructions from its neighbor. The splice
+paths apply the same length rule to the bodies entering the image.
+
 Local data-section relocations (`.rodata`, `.data`, and similar sections)
 cannot be fully checked from the repository. Only their relocation fields
 are masked, and the output lists the unverified references, for example

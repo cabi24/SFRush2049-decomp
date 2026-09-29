@@ -241,9 +241,11 @@ class Comparison:
     unresolved: list
     unverified: list
     errors: list
+    extra_words: int = 0
 
     def accepted(self, allow_unverified=False):
-        return (self.differing == 0 and not self.unresolved and not self.errors
+        return (self.differing == 0 and self.extra_words == 0
+                and not self.unresolved and not self.errors
                 and (allow_unverified or not self.unverified))
 
     def summary(self):
@@ -252,6 +254,10 @@ class Comparison:
             if not self.differing:
                 status = "NOT VERIFIED"
         details = []
+        if self.extra_words:
+            if not self.differing:
+                status = "MISMATCH"
+            details.append(f"{self.extra_words} extra words (nonzero beyond target length)")
         if self.unresolved:
             details.append("unresolved symbols: " + ", ".join(self.unresolved))
         if self.unverified:
@@ -287,13 +293,18 @@ def compare(obj, name, start=None, show=12):
     if want is None:
         raise SystemExit(f"no target section .text.{name} in {ASM_DIR}")
     words = text_words(obj)
+    functions = symbols(obj)
     if start is None:
-        start = symbols(obj).get(name)
+        start = functions.get(name)
         if start is None:
             raise SystemExit(f"{name} is not a defined function in the compiled object")
+    end = min((offset for offset in functions.values() if offset > start),
+              default=len(words) * 4)
+    target_end = start + len(want) * 4
+    extra_words = sum(word != 0 for word in words[target_end // 4:end // 4])
     resolved, masks, unresolved, unverified, errors = relocate(
-        obj, words, start, start + len(want) * 4, image_symbols())
-    got = resolved[start // 4:start // 4 + len(want)]
+        obj, words, start, min(target_end, end), image_symbols())
+    got = resolved[start // 4:min(target_end, end) // 4]
     bad = []
     for i, w in enumerate(want):
         g = got[i] if i < len(got) else None
@@ -303,7 +314,7 @@ def compare(obj, name, start=None, show=12):
     for i in bad[:show]:
         g = got[i] if i < len(got) else None
         print(f"    +0x{4*i:03x}  want {w_(want[i])}  got {w_(g) if g is not None else '(missing)'}")
-    return Comparison(len(bad), len(want), unresolved, unverified, errors)
+    return Comparison(len(bad), len(want), unresolved, unverified, errors, extra_words)
 
 
 def w_(word):

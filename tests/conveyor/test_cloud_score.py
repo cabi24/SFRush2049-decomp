@@ -157,8 +157,53 @@ def test_named_defined_function_uses_its_image_address(tmp_path, monkeypatch):
 
 def test_other_functions_relocations_do_not_change_this_result(tmp_path, monkeypatch):
     obj = _object(tmp_path, [0x03E00008, 0x0C000000],
-                  [("f", 0, 2, 1, 4), ("unknown", 0, 2, 0, 0)], [(4, "unknown", 4)])
+                  [("f", 0, 2, 1, 4), ("g", 4, 2, 1, 4), ("unknown", 0, 2, 0, 0)],
+                  [(4, "unknown", 4)])
     assert _compare(monkeypatch, obj, [0x03E00008]).accepted()
+
+
+@pytest.mark.parametrize("extra,expected", [(0, 0), (0x24020001, 1)])
+def test_excess_words_must_be_zero_padding(tmp_path, monkeypatch, extra, expected):
+    # The declared symbol size omits padding; a local label is not a boundary.
+    obj = _object(tmp_path, [0x03E00008, 0, extra, 0],
+                  [("f", 0, 2, 1, 8), ("local_label", 8, 0, 1, 0)], [])
+    result = _compare(monkeypatch, obj, [0x03E00008, 0])
+    assert result.extra_words == expected
+    assert result.accepted(True) == (expected == 0)
+    if expected:
+        assert "1 extra words" in result.summary()
+        assert not result.summary().startswith("MATCH")
+
+
+def test_length_ends_at_next_function_and_ignores_same_address_alias(tmp_path, monkeypatch):
+    obj = _object(tmp_path, [0x03E00008, 0, 0, 0x24020001],
+                  [("f", 0, 2, 1, 8), ("alias", 0, 2, 1, 8),
+                   ("neighbor", 12, 2, 1, 4)], [])
+    assert _compare(monkeypatch, obj, [0x03E00008, 0]).accepted()
+
+
+def test_short_function_cannot_borrow_words_from_next_function(tmp_path, monkeypatch):
+    obj = _object(tmp_path, [0x03E00008, 0, 0x24020001],
+                  [("f", 0, 2, 1, 8), ("neighbor", 8, 2, 1, 4)], [])
+    result = _compare(monkeypatch, obj, [0x03E00008, 0, 0x24020001])
+    assert result.differing == 1 and not result.accepted(True)
+
+
+def test_nonzero_function_offset_bounds_excess_correctly(tmp_path, monkeypatch):
+    obj = _object(tmp_path, [0x24020001, 0, 0x03E00008, 0, 0x24020002, 0],
+                  [("before", 0, 2, 1, 8), ("f", 8, 2, 1, 8)], [])
+    result = _compare(monkeypatch, obj, [0x03E00008, 0])
+    assert result.extra_words == 1 and not result.accepted()
+
+
+def test_cli_excess_code_fails_even_with_allow_unverified(tmp_path, monkeypatch, capsys):
+    obj = _object(tmp_path, [0x03E00008, 0, 0x24020001], [("f", 0, 2, 1, 8)], [])
+    monkeypatch.setattr(score, "_targets", {"f": [0x03E00008, 0]})
+    monkeypatch.setattr(score, "image_symbols", lambda: {})
+    monkeypatch.setattr(score, "compile_single", lambda source, flags, out: shutil.copyfile(obj, out))
+    monkeypatch.setattr("sys.argv", ["score.py", "fn", "dummy.c", "f", "--allow-unverified"])
+    assert score.main() == 1
+    assert "1 extra words" in capsys.readouterr().out
 
 
 def test_missing_symbol_table_is_a_clear_failure(tmp_path, monkeypatch):

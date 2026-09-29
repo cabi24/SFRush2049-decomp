@@ -15,6 +15,7 @@ _ASM = """
     .set noreorder
     .text
     .globl f
+    .type f, @function
 f:
     jal g
     nop
@@ -23,6 +24,7 @@ f:
     jr $ra
     nop
     .globl g
+    .type g, @function
 g:
     jal ext_fn
     nop

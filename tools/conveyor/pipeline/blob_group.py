@@ -204,12 +204,35 @@ def member_slices(obj, members, extents):
     return slices, text_ndx
 
 
-def relocate(obj, slices, text_ndx, extern):
+def relocate(obj, slices, text_ndx, extern, members=None):
     """Bytes of each member slice with its .text relocations applied at the
     member's image address. Supports R_MIPS_26 and REL HI16/LO16 pairs;
-    anything else (and any relocation outside .text) is refused."""
+    anything else (and any relocation outside .text) is refused.
+
+    Check body lengths for members being spliced. Other slices supply context
+    addresses only; those functions need not match their retail bodies.
+    """
     text = _text(obj)
     syms = _symbols(obj)
+    try:
+        functions = blob_build.function_symbols(obj)
+    except blob_build.BuildError as exc:
+        raise GroupError(str(exc)) from exc
+    for member in (slices if members is None else members):
+        off, _, size = slices[member]
+        if functions.get(member) != (off, text_ndx):
+            raise GroupError(f"{member}: no function symbol at its slice start")
+        end = min((value for value, ndx in functions.values()
+                   if ndx == text_ndx and value > off), default=len(text))
+        end = min(end, len(text))
+        if off % 4 or size % 4 or end % 4:
+            raise GroupError(f"{member}: function extent is not word aligned")
+        if end - off < size:
+            raise GroupError(f"{member}: compiled body is {end - off} bytes, "
+                             f"shorter than the {size}-byte extent")
+        extra = sum(any(text[o:o + 4]) for o in range(off + size, end, 4))
+        if extra:
+            raise GroupError(f"{member}: {extra} extra words (nonzero beyond target length)")
     rels, others = _text_relocations(obj)
     if others:
         raise GroupError(f"relocations outside .text not supported yet: {sorted(others)}")
@@ -281,7 +304,8 @@ def group_bodies(group, document=None, extern=None, obj_dir=OBJ_DIR, root=GROUP_
         raise GroupError(f"group {group} is not compiled ({obj} missing)")
     slices, text_ndx = member_slices(obj, spec["members"] + spec["context"], extents)
     extern = blob_splice.image_symbols(document) if extern is None else extern
-    bodies = relocate(obj, slices, text_ndx, extern)
+    bodies = relocate(obj, slices, text_ndx, extern,
+                      members=None if include_context else spec["members"])
     if not include_context:
         bodies = {m: b for m, b in bodies.items() if m in spec["members"]}
     return bodies

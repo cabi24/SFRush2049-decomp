@@ -149,8 +149,9 @@ def link_function(object_path, target_id, vaddr, size, provides=None, work=None)
 
     Linked alone so its relocations resolve against the PROVIDE table (data
     globals inside opaque runs, and libultra/libc out in the cartridge), then
-    cut to the extent: IDO pads .text to 16 bytes and that padding is not
-    part of the function. `provides` is {name: address}: several names may
+    cut to the extent only after verifying excess words are zero padding.
+    IDO pads .text to 16 bytes; a following function bounds that padding.
+    `provides` is {name: address}: several names may
     share an address (a data-symbol label and the function's own target_id),
     and every one of them must resolve."""
     if provides is None:
@@ -187,10 +188,27 @@ def link_function(object_path, target_id, vaddr, size, provides=None, work=None)
     if dump.returncode != 0:
         raise blob_build.BuildError("objcopy failed: " + dump.stderr.strip()[:200])
     data = binary.read_bytes()
-    if len(data) < size:
+    # Use input-section offsets: the linker can align .out above vaddr, while
+    # objcopy emits only its contents (without that leading address gap).
+    functions = blob_build.function_symbols(object_path)
+    if target_id not in functions:
+        raise blob_build.BuildError(f"{target_id}: no defined function symbol")
+    start, section = functions[target_id]
+    if start != 0:
+        raise blob_build.BuildError(f"{target_id}: function does not start its input section")
+    end = min((value - start for value, ndx in functions.values()
+               if ndx == section and value > start), default=len(data))
+    end = min(end, len(data))
+    if end < size:
         raise blob_build.BuildError(
-            f"compiled body is {len(data)} bytes, shorter than the "
+            f"compiled body is {end} bytes, shorter than the "
             f"{size}-byte extent")
+    if size % 4 or end % 4:
+        raise blob_build.BuildError(f"{target_id}: function extent is not word aligned")
+    extra = sum(any(data[offset:offset + 4]) for offset in range(size, end, 4))
+    if extra:
+        raise blob_build.BuildError(f"{target_id}: {extra} extra words "
+                                    "(nonzero beyond target length)")
     return data[:size]
 
 
