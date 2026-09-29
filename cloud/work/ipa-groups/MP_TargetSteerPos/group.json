@@ -1,7 +1,6 @@
 {
   "members": [
-    "MP_TargetSteerPos",
-    "camera_transform"
+    "MP_TargetSteerPos"
   ],
   "files": [
     "group.c"
@@ -14,5 +13,8 @@
   "generated": "blob_group seed from build/ipa_groups.json",
   "unprototyped": [
     "func_8001fea4"
+  ],
+  "context": [
+    "camera_transform"
   ]
 }
