@@ -87,8 +87,10 @@ def test_derive_is_deterministic_and_carries_the_image_hash(tmp_path):
     assert first["totals"]["function_bytes"] + first["totals"]["opaque_bytes"] == 64
 
 
+@pytest.mark.skipif(not blob_layout.LAYOUT_JSON.exists(),
+                    reason="needs the coordinator's generated blob layout")
 def test_the_live_map_covers_the_whole_image():
-    """Regression guard: the committed map must stay complete and ordered."""
+    """Regression guard: the local generated map stays complete and ordered."""
     document = blob_layout.load()
     size = document["image"]["size"]
     cursor = blob_layout.BASE

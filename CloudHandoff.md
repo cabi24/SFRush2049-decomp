@@ -164,6 +164,15 @@ run without the LAN):
   Maintainers splice it (`blob_splice` / `blob_group`) behind the image gate and
   the ROM SHA-1, then move it into `src/blob/`.
 
+CI runs on PRs and pushes to `master`. It strictly rescores changed single
+submissions and groups, checks the static locks, and runs repository tests.
+PRs cannot change `asm/us/blob/**` (including `symbols.json`), `*.lock.json`,
+`us.sha1`, `src/blob/blob.ld`, or locked blob sources and group inputs.
+Maintainers regenerate and verify protected files on the coordinator and
+commit them directly to `master`; push CI still runs the verification checks.
+The symbol-table exception is deliberately closed because CI lacks the private
+inputs needed to verify regeneration.
+
 ## 5. Please do not
 
 - Commit ROM data, extracted images, or compiled objects (`build/` is ignored;

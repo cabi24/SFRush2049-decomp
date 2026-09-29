@@ -287,10 +287,19 @@ def test_populate_keeps_suffix_row_conflicted_against_discovered_extent(
     conn = dbmod.connect(tmp_path / "conveyor.db")
     store = BlobStore(tmp_path / "blobs")
 
-    T.populate(conn, store)                                  # 005 view: both fine
+    # Reproduce the older inventory state that closure must repair. Today's
+    # populate can already recover this stranded head, so using it to seed
+    # the DB would prevent closure from discovering F at all.
+    with dbmod.tx(conn):
+        for name, address in (("root", BASE), ("late", F + 8)):
+            conn.execute(
+                "INSERT INTO n64_target (target_id,address,population,insn_count,"
+                "target_o_sha,tier) VALUES (?,?,'extracted',3,'old','raw_word')",
+                (name, address))
+    report = closure.run(conn, store, game_bin, tmp_path / "r.json")
+    assert report["totals"]["registered"] == 1
     assert conn.execute("SELECT gate_reason FROM n64_target WHERE target_id='late'"
-                        ).fetchone()[0] in (None, "extent_repaired")
-    closure.run(conn, store, game_bin, tmp_path / "r.json")  # registers F
+                        ).fetchone()[0] == f"extent_conflict:func_{F:08X}"
     T.populate(conn, store)                                  # re-extract
     assert conn.execute("SELECT gate_reason FROM n64_target WHERE target_id='late'"
                         ).fetchone()[0] == f"extent_conflict:func_{F:08X}"

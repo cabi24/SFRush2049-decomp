@@ -53,7 +53,7 @@ def test_generated_region_is_all_passthrough_with_addressed_sections(tmp_path):
     document, image = _fixture(tmp_path, [0x27BDFFE8, JR_RA, NOP, 0xDEADBEEF],
                                [("fn", 0, 3)])
     written, script = blob_tu.generate(document, image, tmp_path / "asm",
-                                       tmp_path / "blob")
+                                       tmp_path / "blob", spliced={})
 
     text = written[0].read_text()
     assert ".section .text.fn" in text and ".globl fn" in text
@@ -68,9 +68,9 @@ def test_generated_region_is_all_passthrough_with_addressed_sections(tmp_path):
 def test_generation_is_byte_stable(tmp_path):
     document, image = _fixture(tmp_path, [JR_RA, NOP], [("fn", 0, 2)])
     written, script = blob_tu.generate(document, image, tmp_path / "asm",
-                                       tmp_path / "blob")
+                                       tmp_path / "blob", spliced={})
     first = (written[0].read_text(), script.read_text())
-    blob_tu.generate(document, image, tmp_path / "asm", tmp_path / "blob")
+    blob_tu.generate(document, image, tmp_path / "asm", tmp_path / "blob", spliced={})
     assert (written[0].read_text(), script.read_text()) == first
 
 
@@ -78,7 +78,7 @@ def test_generation_is_byte_stable(tmp_path):
 def test_all_passthrough_build_reproduces_the_image(tmp_path):
     words = [0x27BDFFE8, 0xAFBF0014, JR_RA, NOP, 0x12345678, 0x9ABCDEF0]
     document, image = _fixture(tmp_path, words, [("fn", 0, 4)])
-    blob_tu.generate(document, image, tmp_path / "asm", tmp_path / "blob")
+    blob_tu.generate(document, image, tmp_path / "asm", tmp_path / "blob", spliced={})
 
     ok, sha, message = blob_build.build(
         document, image, tmp_path / "asm", tmp_path / "blob" / "blob.ld",
@@ -92,7 +92,7 @@ def test_all_passthrough_build_reproduces_the_image(tmp_path):
 def test_a_single_altered_word_fails_the_gate_and_names_its_owner(tmp_path):
     words = [0x27BDFFE8, 0xAFBF0014, JR_RA, NOP]
     document, image = _fixture(tmp_path, words, [("target_fn", 0, 4)])
-    blob_tu.generate(document, image, tmp_path / "asm", tmp_path / "blob")
+    blob_tu.generate(document, image, tmp_path / "asm", tmp_path / "blob", spliced={})
     source = tmp_path / "asm" / f"{document['regions'][0]['name']}.s"
     source.write_text(source.read_text().replace("0xAFBF0014", "0xDEADBEEF"))
 
@@ -111,7 +111,7 @@ def test_opaque_data_is_reproduced_verbatim(tmp_path):
     round trip untouched."""
     words = [0xCAFEBABE, 0x00000000, 0xFFFFFFFF, JR_RA, NOP]
     document, image = _fixture(tmp_path, words, [("fn", 3, 2)])
-    blob_tu.generate(document, image, tmp_path / "asm", tmp_path / "blob")
+    blob_tu.generate(document, image, tmp_path / "asm", tmp_path / "blob", spliced={})
 
     ok, _sha, message = blob_build.build(
         document, image, tmp_path / "asm", tmp_path / "blob" / "blob.ld",

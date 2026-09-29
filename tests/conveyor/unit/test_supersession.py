@@ -57,6 +57,9 @@ def _fake_words(monkeypatch, words_by_name):
     monkeypatch.setattr(T, "index_asm_regions", lambda asm_dir=None: {})
     monkeypatch.setattr(T, "function_words",
                         lambda addr, size: words_by_name[addr2name[addr]])
+    # This fixture contains static targets only; there is no extracted game
+    # image. Keep extent planning independent of coordinator-local files.
+    monkeypatch.setattr(T, "_image", lambda path: b"")
 
 
 @pytest.mark.skipif(not HAS_AS, reason="mips-linux-gnu-as not available")

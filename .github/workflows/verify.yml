@@ -1,0 +1,84 @@
+name: Verify
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout submitted revision
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+          submodules: recursive
+          persist-credentials: false
+
+      - name: Select changed files
+        id: changes
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          PUSH_BEFORE: ${{ github.event.before }}
+        run: |
+          head=$(git rev-parse HEAD)
+          if [ "$EVENT_NAME" = pull_request ]; then
+            base=$(git merge-base "$PR_BASE" "$head")
+          else
+            base="$PUSH_BEFORE"
+          fi
+          echo "base=$base" >> "$GITHUB_OUTPUT"
+          echo "head=$head" >> "$GITHUB_OUTPUT"
+
+      - name: Guard protected PR paths
+        if: github.event_name == 'pull_request'
+        env:
+          DIFF_BASE: ${{ steps.changes.outputs.base }}
+          DIFF_HEAD: ${{ steps.changes.outputs.head }}
+          LOCK_REVISION: ${{ github.event.pull_request.base.sha }}
+        run: python3 -m tools.cloud.guard_paths --base "$DIFF_BASE" --head "$DIFF_HEAD" --lock-revision "$LOCK_REVISION"
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential binutils-mips-linux-gnu gcc-mips-linux-gnu python3-venv curl
+
+      - name: Install test dependencies
+        run: |
+          python3 -m venv .ci-venv
+          .ci-venv/bin/python -m pip install pytest 'graphviz>=0.20.1,<0.21' pycparser toml
+          echo "$GITHUB_WORKSPACE/.ci-venv/bin" >> "$GITHUB_PATH"
+
+      - name: Cache pinned IDO
+        uses: actions/cache@v4
+        with:
+          path: tools/cloud/ido
+          key: ido-5.3-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('tools/cloud/setup.sh') }}
+
+      - name: Set up IDO
+        run: bash tools/cloud/setup.sh
+
+      - name: Scorer sanity checks
+        run: |
+          python3 tools/cloud/score.py fn src/blob/sound_handles_clear.c sound_handles_clear
+          python3 tools/cloud/score.py group src/blob/groups/resource_slot_clear
+
+      - name: Rescore changed cloud submissions
+        env:
+          DIFF_BASE: ${{ steps.changes.outputs.base }}
+          DIFF_HEAD: ${{ steps.changes.outputs.head }}
+        run: python3 tools/cloud/check_submissions.py --base "$DIFF_BASE" --head "$DIFF_HEAD"
+
+      - name: Check static locks
+        run: make check-matched
+
+      - name: Repository tests
+        run: python3 -m pytest tests/conveyor -q -m 'not node_required'
