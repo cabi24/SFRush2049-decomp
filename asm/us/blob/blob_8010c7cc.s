@@ -22,41 +22,7 @@ sync_acquire_menu:
     .word 0x00000000
 
 .section .blobdata.op_8010fbe0, "ax", @progbits
-    .incbin "build/game_code.bin", 561552, 20
-
-.section .text.save_context_stub, "ax", @progbits
-.globl save_context_stub
-save_context_stub:
-    .word 0x27BDFFE8
-    .word 0x00802825
-    .word 0xAC2E5288
-    .word 0xAC20528C
-    .word 0xAFBF0014
-    .word 0x3C018015
-    .word 0x240F0002
-    .word 0x3C048015
-    .word 0xAC2F5240
-    .word 0x24845248
-    .word 0x0C001F1A
-    .word 0x24060040
-    .word 0x3C048003
-    .word 0x3C058015
-    .word 0x24A55238
-    .word 0x2484E960
-    .word 0x0C001D78
-    .word 0x24060001
-    .word 0x3C048003
-    .word 0x2484E928
-    .word 0x2405029E
-    .word 0x0C001D78
-    .word 0x24060001
-    .word 0x8FBF0014
-    .word 0x27BD0018
-    .word 0x03E00008
-    .word 0x00000000
-
-.section .blobdata.op_8010fc60, "ax", @progbits
-    .incbin "build/game_code.bin", 561680, 32
+    .incbin "build/game_code.bin", 561552, 160
 
 .section .text.resource_alloc_init, "ax", @progbits
 .globl resource_alloc_init

@@ -1,28 +1,6 @@
-/* region blob_800959dc: 0x800959DC-0x8009DD18 */
+/* region blob_80095a24: 0x80095A24-0x8009DD88 */
 .set noreorder
 .set noat
-
-.section .text.audio_pitch_adjust, "ax", @progbits
-.globl audio_pitch_adjust
-audio_pitch_adjust:
-    .word 0x27BDFFE8
-    .word 0xAFBF0014
-    .word 0x240E0003
-    .word 0xAE0E0010
-    .word 0x8E040008
-    .word 0x0C024847
-    .word 0x02002825
-    .word 0x3C118014
-    .word 0x26314C50
-    .word 0x02202025
-    .word 0x8E260008
-    .word 0x0C0247EF
-    .word 0x02002825
-    .word 0xAE110008
-    .word 0x8FBF0014
-    .word 0x27BD0018
-    .word 0x03E00008
-    .word 0x00000000
 
 .section .text.sound_priority_set, "ax", @progbits
 .globl sound_priority_set
@@ -8626,4 +8604,37 @@ track_collision:
     .word 0x8FB40028
     .word 0x03E00008
     .word 0x27BD0030
+
+.section .text.track_collision_edge, "ax", @progbits
+.globl track_collision_edge
+track_collision_edge:
+    /* compiled from src/blob/track_collision_edge.c */
+    .word 0x27BDFFE8
+    .word 0xAFBF0014
+    .word 0x8C8E0000
+    .word 0x240F0100
+    .word 0x00AFC004
+    .word 0x01D8C824
+    .word 0x57200004
+    .word 0x84820016
+    .word 0x1000000F
+    .word 0x24020001
+    .word 0x84820016
+    .word 0x3C098013
+    .word 0x2529E700
+    .word 0x04400009
+    .word 0x00024100
+    .word 0x01024021
+    .word 0x00084080
+    .word 0x0C027714
+    .word 0x01092021
+    .word 0x50400004
+    .word 0x00001025
+    .word 0x10000002
+    .word 0x24020001
+    .word 0x00001025
+    .word 0x8FBF0014
+    .word 0x27BD0018
+    .word 0x03E00008
+    .word 0x00000000
 

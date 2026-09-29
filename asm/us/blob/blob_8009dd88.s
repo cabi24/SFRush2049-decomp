@@ -1,39 +1,6 @@
-/* region blob_8009dd18: 0x8009DD18-0x800A5908 */
+/* region blob_8009dd88: 0x8009DD88-0x800A5A40 */
 .set noreorder
 .set noat
-
-.section .text.track_collision_edge, "ax", @progbits
-.globl track_collision_edge
-track_collision_edge:
-    /* compiled from src/blob/track_collision_edge.c */
-    .word 0x27BDFFE8
-    .word 0xAFBF0014
-    .word 0x8C8E0000
-    .word 0x240F0100
-    .word 0x00AFC004
-    .word 0x01D8C824
-    .word 0x57200004
-    .word 0x84820016
-    .word 0x1000000F
-    .word 0x24020001
-    .word 0x84820016
-    .word 0x3C098013
-    .word 0x2529E700
-    .word 0x04400009
-    .word 0x00024100
-    .word 0x01024021
-    .word 0x00084080
-    .word 0x0C027714
-    .word 0x01092021
-    .word 0x50400004
-    .word 0x00001025
-    .word 0x10000002
-    .word 0x24020001
-    .word 0x00001025
-    .word 0x8FBF0014
-    .word 0x27BD0018
-    .word 0x03E00008
-    .word 0x00000000
 
 .section .text.track_collision_wall, "ax", @progbits
 .globl track_collision_wall
@@ -8027,4 +7994,86 @@ exhaust_smoke_effect:
     .word 0x8FB00018
     .word 0x03E00008
     .word 0x27BD0030
+
+.section .text.arb_rate_set, "ax", @progbits
+.globl arb_rate_set
+arb_rate_set:
+    .word 0x27BDFFC8
+    .word 0x3C014000
+    .word 0x44810000
+    .word 0xC7AC004C
+    .word 0xC7AE0054
+    .word 0x3C0144FA
+    .word 0x46006182
+    .word 0x44811000
+    .word 0xC7B00050
+    .word 0x46007282
+    .word 0x000470C0
+    .word 0x3C014020
+    .word 0x44812000
+    .word 0x01C47021
+    .word 0x3C0F8018
+    .word 0x4600320D
+    .word 0x25EFA510
+    .word 0x000E70C0
+    .word 0x46008182
+    .word 0xC7B20058
+    .word 0x01CF1821
+    .word 0xE4640038
+    .word 0x44194000
+    .word 0x3C028012
+    .word 0x4600510D
+    .word 0x46009282
+    .word 0xAC650000
+    .word 0xAC660004
+    .word 0x440B2000
+    .word 0x3C018015
+    .word 0xE462003C
+    .word 0x4600320D
+    .word 0x2442EA30
+    .word 0xE4221AA0
+    .word 0x4600510D
+    .word 0x440D4000
+    .word 0xAFA70044
+    .word 0x00E02825
+    .word 0x440F2000
+    .word 0xAFBF0024
+    .word 0x44076000
+    .word 0x8FA60048
+    .word 0xAFA3002C
+    .word 0xE7AE0014
+    .word 0xE7B00010
+    .word 0xE7B20018
+    .word 0xA4590000
+    .word 0xA44B0008
+    .word 0xA44D0002
+    .word 0x0C0295D1
+    .word 0xA44F000A
+    .word 0x8FA2002C
+    .word 0x241803E8
+    .word 0x00006083
+    .word 0x241903E7
+    .word 0x318D003E
+    .word 0x00007A00
+    .word 0xA4580040
+    .word 0x31F8F800
+    .word 0x000058C0
+    .word 0xA4590042
+    .word 0x01B8C825
+    .word 0x316C07C0
+    .word 0x240A00FF
+    .word 0x032C7025
+    .word 0x35CF0001
+    .word 0xA0400044
+    .word 0xA0400045
+    .word 0xA0400046
+    .word 0xA04A0047
+    .word 0x8FBF0024
+    .word 0x31EDFFFF
+    .word 0x000DC400
+    .word 0x030D5025
+    .word 0x3C018012
+    .word 0xAC2A4FC8
+    .word 0x03E00008
+    .word 0x27BD0038
 

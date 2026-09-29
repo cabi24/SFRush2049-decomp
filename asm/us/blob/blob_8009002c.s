@@ -1,4 +1,4 @@
-/* region blob_8009002c: 0x8009002C-0x800959DC */
+/* region blob_8009002c: 0x8009002C-0x80095A24 */
 .set noreorder
 .set noat
 
@@ -5474,14 +5474,7 @@ draw_sprites:
     .word 0x01F91023
 
 .section .blobdata.op_800953b4, "ax", @progbits
-    .incbin "build/game_code.bin", 59748, 12
-
-.section .text.physics_forces2, "ax", @progbits
-.globl physics_forces2
-physics_forces2:
-    .word 0x00000000
-    .word 0x03E00008
-    .word 0x00000000
+    .incbin "build/game_code.bin", 59748, 24
 
 .section .text.audio_fade_control, "ax", @progbits
 .globl audio_fade_control
@@ -5905,4 +5898,26 @@ audio_timing_sync:
     .word 0x8FB40028
     .word 0x03E00008
     .word 0x27BD0040
+
+.section .text.audio_pitch_adjust, "ax", @progbits
+.globl audio_pitch_adjust
+audio_pitch_adjust:
+    .word 0x27BDFFE8
+    .word 0xAFBF0014
+    .word 0x240E0003
+    .word 0xAE0E0010
+    .word 0x8E040008
+    .word 0x0C024847
+    .word 0x02002825
+    .word 0x3C118014
+    .word 0x26314C50
+    .word 0x02202025
+    .word 0x8E260008
+    .word 0x0C0247EF
+    .word 0x02002825
+    .word 0xAE110008
+    .word 0x8FBF0014
+    .word 0x27BD0018
+    .word 0x03E00008
+    .word 0x00000000
 

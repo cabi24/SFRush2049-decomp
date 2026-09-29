@@ -117,6 +117,23 @@ def _ends_transfer(word):
     return word == JR_RA or (word >> 16) == 0x1000 or (word >> 26) == 2
 
 
+def falls_through_into(image_bytes, address):
+    """True when code before ``address`` can fall through into it: walking
+    back over zero padding, the first non-zero word is not the delay slot of
+    a jr $ra / b / j. Such an address is not a function start; it is a point
+    inside a larger routine (the old inventory named several such tails)."""
+    offset = address - GAME_CODE_BASE
+    word_at = lambda off: struct.unpack_from(">I", image_bytes, off)[0]
+    p = offset - 4
+    while p >= 4:
+        if _ends_transfer(word_at(p - 4)):
+            return False              # p is a delay slot: the previous code ended
+        if word_at(p) != 0:
+            return True               # live code runs straight into `address`
+        p -= 4                        # zero padding
+    return False
+
+
 def stranded_head(image_bytes, address, max_words=HEAD_MAX_WORDS):
     """Words a function lost from its start: how many instructions directly
     before ``address`` are really its first ones.
@@ -679,6 +696,11 @@ def _extent_plan(conn, inventory):
         if item["container"] or not isinstance(item["scanned"], int):
             continue
         head = stranded_head(image, item["address"])
+        if not head and falls_through_into(image, item["address"]):
+            # Not a start at all (and no stranded head explains it): a tail
+            # of an unregistered routine. Keep it out of the population.
+            item["container"] = "fallthrough"
+            continue
         if not head:
             continue
         start = item["address"] - 4 * head
@@ -895,9 +917,19 @@ def main():
         plan = _extent_plan(conn, load_work_inventory())
         current = {r["target_id"]: r["address"] for r in conn.execute(
             "SELECT target_id,address FROM n64_target WHERE population='extracted'")}
+        rows = {r["target_id"]: r for r in conn.execute(
+            "SELECT target_id,gate_reason FROM n64_target WHERE population='extracted'")}
         names = sorted(n for n, item in plan.items()
-                       if item["head"] and current.get(n) != item["address"])
+                       if (item["head"] and current.get(n) != item["address"])
+                       or (item["container"] == "fallthrough" and n in rows
+                           and not (rows[n]["gate_reason"] or "").startswith("extent_conflict")))
         for n in names:
+            if plan[n]["container"] == "fallthrough":
+                print(f"  {n}: 0x{plan[n]['address']:08X} is reached by fall-through;"
+                      " marking extent_conflict:fallthrough")
+        for n in names:
+            if not plan[n]["head"]:
+                continue
             print(f"  {n}: start 0x{plan[n]['address'] + 4 * plan[n]['head']:08X}"
                   f" -> 0x{plan[n]['address']:08X} (+{plan[n]['head']} insns)")
         if not names:

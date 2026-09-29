@@ -4248,7 +4248,6 @@
     "split_time_display": "0x800D2CDC",
     "sprintf": "0x80004990",
     "sqrtf": "0x8000E3C0",
-    "stat_display_screen": "0x80104E84",
     "stat_lap_complete": "0x800FE924",
     "stat_lap_split": "0x800FEA00",
     "stat_race_end": "0x800FE4AC",

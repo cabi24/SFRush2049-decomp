@@ -137,7 +137,6 @@ SECTIONS
         *(.text.sound_position_update)
         *(.text.draw_sprites)
         *(.blobdata.op_800953b4)
-        *(.text.physics_forces2)
         *(.text.audio_fade_control)
         *(.blobdata.op_800954a0)
         *(.text.gfx_setup_e700)
@@ -149,8 +148,8 @@ SECTIONS
         *(.text.func_800958B8)
         *(.blobdata.op_8009591c)
         *(.text.audio_timing_sync)
-        /* blob_800959dc */
         *(.text.audio_pitch_adjust)
+        /* blob_80095a24 */
         *(.text.sound_priority_set)
         *(.text.audio_stream_control)
         *(.text.audio_buffer_manage)
@@ -223,8 +222,8 @@ SECTIONS
         *(.text.func_8009D708)
         *(.text.func_8009D99C)
         *(.text.track_collision)
-        /* blob_8009dd18 */
         *(.text.track_collision_edge)
+        /* blob_8009dd88 */
         *(.text.track_collision_wall)
         *(.text.func_8009E820)
         *(.text.func_8009E8B4)
@@ -302,8 +301,8 @@ SECTIONS
         *(.blobdata.op_800a54fc)
         *(.text.func_800A557C)
         *(.text.exhaust_smoke_effect)
-        /* blob_800a5908 */
         *(.text.arb_rate_set)
+        /* blob_800a5a40 */
         *(.text.func_800A5A40)
         *(.text.func_800A5B3C)
         *(.blobdata.op_800a5bb0)
@@ -376,8 +375,8 @@ SECTIONS
         *(.text.func_800AC9BC)
         *(.text.handbrake_apply)
         *(.text.vector_diff_process)
-        /* blob_800acbc4 */
         *(.text.func_800ACBC4)
+        /* blob_800acc18 */
         *(.text.traction_control)
         *(.text.func_800ACFF8)
         *(.text.func_800AD090)
@@ -449,9 +448,9 @@ SECTIONS
         *(.text.object_type_byte2_get)
         *(.text.object_type_byte3_get)
         *(.text.object_bytes_sum_global)
-        /* blob_800b3fa4 */
         *(.text.object_manager_update)
         *(.blobdata.op_800b41b8)
+        /* blob_800b41c0 */
         *(.text.object_byte9_set)
         *(.text.slot_state_setup)
         *(.blobdata.op_800b42e8)
@@ -525,8 +524,8 @@ SECTIONS
         *(.blobdata.op_800b930c)
         *(.text.func_800B9338)
         *(.text.physics_response)
-        /* blob_800b9740 */
         *(.text.func_800B9740)
+        /* blob_800b98d8 */
         *(.text.func_800B98D8)
         *(.text.physics_velocity_clamp)
         *(.text.func_800B9B64)
@@ -591,8 +590,8 @@ SECTIONS
         *(.text.func_800BFD8C)
         *(.text.camera_free_look)
         *(.text.func_800C0294)
-        /* blob_800c04cc */
         *(.text.camera_track_spline)
+        /* blob_800c0828 */
         *(.text.func_800C0828)
         *(.text.camera_build_view_matrix)
         *(.text.camera_update)
@@ -659,8 +658,8 @@ SECTIONS
         *(.text.resource_slots_clear_multiple)
         *(.text.speed_mode1_wrapper)
         *(.text.draw_minimap)
-        /* blob_800c9480 */
         *(.text.func_800C9480)
+        /* blob_800c9528 */
         *(.text.input_init_flag_get)
         *(.text.func_800C9590)
         *(.text.controller_poll)
@@ -684,7 +683,6 @@ SECTIONS
         *(.text.func_800CC50C)
         *(.text.menu_item_value_get)
         *(.blobdata.op_800cc848)
-        *(.text.menu_highlight_set)
         *(.text.func_800CC8C8)
         *(.text.func_800CCA04)
         *(.text.func_800CCB40)
@@ -692,7 +690,6 @@ SECTIONS
         *(.text.func_800CCE5C)
         *(.text.func_800CCEFC)
         *(.blobdata.op_800cd058)
-        *(.text.menu_confirm_render)
         *(.text.menu_confirm_dialog)
         *(.text.menu_dialog_close)
         *(.text.object_data_allocate)
@@ -730,10 +727,10 @@ SECTIONS
         *(.text.func_800D09E8)
         *(.blobdata.op_800d0a1c)
         *(.text.func_800D0A34)
-        /* blob_800d0aa0 */
         *(.text.func_800D0AA0)
         *(.text.func_800D0B14)
         *(.text.track_info_display)
+        /* blob_800d1004 */
         *(.text.func_800D1004)
         *(.text.func_800D11BC)
         *(.text.func_800D1248)
@@ -802,10 +799,10 @@ SECTIONS
         *(.text.drone_collision_avoid)
         *(.text.drone_pathfind_main)
         *(.text.func_800D7634)
-        /* blob_800d7d40 */
         *(.text.render_replay_ui)
         *(.text.render_results_screen)
         *(.text.drone_target_update)
+        /* blob_800d8078 */
         *(.text.func_800D8078)
         *(.text.func_800D8154)
         *(.text.func_800D816C)
@@ -874,11 +871,11 @@ SECTIONS
         *(.text.replay_update_dual)
         *(.text.object_update_full)
         *(.text.func_800E2AC4)
-        /* blob_800e2c70 */
         *(.text.func_800E2C70)
         *(.blobdata.op_800e2cc0)
         *(.text.func_800E2D18)
         *(.text.func_800E2F00)
+        /* blob_800e30ac */
         *(.text.func_800E30AC)
         *(.text.func_800E30F4)
         *(.text.func_800E313C)
@@ -947,10 +944,10 @@ SECTIONS
         *(.text.func_800ED66C)
         *(.text.mode_byte_set)
         *(.text.mode_byte2_set)
-        /* blob_800ed804 */
         *(.text.world_velocity_integrate)
         *(.text.world_collision_response)
         *(.text.world_trigger_check)
+        /* blob_800eddc0 */
         *(.text.attract_or_transition)
         *(.text.world_trigger_activate)
         *(.blobdata.op_800ee7ac)
@@ -962,7 +959,6 @@ SECTIONS
         *(.text.game_late_init)
         *(.text.emitter_update)
         *(.blobdata.op_800ef288)
-        *(.text.spark_effect)
         *(.text.func_800EF5B0)
         *(.blobdata.op_800ef62c)
         *(.text.explosion_effect)
@@ -1021,12 +1017,12 @@ SECTIONS
         *(.text.func_800F92C8)
         *(.blobdata.op_800f9398)
         *(.text.render_large_objects)
-        /* blob_800fa9b4 */
         *(.text.render_viewport_init)
         *(.text.func_800FAD50)
         *(.text.render_post_process)
         *(.text.func_800FAEE4)
         *(.blobdata.op_800faf50)
+        /* blob_800faf6c */
         *(.text.init_state_continue)
         *(.text.vsync_wait)
         *(.text.display_list_flush)
@@ -1073,60 +1069,28 @@ SECTIONS
         *(.text.func_80100E58)
         *(.text.func_80101904)
         *(.text.func_80101D84)
+        /* blob_8010221c */
         *(.blobdata.op_8010221c)
-        *(.text.race_results_screen)
-        *(.blobdata.op_80102440)
-        *(.text.award_ceremony)
-        *(.blobdata.op_80102f30)
-        *(.text.trophy_animation)
-        *(.blobdata.op_80103d18)
-        *(.text.name_entry_screen)
-        *(.blobdata.op_801046fc)
         *(.text.highscore_entry_anim)
+        /* blob_80104b14 */
         *(.blobdata.op_80104b14)
-        *(.text.stat_display_screen)
-        *(.blobdata.op_80105478)
-        *(.text.achievements_check)
-        *(.blobdata.op_80105b74)
-        *(.text.achievement_unlock)
-        *(.blobdata.op_80106874)
-        *(.text.profile_stats_update)
-        *(.blobdata.op_80106b3c)
-        *(.text.difficulty_scaling)
         *(.text.checkpoint_hit)
         *(.text.lap_complete)
         *(.blobdata.op_80107aec)
         *(.text.race_finish)
+        /* blob_80107edc */
         *(.blobdata.op_80107edc)
-        *(.text.dynamic_difficulty)
-        *(.blobdata.op_80108154)
-        *(.text.catchup_logic)
-        *(.blobdata.op_80108ab0)
-        *(.text.skill_rating_update)
-        *(.blobdata.op_80109468)
-        *(.text.session_host)
-        *(.blobdata.op_80109f54)
-        *(.text.session_leave)
-        *(.blobdata.op_8010a534)
-        /* blob_8010a7a4 */
         *(.text.func_8010A7A4)
         *(.blobdata.op_8010a8d0)
-        *(.text.ping_measurement)
-        *(.blobdata.op_8010b520)
         *(.text.struct_callback_init)
         *(.text.state_update_global)
+        /* blob_8010b5d0 */
         *(.blobdata.op_8010b5d0)
-        *(.text.disconnect_handler)
-        *(.blobdata.op_8010b9c8)
-        *(.text.reconnect_attempt)
-        *(.blobdata.op_8010c024)
         *(.text.steering_apply)
         /* blob_8010c7cc */
         *(.blobdata.op_8010c7cc)
         *(.text.sync_acquire_menu)
         *(.blobdata.op_8010fbe0)
-        *(.text.save_context_stub)
-        *(.blobdata.op_8010fc60)
         *(.text.resource_alloc_init)
         *(.text.synced_model_render)
         *(.text.struct_init_and_call)

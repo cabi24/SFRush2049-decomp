@@ -44,3 +44,14 @@ def test_branch_into_the_head_blocks_the_claim():
     b_to_head = 0x10000000 | 0x0002     # b at +0 lands at +12 (the lui)
     image = _image(b_to_head, NOP, NOP, LUI_T7, ADDIU_T7, JR_RA, NOP)
     assert targets.stranded_head(image, BASE + 16) == 0
+
+
+def test_an_address_live_code_falls_into_is_not_a_start():
+    # lw / addiu run straight into the address: it is inside a routine
+    image = _image(LW_A0, ADDIU_T7, 0x24420001, JR_RA, NOP)
+    assert targets.falls_through_into(image, BASE + 8) is True
+
+
+def test_a_start_after_a_return_or_padding_is_not_fall_through():
+    assert targets.falls_through_into(_image(JR_RA, NOP, ADDIU_T7), BASE + 8) is False
+    assert targets.falls_through_into(_image(JR_RA, NOP, NOP, NOP, ADDIU_T7), BASE + 16) is False
