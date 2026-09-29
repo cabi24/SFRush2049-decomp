@@ -9,6 +9,17 @@ from tools.conveyor.pipeline import farm
 from tools.conveyor.pipeline import lock
 
 
+
+@pytest.fixture(autouse=True)
+def _m2c_patch_flag_is_not_ours(monkeypatch):
+    """These tests fake subprocess.run and m2c. Without this, the first
+    m2c_seed() call "applies" the m2c patches through the fake and sets
+    autodecomp._M2C_PATCHED for every later test in the process, so tests
+    that need the real patched m2c (test_ido_syntax) run it unpatched.
+    Invisible on a working copy whose submodule is already patched; it
+    broke CI on a clean checkout. monkeypatch restores the real value."""
+    monkeypatch.setattr(autodecomp, "_M2C_PATCHED", True)
+
 def _database(path):
     conn = dbmod.connect(path)
     with dbmod.tx(conn):
