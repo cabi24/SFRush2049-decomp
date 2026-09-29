@@ -102,8 +102,9 @@ generated context). Tasks, in order:
 2. Get members to MATCH. Rules of the game:
    - `group.json`: `members` are spliced when they match; `context` are
      compiled in the unit but not spliced. Move a stubborn member to
-     `context` so the rest can land. `keep` is the `uld -kp` list of functions
-     that stay externally visible: roots and the `__standin_*` callers.
+     `context` so the rest can land. The scorer reports context separately;
+     only members determine its exit status. `keep` is the `uld -kp` list of
+     functions that stay externally visible: roots and the `__standin_*` callers.
    - Parameters named `ipa_t0`, `ipa_s0`, ... are the IPA register
      parameters. Write them as ordinary C parameters; `-O3` reassigns the
      registers itself.

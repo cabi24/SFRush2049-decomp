@@ -2,6 +2,7 @@
 import json
 import shutil
 import struct
+import subprocess
 from pathlib import Path
 
 import pytest
@@ -229,6 +230,84 @@ def test_cli_unverified_opt_in_does_not_allow_unknown_symbols(
     assert "unresolved" in output if unknown else "unverified" in output
 
 
+@pytest.mark.parametrize("member_bad,context_bad", [(False, False), (False, True),
+                                                  (True, False), (True, True)])
+def test_group_cli_exit_depends_on_members_only(
+        tmp_path, monkeypatch, capsys, member_bad, context_bad):
+    obj = _object(tmp_path, [0x03E00008, 0, 0x03E00008, 0],
+                  [("f", 0, 2, 1, 8), ("g", 8, 2, 1, 8)], [])
+
+    def compile_group(directory, out):
+        shutil.copyfile(obj, out)
+        return {"members": ["f"], "context": ["g"]}
+
+    monkeypatch.setattr(score, "compile_group", compile_group)
+    monkeypatch.setattr(score, "image_symbols", lambda: {})
+    monkeypatch.setattr(score, "_targets", {
+        "f": [0x03E00008, int(member_bad)], "g": [0x03E00008, int(context_bad)]})
+    monkeypatch.setattr("sys.argv", ["score.py", "group", "dummy"])
+    assert score.main() == int(member_bad)
+    output = capsys.readouterr().out
+    members, context = output.split("Context (informational; excluded from exit status):")
+    assert "Members:\nf:" in members
+    assert ("1/2 words differ" if member_bad else "MATCH") in members
+    assert "g:" in context
+    assert ("1/2 words differ" if context_bad else "MATCH") in context
+
+
+def test_missing_context_target_is_informational(tmp_path, monkeypatch, capsys):
+    obj = _object(tmp_path, [0x03E00008, 0], [("f", 0, 2, 1, 8)], [])
+
+    def compile_group(directory, out):
+        shutil.copyfile(obj, out)
+        return {"members": ["f"], "context": ["unknown"]}
+
+    monkeypatch.setattr(score, "compile_group", compile_group)
+    monkeypatch.setattr(score, "image_symbols", lambda: {})
+    monkeypatch.setattr(score, "_targets", {"f": [0x03E00008, 0]})
+    monkeypatch.setattr("sys.argv", ["score.py", "group", "dummy"])
+    assert score.main() == 0
+    assert "NOT VERIFIED (no target section .text.unknown" in capsys.readouterr().out
+
+
+@pytest.mark.parametrize("failure", [None, "cc", "as1", "os_error"])
+def test_group_compilation_cleans_scratch_on_success_and_failure(tmp_path, monkeypatch, failure):
+    group = tmp_path / "group"
+    group.mkdir()
+    (group / "group.c").write_text("int f(void) { return 1; }\n")
+    spec = {"files": ["group.c"], "keep": ["f"], "members": ["f"], "flags": "-O3"}
+    (group / "group.json").write_text(json.dumps(spec))
+    workdirs = []
+
+    def run(command, cwd):
+        workdirs.append(cwd)
+        assert (cwd / "group.c").read_text().startswith("int f")
+        assert (cwd / "keep.txt").read_text() == "f\n"
+        (cwd / "intermediate").write_text("scratch")
+        if failure == "os_error":
+            raise OSError("compiler could not start")
+        if command[0] == failure:
+            return subprocess.CompletedProcess(command, 1, "", "compile failure")
+        if command[0] == "as1":
+            Path(command[command.index("-o") + 1]).write_bytes(b"object")
+        return subprocess.CompletedProcess(command, 0, "", "")
+
+    monkeypatch.setattr(score, "ido", lambda name: name)
+    monkeypatch.setattr(score, "_run", run)
+    monkeypatch.setattr(score.tempfile, "tempdir", str(tmp_path))
+    monkeypatch.chdir(tmp_path)
+    if failure:
+        error = OSError if failure == "os_error" else SystemExit
+        with pytest.raises(error, match="compiler could not start|compile failure"):
+            score.compile_group(group, Path("out.o"))
+    else:
+        assert score.compile_group(group, Path("out.o")) == spec
+        assert (tmp_path / "out.o").read_bytes() == b"object"
+    assert workdirs and len(set(workdirs)) == 1
+    assert not workdirs[0].exists()
+    assert not list(tmp_path.glob("grp-*"))
+
+
 requires_ido = pytest.mark.skipif(not (score.IDO / "cc").is_file(),
                                   reason="needs tools/cloud/ido/cc (or IDO_DIR)")
 LOCK = json.loads((score.REPO / "blob_matched.lock.json").read_text())
@@ -249,14 +328,32 @@ def test_locked_single_function_is_strict_match(tmp_path, name, entry):
 @requires_ido
 @pytest.mark.parametrize("group", ["resource_slot_clear", "entity_flag_check"])
 def test_locked_group_members_are_strict_matches(tmp_path, group, monkeypatch):
-    # F7 will fix compile_group's lifetime; contain its current scratch dirs.
     monkeypatch.setattr(score.tempfile, "tempdir", str(tmp_path))
     obj = tmp_path / "out.o"
     spec = score.compile_group(score.REPO / "src/blob/groups" / group, obj)
+    assert not list(tmp_path.glob("grp-*"))
     for member in spec["members"]:
         result = score.compare(obj, member)
         assert result.accepted(), f"{member}: {result.summary()}"
         assert result.summary() == "MATCH"
+
+
+@requires_ido
+@pytest.mark.parametrize("group", ["resource_slot_clear", "entity_flag_check"])
+def test_locked_group_cli_succeeds_with_context_reported_separately(
+        tmp_path, monkeypatch, capsys, group):
+    monkeypatch.setattr(score.tempfile, "tempdir", str(tmp_path))
+    monkeypatch.setattr("sys.argv", ["score.py", "group",
+                        str(score.REPO / "src/blob/groups" / group)])
+    assert score.main() == 0
+    output = capsys.readouterr().out
+    assert output.startswith("Members:\n")
+    if group == "entity_flag_check":
+        members, context = output.split("Context (informational; excluded from exit status):")
+        assert "entity_flag_check:\n  MATCH" in members
+        assert "func_800988D8:" in context
+        assert "words differ" in context and "extra words" in context
+    assert list(tmp_path.iterdir()) == []
 
 
 @requires_ido

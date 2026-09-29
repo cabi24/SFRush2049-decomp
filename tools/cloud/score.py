@@ -340,28 +340,30 @@ def compile_group(group_dir, out):
     """Whole-program -O3 with uld -kp <keep list>: the build the ROM used
     (specs/010-ipa-call-groups/research/s2-s5-spikes.md)."""
     spec = json.loads((group_dir / "group.json").read_text())
-    work = Path(tempfile.mkdtemp(prefix="grp-"))
-    for name in spec["files"]:
-        (work / name).write_text((group_dir / name).read_text())
-    (work / "keep.txt").write_text("".join(k + "\n" for k in spec["keep"]))
-    flags = shlex.split(spec["flags"])
-    units = [re.sub(r"\.c$", ".u", f) for f in spec["files"]]
-    common = ["-mips2", "-EB", "-g0", "-O3"]
-    steps = [
-        [ido("cc"), "-j", *flags, *spec["files"]],
-        [ido("uld"), "-L/usr/lib/mips2/nonshared", "-_SYSTYPE_SVR4", "-mips2", "-non_shared",
-         "-g0", "-no_AutoGnum", "-kp", "keep.txt", *units, "-ko", "linked"],
-        [ido("usplit"), "-mips2", "-o", "split", "-t", "st", "linked"],
-        [ido("umerge"), "-Olimit", "5000", *common, "split", "-o", "merged", "-t", "st"],
-        [ido("uopt"), "-G", "0", "-Olimit", "5000", *common, "merged", "opt", "-t", "st", "optlog"],
-        [ido("ugen"), "-G", "0", *common, "opt", "-o", "gen", "-t", "st", "-temp", "ugtmp"],
-        [ido("as1"), "-elf", "-G", "0", "-p0", *common, "-Olimit", "5000", "gen", "-o", str(out),
-         "-t", "st"],
-    ]
-    for step in steps:
-        proc = _run(step, cwd=work)
-        if proc.returncode != 0:
-            raise SystemExit(f"{Path(step[0]).name} failed:\n" + (proc.stderr or proc.stdout)[:3000])
+    out = Path(out).resolve()
+    with tempfile.TemporaryDirectory(prefix="grp-") as tmp:
+        work = Path(tmp)
+        for name in spec["files"]:
+            (work / name).write_text((group_dir / name).read_text())
+        (work / "keep.txt").write_text("".join(k + "\n" for k in spec["keep"]))
+        flags = shlex.split(spec["flags"])
+        units = [re.sub(r"\.c$", ".u", f) for f in spec["files"]]
+        common = ["-mips2", "-EB", "-g0", "-O3"]
+        steps = [
+            [ido("cc"), "-j", *flags, *spec["files"]],
+            [ido("uld"), "-L/usr/lib/mips2/nonshared", "-_SYSTYPE_SVR4", "-mips2", "-non_shared",
+             "-g0", "-no_AutoGnum", "-kp", "keep.txt", *units, "-ko", "linked"],
+            [ido("usplit"), "-mips2", "-o", "split", "-t", "st", "linked"],
+            [ido("umerge"), "-Olimit", "5000", *common, "split", "-o", "merged", "-t", "st"],
+            [ido("uopt"), "-G", "0", "-Olimit", "5000", *common, "merged", "opt", "-t", "st", "optlog"],
+            [ido("ugen"), "-G", "0", *common, "opt", "-o", "gen", "-t", "st", "-temp", "ugtmp"],
+            [ido("as1"), "-elf", "-G", "0", "-p0", *common, "-Olimit", "5000", "gen", "-o", str(out),
+             "-t", "st"],
+        ]
+        for step in steps:
+            proc = _run(step, cwd=work)
+            if proc.returncode != 0:
+                raise SystemExit(f"{Path(step[0]).name} failed:\n" + (proc.stderr or proc.stdout)[:3000])
     return spec
 
 
@@ -385,15 +387,30 @@ def main():
         if args.mode == "fn":
             compile_single(args.source, args.flags, obj)
             names = [args.name]
+            context = []
         else:
             spec = compile_group(Path(args.group_dir), obj)
-            names = spec["members"] + spec.get("context", [])
+            names = spec["members"]
+            context = spec.get("context", [])
+            print("Members:")
         all_match = True
         for name in names:
             print(f"{name}:")
             result = compare(obj, name)
             print(f"  {result.summary()}")
             all_match &= result.accepted(args.allow_unverified)
+        if context:
+            print("\nContext (informational; excluded from exit status):")
+            for name in context:
+                print(f"{name}:")
+                try:
+                    result = compare(obj, name)
+                except SystemExit as exc:
+                    # Missing targets or compiled-away context are diagnostic,
+                    # just like context word differences: only members gate.
+                    print(f"  NOT VERIFIED ({exc})")
+                else:
+                    print(f"  {result.summary()}")
     return 0 if all_match else 1
 
 
