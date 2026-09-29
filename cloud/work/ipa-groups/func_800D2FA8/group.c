@@ -128,8 +128,10 @@ void split_time_display(s32 node, s32 pos, s32 remain, s32 *outNode, s32 *outPos
                 *outPos = 0;
             }
         } else {
-            while (*outPos < D_80151CE8[D_80151CE8[0].last].start) {
-                *outPos = *outPos + D_801407F0.numPoints - D_80151CE8[D_80151CE8[0].last].start;
+            node = *outPos;
+            while (node < D_80151CE8[D_80151CE8[0].last].start) {
+                node = node + D_801407F0.numPoints - D_80151CE8[D_80151CE8[0].last].start;
+                *outPos = node;
             }
         }
     } else if (pos >= remain) {
@@ -144,7 +146,8 @@ void split_time_display(s32 node, s32 pos, s32 remain, s32 *outNode, s32 *outPos
 s32 func_800D2FA8(s32 node, s32 pos, s32 *outNode, s32 *outPos, s32 stopAtTyped, s32 depth)
 {
     s32 i;
-    s32 start1, dist1, start2, dist2, total, node2, pos2;
+    volatile s32 padv[2];
+    s32 dist1, total, dist2, start1, node2, pos2, start2;
     s32 v;
 
     if (depth == 0) {

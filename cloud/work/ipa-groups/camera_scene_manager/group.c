@@ -4056,6 +4056,7 @@ void func_800C220C(s32 idx) {
     s32 fl;
     f32 r;
     f32 dt;
+    f32 zero;
 
     p = &D_801569B8[idx];
     h = &((HudRec *) &D_8014A250)[idx];
@@ -4067,16 +4068,17 @@ void func_800C220C(s32 idx) {
             r = p->t48 - p->t44;
             if (r > 0.25f) {
                 r = r - 0.25f;
-                if (r > 0.0f) {
+                zero = 0.0f;
+                if (zero < r) {
                     dt = D_80123EE8;
                     do {
                         func_800C1B60(8, idx);
                         r -= dt;
-                    } while (r > 0.0f);
+                    } while (zero < r);
                 }
             }
         }
-    } else if ((D_80157238 == 2 && D_8015F730 == 2) || ((h->f5EC < 0.75f || h->f5F0 < 0.75f) && h->f5F4 > 2.5f && h->f5F8 > 2.5f)) {
+    } else if ((D_80157238 == 2 && D_8015F730 == 2) || ((h->f5EC < 0.75f || h->f5F0 < 0.75f) && h->f5F4 > 2.5f) || h->f5F8 > 2.5f) {
         p->flags = fl | 2;
         p->t44 = D_801543CC;
         p->t48 = -1.0f;
