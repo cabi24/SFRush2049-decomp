@@ -1,0 +1,13 @@
+{
+  "members": [
+    "spark_effect"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "spark_effect"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "generated": "blob_group seed from build/ipa_groups.json"
+}

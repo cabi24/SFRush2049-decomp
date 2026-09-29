@@ -1,5 +1,10 @@
 # Rush 2049 Decompilation Workflow
 
+For the current Conveyor matching path, start with the
+[matching skill](../.claude/skills/match-function/SKILL.md). This document supplies
+general analysis techniques; its older commands and workflow examples may predate
+the separate static-promotion and game-blob build paths.
+
 This document describes the systematic process for decompiling N64 functions to matching C code.
 
 ## Overview

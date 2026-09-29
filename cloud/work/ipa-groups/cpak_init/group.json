@@ -1,0 +1,17 @@
+{
+  "members": [
+    "cpak_init",
+    "func_800AF8C0",
+    "save_validate"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "cpak_init",
+    "__standin_func_800AF8C0",
+    "__standin_save_validate"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "generated": "blob_group seed from build/ipa_groups.json"
+}

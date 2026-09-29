@@ -4,13 +4,35 @@ Distributed compute fabric for the Rush 2049 matching phase. Design docs:
 `specs/001-matching-pipeline/` (spec, plan, research, data-model, API
 contract, quickstart). Bring-up: see `specs/001-matching-pipeline/quickstart.md`.
 
+## Navigation and current build paths
+
+This is the detailed operations reference. For a task-sized procedure, use the
+[matching](../../.claude/skills/match-function/SKILL.md),
+[promotion](../../.claude/skills/promote-match/SKILL.md), or
+[game-context](../../.claude/skills/refresh-game-context/SKILL.md) skill.
+Builder access and current host paths are maintained in [the build environment guide](../../docs/BUILDING.md#watchman2-builder).
+
+- [Queue, toolkit, corpus, and locks](#operating-notes)
+- [Managed services](#systemd-units)
+- [Target relocations and supersession](#reloc-aware-targets-the-gate-and-supersession-003)
+- [Static ROM promotion](#promotion-splicing-matches-become-rom-004)
+- [Extracted context](#game-code-context-bootstrap-005) and [histograms](#prototype-layer-and-extracted-flywheel-006)
+- [Population closure and data symbols](#population-closure-and-generated-data-symbols-007)
+- [Game-image splicing](#game-code-image-rebuild-008-stage-1) and [cartridge composition](#game-code-blob-into-the-cartridge-009-stage-2)
+
+Static `lock`/`promote` commands retain their extracted-target firewall. Features
+008/009 provide a separate game-image path into the cartridge, gated by image
+byte identity and the full-ROM SHA-1. Historical first-run numbers below are
+dated evidence; see [milestones](../../docs/history/project-milestones.md) for
+the chronology and use reports for current status.
+
 ## Layout
 
 | Path | Runs on | Purpose |
 |---|---|---|
 | `coordinator/` | Pi | queue + leases, SQLite state, blob store, HTTP API (stdlib only) |
 | `agent/node_agent.py` | any x86-64 box | single-file pull agent (stdlib only) |
-| `bundles/` | Pi / watchman | deterministic job + toolkit bundle builders |
+| `bundles/` | Pi / x86 builder | deterministic job + toolkit bundle builders |
 | `jobs/` | nodes (in toolkit) | executors: compile_score, flag_sweep, permuter_search, verify_promote |
 | `seeds/` | Pi | arcade candidate extractor + compatibility shim |
 | `pipeline/` | Pi | matrix, farm, sweep, cluster, targets, status |
@@ -170,7 +192,7 @@ of raw ROM words with absolute addresses baked in. `n64_target.tier` records the
 outcome:
 
 - `reloc_aware` — assembled from the region and passed the round-trip gate.
-- `raw_word` — dynamic game-code targets, and any static target that fell back;
+- `raw_word` — targets not converted to reloc-aware objects, or targets that fell back;
   `gate_reason` says why: `no_asm_region`, `assemble_error: <first as error>`,
   `word_mismatch@<i>`, `length_mismatch <n> != <m>`.
 
@@ -190,7 +212,10 @@ extraction must print `superseded: 0`. Every scored cell carries
 `matrix_entry.target_o_sha` (submit → node echo → ingest), and `corpus report`
 prints `attribution: <n> cells checked, <k> mismatched (expect 0)`.
 
-**Known gaps surfaced by the first live run (2026-07-08) — not yet resolved:**
+**Gaps reported by the first live run (2026-07-08; historical snapshot):**
+
+Check current reports before treating these as open blockers. Extracted targets
+also gained a [relocation-aware path](#reloc-aware-extracted-targets-2026-09-24).
 
 - Reloc-aware targets score 0 against a candidate only when the reloc **symbol
   names match** (or the candidate side is section-relative). Splat's asm names
@@ -243,7 +268,7 @@ the same `run_promotion()` library.
 
 ```bash
 python3 -m tools.conveyor.pipeline.promote run 0x8800:strlen \
-    --from src/libc/string.c --via-builder     # matching build on watchman
+    --from src/libc/string.c --via-builder     # matching build on configured x86 builder
 python3 -m tools.conveyor.pipeline.promote batch --locked --via-builder
 ```
 
@@ -287,10 +312,12 @@ exclusive buckets, and per-target details) and `build/m2c_histogram.md`
 the committed game symbol table in `pipeline/disasm.py`; `include/game_types.h`
 supplies shared game types, typed globals, and declarations to compile probes.
 
-Extracted targets are evidence-only and never enter ROM promotion. Both
+Extracted targets remain evidence-only for the **static promotion path**. Both
 `pipeline.lock add` and `pipeline.promote run|batch` resolve
 `n64_target.population` and refuse extracted targets with the 005/FR-010
 error. Static targets retain the score-zero lock and full-ROM SHA-1 gate.
+Game targets now reach the cartridge through the separate
+[008/009 blob path](#game-code-blob-into-the-cartridge-009-stage-2).
 
 ## Prototype layer and extracted flywheel (006)
 
@@ -333,8 +360,8 @@ Queue priority is ascending: farm verify `1`, farm promote/static search `10`,
 autodecomp static seed `30`, extracted flywheel `60`, coordinator default
 `100`. Thus all static work has strict precedence over flywheel work. Manual
 re-scoring remains an explicit `autodecomp seed` operation; the flywheel does
-not override evidence, and extracted targets remain behind the promotion
-firewall.
+not override evidence, and extracted targets remain behind the static promotion
+firewall. Use the 008/009 blob path for game-image integration.
 
 ### Reloc-aware extracted targets (2026-09-24)
 
@@ -457,12 +484,11 @@ The histogram's denominator reflects the enlarged population automatically.
 
 ## Game-code image rebuild (008, stage 1)
 
-The game code is not in the cartridge as code: it is a raw DEFLATE stream at
-ROM `0xB0CB10` that inflates at boot to `0x80086A50`. Matched game functions
-were therefore unlinkable and uncounted. Stage 1 links the 647,072-byte
-**image** from sources; reproducing the compressed stream is stage 2 and is
-not built (stock zlib `-9` lands within 140 bytes of the original's 326,180
-but shares no bitstream, so the encoder is zlib-like and unidentified).
+The game code is stored as a raw DEFLATE stream at ROM `0xB0CB10` and inflates
+at boot to `0x80086A50`. Stage 1 links the 647,072-byte **image** from sources.
+[Stage 2](#game-code-blob-into-the-cartridge-009-stage-2), now implemented,
+reproduces the compressed stream and puts it into the cartridge. Early 008 notes
+predate the identification of zlib 1.0.4 and should not be read as current blockers.
 
 ```bash
 python3 -m tools.conveyor.pipeline.blob_layout derive     # build/blob_layout.json
@@ -472,7 +498,7 @@ python3 -m tools.conveyor.pipeline.blob_splice splice --all-matched
 python3 -m tools.conveyor.pipeline.blob_splice coverage|check|revert <target>
 ```
 
-Everything except the IDO compile runs on the Pi. The map describes the image
+Everything except the IDO compile runs on the Pi. The initial map described the image
 as an ordered, complete list of entries — 912 gate-passed functions (79.5%)
 and 214 opaque runs (20.5%, mostly the 85 KB data tail). Overlaps and
 coverage holes are hard errors: either would corrupt the image silently.
@@ -491,9 +517,10 @@ functions, 4,346 symbols in all — and the extent decides how many bytes it
 contributes. Splice at the flagset the sweep recorded as scoring 0, not the
 default: a body matches under one optimization level and not the other.
 
-Coverage is reported separately from cartridge coverage and says so
-(`make progress`). Nothing here promotes into the ROM; the 005 firewall is
-untouched.
+Stage 1 verifies image coverage. Stage 2 makes those splices cartridge coverage;
+`make progress` reports static and game code separately under one cartridge
+heading. Never merge their denominators. The 005 firewall still protects the
+static promotion commands; blob splicing uses its own path and locks.
 
 ## Game-code blob into the cartridge (009, stage 2)
 
@@ -512,8 +539,9 @@ python3 -m tools.conveyor.pipeline.blob_rom coverage     # what `make progress` 
 - **Compressor:** vendored zlib 1.0.4, deflate half only
   (`tools/zlib-1.0.4/`, see its `PROVENANCE.md`), driven by
   `tools/deflate104` with the cartridge's exact parameters — level 9,
-  windowBits −15, memLevel 8, default strategy. Every later zlib is 140 bytes
-  long. It is a 1996 release with known CVEs: a build-time oracle for our own
+  windowBits −15, memLevel 8, default strategy. Other tested zlib versions produced
+  streams 140 bytes too long; see the [compressor research](../../specs/008-blob-image-rebuild/research/compressor-identified.md).
+  It is a 1996 release with known CVEs: a build-time oracle for our own
   image, never for untrusted input.
 - **What gets compressed** is the image *linked from sources*, never
   `build/game_code.bin` — compressing the extracted image would make the

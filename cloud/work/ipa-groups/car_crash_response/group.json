@@ -1,0 +1,19 @@
+{
+  "members": [
+    "car_crash_response",
+    "func_800A8284",
+    "func_800A8778",
+    "func_800A9710"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "car_crash_response",
+    "__standin_func_800A8284",
+    "__standin_func_800A8778",
+    "__standin_func_800A9710"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "generated": "blob_group seed from build/ipa_groups.json"
+}

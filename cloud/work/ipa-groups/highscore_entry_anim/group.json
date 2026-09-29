@@ -1,0 +1,13 @@
+{
+  "members": [
+    "highscore_entry_anim"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "highscore_entry_anim"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "generated": "blob_group seed from build/ipa_groups.json"
+}

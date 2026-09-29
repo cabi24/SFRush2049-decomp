@@ -12,6 +12,7 @@ This document describes the main game loop structure of San Francisco Rush 2049 
 6. [Timing and VSync](#timing-and-vsync)
 7. [State Transitions](#state-transitions)
 8. [Arcade vs N64 Comparison](#arcade-vs-n64-comparison)
+9. [Early call-identification notes](#early-call-identification-notes-2025-12-07)
 
 ---
 
@@ -590,3 +591,28 @@ Despite platform differences, these core concepts are preserved:
 - `/home/cburnes/projects/rush2049-decomp/include/game/gstate.h` - State definitions
 - `/home/cburnes/projects/rush2049-decomp/reference/repos/rushtherock/game/game.c` - Arcade source
 - `/home/cburnes/projects/rush2049-decomp/reference/repos/rushtherock/game/game.h` - Arcade definitions
+
+## Early call-identification notes (2025-12-07)
+
+These hypotheses came from the Ollama-assisted analysis recorded in `CLAUDE.md`;
+they are retained for research provenance, not as confirmed function identities.
+Prefer the detailed analysis above and current target assembly when they differ.
+The original note called `game_loop` at 0x800FD464 a 704-byte function; current
+extents must come from the pipeline scanner, not that old estimate.
+
+| Address | Likely Purpose | Arcade Equivalent |
+|---------|----------------|-------------------|
+| 0x800C9AE0 | Input/init handling | ProcessPDUs? |
+| 0x800EDDC0 | Rendering/game logic | attract? |
+| 0x800C997C | Screen/state update | - |
+| 0x800B37E8 | Audio/sound control | sound functions |
+| 0x800CA3B4 | Main gameplay | playgame() |
+| 0x800DB81C | Attract mode | attract() |
+| 0x800FBF88 | High score logic | EnterHighScore() |
+| 0x800FBC30 | Countdown timer | CountDown() |
+| 0x800A04C4 | Viewport/camera | render_scene |
+
+The bootstrap distinction identified in that session remains useful:
+N64 `game_init` (0x80002238) sets up message queues, decompression, and threads;
+arcade `game_init()` (`game/game.c`, originally lines 494–601) sets gameplay
+options, difficulty, and HUD state. Similar names do not imply the same function.

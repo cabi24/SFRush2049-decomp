@@ -2,6 +2,10 @@
 
 This document maps Rush The Rock arcade source files to Rush 2049 N64 decompiled sources.
 
+[Early matching hypotheses](#early-matching-hypotheses-2025-12-07) preserve the
+original confidence labels from `CLAUDE.md`. For the operational matching path,
+use the [matching skill](../.claude/skills/match-function/SKILL.md).
+
 ## Overview
 
 - **Arcade Source**: `reference/repos/rushtherock/game/` (79 C files, ~97K lines)
@@ -364,3 +368,48 @@ The N64 version is more compact due to:
 
 *Last Updated: 2025-12-31*
 *Generated from analysis of rushtherock/game/ and symbol_addrs.us.txt*
+
+## Early matching hypotheses (2025-12-07)
+
+Moved from `CLAUDE.md` on 2026-09-28. These are the original analysis leads
+and confidence labels, not byte-match evidence. Check current assembly and
+symbols before using them. In particular, the OS bootstrap `game_init` at
+0x80002238 is not arcade `game_init()` (gameplay setup); the old thread-wrapper
+and display/camera guesses below are retained as historical hypotheses.
+
+| N64 Function | Arcade Equivalent | Confidence |
+|--------------|-------------------|------------|
+| **func_800FD464** (game_loop) | **game/game.c:game()** | **High** |
+| func_8000C050 | GUTS/os/dll.c:dll_remove | High |
+| func_8000C090 | GUTS/os/dll.c:dll_init | High |
+| func_800020F0 (main) | game/init.c:start() | Medium |
+| func_80002238 (game_init) | game/init.c:init() | Low-Medium |
+| func_800024FC (game_thread) | game/init.c:game_loop() wrapper | Low-Medium |
+| func_800015F0 | game/visuals.c | Medium |
+| func_80001B44 | game/camera.c | Medium |
+| func_800C9AE0 | game/game.c:in_game_mode handling | Medium |
+| func_800EDDC0 | game/game.c:attract mode or state change | Medium |
+| func_800C997C | game/game.c:ProcessPDUs or switch handler | Medium |
+| func_800CA3B4 | game/game.c:playgame() or Update_MDrive | Medium |
+| func_800B37E8 | game/audio.c:sound control | High |
+
+### Arcade source navigation
+
+Under `reference/repos/rushtherock/`, `game/` contains the gameplay source;
+`GUTS/` holds system libraries, `LIB/` utilities, `MB/` the mathbox code, and
+`OS/` operating-system code. Useful starting points:
+
+| N64 Area | Arcade File | Key Functions |
+|----------|-------------|---------------|
+| Game loop | game/game.c | game(), playgame(), preplay() |
+| Track select | game/sselect.c | TrackSel(), CarSel() |
+| Checkpoints | game/checkpoint.c | CheckCPs(), InitCPS() |
+| AI/Drones | game/drones.c | DoDrones(), InitDrones() |
+| Physics | game/cars.c | Update_MDrive(), CheckCrash() |
+| Visuals | game/visuals.c | UpdateVisuals() |
+
+The original portability heuristic put game logic, checkpoints, and AI in the
+portable group; vehicle/tire physics and math in the adaptation group; and
+rendering, audio, and I/O in the N64-specific group. Treat this as a search aid:
+sharing arcade logic does not establish identical N64 behavior or code generation.
+For state transitions and the enum/bitmask distinction, see [game_loop.md](game_loop.md).

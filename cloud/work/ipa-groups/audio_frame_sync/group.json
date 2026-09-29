@@ -1,0 +1,23 @@
+{
+  "members": [
+    "audio_frame_sync",
+    "brake_force_apply",
+    "fp_call_wrapper",
+    "func_80096CA8",
+    "func_80097164",
+    "suspension_setup"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "audio_frame_sync",
+    "brake_force_apply",
+    "fp_call_wrapper",
+    "suspension_setup",
+    "__standin_func_80096CA8",
+    "__standin_func_80097164"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "generated": "blob_group seed from build/ipa_groups.json"
+}

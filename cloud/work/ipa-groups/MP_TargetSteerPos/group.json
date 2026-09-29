@@ -1,0 +1,15 @@
+{
+  "members": [
+    "MP_TargetSteerPos",
+    "camera_transform"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "camera_transform",
+    "__standin_MP_TargetSteerPos"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "generated": "blob_group seed from build/ipa_groups.json"
+}

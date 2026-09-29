@@ -1,0 +1,23 @@
+{
+  "members": [
+    "car_collision_update",
+    "car_crash_detect",
+    "func_800A81FC",
+    "func_800A8F38",
+    "func_800A928C",
+    "func_800AAB3C"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "car_crash_detect",
+    "func_800AAB3C",
+    "__standin_car_collision_update",
+    "__standin_func_800A81FC",
+    "__standin_func_800A8F38",
+    "__standin_func_800A928C"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "generated": "blob_group seed from build/ipa_groups.json"
+}

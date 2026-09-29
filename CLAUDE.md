@@ -1,634 +1,79 @@
-# Claude Code Project Memory
+# Rush 2049 N64 decompilation
 
-This file helps Claude maintain context across sessions for the Rush 2049 N64 decompilation project.
+Goal: matching C source that builds a byte-identical San Francisco Rush 2049
+US ROM. Arcade source at `reference/repos/rushtherock/` is the primary reference
+for game logic and naming; N64 assembly is the matching target.
 
-## Project Overview
+This file contains shared working rules and routing. Read linked documents only
+when relevant to the task; historical notes are not current status or instructions.
 
-**Goal**: Decompile San Francisco Rush 2049 (N64) into matching C source code.
+## Essential context
 
-**Key Advantage**: We have the Rush The Rock arcade source code at `reference/repos/rushtherock/` which shares significant code with the N64 version.
+- The cartridge contains static boot/library code and a compressed game-code
+  image. Conveyor (`tools/conveyor/`) handles matching; static promotion and
+  game-blob splicing have separate paths.
+- The Pi coordinates jobs; the documented x86 builder is `watchman2`. IDO runs
+  there because its recompiled binaries require 4 KB pages (the Pi has 16 KB).
+  See [builder operations](docs/BUILDING.md#watchman2-builder) before remote work.
+- C must be IDO/C89 compatible. Python tooling targets 3.9+; the coordinator and
+  node agent use the standard library. Compiler flags vary by function/module:
+  use [confirmed settings](docs/COMPILER_SETTINGS.md) and recorded evidence.
 
-## Current Status
+## Matching and build rules
 
-**Phase**: 3-4 - IDO Compiler Setup Complete (92% files compiling!)
-**Last Updated**: 2025-12-29
+- A relocation-blind score of zero is a lead, not a verified match. Require true
+  score zero for matching evidence and the built ROM's SHA-1 for cartridge claims.
+- Static `lock`/`promote` commands reject extracted game targets. Game functions
+  use `blob_splice` → `blob_rom`, with image byte identity and full-ROM hash gates.
+- The ROM build requires `build/blob/game_code.deflate`, produced from the linked
+  image; do not substitute the extracted original blob or bypass the build gates.
+- Report static and game coverage separately; never merge their denominators.
+  Source files, stubs, identified symbols, and compiled seeds are not ROM coverage.
+- Extracted extents and population come from scanning/closure. `work/**/info.txt`
+  names and sizes are historical labels, not authoritative function boundaries.
+- Regenerate derived layouts, linker scripts, assembly, data symbols, and
+  prototypes through their tools. Hand-authored game context belongs in
+  `include/game_types.h` and `tools/conveyor/pipeline/disasm.py` (`GAME_SYMBOLS`).
+- Preserve locked matches. Use the appropriate promotion/splicing workflow when
+  changing linked C; see the [project constitution](.specify/memory/constitution.md)
+  for matching documentation and review requirements.
 
-### Completed
-- [x] Project planning via Spec Kit (constitution, spec, plan, tasks)
-- [x] Cloned reference repos (rushtherock, sm64, mk64, perfect_dark, banjo-kazooie)
-- [x] Created lessons-learned.md from decomp research
-- [x] Set up agent definitions in .claude/agents/
-- [x] Verified ROM (US, 12MB)
-- [x] Created project structure and README
-- [x] Converted ROM from V64 to Z64 format
-- [x] Configured splat (splat.us.yaml)
-- [x] Initial ROM disassembly (~18K lines MIPS assembly)
-- [x] Splat found 85 file boundaries
-- [x] Split code into 88 individual .s files
-- [x] **BUILD SYSTEM WORKING - ROM MATCHES!**
-- [x] Set up OptiPlex 3080 (20 cores, 31GB RAM) for fast builds
-- [x] Created hardware_regs.ld with N64 MMIO addresses
-- [x] Created tools/diff.py for function comparison
-- [x] All 88 assembly files now have C equivalents (120 C files total, 136% coverage)
-- [x] **IDO 5.3 compiler setup on x86 watchman machine**
-- [x] **102/111 C files (92%) compiling with IDO**
+## Starting a session
 
-### In Progress
-- [ ] Refactor game.c for C89 compatibility (remaining ~9 files)
-- [ ] Match functions to arcade source
-- [ ] Refine function implementations for matching builds
-
-### Phase 4 Setup Notes
-**IDO Compiler Location**: `ssh watchman` -> `/home/cburnes/projects/rush2049-decomp/tools/ido-static-recomp/build/out/`
-**IDO 7.1 Also Available**: `ssh watchman` -> `/home/cburnes/projects/rush2049-decomp/tools/ido7.1/`
-**Build Command**: `make COMPILER=ido cc` (on watchman, x86 machine)
-**Pi 5 Limitation**: IDO recompiled binaries don't work on Pi 5 due to 16KB page size (needs 4KB pages)
-**Sync Command**: `rsync -avz /home/cburnes/projects/rush2049-decomp/ watchman:/home/cburnes/projects/rush2049-decomp/`
-
-**CRITICAL: Mixed Optimization Levels Discovered (2026-01-02)**:
-The game uses DIFFERENT optimization levels for different source files:
-- **libc (string functions)**: `-g0 -O2 -mips2 -G 0 -non_shared` (strlen PERFECT MATCH)
-- **libultra/os**: `-g0 -O1 -mips2 -G 0 -non_shared` (osCreateMesgQueue PERFECT MATCH)
-- **libultra/gu**: `-g0 -O2 -mips2 -G 0 -non_shared` (guMtxIdentF PERFECT MATCH)
-- See `docs/COMPILER_SETTINGS.md` for full details
-
-**C89 Compatibility Issues Fixed**:
-- Removed GNU inline assembly (used stubs with #ifdef NON_MATCHING)
-- Moved variable declarations to function top (C89 requirement)
-- Replaced compound literals with static constants
-- Fixed duplicate struct typedef conflicts
-- Replaced system `<math.h>` with local declarations
-
-### Identified Functions (228/228 = 100% coverage! updated 2025-12-07)
-| Category | Count | Examples |
-|----------|-------|----------|
-| startup | 4 | entrypoint, main, idle_thread_entry, audio_thread_entry |
-| libc | 8 | memchr, memset, strchr, strlen, memcpy, bzero, bcopy, bzero_alt |
-| libm | 10 | modf, modff, __isinf, __isnan, sinf, cosf, sqrtf, fcvt, __ecvt_internal, __round_helper |
-| libultra os | 70 | osCreateMesgQueue, osJamMesg, osPiStartDma, osSpTaskYielded, osDpWait, osAiSetFrequency, osContStartReadData, osSetTimer, osCreatePiManager, osCreateViManager, osInvalICache, osWritebackDCache, osSpTaskLoad, __osException, __osSetCompare, __osViSwapContext, etc. |
-| libultra gu | 10 | guMtxIdentF, guMtxF2L, guMtxL2F, guMtxIdent, guOrthoF, guOrtho, guPerspectiveF, guPerspective, guLookAtF, guLookAt |
-| libultra pfs | 25 | osPfsInitPak, osPfsChecker, osPfsReadWriteFile, osPfsFreeBlocks, osPfsFileState, osPfsAllocate, osPfsDeleteFile, osPfsRename, osPfsFindFile, osPfsGetFileStat, osPfsGetFileSize, osPfsReAllocate, __osPfsSelectBank, __osPfsCheckPages, etc. |
-| controller | 8 | osContStartQuery, osContGetQuery, osContStartReadData, osContGetReadData, __osPackReadData, __osContBuildPacket, __osContGetStatus, __osContRamReset |
-| libultra motor | 4 | osMotorInit, __osMotorAccess, osMotorStart, osMotorStop |
-| libultra vi | 4 | osViModeTableGet, osViModeNtscLan1, osViModeNtscLpn1, vi_manager_main |
-| libultra sp | 2 | osSpTaskLoad, __osPiReadDeviceType |
-| libgcc FP | 8 | __fixdfdi, __floatdidf, etc. |
-| libgcc 64-bit | 9 | __lshrdi3, __udivdi3, __muldi3, etc. |
-| inflate/decomp | 16 | inflate_entry, inflate_loop, huft_build, lzss_decode, inflate_read_bits, inflate_needbits, inflate_getbits, inflate_io_wait, inflate_flush_window, inflate_free_window, etc. |
-| timer queue | 14 | dll_remove, dll_init, dll_update, dll_reschedule, dll_insert, dll_get_priority, dll_get_data, dll_set_data, __osEnqueueThread, __osPopThread, __osDispatchThread, __osTimerInterrupt, __osGetTimerValue, __osInsertTimer |
-| display/render | 8 | display_update, viewport_setup, get_viewport_pos, display_mode_tick, get_tv_offset, apply_display_mode |
-| game init | 1 | game_init |
-| utility | 3 | checksum8, checksum16_adler, comm_parse |
-| scheduler | 13 | osCreateScheduler, osScAddClient, __scMain, __scSchedule, __scHandleRetrace, __scHandleRSP, __scHandleRDP, __scTaskReady, __scExecTask, __scAppendList, __scExec, __scHandlePreNMI, __scScheduleCore |
-| VI timing | 9 | viTickStart, viEnableAccum, viDisableAccum, viUpdateTime, viScheduleTick, viAddTicks, viGetTimeToDeadline, viDeadlinePassed, viStub |
-
-See `symbol_addrs.us.txt` for complete list.
-
-### Decompiled Source Files (120 C files, ~98,517 lines)
-| File | Functions | Status |
-|------|-----------|--------|
-| src/libc/string.c | memchr, memset, strchr, strlen, memcpy | Complete |
-| src/libc/memory.c | bcopy (memmove with overlap handling) | Complete |
-| src/libm/math.c | modf, modff, __isinf, __isnan, sinf, cosf | Complete |
-| src/libgcc/ll.c | __lshrdi3, __ashldi3, __ashrdi3, __umoddi3, __udivdi3, __divdi3, __moddi3, __muldi3 | Complete (stubs) |
-| src/libultra/os_message.c | osCreateMesgQueue, osSendMesg, osRecvMesg | Complete |
-| src/libultra/os_vi.c | osViGetCurrentFramebuffer, osViSwapBuffer, osViSetMode, osViGetFramebuffer, osViSetSpecialFeatures, osViSetSwapBuffer | Complete |
-| src/libultra/os_vi_mgr.c | osViInit, vi_manager_thread | Complete |
-| src/libultra/os_event.c | osSetEventMesg | Complete |
-| src/libultra/os_thread.c | osCreateThread, osStartThread, osSetThreadPri, osSetIntMask | Complete |
-| src/libultra/os_cache.c | osInvalICache, osInvalDCache, bzero | Complete |
-| src/libultra/os_timer.c | osSetTimer, osSetTimerIntr, osGetTime (64-bit) | Complete |
-| src/libultra/os_int.c | __osDisableInt, __osRestoreInt | Complete |
-| src/libultra/os_dp.c | osDpSetNextBuffer, osDpWait, osDpGetCounters | Complete |
-| src/libultra/os_sp.c | __osSpSetStatus, __osSpSetPc, __osSpDeviceBusy | Complete |
-| src/libultra/os_sp_task.c | osSpTaskYielded, osViGetFramebuffer | Complete |
-| src/libultra/os_misc.c | osDpIsBusy, osVirtualToPhysical (full), osGetActiveQueue, osPhysicalToVirtual | Complete |
-| src/libultra/os_cpu.c | __osSetSR, __osGetSR, __osSetFpcCsr, __osGetFpcCsr, __osGetCause (inline asm) | Complete |
-| src/libultra/os_tlb.c | __osTlbInit, __osTLBLookup, osTLBMapTLB, osTLBUnmapTLB (asm-only stubs) | Complete |
-| src/libultra/os_cont.c | osContStartQuery, osContGetQuery, osContStartReadData, osContGetReadData, __osContRamReset | Complete |
-| src/libultra/os_pi.c | osPiInit, osPiGetAccess, osPiReleaseAccess, osPiReadWord, osPiWriteWord, osPiReadIo, osPiRawReadWord, osPiStartDma, osPiSetDeviceTiming | Complete |
-| src/libultra/os_si.c | __osSiRawStartDma, osSiInit, __osSiGetAccess, __osSiRelAccess, osContStartReadData, __osContBuildRequest, __osContParseResponse | Complete |
-| src/libultra/os_ai.c | osAiSetNextBuffer, osAiSetFrequency | Complete |
-| src/libultra/os_sync.c | sync_init, sync_acquire, sync_release, sync_execute | Complete |
-| src/libultra/os_queue.c | __osEnqueueThread, __osPopThread, __osDispatchThread | Complete |
-| src/libultra/os_jam.c | osJamMesg | Complete |
-| src/libultra/os_scheduler.c | osCreateScheduler, osScAddClient, __scMain, __scSchedule, __scHandleRetrace, osScResetTime, osScEnableTime, osScDisableTime, osScUpdateTime, osScSetDeadline, osScAddDeadline, osScGetTimeRemaining, osScDeadlinePassed | Complete |
-| src/game/gfx.c | gfx_init_dl, gfx_alloc_dl | Complete |
-| src/os/dll.c | dll_remove, dll_init, dll_update, dll_reschedule, dll_insert, dll_get_priority | Complete |
-| src/inflate/inflate.c | inflate_entry, inflate_loop, inflate_block, huft_build, inflate_codes, inflate_stored, inflate_fixed, inflate_dynamic | Complete |
-| src/game/init.c | main, game_init, thread entry points | Complete |
-| src/game/display.c | display_update, viewport_setup, display_process, get_tv_offset, get_viewport_pos, get_viewport_offset, update_viewport | Complete |
-| src/util/checksum.c | checksum8, checksum16_adler | Complete |
-| src/util/dma.c | dma_queue_init, dma_wait, dma_signal, lzss_decompress, inflate_decompress | Complete |
-| src/game/matrix.c | guMtxIdentF, guMtxF2L, guMtxL2F, guMtxIdent | Complete |
-| src/libultra/gu.c | guOrthoF, guOrtho, guPerspectiveF, guPerspective, guLookAtF, guLookAt | Complete |
-| include/types.h | Basic types, volatile types (vu32, etc.), vector/matrix types | Complete |
-| include/inflate/inflate.h | struct huft, inflate function prototypes | Complete |
-| include/PR/os_message.h | OSMesgQueue structure | Complete |
-| include/game/game.h | GState enum, game constants | Complete |
-
-#### Decompiled ROM Functions (Game Code)
-| File | ROM Functions | Lines |
-|------|---------------|-------|
-| src/game/game.c | game_loop, state machines, render pipeline, input, physics, player state (137 funcs) | 4309 |
-| src/game/sound.c | func_800B358C (sound_stop) | 818 |
-| src/libultra/os_pfs.c | osPfsInitPak, __osPfsGetStatus, osPfsFreeBlocks, __osPfsSelectBank, osPfsReadWriteFile | 351 |
-
-#### Game Code Files (Arcade-Style Stubs)
-| File | Lines | Description |
-|------|-------|-------------|
-| src/game/menu.c | 904 | Menu system and UI |
-| src/game/hiscore.c | 793 | High score entry and display |
-| src/game/physics.c | 767 | Car physics (Milliken model) |
-| src/game/car.c | 705 | Car state and control |
-| src/game/effects.c | 710 | Particle and visual effects |
-| src/game/race.c | 675 | Race logic and timing |
-| src/game/replay.c | 649 | Replay recording/playback |
-| src/game/attract.c | 633 | Attract mode handler |
-| src/game/carsel.c | 622 | Car selection UI |
-| src/game/select.c | 620 | Track selection |
-| src/game/drivetrain.c | 595 | Engine/transmission |
-| src/game/tire.c | 506 | Tire physics model |
-| src/game/sound.c | 482 | Sound system |
-| src/game/state.c | 443 | Game state machine |
-| src/game/vecmath.c | 442 | Vector/matrix math |
-| src/game/drone.c | 432 | AI drone control |
-| src/game/collision.c | 430 | Collision detection |
-| src/game/road.c | 425 | Road/track geometry |
-| src/game/camera.c | 423 | Camera system |
-| src/game/checkpoint.c | ~350 | Checkpoint logic |
-
-### Key Discoveries from Agent Analysis
-
-**Decompression (5610.s)**: DEFLATE/zlib inflate implementation
-- Uses 4KB double-buffered sliding window
-- Async I/O for ROM access optimization
-- Can reference Perfect Dark's inflate.c as template
-
-**Arcade Source Matches**:
-| N64 Function | Arcade Equivalent | Confidence |
-|--------------|-------------------|------------|
-| **func_800FD464** (game_loop) | **game/game.c:game()** | **High** |
-| func_8000C050 | GUTS/os/dll.c:dll_remove | High |
-| func_8000C090 | GUTS/os/dll.c:dll_init | High |
-| func_800020F0 (main) | game/init.c:start() | Medium |
-| func_80002238 (game_init) | game/init.c:init() | Low-Medium |
-| func_800024FC (game_thread) | game/init.c:game_loop() wrapper | Low-Medium |
-| func_800015F0 | game/visuals.c | Medium |
-| func_80001B44 | game/camera.c | Medium |
-| func_800C9AE0 | game/game.c:in_game_mode handling | Medium |
-| func_800EDDC0 | game/game.c:attract mode or state change | Medium |
-| func_800C997C | game/game.c:ProcessPDUs or switch handler | Medium |
-| func_800CA3B4 | game/game.c:playgame() or Update_MDrive | Medium |
-| func_800B37E8 | game/audio.c:sound control | High |
-
-**Arcade Key Files to Reference**:
-| N64 Area | Arcade File | Key Functions |
-|----------|-------------|---------------|
-| Game loop | game/game.c | game(), playgame(), preplay() |
-| Track select | game/sselect.c | TrackSel(), CarSel() |
-| Checkpoints | game/checkpoint.c | CheckCPs(), InitCPS() |
-| AI/Drones | game/drones.c | DoDrones(), InitDrones() |
-| Physics | game/cars.c | Update_MDrive(), CheckCrash() |
-| Visuals | game/visuals.c | UpdateVisuals() |
-
-**Arcade game() State Machine** (game.c:714+):
-```c
-switch (gstate) {
-    case ATTRACT:   attract();    break;
-    case TRKSEL:    TrackSel();   break;
-    case CARSEL:    CarSel();     break;
-    case PREPLAY:   preplay();    break;
-    case COUNTDOWN: CountDown();  break;
-    case PREPLAY2:  /* final setup */ break;
-    case PLAYGAME:  /* active racing */ break;
-    case ENDGAME:   endgame();    break;
-    case GAMEOVER:  gameover();   break;
-    case HISCORE:   hiscore();    break;
-}
-```
-The N64's func_800FD464 should implement this same state machine.
-
-**Key Insight from Codex Analysis (2025-12-07)**:
-- N64 `game_init` (0x80002238) is **NOT** the same as arcade `game_init()`
-- N64 game_init is OS bootstrap (message queues, ROM decompression, thread spawning)
-- Arcade game_init (game.c:494-601) is gameplay setup (NVRAM options, difficulty, HUD)
-- The actual game loop target is `func_800FD464` (called from main thread in infinite loop)
-- Game logic is in compressed ROM data decompressed at runtime to 0x80086A50 (confirmed!)
-
-### Assembly File Analysis
-| File | Size | Content |
-|------|------|---------|
-| 5610.s | 125KB | Decompression code (LZSS, Huffman), inflate-style |
-| 34A0.s | 122KB | libm functions, float-to-string conversion |
-| 1050.s | 67KB | OS initialization, thread/message queue setup |
-| D580.s | 40KB | Exception handler (__osException) |
-
-### Not Started
-- [ ] IDO compiler setup (for matching C builds)
-- [ ] Progress tracking script
-
-## Key Files
-
-| File | Purpose |
-|------|---------|
-| `baserom.us.z64` | Original ROM in Z64 format (not in git) |
-| `us.sha1` | ROM hash for verification |
-| `splat.us.yaml` | Splat configuration for ROM extraction |
-| `asm/us/*.s` | 88 disassembled code files |
-| `asm/us/5610.s` | Largest code file (125KB) - likely game logic |
-| `asm/us/34A0.s` | Second largest (124KB) - math/physics? |
-| `rush2049.us.ld` | Generated linker script |
-| `symbol_addrs.us.txt` | Discovered symbols |
-| `.specify/specs/plan.md` | Implementation plan with phases |
-| `.specify/specs/tasks.md` | Detailed task breakdown (144 tasks) |
-| `reference/lessons-learned.md` | Best practices from other decomps |
-| `reference/repos/rushtherock/` | **ARCADE SOURCE** - primary reference |
-| `tools/mips_to_c/` | mips_to_c decompiler (auto-generates C) |
-| `tools/m2c.py` | Wrapper script for mips_to_c |
-| `tools/diff.py` | Function comparison tool |
-
-## Architecture Notes
-
-### Arcade Source Structure (rushtherock/)
-The arcade source is organized as:
-- `game/` - Main game code (~97K lines)
-  - `game.c` - Game loop and state machine
-  - `cars.c`, `tires.c`, `collision.c` - Physics
-  - `drones.c`, `maxpath.c` - AI
-  - `checkpoint.c` - Race logic
-  - `camera.c` - Camera system
-- `GUTS/` - Arcade system libraries (3dfx)
-- `LIB/` - Utility libraries
-- `MB/` - Mathbox (physics coprocessor)
-- `OS/` - Operating system
-
-### Three-Tier Portability
-1. **Portable** (use as-is): game.c, checkpoint.c, drones.c, maxpath.c
-2. **Adaptation** (modify): cars.c, tires.c, math functions
-3. **Rewrite** (N64-specific): rendering, audio, I/O
-
-### ROM Info
-- Size: 12,582,912 bytes (12 MB)
-- Format: Z64 (big-endian, converted from V64)
-- SHA-1: 3f99351d7bb61656614bdb2aa1a90cfe55d1922c
-- Internal name: "uRhs2 40 9"
-- Cartridge ID: UR
-- Graphics microcode: F3DEX2 (assumed)
-
-## Build Commands (When Ready)
+Inspect `git status` and recent commits, then use reports appropriate to the task:
 
 ```bash
-# Non-matching build (faster iteration)
-make VERSION=us NON_MATCHING=1 -j$(nproc)
-
-# Matching build
-make VERSION=us -j$(nproc)
-
-# Check progress
-make progress
-
-# Verify ROM hash
-make test
-
-# Diff a function
-./tools/diff.py function_name -m -w
-
-# Auto-decompile a function (generates initial C code)
-./tools/m2c.py func_80006A00           # By function name
-./tools/m2c.py asm/us/5610.s -f 0      # First function in file
-./tools/m2c.py asm/us/7600.s           # All functions in file
+make progress                              # derived cartridge coverage
+python3 -m tools.conveyor.cli status        # coordinator/queue status
+python3 -m tools.conveyor.cli attention     # reported blockers
 ```
 
-## Agent Roles
+For builds and verification, use the [promotion skill](.claude/skills/promote-match/SKILL.md).
+`make test` verifies the built ROM and may build prerequisites; it is not a
+read-only status command. Old phase percentages and next-session TODOs are archived.
 
-See `.claude/agents/` for specialized agents:
-- **asm-analyzer** - MIPS assembly analysis
-- **c-writer** - Write matching C code
-- **arcade-comparator** - Find arcade equivalents
-- **project-r-analyst** - Study Project R insights
-- **n64-decomp-expert** - Apply lessons from other decomps
-- **build-runner** - Build and verify
+## Read when needed
 
-## Development Environment
+| Task | Entry point |
+|---|---|
+| Match or investigate a function | [Matching skill](.claude/skills/match-function/SKILL.md) |
+| Put verified C into the cartridge | [Promotion skill](.claude/skills/promote-match/SKILL.md) |
+| Refresh game targets, symbols, prototypes, or histograms | [Context skill](.claude/skills/refresh-game-context/SKILL.md) |
+| Operate Conveyor, toolkit, farm, or corpus | [Operations guide](tools/conveyor/README.md) |
+| Reach the builder or manage services | [Build environment](docs/BUILDING.md) |
+| Find memory, arcade, or subsystem research | [Documentation index](docs/README.md) |
+| Understand previous decisions and results | [Milestones](docs/history/project-milestones.md) |
+| Review feature design and generated plan context | [Specs](specs/) · [Generated notes](docs/generated/feature-context.md) |
+| Use specialized agent definitions | [Agent directory](.claude/agents/) |
+| Read/write the project wiki | [Wiki access](docs/WIKI.md) |
+| Joining from the cloud (repo only, no ROM/LAN) | [Cloud handoff](CloudHandoff.md) |
 
-- Uses GNU Make and mips-linux-gnu cross-compiler toolchain
-- Build system based on splat for ROM extraction
-- Local Ollama server can be used for batch function analysis
+## Maintaining these instructions
 
-## Next Steps (When Resuming)
-
-1. Continue decompiling library functions (remaining libm, libultra)
-2. Set up IDO compiler for matching C builds
-3. Match N64 game functions to arcade source code
-4. Identify key game structures (car state, track data, etc.)
-5. Begin systematic game function decompilation
-
-## Quick Reference
-
-### Arcade Game States (game.h)
-```c
-enum GState {
-    ATTRACT, TRKSEL, CARSEL, PLAYGAME,
-    ENDGAME, GAMEOVER, HISCORE, PREPLAY,
-    PREPLAY2, COUNTDOWN
-};
-```
-
-### Key Arcade Files to Reference
-| N64 Module | Arcade Equivalent | LOC |
-|------------|-------------------|-----|
-| src/game/game.c | game/game.c | 1,687 |
-| src/racing/checkpoint.c | game/checkpoint.c | 1,694 |
-| src/racing/cars.c | game/cars.c | 1,892 |
-| src/racing/drones.c | game/drones.c | ~24K |
-| src/racing/maxpath.c | game/maxpath.c | 3,730 |
-| src/camera/camera.c | game/camera.c | 2,043 |
-
-## Progress Report
-
-For a detailed breakdown of project progress by phase, see: **[docs/PROGRESS_REPORT.md](docs/PROGRESS_REPORT.md)**
-
-Quick summary (2026-01-05):
-- **Overall**: ~65% complete (Phase 2-3)
-- **Phase 1** (Setup): 100% - ROM extracted, build system working
-- **Phase 2** (C Source): 100% - 120 C files, all compiling, ROM matches
-- **Phase 3** (Decompilation): 99% - 1,310 WIP, 0 TODO! All target assembly extracted
-- **Phase 4** (Matching): 5% - IDO compiler required for matching
-- **Phase 5** (Documentation): 20% - Docs updated, progress tracked
-
-## Session Continuity Tips
-
-When starting a new session:
-1. Read this file first
-2. Run `make progress` for quick stats
-3. See `docs/PROGRESS_REPORT.md` for detailed breakdown
-4. Check `symbol_addrs.us.txt` for function list
-5. Check git log for recent changes
-
-## Next Session TODO
-
-**Priority**: Analyze extracted game code and match to arcade source
-1. **Analyze extracted game code** (build/game_code.bin, build/game_code_disasm.txt)
-2. **Match RDP/graphics functions** to arcade source (game contains render commands)
-3. **Continue matching game functions** to arcade source in `reference/repos/rushtherock/`
-4. **Decompile a simple game function** to test the workflow
-
-### Compressed Game Code (EXTRACTED & ANALYZED 2025-12-07!)
-- **ROM offset**: 0xB0CB10 (compressed DEFLATE data)
-- **RAM destination**: 0x80086A50 - 0x80124AF0 (from D_80086A50 in init)
-- **Decompressed size**: 647,072 bytes (~632 KB)
-- **Functions found**: 767 unique call targets, 752 function prologues
-- **Key function**: `func_800FD464` = **game_loop** (704 bytes) - the main per-frame game logic!
-- **Content**: RDP graphics commands, game rendering, actual game logic
-
-**Largest Functions (likely core game logic)**:
-| Address | Size | Description |
-|---------|------|-------------|
-| 0x80099BFC | 10KB | render_object - 3D model rendering (uses G_DL) |
-| 0x80087A08 | 10KB | render_large - major rendering function |
-| 0x800F93A0 | 5.6KB | unknown - needs analysis |
-| 0x800A04C4 | 2.7KB | render_scene - viewport/camera setup (G_SETGEOMETRYMODE) |
-| 0x800CA3B4 | 2.5KB | game_update - called from game_loop |
-
-**Key Global Variables**:
-| Address | References | Likely Purpose |
-|---------|------------|----------------|
-| 0x801461D0 | 160 | Main game struct |
-| 0x801146EC | - | **gstate** - game state byte (confirmed via Ollama analysis) |
-| 0x801174B4 | 110 | Secondary state variable |
-| 0x80152818 | 89 | Player/car state array |
-| 0x80142AFC | - | Frame counter |
-
-**Game Loop Function Calls** (from Ollama analysis of game_loop @ 0x800FD464):
-| Address | Likely Purpose | Arcade Equivalent |
-|---------|----------------|-------------------|
-| 0x800C9AE0 | Input/init handling | ProcessPDUs? |
-| 0x800EDDC0 | Rendering/game logic | attract? |
-| 0x800C997C | Screen/state update | - |
-| 0x800B37E8 | Audio/sound control | sound functions |
-| 0x800CA3B4 | Main gameplay | playgame() |
-| 0x800DB81C | Attract mode | attract() |
-| 0x800FBF88 | High score logic | EnterHighScore() |
-| 0x800FBC30 | Countdown timer | CountDown() |
-| 0x800A04C4 | Viewport/camera | render_scene |
-
-**Tools created**:
-- `tools/extract_game_code.py` - Extracts and decompresses game code from ROM
-- `tools/simple_mips_disasm.py` - Basic MIPS disassembler (for Pi without toolchain)
-- `build/game_code.bin` - Extracted raw binary
-- `build/game_code_disasm.txt` - Full disassembly (163K lines)
-
-**Useful Codex command for function ID**:
-```bash
-codex exec --dangerously-bypass-approvals-and-sandbox "Analyze asm/us/XXXX.s and identify functions..."
-```
-
-**Current stats** (updated 2026-01-05):
-- Static ROM: 228 functions identified (100% coverage)
-- Dynamic game code: 752 functions extracted from compressed ROM
-- Symbol file: 3,406 entries
-- Source files: 120 C files, ~98,517 lines total
-- Work directory: 1,319 functions (1,310 WIP, 0 TODO!)
-- Target assembly: Extracted for all game code functions
-- func_80 call sites: 0 remaining (100% renamed)
-
-**New libultra files added (2025-12-27)**:
-- Controller Pak (PFS): os_pfs_alloc.c, os_pfs_check.c, os_pfs_create.c, os_pfs_delete.c, os_pfs_find.c, os_pfs_free.c, os_pfs_rw.c, os_pfs_state.c, os_pfs_write.c
-- Video Interface: os_vi_init.c, os_vi_intr.c, os_video.c
-- Peripheral Interface: os_pi_dma.c, os_pi_write.c, os_pif.c
-- Serial Interface: os_si_ext.c
-- Signal Processor: os_sp_dma.c
-- Controller: os_cont_query.c, os_cont_status.c
-- Thread/Timer: os_thread_ext.c, os_thread_pri.c, os_timer_set.c, os_yield.c
-- CPU/FPU: os_fpcsr.c, os_phys.c, os_dp_counters.c
-- Other: os_debug.c, os_mesg_jam.c, boot/boot.c
-
-## Project Wiki
-
-Project docs are mirrored to a DokuWiki at `http://192.168.50.30:8089` (namespace
-`rush2049:`), hosted in a container on the unraid server. **How to read/write it
-from this machine: see `docs/WIKI.md`** (SSH file access, ownership rules, syntax
-gotchas). Update `rush2049:status` at milestones.
-
-## Conveyor Matching Pipeline (Phase 4 — built 2026-07-02)
-
-The matching phase runs on **conveyor**, a distributed pipeline in `tools/conveyor/`
-(design docs: `specs/001-matching-pipeline/`, ops guide: `tools/conveyor/README.md`,
-bring-up: `specs/001-matching-pipeline/quickstart.md`).
-
-Architecture: coordinator on the Pi (stdlib HTTP + SQLite at `~/.conveyor/`) leases
-self-contained job bundles to ephemeral x86-64 LAN nodes (single-file agent, pull-based,
-toolkit cached by sha256). Watchman = builder node (`--capabilities x86_64,builder --repo`).
-Job types: compile_score (match matrix), flag_sweep, permuter_search, verify_promote.
-
-Key commands (from repo root on the Pi):
-```bash
-python3 -m tools.conveyor.cli serve                    # coordinator
-python3 -m tools.conveyor.cli smoke                    # strlen end-to-end proof
-python3 -m tools.conveyor.pipeline.matrix extract|submit|ingest|report
-python3 -m tools.conveyor.pipeline.cluster run         # local, no nodes needed
-sudo systemctl restart conveyor-farm                   # steady-state daemon (systemd unit; restart after code changes)
-python3 -m tools.conveyor.cli report|status|attention|nodes
-pytest tests/conveyor -m "not node_required"           # 39 local tests
-```
-
-Status: 45/48 tasks done. **Blocked on watchman being powered on** for: T019 (real
-IDO smoke test), T048 (hardware walkthrough + 24h soak). First real run: build toolkit
-on watchman (quickstart §2), publish, start agent, `cli smoke`, then `matrix submit`.
-Verified so far on the Pi: 1,131 targets inventoried with target .o blobs, 2,526 arcade
-candidates extracted, 34 clone clusters found (physics_velocity_integrate_c/d/e etc.).
-
-### Corpus candidates (Phase 4, feature 002 — built 2026-07-08)
-
-Second candidate source beyond arcade: canonical library code from local git clones
-(V1: `reference/repos/ultralib`, decompals/ultralib). Design/tasks in
-`specs/002-corpus-candidates/`; ops note in `tools/conveyor/README.md`. For the ~150
-generic-library targets that are permanently `no_ancestry` in the arcade matrix, it
-name-pairs each target to a same-named canonical function, compiles the candidate's own
-reduced TU + repo headers under the two confirmed flagsets, and scores it. Adds a
-**relocation-blind** secondary score (`matrix_entry.score_reloc_blind`): an
-instruction-identical candidate reads `reloc_blind=0` even when its true score is
-nonzero because the target `.o` holds absolute addresses. Corpus candidates carry
-`origin`+`provenance`; true-0 hits take the normal promotion path; `reloc_blind=0` /
-true>0 hits are flagged `reloc_only_diff` and get a provenance-stamped
-`work/**/corpus_match.c` artifact — **never promoted/locked without true score 0**.
-
-```bash
-python3 -m tools.conveyor.pipeline.corpus register ultralib reference/repos/ultralib \
-    --repo-url https://github.com/decompals/ultralib \
-    --include-dirs include,include/compiler/ido,include/PR
-python3 -m tools.conveyor.pipeline.corpus ingest          # 702 candidates @ e24c8367
-python3 -m tools.conveyor.pipeline.corpus submit          # ~86 name pairings, 2 flagsets
-python3 -m tools.conveyor.pipeline.corpus ingest-results  # shared ingest + flags + artifacts
-python3 -m tools.conveyor.pipeline.corpus report [--target X]
-```
-
-First real run (2026-07-08, toolkit `b613fc5d…`): 85 paired targets, 72 with scored
-evidence, 12 true-0, **19 `reloc_only_diff`** (osCreateMesgQueue: true=20 reloc_blind=0);
-strlen/guMtxIdentF score 0 from ultralib too. SC-001's ≥80 not reached — 13 candidates
-call file-local `static` helpers the reduced-TU strips (sched.c cluster, sprintf, io
-managers); visible split-by-origin in `matrix failures`. A preprocessor-aware extractor
-or keeping static callees would close it (follow-up).
-
-### Reloc-aware targets (Phase 4, feature 003 — built 2026-07-08)
-
-Static targets are now assembled from their splat asm region (`asm/us/*.s`,
-matched by address) so target objects carry real `%hi/%lo/jal` relocations, behind
-a per-target round-trip gate (masked-word equality vs ROM; raw-word fallback with
-`n64_target.tier`/`gate_reason` recorded). When a target object changes,
-`matrix_entry` evidence is superseded (purged) in the same transaction, and every
-cell carries `matrix_entry.target_o_sha` for attribution. Design/tasks/contracts in
-`specs/003-reloc-aware-targets/`; ops note in `tools/conveyor/README.md`.
-
-```bash
-python3 -m tools.conveyor.pipeline.matrix extract   # prints tier + supersede report
-```
-
-Status (first live run, toolkit `1e21f523…`): **reloc_aware=178** static targets
-(gate-passed), deterministic re-extraction (SC-007), attribution 0 mismatched
-(SC-006). **Two blockers left for the reviewer**, both because the target asm's
-symbolization doesn't align with the corpus candidates: (1) reloc **symbol-name**
-mismatch (`D_8002C3D0` vs `__osThreadTail`) blocks the 18 `reloc_only_diff`
-upgrades — out-of-scope symbol reconciliation; (2) 4 hardware-register locks
-(`osDpGetCounters`, `__osSpSetPc`, `__osSpDeviceBusy`, `__osSpSetStatus`) regress
-because splat symbolizes MMIO addresses that IDO emits as literals. Details in
-`specs/003-reloc-aware-targets/quickstart.md`.
-
-### Promotion splicing — matches become ROM (Phase 4, feature 004 — 2026-07-11)
-
-The bridge from a verified match to ROM percentage: a derived layout map
-(`pipeline/layout.py`) → convert a splat `asm` subsegment to a `c` ROM-aligned
-TU (`src/rom/lib_<off>.c`, all-passthrough GLOBAL_ASM via asm-processor + IDO,
-byte-identical by construction) → `pipeline/promote.py run` splices verified C
-over one passthrough, gated by the full-ROM SHA-1, commit-or-rollback, lock
-migrates to the ROM-TU path. Design/contracts in `specs/004-promotion-splicing/`;
-ops in `tools/conveyor/README.md`.
-
-```bash
-python3 -m tools.conveyor.pipeline.layout derive|report|coverage|convert <seg>
-python3 -m tools.conveyor.pipeline.promote run <seg>:<fn> --from <path> --via-builder
-python3 -m tools.conveyor.pipeline.promote batch --locked --via-builder
-make progress | grep linked      # derived linked-C coverage
-```
-
-Status (2026-07-11): **11/12 locked functions promoted into a SHA-1-exact ROM**,
-8 segments converted, coverage 11/230 functions (920/61,440 static bytes ~1%).
-Extraction was remediated so splat re-split runs and is idempotent-to-ROM-hash
-(`tools/sanitize_symbol_addrs.py`, splat 0.41 in `~/.splat-venv` via
-`SPLAT_PYTHON`); asm-text is NOT expected to match a new splat version — the ROM
-hash is the baseline. **The SC-003 drill found the hash gate had been vacuous
-since December** (`make verify` hashed `baserom` not the built ROM; `|| echo`
-swallowed failures; rsync mtimes let `make` skip rebuilds) — all fixed
-(17c70f5). Follow-ups: T012 (verify_promote → run_promotion on the builder),
-T008 done, `__osAiDeviceBusy` has no derived region at 0x8000FB60 (symbol/
-boundary refinement for 12/12). The 19 reloc_only_diff targets promote next
-through the same pipe.
-
-### Game-code context bootstrap (Phase 4, feature 005 — shipped 2026-07-17)
-
-Feature 005 shipped the extracted game-code context pipeline. Extracted
-function extents are now scan-derived from `build/game_code.bin`; `info.txt`
-sizes are no longer trusted for that population. See
-`specs/005-game-context-bootstrap/` and the 005 operations section in
-`tools/conveyor/README.md`.
-
-### Prototype flywheel (feature 006)
-
-Generate declarations with `python3 -m tools.conveyor.pipeline.protos generate`,
-then use only an unfiltered extracted `clusters --limit 0` run as the population
-instrument; scoped runs are probes and must not replace its artifact. The farm
-refuses histograms without `run.population_complete=true` and submits compiled,
-unscored extracted seeds at priority 60, below all static work. Keep extracted
-targets evidence-only and behind the promotion firewall. Full operating details
-are in the 006 section of `tools/conveyor/README.md`.
-
-### Population closure (feature 007 — 2026-09-10)
-
-The extracted population is **closure-derived**: `python3 -m
-tools.conveyor.pipeline.closure run` registers every in-blob `j`/`jal` target
-the work inventory missed as `func_<ADDR8>` (`gate_reason='discovered'`), to
-fixpoint, idempotently. Work-inventory names (`work/**`, `info.txt`) are
-historical labels only — 178 of them turned out to be function *suffixes*
-(prologue scan started late) and are `extent_conflict:<func_id>` now. Data
-symbols are generated (`datasyms generate` → `build/m2c_datasyms.json`,
-merged under the hand table in `disasm.GAME_SYMBOLS`; externs ride
-`protos generate`). Never hand-edit generated artifacts; hand judgement goes
-in `include/game_types.h` / `GAME_SYMBOLS`, which win. Sequence: closure →
-datasyms → protos → histogram. Details: 007 section of
-`tools/conveyor/README.md`, actuals in `specs/007-population-closure/quickstart.md`.
-
-### Game code in the cartridge (features 008 + 009 — 2026-09-24)
-
-The game code is a raw DEFLATE blob at ROM 0xB0CB10 (326,180 bytes) that
-inflates to a 647,072-byte image at 0x80086A50. **008** links that image from
-sources behind a byte-identity gate; **009** compresses the linked image with
-vendored **zlib 1.0.4** (level 9, windowBits −15, memLevel 8 — every later
-zlib is 140 bytes long) and composes it into the ROM's data segment, so
-spliced game functions ARE cartridge coverage under the full-ROM SHA-1.
-`make progress` reports static and game code separately under one cartridge
-heading (never merge the denominators).
-
-Pipeline: `blob_layout derive` → `blob_tu generate` → `blob_splice splice
---all-matched` → `blob_rom rom`. The ROM build now REQUIRES
-`build/blob/game_code.deflate` (produced on the Pi, synced to the builder by
-`blob_rom rom`) — no fallback to the extracted bytes, by design. zlib 1.0.4
-has known CVEs: build-time oracle only, deflate half only. Details: 008/009
-sections of `tools/conveyor/README.md`.
-
-## Active Technologies
-- Python 3.9+ (Pi 5 orchestrator and nodes; no syntax above 3.9 so stock distro Pythons work) + Python stdlib only for coordinator and node agent (`http.server`, `sqlite3`, `tarfile`, `hashlib`, `json`, `urllib`). On compute nodes: decomp-permuter (vendored in repo, used as library), IDO via ido-static-recomp (shipped in toolkit bundle), mips binutils `objdump` (shipped in toolkit bundle). `pycparser` (already a permuter dependency) for arcade function extraction. (001-matching-pipeline)
-- SQLite (WAL mode) on the Pi for all pipeline state — single-writer, queried by CLI/report tools. Content-addressed blob store (sha256-named files on disk, served over HTTP) for bundles, toolkits, and results. (001-matching-pipeline)
-- Python 3.9+ (Pi orchestrator and node agent; no syntax above 3.9) + Python stdlib only on Pi and nodes (`sqlite3`, `tarfile`, (002-corpus-candidates)
-- SQLite (WAL) at `~/.conveyor/conveyor.db`; content-addressed blob store (002-corpus-candidates)
-- Python 3.9+ (Pi orchestrator + node agent), stdlib only + `mips-linux-gnu-as` and `mips-linux-gnu-objdump` (003-reloc-aware-targets)
-- SQLite at `~/.conveyor/conveyor.db`; content-addressed blob store (003-reloc-aware-targets)
-- Python 3.9+ (tooling), C89 (TUs), GNU make + splat (already drives extraction; supports `c` (004-promotion-splicing)
-- layout map generated into `build/` + checked-in conversion state (004-promotion-splicing)
-- Python 3.9+ (Pi orchestrator), stdlib only + `mips-linux-gnu-objdump`/`-as`/`-gcc` (all already (005-game-context-bootstrap)
-- SQLite at `~/.conveyor/conveyor.db`; content-addressed blob store; (005-game-context-bootstrap)
-- Python 3.9+ (Pi orchestrator), stdlib only + existing 005 modules (`autodecomp.py`, `disasm.py`, (006-prototype-flywheel)
-- SQLite (`~/.conveyor/conveyor.db`, no schema migration — (006-prototype-flywheel)
-
-## Recent Changes
-- 001-matching-pipeline: Added Python 3.9+ (Pi 5 orchestrator and nodes; no syntax above 3.9 so stock distro Pythons work) + Python stdlib only for coordinator and node agent (`http.server`, `sqlite3`, `tarfile`, `hashlib`, `json`, `urllib`). On compute nodes: decomp-permuter (vendored in repo, used as library), IDO via ido-static-recomp (shipped in toolkit bundle), mips binutils `objdump` (shipped in toolkit bundle). `pycparser` (already a permuter dependency) for arcade function extraction.
+Keep this file short and stable. Put procedures in task skills and canonical
+operating docs, research in the existing topic docs, and dated outcomes in history.
+Keep hypotheses labeled with provenance; check current source/evidence before
+treating them as facts. Link new material here or in the documentation index.
+Spec Kit's `update-agent-context.sh claude` writes [generated notes](docs/generated/feature-context.md),
+not this file. Update the wiki's `rush2049:status` at project milestones using
+the wiki guide.

@@ -1,0 +1,15 @@
+{
+  "members": [
+    "func_8008B640",
+    "physics_velocity_integrate_a"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "physics_velocity_integrate_a",
+    "__standin_func_8008B640"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "generated": "blob_group seed from build/ipa_groups.json"
+}

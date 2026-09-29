@@ -1,5 +1,10 @@
 # Rush 2049 Decompilation Progress Report
 
+> Historical January 2026 snapshot. These phase estimates and source counts are
+> not current matching or cartridge coverage. Early “ROM matches” claims also
+> predate the July verification-gate fix. Use `make progress` and see
+> [project milestones](history/project-milestones.md) for subsequent work.
+
 **Generated**: 2026-01-05
 **Project**: San Francisco Rush 2049 (N64)
 **ROM**: US Version (12 MB, SHA-1: 3f99351d7bb61656614bdb2aa1a90cfe55d1922c)

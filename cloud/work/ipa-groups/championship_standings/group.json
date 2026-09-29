@@ -1,0 +1,19 @@
+{
+  "members": [
+    "championship_standings",
+    "func_800DC120",
+    "func_800DC1AC",
+    "tournament_trophy_award"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "championship_standings",
+    "tournament_trophy_award",
+    "__standin_func_800DC120",
+    "__standin_func_800DC1AC"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "generated": "blob_group seed from build/ipa_groups.json"
+}

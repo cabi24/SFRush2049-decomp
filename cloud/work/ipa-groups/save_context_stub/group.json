@@ -1,0 +1,13 @@
+{
+  "members": [
+    "save_context_stub"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "save_context_stub"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "generated": "blob_group seed from build/ipa_groups.json"
+}

@@ -1,0 +1,19 @@
+{
+  "members": [
+    "camera_scene_manager",
+    "func_800C2430",
+    "func_800C26C4",
+    "func_800C2944"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "camera_scene_manager",
+    "__standin_func_800C2430",
+    "__standin_func_800C26C4",
+    "__standin_func_800C2944"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "generated": "blob_group seed from build/ipa_groups.json"
+}

@@ -84,3 +84,4 @@ work/**/*.o
 # src/blob/*.c ARE tracked; the scaffolding around them is not.
 asm/us/blob/
 src/blob/blob.ld
+tools/cloud/ido/

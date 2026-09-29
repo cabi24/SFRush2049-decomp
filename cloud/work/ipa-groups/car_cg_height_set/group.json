@@ -1,0 +1,17 @@
+{
+  "members": [
+    "car_cg_height_set",
+    "car_reset_position",
+    "car_spawn_at_checkpoint"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "car_spawn_at_checkpoint",
+    "__standin_car_cg_height_set",
+    "__standin_car_reset_position"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "generated": "blob_group seed from build/ipa_groups.json"
+}

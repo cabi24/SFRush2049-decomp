@@ -2,6 +2,10 @@
 
 This document describes the memory layout of San Francisco Rush 2049 for Nintendo 64, based on analysis of the ROM, symbol files, and decompilation research.
 
+For the linked-image cartridge path, see [ROM identity and compressed-image build](#rom-identity-and-compressed-image-build).
+The [early extraction notes](#early-extraction-notes-2025-12-07) preserve dated
+size and global-variable hypotheses from `CLAUDE.md`; they are not current target extents.
+
 ## Overview
 
 | Region | Start | End | Size | Description |
@@ -477,3 +481,57 @@ DPC_TMEM_REG      = 0xA410001C  // TMEM counter
 
 *Document generated from Rush 2049 N64 decompilation project analysis*
 *Last updated: 2025-12-29*
+
+## ROM identity and compressed-image build
+
+The US ROM is 12,582,912 bytes in Z64 big-endian format (converted from V64).
+Its recorded internal name is `uRhs2 40 9`, cartridge ID `UR`; the authoritative
+SHA-1 is in [`us.sha1`](../us.sha1). The early `CLAUDE.md` described F3DEX2 as
+an assumption, not a verified microcode identification.
+
+The compressed game image occupies 326,180 bytes at ROM 0xB0CB10 and inflates
+to 647,072 bytes at RAM 0x80086A50. The build links that image from sources,
+then reproduces its raw DEFLATE stream with zlib 1.0.4. See the
+[blob build guide](../tools/conveyor/README.md#game-code-blob-into-the-cartridge-009-stage-2)
+for exact parameters and the full-ROM gate. `build/game_code.bin` remains the
+extracted comparison baseline, not the input to the cartridge compressor.
+
+### Early extraction notes (2025-12-07)
+
+Moved from `CLAUDE.md` on 2026-09-28. The initial scan counted 767 unique call
+targets and 752 function prologues. Those counts and the sizes below predate
+scan-repaired extents and population closure; they are research history.
+
+| Address | Size | Description |
+|---------|------|-------------|
+| 0x80099BFC | 10KB | render_object - 3D model rendering (uses G_DL) |
+| 0x80087A08 | 10KB | render_large - major rendering function |
+| 0x800F93A0 | 5.6KB | unknown - needs analysis |
+| 0x800A04C4 | 2.7KB | render_scene - viewport/camera setup (G_SETGEOMETRYMODE) |
+| 0x800CA3B4 | 2.5KB | game_update - called from game_loop |
+
+The same analysis recorded these global-variable leads:
+
+| Address | References | Likely Purpose |
+|---------|------------|----------------|
+| 0x801461D0 | 160 | Main game struct |
+| 0x801146EC | - | **gstate** - game state byte (confirmed via Ollama analysis) |
+| 0x801174B4 | 110 | Secondary state variable |
+| 0x80152818 | 89 | Player/car state array |
+| 0x80142AFC | - | Frame counter |
+
+The original label “gstate” at 0x801146EC was too broad: the state tables in
+this document distinguish the byte initialization flag there from the 32-bit
+state bitmask at 0x801174B4. Preserve that distinction in new analysis.
+
+The early decompressor analysis identified `asm/us/5610.s` as DEFLATE/inflate,
+with a 4 KB double-buffered window and asynchronous ROM I/O; Perfect Dark's
+`inflate.c` was suggested as a reference. An earlier “likely game logic” label
+for this file was superseded. `34A0.s` was identified as libm/float-to-string
+code and `D580.s` as the exception handler. These are assembly text file names,
+not function extents.
+
+Extraction tools: [`extract_game_code.py`](../tools/extract_game_code.py) and
+[`simple_mips_disasm.py`](../tools/simple_mips_disasm.py). The historical full
+disassembly was `build/game_code_disasm.txt` (~163K lines). Use the current
+[context workflow](../.claude/skills/refresh-game-context/SKILL.md) for matching targets.

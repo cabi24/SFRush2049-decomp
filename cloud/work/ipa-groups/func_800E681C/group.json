@@ -1,0 +1,17 @@
+{
+  "members": [
+    "func_800E627C",
+    "func_800E6460",
+    "func_800E681C"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_800E681C",
+    "__standin_func_800E627C",
+    "__standin_func_800E6460"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "generated": "blob_group seed from build/ipa_groups.json"
+}
