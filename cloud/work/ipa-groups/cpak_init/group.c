@@ -88,7 +88,7 @@ extern void func_800AF844(WheelSlot *slot);
 
 void cpak_init(s16 player);
 void func_800AF8C0(WheelSlot *slot, s16 player, s32 wheel, u8 *color);
-void save_validate(s16 player, s32 wheel, u8 *color, WheelSlot *slot);
+void save_validate(WheelSlot *slot, s16 player, s32 wheel, u8 *color);
 
 void cpak_init(s16 player)
 {
@@ -132,7 +132,7 @@ void cpak_init(s16 player)
             color = D_8011AD8C;
         }
         if (!has && active) {
-            save_validate(player, i, color, &slot[i]);
+            save_validate(&slot[i], player, i, color);
         } else if (has && active) {
             func_800AF8C0(&slot[i], player, i, color);
             d[0] = car->wheelPos[i][0] - slot[i].start[0];
@@ -149,7 +149,7 @@ void cpak_init(s16 player)
                 d[2] = slot[i].pos[2] - v[2];
                 if (d[0] * d[0] + d[1] * d[1] + d[2] * d[2] > 1.0f || lenSq < slot[i].lenSq) {
                     func_800AF844(&slot[i]);
-                    save_validate(player, i, color, &slot[i]);
+                    save_validate(&slot[i], player, i, color);
                 }
             } else if (minLen < lenSq) {
                 inv = 1.0f / sqrtf(lenSq);
@@ -206,7 +206,7 @@ void func_800AF8C0(WheelSlot *slot, s16 player, s32 wheel, u8 *color)
 }
 
 /* start a new mark in `slot`, stealing the farthest pooled object if needed */
-void save_validate(s16 player, s32 wheel, u8 *color, WheelSlot *slot)
+void save_validate(WheelSlot *slot, s16 player, s32 wheel, u8 *color)
 {
     EffectObj *obj;
     EffectObj *far;
@@ -220,7 +220,7 @@ void save_validate(s16 player, s32 wheel, u8 *color, WheelSlot *slot)
     if (obj == 0) {
         best = -1.0f;
         far = p = ((EffectObj **) D_80155220)[4];
-        for (; p != 0; p = p->next) {
+        for (; p->next != 0; p = p->next) {
             dist = 0.0f;
             for (k = 0; k < 3; k++) {
                 t = p->pos[k] - D_80150B94[k];
