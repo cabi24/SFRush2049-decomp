@@ -4,7 +4,7 @@
 `physics_friction_apply` is context (21/126, register naming only).
 
 ```
-# with the -r4300_mul assembler flag (scratch builder; score.py does not pass it yet):
+# with the -r4300_mul assembler flag (`cloud/work/tools/zbuild.py --as1=-r4300_mul`; score.py does not pass it yet):
 func_800B98D8 MATCH; func_800B9B64 MATCH; minimap_render MATCH;
 physics_velocity_clamp MATCH; physics_friction_apply (context) 21/126
 # with today's tools/cloud/score.py: func_800B9B64 is 100/129 (one missing
