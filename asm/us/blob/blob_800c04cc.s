@@ -9353,6 +9353,7 @@ speed_mode0_wrapper:
 .section .text.resource_slot_clear, "ax", @progbits
 .globl resource_slot_clear
 resource_slot_clear:
+    /* compiled from src/blob/resource_slot_clear.c */
     .word 0x27BDFFE0
     .word 0xAFBF001C
     .word 0x01002025
@@ -9375,6 +9376,7 @@ resource_slot_clear:
 .section .text.resource_slots_clear_multiple, "ax", @progbits
 .globl resource_slots_clear_multiple
 resource_slots_clear_multiple:
+    /* compiled from src/blob/resource_slots_clear_multiple.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x0C0324CD

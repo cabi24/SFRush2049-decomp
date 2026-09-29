@@ -1,0 +1,7 @@
+{
+  "members": ["func_80097694", "resource_slot_clear", "resource_slots_clear_multiple"],
+  "files": ["audio.c", "slots.c"],
+  "keep": ["resource_slots_clear_multiple", "other_user", "audio_user"],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "evidence": "specs/010-ipa-call-groups/research/s2-s5-spikes.md"
+}

@@ -1978,6 +1978,7 @@ audio_task_complete:
 .section .text.func_80097694, "ax", @progbits
 .globl func_80097694
 func_80097694:
+    /* compiled from src/blob/func_80097694.c */
     .word 0xAFA50004
     .word 0x00057600
     .word 0x3C028015

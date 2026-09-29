@@ -247,7 +247,21 @@ def spliced_bodies(lock=None, document=None, symbols=None):
                for e in region["entries"] if e["kind"] == "function"}
     symbols = image_symbols(document, symbols)
     bodies = {}
+    groups = sorted({e["group"] for e in lock.values() if e.get("group")})
+    if groups:
+        # IPA call groups: members are slices of one whole-program object,
+        # each relocated to its own image address (010 Phase 4).
+        from . import blob_group
+        for group in groups:
+            try:
+                built = blob_group.group_bodies(group, document, symbols)
+            except blob_group.GroupError:
+                continue
+            bodies.update({t: b for t, b in built.items()
+                           if lock.get(t, {}).get("group") == group})
     for target_id in lock:
+        if lock[target_id].get("group"):
+            continue
         obj = OBJ_DIR / f"{target_id}.o"
         entry = extents.get(target_id)
         if not obj.is_file() or entry is None:
@@ -383,12 +397,16 @@ def check(lockfile=LOCKFILE):
     """Refuse a body whose source drifted from its locked hash."""
     problems = []
     for target_id, entry in sorted(load_lock(lockfile).items()):
+        if entry.get("group"):
+            continue                  # checked per group below
         path = REPO / entry["source"]
         if not path.is_file():
             problems.append((target_id, "source missing"))
             continue
         if source_sha(path.read_text()) != entry["source_sha256"]:
             problems.append((target_id, "source hash drifted"))
+    from . import blob_group
+    problems += [(f"group:{g}", why) for g, why in blob_group.check(lockfile)]
     return problems
 
 
