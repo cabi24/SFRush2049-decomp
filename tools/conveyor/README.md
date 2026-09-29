@@ -492,11 +492,18 @@ predate the identification of zlib 1.0.4 and should not be read as current block
 
 ```bash
 python3 -m tools.conveyor.pipeline.blob_layout derive     # build/blob_layout.json
-python3 -m tools.conveyor.pipeline.blob_tu generate       # asm/us/blob/*.s + src/blob/blob.ld
+python3 -m tools.conveyor.pipeline.blob_tu generate       # assembly, linker script, symbols.json
 python3 -m tools.conveyor.pipeline.blob_build build       # the gate
 python3 -m tools.conveyor.pipeline.blob_splice splice --all-matched
 python3 -m tools.conveyor.pipeline.blob_splice coverage|check|revert <target>
 ```
+
+`blob_tu generate` also refreshes `asm/us/blob/symbols.json`, the deterministic
+name-to-address table for cloud relocation checks. To refresh only that table,
+run `python3 -m tools.conveyor.pipeline.blob_tu symbols` on the Pi. It uses
+`blob_splice.image_symbols()` with the current layout and symbol context,
+records the layout's image SHA-256, and needs no compiled objects or image
+bytes. Commit the regenerated table when those inputs change.
 
 Everything except the IDO compile runs on the Pi. The initial map described the image
 as an ordered, complete list of entries — 912 gate-passed functions (79.5%)

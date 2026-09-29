@@ -1,6 +1,7 @@
-"""Generate the image's assembly units and linker script (008, stage 1).
+"""Generate the image's assembly units, linker script, and cloud symbol table.
 
     python3 -m tools.conveyor.pipeline.blob_tu generate
+    python3 -m tools.conveyor.pipeline.blob_tu symbols
 
 One assembly file per region. Every entry gets its own named section so the
 linker script can place it at its exact image address and so a single function
@@ -20,6 +21,7 @@ the builder is ever involved. Splicing still swaps in an IDO-compiled object
 per function; only the container changed.
 """
 import argparse
+import json
 import struct
 import sys
 from pathlib import Path
@@ -155,6 +157,29 @@ def render_linker_script(document, symbols=None):
     return "\n".join(lines) + "\n"
 
 
+def write_symbols(document=None, path=ASM_DIR / "symbols.json"):
+    """Export exactly the splice resolver's addresses for repo-only scoring.
+
+    This needs the layout and symbol context, but no image bytes, compiled
+    objects, or builder. Keep aliases at shared addresses and omit timestamps
+    so identical inputs produce byte-identical output.
+    """
+    from . import blob_splice
+
+    document = blob_layout.load() if document is None else document
+    symbols = blob_splice.image_symbols(document)
+    payload = {
+        "generated_by": "python3 -m tools.conveyor.pipeline.blob_tu symbols",
+        "image_sha256": document["image"]["sha256"],
+        "symbols": {name: f"0x{address:08X}" for name, address in symbols.items()},
+    }
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n",
+                    encoding="utf-8")
+    return path
+
+
 def generate(document=None, image_path=blob_layout.IMAGE, asm_dir=ASM_DIR,
              blob_dir=BLOB_DIR, spliced=None):
     document = document or blob_layout.load()
@@ -179,6 +204,7 @@ def generate(document=None, image_path=blob_layout.IMAGE, asm_dir=ASM_DIR,
         written.append(path)
     script = blob_dir / "blob.ld"
     script.write_text(render_linker_script(document))
+    write_symbols(document, asm_dir / "symbols.json")
     return written, script
 
 
@@ -188,9 +214,15 @@ def main():
     parser.add_argument("--image", default=str(blob_layout.IMAGE))
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("generate")
+    symbols = sub.add_parser("symbols", help="export the cloud symbol table only")
+    symbols.add_argument("--output", default=str(ASM_DIR / "symbols.json"))
     args = parser.parse_args()
 
     document = blob_layout.load(args.layout)
+    if args.command == "symbols":
+        path = write_symbols(document, args.output)
+        print(f"blob_tu: symbol table -> {path}")
+        return 0
     written, script = generate(document, args.image)
     functions = document["totals"]["functions"]
     print(f"blob_tu: {len(written)} region files, {functions} function sections, "

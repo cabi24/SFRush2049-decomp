@@ -82,6 +82,8 @@ work/**/*.o
 # the ROM-derived image plus build/blob_layout.json in well under a second
 # (`blob_layout derive && blob_tu generate`). Spliced C bodies under
 # src/blob/*.c ARE tracked; the scaffolding around them is not.
-asm/us/blob/
+asm/us/blob/*
+# Cloud scoring needs the generated splice-resolver addresses in a fresh clone.
+!asm/us/blob/symbols.json
 src/blob/blob.ld
 tools/cloud/ido/
