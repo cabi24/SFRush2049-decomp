@@ -45,15 +45,21 @@ typedef f32 Mat4f[4][4];
 typedef f32 MtxF[4][4];
 struct OSPfs;
 /* cloud: hand-derived from the retail words */
-typedef struct SndSlot {         /* 0x18 bytes, four per player at player_array[p] + 0x290 / 0x2C0 */
-    u8 pad00[6];
+typedef struct SndSlot {         /* 0x18 bytes; player_array[p].snd[] starts at 0x110 */
+    u8 pad00[4];
+    s16 f4;                      /* 0x04 */
     s16 handle;                  /* 0x06 */
     s16 slot;                    /* 0x08 */
-    u8 pad0A[2];
+    s16 pad0A;
     s32 idx;                     /* 0x0C */
-    u8 pad10[4];
+    f32 t;                       /* 0x10 */
     void *cb;                    /* 0x14 */
 } SndSlot;
+typedef struct CarS {            /* player_array[p], 0x3B8 bytes */
+    u8 pad000[0x110];
+    SndSlot snd[20];             /* 0x110 */
+    u8 pad2F0[0x3B8 - 0x2F0];
+} CarS;
 typedef struct SndCtl {          /* D_80139320[player], 0x40 bytes */
     s32 first;
     u8 pad04[0x18];
@@ -576,7 +582,8 @@ extern s32 D_8015204C, D_801520C4, D_80153308;
 extern f32 D_801525F4, D_801543CC;
 extern u16 D_80152734;
 extern s32 D_8015698C;
-extern u8 D_80156994, D_80156CF0, D_80157244, D_8015F72D;
+extern s8 D_80156994;
+extern u8 D_80156CF0, D_80157244, D_8015F72D;
 extern s32 D_8015B250, D_8015B260, D_8015F738;
 extern s32 D_80161380, D_80161398, D_801613A4, D_801613AC;
 extern s32 D_801613B0, D_80161434, D_8017A4B0, D_8017A508;
@@ -3748,40 +3755,40 @@ void func_800B08FC(s16 slot, s16 idx) {
 }
 
 
-
 void func_800B0A88(s16 slot, s16 idx) {
     f32 vec[3];
     HudRec *h;
-    SndSlot *e;
+    CarS *car;
     s32 k;
 
+    car = (CarS *) &player_array[slot];
     if (gameplay_mode == 2 || gameplay_mode == 6 || (h = &((HudRec *) &D_8014A250)[slot], h->s7CA != 0)) {
-        ((SndSlot *) ((u8 *) &player_array[slot] + 0x290))[idx].cb = 0;
+        car->snd[16 + idx].cb = 0;
         return;
     }
-    e = &((SndSlot *) ((u8 *) &player_array[slot] + 0x290))[idx];
-    e->cb = (void *) buffer_swap;
-    e->slot = slot;
-    e->idx = idx;
+    car->snd[16 + idx].cb = (void *) buffer_swap;
+    car->snd[16 + idx].slot = slot;
+    car->snd[16 + idx].idx = idx;
     vec[0] = 0.0f;
     vec[2] = 0.0f;
     vec[1] = *(f32 *) ((u8 *) &D_8011B4B8 + h->b8 * 0xC);
     k = D_80111299[slot * 13 + h->b8] * 4 + idx + 0xE0;
-    e->handle = save_slot_valid(D_801427C0[k], 0xF, ((SndCtl *) &D_80139320)[slot].first, 0, slot, -1, 1);
-    func_8008D6FC(e->handle, vec, NULL);
-    model_data_load(e->handle, 1, 0xF);
+    car->snd[16 + idx].handle = save_slot_valid(D_801427C0[k], 0xF, ((SndCtl *) &D_80139320)[slot].first, 0, slot, -1, 1);
+    func_8008D6FC(car->snd[16 + idx].handle, vec, NULL);
+    model_data_load(car->snd[16 + idx].handle, 1, 0xF);
     func_80092484(slot, idx);
 }
 
 void audio_frame_update(s16 slot) {
     u8 *dst;
-    SndSlot *e;
-    PCarX *car;
+    CarS *car;
     s16 i;
+    s32 t;
 
     save_load_data(slot);
     func_800AC8D4(slot);
-    if ((state_word_a & 8) == 0 || D_80156994 != 0) {
+    t = state_word_a & 8;
+    if (t == 0 || (t != 0 && D_80156994 != 0)) {
         func_800B0A88(slot, 0);
         func_800B0A88(slot, 1);
         func_800B08FC(slot, 0);
@@ -3809,19 +3816,17 @@ void audio_frame_update(s16 slot) {
         ((u16 *) (dst + 0x150))[6] = ((u16 *) &D_8011B5AC)[6];
         ((u16 *) (dst + 0x150))[7] = ((u16 *) &D_8011B5AC)[7];
     }
-    car = (PCarX *) &player_array[slot];
-    e = (SndSlot *) ((u8 *) car + 0x110);
-    e->cb = (void *) &D_8008BEA4;
-    e->slot = slot;
+    car = (CarS *) &player_array[slot];
+    car->snd[0].cb = (void *) &D_8008BEA4;
+    car->snd[0].slot = slot;
     i = 0;
     do {
-        u8 *q = (u8 *) car + i * 0x18;
-        *(s16 *) (q + 0x1A4) = i;
-        *(void **) (q + 0x1B4) = (void *) anim_state_update;
-        *(s16 *) (q + 0x1A8) = slot;
-        *(s32 *) (q + 0x1AC) = 0;
-        *(f32 *) (q + 0x1B0) = D_801543CC;
-        *(s16 *) (q + 0x1A6) = ((SndCtl *) &D_80139320)[slot].vals[i];
+        car->snd[6 + i].f4 = i;
+        car->snd[6 + i].cb = (void *) anim_state_update;
+        car->snd[6 + i].slot = slot;
+        car->snd[6 + i].idx = 0;
+        car->snd[6 + i].t = D_801543CC;
+        car->snd[6 + i].handle = ((SndCtl *) &D_80139320)[slot].vals[i];
         i++;
     } while (i < 4);
 }

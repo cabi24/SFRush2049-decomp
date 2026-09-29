@@ -1,3 +1,7 @@
+float fabsf(float);
+float sqrtf(float);
+#pragma intrinsic (fabsf)
+#pragma intrinsic (sqrtf)
 #define NULL ((void *)0)
 #define TRUE 1
 #define FALSE 0
@@ -805,7 +809,7 @@ extern s32 D_8002E928;
 extern s32 D_8002E960;
 extern s32 D_8002E998;
 extern s32 D_8002EB90;
-extern s32 D_8002EB94;
+extern f32 D_8002EB94;
 extern s32 D_8002EB98;
 extern s32 D_8002ECC0;
 extern s32 D_8002ECF8;
@@ -2962,7 +2966,7 @@ u8 camera_shake_update(s32 arg0);
 void camera_smooth_follow(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 void camera_smooth_lerp(void);
 s32 camera_target_track(void *arg0, s32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, s32 arg6, s32 arg7, s32 arg8, s32 arg9);
-void camera_track_spline(void *arg3, s32 arg0);
+void camera_track_spline(Camera *cam);
 void camera_transform(void);
 u16 *camera_trigger_check(void *arg0, void *arg1, f32 *arg2);
 
@@ -3773,7 +3777,7 @@ typedef s64 M2C_UNK64;
 void camera_aspect_ratio(Camera *ipa_s0);
 void camera_fov_control(Camera *ipa_s0);
 void camera_free_look(Camera *ipa_s1);
-void camera_look_at_point(void *ipa_s0);
+void camera_look_at_point(Camera *ipa_s0);
 void camera_process_input(Camera *cam);
 void camera_update(void *arg0, s16 arg1);
 
@@ -3823,10 +3827,12 @@ void camera_free_look(Camera *cam) {
     CamScene *sc;
     CamKey *k;
     f32 t;
-    f32 dur;
     s32 next;
     s32 near;
+    f32 *pp;
+    f32 *m;
 
+    m = cam->m[0];
     ctl = cam->ctl;
     sc = ctl->scene;
     k = &sc->keys[ctl->idx];
@@ -3836,126 +3842,105 @@ void camera_free_look(Camera *cam) {
         } else {
             t = ctl->t;
         }
-        dur = k->dur;
-        if (dur == 0.0f) {
+        if (k->dur == 0.0f) {
             goto plain;
         }
         next = ctl->idx + 1;
         if (next >= sc->count && (sc->flags & 2)) {
             next = 0;
         }
-        func_800BFD8C(t / dur, k->rot, sc->keys[next].rot, out);
-        func_800BFBE8(cam->m, out, 1);
+        func_800BFD8C(t / k->dur, k->rot, sc->keys[next].rot, out);
+        func_800BFBE8(m, out, 1);
     } else {
 plain:
-        func_800BFBE8(cam->m, k->rot, 1);
+        func_800BFBE8(m, k->rot, 1);
     }
     if (sc->flags & 0x20) {
         near = 1;
         if (gameplay_mode == 5) {
-            d[0] = cam->pos[0] - D_80152820;
-            d[1] = cam->pos[1] - D_80152824;
-            d[2] = cam->pos[2] - D_80152828;
+            pp = (f32 *) &player_array;
+            d[0] = cam->pos[0] - pp[2];
+            d[1] = cam->pos[1] - pp[3];
+            d[2] = cam->pos[2] - pp[4];
             if (D_80123E84 < d[2] * d[2] + (d[0] * d[0] + d[1] * d[1])) {
                 near = 0;
             }
         }
         if (near != 0) {
-            camera_first_person(sc->id, cam->pos, ctl->mat, cam->m);
+            camera_first_person(sc->id, cam->pos, ctl->mat, m);
         }
     }
 }
 
-void camera_look_at_point(void *ipa_s0) {
-    f32 temp_f2;
-    f32 var_f0;
-    s32 temp_a2;
-    s32 temp_a2_2;
-    s32 temp_f10;
-    s32 temp_t0;
-    s32 var_a1;
-    s32 var_v0;
-    s32 var_v0_2;
-    s32 var_v1;
-    s8 temp_v0;
-    void *temp_v0_2;
-    void *var_v1_2;
+void camera_look_at_point(Camera *cam) {
+    CamTbl *t;
+    f32 f;
+    f32 r;
+    s32 a;
+    s32 b;
+    s32 handle;
+    s32 kind;
+    s32 id;
 
-    temp_v0 = M2C_FIELD(ipa_s0, s8 *, 0x64);
-    if (temp_v0 == 1) {
-        temp_t0 = M2C_FIELD(ipa_s0, s32 *, 0x60);
-        if (temp_t0 != -1) {
-            temp_a2 = *((s32 *) ((u8 *) &D_80117550 + (M2C_FIELD(ipa_s0, s16 *, 0x10) * 0x30)));
-            if (temp_a2 == 1) {
-                temp_v0_2 = M2C_FIELD(ipa_s0, void **, 0x6C);
-                temp_f10 = (s32) M2C_FIELD(temp_v0_2, f32 *, 0x10);
-                var_v1 = (s32) M2C_FIELD(temp_v0_2, f32 *, 0x14);
-                if (var_v1 == 0) {
-                    var_v1 = 1;
-                    if (temp_f10 != 0) {
-                        var_v1 = temp_f10;
+    if (cam->state == 1) {
+        handle = cam->handle;
+        if (handle != -1) {
+            kind = *(s32 *) ((u8 *) D_80117530 + cam->tbl * 0x30 + 0x20);
+            if (kind == 1) {
+                a = (s32) cam->ctl->f10;
+                b = (s32) cam->ctl->f14;
+                if (b == 0) {
+                    b = 1;
+                    if (a != 0) {
+                        b = a;
                     }
                 }
-                var_a1 = temp_f10;
-                if (var_v1 < 0) {
-
+                if (a < 0) {
+                    a = -a;
                 }
-                var_v0 = var_v1;
-                if (temp_f10 < 0) {
-                    var_a1 = -temp_f10;
+                if (b < 0) {
+                    b = -b;
                 }
-                if (var_v1 < 0) {
-                    var_v0 = -var_v1;
-                }
-                temp_f2 = (((f32) var_a1 / (f32) var_v0) * 0.5f) + 0.5f;
-                var_f0 = temp_f2;
-                if ((temp_f2 < 0.0f) || (temp_f2 > 1.0f)) {
-                    if (temp_f2 < 0.0f) {
-                        var_f0 = 0.0f;
+                r = ((f32) a / (f32) b) * 0.5f + 0.5f;
+                f = r;
+                if (r < 0.0f || r > 1.0f) {
+                    if (r < 0.0f) {
+                        f = 0.0f;
                     } else {
-                        goto block_17;
+                        f = 1.0f;
                     }
                 }
             } else {
-block_17:
-                var_f0 = 1.0f;
+                f = 1.0f;
             }
-            if (temp_a2 == 0x12) {
-                camera_clip_planes(temp_t0, (s32) ((u8 *) ipa_s0 + 0x38), (s32) &D_801141B0, 0.8f, 1.0f);
+            if (kind == 0x12) {
+                camera_clip_planes(handle, (s32) cam->pos, (s32) &D_801141B0, 0.8f, 1.0f);
                 return;
             }
-            if (temp_a2 == 0x61) {
-                camera_clip_planes(temp_t0, (s32) ((u8 *) ipa_s0 + 0x38), (s32) &D_801141B0, 1.0f, 0.75f);
+            if (kind == 0x61) {
+                camera_clip_planes(handle, (s32) cam->pos, (s32) &D_801141B0, 1.0f, 0.75f);
                 return;
             }
-            camera_clip_planes(temp_t0, (s32) ((u8 *) ipa_s0 + 0x38), (s32) &D_801141B0, (0.75f * var_f0) + 0.25f, var_f0);
+            camera_clip_planes(handle, (s32) cam->pos, (s32) &D_801141B0, 0.75f * f + 0.25f, f);
         }
     } else {
-        if (temp_v0 == 2) {
-            camera_aspect_ratio(ipa_s0);
+        if (cam->state == 2) {
+            camera_aspect_ratio(cam);
             return;
         }
-        if (leaderboard_update(M2C_FIELD(ipa_s0, s32 *, 0x60)) == 0) {
-            results_screen_update(M2C_FIELD(ipa_s0, s32 *, 0x60));
-            var_v1_2 = (s32 *) ((M2C_FIELD(ipa_s0, s16 *, 0x10) * 0x30) + (u8 *) &D_80117530);
-            temp_a2_2 = M2C_FIELD(var_v1_2, s32 *, 0x20);
-            if (temp_a2_2 != -1) {
-                if (D_8010FFC0 == 0) {
-                    var_v0_2 = -1;
-                } else if (temp_a2_2 == -1) {
-                    var_v0_2 = -1;
-                } else {
-                    var_v0_2 = camera_target_track((u8 *) ipa_s0 + 0x38, (s32) &D_801141B0, M2C_FIELD(var_v1_2, f32 *, 0x2C), 0, 1.0f, 0.0f, temp_a2_2, 0, M2C_FIELD(var_v1_2, s32 *, 0x28), 0x80U);
-                    var_v1_2 = (s32 *) ((M2C_FIELD(ipa_s0, s16 *, 0x10) * 0x30) + (u8 *) &D_80117530);
-                }
-                M2C_FIELD(ipa_s0, s32 *, 0x60) = var_v0_2;
-                if (M2C_FIELD(var_v1_2, s32 *, 0x20) == 1) {
-                    camera_clip_planes(var_v0_2, (s32) ((u8 *) ipa_s0 + 0x38), (s32) &D_801141B0, 0.0f, 1.0f);
+        if (leaderboard_update(cam->handle) == 0) {
+            results_screen_update(cam->handle);
+            t = &D_80117530[cam->tbl];
+            id = *(s32 *) ((u8 *) t + 0x20);
+            if (id != -1) {
+                cam->handle = camera_track_entry(cam, t->f2C, id, t->s28);
+                if (*(s32 *) ((u8 *) &D_80117530[cam->tbl] + 0x20) == 1) {
+                    camera_clip_planes(cam->handle, (s32) cam->pos, (s32) &D_801141B0, 0.0f, 1.0f);
                 }
             } else {
-                M2C_FIELD(ipa_s0, s32 *, 0x60) = -1;
+                cam->handle = -1;
             }
-            M2C_FIELD(ipa_s0, s8 *, 0x64) = 1;
+            cam->state = 1;
         }
     }
 }
@@ -3995,6 +3980,91 @@ void camera_build_view_matrix(s32 idx, Camera *cam) {
         cam->m[0][i] = sc->keys[ctl->idx].scale[0] * cam->m[0][i];
         cam->m[1][i] = sc->keys[ctl->idx].scale[1] * cam->m[1][i];
         cam->m[2][i] = sc->keys[ctl->idx].scale[2] * cam->m[2][i];
+    }
+}
+
+void camera_track_spline(Camera *cam) {
+    CamCtl *ctl;
+    CamScene *sc;
+    CamKey *k;
+    CamKey *keys;
+    s16 idx;
+    s16 n;
+    s32 next;
+    s32 near;
+    s32 i;
+    f32 v[3];
+    f32 w[3];
+    f32 t;
+    f32 d;
+    f32 a;
+    f32 b;
+    f32 c;
+    f32 *pp;
+
+    ctl = cam->ctl;
+    idx = ctl->idx;
+    sc = ctl->scene;
+    n = sc->count;
+    keys = sc->keys;
+    k = &keys[idx];
+    if (idx < n - 1 || (sc->flags & 2) != 0 || !(sc->flags & 0x80)) {
+        next = idx + 1;
+        if (k->flags & 0x10000008) {
+            if (ctl->mode & 8) {
+                t = k->dur - ctl->t;
+            } else {
+                t = ctl->t;
+            }
+            d = k->f34 * (t / k->dur);
+        } else {
+            if (next >= n && (sc->flags & 2)) {
+                next = 0;
+            }
+            a = k->f3C;
+            b = keys[next].f3C;
+            if (ctl->mode & 8) {
+                t = k->dur - ctl->t;
+            } else {
+                t = ctl->t;
+            }
+            c = (t * t * (b - a)) / (k->dur * 2.0f);
+            d = a * t + c;
+        }
+        v[0] = k->dir[0];
+        v[1] = k->dir[1];
+        v[2] = k->dir[2];
+        ctl->look[0] = cam->pos[0];
+        ctl->look[1] = cam->pos[1];
+        ctl->look[2] = cam->pos[2];
+        v[0] = v[0] * d;
+        v[1] = v[1] * d;
+        v[2] = v[2] * d;
+        for (i = 0; i < 3; i++) {
+            v[i] = (f32) (s32) (v[i] * 32.0f) * 0.03125f;
+        }
+        cam->pos[0] = v[0] + k->pos[0];
+        cam->pos[1] = v[1] + k->pos[1];
+        cam->pos[2] = v[2] + k->pos[2];
+        v[0] = cam->pos[0] - ctl->look[0];
+        v[1] = cam->pos[1] - ctl->look[1];
+        v[2] = cam->pos[2] - ctl->look[2];
+        ctl->f10 = sqrtf(v[2] * v[2] + (v[0] * v[0] + v[1] * v[1])) / D_8002EB94;
+        if (sc->flags & 0x20) {
+            near = 1;
+            if (gameplay_mode == 5) {
+                pp = (f32 *) &player_array;
+                w[0] = cam->pos[0] - pp[2];
+                w[1] = cam->pos[1] - pp[3];
+                w[2] = cam->pos[2] - pp[4];
+                if (D_80123E88 < w[2] * w[2] + (w[0] * w[0] + w[1] * w[1])) {
+                    near = 0;
+                }
+            }
+            if (near != 0) {
+                func_800C0294(sc->id, v);
+            }
+        }
     }
 }
 
@@ -4358,7 +4428,7 @@ block_46:
             } while (var_s7 == 0);
             var_v0 = M2C_FIELD(var_v1, s32 *, 0x40);
             if (!(var_v0 & 2)) {
-                camera_track_spline(M2C_ERROR(/* Read from unset register $a0 */), M2C_ERROR(/* Read from unset register $a1 */));
+                camera_track_spline((Camera *) spF4);
                 spCF = 1;
                 var_v0 = M2C_FIELD((M2C_FIELD(temp_s8, s32 *, 0x1C) + (M2C_FIELD(temp_s6, s16 *, 0xC) * 0x44)), s32 *, 0x40);
             }

@@ -114,10 +114,9 @@ void cpak_init(s16 player)
     state = &D_8014A250[player];
     minLen = D_80123C0C;
     mask = D_8011743C;
-    car = &player_array[player];
     for (i = 0; i < 4; i++) {
         color = D_80117438;
-        active = (mask[i] & car->wheelFlags) != 0;
+        active = (mask[i] & player_array[player].wheelFlags) != 0;
         if (active) {
             active = state->airborne[i] == -1;
             if (active) {
@@ -135,9 +134,9 @@ void cpak_init(s16 player)
             save_validate(&slot[i], player, i, color);
         } else if (has && active) {
             func_800AF8C0(&slot[i], player, i, color);
-            d[0] = car->wheelPos[i][0] - slot[i].start[0];
-            d[1] = car->wheelPos[i][1] - slot[i].start[1];
-            d[2] = car->wheelPos[i][2] - slot[i].start[2];
+            d[0] = player_array[player].wheelPos[i][0] - slot[i].start[0];
+            d[1] = player_array[player].wheelPos[i][1] - slot[i].start[1];
+            d[2] = player_array[player].wheelPos[i][2] - slot[i].start[2];
             lenSq = d[0] * d[0] + d[1] * d[1] + d[2] * d[2];
             if (slot[i].lenSq > 0.0f) {
                 len = sqrtf(lenSq);
@@ -167,36 +166,29 @@ void cpak_init(s16 player)
 /* place the slot's leading edge across wheels (wheel|1) and (wheel&2) */
 void func_800AF8C0(WheelSlot *slot, s16 player, s32 wheel, u8 *color)
 {
-    f32 axle[3];
-    f32 across[3];
-    Car *car;
     EffectObj *obj;
-    s32 a;
-    s32 b;
     s16 k;
     f32 half;
     f32 p;
-    f32 lift;
+    f32 axle[3];
+    f32 across[3];
 
-    a = wheel | 1;
-    b = wheel & 2;
-    car = &player_array[player];
     obj = slot->obj;
-    axle[0] = car->wheelPos[a][0] - car->wheelPos[b][0];
-    axle[1] = car->wheelPos[a][1] - car->wheelPos[b][1];
-    axle[2] = car->wheelPos[a][2] - car->wheelPos[b][2];
-    axle[1] += D_8014A250[player].wheelHeight[a] - D_8014A250[player].wheelHeight[b];
+    axle[0] = player_array[player].wheelPos[wheel | 1][0] - player_array[player].wheelPos[wheel & 2][0];
+    axle[1] = player_array[player].wheelPos[wheel | 1][1] - player_array[player].wheelPos[wheel & 2][1];
+    axle[2] = player_array[player].wheelPos[wheel | 1][2] - player_array[player].wheelPos[wheel & 2][2];
+    axle[1] += D_8014A250[player].wheelHeight[wheel | 1] - D_8014A250[player].wheelHeight[wheel & 2];
     vector_copy_scale(axle, across);
     for (k = 0; k < 3; k++) {
         half = across[k] * 0.75f;
-        slot->pos[k] = car->wheelPos[wheel][k];
+        slot->pos[k] = player_array[player].wheelPos[wheel][k];
         p = slot->pos[k];
         slot->left[k] = p - half;
         slot->right[k] = p + half;
     }
-    lift = D_80123C08;
-    slot->left[1] += lift;
-    slot->right[1] += lift;
+    p = D_80123C08;
+    slot->left[1] += p;
+    slot->right[1] += p;
     obj->f8 = D_8002EB90[0];
     obj->color[0] = color[0];
     obj->color[1] = color[1];

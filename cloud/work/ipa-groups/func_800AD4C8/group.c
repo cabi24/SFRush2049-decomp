@@ -928,7 +928,7 @@ extern f32 D_80114188;
 extern s32 D_8011418C;
 extern s32 D_80114198;
 extern s32 D_801141A4;
-extern s32 D_801141B0;
+extern f32 D_801141B0[3];
 extern s32 D_801141BC;
 extern s32 D_801141C8;
 extern s32 D_8011421C;
@@ -3716,8 +3716,8 @@ s32 func_800AD4C8(void *arg0, void *arg1, void *arg2, f32 ipa_f18) {
     temp_f14 = ((temp_f2 * M2C_FIELD(arg1, f32 *, 8)) + (temp_f16 * temp_f12)) / ((temp_f2 * temp_f2) + (temp_f12 * temp_f12));
     if (temp_f14 < 0.0f) {
         M2C_FIELD(arg2, f32 *, 4) = 0.0f;
-        M2C_FIELD(arg2, f32 *, 0) = (f32) (M2C_BITWISE(f32, M2C_FIELD(&D_801141B0, s32 *, 0)) - temp_f16);
-        M2C_FIELD(arg2, f32 *, 8) = (f32) (M2C_FIELD(&D_801141B0, f32 *, 0x2C) - M2C_FIELD(arg1, f32 *, 8));
+        M2C_FIELD(arg2, f32 *, 0) = (f32) (D_801141B0[0] - temp_f16);
+        M2C_FIELD(arg2, f32 *, 8) = (f32) (D_801141B0[2] - M2C_FIELD(arg1, f32 *, 8));
     } else if (temp_f14 > 1.0f) {
         M2C_FIELD(arg2, f32 *, 4) = 0.0f;
         M2C_FIELD(arg2, f32 *, 0) = (f32) (temp_f12 - temp_f16);
@@ -4042,4 +4042,27 @@ block_29:
 void __standin_func_800AD4C8(void)
 {
     func_800AD4C8(0, 0, 0, 0);
+}
+
+/* stand-in callers for the two roots whose real callers are outside the unit
+ * (camera_trigger_check/camera_victory/entity_update and input_deadzone_apply): two call sites
+ * keep them out of line without `keep`, so they get IPA registers like the ROM's */
+void __standin_func_800C3AD0_a(void)
+{
+    func_800C3AD0(0, 0, 0, 0, 0, 0, 0, 0);
+}
+
+void __standin_func_800C3AD0_b(void)
+{
+    func_800C3AD0(0, 0, 0, 0, 0, 0, 0, 1);
+}
+
+void __standin_input_process_controller_a(void)
+{
+    input_process_controller(0, 0, 0, 0, 0, 0, 0, 0, 0);
+}
+
+void __standin_input_process_controller_b(void)
+{
+    input_process_controller(0, 0, 0, 0, 0, 0, 0, 0, 1);
 }
