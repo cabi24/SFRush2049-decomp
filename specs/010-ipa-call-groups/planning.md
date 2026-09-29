@@ -112,12 +112,34 @@ compiling seeds.
 
 | Phase | Work | Gate |
 |---|---|---|
-| 0 | Flywheel exclusion of IPA members (small, standalone) | node time goes to matchable targets |
+| 0 | Flywheel exclusion of IPA members (small, standalone). **Done 2026-09-29**, see below | node time goes to matchable targets |
 | 1 | Spikes S1-S2 by hand on rocky | **S1 pass**, or stop and write up |
 | 2 | S3-S5 research | decisions recorded in research.md |
 | 3 | Spec-kit package (spec/plan/contracts/tasks/HANDOFF) | review |
 | 4 | Implement discovery + group_score + group splice | SC-1 through the pipeline |
 | 5 | Group permuter + flywheel integration | SC-3 measured |
+
+## 6a. Phase 0 outcome (2026-09-29)
+
+`tools/conveyor/pipeline/ipa.py scan` writes `build/ipa_members.json` from each
+gate-passed function's derived assembly using forward dataflow:
+- **callee**: a non-O32 register live on entry;
+- **preserver**: a caller-save register used after a `jal` with no write since.
+  That includes an argument register passed through to the next call.
+  `jal` delay slots count as running before the call, and float arguments in
+  `$f12`/`$f14` legitimately leave `$a0`/`$a1` unset;
+- **caller**: a function that writes a callee's non-ABI parameter register and calls it.
+
+Result: **365 of 912 members** (132 callees, 174 preservers, 178 callers).
+Checks: all 99 m2c "unset `$t`" callees are found, and **0 of the 121 already-spliced
+-O2 matches** are flagged. `farm.flywheel_cycle` drops members from triage
+and full-search promotion; the compile-only sweep still covers them. No
+IPA member was in the queue when this landed. Rerun `ipa scan` after any
+extent or derivation change.
+
+The membership (365) is larger than the first estimate (243), because the
+preserver pattern also catches callers that keep argument registers across
+calls, not only callers of register-parameter callees.
 
 ## 7. Risks
 

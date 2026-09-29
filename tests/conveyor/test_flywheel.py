@@ -233,3 +233,23 @@ def test_cycle_promotes_survivors_at_full_budget_and_triages_the_rest(
     assert stats["flywheel_promoted"] == 1 and stats["flywheel_started"] == 1
     assert calls == [("survivor", farm.STANDARD_SEARCH_BUDGET_SECONDS),
                      ("fresh", farm.TRIAGE_BUDGET_SECONDS)]
+
+
+def test_flywheel_cycle_skips_ipa_members(tmp_path, monkeypatch):
+    """010 Phase 0: functions shaped by IDO -O3 IPA get no -O2 search time."""
+    conn = _database(tmp_path / "conveyor.db")
+    histogram = tmp_path / "m2c_histogram.json"
+    _histogram(histogram)
+    submitted = []
+    monkeypatch.setattr(farm.ipamod, "load_members", lambda: {"fresh"})
+    monkeypatch.setattr(autodecomp, "_asm_for_rows", lambda *_args: {})
+    monkeypatch.setattr(
+        autodecomp, "submit_one",
+        lambda *args, **kwargs: submitted.append(args) or "seeded")
+
+    stats = farm.flywheel_cycle(
+        conn, object(), object(), "toolkit", histogram_path=histogram)
+
+    assert submitted == []
+    assert stats["flywheel_started"] == 0
+    assert stats["compiled"] == 3          # the census itself is unchanged

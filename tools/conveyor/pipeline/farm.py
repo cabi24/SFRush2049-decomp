@@ -28,6 +28,7 @@ from ..client import DEFAULT_DATA, Http, load_token
 from ..coordinator import db as dbmod
 from ..coordinator.store import BlobStore
 from ..seeds import extract_candidates as extractmod
+from . import ipa as ipamod
 from . import seeds as seedsmod
 
 DEFAULT_FLAGSET = "-g0 -O2 -mips2 -G 0 -non_shared"
@@ -162,6 +163,17 @@ def flywheel_cycle(conn, store, http, toolkit_sha,
 
     selection = flywheel_selection(conn, histogram_path)
     survivors = triage_survivors(conn)
+    # IDO -O3 interprocedural register allocation shaped these functions; a
+    # standalone -O2 search cannot match them, so they get no permuter time
+    # (010 Phase 0). The compile-only sweep still scores them.
+    ipa_members = ipamod.load_members()
+    if ipa_members:
+        survivors = tuple(r for r in survivors if r["target_id"] not in ipa_members)
+        targets = tuple(r for r in selection.targets
+                        if r["target_id"] not in ipa_members)
+        selection = FlywheelSelection(targets=targets, compiled=selection.compiled,
+                                      scored=selection.scored,
+                                      in_search=selection.in_search)
 
     def submit(rows, budget_seconds):
         asm_idx = {}
