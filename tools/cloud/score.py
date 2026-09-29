@@ -10,16 +10,17 @@
 
 Targets come from asm/us/blob/*.s: every game-code function is a section
 `.text.<name>` of `.word`s, i.e. the exact bytes of the retail image. The
-compiled function is compared word by word. A compiled object leaves
-relocation fields zero while the target has linked addresses, so fields named
-by a relocation (jal targets, %hi/%lo immediates) are masked. Everything else
-must be equal. "MATCH" here is strong evidence; the ROM SHA-1 check is run by
-the maintainers when a match is spliced (see CloudHandoff.md).
+compiled function is compared word by word after resolving relocations with
+asm/us/blob/symbols.json. Local data-section references remain unverified,
+not matches. --allow-unverified permits those references but never unresolved
+symbols or differing words. The maintainers still run the image and ROM hash
+gates when a match is spliced (see CloudHandoff.md).
 
 Needs tools/cloud/setup.sh (IDO 5.3 into tools/cloud/ido/). A MIPS objdump
 (mips-linux-gnu-objdump) is optional and only used to disassemble diffs.
 """
 import argparse
+from dataclasses import dataclass
 import json
 import os
 import re
@@ -99,37 +100,165 @@ def text_words(obj):
     return list(struct.unpack(f">{len(raw) // 4}I", raw))
 
 
+def _symbol_table(data, secs, index):
+    """Read the symbol table selected by a relocation section's sh_link."""
+    sec = secs[index]
+    names = secs[sec["link"]]
+    out = []
+    for k in range(sec["size"] // 16):
+        st_name, value, size, info, other, shndx = struct.unpack_from(
+            ">IIIBBH", data, sec["off"] + 16 * k)
+        raw = data[names["off"] + st_name:]
+        name = raw[:raw.index(b"\0")].decode()
+        if (info & 0xF) == 3 and not name and shndx < len(secs):
+            name = secs[shndx]["name"]
+        out.append(dict(name=name, value=value, size=size,
+                        type=info & 0xF, section=shndx))
+    return out
+
+
 def symbols(obj):
     """{name: .text offset} for function symbols defined in .text."""
     data, secs = _elf(obj)
     text = _text_index(secs)
-    out = {}
-    for sec in secs:
-        if sec["type"] != 2:                      # SHT_SYMTAB
-            continue
-        names = secs[sec["link"]]
-        for k in range(sec["size"] // 16):
-            st_name, value, size, info, other, shndx = struct.unpack_from(
-                ">IIIBBH", data, sec["off"] + 16 * k)
-            if shndx == text and (info & 0xF) == 2:   # STT_FUNC
-                raw = data[names["off"] + st_name:]
-                out[raw[:raw.index(b"\0")].decode()] = value
-    return out
+    return {sym["name"]: sym["value"]
+            for i, sec in enumerate(secs) if sec["type"] == 2
+            for sym in _symbol_table(data, secs, i)
+            if sym["section"] == text and sym["type"] == 2}
 
 
-def reloc_masks(obj):
-    """{.text offset: mask} for every relocation applied to .text."""
+def image_symbols():
+    path = ASM_DIR / "symbols.json"
+    try:
+        return {name: int(address, 16)
+                for name, address in json.loads(path.read_text())["symbols"].items()}
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        raise SystemExit(f"cannot read symbol table {path}: {exc}")
+
+
+def address_named(name):
+    # Same fallback as blob_splice.address_named; cloud tools stay stdlib-only.
+    match = re.fullmatch(r"(?:func|D)_([0-9A-Fa-f]{8})", name)
+    return int(match.group(1), 16) if match else None
+
+
+def relocate(obj, words, start, end, addresses):
+    """Resolve REL records in the compared slice, retaining all uncertainty.
+
+    .text section addends are object offsets: map through their owning
+    function before adding its image address. Other section addresses cannot
+    be inferred from the repository and only their relocation bits are masked.
+    """
     data, secs = _elf(obj)
     text = _text_index(secs)
+    got = list(words)
+    masks, unresolved, unverified, errors = {}, [], [], []
     rtypes = {4: "R_MIPS_26", 5: "R_MIPS_HI16", 6: "R_MIPS_LO16"}
-    masks = {}
+
+    def named(name):
+        return addresses[name] if name in addresses else address_named(name)
+
     for sec in secs:
-        if sec["type"] != 9 or sec["info"] != text:   # SHT_REL for .text
+        if sec["type"] != 9 or sec["info"] != text:  # SHT_REL for .text
             continue
+        syms = _symbol_table(data, secs, sec["link"])
+        functions = [s for s in syms if s["section"] == text and s["type"] == 2]
+        pending_hi = []
+
+        def resolve(sym, addend):
+            if sym["type"] == 3:
+                if sym["section"] != text:
+                    return None, "section"
+                owners = []
+                for fn in functions:
+                    following = min((f["value"] for f in functions
+                                     if f["value"] > fn["value"]),
+                                    default=len(words) * 4)
+                    limit = min(following, fn["value"] + fn["size"]) if fn["size"] else following
+                    if fn["value"] <= addend < limit:
+                        owners.append(fn)
+                for fn in owners:
+                    base = named(fn["name"])
+                    if base is not None:
+                        return base + addend - fn["value"], None
+                return None, "unresolved"
+            base = named(sym["name"])
+            return (base + addend, None) if base is not None else (None, "unresolved")
+
+        def apply(offset, rtype, sym, addend):
+            value, reason = resolve(sym, addend)
+            detail = f"{sym['name'] or '<unnamed>'}{addend:+#x} at +0x{offset - start:x}"
+            if reason == "section":
+                masks[offset] = MASKS[rtypes[rtype]]
+                unverified.append(detail)
+            elif reason:
+                unresolved.append(detail)
+            else:
+                insn = words[offset // 4]
+                if rtype == 4:
+                    if value & 3:
+                        errors.append(f"unaligned call target {detail}")
+                        return
+                    got[offset // 4] = (insn & 0xFC000000) | ((value >> 2) & 0x03FFFFFF)
+                elif rtype == 5:
+                    got[offset // 4] = (insn & 0xFFFF0000) | (((value + 0x8000) >> 16) & 0xFFFF)
+                else:
+                    got[offset // 4] = (insn & 0xFFFF0000) | (value & 0xFFFF)
+
         for k in range(sec["size"] // 8):
             offset, info = struct.unpack_from(">II", data, sec["off"] + 8 * k)
-            masks[offset] = MASKS.get(rtypes.get(info & 0xFF, ""), 0xFFFFFFFF)
-    return masks
+            if not start <= offset < end:
+                continue
+            index, rtype = info >> 8, info & 0xFF
+            if offset % 4 or offset + 4 > len(words) * 4 or index >= len(syms):
+                errors.append(f"invalid relocation at .text+0x{offset:x}")
+                continue
+            sym, insn = syms[index], words[offset // 4]
+            if rtype == 4:
+                apply(offset, rtype, sym, (insn & 0x03FFFFFF) << 2)
+            elif rtype == 5:
+                pending_hi.append((offset, index, insn & 0xFFFF))
+            elif rtype == 6:
+                lo = insn & 0xFFFF
+                lo = lo - 0x10000 if lo & 0x8000 else lo
+                his = [h for h in pending_hi if h[1] == index]
+                for hi_offset, _, hi in his:
+                    apply(hi_offset, 5, sym, (hi << 16) + lo)
+                addend = ((his[0][2] << 16) if his else 0) + lo
+                apply(offset, rtype, sym, addend)
+                pending_hi = [h for h in pending_hi if h[1] != index]
+            else:
+                errors.append(f"unsupported relocation type {rtype} at .text+0x{offset:x}")
+        for offset, index, _ in pending_hi:
+            errors.append(f"unpaired R_MIPS_HI16 for {syms[index]['name']} at .text+0x{offset:x}")
+    return got, masks, unresolved, unverified, errors
+
+
+@dataclass
+class Comparison:
+    differing: int
+    total: int
+    unresolved: list
+    unverified: list
+    errors: list
+
+    def accepted(self, allow_unverified=False):
+        return (self.differing == 0 and not self.unresolved and not self.errors
+                and (allow_unverified or not self.unverified))
+
+    def summary(self):
+        status = f"{self.differing}/{self.total} words differ" if self.differing else "MATCH"
+        if self.unresolved or self.errors:
+            if not self.differing:
+                status = "NOT VERIFIED"
+        details = []
+        if self.unresolved:
+            details.append("unresolved symbols: " + ", ".join(self.unresolved))
+        if self.unverified:
+            details.append(f"{len(self.unverified)} section-relative relocations unverified: "
+                           + ", ".join(self.unverified))
+        details.extend(self.errors)
+        return status + (" (" + "; ".join(details) + ")" if details else "")
 
 
 def disasm_word(word):
@@ -153,7 +282,7 @@ def disasm_word(word):
 
 
 def compare(obj, name, start=None, show=12):
-    """(differing words, total) for function `name` in `obj` vs its target."""
+    """Full-word comparison and verification status for one function."""
     want = targets().get(name)
     if want is None:
         raise SystemExit(f"no target section .text.{name} in {ASM_DIR}")
@@ -162,8 +291,9 @@ def compare(obj, name, start=None, show=12):
         start = symbols(obj).get(name)
         if start is None:
             raise SystemExit(f"{name} is not a defined function in the compiled object")
-    masks = reloc_masks(obj)
-    got = words[start // 4:start // 4 + len(want)]
+    resolved, masks, unresolved, unverified, errors = relocate(
+        obj, words, start, start + len(want) * 4, image_symbols())
+    got = resolved[start // 4:start // 4 + len(want)]
     bad = []
     for i, w in enumerate(want):
         g = got[i] if i < len(got) else None
@@ -173,7 +303,7 @@ def compare(obj, name, start=None, show=12):
     for i in bad[:show]:
         g = got[i] if i < len(got) else None
         print(f"    +0x{4*i:03x}  want {w_(want[i])}  got {w_(g) if g is not None else '(missing)'}")
-    return len(bad), len(want)
+    return Comparison(len(bad), len(want), unresolved, unverified, errors)
 
 
 def w_(word):
@@ -234,6 +364,9 @@ def main():
     f.add_argument("--flags", default=DEFAULT_FLAGS)
     g = sub.add_parser("group")
     g.add_argument("group_dir")
+    for command in (f, g):
+        command.add_argument("--allow-unverified", action="store_true",
+                             help="permit local data-section relocations; still reject other failures")
     args = parser.parse_args()
 
     with tempfile.TemporaryDirectory() as tmp:
@@ -247,9 +380,9 @@ def main():
         all_match = True
         for name in names:
             print(f"{name}:")
-            bad, total = compare(obj, name)
-            print(f"  {'MATCH' if bad == 0 else f'{bad}/{total} words differ'}")
-            all_match &= bad == 0
+            result = compare(obj, name)
+            print(f"  {result.summary()}")
+            all_match &= result.accepted(args.allow_unverified)
     return 0 if all_match else 1
 
 

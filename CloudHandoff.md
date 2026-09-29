@@ -47,10 +47,24 @@ Submodules (m2c decompiler, decomp-permuter) are only needed for tooling work:
 `git submodule update --init`. m2c needs our local patches applied, and
 `tools/conveyor/pipeline/autodecomp.ensure_m2c_patched()` applies them.
 
-Run those two first. If they do not print MATCH, your setup is wrong. Stop
-and fix it before trusting any other result. `score.py` masks only the fields
-that relocations fill in (call targets, `%hi`/`%lo` immediates). Everything
-else must be equal, **including stack offsets and frame sizes**.
+Run those two first. If they do not print MATCH, stop and investigate the
+setup and reported differences before trusting any other result. `score.py`
+resolves call targets and `%hi`/`%lo` symbol addresses and addends using the
+committed `asm/us/blob/symbols.json` table (with address-spelled `func_XXXXXXXX`
+and `D_XXXXXXXX` names as a fallback). Calls within a group resolve to the
+callee's target address, including calls encoded as offsets into `.text`.
+Resolved instructions must match in full, **including stack offsets and frame
+sizes**. Unknown symbols, unsupported relocations, and unpaired HI16 records
+fail verification.
+
+Local data-section relocations (`.rodata`, `.data`, and similar sections)
+cannot be fully checked from the repository. Only their relocation fields
+are masked, and the output lists the unverified references, for example
+`MATCH (2 section-relative relocations unverified: ...)`. This is not a plain
+`MATCH` and exits nonzero by default. `--allow-unverified` permits that partial
+comparison in either mode, but never permits unresolved symbols, relocation
+errors, or differing words. The image and ROM hash gates remain required
+before splicing a contribution.
 
 ## 3. Where to contribute, in priority order
 
