@@ -3792,7 +3792,7 @@ block_19:
 block_26:
         temp_t6 = M2C_FIELD((D_801407FC + temp_t2), s8 *, 1);
         *arg2 = (s32) temp_t6;
-        if ((temp_t6 < 0) || ((arg4 != 0) && (*(D_801407FC + (temp_t6 * 0x10)) != 0))) {
+        if ((temp_t6 < 0) || ((arg4 != 0) && (*(s8 *) (D_801407FC + (temp_t6 * 0x10)) != 0))) {
             goto block_45;
         }
         return func_800D2FA8(temp_t6, *arg3, arg2, arg3, arg4, arg5 + 1);
@@ -3823,7 +3823,7 @@ block_26:
     }
     temp_v0_2 = sp5C + sp60;
     sp5C = temp_v0_2;
-    split_time_display(sp50, sp4C, sp58 - ((s32) (sp60 * sp58) / temp_v0_2), arg2, arg3, M2C_ERROR(/* Read from unset register $t4 */));
+    split_time_display(sp50, sp4C, sp58 - ((s32) (sp60 * sp58) / temp_v0_2), arg2, D_801407FC, arg3);
 block_45:
     return 1;
 }
