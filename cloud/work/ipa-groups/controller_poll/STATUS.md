@@ -39,6 +39,24 @@ process_inputs      89/89
 - The IPA closure check found one more function that exchanges registers
   with this group: `func_800E73D8` (the caller of `func_800E7134`).
 
+## player_mode_set / player_state_set (cloud pass 3, unchanged at 13/15)
+
+The target is `li at,-1; bne; lui at` then **one** `lui at` feeding four
+`sb lo+k(at)` in the order `[1],[2],[3],[0]` (the `[0]` store is in the `jr`
+delay slot), and the indexed path `lui at; addu at,at,a0; sb`. We cannot get
+one shared `lui`:
+- rolled loops (`for`/`while`/`do`, up or down, `-O1`..`-O3`, alone or in the
+  group) unroll to four `lui at; sb k(at)` pairs (18 words, `[0]..[3]` order;
+  the ascending `for (i=1;i<4;i++)`+`[0]` form is not unrolled);
+- four explicit stores (any order, chained `a=b=c=d=v`, pointer `p[k]`,
+  cast to a 4-field struct, union with a struct view, separate `D_80149B75..77`
+  scalars) make uopt hoist the address into a register: `lui v0; addiu v0`
+  then `sb k(v0)` (17 words); the store order `[1],[2],[3],[0]` is reproduced
+  by writing them in that order.
+Neither shape is the target's `at`-only base. Hypothesis (untested): the
+stores were emitted by ugen as one address web without register allocation,
+e.g. a form uopt does not hoist; not found.
+
 ## Relocations (for review; resolved by the strict scorer)
 
 `D_801497A8`, `D_8011195C`, `D_80111958`, `game_loop_tick`,

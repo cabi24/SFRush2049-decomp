@@ -2199,7 +2199,7 @@ extern s8 D_80142780;
 extern s8 D_801427A0;
 extern s8 D_801427A1;
 extern s32 D_801427A8;
-extern u16 D_801427C0;
+extern u16 D_801427C0[];
 extern u16 D_801427C2;
 extern s32 D_801427C8;
 extern u16 D_801428F8;
@@ -2441,7 +2441,6 @@ extern u8 D_8014A258;
 extern s8 D_8014A259;
 extern s8 D_8014A25A;
 extern s8 D_8014A25F;
-extern f32 D_8014A640;
 extern s16 D_8014A648;
 extern f32 D_8014A650;
 extern u16 D_8014A86C;
@@ -2755,7 +2754,7 @@ extern s32 D_8015F730;
 extern s8 D_8015F734;
 extern s32 D_8015F740;
 extern s32 D_80161360;
-extern u16 D_80161368;
+extern u16 D_80161368[];
 extern u16 D_80161378;
 extern u16 D_8016137A;
 extern s8 D_8016137C;
@@ -3446,7 +3445,6 @@ void mode_byte_set(s16 arg0);
 void mode_flags_clear(void);
 s32 mode_select_handler();
 void mode_select_input(f32 arg0);
-s32 model_bounds_calc();
 void model_data_load(s16 arg0, s32 arg1, s32 arg2);
 void model_transform_setup(s16 arg0, s32 arg1, s32 arg2);
 void music_control(void);
@@ -3698,8 +3696,31 @@ typedef s64 M2C_UNK64;
 
 
 /* group members */
+typedef struct {
+    /* 0x0 */ u8 pad0[4];
+    /* 0x4 */ s16 state;
+    /* 0x6 */ s16 model;
+    /* 0x8 */ s16 player;
+} ModelObj;
+
+typedef struct {
+    /* 0x0 */ f32 v;
+    /* 0x4 */ u8 pad4[0x804];
+} Rec808;
+
+extern Rec808 D_8014A640[];
+s32 model_bounds_calc(s32 flag, ModelObj *obj);
 void func_8008B640(s16 idx, f32 x, f32 y, f32 z, f32 nx, f32 ny, f32 nz);
-void physics_velocity_integrate_a(s32 arg0, s16 arg1, void *ipa_s1, s32 ipa_s2, f32 ipa_f20, f32 ipa_f22, f32 ipa_f24);
+void physics_velocity_integrate_a(s16 arg0, s32 arg1, ModelObj *ipa_s1, s32 ipa_s2, f32 ipa_f20, f32 ipa_f22, f32 ipa_f24);
+
+s32 model_bounds_calc(s32 flag, ModelObj *obj) {
+    if (flag) {
+        model_transform_setup(obj->model, 0, 15);
+    } else {
+        model_data_load(obj->model, 1, 15);
+    }
+    return flag;
+}
 
 void func_8008B640(s16 idx, f32 x, f32 y, f32 z, f32 nx, f32 ny, f32 nz) {
     f32 *v;
@@ -3714,68 +3735,62 @@ void func_8008B640(s16 idx, f32 x, f32 y, f32 z, f32 nx, f32 ny, f32 nz) {
     v[11] = nz;
 }
 
-void physics_velocity_integrate_a(s32 arg0, s16 arg1, void *ipa_s1, s32 ipa_s2, f32 ipa_f20, f32 ipa_f22, f32 ipa_f24) {
-    GameCar *temp_v1;
-    f32 *temp_a1;
-    f32 *temp_a1_2;
-    s16 temp_v0;
-    s32 temp_f10;
-    s32 temp_f6;
-    s32 temp_t9;
+void physics_velocity_integrate_a(s16 arg0, s32 arg1, ModelObj *ipa_s1, s32 ipa_s2, f32 ipa_f20, f32 ipa_f22, f32 ipa_f24) {
+    GameCar *car;
+    s16 t;
+    f32 *m;
 
-    temp_v1 = &player_array[M2C_FIELD(ipa_s1, s16 *, 8)];
-    if (((s16) arg0 != 0) && !(state_word_a & 8)) {
-        temp_v0 = M2C_FIELD(ipa_s1, s16 *, 4);
-        if (temp_v0 < 0) {
-            if (arg1 != 0) {
-                M2C_FIELD(ipa_s1, s16 *, 4) = 0;
-                func_8008B640(M2C_FIELD(ipa_s1, s16 *, 6), M2C_FIELD(temp_v1, f32 *, 0xA4), M2C_FIELD(temp_v1, f32 *, 0xA8), M2C_FIELD(temp_v1, f32 *, 0xAC), ipa_f20, ipa_f22, ipa_f24);
-                temp_f6 = (s32) *((f32 *) ((u8 *) &D_8014A640 + (M2C_FIELD(ipa_s1, s16 *, 8) * 0x808)));
-                if ((s16) temp_f6 < 0x64) {
-                    temp_a1 = *((s32 *) ((u8 *) &D_8012E708 + (M2C_FIELD(ipa_s1, s16 *, 6) * 0x44)));
-                    func_8008B32C(temp_a1, temp_a1, (f32) (s16) temp_f6 / 100.0f);
-                }
-                goto block_15;
+    car = &player_array[ipa_s1->player];
+    if (arg0 != 0 && !(state_word_a & 8)) {
+        if (ipa_s1->state < 0) {
+            if (arg1 == 0) {
+                goto reload;
             }
-            goto block_20;
-        }
-        if (arg1 != 0) {
-            func_8008B640(M2C_FIELD(ipa_s1, s16 *, 6), M2C_FIELD(temp_v1, f32 *, 0xA4), M2C_FIELD(temp_v1, f32 *, 0xA8), M2C_FIELD(temp_v1, f32 *, 0xAC), ipa_f20, ipa_f22, ipa_f24);
-            temp_f10 = (s32) *((f32 *) ((u8 *) &D_8014A640 + (M2C_FIELD(ipa_s1, s16 *, 8) * 0x808)));
-            if ((s16) temp_f10 < 0x64) {
-                temp_a1_2 = *((s32 *) ((u8 *) &D_8012E708 + (M2C_FIELD(ipa_s1, s16 *, 6) * 0x44)));
-                func_8008B32C(temp_a1_2, temp_a1_2, (f32) (s16) temp_f10 / 100.0f);
+            ipa_s1->state = 0;
+            func_8008B640(ipa_s1->model, M2C_FIELD(car, f32 *, 0xA4), M2C_FIELD(car, f32 *, 0xA8), M2C_FIELD(car, f32 *, 0xAC), ipa_f20, ipa_f22, ipa_f24);
+            t = (s32) D_8014A640[ipa_s1->player].v;
+            if (t < 100) {
+                m = *(f32 **) ((u8 *) &D_8012E708 + (ipa_s1->model * 0x44));
+                func_8008B32C(m, m, (f32) t / 100.0f);
             }
-            M2C_FIELD(ipa_s1, s16 *, 4) = (s16) (M2C_FIELD(ipa_s1, s16 *, 4) + 1);
-            if (M2C_FIELD(ipa_s1, s16 *, 4) >= 3) {
-                temp_t9 = (D_8011735C * 0x41C64E6D) + 0x3039;
-                D_8011735C = temp_t9;
-                M2C_FIELD(ipa_s1, s16 *, 4) = (s16) (s32) ((((f32) ((temp_t9 >> 0x10) & 0x7FFF) * 4.0f) / 32768.0f) + 2.0f);
+        } else if (arg1 != 0) {
+            func_8008B640(ipa_s1->model, M2C_FIELD(car, f32 *, 0xA4), M2C_FIELD(car, f32 *, 0xA8), M2C_FIELD(car, f32 *, 0xAC), ipa_f20, ipa_f22, ipa_f24);
+            t = (s32) D_8014A640[ipa_s1->player].v;
+            if (t < 100) {
+                m = *(f32 **) ((u8 *) &D_8012E708 + (ipa_s1->model * 0x44));
+                func_8008B32C(m, m, (f32) t / 100.0f);
             }
+            ipa_s1->state = ipa_s1->state + 1;
+            if (ipa_s1->state >= 3) {
+                D_8011735C = D_8011735C * 0x41C64E6D + 0x3039;
+                ipa_s1->state = (s32) ((f32) ((D_8011735C >> 16) & 0x7FFF) * 4.0f / 32768.0f + 2.0f);
+            }
+        } else if (ipa_s1->state >= 4) {
+            ipa_s1->state = 3;
         } else {
-            if (temp_v0 >= 4) {
-                M2C_FIELD(ipa_s1, s16 *, 4) = 3;
-            } else {
-                M2C_FIELD(ipa_s1, s16 *, 4) = (s16) (temp_v0 - 1);
-            }
-block_15:;
+            ipa_s1->state = ipa_s1->state - 1;
         }
-        if (M2C_FIELD(ipa_s1, s16 *, 4) >= 6) {
-            M2C_FIELD(ipa_s1, s16 *, 4) = 5;
+        if (ipa_s1->state >= 6) {
+            ipa_s1->state = 5;
         }
-        if (model_bounds_calc((M2C_FIELD(ipa_s1, s16 *, 4) < 0) ^ 1, ipa_s1) != 0) {
-            func_8008B000((s32) (&D_801427C0)[ipa_s2], 0, (s32) (&D_80161368)[M2C_FIELD(ipa_s1, s16 *, 4)]);
+        if (model_bounds_calc((ipa_s1->state < 0) ^ 1, ipa_s1) != 0) {
+            func_8008B000(D_801427C0[ipa_s2], 0, D_80161368[ipa_s1->state]);
             return;
         }
-        goto block_20;
     }
-block_20:
-    model_data_load(M2C_FIELD(ipa_s1, s16 *, 6), 1, 0xF);
-    M2C_FIELD(ipa_s1, s16 *, 4) = -1;
+reload:
+    model_data_load(ipa_s1->model, 1, 15);
+    ipa_s1->state = -1;
 }
 
 /* stand-in caller: keeps func_8008B640 out of line under -O3 */
 void __standin_func_8008B640(void)
 {
     func_8008B640(0, 0, 0, 0, 0, 0, 0);
+}
+
+/* stand-in caller: keeps model_bounds_calc out of line under -O3 */
+void __standin_model_bounds_calc(void)
+{
+    model_bounds_calc(0, 0);
 }
