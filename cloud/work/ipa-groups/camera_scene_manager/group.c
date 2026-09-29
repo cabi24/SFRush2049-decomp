@@ -1,3 +1,5 @@
+float fabsf(float); /* cloud: m2c emits fabsf for abs.s; undeclared it was an implicit int call */
+#pragma intrinsic (fabsf)
 #define NULL ((void *)0)
 #define TRUE 1
 #define FALSE 0
@@ -3903,7 +3905,7 @@ void camera_scene_manager(void) {
                 }
                 temp_v1_2 = D_80157238;
                 if (var_a1 & 0x100) {
-                    if ((temp_v1_2 > 0) || (var_s4 = (GameCar *) &D_80152900, (*(GameCar *) &D_80152900 & 0x100000))) {
+                    if ((temp_v1_2 > 0) || (var_s4 = (GameCar *) &D_80152900, (*(s32 *) &D_80152900 & 0x100000))) {
                         M2C_FIELD(var_s2_2, f32 *, 0x38) = (f32) D_801543CC;
                         M2C_FIELD(var_s2_2, s32 *, 0) = var_a1 & ~0x100;
                         var_f20 = M2C_FIELD(var_s2_2, f32 *, 0x38) - M2C_FIELD(var_s2_2, f32 *, 0x34);
@@ -3965,7 +3967,7 @@ void camera_scene_manager(void) {
                         func_800C1B60(1.5e-44f, M2C_BITWISE(f32, var_s3));
                     }
                 }
-                *var_s4 = (s32) (*var_s4 & 0xFFEFFFFF);
+                *(s32 *) var_s4 = *(s32 *) var_s4 & 0xFFEFFFFF;
             }
             var_s3 += 1;
             var_s2_2 = var_s2_2 + 0x1F;
