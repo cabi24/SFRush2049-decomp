@@ -164,7 +164,17 @@ calls, not only callers of register-parameter callees.
   false positives (func_800AED20 is spliced as-is). Needs its own extent-repair
   pass before those functions can match.
 
-Remaining Phase 4/5 work: seeds through an m2c register-parameter map (S5),
+- **Extent repair done (89a6a12):** `targets.stranded_head` + `targets --repair-heads`
+  moved 21 function starts back over their stranded heads; 18 false "callees"
+  disappeared (354 members, 43 groups). player_state_clear and
+  object_action_clear were re-matched with their real heads.
+- **Seed map done (8fd4501):** m2c patch 0004 IPA mode (env `M2C_IPA_REGS`,
+  map from `ipa scan` → `build/ipa_m2c_map.json`). `blob_group seed <group>`
+  generates a group from discovery. `group.json` `context` lists compiled-but-
+  not-spliced functions. First function matched straight from a generated seed:
+  entity_flag_check (`$s0` parameter), 125/912, ROM SHA-1 exact.
+
+Remaining Phase 4/5 work:
 generating group TUs from seeds plus stand-ins, a `group_score` node job, and a
 group-aware permuter.
 
