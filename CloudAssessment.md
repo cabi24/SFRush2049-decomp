@@ -2,6 +2,8 @@
 
 Written 2026-09-29 from a cloud session with only this repository (commit `5eebdbb`), IDO 5.3 from `tools/cloud/setup.sh`, and no ROM or LAN. The comparison baseline is the research collection in `cabi24/decomp-knowledge` (`synthesis/` and `research/agent-templates-deep/`), which studied about a dozen agent-driven decomp loops (Snowboard Kids 1/2 with `nigel`, Conker, tenchu, psp-autodecomp, gameDecomp and others).
 
+**Status (rebased onto `cce96df`).** The fixes are tracked in [specs/011-scorer-hardening/FIX-PLAN.md](specs/011-scorer-hardening/FIX-PLAN.md) (F1-F11), which supersedes the "Suggested order" section below. F1 (`asm/us/blob/symbols.json`) is done and F2 (relocation resolution) is in progress. I re-ran every test in this file against the corrected ground truth from `4b44a75`; none of the functions involved (`sound_handles_clear`, the `resource_slot_clear` group) was among the 21 whose starts moved, and all results are unchanged. The game population is now 890 functions, not the 912 mentioned below.
+
 Evidence labels: **tested** means I ran it here and the command is given. **code-observed** means I read the code but did not run the path. Nothing here touched the ROM, so none of this says anything about the maintainers' splice + SHA-1 path beyond what the code shows.
 
 ## Summary
