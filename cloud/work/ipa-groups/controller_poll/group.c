@@ -2390,13 +2390,13 @@ extern s8 D_80149B4B;
 extern s32 D_80149B50;
 extern s32 D_80149B58;
 extern s8 D_80149B60;
-extern s8 D_80149B64;
+extern s8 D_80149B64[4];
 extern s8 D_80149B65;
 extern s8 D_80149B66;
 extern s8 D_80149B67;
 extern s32 D_80149B68;
 extern s8 D_80149B70;
-extern s8 D_80149B74;
+extern s8 D_80149B74[4];
 extern s8 D_80149B75;
 extern s8 D_80149B76;
 extern s8 D_80149B77;
@@ -3699,144 +3699,107 @@ typedef s64 M2C_UNK64;
 
 /* group members */
 void controller_poll(void);
-f32 func_800C9590(f32 arg1, s32 arg0);
+f32 func_800C9590(f32 range, f32 calib, s32 raw);
 void func_800E7038(void);
 void func_800E7134(void);
-void player_mode_set(s32 arg0, s8 arg1);
-void player_state_set(s32 arg0, s8 arg1);
+void player_mode_set(s32 player, s32 value);
+void player_state_set(s32 player, s32 value);
 void process_inputs(void);
 
-void controller_poll(void) {
-    D_80156958_Entry *var_s0;
-    f32 temp_f0;
-    f32 temp_f20;
-    f32 temp_f22;
-    s32 *temp_a1;
-    s32 *var_a2;
-    s32 *var_s1;
-    s32 *var_s2;
-    s32 *var_s5;
-    s32 *var_t5;
-    s32 temp_a0;
-    s32 temp_t0;
-    s32 temp_t6;
-    s32 temp_v1;
-    s32 var_v0;
-    s8 *var_s6;
-    s8 temp_t4;
+/* typed views of prelude globals (the prelude's widths are wrong for these) */
+#define gResetTick    (*(s8 *) &D_8011195C)
+#define gSkipFrames   (*(u8 *) &D_80111960)
+#define gHeld         ((s32 *) &D_80149B30)
+#define gPrevPressed  ((s32 *) &D_80149B10)
+#define gConnected    D_80149B64
+#define gStickRaw     ((s8 (*)[2]) &D_80149B50)
+#define gStickCal     ((s8 (*)[2]) &D_80149AF8)
+#define gRepeatTime   ((u32 (*)[32]) &D_80149B90)
+#define gStick        D_80156958
+
+/* read the pads: sticks, held/pressed masks and auto-repeat per button */
+void controller_poll(void)
+{
+    s32 i;
+    s32 b;
+    s32 held;
+    u32 mask;
+    s32 connected;
+    f32 repeat;
+    f32 x;
 
     osRecvMesg((OSMesgQueue *) &D_801497A8, NULL, 1);
-    if (D_8011195C != 0) {
-        D_8011195C = 0;
+    if (gResetTick != 0) {
+        gResetTick = 0;
         D_80111958 = game_loop_tick;
     }
     D_80156944 = 0;
     D_80149784 = 0;
     D_8015694C = 0;
-    if (D_80111960 != 0) {
-        D_80111960 -= 1;
-        D_80149B10 = 0;
-        D_8015695C = 0.0f;
-        D_80156958->unk0 = 0.0f;
-        *D_80143A00 = 0;
-        *D_80156978 = 0;
-        *D_80156998 = 0;
-        D_80149B14 = 0;
-        D_80156964 = 0.0f;
-        D_80156960 = 0.0f;
-        D_80143A04 = 0;
-        D_8015697C = 0;
-        D_8015699C = 0;
-        D_80149B18 = 0;
-        D_8015696C = 0.0f;
-        D_80156968 = 0.0f;
-        D_80143A08 = 0;
-        D_80156980 = 0;
-        D_801569A0 = 0;
-        D_80149B1C = 0;
-        D_80156974 = 0.0f;
-        D_80156970 = 0.0f;
-        D_80143A0C = 0;
-        D_80156984 = 0;
-        D_801569A4 = 0;
+    if (gSkipFrames != 0) {
+        gSkipFrames--;
+        for (i = 0; i < 4; i++) {
+            gPrevPressed[i] = 0;
+            gStick[i].unk4 = 0.0f;
+            gStick[i].unk0 = 0.0f;
+            D_80143A00[i] = 0;
+            D_80156978[i] = 0;
+            D_80156998[i] = 0;
+        }
         osJamMesg((OSMesgQueue *) &D_801497A8, NULL, 0);
         return;
     }
-    var_s6 = &D_80149B64;
-    var_s5 = &D_80149B30;
-    var_s2 = D_80156998;
-    var_s1 = D_80156978;
-    var_a2 = D_80143A00;
-    var_s0 = D_80156958;
-    var_t5 = &D_80149B10;
-    temp_f20 = D_80123F94;
-    do {
-        temp_f22 = func_800C9590(1.0f, M2C_ERROR(/* Read from unset register $a1 */));
-        temp_f0 = func_800C9590(1.0f, M2C_ERROR(/* Read from unset register $a1 */));
-        temp_t6 = *var_t5;
-        var_s0->unk0 = temp_f22;
-        *var_s1 = *var_s5;
-        temp_t0 = *var_s1;
-        D_8015695C = temp_f0;
-        *var_t5 = 0;
-        *var_a2 = 0;
-        *var_s2 = temp_t6;
-        if (temp_t0 != 0) {
+    repeat = D_80123F94;
+    for (i = 0; i < 4; i++) {
+        x = func_800C9590(1.0f, gStickCal[i][0], gStickRaw[i][0]);
+        gStick[i].unk4 = func_800C9590(1.0f, gStickCal[i][1], gStickRaw[i][1]);
+        gStick[i].unk0 = x;
+        D_80156978[i] = gHeld[i];
+        held = D_80156978[i];
+        D_80156998[i] = gPrevPressed[i];
+        gPrevPressed[i] = 0;
+        D_80143A00[i] = 0;
+        if (held != 0) {
             D_80111958 = game_loop_tick;
         }
-        temp_t4 = *var_s6;
-        var_t5 = M2C_ERROR(/* Read from unset register $t5 */) + 4;
-        var_s0 = (D_80156958_Entry *) (&D_8015695C + 2);
-        var_s1 = var_s1 + 1;
-        if (temp_t4 != 0) {
-            D_8015694C |= *var_s2;
-            D_80156944 |= temp_t0;
+        connected = gConnected[i];
+        if (connected) {
+            D_8015694C |= D_80156998[i];
+            D_80156944 |= held;
         }
-        var_v0 = 0;
-loop_10:
-        if (var_v0 != 0) {
-            temp_v1 = 1 << var_v0;
-            temp_a1 = (s32 *) ((M2C_ERROR(/* Read from unset register $t1 */) << 7) + (var_v0 * 4) + (u8 *) &D_80149B90);
-            if (temp_t0 & temp_v1) {
-                temp_a0 = *temp_a1;
-                if ((temp_a0 == 0) || ((u32) (s32) (temp_f20 * *M2C_ERROR(/* Read from unset register $t3 */)) < (u32) (*M2C_ERROR(/* Read from unset register $a3 */) - temp_a0))) {
-                    *M2C_ERROR(/* Read from unset register $a2 */) = *M2C_ERROR(/* Read from unset register $a2 */) | temp_v1;
-                    *temp_a1 = *M2C_ERROR(/* Read from unset register $a3 */);
+        for (b = 0; b < 32; b++) {
+            if (b != 0) {
+                mask = 1 << b;
+                if (held & mask) {
+                    if (gRepeatTime[i][b] == 0 ||
+                        (u32) (s32) (repeat * D_8002AFB4) < game_loop_tick - gRepeatTime[i][b]) {
+                        D_80143A00[i] |= mask;
+                        gRepeatTime[i][b] = game_loop_tick;
+                    }
+                } else {
+                    gRepeatTime[i][b] = 0;
                 }
-            } else {
-                *temp_a1 = 0;
             }
         }
-        var_v0 += 1;
-        if (var_v0 != M2C_ERROR(/* Read from unset register $t2 */)) {
-            goto loop_10;
+        if (connected) {
+            D_80149784 |= D_80143A00[i];
         }
-        if (temp_t4 != 0) {
-            D_80149784 |= *M2C_ERROR(/* Read from unset register $a2 */);
-        }
-        var_a2 = M2C_ERROR(/* Read from unset register $a2 */) + 4;
-        var_s2 = var_s2 + 1;
-        var_s5 = var_s5 + 1;
-        var_s6 += 1;
-    } while ((M2C_ERROR(/* Read from unset register $t1 */) + 1) != 4);
+    }
     osJamMesg((OSMesgQueue *) &D_801497A8, NULL, 0);
 }
 
-f32 func_800C9590(f32 arg1, s32 arg0) {
-    f32 temp_f0;
-    f32 temp_f16;
-    f32 var_f2;
+/* scale a raw stick value to [-range, range] */
+f32 func_800C9590(f32 range, f32 calib, s32 raw)
+{
+    f32 v;
 
-    temp_f16 = -arg0;
-    temp_f0 = ((f32) arg0 * arg0) / arg1;
-    var_f2 = temp_f0;
-    if (temp_f0 < temp_f16) {
-        return temp_f16;
+    v = ((f32) raw * range) / calib;
+    if (v < -range) {
+        v = -range;
+    } else if (range < v) {
+        v = range;
     }
-    if (arg0 < temp_f0) {
-        var_f2 = arg0;
-    }
-    return var_f2;
+    return v;
 }
 
 void func_800E7038(void) {
@@ -3898,13 +3861,13 @@ void func_800E7134(void) {
         if ((s8) M2C_FIELD(var_a3, u8 *, 0) == 0) {
             M2C_FIELD(var_a2, s8 *, 0) = 0;
             M2C_FIELD(var_a2, s8 *, 1) = 0;
-            *var_a1 = M2C_ERROR(/* Read from unset register $t4 */);
-            var_a1 = &D_80149AF9;
+            var_a1[0] = 70;
+            var_a1[1] = 70;
         } else {
             var_v1 = M2C_FIELD(var_a3, s32 *, 4);
             M2C_FIELD(var_a2, s8 *, 0) = (s8) M2C_FIELD(var_a3, s8 *, 8);
             M2C_FIELD(var_a2, s8 *, 1) = (s8) M2C_FIELD(var_a3, s8 *, 9);
-            if ((&D_80149B74)[var_t0] != 0) {
+            if (D_80149B74[var_t0] != 0) {
                 if (M2C_FIELD(var_a2, s8 *, 0) < -0x38) {
                     var_v1 |= 0x1000;
                 }
@@ -3919,8 +3882,8 @@ void func_800E7134(void) {
                 }
             }
             if (var_v1 & 0x40000) {
-                *var_a1 = M2C_ERROR(/* Read from unset register $t4 */);
-                *var_a1 = M2C_ERROR(/* Read from unset register $t4 */);
+                var_a1[0] = 70;
+                var_a1[1] = 70;
             }
             if (((*var_a1 < M2C_FIELD(var_a2, s8 *, 0)) || (M2C_FIELD(var_a2, s8 *, 0) < -*var_a1)) && (*var_a1 < 0x7F)) {
                 *var_a1 += 1;
@@ -3934,8 +3897,8 @@ void func_800E7134(void) {
         *var_t2 |= temp_v0;
         *var_t1 = var_v1;
         *var_t5 = temp_v0;
-        *var_t3 = func_800C9590(1.0f, (s32) var_a1);
-        temp_f0 = func_800C9590(1.0f, (s32) var_a1);
+        *var_t3 = func_800C9590(1.0f, var_a1[0], M2C_FIELD(var_a2, s8 *, 0));
+        temp_f0 = func_800C9590(1.0f, var_a1[1], M2C_FIELD(var_a2, s8 *, 1));
         var_t0 += 1;
         var_a3 += 0x10;
         var_a2 = (s32 *) ((u8 *) var_a2 + 2);
@@ -3950,27 +3913,29 @@ void func_800E7134(void) {
     osJamMesg((OSMesgQueue *) &D_801497A8, NULL, 0);
 }
 
-void player_mode_set(s32 arg0, s8 arg1) {
-    if (arg0 == -1) {
-        D_80149B75 = arg1;
-        D_80149B76 = arg1;
-        D_80149B77 = arg1;
-        return;
-    }
-    if (arg0 < 4) {
-        (&D_80149B74)[arg0] = arg1;
+void player_mode_set(s32 player, s32 value)
+{
+    s32 i;
+
+    if (player == -1) {
+        for (i = 0; i < 4; i++) {
+            D_80149B74[i] = value;
+        }
+    } else if (player < 4) {
+        D_80149B74[player] = value;
     }
 }
 
-void player_state_set(s32 arg0, s8 arg1) {
-    if (arg0 == -1) {
-        D_80149B65 = arg1;
-        D_80149B66 = arg1;
-        D_80149B67 = arg1;
-        return;
-    }
-    if (arg0 < 4) {
-        (&D_80149B64)[arg0] = arg1;
+void player_state_set(s32 player, s32 value)
+{
+    s32 i;
+
+    if (player == -1) {
+        for (i = 0; i < 4; i++) {
+            D_80149B64[i] = value;
+        }
+    } else if (player < 4) {
+        D_80149B64[player] = value;
     }
 }
 
@@ -4032,7 +3997,7 @@ void __standin_controller_poll(void)
 /* stand-in caller: keeps func_800C9590 out of line under -O3 */
 void __standin_func_800C9590(void)
 {
-    func_800C9590(0, 0);
+    func_800C9590(0, 0, 0);
 }
 
 /* stand-in caller: keeps func_800E7038 out of line under -O3 */
