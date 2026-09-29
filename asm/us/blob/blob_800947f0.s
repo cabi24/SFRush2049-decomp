@@ -134,6 +134,7 @@ audio_channel_setup:
 .section .text.func_800949D4, "ax", @progbits
 .globl func_800949D4
 func_800949D4:
+    /* compiled from src/blob/func_800949D4.c */
     .word 0x3C028013
     .word 0x8C42E6E0
     .word 0x1040000A
@@ -166,12 +167,14 @@ func_800949D4:
 .section .text.func_80094A44, "ax", @progbits
 .globl func_80094A44
 func_80094A44:
+    /* compiled from src/blob/func_80094A44.c */
     .word 0x03E00008
     .word 0x00000000
 
 .section .text.func_80094A4C, "ax", @progbits
 .globl func_80094A4C
 func_80094A4C:
+    /* compiled from src/blob/func_80094A4C.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -565,6 +568,7 @@ input_new_data_wrapper:
 .section .text.func_80094FC4, "ax", @progbits
 .globl func_80094FC4
 func_80094FC4:
+    /* compiled from src/blob/func_80094FC4.c */
     .word 0x00047080
     .word 0x01C47023
     .word 0x000E7180
@@ -687,6 +691,7 @@ validate_and_call:
 .section .text.sound_volume_helper, "ax", @progbits
 .globl sound_volume_helper
 sound_volume_helper:
+    /* compiled from src/blob/sound_volume_helper.c */
     .word 0x3C0E8011
     .word 0x8DCE74B4
     .word 0x27BDFFE8
@@ -845,6 +850,7 @@ sound_position_update:
 .section .text.draw_sprites, "ax", @progbits
 .globl draw_sprites
 draw_sprites:
+    /* compiled from src/blob/draw_sprites.c */
     .word 0x8C8E0008
     .word 0x8CB80008
     .word 0x8DCF001C
@@ -855,18 +861,21 @@ draw_sprites:
 .section .text.func_800953B4, "ax", @progbits
 .globl func_800953B4
 func_800953B4:
+    /* compiled from src/blob/func_800953B4.c */
     .word 0x03E00008
     .word 0x00000000
 
 .section .text.func_800953BC, "ax", @progbits
 .globl func_800953BC
 func_800953BC:
+    /* compiled from src/blob/func_800953BC.c */
     .word 0x03E00008
     .word 0x00000000
 
 .section .text.func_800953C4, "ax", @progbits
 .globl func_800953C4
 func_800953C4:
+    /* compiled from src/blob/func_800953C4.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -930,6 +939,7 @@ audio_fade_control:
 .section .text.func_800954A0, "ax", @progbits
 .globl func_800954A0
 func_800954A0:
+    /* compiled from src/blob/func_800954A0.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -1164,6 +1174,7 @@ audio_bus_route:
 .section .text.func_800957F8, "ax", @progbits
 .globl func_800957F8
 func_800957F8:
+    /* compiled from src/blob/func_800957F8.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -1249,6 +1260,7 @@ func_800958B8:
 .section .text.func_8009591C, "ax", @progbits
 .globl func_8009591C
 func_8009591C:
+    /* compiled from src/blob/func_8009591C.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -1516,6 +1528,7 @@ audio_buffer_manage:
 .section .text.func_80095CE8, "ax", @progbits
 .globl func_80095CE8
 func_80095CE8:
+    /* compiled from src/blob/func_80095CE8.c */
     .word 0x3C018015
     .word 0x03E00008
     .word 0xC4202748
@@ -1523,12 +1536,14 @@ func_80095CE8:
 .section .text.func_80095CF4, "ax", @progbits
 .globl func_80095CF4
 func_80095CF4:
+    /* compiled from src/blob/func_80095CF4.c */
     .word 0x03E00008
     .word 0x00000000
 
 .section .text.func_80095CFC, "ax", @progbits
 .globl func_80095CFC
 func_80095CFC:
+    /* compiled from src/blob/func_80095CFC.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -1648,6 +1663,7 @@ audio_state_save:
 .section .text.func_80095EB8, "ax", @progbits
 .globl func_80095EB8
 func_80095EB8:
+    /* compiled from src/blob/func_80095EB8.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -1803,6 +1819,7 @@ audio_reverb_update:
 .section .text.func_800960CC, "ax", @progbits
 .globl func_800960CC
 func_800960CC:
+    /* compiled from src/blob/func_800960CC.c */
     .word 0x03E00008
     .word 0x00000000
 

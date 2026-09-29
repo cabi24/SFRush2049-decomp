@@ -591,12 +591,14 @@ func_800D169C:
 .section .text.func_800D18C8, "ax", @progbits
 .globl func_800D18C8
 func_800D18C8:
+    /* compiled from src/blob/func_800D18C8.c */
     .word 0x03E00008
     .word 0x00000000
 
 .section .text.func_800D18D0, "ax", @progbits
 .globl func_800D18D0
 func_800D18D0:
+    /* compiled from src/blob/func_800D18D0.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -1927,6 +1929,7 @@ func_800D2C10:
 .section .text.func_800D2CD4, "ax", @progbits
 .globl func_800D2CD4
 func_800D2CD4:
+    /* compiled from src/blob/func_800D2CD4.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -2870,6 +2873,7 @@ func_800D348C:
 .section .text.func_800D3B20, "ax", @progbits
 .globl func_800D3B20
 func_800D3B20:
+    /* compiled from src/blob/func_800D3B20.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -4415,6 +4419,7 @@ ghost_race_setup:
 .section .text.func_800D52C4, "ax", @progbits
 .globl func_800D52C4
 func_800D52C4:
+    /* compiled from src/blob/func_800D52C4.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -4471,6 +4476,7 @@ object_activate:
 .section .text.func_800D536C, "ax", @progbits
 .globl func_800D536C
 func_800D536C:
+    /* compiled from src/blob/func_800D536C.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -4800,6 +4806,7 @@ players_frame_update:
 .section .text.func_800D5828, "ax", @progbits
 .globl func_800D5828
 func_800D5828:
+    /* compiled from src/blob/func_800D5828.c */
     .word 0x00042C00
     .word 0x00057403
     .word 0x000E7A00
@@ -4848,6 +4855,7 @@ player_state_clear:
 .section .text.func_800D58C4, "ax", @progbits
 .globl func_800D58C4
 func_800D58C4:
+    /* compiled from src/blob/func_800D58C4.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -5562,6 +5570,7 @@ physics_init_mode1:
 .section .text.func_800D6348, "ax", @progbits
 .globl func_800D6348
 func_800D6348:
+    /* compiled from src/blob/func_800D6348.c */
     .word 0x27BDFFE0
     .word 0xAFBF0014
     .word 0x3C048014
@@ -5592,6 +5601,7 @@ func_800D6348:
 .section .text.func_800D63B0, "ax", @progbits
 .globl func_800D63B0
 func_800D63B0:
+    /* compiled from src/blob/func_800D63B0.c */
     .word 0x03E00008
     .word 0x00000000
 

@@ -970,6 +970,7 @@ gfx_setup_fc:
 .section .text.func_8009EBB8, "ax", @progbits
 .globl func_8009EBB8
 func_8009EBB8:
+    /* compiled from src/blob/func_8009EBB8.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -3269,6 +3270,7 @@ Input_ProcessGameplayPad:
 .section .text.func_800A0F64, "ax", @progbits
 .globl func_800A0F64
 func_800A0F64:
+    /* compiled from src/blob/func_800A0F64.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -3663,6 +3665,7 @@ check_mpath_save:
 .section .text.func_800A14FC, "ax", @progbits
 .globl func_800A14FC
 func_800A14FC:
+    /* compiled from src/blob/func_800A14FC.c */
     .word 0x240E0001
     .word 0x3C018012
     .word 0x03E00008
@@ -4015,6 +4018,7 @@ func_800A1910:
 .section .text.func_800A1A3C, "ax", @progbits
 .globl func_800A1A3C
 func_800A1A3C:
+    /* compiled from src/blob/func_800A1A3C.c */
     .word 0x00047080
     .word 0x01C47023
     .word 0x000E7180
@@ -4840,12 +4844,14 @@ AdjustSteer:
 .section .text.func_800A2670, "ax", @progbits
 .globl func_800A2670
 func_800A2670:
+    /* compiled from src/blob/func_800A2670.c */
     .word 0x03E00008
     .word 0x00000000
 
 .section .text.func_800A2678, "ax", @progbits
 .globl func_800A2678
 func_800A2678:
+    /* compiled from src/blob/func_800A2678.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -5303,6 +5309,7 @@ no_catchup:
 .section .text.func_800A2D44, "ax", @progbits
 .globl func_800A2D44
 func_800A2D44:
+    /* compiled from src/blob/func_800A2D44.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -5812,6 +5819,7 @@ func_800A3424:
 .section .text.func_800A3508, "ax", @progbits
 .globl func_800A3508
 func_800A3508:
+    /* compiled from src/blob/func_800A3508.c */
     .word 0x248200FF
     .word 0x00027203
     .word 0x03E00008
@@ -5856,6 +5864,7 @@ func_800A3518:
 .section .text.func_800A3598, "ax", @progbits
 .globl func_800A3598
 func_800A3598:
+    /* compiled from src/blob/func_800A3598.c */
     .word 0x00047080
     .word 0x01C47023
     .word 0x000E7180
@@ -5869,6 +5878,7 @@ func_800A3598:
 .section .text.func_800A35BC, "ax", @progbits
 .globl func_800A35BC
 func_800A35BC:
+    /* compiled from src/blob/func_800A35BC.c */
     .word 0x00047080
     .word 0x01C47023
     .word 0x000E7180
@@ -5885,6 +5895,7 @@ func_800A35BC:
 .section .text.func_800A35EC, "ax", @progbits
 .globl func_800A35EC
 func_800A35EC:
+    /* compiled from src/blob/func_800A35EC.c */
     .word 0xAFA40000
     .word 0x03E00008
     .word 0x24020001
@@ -5892,6 +5903,7 @@ func_800A35EC:
 .section .text.func_800A35F8, "ax", @progbits
 .globl func_800A35F8
 func_800A35F8:
+    /* compiled from src/blob/func_800A35F8.c */
     .word 0x00047080
     .word 0x01C47023
     .word 0x000E7180
@@ -5905,6 +5917,7 @@ func_800A35F8:
 .section .text.func_800A361C, "ax", @progbits
 .globl func_800A361C
 func_800A361C:
+    /* compiled from src/blob/func_800A361C.c */
     .word 0x00047080
     .word 0x01C47023
     .word 0x000E7180
@@ -5973,6 +5986,7 @@ func_800A3640:
 .section .text.func_800A370C, "ax", @progbits
 .globl func_800A370C
 func_800A370C:
+    /* compiled from src/blob/func_800A370C.c */
     .word 0xAC800008
     .word 0xAC80000C
     .word 0x03E00008
@@ -5981,6 +5995,7 @@ func_800A370C:
 .section .text.func_800A371C, "ax", @progbits
 .globl func_800A371C
 func_800A371C:
+    /* compiled from src/blob/func_800A371C.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -6874,6 +6889,7 @@ func_800A43FC:
 .section .text.func_800A44D0, "ax", @progbits
 .globl func_800A44D0
 func_800A44D0:
+    /* compiled from src/blob/func_800A44D0.c */
     .word 0x3C018014
     .word 0x03E00008
     .word 0xAC244008
@@ -6881,6 +6897,7 @@ func_800A44D0:
 .section .text.func_800A44DC, "ax", @progbits
 .globl func_800A44DC
 func_800A44DC:
+    /* compiled from src/blob/func_800A44DC.c */
     .word 0x3C018012
     .word 0x03E00008
     .word 0xA020EAE0
@@ -6888,6 +6905,7 @@ func_800A44DC:
 .section .text.func_800A44E8, "ax", @progbits
 .globl func_800A44E8
 func_800A44E8:
+    /* compiled from src/blob/func_800A44E8.c */
     .word 0xAFA50004
     .word 0xAFA60008
     .word 0xA0850000

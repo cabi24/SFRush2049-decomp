@@ -122,6 +122,7 @@ camera_position_update:
 .section .text.func_800AED18, "ax", @progbits
 .globl func_800AED18
 func_800AED18:
+    /* compiled from src/blob/func_800AED18.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -350,6 +351,7 @@ camera_collision_check:
 .section .text.func_800AF064, "ax", @progbits
 .globl func_800AF064
 func_800AF064:
+    /* compiled from src/blob/func_800AF064.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -1071,12 +1073,14 @@ func_800AFA84:
 .section .text.func_800AFB28, "ax", @progbits
 .globl func_800AFB28
 func_800AFB28:
+    /* compiled from src/blob/func_800AFB28.c */
     .word 0x03E00008
     .word 0x00000000
 
 .section .text.func_800AFB30, "ax", @progbits
 .globl func_800AFB30
 func_800AFB30:
+    /* compiled from src/blob/func_800AFB30.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -1222,6 +1226,7 @@ save_validate:
 .section .text.func_800AFD54, "ax", @progbits
 .globl func_800AFD54
 func_800AFD54:
+    /* compiled from src/blob/func_800AFD54.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -1964,6 +1969,7 @@ audio_voice_set:
 .section .text.PhysicsObjectList_Update, "ax", @progbits
 .globl PhysicsObjectList_Update
 PhysicsObjectList_Update:
+    /* compiled from src/blob/PhysicsObjectList_Update.c */
     .word 0x3C028014
     .word 0x8C4291F0
     .word 0x27BDFFE0
@@ -1997,24 +2003,28 @@ PhysicsObjectList_Update:
 .section .text.func_800B08DC, "ax", @progbits
 .globl func_800B08DC
 func_800B08DC:
+    /* compiled from src/blob/func_800B08DC.c */
     .word 0x03E00008
     .word 0x00000000
 
 .section .text.func_800B08E4, "ax", @progbits
 .globl func_800B08E4
 func_800B08E4:
+    /* compiled from src/blob/func_800B08E4.c */
     .word 0x03E00008
     .word 0x00000000
 
 .section .text.func_800B08EC, "ax", @progbits
 .globl func_800B08EC
 func_800B08EC:
+    /* compiled from src/blob/func_800B08EC.c */
     .word 0x03E00008
     .word 0x00000000
 
 .section .text.func_800B08F4, "ax", @progbits
 .globl func_800B08F4
 func_800B08F4:
+    /* compiled from src/blob/func_800B08F4.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -2446,6 +2456,7 @@ func_800B0EA0:
 .section .text.func_800B0F60, "ax", @progbits
 .globl func_800B0F60
 func_800B0F60:
+    /* compiled from src/blob/func_800B0F60.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -3476,6 +3487,7 @@ music_control:
 .section .text.func_800B1F28, "ax", @progbits
 .globl func_800B1F28
 func_800B1F28:
+    /* compiled from src/blob/func_800B1F28.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -4077,12 +4089,14 @@ func_800B27E4:
 .section .text.func_800B2818, "ax", @progbits
 .globl func_800B2818
 func_800B2818:
+    /* compiled from src/blob/func_800B2818.c */
     .word 0x03E00008
     .word 0x00000000
 
 .section .text.func_800B2820, "ax", @progbits
 .globl func_800B2820
 func_800B2820:
+    /* compiled from src/blob/func_800B2820.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -4973,6 +4987,7 @@ tire_sound_update:
 .section .text.func_800B3584, "ax", @progbits
 .globl func_800B3584
 func_800B3584:
+    /* compiled from src/blob/func_800B3584.c */
     .word 0x03E00008
     .word 0x00000000
 

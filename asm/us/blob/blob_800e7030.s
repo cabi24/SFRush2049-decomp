@@ -5,6 +5,7 @@
 .section .text.func_800E7030, "ax", @progbits
 .globl func_800E7030
 func_800E7030:
+    /* compiled from src/blob/func_800E7030.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -665,6 +666,7 @@ object_counter_increment:
 .section .text.func_800E79F0, "ax", @progbits
 .globl func_800E79F0
 func_800E79F0:
+    /* compiled from src/blob/func_800E79F0.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -882,6 +884,7 @@ func_800E7C2C:
 .section .text.func_800E7D04, "ax", @progbits
 .globl func_800E7D04
 func_800E7D04:
+    /* compiled from src/blob/func_800E7D04.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -1905,6 +1908,7 @@ func_800E847C:
 .section .text.func_800E8CB0, "ax", @progbits
 .globl func_800E8CB0
 func_800E8CB0:
+    /* compiled from src/blob/func_800E8CB0.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -7854,12 +7858,14 @@ world_trigger_activate:
 .section .text.func_800EE7AC, "ax", @progbits
 .globl func_800EE7AC
 func_800EE7AC:
+    /* compiled from src/blob/func_800EE7AC.c */
     .word 0x03E00008
     .word 0x00000000
 
 .section .text.func_800EE7B4, "ax", @progbits
 .globl func_800EE7B4
 func_800EE7B4:
+    /* compiled from src/blob/func_800EE7B4.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -7940,6 +7946,7 @@ collision_check_thunk:
 .section .text.func_800EE8AC, "ax", @progbits
 .globl func_800EE8AC
 func_800EE8AC:
+    /* compiled from src/blob/func_800EE8AC.c */
     .word 0x03E00008
     .word 0x00000000
 

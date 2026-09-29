@@ -5,6 +5,7 @@
 .section .text.func_800D6690, "ax", @progbits
 .globl func_800D6690
 func_800D6690:
+    /* compiled from src/blob/func_800D6690.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -176,6 +177,7 @@ credits_scroll:
 .section .text.func_800D690C, "ax", @progbits
 .globl func_800D690C
 func_800D690C:
+    /* compiled from src/blob/func_800D690C.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -535,6 +537,7 @@ func_800D6E00:
 .section .text.func_800D6E74, "ax", @progbits
 .globl func_800D6E74
 func_800D6E74:
+    /* compiled from src/blob/func_800D6E74.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -3804,6 +3807,7 @@ func_800D91A0:
 .section .text.func_800DA0B4, "ax", @progbits
 .globl func_800DA0B4
 func_800DA0B4:
+    /* compiled from src/blob/func_800DA0B4.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -4530,12 +4534,14 @@ func_800DA2C0:
 .section .text.func_800DABCC, "ax", @progbits
 .globl func_800DABCC
 func_800DABCC:
+    /* compiled from src/blob/func_800DABCC.c */
     .word 0x03E00008
     .word 0x00000000
 
 .section .text.func_800DABD4, "ax", @progbits
 .globl func_800DABD4
 func_800DABD4:
+    /* compiled from src/blob/func_800DABD4.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -6508,6 +6514,7 @@ attract_mode_handler:
 .section .text.func_800DC994, "ax", @progbits
 .globl func_800DC994
 func_800DC994:
+    /* compiled from src/blob/func_800DC994.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -6723,12 +6730,14 @@ attract_demo_handler:
 .section .text.func_800DCCD0, "ax", @progbits
 .globl func_800DCCD0
 func_800DCCD0:
+    /* compiled from src/blob/func_800DCCD0.c */
     .word 0x03E00008
     .word 0x00000000
 
 .section .text.func_800DCCD8, "ax", @progbits
 .globl func_800DCCD8
 func_800DCCD8:
+    /* compiled from src/blob/func_800DCCD8.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -6767,6 +6776,7 @@ func_800DCCE0:
 .section .text.func_800DCD50, "ax", @progbits
 .globl func_800DCD50
 func_800DCD50:
+    /* compiled from src/blob/func_800DCD50.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -6993,18 +7003,21 @@ attract_video_handler:
 .section .text.func_800DD0A8, "ax", @progbits
 .globl func_800DD0A8
 func_800DD0A8:
+    /* compiled from src/blob/func_800DD0A8.c */
     .word 0x03E00008
     .word 0x00000000
 
 .section .text.func_800DD0B0, "ax", @progbits
 .globl func_800DD0B0
 func_800DD0B0:
+    /* compiled from src/blob/func_800DD0B0.c */
     .word 0x03E00008
     .word 0x00000000
 
 .section .text.func_800DD0B8, "ax", @progbits
 .globl func_800DD0B8
 func_800DD0B8:
+    /* compiled from src/blob/func_800DD0B8.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -7242,12 +7255,14 @@ func_800DD0C0:
 .section .text.func_800DD44C, "ax", @progbits
 .globl func_800DD44C
 func_800DD44C:
+    /* compiled from src/blob/func_800DD44C.c */
     .word 0x03E00008
     .word 0x00000000
 
 .section .text.func_800DD454, "ax", @progbits
 .globl func_800DD454
 func_800DD454:
+    /* compiled from src/blob/func_800DD454.c */
     .word 0x03E00008
     .word 0x00000000
 

@@ -1276,12 +1276,14 @@ func_800CD058:
 .section .text.func_800CD0F4, "ax", @progbits
 .globl func_800CD0F4
 func_800CD0F4:
+    /* compiled from src/blob/func_800CD0F4.c */
     .word 0x03E00008
     .word 0x00000000
 
 .section .text.func_800CD0FC, "ax", @progbits
 .globl func_800CD0FC
 func_800CD0FC:
+    /* compiled from src/blob/func_800CD0FC.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -2230,6 +2232,7 @@ func_800CDE88:
 .section .text.func_800CDED8, "ax", @progbits
 .globl func_800CDED8
 func_800CDED8:
+    /* compiled from src/blob/func_800CDED8.c */
     .word 0x8C8E0000
     .word 0x8DCF002C
     .word 0x8DF80000
@@ -4637,6 +4640,7 @@ track_select_handler:
 .section .text.func_800D0380, "ax", @progbits
 .globl func_800D0380
 func_800D0380:
+    /* compiled from src/blob/func_800D0380.c */
     .word 0x00047400
     .word 0x000E7C03
     .word 0x000FCA00
@@ -4944,6 +4948,7 @@ func_800D0424:
 .section .text.func_800D0808, "ax", @progbits
 .globl func_800D0808
 func_800D0808:
+    /* compiled from src/blob/func_800D0808.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -5099,6 +5104,7 @@ func_800D09E8:
 .section .text.func_800D0A1C, "ax", @progbits
 .globl func_800D0A1C
 func_800D0A1C:
+    /* compiled from src/blob/func_800D0A1C.c */
     .word 0x808E000D
     .word 0x3C018011
     .word 0x000E7880

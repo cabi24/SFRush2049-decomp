@@ -121,6 +121,7 @@ ambient_sound_set:
 .section .text.func_800B3D0C, "ax", @progbits
 .globl func_800B3D0C
 func_800B3D0C:
+    /* compiled from src/blob/func_800B3D0C.c */
     .word 0x3C028015
     .word 0x03E00008
     .word 0x80429B60
@@ -444,6 +445,7 @@ object_manager_update:
 .section .text.func_800B41B8, "ax", @progbits
 .globl func_800B41B8
 func_800B41B8:
+    /* compiled from src/blob/func_800B41B8.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -532,6 +534,7 @@ slot_state_setup:
 .section .text.func_800B42E8, "ax", @progbits
 .globl func_800B42E8
 func_800B42E8:
+    /* compiled from src/blob/func_800B42E8.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -728,6 +731,7 @@ voice_stop:
 .section .text.func_800B45B4, "ax", @progbits
 .globl func_800B45B4
 func_800B45B4:
+    /* compiled from src/blob/func_800B45B4.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -832,18 +836,21 @@ format_string_parse:
 .section .text.func_800B4720, "ax", @progbits
 .globl func_800B4720
 func_800B4720:
+    /* compiled from src/blob/func_800B4720.c */
     .word 0x03E00008
     .word 0x00000000
 
 .section .text.func_800B4728, "ax", @progbits
 .globl func_800B4728
 func_800B4728:
+    /* compiled from src/blob/func_800B4728.c */
     .word 0x03E00008
     .word 0x00000000
 
 .section .text.func_800B4730, "ax", @progbits
 .globl func_800B4730
 func_800B4730:
+    /* compiled from src/blob/func_800B4730.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -1094,18 +1101,21 @@ audio_bus_mix:
 .section .text.func_800B4AE8, "ax", @progbits
 .globl func_800B4AE8
 func_800B4AE8:
+    /* compiled from src/blob/func_800B4AE8.c */
     .word 0x03E00008
     .word 0x00000000
 
 .section .text.func_800B4AF0, "ax", @progbits
 .globl func_800B4AF0
 func_800B4AF0:
+    /* compiled from src/blob/func_800B4AF0.c */
     .word 0x03E00008
     .word 0x00000000
 
 .section .text.func_800B4AF8, "ax", @progbits
 .globl func_800B4AF8
 func_800B4AF8:
+    /* compiled from src/blob/func_800B4AF8.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -1800,6 +1810,7 @@ func_800B4FB0:
 .section .text.func_800B5570, "ax", @progbits
 .globl func_800B5570
 func_800B5570:
+    /* compiled from src/blob/func_800B5570.c */
     .word 0x3C018011
     .word 0x03E00008
     .word 0xAC2474B8
@@ -1842,6 +1853,7 @@ ambient_sounds_clear:
 .section .text.func_800B55F4, "ax", @progbits
 .globl func_800B55F4
 func_800B55F4:
+    /* compiled from src/blob/func_800B55F4.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -2119,6 +2131,7 @@ func_800B5940:
 .section .text.func_800B59E8, "ax", @progbits
 .globl func_800B59E8
 func_800B59E8:
+    /* compiled from src/blob/func_800B59E8.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -2537,12 +2550,14 @@ resource_type_select:
 .section .text.func_800B6014, "ax", @progbits
 .globl func_800B6014
 func_800B6014:
+    /* compiled from src/blob/func_800B6014.c */
     .word 0x03E00008
     .word 0x00000000
 
 .section .text.func_800B601C, "ax", @progbits
 .globl func_800B601C
 func_800B601C:
+    /* compiled from src/blob/func_800B601C.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -3665,6 +3680,7 @@ menu_input_process:
 .section .text.func_800B70EC, "ax", @progbits
 .globl func_800B70EC
 func_800B70EC:
+    /* compiled from src/blob/func_800B70EC.c */
     .word 0x00047400
     .word 0x000E7C03
     .word 0xAFA50004

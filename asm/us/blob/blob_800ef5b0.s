@@ -2319,6 +2319,7 @@ func_800F1210:
 .section .text.func_800F1928, "ax", @progbits
 .globl func_800F1928
 func_800F1928:
+    /* compiled from src/blob/func_800F1928.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -3225,6 +3226,7 @@ func_800F207C:
 .section .text.func_800F2710, "ax", @progbits
 .globl func_800F2710
 func_800F2710:
+    /* compiled from src/blob/func_800F2710.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -4121,6 +4123,7 @@ net_state_validate:
 .section .text.func_800F34D0, "ax", @progbits
 .globl func_800F34D0
 func_800F34D0:
+    /* compiled from src/blob/func_800F34D0.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -9547,6 +9550,7 @@ func_800F857C:
 .section .text.func_800F874C, "ax", @progbits
 .globl func_800F874C
 func_800F874C:
+    /* compiled from src/blob/func_800F874C.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -9822,6 +9826,7 @@ func_800F87A0:
 .section .text.func_800F8B68, "ax", @progbits
 .globl func_800F8B68
 func_800F8B68:
+    /* compiled from src/blob/func_800F8B68.c */
     .word 0x03E00008
     .word 0x00000000
 

@@ -95,6 +95,7 @@ func_800B7438:
 .section .text.func_800B7498, "ax", @progbits
 .globl func_800B7498
 func_800B7498:
+    /* compiled from src/blob/func_800B7498.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -1086,6 +1087,7 @@ particle_velocity_set:
 .section .text.func_800B836C, "ax", @progbits
 .globl func_800B836C
 func_800B836C:
+    /* compiled from src/blob/func_800B836C.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -1395,6 +1397,7 @@ particle_render:
 .section .text.func_800B8810, "ax", @progbits
 .globl func_800B8810
 func_800B8810:
+    /* compiled from src/blob/func_800B8810.c */
     .word 0x240E0001
     .word 0x3C018011
     .word 0x03E00008
@@ -3168,6 +3171,7 @@ audio_channel_alloc:
 .section .text.func_800BA2B0, "ax", @progbits
 .globl func_800BA2B0
 func_800BA2B0:
+    /* compiled from src/blob/func_800BA2B0.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -4028,6 +4032,7 @@ mode_flags_clear:
 .section .text.func_800BAF90, "ax", @progbits
 .globl func_800BAF90
 func_800BAF90:
+    /* compiled from src/blob/func_800BAF90.c */
     .word 0x03E00008
     .word 0x00000000
 

@@ -60,6 +60,7 @@ func_8010FBE0:
 .section .text.func_8010FC60, "ax", @progbits
 .globl func_8010FC60
 func_8010FC60:
+    /* compiled from src/blob/func_8010FC60.c */
     .word 0x3C018012
     .word 0xAC24EAA8
     .word 0x03E00008
@@ -68,6 +69,7 @@ func_8010FC60:
 .section .text.func_8010FC70, "ax", @progbits
 .globl func_8010FC70
 func_8010FC70:
+    /* compiled from src/blob/func_8010FC70.c */
     .word 0x3C018012
     .word 0xAFA40000
     .word 0x03E00008

@@ -469,6 +469,7 @@ lap_complete:
 .section .text.func_80107AEC, "ax", @progbits
 .globl func_80107AEC
 func_80107AEC:
+    /* compiled from src/blob/func_80107AEC.c */
     .word 0x03E00008
     .word 0x00000000
 

@@ -266,6 +266,7 @@ func_800A47C0:
 .section .text.func_800A48BC, "ax", @progbits
 .globl func_800A48BC
 func_800A48BC:
+    /* compiled from src/blob/func_800A48BC.c */
     .word 0x3C018013
     .word 0x03E00008
     .word 0xAC20E6D0
@@ -444,6 +445,7 @@ wheel_setup_initial:
 .section .text.func_800A4B40, "ax", @progbits
 .globl func_800A4B40
 func_800A4B40:
+    /* compiled from src/blob/func_800A4B40.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -550,6 +552,7 @@ init_wait_completion:
 .section .text.func_800A4CA8, "ax", @progbits
 .globl func_800A4CA8
 func_800A4CA8:
+    /* compiled from src/blob/func_800A4CA8.c */
     .word 0x240EFFFF
     .word 0x3C018012
     .word 0x03E00008
@@ -664,6 +667,7 @@ func_800A4CB8:
 .section .text.func_800A4E50, "ax", @progbits
 .globl func_800A4E50
 func_800A4E50:
+    /* compiled from src/blob/func_800A4E50.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -785,6 +789,7 @@ func_800A4E58:
 .section .text.func_800A5014, "ax", @progbits
 .globl func_800A5014
 func_800A5014:
+    /* compiled from src/blob/func_800A5014.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -915,6 +920,7 @@ func_800A5158:
 .section .text.func_800A51D8, "ax", @progbits
 .globl func_800A51D8
 func_800A51D8:
+    /* compiled from src/blob/func_800A51D8.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -1128,6 +1134,7 @@ func_800A5488:
 .section .text.func_800A54FC, "ax", @progbits
 .globl func_800A54FC
 func_800A54FC:
+    /* compiled from src/blob/func_800A54FC.c */
     .word 0x3C018014
     .word 0xA4200618
     .word 0x3C0E8012
@@ -1139,6 +1146,7 @@ func_800A54FC:
 .section .text.func_800A5518, "ax", @progbits
 .globl func_800A5518
 func_800A5518:
+    /* compiled from src/blob/func_800A5518.c */
     .word 0x000470C0
     .word 0x01C47021
     .word 0x3C0F8018
@@ -1594,6 +1602,7 @@ func_800A5B3C:
 .section .text.func_800A5BB0, "ax", @progbits
 .globl func_800A5BB0
 func_800A5BB0:
+    /* compiled from src/blob/func_800A5BB0.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -1697,6 +1706,7 @@ tire_compound_set:
 .section .text.func_800A5D2C, "ax", @progbits
 .globl func_800A5D2C
 func_800A5D2C:
+    /* compiled from src/blob/func_800A5D2C.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -1916,6 +1926,7 @@ car_shadow_render:
 .section .text.func_800A6078, "ax", @progbits
 .globl func_800A6078
 func_800A6078:
+    /* compiled from src/blob/func_800A6078.c */
     .word 0x000470C0
     .word 0x01C47021
     .word 0x3C0F8018
@@ -3504,6 +3515,7 @@ func_800A785C:
 .section .text.func_800A7884, "ax", @progbits
 .globl func_800A7884
 func_800A7884:
+    /* compiled from src/blob/func_800A7884.c */
     .word 0x00047400
     .word 0x000E7C03
     .word 0x000FC100
@@ -3519,6 +3531,7 @@ func_800A7884:
 .section .text.func_800A78B0, "ax", @progbits
 .globl func_800A78B0
 func_800A78B0:
+    /* compiled from src/blob/func_800A78B0.c */
     .word 0xAFA50004
     .word 0x03E00008
     .word 0xA4850006
@@ -3606,6 +3619,7 @@ func_800A79B8:
 .section .text.func_800A79DC, "ax", @progbits
 .globl func_800A79DC
 func_800A79DC:
+    /* compiled from src/blob/func_800A79DC.c */
     .word 0x00047940
     .word 0x3C018014
     .word 0x002F0821
@@ -3680,6 +3694,7 @@ func_800A79F4:
 .section .text.car_mass_set, "ax", @progbits
 .globl car_mass_set
 car_mass_set:
+    /* compiled from src/blob/car_mass_set.c */
     .word 0x27BDFFE8
     .word 0xAFA40018
     .word 0x00047400

@@ -85,6 +85,7 @@ camera_shake_update:
 .section .text.func_800BDEB0, "ax", @progbits
 .globl func_800BDEB0
 func_800BDEB0:
+    /* compiled from src/blob/func_800BDEB0.c */
     .word 0x3C028015
     .word 0x03E00008
     .word 0x80429B70
@@ -864,6 +865,7 @@ music_tempo_adjust:
 .section .text.func_800BEA30, "ax", @progbits
 .globl func_800BEA30
 func_800BEA30:
+    /* compiled from src/blob/func_800BEA30.c */
     .word 0x3C018018
     .word 0x03E00008
     .word 0xC420A630
@@ -882,6 +884,7 @@ func_800BEA3C:
 .section .text.func_800BEA58, "ax", @progbits
 .globl func_800BEA58
 func_800BEA58:
+    /* compiled from src/blob/func_800BEA58.c */
     .word 0x240E0002
     .word 0x240FFFFF
     .word 0xA08E0064
@@ -891,6 +894,7 @@ func_800BEA58:
 .section .text.func_800BEA6C, "ax", @progbits
 .globl func_800BEA6C
 func_800BEA6C:
+    /* compiled from src/blob/func_800BEA6C.c */
     .word 0x3C028014
     .word 0x8C423FD8
     .word 0x2404FFFF
@@ -1771,6 +1775,7 @@ camera_look_at_point:
 .section .text.func_800BF778, "ax", @progbits
 .globl func_800BF778
 func_800BF778:
+    /* compiled from src/blob/func_800BF778.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -3772,6 +3777,7 @@ camera_update:
 .section .text.func_800C15FC, "ax", @progbits
 .globl func_800C15FC
 func_800C15FC:
+    /* compiled from src/blob/func_800C15FC.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -4699,18 +4705,21 @@ func_800C220C:
 .section .text.func_800C2418, "ax", @progbits
 .globl func_800C2418
 func_800C2418:
+    /* compiled from src/blob/func_800C2418.c */
     .word 0x03E00008
     .word 0x00000000
 
 .section .text.func_800C2420, "ax", @progbits
 .globl func_800C2420
 func_800C2420:
+    /* compiled from src/blob/func_800C2420.c */
     .word 0x03E00008
     .word 0x00000000
 
 .section .text.func_800C2428, "ax", @progbits
 .globl func_800C2428
 func_800C2428:
+    /* compiled from src/blob/func_800C2428.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -5880,6 +5889,7 @@ func_800C3578:
 .section .text.func_800C360C, "ax", @progbits
 .globl func_800C360C
 func_800C360C:
+    /* compiled from src/blob/func_800C360C.c */
     .word 0x03E00008
     .word 0x00000000
 

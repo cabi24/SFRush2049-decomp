@@ -883,6 +883,7 @@ func_8010AEAC:
 .section .text.func_8010B520, "ax", @progbits
 .globl func_8010B520
 func_8010B520:
+    /* compiled from src/blob/func_8010B520.c */
     .word 0x03E00008
     .word 0x00000000
 

@@ -2888,6 +2888,7 @@ func_800C7200:
 .section .text.func_800C7300, "ax", @progbits
 .globl func_800C7300
 func_800C7300:
+    /* compiled from src/blob/func_800C7300.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -3670,6 +3671,7 @@ draw_speedometer:
 .section .text.func_800C7EC0, "ax", @progbits
 .globl func_800C7EC0
 func_800C7EC0:
+    /* compiled from src/blob/func_800C7EC0.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -4252,6 +4254,7 @@ func_800C8738:
 .section .text.func_800C8774, "ax", @progbits
 .globl func_800C8774
 func_800C8774:
+    /* compiled from src/blob/func_800C8774.c */
     .word 0xAC800008
     .word 0xAC800004
     .word 0x03E00008
@@ -4260,6 +4263,7 @@ func_800C8774:
 .section .text.func_800C8784, "ax", @progbits
 .globl func_800C8784
 func_800C8784:
+    /* compiled from src/blob/func_800C8784.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -4922,6 +4926,7 @@ player_cleanup_slots:
 .section .text.func_800C9150, "ax", @progbits
 .globl func_800C9150
 func_800C9150:
+    /* compiled from src/blob/func_800C9150.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -6120,6 +6125,7 @@ init_state_begin:
 .section .text.func_800CA2F8, "ax", @progbits
 .globl func_800CA2F8
 func_800CA2F8:
+    /* compiled from src/blob/func_800CA2F8.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -7424,6 +7430,7 @@ hud_render:
 .section .text.func_800CB718, "ax", @progbits
 .globl func_800CB718
 func_800CB718:
+    /* compiled from src/blob/func_800CB718.c */
     .word 0x00047400
     .word 0x000E7C03
     .word 0x3C198014

@@ -1043,6 +1043,7 @@ anim_state_update:
 .section .text.func_8008E06C, "ax", @progbits
 .globl func_8008E06C
 func_8008E06C:
+    /* compiled from src/blob/func_8008E06C.c */
     .word 0x00047400
     .word 0x000E7C03
     .word 0x000FC900
@@ -3088,6 +3089,7 @@ entity_spawn_init:
 .section .text.func_8008FFB8, "ax", @progbits
 .globl func_8008FFB8
 func_8008FFB8:
+    /* compiled from src/blob/func_8008FFB8.c */
     .word 0x3C028014
     .word 0x244291F0
     .word 0x8C4E0000
@@ -4896,12 +4898,14 @@ entity_anim_texture:
 .section .text.func_80091AF0, "ax", @progbits
 .globl func_80091AF0
 func_80091AF0:
+    /* compiled from src/blob/func_80091AF0.c */
     .word 0x03E00008
     .word 0x00000000
 
 .section .text.func_80091AF8, "ax", @progbits
 .globl func_80091AF8
 func_80091AF8:
+    /* compiled from src/blob/func_80091AF8.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -4979,6 +4983,7 @@ func_80091BA8:
 .section .text.func_80091BFC, "ax", @progbits
 .globl func_80091BFC
 func_80091BFC:
+    /* compiled from src/blob/func_80091BFC.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -6040,6 +6045,7 @@ func_80092B80:
 .section .text.func_80092BC8, "ax", @progbits
 .globl func_80092BC8
 func_80092BC8:
+    /* compiled from src/blob/func_80092BC8.c */
     .word 0x00047400
     .word 0x000E7C03
     .word 0x000FC900
@@ -6379,6 +6385,7 @@ func_80092FE0:
 .section .text.func_8009309C, "ax", @progbits
 .globl func_8009309C
 func_8009309C:
+    /* compiled from src/blob/func_8009309C.c */
     .word 0x03E00008
     .word 0x00000000
 

@@ -3912,6 +3912,7 @@ func_8008A644:
 .section .text.func_8008A6A4, "ax", @progbits
 .globl func_8008A6A4
 func_8008A6A4:
+    /* compiled from src/blob/func_8008A6A4.c */
     .word 0x00047080
     .word 0x01C47023
     .word 0x000E7180
@@ -3943,6 +3944,7 @@ sync_release_video:
 .section .text.func_8008A6FC, "ax", @progbits
 .globl func_8008A6FC
 func_8008A6FC:
+    /* compiled from src/blob/func_8008A6FC.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -3981,6 +3983,7 @@ func_8008A704:
 .section .text.func_8008A774, "ax", @progbits
 .globl func_8008A774
 func_8008A774:
+    /* compiled from src/blob/func_8008A774.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -4442,6 +4445,7 @@ func_8008AD6C:
 .section .text.func_8008AE10, "ax", @progbits
 .globl func_8008AE10
 func_8008AE10:
+    /* compiled from src/blob/func_8008AE10.c */
     .word 0x00047100
     .word 0x01C47021
     .word 0x000E7080
@@ -4453,6 +4457,7 @@ func_8008AE10:
 .section .text.func_8008AE2C, "ax", @progbits
 .globl func_8008AE2C
 func_8008AE2C:
+    /* compiled from src/blob/func_8008AE2C.c */
     .word 0x00047100
     .word 0x01C47021
     .word 0x000E7080
@@ -4464,6 +4469,7 @@ func_8008AE2C:
 .section .text.func_8008AE48, "ax", @progbits
 .globl func_8008AE48
 func_8008AE48:
+    /* compiled from src/blob/func_8008AE48.c */
     .word 0x00047100
     .word 0x01C47021
     .word 0x000E7080
@@ -4475,6 +4481,7 @@ func_8008AE48:
 .section .text.func_8008AE64, "ax", @progbits
 .globl func_8008AE64
 func_8008AE64:
+    /* compiled from src/blob/func_8008AE64.c */
     .word 0x00047400
     .word 0x000E7C03
     .word 0x000FC100
@@ -4842,6 +4849,7 @@ func_8008B32C:
 .section .text.func_8008B3A0, "ax", @progbits
 .globl func_8008B3A0
 func_8008B3A0:
+    /* compiled from src/blob/func_8008B3A0.c */
     .word 0x00047400
     .word 0x000E7C03
     .word 0x000FC100
@@ -6257,6 +6265,7 @@ func_8008C768:
 .section .text.func_8008C874, "ax", @progbits
 .globl func_8008C874
 func_8008C874:
+    /* compiled from src/blob/func_8008C874.c */
     .word 0x948E0002
     .word 0x35CF8000
     .word 0x03E00008
@@ -6800,6 +6809,7 @@ func_8008D098:
 .section .text.func_8008D0B0, "ax", @progbits
 .globl func_8008D0B0
 func_8008D0B0:
+    /* compiled from src/blob/func_8008D0B0.c */
     .word 0x948E0002
     .word 0x31CF7FFF
     .word 0x03E00008

@@ -711,6 +711,7 @@ func_80096CA8:
 .section .text.func_8009715C, "ax", @progbits
 .globl func_8009715C
 func_8009715C:
+    /* compiled from src/blob/func_8009715C.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -807,6 +808,7 @@ func_80097164:
 .section .text.func_800972BC, "ax", @progbits
 .globl func_800972BC
 func_800972BC:
+    /* compiled from src/blob/func_800972BC.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -930,6 +932,7 @@ audio_helper:
 .section .text.func_80097468, "ax", @progbits
 .globl func_80097468
 func_80097468:
+    /* compiled from src/blob/func_80097468.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -1079,6 +1082,7 @@ audio_task_complete:
 .section .text.func_8009768C, "ax", @progbits
 .globl func_8009768C
 func_8009768C:
+    /* compiled from src/blob/func_8009768C.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -1366,42 +1370,49 @@ func_800979A0:
 .section .text.func_80097AC4, "ax", @progbits
 .globl func_80097AC4
 func_80097AC4:
+    /* compiled from src/blob/func_80097AC4.c */
     .word 0x03E00008
     .word 0x00000000
 
 .section .text.func_80097ACC, "ax", @progbits
 .globl func_80097ACC
 func_80097ACC:
+    /* compiled from src/blob/func_80097ACC.c */
     .word 0x03E00008
     .word 0x00000000
 
 .section .text.func_80097AD4, "ax", @progbits
 .globl func_80097AD4
 func_80097AD4:
+    /* compiled from src/blob/func_80097AD4.c */
     .word 0x03E00008
     .word 0x00000000
 
 .section .text.func_80097ADC, "ax", @progbits
 .globl func_80097ADC
 func_80097ADC:
+    /* compiled from src/blob/func_80097ADC.c */
     .word 0x03E00008
     .word 0x00000000
 
 .section .text.func_80097AE4, "ax", @progbits
 .globl func_80097AE4
 func_80097AE4:
+    /* compiled from src/blob/func_80097AE4.c */
     .word 0x03E00008
     .word 0x00000000
 
 .section .text.func_80097AEC, "ax", @progbits
 .globl func_80097AEC
 func_80097AEC:
+    /* compiled from src/blob/func_80097AEC.c */
     .word 0x03E00008
     .word 0x00000000
 
 .section .text.func_80097AF4, "ax", @progbits
 .globl func_80097AF4
 func_80097AF4:
+    /* compiled from src/blob/func_80097AF4.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -1515,6 +1526,7 @@ MP_TargetSteerPos:
 .section .text.func_80097C98, "ax", @progbits
 .globl func_80097C98
 func_80097C98:
+    /* compiled from src/blob/func_80097C98.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -2201,12 +2213,14 @@ pointer_offset8_call:
 .section .text.func_800986D4, "ax", @progbits
 .globl func_800986D4
 func_800986D4:
+    /* compiled from src/blob/func_800986D4.c */
     .word 0x03E00008
     .word 0x00000000
 
 .section .text.func_800986DC, "ax", @progbits
 .globl func_800986DC
 func_800986DC:
+    /* compiled from src/blob/func_800986DC.c */
     .word 0x3C018015
     .word 0xC4202748
     .word 0x3C014661
@@ -2316,6 +2330,7 @@ entity_state_check:
 .section .text.func_80098860, "ax", @progbits
 .globl func_80098860
 func_80098860:
+    /* compiled from src/blob/func_80098860.c */
     .word 0xAC800008
     .word 0x03E00008
     .word 0xAC800004
@@ -2323,6 +2338,7 @@ func_80098860:
 .section .text.func_8009886C, "ax", @progbits
 .globl func_8009886C
 func_8009886C:
+    /* compiled from src/blob/func_8009886C.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -2496,6 +2512,7 @@ func_80098A54:
 .section .text.func_80098ADC, "ax", @progbits
 .globl func_80098ADC
 func_80098ADC:
+    /* compiled from src/blob/func_80098ADC.c */
     .word 0x03E00008
     .word 0x00000000
 

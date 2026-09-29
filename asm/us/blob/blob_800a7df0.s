@@ -1033,12 +1033,14 @@ func_800A8778:
 .section .text.func_800A8D8C, "ax", @progbits
 .globl func_800A8D8C
 func_800A8D8C:
+    /* compiled from src/blob/func_800A8D8C.c */
     .word 0x03E00008
     .word 0x00000000
 
 .section .text.func_800A8D94, "ax", @progbits
 .globl func_800A8D94
 func_800A8D94:
+    /* compiled from src/blob/func_800A8D94.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -1850,6 +1852,7 @@ func_800A9710:
 .section .text.func_800A99C0, "ax", @progbits
 .globl func_800A99C0
 func_800A99C0:
+    /* compiled from src/blob/func_800A99C0.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -2541,6 +2544,7 @@ func_800AA224:
 .section .text.func_800AA44C, "ax", @progbits
 .globl func_800AA44C
 func_800AA44C:
+    /* compiled from src/blob/func_800AA44C.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -2995,6 +2999,7 @@ car_spawn_at_checkpoint:
 .section .text.func_800AAB34, "ax", @progbits
 .globl func_800AAB34
 func_800AAB34:
+    /* compiled from src/blob/func_800AAB34.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -3648,6 +3653,7 @@ func_800AB18C:
 .section .text.func_800AB528, "ax", @progbits
 .globl func_800AB528
 func_800AB528:
+    /* compiled from src/blob/func_800AB528.c */
     .word 0x3C018015
     .word 0xAC209818
     .word 0x3C018015
@@ -3838,6 +3844,7 @@ func_800AB750:
 .section .text.func_800AB7D0, "ax", @progbits
 .globl func_800AB7D0
 func_800AB7D0:
+    /* compiled from src/blob/func_800AB7D0.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -4794,6 +4801,7 @@ differential_output:
 .section .text.func_800AC660, "ax", @progbits
 .globl func_800AC660
 func_800AC660:
+    /* compiled from src/blob/func_800AC660.c */
     .word 0x03E00008
     .word 0x00000000
 
