@@ -3698,23 +3698,23 @@ typedef s64 M2C_UNK64;
 
 
 /* group members */
-void func_8008B640(f32 arg1, s16 arg0, f32 ipa_f16, f32 ipa_f20, f32 ipa_f22, f32 ipa_f24);
-void physics_velocity_integrate_a(s32 arg0, s16 arg1, void *ipa_s1, s32 ipa_s2);
+void func_8008B640(s16 idx, f32 x, f32 y, f32 z, f32 nx, f32 ny, f32 nz);
+void physics_velocity_integrate_a(s32 arg0, s16 arg1, void *ipa_s1, s32 ipa_s2, f32 ipa_f20, f32 ipa_f22, f32 ipa_f24);
 
-void func_8008B640(f32 arg1, s16 arg0, f32 ipa_f16, f32 ipa_f20, f32 ipa_f22, f32 ipa_f24) {
-    void *temp_a1;
+void func_8008B640(s16 idx, f32 x, f32 y, f32 z, f32 nx, f32 ny, f32 nz) {
+    f32 *v;
 
-    temp_a1 = *((s32 *) ((u8 *) &D_8012E708 + (arg0 * 0x44)));
-    M2C_FIELD(temp_a1, f32 *, 0x24) = arg0;
-    M2C_FIELD(temp_a1, f32 *, 0x28) = arg1;
-    M2C_FIELD(temp_a1, f32 *, 0x2C) = ipa_f16;
-    vector_normalize_length((u8 *) temp_a1 + 0x24, temp_a1);
-    M2C_FIELD(temp_a1, f32 *, 0x24) = ipa_f20;
-    M2C_FIELD(temp_a1, f32 *, 0x28) = ipa_f22;
-    M2C_FIELD(temp_a1, f32 *, 0x2C) = ipa_f24;
+    v = *(f32 **) ((u8 *) &D_8012E708 + (idx * 0x44));
+    v[9] = x;
+    v[10] = y;
+    v[11] = z;
+    vector_normalize_length(&v[9], v);
+    v[9] = nx;
+    v[10] = ny;
+    v[11] = nz;
 }
 
-void physics_velocity_integrate_a(s32 arg0, s16 arg1, void *ipa_s1, s32 ipa_s2) {
+void physics_velocity_integrate_a(s32 arg0, s16 arg1, void *ipa_s1, s32 ipa_s2, f32 ipa_f20, f32 ipa_f22, f32 ipa_f24) {
     GameCar *temp_v1;
     f32 *temp_a1;
     f32 *temp_a1_2;
@@ -3723,14 +3723,13 @@ void physics_velocity_integrate_a(s32 arg0, s16 arg1, void *ipa_s1, s32 ipa_s2) 
     s32 temp_f6;
     s32 temp_t9;
 
-    arg6 = arg0;
     temp_v1 = &player_array[M2C_FIELD(ipa_s1, s16 *, 8)];
     if (((s16) arg0 != 0) && !(state_word_a & 8)) {
         temp_v0 = M2C_FIELD(ipa_s1, s16 *, 4);
         if (temp_v0 < 0) {
             if (arg1 != 0) {
                 M2C_FIELD(ipa_s1, s16 *, 4) = 0;
-                func_8008B640(M2C_FIELD(temp_v1, f32 *, 0xA4), arg1, M2C_FIELD(temp_v1, f32 *, 0xAC), saved_reg_f20, saved_reg_f22, saved_reg_f24);
+                func_8008B640(M2C_FIELD(ipa_s1, s16 *, 6), M2C_FIELD(temp_v1, f32 *, 0xA4), M2C_FIELD(temp_v1, f32 *, 0xA8), M2C_FIELD(temp_v1, f32 *, 0xAC), ipa_f20, ipa_f22, ipa_f24);
                 temp_f6 = (s32) *((f32 *) ((u8 *) &D_8014A640 + (M2C_FIELD(ipa_s1, s16 *, 8) * 0x808)));
                 if ((s16) temp_f6 < 0x64) {
                     temp_a1 = *((s32 *) ((u8 *) &D_8012E708 + (M2C_FIELD(ipa_s1, s16 *, 6) * 0x44)));
@@ -3741,7 +3740,7 @@ void physics_velocity_integrate_a(s32 arg0, s16 arg1, void *ipa_s1, s32 ipa_s2) 
             goto block_20;
         }
         if (arg1 != 0) {
-            func_8008B640(M2C_FIELD(temp_v1, f32 *, 0xA4), arg1, M2C_FIELD(temp_v1, f32 *, 0xAC), saved_reg_f20, saved_reg_f22, saved_reg_f24);
+            func_8008B640(M2C_FIELD(ipa_s1, s16 *, 6), M2C_FIELD(temp_v1, f32 *, 0xA4), M2C_FIELD(temp_v1, f32 *, 0xA8), M2C_FIELD(temp_v1, f32 *, 0xAC), ipa_f20, ipa_f22, ipa_f24);
             temp_f10 = (s32) *((f32 *) ((u8 *) &D_8014A640 + (M2C_FIELD(ipa_s1, s16 *, 8) * 0x808)));
             if ((s16) temp_f10 < 0x64) {
                 temp_a1_2 = *((s32 *) ((u8 *) &D_8012E708 + (M2C_FIELD(ipa_s1, s16 *, 6) * 0x44)));
@@ -3759,12 +3758,12 @@ void physics_velocity_integrate_a(s32 arg0, s16 arg1, void *ipa_s1, s32 ipa_s2) 
             } else {
                 M2C_FIELD(ipa_s1, s16 *, 4) = (s16) (temp_v0 - 1);
             }
-block_15:
+block_15:;
         }
         if (M2C_FIELD(ipa_s1, s16 *, 4) >= 6) {
             M2C_FIELD(ipa_s1, s16 *, 4) = 5;
         }
-        if (model_bounds_calc(M2C_ERROR(/* Read from unset register $a0 */), (M2C_FIELD(ipa_s1, s16 *, 4) < 0) ^ 1) != 0) {
+        if (model_bounds_calc((M2C_FIELD(ipa_s1, s16 *, 4) < 0) ^ 1, ipa_s1) != 0) {
             func_8008B000((s32) (&D_801427C0)[ipa_s2], 0, (s32) (&D_80161368)[M2C_FIELD(ipa_s1, s16 *, 4)]);
             return;
         }
@@ -3778,5 +3777,5 @@ block_20:
 /* stand-in caller: keeps func_8008B640 out of line under -O3 */
 void __standin_func_8008B640(void)
 {
-    func_8008B640(0, 0, 0, 0, 0, 0);
+    func_8008B640(0, 0, 0, 0, 0, 0, 0);
 }
