@@ -2,7 +2,7 @@
 /* ===========================================================================
  * The game's one-shot compressor (not part of zlib): deflateInit2_,
  * deflateReset and lm_init inlined, one deflate_slow pass, deflateEnd.
- * Hand-written from the assembly.
+ * Hand-written from the assembly; NOT MATCHING yet (context), see STATUS.md.
  */
 extern void *audio_dma_sync(voidpf opaque, uInt size);
 extern void audio_reverb_update(voidpf opaque, voidpf ptr, int flag);
@@ -12,32 +12,27 @@ extern char D_80152770[];
 
 #define ZALLOC(size) audio_dma_sync(Z_NULL, (size))
 
-/* free under the heap lock; -O3 inlines it at each use */
-static void zfree_locked(voidpf opaque, voidpf ptr)
+/* free under the heap lock */
+__inline void zfree_locked(voidpf ptr)
 {
+    voidpf heap; /* never set: the game passes whatever is in $a0 */
+
     osRecvMesg(D_80152770, Z_NULL, 1);
-    audio_reverb_update(opaque, ptr, 0);
+    audio_reverb_update(heap, ptr, 0);
     osJamMesg(D_80152770, Z_NULL, 0);
 }
-#define TRY_FREE(ptr) { if (ptr) zfree_locked(opaque, ptr); }
+#define TRY_FREE(ptr) { if (ptr) zfree_locked(ptr); }
 
-uLong deflate_mem(Bytef *next_in, uInt avail_in, Bytef *next_out, uInt avail_out,
-                  int level, int windowBits, int memLevel)
+/* deflateInit2_ without the checks, version, method and strategy */
+__inline void deflate_init(z_streamp strm, int level, int windowBits, int memLevel)
 {
-    z_stream strm;
     deflate_state *s;
     ushf *overlay;
-    voidpf opaque; /* never set: the game passes whatever is in $a0 */
 
-    strm.next_in = next_in;
-    strm.avail_in = avail_in;
-    strm.next_out = next_out;
-    strm.avail_out = avail_out;
     s = (deflate_state *) ZALLOC(sizeof(deflate_state));
-    strm.total_in = 0;
-    strm.total_out = 0;
-    strm.state = s;
-    s->strm = &strm;
+    strm->total_in = strm->total_out = 0;
+    strm->state = s;
+    s->strm = strm;
 
     s->w_bits = windowBits;
     s->w_size = 1 << s->w_bits;
@@ -64,6 +59,19 @@ uLong deflate_mem(Bytef *next_in, uInt avail_in, Bytef *next_out, uInt avail_out
     s->max_lazy_match   = configuration_table[level].max_lazy;
     s->nice_match       = configuration_table[level].nice_length;
     s->max_chain_length = configuration_table[level].max_chain;
+}
+
+uLong deflate_mem(Bytef *next_in, uInt avail_in, Bytef *next_out, uInt avail_out,
+                  int level, int windowBits, int memLevel)
+{
+    z_stream strm;
+    deflate_state *s;
+
+    strm.next_in = next_in;
+    strm.avail_in = avail_in;
+    strm.next_out = next_out;
+    strm.avail_out = avail_out;
+    deflate_init(&strm, level, windowBits, memLevel);
 
     /* deflateReset */
     s = strm.state;

@@ -116,12 +116,25 @@ once, frees the five buffers under a message-queue lock
 `osJamMesg`), and returns `total_out`. `audio_dma_sync(0, size)` is the
 allocator. `gen/driver.c` is hand-written from the assembly.
 
-Not matched yet (200/201): the game inlines a free helper at each of the
-five sites (each pointer is parked in its own stack slot, and `$s0`/`$s1`
-are saved but unused), but IDO will not inline the helper at five sites in
-this unit, only at one. The first argument to the free function is never
-set in the ROM (an uninitialized variable). Being context, it does not
-affect the members: every member it calls is in the keep list.
+Not matched yet (194/201). `gen/driver.c` mirrors zlib: an `__inline`
+`deflate_init` (`deflateInit2_` minus checks), `deflateReset`/`lm_init`
+written out, and `deflateEnd` as five `TRY_FREE`s through an `__inline`
+free helper. Findings so far:
+
+- The game **inlines a free helper at all five sites**: each freed pointer
+  is parked in its own stack slot (160, 136, 112, 88), and `$s0`/`$s1` are
+  saved but never used. IDO only inlines a helper at five sites here when
+  it is marked `__inline`; left to its heuristic it inlines one site, not
+  five.
+- **The free function's first argument is never set** in the ROM (no load,
+  no move into `$a0`). An uninitialized local in the inlined helper is still
+  loaded from its stack home by IDO, `register` or not. Unresolved.
+- Remaining shape differences: the game's frame is 200 bytes (`z_stream` at
+  `sp+172`, 24-byte spacing between the free slots), ours 136; the game
+  keeps `s` in `$s2`, ours in `$s0`.
+
+Being context, it does not affect the members: every member it calls is in
+the keep list and has the standard ABI.
 
 ## Relocations (all resolved by the strict scorer, except as noted)
 
