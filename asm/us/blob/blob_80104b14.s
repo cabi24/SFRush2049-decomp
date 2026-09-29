@@ -466,8 +466,11 @@ lap_complete:
     .word 0x03E00008
     .word 0x27BD00B8
 
-.section .blobdata.op_80107aec, "ax", @progbits
-    .incbin "build/game_code.bin", 528540, 8
+.section .text.func_80107AEC, "ax", @progbits
+.globl func_80107AEC
+func_80107AEC:
+    .word 0x03E00008
+    .word 0x00000000
 
 .section .text.race_finish, "ax", @progbits
 .globl race_finish

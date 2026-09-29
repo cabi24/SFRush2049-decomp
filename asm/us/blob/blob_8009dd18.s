@@ -1,6 +1,39 @@
-/* region blob_8009dd88: 0x8009DD88-0x800A5A40 */
+/* region blob_8009dd18: 0x8009DD18-0x800A4508 */
 .set noreorder
 .set noat
+
+.section .text.track_collision_edge, "ax", @progbits
+.globl track_collision_edge
+track_collision_edge:
+    /* compiled from src/blob/track_collision_edge.c */
+    .word 0x27BDFFE8
+    .word 0xAFBF0014
+    .word 0x8C8E0000
+    .word 0x240F0100
+    .word 0x00AFC004
+    .word 0x01D8C824
+    .word 0x57200004
+    .word 0x84820016
+    .word 0x1000000F
+    .word 0x24020001
+    .word 0x84820016
+    .word 0x3C098013
+    .word 0x2529E700
+    .word 0x04400009
+    .word 0x00024100
+    .word 0x01024021
+    .word 0x00084080
+    .word 0x0C027714
+    .word 0x01092021
+    .word 0x50400004
+    .word 0x00001025
+    .word 0x10000002
+    .word 0x24020001
+    .word 0x00001025
+    .word 0x8FBF0014
+    .word 0x27BD0018
+    .word 0x03E00008
+    .word 0x00000000
 
 .section .text.track_collision_wall, "ax", @progbits
 .globl track_collision_wall
@@ -934,8 +967,11 @@ gfx_setup_fc:
     .word 0x03E00008
     .word 0x00000000
 
-.section .blobdata.op_8009ebb8, "ax", @progbits
-    .incbin "build/game_code.bin", 98664, 8
+.section .text.func_8009EBB8, "ax", @progbits
+.globl func_8009EBB8
+func_8009EBB8:
+    .word 0x03E00008
+    .word 0x00000000
 
 .section .text.physics_float_calc, "ax", @progbits
 .globl physics_float_calc
@@ -3230,8 +3266,11 @@ Input_ProcessGameplayPad:
     .word 0x03E00008
     .word 0x27BD0100
 
-.section .blobdata.op_800a0f64, "ax", @progbits
-    .incbin "build/game_code.bin", 107796, 8
+.section .text.func_800A0F64, "ax", @progbits
+.globl func_800A0F64
+func_800A0F64:
+    .word 0x03E00008
+    .word 0x00000000
 
 .section .text.MP_TargetSpeed, "ax", @progbits
 .globl MP_TargetSpeed
@@ -3535,8 +3574,18 @@ sync_maxpath_to_checkpoint:
     .word 0x03E00008
     .word 0x27BD0040
 
-.section .blobdata.op_800a13c4, "ax", @progbits
-    .incbin "build/game_code.bin", 108916, 36
+.section .text.func_800A13C4, "ax", @progbits
+.globl func_800A13C4
+func_800A13C4:
+    .word 0x00047080
+    .word 0x01C47023
+    .word 0x000E7180
+    .word 0x01C47021
+    .word 0x000E7080
+    .word 0x3C018014
+    .word 0x002E0821
+    .word 0x03E00008
+    .word 0xA02540AD
 
 .section .text.check_mpath_save, "ax", @progbits
 .globl check_mpath_save
@@ -3611,8 +3660,13 @@ check_mpath_save:
     .word 0x03E00008
     .word 0x27BD0058
 
-.section .blobdata.op_800a14fc, "ax", @progbits
-    .incbin "build/game_code.bin", 109228, 16
+.section .text.func_800A14FC, "ax", @progbits
+.globl func_800A14FC
+func_800A14FC:
+    .word 0x240E0001
+    .word 0x3C018012
+    .word 0x03E00008
+    .word 0xA02EEAE4
 
 .section .text.func_800A150C, "ax", @progbits
 .globl func_800A150C
@@ -3958,8 +4012,18 @@ func_800A1910:
     .word 0x03E00008
     .word 0x00000000
 
-.section .blobdata.op_800a1a3c, "ax", @progbits
-    .incbin "build/game_code.bin", 110572, 36
+.section .text.func_800A1A3C, "ax", @progbits
+.globl func_800A1A3C
+func_800A1A3C:
+    .word 0x00047080
+    .word 0x01C47023
+    .word 0x000E7180
+    .word 0x01C47021
+    .word 0x000E7080
+    .word 0x3C028014
+    .word 0x004E1021
+    .word 0x03E00008
+    .word 0x80424031
 
 .section .text.func_800A1A60, "ax", @progbits
 .globl func_800A1A60
@@ -4773,8 +4837,17 @@ AdjustSteer:
     .word 0x03E00008
     .word 0x27BD0028
 
-.section .blobdata.op_800a2670, "ax", @progbits
-    .incbin "build/game_code.bin", 113696, 16
+.section .text.func_800A2670, "ax", @progbits
+.globl func_800A2670
+func_800A2670:
+    .word 0x03E00008
+    .word 0x00000000
+
+.section .text.func_800A2678, "ax", @progbits
+.globl func_800A2678
+func_800A2678:
+    .word 0x03E00008
+    .word 0x00000000
 
 .section .text.AdjustSpeed, "ax", @progbits
 .globl AdjustSpeed
@@ -5227,8 +5300,11 @@ no_catchup:
     .word 0x03E00008
     .word 0x00000000
 
-.section .blobdata.op_800a2d44, "ax", @progbits
-    .incbin "build/game_code.bin", 115444, 8
+.section .text.func_800A2D44, "ax", @progbits
+.globl func_800A2D44
+func_800A2D44:
+    .word 0x03E00008
+    .word 0x00000000
 
 .section .text.track_process_main, "ax", @progbits
 .globl track_process_main
@@ -5733,8 +5809,111 @@ func_800A3424:
     .word 0x03E00008
     .word 0x00000000
 
-.section .blobdata.op_800a3508, "ax", @progbits
-    .incbin "build/game_code.bin", 117432, 312
+.section .text.func_800A3508, "ax", @progbits
+.globl func_800A3508
+func_800A3508:
+    .word 0x248200FF
+    .word 0x00027203
+    .word 0x03E00008
+    .word 0x01C01025
+
+.section .text.func_800A3518, "ax", @progbits
+.globl func_800A3518
+func_800A3518:
+    .word 0x00047080
+    .word 0x01C47023
+    .word 0x000E7180
+    .word 0x01C47021
+    .word 0x3C0F8014
+    .word 0x25EF4030
+    .word 0x000E7080
+    .word 0x00001825
+    .word 0x01CF3021
+    .word 0x00002825
+    .word 0x24020280
+    .word 0x8CD8008C
+    .word 0x24A500A0
+    .word 0x57000003
+    .word 0x8CD900B4
+    .word 0x24630001
+    .word 0x8CD900B4
+    .word 0x57200003
+    .word 0x8CC800DC
+    .word 0x24630001
+    .word 0x8CC800DC
+    .word 0x55000003
+    .word 0x8CC90104
+    .word 0x24630001
+    .word 0x8CC90104
+    .word 0x15200002
+    .word 0x00000000
+    .word 0x24630001
+    .word 0x14A2FFEE
+    .word 0x24C600A0
+    .word 0x03E00008
+    .word 0x00601025
+
+.section .text.func_800A3598, "ax", @progbits
+.globl func_800A3598
+func_800A3598:
+    .word 0x00047080
+    .word 0x01C47023
+    .word 0x000E7180
+    .word 0x01C47021
+    .word 0x000E7080
+    .word 0x3C028014
+    .word 0x004E1021
+    .word 0x03E00008
+    .word 0x8C4240A8
+
+.section .text.func_800A35BC, "ax", @progbits
+.globl func_800A35BC
+func_800A35BC:
+    .word 0x00047080
+    .word 0x01C47023
+    .word 0x000E7180
+    .word 0x01C47021
+    .word 0x000E7080
+    .word 0x3C028014
+    .word 0x004E1021
+    .word 0x8C4240A8
+    .word 0x244200FF
+    .word 0x00027A02
+    .word 0x03E00008
+    .word 0x01E01025
+
+.section .text.func_800A35EC, "ax", @progbits
+.globl func_800A35EC
+func_800A35EC:
+    .word 0xAFA40000
+    .word 0x03E00008
+    .word 0x24020001
+
+.section .text.func_800A35F8, "ax", @progbits
+.globl func_800A35F8
+func_800A35F8:
+    .word 0x00047080
+    .word 0x01C47023
+    .word 0x000E7180
+    .word 0x01C47021
+    .word 0x000E7080
+    .word 0x3C028014
+    .word 0x004E1021
+    .word 0x03E00008
+    .word 0x80424035
+
+.section .text.func_800A361C, "ax", @progbits
+.globl func_800A361C
+func_800A361C:
+    .word 0x00047080
+    .word 0x01C47023
+    .word 0x000E7180
+    .word 0x01C47021
+    .word 0x000E7080
+    .word 0x3C028014
+    .word 0x004E1021
+    .word 0x03E00008
+    .word 0x80424030
 
 .section .text.func_800A3640, "ax", @progbits
 .globl func_800A3640
@@ -5791,8 +5970,19 @@ func_800A3640:
     .word 0x03E00008
     .word 0x00000000
 
-.section .blobdata.op_800a370c, "ax", @progbits
-    .incbin "build/game_code.bin", 117948, 24
+.section .text.func_800A370C, "ax", @progbits
+.globl func_800A370C
+func_800A370C:
+    .word 0xAC800008
+    .word 0xAC80000C
+    .word 0x03E00008
+    .word 0xAC800004
+
+.section .text.func_800A371C, "ax", @progbits
+.globl func_800A371C
+func_800A371C:
+    .word 0x03E00008
+    .word 0x00000000
 
 .section .text.func_800A3724, "ax", @progbits
 .globl func_800A3724
@@ -6681,1399 +6871,29 @@ func_800A43FC:
     .word 0x03E00008
     .word 0x00000000
 
-.section .blobdata.op_800a44d0, "ax", @progbits
-    .incbin "build/game_code.bin", 121472, 56
-
-.section .text.car_lod_select, "ax", @progbits
-.globl car_lod_select
-car_lod_select:
-    .word 0x27BDFFC0
-    .word 0xAFB40030
-    .word 0x3C148014
+.section .text.func_800A44D0, "ax", @progbits
+.globl func_800A44D0
+func_800A44D0:
     .word 0x3C018014
-    .word 0x269460E0
+    .word 0x03E00008
     .word 0xAC244008
-    .word 0xAFB50034
-    .word 0x24150001
-    .word 0xAFB3002C
-    .word 0xAFB20028
-    .word 0xAFB00020
-    .word 0x3C108014
-    .word 0x3C128014
-    .word 0x3C138014
-    .word 0xAFBF003C
-    .word 0xAFB60038
-    .word 0xAFB10024
-    .word 0xA2950000
-    .word 0xA2950001
-    .word 0xAE800004
-    .word 0xAE80000C
-    .word 0xAE800008
-    .word 0x267360C0
-    .word 0x26524C60
-    .word 0x26104DC0
-    .word 0xAE500000
-    .word 0x02802025
-    .word 0x02402825
-    .word 0x0C0247EF
-    .word 0x8E860008
-    .word 0x2610004C
-    .word 0x0213082B
-    .word 0x1420FFF8
-    .word 0x26520004
-    .word 0x3C128014
-    .word 0x3C148014
-    .word 0x26944030
-    .word 0x26524D60
-    .word 0x00009825
-    .word 0x24160004
-    .word 0xA2550000
-    .word 0xA2550001
-    .word 0xAE400008
-    .word 0xAE40000C
-    .word 0xAE400004
-    .word 0xA2800005
-    .word 0x0C028DC9
-    .word 0x326700FF
-    .word 0x26730001
-    .word 0x26520010
-    .word 0x1676FFF5
-    .word 0x26940304
-    .word 0x3C108003
-    .word 0x3C0E8003
-    .word 0x261049F0
-    .word 0x25CE29F0
-    .word 0x3C068009
-    .word 0x240F0006
-    .word 0xAFAF0014
-    .word 0x24C6A77C
-    .word 0xAFAE0010
-    .word 0x02002025
-    .word 0x24050002
-    .word 0x0C001BCC
-    .word 0x00003825
-    .word 0x0C001C20
-    .word 0x02002025
-    .word 0x24180001
+
+.section .text.func_800A44DC, "ax", @progbits
+.globl func_800A44DC
+func_800A44DC:
     .word 0x3C018012
-    .word 0x0C0290FF
-    .word 0xA038EAE0
-    .word 0x8FBF003C
-    .word 0x8FB00020
-    .word 0x8FB10024
-    .word 0x8FB20028
-    .word 0x8FB3002C
-    .word 0x8FB40030
-    .word 0x8FB50034
-    .word 0x8FB60038
     .word 0x03E00008
-    .word 0x27BD0040
+    .word 0xA020EAE0
 
-.section .text.func_800A464C, "ax", @progbits
-.globl func_800A464C
-func_800A464C:
-    .word 0x90820000
-    .word 0x14400008
-    .word 0x00000000
-    .word 0x90AE0000
-    .word 0x11C00003
-    .word 0x00000000
+.section .text.func_800A44E8, "ax", @progbits
+.globl func_800A44E8
+func_800A44E8:
+    .word 0xAFA50004
+    .word 0xAFA60008
+    .word 0xA0850000
+    .word 0xA0860001
+    .word 0xAC800004
+    .word 0xAC80000C
     .word 0x03E00008
-    .word 0x00001025
-    .word 0x03E00008
-    .word 0x00801025
-    .word 0x10400012
-    .word 0x00001025
-    .word 0x00A01825
-    .word 0x90660000
-    .word 0x00827821
-    .word 0x24420001
-    .word 0x54C00004
-    .word 0x91F80000
-    .word 0x03E00008
-    .word 0x00801025
-    .word 0x91F80000
-    .word 0x54D80004
-    .word 0x90990001
-    .word 0x1000FFF5
-    .word 0x24630001
-    .word 0x90990001
-    .word 0x24840001
-    .word 0x5720FFF0
-    .word 0x00001025
-    .word 0x00001025
-    .word 0x03E00008
-    .word 0x00000000
-
-.section .blobdata.op_800a46cc, "ax", @progbits
-    .incbin "build/game_code.bin", 121980, 112
-
-.section .text.func_800A473C, "ax", @progbits
-.globl func_800A473C
-func_800A473C:
-    .word 0x90A20000
-    .word 0x00801825
-    .word 0x24840001
-    .word 0x24A50001
-    .word 0x10400006
-    .word 0xA082FFFF
-    .word 0x90A20000
-    .word 0x24840001
-    .word 0x24A50001
-    .word 0x1440FFFC
-    .word 0xA082FFFF
-    .word 0x03E00008
-    .word 0x00601025
-
-.section .text.func_800A4770, "ax", @progbits
-.globl func_800A4770
-func_800A4770:
-    .word 0x908E0000
-    .word 0x00801825
-    .word 0x51C00006
-    .word 0x90A20000
-    .word 0x908F0001
-    .word 0x24840001
-    .word 0x55E0FFFE
-    .word 0x908F0001
-    .word 0x90A20000
-    .word 0x24840001
-    .word 0x24A50001
-    .word 0x10400006
-    .word 0xA082FFFF
-    .word 0x90A20000
-    .word 0x24840001
-    .word 0x24A50001
-    .word 0x1440FFFC
-    .word 0xA082FFFF
-    .word 0x03E00008
-    .word 0x00601025
-
-.section .text.func_800A47C0, "ax", @progbits
-.globl func_800A47C0
-func_800A47C0:
-    .word 0x00A4082B
-    .word 0x00801025
-    .word 0x10200022
-    .word 0x00A01825
-    .word 0x00A67021
-    .word 0x008E082B
-    .word 0x5020001F
-    .word 0x30890003
-    .word 0x00861021
-    .word 0x304F0003
-    .word 0x15E0000E
-    .word 0x00A61821
-    .word 0x30780003
-    .word 0x1700000B
-    .word 0x2CC10004
-    .word 0x5420000A
-    .word 0x00C02825
-    .word 0x8C79FFFC
-    .word 0x24C6FFFC
-    .word 0x2447FFFC
-    .word 0x2CC10004
-    .word 0x00E01025
-    .word 0x2463FFFC
-    .word 0x1020FFF9
-    .word 0xACF90000
-    .word 0x00C02825
-    .word 0x10C00022
-    .word 0x24C6FFFF
-    .word 0x9068FFFF
-    .word 0x00C02825
-    .word 0x2442FFFF
-    .word 0x2463FFFF
-    .word 0xA0480000
-    .word 0x14C0FFFA
-    .word 0x24C6FFFF
-    .word 0x03E00008
-    .word 0x00801025
-    .word 0x30890003
-    .word 0x1520000C
-    .word 0x30AA0003
-    .word 0x1540000A
-    .word 0x2CC10004
-    .word 0x54200009
-    .word 0x00C02825
-    .word 0x8C6B0000
-    .word 0x24C6FFFC
-    .word 0x2CC10004
-    .word 0x24420004
-    .word 0x24630004
-    .word 0x1020FFFA
-    .word 0xAC4BFFFC
-    .word 0x00C02825
-    .word 0x10C00008
-    .word 0x24C6FFFF
-    .word 0x906C0000
-    .word 0x00C02825
-    .word 0x24420001
-    .word 0x24630001
-    .word 0xA04CFFFF
-    .word 0x14C0FFFA
-    .word 0x24C6FFFF
-    .word 0x03E00008
-    .word 0x00801025
-
-.section .blobdata.op_800a48bc, "ax", @progbits
-    .incbin "build/game_code.bin", 122476, 12
-
-.section .text.audio_start, "ax", @progbits
-.globl audio_start
-audio_start:
-    /* compiled from src/blob/audio_start.c */
-    .word 0x3C0E8013
-    .word 0x8DCEE6C0
-    .word 0x3C058015
-    .word 0x24A59438
-    .word 0x000E7880
-    .word 0x01EE7821
-    .word 0x000F7880
-    .word 0x01EE7823
-    .word 0x8CA20000
-    .word 0x000F7880
-    .word 0x3C188012
-    .word 0x01EE7823
-    .word 0x000F7A00
-    .word 0x27184FE8
-    .word 0x14400003
-    .word 0x01F81821
-    .word 0x03E00008
-    .word 0x00001025
-    .word 0x24590008
-    .word 0xACB90000
-    .word 0x3C08DF00
-    .word 0xAC480000
-    .word 0xAC400004
-    .word 0xACA00000
-    .word 0x00601025
-    .word 0x03E00008
-    .word 0x00000000
-
-.section .text.sound_init, "ax", @progbits
-.globl sound_init
-sound_init:
-    .word 0x3C038015
-    .word 0x24639438
-    .word 0x8C6E0000
-    .word 0x27BDFFE8
-    .word 0xAFBF0014
-    .word 0x15C0005A
-    .word 0x3C028013
-    .word 0x3C018013
-    .word 0xAC20E608
-    .word 0x3C018013
-    .word 0x3C0F8003
-    .word 0x8DEFAFC0
-    .word 0xAC20E60C
-    .word 0x3C018013
-    .word 0xAC20E668
-    .word 0x3C0B8003
-    .word 0x3C018013
-    .word 0x25F8FFFF
-    .word 0x256BAFC4
-    .word 0xAC38E610
-    .word 0x8D790000
-    .word 0x3C018013
-    .word 0x240F00FF
-    .word 0x272EFFFF
-    .word 0xAC2EE674
-    .word 0x3C018013
-    .word 0xA420E67A
-    .word 0x3C018012
-    .word 0xA02FEACF
-    .word 0x3C018013
-    .word 0xAC20E684
-    .word 0x3C018013
-    .word 0x24190000
-    .word 0x24180000
-    .word 0x2442E6C0
-    .word 0xAC38E688
-    .word 0xAC39E68C
-    .word 0x8C4E0000
-    .word 0x240AFFFF
-    .word 0x3C198012
-    .word 0x25C90001
-    .word 0x29210002
-    .word 0x14200003
-    .word 0xAC490000
-    .word 0xAC400000
-    .word 0x00004825
-    .word 0x0009C080
-    .word 0x0309C021
-    .word 0x0018C080
-    .word 0x0309C023
-    .word 0x0018C080
-    .word 0x0309C023
-    .word 0x0018C200
-    .word 0x27394FE8
-    .word 0x03197021
-    .word 0xAC6E0000
-    .word 0x3C018015
-    .word 0xAC2AA248
-    .word 0x3C018013
-    .word 0xAC2AE680
-    .word 0x3C018013
-    .word 0xAC20E6D0
-    .word 0x8C620000
-    .word 0x24190010
-    .word 0x3C18F900
-    .word 0x244F0008
-    .word 0xAC6F0000
-    .word 0xAC590004
-    .word 0xAC580000
-    .word 0x8C620000
-    .word 0x3C0FE700
-    .word 0x3C19E300
-    .word 0x244E0008
-    .word 0xAC6E0000
-    .word 0xAC400004
-    .word 0xAC4F0000
-    .word 0x8C620000
-    .word 0x37390C00
-    .word 0x3C0FD900
-    .word 0x24580008
-    .word 0xAC780000
-    .word 0xAC400004
-    .word 0xAC590000
-    .word 0x8C620000
-    .word 0x24040001
-    .word 0x244E0008
-    .word 0xAC6E0000
-    .word 0xAC400004
-    .word 0x0C021A94
-    .word 0xAC4F0000
-    .word 0x8D780000
-    .word 0x2B0100DD
-    .word 0x54200004
-    .word 0x8FBF0014
-    .word 0x0C021E38
-    .word 0x34048000
-    .word 0x8FBF0014
-    .word 0x27BD0018
-    .word 0x03E00008
-    .word 0x00000000
-
-.section .text.wheel_setup_initial, "ax", @progbits
-.globl wheel_setup_initial
-wheel_setup_initial:
-    .word 0x27BDFFD0
-    .word 0xAFB00018
-    .word 0xAFB30024
-    .word 0xAFB20020
-    .word 0xAFB1001C
-    .word 0x3C108015
-    .word 0x00809025
-    .word 0xAFBF002C
-    .word 0xAFB40028
-    .word 0x26106D38
-    .word 0x00008825
-    .word 0x24130040
-    .word 0x8E0E000C
-    .word 0x51C00007
-    .word 0x26310001
-    .word 0x920F0006
-    .word 0x564F0004
-    .word 0x26310001
-    .word 0x0C02584C
-    .word 0x02202025
-    .word 0x26310001
-    .word 0x1633FFF6
-    .word 0x26100014
-    .word 0x8FBF002C
-    .word 0x8FB00018
-    .word 0x8FB1001C
-    .word 0x8FB20020
-    .word 0x8FB30024
-    .word 0x8FB40028
-    .word 0x03E00008
-    .word 0x27BD0030
-
-.section .blobdata.op_800a4b40, "ax", @progbits
-    .incbin "build/game_code.bin", 123120, 8
-
-.section .text.resource_update_global, "ax", @progbits
-.globl resource_update_global
-resource_update_global:
-    .word 0x27BDFFE8
-    .word 0xAFBF0014
-    .word 0x3C048015
-    .word 0x0C02588E
-    .word 0x8C841A6C
-    .word 0x8FBF0014
-    .word 0x27BD0018
-    .word 0x03E00008
-    .word 0x00000000
-
-.section .text.wheel_params_set, "ax", @progbits
-.globl wheel_params_set
-wheel_params_set:
-    .word 0x27BDFFC0
-    .word 0xAFBF001C
-    .word 0xAFB10018
-    .word 0x0C02562E
-    .word 0xAFB00014
-    .word 0x3C028011
-    .word 0x2442028C
-    .word 0x804E0000
-    .word 0x3C048015
-    .word 0x3C018011
-    .word 0x11C00004
-    .word 0x24842770
-    .word 0x804F0000
-    .word 0x55E0FFFF
-    .word 0x804F0000
-    .word 0x3C028014
-    .word 0x24426160
-    .word 0x8C580008
-    .word 0x3C0E8014
-    .word 0x00002825
-    .word 0x13000004
-    .word 0x24060001
-    .word 0x8C590008
-    .word 0x5720FFFF
-    .word 0x8C590008
-    .word 0x8DCE4C48
-    .word 0xA0200284
-    .word 0x0C001C9C
-    .word 0xAFAE0038
-    .word 0x8FA50038
-    .word 0x0C0257F6
-    .word 0x00003025
-    .word 0x3C048015
-    .word 0x24842770
-    .word 0x00002825
-    .word 0x0C001D78
-    .word 0x00003025
-    .word 0x3C0F8014
-    .word 0x8DEF6100
-    .word 0x3C048015
-    .word 0x24842770
-    .word 0x00002825
-    .word 0x24060001
-    .word 0x0C001C9C
-    .word 0xAFAF0020
-    .word 0x8FA50020
-    .word 0x0C0257F6
-    .word 0x00003025
-    .word 0x3C048015
-    .word 0x24842770
-    .word 0x00002825
-    .word 0x0C001D78
-    .word 0x00003025
-    .word 0x8FBF001C
-    .word 0x8FB00014
-    .word 0x8FB10018
-    .word 0x03E00008
-    .word 0x27BD0040
-
-.section .text.init_wait_completion, "ax", @progbits
-.globl init_wait_completion
-init_wait_completion:
-    .word 0x27BDFFE8
-    .word 0xAFBF0014
-    .word 0x0C0292DB
-    .word 0x00000000
-    .word 0x3C048015
-    .word 0x0C02588E
-    .word 0x8C841A6C
-    .word 0x0C00809D
-    .word 0x00000000
-    .word 0x0C0080B1
-    .word 0x00000000
-    .word 0x54400006
-    .word 0x8FBF0014
-    .word 0x0C0080B1
-    .word 0x00000000
-    .word 0x1040FFFD
-    .word 0x00000000
-    .word 0x8FBF0014
-    .word 0x27BD0018
-    .word 0x03E00008
-    .word 0x00000000
-
-.section .blobdata.op_800a4ca8, "ax", @progbits
-    .incbin "build/game_code.bin", 123480, 16
-
-.section .text.func_800A4CB8, "ax", @progbits
-.globl func_800A4CB8
-func_800A4CB8:
-    .word 0x3C028014
-    .word 0x24426160
-    .word 0x27BDFFD0
-    .word 0xAFB00018
-    .word 0x24030001
-    .word 0x3C108014
-    .word 0xA0430001
-    .word 0xA0400000
-    .word 0xAC400008
-    .word 0xAC40000C
-    .word 0xAC400004
-    .word 0x261060F4
-    .word 0xAE040000
-    .word 0x8E0E0000
-    .word 0xAFB30024
-    .word 0x24130018
-    .word 0x01D30019
-    .word 0xAFB1001C
-    .word 0x3C118014
-    .word 0x26316138
-    .word 0xAFBF002C
-    .word 0x00803025
-    .word 0xAFB40028
-    .word 0xAFB20020
-    .word 0xA2200000
-    .word 0xA2230001
-    .word 0x00002812
-    .word 0xAE200008
-    .word 0xAE20000C
-    .word 0xAE200004
-    .word 0xAFA60030
-    .word 0x0C025D1C
-    .word 0x00002025
-    .word 0x3C128014
-    .word 0x26524C48
-    .word 0xAE420000
-    .word 0x00402025
-    .word 0x0C0258B5
-    .word 0x00002825
-    .word 0x8E0F0000
-    .word 0x8E440000
-    .word 0x00002825
-    .word 0x01F30019
-    .word 0x00003012
-    .word 0x0C0009E4
-    .word 0x00000000
-    .word 0x8FB40030
-    .word 0x00002025
-    .word 0x0014C080
-    .word 0x03149823
-    .word 0x0260A025
-    .word 0x0C025D1C
-    .word 0x00132940
-    .word 0x3C128014
-    .word 0x26526100
-    .word 0xAE420000
-    .word 0x00402025
-    .word 0x0C0258B5
-    .word 0x00002825
-    .word 0x8E440000
-    .word 0x00002825
-    .word 0x0C0009E4
-    .word 0x00143140
-    .word 0x1A80000A
-    .word 0x00008025
-    .word 0x8E480000
-    .word 0x0010C940
-    .word 0x02202025
-    .word 0x8E260008
-    .word 0x0C0247EF
-    .word 0x03282821
-    .word 0x26100001
-    .word 0x5613FFF9
-    .word 0x8E480000
-    .word 0x8FA90030
-    .word 0x3C018014
-    .word 0x24100001
-    .word 0x3C0B8014
-    .word 0xAC294DB8
-    .word 0x3C018014
-    .word 0x256B60C8
-    .word 0x00105080
-    .word 0xAC2060C8
-    .word 0x014B1021
-    .word 0x3C0C8011
-    .word 0xAC400004
-    .word 0xAC400008
-    .word 0xAC40000C
-    .word 0xAC400000
-    .word 0x258C028C
-    .word 0xA1800000
-    .word 0x8FBF002C
-    .word 0x3C018011
-    .word 0x240D0001
-    .word 0x8FB40028
-    .word 0x8FB30024
-    .word 0x8FB20020
-    .word 0x8FB1001C
-    .word 0x8FB00018
-    .word 0xA02D0284
-    .word 0x03E00008
-    .word 0x27BD0030
-
-.section .blobdata.op_800a4e50, "ax", @progbits
-    .incbin "build/game_code.bin", 123904, 8
-
-.section .text.func_800A4E58, "ax", @progbits
-.globl func_800A4E58
-func_800A4E58:
-    .word 0x3C078014
-    .word 0x8CE70AF0
-    .word 0x27BDFFE8
-    .word 0xAFBF0014
-    .word 0x00002825
-    .word 0x00003025
-    .word 0x0C0258A2
-    .word 0x00E02025
-    .word 0x00077080
-    .word 0x01C77021
-    .word 0x000E7080
-    .word 0x3C028015
-    .word 0x004E1021
-    .word 0x8C426D44
-    .word 0x3C068018
-    .word 0x24C6A4E0
-    .word 0x8C4F0000
-    .word 0x24580004
-    .word 0xACD80004
-    .word 0x31E7FFFF
-    .word 0x0007C880
-    .word 0x00591821
-    .word 0xA4CF0000
-    .word 0x8C6E0004
-    .word 0x2405FFFE
-    .word 0x24630008
-    .word 0x31CFFFFF
-    .word 0x25F80001
-    .word 0x0305C824
-    .word 0xA4CE0008
-    .word 0xACC3000C
-    .word 0x00197040
-    .word 0x006E1821
-    .word 0x8C6F0000
-    .word 0x24630004
-    .word 0xACC30010
-    .word 0x31E4FFFF
-    .word 0x0004C080
-    .word 0x00781821
-    .word 0xA4CF000A
-    .word 0x8C790000
-    .word 0x24630004
-    .word 0xACC3001C
-    .word 0x332EFFFF
-    .word 0x25CF0001
-    .word 0x01E5C024
-    .word 0xA4D90014
-    .word 0x0018C840
-    .word 0x00791821
-    .word 0x8C6E0000
-    .word 0x24630004
-    .word 0xACC30020
-    .word 0x31CFFFFF
-    .word 0x25F80001
-    .word 0x0305C824
-    .word 0xA4CE0016
-    .word 0x00197040
-    .word 0x006E1821
-    .word 0x8C6F0000
-    .word 0x24630004
-    .word 0xACC30024
-    .word 0x00002825
-    .word 0x18E0000F
-    .word 0xA4CF0018
-    .word 0x00001825
-    .word 0x8CD80004
-    .word 0x24A50001
-    .word 0x03032021
-    .word 0x8C990000
-    .word 0x24630004
-    .word 0x03227021
-    .word 0xAC8E0000
-    .word 0x94CF0000
-    .word 0x00AF082A
-    .word 0x5420FFF7
-    .word 0x8CD80004
-    .word 0x94C4000A
-    .word 0x00002825
-    .word 0x1880000D
-    .word 0x00001825
-    .word 0x8CD80010
-    .word 0x24A50001
-    .word 0x03032021
-    .word 0x8C990000
-    .word 0x24630004
-    .word 0x03227021
-    .word 0xAC8E0000
-    .word 0x94CF000A
-    .word 0x00AF082A
-    .word 0x5420FFF7
-    .word 0x8CD80010
-    .word 0x00002825
-    .word 0x94D80018
-    .word 0x00001825
-    .word 0x5B00000D
-    .word 0x8FBF0014
-    .word 0x8CD90024
-    .word 0x24A50001
-    .word 0x03232021
-    .word 0x8C8E0000
-    .word 0x24630004
-    .word 0x01C27821
-    .word 0xAC8F0000
-    .word 0x94D80018
-    .word 0x00B8082A
-    .word 0x5420FFF7
-    .word 0x8CD90024
-    .word 0x8FBF0014
-    .word 0x27BD0018
-    .word 0x03E00008
-    .word 0x00000000
-
-.section .blobdata.op_800a5014, "ax", @progbits
-    .incbin "build/game_code.bin", 124356, 8
-
-.section .text.suspension_setup, "ax", @progbits
-.globl suspension_setup
-suspension_setup:
-    .word 0x27BDFFC0
-    .word 0x00803825
-    .word 0xAFBF003C
-    .word 0x00A04025
-    .word 0x00A02025
-    .word 0xAFBE0038
-    .word 0xAFB70034
-    .word 0xAFB60030
-    .word 0xAFB5002C
-    .word 0xAFB40028
-    .word 0xAFB30024
-    .word 0xAFB20020
-    .word 0xAFB1001C
-    .word 0xAFB00018
-    .word 0x0C025DA5
-    .word 0x2405FFFF
-    .word 0x0441001F
-    .word 0x00E02025
-    .word 0x0C025DA5
-    .word 0x2405FFFF
-    .word 0x0440001B
-    .word 0x00403825
-    .word 0x3C028003
-    .word 0x2442EB70
-    .word 0x844E0000
-    .word 0x00E02025
-    .word 0x24050001
-    .word 0x11C00004
-    .word 0x00000000
-    .word 0x844F0000
-    .word 0x55E0FFFF
-    .word 0x844F0000
-    .word 0x0C0258A2
-    .word 0x24060001
-    .word 0x0007C080
-    .word 0x0307C021
-    .word 0x3C198015
-    .word 0x27396D38
-    .word 0x0018C080
-    .word 0x03191021
-    .word 0xA0400000
-    .word 0xA0400001
-    .word 0xA0480006
-    .word 0xA0400004
-    .word 0x0C025CB1
-    .word 0x00E02025
-    .word 0x0C025C59
-    .word 0x00E0F025
-    .word 0x8FBF003C
-    .word 0x8FB00018
-    .word 0x8FB1001C
-    .word 0x8FB20020
-    .word 0x8FB30024
-    .word 0x8FB40028
-    .word 0x8FB5002C
-    .word 0x8FB60030
-    .word 0x8FB70034
-    .word 0x8FBE0038
-    .word 0x03E00008
-    .word 0x27BD0040
-
-.section .text.func_800A510C, "ax", @progbits
-.globl func_800A510C
-func_800A510C:
-    /* compiled from src/blob/func_800A510C.c */
-    .word 0x3C048014
-    .word 0x3C058014
-    .word 0x84A5FEC8
-    .word 0x90840A10
-    .word 0x27BDFFE8
-    .word 0xAFBF0014
-    .word 0x50850009
-    .word 0x8FBF0014
-    .word 0x0C029407
-    .word 0x00000000
-    .word 0x3C0E8014
-    .word 0x85CEFEC8
-    .word 0x3C018014
-    .word 0x0C029396
-    .word 0xA02E0A10
-    .word 0x8FBF0014
-    .word 0x27BD0018
-    .word 0x03E00008
-    .word 0x00000000
-
-.section .text.func_800A5158, "ax", @progbits
-.globl func_800A5158
-func_800A5158:
-    .word 0x3C0E8012
-    .word 0x81CE8EE4
-    .word 0x27BDFFE0
-    .word 0xAFBF001C
-    .word 0x15C00017
-    .word 0x240F0001
-    .word 0x3C018012
-    .word 0xA02F8EE4
-    .word 0x3C018014
-    .word 0x3C028003
-    .word 0x9044E860
-    .word 0xA420FEC8
-    .word 0x3C018014
-    .word 0x00002825
-    .word 0x00003025
-    .word 0x00003825
-    .word 0xAFA00010
-    .word 0x0C025DE6
-    .word 0xA0240A10
-    .word 0x3C038014
-    .word 0x24630AF0
-    .word 0xAC620000
-    .word 0x0C0258E3
-    .word 0x00402025
-    .word 0x0C029396
-    .word 0x00000000
-    .word 0x0C029443
-    .word 0x00000000
-    .word 0x8FBF001C
-    .word 0x27BD0020
-    .word 0x03E00008
-    .word 0x00000000
-
-.section .blobdata.op_800a51d8, "ax", @progbits
-    .incbin "build/game_code.bin", 124808, 8
-
-.section .text.car_damage_visual, "ax", @progbits
-.globl car_damage_visual
-car_damage_visual:
-    .word 0x27BDFFC8
-    .word 0xAFB00014
-    .word 0x00808025
-    .word 0xAFBF0034
-    .word 0x3C048015
-    .word 0xAFB70030
-    .word 0xAFB6002C
-    .word 0xAFB50028
-    .word 0xAFB40024
-    .word 0xAFB30020
-    .word 0xAFB2001C
-    .word 0xAFB10018
-    .word 0x24842770
-    .word 0x00002825
-    .word 0x0C001C9C
-    .word 0x24060001
-    .word 0x12000003
-    .word 0x3C028015
-    .word 0x10000002
-    .word 0x02001025
-    .word 0x8C4227C8
-    .word 0x8C520008
-    .word 0x0040B825
-    .word 0x52400015
-    .word 0x8EF20008
-    .word 0x824E0014
-    .word 0x51C0000F
-    .word 0x8E520004
-    .word 0x924F0016
-    .word 0x55E0000C
-    .word 0x8E520004
-    .word 0x8E580010
-    .word 0x57000009
-    .word 0x8E520004
-    .word 0x82590015
-    .word 0x26450020
-    .word 0x57200005
-    .word 0x8E520004
-    .word 0x0C0257F6
-    .word 0x00003025
-    .word 0x8EF20008
-    .word 0x8E520004
-    .word 0x5640FFEF
-    .word 0x824E0014
-    .word 0x8EF20008
-    .word 0x3C16FEDC
-    .word 0x36D6BA98
-    .word 0x1240006A
-    .word 0x00000000
-    .word 0x824E0014
-    .word 0x8E550004
-    .word 0x11C00064
-    .word 0x00000000
-    .word 0x8E430010
-    .word 0x10600061
-    .word 0x00000000
-    .word 0x924F0016
-    .word 0x15E0005E
-    .word 0x00000000
-    .word 0x8EF00008
-    .word 0x00009825
-    .word 0x12000016
-    .word 0x00000000
-    .word 0x56120004
-    .word 0x82180014
-    .word 0x10000012
-    .word 0x00008025
-    .word 0x82180014
-    .word 0x53000004
-    .word 0x8E19000C
-    .word 0x1000000B
-    .word 0x8E020004
-    .word 0x8E19000C
-    .word 0x8E4E000C
-    .word 0x032E082B
-    .word 0x10200008
-    .word 0x00000000
-    .word 0x8E020004
-    .word 0x16420003
-    .word 0x00000000
-    .word 0x10000003
-    .word 0x24130001
-    .word 0x1440FFEC
-    .word 0x00408025
-    .word 0x12000043
-    .word 0x26040020
-    .word 0xAE030010
-    .word 0xAC640000
-    .word 0x24180001
-    .word 0xA2180014
-    .word 0x82590015
-    .word 0x26540020
-    .word 0x02802825
-    .word 0xA2190015
-    .word 0x924E0016
-    .word 0xA20E0016
-    .word 0x8E46000C
-    .word 0xAE400010
-    .word 0x0C0291F0
-    .word 0x00C08825
-    .word 0x16600006
-    .word 0x00003025
-    .word 0x8E0F000C
-    .word 0x01F1C023
-    .word 0x2F010040
-    .word 0x54200023
-    .word 0x8E530008
-    .word 0x12600004
-    .word 0x02111021
-    .word 0x24420020
-    .word 0x10000005
-    .word 0xAC550004
-    .word 0x8E190004
-    .word 0x02111021
-    .word 0x24420020
-    .word 0xAC590004
-    .word 0x8C430004
-    .word 0x50600004
-    .word 0xAEE2000C
-    .word 0x10000002
-    .word 0xAC620008
-    .word 0xAEE2000C
-    .word 0x12600003
-    .word 0xAC500008
-    .word 0x10000002
-    .word 0x00001825
-    .word 0x26230020
-    .word 0x8E0E000C
-    .word 0xAC400010
-    .word 0xA0530014
-    .word 0x01C37823
-    .word 0xAC4F000C
-    .word 0xA0400015
-    .word 0xA0400016
-    .word 0xAC560000
-    .word 0xAE020004
-    .word 0x12600003
-    .word 0xAE11000C
-    .word 0x00409025
-    .word 0x24540020
-    .word 0x8E530008
-    .word 0x0C0257F6
-    .word 0x02802825
-    .word 0x8EB80000
-    .word 0x12D80007
-    .word 0x00000000
-    .word 0x8E590000
-    .word 0x52D90004
-    .word 0x8E550004
-    .word 0x10000002
-    .word 0x8E750004
-    .word 0x8E550004
-    .word 0x16A0FF98
-    .word 0x02A09025
-    .word 0x3C048015
-    .word 0x24842770
-    .word 0x00002825
-    .word 0x0C001D78
-    .word 0x00003025
-    .word 0x8FBF0034
-    .word 0x8FB00014
-    .word 0x8FB10018
-    .word 0x8FB2001C
-    .word 0x8FB30020
-    .word 0x8FB40024
-    .word 0x8FB50028
-    .word 0x8FB6002C
-    .word 0x8FB70030
-    .word 0x03E00008
-    .word 0x27BD0038
-
-.section .text.func_800A5488, "ax", @progbits
-.globl func_800A5488
-func_800A5488:
-    .word 0x3C038015
-    .word 0x3C048014
-    .word 0x24846210
-    .word 0x24639450
-    .word 0x00001025
-    .word 0x240500C8
-    .word 0x00027180
-    .word 0x24580001
-    .word 0x24490002
-    .word 0x244C0003
-    .word 0x000C6980
-    .word 0x00095180
-    .word 0x0018C980
-    .word 0x008E7821
-    .word 0x008D7021
-    .word 0x00994021
-    .word 0x008A5821
-    .word 0x24420004
-    .word 0xAC6B0008
-    .word 0xAC680004
-    .word 0xAC6E000C
-    .word 0x24630010
-    .word 0x1445FFEF
-    .word 0xAC6FFFF0
-    .word 0x3C018015
-    .word 0xAC209788
-    .word 0x3C018011
-    .word 0x03E00008
-    .word 0xAC2046E8
-
-.section .blobdata.op_800a54fc, "ax", @progbits
-    .incbin "build/game_code.bin", 125612, 128
-
-.section .text.func_800A557C, "ax", @progbits
-.globl func_800A557C
-func_800A557C:
-    .word 0x3C018012
-    .word 0xC4243B98
-    .word 0x46006005
-    .word 0x27BDFFC8
-    .word 0x4600203C
-    .word 0xAFBF0014
-    .word 0x46006386
-    .word 0x3C018012
-    .word 0x45000004
-    .word 0x00000000
-    .word 0x44800000
-    .word 0x10000063
-    .word 0x8FBF0014
-    .word 0xC4263B9C
-    .word 0x27A5002C
-    .word 0xE7AE0038
-    .word 0x46067302
-    .word 0x0C000A99
-    .word 0x00000000
-    .word 0x3C013F00
-    .word 0x44814000
-    .word 0x46000005
-    .word 0xC7AE0038
-    .word 0x4600403E
-    .word 0xC7B2002C
-    .word 0x46007306
-    .word 0x4500000F
-    .word 0x00000000
-    .word 0x44805000
-    .word 0x3C013F80
-    .word 0x460A703C
-    .word 0x00000000
-    .word 0x45020006
-    .word 0x44810000
-    .word 0x3C01BF80
-    .word 0x44810000
-    .word 0x10000004
-    .word 0x46009480
-    .word 0x44810000
-    .word 0x00000000
-    .word 0x46009480
-    .word 0xE7B2002C
-    .word 0x0C000A99
-    .word 0x27A50030
-    .word 0x3C018012
-    .word 0xC7B2002C
-    .word 0xC4243BA0
-    .word 0xC7A20030
-    .word 0x3C018012
-    .word 0x46049182
-    .word 0xC4243BA4
-    .word 0x3C018012
-    .word 0x46061201
-    .word 0x46049182
-    .word 0x46004280
-    .word 0xC4283BA8
-    .word 0x3C013F80
-    .word 0x46065381
-    .word 0x46007005
-    .word 0x46007306
-    .word 0x4608003C
-    .word 0x00000000
-    .word 0x45000004
-    .word 0x00000000
-    .word 0x44818000
-    .word 0x10000023
-    .word 0x4600928D
-    .word 0x460C6082
-    .word 0x3C018012
-    .word 0xC4243BAC
-    .word 0x3C018012
-    .word 0xC4263BB0
-    .word 0x3C018012
-    .word 0x46022282
-    .word 0x46065200
-    .word 0xC42A3BB4
-    .word 0x3C018012
-    .word 0x46024102
-    .word 0x460A2180
-    .word 0xC42A3BB8
-    .word 0x3C018012
-    .word 0x46023202
-    .word 0x00000000
-    .word 0x460C4102
-    .word 0xC4283BBC
-    .word 0x3C018012
-    .word 0x46025182
-    .word 0x460C2380
-    .word 0x46083100
-    .word 0xC4263BC0
-    .word 0x3C018012
-    .word 0x46022282
-    .word 0x46065200
-    .word 0xC42A3BC4
-    .word 0x3C013F80
-    .word 0x46024102
-    .word 0x460A2180
-    .word 0x44812000
-    .word 0x46023202
-    .word 0x46044400
-    .word 0x4600928D
-    .word 0x440F5000
-    .word 0x00000000
-    .word 0x31F80001
-    .word 0x53000005
-    .word 0x46107003
-    .word 0x46007187
-    .word 0x10000002
-    .word 0x46068003
-    .word 0x46107003
-    .word 0x8FBF0014
-    .word 0x27BD0038
-    .word 0x03E00008
-    .word 0x00000000
-
-.section .text.exhaust_smoke_effect, "ax", @progbits
-.globl exhaust_smoke_effect
-exhaust_smoke_effect:
-    .word 0x27BDFFD0
-    .word 0x3C028003
-    .word 0x000470C0
-    .word 0x2442AFC4
-    .word 0x01C47021
-    .word 0x3C0F8018
-    .word 0x8C580000
-    .word 0xAFB00018
-    .word 0x25EFA510
-    .word 0x000E70C0
-    .word 0x01CF8021
-    .word 0xC7AC0040
-    .word 0x44877000
-    .word 0xC7A40044
-    .word 0xC7A60048
-    .word 0x44858000
-    .word 0x2B0100F1
-    .word 0xAFBF001C
-    .word 0xAFA60038
-    .word 0xE60C0028
-    .word 0xE60E0024
-    .word 0xE604002C
-    .word 0x14200008
-    .word 0xE6060030
-    .word 0x3C013F00
-    .word 0x44814000
-    .word 0x00000000
-    .word 0x46086282
-    .word 0x460A7103
-    .word 0x10000003
-    .word 0xE6040034
-    .word 0x460C7183
-    .word 0xE6060034
-    .word 0x44801000
-    .word 0x3C018012
-    .word 0x4610103C
-    .word 0x00000000
-    .word 0x4500002B
-    .word 0x00000000
-    .word 0x3C018012
-    .word 0xC4283BC8
-    .word 0xC7AA0038
-    .word 0x3C018012
-    .word 0x46088002
-    .word 0x460A103C
-    .word 0x00000000
-    .word 0x45000005
-    .word 0x46000486
-    .word 0xC4243BCC
-    .word 0x46045082
-    .word 0x1000001C
-    .word 0x00000000
-    .word 0x8C590000
-    .word 0x2B2100F1
-    .word 0x14200006
-    .word 0x3C013F00
-    .word 0x44813000
-    .word 0x00000000
-    .word 0x46066082
-    .word 0x10000003
-    .word 0x3C013F00
-    .word 0x46006086
-    .word 0x3C013F00
-    .word 0x44814000
-    .word 0xE7A20020
-    .word 0xE7AE003C
-    .word 0x46080302
-    .word 0x0C02955F
-    .word 0xE7B20028
-    .word 0xC7A20020
-    .word 0xC7AE003C
-    .word 0x46020282
-    .word 0x0C0231C8
-    .word 0x460E5303
-    .word 0x3C014000
-    .word 0x44812000
-    .word 0xC7B20028
-    .word 0x46040082
-    .word 0x00000000
-    .word 0x10000005
-    .word 0xAE000008
-    .word 0xC4223BD0
-    .word 0x24080001
-    .word 0xAE080008
-    .word 0x46001486
-    .word 0x3C013F00
-    .word 0x44813000
-    .word 0xE612000C
-    .word 0xE6020010
-    .word 0x46069302
-    .word 0x0C02955F
-    .word 0x00000000
-    .word 0x3C013F00
-    .word 0x44815000
-    .word 0xC6080010
-    .word 0xE6000014
-    .word 0x460A4302
-    .word 0x0C02955F
-    .word 0x00000000
-    .word 0x3C013F00
-    .word 0x44812000
-    .word 0x44814000
-    .word 0xC60A0014
-    .word 0x46002183
-    .word 0x8FBF001C
-    .word 0xE6000018
-    .word 0x02001025
-    .word 0x460A4103
-    .word 0xE6060020
-    .word 0xE604001C
-    .word 0x8FB00018
-    .word 0x03E00008
-    .word 0x27BD0030
-
-.section .text.arb_rate_set, "ax", @progbits
-.globl arb_rate_set
-arb_rate_set:
-    .word 0x27BDFFC8
-    .word 0x3C014000
-    .word 0x44810000
-    .word 0xC7AC004C
-    .word 0xC7AE0054
-    .word 0x3C0144FA
-    .word 0x46006182
-    .word 0x44811000
-    .word 0xC7B00050
-    .word 0x46007282
-    .word 0x000470C0
-    .word 0x3C014020
-    .word 0x44812000
-    .word 0x01C47021
-    .word 0x3C0F8018
-    .word 0x4600320D
-    .word 0x25EFA510
-    .word 0x000E70C0
-    .word 0x46008182
-    .word 0xC7B20058
-    .word 0x01CF1821
-    .word 0xE4640038
-    .word 0x44194000
-    .word 0x3C028012
-    .word 0x4600510D
-    .word 0x46009282
-    .word 0xAC650000
-    .word 0xAC660004
-    .word 0x440B2000
-    .word 0x3C018015
-    .word 0xE462003C
-    .word 0x4600320D
-    .word 0x2442EA30
-    .word 0xE4221AA0
-    .word 0x4600510D
-    .word 0x440D4000
-    .word 0xAFA70044
-    .word 0x00E02825
-    .word 0x440F2000
-    .word 0xAFBF0024
-    .word 0x44076000
-    .word 0x8FA60048
-    .word 0xAFA3002C
-    .word 0xE7AE0014
-    .word 0xE7B00010
-    .word 0xE7B20018
-    .word 0xA4590000
-    .word 0xA44B0008
-    .word 0xA44D0002
-    .word 0x0C0295D1
-    .word 0xA44F000A
-    .word 0x8FA2002C
-    .word 0x241803E8
-    .word 0x00006083
-    .word 0x241903E7
-    .word 0x318D003E
-    .word 0x00007A00
-    .word 0xA4580040
-    .word 0x31F8F800
-    .word 0x000058C0
-    .word 0xA4590042
-    .word 0x01B8C825
-    .word 0x316C07C0
-    .word 0x240A00FF
-    .word 0x032C7025
-    .word 0x35CF0001
-    .word 0xA0400044
-    .word 0xA0400045
-    .word 0xA0400046
-    .word 0xA04A0047
-    .word 0x8FBF0024
-    .word 0x31EDFFFF
-    .word 0x000DC400
-    .word 0x030D5025
-    .word 0x3C018012
-    .word 0xAC2A4FC8
-    .word 0x03E00008
-    .word 0x27BD0038
+    .word 0xAC800008
 

@@ -305,6 +305,87 @@ def run(conn, store, image_path=GAME_CODE_BIN, report_path=REPORT,
     return report
 
 
+# --- orphan functions ----------------------------------------------------------
+
+ORPHAN_RUN_CAP = 4096       # bytes; larger opaque runs are data (the image tail)
+_VALID_OPCODE_CHECK = None
+
+
+def _decodes_as_code(image, address, count):
+    """Every word disassembles to a real instruction (no .word/(bad))."""
+    import re
+    off = address - GAME_CODE_BASE
+    with tempfile.NamedTemporaryFile(suffix=".bin") as f:
+        f.write(image[off:off + 4 * count])
+        f.flush()
+        out = subprocess.run(
+            ["mips-linux-gnu-objdump", "-D", "-b", "binary", "-m", "mips:4300",
+             "-EB", f.name], capture_output=True, text=True).stdout
+    return not re.search(r"\.word|\(bad\)|unknown", out)
+
+
+def _branch_lands_in(image, lo, hi, reach=8192):
+    """A PC-relative branch in the `reach` bytes before `lo` targets [lo, hi)."""
+    for addr in range(max(GAME_CODE_BASE, lo - reach), lo, 4):
+        word = struct.unpack_from(">I", image, addr - GAME_CODE_BASE)[0]
+        op = word >> 26
+        branch = op in {0x01, 0x04, 0x05, 0x06, 0x07, 0x14, 0x15, 0x16, 0x17} or (
+            op in {0x10, 0x11, 0x12} and ((word >> 21) & 0x1F) == 0x08)
+        if not branch:
+            continue
+        imm = word & 0xFFFF
+        imm -= 0x10000 if imm & 0x8000 else 0
+        if lo <= addr + 4 + imm * 4 < hi:
+            return True
+    return False
+
+
+def find_orphans(image, rows, run_cap=ORPHAN_RUN_CAP):
+    """Complete functions sitting in the gaps between registered extents.
+
+    Nothing calls them (they are not jal targets, so the callee closure never
+    finds them), but they are real code: most are empty functions
+    (`jr $ra; nop`) and small setters/clearers. A gap of at most `run_cap`
+    bytes is walked from its start: skip zero padding; the next word must not
+    be reachable by fall-through (targets.falls_through_into); the 005 extent
+    scanner must end inside the gap; every word must decode as an
+    instruction; and no branch in the preceding code may land inside. Each
+    accepted function continues the walk after its end. Returns
+    [(address, insn_count)]."""
+    image_end = GAME_CODE_BASE + len(image)
+    extents = sorted((r["address"], r["address"] + 4 * r["insn_count"]) for r in rows)
+    gaps, cursor = [], GAME_CODE_BASE
+    for lo, hi in extents:
+        if lo > cursor:
+            gaps.append((cursor, lo))
+        cursor = max(cursor, hi)
+    if cursor < image_end:
+        gaps.append((cursor, image_end))
+    word_at = lambda a: struct.unpack_from(">I", image, a - GAME_CODE_BASE)[0]
+    found = []
+    for start, end in gaps:
+        if end - start > run_cap:
+            continue
+        p = start
+        while p < end:
+            while p < end and word_at(p) == 0:
+                p += 4
+            if p >= end or targetsmod.falls_through_into(image, p):
+                break
+            try:
+                count = targetsmod.scan_extent(image, p)
+            except ValueError:
+                break
+            if not isinstance(count, int) or p + 4 * count > end:
+                break
+            if not _decodes_as_code(image, p, count):
+                break
+            if not _branch_lands_in(image, p, p + 4 * count):
+                found.append((p, count))
+            p += 4 * count
+    return found
+
+
 def main():
     from ..coordinator import db as dbmod
     from ..coordinator.store import BlobStore
@@ -315,11 +396,29 @@ def main():
     p = sub.add_parser("run")
     p.add_argument("--image", default=str(GAME_CODE_BIN))
     p.add_argument("--report", default=str(REPORT))
+    o = sub.add_parser("orphans", help="register complete uncalled functions in "
+                                       "the gaps between extents")
+    o.add_argument("--image", default=str(GAME_CODE_BIN))
+    o.add_argument("--apply", action="store_true")
     args = parser.parse_args()
 
     data = Path(args.data)
     conn = dbmod.connect(data / "conveyor.db")
     store = BlobStore(data / "blobs")
+    if args.command == "orphans":
+        image = Path(args.image).read_bytes()
+        found = find_orphans(image, gate_passed_rows(conn))
+        known = {r[0] for r in conn.execute("SELECT address FROM n64_target")}
+        new = [(a, n) for a, n in found if a not in known]
+        print(f"orphan functions: {len(new)} ({sum(n for _, n in new)} insns); "
+              f"{sum(1 for _, n in new if n == 2)} are 2-instruction bodies")
+        if not args.apply:
+            print("dry run; pass --apply to register them")
+            return
+        with tempfile.TemporaryDirectory() as tmp:
+            names = [register(conn, store, image, a, n, tmp) for a, n in new]
+        print(f"registered {len(names)} targets (gate_reason={GATE_REASON!r})")
+        return
     try:
         report = run(conn, store, args.image, args.report)
     except subprocess.CalledProcessError as exc:
