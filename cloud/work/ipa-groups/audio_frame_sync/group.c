@@ -3701,7 +3701,7 @@ typedef s64 M2C_UNK64;
 s32 audio_frame_sync(s32 arg0, s32 arg1, s32 arg2, s8 arg3, s32 ipa_v0, void *arg4);
 void brake_force_apply(s32 arg0);
 void fp_call_wrapper(s32 arg0);
-void func_80096CA8(s32 ipa_t0, s32 ipa_fp, s32 arg1);
+void func_80096CA8(s32 ipa_fp, s32 ipa_t0);
 void func_80097164(s32 ipa_fp);
 void suspension_setup(s32 arg0, s32 arg1);
 
@@ -3782,10 +3782,11 @@ loop_1:
 }
 
 void fp_call_wrapper(s32 arg0) {
-    func_80096CA8(arg0, 0, arg0);
+    func_80096CA8(arg0, 0);
 }
 
-void func_80096CA8(s32 ipa_t0, s32 ipa_fp, s32 arg1) {
+void func_80096CA8(s32 ipa_fp, s32 ipa_t0) {
+    s32 arg1; /* copy of the flag (the ROM keeps it in a stack slot) */
     M2C_UNK sp64;
     s32 sp58;
     s32 sp44;
@@ -3854,6 +3855,7 @@ void func_80096CA8(s32 ipa_t0, s32 ipa_fp, s32 arg1) {
         }
         sp44 = ipa_fp;
         if (ipa_t0 != 0) {
+    M2C_UNK *sp50; /* cloud: filled by func_80096C28 through &sp64 (0x14 below); not modelled */
             sp40 = var_v1_2;
             sp34 = temp_a3;
             arg1 = ipa_t0;
@@ -3920,14 +3922,14 @@ void func_80096CA8(s32 ipa_t0, s32 ipa_fp, s32 arg1) {
                                 var_a3 = var_s5;
                             }
                             temp_v0_4 = M2C_FIELD(temp_s3, s32 *, 0) + (var_s2_2 * 0x58) + var_s0;
-                            M2C_FIELD(temp_v0_4, void **, 0x20) = (void *) (var_a3 + M2C_FIELD(temp_v0_4, void **, 0x20));
+                            M2C_FIELD(temp_v0_4, void **, 0x20) = (void *) ((u8 *) var_a3 + (u32) M2C_FIELD(temp_v0_4, void **, 0x20));
                             if (arg1 != 0) {
                                 var_a3_2 = var_s6;
                             } else {
                                 var_a3_2 = var_s5;
                             }
                             temp_v0_5 = M2C_FIELD(temp_s3, s32 *, 0) + (var_s2_2 * 0x58) + var_s0;
-                            M2C_FIELD(temp_v0_5, void **, 0x24) = (void *) (var_a3_2 + M2C_FIELD(temp_v0_5, void **, 0x24));
+                            M2C_FIELD(temp_v0_5, void **, 0x24) = (void *) ((u8 *) var_a3_2 + (u32) M2C_FIELD(temp_v0_5, void **, 0x24));
                             if (arg1 != 0) {
                                 var_a1 = var_s6;
                             } else {
@@ -3960,7 +3962,7 @@ void func_80096CA8(s32 ipa_t0, s32 ipa_fp, s32 arg1) {
                         var_a3_4 = var_s6;
                     }
                     temp_v0_6 = D_801392D4 + var_v1_5;
-                    M2C_FIELD(temp_v0_6, void **, 0x1C) = (void *) (var_a3_4 + M2C_FIELD(temp_v0_6, void **, 0x1C));
+                    M2C_FIELD(temp_v0_6, void **, 0x1C) = (void *) ((u8 *) var_a3_4 + (u32) M2C_FIELD(temp_v0_6, void **, 0x1C));
                     if (arg1 != 0) {
                         var_a3_5 = var_s6;
                     } else {
@@ -4023,7 +4025,7 @@ void func_80097164(s32 ipa_fp) {
         inflate_decompress(M2C_FIELD((temp_a3 + 0x80120000), s32 *, -0x4A44), var_s0_3, 1, temp_a3);
     }
     M2C_FIELD(temp_s1, s8 *, 0) = 1;
-    func_80096CA8(M2C_ERROR(/* Read from unset register $a0 */), 1, ipa_fp);
+    func_80096CA8(ipa_fp, 1);
 }
 
 void suspension_setup(s32 arg0, s32 arg1) {
@@ -4053,7 +4055,7 @@ void suspension_setup(s32 arg0, s32 arg1) {
 /* stand-in caller: keeps func_80096CA8 out of line under -O3 */
 void __standin_func_80096CA8(void)
 {
-    func_80096CA8(0, 0, 0);
+    func_80096CA8(0, 0);
 }
 
 /* stand-in caller: keeps func_80097164 out of line under -O3 */
