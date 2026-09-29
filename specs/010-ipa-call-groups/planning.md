@@ -113,8 +113,8 @@ compiling seeds.
 | Phase | Work | Gate |
 |---|---|---|
 | 0 | Flywheel exclusion of IPA members (small, standalone). **Done 2026-09-29**, see below | node time goes to matchable targets |
-| 1 | Spikes S1-S2 by hand on rocky | **S1 pass**, or stop and write up |
-| 2 | S3-S5 research | decisions recorded in research.md |
+| 1 | Spikes S1-S2 by hand on rocky. **Done: S1 pass; S2 favourable** ([s1](research/s1-poc.md), [s2-s5](research/s2-s5-spikes.md)) | **S1 pass**, or stop and write up |
+| 2 | S3-S5 research. **Done: S3 = whole-program `uld -kp`; S4 = per-slice relocation passes the image gate; S5 = needs an m2c register-parameter map** | decisions recorded in research.md |
 | 3 | Spec-kit package (spec/plan/contracts/tasks/HANDOFF) | review |
 | 4 | Implement discovery + group_score + group splice | SC-1 through the pipeline |
 | 5 | Group permuter + flywheel integration | SC-3 measured |
