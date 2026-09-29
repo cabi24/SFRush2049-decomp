@@ -5,7 +5,8 @@
     "fp_call_wrapper",
     "func_80096CA8",
     "func_80097164",
-    "suspension_setup"
+    "suspension_setup",
+    "entity_lod_select"
   ],
   "files": [
     "group.c"
@@ -16,11 +17,10 @@
     "fp_call_wrapper",
     "suspension_setup",
     "__standin_func_80096CA8",
-    "__standin_func_80097164"
+    "__standin_func_80097164",
+    "entity_lod_select"
   ],
   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
   "generated": "blob_group seed from build/ipa_groups.json",
-  "unprototyped": [
-    "entity_lod_select"
-  ]
+  "unprototyped": []
 }

@@ -1,5 +1,9 @@
 {
   "members": [
+    "func_800C1B60",
+    "func_800C3578",
+    "func_800C220C",
+    "func_800C2004",
     "camera_scene_manager",
     "func_800C2430",
     "func_800C26C4",
@@ -10,15 +14,12 @@
   ],
   "keep": [
     "camera_scene_manager",
+    "func_800C3578",
     "__standin_func_800C2430",
     "__standin_func_800C26C4",
     "__standin_func_800C2944"
   ],
   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
   "generated": "blob_group seed from build/ipa_groups.json",
-  "unprototyped": [
-    "func_800C1B60",
-    "func_800C2004",
-    "func_800C220C"
-  ]
+  "unprototyped": []
 }

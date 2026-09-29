@@ -1,16 +1,16 @@
 {
   "members": [
-    "func_80107EDC"
+    "func_8010BC84"
   ],
   "files": [
-    "dd.c",
-    "slot.c",
-    "objset.c",
     "sound.c",
-    "stub.c"
+    "objset.c",
+    "stub.c",
+    "slot.c",
+    "rc.c"
   ],
   "keep": [
-    "func_80107EDC",
+    "func_8010BC84",
     "object_byte9_set"
   ],
   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -22,9 +22,9 @@
     "object_byte9_set"
   ],
   "targets": {
-    "func_80107EDC": {
-      "addr": "0x80107EDC",
-      "words": 158
+    "func_8010BC84": {
+      "addr": "0x8010BC84",
+      "words": 232
     }
   }
 }
