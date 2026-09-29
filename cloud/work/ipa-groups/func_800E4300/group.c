@@ -3971,3 +3971,15 @@ void __standin_func_800E4300(void)
 {
     func_800E4300(0, 0, 0, 0, 0);
 }
+
+/* stand-in callers for func_800E451C (its real caller, func_800E4B58, is not in the unit):
+ * two call sites keep it out of line without `keep`, so it gets IPA registers like the ROM's */
+void __standin_func_800E451C_a(void)
+{
+    func_800E451C(0, 0, 0);
+}
+
+void __standin_func_800E451C_b(void)
+{
+    func_800E451C(1, 0, 0);
+}
