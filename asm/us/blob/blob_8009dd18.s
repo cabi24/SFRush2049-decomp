@@ -921,12 +921,11 @@ func_8009EA68:
     .word 0x03E00008
     .word 0x00000000
 
-.section .blobdata.op_8009eb10, "ax", @progbits
-    .incbin "build/game_code.bin", 98496, 8
-
 .section .text.gfx_setup_fc, "ax", @progbits
 .globl gfx_setup_fc
 gfx_setup_fc:
+    .word 0x3C018012
+    .word 0xC4243B0C
     .word 0x27BDFFE0
     .word 0xAFBF0014
     .word 0x4604603C
@@ -3265,11 +3264,13 @@ Input_ProcessGameplayPad:
     .word 0x27BD0100
 
 .section .blobdata.op_800a0f64, "ax", @progbits
-    .incbin "build/game_code.bin", 107796, 16
+    .incbin "build/game_code.bin", 107796, 8
 
 .section .text.MP_TargetSpeed, "ax", @progbits
 .globl MP_TargetSpeed
 MP_TargetSpeed:
+    .word 0x3C0E8012
+    .word 0x81CEED04
     .word 0x27BDFFE0
     .word 0xAFBF001C
     .word 0xAFB10018
@@ -3497,12 +3498,11 @@ InitMaxPath:
     .word 0x03E00008
     .word 0x27BD0040
 
-.section .blobdata.op_800a12cc, "ax", @progbits
-    .incbin "build/game_code.bin", 108668, 8
-
 .section .text.assign_default_paths, "ax", @progbits
 .globl assign_default_paths
 assign_default_paths:
+    .word 0x3C0E8012
+    .word 0x81CEED00
     .word 0x27BDFFE0
     .word 0xAFBF001C
     .word 0xAFB10018

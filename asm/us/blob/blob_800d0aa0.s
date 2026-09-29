@@ -5152,13 +5152,12 @@ func_800D5828:
     .word 0x03E00008
     .word 0x00000000
 
-.section .blobdata.op_800d588c, "ax", @progbits
-    .incbin "build/game_code.bin", 323132, 8
-
 .section .text.player_state_clear, "ax", @progbits
 .globl player_state_clear
 player_state_clear:
     /* compiled from src/blob/player_state_clear.c */
+    .word 0x3C048015
+    .word 0x8C8441A4
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x50800006
@@ -5884,12 +5883,15 @@ physics_init_mode1:
     .word 0x27BD0040
 
 .section .blobdata.op_800d6348, "ax", @progbits
-    .incbin "build/game_code.bin", 325880, 124
+    .incbin "build/game_code.bin", 325880, 112
 
 .section .text.object_action_clear, "ax", @progbits
 .globl object_action_clear
 object_action_clear:
     /* compiled from src/blob/object_action_clear.c */
+    .word 0x3C048014
+    .word 0x24846170
+    .word 0x8C850008
     .word 0x27BDFFE0
     .word 0xAFBF0014
     .word 0x0C024847

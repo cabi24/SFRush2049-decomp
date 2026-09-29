@@ -3537,12 +3537,12 @@ func_800FDF88:
     .word 0x03E00008
     .word 0x00000000
 
-.section .blobdata.op_800fe080, "ax", @progbits
-    .incbin "build/game_code.bin", 489008, 12
-
 .section .text.stat_race_start, "ax", @progbits
 .globl stat_race_start
 stat_race_start:
+    .word 0x3C0E8015
+    .word 0x91CE43D4
+    .word 0x3C188015
     .word 0x27BDFF68
     .word 0x000E7880
     .word 0x01EE7821
@@ -3808,12 +3808,13 @@ stat_race_start:
     .word 0x03E00008
     .word 0x00000000
 
-.section .blobdata.op_800fe4ac, "ax", @progbits
-    .incbin "build/game_code.bin", 490076, 16
-
 .section .text.stat_race_end, "ax", @progbits
 .globl stat_race_end
 stat_race_end:
+    .word 0x00047080
+    .word 0x01C47023
+    .word 0x000E70C0
+    .word 0x3C0F8014
     .word 0x27BDFFD8
     .word 0x01EE7821
     .word 0x8DEFFEF4
@@ -4149,12 +4150,11 @@ stat_lap_complete:
     .word 0x03E00008
     .word 0x27BD0048
 
-.section .blobdata.op_800fea00, "ax", @progbits
-    .incbin "build/game_code.bin", 491440, 8
-
 .section .text.stat_lap_split, "ax", @progbits
 .globl stat_lap_split
 stat_lap_split:
+    .word 0x3C0F8011
+    .word 0x81EFFFC0
     .word 0x27BDFFA0
     .word 0xAFA7006C
     .word 0x30EE00FF
@@ -5450,12 +5450,13 @@ game_results_input:
     .word 0x03E00008
     .word 0x00000000
 
-.section .blobdata.op_800ffde8, "ax", @progbits
-    .incbin "build/game_code.bin", 496536, 16
-
 .section .text.game_results_exit, "ax", @progbits
 .globl game_results_exit
 game_results_exit:
+    .word 0x3C0E8015
+    .word 0x85CE1AD0
+    .word 0x3C018011
+    .word 0xC4382A9C
     .word 0x27BDFDE0
     .word 0x29C10002
     .word 0x14200006

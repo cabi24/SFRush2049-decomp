@@ -3793,15 +3793,16 @@ typedef s8 M2C_UNK8;
 typedef s16 M2C_UNK16;
 typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
-void object_action_clear(void *arg0, s32 *arg1)
+void object_action_clear(void)
 {
   s32 *sp1C;
   s32 **new_var3;
   s8 *new_var2;
   s8 *new_var;
-  sp1C = arg1;
-  func_8009211C(arg0, arg1);
+  sp1C = *((s32 **) (((s8 *) (&D_80146170)) + 8));
+  func_8009211C(&D_80146170, sp1C);
   new_var = (s8 *) (*(new_var3 = &sp1C));
   new_var2 = (s8 *) (new_var + 8);
   *new_var2 = 0;
 }
+

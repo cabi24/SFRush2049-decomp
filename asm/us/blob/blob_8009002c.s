@@ -747,12 +747,11 @@ entity_physics_update:
     .word 0x03E00008
     .word 0x27BD0070
 
-.section .blobdata.op_80090b68, "ax", @progbits
-    .incbin "build/game_code.bin", 41240, 8
-
 .section .text.entity_collision_detect, "ax", @progbits
 .globl entity_collision_detect
 entity_collision_detect:
+    .word 0x3C188011
+    .word 0x8F1870FC
     .word 0x27BDFFD0
     .word 0xAFA50034
     .word 0x00057400
@@ -4736,12 +4735,11 @@ func_800947F0:
     .word 0x03E00008
     .word 0xE4720000
 
-.section .blobdata.op_80094888, "ax", @progbits
-    .incbin "build/game_code.bin", 56888, 8
-
 .section .text.audio_channel_setup, "ax", @progbits
 .globl audio_channel_setup
 audio_channel_setup:
+    .word 0x00057400
+    .word 0x000E7C03
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0xAFA5001C
@@ -4948,12 +4946,11 @@ audio_channel_priority:
     .word 0x03E00008
     .word 0x27BD0020
 
-.section .blobdata.op_80094c28, "ax", @progbits
-    .incbin "build/game_code.bin", 57816, 8
-
 .section .text.audio_volume_pan, "ax", @progbits
 .globl audio_volume_pan
 audio_volume_pan:
+    .word 0x3C058013
+    .word 0x8CA5E6E0
     .word 0x27BDFFE0
     .word 0xAFBF0014
     .word 0x10A00024
@@ -5124,12 +5121,10 @@ Input_SetAnalogBounds:
     .word 0x03E00008
     .word 0x00000000
 
-.section .blobdata.op_80094e88, "ax", @progbits
-    .incbin "build/game_code.bin", 58424, 4
-
 .section .text.Input_InitPadHandlers, "ax", @progbits
 .globl Input_InitPadHandlers
 Input_InitPadHandlers:
+    .word 0x3C0F8014
     .word 0x25EF0BF0
     .word 0x00047140
     .word 0x01CF1021
@@ -5218,11 +5213,13 @@ input_new_data_wrapper:
     .word 0x00000000
 
 .section .blobdata.op_80094fc4, "ax", @progbits
-    .incbin "build/game_code.bin", 58740, 44
+    .incbin "build/game_code.bin", 58740, 36
 
 .section .text.audio_channel_reset, "ax", @progbits
 .globl audio_channel_reset
 audio_channel_reset:
+    .word 0x3C028015
+    .word 0x8442A108
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x00804825
@@ -5327,12 +5324,11 @@ validate_and_call:
     .word 0x03E00008
     .word 0x00000000
 
-.section .blobdata.op_80095154, "ax", @progbits
-    .incbin "build/game_code.bin", 59140, 8
-
 .section .text.sound_volume_helper, "ax", @progbits
 .globl sound_volume_helper
 sound_volume_helper:
+    .word 0x3C0E8011
+    .word 0x8DCE74B4
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x000E7980
@@ -5467,12 +5463,10 @@ sound_position_update:
     .word 0x03E00008
     .word 0x00000000
 
-.section .blobdata.op_8009539c, "ax", @progbits
-    .incbin "build/game_code.bin", 59724, 4
-
 .section .text.draw_sprites, "ax", @progbits
 .globl draw_sprites
 draw_sprites:
+    .word 0x8C8E0008
     .word 0x8CB80008
     .word 0x8DCF001C
     .word 0x8F19001C

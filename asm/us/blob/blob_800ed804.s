@@ -1025,11 +1025,13 @@ world_trigger_activate:
     .word 0x00000000
 
 .section .blobdata.op_800ee7ac, "ax", @progbits
-    .incbin "build/game_code.bin", 425308, 24
+    .incbin "build/game_code.bin", 425308, 16
 
 .section .text.sync_init_conditional, "ax", @progbits
 .globl sync_init_conditional
 sync_init_conditional:
+    .word 0x3C0E8011
+    .word 0x81CE47C0
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x15C0000E
@@ -9992,11 +9994,13 @@ func_800F7448:
     .word 0x00000000
 
 .section .blobdata.op_800f7564, "ax", @progbits
-    .incbin "build/game_code.bin", 461588, 1732
+    .incbin "build/game_code.bin", 461588, 1724
 
 .section .text.linear_interp, "ax", @progbits
 .globl linear_interp
 linear_interp:
+    .word 0x3C0E8011
+    .word 0x8DCE74B4
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x31CF0008

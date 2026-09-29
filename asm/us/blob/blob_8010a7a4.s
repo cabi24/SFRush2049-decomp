@@ -515,11 +515,13 @@ reconnect_attempt:
     .word 0x27BD0040
 
 .section .blobdata.op_8010c024, "ax", @progbits
-    .incbin "build/game_code.bin", 546260, 1708
+    .incbin "build/game_code.bin", 546260, 1700
 
 .section .text.steering_apply, "ax", @progbits
 .globl steering_apply
 steering_apply:
+    .word 0x84820000
+    .word 0x3C0F8015
     .word 0x27BDFFE0
     .word 0x00027200
     .word 0x01C27021

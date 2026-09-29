@@ -107,6 +107,69 @@ def load_work_inventory(work_dir=None):
 
 _image_cache = {}
 
+JR_RA = 0x03E00008
+HEAD_MAX_WORDS = 4
+
+
+def _ends_transfer(word):
+    """jr $ra, an unconditional b (beq $zero,$zero), or j: control never
+    falls through past the delay slot that follows."""
+    return word == JR_RA or (word >> 16) == 0x1000 or (word >> 26) == 2
+
+
+def stranded_head(image_bytes, address, max_words=HEAD_MAX_WORDS):
+    """Words a function lost from its start: how many instructions directly
+    before ``address`` are really its first ones.
+
+    The old inventory's prologue scan sometimes started a function one to
+    four instructions late (typically after a ``lui``/load of a global, or an
+    ``sll``/``sra`` narrowing pair), stranding the real head in a tiny opaque
+    run. Walking backwards, a word joins the head while it is non-zero, is
+    not ``jr $ra``, and is not the delay slot of a preceding ``jr $ra``/``b``/
+    ``j``. The walk must end at padding (zero) or at such a delay slot, i.e.
+    at a point no code falls through from; otherwise nothing is claimed."""
+    offset = address - GAME_CODE_BASE
+    word_at = lambda off: struct.unpack_from(">I", image_bytes, off)[0]
+    count = 0
+    while count < max_words:
+        off = offset - 4 * (count + 1)
+        if off < 0:
+            return 0
+        word = word_at(off)
+        if word == 0 or word == JR_RA:
+            break
+        if off >= 4 and _ends_transfer(word_at(off - 4)):
+            break                       # `word` is a delay slot: not ours
+        count += 1
+    if count == 0:
+        return 0
+    head_start = offset - 4 * count
+    # What precedes the head must be the end of other code: optional zero
+    # padding, then the delay slot of a jr $ra / b / j. A lone zero after a
+    # conditional branch is a delay-slot nop inside a function, not padding.
+    cursor = head_start - 4
+    while cursor >= 0 and word_at(cursor) == 0 and cursor >= 4 and not _ends_transfer(word_at(cursor - 4)):
+        cursor -= 4
+    if cursor < 4 or not _ends_transfer(word_at(cursor - 4)):
+        return 0
+    # No branch in the preceding code may land on the head: if one does, the
+    # words belong to that code (a loop tail), not to this function.
+    lo = max(0, head_start - 4 * 2048)
+    for off in range(lo, head_start, 4):
+        word = word_at(off)
+        opcode = word >> 26
+        is_branch = opcode in {0x01, 0x04, 0x05, 0x06, 0x07, 0x14, 0x15, 0x16, 0x17} or (
+            opcode in {0x10, 0x11, 0x12} and ((word >> 21) & 0x1F) == 0x08)
+        if not is_branch:
+            continue
+        imm = word & 0xFFFF
+        if imm & 0x8000:
+            imm -= 0x10000
+        target = off + 4 + imm * 4
+        if head_start <= target < offset:
+            return 0
+    return count
+
 
 def scan_extent(image_bytes, address):
     """Return the instruction count ending at the first eligible ``jr $ra``.
@@ -462,7 +525,7 @@ def assemble_text(asm_text, out_o):
         raise AssembleError(detail)
 
 
-def relocate_extracted(conn, store, limit=None, context_sha=None):
+def relocate_extracted(conn, store, limit=None, context_sha=None, names=None):
     """Upgrade extracted targets from raw-word to reloc-aware objects.
 
     Each target is assembled from its derived asm and must pass the same
@@ -484,6 +547,8 @@ def relocate_extracted(conn, store, limit=None, context_sha=None):
     with tempfile.TemporaryDirectory() as tmp:
         out_o = Path(tmp) / "target.o"
         for row in rows:
+            if names is not None and row["target_id"] not in set(names):
+                continue
             reason = row["gate_reason"] or ""
             if reason.startswith("extent_conflict") or reason.startswith("scan_overrun"):
                 summary["skipped_gate"] += 1
@@ -581,6 +646,7 @@ def _extent_plan(conn, inventory):
             "scanned": scanned,
             "previous": previous.get(entry["name"]),
             "container": None,
+            "head": 0,
         }
 
     extents = [
@@ -607,10 +673,25 @@ def _extent_plan(conn, inventory):
             item["container"] = min(
                 containers, key=lambda extent: (extent[2] - extent[1], extent[1], extent[0])
             )[0]
+    # Pull a function's start back over a stranded head (see stranded_head),
+    # unless those words already belong to another planned extent.
+    for name, item in plan.items():
+        if item["container"] or not isinstance(item["scanned"], int):
+            continue
+        head = stranded_head(image, item["address"])
+        if not head:
+            continue
+        start = item["address"] - 4 * head
+        if any(other != name and lo < item["address"] and hi > start
+               for other, lo, hi in extents):
+            continue
+        item["address"] = start
+        item["scanned"] += head
+        item["head"] = head
     return plan
 
 
-def populate(conn, store, work_dir=None, limit=None):
+def populate(conn, store, work_dir=None, limit=None, names=None):
     """Fill n64_target rows and build target .o blobs. Static targets attempt
     reloc-aware assembly (region → assemble → gate) with a raw-word fallback;
     dynamic targets stay raw-word. When a target's object bytes change, its
@@ -623,6 +704,10 @@ def populate(conn, store, work_dir=None, limit=None):
         inventory = inventory[:limit]
     regions = index_asm_regions()
     extent_plan = _extent_plan(conn, inventory)
+    if names is not None:
+        # Plan over the whole inventory (containers need every extent), then
+        # rebuild only the named targets.
+        inventory = [e for e in inventory if e["name"] in set(names)]
 
     built, skipped = 0, 0
     tiers = {"reloc_aware": 0, "raw_word_static": 0, "raw_word_dynamic": 0}
@@ -642,7 +727,7 @@ def populate(conn, store, work_dir=None, limit=None):
             if extent is not None:
                 scanned = extent["scanned"]
                 if isinstance(scanned, int):
-                    e = dict(e, size=scanned * 4)
+                    e = dict(e, size=scanned * 4, address=extent["address"])
             try:
                 words = function_words(e["address"], e["size"])
                 if not words:
@@ -799,9 +884,31 @@ def main():
                         help="upgrade extracted targets from raw-word to "
                              "reloc-aware objects (assembled from derived asm, "
                              "behind the 003 round-trip gate)")
+    parser.add_argument("--repair-heads", action="store_true",
+                        help="rebuild only the extracted targets whose start "
+                             "moves back over a stranded head, then upgrade "
+                             "them to reloc-aware objects")
     args = parser.parse_args()
     conn = dbmod.connect(Path(args.data) / "conveyor.db")
     store = BlobStore(Path(args.data) / "blobs")
+    if args.repair_heads:
+        plan = _extent_plan(conn, load_work_inventory())
+        current = {r["target_id"]: r["address"] for r in conn.execute(
+            "SELECT target_id,address FROM n64_target WHERE population='extracted'")}
+        names = sorted(n for n, item in plan.items()
+                       if item["head"] and current.get(n) != item["address"])
+        for n in names:
+            print(f"  {n}: start 0x{plan[n]['address'] + 4 * plan[n]['head']:08X}"
+                  f" -> 0x{plan[n]['address']:08X} (+{plan[n]['head']} insns)")
+        if not names:
+            print("no stranded heads to repair")
+            return
+        summary = populate(conn, store, names=names)
+        print(f"rebuilt {summary['built']} targets, superseded "
+              f"{summary['superseded_targets']} ({summary['purged_rows']} evidence rows)")
+        reloc, reasons = relocate_extracted(conn, store, names=names)
+        print("reloc-aware: " + "  ".join(f"{k}={v}" for k, v in sorted(reloc.items())))
+        return
     if args.relocate_extracted:
         summary, reasons = relocate_extracted(conn, store, limit=args.limit)
         print("extracted targets: "

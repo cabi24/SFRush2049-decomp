@@ -10248,12 +10248,12 @@ func_800EC914:
     .word 0x03E00008
     .word 0x27BD0010
 
-.section .blobdata.op_800ecb68, "ax", @progbits
-    .incbin "build/game_code.bin", 418072, 12
-
 .section .text.world_bounds_check, "ax", @progbits
 .globl world_bounds_check
 world_bounds_check:
+    .word 0x3C038014
+    .word 0x946307F0
+    .word 0x3C018012
     .word 0x27BDFFE0
     .word 0x00802825
     .word 0xC4204570

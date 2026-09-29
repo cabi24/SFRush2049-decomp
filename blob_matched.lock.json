@@ -627,10 +627,10 @@
   "object_action_clear": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/object_action_clear.c",
-    "source_sha256": "df85239aee7e1f5ab1c65fe050f2faea41119dd697a383efa1c3862a481c6a3c",
+    "source_sha256": "b96d253efb32589c5d38530cc9a73de00563eb601f108e062cf9282d600ced4b",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-27"
+    "verified_at": "2026-09-29"
   },
   "object_activate": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -747,10 +747,10 @@
   "player_state_clear": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/player_state_clear.c",
-    "source_sha256": "699618f14b62461d027ee067c97b801c9370b2b14b0129f83bba255a0e93b8c1",
+    "source_sha256": "2bc0a637a1efe622b5bb02c4de0f82e407a2cd451bd0e144f0278f6535b003e8",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-28"
+    "verified_at": "2026-09-29"
   },
   "pointer_compare_thunk": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",

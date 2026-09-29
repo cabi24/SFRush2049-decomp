@@ -1459,15 +1459,16 @@ void world_physics_tick(void);
 void world_trigger_activate(void);
 s32 world_velocity_integrate();
 extern s32 D_801541A4;
-void player_state_clear(s32 arg0)
+void player_state_clear(void)
 {
-  if (((!(((((((arg0 & 0xFFu) & 0xFFu) & 0xFFu) & 0xFFu) & 0xFFu) & 0xFFu) & 0xFFu)) && (!arg0)) && (!arg0))
+  s32 handle;
+
+  handle = D_801541A4;
+  if (handle != 0)
   {
-  }
-  if (arg0 != 0)
-  {
-    sound_stop(arg0);
+    sound_stop(handle);
     D_801541A4 = 0;
   }
 }
+
 

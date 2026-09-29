@@ -2371,12 +2371,11 @@ camera_target_track:
     .word 0x03E00008
     .word 0x27BD0038
 
-.section .blobdata.op_800aefe0, "ax", @progbits
-    .incbin "build/game_code.bin", 165264, 8
-
 .section .text.camera_collision_check, "ax", @progbits
 .globl camera_collision_check
 camera_collision_check:
+    .word 0x3C0E8011
+    .word 0x81CEFFC0
     .word 0x27BDFFD0
     .word 0x44866000
     .word 0x44877000
