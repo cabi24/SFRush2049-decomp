@@ -6955,6 +6955,7 @@ func_800A47C0:
 .section .text.audio_start, "ax", @progbits
 .globl audio_start
 audio_start:
+    /* compiled from src/blob/audio_start.c */
     .word 0x3C0E8013
     .word 0x8DCEE6C0
     .word 0x3C058015
