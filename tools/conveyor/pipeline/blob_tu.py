@@ -21,6 +21,7 @@ the builder is ever involved. Splicing still swaps in an IDO-compiled object
 per function; only the container changed.
 """
 import argparse
+import hashlib
 import json
 import struct
 import sys
@@ -157,6 +158,18 @@ def render_linker_script(document, symbols=None):
     return "\n".join(lines) + "\n"
 
 
+def write_target_hashes(asm_dir=ASM_DIR, symbols_path=None):
+    """Pin the region bytes and relocation addresses consumed by the cloud scorer."""
+    asm_dir = Path(asm_dir)
+    symbols_path = Path(symbols_path) if symbols_path is not None else asm_dir / "symbols.json"
+    files = sorted([*asm_dir.glob("*.s"), symbols_path], key=lambda path: path.name)
+    manifest = asm_dir / "SHA256SUMS"
+    manifest.write_text("".join(
+        f"{hashlib.sha256(path.read_bytes()).hexdigest()}  {path.name}\n" for path in files),
+        encoding="utf-8")
+    return manifest
+
+
 def write_symbols(document=None, path=ASM_DIR / "symbols.json"):
     """Export exactly the splice resolver's addresses for repo-only scoring.
 
@@ -177,6 +190,7 @@ def write_symbols(document=None, path=ASM_DIR / "symbols.json"):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n",
                     encoding="utf-8")
+    write_target_hashes(path.parent, path)
     return path
 
 
@@ -214,14 +228,14 @@ def main():
     parser.add_argument("--image", default=str(blob_layout.IMAGE))
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("generate")
-    symbols = sub.add_parser("symbols", help="export the cloud symbol table only")
+    symbols = sub.add_parser("symbols", help="export cloud symbols and target hashes")
     symbols.add_argument("--output", default=str(ASM_DIR / "symbols.json"))
     args = parser.parse_args()
 
     document = blob_layout.load(args.layout)
     if args.command == "symbols":
         path = write_symbols(document, args.output)
-        print(f"blob_tu: symbol table -> {path}")
+        print(f"blob_tu: symbol table -> {path}; target hashes -> {path.parent / 'SHA256SUMS'}")
         return 0
     written, script = generate(document, args.image)
     functions = document["totals"]["functions"]

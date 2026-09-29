@@ -1,5 +1,6 @@
 """F1: deterministic cloud symbols use the same resolver as image splicing."""
 import json
+import hashlib
 
 from tools.conveyor.pipeline import blob_layout, blob_splice, blob_tu
 
@@ -65,10 +66,14 @@ def test_generate_refreshes_symbols_in_the_selected_asm_directory(tmp_path, monk
     blob_tu.generate(document, image, asm_dir, tmp_path / "blob", spliced={})
     path = asm_dir / "symbols.json"
     assert json.loads(path.read_text())["symbols"] == {"member": f"0x{blob_layout.BASE:08X}"}
+    first_manifest = (asm_dir / "SHA256SUMS").read_text()
+    assert hashlib.sha256(path.read_bytes()).hexdigest() in first_manifest
+    assert hashlib.sha256((asm_dir / "region.s").read_bytes()).hexdigest() in first_manifest
 
     document["regions"][0]["entries"][0]["target_id"] = "renamed"
     blob_tu.generate(document, image, asm_dir, tmp_path / "blob", spliced={})
     assert json.loads(path.read_text())["symbols"] == {"renamed": f"0x{blob_layout.BASE:08X}"}
+    assert (asm_dir / "SHA256SUMS").read_text() != first_manifest
 
 
 def test_symbols_cli_needs_no_image_or_spliced_objects(tmp_path, monkeypatch, capsys):
@@ -84,3 +89,4 @@ def test_symbols_cli_needs_no_image_or_spliced_objects(tmp_path, monkeypatch, ca
     assert blob_tu.main() == 0
     assert json.loads(output.read_text())["symbols"]["member"] == f"0x{blob_layout.BASE:08X}"
     assert str(output) in capsys.readouterr().out
+    assert (tmp_path / "SHA256SUMS").is_file()

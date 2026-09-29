@@ -43,6 +43,9 @@ python3 tools/cloud/score.py fn src/blob/sound_handles_clear.c sound_handles_cle
 python3 tools/cloud/score.py group src/blob/groups/resource_slot_clear                   # -> 3x MATCH
 ```
 
+Setup also selects `.githooks` as this checkout's Git hooks directory, enabling
+the existing matched-source commit check.
+
 Submodules (m2c decompiler, decomp-permuter) are only needed for tooling work:
 `git submodule update --init`. m2c needs our local patches applied, and
 `tools/conveyor/pipeline/autodecomp.ensure_m2c_patched()` applies them.
@@ -71,6 +74,19 @@ are masked, and the output lists the unverified references, for example
 comparison in either mode, but never permits unresolved symbols, relocation
 errors, or differing words. The image and ROM hash gates remain required
 before splicing a contribution.
+
+Before using target words or symbol addresses, the scorer verifies their exact
+file bytes against `asm/us/blob/SHA256SUMS`. A changed, missing, or unlisted
+region fails verification; `--allow-unverified` cannot bypass this check.
+The coordinator refreshes the manifest with `blob_tu symbols` and
+`blob_tu generate`. Cloud contributors should restore altered protected files
+from the trusted checkout instead of regenerating their hashes.
+
+The project's `.claude/settings.json` adds a PreToolUse hook that denies direct
+Edit/Write calls on `asm/us/blob/**`, `*.lock.json`, `us.sha1`, `src/blob/blob.ld`,
+and `tools/cloud/score.py`. It leaves the maintainer's generation scripts
+available. This hook covers Claude's Edit/Write tools; the manifest and F4 PR
+checks provide separate verification of the protected data.
 
 ## 3. Where to contribute, in priority order
 

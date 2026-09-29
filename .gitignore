@@ -85,5 +85,6 @@ work/**/*.o
 asm/us/blob/*
 # Cloud scoring needs the generated splice-resolver addresses in a fresh clone.
 !asm/us/blob/symbols.json
+!asm/us/blob/SHA256SUMS
 src/blob/blob.ld
 tools/cloud/ido/

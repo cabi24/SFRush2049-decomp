@@ -1,6 +1,7 @@
 #!/bin/bash
 # Set up a cloud/CI box to compile and score Rush 2049 game functions without
-# the ROM or the LAN pipeline. Needs: x86-64 Linux, curl, sha256sum, python3. Optional:
+# the ROM or the LAN pipeline. Needs: a Git checkout, x86-64 Linux, curl,
+# sha256sum, python3. Optional:
 # MIPS binutils for disassembled diffs (Debian/Ubuntu:
 # apt-get install -y binutils-mips-linux-gnu).
 #
@@ -24,4 +25,5 @@ if [ ! -x "$HERE/ido/cc" ]; then
   tar xzf "$HERE/ido.tgz" -C "$HERE/ido"
   rm -f "$HERE/ido.tgz"
 fi
+git -C "$HERE/../.." config --local core.hooksPath .githooks
 echo "IDO 5.3 ready: $HERE/ido/cc"

@@ -57,3 +57,21 @@ exit 2
     assert not marker.exists()
     assert not (cloud / "ido/cc").exists()
     assert "IDO 5.3 ready" not in proc.stdout
+
+
+def test_existing_compiler_still_installs_repo_hooks_from_another_cwd(tmp_path):
+    repo = tmp_path / "repo with spaces"
+    cloud = repo / "tools/cloud"
+    (cloud / "ido").mkdir(parents=True)
+    shutil.copyfile(SETUP, cloud / "setup.sh")
+    compiler = cloud / "ido/cc"
+    compiler.write_text("#!/bin/sh\nexit 0\n")
+    compiler.chmod(0o755)
+    subprocess.run(["git", "init", "-q", str(repo)], check=True)
+    subprocess.run(["git", "-C", str(repo), "config", "core.hooksPath", "old-hooks"], check=True)
+    proc = subprocess.run(["bash", str(cloud / "setup.sh")], cwd=tmp_path,
+                          capture_output=True, text=True)
+    assert proc.returncode == 0, proc.stdout + proc.stderr
+    value = subprocess.check_output(
+        ["git", "-C", str(repo), "config", "--local", "--get", "core.hooksPath"], text=True)
+    assert value.strip() == ".githooks"

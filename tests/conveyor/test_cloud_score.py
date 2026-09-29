@@ -54,7 +54,7 @@ def _object(tmp_path, words, symbols, rels):
 
 
 def _compare(monkeypatch, obj, want, addresses=None):
-    monkeypatch.setattr(score, "_targets", {"f": want})
+    monkeypatch.setattr(score, "targets", lambda: {"f": want})
     monkeypatch.setattr(score, "image_symbols", lambda: addresses or {})
     return score.compare(obj, "f", show=0)
 
@@ -199,7 +199,7 @@ def test_nonzero_function_offset_bounds_excess_correctly(tmp_path, monkeypatch):
 
 def test_cli_excess_code_fails_even_with_allow_unverified(tmp_path, monkeypatch, capsys):
     obj = _object(tmp_path, [0x03E00008, 0, 0x24020001], [("f", 0, 2, 1, 8)], [])
-    monkeypatch.setattr(score, "_targets", {"f": [0x03E00008, 0]})
+    monkeypatch.setattr(score, "targets", lambda: {"f": [0x03E00008, 0]})
     monkeypatch.setattr(score, "image_symbols", lambda: {})
     monkeypatch.setattr(score, "compile_single", lambda source, flags, out: shutil.copyfile(obj, out))
     monkeypatch.setattr("sys.argv", ["score.py", "fn", "dummy.c", "f", "--allow-unverified"])
@@ -209,7 +209,7 @@ def test_cli_excess_code_fails_even_with_allow_unverified(tmp_path, monkeypatch,
 
 def test_missing_symbol_table_is_a_clear_failure(tmp_path, monkeypatch):
     monkeypatch.setattr(score, "ASM_DIR", tmp_path)
-    with pytest.raises(SystemExit, match="cannot read symbol table"):
+    with pytest.raises(SystemExit, match="target integrity check failed"):
         score.image_symbols()
 
 
@@ -220,7 +220,7 @@ def test_cli_unverified_opt_in_does_not_allow_unknown_symbols(
     name, typ, section = ("unknown", 1, 0) if unknown else (".rodata", 3, 6)
     obj = _object(tmp_path, [0x24840010], [("f", 0, 2, 1, 4), (name, 0, typ, section, 0)],
                   [(0, name, 6)])
-    monkeypatch.setattr(score, "_targets", {"f": [0x24840010]})
+    monkeypatch.setattr(score, "targets", lambda: {"f": [0x24840010]})
     monkeypatch.setattr(score, "image_symbols", lambda: {})
     monkeypatch.setattr(score, "compile_single", lambda source, flags, out: shutil.copyfile(obj, out))
     monkeypatch.setattr("sys.argv", ["score.py", "fn", "dummy.c", "f"]
@@ -243,7 +243,7 @@ def test_group_cli_exit_depends_on_members_only(
 
     monkeypatch.setattr(score, "compile_group", compile_group)
     monkeypatch.setattr(score, "image_symbols", lambda: {})
-    monkeypatch.setattr(score, "_targets", {
+    monkeypatch.setattr(score, "targets", lambda: {
         "f": [0x03E00008, int(member_bad)], "g": [0x03E00008, int(context_bad)]})
     monkeypatch.setattr("sys.argv", ["score.py", "group", "dummy"])
     assert score.main() == int(member_bad)
@@ -264,7 +264,7 @@ def test_missing_context_target_is_informational(tmp_path, monkeypatch, capsys):
 
     monkeypatch.setattr(score, "compile_group", compile_group)
     monkeypatch.setattr(score, "image_symbols", lambda: {})
-    monkeypatch.setattr(score, "_targets", {"f": [0x03E00008, 0]})
+    monkeypatch.setattr(score, "targets", lambda: {"f": [0x03E00008, 0]})
     monkeypatch.setattr("sys.argv", ["score.py", "group", "dummy"])
     assert score.main() == 0
     assert "NOT VERIFIED (no target section .text.unknown" in capsys.readouterr().out

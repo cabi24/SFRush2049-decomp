@@ -16,11 +16,15 @@ not matches. --allow-unverified permits those references but never unresolved
 symbols or differing words. The maintainers still run the image and ROM hash
 gates when a match is spliced (see CloudHandoff.md).
 
+Region files and symbol addresses must match asm/us/blob/SHA256SUMS; integrity
+failures are fatal, including when --allow-unverified is used.
+
 Needs tools/cloud/setup.sh (IDO 5.3 into tools/cloud/ido/). A MIPS objdump
 (mips-linux-gnu-objdump) is optional and only used to disassemble diffs.
 """
 import argparse
 from dataclasses import dataclass
+import hashlib
 import json
 import os
 import re
@@ -42,19 +46,58 @@ MASKS = {"R_MIPS_26": 0xFC000000, "R_MIPS_HI16": 0xFFFF0000, "R_MIPS_LO16": 0xFF
 # --- targets ---------------------------------------------------------------
 
 _targets = None
+_target_fingerprint = None
+
+
+def target_manifest():
+    path = ASM_DIR / "SHA256SUMS"
+    try:
+        entries = {}
+        for line in path.read_text(encoding="utf-8").splitlines():
+            match = re.fullmatch(r"([0-9a-f]{64})  ([A-Za-z0-9_.-]+)", line)
+            if not match or match[2] in entries or match[2] in (".", ".."):
+                raise ValueError("malformed or duplicate manifest entry")
+            entries[match[2]] = match[1]
+        if "symbols.json" not in entries:
+            raise ValueError("symbols.json is not covered")
+        return entries
+    except (OSError, ValueError) as exc:
+        raise SystemExit(f"target integrity check failed: cannot read {path}: {exc}")
+
+
+def verified_bytes(path, manifest):
+    try:
+        expected = manifest[path.name]
+        data = path.read_bytes()
+    except (OSError, KeyError) as exc:
+        raise SystemExit(f"target integrity check failed for {path}: missing file or hash ({exc})")
+    if hashlib.sha256(data).hexdigest() != expected:
+        raise SystemExit(f"target integrity check failed for {path}: SHA-256 mismatch; "
+                         "restore the protected files from a trusted checkout")
+    return data
 
 
 def targets():
     """{function name: [words]} from every region file."""
-    global _targets
-    if _targets is None:
-        _targets = {}
-        for path in sorted(ASM_DIR.glob("*.s")):
+    global _targets, _target_fingerprint
+    manifest = target_manifest()
+    paths = sorted(ASM_DIR.glob("*.s"))
+    expected = {name for name in manifest if name.endswith(".s")}
+    actual = {path.name for path in paths}
+    if not expected or actual != expected:
+        raise SystemExit("target integrity check failed: region file set differs from SHA256SUMS "
+                         f"(missing: {sorted(expected - actual)}, extra: {sorted(actual - expected)})")
+    # Recheck even cached targets; parse the same bytes that passed the hash.
+    contents = [(path, verified_bytes(path, manifest)) for path in paths]
+    fingerprint = (str(ASM_DIR.resolve()), tuple(sorted(manifest.items())))
+    if _targets is None or _target_fingerprint != fingerprint:
+        parsed = {}
+        for path, data in contents:
             current = None
-            for line in path.read_text().splitlines():
+            for line in data.decode("utf-8").splitlines():
                 m = re.match(r"\.section \.text\.(\S+?),", line.strip())
                 if m:
-                    current = _targets.setdefault(m.group(1), [])
+                    current = parsed.setdefault(m.group(1), [])
                     continue
                 if line.strip().startswith(".section"):
                     current = None
@@ -62,6 +105,8 @@ def targets():
                 m = re.match(r"\s*\.word\s+(0x[0-9A-Fa-f]+)", line)
                 if m and current is not None:
                     current.append(int(m.group(1), 16))
+        _targets = parsed
+        _target_fingerprint = fingerprint
     return _targets
 
 
@@ -131,7 +176,7 @@ def image_symbols():
     path = ASM_DIR / "symbols.json"
     try:
         return {name: int(address, 16)
-                for name, address in json.loads(path.read_text())["symbols"].items()}
+                for name, address in json.loads(verified_bytes(path, target_manifest()))["symbols"].items()}
     except (OSError, ValueError, KeyError, TypeError) as exc:
         raise SystemExit(f"cannot read symbol table {path}: {exc}")
 
