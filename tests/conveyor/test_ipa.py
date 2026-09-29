@@ -44,3 +44,27 @@ def test_float_first_argument_leaves_a0_unset_legitimately():
         "sw $a0,24($sp)", "jal f1", "lwc1 $f12,4($a0)", "lw $t7,24($sp)",
         "lw $a1,28($sp)", "jal f2", "lwc1 $f12,0($t7)", "jr $ra", "nop"))
     assert result["preserved_reads"] == set()
+
+
+def test_groups_pull_in_setters_and_preserved_callee_closures():
+    members_doc = {
+        "members": ["callee", "caller", "keeper"],
+        "callees": {"callee": ["t0"]},
+        "preservers": {"keeper": ["a1"]},
+        "callers": {"caller": ["callee"]},
+    }
+    calls = {"caller": {"callee"}, "callee": {"leaf"}, "keeper": {"mid"},
+             "mid": {"deep"}, "deep": set(), "leaf": set()}
+    size = {"callee": 10, "caller": 10, "keeper": 10, "mid": 10, "deep": 10, "leaf": 10}
+    groups = ipa.discover_groups(members_doc, calls, size, cap=100)
+    by_id = {g["id"]: set(g["members"]) for g in groups}
+    assert by_id["callee"] == {"callee", "caller"}          # setter joins its callee
+    assert by_id["keeper"] == {"keeper", "mid", "deep"}     # preserved call: callee closure
+
+
+def test_units_over_the_cap_are_left_out():
+    members_doc = {"members": ["keeper"], "callees": {},
+                   "preservers": {"keeper": ["a1"]}, "callers": {}}
+    calls = {"keeper": {"big"}, "big": set()}
+    groups = ipa.discover_groups(members_doc, calls, {"keeper": 10, "big": 500}, cap=100)
+    assert groups == []

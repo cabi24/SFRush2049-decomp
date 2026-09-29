@@ -141,6 +141,33 @@ The membership (365) is larger than the first estimate (243), because the
 preserver pattern also catches callers that keep argument registers across
 calls, not only callers of register-parameter callees.
 
+## 6b. Phase 4 progress (2026-09-29)
+
+- `pipeline/blob_group.py` builds a group as a whole-program unit on the
+  builder (`uld -kp`) and splices each member through per-slice relocation
+  and the image gate. The lock records `"group"`; `blob_rom` composes groups
+  unchanged.
+- **SC-1 met through the pipeline:** group `resource_slot_clear` (3 functions)
+  is in the ROM, **SHA-1 exact**, 124/912 game functions from C.
+- `ipa.py groups` discovery: each IPA member's unit is (setters of its
+  register parameters) + (the callee a caller sets registers for) + (for
+  preservers, every callee's full callee closure). Overlapping units merge.
+  At a 1,000-instruction cap: **54 groups, 115/365 IPA members, 132 functions**
+  → `build/ipa_groups.json`. Merging without a cap collapses into one 772-function
+  component, so the cap is essential.
+- **Extent defect found:** IDO's assembler fills a `jal` delay slot with the
+  callee's first instruction and jumps to callee+4. Population closure trusted
+  those targets, so some functions start one instruction late, with the real
+  first instruction stranded in a 4- or 8-byte opaque run (Input_InitPadHandlers,
+  draw_sprites, linear_interp, ...). 26 of the 132 "callee" detections are this
+  defect, not IPA. A copied-delay-slot heuristic flags 28 functions but has
+  false positives (func_800AED20 is spliced as-is). Needs its own extent-repair
+  pass before those functions can match.
+
+Remaining Phase 4/5 work: seeds through an m2c register-parameter map (S5),
+generating group TUs from seeds plus stand-ins, a `group_score` node job, and a
+group-aware permuter.
+
 ## 7. Risks
 
 - **Sensitivity cascade:** if member codegen depends on exact transitive callee

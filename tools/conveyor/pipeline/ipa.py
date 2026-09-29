@@ -2,6 +2,7 @@
 
     python3 -m tools.conveyor.pipeline.ipa scan      # writes build/ipa_members.json
     python3 -m tools.conveyor.pipeline.ipa report
+    python3 -m tools.conveyor.pipeline.ipa groups [--cap N]   # build/ipa_groups.json
 
 IDO -O3 lets a static callee take parameters in non-ABI registers and lets a
 caller keep values in caller-save registers across a call to a callee it knows
@@ -30,6 +31,8 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[3]
 MEMBERS_JSON = REPO / "build" / "ipa_members.json"
+GROUPS_JSON = REPO / "build" / "ipa_groups.json"
+GROUP_CAP_INSNS = 1000
 
 # O32 inputs: argument registers, stack/return address, FP argument registers.
 ABI_INPUTS = {"a0", "a1", "a2", "a3", "sp", "ra", "zero",
@@ -268,6 +271,96 @@ def scan(conn, asm_for):
             "members": members, "scanned": len(rows)}
 
 
+def call_graph(conn, image_bytes, base=0x80086A50):
+    """({target: set(direct callees)}, {target: insn_count}) from the image's
+    jal instructions, over gate-passed extracted targets."""
+    import struct
+    rows = conn.execute(
+        "SELECT target_id,address,insn_count,gate_reason FROM n64_target"
+        " WHERE population='extracted' AND address IS NOT NULL"
+        " AND insn_count IS NOT NULL").fetchall()
+    rows = [r for r in rows
+            if not (r["gate_reason"] or "").startswith("extent_conflict")]
+    by_addr = {r["address"]: r["target_id"] for r in rows}
+    calls, size = {}, {}
+    for r in rows:
+        off = r["address"] - base
+        words = struct.unpack(f">{r['insn_count']}I",
+                              image_bytes[off:off + 4 * r["insn_count"]])
+        calls[r["target_id"]] = {
+            by_addr.get(0x80000000 | ((w & 0x03FFFFFF) << 2))
+            for w in words if w >> 26 == 3} - {None, r["target_id"]}
+        size[r["target_id"]] = r["insn_count"]
+    return calls, size
+
+
+def discover_groups(members_doc, calls, size, cap=GROUP_CAP_INSNS):
+    """Merge each IPA member's matching unit into groups of bounded size.
+
+    A member's unit: itself; every function that sets its register parameters
+    (callers), and for a caller the callee whose registers it sets (recursively);
+    for a preserver, each function it calls plus that function's whole callee
+    closure, because the preserved register survives only if the callee's
+    clobber summary says so. Units over `cap` instructions are left out; units
+    that overlap merge, and merged groups over 2 * cap are dropped."""
+    def closure(x):
+        seen, stack = set(), [x]
+        while stack:
+            for z in calls.get(stack.pop(), ()):
+                if z not in seen:
+                    seen.add(z)
+                    stack.append(z)
+        return seen
+
+    setters = {}
+    for caller, callees in members_doc["callers"].items():
+        for callee in callees:
+            setters.setdefault(callee, set()).add(caller)
+
+    def unit(t, seen):
+        if t in seen:
+            return set()
+        seen.add(t)
+        u = {t} | setters.get(t, set())
+        for callee in members_doc["callers"].get(t, ()):
+            u |= unit(callee, seen)
+        if t in members_doc["preservers"]:
+            for x in calls.get(t, ()):
+                u |= {x} | closure(x)
+        return u
+
+    insns = lambda u: sum(size.get(m, 0) for m in u)
+    units = {t: unit(t, set()) for t in members_doc["members"]}
+    kept = {t: u for t, u in units.items() if insns(u) <= cap}
+    parent = {}
+
+    def find(x):
+        while parent.setdefault(x, x) != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+
+    for t, u in kept.items():
+        for m in u:
+            parent[find(m)] = find(t)
+    merged = {}
+    for t, u in kept.items():
+        merged.setdefault(find(t), set()).update(u)
+    groups = []
+    for members in merged.values():
+        if insns(members) > 2 * cap:
+            continue
+        ipa_members = sorted(members & set(members_doc["members"]))
+        groups.append({
+            "id": ipa_members[0],
+            "members": sorted(members),
+            "ipa_members": ipa_members,
+            "insns": insns(members),
+        })
+    groups.sort(key=lambda g: (g["insns"], g["id"]))
+    return groups
+
+
 def load_members(path=MEMBERS_JSON):
     """Set of IPA member target ids, or an empty set if no scan exists."""
     try:
@@ -286,6 +379,8 @@ def main():
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("scan")
     sub.add_parser("report")
+    g = sub.add_parser("groups")
+    g.add_argument("--cap", type=int, default=GROUP_CAP_INSNS)
     args = parser.parse_args()
 
     if args.command == "report":
@@ -296,6 +391,21 @@ def main():
         return 0
 
     conn = dbmod.connect(Path(args.data) / "conveyor.db")
+
+    if args.command == "groups":
+        from . import blob_layout
+        members_doc = json.loads(MEMBERS_JSON.read_text())
+        calls, size = call_graph(conn, Path(blob_layout.IMAGE).read_bytes())
+        groups = discover_groups(members_doc, calls, size, args.cap)
+        covered = set().union(*(g["members"] for g in groups)) if groups else set()
+        doc = {"cap_insns": args.cap, "groups": groups,
+               "ipa_members_covered": len(covered & set(members_doc["members"])),
+               "ipa_members_total": len(members_doc["members"])}
+        GROUPS_JSON.write_text(json.dumps(doc, indent=1) + "\n")
+        print(f"{len(groups)} groups (cap {args.cap} insns) covering "
+              f"{doc['ipa_members_covered']}/{doc['ipa_members_total']} IPA members, "
+              f"{len(covered)} functions -> {GROUPS_JSON}")
+        return 0
 
     def asm_for(target_id):
         try:
