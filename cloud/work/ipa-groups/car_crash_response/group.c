@@ -2904,7 +2904,7 @@ s32 car_angular_velocity_clamp(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4,
 void car_cg_height_set(void);
 void car_collision_init(void *arg0, s32 arg1, s32 arg2, s32 arg3);
 void car_collision_update(void *arg3, s32 arg0);
-void car_crash_detect(void);
+void car_crash_detect();
 
 void car_damage_visual(void *arg0);
 s16 car_gear_shift(u8 *arg0);

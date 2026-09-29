@@ -3699,8 +3699,8 @@ typedef s64 M2C_UNK64;
 
 /* group members */
 s32 func_800AD4C8(void *arg0, void *arg1, void *arg2, f32 ipa_f18);
-s16 func_800C3AD0(void *ipa_s0, void *ipa_s2, void *ipa_s4, s16 *ipa_s5, void *ipa_s6, void *ipa_s7, M2C_UNK ipa_s8, f32 ipa_f20);
-s16 input_process_controller(void *arg3, void *ipa_s1, void *ipa_s2, void *ipa_s3, s16 *ipa_s5, s32 ipa_s6, void *ipa_s7, M2C_UNK ipa_s8, M2C_UNK ipa_f24);
+s16 func_800C3AD0(void *ipa_s0, void *ipa_s2, void *ipa_s4, s16 *ipa_s5, void *ipa_s6, void *ipa_s7, f32 *ipa_fp, f32 ipa_f20);
+s16 input_process_controller(void *arg3, void *ipa_s1, void *ipa_s2, void *ipa_s3, s16 *ipa_s5, s32 ipa_s6, void *ipa_s7, void *ipa_fp, M2C_UNK ipa_f24);
 
 s32 func_800AD4C8(void *arg0, void *arg1, void *arg2, f32 ipa_f18) {
     f32 temp_f0;
@@ -3735,7 +3735,7 @@ s32 func_800AD4C8(void *arg0, void *arg1, void *arg2, f32 ipa_f18) {
     return 1;
 }
 
-s16 func_800C3AD0(void *ipa_s0, void *ipa_s2, void *ipa_s4, s16 *ipa_s5, void *ipa_s6, void *ipa_s7, M2C_UNK ipa_s8, f32 ipa_f20) {
+s16 func_800C3AD0(void *ipa_s0, void *ipa_s2, void *ipa_s4, s16 *ipa_s5, void *ipa_s6, void *ipa_s7, f32 *ipa_fp, f32 ipa_f20) {
     f32 sp98;
     f32 sp94;
     f32 sp90;
@@ -3794,7 +3794,7 @@ s16 func_800C3AD0(void *ipa_s0, void *ipa_s2, void *ipa_s4, s16 *ipa_s5, void *i
     sp98 = M2C_FIELD(ipa_s2, f32 *, 8) - temp_f4;
     func_800A61B0(&sp90, ipa_s0, ipa_s7);
     temp_f0 = M2C_FIELD(ipa_s0, f32 *, 4);
-    if ((temp_f0 <= ipa_f20) || (*saved_reg_fp < temp_f0)) {
+    if ((temp_f0 <= ipa_f20) || (*ipa_fp < temp_f0)) {
         return 0;
     }
     temp_v0_2 = (M2C_FIELD(((u8 *) sp + (temp_a1 * 2)), u16 *, 0x36) * 8) + D_8015201C;
@@ -3860,14 +3860,14 @@ loop_13:
         goto loop_13;
     }
 block_18:
-    *saved_reg_fp = M2C_FIELD(ipa_s0, f32 *, 4);
-    if ((ipa_s6 != NULL) && ((temp_t9 = M2C_FIELD(ipa_s4, u16 *, 0) & 0xF, (temp_t9 == 5)) || (temp_t9 == 6)) && ((temp_v0_5 = ((u16) sp38 * 8) + D_8015201C, temp_f4_4 = (f32) ((M2C_FIELD(temp_v0_5, s16 *, 0) << 5) + ((s32) (M2C_FIELD(temp_v0_5, u16 *, 6) & 0x7C00) >> 0xA)) * 0.03125f, sp84 = temp_f4_4, temp_f10_2 = (f32) ((M2C_FIELD(temp_v0_5, s16 *, 2) << 5) + ((s32) (M2C_FIELD(temp_v0_5, u16 *, 6) & 0x3E0) >> 5)) * 0.03125f, sp88 = temp_f10_2, temp_f8_4 = (f32) ((M2C_FIELD(temp_v0_5, s16 *, 4) << 5) + (M2C_FIELD(temp_v0_5, u16 *, 6) & 0x1F)) * 0.03125f, sp8C = temp_f8_4, sp90 = M2C_FIELD(ipa_s6, f32 *, 0) - temp_f4_4, sp94 = M2C_FIELD(ipa_s6, f32 *, 4) - temp_f10_2, sp98 = M2C_FIELD(ipa_s6, f32 *, 8) - temp_f8_4, func_800A61B0(M2C_ERROR(/* Read from unset register $t0 */), &sp84, ipa_s7), (sp88 <= *saved_reg_fp)) || (sp88 < D_80123F7C))) {
+    *ipa_fp = M2C_FIELD(ipa_s0, f32 *, 4);
+    if ((ipa_s6 != NULL) && ((temp_t9 = M2C_FIELD(ipa_s4, u16 *, 0) & 0xF, (temp_t9 == 5)) || (temp_t9 == 6)) && ((temp_v0_5 = ((u16) sp38 * 8) + D_8015201C, temp_f4_4 = (f32) ((M2C_FIELD(temp_v0_5, s16 *, 0) << 5) + ((s32) (M2C_FIELD(temp_v0_5, u16 *, 6) & 0x7C00) >> 0xA)) * 0.03125f, sp84 = temp_f4_4, temp_f10_2 = (f32) ((M2C_FIELD(temp_v0_5, s16 *, 2) << 5) + ((s32) (M2C_FIELD(temp_v0_5, u16 *, 6) & 0x3E0) >> 5)) * 0.03125f, sp88 = temp_f10_2, temp_f8_4 = (f32) ((M2C_FIELD(temp_v0_5, s16 *, 4) << 5) + (M2C_FIELD(temp_v0_5, u16 *, 6) & 0x1F)) * 0.03125f, sp8C = temp_f8_4, sp90 = M2C_FIELD(ipa_s6, f32 *, 0) - temp_f4_4, sp94 = M2C_FIELD(ipa_s6, f32 *, 4) - temp_f10_2, sp98 = M2C_FIELD(ipa_s6, f32 *, 8) - temp_f8_4, func_800A61B0(M2C_ERROR(/* Read from unset register $t0 */), &sp84, ipa_s7), (sp88 <= *ipa_fp)) || (sp88 < D_80123F7C))) {
         return 0;
     }
     return var_s3;
 }
 
-s16 input_process_controller(void *arg3, void *ipa_s1, void *ipa_s2, void *ipa_s3, s16 *ipa_s5, s32 ipa_s6, void *ipa_s7, M2C_UNK ipa_s8, M2C_UNK ipa_f24) {
+s16 input_process_controller(void *arg3, void *ipa_s1, void *ipa_s2, void *ipa_s3, s16 *ipa_s5, s32 ipa_s6, void *ipa_s7, void *ipa_fp, M2C_UNK ipa_f24) {
     u16 sp94;
     s16 sp90;
     f32 sp88;
@@ -3914,7 +3914,7 @@ s16 input_process_controller(void *arg3, void *ipa_s1, void *ipa_s2, void *ipa_s
     void *temp_v1_4;
 
     var_s4 = 1;
-    func_800AD650(saved_reg_fp, (u8 *) arg3 + 4);
+    func_800AD650(ipa_fp, (u8 *) arg3 + 4);
     temp_a1 = M2C_FIELD(arg3, u16 *, 2) & 0xF;
     *ipa_s5 = func_800AD5D0(M2C_FIELD(arg3, u16 *, 0x16) + D_80152568, temp_a1, &sp90);
     temp_v1 = ((u16) sp90 * 8) + D_8015201C;
@@ -3927,14 +3927,14 @@ s16 input_process_controller(void *arg3, void *ipa_s1, void *ipa_s2, void *ipa_s
     sp68 = M2C_FIELD(ipa_s1, f32 *, 0) - temp_f4;
     sp6C = M2C_FIELD(ipa_s1, f32 *, 4) - temp_f10;
     sp70 = M2C_FIELD(ipa_s1, f32 *, 8) - temp_f8;
-    func_800A61B0(&sp68, &sp80, saved_reg_fp);
+    func_800A61B0(&sp68, &sp80, ipa_fp);
     if (sp84 < 0.0f) {
         return 0;
     }
     sp68 = M2C_FIELD(ipa_s2, f32 *, 0) - sp50;
     sp6C = M2C_FIELD(ipa_s2, f32 *, 4) - sp54;
     sp70 = M2C_FIELD(ipa_s2, f32 *, 8) - sp58;
-    func_800A61B0(&sp68, &sp74, saved_reg_fp);
+    func_800A61B0(&sp68, &sp74, ipa_fp);
     if (sp78 > 0.0f) {
         return 0;
     }
@@ -4025,7 +4025,7 @@ loop_22:
         goto loop_22;
     }
 block_29:
-    func_8009E820(&sp80, ipa_s3, saved_reg_fp);
+    func_8009E820(&sp80, ipa_s3, ipa_fp);
     M2C_FIELD(ipa_s3, f32 *, 0) = (f32) (sp50 + M2C_FIELD(ipa_s3, f32 *, 0));
     M2C_FIELD(ipa_s3, f32 *, 4) = (f32) (sp54 + M2C_FIELD(ipa_s3, f32 *, 4));
     M2C_FIELD(ipa_s3, f32 *, 8) = (f32) (sp58 + M2C_FIELD(ipa_s3, f32 *, 8));

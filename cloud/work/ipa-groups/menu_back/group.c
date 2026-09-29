@@ -3710,7 +3710,7 @@ void menu_back(void **ipa_s1) {
     temp_s0 = *M2C_FIELD(*ipa_s1, void ***, 0x28);
     if (M2C_FIELD(temp_s0, s32 *, 0x4C) == 0) {
         M2C_FIELD(*ipa_s1, s32 *, 0x24) = audio_task_complete(NULL, M2C_FIELD(temp_s0, s32 *, 0x40));
-        temp_a2 = *M2C_FIELD(*ipa_s1, s32 *, 0x24);
+        temp_a2 = M2C_FIELD(M2C_FIELD(*ipa_s1, s32 *, 0x24), s32 *, 0);
         M2C_FIELD(temp_s0, s32 *, 0x4C) = temp_a2;
         temp_v0 = inflate_entry_alt((u8 *) temp_s0 + 0x58, M2C_FIELD(temp_s0, s32 *, 0x3C), temp_a2);
         M2C_FIELD(temp_s0, s32 *, 0x54) = (s32) (temp_v0 / 3);

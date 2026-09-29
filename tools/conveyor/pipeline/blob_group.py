@@ -400,6 +400,55 @@ def _definition(src, name):
     return None
 
 
+def _call_arities(text, name):
+    """Argument counts of every call `name(...)` in C text."""
+    counts = []
+    for m in re.finditer(r"\b" + re.escape(name) + r"\s*\(", text):
+        depth, j, args, current = 1, m.end(), 0, ""
+        while j < len(text) and depth:
+            ch = text[j]
+            if ch == "(":
+                depth += 1
+            elif ch == ")":
+                depth -= 1
+            elif ch == "," and depth == 1:
+                args += 1
+            if depth:
+                current += ch
+            j += 1
+        counts.append(0 if not current.strip() else args + 1)
+    return counts
+
+
+def unprototype_mismatched(prelude, bodies, exclude=()):
+    """Rewrite `ret f(params);` to `ret f();` for every function the member
+    bodies call with an argument count its prototype does not accept. The
+    generated context guesses callee signatures; an unprototyped declaration
+    lets IDO accept whatever m2c inferred at the call. Returns the new prelude
+    and the rewritten names."""
+    protos = {}
+    for m in re.finditer(r"^([^\n;{}()#]*?\b)(\w+)\s*\(([^;{}()]*)\)\s*;", prelude, re.M):
+        protos.setdefault(m.group(2), m)
+    rewritten = []
+    text = "\n".join(bodies)
+    for name, m in protos.items():
+        if name in exclude:
+            continue
+        arities = set(_call_arities(text, name))
+        if not arities:
+            continue
+        params = m.group(3).strip()
+        declared = 0 if params in ("", "void") else params.count(",") + 1
+        variadic = "..." in params
+        if (variadic and all(a >= declared - 1 for a in arities)) or arities == {declared}:
+            continue
+        rewritten.append(name)
+    for name in rewritten:
+        prelude = re.sub(r"^([^\n;{}()#]*?\b" + re.escape(name) + r")\s*\([^;{}()]*\)\s*;",
+                         r"\1();", prelude, count=1, flags=re.M)
+    return prelude, rewritten
+
+
 def _param_count(signature):
     inner = signature[signature.index("(") + 1:signature.rindex(")")].strip()
     if inner in ("", "void"):
@@ -439,6 +488,8 @@ def seed_group(entry, conn, calls, root=GROUP_DIR, force=False):
     for member in members:
         prelude = re.sub(r"^[^\n;{}]*\b" + re.escape(member) + r"\s*\([^;{]*\)\s*;[^\n]*$",
                          "", prelude, flags=re.M)
+    prelude, unprototyped = unprototype_mismatched(
+        prelude, [seeds[m] for m in members], exclude=members)
     signatures = {m: seeds[m][:seeds[m].index("{")].strip() for m in members}
     in_group_callers = {m: [c for c in members if m in calls.get(c, ())] for m in members}
     roots = [m for m in members if not in_group_callers[m]]
@@ -458,7 +509,8 @@ def seed_group(entry, conn, calls, root=GROUP_DIR, force=False):
     (out_dir / "group.c").write_text("\n".join(body))
     spec = {"members": members, "files": ["group.c"], "keep": roots + standins,
             "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
-            "generated": "blob_group seed from build/ipa_groups.json"}
+            "generated": "blob_group seed from build/ipa_groups.json",
+            "unprototyped": unprototyped}
     (out_dir / "group.json").write_text(json.dumps(spec, indent=2) + "\n")
     return out_dir
 

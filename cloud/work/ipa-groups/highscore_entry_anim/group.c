@@ -3698,17 +3698,17 @@ typedef s64 M2C_UNK64;
 
 
 /* group members */
-void highscore_entry_anim(s32 arg0, s32 ipa_s3, M2C_UNK ipa_s8, s32 arg5, s16 *arg6);
+void highscore_entry_anim(s32 arg0, s32 ipa_s3, s16 ipa_fp, s32 arg5, s16 *arg6);
 
-void highscore_entry_anim(s32 arg0, s32 ipa_s3, M2C_UNK ipa_s8, s32 arg5, s16 *arg6) {
+void highscore_entry_anim(s32 arg0, s32 ipa_s3, s16 ipa_fp, s32 arg5, s16 *arg6) {
     s32 var_a0;
 
     dispatch_handler(arg0);
-    state_utility((s16) (ipa_s3 - (object_manager_update(&D_801149A8, -1) >> 1)), (s32) (s16) saved_reg_fp, &D_801149A8);
+    state_utility((s16) (ipa_s3 - (object_manager_update(&D_801149A8, -1) >> 1)), (s32) ipa_fp, &D_801149A8);
     var_a0 = 0x10;
     if (*arg6 == -1) {
         var_a0 = 0x16;
     }
     dispatch_handler(var_a0);
-    state_utility((s16) ((ipa_s3 + 0x24) - (object_manager_update(&D_801149AC, -1) >> 1)), (s32) (s16) saved_reg_fp, &D_801149AC);
+    state_utility((s16) ((ipa_s3 + 0x24) - (object_manager_update(&D_801149AC, -1) >> 1)), (s32) ipa_fp, &D_801149AC);
 }

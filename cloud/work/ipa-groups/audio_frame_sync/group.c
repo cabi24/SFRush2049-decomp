@@ -3701,8 +3701,8 @@ typedef s64 M2C_UNK64;
 s32 audio_frame_sync(s32 arg0, s32 arg1, s32 arg2, s8 arg3, s32 ipa_v0, void *arg4);
 void brake_force_apply(s32 arg0);
 void fp_call_wrapper(s32 arg0);
-void func_80096CA8(s32 ipa_t0, M2C_UNK ipa_s8, s32 arg1);
-void func_80097164(M2C_UNK ipa_s8);
+void func_80096CA8(s32 ipa_t0, s32 ipa_fp, s32 arg1);
+void func_80097164(s32 ipa_fp);
 void suspension_setup(s32 arg0, s32 arg1);
 
 s32 audio_frame_sync(s32 arg0, s32 arg1, s32 arg2, s8 arg3, s32 ipa_v0, void *arg4) {
@@ -3762,7 +3762,7 @@ loop_6:
             osJamMesg((OSMesgQueue *) &D_80156BB0, NULL, 1);
         } else {
             sp6C = var_a3_2;
-            func_80097164(M2C_ERROR(/* Read from unset register $s8 */));
+            func_80097164(var_a3_2);
         }
         var_a3 = sp6C;
     }
@@ -3776,18 +3776,19 @@ void brake_force_apply(s32 arg0) {
     osCreateViManager((OSThread *) &D_80034690, 3);
 loop_1:
     osRecvMesg((OSMesgQueue *) &D_80156BB0, &sp44, 1);
-    func_80097164(M2C_ERROR(/* Read from unset register $s8 */));
+    func_80097164(D_801569AC);
     osJamMesg((OSMesgQueue *) &D_80035440, NULL, 1);
     goto loop_1;
 }
 
 void fp_call_wrapper(s32 arg0) {
-    func_80096CA8(arg0, 0, M2C_ERROR(/* Read from unset register $s8 */));
+    func_80096CA8(arg0, 0, arg0);
 }
 
-void func_80096CA8(s32 ipa_t0, M2C_UNK ipa_s8, s32 arg1) {
+void func_80096CA8(s32 ipa_t0, s32 ipa_fp, s32 arg1) {
     M2C_UNK sp64;
     s32 sp58;
+    s32 sp44;
     s32 sp40;
     void *sp34;
     D_80138670_Entry *temp_s4;
@@ -3829,7 +3830,7 @@ void func_80096CA8(s32 ipa_t0, M2C_UNK ipa_s8, s32 arg1) {
     void *temp_v0_6;
     void *temp_v0_7;
 
-    temp_a3 = (s32 *) ((saved_reg_fp * 0x14) + (u8 *) &D_80156D38);
+    temp_a3 = (s32 *) ((ipa_fp * 0x14) + (u8 *) &D_80156D38);
     var_v1 = 0;
     if (M2C_FIELD(temp_a3, s8 *, 3) == 0) {
         M2C_FIELD(temp_a3, s8 *, 1) = 1;
@@ -3851,6 +3852,7 @@ void func_80096CA8(s32 ipa_t0, M2C_UNK ipa_s8, s32 arg1) {
         } else {
             var_s6 = M2C_FIELD(temp_a3, M2C_UNK **, 0xC);
         }
+        sp44 = ipa_fp;
         if (ipa_t0 != 0) {
             sp40 = var_v1_2;
             sp34 = temp_a3;
@@ -3864,13 +3866,13 @@ void func_80096CA8(s32 ipa_t0, M2C_UNK ipa_s8, s32 arg1) {
             sp40 = var_v1_2;
             func_80096BBC(&sp64, (s32) var_s6, (s32) var_s5);
         }
-        temp_s1 = saved_reg_fp * 8;
+        temp_s1 = ipa_fp * 8;
         temp_s3 = (s32 *) (temp_s1 + (u8 *) &D_801161F4);
         arg1 = arg1;
         M2C_FIELD(sp34, s32 *, 0x10) = (s32) *M2C_FIELD(sp34, s32 **, 0xC);
         temp_s0 = (s32 *) (temp_s1 + (u8 *) &D_80151AE8);
         M2C_FIELD(temp_s3, s32 *, 0) = lookup_with_output(&sp64, 0x4F424844, (u8 *) temp_s3 + 4);
-        temp_s4 = &D_80138670[saved_reg_fp];
+        temp_s4 = &D_80138670[ipa_fp];
         M2C_FIELD(temp_s0, s32 *, 0) = lookup_with_output(&sp64, 0x54584844, (u8 *) temp_s0 + 4);
         temp_s4->unk0 = lookup_with_output(&sp64, 0x504C4844, &temp_s4->unk4);
         temp_v1 = M2C_FIELD(sp34, u8 *, 6);
@@ -3973,11 +3975,11 @@ void func_80096CA8(s32 ipa_t0, M2C_UNK ipa_s8, s32 arg1) {
             }
         }
         M2C_FIELD(sp34, s8 *, 1) = 1;
-        entity_render_mode(saved_reg_fp);
+        entity_render_mode(ipa_fp);
     }
 }
 
-void func_80097164(M2C_UNK ipa_s8) {
+void func_80097164(s32 ipa_fp) {
     M2C_UNK sp38;
     M2C_UNK *var_s0;
     M2C_UNK *var_s0_2;
@@ -3989,7 +3991,7 @@ void func_80097164(M2C_UNK ipa_s8) {
     u8 temp_v0;
     void *temp_s1;
 
-    temp_s1 = (s32 *) ((saved_reg_fp * 0x14) + (u8 *) &D_80156D38);
+    temp_s1 = (s32 *) ((ipa_fp * 0x14) + (u8 *) &D_80156D38);
     temp_v0 = M2C_FIELD(temp_s1, u8 *, 6);
     temp_a3 = temp_v0 * 4;
     temp_v1 = (&D_80123564)[temp_v0];
@@ -4021,7 +4023,7 @@ void func_80097164(M2C_UNK ipa_s8) {
         inflate_decompress(M2C_FIELD((temp_a3 + 0x80120000), s32 *, -0x4A44), var_s0_3, 1, temp_a3);
     }
     M2C_FIELD(temp_s1, s8 *, 0) = 1;
-    func_80096CA8(M2C_ERROR(/* Read from unset register $a0 */), 1, ipa_s8);
+    func_80096CA8(M2C_ERROR(/* Read from unset register $a0 */), 1, ipa_fp);
 }
 
 void suspension_setup(s32 arg0, s32 arg1) {
@@ -4043,7 +4045,7 @@ void suspension_setup(s32 arg0, s32 arg1) {
             M2C_FIELD(temp_v0_2, s8 *, 6) = (s8) M2C_ERROR(/* Read from unset register $t0 */);
             M2C_FIELD(temp_v0_2, s8 *, 4) = 0;
             func_800972C4(temp_v0);
-            func_80097164(M2C_ERROR(/* Read from unset register $s8 */));
+            func_80097164(temp_v0);
         }
     }
 }

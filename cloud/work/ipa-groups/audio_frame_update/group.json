@@ -13,5 +13,6 @@
     "__standin_func_800B0A88"
   ],
   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
-  "generated": "blob_group seed from build/ipa_groups.json"
+  "generated": "blob_group seed from build/ipa_groups.json",
+  "unprototyped": []
 }

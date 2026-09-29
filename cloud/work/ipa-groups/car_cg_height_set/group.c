@@ -3696,7 +3696,7 @@ typedef s64 M2C_UNK64;
 
 #endif
 
-M2C_UNK memcpy(s32, s32, u32);                      /* extern */
+M2C_UNK memcpy();                      /* extern */
 
 
 /* group members */

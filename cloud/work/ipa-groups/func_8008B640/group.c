@@ -3446,7 +3446,7 @@ void mode_byte_set(s16 arg0);
 void mode_flags_clear(void);
 s32 mode_select_handler();
 void mode_select_input(f32 arg0);
-s32 model_bounds_calc(void *arg3);
+s32 model_bounds_calc();
 void model_data_load(s16 arg0, s32 arg1, s32 arg2);
 void model_transform_setup(s16 arg0, s32 arg1, s32 arg2);
 void music_control(void);

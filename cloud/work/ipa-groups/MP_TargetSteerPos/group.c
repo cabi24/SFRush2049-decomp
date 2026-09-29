@@ -3696,7 +3696,7 @@ typedef s64 M2C_UNK64;
 
 #endif
 
-M2C_UNK func_8001fea4(s32, s32);                    /* extern */
+M2C_UNK func_8001fea4();                    /* extern */
 M2C_UNK func_8001fff4(s32, s32);                    /* extern */
 s32 func_80020174(u16, M2C_UNK, M2C_UNK);           /* extern */
 

@@ -3185,8 +3185,8 @@ void func_800C0294(s32 arg0, void *arg1);
 void func_800C0828(void *arg0);
 void func_800C1A00(s32 arg0, void *arg1);
 s32 func_800C1B60();
-void func_800C2004(void);
-void func_800C220C(void);
+void func_800C2004();
+void func_800C220C();
 
 
 

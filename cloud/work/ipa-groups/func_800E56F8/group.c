@@ -3776,7 +3776,7 @@ void func_800E56F8(s16 ipa_s4) {
     } else if (M2C_FIELD(temp_s0_2, s16 *, 0x71C) != 0) {
         if (temp_s3 != NULL) {
             func_800E3724(temp_s0_2);
-            if ((state_word_a & 0x400000) && ((gameplay_mode != 2) || (temp_v1 = (&D_80152698)[M2C_FIELD(temp_s0_2, s16 *, 0x7C6)], (temp_v1 == 0)) || (M2C_FIELD(*M2C_FIELD(*temp_v1, void ***, 0x28), s8 *, 5) < 0))) {
+            if ((state_word_a & 0x400000) && ((gameplay_mode != 2) || (temp_v1 = (&D_80152698)[M2C_FIELD(temp_s0_2, s16 *, 0x7C6)], (temp_v1 == 0)) || (M2C_FIELD(*M2C_FIELD(M2C_FIELD(temp_v1, void **, 0), void ***, 0x28), s8 *, 5) < 0))) {
                 temp_f6 = (s32) (fabsf(M2C_FIELD(temp_s0_2, f32 *, 0x18)) + (fabsf(M2C_FIELD(temp_s0_2, f32 *, 0x10)) + fabsf(M2C_FIELD(temp_s0_2, f32 *, 0x14))));
                 var_a0 = temp_f6;
                 if (gameplay_mode == 6) {

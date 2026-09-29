@@ -1,0 +1,18 @@
+diff --git a/m2c/translate.py b/m2c/translate.py
+--- a/m2c/translate.py
++++ b/m2c/translate.py
+@@ -1643,6 +1643,14 @@
+ 
+         # Rewrite `x->unk0` to `*x` and `x.unk0` to `x`, unless has_nonzero_access
+         if self.offset == 0 and not has_nonzero_access:
++            # rush2049: `*x` is only C when x is a pointer. m2c sometimes
++            # types the address as an integer (a field it could not type);
++            # spell the load with the width it actually has instead of
++            # emitting "Dereferenced a non-pointer".
++            if (fmt.valid_syntax and deref
++                    and not var.type.is_pointer_or_array()
++                    and self.type.get_size_bytes()):
++                return f"M2C_FIELD({var.format(fmt)}, {Type.ptr(self.type).format(fmt)}, 0)"
+             return f"{'*' if deref else ''}{var.format(fmt)}"
+ 
+         return f"{parenthesize_for_struct_access(var, fmt)}{field_name}"

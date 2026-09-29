@@ -128,3 +128,13 @@ def test_context_functions_resolve_calls_but_are_not_spliced(tmp_path):
                                  {"D_data": 0x8012FFF0, "ext_fn": 0x80000400})
     # g as context: f's call into it still resolves to g's image address
     assert _words(bodies["f"])[0] == 0x0C000000 | (0x80200000 >> 2) & 0x03FFFFFF
+
+
+def test_mismatched_callee_prototypes_are_unprototyped():
+    prelude = ("void a(void);\ns32 b(s32 x, s32 y);\nvoid c(s32 x, ...);\n"
+               "void member(s32 x);\n")
+    new, names = blob_group.unprototype_mismatched(
+        prelude, ["a(1); b(1, 2); c(1, 2, 3); member(1, 2);"], exclude=["member"])
+    assert names == ["a"]
+    assert "void a();" in new and "s32 b(s32 x, s32 y);" in new
+    assert "void member(s32 x);" in new          # members are left alone

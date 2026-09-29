@@ -45,8 +45,10 @@ def m2c_register_map(members_doc):
     for callee, regs in members_doc["callees"].items():
         regs = [r for r in regs if r not in ABI_INPUTS]
         if regs:
-            out[callee] = sorted(regs, key=lambda r: _REG_ORDER.index(r)
-                                 if r in _REG_ORDER else 99)
+            ordered = sorted(regs, key=lambda r: _REG_ORDER.index(r)
+                             if r in _REG_ORDER else 99)
+            # m2c names $s8 "fp" internally (Register("fp")).
+            out[callee] = ["fp" if r == "s8" else r for r in ordered]
     return out
 GROUP_CAP_INSNS = 1000
 

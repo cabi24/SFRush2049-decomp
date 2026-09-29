@@ -132,3 +132,18 @@ def test_m2c_ipa_mode_turns_register_parameters_into_c_parameters(tmp_path):
     assert "callee(0x36)" in caller
     plain = _m2c(tmp_path, _IPA_CALLEE, "callee")
     assert "unset register $t0" in plain          # plain seeds are unchanged
+
+
+def test_m2c_casts_a_load_through_an_integer_typed_address(tmp_path):
+    """Patch 0005: a load whose address m2c typed as an integer is spelled
+    through M2C_FIELD instead of the uncompilable `*x`."""
+    autodecomp.ensure_m2c_patched()
+    asm = tmp_path / "f.s"
+    asm.write_text("glabel f\nlh $v0, 0($a0)\njr $ra\nnop\n")
+    ctx = tmp_path / "ctx.c"
+    ctx.write_text("typedef int s32; typedef short s16;\ns32 f(s32 arg0);\n")
+    out = subprocess.run(
+        ["python3", str(autodecomp.M2C), str(asm), "-f", "f", "--valid-syntax",
+         "--context", str(ctx)], capture_output=True, text=True, check=True).stdout
+    assert "M2C_FIELD(arg0, s16 *, 0)" in out
+    assert "*arg0" not in out
