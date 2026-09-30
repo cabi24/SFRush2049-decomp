@@ -3722,7 +3722,7 @@ void *sound_play_menu(s32 arg0, s32 arg1);
 void sound_position_set(void *arg0, void *arg1);
 void sound_position_update(f32 arg0, f32 arg1);
 void sound_priority_set(s32 arg0, f32 arg1);
-void sound_update_channel(void);
+void sound_update_channel();
 s32 sound_volume_helper(void *arg0);
 s32 spark_effect(s32 arg6, s32 arg7, s32 arg8, s32 arg9, s32 arg10, s32 arg11, s32 arg12, s32 arg13, s32 arg14, s32 arg15, s8 arg45);
 void speed_mode0_wrapper(f32 arg0, f32 arg1);

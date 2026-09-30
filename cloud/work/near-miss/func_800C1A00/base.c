@@ -3793,39 +3793,43 @@ typedef s8 M2C_UNK8;
 typedef s16 M2C_UNK16;
 typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
-void func_800C1A00(s32 arg0, void *arg1)
+/*MY*/
+typedef struct Dir44 { u8 pad0[0xC]; f32 fC; f32 f10; f32 f14; u8 pad18[0x2C]; } Dir44;
+typedef struct DInfo { u8 pad0[0x16]; s16 id; u8 pad18[4]; Dir44 *tbl; } DInfo;
+typedef struct DRef { DInfo *info; u8 pad4[8]; s16 idx; u16 flags; f32 scale; } DRef;
+typedef struct DObj { u8 pad0[0x6C]; DRef *ref; } DObj;
+void func_800C1A00(s32 arg0, f32 *arg1)
 {
-  s32 *var_a2;
   s32 var_v0;
-  void *temp_a0;
-  void *temp_a3;
-  *((f32 *) (((s8 *) arg1) + 0)) = 0.0f;
-  *((f32 *) (((s8 *) arg1) + 4)) = 0.0f;
-  *((f32 *) (((s8 *) arg1) + 8)) = 0.0f;
-  var_a2 = &D_8013C300;
+  DInfo *temp_a3;
+  DObj **var_a2;
+  DRef *temp_a0;
+  arg1[0] = 0.0f;
+  arg1[1] = 0.0f;
+  arg1[2] = 0.0f;
+  var_a2 = (DObj **) &D_8013C300;
   var_v0 = 0;
   if (D_8013F1DC > 0)
   {
     loop_1:
     var_v0 += 1;
-
-    temp_a0 = *((void **) (((s8 *) (*var_a2)) + 0x6C));
+    temp_a0 = (*var_a2)->ref;
     if ((!arg0) && (!arg0))
     {
     }
-    temp_a3 = *((void **) (((s8 *) temp_a0) + 0));
-    if (arg0 == (*((s16 *) (((s8 *) temp_a3) + 0x16))))
+    temp_a3 = temp_a0->info;
+    if (arg0 == temp_a3->id)
     {
-      if ((*((u16 *) (((s8 *) temp_a0) + 0xE))) & 8)
+      if (temp_a0->flags & 8)
       {
-        *((f32 *) (((s8 *) arg1) + 0)) = (f32) ((*((f32 *) (((s8 *) ((*((s32 *) (((s8 *) temp_a3) + 0x1C))) + ((*((s16 *) (((s8 *) temp_a0) + 0xC))) * 0x44))) + 0xC))) * (-(*((f32 *) (((s8 *) temp_a0) + 0x10)))));
-        *((f32 *) (((s8 *) arg1) + 4)) = (f32) ((*((f32 *) (((s8 *) ((*((s32 *) (((s8 *) temp_a3) + 0x1C))) + ((*((s16 *) (((s8 *) temp_a0) + 0xC))) * 0x44))) + 0x10))) * (-(*((f32 *) (((s8 *) temp_a0) + 0x10)))));
-        *((f32 *) (((s8 *) arg1) + 8)) = (f32) ((*((f32 *) (((s8 *) ((*((s32 *) (((s8 *) temp_a3) + 0x1C))) + ((*((s16 *) (((s8 *) temp_a0) + 0xC))) * 0x44))) + 0x14))) * (-(*((f32 *) (((s8 *) temp_a0) + 0x10)))));
+        arg1[0] = temp_a3->tbl[temp_a0->idx].fC * (-temp_a0->scale);
+        arg1[1] = temp_a3->tbl[temp_a0->idx].f10 * (-temp_a0->scale);
+        arg1[2] = temp_a3->tbl[temp_a0->idx].f14 * (-temp_a0->scale);
         return;
       }
-      *((f32 *) (((s8 *) arg1) + 0)) = (f32) ((*((f32 *) (((s8 *) ((*((s32 *) (((s8 *) temp_a3) + 0x1C))) + ((*((s16 *) (((s8 *) temp_a0) + 0xC))) * 0x44))) + 0xC))) * (*((f32 *) (((s8 *) temp_a0) + 0x10))));
-      *((f32 *) (((s8 *) arg1) + 4)) = (f32) ((*((f32 *) (((s8 *) ((*((s32 *) (((s8 *) temp_a3) + 0x1C))) + ((*((s16 *) (((s8 *) temp_a0) + 0xC))) * 0x44))) + 0x10))) * (*((f32 *) (((s8 *) temp_a0) + 0x10))));
-      *((f32 *) (((s8 *) arg1) + 8)) = (f32) ((*((f32 *) (((s8 *) ((*((s32 *) (((s8 *) temp_a3) + 0x1C))) + ((*((s16 *) (((s8 *) temp_a0) + 0xC))) * 0x44))) + 0x14))) * (*((f32 *) (((s8 *) temp_a0) + 0x10))));
+      arg1[0] = temp_a3->tbl[temp_a0->idx].fC * temp_a0->scale;
+      arg1[1] = temp_a3->tbl[temp_a0->idx].f10 * temp_a0->scale;
+      arg1[2] = temp_a3->tbl[temp_a0->idx].f14 * temp_a0->scale;
       return;
     }
     var_a2 = var_a2 + 1;

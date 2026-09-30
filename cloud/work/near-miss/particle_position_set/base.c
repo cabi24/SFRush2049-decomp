@@ -3797,6 +3797,9 @@ typedef s64 M2C_UNK64;
 /*MY*/
 /*MY*/
 /*MY*/
+/*MY*/
+/*MY*/
+/*MY*/
 typedef struct PartSlot {
   u8 pad0[0x24];
   f32 f24;
@@ -3809,8 +3812,9 @@ typedef struct PartSlot {
 } PartSlot;
 void particle_position_set(s16 arg0)
 {
+  PartSlot *p;
   s32 idx = (arg0 & 1) ? 0 : (arg0 & 2) ? 1 : (arg0 & 4) ? 2 : 3;
-  PartSlot *p = (PartSlot *) &D_80150B70 + idx;
+  p = (PartSlot *) &D_80150B70 + idx;
   p->f94 = idx;
   p->f24 = 0.0f;
   p->f28 = 0.0f;

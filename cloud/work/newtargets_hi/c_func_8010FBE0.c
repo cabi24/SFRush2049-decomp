@@ -3,10 +3,10 @@ typedef struct {
     s32 ptr;
     s32 z;
 } Pair;
-extern s32 D_80155238;
+s32 D_80155238;
 extern s32 D_80155240;
 extern s32 D_80155248[16];
-extern Pair D_80155288;
+Pair D_80155288;
 extern s32 D_80152750[];
 extern s32 D_8002E960;
 extern s32 D_8002E928;

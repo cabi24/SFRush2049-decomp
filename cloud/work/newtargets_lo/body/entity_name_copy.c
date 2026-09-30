@@ -5,33 +5,32 @@ void *entity_name_copy(void *key, u8 *base, u32 n, u32 size, Cmp cmp) {
     u8 *mid;
     u8 *p;
     s32 c;
+    s32 sub;
     if (n == 0 || size == 0) {
         return 0;
     }
     end = base + n * size;
     while (n != 0) {
         half = n >> 1;
-        p = mid = base + half * size;
-        c = cmp(key, p);
+        mid = base + half * size;
+        p = mid;
+        c = cmp(key, mid);
         if (c < 0) {
             n = half;
-            continue;
-        }
-        if (c > 0) {
+        } else if (c > 0) {
             base = p + size;
             if (n & 1) {
-                n = half;
+                sub = 0;
             } else {
-                n = half - 1;
+                sub = 1;
             }
-            continue;
+            n = half - sub;
+        } else {
+            return mid;
         }
-        return p;
     }
-    if (end > base) {
-        if (cmp(key, base) == 0) {
-            return base;
-        }
+    if (base < end && cmp(key, base) == 0) {
+        return base;
     }
     return 0;
 }

@@ -1,0 +1,23 @@
+typedef signed char s8;
+typedef signed short s16;
+typedef signed int s32;
+typedef struct { s8 b[5]; } E5;
+extern s16 D_8014A108;
+extern float D_80144DA8[];
+extern s8 D_80144018[];
+extern float D_80124618;
+extern E5 D_80151AC0[3];
+void func_800F7EB0(void) {
+    s32 i;
+    s32 n;
+    s32 j;
+    n = D_8014A108;
+    for (i = 0; i < n; i++) {
+        D_80144018[i] = (s8)0;
+        D_80144DA8[i] = D_80124618;
+    }
+    for (j = 0; j < 3; j++) {
+        s32 k;
+        for (k = 0; k < 5; k++) D_80151AC0[j].b[k] = -1;
+    }
+}
