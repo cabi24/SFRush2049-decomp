@@ -3891,7 +3891,6 @@ done:
 
 s16 input_process_controller(f32 *p1, f32 *p2, f32 *out, Poly *poly, s16 *outIdx, s32 flag, f32 *vcOut, f32 *mat, f32 rad2) {
     u16 idx[20];
-    s32 w1;
     f32 vp[3];
     f32 vq[3];
     f32 va[3];
@@ -3906,6 +3905,7 @@ s16 input_process_controller(f32 *p1, f32 *p2, f32 *out, Poly *poly, s16 *outIdx
     s32 res;
     f32 t;
     f32 d;
+    s32 w1;
 
     w1 = flag;
     res = 1;
