@@ -12,13 +12,11 @@ void func_800F6928(float x) {
         i++;
     }
     if (i > 0) {
- Pt *p = &D_80114750[i];
- Pt *q = &D_80114750[i - 1];
- float x0 = q->x;
- float y0 = q->y;
- float y1 = p->y;
- float x1 = p->x; 
- x = (x - x0) * (y1 - y0) / (x1 - x0) + y0; 
+float x0 = D_80114750[i - 1].x;
+ float y0 = D_80114750[i - 1].y;
+ float x1 = D_80114750[i].x;
+ float y1 = D_80114750[i].y; 
+x = (x - x0) * (y1 - y0) / (x1 - x0) + y0; 
     }
     D_80114744 = x;
     if (x > 0.0f) {
