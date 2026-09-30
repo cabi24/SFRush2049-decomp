@@ -3890,20 +3890,20 @@ done:
 }
 
 s16 input_process_controller(f32 *p1, f32 *p2, f32 *out, Poly *poly, s16 *outIdx, s32 flag, f32 *vcOut, f32 *mat, f32 rad2) {
-    f32 va[3];
     u16 idx[20];
-    f32 vq[3];
-    f32 vd[3];
+    f32 va[3];
+    f32 vp[3];
     f32 ve[3];
-    s32 res;
-    u32 k;
     volatile f32 f1;
+    f32 vd[3];
+    u32 k;
+    f32 d;
     f32 v0[3];
     volatile f32 f2;
     u32 n;
     f32 vprev[3];
-    f32 vp[3];
-    f32 d;
+    f32 vq[3];
+    s32 res;
     f32 t;
 
     res = 1;
