@@ -3998,7 +3998,7 @@ void camera_track_spline(Camera *cam) {
     s32 i;
     f32 v[3];
     f32 w[3];
-    f32 pad[12];
+    f32 pad[2];
     f32 *p;
     f32 t;
     f32 d;
@@ -4034,7 +4034,11 @@ void camera_track_spline(Camera *cam) {
                 t = ctl->t;
             }
             c = (t * t * (b - a)) / (k->dur * 2.0f);
-            d = a * t + c;
+            if (b < a) {
+                d = a * t + c;
+            } else {
+                d = a * t + c;
+            }
         }
         v[0] = k->dir[0];
         v[1] = k->dir[1];

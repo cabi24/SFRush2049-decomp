@@ -56,3 +56,10 @@ with clamps, automatic pick from speed when negative) and button bytes
 `state_word_a`, `D_801170FC`, `D_8013FECB`, `D_8013FED0`, `D_801403C0`,
 `D_8014A110`, `D_80140620`, `D_80124498`..`D_801244AC`, `D_80151AD8`,
 `D_80140A04`, `D_8013F1D9`, `D_8013F2FC`, `D_80156CF0`.
+
+## Round 3 (no change: `func_800E6460` 32/239)
+
+Load order of `in->reverse & D_8013FED0[in->pad]` (ROM: `lbu pad; lw reverse; sll..`)
+did not move with: named `rv`/`p`/`m` locals in any order, `t = a & b; if (t)`,
+`!= 0`, `(u8)`/`+0` index, `*(u32 *)((u8 *)in + 0x2C)`, operand swap, and
+`D_8013FED0` *defined* as `u32[4]`.

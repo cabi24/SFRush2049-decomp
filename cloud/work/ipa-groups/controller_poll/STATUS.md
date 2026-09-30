@@ -54,3 +54,12 @@ the `bnez` delay slot; the seed had `D_80149AF9` inside the `if`). With
 `s8 D_80149AF8[8]` defined and a pair loop the stores merge, but the constants
 (one register per store in the target) and the `D_80111968` load order do not
 match. `controller_poll`, `process_inputs` (IDO emits 21 extra words) untuned.
+
+## Round 3 (no change: `func_800E7038` 61/63 differ)
+
+Defined `s8 D_80149AF8[8]` with all eight stores unconditional (orders
+6,7,4,5,2,3,0,1), plain, `volatile`, `volatile s8 *p`, up/down/pair loops, named
+`c0..c7` locals: the array base is then hoisted into a register (`lui v0; addiu
+v0` + `sb n(v0)`), size 52-56 words, not the ROM's `lui at` + `sb -258xx(at)`
+with eight separate `li 70`. Eight *defined scalars* `D_80149AF8..F` give
+60 words but one `lui at` per store (no merge). Neither reaches the ROM shape.

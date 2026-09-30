@@ -50,3 +50,10 @@ callers are not needed.
 - `func_800D2FA8`: `pos`/`outPos` copies in `$t4/$t5` in the ROM, `$t3/$t4` here;
   the unrolled visited-list loop has one extra `move a1,a2` in the ROM. A random
   search found only semantically wrong edits.
+
+## Round 3 (no change: `split_time_display` 14/60)
+
+All 14 differences are one-step temp register rotation (`t6` vs `t7` chain in
+the loop, `t9` vs `t3` for the second `pos - remain`). Tried named `d`/`e`
+locals for `pos - remain`, `+=` form, `remain <= pos`, one-line ifs, store
+order swaps, `t = *outPos`: none better (14-53 words).
