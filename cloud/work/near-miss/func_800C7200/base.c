@@ -3793,17 +3793,39 @@ typedef s8 M2C_UNK8;
 typedef s16 M2C_UNK16;
 typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
-/*MY*/
-typedef struct Slot2C { u8 b[0x2C]; } Slot2C;
 s32 *func_800C7200(void)
 {
-  s32 i;
-  s32 **p = (s32 **) &D_8013F1F8;
-  for (i = 0; i < 64; i++, p++) {
-    if (*p == 0) {
-      *p = (s32 *) ((Slot2C *) &D_8013F390 + i);
-      return p;
-    }
+  s32 *var_a0;
+  s32 var_v1;
+  var_v1 = 0;
+  var_a0 = &D_8013F1F8;
+  loop_1:
+  if ((*((s32 *) (((s8 *) var_a0) + 0))) == 0)
+  {
+    *((s32 *) (((s8 *) var_a0) + 0)) = (s32) ((s32 *) ((var_v1 * 0x2C) + ((u8 *) (&D_8013F390))));
+    return var_a0;
   }
-  return (s32 *) i;
+
+  if ((*((void **) (((s8 *) var_a0) + 4))) == ((void *) 0))
+  {
+    *((void **) (((s8 *) var_a0) + 4)) = (void *) ((s32 *) (((var_v1 * 0x2C) + 0x2C) + ((u8 *) (&D_8013F390))));
+    return var_a0 + 1;
+  }
+  if ((*((void **) (((s8 *) var_a0) + 8))) == ((void *) 0))
+  {
+    *((void **) (((s8 *) var_a0) + 8)) = (void *) ((s32 *) (((var_v1 * 0x2C) + 0x58) + ((u8 *) (&D_8013F390))));
+    return var_a0 + 2;
+  }
+  if ((*((void **) (((s8 *) var_a0) + 0xC))) == ((void *) 0))
+  {
+    *((void **) (((s8 *) var_a0) + 0xC)) = (void *) ((s32 *) (((var_v1 * 0x2C) + 0x84) + ((u8 *) (&D_8013F390))));
+    return var_a0 + 3;
+  }
+  var_v1 += 4;
+  var_a0 = var_a0 + 4;
+  if (var_v1 == 0x40)
+  {
+    return (s32 *) 0x40;
+  }
+  goto loop_1;
 }
