@@ -243,6 +243,7 @@ func_800D1248:
 .section .text.car_select_handler, "ax", @progbits
 .globl car_select_handler
 car_select_handler:
+    /* compiled from src/blob/car_select_handler.c */
     .word 0x27BDFFD0
     .word 0xAFA40030
     .word 0x00047400
@@ -4252,6 +4253,7 @@ battle_mode_setup:
 .section .text.players_race_update, "ax", @progbits
 .globl players_race_update
 players_race_update:
+    /* compiled from src/blob/players_race_update.c */
     .word 0x27BDFFD0
     .word 0xAFB20020
     .word 0xAFB1001C
@@ -4768,6 +4770,7 @@ func_800D5524:
 .section .text.players_frame_update, "ax", @progbits
 .globl players_frame_update
 players_frame_update:
+    /* compiled from src/blob/players_frame_update.c */
     .word 0x27BDFFD8
     .word 0xAFB20020
     .word 0x3C0E8015

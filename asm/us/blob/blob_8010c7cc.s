@@ -126,6 +126,7 @@ synced_model_render:
 .section .text.struct_init_and_call, "ax", @progbits
 .globl struct_init_and_call
 struct_init_and_call:
+    /* compiled from src/blob/struct_init_and_call.c */
     .word 0x27BDFFE8
     .word 0x10A0000A
     .word 0xAFBF0014

@@ -3884,6 +3884,7 @@ audio_effect_apply:
 .section .text.audio_effect_remove, "ax", @progbits
 .globl audio_effect_remove
 audio_effect_remove:
+    /* compiled from src/blob/audio_effect_remove.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x0C02EAA8
@@ -4506,6 +4507,7 @@ audio_interrupt_handler:
 .section .text.camera_reset, "ax", @progbits
 .globl camera_reset
 camera_reset:
+    /* compiled from src/blob/camera_reset.c */
     .word 0x27BDFFD0
     .word 0x3C0E8014
     .word 0x81CEF1D8

@@ -283,6 +283,7 @@ entity_cull_check:
 .section .text.func_80096B00, "ax", @progbits
 .globl func_80096B00
 func_80096B00:
+    /* compiled from src/blob/func_80096B00.c */
     .word 0x54800004
     .word 0x8C830004
     .word 0x03E00008
@@ -7784,6 +7785,7 @@ func_8009D99C:
 .section .text.track_collision, "ax", @progbits
 .globl track_collision
 track_collision:
+    /* compiled from src/blob/track_collision.c */
     .word 0x27BDFFD0
     .word 0xAFB1001C
     .word 0xAFB40028

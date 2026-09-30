@@ -4780,6 +4780,7 @@ model_bounds_calc:
 .section .text.func_8008B2B4, "ax", @progbits
 .globl func_8008B2B4
 func_8008B2B4:
+    /* compiled from src/blob/func_8008B2B4.c */
     .word 0x3C038011
     .word 0x2463735C
     .word 0x8C6E0000
@@ -6090,6 +6091,7 @@ func_8008C544:
 .section .text.func_8008C5E0, "ax", @progbits
 .globl func_8008C5E0
 func_8008C5E0:
+    /* compiled from src/blob/func_8008C5E0.c */
     .word 0x460C6082
     .word 0x3C018012
     .word 0xC42E38C0

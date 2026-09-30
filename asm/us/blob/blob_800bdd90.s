@@ -1314,6 +1314,7 @@ results_screen_update:
 .section .text.results_time_display, "ax", @progbits
 .globl results_time_display
 results_time_display:
+    /* compiled from src/blob/results_time_display.c */
     .word 0x27BDFFE0
     .word 0xAFA40020
     .word 0xAFBF0014
