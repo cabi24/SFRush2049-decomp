@@ -925,10 +925,9 @@ extern f32 D_8011416C;
 extern f32 D_80114178;
 extern f32 D_80114184;
 extern f32 D_80114188;
-extern s32 D_8011418C;
+extern f32 D_8011418C[][3];
 extern s32 D_80114198;
 extern s32 D_801141A4;
-extern f32 D_801141B0[3];
 extern s32 D_801141BC;
 extern s32 D_801141C8;
 extern s32 D_8011421C;
@@ -2014,7 +2013,6 @@ extern s32 D_80124DF0;
 extern s32 D_80124E50;
 extern s32 D_80124E70;
 extern f32 D_80124EE8;
-extern s32 D_80124EEC;
 extern s32 D_80124EF0;
 extern s32 D_80124F20;
 extern s32 D_80124F30;
@@ -3123,7 +3121,6 @@ void func_800AB638(void);
 void func_800AB750(s32 arg0, void *arg1, void *arg2, void *arg3);
 f32 func_800ABB58(s32 arg0);
 void func_800AC8D4(s16 arg0);
-void *func_800AC9BC(void *arg0, s16 arg1, s16 arg2, s16 *arg3);
 void func_800ACBC4(f32 *arg0, f32 *arg1, f32 arg2, void *arg3);
 void func_800ACFF8(f32 arg0, f32 arg1, void *arg2);
 void func_800AD090(f32 arg0, f32 arg1, void *arg2);
@@ -3408,7 +3405,6 @@ void gfx_setup_e700(s32 arg0);
 void gfx_setup_fc(f32 arg0, void *arg1);
 void graphics_chunk(void);
 void graphics_chunk_b(void);
-void *handbrake_apply(s32 arg0, s16 arg1, s16 arg2, s16 *arg3);
 s32 high_scores_display(s32 arg0, s32 arg1, s32 arg2, u8 arg3, f32 arg4, f32 arg5, f32 arg6);
 void highscore_entry_anim(s32 arg0, s32 arg5, s16 *arg6);
 void hud_render(void);
@@ -3701,6 +3697,370 @@ typedef s64 M2C_UNK64;
 #endif
 
 
+/* group members */
+s32 func_800AD4C8(void *arg0, void *arg1, void *arg2, f32 ipa_f18);
+struct Poly;
+s16 func_800C3AD0(f32 *pt, f32 *wp, struct Poly *poly, s16 *outIdx, f32 *q, f32 *mat, f32 *bound, f32 zmin);
+s16 input_process_controller(f32 *p1, f32 *p2, f32 *out, struct Poly *poly, s16 *outIdx, s32 flag, f32 *vcOut, f32 *mat, f32 rad2);
+
+s32 func_800AD4C8(void *arg0, void *arg1, void *arg2, f32 ipa_f18) {
+    f32 temp_f0;
+    f32 temp_f12;
+    f32 temp_f14;
+    f32 temp_f16;
+    f32 temp_f2;
+    f32 temp_f2_2;
+
+    temp_f2 = M2C_FIELD(arg0, f32 *, 8);
+    temp_f12 = M2C_FIELD(arg0, f32 *, 0);
+    temp_f16 = M2C_FIELD(arg1, f32 *, 0);
+    temp_f14 = ((temp_f2 * M2C_FIELD(arg1, f32 *, 8)) + (temp_f16 * temp_f12)) / ((temp_f2 * temp_f2) + (temp_f12 * temp_f12));
+    if (temp_f14 < 0.0f) {
+        M2C_FIELD(arg2, f32 *, 4) = 0.0f;
+        M2C_FIELD(arg2, f32 *, 0) = (f32) (D_8011418C[3][0] - temp_f16);
+        M2C_FIELD(arg2, f32 *, 8) = (f32) (D_8011418C[3][2] - M2C_FIELD(arg1, f32 *, 8));
+    } else if (temp_f14 > 1.0f) {
+        M2C_FIELD(arg2, f32 *, 4) = 0.0f;
+        M2C_FIELD(arg2, f32 *, 0) = (f32) (temp_f12 - temp_f16);
+        M2C_FIELD(arg2, f32 *, 8) = (f32) (M2C_FIELD(arg0, f32 *, 8) - M2C_FIELD(arg1, f32 *, 8));
+    } else {
+        M2C_FIELD(arg2, f32 *, 4) = 0.0f;
+        M2C_FIELD(arg2, f32 *, 0) = (f32) ((temp_f12 * temp_f14) - temp_f16);
+        M2C_FIELD(arg2, f32 *, 8) = (f32) ((M2C_FIELD(arg0, f32 *, 8) * temp_f14) - M2C_FIELD(arg1, f32 *, 8));
+    }
+    temp_f0 = M2C_FIELD(arg2, f32 *, 8);
+    temp_f2_2 = M2C_FIELD(arg2, f32 *, 0);
+    if (ipa_f18 <= ((temp_f0 * temp_f0) + (temp_f2_2 * temp_f2_2))) {
+        return 0;
+    }
+    return 1;
+}
+
+s32 func_800AD5D0(u8 *arg0, s32 arg1, s16 *arg2)
+{
+  u32 val;
+  s32 cnt;
+  s32 t;
+  if (arg1 > 0)
+  {
+    do
+    {
+      val = (arg0[0] << 8) + arg0[1];
+      arg0 += 2;
+      if ((arg1 >= 2) && ((t = *arg0), (t >= 0xE0)))
+      {
+        cnt = t & ~0xE0;
+        arg0 += 1;
+      }
+      else
+      {
+        cnt = 0;
+      }
+      arg1 = (arg1 - cnt) - 1;
+      do
+      {
+        *arg2 = val;
+        cnt -= 1;
+        val += 1;
+        arg2 += 1;
+      }
+      while (cnt >= 0);
+    }
+    while (arg1 > 0);
+  }
+  val = (arg0[0] << 8) + arg0[1];
+  return val & 0xFFFF;
+}
+
+void func_800AD650(void *arg0, void *arg1) {
+    f32 *o = (f32 *) arg0;
+    s16 *p = (s16 *) arg1;
+    o[0] = (f32) p[0] * 0.00006103515625f;
+    o[1] = (f32) p[1] * 0.00006103515625f;
+    o[2] = (f32) p[2] * 0.00006103515625f;
+    o[3] = (f32) p[3] * 0.00006103515625f;
+    o[4] = (f32) p[4] * 0.00006103515625f;
+    o[5] = (f32) p[5] * 0.00006103515625f;
+    o[6] = (f32) p[6] * 0.00006103515625f;
+    o[7] = (f32) p[7] * 0.00006103515625f;
+    o[8] = (f32) p[8] * 0.00006103515625f;
+}
+
+#define DECODE(v, e) \
+    (v)[0] = (f32) (((e)->x << 5) + (((e)->w & 0x7C00) >> 10)) * 0.03125f; \
+    (v)[1] = (f32) (((e)->y << 5) + (((e)->w & 0x3E0) >> 5)) * 0.03125f; \
+    (v)[2] = (f32) (((e)->z << 5) + ((e)->w & 0x1F)) * 0.03125f
+
+typedef struct Poly {
+    u16 type;
+    u16 cnt;
+    u8 body[0x12];
+    u16 off;
+} Poly;
+
+s16 func_800C3AD0(f32 *pt, f32 *wp, Poly *poly, s16 *outIdx, f32 *q, f32 *mat, f32 *bound, f32 zmin) {
+    f32 va[3];
+    f32 vb[3];
+    f32 vc[3];
+    f32 vd[3];
+    f32 ve[3];
+    u16 idx[20];
+    volatile f32 f1;
+    volatile f32 f2;
+    PV *e;
+    u32 k;
+    u32 n;
+    s32 res;
+
+    n = poly->cnt & 0xF;
+    res = 1;
+    *outIdx = func_800AD5D0((u8 *) (poly->off + D_80152568), n, (s16 *) idx);
+    func_800AD650(mat, poly->body);
+    e = &D_8015201C[idx[0]];
+    DECODE(vb, e);
+    va[0] = wp[0] - vb[0];
+    va[1] = wp[1] - vb[1];
+    va[2] = wp[2] - vb[2];
+    func_800A61B0(va, pt, mat);
+    if ((pt[1] <= zmin) || (*bound < pt[1])) {
+        return 0;
+    }
+    e = &D_8015201C[idx[n - 1]];
+    DECODE(vb, e);
+    if ((((vb[2] - pt[2]) * vb[0]) - (vb[2] * (vb[0] - pt[0]))) < 0.0f) {
+        if (func_800AD4C8(vb, pt, vc, D_80123F70) == 0) {
+            return 0;
+        }
+        res = -1;
+        goto done;
+    }
+    e = &D_8015201C[idx[1]];
+    DECODE(vb, e);
+    if (((pt[2] * vb[0]) - (vb[2] * pt[0])) < 0.0f) {
+        if (func_800AD4C8(vb, pt, vc, D_80123F74) == 0) {
+            return 0;
+        }
+        res = -1;
+        goto done;
+    }
+    k = 2;
+    if ((u32) n >= 3U) {
+        do {
+            k += 1;
+            ve[0] = vb[0];
+            ve[2] = vb[2];
+            e = &D_8015201C[idx[k - 1]];
+            DECODE(vb, e);
+            va[1] = 0.0f;
+            f1 = ve[0];
+            va[0] = f2 = vb[0] - ve[0];
+            va[2] = vb[2] - ve[2];
+            vd[1] = 0.0f;
+            vd[0] = pt[0] - f1;
+            vd[2] = pt[2] - ve[2];
+            if (((vd[2] * f2) - (va[2] * vd[0])) < 0.0f) {
+                if (func_800AD4C8(va, vd, vc, D_80123F78) == 0) {
+                    return 0;
+                }
+                res = -1;
+                goto done;
+            }
+        } while (k < (u32) n);
+    }
+done:
+    *bound = pt[1];
+    if ((q != NULL) && (((poly->type & 0xF) == 5) || ((poly->type & 0xF) == 6))) {
+        e = &D_8015201C[idx[0]];
+        DECODE(vb, e);
+        va[0] = q[0] - vb[0];
+        va[1] = q[1] - vb[1];
+        va[2] = q[2] - vb[2];
+        func_800A61B0(va, vb, mat);
+        if ((vb[1] <= *bound) || (vb[1] < D_80123F7C)) {
+            return 0;
+        }
+    }
+    return res;
+}
+
+s16 input_process_controller(f32 *p1, f32 *p2, f32 *out, Poly *poly, s16 *outIdx, s32 flag, f32 *vcOut, f32 *mat, f32 rad2) {
+    u16 idx[20];
+    s32 res;
+    f32 vp[3];
+    f32 vq[3];
+    f32 va[3];
+    f32 ve[3];
+    f32 v0[3];
+    f32 vprev[3];
+    u32 k;
+    u32 n;
+    f32 d;
+    PV *e;
+    f32 vd[3];
+
+    res = 1;
+    func_800AD650(mat, poly->body);
+    n = poly->cnt & 0xF;
+    *outIdx = func_800AD5D0((u8 *) (D_80152568 + poly->off), n, (s16 *) idx);
+    e = &D_8015201C[idx[0]];
+    DECODE(v0, e);
+    va[0] = p1[0] - v0[0];
+    va[1] = p1[1] - v0[1];
+    va[2] = p1[2] - v0[2];
+    func_800A61B0(va, vp, mat);
+    if (vp[1] < 0.0f) {
+        return 0;
+    }
+    va[0] = p2[0] - v0[0];
+    va[1] = p2[1] - v0[1];
+    va[2] = p2[2] - v0[2];
+    func_800A61B0(va, vq, mat);
+    if (vq[1] > 0.0f) {
+        return 0;
+    }
+    d = vq[1] - vp[1];
+    va[0] = vq[0] - vp[0];
+    va[2] = vq[2] - vp[2];
+    if (d > 0.0f) {
+        return 0;
+    }
+    va[1] = d;
+    if (d < 0.0f) {
+        va[1] = d;
+        vp[0] -= va[0] * (vp[1] / d);
+        vp[1] -= d * (vp[1] / d);
+        vp[2] -= va[2] * (vp[1] / d);
+    }
+    e = &D_8015201C[idx[n - 1]];
+    DECODE(ve, e);
+    if ((((ve[2] - vp[2]) * ve[0]) - (ve[2] * (ve[0] - vp[0]))) < 0.0f) {
+        if (flag > 0) {
+            return 0;
+        }
+        if (func_800AD4C8(ve, vp, vcOut, rad2) == 0) {
+            return 0;
+        }
+        res = -1;
+        goto done;
+    }
+    e = &D_8015201C[idx[1]];
+    DECODE(ve, e);
+    if (((ve[0] * vp[2]) - (ve[2] * vp[0])) < 0.0f) {
+        if (flag > 0) {
+            return 0;
+        }
+        if (func_800AD4C8(ve, vp, vcOut, rad2) == 0) {
+            return 0;
+        }
+        res = -1;
+        goto done;
+    }
+    k = 2;
+    if ((u32) n >= 3U) {
+        do {
+            k += 1;
+            vprev[0] = ve[0];
+            vprev[2] = ve[2];
+            e = &D_8015201C[idx[k - 1]];
+    DECODE(ve, e);
+            va[1] = 0.0f;
+            vd[1] = 0.0f;
+            
+            va[0] = ve[0] - vprev[0];
+            va[2] = ve[2] - vprev[2];
+            vd[0] = vp[0] - vprev[0];
+            vd[2] = vp[2] - vprev[2];
+            if (((vd[2] * va[0]) - (va[2] * vd[0])) < 0.0f) {
+                if (flag > 0) {
+                    return 0;
+                }
+                if (func_800AD4C8(va, vd, vcOut, rad2) == 0) {
+                    return 0;
+                }
+                res = -1;
+                goto done;
+            }
+        } while (k < (u32) n);
+    }
+done:
+    func_8009E820(vp, out, mat);
+    out[0] = v0[0] + out[0];
+    out[1] = out[1] + v0[1];
+    out[2] = v0[2] + out[2];
+    return res;
+}
+
+/* stand-in caller: keeps func_800AD4C8 out of line under -O3 */
+void __standin_func_800AD4C8(void)
+{
+    func_800AD4C8(0, 0, 0, 0);
+}
+
+/* stand-in callers for the two roots whose real callers are outside the unit
+ * (camera_trigger_check/camera_victory/entity_update and input_deadzone_apply): two call sites
+ * keep them out of line without `keep`, so they get IPA registers like the ROM's */
+void __standin_func_800C3AD0_a(void)
+{
+    func_800C3AD0(0, 0, 0, 0, 0, 0, 0, 0);
+}
+
+void __standin_func_800C3AD0_b(void)
+{
+    func_800C3AD0(0, 0, 0, 0, 0, 0, 0, 1);
+}
+
+void __standin_input_process_controller_a(void)
+{
+    input_process_controller(0, 0, 0, 0, 0, 0, 0, 0, 0);
+}
+
+void __standin_input_process_controller_b(void)
+{
+    input_process_controller(0, 0, 0, 0, 0, 0, 0, 0, 1);
+}
+
+/* quadtree lookup (handbrake_apply is the ROM name, it is a point-in-region search) */
+typedef struct QNode {
+    s16 next;
+    u8 pad2;
+    u8 mask;
+    s16 x0;
+    s16 x1;
+    s16 y0;
+    s16 y1;
+    u16 child[4];
+} QNode;
+extern QNode *D_80124EEC;
+
+
+void *func_800AC9BC(QNode *n, s16 x, s16 y, s16 *out) {
+    s16 q;
+    for (;;) {
+        q = 1;
+        if (x < (n->x0 + n->x1) / 2) q = 0;
+        if (y < (n->y0 + n->y1) / 2) q += 2;
+        if (!(n->mask & (1 << q))) break;
+        n = &D_80124EEC[n->child[q]];
+        if (n == D_80124EEC) return 0;
+    }
+    *out = q;
+    return n;
+}
+void *handbrake_apply(QNode *n, s16 x, s16 y, s16 *out) {
+    s16 outside;
+    if (n == 0) {
+        n = D_80124EEC;
+    }
+    while (1) {
+        outside = (x >= n->x1 || x < n->x0 || y >= n->y1 || y < n->y0);
+        if (!outside) break;
+        if (n->next == -1) {
+            return 0;
+        }
+        n = &D_80124EEC[n->next];
+    }
+    return func_800AC9BC(n, x, y, out);
+}
 
 float fabsf(float);
 #pragma intrinsic (fabsf)

@@ -1,0 +1,10 @@
+start 402
+0 400 ['t', 'vp', 'vq', 'va', 've', 'v0', 'vprev', 'vd', 'f1', 'f2', 'k', 'n', 'res', 'idx', 'd']
+1 385 ['t', 'vp', 'vq', 'va', 've', 'vprev', 'vd', 'f1', 'f2', 'k', 'n', 'res', 'idx', 'v0', 'd']
+159 384 ['t', 'vq', 'va', 'd', 'vd', 'f2', 've', 'k', 'vp', 'idx', 'res', 'vprev', 'n', 'v0', 'f1']
+171 382 ['t', 'vq', 'va', 'idx', 'vd', 'f2', 've', 'f1', 'v0', 'k', 'd', 'vp', 'res', 'vprev', 'n']
+193 381 ['va', 'idx', 'f2', 'vq', 't', 've', 'vp', 'f1', 'v0', 'k', 'res', 'd', 'vd', 'vprev', 'n']
+203 354 ['idx', 'va', 've', 'vq', 't', 'f2', 'vp', 'f1', 'v0', 'k', 'res', 'n', 'vprev', 'vd', 'd']
+205 353 ['idx', 'va', 've', 'vq', 't', 'f2', 'vp', 'f1', 'v0', 'k', 'n', 'vprev', 'vd', 'res', 'd']
+219 349 ['idx', 'va', 'vp', 'vq', 'f2', 've', 't', 'f1', 'v0', 'd', 'n', 'vprev', 'res', 'vd', 'k']
+best (349, ['idx', 'va', 'vp', 'vq', 'f2', 've', 't', 'f1', 'v0', 'd', 'n', 'vprev', 'res', 'vd', 'k'])

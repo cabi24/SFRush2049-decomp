@@ -3762,24 +3762,24 @@ void func_800C36A0(CCar *car, CCol *col) {
     idx = D_801174C4[col->idx];
     v[0] = col->m[3] * k;
     v[1] = col->m[4] * k;
-    v[2] = col->m[5] * k;
-    car->f556[0] += v[0];
-    car->f556[1] += v[1];
-    car->f556[2] += v[2];
-    car->f1940[0] += v[0];
-    car->f1940[1] += v[1];
-    car->f1940[2] += v[2];
+    v[2] = k * col->m[5];
+    car->f556[0] = v[0] + car->f556[0];
+    car->f556[1] = v[1] + car->f556[1];
+    car->f556[2] = v[2] + car->f556[2];
+    car->f1940[0] = v[0] + car->f1940[0];
+    car->f1940[1] = v[1] + car->f1940[1];
+    car->f1940[2] = v[2] + car->f1940[2];
     for (i = 0; i < 4; i++) {
-        car->B628[i][0] = v[0] + car->B628[i][0];
-        car->B628[i][1] = v[1] + car->B628[i][1];
-        car->B628[i][2] = v[2] + car->B628[i][2];
-        car->B580[i][0] = v[0] + car->B580[i][0];
-        car->B580[i][1] = v[1] + car->B580[i][1];
-        car->B580[i][2] = v[2] + car->B580[i][2];
+        car->B628[i][0] += v[0];
+        car->B628[i][1] += v[1];
+        car->B628[i][2] += v[2];
+        car->B580[i][0] += v[0];
+        car->B580[i][1] += v[1];
+        car->B580[i][2] += v[2];
     }
-    v[0] = car->A244[idx][1] * car->v76[2] - car->v76[1] * car->A244[idx][2];
+    v[0] = car->v76[2] * car->A244[idx][1] - car->A244[idx][2] * car->v76[1];
     v[1] = car->A244[idx][2] * car->v76[0] - car->A244[idx][0] * car->v76[2];
-    v[2] = car->A244[idx][0] * car->v76[1] - car->v76[0] * car->A244[idx][1];
+    v[2] = car->A244[idx][0] * car->v76[1] - car->A244[idx][1] * car->v76[0];
     v[0] = v[0] + car->v64[0];
     v[1] = v[1] + car->v64[1];
     v[2] = v[2] + car->v64[2];
@@ -3789,7 +3789,7 @@ void func_800C36A0(CCar *car, CCol *col) {
     i = poly->type & 0xF;
     f12 = D_80123F54 / car->f1472;
     if (i == 5 || (poly->type & 0x2000) || i == 6) {
-        k = car->f1592 * f12 * D_80123F58;
+        k = f12 * car->f1592 * D_80123F58;
     } else {
         k = car->f1592 * f12 * D_80123F5C;
     }
