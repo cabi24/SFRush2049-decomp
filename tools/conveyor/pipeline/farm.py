@@ -565,13 +565,34 @@ def with_transient_retry(step, *args, retries=1, delay=TRANSIENT_RETRY_DELAY,
             sleep(delay)
 
 
-def run_once(conn, store, http, toolkit_sha, max_inflight, budget_seconds):
+# Off by default: harvest splices into the blob lock and tiers queue long
+# searches, so the operator turns this on deliberately (`run --group-search`).
+GROUP_SEARCH = False
+
+
+def group_search_cycle(conn, store, http, toolkit_sha):
+    """Splice zero-score group_search results, then queue the next tier for
+    near misses. Only ever called with the group_search flag on."""
+    from . import group_jobs
+
+    harvested = group_jobs.harvest(conn, store)
+    queued = group_jobs.tiers(conn, store, http, toolkit_sha)
+    return {"gs_spliced": len(harvested["applied"]),
+            "gs_refused": len(harvested["refused"]),
+            "gs_tiers_queued": len(queued)}
+
+
+def run_once(conn, store, http, toolkit_sha, max_inflight, budget_seconds,
+             group_search=GROUP_SEARCH):
     stats = {}
-    for step, args in (
-            (ingest, (conn, store, http, toolkit_sha)),
-            (flywheel_cycle, (conn, store, http, toolkit_sha)),
-            (top_up, (conn, store, http, toolkit_sha, max_inflight,
-                      budget_seconds))):
+    steps = [
+        (ingest, (conn, store, http, toolkit_sha)),
+        (flywheel_cycle, (conn, store, http, toolkit_sha)),
+        (top_up, (conn, store, http, toolkit_sha, max_inflight,
+                  budget_seconds))]
+    if group_search:
+        steps.append((group_search_cycle, (conn, store, http, toolkit_sha)))
+    for step, args in steps:
         out = with_transient_retry(step, *args)
         if out:
             stats.update(out)
@@ -589,6 +610,8 @@ def main():
     p.add_argument("--max-inflight", type=int, default=8)
     p.add_argument("--budget-seconds", type=int, default=4 * 3600)
     p.add_argument("--interval", type=int, default=60)
+    p.add_argument("--group-search", action="store_true", default=GROUP_SEARCH,
+                   help="also harvest group_search wins and queue their tiers")
     args = parser.parse_args()
 
     data = Path(args.data)
@@ -599,7 +622,8 @@ def main():
 
     while True:
         stats = run_once(conn, store, http, toolkit_sha,
-                         args.max_inflight, args.budget_seconds)
+                         args.max_inflight, args.budget_seconds,
+                         group_search=args.group_search)
         print(f"farm: {stats}")
         if args.once:
             break
