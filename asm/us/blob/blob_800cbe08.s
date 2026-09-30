@@ -4279,6 +4279,7 @@ func_800CFCA8:
 .section .text.func_800CFDEC, "ax", @progbits
 .globl func_800CFDEC
 func_800CFDEC:
+    /* compiled from src/blob/func_800CFDEC.c */
     .word 0x44877000
     .word 0xC7AC0010
     .word 0xAFA60008

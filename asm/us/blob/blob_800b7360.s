@@ -927,6 +927,7 @@ particles_spawn_emitter:
 .section .text.Effects_UpdateEmitters, "ax", @progbits
 .globl Effects_UpdateEmitters
 Effects_UpdateEmitters:
+    /* compiled from src/blob/Effects_UpdateEmitters.c */
     .word 0x27BDFFD0
     .word 0xAFB40028
     .word 0x3C148015

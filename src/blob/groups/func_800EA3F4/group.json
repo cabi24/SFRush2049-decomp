@@ -1,6 +1,8 @@
 {
   "members": [
-    "func_800EA3F4"
+    "func_800EA3F4",
+    "func_800CFDEC",
+    "func_800E8CB8"
   ],
   "files": [
     "group.c"
@@ -17,9 +19,7 @@
   "unprototyped": [],
   "context": [
     "func_8008B3C8",
-    "vector_copy_scale",
-    "func_800CFDEC",
-    "func_800E8CB8"
+    "vector_copy_scale"
   ],
   "provenance": "cloud round 3 (PR #5), cloud/work/ipa-groups/func_800EA3F4"
 }

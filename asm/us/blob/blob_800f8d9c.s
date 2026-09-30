@@ -3213,6 +3213,7 @@ func_800FBE30:
 .section .text.func_800FBE60, "ax", @progbits
 .globl func_800FBE60
 func_800FBE60:
+    /* compiled from src/blob/func_800FBE60.c */
     .word 0x44802000
     .word 0x3C038015
     .word 0x80632744

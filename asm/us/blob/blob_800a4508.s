@@ -1108,6 +1108,7 @@ car_damage_visual:
 .section .text.func_800A5488, "ax", @progbits
 .globl func_800A5488
 func_800A5488:
+    /* compiled from src/blob/func_800A5488.c */
     .word 0x3C038015
     .word 0x3C048014
     .word 0x24846210
