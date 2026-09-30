@@ -1,5 +1,22 @@
 # func_800E56F8 (per-player update: car state, queue, scoring)
 
+## Current status (Rescored 2026-09-30 (Round 2 addendum), master d0891f3.)
+
+**Builds; no member matches (0/693 words).** Scored with `python3 cloud/work/tools/zbuild.py cloud/work/ipa-groups/func_800E56F8 --as1=-r4300_mul`:
+
+```
+func_800E56F8  115/359 words differ  size 359/359
+func_800E6AF8  313/334 words differ  size 332/334
+```
+
+`func_800E56F8` has the ROM's size and instruction sequence; every remaining difference is register naming from
+the hoisted `li s6,2` (see below). `func_800E6AF8` was rewritten in Pass 3 (the "still close to the m2c seed"
+remark and 300/334 below are history).
+Closure gap (open): `func_800E4B58` (567 words, `func_800E56F8`'s IPA callee) and, behind it, `func_800E398C`
+(599) and `func_800E451C`; chain `func_800E6AF8 -> func_800E56F8 -> func_800E4B58 -> {func_800E398C, func_800E451C ->
+func_800E4300}`. `closure.py` also lists `func_800D0424`, `func_800D11BC`, `menu_control_settings`,
+`menu_video_settings`, `object_update_full`, `track_select_handler` (approximate, not checked here).
+
 Cloud pass 2 (2026-09-29). Builds. With `-r4300_mul`
 (`cloud/work/tools/zbuild.py --as1=-r4300_mul`):
 

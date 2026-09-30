@@ -1,5 +1,17 @@
 # func_800F0F44 -> 46/116 words aligned (real function, extent 116 words)
 
+## Current status (Rescored 2026-09-30 (Round 2 addendum), master d0891f3.)
+
+**Not a MATCH. Builds; 0/116 words strict; 46/116 words match after alignment, structure 0.672.** Scored with
+`python3 cloud/work/ipa-groups/func_800F0F44/extscore.py --norm cloud/work/ipa-groups/func_800F0F44`:
+
+```
+func_800F0F44  size 113/116  116/116 words differ (position-based)
+```
+
+Blockers: register allocation (index in `$s8` with constants in `$s6/$s7`, frame 72 vs ours 24). Closure gap
+(open): the real callers `func_800F1210` (454 words) and `func_800F1930`, and callees such as `func_800950AC`.
+
 Real head 0x800F0F44, IPA parameter `$s8` = player index, callers `func_800F1210` and
 `func_800F1930`. INDEX's 815 insns (`func_800F1210`) is the caller. It looks up a player's
 network/slot state: `D_80146198[idx] = 0`; result code `D_801461C0[idx]` = -4 (inactive,

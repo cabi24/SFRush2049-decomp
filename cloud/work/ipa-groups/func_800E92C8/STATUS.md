@@ -1,5 +1,21 @@
 # func_800E92C8
 
+## Current status (Rescored 2026-09-30 (Round 2 addendum), master d0891f3.)
+
+**Builds; 1 of 4 members matches (70/805 words).** Scored with `python3 cloud/work/tools/zbuild.py cloud/work/ipa-groups/func_800E92C8 --as1=-r4300_mul`:
+
+```
+func_800E92C8  114/197 words differ  size 197/197
+func_800E95DC  401/421 words differ  size 425/421 (1 extra nonzero word)
+func_800EA108   58/117 words differ  size 116/117 (2 .rodata relocations unverified)
+func_800EA2DC   MATCH               size  70/70
+```
+
+Blockers: `func_800E95DC` uses one more callee-saved register than the ROM (which spills `car`/`pos` at home
+slots); `func_800E92C8` float temporaries land in `$f2/$f12/$f14` vs `$f12/$f16/$f14`; `func_800EA108` loop
+control. Closure is complete (no gap). The block below headed `With -r4300_mul` (184/197, 376/421, 96/117,
+43/70) is history; see "Pass 3".
+
 Regenerated 2026-09-29 by `blob_group seed` (IPA-mode m2c with patches 0001-0005).
 
 BUILDS (cloud pass 2026-09-29) after declaring `fabsf`/`sqrtf` as IDO intrinsics (the seed left them undeclared, so they compiled as implicit-`int` external calls). Not matching; the body is the m2c seed. See the `camera_scene_manager` STATUS for the same fix.
