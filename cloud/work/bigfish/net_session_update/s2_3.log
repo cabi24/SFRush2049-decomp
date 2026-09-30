@@ -1,0 +1,13 @@
+start {'n': 912, 'strict': 34, 'exact': 226, 'shape': 826, 'norm': 770} 936
+0 best {'n': 908, 'strict': 46, 'exact': 241, 'shape': 817, 'norm': 765} 958
+1 best {'n': 908, 'strict': 49, 'exact': 289, 'shape': 816, 'norm': 763} 1004
+2 best {'n': 908, 'strict': 51, 'exact': 310, 'shape': 816, 'norm': 763} 1025
+4 best {'n': 904, 'strict': 45, 'exact': 309, 'shape': 816, 'norm': 761} 1034
+26 best {'n': 904, 'strict': 51, 'exact': 310, 'shape': 817, 'norm': 762} 1036
+37 best {'n': 892, 'strict': 54, 'exact': 303, 'shape': 817, 'norm': 772} 1075
+38 best {'n': 892, 'strict': 52, 'exact': 379, 'shape': 807, 'norm': 759} 1138
+39 best {'n': 892, 'strict': 42, 'exact': 381, 'shape': 810, 'norm': 762} 1143
+42 best {'n': 892, 'strict': 42, 'exact': 406, 'shape': 810, 'norm': 762} 1168
+43 best {'n': 892, 'strict': 42, 'exact': 420, 'shape': 810, 'norm': 762} 1182
+44 best {'n': 892, 'strict': 40, 'exact': 423, 'shape': 809, 'norm': 761} 1184
+final (1184, {'L1': 'i', 'Ao': 'x', 'Aj': 'i', 'Bi': 'x', 'Si': 'k', 'Sx': 'j', 'Co': 'i', 'Ci': 'x', 'Xj': 'j', 'Xx': 'k', 'Xi': 'i', 'Fi': 'j', 'Fj': 'x', 'Gi': 'i', 'Gj': 'j', 'Gk': 'k', 'Hj': 'k', 'Zi': 'i', 'Yi': 'i', 'Yj': 'j', 'Wi': 'i', 'T1': '<', 'T2': '<', 'T3': '<', 'T4': '<', 'T5': '<', 'T6': '<', 'T7': '<'}, {'n': 892, 'strict': 40, 'exact': 423, 'shape': 809, 'norm': 761})

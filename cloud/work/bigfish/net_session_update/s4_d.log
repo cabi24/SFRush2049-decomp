@@ -1,0 +1,7 @@
+start {'n': 892, 'strict': 39, 'exact': 424, 'shape': 810, 'norm': 764} 1188
+3 best {'n': 892, 'strict': 39, 'exact': 424, 'shape': 812, 'norm': 766} 1190
+44 restart 1190
+85 restart 1190
+126 restart 743
+167 restart 1190
+208 restart 1190

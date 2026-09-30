@@ -1,5 +1,3 @@
-/* flags: -g0 -O2 -mips2 -G 0 -non_shared */
-/* NOT a match: 892 words, 200 strict-equal, 584 aligned-exact (65%), 837 shape-aligned (94%). See ../net_session_update.md */
 typedef signed char s8; typedef unsigned char u8; typedef signed short s16; typedef unsigned short u16;
 typedef signed int s32; typedef unsigned int u32;
 typedef struct { u8 pad[6]; u8 flag6; u8 pad1; s8 mode; s8 lim; u8 pad2[2]; u32 seed; u8 pad3[4]; u8 bits[6 * 9]; } Info;
@@ -26,16 +24,20 @@ extern u8 D_80154FD0[];
 extern u8 D_80155140[];
 extern u16 D_80155148[][38];
 #define RI(e) D_80154450[(e) + active_player_count]
+#define RI3(e) D_80154450[(e) + active_player_count]
+#define RI4(e) D_80154450[(e) + active_player_count]
 #define RAND() (D_80154658 = D_80154658 * 1103515245u + 12345u, (D_80154658 >> 16) & 0x7FFF)
 #define RR(max) (r = RAND(), r = (u16)((u32)r % ((u16)(max) + 1)))
 void net_session_update(void) {
-    s32 n, i, k, j, r, cnt;
+    s32 n, i, k, j, cnt;
+    s32 r;
     s32 idx[6];
     s32 capdummy;
     s32 x;
     Sess *v;
     Info *info;
-    u8 pad[128];
+    s32 y, z, w, tt;
+    u8 pad[112];
     v = *((*input_rec0[D_801543D4].a)->s);
     info = &v->info;
     D_80154658 = info->seed;
@@ -49,21 +51,22 @@ void net_session_update(void) {
     for (i = 0; i < cnt; i++) {
     again:
         RI(i).id = RR(54);
-        for (j = 0; j < i; j++) if (RI(j).id == (u8)r) goto again;
+        y = (u8)r;
+        for (j = 0; j < i; j++) if (RI(j).id == y) goto again; /* j */
     }
     for (i = 0; i < cnt; i++) idx[i] = i;
     for (k = 0; k < cnt; k++) {
-        do { x = RR(cnt - 1); } while (k == x);
-        idx[k] ^= idx[x]; idx[x] ^= idx[k]; idx[k] ^= idx[x];
+        do { r = RR(cnt - 1); } while (k == r);
+        idx[k] ^= idx[r]; idx[r] ^= idx[k]; idx[k] ^= idx[r];
     }
     for (i = 0; i < cnt; i++)
-        for (k = 0; k != 12; k++) RI(idx[i]).h[k] = D_801117C4[i][k];
+        for (k = 0; k < 12; k++) RI3(idx[i]).h[k] = D_801117C4[i][k];
     for (x = 0; x < 12; x++) {
         do { r = RR(11); } while (r == x);
         for (i = 0; i < cnt; i++) {
-            RI(idx[i]).h[4 + x] ^= RI(idx[i]).h[4 + r];
-            RI(idx[i]).h[4 + r] ^= RI(idx[i]).h[4 + x];
-            RI(idx[i]).h[4 + x] ^= RI(idx[i]).h[4 + r];
+            RI4(idx[i]).h[4 + x] ^= RI4(idx[i]).h[4 + r];
+            RI4(idx[i]).h[4 + r] ^= RI4(idx[i]).h[4 + x];
+            RI4(idx[i]).h[4 + x] ^= RI4(idx[i]).h[4 + r];
         }
     }
     for (i = 0; i <= D_80154628; i++) {
@@ -83,10 +86,10 @@ void net_session_update(void) {
                 for (;;) {
                     for (k = 0; k < i; k++) {
                         if (D_801543D8[i].a == D_801543D8[k].a && D_801543D8[i].b == D_801543D8[k].b && D_801543D8[i].c == D_801543D8[k].c) {
-                            r = ((D_801543D8[i].c << 1) | D_801543D8[i].b) + 1;
-                            r = r % 4;
-                            D_801543D8[i].b = r & 1;
-                            D_801543D8[i].c = (r >> 1) & 1;
+                            tt = ((D_801543D8[i].c << 1) | D_801543D8[i].b) + 1;
+                            tt = tt % 4;
+                            D_801543D8[i].b = tt & 1;
+                            D_801543D8[i].c = (tt >> 1) & 1;
                             break;
                         }
                     }
@@ -100,8 +103,7 @@ void net_session_update(void) {
         }
         r = (u16)(RAND() % (D_80111794[info->mode].lo + 1));
         D_801543D8[i].d = r < 4 ? 0 : r < 7 ? 1 : r < 9 ? 2 : 3;
-        r = RAND();
-        D_801543D8[i].e = r % (D_801117A4[info->mode].lo + 1);
+        D_801543D8[i].e = RR(D_801117A4[info->mode].lo);
     }
     cnt = 6 - (active_player_count == 1 ? 0 : 2);
     for (i = 0; i < cnt; i++) {
@@ -138,5 +140,5 @@ void net_session_update(void) {
             }
     D_80154450[idx[0]].b1 = 0;
     D_80154450[idx[1]].b1 = 1;
-    for (x = 2; x != 6; x++) D_80154450[idx[x]].b1 = x;
+    for (k = 2; k != 6; k++) D_80154450[idx[k]].b1 = k;
 }

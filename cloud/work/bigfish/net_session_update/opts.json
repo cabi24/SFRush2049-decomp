@@ -1,0 +1,1 @@
+{"RIDEF": ["#define RI(e) D_80154450[active_player_count + (e)]", "#define RI(e) D_80154450[(e) + active_player_count]", "#define RI(e) ((D_80154450 + active_player_count)[e])"]}
