@@ -3795,8 +3795,8 @@ typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
 void players_frame_update(void)
 {
-  D_8014A250_Record *var_s1;
   s32 var_s0;
+  D_8014A250_Record *var_s1;
   D_801525F0 = 0;
   var_s1 = &D_8014A250;
   if (((s8) D_80152744) > 0)

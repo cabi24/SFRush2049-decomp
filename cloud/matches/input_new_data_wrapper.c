@@ -1,3 +1,4 @@
+/* flags: -g0 -O2 -mips2 -G 0 -non_shared */
 #define NULL ((void *)0)
 #define TRUE 1
 #define FALSE 0
@@ -3294,7 +3295,7 @@ void func_800E05F0(void *arg0);
 void func_800E0B20(void *arg0);
 void func_800E114C(void *arg0);
 void func_800E1500(void **arg0, void *arg1, void *arg2);
-
+void func_800E1540(void **arg0);
 void func_800E15A0(void *arg0);
 void func_800E1AA0(void *arg0);
 void func_800E1C30(void *arg0);
@@ -3410,7 +3411,7 @@ void highscore_entry_anim(s32 arg0, s32 arg5, s16 *arg6);
 void hud_render(void);
 void init_wait_completion(void);
 u16 *input_deadzone_apply(void *arg0, void *arg1, f32 *arg2, f32 arg3, s32 arg4, s32 arg5);
-s8 input_new_data_wrapper(void *arg0, s8 arg1);
+
 s16 input_process_controller(s32 arg3);
 void input_status_update(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
 s32 lap_complete(s32 arg0);
@@ -3696,12 +3697,10 @@ typedef s64 M2C_UNK64;
 
 #endif
 
-void func_800E1540(f32 *arg0) {
-    f32 t;
-
-    t = D_80142764 / arg0[0x5BC / 4];
-    arg0[0x28 / 4] = arg0[0x10 / 4] * t;
-    arg0[0x2C / 4] = arg0[0x14 / 4] * t;
-    arg0[0x30 / 4] = arg0[0x18 / 4] * t;
-    func_800E1500(arg0, arg0 + 7, arg0 + 0xD);
+s8 input_new_data_wrapper(s8 *arg0, s32 arg1) {
+    if (arg1 != arg0[0x1A]) {
+        arg0[0x1A] = arg1;
+        Input_ApplyPadConfig(arg0);
+    }
+    return arg0[0x1A];
 }

@@ -1,3 +1,4 @@
+/* flags: -g0 -O2 -mips2 -G 0 -non_shared */
 #define NULL ((void *)0)
 #define TRUE 1
 #define FALSE 0
@@ -3224,7 +3225,7 @@ s32 func_800CCEFC(void **arg0);
 void func_800CD798(void **arg0, s32 arg1);
 void func_800CD8EC(void **arg0, s32 arg1);
 u8 func_800CDDE8(void **arg0);
-u8 func_800CDE38(void **arg0);
+
 s32 func_800CEC8C(void *arg0, void *arg1, f32 arg2);
 void func_800CF06C(void *arg0);
 s32 func_800CF604(s16 arg0);
@@ -3294,7 +3295,7 @@ void func_800E05F0(void *arg0);
 void func_800E0B20(void *arg0);
 void func_800E114C(void *arg0);
 void func_800E1500(void **arg0, void *arg1, void *arg2);
-
+void func_800E1540(void **arg0);
 void func_800E15A0(void *arg0);
 void func_800E1AA0(void *arg0);
 void func_800E1C30(void *arg0);
@@ -3696,12 +3697,17 @@ typedef s64 M2C_UNK64;
 
 #endif
 
-void func_800E1540(f32 *arg0) {
-    f32 t;
+u8 func_800CDE38(void **arg0) {
+    u8 *p;
 
-    t = D_80142764 / arg0[0x5BC / 4];
-    arg0[0x28 / 4] = arg0[0x10 / 4] * t;
-    arg0[0x2C / 4] = arg0[0x14 / 4] * t;
-    arg0[0x30 / 4] = arg0[0x18 / 4] * t;
-    func_800E1500(arg0, arg0 + 7, arg0 + 0xD);
+    p = *M2C_FIELD(*arg0, u8 ***, 0x2C);
+    switch (p[0x47]) {
+    case 6:
+        return p[0x63];
+    case 4:
+        return p[0x73];
+    case 5:
+        return p[0x87];
+    }
+    return p[0x4F];
 }
