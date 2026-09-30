@@ -1419,6 +1419,7 @@ func_80097AF4:
 .section .text.MP_TargetSteerPos, "ax", @progbits
 .globl MP_TargetSteerPos
 MP_TargetSteerPos:
+    /* compiled from src/blob/MP_TargetSteerPos.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x9604000E

@@ -1,0 +1,21 @@
+{
+  "members": [
+    "MP_TargetSteerPos"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "camera_transform",
+    "__standin_MP_TargetSteerPos"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "generated": "blob_group seed from build/ipa_groups.json",
+  "unprototyped": [
+    "func_8001fea4"
+  ],
+  "context": [
+    "camera_transform"
+  ],
+  "provenance": "cloud Lane A (PR #1), cloud/work/ipa-groups/MP_TargetSteerPos"
+}
