@@ -25,25 +25,25 @@ NOTES = {
  'audio_pitch_adjust': 'Real extent 18 words (INDEX listed the caller). Stand-in callers give IPA registers; not spliceable as is.',
  'best_times_display': 'Real extent 56 words (listed 1068 = caller mode_select_handler). Parameter lands in s1 not s2.',
  'billboard_render': 'Real extent 244 words (listed 665). Mode state machine; func_800F1210 is a stand-in context. .rodata jump-table relocations unverified.',
- 'camera_aspect_ratio': 'Closure gap: camera_process_input (see STATUS).',
- 'camera_scene_manager': 'Trick/stunt scoring, not a camera. Three gap functions match or are near; the big member is far.',
+ 'camera_aspect_ratio': 'No closure gap left (camera_process_input, camera_track_spline in unit). Only the three small members match.',
+ 'camera_scene_manager': 'Trick/stunt scoring, not a camera. No closure gap. Three members match; camera_scene_manager itself is far.',
  'car_cg_height_set': 'Superseded by zlib_deflate; still fails to build (expected). Do not splice.',
  'car_collision_init': 'Duplicate of two zlib_deflate members; drop when zlib_deflate is used.',
  'car_collision_update': 'Superseded by zlib_deflate; still fails to build (expected). Do not splice.',
  'car_crash_response': 'Superseded by zlib_deflate; still fails to build (expected). Do not splice.',
  'catchup_logic': 'Really func_801084D4 (unregistered head, 375 words; listed 57 insns is the tail). Two dead move s0,v0 after slot_state_setup.',
  'championship_standings': 'func_800DC120 matches; func_800DC1AC 3/39 off.',
- 'controller_poll': 'Members incl. player_mode_set/player_state_set; closure gap func_800E73D8. Defines D_80149B64/D_80149B74.',
+ 'controller_poll': 'func_800C9590, player_mode_set, player_state_set match. Closure gap func_800E73D8. Defines D_80149B64/D_80149B74; splicing must not define them elsewhere.',
  'cpak_init': 'Tyre marks, not Controller Pak. func_800AF8C0 13 words off.',
  'draw_number': 'Real extent 110 words (listed 973 = caller). Stand-in callers; not spliceable as is.',
  'dynamic_difficulty': 'Really func_80107EDC (unregistered head, 158 words; listed 47 insns is the tail). Two dead move s0,v0 remain.',
  'func_8008705C': 'Real extent 45 words (listed 869). Needs func_80086A50 stand-in in group; not spliceable as is.',
- 'func_8008B640': 'physics_velocity_integrate_b..f and model_bounds_calc match; closure complete. Blocked on IPA parameter register (see STATUS).',
+ 'func_8008B640': 'model_bounds_calc and physics_velocity_integrate_b..f match; closure complete. func_8008B640 and _a blocked by IPA parameter register choice.',
  'func_800AD4C8': 'Closure gaps: camera_play_script, camera_trigger_check, camera_victory, entity_update, func_800C36A0, input_deadzone_apply; func_800AD650/func_800AD5D0 also missing.',
  'func_800B9B64': 'Path graph; 4/4 with -r4300_mul (100/129 for func_800B9B64 without it).',
  'func_800D2FA8': 'time_of_day_select matches; split_time_display 14/60 off.',
- 'func_800E4300': 'Closure gaps: func_800E4B58, func_800E398C (link to func_800E56F8; consider merging).',
- 'func_800E56F8': 'Closure gaps: see STATUS (func_800D0424, func_800D11BC, menu_*, object_update_full, track_select_handler).',
+ 'func_800E4300': 'Closure gaps: func_800E4B58, func_800E398C (link to func_800E56F8; consider merging). func_800E451C is a hand rewrite, 388/397.',
+ 'func_800E56F8': 'Closure gap: func_800E4B58 (567w) and behind it func_800E398C. func_800E56F8 has the ROM size, register naming only.',
  'func_800E681C': 'Control input; func_800E627C matches, func_800E6460 32/239.',
  'func_800E92C8': 'func_800EA2DC matches; rest far.',
  'func_800F0F44': 'Real extent 116 words (listed 815 = caller func_800F1210). Register allocation differs; not spliceable as is.',
@@ -75,8 +75,7 @@ def row(d):
     members = set(spec['members'])
     note = NOTES.get(name, '')
     if name in SUPERSEDED:
-        words = 0
-        return (name, str(sum(0 for _ in [])) or '-', f'superseded by {SUPERSEDED[name]}', note)
+        return (name, '-', f'superseded by {SUPERSEDED[name]}', note)
     ext, p = run(d)
     out = p.stdout + p.stderr
     tot = ok = 0; details = []

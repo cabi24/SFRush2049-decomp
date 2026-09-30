@@ -5,16 +5,11 @@ and full ROM SHA-1 exact. `blob_group` places the unit's own `.data`
 (`static_init_done`) at the address the relocation sites agree on
 (0x8011EA10) and checks its bytes against the image.
 
-**18/18 members MATCH** under the strict cloud scorer (F2 relocation
-resolution), 2,908 words. `_tr_init` (`func_800AAB3C`) matches with 4
-section-relative relocations unverified (see below), so the group passes
-with `--allow-unverified`.
-
-```
-$ python3 tools/cloud/score.py group --allow-unverified cloud/work/ipa-groups/zlib_deflate
-# 18 x MATCH; exit 0
-# context: car_angular_velocity_clamp 200/201 (the game's driver, below)
-```
+**18/18 members MATCH**, 2,908 words, rescored 2026-09-30 with
+`zbuild.py --as1=-r4300_mul` (and the strict cloud scorer). `_tr_init`
+(`func_800AAB3C`) matches with 4 section-relative relocations unverified (see
+below), so `score.py group` needs `--allow-unverified`. Context
+`car_angular_velocity_clamp` (the game's driver, 201 words) is 194 differ, emits 206.
 
 Replaces the generated groups `car_cg_height_set`, `car_collision_update`
 and `car_crash_response`, and the three ungrouped zlib functions. The
@@ -121,7 +116,7 @@ once, frees the five buffers under a message-queue lock
 `osJamMesg`), and returns `total_out`. `audio_dma_sync(0, size)` is the
 allocator. `gen/driver.c` is hand-written from the assembly.
 
-Not matched yet (194/201). `gen/driver.c` mirrors zlib: an `__inline`
+Not matched yet (194/201 words differ, emits 206). `gen/driver.c` mirrors zlib: an `__inline`
 `deflate_init` (`deflateInit2_` minus checks), `deflateReset`/`lm_init`
 written out, and `deflateEnd` as five `TRY_FREE`s through an `__inline`
 free helper. Findings so far:
