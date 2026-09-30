@@ -284,14 +284,28 @@ def test_jump_table_used_only_by_context_is_ignored(tmp_path):
     assert _words(bodies["f"]) == [0x03E00008, 0]
 
 
-def test_jump_table_used_by_a_member_is_refused(tmp_path):
+def _table_image(entry=0x80100010):
+    """f (2 words), ctx (4 words), padding, then the jump table at 0x80100020."""
+    words = [0x03E00008, 0, 0x3C088010, 0x8D080020, 0x01000008, 0, 0, 0, entry]
+    return b"".join(struct.pack(">I", w) for w in words), 0x80100000
+
+
+def _table_bodies(tmp_path, image):
     obj = _asm_object(tmp_path, _TABLE_ASM)
     extents = {"f": {"vaddr": 0x80100000, "size": 8},
                "ctx": {"vaddr": 0x80100008, "size": 16}}
     slices, text_ndx = blob_group.member_slices(obj, ["f", "ctx"], extents)
-    image = (b"\0" * 0x40, 0x80100000)
-    with pytest.raises(blob_group.GroupError, match="relocations inside"):
-        blob_group.relocate(obj, slices, text_ndx, {}, members=["ctx"], image=image)
+    return blob_group.relocate(obj, slices, text_ndx, {}, members=["ctx"], image=image)
+
+
+def test_jump_table_used_by_a_member_is_placed_and_checked_against_the_image(tmp_path):
+    bodies = _table_bodies(tmp_path, _table_image())
+    assert _words(bodies["ctx"]) == [0x3C088010, 0x8D080020, 0x01000008, 0]
+
+
+def test_jump_table_entry_that_differs_from_the_image_is_refused(tmp_path):
+    with pytest.raises(blob_group.GroupError, match="differ from the image"):
+        _table_bodies(tmp_path, _table_image(entry=0x80100014))
 
 
 def test_unit_defined_global_with_a_known_address_resolves_by_name(tmp_path):

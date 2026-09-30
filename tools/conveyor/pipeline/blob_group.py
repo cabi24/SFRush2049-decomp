@@ -178,7 +178,7 @@ def _sext16(v):
 
 
 def _local_data_bases(obj, rels, syms, in_member, image_word, image_bytes,
-                      known=lambda name: None, relocated=()):
+                      known=lambda name: None, relocated=None, data_target=None):
     """{section name: image address} for the unit's own data sections.
 
     A function-local static lives in the unit's .data, so its relocations name
@@ -192,7 +192,13 @@ def _local_data_bases(obj, rels, syms, in_member, image_word, image_bytes,
     A symbol with a known image address (`known(name)`, e.g. D_80149B64
     defined by the unit) resolves by name like any extern, wherever the unit
     defines it; the image comparison of the member bodies checks it.
+
+    A section can carry relocations of its own (a switch's jump table in
+    .rodata: R_MIPS_32 against .text). `relocated` maps such a section to its
+    entries and `data_target(name, addend)` gives their image addresses; the
+    section is compared with the image after they are applied.
     """
+    relocated = relocated or {}
     secs = _sections(obj)
     by_index = {ndx: name for name, (ndx, _, _) in secs.items()}
 
@@ -213,12 +219,6 @@ def _local_data_bases(obj, rels, syms, in_member, image_word, image_bytes,
         section, value = section_of(name)
         if section is None or section == ".text":
             continue
-        if section in relocated:
-            # Relocations inside a data section (jump tables in .rodata)
-            # would change its bytes. Sections referenced only by context
-            # functions never reach the image and are not looked at.
-            raise GroupError(f"relocations inside {section}, which members reference, "
-                             "are not supported yet")
         if section not in LOCAL_DATA or secs[section][1] != "PROGBITS":
             raise GroupError(f"relocation against {section} ({secs[section][1]}) "
                              "is not supported")
@@ -242,7 +242,13 @@ def _local_data_bases(obj, rels, syms, in_member, image_word, image_bytes,
             raise GroupError(f"{section}: relocation sites disagree on its image address "
                              f"{sorted(hex(b) for b in found)}")
         base = found.pop()
-        data = _section_bytes(obj, section)
+        data = bytearray(_section_bytes(obj, section))
+        for off, rtype, name in relocated.get(section, []):
+            if rtype != "R_MIPS_32" or data_target is None:
+                raise GroupError(f"{section}: {rtype} inside the section is not supported")
+            addend = struct.unpack(">I", data[off:off + 4])[0]
+            data[off:off + 4] = struct.pack(">I", data_target(name, addend) & 0xFFFFFFFF)
+        data = bytes(data)
         used = max(reach[section], len(data.rstrip(b"\0")))
         used = min((used + 3) & ~3, len(data))
         retail = image_bytes(base, used)
@@ -267,7 +273,7 @@ def _symbols(obj):
 def _text_relocations(obj):
     out = subprocess.run([READELF, "-rW", str(obj)], capture_output=True,
                          text=True, check=True).stdout
-    rels, section, others = [], None, set()
+    rels, section, others = [], None, {}
     for line in out.splitlines():
         m = re.match(r"Relocation section '(\.rel\S+)'", line)
         if m:
@@ -279,7 +285,8 @@ def _text_relocations(obj):
         if section == ".rel.text":
             rels.append((int(m.group(1), 16), m.group(2), m.group(3)))
         else:
-            others.add(section)
+            others.setdefault(section, []).append(
+                (int(m.group(1), 16), m.group(2), m.group(3)))
     return rels, others
 
 
@@ -360,8 +367,20 @@ def relocate(obj, slices, text_ndx, extern, members=None, image=None):
             return extern[name]
         return blob_splice.address_named(name)
 
+    def data_target(name, addend):
+        sym = syms.get(name)
+        if name == ".text":
+            return text_addr(addend)
+        if sym and sym[1] == text_ndx:
+            return text_addr(sym[0] + addend)
+        addr = known(name)
+        if addr is None:
+            raise GroupError(f"jump table entry names {name}, which has no image address")
+        return addr + addend
+
     local = _local_data_bases(obj, rels, syms, in_member, image_word, image_at, known,
-                              relocated={o[len(".rel"):] for o in others})
+                              relocated={o[len(".rel"):]: v for o, v in others.items()},
+                              data_target=data_target)
     sec_index = {ndx: name for name, (ndx, _, _) in _sections(obj).items()
                  if name in local}
 
