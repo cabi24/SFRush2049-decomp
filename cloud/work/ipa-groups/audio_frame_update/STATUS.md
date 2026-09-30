@@ -51,3 +51,10 @@ both `sll/sra` at entry); callee registers agree with the ROM (`t0,t3`, `s1,s2`)
   loads `D_801543CC` once into `$f0` before the loop, ours reloads each
   iteration via a hoisted address in `$a1` (static/defined/const/float local
   had no effect), which also shifts the loop counter registers.
+
+## Round 3 (no change: `func_800B08FC` 4/99, `audio_frame_update` 29/150)
+
+`func_800B08FC`: the only difference is `$t9` vs `$v0` for the `&D_8012E708 +
+hd*0x44` temp. Also tried and unchanged: `D_8012E708` as a defined or extern
+`struct {f32 *p; u8 pad[0x40];}[]` with `[hd].p[10]`, named `f32 v`/`u32 base`/`f32 *r`
+locals, `s16`/`u32` `hd`, `(u32)hd * 0x44`, `hd*68`, declaration order.

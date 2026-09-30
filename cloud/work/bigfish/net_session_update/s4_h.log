@@ -1,0 +1,18 @@
+start {'n': 900, 'strict': 120, 'exact': 435, 'shape': 843, 'norm': 795, 'reg': 1455} 1716.0
+0 best {'n': 900, 'strict': 120, 'exact': 436, 'shape': 843, 'norm': 798, 'reg': 1457} 1720.5
+2 best {'n': 900, 'strict': 144, 'exact': 471, 'shape': 843, 'norm': 800, 'reg': 1508} 1765.5
+3 best {'n': 900, 'strict': 145, 'exact': 470, 'shape': 845, 'norm': 801, 'reg': 1509} 1766.5
+4 best {'n': 900, 'strict': 145, 'exact': 486, 'shape': 845, 'norm': 801, 'reg': 1518} 1779.0
+6 best {'n': 896, 'strict': 122, 'exact': 484, 'shape': 835, 'norm': 792, 'reg': 1515} 1779.5
+8 best {'n': 896, 'strict': 128, 'exact': 489, 'shape': 840, 'norm': 798, 'reg': 1528} 1794.5
+12 best {'n': 896, 'strict': 128, 'exact': 487, 'shape': 842, 'norm': 800, 'reg': 1527} 1795.0
+13 best {'n': 896, 'strict': 128, 'exact': 489, 'shape': 842, 'norm': 800, 'reg': 1530} 1797.5
+54 restart 1436.0
+95 restart 1189.5
+136 restart 1142.5
+177 restart 1797.5
+218 restart 1176.0
+259 restart 1797.5
+273 best {'n': 896, 'strict': 131, 'exact': 492, 'shape': 840, 'norm': 799, 'reg': 1531} 1798.5
+275 best {'n': 896, 'strict': 131, 'exact': 504, 'shape': 840, 'norm': 799, 'reg': 1551} 1814.5
+316 restart 1814.5

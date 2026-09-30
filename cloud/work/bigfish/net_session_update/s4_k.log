@@ -1,0 +1,5 @@
+start {'n': 892, 'strict': 200, 'exact': 584, 'shape': 837, 'norm': 801, 'reg': 1638} 2512.0
+1 best {'n': 888, 'strict': 264, 'exact': 457, 'shape': 839, 'norm': 804, 'reg': 1427} 2526.0
+2 best {'n': 888, 'strict': 334, 'exact': 427, 'shape': 825, 'norm': 790, 'reg': 1349} 2668.0
+6 best {'n': 888, 'strict': 339, 'exact': 428, 'shape': 825, 'norm': 790, 'reg': 1347} 2682.5
+23 best {'n': 888, 'strict': 340, 'exact': 433, 'shape': 825, 'norm': 790, 'reg': 1339} 2684.0

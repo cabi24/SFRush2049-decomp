@@ -1,0 +1,136 @@
+typedef signed char s8; typedef unsigned char u8; typedef signed short s16; typedef unsigned short u16;
+typedef signed int s32; typedef unsigned int u32;
+typedef struct { u8 pad[6]; u8 flag6; u8 pad1; s8 mode; s8 lim; u8 pad2[2]; u32 seed; u8 pad3[4]; u8 bits[6 * 9]; } Info;
+typedef struct { u8 pad[0x6F4]; Info info; } Sess;
+typedef struct { u8 pad[0x2C]; Sess **s; } A;
+typedef struct { u8 id; u8 b1; u16 h2; u8 b4[24]; u8 b28[16]; s16 h[16]; } Rec;
+typedef struct { u8 a, b, c, d, e; } Slot;
+typedef struct { u16 hi, lo; } Pair;
+typedef struct { u8 pad0; u8 b1; u8 pad[0x46]; A **a; } InRec;
+extern InRec input_rec0[];
+extern Rec D_80154450[];
+extern Slot D_801543D8[];
+extern u8 D_801543D4;
+extern s8 D_80156994;
+extern s16 active_player_count;
+extern s32 D_80111784[];
+extern s32 D_8011176C[];
+extern Pair D_80111794[];
+extern Pair D_801117A4[];
+extern s32 D_801117C4[][12];
+extern u32 D_80154658;
+extern s8 D_80154640, D_80154628;
+extern u8 D_80154FD0[];
+extern u8 D_80155140[];
+extern u16 D_80155148[][38];
+@@RIDEF@@
+#define RAND() (D_80154658 = D_80154658 * 1103515245u + 12345u, (D_80154658 >> 16) & 0x7FFF)
+#define RR(max) (r = RAND(), r = (u16)((u32)r % ((u16)(max) + 1)))
+void net_session_update(void) {
+    s32 n, i, k, j, r, cnt;
+    s32 idx[6];
+    s32 cap;
+    s32 x;
+    Sess *v;
+    Info *info;
+    u8 pad[124];
+    v = *((*input_rec0[D_801543D4].a)->s);
+    info = &v->info;
+    D_80154658 = info->seed;
+    n = D_80111784[info->mode];
+    if (D_80156994 == 0 && n >= 5) n = 5;
+    D_80154640 = (info->mode == 3) ? n * 4 : n * 2;
+    D_80154628 = (info->lim < D_80154640 - 1) ? info->lim : D_80154640 - 1;
+    for (@L1@ = 0; @L1@ < n; @L1@++) D_80154FD0[@L1@] = 0;
+    cnt = 6 - active_player_count;
+    for (@Ao@ = 0; @Ao@ < cnt; @Ao@++) {
+    again:
+        RI(@Ao@).id = RR(54);
+        for (@Aj@ = 0; @Aj@ < @Ao@; @Aj@++) if (RI(@Aj@).id == (u8)r) goto again;
+    }
+    for (@Bi@ = 0; @Bi@ < cnt; @Bi@++) idx[@Bi@] = @Bi@;
+    for (@Si@ = 0; @Si@ < cnt; @Si@++) {
+        do { @Sx@ = RR(cnt - 1); } while (@Si@ == @Sx@);
+        idx[@Si@] ^= idx[@Sx@]; idx[@Sx@] ^= idx[@Si@]; idx[@Si@] ^= idx[@Sx@];
+    }
+    for (@Co@ = 0; @Co@ < cnt; @Co@++)
+        for (@Ci@ = 0; @Ci@ @T1@ 12; @Ci@++) RI(idx[@Co@]).h[@Ci@] = D_801117C4[@Co@][@Ci@];
+    for (@Xj@ = 0; @Xj@ @T2@ 12; @Xj@++) {
+        do { @Xx@ = RR(11); } while (@Xx@ == @Xj@);
+        for (@Xi@ = 0; @Xi@ < cnt; @Xi@++) {
+            RI(idx[@Xi@]).h[4 + @Xj@] ^= RI(idx[@Xi@]).h[4 + @Xx@];
+            RI(idx[@Xi@]).h[4 + @Xx@] ^= RI(idx[@Xi@]).h[4 + @Xj@];
+            RI(idx[@Xi@]).h[4 + @Xj@] ^= RI(idx[@Xi@]).h[4 + @Xx@];
+        }
+    }
+    for (@Fi@ = 0; @Fi@ <= D_80154628; @Fi@++) {
+        if (info->mode == 3) {
+            @@S1@@
+            @@S2@@
+            @@S3@@
+            if (@Fi@ > 0) {
+                @Fj@ = 0;
+                while ((D_801543D8[@Fi@].a == D_801543D8[@Fi@ - 1].a && @Fj@ < n) || D_80154FD0[D_801543D8[@Fi@].a] == 4) {
+                    D_801543D8[@Fi@].a++;
+                    if (D_801543D8[@Fi@].a >= n) D_801543D8[@Fi@].a = 0;
+                    @Fj@++;
+                }
+                for (;;) {
+                    for (@Fj@ = 0; @Fj@ < @Fi@; @Fj@++) {
+                        if (D_801543D8[@Fi@].a == D_801543D8[@Fj@].a && D_801543D8[@Fi@].b == D_801543D8[@Fj@].b && D_801543D8[@Fi@].c == D_801543D8[@Fj@].c) {
+                            r = ((D_801543D8[@Fi@].c << 1) | D_801543D8[@Fi@].b) + 1;
+                            r = r % 4;
+                            D_801543D8[@Fi@].b = r & 1;
+                            D_801543D8[@Fi@].c = (r >> 1) & 1;
+                            break;
+                        }
+                    }
+                    if (@Fj@ == @Fi@) break;
+                }
+            }
+            D_80154FD0[D_801543D8[@Fi@].a]++;
+        } else {
+            D_801543D8[@Fi@].a = @Fi@ % n;
+            D_801543D8[@Fi@].b = @Fi@ >= n;
+        }
+        @@S4@@
+        @@S5@@
+    }
+    cnt = 6 - (active_player_count == 1 ? 0 : 2);
+    cap = D_80154640;
+    for (@Gi@ = 0; @Gi@ < cnt; @Gi@++) {
+        D_80154450[@Gi@].h2 = info->flag6 ? D_80155148[input_rec0[D_801543D4].b1][@Gi@] : 0;
+        for (@Gj@ = 0; @Gj@ < info->lim; @Gj@++) {
+            if (info->flag6 && @Gj@ < D_80155140[input_rec0[D_801543D4].b1]) {
+                D_80154450[@Gi@].b4[@Gj@] = 6;
+                D_80154450[@Gi@].b28[@Gj@] = 0;
+            } else {
+                D_80154450[@Gi@].b4[@Gj@] = 0;
+                for (r = 0, @Gk@ = @Gj@ * 3; r < 3; r++, @Gk@++)
+                    D_80154450[@Gi@].b4[@Gj@] |= ((info->bits[@Gi@ * 9 + (@Gk@ >> 3)] >> (@Gk@ & 7)) & 1) << r;
+                D_80154450[@Gi@].b28[@Gj@] = D_8011176C[D_80154450[@Gi@].b4[@Gj@]];
+                D_80154450[@Gi@].h2 += D_80154450[@Gi@].b28[@Gj@];
+            }
+        }
+        for (; @Gj@ < cap; @Gj@++) {
+            D_80154450[@Gi@].b4[@Gj@] = 6;
+            D_80154450[@Gi@].b28[@Gj@] = 0;
+        }
+    }
+    for (; @Gi@ @T3@ 6; @Gi@++) {
+        D_80154450[@Gi@].h2 = 0;
+        for (@Hj@ = 0; @Hj@ < cap; @Hj@++) {
+            D_80154450[@Gi@].b4[@Hj@] = 6;
+            D_80154450[@Gi@].b28[@Hj@] = 0;
+        }
+    }
+    for (@Zi@ = 0; @Zi@ @T4@ 6; @Zi@++) idx[@Zi@] = @Zi@;
+    for (@Yi@ = 0; @Yi@ @T5@ 5; @Yi@++)
+        for (@Yj@ = @Yi@ + 1; @Yj@ @T6@ 6; @Yj@++)
+            if (D_80154450[idx[@Yi@]].h2 < D_80154450[idx[@Yj@]].h2) {
+                idx[@Yi@] ^= idx[@Yj@]; idx[@Yj@] ^= idx[@Yi@]; idx[@Yi@] ^= idx[@Yj@];
+            }
+    D_80154450[idx[0]].b1 = 0;
+    D_80154450[idx[1]].b1 = 1;
+    for (@Wi@ = 2; @Wi@ @T7@ 6; @Wi@++) D_80154450[idx[@Wi@]].b1 = @Wi@;
+}

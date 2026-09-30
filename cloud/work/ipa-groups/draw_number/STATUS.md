@@ -1,6 +1,6 @@
 # draw_number -> 110/110 MATCH (real function, extent 110 words)
 
-## Current status (Rescored 2026-09-30 (Round 2 addendum), master d0891f3.)
+## Current status (rescored 2026-09-30, master d0891f3)
 
 **110/110 MATCH** (strict, `extscore.py --norm`: exact after alignment 110/110, structure 1.000; extent 110
 words). Caveat: matches with stand-in callers, not spliceable as is. Closure (approximate `closure.py`): real
@@ -19,3 +19,9 @@ Verify: `python3 cloud/work/ipa-groups/draw_number/extscore.py cloud/work/ipa-gr
 - `func_800C7578` (37 words) is a plain extern.
 
 Blockers: none for the function; real callers not in the group.
+
+## Spliceability
+
+Unspliceable as is: MATCH, but callers are stand-ins (`caller_a`/`caller_b`). The stand-ins only reproduce the IPA register/frame context; they are not
+the retail callers, so this C cannot go through `blob_splice` until the real callers are in the group
+(or the maintainers' whole-module IPA is used). Scores above were reproduced on 2026-09-30 with `extscore.py --norm`.

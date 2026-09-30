@@ -3742,6 +3742,56 @@ s32 func_800AD4C8(void *arg0, void *arg1, void *arg2, f32 ipa_f18) {
     return 1;
 }
 
+s32 func_800AD5D0(u8 *arg0, s32 arg1, s16 *arg2)
+{
+  u32 val;
+  s32 cnt;
+  s32 t;
+  if (arg1 > 0)
+  {
+    do
+    {
+      val = (arg0[0] << 8) + arg0[1];
+      arg0 += 2;
+      if ((arg1 >= 2) && ((t = *arg0), (t >= 0xE0)))
+      {
+        cnt = t & ~0xE0;
+        arg0 += 1;
+      }
+      else
+      {
+        cnt = 0;
+      }
+      arg1 = (arg1 - cnt) - 1;
+      do
+      {
+        *arg2 = val;
+        cnt -= 1;
+        val += 1;
+        arg2 += 1;
+      }
+      while (cnt >= 0);
+    }
+    while (arg1 > 0);
+  }
+  val = (arg0[0] << 8) + arg0[1];
+  return val & 0xFFFF;
+}
+
+void func_800AD650(void *arg0, void *arg1) {
+    f32 *o = (f32 *) arg0;
+    s16 *p = (s16 *) arg1;
+    o[0] = (f32) p[0] * 0.00006103515625f;
+    o[1] = (f32) p[1] * 0.00006103515625f;
+    o[2] = (f32) p[2] * 0.00006103515625f;
+    o[3] = (f32) p[3] * 0.00006103515625f;
+    o[4] = (f32) p[4] * 0.00006103515625f;
+    o[5] = (f32) p[5] * 0.00006103515625f;
+    o[6] = (f32) p[6] * 0.00006103515625f;
+    o[7] = (f32) p[7] * 0.00006103515625f;
+    o[8] = (f32) p[8] * 0.00006103515625f;
+}
+
 #define DECODE(v, e) \
     (v)[0] = (f32) (((e)->x << 5) + (((e)->w & 0x7C00) >> 10)) * 0.03125f; \
     (v)[1] = (f32) (((e)->y << 5) + (((e)->w & 0x3E0) >> 5)) * 0.03125f; \

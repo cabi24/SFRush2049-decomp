@@ -1,0 +1,7 @@
+start {'n': 912, 'strict': 34, 'exact': 226, 'shape': 826, 'norm': 770} 936
+0 best {'n': 908, 'strict': 39, 'exact': 227, 'shape': 827, 'norm': 775} 954
+1 best {'n': 908, 'strict': 38, 'exact': 233, 'shape': 829, 'norm': 777} 962
+3 best {'n': 908, 'strict': 39, 'exact': 312, 'shape': 844, 'norm': 794} 1058
+4 best {'n': 908, 'strict': 40, 'exact': 358, 'shape': 842, 'norm': 792} 1102
+8 best {'n': 908, 'strict': 41, 'exact': 361, 'shape': 833, 'norm': 792} 1105
+63 best {'n': 908, 'strict': 34, 'exact': 392, 'shape': 831, 'norm': 785} 1129
