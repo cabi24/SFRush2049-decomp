@@ -3798,15 +3798,15 @@ void UpdateActiveObjects(void)
   if (D_80149788 > 0)
   {
     var_s1 = &D_80149450;
-    var_s0 = D_80149450;
     loop_2:
+    var_s0 = *var_s1;
     temp_v0 = *((s32 *) (var_s0 + 0x28));
 
     new_var = temp_v0;
     if (((new_var != ((void *) 0)) && ((*((s32 *) (var_s0 + 0x0))) != (-1))) && (0 == temp_v0(var_s0)))
     {
       sound_stop(var_s0);
-      var_s1 -= 4;
+      var_s1 -= 1;
       var_v1 = &(&D_80149450)[D_80149788];
     }
     else
@@ -3815,8 +3815,7 @@ void UpdateActiveObjects(void)
     }
  goto dummy_label_90098; dummy_label_90098: ; if (D_80149788 != 0) { }
  ;
-    var_s1 += 4;
-    var_s0 = *var_s1;
+    var_s1 += 1;
     if (((u32) var_s1) < ((u32) (&(&D_80149450)[D_80149788])))
     {
       goto loop_2;

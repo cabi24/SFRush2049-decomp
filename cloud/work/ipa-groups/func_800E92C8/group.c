@@ -5,6 +5,8 @@ float sqrtf(float);
 #define NULL ((void *)0)
 #define TRUE 1
 #define FALSE 0
+typedef struct V3 { float x, y, z; } V3;
+typedef struct Fx { unsigned char p0[0x60]; V3 n60; unsigned char p6c[0x18]; float v84[3]; unsigned char p90[8]; } Fx;
 typedef signed char s8;
 typedef unsigned char u8;
 typedef signed short s16;
@@ -735,7 +737,7 @@ extern s32 D_8002E928;
 extern s32 D_8002E960;
 extern s32 D_8002E998;
 extern s32 D_8002EB90;
-extern s32 D_8002EB94;
+extern f32 D_8002EB94;
 extern s32 D_8002EB98;
 extern s32 D_8002ECC0;
 extern s32 D_8002ECF8;
@@ -837,7 +839,7 @@ extern s32 D_801106A4;
 extern s32 D_801106B4;
 extern f32 D_801106C0;
 extern s32 D_801108B0;
-extern f32 D_801108C8;
+extern f32 D_801108C8[];
 extern s32 D_80110D08;
 extern s32 D_80110D3C;
 extern s32 D_80110DA4;
@@ -2051,12 +2053,12 @@ extern s32 D_8012E680;
 extern s32 D_8012E684;
 extern s32 D_8012E688;
 extern s32 D_8012E68C;
-extern s32 D_8012E690;
+extern V3 D_8012E690[];
 extern s32 D_8012E6C0;
-extern s16 D_8012E6C8;
+extern s16 D_8012E6C8[];
 extern s32 D_8012E6D0;
 extern s32 D_8012E6D8;
-extern f32 D_8012E6E8;
+extern f32 D_8012E6E8[];
 extern s32 D_8012E6F8;
 extern s32 D_8012E700;
 extern s32 D_8012E708;
@@ -2464,7 +2466,7 @@ extern s32 D_80150004;
 extern s32 D_80150B60;
 extern s32 D_80150B64;
 extern s32 D_80150B68;
-extern s32 D_80150B70;
+extern Fx D_80150B70[];
 extern s32 D_80150B7C;
 extern s32 D_80150B94;
 extern s32 D_80150BA0;
@@ -2557,15 +2559,15 @@ extern f32 D_80152680;
 extern s32 D_80152690;
 extern s32 D_80152698;
 extern s32 D_801526A4;
-extern s32 D_801526A8;
+extern V3 D_801526A8[];
 extern s32 D_801526D8;
 extern s32 D_801526DC;
-extern f32 D_801526E0;
+extern f32 D_801526E0[];
 extern s32 D_801526F0;
-extern f32 D_801526F8;
-extern s32 D_80152708;
+extern f32 D_801526F8[];
+extern f32 D_80152708[];
 extern s8 D_80152718;
-extern f32 D_80152720;
+extern f32 D_80152720[];
 extern s32 D_80152730;
 extern s32 D_80152738;
 extern s16 D_8015273A;
@@ -3702,364 +3704,265 @@ typedef s64 M2C_UNK64;
 
 
 /* group members */
-void func_800E92C8(void *ipa_s0, void *ipa_s4, f32 ipa_f22, f32 ipa_f24);
-void func_800E95DC(s16 arg0, void *arg1, void *arg2, s32 arg3);
-void func_800EA108(void *arg0, f32 *arg1, void *arg2);
-void func_800EA2DC(void *arg0, void *arg1, void *arg2, s32 arg3);
+typedef struct HN { u8 p[0x2C]; s32 f2c; } HN;
+typedef struct Q { u8 p[0x48]; HN **h; } Q;
+typedef struct Cr {
+    u8 p0[8];
+    f32 pos[3];
+    f32 vx, vy, vz;
+    u8 p20[0xC];
+    f32 m[9];
+    u8 p50[0x58];
+    f32 f_a8, f_ac;
+    u8 pb0[0x46];
+    s16 s_f6;
+    u8 pf8[0x264];
+    s8 player;
+    s8 mode;
+    s8 mode2;
+    u8 p35f[0x21];
+    Q *q;
+} Cr;
+void func_800E92C8(Cr *car, f32 *out, f32 r, f32 c);
+void func_800E95DC(s16 arg0, Cr *arg1, f32 *arg2, s32 arg3);
+void func_800EA108(Cr *arg0, f32 *arg1, void *arg2);
+void func_800EA2DC(Cr *arg0, void *arg1, void *arg2, s32 arg3);
 
-void func_800E92C8(void *ipa_s0, void *ipa_s4, f32 ipa_f22, f32 ipa_f24) {
-    f32 sp9C;
-    f32 sp98;
-    f32 sp94;
-    f32 sp90;
-    f32 sp8C;
-    f32 sp88;
-    f32 sp84;
-    f32 sp80;
-    f32 sp7C;
-    f32 *var_at;
-    f32 temp_f0;
-    f32 temp_f12;
-    f32 temp_f12_2;
-    f32 temp_f14;
-    f32 temp_f16;
-    f32 temp_f2;
-    f32 temp_f2_2;
-    f32 temp_f2_3;
-    f32 var_f12;
-    f32 var_f20;
-    s8 temp_s3;
-    s8 temp_v0;
-    void *temp_s1;
+void func_800E92C8(Cr *car, f32 *out, f32 r, f32 c) {
+    f32 a[3];
+    f32 v[3];
+    f32 b[3];
+    volatile s32 padv[12];
+    f32 len;
+    f32 x;
+    f32 y;
+    f32 z;
+    f32 mag;
+    f32 k;
+    s32 pl;
 
-    temp_s3 = M2C_FIELD(ipa_s0, s8 *, 0x35C);
-    if (M2C_FIELD(ipa_s0, s8 *, 0x35D) == 8) {
-        var_f20 = 0.0f;
+    pl = car->player;
+    if (car->mode == 8) {
+        len = 0;
     } else {
-        temp_f2 = M2C_FIELD(ipa_s0, f32 *, 0x14);
-        temp_f12 = M2C_FIELD(ipa_s0, f32 *, 0x1C);
-        var_f20 = sqrtf((temp_f2 * temp_f2) + (temp_f12 * temp_f12));
+        len = sqrtf((car->vx * car->vx) + (car->vz * car->vz));
     }
-    if (var_f20 <= 100.0f) {
-        sp98 = ipa_f24;
-        sp9C = -ipa_f22;
-        sp94 = 0.0f;
-        if (M2C_FIELD(ipa_s0, s8 *, 0x35D) == 8) {
-            sp7C = 0.0f;
-            sp80 = ipa_f24;
-            sp84 = sp9C;
+    if (len <= 100.0f) {
+        a[1] = c;
+        a[2] = -r;
+        a[0] = 0.0f;
+        if (car->mode == 8) {
+            b[0] = 0.0f;
+            b[1] = c;
+            b[2] = a[2];
         } else {
-            func_8009E820(&sp94, &sp7C, (u8 *) ipa_s0 + 0x2C);
+            func_8009E820(a, b, car->m);
         }
-        sp80 = fabsf(sp80);
+        b[1] = fabsf(b[1]);
     }
-    if (var_f20 > 1.0f) {
-        temp_s1 = (u8 *) ipa_s0 + 0x2C;
-        if (M2C_FIELD(ipa_s0, s8 *, 0x35D) == 4) {
-            sp94 = M2C_FIELD(ipa_s0, f32 *, 0xAC);
-            sp9C = 0.0f;
-            sp98 = M2C_FIELD(ipa_s0, f32 *, 0xA8);
-            func_8009E820(&sp94, &sp88, temp_s1);
-            var_f12 = -sp88;
+    x = b[0];
+    y = b[1];
+    z = b[2];
+    if (len > 1.0f) {
+        if (car->mode == 4) {
+            a[0] = car->f_ac;
+            a[2] = 0.0f;
+            a[1] = car->f_a8;
+            func_8009E820(a, v, car->m);
+            x = v[0];
+            z = v[2];
+            x = -x;
+            z = -z;
         } else {
-            sp88 = M2C_FIELD(ipa_s0, f32 *, 0x14);
-            sp8C = M2C_FIELD(ipa_s0, f32 *, 0x18);
-            sp90 = M2C_FIELD(ipa_s0, f32 *, 0x1C);
-            if (ipa_f22 < 0.0f) {
-                sp8C = -sp8C;
+            v[0] = car->vx;
+            v[1] = car->vy;
+            v[2] = car->vz;
+            if (r < 0) {
+                v[1] = -v[1];
             }
-            func_800A61B0(&sp88, &sp94, temp_s1);
-            sp9C = fabsf(sp9C);
-            func_8009E820(&sp94, &sp88, temp_s1);
-            var_f12 = -sp88;
+            func_800A61B0(v, a, car->m);
+            a[2] = fabsf(a[2]);
+            func_8009E820(a, v, car->m);
+            x = v[0];
+            z = v[2];
+            x = -x;
+            z = -z;
         }
-        temp_f2_2 = ipa_f22 / var_f20;
-        temp_f12_2 = var_f12 * temp_f2_2;
-        temp_f16 = sp8C * temp_f2_2;
-        temp_f14 = -sp90 * temp_f2_2;
-        sp88 = temp_f12_2;
-        sp90 = temp_f14;
-        temp_f0 = sqrtf((temp_f14 * temp_f14) + (temp_f12_2 * temp_f12_2));
-        if (D_801244C8 < temp_f0) {
-            temp_f2_3 = (temp_f0 - ((-temp_f16 * ipa_f24) / ipa_f22)) / temp_f0;
-            sp88 = temp_f12_2 * temp_f2_3;
-            sp90 = temp_f14 * temp_f2_3;
+        k = r / len;
+        y = v[1];
+        x = x * k;
+        y = y * k;
+        z = z * k;
+        v[0] = x;
+        v[2] = z;
+        mag = sqrtf((z * z) + (x * x));
+        if (D_801244C8 < mag) {
+            k = (mag - ((-y * c) / r)) / mag;
+            x = x * k;
+            z = z * k;
+            v[0] = x;
+            v[2] = z;
         }
-        sp8C = fabsf(((temp_f0 * ipa_f24) / ipa_f22) - temp_f16);
-        if (var_f20 < 100.0f) {
-            func_800CFDEC((s32) &sp7C, (s32) &sp88, 3, 1.0f, 100.0f, var_f20, (s32) &sp88);
+        y = fabsf(((mag * c) / r) - y);
+        v[1] = y;
+        if (len < 100.0f) {
+            func_800CFDEC((s32) b, (s32) v, 3, 1.0f, 100.0f, len, (s32) v);
         }
     } else {
-        sp88 = sp7C;
-        sp90 = sp84;
-        sp8C = sp80;
+        v[0] = x;
+        v[2] = z;
+        v[1] = y;
     }
-    temp_v0 = M2C_FIELD(ipa_s0, s8 *, 0x35D);
-    if (temp_v0 == 8) {
-        var_at = &(&D_80152720)[temp_s3];
-        goto block_25;
-    }
-    if (temp_v0 == 4) {
-        (&D_80152720)[temp_s3] = 1.0f - (var_f20 / 100.0f);
+    if (car->mode == 8) {
+        D_80152720[pl] = 0.0f;
+    } else if (car->mode == 4) {
+        D_80152720[pl] = 1 - (len / 100.0f);
+    } else if (len < 100.0f) {
+        D_80152720[pl] = 1 - (len * D_801244CC);
     } else {
-        var_at = (temp_s3 * 4) + 0x80150000;
-        if (var_f20 < 100.0f) {
-            (&D_80152720)[temp_s3] = 1.0f - (var_f20 * D_801244CC);
-        } else {
-block_25:
-            *var_at = 0.0f;
-        }
+        D_80152720[pl] = 0.0f;
     }
-    M2C_FIELD(ipa_s4, f32 *, 0) = sp88;
-    M2C_FIELD(ipa_s4, f32 *, 4) = sp8C;
-    M2C_FIELD(ipa_s4, f32 *, 8) = sp90;
+    out[0] = v[0];
+    out[1] = v[1];
+    out[2] = v[2];
 }
 
-void func_800E95DC(s16 arg0, void *arg1, void *arg2, s32 arg3) {
-    M2C_UNK spB8;
-    f32 spB4;
-    f32 spB0;
-    f32 spAC;
-    f32 spA8;
-    f32 spA4;
-    f32 spA0;
-    void *sp90;
-    s32 sp8C;
-    s16 *sp88;
-    f32 *sp84;
-    f32 temp_f0;
-    f32 temp_f0_2;
-    f32 temp_f0_3;
-    f32 temp_f12;
-    f32 temp_f14;
-    f32 temp_f16;
-    f32 temp_f18;
-    f32 temp_f2;
-    f32 temp_f4;
-    f32 temp_f4_2;
-    f32 temp_f6;
-    f32 temp_f8;
-    s16 *var_t5;
-    s16 temp_a0_2;
-    s16 var_a0;
-    s32 temp_lo;
-    s32 temp_lo_2;
-    s32 temp_lo_3;
-    s32 temp_t0;
-    s8 temp_s7;
-    u8 var_v1;
-    void **temp_a0;
-    void *temp_v0;
-    void *temp_v0_2;
-    void *temp_v0_3;
-    void *temp_v0_4;
-    void *temp_v0_5;
-    void *temp_v1;
-    void *temp_v1_2;
-    void *temp_v1_3;
-    void *temp_v1_4;
+void func_800E95DC(s16 arg0, Cr *car, f32 *pos, s32 arg3) {
+    V3 vel[4];
+    f32 pa[3];
+    f32 pb[3];
+    s16 *st;
+    s32 pl;
+    f32 t;
+    f32 k;
+    f32 k2;
+    Fx *fx;
 
-    temp_s7 = M2C_FIELD(arg1, s8 *, 0x35C);
+    pl = car->player;
     if (arg0 == 0) {
-        temp_v1 = (s32 *) ((temp_s7 * 0xC) + (u8 *) &D_8012E690);
-        M2C_FIELD(temp_v1, f32 *, 0) = (f32) M2C_FIELD(arg2, f32 *, 0);
-        temp_v0 = (s32 *) ((temp_s7 * 0x98) + (u8 *) &D_80150B70);
-        M2C_FIELD(temp_v1, f32 *, 4) = (f32) M2C_FIELD(arg2, f32 *, 4);
-        M2C_FIELD(temp_v1, f32 *, 8) = (f32) M2C_FIELD(arg2, f32 *, 8);
-        M2C_FIELD(temp_v0, f32 *, 0x84) = (f32) M2C_FIELD(arg2, f32 *, 0);
-        M2C_FIELD(temp_v0, f32 *, 0x88) = (f32) M2C_FIELD(arg2, f32 *, 4);
-        M2C_FIELD(temp_v0, f32 *, 0x8C) = (f32) M2C_FIELD(arg2, f32 *, 8);
-        temp_f8 = M2C_FIELD(arg1, f32 *, 8);
-        spAC = temp_f8;
-        spB0 = M2C_FIELD(arg1, f32 *, 0xC);
-        temp_f4 = M2C_FIELD(arg1, f32 *, 0x10);
-        spB4 = temp_f4;
-        M2C_FIELD(arg2, f32 *, 0) = (f32) (M2C_FIELD(arg2, f32 *, 0) - temp_f8);
-        M2C_FIELD(arg2, f32 *, 4) = (f32) (M2C_FIELD(arg2, f32 *, 4) - spB0);
-        M2C_FIELD(arg2, f32 *, 8) = (f32) (M2C_FIELD(arg2, f32 *, 8) - temp_f4);
-        vector_normalize_length(arg2, (u8 *) temp_v0 + 0x60);
-        (&D_8012E6C8)[temp_s7] = 0;
-        (&D_8012E6E8)[temp_s7] = 0.0f;
+        D_8012E690[pl].x = pos[0];
+        D_8012E690[pl].y = pos[1];
+        D_8012E690[pl].z = pos[2];
+        fx = &D_80150B70[pl];
+        fx->v84[0] = pos[0];
+        fx->v84[1] = pos[1];
+        fx->v84[2] = pos[2];
+        pa[0] = car->pos[0];
+        pa[1] = car->pos[1];
+        pa[2] = car->pos[2];
+        pos[0] = pos[0] - pa[0];
+        pos[1] = pos[1] - pa[1];
+        pos[2] = pos[2] - pa[2];
+        vector_normalize_length(pos, &fx->n60);
+        D_8012E6C8[pl] = 0;
+        D_8012E6E8[pl] = 0.0f;
         return;
     }
-    var_t5 = &(&D_8012E6C8)[temp_s7];
-    var_a0 = *var_t5;
-    temp_t0 = temp_s7 * 4;
-    switch (var_a0) {                               /* irregular */
+    st = &D_8012E6C8[pl];
+    switch (*st) {
     case 0:
-        sp8C = temp_t0;
-        sp88 = var_t5;
-        func_800E92C8(arg1, &spAC, M2C_FIELD((temp_t0 + 0x80150000), f32 *, 0x26F8), (&D_801526E0)[temp_s7]);
-        var_t5 = sp88;
-        temp_f6 = spAC + M2C_FIELD(arg2, f32 *, 0);
-        var_a0 = *var_t5;
-        spAC = temp_f6;
-        temp_f2 = *((f32 *) ((u8 *) &D_8012E6E8 + sp8C));
-        spB0 += M2C_FIELD(arg2, f32 *, 4);
-        temp_f12 = (&D_801108C8)[var_a0];
-        temp_lo = temp_s7 * 0xC;
-        spB4 += M2C_FIELD(arg2, f32 *, 8);
-        temp_f0 = (D_801244D0 * temp_f2) / temp_f12;
-        temp_v1_2 = (s32 *) (temp_lo + (u8 *) &D_8012E690);
-        temp_f14 = M2C_FIELD(temp_v1_2, f32 *, 0);
-        temp_v0_2 = temp_lo + (u8 *) &spB8;
-        temp_f16 = M2C_FIELD(temp_v1_2, f32 *, 4);
-        temp_f18 = M2C_FIELD(temp_v1_2, f32 *, 8);
-        M2C_FIELD(temp_v0_2, f32 *, 0) = (f32) (temp_f0 * (temp_f6 - temp_f14));
-        M2C_FIELD(temp_v0_2, f32 *, 4) = (f32) (temp_f0 * (spB0 - temp_f16));
-        temp_f0_2 = temp_f2 / temp_f12;
-        M2C_FIELD(temp_v0_2, f32 *, 8) = (f32) (temp_f0 * (spB4 - temp_f18));
-        spA0 = M2C_FIELD(arg1, f32 *, 8) - (M2C_FIELD(arg1, f32 *, 0x44) * 40.0f);
-        spA4 = M2C_FIELD(arg1, f32 *, 0xC) + 5.0f;
-        spA8 = M2C_FIELD(arg1, f32 *, 0x10) - (M2C_FIELD(arg1, f32 *, 0x4C) * 40.0f);
-        M2C_FIELD(temp_v0_2, f32 *, 0) = (f32) (temp_f0_2 * (spA0 - temp_f14));
-        M2C_FIELD(temp_v0_2, f32 *, 4) = (f32) (temp_f0_2 * (spA4 - temp_f16));
-        M2C_FIELD(temp_v0_2, f32 *, 8) = (f32) (temp_f0_2 * (spA8 - temp_f18));
+        func_800E92C8(car, pa, D_801526F8[pl], D_801526E0[pl]);
+        pa[0] = pa[0] + pos[0];
+        pa[1] = pa[1] + pos[1];
+        pa[2] = pa[2] + pos[2];
+        t = D_8012E6E8[pl];
+        k = (D_801244D0 * t) / D_801108C8[*st];
+        vel[pl].x = k * (pa[0] - D_8012E690[pl].x);
+        vel[pl].y = k * (pa[1] - D_8012E690[pl].y);
+        k2 = t / D_801108C8[*st];
+        vel[pl].z = k * (pa[2] - D_8012E690[pl].z);
+        pb[0] = car->pos[0] - (car->m[5] * 40.0f);
+        pb[1] = car->pos[1] + 5.0f;
+        pb[2] = car->pos[2] - (car->m[8] * 40.0f);
+        vel[pl].x = k2 * (pb[0] - D_8012E690[pl].x);
+        vel[pl].y = k2 * (pb[1] - D_8012E690[pl].y);
+        vel[pl].z = k2 * (pb[2] - D_8012E690[pl].z);
         break;
     case 1:
-        sp8C = temp_s7 * 4;
-        sp88 = var_t5;
-        func_800E92C8(arg1, &spAC, (&D_801526F8)[temp_s7], (&D_801526E0)[temp_s7]);
-        var_t5 = sp88;
-        temp_f4_2 = spAC + M2C_FIELD(arg2, f32 *, 0);
-        var_a0 = *var_t5;
-        spAC = temp_f4_2;
-        temp_lo_2 = temp_s7 * 0xC;
-        spB0 += M2C_FIELD(arg2, f32 *, 4);
-        spB4 += M2C_FIELD(arg2, f32 *, 8);
-        temp_f0_3 = *((f32 *) ((u8 *) &D_8012E6E8 + sp8C)) / (&D_801108C8)[var_a0];
-        temp_v1_3 = (s32 *) (temp_lo_2 + (u8 *) &D_8012E690);
-        temp_v0_3 = temp_lo_2 + (u8 *) &spB8;
-        M2C_FIELD(temp_v0_3, f32 *, 0) = (f32) (temp_f0_3 * (temp_f4_2 - M2C_FIELD(temp_v1_3, f32 *, 0)));
-        M2C_FIELD(temp_v0_3, f32 *, 4) = (f32) (temp_f0_3 * (spB0 - M2C_FIELD(temp_v1_3, f32 *, 4)));
-        M2C_FIELD(temp_v0_3, f32 *, 8) = (f32) (temp_f0_3 * (spB4 - M2C_FIELD(temp_v1_3, f32 *, 8)));
+        func_800E92C8(car, pa, D_801526F8[pl], D_801526E0[pl]);
+        pa[0] = pa[0] + pos[0];
+        pa[1] = pa[1] + pos[1];
+        pa[2] = pa[2] + pos[2];
+        k = D_8012E6E8[pl] / D_801108C8[*st];
+        vel[pl].x = k * (pa[0] - D_8012E690[pl].x);
+        vel[pl].y = k * (pa[1] - D_8012E690[pl].y);
+        vel[pl].z = k * (pa[2] - D_8012E690[pl].z);
         break;
     case 2:
-        sp88 = var_t5;
-        func_800E9234(arg1);
+        func_800E9234(car);
         if (!(state_word_a & 8)) {
-            var_v1 = 2;
-            temp_a0 = M2C_FIELD(M2C_FIELD(arg1, void **, 0x380), void ***, 0x48);
-            if (M2C_FIELD(*temp_a0, s32 *, 0x2C) != 0) {
-                sp88 = var_t5;
-                var_v1 = func_800CDE38(temp_a0);
+            u8 v;
+            HN **h;
+            v = 2;
+            h = car->q->h;
+            if (h[0]->f2c != 0) {
+                v = func_800CDE38((void **) h);
             }
-            M2C_FIELD(arg1, u8 *, 0x35D) = var_v1;
-            M2C_FIELD(arg1, u8 *, 0x35E) = var_v1;
-            if ((s8) M2C_FIELD(arg1, u8 *, 0x35D) == 1) {
-                *((s32 *) ((u8 *) &D_801526A8 + (M2C_FIELD(arg1, s8 *, 0x35C) * 0xC))) = 0.0f;
-                M2C_FIELD(((s32 *) ((u8 *) &D_801526A8 + (M2C_FIELD(arg1, s8 *, 0x35C) * 0xC))), f32 *, 4) = 0.0f;
-                M2C_FIELD(((s32 *) ((u8 *) &D_801526A8 + (M2C_FIELD(arg1, s8 *, 0x35C) * 0xC))), f32 *, 8) = 0.0f;
+            car->mode = v;
+            car->mode2 = v;
+            if (car->mode == 1) {
+                D_801526A8[car->player].x = 0.0f;
+                D_801526A8[car->player].y = 0.0f;
+                D_801526A8[car->player].z = 0.0f;
             }
         }
-        var_a0 = *var_t5;
         break;
     }
-    if ((var_a0 == 0) || (var_a0 == 1)) {
-        temp_lo_3 = temp_s7 * 0xC;
-        temp_v0_4 = temp_lo_3 + (u8 *) &spB8;
-        temp_v1_4 = (s32 *) (temp_lo_3 + (u8 *) &D_8012E690);
-        spA0 = M2C_FIELD(temp_v0_4, f32 *, 0) + M2C_FIELD(temp_v1_4, f32 *, 0);
-        spA4 = M2C_FIELD(temp_v0_4, f32 *, 4) + M2C_FIELD(temp_v1_4, f32 *, 4);
-        spA8 = M2C_FIELD(temp_v0_4, f32 *, 8) + M2C_FIELD(temp_v1_4, f32 *, 8);
-        spAC = spA0 - M2C_FIELD(arg2, f32 *, 0);
-        spB0 = spA4 - M2C_FIELD(arg2, f32 *, 4);
-        (&D_80152720)[temp_s7] = 0.0f;
-        sp88 = var_t5;
-        sp84 = &(&D_8012E6E8)[temp_s7];
-        sp90 = temp_v1_4;
-        spB4 = spA8 - M2C_FIELD(arg2, f32 *, 8);
-        func_800E8D50(arg1, (s32) arg2, arg3, &spAC);
-        temp_v0_5 = (s32 *) ((temp_s7 * 0x98) + (u8 *) &D_80150B70);
-        M2C_FIELD(temp_v0_5, f32 *, 0x88) = (f32) (M2C_FIELD(temp_v0_5, f32 *, 0x88) + 4.0f);
-        temp_a0_2 = *sp88;
-        *sp84 += M2C_BITWISE(f32, D_8002EB94);
-        if ((&D_801108C8)[temp_a0_2] <= *sp84) {
-            *sp88 = temp_a0_2 + 1;
-            *sp84 = 0.0f;
-            M2C_FIELD(sp90, f32 *, 0) = (f32) M2C_FIELD(temp_v0_5, f32 *, 0x84);
-            M2C_FIELD(sp90, f32 *, 4) = (f32) M2C_FIELD(temp_v0_5, f32 *, 0x88);
-            M2C_FIELD(sp90, f32 *, 8) = (f32) M2C_FIELD(temp_v0_5, f32 *, 0x8C);
+    if ((*st == 0) || (*st == 1)) {
+        pb[0] = vel[pl].x + D_8012E690[pl].x;
+        pb[1] = vel[pl].y + D_8012E690[pl].y;
+        pb[2] = vel[pl].z + D_8012E690[pl].z;
+        pa[0] = pb[0] - pos[0];
+        pa[1] = pb[1] - pos[1];
+        D_80152720[pl] = 0.0f;
+        pa[2] = pb[2] - pos[2];
+        func_800E8D50(car, (s32) pos, arg3, pa);
+        fx = &D_80150B70[pl];
+        fx->v84[1] = fx->v84[1] + 4.0f;
+        D_8012E6E8[pl] = D_8012E6E8[pl] + D_8002EB94;
+        if (D_801108C8[*st] <= D_8012E6E8[pl]) {
+            *st = *st + 1;
+            D_8012E6E8[pl] = 0.0f;
+            D_8012E690[pl].x = fx->v84[0];
+            D_8012E690[pl].y = fx->v84[1];
+            D_8012E690[pl].z = fx->v84[2];
         }
     }
 }
 
-void func_800EA108(void *arg0, f32 *arg1, void *arg2) {
-    M2C_UNK spA0;
-    M2C_UNK sp94;
-    f32 sp88;
-    s32 sp84;
-    s32 *sp80;
-    f32 *var_a0;
-    f32 *var_v1;
-    f32 *var_v1_2;
-    f32 temp_f26;
-    f32 temp_f26_2;
-    f32 temp_f28;
-    f32 temp_f28_2;
-    f32 var_f28;
-    f32 var_f30;
-    s32 *temp_a1;
-    s32 temp_f0;
-    void *temp_a2;
-    void *var_a0_2;
-    void *var_v0;
-    void *var_v0_2;
+void func_800EA108(Cr *car, f32 *pos, void *arg2) {
+    s32 i;
+    s32 j;
+    f32 d[3];
+    f32 t[3];
+    s32 pl;
 
-    sp84 = (s32) M2C_FIELD(arg0, s8 *, 0x35C);
-    func_8008D6FC(M2C_FIELD(arg0, s16 *, 0xF6), arg1, arg2);
-    temp_a1 = &(&D_80152708)[sp84];
-    sp80 = temp_a1;
-    *temp_a1 = M2C_BITWISE(s32, D_801244E8);
-    func_800E92C8(arg0, &sp88, 0x41F00000, 0x41800000);
-    temp_f0 = *sp80;
-    temp_a2 = (s32 *) ((sp84 * 0x98) + (u8 *) &D_80150B70);
-    var_v0 = temp_a2;
-    var_a0 = &sp88;
-    var_v1 = arg1;
-    do {
-        temp_f28 = *var_a0;
-        var_a0 = var_a0 + 1;
-        temp_f26 = M2C_FIELD(var_v0, f32 *, 0x84) * (1.0f - M2C_BITWISE(f32, temp_f0));
-        var_v0 = (u8 *) var_v0 + 4;
-        temp_f28_2 = M2C_BITWISE(f32, temp_f0) * (*var_v1 + temp_f28);
-        var_v1 = var_v1 + 1;
-        M2C_FIELD(var_v0, f32 *, 0x80) = (f32) (temp_f28_2 + temp_f26);
-    } while ((u32) var_a0 < (u32) &sp94);
-    var_v0_2 = temp_a2;
-    var_v1_2 = arg1;
-    var_a0_2 = (u8 *) &sp94 + 4;
-    var_f30 = M2C_FIELD(var_v0_2, f32 *, 0x84);
-    var_f28 = *var_v1_2;
-    if (var_a0_2 != (void *) &spA0) {
-        do {
-            temp_f26_2 = var_f28 - var_f30;
-            var_f30 = M2C_FIELD(var_v0_2, f32 *, 0x88);
-            var_a0_2 = (u8 *) var_a0_2 + 4;
-            var_v0_2 = (u8 *) var_v0_2 + 4;
-            M2C_FIELD(var_a0_2, f32 *, -8) = temp_f26_2;
-            var_f28 = M2C_FIELD(var_v1_2, f32 *, 4);
-            var_v1_2 = var_v1_2 + 1;
-        } while (var_a0_2 != (void *) &spA0);
+    pl = car->player;
+    func_8008D6FC(car->s_f6, pos, arg2);
+    D_80152708[pl] = D_801244E8;
+    func_800E92C8(car, t, 30.0f, 16.0f);
+    for (i = 0; i < 3; i++) {
+        D_80150B70[pl].v84[i] = (D_80152708[pl] * (pos[i] + t[i])) + ((1.0f - D_80152708[pl]) * D_80150B70[pl].v84[i]);
     }
-    M2C_FIELD(var_a0_2, f32 *, -4) = (f32) (var_f28 - var_f30);
-    vector_normalize_length(&sp94, (s32 *) ((sp84 * 0x98) + 0x60 + (u8 *) &D_80150B70));
+    for (j = 0; j < 3; j++) {
+        d[j] = pos[j] - D_80150B70[pl].v84[j];
+    }
+    vector_normalize_length(d, &D_80150B70[pl].n60);
 }
 
-void func_800EA2DC(void *arg0, void *arg1, void *arg2, s32 arg3) {
-    f32 sp70;
-    s32 sp6C;
-    s8 temp_v1;
+void func_800EA2DC(Cr *car, void *arg1, void *arg2, s32 arg3) {
+    volatile s32 padv[5];
+    f32 v[3];
+    s32 pl;
 
-    temp_v1 = M2C_FIELD(arg0, s8 *, 0x35C);
-    sp6C = (s32) temp_v1;
-    func_800E8CB8(arg0, arg1, arg2);
-    if (M2C_FIELD(arg0, s8 *, 0x35D) == 0xA) {
-        func_800E92C8(arg0, &sp70, -(&D_801526F8)[temp_v1], (&D_801526E0)[temp_v1]);
+    pl = car->player;
+    func_800E8CB8(car, arg1, arg2);
+    if (car->mode == 0xA) {
+        func_800E92C8(car, v, -D_801526F8[pl], D_801526E0[pl]);
     } else {
-        func_800E92C8(arg0, &sp70, (&D_801526F8)[temp_v1], (&D_801526E0)[temp_v1]);
+        func_800E92C8(car, v, D_801526F8[pl], D_801526E0[pl]);
     }
-    func_800E8D50(arg0, arg3, 0, &sp70);
+    func_800E8D50(car, arg3, 0, v);
 }
 
 /* stand-in caller: keeps func_800E92C8 out of line under -O3 */

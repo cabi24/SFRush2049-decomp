@@ -1201,7 +1201,7 @@ extern s32 D_80116FE8;
 extern u16 D_801170E8;
 extern u16 D_801170EC;
 extern u16 D_801170F0;
-extern s16 D_801170F4;
+extern u16 D_801170F4;
 extern s32 D_801170F8;
 extern s32 D_80117100;
 extern s32 D_80117280;
@@ -2187,7 +2187,7 @@ extern s32 D_8012E5EC;
 extern s32 D_8012E608;
 extern s32 D_8012E60C;
 extern s32 D_8012E610;
-extern s32 D_8012E618;
+extern u8 D_8012E618[];
 extern s32 D_8012E638;
 extern s32 D_8012E668;
 extern s16 D_8012E66C;
@@ -3795,29 +3795,19 @@ typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
 s32 func_800DC57C(s32 *arg0, u32 arg1)
 {
-  u32 var_a2;
-  u32 var_v1;
-  if (arg1 >= 0x21U)
+  u16 i;
+  if (arg1 > 0x20)
   {
     return 0;
   }
-  var_v1 = 0;
-  if (((u16) D_801170EC) < ((u32) (((u16) D_801170F4) + arg1)))
+  if (D_801170EC < D_801170F4 + arg1)
   {
     return 0;
   }
   *arg0 = 0;
-  if (arg1 != 0)
+  for (i = 0; i < arg1; i++, D_801170F4++)
   {
-    var_a2 = 0;
-    do
-    {
-      *arg0 |= ((((s32) (*(((u8 *) (&D_8012E618)) + (((s32) ((u16) D_801170F4)) >> 3)))) >> (((u16) D_801170F4) & 7)) & 1) << var_a2;
-      var_a2 = (var_v1 = (var_v1 + 1) & 0xFFFF);
-      D_801170F4 = ((u16) D_801170F4) + 1;
-      var_v1 = var_a2;
-    }
-    while (var_a2 < arg1);
+    *arg0 |= ((D_8012E618[D_801170F4 >> 3] >> (D_801170F4 & 7)) & 1) << i;
   }
   return 1;
 }

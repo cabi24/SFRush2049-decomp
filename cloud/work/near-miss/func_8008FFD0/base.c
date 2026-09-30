@@ -3790,19 +3790,24 @@ void world_trigger_activate(void);
 s32 world_velocity_integrate();
 s16 func_8008FFD0(s16 arg0)
 {
+  s16 new_var;
   int var_v1;
+  s32 *var_a1;
   var_v1 = 0;
-  if (D_80156990 > ((var_v1 + 1) * 0))
+  new_var = arg0;
+  if (D_80156990 > 0)
   {
+    var_a1 = &D_8012E700;
     loop_2:
-    if (arg0 == D_8012E718)
+    if (new_var == (*((s16 *) (((s8 *) var_a1) + 0x18))))
     {
-      return var_v1;
+      new_var = var_v1;
+      return new_var;
     }
 
-    var_v1 = var_v1 + 1;
-    if (var_v1 >= D_80156990)
-    {
- return -1; do { return -1; } while (0); } goto loop_2;
+    var_v1 += 1;
+    var_a1 = var_a1 + 0x11;
+    if (var_v1 < D_80156990) goto loop_2;
   }
+  return -1;
 }

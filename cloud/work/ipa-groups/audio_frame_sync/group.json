@@ -5,7 +5,8 @@
     "fp_call_wrapper",
     "func_80096CA8",
     "func_80097164",
-    "suspension_setup"
+    "suspension_setup",
+    "func_800972C4"
   ],
   "files": [
     "group.c"
@@ -15,12 +16,16 @@
     "brake_force_apply",
     "fp_call_wrapper",
     "suspension_setup",
+    "entity_lod_select",
     "__standin_func_80096CA8",
     "__standin_func_80097164"
   ],
   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
   "generated": "blob_group seed from build/ipa_groups.json",
-  "unprototyped": [
+  "unprototyped": [],
+  "context": [
+    "func_80097694",
+    "func_80096288",
     "entity_lod_select"
   ]
 }

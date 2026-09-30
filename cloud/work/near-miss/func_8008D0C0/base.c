@@ -3793,32 +3793,24 @@ typedef s8 M2C_UNK8;
 typedef s16 M2C_UNK16;
 typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
+typedef struct { s16 f0; u8 pad[0x56]; } E58;
 void func_8008D0C0(s16 *arg0)
 {
-  s16 temp_t1;
-  s32 temp_t0;
-  s16 *var_a0;
-  s32 var_v0;
-  var_v0 = temp_t0;
- do { var_a0 = arg0; *var_a0 = 0; var_v0 = D_801613B4; } while (0);
-  if ((var_a0 + 0x2C) == ((void *) ((s32 *) ((var_v0 * 0x58) + ((u8 *) (&D_8015B268))))))
+  s32 n;
+  s32 m;
+  s16 t;
+  *arg0 = 0;
+  n = D_801613B4;
+  if (arg0 + 0x2C == (s16 *) (((E58 *) &D_8015B268) + n))
   {
-    loop_1:
-    temp_t0 = var_v0 - 1;
-
-    D_801613B4 = temp_t0;
-    temp_t1 = *((s16 *) (((s8 *) var_a0) + (-0x58)));
-    var_a0 = var_a0 - ((0, 0x2C));
-    if (temp_t1 == 0)
+    do
     {
-      var_v0 = temp_t0;
-      if ((!arg0) && (!arg0))
-      {
-      }
-      if (temp_t0 > 0)
-      {
-        goto loop_1;
-      }
-    }
+      m = n - 1;
+      D_801613B4 = m;
+      t = arg0[-0x2C];
+      arg0 -= 0x2C;
+      if (t != 0) break;
+      n = m;
+    } while (m > 0);
   }
 }

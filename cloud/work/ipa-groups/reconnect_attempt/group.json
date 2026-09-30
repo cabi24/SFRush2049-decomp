@@ -1,0 +1,30 @@
+{
+  "members": [
+    "func_8010BC84"
+  ],
+  "files": [
+    "sound.c",
+    "objset.c",
+    "stub.c",
+    "slot.c",
+    "rc.c"
+  ],
+  "keep": [
+    "func_8010BC84",
+    "object_byte9_set"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "generated": "hand-written from the assembly (cloud Lane A); see STATUS.md",
+  "unprototyped": [],
+  "context": [
+    "slot_state_setup",
+    "sound_update_channel",
+    "object_byte9_set"
+  ],
+  "targets": {
+    "func_8010BC84": {
+      "addr": "0x8010BC84",
+      "words": 232
+    }
+  }
+}

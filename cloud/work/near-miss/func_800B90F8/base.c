@@ -3788,18 +3788,10 @@ void world_object_destroy(void *arg0);
 void world_physics_tick(void);
 void world_trigger_activate(void);
 s32 world_velocity_integrate();
-volatile unsigned int func_800B90F8(void)
+void func_800B90F8(void)
 {
-  volatile long *new_var;
-  int new_var2;
-  new_var = &(&D_80124FD0)[(s16) ((short) D_80151AD0)];
-  if (((s16) D_80151AD0) > 0)
-  {
-    new_var2 = 4;
-    do
-    {
-      D_80124FD0 = 0;
-    }
-    while (((u32) ((&D_80124FD0) + new_var2)) < ((u32) new_var));
+  s32 i;
+  for (i = 0; i < (s16) D_80151AD0; i++) {
+    (&D_80124FD0)[i] = 0;
   }
 }

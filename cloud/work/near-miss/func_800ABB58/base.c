@@ -2168,7 +2168,7 @@ extern s32 D_80140AF8;
 extern f32 D_80140B10;
 extern s32 D_80140B20;
 extern s32 D_80140B28;
-extern s32 D_80140BDC;
+extern u8 D_80140BDC[];
 extern f32 D_80140BE0;
 extern s32 D_801424F0;
 extern s32 D_80142500;
@@ -3696,19 +3696,20 @@ typedef s64 M2C_UNK64;
 
 #endif
 
+typedef struct { u8 *ptr; s32 count; } ABBEnt;
 f32 func_800ABB58(s32 arg0) {
-    s32 temp_v0;
-    s32 temp_v1;
-    void *temp_a1;
+    s32 idx;
+    s32 sub;
+    ABBEnt *e;
 
-    temp_v0 = arg0 >> 0xA;
-    if (temp_v0 >= (s32) D_80140BDC) {
+    idx = arg0 >> 0xA;
+    if (idx >= (s32) *(volatile u8 *) D_80140BDC) {
         return 0.0f;
     }
-    temp_a1 = (s32 *) ((temp_v0 * 8) + (u8 *) &D_801161F4);
-    temp_v1 = arg0 & 0x3FF;
-    if (temp_v1 >= M2C_FIELD(temp_a1, s32 *, 4)) {
+    e = (ABBEnt *) ((u8 *) &D_801161F4 + idx * 8);
+    sub = arg0 & 0x3FF;
+    if (sub >= e->count) {
         return 0.0f;
     }
-    return M2C_FIELD((M2C_FIELD(temp_a1, s32 *, 0) + (temp_v1 * 0x58)), f32 *, 0x10);
+    return *(f32 *) (e->ptr + sub * 0x58 + 0x10);
 }

@@ -1201,7 +1201,7 @@ extern s32 D_80116FE8;
 extern u16 D_801170E8;
 extern u16 D_801170EC;
 extern u16 D_801170F0;
-extern s16 D_801170F4;
+extern u16 D_801170F4;
 extern s32 D_801170F8;
 extern s32 D_80117100;
 extern s32 D_80117280;
@@ -2187,7 +2187,7 @@ extern s32 D_8012E5EC;
 extern s32 D_8012E608;
 extern s32 D_8012E60C;
 extern s32 D_8012E610;
-extern s32 D_8012E618;
+extern u8 D_8012E618[];
 extern s32 D_8012E638;
 extern s32 D_8012E668;
 extern s16 D_8012E66C;
@@ -3790,34 +3790,27 @@ void world_trigger_activate(void);
 s32 world_velocity_integrate();
 s32 func_800DC1AC(u32 arg0, u32 arg1)
 {
-  u32 var_a0;
-  u32 var_a3;
-  u8 *temp_a2;
-  u8 temp_t7;
-  var_a3 = arg0;
-  if (arg1 >= 0x21U)
+  u32 i;
+  u32 v;
+  v = arg0;
+  if (arg1 > 0x20)
   {
     return 0;
   }
-  if (((u16) D_801170EC) < ((u32) (((u16) D_801170F4) + arg1)))
+  if (D_801170EC < D_801170F4 + arg1)
   {
     return 0;
   }
-  var_a0 = 0;
+  i = 0;
   if (arg1 != 0)
   {
     do
     {
-      var_a0 += 1;
-      temp_a2 = &D_8012E618;
-      temp_a2 = temp_a2 + (((s32) ((u16) D_801170F4)) >> 3);
-      temp_t7 = (*temp_a2) | ((var_a3 & 1) << (((u16) D_801170F4) & 7));
-      D_801170F4 = ((u16) D_801170F4) + 1;
-      var_a3 = var_a3 >> 1;
-      temp_a2 = &D_8012E618;
-      *temp_a2 = temp_t7;
-    }
-    while (var_a0 < arg1);
+      i++;
+      D_8012E618[D_801170F4 >> 3] |= (v & 1) << (D_801170F4 & 7);
+      D_801170F4++;
+      v >>= 1;
+    } while (i < arg1);
   }
   return 1;
 }

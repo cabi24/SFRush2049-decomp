@@ -3699,13 +3699,11 @@ typedef s64 M2C_UNK64;
 void task_complete_signal(s32 arg0) {
     osCreateMesgQueue((OSMesgQueue *) &D_80153E68, (void **) &D_80153EF0, 1);
     M2C_FIELD(&D_80153F10, s8 *, 0) = 0;
-loop_1:
-    osRecvMesg((OSMesgQueue *) &D_80153E68, NULL, 1);
-    if (func_8008ABE4() != 0) {
-        goto loop_1;
+    for (;;) {
+        osRecvMesg((OSMesgQueue *) &D_80153E68, NULL, 1);
+        if (func_8008ABE4() == 0) {
+            M2C_FIELD(&D_80153F10, s8 *, 0) = 0;
+            osJamMesg(M2C_FIELD(&D_80153F10, OSMesgQueue **, 0xC), NULL, 1);
+        }
     }
-    M2C_FIELD(&D_80153F10, s8 *, 0) = 0;
-    osJamMesg(M2C_FIELD(&D_80153F10, OSMesgQueue **, 0xC), NULL, 1);
-    goto loop_1;
 }
-/* Warning: struct __OSThreadprofile_s is not defined (only forward-declared) */

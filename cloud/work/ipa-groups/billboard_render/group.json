@@ -1,0 +1,10 @@
+{
+  "members": ["billboard_render"],
+  "files": ["br.c", "ctx.c"],
+  "keep": ["billboard_render"],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "generated": "hand-written from the assembly (cloud Lane A); see STATUS.md",
+  "unprototyped": [],
+  "context": [],
+  "targets": {}
+}

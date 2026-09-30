@@ -3796,25 +3796,24 @@ typedef s64 M2C_UNK64;
 void func_800B73E4(void)
 {
   s32 *new_var;
-  s8 *new_var2;
   s32 *var_v1;
-  var_v1 += 0;
-  if (D_801147C4 == 0)
+  s8 *flag;
+  flag = &D_801147C4;
+  if (*flag == 0)
   {
-    D_801147C4 = 1;
-    D_801551EC = 0;
+    *flag = 1;
     new_var = &D_80155210;
+    D_801551EC = 0;
     D_801551E8 = 0;
     var_v1 = &D_801551F0;
     do
     {
       var_v1 = var_v1 + 4;
-      new_var2 = (s8 *) var_v1;
       *((s32 *) (((s8 *) var_v1) + (-0xC))) = 0;
       *((s32 *) (((s8 *) var_v1) + (-8))) = 0;
-      *((s32 *) (new_var2 + (-4))) = 0;
+      *((s32 *) (((s8 *) var_v1) + (-4))) = 0;
       *((s32 *) (((s8 *) var_v1) + 0)) = 0;
     }
-    while ((((((var_v1 != new_var) & 0xFFFFFFFFu) & 0xFFFFFFFFu) & 0xFFFFFFFFu) & 0xFFFFFFFFu) & 0xFFFFFFFFu);
+    while ((var_v1 != new_var) & 0xFFFFFFFFu);
   }
 }

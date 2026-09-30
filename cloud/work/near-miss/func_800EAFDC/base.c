@@ -3697,11 +3697,9 @@ typedef s64 M2C_UNK64;
 #endif
 
 f32 func_800EAFDC(void *arg0) {
-    f32 temp_f2;
-
-    temp_f2 = (M2C_FIELD(arg0, f32 *, 0x760) + M2C_FIELD(arg0, f32 *, 0x75C)) * 0.5f;
-    if (D_80124518 < temp_f2) {
-        return temp_f2 - D_80124518;
+    f32 a; f32 b; f32 t; a = *(f32 *) ((u8 *) arg0 + 0x760); b = *(f32 *) ((u8 *) arg0 + 0x75C); t = (a + b) * 0.5f;
+    if (D_80124518 < t) {
+        return t - D_80124518;
     }
     return 0.0f;
 }

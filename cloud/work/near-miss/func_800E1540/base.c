@@ -3696,12 +3696,12 @@ typedef s64 M2C_UNK64;
 
 #endif
 
-void func_800E1540(void **arg0) {
-    f32 temp_f0;
+void func_800E1540(f32 *arg0) {
+    f32 t;
 
-    temp_f0 = D_80142764 / M2C_FIELD(arg0, f32 *, 0x5BC);
-    M2C_FIELD(arg0, f32 *, 0x28) = (f32) (M2C_FIELD(arg0, f32 *, 0x10) * temp_f0);
-    M2C_FIELD(arg0, f32 *, 0x2C) = (f32) (M2C_FIELD(arg0, f32 *, 0x14) * temp_f0);
-    M2C_FIELD(arg0, f32 *, 0x30) = (f32) (M2C_FIELD(arg0, f32 *, 0x18) * temp_f0);
+    t = D_80142764 / arg0[0x5BC / 4];
+    arg0[0x28 / 4] = arg0[0x10 / 4] * t;
+    arg0[0x2C / 4] = arg0[0x14 / 4] * t;
+    arg0[0x30 / 4] = arg0[0x18 / 4] * t;
     func_800E1500(arg0, arg0 + 7, arg0 + 0xD);
 }
