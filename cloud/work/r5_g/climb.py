@@ -4,7 +4,7 @@ which=sys.argv[1]; seed=int(sys.argv[2]); iters=int(sys.argv[3])
 random.seed(seed)
 GD=f'{ROOT}/cloud/work/r5_g/clb_{which}_{seed}'
 os.makedirs(GD,exist_ok=True)
-shutil.copy(f'{ROOT}/cloud/work/r5_g/grp2/group.json',GD+'/group.json')
+shutil.copy(f'{ROOT}/cloud/work/ipa-groups/func_800AD4C8/group.json',GD+'/group.json')
 BASE=open(f'{ROOT}/cloud/work/ipa-groups/func_800AD4C8/group.c').read()
 def extract(S,name):
     return re.search(r'^s16 '+name+r'\([^;\n]*\{\n.*?\n\}\n',S,re.S|re.M).group(0)
