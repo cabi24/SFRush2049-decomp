@@ -3808,14 +3808,14 @@ s16 func_800C3AD0(f32 *pt, f32 *wp, Poly *poly, s16 *outIdx, f32 *q, f32 *mat, f
     volatile f32 f2;
     f32 va[3];
     f32 vd[3];
-    f32 vc[3];
     u32 k;
+    f32 vc[3];
     volatile f32 f1;
-    u32 n;
+    s32 res;
     f32 ve[3];
     u16 idx[20];
-    s32 res;
     f32 vb[3];
+    u32 n;
 
     n = poly->cnt & 0xF;
     res = 1;
