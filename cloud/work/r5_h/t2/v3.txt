@@ -1,0 +1,199 @@
+void func_800A5488(void)
+{
+  s32 i; Obj **p = D_80149450;
+  i = 0;
+L: p[i] = (Obj *)((char *)D_80146210 + ((i) << 6)); p[i + 1] = (Obj *)((char *)D_80146210 + ((i + 1) << 6)); p[i + 2] = (Obj *)((char *)D_80146210 + ((i + 2) << 6)); p[i + 3] = (Obj *)((char *)D_80146210 + ((i + 3) << 6)); i += 4; if (i != 200) goto L;
+  D_80149788 = 0;
+  game_state_flags = 0;
+}
+----
+void func_800A5488(void)
+{
+  s32 i; Obj **p = D_80149450;
+  i = 0;
+L: p[i + 2] = (Obj *)((char *)D_80146210 + ((i + 2) << 6)); p[i + 1] = (Obj *)((char *)D_80146210 + ((i + 1) << 6)); p[i + 3] = (Obj *)((char *)D_80146210 + ((i + 3) << 6)); p[i] = (Obj *)((char *)D_80146210 + ((i) << 6)); i += 4; if (i != 200) goto L;
+  D_80149788 = 0;
+  game_state_flags = 0;
+}
+----
+void func_800A5488(void)
+{
+  s32 i; Obj **p = D_80149450;
+  i = 0;
+L: p[i + 1] = (Obj *)((char *)D_80146210 + ((i + 1) << 6)); p[i + 2] = (Obj *)((char *)D_80146210 + ((i + 2) << 6)); p[i + 3] = (Obj *)((char *)D_80146210 + ((i + 3) << 6)); p[i] = (Obj *)((char *)D_80146210 + ((i) << 6)); i += 4; if (i != 200) goto L;
+  D_80149788 = 0;
+  game_state_flags = 0;
+}
+----
+void func_800A5488(void)
+{
+  s32 i; Obj **p = D_80149450;
+  i = 0;
+L: p[i + 3] = (Obj *)((char *)D_80146210 + ((i + 3) << 6)); p[i + 1] = (Obj *)((char *)D_80146210 + ((i + 1) << 6)); p[i + 2] = (Obj *)((char *)D_80146210 + ((i + 2) << 6)); p[i] = (Obj *)((char *)D_80146210 + ((i) << 6)); i += 4; if (i != 200) goto L;
+  D_80149788 = 0;
+  game_state_flags = 0;
+}
+----
+void func_800A5488(void)
+{
+  s32 i; Obj **p = D_80149450;
+  i = 0;
+L: p[i] = (Obj *)((char *)&D_80146210 + ((i) << 6)); p[i + 1] = (Obj *)((char *)&D_80146210 + ((i + 1) << 6)); p[i + 2] = (Obj *)((char *)&D_80146210 + ((i + 2) << 6)); p[i + 3] = (Obj *)((char *)&D_80146210 + ((i + 3) << 6)); i += 4; if (i != 200) goto L;
+  D_80149788 = 0;
+  game_state_flags = 0;
+}
+----
+void func_800A5488(void)
+{
+  s32 i; Obj **p = D_80149450;
+  i = 0;
+L: p[i + 2] = (Obj *)((char *)&D_80146210 + ((i + 2) << 6)); p[i + 1] = (Obj *)((char *)&D_80146210 + ((i + 1) << 6)); p[i + 3] = (Obj *)((char *)&D_80146210 + ((i + 3) << 6)); p[i] = (Obj *)((char *)&D_80146210 + ((i) << 6)); i += 4; if (i != 200) goto L;
+  D_80149788 = 0;
+  game_state_flags = 0;
+}
+----
+void func_800A5488(void)
+{
+  s32 i; Obj **p = D_80149450;
+  i = 0;
+L: p[i + 1] = (Obj *)((char *)&D_80146210 + ((i + 1) << 6)); p[i + 2] = (Obj *)((char *)&D_80146210 + ((i + 2) << 6)); p[i + 3] = (Obj *)((char *)&D_80146210 + ((i + 3) << 6)); p[i] = (Obj *)((char *)&D_80146210 + ((i) << 6)); i += 4; if (i != 200) goto L;
+  D_80149788 = 0;
+  game_state_flags = 0;
+}
+----
+void func_800A5488(void)
+{
+  s32 i; Obj **p = D_80149450;
+  i = 0;
+L: p[i + 3] = (Obj *)((char *)&D_80146210 + ((i + 3) << 6)); p[i + 1] = (Obj *)((char *)&D_80146210 + ((i + 1) << 6)); p[i + 2] = (Obj *)((char *)&D_80146210 + ((i + 2) << 6)); p[i] = (Obj *)((char *)&D_80146210 + ((i) << 6)); i += 4; if (i != 200) goto L;
+  D_80149788 = 0;
+  game_state_flags = 0;
+}
+----
+void func_800A5488(void)
+{
+  s32 i; Obj **p = D_80149450;
+  for (i = 0; i < 200; i += 4) { p[i] = (Obj *)((char *)D_80146210 + ((i) << 6)); p[i + 1] = (Obj *)((char *)D_80146210 + ((i + 1) << 6)); p[i + 2] = (Obj *)((char *)D_80146210 + ((i + 2) << 6)); p[i + 3] = (Obj *)((char *)D_80146210 + ((i + 3) << 6)); }
+  D_80149788 = 0;
+  game_state_flags = 0;
+}
+----
+void func_800A5488(void)
+{
+  s32 i; Obj **p = D_80149450;
+  for (i = 0; i < 200; i += 4) { p[i + 2] = (Obj *)((char *)D_80146210 + ((i + 2) << 6)); p[i + 1] = (Obj *)((char *)D_80146210 + ((i + 1) << 6)); p[i + 3] = (Obj *)((char *)D_80146210 + ((i + 3) << 6)); p[i] = (Obj *)((char *)D_80146210 + ((i) << 6)); }
+  D_80149788 = 0;
+  game_state_flags = 0;
+}
+----
+void func_800A5488(void)
+{
+  s32 i; Obj **p = D_80149450;
+  for (i = 0; i < 200; i += 4) { p[i + 1] = (Obj *)((char *)D_80146210 + ((i + 1) << 6)); p[i + 2] = (Obj *)((char *)D_80146210 + ((i + 2) << 6)); p[i + 3] = (Obj *)((char *)D_80146210 + ((i + 3) << 6)); p[i] = (Obj *)((char *)D_80146210 + ((i) << 6)); }
+  D_80149788 = 0;
+  game_state_flags = 0;
+}
+----
+void func_800A5488(void)
+{
+  s32 i; Obj **p = D_80149450;
+  for (i = 0; i < 200; i += 4) { p[i + 3] = (Obj *)((char *)D_80146210 + ((i + 3) << 6)); p[i + 1] = (Obj *)((char *)D_80146210 + ((i + 1) << 6)); p[i + 2] = (Obj *)((char *)D_80146210 + ((i + 2) << 6)); p[i] = (Obj *)((char *)D_80146210 + ((i) << 6)); }
+  D_80149788 = 0;
+  game_state_flags = 0;
+}
+----
+void func_800A5488(void)
+{
+  s32 i; Obj **p = D_80149450;
+  for (i = 0; i < 200; i += 4) { p[i] = (Obj *)((char *)&D_80146210 + ((i) << 6)); p[i + 1] = (Obj *)((char *)&D_80146210 + ((i + 1) << 6)); p[i + 2] = (Obj *)((char *)&D_80146210 + ((i + 2) << 6)); p[i + 3] = (Obj *)((char *)&D_80146210 + ((i + 3) << 6)); }
+  D_80149788 = 0;
+  game_state_flags = 0;
+}
+----
+void func_800A5488(void)
+{
+  s32 i; Obj **p = D_80149450;
+  for (i = 0; i < 200; i += 4) { p[i + 2] = (Obj *)((char *)&D_80146210 + ((i + 2) << 6)); p[i + 1] = (Obj *)((char *)&D_80146210 + ((i + 1) << 6)); p[i + 3] = (Obj *)((char *)&D_80146210 + ((i + 3) << 6)); p[i] = (Obj *)((char *)&D_80146210 + ((i) << 6)); }
+  D_80149788 = 0;
+  game_state_flags = 0;
+}
+----
+void func_800A5488(void)
+{
+  s32 i; Obj **p = D_80149450;
+  for (i = 0; i < 200; i += 4) { p[i + 1] = (Obj *)((char *)&D_80146210 + ((i + 1) << 6)); p[i + 2] = (Obj *)((char *)&D_80146210 + ((i + 2) << 6)); p[i + 3] = (Obj *)((char *)&D_80146210 + ((i + 3) << 6)); p[i] = (Obj *)((char *)&D_80146210 + ((i) << 6)); }
+  D_80149788 = 0;
+  game_state_flags = 0;
+}
+----
+void func_800A5488(void)
+{
+  s32 i; Obj **p = D_80149450;
+  for (i = 0; i < 200; i += 4) { p[i + 3] = (Obj *)((char *)&D_80146210 + ((i + 3) << 6)); p[i + 1] = (Obj *)((char *)&D_80146210 + ((i + 1) << 6)); p[i + 2] = (Obj *)((char *)&D_80146210 + ((i + 2) << 6)); p[i] = (Obj *)((char *)&D_80146210 + ((i) << 6)); }
+  D_80149788 = 0;
+  game_state_flags = 0;
+}
+----
+void func_800A5488(void)
+{
+  s32 i; Obj **p = D_80149450;
+  i = 0; do { p[i] = (Obj *)((char *)D_80146210 + ((i) << 6)); p[i + 1] = (Obj *)((char *)D_80146210 + ((i + 1) << 6)); p[i + 2] = (Obj *)((char *)D_80146210 + ((i + 2) << 6)); p[i + 3] = (Obj *)((char *)D_80146210 + ((i + 3) << 6)); i += 4; } while (i != 200);
+  D_80149788 = 0;
+  game_state_flags = 0;
+}
+----
+void func_800A5488(void)
+{
+  s32 i; Obj **p = D_80149450;
+  i = 0; do { p[i + 2] = (Obj *)((char *)D_80146210 + ((i + 2) << 6)); p[i + 1] = (Obj *)((char *)D_80146210 + ((i + 1) << 6)); p[i + 3] = (Obj *)((char *)D_80146210 + ((i + 3) << 6)); p[i] = (Obj *)((char *)D_80146210 + ((i) << 6)); i += 4; } while (i != 200);
+  D_80149788 = 0;
+  game_state_flags = 0;
+}
+----
+void func_800A5488(void)
+{
+  s32 i; Obj **p = D_80149450;
+  i = 0; do { p[i + 1] = (Obj *)((char *)D_80146210 + ((i + 1) << 6)); p[i + 2] = (Obj *)((char *)D_80146210 + ((i + 2) << 6)); p[i + 3] = (Obj *)((char *)D_80146210 + ((i + 3) << 6)); p[i] = (Obj *)((char *)D_80146210 + ((i) << 6)); i += 4; } while (i != 200);
+  D_80149788 = 0;
+  game_state_flags = 0;
+}
+----
+void func_800A5488(void)
+{
+  s32 i; Obj **p = D_80149450;
+  i = 0; do { p[i + 3] = (Obj *)((char *)D_80146210 + ((i + 3) << 6)); p[i + 1] = (Obj *)((char *)D_80146210 + ((i + 1) << 6)); p[i + 2] = (Obj *)((char *)D_80146210 + ((i + 2) << 6)); p[i] = (Obj *)((char *)D_80146210 + ((i) << 6)); i += 4; } while (i != 200);
+  D_80149788 = 0;
+  game_state_flags = 0;
+}
+----
+void func_800A5488(void)
+{
+  s32 i; Obj **p = D_80149450;
+  i = 0; do { p[i] = (Obj *)((char *)&D_80146210 + ((i) << 6)); p[i + 1] = (Obj *)((char *)&D_80146210 + ((i + 1) << 6)); p[i + 2] = (Obj *)((char *)&D_80146210 + ((i + 2) << 6)); p[i + 3] = (Obj *)((char *)&D_80146210 + ((i + 3) << 6)); i += 4; } while (i != 200);
+  D_80149788 = 0;
+  game_state_flags = 0;
+}
+----
+void func_800A5488(void)
+{
+  s32 i; Obj **p = D_80149450;
+  i = 0; do { p[i + 2] = (Obj *)((char *)&D_80146210 + ((i + 2) << 6)); p[i + 1] = (Obj *)((char *)&D_80146210 + ((i + 1) << 6)); p[i + 3] = (Obj *)((char *)&D_80146210 + ((i + 3) << 6)); p[i] = (Obj *)((char *)&D_80146210 + ((i) << 6)); i += 4; } while (i != 200);
+  D_80149788 = 0;
+  game_state_flags = 0;
+}
+----
+void func_800A5488(void)
+{
+  s32 i; Obj **p = D_80149450;
+  i = 0; do { p[i + 1] = (Obj *)((char *)&D_80146210 + ((i + 1) << 6)); p[i + 2] = (Obj *)((char *)&D_80146210 + ((i + 2) << 6)); p[i + 3] = (Obj *)((char *)&D_80146210 + ((i + 3) << 6)); p[i] = (Obj *)((char *)&D_80146210 + ((i) << 6)); i += 4; } while (i != 200);
+  D_80149788 = 0;
+  game_state_flags = 0;
+}
+----
+void func_800A5488(void)
+{
+  s32 i; Obj **p = D_80149450;
+  i = 0; do { p[i + 3] = (Obj *)((char *)&D_80146210 + ((i + 3) << 6)); p[i + 1] = (Obj *)((char *)&D_80146210 + ((i + 1) << 6)); p[i + 2] = (Obj *)((char *)&D_80146210 + ((i + 2) << 6)); p[i] = (Obj *)((char *)&D_80146210 + ((i) << 6)); i += 4; } while (i != 200);
+  D_80149788 = 0;
+  game_state_flags = 0;
+}

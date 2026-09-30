@@ -1,0 +1,87 @@
+void func_800A5488(void)
+{
+  s32 i;
+  Obj **p = D_80149450; for (i = 0; i < 200; i++) *p++ = (Obj *)((char *)D_80146210 + (i << 6));
+  D_80149788 = 0;
+  game_state_flags = 0;
+}
+----
+void func_800A5488(void)
+{
+  s32 i;
+  Obj **p = D_80149450; for (i = 0; i < 200; i++, p++) *p = (Obj *)((char *)D_80146210 + (i << 6));
+  D_80149788 = 0;
+  game_state_flags = 0;
+}
+----
+void func_800A5488(void)
+{
+  s32 i;
+  Obj **p = D_80149450; for (i = 0; i < 200; i++) { *p = (Obj *)((char *)D_80146210 + (i << 6)); p++; }
+  D_80149788 = 0;
+  game_state_flags = 0;
+}
+----
+void func_800A5488(void)
+{
+  s32 i;
+  Obj **p = D_80149450; i = 0; do { *p++ = (Obj *)((char *)D_80146210 + (i << 6)); } while (++i < 200);
+  D_80149788 = 0;
+  game_state_flags = 0;
+}
+----
+void func_800A5488(void)
+{
+  s32 i;
+  Obj **p = D_80149450; i = 0; do { *p = &D_80146210[i]; p++; i++; } while (i != 200);
+  D_80149788 = 0;
+  game_state_flags = 0;
+}
+----
+void func_800A5488(void)
+{
+  s32 i;
+  Obj **p = D_80149450; for (i = 0; i < 200; i++) { p[0] = &D_80146210[i]; p++; }
+  D_80149788 = 0;
+  game_state_flags = 0;
+}
+----
+void func_800A5488(void)
+{
+  s32 i;
+  Obj **p = &D_80149450[0]; for (i = 0; i < 200; i++) { *p++ = &D_80146210[i]; }
+  D_80149788 = 0;
+  game_state_flags = 0;
+}
+----
+void func_800A5488(void)
+{
+  s32 i;
+  Obj **p; for (p = D_80149450, i = 0; i < 200; i++, p++) *p = &D_80146210[i];
+  D_80149788 = 0;
+  game_state_flags = 0;
+}
+----
+void func_800A5488(void)
+{
+  s32 i;
+  Obj **p; Obj *o; for (p = D_80149450, o = D_80146210, i = 0; i < 200; i++) *p++ = &o[i];
+  D_80149788 = 0;
+  game_state_flags = 0;
+}
+----
+void func_800A5488(void)
+{
+  s32 i;
+  for (i = 0; i < 200; i++) D_80149450[i] = &D_80146210[i]; 
+  D_80149788 = 0;
+  game_state_flags = 0;
+}
+----
+void func_800A5488(void)
+{
+  s32 i;
+  for (i = 199; i >= 0; i--) D_80149450[i] = &D_80146210[i]; 
+  D_80149788 = 0;
+  game_state_flags = 0;
+}

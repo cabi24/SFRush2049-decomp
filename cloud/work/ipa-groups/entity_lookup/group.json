@@ -1,0 +1,27 @@
+{
+  "members": [
+    "func_80091BA8",
+    "func_800BF01C",
+    "func_80091B00",
+    "results_screen_update",
+    "leaderboard_update",
+    "results_time_display",
+    "camera_clip_planes",
+    "scheduler_recv"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "results_screen_update",
+    "leaderboard_update",
+    "camera_clip_planes",
+    "scheduler_recv",
+    "__standin_a"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "generated": "hand-written (r5_i)",
+  "unprototyped": [],
+  "context": [],
+  "claims": []
+}

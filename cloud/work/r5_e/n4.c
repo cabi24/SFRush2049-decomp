@@ -1,0 +1,1 @@
+void func_8008B32C(float *src, float *dst, float s) { int i, j; float *p, *q; for (i = 0; i < 3; i++) { p = dst; q = src; j = 0; do { *p = *q * s; p++; q++; j++; } while (j < 3); dst += 3; src += 3; } }

@@ -1,0 +1,27 @@
+{
+  "members": [
+    "func_8008A38C"
+  ],
+  "files": [
+    "f.c",
+    "stub.c"
+  ],
+  "keep": [
+    "func_800878E0",
+    "func_8008A38C",
+    "func_8008A644",
+    "caller_a",
+    "caller_b",
+    "caller_c",
+    "caller_d"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "generated": "hand-written from the assembly (cloud r5_f); see STATUS.md",
+  "unprototyped": [],
+  "context": [
+    "func_800878E0",
+    "func_8008A644"
+  ],
+  "targets": {},
+  "claims": []
+}

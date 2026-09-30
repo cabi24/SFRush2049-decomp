@@ -1,0 +1,1 @@
+void func_8008B32C(float (*src)[3], float (*dst)[3], float s) { int i, j; for (i = 0; i < 3; i++) { float *p = &dst[i][0]; float *q = &src[i][0]; for (j = 0; j < 3; j++, p++, q++) { *p = *q * s; } } }
