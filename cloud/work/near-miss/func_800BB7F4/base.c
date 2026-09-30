@@ -2258,7 +2258,7 @@ extern s32 D_8013C128;
 extern s32 D_8013C228;
 extern s32 D_8013C234;
 extern s32 D_8013C238;
-extern struct { s32 f0; s32 f4; } D_8013C300;
+s32 D_8013C300[30];
 
 extern s32 D_8013C308;
 extern s32 D_8013C378;
@@ -3791,19 +3791,9 @@ s32 world_velocity_integrate();
 typedef struct { s32 a; s32 b; s32 c; s32 d; } Q16;
 void func_800BB7F4(void)
 {
-  s32 *p;
-  s32 *end;
-  end = &D_8013C378;
-  p = &D_8013C308;
-  D_8013C300.f0 = 0;
-  D_8013C300.f4 = 0;
-  do
-  {
-    p += 4;
-    p[-3] = 0;
-    p[-2] = 0;
-    p[-1] = 0;
-    p[-4] = 0;
-  } while ((p != end) & 0xFFFFFFFFu);
+  s32 i;
+  for (i = 0; i < 30; i++) {
+    D_8013C300[i] = 0;
+  }
   D_8013F1DC = 0;
 }

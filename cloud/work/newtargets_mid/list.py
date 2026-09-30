@@ -15,5 +15,5 @@ for f in glob.glob('cloud/work/ipa-groups/*/group.json'):
 out=[]
 for n,w in T.items():
     a=syms.get(n)
-    if a and 0x800C0000<=a<0x800E8000 and n not in done and 20<=len(w)<=200: out.append((len(w),n,a))
+    if a and 0x800C0000<=a<0x800E8000 and n not in done and 3<=len(w)<=400: out.append((len(w),n,a))
 for l,n,a in sorted(out): print(l,n,hex(a))
