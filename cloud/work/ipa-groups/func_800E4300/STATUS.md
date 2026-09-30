@@ -102,3 +102,9 @@ sp38/3C `v[2]`, sp30 `tot`; the ROM also reserves about 35 unused 4-byte slots b
 holes of the original named locals), so exact slot addresses cannot be reproduced without reproducing that
 declaration list. Not matched: the IPA parameter registers (ROM `car=$s5, nav=$s6`, ours `$s4/$s5`; the ROM
 strength-reduces the track walk into `$s4`, ours does not even with an explicit `Track *tr; tr++`).
+
+## Round 3
+
+`func_800E4B58` and `func_800E398C` are now hand-written and this chain lives in the merged group
+`../func_800E56F8` (six members). See its STATUS: adding the real `func_800E4B58` did not change the
+`func_800E4300`/`func_800E451C` scores (80/135 and 388/397), so this directory is still the smaller test bed.

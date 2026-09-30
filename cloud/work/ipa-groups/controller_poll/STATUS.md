@@ -14,6 +14,7 @@ here but are not spliced.
 | `func_800E7134` | member, `keep` | 169 | 165 differ |
 | `process_inputs` | member, `keep` | 89 | 89 differ (emits 110) |
 | `controller_poll` | member | 232 | 223 differ (emits 209) |
+| `func_800E73D8` | member, `keep` (Round 3, context) | 149 | 94 differ (emits 149) |
 
 ## Closure gap
 
@@ -63,3 +64,13 @@ Defined `s8 D_80149AF8[8]` with all eight stores unconditional (orders
 v0` + `sb n(v0)`), size 52-56 words, not the ROM's `lui at` + `sb -258xx(at)`
 with eight separate `li 70`. Eight *defined scalars* `D_80149AF8..F` give
 60 words but one `lui at` per store (no merge). Neither reaches the ROM shape.
+
+## Round 3: func_800E73D8 added (closure gap closed)
+
+`func_800E73D8` (149 words, ABI function, only caller `render_thread_entry`) is hand-written as a member in `keep`:
+pad thread body (`D_801497D0` lock, query every 30th call via `D_80111964`, `osContStartReadData2`,
+`osContGetReadData` into `OSContPad pads[4]`, per-pad record `PadRec` at `D_80156CF0` (16 bytes: connected flag,
+button mask over `D_8011FAD4[19]`, x, y), then `func_800E7134()`, returns 1). Size 149/149, 94/149 words differ,
+frame 120 matches (needs `volatile s32 padB[2]` after `msg`; order `msg, pads, tmp`). Remaining: `D_80111964`
+is accessed through one hoisted address (`addiu`) where the ROM uses separate `lui`, the branch-likely
+delay-slot fills, and the outer loop bound register. Adding it did not change the other six members' counts.

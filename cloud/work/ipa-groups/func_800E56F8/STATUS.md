@@ -90,3 +90,42 @@ instructions (the ROM hoists `&D_80143FF4` into `$t0` before the `D_801525F0` te
 Frame 160 needs `volatile s32 padv[3]` before `fz,fx,fy` and `padw[3]` after `n,k`; `t`/`r` then sit at
 sp+112/116 as in the ROM. The float temporaries must be named (`fz,fx,fy`, in that declaration order) for the
 `sqrt` sum to load `$f12,$f14,$f2`.
+
+## Round 3: merged with func_800E4300's group; func_800E4B58 and func_800E398C hand-written
+
+This directory is now the merged group for the whole chain
+`func_800E6AF8 -> func_800E56F8 -> func_800E4B58 -> {func_800E398C, func_800E451C -> func_800E4300}`.
+Members: `func_800E56F8`, `func_800E6AF8`, `func_800E4B58`, `func_800E398C`, `func_800E451C`, `func_800E4300`
+(the last two copied from `../func_800E4300/group.c`, whose own group is unchanged and now redundant).
+`keep`: `func_800E6AF8`, `func_800E4B58`, `__standin_func_800E56F8`.
+`D_8014A250_Record` was extended with the fields all six functions use (0x220 `vx/vy/vz`, 0x634/0x638,
+0x720/0x728/0x72C, 0x7CC/0x7DE/0x7E0/0x7EC ...) and `Nav` (0x2C bytes at `player_array[n]+0x314`) gained `spd`
+(0x10) and `tgt[3]` (0x14).
+
+```
+func_800E56F8   115/359 differ  size 359/359   (unchanged: the callees' clobber sets do not change it)
+func_800E6AF8   313/334 differ  size 332/334   (unchanged)
+func_800E4B58   528/567 differ  size 533/567   (new, first draft)
+func_800E398C   592/599 differ  size 567/599   (new, first draft; IPA parameter `n` in $s7)
+func_800E451C   388/397 differ  size 401/397
+func_800E4300    80/135 differ  size 135/135
+```
+
+Findings:
+- **The premise did not hold.** With `func_800E4B58` in the unit the diff of `func_800E56F8` is byte-identical to
+  before (115/359, the hoisted `li s6,2`). `func_800E4B58` is an ABI function in the ROM: it takes `car` in `$a0`
+  and saves `$s0-$s8` and `$f20-$f30` (frame 304), so it must be in `keep`; not in `keep` IDO makes it IPA
+  (param in `$s6`, frame 32) and `func_800E56F8` grows to 366 words with stack spills. `func_800E398C` and
+  `func_800E451C` are the IPA functions (`n` in `$s7`; `car=$s5, nav=$s6`), each called only from `func_800E4B58`.
+  The blocker for `func_800E56F8` is therefore not the closure.
+- `func_800E4B58`: follows the nav cursor along the path (`nav->pt`, `nav->sel`, `a/b/c/d` progress values),
+  interpolates target speed `spd` from the points' flag bytes with a lateral-offset damping curve, walks 80 units of
+  path to get the look-ahead point `tgt`, calls `func_800E398C(car->unk7C6)`, then derives the throttle/brake
+  smoothing floats in `D_80153F68/F48/F28[n]` and `car->f720/f728/f72C`, `car->s7E0`.
+- `func_800E398C`: transforms the target into the car frame (`func_800A61B0`), handles the stopped / slow /
+  sideways cases, scans the other cars (`D_80152744` of them) for one ahead within 8 units laterally to scale
+  `sc` (via `camera_blend_between`), then blends the steering vector `sv` by the path point's type byte
+  (`[7]` = 1..5) into `nav->tgt`, `D_80153F88[n]`, `D_80154138[n]`.
+- Both are first drafts written from `tdis.py` (`cloud/work/tools/tdis.py func_800E4B58 func_800E398C`); the
+  differing-word counts are dominated by frame size (ours 216/288 vs 304/288) and float register naming
+  (the ROM's `f20-f30` constants in `func_800E398C` are hoisted; ours match in count but not in order).

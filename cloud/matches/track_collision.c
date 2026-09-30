@@ -1,10 +1,5 @@
-float fabsf(float);
-float sqrtf(float);
-#pragma intrinsic (fabsf)
-#pragma intrinsic (sqrtf)
-#define NULL ((void *)0)
-#define TRUE 1
-#define FALSE 0
+/* flags: -g0 -O2 -mips2 -G 0 -non_shared */
+
 typedef signed char s8;
 typedef unsigned char u8;
 typedef signed short s16;
@@ -25,12 +20,14 @@ typedef volatile s8 vs8;
 typedef volatile s16 vs16;
 typedef volatile s32 vs32;
 typedef volatile s64 vs64;
-typedef union {
-    struct {
-        u32 w0;
-        u32 w1;
-    } words;
-    u64 force_structure_alignment;
+typedef union 
+{
+  struct 
+  {
+    u32 w0;
+    u32 w1;
+  } words;
+  u64 force_structure_alignment;
 } Gfx;
 typedef u32 Mtx[4][4];
 typedef f32 F32;
@@ -48,134 +45,107 @@ typedef f32 Mat3f[3][3];
 typedef f32 Mat4f[4][4];
 typedef f32 MtxF[4][4];
 struct OSPfs;
-/* cloud: camera structures (hand-derived from the retail words) */
-typedef struct CamTbl {          /* D_80117530[], 0x30 bytes */
-    u8 pad00[0xC];
-    s32 w0C;
-    s16 mode;                    /* 0x10 */
-    s16 s12;
-    s16 s14;
-    s16 s16_;
-    s32 s18;
-    s32 trackA;                  /* 0x1C */
-    s32 s20;
-    s32 trackB;                  /* 0x24 */
-    s32 s28;
-    f32 f2C;
-} CamTbl;
-extern CamTbl D_80117530[];
-typedef struct CamNode {         /* pool entry from func_80090284 */
-    struct CamNode *next;        /* 0x00 */
-    s16 s04;
-    u8 pad06[6];
-    struct Camera *cam;          /* 0x0C */
-    f32 f10;                     /* 0x10 */
-    s32 w14;
-} CamNode;
-struct Camera;
-struct CamCtl;
-typedef struct CamKey {          /* 0x44 bytes */
-    f32 pos[3];                  /* 0x00 */
-    f32 dir[3];                  /* 0x0C */
-    f32 scale[3];                /* 0x18 */
-    f32 rot[4];                  /* 0x24 */
-    f32 f34;
-    f32 dur;                     /* 0x38 */
-    f32 f3C;
-    s32 flags;                   /* 0x40 */
-} CamKey;
-typedef struct CamScene {
-    u8 pad00[0x10];
-    s32 flags;                   /* 0x10 */
-    s16 count;                   /* 0x14 */
-    s16 id;                      /* 0x16 */
-    struct CamScene *link;       /* 0x18 */
-    CamKey *keys;                /* 0x1C */
-    struct CamCtl *cur;          /* 0x20 */
-} CamScene;
-typedef struct CamCtl {
-    CamScene *scene;             /* 0x00 */
-    f32 t;                       /* 0x04 */
-    u8 pad08[4];
-    s16 idx;                     /* 0x0C */
-    u16 mode;                    /* 0x0E */
-    f32 f10;                     /* 0x10 */
-    f32 f14;
-    f32 look[3];                 /* 0x18 */
-    f32 mat[9];                  /* 0x24 */
-} CamCtl;
-typedef struct Camera {
-    u8 pad00[4];
-    u8 flags;                    /* 0x04 */
-    u8 pad05[9];
-    s16 slot;                    /* 0x0E */
-    s16 tbl;                     /* 0x10 */
-    u8 pad12[2];
-    f32 m[3][3];                 /* 0x14 */
-    f32 pos[3];                  /* 0x38 */
-    u8 pad44[0xC];
-    s16 s50;
-    u8 pad52[6];
-    s16 s58;
-    s16 s5A;
-    u8 pad5C[4];
-    s32 handle;                  /* 0x60 */
-    s8 state;                    /* 0x64 */
-    s8 s65;
-    u8 pad66[6];
-    CamCtl *ctl;                 /* 0x6C */
-} Camera;
-extern u8 rspbootTextStart[], rspbootTextEnd[];
-extern u8 gspF3DEX2_fifoTextStart[], gspF3DEX2_fifoTextEnd[];
-extern u8 gspF3DEX2_fifoDataStart[], gspF3DEX2_fifoDataEnd[];
-typedef struct {
-    u32 type;
-    u32 flags;
-    u64 *ucode_boot;
-    u32 ucode_boot_size;
-    u64 *ucode;
-    u32 ucode_size;
-    u64 *ucode_data;
-    u32 ucode_data_size;
-    u64 *dram_stack;
-    u32 dram_stack_size;
-    u64 *output_buff;
-    u64 *output_buff_size;
-    u64 *data_ptr;
-    u32 data_size;
-    u64 *yield_data_ptr;
-    u32 yield_data_size;
+extern u8 rspbootTextStart[];
+extern u8 rspbootTextEnd[];
+extern u8 gspF3DEX2_fifoTextStart[];
+extern u8 gspF3DEX2_fifoTextEnd[];
+extern u8 gspF3DEX2_fifoDataStart[];
+extern u8 gspF3DEX2_fifoDataEnd[];
+typedef struct 
+{
+  u32 type;
+  u32 flags;
+  u64 *ucode_boot;
+  u32 ucode_boot_size;
+  u64 *ucode;
+  u32 ucode_size;
+  u64 *ucode_data;
+  u32 ucode_data_size;
+  u64 *dram_stack;
+  u32 dram_stack_size;
+  u64 *output_buff;
+  u64 *output_buff_size;
+  u64 *data_ptr;
+  u32 data_size;
+  u64 *yield_data_ptr;
+  u32 yield_data_size;
 } OSTask_t;
-typedef struct {
-    OSTask_t t;
+typedef struct 
+{
+  OSTask_t t;
 } OSTask;
 typedef s32 OSPri;
 typedef s32 OSId;
-typedef struct __OSThreadContext {
-    u64 at, v0, v1, a0, a1, a2, a3;
-    u64 t0, t1, t2, t3, t4, t5, t6, t7;
-    u64 s0, s1, s2, s3, s4, s5, s6, s7;
-    u64 t8, t9, gp, sp, s8, ra;
-    u64 lo, hi;
-    u32 sr, pc, cause, badvaddr, rcp;
-    u32 fpcsr;
-    f32 fp0, fp2, fp4, fp6, fp8, fp10, fp12, fp14;
-    f32 fp16, fp18, fp20, fp22, fp24, fp26, fp28, fp30;
+typedef struct __OSThreadContext
+{
+  u64 at;
+  u64 v0;
+  u64 v1;
+  u64 a0;
+  u64 a1;
+  u64 a2;
+  u64 a3;
+  u64 t0;
+  u64 t1;
+  u64 t2;
+  u64 t3;
+  u64 t4;
+  u64 t5;
+  u64 t6;
+  u64 t7;
+  u64 s0;
+  u64 s1;
+  u64 s2;
+  u64 s3;
+  u64 s4;
+  u64 s5;
+  u64 s6;
+  u64 s7;
+  u64 t8;
+  u64 t9;
+  u64 gp;
+  u64 sp;
+  u64 s8;
+  u64 ra;
+  u64 lo;
+  u64 hi;
+  u32 sr;
+  u32 pc;
+  u32 cause;
+  u32 badvaddr;
+  u32 rcp;
+  u32 fpcsr;
+  f32 fp0;
+  f32 fp2;
+  f32 fp4;
+  f32 fp6;
+  f32 fp8;
+  f32 fp10;
+  f32 fp12;
+  f32 fp14;
+  f32 fp16;
+  f32 fp18;
+  f32 fp20;
+  f32 fp22;
+  f32 fp24;
+  f32 fp26;
+  f32 fp28;
+  f32 fp30;
 } __OSThreadContext;
-typedef struct OSThread_s {
-    struct OSThread_s *next;
-    s32 priority;
-    struct OSThread_s **queue;
-    struct OSThread_s *tlnext;
-    u16 state;
-    u16 flags;
-    s32 id;
-    s32 fp;
-    struct __OSThreadprofile_s *thprof;
-    __OSThreadContext context;
+typedef struct OSThread_s
+{
+  struct OSThread_s *next;
+  s32 priority;
+  struct OSThread_s **queue;
+  struct OSThread_s *tlnext;
+  u16 state;
+  u16 flags;
+  s32 id;
+  s32 fp;
+  struct __OSThreadprofile_s *thprof;
+  __OSThreadContext context;
 } OSThread;
-void osCreateThread(OSThread *thread, OSId id, void (*entry)(void *),
-                    void *arg, void *sp, OSPri priority);
+void osCreateThread(OSThread *thread, OSId id, void (*entry)(void *), void *arg, void *sp, OSPri priority);
 void osStartThread(OSThread *thread);
 void osStopThread(OSThread *thread);
 OSPri osSetThreadPri(OSThread *thread, OSPri priority);
@@ -186,104 +156,109 @@ void __osEnqueueThread(OSThread **queue, OSThread *thread);
 extern OSThread *__osRunningThread;
 extern OSThread **__osActiveQueue;
 typedef void *OSMesg;
-typedef struct OSMesgQueue_s {
-    OSThread *mtqueue;
-    OSThread *fullqueue;
-    s32 validCount;
-    s32 first;
-    s32 msgCount;
-    OSMesg *msg;
+typedef struct OSMesgQueue_s
+{
+  OSThread *mtqueue;
+  OSThread *fullqueue;
+  s32 validCount;
+  s32 first;
+  s32 msgCount;
+  OSMesg *msg;
 } OSMesgQueue;
 void osCreateMesgQueue(OSMesgQueue *mq, OSMesg *msg, s32 count);
 s32 osSendMesg(OSMesgQueue *mq, OSMesg msg, s32 flags);
 s32 osRecvMesg(OSMesgQueue *mq, OSMesg *msg, s32 flags);
 s32 osJamMesg(OSMesgQueue *mq, OSMesg msg, s32 flags);
-typedef struct OSIoMesgHdr {
-    u16 type;
-    u8 pri;
-    u8 status;
-    OSMesgQueue *retQueue;
+typedef struct OSIoMesgHdr
+{
+  u16 type;
+  u8 pri;
+  u8 status;
+  OSMesgQueue *retQueue;
 } OSIoMesgHdr;
-typedef struct OSIoMesg {
-    OSIoMesgHdr hdr;
-    void *dramAddr;
-    u32 devAddr;
-    u32 size;
-    void *piHandle;
+typedef struct OSIoMesg
+{
+  OSIoMesgHdr hdr;
+  void *dramAddr;
+  u32 devAddr;
+  u32 size;
+  void *piHandle;
 } OSIoMesg;
-typedef struct OSPiHandle {
-    struct OSPiHandle *next;
-    u8 type;
-    u8 latency;
-    u8 pageSize;
-    u8 relDuration;
-    u8 pulse;
-    u8 domain;
-    u32 baseAddress;
-    u32 speed;
+typedef struct OSPiHandle
+{
+  struct OSPiHandle *next;
+  u8 type;
+  u8 latency;
+  u8 pageSize;
+  u8 relDuration;
+  u8 pulse;
+  u8 domain;
+  u32 baseAddress;
+  u32 speed;
 } OSPiHandle;
 u32 osPiGetStatus(void);
 s32 osPiWriteIo(u32 devAddr, u32 data);
 s32 osPiReadIo(u32 devAddr, u32 *data);
-s32 osPiStartDma(OSIoMesg *mb, s32 priority, s32 direction,
-                 u32 devAddr, void *dramAddr, u32 size, OSMesgQueue *mq);
+s32 osPiStartDma(OSIoMesg *mb, s32 priority, s32 direction, u32 devAddr, void *dramAddr, u32 size, OSMesgQueue *mq);
 void osCreatePiManager(s32 pri, OSMesgQueue *cmdQ, OSMesg *cmdBuf, s32 cmdMsgCnt);
 OSPiHandle *osCartRomInit(void);
 s32 osAiSetNextBuffer(void *addr, u32 size);
 s32 osAiSetFrequency(u32 frequency);
-typedef struct OSPfs {
-    s32 status;
-    OSMesgQueue *queue;
-    s32 channel;
-    u8 id[32];
-    u8 label[32];
-    s32 version;
-    s32 dir_size;
-    s32 inode_table;
-    s32 minode_table;
-    s32 dir_table;
-    s32 inode_start_page;
-    u8 banks;
-    u8 activebank;
+typedef struct OSPfs
+{
+  s32 status;
+  OSMesgQueue *queue;
+  s32 channel;
+  u8 id[32];
+  u8 label[32];
+  s32 version;
+  s32 dir_size;
+  s32 inode_table;
+  s32 minode_table;
+  s32 dir_table;
+  s32 inode_start_page;
+  u8 banks;
+  u8 activebank;
 } OSPfs;
-typedef struct OSPfsState {
-    u32 file_size;
-    u32 game_code;
-    u16 company_code;
-    char ext_name[4];
-    char game_name[16];
+typedef struct OSPfsState
+{
+  u32 file_size;
+  u32 game_code;
+  u16 company_code;
+  char ext_name[4];
+  char game_name[16];
 } OSPfsState;
-typedef union __OSInodeUnit {
-    struct {
-        u8 bank;
-        u8 page;
-    } inode_t;
-    u16 ipage;
+typedef union __OSInodeUnit
+{
+  struct 
+  {
+    u8 bank;
+    u8 page;
+  } inode_t;
+  u16 ipage;
 } __OSInodeUnit;
-typedef struct __OSInode {
-    __OSInodeUnit inode_page[128];
+typedef struct __OSInode
+{
+  __OSInodeUnit inode_page[128];
 } __OSInode;
-typedef struct __OSDir {
-    u32 game_code;
-    u16 company_code;
-    __OSInodeUnit start_page;
-    u8 status;
-    u8 reserved;
-    char game_name[16];
-    char ext_name[4];
-    u16 data_sum;
+typedef struct __OSDir
+{
+  u32 game_code;
+  u16 company_code;
+  __OSInodeUnit start_page;
+  u8 status;
+  u8 reserved;
+  char game_name[16];
+  char ext_name[4];
+  u16 data_sum;
 } __OSDir;
 s32 osPfsInitPak(OSMesgQueue *queue, OSPfs *pfs, s32 channel);
 s32 osPfsChecker(OSPfs *pfs);
 s32 osPfsRepairId(OSPfs *pfs);
-s32 osPfsAllocateFile(OSPfs *pfs, u16 companyCode, u32 gameCode,
-                      u8 *gameName, u8 *extName, s32 size, s32 *fileNo);
-s32 osPfsFindFile(OSPfs *pfs, u16 companyCode, u32 gameCode,
-                  u8 *gameName, u8 *extName, s32 *fileNo);
-s32 osPfsDeleteFile(OSPfs *pfs, u16 companyCode, u32 gameCode,
-                    u8 *gameName, u8 *extName);
-s32 osPfsReadWriteFile(OSPfs *pfs, s32 fileNo, u8 flag, s32 offset,
-                       s32 size, u8 *data);
+s32 osPfsAllocateFile(OSPfs *pfs, u16 companyCode, u32 gameCode, u8 *gameName, u8 *extName, s32 size, s32 *fileNo);
+s32 osPfsFindFile(OSPfs *pfs, u16 companyCode, u32 gameCode, u8 *gameName, u8 *extName, s32 *fileNo);
+s32 osPfsDeleteFile(OSPfs *pfs, u16 companyCode, u32 gameCode, u8 *gameName, u8 *extName);
+s32 osPfsReadWriteFile(OSPfs *pfs, s32 fileNo, u8 flag, s32 offset, s32 size, u8 *data);
 s32 osPfsFileState(OSPfs *pfs, s32 fileNo, OSPfsState *state);
 s32 osPfsGetLabel(OSPfs *pfs, u8 *label, s32 *length);
 s32 osPfsSetLabel(OSPfs *pfs, u8 *label);
@@ -293,23 +268,26 @@ s32 __osPfsSelectBank(OSPfs *pfs, u8 bank);
 s32 __osPfsRWInode(OSPfs *pfs, __OSInode *inode, u8 flag, u8 bank);
 s32 osPfsAllocate(OSPfs *pfs, s32 pages);
 s32 osPfsReAllocate(OSPfs *pfs, s32 pages);
-typedef struct OSContStatus {
-    u16 type;
-    u8 status;
-    u8 errno;
+typedef struct OSContStatus
+{
+  u16 type;
+  u8 status;
+  u8 errno;
 } OSContStatus;
-typedef struct OSContPad {
-    u16 button;
-    s8 stick_x;
-    s8 stick_y;
-    u8 errno;
+typedef struct OSContPad
+{
+  u16 button;
+  s8 stick_x;
+  s8 stick_y;
+  u8 errno;
 } OSContPad;
-typedef struct OSContRamIo {
-    void *address;
-    u8 databuffer[32];
-    u8 addressCrc;
-    u8 dataCrc;
-    u8 errno;
+typedef struct OSContRamIo
+{
+  void *address;
+  u8 databuffer[32];
+  u8 addressCrc;
+  u8 dataCrc;
+  u8 errno;
 } OSContRamIo;
 s32 osContInit(OSMesgQueue *mq, u8 *pattern, OSContStatus *status);
 s32 osContReset(OSMesgQueue *mq, OSContStatus *status);
@@ -319,18 +297,18 @@ s32 osContSetCh(u8 num);
 void osContGetQuery(OSContStatus *status);
 void osContGetReadData(OSContPad *pad);
 typedef u64 OSTime;
-typedef struct OSTimer {
-    struct OSTimer *next;
-    struct OSTimer *prev;
-    OSTime interval;
-    OSTime value;
-    OSMesgQueue *mq;
-    OSMesg msg;
+typedef struct OSTimer
+{
+  struct OSTimer *next;
+  struct OSTimer *prev;
+  OSTime interval;
+  OSTime value;
+  OSMesgQueue *mq;
+  OSMesg msg;
 } OSTimer;
 OSTime osGetTime(void);
 void osSetTime(OSTime time);
-s32 osSetTimer(OSTimer *timer, OSTime countdown, OSTime interval,
-               OSMesgQueue *mq, OSMesg msg);
+s32 osSetTimer(OSTimer *timer, OSTime countdown, OSTime interval, OSMesgQueue *mq, OSMesg msg);
 s32 osStopTimer(OSTimer *timer);
 void osInvalDCache(void *vaddr, s32 nbytes);
 void osInvalICache(void *vaddr, s32 nbytes);
@@ -346,89 +324,108 @@ void osSetTime(u64 time);
 u64 osGetTime(void);
 s32 osDpIsBusy(void);
 void osDpSetNextBuffer(void *dramAddr, u32 size);
-typedef struct {
-    u32 ctrl, width, burst, vSync, hSync, leap, hStart, xScale, vCurrent;
+typedef struct 
+{
+  u32 ctrl;
+  u32 width;
+  u32 burst;
+  u32 vSync;
+  u32 hSync;
+  u32 leap;
+  u32 hStart;
+  u32 xScale;
+  u32 vCurrent;
 } OSViCommonRegs;
-typedef struct {
-    u32 origin, yScale, vStart, vBurst, vIntr;
+typedef struct 
+{
+  u32 origin;
+  u32 yScale;
+  u32 vStart;
+  u32 vBurst;
+  u32 vIntr;
 } OSViFieldRegs;
-typedef struct {
-    u8 type;
-    OSViCommonRegs comRegs;
-    OSViFieldRegs fldRegs[2];
+typedef struct 
+{
+  u8 type;
+  OSViCommonRegs comRegs;
+  OSViFieldRegs fldRegs[2];
 } OSViMode;
-typedef struct {
-    f32 factor;
-    u16 offset;
-    u32 scale;
+typedef struct 
+{
+  f32 factor;
+  u16 offset;
+  u32 scale;
 } __OSViScale;
-typedef struct {
-    u16 state;
-    u16 retraceCount;
-    void *framep;
-    OSViMode *modep;
-    u32 control;
-    OSMesgQueue *msgq;
-    OSMesg msg;
-    __OSViScale x;
-    __OSViScale y;
+typedef struct 
+{
+  u16 state;
+  u16 retraceCount;
+  void *framep;
+  OSViMode *modep;
+  u32 control;
+  OSMesgQueue *msgq;
+  OSMesg msg;
+  __OSViScale x;
+  __OSViScale y;
 } __OSViContext;
 extern __OSViContext *__osViContext;
 extern void __osCleanupThread(OSThread **queue);
 void dll_remove(OSThread **queue, OSThread *thread);
 extern s32 __osSiRawStartDma(s32 direction, void *dramAddr);
-typedef struct {
-    u32 ramarray[15];
-    u32 pifstatus;
+typedef struct 
+{
+  u32 ramarray[15];
+  u32 pifstatus;
 } OSPifRam;
 extern OSPifRam __osSiDmaBuffer;
 extern u8 __osPfsBuffer[64];
-extern s32 __osContRamWrite(OSMesgQueue *mq, s32 channel, u16 address,
-                             u8 *buffer, s32 force);
+extern s32 __osContRamWrite(OSMesgQueue *mq, s32 channel, u16 address, u8 *buffer, s32 force);
 extern s16 gViewportOffsetX[32];
 extern s16 gViewportOffsetY[32];
 extern s32 dma_wait(s32 blocking);
 extern void dma_signal(void);
 extern s32 __osSiDmaRetry;
 extern void __osEnqueueAndYield(OSThread **queue);
-extern s32 __osContRamRead(OSMesgQueue *mq, s32 channel, u16 address,
-                            u8 *buffer);
-typedef struct OSScTask_s {
-    struct OSScTask_s *next;
-    s32 state;
-    s32 flags;
-    void *framebuffer;
-    s32 type;
-    u8 pad14[0x38 - 0x14];
-    void *unk38;
-    s32 *unk3C;
-    u8 pad40[0x50 - 0x40];
-    OSMesgQueue *msgQueue;
-    OSMesg msg;
+extern s32 __osContRamRead(OSMesgQueue *mq, s32 channel, u16 address, u8 *buffer);
+typedef struct OSScTask_s
+{
+  struct OSScTask_s *next;
+  s32 state;
+  s32 flags;
+  void *framebuffer;
+  s32 type;
+  u8 pad14[0x38 - 0x14];
+  void *unk38;
+  s32 *unk3C;
+  u8 pad40[0x50 - 0x40];
+  OSMesgQueue *msgQueue;
+  OSMesg msg;
 } OSScTask;
-typedef struct OSScClient_s {
-    struct OSScClient_s *next;
-    OSMesgQueue *msgQueue;
+typedef struct OSScClient_s
+{
+  struct OSScClient_s *next;
+  OSMesgQueue *msgQueue;
 } OSScClient;
-typedef struct {
-    s16 state;
-    u8 pad02[0x20 - 0x02];
-    s16 priority;
-    u8 pad22[0x40 - 0x22];
-    OSMesgQueue cmdQueue;
-    OSMesg cmdMsgs[8];
-    OSMesgQueue retQueue;
-    OSMesg retMsgs[8];
-    u8 padB0[0x260 - 0xB0];
-    OSScClient *clientList;
-    OSScTask *rspTaskHead;
-    OSScTask *rspTaskTail;
-    OSScTask *rdpTaskHead;
-    OSScTask *rdpTaskTail;
-    OSScTask *curRSPTask;
-    OSScTask *curRDPTask;
-    s32 retraceCount;
-    s32 audioListPending;
+typedef struct 
+{
+  s16 state;
+  u8 pad02[0x20 - 0x02];
+  s16 priority;
+  u8 pad22[0x40 - 0x22];
+  OSMesgQueue cmdQueue;
+  OSMesg cmdMsgs[8];
+  OSMesgQueue retQueue;
+  OSMesg retMsgs[8];
+  u8 padB0[0x260 - 0xB0];
+  OSScClient *clientList;
+  OSScTask *rspTaskHead;
+  OSScTask *rspTaskTail;
+  OSScTask *rdpTaskHead;
+  OSScTask *rdpTaskTail;
+  OSScTask *curRSPTask;
+  OSScTask *curRDPTask;
+  s32 retraceCount;
+  s32 audioListPending;
 } OSSched;
 extern void __scAppendList(OSSched *sc, OSScTask *task);
 extern void __scExec(OSSched *sc, OSScTask *rspTask, OSScTask *rdpTask);
@@ -436,14 +433,13 @@ extern void osViSetMode(void *mode);
 extern void display_mode_tick(void);
 extern u8 gInflateBufferA[0x1000];
 extern u8 gInflateBufferB[0x1000];
-extern s32 __osPiRawStartDma(void *mb, s32 priority, s32 direction,
-                              u32 devAddr, void *dramAddr, u32 size,
-                              OSMesgQueue *mq);
-typedef struct {
-    s32 flag;
-    u8 pad04[0x8 - 0x4];
-    s32 unk8;
-    u8 pad0C[0x1C - 0xC];
+extern s32 __osPiRawStartDma(void *mb, s32 priority, s32 direction, u32 devAddr, void *dramAddr, u32 size, OSMesgQueue *mq);
+typedef struct 
+{
+  s32 flag;
+  u8 pad04[0x8 - 0x4];
+  s32 unk8;
+  u8 pad0C[0x1C - 0xC];
 } __OSPiMgrState;
 extern __OSPiMgrState __osPiMgrState;
 extern void osPiInit(void);
@@ -458,15 +454,16 @@ extern void game_loop(void);
 extern void __osSiGetAccess(void);
 extern void __osSiRelAccess(void);
 extern void __osPackReadData(void);
-typedef struct __OSTimerNode_s {
-    struct __OSTimerNode_s *next;
-    struct __OSTimerNode_s *prev;
-    s32 reload_hi;
-    s32 reload_lo;
-    s32 delta_hi;
-    s32 delta_lo;
-    OSMesgQueue *msgQueue;
-    OSMesg msg;
+typedef struct __OSTimerNode_s
+{
+  struct __OSTimerNode_s *next;
+  struct __OSTimerNode_s *prev;
+  s32 reload_hi;
+  s32 reload_lo;
+  s32 delta_hi;
+  s32 delta_lo;
+  OSMesgQueue *msgQueue;
+  OSMesg msg;
 } __OSTimerNode;
 extern __OSTimerNode *__osTimerList;
 extern void osCreateViManager(OSThread *thread, OSPri priority);
@@ -474,9 +471,19 @@ extern void dma_queue_init(void);
 extern void osSetIntMask(s32 mask);
 extern void osViSetSpecialFeatures(u32 features);
 extern u8 gStackGame[0x2000];
-typedef enum GState {
-    ATTRACT, TRKSEL, CARSEL, PLAYGAME, ENDGAME, GAMEOVER, HISCORE,
-    PREPLAY, PREPLAY2, COUNTDOWN, NUM_GAME_STATES
+typedef enum GState
+{
+  ATTRACT,
+  TRKSEL,
+  CARSEL,
+  PLAYGAME,
+  ENDGAME,
+  GAMEOVER,
+  HISCORE,
+  PREPLAY,
+  PREPLAY2,
+  COUNTDOWN,
+  NUM_GAME_STATES
 } GState;
 extern u8 gstate;
 extern s32 frame_counter;
@@ -484,224 +491,290 @@ extern s32 game_state_flags;
 extern s32 state_word_a;
 extern s32 state_word_b;
 extern OSMesgQueue *msgq_ptr;
-typedef struct {
-    u8 pad00[1];
-    u8 active;
-    u8 pad02[2];
-    s32 unk04;
-    s32 unk08;
-    s32 unk0C;
-    f32 unk10;
-    f32 unk14;
-    u8 _pad18[0x4D - 0x18];
-    u8 unk4D;
+typedef struct 
+{
+  u8 pad00[1];
+  u8 active;
+  u8 pad02[2];
+  s32 unk04;
+  s32 unk08;
+  s32 unk0C;
+  f32 unk10;
+  f32 unk14;
+  u8 _pad18[0x4D - 0x18];
+  u8 unk4D;
 } InputRecord;
 extern InputRecord input_rec0;
 extern InputRecord input_rec1;
 extern s32 D_80156978[4];
 extern s32 D_80156998[4];
 extern s32 D_80143A00[4];
-typedef struct {
-    f32 unk0;
-    f32 unk4;
+typedef struct 
+{
+  f32 unk0;
+  f32 unk4;
 } D_80156958_Entry;
 extern D_80156958_Entry D_80156958[4];
-typedef struct {
-    u8 pad0000[0x9CC0];
-    OSMesgQueue unk9CC0;
+typedef struct 
+{
+  u8 pad0000[0x9CC0];
+  OSMesgQueue unk9CC0;
 } SegmentHeader;
-typedef struct {
-    u8 pad00[0x58];
-    SegmentHeader *unk58;
-    u8 pad5C[0x7C - 0x5C];
-    void *unk7C;
+typedef struct 
+{
+  u8 pad00[0x58];
+  SegmentHeader *unk58;
+  u8 pad5C[0x7C - 0x5C];
+  void *unk7C;
 } SegmentTableEntry;
 extern SegmentTableEntry D_80156BE0[];
-typedef struct {
-    u8 pad0[8];
-    s32 unk8;
+typedef struct 
+{
+  u8 pad0[8];
+  s32 unk8;
 } D_8014A160_Target;
 extern D_8014A160_Target **D_8014A160;
-typedef struct D_8012E6E0_Node {
-    struct D_8012E6E0_Node *next;
+typedef struct D_8012E6E0_Node
+{
+  struct D_8012E6E0_Node *next;
 } D_8012E6E0_Node;
 extern D_8012E6E0_Node *D_8012E6E0;
-typedef struct {
-    u8 pad000[0xE8];
-    s32 unkE8;
-    u8 pad0EC[0x35B - 0xEC];
-    u8 unk35B;
-    u8 pad35C[0x380 - 0x35C];
-    u8 unk380;
-    u8 pad381[0x3A3 - 0x381];
-    u8 unk3A3;
-    u8 pad3A4[0x3B8 - 0x3A4];
+typedef struct 
+{
+  u8 pad000[0xE8];
+  s32 unkE8;
+  u8 pad0EC[0x35B - 0xEC];
+  u8 unk35B;
+  u8 pad35C[0x380 - 0x35C];
+  u8 unk380;
+  u8 pad381[0x3A3 - 0x381];
+  u8 unk3A3;
+  u8 pad3A4[0x3B8 - 0x3A4];
 } GameCar;
 extern GameCar player_array[8];
-typedef struct {
-    u8 pad00[0x39];
-    u8 unk39;
-    u8 unk3A;
-    u8 unk3B;
+typedef struct 
+{
+  u8 pad00[0x39];
+  u8 unk39;
+  u8 unk3A;
+  u8 unk3B;
 } PlaygameSettings;
 extern PlaygameSettings playgame_settings;
-typedef struct {
-    u8 pad000[0x1F0];
-    s32 unk1F0;
-    s32 unk1F4;
-    s32 unk1F8;
-    s32 unk1FC;
-    s32 unk200;
+typedef struct 
+{
+  u8 pad000[0x1F0];
+  s32 unk1F0;
+  s32 unk1F4;
+  s32 unk1F8;
+  s32 unk1FC;
+  s32 unk200;
 } CountdownObject;
-typedef struct {
-    u8 pad000[0x19C];
-    void *unk19C;
-    u8 pad1A0[0x200 - 0x1A0];
-    void *unk200;
-    void *unk204;
-    void *unk208;
+typedef struct 
+{
+  u8 pad000[0x19C];
+  void *unk19C;
+  u8 pad1A0[0x200 - 0x1A0];
+  void *unk200;
+  void *unk204;
+  void *unk208;
 } CountdownDetail;
-typedef struct {
-    void *unk0;
-    CountdownDetail *unk4;
-    void *unk8;
-    void *unkC;
-    void **unk10;
+typedef struct 
+{
+  void *unk0;
+  CountdownDetail *unk4;
+  void *unk8;
+  void *unkC;
+  void **unk10;
 } CountdownState;
 extern CountdownState countdown_state;
 extern CountdownObject *countdown_object;
-typedef struct PadConfig_s {
-    struct PadConfig_s *unk0;
-    struct PadConfig_s *unk4;
-    s16 unk8;
-    s16 unkA;
-    s16 unkC;
-    s16 unkE;
-    s16 unk10;
-    s16 unk12;
-    u8 unk14;
-    u8 unk15;
-    u8 unk16;
-    u8 pad17;
-    s16 unk18;
-    s16 unk1A;
-    s16 unk1C;
-    s16 unk1E;
+typedef struct PadConfig_s
+{
+  struct PadConfig_s *unk0;
+  struct PadConfig_s *unk4;
+  s16 unk8;
+  s16 unkA;
+  s16 unkC;
+  s16 unkE;
+  s16 unk10;
+  s16 unk12;
+  u8 unk14;
+  u8 unk15;
+  u8 unk16;
+  u8 pad17;
+  s16 unk18;
+  s16 unk1A;
+  s16 unk1C;
+  s16 unk1E;
 } PadConfig;
 extern PadConfig pad_config;
-typedef struct {
-    PadConfig *unk0;
-    s32 unk4;
+typedef struct 
+{
+  PadConfig *unk0;
+  s32 unk4;
 } D_80138670_Entry;
 extern D_80138670_Entry D_80138670[];
 extern s32 game_loop_tick;
 extern s16 active_player_count;
 extern s32 gameplay_mode;
-extern f32 D_8002AFB4, D_8002AFB8;
-extern s32 D_8002AFC0, D_8002AFC4, D_8002EBB0;
+extern f32 D_8002AFB4;
+extern f32 D_8002AFB8;
+extern s32 D_8002AFC0;
+extern s32 D_8002AFC4;
+extern s32 D_8002EBB0;
 extern u16 D_8002EB70;
-extern u8 D_80035470, D_80035471, D_80035472;
+extern u8 D_80035470;
+extern u8 D_80035471;
+extern u8 D_80035472;
 extern s32 D_80111958;
-extern u8 D_80114650, D_80114654, D_801146F0;
-extern s32 D_801146F8, D_801170FC;
-extern u8 D_80117350, D_80117354;
+extern u8 D_80114650;
+extern u8 D_80114654;
+extern u8 D_801146F0;
+extern s32 D_801146F8;
+extern s32 D_801170FC;
+extern u8 D_80117350;
+extern u8 D_80117354;
 extern s32 D_801174BC;
 extern u8 D_8011ED0B;
 extern u16 D_8011ED0C[];
-extern f32 D_80123FB4, D_80123FB8, D_80123FBC, D_801242A8;
+extern f32 D_80123FB4;
+extern f32 D_80123FB8;
+extern f32 D_80123FBC;
+extern f32 D_801242A8;
 extern u8 D_80124F84;
 extern s32 D_80124FC8;
-extern u8 D_8012E67C, D_8013FECB;
+extern u8 D_8012E67C;
+extern u8 D_8013FECB;
 extern s32 D_80140008;
 extern u16 D_80140618;
-extern s32 D_801406B8, D_801407BC, D_80140804, D_80140A00;
-extern s32 D_80140AD8, D_80140B08, D_80140BD8;
+extern s32 D_801406B8;
+extern s32 D_801407BC;
+extern s32 D_80140804;
+extern s32 D_80140A00;
+extern s32 D_80140AD8;
+extern s32 D_80140B08;
+extern s32 D_80140BD8;
 extern u8 D_80140C26;
-extern s32 D_80140D70, D_80141428, D_80142510;
-extern u8 D_80142690, D_80142699, D_80142760;
+extern s32 D_80140D70;
+extern s32 D_80141428;
+extern s32 D_80142510;
+extern u8 D_80142690;
+extern u8 D_80142699;
+extern u8 D_80142760;
 extern s32 D_80143F10;
 extern f32 D_8014401C;
-extern u8 D_801461F8, D_80146204, D_80146205, D_80149414;
+extern u8 D_801461F8;
+extern u8 D_80146204;
+extern u8 D_80146205;
+extern u8 D_80149414;
 extern s32 D_80149438;
-extern u8 D_80149774, D_80149794, D_801497C4;
-extern s32 D_801497F4, D_80149D98;
-extern u8 D_8014B240, D_80150EFC, D_80150F14;
+extern u8 D_80149774;
+extern u8 D_80149794;
+extern u8 D_801497C4;
+extern s32 D_801497F4;
+extern s32 D_80149D98;
+extern u8 D_8014B240;
+extern u8 D_80150EFC;
+extern u8 D_80150F14;
 extern s32 D_80150000;
 extern u16 D_80151AD0;
-extern u8 D_80151AD8, D_8015256C, D_80152744, D_80152F29;
-extern s32 D_8015204C, D_801520C4, D_80153308;
-extern f32 D_801525F4, D_801543CC;
+extern u8 D_80151AD8;
+extern u8 D_8015256C;
+extern u8 D_80152744;
+extern u8 D_80152F29;
+extern s32 D_8015204C;
+extern s32 D_801520C4;
+extern s32 D_80153308;
+extern f32 D_801525F4;
+extern f32 D_801543CC;
 extern u16 D_80152734;
 extern s32 D_8015698C;
-extern u8 D_80156994, D_80156CF0, D_80157244, D_8015F72D;
-extern s32 D_8015B250, D_8015B260, D_8015F738;
-extern s32 D_80161380, D_80161398, D_801613A4, D_801613AC;
-extern s32 D_801613B0, D_80161434, D_8017A4B0, D_8017A508;
+extern u8 D_80156994;
+extern u8 D_80156CF0;
+extern u8 D_80157244;
+extern u8 D_8015F72D;
+extern s32 D_8015B250;
+extern s32 D_8015B260;
+extern s32 D_8015F738;
+extern s32 D_80161380;
+extern s32 D_80161398;
+extern s32 D_801613A4;
+extern s32 D_801613AC;
+extern s32 D_801613B0;
+extern s32 D_80161434;
+extern s32 D_8017A4B0;
+extern s32 D_8017A508;
 extern s32 D_8017A638;
-typedef struct {
-    u16 unk00;
-    u16 unk02;
-    u8 pad04[0x60 - 0x04];
-    s32 unk60;
-    s32 unk64;
+typedef struct 
+{
+  u16 unk00;
+  u16 unk02;
+  u8 pad04[0x60 - 0x04];
+  s32 unk60;
+  s32 unk64;
 } D_80143FD8_Record;
 extern D_80143FD8_Record *D_80143FD8;
-typedef struct {
-    u8 pad000[0x7C6];
-    u16 unk7C6;
-    u8 pad7C8[0x7E8 - 0x7C8];
-    u8 unk7E8;
+typedef struct 
+{
+  u8 pad000[0x7C6];
+  u16 unk7C6;
+  u8 pad7C8[0x7E8 - 0x7C8];
+  u8 unk7E8;
 } D_8014A250_Record;
 extern D_8014A250_Record D_8014A250;
-typedef struct {
-    u8 pad00[0x0C];
-    u8 unk0C;
-    u8 unk0D;
-    u8 unk0E;
+typedef struct 
+{
+  u8 pad00[0x0C];
+  u8 unk0C;
+  u8 unk0D;
+  u8 unk0E;
 } D_80146108_Record;
 extern D_80146108_Record D_80146108;
-typedef struct {
-    F32 start_time[8];
-    F32 end_time[8];
-    S16 loop_chkpnt;
-    S16 finish_line;
-    S16 before_finish;
-    S16 number_of_laps;
+typedef struct 
+{
+  F32 start_time[8];
+  F32 end_time[8];
+  S16 loop_chkpnt;
+  S16 finish_line;
+  S16 before_finish;
+  S16 number_of_laps;
 } Track_Data;
-typedef struct SoundClearRecord {
-    s32 unk0;
-    s16 unk4;
-    s16 unk6;
-    s16 unk8;
-    s16 unkA;
-    s16 unkC;
-    s16 unkE;
-    s16 unk10;
-    s16 unk12;
-    s32 unk14;
-    s32 unk18;
-    s32 (*unk1C)(void *);
-    s32 unk20;
+typedef struct SoundClearRecord
+{
+  s32 unk0;
+  s16 unk4;
+  s16 unk6;
+  s16 unk8;
+  s16 unkA;
+  s16 unkC;
+  s16 unkE;
+  s16 unk10;
+  s16 unk12;
+  s32 unk14;
+  s32 unk18;
+  s32 (*unk1C)(void *);
+  s32 unk20;
 } SoundClearRecord;
-typedef struct SoundState {
-    u8 _pad0[0x4];
-    struct SoundState *unk4;
-    s32 (*unk8)(void *);
-    u8 _padC[0x12 - 0xC];
-    s16 unk12;
-    s16 unk14;
-    s16 unk16;
-    s8 unk18;
-    u8 _pad19[0x1C - 0x19];
-    s16 unk1C;
-    s16 unk1E;
-    s16 unk20;
-    s16 unk22;
-    u8 _pad24[0x28 - 0x24];
-    s32 (*unk28)(void *);
-    s32 unk2C;
-    u8 _pad30[0x3C - 0x30];
-    struct SoundState *unk3C;
+typedef struct SoundState
+{
+  u8 _pad0[0x4];
+  struct SoundState *unk4;
+  s32 (*unk8)(void *);
+  u8 _padC[0x12 - 0xC];
+  s16 unk12;
+  s16 unk14;
+  s16 unk16;
+  s8 unk18;
+  u8 _pad19[0x1C - 0x19];
+  s16 unk1C;
+  s16 unk1E;
+  s16 unk20;
+  s16 unk22;
+  u8 _pad24[0x28 - 0x24];
+  s32 (*unk28)(void *);
+  s32 unk2C;
+  u8 _pad30[0x3C - 0x30];
+  struct SoundState *unk3C;
 } SoundState;
 extern SoundState *func_800b3704(s32, s32, s32, s32);
 extern SoundState *sound_control(s16 arg0, s16 arg1, SoundClearRecord *arg2, s16 arg3);
@@ -715,7 +788,7 @@ extern void countdown(void);
 extern void countdown_handler(void);
 extern void Input_ProcessGameplayPad(s32 pad);
 extern void Effects_UpdateEmitters(void);
-   extern s32 PhysicsObjectList_Update(void);
+extern s32 PhysicsObjectList_Update(void);
 extern void UpdateActiveObjects(void);
 extern void input_aux_handler(void);
 extern void sound_stop(s32 sound_id);
@@ -812,7 +885,7 @@ extern s32 D_8002E928;
 extern s32 D_8002E960;
 extern s32 D_8002E998;
 extern s32 D_8002EB90;
-extern f32 D_8002EB94;
+extern s32 D_8002EB94;
 extern s32 D_8002EB98;
 extern s32 D_8002ECC0;
 extern s32 D_8002ECF8;
@@ -1173,6 +1246,7 @@ extern s32 D_801174DC;
 extern s32 D_8011750C;
 extern u8 D_80117510;
 extern s32 D_80117518;
+extern s32 D_80117530;
 extern s32 D_80117550;
 extern s32 D_80118C10;
 extern s32 D_80118DDC;
@@ -2134,7 +2208,7 @@ extern s32 D_8012E6D0;
 extern s32 D_8012E6D8;
 extern f32 D_8012E6E8;
 extern s32 D_8012E6F8;
-extern s32 D_8012E700;
+
 extern s32 D_8012E708;
 extern f32 D_8012E70C;
 extern f32 D_8012E710;
@@ -2161,7 +2235,7 @@ extern s32 D_80138928;
 extern s32 D_801391E0;
 extern s32 D_801391E4;
 extern s16 D_801391E8;
-extern struct CamNode *D_801391F0;
+extern s32 D_801391F0;
 extern s32 D_801391F8;
 extern s32 D_80139228;
 extern f32 D_801392B8;
@@ -2185,7 +2259,7 @@ extern s32 D_8013C128;
 extern s32 D_8013C228;
 extern s32 D_8013C234;
 extern s32 D_8013C238;
-extern struct Camera *D_8013C300[];
+extern s32 D_8013C300;
 extern s32 D_8013C304;
 extern s32 D_8013C308;
 extern s32 D_8013C378;
@@ -2944,10 +3018,10 @@ void brake_force_apply(s32 arg0);
 void brake_light_update(s32 arg0, void *arg1, void *arg2, void *arg3, s16 *arg4);
 void buffer_swap(void *arg0, s16 arg1);
 s32 callback_init(void *arg0);
-
+void camera_aspect_ratio(void);
 void camera_auto_follow(s16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4, s16 arg5, u8 *arg6);
 void camera_blend_between(void *arg0, f32 *arg1);
-void camera_build_view_matrix(s32 idx, Camera *cam);
+void camera_build_view_matrix(s16 arg0);
 void camera_cinematic_mode(s16 arg0, s16 arg1, s32 arg2, void *arg3);
 void camera_clip_planes(s32 arg0, s32 arg1, s32 arg2, f32 arg3, f32 arg4);
 void camera_collision_avoid(void *arg0, void *arg1, void *arg2, s32 arg3, void *arg4, s32 arg5, void *arg6, void *arg7);
@@ -2956,23 +3030,24 @@ void camera_dolly(void *arg0, void *arg1, f32 arg2, f32 arg3, void *arg4, f32 *a
 void camera_first_person(s32 arg0, void *arg1, void *arg2, void *arg3);
 void camera_follow_path(s32 arg0, s32 arg1, s32 arg2);
 void camera_follow_target(void *arg0, void *arg1, void *arg2, void *arg3, f32 arg4, void *arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9, f32 arg10, f32 arg11, s32 arg12);
-
-
+void camera_fov_control(void);
+void camera_free_look(void);
 void camera_lerp_position(s32 arg0);
-
+void camera_look_at_point(void);
 void camera_play_script(void *arg0, void *arg1, void *arg2);
 void camera_position_update(void);
+void camera_process_input(void *arg0);
 void camera_reset(void);
 void camera_scene_manager(void);
 void camera_shake_start(void);
 u8 camera_shake_update(s32 arg0);
 void camera_smooth_follow(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 void camera_smooth_lerp(void);
-s32 camera_target_track(void *arg0, s32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, s32 arg6, s32 arg7, s32 arg8, s32 arg9);
-void camera_track_spline(Camera *cam);
+s32 camera_target_track(void *arg0, s32 arg1, f32 arg2, s32 arg3, f32 arg4, f32 arg5, s32 arg6, s32 arg7, s32 arg8, u8 arg9);
+void camera_track_spline(void *arg3, s32 arg0);
 void camera_transform(void);
 u16 *camera_trigger_check(void *arg0, void *arg1, f32 *arg2);
-
+void camera_update(s32 *arg0, s16 arg1);
 void camera_update_a(s32 arg0, void *arg1, s32 *arg2, s32 (*arg3)(void *, s32));
 void camera_update_b(void *arg0, s32 *arg1, s32 *arg2);
 void camera_update_c(f32 arg0);
@@ -3101,7 +3176,7 @@ void *func_8008E3C0(void *arg0);
 void func_8008E408(s16 arg0, s32 arg1);
 s16 func_8008FFD0(s16 arg0);
 s16 func_8009002C(s16 arg0);
-struct CamNode *func_80090284(void);
+s32 func_80090284(void);
 void func_80090308(s16 arg0);
 void func_80090E9C(f32 arg0, void *arg1);
 void func_80090F44(f32 arg0, void *arg1);
@@ -3260,7 +3335,7 @@ void func_800BF01C(void);
 void func_800BF780(void *arg0, void *arg1, void *arg2);
 void func_800BFBE8(void *arg0, void *arg1, s32 arg2);
 void func_800BFD8C(f32 arg0, void *arg1, void *arg2, void *arg3);
-void func_800C0294(s32 arg0, f32 *arg1);
+void func_800C0294(s32 arg0, void *arg1);
 void func_800C0828(void *arg0);
 void func_800C1A00(s32 arg0, void *arg1);
 s32 func_800C1B60();
@@ -3681,7 +3756,6 @@ void time_result_display(void);
 void tire_sound_update(void);
 void tournament_trophy_award(s32 arg0);
 void tournament_unlock_check(void *arg0, void *arg1, void *arg2);
-s32 track_collision(void *arg0, s32 arg1);
 s32 track_collision_edge(void *arg0, s32 arg1);
 s32 track_collision_setup(s32 arg0, s32 arg1);
 s32 track_collision_wall(s32 **arg0, s32 *arg1, s32 *arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7);
@@ -3715,776 +3789,20 @@ void world_object_destroy(void *arg0);
 void world_physics_tick(void);
 void world_trigger_activate(void);
 s32 world_velocity_integrate();
-
-/*
- * This header contains macros emitted by m2c in "valid syntax" mode,
- * which can be enabled by passing `--valid-syntax` on the command line.
- *
- * In this mode, unhandled types and expressions are emitted as macros so
- * that the output is compilable without human intervention.
- */
-
-#ifndef M2C_MACROS_H
-#define M2C_MACROS_H
-
-/* Unknown types */
 typedef s32 M2C_UNK;
-typedef s8  M2C_UNK8;
+typedef s8 M2C_UNK8;
 typedef s16 M2C_UNK16;
 typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
-
-/* Unknown field access, like `*(type_ptr) &expr->unk_offset` */
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-
-/* Bitwise (reinterpret) cast */
-#define M2C_BITWISE(type, expr) ((type)(expr))
-
-/* Unaligned reads */
-#define M2C_LWL(expr) (expr)
-#define M2C_FIRST3BYTES(expr) (expr)
-#define M2C_UNALIGNED32(expr) (expr)
-
-/* Unhandled instructions */
-#define M2C_ERROR(desc) (0)
-#define M2C_TRAP_IF(cond) (0)
-#define M2C_BREAK() (0)
-#define M2C_SYNC() (0)
-
-#define GLUE_F64(a, b) (0.0)
-#define MULT_HI(a, b) (0)
-#define MULTU_HI(a, b) (0)
-#define DMULT_HI(a, b) (0)
-#define DMULTU_HI(a, b) (0)
-#define CLZ(x) (0)
-#define REVERSE_BITS(x) (0)
-#define ROTATE_RIGHT(x, shift) (0)
-#define ARM_RRX(x, carry) (0)
-#define BSWAP32(x) (0)
-#define BSWAP16(x) (0)
-#define BSWAP16X2(x) (0)
-
-/* Carry/overflow bits from partially-implemented instructions */
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-
-/* Memcpy patterns */
-#define M2C_MEMCPY_ALIGNED memcpy
-#define M2C_MEMCPY_UNALIGNED memcpy
-#define M2C_STRUCT_COPY memcpy
-
-#endif
-
-
-/* group members */
-void camera_aspect_ratio(Camera *ipa_s0);
-void camera_fov_control(Camera *ipa_s0);
-void camera_free_look(Camera *ipa_s1);
-void camera_look_at_point(Camera *ipa_s0);
-void camera_process_input(Camera *cam);
-void camera_update(CamNode *node, s16 flag);
-
-/* the pair of tests around camera_target_track is an inlined helper */
-static __inline s32 camera_track_entry(Camera *cam, f32 f2C, s32 id, s32 s28) {
-    if (D_8010FFC0 == 0) {
-        return -1;
-    }
-    if (id == -1) {
-        return -1;
-    }
-    return camera_target_track(&cam->pos, (s32) &D_801141B0, f2C, 0.0f, 1.0f, 0.0f, id, 0, s28, 0x80);
-}
-
-void camera_aspect_ratio(Camera *cam) {
-    CamTbl *t;
-
-    results_screen_update(cam->handle);
-    t = &D_80117530[cam->tbl];
-    if (t->trackA != -1) {
-        cam->handle = camera_track_entry(cam, t->f2C, t->trackA, t->s28);
-    } else {
-        cam->handle = -1;
-    }
-    cam->state = 0;
-}
-
-void camera_fov_control(Camera *cam) {
-    CamTbl *t;
-
-    if (cam->state != 2 && (cam->state != 0 || leaderboard_update(cam->handle) == 0)) {
-        results_screen_update(cam->handle);
-        t = &D_80117530[cam->tbl];
-        if (t->trackB != -1) {
-            cam->handle = camera_track_entry(cam, t->f2C, t->trackB, t->s28);
-        } else {
-            cam->handle = -1;
-        }
-        cam->state = 2;
-    }
-}
-
-void camera_free_look(Camera *cam) {
-    f32 out[4];
-    f32 d[3];
-    CamCtl *ctl;
-    CamScene *sc;
-    CamKey *k;
-    f32 t;
-    f32 dur;
-    s32 next;
-    s32 near;
-    f32 *m;
-
-    m = cam->m[0];
-    ctl = cam->ctl;
-    sc = ctl->scene;
-    k = &sc->keys[ctl->idx];
-    if (k->flags & 0x20) {
-        goto plain;
-    }
-    if (ctl->mode & 8) {
-        t = k->dur - ctl->t;
-    } else {
-        t = ctl->t;
-    }
-    dur = k->dur;
-    if (dur == 0.0f) {
-plain:
-        func_800BFBE8(m, k->rot, 1);
-    } else {
-        next = ctl->idx + 1;
-        if (next >= sc->count && (sc->flags & 2)) {
-            next = 0;
-        }
-        func_800BFD8C(t / dur, k->rot, sc->keys[next].rot, out);
-        func_800BFBE8(m, out, 1);
-    }
-    if (sc->flags & 0x20) {
-        near = 1;
-        if (gameplay_mode == 5) {
-            d[0] = cam->pos[0] - ((f32 *) &player_array)[2];
-            d[1] = cam->pos[1] - ((f32 *) &player_array)[3];
-            d[2] = cam->pos[2] - ((f32 *) &player_array)[4];
-            if (D_80123E84 < d[2] * d[2] + (d[0] * d[0] + d[1] * d[1])) {
-                near = 0;
-            }
-        }
-        if (near != 0) {
-            camera_first_person(sc->id, cam->pos, ctl->mat, m);
-        }
-    }
-}
-
-void camera_look_at_point(Camera *cam) {
-    CamTbl *t;
-    f32 f;
-    f32 r;
-    s32 a;
-    s32 b;
-    s32 handle;
-    s32 kind;
-    s32 id;
-
-    if (cam->state == 1) {
-        handle = cam->handle;
-        if (handle != -1) {
-            kind = *(s32 *) ((u8 *) D_80117530 + cam->tbl * 0x30 + 0x20);
-            if (kind == 1) {
-                a = (s32) cam->ctl->f10;
-                b = (s32) cam->ctl->f14;
-                if (b == 0) {
-                    b = 1;
-                    if (a != 0) {
-                        b = a;
-                    }
-                }
-                if (a < 0) {
-                    a = -a;
-                }
-                if (b < 0) {
-                    b = -b;
-                }
-                r = ((f32) a / (f32) b) * 0.5f + 0.5f;
-                f = r;
-                if (r < 0.0f || r > 1.0f) {
-                    if (r < 0.0f) {
-                        f = 0.0f;
-                    } else {
-                        f = 1.0f;
-                    }
-                }
-            } else {
-                f = 1.0f;
-            }
-            if (kind == 0x12) {
-                camera_clip_planes(handle, (s32) cam->pos, (s32) &D_801141B0, 0.8f, 1.0f);
-                return;
-            }
-            if (kind == 0x61) {
-                camera_clip_planes(handle, (s32) cam->pos, (s32) &D_801141B0, 1.0f, 0.75f);
-                return;
-            }
-            camera_clip_planes(handle, (s32) cam->pos, (s32) &D_801141B0, 0.75f * f + 0.25f, f);
-        }
-    } else {
-        if (cam->state == 2) {
-            camera_aspect_ratio(cam);
-            return;
-        }
-        if (leaderboard_update(cam->handle) == 0) {
-            results_screen_update(cam->handle);
-            t = &D_80117530[cam->tbl];
-            id = *(s32 *) ((u8 *) t + 0x20);
-            if (id != -1) {
-                cam->handle = camera_track_entry(cam, t->f2C, id, t->s28);
-                if (*(s32 *) ((u8 *) &D_80117530[cam->tbl] + 0x20) == 1) {
-                    camera_clip_planes(cam->handle, (s32) cam->pos, (s32) &D_801141B0, 0.0f, 1.0f);
-                }
-            } else {
-                cam->handle = -1;
-            }
-            cam->state = 1;
-        }
-    }
-}
-
-void camera_build_view_matrix(s32 idx, Camera *cam) {
-    CamCtl *ctl;
-    CamScene *sc;
-    s32 i;
-
-    ctl = cam->ctl;
-    sc = ctl->scene;
-    if ((sc->flags & 1) && idx >= sc->count - 1) {
-        ctl->mode = 8;
-    } else {
-        ctl->mode = 4;
-    }
-    ctl->idx = idx;
-    ctl->t = 0.0f;
-    ctl->f10 = 0.0f;
-    cam->pos[0] = sc->keys[ctl->idx].pos[0];
-    cam->pos[1] = sc->keys[ctl->idx].pos[1];
-    cam->pos[2] = sc->keys[ctl->idx].pos[2];
-    ctl->look[0] = sc->keys[ctl->idx].pos[0];
-    ctl->look[1] = sc->keys[ctl->idx].pos[1];
-    ctl->look[2] = sc->keys[ctl->idx].pos[2];
-    if (sc->flags & 0xC0) {
-        sc->flags |= 0x100;
-        sc->cur = ctl;
-    }
-    if (sc->flags & 0x5000) {
-        sc->flags |= 0x400;
-    }
-    func_800BFBE8(cam->m, sc->keys[ctl->idx].rot, 1);
-    math_utility(cam->m, ctl->mat);
-    func_800C0828(ctl->mat);
-    for (i = 0; i < 3; i++) {
-        cam->m[0][i] = sc->keys[ctl->idx].scale[0] * cam->m[0][i];
-        cam->m[1][i] = sc->keys[ctl->idx].scale[1] * cam->m[1][i];
-        cam->m[2][i] = sc->keys[ctl->idx].scale[2] * cam->m[2][i];
-    }
-}
-
-void camera_track_spline(Camera *cam) {
-    CamCtl *ctl;
-    CamScene *sc;
-    CamKey *k;
-    CamKey *keys;
-    s16 idx;
-    s16 n;
-    s32 next;
-    s32 near;
-    s32 i;
-    f32 v[3];
-    f32 w[3];
-    f32 pad[2];
-    f32 *p;
-    f32 t;
-    f32 d;
-    f32 a;
-    f32 b;
-    f32 c;
-    f32 *pp;
-
-    ctl = cam->ctl;
-    idx = ctl->idx;
-    sc = ctl->scene;
-    n = sc->count;
-    keys = sc->keys;
-    k = &keys[idx];
-    if (idx < n - 1 || (sc->flags & 2) != 0 || !(sc->flags & 0x80)) {
-        next = idx + 1;
-        if (k->flags & 0x10000008) {
-            if (ctl->mode & 8) {
-                t = k->dur - ctl->t;
-            } else {
-                t = ctl->t;
-            }
-            d = k->f34 * (t / k->dur);
-        } else {
-            if (next >= n && (sc->flags & 2)) {
-                next = 0;
-            }
-            a = k->f3C;
-            b = keys[next].f3C;
-            if (ctl->mode & 8) {
-                t = k->dur - ctl->t;
-            } else {
-                t = ctl->t;
-            }
-            c = (t * t * (b - a)) / (k->dur * 2.0f);
-            if (b < a) {
-                d = a * t + c;
-            } else {
-                d = a * t + c;
-            }
-        }
-        v[0] = k->dir[0];
-        v[1] = k->dir[1];
-        v[2] = k->dir[2];
-        ctl->look[0] = cam->pos[0];
-        ctl->look[1] = cam->pos[1];
-        ctl->look[2] = cam->pos[2];
-        v[0] = v[0] * d;
-        v[1] = v[1] * d;
-        v[2] = v[2] * d;
-        for (p = v; p < &v[3]; p++) {
-            *p = (f32) (s32) (*p * 32.0f) * 0.03125f;
-        }
-        cam->pos[0] = v[0] + k->pos[0];
-        cam->pos[1] = v[1] + k->pos[1];
-        cam->pos[2] = v[2] + k->pos[2];
-        v[0] = cam->pos[0] - ctl->look[0];
-        v[1] = cam->pos[1] - ctl->look[1];
-        v[2] = cam->pos[2] - ctl->look[2];
-        ctl->f10 = sqrtf(v[2] * v[2] + (v[0] * v[0] + v[1] * v[1])) / D_8002EB94;
-        if (sc->flags & 0x20) {
-            near = 1;
-            if (gameplay_mode == 5) {
-                pp = (f32 *) &player_array;
-                w[0] = cam->pos[0] - pp[2];
-                w[1] = cam->pos[1] - pp[3];
-                w[2] = cam->pos[2] - pp[4];
-                if (D_80123E88 < w[2] * w[2] + (w[0] * w[0] + w[1] * w[1])) {
-                    near = 0;
-                }
-            }
-            if (near != 0) {
-                func_800C0294(sc->id, v);
-            }
-        }
-    }
-}
-
-void camera_process_input(Camera *cam) {
-    CamTbl *tbl;
-    volatile s32 unused;
-    CamCtl *ctl;
-    CamScene *sc;
-
-    unused = D_8011750C;
-    cam->state = 2;
-    tbl = &D_80117530[cam->tbl];
-    ctl = cam->ctl;
-    sc = ctl->scene;
-    if (!(cam->flags & 1)) {
-        ctl->mode = 0;
-        ctl->t = 0.0f;
-        if (gameplay_mode == 2 && sc->id > 0) {
-            CamScene *s;
-            CamKey *k;
-            s32 i;
-            f32 v[3];
-            f32 delta[3];
-            f32 mat[9];
-
-            s = cam->ctl->scene;
-            for (i = 0; i < s->count; i++) {
-                k = &s->keys[i];
-                if (k->flags & 0x1000000) {
-                    cam->pos[0] = k->pos[0];
-                    cam->pos[1] = k->pos[1];
-                    cam->pos[2] = k->pos[2];
-                    func_800BFBE8(cam->m, k->rot, 1);
-                }
-            }
-            if (s->flags & 0x20) {
-                v[0] = s->keys[0].pos[0];
-                v[1] = s->keys[0].pos[1];
-                v[2] = s->keys[0].pos[2];
-                func_800BFBE8(mat, s->keys[0].rot, 1);
-                func_800C0828(mat);
-                delta[0] = cam->pos[0] - v[0];
-                delta[1] = cam->pos[1] - v[1];
-                delta[2] = cam->pos[2] - v[2];
-                func_800C0294(s->id, delta);
-                camera_first_person(s->id, cam->pos, mat, cam->m);
-            }
-        } else {
-            s32 i;
-            f32 mx;
-            s32 fl;
-            CamNode *node;
-
-            if (sc->flags & 0x20) {
-                D_8013C300[D_8013F1DC++] = cam;
-            }
-            mx = 0.0f;
-            for (i = 0; i < sc->count; i++) {
-                if (mx < sc->keys[i].f3C) {
-                    mx = sc->keys[i].f3C;
-                }
-            }
-            ctl->f14 = mx;
-            for (i = 0; i < sc->count; i++) {
-                if ((sc->keys[i].flags & 1) && !(sc->keys[i].flags & 0x1000)) {
-                    camera_build_view_matrix(i, cam);
-                    sc->keys[i].flags |= 0x1000;
-                    i = sc->count;
-                }
-            }
-            if (tbl->s14 == 361) {
-                cam->s5A = 4;
-            } else if (tbl->s14 == 365) {
-                cam->s5A = 20;
-            }
-            fl = sc->flags;
-            if ((fl & 0x40) && !(fl & 0x4000)) {
-                sc->flags = fl & ~0x100000;
-                sc->flags |= 0x200400;
-                if (!(sc->flags & 0x8000)) {
-                    *(u16 *) ((u8 *) &D_8012E714 + cam->slot * 0x44) = D_80142A7A;
-                }
-                node = func_80090284();
-                if (node != NULL) {
-                    node->s04 = 0;
-                    node->cam = cam;
-                    node->w14 = tbl->w0C;
-                    if (tbl->s14 == 361) {
-                        node->f10 = 0.25f;
-                    } else if (tbl->s14 == 365) {
-                        node->f10 = D_80123E90;
-                    }
-                    node->next = D_801391F0;
-                    D_801391F0 = node;
-                }
-            }
-        }
-        cam->flags |= 1;
-    }
-}
-
-void camera_update(CamNode *node, s16 flag) {
-    s32 padTop[2];
-    Camera *cam;
-    f32 padA[9];
-    s8 moved;
-    f32 dv[3];
-    f32 sv[3];
-    f32 padB[6];
-    s32 i;
-    f32 f;
-    s32 v;
-    s32 nx;
-    f32 tt;
-    CamTbl *tb;
-    s16 na;
-    u16 m;
-    CamScene *lk;
-    CamKey *k;
-    f32 *pdt;
-    CamScene *sc;
-    CamCtl *lc;
-    CamCtl *ctl;
-
-    moved = 0;
-    if (flag == 0) {
-        entity_transform_apply(node, 1);
-        return;
-    }
-    if (((state_word_a & 0x7C0000) || (state_word_a & 8)) && D_801170FC == 0) {
-        cam = node->cam;
-        ctl = cam->ctl;
-        sc = ctl->scene;
-        if (sc->flags & 0x40) {
-            if (sc->flags & 0x4000) {
-                if (!(sc->flags & 0x200)) {
-                    if (!(sc->flags & 0x400)) {
-                        m = ctl->mode;
-                        if (m & 4) {
-                            ctl->mode = m & 0xFFFB;
-                            ctl->mode |= 8;
-                            ctl->t = sc->keys[ctl->idx].dur - ctl->t;
-                        }
-                        if (sc->flags & 0x100) {
-                            camera_aspect_ratio(cam);
-                        }
-                        sc->flags = sc->flags & ~0x100;
-                    }
-                } else {
-                    if (sc->flags & 0x400) {
-                        sc->flags = sc->flags & ~0x500;
-                        camera_aspect_ratio(cam);
-                    }
-                    sc->flags = sc->flags & ~0x200;
-                }
-            } else {
-                if ((sc->flags & 0x2000) && (sc->flags & 0x100000)) {
-                    v = sc->flags & 0xFFEFFFFF;
-                    if (sc->link->flags & 0x100) {
-                        sc->flags = v;
-                        *(u32 *)&sc->flags |= 0x200400;
-                        v = sc->flags;
-                        if (!(v & 0x8000)) {
-                            *(u16 *) ((u8 *) &D_8012E714 + cam->slot * 0x44) = D_80142A7A;
-                        }
-                        camera_fov_control(cam);
-                        return;
-                    }
-                }
-                if ((sc->flags & 0x400) && (sc->flags & 0x200)) {
-                    lk = sc->link;
-                    v = lk->flags;
-                    if (v & 0x100) {
-                        lk->flags = v & ~0x100;
-                    } else if (sc->flags & 0x1000) {
-                        lc = lk->cur;
-                        m = lc->mode;
-                        if (m & 8) {
-                            lc->mode = m & 0xFFF7;
-                            lc->mode |= 4;
-                            lc->t = lk->keys[lc->idx].dur - lc->t;
-                        } else {
-                            lc->mode = m & 0xFFFB;
-                            lc->mode |= 8;
-                            lc->t = lk->keys[lc->idx].dur - lc->t;
-                        }
-                    }
-                    sc->flags = sc->flags & ~0x700;
-                    if (sc->flags & 0x1000) {
-                        if (sc->flags & 0x200000) {
-                            v = sc->flags & 0xFFDFFFFF;
-                            sc->flags = v;
-                            *(u32 *)&sc->flags |= 0x100000;
-                            v = sc->flags;
-                            if (!(v & 0x8000)) {
-                                *(u16 *) ((u8 *) &D_8012E714 + cam->slot * 0x44) = D_80142A78;
-                            }
-                            camera_aspect_ratio(cam);
-                        } else {
-                            v = sc->flags & 0xFFEFFFFF;
-                            sc->flags = v;
-                            *(u32 *)&sc->flags |= 0x200000;
-                            v = sc->flags;
-                            if (!(v & 0x8000)) {
-                                *(u16 *) ((u8 *) &D_8012E714 + cam->slot * 0x44) = D_80142A7A;
-                            }
-                            camera_fov_control(cam);
-                        }
-                    } else if (sc->flags & 0x200000) {
-                        v = sc->flags & 0xFFDFFFFF;
-                        sc->flags = v;
-                        *(u32 *)&sc->flags |= 0x100000;
-                        v = sc->flags;
-                        if (!(v & 0x8000)) {
-                            *(u16 *) ((u8 *) &D_8012E714 + cam->slot * 0x44) = D_80142A78;
-                        }
-                        camera_aspect_ratio(cam);
-                    }
-                }
-            }
-        }
-        if (!(sc->flags & 0x100)) {
-            i = 0;
-            pdt = (f32 *)(u32)&D_8002EB94;
-            ctl->t = ctl->t + *pdt;
-            k = &sc->keys[ctl->idx];
-            do {
-                f = k->dur;
-                if (f <= ctl->t) {
-                    m = ctl->mode;
-                    ctl->t = ctl->t - f;
-                    if (m & 8) {
-                        if (ctl->idx == 0) {
-                            v = m & 0xFFF7;
-                            if (sc->flags & 0x4000) {
-                                i = 1;
-                                camera_build_view_matrix(0, cam);
-                                camera_fov_control(cam);
-                            } else {
-                                ctl->mode = v;
-                                ctl->mode |= 4;
-                                if (sc->flags & 0x80) {
-                                    sc->flags = sc->flags | 0x100;
-                                    i = 1;
-                                    ctl->t = 0.0f;
-                                }
-                            }
-                            if (sc->flags & 0x20) {
-                                listener_position_set(sc->id);
-                            }
-                        } else {
-                            ctl->idx = ctl->idx - 1;
-                        }
-                    } else if (sc->count == ctl->idx + 1) {
-                        v = m & 0xFFFB;
-                        if (sc->flags & 0x80) {
-                            ctl->mode = v;
-                            ctl->mode |= 8;
-                            ctl->idx = ctl->idx - 1;
-                        } else {
-                            ctl->idx = 0;
-                            if (sc->flags & 0x20) {
-                                listener_position_set(sc->id);
-                            }
-                        }
-                    } else {
-                        ctl->idx = ctl->idx + 1;
-                        na = ctl->idx;
-                        if (sc->keys[na].flags & 0x40) {
-                            i = 1;
-                            sc->flags = sc->flags | 0x100;
-                            ctl->t = 0.0f;
-                        } else if (sc->count == na + 1) {
-                            if (sc->flags & 1) {
-                                v = ctl->mode & 0xFFFB;
-                                ctl->mode = v;
-                                ctl->mode |= 8;
-                                ctl->idx = na - 1;
-                            } else if (sc->flags & 0x4000) {
-                                v = ctl->mode & 0xFFFB;
-                                ctl->mode = v;
-                                ctl->mode |= 8;
-                                ctl->idx = na - 1;
-                                ctl->t = 0.0f;
-                                sc->flags = sc->flags | 0x100;
-                            } else if (!(sc->flags & 2)) {
-                                camera_build_view_matrix(0, cam);
-                                if (sc->flags & 0x20) {
-                                    listener_position_set(sc->id);
-                                }
-                            }
-                        }
-                    }
-                    k = &sc->keys[ctl->idx];
-                } else {
-                    i = 1;
-                }
-            } while (i == 0);
-            v = k->flags;
-            if (!(v & 2)) {
-                camera_track_spline(cam);
-                moved = 1;
-                v = sc->keys[ctl->idx].flags;
-            }
-            if (!(v & 0x10) || !(v & 4)) {
-                moved = 1;
-                camera_free_look(cam);
-            }
-            if (moved != 0) {
-                if (sc->flags & 0x100) {
-                    camera_fov_control(cam);
-                } else {
-                    camera_look_at_point(cam);
-                }
-            } else {
-                camera_fov_control(cam);
-            }
-            tb = &D_80117530[cam->tbl];
-            if (tb->s14 != -1) {
-                f = node->f10 - *pdt;
-                node->f10 = f;
-                if (f <= 0.0f) {
-                    v = tb->s14;
-                    if (v == 0x169) {
-                        node->f10 = 0.25f;
-                    } else if (v == 0x16D) {
-                        node->f10 = D_80123E8C;
-                    }
-                    node->s04 = node->s04 + 1;
-                    na = node->s04;
-                    if (na >= cam->s5A) {
-                        node->s04 = 0;
-                        na = 0;
-                    }
-                    na = cam->s58 + na;
-                    if (na != cam->s50) {
-                        if (!(sc->flags & 0x8000)) {
-                            *(u16 *) ((u8 *) &D_8012E714 + cam->slot * 0x44) = (&D_801427C0)[na];
-                        }
-                        cam->s50 = na;
-                    }
-                    goto block_99;
-                }
-            } else {
-block_99:
-                if (tb->mode == 4) {
-                    if (ctl->mode & 8) {
-                        dv[0] = sc->keys[ctl->idx].dir[0] * -ctl->f10;
-                        dv[1] = sc->keys[ctl->idx].dir[1] * -ctl->f10;
-                        dv[2] = sc->keys[ctl->idx].dir[2] * -ctl->f10;
-                    } else {
-                        dv[0] = sc->keys[ctl->idx].dir[0] * ctl->f10;
-                        dv[1] = sc->keys[ctl->idx].dir[1] * ctl->f10;
-                        dv[2] = sc->keys[ctl->idx].dir[2] * ctl->f10;
-                    }
-                    func_800AB750(cam->s65, dv, cam->pos, cam->m);
-                }
-                na = ctl->idx;
-                k = &sc->keys[na];
-                if (!(k->flags & 0x10)) {
-                    nx = na + 1;
-                    if (nx >= sc->count) {
-                        nx = 0;
-                    }
-                    if (ctl->mode & 8) {
-                        tt = k->dur - ctl->t;
-                    } else {
-                        tt = ctl->t;
-                    }
-                    for (i = 0; i < 3; i++) {
-                        f = sc->keys[ctl->idx].scale[i];
-                        sv[i] = (sc->keys[nx].scale[i] - f) * (tt / k->dur) + f;
-                    }
-                    for (i = 0; i < 3; i++) {
-                        cam->m[0][i] = cam->m[0][i] * sv[0];
-                        cam->m[1][i] = cam->m[1][i] * sv[1];
-                        cam->m[2][i] = cam->m[2][i] * sv[2];
-                    }
-                }
-                if (!(cam->flags & 2)) {
-                    if (!(sc->flags & 0x8000)) {
-                        entity_spawn_callback(cam->slot, 0, 0);
-                    }
-                    func_800AFA84(&D_80143FC8, (s32 *) cam);
-                    entity_transform_apply(node, 1);
-                }
-            }
-        }
-    }
-}
-
-/* stand-in caller: keeps camera_aspect_ratio out of line under -O3 */
-void __standin_camera_aspect_ratio(void)
+typedef struct TrackNode { u32 flags; u8 pad[0x12]; s16 left; s16 right; u8 pad2[0x2A]; } TrackNode;
+extern TrackNode D_8012E700[];
+s32 track_collision(TrackNode *node, s32 type)
 {
-    camera_aspect_ratio(0);
-}
-
-/* stand-in caller: keeps camera_fov_control out of line under -O3 */
-void __standin_camera_fov_control(void)
-{
-    camera_fov_control(0);
-}
-
-/* stand-in caller: keeps camera_free_look out of line under -O3 */
-void __standin_camera_free_look(void)
-{
-    camera_free_look(0);
-}
-
-/* stand-in caller: keeps camera_look_at_point out of line under -O3 */
-void __standin_camera_look_at_point(void)
-{
-    camera_look_at_point(0);
+  u32 mask = 256 << type;
+  while (1) {
+    if (!(node->flags & mask)) return 1;
+    if (node->left >= 0 && track_collision(&D_8012E700[node->left], type)) return 1;
+    if (node->right >= 0) { node = &D_8012E700[node->right]; continue; }
+    return 0;
+  }
 }

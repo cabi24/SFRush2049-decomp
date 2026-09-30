@@ -76,3 +76,25 @@ Left: the ROM keeps `poly` in `$a3` across the first `func_800AD650` call (IPA k
 so ours promotes `poly` to an `s` register and, in `input_process_controller`, leaves the 8th argument on the
 stack (`lw a0,220(sp)`). `func_800AD650`/`func_800AD5D0` are the missing closure. Also `f32 zmin` lands in
 `$f22` (ROM `$f20`, the 0.03125 constant takes `$f22`), and the locals area starts at sp+52 instead of sp+24.
+
+## Round 3: closure callees added as context
+
+`func_800AD650` (57 words, nine `s16 * 2^-14` conversions, hand-written) and `func_800AD5D0` (the strict single-function
+match from `cloud/matches/func_800AD5D0.c`, reused verbatim) are now defined in `group.c` and listed in `keep`
+(both have callers outside the group: `camera_first_person`, `camera_play_script`). Emitted sizes are the ROM's
+(57 and 32 words; 31 words when `func_800AD5D0` is left out of `keep`, which makes it IPA, so keep it).
+
+```
+func_800AD4C8             45/66   differ  size  66/66   (unchanged)
+func_800C3AD0            334/362  differ  size 356/362  (unchanged count, but see below)
+input_process_controller 340/363  differ  size 362/363
+```
+
+Effect: with the callees' clobber sets known, `func_800C3AD0` now keeps `poly` in `$s4` (ROM: `s4`, `pt` param is
+`a3` only in `input_process_controller`), `outIdx=$s5`, `mat=$s7`, and its first ~30 words agree with the ROM
+except for frame offsets. What still shifts every stack offset by 4 (and hence most of the differing words):
+the ROM's `idx[20]` is at sp+56 and `f1/f2` are at sp+24/28, ours put `idx` at sp+60 and `f1/f2` at sp+52/56
+(declaration-order permutations of the eight locals did not fix it: best 333). The ROM's `zmin` constant is in
+`$f22`, ours `$f20`. `input_process_controller`: the ROM keeps `mat` in `$s8` (IPA), ours still leaves it on
+the stack (`lw a0,220(sp)`, frame 192 vs 184); IDO never gave the 8th integer IPA parameter a register here.
+Not MATCH yet. Verify: `python3 cloud/work/tools/zbuild.py cloud/work/ipa-groups/func_800AD4C8 --as1=-r4300_mul`.
