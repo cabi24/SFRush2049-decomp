@@ -3752,10 +3752,10 @@ void func_800C36A0(CCar *car, CCol *col) {
     f32 v[3];
     f32 w[3];
     f32 f12;
-    s32 i;
     s32 idx;
-    f32 k;
     CPoly *poly;
+    s32 i;
+    f32 k;
 
     k = col->k;
     poly = col->poly;

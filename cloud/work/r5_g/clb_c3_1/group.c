@@ -3805,11 +3805,11 @@ typedef struct Poly {
 } Poly;
 
 s16 func_800C3AD0(f32 *pt, f32 *wp, Poly *poly, s16 *outIdx, f32 *q, f32 *mat, f32 *bound, f32 zmin) {
-    volatile f32 f2;
     f32 va[3];
+    volatile f32 f2;
     f32 vd[3];
-    u32 k;
     f32 vc[3];
+    u32 k;
     volatile f32 f1;
     s32 res;
     f32 ve[3];
