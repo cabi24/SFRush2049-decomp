@@ -34,8 +34,8 @@ s32 func_800B78A4(s32, s32);
 void net_state_validate(void) {
     s16 i, j;
     s32 k;
-    u8 *S, *p;
-    s32 a, b, c, d, v0, v1, one = 1;
+    u8 *S, *p, *q;
+    s32 n, a, b, c, d, v0, v1, one = 1;
 
     if (D_801164C0 == one) {
         for (i = 0; i < active_player_count; i++)
@@ -84,9 +84,9 @@ void net_state_validate(void) {
         }
     } else {
         for (i = 0; i < active_player_count; i++) {
+            v0 = 0;
             if (input_rec0[i].x->y->z != 0) {
                 S = input_rec0[i].x->y->z->S;
-                v0 = 0;
                 for (k = 0; k < 12; k++) v0 += S32(228 + k * 96);
                 v0 = v0 / 10;
                 D_80150EB8[i][0] = one;
@@ -126,6 +126,7 @@ void net_state_validate(void) {
                 D_80150DD8[i][j] = one;
     } else {
         for (i = 0; i < active_player_count; i++) {
+            v0 = 0;
             for (j = 0; j < 19; j++) D_80150DD8[i][j] = 0;
             D_80150DD8[i][0] = one;
             D_80150DD8[i][1] = one;
@@ -138,9 +139,11 @@ void net_state_validate(void) {
             D_80150DD8[i][9] = one;
             if (input_rec0[i].x->y->z != 0) {
                 S = input_rec0[i].x->y->z->S;
-                v1 = S32(1292 + 12) + S32(1292 + 76) + S32(1292 + 140) + S32(1292 + 204);
-                v0 = 0;
-                for (k = 0; k < 8; k++) v0 += U16(1548 + 8 + k * 12);
+                p = S + 1292;
+                v1 = 0;
+                for (n = 0; n < 4; n++) v1 += *(s32 *)(p + 12 + n * 64);
+                q = S + 1548;
+                for (k = 0; k < 8; k++) v0 += *(u16 *)(q + 8 + k * 12);
                 D_80150DD8[i][15] = v1 >= 100000;
                 D_80150DD8[i][16] = v1 >= 250000;
                 D_80150DD8[i][17] = v1 >= 500000;
