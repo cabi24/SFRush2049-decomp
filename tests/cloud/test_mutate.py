@@ -2967,9 +2967,74 @@ class Round3Families(unittest.TestCase):
         self.assertTrue(all("(S *)" not in d for d in ds))
         self.assertTrue(any("unsigned char *" in d for d in ds))
 
+    def test_m2c_field(self):
+        src = ("typedef float f32;\n#define M2C_FIELD(e, t, o) (*(t)((char *)(e) + (o)))\n"
+               "void f(void *a, f32 *b, void *c) {\n"
+               "  M2C_FIELD(a, f32 *, 4) = M2C_FIELD(b, f32 *, 8) + M2C_FIELD(a, f32 *, 0);\n"
+               "  M2C_FIELD(c, f32 *, 3) = 1.0f;\n}\n")
+        ms = {m.desc: m for m in mutate.mutations(src, fn="f", catalog=["m2c_field"])}
+        d = "M2C_FIELD(b, f32 *, 0x8) -> b[2]"
+        self.assertIn(d, ms)                                      # b is already f32 *
+        self.assertFalse(ms[d].semantic_risk)
+        self.assertIn("b[2]", ms[d].new_src)
+        self.assertIn("retype a as f32 * and index it (2 M2C_FIELD uses)", ms)
+        r = ms["retype a as f32 * and index it (2 M2C_FIELD uses)"].new_src
+        self.assertIn("void f(f32 * a, f32 *b, void *c)", r.replace("f32 *a", "f32 * a"))
+        self.assertIn("a[1] = ", r)
+        self.assertIn("a[0]", r)
+        # offset 3 is not a multiple of sizeof(f32): never rewritten
+        self.assertFalse(any("c[" in m.new_src for m in ms.values() if "retype c" in m.desc))
+        self.assertIn("retype a as typed pointers and index them", " ".join(ms)) if False else None
+        self.assertTrue(all(m.semantic_risk or "b[2]" in m.new_src for m in ms.values()))
+
+    def test_local_reload(self):
+        src = ("int g(int);\nint f(int *p, int x) {\n  int t;\n  t = p[1];\n  if (x != t) { p[1] = x; g(0); }\n"
+               "  t = p[1];\n  return t;\n}\n")
+        ms = mutate.mutations(src, fn="f", catalog=["local_reload"])
+        self.assertEqual(len(ms), 1)
+        out = ms[0].new_src
+        self.assertTrue(ms[0].semantic_risk)
+        self.assertIn("x != p[1]", out)
+        self.assertIn("return p[1];", out)
+        self.assertNotIn("int t;", out)
+        # one assignment only: local_inline's job, not ours; different RHS: never merged
+        self.assertEqual(mutate.mutations("int f(int *p) { int t; t = p[1]; return t; }\n", fn="f",
+                                          catalog=["local_reload"]), [])
+        self.assertEqual(mutate.mutations("int f(int *p) { int t; t = p[1]; t = p[2]; return t; }\n", fn="f",
+                                          catalog=["local_reload"]), [])
+
+    def test_loop_guard(self):
+        src = ("void g(int *);\nextern int n;\nvoid f(void) {\n  int i;\n  int *p;\n  i = 0;\n  p = &n;\n"
+               "  if (n > 0) {\n    do {\n      g(p);\n      i += 1;\n      p = p + 1;\n    } while (i < n);\n  }\n}\n")
+        ms = mutate.mutations(src, fn="f", catalog=["loop_guard"])
+        self.assertTrue(ms and all(m.semantic_risk for m in ms))
+        self.assertTrue(any(toks(m.new_src) == toks(
+            "void g(int *);\nextern int n;\nvoid f(void) { int i; int *p; for (i = 0, p = &n; i < n; i++, p++) { g(p); } }\n")
+            for m in ms))
+        self.assertTrue(any("while (i < n)" in m.new_src and "for" not in m.new_src for m in ms))
+
+    def test_goto_branch(self):
+        src = ("extern int n;\nint f(int a) {\n  int i;\n  int r;\n  r = -1;\n  i = 0;\n  if (n > 0) {\n  top:\n"
+               "    i += 1;\n    i = i;\n    if (i >= n) {\n      return r;\n    }\n    goto top;\n  }\n  return -1;\n}\n")
+        ds = {m.desc: m for m in mutate.mutations(src, fn="f", catalog=["goto_branch"])}
+        self.assertIn("drop no-op `i = i;`", ds)
+        self.assertNotIn("i = i;", ds["drop no-op `i = i;`"].new_src)
+        inv = ds["if (C) exit; goto L  ->  if (!C) goto L; exit"]
+        self.assertIn("if (i < n) goto top; return r;", inv.new_src)
+        tail = ds["drop `return r` that the fall-through already performs"]
+        self.assertIn("if (i < n) goto top;", tail.new_src)
+        self.assertNotIn("return r;\n    }", tail.new_src)
+        self.assertTrue(tail.semantic_risk)            # r is only known to be -1 through its one assignment
+        # reverse direction
+        rev = "void g(int x) {\n  if (x) goto out;\n  return;\n  out: x = 1;\n}\n"
+        rm = [m for m in mutate.mutations(rev, fn="g", catalog=["goto_branch"]) if "if (!C) { exit } goto L" in m.desc]
+        self.assertEqual(len(rm), 1)
+        self.assertIn("if (!x) { return; } goto out;", rm[0].new_src)
+
     def test_catalog_lists_round3_families(self):
         for n in ("while_fold", "cond_merge", "call_arg", "cast_simplify", "ret_type", "proto_form",
-                  "hoist_local", "compound_assign", "deref_index", "param_unused", "dead_purge", "view_cast"):
+                  "hoist_local", "compound_assign", "deref_index", "param_unused", "dead_purge", "view_cast",
+                  "m2c_field", "local_reload", "loop_guard", "goto_branch"):
             self.assertIn(n, mutate.catalog_names())
         self.assertIn("round 3", mutate.GAPS.lower()) if False else self.assertIn("Known gaps", mutate.GAPS)
 
@@ -2982,9 +3047,11 @@ class Round3Families(unittest.TestCase):
         from amatch import corpus as C
         hl = C.header_lines()
         names = ["func_80092DCC", "func_800A46CC", "init_wait_completion", "resource_update_global",
-                 "func_800FBE30", "func_800B9338"]
+                 "func_800FBE30", "func_800B9338", "func_800A61B0", "input_new_data_wrapper",
+                 "players_frame_update", "func_8009002C"]
         fams = ["while_fold", "cond_merge", "call_arg", "cast_simplify", "ret_type", "proto_form", "hoist_local",
-                "compound_assign", "deref_index", "param_unused", "dead_purge", "view_cast"]
+                "compound_assign", "deref_index", "param_unused", "dead_purge", "view_cast", "m2c_field",
+                "local_reload", "loop_guard", "goto_branch"]
         mutate.set_hints(["D_80151A6C"])
         total = 0
         for fn in names:
@@ -3157,9 +3224,11 @@ class Round3IdoCompiles(unittest.TestCase):
     """Sampled round-3 mutations of real corpus start states still compile under IDO."""
 
     NAMES = ["func_80092DCC", "func_800A46CC", "init_wait_completion", "resource_update_global",
-             "func_800FBE30", "func_800B9338", "car_select_handler", "func_800DD45C"]
+             "func_800FBE30", "func_800B9338", "car_select_handler", "func_800DD45C", "func_800A61B0",
+             "input_new_data_wrapper", "players_frame_update", "func_8009002C"]
     FAMS = ["while_fold", "cond_merge", "call_arg", "cast_simplify", "ret_type", "proto_form", "hoist_local",
-            "compound_assign", "deref_index", "param_unused", "dead_purge", "view_cast"]
+            "compound_assign", "deref_index", "param_unused", "dead_purge", "view_cast", "m2c_field",
+            "local_reload", "loop_guard", "goto_branch"]
 
     def tearDown(self):
         mutate.set_hints(())

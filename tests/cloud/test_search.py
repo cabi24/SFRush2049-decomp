@@ -179,6 +179,122 @@ class Objective(unittest.TestCase):
         self.assertLess(search.fn_objective(base, 1)[0], search.fn_objective(base, 2)[0])
 
 
+class EMut(Mut):
+    """Stand-in mutation with merge-able edits (start, end, text) on the source string."""
+
+    def __init__(self, i, ch, src, cost=1.0):
+        super().__init__(f"set{i}:{ch}", src[:i] + ch + src[i + 1:], cost)
+        self.desc = f"pos{i}->{ch}"
+        self.edits = ((i, i + 1, ch),)
+
+
+class EditStandIn:
+    @staticmethod
+    def mutations(src, fn=None, catalog=None):
+        return [EMut(i, ch, src) for i in range(len(src)) for ch in "abc" if src[i] != ch]
+
+
+def pair_only_eval(jobs):
+    """Matches only when BOTH position 0 == 'a' and position 1 == 'b'; singles never improve."""
+    out = []
+    for j in jobs:
+        t = j["src"]
+        ok = t[0] == "a" and t[1] == "b" and len(t) == 4
+        d = dict(fake_score("abcdefgh" if ok else "xxxxxxxx"))
+        out.append(d)
+    return out
+
+
+class NewStages(unittest.TestCase):
+    def run_edit(self, start, evaluator, **kw):
+        with tempfile.TemporaryDirectory() as tmp:
+            kw.setdefault("budget", 400)
+            r = search.run_fn(start, "f", flags="-O2", jobs=2, out=tmp, mutator=EditStandIn,
+                              evaluator=evaluator, verify=lambda n: (True, "ok"), **kw)
+            best = Path(r["best_src_path"]).read_text()
+        return r, best
+
+    def test_pair_of_individually_useless_edits_is_found(self):
+        r, best = self.run_edit("cccc", pair_only_eval, seed=1)
+        self.assertTrue(r["matched"], r)
+        self.assertEqual(best[:2], "ab")
+        self.assertEqual(len(r["best_path"]), 2)
+
+    def test_greedy_growth_reaches_three_edits(self):
+        def ev(jobs):
+            out = []
+            for j in jobs:
+                t = j["src"]
+                n = sum(1 for a, b in zip(t[:3], "abc") if a == b)
+                # needs all three; two of three is better than one of three
+                d = dict(fake_score("abcdefgh" if n == 3 and len(t) == 5 else "xxxxxxxx"))
+                if n < 3:
+                    d["aligned_exact"] = n
+                    d["strict_diff"] = 8 - n
+                out.append(d)
+            return out
+        r, best = self.run_edit("ccccc", ev, seed=2, budget=500)
+        self.assertTrue(r["matched"], r)
+        self.assertEqual(best[:3], "abc")
+
+    def test_minimize_drops_redundant_steps(self):
+        src = "cccc"
+        s = search.Searcher("fn", {"src.c": src}, fn="f", jobs=1, budget=10, mutator=EditStandIn,
+                            evaluator=lambda js: [fake_score("abcdefgh" if j["src"][0] == "a" else "xxxxxxxx") for j in js])
+        s.base = search.Node({"src.c": src})
+        node = s.base
+        for nm in ("set0:a", "set2:b", "set3:a"):
+            pick = [m for _, m in s.mutations_of(node) if m["name"] == nm][0]
+            node = s.child(node, "src.c", pick)
+        self.assertEqual(len(node.steps), 3)
+        mini = s.minimize(node)
+        self.assertEqual([st[1] for st in mini.steps], ["set0:a"])
+        self.assertEqual(mini.files["src.c"], "accc")
+
+    def test_combine_edits(self):
+        self.assertEqual(search.combine_edits("abcd", [(0, 1, "X")], [(2, 3, "Y")]), "XbYd")
+        self.assertIsNone(search.combine_edits("abcd", [(0, 2, "X")], [(1, 3, "Y")]))
+        self.assertIsNone(search.combine_edits("abcd", [(1, 1, "X")], [(1, 1, "Y")]))   # ambiguous order
+
+    def test_target_hints(self):
+        lui = 0x3C048015                     # lui a0, 0x8015
+        lw = 0x8C841A6C                      # lw a0, 0x1A6C(a0)
+        jal = 0x0C000000 | ((0x80096238 & 0x0FFFFFFF) >> 2)
+        h = search.target_hints([lui, lw, jal])
+        self.assertIn("D_80151A6C", h)
+        self.assertIn("func_80096238", h)
+        neg = search.target_hints([0x3C048015, 0x2484F000])      # addiu a0, a0, -0x1000
+        self.assertIn("D_8014F000", neg)
+
+    def test_flag_variants(self):
+        v = dict(search.flag_variants("-g0 -O2 -mips2 -G 0 -non_shared"))
+        self.assertEqual(set(v), {"flags:-O1", "flags:-O3"})
+        self.assertEqual(v["flags:-O3"], "-g0 -O3 -mips2 -G 0 -non_shared")
+        self.assertEqual(search.flag_variants("-g0 -mips2"), [])
+
+    def test_flag_dimension_switches_flags(self):
+        def ev(jobs):
+            return [fake_score("abcdefgh" if "-O3" in j.get("flags", "") else "xxxxxxxx") for j in jobs]
+        with tempfile.TemporaryDirectory() as tmp:
+            r = search.run_fn("abcdefgh", "f", flags="-g0 -O2", jobs=1, out=tmp, mutator=EditStandIn,
+                              evaluator=ev, verify=lambda n: (True, "ok"), budget=60, flag_dim=True)
+            best = Path(r["best_src_path"]).read_text()
+        self.assertTrue(r["matched"], r)
+        self.assertEqual(r["best_flags"], "-g0 -O3")
+        self.assertTrue(best.startswith("/* flags: -g0 -O3 */"))
+        self.assertEqual(r["best_path"], ["flags:-O3"])
+
+    def test_near_bucket_ranks_strict_before_aligned(self):
+        near_strict = dict(fake_score("abcdefgh"), strict_diff=2, aligned_exact=5, matched=False)
+        near_aligned = dict(fake_score("abcdefgh"), strict_diff=6, aligned_exact=7, matched=False)
+        self.assertLess(search.fn_objective(near_strict, 0)[0], search.fn_objective(near_aligned, 0)[0])
+        far_shifted = dict(fake_score("abcdefgh"), strict_diff=40, aligned_exact=50, target_size=55, matched=False)
+        far_plain = dict(fake_score("abcdefgh"), strict_diff=20, aligned_exact=30, target_size=55, matched=False)
+        self.assertLess(search.fn_objective(far_shifted, 0)[0], search.fn_objective(far_plain, 0)[0])
+        # anything within NEAR_WORDS beats anything farther
+        self.assertLess(search.fn_objective(near_aligned, 0)[0], search.fn_objective(far_shifted, 0)[0])
+
+
 class Real(unittest.TestCase):
     """Real IDO runs: skip cleanly without IDO or corpus data."""
 

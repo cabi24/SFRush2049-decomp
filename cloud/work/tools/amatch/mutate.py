@@ -30,7 +30,12 @@ loop_for_to_while, loop_while_to_for, loop_to_goto, loop_from_goto,
 counter_type, local_inline, decl_order, decl_init, pad_local, extern_toggle,
 ptr_launder, knr_proto, param_type, shared_exit, mul2_shift, incr_form,
 commute, cmp_flip, literal_spelling, andor_nest, ifelse_swap, switch_perm,
-stmt_swap.
+stmt_swap.  Round 3 (edit classes found missing on the development half of the regression corpus,
+see corpus_data/SPLIT.json): while_fold, cond_merge, call_arg, cast_simplify, ret_type,
+proto_form, hoist_local, compound_assign, deref_index, param_unused, dead_purge, view_cast,
+m2c_field, local_reload, loop_guard, goto_branch.
+`set_hints(names)` registers target-derived identifiers (search.py derives D_xxxxxxxx names
+from the target words) for the families that have to invent a name (call_arg).
 
 Known gaps are listed in docs at the bottom of this file (GAPS).
 """
@@ -2182,7 +2187,7 @@ def fam_param_type(ctx):
                     "param %s: %s -> %s" % (dc["name"], cur, w32))
             wide_edits.append((t.s, t.e, w32))
         elif cur in ("s32", "int", "long"):
-            for tgt in (ctx.spell("s16"), ctx.spell("u8")):
+            for tgt in (ctx.spell("s16"), ctx.spell("u8"), ctx.spell("u16"), ctx.spell("s8")):
                 ctx.add("param_type", [(t.s, t.e, tgt)], 2, "type",
                         "param %s: %s -> %s" % (dc["name"], cur, tgt), ("semantic_risk",))
     if len(wide_edits) > 1:
@@ -3697,6 +3702,292 @@ def fam_view_cast(ctx):
                         "index base viewed as (%s)" % t, ("semantic_risk",))
 
 
+ELEM_SIZE = {"s8": 1, "u8": 1, "char": 1, "s16": 2, "u16": 2, "short": 2, "s32": 4, "u32": 4, "int": 4,
+             "long": 4, "f32": 4, "float": 4, "f64": 8, "double": 8, "s64": 8, "u64": 8}
+
+
+def _m2c_fields(ctx):
+    """[(call E, seg1 (a,b), elem text, offset int)] for every `M2C_FIELD(expr, T *, num)` call."""
+    sig = ctx.sig
+    out = []
+    for e, st in ctx.all_exprs():
+        if e is None:
+            continue
+        for x in ewalk(e):
+            if x.k != "call" or x.ch[0].k != "ident" or x.ch[0].name != "M2C_FIELD":
+                continue
+            lp, rp = x.ch[0].b, x.b - 1
+            if sig[lp].t != "(" or sig[rp].t != ")":
+                continue
+            segs, s0, q = [], lp + 1, lp + 1
+            while q < rp:
+                if sig[q].k == "op" and sig[q].t in ("(", "[", "{"):
+                    q = ctx.match[q] + 1
+                    continue
+                if sig[q].t == "," and sig[q].k == "op":
+                    segs.append((s0, q))
+                    s0 = q + 1
+                q += 1
+            segs.append((s0, rp))
+            if len(segs) != 3:
+                continue
+            ty = ctx.text(*segs[1]).split()
+            if len(ty) != 2 or ty[1] != "*" or ty[0] not in ELEM_SIZE:
+                continue
+            ot = ctx.text(*segs[2]).strip()
+            if not re.match(r"^(0[xX][0-9a-fA-F]+|\d+)$", ot):
+                continue
+            off = int(ot, 0)
+            if off % ELEM_SIZE[ty[0]]:
+                continue
+            out.append((x, segs, ty[0], off))
+    return out
+
+
+def fam_m2c_field(ctx):
+    """m2c accessors as typed array views: M2C_FIELD(p, T *, off) -> p[off / sizeof(T)] (or
+    ((T *) p)[k]); for a pointer parameter/local whose every M2C_FIELD use has one element type the whole
+    variable is retyped `T *` and all its uses rewritten at once."""
+    if not ctx.ok or not ctx.want("m2c_field"):
+        return
+    sig = ctx.sig
+    uses = _m2c_fields(ctx)
+    if not uses:
+        return
+
+    def decl_of(nm):
+        if nm in ctx.params:
+            info, dc = ctx.params[nm]
+        elif nm in ctx.locals:
+            _n, info, dc = ctx.locals[nm]
+        else:
+            return None
+        return info, dc
+
+    def elem_of(info, dc):
+        """(elem word or None, base token index) for a single-star scalar/void pointer declaration."""
+        if dc["complex"] or dc["stars"] != 1 or dc["dims"] or info["base"][1] - info["base"][0] != 1:
+            return None, None
+        return sig[info["base"][0]].t, info["base"][0]
+
+    by_var = {}
+    for (x, segs, el, off) in uses:
+        a, b = segs[0]
+        k = off // ELEM_SIZE[el]
+        is_ident = b - a == 1 and sig[a].k == "id"
+        var = sig[a].t if is_ident else None
+        if var is not None and var in ctx.volatile:
+            continue
+        if var is not None:
+            d = decl_of(var)
+            if d is not None:
+                w, _bi = elem_of(*d)
+                if w == el:
+                    ctx.add("m2c_field", [(x.s, x.e, "%s[%d]" % (var, k))], 3, "addr",
+                            "M2C_FIELD(%s, %s *, %#x) -> %s[%d]" % (var, el, off, var, k))
+                    continue
+        bt = ctx.text(a, b)
+        if not (b - a == 1 or (sig[a].t == "(" and ctx.match[a] == b - 1)):
+            bt = "(" + bt + ")"
+        ctx.add("m2c_field", [(x.s, x.e, "((%s *) %s)[%d]" % (el, bt, k))], 4, "addr",
+                "M2C_FIELD(.., %s *, %#x) -> ((%s *) ..)[%d]" % (el, off, el, k), ("semantic_risk",))
+        if var is not None:
+            by_var.setdefault(var, []).append((x, el, k))
+    # whole-variable retype
+    allv, alle = [], []
+    for var, lst in sorted(by_var.items()):
+        d = decl_of(var)
+        if d is None:
+            continue
+        w, bi = elem_of(*d)
+        if w is None:
+            continue
+        els = {el for (_x, el, _k) in lst}
+        total = [u for u in uses if u[1][0][1] - u[1][0][0] == 1 and sig[u[1][0][0]].t == var]
+        if len(els) != 1 or len(total) != len(lst):
+            continue
+        el = els.pop()
+        ed = [(sig[bi].s, sig[bi].e, el)]
+        ed += [(x.s, x.e, "%s[%d]" % (var, k)) for (x, _el, k) in lst]
+        ctx.add("m2c_field", ed, 3, "addr", "retype %s as %s * and index it (%d M2C_FIELD uses)" % (var, el, len(lst)),
+                ("semantic_risk",))
+        allv.append(var)
+        alle += ed
+    if len(allv) > 1:
+        ctx.add("m2c_field", alle, 4, "addr", "retype %s as typed pointers and index them" % ", ".join(allv),
+                ("semantic_risk",))
+
+
+def fam_local_reload(ctx):
+    """A local assigned several times from the *same* pure expression (a memory re-read) is replaced by
+    that expression at every use: `t = p[1]; if (x != t) {..} t = p[1]; return t;` -> `p[1]` inline."""
+    if not ctx.ok or not ctx.want("local_reload"):
+        return
+    exprs = ctx.all_exprs()
+    if any(e is None for e, st in exprs):
+        return
+    sig = ctx.sig
+    assigns, other = {}, {}
+    for e, st in exprs:
+        for x in ewalk(e):
+            lhs = strip_paren(x.ch[0]) if x.k in ("assign", "un", "post") and x.ch else None
+            if lhs is None or lhs.k != "ident":
+                continue
+            if x.k == "assign" and x.op == "=" and x is e and st.k == "expr":
+                assigns.setdefault(lhs.name, []).append((x, st))
+            elif x.k == "assign" or (x.k in ("un", "post") and x.op in ("++", "--")):
+                other[lhs.name] = other.get(lhs.name, 0) + 1
+    for nm in sorted(ctx.locals):
+        dn, info, dc = ctx.locals[nm]
+        if dc["dims"] or dc["complex"] or dc["init"] or nm in ctx.volatile or other.get(nm):
+            continue
+        al = assigns.get(nm, [])
+        if len(al) < 2 or _addr_taken(ctx, exprs, nm):
+            continue
+        rt = {ctx.text(x.ch[1].a, x.ch[1].b) for x, st in al}
+        rhs = al[0][0].ch[1]
+        if len(rt) != 1 or ctx.has_sideeffect(rhs.a, rhs.b):
+            continue
+        lhs_toks = {x.ch[0].a for x, st in al}
+        uses = [q for q in range(ctx.f.bo, ctx.f.bc)
+                if sig[q].k == "id" and sig[q].t == nm and q != dc["nm"] and q not in lhs_toks
+                and not (sig[q - 1].t in (".", "->") and sig[q - 1].k == "op")]
+        if not uses or len(info["decls"]) != 1:
+            continue
+        rtxt = ctx.text(rhs.a, rhs.b)
+        atom = _is_atom_chain(rhs)
+        edits = [ctx.del_stmt_edit(st) for x, st in al] + [ctx.del_stmt_edit(dn)]
+        for q in uses:
+            t = sig[q]
+            nxt = sig[q + 1].t if q + 1 < len(sig) else ""
+            txt = rtxt if atom and nxt not in ("(", "[", ".", "->", "++", "--") else "(" + rtxt + ")"
+            if txt[:1] in "-+&*" and ctx.src[t.s - 1:t.s] == txt[:1]:
+                txt = "(" + txt + ")"
+            edits.append((t.s, t.e, txt))
+        ctx.add("local_reload", edits, 4, "frame",
+                "replace local %s (assigned %d times from %s) by the expression" % (nm, len(al), rtxt[:40]),
+                ("semantic_risk",))
+
+
+def fam_loop_guard(ctx):
+    """`if (G) { do { B } while (C); }` (the guarded do-while m2c emits for a counted loop) ->
+    `while (C) B` or `for (init; C; step) B'` with the preceding `x = e;` statements and the trailing
+    step statements folded in; the guard G is dropped, so these are flagged as risky."""
+    if not ctx.ok or not ctx.want("loop_guard"):
+        return
+    src = ctx.src
+    for n in ctx.nodes:
+        if n.k != "if" or n.d["else"] is not None:
+            continue
+        th = n.d["then"]
+        inner = th
+        if th.k == "block" and len(th.ch) == 1:
+            inner = th.ch[0]
+        if inner.k != "do" or inner.d["body"].k != "block":
+            continue
+        body, cond = inner.d["body"], inner.d["cond"]
+        ctext = ctx.text(*cond)
+        if contains_ctl(ctx, body, "break") or contains_ctl(ctx, body, "continue"):
+            continue
+        ctx.add("loop_guard", [(n.s, n.e, "while (%s) %s" % (ctext, ctx.ntext(body)))], 4, "loop",
+                "guarded do/while -> while", ("semantic_risk",))
+        inits, steps = absorb_loop_parts(ctx, n, body, cond)
+        if not inits and not steps:
+            continue
+        start = inits[0].s if inits else n.s
+        itext = ", ".join(stmt_text_noesemi(ctx, s) for s in inits)
+        bt = body_without_trailing(ctx, body, steps)
+        for label, sts in (("canon", [step_canon(ctx, s) for s in steps]),
+                           ("verbatim", [ctx.text(*s.d["r"]) for s in steps])):
+            if label == "verbatim" and sts == [step_canon(ctx, s) for s in steps]:
+                continue
+            ctx.add("loop_guard", [(start, n.e, "for (%s; %s; %s) %s" % (itext, ctext, ", ".join(sts), bt))], 4,
+                    "loop", "guarded do/while -> for (init=%d step=%d, %s)" % (len(inits), len(steps), label),
+                    ("semantic_risk",))
+
+
+def _exit_stmt(n):
+    """The exiting statement of `if (C) S` when S is (a block of) one return/break/continue."""
+    if n.k == "block" and len(n.ch) == 1:
+        n = n.ch[0]
+    return n if n.k in ("return", "break", "continue") else None
+
+
+def _const_value(ctx, text):
+    """Numeric value of `text` when it is a literal or a local assigned exactly once from a literal."""
+    t = text.strip()
+    if re.match(r"^-?(0[xX][0-9a-fA-F]+|\d+)[uUlL]*$", t):
+        try:
+            return int(re.sub(r"[uUlL]+$", "", t), 0)
+        except ValueError:
+            return None
+    if t in ctx.locals and t not in ctx.volatile:
+        vals = []
+        for n in ctx.nodes:
+            if n.k == "expr":
+                e = ctx.expr(*n.d["r"])
+                if e is not None and e.k == "assign" and e.ch[0].k == "ident" and e.ch[0].name == t:
+                    vals.append(e.ch[1] if e.op == "=" else None)
+        if len(vals) == 1 and vals[0] is not None:
+            return _const_value(ctx, ctx.text(vals[0].a, vals[0].b))
+    return None
+
+
+def fam_goto_branch(ctx):
+    """`if (C) { return X; } goto L;`  ->  `if (!C) goto L; return X;`, and (when the code after the
+    enclosing block falls into `return X;` anyway) `if (!C) goto L;`; the reverse
+    `if (C) goto L; S` -> `if (!C) { S } goto L;`; plus deletion of `x = x;` no-op statements."""
+    if not ctx.ok or not ctx.want("goto_branch"):
+        return
+    src = ctx.src
+    fin = ctx.body.ch[-1] if ctx.body.ch else None
+    for n in ctx.nodes:
+        if n.k == "expr":
+            e = ctx.expr(*n.d["r"])
+            if e is not None and e.k == "assign" and e.op == "=" and e.ch[0].k == "ident" and \
+                    e.ch[1].k == "ident" and e.ch[0].name == e.ch[1].name and e.ch[0].name not in ctx.volatile:
+                ctx.add("goto_branch", [ctx.del_stmt_edit(n)], 1, "spelling", "drop no-op `%s = %s;`" % (
+                    e.ch[0].name, e.ch[0].name))
+        if n.k != "block":
+            continue
+        for i in range(len(n.ch) - 1):
+            a, b = n.ch[i], n.ch[i + 1]
+            if a.k == "if" and a.d["else"] is None and b.k == "goto":
+                ex = _exit_stmt(a.d["then"])
+                if ex is None:
+                    continue
+                r = _neg(ctx, a.d["cond"])
+                if r is None:
+                    continue
+                ntxt, risk = r
+                lab = b.d["name"]
+                fl = ("semantic_risk",) if risk else ()
+                ctx.add("goto_branch", [(a.s, b.e, "if (%s) goto %s; %s" % (ntxt, lab, ctx.ntext(ex)))], 3, "branch",
+                        "if (C) exit; goto L  ->  if (!C) goto L; exit", fl)
+                # tail merge: this block is the `then` of a top-level if directly followed by the
+                # function's final `return X;` with the same value
+                par = n.parent
+                if ex.k == "return" and par is not None and par.k == "if" and fin is not None and \
+                        fin.k == "return" and par.parent is ctx.body and par.pos + 1 == len(ctx.body.ch) - 1:
+                    x1 = ctx.text(*ex.d["r"]).strip()
+                    x2 = ctx.text(*fin.d["r"]).strip()
+                    c1, c2 = _const_value(ctx, x1), _const_value(ctx, x2)
+                    if x1 and x2 and (x1 == x2 or (c1 is not None and c1 == c2)):
+                        ctx.add("goto_branch", [(a.s, b.e, "if (%s) goto %s;" % (ntxt, lab))], 3, "branch",
+                                "drop `return %s` that the fall-through already performs" % x1,
+                                fl if x1 == x2 else ("semantic_risk",))
+            if a.k == "if" and a.d["else"] is None and a.d["then"].k == "goto" and _always_exits(b) and \
+                    b.k in ("return", "break", "continue"):
+                r = _neg(ctx, a.d["cond"])
+                nxt = n.ch[i + 2] if i + 2 < len(n.ch) else None
+                if r is None:
+                    continue
+                ntxt, risk = r
+                ctx.add("goto_branch", [(a.s, b.e, "if (%s) { %s } goto %s;" % (ntxt, ctx.ntext(b), a.d["then"].d["name"]))],
+                        3, "branch", "if (C) goto L; exit  ->  if (!C) { exit } goto L",
+                        ("semantic_risk",) if risk else ())
+
+
 def fam_param_unused(ctx):
     """Remove a parameter the body never reads, or add one trailing unused s32 parameter."""
     if not ctx.ok or not ctx.want("param_unused"):
@@ -3771,6 +4062,10 @@ CATALOG = {
     "deref_index": (fam_deref_index, "addr", "*(p + k) <-> p[k], *p <-> p[0]"),
     "param_unused": (fam_param_unused, "frame", "remove unused parameter / add an unused trailing parameter"),
     "view_cast": (fam_view_cast, "addr", "a[k] -> ((T *) a)[k] with a cast type already used in the function"),
+    "m2c_field": (fam_m2c_field, "addr", "M2C_FIELD(p, T *, off) -> p[k] / ((T *) p)[k]; retype the pointer variable"),
+    "local_reload": (fam_local_reload, "frame", "local assigned repeatedly from one pure expression -> the expression"),
+    "loop_guard": (fam_loop_guard, "loop", "if (G) { do { B } while (C); } -> while / for (inits folded)"),
+    "goto_branch": (fam_goto_branch, "branch", "if (C) exit; goto L <-> if (!C) goto L; exit; drop a fall-through return; x = x; no-ops"),
     "dead_purge": (fam_dead_purge, "frame", "delete write-only locals and the statements that feed only them"),
 }
 
@@ -3808,6 +4103,10 @@ _GENERATORS = [
     (("param_unused",), fam_param_unused),
     (("dead_purge",), fam_dead_purge),
     (("view_cast",), fam_view_cast),
+    (("m2c_field",), fam_m2c_field),
+    (("local_reload",), fam_local_reload),
+    (("loop_guard",), fam_loop_guard),
+    (("goto_branch",), fam_goto_branch),
 ]
 
 
@@ -3871,18 +4170,26 @@ def apply(src, mutation_id):
 
 
 GAPS = """
-Known gaps (not implemented, or only partly):
- - introducing a *new* named local (hoisting a repeated subexpression or a
-   constant such as `zero = 0.0f`); only dropping/inlining and pad locals exist;
- - scale-then-add FP idiom and associativity regrouping ((a+b)+c -> a+(b+c));
- - pointer-stride / induction-variable rewrites (`p += 4` -> `p += 1`), m2c
-   goto-loop -> indexed array loop; struct/array typing of externs;
- - typed prototype reconstruction (only `f(args)` -> `f()`), argument-count changes;
- - `-O1/-O2/-O3` flag sweeps and group-level knobs (keep membership, stand-in
-   call sites): those are search.py/probe.py concerns, not source edits;
- - while/do loops whose step statements are not trailing; `continue`-bearing
-   do-while bodies are skipped rather than rewritten;
- - K&R-style function definitions and macro-heavy statements are skipped.
+Known gaps (not implemented, or only partly).  Round 3 closed: new named locals for repeated float
+literals (hoist_local; other subexpressions need a type, not attempted), typed prototypes of callees
+only as drop / void<->s32 return / integer parameter retype (proto_form), argument add/drop for K&R
+and (void) callees (call_arg, names only from target-derived hints or the parameters), own return
+type (ret_type), unused parameter add/remove (param_unused), while-with-step fold and break-merge
+(while_fold, cond_merge), cast drop / collapse / retype and m2c `if (1)` artifacts (cast_simplify),
+write-only locals (dead_purge), `*(p + k)` <-> `p[k]` (deref_index), `-O` levels (search.py dimension,
+not a source edit).  Still missing:
+ - hoisting a repeated non-literal subexpression into a new local (needs its type: no C front end),
+   scale-then-add FP idiom and associativity regrouping ((a+b)+c -> a+(b+c));
+ - pointer-stride / induction-variable rewrites (`p += 4` -> `p += 1`), m2c goto-loop -> indexed
+   array loop (UpdateActiveObjects, func_800DD45C class), struct typing of externs (`S2C d[]` views);
+ - full prototype reconstruction (parameter lists of K&R callees), argument *values* that are not a
+   parameter or a global the target words materialise (computed arguments, locals);
+ - switch rebuilds from if-chains on M2C_FIELD temporaries (func_800CDDE8 class) and any edit that
+   needs more than ~4 cooperating changes none of which improves the score alone (car_select_handler);
+ - while/do loops whose step statements are not trailing or leading; `continue`-bearing do-while
+   bodies are skipped rather than rewritten;
+ - K&R-style function definitions and macro-heavy statements are skipped;
+ - group-level knobs (keep membership, stand-in call sites): probe.py concerns.
 """
 
 
@@ -3892,7 +4199,7 @@ Known gaps (not implemented, or only partly):
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description="Mutation catalog for IDO C89 sources")
-    ap.add_argument("file")
+    ap.add_argument("file", nargs="?")
     ap.add_argument("func", nargs="?", help="function name (default: every function)")
     ap.add_argument("--list", action="store_true", help="one line per mutation")
     ap.add_argument("--json", action="store_true", help="machine-readable output")
@@ -3904,6 +4211,8 @@ def main(argv=None):
     if a.gaps:
         print(GAPS)
         return 0
+    if not a.file:
+        ap.error("the following arguments are required: file")
     with open(a.file, encoding="utf8", errors="replace") as fh:
         src = fh.read()
     if a.apply:
