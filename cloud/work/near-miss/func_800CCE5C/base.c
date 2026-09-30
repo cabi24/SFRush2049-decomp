@@ -3700,18 +3700,14 @@ M2C_UNK memcpy(u8 *, u8 *, M2C_UNK);                /* extern */
 
 void func_800CCE5C(void **arg0, u8 *arg1) {
     void *sp24;
+    s32 pad;
     u8 *sp1C;
-    u8 *temp_a0;
-    void **temp_v0;
-    void *temp_v1;
+    s32 pad2;
 
-    temp_v0 = M2C_FIELD(*arg0, void ***, 0x2C);
-    if (temp_v0 != NULL) {
-        temp_v1 = *temp_v0;
-        temp_a0 = (u8 *) temp_v1 + 0x3C;
-        sp1C = temp_a0;
-        sp24 = temp_v1;
-        if (func_800A1910(temp_a0, arg1, 0xB) != 0) {
+    if (M2C_FIELD(*arg0, void ***, 0x2C) != NULL) {
+        sp24 = *M2C_FIELD(*arg0, void ***, 0x2C);
+        sp1C = (u8 *) sp24 + 0x3C;
+        if (func_800A1910(sp1C, arg1, 0xB) != 0) {
             memcpy((u8 *) *arg0 + 0x21, arg1, 0xB);
             memcpy(sp1C, arg1, 0xB);
             M2C_FIELD(sp24, s32 *, 0x38) = format_string_parse(sp1C, 0xB);
