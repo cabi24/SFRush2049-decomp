@@ -1,0 +1,179 @@
+void task_complete_signal(s32 arg0)
+{
+ osCreateMesgQueue(&D_80153E68, D_80153EF0, 1);
+ D_80153F10.f0 = 0;
+for (;;) {
+ osRecvMesg(&D_80153E68, 0, 1);
+ if (func_8008ABE4() == 0) {
+ D_80153F10.f0 = 0;
+ osJamMesg(D_80153F10.f12, 0, 1);
+ }
+ }
+}
+----
+void task_complete_signal(s32 arg0)
+{
+ osCreateMesgQueue(&D_80153E68, D_80153EF0, 1);
+ D_80153F10.f0 = 0;
+while (1) {
+ osRecvMesg(&D_80153E68, 0, 1);
+ if (func_8008ABE4() == 0) {
+ D_80153F10.f0 = 0;
+ osJamMesg(D_80153F10.f12, 0, 1);
+ }
+ }
+}
+----
+void task_complete_signal(s32 arg0)
+{
+ osCreateMesgQueue(&D_80153E68, D_80153EF0, 1);
+ D_80153F10.f0 = 0;
+do {
+ osRecvMesg(&D_80153E68, 0, 1);
+ if (func_8008ABE4() == 0) {
+ D_80153F10.f0 = 0;
+ osJamMesg(D_80153F10.f12, 0, 1);
+ }
+ } while (1);
+}
+----
+void task_complete_signal(s32 arg0)
+{
+ osCreateMesgQueue(&D_80153E68, D_80153EF0, 1);
+ D_80153F10.f0 = 0;
+while (1) {
+ osRecvMesg(&D_80153E68, 0, 1);
+ if (!func_8008ABE4()) {
+ D_80153F10.f0 = 0;
+ osJamMesg(D_80153F10.f12, 0, 1);
+ }
+ }
+}
+----
+void task_complete_signal(s32 arg0)
+{
+ osCreateMesgQueue(&D_80153E68, D_80153EF0, 1);
+ D_80153F10.f0 = 0;
+for (;;) {
+ osRecvMesg(&D_80153E68, 0, 1);
+ if (func_8008ABE4() != 0) continue;
+ D_80153F10.f0 = 0;
+ osJamMesg(D_80153F10.f12, 0, 1);
+ }
+}
+----
+void task_complete_signal(s32 arg0)
+{
+ osCreateMesgQueue(&D_80153E68, D_80153EF0, 1);
+ D_80153F10.f0 = 0;
+L: osRecvMesg(&D_80153E68, 0, 1);
+ if (func_8008ABE4() == 0) {
+ D_80153F10.f0 = 0;
+ osJamMesg(D_80153F10.f12, 0, 1);
+ }
+ goto L;
+}
+----
+void task_complete_signal(s32 arg0)
+{
+ osCreateMesgQueue(&D_80153E68, D_80153EF0, 1);
+ D_80153F10.f0 = 0;
+for (;;) {
+ osRecvMesg(&D_80153E68, 0, 1);
+ if (func_8008ABE4() == 0) {
+ D_80153F10.f0 = 0;
+ osJamMesg(D_80153F10.f12, 0, 1);
+ }
+ }
+ return;
+}
+----
+void task_complete_signal(void *arg0)
+{
+ osCreateMesgQueue(&D_80153E68, D_80153EF0, 1);
+ D_80153F10.f0 = 0;
+for (;;) {
+ osRecvMesg(&D_80153E68, 0, 1);
+ if (func_8008ABE4() == 0) {
+ D_80153F10.f0 = 0;
+ osJamMesg(D_80153F10.f12, 0, 1);
+ }
+ }
+}
+----
+void task_complete_signal(void *arg0)
+{
+ osCreateMesgQueue(&D_80153E68, D_80153EF0, 1);
+ D_80153F10.f0 = 0;
+while (1) {
+ osRecvMesg(&D_80153E68, 0, 1);
+ if (func_8008ABE4() == 0) {
+ D_80153F10.f0 = 0;
+ osJamMesg(D_80153F10.f12, 0, 1);
+ }
+ }
+}
+----
+void task_complete_signal(void *arg0)
+{
+ osCreateMesgQueue(&D_80153E68, D_80153EF0, 1);
+ D_80153F10.f0 = 0;
+do {
+ osRecvMesg(&D_80153E68, 0, 1);
+ if (func_8008ABE4() == 0) {
+ D_80153F10.f0 = 0;
+ osJamMesg(D_80153F10.f12, 0, 1);
+ }
+ } while (1);
+}
+----
+void task_complete_signal(void *arg0)
+{
+ osCreateMesgQueue(&D_80153E68, D_80153EF0, 1);
+ D_80153F10.f0 = 0;
+while (1) {
+ osRecvMesg(&D_80153E68, 0, 1);
+ if (!func_8008ABE4()) {
+ D_80153F10.f0 = 0;
+ osJamMesg(D_80153F10.f12, 0, 1);
+ }
+ }
+}
+----
+void task_complete_signal(void *arg0)
+{
+ osCreateMesgQueue(&D_80153E68, D_80153EF0, 1);
+ D_80153F10.f0 = 0;
+for (;;) {
+ osRecvMesg(&D_80153E68, 0, 1);
+ if (func_8008ABE4() != 0) continue;
+ D_80153F10.f0 = 0;
+ osJamMesg(D_80153F10.f12, 0, 1);
+ }
+}
+----
+void task_complete_signal(void *arg0)
+{
+ osCreateMesgQueue(&D_80153E68, D_80153EF0, 1);
+ D_80153F10.f0 = 0;
+L: osRecvMesg(&D_80153E68, 0, 1);
+ if (func_8008ABE4() == 0) {
+ D_80153F10.f0 = 0;
+ osJamMesg(D_80153F10.f12, 0, 1);
+ }
+ goto L;
+}
+----
+void task_complete_signal(void *arg0)
+{
+ osCreateMesgQueue(&D_80153E68, D_80153EF0, 1);
+ D_80153F10.f0 = 0;
+for (;;) {
+ osRecvMesg(&D_80153E68, 0, 1);
+ if (func_8008ABE4() == 0) {
+ D_80153F10.f0 = 0;
+ osJamMesg(D_80153F10.f12, 0, 1);
+ }
+ }
+ return;
+}
