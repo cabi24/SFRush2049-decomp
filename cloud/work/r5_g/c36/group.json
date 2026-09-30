@@ -1,0 +1,14 @@
+{
+ "members": [
+  "func_800C36A0"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "__standin_c36a0_a",
+  "__standin_c36a0_b"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "claims": []
+}

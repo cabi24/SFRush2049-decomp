@@ -1,0 +1,83 @@
+void sound_stop(SNode *n)
+{
+s32 i, last; SNode **p, **q;
+ if (n == 0) return;
+ do { for (i = 0; i < D_80149788; i++) { if (D_80149450[i] == n) break; }
+ p = &D_80149450[i];
+ D_80140BF0[n->slot].state = 2;
+ D_80149788--;
+ last = D_80149788;
+ *p = D_80149450[last];
+ D_80149450[last] = n;
+ n = n->next; } while (n != 0);
+}
+----
+void sound_stop(SNode *n)
+{
+s32 i, last; SNode **p, **q;
+ if (n == 0) return;
+ do { for (i = 0; i < D_80149788; i++) { if (D_80149450[i] == n) break; }
+ p = &D_80149450[i];
+ D_80140BF0[n->slot].state = 2;
+ last = D_80149788 - 1;
+ D_80149788 = last;
+ *p = D_80149450[last];
+ D_80149450[last] = n;
+ n = n->next; } while (n != 0);
+}
+----
+void sound_stop(SNode *n)
+{
+s32 i, last; SNode **p, **q;
+ if (n == 0) return;
+ do { for (i = 0; i < D_80149788; i++) { if (D_80149450[i] == n) break; }
+ p = &D_80149450[i];
+ D_80140BF0[n->slot].state = 2;
+ last = D_80149788 - 1;
+ *p = D_80149450[last];
+ D_80149788 = last;
+ D_80149450[last] = n;
+ n = n->next; } while (n != 0);
+}
+----
+void sound_stop(SNode *n)
+{
+s32 i, last; SNode **p, **q;
+ if (n == 0) return;
+ do { for (i = 0; i < D_80149788; i++) { if (D_80149450[i] == n) break; }
+ p = D_80149450 + i;
+ D_80140BF0[n->slot].state = 2;
+ D_80149788 = last = D_80149788 - 1;
+ *p = D_80149450[last];
+ D_80149450[last] = n;
+ n = n->next; } while (n != 0);
+}
+----
+void sound_stop(SNode *n)
+{
+s32 i, last; SNode **p, **q;
+ if (n == 0) return;
+ do { for (i = 0; i < D_80149788; i++) { if (D_80149450[i] == n) break; }
+ p = &D_80149450[i];
+ D_80140BF0[n->slot].state = 2;
+ D_80149788 = last = D_80149788 - 1;
+ q = &D_80149450[last];
+ *p = *q;
+ *q = n;
+ n = n->next; } while (n != 0);
+}
+----
+void sound_stop(SNode *n)
+{
+s32 i, last; SNode **p, **q;
+ if (n == 0) return;
+ do { for (i = 0; i < D_80149788; i++) { if (D_80149450[i] == n) break; }
+ p = &D_80149450[i];
+ D_80140BF0[n->slot].state = 2;
+ last = D_80149788 - 1;
+ q = &D_80149450[last];
+ D_80149788 = last;
+ *p = *q;
+ *q = n;
+ n = n->next; } while (n != 0);
+}

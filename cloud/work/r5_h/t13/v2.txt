@@ -1,0 +1,189 @@
+void func_800F7EB0(void)
+{
+ s32 i, j; s8 *bp; float *fp; s8 *q;
+bp = D_80144018; fp = D_80144DA8;
+ for (i = 0; i < D_8014A108; i++) { *bp++ = 0; *fp++ = D_80124618; }
+ for (j = 0; j < 3; j++) for (i = 0; i < 5; i++) D_80151AC0[j * 5 + i] = -1;
+}
+----
+void func_800F7EB0(void)
+{
+ s32 i, j; s8 *bp; float *fp; s8 *q;
+bp = D_80144018; fp = D_80144DA8;
+ for (i = 0; i < D_8014A108; i++) { *bp++ = 0; *fp++ = D_80124618; }
+ q = D_80151AC0; for (j = 0; j < 3; j++) { for (i = 0; i < 5; i++) *q++ = -1; }
+}
+----
+void func_800F7EB0(void)
+{
+ s32 i, j; s8 *bp; float *fp; s8 *q;
+bp = D_80144018; fp = D_80144DA8;
+ for (i = 0; i < D_8014A108; i++) { *bp++ = 0; *fp++ = D_80124618; }
+ q = D_80151AC0; for (j = 0; j < 3; j++) { for (i = 0; i < 5; i++) { q[i] = -1; } q += 5; }
+}
+----
+void func_800F7EB0(void)
+{
+ s32 i, j; s8 *bp; float *fp; s8 *q;
+bp = D_80144018; fp = D_80144DA8;
+ for (i = 0; i < D_8014A108; i++) { *bp++ = 0; *fp++ = D_80124618; }
+ q = D_80151AC0; for (j = 0; j < 3; j++, q += 5) { for (i = 0; i < 5; i++) { q[i] = -1; } }
+}
+----
+void func_800F7EB0(void)
+{
+ s32 i, j; s8 *bp; float *fp; s8 *q;
+bp = D_80144018; fp = D_80144DA8;
+ for (i = 0; i < D_8014A108; i++) { *bp++ = 0; *fp++ = D_80124618; }
+ q = D_80151AC0; for (j = 0; j < 3; j++) { q[0] = -1; q[1] = -1; q[2] = -1; q[3] = -1; q[4] = -1; q += 5; }
+}
+----
+void func_800F7EB0(void)
+{
+ s32 i, j; s8 *bp; float *fp; s8 *q;
+for (i = 0; i < D_8014A108; i++) { *bp++ = 0; *fp++ = D_80124618; }
+ for (j = 0; j < 3; j++) for (i = 0; i < 5; i++) D_80151AC0[j * 5 + i] = -1;
+}
+----
+void func_800F7EB0(void)
+{
+ s32 i, j; s8 *bp; float *fp; s8 *q;
+for (i = 0; i < D_8014A108; i++) { *bp++ = 0; *fp++ = D_80124618; }
+ q = D_80151AC0; for (j = 0; j < 3; j++) { for (i = 0; i < 5; i++) *q++ = -1; }
+}
+----
+void func_800F7EB0(void)
+{
+ s32 i, j; s8 *bp; float *fp; s8 *q;
+for (i = 0; i < D_8014A108; i++) { *bp++ = 0; *fp++ = D_80124618; }
+ q = D_80151AC0; for (j = 0; j < 3; j++) { for (i = 0; i < 5; i++) { q[i] = -1; } q += 5; }
+}
+----
+void func_800F7EB0(void)
+{
+ s32 i, j; s8 *bp; float *fp; s8 *q;
+for (i = 0; i < D_8014A108; i++) { *bp++ = 0; *fp++ = D_80124618; }
+ q = D_80151AC0; for (j = 0; j < 3; j++, q += 5) { for (i = 0; i < 5; i++) { q[i] = -1; } }
+}
+----
+void func_800F7EB0(void)
+{
+ s32 i, j; s8 *bp; float *fp; s8 *q;
+for (i = 0; i < D_8014A108; i++) { *bp++ = 0; *fp++ = D_80124618; }
+ q = D_80151AC0; for (j = 0; j < 3; j++) { q[0] = -1; q[1] = -1; q[2] = -1; q[3] = -1; q[4] = -1; q += 5; }
+}
+----
+void func_800F7EB0(void)
+{
+ s32 i, j; s8 *bp; float *fp; s8 *q;
+bp = D_80144018; fp = D_80144DA8;
+ for (i = 0; i < D_8014A108; i++) { *bp = 0; bp++; *fp = D_80124618; fp++; }
+ for (j = 0; j < 3; j++) for (i = 0; i < 5; i++) D_80151AC0[j * 5 + i] = -1;
+}
+----
+void func_800F7EB0(void)
+{
+ s32 i, j; s8 *bp; float *fp; s8 *q;
+bp = D_80144018; fp = D_80144DA8;
+ for (i = 0; i < D_8014A108; i++) { *bp = 0; bp++; *fp = D_80124618; fp++; }
+ q = D_80151AC0; for (j = 0; j < 3; j++) { for (i = 0; i < 5; i++) *q++ = -1; }
+}
+----
+void func_800F7EB0(void)
+{
+ s32 i, j; s8 *bp; float *fp; s8 *q;
+bp = D_80144018; fp = D_80144DA8;
+ for (i = 0; i < D_8014A108; i++) { *bp = 0; bp++; *fp = D_80124618; fp++; }
+ q = D_80151AC0; for (j = 0; j < 3; j++) { for (i = 0; i < 5; i++) { q[i] = -1; } q += 5; }
+}
+----
+void func_800F7EB0(void)
+{
+ s32 i, j; s8 *bp; float *fp; s8 *q;
+bp = D_80144018; fp = D_80144DA8;
+ for (i = 0; i < D_8014A108; i++) { *bp = 0; bp++; *fp = D_80124618; fp++; }
+ q = D_80151AC0; for (j = 0; j < 3; j++, q += 5) { for (i = 0; i < 5; i++) { q[i] = -1; } }
+}
+----
+void func_800F7EB0(void)
+{
+ s32 i, j; s8 *bp; float *fp; s8 *q;
+bp = D_80144018; fp = D_80144DA8;
+ for (i = 0; i < D_8014A108; i++) { *bp = 0; bp++; *fp = D_80124618; fp++; }
+ q = D_80151AC0; for (j = 0; j < 3; j++) { q[0] = -1; q[1] = -1; q[2] = -1; q[3] = -1; q[4] = -1; q += 5; }
+}
+----
+void func_800F7EB0(void)
+{
+ s32 i, j; s8 *bp; float *fp; s8 *q;
+bp = D_80144018; fp = D_80144DA8;
+ for (i = 0; i < D_8014A108; i++, bp++, fp++) { *bp = 0; *fp = D_80124618; }
+ for (j = 0; j < 3; j++) for (i = 0; i < 5; i++) D_80151AC0[j * 5 + i] = -1;
+}
+----
+void func_800F7EB0(void)
+{
+ s32 i, j; s8 *bp; float *fp; s8 *q;
+bp = D_80144018; fp = D_80144DA8;
+ for (i = 0; i < D_8014A108; i++, bp++, fp++) { *bp = 0; *fp = D_80124618; }
+ q = D_80151AC0; for (j = 0; j < 3; j++) { for (i = 0; i < 5; i++) *q++ = -1; }
+}
+----
+void func_800F7EB0(void)
+{
+ s32 i, j; s8 *bp; float *fp; s8 *q;
+bp = D_80144018; fp = D_80144DA8;
+ for (i = 0; i < D_8014A108; i++, bp++, fp++) { *bp = 0; *fp = D_80124618; }
+ q = D_80151AC0; for (j = 0; j < 3; j++) { for (i = 0; i < 5; i++) { q[i] = -1; } q += 5; }
+}
+----
+void func_800F7EB0(void)
+{
+ s32 i, j; s8 *bp; float *fp; s8 *q;
+bp = D_80144018; fp = D_80144DA8;
+ for (i = 0; i < D_8014A108; i++, bp++, fp++) { *bp = 0; *fp = D_80124618; }
+ q = D_80151AC0; for (j = 0; j < 3; j++, q += 5) { for (i = 0; i < 5; i++) { q[i] = -1; } }
+}
+----
+void func_800F7EB0(void)
+{
+ s32 i, j; s8 *bp; float *fp; s8 *q;
+bp = D_80144018; fp = D_80144DA8;
+ for (i = 0; i < D_8014A108; i++, bp++, fp++) { *bp = 0; *fp = D_80124618; }
+ q = D_80151AC0; for (j = 0; j < 3; j++) { q[0] = -1; q[1] = -1; q[2] = -1; q[3] = -1; q[4] = -1; q += 5; }
+}
+----
+void func_800F7EB0(void)
+{
+ s32 i, j; s8 *bp; float *fp; s8 *q;
+for (i = 0; i < D_8014A108; i++) { D_80144018[i] = 0; D_80144DA8[i] = D_80124618; }
+ for (j = 0; j < 3; j++) for (i = 0; i < 5; i++) D_80151AC0[j * 5 + i] = -1;
+}
+----
+void func_800F7EB0(void)
+{
+ s32 i, j; s8 *bp; float *fp; s8 *q;
+for (i = 0; i < D_8014A108; i++) { D_80144018[i] = 0; D_80144DA8[i] = D_80124618; }
+ q = D_80151AC0; for (j = 0; j < 3; j++) { for (i = 0; i < 5; i++) *q++ = -1; }
+}
+----
+void func_800F7EB0(void)
+{
+ s32 i, j; s8 *bp; float *fp; s8 *q;
+for (i = 0; i < D_8014A108; i++) { D_80144018[i] = 0; D_80144DA8[i] = D_80124618; }
+ q = D_80151AC0; for (j = 0; j < 3; j++) { for (i = 0; i < 5; i++) { q[i] = -1; } q += 5; }
+}
+----
+void func_800F7EB0(void)
+{
+ s32 i, j; s8 *bp; float *fp; s8 *q;
+for (i = 0; i < D_8014A108; i++) { D_80144018[i] = 0; D_80144DA8[i] = D_80124618; }
+ q = D_80151AC0; for (j = 0; j < 3; j++, q += 5) { for (i = 0; i < 5; i++) { q[i] = -1; } }
+}
+----
+void func_800F7EB0(void)
+{
+ s32 i, j; s8 *bp; float *fp; s8 *q;
+for (i = 0; i < D_8014A108; i++) { D_80144018[i] = 0; D_80144DA8[i] = D_80124618; }
+ q = D_80151AC0; for (j = 0; j < 3; j++) { q[0] = -1; q[1] = -1; q[2] = -1; q[3] = -1; q[4] = -1; q += 5; }
+}

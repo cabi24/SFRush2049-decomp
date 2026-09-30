@@ -24,5 +24,8 @@
   "generated": "hand-written (r5_i)",
   "unprototyped": [],
   "context": [],
-  "claims": []
+  "claims": [
+    "func_80091BA8",
+    "scheduler_recv"
+  ]
 }

@@ -1,0 +1,183 @@
+void sound_stop(SNode *n)
+{
+s32 i;
+ if (n == 0) return;
+ do { for (i = 0; i < D_80149788; i++) { if (D_80149450[i] == n) break; }
+ D_80140BF0[n->slot].state = 2;
+ D_80149788--;
+ D_80149450[i] = D_80149450[D_80149788];
+ D_80149450[D_80149788] = n;
+ n = n->next; } while (n != 0);
+}
+----
+void sound_stop(SNode *n)
+{
+s32 i;
+ while (n != 0) { for (i = 0; i < D_80149788; i++) { if (D_80149450[i] == n) break; }
+ D_80140BF0[n->slot].state = 2;
+ D_80149788--;
+ D_80149450[i] = D_80149450[D_80149788];
+ D_80149450[D_80149788] = n;
+ n = n->next; }
+}
+----
+void sound_stop(SNode *n)
+{
+s32 i;
+ if (n == 0) return;
+ do { i = 0; while (i < D_80149788) { if (D_80149450[i] == n) break; i++; }
+ D_80140BF0[n->slot].state = 2;
+ D_80149788--;
+ D_80149450[i] = D_80149450[D_80149788];
+ D_80149450[D_80149788] = n;
+ n = n->next; } while (n != 0);
+}
+----
+void sound_stop(SNode *n)
+{
+s32 i;
+ while (n != 0) { i = 0; while (i < D_80149788) { if (D_80149450[i] == n) break; i++; }
+ D_80140BF0[n->slot].state = 2;
+ D_80149788--;
+ D_80149450[i] = D_80149450[D_80149788];
+ D_80149450[D_80149788] = n;
+ n = n->next; }
+}
+----
+void sound_stop(SNode *n)
+{
+s32 i;
+ if (n == 0) return;
+ do { for (i = 0; i < D_80149788; i++) { if (D_80149450[i] == n) break; }
+ D_80140BF0[n->slot].state = 2;
+ --D_80149788;
+ D_80149450[i] = D_80149450[D_80149788];
+ D_80149450[D_80149788] = n;
+ n = n->next; } while (n != 0);
+}
+----
+void sound_stop(SNode *n)
+{
+s32 i;
+ while (n != 0) { for (i = 0; i < D_80149788; i++) { if (D_80149450[i] == n) break; }
+ D_80140BF0[n->slot].state = 2;
+ --D_80149788;
+ D_80149450[i] = D_80149450[D_80149788];
+ D_80149450[D_80149788] = n;
+ n = n->next; }
+}
+----
+void sound_stop(SNode *n)
+{
+s32 i;
+ if (n == 0) return;
+ do { i = 0; while (i < D_80149788) { if (D_80149450[i] == n) break; i++; }
+ D_80140BF0[n->slot].state = 2;
+ --D_80149788;
+ D_80149450[i] = D_80149450[D_80149788];
+ D_80149450[D_80149788] = n;
+ n = n->next; } while (n != 0);
+}
+----
+void sound_stop(SNode *n)
+{
+s32 i;
+ while (n != 0) { i = 0; while (i < D_80149788) { if (D_80149450[i] == n) break; i++; }
+ D_80140BF0[n->slot].state = 2;
+ --D_80149788;
+ D_80149450[i] = D_80149450[D_80149788];
+ D_80149450[D_80149788] = n;
+ n = n->next; }
+}
+----
+void sound_stop(SNode *n)
+{
+s32 i;
+ if (n == 0) return;
+ do { for (i = 0; i < D_80149788; i++) { if (D_80149450[i] == n) break; }
+ D_80140BF0[n->slot].state = 2;
+ D_80149788 -= 1;
+ D_80149450[i] = D_80149450[D_80149788];
+ D_80149450[D_80149788] = n;
+ n = n->next; } while (n != 0);
+}
+----
+void sound_stop(SNode *n)
+{
+s32 i;
+ while (n != 0) { for (i = 0; i < D_80149788; i++) { if (D_80149450[i] == n) break; }
+ D_80140BF0[n->slot].state = 2;
+ D_80149788 -= 1;
+ D_80149450[i] = D_80149450[D_80149788];
+ D_80149450[D_80149788] = n;
+ n = n->next; }
+}
+----
+void sound_stop(SNode *n)
+{
+s32 i;
+ if (n == 0) return;
+ do { i = 0; while (i < D_80149788) { if (D_80149450[i] == n) break; i++; }
+ D_80140BF0[n->slot].state = 2;
+ D_80149788 -= 1;
+ D_80149450[i] = D_80149450[D_80149788];
+ D_80149450[D_80149788] = n;
+ n = n->next; } while (n != 0);
+}
+----
+void sound_stop(SNode *n)
+{
+s32 i;
+ while (n != 0) { i = 0; while (i < D_80149788) { if (D_80149450[i] == n) break; i++; }
+ D_80140BF0[n->slot].state = 2;
+ D_80149788 -= 1;
+ D_80149450[i] = D_80149450[D_80149788];
+ D_80149450[D_80149788] = n;
+ n = n->next; }
+}
+----
+void sound_stop(SNode *n)
+{
+s32 i;
+ if (n == 0) return;
+ do { for (i = 0; i < D_80149788; i++) { if (D_80149450[i] == n) break; }
+ D_80140BF0[n->slot].state = 2;
+ D_80149788 = D_80149788 - 1;
+ D_80149450[i] = D_80149450[D_80149788];
+ D_80149450[D_80149788] = n;
+ n = n->next; } while (n != 0);
+}
+----
+void sound_stop(SNode *n)
+{
+s32 i;
+ while (n != 0) { for (i = 0; i < D_80149788; i++) { if (D_80149450[i] == n) break; }
+ D_80140BF0[n->slot].state = 2;
+ D_80149788 = D_80149788 - 1;
+ D_80149450[i] = D_80149450[D_80149788];
+ D_80149450[D_80149788] = n;
+ n = n->next; }
+}
+----
+void sound_stop(SNode *n)
+{
+s32 i;
+ if (n == 0) return;
+ do { i = 0; while (i < D_80149788) { if (D_80149450[i] == n) break; i++; }
+ D_80140BF0[n->slot].state = 2;
+ D_80149788 = D_80149788 - 1;
+ D_80149450[i] = D_80149450[D_80149788];
+ D_80149450[D_80149788] = n;
+ n = n->next; } while (n != 0);
+}
+----
+void sound_stop(SNode *n)
+{
+s32 i;
+ while (n != 0) { i = 0; while (i < D_80149788) { if (D_80149450[i] == n) break; i++; }
+ D_80140BF0[n->slot].state = 2;
+ D_80149788 = D_80149788 - 1;
+ D_80149450[i] = D_80149450[D_80149788];
+ D_80149450[D_80149788] = n;
+ n = n->next; }
+}

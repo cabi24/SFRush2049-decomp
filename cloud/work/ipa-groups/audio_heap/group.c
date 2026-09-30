@@ -162,13 +162,9 @@ void *audio_task_complete(Heap *heap, u32 size)
     i = 0;
     for (;;) {
         slot = t->slots;
-        if (t->count != 0) {
-            while (*slot != 0) {
-                i++;
-                if (i >= t->count) {
-                    break;
-                }
-                slot++;
+        for (; i < t->count; i++, slot++) {
+            if (*slot == 0) {
+                break;
             }
         }
         if (i < t->count) {
@@ -211,7 +207,6 @@ void *func_800E7C2C(Heap *heap, u32 size, u16 count, u16 a)
 void func_800E7D0C(u16 count, u16 a)
 {
     Heap *h;
-    u32 end;
 
     if (D_80116488 == 0) {
         D_80116488 = 1;
@@ -220,9 +215,8 @@ void func_800E7D0C(u16 count, u16 a)
     }
     h = (Heap *)(((u32)D_8017A640 + 31) & ~31);
     D_801527C8 = h;
-    end = D_80000318 | 0x80000000;
-    h->end = end;
-    if (end >= 0x80400001) {
+    h->end = D_80000318 | 0x80000000;
+    if (h->end >= 0x80400001) {
         D_80156994 = 1;
     }
     func_800E7B44(D_801527C8, count, a);
