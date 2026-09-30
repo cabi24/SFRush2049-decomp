@@ -23,8 +23,11 @@ Manifest:
       "budget": {"wall_seconds": 14400, "iterations": null}
     }
 """
+import base64
+import gzip
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -38,6 +41,90 @@ if str(_HERE) not in sys.path:
 import groupdump  # noqa: E402
 import permuter_search  # noqa: E402
 import _permuter  # noqa: E402
+
+
+# --- __inline: pycparser (the permuter's parser) rejects it, IDO -O3 needs it ---
+
+_INLINE_DECL = re.compile(r"__inline\b[ \t]+([^();{}]*?)\b([A-Za-z_]\w*)[ \t]*\(")
+_INLINE_TOKEN = re.compile(r"__inline\b[ \t]+")
+
+
+def strip_inline(source):
+    """(source without `__inline`, {function: 'static' | ''}): the marker is
+    removed from every declaration that carries it (definitions and prototypes;
+    line numbers are unchanged) and remembered by function name. 'static' means
+    the declaration line starts with `static`, so the marker follows it."""
+    names = {}
+    for line in source.split("\n"):
+        m = _INLINE_DECL.search(line)
+        if m:
+            names[m.group(2)] = "static" if line.startswith("static") else ""
+    return _INLINE_TOKEN.sub("", source), names
+
+
+def _inline_pattern(name, kind):
+    """Regex for a line-start declaration of `name` (calls are indented or
+    have no type in front, so they do not match)."""
+    lead = r"static[ \t]+" if kind == "static" else r"(?!static\b)"
+    return re.compile(r"^(" + lead + r")(?!__inline)(?=[^;=()\n]*[^\w]" + re.escape(name) +
+                      r"[ \t]*\()", re.M)
+
+
+def restore_inline(source, names):
+    """Inverse of strip_inline for source the permuter has rewritten."""
+    for name, kind in names.items():
+        if kind == "static":
+            source = _inline_pattern(name, kind).sub(
+                lambda m: m.group(1) + "__inline ", source)
+        else:
+            source = _inline_pattern(name, kind).sub("__inline ", source)
+    return source
+
+
+def inline_sed(names):
+    """POSIX sed arguments that do restore_inline's job (compile.sh runs them
+    on every candidate before the group is built). '' when nothing to restore."""
+    if not names:
+        return ""
+    # lines that already carry the marker are left alone (b = end of script);
+    # static declarations are done first so the plain-declaration rules below
+    # only ever see lines that did not start with `static`
+    parts = ["-e '/__inline/b'"]
+    for name, kind in sorted(names.items()):
+        if kind == "static":
+            parts.append(f"-e '/^static[[:space:]].*[^A-Za-z0-9_]{name}[[:space:]]*(/ "
+                         f"s/^static[[:space:]][[:space:]]*/static __inline /'")
+    parts.append("-e '/^static[^A-Za-z0-9_]/b'")
+    for name, kind in sorted(names.items()):
+        if kind != "static":
+            parts.append(f"-e '/^[A-Za-z_][^;=(]*[^A-Za-z0-9_]{name}[[:space:]]*(/ "
+                         f"s/^/__inline /'")
+    return " ".join(parts)
+
+
+class _RestoringProgress:
+    """Progress sink that puts `__inline` back into best_source checkpoints."""
+
+    def __init__(self, progress, names):
+        self._progress, self._names = progress, names
+
+    def update(self, **kw):
+        if kw.get("best_source") and self._names:
+            text = gzip.decompress(base64.b64decode(kw["best_source"])).decode()
+            kw["best_source"] = base64.b64encode(gzip.compress(
+                restore_inline(text, self._names).encode())).decode()
+        return self._progress.update(**kw)
+
+    def __getattr__(self, name):
+        return getattr(self._progress, name)
+
+
+def _restore_file(path, names):
+    """A copy of `path` with `__inline` restored, in a directory that outlives
+    the job's scratch dir."""
+    out = Path(tempfile.mkdtemp(prefix="grpbest-")) / "best.c"
+    out.write_text(restore_inline(Path(path).read_text(), names))
+    return str(out)
 
 
 def pipeline(toolkit, flags, files, workdir="."):
@@ -59,8 +146,16 @@ def pipeline(toolkit, flags, files, workdir="."):
     )
 
 
-def write_compile_sh(perm_dir, toolkit, manifest, static_dir):
-    """compile.sh IN.c -o OUT.o: build the group with IN.c as the target file."""
+def write_compile_sh(perm_dir, toolkit, manifest, static_dir, inline_names=None):
+    """compile.sh IN.c -o OUT.o: build the group with IN.c as the target file.
+    IN.c has no `__inline` (the permuter cannot parse it); the functions in
+    `inline_names` get it back before the compiler sees the copy."""
+    seed = manifest["seed_name"]
+    sed = inline_sed(inline_names or {})
+    if sed:
+        put = f'sed {sed} "$SRC" > "$W/{seed}" || exit 1\n'
+    else:
+        put = f'cp "$SRC" "$W/{seed}" || exit 1\n'
     files = [manifest["seed_name"]] + list(manifest.get("extra_files", []))
     script = perm_dir / "compile.sh"
     script.write_text(
@@ -70,7 +165,7 @@ def write_compile_sh(perm_dir, toolkit, manifest, static_dir):
         'W=$(mktemp -d "${TMPDIR:-/tmp}/grp.XXXXXX") || exit 1\n'
         'trap \'rm -rf "$W"\' EXIT\n'
         f'cp -R "{static_dir}"/. "$W"/ || exit 1\n'
-        f'cp "$SRC" "$W/{manifest["seed_name"]}" || exit 1\n'
+        + put
         + pipeline(toolkit, manifest["compile_flags"], files, workdir='"$W"') + "\n"
         'cp "$W/group.o" "$OUT"\n'
     )
@@ -89,7 +184,11 @@ def run(job_dir, manifest, progress):
     static_dir = perm_dir / "static"
     try:
         static_dir.mkdir()
-        shutil.copy(inputs / manifest["seed_file"], perm_dir / "base.c")
+        # the permuter's parser rejects __inline: strip it here, compile.sh
+        # puts it back on exactly those functions, results get it restored
+        stripped, inline_names = strip_inline((inputs / manifest["seed_file"]).read_text())
+        (perm_dir / "base.c").write_text(stripped)
+        progress = _RestoringProgress(progress, inline_names)
         for name in manifest.get("extra_files", []):
             shutil.copy(inputs / name, static_dir / name)
         (static_dir / "keep.txt").write_text("".join(f"{k}\n" for k in manifest["keep"]))
@@ -101,7 +200,7 @@ def run(job_dir, manifest, progress):
         target_o.write_bytes(groupdump.stub_bytes(bytes.fromhex(spec["retail"])))
 
         (perm_dir / "function.txt").write_text(manifest["target_id"] + "\n")
-        write_compile_sh(perm_dir, toolkit, manifest, static_dir)
+        write_compile_sh(perm_dir, toolkit, manifest, static_dir, inline_names)
         (perm_dir / "settings.toml").write_text(
             f'objdump_command = "{sys.executable} {_HERE / "groupdump.py"} {spec_path}"\n')
 
@@ -126,12 +225,14 @@ def run(job_dir, manifest, progress):
         if base_score == 0:
             payload = {"target_id": manifest["target_id"], "group": manifest["group"],
                        "final_best_score": 0, "base_score": 0, "wall_seconds_used": 0}
-            return payload, {"best.c": str(perm_dir / "base.c")}
+            return payload, {"best.c": _restore_file(perm_dir / "base.c", inline_names)}
 
         payload, artifacts = permuter_search.drive(
             perm_dir, manifest, progress, base_score, wall_budget, cores,
             extra_args=("--stack-diffs",))
         payload["group"] = manifest["group"]
+        if inline_names and "best.c" in artifacts:
+            artifacts["best.c"] = _restore_file(artifacts["best.c"], inline_names)
         return payload, artifacts
     finally:
         shutil.rmtree(perm_dir, ignore_errors=True)

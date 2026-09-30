@@ -184,3 +184,80 @@ def test_candidates_skip_locked_and_unlisted_functions(tmp_path):
         {"kind": "function", "target_id": "g", "vaddr": 0x80100008, "size": 12}]}]}
     assert group_jobs.candidates(root, document, lock={"f": {}}) == [("demo", "g", 12)]
     assert group_jobs.candidates(root, document, lock={}) == [("demo", "f", 8), ("demo", "g", 12)]
+
+
+_INLINE_SRC = """static __inline s32 helper(s32 a) {
+    return a + 1;
+}
+
+static __inline void proto(void);
+s32 plain(s32 a) {
+    return helper(a);
+}
+__inline s32 loose(s32 a) {
+    return a;
+}
+"""
+
+
+def test_strip_inline_round_trips():
+    stripped, names = group_search.strip_inline(_INLINE_SRC)
+    assert "__inline" not in stripped
+    assert names == {"helper": "static", "proto": "static", "loose": ""}
+    assert stripped.count("\n") == _INLINE_SRC.count("\n")
+    assert group_search.restore_inline(stripped, names) == _INLINE_SRC
+
+
+def test_restore_inline_survives_a_permuted_body_and_skips_calls():
+    stripped, names = group_search.strip_inline(_INLINE_SRC)
+    permuted = stripped.replace("return a + 1;", "s32 t = a;\n    return t + 1;")
+    permuted += "s32 use(s32 a) {\n    return helper(a);\n}\n"
+    back = group_search.restore_inline(permuted, names)
+    assert back.count("__inline") == 3
+    assert "    return helper(a);" in back and "static __inline s32 helper(s32 a) {" in back
+
+
+def test_source_without_inline_is_untouched():
+    src = "s32 f(s32 a) {\n    return a;\n}\n"
+    assert group_search.strip_inline(src) == (src, {})
+    assert group_search.inline_sed({}) == ""
+
+
+def test_compile_sh_restores_inline_before_the_build(tmp_path):
+    manifest = {"seed_name": "group.c", "extra_files": [], "compile_flags": "-O3"}
+    group_search.write_compile_sh(tmp_path, "/tk", manifest, tmp_path / "static",
+                                  {"helper": "static", "loose": ""})
+    text = (tmp_path / "compile.sh").read_text()
+    assert text.startswith("#!/bin/sh\n")
+    assert "sed -e '/__inline/b'" in text and '"$SRC" > "$W/group.c"' in text
+    assert "helper" in text and "loose" in text
+    assert text.index("sed -e") < text.index("$T/cc -j")
+    group_search.write_compile_sh(tmp_path, "/tk", manifest, tmp_path / "static")
+    assert 'cp "$SRC" "$W/group.c"' in (tmp_path / "compile.sh").read_text()
+
+
+@pytest.mark.skipif(shutil.which("sed") is None, reason="needs sed")
+def test_generated_sed_matches_restore_inline(tmp_path):
+    stripped, names = group_search.strip_inline(_INLINE_SRC)
+    src = tmp_path / "in.c"
+    src.write_text(stripped)
+    out = subprocess.run(f"sed {group_search.inline_sed(names)} {src}", shell=True,
+                         capture_output=True, text=True, check=True).stdout
+    assert out == _INLINE_SRC
+
+
+def test_progress_checkpoints_get_inline_back():
+    import base64
+    import gzip
+    seen = {}
+
+    class P:
+        def update(self, **kw):
+            seen.update(kw)
+
+    stripped, names = group_search.strip_inline(_INLINE_SRC)
+    wrapped = group_search._RestoringProgress(P(), names)
+    wrapped.update(best_score=5, best_source=base64.b64encode(
+        gzip.compress(stripped.encode())).decode())
+    assert seen["best_score"] == 5
+    assert gzip.decompress(base64.b64decode(seen["best_source"])).decode() == _INLINE_SRC
