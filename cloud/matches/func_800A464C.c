@@ -1,3 +1,4 @@
+/* flags: -g0 -O2 -mips2 -G 0 -non_shared */
 
 typedef signed char s8;
 typedef unsigned char u8;
@@ -787,11 +788,11 @@ extern void countdown(void);
 extern void countdown_handler(void);
 extern void Input_ProcessGameplayPad(s32 pad);
 extern void Effects_UpdateEmitters(void);
-extern s32 PhysicsObjectList_Update(void);
+extern void PhysicsObjectList_Update(void);
 extern void UpdateActiveObjects(void);
 extern void input_aux_handler(void);
 extern void sound_stop(s32 sound_id);
-extern s32 input_init_flag_get(void);
+extern void input_init_flag_get(void);
 extern void viUpdateTime(void);
 extern void sound_init(void);
 extern s32 wheel_render_full(s32, s32, s32, s32);
@@ -799,7 +800,7 @@ extern void world_trigger_check(void);
 extern void controller_poll(void);
 extern void Input_ApplyPadConfig(void *);
 extern void InitMaxPath(void);
-extern s32 audio_frame_sync(s32, s32, s32, s32, s32);
+extern void audio_frame_sync(s32, s32, s32, s32, s32);
 extern void display_enable(s32);
 extern void func_800a3424(s32, s32, s32);
 extern void func_800a7480(s32, s32, u8, u8, s32, s32, s32);
@@ -809,8 +810,8 @@ extern void func_800c9480(void);
 extern void hud_setup(s32, s32, s32, s32, s32, f32, f32, s32);
 extern void hud_speed_display(s32, s32, s32, s32, s32);
 extern void init_state_begin(void);
-extern s32 object_create(s32);
-extern s32 object_render_cleanup(void **);
+extern void object_create(s32);
+extern void object_render_cleanup(void **);
 extern void player_cleanup_slots(void);
 extern void player_mode_set(s32, s32);
 extern void player_state_set(s32, s32);
@@ -825,7 +826,7 @@ extern void billboard_render(void);
 extern void camera_race_setup(void);
 extern void cpak_read(s8);
 extern s32 display_list_flush(s32, s32);
-extern s32 entity_audio_update(s32);
+extern void entity_audio_update(s32);
 extern void finish_state_alt(void);
 extern void func_800ab18c(s32, s32);
 extern void func_800b61a8(s32, s32, s32, s32);
@@ -841,7 +842,7 @@ extern void ghost_race_setup(void);
 extern void init_state_continue(void);
 extern void players_frame_update(void);
 extern void race_init_helper(void);
-extern s32 race_setup_1(void);
+extern void race_setup_1(void);
 extern void race_setup_2(s16);
 extern void records_screen(void);
 extern void render_viewport_init(void);
@@ -850,7 +851,7 @@ extern void viScheduleTick(f32);
 extern void dispatch_handler(s32);
 extern void func_800a4770(void *, s32);
 extern s32 object_manager_update(void *, s32);
-extern s32 slot_state_setup(void);
+extern void slot_state_setup(void);
 extern void state_utility(s16, s32, void *);
 extern void sprintf(s8 *buf, s8 *fmt, ...);
 extern void func_8008705c(s32, u8, s32);
@@ -3234,7 +3235,6 @@ void func_800A3424(void **arg0, s8 arg1);
 void func_800A3640(s32 arg0);
 void func_800A3724(s32 arg3);
 void func_800A43FC(void);
-u8 *func_800A464C(u8 *arg0, u8 *arg1);
 s32 func_800A473C(s32 arg0, u8 *arg1);
 u8 *func_800A4770(u8 *arg0, u8 *arg1);
 u32 func_800A47C0(u32 arg0, u32 arg1, u32 arg2);
@@ -3252,6 +3252,7 @@ void func_800A7480(s16 arg0, s16 arg1, s8 arg2, s8 arg3, u8 arg4, u8 arg5, s32 a
 void *func_800A78BC(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u16 arg4, s32 arg5);
 s32 func_800A79F4(s16 arg0, PadConfig *arg1, PadConfig *arg2, s16 arg3, s32 arg4, s32 arg5, s32 arg6);
 s16 func_800A7BF8(s16 arg0);
+void *func_800A7D6C(void);
 void func_800A7E10(void *arg0, void *arg1, s16 arg2);
 void func_800A8174(void *arg0);
 void func_800A81FC(void *arg0);
@@ -3788,24 +3789,35 @@ void world_object_destroy(void *arg0);
 void world_physics_tick(void);
 void world_trigger_activate(void);
 s32 world_velocity_integrate();
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-typedef s64 M2C_UNK64;
-typedef struct { u8 pad[0x24]; f32 f24; f32 f28; f32 f2C; } E30;
-void *func_800A7D6C(void)
+u8 *func_800A464C(u8 *arg0, u8 *arg1)
 {
-  E30 *e;
-  D_80156BAC = D_80156BAC + 1;
-  if (D_80156BD0 < D_80156BAC)
+  s32 i;
+  u8 *p;
+  if (*arg0 == 0)
   {
-    D_80156BD0 = D_80156BAC;
+    if (*arg1 != 0)
+    {
+      return (u8 *) 0;
+    }
+    return arg0;
   }
-  e = ((E30 *) &D_8015F740) + D_80156BAC;
-  e->f24 = 0.0f;
-  e->f28 = 0.0f;
-  e->f2C = 0.0f;
-  math_utility(&D_8011418C, e);
-  return e;
+  if (*arg0 != 0)
+  {
+    do
+    {
+      i = 0;
+      p = arg1;
+      while (1)
+      {
+        if (*p == 0)
+        {
+          return arg0;
+        }
+        if (*p != arg0[i]) break;
+        i++;
+        p++;
+      }
+    } while (*++arg0 != 0);
+  }
+  return (u8 *) 0;
 }

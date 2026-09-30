@@ -3793,39 +3793,24 @@ typedef s8 M2C_UNK8;
 typedef s16 M2C_UNK16;
 typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
+typedef struct { s32 key; s32 a; s32 b; } E12;
+typedef struct { s32 pad0; s32 count; E12 *tbl; } H12;
 void *func_80096B00(void *arg0, s32 arg1)
 {
-  s32 *temp_a2;
-  s32 *var_t0;
-  float cond;
-  s32 var_a3;
-  s32 new_var;
-  s32 var_v0;
-  new_var = arg1;
-  if (arg0 == ((void *) 0))
+  H12 *h = (H12 *) arg0;
+  s32 i;
+  E12 *t;
+  if (h == 0) return (void *) 0;
+  i = 0;
+  if (h->count > 0)
   {
-    return (void *) 0;
-  }
-  ;
-  var_v0 = 0;
-  if ((*((s32 *) (((s8 *) arg0) + 4))) > 0)
-  {
-    temp_a2 = *((s32 **) (((s8 *) arg0) + 8));
-    var_a3 = 0;
-    var_t0 = temp_a2;
-    loop_4:
-    var_v0 += 1;
-    cond = var_v0 < (*((s32 *) (((s8 *) arg0) + 4)));
-    if (new_var == (*var_t0))
+    t = h->tbl;
+    do
     {
-      return (s32 *) (((u8 *) temp_a2) + var_a3);
-    }
-    var_a3 += 0xC;
-    var_t0 = var_t0 + 3;
-    if (cond)
-    {
-      goto loop_4;
-    }
+      i++;
+      if (t->key == arg1) return t;
+      t++;
+    } while (i < h->count);
   }
   return (void *) 0;
 }

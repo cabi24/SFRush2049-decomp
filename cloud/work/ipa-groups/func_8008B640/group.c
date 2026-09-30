@@ -3810,16 +3810,18 @@ void physics_velocity_integrate_c(ModelObj *arg0, s16 arg1) {
     Rec808 *rec;
     GameCar *car;
     s32 flag;
-    s32 lvl;
+    s16 lvl;
+    f32 f24;
 
     car = &player_array[arg0->player];
     rec = &((Rec808 *) &D_8014A250)[arg0->player];
     lvl = (s32) M2C_FIELD(rec, f32 *, 0x3F0);
-    flag = (s16) lvl >= 21 && (M2C_FIELD(car, s32 *, 0xE8) & 0x4000) != 0;
+    flag = lvl >= 21 && (M2C_FIELD(car, s32 *, 0xE8) & 0x4000) != 0;
+    f24 = M2C_FIELD(car, f32 *, 0xD0);
     physics_velocity_integrate_a(arg0, flag, 194,
                                  M2C_FIELD(car, f32 *, 0xC8) + D_80123890,
                                  M2C_FIELD(car, f32 *, 0xCC) + M2C_FIELD(rec, f32 *, 0x4E8) * two,
-                                 M2C_FIELD(car, f32 *, 0xD0),
+                                 f24,
                                  arg1);
 }
 
@@ -3828,16 +3830,18 @@ void physics_velocity_integrate_d(ModelObj *arg0, s16 arg1) {
     Rec808 *rec;
     GameCar *car;
     s32 flag;
-    s32 lvl;
+    s16 lvl;
+    f32 f24;
 
     car = &player_array[arg0->player];
     rec = &((Rec808 *) &D_8014A250)[arg0->player];
     lvl = (s32) M2C_FIELD(rec, f32 *, 0x3F0);
-    flag = (s16) lvl >= 21 && (M2C_FIELD(car, s32 *, 0xE8) & 0x80) != 0;
+    flag = lvl >= 21 && (M2C_FIELD(car, s32 *, 0xE8) & 0x80) != 0;
+    f24 = M2C_FIELD(car, f32 *, 0xB8);
     physics_velocity_integrate_a(arg0, flag, 194,
                                  M2C_FIELD(car, f32 *, 0xB0) + D_80123894,
                                  M2C_FIELD(car, f32 *, 0xB4) + M2C_FIELD(rec, f32 *, 0x430) * two,
-                                 M2C_FIELD(car, f32 *, 0xB8),
+                                 f24,
                                  arg1);
 }
 
@@ -3846,16 +3850,18 @@ void physics_velocity_integrate_e(ModelObj *arg0, s16 arg1) {
     Rec808 *rec;
     GameCar *car;
     s32 flag;
-    s32 lvl;
+    s16 lvl;
+    f32 f24;
 
     car = &player_array[arg0->player];
     rec = &((Rec808 *) &D_8014A250)[arg0->player];
     lvl = (s32) M2C_FIELD(rec, f32 *, 0x3F0);
-    flag = (s16) lvl >= 21 && (M2C_FIELD(car, s32 *, 0xE8) & 0x2000) != 0;
+    flag = lvl >= 21 && (M2C_FIELD(car, s32 *, 0xE8) & 0x2000) != 0;
+    f24 = M2C_FIELD(car, f32 *, 0xDC);
     physics_velocity_integrate_a(arg0, flag, 194,
                                  M2C_FIELD(car, f32 *, 0xD4) - D_80123898,
                                  M2C_FIELD(car, f32 *, 0xD8) + M2C_FIELD(rec, f32 *, 0x544) * two,
-                                 M2C_FIELD(car, f32 *, 0xDC),
+                                 f24,
                                  arg1);
 }
 
@@ -3864,16 +3870,18 @@ void physics_velocity_integrate_f(ModelObj *arg0, s16 arg1) {
     Rec808 *rec;
     GameCar *car;
     s32 flag;
-    s32 lvl;
+    s16 lvl;
+    f32 f24;
 
     car = &player_array[arg0->player];
     rec = &((Rec808 *) &D_8014A250)[arg0->player];
     lvl = (s32) M2C_FIELD(rec, f32 *, 0x3F0);
-    flag = (s16) lvl >= 21 && (M2C_FIELD(car, s32 *, 0xE8) & 0x100) != 0;
+    flag = lvl >= 21 && (M2C_FIELD(car, s32 *, 0xE8) & 0x100) != 0;
+    f24 = M2C_FIELD(car, f32 *, 0xC4);
     physics_velocity_integrate_a(arg0, flag, 194,
                                  M2C_FIELD(car, f32 *, 0xBC) - D_8012389C,
                                  M2C_FIELD(car, f32 *, 0xC0) + M2C_FIELD(rec, f32 *, 0x48C) * two,
-                                 M2C_FIELD(car, f32 *, 0xC4),
+                                 f24,
                                  arg1);
 }
 

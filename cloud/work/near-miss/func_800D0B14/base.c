@@ -3793,7 +3793,10 @@ typedef s8 M2C_UNK8;
 typedef s16 M2C_UNK16;
 typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
+typedef struct { f32 f; u8 pad[0x28]; } F2C;
 f32 func_800D0B14(void *arg0)
 {
-  return (((&D_80110DD8)[*((u8 *) (((s8 *) arg0) + 8))] + (((&D_80111274)[*((s8 *) (((s8 *) arg0) + 0xE))] - D_80124154) * D_80124150)) + (((f32) D_80143F1C) * D_80124150)) * (*((f32 *) (((u8 *) (&D_801116D4)) + ((*((s8 *) (((s8 *) arg0) + 0xB))) * 0x2C))));
+  f32 t;
+  t = ((&D_80111274)[((s8 *) arg0)[0xE]] - D_80124154) * D_80124150;
+  return ((&D_80110DD8)[((u8 *) arg0)[8]] + t + ((f32) D_80143F1C) * D_80124150) * ((F2C *) &D_801116D4)[((s8 *) arg0)[0xB]].f;
 }
