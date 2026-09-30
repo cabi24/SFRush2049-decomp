@@ -1,0 +1,66 @@
+void random_seed_init(u32 arg0, s32 arg1)
+{
+InputRecord *r; s32 *t; D_80156958_Entry *e;
+  if (arg1 != 0) { r = ((InputRecord *) ((u8 *) &input_rec0 + arg0 * 0x4C)); t = &D_80156998[arg0]; } else { r = ((InputRecord *) ((u8 *) &input_rec0 + arg0 * 0x4C)); if (r->active != 5) return; t = &D_80156998[arg0]; if (!(*t & 1)) return; }
+  r->active = arg0; r->unk08 = D_80156978[arg0]; r->unk04 = *t; r->unk0C = D_80143A00[arg0];
+  e = &D_80156958[arg0]; r->unk10 = e->unk0; r->unk14 = e->unk4;
+  player_state_set(arg0 & 0xFF, 1);
+}
+----
+void random_seed_init(u32 arg0, s32 arg1)
+{
+InputRecord *r; s32 *t;
+  if (arg1 != 0) { r = ((InputRecord *) ((u8 *) &input_rec0 + arg0 * 0x4C)); t = &D_80156998[arg0]; } else { r = ((InputRecord *) ((u8 *) &input_rec0 + arg0 * 0x4C)); if (r->active != 5) return; t = &D_80156998[arg0]; if (!(*t & 1)) return; }
+  r->active = arg0; r->unk08 = D_80156978[arg0]; r->unk04 = *t; r->unk0C = D_80143A00[arg0];
+  r->unk10 = D_80156958[arg0].unk0; r->unk14 = D_80156958[arg0].unk4;
+  player_state_set(arg0 & 0xFF, 1);
+}
+----
+void random_seed_init(u32 arg0, s32 arg1)
+{
+InputRecord *r; s32 *t; D_80156958_Entry *e;
+  r = ((InputRecord *) ((u8 *) &input_rec0 + arg0 * 0x4C));
+  if (arg1 == 0) { if (r->active != 5) return; if (!(D_80156998[arg0] & 1)) return; }
+  t = &D_80156998[arg0];
+  r->active = arg0; r->unk08 = D_80156978[arg0]; r->unk04 = *t; r->unk0C = D_80143A00[arg0];
+  e = &D_80156958[arg0]; r->unk10 = e->unk0; r->unk14 = e->unk4;
+  player_state_set(arg0 & 0xFF, 1);
+}
+----
+void random_seed_init(u32 arg0, s32 arg1)
+{
+InputRecord *r; D_80156958_Entry *e;
+  r = ((InputRecord *) ((u8 *) &input_rec0 + arg0 * 0x4C));
+  if (arg1 == 0) { if (r->active != 5) return; if (!(D_80156998[arg0] & 1)) return; }
+  r->active = arg0; r->unk08 = D_80156978[arg0]; r->unk04 = D_80156998[arg0]; r->unk0C = D_80143A00[arg0];
+  e = &D_80156958[arg0]; r->unk10 = e->unk0; r->unk14 = e->unk4;
+  player_state_set(arg0 & 0xFF, 1);
+}
+----
+void random_seed_init(u32 arg0, s32 arg1)
+{
+InputRecord *r; D_80156958_Entry *e; s32 *t;
+  if (arg1 != 0) { r = ((InputRecord *) ((u8 *) &input_rec0 + arg0 * 0x4C)); t = &D_80156998[arg0]; } else { r = ((InputRecord *) ((u8 *) &input_rec0 + arg0 * 0x4C)); if (r->active != 5) return; t = &D_80156998[arg0]; if (!(*t & 1)) return; }
+  e = &D_80156958[arg0];
+  r->active = arg0; r->unk08 = D_80156978[arg0]; r->unk04 = *t; r->unk0C = D_80143A00[arg0];
+  r->unk10 = e->unk0; r->unk14 = e->unk4;
+  player_state_set(arg0 & 0xFF, 1);
+}
+----
+void random_seed_init(u32 arg0, s32 arg1)
+{
+D_80156958_Entry *e; InputRecord *r; s32 *t;
+  if (arg1 != 0) { r = ((InputRecord *) ((u8 *) &input_rec0 + arg0 * 0x4C)); t = &D_80156998[arg0]; } else { r = ((InputRecord *) ((u8 *) &input_rec0 + arg0 * 0x4C)); if (r->active != 5) return; t = &D_80156998[arg0]; if (!(*t & 1)) return; }
+  r->active = arg0; r->unk08 = D_80156978[arg0]; r->unk04 = *t; r->unk0C = D_80143A00[arg0];
+  e = &D_80156958[arg0]; r->unk10 = e->unk0; r->unk14 = e->unk4;
+  player_state_set(arg0 & 0xFF, 1);
+}
+----
+void random_seed_init(u32 arg0, s32 arg1)
+{
+s32 *t; D_80156958_Entry *e; InputRecord *r;
+  if (arg1 != 0) { r = ((InputRecord *) ((u8 *) &input_rec0 + arg0 * 0x4C)); t = &D_80156998[arg0]; } else { r = ((InputRecord *) ((u8 *) &input_rec0 + arg0 * 0x4C)); if (r->active != 5) return; t = &D_80156998[arg0]; if (!(*t & 1)) return; }
+  r->active = arg0; r->unk08 = D_80156978[arg0]; r->unk04 = *t; r->unk0C = D_80143A00[arg0];
+  e = &D_80156958[arg0]; r->unk10 = e->unk0; r->unk14 = e->unk4;
+  player_state_set(arg0 & 0xFF, 1);
+}

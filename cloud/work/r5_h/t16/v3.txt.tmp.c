@@ -1,0 +1,43 @@
+
+typedef signed char s8;
+typedef unsigned char u8;
+typedef signed short s16;
+typedef signed int s32;
+typedef struct { u8 p[859]; s8 f859; s8 f860; } Car;
+typedef struct { u8 p[96]; float v96[3]; u8 q[24]; float f132[3]; u8 r[8]; } Slot;
+typedef struct { u8 p[2056]; } Row;
+extern s16 D_8014A914[];
+extern float D_80152708[];
+extern float D_80152720[];
+extern float D_801244C0;
+extern volatile s32 D_8002EB98;
+extern Slot D_80150B70[];
+void func_800E8CB8(Car *c);
+void vector_normalize_length(float *v, float *w);
+void func_800E8D50(Car *c, float *p1, s32 flag, float *p2) {
+    s32 k;
+    float out[3];
+    s32 i;
+float a, b; 
+    i = c->f860;
+    if (flag) func_800E8CB8(c);
+    if (*(s16 *)((u8 *)D_8014A914 + c->f859 * 2056) >= 0) {
+        D_80152708[i] = 0.0f;
+    } else {
+        D_80152708[i] = D_80152720[i] * D_801244C0;
+        if (D_8002EB98 == 3) {
+            D_80152708[i] *= 0.75f;
+        } else if (D_8002EB98 == 4) {
+            D_80152708[i] *= D_801244C0;
+        } else if (D_8002EB98 == 5) {
+            D_80152708[i] *= 0.5f;
+        }
+    }
+a = D_80152708[i];
+ b = 1.0f - a; 
+    for (k = 0; k < 3; k++) {
+D_80150B70[i].f132[k] = D_80150B70[i].f132[k] * a + b * (p2[k] + p1[k]);  
+        out[k] = p1[k] - D_80150B70[i].f132[k];
+    }
+    vector_normalize_length(out, D_80150B70[i].v96);
+}
