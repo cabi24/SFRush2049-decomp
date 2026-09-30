@@ -662,6 +662,7 @@ save_write_data:
 .section .text.camera_smooth_lerp, "ax", @progbits
 .globl camera_smooth_lerp
 camera_smooth_lerp:
+    /* compiled from src/blob/camera_smooth_lerp.c */
     .word 0x27BDFFE0
     .word 0xAFB10018
     .word 0xAFB00014
@@ -1718,6 +1719,7 @@ cpak_read:
 .section .text.pool_linked_list_init, "ax", @progbits
 .globl pool_linked_list_init
 pool_linked_list_init:
+    /* compiled from src/blob/pool_linked_list_init.c */
     .word 0x8C82000C
     .word 0xAC800010
     .word 0x1040001B
@@ -1813,6 +1815,7 @@ func_800B0580:
 .section .text.func_800B0618, "ax", @progbits
 .globl func_800B0618
 func_800B0618:
+    /* compiled from src/blob/func_800B0618.c */
     .word 0x27BDFFE0
     .word 0xAFB10018
     .word 0x3C118014

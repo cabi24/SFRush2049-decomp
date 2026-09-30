@@ -1137,6 +1137,7 @@ func_8008E144:
 .section .text.render_mode_select, "ax", @progbits
 .globl render_mode_select
 render_mode_select:
+    /* compiled from src/blob/render_mode_select.c */
     .word 0x27BDFFE8
     .word 0xAFA5001C
     .word 0x00043400
@@ -4960,6 +4961,7 @@ func_80091B00:
 .section .text.func_80091BA8, "ax", @progbits
 .globl func_80091BA8
 func_80091BA8:
+    /* compiled from src/blob/func_80091BA8.c */
     .word 0x2401FFFF
     .word 0x14810003
     .word 0x3C0E8014
@@ -4992,6 +4994,7 @@ func_80091BFC:
 .section .text.scheduler_recv, "ax", @progbits
 .globl scheduler_recv
 scheduler_recv:
+    /* compiled from src/blob/scheduler_recv.c */
     .word 0x27BDFFE0
     .word 0xAFA40020
     .word 0xAFBF0014
@@ -6336,6 +6339,7 @@ string_copy_format:
 .section .text.func_80092FE0, "ax", @progbits
 .globl func_80092FE0
 func_80092FE0:
+    /* compiled from src/blob/func_80092FE0.c */
     .word 0x00047400
     .word 0x000E7C03
     .word 0x3C198014

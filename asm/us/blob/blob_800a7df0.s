@@ -3805,6 +3805,7 @@ func_800AB638:
 .section .text.engine_rpm_calc, "ax", @progbits
 .globl engine_rpm_calc
 engine_rpm_calc:
+    /* compiled from src/blob/engine_rpm_calc.c */
     .word 0x27BDFFE8
     .word 0x00064C00
     .word 0x00097403
@@ -5130,6 +5131,7 @@ func_800AC9BC:
 .section .text.handbrake_apply, "ax", @progbits
 .globl handbrake_apply
 handbrake_apply:
+    /* compiled from src/blob/handbrake_apply.c */
     .word 0x27BDFFE8
     .word 0xAFA5001C
     .word 0xAFA60020
@@ -5917,6 +5919,7 @@ func_800AD5D0:
 .section .text.func_800AD650, "ax", @progbits
 .globl func_800AD650
 func_800AD650:
+    /* compiled from src/blob/func_800AD650.c */
     .word 0x84AE0000
     .word 0x3C013880
     .word 0x44810000

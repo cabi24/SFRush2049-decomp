@@ -5943,6 +5943,7 @@ effect_system_init:
 .section .text.func_800C36A0, "ax", @progbits
 .globl func_800C36A0
 func_800C36A0:
+    /* compiled from src/blob/func_800C36A0.c */
     .word 0x27BDFFA0
     .word 0xAFBF0014
     .word 0xC642002C
