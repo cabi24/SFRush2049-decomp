@@ -4006,10 +4006,10 @@ void camera_track_spline(Camera *cam) {
 
     ctl = cam->ctl;
     idx = ctl->idx;
-    sc = ctl->scene;
+    sc = cam->ctl->scene;
     n = sc->count;
+    k = &sc->keys[idx];
     keys = sc->keys;
-    k = &keys[idx];
     if (idx < n - 1 || (sc->flags & 2) != 0 || !(sc->flags & 0x80)) {
         if (k->flags & 0x10000008) {
             if (ctl->mode & 8) {

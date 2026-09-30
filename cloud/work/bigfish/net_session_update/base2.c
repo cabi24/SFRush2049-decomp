@@ -10,8 +10,7 @@ typedef struct { u8 pad0; u8 b1; u8 pad[0x46]; A **a; } InRec;
 extern InRec input_rec0[];
 extern Rec D_80154450[];
 extern Slot D_801543D8[];
-extern u8 D_801543D4;
-extern s8 D_80156994;
+extern u8 D_801543D4, D_80156994;
 extern s16 active_player_count;
 extern s32 D_80111784[];
 extern s32 D_8011176C[];
@@ -29,11 +28,12 @@ void net_session_update(void) {
     s32 n, i, k, j, r, cnt;
     s32 idx[6];
     s32 cap;
-    s32 dummy;
+    InRec *p;
     Sess *v;
     Info *info;
-    u8 pad[124];
-    v = *((*input_rec0[D_801543D4].a)->s);
+    u8 pad[120];
+    p = &input_rec0[D_801543D4];
+    v = *((*p->a)->s);
     info = &v->info;
     D_80154658 = info->seed;
     n = D_80111784[info->mode];
@@ -54,7 +54,7 @@ void net_session_update(void) {
     }
     for (k = 0; k < cnt; k++)
         for (i = 0; i < 12; i++) D_80154450[active_player_count + idx[k]].h[i] = D_801117C4[k][i];
-    for (i = 0; i != 12; i++) {
+    for (i = 0; i < 12; i++) {
         do { r = RR(11); } while (r == i);
         for (k = 0; k < cnt; k++) {
             D_80154450[active_player_count + idx[k]].h[4 + i] ^= D_80154450[active_player_count + idx[k]].h[4 + r];
@@ -100,22 +100,24 @@ void net_session_update(void) {
     cnt = 6 - (active_player_count == 1 ? 0 : 2);
     cap = D_80154640;
     for (i = 0; i < cnt; i++) {
-        D_80154450[i].h2 = info->flag6 ? D_80155148[input_rec0[D_801543D4].b1][i] : 0;
+        Rec *rp = &D_80154450[i];
+        rp->h2 = info->flag6 ? D_80155148[p->b1][i] : 0;
         for (j = 0; j < info->lim; j++) {
-            if (info->flag6 && j < D_80155140[input_rec0[D_801543D4].b1]) {
-                D_80154450[i].b4[j] = 6;
-                D_80154450[i].b28[j] = 0;
+            Rec *r0 = &D_80154450[i];
+            if (info->flag6 && j < D_80155140[p->b1]) {
+                r0->b4[j] = 6;
+                r0->b28[j] = 0;
             } else {
-                D_80154450[i].b4[j] = 0;
+                r0->b4[j] = 0;
                 for (r = 0, k = j * 3; r < 3; r++, k++)
-                    D_80154450[i].b4[j] |= ((info->bits[i * 9 + (k >> 3)] >> (k & 7)) & 1) << r;
-                D_80154450[i].b28[j] = D_8011176C[D_80154450[i].b4[j]];
-                D_80154450[i].h2 += D_80154450[i].b28[j];
+                    r0->b4[j] |= ((info->bits[i * 9 + (k >> 3)] >> (k & 7)) & 1) << r;
+                rp->b28[j] = D_8011176C[rp->b4[j]];
+                rp->h2 += rp->b28[j];
             }
         }
         for (; j < cap; j++) {
-            D_80154450[i].b4[j] = 6;
-            D_80154450[i].b28[j] = 0;
+            rp->b4[j] = 6;
+            rp->b28[j] = 0;
         }
     }
     for (; i < 6; i++) {
