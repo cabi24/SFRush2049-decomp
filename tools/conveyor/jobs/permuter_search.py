@@ -79,6 +79,74 @@ def _gz_b64(path):
     return base64.b64encode(gzip.compress(Path(path).read_bytes())).decode()
 
 
+def drive(perm_dir, manifest, progress, base_score, wall_budget, cores, extra_args=()):
+    """Run the permuter in `perm_dir` until zero, the wall budget, or exit;
+    stream improvements into progress.json. Returns (payload, artifacts)."""
+    toolkit = _toolkit()
+    permuter_py = toolkit / "decomp-permuter" / "permuter.py"
+    # PYTHONPATH: toolkit root carries the permuter's pure-Python deps
+    # (pycparser, toml) so stdlib-only nodes can run it.
+    env = dict(os.environ)
+    env["PYTHONPATH"] = str(toolkit) + (
+        os.pathsep + env["PYTHONPATH"] if env.get("PYTHONPATH") else ""
+    )
+    stderr_log = perm_dir / "permuter-stderr.log"
+    proc = subprocess.Popen(
+        [sys.executable, str(permuter_py), str(perm_dir),
+         "--stop-on-zero", "--best-only", "-j", str(cores), *extra_args],
+        stdout=subprocess.DEVNULL, stderr=open(stderr_log, "wb"),
+        cwd=str(perm_dir), env=env,
+    )
+    started = time.monotonic()
+    we_stopped_it = False
+    best_reported = base_score
+    while proc.poll() is None:
+        if time.monotonic() - started > wall_budget:
+            we_stopped_it = True
+            proc.terminate()
+            try:
+                proc.wait(timeout=30)
+            except subprocess.TimeoutExpired:
+                proc.kill()
+            break
+        time.sleep(POLL_SECONDS)
+        score, source = _best_output(perm_dir)
+        if score is not None and score < best_reported:
+            best_reported = score
+            progress.update(best_score=score, best_source=_gz_b64(source))
+            if score == 0:
+                we_stopped_it = True
+                break
+    if proc.poll() is None:
+        proc.kill()
+        proc.wait(timeout=30)  # reap; no zombies for the agent's lifetime
+
+    final_score, final_source = _best_output(perm_dir)
+    # An early nonzero exit with no output is an infrastructure failure,
+    # not a "search that found nothing" — surface it as a job error so
+    # the farm doesn't mislabel the target as stalled.
+    if (not we_stopped_it and proc.returncode not in (0, None)
+            and final_score is None):
+        tail = ""
+        if stderr_log.is_file():
+            tail = stderr_log.read_bytes()[-2000:].decode(errors="replace")
+        raise RuntimeError(
+            f"permuter exited {proc.returncode} without output: {tail}"
+        )
+    if final_score is None or final_score >= base_score:
+        final_score, final_source = base_score, perm_dir / "base.c"
+    # Copy out before perm_dir cleanup.
+    keep = Path(tempfile.mkdtemp(prefix="permbest-")) / "best.c"
+    shutil.copy(final_source, keep)
+    return {
+        "target_id": manifest["target_id"],
+        "final_best_score": final_score,
+        "base_score": base_score,
+        "wall_seconds_used": round(time.monotonic() - started, 1),
+    }, {"best.c": str(keep)}
+
+
+
 def run(job_dir, manifest, progress):
     job_dir = Path(job_dir)
     inputs = job_dir / "inputs"
@@ -126,66 +194,6 @@ def run(job_dir, manifest, progress):
                 "wall_seconds_used": 0,
             }, {"best.c": str(perm_dir / "base.c")}
 
-        permuter_py = toolkit / "decomp-permuter" / "permuter.py"
-        # PYTHONPATH: toolkit root carries the permuter's pure-Python deps
-        # (pycparser, toml) so stdlib-only nodes can run it.
-        env = dict(os.environ)
-        env["PYTHONPATH"] = str(toolkit) + (
-            os.pathsep + env["PYTHONPATH"] if env.get("PYTHONPATH") else ""
-        )
-        stderr_log = perm_dir / "permuter-stderr.log"
-        proc = subprocess.Popen(
-            [sys.executable, str(permuter_py), str(perm_dir),
-             "--stop-on-zero", "--best-only", "-j", str(cores)],
-            stdout=subprocess.DEVNULL, stderr=open(stderr_log, "wb"),
-            cwd=str(perm_dir), env=env,
-        )
-        started = time.monotonic()
-        we_stopped_it = False
-        best_reported = base_score
-        while proc.poll() is None:
-            if time.monotonic() - started > wall_budget:
-                we_stopped_it = True
-                proc.terminate()
-                try:
-                    proc.wait(timeout=30)
-                except subprocess.TimeoutExpired:
-                    proc.kill()
-                break
-            time.sleep(POLL_SECONDS)
-            score, source = _best_output(perm_dir)
-            if score is not None and score < best_reported:
-                best_reported = score
-                progress.update(best_score=score, best_source=_gz_b64(source))
-                if score == 0:
-                    we_stopped_it = True
-                    break
-        if proc.poll() is None:
-            proc.kill()
-            proc.wait(timeout=30)  # reap; no zombies for the agent's lifetime
-
-        final_score, final_source = _best_output(perm_dir)
-        # An early nonzero exit with no output is an infrastructure failure,
-        # not a "search that found nothing" — surface it as a job error so
-        # the farm doesn't mislabel the target as stalled.
-        if (not we_stopped_it and proc.returncode not in (0, None)
-                and final_score is None):
-            tail = ""
-            if stderr_log.is_file():
-                tail = stderr_log.read_bytes()[-2000:].decode(errors="replace")
-            raise RuntimeError(
-                f"permuter exited {proc.returncode} without output: {tail}"
-            )
-        if final_score is None or final_score >= base_score:
-            final_score, final_source = base_score, perm_dir / "base.c"
-        # Copy out before perm_dir cleanup.
-        keep = Path(tempfile.mkdtemp(prefix="permbest-")) / "best.c"
-        shutil.copy(final_source, keep)
-        return {
-            "target_id": manifest["target_id"],
-            "final_best_score": final_score,
-            "base_score": base_score,
-            "wall_seconds_used": round(time.monotonic() - started, 1),
-        }, {"best.c": str(keep)}
+        return drive(perm_dir, manifest, progress, base_score, wall_budget, cores)
     finally:
         shutil.rmtree(perm_dir, ignore_errors=True)

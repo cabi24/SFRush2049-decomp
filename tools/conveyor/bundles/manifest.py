@@ -15,6 +15,7 @@ JOB_TYPES = (
     "compile_score",
     "flag_sweep",
     "permuter_search",
+    "group_search",
     "verify_promote",
 )
 
@@ -25,6 +26,8 @@ _REQUIRED = {
     "compile_score": ("cells",),
     "flag_sweep": ("tu", "flagsets", "functions"),
     "permuter_search": ("target_id", "seed_file", "target_file", "compile_flags"),
+    "group_search": ("target_id", "group", "seed_file", "seed_name", "keep",
+                     "compile_flags", "spec_file"),
     "verify_promote": ("target_id", "source_sha", "search_job_id"),
 }
 
@@ -56,8 +59,8 @@ def validate(manifest):
         for key in budget:
             if key not in ("wall_seconds", "iterations"):
                 raise ValueError(f"unknown budget field {key!r}")
-    if job_type == "permuter_search" and budget is None:
-        raise ValueError("permuter_search requires a budget (never unbounded)")
+    if job_type in ("permuter_search", "group_search") and budget is None:
+        raise ValueError(f"{job_type} requires a budget (never unbounded)")
     return manifest
 
 

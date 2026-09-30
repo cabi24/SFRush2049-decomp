@@ -51,6 +51,10 @@ def _dispatch(job_type):
         import permuter_search
 
         return permuter_search.run
+    if job_type == "group_search":
+        import group_search
+
+        return group_search.run
     if job_type == "verify_promote":
         import verify_promote
 
