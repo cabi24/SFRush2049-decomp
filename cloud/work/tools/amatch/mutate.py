@@ -2905,23 +2905,22 @@ def _independent(ctx, a, b):
     risk = False
 
     def conflict(S1, acc):
+        """None: same location (dependent); True: may alias; False: disjoint."""
         r = False
         for (b1, p1) in S1:
             for (b2, p2) in acc:
-                if b1 == b2 and b1 != "?" and p1 != p2 and "?" not in p1 + p2 and "*" not in p1 + p2:
-                    # distinct constant fields / indices off one base
-                    if p1 and p2 and not (p1.startswith(p2) or p2.startswith(p1)):
-                        continue
-                    if p1 == "" or p2 == "":
-                        return None  # same base, one is the whole object
-                    return None
-                if b1 == b2 and p1 == p2:
-                    return None
-                # different bases: may alias through pointers
-                if b1 != b2:
-                    if p1 == "" and p2 == "" and b1 != "?" and b2 != "?":
-                        continue  # two distinct named globals
+                if b1 == "?" or b2 == "?":
                     r = True
+                    continue
+                if b1 == b2:
+                    if p1 == p2 or p1 == "" or p2 == "" or any(c in p1 + p2 for c in "*?"):
+                        return None
+                    if p1.startswith(p2) or p2.startswith(p1):
+                        return None
+                    continue
+                if p1 == "" and p2 == "":
+                    continue  # two distinct named globals
+                r = True
         return r
     for S1, acc in ((Sa, Sb + Lb), (Sb, Sa + La)):
         c = conflict(S1, acc)
