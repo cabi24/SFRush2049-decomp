@@ -1,0 +1,28 @@
+{
+  "members": [
+    "func_800C2944",
+    "func_800C26C4",
+    "func_800C2430"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "camera_scene_manager",
+    "func_800C3578",
+    "__standin_func_800C2430",
+    "__standin_func_800C26C4",
+    "__standin_func_800C2944"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "generated": "blob_group seed from build/ipa_groups.json",
+  "unprototyped": [],
+  "context": [
+    "camera_scene_manager",
+    "func_800C1B60",
+    "func_800C2004",
+    "func_800C220C",
+    "func_800C3578"
+  ],
+  "provenance": "cloud Lanes A (PRs #1-#4), cloud/work/ipa-groups/camera_scene_manager"
+}

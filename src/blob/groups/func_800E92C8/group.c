@@ -1,6 +1,12 @@
+float fabsf(float); /* cloud: m2c emits fabsf/sqrtf for abs.s/sqrt.s; declare them as IDO intrinsics */
+float sqrtf(float);
+#pragma intrinsic (fabsf)
+#pragma intrinsic (sqrtf)
 #define NULL ((void *)0)
 #define TRUE 1
 #define FALSE 0
+typedef struct V3 { float x, y, z; } V3;
+typedef struct Fx { unsigned char p0[0x60]; V3 n60; unsigned char p6c[0x18]; float v84[3]; unsigned char p90[8]; } Fx;
 typedef signed char s8;
 typedef unsigned char u8;
 typedef signed short s16;
@@ -627,7 +633,7 @@ extern SoundState *sound_control(s16 arg0, s16 arg1, SoundClearRecord *arg2, s16
 extern void game_loop(void);
 extern void game_mode_handler(void);
 extern void attract_or_transition(void);
-
+extern void process_inputs(void);
 extern void playgame_state_change(void);
 extern void RaceStateMachine_Update(void);
 extern void countdown(void);
@@ -643,7 +649,7 @@ extern void viUpdateTime(void);
 extern void sound_init(void);
 extern s32 wheel_render_full(s32, s32, s32, s32);
 extern void world_trigger_check(void);
-
+extern void controller_poll(void);
 extern void Input_ApplyPadConfig(void *);
 extern void InitMaxPath(void);
 extern s32 audio_frame_sync(s32, s32, s32, s32, s32);
@@ -659,8 +665,8 @@ extern void init_state_begin(void);
 extern s32 object_create(s32);
 extern s32 object_render_cleanup(void **);
 extern void player_cleanup_slots(void);
-
-
+extern void player_mode_set(s32, s32);
+extern void player_state_set(s32, s32);
 extern void resource_slots_clear_multiple(void);
 extern void scene_cleanup_slots(void);
 extern void speed_set(void);
@@ -731,7 +737,7 @@ extern s32 D_8002E928;
 extern s32 D_8002E960;
 extern s32 D_8002E998;
 extern s32 D_8002EB90;
-extern s32 D_8002EB94;
+extern f32 D_8002EB94;
 extern s32 D_8002EB98;
 extern s32 D_8002ECC0;
 extern s32 D_8002ECF8;
@@ -833,7 +839,7 @@ extern s32 D_801106A4;
 extern s32 D_801106B4;
 extern f32 D_801106C0;
 extern s32 D_801108B0;
-extern f32 D_801108C8;
+extern f32 D_801108C8[];
 extern s32 D_80110D08;
 extern s32 D_80110D3C;
 extern s32 D_80110DA4;
@@ -2047,12 +2053,12 @@ extern s32 D_8012E680;
 extern s32 D_8012E684;
 extern s32 D_8012E688;
 extern s32 D_8012E68C;
-extern s32 D_8012E690;
+extern V3 D_8012E690[];
 extern s32 D_8012E6C0;
-extern s16 D_8012E6C8;
+extern s16 D_8012E6C8[];
 extern s32 D_8012E6D0;
 extern s32 D_8012E6D8;
-extern f32 D_8012E6E8;
+extern f32 D_8012E6E8[];
 extern s32 D_8012E6F8;
 extern s32 D_8012E700;
 extern s32 D_8012E708;
@@ -2390,13 +2396,13 @@ extern s8 D_80149B4B;
 extern s32 D_80149B50;
 extern s32 D_80149B58;
 extern s8 D_80149B60;
-s8 D_80149B64[4];
+extern s8 D_80149B64;
 extern s8 D_80149B65;
 extern s8 D_80149B66;
 extern s8 D_80149B67;
 extern s32 D_80149B68;
 extern s8 D_80149B70;
-s8 D_80149B74[4];
+extern s8 D_80149B74;
 extern s8 D_80149B75;
 extern s8 D_80149B76;
 extern s8 D_80149B77;
@@ -2460,7 +2466,7 @@ extern s32 D_80150004;
 extern s32 D_80150B60;
 extern s32 D_80150B64;
 extern s32 D_80150B68;
-extern s32 D_80150B70;
+extern Fx D_80150B70[];
 extern s32 D_80150B7C;
 extern s32 D_80150B94;
 extern s32 D_80150BA0;
@@ -2553,15 +2559,15 @@ extern f32 D_80152680;
 extern s32 D_80152690;
 extern s32 D_80152698;
 extern s32 D_801526A4;
-extern s32 D_801526A8;
+extern V3 D_801526A8[];
 extern s32 D_801526D8;
 extern s32 D_801526DC;
-extern f32 D_801526E0;
+extern f32 D_801526E0[];
 extern s32 D_801526F0;
-extern f32 D_801526F8;
-extern s32 D_80152708;
+extern f32 D_801526F8[];
+extern f32 D_80152708[];
 extern s8 D_80152718;
-extern f32 D_80152720;
+extern f32 D_80152720[];
 extern s32 D_80152730;
 extern s32 D_80152738;
 extern s16 D_8015273A;
@@ -3209,7 +3215,7 @@ s32 func_800C8738(s32 arg0);
 void func_800C885C(void);
 void func_800C8918(void);
 void func_800C9480(void);
-
+f32 func_800C9590(f32 arg1, s32 arg0);
 void func_800CB748(void *arg0, void *arg1);
 void func_800CB9D0(u32 arg0);
 s32 func_800CBF2C(void);
@@ -3323,8 +3329,8 @@ void func_800E627C(void *arg0, void *arg1);
 void func_800E6460(void *arg0, void *arg1);
 void func_800E681C(void);
 void func_800E6AF8(void);
-
-
+void func_800E7038(void);
+void func_800E7134(void);
 s32 func_800E73D8(void);
 void func_800E762C(s32 arg0);
 void func_800E7710(void);
@@ -3337,12 +3343,12 @@ void func_800E8CB8(void *arg0, void *arg1, void *arg2);
 void func_800E8D50(void *arg0, s32 arg1, s32 arg2, f32 *arg3);
 void func_800E8F10(s16 arg0, void *arg1, f32 *arg2, s32 arg3);
 void func_800E9234(void *arg0);
-void func_800E92C8(void);
-void func_800E95DC(s16 arg0, void *arg1, f32 *arg2, s32 arg3);
+
+
 void func_800E9C70(s16 arg0, void *arg1, f32 *arg2, s32 arg3);
 void func_800E9E2C(void *arg0, f32 *arg1, s32 arg2);
-void func_800EA108(void *arg0, f32 *arg1, s32 arg2);
-void func_800EA2DC(void *arg0, s32 arg1, s32 arg2, f32 *arg3);
+
+
 void func_800EA3F4(void *arg0, s32 arg1);
 f32 func_800EAFDC(void *arg0);
 s32 func_800EB028();
@@ -3698,322 +3704,269 @@ typedef s64 M2C_UNK64;
 
 
 /* group members */
-void controller_poll(void);
-f32 func_800C9590(f32 range, f32 calib, s32 raw);
-void func_800E7038(void);
-void func_800E7134(void);
-void player_mode_set(s32 player, s32 value);
-void player_state_set(s32 player, s32 value);
-void process_inputs(void);
+typedef struct HN { u8 p[0x2C]; s32 f2c; } HN;
+typedef struct Q { u8 p[0x48]; HN **h; } Q;
+typedef struct Cr {
+    u8 p0[8];
+    f32 pos[3];
+    f32 vx, vy, vz;
+    u8 p20[0xC];
+    f32 m[9];
+    u8 p50[0x58];
+    f32 f_a8, f_ac;
+    u8 pb0[0x46];
+    s16 s_f6;
+    u8 pf8[0x264];
+    s8 player;
+    s8 mode;
+    s8 mode2;
+    u8 p35f[0x21];
+    Q *q;
+} Cr;
+void func_800E92C8(Cr *car, f32 *out, f32 r, f32 c);
+void func_800E95DC(s16 arg0, Cr *arg1, f32 *arg2, s32 arg3);
+void func_800EA108(Cr *arg0, f32 *arg1, void *arg2);
+void func_800EA2DC(Cr *arg0, void *arg1, void *arg2, s32 arg3);
 
-/* typed views of prelude globals (the prelude's widths are wrong for these) */
-#define gResetTick    (*(s8 *) &D_8011195C)
-#define gSkipFrames   (*(u8 *) &D_80111960)
-#define gHeld         ((s32 *) &D_80149B30)
-#define gPrevPressed  ((s32 *) &D_80149B10)
-#define gConnected    D_80149B64
-#define gStickRaw     ((s8 (*)[2]) &D_80149B50)
-#define gStickCal     ((s8 (*)[2]) &D_80149AF8)
-#define gRepeatTime   ((u32 (*)[32]) &D_80149B90)
-#define gStick        D_80156958
-
-/* read the pads: sticks, held/pressed masks and auto-repeat per button */
-void controller_poll(void)
-{
-    s32 i;
-    s32 b;
-    s32 held;
-    u32 mask;
-    s32 connected;
-    f32 repeat;
+void func_800E92C8(Cr *car, f32 *out, f32 r, f32 c) {
+    f32 a[3];
+    f32 v[3];
+    f32 b[3];
+    volatile s32 padv[12];
+    f32 len;
     f32 x;
+    f32 y;
+    f32 z;
+    f32 mag;
+    f32 k;
+    s32 pl;
 
-    osRecvMesg((OSMesgQueue *) &D_801497A8, NULL, 1);
-    if (gResetTick != 0) {
-        gResetTick = 0;
-        D_80111958 = game_loop_tick;
+    pl = car->player;
+    if (car->mode == 8) {
+        len = 0;
+    } else {
+        len = sqrtf((car->vx * car->vx) + (car->vz * car->vz));
     }
-    D_80156944 = 0;
-    D_80149784 = 0;
-    D_8015694C = 0;
-    if (gSkipFrames != 0) {
-        gSkipFrames--;
-        for (i = 0; i < 4; i++) {
-            gPrevPressed[i] = 0;
-            gStick[i].unk4 = 0.0f;
-            gStick[i].unk0 = 0.0f;
-            D_80143A00[i] = 0;
-            D_80156978[i] = 0;
-            D_80156998[i] = 0;
+    if (len <= 100.0f) {
+        a[1] = c;
+        a[2] = -r;
+        a[0] = 0.0f;
+        if (car->mode == 8) {
+            b[0] = 0.0f;
+            b[1] = c;
+            b[2] = a[2];
+        } else {
+            func_8009E820(a, b, car->m);
         }
-        osJamMesg((OSMesgQueue *) &D_801497A8, NULL, 0);
+        b[1] = fabsf(b[1]);
+    }
+    x = b[0];
+    y = b[1];
+    z = b[2];
+    if (len > 1.0f) {
+        if (car->mode == 4) {
+            a[0] = car->f_ac;
+            a[2] = 0.0f;
+            a[1] = car->f_a8;
+            func_8009E820(a, v, car->m);
+            x = v[0];
+            z = v[2];
+            x = -x;
+            z = -z;
+        } else {
+            v[0] = car->vx;
+            v[1] = car->vy;
+            v[2] = car->vz;
+            if (r < 0) {
+                v[1] = -v[1];
+            }
+            func_800A61B0(v, a, car->m);
+            a[2] = fabsf(a[2]);
+            func_8009E820(a, v, car->m);
+            x = v[0];
+            z = v[2];
+            x = -x;
+            z = -z;
+        }
+        k = r / len;
+        y = v[1];
+        x = x * k;
+        y = y * k;
+        z = z * k;
+        v[0] = x;
+        v[2] = z;
+        mag = sqrtf((z * z) + (x * x));
+        if (D_801244C8 < mag) {
+            k = (mag - ((-y * c) / r)) / mag;
+            x = x * k;
+            z = z * k;
+            v[0] = x;
+            v[2] = z;
+        }
+        y = fabsf(((mag * c) / r) - y);
+        v[1] = y;
+        if (len < 100.0f) {
+            func_800CFDEC((s32) b, (s32) v, 3, 1.0f, 100.0f, len, (s32) v);
+        }
+    } else {
+        v[0] = x;
+        v[2] = z;
+        v[1] = y;
+    }
+    if (car->mode == 8) {
+        D_80152720[pl] = 0.0f;
+    } else if (car->mode == 4) {
+        D_80152720[pl] = 1 - (len / 100.0f);
+    } else if (len < 100.0f) {
+        D_80152720[pl] = 1 - (len * D_801244CC);
+    } else {
+        D_80152720[pl] = 0.0f;
+    }
+    out[0] = v[0];
+    out[1] = v[1];
+    out[2] = v[2];
+}
+
+void func_800E95DC(s16 arg0, Cr *car, f32 *pos, s32 arg3) {
+    V3 vel[4];
+    f32 pa[3];
+    f32 pb[3];
+    s16 *st;
+    s32 pl;
+    f32 t;
+    f32 k;
+    f32 k2;
+    Fx *fx;
+
+    pl = car->player;
+    if (arg0 == 0) {
+        D_8012E690[pl].x = pos[0];
+        D_8012E690[pl].y = pos[1];
+        D_8012E690[pl].z = pos[2];
+        fx = &D_80150B70[pl];
+        fx->v84[0] = pos[0];
+        fx->v84[1] = pos[1];
+        fx->v84[2] = pos[2];
+        pa[0] = car->pos[0];
+        pa[1] = car->pos[1];
+        pa[2] = car->pos[2];
+        pos[0] = pos[0] - pa[0];
+        pos[1] = pos[1] - pa[1];
+        pos[2] = pos[2] - pa[2];
+        vector_normalize_length(pos, &fx->n60);
+        D_8012E6C8[pl] = 0;
+        D_8012E6E8[pl] = 0.0f;
         return;
     }
-    repeat = D_80123F94;
-    for (i = 0; i < 4; i++) {
-        x = func_800C9590(1.0f, gStickCal[i][0], gStickRaw[i][0]);
-        gStick[i].unk4 = func_800C9590(1.0f, gStickCal[i][1], gStickRaw[i][1]);
-        gStick[i].unk0 = x;
-        D_80156978[i] = gHeld[i];
-        held = D_80156978[i];
-        D_80156998[i] = gPrevPressed[i];
-        gPrevPressed[i] = 0;
-        D_80143A00[i] = 0;
-        if (held != 0) {
-            D_80111958 = game_loop_tick;
-        }
-        connected = gConnected[i];
-        if (connected) {
-            D_8015694C |= D_80156998[i];
-            D_80156944 |= held;
-        }
-        for (b = 0; b < 32; b++) {
-            if (b != 0) {
-                mask = 1 << b;
-                if (held & mask) {
-                    if (gRepeatTime[i][b] == 0 ||
-                        (u32) (s32) (repeat * D_8002AFB4) < game_loop_tick - gRepeatTime[i][b]) {
-                        D_80143A00[i] |= mask;
-                        gRepeatTime[i][b] = game_loop_tick;
-                    }
-                } else {
-                    gRepeatTime[i][b] = 0;
-                }
+    st = &D_8012E6C8[pl];
+    switch (*st) {
+    case 0:
+        func_800E92C8(car, pa, D_801526F8[pl], D_801526E0[pl]);
+        pa[0] = pa[0] + pos[0];
+        pa[1] = pa[1] + pos[1];
+        pa[2] = pa[2] + pos[2];
+        t = D_8012E6E8[pl];
+        k = (D_801244D0 * t) / D_801108C8[*st];
+        vel[pl].x = k * (pa[0] - D_8012E690[pl].x);
+        vel[pl].y = k * (pa[1] - D_8012E690[pl].y);
+        k2 = t / D_801108C8[*st];
+        vel[pl].z = k * (pa[2] - D_8012E690[pl].z);
+        pb[0] = car->pos[0] - (car->m[5] * 40.0f);
+        pb[1] = car->pos[1] + 5.0f;
+        pb[2] = car->pos[2] - (car->m[8] * 40.0f);
+        vel[pl].x = k2 * (pb[0] - D_8012E690[pl].x);
+        vel[pl].y = k2 * (pb[1] - D_8012E690[pl].y);
+        vel[pl].z = k2 * (pb[2] - D_8012E690[pl].z);
+        break;
+    case 1:
+        func_800E92C8(car, pa, D_801526F8[pl], D_801526E0[pl]);
+        pa[0] = pa[0] + pos[0];
+        pa[1] = pa[1] + pos[1];
+        pa[2] = pa[2] + pos[2];
+        k = D_8012E6E8[pl] / D_801108C8[*st];
+        vel[pl].x = k * (pa[0] - D_8012E690[pl].x);
+        vel[pl].y = k * (pa[1] - D_8012E690[pl].y);
+        vel[pl].z = k * (pa[2] - D_8012E690[pl].z);
+        break;
+    case 2:
+        func_800E9234(car);
+        if (!(state_word_a & 8)) {
+            u8 v;
+            HN **h;
+            v = 2;
+            h = car->q->h;
+            if (h[0]->f2c != 0) {
+                v = func_800CDE38((void **) h);
+            }
+            car->mode = v;
+            car->mode2 = v;
+            if (car->mode == 1) {
+                D_801526A8[car->player].x = 0.0f;
+                D_801526A8[car->player].y = 0.0f;
+                D_801526A8[car->player].z = 0.0f;
             }
         }
-        if (connected) {
-            D_80149784 |= D_80143A00[i];
+        break;
+    }
+    if ((*st == 0) || (*st == 1)) {
+        pb[0] = vel[pl].x + D_8012E690[pl].x;
+        pb[1] = vel[pl].y + D_8012E690[pl].y;
+        pb[2] = vel[pl].z + D_8012E690[pl].z;
+        pa[0] = pb[0] - pos[0];
+        pa[1] = pb[1] - pos[1];
+        D_80152720[pl] = 0.0f;
+        pa[2] = pb[2] - pos[2];
+        func_800E8D50(car, (s32) pos, arg3, pa);
+        fx = &D_80150B70[pl];
+        fx->v84[1] = fx->v84[1] + 4.0f;
+        D_8012E6E8[pl] = D_8012E6E8[pl] + D_8002EB94;
+        if (D_801108C8[*st] <= D_8012E6E8[pl]) {
+            *st = *st + 1;
+            D_8012E6E8[pl] = 0.0f;
+            D_8012E690[pl].x = fx->v84[0];
+            D_8012E690[pl].y = fx->v84[1];
+            D_8012E690[pl].z = fx->v84[2];
         }
     }
-    osJamMesg((OSMesgQueue *) &D_801497A8, NULL, 0);
 }
 
-/* scale a raw stick value to [-range, range] */
-f32 func_800C9590(f32 range, f32 calib, s32 raw)
-{
-    f32 v;
-
-    v = ((f32) raw * range) / calib;
-    if (v < -range) {
-        v = -range;
-    } else if (range < v) {
-        v = range;
-    }
-    return v;
-}
-
-void func_800E7038(void) {
-    if (D_80111954 == 0) {
-        player_state_set(-1, 1);
-        player_mode_set(-1, 1);
-    }
-    D_80111954 = 1;
-    D_80149AFE = 0x46;
-    D_80149AFF = 0x46;
-    D_80149AFC = 0x46;
-    D_80149AFD = 0x46;
-    D_80149AFA = 0x46;
-    D_80149AFB = 0x46;
-    D_80149AF8 = 0x46;
-    if (D_80111968 == 0) {
-        D_80149AF9 = 0x46;
-        D_80111968 = 1;
-        osCreateMesgQueue((OSMesgQueue *) &D_801497A8, (void **) &D_80152730, 1);
-        osJamMesg((OSMesgQueue *) &D_801497A8, NULL, 0);
-    }
-    if (D_80111950 == 0x80) {
-        do {
-
-        } while (D_80111950 == 0x80);
-    }
-    controller_poll();
-}
-
-void func_800E7134(void) {
-    f32 *var_t3;
-    f32 temp_f0;
-    s32 *var_a2;
-    s32 *var_s0;
-    s32 *var_t1;
-    s32 *var_t2;
-    s32 *var_t5;
-    s32 temp_v0;
-    s32 var_t0;
-    s32 var_v1;
-    s8 *var_a1;
-    u8 *var_a3;
-
-    if (D_80111954 == 0) {
-        func_800E7038();
-    }
-    osRecvMesg((OSMesgQueue *) &D_801497A8, NULL, 1);
-    var_t3 = &D_80140620;
-    var_s0 = &D_8013FED0;
-    var_t5 = &D_801403C0;
-    var_t2 = &D_80149B10;
-    var_t1 = &D_80149B30;
-    var_a1 = &D_80149AF8;
-    var_a2 = &D_80149B50;
-    var_a3 = &D_80156CF0;
-    var_t0 = 0;
-    do {
-        var_v1 = 0;
-        if ((s8) M2C_FIELD(var_a3, u8 *, 0) == 0) {
-            M2C_FIELD(var_a2, s8 *, 0) = 0;
-            M2C_FIELD(var_a2, s8 *, 1) = 0;
-            var_a1[0] = 70;
-            var_a1[1] = 70;
-        } else {
-            var_v1 = M2C_FIELD(var_a3, s32 *, 4);
-            M2C_FIELD(var_a2, s8 *, 0) = (s8) M2C_FIELD(var_a3, s8 *, 8);
-            M2C_FIELD(var_a2, s8 *, 1) = (s8) M2C_FIELD(var_a3, s8 *, 9);
-            if (D_80149B74[var_t0] != 0) {
-                if (M2C_FIELD(var_a2, s8 *, 0) < -0x38) {
-                    var_v1 |= 0x1000;
-                }
-                if (M2C_FIELD(var_a2, s8 *, 0) >= 0x39) {
-                    var_v1 |= 0x2000;
-                }
-                if (M2C_FIELD(var_a2, s8 *, 1) < -0x38) {
-                    var_v1 |= 0x800;
-                }
-                if (M2C_FIELD(var_a2, s8 *, 1) >= 0x39) {
-                    var_v1 |= 0x400;
-                }
-            }
-            if (var_v1 & 0x40000) {
-                var_a1[0] = 70;
-                var_a1[1] = 70;
-            }
-            if (((*var_a1 < M2C_FIELD(var_a2, s8 *, 0)) || (M2C_FIELD(var_a2, s8 *, 0) < -*var_a1)) && (*var_a1 < 0x7F)) {
-                *var_a1 += 1;
-            }
-            if (((*var_a1 < M2C_FIELD(var_a2, s8 *, 1)) || (M2C_FIELD(var_a2, s8 *, 1) < -*var_a1)) && (*var_a1 < 0x7F)) {
-                *var_a1 += 1;
-            }
-        }
-        *var_s0 = var_v1;
-        temp_v0 = (*var_t1 ^ var_v1) & var_v1;
-        *var_t2 |= temp_v0;
-        *var_t1 = var_v1;
-        *var_t5 = temp_v0;
-        *var_t3 = func_800C9590(1.0f, var_a1[0], M2C_FIELD(var_a2, s8 *, 0));
-        temp_f0 = func_800C9590(1.0f, var_a1[1], M2C_FIELD(var_a2, s8 *, 1));
-        var_t0 += 1;
-        var_a3 += 0x10;
-        var_a2 = (s32 *) ((u8 *) var_a2 + 2);
-        var_a1 += 2;
-        var_t1 = var_t1 + 1;
-        var_t2 = var_t2 + 1;
-        var_t5 = var_t5 + 1;
-        var_s0 = var_s0 + 1;
-        var_t3 = &D_80140624;
-    } while (var_t0 != 4);
-    D_80140624 = temp_f0;
-    osJamMesg((OSMesgQueue *) &D_801497A8, NULL, 0);
-}
-
-void player_mode_set(s32 player, s32 value)
-{
+void func_800EA108(Cr *car, f32 *pos, void *arg2) {
     s32 i;
+    s32 j;
+    f32 d[3];
+    f32 t[3];
+    s32 pl;
 
-    if (player == -1) {
-        for (i = 0; i < 4; i++) {
-            D_80149B74[i] = value;
-        }
-    } else if (player < 4) {
-        D_80149B74[player] = value;
+    pl = car->player;
+    func_8008D6FC(car->s_f6, pos, arg2);
+    D_80152708[pl] = D_801244E8;
+    func_800E92C8(car, t, 30.0f, 16.0f);
+    for (i = 0; i < 3; i++) {
+        D_80150B70[pl].v84[i] = (D_80152708[pl] * (pos[i] + t[i])) + ((1.0f - D_80152708[pl]) * D_80150B70[pl].v84[i]);
     }
-}
-
-void player_state_set(s32 player, s32 value)
-{
-    s32 i;
-
-    if (player == -1) {
-        for (i = 0; i < 4; i++) {
-            D_80149B64[i] = value;
-        }
-    } else if (player < 4) {
-        D_80149B64[player] = value;
+    for (j = 0; j < 3; j++) {
+        d[j] = pos[j] - D_80150B70[pl].v84[j];
     }
+    vector_normalize_length(d, &D_80150B70[pl].n60);
 }
 
-void process_inputs(void) {
-    D_80156958_Entry *temp_a1;
-    D_80156958_Entry *temp_a2;
-    InputRecord *var_a0;
-    s32 var_a3;
+void func_800EA2DC(Cr *car, void *arg1, void *arg2, s32 arg3) {
+    volatile s32 padv[5];
+    f32 v[3];
+    s32 pl;
 
-    controller_poll();
-    var_a0 = &input_rec1;
-    var_a3 = 0;
-    do {
-        if ((M2C_FIELD(&D_8014A119, u8 *, 0) == 5) || (var_a3 >= active_player_count)) {
-            M2C_FIELD(&D_8014A119, s32 *, 8) = 0;
-            M2C_FIELD(&D_8014A11C, s32 *, 0) = 0;
-            M2C_FIELD(&D_8014A11C, s32 *, 0xC) = 0;
-            M2C_FIELD(&D_8014A11C, f32 *, 0x10) = 0.0f;
-            M2C_FIELD(&D_8014A11C, f32 *, 0x14) = 0.0f;
-        } else {
-            temp_a1 = &D_80156958[M2C_FIELD(&D_8014A119, u8 *, 0)];
-            M2C_FIELD(&D_8014A119, s32 *, 8) = (s32) D_80156978[M2C_FIELD(&D_8014A119, u8 *, 0)];
-            M2C_FIELD(&D_8014A119, u8 *, 0) = (s32) D_80156998[M2C_FIELD(&D_8014A119, u8 *, 0)];
-            M2C_FIELD(&D_8014A119, s32 *, 0xC) = (s32) D_80143A00[M2C_FIELD(&D_8014A119, u8 *, 0)];
-            M2C_FIELD(&D_8014A119, f32 *, 0x10) = (f32) temp_a1->unk0;
-            M2C_FIELD(&D_8014A119, f32 *, 0x14) = (f32) temp_a1->unk4;
-        }
-        if ((u8) D_8014A165 != 5) {
-            if (var_a3 < (active_player_count - 1)) {
-                var_a0 = (InputRecord *) &D_8014A165;
-                ((InputRecord *) &D_8014A165)->unk08 = D_80156978[M2C_ERROR(/* Read from unset register $a1 */)];
-                temp_a2 = &D_80156958[M2C_ERROR(/* Read from unset register $a1 */)];
-                ((InputRecord *) &D_8014A165)->unk04 = D_80156998[M2C_ERROR(/* Read from unset register $a1 */)];
-                ((InputRecord *) &D_8014A165)->unk0C = D_80143A00[M2C_ERROR(/* Read from unset register $a1 */)];
-                ((InputRecord *) &D_8014A165)->unk10 = temp_a2->unk0;
-                ((InputRecord *) &D_8014A165)->unk14 = temp_a2->unk4;
-            } else {
-                goto block_10;
-            }
-        } else {
-block_10:
-            var_a0->unk08 = 0;
-            var_a0->unk04 = 0;
-            var_a0->unk0C = 0;
-            var_a0->unk10 = 0.0f;
-            var_a0->unk14 = 0.0f;
-        }
-        var_a3 += 2;
-        var_a0 = (InputRecord *) ((u8 *) var_a0 + 0x98);
-    } while (var_a3 != 4);
+    pl = car->player;
+    func_800E8CB8(car, arg1, arg2);
+    if (car->mode == 0xA) {
+        func_800E92C8(car, v, -D_801526F8[pl], D_801526E0[pl]);
+    } else {
+        func_800E92C8(car, v, D_801526F8[pl], D_801526E0[pl]);
+    }
+    func_800E8D50(car, arg3, 0, v);
 }
 
-/* stand-in caller: keeps controller_poll out of line under -O3 */
-void __standin_controller_poll(void)
+/* stand-in caller: keeps func_800E92C8 out of line under -O3 */
+void __standin_func_800E92C8(void)
 {
-    controller_poll();
-}
-
-/* stand-in caller: keeps func_800C9590 out of line under -O3 */
-void __standin_func_800C9590(void)
-{
-    func_800C9590(0, 0, 0);
-}
-
-/* stand-in caller: keeps func_800E7038 out of line under -O3 */
-void __standin_func_800E7038(void)
-{
-    func_800E7038();
-}
-
-/* stand-in caller: keeps player_mode_set out of line under -O3 */
-void __standin_player_mode_set(void)
-{
-    player_mode_set(0, 0);
-}
-
-/* stand-in caller: keeps player_state_set out of line under -O3 */
-void __standin_player_state_set(void)
-{
-    player_state_set(0, 0);
+    func_800E92C8(0, 0, 0, 0);
 }
