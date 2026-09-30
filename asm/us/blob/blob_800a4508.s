@@ -90,6 +90,7 @@ car_lod_select:
 .section .text.func_800A464C, "ax", @progbits
 .globl func_800A464C
 func_800A464C:
+    /* compiled from src/blob/func_800A464C.c */
     .word 0x90820000
     .word 0x14400008
     .word 0x00000000
@@ -158,6 +159,7 @@ func_800A46CC:
 .section .text.func_800A473C, "ax", @progbits
 .globl func_800A473C
 func_800A473C:
+    /* compiled from src/blob/func_800A473C.c */
     .word 0x90A20000
     .word 0x00801825
     .word 0x24840001
@@ -175,6 +177,7 @@ func_800A473C:
 .section .text.func_800A4770, "ax", @progbits
 .globl func_800A4770
 func_800A4770:
+    /* compiled from src/blob/func_800A4770.c */
     .word 0x908E0000
     .word 0x00801825
     .word 0x51C00006
@@ -452,6 +455,7 @@ func_800A4B40:
 .section .text.resource_update_global, "ax", @progbits
 .globl resource_update_global
 resource_update_global:
+    /* compiled from src/blob/resource_update_global.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x3C048015
@@ -527,6 +531,7 @@ wheel_params_set:
 .section .text.init_wait_completion, "ax", @progbits
 .globl init_wait_completion
 init_wait_completion:
+    /* compiled from src/blob/init_wait_completion.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x0C0292DB
@@ -2013,6 +2018,7 @@ car_lights_render:
 .section .text.func_800A61B0, "ax", @progbits
 .globl func_800A61B0
 func_800A61B0:
+    /* compiled from src/blob/func_800A61B0.c */
     .word 0xC4840000
     .word 0xC4C60000
     .word 0xC48A0004
@@ -3869,6 +3875,7 @@ car_gear_shift:
 .section .text.func_800A7D6C, "ax", @progbits
 .globl func_800A7D6C
 func_800A7D6C:
+    /* compiled from src/blob/func_800A7D6C.c */
     .word 0x3C038015
     .word 0x24636BAC
     .word 0x3C048015

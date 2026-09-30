@@ -1395,6 +1395,7 @@ leaderboard_update:
 .section .text.camera_fov_control, "ax", @progbits
 .globl camera_fov_control
 camera_fov_control:
+    /* compiled from src/blob/camera_fov_control.c */
     .word 0x27BDFFD0
     .word 0xAFBF002C
     .word 0x82020064
@@ -1518,6 +1519,7 @@ camera_clip_planes:
 .section .text.camera_aspect_ratio, "ax", @progbits
 .globl camera_aspect_ratio
 camera_aspect_ratio:
+    /* compiled from src/blob/camera_aspect_ratio.c */
     .word 0x27BDFFD0
     .word 0xAFBF002C
     .word 0x0C02FC09
@@ -2897,6 +2899,7 @@ func_800C0828:
 .section .text.camera_build_view_matrix, "ax", @progbits
 .globl camera_build_view_matrix
 camera_build_view_matrix:
+    /* compiled from src/blob/camera_build_view_matrix.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x8E70006C
@@ -4726,6 +4729,7 @@ func_800C2428:
 .section .text.func_800C2430, "ax", @progbits
 .globl func_800C2430
 func_800C2430:
+    /* compiled from src/blob/func_800C2430.c */
     .word 0x00097140
     .word 0x01C97023
     .word 0x3C0F8015
@@ -4895,6 +4899,7 @@ func_800C2430:
 .section .text.func_800C26C4, "ax", @progbits
 .globl func_800C26C4
 func_800C26C4:
+    /* compiled from src/blob/func_800C26C4.c */
     .word 0x00097140
     .word 0x01C97023
     .word 0x3C0F8015
@@ -5059,6 +5064,7 @@ func_800C26C4:
 .section .text.func_800C2944, "ax", @progbits
 .globl func_800C2944
 func_800C2944:
+    /* compiled from src/blob/func_800C2944.c */
     .word 0x00097140
     .word 0x01C97023
     .word 0x3C0F8015
