@@ -380,6 +380,7 @@ camera_follow_path:
 .section .text.func_800C4C9C, "ax", @progbits
 .globl func_800C4C9C
 func_800C4C9C:
+    /* compiled from src/blob/func_800C4C9C.c */
     .word 0xAFA50004
     .word 0x849807C6
     .word 0x3C098015

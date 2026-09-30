@@ -720,6 +720,7 @@ track_collision_wall:
 .section .text.func_8009E820, "ax", @progbits
 .globl func_8009E820
 func_8009E820:
+    /* compiled from src/blob/func_8009E820.c */
     .word 0xC4840000
     .word 0xC4C60000
     .word 0xC48A0004

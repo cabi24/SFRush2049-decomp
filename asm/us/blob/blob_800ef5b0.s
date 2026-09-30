@@ -8188,6 +8188,7 @@ props_render:
 .section .text.UpdateActiveObjects, "ax", @progbits
 .globl UpdateActiveObjects
 UpdateActiveObjects:
+    /* compiled from src/blob/UpdateActiveObjects.c */
     .word 0x3C0E8015
     .word 0x8DCE9788
     .word 0x27BDFFD8

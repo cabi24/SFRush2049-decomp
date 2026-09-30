@@ -1980,6 +1980,7 @@ physics_sym:
 .section .text.func_800B90F8, "ax", @progbits
 .globl func_800B90F8
 func_800B90F8:
+    /* compiled from src/blob/func_800B90F8.c */
     .word 0x3C038015
     .word 0x84631AD0
     .word 0x3C0E8012
@@ -2145,6 +2146,7 @@ func_800B930C:
 .section .text.func_800B9338, "ax", @progbits
 .globl func_800B9338
 func_800B9338:
+    /* compiled from src/blob/func_800B9338.c */
     .word 0x0005C400
     .word 0x0018CC03
     .word 0x001948C0
@@ -2954,6 +2956,7 @@ physics_friction_apply:
 .section .text.func_800B9F60, "ax", @progbits
 .globl func_800B9F60
 func_800B9F60:
+    /* compiled from src/blob/func_800B9F60.c */
     .word 0x04800015
     .word 0x3C088014
     .word 0x3C088014

@@ -4365,6 +4365,7 @@ task_complete_signal:
 .section .text.func_8008AD04, "ax", @progbits
 .globl func_8008AD04
 func_8008AD04:
+    /* compiled from src/blob/func_8008AD04.c */
     .word 0x90830000
     .word 0x5060000D
     .word 0x90B80000
