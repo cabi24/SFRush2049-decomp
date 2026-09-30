@@ -13,6 +13,8 @@ missing a mutation.
     corpus.py show FN                      metadata plus a unified diff start -> goal
     corpus.py stats [--write]              edit-class histogram (--write refreshes STATS.md)
     corpus.py materialize FN start|goal --out FILE    full compilable translation unit
+    corpus.py split                        write corpus_data/SPLIT.json (dev / held-out halves)
+    corpus.py bench --half dev|held ...    restrict bench to one half of the split
     corpus.py bench --search-cmd CMD --budget N --jobs J [--class C] [--limit K]
     corpus.py mine                         (re)build corpus_data/ from git history (needs IDO)
 
@@ -704,7 +706,27 @@ def run_search(search_cmd, path, fn, flags, budget, timeout):
     return res
 
 
-def bench(search_cmd, budget, jobs, cls=None, limit=None, timeout=3600, fns=None, out_json=None):
+SPLIT = DATA / "SPLIT.json"
+
+
+def split_half(fn):
+    """Deterministic dev/held-out assignment by name hash (parity of sha1(fn)[0])."""
+    import hashlib
+    return "dev" if hashlib.sha1(fn.encode()).digest()[0] % 2 == 0 else "held"
+
+
+def write_split(idx=None):
+    """Record the split of every start->goal pair in corpus_data/SPLIT.json."""
+    idx = idx or load_index()
+    names = sorted(e["fn"] for e in with_start(idx))
+    doc = {"rule": "sha1(fn)[0] % 2 == 0 -> dev, else held", "dev": [], "held": []}
+    for n in names:
+        doc[split_half(n)].append(n)
+    SPLIT.write_text(json.dumps(doc, indent=1) + "\n")
+    return doc
+
+
+def bench(search_cmd, budget, jobs, cls=None, limit=None, timeout=3600, fns=None, out_json=None, half=None):
     idx = load_index()
     hl = header_lines()
     todo = [e for e in with_start(idx) if e["kind"] == "single" and (e.get("start") or {}).get("score", {}).get("compiles")]
@@ -712,6 +734,8 @@ def bench(search_cmd, budget, jobs, cls=None, limit=None, timeout=3600, fns=None
         todo = [e for e in todo if cls in e["edit"]["classes"]]
     if fns:
         todo = [e for e in todo if e["fn"] in fns]
+    if half:
+        todo = [e for e in todo if split_half(e["fn"]) == half]
     if limit:
         todo = todo[:limit]
     tmp = tempfile.TemporaryDirectory()
@@ -785,6 +809,8 @@ def main(argv=None):
     p.add_argument("--fn", action="append")
     p.add_argument("--timeout", type=int, default=3600)
     p.add_argument("--json-out")
+    p.add_argument("--half", choices=["dev", "held"], help="only that half of the recorded split")
+    p = sub.add_parser("split")
     p = sub.add_parser("mine")
     p.add_argument("--jobs", type=int, default=6)
     a = ap.parse_args(argv)
@@ -826,7 +852,10 @@ def main(argv=None):
             sys.exit("%s has no %s" % (a.fn, a.which))
         Path(a.out).write_text(src)
     elif a.cmd == "bench":
-        bench(a.search_cmd, a.budget, a.jobs, a.cls, a.limit, a.timeout, a.fn, a.json_out)
+        bench(a.search_cmd, a.budget, a.jobs, a.cls, a.limit, a.timeout, a.fn, a.json_out, a.half)
+    elif a.cmd == "split":
+        d = write_split(idx)
+        print("dev %d, held %d -> %s" % (len(d["dev"]), len(d["held"]), SPLIT))
 
 
 if __name__ == "__main__":
