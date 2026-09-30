@@ -149,3 +149,54 @@ known to differ, and its closure gap.
   `_tr_init`), so it can pass without `--allow-unverified`.
 - `cloud/work/ipa-groups/INDEX.md` is stale (it still shows the original
   build errors). Regenerate it from the STATUS files when convenient.
+
+---
+
+# Round 2 addendum (2026-09-30)
+
+Seven parallel agents; all work is on `claude/charming-lovelace-fx94qo`.
+Scores are `zbuild.py --as1=-r4300_mul` (groups), `extscore.py` (tail
+functions), `score.py fn` (single functions). Per-group detail is in each
+`STATUS.md` ("Pass 3" sections); some STATUS files still carry older numbers.
+
+## New strict matches
+
+- **Single functions (Lane B), 31 files in `cloud/matches/`**, all `-O2`
+  (INDEX's `-O1` was wrong for the m2c-sweep rows); `func_800E1540` needs
+  `-Wab,-r4300_mul`; `func_800ABB58` and `func_800B9F60` use `volatile`
+  reads found by trial and are flagged for review.
+- **IPA groups:** `func_800E627C`, `player_mode_set`, `player_state_set`,
+  `physics_velocity_integrate_b..f`, `func_800B0A88`, `func_800EA2DC`,
+  `func_800C2944`, `func_800C26C4`, `func_800C2430`, `model_bounds_calc`,
+  `time_of_day_select`.
+- **Tail-function groups (`extscore.py`, stand-in callers, not spliceable):**
+  `audio_pitch_adjust` (18), `func_8008705C` (45), `draw_number` (110).
+
+## Findings worth reusing
+
+- `as1` merges consecutive `lui at` only when the symbol is *defined* in the
+  same unit (not `extern`); this fixed `player_*_set`.
+- Launder a pointer through `(u32)` to stop uopt hoisting loads above stores
+  (`camera_scene_manager` family).
+- `volatile` fields stop CSE where the target does not CSE.
+- Named locals become uopt webs and get registers in a different order from
+  expression temps; drop or add them to steer allocation.
+- `(u32) slot * 0x18` avoids reusing a hoisted `li 24` for `multu`.
+- Natural source (typed struct arrays, plain `for`) beats m2c shape; K&R
+  callee prototypes remove `lh` narrowing of arguments.
+- IPA gives a parameter the first register above the callee's outgoing
+  argument count; this blocks `func_8008B640` and `_a`.
+
+## Still open
+
+- The dead `move s0,v0` after `slot_state_setup` calls (all three tail groups).
+- Tail heads are unregistered: `func_80107EDC`, `func_801084D4`,
+  `func_8010BC84`, `name_entry_screen` (real head 0x80103D28, ~628 words),
+  `audio_doppler_calc` (281 words at 0x800B6788, undrafted).
+- `camera_update` (typed rewrite, frame right, ~20 hunks), `camera_scene_manager`,
+  `func_800E6460` (32/239), `func_800DC1AC` (3/39), `func_800B08FC` (4/99).
+- Closure gaps: `func_800AD650`, `func_800AD5D0` (for `func_800C3AD0` and
+  `input_process_controller`), `func_800E4B58`/`func_800E398C`, real
+  `func_800F1210` and `func_80086A50`.
+- `controller_poll/group.c` now *defines* `D_80149B64[4]`/`D_80149B74[4]`;
+  splicing must not define them elsewhere.
