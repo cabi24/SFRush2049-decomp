@@ -28,3 +28,9 @@ Against: 1413 words of mixed integer/float logic with 12 near-identical but not 
 
 ## Effort
 2-4 days. 1 day gets the two small callees and the integer half. Payoff 1676 words for 3 functions; highest match probability per word of the five.
+
+## Hail mary result (2026-09-30)
+Group dir `cloud/work/ipa-groups/render_large_objects/` (see STATUS.md there):
+`func_800F92C8` strict MATCH (52/52, args are a,b,x,outA,outB), `func_800DE860`
+structure reproduced (203 vs 211 words; loop var must be `s32`, `bd` local, test on
+`D_80150F14 == 1`) but prologue/FP hoisting differ, `render_large_objects` untouched.
