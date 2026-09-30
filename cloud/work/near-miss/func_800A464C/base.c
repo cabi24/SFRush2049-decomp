@@ -3792,7 +3792,6 @@ u8 *func_800A464C(u8 *arg0, u8 *arg1)
 {
   s32 i;
   u8 *p;
-  u8 *q;
   u8 c;
   if (*arg0 == 0)
   {
@@ -3811,13 +3810,12 @@ u8 *func_800A464C(u8 *arg0, u8 *arg1)
       while (1)
       {
         c = *p;
-        q = arg0 + i;
-        i++;
         if (c == 0)
         {
           return arg0;
         }
-        if (c != *q) break;
+        if (c != arg0[i]) break;
+        i++;
         p++;
       }
     } while (*++arg0 != 0);
