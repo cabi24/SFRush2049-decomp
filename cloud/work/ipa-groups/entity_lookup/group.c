@@ -55,16 +55,16 @@ Msg *func_80091B00(void);
 
 Entity *func_80091BA8(s32 h)
 {
-    Entity *e;
+    s32 off;
 
     if (h == -1) {
         return 0;
     }
-    e = &D_80110244[h & D_80146104];
-    if (e->id != h) {
+    off = (h & D_80146104) * 68;
+    if (*(s32 *)((u8 *)D_80110244 + off + 12) != h) {
         return 0;
     }
-    return e;
+    return (Entity *)((u8 *)D_80110244 + off);
 }
 
 void func_800BF01C(CamSlot *c)
@@ -73,15 +73,16 @@ void func_800BF01C(CamSlot *c)
 
 Msg *func_80091B00(void)
 {
-    Msg *m;
+    Msg *m = D_80142DD8;
 
-    for (m = D_80142DD8; m != D_801439D8; m++) {
+    do {
         if (m->used == 0) {
             m->used = 1;
             m->id = -1;
             return m;
         }
-    }
+        m++;
+    } while (m != D_801439D8);
     return 0;
 }
 

@@ -1,0 +1,27 @@
+{
+  "members": [
+    "countdown",
+    "func_800F7F3C",
+    "func_800B61A8",
+    "func_800FBF2C",
+    "func_800FBE30"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "countdown",
+    "func_800F7F3C",
+    "func_800B61A8",
+    "func_800FBF2C",
+    "func_800FBE30"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "generated": "hand-written in cloud/work/r5_d (round 3)",
+  "context": [],
+  "claims": [
+    "func_800B61A8",
+    "func_800FBF2C",
+    "func_800FBE30"
+  ]
+}
