@@ -15,5 +15,6 @@ for combo in itertools.product(*opts):
         print('MATCH',combo); open(sys.argv[1]+'.match.c','w').write(s); sys.exit()
     m=re.search(r'(\d+)/\d+ words differ',out)
     n=int(m.group(1)) if m else 9999
+    open(sys.argv[1]+'.log','a').write('%d %s\n'%(n,combo))
     if best is None or n<best[0]: best=(n,combo); open(sys.argv[1]+'.best.c','w').write(s)
 print(best)

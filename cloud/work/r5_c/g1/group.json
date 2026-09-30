@@ -1,0 +1,21 @@
+{
+ "members": [
+  "func_800F92C8",
+  "func_800DE860"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "__standin_render_large_objects",
+  "__standin_b",
+  "func_800DE860"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "generated": "hand-written from the assembly (cloud hail-mary); see STATUS.md",
+ "unprototyped": [],
+ "context": [],
+ "claims": [
+  "func_800F92C8"
+ ]
+}

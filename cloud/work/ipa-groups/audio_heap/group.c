@@ -137,10 +137,7 @@ void *audio_dma_sync(Heap *heap, u32 size)
     void *p;
 
     osRecvMesg(D_80152770, 0, 1);
-    if (heap == 0) {
-        heap = D_801527C8;
-    }
-    p = audio_helper(size, heap, 0, 0);
+    p = audio_helper(size, heap != 0 ? heap : D_801527C8, 0, 0);
     osJamMesg(D_80152770, 0, 0);
     return p;
 }
@@ -199,14 +196,13 @@ void *func_800E7C2C(Heap *heap, u32 size, u16 count, u16 a)
 
     osRecvMesg(D_80152770, 0, 1);
     h = audio_helper(size + 64, heap != 0 ? heap : D_801527C8, 0, 1);
-    *(u32 *)((u8 *)h - 16) = (u32)h + ((size + 95) & ~31);
+    h->end = (u32)h + ((size + 95) & ~31);
     func_800E7B44(h, count, a);
-    p = D_801527C8;
-    if (p != 0) {
-        while (p->next != 0) {
-            p = p->next;
+    for (p = D_801527C8; p != 0; p = p->next) {
+        if (p->next == 0) {
+            p->next = h;
+            break;
         }
-        p->next = h;
     }
     osJamMesg(D_80152770, 0, 0);
     return h;

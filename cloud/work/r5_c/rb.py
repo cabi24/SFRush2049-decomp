@@ -2,7 +2,8 @@ import sys, tempfile, json, shlex, re, difflib, subprocess
 from pathlib import Path
 ROOT = Path('/home/user/SFRush2049-decomp')
 sys.path.insert(0, str(ROOT/'tools'/'cloud')); import score
-GD = ROOT/'cloud/work/ipa-groups/render_large_objects'
+import os
+GD = Path(os.environ.get('GD', str(ROOT/'cloud/work/ipa-groups/render_large_objects')))
 def build(src_text, out, keep=None, flags=None):
     spec = json.loads((GD/'group.json').read_text())
     with tempfile.TemporaryDirectory() as tmp:
