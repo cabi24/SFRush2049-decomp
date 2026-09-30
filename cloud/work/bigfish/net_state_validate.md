@@ -23,3 +23,45 @@ Nothing here is IPA-dependent, the layout is fully understood, and every section
 3. Run decomp-permuter on the function with the final skeleton (needs `-r4300_mul` not required); expected several permuter hours.
 4. Check `D_80150E88[i][2]` quirk and `func_800B78A4` prototype (`s32 f(s32,s32)`) once that callee is spliced.
 Estimate: 4-8 hours agent time to a strict MATCH, probability ~50%. Payoff: 682 words = 1 function, the same as any other, but 0.11% of game words.
+
+## Hail-mary pass (stage log)
+Tooling (scratchpad, not in repo): compile+relocate via score.py internals, aligned diff (difflib on register-normalised
+disassembly), fine metric = aligned words weighted by register agreement.
+
+Findings that fixed structure (682 words now reached, 267/682 words exact at first checkpoint):
+- The "175 extra words in /10 section" note was stale; frame was already 64.
+- `a=0;b=0;c=0;d=0;` (separate statements, in that order) must be at the top of the per-player iteration, BEFORE the
+  `input_rec0[i].x->y->z != 0` test (target does `move s6/s4/s7/s5,zero` before the z test). `a = b = c = d = 0` gives
+  the wrong register order (d,c,b,a).
+- The constant 1 must be a real local (`s32 one = 1;`, compare and every store use `one`): only then is it a whole
+  function web in s3 and `bne s3,t6` is used for the mode compares (with literal 1 the compare is `li at,1`).
+- The a/b and c/d sum loops: `p = chain->S + k + 140; f(*(u16*)(p+92)&0xff); f(*(u16*)(p+92)&0xff00)` (and `+1292`/`+60`)
+  reproduces target's `addiu s1,s1,140 ; lhu 92(s1)` rebasing exactly (a pointer temp defined in the loop body, S local
+  is NOT used there; chain re-evaluated each iteration).
+- Section-4 32-bit sum: `p = S + 1292; for (n=0;n<4;n++) v1 += *(s32*)(p+12+n*64);` gives the unrolled `addiu a1,v0,1292`
+  form, but ONLY with a fresh loop variable `n` (re-using `k` prevents IDO's unroll).
+- Section-2 12-term sum: write it with the chain expression directly (no `S` local); then the induction pointer is the
+  `lw` result itself (no extra `move`), matching target incl. the `div` block.
+- Section-2 store order (asm order) EB8[0],[1],[2], ED8[3], EB8[3] (=v>=200 NOT 250) ... see base.c.
+Open: `active_player_count` (hoisted load, reloaded after calls) lands in a t-reg (t1/t2) in ours; target keeps it in s1
+(sharing s1 with the p temp), which changes which constants in the section-2 loop spill to s-regs and cascades into
+scheduling of the store block. Loop-form (for/while/do) and decl-order permutations do not change it.
+
+### Stage 2 findings (register allocation)
+- Instruction count now equals the target (682); structure aligned except for register naming (strict score: 289/682
+  words differ from best permuter output; from 674 at start of this pass).
+- The remaining mismatch is one cascade: the hoisted global `active_player_count` load (killed by the sum-loop calls
+  and reloaded) lands in a caller-saved reg (t1/t2/a0) in ours but in s1 in the target (sharing s1 with the loop pointer
+  temp `p`). Evidence: with all calls removed it becomes s0; any single call in the sec-1 loop makes it a t-reg. The
+  constants hoisted in the section-2 loop (li 5/6/9/10/12, four `lui/addiu` bases) then take t0..t5/ra/a2 in the target
+  and count is allocated after them; in ours count is allocated 2nd (right after const 6), which pushes constants 5 and
+  F40 base into s0/s1 and changes hoisting of `li 76`/`&input_rec0` in the section-2 mode-1 arm and store scheduling.
+- Named locals for the count (`cnt = active_player_count;` assigned once before section 2 and used by the section 2..4
+  loop bounds) make uopt allocate cnt as a named web (s2) and the section-2 constants then get exactly the target's
+  registers; but k/p swap (s1/s0) and sec-1 count becomes a0 (still not s1). base.c holds a permuter descendant of
+  that variant.
+- Things that do NOT change the count register: decl order of locals/globals, loop form (for/while/do, 6561 combos),
+  types of count/one/cnt, `static`/defined/extern, struct/array wrapping of the global, `#pragma no side effects`,
+  visible callee body at -O2/-O3, group -O3 build, -O1/-O3, K&R prototype.
+- decomp-permuter (cloned to scratchpad, custom compile.sh that resolves relocations and re-assembles the function as flat
+  .word text so its mnemonic/regalloc scorer works against target words) drives score 4355 -> 2360 quickly, then stalls.

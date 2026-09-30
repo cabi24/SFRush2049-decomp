@@ -1,5 +1,3 @@
-/* flags: -g0 -O2 -mips2 -G 0 -non_shared */
-/* NOT a match: 892 words, 200 strict-equal, 584 aligned-exact (65%), 837 shape-aligned (94%). See ../net_session_update.md */
 typedef signed char s8; typedef unsigned char u8; typedef signed short s16; typedef unsigned short u16;
 typedef signed int s32; typedef unsigned int u32;
 typedef struct { u8 pad[6]; u8 flag6; u8 pad1; s8 mode; s8 lim; u8 pad2[2]; u32 seed; u8 pad3[4]; u8 bits[6 * 9]; } Info;

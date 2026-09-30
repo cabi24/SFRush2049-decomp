@@ -25,3 +25,43 @@ Rewrite `seeds/func_800EA3F4.c` body minimising named locals; drive with `python
 
 ## Risks
 About 250 FP instructions: scheduler order swaps (`mul.s`/`add.s` operand order) are numerous but usually cheap. Frame geometry is the gate.
+
+---
+
+## Round 3 log (hail mary agent, 2026-09-30)
+
+### KEY FINDING: this function must be scored as an IPA/-O3 group, not with `score.py fn -O2`
+The target's blend factor (`$f12`) is kept in a caller-saved register across calls and spilled only
+around them (`swc1 $f12,64(sp)` before `jal`), no `$f20+` callee-saved use. Single-function `-O2` never
+produces that (toy test: `-O2` and `-O3` single-file put such a value in `$f20`, or in a home slot).
+Compiling the function **together with stand-in bodies of its four callees** through the group pipeline
+(`score.compile_group` steps: cc -j, uld -kp, usplit, umerge, uopt, ugen, as1 `-r4300_mul`, flags `-O3`)
+reproduces: frame 160, the first 43 words byte-identical, `f12` blend register + call-time spills, and the
+`lui a0/addiu a0` address form for `D_8002EB94`. The stand-in callees compile to exactly the retail sizes
+(func_8008B3C8 11, vector_copy_scale 20, func_800CFDEC 34, func_800E8CB8 38 words).
+Group harness: `cloud/work/bigfish/func_800EA3F4/group/` (group.c + group.json, `zbuild.py`-compatible;
+`python3 cloud/work/tools/zbuild.py cloud/work/bigfish/func_800EA3F4/group --as1=-r4300_mul`).
+
+### Other facts established
+- Every named scalar local reserves a 4-byte frame slot even when promoted; block-scoped locals in
+  sibling blocks share slots. Target has exactly 8 function-level scalar slots (0x80..0x9C) in the order
+  idx, ?, sp94, sp90, ?, ?, sp84, ? (the `?` are promoted, never accessed).
+- The `mode == 2 || mode == 3` add block is compiled twice (source is `if (m == 2) {A} else if (m == 3) {A}`).
+- `sp44` stores are z,y,x order; second vector (sp50) values live in `$f14/$f16/$f18` between blocks.
+
+### Progress (group build, `-O3` IPA harness, as1 `-r4300_mul`)
+Findings that moved the score (each verified by compile):
+1. Group build with stand-in callees: frame 160, first 43 words identical (see above).
+2. `extern volatile f32 D_8002EB94;` (frame delta time): reproduces the `lui a0/addiu a0` address-CSE form
+   and per-branch reloads. 60 -> 61% aligned.
+3. Integer/double-typed literals matter: `f12 = 0.0;` (not `0.0f`) makes the blend zero a direct
+   `mtc1 zero,$f12` instead of a hoisted shared zero temp. Likewise `CF(0xAC) < 0`, `f12 > 0`, `q == 0`,
+   and the second `func_800CFDEC` lo-argument `0` use int-typed zero (local rematerialisation), while the
+   clamp compares/stores and `p == 0.0f` and the first cfdec's `0.0f` argument stay float (hoisted `$f16`).
+   Pipeline lesson: an int literal in a float context is a different uopt constant web than `Nf`.
+4. Frame layout: 8 function-level scalar slots (`idx`, 4 promoted-unused names, `sp94`, `sp90`, `sp84`);
+   the blend factor is a *block-level* local below the arrays (its home is slot 64, only written before calls).
+   Best named set: function-level {len, i, st, f2(=1+X scale)} + post-array {f12}. slotdiff to target = 3-9.
+5. `as1` must be given `-r4300_mul` directly (not `-Wab,`); wrong flag hid the nop padding.
+Tools (scratch, not committed): aligned-word LCS score with relocation masks; single-flip hill climb over
+operand order and int-vs-float literal per site.

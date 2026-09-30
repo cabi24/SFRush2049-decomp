@@ -1,0 +1,10 @@
+start {'n': 892, 'strict': 200, 'exact': 584, 'shape': 837, 'norm': 801, 'reg': 1638, 'exact_r': 603} 2263.0
+15 best {'n': 888, 'strict': 360, 'exact': 582, 'shape': 826, 'norm': 802, 'reg': 1636, 'exact_r': 602} 2282.0
+26 best {'n': 888, 'strict': 365, 'exact': 583, 'shape': 837, 'norm': 803, 'reg': 1638, 'exact_r': 603} 2286.0
+29 best {'n': 888, 'strict': 366, 'exact': 585, 'shape': 837, 'norm': 803, 'reg': 1646, 'exact_r': 605} 2292.2
+70 restart 2292.2
+111 restart 1248.7
+152 restart 1169.3
+193 restart 2292.2
+234 restart 1343.3
+275 restart 2292.2
