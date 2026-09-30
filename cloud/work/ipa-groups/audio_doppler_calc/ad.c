@@ -78,6 +78,7 @@ void audio_doppler_calc(str, len)
     s32 step;
     s32 two;
     s32 cur;
+    s32 pg = 0;
     s32 idx;
     s32 dx;
     u8 *p;
@@ -138,8 +139,9 @@ void audio_doppler_calc(str, len)
                 }
             }
             g = &D_80149800[idx];
-            if (cur != g->page) {
-                cur = g->page;
+            pg = g->page;
+            if (cur != pg) {
+                cur = pg;
                 t = D_80149820[cur];
                 object_render(t->img, D_80149B0A, D_80149B2A, t->w, t->h, 0, 0, t->w - 1, t->h - 1, 0, 0);
             }
