@@ -54,7 +54,8 @@ known to differ, and its closure gap.
 3. **Other helpers** in `cloud/work/tools/`: `tdis.py NAME` disassembles the
    retail words with `jal` targets named (needs
    `apt-get install binutils-mips-linux-gnu`). `callers.py NAME` lists who
-   `jal`s a function, which is how closure gaps were found.
+   `jal`s a function. `closure.py [GROUP...]` prints each group's missing
+   IPA partners (the closure gaps in section 5; approximate).
 
 ## 3. Seed defects that recur (check every new group for them)
 
