@@ -3,7 +3,7 @@
 ## Current status (rescored 2026-09-30, master d0891f3)
 
 **Not a MATCH. Builds; 0/75 words strict; 35/75 words match after alignment, structure 0.671.** Scored with
-`python3 cloud/work/ipa-groups/func_8010A7A4/extscore.py --norm cloud/work/ipa-groups/func_8010A7A4`:
+`python3 cloud/work/tools/extscore.py --norm cloud/work/ipa-groups/func_8010A7A4`:
 
 ```
 func_8010A7A4  size 71/75  50/75 words differ (position-based)
@@ -18,7 +18,7 @@ epilogue at 0x8010A8C8. INDEX's 242 insns are wrong. Callers: `func_8010A8D0` (1
 via a jump table, `a0` = 1..13 and 0) and `func_8010AEAC` (`s1` = 160). Params (IPA):
 `a0` = index, `s1` = x, `s2` = y (s16), `s3`, `s4` = values forwarded as `a2` to `state_utility`.
 
-Draft: `f.c`. Verify: `python3 cloud/work/ipa-groups/func_8010A7A4/extscore.py cloud/work/ipa-groups/func_8010A7A4 --norm`
+Draft: `f.c`. Verify: `python3 cloud/work/tools/extscore.py cloud/work/ipa-groups/func_8010A7A4 --norm`
 
 Logic: if `D_80116D0C == 1` { copy two words `D_801146BC/C0` into `D_80118E28/2C` and into
 dead stack locals, `dispatch_handler(D_80116514[idx].f[0] < D_801248D4 ? 1 : 22)` } else

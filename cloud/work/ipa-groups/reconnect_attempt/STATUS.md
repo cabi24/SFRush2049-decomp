@@ -3,7 +3,7 @@
 ## Current status (rescored 2026-09-30, master d0891f3)
 
 **Not a MATCH. Builds; 0/232 words strict; 122/232 words match after alignment, structure 0.898**
-(the earlier 117/232 figure is superseded). Scored with `python3 cloud/work/ipa-groups/reconnect_attempt/extscore.py --norm cloud/work/ipa-groups/reconnect_attempt`:
+(the earlier 117/232 figure is superseded). Scored with `python3 cloud/work/tools/extscore.py --norm cloud/work/ipa-groups/reconnect_attempt`:
 
 ```
 func_8010BC84  size 227/232  192/232 words differ (position-based)  exact after alignment 122/232
@@ -18,7 +18,7 @@ History: earlier draft was 117/232 aligned; current figures above. Hand-written 
 No strict score is possible with `score.py` (see "Targets").
 
 ```
-python3 cloud/work/ipa-groups/reconnect_attempt/extscore.py cloud/work/ipa-groups/reconnect_attempt --norm
+python3 cloud/work/tools/extscore.py cloud/work/ipa-groups/reconnect_attempt --norm
 ```
 
 ## What this is

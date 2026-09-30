@@ -16,5 +16,6 @@
   "generated": "hand-written from the assembly (cloud Lane A); see STATUS.md",
   "unprototyped": [
     "func_8008C074"
-  ]
+  ],
+  "claims": []
 }

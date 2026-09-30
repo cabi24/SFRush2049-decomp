@@ -16,5 +16,6 @@
   "generated": "blob_group seed from build/ipa_groups.json",
   "unprototyped": [
     "memcpy"
-  ]
+  ],
+  "claims": []
 }

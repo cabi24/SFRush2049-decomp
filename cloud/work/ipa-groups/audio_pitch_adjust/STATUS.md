@@ -11,7 +11,7 @@
 (a node pointer), no saves of `$s0/$s1`. Extent 18 words, one `jr ra`. INDEX said 752 insns
 (`entity_ai_pathfind`), that is the caller, not this function.
 
-Verify: `python3 cloud/work/ipa-groups/audio_pitch_adjust/extscore.py cloud/work/ipa-groups/audio_pitch_adjust`
+Verify: `python3 cloud/work/tools/extscore.py cloud/work/ipa-groups/audio_pitch_adjust`
 (`extscore.py` is the copy from `dynamic_difficulty`; targets here are registered, so `zbuild.py` works too).
 
 - Body: `n->state = 3; func_8009211C(n->next, n); func_80091FBC(&D_80144C50, n, D_80144C50.next); n->next = &D_80144C50;`

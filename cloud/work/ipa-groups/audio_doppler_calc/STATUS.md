@@ -2,7 +2,7 @@
 
 **Not a match: 281-word target, our function emits 279 words, 161/281 words aligned exactly after diffing
 (register-blind structure ratio 0.86).** New group, extscore.py technique (copied from `../draw_number`):
-`python3 cloud/work/ipa-groups/audio_doppler_calc/extscore.py cloud/work/ipa-groups/audio_doppler_calc --norm`
+`python3 cloud/work/tools/extscore.py cloud/work/ipa-groups/audio_doppler_calc --norm`
 (target words come from `score.targets()`, the function is a registered symbol at 0x800B6788).
 
 The name `audio_doppler_calc` is wrong: the function draws a string with a proportional font. IPA params:

@@ -24,5 +24,10 @@
   "context": [
     "camera_process_input",
     "camera_track_spline"
+  ],
+  "claims": [
+    "camera_aspect_ratio",
+    "camera_build_view_matrix",
+    "camera_fov_control"
   ]
 }

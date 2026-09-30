@@ -12,7 +12,7 @@ the display list `D_80149438`, calling `func_80086A50(D_8014A248)` for bits 0x10
 Callers: `func_8008A46C`, `Input_ProcessGameplayPad`, `audio_doppler_calc`. Extent 45 words
 (single `jr ra`); INDEX's 869 insns belong to the caller `audio_doppler_calc`'s cluster, not to this function.
 
-Verify: `python3 cloud/work/ipa-groups/func_8008705C/extscore.py cloud/work/ipa-groups/func_8008705C`
+Verify: `python3 cloud/work/tools/extscore.py cloud/work/ipa-groups/func_8008705C`
 
 Tricks that got the match:
 - display-list pushes written as `Gfx *g = D_80149438++; g->w1 = 0; g->w0 = ...;`

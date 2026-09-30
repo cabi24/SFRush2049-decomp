@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """gen_index.py: regenerate cloud/work/ipa-groups/INDEX.md by rescoring every group.
 
-Groups with an extscore.py (tail-function groups, targets not in score.py's
-sections) are scored with `python3 <dir>/extscore.py --norm <dir>`; all others with
+Groups whose group.json has a "targets" key (tail-function groups, targets not in score.py's
+sections) are scored with `python3 cloud/work/tools/extscore.py --norm <dir>`; all others with
 `python3 cloud/work/tools/zbuild.py <dir> --as1=-r4300_mul`. Context functions are
 not counted. Extent = sum of the members' target words. Notes and the no-directory
 groups are hand-maintained in NOTES / NO_DIR below. Run from the repo root:
@@ -56,14 +56,12 @@ NOTES = {
 NO_DIR = [
  ('name_entry_screen', '~628 words (real head 0x80103D28)', 'no dir',
   'Listed 247 insns is a tail; the real head is unregistered and large. No draft yet.'),
- ('audio_doppler_calc', '281 words at 0x800B6788', 'no dir',
-  'Listed 849 insns (world_velocity_integrate) is a caller cluster. Real function undrafted.'),
 ]
 LINE = re.compile(r'^\s{2}(\w+)\s+(\(context\) )?size\s+(\d+)/(\d+)\s+(.*)$')
 
 def run(d):
-    if (d / 'extscore.py').exists():
-        cmd = ['python3', str(d / 'extscore.py'), '--norm', str(d)]
+    if 'targets' in json.loads((d / 'group.json').read_text()):
+        cmd = ['python3', str(ROOT / 'cloud/work/tools/extscore.py'), '--norm', str(d)]
     else:
         cmd = ['python3', str(ROOT / 'cloud/work/tools/zbuild.py'), str(d), '--as1=-r4300_mul']
     p = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True, timeout=900)

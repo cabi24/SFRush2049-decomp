@@ -27,5 +27,8 @@
     "func_80097694",
     "func_80096288",
     "entity_lod_select"
+  ],
+  "claims": [
+    "func_800972C4"
   ]
 }
