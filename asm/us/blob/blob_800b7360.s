@@ -363,6 +363,7 @@ dispatch_handler:
 .section .text.func_800B78A4, "ax", @progbits
 .globl func_800B78A4
 func_800B78A4:
+    /* compiled from src/blob/func_800B78A4.c */
     .word 0xAFA50004
     .word 0x30AE00FF
     .word 0x01C02825
@@ -994,6 +995,7 @@ Effects_UpdateEmitters:
 .section .text.particle_position_set, "ax", @progbits
 .globl particle_position_set
 particle_position_set:
+    /* compiled from src/blob/particle_position_set.c */
     .word 0x27BDFFD8
     .word 0xAFA40028
     .word 0x00047400

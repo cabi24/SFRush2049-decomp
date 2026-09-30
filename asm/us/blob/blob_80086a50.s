@@ -3697,6 +3697,7 @@ func_8008A148:
 .section .text.func_8008A38C, "ax", @progbits
 .globl func_8008A38C
 func_8008A38C:
+    /* compiled from src/blob/func_8008A38C.c */
     .word 0x3C088012
     .word 0x2508EACC
     .word 0x910F0003
@@ -5616,6 +5617,7 @@ physics_velocity_integrate_f:
 .section .text.func_8008BEA4, "ax", @progbits
 .globl func_8008BEA4
 func_8008BEA4:
+    /* compiled from src/blob/func_8008BEA4.c */
     .word 0xAFA50004
     .word 0x84820008
     .word 0x3C068015

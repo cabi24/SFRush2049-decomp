@@ -764,6 +764,7 @@ func_800E7A98:
 .section .text.func_800E7B44, "ax", @progbits
 .globl func_800E7B44
 func_800E7B44:
+    /* compiled from src/blob/func_800E7B44.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0xAFA40020
@@ -6011,6 +6012,7 @@ func_800EC914:
 .section .text.world_bounds_check, "ax", @progbits
 .globl world_bounds_check
 world_bounds_check:
+    /* compiled from src/blob/world_bounds_check.c */
     .word 0x3C038014
     .word 0x946307F0
     .word 0x3C018012
@@ -6724,6 +6726,7 @@ world_gravity_apply:
 .section .text.func_800ED66C, "ax", @progbits
 .globl func_800ED66C
 func_800ED66C:
+    /* compiled from src/blob/func_800ED66C.c */
     .word 0x44802000
     .word 0x3C018011
     .word 0x27BDFFE8

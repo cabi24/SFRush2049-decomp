@@ -1914,6 +1914,7 @@ func_800CD8EC:
 .section .text.func_800CDA60, "ax", @progbits
 .globl func_800CDA60
 func_800CDA60:
+    /* compiled from src/blob/func_800CDA60.c */
     .word 0xAFA50004
     .word 0xAFA60008
     .word 0x8C980000
@@ -1930,6 +1931,7 @@ func_800CDA60:
 .section .text.object_byte71_set_sync, "ax", @progbits
 .globl object_byte71_set_sync
 object_byte71_set_sync:
+    /* compiled from src/blob/object_byte71_set_sync.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x8C8E0000
@@ -2045,6 +2047,7 @@ menu_text_input:
 .section .text.func_800CDC3C, "ax", @progbits
 .globl func_800CDC3C
 func_800CDC3C:
+    /* compiled from src/blob/func_800CDC3C.c */
     .word 0x24010004
     .word 0x10A1000A
     .word 0x24010005
@@ -2210,6 +2213,7 @@ func_800CDE38:
 .section .text.func_800CDE88, "ax", @progbits
 .globl func_800CDE88
 func_800CDE88:
+    /* compiled from src/blob/func_800CDE88.c */
     .word 0x8C8E0000
     .word 0x24010004
     .word 0x8DCF002C
@@ -3755,6 +3759,7 @@ menu_control_settings:
 .section .text.func_800CF604, "ax", @progbits
 .globl func_800CF604
 func_800CF604:
+    /* compiled from src/blob/func_800CF604.c */
     .word 0x00047400
     .word 0x000E7C03
     .word 0x000FC100
@@ -4659,6 +4664,7 @@ func_800D0380:
 .section .text.func_800D03AC, "ax", @progbits
 .globl func_800D03AC
 func_800D03AC:
+    /* compiled from src/blob/func_800D03AC.c */
     .word 0x3C018012
     .word 0xC426412C
     .word 0xC4840408

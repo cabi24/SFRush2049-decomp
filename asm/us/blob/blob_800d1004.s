@@ -4295,6 +4295,7 @@ players_race_update:
 .section .text.func_800D50E4, "ax", @progbits
 .globl func_800D50E4
 func_800D50E4:
+    /* compiled from src/blob/func_800D50E4.c */
     .word 0x8C8E0000
     .word 0x3C0141C6
     .word 0x34214E6D

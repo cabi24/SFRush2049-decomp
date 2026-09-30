@@ -3821,6 +3821,7 @@ func_800A7BF8:
 .section .text.car_gear_shift, "ax", @progbits
 .globl car_gear_shift
 car_gear_shift:
+    /* compiled from src/blob/car_gear_shift.c */
     .word 0x27BDFFD0
     .word 0xAFB30020
     .word 0x3C138015

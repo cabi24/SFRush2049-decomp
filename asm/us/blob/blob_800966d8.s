@@ -873,6 +873,7 @@ audio_buffer_sync:
 .section .text.audio_helper, "ax", @progbits
 .globl audio_helper
 audio_helper:
+    /* compiled from src/blob/audio_helper.c */
     .word 0x8CC50008
     .word 0x2484001F
     .word 0x2401FFE0
@@ -2162,6 +2163,7 @@ param_reshuffle_wrapper:
 .section .text.camera_update_b, "ax", @progbits
 .globl camera_update_b
 camera_update_b:
+    /* compiled from src/blob/camera_update_b.c */
     .word 0x27BDFFD8
     .word 0xAFB20020
     .word 0xAFB1001C
@@ -7264,6 +7266,7 @@ func_8009D444:
 .section .text.func_8009D45C, "ax", @progbits
 .globl func_8009D45C
 func_8009D45C:
+    /* compiled from src/blob/func_8009D45C.c */
     .word 0x8FAE0010
     .word 0x3C01C500
     .word 0x44877000
