@@ -3793,18 +3793,17 @@ typedef s8 M2C_UNK8;
 typedef s16 M2C_UNK16;
 typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
+/*MY*/
+typedef struct Ent44 { u8 pad[0x3C]; s32 f3C; u8 pad40[4]; } Ent44;
+typedef struct Row40 { s16 pad0; s16 i[31]; } Row40;
 void func_80092FE0(s16 arg0, s32 *arg1)
 {
-  s16 new_var;
-  void *temp_v0;
-  temp_v0 = (s32 *) ((arg0 << 6) + ((u8 *) (&D_80139320)));
-  new_var = *((s16 *) (((s8 *) temp_v0) + 2));
-  *((s32 *) (((s8 *) ((s32 *) (((u8 *) (&D_8012E700)) + (new_var * 0x44)))) + 0x3C)) = (s32) (*arg1);
-  new_var++;
-  new_var--;
-  *((s32 *) (((s8 *) ((s32 *) (((u8 *) (&D_8012E700)) + ((*((s16 *) (((s8 *) temp_v0) + 0x12))) * 0x44)))) + 0x3C)) = (s32) (*arg1);
-  *((s32 *) (((s8 *) ((s32 *) (((u8 *) (&D_8012E700)) + ((*((s16 *) (((s8 *) temp_v0) + 0x1E))) * 0x44)))) + 0x3C)) = (s32) (*arg1);
-  *((s32 *) (((s8 *) ((s32 *) (((u8 *) (&D_8012E700)) + ((*((s16 *) (((s8 *) temp_v0) + 0x22))) * 0x44)))) + 0x3C)) = (s32) (*arg1);
-  *((s32 *) (((s8 *) ((s32 *) (((u8 *) (&D_8012E700)) + ((*((s16 *) (((s8 *) temp_v0) + 0x26))) * 0x44)))) + 0x3C)) = (s32) (*arg1);
-  *((s32 *) (((s8 *) ((s32 *) (((u8 *) (&D_8012E700)) + ((*((s16 *) (((s8 *) temp_v0) + 0x2A))) * 0x44)))) + 0x3C)) = (s32) (*arg1);
+  s16 *t; s16 a,b,c,d,e,f;
+  t = (s16 *) ((u8 *) &D_80139320 + (arg0 << 6));
+  ((Ent44 *) &D_8012E700)[a = t[1]].f3C = *arg1;
+  ((Ent44 *) &D_8012E700)[b = t[9]].f3C = *arg1;
+  ((Ent44 *) &D_8012E700)[c = t[15]].f3C = *arg1;
+  ((Ent44 *) &D_8012E700)[d = t[17]].f3C = *arg1;
+  ((Ent44 *) &D_8012E700)[e = t[19]].f3C = *arg1;
+  ((Ent44 *) &D_8012E700)[f = t[21]].f3C = *arg1;
 }

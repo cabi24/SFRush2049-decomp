@@ -2387,8 +2387,6 @@ extern s8 D_80142D78;
 extern s32 D_80142D90;
 extern s8 D_80142DB0;
 extern s8 D_80142DC0;
-extern s32 D_80142DD8;
-extern s32 D_801439D8;
 extern s32 D_801439F8;
 extern s32 D_801439FE;
 extern s32 D_80143A04;
@@ -3793,3 +3791,18 @@ typedef s8 M2C_UNK8;
 typedef s16 M2C_UNK16;
 typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
+/*MY*/
+typedef struct Slot18 { s16 f0; s8 f2; s8 f3; u8 pad[0x14]; } Slot18;
+extern Slot18 D_80142DD8[128];
+Slot18 *func_80091B00(void)
+{
+  s32 i;
+  for (i = 0; i < 128; i++) {
+    if (D_80142DD8[i].f3 == 0) {
+      D_80142DD8[i].f3 = 1;
+      D_80142DD8[i].f0 = -1;
+      return &D_80142DD8[i];
+    }
+  }
+  return 0;
+}

@@ -1,3 +1,4 @@
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
 
 typedef signed char s8;
 typedef unsigned char u8;
@@ -3111,7 +3112,6 @@ void effect_cleanup(s8 arg0, s8 arg1, s8 arg2);
 void effect_spawn(void);
 void effect_system_init(void);
 s32 emitter_update(s32 arg0);
-void engine_rpm_calc(s16 arg0, s32 arg1, s16 arg2, s16 arg3, s32 arg4);
 void engine_sound_sync(void);
 void engine_sound_update(void);
 void engine_torque_calc(void);
@@ -3170,7 +3170,7 @@ void func_8008D6FC(s16 arg0, void *arg1, void *arg2);
 void func_8008D870(s16 arg0, s32 arg1, s32 arg2);
 f32 func_8008E0B8(void *arg0);
 s16 func_8008E144(s16 arg0);
-s32 func_8008E26C(s16 arg0, s32 arg1, s16 arg2, s32 arg3);
+s32 func_8008E26C();
 void *func_8008E3C0(void *arg0);
 void func_8008E408(s16 arg0, s32 arg1);
 s16 func_8008FFD0(s16 arg0);
@@ -3521,6 +3521,7 @@ void func_800F43B8(void);
 void func_800F45F8(u8 *arg0, f32 arg1);
 void func_800F56E0(void);
 void func_800F6928(f32 arg0, s32 *arg1);
+void func_800F7448(u16 arg0);
 void func_800F7EB0(void);
 void func_800F7F3C(void);
 s32 func_800F84B0(s32 arg0);
@@ -3788,36 +3789,9 @@ void world_object_destroy(void *arg0);
 void world_physics_tick(void);
 void world_trigger_activate(void);
 s32 world_velocity_integrate();
-/*MY*/
-typedef struct DLCmd { u32 w0; u32 w1; } DLCmd;
-#define DLP (*(DLCmd **) &msgq_ptr)
-void func_800F7448(u16 arg0)
+void engine_rpm_calc(s32 arg0, s32 arg1, s16 arg2, s32 arg3, s32 arg4)
 {
-  DLCmd *g1;
-  DLCmd *g2;
-  DLCmd *g3;
-  DLCmd *g4;
-  DLCmd *g5;
-  g1 = DLP;
-  DLP = g1 + 1;
-  g1->w0 = 0xE7000000;
-  g1->w1 = 0;
-  if (!D_8015F72D) {
-  }
-  g2 = DLP;
-  DLP = g2 + 1;
-  g2->w0 = ((D_8002AFC0 - 1) & 0xFFF) | 0xFF100000;
-  g2->w1 = osVirtualToPhysical(*((&D_80156C5C) + (((s8) D_8015F72D) << 7)));
-  g3 = DLP;
-  DLP = g3 + 1;
-  g3->w1 = (arg0 << 0x10) | arg0;
-  g3->w0 = 0xF7000000;
-  g4 = DLP;
-  DLP = g4 + 1;
-  g4->w0 = (((D_8002AFC0 - 1) & 0x3FF) << 0xE) | 0xF6000000 | (((D_8002AFC4 - 1) & 0x3FF) * 4);
-  g4->w1 = 0;
-  g5 = DLP;
-  DLP = g5 + 1;
-  g5->w1 = 0;
-  g5->w0 = 0xE7000000;
+  s16 x;
+  x = arg3;
+  func_8008E26C(arg0, arg1, x, ((arg2 << 8) ^ 0xF00) | arg4);
 }

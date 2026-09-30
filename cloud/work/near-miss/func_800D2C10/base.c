@@ -3793,7 +3793,10 @@ typedef s8 M2C_UNK8;
 typedef s16 M2C_UNK16;
 typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
-s16 func_800D2C10(void *arg0, s16 arg1)
+/*MY*/
+typedef struct P3 { s16 x; s16 y; s16 z; s16 pad; } P3;
+typedef struct PSet { u16 n; u16 pad; P3 *pts; } PSet;
+s16 func_800D2C10(P3 *arg0, s16 arg1)
 {
   s16 sp6;
   f32 temp_f12;
@@ -3803,33 +3806,26 @@ s16 func_800D2C10(void *arg0, s16 arg1)
   f32 var_f0;
   s16 var_v0;
   u16 temp_a2;
-  void *temp_v1;
-  void *var_a0;
-  temp_v1 = (u16 *) ((arg1 * 8) + ((u8 *) (&D_8012E5E8)));
-  temp_a2 = *((u16 *) (((s8 *) temp_v1) + 0));
+  PSet *temp_v1;
+  P3 *var_a0;
+  temp_v1 = (PSet *) &D_8012E5E8 + arg1;
+  temp_a2 = temp_v1->n;
   var_f0 = D_8012417C;
   var_v0 = 0;
-  if (((s32) temp_a2) > 0)
-  {
-    var_a0 = *((void **) (((s8 *) temp_v1) + 4));
-    do
-    {
-      temp_f2 = (f32) ((*((s16 *) (((s8 *) var_a0) + 0))) - (*((s16 *) (((s8 *) arg0) + 0))));
-      temp_f12 = (f32) ((*((s16 *) (((s8 *) var_a0) + 2))) - (*((s16 *) (((s8 *) arg0) + 2))));
-      temp_f14 = (f32) ((*((s16 *) (((s8 *) var_a0) + 4))) - (*((s16 *) (((s8 *) arg0) + 4))));
-      temp_f16 = ((temp_f2 * temp_f2) + (temp_f12 * temp_f12)) + (temp_f14 * temp_f14);
-      if (temp_f16 < var_f0)
-      {
+  if (temp_a2 > 0) {
+    var_a0 = temp_v1->pts;
+    do {
+      temp_f2 = var_a0->x - arg0->x;
+      temp_f12 = var_a0->y - arg0->y;
+      temp_f14 = var_a0->z - arg0->z;
+      temp_f16 = temp_f2 * temp_f2 + temp_f12 * temp_f12 + temp_f14 * temp_f14;
+      if (temp_f16 < var_f0) {
         var_f0 = temp_f16;
         sp6 = var_v0;
       }
-      if (((!arg0) && (!arg0)) && (!arg0))
-      {
-      }
       var_v0 += 1;
-      var_a0 = ((u8 *) var_a0) + 8;
-    }
-    while (var_v0 < ((s32) temp_a2));
+      var_a0 += 1;
+    } while (var_v0 < (s32) temp_a2);
   }
   return sp6;
 }

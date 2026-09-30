@@ -3788,7 +3788,9 @@ void world_object_destroy(void *arg0);
 void world_physics_tick(void);
 void world_trigger_activate(void);
 s32 world_velocity_integrate();
-void engine_rpm_calc(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4)
+void engine_rpm_calc(s32 arg0, s32 arg1, s16 arg2, s32 arg3, s32 arg4)
 {
-  func_8008E26C(arg0, arg1, (s16)arg3, (((s16)arg2 << 8) ^ 0xF00) | arg4);
+  s16 x;
+  x = arg3;
+  func_8008E26C(arg0, arg1, x, ((arg2 << 8) ^ 0xF00) | arg4);
 }

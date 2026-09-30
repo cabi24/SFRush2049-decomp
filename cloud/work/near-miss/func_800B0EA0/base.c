@@ -3788,18 +3788,22 @@ void world_object_destroy(void *arg0);
 void world_physics_tick(void);
 void world_trigger_activate(void);
 s32 world_velocity_integrate();
+/*MY*/
 s32 func_800B0EA0(s32 arg0, s32 arg1, s32 arg2)
 {
-  s32 new_var;
-  s32 temp_v1;
-  if (arg0 == (0x3E * 0))
-  {
- return arg1; }
-  if (arg0 >= 0xFF)
-  {
+  u32 inv;
+  s32 r;
+  s32 g;
+  s32 b;
+  if (arg0 == 0) {
+    return arg1;
+  }
+  if (arg0 >= 255) {
     return arg2;
   }
-  new_var = arg2;
-  temp_v1 = 0xFF - arg0;
-  return (((unsigned char) ((((((s32) (((arg1 & 0xF800) * temp_v1) + ((new_var & 0xF800) * arg0))) >> 8) & 0xFFFFFFFFFFFFFFFF) & 0xF800) | ((((s32) (((arg1 & 0x7C0) * temp_v1) + ((arg2 & 0x7C0) * arg0))) >> 8) & 0x7C0))) | ((((s32) (((arg1 & 0x3E) * temp_v1) + ((arg2 & 0x3E) * arg0))) >> 8) & 0x3E)) | 1;
+  inv = 255 - arg0;
+  r = (((arg1 & 0xF800) * inv + (arg2 & 0xF800) * arg0) >> 8);
+  g = (((arg1 & 0x7C0) * inv + (arg2 & 0x7C0) * arg0) >> 8);
+  b = (((arg1 & 0x3E) * inv + (arg2 & 0x3E) * arg0) >> 8);
+  return ((r & 0xF800) | (g & 0x7C0) | (b & 0x3E)) | 1;
 }
