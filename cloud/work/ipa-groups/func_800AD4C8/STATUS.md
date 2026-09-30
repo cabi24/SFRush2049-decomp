@@ -1,5 +1,22 @@
 # func_800AD4C8 (segment / point closest-approach test)
 
+## Current status (Rescored 2026-09-30 (Round 2 addendum), master d0891f3.)
+
+**Builds; no member matches (0/791 words).** Scored with `python3 cloud/work/tools/zbuild.py cloud/work/ipa-groups/func_800AD4C8 --as1=-r4300_mul`:
+
+```
+func_800AD4C8              45/66   words differ  size  66/66
+func_800C3AD0             334/362  words differ  size 356/362
+input_process_controller  340/363  words differ  size 362/363
+```
+
+Blockers: `func_800AD4C8` is float register naming only (`0.0f` in `$f20`, radius in `$f18`). The two big
+members are hand-written but the ROM keeps `poly` in `$a3` across `func_800AD650` (IPA knows that clobber set),
+so ours promotes it to an `s` register.
+Closure gaps (still open): callers `camera_play_script`, `camera_trigger_check`, `camera_victory`, `entity_update`,
+`func_800C36A0`, `input_deadzone_apply` (stand-ins used) and callees `func_800AD650`, `func_800AD5D0`. The
+headline block below ("Cloud pass 2": 353/362, 356/363 "seed, code missing") is history; see "Pass 3".
+
 Cloud pass 2 (2026-09-29). Builds; not matching.
 
 ```

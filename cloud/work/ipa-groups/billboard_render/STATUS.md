@@ -1,5 +1,18 @@
 # billboard_render -> 186/244 words aligned, register-blind 0.96 (real function, extent 244 words)
 
+## Current status (Rescored 2026-09-30 (Round 2 addendum), master d0891f3.)
+
+**Not a MATCH. Builds; 0/244 words strict; 186/244 words match after alignment, structure 0.959.** Scored with
+`python3 cloud/work/ipa-groups/billboard_render/extscore.py --norm cloud/work/ipa-groups/billboard_render`:
+
+```
+billboard_render  size 247/244  56/244 words differ (2 .rodata jump-table relocations unverified)
+context (not counted): func_800F1210 stand-in
+```
+
+Blockers: frame 104 vs 144, one spill order in the state-2 loop, one branch polarity in state 5. Closure gap
+(open): the real `func_800F1210` (454 words) and `func_800F1930`; the lone caller is `countdown`.
+
 Real head 0x800F64D4 (`addiu sp,-144`, saves s0-s8 and `$f20/$f22`), one caller: `countdown`.
 The label is a misnomer: it is a mode state machine (`switch (D_80140B20)` over 5 cases, jump table
 `0x80124604`) that calls `func_800F1210(new_state)` (IPA param `$s2`) to change state:

@@ -1,5 +1,17 @@
 # func_8010A7A4 -> 35/75 words aligned (real function, extent 75 words, not 242)
 
+## Current status (Rescored 2026-09-30 (Round 2 addendum), master d0891f3.)
+
+**Not a MATCH. Builds; 0/75 words strict; 35/75 words match after alignment, structure 0.671.** Scored with
+`python3 cloud/work/ipa-groups/func_8010A7A4/extscore.py --norm cloud/work/ipa-groups/func_8010A7A4`:
+
+```
+func_8010A7A4  size 71/75  50/75 words differ (position-based)
+```
+
+Blockers: stack-local shape (retail frame 56 vs ours 48), the hoisted `li a0,1`, register naming.
+Closure gap (open): the 14 call sites in unregistered-head functions `func_8010A8D0` and `func_8010AEAC`.
+
 Real head 0x8010A7A4 (`lui t6,0x8011; lw ...; addiu sp,-56`) in the opaque run
 `blob_80107edc.s`; the registered `.text.func_8010A7A4` section is 75 words, which agrees with the
 epilogue at 0x8010A8C8. INDEX's 242 insns are wrong. Callers: `func_8010A8D0` (13 call sites

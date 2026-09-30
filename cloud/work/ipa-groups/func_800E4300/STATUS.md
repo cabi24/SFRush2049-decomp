@@ -1,5 +1,21 @@
 # func_800E4300 (nearest path point to a position) -- cloud pass 2, 2026-09-29
 
+## Current status (Rescored 2026-09-30 (Round 2 addendum), master d0891f3.)
+
+**Builds; no member matches (0/532 words).** Scored with `python3 cloud/work/tools/zbuild.py cloud/work/ipa-groups/func_800E4300 --as1=-r4300_mul`:
+
+```
+func_800E4300  80/135 words differ  size 135/135
+func_800E451C 388/397 words differ  size 401/397 (3 extra words nonzero beyond target)
+```
+
+Both members are now hand-written (`func_800E451C` was rewritten in Pass 3; the "still the m2c seed" remarks
+below are history). Blockers: `func_800E4300` register naming only (loop invariants take `$t3..$t5/$s0/$s1` in a
+different order); `func_800E451C` IPA parameter registers (ROM `car=$s5, nav=$s6`, ours `$s4/$s5`), frame 232
+reached only with `volatile` padding.
+Closure gaps (open): `func_800E4B58` (567 words, the only caller of `func_800E451C`, stand-ins used) and
+`func_800E398C` (599 words); both link to `func_800E56F8`'s group, consider one merged group.
+
 Builds. With `-r4300_mul` (`cloud/work/tools/zbuild.py --as1=-r4300_mul`):
 
 ```

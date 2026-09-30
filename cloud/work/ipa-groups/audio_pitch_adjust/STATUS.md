@@ -1,5 +1,12 @@
 # audio_pitch_adjust -> 18/18 MATCH (real function, extent 18 words)
 
+## Current status (Rescored 2026-09-30 (Round 2 addendum), master d0891f3.)
+
+**18/18 MATCH** (strict, `extscore.py --norm`: exact after alignment 18/18, structure 1.000; also via
+`python3 cloud/work/tools/zbuild.py cloud/work/ipa-groups/audio_pitch_adjust --as1=-r4300_mul` since the target is registered). Extent 18 words. Caveat: matches with stand-in callers
+`caller_a`/`caller_b`, so this file is not spliceable as is. Closure (approximate `closure.py`): the real callers
+`entity_ai_pathfind`, `func_800988D8`, `func_80098FB8` and others are absent, replaced by the stand-ins.
+
 `audio_pitch_adjust` (0x800959DC) is a real head: `addiu sp,-24`, IPA parameter in `$s0`
 (a node pointer), no saves of `$s0/$s1`. Extent 18 words, one `jr ra`. INDEX said 752 insns
 (`entity_ai_pathfind`), that is the caller, not this function.
