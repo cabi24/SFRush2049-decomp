@@ -2054,6 +2054,7 @@ time_of_day_select:
 .section .text.minimap_render, "ax", @progbits
 .globl minimap_render
 minimap_render:
+    /* compiled from src/blob/minimap_render.c */
     .word 0x27BDFFC0
     .word 0xAFB30020
     .word 0x3C138014

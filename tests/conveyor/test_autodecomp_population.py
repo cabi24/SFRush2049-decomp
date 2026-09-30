@@ -146,7 +146,7 @@ def test_extracted_flagset_fallback_and_static_fallback(tmp_path):
 
     assert farm._flagset_for(conn, "static_fn") == farm.DEFAULT_FLAGSET
     assert farm._flagset_for(conn, "extracted_fn") == farm.EXTRACTED_FLAGSETS[0]
-    assert farm.EXTRACTED_FLAGSETS[1] == "-g0 -O1 -mips2 -G 0 -non_shared"
+    assert farm.EXTRACTED_FLAGSETS[1] == "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
 
 
 def test_clean_m2c_retypes_unknown_function_pointer_casts():

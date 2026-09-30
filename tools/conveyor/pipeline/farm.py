@@ -33,8 +33,8 @@ from . import seeds as seedsmod
 
 DEFAULT_FLAGSET = "-g0 -O2 -mips2 -G 0 -non_shared"
 EXTRACTED_FLAGSETS = (
-    "-g0 -O2 -mips2 -G 0 -non_shared",
-    "-g0 -O1 -mips2 -G 0 -non_shared",
+    "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
 )
 REPO = Path(__file__).resolve().parents[3]
 HISTOGRAM_JSON = REPO / "build" / "m2c_histogram.json"

@@ -98,6 +98,8 @@ def compile_on_builder(sources, flagset, builder=BUILDER, toolkit=TOOLKIT,
     for target_id, path in sources.items():
         shutil.copy(path, staging / f"{target_id}.c")
 
+    if "-r4300_mul" not in flagset:
+        flagset = f"{flagset} -Wab,-r4300_mul"      # as the game was built
     subprocess.run(["ssh", builder, f"rm -rf {BUILDER_TMP} && mkdir -p {BUILDER_TMP}"],
                    check=True, capture_output=True)
     subprocess.run(["scp", "-q", "-r", *[str(p) for p in staging.glob("*.c")],

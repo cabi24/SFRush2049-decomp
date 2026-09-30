@@ -1,5 +1,10 @@
 # zlib_deflate
 
+**Spliced into the ROM** (2026-09-29, `src/blob/groups/zlib_deflate`): image gate
+and full ROM SHA-1 exact. `blob_group` places the unit's own `.data`
+(`static_init_done`) at the address the relocation sites agree on
+(0x8011EA10) and checks its bytes against the image.
+
 **18/18 members MATCH** under the strict cloud scorer (F2 relocation
 resolution), 2,908 words. `_tr_init` (`func_800AAB3C`) matches with 4
 section-relative relocations unverified (see below), so the group passes

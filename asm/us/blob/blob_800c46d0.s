@@ -5247,6 +5247,7 @@ input_init_flag_get:
 .section .text.func_800C9590, "ax", @progbits
 .globl func_800C9590
 func_800C9590:
+    /* compiled from src/blob/func_800C9590.c */
     .word 0x44842000
     .word 0x46006407
     .word 0x468021A0
