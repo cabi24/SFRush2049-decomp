@@ -1,0 +1,11 @@
+void __standin_render_large_objects(void)
+{
+    func_800DE860();
+    func_800F92C8(1.0f, 2.0f, 3.0f, 4.0f, 5.0f);
+}
+
+void __standin_b(void)
+{
+    func_800DE860();
+    func_800F92C8(1.0f, 2.0f, 3.0f, 4.0f, 5.0f);
+}

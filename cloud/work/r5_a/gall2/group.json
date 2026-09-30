@@ -1,0 +1,22 @@
+{
+ "members": [
+  "func_8008705C",
+  "func_800878E0",
+  "func_80086A50"
+ ],
+ "files": [
+  "f.c",
+  "h.c",
+  "r.c"
+ ],
+ "keep": [
+  "func_8008705C",
+  "func_800878E0"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "generated": "hand-written from the assembly (cloud Lane A); see STATUS.md",
+ "unprototyped": [],
+ "context": [],
+ "targets": {},
+ "claims": []
+}

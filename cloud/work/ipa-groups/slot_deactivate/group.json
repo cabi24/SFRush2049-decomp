@@ -1,0 +1,10 @@
+{
+  "members": ["func_80096288", "slot_deactivate", "display_list_alloc"],
+  "files": ["group.c"],
+  "keep": ["func_80096288", "slot_deactivate", "display_list_alloc", "__standin_a"],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "generated": "hand-written (r5_i)",
+  "unprototyped": [],
+  "context": [],
+  "claims": []
+}
