@@ -1,0 +1,5230 @@
+{
+ "version": 1,
+ "header": "header.h",
+ "header_src": "cloud/matches/func_800A4770.c",
+ "entries": [
+  {
+   "fn": "Input_SetAnalogBounds",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/Input_SetAnalogBounds.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/Input_SetAnalogBounds/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/Input_SetAnalogBounds/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 32,
+     "target_words": 34,
+     "aligned_exact": 21,
+     "aligned_pct": 62,
+     "size": 40
+    }
+   },
+   "goal_file": "Input_SetAnalogBounds.goal.c",
+   "packed": true,
+   "start_file": "Input_SetAnalogBounds.start.c",
+   "edit": {
+    "classes": [
+     "type-change"
+    ],
+    "primary": "type-change",
+    "ratio": 0.016,
+    "rewrite": false,
+    "detail": {
+     "decls_changed": [],
+     "ops": 3,
+     "tokens_start": 182,
+     "tokens_goal": 182
+    }
+   }
+  },
+  {
+   "fn": "MP_TargetSteerPos",
+   "kind": "group",
+   "group": "MP_TargetSteerPos",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/MP_TargetSteerPos/group.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/MP_TargetSteerPos/group.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/MP_TargetSteerPos/group.c",
+    "skipped_versions": 0,
+    "score": null
+   },
+   "goal_file": "MP_TargetSteerPos.goal.c",
+   "packed": false,
+   "start_file": "MP_TargetSteerPos.start.c",
+   "edit": {
+    "classes": [
+     "loop-form",
+     "local-dropped"
+    ],
+    "primary": "loop-form",
+    "ratio": 0.77,
+    "rewrite": true,
+    "detail": {
+     "loops": [
+      [
+       0,
+       0,
+       0,
+       2
+      ],
+      [
+       0,
+       0,
+       0,
+       0
+      ]
+     ],
+     "rewrite": true,
+     "ops": 8,
+     "tokens_start": 274,
+     "tokens_goal": 125
+    }
+   }
+  },
+  {
+   "fn": "UpdateActiveObjects",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/UpdateActiveObjects.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/UpdateActiveObjects/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/UpdateActiveObjects/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 7,
+     "target_words": 48,
+     "aligned_exact": 42,
+     "aligned_pct": 88,
+     "size": 48
+    }
+   },
+   "goal_file": "UpdateActiveObjects.goal.c",
+   "packed": true,
+   "start_file": "UpdateActiveObjects.start.c",
+   "edit": {
+    "classes": [
+     "other"
+    ],
+    "primary": "other",
+    "ratio": 0.065,
+    "rewrite": false,
+    "detail": {
+     "decls_changed": [],
+     "ops": 5,
+     "tokens_start": 201,
+     "tokens_goal": 197
+    }
+   }
+  },
+  {
+   "fn": "audio_effect_remove",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/audio_effect_remove.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/audio_effect_remove/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/audio_effect_remove/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 28,
+     "target_words": 34,
+     "aligned_exact": 21,
+     "aligned_pct": 62,
+     "size": 36
+    }
+   },
+   "goal_file": "audio_effect_remove.goal.c",
+   "packed": true,
+   "start_file": "audio_effect_remove.start.c",
+   "edit": {
+    "classes": [
+     "loop-form",
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "loop-form",
+    "ratio": 0.6,
+    "rewrite": true,
+    "detail": {
+     "loops": [
+      [
+       0,
+       1,
+       1,
+       0
+      ],
+      [
+       1,
+       0,
+       0,
+       0
+      ]
+     ],
+     "decls_changed": [],
+     "rewrite": true,
+     "ops": 18,
+     "tokens_start": 120,
+     "tokens_goal": 80
+    }
+   }
+  },
+  {
+   "fn": "audio_helper",
+   "kind": "group",
+   "group": "audio_heap",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/audio_heap/group.c"
+   },
+   "versions_seen": 1,
+   "first_seen": {
+    "commit": "7de256ef65",
+    "path": "cloud/work/ipa-groups/audio_heap/group.c"
+   },
+   "status": "no_start",
+   "no_start_reason": "first appearance already the matching source",
+   "goal_file": "audio_helper.goal.c",
+   "packed": false,
+   "start_file": null
+  },
+  {
+   "fn": "audio_pitch_adjust",
+   "kind": "group",
+   "group": "audio_pitch_adjust",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/audio_pitch_adjust/ap.c"
+   },
+   "versions_seen": 1,
+   "first_seen": {
+    "commit": "0ad692d58a",
+    "path": "cloud/work/ipa-groups/audio_pitch_adjust/ap.c"
+   },
+   "status": "no_start",
+   "no_start_reason": "first appearance already the matching source",
+   "goal_file": "audio_pitch_adjust.goal.c",
+   "packed": false,
+   "start_file": null
+  },
+  {
+   "fn": "camera_aspect_ratio",
+   "kind": "group",
+   "group": "camera_aspect_ratio",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/camera_aspect_ratio/group.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/camera_aspect_ratio/group.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/camera_aspect_ratio/group.c",
+    "skipped_versions": 0,
+    "score": null
+   },
+   "goal_file": "camera_aspect_ratio.goal.c",
+   "packed": false,
+   "start_file": "camera_aspect_ratio.start.c",
+   "edit": {
+    "classes": [
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "type-change",
+    "ratio": 0.931,
+    "rewrite": true,
+    "detail": {
+     "rewrite": true,
+     "ops": 14,
+     "tokens_start": 204,
+     "tokens_goal": 78
+    }
+   }
+  },
+  {
+   "fn": "camera_build_view_matrix",
+   "kind": "group",
+   "group": "camera_aspect_ratio",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/camera_aspect_ratio/group.c"
+   },
+   "versions_seen": 1,
+   "first_seen": {
+    "commit": "f3c3d501ed",
+    "path": "cloud/work/ipa-groups/camera_aspect_ratio/group.c"
+   },
+   "status": "no_start",
+   "no_start_reason": "first appearance already the matching source",
+   "goal_file": "camera_build_view_matrix.goal.c",
+   "packed": false,
+   "start_file": null
+  },
+  {
+   "fn": "camera_fov_control",
+   "kind": "group",
+   "group": "camera_aspect_ratio",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/camera_aspect_ratio/group.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/camera_aspect_ratio/group.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/camera_aspect_ratio/group.c",
+    "skipped_versions": 0,
+    "score": null
+   },
+   "goal_file": "camera_fov_control.goal.c",
+   "packed": false,
+   "start_file": "camera_fov_control.start.c",
+   "edit": {
+    "classes": [
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "type-change",
+    "ratio": 0.882,
+    "rewrite": true,
+    "detail": {
+     "rewrite": true,
+     "ops": 21,
+     "tokens_start": 254,
+     "tokens_goal": 105
+    }
+   }
+  },
+  {
+   "fn": "camera_reset",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/camera_reset.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/camera_reset/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/camera_reset/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 19,
+     "target_words": 86,
+     "aligned_exact": 67,
+     "aligned_pct": 78,
+     "size": 88
+    }
+   },
+   "goal_file": "camera_reset.goal.c",
+   "packed": true,
+   "start_file": "camera_reset.start.c",
+   "edit": {
+    "classes": [
+     "loop-form",
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "loop-form",
+    "ratio": 0.514,
+    "rewrite": true,
+    "detail": {
+     "loops": [
+      [
+       0,
+       1,
+       1,
+       0
+      ],
+      [
+       1,
+       0,
+       0,
+       0
+      ]
+     ],
+     "decls_changed": [
+      "D_8012120C",
+      "D_80124FD0",
+      "func_8008E26C",
+      "func_800A7D6C"
+     ],
+     "rewrite": true,
+     "ops": 42,
+     "tokens_start": 249,
+     "tokens_goal": 158
+    }
+   }
+  },
+  {
+   "fn": "camera_smooth_lerp",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/camera_smooth_lerp.c"
+   },
+   "versions_seen": 3,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/camera_smooth_lerp/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/camera_smooth_lerp/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 25,
+     "target_words": 49,
+     "aligned_exact": 26,
+     "aligned_pct": 53,
+     "size": 52
+    }
+   },
+   "goal_file": "camera_smooth_lerp.goal.c",
+   "packed": true,
+   "start_file": "camera_smooth_lerp.start.c",
+   "edit": {
+    "classes": [
+     "loop-form",
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "loop-form",
+    "ratio": 0.874,
+    "rewrite": true,
+    "detail": {
+     "loops": [
+      [
+       0,
+       2,
+       2,
+       0
+      ],
+      [
+       2,
+       0,
+       0,
+       0
+      ]
+     ],
+     "decls_changed": [],
+     "rewrite": true,
+     "ops": 26,
+     "tokens_start": 269,
+     "tokens_goal": 229
+    }
+   }
+  },
+  {
+   "fn": "camera_update_b",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/camera_update_b.c"
+   },
+   "versions_seen": 1,
+   "first_seen": {
+    "commit": "d585c85b40",
+    "path": "cloud/matches/camera_update_b.c"
+   },
+   "status": "no_start",
+   "no_start_reason": "first appearance already the matching source",
+   "goal_file": "camera_update_b.goal.c",
+   "packed": true,
+   "start_file": null
+  },
+  {
+   "fn": "car_collision_init",
+   "kind": "group",
+   "group": "car_collision_init",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/car_collision_init/group.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/car_collision_init/group.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/car_collision_init/group.c",
+    "skipped_versions": 0,
+    "score": null
+   },
+   "goal_file": "car_collision_init.goal.c",
+   "packed": false,
+   "start_file": "car_collision_init.start.c",
+   "edit": {
+    "classes": [
+     "loop-form",
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "loop-form",
+    "ratio": 0.988,
+    "rewrite": true,
+    "detail": {
+     "loops": [
+      [
+       0,
+       1,
+       1,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0
+      ]
+     ],
+     "rewrite": true,
+     "ops": 23,
+     "tokens_start": 694,
+     "tokens_goal": 80
+    }
+   }
+  },
+  {
+   "fn": "car_gear_shift",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/car_gear_shift.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "53193ee1f0",
+    "path": "cloud/work/near-miss/car_gear_shift/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "53193ee1f0",
+    "path": "cloud/work/near-miss/car_gear_shift/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 40,
+     "target_words": 52,
+     "aligned_exact": 25,
+     "aligned_pct": 48,
+     "size": 52
+    }
+   },
+   "goal_file": "car_gear_shift.goal.c",
+   "packed": true,
+   "start_file": "car_gear_shift.start.c",
+   "edit": {
+    "classes": [
+     "loop-form",
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "loop-form",
+    "ratio": 0.818,
+    "rewrite": true,
+    "detail": {
+     "loops": [
+      [
+       0,
+       0,
+       0,
+       2
+      ],
+      [
+       1,
+       0,
+       0,
+       0
+      ]
+     ],
+     "decls_changed": [
+      "D_801161F4",
+      "D_8012E700",
+      "func_8008AD04"
+     ],
+     "rewrite": true,
+     "ops": 17,
+     "tokens_start": 154,
+     "tokens_goal": 75
+    }
+   }
+  },
+  {
+   "fn": "car_select_handler",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/car_select_handler.c"
+   },
+   "versions_seen": 3,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/car_select_handler/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/car_select_handler/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 3,
+     "target_words": 90,
+     "aligned_exact": 87,
+     "aligned_pct": 97,
+     "size": 92
+    }
+   },
+   "goal_file": "car_select_handler.goal.c",
+   "packed": true,
+   "start_file": "car_select_handler.start.c",
+   "edit": {
+    "classes": [
+     "local-dropped"
+    ],
+    "primary": "local-dropped",
+    "ratio": 0.108,
+    "rewrite": false,
+    "detail": {
+     "decls_changed": [],
+     "ops": 8,
+     "tokens_start": 370,
+     "tokens_goal": 346
+    }
+   }
+  },
+  {
+   "fn": "draw_number",
+   "kind": "group",
+   "group": "draw_number",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/draw_number/dn.c"
+   },
+   "versions_seen": 1,
+   "first_seen": {
+    "commit": "0ad692d58a",
+    "path": "cloud/work/ipa-groups/draw_number/dn.c"
+   },
+   "status": "no_start",
+   "no_start_reason": "first appearance already the matching source",
+   "goal_file": "draw_number.goal.c",
+   "packed": false,
+   "start_file": null
+  },
+  {
+   "fn": "engine_rpm_calc",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/engine_rpm_calc.c"
+   },
+   "versions_seen": 5,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/engine_rpm_calc/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/engine_rpm_calc/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 16,
+     "target_words": 17,
+     "aligned_exact": 8,
+     "aligned_pct": 47,
+     "size": 24
+    }
+   },
+   "goal_file": "engine_rpm_calc.goal.c",
+   "packed": true,
+   "start_file": "engine_rpm_calc.start.c",
+   "edit": {
+    "classes": [
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "type-change",
+    "ratio": 0.5,
+    "rewrite": true,
+    "detail": {
+     "decls_changed": [
+      "func_8008E26C"
+     ],
+     "rewrite": true,
+     "ops": 9,
+     "tokens_start": 76,
+     "tokens_goal": 48
+    }
+   }
+  },
+  {
+   "fn": "func_80086A50",
+   "kind": "group",
+   "group": "func_80086A50",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/func_80086A50/f.c"
+   },
+   "versions_seen": 10,
+   "first_seen": {
+    "commit": "0ad692d58a",
+    "path": "cloud/work/ipa-groups/func_8008705C/stub.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "0ad692d58a",
+    "path": "cloud/work/ipa-groups/func_8008705C/stub.c",
+    "skipped_versions": 0,
+    "score": null
+   },
+   "goal_file": "func_80086A50.goal.c",
+   "packed": false,
+   "start_file": "func_80086A50.start.c",
+   "edit": {
+    "classes": [
+     "type-change",
+     "local-added"
+    ],
+    "primary": "type-change",
+    "ratio": 0.963,
+    "rewrite": true,
+    "detail": {
+     "rewrite": true,
+     "ops": 28,
+     "tokens_start": 110,
+     "tokens_goal": 1196
+    }
+   }
+  },
+  {
+   "fn": "func_8008A38C",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_8008A38C.c"
+   },
+   "versions_seen": 5,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_8008A38C/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_8008A38C/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 15,
+     "target_words": 22,
+     "aligned_exact": 13,
+     "aligned_pct": 59,
+     "size": 24
+    }
+   },
+   "goal_file": "func_8008A38C.goal.c",
+   "packed": true,
+   "start_file": "func_8008A38C.start.c",
+   "edit": {
+    "classes": [
+     "type-change",
+     "local-dropped",
+     "literal-type"
+    ],
+    "primary": "type-change",
+    "ratio": 0.649,
+    "rewrite": true,
+    "detail": {
+     "decls_changed": [
+      "D_8011EACC"
+     ],
+     "rewrite": true,
+     "ops": 9,
+     "tokens_start": 77,
+     "tokens_goal": 45
+    }
+   }
+  },
+  {
+   "fn": "func_8008AD04",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_8008AD04.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_8008AD04/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_8008AD04/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 16,
+     "target_words": 17,
+     "aligned_exact": 8,
+     "aligned_pct": 47,
+     "size": 20
+    }
+   },
+   "goal_file": "func_8008AD04.goal.c",
+   "packed": true,
+   "start_file": "func_8008AD04.start.c",
+   "edit": {
+    "classes": [
+     "loop-form",
+     "local-dropped"
+    ],
+    "primary": "loop-form",
+    "ratio": 0.871,
+    "rewrite": true,
+    "detail": {
+     "loops": [
+      [
+       0,
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       1,
+       0
+      ]
+     ],
+     "decls_changed": [],
+     "rewrite": true,
+     "ops": 15,
+     "tokens_start": 116,
+     "tokens_goal": 68
+    }
+   }
+  },
+  {
+   "fn": "func_8008B2B4",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_8008B2B4.c"
+   },
+   "versions_seen": 1,
+   "first_seen": {
+    "commit": "d56ad6ccd8",
+    "path": "cloud/work/bigfish/libhunt/libc_and_heap_matches.c"
+   },
+   "status": "no_start",
+   "no_start_reason": "first appearance already the matching source",
+   "goal_file": "func_8008B2B4.goal.c",
+   "packed": true,
+   "start_file": null
+  },
+  {
+   "fn": "func_8008BEA4",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_8008BEA4.c"
+   },
+   "versions_seen": 6,
+   "first_seen": {
+    "commit": "9de894debc",
+    "path": "cloud/work/newtargets_lo/body/func_8008BEA4.c"
+   },
+   "status": "no_start",
+   "no_start_reason": "no compiling non-matching start version",
+   "goal_file": "func_8008BEA4.goal.c",
+   "packed": true,
+   "start_file": null
+  },
+  {
+   "fn": "func_8008C5E0",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_8008C5E0.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_8008C5E0/base.c"
+   },
+   "status": "no_start",
+   "no_start_reason": "first compiling version already matches",
+   "goal_file": "func_8008C5E0.goal.c",
+   "packed": true,
+   "start_file": null
+  },
+  {
+   "fn": "func_8008FFD0",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_8008FFD0.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_8008FFD0/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_8008FFD0/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 14,
+     "target_words": 23,
+     "aligned_exact": 16,
+     "aligned_pct": 70,
+     "size": 24
+    }
+   },
+   "goal_file": "func_8008FFD0.goal.c",
+   "packed": true,
+   "start_file": "func_8008FFD0.start.c",
+   "edit": {
+    "classes": [
+     "loop-form",
+     "local-added"
+    ],
+    "primary": "loop-form",
+    "ratio": 0.755,
+    "rewrite": true,
+    "detail": {
+     "loops": [
+      [
+       0,
+       1,
+       1,
+       1
+      ],
+      [
+       0,
+       0,
+       0,
+       1
+      ]
+     ],
+     "decls_changed": [],
+     "rewrite": true,
+     "ops": 17,
+     "tokens_start": 77,
+     "tokens_goal": 98
+    }
+   }
+  },
+  {
+   "fn": "func_8009002C",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_8009002C.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_8009002C/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_8009002C/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 4,
+     "target_words": 23,
+     "aligned_exact": 22,
+     "aligned_pct": 96,
+     "size": 28
+    }
+   },
+   "goal_file": "func_8009002C.goal.c",
+   "packed": true,
+   "start_file": "func_8009002C.start.c",
+   "edit": {
+    "classes": [
+     "local-dropped"
+    ],
+    "primary": "local-dropped",
+    "ratio": 0.157,
+    "rewrite": false,
+    "detail": {
+     "decls_changed": [],
+     "ops": 5,
+     "tokens_start": 115,
+     "tokens_goal": 98
+    }
+   }
+  },
+  {
+   "fn": "func_80091BA8",
+   "kind": "group",
+   "group": "entity_lookup",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/entity_lookup/group.c"
+   },
+   "versions_seen": 4,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_80091BA8/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_80091BA8/base.c",
+    "skipped_versions": 0,
+    "score": null
+   },
+   "goal_file": "func_80091BA8.goal.c",
+   "packed": false,
+   "start_file": "func_80091BA8.start.c",
+   "edit": {
+    "classes": [
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "type-change",
+    "ratio": 0.639,
+    "rewrite": true,
+    "detail": {
+     "rewrite": true,
+     "ops": 10,
+     "tokens_start": 61,
+     "tokens_goal": 48
+    }
+   }
+  },
+  {
+   "fn": "func_80092DCC",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_80092DCC.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "d56ad6ccd8",
+    "path": "cloud/work/bigfish/libhunt/nearmiss/func_80092DCC_strncpy.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "d56ad6ccd8",
+    "path": "cloud/work/bigfish/libhunt/nearmiss/func_80092DCC_strncpy.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 12,
+     "target_words": 24,
+     "aligned_exact": 17,
+     "aligned_pct": 71,
+     "size": 32
+    }
+   },
+   "goal_file": "func_80092DCC.goal.c",
+   "packed": true,
+   "start_file": "func_80092DCC.start.c",
+   "edit": {
+    "classes": [
+     "other"
+    ],
+    "primary": "other",
+    "ratio": 0.045,
+    "rewrite": false,
+    "detail": {
+     "decls_changed": [],
+     "ops": 2,
+     "tokens_start": 110,
+     "tokens_goal": 108
+    }
+   }
+  },
+  {
+   "fn": "func_80092FE0",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_80092FE0.c"
+   },
+   "versions_seen": 9,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_80092FE0/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_80092FE0/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 35,
+     "target_words": 47,
+     "aligned_exact": 13,
+     "aligned_pct": 28,
+     "size": 48
+    }
+   },
+   "goal_file": "func_80092FE0.goal.c",
+   "packed": true,
+   "start_file": "func_80092FE0.start.c",
+   "edit": {
+    "classes": [
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "type-change",
+    "ratio": 1.129,
+    "rewrite": true,
+    "detail": {
+     "decls_changed": [
+      "D_8012E700",
+      "D_80139320"
+     ],
+     "rewrite": true,
+     "ops": 15,
+     "tokens_start": 466,
+     "tokens_goal": 132
+    }
+   }
+  },
+  {
+   "fn": "func_800950AC",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800950AC.c"
+   },
+   "versions_seen": 1,
+   "first_seen": {
+    "commit": "d56ad6ccd8",
+    "path": "cloud/work/bigfish/libhunt/libc_and_heap_matches.c"
+   },
+   "status": "no_start",
+   "no_start_reason": "first appearance already the matching source",
+   "goal_file": "func_800950AC.goal.c",
+   "packed": true,
+   "start_file": null
+  },
+  {
+   "fn": "func_80095EF4",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_80095EF4.c"
+   },
+   "versions_seen": 1,
+   "first_seen": {
+    "commit": "d56ad6ccd8",
+    "path": "cloud/work/bigfish/libhunt/libc_and_heap_matches.c"
+   },
+   "status": "no_start",
+   "no_start_reason": "first appearance already the matching source",
+   "goal_file": "func_80095EF4.goal.c",
+   "packed": true,
+   "start_file": null
+  },
+  {
+   "fn": "func_80096B00",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_80096B00.c"
+   },
+   "versions_seen": 4,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_80096B00/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_80096B00/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 7,
+     "target_words": 23,
+     "aligned_exact": 19,
+     "aligned_pct": 83,
+     "size": 28
+    }
+   },
+   "goal_file": "func_80096B00.goal.c",
+   "packed": true,
+   "start_file": "func_80096B00.start.c",
+   "edit": {
+    "classes": [
+     "loop-form",
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "loop-form",
+    "ratio": 0.875,
+    "rewrite": true,
+    "detail": {
+     "loops": [
+      [
+       0,
+       0,
+       0,
+       1
+      ],
+      [
+       1,
+       0,
+       0,
+       0
+      ]
+     ],
+     "decls_changed": [],
+     "rewrite": true,
+     "ops": 15,
+     "tokens_start": 208,
+     "tokens_goal": 71
+    }
+   }
+  },
+  {
+   "fn": "func_800972C4",
+   "kind": "group",
+   "group": "audio_frame_sync",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/audio_frame_sync/group.c"
+   },
+   "versions_seen": 11,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800972C4/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800972C4/base.c",
+    "skipped_versions": 0,
+    "score": null
+   },
+   "goal_file": "func_800972C4.goal.c",
+   "packed": false,
+   "start_file": "func_800972C4.start.c",
+   "edit": {
+    "classes": [
+     "local-dropped"
+    ],
+    "primary": "local-dropped",
+    "ratio": 0.949,
+    "rewrite": true,
+    "detail": {
+     "rewrite": true,
+     "ops": 6,
+     "tokens_start": 138,
+     "tokens_goal": 50
+    }
+   }
+  },
+  {
+   "fn": "func_8009D45C",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_8009D45C.c"
+   },
+   "versions_seen": 3,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_8009D45C/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_8009D45C/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 75,
+     "target_words": 171,
+     "aligned_exact": 149,
+     "aligned_pct": 87,
+     "size": 172
+    }
+   },
+   "goal_file": "func_8009D45C.goal.c",
+   "packed": true,
+   "start_file": "func_8009D45C.start.c",
+   "edit": {
+    "classes": [
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "type-change",
+    "ratio": 0.951,
+    "rewrite": true,
+    "detail": {
+     "decls_changed": [
+      "D_80150B70"
+     ],
+     "rewrite": true,
+     "ops": 96,
+     "tokens_start": 1256,
+     "tokens_goal": 580
+    }
+   }
+  },
+  {
+   "fn": "func_8009E820",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_8009E820.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_8009E820/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_8009E820/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 24,
+     "target_words": 37,
+     "aligned_exact": 13,
+     "aligned_pct": 35,
+     "size": 40
+    }
+   },
+   "goal_file": "func_8009E820.goal.c",
+   "packed": true,
+   "start_file": "func_8009E820.start.c",
+   "edit": {
+    "classes": [
+     "type-change"
+    ],
+    "primary": "type-change",
+    "ratio": 1.06,
+    "rewrite": true,
+    "detail": {
+     "decls_changed": [],
+     "rewrite": true,
+     "ops": 21,
+     "tokens_start": 266,
+     "tokens_goal": 128
+    }
+   }
+  },
+  {
+   "fn": "func_8009E9D8",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_8009E9D8.c"
+   },
+   "versions_seen": 1,
+   "first_seen": {
+    "commit": "5700a39afd",
+    "path": "cloud/matches/func_8009E9D8.c"
+   },
+   "status": "no_start",
+   "no_start_reason": "first appearance already the matching source",
+   "goal_file": "func_8009E9D8.goal.c",
+   "packed": true,
+   "start_file": null
+  },
+  {
+   "fn": "func_800A3518",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800A3518.c"
+   },
+   "versions_seen": 1,
+   "first_seen": {
+    "commit": "87c541488a",
+    "path": "cloud/matches/func_800A3518.c"
+   },
+   "status": "no_start",
+   "no_start_reason": "first appearance already the matching source",
+   "goal_file": "func_800A3518.goal.c",
+   "packed": true,
+   "start_file": null
+  },
+  {
+   "fn": "func_800A464C",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800A464C.c"
+   },
+   "versions_seen": 5,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800A464C/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800A464C/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 16,
+     "target_words": 32,
+     "aligned_exact": 19,
+     "aligned_pct": 59,
+     "size": 36
+    }
+   },
+   "goal_file": "func_800A464C.goal.c",
+   "packed": true,
+   "start_file": "func_800A464C.start.c",
+   "edit": {
+    "classes": [
+     "loop-form",
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "loop-form",
+    "ratio": 0.707,
+    "rewrite": true,
+    "detail": {
+     "loops": [
+      [
+       0,
+       0,
+       0,
+       2
+      ],
+      [
+       0,
+       2,
+       1,
+       0
+      ]
+     ],
+     "decls_changed": [],
+     "rewrite": true,
+     "ops": 20,
+     "tokens_start": 188,
+     "tokens_goal": 121
+    }
+   }
+  },
+  {
+   "fn": "func_800A46CC",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800A46CC.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "d56ad6ccd8",
+    "path": "cloud/work/bigfish/libhunt/nearmiss/func_800A46CC_strncat.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "d56ad6ccd8",
+    "path": "cloud/work/bigfish/libhunt/nearmiss/func_800A46CC_strncat.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 10,
+     "target_words": 28,
+     "aligned_exact": 20,
+     "aligned_pct": 71,
+     "size": 24
+    }
+   },
+   "goal_file": "func_800A46CC.goal.c",
+   "packed": true,
+   "start_file": "func_800A46CC.start.c",
+   "edit": {
+    "classes": [
+     "other"
+    ],
+    "primary": "other",
+    "ratio": 0.095,
+    "rewrite": false,
+    "detail": {
+     "decls_changed": [],
+     "ops": 3,
+     "tokens_start": 74,
+     "tokens_goal": 70
+    }
+   }
+  },
+  {
+   "fn": "func_800A473C",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800A473C.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800A473C/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800A473C/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 12,
+     "target_words": 13,
+     "aligned_exact": 4,
+     "aligned_pct": 31,
+     "size": 12
+    }
+   },
+   "goal_file": "func_800A473C.goal.c",
+   "packed": true,
+   "start_file": "func_800A473C.start.c",
+   "edit": {
+    "classes": [
+     "loop-form",
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "loop-form",
+    "ratio": 0.826,
+    "rewrite": true,
+    "detail": {
+     "loops": [
+      [
+       0,
+       1,
+       1,
+       0
+      ],
+      [
+       0,
+       1,
+       0,
+       0
+      ]
+     ],
+     "decls_changed": [],
+     "rewrite": true,
+     "ops": 9,
+     "tokens_start": 109,
+     "tokens_goal": 39
+    }
+   }
+  },
+  {
+   "fn": "func_800A4770",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800A4770.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800A4770/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800A4770/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 16,
+     "target_words": 20,
+     "aligned_exact": 4,
+     "aligned_pct": 20,
+     "size": 20
+    }
+   },
+   "goal_file": "func_800A4770.goal.c",
+   "packed": true,
+   "start_file": "func_800A4770.start.c",
+   "edit": {
+    "classes": [
+     "loop-form",
+     "local-dropped"
+    ],
+    "primary": "loop-form",
+    "ratio": 0.77,
+    "rewrite": true,
+    "detail": {
+     "loops": [
+      [
+       0,
+       2,
+       2,
+       0
+      ],
+      [
+       0,
+       2,
+       0,
+       0
+      ]
+     ],
+     "decls_changed": [],
+     "rewrite": true,
+     "ops": 9,
+     "tokens_start": 165,
+     "tokens_goal": 51
+    }
+   }
+  },
+  {
+   "fn": "func_800A47C0",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800A47C0.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "d56ad6ccd8",
+    "path": "cloud/work/bigfish/libhunt/nearmiss/func_800A47C0_memmove.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "d56ad6ccd8",
+    "path": "cloud/work/bigfish/libhunt/nearmiss/func_800A47C0_memmove.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 48,
+     "target_words": 63,
+     "aligned_exact": 38,
+     "aligned_pct": 60,
+     "size": 64
+    }
+   },
+   "goal_file": "func_800A47C0.goal.c",
+   "packed": true,
+   "start_file": "func_800A47C0.start.c",
+   "edit": {
+    "classes": [
+     "other"
+    ],
+    "primary": "other",
+    "ratio": 0.147,
+    "rewrite": false,
+    "detail": {
+     "decls_changed": [],
+     "ops": 11,
+     "tokens_start": 220,
+     "tokens_goal": 224
+    }
+   }
+  },
+  {
+   "fn": "func_800A61B0",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800A61B0.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800A61B0/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800A61B0/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 24,
+     "target_words": 37,
+     "aligned_exact": 13,
+     "aligned_pct": 35,
+     "size": 40
+    }
+   },
+   "goal_file": "func_800A61B0.goal.c",
+   "packed": true,
+   "start_file": "func_800A61B0.start.c",
+   "edit": {
+    "classes": [
+     "type-change"
+    ],
+    "primary": "type-change",
+    "ratio": 1.06,
+    "rewrite": true,
+    "detail": {
+     "decls_changed": [],
+     "rewrite": true,
+     "ops": 21,
+     "tokens_start": 266,
+     "tokens_goal": 128
+    }
+   }
+  },
+  {
+   "fn": "func_800A7D6C",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800A7D6C.c"
+   },
+   "versions_seen": 3,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800A7D6C/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800A7D6C/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 2,
+     "target_words": 33,
+     "aligned_exact": 31,
+     "aligned_pct": 94,
+     "size": 36
+    }
+   },
+   "goal_file": "func_800A7D6C.goal.c",
+   "packed": true,
+   "start_file": "func_800A7D6C.start.c",
+   "edit": {
+    "classes": [
+     "local-dropped"
+    ],
+    "primary": "local-dropped",
+    "ratio": 0.689,
+    "rewrite": true,
+    "detail": {
+     "decls_changed": [],
+     "rewrite": true,
+     "ops": 16,
+     "tokens_start": 148,
+     "tokens_goal": 72
+    }
+   }
+  },
+  {
+   "fn": "func_800A8174",
+   "kind": "group",
+   "group": "car_collision_init",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/car_collision_init/group.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/car_collision_init/group.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/car_collision_init/group.c",
+    "skipped_versions": 0,
+    "score": null
+   },
+   "goal_file": "func_800A8174.goal.c",
+   "packed": false,
+   "start_file": "func_800A8174.start.c",
+   "edit": {
+    "classes": [
+     "type-change",
+     "local-dropped",
+     "literal-type"
+    ],
+    "primary": "type-change",
+    "ratio": 0.886,
+    "rewrite": true,
+    "detail": {
+     "rewrite": true,
+     "ops": 15,
+     "tokens_start": 255,
+     "tokens_goal": 63
+    }
+   }
+  },
+  {
+   "fn": "func_800A8F38",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800A8F38.c"
+   },
+   "versions_seen": 4,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/car_collision_update/group.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800A8F38/base.c",
+    "skipped_versions": 1,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 9,
+     "target_words": 11,
+     "aligned_exact": 4,
+     "aligned_pct": 36,
+     "size": 12
+    }
+   },
+   "goal_file": "func_800A8F38.goal.c",
+   "packed": true,
+   "start_file": "func_800A8F38.start.c",
+   "edit": {
+    "classes": [
+     "local-dropped"
+    ],
+    "primary": "local-dropped",
+    "ratio": 0.759,
+    "rewrite": true,
+    "detail": {
+     "decls_changed": [],
+     "rewrite": true,
+     "ops": 10,
+     "tokens_start": 116,
+     "tokens_goal": 49
+    }
+   }
+  },
+  {
+   "fn": "func_800ABB58",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800ABB58.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800ABB58/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800ABB58/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 28,
+     "target_words": 30,
+     "aligned_exact": 13,
+     "aligned_pct": 43,
+     "size": 32
+    }
+   },
+   "goal_file": "func_800ABB58.goal.c",
+   "packed": true,
+   "start_file": "func_800ABB58.start.c",
+   "edit": {
+    "classes": [
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "type-change",
+    "ratio": 0.505,
+    "rewrite": true,
+    "detail": {
+     "decls_changed": [
+      "D_80140BDC"
+     ],
+     "rewrite": true,
+     "ops": 19,
+     "tokens_start": 111,
+     "tokens_goal": 100
+    }
+   }
+  },
+  {
+   "fn": "func_800ACBC4",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800ACBC4.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800ACBC4/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800ACBC4/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 12,
+     "target_words": 21,
+     "aligned_exact": 11,
+     "aligned_pct": 52,
+     "size": 20
+    }
+   },
+   "goal_file": "func_800ACBC4.goal.c",
+   "packed": true,
+   "start_file": "func_800ACBC4.start.c",
+   "edit": {
+    "classes": [
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "type-change",
+    "ratio": 0.764,
+    "rewrite": true,
+    "detail": {
+     "decls_changed": [],
+     "rewrite": true,
+     "ops": 15,
+     "tokens_start": 165,
+     "tokens_goal": 76
+    }
+   }
+  },
+  {
+   "fn": "func_800AD5D0",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800AD5D0.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800AD5D0/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800AD5D0/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 32,
+     "target_words": 32,
+     "aligned_exact": 10,
+     "aligned_pct": 31,
+     "size": 36
+    }
+   },
+   "goal_file": "func_800AD5D0.goal.c",
+   "packed": true,
+   "start_file": "func_800AD5D0.start.c",
+   "edit": {
+    "classes": [
+     "loop-form",
+     "local-dropped",
+     "local-added"
+    ],
+    "primary": "loop-form",
+    "ratio": 0.648,
+    "rewrite": true,
+    "detail": {
+     "loops": [
+      [
+       0,
+       1,
+       1,
+       1
+      ],
+      [
+       0,
+       2,
+       2,
+       0
+      ]
+     ],
+     "decls_changed": [],
+     "rewrite": true,
+     "ops": 35,
+     "tokens_start": 273,
+     "tokens_goal": 164
+    }
+   }
+  },
+  {
+   "fn": "func_800AD650",
+   "kind": "group",
+   "group": "func_800AD4C8",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/func_800AD4C8/group.c"
+   },
+   "versions_seen": 5,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800AD650/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800AD650/base.c",
+    "skipped_versions": 0,
+    "score": null
+   },
+   "goal_file": "func_800AD650.goal.c",
+   "packed": false,
+   "start_file": "func_800AD650.start.c",
+   "edit": {
+    "classes": [
+     "local-added"
+    ],
+    "primary": "local-added",
+    "ratio": 0.83,
+    "rewrite": true,
+    "detail": {
+     "rewrite": true,
+     "ops": 29,
+     "tokens_start": 283,
+     "tokens_goal": 168
+    }
+   }
+  },
+  {
+   "fn": "func_800B0618",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800B0618.c"
+   },
+   "versions_seen": 1,
+   "first_seen": {
+    "commit": "d585c85b40",
+    "path": "cloud/matches/func_800B0618.c"
+   },
+   "status": "no_start",
+   "no_start_reason": "first appearance already the matching source",
+   "goal_file": "func_800B0618.goal.c",
+   "packed": true,
+   "start_file": null
+  },
+  {
+   "fn": "func_800B0A88",
+   "kind": "group",
+   "group": "audio_frame_update",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/audio_frame_update/group.c"
+   },
+   "versions_seen": 5,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/audio_frame_update/group.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/audio_frame_update/group.c",
+    "skipped_versions": 0,
+    "score": null
+   },
+   "goal_file": "func_800B0A88.goal.c",
+   "packed": false,
+   "start_file": "func_800B0A88.start.c",
+   "edit": {
+    "classes": [
+     "type-change",
+     "local-dropped",
+     "local-added"
+    ],
+    "primary": "type-change",
+    "ratio": 0.986,
+    "rewrite": true,
+    "detail": {
+     "rewrite": true,
+     "ops": 70,
+     "tokens_start": 379,
+     "tokens_goal": 418
+    }
+   }
+  },
+  {
+   "fn": "func_800B1F30",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800B1F30.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800B1F30/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800B1F30/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 1,
+     "target_words": 55,
+     "aligned_exact": 54,
+     "aligned_pct": 98,
+     "size": 56
+    }
+   },
+   "goal_file": "func_800B1F30.goal.c",
+   "packed": true,
+   "start_file": "func_800B1F30.start.c",
+   "edit": {
+    "classes": [
+     "type-change"
+    ],
+    "primary": "type-change",
+    "ratio": 0.011,
+    "rewrite": false,
+    "detail": {
+     "decls_changed": [
+      "model_data_load"
+     ],
+     "ops": 1,
+     "tokens_start": 268,
+     "tokens_goal": 265
+    }
+   }
+  },
+  {
+   "fn": "func_800B4DA4",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800B4DA4.c"
+   },
+   "versions_seen": 3,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800B4DA4/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800B4DA4/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 4,
+     "target_words": 49,
+     "aligned_exact": 45,
+     "aligned_pct": 92,
+     "size": 52
+    }
+   },
+   "goal_file": "func_800B4DA4.goal.c",
+   "packed": true,
+   "start_file": "func_800B4DA4.start.c",
+   "edit": {
+    "classes": [
+     "loop-form",
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "loop-form",
+    "ratio": 0.785,
+    "rewrite": true,
+    "detail": {
+     "loops": [
+      [
+       0,
+       2,
+       2,
+       0
+      ],
+      [
+       2,
+       0,
+       0,
+       0
+      ]
+     ],
+     "decls_changed": [
+      "D_80146108"
+     ],
+     "rewrite": true,
+     "ops": 22,
+     "tokens_start": 228,
+     "tokens_goal": 96
+    }
+   }
+  },
+  {
+   "fn": "func_800B61A8",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800B61A8.c"
+   },
+   "versions_seen": 1,
+   "first_seen": {
+    "commit": "7de256ef65",
+    "path": "cloud/work/r5_d/f61a8.c"
+   },
+   "status": "no_start",
+   "no_start_reason": "first appearance already the matching source",
+   "goal_file": "func_800B61A8.goal.c",
+   "packed": true,
+   "start_file": null
+  },
+  {
+   "fn": "func_800B78A4",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800B78A4.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800B78A4/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800B78A4/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 18,
+     "target_words": 19,
+     "aligned_exact": 11,
+     "aligned_pct": 58,
+     "size": 20
+    }
+   },
+   "goal_file": "func_800B78A4.goal.c",
+   "packed": true,
+   "start_file": "func_800B78A4.start.c",
+   "edit": {
+    "classes": [
+     "loop-form",
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "loop-form",
+    "ratio": 0.892,
+    "rewrite": true,
+    "detail": {
+     "loops": [
+      [
+       0,
+       1,
+       1,
+       1
+      ],
+      [
+       0,
+       1,
+       0,
+       0
+      ]
+     ],
+     "decls_changed": [],
+     "rewrite": true,
+     "ops": 13,
+     "tokens_start": 195,
+     "tokens_goal": 49
+    }
+   }
+  },
+  {
+   "fn": "func_800B90F8",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800B90F8.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800B90F8/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800B90F8/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 9,
+     "target_words": 13,
+     "aligned_exact": 4,
+     "aligned_pct": 31,
+     "size": 16
+    }
+   },
+   "goal_file": "func_800B90F8.goal.c",
+   "packed": true,
+   "start_file": "func_800B90F8.start.c",
+   "edit": {
+    "classes": [
+     "loop-form",
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "loop-form",
+    "ratio": 0.917,
+    "rewrite": true,
+    "detail": {
+     "loops": [
+      [
+       0,
+       1,
+       1,
+       0
+      ],
+      [
+       1,
+       0,
+       0,
+       0
+      ]
+     ],
+     "decls_changed": [],
+     "rewrite": true,
+     "ops": 8,
+     "tokens_start": 84,
+     "tokens_goal": 38
+    }
+   }
+  },
+  {
+   "fn": "func_800B9338",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800B9338.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800B9338/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800B9338/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 5,
+     "target_words": 28,
+     "aligned_exact": 23,
+     "aligned_pct": 82,
+     "size": 28
+    }
+   },
+   "goal_file": "func_800B9338.goal.c",
+   "packed": true,
+   "start_file": "func_800B9338.start.c",
+   "edit": {
+    "classes": [
+     "other"
+    ],
+    "primary": "other",
+    "ratio": 0.103,
+    "rewrite": false,
+    "detail": {
+     "decls_changed": [],
+     "ops": 4,
+     "tokens_start": 146,
+     "tokens_goal": 132
+    }
+   }
+  },
+  {
+   "fn": "func_800B98D8",
+   "kind": "group",
+   "group": "func_800B9B64",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/func_800B9B64/group.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/func_800B9B64/group.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/func_800B9B64/group.c",
+    "skipped_versions": 0,
+    "score": null
+   },
+   "goal_file": "func_800B98D8.goal.c",
+   "packed": false,
+   "start_file": "func_800B98D8.start.c",
+   "edit": {
+    "classes": [
+     "loop-form",
+     "local-dropped"
+    ],
+    "primary": "loop-form",
+    "ratio": 0.904,
+    "rewrite": true,
+    "detail": {
+     "loops": [
+      [
+       0,
+       0,
+       0,
+       3
+      ],
+      [
+       1,
+       0,
+       0,
+       0
+      ]
+     ],
+     "rewrite": true,
+     "ops": 26,
+     "tokens_start": 364,
+     "tokens_goal": 141
+    }
+   }
+  },
+  {
+   "fn": "func_800B9B64",
+   "kind": "group",
+   "group": "func_800B9B64",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/func_800B9B64/group.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/func_800B9B64/group.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/func_800B9B64/group.c",
+    "skipped_versions": 0,
+    "score": null
+   },
+   "goal_file": "func_800B9B64.goal.c",
+   "packed": false,
+   "start_file": "func_800B9B64.start.c",
+   "edit": {
+    "classes": [
+     "loop-form",
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "loop-form",
+    "ratio": 1.288,
+    "rewrite": true,
+    "detail": {
+     "loops": [
+      [
+       0,
+       3,
+       3,
+       0
+      ],
+      [
+       3,
+       0,
+       0,
+       0
+      ]
+     ],
+     "rewrite": true,
+     "ops": 34,
+     "tokens_start": 659,
+     "tokens_goal": 366
+    }
+   }
+  },
+  {
+   "fn": "func_800B9F60",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800B9F60.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800B9F60/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800B9F60/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 24,
+     "target_words": 43,
+     "aligned_exact": 26,
+     "aligned_pct": 60,
+     "size": 44
+    }
+   },
+   "goal_file": "func_800B9F60.goal.c",
+   "packed": true,
+   "start_file": "func_800B9F60.start.c",
+   "edit": {
+    "classes": [
+     "type-change",
+     "local-added"
+    ],
+    "primary": "type-change",
+    "ratio": 0.429,
+    "rewrite": false,
+    "detail": {
+     "decls_changed": [
+      "D_801407F0"
+     ],
+     "ops": 35,
+     "tokens_start": 282,
+     "tokens_goal": 216
+    }
+   }
+  },
+  {
+   "fn": "func_800BB7F4",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800BB7F4.c"
+   },
+   "versions_seen": 5,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800BB7F4/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800BB7F4/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 14,
+     "target_words": 16,
+     "aligned_exact": 6,
+     "aligned_pct": 38,
+     "size": 20
+    }
+   },
+   "goal_file": "func_800BB7F4.goal.c",
+   "packed": true,
+   "start_file": "func_800BB7F4.start.c",
+   "edit": {
+    "classes": [
+     "loop-form",
+     "local-dropped",
+     "extern-to-defined"
+    ],
+    "primary": "loop-form",
+    "ratio": 0.858,
+    "rewrite": true,
+    "detail": {
+     "loops": [
+      [
+       0,
+       1,
+       1,
+       0
+      ],
+      [
+       1,
+       0,
+       0,
+       0
+      ]
+     ],
+     "decls_changed": [
+      "D_8013C300"
+     ],
+     "rewrite": true,
+     "ops": 8,
+     "tokens_start": 134,
+     "tokens_goal": 36
+    }
+   }
+  },
+  {
+   "fn": "func_800C2430",
+   "kind": "group",
+   "group": "camera_scene_manager",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/camera_scene_manager/group.c"
+   },
+   "versions_seen": 3,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/camera_scene_manager/group.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/camera_scene_manager/group.c",
+    "skipped_versions": 0,
+    "score": null
+   },
+   "goal_file": "func_800C2430.goal.c",
+   "packed": false,
+   "start_file": "func_800C2430.start.c",
+   "edit": {
+    "classes": [
+     "local-dropped"
+    ],
+    "primary": "local-dropped",
+    "ratio": 0.848,
+    "rewrite": true,
+    "detail": {
+     "rewrite": true,
+     "ops": 74,
+     "tokens_start": 703,
+     "tokens_goal": 369
+    }
+   }
+  },
+  {
+   "fn": "func_800C26C4",
+   "kind": "group",
+   "group": "camera_scene_manager",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/camera_scene_manager/group.c"
+   },
+   "versions_seen": 3,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/camera_scene_manager/group.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/camera_scene_manager/group.c",
+    "skipped_versions": 0,
+    "score": null
+   },
+   "goal_file": "func_800C26C4.goal.c",
+   "packed": false,
+   "start_file": "func_800C26C4.start.c",
+   "edit": {
+    "classes": [
+     "local-dropped"
+    ],
+    "primary": "local-dropped",
+    "ratio": 0.856,
+    "rewrite": true,
+    "detail": {
+     "rewrite": true,
+     "ops": 77,
+     "tokens_start": 674,
+     "tokens_goal": 364
+    }
+   }
+  },
+  {
+   "fn": "func_800C2944",
+   "kind": "group",
+   "group": "camera_scene_manager",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/camera_scene_manager/group.c"
+   },
+   "versions_seen": 3,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/camera_scene_manager/group.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/camera_scene_manager/group.c",
+    "skipped_versions": 0,
+    "score": null
+   },
+   "goal_file": "func_800C2944.goal.c",
+   "packed": false,
+   "start_file": "func_800C2944.start.c",
+   "edit": {
+    "classes": [
+     "local-dropped"
+    ],
+    "primary": "local-dropped",
+    "ratio": 0.855,
+    "rewrite": true,
+    "detail": {
+     "rewrite": true,
+     "ops": 69,
+     "tokens_start": 698,
+     "tokens_goal": 357
+    }
+   }
+  },
+  {
+   "fn": "func_800C36A0",
+   "kind": "group",
+   "group": "func_800AD4C8",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/func_800AD4C8/group.c"
+   },
+   "versions_seen": 9,
+   "first_seen": {
+    "commit": "47a1aa2242",
+    "path": "cloud/work/r5_g/c36/group.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "47a1aa2242",
+    "path": "cloud/work/r5_g/c36/group.c",
+    "skipped_versions": 0,
+    "score": null
+   },
+   "goal_file": "func_800C36A0.goal.c",
+   "packed": false,
+   "start_file": "func_800C36A0.start.c",
+   "edit": {
+    "classes": [
+     "decl-order"
+    ],
+    "primary": "decl-order",
+    "ratio": 0.255,
+    "rewrite": false,
+    "detail": {
+     "ops": 53,
+     "tokens_start": 837,
+     "tokens_goal": 939
+    }
+   }
+  },
+  {
+   "fn": "func_800C4C9C",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800C4C9C.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800C4C9C/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800C4C9C/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 8,
+     "target_words": 23,
+     "aligned_exact": 21,
+     "aligned_pct": 91,
+     "size": 24
+    }
+   },
+   "goal_file": "func_800C4C9C.goal.c",
+   "packed": true,
+   "start_file": "func_800C4C9C.start.c",
+   "edit": {
+    "classes": [
+     "stmt-order"
+    ],
+    "primary": "stmt-order",
+    "ratio": 0.257,
+    "rewrite": false,
+    "detail": {
+     "decls_changed": [],
+     "ops": 2,
+     "tokens_start": 101,
+     "tokens_goal": 101
+    }
+   }
+  },
+  {
+   "fn": "func_800C9590",
+   "kind": "group",
+   "group": "controller_poll",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/controller_poll/group.c"
+   },
+   "versions_seen": 3,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/controller_poll/group.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/controller_poll/group.c",
+    "skipped_versions": 0,
+    "score": null
+   },
+   "goal_file": "func_800C9590.goal.c",
+   "packed": false,
+   "start_file": "func_800C9590.start.c",
+   "edit": {
+    "classes": [
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "type-change",
+    "ratio": 0.559,
+    "rewrite": true,
+    "detail": {
+     "rewrite": true,
+     "ops": 16,
+     "tokens_start": 68,
+     "tokens_goal": 60
+    }
+   }
+  },
+  {
+   "fn": "func_800CDA60",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800CDA60.c"
+   },
+   "versions_seen": 1,
+   "first_seen": {
+    "commit": "9de894debc",
+    "path": "cloud/matches/func_800CDA60.c"
+   },
+   "status": "no_start",
+   "no_start_reason": "first appearance already the matching source",
+   "goal_file": "func_800CDA60.goal.c",
+   "packed": true,
+   "start_file": null
+  },
+  {
+   "fn": "func_800CDC3C",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800CDC3C.c"
+   },
+   "versions_seen": 1,
+   "first_seen": {
+    "commit": "87c541488a",
+    "path": "cloud/matches/func_800CDC3C.c"
+   },
+   "status": "no_start",
+   "no_start_reason": "first appearance already the matching source",
+   "goal_file": "func_800CDC3C.goal.c",
+   "packed": true,
+   "start_file": null
+  },
+  {
+   "fn": "func_800CDDE8",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800CDDE8.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800CDDE8/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800CDDE8/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 5,
+     "target_words": 20,
+     "aligned_exact": 14,
+     "aligned_pct": 70,
+     "size": 20
+    }
+   },
+   "goal_file": "func_800CDDE8.goal.c",
+   "packed": true,
+   "start_file": "func_800CDDE8.start.c",
+   "edit": {
+    "classes": [
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "type-change",
+    "ratio": 0.814,
+    "rewrite": true,
+    "detail": {
+     "decls_changed": [],
+     "rewrite": true,
+     "ops": 12,
+     "tokens_start": 113,
+     "tokens_goal": 72
+    }
+   }
+  },
+  {
+   "fn": "func_800CDE38",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800CDE38.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800CDE38/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800CDE38/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 5,
+     "target_words": 20,
+     "aligned_exact": 14,
+     "aligned_pct": 70,
+     "size": 20
+    }
+   },
+   "goal_file": "func_800CDE38.goal.c",
+   "packed": true,
+   "start_file": "func_800CDE38.start.c",
+   "edit": {
+    "classes": [
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "type-change",
+    "ratio": 0.814,
+    "rewrite": true,
+    "detail": {
+     "decls_changed": [],
+     "rewrite": true,
+     "ops": 12,
+     "tokens_start": 113,
+     "tokens_goal": 72
+    }
+   }
+  },
+  {
+   "fn": "func_800CDE88",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800CDE88.c"
+   },
+   "versions_seen": 5,
+   "first_seen": {
+    "commit": "87c541488a",
+    "path": "cloud/matches/func_800CDE88.c"
+   },
+   "status": "no_start",
+   "no_start_reason": "first appearance already the matching source",
+   "goal_file": "func_800CDE88.goal.c",
+   "packed": true,
+   "start_file": null
+  },
+  {
+   "fn": "func_800CF604",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800CF604.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800CF604/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800CF604/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 20,
+     "target_words": 38,
+     "aligned_exact": 19,
+     "aligned_pct": 50,
+     "size": 40
+    }
+   },
+   "goal_file": "func_800CF604.goal.c",
+   "packed": true,
+   "start_file": "func_800CF604.start.c",
+   "edit": {
+    "classes": [
+     "local-dropped"
+    ],
+    "primary": "local-dropped",
+    "ratio": 0.718,
+    "rewrite": true,
+    "detail": {
+     "decls_changed": [],
+     "rewrite": true,
+     "ops": 20,
+     "tokens_start": 220,
+     "tokens_goal": 97
+    }
+   }
+  },
+  {
+   "fn": "func_800CFCA8",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800CFCA8.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800CFCA8/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800CFCA8/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 3,
+     "target_words": 81,
+     "aligned_exact": 80,
+     "aligned_pct": 99,
+     "size": 84
+    }
+   },
+   "goal_file": "func_800CFCA8.goal.c",
+   "packed": true,
+   "start_file": "func_800CFCA8.start.c",
+   "edit": {
+    "classes": [
+     "loop-form"
+    ],
+    "primary": "loop-form",
+    "ratio": 0.04,
+    "rewrite": false,
+    "detail": {
+     "loops": [
+      [
+       0,
+       1,
+       1,
+       0
+      ],
+      [
+       1,
+       0,
+       0,
+       0
+      ]
+     ],
+     "decls_changed": [],
+     "ops": 4,
+     "tokens_start": 501,
+     "tokens_goal": 498
+    }
+   }
+  },
+  {
+   "fn": "func_800D03AC",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800D03AC.c"
+   },
+   "versions_seen": 1,
+   "first_seen": {
+    "commit": "9de894debc",
+    "path": "cloud/matches/func_800D03AC.c"
+   },
+   "status": "no_start",
+   "no_start_reason": "first appearance already the matching source",
+   "goal_file": "func_800D03AC.goal.c",
+   "packed": true,
+   "start_file": null
+  },
+  {
+   "fn": "func_800D0A34",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800D0A34.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800D0A34/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800D0A34/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 20,
+     "target_words": 27,
+     "aligned_exact": 13,
+     "aligned_pct": 48,
+     "size": 28
+    }
+   },
+   "goal_file": "func_800D0A34.goal.c",
+   "packed": true,
+   "start_file": "func_800D0A34.start.c",
+   "edit": {
+    "classes": [
+     "other"
+    ],
+    "primary": "other",
+    "ratio": 0.817,
+    "rewrite": true,
+    "detail": {
+     "decls_changed": [],
+     "rewrite": true,
+     "ops": 5,
+     "tokens_start": 109,
+     "tokens_goal": 99
+    }
+   }
+  },
+  {
+   "fn": "func_800D50E4",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800D50E4.c"
+   },
+   "versions_seen": 1,
+   "first_seen": {
+    "commit": "9de894debc",
+    "path": "cloud/matches/func_800D50E4.c"
+   },
+   "status": "no_start",
+   "no_start_reason": "first appearance already the matching source",
+   "goal_file": "func_800D50E4.goal.c",
+   "packed": true,
+   "start_file": null
+  },
+  {
+   "fn": "func_800DC120",
+   "kind": "group",
+   "group": "championship_standings",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/championship_standings/group.c"
+   },
+   "versions_seen": 4,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/championship_standings/group.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/championship_standings/group.c",
+    "skipped_versions": 0,
+    "score": null
+   },
+   "goal_file": "func_800DC120.goal.c",
+   "packed": false,
+   "start_file": "func_800DC120.start.c",
+   "edit": {
+    "classes": [
+     "loop-form",
+     "local-dropped"
+    ],
+    "primary": "loop-form",
+    "ratio": 0.634,
+    "rewrite": true,
+    "detail": {
+     "loops": [
+      [
+       0,
+       2,
+       2,
+       0
+      ],
+      [
+       0,
+       2,
+       0,
+       0
+      ]
+     ],
+     "rewrite": true,
+     "ops": 19,
+     "tokens_start": 134,
+     "tokens_goal": 88
+    }
+   }
+  },
+  {
+   "fn": "func_800DC57C",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800DC57C.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800DC57C/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800DC57C/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 10,
+     "target_words": 43,
+     "aligned_exact": 34,
+     "aligned_pct": 79,
+     "size": 44
+    }
+   },
+   "goal_file": "func_800DC57C.goal.c",
+   "packed": true,
+   "start_file": "func_800DC57C.start.c",
+   "edit": {
+    "classes": [
+     "loop-form",
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "loop-form",
+    "ratio": 0.663,
+    "rewrite": true,
+    "detail": {
+     "loops": [
+      [
+       0,
+       1,
+       1,
+       0
+      ],
+      [
+       1,
+       0,
+       0,
+       0
+      ]
+     ],
+     "decls_changed": [
+      "D_801170F4",
+      "D_8012E618"
+     ],
+     "rewrite": true,
+     "ops": 18,
+     "tokens_start": 181,
+     "tokens_goal": 89
+    }
+   }
+  },
+  {
+   "fn": "func_800DD45C",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800DD45C.c"
+   },
+   "versions_seen": 3,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800DD45C/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800DD45C/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 1,
+     "target_words": 20,
+     "aligned_exact": 19,
+     "aligned_pct": 95,
+     "size": 20
+    }
+   },
+   "goal_file": "func_800DD45C.goal.c",
+   "packed": true,
+   "start_file": "func_800DD45C.start.c",
+   "edit": {
+    "classes": [
+     "loop-form",
+     "local-dropped"
+    ],
+    "primary": "loop-form",
+    "ratio": 0.794,
+    "rewrite": true,
+    "detail": {
+     "loops": [
+      [
+       0,
+       0,
+       0,
+       1
+      ],
+      [
+       1,
+       0,
+       0,
+       0
+      ]
+     ],
+     "decls_changed": [],
+     "rewrite": true,
+     "ops": 16,
+     "tokens_start": 175,
+     "tokens_goal": 73
+    }
+   }
+  },
+  {
+   "fn": "func_800E1540",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+   "goal": {
+    "path": "cloud/matches/func_800E1540.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800E1540/base.c"
+   },
+   "status": "no_start",
+   "no_start_reason": "first compiling version already matches",
+   "goal_file": "func_800E1540.goal.c",
+   "packed": true,
+   "start_file": null
+  },
+  {
+   "fn": "func_800E2F00",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800E2F00.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800E2F00/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800E2F00/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 44,
+     "target_words": 107,
+     "aligned_exact": 89,
+     "aligned_pct": 83,
+     "size": 108
+    }
+   },
+   "goal_file": "func_800E2F00.goal.c",
+   "packed": true,
+   "start_file": "func_800E2F00.start.c",
+   "edit": {
+    "classes": [
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "type-change",
+    "ratio": 0.723,
+    "rewrite": true,
+    "detail": {
+     "decls_changed": [],
+     "rewrite": true,
+     "ops": 42,
+     "tokens_start": 386,
+     "tokens_goal": 212
+    }
+   }
+  },
+  {
+   "fn": "func_800E627C",
+   "kind": "group",
+   "group": "func_800E681C",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/func_800E681C/group.c"
+   },
+   "versions_seen": 4,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/func_800E681C/group.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/func_800E681C/group.c",
+    "skipped_versions": 0,
+    "score": null
+   },
+   "goal_file": "func_800E627C.goal.c",
+   "packed": false,
+   "start_file": "func_800E627C.start.c",
+   "edit": {
+    "classes": [
+     "loop-form",
+     "type-change",
+     "local-dropped",
+     "literal-type"
+    ],
+    "primary": "loop-form",
+    "ratio": 0.69,
+    "rewrite": true,
+    "detail": {
+     "loops": [
+      [
+       0,
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       0,
+       0,
+       0
+      ]
+     ],
+     "rewrite": true,
+     "ops": 56,
+     "tokens_start": 345,
+     "tokens_goal": 235
+    }
+   }
+  },
+  {
+   "fn": "func_800E7B44",
+   "kind": "group",
+   "group": "audio_heap",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/audio_heap/group.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "7de256ef65",
+    "path": "cloud/work/ipa-groups/audio_heap/group.c"
+   },
+   "status": "no_start",
+   "no_start_reason": "first appearance already the matching source",
+   "goal_file": "func_800E7B44.goal.c",
+   "packed": false,
+   "start_file": null
+  },
+  {
+   "fn": "func_800EA2DC",
+   "kind": "group",
+   "group": "func_800E92C8",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/func_800E92C8/group.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/func_800E92C8/group.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/func_800E92C8/group.c",
+    "skipped_versions": 0,
+    "score": null
+   },
+   "goal_file": "func_800EA2DC.goal.c",
+   "packed": false,
+   "start_file": "func_800EA2DC.start.c",
+   "edit": {
+    "classes": [
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "type-change",
+    "ratio": 0.504,
+    "rewrite": true,
+    "detail": {
+     "rewrite": true,
+     "ops": 27,
+     "tokens_start": 137,
+     "tokens_goal": 110
+    }
+   }
+  },
+  {
+   "fn": "func_800EA3F4",
+   "kind": "group",
+   "group": "func_800EA3F4",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/func_800EA3F4/group.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "c54386ee17",
+    "path": "cloud/work/bigfish/seeds/func_800EA3F4.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "c54386ee17",
+    "path": "cloud/work/bigfish/seeds/func_800EA3F4.c",
+    "skipped_versions": 0,
+    "score": null
+   },
+   "goal_file": "func_800EA3F4.goal.c",
+   "packed": false,
+   "start_file": "func_800EA3F4.start.c",
+   "edit": {
+    "classes": [
+     "local-added",
+     "literal-type"
+    ],
+    "primary": "local-added",
+    "ratio": 0.587,
+    "rewrite": true,
+    "detail": {
+     "rewrite": true,
+     "ops": 207,
+     "tokens_start": 2173,
+     "tokens_goal": 2040
+    }
+   }
+  },
+  {
+   "fn": "func_800ED66C",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800ED66C.c"
+   },
+   "versions_seen": 1,
+   "first_seen": {
+    "commit": "d585c85b40",
+    "path": "cloud/matches/func_800ED66C.c"
+   },
+   "status": "no_start",
+   "no_start_reason": "first appearance already the matching source",
+   "goal_file": "func_800ED66C.goal.c",
+   "packed": true,
+   "start_file": null
+  },
+  {
+   "fn": "func_800F084C",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800F084C.c"
+   },
+   "versions_seen": 6,
+   "first_seen": {
+    "commit": "53193ee1f0",
+    "path": "cloud/work/near-miss/func_800F084C/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "53193ee1f0",
+    "path": "cloud/work/near-miss/func_800F084C/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 49,
+     "target_words": 50,
+     "aligned_exact": 21,
+     "aligned_pct": 42,
+     "size": 44
+    }
+   },
+   "goal_file": "func_800F084C.goal.c",
+   "packed": true,
+   "start_file": "func_800F084C.start.c",
+   "edit": {
+    "classes": [
+     "loop-form",
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "loop-form",
+    "ratio": 0.902,
+    "rewrite": true,
+    "detail": {
+     "loops": [
+      [
+       0,
+       1,
+       1,
+       0
+      ],
+      [
+       1,
+       0,
+       0,
+       0
+      ]
+     ],
+     "decls_changed": [
+      "D_801149B4",
+      "func_800F0674"
+     ],
+     "rewrite": true,
+     "ops": 17,
+     "tokens_start": 215,
+     "tokens_goal": 60
+    }
+   }
+  },
+  {
+   "fn": "func_800F7644",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800F7644.c"
+   },
+   "versions_seen": 1,
+   "first_seen": {
+    "commit": "87c541488a",
+    "path": "cloud/matches/func_800F7644.c"
+   },
+   "status": "no_start",
+   "no_start_reason": "first appearance already the matching source",
+   "goal_file": "func_800F7644.goal.c",
+   "packed": true,
+   "start_file": null
+  },
+  {
+   "fn": "func_800F84B0",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800F84B0.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800F84B0/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800F84B0/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 22,
+     "target_words": 51,
+     "aligned_exact": 44,
+     "aligned_pct": 86,
+     "size": 56
+    }
+   },
+   "goal_file": "func_800F84B0.goal.c",
+   "packed": true,
+   "start_file": "func_800F84B0.start.c",
+   "edit": {
+    "classes": [
+     "local-dropped"
+    ],
+    "primary": "local-dropped",
+    "ratio": 0.607,
+    "rewrite": true,
+    "detail": {
+     "decls_changed": [],
+     "rewrite": true,
+     "ops": 26,
+     "tokens_start": 168,
+     "tokens_goal": 130
+    }
+   }
+  },
+  {
+   "fn": "func_800F92C8",
+   "kind": "group",
+   "group": "render_large_objects",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/render_large_objects/group.c"
+   },
+   "versions_seen": 1,
+   "first_seen": {
+    "commit": "bc3ff3aa1e",
+    "path": "cloud/work/ipa-groups/render_large_objects/group.c"
+   },
+   "status": "no_start",
+   "no_start_reason": "first appearance already the matching source",
+   "goal_file": "func_800F92C8.goal.c",
+   "packed": false,
+   "start_file": null
+  },
+  {
+   "fn": "func_800FAD50",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800FAD50.c"
+   },
+   "versions_seen": 3,
+   "first_seen": {
+    "commit": "9de894debc",
+    "path": "cloud/matches/func_800FAD50.c"
+   },
+   "status": "no_start",
+   "no_start_reason": "first appearance already the matching source",
+   "goal_file": "func_800FAD50.goal.c",
+   "packed": true,
+   "start_file": null
+  },
+  {
+   "fn": "func_800FAEE4",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800FAEE4.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "87c541488a",
+    "path": "cloud/work/newtargets_hi/a_func_800FAEE4.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "87c541488a",
+    "path": "cloud/work/newtargets_hi/a_func_800FAEE4.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 25,
+     "target_words": 27,
+     "aligned_exact": 6,
+     "aligned_pct": 22,
+     "size": 32
+    }
+   },
+   "goal_file": "func_800FAEE4.goal.c",
+   "packed": true,
+   "start_file": "func_800FAEE4.start.c",
+   "edit": {
+    "classes": [
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "type-change",
+    "ratio": 0.71,
+    "rewrite": true,
+    "detail": {
+     "decls_changed": [],
+     "rewrite": true,
+     "ops": 6,
+     "tokens_start": 124,
+     "tokens_goal": 39
+    }
+   }
+  },
+  {
+   "fn": "func_800FBE30",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800FBE30.c"
+   },
+   "versions_seen": 3,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800FBE30/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/func_800FBE30/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 1,
+     "target_words": 12,
+     "aligned_exact": 11,
+     "aligned_pct": 92,
+     "size": 12
+    }
+   },
+   "goal_file": "func_800FBE30.goal.c",
+   "packed": true,
+   "start_file": "func_800FBE30.start.c",
+   "edit": {
+    "classes": [
+     "loop-form",
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "loop-form",
+    "ratio": 0.714,
+    "rewrite": true,
+    "detail": {
+     "loops": [
+      [
+       0,
+       1,
+       1,
+       0
+      ],
+      [
+       1,
+       0,
+       0,
+       0
+      ]
+     ],
+     "decls_changed": [],
+     "rewrite": true,
+     "ops": 8,
+     "tokens_start": 42,
+     "tokens_goal": 25
+    }
+   }
+  },
+  {
+   "fn": "func_800FBF2C",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800FBF2C.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "7de256ef65",
+    "path": "cloud/work/r5_d/fbf2c.c"
+   },
+   "status": "no_start",
+   "no_start_reason": "first appearance already the matching source",
+   "goal_file": "func_800FBF2C.goal.c",
+   "packed": true,
+   "start_file": null
+  },
+  {
+   "fn": "func_800FD754",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/func_800FD754.c"
+   },
+   "versions_seen": 1,
+   "first_seen": {
+    "commit": "6942faca2d",
+    "path": "cloud/work/newtargets_hi/a_func_800FD754.c"
+   },
+   "status": "no_start",
+   "no_start_reason": "first appearance already the matching source",
+   "goal_file": "func_800FD754.goal.c",
+   "packed": true,
+   "start_file": null
+  },
+  {
+   "fn": "handbrake_apply",
+   "kind": "group",
+   "group": "func_800AD4C8",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/func_800AD4C8/group.c"
+   },
+   "versions_seen": 22,
+   "first_seen": {
+    "commit": "d585c85b40",
+    "path": "cloud/work/newtargets_lo/body/handbrake_apply.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "d585c85b40",
+    "path": "cloud/work/newtargets_lo/body/handbrake_apply.c",
+    "skipped_versions": 0,
+    "score": null
+   },
+   "goal_file": "handbrake_apply.goal.c",
+   "packed": false,
+   "start_file": "handbrake_apply.start.c",
+   "edit": {
+    "classes": [
+     "type-change"
+    ],
+    "primary": "type-change",
+    "ratio": 0.259,
+    "rewrite": false,
+    "detail": {
+     "ops": 23,
+     "tokens_start": 110,
+     "tokens_goal": 112
+    }
+   }
+  },
+  {
+   "fn": "init_wait_completion",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/init_wait_completion.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/init_wait_completion/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/init_wait_completion/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 17,
+     "target_words": 21,
+     "aligned_exact": 19,
+     "aligned_pct": 90,
+     "size": 20
+    }
+   },
+   "goal_file": "init_wait_completion.goal.c",
+   "packed": true,
+   "start_file": "init_wait_completion.start.c",
+   "edit": {
+    "classes": [
+     "type-change"
+    ],
+    "primary": "type-change",
+    "ratio": 0.024,
+    "rewrite": false,
+    "detail": {
+     "decls_changed": [
+      "func_80096238"
+     ],
+     "ops": 1,
+     "tokens_start": 41,
+     "tokens_goal": 42
+    }
+   }
+  },
+  {
+   "fn": "input_new_data_wrapper",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/input_new_data_wrapper.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/input_new_data_wrapper/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/input_new_data_wrapper/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 13,
+     "target_words": 15,
+     "aligned_exact": 13,
+     "aligned_pct": 87,
+     "size": 20
+    }
+   },
+   "goal_file": "input_new_data_wrapper.goal.c",
+   "packed": true,
+   "start_file": "input_new_data_wrapper.start.c",
+   "edit": {
+    "classes": [
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "type-change",
+    "ratio": 0.612,
+    "rewrite": true,
+    "detail": {
+     "decls_changed": [],
+     "rewrite": true,
+     "ops": 11,
+     "tokens_start": 67,
+     "tokens_goal": 41
+    }
+   }
+  },
+  {
+   "fn": "minimap_render",
+   "kind": "group",
+   "group": "func_800B9B64",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/func_800B9B64/group.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/func_800B9B64/group.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/func_800B9B64/group.c",
+    "skipped_versions": 0,
+    "score": null
+   },
+   "goal_file": "minimap_render.goal.c",
+   "packed": false,
+   "start_file": "minimap_render.start.c",
+   "edit": {
+    "classes": [
+     "loop-form",
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "loop-form",
+    "ratio": 0.963,
+    "rewrite": true,
+    "detail": {
+     "loops": [
+      [
+       0,
+       0,
+       0,
+       3
+      ],
+      [
+       0,
+       0,
+       0,
+       0
+      ]
+     ],
+     "rewrite": true,
+     "ops": 23,
+     "tokens_start": 246,
+     "tokens_goal": 141
+    }
+   }
+  },
+  {
+   "fn": "model_bounds_calc",
+   "kind": "group",
+   "group": "func_8008B640",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/func_8008B640/group.c"
+   },
+   "versions_seen": 1,
+   "first_seen": {
+    "commit": "f3c3d501ed",
+    "path": "cloud/work/ipa-groups/func_8008B640/group.c"
+   },
+   "status": "no_start",
+   "no_start_reason": "first appearance already the matching source",
+   "goal_file": "model_bounds_calc.goal.c",
+   "packed": false,
+   "start_file": null
+  },
+  {
+   "fn": "object_byte71_set_sync",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/object_byte71_set_sync.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/object_byte71_set_sync/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/object_byte71_set_sync/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 18,
+     "target_words": 20,
+     "aligned_exact": 18,
+     "aligned_pct": 90,
+     "size": 24
+    }
+   },
+   "goal_file": "object_byte71_set_sync.goal.c",
+   "packed": true,
+   "start_file": "object_byte71_set_sync.start.c",
+   "edit": {
+    "classes": [
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "type-change",
+    "ratio": 0.69,
+    "rewrite": true,
+    "detail": {
+     "decls_changed": [],
+     "rewrite": true,
+     "ops": 22,
+     "tokens_start": 106,
+     "tokens_goal": 116
+    }
+   }
+  },
+  {
+   "fn": "particle_position_set",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/particle_position_set.c"
+   },
+   "versions_seen": 6,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/particle_position_set/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/particle_position_set/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 32,
+     "target_words": 43,
+     "aligned_exact": 36,
+     "aligned_pct": 84,
+     "size": 44
+    }
+   },
+   "goal_file": "particle_position_set.goal.c",
+   "packed": true,
+   "start_file": "particle_position_set.start.c",
+   "edit": {
+    "classes": [
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "type-change",
+    "ratio": 0.797,
+    "rewrite": true,
+    "detail": {
+     "decls_changed": [
+      "D_80150B70"
+     ],
+     "rewrite": true,
+     "ops": 14,
+     "tokens_start": 222,
+     "tokens_goal": 96
+    }
+   }
+  },
+  {
+   "fn": "physics_velocity_clamp",
+   "kind": "group",
+   "group": "func_800B9B64",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/func_800B9B64/group.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/func_800B9B64/group.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/func_800B9B64/group.c",
+    "skipped_versions": 0,
+    "score": null
+   },
+   "goal_file": "physics_velocity_clamp.goal.c",
+   "packed": false,
+   "start_file": "physics_velocity_clamp.start.c",
+   "edit": {
+    "classes": [
+     "loop-form",
+     "local-dropped"
+    ],
+    "primary": "loop-form",
+    "ratio": 1.103,
+    "rewrite": true,
+    "detail": {
+     "loops": [
+      [
+       0,
+       1,
+       1,
+       2
+      ],
+      [
+       2,
+       0,
+       0,
+       0
+      ]
+     ],
+     "rewrite": true,
+     "ops": 29,
+     "tokens_start": 379,
+     "tokens_goal": 219
+    }
+   }
+  },
+  {
+   "fn": "physics_velocity_integrate_b",
+   "kind": "group",
+   "group": "func_8008B640",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/func_8008B640/group.c"
+   },
+   "versions_seen": 3,
+   "first_seen": {
+    "commit": "dcf78eb281",
+    "path": "cloud/work/ipa-groups/func_8008B640/group.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "dcf78eb281",
+    "path": "cloud/work/ipa-groups/func_8008B640/group.c",
+    "skipped_versions": 0,
+    "score": null
+   },
+   "goal_file": "physics_velocity_integrate_b.goal.c",
+   "packed": false,
+   "start_file": "physics_velocity_integrate_b.start.c",
+   "edit": {
+    "classes": [
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "type-change",
+    "ratio": 0.575,
+    "rewrite": true,
+    "detail": {
+     "rewrite": true,
+     "ops": 18,
+     "tokens_start": 173,
+     "tokens_goal": 181
+    }
+   }
+  },
+  {
+   "fn": "physics_velocity_integrate_c",
+   "kind": "group",
+   "group": "func_8008B640",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/func_8008B640/group.c"
+   },
+   "versions_seen": 3,
+   "first_seen": {
+    "commit": "dcf78eb281",
+    "path": "cloud/work/ipa-groups/func_8008B640/group.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "dcf78eb281",
+    "path": "cloud/work/ipa-groups/func_8008B640/group.c",
+    "skipped_versions": 0,
+    "score": null
+   },
+   "goal_file": "physics_velocity_integrate_c.goal.c",
+   "packed": false,
+   "start_file": "physics_velocity_integrate_c.start.c",
+   "edit": {
+    "classes": [
+     "type-change",
+     "local-added"
+    ],
+    "primary": "type-change",
+    "ratio": 0.204,
+    "rewrite": false,
+    "detail": {
+     "ops": 7,
+     "tokens_start": 153,
+     "tokens_goal": 157
+    }
+   }
+  },
+  {
+   "fn": "physics_velocity_integrate_d",
+   "kind": "group",
+   "group": "func_8008B640",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/func_8008B640/group.c"
+   },
+   "versions_seen": 4,
+   "first_seen": {
+    "commit": "dcf78eb281",
+    "path": "cloud/work/ipa-groups/func_8008B640/group.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "dcf78eb281",
+    "path": "cloud/work/ipa-groups/func_8008B640/group.c",
+    "skipped_versions": 0,
+    "score": null
+   },
+   "goal_file": "physics_velocity_integrate_d.goal.c",
+   "packed": false,
+   "start_file": "physics_velocity_integrate_d.start.c",
+   "edit": {
+    "classes": [
+     "type-change",
+     "local-added"
+    ],
+    "primary": "type-change",
+    "ratio": 0.331,
+    "rewrite": false,
+    "detail": {
+     "ops": 9,
+     "tokens_start": 153,
+     "tokens_goal": 157
+    }
+   }
+  },
+  {
+   "fn": "physics_velocity_integrate_e",
+   "kind": "group",
+   "group": "func_8008B640",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/func_8008B640/group.c"
+   },
+   "versions_seen": 4,
+   "first_seen": {
+    "commit": "dcf78eb281",
+    "path": "cloud/work/ipa-groups/func_8008B640/group.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "dcf78eb281",
+    "path": "cloud/work/ipa-groups/func_8008B640/group.c",
+    "skipped_versions": 0,
+    "score": null
+   },
+   "goal_file": "physics_velocity_integrate_e.goal.c",
+   "packed": false,
+   "start_file": "physics_velocity_integrate_e.start.c",
+   "edit": {
+    "classes": [
+     "type-change",
+     "local-added"
+    ],
+    "primary": "type-change",
+    "ratio": 0.331,
+    "rewrite": false,
+    "detail": {
+     "ops": 9,
+     "tokens_start": 153,
+     "tokens_goal": 157
+    }
+   }
+  },
+  {
+   "fn": "physics_velocity_integrate_f",
+   "kind": "group",
+   "group": "func_8008B640",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/func_8008B640/group.c"
+   },
+   "versions_seen": 4,
+   "first_seen": {
+    "commit": "dcf78eb281",
+    "path": "cloud/work/ipa-groups/func_8008B640/group.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "dcf78eb281",
+    "path": "cloud/work/ipa-groups/func_8008B640/group.c",
+    "skipped_versions": 0,
+    "score": null
+   },
+   "goal_file": "physics_velocity_integrate_f.goal.c",
+   "packed": false,
+   "start_file": "physics_velocity_integrate_f.start.c",
+   "edit": {
+    "classes": [
+     "type-change",
+     "local-added"
+    ],
+    "primary": "type-change",
+    "ratio": 0.331,
+    "rewrite": false,
+    "detail": {
+     "ops": 9,
+     "tokens_start": 153,
+     "tokens_goal": 157
+    }
+   }
+  },
+  {
+   "fn": "player_mode_set",
+   "kind": "group",
+   "group": "controller_poll",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/controller_poll/group.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/controller_poll/group.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/controller_poll/group.c",
+    "skipped_versions": 0,
+    "score": null
+   },
+   "goal_file": "player_mode_set.goal.c",
+   "packed": false,
+   "start_file": "player_mode_set.start.c",
+   "edit": {
+    "classes": [
+     "loop-form",
+     "type-change",
+     "local-added"
+    ],
+    "primary": "loop-form",
+    "ratio": 0.623,
+    "rewrite": true,
+    "detail": {
+     "loops": [
+      [
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       1,
+       0,
+       0,
+       0
+      ]
+     ],
+     "rewrite": true,
+     "ops": 14,
+     "tokens_start": 52,
+     "tokens_goal": 61
+    }
+   }
+  },
+  {
+   "fn": "player_state_set",
+   "kind": "group",
+   "group": "controller_poll",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/controller_poll/group.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/controller_poll/group.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/ipa-groups/controller_poll/group.c",
+    "skipped_versions": 0,
+    "score": null
+   },
+   "goal_file": "player_state_set.goal.c",
+   "packed": false,
+   "start_file": "player_state_set.start.c",
+   "edit": {
+    "classes": [
+     "loop-form",
+     "type-change",
+     "local-added"
+    ],
+    "primary": "loop-form",
+    "ratio": 0.623,
+    "rewrite": true,
+    "detail": {
+     "loops": [
+      [
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       1,
+       0,
+       0,
+       0
+      ]
+     ],
+     "rewrite": true,
+     "ops": 14,
+     "tokens_start": 52,
+     "tokens_goal": 61
+    }
+   }
+  },
+  {
+   "fn": "players_frame_update",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/players_frame_update.c"
+   },
+   "versions_seen": 5,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/players_frame_update/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/players_frame_update/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 7,
+     "target_words": 36,
+     "aligned_exact": 29,
+     "aligned_pct": 81,
+     "size": 36
+    }
+   },
+   "goal_file": "players_frame_update.goal.c",
+   "packed": true,
+   "start_file": "players_frame_update.start.c",
+   "edit": {
+    "classes": [
+     "loop-form",
+     "local-dropped"
+    ],
+    "primary": "loop-form",
+    "ratio": 0.526,
+    "rewrite": true,
+    "detail": {
+     "loops": [
+      [
+       0,
+       1,
+       1,
+       0
+      ],
+      [
+       1,
+       0,
+       0,
+       0
+      ]
+     ],
+     "decls_changed": [],
+     "rewrite": true,
+     "ops": 10,
+     "tokens_start": 97,
+     "tokens_goal": 77
+    }
+   }
+  },
+  {
+   "fn": "players_race_update",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/players_race_update.c"
+   },
+   "versions_seen": 3,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/players_race_update/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/players_race_update/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 6,
+     "target_words": 37,
+     "aligned_exact": 32,
+     "aligned_pct": 86,
+     "size": 40
+    }
+   },
+   "goal_file": "players_race_update.goal.c",
+   "packed": true,
+   "start_file": "players_race_update.start.c",
+   "edit": {
+    "classes": [
+     "loop-form",
+     "local-dropped",
+     "local-added"
+    ],
+    "primary": "loop-form",
+    "ratio": 0.674,
+    "rewrite": true,
+    "detail": {
+     "loops": [
+      [
+       0,
+       1,
+       1,
+       0
+      ],
+      [
+       1,
+       0,
+       0,
+       0
+      ]
+     ],
+     "decls_changed": [],
+     "rewrite": true,
+     "ops": 10,
+     "tokens_start": 61,
+     "tokens_goal": 95
+    }
+   }
+  },
+  {
+   "fn": "pool_linked_list_init",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/pool_linked_list_init.c"
+   },
+   "versions_seen": 1,
+   "first_seen": {
+    "commit": "9de894debc",
+    "path": "cloud/matches/pool_linked_list_init.c"
+   },
+   "status": "no_start",
+   "no_start_reason": "first appearance already the matching source",
+   "goal_file": "pool_linked_list_init.goal.c",
+   "packed": true,
+   "start_file": null
+  },
+  {
+   "fn": "render_mode_select",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/render_mode_select.c"
+   },
+   "versions_seen": 1,
+   "first_seen": {
+    "commit": "848671fdda",
+    "path": "cloud/matches/render_mode_select.c"
+   },
+   "status": "no_start",
+   "no_start_reason": "first appearance already the matching source",
+   "goal_file": "render_mode_select.goal.c",
+   "packed": true,
+   "start_file": null
+  },
+  {
+   "fn": "render_post_process",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/render_post_process.c"
+   },
+   "versions_seen": 1,
+   "first_seen": {
+    "commit": "d585c85b40",
+    "path": "cloud/matches/render_post_process.c"
+   },
+   "status": "no_start",
+   "no_start_reason": "first appearance already the matching source",
+   "goal_file": "render_post_process.goal.c",
+   "packed": true,
+   "start_file": null
+  },
+  {
+   "fn": "resource_update_global",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/resource_update_global.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/resource_update_global/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/resource_update_global/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 4,
+     "target_words": 9,
+     "aligned_exact": 5,
+     "aligned_pct": 56,
+     "size": 12
+    }
+   },
+   "goal_file": "resource_update_global.goal.c",
+   "packed": true,
+   "start_file": "resource_update_global.start.c",
+   "edit": {
+    "classes": [
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "type-change",
+    "ratio": 0.643,
+    "rewrite": true,
+    "detail": {
+     "decls_changed": [
+      "func_80096238"
+     ],
+     "rewrite": true,
+     "ops": 2,
+     "tokens_start": 28,
+     "tokens_goal": 12
+    }
+   }
+  },
+  {
+   "fn": "results_time_display",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/results_time_display.c"
+   },
+   "versions_seen": 4,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/results_time_display/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/results_time_display/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 25,
+     "target_words": 41,
+     "aligned_exact": 30,
+     "aligned_pct": 73,
+     "size": 40
+    }
+   },
+   "goal_file": "results_time_display.goal.c",
+   "packed": true,
+   "start_file": "results_time_display.start.c",
+   "edit": {
+    "classes": [
+     "loop-form",
+     "local-dropped",
+     "extern-to-defined"
+    ],
+    "primary": "loop-form",
+    "ratio": 0.429,
+    "rewrite": false,
+    "detail": {
+     "loops": [
+      [
+       0,
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       0,
+       0,
+       0
+      ]
+     ],
+     "decls_changed": [
+      "func_80091BA8"
+     ],
+     "ops": 19,
+     "tokens_start": 140,
+     "tokens_goal": 115
+    }
+   }
+  },
+  {
+   "fn": "scheduler_recv",
+   "kind": "group",
+   "group": "entity_lookup",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/entity_lookup/group.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5700a39afd",
+    "path": "cloud/work/ipa-groups/entity_lookup/group.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5700a39afd",
+    "path": "cloud/work/ipa-groups/entity_lookup/group.c",
+    "skipped_versions": 0,
+    "score": null
+   },
+   "goal_file": "scheduler_recv.goal.c",
+   "packed": false,
+   "start_file": "scheduler_recv.start.c",
+   "edit": {
+    "classes": [
+     "decl-order"
+    ],
+    "primary": "decl-order",
+    "ratio": 0.085,
+    "rewrite": false,
+    "detail": {
+     "ops": 2,
+     "tokens_start": 94,
+     "tokens_goal": 94
+    }
+   }
+  },
+  {
+   "fn": "struct_init_and_call",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/struct_init_and_call.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/struct_init_and_call/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/struct_init_and_call/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 17,
+     "target_words": 17,
+     "aligned_exact": 13,
+     "aligned_pct": 76,
+     "size": 20
+    }
+   },
+   "goal_file": "struct_init_and_call.goal.c",
+   "packed": true,
+   "start_file": "struct_init_and_call.start.c",
+   "edit": {
+    "classes": [
+     "type-change"
+    ],
+    "primary": "type-change",
+    "ratio": 0.489,
+    "rewrite": false,
+    "detail": {
+     "decls_changed": [
+      "D_80153F10"
+     ],
+     "ops": 11,
+     "tokens_start": 94,
+     "tokens_goal": 59
+    }
+   }
+  },
+  {
+   "fn": "time_of_day_select",
+   "kind": "group",
+   "group": "func_800D2FA8",
+   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/work/ipa-groups/func_800D2FA8/group.c"
+   },
+   "versions_seen": 1,
+   "first_seen": {
+    "commit": "dcf78eb281",
+    "path": "cloud/work/ipa-groups/func_800D2FA8/group.c"
+   },
+   "status": "no_start",
+   "no_start_reason": "first appearance already the matching source",
+   "goal_file": "time_of_day_select.goal.c",
+   "packed": false,
+   "start_file": null
+  },
+  {
+   "fn": "track_collision",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/track_collision.c"
+   },
+   "versions_seen": 2,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/track_collision/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/track_collision/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 39,
+     "target_words": 50,
+     "aligned_exact": 47,
+     "aligned_pct": 94,
+     "size": 52
+    }
+   },
+   "goal_file": "track_collision.goal.c",
+   "packed": true,
+   "start_file": "track_collision.start.c",
+   "edit": {
+    "classes": [
+     "loop-form",
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "loop-form",
+    "ratio": 0.866,
+    "rewrite": true,
+    "detail": {
+     "loops": [
+      [
+       0,
+       0,
+       0,
+       1
+      ],
+      [
+       0,
+       1,
+       0,
+       0
+      ]
+     ],
+     "decls_changed": [
+      "D_8012E700"
+     ],
+     "rewrite": true,
+     "ops": 21,
+     "tokens_start": 202,
+     "tokens_goal": 88
+    }
+   }
+  },
+  {
+   "fn": "transmission_shift",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/transmission_shift.c"
+   },
+   "versions_seen": 3,
+   "first_seen": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/transmission_shift/base.c"
+   },
+   "status": "ok",
+   "start": {
+    "commit": "5eebdbb975",
+    "path": "cloud/work/near-miss/transmission_shift/base.c",
+    "skipped_versions": 0,
+    "score": {
+     "compiles": true,
+     "matched": false,
+     "strict_diff": 6,
+     "target_words": 62,
+     "aligned_exact": 56,
+     "aligned_pct": 90,
+     "size": 64
+    }
+   },
+   "goal_file": "transmission_shift.goal.c",
+   "packed": true,
+   "start_file": "transmission_shift.start.c",
+   "edit": {
+    "classes": [
+     "loop-form",
+     "type-change",
+     "local-dropped"
+    ],
+    "primary": "loop-form",
+    "ratio": 0.909,
+    "rewrite": true,
+    "detail": {
+     "loops": [
+      [
+       0,
+       1,
+       1,
+       0
+      ],
+      [
+       0,
+       1,
+       0,
+       0
+      ]
+     ],
+     "decls_changed": [],
+     "rewrite": true,
+     "ops": 32,
+     "tokens_start": 572,
+     "tokens_goal": 197
+    }
+   }
+  },
+  {
+   "fn": "world_bounds_check",
+   "kind": "single",
+   "group": null,
+   "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+   "goal": {
+    "path": "cloud/matches/world_bounds_check.c"
+   },
+   "versions_seen": 1,
+   "first_seen": {
+    "commit": "87c541488a",
+    "path": "cloud/matches/world_bounds_check.c"
+   },
+   "status": "no_start",
+   "no_start_reason": "first appearance already the matching source",
+   "goal_file": "world_bounds_check.goal.c",
+   "packed": true,
+   "start_file": null
+  }
+ ],
+ "dropped": []
+}

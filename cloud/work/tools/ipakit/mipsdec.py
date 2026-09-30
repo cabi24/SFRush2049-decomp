@@ -253,3 +253,49 @@ def main(argv):
 
 if __name__ == '__main__':
     sys.exit(main(sys.argv[1:]))
+
+
+def jump_table(insns, idx, word_at, lo, hi, window=24, maxn=1024):
+    """Targets of the switch `jr rX` at insns[idx] (rX != ra), or None when no `lui`-based
+    table is found.  Pattern: [sltiu t,idx,N;] lui b,hi; addu b,b,idx; lw x,off(b); jr x.
+    Entries are read from the image through word_at(addr) while they fall in [lo, hi)."""
+    j = insns[idx]
+    x = j.rs
+    k = idx - 1
+    lw = None
+    while k >= 0 and idx - k <= window:
+        c = insns[k]
+        if c.defs & g(x):
+            if c.mnem == 'lw':
+                lw = c
+            break
+        k -= 1
+    if lw is None:
+        return None
+    want = {lw.rs}
+    luival = None
+    k -= 1
+    while k >= 0 and idx - k <= window and luival is None:
+        c = insns[k]
+        if c.defs & sum(g(r) for r in want):
+            if c.mnem == 'lui':
+                luival = (c.word & 0xFFFF) << 16
+            elif c.mnem in ('addu', 'add', 'or'):
+                want |= {c.rs, c.rt}
+            elif c.mnem in ('addiu', 'ori'):
+                want.add(c.rs)
+        k -= 1
+    if luival is None:
+        return None
+    base = (luival + lw.mem[1]) & 0xFFFFFFFF
+    n = maxn
+    for c in insns[max(0, idx - window):idx]:
+        if c.mnem == 'sltiu' and c.imm > 0:
+            n = min(n, c.imm)
+    out = []
+    for e in range(n):
+        v = word_at(base + 4 * e)
+        if v is None or v & 3 or not (lo <= v < hi):
+            break
+        out.append(v)
+    return out or None

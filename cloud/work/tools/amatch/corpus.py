@@ -641,6 +641,17 @@ def stats_text(idx):
                   "- strict differing words: median %s, min %s, max %s"
                   % (statistics.median(d), min(d), max(d)) if d else "",
                   "- aligned-exact percent: median %s" % statistics.median(ap) if ap else "", ""]
+    near = [e for e in ws if e["kind"] == "single" and not e["edit"]["rewrite"]
+            and ((e["start"].get("score") or {}).get("strict_diff") or 99) <= 12]
+    if near:
+        nc = {c: sum(c in e["edit"]["classes"] for e in near) for c in CLASSES}
+        lines += ["## Near-miss edits only", "",
+                  "Singles whose start was already close (strict diff <= 12 words) and whose edit is not a",
+                  "rewrite (< 50%% of tokens changed): %d pairs. These are the edits a mutation search must"
+                  % len(near), "find; the m2c-to-natural rewrites above are a different (LLM) job.", "",
+                  "| class | pairs |", "|---|---:|"]
+        lines += ["| %s | %d |" % (c, nc[c]) for c in sorted(CLASSES, key=lambda c: (-nc[c], c)) if nc[c]]
+        lines.append("")
     lines += ["## Per entry", "", "| function | kind | flags | start strict diff | aligned % | labels |", "|---|---|---|---:|---:|---|"]
     for e in ents:
         s = (e.get("start") or {}).get("score") or {}
