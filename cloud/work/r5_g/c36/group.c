@@ -3758,8 +3758,8 @@ void func_800C36A0(CCar *car, CCol *col) {
     CPoly *poly;
 
     k = col->k;
-    idx = D_801174C4[col->idx];
     poly = col->poly;
+    idx = D_801174C4[col->idx];
     v[0] = col->m[3] * k;
     v[1] = col->m[4] * k;
     v[2] = col->m[5] * k;

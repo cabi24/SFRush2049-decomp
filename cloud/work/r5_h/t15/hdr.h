@@ -1,0 +1,15 @@
+typedef signed char s8; typedef unsigned char u8; typedef signed short s16; typedef unsigned short u16;
+typedef signed int s32; typedef unsigned int u32; typedef float f32;
+typedef struct { u8 flag; u8 pad1[3]; s32 count; s32 size; void *mem; s32 f16; s32 free; } Pool;
+extern Pool D_8013F1E0;
+extern u8 D_8013C378[];
+extern s32 D_801392D8[];
+extern s32 D_801392F0[];
+extern s8 D_80156994;
+extern s8 D_8014978C;
+extern u8 *D_80117480[];
+extern s16 D_8013F380[];
+extern s16 D_8013F38C[];
+extern u8 D_80140BDC;
+void pool_linked_list_init(Pool *);
+u32 func_800B24EC(u8 *, s16 *, s32, s32, s32);
