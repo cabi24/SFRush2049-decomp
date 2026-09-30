@@ -1,3 +1,4 @@
+/* flags: -g0 -O2 -mips2 -G 0 -non_shared */
 #define NULL ((void *)0)
 #define TRUE 1
 #define FALSE 0
@@ -2168,7 +2169,7 @@ extern s32 D_80140AF8;
 extern f32 D_80140B10;
 extern s32 D_80140B20;
 extern s32 D_80140B28;
-extern s32 D_80140BDC;
+extern u8 D_80140BDC[];
 extern f32 D_80140BE0;
 extern s32 D_801424F0;
 extern s32 D_80142500;
@@ -3116,7 +3117,7 @@ void func_800AB18C(s32 arg0, void *arg1);
 s16 func_800AB53C(void *arg0);
 void func_800AB638(void);
 void func_800AB750(s32 arg0, void *arg1, void *arg2, void *arg3);
-f32 func_800ABB58(s32 arg0);
+
 void func_800AC8D4(s16 arg0);
 void *func_800AC9BC(void *arg0, s16 arg1, s16 arg2, s16 *arg3);
 void func_800ACBC4(f32 *arg0, f32 *arg1, f32 arg2, void *arg3);
@@ -3294,7 +3295,7 @@ void func_800E05F0(void *arg0);
 void func_800E0B20(void *arg0);
 void func_800E114C(void *arg0);
 void func_800E1500(void **arg0, void *arg1, void *arg2);
-
+void func_800E1540(void **arg0);
 void func_800E15A0(void *arg0);
 void func_800E1AA0(void *arg0);
 void func_800E1C30(void *arg0);
@@ -3696,12 +3697,20 @@ typedef s64 M2C_UNK64;
 
 #endif
 
-void func_800E1540(f32 *arg0) {
-    f32 t;
+typedef struct { u8 *ptr; s32 count; } ABBEnt;
+f32 func_800ABB58(s32 arg0) {
+    s32 idx;
+    s32 sub;
+    ABBEnt *e;
 
-    t = D_80142764 / arg0[0x5BC / 4];
-    arg0[0x28 / 4] = arg0[0x10 / 4] * t;
-    arg0[0x2C / 4] = arg0[0x14 / 4] * t;
-    arg0[0x30 / 4] = arg0[0x18 / 4] * t;
-    func_800E1500(arg0, arg0 + 7, arg0 + 0xD);
+    idx = arg0 >> 0xA;
+    if (idx >= (s32) *(volatile u8 *) D_80140BDC) {
+        return 0.0f;
+    }
+    e = (ABBEnt *) ((u8 *) &D_801161F4 + idx * 8);
+    sub = arg0 & 0x3FF;
+    if (sub >= e->count) {
+        return 0.0f;
+    }
+    return *(f32 *) (e->ptr + sub * 0x58 + 0x10);
 }
