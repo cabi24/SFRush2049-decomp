@@ -2258,8 +2258,8 @@ extern s32 D_8013C128;
 extern s32 D_8013C228;
 extern s32 D_8013C234;
 extern s32 D_8013C238;
-extern s32 D_8013C300;
-extern s32 D_8013C304;
+extern struct { s32 f0; s32 f4; } D_8013C300;
+
 extern s32 D_8013C308;
 extern s32 D_8013C378;
 extern s32 D_8013E5D8;
@@ -3788,24 +3788,22 @@ void world_object_destroy(void *arg0);
 void world_physics_tick(void);
 void world_trigger_activate(void);
 s32 world_velocity_integrate();
+typedef struct { s32 a; s32 b; s32 c; s32 d; } Q16;
 void func_800BB7F4(void)
 {
-  s32 *new_var2;
-  int new_var;
-  s32 *var_v1;
-  var_v1 = &D_8013C308;
-  new_var = 0;
-  new_var2 = &D_8013C378;
-  D_8013C300 = new_var;
-  if ((var_v1 && var_v1) && var_v1)
-  {
-  }
-  D_8013C304 = new_var;
+  s32 *p;
+  s32 *end;
+  end = &D_8013C378;
+  p = &D_8013C308;
+  D_8013C300.f0 = 0;
+  D_8013C300.f4 = 0;
   do
   {
-    var_v1 += 0x10;
-    *((s32 *) (var_v1 + 0x0)) = (*((s32 *) (var_v1 - 0x4)) = (*((s32 *) (var_v1 - 0x8)) = (*((s32 *) (var_v1 - 0xC)) = new_var)));
-  }
-  while ((var_v1 != new_var2) & 0xFFFFFFFFu);
-  D_8013F1DC = new_var;
+    p += 4;
+    p[-3] = 0;
+    p[-2] = 0;
+    p[-1] = 0;
+    p[-4] = 0;
+  } while ((p != end) & 0xFFFFFFFFu);
+  D_8013F1DC = 0;
 }

@@ -3793,22 +3793,19 @@ typedef s8 M2C_UNK8;
 typedef s16 M2C_UNK16;
 typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
+typedef struct { u8 pad[0x24]; f32 f24; f32 f28; f32 f2C; } E30;
 void *func_800A7D6C(void)
 {
-  void *sp1C;
-  s32 temp_t7;
-  void *temp_a1;
-  temp_t7 = (D_80156BAC = D_80156BAC + 1);
-  if (D_80156BD0 < temp_t7)
+  E30 *e;
+  D_80156BAC = D_80156BAC + 1;
+  if (D_80156BD0 < D_80156BAC)
   {
-    D_80156BD0 = temp_t7;
+    D_80156BD0 = D_80156BAC;
   }
-  temp_a1 = (s32 *) ((temp_t7 * 0x30) + ((u8 *) (&D_8015F740)));
-  temp_t7 = 0.0f;
-  *((f32 *) (((s8 *) temp_a1) + 0x24)) = temp_t7;
-  *((f32 *) (((s8 *) temp_a1) + 0x28)) = temp_t7;
-  *((f32 *) (((s8 *) temp_a1) + 0x2C)) = 0.0f;
-  sp1C = temp_a1;
-  math_utility(&D_8011418C, temp_a1);
-  return sp1C;
+  e = ((E30 *) &D_8015F740) + D_80156BAC;
+  e->f24 = 0.0f;
+  e->f28 = 0.0f;
+  e->f2C = 0.0f;
+  math_utility(&D_8011418C, e);
+  return e;
 }

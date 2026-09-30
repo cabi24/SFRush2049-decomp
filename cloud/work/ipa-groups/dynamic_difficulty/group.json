@@ -1,0 +1,30 @@
+{
+  "members": [
+    "func_80107EDC"
+  ],
+  "files": [
+    "dd.c",
+    "slot.c",
+    "objset.c",
+    "sound.c",
+    "stub.c"
+  ],
+  "keep": [
+    "func_80107EDC",
+    "object_byte9_set"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "generated": "hand-written from the assembly (cloud Lane A); see STATUS.md",
+  "unprototyped": [],
+  "context": [
+    "slot_state_setup",
+    "sound_update_channel",
+    "object_byte9_set"
+  ],
+  "targets": {
+    "func_80107EDC": {
+      "addr": "0x80107EDC",
+      "words": 158
+    }
+  }
+}

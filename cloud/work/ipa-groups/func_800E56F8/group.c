@@ -419,8 +419,11 @@ typedef struct {
     u8 _pad18[0x4D - 0x18];
     u8 unk4D;
 } InputRecord;
-extern InputRecord input_rec0;
-extern InputRecord input_rec1;
+typedef struct Inp {
+    u8 car;
+    u8 pad1[0x4B];
+} Inp;
+extern Inp input_rec0[];
 extern s32 D_80156978[4];
 extern s32 D_80156998[4];
 extern s32 D_80143A00[4];
@@ -460,6 +463,16 @@ typedef struct {
     u8 unk3A3;
     u8 pad3A4[0x3B8 - 0x3A4];
 } GameCar;
+typedef struct GC2 {
+    u8 pad00[0xEF];
+    s8 bEF;
+    u8 padF0[0x358 - 0xF0];
+    s8 b358;
+    s8 b359;
+    u8 pad35A[0x380 - 0x35A];
+    s32 w380;
+    u8 pad384[0x3B8 - 0x384];
+} GC2;
 extern GameCar player_array[8];
 typedef struct {
     u8 pad00[0x39];
@@ -570,12 +583,29 @@ typedef struct {
 } D_80143FD8_Record;
 extern D_80143FD8_Record *D_80143FD8;
 typedef struct {
-    u8 pad000[0x7C6];
-    u16 unk7C6;
-    u8 pad7C8[0x7E8 - 0x7C8];
-    u8 unk7E8;
+    u8 pad000[0x3F0];
+    f32 speed;              /* 0x3F0 */
+    u8 pad3F4[0x640 - 0x3F4];
+    s8 b640;
+    u8 pad641[0x6C4 - 0x641];
+    s16 s6C4;
+    u8 pad6C6[0x6CC - 0x6C6];
+    s8 b6CC;
+    u8 pad6CD[0x710 - 0x6CD];
+    s32 lastTick;           /* 0x710 */
+    f32 tickTime;           /* 0x714 */
+    f32 dt;                 /* 0x718 */
+    u8 pad71C[0x732 - 0x71C];
+    s8 b732;
+    u8 pad733[0x788 - 0x733];
+    f32 vel[3];             /* 0x788 */
+    u8 pad794[0x7C6 - 0x794];
+    s16 unk7C6;
+    u8 pad7C8[2];
+    s16 s7CA;
+    u8 pad7CC[0x808 - 0x7CC];
 } D_8014A250_Record;
-extern D_8014A250_Record D_8014A250;
+extern D_8014A250_Record D_8014A250[];
 typedef struct {
     u8 pad00[0x0C];
     u8 unk0C;
@@ -1314,7 +1344,10 @@ extern s32 D_80120E00;
 extern s32 D_80120E2C;
 extern s32 D_80120E50;
 extern s32 D_80120E68;
-extern s32 D_80120E74;
+typedef struct Row3 {
+    s16 v[3];
+} Row3;
+extern Row3 D_80120E74[];
 extern s32 D_80120EBC;
 extern s32 D_80120EC0;
 extern s32 D_80120EC4;
@@ -2547,7 +2580,7 @@ extern s8 D_80152570;
 extern s8 D_80152574;
 extern s32 D_80152578;
 extern s32 D_801525EC;
-extern s32 D_801525F0;
+extern u16 D_801525F0;
 extern s8 D_801525F8;
 extern s32 D_801525FC;
 extern s32 D_80152600;
@@ -2587,7 +2620,7 @@ extern s16 D_801527D8;
 extern s32 D_801527E4;
 extern s32 D_801527E8;
 extern f32 D_80152800;
-extern s16 D_80152808;
+extern s16 D_80152808[];
 extern f32 D_80152820;
 extern f32 D_80152824;
 extern f32 D_80152828;
@@ -2607,7 +2640,7 @@ extern s32 D_80152C20;
 extern s8 D_80152CBE;
 extern s32 D_80153E68;
 extern s32 D_80153E80;
-extern s32 D_80153E84;
+extern s16 D_80153E84;
 extern s32 D_80153E88;
 extern u8 D_80153E89;
 extern u8 D_80153E8F;
@@ -2627,7 +2660,7 @@ extern s32 D_80153F68;
 extern f32 D_80153F80;
 extern s32 D_80153F88;
 extern s16 D_80153FD0;
-extern s32 D_80153FD2;
+extern s16 D_80153FD2;
 extern s32 D_80153FD8;
 extern s32 D_80154138;
 extern s16 D_80154180;
@@ -3319,7 +3352,7 @@ void func_800E398C(void);
 s16 func_800E4300(s32 arg1, void *arg2);
 void func_800E451C(s32 arg0);
 void func_800E4B58(void *arg0);
-void func_800E543C(s16 arg0, s16 arg1, void *arg2);
+void func_800E543C(s16 arg0, s16 arg1);
 
 void func_800E5C9C(void *arg0);
 s32 func_800E5D64(s32 arg0, f32 *arg1);
@@ -3702,16 +3735,15 @@ typedef s64 M2C_UNK64;
 
 
 /* group members */
-void func_800E56F8(s16 ipa_s4);
+void func_800E56F8(s32 ipa_s4);
 void func_800E6AF8(void);
 
-void func_800E56F8(s16 ipa_s4) {
+void func_800E56F8(s32 ipa_s4) {
     GameCar *temp_s2;
     f32 temp_f0;
     f32 var_f0;
-    s16 *var_v0;
-    s16 temp_a0;
-    s16 temp_t9;
+    s32 temp_a0;
+    s32 idx;
     s32 *var_v0_2;
     s32 temp_a0_2;
     s32 temp_f6;
@@ -3720,7 +3752,7 @@ void func_800E56F8(s16 ipa_s4) {
     s32 temp_v1;
     s32 var_a0;
     s8 temp_v0;
-    s8 var_v1;
+    s32 var_v1;
     u8 temp_v0_3;
     void *temp_s0;
     void *temp_s0_2;
@@ -3741,16 +3773,12 @@ void func_800E56F8(s16 ipa_s4) {
             *(&D_801440AD + (M2C_FIELD(temp_s3, u8 *, 1) * 0x304)) = 0;
             return;
         }
-        temp_a0 = D_8015274C - 1;
-        if (D_80153F40 < temp_a0) {
-            var_v0 = &(&D_80152808)[D_80153F40];
-            do {
-                temp_t9 = M2C_FIELD(var_v0, s16 *, 2);
-                var_v0 = var_v0 + 1;
-                M2C_FIELD(var_v0, s16 *, -2) = temp_t9;
-            } while ((u32) var_v0 < (u32) &(&D_80152808)[temp_a0]);
+        idx = D_80153F40;
+        var_a0 = D_8015274C - 1;
+        for (; idx < var_a0; idx++) {
+            D_80152808[idx] = D_80152808[idx + 1];
         }
-        D_8015274C = temp_a0;
+        D_8015274C = var_a0;
         D_80153F40 -= 1;
         D_80153F08 -= 1;
         return;
@@ -3760,11 +3788,11 @@ void func_800E56F8(s16 ipa_s4) {
     func_800D1248(temp_s0_2);
     if (((s8) temp_s2->pad0EC[0x26C] == 2) && ((s8) temp_s2->pad0EC[0x26D] <= 0)) {
         func_800D5828(ipa_s4);
-        func_800E543C(2, ipa_s4, M2C_ERROR(/* Read from unset register $a2 */));
+        func_800E543C(2, ipa_s4);
     } else if ((M2C_FIELD(temp_s0_2, s8 *, 0x640) != 0) && ((s8) temp_s2->pad0EC[0x26D] >= 2)) {
         M2C_FIELD(temp_s0_2, s8 *, 0x640) = 0;
     }
-    temp_f0 = (((f32) M2C_FIELD(temp_s0_2, s16 *, 0x624) * D_8012447C) + 1.0f) * (M2C_FIELD(temp_s0_2, f32 *, 0x400) * M2C_FIELD(temp_s0_2, f32 *, 0x7F0));
+    temp_f0 = (M2C_FIELD(temp_s0_2, f32 *, 0x400) * M2C_FIELD(temp_s0_2, f32 *, 0x7F0)) * (((f32) M2C_FIELD(temp_s0_2, s16 *, 0x624) * D_8012447C) + 1.0f);
     M2C_FIELD(temp_s0_2, f32 *, 0x7F4) = temp_f0;
     M2C_FIELD(temp_s0_2, f32 *, 0x718) = (f32) (M2C_FIELD(temp_s0_2, f32 *, 0x718) * temp_f0);
     if (M2C_FIELD(temp_s0_2, s16 *, 0x6C4) >= 0) {
@@ -3781,16 +3809,16 @@ void func_800E56F8(s16 ipa_s4) {
         if (temp_s3 != NULL) {
             func_800E3724(temp_s0_2);
             if ((state_word_a & 0x400000) && ((gameplay_mode != 2) || (temp_v1 = (&D_80152698)[M2C_FIELD(temp_s0_2, s16 *, 0x7C6)], (temp_v1 == 0)) || (M2C_FIELD(*M2C_FIELD(M2C_FIELD(temp_v1, void **, 0), void ***, 0x28), s8 *, 5) < 0))) {
-                temp_f6 = (s32) (fabsf(M2C_FIELD(temp_s0_2, f32 *, 0x18)) + (fabsf(M2C_FIELD(temp_s0_2, f32 *, 0x10)) + fabsf(M2C_FIELD(temp_s0_2, f32 *, 0x14))));
+                temp_f6 = (s32) ((fabsf(M2C_FIELD(temp_s0_2, f32 *, 0x10)) + fabsf(M2C_FIELD(temp_s0_2, f32 *, 0x14))) + fabsf(M2C_FIELD(temp_s0_2, f32 *, 0x18)));
                 var_a0 = temp_f6;
                 if (gameplay_mode == 6) {
-                    temp_a0_2 = temp_f6 / 2;
+                    var_a0 /= 2;
                     if ((s8) temp_s2->pad0EC[0x26C] == 1) {
-                        var_a0 = temp_a0_2 + 0x186A0;
+                        var_a0 += 0x186A0;
                     } else {
                         temp_lo = M2C_FIELD(temp_s2, s16 *, 0x388) * 0x186A0;
                         M2C_FIELD(temp_s2, s16 *, 0x388) = 0;
-                        var_a0 = temp_a0_2 + (temp_lo / 800);
+                        var_a0 += temp_lo / 800;
                     }
                 }
                 var_v0_2 = &D_801163F8;
@@ -3836,147 +3864,118 @@ block_40:
     if (M2C_FIELD(temp_s0_2, s8 *, 0x7EB) == 0) {
         if (M2C_FIELD(temp_s0_2, s16 *, 0x6C4) >= 0) {
             var_f0 = 0.0f;
-            M2C_FIELD(temp_s2, s32 *, 0x30C) = (s32) M2C_FIELD(temp_s0_2, s32 *, 0x714);
+            M2C_FIELD(temp_s2, f32 *, 0x30C) = M2C_FIELD(temp_s0_2, f32 *, 0x714);
         } else {
-            var_f0 = M2C_BITWISE(f32, M2C_FIELD(temp_s0_2, s32 *, 0x714)) - M2C_BITWISE(f32, M2C_FIELD(temp_s2, s32 *, 0x30C));
+            var_f0 = M2C_FIELD(temp_s0_2, f32 *, 0x714) - M2C_FIELD(temp_s2, f32 *, 0x30C);
         }
         if ((((s8) D_8013FECB != 0) || (((gameplay_mode != 6) || (gameplay_mode != 5)) && (var_f0 >= 5.0f)) || (((gameplay_mode == 6) || (gameplay_mode == 5)) && (D_80124480 < var_f0))) && ((temp_v0_3 = *(&D_80153E8F + (M2C_FIELD(temp_s0_2, s16 *, 0x7C6) * 8)), (temp_v0_3 == 0)) || (temp_v0_3 == 6))) {
             M2C_FIELD(temp_s0_2, s8 *, 0x7EA) = 1;
             M2C_FIELD(temp_s0_2, s8 *, 0x7EB) = 1;
-            M2C_FIELD(temp_s2, s32 *, 0x30C) = 0;
+            M2C_FIELD(temp_s2, f32 *, 0x30C) = 0.0f;
         }
     }
 }
 
 void func_800E6AF8(void) {
-    s32 sp7C;
-    s32 sp78;
-    s32 sp74;
-    f32 sp70;
-    s16 sp64;
-    InputRecord *var_s8;
-    f32 temp_f12;
-    f32 temp_f14;
-    f32 temp_f2;
-    s16 temp_v0_5;
-    s16 var_a0;
-    s16 var_s8_2;
-    s32 temp_t7;
-    s32 temp_t8;
-    s32 temp_v0_2;
-    s32 var_s0;
-    s32 var_s1;
-    s32 var_v1;
-    s32 var_v1_2;
-    u8 temp_v0_4;
-    u8 var_t6;
-    void *temp_s7;
-    void *temp_v0;
-    void *temp_v0_3;
-    void *temp_v0_6;
-    void *var_v1_3;
+    volatile s32 padv[3];
+    f32 fz, fx, fy;
+    s32 i;
+    s32 j;
+    s32 v;
+    s32 r;
+    f32 t;
+    s16 n;
+    s16 k;
+    volatile s32 padw[3];
+    Row3 *row;
+    Inp *rec;
+    D_8014A250_Record *car;
+    GC2 *gc;
 
     if ((state_word_a & 0x600008) && (D_801525F0 != 0)) {
-        temp_t8 = D_80143FF4 + 1;
-        D_80143FF4 = temp_t8;
-        var_v1 = 0;
-        D_801543CC = (f32) temp_t8 * D_8002AFB8;
-        do {
-            if (D_80152B98 == 0) {
-                temp_v0 = (D_8014A250_Record *) ((u8 *) &D_8014A250 + (var_v1 * 0x808));
-                if (M2C_FIELD(temp_v0, s16 *, 0x7CA) == 0) {
-                    temp_f12 = M2C_FIELD(temp_v0, f32 *, 0x788);
-                    temp_f14 = M2C_FIELD(temp_v0, f32 *, 0x78C);
-                    temp_f2 = M2C_FIELD(temp_v0, f32 *, 0x790);
-                    M2C_FIELD(temp_v0, f32 *, 0x3F0) = sqrtf((temp_f2 * temp_f2) + ((temp_f12 * temp_f12) + (temp_f14 * temp_f14)));
+        D_80143FF4 = D_80143FF4 + 1;
+        D_801543CC = (f32) D_80143FF4 * D_8002AFB8;
+        for (v = 0; v != 6; v++) {
+            if (((GC2 *) player_array)[v].w380 == 0) {
+                car = &D_8014A250[v];
+                if (car->s7CA == 0) {
+                    fx = car->vel[0];
+                    fy = car->vel[1];
+                    fz = car->vel[2];
+                    car->speed = sqrtf((fz * fz) + ((fx * fx) + (fy * fy)));
                 }
-            }
-            var_v1 += 1;
-        } while (var_v1 != 6);
-        func_800E681C();
-        var_s1 = 0;
-        if (D_80153FD2 > 0) {
-            var_s8 = &input_rec0;
-            var_t6 = input_rec0.pad00[0];
-loop_9:
-            temp_s7 = (D_8014A250_Record *) ((var_t6 * 0x808) + (u8 *) &D_8014A250);
-            var_s0 = 0;
-            var_v1_2 = gameplay_mode;
-loop_10:
-            if (var_v1_2 == 2) {
-                temp_v0_2 = func_800E5D64(var_s1, &sp70);
-                sp74 = temp_v0_2;
-                if (temp_v0_2 >= 0) {
-                    temp_t7 = M2C_FIELD(temp_s7, s32 *, 0x710) + 1;
-                    M2C_FIELD(temp_s7, s32 *, 0x710) = temp_t7;
-                    M2C_FIELD(temp_s7, f32 *, 0x718) = sp70;
-                    M2C_FIELD(temp_s7, f32 *, 0x714) = (f32) ((f32) temp_t7 * sp70);
-                    goto block_14;
-                }
-            } else {
-                M2C_FIELD(temp_s7, f32 *, 0x718) = (f32) ((f32) (D_80143FF4 - M2C_FIELD(temp_s7, s32 *, 0x710)) * D_8002AFB8);
-                M2C_FIELD(temp_s7, s32 *, 0x710) = (s32) D_80143FF4;
-                M2C_FIELD(temp_s7, f32 *, 0x714) = (f32) D_801543CC;
-block_14:
-                func_800E5C9C(temp_s7);
-                if ((M2C_FIELD(temp_s7, s8 *, 0x732) != 0) && ((gameplay_mode != 6) || (M2C_FIELD(temp_s7, s8 *, 0x640) != 0)) && (state_word_a & 0x400000) && (M2C_FIELD(temp_s7, s16 *, 0x6C4) == -1)) {
-                    temp_v0_3 = (GameCar *) ((u8 *) player_array + (var_s8->pad00[0] * 0x3B8));
-                    if ((M2C_FIELD(temp_v0_3, s8 *, 0xEF) == 0) && (M2C_FIELD(temp_v0_3, s8 *, 0x359) == 0) && ((s8) D_8013FECB == 0) && (((s8) D_80142760 == 0) || ((M2C_FIELD(temp_s7, f32 *, 0x3F0) < 10.0f) && (M2C_FIELD(temp_v0_3, s8 *, 0x358) == 0)))) {
-                        if (gameplay_mode == 4) {
-                            func_800C3578(var_s1);
-                        }
-                        M2C_FIELD(temp_s7, s8 *, 0x6CC) = 1;
-                        func_800C54F0((s16) var_s8->pad00[0], 0);
-                    }
-                }
-                temp_v0_4 = var_s8->pad00[0];
-                if (M2C_FIELD(((GameCar *) ((u8 *) player_array + (temp_v0_4 * 0x3B8))), s8 *, 0x359) < 2) {
-                    sp78 = var_s0;
-                    sp7C = var_s1;
-                    func_800E56F8(temp_v0_4);
-                } else {
-                    menu_audio_settings(temp_s7);
-                }
-                var_v1_2 = gameplay_mode;
-                if ((var_v1_2 == 2) && (var_s0 == 0) && (sp74 > 0)) {
-                    var_s0 = 1;
-                    goto loop_10;
-                }
-            }
-            var_t6 = (u8) D_80153FD2;
-            var_s1 += 1;
-            if (var_s1 < (s32) var_t6) {
-                var_s8 = &input_rec1;
-                goto loop_9;
             }
         }
-        temp_v0_5 = D_80153F24 + 1;
-        D_80153F24 = temp_v0_5;
-        var_v1_3 = (s32 *) ((D_80153E84 * 6) + (u8 *) &D_80120E74);
-        if (*((u8 *) var_v1_3 + (temp_v0_5 * 2)) == -1) {
+        func_800E681C();
+        i = 0;
+        if (D_80153FD2 > 0) {
+            rec = input_rec0;
+            do {
+                car = &D_8014A250[rec->car];
+                j = 0;
+                for (;;) {
+                    if (gameplay_mode == 2) {
+                        r = func_800E5D64(i, &t);
+                        if (r < 0) {
+                            break;
+                        }
+                        car->lastTick += 1;
+                        car->dt = t;
+                        car->tickTime = (f32) car->lastTick * t;
+                    } else {
+                        car->dt = (f32) (D_80143FF4 - car->lastTick) * D_8002AFB8;
+                        car->lastTick = D_80143FF4;
+                        car->tickTime = D_801543CC;
+                    }
+                    func_800E5C9C(car);
+                    if ((car->b732 != 0) && ((gameplay_mode != 6) || (car->b640 != 0)) && (state_word_a & 0x400000) && (car->s6C4 == -1)) {
+                        gc = &((GC2 *) player_array)[rec->car];
+                        if ((gc->bEF == 0) && (gc->b359 == 0) && ((s8) D_8013FECB == 0) && (((s8) D_80142760 == 0) || ((car->speed < 10.0f) && (gc->b358 == 0)))) {
+                            if (gameplay_mode == 4) {
+                                func_800C3578(i);
+                            }
+                            car->b6CC = 1;
+                            func_800C54F0(rec->car, 0);
+                        }
+                    }
+                    if (((GC2 *) player_array)[rec->car].b359 < 2) {
+                        func_800E56F8(rec->car);
+                    } else {
+                        menu_audio_settings(car);
+                    }
+                    if ((gameplay_mode == 2) && (j == 0) && (r > 0)) {
+                        j = 1;
+                        continue;
+                    }
+                    break;
+                }
+                i += 1;
+                rec++;
+            } while (i < D_80153FD2);
+        }
+        D_80153F24 = D_80153F24 + 1;
+        row = (Row3 *) ((u8 *) D_80120E74 + (D_80153E84 * 6));
+        if (row->v[D_80153F24] == -1) {
             D_80153F24 = 0;
             D_80153E84 = D_80153F08;
-            var_v1_3 = (s32 *) ((D_80153E84 * 6) + (u8 *) &D_80120E74);
+            row = (Row3 *) ((u8 *) D_80120E74 + (D_80153E84 * 6));
         }
-        var_a0 = *((u8 *) var_v1_3 + (D_80153F24 * 2));
-        if (var_a0 == 0) {
-
-        } else {
-            var_s8_2 = 0;
-            if (var_a0 > 0) {
+        n = row->v[D_80153F24];
+        if (n != 0) {
+            k = 0;
+            if (n > 0) {
                 do {
-                    temp_v0_6 = (D_8014A250_Record *) (((&D_80152808)[D_80153F40] * 0x808) + (u8 *) &D_8014A250);
-                    M2C_FIELD(temp_v0_6, f32 *, 0x718) = (f32) ((f32) (D_80143FF4 - M2C_FIELD(temp_v0_6, s32 *, 0x710)) * D_8002AFB8);
-                    M2C_FIELD(temp_v0_6, s32 *, 0x710) = (s32) D_80143FF4;
-                    M2C_FIELD(temp_v0_6, f32 *, 0x714) = (f32) D_801543CC;
-                    sp64 = var_a0;
-                    func_800E56F8(M2C_FIELD(temp_v0_6, s16 *, 0x7C6));
+                    car = &D_8014A250[D_80152808[D_80153F40]];
+                    car->dt = (f32) (D_80143FF4 - car->lastTick) * D_8002AFB8;
+                    car->lastTick = D_80143FF4;
+                    car->tickTime = D_801543CC;
+                    func_800E56F8(car->unk7C6);
                     D_80153F40 += 1;
-                    var_s8_2 += 1;
+                    k += 1;
                     if (D_80153F40 >= D_8015274C) {
                         D_80153F40 = 0;
                     }
-                } while (var_s8_2 < var_a0);
+                } while (k < n);
             }
         }
         if (D_80153F40 == 0) {

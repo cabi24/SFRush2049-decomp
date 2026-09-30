@@ -88,7 +88,7 @@ extern void func_800AF844(WheelSlot *slot);
 
 void cpak_init(s16 player);
 void func_800AF8C0(WheelSlot *slot, s16 player, s32 wheel, u8 *color);
-void save_validate(s16 player, s32 wheel, u8 *color, WheelSlot *slot);
+void save_validate(WheelSlot *slot, s16 player, s32 wheel, u8 *color);
 
 void cpak_init(s16 player)
 {
@@ -114,10 +114,9 @@ void cpak_init(s16 player)
     state = &D_8014A250[player];
     minLen = D_80123C0C;
     mask = D_8011743C;
-    car = &player_array[player];
     for (i = 0; i < 4; i++) {
         color = D_80117438;
-        active = (mask[i] & car->wheelFlags) != 0;
+        active = (mask[i] & player_array[player].wheelFlags) != 0;
         if (active) {
             active = state->airborne[i] == -1;
             if (active) {
@@ -132,12 +131,12 @@ void cpak_init(s16 player)
             color = D_8011AD8C;
         }
         if (!has && active) {
-            save_validate(player, i, color, &slot[i]);
+            save_validate(&slot[i], player, i, color);
         } else if (has && active) {
             func_800AF8C0(&slot[i], player, i, color);
-            d[0] = car->wheelPos[i][0] - slot[i].start[0];
-            d[1] = car->wheelPos[i][1] - slot[i].start[1];
-            d[2] = car->wheelPos[i][2] - slot[i].start[2];
+            d[0] = player_array[player].wheelPos[i][0] - slot[i].start[0];
+            d[1] = player_array[player].wheelPos[i][1] - slot[i].start[1];
+            d[2] = player_array[player].wheelPos[i][2] - slot[i].start[2];
             lenSq = d[0] * d[0] + d[1] * d[1] + d[2] * d[2];
             if (slot[i].lenSq > 0.0f) {
                 len = sqrtf(lenSq);
@@ -149,7 +148,7 @@ void cpak_init(s16 player)
                 d[2] = slot[i].pos[2] - v[2];
                 if (d[0] * d[0] + d[1] * d[1] + d[2] * d[2] > 1.0f || lenSq < slot[i].lenSq) {
                     func_800AF844(&slot[i]);
-                    save_validate(player, i, color, &slot[i]);
+                    save_validate(&slot[i], player, i, color);
                 }
             } else if (minLen < lenSq) {
                 inv = 1.0f / sqrtf(lenSq);
@@ -167,37 +166,32 @@ void cpak_init(s16 player)
 /* place the slot's leading edge across wheels (wheel|1) and (wheel&2) */
 void func_800AF8C0(WheelSlot *slot, s16 player, s32 wheel, u8 *color)
 {
-    f32 axle[3];
-    f32 across[3];
-    Car *car;
     EffectObj *obj;
-    s32 a;
-    s32 b;
     s16 k;
     f32 half;
     f32 p;
-    f32 lift;
+    f32 axle[3];
+    f32 across[3];
+    CarState *st;
 
-    a = wheel | 1;
-    b = wheel & 2;
-    car = &player_array[player];
     obj = slot->obj;
-    axle[0] = car->wheelPos[a][0] - car->wheelPos[b][0];
-    axle[1] = car->wheelPos[a][1] - car->wheelPos[b][1];
-    axle[2] = car->wheelPos[a][2] - car->wheelPos[b][2];
-    axle[1] += D_8014A250[player].wheelHeight[a] - D_8014A250[player].wheelHeight[b];
+    st = &D_8014A250[player];
+    axle[0] = player_array[player].wheelPos[wheel | 1][0] - player_array[player].wheelPos[wheel & 2][0];
+    axle[1] = player_array[player].wheelPos[wheel | 1][1] - player_array[player].wheelPos[wheel & 2][1];
+    axle[2] = player_array[player].wheelPos[wheel | 1][2] - player_array[player].wheelPos[wheel & 2][2];
+    axle[1] += st->wheelHeight[wheel | 1] - st->wheelHeight[wheel & 2];
     vector_copy_scale(axle, across);
     for (k = 0; k < 3; k++) {
         half = across[k] * 0.75f;
-        slot->pos[k] = car->wheelPos[wheel][k];
+        slot->pos[k] = player_array[player].wheelPos[wheel][k];
         p = slot->pos[k];
         slot->left[k] = p - half;
         slot->right[k] = p + half;
     }
-    lift = D_80123C08;
-    slot->left[1] += lift;
-    slot->right[1] += lift;
-    obj->f8 = D_8002EB90[0];
+    p = D_80123C08;
+    slot->left[1] += p;
+    slot->right[1] += p;
+    obj->f8 = *(f32 *) ((u32) &D_8002EB90[0]);
     obj->color[0] = color[0];
     obj->color[1] = color[1];
     obj->color[3] = 0xC0;
@@ -206,11 +200,11 @@ void func_800AF8C0(WheelSlot *slot, s16 player, s32 wheel, u8 *color)
 }
 
 /* start a new mark in `slot`, stealing the farthest pooled object if needed */
-void save_validate(s16 player, s32 wheel, u8 *color, WheelSlot *slot)
+void save_validate(WheelSlot *slot, s16 player, s32 wheel, u8 *color)
 {
     EffectObj *obj;
+    EffectObj *o2;
     EffectObj *far;
-    EffectObj *p;
     f32 best;
     f32 dist;
     f32 t;
@@ -219,17 +213,18 @@ void save_validate(s16 player, s32 wheel, u8 *color, WheelSlot *slot)
     obj = func_8008E3C0(D_80155220);
     if (obj == 0) {
         best = -1.0f;
-        far = p = ((EffectObj **) D_80155220)[4];
-        for (; p != 0; p = p->next) {
+        far = obj = ((EffectObj **) D_80155220)[4];
+        while (obj->next != 0) {
             dist = 0.0f;
             for (k = 0; k < 3; k++) {
-                t = p->pos[k] - D_80150B94[k];
+                t = obj->pos[k] - D_80150B94[k];
                 dist += t * t;
             }
             if (best < dist) {
                 best = dist;
-                far = p;
+                far = obj;
             }
+            obj = obj->next;
         }
         func_8008D0C0(far->dl);
         func_800AFA84(D_80155220, far);
@@ -244,10 +239,12 @@ void save_validate(s16 player, s32 wheel, u8 *color, WheelSlot *slot)
                             ((state_word_a & 0x100) ? 1 : 15) | 0x1200, 1);
     if (obj->dl == 0) {
         func_800AFA84(D_80155220, obj);
-        obj = 0;
+        o2 = 0;
+    } else {
+        o2 = obj;
     }
-    if (obj != 0) {
-        slot->obj = obj;
+    if (o2 != 0) {
+        slot->obj = o2;
         slot->lenSq = 0.0f;
         func_800AF8C0(slot, player, wheel, color);
         slot->start[0] = slot->pos[0];
@@ -259,7 +256,7 @@ void save_validate(s16 player, s32 wheel, u8 *color, WheelSlot *slot)
         slot->quad[3] = slot->left[0];
         slot->quad[4] = slot->left[1];
         slot->quad[5] = slot->left[2];
-        func_8008C074(obj->dl, 4, slot->quad, 0, 0, 0, 0);
+        func_8008C074(o2->dl, 4, slot->quad, 0, 0, 0, 0);
     }
 }
 

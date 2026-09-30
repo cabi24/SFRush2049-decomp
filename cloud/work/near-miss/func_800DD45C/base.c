@@ -3793,27 +3793,15 @@ typedef s8 M2C_UNK8;
 typedef s16 M2C_UNK16;
 typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
+typedef struct { u8 pad[0x14]; s32 f14; u8 pad2[0x14]; } S2C;
 void func_800DD45C(s32 arg0)
 {
-  s32 var_v1;
-  void *var_a1;
-  s8 *new_var;
-  var_a1 = (s32 *) (((arg0 * (0x58 & 0xFFFFFFFF)) + 0x2C) + ((u8 *) (&D_80153FD8)));
-  var_v1 = 0x2C;
-  new_var = (s8 *) var_a1;
-  loop_1:
-  var_v1 -= 0x2C;
-
-  if ((*((s32 *) (new_var + 0x14))) != 0)
-  {
-    *((s32 *) (new_var + 0x14)) = 0;
-    return;
+  s32 i;
+  S2C *d = (S2C *) (((u8 *) &D_80153FD8) + arg0 * 0x58);
+  for (i = 1; i >= 0; i--) {
+    if (d[i].f14 != 0) {
+      d[i].f14 = 0;
+      return;
+    }
   }
- if (1) { } if (1) { } if (1) { } if (1) { } new_var++; new_var--; if (1) { } if (1) { }
-  var_a1 = ((u8 *) var_a1) - 0x2C;
-  if (var_v1 < 0)
-  {
-    return;
-  }
-  goto loop_1;
 }

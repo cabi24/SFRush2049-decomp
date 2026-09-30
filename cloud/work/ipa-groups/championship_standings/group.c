@@ -95,24 +95,13 @@ s32 func_800DC120(void)
 /* append the low `nbits` bits of `value` (also called by func_800F42C8) */
 s32 func_800DC1AC(u32 value, u32 nbits)
 {
-    u32 i;
-    u8 *p;
-
-    if (nbits > 32) {
-        return 0;
-    }
-    if (D_801170EC < D_801170F4 + nbits) {
-        return 0;
-    }
-    i = 0;
-    if (nbits != 0) {
-        do {
-            i++;
-            p = &D_8012E618[D_801170F4 >> 3];
-            *p |= (value & 1) << (D_801170F4 & 7);
-            D_801170F4++;
-            value >>= 1;
-        } while (i < nbits);
+    s32 i;
+    if (nbits > 32) return 0;
+    if (D_801170EC < D_801170F4 + nbits) return 0;
+    for (i = 0; i < nbits; i++) {
+        D_8012E618[D_801170F4 >> 3] |= (value & 1) << (D_801170F4 & 7);
+        D_801170F4++;
+        value >>= 1;
     }
     return 1;
 }

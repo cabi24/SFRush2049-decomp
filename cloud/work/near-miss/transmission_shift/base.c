@@ -3793,30 +3793,21 @@ typedef s8 M2C_UNK8;
 typedef s16 M2C_UNK16;
 typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
+typedef struct { u8 pad[8]; u8 *obj; u8 pad2[0x38]; } E44;
 void transmission_shift(void *arg0, int arg1)
 {
-  s16 temp_v0_2;
-  s16 temp_v0_3;
-  long var_s1;
-  void *temp_v0;
-  void *temp_v0_4;
-  temp_v0 = (s32 *) (((u8 *) (&D_8012E700)) + (arg1 * 0x44));
-  *((f32 *) (((s8 *) arg0) + 0)) = (f32) (*((f32 *) (((s8 *) (*((void **) (((s8 *) temp_v0) + 8)))) + 0x24)));
-  *((f32 *) (((s8 *) arg0) + 4)) = (f32) (*((f32 *) (((s8 *) (*((void **) (((s8 *) temp_v0) + 8)))) + 0x28)));
-  *((f32 *) (((s8 *) arg0) + 8)) = (f32) (*((f32 *) (((s8 *) (*((void **) (((s8 *) temp_v0) + 8)))) + 0x2C)));
-  temp_v0_2 = func_800A7BF8(arg1);
-  var_s1 = temp_v0_2;
-  if (temp_v0_2 != (-1))
+  f32 *out = (f32 *) arg0;
+  E44 *e = (E44 *) &D_8012E700;
+  s32 idx;
+  out[0] = *((f32 *) (e[arg1].obj + 0x24));
+  out[1] = *((f32 *) (e[arg1].obj + 0x28));
+  out[2] = *((f32 *) (e[arg1].obj + 0x2C));
+  idx = func_800A7BF8(arg1);
+  while (idx != -1)
   {
-    do
-    {
-      temp_v0_4 = (s32 *) (((u8 *) (&D_8012E700)) + (var_s1 * 0x44));
-      *((f32 *) (((s8 *) arg0) + 0)) = (f32) ((*((f32 *) (((s8 *) arg0) + 0))) + (*((f32 *) (((s8 *) (*((void **) (((s8 *) temp_v0_4) + 8)))) + 0x24))));
-      *((f32 *) (((s8 *) arg0) + 4)) = (f32) ((*((f32 *) (((s8 *) arg0) + 4))) + (*((f32 *) (((s8 *) (*((void **) (((s8 *) temp_v0_4) + 8)))) + 0x28))));
-      *((f32 *) (((s8 *) arg0) + 8)) = (f32) ((*((f32 *) (((s8 *) arg0) + 8))) + (*((f32 *) (((s8 *) (*((void **) (((s8 *) temp_v0_4) + 8)))) + 0x2C))));
-      temp_v0_3 = func_800A7BF8(var_s1);
-      var_s1 = temp_v0_3;
-    }
-    while (temp_v0_3 != (-1));
+    out[0] += *((f32 *) (e[idx].obj + 0x24));
+    out[1] += *((f32 *) (e[idx].obj + 0x28));
+    out[2] += *((f32 *) (e[idx].obj + 0x2C));
+    idx = func_800A7BF8(idx);
   }
 }

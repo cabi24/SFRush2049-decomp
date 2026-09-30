@@ -1,16 +1,24 @@
 {
   "members": [
     "func_800D2FA8",
-    "split_time_display"
+    "split_time_display",
+    "time_of_day_select"
   ],
   "files": [
     "group.c"
   ],
   "keep": [
     "func_800D2FA8",
-    "__standin_split_time_display"
+    "func_800B98D8",
+    "minimap_render",
+    "__standin_split_time_display",
+    "__standin_time_of_day_select"
   ],
   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
-  "generated": "blob_group seed from build/ipa_groups.json",
-  "unprototyped": []
+  "generated": "hand-written from the assembly (cloud Lane A)",
+  "unprototyped": [],
+  "context": [
+    "func_800B98D8",
+    "minimap_render"
+  ]
 }

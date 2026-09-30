@@ -1,0 +1,10 @@
+{
+  "members": ["draw_number"],
+  "files": ["dn.c"],
+  "keep": ["caller_a", "caller_b"],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "generated": "hand-written from the assembly (cloud Lane A); see STATUS.md",
+  "unprototyped": [],
+  "context": [],
+  "targets": {}
+}

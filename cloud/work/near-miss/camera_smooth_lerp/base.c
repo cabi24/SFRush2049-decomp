@@ -3796,33 +3796,39 @@ typedef s64 M2C_UNK64;
 void camera_smooth_lerp(void)
 {
   s16 var_s0;
-  s16 var_s0_2;
   s32 temp_lo;
   s32 temp_t6;
   void *temp_v0;
   void *new_var;
+  u8 *p;
+  u8 *p2;
+  u8 *p3;
   var_s0 = 0;
+  do {
+  p = (u8 *) (&D_8013C238);
   do
   {
     new_var = func_800A7D6C();
-    temp_t6 = var_s0 * 4;
+    *((s32 *) (p + var_s0 * 4)) = new_var;
     var_s0 += 1;
-    *((s32 *) (((u8 *) (&D_8013C238)) + temp_t6)) = new_var;
   }
   while (var_s0 < 0x32);
-  var_s0_2 = 0;
+  } while (0);
+  var_s0 = 0;
+  p2 = (u8 *) (&D_80154FD8);
+  p3 = (u8 *) (&D_80154660);
   do
   {
-    *((s32 *) (((u8 *) (&D_80154FD8)) + (var_s0_2 * 0x3C))) = -1;
-    temp_lo = var_s0_2 * 0x190;
-    var_s0_2 += 1;
-    temp_v0 = (s32 *) (((u8 *) (&D_80154660)) + temp_lo);
+    *((s32 *) (p2 + (var_s0 * 0x3C))) = -1;
+    temp_lo = var_s0 * 0x190;
+    var_s0 += 1;
+    temp_v0 = (s32 *) (p3 + temp_lo);
     *((s32 *) (((s8 *) temp_v0) + 0x150)) = -1;
     *((s32 *) (((s8 *) temp_v0) + 0)) = -1;
     *((s32 *) (((s8 *) temp_v0) + 0x54)) = -1;
     *((s32 *) (((s8 *) temp_v0) + 0xA8)) = -1;
     *((s32 *) (((s8 *) temp_v0) + 0xFC)) = -1;
   }
-  while (var_s0_2 < 6);
+  while (var_s0 < 6);
   D_8013C094 = 0;
 }

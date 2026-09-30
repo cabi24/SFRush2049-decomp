@@ -1458,7 +1458,7 @@ void world_object_destroy(s32 *arg0);
 void world_physics_tick(void);
 void world_trigger_activate(void);
 s32 world_velocity_integrate();
-void Input_SetAnalogBounds(s32 arg0, s16 arg1, int arg2, long arg3, s32 arg4)
+void Input_SetAnalogBounds(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4)
 {
   if (arg1 < 0)
   {

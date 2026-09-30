@@ -3599,7 +3599,7 @@ void mode_flags_clear(void);
 s32 mode_select_handler();
 void mode_select_input(f32 arg0);
 s32 model_bounds_calc(void *arg3);
-void model_data_load(s16 arg0, s32 arg1, s32 arg2);
+void model_data_load();
 void model_transform_setup(s16 arg0, s32 arg1, s32 arg2);
 void music_control(void);
 void music_fade(s16 arg0, s16 arg1, s16 arg2, u8 *arg3);
@@ -3801,5 +3801,5 @@ void func_800B1F30(s16 arg0)
   s16 var_s1;
   u8 *var_s0;
   int new_var;
- do { temp_s2 = &player_array[arg0]; if ((*((s32 *) (((s8 *) temp_s2) + 0xF4))) >= 0) { model_data_load((s16) (*((s32 *) (((u8 *) (&D_80139320)) + (arg0 << 6)))), 2, 0xF); var_s0 = &temp_s2->pad0EC[0x24]; var_s1 = 0; do { temp_v0 = *((M2C_UNK (**)(u8 *, M2C_UNK)) (((s8 *) var_s0) + 0x14)); if (temp_v0 != ((void *) 0)) { temp_v0(var_s0, 0); } else { temp_a0 = *((s16 *) (((s8 *) var_s0) + 6)); if (temp_a0 >= 0) { model_data_load(temp_a0, 1, 0xF); *((s16 *) (((s8 *) var_s0) + 6)) = -(new_var = 1); } } var_s1 += 1; var_s0 += 0x18; } while (var_s1 < 0x15); } } while (0);
+ do { temp_s2 = &player_array[arg0]; if ((*((s32 *) (((s8 *) temp_s2) + 0xF4))) >= 0) { model_data_load((*((s32 *) (((u8 *) (&D_80139320)) + (arg0 << 6)))), 2, 0xF); var_s0 = &temp_s2->pad0EC[0x24]; var_s1 = 0; do { temp_v0 = *((M2C_UNK (**)(u8 *, M2C_UNK)) (((s8 *) var_s0) + 0x14)); if (temp_v0 != ((void *) 0)) { temp_v0(var_s0, 0); } else { temp_a0 = *((s16 *) (((s8 *) var_s0) + 6)); if (temp_a0 >= 0) { model_data_load(temp_a0, 1, 0xF); *((s16 *) (((s8 *) var_s0) + 6)) = -(new_var = 1); } } var_s1 += 1; var_s0 += 0x18; } while (var_s1 < 0x15); } } while (0);
 }

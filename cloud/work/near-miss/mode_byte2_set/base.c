@@ -3797,9 +3797,11 @@ void mode_byte2_set(s16 arg0)
 {
   if (arg0 < 0)
   {
-    D_80149B60 = (s8) (*((u8 *) (((s8 *) D_801497F0) + 4)));
-    return;
+    sound_update_channel(0);
+    D_80149B60 = *((u8 *) (((s8 *) D_801497F0) + 4));
   }
-  D_80149B60 = (s8) arg0;
-  sound_update_channel();
+  else
+  {
+    D_80149B60 = arg0;
+  }
 }

@@ -728,7 +728,7 @@ typedef struct
   u8 unk0D;
   u8 unk0E;
 } D_80146108_Record;
-extern D_80146108_Record D_80146108;
+extern s8 D_80146108[0x15];
 typedef struct 
 {
   F32 start_time[8];
@@ -3796,35 +3796,17 @@ typedef s64 M2C_UNK64;
 M2C_UNK update_viewport(s8, s8);
 void func_800B4DA4(s32 arg0)
 {
-  D_80146108_Record *var_s1;
-  D_80146108_Record *var_s1_2;
-  s32 temp_v0;
-  s32 var_s0;
-  s32 var_s0_2;
+  s32 i;
   if (D_80117428 == 0)
   {
     D_80117428 = 1;
-    var_s1 = &D_80146108;
-    var_s1 = (D_80146108_Record *) (((u8 *) var_s1) + 1);
-    var_s0 = 0;
-    do
-    {
-      temp_v0 = reverb_setup(arg0, var_s0 & 0xFF);
-      var_s0 += 1;
-      var_s1 = (D_80146108_Record *) (((u8 *) var_s1) + 1);
-      var_s1->pad00[0] = (u8) temp_v0;
+    for (i = 0; i < 0x15; i++) {
+      D_80146108[i] = reverb_setup(arg0, i & 0xFF);
     }
-    while (var_s0 != 0x15);
-    update_viewport(*((s8 *) (((s8 *) (&D_80146108)) + 0x13)), *((s8 *) (((s8 *) (&D_80146108)) + 0x14)));
+    update_viewport(D_80146108[0x13], D_80146108[0x14]);
     return;
   }
-  var_s1_2 = &D_80146108;
-  var_s0_2 = 0;
-  do
-  {
-    audio_bus_mix(arg0, var_s0_2 & 0xFF, (s8) var_s1_2->pad00[0]);
-    var_s0_2 += 1;
-    var_s1_2 = (D_80146108_Record *) (((u8 *) var_s1_2) + 1);
+  for (i = 0; i < 0x15; i++) {
+    audio_bus_mix(arg0, i & 0xFF, D_80146108[i]);
   }
-  while (var_s0_2 != 0x15);
 }

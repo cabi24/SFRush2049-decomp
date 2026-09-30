@@ -8,9 +8,11 @@
     "group.c"
   ],
   "keep": [
-    "func_800C3AD0",
-    "input_process_controller",
-    "__standin_func_800AD4C8"
+    "__standin_func_800AD4C8",
+    "__standin_func_800C3AD0_a",
+    "__standin_func_800C3AD0_b",
+    "__standin_input_process_controller_a",
+    "__standin_input_process_controller_b"
   ],
   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
   "generated": "blob_group seed from build/ipa_groups.json",
