@@ -33,10 +33,11 @@ def func_name(addr):
 
 
 class Func:
-    __slots__ = ('name', 'addr', 'words', 'discovered')
+    __slots__ = ('name', 'addr', 'words', 'discovered', 'tail_of')
 
     def __init__(self, name, addr, words, discovered=False):
         self.name, self.addr, self.words, self.discovered = name, addr, words, discovered
+        self.tail_of = None             # name of the larger head this registered 'function' is only a label inside
 
     @property
     def end(self):
@@ -151,5 +152,11 @@ def load_corpus(discover=True, heads=False):
             from ipakit import heads as H
             for row in H.audit(c)['heads']:
                 c.add_head(int(row['addr'], 16), nwords=row['words'])
+            for f in list(c.funcs.values()):
+                if f.discovered:
+                    continue
+                for h in c.funcs.values():
+                    if h.discovered and h.addr < f.addr < h.end:
+                        f.tail_of = h.name
         _cache[key] = c
     return _cache[key]

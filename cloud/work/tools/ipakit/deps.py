@@ -107,6 +107,9 @@ class Model:
         return ev
 
     def classify(self, name):
+        tail = self.corpus.funcs[name].tail_of
+        if tail:
+            return 'TAIL', [{'kind': 'tail', 'text': '%s is a label inside %s, not a function: analysis skipped' % (name, tail)}]
         ev = self.evidence(name)
         leaf = any(e['kind'] in ('entry-read', 'unsaved') for e in ev)
         caller = any(e['kind'] in ('live-across', 'passes') for e in ev)
@@ -306,7 +309,7 @@ def validate(model=None, mode='direct'):
 def flagged_stats(model=None, cap=GROUP_CAP, mode='direct'):
     """How many IPA-flagged functions get a finite minimal closure vs the bounded discovery."""
     model = model or model_cache()
-    flagged = [n for n in model.infos if model.classify(n)[0] != 'ABI']
+    flagged = [n for n in model.infos if model.classify(n)[0] not in ('ABI', 'TAIL')]
     res = {'flagged': len(flagged), 'finite': 0, 'finite_clean': 0, 'within_cap': 0, 'bounded_discovery': 0, 'sizes': [],
            'with_indirect_calls': 0, 'with_address_taken_ipa_conflict': 0}
     # existing bounded discovery (discover_groups): units over `cap` insns dropped, merged units over 2*cap dropped

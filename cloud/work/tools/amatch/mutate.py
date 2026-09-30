@@ -27,7 +27,7 @@ not provably value-preserving), fn, desc.
 
 Families (see CATALOG): loop_do_to_for, loop_do_to_while, loop_for_to_do,
 loop_for_to_while, loop_while_to_for, loop_to_goto, loop_from_goto,
-counter_type, local_inline, decl_order, pad_local, extern_toggle,
+counter_type, local_inline, decl_order, decl_init, pad_local, extern_toggle,
 ptr_launder, knr_proto, param_type, shared_exit, mul2_shift, incr_form,
 commute, cmp_flip, literal_spelling, andor_nest, ifelse_swap, switch_perm,
 stmt_swap.
@@ -94,6 +94,19 @@ def tokenize(src):
 def sig_tokens_text(src):
     """Token texts only (used by tests for token-equivalence)."""
     return [t.t for t in tokenize(src)]
+
+
+def bracket_delta(text):
+    d = {"(": 0, "[": 0, "{": 0}
+    close = {")": "(", "]": "[", "}": "{"}
+    for t in tokenize(text):
+        if t.k != "op":
+            continue
+        if t.t in d:
+            d[t.t] += 1
+        elif t.t in close:
+            d[close[t.t]] -= 1
+    return d
 
 
 def balanced(text):
@@ -1054,12 +1067,17 @@ class Ctx(object):
             return
         edits = sorted(edits, key=lambda x: (x[0], x[1]))
         prev = -1
+        net = {"(": 0, "[": 0, "{": 0}
         for s, e, t in edits:
             if s < prev:
                 return
             prev = max(prev, e)
-            if not balanced(t):
-                return
+            for k, v in bracket_delta(t).items():
+                net[k] += v
+            for k, v in bracket_delta(self.src[s:e]).items():
+                net[k] -= v
+        if any(net.values()):
+            return
         out = []
         pos = 0
         src = self.src
@@ -1774,8 +1792,10 @@ def _top_decls(ctx):
     return out
 
 
-def _perms(n):
-    """Deterministic list of index permutations for n items."""
+def _perms(n, full=True):
+    """Deterministic list of index permutations for n items (identity excluded):
+    every single move (i -> j) when `full` and n <= 10, else adjacent swaps and
+    move-to-front/back; the reversal; all permutations when n <= 4."""
     res = []
     ident = tuple(range(n))
     seen = {ident}
@@ -1785,14 +1805,22 @@ def _perms(n):
         if p not in seen:
             seen.add(p)
             res.append(p)
-    for i in range(n - 1):
-        p = list(ident)
-        p[i], p[i + 1] = p[i + 1], p[i]
-        push(p)
-    for i in range(n):
-        p = [x for x in ident if x != i]
-        push([i] + p)
-        push(p + [i])
+    if full and n <= 10:
+        for i in range(n):
+            for j in range(n):
+                if i != j:
+                    p = [x for x in ident if x != i]
+                    p.insert(j, i)
+                    push(p)
+    else:
+        for i in range(n - 1):
+            p = list(ident)
+            p[i], p[i + 1] = p[i + 1], p[i]
+            push(p)
+        for i in range(n):
+            p = [x for x in ident if x != i]
+            push([i] + p)
+            push(p + [i])
     push(reversed(ident))
     if n <= 4:
         for p in itertools.permutations(ident):
@@ -1840,6 +1868,71 @@ def fam_decl_order(ctx):
             ctx.add("decl_order", [(d.s, d.e, txt)], 2, "frame", "declarator order in one declaration %s" % (list(p),))
 
 
+def fam_decl_init(ctx):
+    """`T x; x = e;` <-> `T x = e;` (declaration with initializer)."""
+    if not ctx.ok or not ctx.want("decl_init"):
+        return
+    decls = _top_decls(ctx)
+    if not decls:
+        return
+    body = ctx.body
+    last = decls[-1]
+    after = body.ch[last.pos + 1:]
+    names_after = {}
+    for i, d in enumerate(decls):
+        for dc in d.d["info"]["decls"]:
+            if dc["name"]:
+                names_after[dc["name"]] = i
+    # merge: first statement after the declarations is `x = e;` for a no-init x
+    if after and after[0].k == "expr":
+        st = after[0]
+        e = ctx.expr(*st.d["r"])
+        if e is not None and e.k == "assign" and e.op == "=" and e.ch[0].k == "ident" and e.ch[0].name in ctx.locals:
+            nm = e.ch[0].name
+            dn, info, dc = ctx.locals[nm]
+            base_txt = [ctx.sig[q].t for q in range(*info["base"])]
+            if dn in decls and not dc["init"] and not dc["dims"] and "static" not in base_txt \
+                    and "const" not in base_txt and not dc["complex"]:
+                rhs = e.ch[1]
+                ids = ctx.idents_in(rhs.a, rhs.b)
+                idx = decls.index(dn)
+                later = {n2 for n2, i2 in names_after.items() if i2 > idx or (i2 == idx and n2 != nm)}
+                inits_between = any(dd["init"] for d2 in decls[idx:] for dd in d2.d["info"]["decls"])
+                if not (ids & later) and nm not in ids and not inits_between:
+                    txt = ctx.text(rhs.a, rhs.b)
+                    if rhs.k in ("assign", "comma"):
+                        txt = "(" + txt + ")"
+                    ctx.add("decl_init", [(ctx.sig[dc["b"] - 1].e, ctx.sig[dc["b"] - 1].e, " = " + txt),
+                                          ctx.del_stmt_edit(st)], 1, "spelling",
+                            "merge `%s = ..;` into its declaration" % nm)
+    # split: `T x = e;` -> `T x;` + first statement `x = e;`
+    for d in decls:
+        info = d.d["info"]
+        for dc in info["decls"]:
+            if not dc["init"] or dc["dims"] or dc["complex"] or not dc["name"]:
+                continue
+            base_txt = [ctx.sig[q].t for q in range(*info["base"])]
+            if "static" in base_txt or "const" in base_txt:
+                continue
+            if ctx.sig[dc["init"][0]].t == "{":
+                continue
+            a, b = dc["init"]
+            e = ctx.expr(a, b)
+            if e is None:
+                continue
+            risk = ctx.has_call(a, b) and any(
+                dd is not dc and dd["init"] and ctx.has_call(*dd["init"]) for d2 in decls for dd in d2.d["info"]["decls"])
+            # remove ` = e` (from the end of the name/dims to the end of the init)
+            cut_from = ctx.sig[a - 1].s
+            prev_end = ctx.sig[a - 2].e
+            rhs_txt = ctx.text(a, b)
+            ind = ctx.indent_of(last.s) or "  "
+            edits = [(prev_end, ctx.sig[b - 1].e, ""),
+                     (last.e, last.e, "\n%s%s = %s;" % (ind, dc["name"], rhs_txt))]
+            ctx.add("decl_init", edits, 1, "spelling", "split initializer of %s into an assignment" % dc["name"],
+                    ("semantic_risk",) if risk else ())
+
+
 def fam_pad_local(ctx):
     if not ctx.ok or not ctx.want("pad_local"):
         return
@@ -1858,12 +1951,16 @@ def fam_pad_local(ctx):
     variants = [("%s %s;" % (w32, pad), "scalar"), ("volatile %s %s[1];" % (w32, pad), "v1"),
                 ("volatile %s %s[2];" % (w32, pad), "v2"), ("volatile %s %s[4];" % (w32, pad), "v4")]
     for txt, tag in variants:
-        if first_pos is not None:
-            ctx.add("pad_local", [(first_pos, first_pos, txt + "\n" + ind)], 2, "frame",
-                    "add %s first (highest address)" % tag)
-            last = decls[-1]
-            ctx.add("pad_local", [(last.e, last.e, "\n" + ind + txt)], 2, "frame",
-                    "add %s last (lowest address)" % tag)
+        if decls:
+            for k in range(len(decls) + 1):
+                if k == 0:
+                    ctx.add("pad_local", [(first_pos, first_pos, txt + "\n" + ind)], 2, "frame",
+                            "add %s first (highest address)" % tag)
+                else:
+                    anchor = decls[k - 1]
+                    where = "last (lowest address)" if k == len(decls) else "after declaration %d" % k
+                    ctx.add("pad_local", [(anchor.e, anchor.e, "\n" + ind + txt)], 2, "frame",
+                            "add %s %s" % (tag, where))
         else:
             ctx.add("pad_local", [(bo.e, bo.e, "\n" + ind + txt)], 2, "frame", "add %s" % tag)
     # remove / resize existing pads and unused locals
@@ -2230,7 +2327,7 @@ def fam_shared_exit(ctx):
         else:
             bo = ctx.sig[f.bo]
             edits.append((bo.e, bo.e, "\n%s%s %s;" % (ind, ret_text, resname)))
-    risk = False
+    risk = not _always_exits(ctx.body)   # some path falls off the end: indeterminate return value
     if not new_local:
         dn, info, dc = ctx.locals[resname]
         lt = " ".join(ctx.sig[q].t for q in range(*info["base"]) if ctx.sig[q].t != "volatile")
@@ -2688,7 +2785,7 @@ def fam_switch_perm(ctx):
         if any(has_label_or_case_nonswitch(g) for g in mov):
             continue
         texts = [ctx.src[g["s"]:g["e"]] for g in mov]
-        orders = _perms(len(mov))
+        orders = _perms(len(mov), full=len(mov) <= 6)
 
         def key_of(g):
             for lb in g["labels"]:
@@ -2867,6 +2964,7 @@ CATALOG = {
     "counter_type": (fam_counter_type, "loop", "loop counter s16 <-> s32"),
     "local_inline": (fam_local_inline, "frame", "inline/drop a named local assigned once"),
     "decl_order": (fam_decl_order, "frame", "permute declaration order"),
+    "decl_init": (fam_decl_init, "spelling", "T x; x = e;  <->  T x = e;"),
     "pad_local": (fam_pad_local, "frame", "add/remove/resize unused pad locals"),
     "extern_toggle": (fam_extern_toggle, "linkage", "extern <-> defined global"),
     "ptr_launder": (fam_ptr_launder, "order", "(u32) pointer laundering"),
@@ -2891,6 +2989,7 @@ _GENERATORS = [
     (("counter_type",), fam_counter_type),
     (("local_inline",), fam_local_inline),
     (("decl_order",), fam_decl_order),
+    (("decl_init",), fam_decl_init),
     (("pad_local",), fam_pad_local),
     (("extern_toggle",), fam_extern_toggle),
     (("ptr_launder",), fam_ptr_launder),
