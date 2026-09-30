@@ -3830,6 +3830,7 @@ void camera_free_look(Camera *cam) {
     CamScene *sc;
     CamKey *k;
     f32 t;
+    f32 dur;
     s32 next;
     s32 near;
     f32 *pp;
@@ -3845,14 +3846,15 @@ void camera_free_look(Camera *cam) {
         } else {
             t = ctl->t;
         }
-        if (k->dur == 0.0f) {
+        dur = k->dur;
+        if (dur == 0.0f) {
             goto plain;
         }
         next = ctl->idx + 1;
         if (next >= sc->count && (sc->flags & 2)) {
             next = 0;
         }
-        func_800BFD8C(t / k->dur, k->rot, sc->keys[next].rot, out);
+        func_800BFD8C(t / dur, k->rot, sc->keys[next].rot, out);
         func_800BFBE8(m, out, 1);
     } else {
 plain:
@@ -4176,6 +4178,7 @@ void camera_process_input(Camera *cam) {
 }
 
 void camera_update(CamNode *node, s16 flag) {
+    s32 padTop[2];
     Camera *cam;
     f32 padA[9];
     s8 moved;
@@ -4184,7 +4187,6 @@ void camera_update(CamNode *node, s16 flag) {
     f32 padB[6];
     s32 i;
     f32 f;
-    s32 done;
     s32 v;
     s32 nx;
     f32 tt;
@@ -4192,9 +4194,8 @@ void camera_update(CamNode *node, s16 flag) {
     s16 na;
     u16 m;
     CamScene *lk;
-    s32 fl;
-    f32 *pdt;
     CamKey *k;
+    f32 *pdt;
     CamScene *sc;
     CamCtl *lc;
     CamCtl *ctl;
@@ -4208,11 +4209,10 @@ void camera_update(CamNode *node, s16 flag) {
         cam = node->cam;
         ctl = cam->ctl;
         sc = ctl->scene;
-        fl = sc->flags;
-        if (fl & 0x40) {
-            if (fl & 0x4000) {
-                if (!(fl & 0x200)) {
-                    if (!(fl & 0x400)) {
+        if (sc->flags & 0x40) {
+            if (sc->flags & 0x4000) {
+                if (!(sc->flags & 0x200)) {
+                    if (!(sc->flags & 0x400)) {
                         m = ctl->mode;
                         if (m & 4) {
                             ctl->mode = m & 0xFFFB;
@@ -4222,20 +4222,18 @@ void camera_update(CamNode *node, s16 flag) {
                         if (sc->flags & 0x100) {
                             camera_aspect_ratio(cam);
                         }
-                        fl = sc->flags & ~0x100;
-                        sc->flags = fl;
+                        sc->flags = sc->flags & ~0x100;
                     }
                 } else {
-                    if (fl & 0x400) {
-                        sc->flags = fl & ~0x500;
+                    if (sc->flags & 0x400) {
+                        sc->flags = sc->flags & ~0x500;
                         camera_aspect_ratio(cam);
                     }
-                    fl = sc->flags & ~0x200;
-                    sc->flags = fl;
+                    sc->flags = sc->flags & ~0x200;
                 }
             } else {
-                if ((fl & 0x2000) && (fl & 0x100000)) {
-                    v = fl & 0xFFEFFFFF;
+                if ((sc->flags & 0x2000) && (sc->flags & 0x100000)) {
+                    v = sc->flags & 0xFFEFFFFF;
                     if (sc->link->flags & 0x100) {
                         sc->flags = v;
                         *(u32 *)&sc->flags |= 0x200400;
@@ -4247,12 +4245,12 @@ void camera_update(CamNode *node, s16 flag) {
                         return;
                     }
                 }
-                if ((fl & 0x400) && (fl & 0x200)) {
+                if ((sc->flags & 0x400) && (sc->flags & 0x200)) {
                     lk = sc->link;
                     v = lk->flags;
                     if (v & 0x100) {
                         lk->flags = v & ~0x100;
-                    } else if (fl & 0x1000) {
+                    } else if (sc->flags & 0x1000) {
                         lc = lk->cur;
                         m = lc->mode;
                         if (m & 8) {
@@ -4265,11 +4263,10 @@ void camera_update(CamNode *node, s16 flag) {
                             lc->t = lk->keys[lc->idx].dur - lc->t;
                         }
                     }
-                    fl = sc->flags & ~0x700;
-                    sc->flags = fl;
-                    if (fl & 0x1000) {
-                        if (fl & 0x200000) {
-                            v = fl & 0xFFDFFFFF;
+                    sc->flags = sc->flags & ~0x700;
+                    if (sc->flags & 0x1000) {
+                        if (sc->flags & 0x200000) {
+                            v = sc->flags & 0xFFDFFFFF;
                             sc->flags = v;
                             *(u32 *)&sc->flags |= 0x100000;
                             v = sc->flags;
@@ -4278,7 +4275,7 @@ void camera_update(CamNode *node, s16 flag) {
                             }
                             camera_aspect_ratio(cam);
                         } else {
-                            v = fl & 0xFFEFFFFF;
+                            v = sc->flags & 0xFFEFFFFF;
                             sc->flags = v;
                             *(u32 *)&sc->flags |= 0x200000;
                             v = sc->flags;
@@ -4287,9 +4284,8 @@ void camera_update(CamNode *node, s16 flag) {
                             }
                             camera_fov_control(cam);
                         }
-                        fl = sc->flags;
-                    } else if (fl & 0x200000) {
-                        v = fl & 0xFFDFFFFF;
+                    } else if (sc->flags & 0x200000) {
+                        v = sc->flags & 0xFFDFFFFF;
                         sc->flags = v;
                         *(u32 *)&sc->flags |= 0x100000;
                         v = sc->flags;
@@ -4297,13 +4293,12 @@ void camera_update(CamNode *node, s16 flag) {
                             *(u16 *) ((u8 *) &D_8012E714 + cam->slot * 0x44) = D_80142A78;
                         }
                         camera_aspect_ratio(cam);
-                        fl = sc->flags;
                     }
                 }
             }
         }
-        if (!(fl & 0x100)) {
-            done = 0;
+        if (!(sc->flags & 0x100)) {
+            i = 0;
             pdt = (f32 *)(u32)&D_8002EB94;
             ctl->t = ctl->t + *pdt;
             k = &sc->keys[ctl->idx];
@@ -4316,16 +4311,15 @@ void camera_update(CamNode *node, s16 flag) {
                         if (ctl->idx == 0) {
                             v = m & 0xFFF7;
                             if (sc->flags & 0x4000) {
-                                done = 1;
+                                i = 1;
                                 camera_build_view_matrix(0, cam);
                                 camera_fov_control(cam);
                             } else {
                                 ctl->mode = v;
                                 ctl->mode |= 4;
-                                fl = sc->flags;
-                                if (fl & 0x80) {
-                                    sc->flags = fl | 0x100;
-                                    done = 1;
+                                if (sc->flags & 0x80) {
+                                    sc->flags = sc->flags | 0x100;
+                                    i = 1;
                                     ctl->t = 0.0f;
                                 }
                             }
@@ -4351,24 +4345,23 @@ void camera_update(CamNode *node, s16 flag) {
                         ctl->idx = ctl->idx + 1;
                         na = ctl->idx;
                         if (sc->keys[na].flags & 0x40) {
-                            done = 1;
+                            i = 1;
                             sc->flags = sc->flags | 0x100;
                             ctl->t = 0.0f;
                         } else if (sc->count == na + 1) {
-                            fl = sc->flags;
-                            if (fl & 1) {
+                            if (sc->flags & 1) {
                                 v = ctl->mode & 0xFFFB;
                                 ctl->mode = v;
                                 ctl->mode |= 8;
                                 ctl->idx = na - 1;
-                            } else if (fl & 0x4000) {
+                            } else if (sc->flags & 0x4000) {
                                 v = ctl->mode & 0xFFFB;
                                 ctl->mode = v;
                                 ctl->mode |= 8;
                                 ctl->idx = na - 1;
                                 ctl->t = 0.0f;
                                 sc->flags = sc->flags | 0x100;
-                            } else if (!(fl & 2)) {
+                            } else if (!(sc->flags & 2)) {
                                 camera_build_view_matrix(0, cam);
                                 if (sc->flags & 0x20) {
                                     listener_position_set(sc->id);
@@ -4378,9 +4371,9 @@ void camera_update(CamNode *node, s16 flag) {
                     }
                     k = &sc->keys[ctl->idx];
                 } else {
-                    done = 1;
+                    i = 1;
                 }
-            } while (done == 0);
+            } while (i == 0);
             v = k->flags;
             if (!(v & 2)) {
                 camera_track_spline(cam);

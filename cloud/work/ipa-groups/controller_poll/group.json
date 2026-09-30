@@ -6,7 +6,8 @@
     "func_800E7134",
     "player_mode_set",
     "player_state_set",
-    "process_inputs"
+    "process_inputs",
+    "func_800E73D8"
   ],
   "files": [
     "group.c"
@@ -18,7 +19,8 @@
     "player_state_set",
     "__standin_controller_poll",
     "__standin_func_800C9590",
-    "__standin_func_800E7038"
+    "__standin_func_800E7038",
+    "func_800E73D8"
   ],
   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
   "generated": "blob_group seed from build/ipa_groups.json",

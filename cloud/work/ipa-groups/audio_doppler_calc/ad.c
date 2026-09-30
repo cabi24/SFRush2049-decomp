@@ -78,7 +78,6 @@ void audio_doppler_calc(str, len)
     s32 step;
     s32 two;
     s32 cur;
-    s32 pg = 0;
     s32 idx;
     s32 dx;
     u8 *p;
@@ -86,7 +85,7 @@ void audio_doppler_calc(str, len)
     Tex *t;
     TS *ts;
 
-    sound_update_channel();
+    sound_update_channel(0);
     func_8008A3E4(0, 0, D_8002AFC0 - 1, D_8002AFC4 - 1);
     func_800878E0(D_80149B88);
     func_8008705C(~D_80149B88);
@@ -95,9 +94,10 @@ void audio_doppler_calc(str, len)
         ((u8 *) &D_80149B48)[3] = (u32) D_80114748;
     }
     func_8008A148(&D_80149B48, D_80149B08, D_80149B28, 0);
+    cur = 0;
     t = D_80149820[0];
     object_render(t->img, D_80149B0A, D_80149B2A, t->w, t->h, 0, 0, t->w - 1, t->h - 1, 0, 0);
-    cur = 0;
+    i = 0;
     if (str[0] == 255) {
         len -= 2;
         two = 1;
@@ -112,7 +112,7 @@ void audio_doppler_calc(str, len)
     x = D_80149D92;
     y = D_80149D9E;
     prev = -1;
-    for (i = 0; i < (s32) len; i += step) {
+    while (i < (s32) len) {
         if (two) {
             c = (p[i] << 8) | p[i + 1];
         } else {
@@ -123,7 +123,8 @@ void audio_doppler_calc(str, len)
             x = D_80149D92;
             c = -1;
             y = y + ts->b2 + ts->b3 + D_80149B60;
-        } else if ((c == 32) || (c >= 256) || ((idx = D_80149878[c]) < 0)) {
+        } else if ((c == 32) || (c >= 256)) {
+space:
             ts = D_801497F0;
             c = -1;
             if (ts->b9 != 0) {
@@ -132,6 +133,10 @@ void audio_doppler_calc(str, len)
                 x += ts->b7;
             }
         } else {
+            idx = D_80149878[c];
+            if (idx < 0) {
+                goto space;
+            }
             if (prev > 0) {
                 ts = D_801497F0;
                 if ((ts->b10 != 0) && (ts->b9 == 0)) {
@@ -139,9 +144,8 @@ void audio_doppler_calc(str, len)
                 }
             }
             g = &D_80149800[idx];
-            pg = g->page;
-            if (cur != pg) {
-                cur = pg;
+            if (cur != g->page) {
+                cur = g->page;
                 t = D_80149820[cur];
                 object_render(t->img, D_80149B0A, D_80149B2A, t->w, t->h, 0, 0, t->w - 1, t->h - 1, 0, 0);
             }
@@ -158,6 +162,7 @@ void audio_doppler_calc(str, len)
             x = x + dx + D_80149B70;
         }
         prev = c;
+        i += step;
     }
 }
 
