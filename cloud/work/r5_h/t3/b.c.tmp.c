@@ -5,8 +5,8 @@ extern s8 D_801234AC[];
 extern unsigned char D_80140BDC;
 void func_800972C4(s32 a)
 {
-  E14 *e; s8 v;
-  e = D_80156D38 + a;
-  v = D_801234AC[e->f6]; e->f3 = v;
-  if (v != 0 && a >= D_80140BDC) D_80140BDC = a + 1;
+  
+  
+  p = &e->f3; v = D_801234AC[e->f6]; *p = v;
+  if (v != 0) { if (a >= D_80140BDC) D_80140BDC = a + 1; }
 }

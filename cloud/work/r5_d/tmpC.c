@@ -11,11 +11,12 @@ extern s8 D_80143F54[];
 extern s32 D_8014A110;
 extern s16 D_8014A108;
 extern Rec D_8014A250[];
+extern Ent D_80152038[];
 extern Car D_80152818[];
 extern s8 D_8012E77C[];
 extern s8 D_8015256C[];
-typedef struct { s32 count; s8 flags[0x14D4]; Ent ent[1]; } Big;
-extern Big D_80150B60;
+extern s32 D_80150B60;
+extern s8 D_80150B68[];
 
 void func_800F7F3C(void)
 {
@@ -40,16 +41,16 @@ void func_800F7F3C(void)
         b = D_80143F54[j + 1];
         ia = D_8014A250[a].idx;
         ib = D_8014A250[b].idx;
-        if (D_80150B60.ent[ia].key < D_80150B60.ent[ib].key) {
+        if (D_80152038[ia].key < D_80152038[ib].key) {
           D_80143F54[j + 1] = a;
           D_80143F54[j] = b;
         }
       }
     }
     for (i = 1; i < D_8014A108; i++) {
-      if (D_80150B60.ent[D_8014A250[D_80143F54[0]].idx].key == D_80150B60.ent[D_8014A250[D_80143F54[i]].idx].key) {
-        D_80150B60.flags[i] = 1;
-        D_80150B60.count++;
+      if (((Ent *)(u32)D_80152038)[D_8014A250[D_80143F54[0]].idx].key == D_80152038[D_8014A250[D_80143F54[i]].idx].key) {
+        D_80150B68[i] = 1;
+        D_80150B60++;
       }
     }
   } else if (D_8014A110 == 6) {
@@ -80,8 +81,8 @@ void func_800F7F3C(void)
     }
     for (i = 1; i < D_8014A108; i++) {
       if (D_80152818[D_8014A250[D_80143F54[0]].idx].b931 == D_80152818[D_8014A250[D_80143F54[i]].idx].b931) {
-        D_80150B60.flags[i] = 1;
-        D_80150B60.count++;
+        D_80150B68[i] = 1;
+        D_80150B60++;
       }
     }
   } else {
@@ -99,8 +100,8 @@ void func_800F7F3C(void)
     }
     for (i = 1; i < D_8014A108; i++) {
       if (D_80152818[D_8014A250[D_80143F54[0]].idx].b238 == D_80152818[D_8014A250[D_80143F54[i]].idx].b238) {
-        D_80150B60.flags[i] = 1;
-        D_80150B60.count++;
+        D_80150B68[i] = 1;
+        D_80150B60++;
       }
     }
   }
