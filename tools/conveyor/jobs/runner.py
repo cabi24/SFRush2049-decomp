@@ -11,6 +11,7 @@ import argparse
 import hashlib
 import json
 import os
+import signal
 import sys
 import tarfile
 import tempfile
@@ -62,7 +63,16 @@ def _dispatch(job_type):
     raise SystemExit(f"runner: unknown job_type {job_type!r}")
 
 
+def install_term_handler():
+    """SIGTERM (the agent cancelling a job) must unwind, not just kill us: the
+    executors' `finally` blocks stop the permuter and its forked workers."""
+    def handler(signum, frame):
+        raise SystemExit(128 + signum)
+    signal.signal(signal.SIGTERM, handler)
+
+
 def main():
+    install_term_handler()
     parser = argparse.ArgumentParser()
     parser.add_argument("--job", required=True)
     parser.add_argument("--out", required=True)
