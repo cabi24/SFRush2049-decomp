@@ -925,10 +925,10 @@ extern f32 D_8011416C;
 extern f32 D_80114178;
 extern f32 D_80114184;
 extern f32 D_80114188;
-extern s32 D_8011418C;
+extern f32 D_8011418C[][3];
 extern s32 D_80114198;
 extern s32 D_801141A4;
-extern f32 D_801141B0[3];
+
 extern s32 D_801141BC;
 extern s32 D_801141C8;
 extern s32 D_8011421C;
@@ -3723,8 +3723,8 @@ s32 func_800AD4C8(void *arg0, void *arg1, void *arg2, f32 ipa_f18) {
     temp_f14 = ((temp_f2 * M2C_FIELD(arg1, f32 *, 8)) + (temp_f16 * temp_f12)) / ((temp_f2 * temp_f2) + (temp_f12 * temp_f12));
     if (temp_f14 < 0.0f) {
         M2C_FIELD(arg2, f32 *, 4) = 0.0f;
-        M2C_FIELD(arg2, f32 *, 0) = (f32) (D_801141B0[0] - temp_f16);
-        M2C_FIELD(arg2, f32 *, 8) = (f32) (D_801141B0[2] - M2C_FIELD(arg1, f32 *, 8));
+        M2C_FIELD(arg2, f32 *, 0) = (f32) (D_8011418C[3][0] - temp_f16);
+        M2C_FIELD(arg2, f32 *, 8) = (f32) (D_8011418C[3][2] - M2C_FIELD(arg1, f32 *, 8));
     } else if (temp_f14 > 1.0f) {
         M2C_FIELD(arg2, f32 *, 4) = 0.0f;
         M2C_FIELD(arg2, f32 *, 0) = (f32) (temp_f12 - temp_f16);
@@ -3805,23 +3805,25 @@ typedef struct Poly {
 } Poly;
 
 s16 func_800C3AD0(f32 *pt, f32 *wp, Poly *poly, s16 *outIdx, f32 *q, f32 *mat, f32 *bound, f32 zmin) {
-    s32 res;
-    volatile f32 f2;
-    f32 vd[3];
-    f32 vc[3];
     f32 va[3];
-    volatile f32 f1;
-    u32 k;
+    f32 vb[3];
+    f32 vc[3];
+    f32 vd[3];
     f32 ve[3];
     u16 idx[20];
-    f32 vb[3];
+    volatile f32 f1;
+    volatile f32 f2;
+    PV *e;
+    u32 k;
     u32 n;
+    s32 res;
 
     n = poly->cnt & 0xF;
     res = 1;
     *outIdx = func_800AD5D0((u8 *) (poly->off + D_80152568), n, (s16 *) idx);
     func_800AD650(mat, poly->body);
-    DECODE(vb, (&D_8015201C[idx[0]]));
+    e = &D_8015201C[idx[0]];
+    DECODE(vb, e);
     va[0] = wp[0] - vb[0];
     va[1] = wp[1] - vb[1];
     va[2] = wp[2] - vb[2];
@@ -3829,7 +3831,8 @@ s16 func_800C3AD0(f32 *pt, f32 *wp, Poly *poly, s16 *outIdx, f32 *q, f32 *mat, f
     if ((pt[1] <= zmin) || (*bound < pt[1])) {
         return 0;
     }
-    DECODE(vb, (&D_8015201C[idx[n - 1]]));
+    e = &D_8015201C[idx[n - 1]];
+    DECODE(vb, e);
     if ((((vb[2] - pt[2]) * vb[0]) - (vb[2] * (vb[0] - pt[0]))) < 0.0f) {
         if (func_800AD4C8(vb, pt, vc, D_80123F70) == 0) {
             return 0;
@@ -3837,7 +3840,8 @@ s16 func_800C3AD0(f32 *pt, f32 *wp, Poly *poly, s16 *outIdx, f32 *q, f32 *mat, f
         res = -1;
         goto done;
     }
-    DECODE(vb, (&D_8015201C[idx[1]]));
+    e = &D_8015201C[idx[1]];
+    DECODE(vb, e);
     if (((pt[2] * vb[0]) - (vb[2] * pt[0])) < 0.0f) {
         if (func_800AD4C8(vb, pt, vc, D_80123F74) == 0) {
             return 0;
@@ -3851,7 +3855,8 @@ s16 func_800C3AD0(f32 *pt, f32 *wp, Poly *poly, s16 *outIdx, f32 *q, f32 *mat, f
             k += 1;
             ve[0] = vb[0];
             ve[2] = vb[2];
-            DECODE(vb, (&D_8015201C[idx[k - 1]]));
+            e = &D_8015201C[idx[k - 1]];
+            DECODE(vb, e);
             va[1] = 0.0f;
             f1 = ve[0];
             va[0] = f2 = vb[0] - ve[0];
@@ -3871,7 +3876,8 @@ s16 func_800C3AD0(f32 *pt, f32 *wp, Poly *poly, s16 *outIdx, f32 *q, f32 *mat, f
 done:
     *bound = pt[1];
     if ((q != NULL) && (((poly->type & 0xF) == 5) || ((poly->type & 0xF) == 6))) {
-        DECODE(vb, (&D_8015201C[idx[0]]));
+        e = &D_8015201C[idx[0]];
+        DECODE(vb, e);
         va[0] = q[0] - vb[0];
         va[1] = q[1] - vb[1];
         va[2] = q[2] - vb[2];

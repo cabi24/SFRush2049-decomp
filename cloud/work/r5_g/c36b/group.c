@@ -1086,7 +1086,6 @@ extern s32 D_801174A8;
 extern s32 D_801174AC;
 extern s32 D_801174B0;
 extern s32 D_801174C0;
-extern s8 D_801174C4;
 extern s32 D_801174CC;
 extern s32 D_801174DC;
 extern s32 D_8011750C;
@@ -3197,7 +3196,6 @@ void func_800C2430(void);
 void func_800C26C4(void);
 void func_800C2944(void);
 void func_800C3578(s32 arg0);
-void func_800C36A0(void);
 
 void func_800C4078(s16 arg0);
 void func_800C40E8(f32 arg0, f32 arg1, void *arg2);
@@ -3703,322 +3701,118 @@ typedef s64 M2C_UNK64;
 #endif
 
 
-/* group members */
-s32 func_800AD4C8(void *arg0, void *arg1, void *arg2, f32 ipa_f18);
-struct Poly;
-s16 func_800C3AD0(f32 *pt, f32 *wp, struct Poly *poly, s16 *outIdx, f32 *q, f32 *mat, f32 *bound, f32 zmin);
-s16 input_process_controller(f32 *p1, f32 *p2, f32 *out, struct Poly *poly, s16 *outIdx, s32 flag, f32 *vcOut, f32 *mat, f32 rad2);
 
-s32 func_800AD4C8(void *arg0, void *arg1, void *arg2, f32 ipa_f18) {
-    f32 temp_f0;
-    f32 temp_f12;
-    f32 temp_f14;
-    f32 temp_f16;
-    f32 temp_f2;
-    f32 temp_f2_2;
+float fabsf(float);
+#pragma intrinsic (fabsf)
 
-    temp_f2 = M2C_FIELD(arg0, f32 *, 8);
-    temp_f12 = M2C_FIELD(arg0, f32 *, 0);
-    temp_f16 = M2C_FIELD(arg1, f32 *, 0);
-    temp_f14 = ((temp_f2 * M2C_FIELD(arg1, f32 *, 8)) + (temp_f16 * temp_f12)) / ((temp_f2 * temp_f2) + (temp_f12 * temp_f12));
-    if (temp_f14 < 0.0f) {
-        M2C_FIELD(arg2, f32 *, 4) = 0.0f;
-        M2C_FIELD(arg2, f32 *, 0) = (f32) (D_801141B0[0] - temp_f16);
-        M2C_FIELD(arg2, f32 *, 8) = (f32) (D_801141B0[2] - M2C_FIELD(arg1, f32 *, 8));
-    } else if (temp_f14 > 1.0f) {
-        M2C_FIELD(arg2, f32 *, 4) = 0.0f;
-        M2C_FIELD(arg2, f32 *, 0) = (f32) (temp_f12 - temp_f16);
-        M2C_FIELD(arg2, f32 *, 8) = (f32) (M2C_FIELD(arg0, f32 *, 8) - M2C_FIELD(arg1, f32 *, 8));
+extern f32 D_80123F54, D_80123F58, D_80123F5C, D_80123F60, D_80123F64, D_80123F68, D_80123F6C;
+extern s8 D_801174C4[];
+
+typedef struct CPoly { u16 type; } CPoly;
+typedef struct CCol {
+    CPoly *poly;
+    f32 m[9];
+    s16 idx;
+    s16 pad42;
+    f32 k;
+} CCol;
+typedef struct CCar {
+    u8 p0[64];
+    f32 v64[3];
+    f32 v76[3];
+    u8 p88[108];
+    f32 A196[4][3];
+    f32 A244[4][3];
+    u8 p292[8];
+    f32 f300;
+    u8 p304[252];
+    f32 f556[3];
+    u8 p568[12];
+    f32 B580[4][3];
+    f32 B628[4][3];
+    u8 p676[72];
+    f32 mat[9];
+    u8 p784[688];
+    f32 f1472;
+    u8 p1476[72];
+    s32 w1548[4];
+    u8 p1564[28];
+    f32 f1592;
+    u8 p1596[344];
+    f32 f1940[3];
+    u8 p1952[44];
+    s8 b1996;
+    u8 p1997[7];
+    u32 flags2004;
+} CCar;
+
+void func_800C36A0(CCar *car, CCol *col);
+
+void func_800C36A0(CCar *car, CCol *col) {
+    f32 v[3];
+    f32 w[3];
+    s32 i;
+    s32 idx;
+    f32 f12;
+    f32 k;
+    CPoly *poly;
+
+    k = col->k;
+    poly = col->poly;
+    idx = D_801174C4[col->idx];
+    v[0] = col->m[3] * k;
+    v[1] = col->m[4] * k;
+    v[2] = col->m[5] * k;
+    car->f556[0] += v[0];
+    car->f556[1] += v[1];
+    car->f556[2] += v[2];
+    car->f1940[0] += v[0];
+    car->f1940[1] += v[1];
+    car->f1940[2] += v[2];
+    for (i = 0; i < 4; i++) {
+        car->B628[i][0] += v[0];
+        car->B628[i][1] += v[1];
+        car->B628[i][2] += v[2];
+        car->B580[i][0] += v[0];
+        car->B580[i][1] += v[1];
+        car->B580[i][2] += v[2];
+    }
+    v[0] = car->A244[idx][1] * car->v76[2] - car->v76[1] * car->A244[idx][2];
+    v[1] = car->A244[idx][2] * car->v76[0] - car->A244[idx][0] * car->v76[2];
+    v[2] = car->A244[idx][0] * car->v76[1] - car->v76[0] * car->A244[idx][1];
+    v[0] = car->v64[0] + v[0];
+    v[1] = car->v64[1] + v[1];
+    v[2] = car->v64[2] + v[2];
+    func_8009E820(v, w, car->mat);
+    func_800A61B0(w, v, col->m);
+    car->flags2004 |= 0x100000;
+    i = poly->type & 0xF;
+    f12 = D_80123F54 / car->f1472;
+    if (i == 5 || (poly->type & 0x2000) || i == 6) {
+        k = car->f1592 * f12 * D_80123F58;
     } else {
-        M2C_FIELD(arg2, f32 *, 4) = 0.0f;
-        M2C_FIELD(arg2, f32 *, 0) = (f32) ((temp_f12 * temp_f14) - temp_f16);
-        M2C_FIELD(arg2, f32 *, 8) = (f32) ((M2C_FIELD(arg0, f32 *, 8) * temp_f14) - M2C_FIELD(arg1, f32 *, 8));
+        k = car->f1592 * f12 * D_80123F5C;
     }
-    temp_f0 = M2C_FIELD(arg2, f32 *, 8);
-    temp_f2_2 = M2C_FIELD(arg2, f32 *, 0);
-    if (ipa_f18 <= ((temp_f0 * temp_f0) + (temp_f2_2 * temp_f2_2))) {
-        return 0;
+    w[0] = -v[0] * k;
+    w[2] = -v[2] * k;
+    if (car->b1996 == 1) {
+
+        k = fabsf(col->m[5] * car->mat[8] + (car->mat[6] * col->m[3] + car->mat[7] * col->m[4])) * D_80123F60 + D_80123F64;
+    } else {
+        k = fabsf(col->m[5] * car->mat[8] + (car->mat[6] * col->m[3] + car->mat[7] * col->m[4])) * D_80123F68 + D_80123F6C;
     }
-    return 1;
+    w[1] = -v[1] * f12 * car->f1592 * k;
+    func_8009E820(w, v, col->m);
+    func_800A61B0(v, w, car->mat);
+    if ((i == 5 || i == 6) && car->w1548[idx] == 8 && fabsf(w[2]) < 4000.0f && fabsf(w[1]) < 4000.0f) {
+        car->f300 += w[2];
+        car->A196[idx][0] += w[0];
+    } else {
+        car->A196[idx][0] += w[0];
+        car->A196[idx][1] += w[1];
+        car->A196[idx][2] += w[2];
+    }
 }
 
-s32 func_800AD5D0(u8 *arg0, s32 arg1, s16 *arg2)
-{
-  u32 val;
-  s32 cnt;
-  s32 t;
-  if (arg1 > 0)
-  {
-    do
-    {
-      val = (arg0[0] << 8) + arg0[1];
-      arg0 += 2;
-      if ((arg1 >= 2) && ((t = *arg0), (t >= 0xE0)))
-      {
-        cnt = t & ~0xE0;
-        arg0 += 1;
-      }
-      else
-      {
-        cnt = 0;
-      }
-      arg1 = (arg1 - cnt) - 1;
-      do
-      {
-        *arg2 = val;
-        cnt -= 1;
-        val += 1;
-        arg2 += 1;
-      }
-      while (cnt >= 0);
-    }
-    while (arg1 > 0);
-  }
-  val = (arg0[0] << 8) + arg0[1];
-  return val & 0xFFFF;
-}
-
-void func_800AD650(void *arg0, void *arg1) {
-    f32 *o = (f32 *) arg0;
-    s16 *p = (s16 *) arg1;
-    o[0] = (f32) p[0] * 0.00006103515625f;
-    o[1] = (f32) p[1] * 0.00006103515625f;
-    o[2] = (f32) p[2] * 0.00006103515625f;
-    o[3] = (f32) p[3] * 0.00006103515625f;
-    o[4] = (f32) p[4] * 0.00006103515625f;
-    o[5] = (f32) p[5] * 0.00006103515625f;
-    o[6] = (f32) p[6] * 0.00006103515625f;
-    o[7] = (f32) p[7] * 0.00006103515625f;
-    o[8] = (f32) p[8] * 0.00006103515625f;
-}
-
-#define DECODE(v, e) \
-    (v)[0] = (f32) (((e)->x << 5) + (((e)->w & 0x7C00) >> 10)) * 0.03125f; \
-    (v)[1] = (f32) (((e)->y << 5) + (((e)->w & 0x3E0) >> 5)) * 0.03125f; \
-    (v)[2] = (f32) (((e)->z << 5) + ((e)->w & 0x1F)) * 0.03125f
-
-typedef struct Poly {
-    u16 type;
-    u16 cnt;
-    u8 body[0x12];
-    u16 off;
-} Poly;
-
-s16 func_800C3AD0(f32 *pt, f32 *wp, Poly *poly, s16 *outIdx, f32 *q, f32 *mat, f32 *bound, f32 zmin) {
-    s32 res;
-    volatile f32 f2;
-    f32 vd[3];
-    f32 vc[3];
-    f32 va[3];
-    volatile f32 f1;
-    u32 k;
-    f32 ve[3];
-    u16 idx[20];
-    f32 vb[3];
-    u32 n;
-
-    n = poly->cnt & 0xF;
-    res = 1;
-    *outIdx = func_800AD5D0((u8 *) (poly->off + D_80152568), n, (s16 *) idx);
-    func_800AD650(mat, poly->body);
-    DECODE(vb, (&D_8015201C[idx[0]]));
-    va[0] = wp[0] - vb[0];
-    va[1] = wp[1] - vb[1];
-    va[2] = wp[2] - vb[2];
-    func_800A61B0(va, pt, mat);
-    if ((pt[1] <= zmin) || (*bound < pt[1])) {
-        return 0;
-    }
-    DECODE(vb, (&D_8015201C[idx[n - 1]]));
-    if ((((vb[2] - pt[2]) * vb[0]) - (vb[2] * (vb[0] - pt[0]))) < 0.0f) {
-        if (func_800AD4C8(vb, pt, vc, D_80123F70) == 0) {
-            return 0;
-        }
-        res = -1;
-        goto done;
-    }
-    DECODE(vb, (&D_8015201C[idx[1]]));
-    if (((pt[2] * vb[0]) - (vb[2] * pt[0])) < 0.0f) {
-        if (func_800AD4C8(vb, pt, vc, D_80123F74) == 0) {
-            return 0;
-        }
-        res = -1;
-        goto done;
-    }
-    k = 2;
-    if ((u32) n >= 3U) {
-        do {
-            k += 1;
-            ve[0] = vb[0];
-            ve[2] = vb[2];
-            DECODE(vb, (&D_8015201C[idx[k - 1]]));
-            va[1] = 0.0f;
-            f1 = ve[0];
-            va[0] = f2 = vb[0] - ve[0];
-            va[2] = vb[2] - ve[2];
-            vd[1] = 0.0f;
-            vd[0] = pt[0] - f1;
-            vd[2] = pt[2] - ve[2];
-            if (((vd[2] * f2) - (va[2] * vd[0])) < 0.0f) {
-                if (func_800AD4C8(va, vd, vc, D_80123F78) == 0) {
-                    return 0;
-                }
-                res = -1;
-                goto done;
-            }
-        } while (k < (u32) n);
-    }
-done:
-    *bound = pt[1];
-    if ((q != NULL) && (((poly->type & 0xF) == 5) || ((poly->type & 0xF) == 6))) {
-        DECODE(vb, (&D_8015201C[idx[0]]));
-        va[0] = q[0] - vb[0];
-        va[1] = q[1] - vb[1];
-        va[2] = q[2] - vb[2];
-        func_800A61B0(va, vb, mat);
-        if ((vb[1] <= *bound) || (vb[1] < D_80123F7C)) {
-            return 0;
-        }
-    }
-    return res;
-}
-
-s16 input_process_controller(f32 *p1, f32 *p2, f32 *out, Poly *poly, s16 *outIdx, s32 flag, f32 *vcOut, f32 *mat, f32 rad2) {
-    u16 idx[20];
-    f32 vp[3];
-    f32 vq[3];
-    f32 va[3];
-    f32 ve[3];
-    f32 v0[3];
-    f32 vprev[3];
-    f32 vd[3];
-    volatile f32 f1;
-    volatile f32 f2;
-    PV *e;
-    u32 k;
-    u32 n;
-    s32 res;
-    f32 t;
-    f32 d;
-
-    res = 1;
-    func_800AD650(mat, poly->body);
-    n = poly->cnt & 0xF;
-    *outIdx = func_800AD5D0((u8 *) (poly->off + D_80152568), n, (s16 *) idx);
-    e = &D_8015201C[idx[0]];
-    DECODE(v0, e);
-    va[0] = p1[0] - v0[0];
-    va[1] = p1[1] - v0[1];
-    va[2] = p1[2] - v0[2];
-    func_800A61B0(va, vp, mat);
-    if (vp[1] < 0.0f) {
-        return 0;
-    }
-    va[0] = p2[0] - v0[0];
-    va[1] = p2[1] - v0[1];
-    va[2] = p2[2] - v0[2];
-    func_800A61B0(va, vq, mat);
-    if (vq[1] > 0.0f) {
-        return 0;
-    }
-    d = vq[1] - vp[1];
-    va[0] = vq[0] - vp[0];
-    va[2] = vq[2] - vp[2];
-    if (d > 0.0f) {
-        return 0;
-    }
-    va[1] = d;
-    if (d < 0.0f) {
-        t = vp[1] / d;
-        va[1] = d;
-        vp[0] -= va[0] * t;
-        vp[1] -= d * t;
-        vp[2] -= va[2] * t;
-    }
-    e = &D_8015201C[idx[n - 1]];
-    DECODE(ve, e);
-    e = &D_8015201C[idx[1]];
-    if ((((ve[2] - vp[2]) * ve[0]) - (ve[2] * (ve[0] - vp[0]))) < 0.0f) {
-        if (flag > 0) {
-            return 0;
-        }
-        if (func_800AD4C8(ve, vp, vcOut, rad2) == 0) {
-            return 0;
-        }
-        res = -1;
-        goto done;
-    }
-    DECODE(ve, e);
-    if (((vp[2] * ve[0]) - (ve[2] * vp[0])) < 0.0f) {
-        if (flag > 0) {
-            return 0;
-        }
-        if (func_800AD4C8(ve, vp, vcOut, rad2) == 0) {
-            return 0;
-        }
-        res = -1;
-        goto done;
-    }
-    k = 2;
-    if ((u32) n >= 3U) {
-        do {
-            k += 1;
-            vprev[0] = ve[0];
-            vprev[2] = ve[2];
-            e = &D_8015201C[idx[k - 1]];
-            DECODE(ve, e);
-            va[1] = 0.0f;
-            vd[1] = 0.0f;
-            f1 = vprev[0];
-            va[0] = f2 = ve[0] - vprev[0];
-            va[2] = ve[2] - vprev[2];
-            vd[0] = vp[0] - f1;
-            vd[2] = vp[2] - vprev[2];
-            if (((vd[2] * f2) - (va[2] * vd[0])) < 0.0f) {
-                if (flag > 0) {
-                    return 0;
-                }
-                if (func_800AD4C8(va, vd, vcOut, rad2) == 0) {
-                    return 0;
-                }
-                res = -1;
-                goto done;
-            }
-        } while (k < (u32) n);
-    }
-done:
-    func_8009E820(vp, out, mat);
-    out[0] = v0[0] + out[0];
-    out[1] = v0[1] + out[1];
-    out[2] = v0[2] + out[2];
-    return res;
-}
-
-/* stand-in caller: keeps func_800AD4C8 out of line under -O3 */
-void __standin_func_800AD4C8(void)
-{
-    func_800AD4C8(0, 0, 0, 0);
-}
-
-/* stand-in callers for the two roots whose real callers are outside the unit
- * (camera_trigger_check/camera_victory/entity_update and input_deadzone_apply): two call sites
- * keep them out of line without `keep`, so they get IPA registers like the ROM's */
-void __standin_func_800C3AD0_a(void)
-{
-    func_800C3AD0(0, 0, 0, 0, 0, 0, 0, 0);
-}
-
-void __standin_func_800C3AD0_b(void)
-{
-    func_800C3AD0(0, 0, 0, 0, 0, 0, 0, 1);
-}
-
-void __standin_input_process_controller_a(void)
-{
-    input_process_controller(0, 0, 0, 0, 0, 0, 0, 0, 0);
-}
-
-void __standin_input_process_controller_b(void)
-{
-    input_process_controller(0, 0, 0, 0, 0, 0, 0, 0, 1);
-}
+void __standin_c36a0_a(CCar *c, CCol *o) { func_800C36A0(c, o); }
+void __standin_c36a0_b(CCar *c, CCol *o) { func_800C36A0((CCar *) o, (CCol *) c); }
