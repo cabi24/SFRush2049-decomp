@@ -1,3 +1,4 @@
+/* flags: -g0 -O2 -mips2 -G 0 -non_shared */
 typedef unsigned char u8;
 typedef signed int s32;
 typedef struct { u8 *p[22]; } List;
@@ -10,8 +11,8 @@ u8 func_800F084C(s32 arg) {
     l = D_801149B4;
     r = 0;
     p = l.p;
- for (; **p != 0; p++) {
- r |= func_800F0674(*p, arg);
- } 
+    for (; **p != 0; p++) {
+        r |= func_800F0674(*p, arg);
+    }
     return r;
 }

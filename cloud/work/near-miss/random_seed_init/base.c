@@ -3793,42 +3793,27 @@ typedef s8 M2C_UNK8;
 typedef s16 M2C_UNK16;
 typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
-void random_seed_init(unsigned int arg0, s32 arg1)
+/*MY*/
+void random_seed_init(u32 arg0, s32 arg1)
 {
-  D_80156958_Entry *temp_a2;
-  s32 *var_t0;
-  s32 var_v1;
-  s32 *new_var2;
-  void *var_v0;
-  void *new_var;
-  new_var2 = &D_80156998[arg0];
-  if (arg1 != 0)
-  {
-    var_v1 = arg0 * 4;
-    var_t0 = new_var2;
-    var_v0 = (InputRecord *) ((arg0 * 0x4C) + ((u8 *) (&input_rec0)));
-    goto block_4;
+  InputRecord *r;
+  s32 *t;
+  D_80156958_Entry *e;
+  if (arg1 != 0) {
+    r = (InputRecord *) ((u8 *) &input_rec0 + arg0 * 0x4C);
+    t = &D_80156998[arg0];
+  } else {
+    r = (InputRecord *) ((u8 *) &input_rec0 + arg0 * 0x4C);
+    if (r->active != 5) return;
+    t = &D_80156998[arg0];
+    if (!(*t & 1)) return;
   }
-  var_v0 = (InputRecord *) ((arg0 * 0x4C) + ((u8 *) (&input_rec0)));
-  var_v1 = arg0 * 4;
- if (1) { }
-  if ((*((u8 *) (((s8 *) var_v0) + 1))) == 5)
-  {
-    var_t0 = new_var2;
-    if ((*var_t0) & 1)
-    {
-      block_4:
-      *((s8 *) (((s8 *) var_v0) + 1)) = arg0;
-
-      new_var = var_v0;
-      *((s32 *) (((s8 *) new_var) + 8)) = (s32) (*((s32 *) (((u8 *) D_80156978) + var_v1)));
-      *((s32 *) (((s8 *) new_var) + 4)) = (s32) (*var_t0);
-      temp_a2 = &D_80156958[arg0];
-      *((s32 *) (((s8 *) new_var) + 0xC)) = (s32) (*((s32 *) (((u8 *) D_80143A00) + var_v1)));
-      *((f32 *) (((s8 *) var_v0) + 0x10)) = (f32) temp_a2->unk0;
- ;
-      *((f32 *) (((s8 *) var_v0) + 0x14)) = (f32) (*temp_a2).unk4;
-      player_state_set(arg0 & 0xFF, 1);
-    }
-  }
+  r->active = arg0;
+  r->unk08 = D_80156978[arg0];
+  r->unk04 = *t;
+  r->unk0C = D_80143A00[arg0];
+  e = &D_80156958[arg0];
+  r->unk10 = e->unk0;
+  r->unk14 = e->unk4;
+  player_state_set(arg0 & 0xFF, 1);
 }
