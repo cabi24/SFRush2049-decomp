@@ -3795,9 +3795,7 @@ typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
 void car_select_handler(s16 arg0)
 {
-  int new_var;
-  GameCar *sp20;
-  s32 *sp1C;
+  s8 new_var;
   GameCar *temp_v0;
   s32 *temp_a1;
   s8 temp_v1;
@@ -3808,13 +3806,12 @@ void car_select_handler(s16 arg0)
     case 0:
       if (((s8) temp_v0->pad0EC[0x26D]) <= 0)
     {
-      new_var = -1U;
+
       temp_a1 = (D_8014A250_Record *) ((arg0 * 0x808) + ((u8 *) (&D_8014A250)));
       if ((*((s8 *) (((s8 *) temp_a1) + 0x640))) != 0)
       {
+        new_var = -1;
         temp_v0->pad0EC[1] = new_var;
-        sp1C = temp_a1;
-        sp20 = temp_v0;
         func_800C4F68(2, temp_a1, 0);
         temp_v0->pad0EC[0x26C] = 1;
         *((f32 *) (((s8 *) temp_v0) + 0x10C)) = (f32) (*((f32 *) (((s8 *) temp_a1) + 0x714)));

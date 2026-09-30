@@ -3799,9 +3799,9 @@ void players_frame_update(void)
   s32 var_s0;
   D_801525F0 = 0;
   var_s1 = &D_8014A250;
-  var_s0 = 0;
   if (((s8) D_80152744) > 0)
   {
+    var_s0 = 0;
     do
     {
       func_800D5524(var_s1);

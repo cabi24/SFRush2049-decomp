@@ -3798,6 +3798,6 @@ f32 func_8008C5E0(f32 arg0)
   new_var3 = D_801238C0;
   new_var2 = arg0 * arg0;
   new_var = temp_f2;
- do { } while (0);
+  if (0) { return 0.0f; }
   return (((((((((D_801238C4 * new_var2) + D_801238C8) * new_var2) + D_801238CC) * new_var2) + D_801238D0) * new_var) + new_var3) / (((((((((temp_f2 + D_801238D4) * new_var2) + D_801238D8) * new_var2) + D_801238DC) * new_var2) + D_801238E0) * new_var2) + (new_var3 * 1.0f))) * arg0;
 }

@@ -3788,18 +3788,8 @@ void world_object_destroy(void *arg0);
 void world_physics_tick(void);
 void world_trigger_activate(void);
 s32 world_velocity_integrate();
-s16 func_800FBE30(void)
+void func_800FBE30(void)
 {
-  s16 var_v0;
-  var_v0 = 0;
-  if (active_player_count > 0)
-  {
-    do
-    {
-      var_v0 += 1;
-    }
-    while (var_v0 < active_player_count);
-  }
-  return 1;
-  return var_v0;
+  s16 i;
+  for (i = 0; i < active_player_count; i++) {}
 }

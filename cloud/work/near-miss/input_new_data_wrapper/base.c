@@ -3696,14 +3696,10 @@ typedef s64 M2C_UNK64;
 
 #endif
 
-s8 input_new_data_wrapper(void *arg0, s8 arg1) {
-    s8 var_v1;
-
-    var_v1 = M2C_FIELD(arg0, s8 *, 0x1A);
-    if (arg1 != var_v1) {
-        M2C_FIELD(arg0, s8 *, 0x1A) = arg1;
+s8 input_new_data_wrapper(s8 *arg0, s32 arg1) {
+    if (arg1 != arg0[0x1A]) {
+        arg0[0x1A] = arg1;
         Input_ApplyPadConfig(arg0);
-        var_v1 = M2C_FIELD(arg0, s8 *, 0x1A);
     }
-    return var_v1;
+    return arg0[0x1A];
 }

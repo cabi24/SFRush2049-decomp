@@ -3197,7 +3197,7 @@ void func_80095EC0(s32 *arg0, u32 arg1);
 u32 func_80095EF4(void *arg0, u32 arg1, s32 arg2);
 void *func_80095F8C(u32 arg0);
 void func_80096130(s32 arg0);
-void func_80096238(void);
+void func_80096238();
 void func_80096288(s32 arg2);
 void func_800966D8(s32 arg0, s32 arg1);
 void *func_80096B00(void *arg0, s32 arg1);
@@ -3795,8 +3795,5 @@ typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
 void resource_update_global(void)
 {
-  char new_var;
-  volatile int new_var2;
- new_var2 = 0; new_var = new_var2; { }
-  func_80096238();
+  func_80096238(D_80151A6C);
 }

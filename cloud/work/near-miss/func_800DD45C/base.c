@@ -3795,25 +3795,12 @@ typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
 void func_800DD45C(s32 arg0)
 {
-  s32 var_v1;
-  void *var_a1;
-  s8 *new_var;
-  var_a1 = (s32 *) (((arg0 * (0x58 & 0xFFFFFFFF)) + 0x2C) + ((u8 *) (&D_80153FD8)));
-  var_v1 = 0x2C;
-  new_var = (s8 *) var_a1;
-  loop_1:
-  var_v1 -= 0x2C;
-
-  if ((*((s32 *) (new_var + 0x14))) != 0)
-  {
-    *((s32 *) (new_var + 0x14)) = 0;
-    return;
+  s32 i;
+  s32 *p;
+  p = (s32 *) (((arg0 * 0x58) + 0x2C) + ((u8 *) (&D_80153FD8)));
+  for (i = 0x2C; ; p -= 11) {
+    i -= 0x2C;
+    if (p[5] != 0) { p[5] = 0; return; }
+    if (i < 0) return;
   }
- if (1) { } if (1) { } if (1) { } if (1) { } new_var++; new_var--; if (1) { } if (1) { }
-  var_a1 = ((u8 *) var_a1) - 0x2C;
-  if (var_v1 < 0)
-  {
-    return;
-  }
-  goto loop_1;
 }

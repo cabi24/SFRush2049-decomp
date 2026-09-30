@@ -3697,13 +3697,16 @@ typedef s64 M2C_UNK64;
 #endif
 
 void players_race_update(void) {
-    s32 var_s0;
+    D_8014A250_Record *r;
+    s32 i;
 
-    var_s0 = 0;
+    i = 0;
+    r = &D_8014A250;
     do {
-        if ((D_8014AA18 != 0) && ((s8) player_array[var_s0].pad0EC[0x26D] < 2)) {
-            func_800D4DFC(&D_8014AA18);
+        if ((*(s16 *) ((s8 *) r + 0x7C8) != 0) && ((s8) player_array[i].pad0EC[0x26D] < 2)) {
+            func_800D4DFC(r);
         }
-        var_s0 += 1;
-    } while (var_s0 != 6);
+        i++;
+        r = (D_8014A250_Record *) ((s8 *) r + 0x808);
+    } while (i != 6);
 }

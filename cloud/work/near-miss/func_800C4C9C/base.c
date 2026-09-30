@@ -3697,12 +3697,11 @@ typedef s64 M2C_UNK64;
 #endif
 
 void func_800C4C9C(void *arg0, s16 arg1) {
-    u8 *temp_v0;
-
-    temp_v0 = &player_array[M2C_FIELD(arg0, s16 *, 0x7C6)].pad0EC[0x228];
-    M2C_FIELD(temp_v0, s16 *, 0x24) = arg1;
-    M2C_FIELD(temp_v0, s16 *, 0x26) = -1;
-    M2C_FIELD(temp_v0, f32 *, 0x20) = (f32) D_801543CC;
-    M2C_FIELD(temp_v0, f32 *, 0) = 20.0f;
-    M2C_FIELD(temp_v0, f32 *, 4) = 0.0f;
+ u8 *temp_v0;
+ temp_v0 = &player_array[M2C_FIELD(arg0, s16 *, 0x7C6)].pad0EC[0x228];
+M2C_FIELD(temp_v0, s16 *, 0x24) = arg1;
+M2C_FIELD(temp_v0, f32 *, 0x20) = (f32) D_801543CC;
+M2C_FIELD(temp_v0, s16 *, 0x26) = -1;
+M2C_FIELD(temp_v0, f32 *, 0) = 20.0f;
+M2C_FIELD(temp_v0, f32 *, 4) = 0.0f;
 }
