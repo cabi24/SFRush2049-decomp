@@ -1,0 +1,302 @@
+[
+  {
+    "source": "func_8010C448_0_0.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_diff": 67,
+    "matched": false,
+    "size": 76,
+    "target_size": 80,
+    "extra": 0,
+    "err": null
+  },
+  {
+    "source": "func_8010C448_0_0.c",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_diff": 76,
+    "matched": false,
+    "size": 101,
+    "target_size": 80,
+    "extra": 17,
+    "err": null
+  },
+  {
+    "source": "func_8010C448_0_0.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "strict_diff": 67,
+    "matched": false,
+    "size": 76,
+    "target_size": 80,
+    "extra": 0,
+    "err": null
+  },
+  {
+    "source": "func_8010C448_0_1.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_diff": 67,
+    "matched": false,
+    "size": 76,
+    "target_size": 80,
+    "extra": 0,
+    "err": null
+  },
+  {
+    "source": "func_8010C448_0_1.c",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_diff": 76,
+    "matched": false,
+    "size": 101,
+    "target_size": 80,
+    "extra": 17,
+    "err": null
+  },
+  {
+    "source": "func_8010C448_0_1.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "strict_diff": 67,
+    "matched": false,
+    "size": 76,
+    "target_size": 80,
+    "extra": 0,
+    "err": null
+  },
+  {
+    "source": "func_8010C448_1_0.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_diff": 65,
+    "matched": false,
+    "size": 76,
+    "target_size": 80,
+    "extra": 0,
+    "err": null
+  },
+  {
+    "source": "func_8010C448_1_0.c",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_diff": 76,
+    "matched": false,
+    "size": 101,
+    "target_size": 80,
+    "extra": 17,
+    "err": null
+  },
+  {
+    "source": "func_8010C448_1_0.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "strict_diff": 65,
+    "matched": false,
+    "size": 76,
+    "target_size": 80,
+    "extra": 0,
+    "err": null
+  },
+  {
+    "source": "func_8010C448_1_1.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_diff": 65,
+    "matched": false,
+    "size": 76,
+    "target_size": 80,
+    "extra": 0,
+    "err": null
+  },
+  {
+    "source": "func_8010C448_1_1.c",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_diff": 76,
+    "matched": false,
+    "size": 101,
+    "target_size": 80,
+    "extra": 17,
+    "err": null
+  },
+  {
+    "source": "func_8010C448_1_1.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "strict_diff": 65,
+    "matched": false,
+    "size": 76,
+    "target_size": 80,
+    "extra": 0,
+    "err": null
+  },
+  {
+    "source": "func_8010C588_0_0.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_diff": 67,
+    "matched": false,
+    "size": 76,
+    "target_size": 80,
+    "extra": 0,
+    "err": null
+  },
+  {
+    "source": "func_8010C588_0_0.c",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_diff": 76,
+    "matched": false,
+    "size": 101,
+    "target_size": 80,
+    "extra": 17,
+    "err": null
+  },
+  {
+    "source": "func_8010C588_0_0.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "strict_diff": 67,
+    "matched": false,
+    "size": 76,
+    "target_size": 80,
+    "extra": 0,
+    "err": null
+  },
+  {
+    "source": "func_8010C588_0_1.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_diff": 67,
+    "matched": false,
+    "size": 76,
+    "target_size": 80,
+    "extra": 0,
+    "err": null
+  },
+  {
+    "source": "func_8010C588_0_1.c",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_diff": 76,
+    "matched": false,
+    "size": 101,
+    "target_size": 80,
+    "extra": 17,
+    "err": null
+  },
+  {
+    "source": "func_8010C588_0_1.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "strict_diff": 67,
+    "matched": false,
+    "size": 76,
+    "target_size": 80,
+    "extra": 0,
+    "err": null
+  },
+  {
+    "source": "func_8010C588_1_0.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_diff": 65,
+    "matched": false,
+    "size": 76,
+    "target_size": 80,
+    "extra": 0,
+    "err": null
+  },
+  {
+    "source": "func_8010C588_1_0.c",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_diff": 76,
+    "matched": false,
+    "size": 101,
+    "target_size": 80,
+    "extra": 17,
+    "err": null
+  },
+  {
+    "source": "func_8010C588_1_0.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "strict_diff": 65,
+    "matched": false,
+    "size": 76,
+    "target_size": 80,
+    "extra": 0,
+    "err": null
+  },
+  {
+    "source": "func_8010C588_1_1.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_diff": 65,
+    "matched": false,
+    "size": 76,
+    "target_size": 80,
+    "extra": 0,
+    "err": null
+  },
+  {
+    "source": "func_8010C588_1_1.c",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_diff": 76,
+    "matched": false,
+    "size": 101,
+    "target_size": 80,
+    "extra": 17,
+    "err": null
+  },
+  {
+    "source": "func_8010C588_1_1.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "strict_diff": 65,
+    "matched": false,
+    "size": 76,
+    "target_size": 80,
+    "extra": 0,
+    "err": null
+  },
+  {
+    "source": "func_8010DAF8_pointer.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_diff": 42,
+    "matched": false,
+    "size": 48,
+    "target_size": 48,
+    "extra": 0,
+    "err": null
+  },
+  {
+    "source": "func_8010DAF8_pointer.c",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_diff": 47,
+    "matched": false,
+    "size": 57,
+    "target_size": 48,
+    "extra": 9,
+    "err": null
+  },
+  {
+    "source": "func_8010DAF8_pointer.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "strict_diff": 13,
+    "matched": false,
+    "size": 48,
+    "target_size": 48,
+    "extra": 0,
+    "err": null
+  },
+  {
+    "source": "func_8010DF90_signed.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_diff": 22,
+    "matched": false,
+    "size": 91,
+    "target_size": 91,
+    "extra": 0,
+    "err": null
+  },
+  {
+    "source": "func_8010DF90_signed.c",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_diff": 89,
+    "matched": false,
+    "size": 105,
+    "target_size": 91,
+    "extra": 14,
+    "err": null
+  },
+  {
+    "source": "func_8010DF90_signed.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "strict_diff": 22,
+    "matched": false,
+    "size": 91,
+    "target_size": 91,
+    "extra": 0,
+    "err": null
+  }
+]

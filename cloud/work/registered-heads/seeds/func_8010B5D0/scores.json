@@ -1,0 +1,13 @@
+[
+  {
+    "matched": false,
+    "strict_diff": 139,
+    "target_size": 139,
+    "size": 0,
+    "extra": 0,
+    "unverified": [],
+    "unresolved": [],
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "err": "cc failed:\ncfe: Error: group.c, line 839: Dereferenced a non-pointer.\n             sp88 = *(D_8017A4F0 + ((*( u16 *)((s8 *)(D_8017A4EC) + ( 0x70)))  * 4) + (D_801170FC * 4));\n -----------------------------------------------------------------------------------^\ncfe: Error: group.c, line 844: Dereferenced a non-pointer.\n             fcvt_wrapper(&sp60, &D_801210E0, **((D_8014A160_Target ***) ((u8 *) &D_8014A160 + (D_8015698C * 0x4C))) + 0x14, *(D_8017A4F0 + ((*( u16 *)((s8 *)(D_8017A4EC) + ( 0x70)))  * 4)));\n -----------------------------------------------------------------------------------------------------------------------------------------^\n"
+  }
+]

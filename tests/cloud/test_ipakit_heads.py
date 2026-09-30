@@ -1,10 +1,12 @@
 import sys
 import unittest
+import tempfile
+from unittest import mock
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "cloud" / "work" / "tools"))
-from ipakit import Corpus, Func, IMAGE_BASE, load_corpus, heads  # noqa: E402
+from ipakit import Corpus, Func, IMAGE_BASE, load_corpus, heads, unique_targets  # noqa: E402
 
 JR_RA = 0x03E00008
 ADDIU_SP_M16 = 0x27BDFFF0
@@ -22,31 +24,50 @@ class HeadTests(unittest.TestCase):
         bad = [f.name for f in self.c.funcs.values() if heads.scan_extent(self.c, f.addr) != len(f.words)]
         self.assertEqual(bad, [])
 
-    def test_unregistered_heads_from_the_markdown_table(self):
+    def test_remaining_heads_match_current_audit(self):
+        remaining = {0x8010221C, 0x80102F30, 0x80104704, 0x80104B14,
+                     0x80105480, 0x8010D3C0, 0x8010D680}
+        self.assertEqual(set(self.rows), remaining)
+        self.assertTrue(all(not r['registered'] for r in self.rows.values()))
+
+    def test_historical_markdown_heads_are_registered_or_still_audited(self):
         md = heads.parse_md_heads(ROOT / 'cloud/work/unregistered-heads.md')
         self.assertGreaterEqual(len(md), 30)
-        opaque = {a: w for a, w in md.items() if self.c.resolve(a)[0] == 'opaque'}
-        self.assertGreaterEqual(len(opaque), 30)
-        for a, w in opaque.items():
-            self.assertIn(a, self.rows, hex(a))
-            self.assertEqual(self.rows[a]['words'], w, hex(a))
-            self.assertFalse(self.rows[a]['registered'])
+        opaque = set()
+        for a, words in md.items():
+            kind, f, _ = self.c.resolve(a)
+            if kind == 'opaque':
+                opaque.add(a)
+                self.assertEqual(self.rows[a]['words'], words, hex(a))
+            else:
+                self.assertEqual(kind, 'func', hex(a))
+                self.assertFalse(f.discovered)
+                self.assertEqual((f.name, len(f.words)), ('func_%08X' % a, words))
+        self.assertEqual(opaque, {0x8010221C, 0x80102F30, 0x80104704, 0x80104B14, 0x80105480})
 
-    def test_func_80107EDC(self):
-        r = self.rows[0x80107EDC]
-        self.assertEqual((r['words'], r['frame'], r['jr_ra']), (158, 72, 1))
-        self.assertIn('pointer', r['evidence'])
-        self.assertEqual(self.c.resolve(0x80107EDC)[0], 'opaque')
+    def test_func_80107EDC_is_registered_with_proved_extent(self):
+        kind, f, _ = self.c.resolve(0x80107EDC)
+        self.assertEqual(kind, 'func')
+        self.assertEqual((f.name, len(f.words)), ('func_80107EDC', 158))
+        self.assertEqual(heads.has_prologue(self.c, f.addr), 72)
+        self.assertEqual(f.words.count(JR_RA), 1)
+        self.assertNotIn(f.addr, self.rows)
 
     def test_other_named_heads(self):
-        for a, words in ((0x80108154, 224), (0x801084D4, 375), (0x8010BC84, 232), (0x80102F30, 890), (0x80104704, 260)):
+        for a, words in ((0x80108154, 224), (0x801084D4, 375), (0x8010BC84, 232)):
+            self.assertEqual(len(self.c.by_addr[a].words), words, hex(a))
+            self.assertNotIn(a, self.rows)
+        for a, words in ((0x80102F30, 890), (0x80104704, 260), (0x80104B14, 601)):
             self.assertEqual(self.rows[a]['words'], words, hex(a))
 
     def test_tail_labels_are_not_heads(self):
-        for tail in (0x80108098, 0x801089CC, 0x8010BE7C, 0x80103A08, 0x80104A58):   # dynamic_difficulty etc.
+        for tail in (0x80108098, 0x801089CC, 0x8010BE7C):
             self.assertNotIn(tail, self.rows)
-            owner = [a for a in self.rows if a < tail < a + 4 * self.rows[a]['words']]
-            self.assertEqual(len(owner), 1, hex(tail))                # each lies inside exactly one head
+            self.assertIsNotNone(self.c.containing(tail), hex(tail))
+        for tail in (0x80103A08, 0x80104A58):
+            self.assertNotIn(tail, self.rows)
+            owners = [a for a in self.rows if a < tail < a + 4 * self.rows[a]['words']]
+            self.assertEqual(len(owners), 1, hex(tail))
 
     def test_prologue_does_not_cross_a_jr_ra(self):
         # 0x80103D20 is `jr ra; nop`, the next function's addiu sp is 3 words away: no prologue
@@ -65,6 +86,25 @@ class HeadTests(unittest.TestCase):
     def test_opaque_runs_partition(self):
         runs = self.rep['opaque_runs']
         self.assertEqual(sum(r['words'] for r in runs) + sum(len(f.words) for f in self.c.funcs.values()), len(self.c.image))
+
+
+class DuplicateSections(unittest.TestCase):
+    def test_identical_sections_are_read_once_and_conflicts_refused(self):
+        import score
+        with tempfile.TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            section = '.section .text.F, "ax", @progbits\n.word 0x03E00008\n.word 0x00000000\n'
+            (directory / 'a.s').write_text(section)
+            (directory / 'b.s').write_text(section)
+            with mock.patch.object(score, 'ASM_DIR', directory), \
+                 mock.patch.object(score, 'targets', return_value={}) as gate, \
+                 mock.patch.object(score, 'target_manifest', return_value={}), \
+                 mock.patch.object(score, 'verified_bytes', side_effect=lambda path, _: path.read_bytes()):
+                self.assertEqual(unique_targets(), {'F': [JR_RA, 0]})
+                gate.assert_called_once()
+                (directory / 'b.s').write_text(section.replace('0x00000000', '0x24020001'))
+                with self.assertRaisesRegex(SystemExit, 'conflicting retail sections'):
+                    unique_targets()
 
 
 class SyntheticHeads(unittest.TestCase):

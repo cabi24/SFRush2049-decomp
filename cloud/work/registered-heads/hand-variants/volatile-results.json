@@ -1,0 +1,122 @@
+[
+  {
+    "source": "func_8010C448_volatile_0_1.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_diff": 55,
+    "matched": false,
+    "size": 76,
+    "target_size": 80,
+    "extra": 0,
+    "err": null
+  },
+  {
+    "source": "func_8010C448_volatile_0_2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_diff": 67,
+    "matched": false,
+    "size": 81,
+    "target_size": 80,
+    "extra": 1,
+    "err": null
+  },
+  {
+    "source": "func_8010C448_volatile_0_3.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_diff": 53,
+    "matched": false,
+    "size": 82,
+    "target_size": 80,
+    "extra": 2,
+    "err": null
+  },
+  {
+    "source": "func_8010C448_volatile_1_1.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_diff": 55,
+    "matched": false,
+    "size": 76,
+    "target_size": 80,
+    "extra": 0,
+    "err": null
+  },
+  {
+    "source": "func_8010C448_volatile_1_2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_diff": 67,
+    "matched": false,
+    "size": 81,
+    "target_size": 80,
+    "extra": 1,
+    "err": null
+  },
+  {
+    "source": "func_8010C448_volatile_1_3.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_diff": 53,
+    "matched": false,
+    "size": 82,
+    "target_size": 80,
+    "extra": 2,
+    "err": null
+  },
+  {
+    "source": "func_8010C588_volatile_0_1.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_diff": 55,
+    "matched": false,
+    "size": 76,
+    "target_size": 80,
+    "extra": 0,
+    "err": null
+  },
+  {
+    "source": "func_8010C588_volatile_0_2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_diff": 67,
+    "matched": false,
+    "size": 81,
+    "target_size": 80,
+    "extra": 1,
+    "err": null
+  },
+  {
+    "source": "func_8010C588_volatile_0_3.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_diff": 53,
+    "matched": false,
+    "size": 82,
+    "target_size": 80,
+    "extra": 2,
+    "err": null
+  },
+  {
+    "source": "func_8010C588_volatile_1_1.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_diff": 55,
+    "matched": false,
+    "size": 76,
+    "target_size": 80,
+    "extra": 0,
+    "err": null
+  },
+  {
+    "source": "func_8010C588_volatile_1_2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_diff": 67,
+    "matched": false,
+    "size": 81,
+    "target_size": 80,
+    "extra": 1,
+    "err": null
+  },
+  {
+    "source": "func_8010C588_volatile_1_3.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_diff": 53,
+    "matched": false,
+    "size": 82,
+    "target_size": 80,
+    "extra": 2,
+    "err": null
+  }
+]

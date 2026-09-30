@@ -1,0 +1,35 @@
+[
+  {
+    "matched": false,
+    "strict_diff": 92,
+    "target_size": 92,
+    "size": 0,
+    "extra": 0,
+    "err": "IDO compile failed:\ncfe: Error: /tmp/am-0a06ywac/src.c, line 818: Unacceptable operand of == or !=\n             if (func_800A464C(temp_a0, &D_80121DA0) != ((void *)0) ) {\n ----------------------------------------------------^\ncfe: Error: /tmp/am-0a06ywac/src.c, line 820: Unacceptable operand of == or !=\n             } else if (func_800A464C(temp_a0, &D_80121DA4) != ((void *)0) ) {\n -----------------------------------------------------------^\ncfe: Warning 712: /tmp/am-0a06ywac/src.c, line 826: illegal combination of pointer and integer\n             temp_v0 = func_800A464C((*( s32 *)((s8 *)(temp_s0) + ( 0x6C))) , &D_80121DA8);\n --------------------^\n",
+    "unverified": [],
+    "unresolved": [],
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+  },
+  {
+    "matched": false,
+    "strict_diff": 92,
+    "target_size": 92,
+    "size": 0,
+    "extra": 0,
+    "err": "IDO compile failed:\ncfe: Error: /tmp/am-szt8yoz8/src.c, line 818: Unacceptable operand of == or !=\n             if (func_800A464C(temp_a0, &D_80121DA0) != ((void *)0) ) {\n ----------------------------------------------------^\ncfe: Error: /tmp/am-szt8yoz8/src.c, line 820: Unacceptable operand of == or !=\n             } else if (func_800A464C(temp_a0, &D_80121DA4) != ((void *)0) ) {\n -----------------------------------------------------------^\ncfe: Warning 712: /tmp/am-szt8yoz8/src.c, line 826: illegal combination of pointer and integer\n             temp_v0 = func_800A464C((*( s32 *)((s8 *)(temp_s0) + ( 0x6C))) , &D_80121DA8);\n --------------------^\n",
+    "unverified": [],
+    "unresolved": [],
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared"
+  },
+  {
+    "matched": false,
+    "strict_diff": 92,
+    "target_size": 92,
+    "size": 0,
+    "extra": 0,
+    "err": "IDO compile failed:\ncfe: Error: /tmp/am-_82bgjbl/src.c, line 818: Unacceptable operand of == or !=\n             if (func_800A464C(temp_a0, &D_80121DA0) != ((void *)0) ) {\n ----------------------------------------------------^\ncfe: Error: /tmp/am-_82bgjbl/src.c, line 820: Unacceptable operand of == or !=\n             } else if (func_800A464C(temp_a0, &D_80121DA4) != ((void *)0) ) {\n -----------------------------------------------------------^\ncfe: Warning 712: /tmp/am-_82bgjbl/src.c, line 826: illegal combination of pointer and integer\n             temp_v0 = func_800A464C((*( s32 *)((s8 *)(temp_s0) + ( 0x6C))) , &D_80121DA8);\n --------------------^\n",
+    "unverified": [],
+    "unresolved": [],
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+  }
+]

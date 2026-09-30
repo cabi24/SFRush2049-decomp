@@ -1,0 +1,13 @@
+[
+  {
+    "matched": false,
+    "strict_diff": 175,
+    "target_size": 175,
+    "size": 0,
+    "extra": 0,
+    "unverified": [],
+    "unresolved": [],
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "err": "cc failed:\ncfe: Error: group.c, line 853: Dereferenced a non-pointer.\n         sp88 = *(D_8017A4F0 + ((*( u16 *)((s8 *)(D_8017A4EC) + ( 0x30)))  * 4));\n ----------------------------^\n"
+  }
+]

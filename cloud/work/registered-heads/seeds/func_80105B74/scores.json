@@ -1,0 +1,35 @@
+[
+  {
+    "matched": false,
+    "strict_diff": 141,
+    "target_size": 141,
+    "size": 0,
+    "extra": 0,
+    "err": "IDO compile failed:\ncfe: Warning 709: /tmp/am-2phn1k9g/src.c, line 819: Incompatible pointer type assignment\n         var_s1 = (u8 *) var_s1 + 8;\n ---------------^\ncfe: Warning 709: /tmp/am-2phn1k9g/src.c, line 823: Incompatible pointer type assignment\n         temp_t7 = (u8 *) &D_80142DB4 + var_a2;\n ----------------^\ncfe: Error: /tmp/am-2phn1k9g/src.c, line 852: Type struct   of rhs of assignment expression is incompatible with type unsigned char  of lhs\n             temp_t9 = *((InputRecord *) ((u8 *) &input_rec0 + (var_v0_2 * 0x4C)));\n --------------------^\n",
+    "unverified": [],
+    "unresolved": [],
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+  },
+  {
+    "matched": false,
+    "strict_diff": 141,
+    "target_size": 141,
+    "size": 0,
+    "extra": 0,
+    "err": "IDO compile failed:\ncfe: Warning 709: /tmp/am-20ltotyj/src.c, line 819: Incompatible pointer type assignment\n         var_s1 = (u8 *) var_s1 + 8;\n ---------------^\ncfe: Warning 709: /tmp/am-20ltotyj/src.c, line 823: Incompatible pointer type assignment\n         temp_t7 = (u8 *) &D_80142DB4 + var_a2;\n ----------------^\ncfe: Error: /tmp/am-20ltotyj/src.c, line 852: Type struct   of rhs of assignment expression is incompatible with type unsigned char  of lhs\n             temp_t9 = *((InputRecord *) ((u8 *) &input_rec0 + (var_v0_2 * 0x4C)));\n --------------------^\n",
+    "unverified": [],
+    "unresolved": [],
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared"
+  },
+  {
+    "matched": false,
+    "strict_diff": 141,
+    "target_size": 141,
+    "size": 0,
+    "extra": 0,
+    "err": "IDO compile failed:\ncfe: Warning 709: /tmp/am-1z1xntnh/src.c, line 819: Incompatible pointer type assignment\n         var_s1 = (u8 *) var_s1 + 8;\n ---------------^\ncfe: Warning 709: /tmp/am-1z1xntnh/src.c, line 823: Incompatible pointer type assignment\n         temp_t7 = (u8 *) &D_80142DB4 + var_a2;\n ----------------^\ncfe: Error: /tmp/am-1z1xntnh/src.c, line 852: Type struct   of rhs of assignment expression is incompatible with type unsigned char  of lhs\n             temp_t9 = *((InputRecord *) ((u8 *) &input_rec0 + (var_v0_2 * 0x4C)));\n --------------------^\n",
+    "unverified": [],
+    "unresolved": [],
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "members": [
+    "func_8010EA08",
+    "slot_state_setup",
+    "func_8010F218"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_8010F218",
+    "__standin_func_8010EA08"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "generated": "groupgen.py seeds=func_8010EA08 mode=direct",
+  "unprototyped": [],
+  "context": [],
+  "claims": []
+}

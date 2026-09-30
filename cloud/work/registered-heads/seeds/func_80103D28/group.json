@@ -1,0 +1,25 @@
+{
+  "members": [
+    "func_80103D28",
+    "slot_state_setup",
+    "func_80105480"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_80105480",
+    "__standin_func_80103D28"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "generated": "groupgen.py seeds=func_80103D28 mode=direct",
+  "unprototyped": [],
+  "context": [],
+  "claims": [],
+  "targets": {
+    "func_80105480": {
+      "addr": "0x80105480",
+      "words": 445
+    }
+  }
+}
