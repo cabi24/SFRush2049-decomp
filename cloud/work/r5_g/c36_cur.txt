@@ -1,0 +1,304 @@
+aligned differing rows: 181 size 268 / 268
+e    0 addiu sp,sp,-96                |    0 addiu sp,sp,-96
+e    1 sw ra,20(sp)                   |    1 sw ra,20(sp)
+e    2 lwc1 $f2,44(s2)                |    2 lwc1 $f2,44(s2)
+r    3 lwc1 $f10,16(s2)               |    3 lwc1 $f8,16(s2)
+e    4 lh t8,40(s2)                   |    4 lh t8,40(s2)
+e    5 lw s8,0(s2)                    |    5 lw s8,0(s2)
+r    6 mul.s $f6,$f10,$f2             |    6 mul.s $f6,$f8,$f2
+e    7 lui v1,0x8011                  |    7 lui v1,0x8011
+e    8 addu v1,v1,t8                  |    8 addu v1,v1,t8
+e    9 lb v1,29892(v1)                |    9 lb v1,29892(v1)
+e   10 move s0,zero                   |   10 move s0,zero
+e   11 move v0,s1                     |   11 move v0,s1
+e   12 sll t9,v1,0x2                  |   12 sll t9,v1,0x2
+e   13 swc1 $f6,84(sp)                |   13 swc1 $f6,84(sp)
+r   14 lwc1 $f8,20(s2)                |   14 lwc1 $f10,20(s2)
+e   15 subu t9,t9,v1                  |   15 subu t9,t9,v1
+e   16 sll t9,t9,0x2                  |   16 sll t9,t9,0x2
+r   17 mul.s $f4,$f8,$f2              |   17 mul.s $f4,$f10,$f2
+e   18 addu s3,s1,t9                  |   18 addu s3,s1,t9
+e   19 swc1 $f4,88(sp)                |   19 swc1 $f4,88(sp)
+r   20 lwc1 $f10,24(s2)               |   20 lwc1 $f8,24(s2)
+e   21 lwc1 $f4,84(sp)                |   21 lwc1 $f4,84(sp)
+r   22 mul.s $f6,$f10,$f2             |   22 mul.s $f6,$f8,$f2
+e   23 swc1 $f6,92(sp)                |   23 swc1 $f6,92(sp)
+r   24 lwc1 $f8,556(s1)               |   24 lwc1 $f10,556(s1)
+e   25 lwc1 $f6,560(s1)               |   25 lwc1 $f6,560(s1)
+r   26 add.s $f10,$f8,$f4             |   26 add.s $f8,$f10,$f4
+r   27 swc1 $f10,556(s1)              |   27 swc1 $f8,556(s1)
+r   28 lwc1 $f8,88(sp)                |   28 lwc1 $f10,88(sp)
+r   29 lwc1 $f10,564(s1)              |   29 lwc1 $f8,564(s1)
+r   30 add.s $f4,$f6,$f8              |   30 add.s $f4,$f6,$f10
+e   31 swc1 $f4,560(s1)               |   31 swc1 $f4,560(s1)
+e   32 lwc1 $f6,92(sp)                |   32 lwc1 $f6,92(sp)
+e   33 lwc1 $f4,1940(s1)              |   33 lwc1 $f4,1940(s1)
+r   34 add.s $f8,$f10,$f6             |   34 add.s $f10,$f8,$f6
+r   35 swc1 $f8,564(s1)               |   35 swc1 $f10,564(s1)
+r   36 lwc1 $f10,84(sp)               |   36 lwc1 $f8,84(sp)
+r   37 lwc1 $f8,1944(s1)              |   37 lwc1 $f10,1944(s1)
+r   38 add.s $f6,$f4,$f10             |   38 add.s $f6,$f4,$f8
+e   39 swc1 $f6,1940(s1)              |   39 swc1 $f6,1940(s1)
+e   40 lwc1 $f4,88(sp)                |   40 lwc1 $f4,88(sp)
+e   41 lwc1 $f6,1948(s1)              |   41 lwc1 $f6,1948(s1)
+r   42 add.s $f10,$f8,$f4             |   42 add.s $f8,$f10,$f4
+r   43 swc1 $f10,1944(s1)             |   43 swc1 $f8,1944(s1)
+r   44 lwc1 $f8,92(sp)                |   44 lwc1 $f10,92(sp)
+r   45 add.s $f4,$f6,$f8              |   45 add.s $f4,$f6,$f10
+e   46 swc1 $f4,1948(s1)              |   46 swc1 $f4,1948(s1)
+r   47 lwc1 $f10,628(v0)              |   47 lwc1 $f8,628(v0)
+e   48 lwc1 $f6,84(sp)                |   48 lwc1 $f6,84(sp)
+e   49 lwc1 $f4,632(v0)               |   49 lwc1 $f4,632(v0)
+e   50 addiu s0,s0,1                  |   50 addiu s0,s0,1
+r   51 add.s $f8,$f10,$f6             |   51 add.s $f10,$f8,$f6
+e   52 slti at,s0,4                   |   52 slti at,s0,4
+e   53 addiu v0,v0,12                 |   53 addiu v0,v0,12
+r   54 swc1 $f8,616(v0)               |   54 swc1 $f10,616(v0)
+r   55 lwc1 $f10,88(sp)               |   55 lwc1 $f8,88(sp)
+r   56 lwc1 $f8,624(v0)               |   56 lwc1 $f10,624(v0)
+r   57 add.s $f6,$f4,$f10             |   57 add.s $f6,$f4,$f8
+e   58 swc1 $f6,620(v0)               |   58 swc1 $f6,620(v0)
+e   59 lwc1 $f4,92(sp)                |   59 lwc1 $f4,92(sp)
+e   60 lwc1 $f6,568(v0)               |   60 lwc1 $f6,568(v0)
+r   61 add.s $f10,$f8,$f4             |   61 add.s $f8,$f10,$f4
+r   62 swc1 $f10,624(v0)              |   62 swc1 $f8,624(v0)
+r   63 lwc1 $f8,84(sp)                |   63 lwc1 $f10,84(sp)
+r   64 lwc1 $f10,572(v0)              |   64 lwc1 $f8,572(v0)
+r   65 add.s $f4,$f6,$f8              |   65 add.s $f4,$f6,$f10
+e   66 swc1 $f4,568(v0)               |   66 swc1 $f4,568(v0)
+e   67 lwc1 $f6,88(sp)                |   67 lwc1 $f6,88(sp)
+e   68 lwc1 $f4,576(v0)               |   68 lwc1 $f4,576(v0)
+r   69 add.s $f8,$f10,$f6             |   69 add.s $f10,$f8,$f6
+r   70 swc1 $f8,572(v0)               |   70 swc1 $f10,572(v0)
+r   71 lwc1 $f10,92(sp)               |   71 lwc1 $f8,92(sp)
+r   72 add.s $f6,$f4,$f10             |   72 add.s $f6,$f4,$f8
+e   73 bnez at,0xffffffffffffff98     |   73 bnez at,0xffffffffffffff98
+e   74 swc1 $f6,576(v0)               |   74 swc1 $f6,576(v0)
+r   75 lwc1 $f8,248(s3)               |   75 lwc1 $f10,248(s3)
+e   76 lwc1 $f4,84(s1)                |   76 lwc1 $f4,84(s1)
+r   77 lwc1 $f6,80(s1)                |   77 lwc1 $f6,252(s3)
+e   78 addiu s6,sp,84                 |   78 addiu s6,sp,84
+r   79 mul.s $f10,$f8,$f4             |   79 mul.s $f8,$f10,$f4
+r   80 lwc1 $f8,252(s3)               |   80 lwc1 $f10,80(s1)
+e   81 addiu s7,sp,72                 |   81 addiu s7,sp,72
+e   82 addiu s4,s1,748                |   82 addiu s4,s1,748
+r   83 mul.s $f4,$f6,$f8              |   83 mul.s $f4,$f6,$f10
+e   84 move a2,s4                     |   84 move a2,s4
+e   85 move a1,s7                     |   85 move a1,s7
+e   86 move a0,s6                     |   86 move a0,s6
+r   87 sub.s $f6,$f10,$f4             |   87 sub.s $f6,$f8,$f4
+e   88 swc1 $f6,84(sp)                |   88 swc1 $f6,84(sp)
+r   89 lwc1 $f10,76(s1)               |   89 lwc1 $f8,76(s1)
+r   90 lwc1 $f8,252(s3)               |   90 lwc1 $f10,252(s3)
+r   91 mul.s $f4,$f8,$f10             |   91 mul.s $f4,$f10,$f8
+r   92 lwc1 $f10,244(s3)              |   92 lwc1 $f8,244(s3)
+r   93 lwc1 $f8,84(s1)                |   93 lwc1 $f10,84(s1)
+r   94 mul.s $f8,$f8,$f10             |   94 mul.s $f10,$f10,$f8
+r   95 sub.s $f10,$f4,$f8             |   95 sub.s $f8,$f4,$f10
+r   96 swc1 $f10,88(sp)               |   96 swc1 $f8,88(sp)
+r   97 lwc1 $f8,80(s1)                |   97 lwc1 $f10,80(s1)
+e   98 lwc1 $f4,244(s3)               |   98 lwc1 $f4,244(s3)
+r   99 mul.s $f4,$f4,$f8              |   99 mul.s $f4,$f4,$f10
+r  100 lwc1 $f8,76(s1)                |  100 lwc1 $f10,248(s3)
+e  101 swc1 $f6,24(sp)                |  101 swc1 $f6,24(sp)
+r  102 lwc1 $f6,248(s3)               |  102 lwc1 $f6,76(s1)
+r  103 mul.s $f8,$f8,$f6              |  103 mul.s $f10,$f10,$f6
+r  104 sub.s $f6,$f4,$f8              |  104 sub.s $f6,$f4,$f10
+e  105 lwc1 $f4,24(sp)                |  105 lwc1 $f4,24(sp)
+e  106 swc1 $f6,92(sp)                |  106 swc1 $f6,92(sp)
+r  107 lwc1 $f8,64(s1)                |  107 lwc1 $f10,64(s1)
+r  108 add.s $f8,$f8,$f4              |  108 add.s $f4,$f4,$f10
+r  109 swc1 $f8,84(sp)                |  109 swc1 $f4,84(sp)
+r  110 lwc1 $f4,68(s1)                |  110 lwc1 $f10,68(s1)
+r  111 add.s $f8,$f4,$f10             |  111 add.s $f4,$f8,$f10
+r  112 swc1 $f8,88(sp)                |  112 swc1 $f4,88(sp)
+r  113 lwc1 $f4,72(s1)                |  113 lwc1 $f8,72(s1)
+r  114 sw v1,56(sp)                   |  114 sw v1,64(sp)
+r  115 add.s $f10,$f4,$f6             |  115 add.s $f10,$f6,$f8
+e  116 jal 0x9e820                    |  116 jal 0x9e820
+e  117 swc1 $f10,92(sp)               |  117 swc1 $f10,92(sp)
+e  118 addiu s5,s2,4                  |  118 addiu s5,s2,4
+e  119 move a2,s5                     |  119 move a2,s5
+e  120 move a0,s7                     |  120 move a0,s7
+e  121 jal 0xa61b0                    |  121 jal 0xa61b0
+e  122 move a1,s6                     |  122 move a1,s6
+e  123 lw t6,2004(s1)                 |  123 lw t6,2004(s1)
+e  124 lui at,0x10                    |  124 lui at,0x10
+r  125 lwc1 $f4,1472(s1)              |  125 lwc1 $f6,1472(s1)
+e  126 or t7,t6,at                    |  126 or t7,t6,at
+e  127 sw t7,2004(s1)                 |  127 sw t7,2004(s1)
+e  128 lhu v0,0(s8)                   |  128 lhu v0,0(s8)
+e  129 lui at,0x8012                  |  129 lui at,0x8012
+r  130 lwc1 $f8,16212(at)             |  130 lwc1 $f4,16212(at)
+e  131 li at,5                        |  131 li at,5
+e  132 andi s0,v0,0xf                 |  132 andi s0,v0,0xf
+e  133 beq s0,at,0x1c                 |  133 beq s0,at,0x1c
+r  134 div.s $f12,$f8,$f4             |  134 div.s $f12,$f4,$f6
+e  135 andi t8,v0,0x2000              |  135 andi t8,v0,0x2000
+e  136 bnez t8,0x10                   |  136 bnez t8,0x10
+e  137 li at,6                        |  137 li at,6
+e  138 bnel s0,at,0x2c                |  138 bnel s0,at,0x2c
+r  139 lwc1 $f4,1592(s1)              |  139 lwc1 $f6,1592(s1)
+r None                                |  140 lwc1 $f8,1592(s1)
+r None                                |  141 lui at,0x8012
+r None                                |  142 lwc1 $f4,16216(at)
+r None                                |  143 mul.s $f10,$f8,$f12
+r None                                |  144 nop
+r None                                |  145 mul.s $f2,$f10,$f4
+r None                                |  146 b 0x24
+r None                                |  147 nop
+e  140 lwc1 $f6,1592(s1)              |  148 lwc1 $f6,1592(s1)
+e  141 lui at,0x8012                  |  149 lui at,0x8012
+r  142 lwc1 $f8,16216(at)             |  150 lwc1 $f10,16220(at)
+r  143 mul.s $f10,$f6,$f12            |  151 mul.s $f8,$f6,$f12
+e  144 nop                            |  152 nop
+r  145 mul.s $f2,$f10,$f8             |  153 mul.s $f2,$f8,$f10
+r  146 b 0x24                         | None 
+e  147 nop                            |  154 nop
+r  148 lwc1 $f4,1592(s1)              |  155 lwc1 $f4,84(sp)
+r  149 lui at,0x8012                  | None 
+r  150 lwc1 $f10,16220(at)            | None 
+r  151 mul.s $f6,$f4,$f12             | None 
+r  152 nop                            | None 
+r  153 mul.s $f2,$f6,$f10             | None 
+r  154 nop                            | None 
+r  155 lwc1 $f8,84(sp)                | None 
+e  156 lwc1 $f10,92(sp)               |  156 lwc1 $f10,92(sp)
+e  157 li at,1                        |  157 li at,1
+r  158 neg.s $f4,$f8                  |  158 neg.s $f6,$f4
+r  159 neg.s $f8,$f10                 |  159 neg.s $f4,$f10
+r None                                |  160 mul.s $f8,$f6,$f2
+r None                                |  161 nop
+e  160 mul.s $f6,$f4,$f2              |  162 mul.s $f6,$f4,$f2
+r  161 nop                            |  163 swc1 $f8,72(sp)
+r  162 mul.s $f4,$f8,$f2              |  164 swc1 $f6,80(sp)
+r  163 swc1 $f6,72(sp)                | None 
+r  164 swc1 $f4,80(sp)                | None 
+e  165 lb t9,1996(s1)                 |  165 lb t9,1996(s1)
+e  166 bne t9,at,0x54                 |  166 bne t9,at,0x54
+e  167 nop                            |  167 nop
+i None                                |  168 lwc1 $f8,20(s2)
+i None                                |  169 lwc1 $f10,776(s1)
+e  168 lwc1 $f6,772(s1)               |  170 lwc1 $f6,772(s1)
+d  169 lwc1 $f10,16(s2)               | None 
+d  170 lwc1 $f4,776(s1)               | None 
+e  171 lui at,0x8012                  |  171 lui at,0x8012
+r  172 mul.s $f8,$f6,$f10             |  172 mul.s $f4,$f8,$f10
+r  173 lwc1 $f6,20(s2)                |  173 lwc1 $f8,16(s2)
+r  174 mul.s $f10,$f4,$f6             | None 
+r  175 lwc1 $f6,24(s2)                | None 
+r  176 add.s $f4,$f8,$f10             | None 
+r  177 lwc1 $f8,780(s1)               | None 
+e  178 mul.s $f10,$f6,$f8             |  174 mul.s $f10,$f6,$f8
+r  179 lwc1 $f6,16224(at)             |  175 lwc1 $f8,24(s2)
+r  180 lui at,0x8012                  |  176 add.s $f6,$f4,$f10
+r  181 add.s $f0,$f10,$f4             |  177 lwc1 $f4,780(s1)
+r  182 lwc1 $f10,16228(at)            |  178 mul.s $f10,$f8,$f4
+r  183 abs.s $f0,$f0                  |  179 lwc1 $f8,16224(at)
+r  184 mul.s $f8,$f0,$f6              | None 
+r  185 b 0x50                         | None 
+r  186 add.s $f2,$f8,$f10             | None 
+r  187 lwc1 $f4,772(s1)               | None 
+r  188 lwc1 $f6,16(s2)                | None 
+r  189 lwc1 $f10,776(s1)              | None 
+r  190 lui at,0x8012                  | None 
+r  191 mul.s $f8,$f4,$f6              | None 
+r  192 lwc1 $f4,20(s2)                | None 
+r  193 mul.s $f6,$f10,$f4             | None 
+r  194 lwc1 $f4,24(s2)                | None 
+r  195 add.s $f10,$f8,$f6             | None 
+r  196 lwc1 $f8,780(s1)               | None 
+r  197 mul.s $f6,$f4,$f8              | None 
+r  198 lwc1 $f4,16232(at)             | None 
+e  199 lui at,0x8012                  |  180 lui at,0x8012
+e  200 add.s $f0,$f6,$f10             |  181 add.s $f0,$f6,$f10
+i None                                |  182 lwc1 $f6,16228(at)
+i None                                |  183 abs.s $f0,$f0
+i None                                |  184 mul.s $f4,$f0,$f8
+i None                                |  185 b 0x50
+i None                                |  186 add.s $f2,$f4,$f6
+i None                                |  187 lwc1 $f10,20(s2)
+i None                                |  188 lwc1 $f8,776(s1)
+i None                                |  189 lwc1 $f6,772(s1)
+i None                                |  190 lui at,0x8012
+i None                                |  191 mul.s $f4,$f10,$f8
+i None                                |  192 lwc1 $f10,16(s2)
+i None                                |  193 mul.s $f8,$f6,$f10
+i None                                |  194 lwc1 $f10,24(s2)
+i None                                |  195 add.s $f6,$f4,$f8
+i None                                |  196 lwc1 $f4,780(s1)
+i None                                |  197 mul.s $f8,$f10,$f4
+i None                                |  198 lwc1 $f10,16232(at)
+i None                                |  199 lui at,0x8012
+i None                                |  200 add.s $f0,$f6,$f8
+e  201 lwc1 $f6,16236(at)             |  201 lwc1 $f6,16236(at)
+e  202 abs.s $f0,$f0                  |  202 abs.s $f0,$f0
+r  203 mul.s $f8,$f0,$f4              |  203 mul.s $f4,$f0,$f10
+r  204 add.s $f2,$f8,$f6              |  204 add.s $f2,$f4,$f6
+r  205 lwc1 $f10,88(sp)               |  205 lwc1 $f8,88(sp)
+e  206 lwc1 $f6,1592(s1)              |  206 lwc1 $f6,1592(s1)
+e  207 move a0,s7                     |  207 move a0,s7
+r  208 neg.s $f4,$f10                 |  208 neg.s $f10,$f8
+e  209 move a1,s6                     |  209 move a1,s6
+r  210 mul.s $f8,$f4,$f12             |  210 mul.s $f4,$f10,$f12
+e  211 move a2,s5                     |  211 move a2,s5
+r  212 mul.s $f10,$f8,$f6             |  212 mul.s $f8,$f4,$f6
+e  213 nop                            |  213 nop
+r  214 mul.s $f4,$f10,$f2             |  214 mul.s $f10,$f8,$f2
+e  215 jal 0x9e820                    |  215 jal 0x9e820
+r  216 swc1 $f4,76(sp)                |  216 swc1 $f10,76(sp)
+e  217 move a0,s6                     |  217 move a0,s6
+e  218 move a1,s7                     |  218 move a1,s7
+e  219 jal 0xa61b0                    |  219 jal 0xa61b0
+e  220 move a2,s4                     |  220 move a2,s4
+e  221 li at,5                        |  221 li at,5
+e  222 beq s0,at,0x10                 |  222 beq s0,at,0x10
+r  223 lw t6,56(sp)                   |  223 lw t6,64(sp)
+e  224 li at,6                        |  224 li at,6
+e  225 bne s0,at,0x6c                 |  225 bne s0,at,0x6c
+e  226 sll t7,t6,0x2                  |  226 sll t7,t6,0x2
+e  227 addu t8,s1,t7                  |  227 addu t8,s1,t7
+e  228 lw t9,1548(t8)                 |  228 lw t9,1548(t8)
+e  229 li at,8                        |  229 li at,8
+r  230 lwc1 $f8,80(sp)                |  230 lwc1 $f4,92(sp)
+e  231 bne t9,at,0x54                 |  231 bne t9,at,0x54
+r  232 lui at,0x457a                  |  232 lui at,0x447a
+e  233 mtc1 at,$f2                    |  233 mtc1 at,$f2
+r  234 abs.s $f0,$f8                  |  234 abs.s $f0,$f4
+e  235 c.lt.s $f0,$f2                 |  235 c.lt.s $f0,$f2
+r  236 lwc1 $f0,76(sp)                |  236 lwc1 $f0,88(sp)
+e  237 bc1fl 0x40                     |  237 bc1fl 0x40
+r  238 lwc1 $f10,196(s3)              |  238 lwc1 $f8,196(s3)
+e  239 abs.s $f0,$f0                  |  239 abs.s $f0,$f0
+e  240 c.lt.s $f0,$f2                 |  240 c.lt.s $f0,$f2
+e  241 nop                            |  241 nop
+e  242 bc1fl 0x2c                     |  242 bc1fl 0x2c
+i None                                |  243 lwc1 $f8,196(s3)
+i None                                |  244 lwc1 $f6,300(s1)
+i None                                |  245 add.s $f8,$f6,$f4
+i None                                |  246 swc1 $f8,300(s1)
+e  243 lwc1 $f10,196(s3)              |  247 lwc1 $f10,196(s3)
+r  244 lwc1 $f6,300(s1)               |  248 lwc1 $f6,84(sp)
+r  245 add.s $f10,$f6,$f8             |  249 add.s $f4,$f10,$f6
+r  246 swc1 $f10,300(s1)              | None 
+r  247 lwc1 $f4,196(s3)               | None 
+r  248 lwc1 $f6,72(sp)                | None 
+r  249 add.s $f8,$f4,$f6              | None 
+e  250 b 0x38                         |  250 b 0x38
+r  251 swc1 $f8,196(s3)               |  251 swc1 $f4,196(s3)
+r  252 lwc1 $f10,196(s3)              |  252 lwc1 $f8,196(s3)
+r  253 lwc1 $f4,72(sp)                |  253 lwc1 $f10,84(sp)
+r  254 lwc1 $f8,200(s3)               |  254 lwc1 $f4,200(s3)
+r  255 add.s $f6,$f10,$f4             |  255 add.s $f6,$f8,$f10
+e  256 swc1 $f6,196(s3)               |  256 swc1 $f6,196(s3)
+r  257 lwc1 $f10,76(sp)               |  257 lwc1 $f8,88(sp)
+e  258 lwc1 $f6,204(s3)               |  258 lwc1 $f6,204(s3)
+r  259 add.s $f4,$f8,$f10             |  259 add.s $f10,$f4,$f8
+r  260 swc1 $f4,200(s3)               |  260 swc1 $f10,200(s3)
+r  261 lwc1 $f8,80(sp)                |  261 lwc1 $f4,92(sp)
+r  262 add.s $f10,$f6,$f8             |  262 add.s $f8,$f6,$f4
+r  263 swc1 $f10,204(s3)              |  263 swc1 $f8,204(s3)
+e  264 lw ra,20(sp)                   |  264 lw ra,20(sp)
+e  265 addiu sp,sp,96                 |  265 addiu sp,sp,96
+e  266 jr ra                          |  266 jr ra
+e  267 nop                            |  267 nop
