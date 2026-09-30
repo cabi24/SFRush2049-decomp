@@ -23,7 +23,7 @@ extern u8 D_80154FD0[];
 extern u8 D_80155140[];
 extern u16 D_80155148[][38];
 #define RAND() (D_80154658 = D_80154658 * 1103515245u + 12345u, (D_80154658 >> 16) & 0x7FFF)
-#define RR(max) (r = RAND(), r = (u16)((u32)r % ((u16)(max) + 1)))
+#define RR(max) ((u16)(RAND() % ((u16)(max) + 1)))
 void net_session_update(void) {
     InRec *p = &input_rec0[D_801543D4];
     Sess *v = *((*p->a)->s);
@@ -37,9 +37,11 @@ void net_session_update(void) {
     for (i = 0; i < n; i++) D_80154FD0[i] = 0;
     cnt = 6 - active_player_count;
     for (k = 0; k < cnt; k++) {
-    again:
-        D_80154450[active_player_count + k].id = RR(54);
-        for (j = 0; j < k; j++) if (D_80154450[active_player_count + j].id == (u8)r) goto again;
+        do {
+            r = RR(54);
+            D_80154450[active_player_count + k].id = r;
+            for (j = 0; j < k; j++) if (D_80154450[active_player_count + j].id == (u8)r) break;
+        } while (j < k);
     }
     for (k = 0; k < cnt; k++) idx[k] = k;
     for (k = 0; k < cnt; k++) {
