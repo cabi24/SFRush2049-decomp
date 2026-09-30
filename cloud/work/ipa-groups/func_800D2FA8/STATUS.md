@@ -6,7 +6,7 @@ superseded. Builds; **1 of 3 members matches** with `-r4300_mul`
 
 ```
 time_of_day_select   50/50    MATCH   (was a prototype only; now a member)
-split_time_display   34/60    words differ (size 60/60, frame 8/8)
+split_time_display   14/60    words differ (size 60/60, frame 8/8; cloud pass 4, was 34/60)
 func_800D2FA8       264/290   words differ (size 292/290: zbuild counts the trailing pad nop)
 ```
 
@@ -47,6 +47,15 @@ register information):
 - Reusing the `node` parameter as the loop variable
   (`node = *outPos; while (node < ...)`) moves the value into `$a0` as in the
   ROM.
+
+## Cloud pass 4: split_time_display 34 -> 14
+
+The one-line change `if (*outPos < 0)` instead of `if (pos - remain < 0)` (after
+`*outPos = pos - remain;`): uopt forwards the stored value, so `pos - remain` is no longer
+a cross-block CSE temp competing with `start`/section base/`80`/graph base for registers,
+and those webs now take `$v1,$t0,$t1,$t2` as in the target. What is left are the
+`t`-temps of the loop recompute and the two arms (`t6,t7,t8` vs `t7,t8,t9`, `t3/t4` rotation).
+`func_800D2FA8` itself was not improved (a random search only found semantically wrong edits).
 
 ## Blockers
 

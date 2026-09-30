@@ -124,7 +124,7 @@ void split_time_display(s32 node, s32 pos, s32 remain, s32 *outNode, s32 *outPos
         *outNode = node;
         *outPos = pos - remain;
         if (pos < D_80151CE8[D_80151CE8[0].last].start) {
-            if (pos - remain < 0) {
+            if (*outPos < 0) {
                 *outPos = 0;
             }
         } else {

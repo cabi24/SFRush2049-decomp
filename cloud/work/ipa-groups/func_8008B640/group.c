@@ -3787,20 +3787,16 @@ void physics_velocity_integrate_f(ModelObj *arg0, s16 arg1);
 /* the five roots below only set up the register parameters of _a; they are
  * address-taken (function-pointer table in func_800AC8D4) and keep the normal ABI */
 void physics_velocity_integrate_b(ModelObj *arg0, s16 arg1) {
-    Rec808 *rec;
     GameCar *car;
-    s32 flag;
-    s32 lvl;
-    s8 t;
+    s16 lvl;
+    s32 t;
 
     car = &player_array[arg0->player];
-    rec = &((Rec808 *) &D_8014A250)[arg0->player];
-    lvl = (s32) M2C_FIELD(rec, f32 *, 0x3F0);
-    t = M2C_FIELD(rec, s8 *, 0x641);
-    flag = (s16) lvl >= 13 && (t != 0 || (M2C_FIELD(car, s32 *, 0xE8) & 0x800) != 0);
-    physics_velocity_integrate_a(arg0, flag, 194,
+    lvl = (s32) M2C_FIELD((&((Rec808 *) &D_8014A250)[arg0->player]), f32 *, 0x3F0);
+    t = M2C_FIELD((&((Rec808 *) &D_8014A250)[arg0->player]), s8 *, 0x641);
+    physics_velocity_integrate_a(arg0, lvl >= 13 && (t != 0 || (M2C_FIELD(car, s32 *, 0xE8) & 0x800) != 0), 194,
                                  0.0f,
-                                 M2C_FIELD(car, f32 *, 0xD8) + (t != 0 ? 2.0f : M2C_FIELD(rec, f32 *, 0x544)),
+                                 M2C_FIELD(car, f32 *, 0xD8) + (t != 0 ? 2.0f : M2C_FIELD((&((Rec808 *) &D_8014A250)[arg0->player]), f32 *, 0x544)),
                                  M2C_FIELD(car, f32 *, 0xDC) - 2.0f,
                                  arg1);
 }
