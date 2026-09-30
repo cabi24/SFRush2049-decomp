@@ -82,13 +82,13 @@ def objdump_command():
 _scorer_cache = {}
 
 
-def get_scorer(target_o):
-    """Scorer for a target object file, cached per path."""
-    key = str(target_o)
+def get_scorer(target_o, stack_differences=False):
+    """Scorer for a target object file, cached per path and strictness."""
+    key = (str(target_o), stack_differences)
     if key not in _scorer_cache:
         _scorer_cache[key] = Scorer(
-            target_o=key,
-            stack_differences=False,
+            target_o=str(target_o),
+            stack_differences=stack_differences,
             algorithm="difflib",
             debug_mode=False,
             ign_branch_targets=True,
@@ -97,9 +97,14 @@ def get_scorer(target_o):
     return _scorer_cache[key]
 
 
-def score(target_o, cand_o):
-    """Score a candidate object against a target object. 0 = identical."""
-    result, _ = get_scorer(target_o).score(str(cand_o) if cand_o else None)
+def score(target_o, cand_o, stack_differences=False):
+    """Score a candidate object against a target object. 0 = identical.
+
+    stack_differences=True counts stack offsets and frame sizes, which the
+    default masks: the frame size is the best hint to how many locals the
+    original had."""
+    result, _ = get_scorer(target_o, stack_differences).score(
+        str(cand_o) if cand_o else None)
     return result
 
 
