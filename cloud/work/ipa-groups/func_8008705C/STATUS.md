@@ -1,6 +1,6 @@
 # func_8008705C -> 45/45 MATCH (real function, extent 45 words)
 
-## Current status (Rescored 2026-09-30 (Round 2 addendum), master d0891f3.)
+## Current status (rescored 2026-09-30, master d0891f3)
 
 **45/45 MATCH** (strict, `extscore.py --norm`: exact after alignment 45/45, structure 1.000; extent 45 words).
 Caveats: matches only with stand-in callers and a `func_80086A50` stand-in (`stub.c`; retail is 387 words),
@@ -24,3 +24,9 @@ Tricks that got the match:
 - `func_8008705C` is NOT in `keep` (two stand-in callers), yet keeps ABI `a0`.
 
 Blockers: `func_80086A50` (387 words) is a context stand-in only.
+
+## Spliceability
+
+Unspliceable as is: MATCH, but callers and `func_80086A50` are stand-ins. The stand-ins only reproduce the IPA register/frame context; they are not
+the retail callers, so this C cannot go through `blob_splice` until the real callers are in the group
+(or the maintainers' whole-module IPA is used). Scores above were reproduced on 2026-09-30 with `extscore.py --norm`.

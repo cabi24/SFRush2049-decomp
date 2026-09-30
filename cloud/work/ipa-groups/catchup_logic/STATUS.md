@@ -1,9 +1,9 @@
 # catchup_logic  ->  really `func_801084D4` (unregistered head)
 
-## Current status (Rescored 2026-09-30 (Round 2 addendum), master d0891f3.)
+## Current status (rescored 2026-09-30, master d0891f3)
 
 **Not a MATCH. Builds; 0/375 words strict; 198/375 words match after alignment, structure 0.783**
-(the headline below says 159/375 and 0.715: superseded). Scored with `python3 cloud/work/ipa-groups/catchup_logic/extscore.py --norm cloud/work/ipa-groups/catchup_logic`:
+(the first-draft figure 159/375, 0.715 is superseded). Scored with `python3 cloud/work/ipa-groups/catchup_logic/extscore.py --norm cloud/work/ipa-groups/catchup_logic`:
 
 ```
 func_801084D4  size 363/375  326/375 words differ (position-based)  exact after alignment 198/375
@@ -14,8 +14,7 @@ Blockers: dead `move s0,v0` after `slot_state_setup`, separate `0.0f` loads, reg
 `slot_state_setup`, `camera_shake_update`, `object_byte9_set`, `state_utility`, `func_800ED66C`, `dispatch_handler`,
 and the unregistered head 0x80108154 (see "Closure gaps" below).
 
-**Result: not a MATCH. First full draft: 363 of 375 words emitted; 159/375 words
-match exactly after alignment, register-blind structure 0.715.** Hand-written
+History: first full draft emitted 363 of 375 words (159/375 aligned, 0.715); current tuned figures are above. Hand-written
 from the retail words.
 
 ```
