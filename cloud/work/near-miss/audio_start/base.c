@@ -3795,14 +3795,10 @@ typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
 void *audio_start(void)
 {
-  s32 temp_v0;
   u8 *new_var;
+  s32 temp_v0;
   new_var = (D_8012E6C0 * 0x4B00) + ((u8 *) (&D_80124FE8));
-  if (D_80149438 == 0) { return (void *) 0; }
-  temp_v0 = D_80149438;
-  D_80149438 = temp_v0 + 8;
-  *(s32 *) temp_v0 = 0xDF000000;
-  *(s32 *) (D_80149438 - 4) = 0;
+  if (D_80149438 == 0) { return (void *) 0; } temp_v0 = D_80149438; *(volatile s32 *) &D_80149438 = temp_v0 + 8; *(s32 *) temp_v0 = 0xDF000000; *(s32 *) (temp_v0 + 4) = 0;
   D_80149438 = 0;
   return (s32 *) new_var;
 }
