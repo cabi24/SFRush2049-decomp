@@ -3791,16 +3791,19 @@ s32 world_velocity_integrate();
 typedef struct { s32 a; s32 b; s32 c; s32 d; } Q16;
 void func_800BB7F4(void)
 {
-  Q16 *q = (Q16 *) &D_8013C308;
+  s32 *p;
+  s32 *end;
+  p = &D_8013C308;
+  end = &D_8013C378;
   D_8013C300 = 0;
   D_8013C304 = 0;
   do
   {
-    q->a = 0;
-    q->b = 0;
-    q->c = 0;
-    q->d = 0;
-    q++;
-  } while (q != (Q16 *) &D_8013C378);
+    p += 4;
+    p[-3] = 0;
+    p[-2] = 0;
+    p[-1] = 0;
+    p[-4] = 0;
+  } while (p != end);
   D_8013F1DC = 0;
 }
