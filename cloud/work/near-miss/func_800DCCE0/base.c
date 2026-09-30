@@ -3793,22 +3793,15 @@ typedef s8 M2C_UNK8;
 typedef s16 M2C_UNK16;
 typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
-void func_800DCCE0(s32 arg1, s32 arg2)
+void func_800DCCE0(s32 arg0, s32 arg1, s32 arg2)
 {
-  int new_var2;
-  s32 temp_a0;
-  s8 *new_var;
-  long new_var3;
-  void *temp_s0;
- do { } while (0); new_var3 = arg1 * 0x58;
-  new_var2 = 0x2C;
-  temp_s0 = (s32 *) ((new_var3 + (arg2 * new_var2)) + ((u8 *) (&D_80153FD8)));
-  new_var = (s8 *) (((s8 *) temp_s0) + 0);
-  temp_a0 = *((s32 *) (((s8 *) temp_s0) + 0x20));
-  new_var2 = 7;
-  if ((temp_a0 & new_var2) != 0)
+  u8 *p;
+  s32 v;
+  p = ((u8 *) &D_80153FD8) + arg1 * 0x58 + arg2 * 0x2C;
+  v = *((s32 *) (p + 0x20));
+  if ((v & 7) != 0)
   {
-    resource_type_select(temp_a0);
-    *new_var = 1;
+    resource_type_select(v);
+    *p = 1;
   }
 }

@@ -31,6 +31,9 @@ extern u8 camera_shake_update(s32);
 extern s8 object_byte9_set(s8);
 extern s8 slot_state_setup(s32);
 
+/* d0_/f*_ are unused placeholders: IDO reserves a stack slot for every declared
+   local, and the retail frame (224) has ~11 more named-local words than the
+   locals reconstructed here. They only reproduce frame size and buf/cbuf offsets. */
 s32 func_801084D4(s32 arg0)
 {
     s32 d0_;
@@ -51,9 +54,9 @@ s32 func_801084D4(s32 arg0)
     s32 i;
     s32 ms;
     s32 w1, w2;
-    s32 x, y, px;
+    register s32 x, y, px;
     s32 adv;
-    s8 old;
+    s32 old;
     s32 s;
     f32 t;
 
@@ -85,7 +88,7 @@ s32 func_801084D4(s32 arg0)
             D_80142740[i] = 0.0f;
             continue;
         }
-        x = 3 * w1 + w2;
+        x = (6 * w1 + 2 * w2) / 2;
         ms = (s32)(D_80142770[i] * 1000.0f);
         ms = ms < 0 ? 0 : ms;
         buf[0] = ms / 600000 + 48;
@@ -102,8 +105,7 @@ s32 func_801084D4(s32 arg0)
             func_800ED66C((f32)(s32)(t * 255.0f / 3.0f));
         }
         y = (s16)D_80115EA8[D_80151AD0 - 1][i].y;
-        px = D_80115EA8[D_80151AD0 - 1][i].x;
-        px -= x;
+        px = D_80115EA8[D_80151AD0 - 1][i].x - x;
         for (j = 0; j < 9; j++) {
             cbuf[0] = buf[j];
             if (buf[j] != 58 && buf[j] != 46) {
