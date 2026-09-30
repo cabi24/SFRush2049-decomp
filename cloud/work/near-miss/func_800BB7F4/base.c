@@ -3788,24 +3788,19 @@ void world_object_destroy(void *arg0);
 void world_physics_tick(void);
 void world_trigger_activate(void);
 s32 world_velocity_integrate();
+typedef struct { s32 a; s32 b; s32 c; s32 d; } Q16;
 void func_800BB7F4(void)
 {
-  s32 *new_var2;
-  int new_var;
-  s32 *var_v1;
-  var_v1 = &D_8013C308;
-  new_var = 0;
-  new_var2 = &D_8013C378;
-  D_8013C300 = new_var;
-  if ((var_v1 && var_v1) && var_v1)
-  {
-  }
-  D_8013C304 = new_var;
+  Q16 *q = (Q16 *) &D_8013C308;
+  D_8013C300 = 0;
+  D_8013C304 = 0;
   do
   {
-    var_v1 += 0x10;
-    *((s32 *) (var_v1 + 0x0)) = (*((s32 *) (var_v1 - 0x4)) = (*((s32 *) (var_v1 - 0x8)) = (*((s32 *) (var_v1 - 0xC)) = new_var)));
-  }
-  while ((var_v1 != new_var2) & 0xFFFFFFFFu);
-  D_8013F1DC = new_var;
+    q->a = 0;
+    q->b = 0;
+    q->c = 0;
+    q->d = 0;
+    q++;
+  } while (q != (Q16 *) &D_8013C378);
+  D_8013F1DC = 0;
 }
