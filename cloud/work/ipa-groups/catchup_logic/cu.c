@@ -33,9 +33,20 @@ extern s8 slot_state_setup(s32);
 
 s32 func_801084D4(s32 arg0)
 {
-    u8 cbuf[2];
+    s32 d0_;
     u8 buf[10];
-    u8 *p;
+    u8 cbuf[2];
+    s32 f0_;
+    s32 f1_;
+    s32 f2_;
+    s32 f3_;
+    s32 f4_;
+    s32 f5_;
+    s32 f6_;
+    s32 f7_;
+    s32 f8_;
+    s32 f9_;
+    s32 j;
     s32 i;
     s32 ms;
     s32 w1, w2;
@@ -48,7 +59,7 @@ s32 func_801084D4(s32 arg0)
     if ((D_801174B4 & 8) || D_8015723C == 0) {
         return 1;
     }
-    render_helper(0.0f);
+    render_helper(0);
     D_80118E20[1] = 3;
     D_80118E20[0] = 1;
     if (D_80151AD0 == 1) {
@@ -93,17 +104,17 @@ s32 func_801084D4(s32 arg0)
         }
         y = (s16)D_80115EA8[D_80151AD0 - 1][i].y;
         px = D_80115EA8[D_80151AD0 - 1][i].x - x;
-        for (p = buf; p != &buf[9]; p++) {
-            cbuf[0] = *p;
-            if (*p != 58 && *p != 46) {
+        for (j = 0; j < 9; j++) {
+            cbuf[0] = buf[j];
+            if (buf[j] != 58 && buf[j] != 46) {
                 cbuf[0] = 56;
                 dispatch_handler(0);
                 state_utility(px, y, cbuf);
-                cbuf[0] = *p;
+                cbuf[0] = buf[j];
             }
             dispatch_handler(22);
             state_utility(px, y, cbuf);
-            if (p == &buf[1] || p == &buf[2] || p == &buf[4] || p == &buf[5]) {
+            if (j == 1 || j == 2 || j == 4 || j == 5) {
                 adv = (w1 + w2) / 2;
             } else {
                 adv = w1;

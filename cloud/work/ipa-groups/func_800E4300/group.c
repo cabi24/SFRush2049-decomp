@@ -570,12 +570,24 @@ typedef struct {
 } D_80143FD8_Record;
 extern D_80143FD8_Record *D_80143FD8;
 typedef struct {
-    u8 pad000[0x7C6];
-    u16 unk7C6;
-    u8 pad7C8[0x7E8 - 0x7C8];
-    u8 unk7E8;
+    u8 pad000[0x220];
+    f32 vx;                 /* 0x220 */
+    f32 vy;                 /* 0x224 */
+    f32 vz;                 /* 0x228 */
+    f32 x22C;
+    f32 y230;
+    f32 z234;
+    u8 pad238[0x794 - 0x238];
+    f32 pos[3];             /* 0x794 */
+    u8 pad7A0[0x7C6 - 0x7A0];
+    s16 unk7C6;
+    u8 pad7C8[2];
+    s16 unk7CA;
+    u8 pad7CC[0x7E2 - 0x7CC];
+    s16 unk7E2;
+    u8 pad7E4[0x808 - 0x7E4];
 } D_8014A250_Record;
-extern D_8014A250_Record D_8014A250;
+extern D_8014A250_Record D_8014A250[];
 typedef struct {
     u8 pad00[0x0C];
     u8 unk0C;
@@ -2572,7 +2584,7 @@ extern f32 D_80152740;
 extern f32 D_80152748;
 extern s16 D_8015274C;
 extern s32 D_80152750;
-extern s32 D_80152768;
+extern s16 D_80152768;
 extern s32 D_8015276C;
 extern s32 D_80152770;
 extern s32 D_80152788;
@@ -2581,7 +2593,7 @@ extern u16 D_801527A4;
 extern s32 D_801527A8;
 extern s32 D_801527C8;
 extern s16 D_801527D0;
-extern s16 D_801527D8;
+extern s16 D_801527D8[];
 extern s32 D_801527E4;
 extern s32 D_801527E8;
 extern f32 D_80152800;
@@ -3701,7 +3713,19 @@ typedef s64 M2C_UNK64;
 
 /* group members */
 s16 func_800E4300(s16 *arg2, s16 ipa_t2, s16 ipa_t5, s16 arg1, s16 ipa_t0);
-void func_800E451C(s32 arg0, void *ipa_s5, void *ipa_s6);
+typedef struct Nav {
+    f32 a;                  /* 0x00 */
+    f32 b;                  /* 0x04 */
+    f32 c;                  /* 0x08 */
+    f32 d;                  /* 0x0C */
+    u8 pad10[0x10];
+    f32 tm;                 /* 0x20 */
+    s16 pt;                 /* 0x24 */
+    s16 flag;               /* 0x26 */
+    s16 sel;                /* 0x28 */
+    s16 tk;                 /* 0x2A */
+} Nav;
+void func_800E451C(s32 arg0, D_8014A250_Record *car, Nav *nav);
 
 typedef struct {
     /* 0x00 */ u8 pad0[2];
@@ -3792,178 +3816,137 @@ s16 func_800E4300(s16 *pos, s16 ipa_t2, s16 ipa_t5, s16 player, s16 ipa_t0) {
     return best;
 }
 
-void func_800E451C(s32 arg0, void *ipa_s5, void *ipa_s6) {
-    s16 spE4;
-    f32 spBC;
-    f32 spB0;
-    f32 spAC;
-    f32 sp7C;
-    f32 sp78;
-    f32 sp74;
-    f32 sp6C;
-    s16 sp60[3]; /* cloud: the position passed to func_800E4300 (sp+0x60..0x64) */
-    f32 sp3C;
-    f32 sp38;
-    f32 sp30;
-    f32 temp_f0;
-    f32 temp_f0_2;
-    f32 temp_f0_3;
-    f32 temp_f12;
-    f32 temp_f12_2;
-    f32 temp_f12_3;
-    f32 temp_f12_4;
-    f32 temp_f14;
-    f32 temp_f14_2;
-    f32 temp_f14_3;
-    f32 temp_f16;
-    f32 temp_f16_2;
-    f32 temp_f18;
-    f32 temp_f18_2;
-    f32 temp_f22;
-    f32 temp_f24;
-    f32 temp_f26;
-    f32 temp_f2;
-    f32 temp_f2_2;
-    f32 temp_f2_3;
-    f32 temp_f2_4;
-    f32 temp_f2_5;
-    f32 temp_f2_6;
-    f32 temp_f30;
-    f32 var_f20;
-    f32 var_f20_2;
-    f32 var_f4;
-    s16 temp_a0;
-    s16 temp_a1;
-    s16 temp_v0;
-    s16 temp_v0_2;
-    s16 var_s3;
-    s16 var_s7;
-    s16 var_v1;
-    u8 temp_t6;
-    void *temp_s0;
-    void *temp_s0_2;
-    void *temp_s0_3;
-    void *temp_v1;
-    void *temp_v1_2;
+void func_800E451C(s32 arg0, D_8014A250_Record *car, Nav *nav) {
+    s16 best;
+    f32 pz, px, qz, qx, dz, dx, ex, ez, len;
+    f32 bestScore;
+    f32 dist, ft;
+    f32 cx;
+    f32 cz;
+    f32 fl, score, thr;
+    TrackPt *p0;
+    TrackPt *p1;
+    volatile s32 padB[6];
+    f32 dir[3];
+    s16 i;
+    f32 tm;
+    s16 sel;
+    s16 pp[3];
+    s16 cur;
+    volatile s32 padC[7];
+    f32 v[2];
+    volatile s32 padE;
+    f32 tot;
+    volatile s32 padD[4];
 
-    if (M2C_FIELD(ipa_s6, s16 *, 0x26) >= 0) {
-        M2C_FIELD(ipa_s6, s16 *, 0x26) = -1;
-        M2C_FIELD(ipa_s6, f32 *, 0x20) = (f32) D_801543CC;
+    if (nav->flag >= 0) {
+        nav->flag = -1;
+        nav->tm = D_801543CC;
     }
-    if ((arg0 != 0) && ((D_801543CC - D_80154190) > 0.5f) && ((D_80154182 == -1) || (M2C_FIELD(ipa_s5, s16 *, 0x7C6) == (&D_801527D8)[D_80154182]))) {
-        var_v1 = 0;
+    if ((arg0 != 0) && ((D_801543CC - D_80154190) > 0.5f) && ((D_80154182 == -1) || (car->unk7C6 == D_801527D8[D_80154182]))) {
+        i = 0;
         if (D_80152768 > 0) {
-loop_8:
-            D_80154182 += 1;
-            if (D_80154182 >= D_80152768) {
-                D_80154182 = 0;
-            }
-            if (M2C_FIELD(((D_8014A250_Record *) ((u8 *) &D_8014A250 + ((&D_801527D8)[D_80154182] * 0x808))), s16 *, 0x7CA) == 0) {
-                var_v1 += 1;
-                if (var_v1 < D_80152768) {
-                    goto loop_8;
+            do {
+                D_80154182 += 1;
+                if (D_80154182 >= D_80152768) {
+                    D_80154182 = 0;
                 }
-            }
+                if (D_8014A250[D_801527D8[D_80154182]].unk7CA != 0) {
+                    break;
+                }
+                i += 1;
+            } while (i < D_80152768);
         }
         D_80154190 = D_801543CC;
-        spB0 = M2C_FIELD(ipa_s5, f32 *, 0x794);
-        spE4 = 0;
-        spBC = 0.0f;
-        spAC = M2C_FIELD(ipa_s5, f32 *, 0x79C);
-        temp_f2 = M2C_FIELD(ipa_s5, f32 *, 0x220);
-        temp_f12 = M2C_FIELD(ipa_s5, f32 *, 0x228);
-        temp_f18 = M2C_FIELD(ipa_s5, f32 *, 0x224);
-        var_s7 = -1;
-        temp_f16 = (temp_f2 * temp_f2) + (temp_f12 * temp_f12);
-        if (temp_f16 < D_80124440) {
-            sp7C = 0.0f;
-            sp74 = 0.0f;
-            sp78 = 0.0f;
+        cx = car->pos[0];
+        best = 0;
+        bestScore = 0.0f;
+        cz = car->pos[2];
+        sel = -1;
+        len = (car->vx * car->vx) + (car->vz * car->vz);
+        if (len < D_80124440) {
+            dir[2] = 0.0f;
+            dir[0] = 0.0f;
+            dir[1] = 0.0f;
         } else {
-            temp_f14 = 1.0f / sqrtf(temp_f16);
-            sp7C = temp_f14;
-            sp78 = temp_f12 * temp_f14;
-            sp74 = temp_f2 * temp_f14;
+            ft = 1.0f / sqrtf(len);
+            dir[2] = ft;
+            dir[1] = car->vz * ft;
+            dir[0] = car->vx * ft;
         }
-        temp_f30 = D_80124444;
-        var_s3 = 0;
-        sp30 = (temp_f18 * temp_f18) + temp_f16;
-        sp6C = D_801543CC;
+        thr = D_80124444;
+        cur = 0;
+        tot = (car->vy * car->vy) + len;
+        tm = D_801543CC;
         do {
-            var_f20 = 0.0f;
-            sp60[0] = (s16) (s32) M2C_FIELD(ipa_s5, f32 *, 0x794);
-            sp60[1] = (s16) (s32) M2C_FIELD(ipa_s5, f32 *, 0x798);
-            sp60[2] = (s16) (s32) M2C_FIELD(ipa_s5, f32 *, 0x79C);
-            temp_v0 = func_800E4300(sp60, M2C_FIELD(ipa_s6, s16 *, 0x28), M2C_FIELD(ipa_s6, s16 *, 0x24), M2C_FIELD(ipa_s5, s16 *, 0x7E2), var_s3);
-            temp_s0 = D_8012E5EC + (temp_v0 * 8);
-            temp_f22 = (f32) M2C_FIELD(temp_s0, s16 *, 4);
-            temp_f24 = (f32) M2C_FIELD(temp_s0, s16 *, 0);
-            temp_s0_2 = D_8012E5EC + (func_800B9338(temp_v0, var_s3) * 8);
-            temp_f0 = temp_f22 - spAC;
-            temp_f2_2 = temp_f24 - spB0;
-            temp_f18_2 = (f32) M2C_FIELD(temp_s0_2, s16 *, 4);
-            temp_f26 = (f32) M2C_FIELD(temp_s0_2, s16 *, 0);
-            if (((temp_f0 * temp_f0) + (temp_f2_2 * temp_f2_2)) < 400.0f) {
-                temp_f2_3 = temp_f24 - temp_f26;
-                temp_f16_2 = temp_f22 - temp_f18_2;
-                temp_f14_2 = -temp_f16_2;
-                temp_f12_2 = sqrtf((temp_f2_3 * temp_f2_3) + (temp_f14_2 * temp_f14_2));
-                if (D_80124448 < temp_f12_2) {
-                    temp_f12_3 = fabsf((temp_f2_3 * spAC) + (temp_f14_2 * spB0) + ((temp_f24 * temp_f16_2) - (temp_f22 * temp_f2_3))) / temp_f12_2;
-                    if (temp_f12_3 < 10.0f) {
-                        var_f20 = 1.0f - (temp_f12_3 * D_8012444C);
+            score = 0.0f;
+            pp[0] = (s16) (s32) car->pos[0];
+            pp[1] = (s16) (s32) car->pos[1];
+            pp[2] = (s16) (s32) car->pos[2];
+            i = func_800E4300(pp, nav->sel, nav->pt, car->unk7E2, cur);
+            p0 = &D_8012E5E8[cur].points[i];
+            pz = (f32) p0->z;
+            px = (f32) p0->x;
+            p1 = &D_8012E5E8[cur].points[func_800B9338(i, cur)];
+            dz = pz - cz;
+            dx = px - cx;
+            qz = (f32) p1->z;
+            qx = (f32) p1->x;
+            if (((dz * dz) + (dx * dx)) < 400.0f) {
+                ex = px - qx;
+                ez = pz - qz;
+                ft = -ez;
+                len = sqrtf((ex * ex) + (ft * ft));
+                if (D_80124448 < len) {
+                    dist = fabsf((ex * cz) + (ft * cx) + ((px * ez) - (pz * ex))) / len;
+                    if (dist < 10.0f) {
+                        score = 1.0f - (dist * D_8012444C);
                     }
                 }
             }
-            temp_t6 = M2C_FIELD((D_8012E5EC + (temp_v0 * 8)), u8 *, 6);
-            var_f4 = (f32) temp_t6;
-            if ((s32) temp_t6 < 0) {
-                var_f4 += 4294967296.0f;
+            fl = (f32) (u32) D_8012E5E8[cur].points[i].flag;
+            ft = fl * D_80124450;
+            dist = fabsf(tot - (ft * ft));
+            if (dist < thr) {
+                score += (1.0f - (dist / thr)) * 0.5f;
             }
-            temp_f2_4 = var_f4 * D_80124450;
-            temp_f0_2 = fabsf(sp30 - (temp_f2_4 * temp_f2_4));
-            if (temp_f0_2 < temp_f30) {
-                var_f20 += (1.0f - (temp_f0_2 / temp_f30)) * 0.5f;
+            if (cur == nav->tk) {
+                score += 1.0f;
             }
-            if (var_s3 == M2C_FIELD(ipa_s6, s16 *, 0x2A)) {
-                var_f20 += 1.0f;
-            }
-            if (sp7C == 0.0f) {
-                var_f20_2 = var_f20 + 1.0f;
+            if (dir[2] == 0.0f) {
+                score = score + 1.0f;
             } else {
-                temp_f2_5 = temp_f18_2 - temp_f22;
-                temp_f12_4 = temp_f26 - temp_f24;
-                temp_f14_3 = 1.0f / sqrtf((temp_f2_5 * temp_f2_5) + (temp_f12_4 * temp_f12_4));
-                var_f20_2 = var_f20 + (((sp78 * (temp_f2_5 * temp_f14_3)) + (sp74 * (temp_f12_4 * temp_f14_3)) + 1.0f) * 0.5f);
+                dz = qz - pz;
+                dx = qx - px;
+                ft = 1.0f / sqrtf((dz * dz) + (dx * dx));
+                score = score + (((dir[1] * (dz * ft)) + (dir[0] * (dx * ft)) + 1.0f) * 0.5f);
             }
-            if (spBC < var_f20_2) {
-                spBC = var_f20_2;
-                spE4 = temp_v0;
-                var_s7 = var_s3;
+            if (bestScore < score) {
+                bestScore = score;
+                best = i;
+                sel = cur;
             }
-            var_s3 += 1;
-        } while (var_s3 != 4);
-        if ((var_s7 != -1) && (var_s7 != M2C_FIELD(ipa_s6, s16 *, 0x28))) {
-            M2C_FIELD(ipa_s6, s16 *, 0x24) = spE4;
-            M2C_FIELD(ipa_s6, s16 *, 0x26) = -1;
-            M2C_FIELD(ipa_s6, s16 *, 0x28) = var_s7;
-            M2C_FIELD(ipa_s6, f32 *, 0x20) = sp6C;
+            cur += 1;
+        } while (cur != 4);
+        if ((sel != -1) && (sel != nav->sel)) {
+            nav->pt = best;
+            nav->flag = -1;
+            nav->sel = sel;
+            nav->tm = tm;
         }
     }
-    temp_a1 = M2C_FIELD(ipa_s6, s16 *, 0x28);
-    temp_a0 = M2C_FIELD(ipa_s6, s16 *, 0x24);
-    temp_s0_3 = M2C_FIELD(((u16 *) ((u8 *) &D_8012E5E8 + (temp_a1 * 8))), s32 *, 4) + (temp_a0 * 8);
-    temp_v0_2 = func_800B9338(temp_a0, temp_a1);
-    temp_v1 = M2C_FIELD(((u16 *) ((u8 *) &D_8012E5E8 + (M2C_FIELD(ipa_s6, s16 *, 0x28) * 8))), s32 *, 4) + (temp_v0_2 * 8);
-    sp38 = (f32) (M2C_FIELD(temp_v1, s16 *, 0) - M2C_FIELD(temp_s0_3, s16 *, 0));
-    sp3C = (f32) (M2C_FIELD(temp_v1, s16 *, 4) - M2C_FIELD(temp_s0_3, s16 *, 4));
-    M2C_FIELD(ipa_s6, f32 *, 0xC) = func_800BDD90(&sp38);
-    temp_f0_3 = M2C_FIELD(ipa_s5, f32 *, 0x22C) - (f32) M2C_FIELD(temp_s0_3, s16 *, 0);
-    temp_f2_6 = M2C_FIELD(ipa_s5, f32 *, 0x234) - (f32) M2C_FIELD(temp_s0_3, s16 *, 4);
-    M2C_FIELD(ipa_s6, f32 *, 0) = (f32) ((sp38 * temp_f0_3) + (temp_f2_6 * sp3C));
-    M2C_FIELD(ipa_s6, f32 *, 4) = (f32) ((temp_f0_3 * sp3C) - (sp38 * temp_f2_6));
-    temp_v1_2 = M2C_FIELD(((u16 *) ((u8 *) &D_8012E5E8 + (M2C_FIELD(ipa_s6, s16 *, 0x28) * 8))), s32 *, 4) + (func_800B9338(temp_v0_2, M2C_FIELD(ipa_s6, s16 *, 0x28)) * 8);
-    M2C_FIELD(ipa_s6, f32 *, 8) = (f32) (((f32) (M2C_FIELD(temp_v1_2, s16 *, 0) - M2C_FIELD(temp_s0_3, s16 *, 0)) * sp3C) - (sp38 * (f32) (M2C_FIELD(temp_v1_2, s16 *, 4) - M2C_FIELD(temp_s0_3, s16 *, 4))));
+    p0 = &D_8012E5E8[nav->sel].points[nav->pt];
+    i = func_800B9338(nav->pt, nav->sel);
+    p1 = &D_8012E5E8[nav->sel].points[i];
+    v[0] = (f32) (p1->x - p0->x);
+    v[1] = (f32) (p1->z - p0->z);
+    nav->d = func_800BDD90(v);
+    dx = car->x22C - (f32) p0->x;
+    dz = car->z234 - (f32) p0->z;
+    nav->a = (v[0] * dx) + (dz * v[1]);
+    nav->b = (dx * v[1]) - (v[0] * dz);
+    p1 = &D_8012E5E8[nav->sel].points[func_800B9338(i, nav->sel)];
+    nav->c = ((f32) (p1->x - p0->x) * v[1]) - (v[0] * (f32) (p1->z - p0->z));
 }
 
 /* stand-in caller: keeps func_800E4300 out of line under -O3 */

@@ -3800,10 +3800,12 @@ void func_800966D8(s32 arg0, s32 arg1)
   int new_var2;
   s32 var_v0;
   u16 temp_a0;
+  u16 keep;
   var_v0 = arg0 | 0x80000000;
   new_var2 = 6;
   loop_1:
   temp_a0 = *((u16 *) (((s8 *) var_v0) + 6));
+  keep = temp_a0;
 
   if (!((*((u16 *) (((s8 *) var_v0) + new_var2))) & 0x4000))
   {
@@ -3817,7 +3819,7 @@ void func_800966D8(s32 arg0, s32 arg1)
       }
     }
   }
-  if (temp_a0 & 0x8000)
+  if (keep & 0x8000)
   {
     var_v0 += 0x10;
     goto loop_1;

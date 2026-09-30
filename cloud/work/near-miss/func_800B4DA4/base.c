@@ -3798,6 +3798,7 @@ void func_800B4DA4(s32 arg0)
 {
   D_80146108_Record *var_s1;
   D_80146108_Record *var_s1_2;
+  s8 *q;
   s32 temp_v0;
   s32 var_s0;
   s32 var_s0_2;
@@ -3805,17 +3806,17 @@ void func_800B4DA4(s32 arg0)
   {
     D_80117428 = 1;
     var_s1 = &D_80146108;
-    var_s1 = (D_80146108_Record *) (((u8 *) var_s1) + 1);
     var_s0 = 0;
     do
     {
       temp_v0 = reverb_setup(arg0, var_s0 & 0xFF);
       var_s0 += 1;
       var_s1 = (D_80146108_Record *) (((u8 *) var_s1) + 1);
-      var_s1->pad00[0] = (u8) temp_v0;
+      ((u8 *) var_s1)[-1] = (u8) temp_v0;
     }
     while (var_s0 != 0x15);
-    update_viewport(*((s8 *) (((s8 *) (&D_80146108)) + 0x13)), *((s8 *) (((s8 *) (&D_80146108)) + 0x14)));
+    q = (s8 *) &D_80146108;
+    update_viewport(q[0x13], q[0x14]);
     return;
   }
   var_s1_2 = &D_80146108;

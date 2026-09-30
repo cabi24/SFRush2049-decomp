@@ -3798,13 +3798,11 @@ s16 func_8009002C(s16 arg0)
   s16 new_var;
   int var_v1;
   s32 *var_a1;
-  int new_var2;
   var_v1 = 0;
   new_var = arg0;
   if (D_80156990 > 0)
   {
     var_a1 = &D_8012E700;
-    new_var2 = -1;
     loop_2:
     if (new_var == (*((s16 *) (((s8 *) var_a1) + 0x16))))
     {
@@ -3813,13 +3811,8 @@ s16 func_8009002C(s16 arg0)
     }
 
     var_v1 += 1;
-    var_a1 = var_a1;
     var_a1 = var_a1 + 0x11;
-    if (var_v1 >= D_80156990)
-    {
-      return new_var2;
-    }
-    goto loop_2;
+    if (var_v1 < D_80156990) goto loop_2;
   }
   return -1;
 }

@@ -3795,20 +3795,19 @@ typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
 void *func_800A7D6C(void)
 {
-  void *sp1C;
   s32 temp_t7;
-  void *temp_a1;
+  u8 *temp_a1;
+  f32 z;
   temp_t7 = (D_80156BAC = D_80156BAC + 1);
   if (D_80156BD0 < temp_t7)
   {
     D_80156BD0 = temp_t7;
   }
-  temp_a1 = (s32 *) ((temp_t7 * 0x30) + ((u8 *) (&D_8015F740)));
-  temp_t7 = 0.0f;
-  *((f32 *) (((s8 *) temp_a1) + 0x24)) = temp_t7;
-  *((f32 *) (((s8 *) temp_a1) + 0x28)) = temp_t7;
-  *((f32 *) (((s8 *) temp_a1) + 0x2C)) = 0.0f;
-  sp1C = temp_a1;
+  z = 0.0f;
+  temp_a1 = (u8 *) ((temp_t7 * 0x30) + ((u8 *) (&D_8015F740)));
+  *((f32 *) (temp_a1 + 0x24)) = z;
+  *((f32 *) (temp_a1 + 0x28)) = z;
+  *((f32 *) (temp_a1 + 0x2C)) = z;
   math_utility(&D_8011418C, temp_a1);
-  return sp1C;
+  return temp_a1;
 }
