@@ -154,6 +154,93 @@ def _text(obj):
         capture_output=True, check=True).stdout)
 
 
+def _sections(obj):
+    """{name: (index, type, size)} from the section headers."""
+    out = subprocess.run([READELF, "-SW", str(obj)], capture_output=True,
+                         text=True, check=True).stdout
+    secs = {}
+    for m in re.finditer(r"\[\s*(\d+)\]\s+(\S+)\s+(\S+)\s+[0-9a-f]+\s+[0-9a-f]+\s+([0-9a-f]+)",
+                         out):
+        secs[m.group(2)] = (m.group(1), m.group(3), int(m.group(4), 16))
+    return secs
+
+
+def _section_bytes(obj, name):
+    return subprocess.run([OBJCOPY, "-O", "binary", "-j", name, str(obj), "/dev/stdout"],
+                          capture_output=True, check=True).stdout
+
+
+LOCAL_DATA = (".data", ".sdata", ".rodata", ".rdata", ".lit4", ".lit8")
+
+
+def _sext16(v):
+    return v - 0x10000 if v & 0x8000 else v
+
+
+def _local_data_bases(obj, rels, syms, in_member, image_word, image_bytes):
+    """{section name: image address} for the unit's own data sections.
+
+    A function-local static lives in the unit's .data, so its relocations name
+    a section of this object, not an image symbol. The section's image address
+    is derived from the retail HI16/LO16 words at each relocation site; every
+    site must agree on one base, and the section's bytes must equal the image
+    there. Trailing zero bytes beyond the last referenced word are IDO's
+    alignment padding (the linked program placed the next unit's data there)
+    and are not compared. .bss and other sections are refused.
+    """
+    secs = _sections(obj)
+    by_index = {ndx: name for name, (ndx, _, _) in secs.items()}
+
+    def section_of(name):
+        if name in secs:
+            return name, 0
+        sym = syms.get(name)
+        if sym and sym[1] in by_index:
+            return by_index[sym[1]], sym[0]
+        return None, 0
+
+    text = _text(obj)
+    word = lambda o: struct.unpack(">I", text[o:o + 4])[0]
+    candidates, reach, pending = {}, {}, []
+    for offset, rtype, name in rels:
+        if not in_member(offset):
+            continue
+        section, value = section_of(name)
+        if section is None or section == ".text":
+            continue
+        if section not in LOCAL_DATA or secs[section][1] != "PROGBITS":
+            raise GroupError(f"relocation against {section} ({secs[section][1]}) "
+                             "is not supported")
+        if rtype == "R_MIPS_HI16":
+            pending.append((offset, name))
+        elif rtype == "R_MIPS_LO16":
+            his = [h for h, n in pending if n == name]
+            if not his:
+                raise GroupError(f"{section} LO16 at .text+0x{offset:x} has no HI16")
+            pending = [(h, n) for h, n in pending if n != name]
+            ours = value + ((word(his[0]) & 0xFFFF) << 16) + _sext16(word(offset) & 0xFFFF)
+            for h in his:
+                retail = ((image_word(h) & 0xFFFF) << 16) + _sext16(image_word(offset) & 0xFFFF)
+                candidates.setdefault(section, set()).add((retail - ours) & 0xFFFFFFFF)
+            reach[section] = max(reach.get(section, 0), ours + 4)
+        else:
+            raise GroupError(f"unsupported {rtype} against {section} at .text+0x{offset:x}")
+    bases = {}
+    for section, found in candidates.items():
+        if len(found) != 1:
+            raise GroupError(f"{section}: relocation sites disagree on its image address "
+                             f"{sorted(hex(b) for b in found)}")
+        base = found.pop()
+        data = _section_bytes(obj, section)
+        used = max(reach[section], len(data.rstrip(b"\0")))
+        used = min((used + 3) & ~3, len(data))
+        retail = image_bytes(base, used)
+        if retail != data[:used]:
+            raise GroupError(f"{section}: {used} bytes at 0x{base:08x} differ from the image")
+        bases[section] = base
+    return bases
+
+
 def _symbols(obj):
     """{name: (value, section_index or 'UND')} from the symbol table."""
     out = subprocess.run([READELF, "-sW", str(obj)], capture_output=True,
@@ -204,10 +291,12 @@ def member_slices(obj, members, extents):
     return slices, text_ndx
 
 
-def relocate(obj, slices, text_ndx, extern, members=None):
+def relocate(obj, slices, text_ndx, extern, members=None, image=None):
     """Bytes of each member slice with its .text relocations applied at the
     member's image address. Supports R_MIPS_26 and REL HI16/LO16 pairs;
-    anything else (and any relocation outside .text) is refused.
+    anything else (and any relocation outside .text) is refused. HI16/LO16
+    pairs against the unit's own data sections need `image` (bytes, base
+    address); see `_local_data_bases`.
 
     Check body lengths for members being spliced. Other slices supply context
     addresses only; those functions need not match their retail bodies.
@@ -245,10 +334,30 @@ def relocate(obj, slices, text_ndx, extern, members=None):
         raise GroupError(f"relocation targets .text+0x{offset:x}, which no member "
                          "slice covers (a call into a stand-in?)")
 
+    applied = [slices[m] for m in (slices if members is None else members)]
+    in_member = lambda o: any(lo <= o < lo + size for lo, _, size in applied)
+
+    def image_at(vaddr, n):
+        if image is None:
+            raise GroupError("relocations against the unit's own data need the image")
+        data, base = image
+        return data[vaddr - base:vaddr - base + n]
+
+    def image_word(offset):
+        return struct.unpack(">I", image_at(text_addr(offset), 4))[0]
+
+    local = _local_data_bases(obj, rels, syms, in_member, image_word, image_at)
+    sec_index = {ndx: name for name, (ndx, _, _) in _sections(obj).items()
+                 if name in local}
+
     def resolve(name, addend):
         sym = syms.get(name)
         if name == ".text":
             return text_addr(addend)
+        if name in local:
+            return local[name] + addend
+        if sym and sym[1] in sec_index:
+            return local[sec_index[sym[1]]] + sym[0] + addend
         if sym and sym[1] == text_ndx:
             return text_addr(sym[0] + addend)
         if name in extern:
@@ -268,8 +377,6 @@ def relocate(obj, slices, text_ndx, extern, members=None):
     # slices map call targets to image addresses, but their bodies are never
     # spliced and may be longer than their extent (a HI16/LO16 pair can
     # straddle the cut), so their own relocations are not touched.
-    applied = [slices[m] for m in (slices if members is None else members)]
-    in_member = lambda o: any(lo <= o < lo + size for lo, _, size in applied)
     pending_hi = []
     for offset, rtype, name in rels:
         if not in_member(offset):
@@ -309,8 +416,14 @@ def group_bodies(group, document=None, extern=None, obj_dir=OBJ_DIR, root=GROUP_
         raise GroupError(f"group {group} is not compiled ({obj} missing)")
     slices, text_ndx = member_slices(obj, spec["members"] + spec["context"], extents)
     extern = blob_splice.image_symbols(document) if extern is None else extern
+    image = None
+    if "image" in document:
+        path = Path(document["image"]["path"])
+        path = REPO / path if not path.is_absolute() else path
+        image = (path.read_bytes(), int(document["image"]["base"], 16))
     bodies = relocate(obj, slices, text_ndx, extern,
-                      members=None if include_context else spec["members"])
+                      members=None if include_context else spec["members"],
+                      image=image)
     if not include_context:
         bodies = {m: b for m, b in bodies.items() if m in spec["members"]}
     return bodies
