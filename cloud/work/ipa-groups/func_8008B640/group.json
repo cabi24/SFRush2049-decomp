@@ -23,5 +23,13 @@
   ],
   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
   "generated": "blob_group seed from build/ipa_groups.json",
-  "unprototyped": []
+  "unprototyped": [],
+  "claims": [
+    "model_bounds_calc",
+    "physics_velocity_integrate_b",
+    "physics_velocity_integrate_c",
+    "physics_velocity_integrate_d",
+    "physics_velocity_integrate_e",
+    "physics_velocity_integrate_f"
+  ]
 }

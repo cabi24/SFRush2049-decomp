@@ -11,7 +11,7 @@ Compared with the same strict score.compare. Cloud Lane A helper (hand-written g
 """
 import sys, tempfile, io, contextlib, json, shlex, re, argparse, zlib
 from pathlib import Path
-ROOT = Path(__file__).resolve().parents[4]
+ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT / 'tools' / 'cloud')); import score
 ap = argparse.ArgumentParser(); ap.add_argument('g'); ap.add_argument('--as1', default='-r4300_mul'); ap.add_argument('--only', default='')
 ap.add_argument('--flags', default=''); ap.add_argument('--dis', default=''); ap.add_argument('--norm', action='store_true'); ap.add_argument('--umerge', default=''); ap.add_argument('--uopt', default=''); ap.add_argument('--ugen', default=''); ap.add_argument('--show', type=int, default=12)

@@ -26,6 +26,8 @@
   "generated": "blob_group seed from build/ipa_groups.json",
   "unprototyped": [],
   "claims": [
-    "func_800C9590"
+    "func_800C9590",
+    "player_mode_set",
+    "player_state_set"
   ]
 }

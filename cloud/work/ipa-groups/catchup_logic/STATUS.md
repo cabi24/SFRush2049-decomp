@@ -3,7 +3,7 @@
 ## Current status (rescored 2026-09-30, master d0891f3)
 
 **Not a MATCH. Builds; 0/375 words strict; 198/375 words match after alignment, structure 0.783**
-(the first-draft figure 159/375, 0.715 is superseded). Scored with `python3 cloud/work/ipa-groups/catchup_logic/extscore.py --norm cloud/work/ipa-groups/catchup_logic`:
+(the first-draft figure 159/375, 0.715 is superseded). Scored with `python3 cloud/work/tools/extscore.py --norm cloud/work/ipa-groups/catchup_logic`:
 
 ```
 func_801084D4  size 363/375  326/375 words differ (position-based)  exact after alignment 198/375
@@ -18,7 +18,7 @@ History: first full draft emitted 363 of 375 words (159/375 aligned, 0.715); cur
 from the retail words.
 
 ```
-python3 cloud/work/ipa-groups/catchup_logic/extscore.py cloud/work/ipa-groups/catchup_logic --norm
+python3 cloud/work/tools/extscore.py cloud/work/ipa-groups/catchup_logic --norm
 ```
 
 ## What this is

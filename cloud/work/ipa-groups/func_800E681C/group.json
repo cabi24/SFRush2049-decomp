@@ -14,5 +14,8 @@
   ],
   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
   "generated": "hand-written from the assembly (cloud Lane A); see STATUS.md",
-  "unprototyped": []
+  "unprototyped": [],
+  "claims": [
+    "func_800E627C"
+  ]
 }

@@ -3,7 +3,7 @@
 ## Current status (rescored 2026-09-30, master d0891f3)
 
 **Not a MATCH. Builds; 0/158 words strict; 152/158 words match after alignment.** Scored with
-`python3 cloud/work/ipa-groups/dynamic_difficulty/extscore.py --norm cloud/work/ipa-groups/dynamic_difficulty`:
+`python3 cloud/work/tools/extscore.py --norm cloud/work/ipa-groups/dynamic_difficulty`:
 
 ```
 func_80107EDC  size 159/158  109/158 words differ (position-based)  exact after alignment 152/158, structure 0.937
@@ -20,7 +20,7 @@ scheduling swap at the tail. Written by hand from the retail words, tuned with `
 not a MATCH, and the head is unregistered.
 
 ```
-python3 cloud/work/ipa-groups/dynamic_difficulty/extscore.py cloud/work/ipa-groups/dynamic_difficulty --norm
+python3 cloud/work/tools/extscore.py cloud/work/ipa-groups/dynamic_difficulty --norm
 # func_80107EDC: exact words after alignment 152/158; register-blind structure 0.937
 ```
 

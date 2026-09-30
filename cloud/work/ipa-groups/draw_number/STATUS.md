@@ -11,7 +11,7 @@ callers `draw_speedometer`, `func_800CCCCC`. It makes twelve calls to `func_800C
 slot, s8 value)`: ten byte-table lookups indexed by `idx` and two float scalings
 (`value = (s8)(f*100 - 75)`). INDEX's 973 insns (`menu_confirm_render`) is a caller.
 
-Verify: `python3 cloud/work/ipa-groups/draw_number/extscore.py cloud/work/ipa-groups/draw_number`
+Verify: `python3 cloud/work/tools/extscore.py cloud/work/ipa-groups/draw_number`
 
 - Each table needs its own extern symbol (`D_8011103C[]`, ...). One shared base makes IDO hoist
   the base into a saved register.

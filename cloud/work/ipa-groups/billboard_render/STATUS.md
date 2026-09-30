@@ -3,7 +3,7 @@
 ## Current status (rescored 2026-09-30, master d0891f3)
 
 **Not a MATCH. Builds; 0/244 words strict; 186/244 words match after alignment, structure 0.959.** Scored with
-`python3 cloud/work/ipa-groups/billboard_render/extscore.py --norm cloud/work/ipa-groups/billboard_render`:
+`python3 cloud/work/tools/extscore.py --norm cloud/work/ipa-groups/billboard_render`:
 
 ```
 billboard_render  size 247/244  56/244 words differ (2 .rodata jump-table relocations unverified)
@@ -23,7 +23,7 @@ resources then go to state 4 or 5; 4 `func_800C813C(0,0); func_800F1930()`; 5 th
 
 Draft: `br.c`, context stand-in `ctx.c` (`func_800F1210`, 454 words retail; the stand-in only
 forces the caller to save s0-s8 and two float registers). Verify:
-`python3 cloud/work/ipa-groups/billboard_render/extscore.py cloud/work/ipa-groups/billboard_render --norm`
+`python3 cloud/work/tools/extscore.py cloud/work/ipa-groups/billboard_render --norm`
 (the `.rodata` warning is the jump table).
 
 Remaining differences (247 vs 244 words):

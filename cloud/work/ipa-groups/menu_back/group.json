@@ -12,5 +12,6 @@
   "generated": "blob_group seed from build/ipa_groups.json",
   "unprototyped": [
     "format_string_parse"
-  ]
+  ],
+  "claims": []
 }

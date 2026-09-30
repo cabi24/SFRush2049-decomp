@@ -20,5 +20,8 @@
   "context": [
     "func_800B98D8",
     "minimap_render"
+  ],
+  "claims": [
+    "time_of_day_select"
   ]
 }

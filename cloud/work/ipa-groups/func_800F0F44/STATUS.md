@@ -3,7 +3,7 @@
 ## Current status (rescored 2026-09-30, master d0891f3)
 
 **Not a MATCH. Builds; 0/116 words strict; 46/116 words match after alignment, structure 0.672.** Scored with
-`python3 cloud/work/ipa-groups/func_800F0F44/extscore.py --norm cloud/work/ipa-groups/func_800F0F44`:
+`python3 cloud/work/tools/extscore.py --norm cloud/work/ipa-groups/func_800F0F44`:
 
 ```
 func_800F0F44  size 113/116  116/116 words differ (position-based)
@@ -21,7 +21,7 @@ matching `D_8014978C`/`D_80152570` bytes with `o->b8/b9`, `func_800950AC(name, r
 stores the node in `D_80146198[idx]`, and sets the result to 1 if `func_8008AD04(o->pos, r->pos)==0`
 and two words match, else 2. Slot stride is 772 bytes at `D_80144030`, `r = *D_8014A160`.
 
-Draft: `f.c`. Verify: `python3 cloud/work/ipa-groups/func_800F0F44/extscore.py cloud/work/ipa-groups/func_800F0F44 --norm`
+Draft: `f.c`. Verify: `python3 cloud/work/tools/extscore.py cloud/work/ipa-groups/func_800F0F44 --norm`
 
 Control flow and word count are near (113 vs 116). Differences are register allocation:
 - retail puts the index in `$s8`, constants 1 and 2 in `$s6`/`$s7` (the `== 2` compare uses `s7`)
