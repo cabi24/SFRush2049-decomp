@@ -17,8 +17,7 @@ void func_800E8D50(Car *c, float *p1, s32 flag, float *p2) {
     s32 k;
     float out[3];
     s32 i;
- float b;
- float a; 
+/*@3: float a;\n float b; || float b;\n float a; */
     i = c->f860;
     if (flag) func_800E8CB8(c);
     if (*(s16 *)((u8 *)D_8014A914 + c->f859 * 2056) >= 0) {
@@ -33,11 +32,9 @@ void func_800E8D50(Car *c, float *p1, s32 flag, float *p2) {
             D_80152708[i] *= 0.5f;
         }
     }
- b = 1.0f - D_80152708[i];
- a = 1.0f - b;
- a = D_80152708[i]; 
+/*@2: a = D_80152708[i];\n b = 1.0f - a; || b = 1.0f - D_80152708[i];\n a = D_80152708[i]; || a = D_80152708[i];\n b = 1.0f - D_80152708[i]; || b = 1.0f - D_80152708[i];\n a = 1.0f - b;\n a = D_80152708[i]; */
     for (k = 0; k < 3; k++) {
-D_80150B70[i].f132[k] =  D_80150B70[i].f132[k] * a + b * (p2[k] + p1[k]);  
+D_80150B70[i].f132[k] = /*@4: D_80150B70[i].f132[k] * a + b * (p2[k] + p1[k]); || D_80150B70[i].f132[k] * a + (p2[k] + p1[k]) * b; || D_80150B70[i].f132[k] * a + b * (p2[k] + p1[k]); */ 
         out[k] = p1[k] - D_80150B70[i].f132[k];
     }
     vector_normalize_length(out, D_80150B70[i].v96);
