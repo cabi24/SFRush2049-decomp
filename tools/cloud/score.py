@@ -448,8 +448,10 @@ def main():
             names = [args.name]
             context = []
         else:
-            claims_declared = json.loads(
-                (Path(args.group_dir) / "group.json").read_text()).get("claims")
+            claims_declared = None
+            if args.claims:
+                claims_declared = json.loads(
+                    (Path(args.group_dir) / "group.json").read_text()).get("claims")
             try:
                 spec = compile_group(Path(args.group_dir), obj)
             except SystemExit as exc:
