@@ -21,6 +21,7 @@ import gzip
 import os
 import re
 import shutil
+import signal
 import subprocess
 import sys
 import tempfile
@@ -44,6 +45,29 @@ def _toolkit():
     return Path(toolkit)
 
 
+# Pass weights for IDO, on top of the permuter's own [base] and [ido] tables
+# (decomp-permuter default_weights.toml). Each raises a pass that the hand
+# matches keep needing (specs/012 notes, CloudHandoffV2.md):
+#   reorder_decls       declaration order decides the stack slots
+#   pad_var_decl        an unused local / pad array reaches an exact frame size
+#   *_type              s16/u8 parameters and extern element types
+#   expand_expr         expression style instead of m2c's temporaries
+IDO_WEIGHTS = {
+    "perm_reorder_decls": 30,
+    "perm_pad_var_decl": 8,
+    "perm_randomize_function_type": 15,
+    "perm_randomize_internal_type": 15,
+    "perm_randomize_external_type": 10,
+    "perm_expand_expr": 40,
+}
+
+
+def legacy_profile():
+    """CONVEYOR_SEARCH_PROFILE=legacy restores the old search (masked stack
+    offsets, the permuter's generic weights). For benchmarking only."""
+    return os.environ.get("CONVEYOR_SEARCH_PROFILE") == "legacy"
+
+
 def _write_compile_sh(perm_dir, flags):
     toolkit = _toolkit()
     script = perm_dir / "compile.sh"
@@ -55,9 +79,11 @@ def _write_compile_sh(perm_dir, flags):
     # The permuter's Scorer takes a custom objdump only via settings.toml;
     # without it, it searches PATH and dies on nodes that (correctly) have no
     # system mips objdump. Route it to the toolkit-bundled one.
-    (perm_dir / "settings.toml").write_text(
-        f'objdump_command = "{scoring.objdump_command()}"\n'
-    )
+    text = f'objdump_command = "{scoring.objdump_command()}"\n'
+    if not legacy_profile():
+        text += 'compiler_type = "ido"\n\n[weight_overrides]\n'
+        text += "".join(f"{k} = {v}\n" for k, v in IDO_WEIGHTS.items())
+    (perm_dir / "settings.toml").write_text(text)
 
 
 def _best_output(perm_dir):
@@ -79,6 +105,23 @@ def _gz_b64(path):
     return base64.b64encode(gzip.compress(Path(path).read_bytes())).decode()
 
 
+def kill_group(proc, grace=5):
+    """Stop the permuter and everything it forked, then reap it."""
+    try:
+        os.killpg(proc.pid, signal.SIGTERM)
+    except (ProcessLookupError, PermissionError):
+        pass
+    try:
+        proc.wait(timeout=grace)
+    except subprocess.TimeoutExpired:
+        pass
+    try:
+        os.killpg(proc.pid, signal.SIGKILL)
+    except (ProcessLookupError, PermissionError):
+        pass
+    proc.wait(timeout=30)
+
+
 def drive(perm_dir, manifest, progress, base_score, wall_budget, cores, extra_args=()):
     """Run the permuter in `perm_dir` until zero, the wall budget, or exit;
     stream improvements into progress.json. Returns (payload, artifacts)."""
@@ -96,30 +139,36 @@ def drive(perm_dir, manifest, progress, base_score, wall_budget, cores, extra_ar
          "--stop-on-zero", "--best-only", "-j", str(cores), *extra_args],
         stdout=subprocess.DEVNULL, stderr=open(stderr_log, "wb"),
         cwd=str(perm_dir), env=env,
+        # Its own session: the permuter forks one worker per core, and each
+        # worker forks compilers. Killing only the parent (a cancelled job's
+        # SIGTERM, a crash) orphaned them; 1,330 of them once sat on Rocky
+        # at load 87. The whole group is killed in `finally` below.
+        start_new_session=True,
     )
-    started = time.monotonic()
-    we_stopped_it = False
-    best_reported = base_score
-    while proc.poll() is None:
-        if time.monotonic() - started > wall_budget:
-            we_stopped_it = True
-            proc.terminate()
-            try:
-                proc.wait(timeout=30)
-            except subprocess.TimeoutExpired:
-                proc.kill()
-            break
-        time.sleep(POLL_SECONDS)
-        score, source = _best_output(perm_dir)
-        if score is not None and score < best_reported:
-            best_reported = score
-            progress.update(best_score=score, best_source=_gz_b64(source))
-            if score == 0:
+    try:
+        started = time.monotonic()
+        we_stopped_it = False
+        best_reported = base_score
+        while proc.poll() is None:
+            if time.monotonic() - started > wall_budget:
                 we_stopped_it = True
+                proc.terminate()
+                try:
+                    proc.wait(timeout=30)
+                except subprocess.TimeoutExpired:
+                    proc.kill()
                 break
-    if proc.poll() is None:
-        proc.kill()
-        proc.wait(timeout=30)  # reap; no zombies for the agent's lifetime
+            time.sleep(POLL_SECONDS)
+            score, source = _best_output(perm_dir)
+            if score is not None and score < best_reported:
+                best_reported = score
+                progress.update(best_score=score, best_source=_gz_b64(source))
+                if score == 0:
+                    we_stopped_it = True
+                    break
+
+    finally:
+        kill_group(proc)
 
     final_score, final_source = _best_output(perm_dir)
     # An early nonzero exit with no output is an infrastructure failure,
@@ -176,7 +225,8 @@ def run(job_dir, manifest, progress):
                 capture_output=True, text=True, timeout=120,
             )
             if proc.returncode == 0:
-                base_score = scoring.score(perm_dir / "target.o", base_o.name)
+                base_score = scoring.score(perm_dir / "target.o", base_o.name,
+                                           stack_differences=not legacy_profile())
         if base_score is None:
             return {
                 "target_id": manifest["target_id"],
@@ -194,6 +244,7 @@ def run(job_dir, manifest, progress):
                 "wall_seconds_used": 0,
             }, {"best.c": str(perm_dir / "base.c")}
 
-        return drive(perm_dir, manifest, progress, base_score, wall_budget, cores)
+        return drive(perm_dir, manifest, progress, base_score, wall_budget, cores,
+                     extra_args=() if legacy_profile() else ("--stack-diffs",))
     finally:
         shutil.rmtree(perm_dir, ignore_errors=True)
