@@ -1,3 +1,5 @@
+float fabsf(float); /* cloud: m2c emits fabsf for abs.s; undeclared it was an implicit int call */
+#pragma intrinsic (fabsf)
 #define NULL ((void *)0)
 #define TRUE 1
 #define FALSE 0
@@ -44,6 +46,64 @@ typedef f32 Mat3f[3][3];
 typedef f32 Mat4f[4][4];
 typedef f32 MtxF[4][4];
 struct OSPfs;
+/* cloud: trick-score records, hand-derived from the retail words */
+typedef struct Stunt {           /* D_80152038[player], 0x78 bytes */
+    s16 active;                  /* 0x00 */
+    s16 done;                    /* 0x02 */
+    f32 time;                    /* 0x04 */
+    s32 best;                    /* 0x08 */
+    s32 cur;                     /* 0x0C */
+    s32 last;                    /* 0x10 */
+    s32 total;                   /* 0x14 */
+    s32 count;                   /* 0x18 */
+    s32 lastcode;                /* 0x1C */
+    s16 cnt[10];                 /* 0x20 */
+    s16 prevcnt[10];             /* 0x34 */
+    s16 hist[10];                /* 0x48 */
+    u8 pad5C[4];
+    f32 f60;                     /* 0x60 */
+    s8 s64;
+    s8 s65;
+    s8 s66;
+    s8 s67;
+    s32 mult;                    /* 0x68 */
+    s32 prev;                    /* 0x6C */
+    s32 s70;
+    s32 flag;                    /* 0x74 */
+} Stunt;
+extern Stunt D_80152038[];
+typedef struct Ply {             /* D_801569B8[player], 0x7C bytes */
+    s32 flags;                   /* 0x00 */
+    f32 a04, a08, a0C;
+    f32 a10, a14, a18;
+    f32 a1C, a20, a24;
+    f32 a28, a2C, a30;
+    f32 t34, t38, t3C, t40, t44, t48, t4C, t50, t54;
+    u8 pad58[0x24];
+} Ply;
+extern Ply D_801569B8[];
+typedef struct PCar {            /* player_array[], 0x3B8 bytes */
+    u8 pad00[0xE8];
+    s32 fE8;
+    u8 padEC[0x358 - 0xEC];
+    s8 f358;
+    u8 pad359[0x368 - 0x359];
+    f32 vx, vy, vz;
+    u8 pad374[0x3B8 - 0x374];
+} PCar;
+extern PCar player_array[];
+typedef struct HudRec {          /* D_8014A250[], 0x808 bytes */
+    u8 pad000[0x3F8];
+    s16 f3F8;
+    u8 pad3FA[0x5EC - 0x3FA];
+    f32 f5EC, f5F0, f5F4, f5F8;
+    u8 pad5FC[0x61C - 0x5FC];
+    u16 s61C, s61E, s620, s622;
+    u8 pad624[0x6C4 - 0x624];
+    s16 f6C4;
+    u8 pad6C6[0x808 - 0x6C6];
+} HudRec;
+extern f32 D_80123EF0, D_80123F08, D_80123F24;
 extern u8 rspbootTextStart[], rspbootTextEnd[];
 extern u8 gspF3DEX2_fifoTextStart[], gspF3DEX2_fifoTextEnd[];
 extern u8 gspF3DEX2_fifoDataStart[], gspF3DEX2_fifoDataEnd[];
@@ -456,7 +516,6 @@ typedef struct {
     u8 unk3A3;
     u8 pad3A4[0x3B8 - 0x3A4];
 } GameCar;
-extern GameCar player_array[8];
 typedef struct {
     u8 pad00[0x39];
     u8 unk39;
@@ -530,7 +589,8 @@ extern u16 D_8011ED0C[];
 extern f32 D_80123FB4, D_80123FB8, D_80123FBC, D_801242A8;
 extern u8 D_80124F84;
 extern s32 D_80124FC8;
-extern u8 D_8012E67C, D_8013FECB;
+extern u8 D_8012E67C;
+extern s8 D_8013FECB;
 extern s32 D_80140008;
 extern u16 D_80140618;
 extern s32 D_801406B8, D_801407BC, D_80140804, D_80140A00;
@@ -627,7 +687,7 @@ extern SoundState *sound_control(s16 arg0, s16 arg1, SoundClearRecord *arg2, s16
 extern void game_loop(void);
 extern void game_mode_handler(void);
 extern void attract_or_transition(void);
-
+extern void process_inputs(void);
 extern void playgame_state_change(void);
 extern void RaceStateMachine_Update(void);
 extern void countdown(void);
@@ -643,7 +703,7 @@ extern void viUpdateTime(void);
 extern void sound_init(void);
 extern s32 wheel_render_full(s32, s32, s32, s32);
 extern void world_trigger_check(void);
-
+extern void controller_poll(void);
 extern void Input_ApplyPadConfig(void *);
 extern void InitMaxPath(void);
 extern s32 audio_frame_sync(s32, s32, s32, s32, s32);
@@ -659,8 +719,8 @@ extern void init_state_begin(void);
 extern s32 object_create(s32);
 extern s32 object_render_cleanup(void **);
 extern void player_cleanup_slots(void);
-
-
+extern void player_mode_set(s32, s32);
+extern void player_state_set(s32, s32);
 extern void resource_slots_clear_multiple(void);
 extern void scene_cleanup_slots(void);
 extern void speed_set(void);
@@ -731,7 +791,7 @@ extern s32 D_8002E928;
 extern s32 D_8002E960;
 extern s32 D_8002E998;
 extern s32 D_8002EB90;
-extern s32 D_8002EB94;
+extern f32 D_8002EB94;
 extern s32 D_8002EB98;
 extern s32 D_8002ECC0;
 extern s32 D_8002ECF8;
@@ -2390,13 +2450,13 @@ extern s8 D_80149B4B;
 extern s32 D_80149B50;
 extern s32 D_80149B58;
 extern s8 D_80149B60;
-s8 D_80149B64[4];
+extern s8 D_80149B64;
 extern s8 D_80149B65;
 extern s8 D_80149B66;
 extern s8 D_80149B67;
 extern s32 D_80149B68;
 extern s8 D_80149B70;
-s8 D_80149B74[4];
+extern s8 D_80149B74;
 extern s8 D_80149B75;
 extern s8 D_80149B76;
 extern s8 D_80149B77;
@@ -2529,7 +2589,6 @@ extern s8 D_80152030;
 extern s8 D_80152031;
 extern s16 D_80152032;
 extern s32 D_80152034;
-extern s32 D_80152038;
 extern s32 D_80152040;
 extern s32 D_80152050;
 extern s32 D_80152218;
@@ -2716,7 +2775,6 @@ extern s32 D_801569A0;
 extern s32 D_801569A4;
 extern s32 D_801569A8;
 extern s32 D_801569AC;
-extern s32 D_801569B8;
 extern s32 D_80156BA8;
 extern s32 D_80156BAC;
 extern s32 D_80156BB0;
@@ -2759,7 +2817,7 @@ extern u16 D_80161368;
 extern u16 D_80161378;
 extern u16 D_8016137A;
 extern s8 D_8016137C;
-extern s32 D_80161388;
+extern f32 D_80161388[3];
 extern s8 D_80161394;
 extern f32 D_8016139C;
 extern s8 D_801613A0;
@@ -2884,7 +2942,7 @@ void camera_play_script(void *arg0, void *arg1, void *arg2);
 void camera_position_update(void);
 void camera_process_input(void *arg0);
 void camera_reset(void);
-void camera_scene_manager(void);
+
 void camera_shake_start(void);
 u8 camera_shake_update(s32 arg0);
 void camera_smooth_follow(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
@@ -3184,13 +3242,13 @@ void func_800BFD8C(f32 arg0, void *arg1, void *arg2, void *arg3);
 void func_800C0294(s32 arg0, void *arg1);
 void func_800C0828(void *arg0);
 void func_800C1A00(s32 arg0, void *arg1);
-s32 func_800C1B60();
-void func_800C2004(void);
-void func_800C220C(void);
-void func_800C2430(void);
-void func_800C26C4(void);
-void func_800C2944(void);
-void func_800C3578(s32 arg0);
+void func_800C1B60(s32 code, s32 idx);
+void func_800C2004(s32 idx);
+void func_800C220C(s32 idx);
+
+
+
+void func_800C3578(s32 idx);
 void func_800C36A0(void);
 s16 func_800C3AD0(void);
 void func_800C4078(s16 arg0);
@@ -3209,7 +3267,7 @@ s32 func_800C8738(s32 arg0);
 void func_800C885C(void);
 void func_800C8918(void);
 void func_800C9480(void);
-
+f32 func_800C9590(f32 arg1, s32 arg0);
 void func_800CB748(void *arg0, void *arg1);
 void func_800CB9D0(u32 arg0);
 s32 func_800CBF2C(void);
@@ -3323,8 +3381,8 @@ void func_800E627C(void *arg0, void *arg1);
 void func_800E6460(void *arg0, void *arg1);
 void func_800E681C(void);
 void func_800E6AF8(void);
-
-
+void func_800E7038(void);
+void func_800E7134(void);
 s32 func_800E73D8(void);
 void func_800E762C(s32 arg0);
 void func_800E7710(void);
@@ -3698,322 +3756,577 @@ typedef s64 M2C_UNK64;
 
 
 /* group members */
-void controller_poll(void);
-f32 func_800C9590(f32 range, f32 calib, s32 raw);
-void func_800E7038(void);
-void func_800E7134(void);
-void player_mode_set(s32 player, s32 value);
-void player_state_set(s32 player, s32 value);
-void process_inputs(void);
+void camera_scene_manager(void);
+void func_800C2430(s32 ipa_t1);
+void func_800C26C4(s32 ipa_t1);
+void func_800C2944(s32 ipa_t1);
 
-/* typed views of prelude globals (the prelude's widths are wrong for these) */
-#define gResetTick    (*(s8 *) &D_8011195C)
-#define gSkipFrames   (*(u8 *) &D_80111960)
-#define gHeld         ((s32 *) &D_80149B30)
-#define gPrevPressed  ((s32 *) &D_80149B10)
-#define gConnected    D_80149B64
-#define gStickRaw     ((s8 (*)[2]) &D_80149B50)
-#define gStickCal     ((s8 (*)[2]) &D_80149AF8)
-#define gRepeatTime   ((u32 (*)[32]) &D_80149B90)
-#define gStick        D_80156958
-
-/* read the pads: sticks, held/pressed masks and auto-repeat per button */
-void controller_poll(void)
-{
+void func_800C1B60(s32 code, s32 idx) {
+    Stunt *p;
+    s32 add;
+    s32 hits;
     s32 i;
-    s32 b;
-    s32 held;
-    u32 mask;
-    s32 connected;
-    f32 repeat;
-    f32 x;
 
-    osRecvMesg((OSMesgQueue *) &D_801497A8, NULL, 1);
-    if (gResetTick != 0) {
-        gResetTick = 0;
-        D_80111958 = game_loop_tick;
+    p = &D_80152038[idx];
+    p->flag = 0;
+    p->active = 1;
+    p->time = D_801543CC;
+    if (code != 11) {
+        if (p->cnt[code] == 0 && p->count > 0) {
+            p->mult++;
+            p->s70++;
+        }
+        p->cnt[code]++;
     }
-    D_80156944 = 0;
-    D_80149784 = 0;
-    D_8015694C = 0;
-    if (gSkipFrames != 0) {
-        gSkipFrames--;
-        for (i = 0; i < 4; i++) {
-            gPrevPressed[i] = 0;
-            gStick[i].unk4 = 0.0f;
-            gStick[i].unk0 = 0.0f;
-            D_80143A00[i] = 0;
-            D_80156978[i] = 0;
-            D_80156998[i] = 0;
-        }
-        osJamMesg((OSMesgQueue *) &D_801497A8, NULL, 0);
-        return;
+    if (code != p->lastcode) {
+        p->lastcode = code;
+        p->count++;
     }
-    repeat = D_80123F94;
-    for (i = 0; i < 4; i++) {
-        x = func_800C9590(1.0f, gStickCal[i][0], gStickRaw[i][0]);
-        gStick[i].unk4 = func_800C9590(1.0f, gStickCal[i][1], gStickRaw[i][1]);
-        gStick[i].unk0 = x;
-        D_80156978[i] = gHeld[i];
-        held = D_80156978[i];
-        D_80156998[i] = gPrevPressed[i];
-        gPrevPressed[i] = 0;
-        D_80143A00[i] = 0;
-        if (held != 0) {
-            D_80111958 = game_loop_tick;
-        }
-        connected = gConnected[i];
-        if (connected) {
-            D_8015694C |= D_80156998[i];
-            D_80156944 |= held;
-        }
-        for (b = 0; b < 32; b++) {
-            if (b != 0) {
-                mask = 1 << b;
-                if (held & mask) {
-                    if (gRepeatTime[i][b] == 0 ||
-                        (u32) (s32) (repeat * D_8002AFB4) < game_loop_tick - gRepeatTime[i][b]) {
-                        D_80143A00[i] |= mask;
-                        gRepeatTime[i][b] = game_loop_tick;
-                    }
+    switch (code) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 7:
+    case 8:
+        add = 5;
+        break;
+    case 5:
+    case 6:
+        add = 3;
+        break;
+    case 9:
+        add = 5;
+        break;
+    case 11:
+        p->flag = 1;
+        add = 0;
+        break;
+    }
+    p->cur += add;
+    p->prev = p->mult;
+    if (code == 11) {
+        hits = 0;
+        if (p->done == 0) {
+            for (i = 0; i < 10; i++) {
+                if (p->cnt[i] > 0) {
+                    hits++;
+                }
+                p->hist[i] += p->cnt[i];
+            }
+            if ((p->cnt[0] != 0 || p->cnt[1] != 0 || p->cnt[2] != 0 || p->cnt[3] != 0 || p->cnt[4] != 0) && p->f60 <= 1.0f && (hits == 1 || (hits == 2 && p->cnt[9] != 0))) {
+                if (p->cnt[4] != 0) {
+                    p->s66 = 11;
+                    p->mult += 15;
+                } else if (p->cnt[0] != 0 || p->cnt[1] != 0) {
+                    p->mult += 25;
+                    p->s66 = 13;
                 } else {
-                    gRepeatTime[i][b] = 0;
+                    p->mult += 25;
+                    p->s66 = 12;
+                }
+            } else if (p->cnt[9] != 0 || p->cnt[5] != 0 || p->cnt[0] != 0 || p->cnt[1] != 0 || p->cnt[2] != 0 || p->cnt[3] != 0 || p->cnt[4] != 0) {
+                if (p->f60 == 0.0f) {
+                    p->mult += 7;
+                    p->s64 = 1;
+                } else if (p->f60 <= 3.0f) {
+                    p->mult += 2;
+                    p->s64 = 2;
                 }
             }
+            if (hits >= 3) {
+                p->s66 = hits;
+                switch (hits) {
+                case 3: p->mult += 10; break;
+                case 4: p->mult += 20; break;
+                case 5: p->mult += 40; break;
+                case 6: p->mult += 60; break;
+                case 7: p->mult += 80; break;
+                case 8: p->mult += 100; break;
+                case 9: p->mult += 500; break;
+                case 10: p->mult += 1000; break;
+                }
+            }
+            if (p->mult >= 2) {
+                p->cur = p->cur * p->mult;
+            }
+            p->total += p->cur;
+            if (p->best < p->cur) {
+                p->best = p->cur;
+            }
         }
-        if (connected) {
-            D_80149784 |= D_80143A00[i];
+        p->s67 = p->s66;
+        p->last = p->cur;
+        p->s65 = p->s64;
+        for (i = 0; i < 10; i++) {
+            p->prevcnt[i] = p->cnt[i];
+            p->cnt[i] = 0;
         }
+        p->s66 = 0;
+        p->s64 = 0;
+        p->mult = 1;
+        p->s70 = 0;
+        p->count = 0;
+        p->cur = 0;
+        p->f60 = 0.0f;
+        memset(&D_801569B8[idx], 0, 0x7C);
+        D_801569B8[idx].flags |= 0x15000000;
     }
-    osJamMesg((OSMesgQueue *) &D_801497A8, NULL, 0);
 }
 
-/* scale a raw stick value to [-range, range] */
-f32 func_800C9590(f32 range, f32 calib, s32 raw)
-{
-    f32 v;
 
-    v = ((f32) raw * range) / calib;
-    if (v < -range) {
-        v = -range;
-    } else if (range < v) {
-        v = range;
-    }
-    return v;
-}
 
-void func_800E7038(void) {
-    if (D_80111954 == 0) {
-        player_state_set(-1, 1);
-        player_mode_set(-1, 1);
-    }
-    D_80111954 = 1;
-    D_80149AFE = 0x46;
-    D_80149AFF = 0x46;
-    D_80149AFC = 0x46;
-    D_80149AFD = 0x46;
-    D_80149AFA = 0x46;
-    D_80149AFB = 0x46;
-    D_80149AF8 = 0x46;
-    if (D_80111968 == 0) {
-        D_80149AF9 = 0x46;
-        D_80111968 = 1;
-        osCreateMesgQueue((OSMesgQueue *) &D_801497A8, (void **) &D_80152730, 1);
-        osJamMesg((OSMesgQueue *) &D_801497A8, NULL, 0);
-    }
-    if (D_80111950 == 0x80) {
-        do {
+/* func_800C1B60 and the callers below are hand-written from the retail words */
+void func_800C2430(s32 idx) {
+    Ply *p;
+    PCar *c;
+    f32 v[3];
+    s32 fl;
 
-        } while (D_80111950 == 0x80);
-    }
-    controller_poll();
-}
-
-void func_800E7134(void) {
-    f32 *var_t3;
-    f32 temp_f0;
-    s32 *var_a2;
-    s32 *var_s0;
-    s32 *var_t1;
-    s32 *var_t2;
-    s32 *var_t5;
-    s32 temp_v0;
-    s32 var_t0;
-    s32 var_v1;
-    s8 *var_a1;
-    u8 *var_a3;
-
-    if (D_80111954 == 0) {
-        func_800E7038();
-    }
-    osRecvMesg((OSMesgQueue *) &D_801497A8, NULL, 1);
-    var_t3 = &D_80140620;
-    var_s0 = &D_8013FED0;
-    var_t5 = &D_801403C0;
-    var_t2 = &D_80149B10;
-    var_t1 = &D_80149B30;
-    var_a1 = &D_80149AF8;
-    var_a2 = &D_80149B50;
-    var_a3 = &D_80156CF0;
-    var_t0 = 0;
-    do {
-        var_v1 = 0;
-        if ((s8) M2C_FIELD(var_a3, u8 *, 0) == 0) {
-            M2C_FIELD(var_a2, s8 *, 0) = 0;
-            M2C_FIELD(var_a2, s8 *, 1) = 0;
-            var_a1[0] = 70;
-            var_a1[1] = 70;
+    p = &D_801569B8[idx];
+    fl = p->flags;
+    if (fl & 0x40) {
+        if (D_80156BC8 != 0 || D_80157238 >= 3) {
+            p->flags = fl & ~0x40;
         } else {
-            var_v1 = M2C_FIELD(var_a3, s32 *, 4);
-            M2C_FIELD(var_a2, s8 *, 0) = (s8) M2C_FIELD(var_a3, s8 *, 8);
-            M2C_FIELD(var_a2, s8 *, 1) = (s8) M2C_FIELD(var_a3, s8 *, 9);
-            if (D_80149B74[var_t0] != 0) {
-                if (M2C_FIELD(var_a2, s8 *, 0) < -0x38) {
-                    var_v1 |= 0x1000;
-                }
-                if (M2C_FIELD(var_a2, s8 *, 0) >= 0x39) {
-                    var_v1 |= 0x2000;
-                }
-                if (M2C_FIELD(var_a2, s8 *, 1) < -0x38) {
-                    var_v1 |= 0x800;
-                }
-                if (M2C_FIELD(var_a2, s8 *, 1) >= 0x39) {
-                    var_v1 |= 0x400;
-                }
-            }
-            if (var_v1 & 0x40000) {
-                var_a1[0] = 70;
-                var_a1[1] = 70;
-            }
-            if (((*var_a1 < M2C_FIELD(var_a2, s8 *, 0)) || (M2C_FIELD(var_a2, s8 *, 0) < -*var_a1)) && (*var_a1 < 0x7F)) {
-                *var_a1 += 1;
-            }
-            if (((*var_a1 < M2C_FIELD(var_a2, s8 *, 1)) || (M2C_FIELD(var_a2, s8 *, 1) < -*var_a1)) && (*var_a1 < 0x7F)) {
-                *var_a1 += 1;
-            }
+            c = (PCar *)(u32)&player_array[idx];
+            p->a10 += c->vx;
+            p->a14 += c->vy;
+            p->a18 += c->vz;
         }
-        *var_s0 = var_v1;
-        temp_v0 = (*var_t1 ^ var_v1) & var_v1;
-        *var_t2 |= temp_v0;
-        *var_t1 = var_v1;
-        *var_t5 = temp_v0;
-        *var_t3 = func_800C9590(1.0f, var_a1[0], M2C_FIELD(var_a2, s8 *, 0));
-        temp_f0 = func_800C9590(1.0f, var_a1[1], M2C_FIELD(var_a2, s8 *, 1));
-        var_t0 += 1;
-        var_a3 += 0x10;
-        var_a2 = (s32 *) ((u8 *) var_a2 + 2);
-        var_a1 += 2;
-        var_t1 = var_t1 + 1;
-        var_t2 = var_t2 + 1;
-        var_t5 = var_t5 + 1;
-        var_s0 = var_s0 + 1;
-        var_t3 = &D_80140624;
-    } while (var_t0 != 4);
-    D_80140624 = temp_f0;
-    osJamMesg((OSMesgQueue *) &D_801497A8, NULL, 0);
-}
-
-void player_mode_set(s32 player, s32 value)
-{
-    s32 i;
-
-    if (player == -1) {
-        for (i = 0; i < 4; i++) {
-            D_80149B74[i] = value;
+        v[0] = fabsf(p->a10);
+        v[1] = fabsf(p->a14);
+        v[2] = fabsf(p->a18);
+        if (D_80123EEC < v[1] || D_80123EEC < v[2]) {
+            p->flags &= ~0x40;
+            return;
         }
-    } else if (player < 4) {
-        D_80149B74[player] = value;
-    }
-}
-
-void player_state_set(s32 player, s32 value)
-{
-    s32 i;
-
-    if (player == -1) {
-        for (i = 0; i < 4; i++) {
-            D_80149B64[i] = value;
-        }
-    } else if (player < 4) {
-        D_80149B64[player] = value;
-    }
-}
-
-void process_inputs(void) {
-    D_80156958_Entry *temp_a1;
-    D_80156958_Entry *temp_a2;
-    InputRecord *var_a0;
-    s32 var_a3;
-
-    controller_poll();
-    var_a0 = &input_rec1;
-    var_a3 = 0;
-    do {
-        if ((M2C_FIELD(&D_8014A119, u8 *, 0) == 5) || (var_a3 >= active_player_count)) {
-            M2C_FIELD(&D_8014A119, s32 *, 8) = 0;
-            M2C_FIELD(&D_8014A11C, s32 *, 0) = 0;
-            M2C_FIELD(&D_8014A11C, s32 *, 0xC) = 0;
-            M2C_FIELD(&D_8014A11C, f32 *, 0x10) = 0.0f;
-            M2C_FIELD(&D_8014A11C, f32 *, 0x14) = 0.0f;
-        } else {
-            temp_a1 = &D_80156958[M2C_FIELD(&D_8014A119, u8 *, 0)];
-            M2C_FIELD(&D_8014A119, s32 *, 8) = (s32) D_80156978[M2C_FIELD(&D_8014A119, u8 *, 0)];
-            M2C_FIELD(&D_8014A119, u8 *, 0) = (s32) D_80156998[M2C_FIELD(&D_8014A119, u8 *, 0)];
-            M2C_FIELD(&D_8014A119, s32 *, 0xC) = (s32) D_80143A00[M2C_FIELD(&D_8014A119, u8 *, 0)];
-            M2C_FIELD(&D_8014A119, f32 *, 0x10) = (f32) temp_a1->unk0;
-            M2C_FIELD(&D_8014A119, f32 *, 0x14) = (f32) temp_a1->unk4;
-        }
-        if ((u8) D_8014A165 != 5) {
-            if (var_a3 < (active_player_count - 1)) {
-                var_a0 = (InputRecord *) &D_8014A165;
-                ((InputRecord *) &D_8014A165)->unk08 = D_80156978[M2C_ERROR(/* Read from unset register $a1 */)];
-                temp_a2 = &D_80156958[M2C_ERROR(/* Read from unset register $a1 */)];
-                ((InputRecord *) &D_8014A165)->unk04 = D_80156998[M2C_ERROR(/* Read from unset register $a1 */)];
-                ((InputRecord *) &D_8014A165)->unk0C = D_80143A00[M2C_ERROR(/* Read from unset register $a1 */)];
-                ((InputRecord *) &D_8014A165)->unk10 = temp_a2->unk0;
-                ((InputRecord *) &D_8014A165)->unk14 = temp_a2->unk4;
+        if ((D_80123EF0 < v[0] && v[0] < D_80123EF4) || ((D_80156BC8 != 0 || D_80157238 > 0 || ((c = (PCar *)(u32)&player_array[idx])->fE8 & 0x100000)) && D_80123EF8 < v[0])) {
+            p->flags &= ~0x80;
+            if (p->a10 > 0.0f) {
+                func_800C1B60(0, idx);
+                p->a10 += D_80123EFC;
             } else {
-                goto block_10;
+                func_800C1B60(1, idx);
+                p->a10 += D_80123F00;
             }
-        } else {
-block_10:
-            var_a0->unk08 = 0;
-            var_a0->unk04 = 0;
-            var_a0->unk0C = 0;
-            var_a0->unk10 = 0.0f;
-            var_a0->unk14 = 0.0f;
+            p->a18 = 0.0f;
+            p->a14 = 0.0f;
         }
-        var_a3 += 2;
-        var_a0 = (InputRecord *) ((u8 *) var_a0 + 0x98);
-    } while (var_a3 != 4);
+    } else if (D_80161360 != 0 && D_80161388[1] < D_80161388[0] && D_80161388[2] < D_80161388[0]) {
+        p->flags = fl | 0x40;
+        c = (PCar *)(u32)&player_array[idx];
+        p->a10 = c->vx;
+        p->a14 = c->vy;
+        p->a18 = c->vz;
+    }
 }
 
-/* stand-in caller: keeps controller_poll out of line under -O3 */
-void __standin_controller_poll(void)
-{
-    controller_poll();
+void func_800C26C4(s32 idx) {
+    Ply *p;
+    PCar *c;
+    f32 v[3];
+    f32 d;
+    s32 fl;
+
+    p = &D_801569B8[idx];
+    fl = p->flags;
+    if (fl & 0x10) {
+        if (D_80156BD8 != 0 || D_80157238 >= 3) {
+            p->flags = fl & ~0x10;
+        } else {
+            c = (PCar *)(u32)&player_array[idx];
+            p->a1C += c->vx;
+            p->a20 += c->vy;
+            p->a24 += c->vz;
+        }
+        v[0] = fabsf(p->a1C);
+        v[1] = fabsf(p->a20);
+        v[2] = fabsf(p->a24);
+        if (D_80123F04 < v[0] || D_80123F04 < v[2]) {
+            p->flags &= ~0x10;
+            return;
+        }
+        if ((D_80123F08 < v[1] && v[1] < D_80123F0C) || ((D_80156BD8 != 0 || D_80157238 > 0 || ((c = (PCar *)(u32)&player_array[idx])->fE8 & 0x100000)) && D_80123F10 < v[1])) {
+            p->flags &= ~0x80;
+            func_800C1B60(4, idx);
+            d = (p->a20 > 0.0f) ? D_80123F14 : D_80123F18;
+            p->a24 = 0.0f;
+            p->a1C = 0.0f;
+            p->a20 = p->a20 + d;
+        }
+    } else if (D_80161360 != 0 && D_80161388[0] < D_80161388[1] && D_80161388[2] < D_80161388[1]) {
+        p->flags = fl | 0x10;
+        c = (PCar *)(u32)&player_array[idx];
+        p->a1C = c->vx;
+        p->a20 = c->vy;
+        p->a24 = c->vz;
+    }
 }
 
-/* stand-in caller: keeps func_800C9590 out of line under -O3 */
-void __standin_func_800C9590(void)
-{
-    func_800C9590(0, 0, 0);
+void func_800C2944(s32 idx) {
+    Ply *p;
+    PCar *c;
+    f32 v[3];
+    s32 fl;
+
+    p = &D_801569B8[idx];
+    fl = p->flags;
+    if (fl & 0x20) {
+        if (D_80156CE4 != 0 || D_80157238 >= 3) {
+            p->flags = fl & ~0x20;
+        } else {
+            c = (PCar *)(u32)&player_array[idx];
+            p->a04 += c->vx;
+            p->a08 += c->vy;
+            p->a0C += c->vz;
+        }
+        v[0] = fabsf(p->a04);
+        v[1] = fabsf(p->a08);
+        v[2] = fabsf(p->a0C);
+        if (D_80123F1C < v[0] || D_80123F20 < v[1]) {
+            p->flags &= ~0x20;
+            return;
+        }
+        if ((D_80123F24 < v[2] && v[2] < D_80123F28) || ((D_80156CE4 != 0 || D_80157238 > 0 || (player_array[idx].fE8 & 0x100000)) && D_80123F2C < v[2])) {
+            p->flags &= ~0x80;
+            if (p->a0C > 0.0f) {
+                func_800C1B60(3, idx);
+                p->a0C += D_80123F30;
+            } else {
+                func_800C1B60(2, idx);
+                p->a0C += D_80123F34;
+            }
+            p->a08 = 0.0f;
+            p->a04 = 0.0f;
+        }
+    } else if (D_80161360 != 0 && D_80161388[1] < D_80161388[2] && D_80161388[0] < D_80161388[2]) {
+        p->flags = fl | 0x20;
+        c = (PCar *)(u32)&player_array[idx];
+        p->a04 = c->vx;
+        p->a08 = c->vy;
+        p->a0C = c->vz;
+    }
 }
 
-/* stand-in caller: keeps func_800E7038 out of line under -O3 */
-void __standin_func_800E7038(void)
-{
-    func_800E7038();
+void func_800C2004(s32 idx) {
+    Ply *p;
+    HudRec *h;
+    s32 fl;
+    f32 r;
+    f32 dt;
+    f32 zero;
+
+    p = &D_801569B8[idx];
+    h = &((HudRec *) &D_8014A250)[idx];
+    fl = p->flags;
+    if (fl & 4) {
+        if (D_80157238 >= 3 || D_8015F730 > 0 || h->f5F4 > 0.75f || h->f5F8 > 0.75f || h->f5EC < 1.0f || h->f5F0 < 1.0f) {
+            p->flags = fl & ~4;
+            p->t50 = D_801543CC;
+            r = p->t50 - p->t4C;
+            if (r > 0.25f) {
+                r = r - 0.25f;
+                zero = 0.0f;
+                if (zero < r) {
+                    dt = D_80123EE4;
+                    do {
+                        func_800C1B60(7, idx);
+                        r -= dt;
+                    } while (zero < r);
+                }
+            }
+        }
+    } else if ((D_80157238 == 2 && D_8015F728 == 2) || ((h->f5F4 < 0.75f || h->f5F8 < 0.75f) && h->f5EC > 2.5f && h->f5F0 > 2.5f)) {
+        p->flags = fl | 4;
+        p->t4C = D_801543CC;
+        p->t50 = -1.0f;
+    }
 }
 
-/* stand-in caller: keeps player_mode_set out of line under -O3 */
-void __standin_player_mode_set(void)
-{
-    player_mode_set(0, 0);
+void func_800C220C(s32 idx) {
+    Ply *p;
+    HudRec *h;
+    s32 fl;
+    f32 r;
+    f32 dt;
+    f32 zero;
+
+    p = &D_801569B8[idx];
+    h = &((HudRec *) &D_8014A250)[idx];
+    fl = p->flags;
+    if (fl & 2) {
+        if (D_80157238 >= 3 || D_8015F728 > 0 || h->f5EC > 0.75f || h->f5F0 > 0.75f || h->f5F4 < 1.0f || h->f5F8 < 1.0f) {
+            p->flags = fl & ~2;
+            p->t48 = D_801543CC;
+            r = p->t48 - p->t44;
+            if (r > 0.25f) {
+                r = r - 0.25f;
+                zero = 0.0f;
+                if (zero < r) {
+                    dt = D_80123EE8;
+                    do {
+                        func_800C1B60(8, idx);
+                        r -= dt;
+                    } while (zero < r);
+                }
+            }
+        }
+    } else if ((D_80157238 == 2 && D_8015F730 == 2) || ((h->f5EC < 0.75f || h->f5F0 < 0.75f) && h->f5F4 > 2.5f) || h->f5F8 > 2.5f) {
+        p->flags = fl | 2;
+        p->t44 = D_801543CC;
+        p->t48 = -1.0f;
+    }
 }
 
-/* stand-in caller: keeps player_state_set out of line under -O3 */
-void __standin_player_state_set(void)
+void func_800C3578(s32 idx) {
+    Stunt *p;
+
+    p = &D_80152038[idx];
+    p->done = 1;
+    if (p->count != 0) {
+        func_800C1B60(11, idx);
+    }
+    memset(&D_801569B8[idx], 0, 0x7C);
+    D_801569B8[idx].flags |= 0x15000000;
+}
+
+void camera_scene_manager(void) {
+    Ply *ply;
+    PCar *car;
+    HudRec *hud;
+    Stunt *st;
+    s32 i;
+    s32 ok;
+    s32 fl;
+    s32 n;
+    f32 dt;
+    f32 *pdt;
+    f32 r;
+    f32 x;
+    f32 y;
+    f32 z;
+
+    pdt = (f32 *)(u32)&D_8002EB94;
+    if (D_8013FECB != 0) {
+        ok = 1;
+        if (active_player_count > 0) {
+            ply = D_801569B8;
+            do {
+                if (ply->flags & 0x1F7) {
+                    D_8016139C = 0.0f;
+                    ok = 0;
+                }
+                ply++;
+            } while (ply < &D_801569B8[active_player_count]);
+        }
+        if (ok != 0) {
+            D_8016139C += *pdt;
+            if (D_80123F38 <= D_8016139C) {
+                D_80152738 = 1;
+            }
+        }
+    }
+    dt = D_80123F3C;
+    for (i = 0, ply = D_801569B8, car = player_array; i < active_player_count; i++, ply++, car++) {
+        hud = &((HudRec *) &D_8014A250)[i];
+        fl = ply->flags;
+        if ((fl & 0x1F0) && hud->f3F8 != 0) {
+            st = &D_80152038[i];
+            st->f60 += *pdt;
+        }
+        if ((fl & 0xC08FFFFF) && (car->f358 != 0 || hud->f6C4 != -1)) {
+            ply->flags = 0x15000000;
+        } else {
+            D_8015F728 = 0;
+            D_8015F730 = 0;
+            D_8015B258 = 0;
+            D_8015B248 = 0;
+            D_80157238 = 0;
+            if (hud->s61C != 8) {
+                D_80157238 = 1;
+                D_8015B248 = 1;
+                D_8015F730 = 1;
+            }
+            if (hud->s61E != 8) {
+                D_8015B258 = 1;
+                D_80157238 += 1;
+                D_8015F730 += 1;
+            }
+            if (hud->s620 != 8) {
+                D_80157238 += 1;
+                D_8015B248 += 1;
+                D_8015F728 = 1;
+            }
+            if (hud->s622 != 8) {
+                D_80157238 += 1;
+                D_8015B258 += 1;
+                D_8015F728 += 1;
+            }
+            D_80161360 = D_80157238 < 3 && car->f358 == 0 && (hud->f6C4 + 1) == 0;
+            D_80161388[0] = fabsf(car->vx);
+            D_80161388[1] = fabsf(car->vy);
+            D_80156BD8 = 0;
+            D_80156CE4 = 0;
+            D_80161388[2] = fabsf(car->vz);
+            D_80156BC8 = 0;
+            fl = ply->flags;
+            if ((fl & 0x01000000) && car->vx < 0.0f) {
+                ply->flags = fl & 0xFEFFFFFF;
+                *(u32 *)&ply->flags |= 0x02000000;
+                D_80156BC8 = 1;
+            } else if (fl & 0x02000000) {
+                if (car->vx >= 0.0f) {
+                    ply->flags = fl & 0xFDFFFFFF;
+                    *(u32 *)&ply->flags |= 0x01000000;
+                    D_80156BC8 = 1;
+                }
+            }
+            if ((ply->flags & 0x04000000) && car->vy < 0.0f) {
+                ply->flags &= 0xFBFFFFFF;
+                *(u32 *)&ply->flags |= 0x08000000;
+                D_80156BD8 = 1;
+            } else if (ply->flags & 0x08000000) {
+                if (car->vy >= 0.0f) {
+                    ply->flags &= 0xF7FFFFFF;
+                    *(u32 *)&ply->flags |= 0x04000000;
+                    D_80156BD8 = 1;
+                }
+            }
+            if ((ply->flags & 0x10000000) && car->vz < 0.0f) {
+                ply->flags &= 0xEFFFFFFF;
+                *(u32 *)&ply->flags |= 0x20000000;
+                D_80156CE4 = 1;
+            } else if (ply->flags & 0x20000000) {
+                if (car->vz >= 0.0f) {
+                    ply->flags &= 0xDFFFFFFF;
+                    *(u32 *)&ply->flags |= 0x10000000;
+                    D_80156CE4 = 1;
+                }
+            }
+            func_800C2944(i);
+            func_800C26C4(i);
+            func_800C2430(i);
+            fl = ply->flags;
+            if (fl & 0x80) {
+                n = 0;
+                if (D_80157238 >= 3) {
+                    ply->flags = fl & ~0x80;
+                    fl = ply->flags;
+                } else if (D_80157238 == 0) {
+                    fl = ply->flags;
+                    ply->a28 += fabsf(car->vx);
+                    ply->a2C += fabsf(car->vy);
+                    ply->a30 += fabsf(car->vz);
+                }
+                if (D_80123F40 < ply->a28) {
+                    n = 1;
+                }
+                if (D_80123F40 < ply->a2C) {
+                    n += 1;
+                }
+                if (D_80123F44 < ply->a30) {
+                    n += 1;
+                }
+                if (n >= 2 && D_80123F48 <= ply->a30 + (ply->a28 + ply->a2C)) {
+                    ply->flags = fl & ~0x70;
+                    func_800C1B60(5, i);
+                    ply->a28 = 0.0f;
+                    ply->a2C = 0.0f;
+                    ply->a30 = 0.0f;
+                    fl = ply->flags;
+                }
+            } else {
+                if (D_80161360 != 0) {
+                    ply->flags = fl | 0x80;
+                    fl = ply->flags;
+                    ply->a28 = fabsf(car->vx);
+                    ply->a2C = fabsf(car->vy);
+                    ply->a30 = fabsf(car->vz);
+                }
+            }
+            if (fl & 0x100) {
+                if (D_80157238 > 0 || (car->fE8 & 0x100000)) {
+                    ply->t38 = D_801543CC;
+                    ply->flags = fl & ~0x100;
+                    r = ply->t38 - ply->t34;
+                    if (r > 5.0f) {
+                        do {
+                            func_800C1B60(9, i);
+                            r -= 1.0f;
+                        } while (r > 5.0f);
+                    }
+                }
+                fl = ply->flags;
+            } else {
+                if (D_80157238 == 0) {
+                    ply->flags = fl | 0x100;
+                    ply->t38 = -1.0f;
+                    fl = ply->flags;
+                    ply->t34 = D_801543CC;
+                }
+            }
+            if (fl & 1) {
+                if (D_80157238 >= 3 || D_80157238 < 2) {
+                    ply->t40 = D_801543CC;
+                    r = ply->t40 - ply->t3C;
+                    ply->flags = fl & ~1;
+                    if (r > 0.25f) {
+                        r = r - 0.25f;
+                        if (r > 0.0f) {
+                            do {
+                                func_800C1B60(8, i);
+                                r -= dt;
+                            } while (r > 0.0f);
+                        }
+                    }
+                }
+            } else if (D_80157238 == 2 && (D_8015B248 == 2 || D_8015B258 == 2)) {
+                ply->flags = fl | 1;
+                ply->t40 = -1.0f;
+                ply->t3C = D_801543CC;
+            }
+            func_800C220C(i);
+            func_800C2004(i);
+            dt = D_80123F50;
+            if (ply->flags & 0x1F7) {
+                ply->t54 = -1.0f;
+            } else if (D_80157238 >= 3) {
+                st = &D_80152038[i];
+                if (st->count == 0) {
+                    st->f60 = 0.0f;
+                }
+                if (ply->t54 == -1.0f && st->count != 0) {
+                    ply->t54 = D_801543CC;
+                }
+            }
+            if (D_80157238 >= 3 && D_80152038[i].active != 0) {
+                x = ply->t38;
+                if (x != -1.0f && (D_801543CC - x) > 1.0f) {
+                    ply->t38 = -1.0f;
+                    func_800C1B60(10, i);
+                }
+            }
+            car->fE8 &= 0xFFEFFFFF;
+        }
+    }
+}
+
+/* stand-in caller: keeps func_800C2430 out of line under -O3 */
+void __standin_func_800C2430(void)
 {
-    player_state_set(0, 0);
+    func_800C2430(0);
+}
+
+/* stand-in caller: keeps func_800C26C4 out of line under -O3 */
+void __standin_func_800C26C4(void)
+{
+    func_800C26C4(0);
+}
+
+/* stand-in caller: keeps func_800C2944 out of line under -O3 */
+void __standin_func_800C2944(void)
+{
+    func_800C2944(0);
 }

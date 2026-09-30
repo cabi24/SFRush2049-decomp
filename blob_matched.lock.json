@@ -72,6 +72,15 @@
     "verified": "image_gate",
     "verified_at": "2026-09-27"
   },
+  "audio_pitch_adjust": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "audio_pitch_adjust",
+    "source": "src/blob/groups/audio_pitch_adjust/group.json",
+    "source_sha256": "56d9911adbfc3629991c6a34dc707b09769fd5e03df11d303718f69406a70278",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
   "audio_start": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/audio_start.c",
@@ -104,6 +113,24 @@
     "verified": "image_gate",
     "verified_at": "2026-09-27"
   },
+  "camera_aspect_ratio": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "camera_aspect_ratio",
+    "source": "src/blob/groups/camera_aspect_ratio/group.json",
+    "source_sha256": "6a5541e82a2c50a61f615c7094466d3ed5e2f6c06825365e96ad5b5de7aa184c",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
+  "camera_build_view_matrix": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "camera_aspect_ratio",
+    "source": "src/blob/groups/camera_aspect_ratio/group.json",
+    "source_sha256": "6a5541e82a2c50a61f615c7094466d3ed5e2f6c06825365e96ad5b5de7aa184c",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
   "camera_cinematic_mode": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/camera_cinematic_mode.c",
@@ -111,6 +138,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-23"
+  },
+  "camera_fov_control": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "camera_aspect_ratio",
+    "source": "src/blob/groups/camera_aspect_ratio/group.json",
+    "source_sha256": "6a5541e82a2c50a61f615c7094466d3ed5e2f6c06825365e96ad5b5de7aa184c",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
   },
   "camera_race_setup": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -214,6 +250,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-23"
+  },
+  "draw_number": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "draw_number",
+    "source": "src/blob/groups/draw_number/group.json",
+    "source_sha256": "61732bdfddab0a017d3d5b3d83be0f005e300155a9edca157dfcf47fc9117ca2",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
   },
   "draw_sprites": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -684,6 +729,15 @@
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_800972BC.c",
     "source_sha256": "c83e60567fa16475f36b1cee2e2f8361ed2eb5166926f9c2b7c4796c9740db8f",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
+  "func_800972C4": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "audio_frame_sync",
+    "source": "src/blob/groups/audio_frame_sync/group.json",
+    "source_sha256": "a1ed03ff052dcd9f624eb19ecc90cd2595a09077d9ec834cbe77bf602218db52",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-29"
@@ -1412,6 +1466,15 @@
     "verified": "image_gate",
     "verified_at": "2026-09-29"
   },
+  "func_800B0A88": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "audio_frame_update",
+    "source": "src/blob/groups/audio_frame_update/group.json",
+    "source_sha256": "f52878f38171b4c6766c415a792d70ef3870f90352c60ebf8b38fdb49c9d5fb6",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
   "func_800B0F60": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_800B0F60.c",
@@ -1782,6 +1845,33 @@
     "verified": "image_gate",
     "verified_at": "2026-09-29"
   },
+  "func_800C2430": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "camera_scene_manager",
+    "source": "src/blob/groups/camera_scene_manager/group.json",
+    "source_sha256": "cc00c23d906e30d554cfbb71ec73490b59f090715559d7f67c9b233d69633adf",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
+  "func_800C26C4": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "camera_scene_manager",
+    "source": "src/blob/groups/camera_scene_manager/group.json",
+    "source_sha256": "cc00c23d906e30d554cfbb71ec73490b59f090715559d7f67c9b233d69633adf",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
+  "func_800C2944": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "camera_scene_manager",
+    "source": "src/blob/groups/camera_scene_manager/group.json",
+    "source_sha256": "cc00c23d906e30d554cfbb71ec73490b59f090715559d7f67c9b233d69633adf",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
   "func_800C360C": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_800C360C.c",
@@ -1874,7 +1964,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "controller_poll",
     "source": "src/blob/groups/controller_poll/group.json",
-    "source_sha256": "d68620399846e9f16853d3fddb8a3734a51ed500dd680ff2e310c6022dc059eb",
+    "source_sha256": "65d4920d6be19df456b8859275e88ea7ad4145bc776f870cabd827b5d9fbf80d",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-29"
@@ -2448,6 +2538,15 @@
     "verified": "image_gate",
     "verified_at": "2026-09-29"
   },
+  "func_800E627C": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "func_800E681C",
+    "source": "src/blob/groups/func_800E681C/group.json",
+    "source_sha256": "dfe9d48c85e53069148ef6ded5f16da8ddd843c91b24abe0594a9007a37c9a28",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
   "func_800E6AE8": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_800E6AE8.c",
@@ -2503,6 +2602,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-23"
+  },
+  "func_800EA2DC": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "func_800E92C8",
+    "source": "src/blob/groups/func_800E92C8/group.json",
+    "source_sha256": "44ffebd1e71c5bd6f1b3e0720a29663f1b18874f9a9bda1a053f6a3c80d44b58",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
   },
   "func_800EE7AC": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -2833,6 +2941,15 @@
     "verified": "image_gate",
     "verified_at": "2026-09-29"
   },
+  "model_bounds_calc": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "func_8008B640",
+    "source": "src/blob/groups/func_8008B640/group.json",
+    "source_sha256": "ed57f8b0f1d50c0f91f9dec7a439226f832a782cb726f1b21338352e88876fde",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
   "music_fade": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/music_fade.c",
@@ -2954,6 +3071,51 @@
     "verified": "image_gate",
     "verified_at": "2026-09-29"
   },
+  "physics_velocity_integrate_b": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "func_8008B640",
+    "source": "src/blob/groups/func_8008B640/group.json",
+    "source_sha256": "ed57f8b0f1d50c0f91f9dec7a439226f832a782cb726f1b21338352e88876fde",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
+  "physics_velocity_integrate_c": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "func_8008B640",
+    "source": "src/blob/groups/func_8008B640/group.json",
+    "source_sha256": "ed57f8b0f1d50c0f91f9dec7a439226f832a782cb726f1b21338352e88876fde",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
+  "physics_velocity_integrate_d": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "func_8008B640",
+    "source": "src/blob/groups/func_8008B640/group.json",
+    "source_sha256": "ed57f8b0f1d50c0f91f9dec7a439226f832a782cb726f1b21338352e88876fde",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
+  "physics_velocity_integrate_e": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "func_8008B640",
+    "source": "src/blob/groups/func_8008B640/group.json",
+    "source_sha256": "ed57f8b0f1d50c0f91f9dec7a439226f832a782cb726f1b21338352e88876fde",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
+  "physics_velocity_integrate_f": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "func_8008B640",
+    "source": "src/blob/groups/func_8008B640/group.json",
+    "source_sha256": "ed57f8b0f1d50c0f91f9dec7a439226f832a782cb726f1b21338352e88876fde",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
   "player_cleanup_slots": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/player_cleanup_slots.c",
@@ -2986,10 +3148,28 @@
     "verified": "image_gate",
     "verified_at": "2026-09-23"
   },
+  "player_mode_set": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "controller_poll",
+    "source": "src/blob/groups/controller_poll/group.json",
+    "source_sha256": "65d4920d6be19df456b8859275e88ea7ad4145bc776f870cabd827b5d9fbf80d",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
   "player_state_clear": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/player_state_clear.c",
     "source_sha256": "2bc0a637a1efe622b5bb02c4de0f82e407a2cd451bd0e144f0278f6535b003e8",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
+  "player_state_set": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "controller_poll",
+    "source": "src/blob/groups/controller_poll/group.json",
+    "source_sha256": "65d4920d6be19df456b8859275e88ea7ad4145bc776f870cabd827b5d9fbf80d",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-29"
@@ -3219,6 +3399,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-23"
+  },
+  "time_of_day_select": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "func_800D2FA8",
+    "source": "src/blob/groups/func_800D2FA8/group.json",
+    "source_sha256": "5aeacba9208c12587c119ae3351515c8e9136170ac1f7d4016b6bbb0c10c9a47",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
   },
   "tournament_unlock_check": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",

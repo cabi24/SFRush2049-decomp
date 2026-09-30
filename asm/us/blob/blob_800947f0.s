@@ -1319,6 +1319,7 @@ audio_timing_sync:
 .section .text.audio_pitch_adjust, "ax", @progbits
 .globl audio_pitch_adjust
 audio_pitch_adjust:
+    /* compiled from src/blob/audio_pitch_adjust.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x240E0003

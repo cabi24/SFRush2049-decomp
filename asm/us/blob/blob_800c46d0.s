@@ -3102,6 +3102,7 @@ func_800C7578:
 .section .text.draw_number, "ax", @progbits
 .globl draw_number
 draw_number:
+    /* compiled from src/blob/draw_number.c */
     .word 0x27BDFFE8
     .word 0x3C078011
     .word 0xAFBF0014
@@ -4069,6 +4070,7 @@ func_800C813C:
 .section .text.player_mode_set, "ax", @progbits
 .globl player_mode_set
 player_mode_set:
+    /* compiled from src/blob/player_mode_set.c */
     .word 0x2401FFFF
     .word 0x14810006
     .word 0x3C018015
@@ -4934,6 +4936,7 @@ func_800C9150:
 .section .text.player_state_set, "ax", @progbits
 .globl player_state_set
 player_state_set:
+    /* compiled from src/blob/player_state_set.c */
     .word 0x2401FFFF
     .word 0x14810006
     .word 0x3C018015

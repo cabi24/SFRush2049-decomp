@@ -1,0 +1,21 @@
+{
+  "members": [
+    "func_800B0A88"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "audio_frame_update",
+    "__standin_func_800B08FC",
+    "__standin_func_800B0A88"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "generated": "blob_group seed from build/ipa_groups.json",
+  "unprototyped": [],
+  "context": [
+    "audio_frame_update",
+    "func_800B08FC"
+  ],
+  "provenance": "cloud Lanes A (PRs #1-#4), cloud/work/ipa-groups/audio_frame_update"
+}

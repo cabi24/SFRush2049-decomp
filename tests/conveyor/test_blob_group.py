@@ -242,3 +242,73 @@ def test_local_static_contents_must_match_the_image(tmp_path):
 def test_local_static_needs_the_image(tmp_path):
     with pytest.raises(blob_group.GroupError, match="need the image"):
         _local_bodies(_local_object(tmp_path), None)
+
+
+_TABLE_ASM = """
+    .set noreorder
+    .text
+    .globl f
+    .type f, @function
+f:
+    jr $ra
+    nop
+    .globl ctx
+    .type ctx, @function
+ctx:
+    lui $t0, %hi(table)
+    lw $t0, %lo(table)($t0)
+L1:
+    jr $t0
+    nop
+    .rdata
+table:
+    .word L1
+"""
+
+
+def _asm_object(tmp_path, text, name="t"):
+    src = tmp_path / f"{name}.s"
+    src.write_text(text)
+    obj = tmp_path / f"{name}.o"
+    subprocess.run(["mips-linux-gnu-as", "-EB", "-mips2", "-32", "-o", str(obj), str(src)],
+                   check=True)
+    return obj
+
+
+def test_jump_table_used_only_by_context_is_ignored(tmp_path):
+    obj = _asm_object(tmp_path, _TABLE_ASM)
+    extents = {"f": {"vaddr": 0x80100000, "size": 8},
+               "ctx": {"vaddr": 0x80100008, "size": 16}}
+    slices, text_ndx = blob_group.member_slices(obj, ["f", "ctx"], extents)
+    bodies = blob_group.relocate(obj, slices, text_ndx, {}, members=["f"])
+    assert _words(bodies["f"]) == [0x03E00008, 0]
+
+
+def test_jump_table_used_by_a_member_is_refused(tmp_path):
+    obj = _asm_object(tmp_path, _TABLE_ASM)
+    extents = {"f": {"vaddr": 0x80100000, "size": 8},
+               "ctx": {"vaddr": 0x80100008, "size": 16}}
+    slices, text_ndx = blob_group.member_slices(obj, ["f", "ctx"], extents)
+    image = (b"\0" * 0x40, 0x80100000)
+    with pytest.raises(blob_group.GroupError, match="relocations inside"):
+        blob_group.relocate(obj, slices, text_ndx, {}, members=["ctx"], image=image)
+
+
+def test_unit_defined_global_with_a_known_address_resolves_by_name(tmp_path):
+    obj = _asm_object(tmp_path, """
+    .set noreorder
+    .text
+    .globl f
+    .type f, @function
+f:
+    lui $a0, %hi(D_80149B64)
+    lw $a0, %lo(D_80149B64)($a0)
+    jr $ra
+    nop
+    .globl D_80149B64
+    .lcomm D_80149B64, 4
+""")
+    extents = {"f": {"vaddr": 0x80100000, "size": 16}}
+    slices, text_ndx = blob_group.member_slices(obj, ["f"], extents)
+    body = blob_group.relocate(obj, slices, text_ndx, {"D_80149B64": 0x80149B64})["f"]
+    assert _words(body)[:2] == [0x3C048015, 0x8C849B64]

@@ -44,6 +44,36 @@ typedef f32 Mat3f[3][3];
 typedef f32 Mat4f[4][4];
 typedef f32 MtxF[4][4];
 struct OSPfs;
+/* cloud: hand-derived from the retail words */
+typedef struct SndSlot {         /* 0x18 bytes; player_array[p].snd[] starts at 0x110 */
+    u8 pad00[4];
+    s16 f4;                      /* 0x04 */
+    s16 handle;                  /* 0x06 */
+    s16 slot;                    /* 0x08 */
+    s16 pad0A;
+    s32 idx;                     /* 0x0C */
+    f32 t;                       /* 0x10 */
+    void *cb;                    /* 0x14 */
+} SndSlot;
+typedef struct CarS {            /* player_array[p], 0x3B8 bytes */
+    u8 pad000[0x110];
+    SndSlot snd[20];             /* 0x110 */
+    u8 pad2F0[0x3B8 - 0x2F0];
+} CarS;
+typedef struct SndCtl {          /* D_80139320[player], 0x40 bytes */
+    s32 first;
+    u8 pad04[0x18];
+    s32 vals[4];                 /* 0x1C */
+    u8 pad2C[0x14];
+} SndCtl;
+typedef struct PCarX { u8 pad[0x3B8]; } PCarX;
+typedef struct HudRec {          /* D_8014A250[player], 0x808 bytes */
+    u8 pad000[8];
+    u8 b8;
+    u8 pad009[0x7CA - 9];
+    s16 s7CA;
+    u8 pad7CC[0x808 - 0x7CC];
+} HudRec;
 extern u8 rspbootTextStart[], rspbootTextEnd[];
 extern u8 gspF3DEX2_fifoTextStart[], gspF3DEX2_fifoTextEnd[];
 extern u8 gspF3DEX2_fifoDataStart[], gspF3DEX2_fifoDataEnd[];
@@ -552,7 +582,8 @@ extern s32 D_8015204C, D_801520C4, D_80153308;
 extern f32 D_801525F4, D_801543CC;
 extern u16 D_80152734;
 extern s32 D_8015698C;
-extern u8 D_80156994, D_80156CF0, D_80157244, D_8015F72D;
+extern s8 D_80156994;
+extern u8 D_80156CF0, D_80157244, D_8015F72D;
 extern s32 D_8015B250, D_8015B260, D_8015F738;
 extern s32 D_80161380, D_80161398, D_801613A4, D_801613AC;
 extern s32 D_801613B0, D_80161434, D_8017A4B0, D_8017A508;
@@ -627,7 +658,7 @@ extern SoundState *sound_control(s16 arg0, s16 arg1, SoundClearRecord *arg2, s16
 extern void game_loop(void);
 extern void game_mode_handler(void);
 extern void attract_or_transition(void);
-
+extern void process_inputs(void);
 extern void playgame_state_change(void);
 extern void RaceStateMachine_Update(void);
 extern void countdown(void);
@@ -643,7 +674,7 @@ extern void viUpdateTime(void);
 extern void sound_init(void);
 extern s32 wheel_render_full(s32, s32, s32, s32);
 extern void world_trigger_check(void);
-
+extern void controller_poll(void);
 extern void Input_ApplyPadConfig(void *);
 extern void InitMaxPath(void);
 extern s32 audio_frame_sync(s32, s32, s32, s32, s32);
@@ -659,8 +690,8 @@ extern void init_state_begin(void);
 extern s32 object_create(s32);
 extern s32 object_render_cleanup(void **);
 extern void player_cleanup_slots(void);
-
-
+extern void player_mode_set(s32, s32);
+extern void player_state_set(s32, s32);
 extern void resource_slots_clear_multiple(void);
 extern void scene_cleanup_slots(void);
 extern void speed_set(void);
@@ -857,7 +888,7 @@ extern s8 D_80111230;
 extern s8 D_8011123D;
 extern f32 D_80111274;
 extern s8 D_8011128C;
-extern s8 D_80111299;
+extern s8 D_80111299[];
 extern f32 D_801112D0;
 extern f32 D_801112DC;
 extern f32 D_801113E0;
@@ -2199,7 +2230,7 @@ extern s8 D_80142780;
 extern s8 D_801427A0;
 extern s8 D_801427A1;
 extern s32 D_801427A8;
-extern u16 D_801427C0;
+extern u16 D_801427C0[];
 extern u16 D_801427C2;
 extern s32 D_801427C8;
 extern u16 D_801428F8;
@@ -2390,13 +2421,13 @@ extern s8 D_80149B4B;
 extern s32 D_80149B50;
 extern s32 D_80149B58;
 extern s8 D_80149B60;
-s8 D_80149B64[4];
+extern s8 D_80149B64;
 extern s8 D_80149B65;
 extern s8 D_80149B66;
 extern s8 D_80149B67;
 extern s32 D_80149B68;
 extern s8 D_80149B70;
-s8 D_80149B74[4];
+extern s8 D_80149B74;
 extern s8 D_80149B75;
 extern s8 D_80149B76;
 extern s8 D_80149B77;
@@ -2836,7 +2867,7 @@ void audio_effect_process(s32 arg0);
 void audio_effect_remove(void);
 void audio_effect_setup(void);
 void audio_fade_control(void);
-void audio_frame_update(s16 arg0);
+
 void *audio_helper(s32 arg0, void *arg2);
 void audio_interrupt_handler(s32 arg0);
 void audio_loop_control(u32 arg0, s32 arg1);
@@ -3131,8 +3162,8 @@ void func_800AF844(void *arg0);
 void func_800AF8C0(void);
 void func_800AFA84(void *arg0, s32 *arg1);
 void func_800B0580(void);
-void func_800B08FC(void);
-void func_800B0A88(void);
+
+
 s32 func_800B0EA0(s32 arg0, s32 arg1, s32 arg2);
 void func_800B1F30(s16 arg0);
 u32 func_800B24EC(u8 *arg0, s16 *arg1, s8 arg2, s8 arg3);
@@ -3209,7 +3240,7 @@ s32 func_800C8738(s32 arg0);
 void func_800C885C(void);
 void func_800C8918(void);
 void func_800C9480(void);
-
+f32 func_800C9590(f32 arg1, s32 arg0);
 void func_800CB748(void *arg0, void *arg1);
 void func_800CB9D0(u32 arg0);
 s32 func_800CBF2C(void);
@@ -3323,8 +3354,8 @@ void func_800E627C(void *arg0, void *arg1);
 void func_800E6460(void *arg0, void *arg1);
 void func_800E681C(void);
 void func_800E6AF8(void);
-
-
+void func_800E7038(void);
+void func_800E7134(void);
 s32 func_800E73D8(void);
 void func_800E762C(s32 arg0);
 void func_800E7710(void);
@@ -3540,7 +3571,7 @@ s32 reverb_setup();
 void save_context_stub(s32 arg0);
 void save_load_data(s16 arg0);
 void save_settings(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6);
-void save_slot_valid(s32 arg0, s16 arg1, s16 arg2, s32 arg3, s16 arg4, s16 arg5, s32 arg6);
+s32 save_slot_valid(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6);
 void save_validate(void);
 void save_write_data(void *arg0, s32 arg1, f32 arg2, s32 arg3);
 void scheduler_recv(s32 arg0);
@@ -3696,324 +3727,117 @@ typedef s64 M2C_UNK64;
 
 #endif
 
+M2C_UNK func_8038c910(s16);                         /* extern */
+
 
 /* group members */
-void controller_poll(void);
-f32 func_800C9590(f32 range, f32 calib, s32 raw);
-void func_800E7038(void);
-void func_800E7134(void);
-void player_mode_set(s32 player, s32 value);
-void player_state_set(s32 player, s32 value);
-void process_inputs(void);
+void audio_frame_update(s16 arg0);
+void func_800B08FC(s16 ipa_t0, s16 ipa_t3);
+void func_800B0A88(s16 ipa_s1, s16 ipa_s2);
 
-/* typed views of prelude globals (the prelude's widths are wrong for these) */
-#define gResetTick    (*(s8 *) &D_8011195C)
-#define gSkipFrames   (*(u8 *) &D_80111960)
-#define gHeld         ((s32 *) &D_80149B30)
-#define gPrevPressed  ((s32 *) &D_80149B10)
-#define gConnected    D_80149B64
-#define gStickRaw     ((s8 (*)[2]) &D_80149B50)
-#define gStickCal     ((s8 (*)[2]) &D_80149AF8)
-#define gRepeatTime   ((u32 (*)[32]) &D_80149B90)
-#define gStick        D_80156958
-
-/* read the pads: sticks, held/pressed masks and auto-repeat per button */
-void controller_poll(void)
-{
-    s32 i;
-    s32 b;
-    s32 held;
-    u32 mask;
-    s32 connected;
-    f32 repeat;
-    f32 x;
-
-    osRecvMesg((OSMesgQueue *) &D_801497A8, NULL, 1);
-    if (gResetTick != 0) {
-        gResetTick = 0;
-        D_80111958 = game_loop_tick;
-    }
-    D_80156944 = 0;
-    D_80149784 = 0;
-    D_8015694C = 0;
-    if (gSkipFrames != 0) {
-        gSkipFrames--;
-        for (i = 0; i < 4; i++) {
-            gPrevPressed[i] = 0;
-            gStick[i].unk4 = 0.0f;
-            gStick[i].unk0 = 0.0f;
-            D_80143A00[i] = 0;
-            D_80156978[i] = 0;
-            D_80156998[i] = 0;
-        }
-        osJamMesg((OSMesgQueue *) &D_801497A8, NULL, 0);
+void func_800B08FC(s16 slot, s16 idx) {
+    HudRec *h;
+    s32 k;
+    s32 hd;
+    if (gameplay_mode == 2 || gameplay_mode == 6 || (h = &((HudRec *) &D_8014A250)[slot], h->s7CA != 0)) {
+        ((SndSlot *) ((u32) ((u8 *) &player_array[slot] + 0x2C0)))[idx].cb = 0;
         return;
     }
-    repeat = D_80123F94;
-    for (i = 0; i < 4; i++) {
-        x = func_800C9590(1.0f, gStickCal[i][0], gStickRaw[i][0]);
-        gStick[i].unk4 = func_800C9590(1.0f, gStickCal[i][1], gStickRaw[i][1]);
-        gStick[i].unk0 = x;
-        D_80156978[i] = gHeld[i];
-        held = D_80156978[i];
-        D_80156998[i] = gPrevPressed[i];
-        gPrevPressed[i] = 0;
-        D_80143A00[i] = 0;
-        if (held != 0) {
-            D_80111958 = game_loop_tick;
-        }
-        connected = gConnected[i];
-        if (connected) {
-            D_8015694C |= D_80156998[i];
-            D_80156944 |= held;
-        }
-        for (b = 0; b < 32; b++) {
-            if (b != 0) {
-                mask = 1 << b;
-                if (held & mask) {
-                    if (gRepeatTime[i][b] == 0 ||
-                        (u32) (s32) (repeat * D_8002AFB4) < game_loop_tick - gRepeatTime[i][b]) {
-                        D_80143A00[i] |= mask;
-                        gRepeatTime[i][b] = game_loop_tick;
-                    }
-                } else {
-                    gRepeatTime[i][b] = 0;
-                }
-            }
-        }
-        if (connected) {
-            D_80149784 |= D_80143A00[i];
-        }
-    }
-    osJamMesg((OSMesgQueue *) &D_801497A8, NULL, 0);
+    (&((SndSlot *) ((u32) ((u8 *) &player_array[slot] + 0x2C0)))[idx])->cb = (void *) entity_anim_texture;
+    (&((SndSlot *) ((u32) ((u8 *) &player_array[slot] + 0x2C0)))[idx])->slot = slot;
+    (&((SndSlot *) ((u32) ((u8 *) &player_array[slot] + 0x2C0)))[idx])->idx = idx;
+    k = D_80111299[slot * 13 + h->b8] * 4 + idx + 0xE2;
+    (&((SndSlot *) ((u32) ((u8 *) &player_array[slot] + 0x2C0)))[idx])->handle = save_slot_valid(D_801427C0[k], 0xF, ((SndSlot *) ((u8 *) &player_array[slot] + 0x290))[idx].handle, 0, slot, -1, 1);
+    hd = (&((SndSlot *) ((u32) ((u8 *) &player_array[slot] + 0x2C0)))[idx])->handle;
+    *(f32 *) (*(s32 *) ((u8 *) &D_8012E708 + hd * 0x44) + 0x28) = D_80123C1C;
+    model_data_load((&((SndSlot *) ((u32) ((u8 *) &player_array[slot] + 0x2C0)))[idx])->handle, 1, 0xF);
 }
 
-/* scale a raw stick value to [-range, range] */
-f32 func_800C9590(f32 range, f32 calib, s32 raw)
-{
-    f32 v;
 
-    v = ((f32) raw * range) / calib;
-    if (v < -range) {
-        v = -range;
-    } else if (range < v) {
-        v = range;
+void func_800B0A88(s16 slot, s16 idx) {
+    HudRec *h;
+    f32 vec[3];
+    s32 k;
+    s32 b8;
+
+    if (gameplay_mode == 2 || gameplay_mode == 6 || (h = &((HudRec *) &D_8014A250)[slot], h->s7CA != 0)) {
+        ((SndSlot *) ((u32) ((u8 *) &player_array[slot] + 0x290)))[idx].cb = 0;
+        return;
     }
-    return v;
+    (&((SndSlot *) ((u32) ((u8 *) &player_array[slot] + 0x290)))[idx])->cb = (void *) buffer_swap;
+    (&((SndSlot *) ((u32) ((u8 *) &player_array[slot] + 0x290)))[idx])->slot = slot;
+    (&((SndSlot *) ((u32) ((u8 *) &player_array[slot] + 0x290)))[idx])->idx = idx;
+    b8 = h->b8;
+    vec[0] = 0.0f;
+    vec[2] = 0.0f;
+    vec[1] = *(f32 *) ((u8 *) &D_8011B4B8 + b8 * 0xC);
+    k = D_80111299[slot * 13 + b8] * 4 + idx + 0xE0;
+    (&((SndSlot *) ((u32) ((u8 *) &player_array[slot] + 0x290)))[idx])->handle = save_slot_valid(D_801427C0[k], 0xF, ((SndCtl *) &D_80139320)[slot].first, 0, slot, -1, 1);
+    func_8008D6FC((&((SndSlot *) ((u32) ((u8 *) &player_array[slot] + 0x290)))[idx])->handle, vec, NULL);
+    model_data_load((&((SndSlot *) ((u32) ((u8 *) &player_array[slot] + 0x290)))[idx])->handle, 1, 0xF);
+    func_80092484(slot, idx);
 }
 
-void func_800E7038(void) {
-    if (D_80111954 == 0) {
-        player_state_set(-1, 1);
-        player_mode_set(-1, 1);
-    }
-    D_80111954 = 1;
-    D_80149AFE = 0x46;
-    D_80149AFF = 0x46;
-    D_80149AFC = 0x46;
-    D_80149AFD = 0x46;
-    D_80149AFA = 0x46;
-    D_80149AFB = 0x46;
-    D_80149AF8 = 0x46;
-    if (D_80111968 == 0) {
-        D_80149AF9 = 0x46;
-        D_80111968 = 1;
-        osCreateMesgQueue((OSMesgQueue *) &D_801497A8, (void **) &D_80152730, 1);
-        osJamMesg((OSMesgQueue *) &D_801497A8, NULL, 0);
-    }
-    if (D_80111950 == 0x80) {
-        do {
+void audio_frame_update(s16 slot) {
+    u8 *dst;
+    CarS *car;
+    s16 i;
+    s32 t;
 
-        } while (D_80111950 == 0x80);
+    save_load_data(slot);
+    func_800AC8D4(slot);
+    t = state_word_a & 8;
+    if (t == 0 || (t != 0 && D_80156994 != 0)) {
+        func_800B0A88(slot, 0);
+        func_800B0A88(slot, 1);
+        func_800B08FC(slot, 0);
+        func_800B08FC(slot, 1);
     }
-    controller_poll();
-}
-
-void func_800E7134(void) {
-    f32 *var_t3;
-    f32 temp_f0;
-    s32 *var_a2;
-    s32 *var_s0;
-    s32 *var_t1;
-    s32 *var_t2;
-    s32 *var_t5;
-    s32 temp_v0;
-    s32 var_t0;
-    s32 var_v1;
-    s8 *var_a1;
-    u8 *var_a3;
-
-    if (D_80111954 == 0) {
-        func_800E7038();
+    if (gameplay_mode == 6) {
+        func_8038c910(slot);
     }
-    osRecvMesg((OSMesgQueue *) &D_801497A8, NULL, 1);
-    var_t3 = &D_80140620;
-    var_s0 = &D_8013FED0;
-    var_t5 = &D_801403C0;
-    var_t2 = &D_80149B10;
-    var_t1 = &D_80149B30;
-    var_a1 = &D_80149AF8;
-    var_a2 = &D_80149B50;
-    var_a3 = &D_80156CF0;
-    var_t0 = 0;
+    dst = *(u8 **) ((u8 *) &D_8013FEF4 + (u32) slot * 0x18);
+    if (D_8014978C == 3 || D_8014978C == 5) {
+        ((u16 *) (dst + 0x140))[0] = ((u16 *) &D_8011B58C)[0];
+        ((u16 *) (dst + 0x140))[1] = ((u16 *) &D_8011B58C)[1];
+        ((u16 *) (dst + 0x140))[2] = ((u16 *) &D_8011B58C)[2];
+        ((u16 *) (dst + 0x140))[3] = ((u16 *) &D_8011B58C)[3];
+        ((u16 *) (dst + 0x140))[4] = ((u16 *) &D_8011B58C)[4];
+        ((u16 *) (dst + 0x140))[5] = ((u16 *) &D_8011B58C)[5];
+        ((u16 *) (dst + 0x140))[6] = ((u16 *) &D_8011B58C)[6];
+        ((u16 *) (dst + 0x140))[7] = ((u16 *) &D_8011B58C)[7];
+        ((u16 *) (dst + 0x150))[0] = ((u16 *) &D_8011B5AC)[0];
+        ((u16 *) (dst + 0x150))[1] = ((u16 *) &D_8011B5AC)[1];
+        ((u16 *) (dst + 0x150))[2] = ((u16 *) &D_8011B5AC)[2];
+        ((u16 *) (dst + 0x150))[3] = ((u16 *) &D_8011B5AC)[3];
+        ((u16 *) (dst + 0x150))[4] = ((u16 *) &D_8011B5AC)[4];
+        ((u16 *) (dst + 0x150))[5] = ((u16 *) &D_8011B5AC)[5];
+        ((u16 *) (dst + 0x150))[6] = ((u16 *) &D_8011B5AC)[6];
+        ((u16 *) (dst + 0x150))[7] = ((u16 *) &D_8011B5AC)[7];
+    }
+    car = (CarS *) &player_array[slot];
+    car->snd[0].cb = (void *) &D_8008BEA4;
+    car->snd[0].slot = slot;
+    i = 0;
     do {
-        var_v1 = 0;
-        if ((s8) M2C_FIELD(var_a3, u8 *, 0) == 0) {
-            M2C_FIELD(var_a2, s8 *, 0) = 0;
-            M2C_FIELD(var_a2, s8 *, 1) = 0;
-            var_a1[0] = 70;
-            var_a1[1] = 70;
-        } else {
-            var_v1 = M2C_FIELD(var_a3, s32 *, 4);
-            M2C_FIELD(var_a2, s8 *, 0) = (s8) M2C_FIELD(var_a3, s8 *, 8);
-            M2C_FIELD(var_a2, s8 *, 1) = (s8) M2C_FIELD(var_a3, s8 *, 9);
-            if (D_80149B74[var_t0] != 0) {
-                if (M2C_FIELD(var_a2, s8 *, 0) < -0x38) {
-                    var_v1 |= 0x1000;
-                }
-                if (M2C_FIELD(var_a2, s8 *, 0) >= 0x39) {
-                    var_v1 |= 0x2000;
-                }
-                if (M2C_FIELD(var_a2, s8 *, 1) < -0x38) {
-                    var_v1 |= 0x800;
-                }
-                if (M2C_FIELD(var_a2, s8 *, 1) >= 0x39) {
-                    var_v1 |= 0x400;
-                }
-            }
-            if (var_v1 & 0x40000) {
-                var_a1[0] = 70;
-                var_a1[1] = 70;
-            }
-            if (((*var_a1 < M2C_FIELD(var_a2, s8 *, 0)) || (M2C_FIELD(var_a2, s8 *, 0) < -*var_a1)) && (*var_a1 < 0x7F)) {
-                *var_a1 += 1;
-            }
-            if (((*var_a1 < M2C_FIELD(var_a2, s8 *, 1)) || (M2C_FIELD(var_a2, s8 *, 1) < -*var_a1)) && (*var_a1 < 0x7F)) {
-                *var_a1 += 1;
-            }
-        }
-        *var_s0 = var_v1;
-        temp_v0 = (*var_t1 ^ var_v1) & var_v1;
-        *var_t2 |= temp_v0;
-        *var_t1 = var_v1;
-        *var_t5 = temp_v0;
-        *var_t3 = func_800C9590(1.0f, var_a1[0], M2C_FIELD(var_a2, s8 *, 0));
-        temp_f0 = func_800C9590(1.0f, var_a1[1], M2C_FIELD(var_a2, s8 *, 1));
-        var_t0 += 1;
-        var_a3 += 0x10;
-        var_a2 = (s32 *) ((u8 *) var_a2 + 2);
-        var_a1 += 2;
-        var_t1 = var_t1 + 1;
-        var_t2 = var_t2 + 1;
-        var_t5 = var_t5 + 1;
-        var_s0 = var_s0 + 1;
-        var_t3 = &D_80140624;
-    } while (var_t0 != 4);
-    D_80140624 = temp_f0;
-    osJamMesg((OSMesgQueue *) &D_801497A8, NULL, 0);
+        car->snd[6 + i].f4 = i;
+        car->snd[6 + i].cb = (void *) anim_state_update;
+        car->snd[6 + i].slot = slot;
+        car->snd[6 + i].idx = 0;
+        car->snd[6 + i].t = D_801543CC;
+        car->snd[6 + i].handle = ((SndCtl *) &D_80139320)[slot].vals[i];
+        i++;
+    } while (i < 4);
 }
 
-void player_mode_set(s32 player, s32 value)
+/* stand-in caller: keeps func_800B08FC out of line under -O3 */
+void __standin_func_800B08FC(void)
 {
-    s32 i;
-
-    if (player == -1) {
-        for (i = 0; i < 4; i++) {
-            D_80149B74[i] = value;
-        }
-    } else if (player < 4) {
-        D_80149B74[player] = value;
-    }
+    func_800B08FC(0, 0);
 }
 
-void player_state_set(s32 player, s32 value)
+/* stand-in caller: keeps func_800B0A88 out of line under -O3 */
+void __standin_func_800B0A88(void)
 {
-    s32 i;
-
-    if (player == -1) {
-        for (i = 0; i < 4; i++) {
-            D_80149B64[i] = value;
-        }
-    } else if (player < 4) {
-        D_80149B64[player] = value;
-    }
-}
-
-void process_inputs(void) {
-    D_80156958_Entry *temp_a1;
-    D_80156958_Entry *temp_a2;
-    InputRecord *var_a0;
-    s32 var_a3;
-
-    controller_poll();
-    var_a0 = &input_rec1;
-    var_a3 = 0;
-    do {
-        if ((M2C_FIELD(&D_8014A119, u8 *, 0) == 5) || (var_a3 >= active_player_count)) {
-            M2C_FIELD(&D_8014A119, s32 *, 8) = 0;
-            M2C_FIELD(&D_8014A11C, s32 *, 0) = 0;
-            M2C_FIELD(&D_8014A11C, s32 *, 0xC) = 0;
-            M2C_FIELD(&D_8014A11C, f32 *, 0x10) = 0.0f;
-            M2C_FIELD(&D_8014A11C, f32 *, 0x14) = 0.0f;
-        } else {
-            temp_a1 = &D_80156958[M2C_FIELD(&D_8014A119, u8 *, 0)];
-            M2C_FIELD(&D_8014A119, s32 *, 8) = (s32) D_80156978[M2C_FIELD(&D_8014A119, u8 *, 0)];
-            M2C_FIELD(&D_8014A119, u8 *, 0) = (s32) D_80156998[M2C_FIELD(&D_8014A119, u8 *, 0)];
-            M2C_FIELD(&D_8014A119, s32 *, 0xC) = (s32) D_80143A00[M2C_FIELD(&D_8014A119, u8 *, 0)];
-            M2C_FIELD(&D_8014A119, f32 *, 0x10) = (f32) temp_a1->unk0;
-            M2C_FIELD(&D_8014A119, f32 *, 0x14) = (f32) temp_a1->unk4;
-        }
-        if ((u8) D_8014A165 != 5) {
-            if (var_a3 < (active_player_count - 1)) {
-                var_a0 = (InputRecord *) &D_8014A165;
-                ((InputRecord *) &D_8014A165)->unk08 = D_80156978[M2C_ERROR(/* Read from unset register $a1 */)];
-                temp_a2 = &D_80156958[M2C_ERROR(/* Read from unset register $a1 */)];
-                ((InputRecord *) &D_8014A165)->unk04 = D_80156998[M2C_ERROR(/* Read from unset register $a1 */)];
-                ((InputRecord *) &D_8014A165)->unk0C = D_80143A00[M2C_ERROR(/* Read from unset register $a1 */)];
-                ((InputRecord *) &D_8014A165)->unk10 = temp_a2->unk0;
-                ((InputRecord *) &D_8014A165)->unk14 = temp_a2->unk4;
-            } else {
-                goto block_10;
-            }
-        } else {
-block_10:
-            var_a0->unk08 = 0;
-            var_a0->unk04 = 0;
-            var_a0->unk0C = 0;
-            var_a0->unk10 = 0.0f;
-            var_a0->unk14 = 0.0f;
-        }
-        var_a3 += 2;
-        var_a0 = (InputRecord *) ((u8 *) var_a0 + 0x98);
-    } while (var_a3 != 4);
-}
-
-/* stand-in caller: keeps controller_poll out of line under -O3 */
-void __standin_controller_poll(void)
-{
-    controller_poll();
-}
-
-/* stand-in caller: keeps func_800C9590 out of line under -O3 */
-void __standin_func_800C9590(void)
-{
-    func_800C9590(0, 0, 0);
-}
-
-/* stand-in caller: keeps func_800E7038 out of line under -O3 */
-void __standin_func_800E7038(void)
-{
-    func_800E7038();
-}
-
-/* stand-in caller: keeps player_mode_set out of line under -O3 */
-void __standin_player_mode_set(void)
-{
-    player_mode_set(0, 0);
-}
-
-/* stand-in caller: keeps player_state_set out of line under -O3 */
-void __standin_player_state_set(void)
-{
-    player_state_set(0, 0);
+    func_800B0A88(0, 0);
 }

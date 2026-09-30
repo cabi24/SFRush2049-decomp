@@ -177,7 +177,8 @@ def _sext16(v):
     return v - 0x10000 if v & 0x8000 else v
 
 
-def _local_data_bases(obj, rels, syms, in_member, image_word, image_bytes):
+def _local_data_bases(obj, rels, syms, in_member, image_word, image_bytes,
+                      known=lambda name: None, relocated=()):
     """{section name: image address} for the unit's own data sections.
 
     A function-local static lives in the unit's .data, so its relocations name
@@ -187,6 +188,10 @@ def _local_data_bases(obj, rels, syms, in_member, image_word, image_bytes):
     there. Trailing zero bytes beyond the last referenced word are IDO's
     alignment padding (the linked program placed the next unit's data there)
     and are not compared. .bss and other sections are refused.
+
+    A symbol with a known image address (`known(name)`, e.g. D_80149B64
+    defined by the unit) resolves by name like any extern, wherever the unit
+    defines it; the image comparison of the member bodies checks it.
     """
     secs = _sections(obj)
     by_index = {ndx: name for name, (ndx, _, _) in secs.items()}
@@ -195,7 +200,7 @@ def _local_data_bases(obj, rels, syms, in_member, image_word, image_bytes):
         if name in secs:
             return name, 0
         sym = syms.get(name)
-        if sym and sym[1] in by_index:
+        if sym and sym[1] in by_index and known(name) is None:
             return by_index[sym[1]], sym[0]
         return None, 0
 
@@ -208,6 +213,12 @@ def _local_data_bases(obj, rels, syms, in_member, image_word, image_bytes):
         section, value = section_of(name)
         if section is None or section == ".text":
             continue
+        if section in relocated:
+            # Relocations inside a data section (jump tables in .rodata)
+            # would change its bytes. Sections referenced only by context
+            # functions never reach the image and are not looked at.
+            raise GroupError(f"relocations inside {section}, which members reference, "
+                             "are not supported yet")
         if section not in LOCAL_DATA or secs[section][1] != "PROGBITS":
             raise GroupError(f"relocation against {section} ({secs[section][1]}) "
                              "is not supported")
@@ -323,8 +334,6 @@ def relocate(obj, slices, text_ndx, extern, members=None, image=None):
         if extra:
             raise GroupError(f"{member}: {extra} extra words (nonzero beyond target length)")
     rels, others = _text_relocations(obj)
-    if others:
-        raise GroupError(f"relocations outside .text not supported yet: {sorted(others)}")
     covered = sorted((off, off + size, vaddr) for off, vaddr, size in slices.values())
 
     def text_addr(offset):
@@ -346,7 +355,13 @@ def relocate(obj, slices, text_ndx, extern, members=None, image=None):
     def image_word(offset):
         return struct.unpack(">I", image_at(text_addr(offset), 4))[0]
 
-    local = _local_data_bases(obj, rels, syms, in_member, image_word, image_at)
+    def known(name):
+        if name in extern:
+            return extern[name]
+        return blob_splice.address_named(name)
+
+    local = _local_data_bases(obj, rels, syms, in_member, image_word, image_at, known,
+                              relocated={o[len(".rel"):] for o in others})
     sec_index = {ndx: name for name, (ndx, _, _) in _sections(obj).items()
                  if name in local}
 
@@ -356,15 +371,13 @@ def relocate(obj, slices, text_ndx, extern, members=None, image=None):
             return text_addr(addend)
         if name in local:
             return local[name] + addend
-        if sym and sym[1] in sec_index:
-            return local[sec_index[sym[1]]] + sym[0] + addend
         if sym and sym[1] == text_ndx:
             return text_addr(sym[0] + addend)
-        if name in extern:
-            return extern[name] + addend
-        addr = blob_splice.address_named(name)
+        addr = known(name)
         if addr is not None:
             return addr + addend
+        if sym and sym[1] in sec_index:
+            return local[sec_index[sym[1]]] + sym[0] + addend
         raise GroupError(f"unresolved symbol {name}")
 
     def word(o):

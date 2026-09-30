@@ -4757,6 +4757,7 @@ model_transform_setup:
 .section .text.model_bounds_calc, "ax", @progbits
 .globl model_bounds_calc
 model_bounds_calc:
+    /* compiled from src/blob/model_bounds_calc.c */
     .word 0x27BDFFE8
     .word 0x12000007
     .word 0xAFBF0014
@@ -5253,6 +5254,7 @@ physics_velocity_integrate_a:
 .section .text.physics_velocity_integrate_b, "ax", @progbits
 .globl physics_velocity_integrate_b
 physics_velocity_integrate_b:
+    /* compiled from src/blob/physics_velocity_integrate_b.c */
     .word 0x27BDFFB0
     .word 0xAFBF004C
     .word 0xAFB20048
@@ -5329,6 +5331,7 @@ physics_velocity_integrate_b:
 .section .text.physics_velocity_integrate_c, "ax", @progbits
 .globl physics_velocity_integrate_c
 physics_velocity_integrate_c:
+    /* compiled from src/blob/physics_velocity_integrate_c.c */
     .word 0x27BDFFB0
     .word 0xAFBF004C
     .word 0xAFB20048
@@ -5399,6 +5402,7 @@ physics_velocity_integrate_c:
 .section .text.physics_velocity_integrate_d, "ax", @progbits
 .globl physics_velocity_integrate_d
 physics_velocity_integrate_d:
+    /* compiled from src/blob/physics_velocity_integrate_d.c */
     .word 0x27BDFFB0
     .word 0xAFBF004C
     .word 0xAFB20048
@@ -5469,6 +5473,7 @@ physics_velocity_integrate_d:
 .section .text.physics_velocity_integrate_e, "ax", @progbits
 .globl physics_velocity_integrate_e
 physics_velocity_integrate_e:
+    /* compiled from src/blob/physics_velocity_integrate_e.c */
     .word 0x27BDFFB0
     .word 0xAFBF004C
     .word 0xAFB20048
@@ -5539,6 +5544,7 @@ physics_velocity_integrate_e:
 .section .text.physics_velocity_integrate_f, "ax", @progbits
 .globl physics_velocity_integrate_f
 physics_velocity_integrate_f:
+    /* compiled from src/blob/physics_velocity_integrate_f.c */
     .word 0x27BDFFB0
     .word 0xAFBF004C
     .word 0xAFB20048
