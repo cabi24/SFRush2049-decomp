@@ -87,6 +87,41 @@ Rescored 104 entries: 71 unmatched below, 2 strict matches not yet in `cloud/mat
 | func_8009D45C | 465 | 75 | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | 75/171 words differ |
 | func_80091B00 | 455 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | StopIteration |
 | mode_byte2_set | 160 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | -------------------------^ |
+| physics_forces2 | 100 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | not yet rescored |
+| object_type_byte2_get | 200 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | not yet rescored |
+| object_type_byte3_get | 200 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | not yet rescored |
+| object_pool_init | 445 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | not yet rescored |
+| func_800D2054 | 570 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | not yet rescored |
+| input_init_flag_get | 580 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | not yet rescored |
+| func_800B7438 | 660 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | not yet rescored |
+| func_800DCD58 | 670 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | not yet rescored |
+| func_800DA0BC | 675 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | not yet rescored |
+| car_gear_shift | 705 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | not yet rescored |
+| Effects_UpdateEmitters | 715 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | not yet rescored |
+| func_800D8078 | 750 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | not yet rescored |
+| main_menu_render | 795 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | not yet rescored |
+| func_8008C768 | 810 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | not yet rescored |
+| func_800ADCE0 | 910 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | not yet rescored |
+| sound_control | 925 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | not yet rescored |
+| func_8008B32C | 985 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | not yet rescored |
+| display_list_traverse | 1000 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | not yet rescored |
+| func_8008B000 | 1150 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | not yet rescored |
+| func_800A7BF8 | 1165 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | not yet rescored |
+| func_800E762C | 1195 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | not yet rescored |
+| records_screen | 1195 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | not yet rescored |
+| credits_screen | 1240 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | not yet rescored |
+| func_800B5688 | 1250 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | not yet rescored |
+| game_mode_handler | 1295 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | not yet rescored |
+| entity_name_copy | 1335 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | not yet rescored |
+| sound_stop | 1345 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | not yet rescored |
+| func_800A79F4 | 1390 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | not yet rescored |
+| func_800FBE60 | 1620 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | not yet rescored |
+| graphics_chunk | 1800 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | not yet rescored |
+| func_800F084C | 1885 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | not yet rescored |
+| func_800B3704 | 2095 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | not yet rescored |
+| func_800E7038 | 2515 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | not yet rescored |
+| graphics_chunk_b | 2525 | - | permuter | `-g0 -O2 -mips2 -G 0 -non_shared` | not yet rescored |
+
 
 ## Matched (now in cloud/matches/)
 
