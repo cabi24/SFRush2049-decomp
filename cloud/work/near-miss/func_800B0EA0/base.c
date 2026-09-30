@@ -3788,7 +3788,6 @@ void world_object_destroy(void *arg0);
 void world_physics_tick(void);
 void world_trigger_activate(void);
 s32 world_velocity_integrate();
-/*MY*/
 s32 func_800B0EA0(s32 arg0, s32 arg1, s32 arg2)
 {
   u32 inv;

@@ -3791,7 +3791,6 @@ typedef s8 M2C_UNK8;
 typedef s16 M2C_UNK16;
 typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
-/*MY*/
 typedef struct Slot18 { s16 f0; s8 f2; s8 f3; u8 pad[0x14]; } Slot18;
 extern Slot18 D_80142DD8[128];
 Slot18 *func_80091B00(void)

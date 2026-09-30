@@ -3793,7 +3793,6 @@ typedef s8 M2C_UNK8;
 typedef s16 M2C_UNK16;
 typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
-/*MY*/
 void random_seed_init(u32 arg0, s32 arg1)
 {
   InputRecord *r;

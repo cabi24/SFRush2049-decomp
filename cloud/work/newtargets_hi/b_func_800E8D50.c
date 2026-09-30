@@ -3,7 +3,7 @@ typedef unsigned char u8;
 typedef signed short s16;
 typedef signed int s32;
 typedef struct { u8 p[859]; s8 f859; s8 f860; } Car;
-typedef struct { u8 p[96]; float v96[3]; u8 q[24]; float f132[3]; u8 r[8]; } Slot;
+typedef struct { u8 p[96]; float v96[3]; u8 q[24]; float f120[3]; float f132[3]; u8 r[152 - 144]; } Slot;
 typedef struct { u8 p[2056]; } Row;
 extern s16 D_8014A914[];
 extern float D_80152708[];
@@ -14,8 +14,8 @@ extern Slot D_80150B70[];
 void func_800E8CB8(Car *c);
 void vector_normalize_length(float *v, float *w);
 void func_800E8D50(Car *c, float *p1, s32 flag, float *p2) {
-    s32 k;
     float out[3];
+    s32 k;
     s32 i;
     float a;
     float b;
@@ -33,10 +33,10 @@ void func_800E8D50(Car *c, float *p1, s32 flag, float *p2) {
             D_80152708[i] *= 0.5f;
         }
     }
- a = D_80152708[i];
- b = 1 - a; 
+    a = D_80152708[i];
+    b = 1.0f - a;
     for (k = 0; k < 3; k++) {
- D_80150B70[i].f132[k] = b * (p2[k] + p1[k]) + D_80150B70[i].f132[k] * a; 
+        D_80150B70[i].f132[k] = b * (p1[k] + p2[k]) + D_80150B70[i].f132[k] * a;
         out[k] = p1[k] - D_80150B70[i].f132[k];
     }
     vector_normalize_length(out, D_80150B70[i].v96);

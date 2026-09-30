@@ -3793,26 +3793,12 @@ typedef s8 M2C_UNK8;
 typedef s16 M2C_UNK16;
 typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
-typedef struct SndEnt {
-  u8 pad[0x40];
-  s16 f40;
-  s16 f42;
-  s8 f44;
-  s8 f45;
-  u8 f46;
-  u8 f47;
-} SndEnt;
 void func_800A7480(s16 arg0, s16 arg1, s8 arg2, s8 arg3, u8 arg4, u8 arg5, s32 arg6)
 {
-  SndEnt *e;
-  s32 c;
-  e = (SndEnt *) ((u8 *) &D_8017A510 + arg6 * 0x48);
-  e->f40 = arg0;
-  e->f42 = arg1;
-  e->f44 = arg2;
-  e->f45 = arg3;
-  e->f46 = arg4;
-  e->f47 = arg5;
-  c = (((arg2 << 8) & 0xF800) | ((arg3 * 8) & 0x7C0) | ((arg4 >> 2) & 0x3E) | 1) & 0xFFFF;
-  D_80124FC8 = (c << 0x10) | c;
+  void *temp_v0;
+  s32 temp_t2;
+  temp_v0 = (s32 *) ((arg6 * 0x48) + ((u8 *) (&D_8017A510)));
+ do { *((s16 *) (((s8 *) temp_v0) + 0x40)) = arg0; arg0++; arg0--; *((s16 *) (((s8 *) temp_v0) + 0x42)) = arg1; *((s8 *) (((s8 *) temp_v0) + 0x44)) = arg2; *((s8 *) (((s8 *) temp_v0) + 0x45)) = arg3; *((u8 *) (((s8 *) temp_v0) + 0x46)) = arg4; *((u8 *) (((s8 *) temp_v0) + 0x47)) = arg5; } while (0);
+  temp_t2 = (((((arg2 << 8) & 0xF800) | ((arg3 * 8) & 0x7C0)) | ((((s32) arg4) >> 2) & 0x3E)) | 1) & 0xFFFF;
+  D_80124FC8 = (temp_t2 << 0x10) | temp_t2;
 }

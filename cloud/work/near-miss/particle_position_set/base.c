@@ -3793,13 +3793,6 @@ typedef s8 M2C_UNK8;
 typedef s16 M2C_UNK16;
 typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
-/*MY*/
-/*MY*/
-/*MY*/
-/*MY*/
-/*MY*/
-/*MY*/
-/*MY*/
 typedef struct PartSlot {
   u8 pad0[0x24];
   f32 f24;

@@ -3696,16 +3696,14 @@ typedef s64 M2C_UNK64;
 
 #endif
 
-typedef struct { f32 v[9]; } F9;
-typedef struct { s16 v[9]; } S9;
-void func_800AD650(f32 *arg0, s16 *arg1) {
-    arg0[0] = arg1[0] * 0.000061035156;
-    arg0[1] = arg1[1] * 0.000061035156;
-    arg0[2] = arg1[2] * 0.000061035156;
-    arg0[3] = arg1[3] * 0.000061035156;
-    arg0[4] = arg1[4] * 0.000061035156;
-    arg0[5] = arg1[5] * 0.000061035156;
-    arg0[6] = arg1[6] * 0.000061035156;
-    arg0[7] = arg1[7] * 0.000061035156;
-    arg0[8] = arg1[8] * 0.000061035156;
+void func_800AD650(void *arg0, void *arg1) {
+    M2C_FIELD(arg0, f32 *, 0) = (f32) ((f32) M2C_FIELD(arg1, s16 *, 0) * 0.000061035156f);
+    M2C_FIELD(arg0, f32 *, 4) = (f32) ((f32) M2C_FIELD(arg1, s16 *, 2) * 0.000061035156f);
+    M2C_FIELD(arg0, f32 *, 8) = (f32) ((f32) M2C_FIELD(arg1, s16 *, 4) * 0.000061035156f);
+    M2C_FIELD(arg0, f32 *, 0xC) = (f32) ((f32) M2C_FIELD(arg1, s16 *, 6) * 0.000061035156f);
+    M2C_FIELD(arg0, f32 *, 0x10) = (f32) ((f32) M2C_FIELD(arg1, s16 *, 8) * 0.000061035156f);
+    M2C_FIELD(arg0, f32 *, 0x14) = (f32) ((f32) M2C_FIELD(arg1, s16 *, 0xA) * 0.000061035156f);
+    M2C_FIELD(arg0, f32 *, 0x18) = (f32) ((f32) M2C_FIELD(arg1, s16 *, 0xC) * 0.000061035156f);
+    M2C_FIELD(arg0, f32 *, 0x1C) = (f32) ((f32) M2C_FIELD(arg1, s16 *, 0xE) * 0.000061035156f);
+    M2C_FIELD(arg0, f32 *, 0x20) = (f32) ((f32) M2C_FIELD(arg1, s16 *, 0x10) * 0.000061035156f);
 }

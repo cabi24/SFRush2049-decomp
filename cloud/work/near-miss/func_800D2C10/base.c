@@ -3793,7 +3793,6 @@ typedef s8 M2C_UNK8;
 typedef s16 M2C_UNK16;
 typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
-/*MY*/
 typedef struct P3 { s16 x; s16 y; s16 z; s16 pad; } P3;
 typedef struct PSet { u16 n; u16 pad; P3 *pts; } PSet;
 s16 func_800D2C10(P3 *arg0, s16 arg1)
