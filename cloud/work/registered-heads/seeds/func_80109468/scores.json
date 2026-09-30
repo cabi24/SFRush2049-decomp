@@ -1,0 +1,35 @@
+[
+  {
+    "matched": false,
+    "strict_diff": 382,
+    "target_size": 382,
+    "size": 0,
+    "extra": 0,
+    "err": "IDO compile failed:\ncfe: Error: /tmp/am-p0seqel7/src.c, line 887: Dereferenced a non-pointer.\n                         *(var_t7 + ((s32) (var_a1 * D_801161C4) / 2) + var_v0_2) = 0;\n ---------------------------------------------------------------------^\ncfe: Warning 712: /tmp/am-p0seqel7/src.c, line 923: illegal combination of pointer and integer\n                     temp_v1_2 = var_t7 + (var_s2 * 6);\n ------------------------------^\ncfe: Warning 712: /tmp/am-p0seqel7/src.c, line 944: illegal combination of pointer and integer\n                                             temp_v1_3 = (*( s32 *)((s8 *)((*( void **)((s8 *)(arg0) + ( 8)))) + ( 0x18)))  + ((s32) ((var_t7 - 1) * D_801161C4) / 2) + (var_v0_3 / 2);\n ------------------------------------------------------^\n",
+    "unverified": [],
+    "unresolved": [],
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+  },
+  {
+    "matched": false,
+    "strict_diff": 382,
+    "target_size": 382,
+    "size": 0,
+    "extra": 0,
+    "err": "IDO compile failed:\ncfe: Error: /tmp/am-pgs2x2pw/src.c, line 887: Dereferenced a non-pointer.\n                         *(var_t7 + ((s32) (var_a1 * D_801161C4) / 2) + var_v0_2) = 0;\n ---------------------------------------------------------------------^\ncfe: Warning 712: /tmp/am-pgs2x2pw/src.c, line 923: illegal combination of pointer and integer\n                     temp_v1_2 = var_t7 + (var_s2 * 6);\n ------------------------------^\ncfe: Warning 712: /tmp/am-pgs2x2pw/src.c, line 944: illegal combination of pointer and integer\n                                             temp_v1_3 = (*( s32 *)((s8 *)((*( void **)((s8 *)(arg0) + ( 8)))) + ( 0x18)))  + ((s32) ((var_t7 - 1) * D_801161C4) / 2) + (var_v0_3 / 2);\n ------------------------------------------------------^\n",
+    "unverified": [],
+    "unresolved": [],
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared"
+  },
+  {
+    "matched": false,
+    "strict_diff": 382,
+    "target_size": 382,
+    "size": 0,
+    "extra": 0,
+    "err": "IDO compile failed:\ncfe: Error: /tmp/am-qr4lkd18/src.c, line 887: Dereferenced a non-pointer.\n                         *(var_t7 + ((s32) (var_a1 * D_801161C4) / 2) + var_v0_2) = 0;\n ---------------------------------------------------------------------^\ncfe: Warning 712: /tmp/am-qr4lkd18/src.c, line 923: illegal combination of pointer and integer\n                     temp_v1_2 = var_t7 + (var_s2 * 6);\n ------------------------------^\ncfe: Warning 712: /tmp/am-qr4lkd18/src.c, line 944: illegal combination of pointer and integer\n                                             temp_v1_3 = (*( s32 *)((s8 *)((*( void **)((s8 *)(arg0) + ( 8)))) + ( 0x18)))  + ((s32) ((var_t7 - 1) * D_801161C4) / 2) + (var_v0_3 / 2);\n ------------------------------------------------------^\n",
+    "unverified": [],
+    "unresolved": [],
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+  }
+]

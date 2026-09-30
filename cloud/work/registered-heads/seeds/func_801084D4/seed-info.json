@@ -1,0 +1,21 @@
+{
+  "m2c": {
+    "func_801084D4": true,
+    "slot_state_setup": true
+  },
+  "todo_calls": 0,
+  "reordered_calls": 6,
+  "stubbed": [],
+  "externs": 15,
+  "m2c_available": true,
+  "spans": {
+    "func_801084D4": [
+      810,
+      937
+    ],
+    "slot_state_setup": [
+      938,
+      970
+    ]
+  }
+}

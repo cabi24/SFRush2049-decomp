@@ -7,13 +7,24 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "cloud" / "work" / "tools"))
-from ipakit import deps, groupgen, sigs  # noqa: E402
+from ipakit import Corpus, Func, IMAGE_BASE, deps, groupgen, sigs  # noqa: E402
 
 IDO = ROOT / "tools" / "cloud" / "ido" / "cc"
 HAVE_M2C = (ROOT / "tools" / "mips_to_c" / "m2c.py").exists() and shutil.which("mips-linux-gnu-objdump") is not None
 
 
 class HelperTests(unittest.TestCase):
+    @unittest.skipUnless(shutil.which("mips-linux-gnu-objdump"), 'needs objdump')
+    def test_disasm_prefers_registered_callee_over_alias(self):
+        address = IMAGE_BASE + 16
+        f = Func('caller', IMAGE_BASE, [(3 << 26) | ((address >> 2) & 0x3FFFFFF), 0, 0x03E00008, 0])
+        callee = Func('canonical', address, [0x03E00008, 0])
+        c = Corpus([f, callee], f.words + callee.words,
+                   {'canonical': address, 'historical_alias': address})
+        asm, _ = groupgen.disasm_for_m2c(c, f)
+        self.assertRegex(asm, r'jal\s+canonical')
+        self.assertNotIn('historical_alias', asm)
+
     def test_split_args_respects_nesting(self):
         self.assertEqual(groupgen.split_args("a, f(b, c), (d, e)[1], g"), ['a', 'f(b, c)', '(d, e)[1]', 'g'])
         self.assertEqual(groupgen.split_args(""), [])
@@ -97,9 +108,12 @@ class PlanTests(unittest.TestCase):
         self.assertEqual(plan.keep, ['func_800EA3F4'])
         self.assertEqual(plan.standins, [])
 
-    def test_unregistered_head_gets_targets(self):
+    def test_registered_head_uses_section_target(self):
         plan = groupgen.make_plan(['func_80107EDC'], 'chain', self.dm)
-        self.assertEqual(plan.targets['func_80107EDC'], {'addr': '0x80107EDC', 'words': 158})
+        self.assertNotIn('func_80107EDC', plan.targets)
+        f = self.dm.corpus.funcs['func_80107EDC']
+        self.assertFalse(f.discovered)
+        self.assertEqual((f.addr, len(f.words)), (0x80107EDC, 158))
         self.assertIn('slot_state_setup', plan.nodes)
         self.assertIn('func_80107EDC', plan.keep)                            # address-taken (descriptor table)
 

@@ -1,0 +1,16 @@
+[
+  {
+    "matched": false,
+    "strict_diff": 145,
+    "target_size": 158,
+    "size": 145,
+    "extra": 0,
+    "unverified": [
+      ".rodata+0x0 at +0x200",
+      ".rodata+0x0 at +0x208"
+    ],
+    "unresolved": [],
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "err": null
+  }
+]

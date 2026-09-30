@@ -6,6 +6,7 @@ Stdlib only.  `load_corpus()` is the shared entry point: it reads the committed 
 targets (tools/cloud/score.py targets()) and the inflated game image.
 """
 import json
+import re
 import struct
 import sys
 import zlib
@@ -129,6 +130,39 @@ class Corpus:
 _cache = {}
 
 
+def unique_targets():
+    """Read verified sections once; stale regions may repeat identical bodies.
+
+    The canonical scorer checks the manifest and file set first. Never truncate
+    a concatenated body by guessing an extent, or accept conflicting copies.
+    """
+    sys.path.insert(0, str(ROOT / 'tools' / 'cloud'))
+    import score
+    score.targets()
+    manifest = score.target_manifest()
+    targets = {}
+    for path in sorted(score.ASM_DIR.glob('*.s')):
+        current, words = None, []
+
+        def finish():
+            if current is not None:
+                if current in targets and targets[current] != words:
+                    raise SystemExit('conflicting retail sections for %s' % current)
+                targets[current] = list(words)
+
+        for line in score.verified_bytes(path, manifest).decode('utf-8').splitlines():
+            if line.strip().startswith('.section'):
+                finish()
+                m = re.match(r'\.section \.text\.(\S+?),', line.strip())
+                current, words = (m.group(1) if m else None), []
+            else:
+                m = re.match(r'\s*\.word\s+(0x[0-9A-Fa-f]+)', line)
+                if current is not None and m:
+                    words.append(int(m.group(1), 16))
+        finish()
+    return targets
+
+
 def load_corpus(discover=True, heads=False):
     """Shared corpus (cached per process).  With discover=True, `jal` targets that land in
     opaque image runs are registered as discovered heads (see heads.py).  With heads=True every head the
@@ -137,7 +171,7 @@ def load_corpus(discover=True, heads=False):
     if 'base' not in _cache:
         sys.path.insert(0, str(ROOT / 'tools' / 'cloud'))
         import score
-        T = score.targets()
+        T = unique_targets()
         syms = {k: int(v, 16) for k, v in json.loads(SYMBOLS_JSON.read_text())['symbols'].items()}
         funcs = [Func(n, syms[n], list(w)) for n, w in T.items() if n in syms and w]
         _cache['base'] = (funcs, image_words(), syms)

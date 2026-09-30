@@ -1,0 +1,16 @@
+[
+  {
+    "experiment": "func_800A1910_internal",
+    "err": null,
+    "strict_diff": 32,
+    "size": 42,
+    "target_size": 40
+  },
+  {
+    "experiment": "func_800A1910_kept",
+    "err": null,
+    "strict_diff": 2,
+    "size": 40,
+    "target_size": 40
+  }
+]

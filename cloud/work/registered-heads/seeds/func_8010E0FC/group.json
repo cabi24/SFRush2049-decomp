@@ -1,0 +1,19 @@
+{
+  "members": [
+    "func_8010E0FC",
+    "math_utility",
+    "string_copy_format"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_8010E0FC",
+    "math_utility"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "generated": "groupgen.py seeds=func_8010E0FC mode=direct",
+  "unprototyped": [],
+  "context": [],
+  "claims": []
+}

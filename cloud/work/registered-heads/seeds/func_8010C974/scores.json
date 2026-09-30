@@ -1,0 +1,35 @@
+[
+  {
+    "matched": false,
+    "strict_diff": 659,
+    "target_size": 659,
+    "size": 0,
+    "extra": 0,
+    "err": "IDO compile failed:\ncfe: Error: /tmp/am-t9spycyo/src.c, line 879: Type void *  of rhs of assignment expression is incompatible with type float  of lhs\n     var_f12 = arg0;\n ------------^\ncfe: Warning 709: /tmp/am-t9spycyo/src.c, line 926: Incompatible pointer type assignment\n             var_v0 = (u8 *) &D_80151528 + ((*( s8 *)((s8 *)(temp_s3) + ( 0x65)))  * 0x14);\n -------------------^\ncfe: Warning 709: /tmp/am-t9spycyo/src.c, line 1110: Incompatible pointer type assignment\n         var_v0_4 = ((*( s8 *)((s8 *)(temp_s3) + ( 0x65)))  * 0x14) + (u8 *) &D_80151528;\n -----------------^\n",
+    "unverified": [],
+    "unresolved": [],
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+  },
+  {
+    "matched": false,
+    "strict_diff": 659,
+    "target_size": 659,
+    "size": 0,
+    "extra": 0,
+    "err": "IDO compile failed:\ncfe: Error: /tmp/am-li6edmhs/src.c, line 879: Type void *  of rhs of assignment expression is incompatible with type float  of lhs\n     var_f12 = arg0;\n ------------^\ncfe: Warning 709: /tmp/am-li6edmhs/src.c, line 926: Incompatible pointer type assignment\n             var_v0 = (u8 *) &D_80151528 + ((*( s8 *)((s8 *)(temp_s3) + ( 0x65)))  * 0x14);\n -------------------^\ncfe: Warning 709: /tmp/am-li6edmhs/src.c, line 1110: Incompatible pointer type assignment\n         var_v0_4 = ((*( s8 *)((s8 *)(temp_s3) + ( 0x65)))  * 0x14) + (u8 *) &D_80151528;\n -----------------^\n",
+    "unverified": [],
+    "unresolved": [],
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared"
+  },
+  {
+    "matched": false,
+    "strict_diff": 659,
+    "target_size": 659,
+    "size": 0,
+    "extra": 0,
+    "err": "IDO compile failed:\ncfe: Error: /tmp/am-d1n8p55a/src.c, line 879: Type void *  of rhs of assignment expression is incompatible with type float  of lhs\n     var_f12 = arg0;\n ------------^\ncfe: Warning 709: /tmp/am-d1n8p55a/src.c, line 926: Incompatible pointer type assignment\n             var_v0 = (u8 *) &D_80151528 + ((*( s8 *)((s8 *)(temp_s3) + ( 0x65)))  * 0x14);\n -------------------^\ncfe: Warning 709: /tmp/am-d1n8p55a/src.c, line 1110: Incompatible pointer type assignment\n         var_v0_4 = ((*( s8 *)((s8 *)(temp_s3) + ( 0x65)))  * 0x14) + (u8 *) &D_80151528;\n -----------------^\n",
+    "unverified": [],
+    "unresolved": [],
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+  }
+]

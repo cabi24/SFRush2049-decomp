@@ -1,0 +1,18 @@
+{
+  "members": [
+    "func_800CCE5C"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_800CCE5C",
+    "__standin_func_800A1DD4",
+    "__standin_slot_state_lookup"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "generated": "groupgen.py seeds=func_800CCE5C,slot_state_lookup mode=direct",
+  "unprototyped": [],
+  "context": [],
+  "claims": []
+}

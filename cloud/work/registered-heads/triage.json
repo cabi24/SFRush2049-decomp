@@ -1,0 +1,2029 @@
+[
+  {
+    "fn": "func_8010E72C",
+    "class": "ABI",
+    "words": 63,
+    "closure_funcs": 1,
+    "closure_words": 63,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 8.396,
+    "p_success": 0.317,
+    "reason": "ABI class (prior 0.45); m2c-seedable",
+    "callees": {
+      "func_80090284": "ABI",
+      "math_utility": "ABI",
+      "stat_lap_split": "ABI",
+      "vector_normalize_length": "ABI"
+    },
+    "start_first": true,
+    "evidence": [],
+    "conveyor_ipa_member": false,
+    "conveyor_evidence": {}
+  },
+  {
+    "fn": "func_80105DA8",
+    "class": "ABI",
+    "words": 64,
+    "closure_funcs": 1,
+    "closure_words": 64,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 8.39,
+    "p_success": 0.315,
+    "reason": "ABI class (prior 0.45); m2c-seedable",
+    "callees": {
+      "Input_ApplyPadConfig": "ABI"
+    },
+    "start_first": true,
+    "evidence": [],
+    "conveyor_ipa_member": false,
+    "conveyor_evidence": {}
+  },
+  {
+    "fn": "func_8010DAF8",
+    "class": "ABI",
+    "words": 48,
+    "closure_funcs": 1,
+    "closure_words": 48,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 8.373,
+    "p_success": 0.341,
+    "reason": "ABI class (prior 0.45); m2c-seedable",
+    "callees": {
+      "func_80090284": "ABI",
+      "stat_lap_split": "ABI"
+    },
+    "start_first": true,
+    "evidence": [],
+    "conveyor_ipa_member": false,
+    "conveyor_evidence": {}
+  },
+  {
+    "fn": "func_8010D9CC",
+    "class": "ABI",
+    "words": 75,
+    "closure_funcs": 1,
+    "closure_words": 75,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 8.3,
+    "p_success": 0.3,
+    "reason": "ABI class (prior 0.45); m2c-seedable",
+    "callees": {
+      "func_80090284": "ABI",
+      "stat_lap_split": "ABI",
+      "vector_normalize_length": "ABI"
+    },
+    "start_first": true,
+    "evidence": [],
+    "conveyor_ipa_member": false,
+    "conveyor_evidence": {}
+  },
+  {
+    "fn": "func_8010C448",
+    "class": "ABI",
+    "words": 80,
+    "closure_funcs": 1,
+    "closure_words": 80,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 8.242,
+    "p_success": 0.293,
+    "reason": "ABI class (prior 0.45); m2c-seedable",
+    "callees": {},
+    "start_first": true,
+    "evidence": [],
+    "conveyor_ipa_member": false,
+    "conveyor_evidence": {}
+  },
+  {
+    "fn": "func_8010C588",
+    "class": "ABI",
+    "words": 80,
+    "closure_funcs": 1,
+    "closure_words": 80,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 8.242,
+    "p_success": 0.293,
+    "reason": "ABI class (prior 0.45); m2c-seedable",
+    "callees": {},
+    "start_first": true,
+    "evidence": [],
+    "conveyor_ipa_member": false,
+    "conveyor_evidence": {}
+  },
+  {
+    "fn": "func_8010DBB8",
+    "class": "ABI",
+    "words": 81,
+    "closure_funcs": 1,
+    "closure_words": 81,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 8.23,
+    "p_success": 0.292,
+    "reason": "ABI class (prior 0.45); m2c-seedable",
+    "callees": {
+      "func_80090284": "ABI",
+      "func_80090E9C": "ABI",
+      "stat_lap_split": "ABI"
+    },
+    "start_first": true,
+    "evidence": [],
+    "conveyor_ipa_member": false,
+    "conveyor_evidence": {}
+  },
+  {
+    "fn": "func_8010E694",
+    "class": "ABI",
+    "words": 38,
+    "closure_funcs": 1,
+    "closure_words": 38,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 8.203,
+    "p_success": 0.359,
+    "reason": "ABI class (prior 0.45); m2c-seedable",
+    "callees": {
+      "entity_transform_apply": "ABI",
+      "sound_position_set": "ABI"
+    },
+    "start_first": true,
+    "evidence": [],
+    "conveyor_ipa_member": false,
+    "conveyor_evidence": {}
+  },
+  {
+    "fn": "func_8010C2E4",
+    "class": "ABI",
+    "words": 89,
+    "closure_funcs": 1,
+    "closure_words": 89,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 8.121,
+    "p_success": 0.282,
+    "reason": "ABI class (prior 0.45); m2c-seedable",
+    "callees": {},
+    "start_first": true,
+    "evidence": [],
+    "conveyor_ipa_member": false,
+    "conveyor_evidence": {}
+  },
+  {
+    "fn": "func_8010DF90",
+    "class": "ABI",
+    "words": 91,
+    "closure_funcs": 1,
+    "closure_words": 91,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 8.092,
+    "p_success": 0.28,
+    "reason": "ABI class (prior 0.45); m2c-seedable",
+    "callees": {
+      "func_800F7A98": "ABI",
+      "linear_interp": "ABI",
+      "model_data_load": "ABI",
+      "stat_lap_split": "ABI"
+    },
+    "start_first": true,
+    "evidence": [],
+    "conveyor_ipa_member": false,
+    "conveyor_evidence": {}
+  },
+  {
+    "fn": "func_8010D85C",
+    "class": "ABI",
+    "words": 92,
+    "closure_funcs": 1,
+    "closure_words": 92,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 8.077,
+    "p_success": 0.279,
+    "reason": "ABI class (prior 0.45); m2c-seedable",
+    "callees": {
+      "entity_transform_apply": "ABI",
+      "func_800A464C": "ABI",
+      "sound_bank_load": "ABI"
+    },
+    "start_first": true,
+    "evidence": [],
+    "conveyor_ipa_member": false,
+    "conveyor_evidence": {}
+  },
+  {
+    "fn": "func_8010E828",
+    "class": "ABI",
+    "words": 33,
+    "closure_funcs": 1,
+    "closure_words": 33,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 8.044,
+    "p_success": 0.369,
+    "reason": "ABI class (prior 0.45); m2c-seedable",
+    "callees": {
+      "entity_transform_apply": "ABI",
+      "sound_position_set": "ABI"
+    },
+    "start_first": true,
+    "evidence": [],
+    "conveyor_ipa_member": false,
+    "conveyor_evidence": {}
+  },
+  {
+    "fn": "func_8010C7F4",
+    "class": "ABI",
+    "words": 96,
+    "closure_funcs": 1,
+    "closure_words": 96,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 8.016,
+    "p_success": 0.274,
+    "reason": "ABI class (prior 0.45); m2c-seedable",
+    "callees": {
+      "func_800A61B0": "ABI",
+      "stat_lap_split": "ABI"
+    },
+    "start_first": true,
+    "evidence": [],
+    "conveyor_ipa_member": false,
+    "conveyor_evidence": {}
+  },
+  {
+    "fn": "func_80108DA8",
+    "class": "ABI",
+    "words": 102,
+    "closure_funcs": 1,
+    "closure_words": 102,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 7.921,
+    "p_success": 0.268,
+    "reason": "ABI class (prior 0.45); m2c-seedable",
+    "callees": {
+      "Input_ApplyPadConfig": "ABI",
+      "func_800EF5B0": "ABI"
+    },
+    "start_first": true,
+    "evidence": [],
+    "conveyor_ipa_member": false,
+    "conveyor_evidence": {}
+  },
+  {
+    "fn": "func_8010E4E4",
+    "class": "ABI",
+    "words": 108,
+    "closure_funcs": 1,
+    "closure_words": 108,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 7.822,
+    "p_success": 0.262,
+    "reason": "ABI class (prior 0.45); m2c-seedable",
+    "callees": {
+      "entity_spawn_callback": "ABI",
+      "entity_transform_apply": "ABI",
+      "func_800AFA84": "ABI",
+      "sound_position_set": "ABI"
+    },
+    "start_first": true,
+    "evidence": [],
+    "conveyor_ipa_member": false,
+    "conveyor_evidence": {}
+  },
+  {
+    "fn": "func_80105B74",
+    "class": "ABI",
+    "words": 141,
+    "closure_funcs": 1,
+    "closure_words": 141,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 7.261,
+    "p_success": 0.232,
+    "reason": "ABI class (prior 0.45); m2c-seedable",
+    "callees": {
+      "func_800D2128": "ABI"
+    },
+    "start_first": true,
+    "evidence": [],
+    "conveyor_ipa_member": false,
+    "conveyor_evidence": {}
+  },
+  {
+    "fn": "func_8010DCFC",
+    "class": "ABI",
+    "words": 165,
+    "closure_funcs": 1,
+    "closure_words": 165,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 6.865,
+    "p_success": 0.214,
+    "reason": "ABI class (prior 0.45); large (165w); m2c-seedable",
+    "callees": {
+      "func_80090284": "ABI",
+      "math_utility": "ABI",
+      "model_data_load": "ABI",
+      "save_write_data": "ABI",
+      "stat_lap_split": "ABI",
+      "vector_normalize_length": "ABI"
+    },
+    "start_first": true,
+    "evidence": [],
+    "conveyor_ipa_member": true,
+    "conveyor_evidence": {
+      "preservers": [
+        "a2"
+      ]
+    }
+  },
+  {
+    "fn": "func_8010C02C",
+    "class": "ABI",
+    "words": 174,
+    "closure_funcs": 1,
+    "closure_words": 174,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 6.723,
+    "p_success": 0.208,
+    "reason": "ABI class (prior 0.45); large (174w); m2c-seedable",
+    "callees": {
+      "func_8009E820": "ABI",
+      "func_800A61B0": "ABI",
+      "random_float": "ABI"
+    },
+    "start_first": true,
+    "evidence": [],
+    "conveyor_ipa_member": false,
+    "conveyor_evidence": {}
+  },
+  {
+    "fn": "func_8010FD60",
+    "class": "ABI",
+    "words": 7,
+    "closure_funcs": 1,
+    "closure_words": 7,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 5.435,
+    "p_success": 0.43,
+    "reason": "ABI class (prior 0.45); m2c-seedable",
+    "callees": {},
+    "start_first": true,
+    "evidence": [],
+    "conveyor_ipa_member": false,
+    "conveyor_evidence": {}
+  },
+  {
+    "fn": "func_8010C7CC",
+    "class": "ABI",
+    "words": 6,
+    "closure_funcs": 1,
+    "closure_words": 6,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 5.222,
+    "p_success": 0.433,
+    "reason": "ABI class (prior 0.45); m2c-seedable",
+    "callees": {},
+    "start_first": true,
+    "evidence": [],
+    "conveyor_ipa_member": false,
+    "conveyor_evidence": {}
+  },
+  {
+    "fn": "func_80109A60",
+    "class": "ABI",
+    "words": 317,
+    "closure_funcs": 1,
+    "closure_words": 317,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 4.969,
+    "p_success": 0.145,
+    "reason": "ABI class (prior 0.45); large (317w); m2c-seedable",
+    "callees": {
+      "Input_ApplyPadConfig": "ABI",
+      "stat_race_update": "ABI"
+    },
+    "start_first": true,
+    "evidence": [],
+    "conveyor_ipa_member": false,
+    "conveyor_evidence": {}
+  },
+  {
+    "fn": "func_80108F40",
+    "class": "ABI",
+    "words": 330,
+    "closure_funcs": 1,
+    "closure_words": 330,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 4.85,
+    "p_success": 0.141,
+    "reason": "ABI class (prior 0.45); large (330w); m2c-seedable",
+    "callees": {
+      "Input_ApplyPadConfig": "ABI",
+      "func_800A61B0": "ABI",
+      "func_800CF604": "ABI",
+      "stat_race_update": "ABI"
+    },
+    "start_first": true,
+    "evidence": [],
+    "conveyor_ipa_member": true,
+    "conveyor_evidence": {
+      "preservers": [
+        "a1",
+        "a2"
+      ]
+    }
+  },
+  {
+    "fn": "func_80109468",
+    "class": "ABI",
+    "words": 382,
+    "closure_funcs": 1,
+    "closure_words": 382,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 4.423,
+    "p_success": 0.127,
+    "reason": "ABI class (prior 0.45); large (382w); m2c-seedable",
+    "callees": {
+      "Input_ApplyPadConfig": "ABI",
+      "func_800EF5B0": "ABI"
+    },
+    "start_first": true,
+    "evidence": [],
+    "conveyor_ipa_member": false,
+    "conveyor_evidence": {}
+  },
+  {
+    "fn": "func_80106D94",
+    "class": "ABI",
+    "words": 401,
+    "closure_funcs": 1,
+    "closure_words": 401,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": false,
+    "m2c_note": "over 400 words",
+    "priority": 2.571,
+    "p_success": 0.074,
+    "reason": "ABI class (prior 0.45); large (401w); not m2c-seedable (over 400 words)",
+    "callees": {
+      "Input_ApplyPadConfig": "ABI"
+    },
+    "start_first": true,
+    "evidence": [],
+    "conveyor_ipa_member": false,
+    "conveyor_evidence": {}
+  },
+  {
+    "fn": "func_8010C974",
+    "class": "ABI",
+    "words": 659,
+    "closure_funcs": 1,
+    "closure_words": 659,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": false,
+    "m2c_note": "over 400 words",
+    "priority": 1.798,
+    "p_success": 0.05,
+    "reason": "ABI class (prior 0.45); large (659w); not m2c-seedable (over 400 words)",
+    "callees": {
+      "camera_trigger_check": "IPA-caller",
+      "entity_spawn_callback": "ABI",
+      "entity_transform_apply": "ABI",
+      "func_8008D870": "ABI",
+      "func_8008E26C": "ABI",
+      "func_800AFA84": "ABI",
+      "math_utility": "ABI",
+      "model_data_load": "ABI",
+      "model_transform_setup": "ABI",
+      "save_write_data": "ABI"
+    },
+    "start_first": true,
+    "evidence": [],
+    "conveyor_ipa_member": true,
+    "conveyor_evidence": {
+      "preservers": [
+        "a2"
+      ]
+    }
+  },
+  {
+    "fn": "func_80107EDC",
+    "class": "IPA-caller",
+    "words": 158,
+    "closure_funcs": 2,
+    "closure_words": 216,
+    "callers": 0,
+    "seeds": [],
+    "group": "dynamic_difficulty",
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 1.671,
+    "p_success": 0.058,
+    "reason": "IPA-caller class (prior 0.12); member of drafted group dynamic_difficulty; large (158w); closure 2 funcs / 216 words; m2c-seedable",
+    "callees": {
+      "dispatch_handler": "ABI",
+      "music_tempo_adjust": "ABI",
+      "render_helper": "ABI",
+      "slot_state_setup": "IPA-both"
+    },
+    "start_first": false,
+    "evidence": [
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148564896,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_80107EDC sets s2 for slot_state_setup at 0x80107FA0"
+      },
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148564956,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_80107EDC sets s2 for slot_state_setup at 0x80107FDC"
+      }
+    ],
+    "conveyor_ipa_member": true,
+    "conveyor_evidence": {
+      "callers": [
+        "slot_state_setup"
+      ]
+    }
+  },
+  {
+    "fn": "func_8010BC84",
+    "class": "IPA-caller",
+    "words": 232,
+    "closure_funcs": 2,
+    "closure_words": 290,
+    "callers": 0,
+    "seeds": [],
+    "group": "reconnect_attempt",
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 1.271,
+    "p_success": 0.041,
+    "reason": "IPA-caller class (prior 0.12); member of drafted group reconnect_attempt; large (232w); closure 2 funcs / 290 words; m2c-seedable",
+    "callees": {
+      "Input_ApplyPadConfig": "ABI",
+      "dispatch_handler": "ABI",
+      "object_bytes_sum_global": "IPA-caller",
+      "object_manager_update": "IPA-caller",
+      "render_helper": "ABI",
+      "slot_state_setup": "IPA-both",
+      "state_utility": "IPA-caller"
+    },
+    "start_first": false,
+    "evidence": [
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148580736,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_8010BC84 sets s2 for slot_state_setup at 0x8010BD80"
+      },
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148580928,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_8010BC84 sets s2 for slot_state_setup at 0x8010BE40"
+      }
+    ],
+    "conveyor_ipa_member": true,
+    "conveyor_evidence": {
+      "callers": [
+        "slot_state_setup"
+      ]
+    }
+  },
+  {
+    "fn": "func_8010E8B4",
+    "class": "IPA-caller",
+    "words": 85,
+    "closure_funcs": 2,
+    "closure_words": 143,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 1.254,
+    "p_success": 0.052,
+    "reason": "IPA-caller class (prior 0.12); closure 2 funcs / 143 words; m2c-seedable",
+    "callees": {
+      "ambient_sound_set": "ABI",
+      "object_bytes_sum_global": "IPA-caller",
+      "slot_state_setup": "IPA-both",
+      "sound_loop_set": "IPA-both"
+    },
+    "start_first": false,
+    "evidence": [
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148591884,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_8010E8B4 sets s2 for slot_state_setup at 0x8010E90C"
+      }
+    ],
+    "conveyor_ipa_member": true,
+    "conveyor_evidence": {
+      "callers": [
+        "slot_state_setup"
+      ]
+    }
+  },
+  {
+    "fn": "func_8010B7FC",
+    "class": "IPA-caller",
+    "words": 115,
+    "closure_funcs": 2,
+    "closure_words": 173,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 1.14,
+    "p_success": 0.043,
+    "reason": "IPA-caller class (prior 0.12); closure 2 funcs / 173 words; m2c-seedable",
+    "callees": {
+      "Input_ApplyPadConfig": "ABI",
+      "dispatch_handler": "ABI",
+      "object_bytes_sum_global": "IPA-caller",
+      "object_manager_update": "IPA-caller",
+      "render_helper": "ABI",
+      "slot_state_setup": "IPA-both",
+      "state_utility": "IPA-caller"
+    },
+    "start_first": false,
+    "evidence": [
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148579444,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_8010B7FC sets s2 for slot_state_setup at 0x8010B874"
+      },
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148579516,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_8010B7FC sets s2 for slot_state_setup at 0x8010B8BC"
+      }
+    ],
+    "conveyor_ipa_member": true,
+    "conveyor_evidence": {
+      "callers": [
+        "slot_state_setup"
+      ]
+    }
+  },
+  {
+    "fn": "func_8010B5D0",
+    "class": "IPA-caller",
+    "words": 139,
+    "closure_funcs": 2,
+    "closure_words": 197,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 1.045,
+    "p_success": 0.038,
+    "reason": "IPA-caller class (prior 0.12); closure 2 funcs / 197 words; m2c-seedable",
+    "callees": {
+      "Input_ApplyPadConfig": "ABI",
+      "dispatch_handler": "ABI",
+      "fcvt_wrapper": "ABI",
+      "object_manager_update": "IPA-caller",
+      "render_helper": "ABI",
+      "slot_state_setup": "IPA-both",
+      "state_utility": "IPA-caller"
+    },
+    "start_first": false,
+    "evidence": [
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148578872,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_8010B5D0 sets s2 for slot_state_setup at 0x8010B638"
+      }
+    ],
+    "conveyor_ipa_member": true,
+    "conveyor_evidence": {
+      "callers": [
+        "slot_state_setup"
+      ]
+    }
+  },
+  {
+    "fn": "func_80106B3C",
+    "class": "IPA-caller",
+    "words": 150,
+    "closure_funcs": 2,
+    "closure_words": 208,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 1.003,
+    "p_success": 0.035,
+    "reason": "IPA-caller class (prior 0.12); closure 2 funcs / 208 words; m2c-seedable",
+    "callees": {
+      "Input_ApplyPadConfig": "ABI",
+      "dispatch_handler": "ABI",
+      "object_manager_update": "IPA-caller",
+      "slot_state_setup": "IPA-both",
+      "state_utility": "IPA-caller"
+    },
+    "start_first": false,
+    "evidence": [
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148559816,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_80106B3C sets s2 for slot_state_setup at 0x80106BC8"
+      },
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148559944,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_80106B3C sets s2 for slot_state_setup at 0x80106C48"
+      }
+    ],
+    "conveyor_ipa_member": true,
+    "conveyor_evidence": {
+      "callers": [
+        "slot_state_setup"
+      ]
+    }
+  },
+  {
+    "fn": "func_8010A53C",
+    "class": "IPA-caller",
+    "words": 154,
+    "closure_funcs": 2,
+    "closure_words": 212,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 0.988,
+    "p_success": 0.035,
+    "reason": "IPA-caller class (prior 0.12); large (154w); closure 2 funcs / 212 words; m2c-seedable",
+    "callees": {
+      "Input_ApplyPadConfig": "ABI",
+      "dispatch_handler": "ABI",
+      "slot_state_setup": "IPA-both",
+      "state_utility": "IPA-caller"
+    },
+    "start_first": false,
+    "evidence": [
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148574840,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_8010A53C sets s2 for slot_state_setup at 0x8010A678"
+      }
+    ],
+    "conveyor_ipa_member": true,
+    "conveyor_evidence": {
+      "callers": [
+        "slot_state_setup"
+      ]
+    }
+  },
+  {
+    "fn": "func_8010B9C8",
+    "class": "IPA-caller",
+    "words": 175,
+    "closure_funcs": 2,
+    "closure_words": 233,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 0.913,
+    "p_success": 0.031,
+    "reason": "IPA-caller class (prior 0.12); large (175w); closure 2 funcs / 233 words; m2c-seedable",
+    "callees": {
+      "Input_ApplyPadConfig": "ABI",
+      "dispatch_handler": "ABI",
+      "object_bytes_sum_global": "IPA-caller",
+      "object_manager_update": "IPA-caller",
+      "render_helper": "ABI",
+      "slot_state_setup": "IPA-both",
+      "state_utility": "IPA-caller"
+    },
+    "start_first": false,
+    "evidence": [
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148579900,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_8010B9C8 sets s2 for slot_state_setup at 0x8010BA3C"
+      },
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148579988,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_8010B9C8 sets s2 for slot_state_setup at 0x8010BA94"
+      }
+    ],
+    "conveyor_ipa_member": true,
+    "conveyor_evidence": {
+      "callers": [
+        "slot_state_setup"
+      ]
+    }
+  },
+  {
+    "fn": "func_80106874",
+    "class": "IPA-caller",
+    "words": 178,
+    "closure_funcs": 2,
+    "closure_words": 236,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 0.903,
+    "p_success": 0.031,
+    "reason": "IPA-caller class (prior 0.12); large (178w); closure 2 funcs / 236 words; m2c-seedable",
+    "callees": {
+      "Input_ApplyPadConfig": "ABI",
+      "ambient_sound_set": "ABI",
+      "object_bytes_sum_global": "IPA-caller",
+      "object_manager_update": "IPA-caller",
+      "slot_state_setup": "IPA-both",
+      "sound_handles_array_clear": "ABI",
+      "tournament_unlock_check": "ABI"
+    },
+    "start_first": false,
+    "evidence": [
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148559024,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_80106874 sets s2 for slot_state_setup at 0x801068B0"
+      },
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148559156,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_80106874 sets s2 for slot_state_setup at 0x80106934"
+      }
+    ],
+    "conveyor_ipa_member": true,
+    "conveyor_evidence": {
+      "callers": [
+        "slot_state_setup"
+      ]
+    }
+  },
+  {
+    "fn": "func_80108AB0",
+    "class": "IPA-caller",
+    "words": 190,
+    "closure_funcs": 2,
+    "closure_words": 248,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 0.863,
+    "p_success": 0.029,
+    "reason": "IPA-caller class (prior 0.12); large (190w); closure 2 funcs / 248 words; m2c-seedable",
+    "callees": {
+      "dispatch_handler": "ABI",
+      "func_800ED66C": "ABI",
+      "render_helper": "ABI",
+      "slot_state_setup": "IPA-both",
+      "state_utility": "IPA-caller"
+    },
+    "start_first": false,
+    "evidence": [
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148568084,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_80108AB0 sets s2 for slot_state_setup at 0x80108C14"
+      },
+      {
+        "kind": "anomaly",
+        "pc": 2148568112,
+        "regs": [
+          "a0"
+        ],
+        "text": "func_80108AB0: a0 live across external call at 0x80108C30 (ABI callee: liveness artefact?)"
+      },
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148568144,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_80108AB0 sets s2 for slot_state_setup at 0x80108C50"
+      },
+      {
+        "kind": "anomaly",
+        "pc": 2148568172,
+        "regs": [
+          "a0"
+        ],
+        "text": "func_80108AB0: a0 live across external call at 0x80108C6C (ABI callee: liveness artefact?)"
+      }
+    ],
+    "conveyor_ipa_member": true,
+    "conveyor_evidence": {
+      "callers": [
+        "slot_state_setup"
+      ]
+    }
+  },
+  {
+    "fn": "func_801084D4",
+    "class": "IPA-caller",
+    "words": 375,
+    "closure_funcs": 2,
+    "closure_words": 433,
+    "callers": 0,
+    "seeds": [],
+    "group": "catchup_logic",
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 0.797,
+    "p_success": 0.024,
+    "reason": "IPA-caller class (prior 0.12); member of drafted group catchup_logic; large (375w); closure 2 funcs / 433 words; m2c-seedable",
+    "callees": {
+      "camera_shake_update": "IPA-caller",
+      "dispatch_handler": "ABI",
+      "func_800ED66C": "ABI",
+      "object_byte9_set": "IPA-caller",
+      "render_helper": "ABI",
+      "slot_state_setup": "IPA-both",
+      "state_utility": "IPA-caller"
+    },
+    "start_first": false,
+    "evidence": [
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148566400,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_801084D4 sets s2 for slot_state_setup at 0x80108580"
+      },
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148566460,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_801084D4 sets s2 for slot_state_setup at 0x801085BC"
+      },
+      {
+        "kind": "unexplained",
+        "reg": "a0",
+        "callee": "state_utility",
+        "pc": 2148567484,
+        "explained": false,
+        "text": "func_801084D4 keeps a0 live across jal state_utility at 0x801089BC (UNEXPLAINED: callee clobber set contains a0; not counted)"
+      }
+    ],
+    "conveyor_ipa_member": true,
+    "conveyor_evidence": {
+      "callers": [
+        "slot_state_setup"
+      ]
+    }
+  },
+  {
+    "fn": "func_80108154",
+    "class": "IPA-caller",
+    "words": 224,
+    "closure_funcs": 2,
+    "closure_words": 282,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 0.762,
+    "p_success": 0.025,
+    "reason": "IPA-caller class (prior 0.12); large (224w); closure 2 funcs / 282 words; m2c-seedable",
+    "callees": {
+      "Input_ApplyPadConfig": "ABI",
+      "camera_shake_update": "IPA-caller",
+      "object_byte9_set": "IPA-caller",
+      "object_bytes_sum_global": "IPA-caller",
+      "slot_state_setup": "IPA-both"
+    },
+    "start_first": false,
+    "evidence": [
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148565660,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_80108154 sets s2 for slot_state_setup at 0x8010829C"
+      },
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148565720,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_80108154 sets s2 for slot_state_setup at 0x801082D8"
+      }
+    ],
+    "conveyor_ipa_member": true,
+    "conveyor_evidence": {
+      "callers": [
+        "slot_state_setup"
+      ]
+    }
+  },
+  {
+    "fn": "func_8010E0FC",
+    "class": "IPA-caller",
+    "words": 250,
+    "closure_funcs": 3,
+    "closure_words": 378,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 0.574,
+    "p_success": 0.02,
+    "reason": "IPA-caller class (prior 0.12); large (250w); closure 3 funcs / 378 words; m2c-seedable",
+    "callees": {
+      "entity_spawn_callback": "ABI",
+      "entity_transform_apply": "ABI",
+      "func_8008E26C": "ABI",
+      "func_800AFA84": "ABI",
+      "func_800F7A98": "ABI",
+      "math_utility": "ABI",
+      "model_data_load": "ABI",
+      "sound_position_set": "ABI",
+      "string_copy_format": "IPA-leaf"
+    },
+    "start_first": false,
+    "evidence": [
+      {
+        "kind": "passes",
+        "callee": "string_copy_format",
+        "pc": 2148590148,
+        "regs": [
+          "t2"
+        ],
+        "text": "func_8010E0FC sets t2 for string_copy_format at 0x8010E244"
+      },
+      {
+        "kind": "live-across",
+        "reg": "at",
+        "callee": "math_utility",
+        "pc": 2148590224,
+        "explained": true,
+        "text": "func_8010E0FC keeps at live across jal math_utility at 0x8010E290"
+      },
+      {
+        "kind": "live-across",
+        "reg": "t2",
+        "callee": "math_utility",
+        "pc": 2148590224,
+        "explained": true,
+        "text": "func_8010E0FC keeps t2 live across jal math_utility at 0x8010E290"
+      },
+      {
+        "kind": "passes",
+        "callee": "string_copy_format",
+        "pc": 2148590308,
+        "regs": [
+          "t2"
+        ],
+        "text": "func_8010E0FC sets t2 for string_copy_format at 0x8010E2E4"
+      },
+      {
+        "kind": "passes",
+        "callee": "string_copy_format",
+        "pc": 2148590392,
+        "regs": [
+          "t2"
+        ],
+        "text": "func_8010E0FC sets t2 for string_copy_format at 0x8010E338"
+      }
+    ],
+    "conveyor_ipa_member": false,
+    "conveyor_evidence": {}
+  },
+  {
+    "fn": "func_80109F54",
+    "class": "IPA-caller",
+    "words": 376,
+    "closure_funcs": 2,
+    "closure_words": 434,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 0.463,
+    "p_success": 0.014,
+    "reason": "IPA-caller class (prior 0.12); large (376w); closure 2 funcs / 434 words; m2c-seedable",
+    "callees": {
+      "Input_ApplyPadConfig": "ABI",
+      "dispatch_handler": "ABI",
+      "music_tempo_adjust": "ABI",
+      "render_helper": "ABI",
+      "slot_state_setup": "IPA-both",
+      "stat_race_update": "ABI"
+    },
+    "start_first": false,
+    "evidence": [
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148574076,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_80109F54 sets s2 for slot_state_setup at 0x8010A37C"
+      },
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148574124,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_80109F54 sets s2 for slot_state_setup at 0x8010A3AC"
+      }
+    ],
+    "conveyor_ipa_member": true,
+    "conveyor_evidence": {
+      "callers": [
+        "slot_state_setup"
+      ]
+    }
+  },
+  {
+    "fn": "func_8010F218",
+    "class": "IPA-caller",
+    "words": 611,
+    "closure_funcs": 2,
+    "closure_words": 669,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": false,
+    "m2c_note": "over 400 words",
+    "priority": 0.152,
+    "p_success": 0.004,
+    "reason": "IPA-caller class (prior 0.12); large (611w); closure 2 funcs / 669 words; not m2c-seedable (over 400 words)",
+    "callees": {
+      "dispatch_handler": "ABI",
+      "fcvt_wrapper": "ABI",
+      "func_800ED66C": "ABI",
+      "func_8010EA08": "IPA-both",
+      "object_bytes_sum_global": "IPA-caller",
+      "object_manager_update": "IPA-caller",
+      "render_helper": "ABI",
+      "slot_state_setup": "IPA-both",
+      "state_utility": "IPA-caller"
+    },
+    "start_first": false,
+    "evidence": [
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148595780,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_8010F218 sets s2 for slot_state_setup at 0x8010F844"
+      },
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148596052,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_8010F218 sets s2 for slot_state_setup at 0x8010F954"
+      },
+      {
+        "kind": "anomaly",
+        "pc": 2148596068,
+        "regs": [
+          "a0"
+        ],
+        "text": "func_8010F218: a0 live across external call at 0x8010F964 (ABI callee: liveness artefact?)"
+      },
+      {
+        "kind": "unexplained",
+        "reg": "a0",
+        "callee": "state_utility",
+        "pc": 2148596252,
+        "explained": false,
+        "text": "func_8010F218 keeps a0 live across jal state_utility at 0x8010FA1C (UNEXPLAINED: callee clobber set contains a0; not counted)"
+      },
+      {
+        "kind": "unexplained",
+        "reg": "a0",
+        "callee": "state_utility",
+        "pc": 2148596368,
+        "explained": false,
+        "text": "func_8010F218 keeps a0 live across jal state_utility at 0x8010FA90 (UNEXPLAINED: callee clobber set contains a0; not counted)"
+      },
+      {
+        "kind": "unexplained",
+        "reg": "a0",
+        "callee": "state_utility",
+        "pc": 2148596464,
+        "explained": false,
+        "text": "func_8010F218 keeps a0 live across jal state_utility at 0x8010FAF0 (UNEXPLAINED: callee clobber set contains a0; not counted)"
+      },
+      {
+        "kind": "unexplained",
+        "reg": "a0",
+        "callee": "object_bytes_sum_global",
+        "pc": 2148596472,
+        "explained": false,
+        "text": "func_8010F218 keeps a0 live across jal object_bytes_sum_global at 0x8010FAF8 (UNEXPLAINED: callee clobber set contains a0; not counted)"
+      }
+    ],
+    "conveyor_ipa_member": true,
+    "conveyor_evidence": {
+      "callers": [
+        "slot_state_setup"
+      ],
+      "preservers": [
+        "a0",
+        "a1",
+        "a2"
+      ]
+    }
+  },
+  {
+    "fn": "func_80105EA8",
+    "class": "IPA-caller",
+    "words": 627,
+    "closure_funcs": 2,
+    "closure_words": 685,
+    "callers": 0,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": false,
+    "m2c_note": "over 400 words",
+    "priority": 0.147,
+    "p_success": 0.004,
+    "reason": "IPA-caller class (prior 0.12); large (627w); closure 2 funcs / 685 words; not m2c-seedable (over 400 words)",
+    "callees": {
+      "ambient_sound_set": "ABI",
+      "camera_auto_follow": "ABI",
+      "dispatch_handler": "ABI",
+      "fcvt_wrapper": "ABI",
+      "object_bytes_sum_global": "IPA-caller",
+      "render_helper": "ABI",
+      "slot_state_setup": "IPA-both",
+      "tournament_unlock_check": "ABI"
+    },
+    "start_first": false,
+    "evidence": [
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148556704,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_80105EA8 sets s2 for slot_state_setup at 0x80105FA0"
+      }
+    ],
+    "conveyor_ipa_member": true,
+    "conveyor_evidence": {
+      "callees": [
+        "t9"
+      ],
+      "callers": [
+        "slot_state_setup"
+      ],
+      "preservers": [
+        "a2",
+        "t8"
+      ]
+    }
+  },
+  {
+    "fn": "func_80102448",
+    "class": "IPA-both",
+    "words": 334,
+    "closure_funcs": 4,
+    "closure_words": 1345,
+    "callers": 1,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 0.097,
+    "p_success": 0.006,
+    "reason": "IPA-both class (prior 0.10); large (334w); closure 4 funcs / 1345 words; 1 caller(s); m2c-seedable",
+    "callees": {
+      "dispatch_handler": "ABI",
+      "fcvt_wrapper": "ABI",
+      "func_80100D5C": "IPA-leaf",
+      "race_position_update": "ABI",
+      "render_helper": "ABI",
+      "slot_state_setup": "IPA-both",
+      "state_utility": "IPA-caller"
+    },
+    "start_first": false,
+    "evidence": [
+      {
+        "kind": "unsaved",
+        "reg": "s0",
+        "text": "func_80102448 writes s0 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "s1",
+        "text": "func_80102448 writes s1 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "s2",
+        "text": "func_80102448 writes s2 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "s3",
+        "text": "func_80102448 writes s3 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "s4",
+        "text": "func_80102448 writes s4 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "s5",
+        "text": "func_80102448 writes s5 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "s6",
+        "text": "func_80102448 writes s6 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "s7",
+        "text": "func_80102448 writes s7 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "s8",
+        "text": "func_80102448 writes s8 with no save/restore"
+      },
+      {
+        "kind": "passes",
+        "callee": "func_80100D5C",
+        "pc": 2148541708,
+        "regs": [
+          "t1",
+          "t2",
+          "t3",
+          "t4"
+        ],
+        "text": "func_80102448 sets t1,t2,t3,t4 for func_80100D5C at 0x8010250C"
+      },
+      {
+        "kind": "passes",
+        "callee": "func_80100D5C",
+        "pc": 2148541884,
+        "regs": [
+          "t1",
+          "t2",
+          "t3",
+          "t4"
+        ],
+        "text": "func_80102448 sets t1,t2,t3,t4 for func_80100D5C at 0x801025BC"
+      },
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148541976,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_80102448 sets s2 for slot_state_setup at 0x80102618"
+      },
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148542280,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_80102448 sets s2 for slot_state_setup at 0x80102748"
+      },
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148542736,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_80102448 sets s2 for slot_state_setup at 0x80102910"
+      }
+    ],
+    "conveyor_ipa_member": true,
+    "conveyor_evidence": {
+      "callers": [
+        "func_80100D5C",
+        "slot_state_setup"
+      ],
+      "preservers": [
+        "a0",
+        "a1"
+      ]
+    }
+  },
+  {
+    "fn": "func_80102980",
+    "class": "IPA-both",
+    "words": 364,
+    "closure_funcs": 4,
+    "closure_words": 1375,
+    "callers": 1,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": true,
+    "m2c_note": "ok",
+    "priority": 0.093,
+    "p_success": 0.005,
+    "reason": "IPA-both class (prior 0.10); large (364w); closure 4 funcs / 1375 words; 1 caller(s); m2c-seedable",
+    "callees": {
+      "dispatch_handler": "ABI",
+      "fcvt_wrapper": "ABI",
+      "func_80100D5C": "IPA-leaf",
+      "race_position_update": "ABI",
+      "render_helper": "ABI",
+      "slot_state_setup": "IPA-both",
+      "state_utility": "IPA-caller"
+    },
+    "start_first": false,
+    "evidence": [
+      {
+        "kind": "unsaved",
+        "reg": "s0",
+        "text": "func_80102980 writes s0 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "s1",
+        "text": "func_80102980 writes s1 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "s2",
+        "text": "func_80102980 writes s2 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "s3",
+        "text": "func_80102980 writes s3 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "s4",
+        "text": "func_80102980 writes s4 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "s5",
+        "text": "func_80102980 writes s5 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "s6",
+        "text": "func_80102980 writes s6 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "s7",
+        "text": "func_80102980 writes s7 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "s8",
+        "text": "func_80102980 writes s8 with no save/restore"
+      },
+      {
+        "kind": "passes",
+        "callee": "func_80100D5C",
+        "pc": 2148543048,
+        "regs": [
+          "t1",
+          "t2",
+          "t3",
+          "t4"
+        ],
+        "text": "func_80102980 sets t1,t2,t3,t4 for func_80100D5C at 0x80102A48"
+      },
+      {
+        "kind": "passes",
+        "callee": "func_80100D5C",
+        "pc": 2148543340,
+        "regs": [
+          "t1",
+          "t2",
+          "t3",
+          "t4"
+        ],
+        "text": "func_80102980 sets t1,t2,t3,t4 for func_80100D5C at 0x80102B6C"
+      },
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148543432,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_80102980 sets s2 for slot_state_setup at 0x80102BC8"
+      }
+    ],
+    "conveyor_ipa_member": true,
+    "conveyor_evidence": {
+      "callers": [
+        "func_80100D5C",
+        "slot_state_setup"
+      ],
+      "preservers": [
+        "a0",
+        "a1"
+      ]
+    }
+  },
+  {
+    "fn": "func_80103D28",
+    "class": "IPA-both",
+    "words": 629,
+    "closure_funcs": 3,
+    "closure_words": 1132,
+    "callers": 1,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": false,
+    "m2c_note": "over 400 words",
+    "priority": 0.068,
+    "p_success": 0.002,
+    "reason": "IPA-both class (prior 0.10); large (629w); closure 3 funcs / 1132 words; 1 caller(s); not m2c-seedable (over 400 words)",
+    "callees": {
+      "crowd_cheer_play": "ABI",
+      "dispatch_handler": "ABI",
+      "fcvt_wrapper": "ABI",
+      "object_bytes_sum_global": "IPA-caller",
+      "object_manager_update": "IPA-caller",
+      "slot_state_setup": "IPA-both",
+      "state_utility": "IPA-caller"
+    },
+    "start_first": false,
+    "evidence": [
+      {
+        "kind": "unsaved",
+        "reg": "s0",
+        "text": "func_80103D28 writes s0 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "s1",
+        "text": "func_80103D28 writes s1 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "s2",
+        "text": "func_80103D28 writes s2 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "s3",
+        "text": "func_80103D28 writes s3 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "s4",
+        "text": "func_80103D28 writes s4 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "s5",
+        "text": "func_80103D28 writes s5 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "s6",
+        "text": "func_80103D28 writes s6 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "s7",
+        "text": "func_80103D28 writes s7 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "s8",
+        "text": "func_80103D28 writes s8 with no save/restore"
+      },
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148547912,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_80103D28 sets s2 for slot_state_setup at 0x80103D48"
+      }
+    ],
+    "conveyor_ipa_member": true,
+    "conveyor_evidence": {
+      "callers": [
+        "slot_state_setup"
+      ]
+    }
+  },
+  {
+    "fn": "func_8010EA08",
+    "class": "IPA-both",
+    "words": 514,
+    "closure_funcs": 3,
+    "closure_words": 1183,
+    "callers": 1,
+    "seeds": [],
+    "group": null,
+    "near_diff": null,
+    "m2c_seedable": false,
+    "m2c_note": "over 400 words",
+    "priority": 0.067,
+    "p_success": 0.003,
+    "reason": "IPA-both class (prior 0.10); large (514w); closure 3 funcs / 1183 words; 1 caller(s); not m2c-seedable (over 400 words)",
+    "callees": {
+      "ambient_sound_set": "ABI",
+      "brake_light_update": "ABI",
+      "camera_auto_follow": "ABI",
+      "camera_zoom_fov": "ABI",
+      "dispatch_handler": "ABI",
+      "fcvt_wrapper": "ABI",
+      "func_800ED66C": "ABI",
+      "object_bytes_sum_global": "IPA-caller",
+      "object_manager_update": "IPA-caller",
+      "render_helper": "ABI",
+      "slot_state_setup": "IPA-both",
+      "sound_handles_array_clear": "ABI",
+      "state_utility": "IPA-caller"
+    },
+    "start_first": false,
+    "evidence": [
+      {
+        "kind": "unsaved",
+        "reg": "s0",
+        "text": "func_8010EA08 writes s0 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "s1",
+        "text": "func_8010EA08 writes s1 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "s2",
+        "text": "func_8010EA08 writes s2 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "s3",
+        "text": "func_8010EA08 writes s3 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "s4",
+        "text": "func_8010EA08 writes s4 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "s5",
+        "text": "func_8010EA08 writes s5 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "s6",
+        "text": "func_8010EA08 writes s6 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "s7",
+        "text": "func_8010EA08 writes s7 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "s8",
+        "text": "func_8010EA08 writes s8 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "f20",
+        "text": "func_8010EA08 writes f20 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "f22",
+        "text": "func_8010EA08 writes f22 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "f24",
+        "text": "func_8010EA08 writes f24 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "f26",
+        "text": "func_8010EA08 writes f26 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "f28",
+        "text": "func_8010EA08 writes f28 with no save/restore"
+      },
+      {
+        "kind": "unsaved",
+        "reg": "f30",
+        "text": "func_8010EA08 writes f30 with no save/restore"
+      },
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148592216,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_8010EA08 sets s2 for slot_state_setup at 0x8010EA58"
+      },
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148592384,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_8010EA08 sets s2 for slot_state_setup at 0x8010EB00"
+      },
+      {
+        "kind": "anomaly",
+        "pc": 2148592404,
+        "regs": [
+          "a0"
+        ],
+        "text": "func_8010EA08: a0 live across external call at 0x8010EB14 (ABI callee: liveness artefact?)"
+      },
+      {
+        "kind": "unexplained",
+        "reg": "a0",
+        "callee": "brake_light_update",
+        "pc": 2148592884,
+        "explained": false,
+        "text": "func_8010EA08 keeps a0 live across jal brake_light_update at 0x8010ECF4 (UNEXPLAINED: callee clobber set contains a0; not counted)"
+      },
+      {
+        "kind": "unexplained",
+        "reg": "a0",
+        "callee": "state_utility",
+        "pc": 2148593000,
+        "explained": false,
+        "text": "func_8010EA08 keeps a0 live across jal state_utility at 0x8010ED68 (UNEXPLAINED: callee clobber set contains a0; not counted)"
+      },
+      {
+        "kind": "unexplained",
+        "reg": "a0",
+        "callee": "state_utility",
+        "pc": 2148593084,
+        "explained": false,
+        "text": "func_8010EA08 keeps a0 live across jal state_utility at 0x8010EDBC (UNEXPLAINED: callee clobber set contains a0; not counted)"
+      },
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148593236,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_8010EA08 sets s2 for slot_state_setup at 0x8010EE54"
+      },
+      {
+        "kind": "passes",
+        "callee": "slot_state_setup",
+        "pc": 2148593576,
+        "regs": [
+          "s2"
+        ],
+        "text": "func_8010EA08 sets s2 for slot_state_setup at 0x8010EFA8"
+      }
+    ],
+    "conveyor_ipa_member": true,
+    "conveyor_evidence": {
+      "callers": [
+        "slot_state_setup"
+      ],
+      "preservers": [
+        "a1"
+      ]
+    }
+  }
+]

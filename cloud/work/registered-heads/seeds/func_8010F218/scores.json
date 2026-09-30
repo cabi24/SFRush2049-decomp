@@ -1,0 +1,13 @@
+[
+  {
+    "matched": false,
+    "strict_diff": 611,
+    "target_size": 611,
+    "size": 0,
+    "extra": 0,
+    "unverified": [],
+    "unresolved": [],
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "err": "cc failed:\ncfe: Error: group.c, line 1106: Dereferenced a non-pointer.\n                 temp_s0_2 = *((*( s32 *)((s8 *)(var_s8) + ( 0x10)))  + ((*( u16 *)((s8 *)((*( void **)((s8 *)(var_s8) + ( 0xC)))) + ( 0x52)))  * 4) + (var_s3 * 4));\n ----------------------------------------------------------------------------------------------------------------------------------------------------^\n"
+  }
+]

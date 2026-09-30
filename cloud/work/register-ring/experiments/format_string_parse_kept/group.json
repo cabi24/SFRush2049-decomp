@@ -1,0 +1,31 @@
+{
+  "members": [
+    "func_800CCE5C"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_800CCE5C",
+    "format_string_parse",
+    "audio_bus_mix",
+    "func_800C7578",
+    "func_800CC8C8",
+    "func_800CCA04",
+    "menu_dialog_close",
+    "object_data_allocate",
+    "func_800CD798",
+    "func_800CD8EC",
+    "menu_text_input",
+    "menu_option_toggle",
+    "__standin_voice_stop_2",
+    "__standin_draw_ui_element",
+    "__standin_draw_speedometer",
+    "__standin_format_string_parse"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "generated": "groupgen.py seeds=func_800CCE5C,format_string_parse mode=direct",
+  "unprototyped": [],
+  "context": [],
+  "claims": []
+}

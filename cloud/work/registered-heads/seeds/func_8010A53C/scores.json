@@ -1,0 +1,13 @@
+[
+  {
+    "matched": false,
+    "strict_diff": 154,
+    "target_size": 154,
+    "size": 0,
+    "extra": 0,
+    "unverified": [],
+    "unresolved": [],
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "err": "cc failed:\ncfe: Error: group.c, line 858: Dereferenced a non-pointer.\n         state_utility((s16) var_s0, (s32) var_s4, *(D_8017A4F0 + (*D_8017A4EC * 4) + (D_80154394 * 4)));\n -----------------------------------------------------------------------------------^\ncfe: Warning 712: group.c, line 865: illegal combination of pointer and integer\n                 state_utility((s16) var_s0, (s32) var_s4_2, *((u8 *) &D_80114A0C + (D_80154394 * 0x2C) + var_s1));\n ------------------------------------------------------------^\n"
+  }
+]

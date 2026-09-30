@@ -1,0 +1,16 @@
+{
+  "m2c": {
+    "func_8010C448": true
+  },
+  "todo_calls": 0,
+  "reordered_calls": 0,
+  "stubbed": [],
+  "externs": 1,
+  "m2c_available": true,
+  "spans": {
+    "func_8010C448": [
+      788,
+      829
+    ]
+  }
+}

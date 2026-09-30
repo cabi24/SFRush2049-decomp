@@ -1,0 +1,35 @@
+[
+  {
+    "matched": false,
+    "strict_diff": 27,
+    "target_size": 33,
+    "size": 33,
+    "extra": 0,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+  },
+  {
+    "matched": false,
+    "strict_diff": 31,
+    "target_size": 33,
+    "size": 39,
+    "extra": 6,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared"
+  },
+  {
+    "matched": false,
+    "strict_diff": 27,
+    "target_size": 33,
+    "size": 33,
+    "extra": 0,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+  }
+]

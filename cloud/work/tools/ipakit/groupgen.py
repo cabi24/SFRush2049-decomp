@@ -252,6 +252,9 @@ def disasm_for_m2c(corpus, f):
         out = subprocess.run(['mips-linux-gnu-objdump', '-D', '-b', 'binary', '-m', 'mips:4300', '-EB',
                               '--adjust-vma=0x%x' % f.addr, str(b)], capture_output=True, text=True).stdout
     targets = {a: n for n, a in corpus.symbols.items() if IMAGE_BASE <= a < IMAGE_BASE + 4 * len(corpus.image)}
+    # Aliases in symbols.json must not hide a registered callee's signature.
+    # m2c's IPA map and the group planner use the canonical section name.
+    targets.update({f.addr: f.name for f in corpus.funcs.values() if not f.tail_of})
     obs = []
     asm = disasm.normalize_objdump(out, f.name, targets, observations=obs)
     return asm, obs

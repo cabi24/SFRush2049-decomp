@@ -1,0 +1,200 @@
+[
+  {
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_diff": 2,
+    "size": 40,
+    "target_size": 40,
+    "extra": 0,
+    "err": null,
+    "matched": false
+  },
+  {
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wo,-regr,0",
+    "strict_diff": 14,
+    "size": 40,
+    "target_size": 40,
+    "extra": 0,
+    "err": null,
+    "matched": false
+  },
+  {
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wo,-regr,1",
+    "strict_diff": 13,
+    "size": 40,
+    "target_size": 40,
+    "extra": 0,
+    "err": null,
+    "matched": false
+  },
+  {
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wo,-regr,2",
+    "strict_diff": 13,
+    "size": 40,
+    "target_size": 40,
+    "extra": 0,
+    "err": null,
+    "matched": false
+  },
+  {
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wo,-regr,3",
+    "strict_diff": 33,
+    "size": 40,
+    "target_size": 40,
+    "extra": 0,
+    "err": null,
+    "matched": false
+  },
+  {
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wo,-regr,4",
+    "strict_diff": 33,
+    "size": 40,
+    "target_size": 40,
+    "extra": 0,
+    "err": null,
+    "matched": false
+  },
+  {
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wo,-regr,5",
+    "strict_diff": 33,
+    "size": 40,
+    "target_size": 40,
+    "extra": 0,
+    "err": null,
+    "matched": false
+  },
+  {
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wo,-regr,6",
+    "strict_diff": 33,
+    "size": 40,
+    "target_size": 40,
+    "extra": 0,
+    "err": null,
+    "matched": false
+  },
+  {
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wo,-regr,7",
+    "strict_diff": 33,
+    "size": 40,
+    "target_size": 40,
+    "extra": 0,
+    "err": null,
+    "matched": false
+  },
+  {
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wo,-regr,8",
+    "strict_diff": 33,
+    "size": 40,
+    "target_size": 40,
+    "extra": 0,
+    "err": null,
+    "matched": false
+  },
+  {
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wo,-regr,9",
+    "strict_diff": 31,
+    "size": 40,
+    "target_size": 40,
+    "extra": 0,
+    "err": null,
+    "matched": false
+  },
+  {
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "strict_diff": 2,
+    "size": 40,
+    "target_size": 40,
+    "extra": 0,
+    "err": null,
+    "matched": false
+  },
+  {
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wo,-regr,0",
+    "strict_diff": 14,
+    "size": 40,
+    "target_size": 40,
+    "extra": 0,
+    "err": null,
+    "matched": false
+  },
+  {
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wo,-regr,1",
+    "strict_diff": 13,
+    "size": 40,
+    "target_size": 40,
+    "extra": 0,
+    "err": null,
+    "matched": false
+  },
+  {
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wo,-regr,2",
+    "strict_diff": 13,
+    "size": 40,
+    "target_size": 40,
+    "extra": 0,
+    "err": null,
+    "matched": false
+  },
+  {
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wo,-regr,3",
+    "strict_diff": 33,
+    "size": 40,
+    "target_size": 40,
+    "extra": 0,
+    "err": null,
+    "matched": false
+  },
+  {
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wo,-regr,4",
+    "strict_diff": 33,
+    "size": 40,
+    "target_size": 40,
+    "extra": 0,
+    "err": null,
+    "matched": false
+  },
+  {
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wo,-regr,5",
+    "strict_diff": 33,
+    "size": 40,
+    "target_size": 40,
+    "extra": 0,
+    "err": null,
+    "matched": false
+  },
+  {
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wo,-regr,6",
+    "strict_diff": 33,
+    "size": 40,
+    "target_size": 40,
+    "extra": 0,
+    "err": null,
+    "matched": false
+  },
+  {
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wo,-regr,7",
+    "strict_diff": 33,
+    "size": 40,
+    "target_size": 40,
+    "extra": 0,
+    "err": null,
+    "matched": false
+  },
+  {
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wo,-regr,8",
+    "strict_diff": 33,
+    "size": 40,
+    "target_size": 40,
+    "extra": 0,
+    "err": null,
+    "matched": false
+  },
+  {
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wo,-regr,9",
+    "strict_diff": 31,
+    "size": 40,
+    "target_size": 40,
+    "extra": 0,
+    "err": null,
+    "matched": false
+  }
+]

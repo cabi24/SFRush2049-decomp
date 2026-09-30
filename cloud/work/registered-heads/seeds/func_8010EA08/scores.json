@@ -1,0 +1,13 @@
+[
+  {
+    "matched": false,
+    "strict_diff": 514,
+    "target_size": 514,
+    "size": 0,
+    "extra": 0,
+    "unverified": [],
+    "unresolved": [],
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "err": "cc failed:\ncfe: Error: group.c, line 933: Dereferenced a non-pointer.\n             state_utility((s16) (spF8 - 0x37), (s32) spFA, *(D_8017A4F0 + ((*( u16 *)((s8 *)(D_8017A4EC) + ( 0x52)))  * 4) + (var_s2 * 4)));\n ---------------------------------------------------------------------------------------------------------------------------^\ncfe: Error: group.c, line 1000: Dereferenced a non-pointer.\n         temp_s3_2 = *(D_8017A4F0 + ((*( u16 *)((s8 *)(D_8017A4EC) + ( 0x30)))  * 4));\n ---------------------------------^\ncfe: Error: group.c, line 1339: Dereferenced a non-pointer.\n                 temp_s0_2 = *((*( s32 *)((s8 *)(var_s8) + ( 0x10)))  + ((*( u16 *)((s8 *)((*( void **)((s8 *)(var_s8) + ( 0xC)))) + ( 0x52)))  * 4) + (var_s3 * 4));\n ----------------------------------------------------------------------------------------------------------------------------------------------------^\n"
+  }
+]

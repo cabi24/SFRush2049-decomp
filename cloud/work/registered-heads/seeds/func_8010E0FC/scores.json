@@ -1,0 +1,13 @@
+[
+  {
+    "matched": false,
+    "strict_diff": 248,
+    "target_size": 250,
+    "size": 255,
+    "extra": 5,
+    "unverified": [],
+    "unresolved": [],
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "err": null
+  }
+]
