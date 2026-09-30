@@ -233,6 +233,110 @@ def scan_extent(image_bytes, address):
     return "scan_overrun"
 
 
+def branch_target(word, pc):
+    """Direct conditional branch destination, or None (calls are separate)."""
+    op = word >> 26
+    branch = op in {1, 4, 5, 6, 7, 20, 21, 22, 23} or (
+        op in {16, 17, 18} and (word >> 21) & 31 == 8)
+    if not branch:
+        return None
+    imm = word & 0xFFFF
+    return pc + 4 + 4 * (imm - 0x10000 if imm & 0x8000 else imm)
+
+
+def scan_head_extent(image, address, bound):
+    """Bounded control-flow proof for a newly discovered head.
+
+    Follow both branch arms, including early returns and delay slots. Reject
+    indirect jumps, escaping branches, fall-through at the bound, and stack
+    imbalance. This deliberately does not change the historical 005 scanner.
+    Instruction decoding and incoming-branch checks belong to closure.heads.
+    """
+    end = GAME_CODE_BASE + len(image)
+    if address % 4 or bound % 4 or not GAME_CODE_BASE <= address < bound <= end:
+        return {"reason": "invalid_bound"}
+    if bound - address > 16 * 1024:
+        bound = address + 16 * 1024
+    word_at = lambda pc: struct.unpack_from(">I", image, pc - GAME_CODE_BASE)[0]
+
+    def stack_delta(word):
+        if word >> 26 in (9, 25) and (word >> 16) & 0x3FF == 0x3BD:
+            imm = word & 0xFFFF
+            return imm - 0x10000 if imm & 0x8000 else imm
+        return 0
+
+    def transfer(word):
+        return (branch_target(word, address) is not None or word >> 26 in (2, 3)
+                or word >> 26 == 0 and word & 63 in (8, 9))
+
+    pending, seen, covered, returns = [(address, 0)], {}, set(), set()
+    while pending:
+        pc, sp = pending.pop()
+        if not address <= pc < bound:
+            return {"reason": "fallthrough_at_bound", "at": pc}
+        if pc in seen:
+            if seen[pc] != sp:
+                return {"reason": "inconsistent_stack", "at": pc}
+            continue
+        seen[pc] = sp
+        covered.add(pc)
+        word = word_at(pc)
+        sp += stack_delta(word)
+        if sp > 0 or sp < -16384:
+            return {"reason": "invalid_stack", "at": pc}
+        op, target = word >> 26, branch_target(word, pc)
+        if not transfer(word):
+            pending.append((pc + 4, sp))
+            continue
+        if pc + 8 > bound:
+            return {"reason": "missing_delay_slot", "at": pc}
+        slot = word_at(pc + 4)
+        if transfer(slot):
+            return {"reason": "transfer_in_delay_slot", "at": pc + 4}
+        covered.add(pc + 4)
+        slot_sp = sp + stack_delta(slot)
+        if word == JR_RA:
+            if slot_sp != 0:
+                return {"reason": "unbalanced_return", "at": pc}
+            returns.add(pc)
+        elif op == 0 and word & 63 == 8:
+            return {"reason": "indirect_jump", "at": pc}
+        elif op == 3 or op == 0 and word & 63 == 9:
+            pending.append((pc + 8, slot_sp))
+        elif op == 2:
+            target = ((pc + 4) & 0xF0000000) | ((word & 0x3FFFFFF) << 2)
+            if not address <= target < bound:
+                return {"reason": "escaping_jump", "at": pc, "target": target}
+            pending.append((target, slot_sp))
+        else:
+            if not address <= target < bound:
+                return {"reason": "escaping_branch", "at": pc, "target": target}
+            # REGIMM branch-and-link needs a callee summary; leave it unclaimed.
+            if op == 1 and (word >> 16) & 31 >= 16:
+                return {"reason": "branch_and_link", "at": pc}
+            pending.append((target, slot_sp))
+            always = (op in (4, 20) and (word >> 21) & 31 == (word >> 16) & 31
+                      or op == 1 and (word >> 21) & 31 == 0
+                      and (word >> 16) & 31 in (1, 3))
+            if not always:
+                likely = op in (20, 21, 22, 23) or (
+                    op == 1 and (word >> 16) & 31 in (2, 3)) or (
+                    op in (16, 17, 18) and word & 0x20000)
+                pending.append((pc + 8, sp if likely else slot_sp))
+    if not returns:
+        return {"reason": "no_return"}
+    last = max(covered) + 4
+    if last != max(returns) + 8:
+        return {"reason": "code_after_last_return"}
+    # Even unreachable blocks must not branch outside the claimed body.
+    for pc in range(address, last, 4):
+        target = branch_target(word_at(pc), pc)
+        if target is not None and not address <= target < last:
+            return {"reason": "escaping_branch", "at": pc, "target": target}
+    return {"insn_count": (last - address) // 4,
+            "returns": sorted(returns), "reachable_words": len(covered)}
+
+
 def _image(path):
     if path not in _image_cache:
         _image_cache[path] = path.read_bytes()

@@ -1,6 +1,7 @@
 """Callee closure: register the in-blob call targets the work inventory missed.
 
     python3 -m tools.conveyor.pipeline.closure run [--data DIR] [--report PATH]
+    python3 -m tools.conveyor.pipeline.closure heads [--apply] [--report PATH]
 
 Contract: specs/007-population-closure/contracts/closure-and-datasyms.md §1-§6.
 
@@ -31,6 +32,7 @@ import subprocess
 import sys
 import tempfile
 from collections import Counter
+from contextlib import nullcontext
 from pathlib import Path
 
 from ..client import DEFAULT_DATA
@@ -134,7 +136,7 @@ def classify(address, image, extents):
     return "registered", detail
 
 
-def register(conn, store, image, address, insn_count, tmpdir):
+def register(conn, store, image, address, insn_count, tmpdir, manage_transaction=True):
     """Insert one discovered target through the 005 raw-word path.  Returns
     the new target_id.  INSERT only — an existing row is a caller bug."""
     from ..coordinator import db as dbmod
@@ -147,7 +149,7 @@ def register(conn, store, image, address, insn_count, tmpdir):
     targetsmod.assemble_words(words, o_path, target_id)
     o_sha = store.put_file(o_path)
     asm_sha = hashlib.sha256("\n".join(words).encode()).hexdigest()
-    with dbmod.tx(conn):
+    with dbmod.tx(conn) if manage_transaction else nullcontext():
         conn.execute(
             "INSERT INTO n64_target (target_id, address, population,"
             " insn_count, target_asm_sha, target_o_sha, tier, gate_reason)"
@@ -320,7 +322,7 @@ def _decodes_as_code(image, address, count):
         f.flush()
         out = subprocess.run(
             ["mips-linux-gnu-objdump", "-D", "-b", "binary", "-m", "mips:4300",
-             "-EB", f.name], capture_output=True, text=True).stdout
+             "-EB", f.name], capture_output=True, text=True, check=True).stdout
     return not re.search(r"\.word|\(bad\)|unknown", out)
 
 
@@ -386,6 +388,146 @@ def find_orphans(image, rows, run_cap=ORPHAN_RUN_CAP):
     return found
 
 
+# --- bounded head discovery ---------------------------------------------------
+
+def opaque_runs(image, rows):
+    """Unregistered ranges, derived from usable extents rather than .incbins."""
+    cursor, runs = GAME_CODE_BASE, []
+    for row in sorted(rows, key=lambda r: r["address"]):
+        lo, hi = row["address"], row["address"] + 4 * row["insn_count"]
+        if lo > cursor:
+            runs.append((cursor, lo))
+        cursor = max(cursor, hi)
+    end = GAME_CODE_BASE + len(image)
+    if cursor < end:
+        runs.append((cursor, end))
+    return runs
+
+
+def head_candidates(image, rows):
+    """Prologues, direct calls, and aligned pointers in opaque ranges.
+
+    Pointer-only candidates need a preceding return: arbitrary
+    references into the image's data tail are not function-head evidence.
+    All references are leads; the bounded flow and decode gates decide.
+    """
+    runs = opaque_runs(image, rows)
+    words = list(struct.unpack(f">{len(image) // 4}I", image))
+    candidates = {}
+
+    def run_for(address):
+        return next(((lo, hi) for lo, hi in runs if lo <= address < hi), None)
+
+    def add(address, evidence, source=None):
+        if address % 4 or run_for(address) is None:
+            return
+        item = candidates.setdefault(address, {"address": address, "evidence": {},
+                                                "run": list(run_for(address))})
+        refs = item["evidence"].setdefault(evidence, [])
+        if source is not None:
+            refs.append(source)
+
+    def after_return(address):
+        p = address - GAME_CODE_BASE - 4
+        while p >= 4:
+            if words[p // 4 - 1] == targetsmod.JR_RA:
+                return True
+            if words[p // 4] != 0:
+                return False
+            p -= 4
+        return address == GAME_CODE_BASE
+
+    def after_data(address):
+        return address > GAME_CODE_BASE and not _decodes_as_code(image, address - 4, 1)
+
+    for lo, hi in runs:
+        for address in range(lo, hi, 4):
+            word = words[(address - GAME_CODE_BASE) // 4]
+            if word >> 16 == 0x27BD:
+                frame = 0x10000 - (word & 0xFFFF)
+                if 0 < frame <= 4096 and frame % 8 == 0:
+                    # IDO may hoist a few instructions ahead of the frame.
+                    head = address - 4 * targetsmod.stranded_head(image, address)
+                    if (head < address and not _decodes_as_code(
+                            image, head, (address - head) // 4)):
+                        head = address
+                    if after_return(head) or after_data(head):
+                        add(head, "prologue", address)
+                        if not after_return(head):
+                            add(head, "data_separator", head - 4)
+    for i, word in enumerate(words):
+        pc = GAME_CODE_BASE + i * 4
+        if word >> 26 == 3:
+            add(((pc + 4) & 0xF0000000) | ((word & 0x3FFFFFF) << 2), "jal", pc)
+        if word % 4 == 0 and run_for(word) is not None:
+            if word in candidates or after_return(word):
+                add(word, "pointer", pc)
+    return [candidates[a] for a in sorted(candidates)]
+
+
+def find_heads(image, rows):
+    """Decisions for every independently discovered head; no writes.
+
+    A known function and every candidate head are hard extent bounds. A
+    rejected lead therefore cannot make a neighbour consume uncertain bytes.
+    Existing suffixes are left untouched rather than absorbed speculatively.
+    """
+    candidates = head_candidates(image, rows)
+    decisions = []
+    for i, item in enumerate(candidates):
+        address, (_, hi) = item["address"], item["run"]
+        bound = min(hi, candidates[i + 1]["address"] if i + 1 < len(candidates) else hi)
+        entry = dict(item, bound=bound, decision="refused")
+        if (targetsmod.falls_through_into(image, address)
+                and "data_separator" not in item["evidence"]):
+            entry["reason"] = "incoming_fallthrough"
+        else:
+            detail = targetsmod.scan_head_extent(image, address, bound)
+            entry.update(detail)
+            count = detail.get("insn_count")
+            if count is not None:
+                if not _decodes_as_code(image, address, count):
+                    entry["reason"] = "decodes_as_data"
+                elif _branch_lands_in(image, address, address + count * 4):
+                    entry["reason"] = "incoming_branch"
+                else:
+                    entry["decision"] = "accepted"
+        decisions.append(entry)
+    return decisions
+
+
+def heads(conn, store, image_path=GAME_CODE_BIN, apply=False, report_path=None):
+    """Dry-run by default; register accepted heads once through closure's path."""
+    image = Path(image_path).read_bytes()
+    rows = gate_passed_rows(conn)
+    decisions = find_heads(image, rows)
+    known = {r[0] for r in conn.execute("SELECT address FROM n64_target")}
+    accepted = [e for e in decisions if e["decision"] == "accepted"]
+    # Never replace an existing target's evidence or status as a side effect.
+    for entry in accepted:
+        if entry["address"] in known:
+            entry.update(decision="refused", reason="existing_target_address")
+    accepted = [e for e in decisions if e["decision"] == "accepted"]
+    registered = []
+    if apply:
+        from ..coordinator import db as dbmod
+        with tempfile.TemporaryDirectory(prefix="heads-") as tmp:
+            # An assembler failure must not leave half the population inserted.
+            with dbmod.tx(conn):
+                for entry in accepted:
+                    registered.append(register(conn, store, image, entry["address"],
+                                               entry["insn_count"], tmp,
+                                               manage_transaction=False))
+    report = {"image_sha256": hashlib.sha256(image).hexdigest(),
+              "image_size": len(image), "applied": apply,
+              "registered": registered, "candidates": decisions}
+    if report_path is not None:
+        path = Path(report_path)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
+    return report
+
+
 def main():
     from ..coordinator import db as dbmod
     from ..coordinator.store import BlobStore
@@ -400,11 +542,28 @@ def main():
                                        "the gaps between extents")
     o.add_argument("--image", default=str(GAME_CODE_BIN))
     o.add_argument("--apply", action="store_true")
+    h = sub.add_parser("heads", help="prove complete functions in opaque runs")
+    h.add_argument("--image", default=str(GAME_CODE_BIN))
+    h.add_argument("--apply", action="store_true")
+    h.add_argument("--report", default=None,
+                   help="optional JSON report (dry run otherwise writes nothing)")
     args = parser.parse_args()
 
     data = Path(args.data)
     conn = dbmod.connect(data / "conveyor.db")
     store = BlobStore(data / "blobs")
+    if args.command == "heads":
+        report = heads(conn, store, args.image, args.apply, args.report)
+        for entry in report["candidates"]:
+            size = 4 * entry["insn_count"] if "insn_count" in entry else 0
+            evidence = ",".join(sorted(entry["evidence"]))
+            print(f"0x{entry['address']:08X} {size:5d} B {entry['decision']:8s} "
+                  f"{entry.get('reason', '')} [{evidence}]")
+        counts = Counter(e["decision"] for e in report["candidates"])
+        print(f"heads: {dict(counts)}; registered {len(report['registered'])}")
+        if not args.apply:
+            print("dry run; pass --apply to register them")
+        return
     if args.command == "orphans":
         image = Path(args.image).read_bytes()
         found = find_orphans(image, gate_passed_rows(conn))
