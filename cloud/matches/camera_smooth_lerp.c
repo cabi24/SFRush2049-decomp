@@ -1,3 +1,4 @@
+/* flags: -g0 -O2 -mips2 -G 0 -non_shared */
 
 typedef signed char s8;
 typedef unsigned char u8;

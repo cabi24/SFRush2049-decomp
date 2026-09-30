@@ -10,8 +10,8 @@ u8 func_800F084C(s32 arg) {
     l = D_801149B4;
     r = 0;
     p = l.p;
- for (; **p != 0; p++) {
- r |= func_800F0674(*p, arg);
- } 
+    for (; **p != 0; p++) {
+        r |= func_800F0674(*p, arg);
+    }
     return r;
 }
