@@ -42,8 +42,8 @@ CELLS_PER_JOB = 25
 # Large enough never to be mistaken for a near miss, recorded rather than
 # dropped so the flywheel does not keep re-queueing an unbuildable seed.
 COMPILE_FAILED = 999999
-DEFAULT_FLAGSETS = ("-g0 -O2 -mips2 -G 0 -non_shared",
-                    "-g0 -O1 -mips2 -G 0 -non_shared")
+DEFAULT_FLAGSETS = ("-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+                    "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul")
 
 
 def compiled_targets(conn, histogram_path=HISTOGRAM_JSON, limit=None):

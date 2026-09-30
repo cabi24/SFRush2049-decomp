@@ -66,7 +66,9 @@ def commands(repo, paths):
             continue
         if not (directory / "group.json").is_file():
             raise ValueError(f"{name}: changed group is missing group.json")
-        yield [sys.executable, scorer, "group", str(directory)]
+        # A group directory is work in progress; CI verifies only what it
+        # claims (group.json "claims") and reports the rest.
+        yield [sys.executable, scorer, "group", str(directory), "--claims"]
 
 
 def check(repo, paths):

@@ -47,7 +47,7 @@ def test_selects_singles_and_deduplicates_changed_groups(tmp_path):
     assert len(jobs) == 2
     assert jobs[0][2:] == ["fn", str(tmp_path / single), "function_name",
                            "--flags=-g0 -O2 -mips2 -G 0 -non_shared"]
-    assert jobs[1][2:] == ["group", str(tmp_path / group)]
+    assert jobs[1][2:] == ["group", str(tmp_path / group), "--claims"]
 
 
 @pytest.mark.parametrize("header", ["", "/* flags:  */", "int f(void);",

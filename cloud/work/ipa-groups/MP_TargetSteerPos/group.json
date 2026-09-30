@@ -16,5 +16,8 @@
   ],
   "context": [
     "camera_transform"
+  ],
+  "claims": [
+    "MP_TargetSteerPos"
   ]
 }

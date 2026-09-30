@@ -115,7 +115,7 @@ def builder_script(spec, toolkit=TOOLKIT, workdir=BUILDER_TMP):
         f"$T/umerge -Olimit 5000 -mips2 -EB -g0 {opt} split -o merged -t st >/dev/null; "
         f"$T/uopt -G 0 -Olimit 5000 -mips2 -EB -g0 {opt} merged opt -t st optlog >/dev/null; "
         f"$T/ugen -G 0 -mips2 -EB -g0 {opt} opt -o gen -t st -temp ugtmp >/dev/null; "
-        f"$T/as1 -elf -G 0 -p0 -mips2 -EB -g0 {opt} -Olimit 5000 gen -o group.o -t st >/dev/null; "
+        f"$T/as1 -elf -G 0 -p0 -mips2 -EB -g0 {opt} -r4300_mul -Olimit 5000 gen -o group.o -t st >/dev/null; "
         f"echo DONE")
 
 
