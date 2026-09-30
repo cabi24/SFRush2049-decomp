@@ -1,3 +1,4 @@
+/* flags: -g0 -O2 -mips2 -G 0 -non_shared */
 
 typedef signed char s8;
 typedef unsigned char u8;
@@ -2258,8 +2259,8 @@ extern s32 D_8013C128;
 extern s32 D_8013C228;
 extern s32 D_8013C234;
 extern s32 D_8013C238;
-extern struct { s32 f0; s32 f4; } D_8013C300;
-
+extern s32 D_8013C300;
+extern s32 D_8013C304;
 extern s32 D_8013C308;
 extern s32 D_8013C378;
 extern s32 D_8013E5D8;
@@ -3153,7 +3154,6 @@ void func_8008A46C(s32 arg0, s32 arg1, s32 arg2, s32 arg3, void *arg4);
 void func_8008A644(s32 arg0);
 void func_8008A704(void);
 s32 func_8008ABE4(void);
-s32 func_8008AD04(u8 *arg0, u8 *arg1);
 s32 func_8008B000(s32 arg0, s16 arg1, s32 arg2);
 void func_8008B32C(f32 *arg0, f32 *arg1, f32 arg2);
 f32 func_8008B3C8(void *arg0);
@@ -3321,6 +3321,7 @@ void func_800B9F60(s32 arg0, s32 arg1, s32 *arg2, s32 *arg3);
 s16 func_800BA2B8(s16 arg0, s16 arg1);
 s16 func_800BA61C(s16 arg0);
 void func_800BB02C(s32 arg0, s32 arg1, s32 arg2);
+void func_800BB7F4(void);
 s32 func_800BB9B0(s32 arg0, s32 arg1, s32 arg2);
 f32 func_800BC21C(void *arg0);
 void func_800BD080(void *arg0, s32 arg1);
@@ -3788,22 +3789,18 @@ void world_object_destroy(void *arg0);
 void world_physics_tick(void);
 void world_trigger_activate(void);
 s32 world_velocity_integrate();
-typedef struct { s32 a; s32 b; s32 c; s32 d; } Q16;
-void func_800BB7F4(void)
+s32 func_8008AD04(u8 *arg0, u8 *arg1)
 {
-  s32 *p;
-  s32 *end;
-  end = &D_8013C378;
-  p = &D_8013C308;
-  D_8013C300.f0 = 0;
-  D_8013C300.f4 = 0;
-  do
+  int v;
+  v = *arg0;
+  if (v != 0 && v == *arg1)
   {
-    p += 4;
-    p[-3] = 0;
-    p[-2] = 0;
-    p[-1] = 0;
-    p[-4] = 0;
-  } while ((p != end) & 0xFFFFFFFFu);
-  D_8013F1DC = 0;
+    do
+    {
+      v = arg0[1];
+      arg0++;
+      arg1++;
+    } while (v != 0 && v == *arg1);
+  }
+  return v - *arg1;
 }
