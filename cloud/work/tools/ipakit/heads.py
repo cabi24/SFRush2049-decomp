@@ -213,7 +213,8 @@ def audit(corpus=None):
         rows.append({'name': func_name_of(a), 'addr': '0x%08X' % a, 'words': d['words'], 'frame': has_prologue(corpus, a),
                      'jr_ra': sum(1 for x in w if _is_ret(x)), 'evidence': sorted(set(d['via'])),
                      'jal_callers': sorted(callers.get(a, ())), 'pointer_words': ['0x%08X' % p for p in ptrs.get(a, ())],
-                     'registered': a in sym_addrs})
+                     'registered': a in sym_addrs,
+                     'contains_registered': sorted(f.name for f in base_funcs if a < f.addr < a + 4 * d['words'])})
     return {'heads': rows, 'alt_entries': alt_entries,
             'opaque_runs': [{'start': '0x%08X' % lo, 'end': '0x%08X' % hi, 'words': (hi - lo) // 4} for lo, hi in opaque_runs(corpus)]}
 
