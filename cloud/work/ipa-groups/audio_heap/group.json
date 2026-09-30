@@ -1,10 +1,27 @@
 {
-  "members": ["audio_helper", "func_800E7B44", "audio_dma_sync", "audio_task_complete", "func_800E7C2C", "func_800E7D0C"],
-  "files": ["group.c"],
-  "keep": ["audio_dma_sync", "audio_task_complete", "func_800E7C2C", "func_800E7D0C"],
+  "members": [
+    "audio_helper",
+    "func_800E7B44",
+    "audio_dma_sync",
+    "audio_task_complete",
+    "func_800E7C2C",
+    "func_800E7D0C"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "audio_dma_sync",
+    "audio_task_complete",
+    "func_800E7C2C",
+    "func_800E7D0C"
+  ],
   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
-  "generated": "hand-written (r5_i)",
+  "generated": "hand-written from the assembly (round 5, r5_i); see STATUS.md",
   "unprototyped": [],
   "context": [],
-  "claims": []
+  "claims": [
+    "audio_helper",
+    "func_800E7B44"
+  ]
 }

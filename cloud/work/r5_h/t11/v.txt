@@ -1,0 +1,74 @@
+s32 state_update_global(PadCfg *arg0)
+{
+s32 t, v;
+ t = D_80149D98 != 0;
+ v = arg0->f1A;
+ if (t != v) { arg0->f1A = t; Input_ApplyPadConfig(arg0); v = arg0->f1A; }
+ if (v != 0) return 1;
+ arg0->p4 = &D_80117358;
+ Input_ApplyPadConfig(arg0);
+ arg0->f28 = 0;
+ return 1;
+}
+----
+s32 state_update_global(PadCfg *arg0)
+{
+s32 t;
+ t = D_80149D98 != 0;
+ if (t != arg0->f1A) { arg0->f1A = t; Input_ApplyPadConfig(arg0); }
+ if (arg0->f1A == 0) { arg0->p4 = &D_80117358; Input_ApplyPadConfig(arg0); arg0->f28 = 0; }
+ return 1;
+}
+----
+s32 state_update_global(PadCfg *arg0)
+{
+if ((D_80149D98 != 0) != arg0->f1A) { arg0->f1A = D_80149D98 != 0; Input_ApplyPadConfig(arg0); }
+ if (arg0->f1A == 0) { arg0->p4 = &D_80117358; Input_ApplyPadConfig(arg0); arg0->f28 = 0; }
+ return 1;
+}
+----
+s32 state_update_global(PadCfg *arg0)
+{
+s32 t = D_80149D98 != 0;
+ if (arg0->f1A != t) { arg0->f1A = t; Input_ApplyPadConfig(arg0); }
+ if (arg0->f1A == 0) { arg0->p4 = &D_80117358; Input_ApplyPadConfig(arg0); arg0->f28 = 0; }
+ return 1;
+}
+----
+s32 state_update_global(PadCfg *arg0)
+{
+s32 t, v;
+ t = D_80149D98 != 0;
+ v = arg0->f1A;
+ if (t != v) { arg0->f1A = t; Input_ApplyPadConfig(arg0); v = arg0->f1A; }
+ if (v == 0) { arg0->p4 = &D_80117358; Input_ApplyPadConfig(arg0); arg0->f28 = 0; }
+ return 1;
+}
+----
+s32 state_update_global(PadCfg *arg0)
+{
+s32 t, v;
+ v = arg0->f1A;
+ t = D_80149D98 != 0;
+ if (t != v) { arg0->f1A = t; Input_ApplyPadConfig(arg0); v = arg0->f1A; }
+ if (v == 0) { arg0->p4 = &D_80117358; Input_ApplyPadConfig(arg0); arg0->f28 = 0; }
+ return 1;
+}
+----
+s32 state_update_global(PadCfg *arg0)
+{
+s32 t = D_80149D98 != 0;
+ if (t != arg0->f1A) { arg0->f1A = t; Input_ApplyPadConfig(arg0); }
+ if (arg0->f1A != 0) return 1;
+ arg0->p4 = &D_80117358; Input_ApplyPadConfig(arg0); arg0->f28 = 0;
+ return 1;
+}
+----
+s32 state_update_global(PadCfg *arg0)
+{
+s32 t = (D_80149D98 != 0);
+ s32 v = arg0->f1A;
+ if (t != v) { arg0->f1A = t; Input_ApplyPadConfig(arg0); v = arg0->f1A; }
+ if (!v) { arg0->p4 = &D_80117358; Input_ApplyPadConfig(arg0); arg0->f28 = 0; }
+ return 1;
+}
