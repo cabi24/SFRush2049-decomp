@@ -118,7 +118,7 @@ class Corpus:
         if addr in self.by_addr:
             return self.by_addr[addr]
         if nwords is None:
-            from . import heads
+            from ipakit import heads
             nwords = heads.scan_extent(self, addr)
         f = Func(name or func_name(addr), addr, self.words_at(addr, nwords), True)
         self._add(f)
@@ -143,7 +143,7 @@ def load_corpus(discover=True):
     if key not in _cache:
         c = Corpus([Func(f.name, f.addr, f.words) for f in funcs], img, syms)
         if discover:
-            from . import heads
+            from ipakit import heads
             heads.discover_call_heads(c)
         _cache[key] = c
     return _cache[key]
