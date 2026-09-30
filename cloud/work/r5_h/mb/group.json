@@ -1,0 +1,1 @@
+{"members":["mode_byte_set","mode_byte2_set"],"files":["group.c"],"keep":["mode_byte_set","mode_byte2_set"],"flags":"-g0 -O3 -mips2 -G 0 -non_shared","unprototyped":[],"context":[],"targets":{},"claims":["mode_byte_set","mode_byte2_set"]}

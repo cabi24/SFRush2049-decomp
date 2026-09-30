@@ -1,0 +1,15 @@
+{
+ "members": [
+  "handbrake_apply",
+  "func_800AC9BC"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "handbrake_apply",
+  "func_800AC9BC"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "claims": []
+}

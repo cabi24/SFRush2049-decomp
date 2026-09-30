@@ -1,0 +1,32 @@
+/* flags: -g0 -O2 -mips2 -G 0 -non_shared */
+typedef signed short s16;
+typedef unsigned short u16;
+typedef unsigned char u8;
+typedef struct QNode {
+    s16 next;
+    u8 pad2;
+    u8 mask;
+    s16 x0;
+    s16 x1;
+    s16 y0;
+    s16 y1;
+    u16 child[4];
+} QNode;
+extern QNode *D_80124EEC;
+void *func_800AC9BC();
+
+void *handbrake_apply(QNode *n, s16 x, s16 y, s16 *out) {
+    s16 outside;
+    if (n == 0) {
+        n = D_80124EEC;
+    }
+    outside = (x >= n->x1 || x < n->x0 || y >= n->y1 || y < n->y0);
+    while (outside) {
+        if (n->next == -1) {
+            return 0;
+        }
+        n = &D_80124EEC[n->next];
+        outside = (x >= n->x1 || x < n->x0 || y >= n->y1 || y < n->y0);
+    }
+    return func_800AC9BC(n, x, y, out);
+}
