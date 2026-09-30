@@ -1299,6 +1299,7 @@ reverb_setup:
 .section .text.func_800B4DA4, "ax", @progbits
 .globl func_800B4DA4
 func_800B4DA4:
+    /* compiled from src/blob/func_800B4DA4.c */
     .word 0x3C028011
     .word 0x24427428
     .word 0x27BDFFD8

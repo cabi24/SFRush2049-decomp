@@ -2000,6 +2000,7 @@ split_time_display:
 .section .text.time_of_day_select, "ax", @progbits
 .globl time_of_day_select
 time_of_day_select:
+    /* compiled from src/blob/time_of_day_select.c */
     .word 0x27BDFFC8
     .word 0xAFB50028
     .word 0x3C158014

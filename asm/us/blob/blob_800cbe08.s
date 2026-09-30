@@ -2160,6 +2160,7 @@ menu_option_toggle:
 .section .text.func_800CDDE8, "ax", @progbits
 .globl func_800CDDE8
 func_800CDDE8:
+    /* compiled from src/blob/func_800CDDE8.c */
     .word 0x8C8E0000
     .word 0x24010004
     .word 0x8DCF002C
@@ -2184,6 +2185,7 @@ func_800CDDE8:
 .section .text.func_800CDE38, "ax", @progbits
 .globl func_800CDE38
 func_800CDE38:
+    /* compiled from src/blob/func_800CDE38.c */
     .word 0x8C8E0000
     .word 0x24010004
     .word 0x8DCF002C
@@ -5115,6 +5117,7 @@ func_800D0A1C:
 .section .text.func_800D0A34, "ax", @progbits
 .globl func_800D0A34
 func_800D0A34:
+    /* compiled from src/blob/func_800D0A34.c */
     .word 0x808E000D
     .word 0x90890008
     .word 0x8098000B

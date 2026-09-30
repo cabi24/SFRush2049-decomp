@@ -4097,6 +4097,7 @@ engine_torque_calc:
 .section .text.func_800ABB58, "ax", @progbits
 .globl func_800ABB58
 func_800ABB58:
+    /* compiled from src/blob/func_800ABB58.c */
     .word 0x3C0E8014
     .word 0x25CE0BDC
     .word 0x91CF0000
@@ -4131,6 +4132,7 @@ func_800ABB58:
 .section .text.transmission_shift, "ax", @progbits
 .globl transmission_shift
 transmission_shift:
+    /* compiled from src/blob/transmission_shift.c */
     .word 0x27BDFFD0
     .word 0xAFB30024
     .word 0x24130044
@@ -5210,6 +5212,7 @@ vector_diff_process:
 .section .text.func_800ACBC4, "ax", @progbits
 .globl func_800ACBC4
 func_800ACBC4:
+    /* compiled from src/blob/func_800ACBC4.c */
     .word 0x3C013F80
     .word 0x44866000
     .word 0x44812000
@@ -5877,6 +5880,7 @@ func_800AD4C8:
 .section .text.func_800AD5D0, "ax", @progbits
 .globl func_800AD5D0
 func_800AD5D0:
+    /* compiled from src/blob/func_800AD5D0.c */
     .word 0x18A00019
     .word 0x00C03825
     .word 0x2408FF1F

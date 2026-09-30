@@ -3100,6 +3100,7 @@ func_8008FFB8:
 .section .text.func_8008FFD0, "ax", @progbits
 .globl func_8008FFD0
 func_8008FFD0:
+    /* compiled from src/blob/func_8008FFD0.c */
     .word 0x3C028015
     .word 0x8C426990
     .word 0xAFA40000
@@ -3127,6 +3128,7 @@ func_8008FFD0:
 .section .text.func_8009002C, "ax", @progbits
 .globl func_8009002C
 func_8009002C:
+    /* compiled from src/blob/func_8009002C.c */
     .word 0x3C028015
     .word 0x8C426990
     .word 0xAFA40000
