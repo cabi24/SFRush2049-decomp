@@ -4188,6 +4188,7 @@ menu_controller_remap:
 .section .text.func_800CFCA8, "ax", @progbits
 .globl func_800CFCA8
 func_800CFCA8:
+    /* compiled from src/blob/func_800CFCA8.c */
     .word 0x3C088015
     .word 0x3C068015
     .word 0x24C6A250

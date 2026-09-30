@@ -642,6 +642,7 @@ pointer_compare_thunk:
 .section .text.func_800950AC, "ax", @progbits
 .globl func_800950AC
 func_800950AC:
+    /* compiled from src/blob/func_800950AC.c */
     .word 0x14C00003
     .word 0x0006102B
     .word 0x03E00008
@@ -1691,6 +1692,7 @@ func_80095EC0:
 .section .text.func_80095EF4, "ax", @progbits
 .globl func_80095EF4
 func_80095EF4:
+    /* compiled from src/blob/func_80095EF4.c */
     .word 0x24820018
     .word 0x50400012
     .word 0x8C830008

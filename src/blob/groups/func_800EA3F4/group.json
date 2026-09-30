@@ -1,0 +1,25 @@
+{
+  "members": [
+    "func_800EA3F4"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_800EA3F4",
+    "__standin_func_800EA3F4",
+    "func_8008B3C8",
+    "vector_copy_scale",
+    "func_800CFDEC",
+    "func_800E8CB8"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "unprototyped": [],
+  "context": [
+    "func_8008B3C8",
+    "vector_copy_scale",
+    "func_800CFDEC",
+    "func_800E8CB8"
+  ],
+  "provenance": "cloud round 3 (PR #5), cloud/work/ipa-groups/func_800EA3F4"
+}
