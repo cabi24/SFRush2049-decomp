@@ -12,10 +12,10 @@ extern u16 D_8011B59C[8];
     o->v[0] = (src)[0]; o->v[1] = (src)[1]; o->v[2] = (src)[2]; o->v[3] = (src)[3]; \
     o->v[4] = (src)[4]; o->v[5] = (src)[5]; o->v[6] = (src)[6]; o->v[7] = (src)[7]; } while (0)
 void func_8008BEA4(In *in, s16 flag) {
-    u32 f;
-    s32 ok;
-    s32 i;
     Out *o;
+    s32 i;
+    s32 ok;
+    u32 f;
     i = in->idx;
     f = D_80152900[i].flags;
     o = D_8013FEF4[i].o;
