@@ -26,3 +26,45 @@ Against: 2500 words of uopt allocation in one frame (632 bytes, ~25 spill slots)
 
 ## Effort
 3-6 focused days for a full match; 1 day to get the first 25% matching (which is a useful go/no-go test). Payoff 2512 words (~1.6% of game code words, the single largest ABI function).
+
+## Phase 1 attempt (bigfish hail-mary, 2026-09-30) -- verdict: NO-GO for a full match
+
+Files: `object_render/base.c` (hand prefix, ~155 words + tail stubs), `object_render/pre.py` (prefix compare),
+`object_render/tdis.py` (disasm of a retail function), `object_render/g878/` (IPA group for func_800878E0),
+`object_render/f878e0_ipa_best.c`, `object_render/seed.c` (sed-fixed m2c seed).
+
+### func_800878E0 (74 words): 68/74 words match (6 differ), NOT a strict match
+- Semantics: `if ((D_8012E608 & m) != m) { D_8012E608 |= m; if (m&0x4000) {emit 0xFCFFFFFF/0xFFFDF6FB; if (D_8014A248<=0||>=4) {emit 0xE3000A01,0; } D_8014A248=-1;} if (m&1) emit(0xE2001E01,1); if (m&0x10) {emit(0xE2001D00,4); func_80086A50(D_8014A248);} if (m&0x20) func_80086A50(D_8014A248); }`.
+  Sibling of func_8008705C (the "clear" version); Gfx pushes as `Gfx *g = D_80149438++;`.
+- Standalone (`score.py fn`, -O2 or -O3): 50/74 differ. Structure identical, only registers: target keeps the mask in
+  `t0` and avoids a2/a3. **Same IPA finding as func_8008705C**: it needs the callee `func_80086A50` in the group
+  (stand-in `stub.c` clobbering a0-a3,t6-t9 but not t0). Using `g878/` (extscore.py, -O3 group, keep func_800878E0) gives 6/74 differ.
+- Remaining 6 diffs: block 1 `ori` order (t7 then t6) and, in the m&1 and m&0x10 blocks, the target stores w1 (`sw t6,4(v0)`)
+  BEFORE w0 while materialising the w0 constant first (lui/ori t9, li t6, sw t6,4, sw t9,0). Source order `w0=;w1=` gives
+  the right constants but stores w0 first; `w1=;w0=` gives li first and t6/t9 swapped. Tried temps, `g[0].`, s32 w1, `g=D; D=g+1`,
+  param types: no help. Not spliceable anyway (stand-in callee).
+
+### object_render prefix (first 155 words)
+- Decoded head (params: a0 tex u32, a1 fmt u16 (0..5), a2 mode u16 (0..3), a3 pitch u16, stack: h u16 @648 (written back),
+  x1 @652, y0 @656, x0 @660, y1 @664, p9 @668, flag s32 @672):
+  flag==0: `tex += y0*pitch*{4,2,1,/2}` by mode, `h = y1-y0+1`;
+  flag!=0: `flag = (s32)((u64)y0<<32)+(s32)((u64)x1<<48)+(s32)((u64)x0<<16)+y1` (three `__ashldi3` calls, sums low words only, 64-bit
+  temps spilled at 80..92(sp));
+  then `sp274` from fmt (0/2: D_8012E608&0x8030 ? 1:0; 5: 4; 4/3: (D_8012E608&1)?3:2), `if (fmt==3) func_800878E0(0x20)`,
+  `if (sp274 != D_8014A248) func_80086A50(sp274)`, cache test `tex==D_8012E684 && (s64)flag==D_8012E688` (64-bit
+  compare; hit jumps to 0x272c = function tail), then `sp272 = func_80087804(x1-x0); func_80087804(y0-y1)`.
+- Prefix compare (`pre.py base.c`): best **-O2: aligned-exact 32/155, opcode-shape 110/155, positional 4**; -O3: 27/155, shape 94; -O1: 26, shape 78.
+- Why a prefix cannot be strict-matched in isolation: the retail frame is 632 with `s0`=flag, `s1`=pitch chosen by global use counts across all
+  ~25 variants; a0/a1/a2 stay in their home slots (`lhu a3,642(sp)` reloads); s0/s1 are later reused as plain temporaries (`lhu s0,626(sp)`
+  at 0x39c); spill slots at 0x24..0x5c and pointer spills like `sw a0,600(sp); lw t9,600(sp)` (a named Gfx* local in some blocks).
+  Truncating the function changes every one of those decisions, so chunk-by-chunk strict scoring is impossible; only the complete function
+  can be scored strictly, and each of ~20 variants (format x size x flag) must be exact simultaneously.
+- Dispatch beyond the head is ~20+ variants of a ~100-word block with per-variant differences (`|0x200`, `<<14`, `(w*2+9)>>3&0x1ff`,
+  `+0x7FF`, `/8` clamps, reused `s0/s1` temps) and interleaved reads of stack-spilled copies (`36(sp)`, `52(sp)`, `56(sp)`, `60(sp)`, `64(sp)`).
+
+### Verdict
+**NO-GO** for a strict match of object_render in this session: repeated shape holds (the emitter macro reproduces the shape), but
+register/spill fidelity is whole-function dependent, the prefix measure stalls at 32/155 exact even with the right structure, and the
+whole function must be written (2400 more words) before any strict feedback exists. Next steps if resumed: write the entire function
+with the macro (all variants) at -O2 (better than -O3 here), then tune locals/named pointers using near.py; and first finish
+func_800878E0 (6 words) inside an IPA group containing a real or stand-in func_80086A50.
