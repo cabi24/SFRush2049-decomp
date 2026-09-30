@@ -50,14 +50,43 @@ without it). Helper tools from earlier rounds are still in `cloud/work/tools/` (
 | piece | result |
 |---|---|
 | `amatch/builder.py`, `aligned.py` | In-process compile + score, agrees exactly with `score.py` on 12 match files and 3 groups. About 198 scores/s on 4 cores (about 50/s/core), versus about 3/s calling `score.py` per candidate. Content-hash cache in `build/amatch_cache/`. Bit-parallel aligned LCS: 13 ms for a 2,559-word function. |
-| `amatch/mutate.py` | 27 mutation families, stdlib tokenizer/parser, edits are text splices so layout survives. 26,056 mutations over 252 repo files, 0 compile failures in 6,000 sampled IDO compiles. Reproduces 16/16 exact-kind before/after pairs from git history. Semantic equivalence is not proven (risky ones are flagged). |
-| `amatch/search.py` | Seeded, parallel best-first + beam + annealing over mutation sequences; rejects candidates that regress a matched member in group mode; re-verifies every hit with the real `score.py`. From start states: 5/20 auto-solved (seconds each). |
+| `amatch/mutate.py` | 27 original + 16 added families (43), stdlib tokenizer/parser, edits are text splices so layout survives. 26,056 mutations over 252 repo files, 0 compile failures in 6,000 sampled IDO compiles. Reproduces 16/16 exact-kind before/after pairs from git history. Semantic equivalence is not proven (risky ones are flagged). |
+| `amatch/search.py` | Seeded, parallel best-first + beam + annealing over mutation sequences (plus cross-product of the best singles, steepest ascent, `-O1/-O2/-O3` as a dimension); rejects candidates that regress a matched member in group mode; re-verifies every hit with the real `score.py`. Corpus solve rate at budget 1000: 10/59 before the improvement pass, 20/59 after (see 3a). |
 | `amatch/corpus.py` | 124 functions mined from git history, 91 with a usable start->goal pair (59 singles, 32 group members), with edit-class labels (`corpus_data/STATS.md`). |
 | `amatch/autopilot.py`, `triage.py` | Ranking + resumable batch driver + residual report + LLM worklist. Selftest 5/5. Corpus bench: 16/59 (27%) auto-matched, median 26 evals / 2.3 s. Real worklist: 1 of top-8 ABI items matched; 4 of the other 7 were `register_only`/`near_miss`. |
 | `amatch/probe.py` | Matrix of controlled IPA experiments. Rediscovered: (a) the IPA parameter register follows the callee's USED parameter count (2 used -> t0, 3 -> t1, 4 -> t2, 5 -> t3; declared-but-unused leave it at t0); (b) a caller's live-across value takes the first register the callee does not use (stub using a0-a3 -> t0); (c) `func_800AD650` must not be in `keep`. |
 | `ipakit/*` | MIPS decoder checked against objdump on 400 functions; real liveness across calls; callee clobber sets; dependency edges; head audit (52 heads in the opaque runs, 22 more than the old hand list). Whole game analyses in about 3 s. |
 | `ipakit/sigs.py` | Parameter inference from home-slot stores: arity 97.4%, int/float order 452/453, relaxed class order 96%, return class 96% over 465 functions with known source. IPA register ORDER is validated on very few cases. |
 | `ipakit/groupgen.py` | Skeleton group generator. On 5 real groups: 19/26 members recovered, 0 extras, keep flags 19/19, prototype arity 19/19. 44 of 46 IPA-leaf seeds compile after stub fallback (68% of bodies real m2c); none match out of the box. |
+
+### 3a. Improvement pass: development vs held-out (read this before trusting the catalog)
+
+`corpus_data/SPLIT.json` (by `sha1(name)` parity, made by `corpus.py split`; `bench --half dev|held`) separates 32
+development functions from 27 held-out ones. Budget 1000 per function, same harness before and after:
+
+| half | before | after |
+|---|---|---|
+| development (32) | 7 | 15 |
+| held-out (27) | 3 | 5 |
+| all (59) | 10 | 20 |
+
+The held-out gain is NOT clean: one of the two extra held-out solves (`func_800B1F30`) was read before the cast family
+was designed, and the other (`func_8009002C`) fell to `goto_branch`, added after looking at it. **The clean held-out
+gain is 0 (3/27 before and after).** The new families fit the edit classes that recur in the development half; the
+remaining held-out near-misses need other edits. Plan on the catalog generalising poorly until more real misses are
+mined. No budget-3000 run finished (killed at wrap-up); no 3000 baseline exists.
+
+Added families (`mutate.py`): `while_fold`, `cond_merge`, `loop_guard`, `goto_branch`, `call_arg`, `local_reload`,
+`dead_purge`, `hoist_local` (float literals only), `cast_simplify`, `ret_type`, `proto_form`, `param_unused`,
+`view_cast`, `m2c_field`, `compound_assign`, `deref_index`; `param_type` also tries `u16`/`s8`. `search.py` derives
+`D_xxxxxxxx` hints from the target's address pairs (used by `call_arg`). Search changes: within 8 words of the goal it
+ranks strict diff first (aligned-exact leads further away); matched paths are minimised before verification; the result
+JSON carries `best_flags`, `full_path`, `min_evals`.
+
+Still needs an LLM (search cannot find it): goto-loop to indexed array loop (`UpdateActiveObjects`, `func_800DD45C`),
+struct typing of externs (`func_8008A38C`), if-chain to `switch` (`func_800CDDE8`, `func_800CDE38`), pointer-induction
+loops and heavy restructures (`players_race_update`, `track_collision`, `func_800B4DA4`), four or more coordinated edits
+where none improves alone (`car_select_handler`), and most pairs whose start is 15+ words off.
 
 **Honest summary of the reach.** The machine reliably finishes the easy tail: one-token-class fixes on an already
 close function (loop form, parameter type, operand order, statement order). It does not do the big step of rewriting
@@ -119,8 +148,8 @@ come back as a residual.
    parameters everywhere.
 4. **Extend the catalog from misses.** `autopilot.py --bench` lists the corpus functions search cannot solve; each
    missing edit class becomes a new mutation family (known gaps: new named locals, hoisted constants, pointer-stride
-   and struct views of externs, scale-then-add FP idiom). An improvement agent was run against a development/held-out
-   split of the corpus (`corpus_data/SPLIT.json`); check `git log` for its result before repeating that work.
+   and struct views of externs, scale-then-add FP idiom). The first improvement pass is recorded in section 3a; mine new misses from real autopilot runs (not the corpus) to
+   avoid overfitting the development half.
 5. **Fix `report.py` disassembly** (prologue/epilogue blocks print raw hex) and fit the `triage.py` priors to data
    from real autopilot runs (they are guesses today).
 6. **Maintainer asks carried over:** register the heads in `unregistered-heads-full.md`; add `-r4300_mul` everywhere
@@ -134,7 +163,7 @@ come back as a residual.
 - Compile in a per-job temp directory (IDO writes `src.u` into the cwd; parallel jobs collide otherwise).
 - Keep multi-line source layout in any generated variant; IDO scheduling depends on it.
 - `uopt` allocates per variable, not per web: named locals change allocation; dropping them fixed several functions.
-- `search.py` ranks aligned words first; near a match, strict diff should lead (being fixed in the improvement pass).
+- `search.py` now ranks strict diff first within 8 words of the goal (earlier it ranked aligned words first and could end worse than it started).
 - The `flags` axis in `probe.py` has no effect on groups (see 5.5).
 - `tools/m2c_patches` are not applied in the `tools/mips_to_c` submodule; `groupgen.py` builds a private patched copy in
   `build/groupgen_m2c/`. The submodule tree reads as modified after running the older scratch tools; reset it with
