@@ -65,3 +65,27 @@ scheduling of the store block. Loop-form (for/while/do) and decl-order permutati
   visible callee body at -O2/-O3, group -O3 build, -O1/-O3, K&R prototype.
 - decomp-permuter (cloned to scratchpad, custom compile.sh that resolves relocations and re-assembles the function as flat
   .word text so its mnemonic/regalloc scorer works against target words) drives score 4355 -> 2360 quickly, then stalls.
+
+### Stage 3 (end of this pass): state, levers, what is left
+Saved: `net_state_validate/base.c` = best structural variant (permuter descendant of the `cnt` lever variant):
+684 words emitted vs 682 target, **585 of 682 target words reproduced exactly in order (LCS)** (first pass: 171),
+positional `score.py fn` is useless for it (661/682) because two extra words near the top (`move a0,s1`, `li a3,13`)
+shift everything. `base_strict289.c` = an earlier variant with the best positional score (289/682 words differ, 684 emitted).
+Not a MATCH; no cloud/matches entry.
+
+What fixed things (all reproducible, see base.c):
+1. Variable identity is part of the allocation: IDO allocates per VARIABLE (union of its webs), not per def-use web.
+   Give each section's sum its own variable (`w` for the section-3b u16 sum, `v0` only for section 2b) and sec-2b gets
+   sum=v0 / induction pointer=v1 exactly like the target; re-using `k` or `v0` across sections flips them.
+2. Fresh loop variable for the 4-term sum (`n`) is required for IDO's unroll; sec-2b counter wants another variable so it is
+   a temp (a0) not an s-reg.
+3. The hoisted `active_player_count` load only leaves the t-regs (-> s1, like the target) if one section's loop bound
+   goes through a different web: `cnt = active_player_count; for (i = 0; i < cnt; i++)` in ONE loop (section 1a, or 2b),
+   or `active_player_count * 1` in section 1a. All such levers cost two extra words (a `move` copy and a `li a3,13`
+   hoist into the section-1b preheader) that the target does not have; that is the remaining structural blocker.
+4. Flag `D_801164C2`: a named local loaded at section-2 start gets s2 like the target but loads early; target hoists only the
+   `lui`. Not solved.
+Left over register diffs in best variant: sec-1 k/p (s0/s1 swapped), sec-2b chain temps a3/a1, sec-3/4 hoisted constants
+(`li s0,19` vs ra etc.), flag s2 vs s0, sec-3b temps. All of these are downstream of the count/pool ordering.
+Permuter (decomp-permuter with a flat-word compile wrapper) saturates around score 1475 from these bases.
+Status: clearly stuck at structure+alloc coupling; not a MATCH.
