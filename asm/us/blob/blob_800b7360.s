@@ -2517,6 +2517,7 @@ func_800B9740:
 .section .text.func_800B98D8, "ax", @progbits
 .globl func_800B98D8
 func_800B98D8:
+    /* compiled from src/blob/func_800B98D8.c */
     .word 0x04800018
     .word 0x00A03025
     .word 0x3C028014
@@ -2598,6 +2599,7 @@ func_800B98D8:
 .section .text.physics_velocity_clamp, "ax", @progbits
 .globl physics_velocity_clamp
 physics_velocity_clamp:
+    /* compiled from src/blob/physics_velocity_clamp.c */
     .word 0x27BDFFC0
     .word 0xAFB50028
     .word 0xAFB40024
@@ -2688,6 +2690,7 @@ physics_velocity_clamp:
 .section .text.func_800B9B64, "ax", @progbits
 .globl func_800B9B64
 func_800B9B64:
+    /* compiled from src/blob/func_800B9B64.c */
     .word 0x3C018012
     .word 0x3C0B8014
     .word 0xC4203DF8

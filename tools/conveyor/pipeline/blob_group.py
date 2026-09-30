@@ -264,7 +264,12 @@ def relocate(obj, slices, text_ndx, extern, members=None):
     def put(o, w):
         text[o:o + 4] = struct.pack(">I", w & 0xFFFFFFFF)
 
-    in_member = lambda o: any(lo <= o < hi for lo, hi, _ in covered)
+    # Relocations are applied only inside the slices being output. Context
+    # slices map call targets to image addresses, but their bodies are never
+    # spliced and may be longer than their extent (a HI16/LO16 pair can
+    # straddle the cut), so their own relocations are not touched.
+    applied = [slices[m] for m in (slices if members is None else members)]
+    in_member = lambda o: any(lo <= o < lo + size for lo, _, size in applied)
     pending_hi = []
     for offset, rtype, name in rels:
         if not in_member(offset):
