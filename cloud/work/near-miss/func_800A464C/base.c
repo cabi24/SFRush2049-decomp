@@ -3790,51 +3790,37 @@ void world_trigger_activate(void);
 s32 world_velocity_integrate();
 u8 *func_800A464C(u8 *arg0, u8 *arg1)
 {
-  s32 var_v0;
-  u8 *temp_t7;
-  u8 *var_a0;
-  u8 *var_v1;
-  u8 temp_a2;
-  u8 temp_t9;
-  u8 temp_v0;
-  var_a0 = arg0;
-  temp_v0 = *var_a0;
-  if (temp_v0 == 0)
+  s32 i;
+  u8 *p;
+  u8 *q;
+  u8 c;
+  if (*arg0 == 0)
   {
-    if ((*arg1) != 0)
+    if (*arg1 != 0)
     {
-      return (void *) 0;
+      return (u8 *) 0;
     }
-    return var_a0;
+    return arg0;
   }
-  if (temp_v0 != 0)
+  if (*arg0 != 0)
   {
-    loop_5:
-    var_v0 = 0;
-
-    var_v1 = arg1;
-    temp_v0 = 1;
-    loop_6:
-    temp_a2 = *var_v1;
-
-    temp_t7 = var_a0 + var_v0;
-    var_v0 += temp_v0;
-    if (temp_a2 == 0)
+    do
     {
-      return var_a0;
-    }
-    if (temp_a2 == (*temp_t7))
-    {
-      var_v1 += 1;
-      goto loop_6;
-    }
-    temp_t9 = *((s32 *) (var_a0 + 0x1));
-    var_a0 += 1;
-    if (temp_t9 == 0)
-    {
-      return (void *) 0;
-    }
+      i = 0;
+      p = arg1;
+      while (1)
+      {
+        c = *p;
+        q = arg0 + i;
+        i++;
+        if (c == 0)
+        {
+          return arg0;
+        }
+        if (c != *q) break;
+        p++;
+      }
+    } while (*++arg0 != 0);
   }
-  return (void *) 0;
-  goto loop_5;
+  return (u8 *) 0;
 }
