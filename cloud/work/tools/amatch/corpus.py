@@ -58,8 +58,8 @@ HEADER_SRC = "cloud/matches/func_800A4770.c"  # first 3696 lines = canonical m2c
 HEADER_LINES = 3696
 
 CLASSES = ["loop-form", "type-change", "local-dropped", "local-added", "decl-order",
-           "extern-to-defined", "operand-flip", "stmt-order", "literal-type",
-           "case-order", "other"]
+           "extern-to-defined", "operand-flip", "stmt-order", "branch-form", "addr-form",
+           "literal-type", "case-order", "other"]
 EXTRA_TAGS = ["rewrite"]  # size tag, not an edit class
 
 
@@ -342,6 +342,17 @@ def classify(start_tu, goal_tu, fn, start_body=None, goal_body=None):
                 cls.add("type-change")
         detail["decls_changed"] = sorted(k for k in set(da) & set(db) if da[k] != db[k])[:8]
 
+    # control-flow shape (shared exit, && chains, if/else nesting) and address/index form
+    def cnt(t, ks):
+        return tuple(t.count(k) for k in ks)
+    if cnt(ta, ("if", "else", "break", "continue", "return", "&&", "||", "?")) != \
+            cnt(tb, ("if", "else", "break", "continue", "return", "&&", "||", "?")):
+        cls.add("branch-form")
+    lits_a = sorted(t for t in ta if is_num(t))
+    lits_b = sorted(t for t in tb if is_num(t))
+    if cnt(ta, ("[", "->", "&", ".", "*")) != cnt(tb, ("[", "->", "&", ".", "*")) or \
+            [num_value(t) for t in lits_a] != [num_value(t) for t in lits_b]:
+        cls.add("addr-form")
     if ratio >= 0.5:
         detail["rewrite"] = True
     if not cls:

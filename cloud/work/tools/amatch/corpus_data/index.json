@@ -75,7 +75,9 @@
    "edit": {
     "classes": [
      "loop-form",
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "loop-form",
     "ratio": 0.77,
@@ -135,9 +137,9 @@
    "start_file": "UpdateActiveObjects.start.c",
    "edit": {
     "classes": [
-     "other"
+     "addr-form"
     ],
-    "primary": "other",
+    "primary": "addr-form",
     "ratio": 0.065,
     "rewrite": false,
     "detail": {
@@ -183,7 +185,8 @@
     "classes": [
      "loop-form",
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "addr-form"
     ],
     "primary": "loop-form",
     "ratio": 0.6,
@@ -275,7 +278,9 @@
    "edit": {
     "classes": [
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "type-change",
     "ratio": 0.931,
@@ -333,7 +338,9 @@
    "edit": {
     "classes": [
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "type-change",
     "ratio": 0.882,
@@ -381,7 +388,9 @@
     "classes": [
      "loop-form",
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "loop-form",
     "ratio": 0.514,
@@ -449,7 +458,8 @@
     "classes": [
      "loop-form",
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "addr-form"
     ],
     "primary": "loop-form",
     "ratio": 0.874,
@@ -523,7 +533,9 @@
     "classes": [
      "loop-form",
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "loop-form",
     "ratio": 0.988,
@@ -585,7 +597,9 @@
     "classes": [
      "loop-form",
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "loop-form",
     "ratio": 0.818,
@@ -650,7 +664,8 @@
    "start_file": "car_select_handler.start.c",
    "edit": {
     "classes": [
-     "local-dropped"
+     "local-dropped",
+     "addr-form"
     ],
     "primary": "local-dropped",
     "ratio": 0.108,
@@ -716,7 +731,9 @@
    "edit": {
     "classes": [
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "type-change",
     "ratio": 0.5,
@@ -758,7 +775,9 @@
    "edit": {
     "classes": [
      "type-change",
-     "local-added"
+     "local-added",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "type-change",
     "ratio": 0.963,
@@ -806,6 +825,7 @@
     "classes": [
      "type-change",
      "local-dropped",
+     "addr-form",
      "literal-type"
     ],
     "primary": "type-change",
@@ -856,7 +876,9 @@
    "edit": {
     "classes": [
      "loop-form",
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "loop-form",
     "ratio": 0.871,
@@ -975,7 +997,9 @@
    "edit": {
     "classes": [
      "loop-form",
-     "local-added"
+     "local-added",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "loop-form",
     "ratio": 0.755,
@@ -1036,7 +1060,9 @@
    "start_file": "func_8009002C.start.c",
    "edit": {
     "classes": [
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "local-dropped",
     "ratio": 0.157,
@@ -1075,7 +1101,8 @@
    "edit": {
     "classes": [
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "addr-form"
     ],
     "primary": "type-change",
     "ratio": 0.639,
@@ -1168,7 +1195,8 @@
    "edit": {
     "classes": [
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "addr-form"
     ],
     "primary": "type-change",
     "ratio": 1.129,
@@ -1258,7 +1286,9 @@
     "classes": [
      "loop-form",
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "loop-form",
     "ratio": 0.875,
@@ -1311,7 +1341,9 @@
    "start_file": "func_800972C4.start.c",
    "edit": {
     "classes": [
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "local-dropped",
     "ratio": 0.949,
@@ -1358,7 +1390,8 @@
    "edit": {
     "classes": [
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "addr-form"
     ],
     "primary": "type-change",
     "ratio": 0.951,
@@ -1407,7 +1440,8 @@
    "start_file": "func_8009E820.start.c",
    "edit": {
     "classes": [
-     "type-change"
+     "type-change",
+     "addr-form"
     ],
     "primary": "type-change",
     "ratio": 1.06,
@@ -1494,7 +1528,9 @@
     "classes": [
      "loop-form",
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "loop-form",
     "ratio": 0.707,
@@ -1555,9 +1591,9 @@
    "start_file": "func_800A46CC.start.c",
    "edit": {
     "classes": [
-     "other"
+     "branch-form"
     ],
-    "primary": "other",
+    "primary": "branch-form",
     "ratio": 0.095,
     "rewrite": false,
     "detail": {
@@ -1603,7 +1639,9 @@
     "classes": [
      "loop-form",
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "loop-form",
     "ratio": 0.826,
@@ -1665,7 +1703,9 @@
    "edit": {
     "classes": [
      "loop-form",
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "loop-form",
     "ratio": 0.77,
@@ -1726,9 +1766,10 @@
    "start_file": "func_800A47C0.start.c",
    "edit": {
     "classes": [
-     "other"
+     "branch-form",
+     "addr-form"
     ],
-    "primary": "other",
+    "primary": "branch-form",
     "ratio": 0.147,
     "rewrite": false,
     "detail": {
@@ -1772,7 +1813,8 @@
    "start_file": "func_800A61B0.start.c",
    "edit": {
     "classes": [
-     "type-change"
+     "type-change",
+     "addr-form"
     ],
     "primary": "type-change",
     "ratio": 1.06,
@@ -1819,7 +1861,8 @@
    "start_file": "func_800A7D6C.start.c",
    "edit": {
     "classes": [
-     "local-dropped"
+     "local-dropped",
+     "addr-form"
     ],
     "primary": "local-dropped",
     "ratio": 0.689,
@@ -1860,6 +1903,7 @@
     "classes": [
      "type-change",
      "local-dropped",
+     "addr-form",
      "literal-type"
     ],
     "primary": "type-change",
@@ -1906,7 +1950,9 @@
    "start_file": "func_800A8F38.start.c",
    "edit": {
     "classes": [
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "local-dropped",
     "ratio": 0.759,
@@ -1954,7 +2000,8 @@
    "edit": {
     "classes": [
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "addr-form"
     ],
     "primary": "type-change",
     "ratio": 0.505,
@@ -2004,7 +2051,8 @@
    "edit": {
     "classes": [
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "addr-form"
     ],
     "primary": "type-change",
     "ratio": 0.764,
@@ -2053,7 +2101,9 @@
     "classes": [
      "loop-form",
      "local-dropped",
-     "local-added"
+     "local-added",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "loop-form",
     "ratio": 0.648,
@@ -2106,7 +2156,8 @@
    "start_file": "func_800AD650.start.c",
    "edit": {
     "classes": [
-     "local-added"
+     "local-added",
+     "addr-form"
     ],
     "primary": "local-added",
     "ratio": 0.83,
@@ -2165,7 +2216,8 @@
     "classes": [
      "type-change",
      "local-dropped",
-     "local-added"
+     "local-added",
+     "addr-form"
     ],
     "primary": "type-change",
     "ratio": 0.986,
@@ -2261,7 +2313,8 @@
     "classes": [
      "loop-form",
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "addr-form"
     ],
     "primary": "loop-form",
     "ratio": 0.785,
@@ -2345,7 +2398,9 @@
     "classes": [
      "loop-form",
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "loop-form",
     "ratio": 0.892,
@@ -2408,7 +2463,9 @@
     "classes": [
      "loop-form",
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "loop-form",
     "ratio": 0.917,
@@ -2469,9 +2526,10 @@
    "start_file": "func_800B9338.start.c",
    "edit": {
     "classes": [
-     "other"
+     "branch-form",
+     "addr-form"
     ],
-    "primary": "other",
+    "primary": "branch-form",
     "ratio": 0.103,
     "rewrite": false,
     "detail": {
@@ -2508,7 +2566,9 @@
    "edit": {
     "classes": [
      "loop-form",
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "loop-form",
     "ratio": 0.904,
@@ -2562,7 +2622,9 @@
     "classes": [
      "loop-form",
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "loop-form",
     "ratio": 1.288,
@@ -2623,7 +2685,8 @@
    "edit": {
     "classes": [
      "type-change",
-     "local-added"
+     "local-added",
+     "addr-form"
     ],
     "primary": "type-change",
     "ratio": 0.429,
@@ -2673,7 +2736,9 @@
     "classes": [
      "loop-form",
      "local-dropped",
-     "extern-to-defined"
+     "extern-to-defined",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "loop-form",
     "ratio": 0.858,
@@ -2728,7 +2793,8 @@
    "start_file": "func_800C2430.start.c",
    "edit": {
     "classes": [
-     "local-dropped"
+     "local-dropped",
+     "addr-form"
     ],
     "primary": "local-dropped",
     "ratio": 0.848,
@@ -2766,7 +2832,9 @@
    "start_file": "func_800C26C4.start.c",
    "edit": {
     "classes": [
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "local-dropped",
     "ratio": 0.856,
@@ -2804,7 +2872,8 @@
    "start_file": "func_800C2944.start.c",
    "edit": {
     "classes": [
-     "local-dropped"
+     "local-dropped",
+     "addr-form"
     ],
     "primary": "local-dropped",
     "ratio": 0.855,
@@ -2842,7 +2911,8 @@
    "start_file": "func_800C36A0.start.c",
    "edit": {
     "classes": [
-     "decl-order"
+     "decl-order",
+     "addr-form"
     ],
     "primary": "decl-order",
     "ratio": 0.255,
@@ -2926,7 +2996,8 @@
    "edit": {
     "classes": [
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "branch-form"
     ],
     "primary": "type-change",
     "ratio": 0.559,
@@ -3011,7 +3082,9 @@
    "edit": {
     "classes": [
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "type-change",
     "ratio": 0.814,
@@ -3059,7 +3132,9 @@
    "edit": {
     "classes": [
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "type-change",
     "ratio": 0.814,
@@ -3125,7 +3200,9 @@
    "start_file": "func_800CF604.start.c",
    "edit": {
     "classes": [
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "local-dropped",
     "ratio": 0.718,
@@ -3172,7 +3249,8 @@
    "start_file": "func_800CFCA8.start.c",
    "edit": {
     "classes": [
-     "loop-form"
+     "loop-form",
+     "addr-form"
     ],
     "primary": "loop-form",
     "ratio": 0.04,
@@ -3251,9 +3329,10 @@
    "start_file": "func_800D0A34.start.c",
    "edit": {
     "classes": [
-     "other"
+     "branch-form",
+     "addr-form"
     ],
-    "primary": "other",
+    "primary": "branch-form",
     "ratio": 0.817,
     "rewrite": true,
     "detail": {
@@ -3310,7 +3389,9 @@
    "edit": {
     "classes": [
      "loop-form",
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "loop-form",
     "ratio": 0.634,
@@ -3372,7 +3453,9 @@
     "classes": [
      "loop-form",
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "loop-form",
     "ratio": 0.663,
@@ -3437,7 +3520,9 @@
    "edit": {
     "classes": [
      "loop-form",
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "loop-form",
     "ratio": 0.794,
@@ -3518,7 +3603,8 @@
    "edit": {
     "classes": [
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "addr-form"
     ],
     "primary": "type-change",
     "ratio": 0.723,
@@ -3560,6 +3646,8 @@
      "loop-form",
      "type-change",
      "local-dropped",
+     "branch-form",
+     "addr-form",
      "literal-type"
     ],
     "primary": "loop-form",
@@ -3632,7 +3720,8 @@
    "edit": {
     "classes": [
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "addr-form"
     ],
     "primary": "type-change",
     "ratio": 0.504,
@@ -3671,6 +3760,8 @@
    "edit": {
     "classes": [
      "local-added",
+     "branch-form",
+     "addr-form",
      "literal-type"
     ],
     "primary": "local-added",
@@ -3738,7 +3829,9 @@
     "classes": [
      "loop-form",
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "loop-form",
     "ratio": 0.902,
@@ -3821,7 +3914,9 @@
    "start_file": "func_800F84B0.start.c",
    "edit": {
     "classes": [
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "local-dropped",
     "ratio": 0.607,
@@ -3907,7 +4002,9 @@
    "edit": {
     "classes": [
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "type-change",
     "ratio": 0.71,
@@ -3956,7 +4053,9 @@
     "classes": [
      "loop-form",
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "loop-form",
     "ratio": 0.714,
@@ -4047,7 +4146,9 @@
    "start_file": "handbrake_apply.start.c",
    "edit": {
     "classes": [
-     "type-change"
+     "type-change",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "type-change",
     "ratio": 0.259,
@@ -4141,7 +4242,8 @@
    "edit": {
     "classes": [
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "addr-form"
     ],
     "primary": "type-change",
     "ratio": 0.612,
@@ -4182,7 +4284,9 @@
     "classes": [
      "loop-form",
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "loop-form",
     "ratio": 0.963,
@@ -4262,7 +4366,8 @@
    "edit": {
     "classes": [
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "addr-form"
     ],
     "primary": "type-change",
     "ratio": 0.69,
@@ -4310,7 +4415,9 @@
    "edit": {
     "classes": [
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "type-change",
     "ratio": 0.797,
@@ -4352,7 +4459,9 @@
    "edit": {
     "classes": [
      "loop-form",
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "loop-form",
     "ratio": 1.103,
@@ -4405,7 +4514,9 @@
    "edit": {
     "classes": [
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "type-change",
     "ratio": 0.575,
@@ -4597,7 +4708,9 @@
     "classes": [
      "loop-form",
      "type-change",
-     "local-added"
+     "local-added",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "loop-form",
     "ratio": 0.623,
@@ -4651,7 +4764,9 @@
     "classes": [
      "loop-form",
      "type-change",
-     "local-added"
+     "local-added",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "loop-form",
     "ratio": 0.623,
@@ -4712,7 +4827,9 @@
    "edit": {
     "classes": [
      "loop-form",
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "loop-form",
     "ratio": 0.526,
@@ -4775,7 +4892,8 @@
     "classes": [
      "loop-form",
      "local-dropped",
-     "local-added"
+     "local-added",
+     "addr-form"
     ],
     "primary": "loop-form",
     "ratio": 0.674,
@@ -4894,7 +5012,8 @@
    "edit": {
     "classes": [
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "addr-form"
     ],
     "primary": "type-change",
     "ratio": 0.643,
@@ -4945,7 +5064,9 @@
     "classes": [
      "loop-form",
      "local-dropped",
-     "extern-to-defined"
+     "extern-to-defined",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "loop-form",
     "ratio": 0.429,
@@ -5044,7 +5165,8 @@
    "start_file": "struct_init_and_call.start.c",
    "edit": {
     "classes": [
-     "type-change"
+     "type-change",
+     "addr-form"
     ],
     "primary": "type-change",
     "ratio": 0.489,
@@ -5113,7 +5235,9 @@
     "classes": [
      "loop-form",
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "loop-form",
     "ratio": 0.866,
@@ -5178,7 +5302,9 @@
     "classes": [
      "loop-form",
      "type-change",
-     "local-dropped"
+     "local-dropped",
+     "branch-form",
+     "addr-form"
     ],
     "primary": "loop-form",
     "ratio": 0.909,
