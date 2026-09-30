@@ -3,3 +3,4 @@ start 322
 20 316 ['k', 'va', 'vd', 'f2', 'f1', 've', 'n', 'vc', 'idx', 'res', 'vb']
 27 313 ['k', 'va', 'vd', 'f2', 'f1', 'vc', 'n', 've', 'idx', 'res', 'vb']
 60 312 ['k', 'va', 'vd', 'vc', 'f1', 'f2', 'n', 've', 'idx', 'res', 'vb']
+best (312, ['k', 'va', 'vd', 'vc', 'f1', 'f2', 'n', 've', 'idx', 'res', 'vb'])

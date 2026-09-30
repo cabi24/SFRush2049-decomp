@@ -3751,11 +3751,11 @@ void func_800C36A0(CCar *car, CCol *col);
 void func_800C36A0(CCar *car, CCol *col) {
     f32 v[3];
     f32 w[3];
+    s32 i;
     f32 f12;
+    f32 k;
     s32 idx;
     CPoly *poly;
-    s32 i;
-    f32 k;
 
     k = col->k;
     poly = col->poly;
@@ -3780,7 +3780,7 @@ void func_800C36A0(CCar *car, CCol *col) {
     v[0] = car->A244[idx][1] * car->v76[2] - car->v76[1] * car->A244[idx][2];
     v[1] = car->A244[idx][2] * car->v76[0] - car->A244[idx][0] * car->v76[2];
     v[2] = car->A244[idx][0] * car->v76[1] - car->v76[0] * car->A244[idx][1];
-    v[0] = car->v64[0] + v[0];
+    v[0] = v[0] + car->v64[0];
     v[1] = car->v64[1] + v[1];
     v[2] = car->v64[2] + v[2];
     func_8009E820(v, w, car->mat);
@@ -3796,9 +3796,9 @@ void func_800C36A0(CCar *car, CCol *col) {
     w[0] = -v[0] * k;
     w[2] = -v[2] * k;
     if (car->b1996 == 1) {
-        k = fabsf(col->m[5] * car->mat[8] + (car->mat[6] * col->m[3] + car->mat[7] * col->m[4])) * D_80123F60 + D_80123F64;
+        k = fabsf((car->mat[6] * col->m[3] + car->mat[7] * col->m[4]) + col->m[5] * car->mat[8]) * D_80123F60 + D_80123F64;
     } else {
-        k = fabsf(col->m[5] * car->mat[8] + (car->mat[6] * col->m[3] + car->mat[7] * col->m[4])) * D_80123F68 + D_80123F6C;
+        k = fabsf((car->mat[6] * col->m[3] + car->mat[7] * col->m[4]) + col->m[5] * car->mat[8]) * D_80123F68 + D_80123F6C;
     }
     w[1] = -v[1] * f12 * car->f1592 * k;
     func_8009E820(w, v, col->m);
