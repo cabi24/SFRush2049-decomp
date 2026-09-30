@@ -1,6 +1,6 @@
 # func_800F0F44 -> 46/116 words aligned (real function, extent 116 words)
 
-## Current status (Rescored 2026-09-30 (Round 2 addendum), master d0891f3.)
+## Current status (rescored 2026-09-30, master d0891f3)
 
 **Not a MATCH. Builds; 0/116 words strict; 46/116 words match after alignment, structure 0.672.** Scored with
 `python3 cloud/work/ipa-groups/func_800F0F44/extscore.py --norm cloud/work/ipa-groups/func_800F0F44`:
@@ -34,3 +34,9 @@ The list walk is written `for (n = head; n; n = o->next) { o = *n; ... }`, which
 retail alternating `s1`/`s0` loads.
 
 Blockers: register pressure/allocation (needs the real `func_800F1210`/`func_800F1930` context).
+
+## Spliceability
+
+Unspliceable as is: not a match, and callers are stand-ins (`caller_a`/`caller_b`). The stand-ins only reproduce the IPA register/frame context; they are not
+the retail callers, so this C cannot go through `blob_splice` until the real callers are in the group
+(or the maintainers' whole-module IPA is used). Scores above were reproduced on 2026-09-30 with `extscore.py --norm`.

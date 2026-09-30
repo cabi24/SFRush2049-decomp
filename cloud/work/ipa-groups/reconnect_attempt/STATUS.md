@@ -1,9 +1,9 @@
 # reconnect_attempt  ->  really `func_8010BC84` (unregistered head)
 
-## Current status (Rescored 2026-09-30 (Round 2 addendum), master d0891f3.)
+## Current status (rescored 2026-09-30, master d0891f3)
 
 **Not a MATCH. Builds; 0/232 words strict; 122/232 words match after alignment, structure 0.898**
-(the headline below says 117/232: superseded). Scored with `python3 cloud/work/ipa-groups/reconnect_attempt/extscore.py --norm cloud/work/ipa-groups/reconnect_attempt`:
+(the earlier 117/232 figure is superseded). Scored with `python3 cloud/work/ipa-groups/reconnect_attempt/extscore.py --norm cloud/work/ipa-groups/reconnect_attempt`:
 
 ```
 func_8010BC84  size 227/232  192/232 words differ (position-based)  exact after alignment 122/232
@@ -14,8 +14,7 @@ Blockers: dead `move s0,v0`, the `state_utility` argument temp, register naming.
 `slot_state_setup` plus the audio/text cluster, and `object_bytes_sum_global`, `object_manager_update`,
 `state_utility`, `Input_ApplyPadConfig`, `dispatch_handler` (all ABI here, not attempted as context).
 
-**Result: not a MATCH. 227 of 232 words emitted; 117/232 words match exactly after
-alignment, register-blind structure 0.898.** Hand-written from the retail words.
+History: earlier draft was 117/232 aligned; current figures above. Hand-written from the retail words.
 No strict score is possible with `score.py` (see "Targets").
 
 ```

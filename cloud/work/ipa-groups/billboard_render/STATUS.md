@@ -1,6 +1,6 @@
 # billboard_render -> 186/244 words aligned, register-blind 0.96 (real function, extent 244 words)
 
-## Current status (Rescored 2026-09-30 (Round 2 addendum), master d0891f3.)
+## Current status (rescored 2026-09-30, master d0891f3)
 
 **Not a MATCH. Builds; 0/244 words strict; 186/244 words match after alignment, structure 0.959.** Scored with
 `python3 cloud/work/ipa-groups/billboard_render/extscore.py --norm cloud/work/ipa-groups/billboard_render`:
@@ -36,3 +36,9 @@ address argument to `func_800CC50C` (lui 0x803C / addiu -22549).
 
 Blockers: the real `func_800F1210` (454 words, unregistered in this group) and `func_800F1930`
 fix the register/frame; a stand-in cannot reproduce the 144-byte frame.
+
+## Spliceability
+
+Unspliceable as is: not a match, and `func_800F1210` is a stand-in. The stand-ins only reproduce the IPA register/frame context; they are not
+the retail callers, so this C cannot go through `blob_splice` until the real callers are in the group
+(or the maintainers' whole-module IPA is used). Scores above were reproduced on 2026-09-30 with `extscore.py --norm`.

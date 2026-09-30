@@ -1,6 +1,6 @@
 # audio_pitch_adjust -> 18/18 MATCH (real function, extent 18 words)
 
-## Current status (Rescored 2026-09-30 (Round 2 addendum), master d0891f3.)
+## Current status (rescored 2026-09-30, master d0891f3)
 
 **18/18 MATCH** (strict, `extscore.py --norm`: exact after alignment 18/18, structure 1.000; also via
 `python3 cloud/work/tools/zbuild.py cloud/work/ipa-groups/audio_pitch_adjust --as1=-r4300_mul` since the target is registered). Extent 18 words. Caveat: matches with stand-in callers
@@ -22,3 +22,9 @@ Verify: `python3 cloud/work/ipa-groups/audio_pitch_adjust/extscore.py cloud/work
 
 Blockers: none for the function. Splicing needs the real callers in the group (or the maintainers'
 whole-module IPA), because the stand-ins are not the retail callers.
+
+## Spliceability
+
+Unspliceable as is: MATCH, but callers are stand-ins (`caller_a`/`caller_b`). The stand-ins only reproduce the IPA register/frame context; they are not
+the retail callers, so this C cannot go through `blob_splice` until the real callers are in the group
+(or the maintainers' whole-module IPA is used). Scores above were reproduced on 2026-09-30 with `extscore.py --norm`.

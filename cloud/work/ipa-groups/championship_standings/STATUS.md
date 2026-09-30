@@ -52,3 +52,13 @@ itself (a stand-in made IPA reassign to `$a2/$a0`; this took
 
 `func_800DC1AC` (order of last three instructions); `championship_standings`
 and `tournament_trophy_award` not tuned yet.
+
+## Round 3 (no change, still 3/39 for `func_800DC1AC`)
+
+Tried on top of the Pass 3 form, all worse (14-35 words): named `pos`/`bit`
+locals (u16/u32/s32, declared before/inside the loop), `pos = D_801170F4++`,
+`D = pos + 1` before or after the store, pointer `p = &D_8012E618[..]` locals,
+`b = value & 1` first, and `(D_801170F4 - 1)` re-reads. In every named-`pos`
+form `sh` is before `sb` (as in the ROM) and only the delay-slot choice
+matches, but `i` moves from `$a0` to `$v0` and `pos` from `$v0` to `$v1`.
+Comma/postfix forms (`D_801170F4++` inside the index or shift) keep 3/39.

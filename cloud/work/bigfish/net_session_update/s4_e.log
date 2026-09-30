@@ -1,0 +1,4 @@
+start {'n': 892, 'strict': 39, 'exact': 424, 'shape': 810, 'norm': 764, 'reg': 1364} 1658.0
+0 best {'n': 892, 'strict': 39, 'exact': 424, 'shape': 812, 'norm': 766, 'reg': 1366} 1661.0
+41 restart 1228.0
+82 restart 1227.0

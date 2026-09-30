@@ -1,9 +1,9 @@
 # dynamic_difficulty  ->  really `func_80107EDC` (unregistered head)
 
-## Current status (Rescored 2026-09-30 (Round 2 addendum), master d0891f3.)
+## Current status (rescored 2026-09-30, master d0891f3)
 
 **Not a MATCH. Builds; 0/158 words strict; 152/158 words match after alignment.** Scored with
-`python3 cloud/work/ipa-groups/dynamic_difficulty/extscore.py --norm cloud/work/ipa-groups/dynamic_difficulty` (the `--norm` flag as in the Round 2 instructions):
+`python3 cloud/work/ipa-groups/dynamic_difficulty/extscore.py --norm cloud/work/ipa-groups/dynamic_difficulty`:
 
 ```
 func_80107EDC  size 159/158  109/158 words differ (position-based)  exact after alignment 152/158, structure 0.937
@@ -15,10 +15,9 @@ size is 159 by this scorer (earlier text says 157; the scorer counts the trailin
 "Closure gaps" below): `slot_state_setup` (~200 callers, IPA `$s2`) and the audio/text cluster;
 the head 0x80107EDC must be registered by the maintainers so `score.py group` can target it.
 
-**Result: not a strict MATCH. 157 of 158 words are emitted; 152/158 words match
-exactly after alignment. The gaps are two dead `move s0,v0` (see below), one
-scheduling swap at the tail, and nothing else.** Written by hand from the retail
-words, tuned with `extscore.py` (this directory).
+Summary: 152/158 words match after alignment; the remaining gaps are two dead `move s0,v0` (see below) and one
+scheduling swap at the tail. Written by hand from the retail words, tuned with `extscore.py`. Not spliceable:
+not a MATCH, and the head is unregistered.
 
 ```
 python3 cloud/work/ipa-groups/dynamic_difficulty/extscore.py cloud/work/ipa-groups/dynamic_difficulty --norm

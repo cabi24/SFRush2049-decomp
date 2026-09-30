@@ -1,6 +1,6 @@
 # func_8010A7A4 -> 35/75 words aligned (real function, extent 75 words, not 242)
 
-## Current status (Rescored 2026-09-30 (Round 2 addendum), master d0891f3.)
+## Current status (rescored 2026-09-30, master d0891f3)
 
 **Not a MATCH. Builds; 0/75 words strict; 35/75 words match after alignment, structure 0.671.** Scored with
 `python3 cloud/work/ipa-groups/func_8010A7A4/extscore.py --norm cloud/work/ipa-groups/func_8010A7A4`:
@@ -36,3 +36,9 @@ Callee `state_utility` and `dispatch_handler` are plain externs.
 
 Blockers: the stack locals shape, and the IPA context (callers are 14 call sites in two
 unregistered-head functions, not in the group).
+
+## Spliceability
+
+Unspliceable as is: not a match, and callers are stand-ins (`caller_a`/`caller_b`). The stand-ins only reproduce the IPA register/frame context; they are not
+the retail callers, so this C cannot go through `blob_splice` until the real callers are in the group
+(or the maintainers' whole-module IPA is used). Scores above were reproduced on 2026-09-30 with `extscore.py --norm`.

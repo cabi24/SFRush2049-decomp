@@ -1,6 +1,6 @@
 # best_times_display -> 34/56 words aligned (real function, extent 56 words)
 
-## Current status (Rescored 2026-09-30 (Round 2 addendum), master d0891f3.)
+## Current status (rescored 2026-09-30, master d0891f3)
 
 **Not a MATCH. Builds; 0/56 words strict; 34/56 words match after alignment, structure 0.889.** Scored with
 `python3 cloud/work/ipa-groups/best_times_display/extscore.py --norm cloud/work/ipa-groups/best_times_display`:
@@ -34,3 +34,9 @@ Difference (52 vs 56 words, register `s1` vs `s2` for the parameter):
 `scheduler_recv` (40 words) is a plain extern.
 
 Blockers: source form of the entry-1..4 initialisation.
+
+## Spliceability
+
+Unspliceable as is: not a match, and callers are stand-ins (`caller_a`/`caller_b`). The stand-ins only reproduce the IPA register/frame context; they are not
+the retail callers, so this C cannot go through `blob_splice` until the real callers are in the group
+(or the maintainers' whole-module IPA is used). Scores above were reproduced on 2026-09-30 with `extscore.py --norm`.

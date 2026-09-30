@@ -1,0 +1,8 @@
+# world_gravity_apply (0x800ECC18, 661 words) - feasibility: LOW
+
+- Exact target: `.text.world_gravity_apply` in asm/us/blob/blob_800e7030.s, 661 words, 0x800ECC18..0x800ED66C, first word 0x27BDFF10 (`addiu sp,-240`), saves s0-s8, ra and four double regs ($f20-$f26 via sdc1), so it is a heavy float loop over `lb 0x80152744` (player count); the name is historical (it loops over players/objects, reads a float constant table in 0x8012xxxx and calls func_800B9F60 three times).
+- Spliced? No (prototype headers only).
+- **ABI-shaped**: no argument registers read, single caller `func_800F8EC8`, but note callee `func_800B9F60` (43w fp leaf, already in cloud/matches) is called with `(float, float, 0, &local)`, `audio_channel_alloc` (169w, IPA-suspect: fp, see near-miss notes) and `func_800D3430`, `func_800CF604`, `func_80098A54` are each single-purpose. No t-reg live across a call in a crude scan.
+- Globals: 0x8015 player-count byte (`lb 10052(0x8015)` = 0x80152744) and player-array refs, 0x8012 float constants (e.g. `lwc1 17780(0x8012)` = 0x80124574), s4 -> a 0x8014 table.
+- First pass: `seeds/world_gravity_apply.m2c.c` (348 lines). After replacing the invalid `nanf` argument with 0 and K&R prototypes it compiles: 664 words vs 661 target, opcode LCS 517/661 (78%), exact relocated-word LCS 107/661. The word count is close, but the m2c form has ~40 named float temporaries and very little control-flow structure, so register/schedule matches will be far.
+- Verdict: LOW. Plain float loop (no IPA), but 661 words of double-saved floating-point with unknown struct layouts. Needs a typed player/object struct first (context from arcade `world/physics` source if the maintainers have it).
