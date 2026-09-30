@@ -3827,6 +3827,7 @@ engine_rpm_calc:
 .section .text.func_800AB750, "ax", @progbits
 .globl func_800AB750
 func_800AB750:
+    /* compiled from src/blob/func_800AB750.c */
     .word 0x3C0F8015
     .word 0x8DEF0F38
     .word 0x27BDFFE0

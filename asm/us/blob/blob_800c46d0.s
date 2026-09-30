@@ -5221,6 +5221,7 @@ func_800C9480:
 .section .text.input_init_flag_get, "ax", @progbits
 .globl input_init_flag_get
 input_init_flag_get:
+    /* compiled from src/blob/input_init_flag_get.c */
     .word 0x3C0E8011
     .word 0x81CE47C4
     .word 0x27BDFFE0
