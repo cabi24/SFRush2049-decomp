@@ -3790,12 +3790,5 @@ void world_trigger_activate(void);
 s32 world_velocity_integrate();
 void engine_rpm_calc(s16 arg0, s32 arg1, s16 arg2, s16 arg3, s32 arg4)
 {
-  s16 new_var;
-  s16 new_var2;
-  if ((double) 1)
-  {
-    new_var2 = arg3;
-  }
-  new_var = new_var2;
- new_var2 = arg0; new_var = new_var2; func_8008E26C(new_var2, arg1, new_var, ((0xF00 ^ 0) ^ (arg2 << 8)) | arg4);
+  func_8008E26C(arg0, arg1, arg3, ((arg2 << 8) ^ 0xF00) | arg4);
 }
