@@ -65,3 +65,12 @@ Findings that moved the score (each verified by compile):
 5. `as1` must be given `-r4300_mul` directly (not `-Wab,`); wrong flag hid the nop padding.
 Tools (scratch, not committed): aligned-word LCS score with relocation masks; single-flip hill climb over
 operand order and int-vs-float literal per site.
+
+### RESULT: STRICT MATCH 762/762 (group mode), 2026-09-30
+Source: `cloud/work/bigfish/func_800EA3F4/base.c` (= `group/group.c` = `cloud/work/ipa-groups/func_800EA3F4/group.c`).
+Verified: `python3 tools/cloud/score.py group cloud/work/ipa-groups/func_800EA3F4 --claims` -> func_800EA3F4 MATCH
+(and all four stand-in callees MATCH as context); `zbuild.py ... --as1=-r4300_mul` -> 762/762 MATCH.
+NOT reproducible with `score.py fn -O2` (needs IPA caller-save allocation); so it lives in `ipa-groups/`, not `cloud/matches/`.
+Last steps that closed the gap: scale-then-add vector idiom (634 -> 754 words), operand flips on 4 cross-product
+muls (758), then an unused `s32` local to reproduce the retail frame's spare slot (spill 48 -> 44): 762.
+Full list of findings: `cloud/work/ipa-groups/func_800EA3F4/STATUS.md`.
