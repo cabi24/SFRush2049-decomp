@@ -448,7 +448,16 @@ def main():
             names = [args.name]
             context = []
         else:
-            spec = compile_group(Path(args.group_dir), obj)
+            claims_declared = json.loads(
+                (Path(args.group_dir) / "group.json").read_text()).get("claims")
+            try:
+                spec = compile_group(Path(args.group_dir), obj)
+            except SystemExit as exc:
+                if args.claims and not claims_declared:
+                    # Work in progress that does not build yet: report only.
+                    print(f"Does not build (no claims, reported only): {exc}")
+                    return 0
+                raise
             names = spec["members"]
             context = spec.get("context", [])
             if args.claims:
