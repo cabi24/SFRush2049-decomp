@@ -1,5 +1,11 @@
 # func_8008705C -> 45/45 MATCH (real function, extent 45 words)
 
+## Current status (Rescored 2026-09-30 (Round 2 addendum), master d0891f3.)
+
+**45/45 MATCH** (strict, `extscore.py --norm`: exact after alignment 45/45, structure 1.000; extent 45 words).
+Caveats: matches only with stand-in callers and a `func_80086A50` stand-in (`stub.c`; retail is 387 words),
+so the file is not spliceable as is. Closure gap: the real `func_80086A50` (387 words).
+
 Real head (0x8008705C, `lui v1,0x8013` then `addiu sp,-24`), ABI parameter `a0` = mask; clears
 the bits in `D_8012E608` and emits RDP set-other-mode words (`0xE2001E01`, `0xE2001D00`) into
 the display list `D_80149438`, calling `func_80086A50(D_8014A248)` for bits 0x10 and 0x20.

@@ -1,5 +1,21 @@
 # cpak_init (tyre marks, not Controller Pak)
 
+## Current status (Rescored 2026-09-30 (Round 2 addendum), master d0891f3.)
+
+**Builds; no member matches (0/513 words).** Scored with `python3 cloud/work/tools/zbuild.py cloud/work/ipa-groups/cpak_init --as1=-r4300_mul`:
+
+```
+func_800AF8C0   13/113 words differ  size 113/113
+save_validate  123/135 words differ  size 133/135
+cpak_init      245/265 words differ  size 260/265
+```
+
+Blockers: register allocation and one scheduling slot in each member (see "Pass 3" at the end: `p` in `$f2` vs
+`$f0` and an early `li 192`; `save_validate` loads `head->next` once not twice; `cpak_init`'s frame 216 vs 208).
+Closure gap: not investigated. `closure.py` (approximate) lists `func_800EA3F4`, `func_800EB028`, `func_800EB90C`,
+`vector_copy_scale`, `vector_normalize_length`; none is known to be the cause of the current differences. The
+"Changes in pass 2" numbers below are history (superseded by the block above).
+
 **BUILDS** (cloud pass 2, 2026-09-29), hand-written from the assembly; not
 matching yet. Scores with the game's `-r4300_mul` assembler flag
 ([../../R4300_MUL.md](../../R4300_MUL.md)), `cloud/work/tools/zbuild.py`:
