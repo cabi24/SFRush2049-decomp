@@ -33,8 +33,8 @@ typedef struct {
     /* 0x641 */ u8 pad641[0x720 - 0x641];
     /* 0x720 */ f32 steer;
     /* 0x724 */ u8 pad724[4];
-    /* 0x728 */ f32 brake;
-    /* 0x72C */ f32 throttle;
+    /* 0x728 */ volatile f32 brake;
+    /* 0x72C */ volatile f32 throttle;
     /* 0x730 */ s8 gear;
     /* 0x731 */ s8 button3C;
     /* 0x732 */ s8 button30;
@@ -85,7 +85,6 @@ void func_800E627C(CarState *st, InputRecord *in)
 {
     f32 x;
     f32 q;
-    f32 t;
     f32 d;
     f32 prev;
 
@@ -96,8 +95,8 @@ void func_800E627C(CarState *st, InputRecord *in)
     x = D_80140620[in->pad][0];
     prev = st->steer;
     if (in->steerSrc == 0x19) {
-        f32 c = D_8012449C;
         if (x < D_80124498) {
+            f32 c = D_8012449C;
             x += c;
         } else if (D_801244A0 < x) {
             x -= D_801244A0;
@@ -108,12 +107,7 @@ void func_800E627C(CarState *st, InputRecord *in)
         x = (x >= 0.0f ? x : -x) * (x >= 0.0f ? x : -x) * x;
     }
     q = x * 127.0f;
-    if (q < 0.0f) {
-        t = q - 0.5f;
-    } else {
-        t = q + 0.5f;
-    }
-    x = (f32) (s32) t / 127;
+    x = (f32) (s32) (q < 0.0f ? q - 0.5f : q + 0.5f) / 127;
     d = x - prev;
     if (D_801244A4 < d) {
         prev = x;
@@ -170,20 +164,18 @@ void func_800E6460(CarState *st, InputRecord *in)
     } else {
         st->brake = 0.0f;
     }
-    q = st->throttle * 15.0f;
-    if (q < 0.0f) {
-        q -= 0.5f;
+    if (st->throttle * 15.0f < 0.0f) {
+        q = st->throttle * 15.0f - 0.5f;
     } else {
-        q += 0.5f;
+        q = st->throttle * 15.0f + 0.5f;
     }
-    st->throttle = (f32) (s32) q / 15.0f;
-    q = st->brake * 15.0f;
-    if (q < 0.0f) {
-        q -= 0.5f;
+    st->throttle = (f32) (s32) q / 15;
+    if (st->brake * 15.0f < 0.0f) {
+        q = st->brake * 15.0f - 0.5f;
     } else {
-        q += 0.5f;
+        q = st->brake * 15.0f + 0.5f;
     }
-    st->brake = (f32) (s32) q / 15.0f;
+    st->brake = (f32) (s32) q / 15;
 }
 
 void func_800E681C(void)

@@ -3795,41 +3795,34 @@ typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
 s32 *func_80091B00(void)
 {
-  int new_var;
   s32 *var_v1;
-  new_var = 0;
   var_v1 = &D_80142DD8;
-  loop_1:
-  if ((*((s8 *) (((s8 *) var_v1) + 3))) == new_var)
-  {
-    *((s8 *) (((s8 *) var_v1) + 3)) = 1;
-    new_var = -1;
-    *((s16 *) (((s8 *) var_v1) + 0)) = new_var;
-    return var_v1;
-  }
-
-  if ((*((s8 *) (((s8 *) var_v1) + 0x1B))) == 0)
-  {
-    *((s8 *) (((s8 *) var_v1) + 0x1B)) = 1;
-    *((s16 *) (((s8 *) var_v1) + 0x18)) = new_var;
-    return var_v1 + 6;
-  }
-  if ((*((s8 *) (((s8 *) var_v1) + 0x33))) == 0)
-  {
-    *((s8 *) (((s8 *) var_v1) + 0x33)) = 1;
-    *((s16 *) (((s8 *) var_v1) + 0x30)) = new_var;
-    return var_v1 + 0xC;
-  }
-  if ((*((s8 *) (((s8 *) var_v1) + 0x4B))) == 0)
-  {
-    *((s8 *) (((s8 *) var_v1) + 0x4B)) = 1;
-    *((s16 *) (((s8 *) var_v1) + 0x48)) = new_var;
-    return var_v1 + 0x12;
-  }
-  var_v1 = var_v1 + 0x18;
-  if (var_v1 == (&D_801439D8))
-  {
-    return (void *) 0;
-  }
-  goto loop_1;
+  do {
+    if ((*((s8 *) (((s8 *) var_v1) + 3))) == 0)
+    {
+      *((s8 *) (((s8 *) var_v1) + 3)) = 1;
+      *((s16 *) (((s8 *) var_v1) + 0)) = -1;
+      return var_v1;
+    }
+    if ((*((s8 *) (((s8 *) var_v1) + 0x1B))) == 0)
+    {
+      *((s8 *) (((s8 *) var_v1) + 0x1B)) = 1;
+      *((s16 *) (((s8 *) var_v1) + 0x18)) = -1;
+      return var_v1 + 6;
+    }
+    if ((*((s8 *) (((s8 *) var_v1) + 0x33))) == 0)
+    {
+      *((s8 *) (((s8 *) var_v1) + 0x33)) = 1;
+      *((s16 *) (((s8 *) var_v1) + 0x30)) = -1;
+      return var_v1 + 0xC;
+    }
+    if ((*((s8 *) (((s8 *) var_v1) + 0x4B))) == 0)
+    {
+      *((s8 *) (((s8 *) var_v1) + 0x4B)) = 1;
+      *((s16 *) (((s8 *) var_v1) + 0x48)) = -1;
+      return var_v1 + 0x12;
+    }
+    var_v1 = var_v1 + 0x18;
+  } while (var_v1 != &D_801439D8);
+  return (s32 *) 0;
 }

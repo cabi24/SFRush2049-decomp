@@ -3064,7 +3064,7 @@ f32 func_8009C3F8(s32 arg0);
 s32 func_8009D45C(s32 arg0, void *arg1, void *arg2, f32 arg3, s32 arg4);
 void func_8009D708(s32 arg0, void *arg1, void *arg2, f32 arg3, s32 arg4);
 s32 func_8009D99C(s32 arg0, void *arg1, void *arg2, void *arg3, f32 arg4, s32 arg5);
-
+void func_8009E820(void *arg0, void *arg1, void *arg2);
 void func_8009E8B4(void *arg0, void *arg1);
 void func_8009E9D8(void *arg0);
 void func_8009EA68(f32 arg0, void *arg1);
@@ -3093,7 +3093,7 @@ void func_800A5488(void);
 f32 func_800A557C(f32 arg0);
 void func_800A5A40(void);
 void func_800A5B3C(void);
-void func_800A61B0(void *arg0, void *arg1, void *arg2);
+
 void func_800A7428(u16 *arg0, u16 *arg1, u8 *arg2, u8 *arg3, u8 *arg4, u8 *arg5, s32 arg6);
 void func_800A7480(s16 arg0, s16 arg1, s8 arg2, s8 arg3, u8 arg4, u8 arg5, s32 arg6);
 void *func_800A78BC(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u16 arg4, s32 arg5);
@@ -3696,8 +3696,8 @@ typedef s64 M2C_UNK64;
 
 #endif
 
-void func_8009E820(f32 *arg0, f32 *arg1, f32 *arg2) {
-    arg1[0] = (arg0[0] * arg2[0] + arg0[1] * arg2[3]) + arg0[2] * arg2[6];
-    arg1[1] = (arg0[0] * arg2[1] + arg0[1] * arg2[4]) + arg0[2] * arg2[7];
-    arg1[2] = (arg0[0] * arg2[2] + arg0[1] * arg2[5]) + arg0[2] * arg2[8];
+void func_800A61B0(void *arg0, void *arg1, void *arg2) {
+    M2C_FIELD(arg1, f32 *, 0) = (f32) ((M2C_FIELD(arg2, f32 *, 8) * M2C_FIELD(arg0, f32 *, 8)) + ((M2C_FIELD(arg0, f32 *, 0) * M2C_FIELD(arg2, f32 *, 0)) + (M2C_FIELD(arg0, f32 *, 4) * M2C_FIELD(arg2, f32 *, 4))));
+    M2C_FIELD(arg1, f32 *, 4) = (f32) ((M2C_FIELD(arg2, f32 *, 0x14) * M2C_FIELD(arg0, f32 *, 8)) + ((M2C_FIELD(arg0, f32 *, 0) * M2C_FIELD(arg2, f32 *, 0xC)) + (M2C_FIELD(arg0, f32 *, 4) * M2C_FIELD(arg2, f32 *, 0x10))));
+    M2C_FIELD(arg1, f32 *, 8) = (f32) ((M2C_FIELD(arg2, f32 *, 0x20) * M2C_FIELD(arg0, f32 *, 8)) + ((M2C_FIELD(arg0, f32 *, 0) * M2C_FIELD(arg2, f32 *, 0x18)) + (M2C_FIELD(arg0, f32 *, 4) * M2C_FIELD(arg2, f32 *, 0x1C))));
 }

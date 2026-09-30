@@ -1519,7 +1519,7 @@ extern u8 D_80123264;
 extern s32 D_801233B8;
 extern s32 D_80123498;
 extern s32 D_801234A4;
-extern s8 D_801234AC;
+extern s8 D_801234AC[];
 extern s32 D_80123564;
 extern s32 D_80123850;
 extern s32 D_80123860;
@@ -3793,14 +3793,14 @@ typedef s8 M2C_UNK8;
 typedef s16 M2C_UNK16;
 typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
+typedef struct { u8 pad[3]; s8 f3; u8 pad4[2]; u8 f6; u8 pad7[13]; } E14;
 void func_800972C4(s32 arg0)
 {
-  s8 temp_v0;
-  void *temp_v1;
-  temp_v1 = (s32 *) ((arg0 * 0x14) + ((u8 *) (&D_80156D38)));
-  temp_v0 = (&D_801234AC)[*((u8 *) (((s8 *) temp_v1) + 6))];
-  *((s8 *) (((s8 *) temp_v1) + 3)) = (&D_801234AC)[*((u8 *) (((s8 *) temp_v1) + 6))];
-  if ((temp_v0 != 0) && (arg0 >= ((s32) D_80140BDC)))
+  E14 *e = ((E14 *) &D_80156D38) + arg0;
+  s8 v;
+  v = D_801234AC[e->f6];
+  e->f3 = v;
+  if (v != 0 && arg0 >= D_80140BDC)
   {
     D_80140BDC = arg0 + 1;
   }

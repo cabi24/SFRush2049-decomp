@@ -46,6 +46,7 @@ s32 func_801084D4(s32 arg0)
     s32 f7_;
     s32 f8_;
     s32 f9_;
+    s32 f10_;
     s32 j;
     s32 i;
     s32 ms;
@@ -84,11 +85,9 @@ s32 func_801084D4(s32 arg0)
             D_80142740[i] = 0.0f;
             continue;
         }
-        x = (6 * w1 + 2 * w2) / 2;
+        x = 3 * w1 + w2;
         ms = (s32)(D_80142770[i] * 1000.0f);
-        if (ms < 0) {
-            ms = 0;
-        }
+        ms = ms < 0 ? 0 : ms;
         buf[0] = ms / 600000 + 48;
         buf[1] = ms / 60000 % 10 + 48;
         buf[2] = 58;
@@ -103,7 +102,8 @@ s32 func_801084D4(s32 arg0)
             func_800ED66C((f32)(s32)(t * 255.0f / 3.0f));
         }
         y = (s16)D_80115EA8[D_80151AD0 - 1][i].y;
-        px = D_80115EA8[D_80151AD0 - 1][i].x - x;
+        px = D_80115EA8[D_80151AD0 - 1][i].x;
+        px -= x;
         for (j = 0; j < 9; j++) {
             cbuf[0] = buf[j];
             if (buf[j] != 58 && buf[j] != 46) {
@@ -115,11 +115,10 @@ s32 func_801084D4(s32 arg0)
             dispatch_handler(22);
             state_utility(px, y, cbuf);
             if (j == 1 || j == 2 || j == 4 || j == 5) {
-                adv = (w1 + w2) / 2;
+                px += (w1 + w2) / 2;
             } else {
-                adv = w1;
+                px += w1;
             }
-            px += adv;
         }
     }
     D_80118E20[1] = 3;

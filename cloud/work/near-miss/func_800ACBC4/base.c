@@ -3793,31 +3793,19 @@ typedef s8 M2C_UNK8;
 typedef s16 M2C_UNK16;
 typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
-void func_800ACBC4(f32 *arg0, f32 *arg1, f32 arg2, void *arg3)
+void func_800ACBC4(f32 *arg0, f32 *arg1, f32 arg2, f32 *arg3)
 {
-  f32 *var_a0;
-  f32 *var_a1;
-  f32 temp_f16;
-  f32 *new_var;
-  f32 temp_f8;
-  s16 var_v0;
-  void *var_a3;
-  var_a0 = arg0;
-  var_a1 = arg1;
-  var_a3 = arg3;
-  var_v0 = 0;
-  new_var = &(*var_a0);
+  s16 i;
+  f32 c;
+  i = 0;
   do
   {
-    var_a1 = arg1;
-    temp_f8 = (*var_a1) * arg2;
-    var_v0 += 1;
-    temp_f16 = 1.0f - arg2;
-    temp_f16 = (*new_var) * temp_f16;
-    ;
-    var_a0 = var_a0 + 1;
-    var_a1 = var_a1 + 1;
-    *((f32 *) (((s8 *) (((u8 *) var_a3) + 4)) + (-4))) = (f32) (temp_f8 + temp_f16);
+    i += 1;
+    c = 1.0f - arg2;
+    *arg3 = arg0[0] * c + arg1[0] * arg2;
+    arg3++;
+    arg0++;
+    arg1++;
   }
-  while (var_v0 < 3);
+  while (i < 3);
 }

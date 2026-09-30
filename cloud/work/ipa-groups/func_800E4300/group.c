@@ -3818,26 +3818,24 @@ s16 func_800E4300(s16 *pos, s16 ipa_t2, s16 ipa_t5, s16 player, s16 ipa_t0) {
 
 void func_800E451C(s32 arg0, D_8014A250_Record *car, Nav *nav) {
     s16 best;
-    f32 pz, px, qz, qx, dz, dx, ex, ez, len;
+    volatile s32 padv[12];
     f32 bestScore;
-    f32 dist, ft;
     f32 cx;
     f32 cz;
-    f32 fl, score, thr;
+    f32 dir[3];
+    f32 tm;
+    s16 pp[3];
+    f32 v[2];
+    f32 tot;
+    f32 score, thr;
+    f32 pz, px, qz, qx;
+    f32 dz, dx, ex, ez, len, dist, ft, fl;
     TrackPt *p0;
     TrackPt *p1;
-    volatile s32 padB[6];
-    f32 dir[3];
-    s16 i;
-    f32 tm;
     s16 sel;
-    s16 pp[3];
+    s16 i;
     s16 cur;
-    volatile s32 padC[7];
-    f32 v[2];
-    volatile s32 padE;
-    f32 tot;
-    volatile s32 padD[4];
+    Track *tr;
 
     if (nav->flag >= 0) {
         nav->flag = -1;
@@ -3876,6 +3874,7 @@ void func_800E451C(s32 arg0, D_8014A250_Record *car, Nav *nav) {
         }
         thr = D_80124444;
         cur = 0;
+        tr = D_8012E5E8;
         tot = (car->vy * car->vy) + len;
         tm = D_801543CC;
         do {
@@ -3884,10 +3883,10 @@ void func_800E451C(s32 arg0, D_8014A250_Record *car, Nav *nav) {
             pp[1] = (s16) (s32) car->pos[1];
             pp[2] = (s16) (s32) car->pos[2];
             i = func_800E4300(pp, nav->sel, nav->pt, car->unk7E2, cur);
-            p0 = &D_8012E5E8[cur].points[i];
+            p0 = &tr->points[i];
             pz = (f32) p0->z;
             px = (f32) p0->x;
-            p1 = &D_8012E5E8[cur].points[func_800B9338(i, cur)];
+            p1 = &tr->points[func_800B9338(i, cur)];
             dz = pz - cz;
             dx = px - cx;
             qz = (f32) p1->z;
@@ -3904,7 +3903,7 @@ void func_800E451C(s32 arg0, D_8014A250_Record *car, Nav *nav) {
                     }
                 }
             }
-            fl = (f32) (u32) D_8012E5E8[cur].points[i].flag;
+            fl = (f32) (u32) tr->points[i].flag;
             ft = fl * D_80124450;
             dist = fabsf(tot - (ft * ft));
             if (dist < thr) {
@@ -3927,6 +3926,7 @@ void func_800E451C(s32 arg0, D_8014A250_Record *car, Nav *nav) {
                 sel = cur;
             }
             cur += 1;
+            tr++;
         } while (cur != 4);
         if ((sel != -1) && (sel != nav->sel)) {
             nav->pt = best;

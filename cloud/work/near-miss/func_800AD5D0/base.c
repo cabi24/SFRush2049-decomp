@@ -3795,48 +3795,36 @@ typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
 s32 func_800AD5D0(u8 *arg0, s32 arg1, s16 *arg2)
 {
-  s16 *var_a3;
-  unsigned int var_v1;
-  int new_var;
-  s32 temp_t8;
-  s32 var_a1;
-  s32 var_a2;
-  u8 *var_a0;
-  u8 temp_t6;
-  u8 temp_v0;
-  var_a0 = arg0;
-  var_a1 = arg1;
-  var_a3 = arg2;
+  u32 val;
+  s32 cnt;
+  s32 t;
   if (arg1 > 0)
   {
     do
     {
-      temp_t6 = *((u8 *) (((s8 *) var_a0) + 1));
-      temp_t8 = (*((u8 *) (((s8 *) var_a0) + 0))) << 8;
-      var_a0 += 2;
-      var_v1 = temp_t6 + temp_t8;
-      if ((arg1 >= 2) && ((temp_v0 = *var_a0, var_a2 = temp_v0 & (~0xE0), (((s32) temp_v0) < 0xE0) == 0)))
+      val = (arg0[0] << 8) + arg0[1];
+      arg0 += 2;
+      if ((arg1 >= 2) && ((t = *arg0), (t >= 0xE0)))
       {
-        var_a0 += 1;
+        cnt = t & ~0xE0;
+        arg0 += 1;
       }
       else
       {
-        var_a2 = 0;
+        cnt = 0;
       }
-      var_a1 = (var_a1 - var_a2) - 1;
-      loop_7:
-      *var_a3 = var_v1;
-
-      var_a2 -= 1;
-      var_v1 += 1;
-      var_a3 = var_a3 + 1;
-      if (var_a2 >= 0)
+      arg1 = (arg1 - cnt) - 1;
+      do
       {
-        goto loop_7;
+        *arg2 = val;
+        cnt -= 1;
+        val += 1;
+        arg2 += 1;
       }
+      while (cnt >= 0);
     }
-    while (var_a1 > 0);
+    while (arg1 > 0);
   }
-  new_var = (*((u8 *) (((s8 *) var_a0) + 1))) + ((*((u8 *) (var_a0 + 0))) << 8);
-  return new_var & 0xFFFF;
+  val = (arg0[0] << 8) + arg0[1];
+  return val & 0xFFFF;
 }

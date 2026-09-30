@@ -2522,7 +2522,13 @@ extern s32 D_80151D38;
 extern s8 D_80152014;
 extern s8 D_80152015;
 extern f32 D_80152018;
-extern s32 D_8015201C;
+typedef struct PV {
+    s16 x;
+    s16 y;
+    s16 z;
+    u16 w;
+} PV;
+extern PV *D_8015201C;
 extern s32 D_80152020;
 extern s32 D_80152028;
 extern s8 D_80152030;
@@ -3699,8 +3705,9 @@ typedef s64 M2C_UNK64;
 
 /* group members */
 s32 func_800AD4C8(void *arg0, void *arg1, void *arg2, f32 ipa_f18);
-s16 func_800C3AD0(void *ipa_s0, void *ipa_s2, void *ipa_s4, s16 *ipa_s5, void *ipa_s6, void *ipa_s7, f32 *ipa_fp, f32 ipa_f20);
-s16 input_process_controller(void *arg3, void *ipa_s1, void *ipa_s2, void *ipa_s3, s16 *ipa_s5, s32 ipa_s6, void *ipa_s7, void *ipa_fp, M2C_UNK ipa_f24);
+struct Poly;
+s16 func_800C3AD0(f32 *pt, f32 *wp, struct Poly *poly, s16 *outIdx, f32 *q, f32 *mat, f32 *bound, f32 zmin);
+s16 input_process_controller(f32 *p1, f32 *p2, f32 *out, struct Poly *poly, s16 *outIdx, s32 flag, f32 *vcOut, f32 *mat, f32 rad2);
 
 s32 func_800AD4C8(void *arg0, void *arg1, void *arg2, f32 ipa_f18) {
     f32 temp_f0;
@@ -3735,307 +3742,212 @@ s32 func_800AD4C8(void *arg0, void *arg1, void *arg2, f32 ipa_f18) {
     return 1;
 }
 
-s16 func_800C3AD0(void *ipa_s0, void *ipa_s2, void *ipa_s4, s16 *ipa_s5, void *ipa_s6, void *ipa_s7, f32 *ipa_fp, f32 ipa_f20) {
-    u8 sp[0x100]; /* cloud: the frame itself (m2c addressed stack arrays via sp) */
-    s32 sp3A; /* cloud: stack slot 0x3A (not modelled) */
-    f32 sp98;
-    f32 sp94;
-    f32 sp90;
-    f32 sp8C;
-    f32 sp88;
-    f32 sp84;
-    M2C_UNK sp78;
-    f32 sp74;
-    f32 sp70;
-    f32 sp6C;
-    f32 sp68;
-    f32 sp60;
-    u16 sp3C;
-    s16 sp38;
-    f32 sp1C;
-    f32 sp18;
-    f32 temp_f0;
-    f32 temp_f10;
-    f32 temp_f10_2;
-    f32 temp_f4;
-    f32 temp_f4_2;
-    f32 temp_f4_3;
-    f32 temp_f4_4;
-    f32 temp_f6;
-    f32 temp_f6_2;
-    f32 temp_f6_3;
-    f32 temp_f6_4;
-    f32 temp_f8;
-    f32 temp_f8_2;
-    f32 temp_f8_3;
-    f32 temp_f8_4;
-    s16 var_s3;
-    s32 temp_a1;
-    s32 temp_t9;
-    u16 *var_a0;
-    u32 var_v1;
-    void *temp_v0;
-    void *temp_v0_2;
-    void *temp_v0_3;
-    void *temp_v0_4;
-    void *temp_v0_5;
+#define DECODE(v, e) \
+    (v)[0] = (f32) (((e)->x << 5) + (((e)->w & 0x7C00) >> 10)) * 0.03125f; \
+    (v)[1] = (f32) (((e)->y << 5) + (((e)->w & 0x3E0) >> 5)) * 0.03125f; \
+    (v)[2] = (f32) (((e)->z << 5) + ((e)->w & 0x1F)) * 0.03125f
 
-    temp_a1 = M2C_FIELD(ipa_s4, u16 *, 2) & 0xF;
-    var_s3 = 1;
-    *ipa_s5 = func_800AD5D0(M2C_FIELD(ipa_s4, u16 *, 0x16) + D_80152568, temp_a1, &sp38);
-    func_800AD650(ipa_s7, (u8 *) ipa_s4 + 4);
-    temp_v0 = ((u16) sp38 * 8) + D_8015201C;
-    temp_f10 = (f32) ((M2C_FIELD(temp_v0, s16 *, 0) << 5) + ((s32) (M2C_FIELD(temp_v0, u16 *, 6) & 0x7C00) >> 0xA)) * 0.03125f;
-    sp84 = temp_f10;
-    temp_f6 = (f32) ((M2C_FIELD(temp_v0, s16 *, 2) << 5) + ((s32) (M2C_FIELD(temp_v0, u16 *, 6) & 0x3E0) >> 5)) * 0.03125f;
-    sp88 = temp_f6;
-    temp_f4 = (f32) ((M2C_FIELD(temp_v0, s16 *, 4) << 5) + (M2C_FIELD(temp_v0, u16 *, 6) & 0x1F)) * 0.03125f;
-    sp8C = temp_f4;
-    sp90 = M2C_FIELD(ipa_s2, f32 *, 0) - temp_f10;
-    sp94 = M2C_FIELD(ipa_s2, f32 *, 4) - temp_f6;
-    sp98 = M2C_FIELD(ipa_s2, f32 *, 8) - temp_f4;
-    func_800A61B0(&sp90, ipa_s0, ipa_s7);
-    temp_f0 = M2C_FIELD(ipa_s0, f32 *, 4);
-    if ((temp_f0 <= ipa_f20) || (*ipa_fp < temp_f0)) {
+typedef struct Poly {
+    u16 type;
+    u16 cnt;
+    u8 body[0x12];
+    u16 off;
+} Poly;
+
+s16 func_800C3AD0(f32 *pt, f32 *wp, Poly *poly, s16 *outIdx, f32 *q, f32 *mat, f32 *bound, f32 zmin) {
+    f32 va[3];
+    f32 vb[3];
+    f32 vc[3];
+    f32 vd[3];
+    f32 ve[3];
+    u16 idx[20];
+    volatile f32 f1;
+    volatile f32 f2;
+    PV *e;
+    u32 k;
+    u32 n;
+    s32 res;
+
+    n = poly->cnt & 0xF;
+    res = 1;
+    *outIdx = func_800AD5D0((u8 *) (poly->off + D_80152568), n, (s16 *) idx);
+    func_800AD650(mat, poly->body);
+    e = &D_8015201C[idx[0]];
+    DECODE(vb, e);
+    va[0] = wp[0] - vb[0];
+    va[1] = wp[1] - vb[1];
+    va[2] = wp[2] - vb[2];
+    func_800A61B0(va, pt, mat);
+    if ((pt[1] <= zmin) || (*bound < pt[1])) {
         return 0;
     }
-    temp_v0_2 = (M2C_FIELD(((u8 *) sp + (temp_a1 * 2)), u16 *, 0x36) * 8) + D_8015201C;
-    temp_f6_2 = (f32) ((M2C_FIELD(temp_v0_2, s16 *, 0) << 5) + ((s32) (M2C_FIELD(temp_v0_2, u16 *, 6) & 0x7C00) >> 0xA)) * 0.03125f;
-    sp84 = temp_f6_2;
-    sp88 = (f32) ((M2C_FIELD(temp_v0_2, s16 *, 2) << 5) + ((s32) (M2C_FIELD(temp_v0_2, u16 *, 6) & 0x3E0) >> 5)) * 0.03125f;
-    temp_v0_3 = (sp3A * 8) + D_8015201C;
-    temp_f4_2 = (f32) ((M2C_FIELD(temp_v0_2, s16 *, 4) << 5) + (M2C_FIELD(temp_v0_2, u16 *, 6) & 0x1F)) * 0.03125f;
-    sp8C = temp_f4_2;
-    if ((((temp_f4_2 - M2C_FIELD(ipa_s0, f32 *, 8)) * temp_f6_2) - (temp_f4_2 * (temp_f6_2 - M2C_FIELD(ipa_s0, f32 *, 0)))) < 0.0f) {
-        if (func_800AD4C8(&sp84, ipa_s0, &sp78, D_80123F70) == 0) {
+    e = &D_8015201C[idx[n - 1]];
+    DECODE(vb, e);
+    if ((((vb[2] - pt[2]) * vb[0]) - (vb[2] * (vb[0] - pt[0]))) < 0.0f) {
+        if (func_800AD4C8(vb, pt, vc, D_80123F70) == 0) {
             return 0;
         }
-        var_s3 = -1;
-        goto block_18;
+        res = -1;
+        goto done;
     }
-    temp_f8 = (f32) ((M2C_FIELD(temp_v0_3, s16 *, 0) << 5) + ((s32) (M2C_FIELD(temp_v0_3, u16 *, 6) & 0x7C00) >> 0xA)) * 0.03125f;
-    sp84 = temp_f8;
-    sp88 = (f32) ((M2C_FIELD(temp_v0_3, s16 *, 2) << 5) + ((s32) (M2C_FIELD(temp_v0_3, u16 *, 6) & 0x3E0) >> 5)) * 0.03125f;
-    temp_f6_3 = (f32) ((M2C_FIELD(temp_v0_3, s16 *, 4) << 5) + (M2C_FIELD(temp_v0_3, u16 *, 6) & 0x1F)) * 0.03125f;
-    sp8C = temp_f6_3;
-    if (((M2C_FIELD(ipa_s0, f32 *, 8) * temp_f8) - (temp_f6_3 * M2C_FIELD(ipa_s0, f32 *, 0))) < 0.0f) {
-        if (func_800AD4C8(&sp84, ipa_s0, &sp78, D_80123F74) == 0) {
+    e = &D_8015201C[idx[1]];
+    DECODE(vb, e);
+    if (((pt[2] * vb[0]) - (vb[2] * pt[0])) < 0.0f) {
+        if (func_800AD4C8(vb, pt, vc, D_80123F74) == 0) {
             return 0;
         }
-        var_s3 = -1;
-        goto block_18;
+        res = -1;
+        goto done;
     }
-    var_v1 = 2;
-    if ((u32) temp_a1 >= 3U) {
-        var_a0 = &sp3C;
-loop_13:
-        var_v1 += 1;
-        sp60 = sp84;
-        sp68 = sp8C;
-        temp_v0_4 = (*var_a0 * 8) + D_8015201C;
-        temp_f6_4 = (f32) ((M2C_FIELD(temp_v0_4, s16 *, 0) << 5) + ((s32) (M2C_FIELD(temp_v0_4, u16 *, 6) & 0x7C00) >> 0xA)) * 0.03125f;
-        sp84 = temp_f6_4;
-        sp88 = (f32) ((M2C_FIELD(temp_v0_4, s16 *, 2) << 5) + ((s32) (M2C_FIELD(temp_v0_4, u16 *, 6) & 0x3E0) >> 5)) * 0.03125f;
-        sp94 = 0.0f;
-        sp18 = sp60;
-        temp_f8_2 = (f32) ((M2C_FIELD(temp_v0_4, s16 *, 4) << 5) + (M2C_FIELD(temp_v0_4, u16 *, 6) & 0x1F)) * 0.03125f;
-        temp_f4_3 = temp_f6_4 - sp60;
-        sp90 = temp_f4_3;
-        sp8C = temp_f8_2;
-        temp_f8_3 = temp_f8_2 - sp68;
-        sp98 = temp_f8_3;
-        sp1C = temp_f4_3;
-        sp70 = 0.0f;
-        sp6C = M2C_FIELD(ipa_s0, f32 *, 0) - sp18;
-        sp74 = M2C_FIELD(ipa_s0, f32 *, 8) - sp68;
-        if (((sp74 * temp_f4_3) - (temp_f8_3 * sp6C)) < 0.0f) {
-            if (func_800AD4C8(&sp90, &sp6C, &sp78, D_80123F78) == 0) {
-                return 0;
+    k = 2;
+    if ((u32) n >= 3U) {
+        do {
+            k += 1;
+            ve[0] = vb[0];
+            ve[2] = vb[2];
+            e = &D_8015201C[idx[k - 1]];
+            DECODE(vb, e);
+            va[1] = 0.0f;
+            f1 = ve[0];
+            va[0] = f2 = vb[0] - ve[0];
+            va[2] = vb[2] - ve[2];
+            vd[1] = 0.0f;
+            vd[0] = pt[0] - f1;
+            vd[2] = pt[2] - ve[2];
+            if (((vd[2] * f2) - (va[2] * vd[0])) < 0.0f) {
+                if (func_800AD4C8(va, vd, vc, D_80123F78) == 0) {
+                    return 0;
+                }
+                res = -1;
+                goto done;
             }
-            var_s3 = -1;
-            goto block_18;
-        }
-        var_a0 = var_a0 + 1;
-        if (var_v1 >= (u32) temp_a1) {
-            goto block_18;
-        }
-        goto loop_13;
+        } while (k < (u32) n);
     }
-block_18:
-    *ipa_fp = M2C_FIELD(ipa_s0, f32 *, 4);
-    if ((ipa_s6 != NULL) && ((temp_t9 = M2C_FIELD(ipa_s4, u16 *, 0) & 0xF, (temp_t9 == 5)) || (temp_t9 == 6)) && ((temp_v0_5 = ((u16) sp38 * 8) + D_8015201C, temp_f4_4 = (f32) ((M2C_FIELD(temp_v0_5, s16 *, 0) << 5) + ((s32) (M2C_FIELD(temp_v0_5, u16 *, 6) & 0x7C00) >> 0xA)) * 0.03125f, sp84 = temp_f4_4, temp_f10_2 = (f32) ((M2C_FIELD(temp_v0_5, s16 *, 2) << 5) + ((s32) (M2C_FIELD(temp_v0_5, u16 *, 6) & 0x3E0) >> 5)) * 0.03125f, sp88 = temp_f10_2, temp_f8_4 = (f32) ((M2C_FIELD(temp_v0_5, s16 *, 4) << 5) + (M2C_FIELD(temp_v0_5, u16 *, 6) & 0x1F)) * 0.03125f, sp8C = temp_f8_4, sp90 = M2C_FIELD(ipa_s6, f32 *, 0) - temp_f4_4, sp94 = M2C_FIELD(ipa_s6, f32 *, 4) - temp_f10_2, sp98 = M2C_FIELD(ipa_s6, f32 *, 8) - temp_f8_4, func_800A61B0(M2C_ERROR(/* Read from unset register $t0 */), &sp84, ipa_s7), (sp88 <= *ipa_fp)) || (sp88 < D_80123F7C))) {
-        return 0;
+done:
+    *bound = pt[1];
+    if ((q != NULL) && (((poly->type & 0xF) == 5) || ((poly->type & 0xF) == 6))) {
+        e = &D_8015201C[idx[0]];
+        DECODE(vb, e);
+        va[0] = q[0] - vb[0];
+        va[1] = q[1] - vb[1];
+        va[2] = q[2] - vb[2];
+        func_800A61B0(va, vb, mat);
+        if ((vb[1] <= *bound) || (vb[1] < D_80123F7C)) {
+            return 0;
+        }
     }
-    return var_s3;
+    return res;
 }
 
-s16 input_process_controller(void *arg3, void *ipa_s1, void *ipa_s2, void *ipa_s3, s16 *ipa_s5, s32 ipa_s6, void *ipa_s7, void *ipa_fp, M2C_UNK ipa_f24) {
-    u8 sp[0x100]; /* cloud: the frame itself (m2c addressed stack arrays via sp) */
-    s32 sp92; /* cloud: stack slot 0x92 (not modelled) */
-    f32 sp7C; /* cloud: stack slot 0x7C (not modelled) */
-    f32 sp78; /* cloud: stack slot 0x78 (not modelled) */
-    u16 sp94;
-    s16 sp90;
-    f32 sp88;
-    f32 sp84;
-    f32 sp80;
-    f32 sp74;
-    f32 sp70;
-    f32 sp6C;
-    f32 sp68;
-    f32 sp64;
-    f32 sp60;
-    f32 sp5C;
-    f32 sp58;
-    f32 sp54;
-    f32 sp50;
-    f32 sp4C;
-    f32 sp44;
-    f32 sp30;
-    f32 sp2C;
-    f32 sp28;
-    f32 sp1C;
-    f32 sp18;
-    f32 temp_f0;
-    f32 temp_f10;
-    f32 temp_f10_2;
-    f32 temp_f10_3;
-    f32 temp_f2;
-    f32 temp_f4;
-    f32 temp_f4_2;
-    f32 temp_f4_3;
-    f32 temp_f4_4;
-    f32 temp_f6;
-    f32 temp_f6_2;
-    f32 temp_f6_3;
-    f32 temp_f8;
-    f32 temp_f8_2;
-    s16 var_s4;
-    s32 temp_a1;
-    u16 *var_a0;
-    u32 var_v0;
-    void *temp_v1;
-    void *temp_v1_2;
-    void *temp_v1_3;
-    void *temp_v1_4;
+s16 input_process_controller(f32 *p1, f32 *p2, f32 *out, Poly *poly, s16 *outIdx, s32 flag, f32 *vcOut, f32 *mat, f32 rad2) {
+    u16 idx[20];
+    f32 vp[3];
+    f32 vq[3];
+    f32 va[3];
+    f32 ve[3];
+    f32 v0[3];
+    f32 vprev[3];
+    f32 vd[3];
+    volatile f32 f1;
+    volatile f32 f2;
+    PV *e;
+    u32 k;
+    u32 n;
+    s32 res;
+    f32 t;
+    f32 d;
 
-    var_s4 = 1;
-    func_800AD650(ipa_fp, (u8 *) arg3 + 4);
-    temp_a1 = M2C_FIELD(arg3, u16 *, 2) & 0xF;
-    *ipa_s5 = func_800AD5D0(M2C_FIELD(arg3, u16 *, 0x16) + D_80152568, temp_a1, &sp90);
-    temp_v1 = ((u16) sp90 * 8) + D_8015201C;
-    temp_f4 = (f32) ((M2C_FIELD(temp_v1, s16 *, 0) << 5) + ((s32) (M2C_FIELD(temp_v1, u16 *, 6) & 0x7C00) >> 0xA)) * 0.03125f;
-    sp50 = temp_f4;
-    temp_f10 = (f32) ((M2C_FIELD(temp_v1, s16 *, 2) << 5) + ((s32) (M2C_FIELD(temp_v1, u16 *, 6) & 0x3E0) >> 5)) * 0.03125f;
-    sp54 = temp_f10;
-    temp_f8 = (f32) ((M2C_FIELD(temp_v1, s16 *, 4) << 5) + (M2C_FIELD(temp_v1, u16 *, 6) & 0x1F)) * 0.03125f;
-    sp58 = temp_f8;
-    sp68 = M2C_FIELD(ipa_s1, f32 *, 0) - temp_f4;
-    sp6C = M2C_FIELD(ipa_s1, f32 *, 4) - temp_f10;
-    sp70 = M2C_FIELD(ipa_s1, f32 *, 8) - temp_f8;
-    func_800A61B0(&sp68, &sp80, ipa_fp);
-    if (sp84 < 0.0f) {
+    res = 1;
+    func_800AD650(mat, poly->body);
+    n = poly->cnt & 0xF;
+    *outIdx = func_800AD5D0((u8 *) (poly->off + D_80152568), n, (s16 *) idx);
+    e = &D_8015201C[idx[0]];
+    DECODE(v0, e);
+    va[0] = p1[0] - v0[0];
+    va[1] = p1[1] - v0[1];
+    va[2] = p1[2] - v0[2];
+    func_800A61B0(va, vp, mat);
+    if (vp[1] < 0.0f) {
         return 0;
     }
-    sp68 = M2C_FIELD(ipa_s2, f32 *, 0) - sp50;
-    sp6C = M2C_FIELD(ipa_s2, f32 *, 4) - sp54;
-    sp70 = M2C_FIELD(ipa_s2, f32 *, 8) - sp58;
-    func_800A61B0(&sp68, &sp74, ipa_fp);
-    if (sp78 > 0.0f) {
+    va[0] = p2[0] - v0[0];
+    va[1] = p2[1] - v0[1];
+    va[2] = p2[2] - v0[2];
+    func_800A61B0(va, vq, mat);
+    if (vq[1] > 0.0f) {
         return 0;
     }
-    temp_f2 = sp78 - sp84;
-    sp68 = sp74 - sp80;
-    sp70 = sp7C - sp88;
-    if (temp_f2 > 0.0f) {
+    d = vq[1] - vp[1];
+    va[0] = vq[0] - vp[0];
+    va[2] = vq[2] - vp[2];
+    if (d > 0.0f) {
         return 0;
     }
-    sp6C = temp_f2;
-    if (temp_f2 < 0.0f) {
-        temp_f0 = sp84 / temp_f2;
-        sp6C = temp_f2;
-        sp80 -= sp68 * temp_f0;
-        sp84 -= temp_f2 * temp_f0;
-        sp88 -= sp70 * temp_f0;
+    va[1] = d;
+    if (d < 0.0f) {
+        t = vp[1] / d;
+        va[1] = d;
+        vp[0] -= va[0] * t;
+        vp[1] -= d * t;
+        vp[2] -= va[2] * t;
     }
-    temp_v1_2 = (M2C_FIELD(((u8 *) sp + (temp_a1 * 2)), u16 *, 0x8E) * 8) + D_8015201C;
-    temp_f6 = (f32) ((M2C_FIELD(temp_v1_2, s16 *, 0) << 5) + ((s32) (M2C_FIELD(temp_v1_2, u16 *, 6) & 0x7C00) >> 0xA)) * 0.03125f;
-    sp5C = temp_f6;
-    sp60 = (f32) ((M2C_FIELD(temp_v1_2, s16 *, 2) << 5) + ((s32) (M2C_FIELD(temp_v1_2, u16 *, 6) & 0x3E0) >> 5)) * 0.03125f;
-    temp_v1_3 = (sp92 * 8) + D_8015201C;
-    temp_f10_2 = (f32) ((M2C_FIELD(temp_v1_2, s16 *, 4) << 5) + (M2C_FIELD(temp_v1_2, u16 *, 6) & 0x1F)) * 0.03125f;
-    sp64 = temp_f10_2;
-    if ((((temp_f10_2 - sp88) * temp_f6) - (temp_f10_2 * (temp_f6 - sp80))) < 0.0f) {
-        if (ipa_s6 > 0) {
+    e = &D_8015201C[idx[n - 1]];
+    DECODE(ve, e);
+    e = &D_8015201C[idx[1]];
+    if ((((ve[2] - vp[2]) * ve[0]) - (ve[2] * (ve[0] - vp[0]))) < 0.0f) {
+        if (flag > 0) {
             return 0;
         }
-        if (func_800AD4C8(&sp5C, &sp80, ipa_s7, ipa_f24) == 0) {
+        if (func_800AD4C8(ve, vp, vcOut, rad2) == 0) {
             return 0;
         }
-        var_s4 = -1;
-        goto block_29;
+        res = -1;
+        goto done;
     }
-    temp_f4_2 = (f32) ((M2C_FIELD(temp_v1_3, s16 *, 0) << 5) + ((s32) (M2C_FIELD(temp_v1_3, u16 *, 6) & 0x7C00) >> 0xA)) * 0.03125f;
-    sp5C = temp_f4_2;
-    sp60 = (f32) ((M2C_FIELD(temp_v1_3, s16 *, 2) << 5) + ((s32) (M2C_FIELD(temp_v1_3, u16 *, 6) & 0x3E0) >> 5)) * 0.03125f;
-    temp_f6_2 = (f32) ((M2C_FIELD(temp_v1_3, s16 *, 4) << 5) + (M2C_FIELD(temp_v1_3, u16 *, 6) & 0x1F)) * 0.03125f;
-    sp64 = temp_f6_2;
-    if (((sp88 * temp_f4_2) - (temp_f6_2 * sp80)) < 0.0f) {
-        if (ipa_s6 > 0) {
+    DECODE(ve, e);
+    if (((vp[2] * ve[0]) - (ve[2] * vp[0])) < 0.0f) {
+        if (flag > 0) {
             return 0;
         }
-        if (func_800AD4C8(&sp5C, &sp80, ipa_s7, ipa_f24) == 0) {
+        if (func_800AD4C8(ve, vp, vcOut, rad2) == 0) {
             return 0;
         }
-        var_s4 = -1;
-        goto block_29;
+        res = -1;
+        goto done;
     }
-    var_v0 = 2;
-    if ((u32) temp_a1 >= 3U) {
-        var_a0 = &sp94;
-loop_22:
-        var_v0 += 1;
-        sp44 = sp5C;
-        sp4C = sp64;
-        temp_v1_4 = (*var_a0 * 8) + D_8015201C;
-        temp_f6_3 = (f32) ((M2C_FIELD(temp_v1_4, s16 *, 0) << 5) + ((s32) (M2C_FIELD(temp_v1_4, u16 *, 6) & 0x7C00) >> 0xA)) * 0.03125f;
-        sp5C = temp_f6_3;
-        sp60 = (f32) ((M2C_FIELD(temp_v1_4, s16 *, 2) << 5) + ((s32) (M2C_FIELD(temp_v1_4, u16 *, 6) & 0x3E0) >> 5)) * 0.03125f;
-        sp6C = 0.0f;
-        sp2C = 0.0f;
-        sp18 = sp44;
-        temp_f4_3 = (f32) ((M2C_FIELD(temp_v1_4, s16 *, 4) << 5) + (M2C_FIELD(temp_v1_4, u16 *, 6) & 0x1F)) * 0.03125f;
-        temp_f10_3 = temp_f6_3 - sp44;
-        sp68 = temp_f10_3;
-        sp1C = temp_f10_3;
-        sp64 = temp_f4_3;
-        temp_f4_4 = temp_f4_3 - sp4C;
-        temp_f8_2 = sp80 - sp18;
-        sp70 = temp_f4_4;
-        sp28 = temp_f8_2;
-        sp30 = sp88 - sp4C;
-        if (((sp30 * temp_f10_3) - (temp_f4_4 * temp_f8_2)) < 0.0f) {
-            if (ipa_s6 > 0) {
-                return 0;
+    k = 2;
+    if ((u32) n >= 3U) {
+        do {
+            k += 1;
+            vprev[0] = ve[0];
+            vprev[2] = ve[2];
+            e = &D_8015201C[idx[k - 1]];
+            DECODE(ve, e);
+            va[1] = 0.0f;
+            vd[1] = 0.0f;
+            f1 = vprev[0];
+            va[0] = f2 = ve[0] - vprev[0];
+            va[2] = ve[2] - vprev[2];
+            vd[0] = vp[0] - f1;
+            vd[2] = vp[2] - vprev[2];
+            if (((vd[2] * f2) - (va[2] * vd[0])) < 0.0f) {
+                if (flag > 0) {
+                    return 0;
+                }
+                if (func_800AD4C8(va, vd, vcOut, rad2) == 0) {
+                    return 0;
+                }
+                res = -1;
+                goto done;
             }
-            if (func_800AD4C8(&sp68, &sp28, ipa_s7, ipa_f24) == 0) {
-                return 0;
-            }
-            var_s4 = -1;
-            goto block_29;
-        }
-        var_a0 = var_a0 + 1;
-        if (var_v0 >= (u32) temp_a1) {
-            goto block_29;
-        }
-        goto loop_22;
+        } while (k < (u32) n);
     }
-block_29:
-    func_8009E820(&sp80, ipa_s3, ipa_fp);
-    M2C_FIELD(ipa_s3, f32 *, 0) = (f32) (sp50 + M2C_FIELD(ipa_s3, f32 *, 0));
-    M2C_FIELD(ipa_s3, f32 *, 4) = (f32) (sp54 + M2C_FIELD(ipa_s3, f32 *, 4));
-    M2C_FIELD(ipa_s3, f32 *, 8) = (f32) (sp58 + M2C_FIELD(ipa_s3, f32 *, 8));
-    return var_s4;
+done:
+    func_8009E820(vp, out, mat);
+    out[0] = v0[0] + out[0];
+    out[1] = v0[1] + out[1];
+    out[2] = v0[2] + out[2];
+    return res;
 }
 
 /* stand-in caller: keeps func_800AD4C8 out of line under -O3 */

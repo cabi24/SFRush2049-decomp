@@ -3790,19 +3790,19 @@ void world_trigger_activate(void);
 s32 world_velocity_integrate();
 void func_8008A644(unsigned short arg0)
 {
-  int new_var;
   unsigned int temp_t6;
   s32 temp_v1;
+  s16 *p16;
+  s32 *pg;
+  do { p16 = &D_8012E67A; pg = &D_80149438;
   temp_t6 = arg0 & 0xFFFF;
-  if (temp_t6 != ((u16) D_8012E67A))
+  if (temp_t6 != (u16) *p16)
   {
-    temp_v1 = D_80149438;
-    new_var = temp_v1;
-    D_80149438 = new_var + 8;
-    *((s32 *) (new_var + 0x4)) = (s32) (temp_t6 << 0x10);
-    temp_t6 = 0xEE000000;
-    *((s32 *) (temp_v1 + 0x0)) = temp_t6;
-    D_8012E67A = temp_t6;
-  }
+    temp_v1 = *pg;
+    *pg = temp_v1 + 8;
+    *((s32 *) (temp_v1 + 0x4)) = (s32) (temp_t6 << 0x10);
+    *((s32 *) (temp_v1 + 0x0)) = 0xEE000000;
+    *p16 = temp_t6;
+  } } while (0);
   func_800878E0(0x10);
 }

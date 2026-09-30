@@ -1,3 +1,4 @@
+/* flags: -g0 -O2 -mips2 -G 0 -non_shared */
 #define NULL ((void *)0)
 #define TRUE 1
 #define FALSE 0

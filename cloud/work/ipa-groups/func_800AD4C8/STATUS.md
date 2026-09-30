@@ -38,3 +38,24 @@ on `func_800E451C`.
 short: the m2c seed dropped the code that addressed stack arrays through `sp`
 (see the earlier note in this file's history); they need a hand rewrite
 from the assembly before their registers can be judged.
+
+## Pass 3: func_800C3AD0 and input_process_controller rewritten by hand
+
+The dropped code was a compressed-vertex decode (`DECODE`: `(s16<<5 + ((w & mask) >> shift)) * 0.03125f` from
+the 8-byte `PV` table `D_8015201C`) inlined ten times, a `u16 idx[20]` stack array filled by `func_800AD5D0`
+(the seed lost it, hence 100 missing words), and a convex-polygon edge test (`cross < 0` then
+`func_800AD4C8` closest-point test). Both are now typed (`Poly`, `PV`, `DECODE` macro, `va/vb/vc/vd/ve` vectors).
+
+```
+func_800C3AD0             334/362 differ  size 356/362  (was 353/362, size 263)
+input_process_controller  340/363 differ  size 362/363  (was 356/363, size 282)
+func_800AD4C8              45/66  differ  size  66/66   (unchanged)
+```
+
+`input_process_controller`'s real parameter order is positional `(p1 s1, p2 s2, out s3, poly a3, outIdx s5,
+flag s6, vcOut s7, mat s8/fp, rad2 f24)`: the seed listed `arg3` first only because m2c sorts by register.
+The two spilled floats at sp+24/28 are reproduced with `volatile f32 f1, f2` (`va[0] = f2 = ...`).
+Left: the ROM keeps `poly` in `$a3` across the first `func_800AD650` call (IPA knows that callee's clobber set),
+so ours promotes `poly` to an `s` register and, in `input_process_controller`, leaves the 8th argument on the
+stack (`lw a0,220(sp)`). `func_800AD650`/`func_800AD5D0` are the missing closure. Also `f32 zmin` lands in
+`$f22` (ROM `$f20`, the 0.03125 constant takes `$f22`), and the locals area starts at sp+52 instead of sp+24.

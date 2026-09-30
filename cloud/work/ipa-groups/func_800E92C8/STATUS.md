@@ -26,3 +26,25 @@ parameter register set because its body differs). Start from the assembly, not
 the seed; the techniques in `func_800D2FA8`, `func_800E56F8` and
 `func_8008B640` STATUS files (locals layout, `volatile` frame padding, operand
 order) apply.
+
+## Pass 3 (hand rewrite from the assembly, typed structs)
+
+All four members rewritten by hand (`Cr` car, `V3`, `Fx` per-player effect record, real arrays for the
+stack vectors). With `-r4300_mul`:
+
+```
+func_800E92C8  114/197 differ  size 197/197  (was 184/197, size 188)
+func_800E95DC  401/421 differ  size 425/421  (was 376/421, size 402)  switch(*st) form; an if-chain is 417 words
+func_800EA108   58/117 differ  size 116/117  (was  96/117, size  98)
+func_800EA2DC   MATCH          size  70/70   (was  43/70)
+```
+
+What worked: `len = 0` (int constant) splits the 0.0 web so 100.0f/1.0f land in `$f26/$f30`; `r < 0` and
+`1 - x` with int literals give the target's separate `mtc1 zero`/`lui 3f80` loads; `volatile s32 padv[12]`
+declared after the vectors gives the 160-byte frame (locals at sp+124..156); `volatile s32 padv[5]` first
+in `func_800EA2DC` gives frame 144 and the exact ROM; in `func_800EA108` the ROM keeps `pl` in the slot
+just below the vectors (declare it last) and has two unused named scalars above them (declare `i`,`j` first).
+Loop bounds of 30.0f (0x41F0) not 32.0f. The `D_8014A250` records are 0x808 bytes.
+Left: `func_800E95DC` saves `s8` (we use one more callee-saved register than the ROM, which spills `car`
+and `pos` at their home slots instead); `func_800E92C8` x/y/z temporaries land in `$f2/$f12/$f14`
+instead of `$f12/$f16/$f14`; `func_800EA108` loop control (pointer walk + `sltu`).

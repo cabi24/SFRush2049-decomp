@@ -172,12 +172,14 @@ void func_800AF8C0(WheelSlot *slot, s16 player, s32 wheel, u8 *color)
     f32 p;
     f32 axle[3];
     f32 across[3];
+    CarState *st;
 
     obj = slot->obj;
+    st = &D_8014A250[player];
     axle[0] = player_array[player].wheelPos[wheel | 1][0] - player_array[player].wheelPos[wheel & 2][0];
     axle[1] = player_array[player].wheelPos[wheel | 1][1] - player_array[player].wheelPos[wheel & 2][1];
     axle[2] = player_array[player].wheelPos[wheel | 1][2] - player_array[player].wheelPos[wheel & 2][2];
-    axle[1] += D_8014A250[player].wheelHeight[wheel | 1] - D_8014A250[player].wheelHeight[wheel & 2];
+    axle[1] += st->wheelHeight[wheel | 1] - st->wheelHeight[wheel & 2];
     vector_copy_scale(axle, across);
     for (k = 0; k < 3; k++) {
         half = across[k] * 0.75f;
@@ -189,7 +191,7 @@ void func_800AF8C0(WheelSlot *slot, s16 player, s32 wheel, u8 *color)
     p = D_80123C08;
     slot->left[1] += p;
     slot->right[1] += p;
-    obj->f8 = D_8002EB90[0];
+    obj->f8 = *(f32 *) ((u32) &D_8002EB90[0]);
     obj->color[0] = color[0];
     obj->color[1] = color[1];
     obj->color[3] = 0xC0;
@@ -201,8 +203,8 @@ void func_800AF8C0(WheelSlot *slot, s16 player, s32 wheel, u8 *color)
 void save_validate(WheelSlot *slot, s16 player, s32 wheel, u8 *color)
 {
     EffectObj *obj;
+    EffectObj *o2;
     EffectObj *far;
-    EffectObj *p;
     f32 best;
     f32 dist;
     f32 t;
@@ -211,17 +213,18 @@ void save_validate(WheelSlot *slot, s16 player, s32 wheel, u8 *color)
     obj = func_8008E3C0(D_80155220);
     if (obj == 0) {
         best = -1.0f;
-        far = p = ((EffectObj **) D_80155220)[4];
-        for (; p->next != 0; p = p->next) {
+        far = obj = ((EffectObj **) D_80155220)[4];
+        while (obj->next != 0) {
             dist = 0.0f;
             for (k = 0; k < 3; k++) {
-                t = p->pos[k] - D_80150B94[k];
+                t = obj->pos[k] - D_80150B94[k];
                 dist += t * t;
             }
             if (best < dist) {
                 best = dist;
-                far = p;
+                far = obj;
             }
+            obj = obj->next;
         }
         func_8008D0C0(far->dl);
         func_800AFA84(D_80155220, far);
@@ -236,10 +239,12 @@ void save_validate(WheelSlot *slot, s16 player, s32 wheel, u8 *color)
                             ((state_word_a & 0x100) ? 1 : 15) | 0x1200, 1);
     if (obj->dl == 0) {
         func_800AFA84(D_80155220, obj);
-        obj = 0;
+        o2 = 0;
+    } else {
+        o2 = obj;
     }
-    if (obj != 0) {
-        slot->obj = obj;
+    if (o2 != 0) {
+        slot->obj = o2;
         slot->lenSq = 0.0f;
         func_800AF8C0(slot, player, wheel, color);
         slot->start[0] = slot->pos[0];
@@ -251,7 +256,7 @@ void save_validate(WheelSlot *slot, s16 player, s32 wheel, u8 *color)
         slot->quad[3] = slot->left[0];
         slot->quad[4] = slot->left[1];
         slot->quad[5] = slot->left[2];
-        func_8008C074(obj->dl, 4, slot->quad, 0, 0, 0, 0);
+        func_8008C074(o2->dl, 4, slot->quad, 0, 0, 0, 0);
     }
 }
 

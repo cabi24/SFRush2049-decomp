@@ -3793,14 +3793,15 @@ typedef s8 M2C_UNK8;
 typedef s16 M2C_UNK16;
 typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
+typedef struct { u8 pad[0x14]; s32 f14; u8 pad2[0x14]; } S2C;
 void func_800DD45C(s32 arg0)
 {
   s32 i;
-  s32 *p;
-  p = (s32 *) (((arg0 * 0x58) + 0x2C) + ((u8 *) (&D_80153FD8)));
-  for (i = 0x2C; ; p -= 11) {
-    i -= 0x2C;
-    if (p[5] != 0) { p[5] = 0; return; }
-    if (i < 0) return;
+  S2C *d = (S2C *) (((u8 *) &D_80153FD8) + arg0 * 0x58);
+  for (i = 1; i >= 0; i--) {
+    if (d[i].f14 != 0) {
+      d[i].f14 = 0;
+      return;
+    }
   }
 }

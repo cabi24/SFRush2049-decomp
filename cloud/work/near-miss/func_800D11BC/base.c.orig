@@ -3064,7 +3064,7 @@ f32 func_8009C3F8(s32 arg0);
 s32 func_8009D45C(s32 arg0, void *arg1, void *arg2, f32 arg3, s32 arg4);
 void func_8009D708(s32 arg0, void *arg1, void *arg2, f32 arg3, s32 arg4);
 s32 func_8009D99C(s32 arg0, void *arg1, void *arg2, void *arg3, f32 arg4, s32 arg5);
-
+void func_8009E820(void *arg0, void *arg1, void *arg2);
 void func_8009E8B4(void *arg0, void *arg1);
 void func_8009E9D8(void *arg0);
 void func_8009EA68(f32 arg0, void *arg1);
@@ -3238,7 +3238,7 @@ f32 func_800D0A34(void *arg0);
 f32 func_800D0AA0(void *arg0);
 f32 func_800D0B14(void *arg0);
 void func_800D1004(void *arg0);
-void func_800D11BC(void *arg0);
+
 void func_800D1248(void *arg0);
 void func_800D14F4(void *arg0, void *arg1);
 void func_800D169C(void);
@@ -3696,8 +3696,14 @@ typedef s64 M2C_UNK64;
 
 #endif
 
-void func_8009E820(f32 *arg0, f32 *arg1, f32 *arg2) {
-    arg1[0] = (arg0[0] * arg2[0] + arg0[1] * arg2[3]) + arg0[2] * arg2[6];
-    arg1[1] = (arg0[0] * arg2[1] + arg0[1] * arg2[4]) + arg0[2] * arg2[7];
-    arg1[2] = (arg0[0] * arg2[2] + arg0[1] * arg2[5]) + arg0[2] * arg2[8];
+void func_800D11BC(void *arg0) {
+    func_800D1004(arg0);
+    M2C_FIELD(arg0, f32 *, 0x720) = 0.0f;
+    M2C_FIELD(arg0, f32 *, 0x724) = 0.0f;
+    M2C_FIELD(arg0, f32 *, 0x728) = 0.0f;
+    M2C_FIELD(arg0, f32 *, 0x72C) = 1.0f;
+    M2C_FIELD(arg0, s8 *, 0x730) = 1;
+    func_800CF06C(arg0);
+    func_800D0424(arg0);
+    M2C_FIELD(arg0, s16 *, 0x7D0) = (s16) (s32) (M2C_FIELD(arg0, f32 *, 0x408) * D_8012416C * D_80124170);
 }

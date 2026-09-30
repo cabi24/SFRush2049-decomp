@@ -1381,7 +1381,7 @@ extern s32 D_8011EAA0;
 extern s8 D_8011EAA4;
 extern s32 D_8011EAA8;
 extern s32 D_8011EAAC;
-extern s32 D_8011EACC;
+extern u8 D_8011EACC[];
 extern s8 D_8011EACF;
 extern s32 D_8011EAD0;
 extern s8 D_8011EAE0;
@@ -3790,18 +3790,15 @@ void world_trigger_activate(void);
 s32 world_velocity_integrate();
 void func_8008A38C(s32 arg0)
 {
-  s8 *new_var;
-  s8 **new_var2;
-  s8 temp_t6;
-  new_var = &D_8011EACF;
-  new_var2 = &new_var;
-  ;
-  if ((arg0 & 0xFFFF) != ((u8) D_8011EACF))
+  u8 *p;
+  u16 v;
+  p = D_8011EACC;
+  v = arg0;
+  if (v != p[3])
   {
-    temp_t6 = 0;
-    D_8011EACF = temp_t6;
-    D_8012E6D0 = temp_t6;
+    p[3] = v;
+    D_8012E6D0 = 0;
   }
-  func_8008A148(*new_var2, 4, 1, 0);
+  func_8008A148(p, 4, 1, 0);
   func_800878E0(0x20);
 }

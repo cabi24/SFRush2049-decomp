@@ -3696,17 +3696,17 @@ typedef s64 M2C_UNK64;
 
 #endif
 
-void func_800AB750(s32 arg0, void *arg1, void *arg2, void *arg3) {
-    void *sp1C;
-    void *temp_v0;
+void func_800AB750(s32 arg0, f32 *arg1, f32 *arg2, void *arg3) {
+    f32 *p;
+    f32 *q;
 
-    temp_v0 = (arg0 << 6) + D_80150F38;
-    sp1C = temp_v0;
-    math_utility(arg3, (u8 *) temp_v0 + 4);
-    M2C_FIELD(temp_v0, f32 *, 0x28) = (f32) M2C_FIELD(arg2, f32 *, 0);
-    M2C_FIELD(temp_v0, f32 *, 0x2C) = (f32) M2C_FIELD(arg2, f32 *, 4);
-    M2C_FIELD(temp_v0, f32 *, 0x30) = (f32) M2C_FIELD(arg2, f32 *, 8);
-    M2C_FIELD(temp_v0, f32 *, 0x34) = (f32) M2C_FIELD(arg1, f32 *, 0);
-    M2C_FIELD(temp_v0, f32 *, 0x38) = (f32) M2C_FIELD(arg1, f32 *, 4);
-    M2C_FIELD(temp_v0, f32 *, 0x3C) = (f32) M2C_FIELD(arg1, f32 *, 8);
+    p = (f32 *) ((arg0 << 6) + D_80150F38);
+    q = arg1;
+    math_utility(arg3, (u8 *) p + 4);
+    p[0x28 / 4] = arg2[0];
+    p[0x2C / 4] = arg2[1];
+    p[0x30 / 4] = arg2[2];
+    p[0x34 / 4] = q[0];
+    p[0x38 / 4] = q[1];
+    p[0x3C / 4] = q[2];
 }
