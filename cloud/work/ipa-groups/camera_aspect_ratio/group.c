@@ -113,7 +113,10 @@ typedef struct Camera {
     u8 pad12[2];
     f32 m[3][3];                 /* 0x14 */
     f32 pos[3];                  /* 0x38 */
-    u8 pad44[0x16];
+    u8 pad44[0xC];
+    s16 s50;
+    u8 pad52[6];
+    s16 s58;
     s16 s5A;
     u8 pad5C[4];
     s32 handle;                  /* 0x60 */
@@ -3779,7 +3782,7 @@ void camera_fov_control(Camera *ipa_s0);
 void camera_free_look(Camera *ipa_s1);
 void camera_look_at_point(Camera *ipa_s0);
 void camera_process_input(Camera *cam);
-void camera_update(void *arg0, s16 arg1);
+void camera_update(CamNode *node, s16 flag);
 
 /* the pair of tests around camera_target_track is an inlined helper */
 static __inline s32 camera_track_entry(Camera *cam, f32 f2C, s32 id, s32 s28) {
@@ -4166,374 +4169,299 @@ void camera_process_input(Camera *cam) {
     }
 }
 
-void camera_update(void *arg0, s16 arg1) {
-    s32 *spF4;
-    s8 spCF;
-    f32 spC8;
-    f32 spC4;
-    f32 spC0;
-    f32 spB4;
-    f32 spB8; /* cloud: with spB4/spBC a 3-float scale vector (not modelled) */
-    f32 spBC;
-    f32 *var_a0_2;
-    f32 temp_f0;
-    f32 temp_f0_2;
-    f32 temp_f14;
-    f32 temp_f16;
-    f32 temp_f18;
-    f32 temp_f2;
-    f32 temp_f4;
-    f32 temp_f8;
-    f32 var_f14;
-    f32 var_f22;
-    s16 temp_a1_2;
-    s16 temp_v0_3;
-    s16 temp_v0_4;
-    s16 temp_v0_5;
-    s16 var_v0_2;
-    s32 *temp_t8;
-    s32 *temp_v0_7;
-    s32 *var_v0_3;
-    s32 temp_a0;
-    s32 temp_a0_2;
-    s32 temp_t6;
-    s32 temp_t6_2;
-    s32 temp_t6_4;
-    s32 temp_t7_2;
-    s32 temp_t7_4;
-    s32 temp_t7_5;
-    s32 temp_t8_2;
-    s32 temp_t8_3;
-    s32 temp_t8_4;
-    s32 temp_t9;
-    s32 temp_t9_2;
-    s32 temp_v0;
-    s32 temp_v0_6;
-    s32 var_a0;
-    s32 var_a2;
-    s32 var_s7;
-    s32 var_s7_2;
-    s32 var_v0;
-    s32 var_v1_2;
-    u16 temp_a1;
-    u16 temp_t6_3;
-    u16 temp_t7;
-    u16 temp_t7_3;
-    u16 temp_t7_6;
-    u16 temp_t8_5;
-    u16 temp_t8_6;
-    u16 temp_t9_3;
-    u16 temp_v1;
-    u16 temp_v1_3;
-    void *temp_a2;
-    void *temp_s6;
-    void *temp_s8;
-    void *temp_v0_2;
-    void *temp_v1_2;
-    void *temp_v1_4;
-    void *var_v1;
+void camera_update(CamNode *node, s16 flag) {
+    Camera *cam;
+    f32 padA[9];
+    s8 moved;
+    f32 dv[3];
+    f32 sv[3];
+    f32 padB[6];
+    CamCtl *ctl;
+    CamScene *sc;
+    CamScene *lk;
+    CamCtl *lc;
+    CamTbl *tb;
+    CamKey *k;
+    f32 *pdt;
+    f32 f;
+    f32 tt;
+    s32 fl;
+    s32 v;
+    s32 done;
+    s32 nx;
+    s32 i;
+    s16 na;
+    u16 m;
 
-    spCF = 0;
-    if (arg1 == 0) {
-        entity_transform_apply(arg0, 1);
+    moved = 0;
+    if (flag == 0) {
+        entity_transform_apply(node, 1);
         return;
     }
-    if (((state_word_a & 0x7C0000) || (state_word_a & 8)) && (D_801170FC == 0)) {
-        temp_t8 = M2C_FIELD(arg0, s32 **, 0xC);
-        spF4 = temp_t8;
-        temp_s6 = M2C_FIELD(temp_t8, void **, 0x6C);
-        temp_s8 = M2C_FIELD(temp_s6, void **, 0);
-        var_a0 = M2C_FIELD(temp_s8, s32 *, 0x10);
-        if (var_a0 & 0x40) {
-            if (var_a0 & 0x4000) {
-                if (!(var_a0 & 0x200)) {
-                    if (!(var_a0 & 0x400)) {
-                        temp_v1 = M2C_FIELD(temp_s6, u16 *, 0xE);
-                        temp_t7 = temp_v1 & 0xFFFB;
-                        if (temp_v1 & 4) {
-                            M2C_FIELD(temp_s6, u16 *, 0xE) = temp_t7;
-                            M2C_FIELD(temp_s6, u16 *, 0xE) = (u16) (temp_t7 | 8);
-                            M2C_FIELD(temp_s6, f32 *, 4) = (f32) (M2C_FIELD((M2C_FIELD(temp_s8, s32 *, 0x1C) + (M2C_FIELD(temp_s6, s16 *, 0xC) * 0x44)), f32 *, 0x38) - M2C_FIELD(temp_s6, f32 *, 4));
+    if (((state_word_a & 0x7C0000) || (state_word_a & 8)) && D_801170FC == 0) {
+        cam = node->cam;
+        ctl = cam->ctl;
+        sc = ctl->scene;
+        fl = sc->flags;
+        if (fl & 0x40) {
+            if (fl & 0x4000) {
+                if (!(fl & 0x200)) {
+                    if (!(fl & 0x400)) {
+                        m = ctl->mode;
+                        if (m & 4) {
+                            ctl->mode = m & 0xFFFB;
+                            ctl->mode = (m & 0xFFFB) | 8;
+                            ctl->t = sc->keys[ctl->idx].dur - ctl->t;
                         }
-                        if (M2C_FIELD(temp_s8, s32 *, 0x10) & 0x100) {
-                            camera_aspect_ratio(spF4);
+                        if (sc->flags & 0x100) {
+                            camera_aspect_ratio(cam);
                         }
-                        temp_t9 = M2C_FIELD(temp_s8, s32 *, 0x10) & ~0x100;
-                        M2C_FIELD(temp_s8, s32 *, 0x10) = temp_t9;
-                        var_a0 = temp_t9;
+                        fl = sc->flags & ~0x100;
+                        sc->flags = fl;
                     }
                 } else {
-                    if (var_a0 & 0x400) {
-                        M2C_FIELD(temp_s8, s32 *, 0x10) = (s32) (var_a0 & ~0x500);
-                        camera_aspect_ratio(spF4);
+                    if (fl & 0x400) {
+                        sc->flags = fl & ~0x500;
+                        camera_aspect_ratio(cam);
                     }
-                    temp_t6 = M2C_FIELD(temp_s8, s32 *, 0x10) & ~0x200;
-                    M2C_FIELD(temp_s8, s32 *, 0x10) = temp_t6;
-                    var_a0 = temp_t6;
-                }
-                goto block_46;
-            }
-            if ((var_a0 & 0x2000) && (var_a0 & 0x100000)) {
-                temp_t7_2 = var_a0 & 0xFFEFFFFF;
-                if (M2C_FIELD(M2C_FIELD(temp_s8, void **, 0x18), s32 *, 0x10) & 0x100) {
-                    M2C_FIELD(temp_s8, s32 *, 0x10) = temp_t7_2;
-                    temp_t6_2 = temp_t7_2 | 0x200400;
-                    M2C_FIELD(temp_s8, s32 *, 0x10) = temp_t6_2;
-                    if (!(temp_t6_2 & 0x8000)) {
-                        *((u16 *) ((u8 *) &D_8012E714 + (M2C_FIELD(spF4, s16 *, 0xE) * 0x44))) = D_80142A7A;
-                    }
-                    camera_fov_control(spF4);
-                    return;
-                }
-            }
-            if ((var_a0 & 0x400) && (var_a0 & 0x200)) {
-                temp_v1_2 = M2C_FIELD(temp_s8, void **, 0x18);
-                temp_v0 = M2C_FIELD(temp_v1_2, s32 *, 0x10);
-                if (temp_v0 & 0x100) {
-                    M2C_FIELD(temp_v1_2, s32 *, 0x10) = (s32) (temp_v0 & ~0x100);
-                } else if (var_a0 & 0x1000) {
-                    temp_v0_2 = M2C_FIELD(temp_v1_2, void **, 0x20);
-                    temp_a1 = M2C_FIELD(temp_v0_2, u16 *, 0xE);
-                    temp_t6_3 = temp_a1 & 0xFFF7;
-                    if (temp_a1 & 8) {
-                        M2C_FIELD(temp_v0_2, u16 *, 0xE) = temp_t6_3;
-                        M2C_FIELD(temp_v0_2, u16 *, 0xE) = (u16) (temp_t6_3 | 4);
-                        M2C_FIELD(temp_v0_2, f32 *, 4) = (f32) (M2C_FIELD((M2C_FIELD(temp_v1_2, s32 *, 0x1C) + (M2C_FIELD(temp_v0_2, s16 *, 0xC) * 0x44)), f32 *, 0x38) - M2C_FIELD(temp_v0_2, f32 *, 4));
-                    } else {
-                        temp_t7_3 = temp_a1 & 0xFFFB;
-                        M2C_FIELD(temp_v0_2, u16 *, 0xE) = temp_t7_3;
-                        M2C_FIELD(temp_v0_2, u16 *, 0xE) = (u16) (temp_t7_3 | 8);
-                        M2C_FIELD(temp_v0_2, f32 *, 4) = (f32) (M2C_FIELD((M2C_FIELD(temp_v1_2, s32 *, 0x1C) + (M2C_FIELD(temp_v0_2, s16 *, 0xC) * 0x44)), f32 *, 0x38) - M2C_FIELD(temp_v0_2, f32 *, 4));
-                    }
-                }
-                temp_t8_2 = M2C_FIELD(temp_s8, s32 *, 0x10) & ~0x700;
-                M2C_FIELD(temp_s8, s32 *, 0x10) = temp_t8_2;
-                var_a0 = temp_t8_2;
-                if (temp_t8_2 & 0x1000) {
-                    if (temp_t8_2 & 0x200000) {
-                        temp_t6_4 = temp_t8_2 & 0xFFDFFFFF;
-                        M2C_FIELD(temp_s8, s32 *, 0x10) = temp_t6_4;
-                        temp_t9_2 = temp_t6_4 | 0x100000;
-                        M2C_FIELD(temp_s8, s32 *, 0x10) = temp_t9_2;
-                        if (!(temp_t9_2 & 0x8000)) {
-                            *((u16 *) ((u8 *) &D_8012E714 + (M2C_FIELD(spF4, s16 *, 0xE) * 0x44))) = D_80142A78;
-                        }
-                        camera_aspect_ratio(spF4);
-                    } else {
-                        temp_t7_4 = var_a0 & 0xFFEFFFFF;
-                        M2C_FIELD(temp_s8, s32 *, 0x10) = temp_t7_4;
-                        temp_t8_3 = temp_t7_4 | 0x200000;
-                        M2C_FIELD(temp_s8, s32 *, 0x10) = temp_t8_3;
-                        if (!(temp_t8_3 & 0x8000)) {
-                            *((u16 *) ((u8 *) &D_8012E714 + (M2C_FIELD(spF4, s16 *, 0xE) * 0x44))) = D_80142A7A;
-                        }
-                        camera_fov_control(spF4);
-                    }
-                    goto block_45;
-                }
-                if (var_a0 & 0x200000) {
-                    temp_t7_5 = var_a0 & 0xFFDFFFFF;
-                    M2C_FIELD(temp_s8, s32 *, 0x10) = temp_t7_5;
-                    temp_t8_4 = temp_t7_5 | 0x100000;
-                    M2C_FIELD(temp_s8, s32 *, 0x10) = temp_t8_4;
-                    if (!(temp_t8_4 & 0x8000)) {
-                        *((u16 *) ((u8 *) &D_8012E714 + (M2C_FIELD(spF4, s16 *, 0xE) * 0x44))) = D_80142A78;
-                    }
-                    camera_aspect_ratio(spF4);
-block_45:
-                    var_a0 = M2C_FIELD(temp_s8, s32 *, 0x10);
-                }
-            }
-            goto block_46;
-        }
-block_46:
-        if (!(var_a0 & 0x100)) {
-            var_s7 = 0;
-            M2C_FIELD(temp_s6, f32 *, 4) = (f32) (M2C_FIELD(temp_s6, f32 *, 4) + M2C_BITWISE(f32, D_8002EB94));
-            var_v1 = M2C_FIELD(temp_s8, s32 *, 0x1C) + (M2C_FIELD(temp_s6, s16 *, 0xC) * 0x44);
-            do {
-                temp_f2 = M2C_FIELD(temp_s6, f32 *, 4);
-                temp_f0 = M2C_FIELD(var_v1, f32 *, 0x38);
-                if (temp_f0 <= temp_f2) {
-                    temp_v1_3 = M2C_FIELD(temp_s6, u16 *, 0xE);
-                    M2C_FIELD(temp_s6, f32 *, 4) = (f32) (temp_f2 - temp_f0);
-                    if (temp_v1_3 & 8) {
-                        if (M2C_FIELD(temp_s6, s16 *, 0xC) == 0) {
-                            temp_t9_3 = temp_v1_3 & 0xFFF7;
-                            if (M2C_FIELD(temp_s8, s32 *, 0x10) & 0x4000) {
-                                var_s7 = 1;
-                                camera_build_view_matrix(0, (Camera *) spF4);
-                                camera_fov_control(spF4);
-                            } else {
-                                M2C_FIELD(temp_s6, u16 *, 0xE) = temp_t9_3;
-                                M2C_FIELD(temp_s6, u16 *, 0xE) = (u16) (temp_t9_3 | 4);
-                                temp_a0 = M2C_FIELD(temp_s8, s32 *, 0x10);
-                                if (temp_a0 & 0x80) {
-                                    M2C_FIELD(temp_s8, s32 *, 0x10) = (s32) (temp_a0 | 0x100);
-                                    var_s7 = 1;
-                                    M2C_FIELD(temp_s6, f32 *, 4) = 0.0f;
-                                }
-                            }
-                            if (M2C_FIELD(temp_s8, s32 *, 0x10) & 0x20) {
-                                listener_position_set((s32) M2C_FIELD(temp_s8, s16 *, 0x16));
-                            }
-                        } else {
-                            M2C_FIELD(temp_s6, s16 *, 0xC) = (s16) (M2C_FIELD(temp_s6, s16 *, 0xC) - 1);
-                        }
-                    } else if (M2C_FIELD(temp_s8, s16 *, 0x14) == (M2C_FIELD(temp_s6, s16 *, 0xC) + 1)) {
-                        temp_t8_5 = temp_v1_3 & 0xFFFB;
-                        if (M2C_FIELD(temp_s8, s32 *, 0x10) & 0x80) {
-                            M2C_FIELD(temp_s6, u16 *, 0xE) = temp_t8_5;
-                            M2C_FIELD(temp_s6, u16 *, 0xE) = (u16) (temp_t8_5 | 8);
-                            M2C_FIELD(temp_s6, s16 *, 0xC) = (s16) (M2C_FIELD(temp_s6, s16 *, 0xC) - 1);
-                        } else {
-                            M2C_FIELD(temp_s6, s16 *, 0xC) = 0;
-                            if (M2C_FIELD(temp_s8, s32 *, 0x10) & 0x20) {
-                                listener_position_set((s32) M2C_FIELD(temp_s8, s16 *, 0x16));
-                            }
-                        }
-                    } else {
-                        M2C_FIELD(temp_s6, s16 *, 0xC) = (s16) (M2C_FIELD(temp_s6, s16 *, 0xC) + 1);
-                        temp_v0_3 = M2C_FIELD(temp_s6, s16 *, 0xC);
-                        if (M2C_FIELD((M2C_FIELD(temp_s8, s32 *, 0x1C) + (temp_v0_3 * 0x44)), s32 *, 0x40) & 0x40) {
-                            var_s7 = 1;
-                            M2C_FIELD(temp_s8, s32 *, 0x10) = (s32) (M2C_FIELD(temp_s8, s32 *, 0x10) | 0x100);
-                            M2C_FIELD(temp_s6, f32 *, 4) = 0.0f;
-                        } else if (M2C_FIELD(temp_s8, s16 *, 0x14) == (temp_v0_3 + 1)) {
-                            temp_a0_2 = M2C_FIELD(temp_s8, s32 *, 0x10);
-                            if (temp_a0_2 & 1) {
-                                temp_t7_6 = M2C_FIELD(temp_s6, u16 *, 0xE) & 0xFFFB;
-                                M2C_FIELD(temp_s6, u16 *, 0xE) = temp_t7_6;
-                                M2C_FIELD(temp_s6, u16 *, 0xE) = (u16) (temp_t7_6 | 8);
-                                M2C_FIELD(temp_s6, s16 *, 0xC) = (s16) (temp_v0_3 - 1);
-                            } else if (temp_a0_2 & 0x4000) {
-                                temp_t8_6 = M2C_FIELD(temp_s6, u16 *, 0xE) & 0xFFFB;
-                                M2C_FIELD(temp_s6, u16 *, 0xE) = temp_t8_6;
-                                M2C_FIELD(temp_s6, u16 *, 0xE) = (u16) (temp_t8_6 | 8);
-                                M2C_FIELD(temp_s6, s16 *, 0xC) = (s16) (temp_v0_3 - 1);
-                                M2C_FIELD(temp_s6, f32 *, 4) = 0.0f;
-                                M2C_FIELD(temp_s8, s32 *, 0x10) = (s32) (M2C_FIELD(temp_s8, s32 *, 0x10) | 0x100);
-                            } else if (!(temp_a0_2 & 2)) {
-                                camera_build_view_matrix(0, (Camera *) spF4);
-                                if (M2C_FIELD(temp_s8, s32 *, 0x10) & 0x20) {
-                                    listener_position_set((s32) M2C_FIELD(temp_s8, s16 *, 0x16));
-                                }
-                            }
-                        }
-                    }
-                    var_v1 = M2C_FIELD(temp_s8, s32 *, 0x1C) + (M2C_FIELD(temp_s6, s16 *, 0xC) * 0x44);
-                } else {
-                    var_s7 = 1;
-                }
-            } while (var_s7 == 0);
-            var_v0 = M2C_FIELD(var_v1, s32 *, 0x40);
-            if (!(var_v0 & 2)) {
-                camera_track_spline((Camera *) spF4);
-                spCF = 1;
-                var_v0 = M2C_FIELD((M2C_FIELD(temp_s8, s32 *, 0x1C) + (M2C_FIELD(temp_s6, s16 *, 0xC) * 0x44)), s32 *, 0x40);
-            }
-            if (!(var_v0 & 0x10) || !(var_v0 & 4)) {
-                spCF = 1;
-                camera_free_look(spF4);
-            }
-            if (spCF != 0) {
-                if (M2C_FIELD(temp_s8, s32 *, 0x10) & 0x100) {
-                    camera_fov_control(spF4);
-                } else {
-                    camera_look_at_point(spF4);
+                    fl = sc->flags & ~0x200;
+                    sc->flags = fl;
                 }
             } else {
-                camera_fov_control(spF4);
-            }
-            temp_a2 = (s32 *) ((M2C_FIELD(spF4, s16 *, 0x10) * 0x30) + (u8 *) &D_80117530);
-            if (M2C_FIELD(temp_a2, s16 *, 0x14) != -1) {
-                temp_f8 = M2C_FIELD(arg0, f32 *, 0x10) - M2C_BITWISE(f32, D_8002EB94);
-                M2C_FIELD(arg0, f32 *, 0x10) = temp_f8;
-                if (temp_f8 <= 0.0f) {
-                    temp_v0_4 = M2C_FIELD(temp_a2, s16 *, 0x14);
-                    if (temp_v0_4 == 0x169) {
-                        M2C_FIELD(arg0, f32 *, 0x10) = 0.25f;
-                    } else if (temp_v0_4 == 0x16D) {
-                        M2C_FIELD(arg0, f32 *, 0x10) = (f32) D_80123E8C;
-                    }
-                    var_v0_2 = M2C_FIELD(arg0, s16 *, 4) + 1;
-                    M2C_FIELD(arg0, s16 *, 4) = var_v0_2;
-                    if (var_v0_2 >= M2C_FIELD(spF4, s16 *, 0x5A)) {
-                        M2C_FIELD(arg0, s16 *, 4) = 0;
-                        var_v0_2 = 0;
-                    }
-                    temp_a1_2 = M2C_FIELD(spF4, s16 *, 0x58) + var_v0_2;
-                    if (temp_a1_2 != M2C_FIELD(spF4, s16 *, 0x50)) {
-                        if (!(M2C_FIELD(temp_s8, s32 *, 0x10) & 0x8000)) {
-                            *((u16 *) ((u8 *) &D_8012E714 + (M2C_FIELD(spF4, s16 *, 0xE) * 0x44))) = (&D_801427C0)[temp_a1_2];
+                if ((fl & 0x2000) && (fl & 0x100000)) {
+                    v = fl & 0xFFEFFFFF;
+                    if (sc->link->flags & 0x100) {
+                        sc->flags = v;
+                        v = v | 0x200400;
+                        sc->flags = v;
+                        if (!(v & 0x8000)) {
+                            *(u16 *) ((u8 *) &D_8012E714 + cam->slot * 0x44) = D_80142A7A;
                         }
-                        M2C_FIELD(spF4, s16 *, 0x50) = temp_a1_2;
+                        camera_fov_control(cam);
+                        return;
+                    }
+                }
+                if ((fl & 0x400) && (fl & 0x200)) {
+                    lk = sc->link;
+                    v = lk->flags;
+                    if (v & 0x100) {
+                        lk->flags = v & ~0x100;
+                    } else if (fl & 0x1000) {
+                        lc = lk->cur;
+                        m = lc->mode;
+                        if (m & 8) {
+                            lc->mode = m & 0xFFF7;
+                            lc->mode = (m & 0xFFF7) | 4;
+                            lc->t = lk->keys[lc->idx].dur - lc->t;
+                        } else {
+                            lc->mode = m & 0xFFFB;
+                            lc->mode = (m & 0xFFFB) | 8;
+                            lc->t = lk->keys[lc->idx].dur - lc->t;
+                        }
+                    }
+                    fl = sc->flags & ~0x700;
+                    sc->flags = fl;
+                    if (fl & 0x1000) {
+                        if (fl & 0x200000) {
+                            v = fl & 0xFFDFFFFF;
+                            sc->flags = v;
+                            v = v | 0x100000;
+                            sc->flags = v;
+                            if (!(v & 0x8000)) {
+                                *(u16 *) ((u8 *) &D_8012E714 + cam->slot * 0x44) = D_80142A78;
+                            }
+                            camera_aspect_ratio(cam);
+                        } else {
+                            v = fl & 0xFFEFFFFF;
+                            sc->flags = v;
+                            v = v | 0x200000;
+                            sc->flags = v;
+                            if (!(v & 0x8000)) {
+                                *(u16 *) ((u8 *) &D_8012E714 + cam->slot * 0x44) = D_80142A7A;
+                            }
+                            camera_fov_control(cam);
+                        }
+                        fl = sc->flags;
+                    } else if (fl & 0x200000) {
+                        v = fl & 0xFFDFFFFF;
+                        sc->flags = v;
+                        v = v | 0x100000;
+                        sc->flags = v;
+                        if (!(v & 0x8000)) {
+                            *(u16 *) ((u8 *) &D_8012E714 + cam->slot * 0x44) = D_80142A78;
+                        }
+                        camera_aspect_ratio(cam);
+                        fl = sc->flags;
+                    }
+                }
+            }
+        }
+        if (!(fl & 0x100)) {
+            done = 0;
+            pdt = (f32 *)(u32)&D_8002EB94;
+            ctl->t = ctl->t + *pdt;
+            k = &sc->keys[ctl->idx];
+            do {
+                f = k->dur;
+                if (f <= ctl->t) {
+                    m = ctl->mode;
+                    ctl->t = ctl->t - f;
+                    if (m & 8) {
+                        if (ctl->idx == 0) {
+                            v = m & 0xFFF7;
+                            if (sc->flags & 0x4000) {
+                                done = 1;
+                                camera_build_view_matrix(0, cam);
+                                camera_fov_control(cam);
+                            } else {
+                                ctl->mode = v;
+                                ctl->mode = v | 4;
+                                fl = sc->flags;
+                                if (fl & 0x80) {
+                                    sc->flags = fl | 0x100;
+                                    done = 1;
+                                    ctl->t = 0.0f;
+                                }
+                            }
+                            if (sc->flags & 0x20) {
+                                listener_position_set(sc->id);
+                            }
+                        } else {
+                            ctl->idx = ctl->idx - 1;
+                        }
+                    } else if (sc->count == ctl->idx + 1) {
+                        v = m & 0xFFFB;
+                        if (sc->flags & 0x80) {
+                            ctl->mode = v;
+                            ctl->mode = v | 8;
+                            ctl->idx = ctl->idx - 1;
+                        } else {
+                            ctl->idx = 0;
+                            if (sc->flags & 0x20) {
+                                listener_position_set(sc->id);
+                            }
+                        }
+                    } else {
+                        ctl->idx = ctl->idx + 1;
+                        na = ctl->idx;
+                        if (sc->keys[na].flags & 0x40) {
+                            done = 1;
+                            sc->flags = sc->flags | 0x100;
+                            ctl->t = 0.0f;
+                        } else if (sc->count == na + 1) {
+                            fl = sc->flags;
+                            if (fl & 1) {
+                                v = ctl->mode & 0xFFFB;
+                                ctl->mode = v;
+                                ctl->mode = v | 8;
+                                ctl->idx = na - 1;
+                            } else if (fl & 0x4000) {
+                                v = ctl->mode & 0xFFFB;
+                                ctl->mode = v;
+                                ctl->mode = v | 8;
+                                ctl->idx = na - 1;
+                                ctl->t = 0.0f;
+                                sc->flags = sc->flags | 0x100;
+                            } else if (!(fl & 2)) {
+                                camera_build_view_matrix(0, cam);
+                                if (sc->flags & 0x20) {
+                                    listener_position_set(sc->id);
+                                }
+                            }
+                        }
+                    }
+                    k = &sc->keys[ctl->idx];
+                } else {
+                    done = 1;
+                }
+            } while (done == 0);
+            v = k->flags;
+            if (!(v & 2)) {
+                camera_track_spline(cam);
+                moved = 1;
+                v = sc->keys[ctl->idx].flags;
+            }
+            if (!(v & 0x10) || !(v & 4)) {
+                moved = 1;
+                camera_free_look(cam);
+            }
+            if (moved != 0) {
+                if (sc->flags & 0x100) {
+                    camera_fov_control(cam);
+                } else {
+                    camera_look_at_point(cam);
+                }
+            } else {
+                camera_fov_control(cam);
+            }
+            tb = &D_80117530[cam->tbl];
+            if (tb->s14 != -1) {
+                f = node->f10 - *pdt;
+                node->f10 = f;
+                if (f <= 0.0f) {
+                    v = tb->s14;
+                    if (v == 0x169) {
+                        node->f10 = 0.25f;
+                    } else if (v == 0x16D) {
+                        node->f10 = D_80123E8C;
+                    }
+                    node->s04 = node->s04 + 1;
+                    na = node->s04;
+                    if (na >= cam->s5A) {
+                        node->s04 = 0;
+                        na = 0;
+                    }
+                    na = cam->s58 + na;
+                    if (na != cam->s50) {
+                        if (!(sc->flags & 0x8000)) {
+                            *(u16 *) ((u8 *) &D_8012E714 + cam->slot * 0x44) = (&D_801427C0)[na];
+                        }
+                        cam->s50 = na;
                     }
                     goto block_99;
                 }
             } else {
 block_99:
-                if (M2C_FIELD(temp_a2, s16 *, 0x10) == 4) {
-                    if (M2C_FIELD(temp_s6, u16 *, 0xE) & 8) {
-                        spC0 = M2C_FIELD((M2C_FIELD(temp_s8, s32 *, 0x1C) + (M2C_FIELD(temp_s6, s16 *, 0xC) * 0x44)), f32 *, 0xC) * -M2C_FIELD(temp_s6, f32 *, 0x10);
-                        spC4 = M2C_FIELD((M2C_FIELD(temp_s8, s32 *, 0x1C) + (M2C_FIELD(temp_s6, s16 *, 0xC) * 0x44)), f32 *, 0x10) * -M2C_FIELD(temp_s6, f32 *, 0x10);
-                        spC8 = M2C_FIELD((M2C_FIELD(temp_s8, s32 *, 0x1C) + (M2C_FIELD(temp_s6, s16 *, 0xC) * 0x44)), f32 *, 0x14) * -M2C_FIELD(temp_s6, f32 *, 0x10);
+                if (tb->mode == 4) {
+                    k = &sc->keys[ctl->idx];
+                    if (ctl->mode & 8) {
+                        dv[0] = k->dir[0] * -ctl->f10;
+                        dv[1] = k->dir[1] * -ctl->f10;
+                        dv[2] = k->dir[2] * -ctl->f10;
                     } else {
-                        spC0 = M2C_FIELD((M2C_FIELD(temp_s8, s32 *, 0x1C) + (M2C_FIELD(temp_s6, s16 *, 0xC) * 0x44)), f32 *, 0xC) * M2C_FIELD(temp_s6, f32 *, 0x10);
-                        spC4 = M2C_FIELD((M2C_FIELD(temp_s8, s32 *, 0x1C) + (M2C_FIELD(temp_s6, s16 *, 0xC) * 0x44)), f32 *, 0x10) * M2C_FIELD(temp_s6, f32 *, 0x10);
-                        spC8 = M2C_FIELD((M2C_FIELD(temp_s8, s32 *, 0x1C) + (M2C_FIELD(temp_s6, s16 *, 0xC) * 0x44)), f32 *, 0x14) * M2C_FIELD(temp_s6, f32 *, 0x10);
+                        dv[0] = k->dir[0] * ctl->f10;
+                        dv[1] = k->dir[1] * ctl->f10;
+                        dv[2] = k->dir[2] * ctl->f10;
                     }
-                    func_800AB750((s32) M2C_FIELD(spF4, s8 *, 0x65), &spC0, spF4 + 0xE, spF4 + 5);
+                    func_800AB750(cam->s65, dv, cam->pos, cam->m);
                 }
-                temp_v0_5 = M2C_FIELD(temp_s6, s16 *, 0xC);
-                var_a0_2 = &spB4;
-                temp_v1_4 = M2C_FIELD(temp_s8, s32 *, 0x1C) + (temp_v0_5 * 0x44);
-                if (!(M2C_FIELD(temp_v1_4, s32 *, 0x40) & 0x10)) {
-                    var_a2 = temp_v0_5 + 1;
-                    if (var_a2 >= M2C_FIELD(temp_s8, s16 *, 0x14)) {
-                        var_a2 = 0;
+                k = &sc->keys[ctl->idx];
+                if (!(k->flags & 0x10)) {
+                    nx = ctl->idx + 1;
+                    if (nx >= sc->count) {
+                        nx = 0;
                     }
-                    if (M2C_FIELD(temp_s6, u16 *, 0xE) & 8) {
-                        var_f14 = M2C_FIELD(temp_v1_4, f32 *, 0x38) - M2C_FIELD(temp_s6, f32 *, 4);
+                    if (ctl->mode & 8) {
+                        tt = k->dur - ctl->t;
                     } else {
-                        var_f14 = M2C_FIELD(temp_s6, f32 *, 4);
+                        tt = ctl->t;
                     }
-                    var_v1_2 = 0;
-                    do {
-                        temp_v0_6 = M2C_FIELD(temp_s8, s32 *, 0x1C);
-                        var_a0_2 = var_a0_2 + 1;
-                        temp_f4 = M2C_FIELD((temp_v0_6 + (var_a2 * 0x44) + var_v1_2), f32 *, 0x18);
-                        temp_f0_2 = M2C_FIELD((temp_v0_6 + (M2C_FIELD(temp_s6, s16 *, 0xC) * 0x44) + var_v1_2), f32 *, 0x18);
-                        var_v1_2 += 4;
-                        M2C_FIELD(var_a0_2, f32 *, -4) = (f32) (((temp_f4 - temp_f0_2) * (var_f14 / M2C_FIELD(temp_v1_4, f32 *, 0x38))) + temp_f0_2);
-                    } while ((u32) var_a0_2 < (u32) &spC0);
-                    var_v0_3 = spF4;
-                    var_s7_2 = 1;
-                    var_f22 = M2C_FIELD(var_v0_3, f32 *, 0x14) * spB4;
-                    if (1 != 3) {
-                        do {
-                            temp_f18 = M2C_FIELD(var_v0_3, f32 *, 0x2C);
-                            M2C_FIELD(var_v0_3, f32 *, 0x14) = var_f22;
-                            temp_f14 = M2C_FIELD(var_v0_3, f32 *, 0x18);
-                            var_s7_2 += 1;
-                            temp_f16 = M2C_FIELD(var_v0_3, f32 *, 0x20) * spB8;
-                            var_v0_3 = var_v0_3 + 1;
-                            M2C_FIELD(var_v0_3, f32 *, 0x1C) = temp_f16;
-                            M2C_FIELD(var_v0_3, f32 *, 0x28) = (f32) (temp_f18 * spBC);
-                            var_f22 = temp_f14 * spB4;
-                        } while (var_s7_2 != 3);
+                    for (i = 0; i < 3; i++) {
+                        f = sc->keys[ctl->idx].scale[i];
+                        sv[i] = (sc->keys[nx].scale[i] - f) * (tt / k->dur) + f;
                     }
-                    M2C_FIELD(var_v0_3, f32 *, 0x14) = var_f22;
-                    temp_v0_7 = var_v0_3 + 1;
-                    M2C_FIELD(temp_v0_7, f32 *, 0x1C) = (f32) (M2C_FIELD(var_v0_3, f32 *, 0x20) * spB8);
-                    M2C_FIELD(temp_v0_7, f32 *, 0x28) = (f32) (M2C_FIELD(var_v0_3, f32 *, 0x2C) * spBC);
+                    for (i = 0; i < 3; i++) {
+                        cam->m[0][i] = cam->m[0][i] * sv[0];
+                        cam->m[1][i] = cam->m[1][i] * sv[1];
+                        cam->m[2][i] = cam->m[2][i] * sv[2];
+                    }
                 }
-                if (!(M2C_FIELD(spF4, u8 *, 4) & 2)) {
-                    if (!(M2C_FIELD(temp_s8, s32 *, 0x10) & 0x8000)) {
-                        entity_spawn_callback(M2C_FIELD(spF4, s16 *, 0xE), 0, 0);
+                if (!(cam->flags & 2)) {
+                    if (!(sc->flags & 0x8000)) {
+                        entity_spawn_callback(cam->slot, 0, 0);
                     }
-                    func_800AFA84(&D_80143FC8, spF4);
-                    entity_transform_apply(arg0, 1);
+                    func_800AFA84(&D_80143FC8, (s32 *) cam);
+                    entity_transform_apply(node, 1);
                 }
             }
         }

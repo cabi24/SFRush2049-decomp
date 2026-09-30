@@ -3797,7 +3797,7 @@ void *func_80096B00(void *arg0, s32 arg1)
 {
   s32 *temp_a2;
   s32 *var_t0;
-  s32 temp_v1;
+  float cond;
   s32 var_a3;
   s32 new_var;
   s32 var_v0;
@@ -3815,18 +3815,17 @@ void *func_80096B00(void *arg0, s32 arg1)
     var_t0 = temp_a2;
     loop_4:
     var_v0 += 1;
-
-    var_t0 = var_t0 + 3;
+    cond = var_v0 < (*((s32 *) (((s8 *) arg0) + 4)));
     if (new_var == (*var_t0))
     {
       return (s32 *) (((u8 *) temp_a2) + var_a3);
     }
     var_a3 += 0xC;
-    if (var_v0 >= (*((s32 *) (((s8 *) arg0) + 4))))
+    var_t0 = var_t0 + 3;
+    if (cond)
     {
-      return (void *) 0;
+      goto loop_4;
     }
-    goto loop_4;
   }
   return (void *) 0;
 }

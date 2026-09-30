@@ -54,3 +54,22 @@ group would need `func_800E4B58`, `func_800E398C` (599) and `func_800E451C`
 func_800E451C -> func_800E4300}`. Not attempted; see the stand-in-caller
 technique in `func_800E4300/STATUS.md` for how to give an IPA callee its
 register convention when its caller is missing.
+
+## Pass 3: func_800E6AF8 rewritten by hand
+
+Typed: `D_8014A250_Record` (speed at 0x3F0, `lastTick/tickTime/dt` at 0x710/714/718, vel at 0x788, `s7CA`,
+`unk7C6`), `Inp` (76-byte input records, byte 0 = car index), `GC2` (player_array stride 0x3B8 with `w380`,
+`b358`, `b359`, `bEF`), `Row3` (`D_80120E74` is `s16[][3]`, `D_80153E84` is `s16`). The goto loops are plain
+loops (`for(;;)` re-entry replaces `goto loop_10`).
+
+```
+func_800E6AF8  313/334 differ  size 332/334  (was 300/334 differ, size 336)
+func_800E56F8  115/359 differ  size 359/359  (unchanged)
+```
+
+The instruction sequence now follows the ROM almost everywhere (mnemonic-level diff is a handful of
+scheduling/hoisting differences); the word count is dominated by temp-register rotation from the very first
+instructions (the ROM hoists `&D_80143FF4` into `$t0` before the `D_801525F0` test; ours does not).
+Frame 160 needs `volatile s32 padv[3]` before `fz,fx,fy` and `padw[3]` after `n,k`; `t`/`r` then sit at
+sp+112/116 as in the ROM. The float temporaries must be named (`fz,fx,fy`, in that declaration order) for the
+`sqrt` sum to load `$f12,$f14,$f2`.

@@ -66,3 +66,22 @@ in `$t1` (an `s16` stored to the second parameter's home slot, so
 `D_80150B94`, `D_80161378`; calls `func_8008E3C0`, `func_800AFA84`,
 `func_8008D0C0`, `func_800A78BC`, `func_8008C074`, `vector_copy_scale`,
 `func_800AF844`.
+
+## Pass 3
+
+```
+func_800AF8C0   13/113 differ  size 113/113  (was 33/113, size 112)
+save_validate  123/135 differ  size 133/135  (was 128/135, size 131)
+cpak_init      245/265 differ  size 260/265  (unchanged in kind; follows save_validate)
+```
+
+- `func_800AF8C0`: `obj->f8 = *(f32 *) ((u32) &D_8002EB90[0]);` reproduces the ROM's `lui/addiu t7` + `lwc1 0(t7)`
+  (it was the missing instruction; `[0]`, `*ptr` and a pointer local all fold the low half). A named
+  `CarState *st` declared **after** the two vectors (`axle`, `across`) gives the ROM's register assignment
+  (`a3 = wheel|1`, `t0 = wheel&2`, `a2 = st`) without moving the vectors. Left: `p` lands in `$f2` (ROM `$f0`)
+  and the `li 192` is scheduled one slot earlier (13 words).
+- `save_validate`: the scan cursor **is** `obj` (`far = obj = pool_head; while (obj->next) {...; obj = obj->next;}`);
+  with that, `player/wheel/color/slot` get the ROM's `$s3/$s4/$s5/$s6` and the pool address `$s2`. The final
+  `obj` after the display-list test is a second variable (`o2`, `$s7` in the ROM, via `move v0,zero/move v0,s0`).
+  Left: the ROM loads `head->next` twice (guard and preload into `$a1`), ours once; `sra s3` sits in the `jal`
+  delay slot in the ROM.

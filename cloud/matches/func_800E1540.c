@@ -1,3 +1,4 @@
+/* flags: -g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul */
 #define NULL ((void *)0)
 #define TRUE 1
 #define FALSE 0
@@ -3064,7 +3065,7 @@ f32 func_8009C3F8(s32 arg0);
 s32 func_8009D45C(s32 arg0, void *arg1, void *arg2, f32 arg3, s32 arg4);
 void func_8009D708(s32 arg0, void *arg1, void *arg2, f32 arg3, s32 arg4);
 s32 func_8009D99C(s32 arg0, void *arg1, void *arg2, void *arg3, f32 arg4, s32 arg5);
-
+void func_8009E820(void *arg0, void *arg1, void *arg2);
 void func_8009E8B4(void *arg0, void *arg1);
 void func_8009E9D8(void *arg0);
 void func_8009EA68(f32 arg0, void *arg1);
@@ -3294,7 +3295,7 @@ void func_800E05F0(void *arg0);
 void func_800E0B20(void *arg0);
 void func_800E114C(void *arg0);
 void func_800E1500(void **arg0, void *arg1, void *arg2);
-void func_800E1540(void **arg0);
+
 void func_800E15A0(void *arg0);
 void func_800E1AA0(void *arg0);
 void func_800E1C30(void *arg0);
@@ -3696,8 +3697,12 @@ typedef s64 M2C_UNK64;
 
 #endif
 
-void func_8009E820(f32 *arg0, f32 *arg1, f32 *arg2) {
-    arg1[0] = (arg0[0] * arg2[0] + arg0[1] * arg2[3]) + arg0[2] * arg2[6];
-    arg1[1] = (arg0[0] * arg2[1] + arg0[1] * arg2[4]) + arg0[2] * arg2[7];
-    arg1[2] = (arg0[0] * arg2[2] + arg0[1] * arg2[5]) + arg0[2] * arg2[8];
+void func_800E1540(f32 *arg0) {
+    f32 t;
+
+    t = D_80142764 / arg0[0x5BC / 4];
+    arg0[0x28 / 4] = arg0[0x10 / 4] * t;
+    arg0[0x2C / 4] = arg0[0x14 / 4] * t;
+    arg0[0x30 / 4] = arg0[0x18 / 4] * t;
+    func_800E1500(arg0, arg0 + 7, arg0 + 0xD);
 }

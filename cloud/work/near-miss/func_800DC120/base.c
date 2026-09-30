@@ -2187,7 +2187,7 @@ extern s32 D_8012E5EC;
 extern s32 D_8012E608;
 extern s32 D_8012E60C;
 extern s32 D_8012E610;
-extern s32 D_8012E618;
+extern u8 D_8012E618[];
 extern s32 D_8012E638;
 extern s32 D_8012E668;
 extern s16 D_8012E66C;
@@ -3795,34 +3795,32 @@ typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
 s32 func_800DC120(void)
 {
-  s32 var_a0;
-  u32 temp_a3;
-  u32 var_a2;
-  u32 var_v1;
+  u32 i;
+  s32 sum;
+  u32 v;
+  u32 lim;
   if (D_801170F0 == 0)
   {
     return 0;
   }
-  var_v1 = 0;
-  var_a0 = 0;
-  if (D_801170EC != (0 & 0xFFFFu))
+  i = 0;
+  sum = 0;
+  if (D_801170EC != 0)
   {
-    temp_a3 = 1 << D_801170F0;
+    lim = 1 << D_801170F0;
     do
     {
-      var_a2 = (*(((u8 *) (&D_8012E618)) + (var_v1 >> 3))) & (1 << (var_v1 & 7));
-      var_v1 += 1;
-      if (var_a2 >= temp_a3)
+      v = D_8012E618[i >> 3] & (1 << (i & 7));
+      i++;
+      if (v >= lim)
       {
         do
         {
-          var_a2 = var_a2 >> D_801170F0;
-        }
-        while (var_a2 >= temp_a3);
+          v = v >> D_801170F0;
+        } while (v >= lim);
       }
-      var_a0 += var_a2;
-    }
-    while (var_v1 < ((u16) D_801170EC));
+      sum += v;
+    } while (i < D_801170EC);
   }
-  return var_a0;
+  return sum;
 }

@@ -84,7 +84,7 @@ s32 func_8010BC84(s8 *arg0)
         cx = (s16)x;
         state_utility(px, y, str);
         y = (s16)(y + object_bytes_sum_global());
-        if (D_80144030[D_8014A118[i].owner].ready != 0) {
+        if (((s8 *)D_80144030)[D_8014A118[i].owner * 772 + 6] != 0) {
             str = D_8017A4E0.song->f2ac;
         } else {
             str = D_8017A4E0.song->f2a8;

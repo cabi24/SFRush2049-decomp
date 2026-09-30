@@ -3696,14 +3696,12 @@ typedef s64 M2C_UNK64;
 
 #endif
 
-void object_byte71_set_sync(void **arg0, u8 arg1) {
-    void *temp_v0;
-    void *temp_v1;
+void object_byte71_set_sync(u8 ***arg0, s32 arg1) {
+    u8 *p;
 
-    temp_v1 = *M2C_FIELD(*arg0, void ***, 0x2C);
-    if (arg1 != M2C_FIELD(temp_v1, u8 *, 0x47)) {
-        M2C_FIELD(temp_v1, u8 *, 0x47) = arg1;
-        temp_v0 = *arg0;
-        slot_state_lookup(M2C_FIELD(temp_v0, void ***, 8), (u8 *) *M2C_FIELD(temp_v0, void ***, 0x2C) + 0x47, 1);
+    p = *(u8 **) *(u8 ***) ((u8 *) *arg0 + 0x2C);
+    if (arg1 != p[0x47]) {
+        p[0x47] = arg1;
+        slot_state_lookup(*(void ***) ((u8 *) *arg0 + 8), (u32) (*(u8 **) *(u8 ***) ((u8 *) *arg0 + 0x2C) + 0x47), 1);
     }
 }

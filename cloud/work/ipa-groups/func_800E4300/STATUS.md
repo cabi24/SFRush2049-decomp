@@ -68,3 +68,21 @@ cannot substitute for a missing *callee* (its clobber set is unknown).
   (`sp3C..spE4` in the seed's names) before its registers can be compared.
   Its callee `func_800E4B58`/`func_800E398C` cluster (link to
   `func_800E56F8`) is still missing from the unit.
+
+## Pass 3: func_800E451C rewritten by hand
+
+Typed (`D_8014A250_Record` = the 0x808-byte car with `vel`, `pos[3]`, `unk7C6`, `unk7CA`, `unk7E2`;
+`Nav` = the 0x2C-byte per-car path cursor: `a,b,c,d` outputs, `tm`, `pt`, `flag`, `sel`, `tk`; `Track`/`TrackPt`
+from `func_800E4300`). The 50 `temp_*` scalars are gone; locals are `best/bestScore/cx/cz/dir[3]/tm/pp[3]/v[2]/tot`.
+`(f32)(u32)flag` gives the `bgez`/0x4F800000 fix-up; `func_800B9338` next-point calls kept.
+
+```
+func_800E451C  388/397 differ  size 401/397  frame 232 (was 392/397, size 396, frame 256 with real callers)
+```
+
+Frame 232 comes from `volatile s32 padv[12]` declared before `bestScore`. The ROM's locals: spE4 (228)
+`best`, spBC (188) `bestScore`, spB0/spAC (176/172) `cx`/`cz`, sp74..7C `dir[3]`, sp6C `tm`, sp60 `pp[3]`,
+sp38/3C `v[2]`, sp30 `tot`; the ROM also reserves about 35 unused 4-byte slots between them (declaration-order
+holes of the original named locals), so exact slot addresses cannot be reproduced without reproducing that
+declaration list. Not matched: the IPA parameter registers (ROM `car=$s5, nav=$s6`, ours `$s4/$s5`; the ROM
+strength-reduces the track walk into `$s4`, ours does not even with an explicit `Track *tr; tr++`).

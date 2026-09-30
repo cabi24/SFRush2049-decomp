@@ -1,3 +1,4 @@
+/* flags: -g0 -O2 -mips2 -G 0 -non_shared */
 #define NULL ((void *)0)
 #define TRUE 1
 #define FALSE 0
@@ -3064,7 +3065,7 @@ f32 func_8009C3F8(s32 arg0);
 s32 func_8009D45C(s32 arg0, void *arg1, void *arg2, f32 arg3, s32 arg4);
 void func_8009D708(s32 arg0, void *arg1, void *arg2, f32 arg3, s32 arg4);
 s32 func_8009D99C(s32 arg0, void *arg1, void *arg2, void *arg3, f32 arg4, s32 arg5);
-
+void func_8009E820(void *arg0, void *arg1, void *arg2);
 void func_8009E8B4(void *arg0, void *arg1);
 void func_8009E9D8(void *arg0);
 void func_8009EA68(f32 arg0, void *arg1);
@@ -3234,7 +3235,7 @@ void func_800D0424(void *arg0);
 void func_800D0810(void *arg0);
 void func_800D0894(void *arg0);
 void func_800D09E8(void *arg0, void *arg1);
-f32 func_800D0A34(void *arg0);
+
 f32 func_800D0AA0(void *arg0);
 f32 func_800D0B14(void *arg0);
 void func_800D1004(void *arg0);
@@ -3696,8 +3697,16 @@ typedef s64 M2C_UNK64;
 
 #endif
 
-void func_8009E820(f32 *arg0, f32 *arg1, f32 *arg2) {
-    arg1[0] = (arg0[0] * arg2[0] + arg0[1] * arg2[3]) + arg0[2] * arg2[6];
-    arg1[1] = (arg0[0] * arg2[1] + arg0[1] * arg2[4]) + arg0[2] * arg2[7];
-    arg1[2] = (arg0[0] * arg2[2] + arg0[1] * arg2[5]) + arg0[2] * arg2[8];
+f32 func_800D0A34(void *arg0) {
+    f32 var_f2;
+    s8 temp_v0;
+
+    var_f2 = ((f32 (*)[3]) &D_801111E0)[M2C_FIELD(arg0, s8 *, 0xD)][M2C_FIELD(arg0, s8 *, 0xB)];
+    temp_v0 = (&D_8011156C)[M2C_FIELD(arg0, u8 *, 8)];
+    if (temp_v0 == 0) {
+        var_f2 += D_80124148;
+    } else if (temp_v0 == 2) {
+        var_f2 -= D_8012414C;
+    }
+    return var_f2;
 }
