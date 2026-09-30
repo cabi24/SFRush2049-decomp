@@ -2949,6 +2949,787 @@ def fam_stmt_swap(ctx):
 
 
 # --------------------------------------------------------------------------
+# round-3 families (general edit classes found missing on the development half
+# of the corpus; see corpus_data/SPLIT.json and the GAPS text)
+# --------------------------------------------------------------------------
+
+# Target-derived identifier hints: search.py derives, from the target words, the
+# globals (D_xxxxxxxx) and functions (func_xxxxxxxx) whose addresses the target
+# materialises, and registers them here.  Families that need a *name* to insert
+# (call_arg_add) only use names from this set plus the function's parameters.
+HINTS = set()
+
+
+def set_hints(names):
+    HINTS.clear()
+    HINTS.update(names or ())
+
+
+def get_hints():
+    return sorted(HINTS)
+
+
+def _wrap_low(ctx, e):
+    """Source text of e, parenthesised when it binds looser than && / comparison."""
+    t = ctx.src[e.s:e.e]
+    if e.k in ("assign", "ternary", "comma") or (e.k == "bin" and BINPREC.get(e.op, 99) < 9):
+        return "(" + t + ")"
+    return t
+
+
+def _step_of(ctx, st):
+    """('--'|'++', name) when st is `v--`, `v -= 1`, `v++`, `v += 1` (as a statement)."""
+    su = simple_update(ctx, st)
+    if not su:
+        return None
+    name, op, rhs = su
+    if op in ("++", "--"):
+        return op, name
+    if op in ("+=", "-=") and rhs is not None and rhs.k == "num" and rhs.name in ("1", "1U", "1u"):
+        return ("++" if op == "+=" else "--"), name
+    return None
+
+
+def fam_while_fold(ctx):
+    """while (v REL k) { v--; REST }  <->  while (v-- REL' k) { REST }."""
+    if not ctx.ok or not ctx.want("while_fold"):
+        return
+    src = ctx.src
+    for n in ctx.nodes:
+        if n.k != "while":
+            continue
+        body = n.d["body"]
+        ca, cb = n.d["cond"]
+        ce = ctx.expr(ca, cb)
+        if ce is None:
+            continue
+        c = strip_paren(ce)
+        # forward: leading step statement folded into the condition
+        if body.k == "block" and body.ch:
+            stp = _step_of(ctx, body.ch[0])
+            if stp is not None:
+                sgn, v = stp
+                lhs = rel = k = None
+                if c.k == "ident" and c.name == v:
+                    lhs, rel, k = v, None, None
+                elif c.k == "bin" and c.op in ("!=", ">", ">=", "<", "<=", "==") and \
+                        strip_paren(c.ch[0]).k == "ident" and strip_paren(c.ch[0]).name == v and \
+                        strip_paren(c.ch[1]).k in ("num", "ident"):
+                    lhs, rel, k = v, c.op, ctx.text(c.ch[1].a, c.ch[1].b)
+                if lhs is not None and v not in ctx.volatile:
+                    if rel is None:
+                        forms = ["%s%s" % (v, sgn), "%s%s > 0" % (v, sgn)] if sgn == "--" else ["%s%s" % (v, sgn)]
+                    else:
+                        rels = [rel]
+                        if k == "0" and rel == "!=" and sgn == "--":
+                            rels.append(">")
+                        if k == "0" and rel == ">" and sgn == "--":
+                            rels.append("!=")
+                        forms = ["%s%s %s %s" % (v, sgn, r2, k) for r2 in rels]
+                    for fm in forms:
+                        ed = [(ctx.sig[ca].s, ctx.sig[cb - 1].e, fm), ctx.del_stmt_edit(body.ch[0])]
+                        ctx.add("while_fold", ed, 4, "loop",
+                                "fold leading %s%s into the while condition: %s" % (v, sgn, fm),
+                                ("semantic_risk",))
+        # reverse: post-step inside the condition -> explicit leading statement
+        if c.k == "bin" and c.op in CMP_NEG and strip_paren(c.ch[0]).k == "post" and \
+                strip_paren(c.ch[0]).op in ("++", "--") and strip_paren(c.ch[0]).ch[0].k == "ident" and \
+                strip_paren(c.ch[1]).k in ("num", "ident"):
+            pe = strip_paren(c.ch[0])
+            v, sgn = pe.ch[0].name, pe.op
+            k = ctx.text(c.ch[1].a, c.ch[1].b)
+            rels = [c.op]
+            if k == "0" and c.op == ">" and sgn == "--":
+                rels.append("!=")
+            if k == "0" and c.op == "!=" and sgn == "--":
+                rels.append(">")
+            ind = ctx.indent_of(n.s)
+            for r2 in rels:
+                cond = "%s %s %s" % (v, r2, k)
+                if body.k == "block":
+                    ed = [(ctx.sig[ca].s, ctx.sig[cb - 1].e, cond),
+                          (ctx.sig[body.a].e, ctx.sig[body.a].e, "\n%s  %s%s;" % (ind, v, sgn))]
+                else:
+                    ed = [(ctx.sig[ca].s, ctx.sig[cb - 1].e, cond),
+                          (body.s, body.e, "{ %s%s; %s }" % (v, sgn, ctx.ntext(body)))]
+                ctx.add("while_fold", ed, 4, "loop",
+                        "unfold %s%s from the while condition" % (v, sgn), ("semantic_risk",))
+
+
+def fam_cond_merge(ctx):
+    """while (A) { if (B) break; REST }  <->  while (A && !B) { REST }."""
+    if not ctx.ok or not ctx.want("cond_merge"):
+        return
+    for n in ctx.nodes:
+        if n.k != "while":
+            continue
+        body = n.d["body"]
+        ca, cb = n.d["cond"]
+        ce = ctx.expr(ca, cb)
+        if ce is None:
+            continue
+        # forward
+        if body.k == "block" and body.ch and body.ch[0].k == "if" and body.ch[0].d["else"] is None:
+            ifn = body.ch[0]
+            th = ifn.d["then"]
+            if th.k == "break" or (th.k == "block" and len(th.ch) == 1 and th.ch[0].k == "break"):
+                r = _neg(ctx, ifn.d["cond"])
+                be = ctx.expr(*ifn.d["cond"])
+                if r is not None and be is not None:
+                    ntxt, risk = r
+                    bs = strip_paren(be)
+                    if bs.k == "un" and bs.op == "!" and strip_paren(bs.ch[0]).k in ("assign", "ternary", "comma") or \
+                            (bs.k == "un" and bs.op == "!" and strip_paren(bs.ch[0]).k == "bin" and
+                             BINPREC.get(strip_paren(bs.ch[0]).op, 99) < 9):
+                        ntxt = "(" + ntxt + ")"
+                    new = "%s && %s" % (_wrap_low(ctx, ce), ntxt)
+                    ctx.add("cond_merge", [(ctx.sig[ca].s, ctx.sig[cb - 1].e, new), ctx.del_stmt_edit(ifn)], 3,
+                            "branch", "leading `if (B) break;` merged into the while condition",
+                            ("semantic_risk",) if risk else ())
+        # reverse
+        if ce.k == "bin" and ce.op == "&&":
+            parts = _flatten(ce, "&&")
+            if len(parts) >= 2:
+                last = parts[-1]
+                r = _neg(ctx, (last.a, last.b))
+                if r is None:
+                    continue
+                ntxt, risk = r
+                head = ctx.src[parts[0].s:parts[-2].e]
+                ind = ctx.indent_of(n.s)
+                ins = "if (%s) break;" % ntxt
+                if body.k == "block":
+                    ed = [(ctx.sig[ca].s, ctx.sig[cb - 1].e, head),
+                          (ctx.sig[body.a].e, ctx.sig[body.a].e, "\n%s  %s" % (ind, ins))]
+                else:
+                    ed = [(ctx.sig[ca].s, ctx.sig[cb - 1].e, head),
+                          (body.s, body.e, "{ %s %s }" % (ins, ctx.ntext(body)))]
+                ctx.add("cond_merge", ed, 3, "branch", "last && operand of the while condition -> leading break test",
+                        ("semantic_risk",) if risk else ())
+
+
+def _callee_forms(ctx):
+    """{name: 'knr'|'proto'|'none'|'defined'} for every callee of the function."""
+    sig = ctx.sig
+    out = {}
+    for q in range(ctx.f.bo, ctx.f.bc):
+        t = sig[q]
+        if t.k == "id" and sig[q + 1].t == "(" and t.t not in KEYWORDS and t.t not in PURE_CALLS \
+                and not ctx.P.is_type_word(t.t) and not (q > 0 and sig[q - 1].t in (".", "->")):
+            out.setdefault(t.t, "none")
+    for nm in list(out):
+        if nm in ctx.P.funcs and nm != ctx.fn:
+            out[nm] = "defined"
+    for a, b in ctx.P.items:
+        if sig[a].t == "typedef" or sig[b - 2].t != ")":
+            continue
+        lp = ctx.match[b - 2]
+        if lp <= a or sig[lp - 1].k != "id" or sig[lp - 1].t not in out or out[sig[lp - 1].t] == "defined":
+            continue
+        if sig[lp - 2].t == "(":
+            continue
+        inner = ctx.text(lp + 1, b - 2).strip()
+        nm = sig[lp - 1].t
+        if inner == "":
+            out[nm] = "knr"
+        elif inner == "void" and out[nm] != "proto":
+            out[nm] = "void"
+        else:
+            out[nm] = "proto"
+    return out
+
+
+def fam_call_arg(ctx):
+    """Add (from target-derived hints / parameters) or drop the last argument of a call to a
+    callee that is K&R-declared or undeclared."""
+    if not ctx.ok or not ctx.want("call_arg"):
+        return
+    forms = _callee_forms(ctx)
+    body_ids = ctx.idents_in(ctx.f.bo, ctx.f.bc)
+    cands = []
+    for h in get_hints():
+        if not h.startswith("D_") or not re.search(r"\b%s\b" % re.escape(h), ctx.src):
+            continue
+        cands.append((h, 3 if h not in body_ids else 5))
+    for p in ctx.params:
+        cands.append((p, 4))
+    for e, st in ctx.all_exprs():
+        if e is None:
+            continue
+        for x in ewalk(e):
+            if x.k != "call" or x.ch[0].k != "ident":
+                continue
+            nm = x.ch[0].name
+            if forms.get(nm) not in ("knr", "none", "void") or nm in PURE_CALLS:
+                continue
+            args = x.ch[1:]
+            # `T f(void);` -> `T f();` goes along with the added argument (a prototyped-void
+            # callee rejects or ignores an argument)
+            protoed = []
+            if forms.get(nm) == "void":
+                for (pa, pb, pni) in _proto_items(ctx, nm):
+                    plp = ctx.match[pb - 2]
+                    protoed.append((ctx.sig[plp].e, ctx.sig[pb - 2].s, ""))
+            rp = x.b - 1  # sig index of ')'
+            lp = x.ch[0].b
+            if ctx.sig[lp].t != "(":
+                continue
+            if len(args) < 4:
+                for (c, cost) in cands:
+                    if any(a.k == "ident" and a.name == c for a in args):
+                        continue
+                    if args:
+                        ed = [(args[-1].e, args[-1].e, ", " + c)]
+                    else:
+                        ed = [(ctx.sig[rp].s, ctx.sig[rp].s, c)]
+                    ctx.add("call_arg", ed + protoed, cost + (1 if protoed else 0), "callsetup",
+                            "add argument %s to %s()" % (c, nm), ("semantic_risk",))
+            if forms.get(nm) == "void":
+                continue
+            if args and not any(a.k == "raw" for a in args):
+                if len(args) == 1:
+                    ed = [(ctx.sig[lp].e, ctx.sig[rp].s, "")]
+                else:
+                    ed = [(args[-2].e, args[-1].e, "")]
+                ctx.add("call_arg", ed, 4, "callsetup", "drop last argument of %s()" % nm, ("semantic_risk",))
+
+
+def _is_pure(ctx, e):
+    return not ctx.has_sideeffect(e.a, e.b)
+
+
+def fam_cast_simplify(ctx):
+    """Drop a cast, collapse a double cast, retype u8<->s8 / u16<->s16 / u32<->s32 in a cast, and
+    unwrap m2c `if (1) { S }` / `do { S } while (0)` / empty `{ }` artifacts."""
+    if not ctx.ok or not ctx.want("cast_simplify"):
+        return
+    src = ctx.src
+    flip = {"u8": "s8", "s8": "u8", "u16": "s16", "s16": "u16", "u32": "s32", "s32": "u32"}
+    n_casts = 0
+    for e, st in ctx.all_exprs():
+        if e is None:
+            continue
+        for x in ewalk(e):
+            if x.k != "cast":
+                continue
+            n_casts += 1
+            if n_casts > 60:
+                break
+            ty = ctx.text(x.ta, x.tb).strip()
+            inner = x.ch[0]
+            iv = strip_paren(inner)
+            ptrcast = "*" in ty
+            itxt = src[inner.s:inner.e]
+            # 1. collapse (A *)((B *)x)
+            if ptrcast and iv.k == "cast" and "*" in ctx.text(iv.ta, iv.tb):
+                x2 = iv.ch[0]
+                t2 = src[x2.s:x2.e]
+                if not _is_atom_chain(x2):
+                    t2 = "(" + t2 + ")"
+                ctx.add("cast_simplify", [(inner.s, inner.e, t2)], 2, "type",
+                        "collapse double pointer cast (%s)(%s)" % (ty, ctx.text(iv.ta, iv.tb)))
+            # 2. drop the cast
+            if not _is_atom_chain(inner) and x.parent is not None and x.parent.k != "paren":
+                itxt2 = "(" + itxt + ")"
+            else:
+                itxt2 = itxt
+            ctx.add("cast_simplify", [(x.s, x.e, itxt2)], 3, "type", "drop cast (%s)" % ty,
+                    ("semantic_risk",) if not ptrcast else ())
+            # 3. retype signedness of the cast
+            words = ty.split()
+            if words and words[0] in flip and (len(words) == 1 or set(words[1:]) <= {"*"}):
+                nty = " ".join([flip[words[0]]] + words[1:])
+                ctx.add("cast_simplify", [(ctx.sig[x.ta].s, ctx.sig[x.tb - 1].e, nty)], 3, "type",
+                        "cast (%s) -> (%s)" % (ty, nty), ("semantic_risk",))
+    for n in ctx.nodes:
+        if n.k == "if":
+            ce = ctx.expr(*n.d["cond"])
+            if ce is not None and strip_paren(ce).k == "num" and strip_paren(ce).name == "1" and n.d["else"] is None:
+                th = n.d["then"]
+                if th.k == "block":
+                    inner = src[ctx.sig[th.a].e:ctx.sig[th.b - 1].s].strip()
+                    if not any(x.k in ("decl", "label", "case", "default") for x in th.ch):
+                        ctx.add("cast_simplify", [(n.s, n.e, inner)], 1, "spelling", "unwrap if (1) { ... }")
+                else:
+                    ctx.add("cast_simplify", [(n.s, n.e, ctx.ntext(th))], 1, "spelling", "unwrap if (1) S")
+        elif n.k == "block" and not n.ch and n.parent is not None and n.parent.k == "block":
+            ctx.add("cast_simplify", [ctx.del_stmt_edit(n)], 1, "spelling", "drop empty { }")
+        elif n.k == "empty" and n.parent is not None and n.parent.k == "block":
+            ctx.add("cast_simplify", [ctx.del_stmt_edit(n)], 1, "spelling", "drop empty ;")
+        elif n.k == "do":
+            ce = ctx.expr(*n.d["cond"])
+            body = n.d["body"]
+            if ce is not None and strip_paren(ce).k == "num" and strip_paren(ce).name == "0" and body.k == "block" \
+                    and not any(x.k in ("decl", "label", "case", "default", "break", "continue") for x in walk(body)):
+                inner = src[ctx.sig[body.a].e:ctx.sig[body.b - 1].s].strip()
+                ctx.add("cast_simplify", [(n.s, n.e, inner)], 1, "spelling", "unwrap do { ... } while (0)")
+
+
+def _proto_items(ctx, name):
+    """[(a, b, name_idx)] of top-level declarations (not the definition) of function `name`."""
+    sig = ctx.sig
+    out = []
+    for a, b in ctx.P.items:
+        if sig[a].t == "typedef" or sig[b - 2].t != ")":
+            continue
+        lp = ctx.match[b - 2]
+        if lp > a and sig[lp - 1].k == "id" and sig[lp - 1].t == name and sig[lp - 2].t != "(":
+            out.append((a, b, lp - 1))
+    return out
+
+
+def _ret_tokens(ctx, a, ni):
+    """sig indices of the return-type tokens in [a, ni) (no storage class)."""
+    return [q for q in range(a, ni) if ctx.sig[q].t not in STORAGE]
+
+
+def fam_ret_type(ctx):
+    """Change the function's own return type (non-void <-> void), keeping its prototype in sync."""
+    if not ctx.ok or not ctx.want("ret_type"):
+        return
+    sig = ctx.sig
+    f = ctx.f
+    rt = _ret_tokens(ctx, f.a, f.ni)
+    if not rt:
+        return
+    rtext = " ".join(sig[q].t for q in rt)
+    if any(sig[q].k == "op" and sig[q].t != "*" for q in rt):
+        return
+    protos = _proto_items(ctx, ctx.fn)
+    prot_edits = []
+    for (a, b, ni) in protos:
+        pr = _ret_tokens(ctx, a, ni)
+        if not pr or " ".join(sig[q].t for q in pr) != rtext:
+            return  # prototype disagrees with the definition: not touched
+        prot_edits.append((pr[0], pr[-1], ni))
+
+    def retype(new):
+        # `char *name` -> `void name`: keep a separator when the old type touched the name
+        ed = [(sig[rt[0]].s, sig[rt[-1]].e, new + (" " if sig[rt[-1]].e == sig[f.ni].s else ""))]
+        for (p0, p1, pn) in prot_edits:
+            ed.append((sig[p0].s, sig[p1].e, new + (" " if sig[p1].e == sig[pn].s else "")))
+        return ed
+    rets = [n for n in ctx.nodes if n.k == "return"]
+    if rtext != "void":
+        # -> void: returns lose their value
+        ed = retype("void")
+        ok = True
+        for r in rets:
+            a, b = r.d["r"]
+            if b <= a:
+                continue
+            e = ctx.expr(a, b)
+            if e is None:
+                ok = False
+                break
+            if _is_pure(ctx, e):
+                ed.append((r.s, r.e, "return;"))
+            else:
+                ed.append((r.s, r.e, "{ %s; return; }" % ctx.text(a, b)))
+        if ok:
+            ctx.add("ret_type", ed, 4, "type", "return type %s -> void" % rtext, ("semantic_risk",))
+        if rtext not in ("int", "s32"):
+            ctx.add("ret_type", retype(ctx.spell("s32")), 4, "type", "return type %s -> s32" % rtext,
+                    ("semantic_risk",))
+    else:
+        if all(ctx.text(*r.d["r"]).strip() == "" for r in rets):
+            ctx.add("ret_type", retype(ctx.spell("s32")), 5, "type", "return type void -> s32",
+                    ("semantic_risk",))
+
+
+def fam_proto_form(ctx):
+    """Callee declarations: drop the prototype (implicit declaration), and change a prototype's
+    integer parameter types (s32 <-> s16/u8/...) or void/int return type."""
+    if not ctx.ok or not ctx.want("proto_form"):
+        return
+    sig = ctx.sig
+    forms = _callee_forms(ctx)
+    narrow = {"s32": ("s16", "u8"), "int": ("s16", "u8"), "s16": ("s32",), "u8": ("s32",), "s8": ("s32",),
+              "u16": ("s32",), "u32": ("s32",)}
+    for nm, form in forms.items():
+        if form not in ("proto", "knr", "void"):
+            continue
+        for (a, b, ni) in _proto_items(ctx, nm):
+            if sig[a].t == "extern" or True:
+                ctx.add("proto_form", [(sig[a].s, sig[b - 1].e, "")], 3, "callsetup",
+                        "drop the declaration of %s" % nm, ("semantic_risk",))
+            lp = ctx.match[b - 2]
+            # return type void <-> s32 when every call statement ignores the result
+            pr = _ret_tokens(ctx, a, ni)
+            if pr and len(pr) == 1 and sig[pr[0]].t in ("void", "s32", "int", "M2C_UNK"):
+                cur = sig[pr[0]].t
+                used = False
+                for e, st in ctx.all_exprs():
+                    if e is None:
+                        continue
+                    for x in ewalk(e):
+                        if x.k == "call" and x.ch[0].k == "ident" and x.ch[0].name == nm \
+                                and not (x is e and st.k == "expr"):
+                            used = True
+                if not used:
+                    for alt in ("void", ctx.spell("s32")):
+                        if alt != cur and not (cur == "int" and alt == ctx.spell("s32")):
+                            ctx.add("proto_form", [(sig[pr[0]].s, sig[pr[0]].e, alt)], 3, "callsetup",
+                                    "declared return type of %s: %s -> %s" % (nm, cur, alt))
+            if form != "proto":
+                continue
+            # integer parameter types
+            j = lp + 1
+            segs, s = [], lp + 1
+            q = lp + 1
+            end = b - 2
+            while q < end:
+                if sig[q].k == "op" and sig[q].t in ("(", "[", "{"):
+                    q = ctx.match[q] + 1
+                    continue
+                if sig[q].t == "," and sig[q].k == "op":
+                    segs.append((s, q))
+                    s = q + 1
+                q += 1
+            segs.append((s, end))
+            if nm in ctx.P.funcs:
+                continue
+            for (sa, sb) in segs:
+                toks_ = [q for q in range(sa, sb)]
+                if len(toks_) >= 1 and all(sig[q].k in ("id",) for q in toks_) and len(toks_) <= 2:
+                    ty = sig[toks_[0]]
+                    if ty.t in narrow and (len(toks_) == 1 or sig[toks_[1]].k == "id"):
+                        for alt in narrow[ty.t]:
+                            ctx.add("proto_form", [(ty.s, ty.e, alt)], 3, "callsetup",
+                                    "declared parameter type in %s: %s -> %s" % (nm, ty.t, alt),
+                                    ("semantic_risk",))
+
+
+def fam_hoist_local(ctx):
+    """Introduce a new named local for a float literal that occurs at least twice."""
+    if not ctx.ok or not ctx.want("hoist_local"):
+        return
+    sig = ctx.sig
+    f = ctx.f
+    lits = {}
+    for q in range(f.bo + 1, f.bc):
+        t = sig[q]
+        if t.k == "num" and re.match(r"^(\d+\.\d*|\.\d+)([eE][+-]?\d+)?[fF]?$", t.t) and sig[q - 1].t != "[":
+            lits.setdefault(t.t, []).append(q)
+    # insertion point: before the first statement (after the declarations)
+    first = None
+    for ch in ctx.body.ch:
+        if ch.k != "decl":
+            first = ch
+            break
+    if first is None or len(ctx.body.ch) == 0:
+        return
+    for lit, qs in lits.items():
+        if len(qs) < 2:
+            continue
+        isf = lit.lower().endswith("f")
+        ty = ctx.spell("f32") if isf else "double"
+        nm = ctx.fresh("fl" if isf else "dbl")
+        # declaration after the last leading declaration
+        last_decl = None
+        for ch in ctx.body.ch:
+            if ch.k == "decl":
+                last_decl = ch
+            else:
+                break
+        ind = ctx.indent_of(first.s)
+        if last_decl is not None:
+            ins = (last_decl.e, last_decl.e, "\n%s%s %s = %s;" % (ind, ty, nm, lit))
+        else:
+            ins = (sig[f.bo].e, sig[f.bo].e, "\n%s%s %s = %s;" % (ind, ty, nm, lit))
+        ed = [ins] + [(sig[q].s, sig[q].e, nm) for q in qs]
+        ctx.add("hoist_local", ed, 4, "frame", "hoist repeated literal %s into local %s" % (lit, nm),
+                ("semantic_risk",))
+
+
+def fam_compound_assign(ctx):
+    """x = x OP e  <->  x OP= e  for the operators incr_form does not cover, plus
+    chained assignment  `b = e; a = b;`  <->  `a = b = e;`."""
+    if not ctx.ok or not ctx.want("compound_assign"):
+        return
+    ops = {"*", "/", "%", "&", "|", "^", "<<", ">>"}
+    for n in ctx.nodes:
+        if n.k != "expr":
+            continue
+        a, b = n.d["r"]
+        e = ctx.expr(a, b)
+        if e is None or e.k != "assign":
+            continue
+        lhs = strip_paren(e.ch[0])
+        if lhs.k != "ident":
+            continue
+        rng = (ctx.sig[a].s, ctx.sig[b - 1].e)
+        nm = lhs.name
+        if e.op == "=" and e.ch[1].k == "bin" and e.ch[1].op in ops and e.ch[1].ch[0].k == "ident" \
+                and e.ch[1].ch[0].name == nm and nm not in ctx.volatile:
+            r = e.ch[1].ch[1]
+            rt = ctx.src[r.s:r.e]
+            if not _is_atom_chain(r):
+                rt = "(" + rt + ")"
+            ctx.add("compound_assign", [(rng[0], rng[1], "%s %s= %s" % (nm, e.ch[1].op, rt))], 1, "spelling",
+                    "%s = %s %s ..  ->  %s %s= .." % (nm, nm, e.ch[1].op, nm, e.ch[1].op))
+        elif e.op[:-1] in ops and e.op.endswith("=") and e.op not in ("==", "!=", "<=", ">=") and nm not in ctx.volatile:
+            r = e.ch[1]
+            rt = ctx.src[r.s:r.e]
+            if not _is_atom_chain(r):
+                rt = "(" + rt + ")"
+            ctx.add("compound_assign", [(rng[0], rng[1], "%s = %s %s %s" % (nm, nm, e.op[:-1], rt))], 1,
+                    "spelling", "%s %s .. -> %s = %s %s .." % (nm, e.op, nm, nm, e.op[:-1]))
+    # chained assignment
+    for n in ctx.nodes:
+        if n.k != "block":
+            continue
+        for i in range(len(n.ch) - 1):
+            s1, s2 = n.ch[i], n.ch[i + 1]
+            if s1.k != "expr" or s2.k != "expr":
+                continue
+            e1 = ctx.expr(*s1.d["r"])
+            e2 = ctx.expr(*s2.d["r"])
+            if e1 is None or e2 is None or e1.k != "assign" or e2.k != "assign" or e1.op != "=" or e2.op != "=":
+                continue
+            if e1.ch[0].k == "ident" and e2.ch[1].k == "ident" and e2.ch[1].name == e1.ch[0].name \
+                    and e2.ch[0].k == "ident" and e1.ch[0].name not in ctx.volatile \
+                    and e2.ch[0].name not in ctx.volatile and e2.ch[0].name != e1.ch[0].name:
+                r = ctx.src[e1.ch[1].s:e1.ch[1].e]
+                txt = "%s = %s = %s;" % (e2.ch[0].name, e1.ch[0].name, r)
+                ctx.add("compound_assign", [(s1.s, s2.e, txt)], 2, "spelling",
+                        "merge into chained assignment %s = %s = .." % (e2.ch[0].name, e1.ch[0].name))
+            # reverse: a = b = e  ->  b = e; a = b;
+    for n in ctx.nodes:
+        if n.k != "expr":
+            continue
+        e = ctx.expr(*n.d["r"])
+        if e is not None and e.k == "assign" and e.op == "=" and e.ch[0].k == "ident" and e.ch[1].k == "assign" \
+                and e.ch[1].op == "=" and e.ch[1].ch[0].k == "ident":
+            inner = e.ch[1]
+            ind = ctx.indent_of(n.s)
+            txt = "%s = %s;\n%s%s = %s;" % (inner.ch[0].name, ctx.src[inner.ch[1].s:inner.ch[1].e], ind,
+                                            e.ch[0].name, inner.ch[0].name)
+            ctx.add("compound_assign", [(n.s, n.e, txt)], 2, "spelling", "split chained assignment")
+
+
+def fam_deref_index(ctx):
+    """*(p + k) <-> p[k] and *p <-> p[0] for pointer/array names."""
+    if not ctx.ok or not ctx.want("deref_index"):
+        return
+    names = set()
+    for nm, (info, dc) in ctx.params.items():
+        if dc["stars"] or dc["dims"]:
+            names.add(nm)
+    for nm, (n, info, dc) in ctx.locals.items():
+        if dc["stars"] or dc["dims"]:
+            names.add(nm)
+    cnt = 0
+    for e, st in ctx.all_exprs():
+        if e is None:
+            continue
+        for x in ewalk(e):
+            cnt += 1
+            if cnt > 400:
+                return
+            if x.k == "un" and x.op == "*":
+                op = strip_paren(x.ch[0])
+                if op.k == "ident" and op.name in names:
+                    ctx.add("deref_index", [(x.s, x.e, "%s[0]" % op.name)], 3, "addr", "*%s -> %s[0]" % (op.name, op.name))
+                elif op.k == "bin" and op.op == "+" and op.ch[0].k == "ident" and op.ch[0].name in names \
+                        and op.ch[0].name not in ctx.volatile:
+                    k = op.ch[1]
+                    ctx.add("deref_index", [(x.s, x.e, "%s[%s]" % (op.ch[0].name, ctx.src[k.s:k.e]))], 3, "addr",
+                            "*(%s + k) -> %s[k]" % (op.ch[0].name, op.ch[0].name))
+            elif x.k == "idx" and x.ch[0].k == "ident" and x.ch[0].name in names:
+                p = x.ch[0].name
+                k = x.ch[1]
+                if k.k == "num" and k.name == "0":
+                    ctx.add("deref_index", [(x.s, x.e, "*%s" % p)], 3, "addr", "%s[0] -> *%s" % (p, p))
+                else:
+                    kt = ctx.src[k.s:k.e]
+                    ctx.add("deref_index", [(x.s, x.e, "*(%s + %s)" % (p, kt if _is_atom_chain(k) else "(" + kt + ")"))],
+                            3, "addr", "%s[k] -> *(%s + k)" % (p, p))
+
+
+def fam_dead_purge(ctx):
+    """Delete a local that is only ever written (declaration, initialiser and `x = e;` statements),
+    together with locals read only by those statements: the m2c `new_var` / pad-temporary artifacts."""
+    if not ctx.ok or not ctx.want("dead_purge"):
+        return
+    sig = ctx.sig
+    locs = {nm: v for nm, v in ctx.locals.items() if not v[2]["dims"]}
+    if not locs:
+        return
+    # every occurrence of each local identifier, classified by the statement that owns it
+    occ = {nm: [] for nm in locs}
+    for q in range(ctx.f.bo + 1, ctx.f.bc):
+        t = sig[q]
+        if t.k == "id" and t.t in occ and not (q > 0 and sig[q - 1].t in (".", "->") and sig[q - 1].k == "op"):
+            occ[t.t].append(q)
+    stmts = []          # (node, kind, lhs_name, rhs_range) for purge-able statements
+    for n in ctx.nodes:
+        if n.k == "expr":
+            e = ctx.expr(*n.d["r"])
+            if e is not None and e.k == "assign" and e.op == "=" and e.ch[0].k == "ident" and e.ch[0].name in locs:
+                stmts.append((n, e.ch[0].name, e.ch[1]))
+    seen_sets = set()
+    found = []
+    by_first = {n.d["r"][0]: (n, lhs, rhs) for (n, lhs, rhs) in stmts}
+
+    def in_dels(q, dels):
+        return any(n.a <= q < n.b for n in dels.values())
+
+    for seed in sorted(locs):
+        D = {seed}
+        dels = {}
+        ok = True
+        work = [seed]
+        cand = set()
+        while work and ok:
+            nm = work.pop()
+            dn, info, dc = locs[nm]
+            if nm in ctx.params or len(info["decls"]) != 1 or dc["complex"] or dc["stars"] > 1:
+                ok = False
+                break
+            if dc["init"]:
+                if ctx.has_call(*dc["init"]):
+                    ok = False
+                    break
+                cand |= {x for x in ctx.idents_in(*dc["init"]) if x in locs}
+            for q in occ[nm]:
+                hit = by_first.get(q)
+                if hit is not None and hit[1] == nm:
+                    n, lhs, rhs = hit
+                    if ctx.has_call(rhs.a, rhs.b):
+                        ok = False
+                        break
+                    dels[n.s] = n
+                    cand |= {x for x in ctx.idents_in(rhs.a, rhs.b) if x in locs}
+            if not ok:
+                break
+            # locals that would become write-only join the purge set
+            for y in sorted(cand - D):
+                ydc = locs[y][2]
+                if all(ydc["nm"] == q or in_dels(q, dels) or (by_first.get(q) and by_first[q][1] == y)
+                       or (ydc["init"] and False) for q in occ[y]):
+                    D.add(y)
+                    work.append(y)
+                    if len(D) > 4:
+                        ok = False
+                        break
+        if ok:
+            # every occurrence must be a declaration, a deleted statement or a declaration initialiser
+            for nm in D:
+                dn, info, dc = locs[nm]
+                for q in occ[nm]:
+                    if dc["nm"] == q:
+                        continue
+                    if in_dels(q, dels):
+                        continue
+                    if any(locs[x][2]["init"] and locs[x][2]["init"][0] <= q < locs[x][2]["init"][1] for x in D):
+                        continue
+                    ok = False
+                    break
+                if not ok:
+                    break
+        if not ok or frozenset(D) in seen_sets or len(D) > 4:
+            continue
+        seen_sets.add(frozenset(D))
+        edits = [ctx.del_stmt_edit(n) for n in dels.values()]
+        for nm in D:
+            edits.append(ctx.del_stmt_edit(locs[nm][0]))
+        risk = any(nm in ctx.volatile for nm in D)
+        found.append((set(D), edits, risk))
+        ctx.add("dead_purge", edits, 3, "frame", "purge write-only local(s) %s" % ",".join(sorted(D)),
+                ("semantic_risk",) if risk else ())
+    # all disjoint purgeable sets at once: stack-frame size only changes when every pad is gone
+    if len(found) >= 2:
+        names, edits, risk, seen_e = set(), [], False, set()
+        for (D, eds, rk) in found:
+            if names & D:
+                continue
+            names |= D
+            risk = risk or rk
+            for e_ in eds:
+                if e_ not in seen_e:
+                    seen_e.add(e_)
+                    edits.append(e_)
+        if len(names) > 1 and not any(frozenset(names) == x for x in seen_sets):
+            ctx.add("dead_purge", edits, 4, "frame", "purge every write-only local: %s" % ",".join(sorted(names)),
+                    ("semantic_risk",) if risk else ())
+
+
+SCALAR_WORDS = {"s8", "u8", "s16", "u16", "s32", "u32", "f32", "f64", "int", "char", "short", "long",
+                "unsigned", "signed", "float", "double"}
+
+
+def fam_view_cast(ctx):
+    """Re-type the base of an index expression: `a[k]` -> `((T *) a)[k]` for the pointer cast types that
+    already occur in the function (typed-array view of a struct member / extern)."""
+    if not ctx.ok or not ctx.want("view_cast"):
+        return
+    tys = []
+    for e, st in ctx.all_exprs():
+        if e is None:
+            continue
+        for x in ewalk(e):
+            if x.k == "cast":
+                t = " ".join(ctx.text(x.ta, x.tb).split())
+                m = re.match(r"^(\w+(?: \w+)?) \*$", t)
+                if m and t not in tys and set(t.split()[:-1]) <= SCALAR_WORDS:
+                    tys.append(t)
+    if not tys:
+        return
+    cnt = 0
+    for e, st in ctx.all_exprs():
+        if e is None:
+            continue
+        for x in ewalk(e):
+            if x.k != "idx":
+                continue
+            base = x.ch[0]
+            if base.k == "cast" or (base.k == "paren" and strip_paren(base).k == "cast") or base.k not in ("mem", "ident"):
+                continue
+            if base.k == "ident" and base.name in ctx.volatile:
+                continue
+            cnt += 1
+            if cnt > 30:
+                return
+            bt = ctx.src[base.s:base.e]
+            for t in tys:
+                ctx.add("view_cast", [(base.s, base.e, "((%s) %s)" % (t, bt))], 4, "addr",
+                        "index base viewed as (%s)" % t, ("semantic_risk",))
+
+
+def fam_param_unused(ctx):
+    """Remove a parameter the body never reads, or add one trailing unused s32 parameter."""
+    if not ctx.ok or not ctx.want("param_unused"):
+        return
+    plist = getattr(ctx, "plist", None)
+    sig = ctx.sig
+    used = ctx.idents_in(ctx.f.bo, ctx.f.bc)
+    if plist:
+        for i, (sa, sb, info, dc) in enumerate(plist):
+            if dc["name"] in used:
+                continue
+            if len(plist) == 1:
+                ed = [(sig[sa].s, sig[sb - 1].e, "void")]
+            elif i == len(plist) - 1:
+                ed = [(sig[plist[i - 1][1] - 1].e, sig[sb - 1].e, "")]
+            else:
+                ed = [(sig[sa].s, sig[plist[i + 1][0]].s, "")]
+            ctx.add("param_unused", ed, 4, "frame", "remove unused parameter %s" % dc["name"], ("semantic_risk",))
+    if plist is not None and len(plist) < 4:
+        nm = ctx.fresh("unused")
+        t = ctx.spell("s32")
+        if plist:
+            ed = [(sig[plist[-1][1] - 1].e, sig[plist[-1][1] - 1].e, ", %s %s" % (t, nm))]
+        elif ctx.f.rp - ctx.f.lp == 2 and sig[ctx.f.lp + 1].t == "void":
+            ed = [(sig[ctx.f.lp + 1].s, sig[ctx.f.lp + 1].e, "%s %s" % (t, nm))]
+        elif ctx.f.rp - ctx.f.lp == 1:
+            ed = [(sig[ctx.f.rp].s, sig[ctx.f.rp].s, "%s %s" % (t, nm))]
+        else:
+            return
+        ctx.add("param_unused", ed, 5, "frame", "add unused trailing parameter %s" % nm, ("semantic_risk",))
+
+
+# --------------------------------------------------------------------------
 # catalog registry and API
 # --------------------------------------------------------------------------
 
@@ -2979,6 +3760,18 @@ CATALOG = {
     "ifelse_swap": (fam_ifelse_swap, "branch", "swap if/else, negate condition"),
     "switch_perm": (fam_switch_perm, "order", "permute switch case groups"),
     "stmt_swap": (fam_stmt_swap, "order", "swap adjacent independent statements"),
+    "while_fold": (fam_while_fold, "loop", "while (v REL k) { v--; .. } <-> while (v-- REL k) { .. }"),
+    "cond_merge": (fam_cond_merge, "branch", "while (A) { if (B) break; .. } <-> while (A && !B) { .. }"),
+    "call_arg": (fam_call_arg, "callsetup", "add (target-hinted) / drop the last argument of a K&R callee call"),
+    "cast_simplify": (fam_cast_simplify, "type", "drop/collapse/retype casts; unwrap if (1), do-while (0), empty blocks"),
+    "ret_type": (fam_ret_type, "type", "own return type non-void <-> void (prototype kept in sync)"),
+    "proto_form": (fam_proto_form, "callsetup", "callee declaration: drop, return void/s32, param types"),
+    "hoist_local": (fam_hoist_local, "frame", "new named local for a repeated float literal"),
+    "compound_assign": (fam_compound_assign, "spelling", "x = x OP e <-> x OP= e; a = b = e <-> b = e; a = b"),
+    "deref_index": (fam_deref_index, "addr", "*(p + k) <-> p[k], *p <-> p[0]"),
+    "param_unused": (fam_param_unused, "frame", "remove unused parameter / add an unused trailing parameter"),
+    "view_cast": (fam_view_cast, "addr", "a[k] -> ((T *) a)[k] with a cast type already used in the function"),
+    "dead_purge": (fam_dead_purge, "frame", "delete write-only locals and the statements that feed only them"),
 }
 
 # families implemented by a shared generator (run once)
@@ -3003,6 +3796,18 @@ _GENERATORS = [
     (("ifelse_swap",), fam_ifelse_swap),
     (("switch_perm",), fam_switch_perm),
     (("stmt_swap",), fam_stmt_swap),
+    (("while_fold",), fam_while_fold),
+    (("cond_merge",), fam_cond_merge),
+    (("call_arg",), fam_call_arg),
+    (("cast_simplify",), fam_cast_simplify),
+    (("ret_type",), fam_ret_type),
+    (("proto_form",), fam_proto_form),
+    (("hoist_local",), fam_hoist_local),
+    (("compound_assign",), fam_compound_assign),
+    (("deref_index",), fam_deref_index),
+    (("param_unused",), fam_param_unused),
+    (("dead_purge",), fam_dead_purge),
+    (("view_cast",), fam_view_cast),
 ]
 
 

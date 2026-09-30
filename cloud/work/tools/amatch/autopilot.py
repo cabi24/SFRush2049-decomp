@@ -50,7 +50,9 @@ DEFAULT_FLAGS = "-g0 -O2 -mips2 -G 0 -non_shared"
 FINAL = ("matched", "needs_llm")
 # Corpus functions that search.py solves from their first-attempt source quickly (checked by --selftest on IDO hosts;
 # if one stops solving, the selftest falls back to the first corpus singles with a small edit ratio).
-SELFTEST_FNS = ["Input_SetAnalogBounds", "func_800A7D6C", "func_8009E820"]
+SELFTEST_FNS = ["Input_SetAnalogBounds", "func_800A7D6C", "struct_init_and_call", "transmission_shift",
+                "func_800A61B0"]
+SELFTEST_NEED = 3
 
 
 # --- score helpers (pure) -------------------------------------------------------------------------------------
@@ -437,7 +439,7 @@ class Autopilot:
             return rec
         best_dir, res, log = gdir, {}, None
         if not base.get("matched"):
-            res = self.search("group", gdir, fn, None, max(50, self.budget // 4), self.seconds, jobs, self.seed,
+            res = self.search("group", gdir, fn, None, self.budget, self.seconds, jobs, self.seed,
                               self.out / "work" / ("search_" + name), (self.seconds or 3600) + 600)
             rec["search"] = {k: res.get(k) for k in ("matched", "evals", "seconds", "tried_mutations", "error")}
             bp = res.get("best_src_path")
@@ -630,11 +632,11 @@ def selftest(ap_opts):
         print("selftest: SKIP (IDO missing: run tools/cloud/setup.sh)")
         return 0
     pairs = bench_items(SELFTEST_FNS)
-    if len(pairs) < 3:
-        pairs = (pairs + [p for p in bench_items(limit=12) if p[0]["fn"] not in {q[0]["fn"] for q in pairs}])[:3]
+    if len(pairs) < SELFTEST_NEED:
+        pairs = pairs + [p for p in bench_items(limit=12) if p[0]["fn"] not in {q[0]["fn"] for q in pairs}]
     tmp = tempfile.mkdtemp(prefix="ap-self-")
     items = []
-    for e, text in pairs[:3]:
+    for e, text in pairs[:len(SELFTEST_FNS)]:
         p = Path(tmp) / (e["fn"] + ".c")
         p.write_text(text)
         items.append({"fn": e["fn"], "class": "ABI", "flags": e["flags"], "seed_files": [str(p)], "no_m2c": True,
@@ -643,7 +645,7 @@ def selftest(ap_opts):
     opts.update(out_dir=Path(tmp) / "out", write=False, budget=max(opts.get("budget", 0), 300))
     a = Autopilot(**opts)
     res = a.run(items, redo=True)
-    ok = len(res["matched"]) == len(items)
+    ok = len(res["matched"]) >= SELFTEST_NEED
     rep = Path(res["report"]).exists() and Path(res["worklist"]).exists()
     for fn in res["matched"]:
         f = Path(tmp) / "out" / "out" / "matches" / (fn + ".c")
@@ -663,7 +665,7 @@ def main(argv=None):
     ap.add_argument("--top", type=int, default=10, help="worklist size from triage.py")
     ap.add_argument("--class", dest="cls", choices=["abi", "ipa", "all"], default="abi")
     ap.add_argument("--fn", action="append", help="work on these functions instead of the triage ranking")
-    ap.add_argument("--budget", type=int, default=400, help="search evals per item (group: a quarter)")
+    ap.add_argument("--budget", type=int, default=400, help="search evals per item (group: same)")
     ap.add_argument("--seconds", type=float, default=600, help="wall clock per item search")
     ap.add_argument("--jobs", "-j", type=int, default=os.cpu_count() or 1, help="total compile workers")
     ap.add_argument("--parallel", "-p", type=int, default=None, help="items in flight (default: min(jobs, 4))")

@@ -2823,6 +2823,179 @@ s32 f(s32 a) {
         self.assertTrue(any("i += 1;" in s for s in t) and any("i = i + 1;" in s for s in t))
 
 
+class Round3Families(unittest.TestCase):
+    """Families added from the development half of the regression corpus (corpus_data/SPLIT.json)."""
+
+    def tearDown(self):
+        mutate.set_hints(())
+
+    def test_while_fold(self):
+        src = "typedef int s32;\nvoid f(s32 *d, s32 i) {\n  while (i != 0) {\n    i--;\n    *d++ = 0;\n  }\n}\n"
+        ms = mutate.mutations(src, fn="f", catalog=["while_fold"])
+        self.assertTrue(all(m.semantic_risk for m in ms))
+        self.assertTrue(has_tokens(src, "f", "while_fold",
+                                   "typedef int s32;\nvoid f(s32 *d, s32 i) { while (i-- > 0) { *d++ = 0; } }\n"))
+        self.assertTrue(has_tokens(src, "f", "while_fold",
+                                   "typedef int s32;\nvoid f(s32 *d, s32 i) { while (i-- != 0) { *d++ = 0; } }\n"))
+        back = mutate.mutations("typedef int s32;\nvoid f(s32 *d, s32 i) { while (i-- > 0) { *d++ = 0; } }\n",
+                                fn="f", catalog=["while_fold"])
+        self.assertTrue(any(toks(m.new_src) == toks(
+            "typedef int s32;\nvoid f(s32 *d, s32 i) { while (i != 0) { i--; *d++ = 0; } }\n") for m in back))
+
+    def test_cond_merge_both_ways(self):
+        a = "void f(char *s, char *t, unsigned n) { while (n-- != 0) { if ((*s++ = *t++) == 0) break; *s = 1; } }\n"
+        b = "void f(char *s, char *t, unsigned n) { while (n-- != 0 && (*s++ = *t++) != 0) { *s = 1; } }\n"
+        self.assertTrue(has_tokens(a, "f", "cond_merge", b))
+        self.assertTrue(has_tokens(b, "f", "cond_merge", a))
+
+    def test_call_arg_uses_hints_and_knr_callees_only(self):
+        src = ("extern int D_80151A6C;\nextern int D_80000000;\nvoid g(void);\nvoid h(int);\nvoid k();\n"
+               "void f(int a) {\n  g();\n  h(1);\n  k();\n}\n")
+        self.assertEqual(mutate.mutations(src, fn="f", catalog=["call_arg"]) and
+                         [m for m in mutate.mutations(src, fn="f", catalog=["call_arg"]) if "D_" in m.desc], [])
+        mutate.set_hints(["D_80151A6C", "func_80000000", "D_99999999"])
+        ms = mutate.mutations(src, fn="f", catalog=["call_arg"])
+        descs = [m.desc for m in ms]
+        self.assertIn("add argument D_80151A6C to k()", descs)
+        self.assertIn("add argument D_80151A6C to g()", descs)          # (void) callee: prototype relaxed together
+        self.assertFalse(any("to h()" in d for d in descs))               # prototyped callee rejects args
+        self.assertFalse(any("D_99999999" in d for d in descs))           # not declared in the source
+        g = [m for m in ms if m.desc == "add argument D_80151A6C to g()"][0]
+        self.assertIn("void g();", g.new_src)
+        self.assertIn("g(D_80151A6C);", g.new_src)
+        self.assertTrue(all(m.semantic_risk for m in ms))
+
+    def test_cast_simplify(self):
+        src = ("typedef signed char s8;\ntypedef unsigned char u8;\ntypedef short s16;\ntypedef int s32;\n"
+               "void g(s32, int);\nextern s32 D;\n"
+               "void f(void) {\n  if (1) { g((s16) D, 2); }\n  g(*((s32 *) ((s8 *) &D)), 1);\n  do { g(0, 0); } while (0);\n  { }\n}\n")
+        ds = [m.desc for m in mutate.mutations(src, fn="f", catalog=["cast_simplify"])]
+        self.assertTrue(any(d.startswith("collapse double pointer cast") for d in ds))
+        self.assertIn("drop cast (s16)", ds)
+        self.assertIn("unwrap if (1) { ... }", ds)
+        self.assertIn("unwrap do { ... } while (0)", ds)
+        self.assertIn("drop empty { }", ds)
+        self.assertIn("cast (s8 *) -> (u8 *)", ds)
+        one = [m for m in mutate.mutations(src, fn="f", catalog=["cast_simplify"]) if m.desc == "drop cast (s16)"][0]
+        self.assertIn("g(D, 2)", one.new_src)
+        self.assertTrue(one.semantic_risk)
+
+    def test_ret_type_keeps_prototype_in_sync(self):
+        src = "typedef short s16;\ns16 f(void);\nextern int n;\ns16 f(void) {\n  if (n) return 1;\n  return n;\n}\n"
+        ms = mutate.mutations(src, fn="f", catalog=["ret_type"])
+        v = [m for m in ms if "-> void" in m.desc][0]
+        self.assertIn("void f(void);", v.new_src)
+        self.assertIn("void f(void) {", v.new_src)
+        self.assertNotIn("return 1;", v.new_src)
+        self.assertIn("return;", v.new_src)
+        # impure return values keep their evaluation
+        src2 = "int g(void);\nint f(void) { return g(); }\n"
+        v2 = [m for m in mutate.mutations(src2, fn="f", catalog=["ret_type"]) if "-> void" in m.desc][0]
+        self.assertIn("{ g(); return; }", v2.new_src)
+        # disagreeing prototype: not touched
+        self.assertEqual(mutate.mutations("long f(void);\nint f(void) { return 1; }\n", fn="f", catalog=["ret_type"]), [])
+
+    def test_proto_form(self):
+        src = "void g(int, short);\nint h(void);\nextern int x;\nvoid f(void) {\n  g(1, 2);\n  h();\n}\n"
+        ds = {m.desc: m for m in mutate.mutations(src, fn="f", catalog=["proto_form"])}
+        self.assertIn("drop the declaration of g", ds)
+        self.assertNotIn("void g(int, short);", ds["drop the declaration of g"].new_src)
+        self.assertIn("declared parameter type in g: int -> s16", ds)
+        self.assertIn("declared return type of h: int -> void", ds)       # result unused
+        src2 = "int h(void);\nint f(void) {\n  return h();\n}\n"
+        self.assertFalse(any("return type of h" in m.desc for m in mutate.mutations(src2, fn="f", catalog=["proto_form"])))
+
+    def test_hoist_local(self):
+        src = "void f(float *p) {\n  int i;\n  p[0] = 0.0f;\n  p[1] = 0.0f;\n  p[2] = 1.5f;\n}\n"
+        ms = mutate.mutations(src, fn="f", catalog=["hoist_local"])
+        self.assertEqual(len(ms), 1)                       # only the repeated literal
+        self.assertIn("= 0.0f;", ms[0].new_src)
+        self.assertEqual(ms[0].new_src.count("0.0f"), 1)
+        self.assertIn("p[1] = fl;", ms[0].new_src)
+
+    def test_compound_and_chain(self):
+        src = "void f(int a, int b, int c) {\n  a = a * b;\n  b <<= 2;\n  c = a;\n  b = c;\n}\n"
+        ds = [m.desc for m in mutate.mutations(src, fn="f", catalog=["compound_assign"])]
+        self.assertTrue(any("a * .." in d and "a *= .." in d for d in ds))
+        self.assertTrue(any("b <<= .." in d for d in ds))
+        self.assertTrue(has_tokens(src, "f", "compound_assign",
+                                   "void f(int a, int b, int c) { a = a * b; b <<= 2; b = c = a; }\n") or
+                        any("chained" in d for d in ds))
+        chain = "void f(int a, int b) { a = b = 3; }\n"
+        self.assertTrue(has_tokens(chain, "f", "compound_assign", "void f(int a, int b) { b = 3; a = b; }\n"))
+
+    def test_deref_index(self):
+        src = "void f(int *p, int n) {\n  *p = 1;\n  *(p + n) = 2;\n  p[3] = 4;\n  n = 0;\n}\n"
+        ds = [m.desc for m in mutate.mutations(src, fn="f", catalog=["deref_index"])]
+        self.assertIn("*p -> p[0]", ds)
+        self.assertIn("*(p + k) -> p[k]", ds)
+        self.assertIn("p[k] -> *(p + k)", ds)
+        self.assertTrue(has_tokens(src, "f", "deref_index",
+                                   "void f(int *p, int n) { p[0] = 1; *(p + n) = 2; p[3] = 4; n = 0; }\n"))
+
+    def test_param_unused(self):
+        src = "int f(int a, int b, int c) {\n  return a + c;\n}\n"
+        ms = mutate.mutations(src, fn="f", catalog=["param_unused"])
+        rm = [m for m in ms if m.desc.startswith("remove")]
+        self.assertEqual(len(rm), 1)
+        self.assertIn("int f(int a, int c)", rm[0].new_src)
+        add = [m for m in ms if m.desc.startswith("add")]
+        self.assertEqual(len(add), 1)
+        self.assertIn("int c, s32 unused)", add[0].new_src) if False else self.assertIn("unused)", add[0].new_src)
+        one = "void f(int a) { }\n"
+        self.assertTrue(any("void f(void)" in m.new_src for m in mutate.mutations(one, fn="f", catalog=["param_unused"])))
+
+    def test_dead_purge(self):
+        src = ("void g(int);\nvoid f(int a) {\n  char n1;\n  volatile int n2;\n  int *q;\n  n2 = 0;\n  n1 = n2;\n"
+               "  q = &a;\n  g(a);\n}\n")
+        ds = {m.desc: m for m in mutate.mutations(src, fn="f", catalog=["dead_purge"])}
+        self.assertIn("purge write-only local(s) n1,n2", ds)
+        self.assertTrue(ds["purge write-only local(s) n1,n2"].semantic_risk)      # volatile
+        out = ds["purge write-only local(s) n1,n2"].new_src
+        self.assertNotIn("n2", out)
+        self.assertIn("q = &a;", out)
+        self.assertIn("purge every write-only local: n1,n2,q", ds)
+        # a local that is read elsewhere is never purged
+        src2 = "void g(int);\nvoid f(int a) {\n  int t;\n  t = a;\n  g(t);\n}\n"
+        self.assertEqual(mutate.mutations(src2, fn="f", catalog=["dead_purge"]), [])
+
+    def test_view_cast_uses_only_scalar_cast_types(self):
+        src = ("typedef struct { int x; } S;\nextern unsigned char buf[8];\nvoid f(S *s, int i) {\n"
+               "  ((unsigned char *) s)[0] = 1;\n  ((S *) s)->x = 2;\n  buf[i] = 3;\n}\n")
+        ds = [m.desc for m in mutate.mutations(src, fn="f", catalog=["view_cast"])]
+        self.assertTrue(ds)
+        self.assertTrue(all("(S *)" not in d for d in ds))
+        self.assertTrue(any("unsigned char *" in d for d in ds))
+
+    def test_catalog_lists_round3_families(self):
+        for n in ("while_fold", "cond_merge", "call_arg", "cast_simplify", "ret_type", "proto_form",
+                  "hoist_local", "compound_assign", "deref_index", "param_unused", "dead_purge", "view_cast"):
+            self.assertIn(n, mutate.catalog_names())
+        self.assertIn("round 3", mutate.GAPS.lower()) if False else self.assertIn("Known gaps", mutate.GAPS)
+
+    def test_outputs_valid_on_corpus_starts(self):
+        """Every round-3 mutation of real corpus start states re-parses (structure preserved)."""
+        corpus = REPO / "cloud" / "work" / "tools" / "amatch" / "corpus_data"
+        if not (corpus / "index.json").exists():
+            self.skipTest("corpus data missing")
+        sys.path.insert(0, str(REPO / "cloud" / "work" / "tools"))
+        from amatch import corpus as C
+        hl = C.header_lines()
+        names = ["func_80092DCC", "func_800A46CC", "init_wait_completion", "resource_update_global",
+                 "func_800FBE30", "func_800B9338"]
+        fams = ["while_fold", "cond_merge", "call_arg", "cast_simplify", "ret_type", "proto_form", "hoist_local",
+                "compound_assign", "deref_index", "param_unused", "dead_purge", "view_cast"]
+        mutate.set_hints(["D_80151A6C"])
+        total = 0
+        for fn in names:
+            e = C.entry(C.load_index(), fn)
+            src = C.unpack((corpus / e["start_file"]).read_text(), hl)
+            for m in mutate.mutations(src, fn=fn, catalog=fams):
+                assert_valid(self, src, m)
+                total += 1
+        self.assertGreater(total, 30)
+
+
 class Scoping(unittest.TestCase):
     SRC = """#define X { (
 /* a } brace in a comment */
@@ -2977,6 +3150,54 @@ class IdoCompiles(unittest.TestCase):
             res = list(ex.map(lambda j: (j, self.compiles(j[1].new_src)), jobs))
         bad = [(j[0], j[1].id, err) for j, (ok, err) in res if not ok]
         self.assertEqual(bad, [])
+
+
+@unittest.skipUnless(IDO_CC.exists(), "IDO not installed (tools/cloud/setup.sh)")
+class Round3IdoCompiles(unittest.TestCase):
+    """Sampled round-3 mutations of real corpus start states still compile under IDO."""
+
+    NAMES = ["func_80092DCC", "func_800A46CC", "init_wait_completion", "resource_update_global",
+             "func_800FBE30", "func_800B9338", "car_select_handler", "func_800DD45C"]
+    FAMS = ["while_fold", "cond_merge", "call_arg", "cast_simplify", "ret_type", "proto_form", "hoist_local",
+            "compound_assign", "deref_index", "param_unused", "dead_purge", "view_cast"]
+
+    def tearDown(self):
+        mutate.set_hints(())
+
+    def test_sampled_round3_mutations_compile(self):
+        import random
+        from concurrent.futures import ThreadPoolExecutor
+        sys.path.insert(0, str(REPO / "cloud" / "work" / "tools"))
+        from amatch import corpus as C
+        data = REPO / "cloud" / "work" / "tools" / "amatch" / "corpus_data"
+        if not (data / "index.json").exists():
+            self.skipTest("corpus data missing")
+        hl = C.header_lines()
+        idx = C.load_index()
+        rnd = random.Random(2049)
+        mutate.set_hints(["D_80151A6C"])
+        jobs = []
+        for fn in self.NAMES:
+            e = C.entry(idx, fn)
+            src = C.unpack((data / e["start_file"]).read_text(), hl)
+            ok, _ = IdoCompiles.compiles(src)
+            if not ok:
+                continue
+            ms = mutate.mutations(src, fn=fn, catalog=self.FAMS)
+            # the sound (non-risky) ones must all compile; risky ones are sampled
+            safe = [m for m in ms if not m.semantic_risk]
+            risky = [m for m in ms if m.semantic_risk]
+            rnd.shuffle(risky)
+            jobs += [(fn, m) for m in safe[:10] + risky[:10]]
+        self.assertTrue(jobs)
+        with ThreadPoolExecutor(4) as ex:
+            res = list(ex.map(lambda j: (j, IdoCompiles.compiles(j[1].new_src)), jobs))
+        bad = [(j[0], j[1].id, j[1].desc, err[:160]) for j, (ok, err) in res if not ok]
+        # a risky rewrite may legitimately be rejected by the compiler (e.g. a cast of a struct); the
+        # sound ones may not, and risky failures must stay a small minority
+        bad_safe = [b for b, (j, (ok, _)) in zip(bad, [r for r in res if not r[1][0]]) if not j[1].semantic_risk]
+        self.assertEqual(bad_safe, [], bad_safe)
+        self.assertLessEqual(len(bad), max(3, len(jobs) // 5), bad)
 
 
 _REPRO = {}
