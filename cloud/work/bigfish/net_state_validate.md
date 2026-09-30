@@ -89,3 +89,9 @@ Left over register diffs in best variant: sec-1 k/p (s0/s1 swapped), sec-2b chai
 (`li s0,19` vs ra etc.), flag s2 vs s0, sec-3b temps. All of these are downstream of the count/pool ordering.
 Permuter (decomp-permuter with a flat-word compile wrapper) saturates around score 1475 from these bases.
 Status: clearly stuck at structure+alloc coupling; not a MATCH.
+
+## Round 5: callee func_800B78A4 matched
+`func_800B78A4(u32 x, u8 n)` = popcount of the low `n` bits of `x` (stops early when `x` runs out):
+`while (n != 0 && x != 0) { if (x & 1) c++; n--; x >>= 1; } return c;` (u8 parameter gives the
+`sw a1,4(sp)` spill and `andi 0xff`). Strict MATCH at `-O2`, see `cloud/matches/func_800B78A4.c`.
+Use prototype `s32 func_800B78A4(u32 x, u8 n)` in net_state_validate (it was called `(x, 16)`).

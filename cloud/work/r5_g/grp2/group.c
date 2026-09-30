@@ -3891,6 +3891,7 @@ done:
 
 s16 input_process_controller(f32 *p1, f32 *p2, f32 *out, Poly *poly, s16 *outIdx, s32 flag, f32 *vcOut, f32 *mat, f32 rad2) {
     u16 idx[20];
+    s32 w1;
     f32 vp[3];
     f32 vq[3];
     f32 va[3];
@@ -3898,25 +3899,20 @@ s16 input_process_controller(f32 *p1, f32 *p2, f32 *out, Poly *poly, s16 *outIdx
     f32 v0[3];
     f32 vprev[3];
     f32 vd[3];
-    volatile f32 f1;
     volatile f32 f2;
-    PV *e;
+    volatile f32 f1;
     u32 k;
     u32 n;
     s32 res;
     f32 t;
     f32 d;
-    s32 w1;
-    s32 w2;
 
     w1 = flag;
-    w2 = flag + 1;
     res = 1;
     func_800AD650(mat, poly->body);
     n = poly->cnt & 0xF;
     *outIdx = func_800AD5D0((u8 *) (poly->off + D_80152568), n, (s16 *) idx);
-    e = &D_8015201C[idx[0]];
-    DECODE(v0, e);
+    DECODE(v0, (&D_8015201C[idx[0]]));
     va[0] = p1[0] - v0[0];
     va[1] = p1[1] - v0[1];
     va[2] = p1[2] - v0[2];
@@ -3945,9 +3941,7 @@ s16 input_process_controller(f32 *p1, f32 *p2, f32 *out, Poly *poly, s16 *outIdx
         vp[1] -= d * t;
         vp[2] -= va[2] * t;
     }
-    e = &D_8015201C[idx[n - 1]];
-    DECODE(ve, e);
-    e = &D_8015201C[idx[1]];
+    DECODE(ve, (&D_8015201C[idx[n - 1]]));
     if ((((ve[2] - vp[2]) * ve[0]) - (ve[2] * (ve[0] - vp[0]))) < 0.0f) {
         if (flag > 0) {
             return 0;
@@ -3958,7 +3952,7 @@ s16 input_process_controller(f32 *p1, f32 *p2, f32 *out, Poly *poly, s16 *outIdx
         res = -1;
         goto done;
     }
-    DECODE(ve, e);
+    DECODE(ve, (&D_8015201C[idx[1]]));
     if (((vp[2] * ve[0]) - (ve[2] * vp[0])) < 0.0f) {
         if (flag > 0) {
             return 0;
@@ -3975,8 +3969,7 @@ s16 input_process_controller(f32 *p1, f32 *p2, f32 *out, Poly *poly, s16 *outIdx
             k += 1;
             vprev[0] = ve[0];
             vprev[2] = ve[2];
-            e = &D_8015201C[idx[k - 1]];
-            DECODE(ve, e);
+            DECODE(ve, (&D_8015201C[idx[k - 1]]));
             va[1] = 0.0f;
             vd[1] = 0.0f;
             f1 = vprev[0];
@@ -4001,7 +3994,7 @@ done:
     out[0] = v0[0] + out[0];
     out[1] = v0[1] + out[1];
     out[2] = v0[2] + out[2];
-    return res + w1 - w2;
+    return res + w1 - w1;
 }
 
 /* stand-in caller: keeps func_800AD4C8 out of line under -O3 */

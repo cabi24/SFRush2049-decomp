@@ -1,0 +1,17 @@
+{
+  "members": [
+    "drone_ai_update",
+    "entity_tick_main"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "drone_ai_update"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "generated": "hand-written first pass (cloud round 5, r5_e) from the assembly and bigfish/seeds; see STATUS.md",
+  "unprototyped": [],
+  "context": [],
+  "claims": []
+}

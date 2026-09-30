@@ -1,0 +1,1119 @@
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup((*arg0)->f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup((*arg0)->f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup((*arg0)->f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup((*arg0)->f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup((*arg0)->f8, (u32) y + 0x38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup((*arg0)->f8, (u32) y + 0x38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup((*arg0)->f8, (u32) y + 0x38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup((*arg0)->f8, (u32) y + 0x38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup((*arg0)->f8, (u32) (&y->f38), 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup((*arg0)->f8, (u32) (&y->f38), 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup((*arg0)->f8, (u32) (&y->f38), 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup((*arg0)->f8, (u32) (&y->f38), 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup(arg0[0]->f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup(arg0[0]->f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup(arg0[0]->f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup(arg0[0]->f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup((**arg0).f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup((**arg0).f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup((**arg0).f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup((**arg0).f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup((*arg0)->f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup((*arg0)->f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup((*arg0)->f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup((*arg0)->f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup((*arg0)->f8, (u32) y + 0x38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup((*arg0)->f8, (u32) y + 0x38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup((*arg0)->f8, (u32) y + 0x38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup((*arg0)->f8, (u32) y + 0x38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup((*arg0)->f8, (u32) (&y->f38), 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup((*arg0)->f8, (u32) (&y->f38), 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup((*arg0)->f8, (u32) (&y->f38), 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup((*arg0)->f8, (u32) (&y->f38), 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup(arg0[0]->f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup(arg0[0]->f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup(arg0[0]->f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup(arg0[0]->f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup((**arg0).f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup((**arg0).f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup((**arg0).f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C != 0) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup((**arg0).f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup((*arg0)->f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup((*arg0)->f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup((*arg0)->f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup((*arg0)->f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup((*arg0)->f8, (u32) y + 0x38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup((*arg0)->f8, (u32) y + 0x38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup((*arg0)->f8, (u32) y + 0x38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup((*arg0)->f8, (u32) y + 0x38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup((*arg0)->f8, (u32) (&y->f38), 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup((*arg0)->f8, (u32) (&y->f38), 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup((*arg0)->f8, (u32) (&y->f38), 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup((*arg0)->f8, (u32) (&y->f38), 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup(arg0[0]->f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup(arg0[0]->f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup(arg0[0]->f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup(arg0[0]->f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup((**arg0).f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup((**arg0).f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup((**arg0).f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11);
+ slot_state_lookup((**arg0).f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup((*arg0)->f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup((*arg0)->f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup((*arg0)->f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup((*arg0)->f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup((*arg0)->f8, (u32) y + 0x38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup((*arg0)->f8, (u32) y + 0x38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup((*arg0)->f8, (u32) y + 0x38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup((*arg0)->f8, (u32) y + 0x38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup((*arg0)->f8, (u32) (&y->f38), 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup((*arg0)->f8, (u32) (&y->f38), 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup((*arg0)->f8, (u32) (&y->f38), 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup((*arg0)->f8, (u32) (&y->f38), 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup(arg0[0]->f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup(arg0[0]->f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup(arg0[0]->f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup(arg0[0]->f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup((**arg0).f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy((*arg0)->name, arg1, 11);
+ memcpy(y->name, arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup((**arg0).f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11) != 0) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup((**arg0).f8, (u32) &y->f38, 15);
+ }
+ }
+}
+----
+void func_800CCE5C(X **arg0, u8 *arg1)
+{
+ Y *y;
+ if ((*arg0)->f2C) {
+ y = *(*arg0)->f2C;
+ if (func_800A1910(y->name, arg1, 11)) {
+ memcpy(&(*arg0)->name[0], arg1, 11);
+ memcpy(&y->name[0], arg1, 11);
+ y->f38 = format_string_parse(y->name, 11); 
+ slot_state_lookup((**arg0).f8, (u32) &y->f38, 15);
+ }
+ }
+}

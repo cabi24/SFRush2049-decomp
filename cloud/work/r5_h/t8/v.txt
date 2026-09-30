@@ -1,0 +1,105 @@
+void particle_position_set(s16 arg0)
+{
+PartSlot *p = &D_80150B70[((arg0 & 1) ? 0 : (arg0 & 2) ? 1 : (arg0 & 4) ? 2 : 3)];
+ p->f94 = ((arg0 & 1) ? 0 : (arg0 & 2) ? 1 : (arg0 & 4) ? 2 : 3);
+ p->f24 = 0.0f; p->f28 = 0.0f; p->f2C = 0.0f;
+ math_utility(&D_8011418C, p);
+ p->f90 = 0.0f;
+}
+----
+void particle_position_set(s16 arg0)
+{
+PartSlot *p = &D_80150B70[((arg0 & 1) ? 0 : (arg0 & 2) ? 1 : (arg0 & 4) ? 2 : 3)];
+ p->f94 = p - D_80150B70;
+ p->f24 = 0.0f; p->f28 = 0.0f; p->f2C = 0.0f;
+ math_utility(&D_8011418C, p);
+ p->f90 = 0.0f;
+}
+----
+void particle_position_set(s16 arg0)
+{
+PartSlot *p;
+ p = &D_80150B70[((arg0 & 1) ? 0 : (arg0 & 2) ? 1 : (arg0 & 4) ? 2 : 3)];
+ p->f94 = ((arg0 & 1) ? 0 : (arg0 & 2) ? 1 : (arg0 & 4) ? 2 : 3);
+ p->f24 = 0.0f; p->f28 = 0.0f; p->f2C = 0.0f;
+ math_utility(&D_8011418C, p);
+ p->f90 = 0.0f;
+}
+----
+void particle_position_set(s16 arg0)
+{
+s32 i = ((arg0 & 1) ? 0 : (arg0 & 2) ? 1 : (arg0 & 4) ? 2 : 3);
+ D_80150B70[i].f94 = i;
+ D_80150B70[i].f24 = 0.0f; D_80150B70[i].f28 = 0.0f; D_80150B70[i].f2C = 0.0f;
+ math_utility(&D_8011418C, &D_80150B70[i]);
+ D_80150B70[i].f90 = 0.0f;
+}
+----
+void particle_position_set(s16 arg0)
+{
+PartSlot *p = &D_80150B70[((arg0 & 1) ? 0 : (arg0 & 2) ? 1 : (arg0 & 4) ? 2 : 3)];
+ p->f94 = ((arg0 & 1) ? 0 : (arg0 & 2) ? 1 : (arg0 & 4) ? 2 : 3); p->f24 = p->f28 = p->f2C = 0.0f;
+ math_utility(&D_8011418C, p);
+ p->f90 = 0.0f;
+}
+----
+void particle_position_set(s16 arg0)
+{
+PartSlot *p = &D_80150B70[((arg0 & 1) ? 0 : (arg0 & 2) ? 1 : (arg0 & 4) ? 2 : 3)];
+ p->f94 = ((arg0 & 1) ? 0 : (arg0 & 2) ? 1 : (arg0 & 4) ? 2 : 3); p->f24 = 0; p->f28 = 0; p->f2C = 0;
+ math_utility(&D_8011418C, p);
+ p->f90 = 0;
+}
+----
+void particle_position_set(s32 arg0)
+{
+PartSlot *p = &D_80150B70[((arg0 & 1) ? 0 : (arg0 & 2) ? 1 : (arg0 & 4) ? 2 : 3)];
+ p->f94 = ((arg0 & 1) ? 0 : (arg0 & 2) ? 1 : (arg0 & 4) ? 2 : 3);
+ p->f24 = 0.0f; p->f28 = 0.0f; p->f2C = 0.0f;
+ math_utility(&D_8011418C, p);
+ p->f90 = 0.0f;
+}
+----
+void particle_position_set(s32 arg0)
+{
+PartSlot *p = &D_80150B70[((arg0 & 1) ? 0 : (arg0 & 2) ? 1 : (arg0 & 4) ? 2 : 3)];
+ p->f94 = p - D_80150B70;
+ p->f24 = 0.0f; p->f28 = 0.0f; p->f2C = 0.0f;
+ math_utility(&D_8011418C, p);
+ p->f90 = 0.0f;
+}
+----
+void particle_position_set(s32 arg0)
+{
+PartSlot *p;
+ p = &D_80150B70[((arg0 & 1) ? 0 : (arg0 & 2) ? 1 : (arg0 & 4) ? 2 : 3)];
+ p->f94 = ((arg0 & 1) ? 0 : (arg0 & 2) ? 1 : (arg0 & 4) ? 2 : 3);
+ p->f24 = 0.0f; p->f28 = 0.0f; p->f2C = 0.0f;
+ math_utility(&D_8011418C, p);
+ p->f90 = 0.0f;
+}
+----
+void particle_position_set(s32 arg0)
+{
+s32 i = ((arg0 & 1) ? 0 : (arg0 & 2) ? 1 : (arg0 & 4) ? 2 : 3);
+ D_80150B70[i].f94 = i;
+ D_80150B70[i].f24 = 0.0f; D_80150B70[i].f28 = 0.0f; D_80150B70[i].f2C = 0.0f;
+ math_utility(&D_8011418C, &D_80150B70[i]);
+ D_80150B70[i].f90 = 0.0f;
+}
+----
+void particle_position_set(s32 arg0)
+{
+PartSlot *p = &D_80150B70[((arg0 & 1) ? 0 : (arg0 & 2) ? 1 : (arg0 & 4) ? 2 : 3)];
+ p->f94 = ((arg0 & 1) ? 0 : (arg0 & 2) ? 1 : (arg0 & 4) ? 2 : 3); p->f24 = p->f28 = p->f2C = 0.0f;
+ math_utility(&D_8011418C, p);
+ p->f90 = 0.0f;
+}
+----
+void particle_position_set(s32 arg0)
+{
+PartSlot *p = &D_80150B70[((arg0 & 1) ? 0 : (arg0 & 2) ? 1 : (arg0 & 4) ? 2 : 3)];
+ p->f94 = ((arg0 & 1) ? 0 : (arg0 & 2) ? 1 : (arg0 & 4) ? 2 : 3); p->f24 = 0; p->f28 = 0; p->f2C = 0;
+ math_utility(&D_8011418C, p);
+ p->f90 = 0;
+}

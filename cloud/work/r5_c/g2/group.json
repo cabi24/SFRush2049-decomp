@@ -1,0 +1,19 @@
+{
+ "members": [
+  "func_800F92C8",
+  "func_800DE860",
+  "render_large_objects"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "render_large_objects",
+  "func_800DE860"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "generated": "hand-written from the assembly (cloud hail-mary); see STATUS.md",
+ "unprototyped": [],
+ "context": [],
+ "claims": []
+}

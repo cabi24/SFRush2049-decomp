@@ -1,0 +1,492 @@
+aligned differing rows: 402 size 361 / 363
+r    0 addiu sp,sp,-184               |    0 addiu sp,sp,-192
+e    1 sw ra,20(sp)                   |    1 sw ra,20(sp)
+e    2 li s4,1                        |    2 li s4,1
+i None                                |    3 move a0,s8
+i None                                |    4 jal 0xad650
+e    3 addiu a1,a3,4                  |    5 addiu a1,a3,4
+d    4 jal 0xad650                    | None 
+d    5 move a0,s8                     | None 
+e    6 lhu s0,2(a3)                   |    6 lhu s0,2(a3)
+r    7 lui t6,0x8015                  |    7 lui t8,0x8015
+r    8 lw t6,9576(t6)                 |    8 lw t8,9576(t8)
+e    9 lhu t7,22(a3)                  |    9 lhu t7,22(a3)
+e   10 andi a1,s0,0xf                 |   10 andi a1,s0,0xf
+e   11 move s0,a1                     |   11 move s0,a1
+r   12 addiu a2,sp,144                |   12 addiu a2,sp,152
+e   13 jal 0xad5d0                    |   13 jal 0xad5d0
+r   14 addu a0,t7,t6                  |   14 addu a0,t7,t8
+e   15 sh v0,0(s5)                    |   15 sh v0,0(s5)
+r   16 lhu a3,144(sp)                 |   16 lhu t6,152(sp)
+e   17 lui t9,0x8015                  |   17 lui t9,0x8015
+e   18 lw t9,8220(t9)                 |   18 lw t9,8220(t9)
+r   19 sll t8,a3,0x3                  |   19 sll t7,t6,0x3
+e   20 lui at,0x3d00                  |   20 lui at,0x3d00
+r   21 addu v1,t8,t9                  |   21 addu v1,t9,t7
+r None                                |   22 lhu t8,6(v1)
+e   22 lh t7,0(v1)                    |   23 lh t7,0(v1)
+d   23 lhu t8,6(v1)                   | None 
+e   24 mtc1 at,$f20                   |   24 mtc1 at,$f20
+r   25 sll t6,t7,0x5                  |   25 andi t6,t8,0x7c00
+r   26 andi t9,t8,0x7c00              |   26 sra t9,t6,0xa
+r   27 sra t7,t9,0xa                  |   27 sll t8,t7,0x5
+r   28 addu t8,t6,t7                  |   28 addu t6,t9,t8
+r   29 mtc1 t8,$f6                    |   29 mtc1 t6,$f4
+r   30 addiu a0,sp,104                |   30 addiu a0,sp,116
+r   31 addiu a1,sp,128                |   31 addiu a1,sp,140
+r   32 cvt.s.w $f10,$f6               |   32 cvt.s.w $f6,$f4
+e   33 move a2,s8                     |   33 move a2,s8
+r   34 mul.s $f4,$f10,$f20            |   34 mul.s $f8,$f6,$f20
+r   35 swc1 $f4,80(sp)                |   35 swc1 $f8,92(sp)
+e   36 lhu t7,6(v1)                   |   36 lhu t7,6(v1)
+r   37 lh t9,2(v1)                    |   37 lh t6,2(v1)
+r   38 andi t8,t7,0x3e0               |   38 andi t9,t7,0x3e0
+r   39 sll t6,t9,0x5                  |   39 sra t8,t9,0x5
+r   40 sra t9,t8,0x5                  |   40 sll t7,t6,0x5
+r   41 addu t7,t6,t9                  |   41 addu t9,t8,t7
+r   42 mtc1 t7,$f8                    |   42 mtc1 t9,$f10
+e   43 nop                            |   43 nop
+r   44 cvt.s.w $f6,$f8                |   44 cvt.s.w $f4,$f10
+r   45 mul.s $f10,$f6,$f20            |   45 mul.s $f6,$f4,$f20
+r   46 swc1 $f10,84(sp)               |   46 swc1 $f6,96(sp)
+r   47 lhu t9,6(v1)                   |   47 lh t7,4(v1)
+r   48 lh t8,4(v1)                    |   48 lhu t6,6(v1)
+r   49 andi t7,t9,0x1f                |   49 sll t9,t7,0x5
+r   50 sll t6,t8,0x5                  |   50 andi t8,t6,0x1f
+r   51 addu t8,t6,t7                  |   51 addu t6,t8,t9
+r   52 mtc1 t8,$f8                    |   52 mtc1 t6,$f10
+e   53 nop                            |   53 nop
+r   54 cvt.s.w $f6,$f8                |   54 cvt.s.w $f4,$f10
+r   55 mul.s $f8,$f6,$f20             |   55 mul.s $f10,$f4,$f20
+r   56 swc1 $f8,88(sp)                |   56 swc1 $f10,100(sp)
+r   57 lwc1 $f6,0(s1)                 |   57 lwc1 $f4,0(s1)
+r   58 sub.s $f6,$f6,$f4              |   58 sub.s $f4,$f4,$f8
+r   59 swc1 $f6,104(sp)               |   59 swc1 $f4,116(sp)
+r   60 lwc1 $f4,4(s1)                 |   60 lwc1 $f8,4(s1)
+r   61 sub.s $f6,$f4,$f10             |   61 sub.s $f4,$f8,$f6
+r   62 swc1 $f6,108(sp)               |   62 swc1 $f4,120(sp)
+r   63 lwc1 $f4,8(s1)                 |   63 lwc1 $f8,8(s1)
+r   64 sub.s $f10,$f4,$f8             | None 
+r   65 jal 0xa61b0                    | None 
+r   66 swc1 $f10,112(sp)              | None 
+r   67 lwc1 $f12,132(sp)              | None 
+r   68 mtc1 zero,$f22                 | None 
+r   69 addiu s1,sp,128                | None 
+r   70 addiu s5,sp,104                | None 
+r   71 c.lt.s $f12,$f22               | None 
+r   72 lwc1 $f4,80(sp)                | None 
+r   73 bc1fl 0x14                     | None 
+r   74 lwc1 $f6,0(s2)                 | None 
+r   75 b 0x470                        | None 
+r   76 move v0,zero                   | None 
+r   77 lwc1 $f6,0(s2)                 | None 
+r   78 move a0,s5                     | None 
+r   79 addiu a1,sp,116                | None 
+r   80 sub.s $f8,$f6,$f4              | None 
+r   81 lwc1 $f6,84(sp)                | None 
+r   82 move a2,s8                     | None 
+r   83 swc1 $f8,104(sp)               | None 
+r   84 lwc1 $f10,4(s2)                | None 
+r   85 sub.s $f4,$f10,$f6             | None 
+r   86 lwc1 $f10,88(sp)               | None 
+r   87 swc1 $f4,108(sp)               | None 
+r   88 lwc1 $f8,8(s2)                 | None 
+e   89 sub.s $f6,$f8,$f10             |   64 sub.s $f6,$f8,$f10
+e   90 jal 0xa61b0                    |   65 jal 0xa61b0
+r   91 swc1 $f6,112(sp)               |   66 swc1 $f6,124(sp)
+r   92 lwc1 $f0,120(sp)               |   67 lwc1 $f12,144(sp)
+r   93 lwc1 $f12,132(sp)              |   68 mtc1 zero,$f22
+r   94 lwc1 $f14,128(sp)              |   69 addiu s1,sp,140
+r None                                |   70 addiu s5,sp,116
+r None                                |   71 c.lt.s $f12,$f22
+r None                                |   72 lwc1 $f8,92(sp)
+r None                                |   73 bc1fl 0x14
+r None                                |   74 lwc1 $f4,0(s2)
+r None                                |   75 b 0x468
+r None                                |   76 move v0,zero
+r None                                |   77 lwc1 $f4,0(s2)
+r None                                |   78 move a0,s5
+r None                                |   79 addiu a1,sp,128
+r None                                |   80 sub.s $f10,$f4,$f8
+r None                                |   81 lwc1 $f4,96(sp)
+r None                                |   82 move a2,s8
+r None                                |   83 swc1 $f10,116(sp)
+r None                                |   84 lwc1 $f6,4(s2)
+r None                                |   85 sub.s $f8,$f6,$f4
+r None                                |   86 lwc1 $f6,100(sp)
+r None                                |   87 swc1 $f8,120(sp)
+r None                                |   88 lwc1 $f10,8(s2)
+r None                                |   89 sub.s $f4,$f10,$f6
+r None                                |   90 jal 0xa61b0
+r None                                |   91 swc1 $f4,124(sp)
+r None                                |   92 lwc1 $f14,132(sp)
+r None                                |   93 lwc1 $f12,144(sp)
+r None                                |   94 lwc1 $f16,140(sp)
+r None                                |   95 c.lt.s $f22,$f14
+r None                                |   96 lwc1 $f8,128(sp)
+r None                                |   97 bc1fl 0x14
+r None                                |   98 sub.s $f0,$f14,$f12
+r None                                |   99 b 0x408
+r None                                |  100 move v0,zero
+r None                                |  101 sub.s $f0,$f14,$f12
+r None                                |  102 lwc1 $f18,148(sp)
+r None                                |  103 lwc1 $f6,136(sp)
+r None                                |  104 sub.s $f10,$f8,$f16
+r None                                |  105 mov.s $f2,$f0
+e   95 c.lt.s $f22,$f0                |  106 c.lt.s $f22,$f0
+r   96 lwc1 $f4,116(sp)               |  107 lui a1,0x8015
+r   97 bc1fl 0x14                     |  108 sub.s $f4,$f6,$f18
+r   98 sub.s $f2,$f0,$f12             |  109 swc1 $f10,116(sp)
+r   99 b 0x410                        |  110 sll t7,s0,0x1
+r None                                |  111 bc1f 0x10
+r None                                |  112 swc1 $f4,124(sp)
+r None                                |  113 b 0x3d0
+e  100 move v0,zero                   |  114 move v0,zero
+r  101 sub.s $f2,$f0,$f12             |  115 c.lt.s $f0,$f22
+r  102 lwc1 $f16,136(sp)              |  116 swc1 $f0,120(sp)
+r  103 lwc1 $f10,124(sp)              |  117 addu t8,sp,t7
+r  104 sub.s $f8,$f4,$f14             | None 
+r  105 sll t9,s0,0x1                  | None 
+r  106 addu a3,sp,t9                  | None 
+r  107 c.lt.s $f22,$f2                | None 
+r  108 swc1 $f8,104(sp)               | None 
+r  109 sub.s $f6,$f10,$f16            | None 
+r  110 lui a1,0x8015                  | None 
+r  111 bc1f 0x10                      | None 
+r  112 swc1 $f6,112(sp)               | None 
+r  113 b 0x3d8                        | None 
+r  114 move v0,zero                   | None 
+r  115 c.lt.s $f2,$f22                | None 
+r  116 swc1 $f2,108(sp)               | None 
+e  117 bc1fl 0x48                     |  118 bc1fl 0x48
+r  118 lhu a3,142(a3)                 |  119 lhu t8,150(t8)
+e  119 div.s $f0,$f12,$f2             |  120 div.s $f0,$f12,$f2
+r  120 lwc1 $f4,104(sp)               |  121 lwc1 $f8,116(sp)
+r  121 lwc1 $f6,112(sp)               |  122 lwc1 $f4,124(sp)
+r  122 swc1 $f2,108(sp)               |  123 swc1 $f2,120(sp)
+r None                                |  124 mul.s $f10,$f8,$f0
+r None                                |  125 nop
+r None                                |  126 mul.s $f6,$f2,$f0
+r None                                |  127 nop
+e  123 mul.s $f8,$f4,$f0              |  128 mul.s $f8,$f4,$f0
+i None                                |  129 sub.s $f16,$f16,$f10
+i None                                |  130 sub.s $f12,$f12,$f6
+i None                                |  131 swc1 $f16,140(sp)
+i None                                |  132 sub.s $f18,$f18,$f8
+i None                                |  133 swc1 $f12,144(sp)
+i None                                |  134 swc1 $f18,148(sp)
+i None                                |  135 lhu t8,150(t8)
+i None                                |  136 lw a1,8220(a1)
+i None                                |  137 sll t9,t8,0x3
+i None                                |  138 addu v0,a1,t9
+i None                                |  139 lhu t6,6(v0)
+i None                                |  140 lh t9,0(v0)
+i None                                |  141 andi t7,t6,0x7c00
+i None                                |  142 sra t8,t7,0xa
+i None                                |  143 sll t6,t9,0x5
+i None                                |  144 addu t7,t8,t6
+i None                                |  145 mtc1 t7,$f10
+e  124 nop                            |  146 nop
+r  125 mul.s $f10,$f2,$f0             |  147 cvt.s.w $f6,$f10
+r  126 nop                            |  148 mul.s $f4,$f6,$f20
+r  127 mul.s $f4,$f6,$f0              |  149 swc1 $f4,104(sp)
+r  128 sub.s $f14,$f14,$f8            |  150 lhu t9,6(v0)
+r  129 sub.s $f12,$f12,$f10           |  151 lh t7,2(v0)
+r  130 swc1 $f14,128(sp)              |  152 andi t8,t9,0x3e0
+r  131 sub.s $f16,$f16,$f4            |  153 sra t6,t8,0x5
+r  132 swc1 $f12,132(sp)              |  154 sll t9,t7,0x5
+r  133 swc1 $f16,136(sp)              |  155 addu t8,t6,t9
+r  134 lhu a3,142(a3)                 |  156 mtc1 t8,$f8
+r  135 lw a1,8220(a1)                 | None 
+r  136 mtc1 zero,$f2                  | None 
+r  137 sll t6,a3,0x3                  | None 
+r  138 addu v1,t6,a1                  | None 
+r  139 lh t7,0(v1)                    | None 
+r  140 lhu t9,6(v1)                   | None 
+r  141 lhu a3,146(sp)                 | None 
+r  142 sll t8,t7,0x5                  | None 
+r  143 andi t6,t9,0x7c00              | None 
+r  144 sra t7,t6,0xa                  | None 
+r  145 addu t9,t8,t7                  | None 
+r  146 mtc1 t9,$f8                    | None 
+e  147 nop                            |  157 nop
+e  148 cvt.s.w $f10,$f8               |  158 cvt.s.w $f10,$f8
+e  149 mul.s $f6,$f10,$f20            |  159 mul.s $f6,$f10,$f20
+r  150 swc1 $f6,92(sp)                |  160 swc1 $f6,108(sp)
+r  151 lhu t7,6(v1)                   |  161 lh t9,4(v0)
+r  152 lh t6,2(v1)                    |  162 lhu t7,6(v0)
+r  153 andi t9,t7,0x3e0               | None 
+r  154 sll t8,t6,0x5                  | None 
+r  155 sra t6,t9,0x5                  | None 
+r  156 addu t7,t8,t6                  | None 
+r  157 mtc1 t7,$f4                    | None 
+r  158 nop                            | None 
+r  159 cvt.s.w $f8,$f4                | None 
+r  160 mul.s $f10,$f8,$f20            | None 
+r  161 swc1 $f10,96(sp)               | None 
+r  162 lhu t6,6(v1)                   | None 
+r  163 lh t9,4(v1)                    | None 
+r  164 andi t7,t6,0x1f                | None 
+e  165 sll t8,t9,0x5                  |  163 sll t8,t9,0x5
+r  166 addu t9,t8,t7                  |  164 andi t6,t7,0x1f
+r  167 mtc1 t9,$f4                    |  165 addu t7,t6,t8
+r  168 sll t6,a3,0x3                  |  166 mtc1 t7,$f8
+r  169 addu v1,t6,a1                  |  167 lhu t9,154(sp)
+r  170 cvt.s.w $f8,$f4                |  168 cvt.s.w $f10,$f8
+r  171 lwc1 $f4,136(sp)               |  169 lwc1 $f8,148(sp)
+r  172 mul.s $f10,$f8,$f20            |  170 sll t6,t9,0x3
+r  173 sub.s $f8,$f10,$f4             |  171 addu v0,a1,t6
+r  174 swc1 $f10,100(sp)              |  172 mul.s $f6,$f10,$f20
+r  175 mul.s $f4,$f8,$f6              |  173 sub.s $f10,$f6,$f8
+r  176 lwc1 $f8,128(sp)               |  174 swc1 $f6,112(sp)
+r  177 sub.s $f6,$f6,$f8              |  175 mul.s $f8,$f10,$f4
+r  178 mul.s $f8,$f10,$f6             |  176 lwc1 $f10,140(sp)
+r  179 sub.s $f0,$f4,$f8              |  177 sub.s $f4,$f4,$f10
+r  180 c.lt.s $f0,$f2                 |  178 mul.s $f10,$f4,$f6
+r None                                |  179 c.lt.s $f8,$f10
+e  181 nop                            |  180 nop
+e  182 bc1fl 0x44                     |  181 bc1fl 0x44
+r  183 lh t8,0(v1)                    |  182 lhu t8,6(v0)
+e  184 blez s6,0x10                   |  183 blez s6,0x10
+r  185 addiu a0,sp,92                 |  184 addiu a0,sp,104
+r  186 b 0x2b4                        |  185 b 0x2b0
+e  187 move v0,zero                   |  186 move v0,zero
+e  188 move a1,s1                     |  187 move a1,s1
+e  189 move a2,s7                     |  188 move a2,s7
+e  190 jal 0xad4c8                    |  189 jal 0xad4c8
+r  191 mov.s $f18,$f24                |  190 mov.s $f16,$f24
+e  192 bnez v0,0x10                   |  191 bnez v0,0x10
+e  193 nop                            |  192 nop
+r  194 b 0x294                        |  193 b 0x290
+e  195 move v0,zero                   |  194 move v0,zero
+r  196 b 0x240                        |  195 b 0x23c
+e  197 li s4,-1                       |  196 li s4,-1
+r  198 lh t8,0(v1)                    |  197 lhu t8,6(v0)
+r  199 lhu t9,6(v1)                   |  198 lh t6,0(v0)
+e  200 sltiu at,s0,3                  |  199 sltiu at,s0,3
+r  201 sll t7,t8,0x5                  |  200 andi t7,t8,0x7c00
+r  202 andi t6,t9,0x7c00              |  201 sra t9,t7,0xa
+r  203 sra t8,t6,0xa                  |  202 sll t8,t6,0x5
+r  204 addu t9,t7,t8                  |  203 addu t7,t9,t8
+r None                                |  204 mtc1 t7,$f4
+r None                                |  205 nop
+r None                                |  206 cvt.s.w $f6,$f4
+r None                                |  207 mul.s $f8,$f6,$f20
+r None                                |  208 swc1 $f8,104(sp)
+r None                                |  209 lhu t6,6(v0)
+r None                                |  210 lh t7,2(v0)
+r None                                |  211 andi t9,t6,0x3e0
+r None                                |  212 sra t8,t9,0x5
+r None                                |  213 sll t6,t7,0x5
+r None                                |  214 addu t9,t8,t6
+e  205 mtc1 t9,$f10                   |  215 mtc1 t9,$f10
+e  206 nop                            |  216 nop
+r  207 cvt.s.w $f6,$f10               |  217 cvt.s.w $f4,$f10
+r  208 mul.s $f4,$f6,$f20             |  218 mul.s $f6,$f4,$f20
+r  209 swc1 $f4,92(sp)                |  219 swc1 $f6,108(sp)
+r  210 lhu t8,6(v1)                   |  220 lh t6,4(v0)
+r  211 lh t6,2(v1)                    |  221 lhu t7,6(v0)
+r  212 andi t9,t8,0x3e0               |  222 sll t9,t6,0x5
+r  213 sll t7,t6,0x5                  |  223 andi t8,t7,0x1f
+r  214 sra t6,t9,0x5                  |  224 addu t7,t8,t9
+r  215 addu t8,t7,t6                  |  225 mtc1 t7,$f10
+r  216 mtc1 t8,$f8                    | None 
+e  217 nop                            |  226 nop
+r  218 cvt.s.w $f10,$f8               |  227 cvt.s.w $f4,$f10
+r  219 mul.s $f6,$f10,$f20            |  228 lwc1 $f10,148(sp)
+r  220 swc1 $f6,96(sp)                |  229 mul.s $f6,$f4,$f20
+r  221 lhu t6,6(v1)                   | None 
+r  222 lh t9,4(v1)                    | None 
+r  223 andi t8,t6,0x1f                | None 
+r  224 sll t7,t9,0x5                  | None 
+r  225 addu t9,t7,t8                  | None 
+r  226 mtc1 t9,$f8                    | None 
+e  227 nop                            |  230 nop
+r  228 cvt.s.w $f10,$f8               |  231 mul.s $f4,$f10,$f8
+r  229 lwc1 $f8,136(sp)               |  232 lwc1 $f10,140(sp)
+r  230 mul.s $f6,$f10,$f20            |  233 mul.s $f8,$f10,$f6
+r  231 nop                            |  234 swc1 $f6,112(sp)
+r  232 mul.s $f10,$f8,$f4             |  235 c.lt.s $f4,$f8
+r  233 lwc1 $f8,128(sp)               | None 
+r  234 mul.s $f4,$f6,$f8              | None 
+r  235 swc1 $f6,100(sp)               | None 
+r  236 sub.s $f0,$f10,$f4             | None 
+r  237 c.lt.s $f0,$f2                 | None 
+e  238 nop                            |  236 nop
+e  239 bc1f 0x40                      |  237 bc1f 0x40
+e  240 nop                            |  238 nop
+e  241 blez s6,0x10                   |  239 blez s6,0x10
+r  242 addiu a0,sp,92                 |  240 addiu a0,sp,104
+e  243 b 0x1d0                        |  241 b 0x1d0
+e  244 move v0,zero                   |  242 move v0,zero
+e  245 move a1,s1                     |  243 move a1,s1
+e  246 move a2,s7                     |  244 move a2,s7
+e  247 jal 0xad4c8                    |  245 jal 0xad4c8
+r  248 mov.s $f18,$f24                |  246 mov.s $f16,$f24
+e  249 bnez v0,0x10                   |  247 bnez v0,0x10
+e  250 nop                            |  248 nop
+e  251 b 0x1b0                        |  249 b 0x1b0
+e  252 move v0,zero                   |  250 move v0,zero
+e  253 b 0x15c                        |  251 b 0x15c
+e  254 li s4,-1                       |  252 li s4,-1
+e  255 bnez at,0x154                  |  253 bnez at,0x154
+r  256 li v0,2                        |  254 li v1,2
+r  257 addiu a0,sp,148                |  255 addiu a0,sp,154
+r  258 lwc1 $f6,92(sp)                |  256 lwc1 $f10,104(sp)
+r  259 lwc1 $f8,100(sp)               |  257 lwc1 $f6,112(sp)
+r  260 addiu v0,v0,1                  |  258 addiu v1,v1,1
+r None                                |  259 swc1 $f10,80(sp)
+r None                                |  260 swc1 $f6,88(sp)
+r None                                |  261 lhu t6,2(a0)
+r None                                |  262 addiu a0,a0,2
+r None                                |  263 sll t8,t6,0x3
+r None                                |  264 addu v0,a1,t8
+r None                                |  265 lhu t9,6(v0)
+r None                                |  266 lh t8,0(v0)
+r None                                |  267 andi t7,t9,0x7c00
+r None                                |  268 sra t6,t7,0xa
+r None                                |  269 sll t9,t8,0x5
+r None                                |  270 addu t7,t6,t9
+r None                                |  271 mtc1 t7,$f4
+r None                                |  272 nop
+r None                                |  273 cvt.s.w $f8,$f4
+r None                                |  274 mul.s $f10,$f8,$f20
+r None                                |  275 swc1 $f10,104(sp)
+r None                                |  276 lhu t8,6(v0)
+r None                                |  277 lh t7,2(v0)
+r None                                |  278 andi t6,t8,0x3e0
+r None                                |  279 sra t9,t6,0x5
+r None                                |  280 sll t8,t7,0x5
+r None                                |  281 addu t6,t9,t8
+r None                                |  282 mtc1 t6,$f6
+r None                                |  283 nop
+r None                                |  284 cvt.s.w $f4,$f6
+r None                                |  285 mul.s $f8,$f4,$f20
+r None                                |  286 swc1 $f8,108(sp)
+r None                                |  287 lh t8,4(v0)
+r None                                |  288 lhu t7,6(v0)
+r None                                |  289 swc1 $f22,120(sp)
+r None                                |  290 sll t6,t8,0x5
+r None                                |  291 andi t9,t7,0x1f
+r None                                |  292 addu t7,t9,t6
+r None                                |  293 mtc1 t7,$f6
+r None                                |  294 swc1 $f22,72(sp)
+r None                                |  295 cvt.s.w $f4,$f6
+r None                                |  296 lwc1 $f6,80(sp)
+r None                                |  297 swc1 $f6,64(sp)
+r None                                |  298 sub.s $f0,$f10,$f6
+r None                                |  299 mul.s $f8,$f4,$f20
+r None                                |  300 lwc1 $f4,88(sp)
+r None                                |  301 lwc1 $f6,140(sp)
+r None                                |  302 swc1 $f0,60(sp)
+r None                                |  303 swc1 $f0,116(sp)
+r None                                |  304 sub.s $f10,$f8,$f4
+r None                                |  305 swc1 $f8,112(sp)
+r None                                |  306 lwc1 $f8,64(sp)
+r None                                |  307 swc1 $f10,124(sp)
+r None                                |  308 sub.s $f6,$f6,$f8
+r None                                |  309 lwc1 $f8,148(sp)
+r None                                |  310 sub.s $f8,$f8,$f4
+e  261 swc1 $f6,68(sp)                |  311 swc1 $f6,68(sp)
+e  262 swc1 $f8,76(sp)                |  312 swc1 $f8,76(sp)
+r  263 lhu a3,0(a0)                   |  313 lwc1 $f4,76(sp)
+r  264 sltu at,v0,s0                  |  314 lwc1 $f8,60(sp)
+r  265 sll t6,a3,0x3                  |  315 mul.s $f4,$f4,$f8
+r  266 addu v1,t6,a1                  | None 
+r  267 lh t7,0(v1)                    | None 
+r  268 lhu t9,6(v1)                   | None 
+r  269 sll t8,t7,0x5                  | None 
+r  270 andi t6,t9,0x7c00              | None 
+r  271 sra t7,t6,0xa                  | None 
+r  272 addu t9,t8,t7                  | None 
+r  273 mtc1 t9,$f10                   | None 
+e  274 nop                            |  316 nop
+r  275 cvt.s.w $f4,$f10               |  317 mul.s $f8,$f6,$f10
+r  276 mul.s $f6,$f4,$f20             |  318 c.lt.s $f4,$f8
+r  277 swc1 $f6,92(sp)                | None 
+r  278 lhu t7,6(v1)                   | None 
+r  279 lh t6,2(v1)                    | None 
+r  280 andi t9,t7,0x3e0               | None 
+r  281 sll t8,t6,0x5                  | None 
+r  282 sra t6,t9,0x5                  | None 
+r  283 addu t7,t8,t6                  | None 
+r  284 mtc1 t7,$f8                    | None 
+r  285 nop                            | None 
+r  286 cvt.s.w $f10,$f8               | None 
+r  287 mul.s $f4,$f10,$f20            | None 
+r  288 swc1 $f4,96(sp)                | None 
+r  289 lhu t6,6(v1)                   | None 
+r  290 lh t9,4(v1)                    | None 
+r  291 swc1 $f22,108(sp)              | None 
+r  292 andi t7,t6,0x1f                | None 
+r  293 sll t8,t9,0x5                  | None 
+r  294 addu t9,t8,t7                  | None 
+r  295 mtc1 t9,$f8                    | None 
+r  296 swc1 $f22,44(sp)               | None 
+r  297 cvt.s.w $f10,$f8               | None 
+r  298 lwc1 $f8,68(sp)                | None 
+r  299 swc1 $f8,24(sp)                | None 
+r  300 mul.s $f4,$f10,$f20            | None 
+r  301 sub.s $f10,$f6,$f8             | None 
+r  302 lwc1 $f8,128(sp)               | None 
+r  303 lwc1 $f6,76(sp)                | None 
+r  304 swc1 $f10,104(sp)              | None 
+r  305 swc1 $f10,28(sp)               | None 
+r  306 lwc1 $f10,24(sp)               | None 
+r  307 swc1 $f4,100(sp)               | None 
+r  308 sub.s $f4,$f4,$f6              | None 
+r  309 sub.s $f8,$f8,$f10             | None 
+r  310 lwc1 $f10,136(sp)              | None 
+r  311 swc1 $f4,112(sp)               | None 
+r  312 sub.s $f10,$f10,$f6            | None 
+r  313 mul.s $f6,$f4,$f8              | None 
+r  314 swc1 $f8,40(sp)                | None 
+r  315 swc1 $f10,48(sp)               | None 
+r  316 lwc1 $f4,48(sp)                | None 
+r  317 lwc1 $f10,28(sp)               | None 
+r  318 mul.s $f8,$f4,$f10             | None 
+r  319 sub.s $f0,$f8,$f6              | None 
+r  320 c.lt.s $f0,$f2                 | None 
+e  321 nop                            |  319 nop
+e  322 bc1f 0x40                      |  320 bc1f 0x40
+e  323 nop                            |  321 nop
+e  324 blez s6,0x10                   |  322 blez s6,0x10
+e  325 move a0,s5                     |  323 move a0,s5
+e  326 b 0x84                         |  324 b 0x84
+e  327 move v0,zero                   |  325 move v0,zero
+r  328 addiu a1,sp,40                 |  326 addiu a1,sp,68
+e  329 move a2,s7                     |  327 move a2,s7
+e  330 jal 0xad4c8                    |  328 jal 0xad4c8
+r  331 mov.s $f18,$f24                |  329 mov.s $f16,$f24
+e  332 bnez v0,0x10                   |  330 bnez v0,0x10
+e  333 nop                            |  331 nop
+e  334 b 0x64                         |  332 b 0x64
+e  335 move v0,zero                   |  333 move v0,zero
+e  336 b 0x10                         |  334 b 0x10
+e  337 li s4,-1                       |  335 li s4,-1
+r  338 bnez at,0xfffffffffffffec0     |  336 bnel v1,s0,0xfffffffffffffec4
+r  339 addiu a0,a0,2                  |  337 lwc1 $f10,104(sp)
+e  340 move a0,s1                     |  338 move a0,s1
+e  341 move a1,s3                     |  339 move a1,s3
+e  342 jal 0x9e820                    |  340 jal 0x9e820
+e  343 move a2,s8                     |  341 move a2,s8
+r  344 lwc1 $f4,80(sp)                |  342 lwc1 $f6,0(s3)
+r  345 lwc1 $f10,0(s3)                |  343 lwc1 $f10,92(sp)
+r None                                |  344 lwc1 $f8,4(s3)
+e  346 sll v0,s4,0x10                 |  345 sll v0,s4,0x10
+r  347 sra t6,v0,0x10                 |  346 add.s $f4,$f6,$f10
+r  348 add.s $f8,$f4,$f10             |  347 sra t8,v0,0x10
+r  349 lwc1 $f4,4(s3)                 |  348 move v0,t8
+r  350 move v0,t6                     |  349 swc1 $f4,0(s3)
+r  351 swc1 $f8,0(s3)                 |  350 lwc1 $f6,96(sp)
+r  352 lwc1 $f6,84(sp)                |  351 lwc1 $f4,8(s3)
+r  353 add.s $f10,$f6,$f4             |  352 add.s $f10,$f8,$f6
+r  354 lwc1 $f6,8(s3)                 | None 
+e  355 swc1 $f10,4(s3)                |  353 swc1 $f10,4(s3)
+r  356 lwc1 $f8,88(sp)                |  354 lwc1 $f8,100(sp)
+r  357 add.s $f4,$f8,$f6              |  355 add.s $f6,$f4,$f8
+r  358 swc1 $f4,8(s3)                 |  356 swc1 $f6,8(s3)
+e  359 lw ra,20(sp)                   |  357 lw ra,20(sp)
+r  360 addiu sp,sp,184                |  358 addiu sp,sp,192
+e  361 jr ra                          |  359 jr ra
+e  362 nop                            |  360 nop

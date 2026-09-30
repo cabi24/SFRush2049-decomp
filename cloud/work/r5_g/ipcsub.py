@@ -11,3 +11,7 @@ def put(newbody,name,S=None):
     open(GD+'/group.c','w').write(S.replace(extract(S,name),newbody))
 def offs(fn):
     return [o for o in spoffs(GD,fn)]
+def frame(fn='input_process_controller'):
+    r=subprocess.run(['python3',ROOT+'/cloud/work/r5_g/gsbs.py',GD,fn,'--as1=-r4300_mul','--hi','6'],capture_output=True,text=True).stdout
+    m=re.search(r'\|\s+\d+ addiu sp,sp,-(\d+)',r)
+    return int(m.group(1)) if m else None

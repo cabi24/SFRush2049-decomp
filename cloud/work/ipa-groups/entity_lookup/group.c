@@ -23,9 +23,9 @@ typedef struct Entity {
     /* 0x00 */ u8 pad0[12];
     /* 0x0C */ s32 id;
     /* 0x10 */ s32 state;
-    /* 0x14 */ u8 pad14[10];
-    /* 0x1E */ u8 msgCount;
-    /* 0x1F */ u8 pad1F[0x3C - 0x1F];
+    /* 0x14 */ u8 pad14[6];
+    /* 0x1A */ u8 msgCount;
+    /* 0x1B */ u8 pad1B[0x3C - 0x1B];
     /* 0x3C */ s32 link;
     /* 0x40 */ CamSlot *cam;
 } Entity; /* 0x44 */
@@ -65,6 +65,22 @@ Entity *func_80091BA8(s32 h)
 
 void func_800BF01C(CamSlot *c)
 {
+    if (0) {
+        switch (D_80146104) {
+        case 0:
+            D_80146104 = 1;
+            break;
+        case 1:
+            D_80146104 = 2;
+            break;
+        case 2:
+            D_80146104 = 3;
+            break;
+        case 3:
+            D_80146104 = 4;
+            break;
+        }
+    }
 }
 
 Msg *func_80091B00(void)
@@ -117,17 +133,19 @@ s32 leaderboard_update(s32 h)
 
 s32 results_time_display(s32 h)
 {
-    Entity *e;
     s32 r;
+    Entity *e;
 
     osRecvMesg(&D_80142728, 0, 1);
     e = func_80091BA8(h);
-    if (e == 0) {
-        r = 0;
-    } else if (e->state == 1 || e->state == 3) {
-        r = 1;
-    } else if (e->state == 2) {
-        r = entity_state_check(e->link);
+    if (e != 0) {
+        if (e->state == 1 || e->state == 3) {
+            r = 1;
+        } else if (e->state != 2) {
+            r = 0;
+        } else {
+            r = entity_state_check(e->link);
+        }
     } else {
         r = 0;
     }
@@ -162,8 +180,8 @@ void camera_clip_planes(s32 h, f32 *p, s32 unused, f32 a, f32 b)
 
 void scheduler_recv(s32 h)
 {
-    Entity *e;
     Msg *m = 0;
+    Entity *e;
 
     osRecvMesg(&D_80142728, 0, 1);
     e = func_80091BA8(h);
@@ -183,4 +201,6 @@ void __standin_a(void)
 {
     func_80091B00();
     func_80091B00();
+    results_time_display(0);
+    results_time_display(1);
 }
