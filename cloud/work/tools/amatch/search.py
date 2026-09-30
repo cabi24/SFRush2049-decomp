@@ -19,8 +19,11 @@ Stages (one shared eval budget, --budget evals / --seconds):
      (`--no-flag-dim` disables),
   1. best-first over every single mutation of each root,
   2. cross product of pairs of the best-scoring compiling singles (neutral / improving first; edits
-     are merged on the root source, so independent edits combine without re-enumeration), then
-     greedy growth of the best merged-edit nodes (3-6 cooperating edits),
+     are merged on the root source, so independent edits combine without re-enumeration),
+     steepest-ascent climb with re-enumeration (composes textually overlapping edits) and greedy
+     growth of the best merged-edit nodes (3-6 cooperating edits).  A neutral-or-improving macro
+     edit (>= 3 sites, e.g. retype a pointer and rewrite its uses) is promoted to an extra root
+     (plateau move) and stages 1-2 run on it too,
   3. beam over depth 2..3 (beam width --beam; the frontier also keeps neutral nodes),
   4. annealing / random walk with restarts over sequences of 1-3 mutations, tabu on source
      hashes, adaptive per-class mutation weights (classes that improved the score get sampled more).
@@ -442,6 +445,8 @@ class Searcher:
         if not self.out_of_budget():
             self.stage_pairs()
         if not self.out_of_budget():
+            self.stage_climb()
+        if not self.out_of_budget():
             self.stage_grow()
         if not self.out_of_budget():
             self.stage_beam()
@@ -477,16 +482,37 @@ class Searcher:
         self.singles_total = 0
         self.level = []
         self.by_root = {}
-        for root in self.roots:
+        self._singles_pass(list(self.roots))
+        # plateau moves: a neutral-or-improving *macro* edit (>= 3 coordinated sites, e.g. retyping a
+        # pointer and rewriting all its uses) becomes a new root; the ordinary singles are then tried on
+        # top of it, which is how a long climb that only works in the new form gets started
+        if self.kind == "fn" and not self.out_of_budget():
+            macros = []
+            for root in list(self.roots):
+                for k in self.by_root.get(root.h, []):
+                    if k.mut and k.mut.get("edits") and len(k.mut["edits"]) >= 3 and k.energy < 1e5 \
+                            and k.raw <= root.raw + 1e-9:
+                        macros.append(k)
+            macros.sort(key=lambda n: (n.raw, -len(n.mut["edits"]), n.cost))
+            extra = []
+            for k in macros[:2]:
+                k.root = None            # it is a root now: its own children are singles relative to it
+                extra.append(k)
+            if extra:
+                self.roots += extra
+                self._singles_pass(extra)
+        self.level += [r for r in self.roots if r is not self.base]
+
+    def _singles_pass(self, roots):
+        for root in roots:
             muts = self.order_muts(self.mutations_of(root))
             self.singles_total += len(muts)
-            cap = max(self.batch, int(self.budget * 0.3 / len(self.roots)))
+            cap = max(self.batch, int(self.budget * 0.3 / max(1, len(self.roots))))
             kids = self.eval_children(root, muts, cap=cap)
             self.by_root[root.h] = kids
             self.level += kids
             if self.out_of_budget():
                 break
-        self.level += [r for r in self.roots if r is not self.base]
 
     def stage_pairs(self):
         """Cross product of the 64 best-scoring compiling singles (neutral and improving ones first:
@@ -494,9 +520,9 @@ class Searcher:
         even when no single change scores better."""
         if self.kind != "fn":
             return
-        start = self.evals
-        share = max(self.batch, int(self.budget * 0.3))
+        share = max(self.batch, int(self.budget * 0.15 / max(1, len(self.roots))))
         for root in self.roots:
+            start = self.evals
             if self.out_of_budget():
                 return
             kids = [k for k in self.by_root.get(root.h, [])
@@ -537,28 +563,57 @@ class Searcher:
                 self.evaluate(cands[k:k + self.batch], parents[k:k + self.batch])
                 self.level += [c for c in cands[k:k + self.batch] if c.key is not None]
 
+    def stage_climb(self):
+        """Steepest ascent with re-enumeration: from each root (or its best single) evaluate the whole
+        single-mutation neighbourhood, move to the best strictly better neighbour, repeat.  Unlike the
+        merged-edit stages this composes edits that overlap textually (nested operand flips, retype then
+        rewrite) because every step re-runs the mutation catalog on the new source."""
+        if self.kind != "fn":
+            return
+        share = max(self.batch, int(self.budget * 0.25 / max(1, len(self.roots))))
+        for root in self.roots:
+            start = self.evals
+            kids = [k for k in self.by_root.get(root.h, []) if k.energy < 1e5]
+            cur = min(kids + [root], key=lambda n: (n.key[:-1], n.cost)) if kids else root
+            for _step in range(14):
+                if self.out_of_budget() or self.evals - start >= share:
+                    break
+                muts = self.order_muts(self.mutations_of(cur))
+                cap = max(self.batch, min(len(muts), share - (self.evals - start)))
+                done = self.eval_children(cur, muts, cap=cap)
+                done = [c for c in done if c.energy < 1e5]
+                self.level += done
+                if not done:
+                    break
+                bestc = min(done, key=lambda n: (n.key[:-1], n.cost))
+                if bestc.key[:-1] >= cur.key[:-1]:
+                    break
+                cur = bestc
+
     def stage_grow(self):
         """Greedy forward selection over merged edits: start from the best one- or two-edit nodes and keep
         adding the single edit that helps most (non-overlapping edits merge textually), so three or four
         cooperating edits (drop pad locals, inline a temp, retype a cast, ...) are reachable."""
         if self.kind != "fn":
             return
-        start = self.evals
-        share = max(self.batch, int(self.budget * 0.25))
+        share = max(self.batch, int(self.budget * 0.2 / max(1, len(self.roots))))
         pool = {}
         for n in self.level:
             if n.medits and n.key is not None and n.energy < 1e5 and n.root is not None:
                 pool.setdefault(n.root.h, []).append(n)
         for rh, nodes in pool.items():
+            start = self.evals
             root = nodes[0].root
             src0 = root.files[self.mutable[0]]
             singles = sorted([n for n in self.by_root.get(rh, []) if n.medits and n.energy < 1e5],
                              key=lambda n: (n.raw, n.cost))[:80]
             starts = sorted(nodes, key=lambda n: n.key)[:3]
             for cur in starts:
-                for _depth in range(5):
-                    if self.out_of_budget() or self.evals - start >= share:
+                for _depth in range(6):
+                    if self.out_of_budget():
                         return
+                    if self.evals - start >= share:
+                        break
                     cands, parents = [], []
                     for k in singles:
                         if k.steps[-1] in cur.steps:
