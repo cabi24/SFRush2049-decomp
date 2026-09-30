@@ -35,26 +35,6 @@
   "context": [
     "car_angular_velocity_clamp"
   ],
-  "claims": [
-    "car_cg_height_set",
-    "func_800A8174",
-    "func_800A81FC",
-    "func_800A8284",
-    "func_800A8778",
-    "car_collision_init",
-    "func_800A8F38",
-    "car_collision_update",
-    "func_800A9054",
-    "func_800A928C",
-    "car_crash_detect",
-    "func_800A9710",
-    "car_crash_response",
-    "func_800AA028",
-    "func_800AA224",
-    "car_reset_position",
-    "car_spawn_at_checkpoint",
-    "func_800AAB3C"
-  ],
-  "allow_unverified": true,
-  "allow_unverified_reason": "func_800AAB3C (_tr_init) references its own .data static; section-relative, not resolvable from the repo"
+  "allow_unverified_reason": "func_800AAB3C (_tr_init) references its own .data static; section-relative, not resolvable from the repo",
+  "provenance": "cloud Lane A (PR #1), cloud/work/ipa-groups/zlib_deflate; library source: zlib 1.0.4 (tools/zlib-1.0.4), game edits in gen/"
 }

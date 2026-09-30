@@ -17,7 +17,5 @@
   "context": [
     "camera_transform"
   ],
-  "claims": [
-    "MP_TargetSteerPos"
-  ]
+  "provenance": "cloud Lane A (PR #1), cloud/work/ipa-groups/MP_TargetSteerPos"
 }

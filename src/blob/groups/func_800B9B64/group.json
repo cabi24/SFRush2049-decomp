@@ -21,10 +21,5 @@
   "context": [
     "physics_friction_apply"
   ],
-  "claims": [
-    "func_800B98D8",
-    "func_800B9B64",
-    "minimap_render",
-    "physics_velocity_clamp"
-  ]
+  "provenance": "cloud Lane A (PR #1), cloud/work/ipa-groups/func_800B9B64"
 }

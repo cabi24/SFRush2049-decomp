@@ -140,3 +140,105 @@ def test_mismatched_callee_prototypes_are_unprototyped():
     assert names == ["a"]
     assert "void a();" in new and "s32 b(s32 x, s32 y);" in new
     assert "void member(s32 x);" in new          # members are left alone
+
+
+def test_context_relocations_are_not_applied_even_when_cut(tmp_path):
+    """A context function longer than its extent can have a HI16/LO16 pair
+    straddling the cut; only member slices are relocated."""
+    src = tmp_path / "ctx.s"
+    src.write_text("""
+    .set noreorder
+    .text
+    .globl f
+    .type f, @function
+f:
+    jal g
+    nop
+    jr $ra
+    nop
+    .globl g
+    .type g, @function
+g:
+    nop
+    lui $a0, %hi(D_data)
+    nop
+    addiu $a0, $a0, %lo(D_data)
+    jr $ra
+    nop
+""")
+    obj = tmp_path / "ctx.o"
+    subprocess.run(["mips-linux-gnu-as", "-EB", "-mips2", "-32", "-o", str(obj), str(src)],
+                   check=True)
+    extents = {"f": {"vaddr": 0x80100000, "size": 16},
+               "g": {"vaddr": 0x80200000, "size": 12}}      # cut after the lui
+    slices, text_ndx = blob_group.member_slices(obj, ["f", "g"], extents)
+    bodies = blob_group.relocate(obj, slices, text_ndx, {"D_data": 0x80130000},
+                                 members=["f"])
+    assert _words(bodies["f"])[0] == 0x0C000000 | (0x80200000 >> 2) & 0x03FFFFFF
+
+
+_LOCAL_ASM = """
+    .set noreorder
+    .text
+    .globl f
+    .type f, @function
+f:
+    lui $a0, %hi(done)
+    lw $a0, %lo(done)($a0)
+    lui $a1, %hi(done)
+    sw $zero, %lo(done)($a1)
+    jr $ra
+    nop
+    .data
+done:
+    .word DONE_VALUE
+"""
+
+
+def _local_object(tmp_path, value=0):
+    src = tmp_path / "l.s"
+    src.write_text(_LOCAL_ASM.replace("DONE_VALUE", str(value)))
+    obj = tmp_path / "l.o"
+    subprocess.run(["mips-linux-gnu-as", "-EB", "-mips2", "-32", "-o", str(obj), str(src)],
+                   check=True)
+    return obj
+
+
+def _retail(data_addr, lo_second=None, data_word=0):
+    """A 0x40-byte image at 0x80100000: f at +0, its static at data_addr."""
+    hi = ((data_addr + 0x8000) >> 16) & 0xFFFF
+    lo = data_addr & 0xFFFF
+    lo2 = lo if lo_second is None else lo_second
+    words = [0x3C040000 | hi, 0x8C840000 | lo, 0x3C050000 | hi, 0xACA00000 | lo2,
+             0x03E00008, 0] + [0] * 10
+    off = (data_addr - 0x80100000) // 4
+    words[off] = data_word
+    words[off + 1] = 0x28282800          # the next unit's data, past our padding
+    return b"".join(struct.pack(">I", w) for w in words), 0x80100000
+
+
+def _local_bodies(obj, image):
+    extents = {"f": {"vaddr": 0x80100000, "size": 24}}
+    slices, text_ndx = blob_group.member_slices(obj, ["f"], extents)
+    return blob_group.relocate(obj, slices, text_ndx, {}, image=image)
+
+
+def test_local_static_resolves_to_its_verified_image_address(tmp_path):
+    image = _retail(0x80100020)
+    body = _local_bodies(_local_object(tmp_path), image)["f"]
+    assert body == image[0][:24]
+
+
+def test_local_static_sites_must_agree(tmp_path):
+    with pytest.raises(blob_group.GroupError, match="disagree"):
+        _local_bodies(_local_object(tmp_path), _retail(0x80100020, lo_second=0x0030))
+
+
+def test_local_static_contents_must_match_the_image(tmp_path):
+    with pytest.raises(blob_group.GroupError, match="differ from the image"):
+        _local_bodies(_local_object(tmp_path, value=5), _retail(0x80100020))
+
+
+def test_local_static_needs_the_image(tmp_path):
+    with pytest.raises(blob_group.GroupError, match="need the image"):
+        _local_bodies(_local_object(tmp_path), None)
