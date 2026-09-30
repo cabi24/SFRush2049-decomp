@@ -12,7 +12,7 @@ s32 handbrake_apply(Node *p, s16 x, s16 y, s32 a3) {
             if (p->child == -1) {
                 return 0;
             }
-            p = &D_80124EEC[p->child];
+            { s32 c = p->child; p = &D_80124EEC[c]; }
         } else {
             return func_800AC9BC(p, x, y, a3);
         }

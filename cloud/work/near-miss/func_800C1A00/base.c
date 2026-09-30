@@ -3800,10 +3800,10 @@ typedef struct DRef { DInfo *info; u8 pad4[8]; s16 idx; u16 flags; f32 scale; } 
 typedef struct DObj { u8 pad0[0x6C]; DRef *ref; } DObj;
 void func_800C1A00(s32 arg0, f32 *arg1)
 {
-  s32 var_v0;
-  DInfo *temp_a3;
   DObj **var_a2;
+  s32 var_v0;
   DRef *temp_a0;
+  DInfo *temp_a3;
   arg1[0] = 0.0f;
   arg1[1] = 0.0f;
   arg1[2] = 0.0f;
