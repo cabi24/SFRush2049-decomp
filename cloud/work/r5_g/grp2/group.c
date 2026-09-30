@@ -3906,7 +3906,11 @@ s16 input_process_controller(f32 *p1, f32 *p2, f32 *out, Poly *poly, s16 *outIdx
     s32 res;
     f32 t;
     f32 d;
+    s32 w1;
+    s32 w2;
 
+    w1 = flag;
+    w2 = flag + 1;
     res = 1;
     func_800AD650(mat, poly->body);
     n = poly->cnt & 0xF;
@@ -3997,7 +4001,7 @@ done:
     out[0] = v0[0] + out[0];
     out[1] = v0[1] + out[1];
     out[2] = v0[2] + out[2];
-    return res;
+    return res + w1 - w2;
 }
 
 /* stand-in caller: keeps func_800AD4C8 out of line under -O3 */
