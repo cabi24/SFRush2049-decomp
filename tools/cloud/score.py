@@ -40,6 +40,13 @@ ASM_DIR = REPO / "asm" / "us" / "blob"
 IDO = Path(os.environ.get("IDO_DIR", REPO / "tools" / "cloud" / "ido"))
 OBJDUMP = "mips-linux-gnu-objdump"
 DEFAULT_FLAGS = "-g0 -O2 -mips2 -G 0 -non_shared"
+# The game was assembled with as1 -r4300_mul (VR4300 multiply errata: a nop
+# between back-to-back multiplies). With -non_shared the cc driver does not
+# pass it, so every compile here adds it. It cannot change a body that already
+# matches: the retail code never has two adjacent multiplies.
+# Evidence: cloud/work/R4300_MUL.md.
+R4300_AS1 = "-r4300_mul"
+R4300_CC = "-Wab,-r4300_mul"
 MASKS = {"R_MIPS_26": 0xFC000000, "R_MIPS_HI16": 0xFFFF0000, "R_MIPS_LO16": 0xFFFF0000}
 
 
@@ -376,7 +383,10 @@ def ido(tool):
 
 
 def compile_single(source, flags, out):
-    proc = _run([ido("cc"), "-c", *shlex.split(flags), "-o", str(out), str(source)])
+    flags = shlex.split(flags)
+    if R4300_CC not in flags:
+        flags.append(R4300_CC)
+    proc = _run([ido("cc"), "-c", *flags, "-o", str(out), str(source)])
     if proc.returncode != 0 or not Path(out).exists():
         raise SystemExit("IDO compile failed:\n" + (proc.stderr or proc.stdout)[:3000])
 
@@ -402,7 +412,7 @@ def compile_group(group_dir, out):
             [ido("umerge"), "-Olimit", "5000", *common, "split", "-o", "merged", "-t", "st"],
             [ido("uopt"), "-G", "0", "-Olimit", "5000", *common, "merged", "opt", "-t", "st", "optlog"],
             [ido("ugen"), "-G", "0", *common, "opt", "-o", "gen", "-t", "st", "-temp", "ugtmp"],
-            [ido("as1"), "-elf", "-G", "0", "-p0", *common, "-Olimit", "5000", "gen", "-o", str(out),
+            [ido("as1"), "-elf", "-G", "0", "-p0", *common, R4300_AS1, "-Olimit", "5000", "gen", "-o", str(out),
              "-t", "st"],
         ]
         for step in steps:
@@ -422,6 +432,10 @@ def main():
     f.add_argument("--flags", default=DEFAULT_FLAGS)
     g = sub.add_parser("group")
     g.add_argument("group_dir")
+    g.add_argument("--claims", action="store_true",
+                   help="CI mode: judge only the members group.json lists under "
+                        "\"claims\" (none listed: report only), honouring its "
+                        "\"allow_unverified\"")
     for command in (f, g):
         command.add_argument("--allow-unverified", action="store_true",
                              help="permit local data-section relocations; still reject other failures")
@@ -437,6 +451,16 @@ def main():
             spec = compile_group(Path(args.group_dir), obj)
             names = spec["members"]
             context = spec.get("context", [])
+            if args.claims:
+                claimed = spec.get("claims", [])
+                unknown = sorted(set(claimed) - set(names))
+                if unknown:
+                    raise SystemExit(f"claims name non-members: {unknown}")
+                context = [n for n in names if n not in claimed] + context
+                names = list(claimed)
+                args.allow_unverified = bool(spec.get("allow_unverified"))
+                if not names:
+                    print("No claims: work in progress, reported only.")
             print("Members:")
         all_match = True
         for name in names:
