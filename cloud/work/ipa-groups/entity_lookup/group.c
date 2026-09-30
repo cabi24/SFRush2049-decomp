@@ -40,8 +40,7 @@ typedef struct Msg {
 
 extern Entity *D_80110244;
 extern s32 D_80146104;
-extern Msg D_80142DD8[];
-extern Msg D_801439D8[];
+extern Msg D_80142DD8[128];
 extern s32 D_80142728;
 extern s32 D_801427A8;
 
@@ -55,16 +54,13 @@ Msg *func_80091B00(void);
 
 Entity *func_80091BA8(s32 h)
 {
-    s32 off;
-
     if (h == -1) {
         return 0;
     }
-    off = (h & D_80146104) * 68;
-    if (*(s32 *)((u8 *)D_80110244 + off + 12) != h) {
+    if (D_80110244[h & D_80146104].id != h) {
         return 0;
     }
-    return (Entity *)((u8 *)D_80110244 + off);
+    return &D_80110244[h & D_80146104];
 }
 
 void func_800BF01C(CamSlot *c)
@@ -73,16 +69,15 @@ void func_800BF01C(CamSlot *c)
 
 Msg *func_80091B00(void)
 {
-    Msg *m = D_80142DD8;
+    s32 i;
 
-    do {
-        if (m->used == 0) {
-            m->used = 1;
-            m->id = -1;
-            return m;
+    for (i = 0; i < 128; i++) {
+        if (D_80142DD8[i].used == 0) {
+            D_80142DD8[i].used = 1;
+            D_80142DD8[i].id = -1;
+            return &D_80142DD8[i];
         }
-        m++;
-    } while (m != D_801439D8);
+    }
     return 0;
 }
 
