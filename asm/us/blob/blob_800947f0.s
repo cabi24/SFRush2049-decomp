@@ -439,6 +439,7 @@ input_status_update:
 .section .text.Input_SetAnalogBounds, "ax", @progbits
 .globl Input_SetAnalogBounds
 Input_SetAnalogBounds:
+    /* compiled from src/blob/Input_SetAnalogBounds.c */
     .word 0x04A10007
     .word 0x0004C140
     .word 0x3C0F8014
@@ -549,6 +550,7 @@ Input_ApplyPadConfig:
 .section .text.input_new_data_wrapper, "ax", @progbits
 .globl input_new_data_wrapper
 input_new_data_wrapper:
+    /* compiled from src/blob/input_new_data_wrapper.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x8083001A

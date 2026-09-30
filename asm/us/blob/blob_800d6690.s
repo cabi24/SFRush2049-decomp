@@ -6231,6 +6231,7 @@ tournament_trophy_award:
 .section .text.func_800DC57C, "ax", @progbits
 .globl func_800DC57C
 func_800DC57C:
+    /* compiled from src/blob/func_800DC57C.c */
     .word 0x2CA10021
     .word 0x14200003
     .word 0x3C078011
@@ -7270,6 +7271,7 @@ func_800DD454:
 .section .text.func_800DD45C, "ax", @progbits
 .globl func_800DD45C
 func_800DD45C:
+    /* compiled from src/blob/func_800DD45C.c */
     .word 0x00047080
     .word 0x01C47023
     .word 0x000E7080
