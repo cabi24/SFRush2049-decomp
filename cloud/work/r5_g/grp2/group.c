@@ -3889,6 +3889,7 @@ done:
     return res;
 }
 
+#define NN (poly->cnt & 0xF)
 s16 input_process_controller(f32 *p1, f32 *p2, f32 *out, Poly *poly, s16 *outIdx, s32 flag, f32 *vcOut, f32 *mat, f32 rad2) {
     u16 idx[20];
     f32 vp[3];
@@ -3901,17 +3902,14 @@ s16 input_process_controller(f32 *p1, f32 *p2, f32 *out, Poly *poly, s16 *outIdx
     volatile f32 f2;
     volatile f32 f1;
     u32 k;
-    u32 n;
     s32 res;
     f32 t;
     f32 d;
-    s32 w1;
 
-    w1 = flag;
     res = 1;
     func_800AD650(mat, poly->body);
-    n = poly->cnt & 0xF;
-    *outIdx = func_800AD5D0((u8 *) (poly->off + D_80152568), n, (s16 *) idx);
+    
+    *outIdx = func_800AD5D0((u8 *) (poly->off + D_80152568), NN, (s16 *) idx);
     DECODE(v0, (&D_8015201C[idx[0]]));
     va[0] = p1[0] - v0[0];
     va[1] = p1[1] - v0[1];
@@ -3941,7 +3939,7 @@ s16 input_process_controller(f32 *p1, f32 *p2, f32 *out, Poly *poly, s16 *outIdx
         vp[1] -= d * t;
         vp[2] -= va[2] * t;
     }
-    DECODE(ve, (&D_8015201C[idx[n - 1]]));
+    DECODE(ve, (&D_8015201C[idx[NN - 1]]));
     if ((((ve[2] - vp[2]) * ve[0]) - (ve[2] * (ve[0] - vp[0]))) < 0.0f) {
         if (flag > 0) {
             return 0;
@@ -3964,7 +3962,7 @@ s16 input_process_controller(f32 *p1, f32 *p2, f32 *out, Poly *poly, s16 *outIdx
         goto done;
     }
     k = 2;
-    if ((u32) n >= 3U) {
+    if ((u32) NN >= 3U) {
         do {
             k += 1;
             vprev[0] = ve[0];
@@ -3987,14 +3985,14 @@ s16 input_process_controller(f32 *p1, f32 *p2, f32 *out, Poly *poly, s16 *outIdx
                 res = -1;
                 goto done;
             }
-        } while (k < (u32) n);
+        } while (k < (u32) NN);
     }
 done:
     func_8009E820(vp, out, mat);
     out[0] = v0[0] + out[0];
     out[1] = v0[1] + out[1];
     out[2] = v0[2] + out[2];
-    return res + w1 - w1;
+    return res;
 }
 
 /* stand-in caller: keeps func_800AD4C8 out of line under -O3 */
