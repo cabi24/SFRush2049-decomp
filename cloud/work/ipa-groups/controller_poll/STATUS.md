@@ -11,7 +11,7 @@ here but are not spliced.
 | `player_mode_set` | member, `keep` | 15 | **MATCH** |
 | `player_state_set` | member, `keep` | 15 | **MATCH** |
 | `func_800E7038` | member | 63 | 61 differ (emits 60) |
-| `func_800E7134` | member, `keep` | 169 | 4 differ |
+| `func_800E7134` | member, `keep` | 169 | 165 differ |
 | `process_inputs` | member, `keep` | 89 | 89 differ (emits 110) |
 | `controller_poll` | member | 232 | 223 differ (emits 209) |
 

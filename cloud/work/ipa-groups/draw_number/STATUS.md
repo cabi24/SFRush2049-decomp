@@ -1,5 +1,11 @@
 # draw_number -> 110/110 MATCH (real function, extent 110 words)
 
+## Current status (Rescored 2026-09-30 (Round 2 addendum), master d0891f3.)
+
+**110/110 MATCH** (strict, `extscore.py --norm`: exact after alignment 110/110, structure 1.000; extent 110
+words). Caveat: matches with stand-in callers, not spliceable as is. Closure (approximate `closure.py`): real
+callers `draw_speedometer`, `func_800CCCCC` and the menu cluster are absent; `func_800C7578` is an extern.
+
 Real head 0x800C760C (`addiu sp,-24`), IPA params `$s1` (object pointer) and `$s2` (index),
 callers `draw_speedometer`, `func_800CCCCC`. It makes twelve calls to `func_800C7578(p, (u8)idx,
 slot, s8 value)`: ten byte-table lookups indexed by `idx` and two float scalings

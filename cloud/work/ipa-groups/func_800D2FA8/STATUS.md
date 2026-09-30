@@ -1,68 +1,52 @@
 # func_800D2FA8 (track path search: node graph walk)
 
-Rewritten by hand from the assembly (cloud pass 2, 2026-09-29); the m2c seed is
-superseded. Builds; **1 of 3 members matches** with `-r4300_mul`
-(`cloud/work/tools/zbuild.py --as1=-r4300_mul`):
+**1 of 3 members MATCH** (`time_of_day_select`, 50 of 400 words), rescored
+2026-09-30 (`zbuild.py --as1=-r4300_mul`). Hand-written from the assembly. Not spliced.
 
-```
-time_of_day_select   50/50    MATCH   (was a prototype only; now a member)
-split_time_display   14/60    words differ (size 60/60, frame 8/8; cloud pass 4, was 34/60)
-func_800D2FA8       264/290   words differ (size 292/290: zbuild counts the trailing pad nop)
-```
+| function | role | target words | result |
+|---|---|---|---|
+| `time_of_day_select` | member | 50 | **MATCH** |
+| `split_time_display` | member | 60 | 14 differ (size 60/60, frame 8/8) |
+| `func_800D2FA8` | member, `keep` | 290 | 264 differ (zbuild size 292: trailing pad nop) |
+| `func_800B98D8` | context, `keep` | 77 | **MATCH** |
+| `minimap_render` | context, `keep` | 69 | **MATCH** |
+
+Closure: the two context functions come from group `func_800B9B64` (same
+module: path graph `D_801407F0`, sections `D_80151CE8`) and must be in the unit
+for calls to link. `func_800D3430` (outside caller of `func_800D2FA8`) and its
+callers are not needed.
 
 ## What the code is
 
-The same module as group `func_800B9B64` (track path graph `D_801407F0`,
-sections `D_80151CE8`). `group.c` re-uses that group's types and includes its
-matching `func_800B98D8` and `minimap_render` as `context` (they are called
-from here and have to be in the unit for calls to link and for the callee
-register information):
-
 | function | role |
 |---|---|
-| `time_of_day_select(node, pos, outNode, dist, depth)` | follow `next` links from `node`, summing point counts into `*dist` (tail recursive; IDO turns it into a loop) |
+| `time_of_day_select(node, pos, outNode, dist, depth)` | follow `next` links summing point counts into `*dist` (tail recursive; IDO makes a loop) |
 | `split_time_display(node, pos, remain, outNode, outPos)` | walk `remain` points back along `next` links (tail recursive) |
-| `func_800D2FA8(node, pos, outNode, outPos, stopAtTyped, depth)` | search for the node/point reached from `(node,pos)`: checks the visited list `D_80124F88`, handles nodes whose `next == prev` (a loop) inline, otherwise measures both ways round with `time_of_day_select`/`minimap_render` and finishes with `split_time_display`; recursive on the `next == prev` path |
+| `func_800D2FA8(node, pos, outNode, outPos, stopAtTyped, depth)` | find the node/point reached from `(node,pos)`: checks visited list `D_80124F88`, handles `next == prev` loops inline, else measures both ways round with `time_of_day_select`/`minimap_render`, finishes with `split_time_display`; recursive on the `next == prev` path |
 
-`func_800D2FA8` has an outside caller (`func_800D3430`) and the normal ABI
-(five stack/register args, `depth` on the stack): it is in `keep`.
-`func_800D3430` and its callers are not in the unit; nothing depends on them.
+## Techniques that worked
 
-## Findings that mattered
-
-- **Locals layout.** IDO gives every *referenced* named scalar local a stack
-  slot and lays locals out in declaration order, first declared at the highest
-  address. `func_800D2FA8`'s seven `int` locals are declared
-  `dist1, total, dist2, start1, node2, pos2, start2` to land at
-  `sp+96, 92, 88, 84, 80, 76, 72` as in the ROM.
-- **Frame padding.** The ROM frame is 8 bytes larger than the code needs. An
-  unreferenced `volatile s32 padv[2];` declared first reproduces it (plain
-  unused locals are dropped by the optimiser, `volatile` ones are not).
-- `split_time_display` must be recursive C (`else if (pos >= remain) {...}
-  else recurse`) with **no** named local for the section start: a `start`
-  local adds a stack slot (frame 16 instead of 8). IDO's tail-call
-  conversion produces the two dead stores at `sp+4`/`sp+0`.
-- `if (pos >= remain)` first, recursion in the `else`: matches the branch
-  layout (`bnezl at,recurse`).
-- Reusing the `node` parameter as the loop variable
-  (`node = *outPos; while (node < ...)`) moves the value into `$a0` as in the
-  ROM.
-
-## Cloud pass 4: split_time_display 34 -> 14
-
-The one-line change `if (*outPos < 0)` instead of `if (pos - remain < 0)` (after
-`*outPos = pos - remain;`): uopt forwards the stored value, so `pos - remain` is no longer
-a cross-block CSE temp competing with `start`/section base/`80`/graph base for registers,
-and those webs now take `$v1,$t0,$t1,$t2` as in the target. What is left are the
-`t`-temps of the loop recompute and the two arms (`t6,t7,t8` vs `t7,t8,t9`, `t3/t4` rotation).
-`func_800D2FA8` itself was not improved (a random search only found semantically wrong edits).
+- **Locals layout.** IDO gives every referenced named scalar local a stack slot,
+  first declared at the highest address. `func_800D2FA8`'s seven `int` locals
+  are declared `dist1, total, dist2, start1, node2, pos2, start2` to land at
+  `sp+96..72`.
+- **Frame padding.** ROM frame is 8 bytes larger than needed; an unreferenced
+  `volatile s32 padv[2];` declared first reproduces it (plain unused locals are dropped).
+- `split_time_display`: recursive C (`if (pos >= remain) {...} else recurse`)
+  with **no** named local for the section start (a `start` local makes frame 16
+  not 8); tail-call conversion produces the two dead stores at `sp+4/sp+0`.
+  Test `if (*outPos < 0)` after `*outPos = pos - remain;` (not `pos - remain < 0`):
+  uopt forwards the stored value, so it is no longer a cross-block CSE temp
+  competing for registers (34 -> 14 differing words).
+- Reusing the `node` parameter as loop variable (`node = *outPos; while (...)`)
+  moves the value into `$a0` as in the ROM.
 
 ## Blockers
 
-- `split_time_display`: the ROM keeps the section start in `$v1` and the
-  section/graph bases in `$t0/$t2` (`$t1 = 80` for the `mul`); ours puts the
-  start in `$t0` and the bases one register higher. Same "first temp" shift as
-  in `func_8008B640`'s `t` (`$v1` vs `$v0`).
-- `func_800D2FA8`: `pos`/`outPos` copies are in `$t4/$t5` in the ROM, `$t3/$t4`
-  here (a one-register shift again); the unrolled visited-list loop also has
-  one extra `move a1,a2` in the ROM.
+- `split_time_display`: ROM section start in `$v1`, section/graph bases in
+  `$t0/$t2` (`$t1 = 80` for the `mul`); ours puts start in `$t0`, bases one
+  higher. Left: `t`-temps of the loop recompute and the two arms (`t6,t7,t8` vs
+  `t7,t8,t9`, `t3/t4` rotation). Same "first temp" shift as `func_8008B640`.
+- `func_800D2FA8`: `pos`/`outPos` copies in `$t4/$t5` in the ROM, `$t3/$t4` here;
+  the unrolled visited-list loop has one extra `move a1,a2` in the ROM. A random
+  search found only semantically wrong edits.
