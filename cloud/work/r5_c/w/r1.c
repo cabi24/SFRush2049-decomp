@@ -132,118 +132,13 @@ void func_800DE860(void)
     }
 }
 
-#define FA(a, b) (1.0f - ((a * s + b) * m))
-#define FB(a, b, c) ((a * s + 1.0f) - (m * (b * s + c)))
-#define FC(a, b, c, d) ((a * s + b) - (m * (c * s + d)))
-#define FD(a, b) (a - ((0.5f * s + b) * m))
+#define KK(a) (D_8012463C[((a) - 0x8012463C) / 4])
+#define FA(a, b) (1.0f - ((KK(a) * s + KK(b)) * m))
+#define FB(a, b, c) ((KK(a) * s + 1.0f) - (m * (KK(b) * s + KK(c))))
+#define FC(a, b, c, d) ((KK(a) * s + KK(b)) - (m * (KK(c) * s + KK(d))))
+#define FD(a, b) (KK(a) - ((0.5f * s + KK(b)) * m))
 
-extern f32 D_8012463C;
-extern f32 D_80124640;
-extern f32 D_80124644;
-extern f32 D_80124648;
-extern f32 D_801247E0;
-extern f32 D_801247E4;
-extern f32 D_801247E8;
-extern f32 D_80124650;
-extern f32 D_80124654;
-extern f32 D_80124658;
-extern f32 D_8012465C;
-extern f32 D_80124660;
-extern f32 D_80124664;
-extern f32 D_80124668;
-extern f32 D_8012466C;
-extern f32 D_80124670;
-extern f32 D_80124674;
-extern f32 D_80124678;
-extern f32 D_8012467C;
-extern f32 D_80124680;
-extern f32 D_80124684;
-extern f32 D_80124688;
-extern f32 D_8012468C;
-extern f32 D_80124690;
-extern f32 D_80124694;
-extern f32 D_80124698;
-extern f32 D_8012469C;
-extern f32 D_801246A0;
-extern f32 D_801246A4;
-extern f32 D_801246A8;
-extern f32 D_801246AC;
-extern f32 D_801246B0;
-extern f32 D_801246B4;
-extern f32 D_801246B8;
-extern f32 D_801246BC;
-extern f32 D_801246C0;
-extern f32 D_801246C4;
-extern f32 D_801246C8;
-extern f32 D_801246CC;
-extern f32 D_801246D0;
-extern f32 D_801246D4;
-extern f32 D_801246D8;
-extern f32 D_801246DC;
-extern f32 D_801246E0;
-extern f32 D_801246E4;
-extern f32 D_801246E8;
-extern f32 D_801246EC;
-extern f32 D_801246F0;
-extern f32 D_801246F4;
-extern f32 D_801246F8;
-extern f32 D_801246FC;
-extern f32 D_80124700;
-extern f32 D_80124704;
-extern f32 D_80124708;
-extern f32 D_8012470C;
-extern f32 D_80124710;
-extern f32 D_80124714;
-extern f32 D_80124718;
-extern f32 D_8012471C;
-extern f32 D_80124720;
-extern f32 D_80124724;
-extern f32 D_80124728;
-extern f32 D_8012472C;
-extern f32 D_80124730;
-extern f32 D_80124734;
-extern f32 D_80124738;
-extern f32 D_8012473C;
-extern f32 D_80124740;
-extern f32 D_80124744;
-extern f32 D_80124748;
-extern f32 D_8012474C;
-extern f32 D_80124750;
-extern f32 D_80124754;
-extern f32 D_80124758;
-extern f32 D_8012475C;
-extern f32 D_80124760;
-extern f32 D_80124764;
-extern f32 D_80124768;
-extern f32 D_8012476C;
-extern f32 D_80124770;
-extern f32 D_80124774;
-extern f32 D_80124778;
-extern f32 D_8012477C;
-extern f32 D_80124780;
-extern f32 D_80124784;
-extern f32 D_80124788;
-extern f32 D_8012478C;
-extern f32 D_80124790;
-extern f32 D_80124794;
-extern f32 D_80124798;
-extern f32 D_8012479C;
-extern f32 D_801247A0;
-extern f32 D_801247A4;
-extern f32 D_801247A8;
-extern f32 D_801247AC;
-extern f32 D_801247B0;
-extern f32 D_801247B4;
-extern f32 D_801247B8;
-extern f32 D_801247BC;
-extern f32 D_801247C0;
-extern f32 D_801247C4;
-extern f32 D_801247C8;
-extern f32 D_801247CC;
-extern f32 D_801247D0;
-extern f32 D_801247D4;
-extern f32 D_801247D8;
-extern f32 D_801247DC;
+extern f32 D_8012463C[];
 extern s8 D_80152744;
 extern s32 D_801174B4;
 extern f32 D_801543CC;
@@ -264,7 +159,7 @@ void render_large_objects(void)
     s16 place[8];
     f32 diff[3];
     f32 dist2[6][6];
-    s16 n;
+    s8 n;
     s16 i;
     s16 j;
     s16 k;
@@ -333,7 +228,7 @@ void render_large_objects(void)
             for (k = 0; k < nn; k++) {
                 c = nlist[k];
                 D_8014A250[c].outA = 1.0f;
-                D_8014A250[c].outB = (f32) (nn - k - 1) * D_80124640 + D_8012463C;
+                D_8014A250[c].outB = (f32) (nn - k - 1) * KK(0x80124640) + KK(0x8012463C);
             }
         } else {
             for (i = 0; i < n; i++) {
@@ -342,7 +237,7 @@ void render_large_objects(void)
                 for (j = i; j < n; j++) {
                     d = D_8014A250[j].order;
                     if (c == d) {
-                        dist2[c][d] = D_80124644;
+                        dist2[c][d] = KK(0x80124644);
                     } else {
                         for (k = 0; k < 3; k++) {
                             diff[k] = player_array[c].pos[k] - player_array[d].pos[k];
@@ -359,7 +254,7 @@ void render_large_objects(void)
             }
             for (i = 0; i < nc; i++) {
                 for (j = i + 1; j < nc; j++) {
-                    if (dist2[clist[i]][clist[j]] < D_80124648) {
+                    if (dist2[clist[i]][clist[j]] < KK(0x80124648)) {
                         cnt[clist[i]] += 10;
                         cnt[clist[j]] += 10;
                     }
@@ -426,46 +321,46 @@ void render_large_objects(void)
                     if (t1 != c) {
                         f16 = player_array[c].dist - player_array[t1].dist;
                         if (f16 < -20.0f) {
-                            f24 = FA(D_80124660, D_80124664);
-                            f12 = func_800F92C8(-300.0f, -60.0f, f16, FC(D_80124650, D_80124654, D_80124658, D_8012465C), f24);
-                            f26 = FB(D_80124668, D_8012466C, D_80124670);
+                            f24 = FA(0x80124660, 0x80124664);
+                            f12 = func_800F92C8(-300.0f, -60.0f, f16, FC(0x80124650, 0x80124654, 0x80124658, 0x8012465C), f24);
+                            f26 = FB(0x80124668, 0x8012466C, 0x80124670);
                             f2 = f26;
                         } else {
                             if (cnt[t1] < 2) {
-                                f26 = FB(D_8012467C, D_80124680, D_80124684);
-                                f2 = func_800F92C8(200.0f, 60.0f, f16, FD(D_80124678, D_80124674), f26);
-                                f24 = FA(D_80124688, D_8012468C);
+                                f26 = FB(0x8012467C, 0x80124680, 0x80124684);
+                                f2 = func_800F92C8(200.0f, 60.0f, f16, FD(0x80124678, 0x80124674), f26);
+                                f24 = FA(0x80124688, 0x8012468C);
                             } else {
-                                f26 = FB(D_80124694, D_80124698, D_80124690);
+                                f26 = FB(0x80124694, 0x80124698, 0x80124690);
                                 f2 = f26;
-                                f24 = FA(D_8012469C, D_80124690);
+                                f24 = FA(0x8012469C, 0x80124690);
                             }
                             f12 = f24;
                         }
                     } else if (P == 0) {
                         f16 = player_array[c].dist - player_array[byrank[1]].dist;
                         if (f16 < 200.0f) {
-                            f24 = FA(D_801246A0, D_801246A4);
-                            f12 = func_800F92C8(200.0f, 0.0f, f16, f24, FC(D_801246A8, D_801246AC, D_801246B0, D_801246B4));
-                            f26 = FB(D_801246B8, D_801246BC, D_801246C0);
+                            f24 = FA(0x801246A0, 0x801246A4);
+                            f12 = func_800F92C8(200.0f, 0.0f, f16, f24, FC(0x801246A8, 0x801246AC, 0x801246B0, 0x801246B4));
+                            f26 = FB(0x801246B8, 0x801246BC, 0x801246C0);
                             f2 = f26;
                         } else {
-                            f26 = FB(D_801246CC, D_801246D0, D_801246D4);
-                            f2 = func_800F92C8(500.0f, 200.0f, f16, FD(D_801246C8, D_801246C4), f26);
-                            f24 = FA(D_801246D8, D_801246DC);
+                            f26 = FB(0x801246CC, 0x801246D0, 0x801246D4);
+                            f2 = func_800F92C8(500.0f, 200.0f, f16, FD(0x801246C8, 0x801246C4), f26);
+                            f24 = FA(0x801246D8, 0x801246DC);
                             f12 = f24;
                         }
                     } else if (P + 1 == D_80152744) {
                         f16 = player_array[c].dist - player_array[byrank[D_80152744 - 2]].dist;
                         if (f16 < -150.0f) {
-                            f24 = FA(D_801246E0, D_801246E4);
-                            f12 = func_800F92C8(-150.0f, -300.0f, f16, f24, FC(D_801246E8, D_801246EC, D_801246F0, D_801246F4));
-                            f26 = FB(D_801246F8, D_801246FC, D_80124700);
+                            f24 = FA(0x801246E0, 0x801246E4);
+                            f12 = func_800F92C8(-150.0f, -300.0f, f16, f24, FC(0x801246E8, 0x801246EC, 0x801246F0, 0x801246F4));
+                            f26 = FB(0x801246F8, 0x801246FC, 0x80124700);
                             f2 = f26;
                         } else {
-                            f26 = FB(D_80124704, D_80124708, D_8012470C);
-                            f2 = func_800F92C8(-150.0f, 0.0f, f16, f26, FD(D_80124714, D_80124710));
-                            f24 = FA(D_80124718, D_8012471C);
+                            f26 = FB(0x80124704, 0x80124708, 0x8012470C);
+                            f2 = func_800F92C8(-150.0f, 0.0f, f16, f26, FD(0x80124714, 0x80124710));
+                            f24 = FA(0x80124718, 0x8012471C);
                             f12 = f24;
                         }
                     } else {
@@ -477,14 +372,14 @@ void render_large_objects(void)
                         if (f16 > -150.0f && f30 < 150.0f) {
                             f0 = (f16 + f30) / 2.0f;
                             if (f0 < 0.0f) {
-                                f24 = FA(D_80124720, D_80124724);
-                                f12 = func_800F92C8(f16 - f0, -200.0f, f16, f24, FC(D_80124728, D_8012472C, D_80124730, D_80124734));
-                                f26 = FB(D_80124738, D_8012473C, D_80124740);
+                                f24 = FA(0x80124720, 0x80124724);
+                                f12 = func_800F92C8(f16 - f0, -200.0f, f16, f24, FC(0x80124728, 0x8012472C, 0x80124730, 0x80124734));
+                                f26 = FB(0x80124738, 0x8012473C, 0x80124740);
                                 f2 = f26;
                             } else {
-                                f26 = FB(D_80124744, D_80124748, D_8012474C);
-                                f2 = func_800F92C8(f30 - f0, 200.0f, f16, f26, FD(D_80124754, D_80124750));
-                                f24 = FA(D_80124758, D_8012475C);
+                                f26 = FB(0x80124744, 0x80124748, 0x8012474C);
+                                f2 = func_800F92C8(f30 - f0, 200.0f, f16, f26, FD(0x80124754, 0x80124750));
+                                f24 = FA(0x80124758, 0x8012475C);
                                 f12 = f24;
                             }
                         } else {
@@ -500,25 +395,25 @@ void render_large_objects(void)
                             }
                             if (cahead >= cbehind) {
                                 if (f16 < -150.0f) {
-                                    f24 = FA(D_80124760, D_80124764);
-                                    f12 = func_800F92C8(-150.0f, -300.0f, f16, f24, FC(D_80124768, D_8012476C, D_80124770, D_80124774));
-                                    f26 = FB(D_80124778, D_8012477C, D_80124780);
+                                    f24 = FA(0x80124760, 0x80124764);
+                                    f12 = func_800F92C8(-150.0f, -300.0f, f16, f24, FC(0x80124768, 0x8012476C, 0x80124770, 0x80124774));
+                                    f26 = FB(0x80124778, 0x8012477C, 0x80124780);
                                     f2 = f26;
                                 } else {
-                                    f26 = FB(D_80124784, D_80124788, D_8012478C);
-                                    f2 = func_800F92C8(-150.0f, 0.0f, f16, f26, FD(D_80124794, D_80124790));
-                                    f24 = FA(D_80124798, D_8012479C);
+                                    f26 = FB(0x80124784, 0x80124788, 0x8012478C);
+                                    f2 = func_800F92C8(-150.0f, 0.0f, f16, f26, FD(0x80124794, 0x80124790));
+                                    f24 = FA(0x80124798, 0x8012479C);
                                     f12 = f24;
                                 }
                             } else if (f30 < 150.0f) {
-                                f24 = FA(D_801247A0, D_801247A4);
-                                f12 = func_800F92C8(150.0f, 0.0f, f16, f24, FC(D_801247A8, D_801247AC, D_801247B0, D_801247B4));
-                                f26 = FB(D_801247B8, D_801247BC, D_801247C0);
+                                f24 = FA(0x801247A0, 0x801247A4);
+                                f12 = func_800F92C8(150.0f, 0.0f, f16, f24, FC(0x801247A8, 0x801247AC, 0x801247B0, 0x801247B4));
+                                f26 = FB(0x801247B8, 0x801247BC, 0x801247C0);
                                 f2 = f26;
                             } else {
-                                f26 = FB(D_801247CC, D_801247D0, D_801247D4);
-                                f2 = func_800F92C8(500.0f, 150.0f, f16, FD(D_801247C8, D_801247C4), f26);
-                                f24 = FA(D_801247D8, D_801247DC);
+                                f26 = FB(0x801247CC, 0x801247D0, 0x801247D4);
+                                f2 = func_800F92C8(500.0f, 150.0f, f16, FD(0x801247C8, 0x801247C4), f26);
+                                f24 = FA(0x801247D8, 0x801247DC);
                                 f12 = f24;
                             }
                         }
@@ -532,12 +427,12 @@ void render_large_objects(void)
                     }
                     a = cp->outA;
                     if (f2 < a) {
-                        v = a - D_801247E0;
+                        v = a - KK(0x801247E0);
                         if (v < f2) {
                             v = f2;
                         }
                     } else {
-                        v = a + D_801247E4;
+                        v = a + KK(0x801247E4);
                         if (f2 < v) {
                             v = f2;
                         }
@@ -545,12 +440,12 @@ void render_large_objects(void)
                     cp->outA = v;
                     a = cp->outB;
                     if (f12 < a) {
-                        v = a - D_801247E8;
+                        v = a - KK(0x801247E8);
                         if (v < f12) {
                             v = f12;
                         }
                     } else {
-                        v = a + D_801247E8;
+                        v = a + KK(0x801247E8);
                         if (f12 < v) {
                             v = f12;
                         }

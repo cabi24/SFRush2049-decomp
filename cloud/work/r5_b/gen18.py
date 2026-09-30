@@ -8,7 +8,7 @@ names=['x','y','z','len','inv','pz']
 decl={'x':'f32 x;','y':'f32 y;','z':'f32 z;','len':'f32 len;','inv':'f32 inv;','pz':'f32 *pz;'}
 res=[]
 for perm in itertools.permutations(names):
-  for loadorder in [('x','y','z'),('z','y','x'),('y','x','z')]:
+  for loadorder in [('x','y','z'),('y','x','z')]:
     ds=' '.join(decl[n] for n in perm)
     loads=' '.join('%s = v[%d];'%(n,'xyz'.index(n)) for n in loadorder)
     b=hdr+'''f32 func_8008E0B8(f32 *v) {

@@ -17,7 +17,8 @@
     "leaderboard_update",
     "camera_clip_planes",
     "scheduler_recv",
-    "__standin_a"
+    "__standin_a",
+    "results_time_display"
   ],
   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
   "generated": "hand-written (r5_i)",

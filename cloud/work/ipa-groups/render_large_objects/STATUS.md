@@ -57,3 +57,48 @@ Blocks branch to a common tail through `mov.s` copies to f2/f12 and re-load of t
 three lb values (v1, v0, t5) after each call: those are the hallmarks of IPA callee
 convention (caller-save regs reloaded), so the source is straight-line calls, not a
 table loop. No attempt at compile yet.
+
+## Round 5 (cloud/work/r5_c scratch; helpers rb.py, sc.py, rlo_sh.py there)
+
+Group layout changed: `keep` is now `render_large_objects` + `func_800DE860`, no stand-ins.
+`func_800F92C8` still MATCH (52/52) and gets its f16/f18/f20 IPA registers from the 12
+real call sites in `render_large_objects`.
+
+### func_800DE860 is NOT an IPA function
+The target saves `s0` and `$f20` itself (frame 16). Compiled alone at `-O2`
+(`score.py fn`, flags `-g0 -O2 -mips2 -G 0 -non_shared`) it emits 212 words (target 211) with
+the same control flow, and the same in the group once it is in `keep`. So it can be claimed
+as a single function once it matches. Remaining difference is only float register allocation:
+- target: d=f0 bd=f2 s=f12, hoisted 1.0 in TWO webs (f14 and f20), K2=f16, K1=f18,
+  K3/K4 (D_80124318/1C) loaded late in the join block into f6/f10 (not hoisted), frame 16.
+- mine: K1=f2 K2=f12 bd=f14 s=f16, ONE 1.0 web in f22, K3/K4 hoisted to the loop-body top
+  into f18/f20 (uopt anticipation hoist), frame 24 (f20 + f22 saved).
+Tried (all compile, none changes the allocation): k1/k2/bd/d/s as locals or inline, all
+declaration orders, `register`, `one`/`half` locals at several places, int/double/cast
+spellings of 1.0 (each un-hoists that use instead of splitting the web), operand/compare
+orders, ternary/else-if/`s=1.0; s+=` forms, `scale += ...` forms, struct/array wrapping of K1..K4,
+absolute-address casts for K3/K4 (un-hoists them but hoists the `lui` into an integer
+register), `volatile` K3/K4 (same), `(u32)`-laundered store pointer (un-hoists K3/K4 but breaks
+the integer side: reloads D_80150F14), -O1/-O3, group with keep. ~500 variants. Declaring `bd`
+first makes bd=f2 like the target (174 vs 173 aligned words). This looks like the
+"IDO-internal, stop" case from the playbook.
+
+### render_large_objects (1413 words): first full draft compiles
+`group.c` now holds a complete typed draft (no goto, no m2c spill locals): rank tables
+(`place`, `byrank`, `clist`, `nlist`, `cnt` as `s16[]`), `dist2[6][6]`, and the 12 interpolation
+blocks written with four macros over the literal pool (FA = `1 - (ka*s+kb)*m`,
+FB = `(kc*s+1) - m*(kd*s+ke)`, FC = `(ka*s+kb) - m*(kc*s+kd)`, FD = `ka - (0.5*s+kb)*m`;
+block arguments read from the asm by symbolic execution, `cloud/work/r5_c/sym.py`).
+Each literal is an `extern f32 D_8012xxxx` (an array base made the compiler share one `lui`
+and was worse). Result: 1321 words emitted vs 1413, opcode-LCS 946/1413, strict 1361/1413
+words differ, so NOT a match and NOT claimed. The integer half (first ~470 words) is close in
+shape (85-99 % per 100-word chunk); differences are register assignment (target keeps the
+car count in t5, loop counters t3/s3/s6, tables via s8/s4/s7 base pointers) and the
+missing ~90 words in the float half (target re-materialises 1.0 with `lui at,0x3f80; mtc1`
+after each call rather than keeping it in f30, and the blocks' scheduling differs).
+Structure notes for whoever continues: per-car f22 = `1 - level/5` (times a table factor
+`D_80154484[car][lvl + (D_80152570 ? 6 : 0)] * 0.125 + 0.75` when `D_8014A110 == 3`), f28 = rank
+fraction (`0.5/(n-1)` for first place, `P/(n-1)` else, 0 when `D_80152030 == 5`); blocks pick
+(outA target f2, outB target f12) from `func_800F92C8(a, b, x=gap, outA, outB)` depending on
+place (first / last / middle with neighbour-window and kind-2 counts), then both are rate
+limited by `D_801247E0/E4/E8` (outA) and `D_801247E8` (outB) toward the car's 0x7EC/0x7F0 fields.

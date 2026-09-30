@@ -1,94 +1,76 @@
-== model_data_load @ 0x8008AE8C (93 words)
-  8008ae8c: addiu	sp,sp,-48
-  8008ae90: sw	s1,24(sp)
-  8008ae94: lui	s1,0x8013
-  8008ae98: sw	s4,36(sp)
-  8008ae9c: sw	s3,32(sp)
-  8008aea0: sw	s2,28(sp)
-  8008aea4: li	s2,68
-  8008aea8: move	s3,a2
-  8008aeac: li	s4,-1
-  8008aeb0: addiu	s1,s1,-6400
-  8008aeb4: sw	ra,44(sp)
-  8008aeb8: sw	s5,40(sp)
-  8008aebc: sw	s0,20(sp)
-  8008aec0: li	v1,2
-  8008aec4: bne	a1,v1,0x8008af0c
-  8008aec8: sll	t6,a0,0x10
-  8008aecc: sra	t7,t6,0x10
-  8008aed0: multu	t7,s2
-  8008aed4: sll	t1,s3,0x8
-  8008aed8: mflo	t8
-  8008aedc: addu	t9,s1,t8
-  8008aee0: lw	v0,0(t9)
-  8008aee4: multu	a0,s2
-  8008aee8: or	t2,v0,t1
-  8008aeec: mflo	t0
-  8008aef0: addu	s0,s1,t0
-  8008aef4: lh	v0,22(s0)
-  8008aef8: sw	t2,0(s0)
-  8008aefc: beq	v0,s4,0x8008afdc
-  8008af00: move	a0,v0
-  8008af04: b	0x8008aec4
-  8008af08: li	a1,3
-  8008af0c: bnez	a1,0x8008af48
-  8008af10: li	at,1
-  8008af14: sll	t3,a0,0x10
-  8008af18: sra	t4,t3,0x10
-  8008af1c: multu	t4,s2
-  8008af20: lui	at,0x8000
-  8008af24: mflo	t5
-  8008af28: addu	t6,s1,t5
-  8008af2c: lw	v0,0(t6)
-  8008af30: multu	a0,s2
-  8008af34: or	t7,v0,at
-  8008af38: mflo	t8
-  8008af3c: addu	t9,s1,t8
-  8008af40: b	0x8008afdc
-  8008af44: sw	t7,0(t9)
-  8008af48: bne	a1,at,0x8008af80
-  8008af4c: sll	t0,a0,0x10
-  8008af50: sra	t1,t0,0x10
-  8008af54: multu	t1,s2
-  8008af58: sll	t4,s3,0x8
-  8008af5c: mflo	t2
-  8008af60: addu	t3,s1,t2
-  8008af64: lw	v0,0(t3)
-  8008af68: multu	a0,s2
-  8008af6c: or	t5,v0,t4
-  8008af70: mflo	t6
-  8008af74: addu	t8,s1,t6
-  8008af78: b	0x8008afdc
-  8008af7c: sw	t5,0(t8)
-  8008af80: li	at,3
-  8008af84: bne	a1,at,0x8008afdc
-  8008af88: sll	s5,s3,0x8
-  8008af8c: sll	t7,a0,0x10
-  8008af90: sra	t9,t7,0x10
-  8008af94: multu	t9,s2
-  8008af98: li	a1,3
-  8008af9c: mflo	t0
-  8008afa0: addu	t1,s1,t0
-  8008afa4: lw	v0,0(t1)
-  8008afa8: multu	a0,s2
-  8008afac: or	t3,v0,s5
-  8008afb0: mflo	t2
-  8008afb4: addu	s0,s1,t2
-  8008afb8: lh	a0,22(s0)
-  8008afbc: sw	t3,0(s0)
-  8008afc0: beql	a0,s4,0x8008afd4
-  8008afc4: lh	a0,24(s0)
-  8008afc8: jal	0x8008ae8c   <model_data_load>
-  8008afcc: move	a2,s3
-  8008afd0: lh	a0,24(s0)
-  8008afd4: bnel	a0,s4,0x8008af90
-  8008afd8: sll	t7,a0,0x10
-  8008afdc: lw	ra,44(sp)
-  8008afe0: lw	s0,20(sp)
-  8008afe4: lw	s1,24(sp)
-  8008afe8: lw	s2,28(sp)
-  8008afec: lw	s3,32(sp)
-  8008aff0: lw	s4,36(sp)
-  8008aff4: lw	s5,40(sp)
-  8008aff8: jr	ra
-  8008affc: addiu	sp,sp,48
+== func_8008E26C @ 0x8008E26C (75 
+lui	t1,0x8015
+addiu	t1,t1,27024
+lw	t0,0(t1)
+sll	t5,a2,0x10
+sra	t6,t5,0x10
+addiu	sp,sp,-40
+sw	ra,20(sp)
+sw	a2,48(sp)
+move	t5,t6
+move	t4,a0
+move	t3,a1
+move	t2,a3
+blez	t0,0x8008e2cc
+move	v1,zero
+lui	v0,0x8013
+addiu	v0,v0,-6400
+li	a0,0xffff
+lhu	t7,20(v0)
+beql	a0,t7,0x8008e2d0
+sll	a3,v1,0x4
+addiu	v1,v1,1
+slt	at,v1,t0
+bnez	at,0x8008e2b0
+addiu	v0,v0,68
+sll	a3,v1,0x4
+addu	a3,a3,v1
+bne	v1,t0,0x8008e2e8
+sll	a3,a3,0x2
+addiu	t8,t0,1
+sw	t8,0(t1)
+move	t0,t8
+lui	v0,0x8015
+addiu	v0,v0,27048
+lw	t9,0(v0)
+lui	t6,0x8013
+li	a2,-1
+slt	at,t9,t0
+beqz	at,0x8008e30c
+addiu	t6,t6,-6400
+sw	t0,0(v0)
+addu	v0,a3,t6
+lui	at,0x3f80
+mtc1	at,$f0
+sll	a0,v1,0x10
+sll	a1,t5,0x10
+sra	t8,a1,0x10
+sra	t7,a0,0x10
+sw	t2,0(v0)
+sw	zero,4(v0)
+sw	t3,8(v0)
+sh	t4,20(v0)
+sh	a2,22(v0)
+sh	a2,24(v0)
+sh	a2,26(v0)
+sw	zero,28(v0)
+sw	zero,32(v0)
+sw	zero,36(v0)
+sw	zero,40(v0)
+sw	zero,44(v0)
+sw	zero,48(v0)
+sw	zero,52(v0)
+sw	zero,56(v0)
+sw	zero,60(v0)
+move	a0,t7
+sw	t7,24(sp)
+move	a1,t8
+sw	v1,32(sp)
+swc1	$f0,12(v0)
+jal	0x8008e19c   <render_mode_sele
+swc1	$f0,16(v0)
+lw	ra,20(sp)
+lw	v0,24(sp)
+addiu	sp,sp,40
+jr	ra
+nop

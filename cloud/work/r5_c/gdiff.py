@@ -3,11 +3,12 @@ from pathlib import Path
 import rb
 from dislib import dis
 import score
+FN=os.environ.get('FN','func_800DE860')
 src=Path(sys.argv[1]).read_text()
-gm,e=rb.words_of(src,'func_800DE860')
+gm,e=rb.words_of(src,FN)
 if gm is None: print(e); sys.exit()
 _,wmask=e
-wm=[w&m for w,m in zip(score.targets()['func_800DE860'],wmask)]
+wm=[w&m for w,m in zip(score.targets()[FN],wmask)]
 g=dis(gm); w=dis(wm)
 sm=difflib.SequenceMatcher(None,w,g,autojunk=False)
 print('LCS',sum(b.size for b in sm.get_matching_blocks()),len(g))
