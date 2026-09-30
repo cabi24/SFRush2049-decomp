@@ -128,9 +128,11 @@ class Corpus:
 _cache = {}
 
 
-def load_corpus(discover=True):
+def load_corpus(discover=True, heads=False):
     """Shared corpus (cached per process).  With discover=True, `jal` targets that land in
-    opaque image runs are registered as discovered heads (see heads.py)."""
+    opaque image runs are registered as discovered heads (see heads.py).  With heads=True every head the
+    audit finds inside the opaque runs (sweep, pointer words, calls) is registered too, so unregistered
+    functions such as func_80107EDC can be analysed and named in groups."""
     if 'base' not in _cache:
         sys.path.insert(0, str(ROOT / 'tools' / 'cloud'))
         import score
@@ -139,11 +141,15 @@ def load_corpus(discover=True):
         funcs = [Func(n, syms[n], list(w)) for n, w in T.items() if n in syms and w]
         _cache['base'] = (funcs, image_words(), syms)
     funcs, img, syms = _cache['base']
-    key = 'disc' if discover else 'plain'
+    key = ('disc' if discover else 'plain') + ('+heads' if heads else '')
     if key not in _cache:
         c = Corpus([Func(f.name, f.addr, f.words) for f in funcs], img, syms)
         if discover:
-            from ipakit import heads
-            heads.discover_call_heads(c)
+            from ipakit import heads as H
+            H.discover_call_heads(c)
+        if heads:
+            from ipakit import heads as H
+            for row in H.audit(c)['heads']:
+                c.add_head(int(row['addr'], 16), nwords=row['words'])
         _cache[key] = c
     return _cache[key]
