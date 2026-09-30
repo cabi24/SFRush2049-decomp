@@ -3872,5 +3872,5 @@ s32 func_8009D45C(s32 arg0, void *arg1, void *arg2, f32 arg3, s32 arg4)
   temp_f4_3 = (s32) ((*((f32 *) (((s8 *) arg1) + 0x20))) * 65536.0f);
   *((s32 *) (((s8 *) arg2) + 0x14)) = (s32) (temp_f4_3 & 0xFFFF0000);
   *((s32 *) (((s8 *) arg2) + 0x34)) = (s32) (temp_f4_3 << 0x10);
-  return 1;
+  return (s32) 1;
 }

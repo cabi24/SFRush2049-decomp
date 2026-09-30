@@ -3793,7 +3793,6 @@ typedef s8 M2C_UNK8;
 typedef s16 M2C_UNK16;
 typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
-/*MY*/
 typedef struct V3f { f32 x, y, z; } V3f;
 typedef struct VtxQ { s16 x, y, z; s16 pad[5]; } VtxQ;
 void func_800A7E10(V3f *arg0, V3f *arg1, s16 arg2)

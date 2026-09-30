@@ -3793,33 +3793,44 @@ typedef s8 M2C_UNK8;
 typedef s16 M2C_UNK16;
 typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
-/*MY*/
 void func_800C9480(void)
 {
-  s32 one, n; s32 *p,*q,*r,*s;
+  s32 *temp_v0;
+  int new_var;
+  s32 *var_a1;
+  s32 *var_a3;
+  s32 *var_t1;
+  s8 *new_var2;
+  int new_var3;
+  s32 var_a2;
   draw_minimap();
-  s = &D_80151690;
+  var_t1 = &D_80151690;
   do
   {
-    n = 0;
-    p = s;
-    q = s;
-    
-    do
+    var_a2 = 0;
+    var_a1 = var_t1;
+    new_var3 = 1;
+    var_a3 = var_t1;
+    loop_2:
+    temp_v0 = &var_a1[new_var3 & 0xFFFFFFFFu];
+
+    *var_a3 = -1;
+    var_a2 += 1;
+    var_a1 = var_a1 + 5;
+    var_a3 = var_a3 + 5;
+    new_var = -1;
+    *((s32 *) (((s8 *) temp_v0) + 0xC)) = new_var;
+    new_var2 = (s8 *) temp_v0;
+    *((s32 *) (new_var2 + 8)) = new_var;
+    *((s32 *) (((s8 *) temp_v0) + 4)) = new_var;
+    *((s32 *) (((s8 *) temp_v0) + 0)) = -1;
+    if (var_a2 != 3)
     {
-      one = 1;
-      r = &p[(u32)(one + 0)];
-      *q = -1;
-      n += 1;
-      p += 5;
-      q += 5;
-      r[3] = -1;
-      r[2] = -1;
-      r[1] = -1;
-      r[0] = -1;
-    } while (n != 3);
-    s += 15;
-  } while (s != (s32 *) &D_80151960);
+      goto loop_2;
+    }
+    var_t1 = var_t1 + 0xF;
+  }
+  while (var_t1 != ((void *) (&D_80151960)));
   memset(&D_80151968, 0, 0x104U);
   memset(&D_80151A78, 0, 0x28U);
 }

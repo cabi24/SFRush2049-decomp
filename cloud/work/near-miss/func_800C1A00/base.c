@@ -3793,7 +3793,6 @@ typedef s8 M2C_UNK8;
 typedef s16 M2C_UNK16;
 typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
-/*MY*/
 typedef struct Dir44 { u8 pad0[0xC]; f32 fC; f32 f10; f32 f14; u8 pad18[0x2C]; } Dir44;
 typedef struct DInfo { u8 pad0[0x16]; s16 id; u8 pad18[4]; Dir44 *tbl; } DInfo;
 typedef struct DRef { DInfo *info; u8 pad4[8]; s16 idx; u16 flags; f32 scale; } DRef;

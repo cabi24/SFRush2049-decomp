@@ -3788,36 +3788,38 @@ void world_object_destroy(void *arg0);
 void world_physics_tick(void);
 void world_trigger_activate(void);
 s32 world_velocity_integrate();
-/*MY*/
-typedef struct DLCmd { u32 w0; u32 w1; } DLCmd;
-#define DLP (*(DLCmd **) &msgq_ptr)
 void func_800F7448(u16 arg0)
 {
-  DLCmd *g1;
-  DLCmd *g2;
-  DLCmd *g3;
-  DLCmd *g4;
-  DLCmd *g5;
-  g1 = DLP;
-  DLP = g1 + 1;
-  g1->w0 = 0xE7000000;
-  g1->w1 = 0;
-  if (!D_8015F72D) {
+  OSMesgQueue *sp18;
+  OSMesgQueue *temp_t0;
+  OSMesgQueue *temp_v1;
+  OSMesgQueue *temp_v1_2;
+  OSMesgQueue *temp_v1_3;
+  OSMesgQueue *temp_v1_4;
+  temp_v1 = msgq_ptr;
+  msgq_ptr = (OSMesgQueue *) (&temp_v1->validCount);
+  temp_v1->mtqueue = (OSThread *) 0xE7000000;
+  temp_v1->fullqueue = (void *) 0;
+  if (!D_8015F72D)
+  {
   }
-  g2 = DLP;
-  DLP = g2 + 1;
-  g2->w0 = ((D_8002AFC0 - 1) & 0xFFF) | 0xFF100000;
-  g2->w1 = osVirtualToPhysical(*((&D_80156C5C) + (((s8) D_8015F72D) << 7)));
-  g3 = DLP;
-  DLP = g3 + 1;
-  g3->w1 = (arg0 << 0x10) | arg0;
-  g3->w0 = 0xF7000000;
-  g4 = DLP;
-  DLP = g4 + 1;
-  g4->w0 = (((D_8002AFC0 - 1) & 0x3FF) << 0xE) | 0xF6000000 | (((D_8002AFC4 - 1) & 0x3FF) * 4);
-  g4->w1 = 0;
-  g5 = DLP;
-  DLP = g5 + 1;
-  g5->w1 = 0;
-  g5->w0 = 0xE7000000;
+  temp_t0 = msgq_ptr;
+  msgq_ptr = (OSMesgQueue *) (&temp_t0->validCount);
+  temp_t0->mtqueue = (OSThread *) (((D_8002AFC0 - 1) & 0xFFF) | 0xFF100000);
+  sp18 = temp_t0;
+  temp_t0->fullqueue = osVirtualToPhysical(*((&D_80156C5C) + (((s8) D_8015F72D) << 7)));
+  temp_v1_2 = msgq_ptr;
+  msgq_ptr = (OSMesgQueue *) (&temp_v1_2->validCount);
+  temp_v1_2->fullqueue = (OSThread *) ((arg0 << 0x10) | arg0);
+  temp_v1_2->mtqueue = (OSThread *) 0xF7000000;
+  temp_v1_3 = msgq_ptr;
+  msgq_ptr = (OSMesgQueue *) (&temp_v1_3->validCount);
+  temp_v1_3->mtqueue = (OSThread *) (((((D_8002AFC0 - 1) & 0x3FF) << 0xE) | 0xF6000000) | (((D_8002AFC4 - 1) & 0x3FF) * 4));
+  temp_v1_3->fullqueue = (void *) 0;
+  temp_v1_4 = msgq_ptr;
+  arg0++;
+  arg0--;
+  msgq_ptr = (OSMesgQueue *) (&temp_v1_4->validCount);
+  temp_v1_4->fullqueue = (void *) 0;
+  temp_v1_4->mtqueue = (OSThread *) 0xE7000000;
 }

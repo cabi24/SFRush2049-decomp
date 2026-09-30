@@ -33,10 +33,10 @@ void func_800E8D50(Car *c, float *p1, s32 flag, float *p2) {
             D_80152708[i] *= 0.5f;
         }
     }
- a = D_80152708[i];
- b = 1 - a; 
+a = D_80152708[i];
+ b = 1.0f - a; 
     for (k = 0; k < 3; k++) {
- D_80150B70[i].f132[k] = b * (p2[k] + p1[k]) + D_80150B70[i].f132[k] * a; 
+D_80150B70[i].f132[k] = b * (p1[k] + p2[k]) + D_80150B70[i].f132[k] * a; 
         out[k] = p1[k] - D_80150B70[i].f132[k];
     }
     vector_normalize_length(out, D_80150B70[i].v96);
