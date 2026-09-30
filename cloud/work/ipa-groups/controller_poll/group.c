@@ -4006,6 +4006,98 @@ void __standin_func_800E7038(void)
     func_800E7038();
 }
 
+/* func_800E73D8 (context, added Round 3): pad-read thread body; polls the pads through
+ * osContStartReadData2, builds the per-pad record at D_80156CF0 (16 bytes each), then
+ * calls func_800E7134. Only caller: render_thread_entry (outside the unit), so `keep`. */
+s32 osContStartReadData2(OSMesgQueue *mq);
+typedef struct PadRec {
+    s32 flag;       /* only the low byte (flag) is used */
+    u32 mask;
+    s8 x;
+    s8 y;
+    u8 pad[6];
+} PadRec;
+s32 func_800E73D8(void)
+{
+    OSMesg msg;
+    volatile s32 padB[2];
+    OSContPad pads[4];
+    OSMesg tmp[2];
+        PadRec *rec;
+    OSContPad *pad;
+    u8 *st;
+    s32 i;
+    s32 b;
+    s32 y;
+    u16 buttons;
+    u8 cnt;
+    PadRec *end;
+
+    msg = NULL;
+    if (D_8011194C == 0) {
+        D_8011194C = 1;
+        osCreateMesgQueue((OSMesgQueue *) &D_801497D0, (void **) &D_801527E4, 1);
+        osJamMesg((OSMesgQueue *) &D_801497D0, NULL, 0);
+    }
+    osRecvMesg((OSMesgQueue *) &D_801497D0, &tmp[0], 1);
+    osRecvMesg((OSMesgQueue *) &D_80035458, &msg, 0);
+    cnt = D_80111964 + 1;
+    D_80111964 = cnt;
+    if (cnt == 30) {
+        D_80111964 = 0;
+        osContStartQuery((OSMesgQueue *) &D_80035458);
+        do {
+            osRecvMesg((OSMesgQueue *) &D_80035458, &msg, 1);
+        } while (*(s16 *) msg != 5);
+        osContGetQuery((OSContStatus *) &D_80149440);
+        func_800A43FC();
+    }
+    if (osContStartReadData2((OSMesgQueue *) &D_80035458) != 0) {
+        osJamMesg((OSMesgQueue *) &D_801497D0, NULL, 0);
+        return 0;
+    }
+    osRecvMesg((OSMesgQueue *) &D_80035458, &msg, 1);
+    osContGetReadData(pads);
+    osJamMesg((OSMesgQueue *) &D_801497D0, NULL, 0);
+    st = (u8 *) &D_80149440;
+    rec = (PadRec *) &D_80156CF0;
+    pad = pads;
+    end = (PadRec *) &D_80156CF0 + 4;
+    while (rec != end) {
+        if (((st[3] & 8) != 0) || ((pad->errno & 8) != 0)) {
+            if (*(s8 *) rec != 0) {
+                *(s8 *) rec = 0;
+            }
+        } else if (*(s8 *) rec == 0) {
+            *(s8 *) rec = 1;
+        }
+        st += 4;
+        if (*(s8 *) rec == 0) {
+            pad->stick_y = 0;
+            pad->stick_x = pad->stick_y;
+            pad->button = 0;
+        }
+        rec->mask = 0;
+        y = pad->stick_y;
+        buttons = pad->button;
+        for (b = 0; b < 19; b++) {
+            if (((&D_8011FAD4)[b] & buttons) != 0) {
+                rec->mask |= 1 << b;
+            }
+        }
+        rec->x = pad->stick_x;
+        rec->y = y;
+        rec->pad[0] = 0;
+        rec->pad[1] = 0;
+        rec->pad[2] = 0;
+        rec->pad[3] = 0;
+        rec++;
+        pad++;
+    }
+    func_800E7134();
+    return 1;
+}
+
 /* stand-in caller: keeps player_mode_set out of line under -O3 */
 void __standin_player_mode_set(void)
 {
