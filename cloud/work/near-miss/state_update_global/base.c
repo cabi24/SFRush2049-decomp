@@ -3696,22 +3696,29 @@ typedef s64 M2C_UNK64;
 
 #endif
 
-s32 state_update_global(void *arg0) {
-    s8 temp_t6;
-    s8 var_v1;
-
-    var_v1 = M2C_FIELD(arg0, s8 *, 0x1A);
-    temp_t6 = D_80149D98 != 0;
-    if (temp_t6 != var_v1) {
-        M2C_FIELD(arg0, s8 *, 0x1A) = temp_t6;
+typedef struct PadCfg {
+    s32 pad0;
+    s32 *p4;
+    u8 pad8[0x12];
+    s8 f1A;
+    u8 pad1B[0xD];
+    s32 f28;
+} PadCfg;
+s32 state_update_global(PadCfg *arg0) {
+    s32 t;
+    s32 v;
+    v = arg0->f1A;
+    t = D_80149D98 != 0;
+    if (t != v) {
+        arg0->f1A = t;
         Input_ApplyPadConfig(arg0);
-        var_v1 = M2C_FIELD(arg0, s8 *, 0x1A);
+        v = arg0->f1A;
     }
-    if (var_v1 != 0) {
+    if (v != 0) {
         return 1;
     }
-    M2C_FIELD(arg0, s32 **, 4) = &D_80117358;
+    arg0->p4 = &D_80117358;
     Input_ApplyPadConfig(arg0);
-    M2C_FIELD(arg0, s32 *, 0x28) = 0;
+    arg0->f28 = 0;
     return 1;
 }

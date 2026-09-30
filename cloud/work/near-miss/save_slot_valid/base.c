@@ -3796,24 +3796,20 @@ typedef s64 M2C_UNK64;
 void save_slot_valid(s32 arg0, s16 arg1, s16 arg2, s32 arg3, s16 arg4, s16 arg5, s32 arg6)
 {
   s32 *var_a1;
-  s32 var_t0;
-  var_t0 = arg3;
   if (arg6 != 0)
   {
-    var_t0 = arg3;
     var_a1 = func_800A7D6C();
   }
-  else
-    if (arg5 == (-1))
+  else if (arg5 == -1)
   {
     var_a1 = &D_8011418C;
-    var_t0 |= 0x80;
+    arg3 |= 0x80;
     arg3++;
     arg3--;
   }
   else
   {
-    var_a1 = *((s32 *) (((u8 *) (&D_803B9AA0)) + (((arg4 / 13) * 0x30) + (arg5 * 4))));
+    var_a1 = *(s32 **) ((u8 *) &D_803B9AA0 + (arg4 / 13) * 0x30 + arg5 * 4);
   }
-  func_8008E26C((s16) arg0, (s32) var_a1, arg2, ((arg1 << 8) ^ 0xF00) | var_t0);
+  func_8008E26C((s16) arg0, (s32) var_a1, arg2, ((arg1 << 8) ^ 0xF00) | arg3);
 }
