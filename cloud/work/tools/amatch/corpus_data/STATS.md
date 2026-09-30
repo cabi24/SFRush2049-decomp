@@ -12,19 +12,21 @@ several labels, so the `any label` column sums to more than the pair count.
 
 | class | any label | primary | share of pairs |
 |---|---:|---:|---:|
+| addr-form | 79 | 1 | 87% |
 | local-dropped | 63 | 10 | 69% |
 | type-change | 56 | 35 | 62% |
+| branch-form | 52 | 4 | 57% |
 | loop-form | 35 | 35 | 38% |
 | local-added | 14 | 2 | 15% |
-| other | 6 | 6 | 7% |
 | literal-type | 4 | 0 | 4% |
 | decl-order | 2 | 2 | 2% |
 | extern-to-defined | 2 | 0 | 2% |
+| other | 1 | 1 | 1% |
 | stmt-order | 1 | 1 | 1% |
 | case-order | 0 | 0 | 0% |
 | operand-flip | 0 | 0 | 0% |
 
-Primary = first label in priority order: loop-form, type-change, local-dropped, local-added, decl-order, extern-to-defined, operand-flip, stmt-order, literal-type, case-order, other.
+Primary = first label in priority order: loop-form, type-change, local-dropped, local-added, decl-order, extern-to-defined, operand-flip, stmt-order, branch-form, addr-form, literal-type, case-order, other.
 
 ## Start-state scores (singles)
 
@@ -39,9 +41,11 @@ find; the m2c-to-natural rewrites above are a different (LLM) job.
 
 | class | pairs |
 |---|---:|
-| other | 4 |
+| addr-form | 5 |
+| branch-form | 3 |
 | local-dropped | 2 |
 | loop-form | 1 |
+| other | 1 |
 | stmt-order | 1 |
 | type-change | 1 |
 
@@ -50,126 +54,126 @@ find; the m2c-to-natural rewrites above are a different (LLM) job.
 | function | kind | flags | start strict diff | aligned % | labels |
 |---|---|---|---:|---:|---|
 | Input_SetAnalogBounds | single | `-O2` | 32 | 62 | type-change |
-| MP_TargetSteerPos | group | `-O3` | - | - | loop-form,local-dropped |
-| UpdateActiveObjects | single | `-O2` | 7 | 88 | other |
-| audio_effect_remove | single | `-O2` | 28 | 62 | loop-form,type-change,local-dropped |
+| MP_TargetSteerPos | group | `-O3` | - | - | loop-form,local-dropped,branch-form,addr-form |
+| UpdateActiveObjects | single | `-O2` | 7 | 88 | addr-form |
+| audio_effect_remove | single | `-O2` | 28 | 62 | loop-form,type-change,local-dropped,addr-form |
 | audio_helper | group | `-O3` | - | - | first appearance already the matching source |
 | audio_pitch_adjust | group | `-O3` | - | - | first appearance already the matching source |
-| camera_aspect_ratio | group | `-O3` | - | - | type-change,local-dropped |
+| camera_aspect_ratio | group | `-O3` | - | - | type-change,local-dropped,branch-form,addr-form |
 | camera_build_view_matrix | group | `-O3` | - | - | first appearance already the matching source |
-| camera_fov_control | group | `-O3` | - | - | type-change,local-dropped |
-| camera_reset | single | `-O2` | 19 | 78 | loop-form,type-change,local-dropped |
-| camera_smooth_lerp | single | `-O2` | 25 | 53 | loop-form,type-change,local-dropped |
+| camera_fov_control | group | `-O3` | - | - | type-change,local-dropped,branch-form,addr-form |
+| camera_reset | single | `-O2` | 19 | 78 | loop-form,type-change,local-dropped,branch-form,addr-form |
+| camera_smooth_lerp | single | `-O2` | 25 | 53 | loop-form,type-change,local-dropped,addr-form |
 | camera_update_b | single | `-O2` | - | - | first appearance already the matching source |
-| car_collision_init | group | `-O3` | - | - | loop-form,type-change,local-dropped |
-| car_gear_shift | single | `-O2` | 40 | 48 | loop-form,type-change,local-dropped |
-| car_select_handler | single | `-O2` | 3 | 97 | local-dropped |
+| car_collision_init | group | `-O3` | - | - | loop-form,type-change,local-dropped,branch-form,addr-form |
+| car_gear_shift | single | `-O2` | 40 | 48 | loop-form,type-change,local-dropped,branch-form,addr-form |
+| car_select_handler | single | `-O2` | 3 | 97 | local-dropped,addr-form |
 | draw_number | group | `-O3` | - | - | first appearance already the matching source |
-| engine_rpm_calc | single | `-O3` | 16 | 47 | type-change,local-dropped |
-| func_80086A50 | group | `-O3` | - | - | type-change,local-added |
-| func_8008A38C | single | `-O3` | 15 | 59 | type-change,local-dropped,literal-type |
-| func_8008AD04 | single | `-O2` | 16 | 47 | loop-form,local-dropped |
+| engine_rpm_calc | single | `-O3` | 16 | 47 | type-change,local-dropped,branch-form,addr-form |
+| func_80086A50 | group | `-O3` | - | - | type-change,local-added,branch-form,addr-form |
+| func_8008A38C | single | `-O3` | 15 | 59 | type-change,local-dropped,addr-form,literal-type |
+| func_8008AD04 | single | `-O2` | 16 | 47 | loop-form,local-dropped,branch-form,addr-form |
 | func_8008B2B4 | single | `-O2` | - | - | first appearance already the matching source |
 | func_8008BEA4 | single | `-O2` | - | - | no compiling non-matching start version |
 | func_8008C5E0 | single | `-O2` | - | - | first compiling version already matches |
-| func_8008FFD0 | single | `-O2` | 14 | 70 | loop-form,local-added |
-| func_8009002C | single | `-O2` | 4 | 96 | local-dropped |
-| func_80091BA8 | group | `-O3` | - | - | type-change,local-dropped |
+| func_8008FFD0 | single | `-O2` | 14 | 70 | loop-form,local-added,branch-form,addr-form |
+| func_8009002C | single | `-O2` | 4 | 96 | local-dropped,branch-form,addr-form |
+| func_80091BA8 | group | `-O3` | - | - | type-change,local-dropped,addr-form |
 | func_80092DCC | single | `-O2` | 12 | 71 | other |
-| func_80092FE0 | single | `-O2` | 35 | 28 | type-change,local-dropped |
+| func_80092FE0 | single | `-O2` | 35 | 28 | type-change,local-dropped,addr-form |
 | func_800950AC | single | `-O2` | - | - | first appearance already the matching source |
 | func_80095EF4 | single | `-O2` | - | - | first appearance already the matching source |
-| func_80096B00 | single | `-O2` | 7 | 83 | loop-form,type-change,local-dropped |
-| func_800972C4 | group | `-O3` | - | - | local-dropped |
-| func_8009D45C | single | `-O2` | 75 | 87 | type-change,local-dropped |
-| func_8009E820 | single | `-O2` | 24 | 35 | type-change |
+| func_80096B00 | single | `-O2` | 7 | 83 | loop-form,type-change,local-dropped,branch-form,addr-form |
+| func_800972C4 | group | `-O3` | - | - | local-dropped,branch-form,addr-form |
+| func_8009D45C | single | `-O2` | 75 | 87 | type-change,local-dropped,addr-form |
+| func_8009E820 | single | `-O2` | 24 | 35 | type-change,addr-form |
 | func_8009E9D8 | single | `-O2` | - | - | first appearance already the matching source |
 | func_800A3518 | single | `-O2` | - | - | first appearance already the matching source |
-| func_800A464C | single | `-O2` | 16 | 59 | loop-form,type-change,local-dropped |
-| func_800A46CC | single | `-O2` | 10 | 71 | other |
-| func_800A473C | single | `-O2` | 12 | 31 | loop-form,type-change,local-dropped |
-| func_800A4770 | single | `-O2` | 16 | 20 | loop-form,local-dropped |
-| func_800A47C0 | single | `-O2` | 48 | 60 | other |
-| func_800A61B0 | single | `-O2` | 24 | 35 | type-change |
-| func_800A7D6C | single | `-O2` | 2 | 94 | local-dropped |
-| func_800A8174 | group | `-O3` | - | - | type-change,local-dropped,literal-type |
-| func_800A8F38 | single | `-O2` | 9 | 36 | local-dropped |
-| func_800ABB58 | single | `-O2` | 28 | 43 | type-change,local-dropped |
-| func_800ACBC4 | single | `-O2` | 12 | 52 | type-change,local-dropped |
-| func_800AD5D0 | single | `-O2` | 32 | 31 | loop-form,local-dropped,local-added |
-| func_800AD650 | group | `-O3` | - | - | local-added |
+| func_800A464C | single | `-O2` | 16 | 59 | loop-form,type-change,local-dropped,branch-form,addr-form |
+| func_800A46CC | single | `-O2` | 10 | 71 | branch-form |
+| func_800A473C | single | `-O2` | 12 | 31 | loop-form,type-change,local-dropped,branch-form,addr-form |
+| func_800A4770 | single | `-O2` | 16 | 20 | loop-form,local-dropped,branch-form,addr-form |
+| func_800A47C0 | single | `-O2` | 48 | 60 | branch-form,addr-form |
+| func_800A61B0 | single | `-O2` | 24 | 35 | type-change,addr-form |
+| func_800A7D6C | single | `-O2` | 2 | 94 | local-dropped,addr-form |
+| func_800A8174 | group | `-O3` | - | - | type-change,local-dropped,addr-form,literal-type |
+| func_800A8F38 | single | `-O2` | 9 | 36 | local-dropped,branch-form,addr-form |
+| func_800ABB58 | single | `-O2` | 28 | 43 | type-change,local-dropped,addr-form |
+| func_800ACBC4 | single | `-O2` | 12 | 52 | type-change,local-dropped,addr-form |
+| func_800AD5D0 | single | `-O2` | 32 | 31 | loop-form,local-dropped,local-added,branch-form,addr-form |
+| func_800AD650 | group | `-O3` | - | - | local-added,addr-form |
 | func_800B0618 | single | `-O2` | - | - | first appearance already the matching source |
-| func_800B0A88 | group | `-O3` | - | - | type-change,local-dropped,local-added |
+| func_800B0A88 | group | `-O3` | - | - | type-change,local-dropped,local-added,addr-form |
 | func_800B1F30 | single | `-O2` | 1 | 98 | type-change |
-| func_800B4DA4 | single | `-O2` | 4 | 92 | loop-form,type-change,local-dropped |
+| func_800B4DA4 | single | `-O2` | 4 | 92 | loop-form,type-change,local-dropped,addr-form |
 | func_800B61A8 | single | `-O2` | - | - | first appearance already the matching source |
-| func_800B78A4 | single | `-O2` | 18 | 58 | loop-form,type-change,local-dropped |
-| func_800B90F8 | single | `-O2` | 9 | 31 | loop-form,type-change,local-dropped |
-| func_800B9338 | single | `-O2` | 5 | 82 | other |
-| func_800B98D8 | group | `-O3` | - | - | loop-form,local-dropped |
-| func_800B9B64 | group | `-O3` | - | - | loop-form,type-change,local-dropped |
-| func_800B9F60 | single | `-O2` | 24 | 60 | type-change,local-added |
-| func_800BB7F4 | single | `-O2` | 14 | 38 | loop-form,local-dropped,extern-to-defined |
-| func_800C2430 | group | `-O3` | - | - | local-dropped |
-| func_800C26C4 | group | `-O3` | - | - | local-dropped |
-| func_800C2944 | group | `-O3` | - | - | local-dropped |
-| func_800C36A0 | group | `-O3` | - | - | decl-order |
+| func_800B78A4 | single | `-O2` | 18 | 58 | loop-form,type-change,local-dropped,branch-form,addr-form |
+| func_800B90F8 | single | `-O2` | 9 | 31 | loop-form,type-change,local-dropped,branch-form,addr-form |
+| func_800B9338 | single | `-O2` | 5 | 82 | branch-form,addr-form |
+| func_800B98D8 | group | `-O3` | - | - | loop-form,local-dropped,branch-form,addr-form |
+| func_800B9B64 | group | `-O3` | - | - | loop-form,type-change,local-dropped,branch-form,addr-form |
+| func_800B9F60 | single | `-O2` | 24 | 60 | type-change,local-added,addr-form |
+| func_800BB7F4 | single | `-O2` | 14 | 38 | loop-form,local-dropped,extern-to-defined,branch-form,addr-form |
+| func_800C2430 | group | `-O3` | - | - | local-dropped,addr-form |
+| func_800C26C4 | group | `-O3` | - | - | local-dropped,branch-form,addr-form |
+| func_800C2944 | group | `-O3` | - | - | local-dropped,addr-form |
+| func_800C36A0 | group | `-O3` | - | - | decl-order,addr-form |
 | func_800C4C9C | single | `-O2` | 8 | 91 | stmt-order |
-| func_800C9590 | group | `-O3` | - | - | type-change,local-dropped |
+| func_800C9590 | group | `-O3` | - | - | type-change,local-dropped,branch-form |
 | func_800CDA60 | single | `-O2` | - | - | first appearance already the matching source |
 | func_800CDC3C | single | `-O2` | - | - | first appearance already the matching source |
-| func_800CDDE8 | single | `-O2` | 5 | 70 | type-change,local-dropped |
-| func_800CDE38 | single | `-O2` | 5 | 70 | type-change,local-dropped |
+| func_800CDDE8 | single | `-O2` | 5 | 70 | type-change,local-dropped,branch-form,addr-form |
+| func_800CDE38 | single | `-O2` | 5 | 70 | type-change,local-dropped,branch-form,addr-form |
 | func_800CDE88 | single | `-O2` | - | - | first appearance already the matching source |
-| func_800CF604 | single | `-O2` | 20 | 50 | local-dropped |
-| func_800CFCA8 | single | `-O2` | 3 | 99 | loop-form |
+| func_800CF604 | single | `-O2` | 20 | 50 | local-dropped,branch-form,addr-form |
+| func_800CFCA8 | single | `-O2` | 3 | 99 | loop-form,addr-form |
 | func_800D03AC | single | `-O2` | - | - | first appearance already the matching source |
-| func_800D0A34 | single | `-O2` | 20 | 48 | other |
+| func_800D0A34 | single | `-O2` | 20 | 48 | branch-form,addr-form |
 | func_800D50E4 | single | `-O2` | - | - | first appearance already the matching source |
-| func_800DC120 | group | `-O3` | - | - | loop-form,local-dropped |
-| func_800DC57C | single | `-O2` | 10 | 79 | loop-form,type-change,local-dropped |
-| func_800DD45C | single | `-O2` | 1 | 95 | loop-form,local-dropped |
+| func_800DC120 | group | `-O3` | - | - | loop-form,local-dropped,branch-form,addr-form |
+| func_800DC57C | single | `-O2` | 10 | 79 | loop-form,type-change,local-dropped,branch-form,addr-form |
+| func_800DD45C | single | `-O2` | 1 | 95 | loop-form,local-dropped,branch-form,addr-form |
 | func_800E1540 | single | `-O2 -Wab,-r4300_mul` | - | - | first compiling version already matches |
-| func_800E2F00 | single | `-O2` | 44 | 83 | type-change,local-dropped |
-| func_800E627C | group | `-O3` | - | - | loop-form,type-change,local-dropped,literal-type |
+| func_800E2F00 | single | `-O2` | 44 | 83 | type-change,local-dropped,addr-form |
+| func_800E627C | group | `-O3` | - | - | loop-form,type-change,local-dropped,branch-form,addr-form,literal-type |
 | func_800E7B44 | group | `-O3` | - | - | first appearance already the matching source |
-| func_800EA2DC | group | `-O3` | - | - | type-change,local-dropped |
-| func_800EA3F4 | group | `-O3` | - | - | local-added,literal-type |
+| func_800EA2DC | group | `-O3` | - | - | type-change,local-dropped,addr-form |
+| func_800EA3F4 | group | `-O3` | - | - | local-added,branch-form,addr-form,literal-type |
 | func_800ED66C | single | `-O2` | - | - | first appearance already the matching source |
-| func_800F084C | single | `-O2` | 49 | 42 | loop-form,type-change,local-dropped |
+| func_800F084C | single | `-O2` | 49 | 42 | loop-form,type-change,local-dropped,branch-form,addr-form |
 | func_800F7644 | single | `-O2` | - | - | first appearance already the matching source |
-| func_800F84B0 | single | `-O2` | 22 | 86 | local-dropped |
+| func_800F84B0 | single | `-O2` | 22 | 86 | local-dropped,branch-form,addr-form |
 | func_800F92C8 | group | `-O3` | - | - | first appearance already the matching source |
 | func_800FAD50 | single | `-O2` | - | - | first appearance already the matching source |
-| func_800FAEE4 | single | `-O2` | 25 | 22 | type-change,local-dropped |
-| func_800FBE30 | single | `-O2` | 1 | 92 | loop-form,type-change,local-dropped |
+| func_800FAEE4 | single | `-O2` | 25 | 22 | type-change,local-dropped,branch-form,addr-form |
+| func_800FBE30 | single | `-O2` | 1 | 92 | loop-form,type-change,local-dropped,branch-form,addr-form |
 | func_800FBF2C | single | `-O2` | - | - | first appearance already the matching source |
 | func_800FD754 | single | `-O2` | - | - | first appearance already the matching source |
-| handbrake_apply | group | `-O3` | - | - | type-change |
+| handbrake_apply | group | `-O3` | - | - | type-change,branch-form,addr-form |
 | init_wait_completion | single | `-O2` | 17 | 90 | type-change |
-| input_new_data_wrapper | single | `-O2` | 13 | 87 | type-change,local-dropped |
-| minimap_render | group | `-O3` | - | - | loop-form,type-change,local-dropped |
+| input_new_data_wrapper | single | `-O2` | 13 | 87 | type-change,local-dropped,addr-form |
+| minimap_render | group | `-O3` | - | - | loop-form,type-change,local-dropped,branch-form,addr-form |
 | model_bounds_calc | group | `-O3` | - | - | first appearance already the matching source |
-| object_byte71_set_sync | single | `-O3` | 18 | 90 | type-change,local-dropped |
-| particle_position_set | single | `-O2` | 32 | 84 | type-change,local-dropped |
-| physics_velocity_clamp | group | `-O3` | - | - | loop-form,local-dropped |
-| physics_velocity_integrate_b | group | `-O3` | - | - | type-change,local-dropped |
+| object_byte71_set_sync | single | `-O3` | 18 | 90 | type-change,local-dropped,addr-form |
+| particle_position_set | single | `-O2` | 32 | 84 | type-change,local-dropped,branch-form,addr-form |
+| physics_velocity_clamp | group | `-O3` | - | - | loop-form,local-dropped,branch-form,addr-form |
+| physics_velocity_integrate_b | group | `-O3` | - | - | type-change,local-dropped,branch-form,addr-form |
 | physics_velocity_integrate_c | group | `-O3` | - | - | type-change,local-added |
 | physics_velocity_integrate_d | group | `-O3` | - | - | type-change,local-added |
 | physics_velocity_integrate_e | group | `-O3` | - | - | type-change,local-added |
 | physics_velocity_integrate_f | group | `-O3` | - | - | type-change,local-added |
-| player_mode_set | group | `-O3` | - | - | loop-form,type-change,local-added |
-| player_state_set | group | `-O3` | - | - | loop-form,type-change,local-added |
-| players_frame_update | single | `-O2` | 7 | 81 | loop-form,local-dropped |
-| players_race_update | single | `-O2` | 6 | 86 | loop-form,local-dropped,local-added |
+| player_mode_set | group | `-O3` | - | - | loop-form,type-change,local-added,branch-form,addr-form |
+| player_state_set | group | `-O3` | - | - | loop-form,type-change,local-added,branch-form,addr-form |
+| players_frame_update | single | `-O2` | 7 | 81 | loop-form,local-dropped,branch-form,addr-form |
+| players_race_update | single | `-O2` | 6 | 86 | loop-form,local-dropped,local-added,addr-form |
 | pool_linked_list_init | single | `-O2` | - | - | first appearance already the matching source |
 | render_mode_select | single | `-O2` | - | - | first appearance already the matching source |
 | render_post_process | single | `-O2` | - | - | first appearance already the matching source |
-| resource_update_global | single | `-O2` | 4 | 56 | type-change,local-dropped |
-| results_time_display | single | `-O2` | 25 | 73 | loop-form,local-dropped,extern-to-defined |
+| resource_update_global | single | `-O2` | 4 | 56 | type-change,local-dropped,addr-form |
+| results_time_display | single | `-O2` | 25 | 73 | loop-form,local-dropped,extern-to-defined,branch-form,addr-form |
 | scheduler_recv | group | `-O3` | - | - | decl-order |
-| struct_init_and_call | single | `-O2` | 17 | 76 | type-change |
+| struct_init_and_call | single | `-O2` | 17 | 76 | type-change,addr-form |
 | time_of_day_select | group | `-O3` | - | - | first appearance already the matching source |
-| track_collision | single | `-O2` | 39 | 94 | loop-form,type-change,local-dropped |
-| transmission_shift | single | `-O2` | 6 | 90 | loop-form,type-change,local-dropped |
+| track_collision | single | `-O2` | 39 | 94 | loop-form,type-change,local-dropped,branch-form,addr-form |
+| transmission_shift | single | `-O2` | 6 | 90 | loop-form,type-change,local-dropped,branch-form,addr-form |
 | world_bounds_check | single | `-O2` | - | - | first appearance already the matching source |
