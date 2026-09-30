@@ -3737,45 +3737,44 @@ void func_800B0A88(s16 ipa_s1, s16 ipa_s2);
 
 void func_800B08FC(s16 slot, s16 idx) {
     HudRec *h;
-    SndSlot *e;
     s32 k;
-
+    s32 hd;
     if (gameplay_mode == 2 || gameplay_mode == 6 || (h = &((HudRec *) &D_8014A250)[slot], h->s7CA != 0)) {
-        ((SndSlot *) ((u8 *) &player_array[slot] + 0x2C0))[idx].cb = 0;
+        ((SndSlot *) ((u32) ((u8 *) &player_array[slot] + 0x2C0)))[idx].cb = 0;
         return;
     }
-    e = &((SndSlot *) ((u8 *) &player_array[slot] + 0x2C0))[idx];
-    e->cb = (void *) entity_anim_texture;
-    e->slot = slot;
-    e->idx = idx;
+    (&((SndSlot *) ((u32) ((u8 *) &player_array[slot] + 0x2C0)))[idx])->cb = (void *) entity_anim_texture;
+    (&((SndSlot *) ((u32) ((u8 *) &player_array[slot] + 0x2C0)))[idx])->slot = slot;
+    (&((SndSlot *) ((u32) ((u8 *) &player_array[slot] + 0x2C0)))[idx])->idx = idx;
     k = D_80111299[slot * 13 + h->b8] * 4 + idx + 0xE2;
-    e->handle = save_slot_valid(D_801427C0[k], 0xF, ((SndSlot *) ((u8 *) &player_array[slot] + 0x290))[idx].handle, 0, slot, -1, 1);
-    *(f32 *) (*(s32 *) ((u8 *) &D_8012E708 + e->handle * 0x44) + 0x28) = D_80123C1C;
-    model_data_load(e->handle, 1, 0xF);
+    (&((SndSlot *) ((u32) ((u8 *) &player_array[slot] + 0x2C0)))[idx])->handle = save_slot_valid(D_801427C0[k], 0xF, ((SndSlot *) ((u8 *) &player_array[slot] + 0x290))[idx].handle, 0, slot, -1, 1);
+    hd = (&((SndSlot *) ((u32) ((u8 *) &player_array[slot] + 0x2C0)))[idx])->handle;
+    *(f32 *) (*(s32 *) ((u8 *) &D_8012E708 + hd * 0x44) + 0x28) = D_80123C1C;
+    model_data_load((&((SndSlot *) ((u32) ((u8 *) &player_array[slot] + 0x2C0)))[idx])->handle, 1, 0xF);
 }
 
 
 void func_800B0A88(s16 slot, s16 idx) {
-    f32 vec[3];
     HudRec *h;
-    CarS *car;
+    f32 vec[3];
     s32 k;
+    s32 b8;
 
-    car = (CarS *) &player_array[slot];
     if (gameplay_mode == 2 || gameplay_mode == 6 || (h = &((HudRec *) &D_8014A250)[slot], h->s7CA != 0)) {
-        car->snd[16 + idx].cb = 0;
+        ((SndSlot *) ((u32) ((u8 *) &player_array[slot] + 0x290)))[idx].cb = 0;
         return;
     }
-    car->snd[16 + idx].cb = (void *) buffer_swap;
-    car->snd[16 + idx].slot = slot;
-    car->snd[16 + idx].idx = idx;
+    (&((SndSlot *) ((u32) ((u8 *) &player_array[slot] + 0x290)))[idx])->cb = (void *) buffer_swap;
+    (&((SndSlot *) ((u32) ((u8 *) &player_array[slot] + 0x290)))[idx])->slot = slot;
+    (&((SndSlot *) ((u32) ((u8 *) &player_array[slot] + 0x290)))[idx])->idx = idx;
+    b8 = h->b8;
     vec[0] = 0.0f;
     vec[2] = 0.0f;
-    vec[1] = *(f32 *) ((u8 *) &D_8011B4B8 + h->b8 * 0xC);
-    k = D_80111299[slot * 13 + h->b8] * 4 + idx + 0xE0;
-    car->snd[16 + idx].handle = save_slot_valid(D_801427C0[k], 0xF, ((SndCtl *) &D_80139320)[slot].first, 0, slot, -1, 1);
-    func_8008D6FC(car->snd[16 + idx].handle, vec, NULL);
-    model_data_load(car->snd[16 + idx].handle, 1, 0xF);
+    vec[1] = *(f32 *) ((u8 *) &D_8011B4B8 + b8 * 0xC);
+    k = D_80111299[slot * 13 + b8] * 4 + idx + 0xE0;
+    (&((SndSlot *) ((u32) ((u8 *) &player_array[slot] + 0x290)))[idx])->handle = save_slot_valid(D_801427C0[k], 0xF, ((SndCtl *) &D_80139320)[slot].first, 0, slot, -1, 1);
+    func_8008D6FC((&((SndSlot *) ((u32) ((u8 *) &player_array[slot] + 0x290)))[idx])->handle, vec, NULL);
+    model_data_load((&((SndSlot *) ((u32) ((u8 *) &player_array[slot] + 0x290)))[idx])->handle, 1, 0xF);
     func_80092484(slot, idx);
 }
 
@@ -3797,7 +3796,7 @@ void audio_frame_update(s16 slot) {
     if (gameplay_mode == 6) {
         func_8038c910(slot);
     }
-    dst = *(u8 **) ((u8 *) &D_8013FEF4 + slot * 0x18);
+    dst = *(u8 **) ((u8 *) &D_8013FEF4 + (u32) slot * 0x18);
     if (D_8014978C == 3 || D_8014978C == 5) {
         ((u16 *) (dst + 0x140))[0] = ((u16 *) &D_8011B58C)[0];
         ((u16 *) (dst + 0x140))[1] = ((u16 *) &D_8011B58C)[1];

@@ -8,8 +8,8 @@ controller_poll    223/232
 func_800C9590      MATCH
 func_800E7038       61/63
 func_800E7134      165/169
-player_mode_set     13/15
-player_state_set    13/15
+player_mode_set     MATCH   (cloud pass 4; was 13/15)
+player_state_set    MATCH   (cloud pass 4; was 13/15)
 process_inputs      89/89
 ```
 
@@ -39,23 +39,28 @@ process_inputs      89/89
 - The IPA closure check found one more function that exchanges registers
   with this group: `func_800E73D8` (the caller of `func_800E7134`).
 
-## player_mode_set / player_state_set (cloud pass 3, unchanged at 13/15)
+## player_mode_set / player_state_set: MATCH (cloud pass 4)
 
-The target is `li at,-1; bne; lui at` then **one** `lui at` feeding four
-`sb lo+k(at)` in the order `[1],[2],[3],[0]` (the `[0]` store is in the `jr`
-delay slot), and the indexed path `lui at; addu at,at,a0; sb`. We cannot get
-one shared `lui`:
-- rolled loops (`for`/`while`/`do`, up or down, `-O1`..`-O3`, alone or in the
-  group) unroll to four `lui at; sb k(at)` pairs (18 words, `[0]..[3]` order;
-  the ascending `for (i=1;i<4;i++)`+`[0]` form is not unrolled);
-- four explicit stores (any order, chained `a=b=c=d=v`, pointer `p[k]`,
-  cast to a 4-field struct, union with a struct view, separate `D_80149B75..77`
-  scalars) make uopt hoist the address into a register: `lui v0; addiu v0`
-  then `sb k(v0)` (17 words); the store order `[1],[2],[3],[0]` is reproduced
-  by writing them in that order.
-Neither shape is the target's `at`-only base. Hypothesis (untested): the
-stores were emitted by ugen as one address web without register allocation,
-e.g. a form uopt does not hoist; not found.
+The shared `lui at` was not a code-shape problem: **as1 merges the `lui at` of
+consecutive stores only when the symbol is defined in the same translation unit**
+(`s8 D_80149B74[4];`, not `extern`). With an `extern` array each store gets its own
+`lui at`; with a definition in the file the stores of the unrolled loop share one
+`lui at`, and the reorganiser puts the first store in the `jr` delay slot, giving
+`[1],[2],[3],[0]`. So the original source defines these two arrays in this module and
+the plain `for (i = 0; i < 4; i++) D[i] = value;` loop is right. `group.c` now has
+`s8 D_80149B64[4];` and `s8 D_80149B74[4];` (definitions, not `extern`); the relocation
+names are unchanged, so the strict scorer resolves them as before. **Review note for
+splicing:** these two arrays are then defined by the module that owns this code; do not
+also define them elsewhere.
+
+The same mechanism explains `func_800E7038`: the target's eight `sb` of 0x46 (`li t0..t9,70`
+each) share one `lui at,0x8015` with offsets `-25858..-25863`, i.e. they are stores into
+one defined array/struct (`D_80149AF8[8]`, pairs stored high-to-low), not eight scalars
+(defining eight scalars does not merge). Also, the target stores all eight bytes
+unconditionally before the `D_80111968` test (the ninth `sb` is in the `bnez` delay slot);
+the seed had `D_80149AF9` inside the `if`. Not finished: with `D_80149AF8` as
+`s8 [8]` defined and a pair loop, the stores merge, but the constants (one register
+per store in the target) and the load order of `D_80111968` do not match yet.
 
 ## Relocations (for review; resolved by the strict scorer)
 

@@ -1,22 +1,37 @@
 # func_8008B640 (model/texture velocity, `physics_velocity_integrate_*`)
 
 Rewritten by hand from the assembly (cloud pass 2, 2026-09-29); the m2c seed is
-superseded. **Builds; 1 of 8 members matches** with `-r4300_mul`
+superseded. **Builds; 6 of 8 members match** (cloud pass 4; was 1 of 8) with `-r4300_mul`
 (`cloud/work/tools/zbuild.py --as1=-r4300_mul`).
 
 ```
-model_bounds_calc                 18/18   MATCH   (new member)
+model_bounds_calc                 18/18   MATCH
 func_8008B640                      9/23   words differ (size 23/23)
 physics_velocity_integrate_a      64/178  (size 178/178)
-physics_velocity_integrate_b       9/72   (size 72/72; zbuild reports 73 only because it is last in the object)
-physics_velocity_integrate_c       9/66   (size 66/66)
-physics_velocity_integrate_d       9/66   (size 66/66)
-physics_velocity_integrate_e       9/66   (size 66/66)
-physics_velocity_integrate_f       9/66   (size 66/66)
+physics_velocity_integrate_b      MATCH   (zbuild reports 73/72: it is last in the object, trailing pad nop)
+physics_velocity_integrate_c..f   MATCH   (66 words each)
 ```
 
-Every remaining difference is register naming or the order of two independent
-moves; instruction sequences, sizes and frames match.
+## Cloud pass 4: what made `_b.._f` match
+
+- `s16 lvl` **local** instead of `s32 lvl` + `(s16) lvl` casts: the cast form
+  puts the `sll/sra` temps in a rotated register order (`v1,t8,t9` vs `t8,t9,v1`).
+- `_c.._f`: the last float argument as a named local assigned just before the call
+  (`f24 = M2C_FIELD(car, f32 *, 0xD0);`) puts the `lwc1 $f24` where the target has it
+  (otherwise it drifts into the `jal` delay slot).
+- `_b`: no named `rec` pointer and no named `flag`: every use spells
+  `&((Rec808 *) &D_8014A250)[arg0->player]` and `flag` is the call argument itself
+  (`lvl >= 13 && (t != 0 || ...)`); `t` is `s32`. Named locals become uopt webs that get
+  their registers in a different order from expression CSE temps (found by the
+  permuter, see below).
+- The remaining blocker is unchanged and is now understood better: `func_8008B640`'s
+  IPA parameter register. The IPA picks `idx`'s register as the first register above the
+  callee's outgoing argument count: with the call `vector_normalize_length(&v[9], v)` (2 args)
+  it gives `$a2`, with one argument `$a0`, with three `$a3` (tested by editing the prototype
+  and call). The target has `$a0` with two arguments and `v` living in `$a1` (`lw a1; move s0,a1`).
+  Not reproduced: named/unnamed `v`, `register`, struct array, copies of `v`, prototypes.
+  `_a` (idx `$a2` vs `$a0`, `t` `$v0` vs `$v1`) depends on it.
+
 
 ## Closure (now complete)
 
@@ -66,6 +81,4 @@ model's vector, scales it by the record's level, and finishes through
   array (`D_8012E708[idx].m`) and parameter reorders did not change it.
 - `_a`: `t` (the `(s16)(s32)` of the record's float) lives in `$v1` in the
   target, `$v0` in ours; every later temp then differs.
-- `_c.._f`: the `(s16)` compare temps rotate (`t8,t9,v1` vs `v1,t8,t9`) and
-  the load of `$f24` sits before the `move`s in the target, in the `jal` delay
-  slot in ours.
+- `_b.._f`: solved in cloud pass 4 (see above).

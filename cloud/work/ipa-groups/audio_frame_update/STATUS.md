@@ -1,12 +1,12 @@
 # audio_frame_update
 
-**BUILDS**; no member is a strict MATCH yet. Scored with `-r4300_mul`:
+**BUILDS**; `func_800B0A88` is a strict MATCH (cloud pass 4), `func_800B08FC` is 4 words off. Scored with `-r4300_mul`:
 
 | function | words | result |
 |---|---|---|
-| `func_800B08FC` | 99 | 24 differ (emits 99) |
-| `func_800B0A88` | 112 | 57 differ (emits 112) |
-| `audio_frame_update` | 150 | 94 differ (emits 152) |
+| `func_800B08FC` | 99 | 4 differ (emits 99; was 24) |
+| `func_800B0A88` | 112 | **MATCH** (was 57) |
+| `audio_frame_update` | 150 | 29 differ (emits 152; was 94) |
 
 There is no closure gap: the callers of both callees are `audio_frame_update`,
 and `audio_frame_update` is only called from `music_control`.
@@ -33,16 +33,37 @@ and `audio_frame_update` is only called from `music_control`.
 - `state_word_a & 8` is a local tested twice (`t == 0 || (t != 0 && ...)`),
   as in the ROM (the redundant second test is real).
 
+## Cloud pass 4 (what worked)
+
+- **Element pointer through a `(u32)` cast of a byte base.** The ROM computes
+  `s0 = &player_array[slot] + 0x290/0x2C0 + idx*24` once and addresses fields at small
+  offsets from it (`sw t9,20(s0)`, then `addiu s0,s0,704` before the call). It is
+  reproduced by spelling every access as
+  `(&((SndSlot *) ((u32) ((u8 *) &player_array[slot] + 0x2C0)))[idx])->field`
+  (`0x290` and `snd[16+idx]` for `func_800B0A88`), including the early-exit store. The
+  `(u32)` cast is what matters (without it the offsets are folded into the stores; with
+  it only in the main path but not in the early exit, the register order still rotates).
+  The `CarS`/`snd[]` typed accessors are gone from both functions.
+- `func_800B0A88`: `h->b8` is a named `s32 b8` local loaded once after the early exit
+  (the ROM loads it once into `$v0`), and the locals are declared `h, vec, k, b8`
+  (declaration order moves `vec` from `sp+60` to `sp+56`: every permutation with `h`
+  before `vec` matches, the others do not).
+- `func_800B08FC`: `hd = E->handle;` as a named local before the model-index math (its
+  `lh v1,6(s0)` then matches). Left: the temp that holds `&D_8012E708 + hd*0x44` is `$t9` in
+  ours and `$v0` in the ROM (`lui v0,0x8013 ... lw v0,-6392(v0)`, 4 words). The forms
+  `(&D_8012E708)[hd * 17]`, `*(f32 **)(...)[10]`, an `s32 mp`/`u8 *m` local for the
+  pointer, casts of `hd`, and decl orders did not change it.
+
 ## Remaining blockers
 
-- `func_800B08FC`: the ROM's `s0` is the element base (`car + idx*0x18`) with
-  stores at `+0x2D4/+0x2C8/+0x2CC`, then `addiu s0,s0,704` before the call.
-  The typed-array form reproduces the offsets but computes the handle address
-  after the call. Forms that do reproduce the `+704` (byte pointers) change
-  the IPA parameter to `$t1`; the ROM's `$t3` needs `t1` and `t2` taken by the
-  index and the hud pointer, and `v0/v1` by `car` and `idx*0x18`.
-- `func_800B0A88`: ROM `s0` is the element pointer computed once
-  (`&car->snd[16+idx]`); here IDO folds the offset into the stores.
-- `audio_frame_update`: `slot*0x18` is a shift/subtract in the ROM but
-  `li t0,24; multu` here (the loop's constant `24` gets hoisted and reused);
-  and the two 8-halfword copies start from different registers.
+- `func_800B08FC`: see above (4 words, one temp register).
+- `audio_frame_update` (29 words): `slot*0x18` for the `D_8013FEF4` lookup is written
+  `(u32) slot * 0x18` (a signed `slot * 0x18` shares the loop's hoisted `li 24` and
+  becomes `multu`; the unsigned form expands to the ROM's `sll/subu/sll` chain; this
+  took it from 94 to 29). Left: (1) the master-slot stores go through `addiu v0,a2,272`
+  (`sw t8,20(v0); sh s3,8(v0)`) in the ROM and are folded into `a2` offsets here
+  (the `(u32)`-cast element expression, a `SndSlot *m` local, `&car->snd[0]` did not
+  reproduce it); (2) the ROM loads `D_801543CC` once into `$f0` before the loop, ours
+  reloads it each iteration through a hoisted address in `$a1` (`static`, defined,
+  `const`, and a float local did not change it), which also moves the loop counter
+  registers (`a0`/`a1` vs `v1`/`a0`).
