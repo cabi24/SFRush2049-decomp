@@ -123,7 +123,7 @@ void func_800DE860(void)
                 } else {
                     s = d * k1 / k2 + 1.0f;
                 }
-                if (active_player_count == 1) {
+                if (D_80150F14 == 1) {
                     s = (1.0f - s) * 0.5f + 1.0f;
                 }
                 D_8014A250[i].scale = D_8014A250[i].scale * D_80124318 + D_8012431C * s;
