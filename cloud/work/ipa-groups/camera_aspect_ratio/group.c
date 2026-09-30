@@ -3881,6 +3881,8 @@ void camera_look_at_point(Camera *cam) {
     f32 r;
     s32 a;
     s32 b;
+    s32 x;
+    s32 y;
     s32 handle;
     s32 kind;
     s32 id;
@@ -3890,21 +3892,14 @@ void camera_look_at_point(Camera *cam) {
         if (handle != -1) {
             kind = *(s32 *) ((u8 *) D_80117530 + cam->tbl * 0x30 + 0x20);
             if (kind == 1) {
-                a = (s32) cam->ctl->f10;
                 b = (s32) cam->ctl->f14;
+                a = (s32) cam->ctl->f10;
                 if (b == 0) {
-                    b = 1;
-                    if (a != 0) {
-                        b = a;
-                    }
+                    b = a != 0 ? a : 1;
                 }
-                if (a < 0) {
-                    a = -a;
-                }
-                if (b < 0) {
-                    b = -b;
-                }
-                r = ((f32) a / (f32) b) * 0.5f + 0.5f;
+                x = a < 0 ? -a : a;
+                y = b < 0 ? -b : b;
+                r = ((f32) x / (f32) y) * 0.5f + 0.5f;
                 f = r;
                 if (r < 0.0f || r > 1.0f) {
                     if (r < 0.0f) {
@@ -3987,6 +3982,9 @@ void camera_build_view_matrix(s32 idx, Camera *cam) {
 }
 
 void camera_track_spline(Camera *cam) {
+    f32 v[3];
+    f32 w[3];
+    f32 pad[3];
     CamCtl *ctl;
     CamScene *sc;
     CamKey *k;
@@ -3996,9 +3994,6 @@ void camera_track_spline(Camera *cam) {
     s32 next;
     s32 near;
     s32 i;
-    f32 v[3];
-    f32 w[3];
-    f32 pad[2];
     f32 *p;
     f32 t;
     f32 d;
@@ -4014,7 +4009,6 @@ void camera_track_spline(Camera *cam) {
     keys = sc->keys;
     k = &keys[idx];
     if (idx < n - 1 || (sc->flags & 2) != 0 || !(sc->flags & 0x80)) {
-        next = idx + 1;
         if (k->flags & 0x10000008) {
             if (ctl->mode & 8) {
                 t = k->dur - ctl->t;
@@ -4023,6 +4017,7 @@ void camera_track_spline(Camera *cam) {
             }
             d = k->f34 * (t / k->dur);
         } else {
+            next = idx + 1;
             if (next >= n && (sc->flags & 2)) {
                 next = 0;
             }
@@ -4078,12 +4073,14 @@ void camera_track_spline(Camera *cam) {
 }
 
 void camera_process_input(Camera *cam) {
+    f32 padT[11];
+    s32 unused[1];
     CamTbl *tbl;
-    volatile s32 unused;
+    f32 padA[4];
     CamCtl *ctl;
     CamScene *sc;
 
-    unused = D_8011750C;
+    unused[0] = D_8011750C;
     cam->state = 2;
     tbl = &D_80117530[cam->tbl];
     ctl = cam->ctl;
@@ -4098,6 +4095,7 @@ void camera_process_input(Camera *cam) {
             f32 v[3];
             f32 delta[3];
             f32 mat[9];
+            f32 padB[1];
 
             s = cam->ctl->scene;
             for (i = 0; i < s->count; i++) {
