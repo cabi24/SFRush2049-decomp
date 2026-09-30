@@ -6,7 +6,7 @@ extern s16 D_8014A108;
 extern float D_80144DA8[];
 extern s8 D_80144018[];
 extern float D_80124618;
-extern E5 D_80151AC0[3];
+extern s8 D_80151AC0[];
 void func_800F7EB0(void) {
     s32 i;
     s32 j;
@@ -14,9 +14,9 @@ void func_800F7EB0(void) {
         D_80144018[i] = 0;
         D_80144DA8[i] = D_80124618;
     }
-    for (j = 0; j < 3; j++) {
+    for (j = 0; j < 15; j += 5) {
         s32 k;
-        D_80151AC0[j].b[0] = -1;
-        for (k = 1; k < 5; k++) D_80151AC0[j].b[k] = -1;
+        D_80151AC0[j] = -1;
+        for (k = 1; k < 5; k++) D_80151AC0[j + k] = -1;
     }
 }

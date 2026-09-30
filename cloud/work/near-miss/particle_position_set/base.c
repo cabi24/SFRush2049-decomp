@@ -3793,40 +3793,38 @@ typedef s8 M2C_UNK8;
 typedef s16 M2C_UNK16;
 typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
+/*MY*/
+/*MY*/
+/*MY*/
+typedef struct PartSlot {
+  u8 pad0[0x24];
+  f32 f24;
+  f32 f28;
+  f32 f2C;
+  u8 pad30[0x60];
+  f32 f90;
+  s8 f94;
+  u8 pad95[3];
+} PartSlot;
 void particle_position_set(s16 arg0)
 {
-  void *sp18;
-  long var_v0;
-  s8 var_v0_2;
-  unsigned int var_v1;
-  void *temp_a1;
-  if (arg0 & 1)
-  {
-    var_v0 = 0;
-  }
-  else
-  {
-    if (arg0 & 2)
-    {
-      var_v1 = 1;
+  s32 idx;
+  PartSlot *p;
+  if (arg0 & 1) {
+    idx = 0;
+  } else {
+    if (arg0 & 2) {
+      idx = 1;
+    } else {
+      idx = (arg0 & 4) ? 2 : 3;
+      idx = idx;
     }
-    else
-    {
-      var_v0_2 = 3;
-      if (arg0 & 4)
-      {
-        var_v0_2 = 2;
-      }
-      var_v1 = var_v0_2;
-    }
-    var_v0 = var_v1;
   }
-  temp_a1 = (s32 *) ((var_v0 * 0x98) + ((u8 *) (&D_80150B70)));
-  *((s8 *) (((s8 *) temp_a1) + 0x94)) = var_v0;
-  sp18 = temp_a1;
-  *((f32 *) (((s8 *) temp_a1) + 0x24)) = 0.0f;
-  *((f32 *) (((s8 *) temp_a1) + 0x28)) = 0.0f;
-  *((f32 *) (((s8 *) temp_a1) + 0x2C)) = 0.0f;
-  math_utility(&D_8011418C, temp_a1);
-  *((f32 *) (((s8 *) temp_a1) + 0x90)) = 0.0f;
+  p = (PartSlot *) &D_80150B70 + idx;
+  p->f94 = idx;
+  p->f24 = 0.0f;
+  p->f28 = 0.0f;
+  p->f2C = 0.0f;
+  math_utility(&D_8011418C, p);
+  p->f90 = 0.0f;
 }

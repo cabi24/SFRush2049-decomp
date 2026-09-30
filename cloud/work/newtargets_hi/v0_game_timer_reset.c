@@ -1,0 +1,19 @@
+typedef signed short s16;
+typedef signed int s32;
+typedef struct Node {
+    char pad[14];
+    s16 x;
+    s16 y;
+    char pad2[0x2A];
+    struct Node *next;
+} Node;
+void func_80094EC8(Node *n);
+void game_timer_reset(Node *n, s16 dx, s16 dy) {
+    for (; n != 0; n = n->next) {
+        n->x += dx;
+        n->y += dy;
+        func_80094EC8(n);
+        dx = dx;
+        dy = dy;
+    }
+}

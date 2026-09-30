@@ -1,0 +1,11 @@
+10 func_800D50E4 0x800d50e4
+12 func_800CDA60 0x800cda60
+12 func_800D03AC 0x800d03ac
+32 func_800CC848 0x800cc848
+39 func_800CD058 0x800cd058
+40 func_800E79F8 0x800e79f8
+43 func_800E7A98 0x800e7a98
+54 func_800E7C2C 0x800e7c2c
+79 menu_option_toggle 0x800cdcac
+87 menu_text_input 0x800cdae0
+272 func_800CD104 0x800cd104
