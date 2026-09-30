@@ -3832,13 +3832,15 @@ void camera_free_look(Camera *cam) {
     f32 t;
     f32 dur;
     s32 next;
+    s32 idx;
     s32 near;
     f32 *m;
 
     m = cam->m[0];
     ctl = cam->ctl;
-    sc = ctl->scene;
-    k = &sc->keys[ctl->idx];
+    sc = cam->ctl->scene;
+    idx = ctl->idx;
+    k = &sc->keys[idx];
     if (k->flags & 0x20) {
         goto plain;
     }
@@ -3852,7 +3854,7 @@ void camera_free_look(Camera *cam) {
 plain:
         func_800BFBE8(m, k->rot, 1);
     } else {
-        next = ctl->idx + 1;
+        next = idx + 1;
         if (next >= sc->count && (sc->flags & 2)) {
             next = 0;
         }
@@ -3865,7 +3867,7 @@ plain:
             d[0] = cam->pos[0] - ((f32 *) &player_array)[2];
             d[1] = cam->pos[1] - ((f32 *) &player_array)[3];
             d[2] = cam->pos[2] - ((f32 *) &player_array)[4];
-            if (d[2] * d[2] + d[0] * d[0] + d[1] * d[1] > D_80123E84) {
+            if (d[0] * d[0] + d[1] * d[1] + d[2] * d[2] > D_80123E84) {
                 near = 0;
             }
         }
@@ -4076,15 +4078,15 @@ void camera_process_input(Camera *cam) {
     f32 padT[11];
     s32 unused[1];
     CamTbl *tbl;
-    f32 padA[4];
-    CamCtl *ctl;
     CamScene *sc;
+    CamCtl *ctl;
+    f32 padA[4];
 
     unused[0] = D_8011750C;
     cam->state = 2;
     tbl = &D_80117530[cam->tbl];
     ctl = cam->ctl;
-    sc = ctl->scene;
+    sc = cam->ctl->scene;
     if (!(cam->flags & 1)) {
         ctl->mode = 0;
         ctl->t = 0.0f;
@@ -4100,7 +4102,7 @@ void camera_process_input(Camera *cam) {
             s = cam->ctl->scene;
             for (i = 0; i < s->count; i++) {
                 k = &s->keys[i];
-                if (k->flags & 0x1000000) {
+                if (s->keys[i].flags & 0x1000000) {
                     cam->pos[0] = k->pos[0];
                     cam->pos[1] = k->pos[1];
                     cam->pos[2] = k->pos[2];
@@ -4150,15 +4152,15 @@ void camera_process_input(Camera *cam) {
             fl = sc->flags;
             if ((fl & 0x40) && !(fl & 0x4000)) {
                 sc->flags = fl & ~0x100000;
-                sc->flags |= 0x200400;
+                *(u32 *)&sc->flags |= 0x200400;
                 if (!(sc->flags & 0x8000)) {
                     *(u16 *) ((u8 *) &D_8012E714 + cam->slot * 0x44) = D_80142A7A;
                 }
                 node = func_80090284();
                 if (node != NULL) {
                     node->s04 = 0;
-                    node->cam = cam;
                     node->w14 = tbl->w0C;
+                    node->cam = cam;
                     if (tbl->s14 == 361) {
                         node->f10 = 0.25f;
                     } else if (tbl->s14 == 365) {
