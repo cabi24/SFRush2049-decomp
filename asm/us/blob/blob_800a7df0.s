@@ -198,6 +198,7 @@ func_800A7E10:
 .section .text.car_cg_height_set, "ax", @progbits
 .globl car_cg_height_set
 car_cg_height_set:
+    /* compiled from src/blob/car_cg_height_set.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x8E120018
@@ -243,6 +244,7 @@ car_cg_height_set:
 .section .text.func_800A8174, "ax", @progbits
 .globl func_800A8174
 func_800A8174:
+    /* compiled from src/blob/func_800A8174.c */
     .word 0x8C8216A4
     .word 0x28410009
     .word 0x14200012
@@ -281,6 +283,7 @@ func_800A8174:
 .section .text.func_800A81FC, "ax", @progbits
 .globl func_800A81FC
 func_800A81FC:
+    /* compiled from src/blob/func_800A81FC.c */
     .word 0x00001025
     .word 0x00801825
     .word 0x24420001
@@ -319,6 +322,7 @@ func_800A81FC:
 .section .text.func_800A8284, "ax", @progbits
 .globl func_800A8284
 func_800A8284:
+    /* compiled from src/blob/func_800A8284.c */
     .word 0x8C8E1684
     .word 0x00005025
     .word 0x00005825
@@ -640,6 +644,7 @@ func_800A8284:
 .section .text.func_800A8778, "ax", @progbits
 .globl func_800A8778
 func_800A8778:
+    /* compiled from src/blob/func_800A8778.c */
     .word 0x94C90002
     .word 0x2402FFFF
     .word 0x00002825
@@ -1047,6 +1052,7 @@ func_800A8D94:
 .section .text.car_collision_init, "ax", @progbits
 .globl car_collision_init
 car_collision_init:
+    /* compiled from src/blob/car_collision_init.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x8C8316A4
@@ -1154,6 +1160,7 @@ car_collision_init:
 .section .text.func_800A8F38, "ax", @progbits
 .globl func_800A8F38
 func_800A8F38:
+    /* compiled from src/blob/func_800A8F38.c */
     .word 0x00001825
     .word 0x308E0001
     .word 0x006E1825
@@ -1169,6 +1176,7 @@ func_800A8F38:
 .section .text.car_collision_update, "ax", @progbits
 .globl car_collision_update
 car_collision_update:
+    /* compiled from src/blob/car_collision_update.c */
     .word 0x27BDFFA8
     .word 0xAFBF0014
     .word 0x24E50002
@@ -1233,6 +1241,7 @@ car_collision_update:
 .section .text.func_800A9054, "ax", @progbits
 .globl func_800A9054
 func_800A9054:
+    /* compiled from src/blob/func_800A9054.c */
     .word 0x8CAB0008
     .word 0x8CA60000
     .word 0x8CA70004
@@ -1379,6 +1388,7 @@ func_800A9054:
 .section .text.func_800A928C, "ax", @progbits
 .globl func_800A928C
 func_800A928C:
+    /* compiled from src/blob/func_800A928C.c */
     .word 0x8C881434
     .word 0x00057080
     .word 0x00053040
@@ -1448,6 +1458,7 @@ func_800A928C:
 .section .text.car_crash_detect, "ax", @progbits
 .globl car_crash_detect
 car_crash_detect:
+    /* compiled from src/blob/car_crash_detect.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x8EE20008
@@ -1676,6 +1687,7 @@ car_crash_detect:
 .section .text.func_800A9710, "ax", @progbits
 .globl func_800A9710
 func_800A9710:
+    /* compiled from src/blob/func_800A9710.c */
     .word 0x94830002
     .word 0x2402FFFF
     .word 0x00002825
@@ -1859,6 +1871,7 @@ func_800A99C0:
 .section .text.car_crash_response, "ax", @progbits
 .globl car_crash_response
 car_crash_response:
+    /* compiled from src/blob/car_crash_response.c */
     .word 0x27BDFF50
     .word 0xAFBF003C
     .word 0xAFBE0038
@@ -2271,6 +2284,7 @@ car_crash_response:
 .section .text.func_800AA028, "ax", @progbits
 .globl func_800AA028
 func_800AA028:
+    /* compiled from src/blob/func_800AA028.c */
     .word 0x8C8F1684
     .word 0x8C8E1688
     .word 0x000FC040
@@ -2402,6 +2416,7 @@ func_800AA028:
 .section .text.func_800AA224, "ax", @progbits
 .globl func_800AA224
 func_800AA224:
+    /* compiled from src/blob/func_800AA224.c */
     .word 0xAFA40004
     .word 0x8CAC0014
     .word 0x8CA90054
@@ -2551,6 +2566,7 @@ func_800AA44C:
 .section .text.car_reset_position, "ax", @progbits
 .globl car_reset_position
 car_reset_position:
+    /* compiled from src/blob/car_reset_position.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x8E700014
@@ -2728,6 +2744,7 @@ car_reset_position:
 .section .text.car_spawn_at_checkpoint, "ax", @progbits
 .globl car_spawn_at_checkpoint
 car_spawn_at_checkpoint:
+    /* compiled from src/blob/car_spawn_at_checkpoint.c */
     .word 0x27BDFFC0
     .word 0xAFBE0038
     .word 0xAFB70034
@@ -3006,6 +3023,7 @@ func_800AAB34:
 .section .text.func_800AAB3C, "ax", @progbits
 .globl func_800AAB3C
 func_800AAB3C:
+    /* compiled from src/blob/func_800AAB3C.c */
     .word 0x3C0E8012
     .word 0x8DCEEA10
     .word 0x27BDFF98

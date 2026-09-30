@@ -104,10 +104,73 @@
     "verified": "image_gate",
     "verified_at": "2026-09-28"
   },
+  "car_cg_height_set": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "zlib_deflate",
+    "source": "src/blob/groups/zlib_deflate/group.json",
+    "source_sha256": "d7f3e01afa8df587dfb62dd8ff4d7ea9667785a77db5b362c7ce529b15bf614c",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
+  "car_collision_init": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "zlib_deflate",
+    "source": "src/blob/groups/zlib_deflate/group.json",
+    "source_sha256": "d7f3e01afa8df587dfb62dd8ff4d7ea9667785a77db5b362c7ce529b15bf614c",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
+  "car_collision_update": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "zlib_deflate",
+    "source": "src/blob/groups/zlib_deflate/group.json",
+    "source_sha256": "d7f3e01afa8df587dfb62dd8ff4d7ea9667785a77db5b362c7ce529b15bf614c",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
+  "car_crash_detect": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "zlib_deflate",
+    "source": "src/blob/groups/zlib_deflate/group.json",
+    "source_sha256": "d7f3e01afa8df587dfb62dd8ff4d7ea9667785a77db5b362c7ce529b15bf614c",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
+  "car_crash_response": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "zlib_deflate",
+    "source": "src/blob/groups/zlib_deflate/group.json",
+    "source_sha256": "d7f3e01afa8df587dfb62dd8ff4d7ea9667785a77db5b362c7ce529b15bf614c",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
   "car_mass_set": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/car_mass_set.c",
     "source_sha256": "4d30a6e8e6357389f6bee3c2c12ada5cf50e1c1185b52538935ca493187bd02f",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
+  "car_reset_position": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "zlib_deflate",
+    "source": "src/blob/groups/zlib_deflate/group.json",
+    "source_sha256": "d7f3e01afa8df587dfb62dd8ff4d7ea9667785a77db5b362c7ce529b15bf614c",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
+  "car_spawn_at_checkpoint": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "zlib_deflate",
+    "source": "src/blob/groups/zlib_deflate/group.json",
+    "source_sha256": "d7f3e01afa8df587dfb62dd8ff4d7ea9667785a77db5b362c7ce529b15bf614c",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-29"
@@ -994,6 +1057,42 @@
     "verified": "image_gate",
     "verified_at": "2026-09-29"
   },
+  "func_800A8174": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "zlib_deflate",
+    "source": "src/blob/groups/zlib_deflate/group.json",
+    "source_sha256": "d7f3e01afa8df587dfb62dd8ff4d7ea9667785a77db5b362c7ce529b15bf614c",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
+  "func_800A81FC": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "zlib_deflate",
+    "source": "src/blob/groups/zlib_deflate/group.json",
+    "source_sha256": "d7f3e01afa8df587dfb62dd8ff4d7ea9667785a77db5b362c7ce529b15bf614c",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
+  "func_800A8284": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "zlib_deflate",
+    "source": "src/blob/groups/zlib_deflate/group.json",
+    "source_sha256": "d7f3e01afa8df587dfb62dd8ff4d7ea9667785a77db5b362c7ce529b15bf614c",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
+  "func_800A8778": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "zlib_deflate",
+    "source": "src/blob/groups/zlib_deflate/group.json",
+    "source_sha256": "d7f3e01afa8df587dfb62dd8ff4d7ea9667785a77db5b362c7ce529b15bf614c",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
   "func_800A8D8C": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_800A8D8C.c",
@@ -1010,10 +1109,64 @@
     "verified": "image_gate",
     "verified_at": "2026-09-29"
   },
+  "func_800A8F38": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "zlib_deflate",
+    "source": "src/blob/groups/zlib_deflate/group.json",
+    "source_sha256": "d7f3e01afa8df587dfb62dd8ff4d7ea9667785a77db5b362c7ce529b15bf614c",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
+  "func_800A9054": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "zlib_deflate",
+    "source": "src/blob/groups/zlib_deflate/group.json",
+    "source_sha256": "d7f3e01afa8df587dfb62dd8ff4d7ea9667785a77db5b362c7ce529b15bf614c",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
+  "func_800A928C": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "zlib_deflate",
+    "source": "src/blob/groups/zlib_deflate/group.json",
+    "source_sha256": "d7f3e01afa8df587dfb62dd8ff4d7ea9667785a77db5b362c7ce529b15bf614c",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
+  "func_800A9710": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "zlib_deflate",
+    "source": "src/blob/groups/zlib_deflate/group.json",
+    "source_sha256": "d7f3e01afa8df587dfb62dd8ff4d7ea9667785a77db5b362c7ce529b15bf614c",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
   "func_800A99C0": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_800A99C0.c",
     "source_sha256": "3e44c15a47e15d37a9c0bd1af3659a0f1779c24cbcf482fe8fe83b83e9167e52",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
+  "func_800AA028": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "zlib_deflate",
+    "source": "src/blob/groups/zlib_deflate/group.json",
+    "source_sha256": "d7f3e01afa8df587dfb62dd8ff4d7ea9667785a77db5b362c7ce529b15bf614c",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
+  "func_800AA224": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "zlib_deflate",
+    "source": "src/blob/groups/zlib_deflate/group.json",
+    "source_sha256": "d7f3e01afa8df587dfb62dd8ff4d7ea9667785a77db5b362c7ce529b15bf614c",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-29"
@@ -1030,6 +1183,15 @@
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_800AAB34.c",
     "source_sha256": "b864c88661a384a4b66a6f273b2982daaed519895b73dddc7feb997788223577",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
+  "func_800AAB3C": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "zlib_deflate",
+    "source": "src/blob/groups/zlib_deflate/group.json",
+    "source_sha256": "d7f3e01afa8df587dfb62dd8ff4d7ea9667785a77db5b362c7ce529b15bf614c",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-29"
