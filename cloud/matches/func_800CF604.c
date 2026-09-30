@@ -1,3 +1,4 @@
+/* flags: -g0 -O2 -mips2 -G 0 -non_shared */
 
 typedef signed char s8;
 typedef unsigned char u8;
@@ -3253,6 +3254,7 @@ void *func_800A78BC(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u16 arg4, s32 arg5);
 s32 func_800A79F4(s16 arg0, PadConfig *arg1, PadConfig *arg2, s16 arg3, s32 arg4, s32 arg5, s32 arg6);
 s16 func_800A7BF8(s16 arg0);
 void *func_800A7D6C(void);
+void func_800A7E10(void *arg0, void *arg1, s16 arg2);
 void func_800A8174(void *arg0);
 void func_800A81FC(void *arg0);
 void func_800A8284(void *arg0);
@@ -3379,7 +3381,6 @@ u8 func_800CDDE8(void **arg0);
 u8 func_800CDE38(void **arg0);
 s32 func_800CEC8C(void *arg0, void *arg1, f32 arg2);
 void func_800CF06C(void *arg0);
-s32 func_800CF604(s16 arg0);
 void func_800CFCA8(void);
 void func_800CFDEC(s32 arg0, s32 arg1, s16 arg2, f32 arg3, f32 arg4, f32 arg5, s32 arg6);
 void func_800D0424(void *arg0);
@@ -3793,48 +3794,13 @@ typedef s8 M2C_UNK8;
 typedef s16 M2C_UNK16;
 typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
-/*MY*/
-typedef struct V3f { f32 x, y, z; } V3f;
-typedef struct VtxQ { s16 x, y, z; s16 pad[5]; } VtxQ;
-void func_800A7E10(V3f *arg0, V3f *arg1, s16 arg2)
+s32 func_800CF604(s16 arg0)
 {
-  s32 temp_t8;
-  int new_var;
-  void *temp_a3;
-  VtxQ *temp_v0;
-  VtxQ *v;
-  temp_v0 = (VtxQ *) ((D_80156CE0 * 0x10) + ((u8 *) (&D_80157248)));
-  temp_a3 = (s32 *) ((arg2 * 0x44) + ((u8 *) (&D_8012E700)));
-  temp_t8 = D_80156CE0 + 8;
-  *((s32 *) (((s8 *) temp_a3) + 4)) = (s32) ((*((s32 *) (((s8 *) temp_a3) + 4))) | ((new_var = D_80156CE0 * 8) | 7));
-  D_80156CE0 = temp_t8;
-  if (D_80156D30 < temp_t8)
-  {
-    D_80156D30 = temp_t8;
-  }
-  v = temp_v0;
-  v[0].x = (s16) ((s32) (arg0->x * 16.0f));
-  v[0].y = (s16) ((s32) (arg0->y * 16.0f));
-  v[0].z = (s16) ((s32) (arg0->z * 16.0f));
-  v[1].x = (s16) ((s32) (arg0->x * 16.0f));
-  v[1].y = (s16) ((s32) (arg0->y * 16.0f));
-  v[1].z = (s16) ((s32) (arg1->z * 16.0f));
-  v[2].x = (s16) ((s32) (arg0->x * 16.0f));
-  v[2].y = (s16) ((s32) (arg1->y * 16.0f));
-  v[2].z = (s16) ((s32) (arg0->z * 16.0f));
-  v[3].x = (s16) ((s32) (arg0->x * 16.0f));
-  v[3].y = (s16) ((s32) (arg1->y * 16.0f));
-  v[3].z = (s16) ((s32) (arg1->z * 16.0f));
-  v[4].x = (s16) ((s32) (arg1->x * 16.0f));
-  v[4].y = (s16) ((s32) (arg0->y * 16.0f));
-  v[4].z = (s16) ((s32) (arg0->z * 16.0f));
-  v[5].x = (s16) ((s32) (arg1->x * 16.0f));
-  v[5].y = (s16) ((s32) (arg0->y * 16.0f));
-  v[5].z = (s16) ((s32) (arg1->z * 16.0f));
-  v[6].x = (s16) ((s32) (arg1->x * 16.0f));
-  v[6].y = (s16) ((s32) (arg1->y * 16.0f));
-  v[6].z = (s16) ((s32) (arg0->z * 16.0f));
-  v[7].x = (s16) ((s32) (arg1->x * 16.0f));
-  v[7].y = (s16) ((s32) (arg1->y * 16.0f));
-  v[7].z = (s16) ((s32) (arg1->z * 16.0f));
+  u8 *p;
+  p = (u8 *) &D_8014A250 + arg0 * 0x808;
+  return (*((&D_80152B70) + (arg0 * 0x3B8))) == 0
+      && *(s8 *) (p + 0x640) == 0
+      && *(s16 *) (p + 0x6C4) == -1
+      && *(s8 *) (p + 0x7EB) != 0
+      && *(s8 *) (p + 0x7DF) == 0;
 }

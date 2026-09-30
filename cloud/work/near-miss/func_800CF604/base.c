@@ -3795,28 +3795,11 @@ typedef s32 M2C_UNK32;
 typedef s64 M2C_UNK64;
 s32 func_800CF604(s16 arg0)
 {
-  s32 temp_t2;
-  s32 temp_t4;
-  s32 temp_t9;
-  s32 var_v0;
-  void *temp_v1;
-  temp_t9 = (var_v0 = (*((&D_80152B70) + (arg0 * 0x3B8))) == 0);
-  if (temp_t9 != 0)
-  {
-    temp_v1 = (D_8014A250_Record *) ((arg0 * 0x808) + ((u8 *) (&D_8014A250)));
-    temp_t2 = (var_v0 = (*((s8 *) (((s8 *) temp_v1) + 0x640))) == 0);
-    if (temp_t2 != 0)
-    {
-      var_v0 = ((*((s16 *) (((s8 *) temp_v1) + 0x6C4))) + 1) == 0;
-      if (var_v0 != 0)
-      {
-        temp_t4 = (var_v0 = (*((s8 *) (((s8 *) temp_v1) + 0x7EB))) != 0);
-        if (temp_t4 != 0)
-        {
-          var_v0 = (*((s8 *) (((s8 *) temp_v1) + 0x7DF))) == 0;
-        }
-      }
-    }
-  }
-  return var_v0;
+  u8 *p;
+  p = (u8 *) &D_8014A250 + arg0 * 0x808;
+  return (*((&D_80152B70) + (arg0 * 0x3B8))) == 0
+      && *(s8 *) (p + 0x640) == 0
+      && *(s16 *) (p + 0x6C4) == -1
+      && *(s8 *) (p + 0x7EB) != 0
+      && *(s8 *) (p + 0x7DF) == 0;
 }

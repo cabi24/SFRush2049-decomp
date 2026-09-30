@@ -3696,22 +3696,28 @@ typedef s64 M2C_UNK64;
 
 #endif
 
-void func_800E2F00(void *arg0) {
-    s32 temp_v0;
-    s32 temp_v0_2;
-
-    if (M2C_FIELD(arg0, s8 *, 0x640) != 0) {
-        M2C_FIELD(arg0, f32 *, 0x404) = (f32) func_800E2D18(arg0, (s16) (s32) (M2C_FIELD(arg0, f32 *, 0x408) * D_801243E0), 0, M2C_FIELD(arg0, s32 *, 0x40C));
-    } else if (M2C_FIELD(arg0, s16 *, 0x3F4) < 0) {
-        M2C_FIELD(arg0, f32 *, 0x404) = (f32) func_800E2D18(arg0, (s16) (s32) (M2C_FIELD(arg0, f32 *, 0x408) * D_801243E4), (s16) (s32) (M2C_FIELD(arg0, f32 *, 0x3D0) * 128.0f), M2C_FIELD(arg0, s32 *, 0x40C));
-    } else {
-        M2C_FIELD(arg0, f32 *, 0x404) = (f32) func_800E2D18(arg0, (s16) (s32) (M2C_FIELD(arg0, f32 *, 0x408) * *(f32 *)0x801243E8), (s16) (s32) (M2C_FIELD(arg0, f32 *, 0x3D0) * 128.0f), M2C_FIELD(arg0, s32 *, 0x40C));
-    }
-    temp_v0 = M2C_FIELD(arg0, s32 *, 0x614);
-    if (((temp_v0 == 1) || (temp_v0 == 2)) && ((temp_v0_2 = M2C_FIELD(arg0, s32 *, 0x618), (temp_v0_2 == 1)) || (temp_v0_2 == 2))) {
-        M2C_FIELD(arg0, f32 *, 0x404) = (f32) (M2C_FIELD(arg0, f32 *, 0x404) * 1.5f);
-    }
-    if ((M2C_FIELD(arg0, s8 *, 0xA) != 0) && (M2C_FIELD(arg0, s16 *, 0x3F4) != 4)) {
-        M2C_FIELD(arg0, f32 *, 0x404) = (f32) (M2C_FIELD(arg0, f32 *, 0x404) * D_801243EC);
-    }
+extern f32 D_801243E8;
+typedef struct CarE {
+  u8 pad0[0xA]; s8 fA;
+  u8 padB[0x3D0 - 0xB]; f32 f3D0;
+  u8 pad3D4[0x3F4 - 0x3D4]; s16 f3F4;
+  u8 pad3F6[0x404 - 0x3F6]; f32 f404; f32 f408; s32 f40C;
+  u8 pad410[0x614 - 0x410]; s32 f614; s32 f618;
+  u8 pad61C[0x640 - 0x61C]; s8 f640;
+} CarE;
+void func_800E2F00(CarE *arg0)
+{
+  if (arg0->f640 != 0) {
+    arg0->f404 = func_800E2D18(arg0, (s16) (s32) (arg0->f408 * D_801243E0), 0, arg0->f40C);
+  } else if (arg0->f3F4 < 0) {
+    arg0->f404 = func_800E2D18(arg0, (s16) (s32) (arg0->f408 * D_801243E4), (s16) (s32) (arg0->f3D0 * 128.0f), arg0->f40C);
+  } else {
+    arg0->f404 = func_800E2D18(arg0, (s16) (s32) (arg0->f408 * D_801243E8), (s16) (s32) (arg0->f3D0 * 128.0f), arg0->f40C);
+  }
+  if ((arg0->f614 == 1 || arg0->f614 == 2) && (arg0->f618 == 1 || arg0->f618 == 2)) {
+    arg0->f404 = arg0->f404 * 1.5f;
+  }
+  if (arg0->fA != 0 && arg0->f3F4 != 4) {
+    arg0->f404 = arg0->f404 * D_801243EC;
+  }
 }
