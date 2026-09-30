@@ -382,6 +382,15 @@
     "verified": "image_gate",
     "verified_at": "2026-09-28"
   },
+  "func_80086A50": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "func_80086A50",
+    "source": "src/blob/groups/func_80086A50/group.json",
+    "source_sha256": "13d34aee0632430906b999b8636ce0256c689fd3f2da6699b58586307a20dbf8",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-30"
+  },
   "func_80087804": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_80087804.c",

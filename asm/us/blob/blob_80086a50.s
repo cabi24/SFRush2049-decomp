@@ -5,6 +5,7 @@
 .section .text.func_80086A50, "ax", @progbits
 .globl func_80086A50
 func_80086A50:
+    /* compiled from src/blob/func_80086A50.c */
     .word 0x2C810005
     .word 0x1020017E
     .word 0x00047080
