@@ -1,0 +1,21 @@
+{
+  "verifier": "Coordinator D independent canonical group --claims",
+  "source_sha256": "e348f956130938f04fae6c3442b50ec1db946b282cd8ccd30c7a35445afccbe0",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "canonical_exit": 0,
+  "claims": {
+    "audio_reverb_update": "MATCH",
+    "audio_effect_process": "MATCH",
+    "synced_model_render": "MATCH",
+    "MP_TargetSpeed": "MATCH",
+    "assign_default_paths": "MATCH",
+    "stat_race_end": "MATCH"
+  },
+  "context": {
+    "func_80095F8C": "MATCH",
+    "func_80095EF4": "MATCH",
+    "audio_buffer_sync": "MATCH",
+    "object_counter_decrement": "MATCH",
+    "object_counter_increment": "MATCH"
+  }
+}

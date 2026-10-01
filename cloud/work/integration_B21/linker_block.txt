@@ -1,0 +1,10 @@
+        /* B21_PRIVATE_BOUNDARY_lib_8700_BEGIN */
+        __b21_lib_8700_start = .;
+        build/us/src/rom/lib_8700.o(.text);
+        __b21_lib_8700_input_end = .;
+        ASSERT(ABSOLUTE(__b21_lib_8700_start) == 0x80007b00, "B21 original TU start moved");
+        ASSERT(__b21_lib_8700_input_end == __b21_lib_8700_start + 0xa0 || __b21_lib_8700_input_end == __b21_lib_8700_start + 0x100, "B21 unexpected real input extent");
+        FILL(0x00000000);
+        . = __b21_lib_8700_start + 0x100;
+        __b21_lib_8700_end = .;
+        /* B21_PRIVATE_BOUNDARY_lib_8700_END */

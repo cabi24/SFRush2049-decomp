@@ -3279,6 +3279,7 @@ func_800A0F64:
 .section .text.MP_TargetSpeed, "ax", @progbits
 .globl MP_TargetSpeed
 MP_TargetSpeed:
+    /* compiled from src/blob/MP_TargetSpeed.c */
     .word 0x3C0E8012
     .word 0x81CEED04
     .word 0x27BDFFE0
@@ -3511,6 +3512,7 @@ InitMaxPath:
 .section .text.assign_default_paths, "ax", @progbits
 .globl assign_default_paths
 assign_default_paths:
+    /* compiled from src/blob/assign_default_paths.c */
     .word 0x3C0E8012
     .word 0x81CEED00
     .word 0x27BDFFE0

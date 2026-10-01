@@ -1,0 +1,18 @@
+{
+  "candidate": {
+    "tu_start": "0x80007b00",
+    "real_input_end": "0x80007ba0",
+    "fill_size": "0x60",
+    "tu_end": "0x80007c00",
+    "following_function": "strchr",
+    "following_address": "0x80007c00",
+    "map_slice_sha256": "981bb05da08bf4cf47dcdcc3e4d9835d675038f015ca1b035ceb8af63bf98d80"
+  },
+  "baseline": {
+    "tu_start": "0x80007b00",
+    "real_input_end": "0x80007c00",
+    "fill_size": 0,
+    "tu_end": "0x80007c00",
+    "map_slice_sha256": "4813099e5da20c867aa5c5167a08c66090bfe247f5e07bad5a0cd3999c1155ae"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "source_sha256": "e348f956130938f04fae6c3442b50ec1db946b282cd8ccd30c7a35445afccbe0",
+  "accepted_context": {
+    "func_80095F8C": {
+      "path": "src/blob/func_80095F8C.c",
+      "exact_definition_text_equal": true,
+      "definition_sha256": "1e6bd68971de8e87c3c56e246f984888e950a46997d2758cc4783a7e25454907"
+    },
+    "func_80095EF4": {
+      "path": "src/blob/func_80095EF4.c",
+      "exact_definition_text_equal": true,
+      "definition_sha256": "3d315957d8071252d19547c8ef97629b792830ca96f421b31e75df466ecf05ec"
+    },
+    "audio_buffer_sync": {
+      "path": "cloud/work/ipa-groups/codex_pointer_counters_a19/group.c",
+      "exact_definition_text_equal": true,
+      "definition_sha256": "8b425138b3e5bd75ab9f9891bf741b71ed9d694b32371d1077e2cb8285f4a623"
+    },
+    "object_counter_decrement": {
+      "path": "cloud/work/ipa-groups/codex_pointer_counters_a19/group.c",
+      "exact_definition_text_equal": true,
+      "definition_sha256": "b987bf1955c52ef6dc89ce58d52a32795a2a26f52ea15b7c3be82947cf1ffb46"
+    },
+    "object_counter_increment": {
+      "path": "cloud/work/ipa-groups/codex_pointer_counters_a19/group.c",
+      "exact_definition_text_equal": true,
+      "definition_sha256": "f2f07cdfc7ac3c8d5f0051b76126bd34fdbe99278dca168113f44112fb2115c9"
+    }
+  }
+}
