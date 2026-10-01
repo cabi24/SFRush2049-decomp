@@ -1,0 +1,20 @@
+{
+  "members": [
+    "func_800B6748"
+  ],
+  "context": [
+    "menu_input_process",
+    "world_trigger_check",
+    "world_velocity_integrate"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "keep": [
+    "menu_input_process",
+    "world_trigger_check",
+    "world_velocity_integrate"
+  ],
+  "provenance": "A16: seven true pointer outputs, three actual retail callers, switch table validated from authoritative game image; no stand-in."
+}

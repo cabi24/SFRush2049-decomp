@@ -1,5 +1,15 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-01 seventh completed game promotion milestone
+
+- Game cartridge C: **531/1,216 functions, 62,336/647,072 bytes (9.63%)**. Static cartridge C: **107/230 functions, 24,288/61,440 bytes (39.53%)**.
+- A16 genuine seven-output initializer func_800B6748 adds64 bytes. Three actual callers supply every consumed pointer; corrected byte/halfword/float widths and original recording switch semantics are documented. Coordinator D independently strict MATCH; image gate and source-built full-ROM SHA-1 EXACT. Context callers remain explicit unclaimed nonmatches, with no duplicate credit or stand-ins.
+- Across handoff:34 game functions /5,920 bytes and84 static functions /22,840 bytes accepted. A15 parent-context hypothesis remains5/24 differing words after six genuine controls; frozen empty claims preserve that result without coverage.
+- B18 full VI module independently reproduced on coordinator D: canonical stack-sensitive per-function strict0, unlinked raw9/raw5 relocation differences honestly retained, then all196 linked words /784 bytes equal retail at the real full-BSS address. Retail startup zeroing covers the complete owned block. Sustainable ownership/atomic promotion tooling remains private and unaccepted pending integration.
+- C13 prepares genuine replacement of the original PI switch-table slot inside composed data, preserving source-built game blob composition and unchanged ROM gates. Focused bounds, identity, regeneration and rollback checks are under review; no ownership lead yet earns coverage.
+- Gates: full-ROM SHA-1 EXACT;531 blob locks and group locks zero problems; full pytest exit0 captured separately. Static coverage unchanged. Initial dirty tools/mips_to_c preserved. Coordinator status advanced the new helper forward to matched.
+- Previous checkpoint f47fceff CI run36910403142 succeeded. No open cloud PRs. Farm paused during integration and resumes after push. A17 starts a fresh128-word authentic checksum closure; C13/B18 continue privately. Wiki host-key confirmation remains independently pending.
+
 ## 2026-10-01 sixth completed promotion milestone
 
 - Game cartridge C: **530/1,216 functions, 62,272/647,072 bytes (9.62%)**. Static cartridge C: **107/230 functions, 24,288/61,440 bytes (39.53%)**.

@@ -1,0 +1,55 @@
+{
+  "err": null,
+  "matched": true,
+  "members": {
+    "func_800B6748": {
+      "strict_diff": 0,
+      "size": 16,
+      "target_size": 16,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    }
+  },
+  "context": {
+    "menu_input_process": {
+      "strict_diff": 320,
+      "size": 280,
+      "target_size": 320,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "world_trigger_check": {
+      "strict_diff": 53,
+      "size": 47,
+      "target_size": 54,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "world_velocity_integrate": {
+      "strict_diff": 165,
+      "size": 161,
+      "target_size": 178,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [
+        ".rodata+0x0 at +0xf0",
+        ".rodata+0x0 at +0xf8"
+      ],
+      "unresolved": [],
+      "errors": []
+    }
+  }
+}

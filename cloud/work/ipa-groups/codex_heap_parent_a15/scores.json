@@ -1,0 +1,140 @@
+{
+  "err": null,
+  "matched": false,
+  "members": {
+    "PrevMaxPath": {
+      "strict_diff": 5,
+      "size": 24,
+      "target_size": 24,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    }
+  },
+  "context": {
+    "InitMaxPath": {
+      "strict_diff": 34,
+      "size": 28,
+      "target_size": 34,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "sync_maxpath_to_checkpoint": {
+      "strict_diff": 34,
+      "size": 29,
+      "target_size": 34,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "display_enable": {
+      "strict_diff": 78,
+      "size": 72,
+      "target_size": 79,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "audio_reverb_update": {
+      "strict_diff": 21,
+      "size": 61,
+      "target_size": 61,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "playgame_state_change": {
+      "strict_diff": 607,
+      "size": 643,
+      "target_size": 636,
+      "extra": 7,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "speed_set": {
+      "strict_diff": 47,
+      "size": 56,
+      "target_size": 51,
+      "extra": 5,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "slot_state_setup": {
+      "strict_diff": 24,
+      "size": 58,
+      "target_size": 58,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "audio_frame_sync": {
+      "strict_diff": 129,
+      "size": 112,
+      "target_size": 130,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "sound_update_channel": {
+      "strict_diff": 120,
+      "size": 117,
+      "target_size": 122,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "func_80096288": {
+      "strict_diff": 3,
+      "size": 2,
+      "target_size": 4,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "func_80097694": {
+      "strict_diff": 29,
+      "size": 65,
+      "target_size": 65,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    }
+  }
+}

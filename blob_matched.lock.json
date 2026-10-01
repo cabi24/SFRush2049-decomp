@@ -1962,6 +1962,15 @@
     "verified": "image_gate",
     "verified_at": "2026-09-28"
   },
+  "func_800B6748": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "codex_defaults_a16",
+    "source": "src/blob/groups/codex_defaults_a16/group.json",
+    "source_sha256": "84ef067f5a1c9109ac3cf3d03041f62cd8c9c0c8a0fb48fc9b63f64348d94557",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-01"
+  },
   "func_800B70EC": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_800B70EC.c",
