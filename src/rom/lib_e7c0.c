@@ -6,5 +6,14 @@
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_e7c0/osPiInit.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_e7c0/osPiGetAccess.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_e7c0/osPiReleaseAccess.s")
+/* PROMOTED 2026-10-01 — osPiReleaseAccess
+ * Source:   cloud/work/static_C/osPiReleaseAccess.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C/osPiReleaseAccess.c:osPiReleaseAccess (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void osPiReleaseAccess(void) {
+    osJamMesg(&__osPiMesgQueue, NULL, 0);
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_e7c0/osPiReadWord.s")
