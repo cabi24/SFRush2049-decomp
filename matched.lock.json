@@ -1,12 +1,4 @@
 {
-  "cloud/work/static_C10/osPfsDeleteFile.c:osPfsDeleteFile": {
-    "body_sha256": "faf37a471409ba70c8ddfbecec1a5626a285d1f2bada53958fd5821f55e714bb",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "osPfsDeleteFile",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-01"
-  },
   "cloud/work/static_C10/osPfsRename.c:osPfsRename": {
     "body_sha256": "0ad83f8168afc1a29d90599366c69708ed0e91a2e900bf2ebcbe692839e709f3",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -463,6 +455,14 @@
     "body_sha256": "c5b40957083ab1bf76c09743deb492acdd1978734ab5a48d7b3925416277973a",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "osPfsAllocate",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
+  },
+  "src/rom/lib_b120.c:osPfsDeleteFile": {
+    "body_sha256": "faf37a471409ba70c8ddfbecec1a5626a285d1f2bada53958fd5821f55e714bb",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osPfsDeleteFile",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
