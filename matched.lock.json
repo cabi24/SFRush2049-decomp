@@ -1,12 +1,4 @@
 {
-  "cloud/work/static_C8/osPfsFindFile.c:osPfsFindFile": {
-    "body_sha256": "230696d23c3f1833f534fd9ec543e306cc4fa23a0317167d36899d14186e36c0",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "osPfsFindFile",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-01"
-  },
   "cloud/work/static_C8/osPfsGetFileStat.c:osPfsGetFileStat": {
     "body_sha256": "fa442e3b937334cf35188f31548de8531fb82e92dbdd3d198625f5b99819736f",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -418,6 +410,14 @@
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-07-11"
+  },
+  "src/rom/lib_b300.c:osPfsFindFile": {
+    "body_sha256": "230696d23c3f1833f534fd9ec543e306cc4fa23a0317167d36899d14186e36c0",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osPfsFindFile",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
   },
   "src/rom/lib_be40.c:osPfsFreeBlocks": {
     "body_sha256": "7c52a1cf8ece2e977d1484d2408c74f4c4652d29340dc38f05dd6af1bdda2e94",
