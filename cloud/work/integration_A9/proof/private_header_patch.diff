@@ -1,0 +1,56 @@
+--- include/PR/os_pfs.h
++++ include/PR/os_pfs.h
+@@ -92,10 +92,10 @@
+     u16 company_code;
+     __OSInodeUnit start_page;
+     u8 status;
+-    u8 reserved;
+-    char game_name[16];
+-    char ext_name[4];
++    s8 reserved;
+     u16 data_sum;
++    u8 ext_name[4];
++    u8 game_name[16];
+ } __OSDir;
+ 
+ /* File System Constants */
+@@ -153,8 +153,7 @@
+ /* Historical label: retail implementation is SDK __osPfsReleasePages. */
+ s32 osPfsFindFile(OSPfs *pfs, __OSInode *inode, u8 start_page, u8 bank,
+                   __OSInodeUnit *nextPage);
+-s32 osPfsDeleteFile(OSPfs *pfs, u16 companyCode, u32 gameCode,
+-                    u8 *gameName, u8 *extName);
++s32 osPfsDeleteFile(OSPfs*, s32, OSPfsState*);
+ s32 osPfsReadWriteFile(OSPfs *pfs, s32 fileNo, u8 flag, s32 offset,
+                        s32 size, u8 *data);
+ s32 osPfsFileState(OSPfs *pfs, s32 fileNo, OSPfsState *state);
+@@ -166,7 +165,7 @@
+ /* Internal PFS Functions */
+ s32 __osPfsSelectBank(OSPfs *pfs, u8 bank);
+ s32 __osPfsRWInode(OSPfs *pfs, __OSInode *inode, u8 flag, u8 bank);
+-s32 osPfsAllocate(OSPfs *pfs, s32 pages);
++s32 osPfsAllocate(OSPfs*, u16, u32, u8*, u8*, s32*);
+ /* Historical symbol: retail body implements SDK osGetThreadId. */
+ OSId osPfsReAllocate(OSThread *thread);
+ 
+--- rom_tu.h
++++ rom_tu.h
+@@ -284,3 +284,18 @@
+ 
+ 
+ extern s32 osMotorInit(OSPfs *, s32); /* historical SDK __osMotorAccess */
++
++extern s32 __osContLastChannel;
++extern u8 __osPfsDataChecksum(u8*);
++extern s32 osPfsRename(OSPfs*,u16,u32,u8*,u8*);
++extern s32 osMotorStart(OSMesgQueue*,OSPfs*,int);
++#define PFS_ID_BANK_256K 0
++#define CONT_CMD_READ_PAK 2
++#define CONT_CMD_READ_PAK_TX 3
++#define CONT_CMD_READ_PAK_RX 33
++typedef u32 OSEvent;
++typedef struct { OSMesgQueue *messageQueue; OSMesg message; } __OSEventState;
++extern __OSEventState __osEventStateTab[16];
++extern u32 __osShutdown, gEventTypeFlag;
++extern void osSetEventMesgAlt(OSEvent,OSMesgQueue*,OSMesg);
++#define OS_EVENT_PRENMI 14

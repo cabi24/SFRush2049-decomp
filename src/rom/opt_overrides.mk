@@ -3,6 +3,7 @@
 # must compile at that level or the promotion SHA-1 gate fails.
 ifeq ($(COMPILER),ido)
 $(BUILD_DIR)/src/rom/lib_7600.o: CFLAGS := $(subst -O2,-O1,$(CFLAGS))
+$(BUILD_DIR)/src/rom/lib_7a10.o: CFLAGS := $(subst -O2,-O1,$(CFLAGS))
 $(BUILD_DIR)/src/rom/lib_7b30.o: CFLAGS := $(subst -O2,-O1,$(CFLAGS))
 $(BUILD_DIR)/src/rom/lib_7c80.o: CFLAGS := $(subst -O2,-O1,$(CFLAGS))
 $(BUILD_DIR)/src/rom/lib_81e0.o: CFLAGS := $(subst -O2,-O1,$(CFLAGS))

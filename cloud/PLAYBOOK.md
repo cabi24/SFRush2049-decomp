@@ -141,3 +141,14 @@ Explicit `-Wab,-r4300_mul` in isolated scoring is decisive for guMtxF2L, guOrtho
 Real sound extra callers and control-settings helpers add376+268 bytes, with actual audited callee/caller context and claimed image/ROM equality. The latter needs real control_settings's ten call sites to reproduce unsaved s0/s1. Unclaimed context still has external IPA and rodata gaps; do not treat a strict helper match as proof of its entire caller.
 
 Current game errata resweep gives zero immediate matches among79 attempted seeds (56 strict nonmatches,23 compile/score failures), plus12 already locked andone seed failure. Six42-word matrix seeds improve to5 differing words after real stack-home/expression repair but remain unaccepted. Prefer missing vector-output/prototype repairs over another uncontrolled formatting batch. Static coverage now66/230,8,532/61,440 bytes; game521/1,216,60,604/647,072 bytes, reported separately.
+
+
+## PFS, controller and actual symbol signatures (2026-10-01)
+
+Current retail labels often differ from SDK names: derive prototypes from actual arguments and canonical bodies before shared-header integration. C7–C10 prove messaging, controllers, PFS identities, motor, directory and PI helpers. C8 preserves accepted pointer-valued s32 __osInsertTimer with explicit casts; changing its return declaration would conflict with its locked body. PIF status aliases are accepted only when authoritative addresses prove __osSiDmaRetry == __osSiDmaBuffer + 0x3c; strict scoring remains unchanged.
+
+__OSDir retains size32 but requires data_sum@0xA, unsigned ext_name@0xC and unsigned game_name@0x10. The old header offsets were wrong. Independent current-header body verification plus53 unchanged existing C-TU text comparisons establish compatibility; full forced-ROM rebuild remains final authority. Raw comparison streams stay in ignored build/private scratch; checked-in evidence records identities/counts/equality.
+
+Static preparation must lock candidate flags BEFORE deriving/writing opt_overrides.mk. If conversion predates a new O1 lock, regenerate the fragment with pipeline.layout.write_opt_overrides(), sync it, and prove the passthrough ROM baseline. C10's event setter initially failed because its generated override lacked the newly locked O1 pin; rollback restored the exact ROM. No candidate-body change is warranted for a compiler-flag mismatch. Shared-TU pins continue to block O2-only osCreatePiManager and O1-only osSendMesg; do not override accepted neighboring flags.
+
+Game A5 closes a real inlined audio getter; B10 adds only D9CC/DF90. E828 was already accepted and is archived as re-verification without extra credit. B13 adds two tiny actual bodies with unused real argument homes documented. Real A6/A7/A8 context groups remain honest nonmatches with empty claims; additional context matches do not earn duplicate coverage.

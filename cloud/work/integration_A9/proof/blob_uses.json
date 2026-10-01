@@ -1,0 +1,65 @@
+{
+  "locked_source_uses": [],
+  "registered_asm_callers": [
+    {
+      "caller": "audio_queue_process",
+      "locked": false,
+      "callee": "osMotorStart",
+      "offset": 392
+    },
+    {
+      "caller": "audio_queue_process",
+      "locked": false,
+      "callee": "osMotorStart",
+      "offset": 440
+    },
+    {
+      "caller": "audio_queue_process",
+      "locked": false,
+      "callee": "osMotorStart",
+      "offset": 520
+    },
+    {
+      "caller": "check_mpath_save",
+      "locked": false,
+      "callee": "osMotorStart",
+      "offset": 180
+    },
+    {
+      "caller": "func_800A1A60",
+      "locked": false,
+      "callee": "osPfsDeleteFile",
+      "offset": 184
+    },
+    {
+      "caller": "AdjustSpeed",
+      "locked": false,
+      "callee": "osPfsRename",
+      "offset": 280
+    },
+    {
+      "caller": "track_process_main",
+      "locked": false,
+      "callee": "osPfsDeleteFile",
+      "offset": 1060
+    },
+    {
+      "caller": "track_render_process",
+      "locked": false,
+      "callee": "osMotorStart",
+      "offset": 700
+    },
+    {
+      "caller": "track_render_process",
+      "locked": false,
+      "callee": "osPfsDeleteFile",
+      "offset": 2796
+    },
+    {
+      "caller": "func_800E7710",
+      "locked": false,
+      "callee": "osSetEventMesgAlt",
+      "offset": 60
+    }
+  ]
+}
