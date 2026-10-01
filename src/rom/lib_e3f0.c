@@ -4,4 +4,11 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_e3f0/osPiWriteWord.s")
+/* PROMOTED 2026-10-01 — osPiWriteWord
+ * Source:   cloud/work/static_C5/osPiWriteWord.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C5/osPiWriteWord.c:osPiWriteWord (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+s32 osPiWriteWord(u32 devAddr, u32 data) { if (__osPiDeviceBusy()) return -1; *(volatile u32 *)(devAddr | 0xA0000000U) = data; return 0; }
+
