@@ -1,0 +1,36 @@
+No claims: work in progress, reported only.
+Members:
+
+Context (informational; excluded from exit status):
+physics_response:
+    +0x000  want 27bdffc0                               got 3c088015                             
+    +0x004  want 3c018012                               got 25081ce8                             
+    +0x008  want 3c138015                               got 27bdffe8                             
+    +0x00c  want 4480c000                               got 3c018012                             
+    +0x010  want afbf0014                               got 3c168013                             
+    +0x014  want 26731ce8                               got 4480a000                             
+    +0x018  want c4363df4                               got afbf0014                             
+    +0x01c  want 0000a825                               got c43a3df4                             
+    +0x020  want 86640006                               got 0000b825                             
+    +0x024  want 2c820001                               got 85040006                             
+    +0x028  want 14400002                               got 26d6e5ec                             
+    +0x02c  want 00000000                               got 2c830001                             
+  225/230 words differ (4 extra words (nonzero beyond target length))
+audio_effect_apply:
+    +0x000  want 27bdffb0                               got 27bdff80                             
+    +0x00c  want afbf004c                               got 3c048014                             
+    +0x010  want afb60048                               got 248407f0                             
+    +0x014  want afb50044                               got afb1003c                             
+    +0x018  want afb40040                               got afbf005c                             
+    +0x01c  want afb3003c                               got afbe0058                             
+    +0x020  want afb20038                               got afb70054                             
+    +0x024  want afb10034                               got afb60050                             
+    +0x028  want afb00030                               got afb5004c                             
+    +0x02c  want f7b80028                               got afb40048                             
+    +0x030  want f7b60020                               got afb30044                             
+    +0x034  want 11c0000d                               got afb20040                             
+  170/174 words differ (16 extra words (nonzero beyond target length))
+func_800B9338:
+  MATCH
+
+EXIT=0

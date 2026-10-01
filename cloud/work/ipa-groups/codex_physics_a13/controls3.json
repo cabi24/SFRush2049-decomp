@@ -1,0 +1,30 @@
+{
+  "label": "typed_header_stream",
+  "err": null,
+  "scores": {
+    "physics_response": {
+      "strict_diff": 225,
+      "size": 234,
+      "extra": 4,
+      "matched": false,
+      "err": null,
+      "errors": []
+    },
+    "audio_effect_apply": {
+      "strict_diff": 170,
+      "size": 190,
+      "extra": 16,
+      "matched": false,
+      "err": null,
+      "errors": []
+    },
+    "func_800B9338": {
+      "strict_diff": 0,
+      "size": 28,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "errors": []
+    }
+  }
+}

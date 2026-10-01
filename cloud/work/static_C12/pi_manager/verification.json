@@ -1,0 +1,13 @@
+[
+  {
+    "function": "osSpTaskLoad_full",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 260,
+    "candidate_words": 260,
+    "raw_word_diff": 0,
+    "source_sha256": "a5d25007eee555f8069a90e4f9ad36e254dc91e30b1439941f3b0afefd8e9236",
+    "target_sha256": "d583e0f1174f370facee02b2eed6bab55061dd022381796fc660b806d5ae1ba5",
+    "integration_status": "ready_pending_actual_rodata_placement_gate"
+  }
+]

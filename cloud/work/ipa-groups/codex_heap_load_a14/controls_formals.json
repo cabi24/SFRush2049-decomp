@@ -1,0 +1,1394 @@
+[
+  {
+    "order": [
+      "dst",
+      "dst_end",
+      "clear_start",
+      "clear_end",
+      "loaded",
+      "rom"
+    ],
+    "err": null,
+    "scores": {
+      "PrevMaxPath": {
+        "strict_diff": 5,
+        "size": 24,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "InitMaxPath": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "sync_maxpath_to_checkpoint": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "display_enable": {
+        "strict_diff": 75,
+        "size": 79,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "audio_reverb_update": {
+        "strict_diff": 21,
+        "size": 61,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      }
+    }
+  },
+  {
+    "order": [
+      "dst",
+      "dst_end",
+      "clear_start",
+      "clear_end",
+      "rom",
+      "loaded"
+    ],
+    "err": null,
+    "scores": {
+      "PrevMaxPath": {
+        "strict_diff": 5,
+        "size": 24,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "InitMaxPath": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "sync_maxpath_to_checkpoint": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "display_enable": {
+        "strict_diff": 75,
+        "size": 79,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "audio_reverb_update": {
+        "strict_diff": 21,
+        "size": 61,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      }
+    }
+  },
+  {
+    "order": [
+      "dst",
+      "dst_end",
+      "clear_start",
+      "loaded",
+      "clear_end",
+      "rom"
+    ],
+    "err": null,
+    "scores": {
+      "PrevMaxPath": {
+        "strict_diff": 5,
+        "size": 24,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "InitMaxPath": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "sync_maxpath_to_checkpoint": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "display_enable": {
+        "strict_diff": 75,
+        "size": 79,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "audio_reverb_update": {
+        "strict_diff": 21,
+        "size": 61,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      }
+    }
+  },
+  {
+    "order": [
+      "dst",
+      "dst_end",
+      "clear_start",
+      "loaded",
+      "rom",
+      "clear_end"
+    ],
+    "err": null,
+    "scores": {
+      "PrevMaxPath": {
+        "strict_diff": 5,
+        "size": 24,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "InitMaxPath": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "sync_maxpath_to_checkpoint": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "display_enable": {
+        "strict_diff": 75,
+        "size": 79,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "audio_reverb_update": {
+        "strict_diff": 21,
+        "size": 61,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      }
+    }
+  },
+  {
+    "order": [
+      "dst",
+      "dst_end",
+      "clear_start",
+      "rom",
+      "clear_end",
+      "loaded"
+    ],
+    "err": null,
+    "scores": {
+      "PrevMaxPath": {
+        "strict_diff": 5,
+        "size": 24,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "InitMaxPath": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "sync_maxpath_to_checkpoint": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "display_enable": {
+        "strict_diff": 75,
+        "size": 79,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "audio_reverb_update": {
+        "strict_diff": 21,
+        "size": 61,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      }
+    }
+  },
+  {
+    "order": [
+      "dst",
+      "dst_end",
+      "clear_start",
+      "rom",
+      "loaded",
+      "clear_end"
+    ],
+    "err": null,
+    "scores": {
+      "PrevMaxPath": {
+        "strict_diff": 5,
+        "size": 24,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "InitMaxPath": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "sync_maxpath_to_checkpoint": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "display_enable": {
+        "strict_diff": 75,
+        "size": 79,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "audio_reverb_update": {
+        "strict_diff": 21,
+        "size": 61,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      }
+    }
+  },
+  {
+    "order": [
+      "dst",
+      "dst_end",
+      "clear_end",
+      "clear_start",
+      "loaded",
+      "rom"
+    ],
+    "err": null,
+    "scores": {
+      "PrevMaxPath": {
+        "strict_diff": 5,
+        "size": 24,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "InitMaxPath": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "sync_maxpath_to_checkpoint": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "display_enable": {
+        "strict_diff": 75,
+        "size": 79,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "audio_reverb_update": {
+        "strict_diff": 21,
+        "size": 61,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      }
+    }
+  },
+  {
+    "order": [
+      "dst",
+      "dst_end",
+      "clear_end",
+      "clear_start",
+      "rom",
+      "loaded"
+    ],
+    "err": null,
+    "scores": {
+      "PrevMaxPath": {
+        "strict_diff": 5,
+        "size": 24,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "InitMaxPath": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "sync_maxpath_to_checkpoint": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "display_enable": {
+        "strict_diff": 75,
+        "size": 79,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "audio_reverb_update": {
+        "strict_diff": 21,
+        "size": 61,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      }
+    }
+  },
+  {
+    "order": [
+      "dst",
+      "dst_end",
+      "clear_end",
+      "loaded",
+      "clear_start",
+      "rom"
+    ],
+    "err": null,
+    "scores": {
+      "PrevMaxPath": {
+        "strict_diff": 5,
+        "size": 24,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "InitMaxPath": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "sync_maxpath_to_checkpoint": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "display_enable": {
+        "strict_diff": 75,
+        "size": 79,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "audio_reverb_update": {
+        "strict_diff": 21,
+        "size": 61,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      }
+    }
+  },
+  {
+    "order": [
+      "dst",
+      "dst_end",
+      "clear_end",
+      "loaded",
+      "rom",
+      "clear_start"
+    ],
+    "err": null,
+    "scores": {
+      "PrevMaxPath": {
+        "strict_diff": 5,
+        "size": 24,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "InitMaxPath": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "sync_maxpath_to_checkpoint": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "display_enable": {
+        "strict_diff": 75,
+        "size": 79,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "audio_reverb_update": {
+        "strict_diff": 21,
+        "size": 61,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      }
+    }
+  },
+  {
+    "order": [
+      "dst",
+      "dst_end",
+      "clear_end",
+      "rom",
+      "clear_start",
+      "loaded"
+    ],
+    "err": null,
+    "scores": {
+      "PrevMaxPath": {
+        "strict_diff": 5,
+        "size": 24,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "InitMaxPath": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "sync_maxpath_to_checkpoint": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "display_enable": {
+        "strict_diff": 75,
+        "size": 79,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "audio_reverb_update": {
+        "strict_diff": 21,
+        "size": 61,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      }
+    }
+  },
+  {
+    "order": [
+      "dst",
+      "dst_end",
+      "clear_end",
+      "rom",
+      "loaded",
+      "clear_start"
+    ],
+    "err": null,
+    "scores": {
+      "PrevMaxPath": {
+        "strict_diff": 5,
+        "size": 24,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "InitMaxPath": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "sync_maxpath_to_checkpoint": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "display_enable": {
+        "strict_diff": 75,
+        "size": 79,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "audio_reverb_update": {
+        "strict_diff": 21,
+        "size": 61,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      }
+    }
+  },
+  {
+    "order": [
+      "dst",
+      "dst_end",
+      "loaded",
+      "clear_start",
+      "clear_end",
+      "rom"
+    ],
+    "err": null,
+    "scores": {
+      "PrevMaxPath": {
+        "strict_diff": 5,
+        "size": 24,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "InitMaxPath": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "sync_maxpath_to_checkpoint": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "display_enable": {
+        "strict_diff": 75,
+        "size": 79,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "audio_reverb_update": {
+        "strict_diff": 21,
+        "size": 61,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      }
+    }
+  },
+  {
+    "order": [
+      "dst",
+      "dst_end",
+      "loaded",
+      "clear_start",
+      "rom",
+      "clear_end"
+    ],
+    "err": null,
+    "scores": {
+      "PrevMaxPath": {
+        "strict_diff": 5,
+        "size": 24,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "InitMaxPath": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "sync_maxpath_to_checkpoint": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "display_enable": {
+        "strict_diff": 75,
+        "size": 79,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "audio_reverb_update": {
+        "strict_diff": 21,
+        "size": 61,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      }
+    }
+  },
+  {
+    "order": [
+      "dst",
+      "dst_end",
+      "loaded",
+      "clear_end",
+      "clear_start",
+      "rom"
+    ],
+    "err": null,
+    "scores": {
+      "PrevMaxPath": {
+        "strict_diff": 5,
+        "size": 24,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "InitMaxPath": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "sync_maxpath_to_checkpoint": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "display_enable": {
+        "strict_diff": 75,
+        "size": 79,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "audio_reverb_update": {
+        "strict_diff": 21,
+        "size": 61,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      }
+    }
+  },
+  {
+    "order": [
+      "dst",
+      "dst_end",
+      "loaded",
+      "clear_end",
+      "rom",
+      "clear_start"
+    ],
+    "err": null,
+    "scores": {
+      "PrevMaxPath": {
+        "strict_diff": 5,
+        "size": 24,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "InitMaxPath": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "sync_maxpath_to_checkpoint": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "display_enable": {
+        "strict_diff": 75,
+        "size": 79,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "audio_reverb_update": {
+        "strict_diff": 21,
+        "size": 61,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      }
+    }
+  },
+  {
+    "order": [
+      "dst",
+      "dst_end",
+      "loaded",
+      "rom",
+      "clear_start",
+      "clear_end"
+    ],
+    "err": null,
+    "scores": {
+      "PrevMaxPath": {
+        "strict_diff": 5,
+        "size": 24,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "InitMaxPath": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "sync_maxpath_to_checkpoint": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "display_enable": {
+        "strict_diff": 75,
+        "size": 79,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "audio_reverb_update": {
+        "strict_diff": 21,
+        "size": 61,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      }
+    }
+  },
+  {
+    "order": [
+      "dst",
+      "dst_end",
+      "loaded",
+      "rom",
+      "clear_end",
+      "clear_start"
+    ],
+    "err": null,
+    "scores": {
+      "PrevMaxPath": {
+        "strict_diff": 5,
+        "size": 24,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "InitMaxPath": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "sync_maxpath_to_checkpoint": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "display_enable": {
+        "strict_diff": 75,
+        "size": 79,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "audio_reverb_update": {
+        "strict_diff": 21,
+        "size": 61,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      }
+    }
+  },
+  {
+    "order": [
+      "dst",
+      "dst_end",
+      "rom",
+      "clear_start",
+      "clear_end",
+      "loaded"
+    ],
+    "err": null,
+    "scores": {
+      "PrevMaxPath": {
+        "strict_diff": 5,
+        "size": 24,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "InitMaxPath": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "sync_maxpath_to_checkpoint": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "display_enable": {
+        "strict_diff": 75,
+        "size": 79,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "audio_reverb_update": {
+        "strict_diff": 21,
+        "size": 61,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      }
+    }
+  },
+  {
+    "order": [
+      "dst",
+      "dst_end",
+      "rom",
+      "clear_start",
+      "loaded",
+      "clear_end"
+    ],
+    "err": null,
+    "scores": {
+      "PrevMaxPath": {
+        "strict_diff": 5,
+        "size": 24,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "InitMaxPath": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "sync_maxpath_to_checkpoint": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "display_enable": {
+        "strict_diff": 75,
+        "size": 79,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "audio_reverb_update": {
+        "strict_diff": 21,
+        "size": 61,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      }
+    }
+  },
+  {
+    "order": [
+      "dst",
+      "dst_end",
+      "rom",
+      "clear_end",
+      "clear_start",
+      "loaded"
+    ],
+    "err": null,
+    "scores": {
+      "PrevMaxPath": {
+        "strict_diff": 5,
+        "size": 24,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "InitMaxPath": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "sync_maxpath_to_checkpoint": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "display_enable": {
+        "strict_diff": 75,
+        "size": 79,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "audio_reverb_update": {
+        "strict_diff": 21,
+        "size": 61,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      }
+    }
+  },
+  {
+    "order": [
+      "dst",
+      "dst_end",
+      "rom",
+      "clear_end",
+      "loaded",
+      "clear_start"
+    ],
+    "err": null,
+    "scores": {
+      "PrevMaxPath": {
+        "strict_diff": 5,
+        "size": 24,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "InitMaxPath": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "sync_maxpath_to_checkpoint": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "display_enable": {
+        "strict_diff": 75,
+        "size": 79,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "audio_reverb_update": {
+        "strict_diff": 21,
+        "size": 61,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      }
+    }
+  },
+  {
+    "order": [
+      "dst",
+      "dst_end",
+      "rom",
+      "loaded",
+      "clear_start",
+      "clear_end"
+    ],
+    "err": null,
+    "scores": {
+      "PrevMaxPath": {
+        "strict_diff": 5,
+        "size": 24,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "InitMaxPath": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "sync_maxpath_to_checkpoint": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "display_enable": {
+        "strict_diff": 75,
+        "size": 79,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "audio_reverb_update": {
+        "strict_diff": 21,
+        "size": 61,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      }
+    }
+  },
+  {
+    "order": [
+      "dst",
+      "dst_end",
+      "rom",
+      "loaded",
+      "clear_end",
+      "clear_start"
+    ],
+    "err": null,
+    "scores": {
+      "PrevMaxPath": {
+        "strict_diff": 5,
+        "size": 24,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "InitMaxPath": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "sync_maxpath_to_checkpoint": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "display_enable": {
+        "strict_diff": 75,
+        "size": 79,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      },
+      "audio_reverb_update": {
+        "strict_diff": 21,
+        "size": 61,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": [],
+        "unverified": []
+      }
+    }
+  }
+]

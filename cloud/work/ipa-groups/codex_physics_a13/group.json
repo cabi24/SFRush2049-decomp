@@ -1,0 +1,18 @@
+{
+  "members": [
+    "physics_response"
+  ],
+  "context": [
+    "audio_effect_apply",
+    "func_800B9338"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "keep": [
+    "audio_effect_apply",
+    "func_800B9338"
+  ],
+  "claims": []
+}

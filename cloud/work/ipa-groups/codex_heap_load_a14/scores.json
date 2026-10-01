@@ -1,0 +1,63 @@
+{
+  "err": null,
+  "matched": false,
+  "members": {
+    "PrevMaxPath": {
+      "strict_diff": 5,
+      "size": 24,
+      "target_size": 24,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    }
+  },
+  "context": {
+    "InitMaxPath": {
+      "strict_diff": 34,
+      "size": 28,
+      "target_size": 34,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "sync_maxpath_to_checkpoint": {
+      "strict_diff": 34,
+      "size": 28,
+      "target_size": 34,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "display_enable": {
+      "strict_diff": 75,
+      "size": 79,
+      "target_size": 79,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "audio_reverb_update": {
+      "strict_diff": 21,
+      "size": 61,
+      "target_size": 61,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    }
+  }
+}

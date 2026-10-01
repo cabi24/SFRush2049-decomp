@@ -1,0 +1,47 @@
+[
+  {
+    "target": {
+      "target_id": "osSpTaskLoad_full",
+      "address": 2147540864,
+      "population": "static",
+      "insn_count": 260,
+      "target_asm_sha": "eb6fcd943a748a53dc3addfc9562cddcf9602526e3871004faf22c278adbc989",
+      "target_o_sha": "d583e0f1174f370facee02b2eed6bab55061dd022381796fc660b806d5ae1ba5",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xe9a0",
+        "function": {
+          "name": "osSpTaskLoad_full",
+          "vaddr": "0x8000df80",
+          "size": 1040,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null,
+    "old_target": {
+      "target_id": "osSpTaskLoad_full",
+      "address": 2147540864,
+      "population": "static",
+      "insn_count": 260,
+      "target_asm_sha": "eb6fcd943a748a53dc3addfc9562cddcf9602526e3871004faf22c278adbc989",
+      "target_o_sha": "0e8142ab1d21132bb6a0818e66104329ef49bca535e5892498f12851f38a0054",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "raw_word",
+      "gate_reason": "no_asm_region",
+      "layout": {
+        "segment": "0xe9a0",
+        "function": {
+          "name": "osSpTaskLoad_full",
+          "vaddr": "0x8000df80",
+          "size": 1040,
+          "state": "passthrough"
+        }
+      }
+    }
+  }
+]
