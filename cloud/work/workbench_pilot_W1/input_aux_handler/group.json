@@ -1,0 +1,19 @@
+{
+ "members": [
+  "input_aux_handler"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "zz_a",
+  "zz_b"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [],
+ "claims": [
+  "input_aux_handler"
+ ],
+ "note": "zz_a/zz_b are stand-in callers (two call sites keep the callee from being inlined); not splicable as-is"
+}
