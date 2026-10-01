@@ -112,3 +112,9 @@ Eighteen near-misses were worked with `diagnose` in the loop: 7 matched, 4 match
 - Static seeds require stack-sensitive verification: `osViGetFramebuffer` and `osContStartReadData2` were historical masked zeros; reversing declaration order fixes the saved return-value slot. An object match remains a lead until promoted and full-ROM verified.
 
 - Six conservative switch-head proofs are now registered; cloud head audits must treat their old tail labels as interiors of registered extents. `func_80104704` remains refused because its branch enters the existing `highscore_entry_anim` head; permissive cloud discovery is not registration authority.
+
+## Static cartridge acceptance (2026-10-01)
+
+Eleven static object matches (1,008 slot bytes) promoted behind full-ROM gates; static coverage is 34/230, 2,456/61,440 bytes. Shared-TU declarations matter even when the full seed matched: `inflate_flush_window` needed a nonvolatile view of `gDisplayListSize` because the shared header's volatile declaration changed stores and introduced an extra instruction. Its failed first promotion rolled back cleanly; the corrected source independently reverified and then passed the ROM gate. Do not change existing locked allocator declarations to make a new body fit.
+
+Static conversions move asm to `asm/us/nonmatchings/rom/`; both target extraction and seed indexes must retain those inputs. Establish the passthrough baseline after explicitly syncing the new sources/assembly/linker/config to the builder: the game blob workflow alone only syncs its compressed blob and Makefile.

@@ -94,3 +94,7 @@ If a different machine needs write access, authorize its SSH key on unraid:
 ssh-copy-id root@192.168.50.30       # or paste the pubkey into unraid's web UI
 ssh-keyscan 192.168.50.30 >> ~/.ssh/known_hosts   # if host key verification fails
 ```
+
+## 2026-10-01 access check
+
+Repository integration reached game coverage 503/1,216 (57,560/647,072 bytes) and static coverage 34/230 (2,456/61,440 bytes), with full-ROM SHA-1 exact. Publishing this milestone to `rush2049:status` is blocked: SSH to 192.168.50.30 reports a changed host key. Independently confirm the server fingerprint before replacing the saved key; the coordinator has left known_hosts unchanged. Current milestone details are in `specs/014-codex-handoff/STATUS.md`.
