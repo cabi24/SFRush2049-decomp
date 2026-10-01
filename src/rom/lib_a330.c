@@ -39,5 +39,29 @@ s32 osContStartReadData2(OSMesgQueue *arg0) {
     return temp_v0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_a330/osContGetReadData.s")
+/* PROMOTED 2026-10-01 — osContGetReadData
+ * Source:   cloud/work/static_C2/osContGetReadData.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C2/osContGetReadData.c:osContGetReadData (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void osContGetReadData(OSContPad* data) {
+    u8* ptr = (u8*)__osSiDmaBuffer.ramarray;
+    __OSContReadFormat readformat;
+    int i;
+
+    for (i = 0; i < __osPfsRequestType2; i++, ptr += sizeof(__OSContReadFormat), data++) {
+        readformat = *(__OSContReadFormat*)ptr;
+        data->errno = CHNL_ERR(readformat);
+
+        if (data->errno != 0) {
+            continue;
+        }
+
+        data->button = readformat.button;
+        data->stick_x = readformat.stick_x;
+        data->stick_y = readformat.stick_y;
+    }
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_a330/__osPackReadData.s")
