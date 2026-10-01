@@ -1,0 +1,52 @@
+{
+  "err": null,
+  "matched": true,
+  "members": {
+    "audio_buffer_sync": {
+      "strict_diff": 0,
+      "size": 26,
+      "target_size": 26,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "object_counter_decrement": {
+      "strict_diff": 0,
+      "size": 27,
+      "target_size": 27,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "object_counter_increment": {
+      "strict_diff": 0,
+      "size": 28,
+      "target_size": 28,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    }
+  },
+  "context": {
+    "func_80095F8C": {
+      "strict_diff": 0,
+      "size": 19,
+      "target_size": 19,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    }
+  }
+}

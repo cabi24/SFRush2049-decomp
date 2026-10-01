@@ -1,0 +1,23 @@
+{
+  "members": [
+    "slot_value_get",
+    "player_state_get",
+    "slot_deactivate",
+    "display_list_alloc"
+  ],
+  "context": [
+    "func_80096288"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "keep": [
+    "slot_value_get",
+    "player_state_get",
+    "slot_deactivate",
+    "display_list_alloc",
+    "func_80096288"
+  ],
+  "claims": []
+}

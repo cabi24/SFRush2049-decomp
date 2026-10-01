@@ -1,0 +1,85 @@
+{
+  "err": null,
+  "matched": true,
+  "members": {
+    "physics_init_mode0": {
+      "strict_diff": 0,
+      "size": 23,
+      "target_size": 23,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "physics_init_mode1": {
+      "strict_diff": 0,
+      "size": 23,
+      "target_size": 23,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    }
+  },
+  "context": {
+    "func_800D6160": {
+      "strict_diff": 65,
+      "size": 72,
+      "target_size": 76,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "speed_set": {
+      "strict_diff": 47,
+      "size": 56,
+      "target_size": 51,
+      "extra": 5,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "sync_entry_register": {
+      "strict_diff": 0,
+      "size": 31,
+      "target_size": 31,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "speed_mode0_wrapper": {
+      "strict_diff": 6,
+      "size": 22,
+      "target_size": 22,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "speed_mode1_wrapper": {
+      "strict_diff": 6,
+      "size": 22,
+      "target_size": 22,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    }
+  }
+}
