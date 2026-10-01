@@ -4,4 +4,19 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_7940/osSetThreadPri.s")
+/* PROMOTED 2026-10-01 — osSetThreadPri
+ * Source:   cloud/work/static_C4/osSetThreadPri.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C4/osSetThreadPri.c:osSetThreadPri (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void osSetThreadPri(void *thread) {
+    u32 temp_a0;
+
+    temp_a0 = __osDisableInt();
+    __osViContext->modep = (OSViMode *) thread;
+    __osViContext->state = 1;
+    __osViContext->control = __osViContext->modep->comRegs.ctrl;
+    __osRestoreInt(temp_a0);
+}
+

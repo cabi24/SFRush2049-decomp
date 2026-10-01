@@ -1,12 +1,4 @@
 {
-  "cloud/work/static_C4/osSetThreadPri.c:osSetThreadPri": {
-    "body_sha256": "7a8660013d04e855b07c81c7a43b3934b19f32d6246ad738f292811aa733ce27",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "osSetThreadPri",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-01"
-  },
   "cloud/work/static_C5/__osSiRawStartDma.c:__osSiRawStartDma": {
     "body_sha256": "1f8d727d23f387baeb9cf601165b49c21cb6dbdd80ca1a7371032a40829b4f9b",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -94,6 +86,14 @@
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-07-14"
+  },
+  "src/rom/lib_7940.c:osSetThreadPri": {
+    "body_sha256": "7a8660013d04e855b07c81c7a43b3934b19f32d6246ad738f292811aa733ce27",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osSetThreadPri",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
   },
   "src/rom/lib_79a0.c:osSetIntMask": {
     "body_sha256": "52328ff43f16a124031ec271d3f3d544c88eb546746df6f62747d0120d1d8dc6",
