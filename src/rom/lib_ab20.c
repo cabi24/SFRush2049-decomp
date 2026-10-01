@@ -4,7 +4,53 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_ab20/osMotorInit.s")
+/* PROMOTED 2026-10-01 — osMotorInit
+ * Source:   cloud/work/static_C9/osMotorInit.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C9/osMotorInit.c:osMotorInit (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+s32 osMotorInit(OSPfs* pfs, s32 flag) {
+    int i;
+    s32 ret;
+    u8* ptr = (u8*)&((OSPifRam *)__osMotorPifBuf)[pfs->channel];
+
+    if (!(pfs->status & PFS_MOTOR_INITIALIZED)) {
+        return 5;
+    }
+
+    __osSiGetAccess();
+    ((OSPifRam *)__osMotorPifBuf)[pfs->channel].pifstatus = CONT_CMD_EXE;
+    ptr += pfs->channel;
+
+    for (i = 0; i < BLOCKSIZE; i++) {
+        READFORMAT(ptr)->data[i] = flag;
+    }
+
+    __osPfsRequestType = CONT_CMD_END;
+    __osSiRawStartDma(OS_WRITE, &((OSPifRam *)__osMotorPifBuf)[pfs->channel]);
+    osRecvMesg(pfs->queue, NULL, OS_MESG_BLOCK);
+    ret = __osSiRawStartDma(OS_READ, &((OSPifRam *)__osMotorPifBuf)[pfs->channel]);
+    osRecvMesg(pfs->queue, NULL, OS_MESG_BLOCK);
+
+    ret = READFORMAT(ptr)->rxsize & CHNL_ERR_MASK;
+    if (!ret) {
+        if (!flag) {
+            if (READFORMAT(ptr)->datacrc != 0) {
+                ret = PFS_ERR_CONTRFAIL;
+            }
+        } else {
+            if (READFORMAT(ptr)->datacrc != 0xEB) {
+                ret = PFS_ERR_CONTRFAIL;
+            }
+        }
+    }
+
+    __osSiRelAccess();
+
+    return ret;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_ab20/__osMotorAccess.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_ab20/osMotorStart.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_ab20/osMotorStop.s")
