@@ -11944,6 +11944,7 @@ steering_apply:
 .section .text.func_8010C7CC, "ax", @progbits
 .globl func_8010C7CC
 func_8010C7CC:
+    /* compiled from src/blob/func_8010C7CC.c */
     .word 0xAFA40000
     .word 0xAFA50004
     .word 0xAFA60008

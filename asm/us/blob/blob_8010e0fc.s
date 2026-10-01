@@ -1890,6 +1890,7 @@ struct_init_and_call:
 .section .text.func_8010FD60, "ax", @progbits
 .globl func_8010FD60
 func_8010FD60:
+    /* compiled from src/blob/func_8010FD60.c */
     .word 0x3C010FFF
     .word 0x3421FFFF
     .word 0x00811024

@@ -1,0 +1,50 @@
+/* Minimal C9 context; existing OSPfs/__OSInode/OSPifRam/thread types suffice. */
+typedef struct {
+    u32 repaired, random;
+    u64 serial_mid, serial_low;
+    u16 deviceid;
+    u8 banks, version;
+    u16 checksum, inverted_checksum;
+} __OSPackId;
+typedef struct {
+    u8 dummy, txsize, rxsize, cmd, addrh, addrl, data[32], datacrc;
+} __OSContRamReadFormat;
+extern u8 __osMotorPifBuf[256];
+extern s32 __osIdCheckSum(u16 *, u16 *, u16 *);
+extern s32 __osCheckId(OSPfs *, __OSPackId *);
+extern s32 __osGetId(OSPfs *);
+extern s32 __osRepairId(OSPfs *, __OSPackId *, __OSPackId *);
+extern s32 __osTimerInterrupt(OSPfs *); /* actual SDK __osPfsCheckRamArea */
+extern void __osMotorAccess(int, OSPifRam *); /* actual __osMakeMotorData */
+extern u8 __osContAddressCrc(u16);
+#define SELECT_BANK(pfs,bank) __osPfsSelectBank(pfs,bank)
+#define SET_ACTIVEBANK_TO_ZERO() if(pfs->activebank!=0) { ERRCK(__osPfsSelectBank(pfs,0)); } (void)0
+#define PFS_ID_0AREA 1
+#define PFS_ID_1AREA 3
+#define PFS_ID_2AREA 4
+#define PFS_ID_3AREA 6
+#define PFS_LABEL_AREA 7
+#define DEF_DIR_PAGES 2
+#define CONT_CMD_WRITE_PAK 3
+#define CONT_CMD_WRITE_PAK_TX 35
+#define CONT_CMD_WRITE_PAK_RX 1
+#define CONT_BLOCK_RUMBLE 0x600
+#define CHNL_ERR_MASK 0xC0
+#define READFORMAT(ptr) ((__OSContRamReadFormat*)(ptr))
+/* Existing C6/C7/C8 macros supply ERRCK, ARRLEN, BLOCKSIZE, CONT_CMD_*,
+ * OS_READ/WRITE, PFS_ONE_PAGE. Public PR/os_pfs.h defines PFS_ERR_*,
+ * PFS_INITIALIZED, PFS_ID_BROKEN, PFS_MOTOR_INITIALIZED.
+ * C8 requires corrected osContStartReadData(OSMesgQueue*,int).
+ * Existing C6 osPfsReadWriteFile_pages(OSPfs*) declaration remains correct. */
+
+/* REQUIRED existing-public-prototype reconciliation, not extra redeclarations:
+ * include/PR/os_pi.h osPiStartDma currently seven args;
+ * the target is actually SDK four-arg __osPiRawStartDma: */
+extern s32 osPiStartDma(s32, u32, void *, u32);
+/* Public osMotorInit currently SDK three-arg initialization function;
+ * the historical current target is SDK two-arg __osMotorAccess: */
+extern s32 osMotorInit(OSPfs *, s32);
+/* osPfsInitPak retains canonical three-arg SDK signature.
+ * __osPfsDeclearPage retains canonical seven-arg SDK signature.
+ * Parent must preserve all prior linked callers/locked bytes through
+ * full-TU and ROM gates; investigate any rom_auto.h declarations too. */

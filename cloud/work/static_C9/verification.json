@@ -1,0 +1,82 @@
+[
+  {
+    "function": "__osCheckId",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 92,
+    "candidate_words": 92,
+    "raw_word_diff": 0,
+    "source_sha256": "17bfab3daf6ad4975ccd620f38ca57ad8b05b8ea111f34e9a8e1173349a42100",
+    "target_sha256": "a0cb4e23319cd81fa145589684ab1bfeed1682a5359a4d1d7422e9a310565296"
+  },
+  {
+    "function": "__osGetId",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 108,
+    "candidate_words": 108,
+    "raw_word_diff": 0,
+    "source_sha256": "5dd9a99b9674d45df84ed4ae5b7fe112769b3d76373dadcd0a9f29bc822607ac",
+    "target_sha256": "cd811943601301aff44bc5fb2c870a27e063155c4b18ac6d316266238e78eeb5"
+  },
+  {
+    "function": "__osMotorAccess",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 68,
+    "candidate_words": 68,
+    "raw_word_diff": 0,
+    "source_sha256": "030eb2cbb0c2698816cb59c44cc58245844390c35f67bb0840bed3ca286c5249",
+    "target_sha256": "c3b9d39cdcba90ee72759cc011219b99f4972632551f3168a4086dd11fa4d7e2"
+  },
+  {
+    "function": "__osPfsDeclearPage",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 80,
+    "candidate_words": 80,
+    "raw_word_diff": 0,
+    "source_sha256": "cb88e8b029e2475d98de39aeff72ac06267bdd619cec8304b7055deda7fc5d64",
+    "target_sha256": "a48a17912901ee95128776d3ea70b8a26e18d795b8bfa7513ebb3fd9589d7537"
+  },
+  {
+    "function": "osMotorInit",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 92,
+    "candidate_words": 92,
+    "raw_word_diff": 0,
+    "source_sha256": "378f75e32e7f980c32ae0fad8395961c837286b35ad0427a67ab15889b6bb83d",
+    "target_sha256": "8f658250fed212a6317fae5f1cb1334201620be3e3dcbfcaf3b62c7a268857ff"
+  },
+  {
+    "function": "osPfsInitPak",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 132,
+    "candidate_words": 132,
+    "raw_word_diff": 0,
+    "source_sha256": "0d66cbda7a7477c8678e0ee83e37d635f9963bd4bc917c795d355327e3d69b7c",
+    "target_sha256": "e481fc474d54f63c9be3346c4bdca4be2a856b3060572e8dd2132ec9ce35334e"
+  },
+  {
+    "function": "osPfsReadWriteFile_pages",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 56,
+    "candidate_words": 56,
+    "raw_word_diff": 0,
+    "source_sha256": "79d1f4a91e2b8413f3de9ba1fecf68008405c6d7ca1c8cf761464afa8e46d618",
+    "target_sha256": "3e42493f021d1591f66a3ffa3bdca460f2fc844522d04a37f9d145e5b6161b80"
+  },
+  {
+    "function": "osPiStartDma",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 52,
+    "candidate_words": 52,
+    "raw_word_diff": 0,
+    "source_sha256": "df783657b119f4946566cb8287de0932bb1dc8b5531c8fee6e108f6d1fcb83b2",
+    "target_sha256": "fdc786f6c807bcdcf30bd6b9e8a41890a13d444eb93430069235dd0baf46e281"
+  }
+]

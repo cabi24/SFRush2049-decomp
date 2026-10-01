@@ -1,0 +1,47 @@
+[
+  {
+    "function": "func_8010C7CC",
+    "source_file": "func_8010C7CC_existing.c",
+    "source_sha256": "e8ca4a734d87a7f6d67a44975e70704e86ad7e141301c56b63a92dea8245c89f",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "exit_code": 0,
+    "strict_result": "func_8010C7CC:\n  MATCH\n",
+    "compile_stderr": ""
+  },
+  {
+    "function": "func_8010FD60",
+    "source_file": "func_8010FD60_existing.c",
+    "source_sha256": "f4a75ea6b155a413ce5132c8ee8c2131a7830e3aff12672a1e32b9399262146d",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "exit_code": 0,
+    "strict_result": "func_8010FD60:\n  MATCH\n",
+    "compile_stderr": ""
+  },
+  {
+    "function": "func_8010D85C",
+    "source_file": "func_8010D85C_ptrformal.c",
+    "source_sha256": "e67f361224b82fa00b267f260bf1f4b69723bb3161bc9605a7dfbf32150aabd2",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "exit_code": 1,
+    "strict_result": "func_8010D85C:\n    +0x000  want 27bdffa8                               got 27bdffb8                             \n    +0x014  want afa5005c                               got afa5004c                             \n    +0x028  want 1000004d                               got 1000004c                             \n    +0x038  want 57000049                               got 57000048                             \n    +0x058  want 5520003c                               got 5520003b                             \n    +0x068  want afa80058                               got afa80048                             \n    +0x070  want afa40040                               got afa4003c                             \n    +0x074  want 8fa40040                               got 8fa4003c                             \n    +0x07c  want 8fa80058                               got 8fa80048                             \n    +0x084  want 24030002                               got 24020002                             \n    +0x094  want afa80058                               got afa80048                             \n    +0x09c  want 8fa80058                               got 8fa80048                             \n  62/92 words differ\n",
+    "compile_stderr": ""
+  },
+  {
+    "function": "func_80108DA8",
+    "source_file": "func_80108DA8_directbool.c",
+    "source_sha256": "be4908eced9267b7d74ad3a8c89cc19e944c9462e40776e8e6574ee24346411b",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "exit_code": 1,
+    "strict_result": "func_80108DA8:\n    +0x028  want 5020000d                               got 5020000c                             \n    +0x038  want 273943ca                               got 31f80008                             \n    +0x03c  want 31f80008                               got 57000007                             \n    +0x040  want 57000007                               got 8203001a                             \n    +0x044  want 8203001a                               got 873943ca                             \n    +0x048  want 87280000                               got 3c028015                             \n    +0x04c  want 3c028015                               got 2b210002                             \n    +0x050  want 29010002                               got 1020000b                             \n    +0x054  want 1020000b                               got 00000000                             \n    +0x058  want 00000000                               got 8203001a                             \n    +0x05c  want 8203001a                               got 24070001                             \n    +0x060  want 24070001                               got ae000028                             \n  88/102 words differ\n",
+    "compile_stderr": ""
+  },
+  {
+    "function": "func_8010E4E4",
+    "source_file": "func_8010E4E4_minimalrepair.c",
+    "source_sha256": "61b8092d3ce6442addc6f5831998647feafc9ac187032cc83d1edb0f8cd5dfc0",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "exit_code": 1,
+    "strict_result": "func_8010E4E4:\n    +0x008  want 27bdff98                               got 27bdffa8                             \n    +0x010  want afa5006c                               got afa5005c                             \n    +0x018  want 00805825                               got 00806825                             \n    +0x024  want 1000005f                               got 1000005a                             \n    +0x034  want 00003025                               got 3c0a8012                             \n    +0x038  want 5700005a                               got 00003025                             \n    +0x03c  want 8fbf0014                               got 17000053                             \n    +0x040  want 8d69000c                               got 254a1ddc                             \n    +0x044  want 3c018012                               got 8dac000c                             \n    +0x048  want 3c078012                               got 3c098012                             \n    +0x04c  want 8d2a006c                               got 252949cc                             \n    +0x050  want 24e71ddc                               got 8d8b006c                             \n  95/108 words differ\n",
+    "compile_stderr": ""
+  }
+]

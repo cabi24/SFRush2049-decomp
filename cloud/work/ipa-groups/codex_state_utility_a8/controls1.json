@@ -1,0 +1,134 @@
+[
+  {
+    "label": "real_getters",
+    "err": null,
+    "score": {
+      "strict_diff": 76,
+      "size": 96,
+      "target_size": 99,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  },
+  {
+    "label": "real_sum",
+    "err": null,
+    "score": {
+      "strict_diff": 77,
+      "size": 97,
+      "target_size": 99,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  },
+  {
+    "label": "direct_signed_sub",
+    "err": null,
+    "score": {
+      "strict_diff": 80,
+      "size": 96,
+      "target_size": 99,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  },
+  {
+    "label": "direct_explicit_narrow",
+    "err": null,
+    "score": {
+      "strict_diff": 80,
+      "size": 96,
+      "target_size": 99,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  },
+  {
+    "label": "direct_sum_narrow",
+    "err": null,
+    "score": {
+      "strict_diff": 80,
+      "size": 96,
+      "target_size": 99,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  },
+  {
+    "label": "getters_signed_sub",
+    "err": null,
+    "score": {
+      "strict_diff": 76,
+      "size": 96,
+      "target_size": 99,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  },
+  {
+    "label": "getters_explicit_narrow",
+    "err": null,
+    "score": {
+      "strict_diff": 76,
+      "size": 96,
+      "target_size": 99,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  },
+  {
+    "label": "getters_sum_narrow",
+    "err": null,
+    "score": {
+      "strict_diff": 76,
+      "size": 96,
+      "target_size": 99,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  },
+  {
+    "label": "sum_signed_sub",
+    "err": null,
+    "score": {
+      "strict_diff": 77,
+      "size": 97,
+      "target_size": 99,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  },
+  {
+    "label": "sum_explicit_narrow",
+    "err": null,
+    "score": {
+      "strict_diff": 77,
+      "size": 97,
+      "target_size": 99,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  },
+  {
+    "label": "sum_sum_narrow",
+    "err": null,
+    "score": {
+      "strict_diff": 77,
+      "size": 97,
+      "target_size": 99,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  }
+]

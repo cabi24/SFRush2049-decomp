@@ -1,0 +1,110 @@
+[
+  {
+    "label": "sequenced_getters",
+    "err": null,
+    "score": {
+      "strict_diff": 80,
+      "size": 96,
+      "target_size": 99,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  },
+  {
+    "label": "direct_sum_s16",
+    "err": null,
+    "score": {
+      "strict_diff": 81,
+      "size": 97,
+      "target_size": 99,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  },
+  {
+    "label": "direct_sum_s32",
+    "err": null,
+    "score": {
+      "strict_diff": 80,
+      "size": 96,
+      "target_size": 99,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  },
+  {
+    "label": "direct_copy_y",
+    "err": null,
+    "score": {
+      "strict_diff": 98,
+      "size": 102,
+      "target_size": 99,
+      "extra": 3,
+      "matched": false,
+      "err": null
+    }
+  },
+  {
+    "label": "direct_copy_x",
+    "err": null,
+    "score": {
+      "strict_diff": 80,
+      "size": 99,
+      "target_size": 99,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  },
+  {
+    "label": "sequence_sum_s16",
+    "err": null,
+    "score": {
+      "strict_diff": 80,
+      "size": 96,
+      "target_size": 99,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  },
+  {
+    "label": "sequence_sum_s32",
+    "err": null,
+    "score": {
+      "strict_diff": 80,
+      "size": 96,
+      "target_size": 99,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  },
+  {
+    "label": "sequence_copy_y",
+    "err": null,
+    "score": {
+      "strict_diff": 98,
+      "size": 102,
+      "target_size": 99,
+      "extra": 3,
+      "matched": false,
+      "err": null
+    }
+  },
+  {
+    "label": "sequence_copy_x",
+    "err": null,
+    "score": {
+      "strict_diff": 81,
+      "size": 99,
+      "target_size": 99,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  }
+]
