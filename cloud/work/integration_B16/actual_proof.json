@@ -1,0 +1,597 @@
+{
+  "body_results": [
+    {
+      "function": "__osCheckId",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "47e19bac6168d703714ed0932bf4f28087d29292dcd14bdd4e666c2701d00cbe",
+      "target_sha256": "a0cb4e23319cd81fa145589684ab1bfeed1682a5359a4d1d7422e9a310565296",
+      "strict_score": 0,
+      "raw_word_diff": 0
+    },
+    {
+      "function": "__osGetId",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "298054b9a3a29bbb705aaecbc7393ed03c37106525193ad89851cc3a62a112bb",
+      "target_sha256": "cd811943601301aff44bc5fb2c870a27e063155c4b18ac6d316266238e78eeb5",
+      "strict_score": 0,
+      "raw_word_diff": 0
+    },
+    {
+      "function": "__osIdCheckSum",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "6e27019c6f7ef20cfe065f3ca32128c9dbc496b31ca2aa6e5a00293bf47d22e4",
+      "target_sha256": "5269a24168a7ac1705fab17ae8e62548cdb7c6283e0d64b0423cbf7a9adf2799",
+      "strict_score": 0,
+      "raw_word_diff": 0
+    },
+    {
+      "function": "__osPfsDeclearPage",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "6d47cb2bb088e65671367c9f831345dd8d8d071a082d6a8cd4c4cdcea9c0b93d",
+      "target_sha256": "a48a17912901ee95128776d3ea70b8a26e18d795b8bfa7513ebb3fd9589d7537",
+      "strict_score": 0,
+      "raw_word_diff": 0
+    },
+    {
+      "function": "__osRepairId",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "17be8fbfde7e0613b24a2c4b99639df51f4eca4ffc2d1097b8849c63451889d7",
+      "target_sha256": "c957b143f919390374c74216b4c67093c325cc35efbd9f4d1adda364e278b549",
+      "strict_score": 0,
+      "raw_word_diff": 0
+    },
+    {
+      "function": "osMotorInit",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "ccf6f62d1b77cbf1e425d3f74e3ae1ffd31542a9984a6c952cfa979b6f7bbfdc",
+      "target_sha256": "8f658250fed212a6317fae5f1cb1334201620be3e3dcbfcaf3b62c7a268857ff",
+      "strict_score": 0,
+      "raw_word_diff": 0
+    },
+    {
+      "function": "osPfsChecker",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "b5242a301da6ed8b6fec4edc542aedebdb1173e1362152eee5205149bedbc438",
+      "target_sha256": "29897e8a7bb07044d4cb84e1f44baa6fed74b5417a21cdd5118404bf0d286b3f",
+      "strict_score": 0,
+      "raw_word_diff": 0
+    },
+    {
+      "function": "osPfsFindFile",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "2100c5a4961d04c5a952f03e2fe245b65eeea35700d55012b540bd0b13e798d6",
+      "target_sha256": "d276986e0e8c5362bc898c67f702b0526596f17895c3f2239a9fee1ae482bcf9",
+      "strict_score": 0,
+      "raw_word_diff": 0
+    },
+    {
+      "function": "osPfsFreeBlocks",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "e31a68d4112ee78cb63c74b5679e95caac41f7d8edade6193d470baa050fd299",
+      "target_sha256": "a473ea0336c9623c8e144c9a19834c96237716a48b43f1aa73222e0ff1e42f39",
+      "strict_score": 0,
+      "raw_word_diff": 0
+    },
+    {
+      "function": "osPfsGetFileSize",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "563c550d80f290179f3d8b86d878e73a1480734aaac4fec6bdec1e089cc6fad8",
+      "target_sha256": "b115e8b1b88d8dbae0c103c37b173c6be735027b23b7fe202054343833fd432c",
+      "strict_score": 0,
+      "raw_word_diff": 0
+    },
+    {
+      "function": "osPfsGetFileStat",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "1b1ec85e18ab76cbee9da7eea1f8f01491727951caa6a3d2b58cf8b688d2344b",
+      "target_sha256": "2a7bb893c423d08ec0308ab1fd67b82d7a741c965f3a9b18445cdc457a93357e",
+      "strict_score": 0,
+      "raw_word_diff": 0
+    },
+    {
+      "function": "osPfsInitPak",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "b5d274c249154daec85164cf05c39c150bc9c0f896e92149a4d31a340d7320af",
+      "target_sha256": "e481fc474d54f63c9be3346c4bdca4be2a856b3060572e8dd2132ec9ce35334e",
+      "strict_score": 0,
+      "raw_word_diff": 0
+    },
+    {
+      "function": "osPfsReadWriteFile",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "f55cd9ee875aaf3a9c08986e59cff7131b4e785ec179c9ec59f535505083276d",
+      "target_sha256": "c8d0dcd572107c8f1f744bd128f16b2385083cce99e5e05690674ae6a7cd8735",
+      "strict_score": 0,
+      "raw_word_diff": 0
+    },
+    {
+      "function": "osPfsReadWriteFile_pages",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "f27f436c13bef4a52af7553ce754006ef260ff92c084a4e6f5ab6748eb8e5e1f",
+      "target_sha256": "3e42493f021d1591f66a3ffa3bdca460f2fc844522d04a37f9d145e5b6161b80",
+      "strict_score": 0,
+      "raw_word_diff": 0
+    },
+    {
+      "function": "osPiSetDeviceTiming",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "exit_code": 0,
+      "stderr": "cfe: Warning 581: /home/cburnes/agents/B/scratch/codex_B/B16context/actual/candidates/osPiSetDeviceTiming.c:7: Macro K1_TO_PHYS redefined.\n",
+      "source_sha256": "cec9dc166f4ecf0f003e623f7e9f749e9fe00b19e1c7608b995a319b2436e5fe",
+      "target_sha256": "92f1d9c78587f64b96e29a9d7f96543668957ea652f5d5aaa422f0c5889cac8b",
+      "strict_score": 0,
+      "raw_word_diff": 0
+    }
+  ],
+  "whole_tu_before_actual": [
+    {
+      "file": "lib_1050.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "29b5eabb1e746af16815b9c133f69f74e32b1e7249fce71382346923beb387d1",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_5610.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "701a7195cbf32492e2ecdb19ac5368e73d28599f2c923a8addbbed64192808ca",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_7600.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "5d26a3aa446904c648d1298d998bdba4edacc49be74b09fc22d2528d2058cb79",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_7940.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "c2c7857a09b2adc4c39de59f55986295bf34f692cd51066a3a8981462a2ea1d8",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_79a0.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "8515d64d2203947e9baf211829221de1acb584e0cb97f5ec5e90740da3ba3c1b",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_7a10.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "8822a21afe8d8162325afe47c61a2c9091e00c4855f9e94c94fe39179af07d79",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_7ad0.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "2f1ffc1b5ea7d2e089145f114f88c3e0e854c24b55427fd060d792756458e1e9",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_7b30.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "c20e444204fdc69bbc449e0230ac5bac471ce8bf02a610de6dabbf8e4e8f32f8",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_7c80.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "5f55332a4dba06079b94d1b61e3de1d3a394bacecdb049ec27a8ea7e4c657dfd",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_8040.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "6af5675990e8219819c9225daaede327fb4d9a817ca3d993ae5942f625354001",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_81e0.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "141284b92fe2f00b0d6bf4c9eb474141053414cf8d03493013a764d0ecd6a1da",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_8330.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "4c75b70ca8b5254436e742dc7bce45a7ee85e247503a7fad6cbd56df41c6d572",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_83d0.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "0f2b46155a6d419197777906e314d5d894410d7c2ca284fba2ab705b39730608",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_8440.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "cfaad0a17ed5392831b150564d1ba39594243ad1693949e66e5d8f7f8b4141d7",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_8700.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "9e273f002e0f14552593d6a20ae2380cbe50238d6f9c86c04855f386b06a603d",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_8800.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "bd0f1c3963d11a12a9b0baddf0053fa5b9cbf6646c094e7db94bf426089bcc72",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_8920.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "1d6fbd03b726140890cf94b22514d880f2af5e533dd9ccc0d72e9d4d385f0f21",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_8a80.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "66c723fb3e3561a5c791bb2d05fdf23cad1bb680cd17dbb0d3369aa74ce26065",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_8dd0.c",
+      "exit_code": 0,
+      "stderr": "cfe: Warning 712: /home/cburnes/agents/B/scratch/codex_B/B16context/actual/src/rom/lib_8dd0.c, line 18: illegal combination of pointer and integer\n     temp_v0 = osPiReadWord(arg0, arg1);\n ---------------------------------^\n",
+      "source_sha256": "d5cfd5c0cea4c62187b161f7abb13e2c0f4d34c21a653bddac5607e133b48589",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_8e10.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "6989e1c572b0b9addea26746d20b7dc256dd08594868418126011777219e3b23",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_9230.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "8fe9941bc6d1c9673950154c13c30be7d4c59266deb32387b74addc0e0bc929d",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_92f0.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "7f3a91713b20233b4978b9530aa6db65175c1b650269271ce2e26c479b90e884",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_9660.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "dc1a4f3ab41a9866ac0701cfa3dd77f2ae85d23ee9b9e6145abb04d16fe2c870",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_9820.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "6929ca6a6af2114b24701051616fe35fc86f70147ba74c6422b018c2889221b1",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_9ab0.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "c6b3b24c912fa7414a9d046e9a9712f5cacf11448668017d8cfb10b1580ff5f8",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_9de0.c",
+      "exit_code": 0,
+      "stderr": "cfe: Warning 709: /home/cburnes/agents/B/scratch/codex_B/B16context/actual/src/rom/lib_9de0.c, line 92: Incompatible pointer type assignment\n     guMtxF2L(temp, mtx);\n -------------------^\n",
+      "source_sha256": "4b00be67295acccfd6862413d8354919591b6dc1f80e9ce7004456a666d0dbcc",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_a050.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "fde811ef2d73776f58a4f236e756d8e236cad7c41320ff70c56ee19795b1910d",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_a330.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "d56c0b8f106359b8518ed7d0dc72d0b027e6e42417644474ccd0b65b9f26f589",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_a5b0.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "9f0094765cdf9a5bd261e1d8af6749b9394dc380d079e5fd150ef5b80a977d14",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_a800.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "baa758c927763dc7932505e6dcdc691f3bc83d0c09a634467fb4987177975256",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_a810.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "a22c2c2fa224d15ba59a04b52b01cd9e8ae9689d70e883b6dcdba2472930cf2a",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_ab20.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "07abed12503320496cf2274310204d7488f9989fed513bb625e2a5bea350b6b7",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_af50.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "be0c8c34a872ccf244b357f337a07e9353fb78aaf1b9bac9fb7eb20794f2de6f",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_b120.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "bded840ceb490ee7ae3313b5de16bbec02fa006d16d9d67ae6bb03419f32c223",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_b300.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "6363347c1bed5e9df1892ce9b9d21ae4731e478e5997bde7d89b2722d721e696",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_b570.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "e6131b5b99c6a79231143def414c67a90b2b8209addcbc0057ee707c7ec1bd2c",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_b9f0.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "813d4e9b736addf15739118e483f62cee4bb5a1505edaf33025ae560e68987c8",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_be40.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "8324c6c734f5e065469d91ef0490ffd173b0682ef0937e953f0b4e97074133c6",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_bfe0.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "7868ae1c8a9ac178e5b486d9e43b6ba3d1dcb970902a40570096298ee4244e99",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_c990.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "a2613f0c24df24c7b3caf72c3efea2f54019907f00426128ccc2d2ca8b3b15c7",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_ca70.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "24962afe3cb238f74f9d3c6136af353f13c502543935e38bd5b1921d195856b3",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_cc50.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "230fc2201119b78add714cf22af0537d19620d515d1251edf80933414a7e4576",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_d140.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "fee480e67a6c208cef08a2c25c58eb31137cfd54c463f2ed59c453f5d0d1fbf2",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_d260.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "c992ef69b05504ededd061afa53106df54fbc7e02ce70c823de5028ed82acb9e",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_d270.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "e60cdf124288b624aff38ae252e4b1a2dddf3acc245aaf08449e9ef6f1275a4c",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_d580.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "c521b19c33ceeeff519ab8180f0aec5c014de1cf158463366dd496d9ea857654",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_e1c0.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "d65faf5c8069c7f51d114c9f5436dab03bf2ca08edf436fd06733f16a41db65f",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_e240.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "2be32d8155afc85c514d2a6019e68c6212083d520b2b408a5dcc1dc1dbbd220b",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_e250.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "c058fc076c2f636b8ca17cf2a6c5a7f5f5043df66ee05f3889fae7eaabf9a1b1",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_e280.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "0154d2375b07ac8a5d60760043ae1ad809fb5f0007bfbcb2bb0b54dde360b1f7",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_e310.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "4fa1f201810ce3dde3cf5b1bc056f29dfecee4046c4d85f2b4d49f654a19bf42",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_e340.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "52f2dde5b0eb5e1c9487e7ab3fe94628ed12c9409184f5642d0c1a64fd3ed3b7",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_e390.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "b4e38d229b38d7e1a8b974e7a7d4c18ffbb97459cd0f7aeb064e001626f3196d",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_e3f0.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "114b161091293bb5f5ef260f3605d45b0d7a8b8f32e0470fba56a7440d506669",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_e7c0.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "d1eb8f952246ca80403a00fcea9635b4db1ac60a389205b35f0a0914458831fc",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_e8d0.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "7f059dfa3fdbab1f4361f08f66d41668b8c55e029684b9a8f39faae3a2c945b4",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_e9a0.c",
+      "exit_code": 0,
+      "stderr": "cfe: Warning 581: /home/cburnes/agents/B/scratch/codex_B/B16context/actual/src/rom/lib_e9a0.c:25: Macro K1_TO_PHYS redefined.\n",
+      "source_sha256": "55dd8bb3711c3913a88ddc61845324096d8d209d606d7a18fbdeef142fb03469",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_efd0.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "adeded40cb15b72b5ebd3980051b52072db4ade1e36ca485d587a7b1d77b0cdb",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_f0b0.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "6d5841be27a685789be769d2cf40f8aaf716c5806c745cec95e605bec5dfa70e",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_f160.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "0c1378c78fecabffb70fd35a9d29645822673f8c7143e4128cda8b5ca10c56b9",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_f450.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "041970b936d4df76f00fb26b2a307a5c5dc27d7c90a9a93074891ce45e51f1f0",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_f4d0.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "37f565ff4fb080630bdd014a4d7b636e4414fc4189b401be64931a3ad2517a20",
+      "before_actual_raw_word_diff": 0
+    },
+    {
+      "file": "lib_f700.c",
+      "exit_code": 0,
+      "stderr": "",
+      "source_sha256": "5b107ef96dc01e39f7de1d0a8f4bfe4babe94cbcbc654e3f115acb9f14d32974",
+      "before_actual_raw_word_diff": 0
+    }
+  ]
+}

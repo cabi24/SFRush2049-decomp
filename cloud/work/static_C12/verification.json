@@ -1,0 +1,90 @@
+[
+  {
+    "function": "__osRepairId",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 212,
+    "candidate_words": 212,
+    "raw_word_diff": 0,
+    "source_sha256": "84779cd59c82f872eb075788b0cedbad18bce2652382041e90e48af7d3658094",
+    "target_sha256": "c957b143f919390374c74216b4c67093c325cc35efbd9f4d1adda364e278b549",
+    "integration_status": "ready"
+  },
+  {
+    "function": "osPfsChecker",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 336,
+    "candidate_words": 336,
+    "raw_word_diff": 0,
+    "source_sha256": "06c377e74f0ed6489f209ce6dc88740e4a564866605c71550df4bd4868c2c850",
+    "target_sha256": "29897e8a7bb07044d4cb84e1f44baa6fed74b5417a21cdd5118404bf0d286b3f",
+    "integration_status": "ready"
+  },
+  {
+    "function": "osPfsGetFileSize",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 224,
+    "candidate_words": 224,
+    "raw_word_diff": 0,
+    "source_sha256": "65bbfa9689a5e13f55ed947eaa33eb855bdcd57f13f61b4dcad6393c0f8a6f01",
+    "target_sha256": "b115e8b1b88d8dbae0c103c37b173c6be735027b23b7fe202054343833fd432c",
+    "integration_status": "ready"
+  },
+  {
+    "function": "osPfsReadWriteFile",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 208,
+    "candidate_words": 208,
+    "raw_word_diff": 0,
+    "source_sha256": "362a1cc69365f1bd69f3d3ed3ed72e9716e408b61ca52d6e40093b46ce49acee",
+    "target_sha256": "c8d0dcd572107c8f1f744bd128f16b2385083cce99e5e05690674ae6a7cd8735",
+    "integration_status": "ready"
+  },
+  {
+    "function": "osPiSetDeviceTiming",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 120,
+    "candidate_words": 120,
+    "raw_word_diff": 0,
+    "source_sha256": "df5efb9df6a4714d1d1c0f0a874f6fc5ecb23080dedc8df8f2e535c942c34931",
+    "target_sha256": "92f1d9c78587f64b96e29a9d7f96543668957ea652f5d5aaa422f0c5889cac8b",
+    "integration_status": "ready"
+  },
+  {
+    "function": "osSetEventMesg",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 495,
+    "target_words": 96,
+    "candidate_words": 96,
+    "raw_word_diff": 39,
+    "source_sha256": "df455ef4d896d3ef15aa06d150baaf3f8e79d8a21dacd10c194ff382353a1322",
+    "target_sha256": "9a167a4493180b0f82c61967d474df34d0d8033f4a5a17d301b79012d2b4c65b",
+    "integration_status": "unmatched"
+  },
+  {
+    "function": "osSpTaskLoad_full",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 1315,
+    "target_words": 260,
+    "candidate_words": 260,
+    "raw_word_diff": 175,
+    "source_sha256": "e520321cfb8931b71cd00997f87cb246c0bcb6978b1e1ba557f5204ef90bb5e4",
+    "target_sha256": "d583e0f1174f370facee02b2eed6bab55061dd022381796fc660b806d5ae1ba5",
+    "integration_status": "unmatched"
+  },
+  {
+    "function": "vi_manager_main",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 2429,
+    "target_words": 100,
+    "candidate_words": 100,
+    "raw_word_diff": 91,
+    "source_sha256": "4fbe57c8843dba90cdc9df46a256affcaa8fcf6e5c6ba04e79fe1ab23ef81a8d",
+    "target_sha256": "9650777d667fc9e66fea3d03bbe20b456c52182a9482ec6dc1f6f8dbc0305f8d",
+    "integration_status": "unmatched"
+  }
+]

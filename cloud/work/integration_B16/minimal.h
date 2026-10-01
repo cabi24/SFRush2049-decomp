@@ -1,31 +1,12 @@
-/* GENERATED ROM-aligned TU — segment 0xe9a0 (rom/lib_e9a0)
- * layout map 3babb96e2ff8b36483524b7acb5405673e5c98d295075fdfac8ed2bdda2fb775; regenerate via `pipeline.layout convert`.
- * Slots are GLOBAL_ASM passthroughs until promoted; do not hand-edit
- * passthrough lines. */
-#include "rom_tu.h"
-
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_e9a0/osPiSetDeviceTiming.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_e9a0/osSpTaskLoad_full.s")
-/* PROMOTED 2026-07-15 — __osInsertTimer
- * Source:   src/rom_auto/__osInsertTimer.c (in-repo, locked)
- * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
- * Evidence: lock:src/rom_auto/__osInsertTimer.c:__osInsertTimer (score0)
- * Gate:     full-ROM SHA-1 (promotion transaction)
- */
-s32 __osInsertTimer(void) {
-    if (__osPiMgrState.flag == 0) {
-        return 0;
-    }
-    return __osPiMgrState.unk8;
-}
-
-
-/* Canonical EPi hardware protocol; existing IO_READ/IO_WRITE macros suffice. */
+#define PFS_CHECK_ID() if(osPfsReadWriteFile_pages(pfs)==PFS_ERR_NEW_PACK) return PFS_ERR_NEW_PACK
+#define ROUND_UP_DIVIDE(n,d) (((n)+(d)-1)/(d))
+#define PFS_DATA_FULL 7
+#define PFS_DIR_FULL 8
+#define DIR_STATUS_OCCUPIED 2
+#define DIR_STATUS_EMPTY 0
+extern s32 __osPfsDeclearPage(OSPfs*,__OSInode*,int,int*,u8,int*,int*);
 #define PI_STATUS_IO_BUSY 2
 #define PI_STATUS_DMA_BUSY 1
-#define PI_DOMAIN1 0
-#define K1_TO_PHYS(x) ((u32)(x)&0x1FFFFFFF)
-extern OSPiHandle *__osPiDevList[2];
 #define PI_STATUS_REG 0xA4600010
 #define PI_DRAM_ADDR_REG 0xA4600000
 #define PI_CART_ADDR_REG 0xA4600004
@@ -80,3 +61,5 @@ extern OSPiHandle *__osPiDevList[2];
         cHandle->pulse = pihandle->pulse;                            \
     }(void)0
 
+
+extern OSPiHandle *__osPiDevList[2];

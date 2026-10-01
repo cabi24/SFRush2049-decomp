@@ -1,0 +1,29 @@
+[
+  {
+    "function": "physics_response",
+    "source_file": "physics_response_recordbase.c",
+    "source_sha256": "fe84f76098e2f3c6e24a6203d3d4447f11cafa42a250edb4aaed8d551932b134",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "exit_code": 1,
+    "strict_result": "physics_response:\n    +0x000  want 27bdffc0                               got 27bdff90                             \n    +0x004  want 3c018012                               got afb60060                             \n    +0x008  want 3c138015                               got f7b80028                             \n    +0x00c  want 4480c000                               got afb5005c                             \n    +0x010  want afbf0014                               got f7be0040                             \n    +0x014  want 26731ce8                               got 3c018012                             \n    +0x018  want c4363df4                               got 3c048015                             \n    +0x01c  want 0000a825                               got 3c168013                             \n    +0x020  want 86640006                               got 4480c000                             \n    +0x024  want 2c820001                               got afbf006c                             \n    +0x028  want 14400002                               got afbe0068                             \n    +0x02c  want 00000000                               got afb70064                             \n  230/230 words differ (55 extra words (nonzero beyond target length))\n",
+    "compile_stderr": ""
+  },
+  {
+    "function": "steering_sensitivity",
+    "source_file": "steering_sensitivity_realclosure.c",
+    "source_sha256": "75a3aa3aa1ffe69fa2bd5c87a957941abbf041a5334d5850b999e937a89fb9df",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "exit_code": 1,
+    "strict_result": "steering_sensitivity:\n    +0x000  want 27bdff98                               got 27bdff48                             \n    +0x004  want 3c188015                               got 3c0f8015                             \n    +0x008  want 8f1826f0                               got 8def26f0                             \n    +0x00c  want afbf002c                               got afbf0024                             \n    +0x010  want afb00028                               got afb00020                             \n    +0x014  want f7b60020                               got afa400b8                             \n    +0x018  want f7b40018                               got afa600c0                             \n    +0x01c  want afa40068                               got afa700c4                             \n    +0x020  want afa5006c                               got 30a2ffff                             \n    +0x024  want afa60070                               got 95f80000                             \n    +0x028  want 30aeffff                               got 00027140                             \n    +0x02c  want 97190000                               got 3c038015                             \n  229/232 words differ (45 extra words (nonzero beyond target length); unresolved symbols: .text+0x0 at +0x78)\n",
+    "compile_stderr": ""
+  },
+  {
+    "function": "func_800D0424",
+    "source_file": "func_800D0424_firstalias.c",
+    "source_sha256": "c4b288d09548d8eb7c62958bcef67738f705a8884b1dc49d231996c6d7d9ed71",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "exit_code": 1,
+    "strict_result": "func_800D0424:\n    +0x000  want 27bdff50                               got 27bdff40                             \n    +0x00c  want afb40028                               got afb20020                             \n    +0x014  want afb30024                               got afb40028                             \n    +0x018  want afb20020                               got afb30024                             \n    +0x024  want c4880234                               got c4840234                             \n    +0x02c  want c484022c                               got c488022c                             \n    +0x030  want 0080a025                               got 00809025                             \n    +0x034  want 269602ec                               got 265602ec                             \n    +0x03c  want 26850214                               got 26450214                             \n    +0x044  want e4880218                               got e4840218                             \n    +0x050  want e4840210                               got e4880210                             \n    +0x054  want 26900040                               got 26500040                             \n  171/249 words differ\n",
+    "compile_stderr": ""
+  }
+]

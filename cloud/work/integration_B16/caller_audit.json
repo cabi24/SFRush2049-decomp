@@ -1,0 +1,26 @@
+[
+  {
+    "path": "src/rom/lib_f700.c",
+    "function": "__osRepairId",
+    "line": 100,
+    "text": "            ERRCK(__osRepairId(pfs, id, &newid));"
+  },
+  {
+    "path": "src/rom/lib_f700.c",
+    "function": "__osRepairId",
+    "line": 108,
+    "text": "        ERRCK(__osRepairId(pfs, id, &newid));"
+  },
+  {
+    "path": "src/rom/lib_a810.c",
+    "function": "osPfsChecker",
+    "line": 81,
+    "text": "    ret = osPfsChecker(pfs);"
+  },
+  {
+    "path": "src/rom/lib_a810.c",
+    "function": "__osRepairId",
+    "line": 53,
+    "text": "        ret = __osRepairId(pfs, id, &newid);"
+  }
+]

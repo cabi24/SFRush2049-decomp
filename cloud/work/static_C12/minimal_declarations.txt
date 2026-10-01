@@ -1,0 +1,18 @@
+Existing include/PR/os_pfs.h prototype correction (private proof only):
+s32 osPfsReadWriteFile(OSPfs*, u16, u32, u8*, u8*, int, s32*);
+Actual target is SDK osPfsAllocateFile. Existing accepted-body uses: none (accepted_dependency_audit.json).
+
+New declarations:
+extern s32 osPfsGetFileSize(OSPfs*, s32, u8, int, int, u8*);
+extern s32 __osPfsDeclearPage(OSPfs*, __OSInode*, int, int*, u8, int*, int*);
+extern s32 osPiSetDeviceTiming(OSPiHandle*, s32, u32, void*, u32);
+extern OSPiHandle *__osPiDevList[2];
+
+Macros absent from current shared headers used by PFS bodies:
+PFS_CHECK_STATUS, PFS_CHECK_ID, ROUND_UP_DIVIDE, PFS_MAX_BANKS, PFS_ERR_EXIST,
+PFS_DATA_FULL, PFS_DIR_FULL, PFS_ERR_BAD_DATA, PFS_PAGE_NOT_USED, PFS_CORRUPTED,
+DIR_STATUS_OCCUPIED, CHECK_IPAGE.
+Exact values in shared_header_sources/context.h; SDK PR/os_pfs.h and PRinternal/controller.h are authority.
+PI: exact canonical WAIT_ON_IOBUSY, UPDATE_REG and J EPI_SYNC plus IO_READ/IO_WRITE
+and named hardware addresses captured in same context.h. These can be retained local to lib_e9a0.c.
+Current header supplies __OSPackId, __OSInodeCache, and __osRepairId correctly; no type changes.

@@ -1,0 +1,44 @@
+{
+  "physics_response": [
+    {
+      "caller": "audio_effect_apply",
+      "pc": "0x800baadc"
+    },
+    {
+      "caller": "audio_effect_apply",
+      "pc": "0x800baafc"
+    },
+    {
+      "caller": "audio_effect_apply",
+      "pc": "0x800bad1c"
+    }
+  ],
+  "steering_sensitivity": [
+    {
+      "caller": "input_deadzone_apply",
+      "pc": "0x800ae248"
+    },
+    {
+      "caller": "camera_trigger_check",
+      "pc": "0x800c44d4"
+    },
+    {
+      "caller": "camera_victory",
+      "pc": "0x800c6824"
+    },
+    {
+      "caller": "entity_update",
+      "pc": "0x800c6e0c"
+    }
+  ],
+  "func_800D0424": [
+    {
+      "caller": "func_800D11BC",
+      "pc": "0x800d11fc"
+    },
+    {
+      "caller": "object_update_full",
+      "pc": "0x800e2aa8"
+    }
+  ]
+}
