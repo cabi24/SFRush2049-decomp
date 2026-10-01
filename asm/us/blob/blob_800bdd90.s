@@ -36,6 +36,7 @@ func_800BDD90:
 .section .text.camera_shake_update, "ax", @progbits
 .globl camera_shake_update
 camera_shake_update:
+    /* compiled from src/blob/camera_shake_update.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0xAFA40018

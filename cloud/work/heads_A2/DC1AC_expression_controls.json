@@ -1,0 +1,77 @@
+[
+  [
+    "for-update-D_801170F4++, value >>= 1, i++",
+    0,
+    null
+  ],
+  [
+    "for-update-i++, D_801170F4++, value >>= 1",
+    0,
+    null
+  ],
+  [
+    "for-update-value >>= 1, D_801170F4++, i++",
+    4,
+    null
+  ],
+  [
+    "u16 pos;D_801170F4 = pos + 1;comma",
+    17,
+    null
+  ],
+  [
+    "u16 pos;D_801170F4 = pos + 1;statement",
+    17,
+    null
+  ],
+  [
+    "u16 pos;D_801170F4++;comma",
+    30,
+    null
+  ],
+  [
+    "u16 pos;D_801170F4++;statement",
+    30,
+    null
+  ],
+  [
+    "u32 pos;D_801170F4 = pos + 1;comma",
+    34,
+    null
+  ],
+  [
+    "u32 pos;D_801170F4 = pos + 1;statement",
+    34,
+    null
+  ],
+  [
+    "u32 pos;D_801170F4++;comma",
+    16,
+    null
+  ],
+  [
+    "u32 pos;D_801170F4++;statement",
+    16,
+    null
+  ],
+  [
+    "s32 pos;D_801170F4 = pos + 1;comma",
+    34,
+    null
+  ],
+  [
+    "s32 pos;D_801170F4 = pos + 1;statement",
+    34,
+    null
+  ],
+  [
+    "s32 pos;D_801170F4++;comma",
+    16,
+    null
+  ],
+  [
+    "s32 pos;D_801170F4++;statement",
+    16,
+    null
+  ]
+]

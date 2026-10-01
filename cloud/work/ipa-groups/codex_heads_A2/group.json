@@ -1,0 +1,30 @@
+{
+  "members": [
+    "func_8010E8B4",
+    "func_8010B7FC"
+  ],
+  "context": [
+    "slot_state_setup",
+    "sound_update_channel",
+    "func_80096288",
+    "mode_byte2_set",
+    "object_type_byte2_get",
+    "object_type_byte3_get",
+    "slot_value_get",
+    "mode_byte_set"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_8010E8B4",
+    "func_8010B7FC",
+    "mode_byte2_set",
+    "object_type_byte2_get",
+    "object_type_byte3_get",
+    "slot_value_get",
+    "mode_byte_set"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": []
+}

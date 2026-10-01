@@ -1,0 +1,90 @@
+[
+  {
+    "function": "apply_display_mode",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 200,
+    "target_words": 12,
+    "candidate_words": 12,
+    "raw_word_diff": 5,
+    "source_sha256": "639998b37673ebe8b41bb8aa7cc986b59f139a20d7df855ad19411c6ee52ea0b",
+    "target_sha256": "85550130ba706ccafab4e16e8362c1939a8ed614d10d5c80d09b4eef569f4eab",
+    "integration_status": "unmatched"
+  },
+  {
+    "function": "dma_signal",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 200,
+    "target_words": 16,
+    "candidate_words": 12,
+    "raw_word_diff": 9,
+    "source_sha256": "f2516d414f137bf93d5a4021aa1cc600a65ceae9f780fb5087be17b0c0c7dce7",
+    "target_sha256": "07d02b9bb49cfe5166b54da2b3a98135f174b1fe6d35f9c22c1b6fdd2981260b",
+    "integration_status": "unmatched"
+  },
+  {
+    "function": "osAiSetNextBuffer",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 335,
+    "target_words": 36,
+    "candidate_words": 36,
+    "raw_word_diff": 26,
+    "source_sha256": "3abf8d951deb4200c7d5808744e1a8de0765a9e1e6ab21946ece13b0fbe9c780",
+    "target_sha256": "ca817bd297fdb28a69dc5606c5b6328342be98d7d5f9e0690037a385e130f6f0",
+    "integration_status": "unmatched"
+  },
+  {
+    "function": "osRecvMesg",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 80,
+    "candidate_words": 80,
+    "raw_word_diff": 0,
+    "source_sha256": "22d906cde5e3cf7793abca79da3f316fc9adab56a76917b10cb8070092a18829",
+    "target_sha256": "2916765c3e541631af3c610fd0ff06d1620ee373977da54f8320ab0ae5eba834",
+    "integration_status": "ready-after-context-reconciliation"
+  },
+  {
+    "function": "osSetThreadPri",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 24,
+    "candidate_words": 24,
+    "raw_word_diff": 0,
+    "source_sha256": "ce5e3e7bdcb4a8f87e957f2d43b89fe8e1b7632659de66c0b21b098443a113e0",
+    "target_sha256": "e3f9090df800210ee3a450ab9c8ca6b10cb2a0ded484379f761ba217b9d47b13",
+    "integration_status": "ready-after-context-reconciliation"
+  },
+  {
+    "function": "osStartThread",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 84,
+    "candidate_words": 84,
+    "raw_word_diff": 0,
+    "source_sha256": "81ec8184e9ea19158f64a311ecb25fe28a06e0ac1a4f4a1ab728bb5336c9ea16",
+    "target_sha256": "31b5510f4b9f065ea2694277c05f2a0850b9b5f6f0ce6afe8e962dba099681fb",
+    "integration_status": "ready-after-context-reconciliation"
+  },
+  {
+    "function": "viDisableAccum",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 8,
+    "candidate_words": 8,
+    "raw_word_diff": 0,
+    "source_sha256": "28f4420fa249188178559a3c6a8808465036206bd963c897bceb673a8c088ac8",
+    "target_sha256": "835075fae2216e2b3badaaad07c32d72d117e0ae51b8cc41144f4fefcef3cfe0",
+    "integration_status": "blocked-shared-O2-TU"
+  },
+  {
+    "function": "viEnableAccum",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 8,
+    "candidate_words": 8,
+    "raw_word_diff": 0,
+    "source_sha256": "f36bee88874d533d083f73f013865f7f9e0b921ffcff81fe32a0d431bfffbc3e",
+    "target_sha256": "5bb2d56ce237c226065a8ed4fdd76b0a987481fac0105f6d5eb4b1e14144d525",
+    "integration_status": "blocked-shared-O2-TU"
+  }
+]

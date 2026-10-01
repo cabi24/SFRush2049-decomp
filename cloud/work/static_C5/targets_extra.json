@@ -1,0 +1,74 @@
+[
+  {
+    "target": {
+      "target_id": "__osSpDma",
+      "address": 2147538560,
+      "population": "static",
+      "insn_count": 36,
+      "target_asm_sha": "d81585c94ea7ac9557a5e32fa03980db60973d3587f9c04a877dad6c110bc1a6",
+      "target_o_sha": "22f2087f72f5d8248b58432f726322b1dbb3f2a4f011211119b9436d72dfc9d2",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xe280",
+        "function": {
+          "name": "__osSpDma",
+          "vaddr": "0x8000d680",
+          "size": 144,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": "permuter"
+  },
+  {
+    "target": {
+      "target_id": "osPiReadIo",
+      "address": 2147538848,
+      "population": "static",
+      "insn_count": 20,
+      "target_asm_sha": "9ee59e2480b8fe65a8232b2f2022743a978dd3791f4840c976d66e400197ebea",
+      "target_o_sha": "62dc0a8fc5a8f5c5cd56fc5d8b0de74190ed87b32544687deb0437deef6e8d18",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xe390",
+        "function": {
+          "name": "osPiReadIo",
+          "vaddr": "0x8000d7a0",
+          "size": 80,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "osPiWriteWord",
+      "address": 2147538928,
+      "population": "static",
+      "insn_count": 20,
+      "target_asm_sha": "889928e52bd082b7984ef9e99a01fa292abcee16960c8535fbeb8a334fddfd93",
+      "target_o_sha": "d701349208ecccd8d2c743258460963a2459d66411532b640ebbc8a92d8e3f16",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xe3f0",
+        "function": {
+          "name": "osPiWriteWord",
+          "vaddr": "0x8000d7f0",
+          "size": 80,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  }
+]

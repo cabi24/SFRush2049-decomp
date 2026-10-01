@@ -454,6 +454,7 @@ func_800B41B8:
 .section .text.object_byte9_set, "ax", @progbits
 .globl object_byte9_set
 object_byte9_set:
+    /* compiled from src/blob/object_byte9_set.c */
     .word 0x27BDFFE8
     .word 0x00044E00
     .word 0x00097603

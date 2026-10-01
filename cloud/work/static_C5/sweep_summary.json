@@ -1,0 +1,56 @@
+{
+  "variants_scored": 740,
+  "per_target_counts": {
+    "dll_remove": 100,
+    "guOrthoF": 160,
+    "guPerspectiveF": 160,
+    "idle_thread_entry": 60,
+    "inflate_loop": 160,
+    "osMotorStop": 100
+  },
+  "best": {
+    "dll_remove": {
+      "function": "dll_remove",
+      "variant": "dll_remove__R0.c",
+      "strict_score": 1045,
+      "raw_word_diff": 16,
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+    },
+    "guOrthoF": {
+      "function": "guOrthoF",
+      "variant": "guOrthoF__R100.c",
+      "strict_score": 370,
+      "raw_word_diff": 15,
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+    },
+    "guPerspectiveF": {
+      "function": "guPerspectiveF",
+      "variant": "guPerspectiveF__R100.c",
+      "strict_score": 370,
+      "raw_word_diff": 65,
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+    },
+    "idle_thread_entry": {
+      "function": "idle_thread_entry",
+      "variant": "idle_thread_entry__R0.c",
+      "strict_score": 100,
+      "raw_word_diff": 9,
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+    },
+    "inflate_loop": {
+      "function": "inflate_loop",
+      "variant": "inflate_loop__R0.c",
+      "strict_score": 160,
+      "raw_word_diff": 10,
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+    },
+    "osMotorStop": {
+      "function": "osMotorStop",
+      "variant": "osMotorStop__R0.c",
+      "strict_score": 500,
+      "raw_word_diff": 9,
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+    }
+  },
+  "strict_matches": {}
+}

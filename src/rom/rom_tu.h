@@ -122,3 +122,32 @@ typedef u32 OSIntMask;
  * IO_READ/WRITE or DPC_* macro changes.
  * Delivered thread/timer bodies select the verified pre-K behavior directly;
  * no BUILD_VERSION/VERSION_K shared macros are needed. */
+
+/* Additional queue context for verified static packet C4. */
+/* Required existing declaration corrections, not conflicting redeclarations:
+ * include/PR/os_thread.h's priority-style osSetThreadPri prototype is historically
+ * misattributed. Proven body at 0x80006D40 is actually SDK osViSetMode.
+ * Delivered ABI signature: void osSetThreadPri(void *mode).
+ * mode points to OSViMode; the body casts it to OSViMode* before assigning it.
+ * The second old priority argument is unused and its spill causes a strict
+ * mismatch, so the old 2-argument prototype cannot remain for this definition.
+ * Preserve old ROM gates and audit any linked callers before changing it.
+ * Existing __osActiveQueue global should be OSThread*, not OSThread**.
+ * Canonical SDK run-queue head has current historical name __osActiveQueue;
+ * canonical active-list head has current historical name __osRunQueue (C3).
+ */
+extern void __osDispatchThread(void);
+extern OSThread *__osPopThread(OSThread **);
+#define OS_STATE_WAITING 8
+#define OS_STATE_RUNNABLE 2
+#define OS_STATE_STOPPED 1
+#define MQ_IS_EMPTY(mq) ((mq)->validCount == 0)
+/* OS_MESG_NOBLOCK/BLOCK already exist from PR/os_message.h.
+ * __osCleanupThread(OSThread**) already declared in m2c_types.h and is current
+ * target name for SDK __osEnqueueAndYield.
+ * __osRunningThread and __osEnqueueThread already declared.
+ * Blocked O0 boot leads need extern s32 gScTimeEnabled, but don't promote them
+ * into the locked O2 0x1050 TU until a supported flags/isolation route exists. */
+
+/* SI raw I/O helpers retain the historical PI device-busy symbol. */
+extern s32 __osPiDeviceBusy(void);

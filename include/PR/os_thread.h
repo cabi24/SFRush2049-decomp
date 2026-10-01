@@ -64,7 +64,8 @@ void osCreateThread(OSThread *thread, OSId id, void (*entry)(void *),
                     void *arg, void *sp, OSPri priority);
 void osStartThread(OSThread *thread);
 void osStopThread(OSThread *thread);
-OSPri osSetThreadPri(OSThread *thread, OSPri priority);
+/* Historical name at 0x80006D40: this target sets the VI mode. */
+void osSetThreadPri(void *mode);
 OSPri osGetThreadPri(OSThread *thread);
 OSId osGetThreadId(OSThread *thread);
 OSThread *__osPopThread(OSThread **queue);
@@ -72,6 +73,7 @@ void __osEnqueueThread(OSThread **queue, OSThread *thread);
 
 /* External thread pointers */
 extern OSThread *__osRunningThread;
-extern OSThread **__osActiveQueue;
+/* Historical name: retail run-queue head, not a pointer to its slot. */
+extern OSThread *__osActiveQueue;
 
 #endif /* _OS_THREAD_H_ */

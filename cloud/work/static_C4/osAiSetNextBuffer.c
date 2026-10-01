@@ -1,0 +1,52 @@
+/* flags: -g0 -O2 -mips2 -G 0 -non_shared */
+
+typedef unsigned char U8;
+typedef signed char S8;
+typedef unsigned short U16;
+typedef short S16;
+typedef unsigned int U32;
+typedef int S32;
+typedef float F32;
+typedef double F64;
+typedef unsigned char u8;
+typedef signed char s8;
+typedef unsigned short u16;
+typedef short s16;
+typedef unsigned int u32;
+typedef volatile unsigned int vu32;
+typedef int s32;
+typedef float f32;
+typedef double f64;
+typedef int BOOL;
+extern void *memcpy(void *, const void *, unsigned int);
+extern void *memset(void *, int, unsigned int);
+extern int strcmp(const char *, const char *);
+extern char *strcpy(char *, const char *);
+extern unsigned int strlen(const char *);
+extern int sprintf(char *, const char *, ...);
+extern int printf(const char *, ...);
+extern float fsqrt(float);
+extern float fsin(float);
+extern float fcos(float);
+extern float fatan2(float, float);
+extern double sqrt(double);
+extern double sin(double);
+extern double cos(double);
+extern double atan2(double, double);
+extern double fabs(double);
+s32 __osAiDeviceBusy();
+u32 osVirtualToPhysical(s32);
+extern s32 AI_DRAM_ADDR_REG;
+extern s32 AI_LEN_REG;
+extern u8 __osAiNeedsAlign;
+s32 osAiSetNextBuffer(s32 arg0, s32 arg1) {
+ s32 var_a1;
+ if (__osAiDeviceBusy() != 0) return -1;
+ var_a1 = arg0;
+ if (__osAiNeedsAlign != 0) var_a1 = arg0 - 0x2000;
+ if (((arg0 + arg1) & 0x1FFF) == 0) __osAiNeedsAlign = 1;
+ else __osAiNeedsAlign = 0;
+ (*(vu32 *)0xA4500000U) = osVirtualToPhysical(var_a1);
+ (*(vu32 *)0xA4500004U) = arg1;
+ return 0;
+}

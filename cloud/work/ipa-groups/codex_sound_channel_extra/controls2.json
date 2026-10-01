@@ -1,0 +1,178 @@
+[
+  [
+    "getret_s32",
+    {
+      "object_byte9_set": 0,
+      "object_bytes23_sum": 4,
+      "object_bytes_sum_global": 11,
+      "func_800F68A4": 6,
+      "camera_shake_update": 0
+    },
+    null
+  ],
+  [
+    "getret_u32",
+    {
+      "object_byte9_set": 0,
+      "object_bytes23_sum": 4,
+      "object_bytes_sum_global": 11,
+      "func_800F68A4": 6,
+      "camera_shake_update": 0
+    },
+    null
+  ],
+  [
+    "getret_u16",
+    {
+      "object_byte9_set": 0,
+      "object_bytes23_sum": 4,
+      "object_bytes_sum_global": 11,
+      "func_800F68A4": 6,
+      "camera_shake_update": 0
+    },
+    null
+  ],
+  [
+    "globals_D_80149B60 + object_type_byte2_get() + first",
+    {
+      "object_byte9_set": 0,
+      "object_bytes23_sum": 4,
+      "object_bytes_sum_global": 11,
+      "func_800F68A4": 6,
+      "camera_shake_update": 0
+    },
+    null
+  ],
+  [
+    "globals_object_type_byte2_get() + D_80149B60 + first",
+    {
+      "object_byte9_set": 0,
+      "object_bytes23_sum": 4,
+      "object_bytes_sum_global": 11,
+      "func_800F68A4": 6,
+      "camera_shake_update": 0
+    },
+    null
+  ],
+  [
+    "globals_first + object_type_byte2_get() + D_80149B60",
+    {
+      "object_byte9_set": 0,
+      "object_bytes23_sum": 4,
+      "object_bytes_sum_global": 11,
+      "func_800F68A4": 6,
+      "camera_shake_update": 0
+    },
+    null
+  ],
+  [
+    "globals_D_80149B60 + (object_type_byte2_get() + first)",
+    {
+      "object_byte9_set": 0,
+      "object_bytes23_sum": 4,
+      "object_bytes_sum_global": 11,
+      "func_800F68A4": 6,
+      "camera_shake_update": 0
+    },
+    null
+  ],
+  [
+    "out_posts32",
+    {
+      "object_byte9_set": 0,
+      "object_bytes23_sum": 4,
+      "object_bytes_sum_global": 11,
+      "func_800F68A4": 7,
+      "camera_shake_update": 0
+    },
+    null
+  ],
+  [
+    "out_postu32",
+    {
+      "object_byte9_set": 0,
+      "object_bytes23_sum": 4,
+      "object_bytes_sum_global": 11,
+      "func_800F68A4": 9,
+      "camera_shake_update": 0
+    },
+    null
+  ],
+  [
+    "out_posts16",
+    {
+      "object_byte9_set": 0,
+      "object_bytes23_sum": 4,
+      "object_bytes_sum_global": 11,
+      "func_800F68A4": 24,
+      "camera_shake_update": 0
+    },
+    null
+  ],
+  [
+    "out_updates32",
+    {
+      "object_byte9_set": 0,
+      "object_bytes23_sum": 4,
+      "object_bytes_sum_global": 11,
+      "func_800F68A4": 7,
+      "camera_shake_update": 0
+    },
+    null
+  ],
+  [
+    "out_updateu32",
+    {
+      "object_byte9_set": 0,
+      "object_bytes23_sum": 4,
+      "object_bytes_sum_global": 11,
+      "func_800F68A4": 9,
+      "camera_shake_update": 0
+    },
+    null
+  ],
+  [
+    "out_updates16",
+    {
+      "object_byte9_set": 0,
+      "object_bytes23_sum": 4,
+      "object_bytes_sum_global": 11,
+      "func_800F68A4": 24,
+      "camera_shake_update": 0
+    },
+    null
+  ],
+  [
+    "out_whiles32",
+    {
+      "object_byte9_set": 0,
+      "object_bytes23_sum": 4,
+      "object_bytes_sum_global": 11,
+      "func_800F68A4": 7,
+      "camera_shake_update": 0
+    },
+    null
+  ],
+  [
+    "out_whileu32",
+    {
+      "object_byte9_set": 0,
+      "object_bytes23_sum": 4,
+      "object_bytes_sum_global": 11,
+      "func_800F68A4": 9,
+      "camera_shake_update": 0
+    },
+    null
+  ],
+  [
+    "out_whiles16",
+    {
+      "object_byte9_set": 0,
+      "object_bytes23_sum": 4,
+      "object_bytes_sum_global": 11,
+      "func_800F68A4": 24,
+      "camera_shake_update": 0
+    },
+    null
+  ]
+]
