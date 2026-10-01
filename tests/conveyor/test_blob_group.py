@@ -132,6 +132,42 @@ def test_context_functions_resolve_calls_but_are_not_spliced(tmp_path):
     assert _words(bodies["f"])[0] == 0x0C000000 | (0x80200000 >> 2) & 0x03FFFFFF
 
 
+@pytest.mark.parametrize("include_next_context", [True, False])
+def test_short_context_cannot_capture_the_next_function(tmp_path, include_next_context):
+    obj = _asm_object(tmp_path, """
+    .set noreorder
+    .text
+    .globl ctx
+    .type ctx, @function
+ctx:
+    jr $ra
+    nop
+    .globl g
+    .type g, @function
+g:
+    jr $ra
+    nop
+    .globl f
+    .type f, @function
+f:
+    jal g
+    nop
+    jr $ra
+    nop
+""")
+    extents = {"ctx": {"vaddr": 0x80100000, "size": 16},
+               "g": {"vaddr": 0x80200000, "size": 8},
+               "f": {"vaddr": 0x80300000, "size": 16}}
+    names = ["ctx", "f"] + (["g"] if include_next_context else [])
+    slices, ndx = blob_group.member_slices(obj, names, extents)
+    if include_next_context:
+        body = blob_group.relocate(obj, slices, ndx, {}, members=["f"])["f"]
+        assert _words(body)[0] == 0x0C000000 | ((0x80200000 >> 2) & 0x03FFFFFF)
+    else:
+        with pytest.raises(blob_group.GroupError, match="no member slice"):
+            blob_group.relocate(obj, slices, ndx, {}, members=["f"])
+
+
 def test_mismatched_callee_prototypes_are_unprototyped():
     prelude = ("void a(void);\ns32 b(s32 x, s32 y);\nvoid c(s32 x, ...);\n"
                "void member(s32 x);\n")

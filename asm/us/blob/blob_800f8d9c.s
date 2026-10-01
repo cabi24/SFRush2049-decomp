@@ -4535,6 +4535,7 @@ debug_collision:
 .section .text.input_aux_handler, "ax", @progbits
 .globl input_aux_handler
 input_aux_handler:
+    /* compiled from src/blob/input_aux_handler.c */
     .word 0x3C028011
     .word 0x8C4274B4
     .word 0x27BDFFE8
@@ -4920,6 +4921,7 @@ func_800FD754:
 .section .text.random_seed_init, "ax", @progbits
 .globl random_seed_init
 random_seed_init:
+    /* compiled from src/blob/random_seed_init.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x10A0000E

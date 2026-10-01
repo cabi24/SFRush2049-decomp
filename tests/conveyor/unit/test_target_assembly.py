@@ -179,6 +179,22 @@ def test_oscreate_assembles_with_relocations_and_passes_gate(tmp_path):
     assert T.gate_target(region.words, out_o) == (True, None)
 
 
+@pytest.mark.skipif(not (HAS_AS and HAS_OBJDUMP),
+                    reason="mips-linux-gnu binutils not available")
+def test_float_abi_aliases_preserve_register_words_and_relocations(tmp_path):
+    from tools.conveyor.jobs import scoring
+
+    region = T.Region("float_target", 0x80000100,
+                      ["mtc1 $a1, $fa0", "mov.s $ft0f, $fa0",
+                       "jal external_float", "mov.s $fv0, $ft0f"],
+                      ["44856000", "46006146", "0C000080", "46002806"])
+    out = tmp_path / "float.o"
+    T.assemble_region(region, "float_target", out)
+    assert T.gate_target(region.words, out) == (True, None)
+    relocs = scoring._objdump(scoring._objdump_path(), "-r", str(out))
+    assert "R_MIPS_26" in relocs and "external_float" in relocs
+
+
 @pytest.mark.skipif(not HAS_AS, reason="mips-linux-gnu-as not available")
 def test_assemble_error_raises_deterministic_reason(tmp_path):
     # A bogus mnemonic fails to assemble; the reason carries no temp-file path.

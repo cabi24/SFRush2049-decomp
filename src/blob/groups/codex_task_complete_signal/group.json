@@ -1,0 +1,17 @@
+{
+  "members": [
+    "task_complete_signal"
+  ],
+  "context": [
+    "func_8008AD04"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "task_complete_signal",
+    "func_8008AD04"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "provenance": "Codex real context, 2026-10-01; cloud/work/ipa-groups/codex_task_complete_signal/STATUS.md"
+}

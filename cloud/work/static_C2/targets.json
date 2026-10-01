@@ -1,0 +1,194 @@
+[
+  {
+    "target": {
+      "target_id": "osViModeNtscLpn1",
+      "address": 2147515060,
+      "population": "static",
+      "insn_count": 19,
+      "target_asm_sha": "efe82cc9fb486c1fe5039e85455557eb173377fe54d85d1912d5290368167f97",
+      "target_o_sha": "77445e7efbeb1652c91ce42400de5f58fed7336d3a91bd82938fe461b1431f3f",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0x8440",
+        "function": {
+          "name": "osViModeNtscLpn1",
+          "vaddr": "0x80007ab4",
+          "size": 76,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": "work/auto/osViModeNtscLpn1/matched.c"
+  },
+  {
+    "target": {
+      "target_id": "osContGetQuery",
+      "address": 2147522476,
+      "population": "static",
+      "insn_count": 9,
+      "target_asm_sha": "92c98f1eb8f2614fd5164fad9eda80b74faf683deb98f1dae17b2f5a37b80db2",
+      "target_o_sha": "8731f9a2c9883e7a63f61ede179a4651a03e3c018dc2d61316a2b52112c41d33",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xa330",
+        "function": {
+          "name": "osContGetQuery",
+          "vaddr": "0x800097ac",
+          "size": 36,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": "ultralib src/io/contquery.c @ e24c8367 (corpus_match artifact); named references adapted to authoritative normalized target"
+  },
+  {
+    "target": {
+      "target_id": "osSpTaskYielded",
+      "address": 2147514160,
+      "population": "static",
+      "insn_count": 24,
+      "target_asm_sha": "6c54b9d0dbde8436869b6d5f2a7ebbd839da820971366f5732a706057e0069a6",
+      "target_o_sha": "5cbba409a4c9283470b45744dc4a320fdaaf7bbf97cd94968216f6f0697ed769",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0x8330",
+        "function": {
+          "name": "osSpTaskYielded",
+          "vaddr": "0x80007730",
+          "size": 96,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": "ultralib src/io/sptaskyielded.c @ e24c8367 (corpus_match artifact); named references adapted to authoritative normalized target"
+  },
+  {
+    "target": {
+      "target_id": "osVirtualToPhysical",
+      "address": 2147538368,
+      "population": "static",
+      "insn_count": 32,
+      "target_asm_sha": "2ea84a7e2bbb313ac5dde0bca8b776152e4b97983dad5e2312c19f555066e3f5",
+      "target_o_sha": "5fd640a1bfd605400e4f00907be4d44e99df5e5b1d85fd4b2391d3070a726bf4",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xe1c0",
+        "function": {
+          "name": "osVirtualToPhysical",
+          "vaddr": "0x8000d5c0",
+          "size": 128,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": "ultralib src/os/virtualtophysical.c @ e24c8367 (corpus_match artifact); named references adapted to authoritative normalized target"
+  },
+  {
+    "target": {
+      "target_id": "__osSiRelAccess",
+      "address": 2147542516,
+      "population": "static",
+      "insn_count": 11,
+      "target_asm_sha": "eb87f273117b8d6b88d2f929ed956b4eb913c8af6d0b24881e7f63141f66eca9",
+      "target_o_sha": "d03149a1d8b60d957eae3c407f9d84d4a87c843c41fc18c5ccb7b718fe76329c",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xf160",
+        "function": {
+          "name": "__osSiRelAccess",
+          "vaddr": "0x8000e5f4",
+          "size": 44,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": "ultralib src/io/siacs.c @ e24c8367 (corpus_match artifact); named references adapted to authoritative normalized target"
+  },
+  {
+    "target": {
+      "target_id": "__osSiGetAccess",
+      "address": 2147542448,
+      "population": "static",
+      "insn_count": 17,
+      "target_asm_sha": "16d1969a0b98162b45f7296cbd4067e124398685cacebefb0d97c454f41e8fb3",
+      "target_o_sha": "74860f71b3472053a7711c1cac939dabd8246524474ec53093c6fd2b2d3564e0",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xf160",
+        "function": {
+          "name": "__osSiGetAccess",
+          "vaddr": "0x8000e5b0",
+          "size": 68,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": "ultralib src/io/siacs.c @ e24c8367 (corpus_match artifact); named references adapted to authoritative normalized target"
+  },
+  {
+    "target": {
+      "target_id": "osViGetCurrentFramebuffer",
+      "address": 2147514256,
+      "population": "static",
+      "insn_count": 16,
+      "target_asm_sha": "5614ccdffaac390c09de227dd87162eef014eff363134d44840c46a8ca073b6b",
+      "target_o_sha": "4dd90237ae0fa4d94b76864ba4a8a8c36a53f46d718355bca8055dcf4047958c",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0x8330",
+        "function": {
+          "name": "osViGetCurrentFramebuffer",
+          "vaddr": "0x80007790",
+          "size": 64,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": "ultralib src/io/vigetcurrframebuf.c @ e24c8367 (corpus_match artifact); named references adapted to authoritative normalized target"
+  },
+  {
+    "target": {
+      "target_id": "osContGetReadData",
+      "address": 2147522644,
+      "population": "static",
+      "insn_count": 35,
+      "target_asm_sha": "f96ad56a607a8120d1f2e9a51afe6de14f6fa2a661507c21dc208676d0235803",
+      "target_o_sha": "3df5ab4082da63fb115f029329a06de62a4af96d5dc13757c9e1af78d8821555",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xa330",
+        "function": {
+          "name": "osContGetReadData",
+          "vaddr": "0x80009854",
+          "size": 140,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": "ultralib src/io/contreaddata.c @ e24c8367 (corpus_match artifact); named references adapted to authoritative normalized target"
+  }
+]

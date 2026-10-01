@@ -1,0 +1,29 @@
+{
+  "function": "osGetTime",
+  "words_differing": 6,
+  "strict_words_differing": 6,
+  "target_words": 33,
+  "candidate_words": 33,
+  "verdict": "allocation",
+  "frame_delta": 0,
+  "lanes": [
+    {
+      "class": "pool",
+      "slot": null,
+      "rotation": null
+    },
+    {
+      "class": "temp",
+      "slot": 3,
+      "rotation": null
+    },
+    {
+      "class": "shared",
+      "slot": 1,
+      "rotation": null
+    }
+  ],
+  "owning_pass": "unknown",
+  "ownership_basis": "none",
+  "lever": "none-known"
+}

@@ -1,0 +1,39 @@
+/* REQUIRED existing-prototype correction before osDpSetNextBuffer promotion:
+ * include/PR/os.h currently says void osDpSetNextBuffer(void*, u32).
+ * Proven target/SDK signature is s32 osDpSetNextBuffer(void*, u64).
+ * Do not simply redeclare a conflicting prototype in rom_tu.h. */
+
+typedef f32 Matrix[4][4];
+extern void guPerspectiveF(f32 [4][4], u16 *, f32, f32, f32, f32, f32);
+extern void guOrthoF(f32 [4][4], f32, f32, f32, f32, f32, f32, f32);
+extern void guLookAtF(f32 [4][4], f32, f32, f32, f32, f32, f32, f32, f32, f32);
+extern void guMtxF2L(f32 [4][4], Mtx *);
+extern s32 osDpIsBusy(void);
+extern void __osContRamReset(s32);
+extern OSTime dll_insert(OSTimer *);
+extern void dll_reschedule(OSTime);
+extern void __osExceptionPanic(void);
+extern OSThread *__osRunQueue;
+typedef u32 OSIntMask;
+#define OS_IM_ALL 0x003FFF01U
+#define SR_IMASK 0x0000FF00
+#define SR_IE 1
+#define SR_EXL 2
+#define RCP_IMASK 0x003F0000
+#define RCP_IMASKSHIFT 16
+#define FPCSR_FS 0x01000000
+#define FPCSR_EV 0x800
+#define FPCSR_RM_RN 0
+#define OS_STATE_STOPPED 1
+#define CONT_CMD_REQUEST_STATUS 0
+#define OS_WRITE 1
+#define OS_READ 0
+/* OS_MESG_BLOCK already exists from PR/os_message.h.
+ * __osPfsRequestType was supplied by C1; __osSiDmaBuffer exists in m2c_types.h.
+ * Existing __osTimerList declaration is __OSTimerNode*. The delivered timer
+ * body explicitly casts to OSTimer* before reading ->next, so that shared
+ * declaration does not need to change. Both structs have next at offset0.
+ * Literal volatile MMIO lvalues in delivered osDpSetNextBuffer need no
+ * IO_READ/WRITE or DPC_* macro changes.
+ * Delivered thread/timer bodies select the verified pre-K behavior directly;
+ * no BUILD_VERSION/VERSION_K shared macros are needed. */

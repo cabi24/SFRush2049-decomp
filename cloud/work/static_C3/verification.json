@@ -1,0 +1,82 @@
+[
+  {
+    "function": "guLookAt",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 32,
+    "candidate_words": 32,
+    "raw_word_diff": 0,
+    "source_sha256": "82b94324a398a725031bcecf7330c9e6d2602b941cba12008f12c0e4ac1eab96",
+    "target_sha256": "97e4cf304cfe47d3653fe0737d4878b0e4f6a6137028682ba1b85030dbe147dd"
+  },
+  {
+    "function": "guOrtho",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 28,
+    "candidate_words": 28,
+    "raw_word_diff": 0,
+    "source_sha256": "e74d524713a2d960046af617d97178aca8b477a730a0adbe70db073261775a0e",
+    "target_sha256": "145deb7afd9fc1c0d8ec7460efedd796862fa74ac1bb3a5dd698c52ea70af0ea"
+  },
+  {
+    "function": "guPerspective",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 24,
+    "candidate_words": 24,
+    "raw_word_diff": 0,
+    "source_sha256": "a73f363d92cca39f38a60763d1201233ffadeb366d87e3a6cff9a09955e8056b",
+    "target_sha256": "bf737d6037216b6b3e1570d498d5b7ecdf76e3e070dc35dc1e4a41b783fce12e"
+  },
+  {
+    "function": "osContStartQuery",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 32,
+    "candidate_words": 32,
+    "raw_word_diff": 0,
+    "source_sha256": "79375da733e39d0779eac9138a2f9583e0d451c41d8d3472a7255ca0e2fec4bc",
+    "target_sha256": "cf15a94f203c78323a6a989e136f17ac569953a65850d166a3b5942484ed272e"
+  },
+  {
+    "function": "osCreateThread",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 84,
+    "candidate_words": 84,
+    "raw_word_diff": 0,
+    "source_sha256": "46ed7d42d709b75106dae570fc6d701263c0cba89d0133dd6ba5668139b8b224",
+    "target_sha256": "d46e44035354eedd637e4253c42433fb9d4a880ad2658c9dea068bf493449974"
+  },
+  {
+    "function": "osDpSetNextBuffer",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 32,
+    "candidate_words": 32,
+    "raw_word_diff": 0,
+    "source_sha256": "5b7903a79d0bcc195841f5727c18bf24e0c3cb3a588f7b0caf445b241582274d",
+    "target_sha256": "65b82e989ba2ad5e1edbab4a11a93c16df70e2121b962275ef61f532cc158bfa"
+  },
+  {
+    "function": "osGetTime",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_score": 45,
+    "target_words": 36,
+    "candidate_words": 36,
+    "raw_word_diff": 6,
+    "source_sha256": "4e70f562a621f311aa30b9d58a282212db59f659f3d02bea682e89200ec1b252",
+    "target_sha256": "b3d85806c4ae4cc46c65738caf5d7fad3921b8c529d5dbdb2d9ad4eb2b5852f9"
+  },
+  {
+    "function": "osSetTimer",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 56,
+    "candidate_words": 56,
+    "raw_word_diff": 0,
+    "source_sha256": "df52f2e3c537b2d475799ccda490cc63a76454f4f6cea479e5d3995e0b2535d8",
+    "target_sha256": "a97f2e755fce00571105ecb3521e55ee6d0cbd111863d89f287f67fda5f550a4"
+  }
+]

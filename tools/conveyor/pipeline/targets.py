@@ -580,6 +580,14 @@ def assemble_region(region, target_id, out_o):
         f".globl {target_id}",
         f"{target_id}:",
     ]
+    # Splat uses o32 float aliases such as $fa0/$ft0f. They are defined
+    # by the ROM assembler prelude, not by GNU as itself. Reuse only those
+    # register declarations; the prelude's macros and gp mode are unrelated
+    # to this isolated relocatable target.
+    prelude = REPO / "tools" / "asm-processor" / "prelude.inc"
+    aliases = [line for line in prelude.read_text().splitlines()
+               if re.match(r"^\s*\.set\s+\$f\w+,\s*\$f\d+\s*$", line)]
+    asm[0:0] = aliases
     asm += region.lines
     with tempfile.NamedTemporaryFile("w", suffix=".s", delete=False) as f:
         f.write("\n".join(asm) + "\n")

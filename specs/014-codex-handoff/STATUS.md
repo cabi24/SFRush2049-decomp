@@ -1,5 +1,17 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-01 second game integration and static preparation
+
+- Game cartridge C: **512/1,216 functions, 59,204/647,072 bytes (9.15%)**. Static cartridge C remains **34/230 functions, 2,456/61,440 bytes (4.00%)**, pending sixteen additional object matches / 1,852 slot bytes.
+- Accepted eight game functions / 1,208 bytes: random_seed_init, func_8008D0C0, task_complete_signal, input_aux_handler, mode_byte_set, mode_byte2_set, object_type_byte2_get, object_type_byte3_get. Coordinator independently strict-rescored every delivered single/group and passed image/full-ROM gates.
+- Real sound closure uses audited real sound body and empty debug callee; unreachable switch inhibits inlining. Only four exact callers are claimed. Real input group uses audited real game_loop caller, no synthetic context. Task uses already-locked real func_8008AD04 context for compiler module alignment; invented PG helpers remain unaccepted. random_seed_init uses a code-free argument read to reorder webs; D0C0 simplifies its natural loop without a quirk.
+- Fixed context relocation range overlap with a shorter compiled context function: stop address mapping at next compiled function. Regression verifies correct following-callee address and preserves refusal for uncovered stand-ins.
+- Static targets: refreshed osPiRawReadWord through supported scoped regeneration; converted-slot index restores real relocation metadata. Three GU wrappers needed canonical float-register alias declarations in isolated target assembly. Existing round-trip gate passes all four, no scorer masks widened. Standard supersession retires stale target evidence.
+- Independently verified exact C2 eight and C3 seven sources plus osPiRawReadWord on Rocky D: stack-sensitive score zero and raw object words zero. Locked all sixteen with their exact flags. Converted nine additional static segments and explicitly synced sources/assembly/config/linker to builder.
+- Full rebuild of every ROM TU caught and resolved signed bzero_alt declaration conflict, preserving existing locked body. Corrected osDpSetNextBuffer prototype to target s32(void*, u64). All shared-header additions and passthrough conversions now pass full-ROM SHA-1 EXACT.
+- Gates: blob lock 512 entries, zero problems; group lock zero problems; full pytest exit 0 captured separately; full source-built image and ROM exact. Latest prior push de6f73cf passed CI (run 36886013870). No open cloud PRs.
+- Three workers continue next static, near-miss and real IPA packets. Farm harvesting remains paused for integration; active jobs preserved. Wiki host-key confirmation remains pending.
+
 ## 2026-10-01 follow-up integration
 
 - Game cartridge C: **504/1,216 functions, 57,996/647,072 bytes (8.96%)**. Static cartridge C: **34/230 functions, 2,456/61,440 bytes (4.00%)**. Session gains: seven game functions / 1,580 bytes, eleven static functions / 1,008 bytes.

@@ -39,6 +39,6 @@ u64 osGetTime(void);
 
 /* Misc functions */
 s32 osDpIsBusy(void);
-void osDpSetNextBuffer(void *dramAddr, u32 size);
+s32 osDpSetNextBuffer(void *dramAddr, u64 size);
 
 #endif /* _OS_H_ */
