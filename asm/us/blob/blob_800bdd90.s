@@ -2887,6 +2887,7 @@ camera_track_spline:
 .section .text.func_800C0828, "ax", @progbits
 .globl func_800C0828
 func_800C0828:
+    /* compiled from src/blob/func_800C0828.c */
     .word 0xC4800004
     .word 0xC484000C
     .word 0xC4860018

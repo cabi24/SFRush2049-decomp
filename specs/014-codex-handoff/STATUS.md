@@ -1,5 +1,15 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-01 tenth completed ordinary SDK and game milestone
+
+- Game cartridge C: **554/1,216 functions, 63,728/647,072 bytes (9.85%)**. Static cartridge C: **115/230 functions, 27,064/61,440 bytes (44.05%)**.
+- A23 nine and A24 three ordinary bodies add724 game bytes. Exact flags-prefixed sources independently canonical strict MATCH on coordinator D, image identical and source-built ROM SHA-1 EXACT. Real signed-byte strides, full-word consumed arguments, halfword stores, authentic pointer/count loops and alias-sensitive reloads retained. A553C uses physical-line scheduling with unchanged true stores; documented source lever, no dummy formal/context or pressure work.
+- C15 four canonical SDK functions add836 logical bytes: dll_remove64, osGetTime144, osViModeTableGet268, osViModeNtscLan1360. Independent D standalone/current-B18-header strict/raw0, ordinary pool score0 body locks,27 required tests before each normal promotion, and four individual full-ROM exact transactions. Original object tail alignment is unclaimed. Existing cc50 O1 and8440 O2 pins retained; new7fb0 conversion proved passthrough ROM baseline before C replacement.
+- SP-task IO_READ uses the genuine SDK PHYS_TO_K1 address only in lib8440's pre-slot local context, preserving shared IO_READ. Existing accepted osViModeNtscLpn1 body hash unchanged and all actual current TUs forced through the full-ROM baseline. Guarded B20 source/target field aliases remain unchanged and relocation-aware without fallback or score masking.
+- Across handoff:57 game functions /7,312 bytes and92 static functions /25,616 bytes accepted. Six registered switch-head extents remain separate from source credit. C16 genuine complete timer-storage model remains private, including full original .data pointer and allocated64-byte BSS; production O1 existing-TU ownership needs separate reviewed transaction. B22 padding proposal caught at root review: build-time full pipeline imports conflict with minimal builder package; standalone authority/helper follow-up is underway before production adoption. No provisional storage/padding coverage.
+- Gates: source-built full-ROM SHA-1 EXACT;554 blob and group locks zero problems;118 static/source locks intact (115 actual ROM promotions plus3 historical entries). Full pytest exits0 captured separately;621 passed/469 skipped. Sixteen forward coordinator status transitions persist without informational attention flags. Initial dirty tools/mips_to_c preserved.
+- Previous c78b1669 CI run36921228089 succeeded. No open cloud PRs. Farm stopped during integration and resumes after checkpoint push. Session permission regression briefly blocked SSH/Git; restored unsandboxed checks now all pass. Three workers continue real release/caller groups, remaining SDK code and ownership/padding lifecycle proposals. Wiki host-key confirmation remains independently pending.
+
 ## 2026-10-01 ninth completed VI storage and leaf milestone
 
 - Game cartridge C: **542/1,216 functions, 63,004/647,072 bytes (9.74%)**. Static cartridge C: **111/230 functions, 26,228/61,440 bytes (42.69%)**.

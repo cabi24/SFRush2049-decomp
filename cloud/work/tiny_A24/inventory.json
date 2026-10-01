@@ -1,0 +1,248 @@
+[
+  {
+    "name": "func_800F7564",
+    "decision": "real source compiled, NONMATCH retained unclaimed",
+    "score": {
+      "strict_diff": 19,
+      "size": 21,
+      "target_size": 19,
+      "extra": 2,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": [],
+      "source_sha256": "cdbb89df2c25a6dd826e75c6e5eb68a9be48ed86a21e43a6ca15a5e141ae89a7"
+    }
+  },
+  {
+    "name": "func_800FE73C",
+    "decision": "strict ordinary match claimed",
+    "score": {
+      "strict_diff": 0,
+      "size": 19,
+      "target_size": 19,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": [],
+      "source_sha256": "a69f045b02a91f07322b33779e7b5e4aa80c5b8ff3b3383bc57cb618682a2771",
+      "canonical_exit": 0
+    }
+  },
+  {
+    "name": "func_8008B424",
+    "decision": "real source compiled, NONMATCH retained unclaimed",
+    "score": {
+      "strict_diff": 14,
+      "size": 20,
+      "target_size": 20,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": [],
+      "source_sha256": "7b947e0e1a50676a1f723f4503c3fef39b64a543bd6505fb0c7989d312da7c4b"
+    }
+  },
+  {
+    "name": "func_800956BC",
+    "decision": "real source compiled, NONMATCH retained unclaimed",
+    "score": {
+      "strict_diff": 19,
+      "size": 20,
+      "target_size": 20,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": [],
+      "source_sha256": "12db696aafa5ee2ee17577af8430662f105b8e2403645134843724a7affb765b"
+    }
+  },
+  {
+    "name": "audio_effect_process",
+    "decision": "excluded ordinary route: actual reverb callee uses unsaved s0/s1; genuine IPA closure needed",
+    "score": null
+  },
+  {
+    "name": "func_800D3430",
+    "decision": "real source compiled, NONMATCH retained unclaimed",
+    "score": {
+      "strict_diff": 11,
+      "size": 23,
+      "target_size": 23,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": [],
+      "source_sha256": "e38b3ba7f0dd80ae88ef852898513c84b0ebb372be0051b6feee8057abfe800c"
+    }
+  },
+  {
+    "name": "synced_model_render",
+    "decision": "excluded ordinary route: actual reverb callee uses unsaved s0/s1; genuine IPA closure needed",
+    "score": null
+  },
+  {
+    "name": "func_80092BF4",
+    "decision": "deferred: duplicate narrowed-index multiplication and parameter homes",
+    "score": null
+  },
+  {
+    "name": "func_800958B8",
+    "decision": "real source compiled, NONMATCH retained unclaimed",
+    "score": {
+      "strict_diff": 21,
+      "size": 24,
+      "target_size": 25,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": [],
+      "source_sha256": "f379d27412db65cd71fa6902d58cce7644564f85ca631ef22620b287d8f920c6"
+    }
+  },
+  {
+    "name": "sync_init_conditional",
+    "decision": "real source compiled, NONMATCH retained unclaimed",
+    "score": {
+      "strict_diff": 10,
+      "size": 25,
+      "target_size": 25,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": [],
+      "source_sha256": "01f0c8607dd6fc4258d26ec253c162428f75a0274b2b618b12c60b5a1fe75409"
+    }
+  },
+  {
+    "name": "func_800B2CB4",
+    "decision": "strict ordinary match claimed",
+    "score": {
+      "strict_diff": 0,
+      "size": 27,
+      "target_size": 27,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": [],
+      "source_sha256": "c6ec386448fce22bf6397c5e2ef74bf751416da811b2d67289fb13e66adb8815",
+      "canonical_exit": 0
+    }
+  },
+  {
+    "name": "func_800BDD90",
+    "decision": "real source compiled, NONMATCH retained unclaimed",
+    "score": {
+      "strict_diff": 15,
+      "size": 28,
+      "target_size": 27,
+      "extra": 1,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": [],
+      "source_sha256": "373eb203cc1ce42c17dbc315a8d4e3f362ca7f289d57c8f0515514cd533ac201"
+    }
+  },
+  {
+    "name": "MP_TargetSpeed",
+    "decision": "excluded ordinary route: actual reverb callee uses unsaved s0/s1; genuine IPA closure needed",
+    "score": null
+  },
+  {
+    "name": "assign_default_paths",
+    "decision": "excluded ordinary route: actual reverb callee uses unsaved s0/s1; genuine IPA closure needed",
+    "score": null
+  },
+  {
+    "name": "state_update_global",
+    "decision": "real source compiled, NONMATCH retained unclaimed",
+    "score": {
+      "strict_diff": 7,
+      "size": 28,
+      "target_size": 28,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": [],
+      "source_sha256": "bdae690c3ed27a344e0a8518970255fdfcc906fec0910aedcfc828cf64a9ccad"
+    }
+  },
+  {
+    "name": "stat_race_end",
+    "decision": "excluded ordinary route: actual reverb callee uses unsaved s0/s1; genuine IPA closure needed",
+    "score": null
+  },
+  {
+    "name": "entity_state_check",
+    "decision": "deferred: unnamed external800201D0 callee contract unresolved",
+    "score": null
+  },
+  {
+    "name": "func_800ADCE0",
+    "decision": "real source compiled, NONMATCH retained unclaimed",
+    "score": {
+      "strict_diff": 29,
+      "size": 31,
+      "target_size": 30,
+      "extra": 1,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": [],
+      "source_sha256": "306a80d511f3b3c852681be0569b17e70f5fcfd2ba62885920831e56a37ad602"
+    }
+  },
+  {
+    "name": "func_800BE744",
+    "decision": "real source compiled, NONMATCH retained unclaimed",
+    "score": {
+      "strict_diff": 29,
+      "size": 31,
+      "target_size": 30,
+      "extra": 1,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": [],
+      "source_sha256": "874930c7976d1a6439f6abf366724f840b223cfe78f8da909b3ee78b0708a564"
+    }
+  },
+  {
+    "name": "func_800AF844",
+    "decision": "strict ordinary match claimed",
+    "score": {
+      "strict_diff": 0,
+      "size": 31,
+      "target_size": 31,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": [],
+      "source_sha256": "2b7d654bb140972c964155aec5c3cb60de6c0207b7b91d2152bd9908c442733c",
+      "canonical_exit": 0
+    }
+  }
+]

@@ -5936,6 +5936,7 @@ stat_race_update:
 .section .text.func_800FE73C, "ax", @progbits
 .globl func_800FE73C
 func_800FE73C:
+    /* compiled from src/blob/func_800FE73C.c */
     .word 0x3C038014
     .word 0x8C6360F4
     .word 0x00001025
