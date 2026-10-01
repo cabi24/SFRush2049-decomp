@@ -1,4 +1,36 @@
 {
+  "cloud/work/static_C15/dll_remove.c:dll_remove": {
+    "body_sha256": "a1cad86d2a4504ad6c0db40f658baac3a91a3158aaa351daa5c43ec08f1fe4df",
+    "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "target_id": "dll_remove",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C15/osGetTime.c:osGetTime": {
+    "body_sha256": "6e62332c80015edd06e649ecbd648b9d7d1e6bf19e78ba7193e1818ae34757a0",
+    "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "target_id": "osGetTime",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C15/osViModeNtscLan1.c:osViModeNtscLan1": {
+    "body_sha256": "d243d4bf0b0623d0fee514140655f7ea5a4907d7f5496b527749f0bdb201a078",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osViModeNtscLan1",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C15/osViModeTableGet.c:osViModeTableGet": {
+    "body_sha256": "8ed9b545c54436bfcd6f97473b5125520468f06010744474caef040686bec5d3",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osViModeTableGet",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
   "src/libultra/os_ai.c:__osAiDeviceBusy": {
     "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",

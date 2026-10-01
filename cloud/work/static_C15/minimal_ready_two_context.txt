@@ -1,0 +1,24 @@
+dll_remove: existing include/m2c_types.h prototype matches SDK body; no context changes.
+
+For osViModeNtscLan1 (SDK osSpTaskLoad), existing OSTask is the correct64-byte task structure:
+extern OSTask *osViModeTableGet(OSTask *);
+extern void osViModeNtscLan1(OSTask *);
+extern void __osSpSetStatus(u32);
+extern s32 __osSpSetPc(u32);
+extern s32 __osSpDma(s32, u32, void *, u32);
+/* __osSpDeviceBusy, osWritebackDCache, OS_TASK_YIELDED already declared/defined. */
+#define OS_TASK_LOADABLE 4
+#define OS_YIELD_DATA_SIZE 0xC00 /* SDK F3DEX_GBI/F3DEX_GBI_2 configuration */
+#define IO_READ(x) (*(volatile u32 *)((u32)(x) | 0xA0000000)) /* SDK PHYS_TO_K1 */
+#define SP_CLR_YIELD 0x200
+#define SP_CLR_YIELDED 0x800
+#define SP_CLR_TASKDONE 0x2000
+#define SP_SET_INTR_BREAK 0x100
+#define SP_IMEM_START 0x04001000
+
+These new function signatures agree with their target/SDK meanings. Only caller of osViModeTableGet in promoted source will be this packet's new osViModeNtscLan1. No accepted caller or definition of either historical VI name is changed. Existing C5 __osSpDma is s32(s32,u32,void*,u32), and existing __osSpSetPc is s32(u32). Field offsets/layout and canonical macros are established by local ultralib include/PR/{sptask.h,rcp.h} and src/io/sptask.c. No new allocation/storage definitions are introduced.
+
+Placement correction: rom_tu.h currently defines IO_READ(addr) as a literal address dereference (line173). Preserve that shared behavior. The SP task SDK macro must be a TU-local override in lib_8440.c, before its new slot:
+#undef IO_READ
+#define IO_READ(x) (*(volatile u32 *)((u32)(x) | 0xA0000000))
+Existing accepted osViModeNtscLpn1 (SDK osSpTaskStartGo) in that TU does not use IO_READ. Alternatively rename only this canonical SDK macro and its one body occurrence, with independent reproof/relock. Do not silently replace the shared IO_READ definition for other TUs.

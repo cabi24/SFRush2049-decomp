@@ -1,0 +1,84 @@
+[
+  {
+    "function": "dll_remove",
+    "vaddr": "0x8000c050",
+    "slot_bytes": 64,
+    "slot_sha256": "6950f1d67e7328147547bdd321085cf5f0e2327d377a5d6ae2dfca3d5a3c6708",
+    "linked_prefix_word_diff": 0,
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "candidate_words": 16,
+    "slot_words": 16,
+    "extra_emitted_words": [],
+    "missing_slot_words": []
+  },
+  {
+    "function": "dll_init",
+    "vaddr": "0x8000c090",
+    "slot_bytes": 140,
+    "slot_sha256": "8f2b9610d426b2e0d3e58e4b7bf37b12b68de150ae9986a5da701131053e3676",
+    "linked_prefix_word_diff": 35,
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "candidate_words": 36,
+    "slot_words": 35,
+    "extra_emitted_words": [
+      2936012828
+    ],
+    "missing_slot_words": []
+  },
+  {
+    "function": "osGetTime",
+    "vaddr": "0x800073b0",
+    "slot_bytes": 144,
+    "slot_sha256": "cad71470f4454f634b8cfd17336b1c6b877359edbeff9d6b875e1ff746f1fbc7",
+    "linked_prefix_word_diff": 0,
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "candidate_words": 36,
+    "slot_words": 36,
+    "extra_emitted_words": [],
+    "missing_slot_words": []
+  },
+  {
+    "function": "osViModeTableGet",
+    "vaddr": "0x80007840",
+    "slot_bytes": 268,
+    "slot_sha256": "bcd505a699c9ba69cf3cac440f56316cf9f5830056ac2b1444a3fbfcb5933d89",
+    "linked_prefix_word_diff": 0,
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "candidate_words": 68,
+    "slot_words": 67,
+    "extra_emitted_words": [
+      0
+    ],
+    "missing_slot_words": []
+  },
+  {
+    "function": "osViModeNtscLan1",
+    "vaddr": "0x8000794c",
+    "slot_bytes": 360,
+    "slot_sha256": "d544f4c375ab173950bdfc5d4b3cb5af5eb256a30650ef890736385425f60451",
+    "linked_prefix_word_diff": 0,
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "candidate_words": 92,
+    "slot_words": 90,
+    "extra_emitted_words": [
+      0,
+      0
+    ],
+    "missing_slot_words": []
+  }
+]

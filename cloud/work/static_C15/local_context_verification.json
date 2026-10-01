@@ -1,0 +1,24 @@
+{
+  "whole_lib_8440_text_words": 176,
+  "raw_word_diff": 0,
+  "baseline_object_sha256": "c86044f68b554d4e65e30f8ecd3717e5cf91fc0ff79b631b9d0ed802f3641361",
+  "prepared_object_sha256": "7bd9aa7cd0734c01a9bf467f0ad38049c963121cdda6ec369e96aaa2840a81a5",
+  "existing_neighbor": "osViModeNtscLpn1 (actual SDK osSpTaskStartGo)",
+  "shared_header_unchanged_sha256": "a7a1d4a1d9220b912b7ad0ec62bcd796e7abce207b9aa7f249339f18064de662",
+  "scope": "Only private lib8440 C preamble changed; no shared-header or other-TU edits.",
+  "osSpTaskYielded_control": {
+    "actual_tu": "src/rom/lib_8330.c",
+    "words": 40,
+    "raw_word_diff": 0,
+    "baseline_object_sha256": "4af2304999c78883be637e4bc50210704b783d09a7d87689faba71659b4182d1",
+    "prepared_object_sha256": "6d46e5afe3e8226f4965e3060eebabafcb3d03b2980dfeb98fb2495efbae8555",
+    "scope": "Hypothetical private local macro preamble applied to this second TU only for invariance control; not proposed for integration."
+  },
+  "private_full_rom_gate": {
+    "exit": 0,
+    "sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+    "log": "C15-local-task-context-ROM.log"
+  },
+  "prepared_source_sha256": "77d709a1c12a5b85971b19685900da243cda2c83972e97a6aef9543b843285e0",
+  "local_context_sha256": "d5b6afd58d8d0dc0c967252dd41a1e3205967a1e70ec98bc54f097ae31e79e35"
+}

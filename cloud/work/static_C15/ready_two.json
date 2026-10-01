@@ -1,0 +1,34 @@
+[
+  {
+    "function": "dll_remove",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "status": "ready",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "source_sha256": "fe36b02c369f3275cba1bd71708c6f1561637e4578ccbab916a1b3950a26f513",
+    "object_sha256": "cdf9cb005980f8d8a7194f65773d6f59ce0b09cdf35e293f117ac8d0627c1cff",
+    "target_sha256": "a3803e5d4aaf06be6df289dc64c4a470fd86580eeb63e3ba80f0fc4384f235c9",
+    "current_header": {
+      "strict_score": 0,
+      "raw_word_diff": 0,
+      "source_sha256": "79d5212bff3196d2c6d6d131b5022385fe790f7db061487fbd93837482bf7a04",
+      "object_sha256": "b10083d4ecc0336b7269cf046ad1adc32bacc298603a0e7fb711f12bbc4eba9a"
+    }
+  },
+  {
+    "function": "osViModeNtscLan1",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "status": "ready",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "source_sha256": "29fda2a87651a53e691d58a8e606ea9164b1ac2d439a51413cfd2f166e176b55",
+    "object_sha256": "9ff82565476327ba550c2ee5929019f494ddd443076d593368baf89acbee041d",
+    "target_sha256": "a5f9623e7deb5e68e883fd2dfe06ce167a4c148c168102a8f10e2808a26b143a",
+    "current_header": {
+      "strict_score": 0,
+      "raw_word_diff": 0,
+      "source_sha256": "f179b8d87aa6b8fcf078a01d82d269aded48dffd4f4b36519f050b38a2194179",
+      "object_sha256": "9f5a2c586ffe20696e023e62ed1cd491d4209a5a902a5b59b95abb04a4f4f9dd"
+    }
+  }
+]
