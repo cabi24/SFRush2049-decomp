@@ -1,0 +1,29 @@
+[
+  {
+    "function": "dll_insert",
+    "exit": 0,
+    "stderr": "",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "target_words": 100,
+    "candidate_words": 100
+  },
+  {
+    "function": "dll_update",
+    "exit": 0,
+    "stderr": "",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "target_words": 96,
+    "candidate_words": 96
+  },
+  {
+    "function": "osPfsChecker_full",
+    "exit": 0,
+    "stderr": "",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "target_words": 48,
+    "candidate_words": 48
+  }
+]

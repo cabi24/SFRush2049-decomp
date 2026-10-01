@@ -222,7 +222,7 @@ typedef struct __OSTimerNode_s {
     OSMesg msg;                       /* 0x1C */
 } __OSTimerNode;
 
-extern __OSTimerNode *__osTimerList;
+extern OSTimer *__osTimerList; /* canonical timer layout; overlay above remains available */
 
 /* --- idle_thread_entry calls this with (NULL, 0); its own body defaults
  * a NULL thread arg to __osRunningThread and compares the priority arg

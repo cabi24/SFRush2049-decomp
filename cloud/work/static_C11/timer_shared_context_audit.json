@@ -1,0 +1,27 @@
+{
+  "accepted_body_uses": [
+    {
+      "lock_key": "src/rom/lib_efd0.c:osSetTimer",
+      "target_id": "osSetTimer",
+      "normalized_body_sha256": "7ebbfdde607de07818a4bcec8dee278b3ff6af8187e45d4f1a8a11383b87f491",
+      "flagset": "-g0 -O1 -mips2 -G 0 -non_shared"
+    }
+  ],
+  "proposed_change": "Only extern __OSTimerNode *__osTimerList -> extern OSTimer *__osTimerList in include/m2c_types.h. Keep both physical-layout typedefs unchanged.",
+  "current_header": "include/m2c_types.h:225",
+  "physical_layout": {
+    "size": 32,
+    "next": 0,
+    "prev": 4,
+    "interval_reload_hi_lo": [
+      8,
+      12
+    ],
+    "value_delta_hi_lo": [
+      16,
+      20
+    ],
+    "mq": 24,
+    "msg": 28
+  }
+}

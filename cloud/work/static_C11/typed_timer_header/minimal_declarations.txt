@@ -1,0 +1,4 @@
+/* Typed-global reconciliation: ONLY existing include/m2c_types.h global declaration. Keep both typedefs. */
+extern OSTimer *__osTimerList;
+/* Timer counter declaration needed in rom_tu.h; now present in current captured root header. */
+extern u32 __osTimerCounter;
