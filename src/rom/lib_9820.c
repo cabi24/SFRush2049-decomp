@@ -5,4 +5,18 @@
 #include "rom_tu.h"
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_9820/guPerspectiveF.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_9820/guPerspective.s")
+/* PROMOTED 2026-10-01 — guPerspective
+ * Source:   cloud/work/static_C3/guPerspective.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C3/guPerspective.c:guPerspective (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void guPerspective(Mtx *m, u16 *perspNorm, float fovy, float aspect, float near, float far, float scale)
+{
+	Matrix	mf;
+
+	guPerspectiveF(mf, perspNorm, fovy, aspect, near, far, scale);
+
+	guMtxF2L(mf, m);
+}
+
