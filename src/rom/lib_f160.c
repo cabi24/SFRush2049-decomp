@@ -40,7 +40,40 @@ void __osSiRelAccess(void) {
     osJamMesg(&__osSiMesg, NULL, OS_MESG_NOBLOCK);
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_f160/osContStartReadData.s")
+/* PROMOTED 2026-10-01 — osContStartReadData
+ * Source:   cloud/work/static_C8/osContStartReadData.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C8/osContStartReadData.c:osContStartReadData (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+s32 osContStartReadData(OSMesgQueue* queue, int channel) {
+    s32 ret = 0;
+    OSMesg dummy;
+    OSContStatus data;
+
+    __osSiChannelMask = 250;
+
+    __osContBuildRequest(channel, CONT_CMD_REQUEST_STATUS);
+
+    ret = __osSiRawStartDma(OS_WRITE, &(*(OSPifRam *)__osPfsBuffer));
+    osRecvMesg(queue, &dummy, OS_MESG_BLOCK);
+
+    ret = __osSiRawStartDma(OS_READ, &(*(OSPifRam *)__osPfsBuffer));
+    osRecvMesg(queue, &dummy, OS_MESG_BLOCK);
+
+    __osContParseResponse(channel, &data);
+
+    if (((data.status & CONT_CARD_ON) != 0) && ((data.status & CONT_CARD_PULL) != 0)) {
+        return PFS_ERR_NEW_PACK;
+    } else if ((data.errno != 0) || ((data.status & CONT_CARD_ON) == 0)) {
+        return PFS_ERR_NOPACK;
+    } else if ((data.status & CONT_ADDR_CRC_ER) != 0) {
+        return PFS_ERR_CONTRFAIL;
+    }
+
+    return ret;
+}
+
 /* PROMOTED 2026-10-01 — __osContBuildRequest
  * Source:   cloud/work/static_C7/__osContBuildRequest.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
