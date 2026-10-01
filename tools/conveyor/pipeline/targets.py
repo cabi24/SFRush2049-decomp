@@ -586,6 +586,87 @@ def _data_field_aliases(lines):
                    r"\1__osSiDmaBuffer+0x3c\2", line) for line in lines]
 
 
+def _sdk_field_offsets(kind):
+    """Conservative o32 field proof from matching live and canonical SDK types.
+
+    No header parsing guesses: accept only the exact documented unsigned
+    scalar types and complete ordered task declaration. Missing/drifted types
+    leave the historical relocation names unchanged.
+    """
+    def clean(path):
+        text = (REPO / path).read_text()
+        return re.sub(r"/\*.*?\*/|//[^\n]*", " ", text, flags=re.S)
+    try:
+        live = clean("include/types.h")
+        sdk = clean("reference/repos/ultralib/include/PR/ultratypes.h")
+        if not all(re.search(r"typedef\s+unsigned\s+long\s+long\s+u64\s*;", text)
+                   for text in (live, sdk)):
+            return None
+        if kind == "time":
+            if not all(re.search(r"typedef\s+u64\s+OSTime\s*;", clean(path)) for path in
+                       ("include/PR/os_time.h", "reference/repos/ultralib/include/PR/os_time.h")):
+                return None
+            # Big-endian N64 u64: the second u32 word begins at byte four.
+            return {"low_word": 4}
+        if kind != "task":
+            return None
+        if not all(re.search(r"typedef\s+unsigned\s+(?:int|long)\s+u32\s*;", text)
+                   for text in (live, sdk)):
+            return None
+        fields = [("u32", "type"), ("u32", "flags"),
+                  ("u64*", "ucode_boot"), ("u32", "ucode_boot_size"),
+                  ("u64*", "ucode"), ("u32", "ucode_size"),
+                  ("u64*", "ucode_data"), ("u32", "ucode_data_size"),
+                  ("u64*", "dram_stack"), ("u32", "dram_stack_size"),
+                  ("u64*", "output_buff"), ("u64*", "output_buff_size"),
+                  ("u64*", "data_ptr"), ("u32", "data_size"),
+                  ("u64*", "yield_data_ptr"), ("u32", "yield_data_size")]
+        for text in (live, clean("reference/repos/ultralib/include/PR/sptask.h")):
+            match = re.search(r"typedef\s+struct\s*\{([^{}]*)\}\s*OSTask_t\s*;", text, re.S)
+            if not match:
+                return None
+            declarations = [re.sub(r"\s+", "", part) for part in match.group(1).split(";") if part.strip()]
+            if declarations != [typ + name for typ, name in fields]:
+                return None
+        # Both live struct and SDK aligned union expose t at byte zero.
+        live_wrapper = re.search(r"typedef\s+struct\s*\{\s*OSTask_t\s+t\s*;\s*\}\s*OSTask\s*;", live)
+        sdk_task = clean("reference/repos/ultralib/include/PR/sptask.h")
+        sdk_wrapper = re.search(r"typedef\s+union\s*\{\s*OSTask_t\s+t\s*;\s*long\s+long\s+int\s+force_structure_alignment\s*;\s*\}\s*OSTask\s*;", sdk_task)
+        if not live_wrapper or not sdk_wrapper:
+            return None
+        # Every verified field is an o32 u32 or pointer, four bytes each.
+        return {name: 4 * index for index, (_, name) in enumerate(fields)}
+    except OSError:
+        return None
+
+
+def _typed_data_field_aliases(lines, target_id):
+    """Equivalent SDK field relocations, guarded by types and all addresses."""
+    relationships = []
+    if target_id == "osGetTime":
+        offsets = _sdk_field_offsets("time")
+        if offsets is not None:
+            relationships = [("gViTimeAccumLo", "gViTimeAccumHi", offsets["low_word"])]
+    elif target_id == "osViModeTableGet":
+        offsets = _sdk_field_offsets("task")
+        if offsets is not None:
+            fields = ("ucode", "ucode_data", "dram_stack", "output_buff",
+                      "output_buff_size", "data_ptr", "yield_data_ptr")
+            relationships = [("gViModePtr" + str(index), "gViModeTempBuffer", offsets[field])
+                             for index, field in enumerate(fields)]
+    # Validate the complete relationship family before replacing any operand.
+    if not relationships or any(_resolve_symbol(base) is None or
+                                _resolve_symbol(alias) != _resolve_symbol(base) + offset
+                                for alias, base, offset in relationships):
+        return list(lines)
+    result = list(lines)
+    for alias, base, offset in relationships:
+        result = [re.sub(r"(%(?:hi|lo)\()" + re.escape(alias) + r"(\))",
+                         lambda match: match.group(1) + base + "+" + hex(offset) + match.group(2), line)
+                  for line in result]
+    return result
+
+
 def assemble_region(region, target_id, out_o):
     """Assemble a region into a relocatable object named `target_id`. Raises
     AssembleError (first stderr line preserved) on assembler failure."""
@@ -604,7 +685,7 @@ def assemble_region(region, target_id, out_o):
     aliases = [line for line in prelude.read_text().splitlines()
                if re.match(r"^\s*\.set\s+\$f\w+,\s*\$f\d+\s*$", line)]
     asm[0:0] = aliases
-    asm += _data_field_aliases(region.lines)
+    asm += _typed_data_field_aliases(_data_field_aliases(region.lines), target_id)
     with tempfile.NamedTemporaryFile("w", suffix=".s", delete=False) as f:
         f.write("\n".join(asm) + "\n")
         src = f.name

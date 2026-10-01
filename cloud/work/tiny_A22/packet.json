@@ -1,0 +1,19 @@
+{
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "targets": [
+    "func_800B669C",
+    "func_8009D444",
+    "func_800F75EC",
+    "func_800F75D0",
+    "func_800F7604",
+    "func_800A79B8"
+  ],
+  "claims": [
+    "func_800B669C",
+    "func_8009D444",
+    "func_800F75EC",
+    "func_800F75D0",
+    "func_800F7604",
+    "func_800A79B8"
+  ]
+}

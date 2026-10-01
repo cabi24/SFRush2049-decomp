@@ -1,0 +1,32 @@
+{
+  "func_800B669C": {
+    "source_sha256": "df7e2de89fb52af5dfce4fdf24eff97ecf0e0abfeabed60e02469470a1281cfe",
+    "canonical_exit": 0,
+    "verdict": "func_800B669C:\n  MATCH\n"
+  },
+  "func_8009D444": {
+    "source_sha256": "21b3020e5e60cc597b716c7dd12efc6b13427f888c7446838fdb3039cd5e3dbc",
+    "canonical_exit": 0,
+    "verdict": "func_8009D444:\n  MATCH\n"
+  },
+  "func_800F75EC": {
+    "source_sha256": "5183c2c47dde197a844c7b71c3f282bb464a27066423a349ddc3b04113d2c1aa",
+    "canonical_exit": 0,
+    "verdict": "func_800F75EC:\n  MATCH\n"
+  },
+  "func_800F75D0": {
+    "source_sha256": "a11c25ba78146948947805517344bbdeed925070d25a11878ea0fa2c07d01b8e",
+    "canonical_exit": 0,
+    "verdict": "func_800F75D0:\n  MATCH\n"
+  },
+  "func_800F7604": {
+    "source_sha256": "732bd8d53deff6a0be82cb08c28960bc10b0f04dbf95e5d6a79f6c20032a537e",
+    "canonical_exit": 0,
+    "verdict": "func_800F7604:\n  MATCH\n"
+  },
+  "func_800A79B8": {
+    "source_sha256": "83d483969eb75ec9742311be58b83d520ef6957be37662b99e526a5d0ff95ccf",
+    "canonical_exit": 0,
+    "verdict": "func_800A79B8:\n  MATCH\n"
+  }
+}

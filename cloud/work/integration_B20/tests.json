@@ -1,0 +1,7 @@
+{
+  "exit_code": 0,
+  "passed": 24,
+  "skipped": 0,
+  "protocol": "Private overlay with actual repository path constants; complete existing target-assembly suite and new guards",
+  "cases": "SDK type/order/wrapper guard, missing/drifted all-address family, unrelated operands unchanged, complete unmasked link equality for time/task field families"
+}

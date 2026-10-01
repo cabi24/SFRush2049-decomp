@@ -1,0 +1,56 @@
+[
+  {
+    "name": "result_early",
+    "err": null,
+    "members": {
+      "camera_update_c": {
+        "strict_diff": 6,
+        "size": 9,
+        "extra": 0,
+        "err": null
+      },
+      "select_screen_update": {
+        "strict_diff": 7,
+        "size": 8,
+        "extra": 0,
+        "err": null
+      }
+    }
+  },
+  {
+    "name": "single_return",
+    "err": null,
+    "members": {
+      "camera_update_c": {
+        "strict_diff": 6,
+        "size": 9,
+        "extra": 0,
+        "err": null
+      },
+      "select_screen_update": {
+        "strict_diff": 7,
+        "size": 8,
+        "extra": 0,
+        "err": null
+      }
+    }
+  },
+  {
+    "name": "separate_polys",
+    "err": null,
+    "members": {
+      "camera_update_c": {
+        "strict_diff": 6,
+        "size": 9,
+        "extra": 0,
+        "err": null
+      },
+      "select_screen_update": {
+        "strict_diff": 7,
+        "size": 8,
+        "extra": 0,
+        "err": null
+      }
+    }
+  }
+]
