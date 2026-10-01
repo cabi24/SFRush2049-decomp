@@ -1,0 +1,14 @@
+{
+  "function": "osDpWait",
+  "logical_body_bytes": 32,
+  "padding_bytes": 96,
+  "function_offset": 128,
+  "extent_bytes": 256,
+  "retail_extent_sha256": "db5545f782938a0c57331625e5d11d0dc7c06d385d9e7013604a52b12c4771fa",
+  "padding_sha256": "2ea9ab9198d1638007400cd2c3bef1cc745b864b76011a0e1bc52180ac6452d4",
+  "endpoint_vram": 2147515296,
+  "logical_body_sha256": "58f7b047071a15bbfadbbbd7c8c44e4ac45cf8a3140f1d3ba82da21bbf902c59",
+  "original_assembly_sha256": "4046193b6369d644a1d90ed2a4d93d3e3b683b1d8d802e8fa753fbf6168699ed",
+  "authority": "Existing asm/us/nonmatchings/rom/lib_8700/osDpWait.s endlabel before authentic zero tail, frozen B21/C14 proofs; no duplicated instruction stream",
+  "verification_reference": "cloud/work/static_C14/final_verification.json"
+}

@@ -96,7 +96,19 @@ SECTIONS
         build/us/src/rom/lib_83d0.o(.text);
         build/us/asm/us/8410.o(.text);
         build/us/src/rom/lib_8440.o(.text);
+        /* ROM_TEXT_BOUNDARY_BEGIN build/us/src/rom/lib_8700.o(.text) */
+        rom_text_lib_8700_START = .;
         build/us/src/rom/lib_8700.o(.text);
+        rom_text_lib_8700_INPUT_END = .;
+        ASSERT(ABSOLUTE(rom_text_lib_8700_START) == 0x80007b00, "original text owner moved");
+        ASSERT(rom_text_lib_8700_INPUT_END == rom_text_lib_8700_START + 0xa0 || rom_text_lib_8700_INPUT_END == rom_text_lib_8700_START + 0x100, "unproven text owner extent");
+        ASSERT(ABSOLUTE(osDpSetNextBuffer) == 0x80007b00, "original text alias moved");
+        ASSERT(ABSOLUTE(osDpWait) == 0x80007b80, "original text alias moved");
+        ASSERT(ABSOLUTE(strchr) == 0x80007c00, "original text alias moved");
+        FILL(0x00000000);
+        . = rom_text_lib_8700_START + 0x100;
+        rom_text_lib_8700_END = .;
+        /* ROM_TEXT_BOUNDARY_END build/us/src/rom/lib_8700.o(.text) */
         build/us/src/rom/lib_8800.o(.text);
         build/us/asm/us/88A0.o(.text);
         build/us/src/rom/lib_8920.o(.text);

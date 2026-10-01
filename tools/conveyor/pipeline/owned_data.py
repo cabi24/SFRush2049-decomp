@@ -210,7 +210,8 @@ def rewrite_linker(text, repo=REPO):
             lines += ['_binary_' + name + '_end = ABSOLUTE(.);', '_binary_' + name + '_size = ABSOLUTE(_binary_' + name + '_end - _binary_' + name + '_start);']
         lines += ['/* ROM_OWNED_DATA_END ' + marker + ' */']
         text = text.replace(original, ('\n' + indent).join(lines))
-    return text
+    from . import owned_text
+    return owned_text.rewrite_linker(text, repo)
 
 
 def companion_block(row):
@@ -248,6 +249,8 @@ def promotion_paths(repo, tu):
         from . import owned_storage
         paths.update(str(Path(p).relative_to(repo)) if Path(p).is_absolute() else _relative(p)
                      for p in owned_storage.package_paths(repo, tu))
+    from . import owned_text
+    paths.update(str(p.relative_to(repo)) for p in owned_text.package_paths(repo, tu))
     return [Path(repo) / p for p in sorted(paths)]
 
 

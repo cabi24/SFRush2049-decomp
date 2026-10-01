@@ -86,5 +86,41 @@
         "cloud/work/integration_B18/coordinator_D_startup.json"
       ]
     }
+  ],
+  "text_boundaries": [
+    {
+      "owner": "lib_8700",
+      "tu": "src/rom/lib_8700.c",
+      "function": "osDpWait",
+      "rom_start": "0x8700",
+      "vram_start": "0x80007b00",
+      "next_rom_start": "0x8800",
+      "extent_bytes": 256,
+      "function_offset": 128,
+      "logical_body_bytes": 32,
+      "padding_bytes": 96,
+      "retail_extent_sha256": "db5545f782938a0c57331625e5d11d0dc7c06d385d9e7013604a52b12c4771fa",
+      "padding_sha256": "2ea9ab9198d1638007400cd2c3bef1cc745b864b76011a0e1bc52180ac6452d4",
+      "asm_authority": "cloud/work/integration_B22_followup/endpoint_proof.json",
+      "asm_authority_sha256": "a9a201d24aad873390bf04ca854e58feaa5c06cfdd6208d47163a88b8e14a28f",
+      "source": "cloud/work/static_C14/osDpWait.c",
+      "source_sha256": "36ca248a016bb2dad5565f7847503faa2120a9143152115ffd1d2199b7de9068",
+      "body_sha256": "ef6caac183c7f6d610dd5f4c1b71912c716cf3bf7224d7ebd485d0ebe1102881",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "aliases": [
+        {
+          "symbol": "osDpSetNextBuffer",
+          "offset": 0
+        },
+        {
+          "symbol": "osDpWait",
+          "offset": 128
+        },
+        {
+          "symbol": "strchr",
+          "offset": 256
+        }
+      ]
+    }
   ]
 }

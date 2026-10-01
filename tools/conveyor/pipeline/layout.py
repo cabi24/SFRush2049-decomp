@@ -348,28 +348,43 @@ def coverage(mapping=None):
     """Linked-C coverage: promoted functions/bytes over the static code range,
     derived from live TUs cross-checked against the map. Returns a dict."""
     mapping = mapping or derive()
+    from . import owned_text
+    boundaries = owned_text.accounting(REPO)
     total_funcs = total_bytes = 0
-    promoted_funcs = promoted_bytes = 0
+    promoted_funcs = promoted_bytes = promoted_slot_bytes = preserved_padding_bytes = 0
     per_segment = []
     for s in mapping["segments"]:
         if s["refusal"] or not s["functions"]:
             continue
-        pf = pb = 0
+        pf = pb = slot_bytes = padding_bytes = 0
         for f in s["functions"]:
             total_funcs += 1
             total_bytes += f["size"]
             if f.get("state") == "promoted":
                 pf += 1
-                pb += f["size"]
+                slot_bytes += f["size"]
+                boundary = boundaries.get(("src/" + s["rom_tu"] + ".c", f["name"]))
+                if boundary:
+                    if f["size"] != boundary["logical_body_bytes"] + boundary["padding_bytes"]:
+                        raise owned_text.TextBoundaryError("coverage slot disagrees with proven logical body and padding")
+                    pb += boundary["logical_body_bytes"]
+                    padding_bytes += boundary["padding_bytes"]
+                else:
+                    pb += f["size"]
         promoted_funcs += pf
         promoted_bytes += pb
+        promoted_slot_bytes += slot_bytes
+        preserved_padding_bytes += padding_bytes
         if s["converted"]:
             per_segment.append({"segment": s["yaml_name"], "rom_tu": s["rom_tu"],
                                 "promoted": pf, "functions": len(s["functions"]),
-                                "bytes": pb})
+                                "bytes": pb, "slot_bytes": slot_bytes,
+                                "preserved_padding_bytes": padding_bytes})
     return {
         "promoted_functions": promoted_funcs, "promoted_bytes": promoted_bytes,
         "static_functions": total_funcs, "static_bytes": total_bytes,
+        "promoted_slot_bytes": promoted_slot_bytes,
+        "preserved_padding_bytes": preserved_padding_bytes,
         "segments": per_segment,
     }
 
