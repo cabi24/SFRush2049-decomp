@@ -5,4 +5,17 @@
 #include "rom_tu.h"
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_c990/osPfsChecker_full.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_c990/osPfsReAllocate.s")
+/* PROMOTED 2026-10-01 — osPfsReAllocate
+ * Source:   cloud/work/static_C6/osPfsReAllocate.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C6/osPfsReAllocate.c:osPfsReAllocate (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+OSId osPfsReAllocate(OSThread* thread) {
+    if (thread == NULL) {
+        thread = __osRunningThread;
+    }
+
+    return thread->id;
+}
+

@@ -39,14 +39,6 @@
     "verified": "score0",
     "verified_at": "2026-10-01"
   },
-  "cloud/work/static_C6/osPfsReAllocate.c:osPfsReAllocate": {
-    "body_sha256": "bc7dd30bd4e3cc59f08b7c806e66e98446cc8ca018cb942b81a68fcd95799d7f",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "osPfsReAllocate",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-01"
-  },
   "src/libultra/os_ai.c:__osAiDeviceBusy": {
     "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -357,6 +349,14 @@
     "body_sha256": "7c52a1cf8ece2e977d1484d2408c74f4c4652d29340dc38f05dd6af1bdda2e94",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "osPfsFreeBlocks",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
+  },
+  "src/rom/lib_c990.c:osPfsReAllocate": {
+    "body_sha256": "bc7dd30bd4e3cc59f08b7c806e66e98446cc8ca018cb942b81a68fcd95799d7f",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osPfsReAllocate",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
