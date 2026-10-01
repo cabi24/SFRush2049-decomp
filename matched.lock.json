@@ -63,14 +63,6 @@
     "verified": "score0",
     "verified_at": "2026-10-01"
   },
-  "cloud/work/static_C/viDeadlinePassed.c:viDeadlinePassed": {
-    "body_sha256": "6736d4fef06bb76a8df5d9a88f3646c8ea73e00db04965c5c478ecff505ec76d",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "viDeadlinePassed",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-01"
-  },
   "src/libultra/os_ai.c:__osAiDeviceBusy": {
     "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -78,6 +70,14 @@
     "toolkit_sha": "b613fc5dc3d01fa7c0c41a542b7617d76e8e41ec9d7611204dbb6f2a5ab6c045",
     "verified": "score0",
     "verified_at": "2026-07-08"
+  },
+  "src/rom/lib_1050.c:viDeadlinePassed": {
+    "body_sha256": "6736d4fef06bb76a8df5d9a88f3646c8ea73e00db04965c5c478ecff505ec76d",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "viDeadlinePassed",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
   },
   "src/rom/lib_1050.c:viStub": {
     "body_sha256": "3bb1444602b811a27b01288e45830fafc6386a86e9424f19a9e44d84409eeab1",
