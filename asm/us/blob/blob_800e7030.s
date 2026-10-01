@@ -6795,6 +6795,7 @@ func_800ED66C:
 .section .text.mode_byte_set, "ax", @progbits
 .globl mode_byte_set
 mode_byte_set:
+    /* compiled from src/blob/mode_byte_set.c */
     .word 0x27BDFFE8
     .word 0xAFA40018
     .word 0x00047400
@@ -6819,6 +6820,7 @@ mode_byte_set:
 .section .text.mode_byte2_set, "ax", @progbits
 .globl mode_byte2_set
 mode_byte2_set:
+    /* compiled from src/blob/mode_byte2_set.c */
     .word 0x27BDFFE8
     .word 0xAFA40018
     .word 0x00047400

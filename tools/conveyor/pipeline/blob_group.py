@@ -341,7 +341,13 @@ def relocate(obj, slices, text_ndx, extern, members=None, image=None):
         if extra:
             raise GroupError(f"{member}: {extra} extra words (nonzero beyond target length)")
     rels, others = _text_relocations(obj)
-    covered = sorted((off, off + size, vaddr) for off, vaddr, size in slices.values())
+    # Context can compile shorter than its retail extent. Its address map
+    # must stop at the next compiled function, or a call into that function
+    # is incorrectly attributed to the preceding context (or stand-in).
+    starts = sorted({value for value, ndx in functions.values() if ndx == text_ndx})
+    covered = sorted((off, min(off + size,
+                              next((start for start in starts if start > off), len(text))),
+                      vaddr) for off, vaddr, size in slices.values())
 
     def text_addr(offset):
         for lo, hi, vaddr in covered:

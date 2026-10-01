@@ -4328,6 +4328,7 @@ func_8008ABE4:
 .section .text.task_complete_signal, "ax", @progbits
 .globl task_complete_signal
 task_complete_signal:
+    /* compiled from src/blob/task_complete_signal.c */
     .word 0x27BDFFE0
     .word 0xAFB10018
     .word 0x3C118015

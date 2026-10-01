@@ -255,6 +255,7 @@ sound_update_channel:
 .section .text.object_type_byte2_get, "ax", @progbits
 .globl object_type_byte2_get
 object_type_byte2_get:
+    /* compiled from src/blob/object_type_byte2_get.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x0C02CF46
@@ -269,6 +270,7 @@ object_type_byte2_get:
 .section .text.object_type_byte3_get, "ax", @progbits
 .globl object_type_byte3_get
 object_type_byte3_get:
+    /* compiled from src/blob/object_type_byte3_get.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x0C02CF46

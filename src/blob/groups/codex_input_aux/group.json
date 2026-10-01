@@ -1,0 +1,18 @@
+{
+  "members": [
+    "input_aux_handler"
+  ],
+  "context": [
+    "game_loop"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "game_loop"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "unprototyped": [],
+  "note": "Only real game_loop caller; other callees preserved external, no stand-ins. game_loop context reconstructed from full assembly and not claimed.",
+  "provenance": "Codex real context, 2026-10-01; cloud/work/ipa-groups/codex_input_aux/STATUS.md"
+}

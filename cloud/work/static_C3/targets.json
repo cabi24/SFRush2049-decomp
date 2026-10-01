@@ -1,0 +1,194 @@
+[
+  {
+    "target": {
+      "target_id": "guPerspective",
+      "address": 2147520080,
+      "population": "static",
+      "insn_count": 24,
+      "target_asm_sha": "e6607532e98de18858b1d50850d42b84d25279e850be47a4cc5b1e5ab715e06d",
+      "target_o_sha": "bf737d6037216b6b3e1570d498d5b7ecdf76e3e070dc35dc1e4a41b783fce12e",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0x9820",
+        "function": {
+          "name": "guPerspective",
+          "vaddr": "0x80008e50",
+          "size": 96,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": "ultralib src/gu/perspective.c @ e24c8367 (local corpus artifact); current normalized names and selected pre-K behavior"
+  },
+  {
+    "target": {
+      "target_id": "guOrtho",
+      "address": 2147519412,
+      "population": "static",
+      "insn_count": 27,
+      "target_asm_sha": "5799c6d6a23a5fc7d5a637d8e0539e9039c0fc5d1c7ec5f02ca7c8fe9665203b",
+      "target_o_sha": "145deb7afd9fc1c0d8ec7460efedd796862fa74ac1bb3a5dd698c52ea70af0ea",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0x9660",
+        "function": {
+          "name": "guOrtho",
+          "vaddr": "0x80008bb4",
+          "size": 108,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": "ultralib src/gu/ortho.c @ e24c8367 (local corpus artifact); current normalized names and selected pre-K behavior"
+  },
+  {
+    "target": {
+      "target_id": "guLookAt",
+      "address": 2147520872,
+      "population": "static",
+      "insn_count": 30,
+      "target_asm_sha": "a483b390aeac555cd849f3d2cd68d93398090613ca8a45604255587f3ac280bc",
+      "target_o_sha": "97e4cf304cfe47d3653fe0737d4878b0e4f6a6137028682ba1b85030dbe147dd",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0x9ab0",
+        "function": {
+          "name": "guLookAt",
+          "vaddr": "0x80009168",
+          "size": 120,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": "ultralib src/gu/lookat.c @ e24c8367 (local corpus artifact); current normalized names and selected pre-K behavior"
+  },
+  {
+    "target": {
+      "target_id": "osDpSetNextBuffer",
+      "address": 2147515136,
+      "population": "static",
+      "insn_count": 32,
+      "target_asm_sha": "881cbcc28d7bdf5f14389322d122827d1d1119e64823d27807d48549a11375e2",
+      "target_o_sha": "65b82e989ba2ad5e1edbab4a11a93c16df70e2121b962275ef61f532cc158bfa",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0x8700",
+        "function": {
+          "name": "osDpSetNextBuffer",
+          "vaddr": "0x80007b00",
+          "size": 128,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": "ultralib src/io/dpsetnextbuf.c @ e24c8367 (local corpus artifact); current normalized names and selected pre-K behavior"
+  },
+  {
+    "target": {
+      "target_id": "osSetTimer",
+      "address": 2147541968,
+      "population": "static",
+      "insn_count": 56,
+      "target_asm_sha": "13f979d12ec31bc7ca2a8c8ab2b65e868f9d5f1fcb02b26883416b449fd2bfb8",
+      "target_o_sha": "a97f2e755fce00571105ecb3521e55ee6d0cbd111863d89f287f67fda5f550a4",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xefd0",
+        "function": {
+          "name": "osSetTimer",
+          "vaddr": "0x8000e3d0",
+          "size": 224,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": "ultralib src/os/settimer.c @ e24c8367 (local corpus artifact); current normalized names and selected pre-K behavior"
+  },
+  {
+    "target": {
+      "target_id": "osGetTime",
+      "address": 2147513264,
+      "population": "static",
+      "insn_count": 36,
+      "target_asm_sha": "17d11b17f598e3af178406100358cc9e5b0d1aeded12fd8426d32a4d732aa788",
+      "target_o_sha": "b3d85806c4ae4cc46c65738caf5d7fad3921b8c529d5dbdb2d9ad4eb2b5852f9",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0x7fb0",
+        "function": {
+          "name": "osGetTime",
+          "vaddr": "0x800073b0",
+          "size": 144,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": "ultralib src/os/gettime.c @ e24c8367 (local corpus artifact); current normalized names and selected pre-K behavior"
+  },
+  {
+    "target": {
+      "target_id": "osContStartQuery",
+      "address": 2147522352,
+      "population": "static",
+      "insn_count": 31,
+      "target_asm_sha": "2411b490299058cc78cf45c5b3583cad8d5f8c53cf7f9a734ac98f21b537cf4f",
+      "target_o_sha": "cf15a94f203c78323a6a989e136f17ac569953a65850d166a3b5942484ed272e",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xa330",
+        "function": {
+          "name": "osContStartQuery",
+          "vaddr": "0x80009730",
+          "size": 124,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": "ultralib src/io/contquery.c @ e24c8367 (local corpus artifact); current normalized names and selected pre-K behavior"
+  },
+  {
+    "target": {
+      "target_id": "osCreateThread",
+      "address": 2147512112,
+      "population": "static",
+      "insn_count": 84,
+      "target_asm_sha": "c50c0b12ea8e4dcb993c18d726b17d8330684043766c24f7966c5eccef8a9071",
+      "target_o_sha": "d46e44035354eedd637e4253c42433fb9d4a880ad2658c9dea068bf493449974",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0x7b30",
+        "function": {
+          "name": "osCreateThread",
+          "vaddr": "0x80006f30",
+          "size": 336,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": "ultralib src/os/createthread.c @ e24c8367 (local corpus artifact); current normalized names and selected pre-K behavior"
+  }
+]
