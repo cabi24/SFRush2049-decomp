@@ -340,6 +340,7 @@ lookup_with_output:
 .section .text.func_80096BBC, "ax", @progbits
 .globl func_80096BBC
 func_80096BBC:
+    /* compiled from src/blob/func_80096BBC.c */
     .word 0x10800018
     .word 0x00A61021
     .word 0xAC820000
