@@ -878,6 +878,7 @@ save_load_data:
 .section .text.func_800AF844, "ax", @progbits
 .globl func_800AF844
 func_800AF844:
+    /* compiled from src/blob/func_800AF844.c */
     .word 0x8C820000
     .word 0x3C013F00
     .word 0x44810000
@@ -4413,6 +4414,7 @@ func_800B2BDC:
 .section .text.func_800B2CB4, "ax", @progbits
 .globl func_800B2CB4
 func_800B2CB4:
+    /* compiled from src/blob/func_800B2CB4.c */
     .word 0x3C058015
     .word 0x94A5267C
     .word 0x3C028015

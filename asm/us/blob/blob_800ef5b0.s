@@ -8365,6 +8365,7 @@ func_800F7564:
 .section .text.func_800F75B0, "ax", @progbits
 .globl func_800F75B0
 func_800F75B0:
+    /* compiled from src/blob/func_800F75B0.c */
     .word 0x00047080
     .word 0x01C47023
     .word 0x000E7040
@@ -8412,6 +8413,7 @@ func_800F7604:
 .section .text.func_800F7620, "ax", @progbits
 .globl func_800F7620
 func_800F7620:
+    /* compiled from src/blob/func_800F7620.c */
     .word 0x00047080
     .word 0x01C47023
     .word 0x000E7080

@@ -1,0 +1,17 @@
+{
+  "func_800FE73C": {
+    "source_sha256": "300a0a2f8ebf043932df59dd601f392d9697985a8d99c7cda0323bf4ae3f541f",
+    "canonical_exit": 0,
+    "verdict": "func_800FE73C:\n  MATCH\n"
+  },
+  "func_800B2CB4": {
+    "source_sha256": "369add3ced526635ad970faead49c406db42657dae0b449983069e00d167ab6b",
+    "canonical_exit": 0,
+    "verdict": "func_800B2CB4:\n  MATCH\n"
+  },
+  "func_800AF844": {
+    "source_sha256": "7eae68a344fe625f9f777d1493d97b93ec810fa6c1ed655dbea96b8198007f74",
+    "canonical_exit": 0,
+    "verdict": "func_800AF844:\n  MATCH\n"
+  }
+}

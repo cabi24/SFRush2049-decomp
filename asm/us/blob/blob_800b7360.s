@@ -2136,6 +2136,7 @@ func_800B9284:
 .section .text.func_800B930C, "ax", @progbits
 .globl func_800B930C
 func_800B930C:
+    /* compiled from src/blob/func_800B930C.c */
     .word 0x3C038015
     .word 0x24631CE8
     .word 0x846F0008
@@ -4029,6 +4030,7 @@ audio_dsp_process:
 .section .text.mode_flags_clear, "ax", @progbits
 .globl mode_flags_clear
 mode_flags_clear:
+    /* compiled from src/blob/mode_flags_clear.c */
     .word 0x27BDFFE8
     .word 0x3C028011
     .word 0x24420680

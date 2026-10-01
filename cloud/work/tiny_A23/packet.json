@@ -1,0 +1,30 @@
+{
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "targets": [
+    "func_800F75B0",
+    "func_800F7620",
+    "func_800A13C4",
+    "func_800A553C",
+    "sign_extend_call",
+    "func_80090770",
+    "func_800B930C",
+    "mode_flags_clear",
+    "func_800FD724",
+    "func_800C0828",
+    "Input_InitPadHandlers",
+    "func_8008B2E4",
+    "func_80095198",
+    "func_800FD41C"
+  ],
+  "claims": [
+    "func_800F75B0",
+    "func_800F7620",
+    "func_800A13C4",
+    "func_800A553C",
+    "func_800B930C",
+    "mode_flags_clear",
+    "func_800C0828",
+    "Input_InitPadHandlers",
+    "func_80095198"
+  ]
+}

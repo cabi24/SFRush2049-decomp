@@ -478,6 +478,7 @@ Input_SetAnalogBounds:
 .section .text.Input_InitPadHandlers, "ax", @progbits
 .globl Input_InitPadHandlers
 Input_InitPadHandlers:
+    /* compiled from src/blob/Input_InitPadHandlers.c */
     .word 0x3C0F8014
     .word 0x25EF0BF0
     .word 0x00047140
@@ -716,6 +717,7 @@ sound_volume_helper:
 .section .text.func_80095198, "ax", @progbits
 .globl func_80095198
 func_80095198:
+    /* compiled from src/blob/func_80095198.c */
     .word 0x3C018015
     .word 0xC4302748
     .word 0x460E6080

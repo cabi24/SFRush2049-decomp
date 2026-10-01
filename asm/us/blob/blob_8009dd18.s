@@ -3581,6 +3581,7 @@ sync_maxpath_to_checkpoint:
 .section .text.func_800A13C4, "ax", @progbits
 .globl func_800A13C4
 func_800A13C4:
+    /* compiled from src/blob/func_800A13C4.c */
     .word 0x00047080
     .word 0x01C47023
     .word 0x000E7180

@@ -1,0 +1,23 @@
+{
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "targets": [
+    "func_800F7564",
+    "func_800FE73C",
+    "func_8008B424",
+    "func_800956BC",
+    "func_800D3430",
+    "func_800958B8",
+    "sync_init_conditional",
+    "func_800B2CB4",
+    "func_800BDD90",
+    "state_update_global",
+    "func_800ADCE0",
+    "func_800BE744",
+    "func_800AF844"
+  ],
+  "claims": [
+    "func_800FE73C",
+    "func_800B2CB4",
+    "func_800AF844"
+  ]
+}
