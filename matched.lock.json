@@ -1,12 +1,4 @@
 {
-  "cloud/work/static_C3/guOrtho.c:guOrtho": {
-    "body_sha256": "c1852e1b1a420fac50798fa24032c5252cf325420129997502ee329f150482bc",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "guOrtho",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-01"
-  },
   "cloud/work/static_C3/guPerspective.c:guPerspective": {
     "body_sha256": "b44f91ba17f4ce12fcd79d9af3fc57e03e7bee78428eab01924996e25cc00249",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -198,6 +190,14 @@
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-09-24"
+  },
+  "src/rom/lib_9660.c:guOrtho": {
+    "body_sha256": "c1852e1b1a420fac50798fa24032c5252cf325420129997502ee329f150482bc",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "guOrtho",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
   },
   "src/rom/lib_9ab0.c:guLookAt": {
     "body_sha256": "754f92874a55c0d522457816490ea9b568b2fb5451a67601fb577f354b0c6a7a",
