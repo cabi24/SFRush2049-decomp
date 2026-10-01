@@ -1,0 +1,63 @@
+{
+  "err": null,
+  "matched": true,
+  "members": {
+    "vector_diff_process": {
+      "strict_diff": 0,
+      "size": 20,
+      "target_size": 20,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    }
+  },
+  "context": {
+    "steering_sensitivity": {
+      "strict_diff": 229,
+      "size": 251,
+      "target_size": 232,
+      "extra": 19,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "traction_control": {
+      "strict_diff": 240,
+      "size": 247,
+      "target_size": 248,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "func_800A61B0": {
+      "strict_diff": 0,
+      "size": 37,
+      "target_size": 37,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "math_utility": {
+      "strict_diff": 0,
+      "size": 19,
+      "target_size": 19,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    }
+  }
+}

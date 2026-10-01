@@ -4303,6 +4303,15 @@
     "verified": "image_gate",
     "verified_at": "2026-09-23"
   },
+  "vector_diff_process": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "codex_steering_a12",
+    "source": "src/blob/groups/codex_steering_a12/group.json",
+    "source_sha256": "9185956f25ac7a28616a253a0323a19113af1090e6745e682502c4b6d1c3e441",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-01"
+  },
   "world_bounds_check": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/world_bounds_check.c",

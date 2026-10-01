@@ -1,0 +1,560 @@
+[
+  {
+    "keep": [
+      "steering_sensitivity",
+      "traction_control",
+      "vector_diff_process",
+      "func_800A61B0",
+      "math_utility"
+    ],
+    "guard": "",
+    "err": null,
+    "scores": {
+      "steering_sensitivity": {
+        "strict_diff": 229,
+        "size": 252,
+        "extra": 20,
+        "matched": false,
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 18,
+        "size": 24,
+        "extra": 4,
+        "matched": false,
+        "err": null
+      },
+      "traction_control": {
+        "strict_diff": 245,
+        "size": 285,
+        "extra": 37,
+        "matched": false,
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 0,
+        "size": 37,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      }
+    }
+  },
+  {
+    "keep": [
+      "steering_sensitivity",
+      "traction_control",
+      "vector_diff_process",
+      "func_800A61B0",
+      "math_utility"
+    ],
+    "guard": "if(origin) {}",
+    "err": null,
+    "scores": {
+      "steering_sensitivity": {
+        "strict_diff": 229,
+        "size": 252,
+        "extra": 20,
+        "matched": false,
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 18,
+        "size": 23,
+        "extra": 3,
+        "matched": false,
+        "err": null
+      },
+      "traction_control": {
+        "strict_diff": 245,
+        "size": 285,
+        "extra": 37,
+        "matched": false,
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 0,
+        "size": 37,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      }
+    }
+  },
+  {
+    "keep": [
+      "steering_sensitivity",
+      "traction_control",
+      "vector_diff_process",
+      "func_800A61B0",
+      "math_utility"
+    ],
+    "guard": "if(basis) {}",
+    "err": null,
+    "scores": {
+      "steering_sensitivity": {
+        "strict_diff": 229,
+        "size": 252,
+        "extra": 20,
+        "matched": false,
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 18,
+        "size": 23,
+        "extra": 3,
+        "matched": false,
+        "err": null
+      },
+      "traction_control": {
+        "strict_diff": 245,
+        "size": 285,
+        "extra": 37,
+        "matched": false,
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 0,
+        "size": 37,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      }
+    }
+  },
+  {
+    "keep": [
+      "steering_sensitivity",
+      "traction_control",
+      "func_800A61B0",
+      "math_utility"
+    ],
+    "guard": "",
+    "err": null,
+    "scores": {
+      "steering_sensitivity": {
+        "strict_diff": 229,
+        "size": 251,
+        "extra": 19,
+        "matched": false,
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 0,
+        "size": 20,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "traction_control": {
+        "strict_diff": 245,
+        "size": 285,
+        "extra": 37,
+        "matched": false,
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 0,
+        "size": 37,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      }
+    }
+  },
+  {
+    "keep": [
+      "steering_sensitivity",
+      "traction_control",
+      "func_800A61B0",
+      "math_utility"
+    ],
+    "guard": "if(origin) {}",
+    "err": null,
+    "scores": {
+      "steering_sensitivity": {
+        "strict_diff": 230,
+        "size": 251,
+        "extra": 19,
+        "matched": false,
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 6,
+        "size": 20,
+        "extra": 0,
+        "matched": false,
+        "err": null
+      },
+      "traction_control": {
+        "strict_diff": 245,
+        "size": 285,
+        "extra": 37,
+        "matched": false,
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 0,
+        "size": 37,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      }
+    }
+  },
+  {
+    "keep": [
+      "steering_sensitivity",
+      "traction_control",
+      "func_800A61B0",
+      "math_utility"
+    ],
+    "guard": "if(basis) {}",
+    "err": null,
+    "scores": {
+      "steering_sensitivity": {
+        "strict_diff": 229,
+        "size": 251,
+        "extra": 19,
+        "matched": false,
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 0,
+        "size": 20,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "traction_control": {
+        "strict_diff": 245,
+        "size": 285,
+        "extra": 37,
+        "matched": false,
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 0,
+        "size": 37,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      }
+    }
+  },
+  {
+    "keep": [
+      "steering_sensitivity",
+      "traction_control"
+    ],
+    "guard": "",
+    "err": null,
+    "scores": {
+      "steering_sensitivity": {
+        "strict_diff": 232,
+        "size": 272,
+        "extra": 39,
+        "matched": false,
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 20,
+        "size": 51,
+        "extra": 31,
+        "matched": false,
+        "err": null
+      },
+      "traction_control": {
+        "strict_diff": 246,
+        "size": 283,
+        "extra": 35,
+        "matched": false,
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 37,
+        "size": 2,
+        "extra": 0,
+        "matched": false,
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 19,
+        "size": 2,
+        "extra": 0,
+        "matched": false,
+        "err": null
+      }
+    }
+  },
+  {
+    "keep": [
+      "steering_sensitivity",
+      "traction_control"
+    ],
+    "guard": "if(origin) {}",
+    "err": null,
+    "scores": {
+      "steering_sensitivity": {
+        "strict_diff": 228,
+        "size": 273,
+        "extra": 40,
+        "matched": false,
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 20,
+        "size": 51,
+        "extra": 31,
+        "matched": false,
+        "err": null
+      },
+      "traction_control": {
+        "strict_diff": 246,
+        "size": 283,
+        "extra": 35,
+        "matched": false,
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 37,
+        "size": 2,
+        "extra": 0,
+        "matched": false,
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 19,
+        "size": 2,
+        "extra": 0,
+        "matched": false,
+        "err": null
+      }
+    }
+  },
+  {
+    "keep": [
+      "steering_sensitivity",
+      "traction_control"
+    ],
+    "guard": "if(basis) {}",
+    "err": null,
+    "scores": {
+      "steering_sensitivity": {
+        "strict_diff": 228,
+        "size": 273,
+        "extra": 40,
+        "matched": false,
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 20,
+        "size": 51,
+        "extra": 31,
+        "matched": false,
+        "err": null
+      },
+      "traction_control": {
+        "strict_diff": 246,
+        "size": 283,
+        "extra": 35,
+        "matched": false,
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 37,
+        "size": 2,
+        "extra": 0,
+        "matched": false,
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 19,
+        "size": 2,
+        "extra": 0,
+        "matched": false,
+        "err": null
+      }
+    }
+  },
+  {
+    "keep": [
+      "steering_sensitivity",
+      "traction_control",
+      "math_utility"
+    ],
+    "guard": "",
+    "err": null,
+    "scores": {
+      "steering_sensitivity": {
+        "strict_diff": 228,
+        "size": 260,
+        "extra": 28,
+        "matched": false,
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 20,
+        "size": 51,
+        "extra": 31,
+        "matched": false,
+        "err": null
+      },
+      "traction_control": {
+        "strict_diff": 246,
+        "size": 283,
+        "extra": 35,
+        "matched": false,
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 37,
+        "size": 2,
+        "extra": 0,
+        "matched": false,
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      }
+    }
+  },
+  {
+    "keep": [
+      "steering_sensitivity",
+      "traction_control",
+      "math_utility"
+    ],
+    "guard": "if(origin) {}",
+    "err": null,
+    "scores": {
+      "steering_sensitivity": {
+        "strict_diff": 228,
+        "size": 260,
+        "extra": 28,
+        "matched": false,
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 20,
+        "size": 51,
+        "extra": 31,
+        "matched": false,
+        "err": null
+      },
+      "traction_control": {
+        "strict_diff": 246,
+        "size": 283,
+        "extra": 35,
+        "matched": false,
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 37,
+        "size": 2,
+        "extra": 0,
+        "matched": false,
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      }
+    }
+  },
+  {
+    "keep": [
+      "steering_sensitivity",
+      "traction_control",
+      "math_utility"
+    ],
+    "guard": "if(basis) {}",
+    "err": null,
+    "scores": {
+      "steering_sensitivity": {
+        "strict_diff": 225,
+        "size": 259,
+        "extra": 27,
+        "matched": false,
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 20,
+        "size": 51,
+        "extra": 31,
+        "matched": false,
+        "err": null
+      },
+      "traction_control": {
+        "strict_diff": 246,
+        "size": 283,
+        "extra": 35,
+        "matched": false,
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 37,
+        "size": 2,
+        "extra": 0,
+        "matched": false,
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      }
+    }
+  }
+]

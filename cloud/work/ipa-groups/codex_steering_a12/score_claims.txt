@@ -1,0 +1,39 @@
+Members:
+vector_diff_process:
+  MATCH
+
+Context (informational; excluded from exit status):
+steering_sensitivity:
+    +0x000  want 27bdff98                               got 27bdff50                             
+    +0x004  want 3c188015                               got 3c0f8015                             
+    +0x008  want 8f1826f0                               got 8def26f0                             
+    +0x00c  want afbf002c                               got afbf001c                             
+    +0x010  want afb00028                               got afb00018                             
+    +0x014  want f7b60020                               got afa400b0                             
+    +0x018  want f7b40018                               got afa600b8                             
+    +0x01c  want afa40068                               got 30a2ffff                             
+    +0x020  want afa5006c                               got 95f80000                             
+    +0x024  want afa60070                               got 00027140                             
+    +0x028  want 30aeffff                               got 3c038015                             
+    +0x02c  want 97190000                               got 8c632034                             
+  229/232 words differ (19 extra words (nonzero beyond target length))
+traction_control:
+    +0x000  want 27bdff20                               got 27bdfec8                             
+    +0x00c  want afbf002c                               got afbf0024                             
+    +0x010  want afb10028                               got afb10020                             
+    +0x014  want afb00024                               got afb0001c                             
+    +0x018  want f7b60018                               got f7b40010                             
+    +0x01c  want f7b40010                               got afa40138                             
+    +0x020  want afa400e0                               got afa60140                             
+    +0x024  want afa500e4                               got afa70144                             
+    +0x028  want afa600e8                               got 95cf0000                             
+    +0x02c  want afa700ec                               got 30a3ffff                             
+    +0x030  want 95cf0000                               got 24620001                             
+    +0x034  want 30a4ffff                               got 004f082a                             
+  240/248 words differ
+func_800A61B0:
+  MATCH
+math_utility:
+  MATCH
+
+EXIT=0

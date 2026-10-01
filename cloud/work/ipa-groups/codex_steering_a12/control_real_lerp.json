@@ -1,0 +1,48 @@
+{
+  "label": "lerp",
+  "err": null,
+  "scores": {
+    "steering_sensitivity": {
+      "strict_diff": 229,
+      "size": 251,
+      "extra": 19,
+      "matched": false,
+      "err": null
+    },
+    "vector_diff_process": {
+      "strict_diff": 0,
+      "size": 20,
+      "extra": 0,
+      "matched": true,
+      "err": null
+    },
+    "traction_control": {
+      "strict_diff": 240,
+      "size": 247,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    },
+    "func_800A61B0": {
+      "strict_diff": 0,
+      "size": 37,
+      "extra": 0,
+      "matched": true,
+      "err": null
+    },
+    "math_utility": {
+      "strict_diff": 0,
+      "size": 19,
+      "extra": 0,
+      "matched": true,
+      "err": null
+    },
+    "func_800ACBC4": {
+      "strict_diff": 8,
+      "size": 21,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  }
+}

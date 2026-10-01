@@ -5191,6 +5191,7 @@ handbrake_apply:
 .section .text.vector_diff_process, "ax", @progbits
 .globl vector_diff_process
 vector_diff_process:
+    /* compiled from src/blob/vector_diff_process.c */
     .word 0x27BDFFD8
     .word 0xAFBF0014
     .word 0xC5060000

@@ -1,0 +1,25 @@
+{
+  "members": [
+    "vector_diff_process"
+  ],
+  "context": [
+    "steering_sensitivity",
+    "traction_control",
+    "func_800A61B0",
+    "math_utility"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "keep": [
+    "steering_sensitivity",
+    "traction_control",
+    "func_800A61B0",
+    "math_utility"
+  ],
+  "claims": [
+    "vector_diff_process"
+  ],
+  "provenance": "A12: B15 audited steering seed; fresh retail-derived traction caller with actual vec3 repairs; unchanged accepted A61B0 and math_utility bodies."
+}

@@ -4,28 +4,11 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_e9a0/osPiSetDeviceTiming.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_e9a0/osSpTaskLoad_full.s")
-/* PROMOTED 2026-07-15 — __osInsertTimer
- * Source:   src/rom_auto/__osInsertTimer.c (in-repo, locked)
- * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
- * Evidence: lock:src/rom_auto/__osInsertTimer.c:__osInsertTimer (score0)
- * Gate:     full-ROM SHA-1 (promotion transaction)
- */
-s32 __osInsertTimer(void) {
-    if (__osPiMgrState.flag == 0) {
-        return 0;
-    }
-    return __osPiMgrState.unk8;
-}
-
-
 /* Canonical EPi hardware protocol; existing IO_READ/IO_WRITE macros suffice. */
 #define PI_STATUS_IO_BUSY 2
 #define PI_STATUS_DMA_BUSY 1
 #define PI_DOMAIN1 0
 #define K1_TO_PHYS(x) ((u32)(x)&0x1FFFFFFF)
-extern OSPiHandle *__osPiDevList[2];
 #define PI_STATUS_REG 0xA4600010
 #define PI_DRAM_ADDR_REG 0xA4600000
 #define PI_CART_ADDR_REG 0xA4600004
@@ -80,3 +63,17 @@ extern OSPiHandle *__osPiDevList[2];
         cHandle->pulse = pihandle->pulse;                            \
     }(void)0
 
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_e9a0/osPiSetDeviceTiming.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_e9a0/osSpTaskLoad_full.s")
+/* PROMOTED 2026-07-15 — __osInsertTimer
+ * Source:   src/rom_auto/__osInsertTimer.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:src/rom_auto/__osInsertTimer.c:__osInsertTimer (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+s32 __osInsertTimer(void) {
+    if (__osPiMgrState.flag == 0) {
+        return 0;
+    }
+    return __osPiMgrState.unk8;
+}
