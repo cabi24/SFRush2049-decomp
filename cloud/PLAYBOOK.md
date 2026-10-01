@@ -124,3 +124,11 @@ Static conversions move asm to `asm/us/nonmatchings/rom/`; both target extractio
 save_load_data's final ori/addiu mismatch was a hard-coded callback address: naming real drone_ai_update produces strict MATCH and exact image/ROM bytes. The other three one-word packet members need the real sound_update_channel IPA calling convention; stand-in closures cannot be claimed.
 
 The cloud catalog now has token-preserving line_join scheduling mutations, guarded against comments, preprocessing continuations and line-dependent macros. It reproduces the existing D4D84 pilot but yields 0/8 both before and after on the fixed bounded held-out protocol. See cloud/work/line_join_codex.md; no new coverage or generalization gain is claimed.
+
+## Real closure acceptance and static expansion (2026-10-01)
+
+Real sound closure now accepts mode_byte_set, mode_byte2_set and the two byte getters: unreachable switch in the real empty debug callee preserves IPA metadata without adding runtime effects. Real input_aux_handler needs only its actual game_loop caller to reproduce allocation. Task completion needs a real already-locked neighboring comparator for module alignment; invented padding helpers are unaccepted. All claimed bodies pass image and full-ROM gates; unmatched context is preserved.
+
+func_800C7200 matches with both actual callers after real seed repair, nonvoid exhaustion fall-through and same-line initializers. This is an explicit C undefined-return quirk, not proof of original source; exact fixed-compiler retail bytes are the acceptance evidence. 8ABE4 still needs its final six-word web repair.
+
+random_seed_init uses a code-free argument read to exchange colored webs. D0C0 instead simplifies its natural loop and removes pass-through locals, matching without dummy reads. Static acceptance expanded to 50/230, 4,308/61,440 bytes. Canonical float ABI aliases and converted-slot indexing repair four stale target objects through existing round-trip gates; no scorer masks were weakened. Shared declarations retain existing signed bzero_alt body and correct DP wrapper's 64-bit size argument.

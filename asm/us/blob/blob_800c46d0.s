@@ -2821,6 +2821,7 @@ draw_ui_element:
 .section .text.func_800C7200, "ax", @progbits
 .globl func_800C7200
 func_800C7200:
+    /* compiled from src/blob/func_800C7200.c */
     .word 0x3C048014
     .word 0x2484F1F8
     .word 0x00001825

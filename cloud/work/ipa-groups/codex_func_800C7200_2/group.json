@@ -1,0 +1,22 @@
+{
+  "members": [
+    "func_800C7200"
+  ],
+  "context": [
+    "func_800C813C",
+    "func_800CC50C"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_800C813C",
+    "func_800CC50C"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [
+    "func_800C7200"
+  ],
+  "unprototyped": [],
+  "note": "Real callers C813C/CC50C only, external real helper callees. Exhaustion path falls off nonvoid (compile quirk); adjacent initializer statements share physical line."
+}
