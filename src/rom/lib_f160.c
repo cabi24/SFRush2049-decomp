@@ -41,5 +41,36 @@ void __osSiRelAccess(void) {
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_f160/osContStartReadData.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_f160/__osContBuildRequest.s")
+/* PROMOTED 2026-10-01 — __osContBuildRequest
+ * Source:   cloud/work/static_C7/__osContBuildRequest.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C7/__osContBuildRequest.c:__osContBuildRequest (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void __osContBuildRequest(int channel, u8 cmd) {
+    u8* ptr;
+    __OSContRequesFormatShort requestformat;
+    int i;
+
+    __osPfsRequestType = CONT_CMD_END;
+    (*(OSPifRam *)__osPfsBuffer).pifstatus = CONT_CMD_READ_BUTTON;
+
+    ptr = (u8*)&(*(OSPifRam *)__osPfsBuffer);
+
+    requestformat.txsize = CONT_CMD_REQUEST_STATUS_TX;
+    requestformat.rxsize = CONT_CMD_REQUEST_STATUS_RX;
+    requestformat.cmd = cmd;
+    requestformat.typeh = CONT_CMD_NOP;
+    requestformat.typel = CONT_CMD_NOP;
+    requestformat.status = CONT_CMD_NOP;
+
+    for (i = 0; i < channel; i++) {
+        *ptr++ = CONT_CMD_REQUEST_STATUS;
+    }
+
+    *(__OSContRequesFormatShort*)ptr = requestformat;
+    ptr += sizeof(__OSContRequesFormatShort);
+    *ptr = CONT_CMD_END;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_f160/__osContParseResponse.s")

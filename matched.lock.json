@@ -1,12 +1,4 @@
 {
-  "cloud/work/static_C7/__osContBuildRequest.c:__osContBuildRequest": {
-    "body_sha256": "05087a6f80bfc388dd6a04850b7e75f84e16b9821c08bd84f7109ae439b22fe8",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "__osContBuildRequest",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-01"
-  },
   "cloud/work/static_C7/__osContGetStatus.c:__osContGetStatus": {
     "body_sha256": "8a299126001ac78024e1798564098e417a46f0fe6b25df9d2a8f13b8d3fb62b2",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -623,6 +615,14 @@
     "body_sha256": "1f8d727d23f387baeb9cf601165b49c21cb6dbdd80ca1a7371032a40829b4f9b",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "__osSiRawStartDma",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
+  },
+  "src/rom/lib_f160.c:__osContBuildRequest": {
+    "body_sha256": "05087a6f80bfc388dd6a04850b7e75f84e16b9821c08bd84f7109ae439b22fe8",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osContBuildRequest",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
