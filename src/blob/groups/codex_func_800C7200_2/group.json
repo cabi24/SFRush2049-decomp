@@ -1,0 +1,20 @@
+{
+  "members": [
+    "func_800C7200"
+  ],
+  "context": [
+    "func_800C813C",
+    "func_800CC50C"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_800C813C",
+    "func_800CC50C"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "unprototyped": [],
+  "note": "Real callers C813C/CC50C only, external real helper callees. Exhaustion path falls off nonvoid (compile quirk); adjacent initializer statements share physical line.",
+  "provenance": "Codex real caller closure, 2026-10-01; cloud/work/ipa-groups/codex_func_800C7200_2/STATUS.md"
+}

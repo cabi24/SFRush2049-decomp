@@ -1,5 +1,15 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-01 second completed promotion milestone
+
+- Game cartridge C: **513/1,216 functions, 59,460/647,072 bytes (9.19%)**. Static cartridge C: **50/230 functions, 4,308/61,440 bytes (7.01%)**.
+- Since usage reset: nine game functions / 1,464 bytes and sixteen static functions / 1,852 bytes accepted. Across coordinator session: sixteen game functions / 3,044 bytes and twenty-seven static functions / 2,860 bytes.
+- All sixteen static candidates promoted through individual full-ROM transactions: osPiRawReadWord; C2 eight and C3 seven. Seven O1/O2 segment pins preserved as recorded; each promotion rebuilt its real TU, passed full-ROM SHA-1 and auto-committed. Static cartridge bytes remain separate from game image bytes.
+- Added real func_800C7200 closure with both actual callers C813C/CC50C: 256 bytes strict/image/ROM accepted. Important source quirk: exhausted pool falls off nonvoid C function, reproducing target retained v0=64. Return behavior is undefined in C source; fixed compiler/flags produce exact retail bytes. Same-line initializer placement fixes scheduling. Context is real reconstructed code, unclaimed and preserved in retail image; this is not claimed original-source certainty.
+- Real func_8008ABE4_2 remains six words away after nineteen fresh signature/type/structure controls; empty claims retained, no coverage credited.
+- Gates: image/full-ROM SHA-1 EXACT; blob lock 513 entries and group lock zero problems; all 53 static/source locks intact; full pytest exit 0 captured separately. Integration preparation CI passed (run 36890170444). Promotion/follow-up push will be checked separately.
+- Persisted twenty-five forward coordinator transitions against source locks and ROM promotion records. Three workers continue fresh static, near-miss and new-head packets. Farm harvesting paused during these integrations; searches remain preserved. Wiki host-key confirmation pending.
+
 ## 2026-10-01 second game integration and static preparation
 
 - Game cartridge C: **512/1,216 functions, 59,204/647,072 bytes (9.15%)**. Static cartridge C remains **34/230 functions, 2,456/61,440 bytes (4.00%)**, pending sixteen additional object matches / 1,852 slot bytes.

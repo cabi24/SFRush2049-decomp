@@ -97,4 +97,4 @@ ssh-keyscan 192.168.50.30 >> ~/.ssh/known_hosts   # if host key verification fai
 
 ## 2026-10-01 access check
 
-Repository integration reached game coverage 504/1,216 (57,996/647,072 bytes) and static coverage 34/230 (2,456/61,440 bytes), with full-ROM SHA-1 exact. Publishing this milestone to `rush2049:status` is blocked: SSH to 192.168.50.30 reports a changed host key. Independently confirm the server fingerprint before replacing the saved key; the coordinator has left known_hosts unchanged. Current milestone details are in `specs/014-codex-handoff/STATUS.md`.
+Repository integration reached game coverage 513/1,216 (59,460/647,072 bytes) and static coverage 50/230 (4,308/61,440 bytes), with full-ROM SHA-1 exact. Publishing this milestone to `rush2049:status` is blocked: SSH to 192.168.50.30 reports a changed host key. Independently confirm the server fingerprint before replacing the saved key; the coordinator has left known_hosts unchanged. Current milestone details are in `specs/014-codex-handoff/STATUS.md`.
