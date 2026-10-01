@@ -134,6 +134,12 @@ def check(entries, repo=REPO):
     """[(spec, problem)] for every locked function that no longer hashes to
     its pinned value. Empty list = all locks hold."""
     problems = []
+    from . import owned_storage
+    try:
+        for owner in owned_storage.storage_blocks(repo, active_only=True):
+            owned_storage.assert_context(repo, owner)
+    except (OSError, ValueError) as exc:
+        problems.append(("rom_owned_data.json:storage", str(exc)))
     for spec, entry in sorted(entries.items()):
         rel, _, name = spec.partition(":")
         sha = body_sha(Path(repo) / rel, name)

@@ -1,0 +1,954 @@
+{
+  "header_audit": [
+    {
+      "file": "lib_1050.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "29b5eabb1e746af16815b9c133f69f74e32b1e7249fce71382346923beb387d1"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "29b5eabb1e746af16815b9c133f69f74e32b1e7249fce71382346923beb387d1"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_5610.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "701a7195cbf32492e2ecdb19ac5368e73d28599f2c923a8addbbed64192808ca"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "701a7195cbf32492e2ecdb19ac5368e73d28599f2c923a8addbbed64192808ca"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_7600.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "5d26a3aa446904c648d1298d998bdba4edacc49be74b09fc22d2528d2058cb79"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "5d26a3aa446904c648d1298d998bdba4edacc49be74b09fc22d2528d2058cb79"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_7940.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "c2c7857a09b2adc4c39de59f55986295bf34f692cd51066a3a8981462a2ea1d8"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "c2c7857a09b2adc4c39de59f55986295bf34f692cd51066a3a8981462a2ea1d8"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_79a0.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "8515d64d2203947e9baf211829221de1acb584e0cb97f5ec5e90740da3ba3c1b"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "8515d64d2203947e9baf211829221de1acb584e0cb97f5ec5e90740da3ba3c1b"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_7a10.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "8822a21afe8d8162325afe47c61a2c9091e00c4855f9e94c94fe39179af07d79"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "8822a21afe8d8162325afe47c61a2c9091e00c4855f9e94c94fe39179af07d79"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_7ad0.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "2f1ffc1b5ea7d2e089145f114f88c3e0e854c24b55427fd060d792756458e1e9"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "2f1ffc1b5ea7d2e089145f114f88c3e0e854c24b55427fd060d792756458e1e9"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_7b30.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "c20e444204fdc69bbc449e0230ac5bac471ce8bf02a610de6dabbf8e4e8f32f8"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "c20e444204fdc69bbc449e0230ac5bac471ce8bf02a610de6dabbf8e4e8f32f8"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_7c80.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "5f55332a4dba06079b94d1b61e3de1d3a394bacecdb049ec27a8ea7e4c657dfd"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "5f55332a4dba06079b94d1b61e3de1d3a394bacecdb049ec27a8ea7e4c657dfd"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_8040.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "6af5675990e8219819c9225daaede327fb4d9a817ca3d993ae5942f625354001"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "6af5675990e8219819c9225daaede327fb4d9a817ca3d993ae5942f625354001"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_81e0.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "141284b92fe2f00b0d6bf4c9eb474141053414cf8d03493013a764d0ecd6a1da"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "141284b92fe2f00b0d6bf4c9eb474141053414cf8d03493013a764d0ecd6a1da"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_8330.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "4c75b70ca8b5254436e742dc7bce45a7ee85e247503a7fad6cbd56df41c6d572"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "4c75b70ca8b5254436e742dc7bce45a7ee85e247503a7fad6cbd56df41c6d572"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_83d0.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "0f2b46155a6d419197777906e314d5d894410d7c2ca284fba2ab705b39730608"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "0f2b46155a6d419197777906e314d5d894410d7c2ca284fba2ab705b39730608"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_8440.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "cfaad0a17ed5392831b150564d1ba39594243ad1693949e66e5d8f7f8b4141d7"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "cfaad0a17ed5392831b150564d1ba39594243ad1693949e66e5d8f7f8b4141d7"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_8700.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "9e273f002e0f14552593d6a20ae2380cbe50238d6f9c86c04855f386b06a603d"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "9e273f002e0f14552593d6a20ae2380cbe50238d6f9c86c04855f386b06a603d"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_8800.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "bd0f1c3963d11a12a9b0baddf0053fa5b9cbf6646c094e7db94bf426089bcc72"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "bd0f1c3963d11a12a9b0baddf0053fa5b9cbf6646c094e7db94bf426089bcc72"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_8920.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "1d6fbd03b726140890cf94b22514d880f2af5e533dd9ccc0d72e9d4d385f0f21"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "1d6fbd03b726140890cf94b22514d880f2af5e533dd9ccc0d72e9d4d385f0f21"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_8a80.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "66c723fb3e3561a5c791bb2d05fdf23cad1bb680cd17dbb0d3369aa74ce26065"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "66c723fb3e3561a5c791bb2d05fdf23cad1bb680cd17dbb0d3369aa74ce26065"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_8dd0.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "cfe: Warning 712: /home/cburnes/agents/B/scratch/codex_B/B18audit/before/src/rom/lib_8dd0.c, line 18: illegal combination of pointer and integer\n     temp_v0 = osPiReadWord(arg0, arg1);\n ---------------------------------^\n",
+        "source_sha256": "d5cfd5c0cea4c62187b161f7abb13e2c0f4d34c21a653bddac5607e133b48589"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "cfe: Warning 712: /home/cburnes/agents/B/scratch/codex_B/B18audit/after/src/rom/lib_8dd0.c, line 18: illegal combination of pointer and integer\n     temp_v0 = osPiReadWord(arg0, arg1);\n ---------------------------------^\n",
+        "source_sha256": "d5cfd5c0cea4c62187b161f7abb13e2c0f4d34c21a653bddac5607e133b48589"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_8e10.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "6989e1c572b0b9addea26746d20b7dc256dd08594868418126011777219e3b23"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "6989e1c572b0b9addea26746d20b7dc256dd08594868418126011777219e3b23"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_9230.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "8fe9941bc6d1c9673950154c13c30be7d4c59266deb32387b74addc0e0bc929d"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "8fe9941bc6d1c9673950154c13c30be7d4c59266deb32387b74addc0e0bc929d"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_92f0.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "7f3a91713b20233b4978b9530aa6db65175c1b650269271ce2e26c479b90e884"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "7f3a91713b20233b4978b9530aa6db65175c1b650269271ce2e26c479b90e884"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_9660.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "dc1a4f3ab41a9866ac0701cfa3dd77f2ae85d23ee9b9e6145abb04d16fe2c870"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "dc1a4f3ab41a9866ac0701cfa3dd77f2ae85d23ee9b9e6145abb04d16fe2c870"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_9820.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "6929ca6a6af2114b24701051616fe35fc86f70147ba74c6422b018c2889221b1"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "6929ca6a6af2114b24701051616fe35fc86f70147ba74c6422b018c2889221b1"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_9ab0.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "c6b3b24c912fa7414a9d046e9a9712f5cacf11448668017d8cfb10b1580ff5f8"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "c6b3b24c912fa7414a9d046e9a9712f5cacf11448668017d8cfb10b1580ff5f8"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_9de0.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "cfe: Warning 709: /home/cburnes/agents/B/scratch/codex_B/B18audit/before/src/rom/lib_9de0.c, line 92: Incompatible pointer type assignment\n     guMtxF2L(temp, mtx);\n -------------------^\n",
+        "source_sha256": "4b00be67295acccfd6862413d8354919591b6dc1f80e9ce7004456a666d0dbcc"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "cfe: Warning 709: /home/cburnes/agents/B/scratch/codex_B/B18audit/after/src/rom/lib_9de0.c, line 92: Incompatible pointer type assignment\n     guMtxF2L(temp, mtx);\n -------------------^\n",
+        "source_sha256": "4b00be67295acccfd6862413d8354919591b6dc1f80e9ce7004456a666d0dbcc"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_a050.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "fde811ef2d73776f58a4f236e756d8e236cad7c41320ff70c56ee19795b1910d"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "fde811ef2d73776f58a4f236e756d8e236cad7c41320ff70c56ee19795b1910d"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_a330.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "d56c0b8f106359b8518ed7d0dc72d0b027e6e42417644474ccd0b65b9f26f589"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "d56c0b8f106359b8518ed7d0dc72d0b027e6e42417644474ccd0b65b9f26f589"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_a5b0.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "9f0094765cdf9a5bd261e1d8af6749b9394dc380d079e5fd150ef5b80a977d14"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "9f0094765cdf9a5bd261e1d8af6749b9394dc380d079e5fd150ef5b80a977d14"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_a800.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "baa758c927763dc7932505e6dcdc691f3bc83d0c09a634467fb4987177975256"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "baa758c927763dc7932505e6dcdc691f3bc83d0c09a634467fb4987177975256"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_a810.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "a22c2c2fa224d15ba59a04b52b01cd9e8ae9689d70e883b6dcdba2472930cf2a"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "a22c2c2fa224d15ba59a04b52b01cd9e8ae9689d70e883b6dcdba2472930cf2a"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_ab20.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "07abed12503320496cf2274310204d7488f9989fed513bb625e2a5bea350b6b7"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "07abed12503320496cf2274310204d7488f9989fed513bb625e2a5bea350b6b7"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_af50.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "be0c8c34a872ccf244b357f337a07e9353fb78aaf1b9bac9fb7eb20794f2de6f"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "be0c8c34a872ccf244b357f337a07e9353fb78aaf1b9bac9fb7eb20794f2de6f"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_b120.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "bded840ceb490ee7ae3313b5de16bbec02fa006d16d9d67ae6bb03419f32c223"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "bded840ceb490ee7ae3313b5de16bbec02fa006d16d9d67ae6bb03419f32c223"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_b300.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "6363347c1bed5e9df1892ce9b9d21ae4731e478e5997bde7d89b2722d721e696"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "6363347c1bed5e9df1892ce9b9d21ae4731e478e5997bde7d89b2722d721e696"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_b570.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "843c19429bf39f50d517082d8bea275e64b3eda2ce9bf7a712495d108b35cdd4"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "843c19429bf39f50d517082d8bea275e64b3eda2ce9bf7a712495d108b35cdd4"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_b9f0.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "250186430753c0ce6a30f67e34a492df7fd9f7c09eda34d0e1f474688b730641"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "250186430753c0ce6a30f67e34a492df7fd9f7c09eda34d0e1f474688b730641"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_be40.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "8324c6c734f5e065469d91ef0490ffd173b0682ef0937e953f0b4e97074133c6"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "8324c6c734f5e065469d91ef0490ffd173b0682ef0937e953f0b4e97074133c6"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_bfe0.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "be24c523b81402c14340688c286076ca300fcfe70d2087d3a75b614183c32128"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "be24c523b81402c14340688c286076ca300fcfe70d2087d3a75b614183c32128"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_c990.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "a2613f0c24df24c7b3caf72c3efea2f54019907f00426128ccc2d2ca8b3b15c7"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "a2613f0c24df24c7b3caf72c3efea2f54019907f00426128ccc2d2ca8b3b15c7"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_ca70.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "24962afe3cb238f74f9d3c6136af353f13c502543935e38bd5b1921d195856b3"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "24962afe3cb238f74f9d3c6136af353f13c502543935e38bd5b1921d195856b3"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_cc50.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "230fc2201119b78add714cf22af0537d19620d515d1251edf80933414a7e4576"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "230fc2201119b78add714cf22af0537d19620d515d1251edf80933414a7e4576"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_d140.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "fee480e67a6c208cef08a2c25c58eb31137cfd54c463f2ed59c453f5d0d1fbf2"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "fee480e67a6c208cef08a2c25c58eb31137cfd54c463f2ed59c453f5d0d1fbf2"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_d260.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "c992ef69b05504ededd061afa53106df54fbc7e02ce70c823de5028ed82acb9e"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "c992ef69b05504ededd061afa53106df54fbc7e02ce70c823de5028ed82acb9e"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_d270.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "e60cdf124288b624aff38ae252e4b1a2dddf3acc245aaf08449e9ef6f1275a4c"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "e60cdf124288b624aff38ae252e4b1a2dddf3acc245aaf08449e9ef6f1275a4c"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_d580.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "c521b19c33ceeeff519ab8180f0aec5c014de1cf158463366dd496d9ea857654"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "c521b19c33ceeeff519ab8180f0aec5c014de1cf158463366dd496d9ea857654"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_e1c0.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "d65faf5c8069c7f51d114c9f5436dab03bf2ca08edf436fd06733f16a41db65f"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "d65faf5c8069c7f51d114c9f5436dab03bf2ca08edf436fd06733f16a41db65f"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_e240.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "2be32d8155afc85c514d2a6019e68c6212083d520b2b408a5dcc1dc1dbbd220b"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "2be32d8155afc85c514d2a6019e68c6212083d520b2b408a5dcc1dc1dbbd220b"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_e250.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "c058fc076c2f636b8ca17cf2a6c5a7f5f5043df66ee05f3889fae7eaabf9a1b1"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "c058fc076c2f636b8ca17cf2a6c5a7f5f5043df66ee05f3889fae7eaabf9a1b1"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_e280.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "0154d2375b07ac8a5d60760043ae1ad809fb5f0007bfbcb2bb0b54dde360b1f7"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "0154d2375b07ac8a5d60760043ae1ad809fb5f0007bfbcb2bb0b54dde360b1f7"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_e310.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "4fa1f201810ce3dde3cf5b1bc056f29dfecee4046c4d85f2b4d49f654a19bf42"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "4fa1f201810ce3dde3cf5b1bc056f29dfecee4046c4d85f2b4d49f654a19bf42"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_e340.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "52f2dde5b0eb5e1c9487e7ab3fe94628ed12c9409184f5642d0c1a64fd3ed3b7"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "52f2dde5b0eb5e1c9487e7ab3fe94628ed12c9409184f5642d0c1a64fd3ed3b7"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_e390.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "b4e38d229b38d7e1a8b974e7a7d4c18ffbb97459cd0f7aeb064e001626f3196d"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "b4e38d229b38d7e1a8b974e7a7d4c18ffbb97459cd0f7aeb064e001626f3196d"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_e3f0.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "114b161091293bb5f5ef260f3605d45b0d7a8b8f32e0470fba56a7440d506669"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "114b161091293bb5f5ef260f3605d45b0d7a8b8f32e0470fba56a7440d506669"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_e7c0.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "d1eb8f952246ca80403a00fcea9635b4db1ac60a389205b35f0a0914458831fc"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "d1eb8f952246ca80403a00fcea9635b4db1ac60a389205b35f0a0914458831fc"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_e8d0.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "7f059dfa3fdbab1f4361f08f66d41668b8c55e029684b9a8f39faae3a2c945b4"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "7f059dfa3fdbab1f4361f08f66d41668b8c55e029684b9a8f39faae3a2c945b4"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_e9a0.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "cfe: Warning 581: /home/cburnes/agents/B/scratch/codex_B/B18audit/before/src/rom/lib_e9a0.c:11: Macro K1_TO_PHYS redefined.\n",
+        "source_sha256": "de9d5d2198aa2185d8fea77b85b3dc0dac9001e9a0f866a1a6a3396629a2da57"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "cfe: Warning 581: /home/cburnes/agents/B/scratch/codex_B/B18audit/after/src/rom/lib_e9a0.c:11: Macro K1_TO_PHYS redefined.\n",
+        "source_sha256": "de9d5d2198aa2185d8fea77b85b3dc0dac9001e9a0f866a1a6a3396629a2da57"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_efd0.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "adeded40cb15b72b5ebd3980051b52072db4ade1e36ca485d587a7b1d77b0cdb"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "adeded40cb15b72b5ebd3980051b52072db4ade1e36ca485d587a7b1d77b0cdb"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_f0b0.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "6d5841be27a685789be769d2cf40f8aaf716c5806c745cec95e605bec5dfa70e"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "6d5841be27a685789be769d2cf40f8aaf716c5806c745cec95e605bec5dfa70e"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_f160.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "0c1378c78fecabffb70fd35a9d29645822673f8c7143e4128cda8b5ca10c56b9"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "0c1378c78fecabffb70fd35a9d29645822673f8c7143e4128cda8b5ca10c56b9"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_f450.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "041970b936d4df76f00fb26b2a307a5c5dc27d7c90a9a93074891ce45e51f1f0"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "041970b936d4df76f00fb26b2a307a5c5dc27d7c90a9a93074891ce45e51f1f0"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_f4d0.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "37f565ff4fb080630bdd014a4d7b636e4414fc4189b401be64931a3ad2517a20"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "37f565ff4fb080630bdd014a4d7b636e4414fc4189b401be64931a3ad2517a20"
+      },
+      "raw_text_diff": 0
+    },
+    {
+      "file": "lib_f700.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "before": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "88214d05844ce4396fa019e1bc139086a02e6bdd1d0273947b96864eca5dba32"
+      },
+      "after": {
+        "exit_code": 0,
+        "stderr": "",
+        "source_sha256": "88214d05844ce4396fa019e1bc139086a02e6bdd1d0273947b96864eca5dba32"
+      },
+      "raw_text_diff": 0
+    }
+  ],
+  "vi_module": {
+    "exit_code": 0,
+    "stderr": "",
+    "source_sha256": "2c583d59ef40599c644e9bbc456bd2d7bbf0cce5a14d0673354069bd7e53cce5"
+  }
+}

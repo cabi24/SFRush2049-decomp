@@ -332,6 +332,8 @@ def parse_tu_states(tu_path):
         m = _PROMOTED_HDR_RE.search(line)
         if m:
             states[m.group("fn")] = "promoted"
+    from . import owned_storage
+    states.update(owned_storage.tu_states(REPO, tu_path))
     return states
 
 
@@ -522,6 +524,8 @@ def write_opt_overrides(mapping=None):
 
 
 def _do_convert(mapping, seg):
+    from . import owned_storage
+    owned_storage.require_single_function_safe(REPO, "src/" + seg["rom_tu"] + ".c")
     if seg["refusal"]:
         sys.exit(f"refusing: segment {seg['yaml_name']} is unconvertible: "
                  f"{seg['refusal']}")
@@ -561,6 +565,8 @@ def _do_convert(mapping, seg):
 
 
 def _do_revert(seg):
+    from . import owned_storage
+    owned_storage.require_single_function_safe(REPO, "src/" + seg["rom_tu"] + ".c")
     if not seg["converted"]:
         sys.exit(f"refusing: {seg['yaml_name']} is not converted")
     off = int(seg["yaml_name"], 16)

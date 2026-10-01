@@ -1,0 +1,46 @@
+{
+  "verifier": "B19 fresh Rocky compile with CURRENT root resolved header closure and proposed SDK overlay",
+  "source_sha256": "2c583d59ef40599c644e9bbc456bd2d7bbf0cce5a14d0673354069bd7e53cce5",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "stack_differences": true,
+  "algorithm": "difflib",
+  "ign_branch_targets": true,
+  "function_scoped": true,
+  "headers": {
+    "include/PR/os.h": "cd435b51c7aec3f5f6548081b90a2c179503ea81adaaf110f138774b46df6809",
+    "include/PR/os_ai.h": "5c3b64a7591c38af33be445a5dc360cb1f5d5a28b18952eed9af48785a6157e4",
+    "include/PR/os_cont.h": "d90de1e07e5950f6e551d36fa51465113005c32499709ac3800a54d16982e4f4",
+    "include/PR/os_message.h": "abcd94ab267e900fe34aa5d135de9bbea97b569ba92b28b603a05ee0990695df",
+    "include/PR/os_pfs.h": "c1b35642cfbb0efbad6668067bfca27ef6ffaba3a5edad1213a7c8e4fe84051c",
+    "include/PR/os_pi.h": "8334d60c3f0761abaf38f69f905d04feb62eea3a1e4fa7de3951273fef19888d",
+    "include/PR/os_thread.h": "1ab29a9e77fcfeae0f2b106b4fbec77fca53f2df4273240ea6b937e25a9845f6",
+    "include/PR/os_time.h": "a224b0b67e8b01fc2dabcbf391785be35127884645648abfd9ffc29f7d10c8cc",
+    "include/m2c_types.h": "93ab9028d3acf10515babd91636d6bd1c243110d1b70972d7758c83b65e932d0",
+    "include/rom_auto.h": "19c91f4227b58dc67b9cf73d3046d5516ffea3133be6c1f61be3b3cea257d027",
+    "include/types.h": "0c3169319a4e10b8a2c7d850791df9bafcf923b57411c64bfa6ca83bb639bf57",
+    "src/rom/rom_tu.h": "a7a1d4a1d9220b912b7ad0ec62bcd796e7abce207b9aa7f249339f18064de662"
+  },
+  "module_sha256": "67d668583f226236e234eb07f0602199c9cb2c7ba988b54b1dd96491395c22c9",
+  "results": [
+    {
+      "function": "osSetEventMesg",
+      "strict_score": 0,
+      "raw_word_diff": 9,
+      "words": 96,
+      "object_start": 0,
+      "target_sha256": "9a167a4493180b0f82c61967d474df34d0d8033f4a5a17d301b79012d2b4c65b",
+      "body_sha256": "58942acf006d46963eabd1991a3364f483468e8e9f9d84eef20ab4d3296dbda1",
+      "inventory_insn_count": 96
+    },
+    {
+      "function": "vi_manager_main",
+      "strict_score": 0,
+      "raw_word_diff": 5,
+      "words": 100,
+      "object_start": 384,
+      "target_sha256": "9650777d667fc9e66fea3d03bbe20b456c52182a9482ec6dc1f6f8dbc0305f8d",
+      "body_sha256": "7a814fa69383f152e339f625f043f1df79454e41f6238adeba7bfa6b8255b6b0",
+      "inventory_insn_count": 100
+    }
+  ]
+}

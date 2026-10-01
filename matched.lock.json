@@ -1,4 +1,38 @@
 {
+  "cloud/work/integration_B18/lib_7630.c:osSetEventMesg": {
+    "body_sha256": "58942acf006d46963eabd1991a3364f483468e8e9f9d84eef20ab4d3296dbda1",
+    "context_sha256": "a2b4cb3d9c839436ba27e82c221c22127102f7debc64e4a2dc410cc29f62ad86",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "linked_proof_sha256": "b1ddbca1584ffa9bfbfddaea7b7c572ae0ca4d44a488f13505cf6041cb3e57dd",
+    "raw_word_diff": 9,
+    "source_sha256": "2c583d59ef40599c644e9bbc456bd2d7bbf0cce5a14d0673354069bd7e53cce5",
+    "startup_proof_sha256": "0eeed0d3d280360cc09a10712aec441e795968330ce4f2804bc5ec4861fe646c",
+    "strict_words": 96,
+    "target_id": "osSetEventMesg",
+    "target_o_sha": "9a167a4493180b0f82c61967d474df34d0d8033f4a5a17d301b79012d2b4c65b",
+    "toolkit_sha": null,
+    "verification_proof_sha256": "7474a879c6fa09b1d6ce9009f3ed86d73b0247cf35789e13bab8ed6a3af82049",
+    "verification_protocol": "canonical-function-scoped-complete-storage-module",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/integration_B18/lib_7630.c:vi_manager_main": {
+    "body_sha256": "7a814fa69383f152e339f625f043f1df79454e41f6238adeba7bfa6b8255b6b0",
+    "context_sha256": "a2b4cb3d9c839436ba27e82c221c22127102f7debc64e4a2dc410cc29f62ad86",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "linked_proof_sha256": "b1ddbca1584ffa9bfbfddaea7b7c572ae0ca4d44a488f13505cf6041cb3e57dd",
+    "raw_word_diff": 5,
+    "source_sha256": "2c583d59ef40599c644e9bbc456bd2d7bbf0cce5a14d0673354069bd7e53cce5",
+    "startup_proof_sha256": "0eeed0d3d280360cc09a10712aec441e795968330ce4f2804bc5ec4861fe646c",
+    "strict_words": 100,
+    "target_id": "vi_manager_main",
+    "target_o_sha": "9650777d667fc9e66fea3d03bbe20b456c52182a9482ec6dc1f6f8dbc0305f8d",
+    "toolkit_sha": null,
+    "verification_proof_sha256": "7474a879c6fa09b1d6ce9009f3ed86d73b0247cf35789e13bab8ed6a3af82049",
+    "verification_protocol": "canonical-function-scoped-complete-storage-module",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
   "src/libultra/os_ai.c:__osAiDeviceBusy": {
     "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",

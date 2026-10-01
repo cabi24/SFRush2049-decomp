@@ -1,0 +1,10 @@
+{
+  "verifier": "coordinator D independent original-address complete VI BSS link",
+  "source_sha256": "2c583d59ef40599c644e9bbc456bd2d7bbf0cce5a14d0673354069bd7e53cce5",
+  "bytes": 784,
+  "retail_bytes": 784,
+  "raw_word_diff": 0,
+  "linked_text_sha256": "ea7fa7d6effd8003aaf38622f1396826cd7914d9402d95e230bb2aa0b89b4cb5",
+  "retail_text_sha256": "ea7fa7d6effd8003aaf38622f1396826cd7914d9402d95e230bb2aa0b89b4cb5",
+  "equal": true
+}

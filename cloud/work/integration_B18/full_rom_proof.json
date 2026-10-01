@@ -1,0 +1,9 @@
+{
+  "builder": "watchman2:~/agents/B/B18-private-rom",
+  "command": "make COMPILER=ido -j2 && make test",
+  "exit_code": 0,
+  "rom_matches_prints": 2,
+  "retail_sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+  "splat_regeneration": "passed using local /home/cburnes/.splat-venv/bin/python",
+  "current_root_gate_required": true
+}

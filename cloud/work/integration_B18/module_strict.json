@@ -1,0 +1,26 @@
+[
+  {
+    "function": "osSetEventMesg",
+    "strict_score": 0,
+    "raw_word_diff": 9,
+    "object_start": 0,
+    "words": 96,
+    "target_sha256": "9a167a4493180b0f82c61967d474df34d0d8033f4a5a17d301b79012d2b4c65b",
+    "module_sha256": "be3df5249df90998608304f21c59b6dde28dfdb8bdb525ba81d0181d02eb64be",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "protocol": "canonical scorer weights/settings, function-scoped objdump; raw original object word slice, not linked or relocated",
+    "source_sha256": "2c583d59ef40599c644e9bbc456bd2d7bbf0cce5a14d0673354069bd7e53cce5"
+  },
+  {
+    "function": "vi_manager_main",
+    "strict_score": 0,
+    "raw_word_diff": 5,
+    "object_start": 384,
+    "words": 100,
+    "target_sha256": "9650777d667fc9e66fea3d03bbe20b456c52182a9482ec6dc1f6f8dbc0305f8d",
+    "module_sha256": "be3df5249df90998608304f21c59b6dde28dfdb8bdb525ba81d0181d02eb64be",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "protocol": "canonical scorer weights/settings, function-scoped objdump; raw original object word slice, not linked or relocated",
+    "source_sha256": "2c583d59ef40599c644e9bbc456bd2d7bbf0cce5a14d0673354069bd7e53cce5"
+  }
+]
