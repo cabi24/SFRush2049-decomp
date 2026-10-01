@@ -31,14 +31,6 @@
     "verified": "score0",
     "verified_at": "2026-10-01"
   },
-  "cloud/work/static_C/osViGetFramebuffer.c:osViGetFramebuffer": {
-    "body_sha256": "74aadaa51ecbfdad7f15e1f870be13d9419a9e9c560f7023cb9ed959c66bd430",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "osViGetFramebuffer",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-01"
-  },
   "cloud/work/static_C/osViSetSpecialFeatures.c:osViSetSpecialFeatures": {
     "body_sha256": "ae546c83ba220a05c2703da305f6be871e44ac664db7425cae38d39cd72f68d2",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -110,6 +102,14 @@
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-07-15"
+  },
+  "src/rom/lib_83d0.c:osViGetFramebuffer": {
+    "body_sha256": "74aadaa51ecbfdad7f15e1f870be13d9419a9e9c560f7023cb9ed959c66bd430",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osViGetFramebuffer",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
   },
   "src/rom/lib_8800.c:memcpy": {
     "body_sha256": "3165d008e7c6211654e517cf1c0a25afc217cc749b9d99e88d850824615fab24",
