@@ -1,0 +1,22 @@
+[
+  {
+    "function": "osGetTime",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "target_words": 36,
+    "candidate_words": 36,
+    "source_sha256": "acf650feaac8d82435a0d3f37764cf9f9acda375f1bde04b5cfa374ed865e756",
+    "target_sha256": "003f0366f146328fdd098524974f78db29815c628a0ca0892e4ebc4a63c5b53e"
+  },
+  {
+    "function": "osViModeTableGet",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "target_words": 68,
+    "candidate_words": 68,
+    "source_sha256": "8065f19e6f1e39bd6829635dfd2306ffd0b076a9a4766cc4f6f255c055b156b2",
+    "target_sha256": "6a0055529638e63974886853916a7c7087106788dd8d52248708ecf9da4412c1"
+  }
+]

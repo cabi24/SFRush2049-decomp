@@ -1,0 +1,41 @@
+{
+  "err": null,
+  "matched": false,
+  "members": {
+    "camera_update_c": {
+      "strict_diff": 6,
+      "size": 9,
+      "target_size": 9,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "select_screen_update": {
+      "strict_diff": 7,
+      "size": 8,
+      "target_size": 9,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    }
+  },
+  "context": {
+    "func_8009C3F8": {
+      "strict_diff": 92,
+      "size": 110,
+      "target_size": 113,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    }
+  }
+}

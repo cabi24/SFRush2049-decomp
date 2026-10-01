@@ -3004,6 +3004,7 @@ render_helper:
 .section .text.func_800B669C, "ax", @progbits
 .globl func_800B669C
 func_800B669C:
+    /* compiled from src/blob/func_800B669C.c */
     .word 0x3C028012
     .word 0x24428E20
     .word 0xAC440000

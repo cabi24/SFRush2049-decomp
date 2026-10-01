@@ -7259,6 +7259,7 @@ particle_system:
 .section .text.func_8009D444, "ax", @progbits
 .globl func_8009D444
 func_8009D444:
+    /* compiled from src/blob/func_8009D444.c */
     .word 0x460C6102
     .word 0x00000000
     .word 0x460E7182

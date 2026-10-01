@@ -1,0 +1,34 @@
+[
+  {
+    "function": "osGetTime",
+    "source_sha256": "acf650feaac8d82435a0d3f37764cf9f9acda375f1bde04b5cfa374ed865e756",
+    "new_target_sha256": "003f0366f146328fdd098524974f78db29815c628a0ca0892e4ebc4a63c5b53e",
+    "address": "0x800073b0",
+    "retail_bytes": 144,
+    "linked_target_words_diff": 0,
+    "retail_sha256": "cad71470f4454f634b8cfd17336b1c6b877359edbeff9d6b875e1ff746f1fbc7",
+    "gate_ok": true,
+    "undefined_symbols": {
+      "__osDisableInt": "0x8000c4b0",
+      "__osRestoreInt": "0x8000c520",
+      "gViLastCount": "0x80037c58",
+      "gViTimeAccumHi": "0x80037c50",
+      "osGetCount": "0x8000c970"
+    }
+  },
+  {
+    "function": "osViModeTableGet",
+    "source_sha256": "8065f19e6f1e39bd6829635dfd2306ffd0b076a9a4766cc4f6f255c055b156b2",
+    "new_target_sha256": "6a0055529638e63974886853916a7c7087106788dd8d52248708ecf9da4412c1",
+    "address": "0x80007840",
+    "retail_bytes": 268,
+    "linked_target_words_diff": 0,
+    "retail_sha256": "bcd505a699c9ba69cf3cac440f56316cf9f5830056ac2b1444a3fbfcb5933d89",
+    "gate_ok": true,
+    "undefined_symbols": {
+      "bcopy": "0x8000d2b0",
+      "gViModeTempBuffer": "0x80036790",
+      "osVirtualToPhysical": "0x8000d5c0"
+    }
+  }
+]

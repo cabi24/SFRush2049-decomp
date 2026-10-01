@@ -1,5 +1,16 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-01 ninth completed VI storage and leaf milestone
+
+- Game cartridge C: **542/1,216 functions, 63,004/647,072 bytes (9.74%)**. Static cartridge C: **111/230 functions, 26,228/61,440 bytes (42.69%)**.
+- A22 adds six ordinary leaves /160 bytes: actual pair setter, float length, three signed-byte table getters and a68-byte-record setter. Every exact flags-prefixed source independently canonical strict MATCH on D; image and source-built full-ROM gates pass. Setter logical return remains unknown; emitted final v0 bits match retail, no unsupported public pointer return asserted. No synthetic context or dummy input used.
+- B18 complete VI module adds784 text bytes with its genuine original0x1220-byte BSS block. Both bodies, corrected eight-byte SDK FP pairs, source/header/layout/linker/storage and locks activate atomically. Independent D canonical strict0/raw9 and strict0/raw5 correctly retain unlinked relocation differences; all196 linked words exact at real original storage placement. Retail startup clears the complete block. Forced current shared-builder full-ROM acceptance validates every current ROM TU after header correction.
+- B19 reviewed proof recorder establishes ordinary exact body locks from immutable fresh whole-module proof, after independent D execution review. It neither scores nor treats a hash as evidence authority; body/header/target/extent/strict and complete linked/startup checks refuse drift. Seven recorder tests and five storage lifecycle tests cover these checks and complete activation/revert/failure rollback. Normal single-function promotion refuses storage owners.
+- B20 reviewed guarded target normalization proves the low word of OSTime and seven canonical OSTask field aliases from actual live/SDK types and every authoritative address. All24 target tests pass; supported scoped refresh returns both reloc-aware targets without fallback. C15 source integration remains pending independent current-header and full-ROM gates, earning no provisional coverage. B21 preserves actual32-byte body plus96 original zero padding through a private linker-boundary proof; pending narrow lifecycle/coverage implementation, no96-byte C claim.
+- Across handoff:45 game functions /6,588 bytes and88 static functions /24,780 bytes accepted. A21 authentic float closure remains an honest empty-claim lead. Initial dirty tools/mips_to_c preserved.
+- Gates: source-built full-ROM SHA-1 EXACT;542 blob locks and group locks zero problems;114 static/source locks intact (111 actual ROM promotions plus3 historical entries). Full pytest exit0 captured separately;27 required static tests pass before VI transaction. Eight forward coordinator status transitions persist without informational attention flags.
+- Previous b291eedd CI run36917710140 succeeded. Farm paused for integration and resumes at checkpoint. Three workers continue fresh leaves, SDK ownership hypotheses and narrow genuine padding preservation. Wiki host-key confirmation remains independently pending.
+
 ## 2026-10-01 eighth completed ownership and caller milestone
 
 - Game cartridge C: **536/1,216 functions, 62,844/647,072 bytes (9.71%)**. Static cartridge C: **109/230 functions, 25,444/61,440 bytes (41.41%)**.

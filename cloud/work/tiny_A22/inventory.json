@@ -1,0 +1,52 @@
+[
+  {
+    "name": "func_800B669C",
+    "retail_words": 5,
+    "decision": "selected: actual two word global stores"
+  },
+  {
+    "name": "func_8009D444",
+    "retail_words": 6,
+    "decision": "selected: true float intrinsic return"
+  },
+  {
+    "name": "func_800F75EC",
+    "retail_words": 6,
+    "decision": "selected: signed-byte stride8 getter"
+  },
+  {
+    "name": "func_800A5560",
+    "retail_words": 7,
+    "decision": "excluded: real parameter home-store quirk, no new lever"
+  },
+  {
+    "name": "func_800BEA3C",
+    "retail_words": 7,
+    "decision": "excluded: two parameter homes, avoid quirk lane"
+  },
+  {
+    "name": "func_800F75D0",
+    "retail_words": 7,
+    "decision": "selected: signed-byte stride5 getter"
+  },
+  {
+    "name": "func_800F7604",
+    "retail_words": 7,
+    "decision": "selected: signed-byte stride9 getter"
+  },
+  {
+    "name": "func_800A79B8",
+    "retail_words": 9,
+    "decision": "selected: actual68-byte record fields+26/+28"
+  },
+  {
+    "name": "func_800A785C",
+    "retail_words": 10,
+    "decision": "excluded: narrowed index and parameter home, avoid quirks"
+  },
+  {
+    "name": "func_800A73FC",
+    "retail_words": 11,
+    "decision": "excluded: select4\u20136 bound satisfied, reserve ordinary byte getter/setter"
+  }
+]
