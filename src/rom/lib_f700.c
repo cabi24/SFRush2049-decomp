@@ -34,7 +34,46 @@ s32 __osIdCheckSum(u16 *ptr, u16 *csum, u16 *icsum) {
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_f700/__osRepairId.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_f700/__osCheckId.s")
+/* PROMOTED 2026-10-01 — __osCheckId
+ * Source:   cloud/work/static_C9/__osCheckId.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C9/__osCheckId.c:__osCheckId (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+s32 __osCheckId(OSPfs* pfs, __OSPackId* temp) {
+    u16 index[4];
+    s32 ret = 0;
+    u16 sum;
+    u16 isum;
+    int i;
+    int j;
+
+    SET_ACTIVEBANK_TO_ZERO();
+    index[0] = PFS_ID_0AREA;
+    index[1] = PFS_ID_1AREA;
+    index[2] = PFS_ID_2AREA;
+    index[3] = PFS_ID_3AREA;
+    for (i = 1; i < ARRLEN(index); i++) {
+        ERRCK(__osContRamRead(pfs->queue, pfs->channel, index[i], (u8*)temp));
+        __osIdCheckSum((u16*)temp, &sum, &isum);
+        if (temp->checksum == sum && temp->inverted_checksum == isum) {
+            break;
+        }
+    }
+
+    if (i == ARRLEN(index)) {
+        return PFS_ERR_ID_FATAL;
+    }
+
+    for (j = 0; j < ARRLEN(index); j++) {
+        if (j != i) {
+            ERRCK(__osContRamWrite(pfs->queue, pfs->channel, index[j], (u8*)temp, TRUE));
+        }
+    }
+
+    return 0;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_f700/__osGetId.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_f700/osPfsReadWriteFile_pages.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_f700/__osPfsRWInode.s")
