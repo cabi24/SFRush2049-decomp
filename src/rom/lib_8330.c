@@ -25,4 +25,26 @@ OSYieldResult osSpTaskYielded(OSTask* tp) {
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_8330/osViGetCurrentFramebuffer.s")
+/* PROMOTED 2026-10-01 — osViGetCurrentFramebuffer
+ * Source:   cloud/work/static_C2/osViGetCurrentFramebuffer.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C2/osViGetCurrentFramebuffer.c:osViGetCurrentFramebuffer (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void* osViGetCurrentFramebuffer(void) {
+    register u32 saveMask;
+    void* framep;
+
+#ifdef _DEBUG
+    if (!__osViDevMgr.active) {
+        __osError(ERR_OSVIGETCURRENTFRAMEBUFFER, 0);
+        return NULL;
+    }
+#endif
+
+    saveMask = __osDisableInt();
+    framep = ((__OSViContext *)__osViModeInfo)->framep;
+    __osRestoreInt(saveMask);
+    return framep;
+}
+

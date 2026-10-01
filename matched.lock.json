@@ -1,12 +1,4 @@
 {
-  "cloud/work/static_C2/osViGetCurrentFramebuffer.c:osViGetCurrentFramebuffer": {
-    "body_sha256": "ca0dcfad4c5d4ddec79cd0ac15bd3d979fb6a094bb09f9767b6c10ab3466f929",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "osViGetCurrentFramebuffer",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-01"
-  },
   "cloud/work/static_C2/osViModeNtscLpn1.c:osViModeNtscLpn1": {
     "body_sha256": "13664978efca0ad0f6a3da01e063e04b5900896f85bce9f779df61f6c570bc03",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -155,6 +147,14 @@
     "body_sha256": "c9d0a1a8d47074cec1bd69cf5eb01b7594f126c8bd5c2987c7945a1af74c76a3",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "osSpTaskYielded",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
+  },
+  "src/rom/lib_8330.c:osViGetCurrentFramebuffer": {
+    "body_sha256": "ca0dcfad4c5d4ddec79cd0ac15bd3d979fb6a094bb09f9767b6c10ab3466f929",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osViGetCurrentFramebuffer",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
