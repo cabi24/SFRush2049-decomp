@@ -63,7 +63,34 @@
         cHandle->pulse = pihandle->pulse;                            \
     }(void)0
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_e9a0/osPiSetDeviceTiming.s")
+/* PROMOTED 2026-10-01 — osPiSetDeviceTiming
+ * Source:   cloud/work/static_C12/osPiSetDeviceTiming.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C12/osPiSetDeviceTiming.c:osPiSetDeviceTiming (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+s32 osPiSetDeviceTiming(OSPiHandle* pihandle, s32 direction, u32 devAddr, void* dramAddr, u32 size) {
+    u32 stat;
+    u32 domain;
+
+
+    EPI_SYNC(pihandle, stat, domain);
+    IO_WRITE(PI_DRAM_ADDR_REG, osVirtualToPhysical(dramAddr));
+    IO_WRITE(PI_CART_ADDR_REG, K1_TO_PHYS(pihandle->baseAddress | devAddr));
+
+    switch (direction) {
+        case OS_READ:
+            IO_WRITE(PI_WR_LEN_REG, size - 1);
+            break;
+        case OS_WRITE:
+            IO_WRITE(PI_RD_LEN_REG, size - 1);
+            break;
+        default:
+            return -1;
+    }
+    return 0;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_e9a0/osSpTaskLoad_full.s")
 /* PROMOTED 2026-07-15 — __osInsertTimer
  * Source:   src/rom_auto/__osInsertTimer.c (in-repo, locked)
