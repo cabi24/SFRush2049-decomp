@@ -84,4 +84,34 @@ s32 osPfsInitPak(OSMesgQueue* queue, OSPfs* pfs, int channel) {
     return ret;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_a810/__osTimerInterrupt.s")
+/* PROMOTED 2026-10-01 — __osTimerInterrupt
+ * Source:   cloud/work/static_C10/__osTimerInterrupt.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C10/__osTimerInterrupt.c:__osTimerInterrupt (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+s32 __osTimerInterrupt(OSPfs* pfs) {
+    s32 i;
+    s32 ret = 0;
+    u8 temp1[BLOCKSIZE];
+    u8 temp2[BLOCKSIZE];
+    u8 save[BLOCKSIZE];
+
+    ERRCK(SELECT_BANK(pfs, PFS_ID_BANK_256K));
+    ERRCK(__osContRamRead(pfs->queue, pfs->channel, 0, save));
+
+    for (i = 0; i < BLOCKSIZE; i++) {
+        temp1[i] = i;
+    }
+
+    ERRCK(__osContRamWrite(pfs->queue, pfs->channel, 0, temp1, FALSE));
+    ERRCK(__osContRamRead(pfs->queue, pfs->channel, 0, temp2));
+
+    if (bcmp(temp1, temp2, BLOCKSIZE) != 0) {
+        return PFS_ERR_DEVICE;
+    }
+
+    ret = __osContRamWrite(pfs->queue, pfs->channel, 0, save, FALSE);
+    return ret;
+}
+
