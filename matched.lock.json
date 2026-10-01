@@ -1,12 +1,4 @@
 {
-  "cloud/work/static_C/osPiRawReadWord.c:osPiRawReadWord": {
-    "body_sha256": "e68d4fdfaae4caf1ee72957837070436f1b5760fa5d68708a36babf38c81eac2",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "osPiRawReadWord",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-01"
-  },
   "cloud/work/static_C2/__osSiGetAccess.c:__osSiGetAccess": {
     "body_sha256": "101d8686d8e0a989c5ce0bc5c9010322f89e3f79fc893df5de2032d809c9bd36",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -235,6 +227,14 @@
     "body_sha256": "ae546c83ba220a05c2703da305f6be871e44ac664db7425cae38d39cd72f68d2",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "osViSetSpecialFeatures",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
+  },
+  "src/rom/lib_8dd0.c:osPiRawReadWord": {
+    "body_sha256": "e68d4fdfaae4caf1ee72957837070436f1b5760fa5d68708a36babf38c81eac2",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osPiRawReadWord",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
