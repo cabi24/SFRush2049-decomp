@@ -2732,6 +2732,15 @@
     "verified": "image_gate",
     "verified_at": "2026-09-29"
   },
+  "func_800DCCE0": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "codex_control_settings_a4",
+    "source": "src/blob/groups/codex_control_settings_a4/group.json",
+    "source_sha256": "eca32f38e3243f8ec37aceb273e096264903f431e0787787603f5a50c4f27b31",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-01"
+  },
   "func_800DCD50": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_800DCD50.c",
@@ -2739,6 +2748,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-29"
+  },
+  "func_800DCD58": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "codex_control_settings_a4",
+    "source": "src/blob/groups/codex_control_settings_a4/group.json",
+    "source_sha256": "eca32f38e3243f8ec37aceb273e096264903f431e0787787603f5a50c4f27b31",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-01"
   },
   "func_800DD0A8": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",

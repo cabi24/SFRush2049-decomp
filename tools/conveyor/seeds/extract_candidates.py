@@ -65,6 +65,11 @@ def _mask_comments_and_strings(text):
 def extract_functions(text):
     """Yield (name, start, end) for each top-level function definition."""
     masked = _mask_comments_and_strings(text)
+    # A macro's semicolons/braces are not C file boundaries. Mask complete
+    # directives before walking, retaining offsets and continued-line breaks.
+    masked = re.sub(r"^[ \t]*#(?:[^\n]*\\\n)*[^\n]*",
+                    lambda m: "".join("\n" if c == "\n" else " "
+                                      for c in m.group()), masked, flags=re.M)
     depth = 0
     boundary = 0  # last top-level ';' or '}' — the current header starts here
     i, n = 0, len(masked)

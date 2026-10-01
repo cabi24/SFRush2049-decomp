@@ -1,4 +1,68 @@
 {
+  "cloud/work/static_C6/__osPiReadDeviceType.c:__osPiReadDeviceType": {
+    "body_sha256": "745263f8efd78f723d93c4d0712733a42a0a665d8c20a5e41ab4c58208e24f25",
+    "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "target_id": "__osPiReadDeviceType",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C6/__osViSwapContext.c:__osViSwapContext": {
+    "body_sha256": "46127f612005a604a3586ebb602ef241a27e6f40ac3d26ff6c7608bc21bbf5c5",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osViSwapContext",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C6/guMtxF2L.c:guMtxF2L": {
+    "body_sha256": "ca3620759913a33440800d791917ee96a72d1f76201b5dcf412807cdfc6b304d",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "guMtxF2L",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C6/guOrthoF.c:guOrthoF": {
+    "body_sha256": "fc14dd8da73685ed48a409b035d0d69ed60bf04a9c4c77f1ea1a90d61c888667",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "guOrthoF",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C6/guPerspectiveF.c:guPerspectiveF": {
+    "body_sha256": "72235c579dc4abc0e53b379c3232515547ee716f3a7d464e8dcf2fb4b5179661",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "guPerspectiveF",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C6/osAiSetFrequency.c:osAiSetFrequency": {
+    "body_sha256": "605d597999713a531e75f07f9646506e3324c45e90d58b98d3bb3e99e6172550",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osAiSetFrequency",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C6/osPfsFreeBlocks.c:osPfsFreeBlocks": {
+    "body_sha256": "7c52a1cf8ece2e977d1484d2408c74f4c4652d29340dc38f05dd6af1bdda2e94",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osPfsFreeBlocks",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C6/osPfsReAllocate.c:osPfsReAllocate": {
+    "body_sha256": "bc7dd30bd4e3cc59f08b7c806e66e98446cc8ca018cb942b81a68fcd95799d7f",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osPfsReAllocate",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
   "src/libultra/os_ai.c:__osAiDeviceBusy": {
     "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -193,7 +257,9 @@
   },
   "src/rom/lib_9660.c:guOrtho": {
     "body_sha256": "c1852e1b1a420fac50798fa24032c5252cf325420129997502ee329f150482bc",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "flag_evidence": "cloud/work/static_C6/wrapper_flags/verification.json",
+    "flag_reverified_at": "2026-10-01",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "target_id": "guOrtho",
     "toolkit_sha": null,
     "verified": "rom-sha1",
@@ -201,7 +267,9 @@
   },
   "src/rom/lib_9820.c:guPerspective": {
     "body_sha256": "b44f91ba17f4ce12fcd79d9af3fc57e03e7bee78428eab01924996e25cc00249",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "flag_evidence": "cloud/work/static_C6/wrapper_flags/verification.json",
+    "flag_reverified_at": "2026-10-01",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "target_id": "guPerspective",
     "toolkit_sha": null,
     "verified": "rom-sha1",
@@ -217,7 +285,9 @@
   },
   "src/rom/lib_9de0.c:guMtxIdent": {
     "body_sha256": "83aea719004123016640913339b4569fa10ff90fd6282ee0236c67e55b9ee1b9",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "flag_evidence": "cloud/work/static_C6/wrapper_flags/verification.json",
+    "flag_reverified_at": "2026-10-01",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "target_id": "guMtxIdent",
     "toolkit_sha": null,
     "verified": "rom-sha1",
@@ -225,7 +295,9 @@
   },
   "src/rom/lib_9de0.c:guMtxIdentF": {
     "body_sha256": "2a83c1f72b77c3fe51dad50c8559ed86f9a7c7589c564d7add2a3be4642cd178",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "flag_evidence": "cloud/work/static_C6/wrapper_flags/verification.json",
+    "flag_reverified_at": "2026-10-01",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "target_id": "guMtxIdentF",
     "toolkit_sha": null,
     "verified": "rom-sha1",
@@ -233,7 +305,9 @@
   },
   "src/rom/lib_9de0.c:guMtxL2F": {
     "body_sha256": "b2d6754cd4fc29ec0f37ef1b5dac944ada44da0438305b4b4a3f574343e381ff",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "flag_evidence": "cloud/work/static_C6/wrapper_flags/verification.json",
+    "flag_reverified_at": "2026-10-01",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "target_id": "guMtxL2F",
     "toolkit_sha": null,
     "verified": "rom-sha1",

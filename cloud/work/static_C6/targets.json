@@ -1,0 +1,242 @@
+[
+  {
+    "target": {
+      "target_id": "osPfsFreeBlocks",
+      "address": 2147529280,
+      "population": "static",
+      "insn_count": 104,
+      "target_asm_sha": "9eaa90daad06b8e6ff8c115dfcd89da7d97b12c7bb30e17e8912e8a120a6e347",
+      "target_o_sha": "a473ea0336c9623c8e144c9a19834c96237716a48b43f1aa73222e0ff1e42f39",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xbe40",
+        "function": {
+          "name": "osPfsFreeBlocks",
+          "vaddr": "0x8000b240",
+          "size": 416,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "osAiSetFrequency",
+      "address": 2147532544,
+      "population": "static",
+      "insn_count": 84,
+      "target_asm_sha": "d061b6c3d50d0c147432fb04d9ac1496bc08c4682a4db0570db042a54473b962",
+      "target_o_sha": "1cd4d38c542023d6d6d3cce973c32916b5a481d538b0ad1315ee3060bdd3614f",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xca70",
+        "function": {
+          "name": "osAiSetFrequency",
+          "vaddr": "0x8000bf00",
+          "size": 336,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": "permuter"
+  },
+  {
+    "target": {
+      "target_id": "__osViSwapContext",
+      "address": 2147534448,
+      "population": "static",
+      "insn_count": 192,
+      "target_asm_sha": "7e91c4cc1b4acbf0586fd8a6cdcabb90d678af4a4443081e3398f7ffe9f43721",
+      "target_o_sha": "5d359c6c02772194fe384c0f5bc2a54eb446d2a76195cbb4756d7582cf835c9f",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xd270",
+        "function": {
+          "name": "__osViSwapContext",
+          "vaddr": "0x8000c670",
+          "size": 768,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "__osPiReadDeviceType",
+      "address": 2147516712,
+      "population": "static",
+      "insn_count": 42,
+      "target_asm_sha": "9abee0dac3598015e0fe54568b47a5e9509902f67b7840b21dd3975628af1438",
+      "target_o_sha": "6b2a0194aedb28f81292fca5f2bb6e7e1a1a5c4d5f2f31e9fff3f813ad598b53",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0x8a80",
+        "function": {
+          "name": "__osPiReadDeviceType",
+          "vaddr": "0x80008128",
+          "size": 168,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": "permuter"
+  },
+  {
+    "target": {
+      "target_id": "guMtxF2L",
+      "address": 2147520992,
+      "population": "static",
+      "insn_count": 64,
+      "target_asm_sha": "3ad20116b82fefbe3c468c5eb06bd3abb1e834a61db0e8ff53f6225e4c99142b",
+      "target_o_sha": "8b55c8e458e423685fc973c9722fbd57ae378979324dee4fca45cface19ad359",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "raw_word",
+      "gate_reason": "no_asm_region",
+      "layout": {
+        "segment": "0x9de0",
+        "function": {
+          "name": "guMtxF2L",
+          "vaddr": "0x800091e0",
+          "size": 256,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "osPfsReAllocate",
+      "address": 2147532368,
+      "population": "static",
+      "insn_count": 8,
+      "target_asm_sha": "9d4d55457d055e0340b6a0ee4e976946022e731e2e65bd44b6d225d70c6990b7",
+      "target_o_sha": "54aa6e159bd6a9c509f6b4fba50ee7d0706f85ad89c1a5a6ad67339ab7ea6e88",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xc990",
+        "function": {
+          "name": "osPfsReAllocate",
+          "vaddr": "0x8000be50",
+          "size": 32,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "dll_reschedule",
+      "address": 2147533460,
+      "population": "static",
+      "insn_count": 29,
+      "target_asm_sha": "6e1bfc66c902d42f143b254483f6e40c9016ee086912266fe29ee9b5b442f39f",
+      "target_o_sha": "07fc5ff1844157e83ffbb101873b6996c7682e33d68d294f3af01115a741abeb",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xcc50",
+        "function": {
+          "name": "dll_reschedule",
+          "vaddr": "0x8000c294",
+          "size": 116,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": "permuter"
+  },
+  {
+    "target": {
+      "target_id": "sprintf",
+      "address": 2147502480,
+      "population": "static",
+      "insn_count": 24,
+      "target_asm_sha": "1b15fbe11d243beb1e5594bd82bee9c1f01042b14d0ca083eb0f477f929cc30b",
+      "target_o_sha": "7983bda9b2fa4d795194a31917519491bec1d2e8baa95243e26907785ee9d391",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0x34a0",
+        "function": {
+          "name": "sprintf",
+          "vaddr": "0x80004990",
+          "size": 96,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": "permuter"
+  },
+  {
+    "target": {
+      "target_id": "guOrthoF",
+      "address": 2147519072,
+      "population": "static",
+      "insn_count": 85,
+      "target_asm_sha": "11542ad3d132ad38d9a00a36a131d1d29ec4244e056d0c4232aba63d3262f8a0",
+      "target_o_sha": "3a4c4daa5ad58f1e41d9e84c67d4c3bb6f898cf2bc742ded2fc638dd0eb10c59",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0x9660",
+        "function": {
+          "name": "guOrthoF",
+          "vaddr": "0x80008a60",
+          "size": 340,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "guPerspectiveF",
+      "address": 2147519520,
+      "population": "static",
+      "insn_count": 140,
+      "target_asm_sha": "225ad7f617b8c4817dbff01d22be67e101ed03d8023cf646168350fbefb6dae5",
+      "target_o_sha": "90d8884d0aee5e378b1e423ba9ce9467aa4a6a4f9a4a1d51c7459c7e54eda231",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0x9820",
+        "function": {
+          "name": "guPerspectiveF",
+          "vaddr": "0x80008c20",
+          "size": 560,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  }
+]

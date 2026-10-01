@@ -1,0 +1,20 @@
+{
+  "members": [
+    "func_800DCD58",
+    "func_800DCCE0"
+  ],
+  "context": [
+    "control_settings"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "control_settings"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [
+    "func_800DCD58",
+    "func_800DCCE0"
+  ]
+}
