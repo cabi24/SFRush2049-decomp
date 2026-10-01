@@ -6,7 +6,58 @@
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_cc50/dll_remove.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_cc50/dll_init.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_cc50/dll_update.s")
+/* PROMOTED 2026-10-01 — dll_update
+ * Source:   cloud/work/static_C11/dll_update.c (in-repo, locked)
+ * Flags:    -g0 -O1 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C11/dll_update.c:dll_update (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void dll_update(void) {
+    OSTimer* t;
+    u32 count;
+    u32 elapsed_cycles;
+
+
+    if (__osTimerList->next == __osTimerList) {
+        return;
+    }
+    for (;;) {
+        t = __osTimerList->next;
+
+        if (t == __osTimerList) {
+            __osSetCompare(0);
+            __osTimerCounter = 0;
+            break;
+        }
+
+        count = osGetCount();
+        elapsed_cycles = count - __osTimerCounter;
+        __osTimerCounter = count;
+
+        if (elapsed_cycles < t->value) {
+            t->value -= elapsed_cycles;
+            dll_reschedule(t->value);
+            break;
+        }
+
+        t->prev->next = t->next;
+        t->next->prev = t->prev;
+        t->next = NULL;
+        t->prev = NULL;
+
+        if (t->mq != NULL) {
+            osJamMesg(t->mq, t->msg, OS_MESG_NOBLOCK);
+        }
+
+    __ProfDone:
+
+        if (t->interval != 0) {
+            t->value = t->interval;
+            dll_insert(t);
+        }
+    }
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_cc50/dll_reschedule.s")
 /* PROMOTED 2026-10-01 — dll_insert
  * Source:   cloud/work/static_C11/dll_insert.c (in-repo, locked)

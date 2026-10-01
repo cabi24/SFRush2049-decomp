@@ -1,12 +1,4 @@
 {
-  "cloud/work/static_C11/dll_update.c:dll_update": {
-    "body_sha256": "a312c0513076bd3db3d21ea29cb59932cfbb34cd8ccfed376bcda7ff7cf28cc6",
-    "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
-    "target_id": "dll_update",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-01"
-  },
   "cloud/work/static_C11/osPfsChecker_full.c:osPfsChecker_full": {
     "body_sha256": "02bcb7e8c3beed4d43cadfc780abd5aa666753b1f946837cb3692c9ad8ededa3",
     "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
@@ -559,6 +551,14 @@
     "body_sha256": "02d281cf3dc0d038f2439d375d40a6e9d14ee67adb94844bc259e8ff38f81e77",
     "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
     "target_id": "dll_insert",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
+  },
+  "src/rom/lib_cc50.c:dll_update": {
+    "body_sha256": "a312c0513076bd3db3d21ea29cb59932cfbb34cd8ccfed376bcda7ff7cf28cc6",
+    "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "target_id": "dll_update",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
