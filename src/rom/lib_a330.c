@@ -86,4 +86,35 @@ void osContGetReadData(OSContPad* data) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_a330/__osPackReadData.s")
+/* PROMOTED 2026-10-01 — __osPackReadData
+ * Source:   cloud/work/static_C7/__osPackReadData.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C7/__osPackReadData.c:__osPackReadData (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void __osPackReadData(void) {
+    u8* ptr = (u8*)__osSiDmaBuffer.ramarray;
+    __OSContReadFormat readformat;
+    int i;
+
+    for (i = 0; i < ARRLEN(__osSiDmaBuffer.ramarray); i++) {
+        __osSiDmaBuffer.ramarray[i] = 0;
+    }
+
+    __osSiDmaBuffer.pifstatus = CONT_CMD_EXE;
+    readformat.dummy = CONT_CMD_NOP;
+    readformat.txsize = CONT_CMD_READ_BUTTON_TX;
+    readformat.rxsize = CONT_CMD_READ_BUTTON_RX;
+    readformat.cmd = CONT_CMD_READ_BUTTON;
+    readformat.button = 0xFFFF;
+    readformat.stick_x = -1;
+    readformat.stick_y = -1;
+
+    for (i = 0; i < __osPfsRequestType2; i++) {
+        *(__OSContReadFormat*)ptr = readformat;
+        ptr += sizeof(__OSContReadFormat);
+    }
+
+    *ptr = CONT_CMD_END;
+}
+
