@@ -1,0 +1,39 @@
+{
+  "members": [
+    "object_byte9_set",
+    "func_800F68A4",
+    "camera_shake_update"
+  ],
+  "context": [
+    "sound_update_channel",
+    "func_80096288",
+    "slot_value_get",
+    "mode_byte2_set",
+    "mode_byte_set",
+    "object_type_byte2_get",
+    "object_type_byte3_get",
+    "object_bytes23_sum",
+    "object_bytes_sum_global"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "object_byte9_set",
+    "object_bytes23_sum",
+    "object_bytes_sum_global",
+    "func_800F68A4",
+    "camera_shake_update",
+    "slot_value_get",
+    "mode_byte2_set",
+    "mode_byte_set",
+    "object_type_byte2_get",
+    "object_type_byte3_get"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [
+    "object_byte9_set",
+    "func_800F68A4",
+    "camera_shake_update"
+  ]
+}

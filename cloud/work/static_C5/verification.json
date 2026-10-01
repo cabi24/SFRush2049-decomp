@@ -1,0 +1,123 @@
+[
+  {
+    "function": "__osSiRawStartDma",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 44,
+    "candidate_words": 44,
+    "raw_word_diff": 0,
+    "source_sha256": "7da551b787dd4c9e9543f1b68dadb021d902e1748a461397575057c66b16770e",
+    "target_sha256": "1c7fbd8138e312f80f714391d7ef779e19ad5114b8834bd76bf02cc5baca3a4a",
+    "integration_status": "ready_pending_ROM_gate"
+  },
+  {
+    "function": "__osSpDma",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 36,
+    "candidate_words": 36,
+    "raw_word_diff": 0,
+    "source_sha256": "3b825b6949a696a09f1614df59d39e1c24b5c23525044a289b2d6911d4cae1c3",
+    "target_sha256": "22f2087f72f5d8248b58432f726322b1dbb3f2a4f011211119b9436d72dfc9d2",
+    "integration_status": "ready_pending_ROM_gate"
+  },
+  {
+    "function": "__osSumcalc",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 32,
+    "candidate_words": 32,
+    "raw_word_diff": 0,
+    "source_sha256": "8b5c5c335d38ad37bd870ec1b735885c8b846eb96cae637eceb675c09ca15b93",
+    "target_sha256": "f5e5cee3b9805ae76efc368473c55ea7bede4e57d8c02e2d264329c53addf8a8",
+    "integration_status": "ready_pending_ROM_gate"
+  },
+  {
+    "function": "dll_remove",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 16,
+    "candidate_words": 16,
+    "raw_word_diff": 0,
+    "source_sha256": "0e5fe6d6d404c9488740520c3f471f56c3876597f3d9da3a19bf474c3922d906",
+    "target_sha256": "3a146b382c36a50adef0f85034479bd17c143247083166c714bbf04fd885b4ee",
+    "integration_status": "blocked_shared_TU_O2"
+  },
+  {
+    "function": "guOrthoF",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 370,
+    "target_words": 88,
+    "candidate_words": 84,
+    "raw_word_diff": 15,
+    "source_sha256": "a41fce4f66db554cf83f3a1a4613eccc25fe55ff0e7615b9933048538c2f794a",
+    "target_sha256": "3a4c4daa5ad58f1e41d9e84c67d4c3bb6f898cf2bc742ded2fc638dd0eb10c59",
+    "integration_status": "unmatched"
+  },
+  {
+    "function": "guPerspectiveF",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 370,
+    "target_words": 140,
+    "candidate_words": 140,
+    "raw_word_diff": 65,
+    "source_sha256": "cb4de8c1d7e4657048b50289f9c34646cf8adce2b85553bc89d3d71445bd5d35",
+    "target_sha256": "90d8884d0aee5e378b1e423ba9ce9467aa4a6a4f9a4a1d51c7459c7e54eda231",
+    "integration_status": "unmatched"
+  },
+  {
+    "function": "idle_thread_entry",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 100,
+    "target_words": 40,
+    "candidate_words": 36,
+    "raw_word_diff": 9,
+    "source_sha256": "4ddbe3e42792c91713900bc318b48c94d2e8d5d46e36ee292b4558d2da2cc21b",
+    "target_sha256": "45efd0d0ea675d0de3fc5e7a14168039bef86d23f020e06578f595d2203fcc02",
+    "integration_status": "unmatched"
+  },
+  {
+    "function": "inflate_loop",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 160,
+    "target_words": 24,
+    "candidate_words": 24,
+    "raw_word_diff": 10,
+    "source_sha256": "ce21597a7c7b41f4658abc10478fa736d2e49fadce1c80522afb398187127bad",
+    "target_sha256": "a4a6ee5b40f405963e8b14229113730d4893fd986989f36111995a5a4d9c0815",
+    "integration_status": "unmatched"
+  },
+  {
+    "function": "osMotorStop",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 500,
+    "target_words": 24,
+    "candidate_words": 24,
+    "raw_word_diff": 9,
+    "source_sha256": "91544cb206e09ee0b60604858416648ef81ec949c5adbf6e1e2d740765711557",
+    "target_sha256": "0869c1f08dd3e0ae8f7e46ce56475fd7b397b152b824b5bac8bd44747f1f3475",
+    "integration_status": "unmatched"
+  },
+  {
+    "function": "osPiReadIo",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 20,
+    "candidate_words": 20,
+    "raw_word_diff": 0,
+    "source_sha256": "bcfcf07dcf90116d952046e7111b4aa64f6e9a2c60911fe8a0b51a11a80f5262",
+    "target_sha256": "62dc0a8fc5a8f5c5cd56fc5d8b0de74190ed87b32544687deb0437deef6e8d18",
+    "integration_status": "ready_pending_ROM_gate"
+  },
+  {
+    "function": "osPiWriteWord",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 20,
+    "candidate_words": 20,
+    "raw_word_diff": 0,
+    "source_sha256": "10bb921ae32574eaa4df0627472c3e817ba4a46350c63d6f38969a6b40aab3ca",
+    "target_sha256": "d701349208ecccd8d2c743258460963a2459d66411532b640ebbc8a92d8e3f16",
+    "integration_status": "ready_pending_ROM_gate"
+  }
+]

@@ -371,6 +371,7 @@ func_8010E4E4:
 .section .text.func_8010E694, "ax", @progbits
 .globl func_8010E694
 func_8010E694:
+    /* compiled from src/blob/func_8010E694.c */
     .word 0x00057400
     .word 0x000E7C03
     .word 0x27BDFFD0

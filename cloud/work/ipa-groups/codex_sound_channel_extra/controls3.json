@@ -1,0 +1,145 @@
+[
+  [
+    "out_param_increment",
+    {
+      "object_byte9_set": 0,
+      "object_bytes23_sum": 4,
+      "object_bytes_sum_global": 11,
+      "func_800F68A4": 30,
+      "camera_shake_update": 0
+    },
+    null
+  ],
+  [
+    "out_offset_i++,offset+=12s32 i; s32 offset;",
+    {
+      "object_byte9_set": 0,
+      "object_bytes23_sum": 4,
+      "object_bytes_sum_global": 11,
+      "func_800F68A4": 0,
+      "camera_shake_update": 0
+    },
+    null
+  ],
+  [
+    "out_offset_i++,offset+=12s32 offset; s32 i;",
+    {
+      "object_byte9_set": 0,
+      "object_bytes23_sum": 4,
+      "object_bytes_sum_global": 11,
+      "func_800F68A4": 0,
+      "camera_shake_update": 0
+    },
+    null
+  ],
+  [
+    "out_offset_offset+=12,i++s32 i; s32 offset;",
+    {
+      "object_byte9_set": 0,
+      "object_bytes23_sum": 4,
+      "object_bytes_sum_global": 11,
+      "func_800F68A4": 0,
+      "camera_shake_update": 0
+    },
+    null
+  ],
+  [
+    "out_offset_offset+=12,i++s32 offset; s32 i;",
+    {
+      "object_byte9_set": 0,
+      "object_bytes23_sum": 4,
+      "object_bytes_sum_global": 11,
+      "func_800F68A4": 0,
+      "camera_shake_update": 0
+    },
+    null
+  ],
+  [
+    "sumtemp_s32object_type_byte2_get() + D_80149B60",
+    {
+      "object_byte9_set": 0,
+      "object_bytes23_sum": 4,
+      "object_bytes_sum_global": 9,
+      "func_800F68A4": 6,
+      "camera_shake_update": 0
+    },
+    null
+  ],
+  [
+    "sumtemp_s32D_80149B60 + object_type_byte2_get()",
+    {
+      "object_byte9_set": 0,
+      "object_bytes23_sum": 4,
+      "object_bytes_sum_global": 9,
+      "func_800F68A4": 6,
+      "camera_shake_update": 0
+    },
+    null
+  ],
+  [
+    "sumtemp_s16object_type_byte2_get() + D_80149B60",
+    {
+      "object_byte9_set": 0,
+      "object_bytes23_sum": 4,
+      "object_bytes_sum_global": 11,
+      "func_800F68A4": 6,
+      "camera_shake_update": 0
+    },
+    null
+  ],
+  [
+    "sumtemp_s16D_80149B60 + object_type_byte2_get()",
+    {
+      "object_byte9_set": 0,
+      "object_bytes23_sum": 4,
+      "object_bytes_sum_global": 11,
+      "func_800F68A4": 6,
+      "camera_shake_update": 0
+    },
+    null
+  ],
+  [
+    "sumtemp_u32object_type_byte2_get() + D_80149B60",
+    {
+      "object_byte9_set": 0,
+      "object_bytes23_sum": 4,
+      "object_bytes_sum_global": 9,
+      "func_800F68A4": 6,
+      "camera_shake_update": 0
+    },
+    null
+  ],
+  [
+    "sumtemp_u32D_80149B60 + object_type_byte2_get()",
+    {
+      "object_byte9_set": 0,
+      "object_bytes23_sum": 4,
+      "object_bytes_sum_global": 9,
+      "func_800F68A4": 6,
+      "camera_shake_update": 0
+    },
+    null
+  ],
+  [
+    "sumlocals_u8 first,second; first=object_type_byte2_get(); second=object_type_byte3_get(); return (s16)(first+second);",
+    {
+      "object_byte9_set": 0,
+      "object_bytes23_sum": 5,
+      "object_bytes_sum_global": 11,
+      "func_800F68A4": 6,
+      "camera_shake_update": 0
+    },
+    null
+  ],
+  [
+    "sumlocals_u8 first; Bank **p; sound_update_channel(0); p=&D_801497F0; first=*((u8 *)*p+2); sound_update_channel(0); return (s16)(first+*((u8 *)*p+3));",
+    {
+      "object_byte9_set": 0,
+      "object_bytes23_sum": 11,
+      "object_bytes_sum_global": 11,
+      "func_800F68A4": 6,
+      "camera_shake_update": 0
+    },
+    null
+  ]
+]

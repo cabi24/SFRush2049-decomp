@@ -7499,6 +7499,7 @@ billboard_render:
 .section .text.func_800F68A4, "ax", @progbits
 .globl func_800F68A4
 func_800F68A4:
+    /* compiled from src/blob/func_800F68A4.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x00804825

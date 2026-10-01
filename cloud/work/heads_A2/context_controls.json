@@ -1,0 +1,130 @@
+[
+  [
+    "base_obj0_order0_keep0",
+    {
+      "func_8010E8B4": 83,
+      "func_8010B7FC": 113
+    },
+    null
+  ],
+  [
+    "base_obj0_order0_keep1",
+    {
+      "func_8010E8B4": 85,
+      "func_8010B7FC": 113
+    },
+    null
+  ],
+  [
+    "base_obj0_order1_keep0",
+    {
+      "func_8010E8B4": 83,
+      "func_8010B7FC": 113
+    },
+    null
+  ],
+  [
+    "base_obj0_order1_keep1",
+    {
+      "func_8010E8B4": 85,
+      "func_8010B7FC": 113
+    },
+    null
+  ],
+  [
+    "base_obj1_order0_keep0",
+    {
+      "func_8010E8B4": 83,
+      "func_8010B7FC": 113
+    },
+    null
+  ],
+  [
+    "base_obj1_order0_keep1",
+    {
+      "func_8010E8B4": 83,
+      "func_8010B7FC": 113
+    },
+    null
+  ],
+  [
+    "base_obj1_order1_keep0",
+    {
+      "func_8010E8B4": 83,
+      "func_8010B7FC": 113
+    },
+    null
+  ],
+  [
+    "base_obj1_order1_keep1",
+    {
+      "func_8010E8B4": 83,
+      "func_8010B7FC": 113
+    },
+    null
+  ],
+  [
+    "s8_obj0_order0_keep0",
+    {
+      "func_8010E8B4": 83,
+      "func_8010B7FC": 112
+    },
+    null
+  ],
+  [
+    "s8_obj0_order0_keep1",
+    {
+      "func_8010E8B4": 85,
+      "func_8010B7FC": 113
+    },
+    null
+  ],
+  [
+    "s8_obj0_order1_keep0",
+    {
+      "func_8010E8B4": 83,
+      "func_8010B7FC": 112
+    },
+    null
+  ],
+  [
+    "s8_obj0_order1_keep1",
+    {
+      "func_8010E8B4": 85,
+      "func_8010B7FC": 113
+    },
+    null
+  ],
+  [
+    "s8_obj1_order0_keep0",
+    {
+      "func_8010E8B4": 83,
+      "func_8010B7FC": 112
+    },
+    null
+  ],
+  [
+    "s8_obj1_order0_keep1",
+    {
+      "func_8010E8B4": 83,
+      "func_8010B7FC": 112
+    },
+    null
+  ],
+  [
+    "s8_obj1_order1_keep0",
+    {
+      "func_8010E8B4": 83,
+      "func_8010B7FC": 112
+    },
+    null
+  ],
+  [
+    "s8_obj1_order1_keep1",
+    {
+      "func_8010E8B4": 83,
+      "func_8010B7FC": 112
+    },
+    null
+  ]
+]

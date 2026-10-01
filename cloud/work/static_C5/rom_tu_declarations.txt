@@ -1,0 +1,29 @@
+Ready C5 body prototypes (existing declarations require no change):
+  s32 __osSiRawStartDma(s32 direction, void *dramAddr);  /* include/m2c_types.h:63 exists */
+  s32 __osSpDma(s32 direction, u32 devAddr, void *dramAddr, u32 size);
+  u16 __osSumcalc(u8 *ptr, int length);
+  s32 osPiReadIo(u32 devAddr, u32 *data);               /* include/PR/os_pi.h:79 exists */
+  s32 osPiWriteWord(u32 devAddr, u32 data);
+
+Additional dependency declaration needed in rom_tu.h:
+  extern s32 __osPiDeviceBusy(void);
+Existing dependency declaration:
+  extern s32 __osSpDeviceBusy(void);                  /* rom_tu.h:64 exists */
+Other dependencies (osVirtualToPhysical/osWritebackDCache/osInvalDCache) already declared.
+MMIO expressions are explicit volatile u32 lvalues; no register globals or new macros needed.
+No new struct/type fields needed for these five ready bodies.
+
+Blocked dll_remove is the existing prototype:
+  void dll_remove(OSThread **queue, OSThread *thread);  /* m2c_types.h:60 */
+Canonical __osDequeueThread pred/succ register locals match only O1. cc50 shared O2
+pin is authoritative. Do not change pin or override it merely to promote this object zero.
+
+Provenance audit:
+__osSpDma real SDK operation is __osSpRawStartDma: devAddr is a u32 written
+  to SP_MEM_ADDR_REG. Exploratory src/libultra/os_sp.c uses void *spMemAddr,
+  but that file is not the authoritative linked static TU header/body.
+osPiReadIo/osPiWriteWord match SDK __osSiRawReadIo/__osSiRawWriteIo behavior,
+  using devAddr | 0xA0000000 and the current __osPiDeviceBusy symbol. Preserve
+  current symbols; do not rename based on their misleading Pi names.
+__osSumcalc is the VERSION_J+ SDK byte-sum variant (mask only at return), not
+  the older per-byte 16-bit mask version.
