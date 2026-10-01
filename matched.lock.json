@@ -1,12 +1,4 @@
 {
-  "cloud/work/static_C6/__osPiReadDeviceType.c:__osPiReadDeviceType": {
-    "body_sha256": "745263f8efd78f723d93c4d0712733a42a0a665d8c20a5e41ab4c58208e24f25",
-    "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
-    "target_id": "__osPiReadDeviceType",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-01"
-  },
   "cloud/work/static_C6/__osViSwapContext.c:__osViSwapContext": {
     "body_sha256": "46127f612005a604a3586ebb602ef241a27e6f40ac3d26ff6c7608bc21bbf5c5",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -235,6 +227,14 @@
     "body_sha256": "ae546c83ba220a05c2703da305f6be871e44ac664db7425cae38d39cd72f68d2",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "osViSetSpecialFeatures",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
+  },
+  "src/rom/lib_8a80.c:__osPiReadDeviceType": {
+    "body_sha256": "745263f8efd78f723d93c4d0712733a42a0a665d8c20a5e41ab4c58208e24f25",
+    "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "target_id": "__osPiReadDeviceType",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
