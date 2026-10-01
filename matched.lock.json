@@ -1,12 +1,4 @@
 {
-  "cloud/work/static_C9/__osCheckId.c:__osCheckId": {
-    "body_sha256": "9c69a3afec34c0c2927ff4dc670330c7e55dc48eead517fa2815ebe683a13371",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "__osCheckId",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-01"
-  },
   "cloud/work/static_C9/__osGetId.c:__osGetId": {
     "body_sha256": "44b12b6ae807fcf24bb8668ff53bd81f333293fe4a6f10b64c2592dae733794f",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -711,6 +703,14 @@
     "body_sha256": "6137f06f44d8a1555b1f752842f7046189ef4c336b985b04c3a8f9e762d8a0e7",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "__osPfsSelectBank",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
+  },
+  "src/rom/lib_f700.c:__osCheckId": {
+    "body_sha256": "9c69a3afec34c0c2927ff4dc670330c7e55dc48eead517fa2815ebe683a13371",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osCheckId",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
