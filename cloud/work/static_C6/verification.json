@@ -1,0 +1,112 @@
+[
+  {
+    "function": "__osPiReadDeviceType",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 40,
+    "candidate_words": 40,
+    "raw_word_diff": 0,
+    "source_sha256": "33667228ca56f1dd864cc10cdcc17130d8c728ffa5e765b9488414a1bce72d12",
+    "target_sha256": "6b2a0194aedb28f81292fca5f2bb6e7e1a1a5c4d5f2f31e9fff3f813ad598b53",
+    "integration_status": "ready_pending_ROM_and_tail_padding_gate"
+  },
+  {
+    "function": "__osViSwapContext",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 192,
+    "candidate_words": 192,
+    "raw_word_diff": 0,
+    "source_sha256": "2d2ef0bc15cdb6c02eb34f1f72ca0af83194ebb52c6f90089d08e28de238e6e0",
+    "target_sha256": "5d359c6c02772194fe384c0f5bc2a54eb446d2a76195cbb4756d7582cf835c9f",
+    "integration_status": "ready_pending_ROM_gate"
+  },
+  {
+    "function": "dll_reschedule",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 32,
+    "candidate_words": 32,
+    "raw_word_diff": 0,
+    "source_sha256": "ccd05b21475bc38fe225afaeac759b50caef486da923c63e3eac1a9f1d932d6f",
+    "target_sha256": "07fc5ff1844157e83ffbb101873b6996c7682e33d68d294f3af01115a741abeb",
+    "integration_status": "blocked_shared_TU_O2"
+  },
+  {
+    "function": "guMtxF2L",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_score": 0,
+    "target_words": 64,
+    "candidate_words": 64,
+    "raw_word_diff": 0,
+    "source_sha256": "515eefc6af4ac34e0c2b3a8723acbfc92b440ca671911d6bbaaa73097c6ca2c9",
+    "target_sha256": "8b55c8e458e423685fc973c9722fbd57ae378979324dee4fca45cface19ad359",
+    "integration_status": "ready_pending_ROM_gate"
+  },
+  {
+    "function": "guOrthoF",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_score": 0,
+    "target_words": 88,
+    "candidate_words": 88,
+    "raw_word_diff": 0,
+    "source_sha256": "fbc0d294a39b9f73ba56b08a173e6cbac022247461597900feaf4385eb4a67d0",
+    "target_sha256": "3a4c4daa5ad58f1e41d9e84c67d4c3bb6f898cf2bc742ded2fc638dd0eb10c59",
+    "integration_status": "ready_pending_ROM_gate"
+  },
+  {
+    "function": "guPerspectiveF",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_score": 0,
+    "target_words": 140,
+    "candidate_words": 140,
+    "raw_word_diff": 0,
+    "source_sha256": "9b21551e38dde9c6586d94ab5b492810af03ac38f44c2c18c68591c9311d263d",
+    "target_sha256": "90d8884d0aee5e378b1e423ba9ce9467aa4a6a4f9a4a1d51c7459c7e54eda231",
+    "integration_status": "ready_pending_ROM_gate"
+  },
+  {
+    "function": "osAiSetFrequency",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 84,
+    "candidate_words": 84,
+    "raw_word_diff": 0,
+    "source_sha256": "b69e0985211c50aaf8b6097c9a17192f03e79e9a79538c67f3e64dd04e6fa103",
+    "target_sha256": "1cd4d38c542023d6d6d3cce973c32916b5a481d538b0ad1315ee3060bdd3614f",
+    "integration_status": "ready_pending_ROM_gate"
+  },
+  {
+    "function": "osPfsFreeBlocks",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 104,
+    "candidate_words": 104,
+    "raw_word_diff": 0,
+    "source_sha256": "e1293cc830725616930d82867686a680577a66e6553f9b6791924aadbdb04695",
+    "target_sha256": "a473ea0336c9623c8e144c9a19834c96237716a48b43f1aa73222e0ff1e42f39",
+    "integration_status": "ready_pending_ROM_gate"
+  },
+  {
+    "function": "osPfsReAllocate",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 8,
+    "candidate_words": 8,
+    "raw_word_diff": 0,
+    "source_sha256": "de82702811ee22b737de7e50a80a435c56e503cc0e7264b741d38d80a77bf196",
+    "target_sha256": "54aa6e159bd6a9c509f6b4fba50ee7d0706f85ad89c1a5a6ad67339ab7ea6e88",
+    "integration_status": "ready_after_signature_audit"
+  },
+  {
+    "function": "sprintf",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "strict_score": 320,
+    "target_words": 24,
+    "candidate_words": 24,
+    "raw_word_diff": 10,
+    "source_sha256": "aa00cb15edb214ab3ab1d0e0f0207d8cf22f2387b65186ec1ec81c2166af099c",
+    "target_sha256": "7983bda9b2fa4d795194a31917519491bec1d2e8baa95243e26907785ee9d391",
+    "integration_status": "unmatched"
+  }
+]

@@ -1,0 +1,52 @@
+[
+  {
+    "function": "guMtxIdent",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_score": 0,
+    "target_words": 12,
+    "candidate_words": 12,
+    "raw_word_diff": 0,
+    "source_sha256": "3ba013df52589c3680f9567377ce0665225f69d67c05571e9464d72ab2360bfd",
+    "target_sha256": "68460de4a9595a2a8a574cb7f399b14475c240f2637a4834d7bb94daaa8141b9"
+  },
+  {
+    "function": "guMtxIdentF",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_score": 0,
+    "target_words": 36,
+    "candidate_words": 36,
+    "raw_word_diff": 0,
+    "source_sha256": "db2595ab3fee2df74d97c2983cf09877deedb26b6c2547c94de468ffb30dca0d",
+    "target_sha256": "df59109461617323feb6be4f2b3b8a237a9bedc8869ad42c63f16bf2f054cc28"
+  },
+  {
+    "function": "guMtxL2F",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_score": 0,
+    "target_words": 48,
+    "candidate_words": 48,
+    "raw_word_diff": 0,
+    "source_sha256": "5dce6a6150a3b4b4296c722f13417e6c98919725724aaad682129a177a8623ce",
+    "target_sha256": "f6bc7aebcd6bf98b3e26e7d94686c8536f6b4ffd717193a6785f49579bcc23f8"
+  },
+  {
+    "function": "guOrtho",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_score": 0,
+    "target_words": 28,
+    "candidate_words": 28,
+    "raw_word_diff": 0,
+    "source_sha256": "453cba6be5118690ec4a359abe15e7607c1883b919691cc533251604fc7443b3",
+    "target_sha256": "145deb7afd9fc1c0d8ec7460efedd796862fa74ac1bb3a5dd698c52ea70af0ea"
+  },
+  {
+    "function": "guPerspective",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_score": 0,
+    "target_words": 24,
+    "candidate_words": 24,
+    "raw_word_diff": 0,
+    "source_sha256": "669d3099a4e163bf77ab2675bb8e5ca77ef517947e8b753a7091f5c14501e2b7",
+    "target_sha256": "bf737d6037216b6b3e1570d498d5b7ecdf76e3e070dc35dc1e4a41b783fce12e"
+  }
+]

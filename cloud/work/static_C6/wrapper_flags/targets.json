@@ -1,0 +1,62 @@
+[
+  {
+    "target_id": "guOrtho",
+    "address": 2147519412,
+    "population": "static",
+    "insn_count": 27,
+    "target_asm_sha": "5799c6d6a23a5fc7d5a637d8e0539e9039c0fc5d1c7ec5f02ca7c8fe9665203b",
+    "target_o_sha": "145deb7afd9fc1c0d8ec7460efedd796862fa74ac1bb3a5dd698c52ea70af0ea",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": null
+  },
+  {
+    "target_id": "guPerspective",
+    "address": 2147520080,
+    "population": "static",
+    "insn_count": 24,
+    "target_asm_sha": "e6607532e98de18858b1d50850d42b84d25279e850be47a4cc5b1e5ab715e06d",
+    "target_o_sha": "bf737d6037216b6b3e1570d498d5b7ecdf76e3e070dc35dc1e4a41b783fce12e",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": null
+  },
+  {
+    "target_id": "guMtxIdent",
+    "address": 2147521564,
+    "population": "static",
+    "insn_count": 13,
+    "target_asm_sha": "04eba74c1eac5b4dbc241437f345a461dbb40d2631f7ca2fedd54ad434662146",
+    "target_o_sha": "68460de4a9595a2a8a574cb7f399b14475c240f2637a4834d7bb94daaa8141b9",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": null
+  },
+  {
+    "target_id": "guMtxIdentF",
+    "address": 2147521428,
+    "population": "static",
+    "insn_count": 34,
+    "target_asm_sha": "9937d038a921316f371cc9db2a179d22a1547a333512e2d1b829f2653f9986a1",
+    "target_o_sha": "df59109461617323feb6be4f2b3b8a237a9bedc8869ad42c63f16bf2f054cc28",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "raw_word",
+    "gate_reason": "no_asm_region"
+  },
+  {
+    "target_id": "guMtxL2F",
+    "address": 2147521248,
+    "population": "static",
+    "insn_count": 45,
+    "target_asm_sha": "35262214859e32eb7bd6df420086e2298ea6e27b9bb16761f7df7ef4b6e07f0f",
+    "target_o_sha": "f6bc7aebcd6bf98b3e26e7d94686c8536f6b4ffd717193a6785f49579bcc23f8",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "raw_word",
+    "gate_reason": "no_asm_region"
+  }
+]

@@ -1,0 +1,56 @@
+Eight ready C6 prototypes:
+  s32 osPfsFreeBlocks(OSPfs *, s32 *);                     /* existing os_pfs.h */
+  s32 osAiSetFrequency(u32);                              /* existing os_ai.h */
+  void __osViSwapContext(void);
+  void __osPiReadDeviceType(void);                        /* actual PI timing snapshot */
+  void guMtxF2L(f32 [4][4], Mtx *);                        /* existing rom_tu.h */
+  void guOrthoF(f32 [4][4], f32, f32, f32, f32, f32, f32, f32); /* existing */
+  void guPerspectiveF(f32 [4][4], u16 *, f32, f32, f32, f32, f32); /* existing */
+  OSId osPfsReAllocate(OSThread *);                        /* REQUIRED signature audit */
+
+Additive dependency declarations:
+  extern s32 osPfsReadWriteFile_pages(OSPfs *);            /* target name for SDK __osCheckId */
+  extern s32 gAudioDmaBufferPtr;                          /* target name for SDK osViClock */
+  extern u32 gViMgrEventCount;                            /* target name for SDK __additional_scanline */
+  extern s8 gSpTaskFlags0, gSpTaskFlags1, gSpTaskFlags2, gSpTaskFlags3, gSpTaskFlags4;
+  extern s8 gSpTaskResultA, gSpTaskResultB, gSpTaskResultC, gSpTaskResultD, gSpTaskResultE;
+  extern void guMtxIdentF(f32 [4][4]);
+  extern f32 cosf(f32);
+  extern f32 sinf(f32);
+  extern const f64 gOrthoScale;
+
+Minimal macros used by ready bodies (copy from standalone source only if absent):
+  #define FTOFIX32(x) ((long)((x)*(float)0x00010000))
+  #define AI_MIN_DAC_RATE 132
+  #define AI_MAX_BIT_RATE 16
+  #define PFS_CHECK_STATUS() if ((pfs->status & 1)==0) return 5
+  #define ERRCK(fn) ret=fn; if(ret!=0) return ret
+  #define ARRLEN(a) ((int)(sizeof(a)/sizeof((a)[0])))
+  #define PFS_PAGE_NOT_USED 3
+  #define PFS_ONE_PAGE 8
+  #define BLOCKSIZE 32
+PFS_READ 0 already exists. VI_STATE_* and VI_SCALE_MASK / VI_SUBPIXEL_SH /
+VI_2_10_FPART_MASK and the MMIO macros are shown exactly in __osViSwapContext.c.
+If shared context already defines a hardware register as a volatile lvalue,
+reconcile IO_WRITE/IO_READ's address-valued macro uses rather than duplicate it.
+No new struct/type fields: current OSPfs, __OSInode, OSViMode and __OSViContext
+layouts are the same layouts used by these exact standalone TUs. Mtx is the
+current u32[4][4], so guMtxF2L deliberately uses (*m), not SDK union member m->m.
+__osViModeInfo stays existing s32; __osViSwapContext casts its loaded/stored
+pointer value explicitly. Preserve existing accepted context declaration.
+
+REQUIRED existing signature correction, only coordinator after caller audit:
+include/PR/os_pfs.h:168 currently says s32 osPfsReAllocate(OSPfs *, s32).
+Target at 0x8000BD90 consumes only a0: if NULL, load __osRunningThread;
+then return signed word thread->id at +0x14. Exact SDK body is osGetThreadId.
+Final candidate signature is OSId osPfsReAllocate(OSThread *thread), with no a1
+stack home. Do not add an incompatible second prototype in rom_tu.h.
+
+Blocked dll_reschedule is void dll_reschedule(OSTime), existing rom_tu.h;
+canonical pre-K __osSetTimerIntr O1 only. Dependencies extern u32 __osTimerCounter,
+extern u32 osGetCount(void) (existing symbol may have historical signed declaration).
+No new override: cc50 O2 pin remains authoritative.
+
+Literal placement: gOrthoScale is already the retail f64 at 0x8002D7F0,
+bytes 3f91df469d353918, exactly 3.1415926/180.0. guPerspectiveF final source
+references it explicitly, so no newly emitted .rodata needs placement.

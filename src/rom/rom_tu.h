@@ -151,3 +151,49 @@ extern OSThread *__osPopThread(OSThread **);
 
 /* SI raw I/O helpers retain the historical PI device-busy symbol. */
 extern s32 __osPiDeviceBusy(void);
+
+/* Verified static C6 SDK context; historical names retain retail linkage. */
+extern s32 osPfsReadWriteFile_pages(OSPfs *);
+extern s32 gAudioDmaBufferPtr;
+extern u32 gViMgrEventCount;
+extern s8 gSpTaskFlags0, gSpTaskFlags1, gSpTaskFlags2, gSpTaskFlags3, gSpTaskFlags4;
+extern s8 gSpTaskResultA, gSpTaskResultB, gSpTaskResultC, gSpTaskResultD, gSpTaskResultE;
+extern void guMtxIdentF(f32 [4][4]);
+extern f32 cosf(f32);
+extern f32 sinf(f32);
+extern const f64 gOrthoScale;
+#define VI_STATE_XSCALE_UPDATED 2
+#define VI_STATE_YSCALE_UPDATED 4
+#define VI_STATE_BLACK 0x20
+#define VI_STATE_REPEATLINE 0x40
+#define VI_STATE_FADE 0x80
+#define VI_SCALE_MASK 0xFFF
+#define VI_SUBPIXEL_SH 16
+#define VI_2_10_FPART_MASK 0x3FF
+#define IO_READ(addr) (*(volatile u32 *)(addr))
+#define IO_WRITE(addr,value) (*(volatile u32 *)(addr)=(value))
+#define VI_CURRENT_REG 0xa4400010U
+#define VI_ORIGIN_REG 0xa4400004U
+#define VI_WIDTH_REG 0xa4400008U
+#define VI_BURST_REG 0xa4400014U
+#define VI_V_SYNC_REG 0xa4400018U
+#define VI_H_SYNC_REG 0xa440001cU
+#define VI_LEAP_REG 0xa4400020U
+#define VI_H_START_REG 0xa4400024U
+#define VI_V_START_REG 0xa4400028U
+#define VI_V_BURST_REG 0xa440002cU
+#define VI_INTR_REG 0xa440000cU
+#define VI_X_SCALE_REG 0xa4400030U
+#define VI_Y_SCALE_REG 0xa4400034U
+#define VI_CONTROL_REG 0xa4400000U
+#define AI_MIN_DAC_RATE 132
+#define AI_MAX_BIT_RATE 16
+#define AI_DACRATE_REG 0xA4500010U
+#define AI_BITRATE_REG 0xA4500014U
+#define PFS_CHECK_STATUS() if ((pfs->status & 1)==0) return 5
+#define ERRCK(fn) ret=fn; if(ret!=0) return ret
+#define ARRLEN(a) ((int)(sizeof(a)/sizeof((a)[0])))
+#define PFS_PAGE_NOT_USED 3
+#define PFS_ONE_PAGE 8
+#define BLOCKSIZE 32
+#define FTOFIX32(x) ((long)((x)*(float)0x00010000))

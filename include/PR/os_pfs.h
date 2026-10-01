@@ -10,6 +10,7 @@
 
 #include "types.h"
 #include "PR/os_message.h"
+#include "PR/os_thread.h"
 
 /**
  * PFS File System Structure
@@ -165,6 +166,7 @@ s32 osPfsNumFiles(OSPfs *pfs, s32 *maxFiles, s32 *usedFiles);
 s32 __osPfsSelectBank(OSPfs *pfs, u8 bank);
 s32 __osPfsRWInode(OSPfs *pfs, __OSInode *inode, u8 flag, u8 bank);
 s32 osPfsAllocate(OSPfs *pfs, s32 pages);
-s32 osPfsReAllocate(OSPfs *pfs, s32 pages);
+/* Historical symbol: retail body implements SDK osGetThreadId. */
+OSId osPfsReAllocate(OSThread *thread);
 
 #endif /* _OS_PFS_H_ */

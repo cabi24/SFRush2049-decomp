@@ -1,0 +1,11 @@
+{
+  "function": "guPerspectiveF",
+  "symbol": "gOrthoScale",
+  "vaddr": "0x8002d7f0",
+  "rom_offset": "0x2e3f0",
+  "retail_bytes_hex": "3f91df469d353918",
+  "decoded_f64": 0.017453292222222222,
+  "sdk_expression_value": 0.017453292222222222,
+  "exact_value_equal": true,
+  "source_sha256": "9b21551e38dde9c6586d94ab5b492810af03ac38f44c2c18c68591c9311d263d"
+}

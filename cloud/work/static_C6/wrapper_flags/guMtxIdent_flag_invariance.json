@@ -1,0 +1,13 @@
+{
+  "function": "guMtxIdent",
+  "verification_kind": "existing promoted body original flagset object vs same body appended R4300 flagset object",
+  "original_flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "appended_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source_sha256": "3ba013df52589c3680f9567377ce0665225f69d67c05571e9464d72ab2360bfd",
+  "original_object_sha256": "8077759fbfdc6b03de8643e21d980675b46e6738b26603e2e32a4a4eb14d52ef",
+  "appended_object_sha256": "8077759fbfdc6b03de8643e21d980675b46e6738b26603e2e32a4a4eb14d52ef",
+  "original_text_words": 12,
+  "appended_text_words": 12,
+  "strict_score": 0,
+  "raw_word_diff": 0
+}
