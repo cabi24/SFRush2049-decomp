@@ -284,3 +284,20 @@ extern u8 __osContAddressCrc(u16);
 
 
 extern s32 osMotorInit(OSPfs *, s32); /* historical SDK __osMotorAccess */
+
+/* Verified canonical directory, controller and event context, packet C10. */
+extern s32 __osContLastChannel;
+extern u8 __osPfsDataChecksum(u8 *); /* historical SDK data CRC helper */
+extern s32 osPfsRename(OSPfs *, u16, u32, u8 *, u8 *);
+extern s32 osMotorStart(OSMesgQueue *, OSPfs *, int);
+#define PFS_ID_BANK_256K 0
+#define CONT_CMD_READ_PAK 2
+#define CONT_CMD_READ_PAK_TX 3
+#define CONT_CMD_READ_PAK_RX 33
+typedef u32 OSEvent;
+typedef struct { OSMesgQueue *messageQueue; OSMesg message; } __OSEventState;
+extern __OSEventState __osEventStateTab[16];
+extern u32 __osShutdown;
+extern u32 gEventTypeFlag;
+extern void osSetEventMesgAlt(OSEvent, OSMesgQueue *, OSMesg);
+#define OS_EVENT_PRENMI 14

@@ -1,0 +1,12 @@
+[
+  {
+    "function": "osCreatePiManager_C10O1",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_score": 7801,
+    "target_words": 92,
+    "candidate_words": 112,
+    "raw_word_diff": 109,
+    "source_sha256": "a4d3e2ced444062a289316c18f9408e36c0e80078b14b79f4765b0e523a7405b",
+    "target_sha256": "a222ec3e449c91592c7bca350faf98dd3b98df6bc24774b33fcbb58743c3538e"
+  }
+]

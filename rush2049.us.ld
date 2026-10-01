@@ -85,7 +85,7 @@ SECTIONS
         build/us/asm/us/7630.o(.text);
         build/us/src/rom/lib_7940.o(.text);
         build/us/src/rom/lib_79a0.o(.text);
-        build/us/asm/us/7A10.o(.text);
+        build/us/src/rom/lib_7a10.o(.text);
         build/us/src/rom/lib_7ad0.o(.text);
         build/us/src/rom/lib_7b30.o(.text);
         build/us/src/rom/lib_7c80.o(.text);
@@ -119,8 +119,8 @@ SECTIONS
         build/us/src/rom/lib_a800.o(.text);
         build/us/src/rom/lib_a810.o(.text);
         build/us/src/rom/lib_ab20.o(.text);
-        build/us/asm/us/AF50.o(.text);
-        build/us/asm/us/B120.o(.text);
+        build/us/src/rom/lib_af50.o(.text);
+        build/us/src/rom/lib_b120.o(.text);
         build/us/src/rom/lib_b300.o(.text);
         build/us/src/rom/lib_b570.o(.text);
         build/us/src/rom/lib_b9f0.o(.text);
@@ -156,7 +156,7 @@ SECTIONS
         build/us/src/rom/lib_f0b0.o(.text);
         build/us/src/rom/lib_f160.o(.text);
         build/us/src/rom/lib_f450.o(.text);
-        build/us/asm/us/F4D0.o(.text);
+        build/us/src/rom/lib_f4d0.o(.text);
         build/us/src/rom/lib_f700.o(.text);
         . = ALIGN(., 16);
         main_TEXT_END = .;
@@ -175,7 +175,7 @@ SECTIONS
         build/us/asm/us/7630.o(.data);
         build/us/src/rom/lib_7940.o(.data);
         build/us/src/rom/lib_79a0.o(.data);
-        build/us/asm/us/7A10.o(.data);
+        build/us/src/rom/lib_7a10.o(.data);
         build/us/src/rom/lib_7ad0.o(.data);
         build/us/src/rom/lib_7b30.o(.data);
         build/us/src/rom/lib_7c80.o(.data);
@@ -209,8 +209,8 @@ SECTIONS
         build/us/src/rom/lib_a800.o(.data);
         build/us/src/rom/lib_a810.o(.data);
         build/us/src/rom/lib_ab20.o(.data);
-        build/us/asm/us/AF50.o(.data);
-        build/us/asm/us/B120.o(.data);
+        build/us/src/rom/lib_af50.o(.data);
+        build/us/src/rom/lib_b120.o(.data);
         build/us/src/rom/lib_b300.o(.data);
         build/us/src/rom/lib_b570.o(.data);
         build/us/src/rom/lib_b9f0.o(.data);
@@ -246,7 +246,7 @@ SECTIONS
         build/us/src/rom/lib_f0b0.o(.data);
         build/us/src/rom/lib_f160.o(.data);
         build/us/src/rom/lib_f450.o(.data);
-        build/us/asm/us/F4D0.o(.data);
+        build/us/src/rom/lib_f4d0.o(.data);
         build/us/src/rom/lib_f700.o(.data);
         . = ALIGN(., 16);
         main_DATA_END = .;
@@ -265,7 +265,7 @@ SECTIONS
         build/us/asm/us/7630.o(.rodata);
         build/us/src/rom/lib_7940.o(.rodata);
         build/us/src/rom/lib_79a0.o(.rodata);
-        build/us/asm/us/7A10.o(.rodata);
+        build/us/src/rom/lib_7a10.o(.rodata);
         build/us/src/rom/lib_7ad0.o(.rodata);
         build/us/src/rom/lib_7b30.o(.rodata);
         build/us/src/rom/lib_7c80.o(.rodata);
@@ -299,8 +299,8 @@ SECTIONS
         build/us/src/rom/lib_a800.o(.rodata);
         build/us/src/rom/lib_a810.o(.rodata);
         build/us/src/rom/lib_ab20.o(.rodata);
-        build/us/asm/us/AF50.o(.rodata);
-        build/us/asm/us/B120.o(.rodata);
+        build/us/src/rom/lib_af50.o(.rodata);
+        build/us/src/rom/lib_b120.o(.rodata);
         build/us/src/rom/lib_b300.o(.rodata);
         build/us/src/rom/lib_b570.o(.rodata);
         build/us/src/rom/lib_b9f0.o(.rodata);
@@ -336,7 +336,7 @@ SECTIONS
         build/us/src/rom/lib_f0b0.o(.rodata);
         build/us/src/rom/lib_f160.o(.rodata);
         build/us/src/rom/lib_f450.o(.rodata);
-        build/us/asm/us/F4D0.o(.rodata);
+        build/us/src/rom/lib_f4d0.o(.rodata);
         build/us/src/rom/lib_f700.o(.rodata);
         . = ALIGN(., 16);
         main_RODATA_END = .;
@@ -360,7 +360,7 @@ SECTIONS
         build/us/asm/us/7630.o(.bss);
         build/us/src/rom/lib_7940.o(.bss);
         build/us/src/rom/lib_79a0.o(.bss);
-        build/us/asm/us/7A10.o(.bss);
+        build/us/src/rom/lib_7a10.o(.bss);
         build/us/src/rom/lib_7ad0.o(.bss);
         build/us/src/rom/lib_7b30.o(.bss);
         build/us/src/rom/lib_7c80.o(.bss);
@@ -394,8 +394,8 @@ SECTIONS
         build/us/src/rom/lib_a800.o(.bss);
         build/us/src/rom/lib_a810.o(.bss);
         build/us/src/rom/lib_ab20.o(.bss);
-        build/us/asm/us/AF50.o(.bss);
-        build/us/asm/us/B120.o(.bss);
+        build/us/src/rom/lib_af50.o(.bss);
+        build/us/src/rom/lib_b120.o(.bss);
         build/us/src/rom/lib_b300.o(.bss);
         build/us/src/rom/lib_b570.o(.bss);
         build/us/src/rom/lib_b9f0.o(.bss);
@@ -431,7 +431,7 @@ SECTIONS
         build/us/src/rom/lib_f0b0.o(.bss);
         build/us/src/rom/lib_f160.o(.bss);
         build/us/src/rom/lib_f450.o(.bss);
-        build/us/asm/us/F4D0.o(.bss);
+        build/us/src/rom/lib_f4d0.o(.bss);
         build/us/src/rom/lib_f700.o(.bss);
         . = ALIGN(., 16);
         main_BSS_END = .;
