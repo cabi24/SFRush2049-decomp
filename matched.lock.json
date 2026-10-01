@@ -1,12 +1,4 @@
 {
-  "cloud/work/static_C5/__osSiRawStartDma.c:__osSiRawStartDma": {
-    "body_sha256": "1f8d727d23f387baeb9cf601165b49c21cb6dbdd80ca1a7371032a40829b4f9b",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "__osSiRawStartDma",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-01"
-  },
   "cloud/work/static_C5/__osSpDma.c:__osSpDma": {
     "body_sha256": "6c407f7f719711bc5eb7004d12e5e6a5db916ade1dab28bf0701f99034ea5511",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -435,6 +427,14 @@
     "body_sha256": "7ebbfdde607de07818a4bcec8dee278b3ff6af8187e45d4f1a8a11383b87f491",
     "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
     "target_id": "osSetTimer",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
+  },
+  "src/rom/lib_f0b0.c:__osSiRawStartDma": {
+    "body_sha256": "1f8d727d23f387baeb9cf601165b49c21cb6dbdd80ca1a7371032a40829b4f9b",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osSiRawStartDma",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
