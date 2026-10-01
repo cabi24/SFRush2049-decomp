@@ -1,0 +1,7 @@
+{
+  "function": "dll_reschedule",
+  "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+  "strict_score": 0,
+  "raw_word_diff": 0,
+  "object_sha256": "ac167f13d92f889efd2bcccc6c7c3f66c4485f4f3a2f7c7da6617a1d9fe61e62"
+}

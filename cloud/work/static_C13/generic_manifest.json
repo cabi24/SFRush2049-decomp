@@ -1,0 +1,67 @@
+{
+  "root_head": "45b06fdc",
+  "files": [
+    {
+      "path": "Makefile",
+      "before_sha256": "0fbf9c6e56721f14936ec46594f9695a015589ff4886c40df490326775c9f918",
+      "after_sha256": "b5324813a60addbcbcfe956cb54db692cddccaac9a6507e142962366e45c599a"
+    },
+    {
+      "path": "tools/conveyor/pipeline/owned_data.py",
+      "before_sha256": null,
+      "after_sha256": "754002d831fb9c3f678b92999022d765023d6c0900bdd03ede74938424ba3bb8"
+    },
+    {
+      "path": "tools/conveyor/pipeline/layout.py",
+      "before_sha256": "a3c28647a439311fdab79ac940b9db12b0ebbf3db4c21f7ce43d3691528113d9",
+      "after_sha256": "764d144803671a08912dc680b96bdead8670cc877206ffd7637f575e58b4cc43"
+    },
+    {
+      "path": "tools/conveyor/pipeline/promote.py",
+      "before_sha256": "add4ef5f596d9764dd450977db8af1f75cf065acbf651cba70001f9bfda80eee",
+      "after_sha256": "f2a9b7fa1121f5fa8d3516fa05fe5082614b06dc6b5c468ff26dc21891d25c51"
+    },
+    {
+      "path": "tools/asm-processor/asm_processor.py",
+      "before_sha256": "8e12a581c698f22c79eecf2d6b1d312dc6cc5d3cd404a88be16ce320fd82401c",
+      "after_sha256": "2ee16eb351e27fd0e90fece325ea96d60eebe09dd0e006e2cf2018296bb09272"
+    },
+    {
+      "path": "rom_owned_data.json",
+      "before_sha256": null,
+      "after_sha256": "35d2f871219c6774d1a95eb7030592e6c50615d894253b3d9600bca9a944d7f3"
+    },
+    {
+      "path": "asm/us/nonmatchings/rom/lib_e9a0/osSpTaskLoad_full.table.s",
+      "before_sha256": null,
+      "after_sha256": "c707093cdd320ecbc92ccce7096266069d6c8b021d44976171e2b977c57503d2"
+    },
+    {
+      "path": "src/rom/lib_e9a0.c",
+      "before_sha256": "d6d0bdb71e2a8d30a14f74f1c4352c2e65642e068000fbc72cbfe66a5c9fdb10",
+      "after_sha256": "93647c1ac4699a8772a5ca05d09a4d0b73db68d82791d26b457e865c298c65b6"
+    },
+    {
+      "path": "rush2049.us.ld",
+      "before_sha256": "a56ec78aeb45a0885db5c550411cc8cd874be7b2443180ceef2b9debcbde80fc",
+      "after_sha256": "620a9cc65cb761f489e117a69f4627adb0b33a4e5f067555af5def740119ee19"
+    },
+    {
+      "path": "tests/conveyor/test_owned_data.py",
+      "before_sha256": null,
+      "after_sha256": "f43bf3c47b2ee0963456beffaa60715ab7e1ab672cc58e69826de2ebe481d141"
+    }
+  ],
+  "focused_tests": 57,
+  "focused_exit": 0,
+  "rom_sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+  "private_game_blob_note": "Private proof retains earlier exact source-built blob; parent must regenerate current 531-function blob for acceptance.",
+  "generic_rom_gates": {
+    "passthrough_baseline": 0,
+    "candidate": 0,
+    "post_extract_candidate": 0,
+    "bad_table": 2,
+    "rollback": 0
+  },
+  "regeneration_linker_byte_identical": true
+}

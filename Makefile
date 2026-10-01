@@ -93,6 +93,9 @@ UNDEFINED_FUNCS := undefined_funcs_auto.$(VERSION).txt
 HARDWARE_REGS := hardware_regs.ld
 SYMS_LD := $(BUILD_DIR)/syms.ld
 
+# Ownership dependencies ensure a registry/companion edit cannot reuse stale inputs.
+OWNED_ROM_COMPANIONS := $(shell $(PYTHON) -m tools.conveyor.pipeline.owned_data companions)
+
 # Linker flags
 # --accept-unknown-input-arch allows linking binary blobs with different apparent arch
 LDFLAGS      := -T $(LD_SCRIPT) -T $(SYMS_LD) -T $(HARDWARE_REGS) -Map $(BUILD_DIR)/rush2049.$(VERSION).map --no-check-sections --accept-unknown-input-arch
@@ -251,17 +254,25 @@ GAME_BLOB      := build/blob/game_code.deflate
 GAME_BLOB_SLOT := 0xAFCB10
 GAME_BLOB_LEN  := 326180
 
-$(BUILD_DIR)/$(ASSETS_DIR)/data.o: $(ASSETS_DIR)/data.bin $(GAME_BLOB) tools/compose_data.py | $(BUILD_DIR)/$(ASSETS_DIR)
+$(BUILD_DIR)/$(ASSETS_DIR)/data.o: $(ASSETS_DIR)/data.bin $(GAME_BLOB) tools/compose_data.py rom_owned_data.json tools/conveyor/pipeline/owned_data.py $(OWNED_ROM_COMPANIONS) | $(BUILD_DIR)/$(ASSETS_DIR)
 	@echo "BIN $< + game-code blob built from sources"
 	$(V)$(PYTHON) tools/compose_data.py $< $(GAME_BLOB) $(BUILD_DIR)/$(ASSETS_DIR)/data.composed.bin \
 	    --slot $(GAME_BLOB_SLOT) --length $(GAME_BLOB_LEN)
-	$(V)$(OBJCOPY) -I binary -O elf32-big $(BUILD_DIR)/$(ASSETS_DIR)/data.composed.bin $@
+	$(V)$(PYTHON) -m tools.conveyor.pipeline.owned_data split $< $(BUILD_DIR)/$(ASSETS_DIR)/data.composed.bin $@ --objcopy $(OBJCOPY)
 
 # Convert binary files to objects (using MIPS big-endian ELF format)
 # Use elf32-big for binary files to avoid ABI conflicts
-$(BUILD_DIR)/$(ASSETS_DIR)/%.o: $(ASSETS_DIR)/%.bin | $(BUILD_DIR)/$(ASSETS_DIR)
+$(BUILD_DIR)/$(ASSETS_DIR)/%.o: $(ASSETS_DIR)/%.bin rom_owned_data.json tools/conveyor/pipeline/owned_data.py $(OWNED_ROM_COMPANIONS) | $(BUILD_DIR)/$(ASSETS_DIR)
 	@echo "BIN $<"
-	$(V)$(OBJCOPY) -I binary -O elf32-big $< $@
+	$(V)$(PYTHON) -m tools.conveyor.pipeline.owned_data split $< $< $@ --objcopy $(OBJCOPY)
+
+# Reapply ownership before linking even without make extract. Rendering is idempotent.
+$(LD_SCRIPT): rom_owned_data.json tools/conveyor/pipeline/owned_data.py
+	$(V)$(PYTHON) -m tools.conveyor.pipeline.owned_data linker $@
+
+# Companions and metadata are immutable during promotion; force source/asset rebuilds
+# when their package changes. Promotion also explicitly touches its synced TU.
+$(SRC_ROM_O): rom_owned_data.json tools/conveyor/pipeline/owned_data.py $(OWNED_ROM_COMPANIONS)
 
 # Link ELF
 $(ELF): $(O_FILES) $(LD_SCRIPT) $(SYMS_LD)
@@ -305,6 +316,7 @@ SPLAT_PYTHON ?= $(shell [ -x $(HOME)/.splat-venv/bin/python ] && \
 extract: $(BASEROM)
 	@echo "Running splat..."
 	$(V)$(SPLAT_PYTHON) -m splat split splat.$(VERSION).yaml
+	$(V)$(PYTHON) -m tools.conveyor.pipeline.owned_data linker $(LD_SCRIPT)
 
 # ============================================================
 # Progress tracking

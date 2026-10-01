@@ -845,6 +845,7 @@ func_800972C4:
 .section .text.audio_buffer_sync, "ax", @progbits
 .globl audio_buffer_sync
 audio_buffer_sync:
+    /* compiled from src/blob/audio_buffer_sync.c */
     .word 0x27BDFFD8
     .word 0xAFA40028
     .word 0xAFBF0014

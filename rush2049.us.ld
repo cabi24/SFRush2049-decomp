@@ -330,7 +330,7 @@ SECTIONS
         build/us/asm/us/E4F0.o(.rodata);
         build/us/src/rom/lib_e7c0.o(.rodata);
         build/us/src/rom/lib_e8d0.o(.rodata);
-        build/us/src/rom/lib_e9a0.o(.rodata);
+        /* ROM_OWNED_SECTION_MOVED build/us/src/rom/lib_e9a0.o(.rodata) */
         build/us/asm/us/EFC0.o(.rodata);
         build/us/src/rom/lib_efd0.o(.rodata);
         build/us/src/rom/lib_f0b0.o(.rodata);
@@ -449,7 +449,21 @@ SECTIONS
     {
         FILL(0x00000000);
         data_DATA_START = .;
-        build/us/assets/us/data.o(.data);
+        /* ROM_OWNED_DATA_BEGIN build/us/assets/us/data.o(.data) */
+        _binary_assets_us_data_bin_start = ABSOLUTE(.);
+        _binary_build_us_assets_us_data_composed_bin_start = ABSOLUTE(.);
+        build/us/assets/us/data.o(.data.owned0);
+        rom_owned_osSpTaskLoad_full_START = ABSOLUTE(.);
+        build/us/src/rom/lib_e9a0.o(.rodata);
+        rom_owned_osSpTaskLoad_full_END = ABSOLUTE(.);
+        ASSERT(rom_owned_osSpTaskLoad_full_START == 0x8002d860, "owned ROM slot address changed");
+        ASSERT(rom_owned_osSpTaskLoad_full_END - rom_owned_osSpTaskLoad_full_START == 0x20, "owned ROM slot size changed");
+        build/us/assets/us/data.o(.data.owned1);
+        _binary_assets_us_data_bin_end = ABSOLUTE(.);
+        _binary_assets_us_data_bin_size = ABSOLUTE(_binary_assets_us_data_bin_end - _binary_assets_us_data_bin_start);
+        _binary_build_us_assets_us_data_composed_bin_end = ABSOLUTE(.);
+        _binary_build_us_assets_us_data_composed_bin_size = ABSOLUTE(_binary_build_us_assets_us_data_composed_bin_end - _binary_build_us_assets_us_data_composed_bin_start);
+        /* ROM_OWNED_DATA_END build/us/assets/us/data.o(.data) */
         data_DATA_END = .;
         data_DATA_SIZE = ABSOLUTE(data_DATA_END - data_DATA_START);
     }

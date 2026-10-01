@@ -21,6 +21,7 @@ import sys
 from pathlib import Path
 
 from . import targets as targetsmod
+from . import owned_data
 
 REPO = targetsmod.REPO
 SPLAT_YAML = REPO / "splat.us.yaml"
@@ -296,6 +297,11 @@ def generate_tu(seg, mh):
         '#include "rom_tu.h"',
         "",
     ]
+    companions = owned_data.companions_for_tu(
+        REPO, "src/" + name + ".c",
+        {f["name"]: f.get("state", "passthrough") for f in seg["functions"]})
+    if companions:
+        out.extend([companions.rstrip("\n"), ""])
     tu_base = name  # e.g. rom/lib_8800
     for f in seg["functions"]:
         if f.get("state") == "promoted" and f.get("body"):

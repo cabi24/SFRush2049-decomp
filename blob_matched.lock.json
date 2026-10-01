@@ -64,6 +64,15 @@
     "verified": "image_gate",
     "verified_at": "2026-09-28"
   },
+  "audio_buffer_sync": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "codex_pointer_counters_a19",
+    "source": "src/blob/groups/codex_pointer_counters_a19/group.json",
+    "source_sha256": "19fc9e6cfe29883fa6296a22c0cfec41330a3f053f4feb248c6e90201ad25c8e",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-01"
+  },
   "audio_distance_atten": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/audio_distance_atten.c",
@@ -3720,6 +3729,24 @@
     "verified": "image_gate",
     "verified_at": "2026-10-01"
   },
+  "object_counter_decrement": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "codex_pointer_counters_a19",
+    "source": "src/blob/groups/codex_pointer_counters_a19/group.json",
+    "source_sha256": "19fc9e6cfe29883fa6296a22c0cfec41330a3f053f4feb248c6e90201ad25c8e",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-01"
+  },
+  "object_counter_increment": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "codex_pointer_counters_a19",
+    "source": "src/blob/groups/codex_pointer_counters_a19/group.json",
+    "source_sha256": "19fc9e6cfe29883fa6296a22c0cfec41330a3f053f4feb248c6e90201ad25c8e",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-01"
+  },
   "object_process_thunk": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/object_process_thunk.c",
@@ -3817,6 +3844,24 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-27"
+  },
+  "physics_init_mode0": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "codex_mode_init_a18",
+    "source": "src/blob/groups/codex_mode_init_a18/group.json",
+    "source_sha256": "1635e06aef3a11bc2b29ae0aaae1d4b48d0637a6e3cf0b63bdc44e069186c25e",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-01"
+  },
+  "physics_init_mode1": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "codex_mode_init_a18",
+    "source": "src/blob/groups/codex_mode_init_a18/group.json",
+    "source_sha256": "1635e06aef3a11bc2b29ae0aaae1d4b48d0637a6e3cf0b63bdc44e069186c25e",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-01"
   },
   "physics_velocity_clamp": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",

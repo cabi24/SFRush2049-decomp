@@ -1,0 +1,40 @@
+{
+  "ownership-baseline-TU": {
+    "object_sha256": "f27ddc78e8ad20531b5890f091c192f1328f4905563f48bbae150ed18881943f",
+    "text_sha256": "e9008ba267419ac02dcf9afc15b5d4900dfd51cfd5e1005fdc8e4fddc785fc5f",
+    "text_bytes": 1568
+  },
+  "candidate-TU": {
+    "object_sha256": "8790b6472ce001f0b8a6c593c392274abf0dc8ea3190f6fbfff071e89d5bdf05",
+    "text_sha256": "4a7c0003a99ff30b36fff133da22dbc6acb5e70e6543fcd5d84b6d81f127ae10",
+    "text_bytes": 1568
+  },
+  "unlinked_object_text_word_diff": 2,
+  "unlinked_note": "Original passthrough local branch relocation addends and compiler local labels differ before real linking; final linked entire TU proof below is authority.",
+  "linked_full_tu": {
+    "rom_offset": "0xe9a0",
+    "bytes": 1568,
+    "linked_sha256": "e03a456abdc39a1c838b1c5136ec128339edf8d930d41862912242093cd1f52a",
+    "retail_sha256": "e03a456abdc39a1c838b1c5136ec128339edf8d930d41862912242093cd1f52a",
+    "entire_tu_byte_diff": 0,
+    "accepted_neighbors": "osPiSetDeviceTiming and __osInsertTimer unchanged, entire TU bytes identical"
+  },
+  "actual_ownership_slot": {
+    "vaddr": "0x8002d860",
+    "rom_offset": "0x2e460",
+    "bytes": 32,
+    "actual_output_section": ".data",
+    "linked_sha256": "7cd466024e8a90377babb0f8d67c4da7d5c38af1acf59be025edb7b8456ebb9d",
+    "retail_sha256": "7cd466024e8a90377babb0f8d67c4da7d5c38af1acf59be025edb7b8456ebb9d",
+    "byte_diff": 0
+  },
+  "rom_gates": {
+    "original_baseline": "pass",
+    "ownership_baseline": "pass",
+    "candidate": "pass",
+    "deliberately_corrupted_candidate_table": "failed expected, make exit2, ROM does NOT match",
+    "candidate_restored": "pass",
+    "rollback_baseline": "pass",
+    "expected_sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c"
+  }
+}

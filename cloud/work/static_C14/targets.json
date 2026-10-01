@@ -1,0 +1,202 @@
+[
+  {
+    "target": {
+      "target_id": "dll_reschedule",
+      "address": 2147533460,
+      "population": "static",
+      "insn_count": 29,
+      "target_asm_sha": "6e1bfc66c902d42f143b254483f6e40c9016ee086912266fe29ee9b5b442f39f",
+      "target_o_sha": "07fc5ff1844157e83ffbb101873b6996c7682e33d68d294f3af01115a741abeb",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xcc50",
+        "function": {
+          "name": "dll_reschedule",
+          "vaddr": "0x8000c294",
+          "size": 116,
+          "state": "passthrough"
+        },
+        "flagset": "-g0 -O1 -mips2 -G 0 -non_shared"
+      }
+    },
+    "source_origin": "permuter"
+  },
+  {
+    "target": {
+      "target_id": "osDpWait",
+      "address": 2147515264,
+      "population": "static",
+      "insn_count": 32,
+      "target_asm_sha": "4c447f131f22c9c3c6b0359a730e7bbd5d6d8c5d48027aab1e010f92af364eca",
+      "target_o_sha": "b03cc1cb6bd40688b66a7aac56ae7cacffdeb0d9d4ba99c417213a44b1db01b3",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0x8700",
+        "function": {
+          "name": "osDpWait",
+          "vaddr": "0x80007b80",
+          "size": 128,
+          "state": "passthrough"
+        },
+        "flagset": "-g0 -O2 -mips2 -G 0 -non_shared"
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "memchr",
+      "address": 2147493680,
+      "population": "static",
+      "insn_count": 24,
+      "target_asm_sha": "68127d3ac75724cb703f8180ed469e0bb8c0272bb9c1cbba1a74eb4b58ec252b",
+      "target_o_sha": "85bc0768360fdd74027efa81c765e20638c12531712aa3ea9c32e5f979102a81",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0x3330",
+        "function": {
+          "name": "memchr",
+          "vaddr": "0x80002730",
+          "size": 96,
+          "state": "passthrough"
+        },
+        "flagset": null
+      }
+    },
+    "source_origin": "permuter"
+  },
+  {
+    "target": {
+      "target_id": "dma_queue_init",
+      "address": 2147493184,
+      "population": "static",
+      "insn_count": 22,
+      "target_asm_sha": "a940a9b6637de62a35881cab4d0637190b2765341ae80870d06823a0008f2f63",
+      "target_o_sha": "913f90c5ac87df0837185001b93afe130120afadc17a0bb5991c699884652807",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0x3140",
+        "function": {
+          "name": "dma_queue_init",
+          "vaddr": "0x80002540",
+          "size": 88,
+          "state": "passthrough"
+        },
+        "flagset": null
+      }
+    },
+    "source_origin": "permuter"
+  },
+  {
+    "target": {
+      "target_id": "audio_thread_entry",
+      "address": 2147493116,
+      "population": "static",
+      "insn_count": 17,
+      "target_asm_sha": "a02d1a2b7b5de988b8dd37627d895975c218a3dd26ce614a5c2464b6d526984b",
+      "target_o_sha": "81607cf33a4297716b8c5254e8778bb38c9cde092d4454dd86911eee4c737f6b",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0x2cf0",
+        "function": {
+          "name": "audio_thread_entry",
+          "vaddr": "0x800024fc",
+          "size": 68,
+          "state": "passthrough"
+        },
+        "flagset": null
+      }
+    },
+    "source_origin": "permuter"
+  },
+  {
+    "target": {
+      "target_id": "get_tv_offset",
+      "address": 2147491324,
+      "population": "static",
+      "insn_count": 23,
+      "target_asm_sha": "da661438f65d137a81e23a0a652de54b113dda8c6bea69b079e9c914fad13f7f",
+      "target_o_sha": "c0dae6f7700c37cacd02451cee694e86288a6fafe403c4b5683d4680001ff54d",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0x21f0",
+        "function": {
+          "name": "get_tv_offset",
+          "vaddr": "0x80001dfc",
+          "size": 92,
+          "state": "passthrough"
+        },
+        "flagset": null
+      }
+    },
+    "source_origin": "permuter"
+  },
+  {
+    "target": {
+      "target_id": "get_viewport_pos",
+      "address": 2147491460,
+      "population": "static",
+      "insn_count": 18,
+      "target_asm_sha": "50b496f47e7fc88827435f1350b601ad2b69e86ea3ad96651b7d7bad2e9ac35b",
+      "target_o_sha": "f4ea3fc4c4c30300ff2911c26eff3e16d608364b6692d4670d80e87c7d297bfd",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0x21f0",
+        "function": {
+          "name": "get_viewport_pos",
+          "vaddr": "0x80001e84",
+          "size": 72,
+          "state": "passthrough"
+        },
+        "flagset": null
+      }
+    },
+    "source_origin": "permuter"
+  },
+  {
+    "target": {
+      "target_id": "viAddTicks",
+      "address": 2147489084,
+      "population": "static",
+      "insn_count": 15,
+      "target_asm_sha": "c9c6031cfd1f2b71db619e5c267848f00ea552256db29fc3fa0230ee4b620685",
+      "target_o_sha": "397fb802a4a41b6d9dabb4cf59a53bc280b6913a725c9c3c03fcd232e7404557",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "raw_word",
+      "gate_reason": "assemble_error: 7: Error: invalid operands `lwc1 $ft0,%lo(gScaleTicksPerSecond)($at)'",
+      "layout": {
+        "segment": "0x1050",
+        "function": {
+          "name": "viAddTicks",
+          "vaddr": "0x8000153c",
+          "size": 60,
+          "state": "passthrough"
+        },
+        "flagset": "-g0 -O2 -mips2 -G 0 -non_shared"
+      }
+    },
+    "source_origin": "permuter"
+  }
+]
