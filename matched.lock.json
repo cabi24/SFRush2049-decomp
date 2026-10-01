@@ -1,12 +1,4 @@
 {
-  "cloud/work/static_C/osContStartReadData2.c:osContStartReadData2": {
-    "body_sha256": "1b245b7c54bd040d6c1a55ab8c4cacafe2f08b43902f8160c8fb028e0e60a072",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "osContStartReadData2",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-01"
-  },
   "cloud/work/static_C/osViSetSpecialFeatures.c:osViSetSpecialFeatures": {
     "body_sha256": "ae546c83ba220a05c2703da305f6be871e44ac664db7425cae38d39cd72f68d2",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -150,6 +142,14 @@
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-07-11"
+  },
+  "src/rom/lib_a330.c:osContStartReadData2": {
+    "body_sha256": "1b245b7c54bd040d6c1a55ab8c4cacafe2f08b43902f8160c8fb028e0e60a072",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osContStartReadData2",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
   },
   "src/rom/lib_a5b0.c:osDpGetCounters": {
     "body_sha256": "956537774ce209281b73bae6ba07f8df610cfb61a10e3ca2fbafb4b44391e42a",
