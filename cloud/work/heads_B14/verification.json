@@ -1,0 +1,38 @@
+[
+  {
+    "function": "func_800DC628",
+    "source_file": "func_800DC628_wordsize.c",
+    "source_sha256": "013ae5150fc5ae418aabc829f74827dc4654c5e84b001b985bcaa868a19bc19a",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "exit_code": 1,
+    "strict_result": "func_800DC628:\n    +0x000  want 3c0e8011                               got 3c068011                             \n    +0x004  want 8dce70f8                               got 24c670f8                             \n    +0x008  want 3c018011                               got 8cce0000                             \n    +0x010  want 11c00018                               got 3c038011                             \n    +0x014  want 3c038011                               got 11c00018                             \n    +0x018  want 3c068011                               got 3c018011                             \n    +0x01c  want ac2070f8                               got acc00000                             \n    +0x020  want 24c66fe8                               got 3c068011                             \n    +0x028  want 24070020                               got 24c66fe8                             \n    +0x02c  want 906f0000                               got 24070020                             \n    +0x030  want 24590001                               got 906f0000                             \n    +0x034  want 244a0002                               got 24590001                             \n  40/62 words differ\n",
+    "compile_stderr": ""
+  },
+  {
+    "function": "func_80105B74",
+    "source_file": "func_80105B74_ternary.c",
+    "source_sha256": "72ac13c6d93538eeb6cf5072b9138e5fb45f911bcdc3d48e06ffe94a1cc3121c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "exit_code": 1,
+    "strict_result": "func_80105B74:\n    +0x000  want 27bdffa8                               got 27bdffa0                             \n    +0x004  want afb30024                               got afb00014                             \n    +0x008  want afb20020                               got 3c108015                             \n    +0x00c  want afb1001c                               got afb40024                             \n    +0x010  want afb00018                               got afb30020                             \n    +0x014  want afb40028                               got afb2001c                             \n    +0x018  want 3c108015                               got 26102818                             \n    +0x01c  want 3c118014                               got afb50028                             \n    +0x020  want 3c128014                               got afb10018                             \n    +0x024  want 3c138015                               got 3c128014                             \n    +0x028  want afbf002c                               got 3c138014                             \n    +0x02c  want afa40058                               got 3c148015                             \n  133/141 words differ\n",
+    "compile_stderr": ""
+  },
+  {
+    "function": "func_8010DCFC",
+    "source_file": "func_8010DCFC_singleformal.c",
+    "source_sha256": "5d102f7267dcf9c3595f67622d4b54349145950a608d426304564ff8d06a3b9c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "exit_code": 1,
+    "strict_result": "func_8010DCFC:\n    +0x000  want 27bdff78                               got 27bdffa0                             \n    +0x014  want 3c0b8014                               got 3c0a8014                             \n    +0x018  want 00194900                               got 00194100                             \n    +0x01c  want 01394823                               got 01194023                             \n    +0x020  want 816bfecd                               got 814afecd                             \n    +0x024  want 000948c0                               got 000840c0                             \n    +0x030  want 3c0a8015                               got 3c098015                             \n    +0x034  want 01394823                               got 01194023                             \n    +0x044  want 000948c0                               got 000840c0                             \n    +0x048  want 254a2818                               got 25292818                             \n    +0x050  want 01f84021                               got 01f83021                             \n    +0x054  want 1160000e                               got 1140000e                             \n  148/165 words differ\n",
+    "compile_stderr": ""
+  },
+  {
+    "function": "func_8010C02C",
+    "source_file": "func_8010C02C_seedvectors.c",
+    "source_sha256": "262afbd45c117b19735a77a83ce079c471c32408483e732e7a4e1f8652545ccf",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "exit_code": 1,
+    "strict_result": "func_8010C02C:\n    +0x034  want 84a20000                               got 84ae0000                             \n    +0x038  want 3c088015                               got 3c188015                             \n    +0x03c  want 2508a250                               got 2718a250                             \n    +0x040  want 0002ca00                               got 000e7a00                             \n    +0x044  want 0322c821                               got 01ee7821                             \n    +0x048  want 0019c8c0                               got 000f78c0                             \n    +0x04c  want 808e0065                               got 80990065                             \n    +0x050  want 03288821                               got 01f88821                             \n    +0x054  want 822907ea                               got 822a07ea                             \n    +0x058  want 3c188015                               got 3c098015                             \n    +0x05c  want 8f180f38                               got 8d290f38                             \n    +0x060  want 000e7980                               got 00194180                             \n  157/174 words differ\n",
+    "compile_stderr": ""
+  }
+]

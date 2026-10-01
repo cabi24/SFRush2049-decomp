@@ -1,0 +1,118 @@
+[
+  {
+    "function": "__osPfsCheckPages",
+    "rom_offset": 50456,
+    "slot_size": 728,
+    "retail_slot_sha256": "89a29ea9cc61a62386dabaad4e744e97d37fdea0e91dcc2f92dcca4b355ef5a5",
+    "linked_prefix_word_diff": 0,
+    "candidate_words": 184,
+    "slot_words": 182,
+    "extra_candidate_words": [
+      0,
+      0
+    ],
+    "missing_slot_words": [],
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": []
+  },
+  {
+    "function": "__osPfsPageCheck",
+    "rom_offset": 51184,
+    "slot_size": 416,
+    "retail_slot_sha256": "694a2c92f5be16f487b2d38a87b67cf7c545f1534c6bdc59de630c318d7a0a47",
+    "linked_prefix_word_diff": 0,
+    "candidate_words": 104,
+    "slot_words": 104,
+    "extra_candidate_words": [],
+    "missing_slot_words": [],
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": []
+  },
+  {
+    "function": "dll_init",
+    "rom_offset": 52368,
+    "slot_size": 140,
+    "retail_slot_sha256": "8f2b9610d426b2e0d3e58e4b7bf37b12b68de150ae9986a5da701131053e3676",
+    "linked_prefix_word_diff": 35,
+    "candidate_words": 36,
+    "slot_words": 35,
+    "extra_candidate_words": [
+      2936012828
+    ],
+    "missing_slot_words": [],
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": []
+  },
+  {
+    "function": "dll_update",
+    "rom_offset": 52508,
+    "slot_size": 376,
+    "retail_slot_sha256": "d3d1b7505351e7f1879a5bf783d70b8b72fb7944cb33d0e4a1b145628790e637",
+    "linked_prefix_word_diff": 0,
+    "candidate_words": 96,
+    "slot_words": 94,
+    "extra_candidate_words": [
+      0,
+      0
+    ],
+    "missing_slot_words": [],
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": []
+  },
+  {
+    "function": "dll_insert",
+    "rom_offset": 53000,
+    "slot_size": 392,
+    "retail_slot_sha256": "52b36f0b6f5dacda367d896ca1f49a12cec60934de1bbfcd4beb0a7b4cc62bc4",
+    "linked_prefix_word_diff": 0,
+    "candidate_words": 100,
+    "slot_words": 98,
+    "extra_candidate_words": [
+      0,
+      0
+    ],
+    "missing_slot_words": [],
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": []
+  },
+  {
+    "function": "osPfsChecker_full",
+    "rom_offset": 51600,
+    "slot_size": 192,
+    "retail_slot_sha256": "04dfec3a952d7eacc57ae952f4b697e77e8429201aaa5c0bf2355df1f839a334",
+    "linked_prefix_word_diff": 0,
+    "candidate_words": 48,
+    "slot_words": 48,
+    "extra_candidate_words": [],
+    "missing_slot_words": [],
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": []
+  },
+  {
+    "function": "osViInit",
+    "rom_offset": 53568,
+    "slot_size": 288,
+    "retail_slot_sha256": "6d870ae876c3add703c92e5d7656fa7d19f7c3d01e9dc8dfd2e34329ec2bace0",
+    "linked_prefix_word_diff": 0,
+    "candidate_words": 72,
+    "slot_words": 72,
+    "extra_candidate_words": [],
+    "missing_slot_words": [],
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": []
+  }
+]

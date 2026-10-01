@@ -1,0 +1,233 @@
+[
+  {
+    "target": {
+      "target_id": "__osPfsCheckPages",
+      "address": 2147531032,
+      "population": "static",
+      "insn_count": 182,
+      "target_asm_sha": "d28a3471a3863ce22b68e6252f9e7dc638208ce5f7963646877055df68864224",
+      "target_o_sha": "e832a8b4f394b3c820f7c5e6343d5522373853e77c90172b51eb61621fc3f981",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xbfe0",
+        "function": {
+          "name": "__osPfsCheckPages",
+          "vaddr": "0x8000b918",
+          "size": 728,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "__osPfsPageCheck",
+      "address": 2147531760,
+      "population": "static",
+      "insn_count": 104,
+      "target_asm_sha": "6d0599160788937b94be87821690492a7c686098a884502cec8b73bdbe556654",
+      "target_o_sha": "a565bcc45080b245f1ab0196099b0425ee4fa3317b9ddb4dfc3a1b788a4e4325",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xbfe0",
+        "function": {
+          "name": "__osPfsPageCheck",
+          "vaddr": "0x8000bbf0",
+          "size": 416,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "dll_init",
+      "address": 2147532944,
+      "population": "static",
+      "insn_count": 35,
+      "target_asm_sha": "a371a53a299dcb19d168e84bd2ce351cc2fd612c61443e5957d6a1cdc06e1591",
+      "target_o_sha": "c2ec2a73626c2b391f1e9f60072a44f49e34956b95003c4250e2993a0ec49199",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xcc50",
+        "function": {
+          "name": "dll_init",
+          "vaddr": "0x8000c090",
+          "size": 140,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": "permuter",
+    "old_target": {
+      "target_id": "dll_init",
+      "address": 2147532944,
+      "population": "static",
+      "insn_count": 35,
+      "target_asm_sha": "a371a53a299dcb19d168e84bd2ce351cc2fd612c61443e5957d6a1cdc06e1591",
+      "target_o_sha": "f25ac8c53ff3f4cad4c443d1fdb5d4038f4b46d73f046ebd78aee9769791b6fa",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "raw_word",
+      "gate_reason": "no_asm_region",
+      "layout": {
+        "segment": "0xcc50",
+        "function": {
+          "name": "dll_init",
+          "vaddr": "0x8000c090",
+          "size": 140,
+          "state": "passthrough"
+        }
+      }
+    }
+  },
+  {
+    "target": {
+      "target_id": "dll_update",
+      "address": 2147533084,
+      "population": "static",
+      "insn_count": 94,
+      "target_asm_sha": "5a0721635bed2c41f720dae2ecc479188c313358e3b8a891866dca48c05d3af0",
+      "target_o_sha": "dd7637b111b0f60e06a47c134e6b56972179faca417dd06920f2bd81719be258",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xcc50",
+        "function": {
+          "name": "dll_update",
+          "vaddr": "0x8000c11c",
+          "size": 376,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null,
+    "old_target": {
+      "target_id": "dll_update",
+      "address": 2147533084,
+      "population": "static",
+      "insn_count": 94,
+      "target_asm_sha": "5a0721635bed2c41f720dae2ecc479188c313358e3b8a891866dca48c05d3af0",
+      "target_o_sha": "38e8bc22900f2a3283fbf4cc4f0279f1e2700d4acc9ff1796d57a608675cd8e3",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "raw_word",
+      "gate_reason": "no_asm_region",
+      "layout": {
+        "segment": "0xcc50",
+        "function": {
+          "name": "dll_update",
+          "vaddr": "0x8000c11c",
+          "size": 376,
+          "state": "passthrough"
+        }
+      }
+    }
+  },
+  {
+    "target": {
+      "target_id": "dll_insert",
+      "address": 2147533576,
+      "population": "static",
+      "insn_count": 98,
+      "target_asm_sha": "069ecdcbfa95870649603bffa112a2b8c0d61198be9bfcc49ade33795e051b35",
+      "target_o_sha": "38a34759181c618a276a0f42f8e049dd5f5a05a22f60dc25439bcf3c404fdd7d",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xcc50",
+        "function": {
+          "name": "dll_insert",
+          "vaddr": "0x8000c308",
+          "size": 392,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null,
+    "old_target": {
+      "target_id": "dll_insert",
+      "address": 2147533576,
+      "population": "static",
+      "insn_count": 98,
+      "target_asm_sha": "069ecdcbfa95870649603bffa112a2b8c0d61198be9bfcc49ade33795e051b35",
+      "target_o_sha": "cf06c9ac59c904b530363831b07a4608c0a574ee49eaf942dddd1571f830dcc8",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "raw_word",
+      "gate_reason": "no_asm_region",
+      "layout": {
+        "segment": "0xcc50",
+        "function": {
+          "name": "dll_insert",
+          "vaddr": "0x8000c308",
+          "size": 392,
+          "state": "passthrough"
+        }
+      }
+    }
+  },
+  {
+    "target": {
+      "target_id": "osPfsChecker_full",
+      "address": 2147532176,
+      "population": "static",
+      "insn_count": 48,
+      "target_asm_sha": "e02eeaf3afcfcce4834d091e008bafb8d99510233958811b8924381403814595",
+      "target_o_sha": "01bba0a0eb7928a319e560994ac37c1e6dce23973d4906636cc39245e47bd153",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xc990",
+        "function": {
+          "name": "osPfsChecker_full",
+          "vaddr": "0x8000bd90",
+          "size": 192,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": "permuter"
+  },
+  {
+    "target": {
+      "target_id": "osViInit",
+      "address": 2147534144,
+      "population": "static",
+      "insn_count": 72,
+      "target_asm_sha": "3ebcda35ea2ecca8a8c064895fcbe15cdb3ce88ba36a88fbb89b623cf2c77cf4",
+      "target_o_sha": "9dbf6133fa712f2dc32a9392354fc06701a87c31be3c19d41d4e9f6edddd364f",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xd140",
+        "function": {
+          "name": "osViInit",
+          "vaddr": "0x8000c540",
+          "size": 288,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  }
+]
