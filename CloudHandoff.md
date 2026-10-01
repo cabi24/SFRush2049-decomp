@@ -141,6 +141,11 @@ warnings. Rebuild it on x86 with `python3 tools/cloud/rank_near_miss.py`. Each h
 prototypes it needs).
 `python3 tools/cloud/score.py fn cloud/work/near-miss/<f>/base.c <f> --flags "<flags from INDEX>"`.
 
+Also read the Snowboard Kids decomp's [DECOMPILATION_LEARNINGS.md](https://github.com/cdlewis/snowboardkids-decomp/blob/main/DECOMPILATION_LEARNINGS.md): generic IDO 5.3
+behaviour measured with an instrumented `uopt` (how registers are coloured, stack-frame arithmetic,
+which loops get unrolled). It was measured at `-O2 -mips1` and we use `-mips2`/`-O3`, so check a rule
+here before relying on it. It has no licence: link to it, do not copy it into this repo.
+
 What worked on the 32 hand matches of 2026-09-28/29 (details in the commit log
 from `2f2f5bc` onward):
 - **Pointer strides:** m2c byte offsets through typed pointers (`s32 *p; p += 4`

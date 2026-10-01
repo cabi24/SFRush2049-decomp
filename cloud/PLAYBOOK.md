@@ -64,3 +64,10 @@ What worked in cloud rounds 1-3 (single functions and IPA groups). Setup and rul
   match the bytes but may not be the original source; say so in the PR.
 - Claim only functions that score strict MATCH: put them in `group.json` `"claims"`. Keep scorer
   scripts in `cloud/work/tools/`, not in group dirs. Hand back matched singles in `cloud/matches/`.
+
+## See also
+
+- [Snowboard Kids decomp: DECOMPILATION_LEARNINGS.md](https://github.com/cdlewis/snowboardkids-decomp/blob/main/DECOMPILATION_LEARNINGS.md)
+  Generic IDO 5.3 notes (register allocation measured with an instrumented `uopt`, stack-frame
+  arithmetic, loop unrolling rules, struct/global access). Measured at `-O2 -mips1`; check a rule
+  on our flags first. No licence declared: link to it, do not copy it into this repo.

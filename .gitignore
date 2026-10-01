@@ -88,3 +88,6 @@ asm/us/blob/*
 !asm/us/blob/SHA256SUMS
 src/blob/blob.ld
 tools/cloud/ido/
+
+# Third-party reference copies (see docs/external/README.md)
+docs/external/files/
