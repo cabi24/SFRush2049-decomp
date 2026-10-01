@@ -1,12 +1,4 @@
 {
-  "cloud/work/static_C11/__osPfsPageCheck.c:__osPfsPageCheck": {
-    "body_sha256": "74b195befd181dd36c3e589f5fc37fbe31f2c2a4ea645ba661b79e39c3dc8ad8",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "__osPfsPageCheck",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-01"
-  },
   "cloud/work/static_C11/osViInit.c:osViInit": {
     "body_sha256": "2f476e4f3d2f22600d7a63bb971542cd4c01f1d214c9c1c764f8d0a719e2c52b",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -519,6 +511,14 @@
     "body_sha256": "845ceb4ecc7fcc9a7d388589a5384b08b3df3ec926169cfe44597ee89c6bd6cf",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "__osPfsCheckPages",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
+  },
+  "src/rom/lib_bfe0.c:__osPfsPageCheck": {
+    "body_sha256": "74b195befd181dd36c3e589f5fc37fbe31f2c2a4ea645ba661b79e39c3dc8ad8",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osPfsPageCheck",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
