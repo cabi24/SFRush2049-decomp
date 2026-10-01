@@ -7,14 +7,6 @@
     "verified": "score0",
     "verified_at": "2026-10-01"
   },
-  "cloud/work/static_C/osPiGetAccess.c:osPiGetAccess": {
-    "body_sha256": "75ed6301a5d365bf2d82f50f3d1b1569c583eff94d321dd07947d4071c2495a0",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "osPiGetAccess",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-01"
-  },
   "cloud/work/static_C/osPiInit.c:osPiInit": {
     "body_sha256": "263756b2bb0f4bf096d3afda875cbfed91041cce491bd0b7d7fee30c583403b5",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -254,6 +246,14 @@
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-07-15"
+  },
+  "src/rom/lib_e7c0.c:osPiGetAccess": {
+    "body_sha256": "75ed6301a5d365bf2d82f50f3d1b1569c583eff94d321dd07947d4071c2495a0",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osPiGetAccess",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
   },
   "src/rom/lib_e7c0.c:osPiReleaseAccess": {
     "body_sha256": "9784f1eaf15ccdaeb345a8dc42f80f84c65d524401bd47a55daf5ece43822652",
