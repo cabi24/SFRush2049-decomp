@@ -6,7 +6,18 @@
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_5610/inflate_io_wait.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_5610/lzss_decode.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_5610/inflate_flush_window.s")
+/* PROMOTED 2026-10-01 — inflate_flush_window
+ * Source:   cloud/work/static_C/inflate_flush_window.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C/inflate_flush_window.c:inflate_flush_window (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void inflate_flush_window(s32 arg0, s32 arg1) {
+    gDisplayListHead = arg0;
+    gDisplayListEnd = arg1;
+    *(s32 *)&gDisplayListSize = 0;
+}
+
 /* PROMOTED 2026-09-24 — huft_alloc
  * Source:   work/auto/huft_alloc/matched.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
