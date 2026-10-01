@@ -103,3 +103,10 @@ Eighteen near-misses were worked with `diagnose` in the loop: 7 matched, 4 match
 - m2c noise that matters: `0x400 & 0xFFFFFFFFFFFFFFFF` adds a `beqzl` and an extra `andi`; deleting a pass-through local
   moves a neighbouring spill slot. A dead read of an uninitialised local can match yet is not the original source: say so.
 
+
+## Codex acceptance findings (2026-10-01)
+
+- `func_800B7438` and `func_800B73E4` reproduce with real `input_init_flag_get` context: no stand-ins needed. Keep the externally used wrapper and real callee in `keep`; define `D_801551E8` for the shared-lui scheduling quirk.
+- Standalone known unit-defined globals need absolute image assignments, rather than GNU ld `PROVIDE`, which leaves the object's own definition in newly allocated storage. This explained every differing word in `func_800BB7F4` and `render_post_process`; both now pass the image and ROM gates without changing their proven O2 source.
+- New head `func_8010C7F4`: natural typed-vector source fixes seed signed load, stat-word dereference and float argument handling. Unused local reproduces the 72-byte frame and home slots. `func_80105DA8`: signed-width indexing and removing a pass-through local fixes the final reversed branch operands. Both strict-score/image/ROM accepted.
+- Static seeds require stack-sensitive verification: `osViGetFramebuffer` and `osContStartReadData2` were historical masked zeros; reversing declaration order fixes the saved return-value slot. An object match remains a lead until promoted and full-ROM verified.

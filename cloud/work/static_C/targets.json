@@ -1,0 +1,146 @@
+[
+  {
+    "target": {
+      "target_id": "osGetActiveQueue",
+      "address": 2147534432,
+      "population": "static",
+      "insn_count": 4,
+      "target_asm_sha": "2c7688940b8812aaee183d386938f31ff280c477cdf8dac093ec29a89778e34a",
+      "target_o_sha": "5a85aa724a9393bdbd886afdac77aea67450ab07c901a8ed1da7806c203ead57",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xd260",
+        "function": {
+          "name": "osGetActiveQueue",
+          "vaddr": "0x8000c660",
+          "size": 16,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "inflate_flush_window",
+      "address": 2147503440,
+      "population": "static",
+      "insn_count": 7,
+      "target_asm_sha": "657ad1b3cd87d60f59bd0045989bd2d07f4f7ced2ee964e82f1b9f48adf10ebb",
+      "target_o_sha": "2a81ff5442b18517e2b0944d81b368a679189f26d0687b9f13cd66b509021fe2",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0x5610",
+        "function": {
+          "name": "inflate_flush_window",
+          "vaddr": "0x80004d50",
+          "size": 28,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "viDeadlinePassed",
+      "address": 2147489212,
+      "population": "static",
+      "insn_count": 8,
+      "target_asm_sha": "65dd67945030a6d8e42eb8bcb1aa85a5844ed1874656deef4377e29dadcb83e5",
+      "target_o_sha": "1a3a5a26327ffae7503297d4cc215630604492d374686cfce456b391a2f8fa1a",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0x1050",
+        "function": {
+          "name": "viDeadlinePassed",
+          "vaddr": "0x800015bc",
+          "size": 32,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "osPiReleaseAccess",
+      "address": 2147540052,
+      "population": "static",
+      "insn_count": 11,
+      "target_asm_sha": "a8e2f6a2634318237b6b6d630654a70e1005bf5d8c3d6a92aef0655b9a83357f",
+      "target_o_sha": "2ccd5f7261fd8dcdcdd4c394739858ca81e3008de0760cfbae012c9e1ccc8804",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xe7c0",
+        "function": {
+          "name": "osPiReleaseAccess",
+          "vaddr": "0x8000dc54",
+          "size": 44,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "osPiGetAccess",
+      "address": 2147539984,
+      "population": "static",
+      "insn_count": 17,
+      "target_asm_sha": "c1783cd5a129b6b65d5210f448d05c00b5f51e80b333e51587ce2fb768289c48",
+      "target_o_sha": "af355c323d579207ab1d6c947348401cedb54e1894c1c507f7eb6682e245aafa",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xe7c0",
+        "function": {
+          "name": "osPiGetAccess",
+          "vaddr": "0x8000dc10",
+          "size": 68,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "osViGetFramebuffer",
+      "address": 2147514320,
+      "population": "static",
+      "insn_count": 16,
+      "target_asm_sha": "680a4dc4120f282ebe07cdd012e22e4d2c32447eff083508f57d2c84cbe1e19a",
+      "target_o_sha": "f6189dac5622a984a8fe4078e7850019b911c61233d6a81017074084781db858",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0x83d0",
+        "function": {
+          "name": "osViGetFramebuffer",
+          "vaddr": "0x800077d0",
+          "size": 64,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  }
+]

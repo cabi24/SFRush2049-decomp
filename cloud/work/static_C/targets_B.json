@@ -1,0 +1,146 @@
+[
+  {
+    "target": {
+      "target_id": "osPiInit",
+      "address": 2147539904,
+      "population": "static",
+      "insn_count": 20,
+      "target_asm_sha": "faa1bc79eebe9eb4087e35c0999ca535a4081959584d7480603ed66fbc2c1424",
+      "target_o_sha": "e7227bbb80c40d13aad454d923abc57908cea9f18c6d0114daa53127a060d223",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xe7c0",
+        "function": {
+          "name": "osPiInit",
+          "vaddr": "0x8000dbc0",
+          "size": 80,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "osSiInit",
+      "address": 2147542368,
+      "population": "static",
+      "insn_count": 20,
+      "target_asm_sha": "ceb3a1225c7d4a343aca782f52f709f5a344b6ac411004875a742a22883f44f2",
+      "target_o_sha": "75d79b09e6786206236967eb5c00aa76e6a7371f30d7604ff604c2c3438d1f82",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xf160",
+        "function": {
+          "name": "osSiInit",
+          "vaddr": "0x8000e560",
+          "size": 80,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "osSetIntMask",
+      "address": 2147511712,
+      "population": "static",
+      "insn_count": 28,
+      "target_asm_sha": "e8556d110af8e5a3779300507ef8018f9a0ae7e3cef87afff2f17025db946019",
+      "target_o_sha": "35677cd27310958707b6d3e42883e8909aa2cbbd87fd7d93880487f2cb22cb29",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0x79a0",
+        "function": {
+          "name": "osSetIntMask",
+          "vaddr": "0x80006da0",
+          "size": 112,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "osContStartReadData2",
+      "address": 2147522512,
+      "population": "static",
+      "insn_count": 33,
+      "target_asm_sha": "fcfdcb502831d887c906d03ec1c331672bb792b0c8e1976cbfa9d0874967ba15",
+      "target_o_sha": "2b73ad1aeb8df95b5bb40f2ab05ab600389c768883686a56fded43512e40234e",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xa330",
+        "function": {
+          "name": "osContStartReadData2",
+          "vaddr": "0x800097d0",
+          "size": 132,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": "permuter"
+  },
+  {
+    "target": {
+      "target_id": "osViSetSpecialFeatures",
+      "address": 2147515680,
+      "population": "static",
+      "insn_count": 88,
+      "target_asm_sha": "816d24429b137808439c77223c9f52a51df3946779b02f1d51315082ccdfd8f5",
+      "target_o_sha": "c9e16c847f30a0bfe3eb90de35de3aa71785a739e6b5a62bd64ef3e437fe494e",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0x8920",
+        "function": {
+          "name": "osViSetSpecialFeatures",
+          "vaddr": "0x80007d20",
+          "size": 352,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "osPiRawReadWord",
+      "address": 2147516880,
+      "population": "static",
+      "insn_count": 16,
+      "target_asm_sha": "f4caad23221b744e7accec81c3b2bb87308189208cc4b543d5678fbfe5260927",
+      "target_o_sha": "4f33aa57e9ac96790149fb8540c8ee1e71f25b9266d7e9a5ae48630e92ae2f33",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "raw_word",
+      "gate_reason": "no_asm_region",
+      "layout": {
+        "segment": "0x8dd0",
+        "function": {
+          "name": "osPiRawReadWord",
+          "vaddr": "0x800081d0",
+          "size": 64,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  }
+]

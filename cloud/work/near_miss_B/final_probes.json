@@ -1,0 +1,116 @@
+[
+  {
+    "fn": "func_800CCE5C",
+    "label": "inline_home",
+    "result": "  2/40 words differ",
+    "path": "/home/cburnes/agents/B/scratch/codex_B/func_800CCE5C_inline_home.c"
+  },
+  {
+    "fn": "func_800CCE5C",
+    "label": "field_0",
+    "result": "  2/40 words differ",
+    "path": "/home/cburnes/agents/B/scratch/codex_B/func_800CCE5C_field_0.c"
+  },
+  {
+    "fn": "func_800CCE5C",
+    "label": "field_1",
+    "result": "  2/40 words differ",
+    "path": "/home/cburnes/agents/B/scratch/codex_B/func_800CCE5C_field_1.c"
+  },
+  {
+    "fn": "func_800CCE5C",
+    "label": "field_2",
+    "result": "  2/40 words differ",
+    "path": "/home/cburnes/agents/B/scratch/codex_B/func_800CCE5C_field_2.c"
+  },
+  {
+    "fn": "func_800CCE5C",
+    "label": "field_3",
+    "result": "  2/40 words differ",
+    "path": "/home/cburnes/agents/B/scratch/codex_B/func_800CCE5C_field_3.c"
+  },
+  {
+    "fn": "func_800CCE5C",
+    "label": "field_4",
+    "result": "  2/40 words differ",
+    "path": "/home/cburnes/agents/B/scratch/codex_B/func_800CCE5C_field_4.c"
+  },
+  {
+    "fn": "func_8008C680",
+    "label": "def_D_801238E4_0",
+    "result": "  4/40 words differ",
+    "path": "/home/cburnes/agents/B/scratch/codex_B/func_8008C680_def_D_801238E4_0.c"
+  },
+  {
+    "fn": "func_8008C680",
+    "label": "def_D_801238E8_0",
+    "result": "  4/40 words differ",
+    "path": "/home/cburnes/agents/B/scratch/codex_B/func_8008C680_def_D_801238E8_0.c"
+  },
+  {
+    "fn": "func_8008C680",
+    "label": "def_D_801238F0_0",
+    "result": "  4/40 words differ",
+    "path": "/home/cburnes/agents/B/scratch/codex_B/func_8008C680_def_D_801238F0_0.c"
+  },
+  {
+    "fn": "func_8008C680",
+    "label": "def_D_801238E4_1",
+    "result": "  39/40 words differ",
+    "path": "/home/cburnes/agents/B/scratch/codex_B/func_8008C680_def_D_801238E4_1.c"
+  },
+  {
+    "fn": "func_8008C680",
+    "label": "def_D_801238E8_1",
+    "result": "  28/40 words differ",
+    "path": "/home/cburnes/agents/B/scratch/codex_B/func_8008C680_def_D_801238E8_1.c"
+  },
+  {
+    "fn": "func_8008C680",
+    "label": "def_D_801238F0_1",
+    "result": "  10/40 words differ (1 extra words (nonzero beyond target length))",
+    "path": "/home/cburnes/agents/B/scratch/codex_B/func_8008C680_def_D_801238F0_1.c"
+  },
+  {
+    "fn": "func_8008C680",
+    "label": "def_D_801238E4_2",
+    "result": "  35/40 words differ (1 extra words (nonzero beyond target length))",
+    "path": "/home/cburnes/agents/B/scratch/codex_B/func_8008C680_def_D_801238E4_2.c"
+  },
+  {
+    "fn": "func_8008C680",
+    "label": "def_D_801238E8_2",
+    "result": "  36/40 words differ",
+    "path": "/home/cburnes/agents/B/scratch/codex_B/func_8008C680_def_D_801238E8_2.c"
+  },
+  {
+    "fn": "func_8008C680",
+    "label": "def_D_801238F0_2",
+    "result": "  11/40 words differ",
+    "path": "/home/cburnes/agents/B/scratch/codex_B/func_8008C680_def_D_801238F0_2.c"
+  },
+  {
+    "fn": "func_8008A704",
+    "label": "global_0",
+    "result": "  2/28 words differ",
+    "path": "/home/cburnes/agents/B/scratch/codex_B/func_8008A704_global_0.c"
+  },
+  {
+    "fn": "func_8008A704",
+    "label": "global_1",
+    "result": "  2/28 words differ",
+    "path": "/home/cburnes/agents/B/scratch/codex_B/func_8008A704_global_1.c"
+  },
+  {
+    "fn": "func_8008A704",
+    "label": "global_2",
+    "result": "  2/28 words differ",
+    "path": "/home/cburnes/agents/B/scratch/codex_B/func_8008A704_global_2.c"
+  },
+  {
+    "fn": "func_8008A704",
+    "label": "global_3",
+    "result": "  2/28 words differ",
+    "path": "/home/cburnes/agents/B/scratch/codex_B/func_8008A704_global_3.c"
+  }
+]
