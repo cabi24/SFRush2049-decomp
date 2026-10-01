@@ -30,7 +30,16 @@ void __osSiGetAccess(void) {
     osRecvMesg(&__osSiMesg, &dummyMesg, OS_MESG_BLOCK);
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_f160/__osSiRelAccess.s")
+/* PROMOTED 2026-10-01 — __osSiRelAccess
+ * Source:   cloud/work/static_C2/__osSiRelAccess.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C2/__osSiRelAccess.c:__osSiRelAccess (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void __osSiRelAccess(void) {
+    osJamMesg(&__osSiMesg, NULL, OS_MESG_NOBLOCK);
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_f160/osContStartReadData.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_f160/__osContBuildRequest.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_f160/__osContParseResponse.s")

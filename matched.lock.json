@@ -1,12 +1,4 @@
 {
-  "cloud/work/static_C2/__osSiRelAccess.c:__osSiRelAccess": {
-    "body_sha256": "1f79efb56f1011f17672625ad843ceb837cb6fd07110ce8e742cc5e632da7c72",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "__osSiRelAccess",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-01"
-  },
   "cloud/work/static_C2/osContGetQuery.c:osContGetQuery": {
     "body_sha256": "061804406861ac42f6441a5e43f3906586f039a3290416e66a508528e178c79a",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -387,6 +379,14 @@
     "body_sha256": "101d8686d8e0a989c5ce0bc5c9010322f89e3f79fc893df5de2032d809c9bd36",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "__osSiGetAccess",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
+  },
+  "src/rom/lib_f160.c:__osSiRelAccess": {
+    "body_sha256": "1f79efb56f1011f17672625ad843ceb837cb6fd07110ce8e742cc5e632da7c72",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osSiRelAccess",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
