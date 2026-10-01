@@ -1,0 +1,12 @@
+{
+  "standalone": true,
+  "idempotent": true,
+  "modules": [
+    "tools.conveyor",
+    "tools.conveyor.pipeline",
+    "tools.conveyor.pipeline.owned_data",
+    "tools.conveyor.pipeline.owned_text",
+    "tools.conveyor.seeds",
+    "tools.conveyor.seeds.extract_candidates"
+  ]
+}

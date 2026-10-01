@@ -271,7 +271,8 @@ $(BUILD_DIR)/$(ASSETS_DIR)/%.o: $(ASSETS_DIR)/%.bin rom_owned_data.json tools/co
 	$(V)$(PYTHON) -m tools.conveyor.pipeline.owned_data split $< $< $@ --objcopy $(OBJCOPY)
 
 # Reapply ownership before linking even without make extract. Rendering is idempotent.
-$(LD_SCRIPT): rom_owned_data.json tools/conveyor/pipeline/owned_data.py
+TEXT_BOUNDARY_INPUTS = $(shell $(PYTHON) -m tools.conveyor.pipeline.owned_text inputs)
+$(LD_SCRIPT): rom_owned_data.json tools/conveyor/pipeline/owned_data.py tools/conveyor/pipeline/owned_text.py $(TEXT_BOUNDARY_INPUTS)
 	$(V)$(PYTHON) -m tools.conveyor.pipeline.owned_data linker $@
 
 # Companions and metadata are immutable during promotion; force source/asset rebuilds
