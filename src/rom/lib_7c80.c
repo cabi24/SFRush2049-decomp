@@ -4,7 +4,48 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_7c80/osStartThread.s")
+/* PROMOTED 2026-10-01 — osStartThread
+ * Source:   cloud/work/static_C4/osStartThread.c (in-repo, locked)
+ * Flags:    -g0 -O1 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C4/osStartThread.c:osStartThread (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void osStartThread(OSThread* t) {
+    register u32 saveMask = __osDisableInt();
+
+    switch (t->state) {
+        case OS_STATE_WAITING:
+            t->state = OS_STATE_RUNNABLE;
+            __osEnqueueThread(&__osActiveQueue, t);
+            break;
+        case OS_STATE_STOPPED:
+            if (t->queue == NULL || t->queue == &__osActiveQueue) {
+                t->state = OS_STATE_RUNNABLE;
+                __osEnqueueThread(&__osActiveQueue, t);
+            } else {
+                t->state = OS_STATE_WAITING;
+                __osEnqueueThread(t->queue, t);
+                __osEnqueueThread(&__osActiveQueue, __osPopThread(t->queue));
+            }
+            break;
+#ifdef _DEBUG
+        default:
+            __osError(ERR_OSSTARTTHREAD, 0);
+            __osRestoreInt(saveMask);
+            return;
+#endif
+    }
+
+    if (__osRunningThread == NULL) {
+        __osDispatchThread();
+    } else if (__osRunningThread->priority < __osActiveQueue->priority) {
+        __osRunningThread->state = OS_STATE_RUNNABLE;
+        __osCleanupThread(&__osActiveQueue);
+    }
+
+    __osRestoreInt(saveMask);
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_7c80/osSetGlobalIntMask.s")
 /* PROMOTED 2026-10-01 — osRecvMesg
  * Source:   cloud/work/static_C4/osRecvMesg.c (in-repo, locked)
