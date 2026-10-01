@@ -20,6 +20,8 @@ import sys
 import time
 from pathlib import Path
 
+from . import owned_data
+
 from ..coordinator import db as dbmod
 from ..client import DEFAULT_DATA
 from ..seeds.extract_candidates import REPO, extract_named_function
@@ -58,10 +60,16 @@ def _have_local_ido():
 def _build_and_gate(via_builder, tu_rel):
     """Full matching build + SHA-1 verify. Returns (ok, detail)."""
     if via_builder:
-        sync = _run(["rsync", "-az", str(REPO / tu_rel),
-                     f"{BUILDER}:{BUILDER_REPO}/{tu_rel}"])
-        if sync.returncode != 0:
-            return False, "rsync to builder failed: " + sync.stderr.strip()[:300]
+        package = [REPO / tu_rel] + owned_data.promotion_paths(REPO, str(tu_rel))
+        for path in package:
+            if not path.is_file():
+                return False, "owned promotion package file missing: " + str(path)
+        for path in package:
+            rel = path.relative_to(REPO)
+            sync = _run(["rsync", "-az", str(path),
+                         f"{BUILDER}:{BUILDER_REPO}/{rel}"])
+            if sync.returncode != 0:
+                return False, "rsync to builder failed: " + sync.stderr.strip()[:300]
         # rsync -a preserves the Pi's mtime, which can predate the builder's
         # last-built object — make would then skip the rebuild and the gate
         # would verify a STALE ROM (caught live by the SC-003 drill). Touch
@@ -104,6 +112,8 @@ def _splice(tu_path, func, seg, body, header):
     if pragma not in text:
         raise Refusal(f"refusing: {func} has no passthrough slot in "
                       f"{tu_path.name} (already promoted?)")
+    text = owned_data.strip_companion(text, func, REPO,
+                                     str(tu_path.relative_to(REPO)))
     tu_path.write_text(text.replace(pragma, header + "\n" + body.rstrip() + "\n", 1))
 
 
@@ -148,7 +158,7 @@ def run_promotion(spec, source, via_builder=False, override_reason=None,
     tu_rel = Path("src") / f"{seg['rom_tu']}.c"
     tu_path = REPO / tu_rel
     lockfile = REPO / "matched.lock.json"
-    if not _git_clean([tu_path, lockfile]):
+    if not _git_clean([tu_path, lockfile] + owned_data.promotion_paths(REPO, str(tu_rel))):
         raise Refusal("refusing: working tree dirty under the TU or lockfile")
 
     body = extract_named_function(REPO / source, func)

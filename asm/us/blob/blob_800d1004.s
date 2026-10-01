@@ -5523,6 +5523,7 @@ func_800D6160:
 .section .text.physics_init_mode0, "ax", @progbits
 .globl physics_init_mode0
 physics_init_mode0:
+    /* compiled from src/blob/physics_init_mode0.c */
     .word 0x27BDFFC0
     .word 0xAFBF003C
     .word 0xAFB50038
@@ -5550,6 +5551,7 @@ physics_init_mode0:
 .section .text.physics_init_mode1, "ax", @progbits
 .globl physics_init_mode1
 physics_init_mode1:
+    /* compiled from src/blob/physics_init_mode1.c */
     .word 0x27BDFFC0
     .word 0xAFBF003C
     .word 0xAFB50038

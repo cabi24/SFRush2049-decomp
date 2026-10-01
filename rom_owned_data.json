@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "rom_slots": [
+    {
+      "owner": "osSpTaskLoad_full",
+      "tu": "src/rom/lib_e9a0.c",
+      "source": "assets/us/data.bin",
+      "container_section": ".data",
+      "owner_section": ".rodata",
+      "offset": "0x1e460",
+      "size": "0x20",
+      "container_vram": "0x8000f400",
+      "sha256": "7cd466024e8a90377babb0f8d67c4da7d5c38af1acf59be025edb7b8456ebb9d",
+      "passthrough_asm": "asm/us/nonmatchings/rom/lib_e9a0/osSpTaskLoad_full.table.s",
+      "composed_source": "build/us/assets/us/data.composed.bin"
+    }
+  ],
+  "storage_blocks": []
+}

@@ -630,7 +630,17 @@ class GlobalAsmBlock:
             self.late_rodata_alignment = value
             changed_section = True
         elif line.startswith('.incbin'):
-            self.add_sized(int(line.split(',')[-1].strip(), 0), real_line)
+            match = re.fullmatch(r'.incbin\s+"([^"\\\n]+)"\s*,\s*(0[xX][0-9A-Fa-f]+|[0-9]+)\s*,\s*(0[xX][0-9A-Fa-f]+|[0-9]+)', line)
+            if match is None or self.cur_section not in ['.data', '.rodata']:
+                self.fail("incbin requires bounded skip,size in .data/.rodata", real_line)
+            skip, size = int(match.group(2), 0), int(match.group(3), 0)
+            try:
+                file_size = os.path.getsize(match.group(1))
+            except OSError:
+                self.fail("incbin input file is unavailable", real_line)
+            if skip > file_size or size > file_size - skip:
+                self.fail("incbin range exceeds input file bounds", real_line)
+            self.add_sized(size, real_line)
         elif line.startswith('.word') or line.startswith('.gpword') or line.startswith('.float'):
             self.align4()
             self.add_sized(4 * len(line.split(',')), real_line)

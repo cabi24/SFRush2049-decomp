@@ -1,0 +1,12 @@
+{
+  "owner": "osSpTaskLoad_full",
+  "tu": "src/rom/lib_e9a0.c",
+  "source_container": "assets/us/data.bin",
+  "slot_offset": "0x1e460",
+  "slot_size": 32,
+  "runtime_vaddr": "0x8002d860",
+  "rom_offset": "0x2e460",
+  "retail_slot_sha256": "7cd466024e8a90377babb0f8d67c4da7d5c38af1acf59be025edb7b8456ebb9d",
+  "passthrough": "asm/us/nonmatchings/rom/lib_e9a0/osSpTaskLoad_full.table.s",
+  "promotion": "Atomically replace function pragma AND remove marked owner companion. Rollback restores full baseline TU so genuine companion reappears."
+}

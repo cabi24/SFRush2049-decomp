@@ -1,0 +1,25 @@
+{
+  "members": [
+    "physics_init_mode0",
+    "physics_init_mode1"
+  ],
+  "context": [
+    "func_800D6160",
+    "speed_set",
+    "sync_entry_register",
+    "speed_mode0_wrapper",
+    "speed_mode1_wrapper"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "keep": [
+    "physics_init_mode0",
+    "physics_init_mode1",
+    "sync_entry_register",
+    "speed_mode0_wrapper",
+    "speed_mode1_wrapper"
+  ],
+  "provenance": "A18: true consumed mode and float/byte source repairs; two actual mode roots, real common helper, real speed roots and accepted sync context; no stand-ins"
+}

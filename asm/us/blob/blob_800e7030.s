@@ -603,6 +603,7 @@ render_thread_entry:
 .section .text.object_counter_decrement, "ax", @progbits
 .globl object_counter_decrement
 object_counter_decrement:
+    /* compiled from src/blob/object_counter_decrement.c */
     .word 0x27BDFFE8
     .word 0xAFA40018
     .word 0xAFBF0014
@@ -634,6 +635,7 @@ object_counter_decrement:
 .section .text.object_counter_increment, "ax", @progbits
 .globl object_counter_increment
 object_counter_increment:
+    /* compiled from src/blob/object_counter_increment.c */
     .word 0x27BDFFE8
     .word 0xAFA40018
     .word 0xAFBF0014
