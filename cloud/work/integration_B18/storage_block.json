@@ -1,0 +1,70 @@
+{
+  "owner": "vi_manager",
+  "kind": "bss",
+  "active": false,
+  "tu": "src/rom/lib_7630.c",
+  "source": "cloud/work/integration_B18/lib_7630.c",
+  "source_sha256": "2c583d59ef40599c644e9bbc456bd2d7bbf0cce5a14d0673354069bd7e53cce5",
+  "tu_before_source": "cloud/work/integration_B18/lib_7630_before.c",
+  "tu_before_sha256": "4af80035fc31c01579675a6ac0de620194a6a471b82e09b5997a95d4d10d02cf",
+  "passthrough_asm": "asm/us/7630.s",
+  "passthrough_sha256": "458dc638e056246731e5fe3cf1f1b8721497af5677819f672abd103a320d74c5",
+  "yaml_old_entry": "      - [0x7630, asm]",
+  "yaml_new_entry": "      - [0x7630, c, rom/lib_7630]",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "source_section": ".bss",
+  "input_section": ".bss.vi_manager",
+  "output_section": ".vi_manager_bss",
+  "vram_start": "0x800354F0",
+  "size": "0x1220",
+  "members": [
+    "osSetEventMesg",
+    "vi_manager_main"
+  ],
+  "aliases": [
+    {
+      "symbol": "gViMgrThreadArg",
+      "offset": "0x0",
+      "size": "0x1b0"
+    },
+    {
+      "symbol": "gViMgrMesgQueue",
+      "offset": "0x11b0",
+      "size": "0x18"
+    },
+    {
+      "symbol": "gViMgrMesgBuffer",
+      "offset": "0x11c8",
+      "size": "0x14"
+    },
+    {
+      "symbol": "gViMgrEventDP",
+      "offset": "0x11e0",
+      "size": "0x18"
+    },
+    {
+      "symbol": "gViMgrEventSP",
+      "offset": "0x11f8",
+      "size": "0x18"
+    },
+    {
+      "symbol": "gViMgrRetraceCounter",
+      "offset": "0x1210",
+      "size": "0x2"
+    }
+  ],
+  "context_files": [
+    {
+      "path": "include/PR/os_thread.h",
+      "source": "cloud/work/integration_B18/os_thread_proposed.h",
+      "sha256": "1ab29a9e77fcfeae0f2b106b4fbec77fca53f2df4273240ea6b937e25a9845f6",
+      "before_source": "cloud/work/integration_B18/os_thread_before.h",
+      "before_sha256": "718904ed6f51d6f423e64e9c49e5a0ee96d33d6e6768bf567e3e97b3e43784a2"
+    }
+  ],
+  "proofs": [
+    "cloud/work/integration_B18/module_strict.json",
+    "cloud/work/integration_B18/coordinator_D_linked.json",
+    "cloud/work/integration_B18/coordinator_D_startup.json"
+  ]
+}

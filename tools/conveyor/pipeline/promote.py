@@ -131,6 +131,8 @@ def run_promotion(spec, source, via_builder=False, override_reason=None,
     seg = layoutmod._segment_by_name(mapping, seg_name)
     if seg is None:
         raise Refusal(f"refusing: no segment {seg_name!r}")
+    from . import owned_storage
+    owned_storage.require_single_function_safe(REPO, "src/" + seg["rom_tu"] + ".c")
     if not seg["converted"]:
         raise Refusal(f"refusing: {seg_name} is not converted — run "
                       f"`pipeline.layout convert {seg_name}` first")
