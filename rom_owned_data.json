@@ -19,7 +19,7 @@
     {
       "owner": "vi_manager",
       "kind": "bss",
-      "active": false,
+      "active": true,
       "tu": "src/rom/lib_7630.c",
       "source": "cloud/work/integration_B18/lib_7630.c",
       "source_sha256": "2c583d59ef40599c644e9bbc456bd2d7bbf0cce5a14d0673354069bd7e53cce5",

@@ -97,7 +97,7 @@ segments:
       - [0x55F0, asm]
       - [0x5610, c, rom/lib_5610]
       - [0x7600, c, rom/lib_7600]
-      - [0x7630, asm]
+      - [0x7630, c, rom/lib_7630]
       - [0x7940, c, rom/lib_7940]
       - [0x79A0, c, rom/lib_79a0]
       - [0x7A10, c, rom/lib_7a10]
