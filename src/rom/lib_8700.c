@@ -42,4 +42,11 @@ s32 osDpSetNextBuffer(void* bufPtr, u64 size) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_8700/osDpWait.s")
+/* PROMOTED 2026-10-01 — osDpWait
+ * Source:   cloud/work/integration_B22_followup/osDpWait_standalone.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/integration_B22_followup/osDpWait_standalone.c:osDpWait (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void osDpWait(void) { __osSpSetStatus(0x400); }
+
