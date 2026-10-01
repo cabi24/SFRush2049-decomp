@@ -1,0 +1,36 @@
+/* Minimal context for C8, retaining existing C1-C7 types/macros. */
+extern s32 __osContPifBuf;
+extern OSMesgQueue __osContQueryMsgQ;
+extern OSMesg __osContQueryMesg;
+extern u8 __osSiChannelMask;
+extern s32 __osInsertTimer(void); /* preserve existing accepted body; cast new caller result */
+extern s32 __osContBuildPacket(OSMesgQueue *, u8 *, OSContStatus *);
+extern s32 osPfsGetFileStat(OSPfs *, u8 *, __OSInode *, __OSInodeUnit *);
+#define CONT_CARD_ON 1
+#define CONT_CARD_PULL 2
+#define CONT_ADDR_CRC_ER 4
+#define BLOCKSIZE 32
+#define CONT_BLOCK_DETECT 0x400
+#define OS_MESG_PRI_HIGH 1
+#define OS_MESG_TYPE_DMAREAD 11
+#define OS_MESG_TYPE_DMAWRITE 12
+#define CHECK_IPAGE(p) (((p).ipage >= pfs->inode_start_page) && ((p).inode_t.bank < pfs->banks) && ((p).inode_t.page >= 0x01) && ((p).inode_t.page < 0x80))
+/* C6 already supplies ERRCK, PFS_ERR_INVALID/INCONSISTENT, PFS_READ,
+ * PFS_PAGE_NOT_USED and inode context. Existing PR headers supply PFS_EOF
+ * and PFS_ERR_NOPACK/NEW_PACK/CONTRFAIL; avoid duplicate definitions.
+ * OSPri/OS_STATE_STOPPED/OS_STATE_RUNNABLE and thread context already suffice.
+ * Existing osCreateViManager(OSThread*,OSPri) is correct, despite its name. */
+
+/* REQUIRED conflicting declaration corrections, never extra redeclarations.
+ * Check previous caller bodies and full ROM after parent reconciliation. */
+/* src/rom/rom_tu.h currently s32 osPiReadWord(s32,s32): */
+extern s32 osPiReadWord(u32, u32 *);
+/* include/PR/os_cont.h currently s32 osContStartReadData(OSMesgQueue*): */
+extern s32 osContStartReadData(OSMesgQueue *, int);
+/* include/PR/os_pfs.h currently a six-arg osPfsFindFile search API:
+ * target is actually SDK __osPfsReleasePages, with five args: */
+extern s32 osPfsFindFile(OSPfs *, __OSInode *, u8, u8, __OSInodeUnit *);
+/* include/m2c_types.h currently __osPiRawStartDma first arg void*.
+ * Exact typed body uses OSIoMesg*, as target dereferences fields at 0..0x14: */
+extern s32 __osPiRawStartDma(OSIoMesg *, s32, s32, u32, void *, u32,
+                             OSMesgQueue *);

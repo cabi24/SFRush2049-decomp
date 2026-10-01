@@ -52,7 +52,7 @@ extern u8 __osPfsRequestType;
  * No new struct/type definitions are needed. */
 
 /* PI read wrapper uses the currently identified target signature. */
-extern s32 osPiReadWord(s32, s32);
+extern s32 osPiReadWord(u32, u32 *);
 
 /* Additional libultra context for verified static packet C2. */
 /* Existing OSTask, OSContStatus, OSContPad, __OSViContext, OSPifRam types suffice.
@@ -94,7 +94,7 @@ extern void guOrthoF(f32 [4][4], f32, f32, f32, f32, f32, f32, f32);
 extern void guLookAtF(f32 [4][4], f32, f32, f32, f32, f32, f32, f32, f32, f32);
 extern void guMtxF2L(f32 [4][4], Mtx *);
 extern s32 osDpIsBusy(void);
-extern void __osContRamReset(s32);
+extern void __osContRamReset(u8);
 extern OSTime dll_insert(OSTimer *);
 extern void dll_reschedule(OSTime);
 extern void __osExceptionPanic(void);
@@ -197,3 +197,47 @@ extern const f64 gOrthoScale;
 #define PFS_ONE_PAGE 8
 #define BLOCKSIZE 32
 #define FTOFIX32(x) ((long)((x)*(float)0x00010000))
+
+/* Verified canonical controller/message context, packet C7. */
+/* Minimal additions for seven eligible C7 bodies. Existing OSPifRam,
+ * __OSContReadFormat, CHNL_ERR, ARRLEN, OS_STATE_WAITING, message constants,
+ * __osPfsRequestType/2, __osCleanupThread and guMtxIdentF are sufficient. */
+typedef struct {
+    u8 dummy, txsize, rxsize, cmd, typeh, typel, status, dummy1;
+} __OSContRequesFormat;
+typedef struct {
+    u8 txsize, rxsize, cmd, typeh, typel, status;
+} __OSContRequesFormatShort;
+#define CONT_CMD_EXE 1
+#define CONT_CMD_NOP 0xFF
+#define CONT_CMD_END 0xFE
+#define CONT_CMD_READ_BUTTON 1
+#define CONT_CMD_READ_BUTTON_TX 1
+#define CONT_CMD_READ_BUTTON_RX 4
+#define CONT_CMD_RESET_TX 1
+#define CONT_CMD_RESET_RX 3
+/* CONT_CMD_REQUEST_STATUS 0 already exists. */
+#define CONT_CMD_REQUEST_STATUS_TX 1
+#define CONT_CMD_REQUEST_STATUS_RX 3
+#define MQ_IS_FULL(mq) ((mq)->validCount >= (mq)->msgCount)
+extern void __osContBuildRequest(int, u8);
+extern void __osContParseResponse(int, OSContStatus *);
+extern f32 sqrtf(f32);
+
+/* Verified canonical PFS/PI context, packet C8. */
+/* Minimal context for C8, retaining existing C1-C7 types/macros. */
+extern s32 __osContPifBuf;
+extern OSMesgQueue __osContQueryMsgQ;
+extern OSMesg __osContQueryMesg;
+extern u8 __osSiChannelMask;
+extern s32 __osInsertTimer(void); /* accepted pointer-valued s32 body */
+extern s32 __osContBuildPacket(OSMesgQueue *, u8 *, OSContStatus *);
+extern s32 osPfsGetFileStat(OSPfs *, u8 *, __OSInode *, __OSInodeUnit *);
+#define CONT_BLOCK_DETECT 0x400
+#define CHECK_IPAGE(p) (((p).ipage >= pfs->inode_start_page) && ((p).inode_t.bank < pfs->banks) && ((p).inode_t.page >= 0x01) && ((p).inode_t.page < 0x80))
+/* C6 already supplies ERRCK, PFS_ERR_INVALID/INCONSISTENT, PFS_READ,
+ * PFS_PAGE_NOT_USED and inode context. Existing PR headers supply PFS_EOF
+ * and PFS_ERR_NOPACK/NEW_PACK/CONTRFAIL; avoid duplicate definitions.
+ * OSPri/OS_STATE_STOPPED/OS_STATE_RUNNABLE and thread context already suffice.
+ * Existing osCreateViManager(OSThread*,OSPri) is correct, despite its name. */
+

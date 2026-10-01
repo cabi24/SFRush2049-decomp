@@ -1,0 +1,116 @@
+[
+  {
+    "label": "raw_rolled",
+    "err": null,
+    "scores": {
+      "func_800E4300": {
+        "strict_diff": 116,
+        "size": 136,
+        "target_size": 135,
+        "extra": 1,
+        "matched": false,
+        "err": null
+      },
+      "func_800E451C": {
+        "strict_diff": 391,
+        "size": 403,
+        "target_size": 397,
+        "extra": 6,
+        "matched": false,
+        "err": null
+      },
+      "func_800E398C": {
+        "strict_diff": 592,
+        "size": 567,
+        "target_size": 599,
+        "extra": 0,
+        "matched": false,
+        "err": null
+      },
+      "func_800E4B58": {
+        "strict_diff": 528,
+        "size": 533,
+        "target_size": 567,
+        "extra": 0,
+        "matched": false,
+        "err": null
+      }
+    }
+  },
+  {
+    "label": "raw_increment_tail",
+    "err": null,
+    "scores": {
+      "func_800E4300": {
+        "strict_diff": 116,
+        "size": 136,
+        "target_size": 135,
+        "extra": 1,
+        "matched": false,
+        "err": null
+      },
+      "func_800E451C": {
+        "strict_diff": 391,
+        "size": 403,
+        "target_size": 397,
+        "extra": 6,
+        "matched": false,
+        "err": null
+      },
+      "func_800E398C": {
+        "strict_diff": 592,
+        "size": 567,
+        "target_size": 599,
+        "extra": 0,
+        "matched": false,
+        "err": null
+      },
+      "func_800E4B58": {
+        "strict_diff": 528,
+        "size": 533,
+        "target_size": 567,
+        "extra": 0,
+        "matched": false,
+        "err": null
+      }
+    }
+  },
+  {
+    "label": "raw_real_track_pointer",
+    "err": null,
+    "scores": {
+      "func_800E4300": {
+        "strict_diff": 116,
+        "size": 136,
+        "target_size": 135,
+        "extra": 1,
+        "matched": false,
+        "err": null
+      },
+      "func_800E451C": {
+        "strict_diff": 391,
+        "size": 403,
+        "target_size": 397,
+        "extra": 6,
+        "matched": false,
+        "err": null
+      },
+      "func_800E398C": {
+        "strict_diff": 592,
+        "size": 567,
+        "target_size": 599,
+        "extra": 0,
+        "matched": false,
+        "err": null
+      },
+      "func_800E4B58": {
+        "strict_diff": 528,
+        "size": 533,
+        "target_size": 567,
+        "extra": 0,
+        "matched": false,
+        "err": null
+      }
+    }
+  }
+]

@@ -168,7 +168,7 @@ extern void display_mode_tick(void);
  * direction, devAddr, dramAddr, size, mq). */
 extern u8 gInflateBufferA[0x1000];
 extern u8 gInflateBufferB[0x1000];
-extern s32 __osPiRawStartDma(void *mb, s32 priority, s32 direction,
+extern s32 __osPiRawStartDma(OSIoMesg *mb, s32 priority, s32 direction,
                               u32 devAddr, void *dramAddr, u32 size,
                               OSMesgQueue *mq);
 

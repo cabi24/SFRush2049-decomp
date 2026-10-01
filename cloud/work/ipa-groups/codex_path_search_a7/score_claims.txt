@@ -1,0 +1,60 @@
+No claims: work in progress, reported only.
+Members:
+
+Context (informational; excluded from exit status):
+func_800E4300:
+    +0x03c  want 000dc400                               got 0010c400                             
+    +0x040  want afad0008                               got afb00008                             
+    +0x04c  want 00186c03                               got 00188403                             
+    +0x060  want 000a78c0                               got 3c118013                             
+    +0x064  want 03193823                               got 3c018012                             
+    +0x068  want 84790008                               got 03193823                             
+    +0x06c  want 00077400                               got 84790008                             
+    +0x070  want 24b80001                               got 00077400                             
+    +0x074  want 1719000d                               got 24b80001                             
+    +0x078  want 000e3c03                               got 1719000d                             
+    +0x07c  want 3c098013                               got 000e3c03                             
+    +0x080  want 2529e5e8                               got 2631e5e8                             
+  80/135 words differ
+func_800E451C:
+    +0x000  want 27bdff18                               got 27bdff48                             
+    +0x008  want 86ce0026                               got 86ae0026                             
+    +0x00c  want 86a307c6                               got 240fffff                             
+    +0x014  want 05c00005                               got 05c00004                             
+    +0x018  want 3c098015                               got 3c088015                             
+    +0x01c  want c42443cc                               got a6af0026                             
+    +0x020  want 240fffff                               got c42443cc                             
+    +0x024  want a6cf0026                               got e6a40020                             
+    +0x028  want e6c40020                               got 1080012a                             
+    +0x02c  want 3c018015                               got 25084190                             
+    +0x030  want 10800126                               got 3c018015                             
+    +0x034  want c43643cc                               got c43043cc                             
+  389/397 words differ (3 extra words (nonzero beyond target length))
+func_800E398C:
+    +0x000  want 27bdfee0                               got 00077c00                             
+    +0x004  want afb70120                               got 000fcc03                             
+    +0x008  want 00177400                               got 24130808                             
+    +0x00c  want 000ebc03                               got 03330019                             
+    +0x010  want 24130808                               got 00197100                             
+    +0x014  want 02f30019                               got 01d97023                             
+    +0x018  want 0017c900                               got 000e70c0                             
+    +0x01c  want 0337c823                               got 3c128015                             
+    +0x020  want 0019c8c0                               got 01d97023                             
+    +0x024  want 3c128015                               got 3c188015                             
+    +0x028  want 0337c823                               got 2652a250                             
+    +0x02c  want 3c0e8015                               got 27182818                             
+  592/599 words differ
+func_800E4B58:
+    +0x000  want 27bdfed0                               got 27bdff28                             
+    +0x068  want 00802825                               got 0080a025                             
+    +0x06c  want 0319b021                               got 0319a821                             
+    +0x070  want 0080a825                               got afb500d4                             
+    +0x074  want 24040001                               got afb400d8                             
+    +0x078  want afb60128                               got 0c039147                             
+    +0x07c  want 0c039147                               got 24040001                             
+    +0x080  want afa50130                               got 8fb500d4                             
+    +0x084  want 8fb60128                               got c6a00000                             
+    +0x088  want c6c00000                               got c6a4000c                             
+    +0x08c  want c6c4000c                               got 4600203e                             
+    +0x090  want 4600203e                               got 00000000                             
+  528/567 words differ

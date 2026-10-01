@@ -1,0 +1,44 @@
+{
+  "err": null,
+  "members": {
+    "func_800E4300": {
+      "strict_diff": 80,
+      "size": 135,
+      "target_size": 135,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": []
+    }
+  },
+  "context": {
+    "func_800E451C": {
+      "strict_diff": 389,
+      "size": 400,
+      "target_size": 397,
+      "extra": 3,
+      "matched": false,
+      "err": null,
+      "unverified": []
+    },
+    "func_800E398C": {
+      "strict_diff": 592,
+      "size": 567,
+      "target_size": 599,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": []
+    },
+    "func_800E4B58": {
+      "strict_diff": 528,
+      "size": 533,
+      "target_size": 567,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": []
+    }
+  },
+  "matched": false
+}

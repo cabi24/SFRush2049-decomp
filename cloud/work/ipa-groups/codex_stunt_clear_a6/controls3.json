@@ -1,0 +1,65 @@
+[
+  [
+    "memarg_(void *)(u32)&D_801569B8[idx]",
+    {
+      "func_800C3578": 33
+    },
+    null
+  ],
+  [
+    "memarg_(u8 *)&D_801569B8 + idx * 0x7C",
+    {
+      "func_800C3578": 16
+    },
+    null
+  ],
+  [
+    "memarg_(void *)((u32)&D_801569B8 + idx * 0x7C)",
+    {
+      "func_800C3578": 16
+    },
+    null
+  ],
+  [
+    "memarg_&D_801569B8[idx].flags",
+    {
+      "func_800C3578": 2
+    },
+    null
+  ],
+  [
+    "flagarg_((Ply *)(u32)&D_801569B8[idx])->flags",
+    {
+      "func_800C3578": 33
+    },
+    null
+  ],
+  [
+    "flagarg_*(s32 *)((u8 *)&D_801569B8 + idx * 0x7C)",
+    {
+      "func_800C3578": 16
+    },
+    null
+  ],
+  [
+    "flagarg_*(s32 *)((u32)&D_801569B8 + idx * 0x7C)",
+    {
+      "func_800C3578": 15
+    },
+    null
+  ],
+  [
+    "uintidx",
+    {
+      "func_800C3578": 37
+    },
+    "cc failed:\ncfe: Error: group.c, line 4084: redeclaration of 'func_800C3578'; previous declaration at line 3252 in file 'group.c'\n void func_800C3578(u32 idx) {\n -----^\ncfe: Error: group.c, line 4084: Incompatible type for the function parameter\n void func_800C3578(u32 idx) {\n -----------------------^\n"
+  ],
+  [
+    "twoblocks",
+    {
+      "func_800C3578": 2
+    },
+    null
+  ]
+]
