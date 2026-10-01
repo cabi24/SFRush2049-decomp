@@ -1,0 +1,13 @@
+{
+  "documents": [
+    {
+      "name": "snowboardkids-decompilation-learnings",
+      "file": "snowboardkids-DECOMPILATION_LEARNINGS.md",
+      "url": "https://raw.githubusercontent.com/cdlewis/snowboardkids-decomp/main/DECOMPILATION_LEARNINGS.md",
+      "repo": "cdlewis/snowboardkids-decomp",
+      "path": "DECOMPILATION_LEARNINGS.md",
+      "licence": "none declared upstream (all rights reserved by default): read locally and link, do not republish",
+      "about": "Generic IDO 5.3 codegen and matching notes from the Snowboard Kids N64 decompilation: register allocation (instrumented uopt), stack-frame arithmetic, loop unrolling, struct and global access, matching workflow."
+    }
+  ]
+}

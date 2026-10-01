@@ -15,6 +15,7 @@ Paths inside command examples are relative to the repository root.
 | Queue, farm, toolkit, corpus, scoring, and build commands | [Conveyor operations](../tools/conveyor/README.md) |
 | Builder access, paths, services, and sync rules | [Build environment](BUILDING.md) |
 | General decompilation techniques and MIPS reference | [Decompilation workflow](DECOMPILATION_WORKFLOW.md) |
+| IDO register-allocation, stack-frame and loop-unrolling behaviour (third-party, local copy) | [External references](external/README.md) |
 | Project policies | [Constitution](../.specify/memory/constitution.md) |
 | Wiki access and publishing | [Wiki guide](WIKI.md) |
 

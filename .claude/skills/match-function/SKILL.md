@@ -24,6 +24,10 @@ for flag evidence and C89 constraints, and the relevant section of
 4. Compile/score with the target's recorded flags or the confirmed `-O1`/`-O2`
    candidates. Do not assume all game code uses one optimization level. Retain
    provenance: target object, candidate source, toolkit, flagset, and true score.
+   For a register-allocation, stack-frame or loop-unrolling residual, read the
+   [external IDO notes](../../../docs/external/README.md) (a local copy of the Snowboard
+   Kids decomp's learnings, refreshed daily) and check each rule on our pipeline before
+   relying on it: it was measured at `-O2 -mips1`, we use `-mips2` and `-O3` groups.
 5. Distinguish a compiled seed, `reloc_only_diff`, and a true-zero match.
    Relocation-blind zero does not authorize locking or promotion. When the target
    object changes, old scores are superseded and queued bundles may still contain
