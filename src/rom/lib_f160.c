@@ -4,7 +4,18 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_f160/osSiInit.s")
+/* PROMOTED 2026-10-01 — osSiInit
+ * Source:   cloud/work/static_C/osSiInit.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C/osSiInit.c:osSiInit (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void osSiInit(void) {
+    __osSiInitialized = 1;
+    osCreateMesgQueue(&__osSiMesg, &__osSiMesgQueue, 1);
+    osJamMesg(&__osSiMesg, NULL, 0);
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_f160/__osSiGetAccess.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_f160/__osSiRelAccess.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_f160/osContStartReadData.s")
