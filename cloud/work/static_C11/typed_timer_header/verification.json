@@ -1,0 +1,23 @@
+[
+  {
+    "function": "osSetTimer",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "shared_source_sha256": "7615b79702c4b9065075036c747ddc905ff1a1a256af0dde03c55804379fb0fd"
+  },
+  {
+    "function": "dll_insert",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "shared_source_sha256": "a64cc4b6a37c889e3b46c2d65f4f636616b22d61a0974c9b93e0b502efb5622f"
+  },
+  {
+    "function": "dll_update",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "shared_source_sha256": "07f24ce9622a311946a4a029ef628668f26203afdda29b255584749f9244df74"
+  }
+]

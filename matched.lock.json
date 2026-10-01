@@ -1,4 +1,28 @@
 {
+  "cloud/work/static_C11/dll_insert.c:dll_insert": {
+    "body_sha256": "02d281cf3dc0d038f2439d375d40a6e9d14ee67adb94844bc259e8ff38f81e77",
+    "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "target_id": "dll_insert",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C11/dll_update.c:dll_update": {
+    "body_sha256": "a312c0513076bd3db3d21ea29cb59932cfbb34cd8ccfed376bcda7ff7cf28cc6",
+    "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "target_id": "dll_update",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C11/osPfsChecker_full.c:osPfsChecker_full": {
+    "body_sha256": "02bcb7e8c3beed4d43cadfc780abd5aa666753b1f946837cb3692c9ad8ededa3",
+    "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "target_id": "osPfsChecker_full",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
   "src/libultra/os_ai.c:__osAiDeviceBusy": {
     "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -517,7 +541,7 @@
   },
   "src/rom/lib_c990.c:osPfsReAllocate": {
     "body_sha256": "bc7dd30bd4e3cc59f08b7c806e66e98446cc8ca018cb942b81a68fcd95799d7f",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
     "target_id": "osPfsReAllocate",
     "toolkit_sha": null,
     "verified": "rom-sha1",
@@ -533,7 +557,7 @@
   },
   "src/rom/lib_cc50.c:dll_get_priority": {
     "body_sha256": "2c12a312d5e992cd9ae033704f757fb22d27d69d5741ef129dccfb35e47be5ad",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
     "target_id": "dll_get_priority",
     "toolkit_sha": null,
     "verified": "rom-sha1",

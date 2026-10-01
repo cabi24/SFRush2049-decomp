@@ -1,0 +1,5 @@
+/* Replace only the existing extern in include/m2c_types.h; retain overlay typedef. */
+extern OSTimer *__osTimerList;
+/* Add to src/rom/rom_tu.h, no duplicates exist in audited snapshot. */
+extern u32 __osTimerCounter;
+extern u32 osGetCount(void);

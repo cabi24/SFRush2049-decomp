@@ -1,0 +1,16 @@
+[
+  {
+    "function": "dll_get_priority",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "shared_source_sha256": "ba017c3506fbf8686acf812ddb8eca9fbf39e093220bad5f1a97aae094d0407e"
+  },
+  {
+    "function": "osPfsReAllocate",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "shared_source_sha256": "2d3eb814bb7bebbd93fe52516f5a711c19e776d2785cde6f4e07e4c6962f4a8a"
+  }
+]

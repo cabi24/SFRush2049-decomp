@@ -1,0 +1,380 @@
+[
+  {
+    "tu": "lib_1050.c",
+    "optimization": "-O2",
+    "text_words": 12,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_5610.c",
+    "optimization": "-O2",
+    "text_words": 20,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_7600.c",
+    "optimization": "-O1",
+    "text_words": 12,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_7940.c",
+    "optimization": "-O2",
+    "text_words": 24,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_79a0.c",
+    "optimization": "-O2",
+    "text_words": 28,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_7a10.c",
+    "optimization": "-O1",
+    "text_words": 48,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_7ad0.c",
+    "optimization": "-O2",
+    "text_words": 24,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_7b30.c",
+    "optimization": "-O1",
+    "text_words": 84,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_7c80.c",
+    "optimization": "-O1",
+    "text_words": 164,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_8040.c",
+    "optimization": "-O2",
+    "text_words": 20,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_81e0.c",
+    "optimization": "-O1",
+    "text_words": 84,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_8330.c",
+    "optimization": "-O2",
+    "text_words": 40,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_83d0.c",
+    "optimization": "-O2",
+    "text_words": 16,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_8440.c",
+    "optimization": "-O2",
+    "text_words": 16,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_8700.c",
+    "optimization": "-O2",
+    "text_words": 32,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_8800.c",
+    "optimization": "-O2",
+    "text_words": 40,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_8920.c",
+    "optimization": "-O2",
+    "text_words": 88,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_8a80.c",
+    "optimization": "-O1",
+    "text_words": 40,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_8dd0.c",
+    "optimization": "-O2",
+    "text_words": 16,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_8e10.c",
+    "optimization": "-O1",
+    "text_words": 56,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_9230.c",
+    "optimization": "-O2",
+    "text_words": 48,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_92f0.c",
+    "optimization": "-O2",
+    "text_words": 8,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_9660.c",
+    "optimization": "-O2",
+    "text_words": 112,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_9820.c",
+    "optimization": "-O2",
+    "text_words": 164,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_9ab0.c",
+    "optimization": "-O2",
+    "text_words": 204,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_9de0.c",
+    "optimization": "-O2",
+    "text_words": 156,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_a050.c",
+    "optimization": "-O2",
+    "text_words": 184,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_a330.c",
+    "optimization": "-O2",
+    "text_words": 160,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_a5b0.c",
+    "optimization": "-O2",
+    "text_words": 16,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_a800.c",
+    "optimization": "-O1",
+    "text_words": 4,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_a810.c",
+    "optimization": "-O2",
+    "text_words": 196,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_ab20.c",
+    "optimization": "-O2",
+    "text_words": 244,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_af50.c",
+    "optimization": "-O2",
+    "text_words": 116,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_b120.c",
+    "optimization": "-O2",
+    "text_words": 120,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_b300.c",
+    "optimization": "-O2",
+    "text_words": 156,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_b570.c",
+    "optimization": "-O2",
+    "text_words": 80,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_b9f0.c",
+    "optimization": "-O2",
+    "text_words": 56,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_be40.c",
+    "optimization": "-O2",
+    "text_words": 104,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_bfe0.c",
+    "optimization": "-O2",
+    "text_words": 288,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_c990.c",
+    "optimization": "-O2",
+    "text_words": 8,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_ca70.c",
+    "optimization": "-O2",
+    "text_words": 84,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_cc50.c",
+    "optimization": "-O2",
+    "text_words": 8,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_d140.c",
+    "optimization": "-O2",
+    "text_words": 72,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_d260.c",
+    "optimization": "-O2",
+    "text_words": 4,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_d270.c",
+    "optimization": "-O2",
+    "text_words": 192,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_d580.c",
+    "optimization": "-O2",
+    "text_words": 8,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_e1c0.c",
+    "optimization": "-O1",
+    "text_words": 32,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_e240.c",
+    "optimization": "-O1",
+    "text_words": 4,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_e250.c",
+    "optimization": "-O2",
+    "text_words": 12,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_e280.c",
+    "optimization": "-O2",
+    "text_words": 36,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_e310.c",
+    "optimization": "-O2",
+    "text_words": 12,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_e340.c",
+    "optimization": "-O2",
+    "text_words": 12,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_e390.c",
+    "optimization": "-O2",
+    "text_words": 20,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_e3f0.c",
+    "optimization": "-O2",
+    "text_words": 20,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_e7c0.c",
+    "optimization": "-O2",
+    "text_words": 68,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_e8d0.c",
+    "optimization": "-O2",
+    "text_words": 52,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_e9a0.c",
+    "optimization": "-O2",
+    "text_words": 12,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_efd0.c",
+    "optimization": "-O1",
+    "text_words": 56,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_f0b0.c",
+    "optimization": "-O2",
+    "text_words": 44,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_f160.c",
+    "optimization": "-O2",
+    "text_words": 188,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_f450.c",
+    "optimization": "-O2",
+    "text_words": 32,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_f4d0.c",
+    "optimization": "-O2",
+    "text_words": 140,
+    "raw_word_diff": 0
+  },
+  {
+    "tu": "lib_f700.c",
+    "optimization": "-O2",
+    "text_words": 344,
+    "raw_word_diff": 0
+  }
+]

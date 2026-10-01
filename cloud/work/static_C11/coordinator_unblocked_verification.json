@@ -1,0 +1,26 @@
+[
+  {
+    "function": "dll_insert",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "source_sha256": "7c4c8a0ef0f44db954be47c503bb5fba190f0ab16b1eb4203ccafa1d81ebbed7",
+    "target_sha256": "38a34759181c618a276a0f42f8e049dd5f5a05a22f60dc25439bcf3c404fdd7d",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared"
+  },
+  {
+    "function": "dll_update",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "source_sha256": "d748995cad3cd1d6c8e1e57ef808079d98835fb5d6e7cba7ee16b956e8b90f8a",
+    "target_sha256": "dd7637b111b0f60e06a47c134e6b56972179faca417dd06920f2bd81719be258",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared"
+  },
+  {
+    "function": "osPfsChecker_full",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "source_sha256": "bd6588fb2281059266f343433cb533880ffdc176ce970a158cb6f9d129ce6ea4",
+    "target_sha256": "01bba0a0eb7928a319e560994ac37c1e6dce23973d4906636cc39245e47bd153",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared"
+  }
+]

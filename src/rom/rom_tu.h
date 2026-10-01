@@ -314,3 +314,7 @@ extern OSViMode __osViModePending, __osViModeNext, __osViModeBuffer;
 #define OS_TV_TYPE_MPAL 2
 extern u32 osTvType;
 extern void __osViSwapContext(void);
+
+/* Verified canonical timer interrupt context, packet C11. */
+extern u32 __osTimerCounter;
+extern u32 osGetCount(void);

@@ -1,0 +1,7 @@
+[
+  {
+    "key": "src/rom/lib_efd0.c:osSetTimer",
+    "body": "int osSetTimer(OSTimer* t, OSTime countdown, OSTime interval, OSMesgQueue* mq, OSMesg msg) {\n    OSTime time;\n\n\n    t->next = NULL;\n    t->prev = NULL;\n    t->interval = interval;\n    t->value = (countdown != 0) ? countdown : interval;\n    t->mq = mq;\n    t->msg = msg;\n\n    time = dll_insert(t);\n    if (((OSTimer *)__osTimerList)->next == t) {\n        dll_reschedule(time);\n    }\n\n    return 0;\n}",
+    "locked_body_sha256": "7ebbfdde607de07818a4bcec8dee278b3ff6af8187e45d4f1a8a11383b87f491"
+  }
+]

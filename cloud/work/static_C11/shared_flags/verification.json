@@ -1,0 +1,24 @@
+[
+  {
+    "function": "dll_get_priority",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 8,
+    "candidate_words": 8,
+    "raw_word_diff": 0,
+    "source_sha256": "decbc6d6161ce188ed361a268944c6bae340d45a0ddcd43c8f424ad974149f8e",
+    "target_sha256": "1c220b7382b3db545dcfabba77fd3e4569248a6bdc5f2cdb2ffe4b84e89de9d3",
+    "integration_status": "ready"
+  },
+  {
+    "function": "osPfsReAllocate",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 8,
+    "candidate_words": 8,
+    "raw_word_diff": 0,
+    "source_sha256": "4cd65d270cd34aef8e70596c3b33c824dcc9cb831672078c657c957de4de556b",
+    "target_sha256": "54aa6e159bd6a9c509f6b4fba50ee7d0706f85ad89c1a5a6ad67339ab7ea6e88",
+    "integration_status": "ready"
+  }
+]
