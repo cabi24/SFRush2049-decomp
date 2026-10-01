@@ -1,12 +1,4 @@
 {
-  "cloud/work/static_C2/osVirtualToPhysical.c:osVirtualToPhysical": {
-    "body_sha256": "f6d92fa3f73b13901b5d8b241561c1367552f1713b22d81c7f951e51be6e0463",
-    "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
-    "target_id": "osVirtualToPhysical",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-01"
-  },
   "cloud/work/static_C3/guLookAt.c:guLookAt": {
     "body_sha256": "754f92874a55c0d522457816490ea9b568b2fb5451a67601fb577f354b0c6a7a",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -310,6 +302,14 @@
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-07-15"
+  },
+  "src/rom/lib_e1c0.c:osVirtualToPhysical": {
+    "body_sha256": "f6d92fa3f73b13901b5d8b241561c1367552f1713b22d81c7f951e51be6e0463",
+    "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "target_id": "osVirtualToPhysical",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
   },
   "src/rom/lib_e240.c:__osSpSetStatus": {
     "body_sha256": "62f2761b22399a0143c9b49da9ac2d81c7c3995e68bac8bdf05b515e6063e8fe",
