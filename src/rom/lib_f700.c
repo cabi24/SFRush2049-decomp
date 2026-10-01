@@ -4,7 +4,14 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_f700/__osSumcalc.s")
+/* PROMOTED 2026-10-01 — __osSumcalc
+ * Source:   cloud/work/static_C5/__osSumcalc.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C5/__osSumcalc.c:__osSumcalc (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+u16 __osSumcalc(u8 *ptr, int length) { int i; u32 sum = 0; u8 *tmp = ptr; for(i=0;i<length;i++) { sum += *tmp++; } return sum & 0xFFFF; }
+
 /* PROMOTED 2026-07-11 — __osIdCheckSum
  * Source:   src/util/checksum.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
