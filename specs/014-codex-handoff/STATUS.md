@@ -1,5 +1,16 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-01 eighth completed ownership and caller milestone
+
+- Game cartridge C: **536/1,216 functions, 62,844/647,072 bytes (9.71%)**. Static cartridge C: **109/230 functions, 25,444/61,440 bytes (41.41%)**.
+- Five new game callers add508 bytes: A18 two physics-mode roots preserve genuine hidden mode input and actual shared helper context; A19 three pointer/counter callers preserve true pointer results and unsigned saturating byte counters. Coordinator D independently strict MATCH for every claim; same-group accepted contexts independently verified without duplicate credit. Both source-built image and full-ROM gates pass. A17/A20 remain frozen honest empty-claim leads.
+- C13 PI device manager adds1040 source-built text bytes and genuinely replaces its original32-byte table slot inside composed data. Passthrough baseline, atomic companion removal and actual promotion all full-ROM exact. Original container bytes exclude that slot; source-produced compiler rodata occupies its precise address/size. Existing accepted neighboring C bodies remain intact.
+- Root review restored numeric assembler sizing accidentally removed by the worker replacement. Seven regression cases fail on the truncated parser and pass restored. Actual shared builder exposed a build-time blob_rom import unavailable in its minimal package; helper now stays standalone and tests reserved-slot constants against source authority. Dependency listing supports CI without ignored assets; real split/link retain bounds/hash/overlap guards. Normal pool proof is strict0 and independent current-header manager is strict/raw0; normalized candidate bodies agree.
+- C14 dll_reschedule adds116 bytes at the already proven shared O1 pin, independently strict/raw0 and linked-exact, then standard full-ROM transaction passes. osDpWait remains blocked because its32-byte body replacement loses96 genuine trailing slot bytes; no dummy padding work was invented.
+- Across handoff:39 game functions /6,428 bytes and86 static functions /23,996 bytes accepted. B18 full VI storage module and B19 narrow reviewed strict-proof lock recorder remain unaccepted pending root lifecycle integration. No source-built storage lead earns provisional coverage.
+- Gates: source-built full-ROM SHA-1 EXACT;536 blob locks and group locks zero problems;112 static/source locks intact (109 actual ROM promotions plus3 historical entries). Full pytest exit0 captured separately,27 required tests before each static promotion. Current source-built game blob regenerated on the actual shared builder. Initial dirty tools/mips_to_c preserved.
+- Previous45b06fdc CI run36913150843 succeeded. Farm paused during integration and resumes after push. Three workers continue new small real groups, remaining ordinary SDK bodies and guarded alias metadata. Wiki host-key confirmation remains independently pending.
+
 ## 2026-10-01 seventh completed game promotion milestone
 
 - Game cartridge C: **531/1,216 functions, 62,336/647,072 bytes (9.63%)**. Static cartridge C: **107/230 functions, 24,288/61,440 bytes (39.53%)**.

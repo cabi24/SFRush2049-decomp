@@ -1,0 +1,25 @@
+{
+  "members": [
+    "audio_buffer_sync",
+    "object_counter_decrement",
+    "object_counter_increment"
+  ],
+  "context": [
+    "func_80095F8C"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "keep": [
+    "audio_buffer_sync",
+    "object_counter_decrement",
+    "object_counter_increment"
+  ],
+  "claims": [
+    "audio_buffer_sync",
+    "object_counter_decrement",
+    "object_counter_increment"
+  ],
+  "provenance": "A19 true address input and pointer-sized result; unsigned saturating byte counter; actual accepted range lookup context, real block lookup declaration"
+}

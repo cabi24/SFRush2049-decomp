@@ -1,0 +1,22 @@
+{
+  "members": [
+    "object_data_allocate",
+    "menu_dialog_close",
+    "func_800C7578"
+  ],
+  "context": [
+    "format_string_parse",
+    "draw_ui_element"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "keep": [
+    "object_data_allocate",
+    "menu_dialog_close",
+    "func_800C7578",
+    "draw_ui_element"
+  ],
+  "claims": []
+}

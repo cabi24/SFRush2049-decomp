@@ -1,0 +1,66 @@
+{
+  "err": null,
+  "matched": false,
+  "members": {
+    "object_data_allocate": {
+      "strict_diff": 2,
+      "size": 20,
+      "target_size": 20,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "menu_dialog_close": {
+      "strict_diff": 2,
+      "size": 26,
+      "target_size": 26,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "func_800C7578": {
+      "strict_diff": 21,
+      "size": 37,
+      "target_size": 37,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    }
+  },
+  "context": {
+    "format_string_parse": {
+      "strict_diff": 45,
+      "size": 44,
+      "target_size": 45,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [
+        ".rodata+0x0 at +0x1c",
+        ".rodata+0x0 at +0x24"
+      ],
+      "unresolved": [],
+      "errors": []
+    },
+    "draw_ui_element": {
+      "strict_diff": 57,
+      "size": 60,
+      "target_size": 60,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    }
+  }
+}

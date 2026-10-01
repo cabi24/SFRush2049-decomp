@@ -175,3 +175,10 @@ New source-built local tables/BSS are not proven by an isolated raw-zero object.
 ## Seven true output pointers close a small IPA helper (2026-10-01)
 
 A16 func_800B6748 is a16-word initializer with seven genuinely consumed output pointers: RGBA, float, two signed halfwords and three signed bytes. Recover every actual caller binding, rather than accepting the decompiler's four-formal prototype. Three real callers and their corrected byte-stream/float-bit operations give strict MATCH with no invented guard, unused formal or broad ancestor expansion. Caller contexts remain unclaimed nonmatches. Independently rescore the frozen source, image-splice only the helper, and require the full source-built ROM gate.
+
+
+## Genuine readonly ownership and pointer-call closures (2026-10-01)
+
+The PI device manager's real switch table occupies32 bytes of the existing data container. Split the composed source-built container around that slot and insert the owning TU's compiler section with fixed-address/size assertions. The baseline companion reads only the original bounded slot; promotion removes that companion atomically with the function pragma and rollback restores both. Preserve word/float/double parser sizing when adding incbin support. Build helpers must run from the builder's minimal synchronized package; validate reserved game-blob constants against Makefile/blob_rom without importing the full pipeline at build time.
+
+A18 two mode wrappers close immediately when the real helper consumes its true hidden mode and uses signed byte fields, unsigned LCG arithmetic and actual float parameters. Claim only the wrappers; different helper bodies remain context. A19 three range/block callers also close immediately with actual32-bit pointers and unsigned saturating byte counters. Independently matching the existing range lookup in the same group proves its useful preservation contract, rather than assuming acceptance elsewhere suffices. Neither packet needs a synthetic wrapper or allocation sweep.
