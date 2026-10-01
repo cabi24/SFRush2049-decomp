@@ -43,7 +43,39 @@ OSTask* osViModeTableGet(OSTask* intp) {
     return tp;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_8440/osViModeNtscLan1.s")
+/* PROMOTED 2026-10-01 — osViModeNtscLan1
+ * Source:   cloud/work/static_C15/osViModeNtscLan1.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C15/osViModeNtscLan1.c:osViModeNtscLan1 (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void osViModeNtscLan1(OSTask* intp) {
+    OSTask* tp;
+
+
+    tp = osViModeTableGet(intp);
+
+    if (tp->t.flags & OS_TASK_YIELDED) {
+        tp->t.ucode_data = tp->t.yield_data_ptr;
+        tp->t.ucode_data_size = tp->t.yield_data_size;
+        intp->t.flags &= ~OS_TASK_YIELDED;
+        if (tp->t.flags & OS_TASK_LOADABLE) {
+            tp->t.ucode = (u64*)IO_READ((u32)intp->t.yield_data_ptr + OS_YIELD_DATA_SIZE - 4);
+        }
+    }
+
+    osWritebackDCache(tp, sizeof(OSTask));
+    __osSpSetStatus(SP_CLR_YIELD | SP_CLR_YIELDED | SP_CLR_TASKDONE | SP_SET_INTR_BREAK);
+
+    while (__osSpSetPc(SP_IMEM_START) == -1) {}
+
+    while (__osSpDma(1, (SP_IMEM_START - sizeof(*tp)), tp, sizeof(OSTask)) == -1) {}
+
+    while (__osSpDeviceBusy()) {}
+
+    while (__osSpDma(1, SP_IMEM_START, tp->t.ucode_boot, tp->t.ucode_boot_size) == -1) {}
+}
+
 /* PROMOTED 2026-10-01 — osViModeNtscLpn1
  * Source:   cloud/work/static_C2/osViModeNtscLpn1.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
