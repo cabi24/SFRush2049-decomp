@@ -4,7 +4,18 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_e7c0/osPiInit.s")
+/* PROMOTED 2026-10-01 — osPiInit
+ * Source:   cloud/work/static_C/osPiInit.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C/osPiInit.c:osPiInit (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void osPiInit(void) {
+    __osPiInitialized = 1;
+    osCreateMesgQueue(&__osPiMesgQueue, &__osPiMesg, 1);
+    osJamMesg(&__osPiMesgQueue, NULL, 0);
+}
+
 /* PROMOTED 2026-10-01 — osPiGetAccess
  * Source:   cloud/work/static_C/osPiGetAccess.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
