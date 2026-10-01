@@ -244,11 +244,56 @@ def branch_target(word, pc):
     return pc + 4 + 4 * (imm - 0x10000 if imm & 0x8000 else imm)
 
 
+def _head_switch(image, pc, address, bound):
+    """Prove the adjacent IDO range-check/table dispatch, without table guessing.
+
+    sltiu test,index,N; beq test,zero,default; sll index,index,2;
+    lui base,hi; addu base,base,index; lw dest,lo(base); jr dest.
+    The caller must additionally prove execution through the check's fallthrough.
+    """
+    if pc - 24 < address:
+        return {"reason": "missing_switch_check"}
+    words = struct.unpack_from(">7I", image, pc - 24 - GAME_CODE_BASE)
+    check, branch, shift, upper, add, load, jump = words
+    rs = lambda w: (w >> 21) & 31
+    rt = lambda w: (w >> 16) & 31
+    rd = lambda w: (w >> 11) & 31
+    index, test, base, dest = rs(check), rt(check), rt(upper), rs(jump)
+    count = check & 0xFFFF
+    if not (check >> 26 == 11 and 0 < count <= 1024
+            and index != 0 and test not in (0, index)
+            and branch >> 26 == 4 and {rs(branch), rt(branch)} == {test, 0}
+            and shift >> 26 == 0 and shift & 63 == 0 and rs(shift) == 0
+            and rt(shift) == rd(shift) == index and (shift >> 6) & 31 == 2
+            and upper >> 26 == 15 and rs(upper) == 0 and base not in (0, index)
+            and add >> 26 == 0 and add & 63 == 33 and rd(add) == base
+            and {rs(add), rt(add)} == {base, index}
+            and load >> 26 == 35 and rs(load) == base and rt(load) == dest
+            and jump >> 26 == 0 and jump & 63 == 8
+            and dest not in (0, 31) and jump & 0x1FFFFF == 8):
+        return {"reason": "unsupported_switch_dispatch"}
+    imm = load & 0xFFFF
+    table = (((upper & 0xFFFF) << 16)
+             + (imm - 0x10000 if imm & 0x8000 else imm)) & 0xFFFFFFFF
+    end = GAME_CODE_BASE + len(image)
+    if table % 4 or not GAME_CODE_BASE <= table < table + count * 4 <= end:
+        return {"reason": "invalid_switch_table", "table": table, "entries": count}
+    if table < bound and table + count * 4 > address:
+        return {"reason": "switch_table_overlaps_code", "table": table}
+    destinations = list(struct.unpack_from(">%dI" % count, image, table - GAME_CODE_BASE))
+    for i, target in enumerate(destinations):
+        if target % 4 or not address <= target < bound:
+            return {"reason": "escaping_switch_entry", "table": table,
+                    "entry": i, "target": target}
+    return {"at": pc, "check": pc - 24, "table": table,
+            "entries": count, "destinations": destinations}
+
+
 def scan_head_extent(image, address, bound):
     """Bounded control-flow proof for a newly discovered head.
 
     Follow both branch arms, including early returns and delay slots. Reject
-    indirect jumps, escaping branches, fall-through at the bound, and stack
+    unproved indirect jumps, escaping branches, fall-through at the bound, and stack
     imbalance. This deliberately does not change the historical 005 scanner.
     Instruction decoding and incoming-branch checks belong to closure.heads.
     """
@@ -269,16 +314,29 @@ def scan_head_extent(image, address, bound):
         return (branch_target(word, address) is not None or word >> 26 in (2, 3)
                 or word >> 26 == 0 and word & 63 in (8, 9))
 
-    pending, seen, covered, returns = [(address, 0)], {}, set(), set()
+    switches = {}
+    for pc in range(address, bound, 4):
+        word = word_at(pc)
+        if word >> 26 == 0 and word & 63 == 8 and word != JR_RA:
+            switches[pc] = _head_switch(image, pc, address, bound)
+    checks = {s["check"]: pc for pc, s in switches.items() if "check" in s}
+    # A dispatch route is valid only through consecutive instructions, starting
+    # at sltiu and then the checked branch's untaken arm. Entering midway cannot
+    # inherit it. Keep separate states at joins so an unsafe route is not hidden.
+    pending = [(address, 0, None)]
+    depths, seen, covered, returns, used_switches = {}, set(), set(), set(), set()
     while pending:
-        pc, sp = pending.pop()
+        pc, sp, route = pending.pop()
         if not address <= pc < bound:
             return {"reason": "fallthrough_at_bound", "at": pc}
-        if pc in seen:
-            if seen[pc] != sp:
-                return {"reason": "inconsistent_stack", "at": pc}
+        if pc in depths and depths[pc] != sp:
+            return {"reason": "inconsistent_stack", "at": pc}
+        depths[pc] = sp
+        if (pc, route) in seen:
             continue
-        seen[pc] = sp
+        seen.add((pc, route))
+        if route is not None and route[1] != pc:
+            route = None
         covered.add(pc)
         word = word_at(pc)
         sp += stack_delta(word)
@@ -286,7 +344,11 @@ def scan_head_extent(image, address, bound):
             return {"reason": "invalid_stack", "at": pc}
         op, target = word >> 26, branch_target(word, pc)
         if not transfer(word):
-            pending.append((pc + 4, sp))
+            if pc in checks:
+                route = (checks[pc], pc + 4)
+            elif route is not None:
+                route = (route[0], pc + 4)
+            pending.append((pc + 4, sp, route))
             continue
         if pc + 8 > bound:
             return {"reason": "missing_delay_slot", "at": pc}
@@ -300,21 +362,29 @@ def scan_head_extent(image, address, bound):
                 return {"reason": "unbalanced_return", "at": pc}
             returns.add(pc)
         elif op == 0 and word & 63 == 8:
-            return {"reason": "indirect_jump", "at": pc}
+            switch = switches[pc]
+            if "reason" in switch:
+                return {"reason": "indirect_jump", "at": pc,
+                        "switch_reason": switch["reason"], "switch_detail": switch}
+            if route != (pc, pc):
+                return {"reason": "unproven_switch_guard", "at": pc}
+            used_switches.add(pc)
+            pending.extend((target, slot_sp, None)
+                           for target in sorted(set(switch["destinations"])))
         elif op == 3 or op == 0 and word & 63 == 9:
-            pending.append((pc + 8, slot_sp))
+            pending.append((pc + 8, slot_sp, None))
         elif op == 2:
             target = ((pc + 4) & 0xF0000000) | ((word & 0x3FFFFFF) << 2)
             if not address <= target < bound:
                 return {"reason": "escaping_jump", "at": pc, "target": target}
-            pending.append((target, slot_sp))
+            pending.append((target, slot_sp, None))
         else:
             if not address <= target < bound:
                 return {"reason": "escaping_branch", "at": pc, "target": target}
             # REGIMM branch-and-link needs a callee summary; leave it unclaimed.
             if op == 1 and (word >> 16) & 31 >= 16:
                 return {"reason": "branch_and_link", "at": pc}
-            pending.append((target, slot_sp))
+            pending.append((target, slot_sp, None))
             always = (op in (4, 20) and (word >> 21) & 31 == (word >> 16) & 31
                       or op == 1 and (word >> 21) & 31 == 0
                       and (word >> 16) & 31 in (1, 3))
@@ -322,7 +392,10 @@ def scan_head_extent(image, address, bound):
                 likely = op in (20, 21, 22, 23) or (
                     op == 1 and (word >> 16) & 31 in (2, 3)) or (
                     op in (16, 17, 18) and word & 0x20000)
-                pending.append((pc + 8, sp if likely else slot_sp))
+                checked = (route is not None and route[0] in switches
+                           and switches[route[0]].get("check") == pc - 4)
+                next_route = (route[0], pc + 8) if checked else None
+                pending.append((pc + 8, sp if likely else slot_sp, next_route))
     if not returns:
         return {"reason": "no_return"}
     last = max(covered) + 4
@@ -333,8 +406,11 @@ def scan_head_extent(image, address, bound):
         target = branch_target(word_at(pc), pc)
         if target is not None and not address <= target < last:
             return {"reason": "escaping_branch", "at": pc, "target": target}
-    return {"insn_count": (last - address) // 4,
-            "returns": sorted(returns), "reachable_words": len(covered)}
+    result = {"insn_count": (last - address) // 4,
+              "returns": sorted(returns), "reachable_words": len(covered)}
+    if used_switches:
+        result["switches"] = [switches[pc] for pc in sorted(used_switches)]
+    return result
 
 
 def _image(path):
