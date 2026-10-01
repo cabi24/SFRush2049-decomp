@@ -25,8 +25,7 @@ class HeadTests(unittest.TestCase):
         self.assertEqual(bad, [])
 
     def test_remaining_heads_match_current_audit(self):
-        remaining = {0x8010221C, 0x80102F30, 0x80104704, 0x80104B14,
-                     0x80105480, 0x8010D3C0, 0x8010D680}
+        remaining = {0x80104704}
         self.assertEqual(set(self.rows), remaining)
         self.assertTrue(all(not r['registered'] for r in self.rows.values()))
 
@@ -43,7 +42,17 @@ class HeadTests(unittest.TestCase):
                 self.assertEqual(kind, 'func', hex(a))
                 self.assertFalse(f.discovered)
                 self.assertEqual((f.name, len(f.words)), ('func_%08X' % a, words))
-        self.assertEqual(opaque, {0x8010221C, 0x80102F30, 0x80104704, 0x80104B14, 0x80105480})
+        self.assertEqual(opaque, {0x80104704})
+
+    def test_six_switch_heads_are_registered_with_proved_extents(self):
+        for a, words in ((0x8010221C, 137), (0x80102F30, 890),
+                         (0x80104B14, 601), (0x80105480, 445),
+                         (0x8010D3C0, 176), (0x8010D680, 119)):
+            kind, f, _ = self.c.resolve(a)
+            self.assertEqual(kind, 'func', hex(a))
+            self.assertFalse(f.discovered)
+            self.assertEqual((f.name, len(f.words)), ('func_%08X' % a, words))
+            self.assertNotIn(a, self.rows)
 
     def test_func_80107EDC_is_registered_with_proved_extent(self):
         kind, f, _ = self.c.resolve(0x80107EDC)
@@ -57,14 +66,13 @@ class HeadTests(unittest.TestCase):
         for a, words in ((0x80108154, 224), (0x801084D4, 375), (0x8010BC84, 232)):
             self.assertEqual(len(self.c.by_addr[a].words), words, hex(a))
             self.assertNotIn(a, self.rows)
-        for a, words in ((0x80102F30, 890), (0x80104704, 260), (0x80104B14, 601)):
-            self.assertEqual(self.rows[a]['words'], words, hex(a))
+        self.assertEqual(self.rows[0x80104704]['words'], 260)
 
     def test_tail_labels_are_not_heads(self):
-        for tail in (0x80108098, 0x801089CC, 0x8010BE7C):
+        for tail in (0x80108098, 0x801089CC, 0x8010BE7C, 0x80103A08):
             self.assertNotIn(tail, self.rows)
             self.assertIsNotNone(self.c.containing(tail), hex(tail))
-        for tail in (0x80103A08, 0x80104A58):
+        for tail in (0x80104A58,):
             self.assertNotIn(tail, self.rows)
             owners = [a for a in self.rows if a < tail < a + 4 * self.rows[a]['words']]
             self.assertEqual(len(owners), 1, hex(tail))

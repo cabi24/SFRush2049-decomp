@@ -1,5 +1,14 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-01 switch-head registration
+
+- Registered all six previously proved switch heads: func_8010221C (548 bytes), func_80102F30 (3,560), func_80104B14 (2,404), func_80105480 (1,780), func_8010D3C0 (704), func_8010D680 (476). Added 9,472 bytes of registered extents, no new C coverage claimed.
+- Game population now 1,216 functions; accepted C remains 503 functions / 57,560 of 647,072 bytes (8.90%). Static remains 23/230 functions / 1,448 of 61,440 bytes (2.36%).
+- Seventh head func_80104704 still refuses: branch at 0x80104A48 enters existing highscore_entry_anim at 0x80104A58. No shared-tail registration attempted.
+- Removed stale blob_80104b14.s; generated current regions/linker/symbols/manifest through blob_tu. Cloud head tests updated to the six registered extents and sole remaining audited head, with explicit extent assertions.
+- ROM from the regenerated layout: SHA-1 EXACT; both blob checks zero problems. Full pytest gate required before commit.
+- Small-head worker final log and func_8010C2E4 best (three strict words away) retained as a nonmatch. Next: static passthrough conversions and eleven promotions.
+
 ## 2026-10-01 Codex integration batch 1
 
 - Environment verified: SSH and IDO compile smoke on Rocky/watchman2, local Git/Conveyor write probes, remote Git read/push dry run. Removed 21 confirmed orphaned uopt processes (PPID 1, deleted permjob directories, 51–61 hours old); active search workers preserved.
