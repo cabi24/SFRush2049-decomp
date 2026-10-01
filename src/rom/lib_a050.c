@@ -4,7 +4,50 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_a050/__osContBuildPacket.s")
+/* PROMOTED 2026-10-01 — __osContBuildPacket
+ * Source:   cloud/work/static_C8/__osContBuildPacket.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C8/__osContBuildPacket.c:__osContBuildPacket (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+s32 __osContBuildPacket(OSMesgQueue* mq, u8* bitpattern, OSContStatus* data) {
+    OSMesg dummy;
+    s32 ret = 0;
+    OSTime t;
+    OSTimer mytimer;
+    OSMesgQueue timerMesgQueue;
+
+    if (__osContPifBuf) {
+        return 0;
+    }
+
+    __osContPifBuf = TRUE;
+
+    t = osGetTime();
+    if (t < ((OSTime)0x165A0BC)) {
+        osCreateMesgQueue(&timerMesgQueue, &dummy, 1);
+        osSetTimer(&mytimer, ((OSTime)0x165A0BC) - t, 0, &timerMesgQueue, &dummy);
+        osRecvMesg(&timerMesgQueue, &dummy, OS_MESG_BLOCK);
+    }
+
+    __osPfsRequestType2 = 4;
+
+    __osContRamReset(CONT_CMD_REQUEST_STATUS);
+
+    ret = __osSiRawStartDma(OS_WRITE, __osSiDmaBuffer.ramarray);
+    osRecvMesg(mq, &dummy, OS_MESG_BLOCK);
+
+    ret = __osSiRawStartDma(OS_READ, __osSiDmaBuffer.ramarray);
+    osRecvMesg(mq, &dummy, OS_MESG_BLOCK);
+
+    __osContGetStatus(bitpattern, data);
+    __osPfsRequestType = CONT_CMD_REQUEST_STATUS;
+    osSiInit();
+    osCreateMesgQueue(&__osContQueryMsgQ, &__osContQueryMesg, 1);
+
+    return ret;
+}
+
 /* PROMOTED 2026-10-01 — __osContGetStatus
  * Source:   cloud/work/static_C7/__osContGetStatus.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
