@@ -1,0 +1,16 @@
+{
+  "owner": "lib_8700",
+  "function": "osDpWait",
+  "input": "build/us/src/rom/lib_8700.o(.text);",
+  "rom_start": "0x8700",
+  "vram_start": "0x80007b00",
+  "extent_bytes": 256,
+  "logical_end_offset": 160,
+  "logical_function_bytes": 32,
+  "zero_fill_bytes": 96,
+  "retail_extent_sha256": "db5545f782938a0c57331625e5d11d0dc7c06d385d9e7013604a52b12c4771fa",
+  "zero_fill_sha256": "2ea9ab9198d1638007400cd2c3bef1cc745b864b76011a0e1bc52180ac6452d4",
+  "original_asm": "asm/us/nonmatchings/rom/lib_8700/osDpWait.s",
+  "original_asm_sha256": "4046193b6369d644a1d90ed2a4d93d3e3b683b1d8d802e8fa753fbf6168699ed",
+  "next_segment_rom_start": "0x8800"
+}

@@ -1,0 +1,69 @@
+{
+  "private_builder": "watchman2:~/agents/B/B21-private-rom",
+  "snapshot": "B18 privately full-ROM-proven snapshot; root current tree acceptance still required",
+  "compiler": "pinned x86 IDO, COMPILER=ido, make -j2 with explicit CC toolkit path",
+  "retail_sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+  "steps": [
+    {
+      "step": "baseline",
+      "exit_code": 0,
+      "object_text_bytes": 256,
+      "linker_fill_bytes": 0,
+      "rom_matches": 2,
+      "stdout_sha256": "f1f018874bccce2ed944dbeb61fbe37d6dd36778830dc87aaec5cfc6b6073b38"
+    },
+    {
+      "step": "unpadded_candidate",
+      "exit_code": 2,
+      "object_text_bytes": 160,
+      "linker_fill_bytes": 0,
+      "rom_matches": 0,
+      "stdout_sha256": "d09257a400c7930e67f54aeebb7f3260b07e4babcba499b6b6e6e43416d035e7"
+    },
+    {
+      "step": "candidate",
+      "exit_code": 0,
+      "object_text_bytes": 160,
+      "linker_fill_bytes": 96,
+      "rom_matches": 2,
+      "stdout_sha256": "42a1b1942cadf6a901a9d7e9546dc6db9877c86c54a7d72dd9dc31636dcbf85b"
+    },
+    {
+      "step": "regenerated_candidate",
+      "exit_code": 0,
+      "object_text_bytes": 160,
+      "linker_fill_bytes": 96,
+      "rom_matches": 2,
+      "stdout_sha256": "42a1b1942cadf6a901a9d7e9546dc6db9877c86c54a7d72dd9dc31636dcbf85b"
+    },
+    {
+      "step": "rollback_with_model",
+      "exit_code": 0,
+      "object_text_bytes": 256,
+      "linker_fill_bytes": 0,
+      "rom_matches": 2,
+      "stdout_sha256": "f1f018874bccce2ed944dbeb61fbe37d6dd36778830dc87aaec5cfc6b6073b38"
+    },
+    {
+      "step": "full_rollback",
+      "exit_code": 0,
+      "object_text_bytes": 256,
+      "linker_fill_bytes": 0,
+      "rom_matches": 2,
+      "stdout_sha256": "6b3884d16dd8bdc0b86a48eb9e3936b4c24b3d70a3dd805a873c9471b5ef1244"
+    }
+  ],
+  "logical_body_bytes": 32,
+  "preserved_zero_fill_bytes": 96,
+  "proposed_function_increment": 1,
+  "proposed_c_body_byte_increment": 32,
+  "proposed_padding_byte_increment": 0,
+  "source_files": {
+    "lib_8700.baseline.c": "48abc94d48d2e9063eeac8908f440e5234bb3d4ac69df2fc15b7b5294613bbfd",
+    "lib_8700.candidate.c": "05b0331e1b81336b77e968b4540c31979395d2623a476e6e6db5c9da96ce5884"
+  },
+  "original_boundary": "[0x80007B00,0x80007C00)",
+  "fill_interval": "[0x80007BA0,0x80007C00)",
+  "regeneration": "Local real make extract via /home/cburnes/.splat-venv/bin/python, then replay same validated boundary model; full ROM passes",
+  "focused_tests": 4
+}

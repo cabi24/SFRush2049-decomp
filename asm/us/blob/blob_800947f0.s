@@ -1761,6 +1761,7 @@ func_80095F8C:
 .section .text.audio_reverb_update, "ax", @progbits
 .globl audio_reverb_update
 audio_reverb_update:
+    /* compiled from src/blob/audio_reverb_update.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x0C0257E3
@@ -1833,6 +1834,7 @@ func_800960CC:
 .section .text.audio_effect_process, "ax", @progbits
 .globl audio_effect_process
 audio_effect_process:
+    /* compiled from src/blob/audio_effect_process.c */
     .word 0x27BDFFE0
     .word 0xAFA40020
     .word 0xAFBF001C

@@ -1,0 +1,132 @@
+{
+  "err": null,
+  "matched": true,
+  "members": {
+    "audio_reverb_update": {
+      "strict_diff": 0,
+      "size": 61,
+      "target_size": 61,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "audio_effect_process": {
+      "strict_diff": 0,
+      "size": 23,
+      "target_size": 23,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "synced_model_render": {
+      "strict_diff": 0,
+      "size": 23,
+      "target_size": 23,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "MP_TargetSpeed": {
+      "strict_diff": 0,
+      "size": 28,
+      "target_size": 28,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "assign_default_paths": {
+      "strict_diff": 0,
+      "size": 28,
+      "target_size": 28,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "stat_race_end": {
+      "strict_diff": 0,
+      "size": 29,
+      "target_size": 29,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    }
+  },
+  "context": {
+    "func_80095F8C": {
+      "strict_diff": 0,
+      "size": 19,
+      "target_size": 19,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "func_80095EF4": {
+      "strict_diff": 0,
+      "size": 38,
+      "target_size": 38,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "audio_buffer_sync": {
+      "strict_diff": 0,
+      "size": 26,
+      "target_size": 26,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "object_counter_decrement": {
+      "strict_diff": 0,
+      "size": 27,
+      "target_size": 27,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "object_counter_increment": {
+      "strict_diff": 0,
+      "size": 28,
+      "target_size": 28,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    }
+  },
+  "canonical_exit": 0,
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "source_sha256": "e348f956130938f04fae6c3442b50ec1db946b282cd8ccd30c7a35445afccbe0"
+}

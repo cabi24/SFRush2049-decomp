@@ -1841,6 +1841,7 @@ resource_alloc_init:
 .section .text.synced_model_render, "ax", @progbits
 .globl synced_model_render
 synced_model_render:
+    /* compiled from src/blob/synced_model_render.c */
     .word 0x27BDFFE0
     .word 0xAFA40020
     .word 0xAFBF001C

@@ -5760,6 +5760,7 @@ stat_race_start:
 .section .text.stat_race_end, "ax", @progbits
 .globl stat_race_end
 stat_race_end:
+    /* compiled from src/blob/stat_race_end.c */
     .word 0x00047080
     .word 0x01C47023
     .word 0x000E70C0

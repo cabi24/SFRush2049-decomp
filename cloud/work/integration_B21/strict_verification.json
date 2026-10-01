@@ -1,0 +1,11 @@
+{
+  "function": "osDpWait",
+  "strict_score": 0,
+  "raw_word_diff": 0,
+  "logical_words": 8,
+  "logical_bytes": 32,
+  "object_body_start": 128,
+  "target_sha256": "b03cc1cb6bd40688b66a7aac56ae7cacffdeb0d9d4ba99c417213a44b1db01b3",
+  "module_object_sha256": "dad2d62d7feb1d86e8fe76687c99235da26994aff7f47f302fbf44c9e052c60b",
+  "protocol": "unchanged canonical stack-sensitive difflib scorer with function-scoped toolkit disassembly"
+}
