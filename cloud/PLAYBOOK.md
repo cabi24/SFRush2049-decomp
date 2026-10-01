@@ -74,3 +74,32 @@ What worked in cloud rounds 1-3 (single functions and IPA groups). Setup and rul
 - **Vendored workbench (CC0):** `third_party/n64-decomp-workbench/` — run `diagnose` on a near-miss first; it names
   the residual and the lever (`python3 tools/workbench.py guide` for the field guide and IDO 5.3 laws). The temp-ring
   levers (14-16) explain the `t6`-`t9` register-rotation wall.
+
+## Workbench pilot findings (2026-10-01; logs in `cloud/work/workbench_pilot_*.md`)
+
+Eighteen near-misses were worked with `diagnose` in the loop: 7 matched, 4 matched only as whole-program groups, 7 stay
+2-44 words off. Four of the 7 (`func_800D0B14`, `func_800EAFDC`, `func_800966D8`, `func_8008A644`) had already eaten
+50-1,000 blind variants from earlier agents. What worked, in the order to try it:
+
+- **Read the lanes first.** `identical N/N` on the pool lane and a differing temp lane means ugen's temp ring; the other way
+  round means uopt's coloured webs. The verdict moving structure -> allocation -> schedule is a reliable progress meter.
+  At a true `MATCH` diagnose can still report 1-4 words (trailing padding nop): only `tools/cloud/score.py` is the gate.
+- **Colouring order (float and integer webs).** The first-coloured web gets the lowest register (`f2` before `f12`, `v0`
+  before `v1`). A code-free dead read such as `f32 t = 0.0f; if (G) {}` or `if (param + 1) {}` reorders a whole pool lane
+  without a stack slot (`func_800EAFDC`, `func_800D0B14`, `func_800966D8`). An *uninitialised* dead read instead adds an 8-byte frame.
+- **Temp-ring pop.** A redundant mask on a narrow store or shift (`& 0xFFFF`) supplies the missing pop (levers 15/16,
+  `func_800966D8`, `func_8008A644`). The ring is four wide (`t9` wraps to `t6`) when the allocator reserved registers; in a
+  function with no named variables it is wider (`f4 f6 f8 f10 f16 f18`), so levers 14-16 shift phase but cannot change width.
+- **Line placement is a scheduling barrier on plain `cc` too** (no `acpp` needed): put the last stores on the same physical
+  line as the statement before (lever 33: `func_800D4D84`, a callee loop's `for` header and body on two lines).
+  Token-identical newline sweeps alone rarely close a gap (all 1,024 layouts of `func_8008A704` gave 2 or 5 words).
+- **Frame first.** Drop m2c's `pad`/`sp1C`-style locals before chasing registers (`func_800CCE5C` 15 -> 2 words); a named
+  local's type (`u16` vs `s32`) can change which copy feeds a mask.
+- **Check the seed, not just the diff.** `func_8010E828` was a missing first call argument; `func_8008B000`'s seed had the
+  wrong element size. Re-derive from the asm when the verdict stays `structure-mismatch`.
+- **The `t6`-`t9` wall is a whole-program effect.** A function compiled as a non-exported `-O3` group member with two call
+  sites reproduces the ring from plain C (`input_aux_handler`, `func_800C7200`, `func_8008ABE4`, `func_800B7438`); these
+  cannot match alone, and a group with stand-in callers is not spliceable: they need the real callers in the group.
+- m2c noise that matters: `0x400 & 0xFFFFFFFFFFFFFFFF` adds a `beqzl` and an extra `andi`; deleting a pass-through local
+  moves a neighbouring spill slot. A dead read of an uninitialised local can match yet is not the original source: say so.
+
