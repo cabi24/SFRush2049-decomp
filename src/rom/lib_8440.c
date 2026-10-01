@@ -22,7 +22,27 @@ extern s32 __osSpDma(s32, u32, void *, u32);
 #define SP_SET_INTR_BREAK 0x100
 #define SP_IMEM_START 0x04001000
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_8440/osViModeTableGet.s")
+/* PROMOTED 2026-10-01 — osViModeTableGet
+ * Source:   cloud/work/static_C15/osViModeTableGet.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C15/osViModeTableGet.c:osViModeTableGet (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+OSTask* osViModeTableGet(OSTask* intp) {
+    OSTask* tp;
+    tp = &gViModeTempBuffer;
+    bcopy(intp, tp, sizeof(OSTask));
+
+    _osVirtualToPhysical(tp->t.ucode);
+    _osVirtualToPhysical(tp->t.ucode_data);
+    _osVirtualToPhysical(tp->t.dram_stack);
+    _osVirtualToPhysical(tp->t.output_buff);
+    _osVirtualToPhysical(tp->t.output_buff_size);
+    _osVirtualToPhysical(tp->t.data_ptr);
+    _osVirtualToPhysical(tp->t.yield_data_ptr);
+    return tp;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_8440/osViModeNtscLan1.s")
 /* PROMOTED 2026-10-01 — osViModeNtscLpn1
  * Source:   cloud/work/static_C2/osViModeNtscLpn1.c (in-repo, locked)
