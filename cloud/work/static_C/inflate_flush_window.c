@@ -714,10 +714,10 @@ extern void object_render(s32, u8, u8, u16, s32, s32, s32, s32, s32, s32, s32);
 
 extern s32 gDisplayListEnd;
 extern s32 gDisplayListHead;
-extern s32 gDisplayListSize;
+extern volatile unsigned int gDisplayListSize;
 
 void inflate_flush_window(s32 arg0, s32 arg1) {
     gDisplayListHead = arg0;
     gDisplayListEnd = arg1;
-    gDisplayListSize = 0;
+    *(s32 *)&gDisplayListSize = 0;
 }
