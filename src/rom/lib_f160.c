@@ -73,4 +73,29 @@ void __osContBuildRequest(int channel, u8 cmd) {
     *ptr = CONT_CMD_END;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_f160/__osContParseResponse.s")
+/* PROMOTED 2026-10-01 — __osContParseResponse
+ * Source:   cloud/work/static_C7/__osContParseResponse.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C7/__osContParseResponse.c:__osContParseResponse (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void __osContParseResponse(int channel, OSContStatus* data) {
+    u8* ptr = (u8*)&(*(OSPifRam *)__osPfsBuffer);
+    __OSContRequesFormatShort requestformat;
+    int i;
+
+    for (i = 0; i < channel; i++) {
+        ptr++;
+    }
+
+    requestformat = *(__OSContRequesFormatShort*)ptr;
+    data->errno = CHNL_ERR(requestformat);
+
+    if (data->errno != 0) {
+        return;
+    }
+
+    data->type = (requestformat.typel << 8) | (requestformat.typeh);
+    data->status = requestformat.status;
+}
+
