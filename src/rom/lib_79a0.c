@@ -4,4 +4,21 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_79a0/osSetIntMask.s")
+/* PROMOTED 2026-10-01 — osSetIntMask
+ * Source:   cloud/work/static_C/osSetIntMask.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C/osSetIntMask.c:osSetIntMask (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void osSetIntMask(s32 mask) {
+    u32 temp_a0;
+
+    temp_a0 = __osDisableInt();
+    if ((u8) mask != 0) {
+        __osViContext->state |= 0x20;
+    } else {
+        __osViContext->state &= 0xFFDF;
+    }
+    __osRestoreInt(temp_a0);
+}
+
