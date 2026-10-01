@@ -1,0 +1,23 @@
+[
+  {
+    "function": "__osPfsCheckPages",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "shared_source_sha256": "87f7ee8d7a401629e65270d7138690bfdd4fff4ed18dff532252111073e104ae"
+  },
+  {
+    "function": "__osPfsPageCheck",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "shared_source_sha256": "4d5a29ea53e120721cbd43c6503497a0e9fbc12033af336eb86bb5f703292123"
+  },
+  {
+    "function": "osViInit",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "shared_source_sha256": "519832060c0bafec7ab3a76bb71267f6f4b461fbfb888614146dedc042f88304"
+  }
+]

@@ -1,0 +1,21 @@
+# Static packet C11 — frozen
+
+Three eligible canonical O2 strict stack-sensitive score-zero/raw-word-zero TUs, 1,432 total static slot bytes: __osPfsCheckPages (0xbfe0,728), __osPfsPageCheck (0xbfe0,416), osViInit (0xd140,288). Exact flags `-g0 -O2 -mips2 -G 0 -non_shared`. Selection used CURRENT root layout and matched.lock targets, excluding all C1-C10 pending/accepted sets. No integration source/layout/state/lock changes.
+
+The first two bodies are canonical SDK corrupted_init and corrupted from io/pfschecker.c; the third is __osViInit from io/vi.c. All current named symbols are retained. __osViMode and __osViModeTable are the two 48-byte VI contexts; the existing s32 __osViModeInfo pointer-valued word is accessed through an explicit pointer lvalue cast, preserving its current shared declaration. Mode data uses existing __osViModePending/Next/Buffer names. No new stand-in globals or assembly padding bodies.
+
+All three also compile strict/raw zero against a freshly captured CURRENT root rom_tu.h + include headers, adding only the minimal context in rom_tu_declarations.txt. `shared_header_verification.json` records those independent shared-context results; body-only shared proof sources are in shared_header_sources/, exact captured header hashes in shared_header_hashes.json. The snapshot and proof objects remain private on Rocky `~/agents/C/scratch/static-C11/static-C11-header/`; no stale private SDK prelude was treated as current shared truth. Shared-header checker exit code0. No existing shared prototype correction is required for these three bodies.
+
+Main standalone verification.json records exact source/target SHA-256 hashes and flags. Generic verifier requires exactly three eligible strict/raw zeros and exact identities; exit code0 on C. Current/private target and candidate objects are on Rocky `~/agents/C/scratch/static-C11/`. Independent invocation after copying packet and targets into D:
+
+```
+python3 ~/agents/D/scratch/static-C11/verify.py --repo ~/agents/D/wt --toolkit ~/rush2049/cache/toolkits/796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5 --target-dir ~/agents/D/scratch/static-C11 --output ~/agents/D/scratch/static-C11/independent.json
+```
+
+retail_verification.json gives independent relocation/retail-prefix equality through verified image symbols. osTvType is an existing boot-global linker symbol below the image manifest population, so this proof additionally uses symbol_addrs.us.txt:210 (0x80000300), exact file hash and independently encoded retail instruction sites recorded in boot_symbol_provenance.json. This supplement is explicit; no scoring change or invented address. All three ready bodies have prefix difference0 with no masks/unresolved/unverified/errors. __osPfsCheckPages has eight extra standalone ELF alignment-zero bytes; the other two cover full slot lengths. Parent slot-padding/full-TU/ROM gates remain authority.
+
+Three further exact O1 controls stay blocked by shared O2 pins: dll_insert, dll_update (0xcc50) and osPfsChecker_full (0xc990). Timer bodies require natural OSTimer* typed global access for exact O1 IR; cast-based access through existing __OSTimerNode* creates extra code. The blocked sources retain explicit typed standalone context, and are excluded from verifier/acceptance; no shared-header change or mixed-flag override is requested for them. osPfsChecker_full is actual SDK osStopThread.
+
+Parent supported-refreshed dll_init/update/insert from raw_word/no_asm_region to reloc-aware/no fallback. Old/new target identities are retained in targets.json. After refresh natural typed O1 dll_insert and dll_update both become strict/raw0; both O2 variants remain structurally far (8468/98 and6319/93). dll_init remains unmatched: best tested natural-typed O1 score520/raw36; cast-based O2 score1675/raw35. No scores or stack offsets were masked. Budget was limited to canonical O2, O1, one natural-global-type control, and one O0 initialization control; no line sweeps.
+
+Recommended acceptance uses supported exact O2 lock/prepcommit/promote flow, minimal context additions, clean-tree/full-TU byte proof and ROM/lock gates. Shared-header current proof and three eligible freezes are complete; blocked timer investigation does not delay them.

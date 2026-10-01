@@ -1,0 +1,13 @@
+typedef struct { __OSInode inode; u8 bank; u8 map[256]; } __OSInodeCache;
+#define PFS_INODE_DIST_MAP 256
+#define PFS_SECTOR_SIZE 4
+#define PFS_BANK_LAPPED_BY 8
+extern u8 __osViMode[96], __osViModeTable[48];
+extern OSViMode __osViModePending, __osViModeNext, __osViModeBuffer;
+#define K0BASE 0x80000000
+#define VI_STATE_BLACK 0x20
+#define OS_TV_TYPE_PAL 0
+#define OS_TV_TYPE_MPAL 2
+
+extern u32 osTvType;
+extern void __osViSwapContext(void);
