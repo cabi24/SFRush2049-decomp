@@ -4,7 +4,31 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_9de0/guMtxF2L.s")
+/* PROMOTED 2026-10-01 — guMtxF2L
+ * Source:   cloud/work/static_C6/guMtxF2L.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul
+ * Evidence: lock:cloud/work/static_C6/guMtxF2L.c:guMtxF2L (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void guMtxF2L(float mf[4][4], Mtx *m)
+{
+	int	i, j;
+	int	e1,e2;
+	int	*ai,*af;
+
+
+	ai=(int *) &(*m)[0][0];
+	af=(int *) &(*m)[2][0];
+
+	for (i=0; i<4; i++)
+	for (j=0; j<2; j++) {
+		e1=FTOFIX32(mf[i][j*2]);
+		e2=FTOFIX32(mf[i][j*2+1]);
+		*(ai++) = ( e1 & 0xffff0000 ) | ((e2 >> 16)&0xffff);
+		*(af++) = ((e1 << 16) & 0xffff0000) | (e2 & 0xffff);
+	}
+}
+
 /* PROMOTED 2026-07-11 — guMtxL2F
  * Source:   src/game/matrix.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
