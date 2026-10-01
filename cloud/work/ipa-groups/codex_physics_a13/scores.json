@@ -1,0 +1,41 @@
+{
+  "err": null,
+  "matched": false,
+  "members": {
+    "physics_response": {
+      "strict_diff": 225,
+      "size": 234,
+      "target_size": 230,
+      "extra": 4,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    }
+  },
+  "context": {
+    "audio_effect_apply": {
+      "strict_diff": 170,
+      "size": 190,
+      "target_size": 174,
+      "extra": 16,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "func_800B9338": {
+      "strict_diff": 0,
+      "size": 28,
+      "target_size": 28,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    }
+  }
+}

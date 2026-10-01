@@ -1,0 +1,9 @@
+[
+  {
+    "function": "osSpTaskLoad_full",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "shared_source_sha256": "aebc06b6ca843c348c3af3a9225ebd87cbbe09ea1b55369bac4055da5b7ac2cc"
+  }
+]

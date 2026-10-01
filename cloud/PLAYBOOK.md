@@ -161,3 +161,12 @@ A shared pin can be reconciled when every already accepted body in that segment 
 The timer-head extern now uses canonical OSTimer*, retaining the old __OSTimerNode overlay definition. The only accepted caller osSetTimer already casts to OSTimer*;63 existing promoted C-TU text streams remain exact before/after. Natural canonical timer types reproduce O1 code where casting the split-word overlay in each new expression does not.
 
 A10 authentic entity/message module closes results_screen_update, leaderboard_update and camera_clip_planes (476 bytes). Keep the actual allocator out of line, remove the historical synthetic wrapper, and retain the actual empty BF01C's pointer formal with the documented code-free if(c) guard. Camera's real lower clamp stores zero directly; its upper branch carries the clamped result. Allocator/receiver remain18/42 and27/40 differing words, honestly unclaimed. No stand-in context or extra claimed coverage.
+
+
+## PFS/EPi acceptance and storage ownership boundary (2026-10-01)
+
+C12 five canonical PFS/EPi bodies add4376 ROM-verified bytes. Historical osPfsReadWriteFile is SDK allocator with seven arguments, while osPfsGetFileSize is SDK read/write body. Independent current-header new/accepted caller proofs plus forced full-ROM baseline confirm the corrected declaration. Keep PI macros local to lib_e9a0 and before its promotion slots: placing them after a future inserted body caused a compile failure and clean rollback; the same candidate passes after moving the macros.
+
+Actual steering/traction callers reproduce vector_diff_process's hidden origin register t0 without a dummy formal. Claim only its80 bytes; both reconstructed callers remain different. Real physics closure repairs improve source semantics but not yet the allocation; empty claims remain honest.
+
+New source-built local tables/BSS are not proven by an isolated raw-zero object. The PI device-manager switch table is inside monolithic data at retail0x8002D860; replace that actual slot, preserving the rest, rather than appending duplicate rodata. Full VI BSS layout derives every real object through the local retrace counter at0x80036700, but a standalone localcounter .bss at0 does not establish binding. Restore genuine complete ownership and typed SDK thread layout behind the unchanged full-ROM gate; do not invent individual symbol assignments.

@@ -1,0 +1,122 @@
+[
+  {
+    "label": "u0_v0",
+    "err": null,
+    "scores": {
+      "physics_response": {
+        "strict_diff": 229,
+        "size": 240,
+        "extra": 9,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "audio_effect_apply": {
+        "strict_diff": 170,
+        "size": 191,
+        "extra": 17,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "func_800B9338": {
+        "strict_diff": 0,
+        "size": 28,
+        "extra": 0,
+        "matched": true,
+        "err": null,
+        "errors": []
+      }
+    }
+  },
+  {
+    "label": "u0_v1",
+    "err": null,
+    "scores": {
+      "physics_response": {
+        "strict_diff": 222,
+        "size": 254,
+        "extra": 22,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "audio_effect_apply": {
+        "strict_diff": 170,
+        "size": 187,
+        "extra": 13,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "func_800B9338": {
+        "strict_diff": 0,
+        "size": 28,
+        "extra": 0,
+        "matched": true,
+        "err": null,
+        "errors": []
+      }
+    }
+  },
+  {
+    "label": "u1_v0",
+    "err": null,
+    "scores": {
+      "physics_response": {
+        "strict_diff": 225,
+        "size": 234,
+        "extra": 4,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "audio_effect_apply": {
+        "strict_diff": 171,
+        "size": 189,
+        "extra": 15,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "func_800B9338": {
+        "strict_diff": 0,
+        "size": 28,
+        "extra": 0,
+        "matched": true,
+        "err": null,
+        "errors": []
+      }
+    }
+  },
+  {
+    "label": "u1_v1",
+    "err": null,
+    "scores": {
+      "physics_response": {
+        "strict_diff": 228,
+        "size": 245,
+        "extra": 13,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "audio_effect_apply": {
+        "strict_diff": 169,
+        "size": 185,
+        "extra": 11,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "func_800B9338": {
+        "strict_diff": 0,
+        "size": 28,
+        "extra": 0,
+        "matched": true,
+        "err": null,
+        "errors": []
+      }
+    }
+  }
+]

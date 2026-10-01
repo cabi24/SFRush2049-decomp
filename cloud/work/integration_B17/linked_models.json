@@ -1,0 +1,33 @@
+[
+  {
+    "experiment": "osSetEventMesg_stackalias.target",
+    "words": 96,
+    "retail_word_diff": 0,
+    "source_object_sha256": "915d0a979dc5a5484caf6e3d305847188007214a708ccf1adfa23d45f0b191a4",
+    "linked_text_sha256": "02759e49d1d8b507ba5c5640ed2e723f8415ba028f76140cea631747c0485521",
+    "retail_prefix_sha256": "02759e49d1d8b507ba5c5640ed2e723f8415ba028f76140cea631747c0485521",
+    "link_stderr": "",
+    "bss_anchor_status": "no local BSS allocation"
+  },
+  {
+    "experiment": "osSetEventMesg_stackfield",
+    "words": 96,
+    "retail_word_diff": 0,
+    "source_object_sha256": "ddb9005c48fecc49cd783adf6081646dda778f4aee80b34ff7ab2f3eb2176c0c",
+    "linked_text_sha256": "02759e49d1d8b507ba5c5640ed2e723f8415ba028f76140cea631747c0485521",
+    "retail_prefix_sha256": "02759e49d1d8b507ba5c5640ed2e723f8415ba028f76140cea631747c0485521",
+    "link_stderr": "",
+    "bss_anchor_status": "no local BSS allocation"
+  },
+  {
+    "experiment": "vi_real_bss_context",
+    "words": 196,
+    "retail_word_diff": 0,
+    "source_object_sha256": "c58c984dfc2c1a27d88d0bfbd1c7d38934624d67825c5f35a371db96a8556d10",
+    "linked_text_sha256": "ea7fa7d6effd8003aaf38622f1396826cd7914d9402d95e230bb2aa0b89b4cb5",
+    "retail_prefix_sha256": "ea7fa7d6effd8003aaf38622f1396826cd7914d9402d95e230bb2aa0b89b4cb5",
+    "link_stderr": "",
+    "bss_anchor_status": "derived full-layout model only; current root linker does not provide this section placement",
+    "text_subalignment": 16
+  }
+]

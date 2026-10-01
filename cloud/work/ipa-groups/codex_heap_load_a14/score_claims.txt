@@ -1,0 +1,69 @@
+No claims: work in progress, reported only.
+Members:
+
+Context (informational; excluded from exit status):
+PrevMaxPath:
+    +0x008  want 826e0000                               got 824e0000                             
+    +0x02c  want 02802025                               got 02602025                             
+    +0x03c  want 02402025                               got 02202025                             
+    +0x044  want 02322823                               got 02912823                             
+    +0x04c  want a26f0000                               got a24f0000                             
+  5/24 words differ
+InitMaxPath:
+    +0x000  want 27bdffc0                               got 27bdffc8                             
+    +0x004  want afb40038                               got afb40030                             
+    +0x008  want afb30034                               got afb3002c                             
+    +0x00c  want afb20030                               got afb20028                             
+    +0x010  want afb1002c                               got afb10024                             
+    +0x014  want afb00028                               got afb00020                             
+    +0x018  want 3c0e8012                               got afbf0034                             
+    +0x01c  want 3c0f00be                               got 3c108038                             
+    +0x020  want afbf003c                               got 3c118039                             
+    +0x024  want 25ef4c70                               got 3c128012                             
+    +0x028  want 25ce3860                               got 3c138003                             
+    +0x02c  want 3c108038                               got 3c148039                             
+  34/34 words differ
+sync_maxpath_to_checkpoint:
+    +0x000  want 27bdffc0                               got 27bdffc8                             
+    +0x004  want afb40038                               got afb40030                             
+    +0x008  want afb30034                               got afb3002c                             
+    +0x00c  want afb20030                               got afb20028                             
+    +0x010  want afb1002c                               got afb10024                             
+    +0x014  want afb00028                               got afb00020                             
+    +0x018  want 3c0e8012                               got afbf0034                             
+    +0x01c  want 3c0f00be                               got 3c108038                             
+    +0x020  want afbf003c                               got 3c11803b                             
+    +0x024  want 25efa100                               got 3c128012                             
+    +0x028  want 25ce3850                               got 3c138003                             
+    +0x02c  want 3c108038                               got 3c14803b                             
+  34/34 words differ
+display_enable:
+    +0x000  want 27bdffd8                               got 27bdffc8                             
+    +0x004  want 1080002f                               got afbf0034                             
+    +0x008  want afbf0024                               got afb40030                             
+    +0x00c  want 3c0e8011                               got afb3002c                             
+    +0x010  want 8dce74c0                               got afb20028                             
+    +0x014  want 3c0f8012                               got afb10024                             
+    +0x018  want 55c00045                               got 10800028                             
+    +0x01c  want 8fbf0024                               got afb00020                             
+    +0x020  want 81efed04                               got 3c0e8011                             
+    +0x024  want 3c128015                               got 8dce74c0                             
+    +0x028  want 26522770                               got 3c0f8012                             
+    +0x02c  want 11e0000e                               got 55c0003c                             
+  75/79 words differ
+audio_reverb_update:
+    +0x00c  want 00a02025                               got 00000000                             
+    +0x054  want 8c8f0004                               got 8c820004                             
+    +0x058  want 11e00003                               got 10400003                             
+    +0x05c  want ae0f0004                               got ae020004                             
+    +0x064  want adf00008                               got ac500008                             
+    +0x06c  want 8e18000c                               got 8c8f000c                             
+    +0x070  want 8c99000c                               got 8e18000c                             
+    +0x078  want 03197021                               got 01f8c821                             
+    +0x07c  want 25cf0020                               got 272e0020                             
+    +0x084  want ae0f000c                               got ae0e000c                             
+    +0x0a0  want 80580014                               got 804f0014                             
+    +0x0a4  want 57000010                               got 55e00010                             
+  21/61 words differ
+
+EXIT=0

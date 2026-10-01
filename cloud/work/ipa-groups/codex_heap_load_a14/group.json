@@ -1,0 +1,21 @@
+{
+  "members": [
+    "PrevMaxPath"
+  ],
+  "context": [
+    "InitMaxPath",
+    "sync_maxpath_to_checkpoint",
+    "display_enable",
+    "audio_reverb_update"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "keep": [
+    "InitMaxPath",
+    "sync_maxpath_to_checkpoint",
+    "display_enable"
+  ],
+  "claims": []
+}

@@ -1,0 +1,44 @@
+[
+  {
+    "name": "gViMgrThreadArg",
+    "offset": "0x0",
+    "size": "0x1b0",
+    "derived_retail_address": "0x800354f0"
+  },
+  {
+    "name": "viThreadStack",
+    "offset": "0x1b0",
+    "size": "0x1000",
+    "derived_retail_address": "0x800356a0"
+  },
+  {
+    "name": "gViMgrMesgQueue",
+    "offset": "0x11b0",
+    "size": "0x18",
+    "derived_retail_address": "0x800366a0"
+  },
+  {
+    "name": "gViMgrMesgBuffer",
+    "offset": "0x11c8",
+    "size": "0x14",
+    "derived_retail_address": "0x800366b8"
+  },
+  {
+    "name": "gViMgrEventDP",
+    "offset": "0x11e0",
+    "size": "0x18",
+    "derived_retail_address": "0x800366d0"
+  },
+  {
+    "name": "gViMgrEventSP",
+    "offset": "0x11f8",
+    "size": "0x18",
+    "derived_retail_address": "0x800366e8"
+  },
+  {
+    "name": "vi_manager_main.local_retrace",
+    "offset": "0x1210",
+    "size": "0x2",
+    "derived_retail_address": "0x80036700"
+  }
+]

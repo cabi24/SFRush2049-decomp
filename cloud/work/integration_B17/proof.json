@@ -1,0 +1,38 @@
+[
+  {
+    "source": "osSetEventMesg_stackfield",
+    "source_sha256": "d2af1bfa62a3f6bcbb49952aeca4c0789dfdc0b091e210c97c2f909434f375b3",
+    "target": "osSetEventMesg",
+    "target_sha256": "9a167a4493180b0f82c61967d474df34d0d8033f4a5a17d301b79012d2b4c65b",
+    "strict_score": 10,
+    "raw_word_diff": 1,
+    "target_words": 96,
+    "candidate_words": 96,
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "exit_code": 0
+  },
+  {
+    "source": "osSetEventMesg_stackfield",
+    "source_sha256": "d2af1bfa62a3f6bcbb49952aeca4c0789dfdc0b091e210c97c2f909434f375b3",
+    "target": "osSetEventMesg_stackalias",
+    "target_sha256": "915d0a979dc5a5484caf6e3d305847188007214a708ccf1adfa23d45f0b191a4",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "target_words": 96,
+    "candidate_words": 96,
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "exit_code": 0
+  },
+  {
+    "source": "vi_manager_main_local",
+    "source_sha256": "01b4cf075ec4db29ff5135b6634d98f75e04b0c1e31cbc060411751cc2d4dca9",
+    "target": "vi_manager_main",
+    "target_sha256": "9650777d667fc9e66fea3d03bbe20b456c52182a9482ec6dc1f6f8dbc0305f8d",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "target_words": 100,
+    "candidate_words": 100,
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "exit_code": 0
+  }
+]

@@ -1,5 +1,18 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-01 sixth completed promotion milestone
+
+- Game cartridge C: **530/1,216 functions, 62,272/647,072 bytes (9.62%)**. Static cartridge C: **107/230 functions, 24,288/61,440 bytes (39.53%)**.
+- Since previous pushed milestone: one game function /80 bytes and five static functions /4,376 bytes accepted. Across handoff:33 game functions /5,856 bytes and84 static functions /22,840 bytes. Switch extent registration remains separate from C credit.
+- A12 real steering/traction closure accepts vector_diff_process with its genuine hidden t0/a1/a2/a3 inputs. Coordinator D independently strict MATCH, source-built image and full-ROM exact. Both real callers remain explicit nonmatches; two already accepted math contexts remain MATCH without duplicate credit. Five actual bodies, no dummy formal or fabricated wrapper.
+- C12 five canonical PFS allocation/readwrite/checker/repair and EPi DMA bodies pass strict/raw and linked-byte proofs, current-header checks, and individual exact-ROM promotion transactions. Historical osPfsReadWriteFile is actually seven-argument allocator; no accepted caller depends on the old guessed signature. B16 independently verifies five new plus ten accepted bodies strict/raw0, and63 existing C-TU before/after equality; actual root local PI context also checked. Full forced actual-pin ROM baseline is final authority.
+- EPi first promotion cleanly rolled back on compile failure because root placed local macros after the promotion slot. Moved identical macro block before the slot and removed redundant extern, preserved accepted getter body, re-gated exact baseline, then unchanged candidate passed. Local context must precede every body that consumes it.
+- Supported refreshes for repair, EPi/device manager and mode setter pass relocation-aware assembly gates with no fallback. Existing osViSetMode remains O2 strict/raw0 and differs O1; osCreateViManager remains O1 strict/raw0 and differs O2. Earlier sender/PI manager candidates remain legitimately blocked by those pins.
+- New unaccepted storage leads: PI device manager matches1040 text bytes and its actual28-byte switch table under a verified original-address link model, but monolithic data ownership needs genuine table replacement before promotion. B17 authentic full VI storage model reproduces196 retail words with all real BSS offsets; existing standalone local counter is unbound. Canonical thread FP pair slots are u64 rather than current f32; header and full storage ownership require independent proof. C13/B18 work in isolated private builder snapshots, preserving root builds and SHA gates.
+- A13 real physics/caller module remains honest nonmatch with empty claims after genuine metadata/index/stream/width repairs. A14 explores a fresh three-caller tiny heap helper; initial5/24 residual is consumed-input order, not fabricated pressure. No provisional matches earn coverage.
+- Gates: source-built full-ROM SHA-1 EXACT; blob530 and group locks zero problems;110 static/source locks intact (107 actual ROM promotions plus3 historical source entries). Full pytest exit0 captured separately;27 required tests before every promotion. Five static and one game statuses reconciled forward without informational attention flags.
+- Pushed b7b2e298 CI run36906414150 succeeded. Farm paused for integration and resumes after checkpoint push; active jobs preserved. Three workers plus coordinator continue. Wiki host-key confirmation remains independently pending.
+
 ## 2026-10-01 fifth completed promotion milestone
 
 - Game cartridge C: **529/1,216 functions, 62,192/647,072 bytes (9.61%)**. Static cartridge C: **102/230 functions, 19,912/61,440 bytes (32.41%)**.

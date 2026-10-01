@@ -1,0 +1,312 @@
+[
+  {
+    "label": "corrected_baseline",
+    "keep": [
+      "audio_effect_apply",
+      "func_800B9338"
+    ],
+    "err": null,
+    "scores": {
+      "physics_response": {
+        "strict_diff": 227,
+        "size": 253,
+        "extra": 21,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "audio_effect_apply": {
+        "strict_diff": 169,
+        "size": 195,
+        "extra": 19,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "func_800B9338": {
+        "strict_diff": 0,
+        "size": 28,
+        "extra": 0,
+        "matched": true,
+        "err": null,
+        "errors": []
+      }
+    }
+  },
+  {
+    "label": "corrected_baseline",
+    "keep": [
+      "audio_effect_apply"
+    ],
+    "err": null,
+    "scores": {
+      "physics_response": {
+        "strict_diff": 225,
+        "size": 248,
+        "extra": 16,
+        "matched": false,
+        "err": null,
+        "errors": [
+          "unpaired R_MIPS_HI16 for D_80151CE8 at .text+0x400"
+        ]
+      },
+      "audio_effect_apply": {
+        "strict_diff": 158,
+        "size": 187,
+        "extra": 13,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "func_800B9338": {
+        "strict_diff": 22,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      }
+    }
+  },
+  {
+    "label": "corrected_baseline",
+    "keep": [
+      "audio_effect_apply",
+      "physics_response",
+      "func_800B9338"
+    ],
+    "err": null,
+    "scores": {
+      "physics_response": {
+        "strict_diff": 230,
+        "size": 281,
+        "extra": 48,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "audio_effect_apply": {
+        "strict_diff": 171,
+        "size": 175,
+        "extra": 1,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "func_800B9338": {
+        "strict_diff": 0,
+        "size": 28,
+        "extra": 0,
+        "matched": true,
+        "err": null,
+        "errors": []
+      }
+    }
+  },
+  {
+    "label": "word_counters",
+    "keep": [
+      "audio_effect_apply",
+      "func_800B9338"
+    ],
+    "err": null,
+    "scores": {
+      "physics_response": {
+        "strict_diff": 228,
+        "size": 240,
+        "extra": 9,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "audio_effect_apply": {
+        "strict_diff": 170,
+        "size": 191,
+        "extra": 17,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "func_800B9338": {
+        "strict_diff": 0,
+        "size": 28,
+        "extra": 0,
+        "matched": true,
+        "err": null,
+        "errors": []
+      }
+    }
+  },
+  {
+    "label": "word_counters",
+    "keep": [
+      "audio_effect_apply"
+    ],
+    "err": null,
+    "scores": {
+      "physics_response": {
+        "strict_diff": 228,
+        "size": 236,
+        "extra": 6,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "audio_effect_apply": {
+        "strict_diff": 157,
+        "size": 183,
+        "extra": 9,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "func_800B9338": {
+        "strict_diff": 22,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      }
+    }
+  },
+  {
+    "label": "word_counters",
+    "keep": [
+      "audio_effect_apply",
+      "physics_response",
+      "func_800B9338"
+    ],
+    "err": null,
+    "scores": {
+      "physics_response": {
+        "strict_diff": 230,
+        "size": 268,
+        "extra": 36,
+        "matched": false,
+        "err": null,
+        "errors": [
+          "unpaired R_MIPS_HI16 for D_80151CE8 at .text+0x404"
+        ]
+      },
+      "audio_effect_apply": {
+        "strict_diff": 169,
+        "size": 174,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "func_800B9338": {
+        "strict_diff": 0,
+        "size": 28,
+        "extra": 0,
+        "matched": true,
+        "err": null,
+        "errors": []
+      }
+    }
+  },
+  {
+    "label": "word_and_base_primary",
+    "keep": [
+      "audio_effect_apply",
+      "func_800B9338"
+    ],
+    "err": null,
+    "scores": {
+      "physics_response": {
+        "strict_diff": 229,
+        "size": 240,
+        "extra": 9,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "audio_effect_apply": {
+        "strict_diff": 170,
+        "size": 191,
+        "extra": 17,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "func_800B9338": {
+        "strict_diff": 0,
+        "size": 28,
+        "extra": 0,
+        "matched": true,
+        "err": null,
+        "errors": []
+      }
+    }
+  },
+  {
+    "label": "word_and_base_primary",
+    "keep": [
+      "audio_effect_apply"
+    ],
+    "err": null,
+    "scores": {
+      "physics_response": {
+        "strict_diff": 229,
+        "size": 234,
+        "extra": 4,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "audio_effect_apply": {
+        "strict_diff": 157,
+        "size": 183,
+        "extra": 9,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "func_800B9338": {
+        "strict_diff": 22,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      }
+    }
+  },
+  {
+    "label": "word_and_base_primary",
+    "keep": [
+      "audio_effect_apply",
+      "physics_response",
+      "func_800B9338"
+    ],
+    "err": null,
+    "scores": {
+      "physics_response": {
+        "strict_diff": 230,
+        "size": 268,
+        "extra": 36,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "audio_effect_apply": {
+        "strict_diff": 169,
+        "size": 174,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "func_800B9338": {
+        "strict_diff": 0,
+        "size": 28,
+        "extra": 0,
+        "matched": true,
+        "err": null,
+        "errors": []
+      }
+    }
+  }
+]

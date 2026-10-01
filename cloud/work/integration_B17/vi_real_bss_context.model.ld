@@ -1,0 +1,22 @@
+__osDisableInt = 0x8000c4b0;
+__osRestoreInt = 0x8000c520;
+__osViSwapContext = 0x8000c670;
+dll_get_priority = 0x8000c490;
+dll_init = 0x8000c090;
+dll_update = 0x8000c11c;
+gViLastCount = 0x80037c58;
+gViMgrEventCount = 0x8002c34c;
+gViMgrState = 0x8002c330;
+gViRetraceCount = 0x80037c5c;
+gViTimeAccumHi = 0x80037c50;
+osCreateMesgQueue = 0x80006a00;
+osCreateThread = 0x80006f30;
+osCreateViManager = 0x80008380;
+osGetActiveQueue = 0x8000c660;
+osGetCount = 0x8000c970;
+osJamMesg = 0x800075e0;
+osRecvMesg = 0x80007270;
+osSetEventMesgAlt = 0x80006e10;
+osStartThread = 0x80007080;
+osViInit = 0x8000c540;
+SECTIONS { .text 0x80006A30 : SUBALIGN(16) { *(.text) } .bss 0x800354F0 (NOLOAD) : { *(.bss) *(COMMON) } /DISCARD/ : { *(.reginfo) *(.MIPS.abiflags) *(.pdr) *(.comment) *(.mdebug) } }
