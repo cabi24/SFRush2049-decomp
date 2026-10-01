@@ -33,4 +33,36 @@ void __osContGetStatus(u8* pattern, OSContStatus* data) {
     *pattern = bits;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_a050/__osContRamReset.s")
+/* PROMOTED 2026-10-01 — __osContRamReset
+ * Source:   cloud/work/static_C7/__osContRamReset.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C7/__osContRamReset.c:__osContRamReset (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void __osContRamReset(u8 cmd) {
+    u8* ptr;
+    __OSContRequesFormat requestHeader;
+    s32 i;
+
+    for (i = 0; i < ARRLEN(__osSiDmaBuffer.ramarray); i++) {
+        __osSiDmaBuffer.ramarray[i] = 0;
+    }
+
+    __osSiDmaBuffer.pifstatus = CONT_CMD_EXE;
+    ptr = (u8*)__osSiDmaBuffer.ramarray;
+    requestHeader.dummy = CONT_CMD_NOP;
+    requestHeader.txsize = CONT_CMD_RESET_TX;
+    requestHeader.rxsize = CONT_CMD_RESET_RX;
+    requestHeader.cmd = cmd;
+    requestHeader.typeh = CONT_CMD_NOP;
+    requestHeader.typel = CONT_CMD_NOP;
+    requestHeader.status = CONT_CMD_NOP;
+    requestHeader.dummy1 = CONT_CMD_NOP;
+
+    for (i = 0; i < __osPfsRequestType2; i++) {
+        *(__OSContRequesFormat*)ptr = requestHeader;
+        ptr += sizeof(requestHeader);
+    }
+    *ptr = CONT_CMD_END;
+}
+
