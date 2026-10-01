@@ -1,0 +1,281 @@
+"""Options that must behave identically on every command that offers them.
+
+Two spellings of one selector and one printed registry are cross-cutting UX
+promises, not properties of a single command. They live here because ``cli``
+and ``view_cli`` both register subcommands: a copy in each module is how
+``view`` ended up with last-one-wins ``--symbol``/``--function`` handling while
+``compare`` rejected the conflict, and how ``view`` ended up with no way to ask
+what its keys mean.
+"""
+
+from __future__ import annotations
+
+import argparse
+import sys
+from collections.abc import Sequence
+from typing import Any
+
+from .artifacts import DEFAULT_STREAM_LIMIT
+from .schema import explain_keys_text
+
+#: Where the parser records which spelling of the selector was used, so a
+#: conflict can name the option the reader actually typed. ``main`` strips it
+#: before any command sees it: it is parser bookkeeping, not an argument.
+SYMBOL_OPTION_DEST = "symbol_option"
+
+SYMBOL_HELP = "compare only this exact symbol; --function is the same option"
+
+#: Appended to every spelling of the selector's help.
+#:
+#: Omitting the selector is a legitimate mode, not a mistake, but it silently
+#: changes the question from "does this function match" to "does this section
+#: match position for position". Readers were choosing it by default without
+#: knowing they had chosen anything; the loud case now also warns at run time.
+SYMBOL_OMISSION_HELP = (
+    "Omitting it compares the whole section positionally - only safe when "
+    "both objects hold the same single function."
+)
+
+
+class SymbolAction(argparse.Action):
+    """Accept both vocabularies for one selector.
+
+    Decompilation projects say "function"; GNU tooling says "symbol". Both
+    spellings write the same destination. Passing both with different values
+    is a mistake worth reporting instead of silently keeping the last one.
+    """
+
+    def __call__(
+        self,
+        parser: argparse.ArgumentParser,
+        namespace: argparse.Namespace,
+        values: str | Sequence[Any] | None,
+        option_string: str | None = None,
+    ) -> None:
+        previous = getattr(namespace, self.dest, None)
+        if previous is not None and previous != values:
+            previous_option = getattr(namespace, SYMBOL_OPTION_DEST, "--symbol")
+            raise argparse.ArgumentError(
+                self,
+                f"conflicts with {previous_option} {previous!r}; "
+                "--symbol and --function are two spellings of one selector",
+            )
+        setattr(namespace, self.dest, values)
+        setattr(namespace, SYMBOL_OPTION_DEST, option_string)
+
+
+def add_symbol_argument(
+    parser: argparse.ArgumentParser, *, help_text: str = SYMBOL_HELP
+) -> None:
+    """Add the symbol selector under both accepted spellings."""
+
+    parser.add_argument(
+        "--symbol",
+        "--function",
+        action=SymbolAction,
+        default=None,
+        metavar="NAME",
+        help=f"{help_text.rstrip('. ')}. {SYMBOL_OMISSION_HELP}",
+    )
+
+
+class ExplainKeysAction(argparse.Action):
+    """Print the metric registry and exit, like ``--version``."""
+
+    def __init__(
+        self,
+        option_strings: Sequence[str],
+        dest: str = argparse.SUPPRESS,
+        default: str = argparse.SUPPRESS,
+        help: str | None = None,
+    ) -> None:
+        super().__init__(
+            option_strings=option_strings,
+            dest=dest,
+            default=default,
+            nargs=0,
+            help=help,
+        )
+
+    def __call__(
+        self,
+        parser: argparse.ArgumentParser,
+        namespace: argparse.Namespace,
+        values: str | Sequence[Any] | None,
+        option_string: str | None = None,
+    ) -> None:
+        print(explain_keys_text())
+        parser.exit()
+
+
+#: Help for the watch-row selector, shared by every command that renders
+#: comparison rows so a signature means the same thing wherever it appears.
+WATCH_ROWS_HELP = (
+    "watch these positional rows and print a healed/broken column for each "
+    "(. healed, X broken, ? out of range). Takes 49,1620,1677, or "
+    "r49=49,cx2=1620 to name the columns, or @probes.json for a named set. "
+    "Scalar metrics conflate schedule with allocation and over-charge block "
+    "permutations; a signature over rows you chose because they discriminate "
+    "does neither"
+)
+
+
+def add_watch_rows_argument(parser: argparse.ArgumentParser) -> None:
+    """Offer the heal-signature watchlist wherever comparison rows are read."""
+
+    parser.add_argument(
+        "--watch-rows",
+        metavar="ROWS",
+        default=None,
+        help=WATCH_ROWS_HELP,
+    )
+
+
+def add_explain_keys_argument(parser: argparse.ArgumentParser) -> None:
+    """Offer the metric registry wherever reported keys are printed."""
+
+    parser.add_argument(
+        "--explain-keys",
+        action=ExplainKeysAction,
+        help="print the metric registry (label, JSON key, meaning) and exit",
+    )
+
+
+def add_census_argument(parser: argparse.ArgumentParser) -> None:
+    """Offer the report predicate wherever a report is produced.
+
+    One spelling and one exit-code contract on every command that reports
+    metrics: a filter whose meaning depended on which command ran it would be
+    worse than the ad-hoc regular expressions it replaces.
+    """
+
+    parser.add_argument(
+        "--census",
+        action="append",
+        default=[],
+        metavar="KEY=VALUE[,KEY=VALUE...]",
+        help=(
+            "assert reported values; exit 3 if any predicate fails "
+            "(2 for an unknown key), and print one PASS/FAIL line each. "
+            "Repeatable"
+        ),
+    )
+
+
+def add_candidate_listing_argument(parser: argparse.ArgumentParser) -> None:
+    """Offer the candidate's ugen assembly listing as statement-line evidence.
+
+    Opt-in, because most readers do not keep the intermediate. The help text
+    says where the file comes from rather than naming the file type and
+    stopping: a diagnostic input nobody knows how to produce is not an option,
+    it is a wall.
+    """
+
+    parser.add_argument(
+        "--candidate-listing",
+        metavar="PATH",
+        help=(
+            "the assembly listing ugen wrote for the candidate, used to report "
+            "whether schedule-divergent sites sit at .loc statement-line "
+            "boundaries; the IDO driver keeps it beside the object when you "
+            "pass `cc -K`, and `ugen -l` writes it directly"
+        ),
+    )
+
+
+class ListFileAction(argparse.Action):
+    """Read a repeatable option's values from a file, one per line.
+
+    A sweep driver that assembles a list in a shell variable and expands it
+    unquoted works under `bash` and silently does not under `zsh`, which does
+    not word-split parameter expansions. One campaign's whole scorer family had
+    that shape: `python3 bands.py $LABS` handed the entire newline-joined list
+    to the tool as *one* filename, and the run died inside `objdump` with "file
+    name too long" -- which reads as a scorer bug, not a quoting bug, and cost
+    a stage before anyone recognised it.
+
+    The fix is not to remind people to quote. It is to give every list-valued
+    option an input that is not a shell word at all: one value per line, blank
+    lines and `#` comments ignored, so a driver writes a file and never builds
+    an argument list in a variable.
+    """
+
+    def __call__(
+        self,
+        parser: argparse.ArgumentParser,
+        namespace: argparse.Namespace,
+        values: str | Sequence[Any] | None,
+        option_string: str | None = None,
+    ) -> None:
+        path = str(values)
+        try:
+            text = (
+                sys.stdin.read() if path == "-" else open(path, encoding="utf-8").read()
+            )
+        except OSError as error:
+            raise argparse.ArgumentError(self, f"cannot read {path}: {error}") from None
+        items = [
+            line.strip()
+            for line in text.splitlines()
+            if line.strip() and not line.strip().startswith("#")
+        ]
+        if not items:
+            raise argparse.ArgumentError(
+                self, f"{path} holds no values (blank lines and # comments are ignored)"
+            )
+        existing = list(getattr(namespace, self.dest, None) or [])
+        converter = self.type
+        if callable(converter):
+            converted = [converter(item) for item in items]
+        else:
+            converted = items
+        setattr(namespace, self.dest, existing + converted)
+
+
+def add_list_file_argument(
+    parser: argparse.ArgumentParser,
+    *,
+    option: str,
+    dest: str,
+    noun: str,
+    value_type: Any = None,
+) -> None:
+    """Offer `--OPTION-from FILE` beside a repeatable `--OPTION`.
+
+    One spelling everywhere: `--construct-from`, `--carrier-from`. A driver
+    that needs more values than a command line wants writes them to a file
+    rather than into a shell variable it then has to expand correctly.
+    """
+
+    parser.add_argument(
+        f"--{option}-from",
+        dest=dest,
+        action=ListFileAction,
+        type=value_type,
+        metavar="FILE",
+        help=(
+            f"read {noun} from FILE, one per line (- for stdin); blank lines "
+            f"and # comments are ignored. Use this rather than expanding a "
+            f"shell variable: zsh does not word-split one, so the whole list "
+            f"arrives as a single argument"
+        ),
+    )
+
+
+def add_process_output_arguments(parser: argparse.ArgumentParser) -> None:
+    """Add shared bounded-stream and explicit full-artifact controls."""
+
+    parser.add_argument(
+        "--stream-limit",
+        type=int,
+        default=DEFAULT_STREAM_LIMIT,
+        metavar="BYTES",
+        help=(
+            "maximum retained bytes per compiler stream "
+            f"(default: {DEFAULT_STREAM_LIMIT})"
+        ),
+    )
+    parser.add_argument(
+        "--artifact-dir",
+        help="retain complete compiler stdout/stderr here",
+    )
