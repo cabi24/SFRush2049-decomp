@@ -1,12 +1,4 @@
 {
-  "cloud/work/static_C11/dll_insert.c:dll_insert": {
-    "body_sha256": "02d281cf3dc0d038f2439d375d40a6e9d14ee67adb94844bc259e8ff38f81e77",
-    "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
-    "target_id": "dll_insert",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-01"
-  },
   "cloud/work/static_C11/dll_update.c:dll_update": {
     "body_sha256": "a312c0513076bd3db3d21ea29cb59932cfbb34cd8ccfed376bcda7ff7cf28cc6",
     "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
@@ -562,6 +554,14 @@
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-07-15"
+  },
+  "src/rom/lib_cc50.c:dll_insert": {
+    "body_sha256": "02d281cf3dc0d038f2439d375d40a6e9d14ee67adb94844bc259e8ff38f81e77",
+    "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "target_id": "dll_insert",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
   },
   "src/rom/lib_d140.c:osViInit": {
     "body_sha256": "2f476e4f3d2f22600d7a63bb971542cd4c01f1d214c9c1c764f8d0a719e2c52b",
