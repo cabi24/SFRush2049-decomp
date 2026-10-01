@@ -1,0 +1,82 @@
+{
+  "func_800B4B00": {
+    "words": 37,
+    "decision": "compiled"
+  },
+  "func_800947F0": {
+    "words": 38,
+    "decision": "compiled"
+  },
+  "func_800ACFF8": {
+    "words": 38,
+    "decision": "deferred consumed float pair plus pointer; already observed forced home/allocation tails, no new type lever"
+  },
+  "func_800AD090": {
+    "words": 38,
+    "decision": "deferred consumed float pair plus pointer; already observed forced home/allocation tails, no new type lever"
+  },
+  "func_800B0580": {
+    "words": 38,
+    "decision": "deferred actual D0C0/AFA84 callee ABI requires fresh full audit"
+  },
+  "func_800B66B0": {
+    "words": 38,
+    "decision": "compiled"
+  },
+  "func_800C40E8": {
+    "words": 38,
+    "decision": "deferred consumed float pair plus pointer; already observed forced home/allocation tails, no new type lever"
+  },
+  "func_800E313C": {
+    "words": 38,
+    "decision": "excluded unused third argument home: original signature unproved; no dummy formal"
+  },
+  "track_lighting_setup": {
+    "words": 38,
+    "decision": "deferred seven-case switch, six real large callees; small ordinary work prioritized"
+  },
+  "func_800D0810": {
+    "words": 33,
+    "decision": "compiled"
+  },
+  "func_800BD080": {
+    "words": 33,
+    "decision": "compiled"
+  },
+  "func_800BDA24": {
+    "words": 33,
+    "decision": "compiled"
+  },
+  "func_80098A54": {
+    "words": 34,
+    "decision": "excluded; no new bounded semantic lever"
+  },
+  "func_800B9284": {
+    "words": 34,
+    "decision": "compiled"
+  },
+  "func_800EC270": {
+    "words": 34,
+    "decision": "deferred existing newtargets_hi typed controls; no new evidence"
+  },
+  "func_8008E0B8": {
+    "words": 35,
+    "decision": "excluded; no new bounded semantic lever"
+  },
+  "func_800F7EB0": {
+    "words": 35,
+    "decision": "deferred existing newtargets_hi extensive controls; no new evidence"
+  },
+  "visual_objects_update": {
+    "words": 35,
+    "decision": "deferred actual MaxPathZeroControls callee context already investigated; no new type lever"
+  },
+  "game_timer_reset": {
+    "words": 36,
+    "decision": "deferred actual signed-half input homes; real Input_ApplyPadConfig signature audited, no new missing input"
+  },
+  "audio_output_setup": {
+    "words": 37,
+    "decision": "compiled"
+  }
+}

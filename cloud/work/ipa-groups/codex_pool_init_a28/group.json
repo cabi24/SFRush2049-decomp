@@ -1,0 +1,17 @@
+{
+  "members": [
+    "func_800B0580"
+  ],
+  "context": [
+    "func_800AFA84"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "keep": [
+    "func_800B0580",
+    "func_800AFA84"
+  ],
+  "claims": []
+}

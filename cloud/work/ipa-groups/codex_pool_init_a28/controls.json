@@ -1,0 +1,42 @@
+{
+  "array_pool_view": {
+    "members": {
+      "func_800B0580": {
+        "strict_diff": 30,
+        "size": 43,
+        "extra": 5,
+        "matched": false,
+        "err": null
+      }
+    },
+    "context": {
+      "func_800AFA84": {
+        "strict_diff": 0,
+        "size": 41,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      }
+    }
+  },
+  "byte_pool_view": {
+    "members": {
+      "func_800B0580": {
+        "strict_diff": 30,
+        "size": 43,
+        "extra": 5,
+        "matched": false,
+        "err": null
+      }
+    },
+    "context": {
+      "func_800AFA84": {
+        "strict_diff": 0,
+        "size": 41,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      }
+    }
+  }
+}

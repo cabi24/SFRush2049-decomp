@@ -1,0 +1,8 @@
+{
+  "func_800B9284": {
+    "source_sha256": "b9f380cd7b9a3a7c42778ba0ded1d828839f413a5c3bc36802b30dcc7d99e244",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "canonical_exit": 0,
+    "verdict": "func_800B9284:\n  MATCH\n"
+  }
+}

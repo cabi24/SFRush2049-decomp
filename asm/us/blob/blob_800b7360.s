@@ -2098,6 +2098,7 @@ physics_collision_test:
 .section .text.func_800B9284, "ax", @progbits
 .globl func_800B9284
 func_800B9284:
+    /* compiled from src/blob/func_800B9284.c */
     .word 0x3C0E8015
     .word 0x81CE2570
     .word 0x3C0F8016

@@ -1,0 +1,102 @@
+{
+  "audio_output_setup": {
+    "strict_diff": 26,
+    "size": 37,
+    "target_size": 37,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "fe3d31fbf43dd4016e730d4a0d99513a110171eb3b9cc70378d7adc591cc07f5"
+  },
+  "func_800B9284": {
+    "strict_diff": 0,
+    "size": 34,
+    "target_size": 34,
+    "extra": 0,
+    "matched": true,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "b9f380cd7b9a3a7c42778ba0ded1d828839f413a5c3bc36802b30dcc7d99e244",
+    "canonical_exit": 0
+  },
+  "func_800D0810": {
+    "strict_diff": 16,
+    "size": 33,
+    "target_size": 33,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "75132c77cd96564ad0f396d5973feb987644775f252adb32c8ffd806217e2726"
+  },
+  "func_800B66B0": {
+    "strict_diff": 30,
+    "size": 38,
+    "target_size": 38,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "1c157ddb818642f29fcc783d5d660826b6a9c0b1af6b6483c5252105fe445616"
+  },
+  "func_800BD080": {
+    "strict_diff": 33,
+    "size": 33,
+    "target_size": 33,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "9bf9b8b399d816267a8a84b15ed49cc3b3362fa915b204f852975c93698e9423"
+  },
+  "func_800BDA24": {
+    "strict_diff": 31,
+    "size": 35,
+    "target_size": 33,
+    "extra": 2,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "1dcb07811ad2ebfa5d95b33e4d6024be7d56fb47ea61b16addc2b18eb18bca8e"
+  },
+  "func_800947F0": {
+    "strict_diff": 37,
+    "size": 38,
+    "target_size": 38,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "d9f05d8724cb84f5984b46b1327fa6df8224df3de7ac8dc7bc4c96024fc8cbb6"
+  },
+  "func_800B4B00": {
+    "strict_diff": 0,
+    "size": 37,
+    "target_size": 37,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [
+      ".rodata+0x0 at +0x24",
+      ".rodata+0x0 at +0x2c"
+    ],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "b223910c2338c9d48a9bc3b33511a374b5ad7f0edd4be4570e911f2f149d7148"
+  }
+}
