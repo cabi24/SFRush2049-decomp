@@ -1,0 +1,84 @@
+No claims: work in progress, reported only.
+Members:
+
+Context (informational; excluded from exit status):
+state_utility:
+    +0x034  want 1441000e                               got 1441000d                             
+    +0x05c  want 01587023                               got 01585023                             
+    +0x060  want 000e5400                               got 000acc00                             
+    +0x064  want 000a7c03                               got 1000000d                             
+    +0x068  want 1000000e                               got 00195403                             
+    +0x06c  want 01e05025                               got 24010002                             
+    +0x070  want 24010002                               got 1441000a                             
+    +0x074  want 1441000b                               got 8fa40020                             
+    +0x078  want 8fa40020                               got 2405ffff                             
+    +0x07c  want 2405ffff                               got a7aa001a                             
+    +0x080  want a7aa001a                               got 0c02cfe9                             
+    +0x084  want 0c02cfe9                               got a7ab001e                             
+  77/99 words differ
+object_byte9_set:
+  MATCH
+func_800F68A4:
+  MATCH
+camera_shake_update:
+  MATCH
+sound_update_channel:
+    +0x000  want 3c078015                               got 3c058015                             
+    +0x004  want 8ce79780                               got 24a59780                             
+    +0x008  want 27bdffe8                               got 8cae0000                             
+    +0x00c  want afbf0014                               got 27bdffe8                             
+    +0x010  want 00002825                               got afbf0014                             
+    +0x014  want 00003025                               got afa00004                             
+    +0x018  want 0c0258a2                               got 00002025                             
+    +0x01c  want 00e02025                               got 0c0258a2                             
+    +0x020  want 00077080                               got afae0000                             
+    +0x024  want 01c77021                               got 8caf0000                             
+    +0x028  want 000e7080                               got 3c198015                             
+    +0x02c  want 3c028015                               got 3c068015                             
+  122/122 words differ (3 extra words (nonzero beyond target length))
+func_80096288:
+    +0x000  want 10c00001                               got 03e00008                             
+    +0x008  want 03e00008                               got (missing)
+    +0x00c  want 00000000                               got (missing)
+  3/4 words differ
+slot_value_get:
+    +0x008  want 00803825                               got afa40000                             
+    +0x00c  want 00002825                               got 00802825                             
+    +0x010  want 0c0258a2                               got 00002025                             
+    +0x014  want 00003025                               got 0c0258a2                             
+    +0x018  want 00077080                               got afa00004                             
+    +0x01c  want 01c77021                               got 00057080                             
+    +0x020  want 8fbf0014                               got 01c57021                             
+    +0x024  want 000e7080                               got 8fbf0014                             
+    +0x028  want 3c028015                               got 000e7080                             
+    +0x02c  want 004e1021                               got 3c028015                             
+    +0x030  want 8c426d44                               got 004e1021                             
+    +0x034  want 03e00008                               got 8c426d44                             
+  13/15 words differ (1 extra words (nonzero beyond target length))
+mode_byte2_set:
+  MATCH
+mode_byte_set:
+  MATCH
+object_type_byte2_get:
+  MATCH
+object_type_byte3_get:
+  MATCH
+object_bytes23_sum:
+    +0x010  want 3c0c8015                               got 3c0a8015                             
+    +0x014  want 258c97f0                               got 254a97f0                             
+    +0x018  want 8d8e0000                               got 8d4e0000                             
+    +0x028  want 8d8f0000                               got 8d4f0000                             
+  4/18 words differ
+object_bytes_sum_global:
+    +0x010  want 3c0c8015                               got 3c0a8015                             
+    +0x014  want 258c97f0                               got 254a97f0                             
+    +0x018  want 8d8e0000                               got 8d4e0000                             
+    +0x028  want 8d8f0000                               got 8d4f0000                             
+    +0x02c  want 3c028015                               got 3c198015                             
+    +0x030  want 80429b60                               got 83399b60                             
+    +0x034  want 91e30002                               got 91f80002                             
+    +0x040  want 0043c021                               got 03197021                             
+    +0x044  want 03091021                               got 01c91021                             
+    +0x048  want 0002cc00                               got 00027c00                             
+    +0x050  want 00191403                               got 000f1403                             
+  11/21 words differ

@@ -3422,6 +3422,14 @@
     "verified": "image_gate",
     "verified_at": "2026-09-29"
   },
+  "func_8010C7CC": {
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "src/blob/func_8010C7CC.c",
+    "source_sha256": "e8ca4a734d87a7f6d67a44975e70704e86ad7e141301c56b63a92dea8245c89f",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-01"
+  },
   "func_8010C7F4": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_8010C7F4.c",
@@ -3485,6 +3493,14 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-29"
+  },
+  "func_8010FD60": {
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "src/blob/func_8010FD60.c",
+    "source_sha256": "f4a75ea6b155a413ce5132c8ee8c2131a7830e3aff12672a1e32b9399262146d",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-01"
   },
   "game_state_check_handler": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",

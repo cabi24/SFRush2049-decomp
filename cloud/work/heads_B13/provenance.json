@@ -1,0 +1,62 @@
+[
+  {
+    "target_id": "func_8010C7CC",
+    "address": 2148583372,
+    "population": "extracted",
+    "insn_count": 6,
+    "target_asm_sha": "cc9270e54d287eaa1fb01e37d55ce4d94f1e9ec7d5180c8bc94f151f964c4b27",
+    "target_o_sha": "c84a247cd131d945e56ce9294c05b7f55b8beb1a6661c645482886695534db04",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "discovered"
+  },
+  {
+    "target_id": "func_8010FD60",
+    "address": 2148597088,
+    "population": "extracted",
+    "insn_count": 7,
+    "target_asm_sha": "fae55881af8fb08b2579570e9f5dd73d08530be74df44834fc90a1bedf82eae5",
+    "target_o_sha": "cfbb97222b009b560338bcf1a887f97f1879d734775952eb809f6afe779b6568",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "discovered"
+  },
+  {
+    "target_id": "func_8010D85C",
+    "address": 2148587612,
+    "population": "extracted",
+    "insn_count": 92,
+    "target_asm_sha": "b1ea8df0bf189ffa2b20f484e548a016e0d4928e96121ff63a9b74accf390aa8",
+    "target_o_sha": "5ff29dc99703edd3f1c18cb050c733ee8d34755b08283784f66a3e4f49a603dc",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "discovered"
+  },
+  {
+    "target_id": "func_80108DA8",
+    "address": 2148568488,
+    "population": "extracted",
+    "insn_count": 102,
+    "target_asm_sha": "a494f3b5027c61594f4be8411570ddc5f7e44c9c18b478f51d763b617c9e1d6d",
+    "target_o_sha": "531b2841ad1b019c6445bf16c289f34c09c40fd245cf746c66c7c9ced6a6d835",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "discovered"
+  },
+  {
+    "target_id": "func_8010E4E4",
+    "address": 2148590820,
+    "population": "extracted",
+    "insn_count": 108,
+    "target_asm_sha": "b6af6e502acf7a762520c93beff40601a2a5450f3044220851b425710f25f551",
+    "target_o_sha": "2605852aec65402a2e6f25cb9b233d3c0af86d58e2f3437de3cf4c0d62f8167c",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "discovered"
+  }
+]

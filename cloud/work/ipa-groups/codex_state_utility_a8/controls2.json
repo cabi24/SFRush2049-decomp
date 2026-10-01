@@ -1,0 +1,170 @@
+[
+  {
+    "label": "direct_sub_s16",
+    "err": null,
+    "score": {
+      "strict_diff": 80,
+      "size": 96,
+      "target_size": 99,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  },
+  {
+    "label": "direct_sub_s32",
+    "err": null,
+    "score": {
+      "strict_diff": 80,
+      "size": 96,
+      "target_size": 99,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  },
+  {
+    "label": "direct_return_s32",
+    "err": null,
+    "score": {
+      "strict_diff": 80,
+      "size": 96,
+      "target_size": 99,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  },
+  {
+    "label": "direct_sub_u32",
+    "err": null,
+    "score": {
+      "strict_diff": 80,
+      "size": 96,
+      "target_size": 99,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  },
+  {
+    "label": "direct_return_u32",
+    "err": null,
+    "score": {
+      "strict_diff": 80,
+      "size": 96,
+      "target_size": 99,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  },
+  {
+    "label": "direct_local_xy",
+    "err": null,
+    "score": {
+      "strict_diff": 99,
+      "size": 105,
+      "target_size": 99,
+      "extra": 6,
+      "matched": false,
+      "err": null
+    }
+  },
+  {
+    "label": "direct_wide_xy",
+    "err": null,
+    "score": {
+      "strict_diff": 94,
+      "size": 99,
+      "target_size": 99,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  },
+  {
+    "label": "getters_sub_s16",
+    "err": null,
+    "score": {
+      "strict_diff": 76,
+      "size": 96,
+      "target_size": 99,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  },
+  {
+    "label": "getters_sub_s32",
+    "err": null,
+    "score": {
+      "strict_diff": 76,
+      "size": 96,
+      "target_size": 99,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  },
+  {
+    "label": "getters_return_s32",
+    "err": null,
+    "score": {
+      "strict_diff": 76,
+      "size": 96,
+      "target_size": 99,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  },
+  {
+    "label": "getters_sub_u32",
+    "err": null,
+    "score": {
+      "strict_diff": 76,
+      "size": 96,
+      "target_size": 99,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  },
+  {
+    "label": "getters_return_u32",
+    "err": null,
+    "score": {
+      "strict_diff": 76,
+      "size": 96,
+      "target_size": 99,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  },
+  {
+    "label": "getters_local_xy",
+    "err": null,
+    "score": {
+      "strict_diff": 99,
+      "size": 105,
+      "target_size": 99,
+      "extra": 6,
+      "matched": false,
+      "err": null
+    }
+  },
+  {
+    "label": "getters_wide_xy",
+    "err": null,
+    "score": {
+      "strict_diff": 92,
+      "size": 99,
+      "target_size": 99,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  }
+]

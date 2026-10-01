@@ -1,0 +1,125 @@
+{
+  "err": null,
+  "matched": false,
+  "members": {
+    "state_utility": {
+      "strict_diff": 77,
+      "size": 97,
+      "target_size": 99,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": []
+    }
+  },
+  "context": {
+    "object_byte9_set": {
+      "strict_diff": 0,
+      "size": 16,
+      "target_size": 16,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": []
+    },
+    "func_800F68A4": {
+      "strict_diff": 0,
+      "size": 33,
+      "target_size": 33,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": []
+    },
+    "camera_shake_update": {
+      "strict_diff": 0,
+      "size": 45,
+      "target_size": 45,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": []
+    },
+    "sound_update_channel": {
+      "strict_diff": 122,
+      "size": 125,
+      "target_size": 122,
+      "extra": 3,
+      "matched": false,
+      "err": null,
+      "unverified": []
+    },
+    "func_80096288": {
+      "strict_diff": 3,
+      "size": 2,
+      "target_size": 4,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": []
+    },
+    "slot_value_get": {
+      "strict_diff": 13,
+      "size": 16,
+      "target_size": 15,
+      "extra": 1,
+      "matched": false,
+      "err": null,
+      "unverified": []
+    },
+    "mode_byte2_set": {
+      "strict_diff": 0,
+      "size": 20,
+      "target_size": 20,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": []
+    },
+    "mode_byte_set": {
+      "strict_diff": 0,
+      "size": 20,
+      "target_size": 20,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": []
+    },
+    "object_type_byte2_get": {
+      "strict_diff": 0,
+      "size": 10,
+      "target_size": 10,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": []
+    },
+    "object_type_byte3_get": {
+      "strict_diff": 0,
+      "size": 10,
+      "target_size": 10,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": []
+    },
+    "object_bytes23_sum": {
+      "strict_diff": 4,
+      "size": 18,
+      "target_size": 18,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": []
+    },
+    "object_bytes_sum_global": {
+      "strict_diff": 11,
+      "size": 21,
+      "target_size": 21,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": []
+    }
+  }
+}

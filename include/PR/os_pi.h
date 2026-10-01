@@ -77,8 +77,8 @@ typedef struct OSPiHandle {
 u32 osPiGetStatus(void);
 s32 osPiWriteIo(u32 devAddr, u32 data);
 s32 osPiReadIo(u32 devAddr, u32 *data);
-s32 osPiStartDma(OSIoMesg *mb, s32 priority, s32 direction,
-                 u32 devAddr, void *dramAddr, u32 size, OSMesgQueue *mq);
+/* Historical label: retail implementation is SDK __osPiRawStartDma. */
+s32 osPiStartDma(s32 direction, u32 devAddr, void *dramAddr, u32 size);
 void osCreatePiManager(s32 pri, OSMesgQueue *cmdQ, OSMesg *cmdBuf, s32 cmdMsgCnt);
 OSPiHandle *osCartRomInit(void);
 
