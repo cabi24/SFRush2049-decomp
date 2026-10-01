@@ -155,9 +155,7 @@ s32 osPfsFindFile(OSPfs *pfs, __OSInode *inode, u8 start_page, u8 bank,
                   __OSInodeUnit *nextPage);
 /* Historical label: retail implementation is SDK osPfsFileState. */
 s32 osPfsDeleteFile(OSPfs *pfs, s32 fileNo, OSPfsState *state);
-/* Historical label: retail implementation is SDK osPfsAllocateFile. */
-s32 osPfsReadWriteFile(OSPfs *pfs, u16 companyCode, u32 gameCode,
-                       u8 *gameName, u8 *extName, int size, s32 *fileNo);
+s32 osPfsReadWriteFile(OSPfs *,u16,u32,u8 *,u8 *,int,s32 *);
 s32 osPfsFileState(OSPfs *pfs, s32 fileNo, OSPfsState *state);
 s32 osPfsGetLabel(OSPfs *pfs, u8 *label, s32 *length);
 s32 osPfsSetLabel(OSPfs *pfs, u8 *label);

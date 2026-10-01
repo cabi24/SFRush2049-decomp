@@ -1,0 +1,37 @@
+[
+  {
+    "function": "osPfsReadWriteFile",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "shared_source_sha256": "8eb2eddd3405697b5f1ea4470bc52a994223c560d411b4a6daba9dbd1c06efce"
+  },
+  {
+    "function": "osPfsGetFileSize",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "shared_source_sha256": "c15132b3849220bb2e4a2c0f87e47a63a37070bdcfee725c5b3907b7807c9e86"
+  },
+  {
+    "function": "osPfsChecker",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "shared_source_sha256": "5cdfd643cf947417ad2b64df094cf78850a0e7677d7f7528bee655c96aa0d4ab"
+  },
+  {
+    "function": "__osRepairId",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "shared_source_sha256": "2b9ab3ae964d45ca8a29b5ef065ad0e6e268073fc4e934892dab93981618fb3d"
+  },
+  {
+    "function": "osPiSetDeviceTiming",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "shared_source_sha256": "8d52f8d3d0a63b49625e659be41179a53182275e13d16a983756b967a1a71341"
+  }
+]

@@ -1,0 +1,137 @@
+[
+  {
+    "function": "osPfsReadWriteFile",
+    "vaddr": "0x8000a970",
+    "rom_offset": "0xb570",
+    "slot_sha256": "7120faa89db63504fad8381e681a3b2af386fb3316b46a6d81ae3c9969de48ad",
+    "linked_prefix_word_diff": 0,
+    "candidate_words": 208,
+    "slot_words": 205,
+    "extra_candidate_words": [
+      0,
+      0,
+      0
+    ],
+    "missing_slot_words": [],
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": []
+  },
+  {
+    "function": "osPfsGetFileSize",
+    "vaddr": "0x8000aec4",
+    "rom_offset": "0xbac4",
+    "slot_sha256": "37712ba9cbb3ffb5741acb7427dfce1349e4132573333c3e93c34795a076646d",
+    "linked_prefix_word_diff": 0,
+    "candidate_words": 224,
+    "slot_words": 223,
+    "extra_candidate_words": [
+      0
+    ],
+    "missing_slot_words": [],
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": []
+  },
+  {
+    "function": "osPfsChecker",
+    "vaddr": "0x8000b3e0",
+    "rom_offset": "0xbfe0",
+    "slot_sha256": "ed9cdbc2ab7a0569078fd201bda1e552b17b2afde51d2e3afda8f82945e5ce96",
+    "linked_prefix_word_diff": 0,
+    "candidate_words": 336,
+    "slot_words": 334,
+    "extra_candidate_words": [
+      0,
+      0
+    ],
+    "missing_slot_words": [],
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": []
+  },
+  {
+    "function": "__osRepairId",
+    "vaddr": "0x8000ec70",
+    "rom_offset": "0xf870",
+    "slot_sha256": "c4cdbaafef4a0e8adbee19d3b2e3f269acf0627f19cd10ddb5acefc9a1689028",
+    "linked_prefix_word_diff": 0,
+    "candidate_words": 212,
+    "slot_words": 212,
+    "extra_candidate_words": [],
+    "missing_slot_words": [],
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": []
+  },
+  {
+    "function": "osSetEventMesg",
+    "vaddr": "0x80006a30",
+    "rom_offset": "0x7630",
+    "slot_sha256": "02759e49d1d8b507ba5c5640ed2e723f8415ba028f76140cea631747c0485521",
+    "linked_prefix_word_diff": 41,
+    "candidate_words": 96,
+    "slot_words": 96,
+    "extra_candidate_words": [],
+    "missing_slot_words": [],
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": []
+  },
+  {
+    "function": "vi_manager_main",
+    "vaddr": "0x80006bb0",
+    "rom_offset": "0x77b0",
+    "slot_sha256": "372586fb15a905f2c66c599ffab7eaa6a167aebd0c87b590fd879697b0e3160f",
+    "linked_prefix_word_diff": 91,
+    "candidate_words": 100,
+    "slot_words": 100,
+    "extra_candidate_words": [],
+    "missing_slot_words": [],
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": []
+  },
+  {
+    "function": "osPiSetDeviceTiming",
+    "vaddr": "0x8000dda0",
+    "rom_offset": "0xe9a0",
+    "slot_sha256": "7678347afcce144d0b5f066b85ba62ed57da0953d404bc64efea9b0cbb020dad",
+    "linked_prefix_word_diff": 0,
+    "candidate_words": 120,
+    "slot_words": 120,
+    "extra_candidate_words": [],
+    "missing_slot_words": [],
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": []
+  },
+  {
+    "function": "osSpTaskLoad_full",
+    "vaddr": "0x8000df80",
+    "rom_offset": "0xeb80",
+    "slot_sha256": "8295d0d593688626442def768f96835ea1c949e5638dbed95708da51154b44a9",
+    "linked_prefix_word_diff": 175,
+    "candidate_words": 260,
+    "slot_words": 260,
+    "extra_candidate_words": [],
+    "missing_slot_words": [],
+    "masks": {
+      "636": 4294901760,
+      "644": 4294901760
+    },
+    "unresolved": [],
+    "unverified": [
+      ".rodata+0x0 at +0x27c",
+      ".rodata+0x0 at +0x284"
+    ],
+    "errors": []
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "target_id": "physics_response",
+    "address": 2148242344,
+    "population": "extracted",
+    "insn_count": 230,
+    "target_asm_sha": "dd25fbc8ee78313b22e9e0ed82029bb8f28873a1a51ac0e17023e8454c182ba5",
+    "target_o_sha": "908b27f6698779a265ad72099cb6cd29b114f2d9f37b17abf03d8d0ea52b1e06",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "extent_repaired"
+  },
+  {
+    "target_id": "steering_sensitivity",
+    "address": 2148192552,
+    "population": "extracted",
+    "insn_count": 232,
+    "target_asm_sha": "20eadbb081876462dae0d67887430ed85b7c32845a60bc4197e5fb31c185ee83",
+    "target_o_sha": "0e02844143ff0fdf8687415faef01ac292e1a7601410e71254b22d2d41afb9d4",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "extent_repaired"
+  },
+  {
+    "target_id": "func_800D0424",
+    "address": 2148336676,
+    "population": "extracted",
+    "insn_count": 249,
+    "target_asm_sha": "aee5b7d761322cd3e45be26d74be264c8b1a4de9700d5368673bdf96b0d6436f",
+    "target_o_sha": "0075cc37e8b375949602c5f1f4c308276e460bd85bd24c24cdf212d881683a53",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "discovered"
+  }
+]
