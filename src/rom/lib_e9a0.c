@@ -73,9 +73,6 @@ extern s32 osEPiRawStartDma(OSPiHandle*,u32,u32),osEPiRawReadIo(OSPiHandle*,u32,
 
 
 
-/* ROM_OWNED_RODATA_BEGIN osSpTaskLoad_full */
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_e9a0/osSpTaskLoad_full.table.s")
-/* ROM_OWNED_RODATA_END osSpTaskLoad_full */
 
 
 /* Canonical EPi hardware protocol; existing IO_READ/IO_WRITE macros suffice. */
@@ -165,7 +162,117 @@ s32 osPiSetDeviceTiming(OSPiHandle* pihandle, s32 direction, u32 devAddr, void* 
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_e9a0/osSpTaskLoad_full.s")
+/* PROMOTED 2026-10-01 — osSpTaskLoad_full
+ * Source:   cloud/work/static_C12/pi_manager/osSpTaskLoad_full.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C12/pi_manager/osSpTaskLoad_full.c:osSpTaskLoad_full (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void osSpTaskLoad_full(void* args) {
+    __OSDiskIoMesg* mb;
+    OSMesg em;
+    OSMesg dummy;
+    s32 ret;
+    OSDevMgr* dm;
+    s32 messageSend = 0;
+
+    dm = (OSDevMgr*)args;
+    mb = NULL;
+    ret = 0;
+
+    while (TRUE) {
+        osRecvMesg(dm->cmdQueue, (OSMesg)&mb, OS_MESG_BLOCK);
+
+        if (mb->piHandle != NULL && mb->piHandle->type == DEVICE_TYPE_64DD &&
+            (mb->piHandle->transferInfo.cmdType == LEO_CMD_TYPE_0 ||
+             mb->piHandle->transferInfo.cmdType == LEO_CMD_TYPE_1)) {
+            __OSBlockInfo* blockInfo;
+            __OSTranxInfo* info;
+            info = &mb->piHandle->transferInfo;
+            blockInfo = &info->block[info->blockNum];
+            info->sectorNum = -1;
+
+            if (info->transferMode != LEO_SECTOR_MODE) {
+                blockInfo->dramAddr = (void*)((u32)blockInfo->dramAddr - blockInfo->sectorSize);
+            }
+
+            if (info->transferMode == LEO_TRACK_MODE && mb->piHandle->transferInfo.cmdType == LEO_CMD_TYPE_0) {
+                messageSend = 1;
+            } else {
+                messageSend = 0;
+            }
+
+            osRecvMesg(dm->acsQueue, &dummy, OS_MESG_BLOCK);
+            osEPiRawWriteIo(OS_IM_PI);
+            osEPiRawStartDma(mb->piHandle, LEO_BM_CTL, (info->bmCtlShadow | 0x80000000));
+
+        readblock1:
+            osRecvMesg(dm->evtQueue, &em, OS_MESG_BLOCK);
+            info = &mb->piHandle->transferInfo;
+            blockInfo = &info->block[info->blockNum];
+
+            if (blockInfo->errStatus == LEO_ERROR_29) {
+                u32 stat;
+                osEPiRawStartDma(mb->piHandle, LEO_BM_CTL, info->bmCtlShadow | LEO_BM_CTL_RESET);
+                osEPiRawStartDma(mb->piHandle, LEO_BM_CTL, info->bmCtlShadow);
+                osEPiRawReadIo(mb->piHandle, LEO_STATUS, &stat);
+
+                if (stat & LEO_STATUS_MECHANIC_INTERRUPT) {
+                    osEPiRawStartDma(mb->piHandle, LEO_BM_CTL, info->bmCtlShadow | LEO_BM_CTL_CLR_MECHANIC_INTR);
+                }
+
+                blockInfo->errStatus = LEO_ERROR_4;
+                IO_WRITE(PI_STATUS_REG, PI_CLR_INTR);
+                __osPiGetCmdQueue(OS_IM_PI | SR_IBIT4);
+            }
+
+            osJamMesg(mb->hdr.retQueue, mb, OS_MESG_NOBLOCK);
+
+            if (messageSend == 1 && mb->piHandle->transferInfo.block[0].errStatus == LEO_ERROR_GOOD) {
+                messageSend = 0;
+                goto readblock1;
+            }
+
+            osJamMesg(dm->acsQueue, NULL, OS_MESG_NOBLOCK);
+            if (mb->piHandle->transferInfo.blockNum == 1) {
+                osYieldThread();
+            }
+        } else {
+            switch (mb->hdr.type) {
+                case OS_MESG_TYPE_DMAREAD:
+                    osRecvMesg(dm->acsQueue, &dummy, OS_MESG_BLOCK);
+                    ret = dm->dma(OS_READ, mb->devAddr, mb->dramAddr, mb->size);
+                    break;
+                case OS_MESG_TYPE_DMAWRITE:
+                    osRecvMesg(dm->acsQueue, &dummy, OS_MESG_BLOCK);
+                    ret = dm->dma(OS_WRITE, mb->devAddr, mb->dramAddr, mb->size);
+                    break;
+                case OS_MESG_TYPE_EDMAREAD:
+                    osRecvMesg(dm->acsQueue, &dummy, OS_MESG_BLOCK);
+                    ret = dm->edma(mb->piHandle, OS_READ, mb->devAddr, mb->dramAddr, mb->size);
+                    break;
+                case OS_MESG_TYPE_EDMAWRITE:
+                    osRecvMesg(dm->acsQueue, &dummy, OS_MESG_BLOCK);
+                    ret = dm->edma(mb->piHandle, OS_WRITE, mb->devAddr, mb->dramAddr, mb->size);
+                    break;
+                case OS_MESG_TYPE_LOOPBACK:
+                    osJamMesg(mb->hdr.retQueue, mb, OS_MESG_NOBLOCK);
+                    ret = -1;
+                    break;
+                default:
+                    ret = -1;
+                    break;
+            }
+
+            if (ret == 0) {
+                osRecvMesg(dm->evtQueue, &em, OS_MESG_BLOCK);
+                osJamMesg(mb->hdr.retQueue, mb, OS_MESG_NOBLOCK);
+                osJamMesg(dm->acsQueue, NULL, OS_MESG_NOBLOCK);
+            }
+        }
+    }
+}
+
 /* PROMOTED 2026-07-15 — __osInsertTimer
  * Source:   src/rom_auto/__osInsertTimer.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
