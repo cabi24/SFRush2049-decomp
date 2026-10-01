@@ -6,8 +6,9 @@
     "target_words": 8,
     "candidate_words": 8,
     "raw_word_diff": 0,
-    "source_sha256": "1c9aab5f42a2d64a3d7b6360d6993a40f9b1d908279d585defcd1510b9f78740",
-    "target_sha256": "2a81ff5442b18517e2b0944d81b368a679189f26d0687b9f13cd66b509021fe2"
+    "source_sha256": "47ea1d4e0d75f0b983447b1f312470733dad11c9ded1874e95c03c88f735732d",
+    "target_sha256": "2a81ff5442b18517e2b0944d81b368a679189f26d0687b9f13cd66b509021fe2",
+    "context_quirk": "Nonvolatile view of the shared volatile declaration preserves original store scheduling."
   },
   {
     "function": "osGetActiveQueue",
