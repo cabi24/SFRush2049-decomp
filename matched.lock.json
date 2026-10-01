@@ -1,12 +1,4 @@
 {
-  "cloud/work/static_C4/osRecvMesg.c:osRecvMesg": {
-    "body_sha256": "8ae778727d64b624a4d01d5a18b404a4e3d85441b40c8594f3a4d3e53e24bd0b",
-    "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
-    "target_id": "osRecvMesg",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-01"
-  },
   "cloud/work/static_C4/osSetThreadPri.c:osSetThreadPri": {
     "body_sha256": "7a8660013d04e855b07c81c7a43b3934b19f32d6246ad738f292811aa733ce27",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -131,6 +123,14 @@
     "body_sha256": "626b2ed59f496db09cff24e07e2fd0d35ecde452a6a102776ce8eea3cc64071e",
     "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
     "target_id": "osCreateThread",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
+  },
+  "src/rom/lib_7c80.c:osRecvMesg": {
+    "body_sha256": "8ae778727d64b624a4d01d5a18b404a4e3d85441b40c8594f3a4d3e53e24bd0b",
+    "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "target_id": "osRecvMesg",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
