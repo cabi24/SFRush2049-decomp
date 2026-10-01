@@ -4,4 +4,18 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_e280/__osSpDma.s")
+/* PROMOTED 2026-10-01 — __osSpDma
+ * Source:   cloud/work/static_C5/__osSpDma.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C5/__osSpDma.c:__osSpDma (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+s32 __osSpDma(s32 direction, u32 devAddr, void *dramAddr, u32 size) {
+ if (__osSpDeviceBusy()) return -1;
+ (*(volatile u32 *)0xA4040000) = devAddr;
+ (*(volatile u32 *)0xA4040004) = osVirtualToPhysical(dramAddr);
+ if (direction == 0) { (*(volatile u32 *)0xA404000C) = size - 1; }
+ else { (*(volatile u32 *)0xA4040008) = size - 1; }
+ return 0;
+}
+
