@@ -1,0 +1,76 @@
+[
+  {
+    "target_id": "func_8010E828",
+    "address": 2148591656,
+    "population": "extracted",
+    "insn_count": 33,
+    "target_asm_sha": "bc1438fe2d5f0fabb960f604c4b72442787daa2ac45620aae9612e9c8c195704",
+    "target_o_sha": "1facd296ac7d41b6147b285b4f4b5614c535e150e105089f1b15f11d29eb8cd0",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "discovered",
+    "integration_status": "already-locked-pilot-reverification-no-new-coverage",
+    "delivered_path": "cloud/work/heads_B10/func_8010E828_reverified.c"
+  },
+  {
+    "target_id": "func_8010D9CC",
+    "address": 2148587980,
+    "population": "extracted",
+    "insn_count": 75,
+    "target_asm_sha": "f0a25e5d809ef29c0421dbde6001ab86be03e61bb22758c5f8ebfcd4f26ed436",
+    "target_o_sha": "7b716c300df6f75da3188f29590204c35534624f1b10f068ef90ce46b4d45d34",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "discovered"
+  },
+  {
+    "target_id": "func_8010C448",
+    "address": 2148582472,
+    "population": "extracted",
+    "insn_count": 80,
+    "target_asm_sha": "e46115593d07b7aa240f00581038958ce3f009ef7a621cc336f6088e5d1444d1",
+    "target_o_sha": "a5aa276ac4a1ad56e76f59bccdc6da87aae0fdc9b9bf4e6f0c9fb59c707befae",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "discovered"
+  },
+  {
+    "target_id": "func_8010C588",
+    "address": 2148582792,
+    "population": "extracted",
+    "insn_count": 80,
+    "target_asm_sha": "71c859ba1e5d206d5cc54ce8d8d362be1a6d08a6c82a09fa6c4e2dbee94dcdf3",
+    "target_o_sha": "8bce842c87aeab3d188e140a8fa4c6fc0b63fcb2e0d7ffa6cfcb8957d630714d",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "discovered"
+  },
+  {
+    "target_id": "func_8010DBB8",
+    "address": 2148588472,
+    "population": "extracted",
+    "insn_count": 81,
+    "target_asm_sha": "05f44cd4e1883672550501be7abd51e2a03fad71889936ce218abccf31a26a59",
+    "target_o_sha": "a8d840247125646b9bbe98307b28c563caa69202fdd75445404790cb0ffc02bb",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "discovered"
+  },
+  {
+    "target_id": "func_8010DF90",
+    "address": 2148589456,
+    "population": "extracted",
+    "insn_count": 91,
+    "target_asm_sha": "a6bb1faaf39cddda83cc3f752b9dd13cd72f0223c5d0272096e79afbab5e580b",
+    "target_o_sha": "6996d8e46bd7810f7b2bd6ae0e748294ac7d2ffde00e2b7a107bb7cb1e2d9487",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "discovered"
+  }
+]

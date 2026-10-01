@@ -1,0 +1,12 @@
+[
+  {
+    "function": "guLookAt",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_score": 0,
+    "target_words": 32,
+    "candidate_words": 32,
+    "raw_word_diff": 0,
+    "source_sha256": "2c5ddbb78920ce825d0b0b9a6ba09942682dc51feb599826094e5848cd95aea2",
+    "target_sha256": "97e4cf304cfe47d3653fe0737d4878b0e4f6a6137028682ba1b85030dbe147dd"
+  }
+]

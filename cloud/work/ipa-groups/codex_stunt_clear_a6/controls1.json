@@ -1,0 +1,51 @@
+[
+  [
+    "layout_u8 local_pad[4];",
+    {
+      "func_800C3578": 4
+    },
+    null
+  ],
+  [
+    "layout_u32 local_pad[1];",
+    {
+      "func_800C3578": 4
+    },
+    null
+  ],
+  [
+    "layout_s32 local_pad;",
+    {
+      "func_800C3578": 4
+    },
+    null
+  ],
+  [
+    "layout_f32 local_pad[1];",
+    {
+      "func_800C3578": 4
+    },
+    null
+  ],
+  [
+    "typed_Ply *q;",
+    {
+      "func_800C3578": 11
+    },
+    null
+  ],
+  [
+    "typed_struct { u32 unused; Ply *ptr; } q;",
+    {
+      "func_800C3578": 13
+    },
+    null
+  ],
+  [
+    "typed_Ply *q[2];",
+    {
+      "func_800C3578": 10
+    },
+    null
+  ]
+]

@@ -1,4 +1,124 @@
 {
+  "cloud/work/static_C7/__osContBuildRequest.c:__osContBuildRequest": {
+    "body_sha256": "05087a6f80bfc388dd6a04850b7e75f84e16b9821c08bd84f7109ae439b22fe8",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osContBuildRequest",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C7/__osContGetStatus.c:__osContGetStatus": {
+    "body_sha256": "8a299126001ac78024e1798564098e417a46f0fe6b25df9d2a8f13b8d3fb62b2",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osContGetStatus",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C7/__osContParseResponse.c:__osContParseResponse": {
+    "body_sha256": "99f5e28b5a1822f7ff499e7e4eaae73b2179c207b05ea9694c8c2efa3e87e34b",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osContParseResponse",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C7/__osContRamReset.c:__osContRamReset": {
+    "body_sha256": "adde34b034344e47cd22b71b3db4b1417071d31a94c78d156f761b4114743712",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osContRamReset",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C7/__osPackReadData.c:__osPackReadData": {
+    "body_sha256": "d46963ef5e76c1eca551c8c79fe677cc13088e839eb1ef4efb01416d1bf61162",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osPackReadData",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C7/guLookAtF.c:guLookAtF": {
+    "body_sha256": "afb2b73a0b81ba46f4ec57fb8cb8d1eab2737c25e17fd0e7dc7e2832bd90a161",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "guLookAtF",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C7/osJamMesg.c:osJamMesg": {
+    "body_sha256": "ffaa80f3d0c722d0460759fd51359cc9bb1450da76c1160e9ff014b7a944f0fe",
+    "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "target_id": "osJamMesg",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C8/__osContBuildPacket.c:__osContBuildPacket": {
+    "body_sha256": "e25c96395bd8b167a9849db7e0408c59480eeef53bfd2acd0c8347fc25e5edc7",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osContBuildPacket",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C8/__osPfsSelectBank.c:__osPfsSelectBank": {
+    "body_sha256": "6137f06f44d8a1555b1f752842f7046189ef4c336b985b04c3a8f9e762d8a0e7",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osPfsSelectBank",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C8/__osPiRawStartDma.c:__osPiRawStartDma": {
+    "body_sha256": "bb82a56551bd820411648bc4f760a73707f8813257ba1895a1c8367261354a43",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osPiRawStartDma",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C8/osContStartReadData.c:osContStartReadData": {
+    "body_sha256": "655ee0d4eb7c3bceff14d8ceb0e036405678f94b4b8b3c26604478ced6fdccea",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osContStartReadData",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C8/osCreateViManager.c:osCreateViManager": {
+    "body_sha256": "231b11e21c3a406a74c3a98f991aff69bfbed10ce1c84deeaf39cdd2ff1be05a",
+    "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "target_id": "osCreateViManager",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C8/osPfsFindFile.c:osPfsFindFile": {
+    "body_sha256": "230696d23c3f1833f534fd9ec543e306cc4fa23a0317167d36899d14186e36c0",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osPfsFindFile",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C8/osPfsGetFileStat.c:osPfsGetFileStat": {
+    "body_sha256": "fa442e3b937334cf35188f31548de8531fb82e92dbdd3d198625f5b99819736f",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osPfsGetFileStat",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C8/osPiReadWord.c:osPiReadWord": {
+    "body_sha256": "1184c9285a096c018d46daa0395a0061658ba8a3e6ad472058638dda0f642c43",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osPiReadWord",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
   "src/libultra/os_ai.c:__osAiDeviceBusy": {
     "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -237,7 +357,9 @@
   },
   "src/rom/lib_9ab0.c:guLookAt": {
     "body_sha256": "754f92874a55c0d522457816490ea9b568b2fb5451a67601fb577f354b0c6a7a",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "flag_evidence": "cloud/work/static_C7/wrapper_flags/verification.json",
+    "flag_reverified_at": "2026-10-01",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "target_id": "guLookAt",
     "toolkit_sha": null,
     "verified": "rom-sha1",

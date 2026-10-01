@@ -150,8 +150,9 @@ s32 osPfsChecker(OSPfs *pfs);
 s32 osPfsRepairId(OSPfs *pfs);
 s32 osPfsAllocateFile(OSPfs *pfs, u16 companyCode, u32 gameCode,
                       u8 *gameName, u8 *extName, s32 size, s32 *fileNo);
-s32 osPfsFindFile(OSPfs *pfs, u16 companyCode, u32 gameCode,
-                  u8 *gameName, u8 *extName, s32 *fileNo);
+/* Historical label: retail implementation is SDK __osPfsReleasePages. */
+s32 osPfsFindFile(OSPfs *pfs, __OSInode *inode, u8 start_page, u8 bank,
+                  __OSInodeUnit *nextPage);
 s32 osPfsDeleteFile(OSPfs *pfs, u16 companyCode, u32 gameCode,
                     u8 *gameName, u8 *extName);
 s32 osPfsReadWriteFile(OSPfs *pfs, s32 fileNo, u8 flag, s32 offset,

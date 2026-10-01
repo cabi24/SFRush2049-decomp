@@ -114,7 +114,8 @@ typedef struct OSContRamIo {
 s32 osContInit(OSMesgQueue *mq, u8 *pattern, OSContStatus *status);
 s32 osContReset(OSMesgQueue *mq, OSContStatus *status);
 s32 osContStartQuery(OSMesgQueue *mq);
-s32 osContStartReadData(OSMesgQueue *mq);
+/* Historical label: retail implementation is SDK __osPfsGetStatus. */
+s32 osContStartReadData(OSMesgQueue *mq, int channel);
 s32 osContSetCh(u8 num);
 void osContGetQuery(OSContStatus *status);
 void osContGetReadData(OSContPad *pad);

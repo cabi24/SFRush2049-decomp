@@ -1,0 +1,194 @@
+[
+  {
+    "target": {
+      "target_id": "osPiReadWord",
+      "address": 2147540096,
+      "population": "static",
+      "insn_count": 20,
+      "target_asm_sha": "11f0ae184fde11322ee74e19ec9fa3a6c4e24d00cfb2bbb53781f3d0cf10c516",
+      "target_o_sha": "50787f83dacecbbae8899827bd7d1fbd686b2d4523890985303dbe37b0ad24b3",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xe7c0",
+        "function": {
+          "name": "osPiReadWord",
+          "vaddr": "0x8000dc80",
+          "size": 80,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "osContStartReadData",
+      "address": 2147542560,
+      "population": "static",
+      "insn_count": 52,
+      "target_asm_sha": "1139503b85327f502b5ffe8be14060e8f6cbaf60fbf65bf47238288903788657",
+      "target_o_sha": "6a5848dc6fbc419519f46d71e07ac666ac4108897552035c2fe0255186c30d3f",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xf160",
+        "function": {
+          "name": "osContStartReadData",
+          "vaddr": "0x8000e620",
+          "size": 208,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "__osPfsSelectBank",
+      "address": 2147543120,
+      "population": "static",
+      "insn_count": 32,
+      "target_asm_sha": "f49387fc23a039ddef6887f8b6214437b2e0826ef5c4e9ef95d4e9514cc9eef1",
+      "target_o_sha": "9887175dd44d0733e22011adc31c3257c0562ff73b83e62dd7dcb7637621ef8c",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xf450",
+        "function": {
+          "name": "__osPfsSelectBank",
+          "vaddr": "0x8000e850",
+          "size": 128,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "__osContBuildPacket",
+      "address": 2147521616,
+      "population": "static",
+      "insn_count": 87,
+      "target_asm_sha": "dfe3f1835effe19872d960e3c91c8af02564b82e3176c91eebf92b437f3f7ec0",
+      "target_o_sha": "795ea3598e2c2e83d55ebd00ff7c44f1a50767456eb45a7dd5a2be704c1ebff0",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xa050",
+        "function": {
+          "name": "__osContBuildPacket",
+          "vaddr": "0x80009450",
+          "size": 348,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "__osPiRawStartDma",
+      "address": 2147518000,
+      "population": "static",
+      "insn_count": 48,
+      "target_asm_sha": "0cffabacc74079b60d357096f531685099b47165e5e5b73db09bc79d5ee708e2",
+      "target_o_sha": "5e0b509e31e56ef56f0452664bccd578cb14c49408b189d532de9fb16dfb80e5",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0x9230",
+        "function": {
+          "name": "__osPiRawStartDma",
+          "vaddr": "0x80008630",
+          "size": 192,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "osPfsGetFileStat",
+      "address": 2147528176,
+      "population": "static",
+      "insn_count": 53,
+      "target_asm_sha": "b541334e8f34ddaaeb0e32059f3f886000abca468b1f4f02f32c55ce4b9671b8",
+      "target_o_sha": "2a7bb893c423d08ec0308ab1fd67b82d7a741c965f3a9b18445cdc457a93357e",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xb9f0",
+        "function": {
+          "name": "osPfsGetFileStat",
+          "vaddr": "0x8000adf0",
+          "size": 212,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "osPfsFindFile",
+      "address": 2147526872,
+      "population": "static",
+      "insn_count": 38,
+      "target_asm_sha": "9a127b91aa65e197486d2209945249abf7f8378d955fe60b77c7bcde07ce33d6",
+      "target_o_sha": "d276986e0e8c5362bc898c67f702b0526596f17895c3f2239a9fee1ae482bcf9",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xb300",
+        "function": {
+          "name": "osPfsFindFile",
+          "vaddr": "0x8000a8d8",
+          "size": 152,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "osCreateViManager",
+      "address": 2147517312,
+      "population": "static",
+      "insn_count": 56,
+      "target_asm_sha": "32762d326dd86398c61a32bdbe5303873270e8993ed94cd3abcfda883804f901",
+      "target_o_sha": "1d47b1a85912293e0b8842f00a5dd219f3116267ea6e56d21bd3117b652f89da",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0x8e10",
+        "function": {
+          "name": "osCreateViManager",
+          "vaddr": "0x80008380",
+          "size": 224,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  }
+]

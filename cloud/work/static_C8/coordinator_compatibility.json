@@ -1,0 +1,7 @@
+{
+  "function": "__osPiRawStartDma",
+  "original_source_sha256": "219c03663344e577d841a61d1c5f9cea605ecabbd4f523c1cd0ca5eb0fb435ba",
+  "current_source_sha256": "a4a4edf9458948988e28c4fa26f9b67282fa35b5d812e89b7e8c9ca1f45acc28",
+  "reason": "Preserve accepted s32 __osInsertTimer(void) at src/rom/lib_e9a0.c; explicit pointer casts in new message calls",
+  "verification": "Independent D eight-object rerun strict/stack-sensitive0 and raw0; pool relock score0; B11 independent current shared context all eight strict/raw0"
+}

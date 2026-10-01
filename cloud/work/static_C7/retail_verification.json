@@ -1,0 +1,90 @@
+[
+  {
+    "function": "osSendMesg",
+    "rom_offset": 32832,
+    "slot_size": 336,
+    "linked_word_diff": 0,
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "retail_slot_sha256": "96bea94488da57bab616bee4a19879b5968a72d3bf36a88268da7c9a8f4f87e9"
+  },
+  {
+    "function": "osJamMesg",
+    "rom_offset": 33248,
+    "slot_size": 336,
+    "linked_word_diff": 0,
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "retail_slot_sha256": "9188c2cac9b3172b605cb8e98462d6f61a01241a5da24ecc94509e6b7b2e8e5f"
+  },
+  {
+    "function": "guLookAtF",
+    "rom_offset": 39600,
+    "slot_size": 696,
+    "linked_word_diff": 0,
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "retail_slot_sha256": "dca63acec7bc7205323d8f3f8a419487772a21e215cbda0dbe106a7d945cf63a"
+  },
+  {
+    "function": "__osPackReadData",
+    "rom_offset": 42208,
+    "slot_size": 208,
+    "linked_word_diff": 0,
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "retail_slot_sha256": "0b53f4cc577a3e1ce9164014e2cad24ba8aecd1ebcc53a098852a87a088a9cc1"
+  },
+  {
+    "function": "__osContRamReset",
+    "rom_offset": 41560,
+    "slot_size": 216,
+    "linked_word_diff": 0,
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "retail_slot_sha256": "a1c09780143e01fbb2d7e5587392774b94458e875e86bafca76a5289246ce1fb"
+  },
+  {
+    "function": "__osContGetStatus",
+    "rom_offset": 41388,
+    "slot_size": 172,
+    "linked_word_diff": 0,
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "retail_slot_sha256": "a9885ecb3dcfe1078f99b2b475fcf00324afbe54ad9488eff5a89b130956470b"
+  },
+  {
+    "function": "__osContBuildRequest",
+    "rom_offset": 62192,
+    "slot_size": 196,
+    "linked_word_diff": 0,
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "retail_slot_sha256": "59d3976803106de5df979aaec1978a9bc4d7dd7e9bedc653afe9c0927d71aa9b"
+  },
+  {
+    "function": "__osContParseResponse",
+    "rom_offset": 62388,
+    "slot_size": 156,
+    "linked_word_diff": 0,
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "retail_slot_sha256": "bdf8529b7295f6a6fde777a464ef9ddc0117123ac856223f423a205fbf19e389"
+  }
+]

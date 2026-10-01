@@ -1,0 +1,30 @@
+/* Minimal additions for seven eligible C7 bodies. Existing OSPifRam,
+ * __OSContReadFormat, CHNL_ERR, ARRLEN, OS_STATE_WAITING, message constants,
+ * __osPfsRequestType/2, __osCleanupThread and guMtxIdentF are sufficient. */
+typedef struct {
+    u8 dummy, txsize, rxsize, cmd, typeh, typel, status, dummy1;
+} __OSContRequesFormat;
+typedef struct {
+    u8 txsize, rxsize, cmd, typeh, typel, status;
+} __OSContRequesFormatShort;
+#define CONT_CMD_EXE 1
+#define CONT_CMD_NOP 0xFF
+#define CONT_CMD_END 0xFE
+#define CONT_CMD_READ_BUTTON 1
+#define CONT_CMD_READ_BUTTON_TX 1
+#define CONT_CMD_READ_BUTTON_RX 4
+#define CONT_CMD_RESET_TX 1
+#define CONT_CMD_RESET_RX 3
+/* CONT_CMD_REQUEST_STATUS 0 already exists. */
+#define CONT_CMD_REQUEST_STATUS_TX 1
+#define CONT_CMD_REQUEST_STATUS_RX 3
+#define MQ_IS_FULL(mq) ((mq)->validCount >= (mq)->msgCount)
+extern void __osContBuildRequest(int, u8);
+extern void __osContParseResponse(int, OSContStatus *);
+extern f32 sqrtf(f32);
+
+/* REQUIRED prototype correction, replacing the existing declaration:
+ * src/rom/rom_tu.h currently declares __osContRamReset(s32).
+ * Canonical exact body takes u8; do not add a conflicting redeclaration.
+ * Parent must verify previously promoted callers/full ROM after correction. */
+extern void __osContRamReset(u8);

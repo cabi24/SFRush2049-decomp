@@ -1,0 +1,58 @@
+[
+  [
+    "reuse_Stunt *",
+    {
+      "func_800C3578": 10
+    },
+    null
+  ],
+  [
+    "reuse_void *",
+    {
+      "func_800C3578": 10
+    },
+    null
+  ],
+  [
+    "reuse_u8 *",
+    {
+      "func_800C3578": 10
+    },
+    null
+  ],
+  [
+    "scope_Ply *q;",
+    {
+      "func_800C3578": 11
+    },
+    null
+  ],
+  [
+    "scope_Ply *q[1];",
+    {
+      "func_800C3578": 10
+    },
+    null
+  ],
+  [
+    "scope_struct { Ply *ptr; } q;",
+    {
+      "func_800C3578": 11
+    },
+    null
+  ],
+  [
+    "scope_struct { u32 unused; Ply *ptr; } q;",
+    {
+      "func_800C3578": 13
+    },
+    null
+  ],
+  [
+    "use_return",
+    {
+      "func_800C3578": 15
+    },
+    null
+  ]
+]

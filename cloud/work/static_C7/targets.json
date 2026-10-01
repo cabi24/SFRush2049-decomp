@@ -1,0 +1,194 @@
+[
+  {
+    "target": {
+      "target_id": "osSendMesg",
+      "address": 2147513408,
+      "population": "static",
+      "insn_count": 84,
+      "target_asm_sha": "0cb0cd56a9b7269111e5b19d04723424f45d77cb2a5ae2126a712c05e416f21f",
+      "target_o_sha": "0d361368060117dc538e45342e98564df234bd5433c125385e49b278c0b90d06",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0x8040",
+        "function": {
+          "name": "osSendMesg",
+          "vaddr": "0x80007440",
+          "size": 336,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": "permuter"
+  },
+  {
+    "target": {
+      "target_id": "osJamMesg",
+      "address": 2147513824,
+      "population": "static",
+      "insn_count": 84,
+      "target_asm_sha": "cc6dae988f5fa5ea898866875bc54174c0194d30c08e9376e39e967bd7dd7f90",
+      "target_o_sha": "faef9aaaec4b6d4d7611d9c91c9e024d3ade2b5f00bca52bc1ce417f01e848ab",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0x81e0",
+        "function": {
+          "name": "osJamMesg",
+          "vaddr": "0x800075e0",
+          "size": 336,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": "permuter"
+  },
+  {
+    "target": {
+      "target_id": "guLookAtF",
+      "address": 2147520176,
+      "population": "static",
+      "insn_count": 174,
+      "target_asm_sha": "48fe2376df5c69a6f4803a8ef72bee3a6fcea7f6c4fcc37da0c8ea2b52b30f3b",
+      "target_o_sha": "a079534f064c8f17b2ebcd898db32e9ae9cf6cf4ebddfb345cc86721eca410a6",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0x9ab0",
+        "function": {
+          "name": "guLookAtF",
+          "vaddr": "0x80008eb0",
+          "size": 696,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "__osPackReadData",
+      "address": 2147522784,
+      "population": "static",
+      "insn_count": 52,
+      "target_asm_sha": "1705838fd6a80f5941b1a0b58cd52cc643d8f37910e490f9674521c1391d79cc",
+      "target_o_sha": "38b4d60b05739a3cb8724a1c90ad70db7f418a8f9a632f9c33fbc83add6b5f27",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xa330",
+        "function": {
+          "name": "__osPackReadData",
+          "vaddr": "0x800098e0",
+          "size": 208,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "__osContRamReset",
+      "address": 2147522136,
+      "population": "static",
+      "insn_count": 54,
+      "target_asm_sha": "732dfa0ebf3a711e012f0e0838785619d7f4950cbb130e8823b70c19ea40a3de",
+      "target_o_sha": "5308e105397e8322b9c660a81fd84db4b379b2664c4169d06983f680ee4dbb99",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xa050",
+        "function": {
+          "name": "__osContRamReset",
+          "vaddr": "0x80009658",
+          "size": 216,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "__osContGetStatus",
+      "address": 2147521964,
+      "population": "static",
+      "insn_count": 43,
+      "target_asm_sha": "8b66c5dbb767f5f99ce838f0803855156cde7f2f0d1b23fdafcc15afbecca519",
+      "target_o_sha": "3da62440f6f64b97110d7c874e3a2be9a075c5b8895115f0b3c6ab1e2498c14c",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xa050",
+        "function": {
+          "name": "__osContGetStatus",
+          "vaddr": "0x800095ac",
+          "size": 172,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "__osContBuildRequest",
+      "address": 2147542768,
+      "population": "static",
+      "insn_count": 49,
+      "target_asm_sha": "80fab7bf148d2e6cb6634627e6734696ac6fe25a1d7d9f2f78cbe855f97b6dd7",
+      "target_o_sha": "eab9d1ec93e8664da147a4cc48692b9776966a491aaf315b7a27be861bdde096",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xf160",
+        "function": {
+          "name": "__osContBuildRequest",
+          "vaddr": "0x8000e6f0",
+          "size": 196,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "__osContParseResponse",
+      "address": 2147542964,
+      "population": "static",
+      "insn_count": 39,
+      "target_asm_sha": "3a0756a07006d10a5c210e1e9c72bedb5a7edbb3d179a991e2f6b57428a5276e",
+      "target_o_sha": "16fc506ff5040706859cc2553c0550989f8f9b5506fee48b9b1586949760742e",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xf160",
+        "function": {
+          "name": "__osContParseResponse",
+          "vaddr": "0x8000e7b4",
+          "size": 156,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  }
+]
