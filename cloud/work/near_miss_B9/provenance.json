@@ -1,0 +1,47 @@
+[
+  {
+    "function": "car_lights_render",
+    "address": 2148163732,
+    "size": 284,
+    "status": "ready",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_origin": "fresh current-context m2c",
+    "context_sha256": "b93aa64efbe661b7aaeea40339ca5f698e1050837900c659fa958eb9696da71b",
+    "source_sha256": "28f1f74b47f01992b8b11d80c070316eb5554c49718ffbe85c3b51402a251a25",
+    "target_sha256": "be232fbfa13d47bca1c45ddfcb58f5b38783cbe1607b0b98802dafed6d00b021",
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "IDO compile failed:\ncfe: Error: ../scratch/r4300-sweep/sources/car_lights_render.c, line 4127: 'sp30' undefined; reoccurrences will not be reported.\n     (*( f32 *)((s8 *)(arg4) + ( 4)))  = (f32) ((*( f32 *)((s8 *)(arg2) + ( 0x28)))  + sp30);\n --------------------------------------------------------------------------------------^\ncfe: Error: ../scratch/r4300-sweep/sources/car_lights_render.c, line 4128: 'sp34' undefined; reoccurrences will not be reported.\n     (*( f32 *)((s8 *)(arg4) + ( 8)))  = (f32) ((*( f32 *)((s8 *)(arg2) + ( 0x2C)))  + sp34);\n --------------------------------------------------------------------------------------^\n\n",
+    "match": false
+  },
+  {
+    "function": "func_800E1C30",
+    "address": 2148408368,
+    "size": 848,
+    "status": "ready",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_origin": "fresh current-context m2c",
+    "context_sha256": "b93aa64efbe661b7aaeea40339ca5f698e1050837900c659fa958eb9696da71b",
+    "source_sha256": "a8c0014811ae113b57e68a40cabebf208974f29026f4c3e95ccf810bccd53ab2",
+    "target_sha256": "e44990b068ae728eba270aca60b69cd17a12ce537793bd06f807b03ac16b99d2",
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "IDO compile failed:\ncfe: Error: ../scratch/r4300-sweep/sources/func_800E1C30.c, line 4123: Cast a non-integral type into a pointer.\n     if ((*( s8 *)((s8 *)(arg0) + ( 0x5A9)))  != 0) {\n ------------------^\ncfe: Error: ../scratch/r4300-sweep/sources/func_800E1C30.c, line 4124: Cast a non-integral type into a pointer.\n         temp_f2 = (*( f32 *)((s8 *)(arg0) + ( 0x84))) ;\n -----------------------------^\ncfe: Error: ../scratch/r4300-sweep/sources/func_800E1C30.c, line 4126: Cast a non-integral type into a pointer.\n         var_f12 = ((*( f32 *)((s8 *)(arg0) + ( 0x90)))  + temp_f2) * 0.5f;\n ------------------------------^\ncfe: Error: ../scratch/r4300-sweep/sources/func_800E1C30.c, line 4128: Cast a non-integral type into a pointer.\n             if ((*( s32 *)((s8 *)(arg0) + ( 0x618)))  == 8) {\n ---------------------------^\ncfe: Error: ../scratch/r4300-sweep/sources/func_800E1C30.c, line 4129: Cast a non-integral type into a pointer.\n                 (*( f32 *)((s8 *)(arg0) + ( 0x84)))  = 0.0f;\n ---------------------------^\ncfe: Error: ../scratch/r4300-sweep/sources/func_800E1C30.c, line 4131: Cast a non-integral type into a pointer.\n                 temp_f0 = *(*( f32 **)((s8 *)(arg0) + ( 4))) ;\n ---------------------------------------^\ncfe: Error: ../scratch/r4300-sweep/sources/func_800E1C30.c, line 4132: Cast a non-integral type into a pointer.\n                 (*( f32 *)((s8 *)(arg0) + ( 0x84)))  = (f32) ((temp_f2 * temp_f0) + (var_f12 * (1.0f - temp_f0)));\n ---------------------------^\ncfe: Error: ../scratch/r4300-sweep/sources/func_800E1C30.c, line 4134: Cast a non-integral type into a pointer.\n             if ((*( s32 *)((s8 *)(arg0) + ( 0x614)))  == 8) {\n ---------------------------^\ncfe: Error: ../scratch/r4300-sweep/sources/func_800E1C30.c, line 4135: Cast a non-integral type into a pointer.\n                 (*( f32 *)((s8 *)(arg0) + ( 0x90)))  = 0.0f;\n ---------------------------^\ncfe: Error: ../scratch/r4300-sweep/sources/func_800E1C30.c, line 4137: Cast a non-integral type into a pointer.\n                 temp_f0_2 = *(*( f32 **)((s8 *)(arg0) + ( 4))) ;\n -----------------------------------------^\ncfe: Error: ../scratch/r4300-sweep/sources/func_800E1C30.c, line 4138: Cast a non-integral type into a pointer.\n                 (*( f32 *)((s8 *)(arg0) + ( 0x90)))  = (f32) (((*( f32 *)((s8 *)(arg0) + ( 0x90)))  * temp_f0_2) + (var_f12 * (1.0f - temp_f0_2)));\n --------------------------------------------------------------------------^\ncfe: Error: ../scratch/r4300-sweep/sources/func_800E1C30.c, line 4142: Cast a non-integral type into a pointer.\n     (*( f32 *)((s8 *)(arg0) + ( 0x14)))  = (f32) ((*( f32 *)((s8 *)(arg0) + ( 0x74)))  + (*( f32 *)((s8 *)(arg0) + ( 0x68)))  + (*( f32 *)((s8 *)(arg0) + ( 0x80))) );\n -------------------------------------------------------------^\ncfe: Error: ../scratch/r4300-sweep/sources/func_800E1C30.c, line 4143: Cast a non-integral type into a pointer.\n     (*( f32 *)((s8 *)(arg0) + ( 0x18)))  = (f32) ((*( f32 *)((s8 *)(arg0) + ( 0x\n",
+    "match": false
+  },
+  {
+    "function": "func_800E92C8",
+    "address": 2148438728,
+    "size": 788,
+    "status": "ready",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_origin": "fresh current-context m2c",
+    "context_sha256": "b93aa64efbe661b7aaeea40339ca5f698e1050837900c659fa958eb9696da71b",
+    "source_sha256": "4c836a46928e67b52c1c83d34ac00a12edd272b0e6b377593d984d9e96727a95",
+    "target_sha256": "0305d9e4e356f7f216038cf3903dce1659cadb61f0b552559a799dcb14f6c639",
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "IDO compile failed:\ncfe: Error: ../scratch/r4300-sweep/sources/func_800E92C8.c, line 4142: 'saved_reg_f22' undefined; reoccurrences will not be reported.\n         sp9C = -saved_reg_f22;\n ----------------^\ncfe: Error: ../scratch/r4300-sweep/sources/func_800E92C8.c, line 4148: Cast a non-integral type into a pointer.\n             func_8009E820(((M2C_UNK *)( var_f12)) , &sp94, &sp7C, (u8 *) saved_reg_s0 + 0x2C);\n ---------------------------^\ncfe: Warning 709: ../scratch/r4300-sweep/sources/func_800E92C8.c, line 4153: Incompatible pointer type assignment\n         temp_s1 = (u8 *) saved_reg_s0 + 0x2C;\n ----------------^\ncfe: Error: ../scratch/r4300-sweep/sources/func_800E92C8.c, line 4158: Cast a non-integral type into a pointer.\n             func_8009E820(sp7C, ((M2C_UNK **)( sp84)) , &sp94, &sp88, temp_s1);\n ---------------------------------^\ncfe: Error: ../scratch/r4300-sweep/sources/func_800E92C8.c, line 4164: 'saved_reg_f22' undefined; reoccurrences will not be reported.\n             if (saved_reg_f22 < 0.0f) {\n ----------------^\ncfe: Error: ../scratch/r4300-sweep/sources/func_800E92C8.c, line 4172: 'saved_reg_f22' undefined; reoccurrences will not be reported.\n         temp_f2_2 = saved_reg_f22 / var_f20;\n --------------------^\ncfe: Error: ../scratch/r4300-sweep/sources/func_800E92C8.c, line 4180: 'saved_reg_f24' undefined; reoccurrences will not be reported.\n             temp_f2_3 = (temp_f0 - ((-temp_f16 * saved_reg_f24) / saved_reg_f22)) / temp_f0;\n -------------------------------------------------^\ncfe: Error: ../scratch/r4300-sweep/sources/func_800E92C8.c, line 4186: 'saved_reg_f24' undefined; reoccurrences will not be reported.\n         sp8C = fabsf(((temp_f0 * saved_reg_f24) / saved_reg_f22) - temp_f16);\n ---------------------------------^\ncfe: Error: ../scratch/r4300-sweep/sources/func_800E92C8.c, line 4191: Type M2C_UNK *  of rhs of assignment expression is incompatible with type float  of lhs\n         sp88 = sp7C;\n -------------^\ncfe: Warning 712: ../scratch/r4300-sweep/sources/func_800E92C8.c, line 4203: illegal combination of pointer and integer\n         var_at = (temp_s3 * 4) + 0x80150000;\n ---------------^\ncfe: Error: ../scratch/r4300-sweep/sources/func_800E92C8.c, line 4211: Type f32  of rhs of assignment expression is incompatible with type M2C_UNK *  of lhs\n     (*( M2C_UNK **)((s8 *)(saved_reg_s4) + ( 0)))  = sp88;\n ---------------------------------------------------^\n\n",
+    "match": false
+  }
+]

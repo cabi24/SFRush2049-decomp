@@ -1743,6 +1743,15 @@
     "verified": "image_gate",
     "verified_at": "2026-09-29"
   },
+  "func_800B08FC": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "codex_audio_frame_a5",
+    "source": "src/blob/groups/codex_audio_frame_a5/group.json",
+    "source_sha256": "feb2b79ff4b5b6ed5b872473f5325254ff5c66d3c2c48e25291fe647b599ffc5",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-01"
+  },
   "func_800B0A88": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "audio_frame_update",
