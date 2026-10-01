@@ -1,0 +1,80 @@
+{
+  "err": null,
+  "matched": true,
+  "members": {
+    "results_screen_update": {
+      "strict_diff": 0,
+      "size": 32,
+      "target_size": 32,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": []
+    },
+    "leaderboard_update": {
+      "strict_diff": 0,
+      "size": 32,
+      "target_size": 32,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": []
+    },
+    "camera_clip_planes": {
+      "strict_diff": 0,
+      "size": 55,
+      "target_size": 55,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": []
+    }
+  },
+  "context": {
+    "func_80091BA8": {
+      "strict_diff": 0,
+      "size": 21,
+      "target_size": 21,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": []
+    },
+    "func_800BF01C": {
+      "strict_diff": 0,
+      "size": 2,
+      "target_size": 2,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": []
+    },
+    "func_80091B00": {
+      "strict_diff": 18,
+      "size": 42,
+      "target_size": 42,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": []
+    },
+    "results_time_display": {
+      "strict_diff": 0,
+      "size": 41,
+      "target_size": 41,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": []
+    },
+    "scheduler_recv": {
+      "strict_diff": 27,
+      "size": 40,
+      "target_size": 40,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": []
+    }
+  }
+}

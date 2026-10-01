@@ -1,0 +1,43 @@
+Members:
+results_screen_update:
+  MATCH
+leaderboard_update:
+  MATCH
+camera_clip_planes:
+  MATCH
+
+Context (informational; excluded from exit status):
+func_80091BA8:
+  MATCH
+func_800BF01C:
+  MATCH
+func_80091B00:
+    +0x01c  want a06f0003                               got 2418ffff                             
+    +0x020  want 2418ffff                               got a06f0003                             
+    +0x038  want 240e0001                               got 24080001                             
+    +0x03c  want a06e001b                               got 2409ffff                             
+    +0x040  want 240fffff                               got a4690018                             
+    +0x044  want a46f0018                               got a068001b                             
+    +0x050  want 80780033                               got 806a0033                             
+    +0x054  want 17000006                               got 15400006                             
+    +0x058  want 24190001                               got 240b0001                             
+    +0x05c  want a0790033                               got 240cffff                             
+    +0x060  want 240effff                               got a46c0030                             
+    +0x064  want a46e0030                               got a06b0033                             
+  18/42 words differ
+results_time_display:
+  MATCH
+scheduler_recv:
+    +0x030  want 1040000a                               got 1040000b                             
+    +0x034  want 00402025                               got 00000000                             
+    +0x03c  want 00000000                               got afa20018                             
+    +0x040  want 240e0006                               got 8fa30018                             
+    +0x044  want a04e0002                               got 240e0006                             
+    +0x048  want ac440004                               got a04e0002                             
+    +0x04c  want 908f001a                               got ac430004                             
+    +0x050  want 00403825                               got 906f001a                             
+    +0x054  want 25f80001                               got 00403825                             
+    +0x058  want a098001a                               got 25f80001                             
+    +0x05c  want 3c048014                               got a078001a                             
+    +0x060  want 24842728                               got 3c048014                             
+  27/40 words differ

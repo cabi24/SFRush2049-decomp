@@ -1279,6 +1279,7 @@ func_800BF01C:
 .section .text.results_screen_update, "ax", @progbits
 .globl results_screen_update
 results_screen_update:
+    /* compiled from src/blob/results_screen_update.c */
     .word 0x27BDFFE8
     .word 0xAFA40018
     .word 0xAFBF0014
@@ -1361,6 +1362,7 @@ results_time_display:
 .section .text.leaderboard_update, "ax", @progbits
 .globl leaderboard_update
 leaderboard_update:
+    /* compiled from src/blob/leaderboard_update.c */
     .word 0x27BDFFE8
     .word 0xAFA40018
     .word 0xAFBF0014
@@ -1462,6 +1464,7 @@ camera_fov_control:
 .section .text.camera_clip_planes, "ax", @progbits
 .globl camera_clip_planes
 camera_clip_planes:
+    /* compiled from src/blob/camera_clip_planes.c */
     .word 0x27BDFFE8
     .word 0xAFA40018
     .word 0xAFA70024
