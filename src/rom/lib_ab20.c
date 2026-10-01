@@ -51,6 +51,34 @@ s32 osMotorInit(OSPfs* pfs, s32 flag) {
     return ret;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_ab20/__osMotorAccess.s")
+/* PROMOTED 2026-10-01 — __osMotorAccess
+ * Source:   cloud/work/static_C9/__osMotorAccess.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C9/__osMotorAccess.c:__osMotorAccess (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void __osMotorAccess(int channel, OSPifRam* mdata) {
+    u8* ptr = (u8*)mdata->ramarray;
+    __OSContRamReadFormat ramreadformat;
+    int i;
+
+    ramreadformat.dummy = CONT_CMD_NOP;
+    ramreadformat.txsize = CONT_CMD_WRITE_PAK_TX;
+    ramreadformat.rxsize = CONT_CMD_WRITE_PAK_RX;
+    ramreadformat.cmd = CONT_CMD_WRITE_PAK;
+    ramreadformat.addrh = CONT_BLOCK_RUMBLE >> 3;
+    ramreadformat.addrl = (u8)(__osContAddressCrc(CONT_BLOCK_RUMBLE) | (CONT_BLOCK_RUMBLE << 5));
+
+    if (channel != 0) {
+        for (i = 0; i < channel; i++) {
+            *ptr++ = CONT_CMD_REQUEST_STATUS;
+        }
+    }
+
+    *READFORMAT(ptr) = ramreadformat;
+    ptr += sizeof(__OSContRamReadFormat);
+    ptr[0] = CONT_CMD_END;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_ab20/osMotorStart.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_ab20/osMotorStop.s")
