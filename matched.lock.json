@@ -1,12 +1,4 @@
 {
-  "cloud/work/static_C/osViSetSpecialFeatures.c:osViSetSpecialFeatures": {
-    "body_sha256": "ae546c83ba220a05c2703da305f6be871e44ac664db7425cae38d39cd72f68d2",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "osViSetSpecialFeatures",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-01"
-  },
   "src/libultra/os_ai.c:__osAiDeviceBusy": {
     "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -110,6 +102,14 @@
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-07-11"
+  },
+  "src/rom/lib_8920.c:osViSetSpecialFeatures": {
+    "body_sha256": "ae546c83ba220a05c2703da305f6be871e44ac664db7425cae38d39cd72f68d2",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osViSetSpecialFeatures",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
   },
   "src/rom/lib_92f0.c:osWritebackDCache_full": {
     "body_sha256": "e29fdc3172e7e8ea8481b4fd260f11149bdc9c5c481758f0d8eabb3354a36ca7",
