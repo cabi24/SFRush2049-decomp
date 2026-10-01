@@ -1,12 +1,4 @@
 {
-  "cloud/work/static_C3/osDpSetNextBuffer.c:osDpSetNextBuffer": {
-    "body_sha256": "e3fd9285badfbd6f58c67d6a81b141546833fe0f1d74443dc84525fb6ebaca7e",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "osDpSetNextBuffer",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-01"
-  },
   "cloud/work/static_C3/osSetTimer.c:osSetTimer": {
     "body_sha256": "7ebbfdde607de07818a4bcec8dee278b3ff6af8187e45d4f1a8a11383b87f491",
     "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
@@ -123,6 +115,14 @@
     "body_sha256": "13664978efca0ad0f6a3da01e063e04b5900896f85bce9f779df61f6c570bc03",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "osViModeNtscLpn1",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
+  },
+  "src/rom/lib_8700.c:osDpSetNextBuffer": {
+    "body_sha256": "e3fd9285badfbd6f58c67d6a81b141546833fe0f1d74443dc84525fb6ebaca7e",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osDpSetNextBuffer",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
