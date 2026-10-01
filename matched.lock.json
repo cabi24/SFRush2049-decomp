@@ -1,12 +1,4 @@
 {
-  "cloud/work/static_C10/osMotorStart.c:osMotorStart": {
-    "body_sha256": "4134ffcf1681be20230a83cd82573eced106fd3be968098ebb46c275af5ad823",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "osMotorStart",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-01"
-  },
   "cloud/work/static_C10/osPfsAllocate.c:osPfsAllocate": {
     "body_sha256": "c5b40957083ab1bf76c09743deb492acdd1978734ab5a48d7b3925416277973a",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -463,6 +455,14 @@
     "body_sha256": "47e8a3d659ade13d08c05d9a71e56571a7aace33327a5132d2a567eba0ee34f0",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "osMotorInit",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
+  },
+  "src/rom/lib_ab20.c:osMotorStart": {
+    "body_sha256": "4134ffcf1681be20230a83cd82573eced106fd3be968098ebb46c275af5ad823",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osMotorStart",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
