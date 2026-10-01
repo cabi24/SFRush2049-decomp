@@ -1,5 +1,19 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-01 first complete integration milestone
+
+- Game cartridge C: **503/1,216 functions, 57,560/647,072 bytes (8.90%)**. Static cartridge C: **34/230 functions, 2,456/61,440 bytes (4.00%)**.
+- Gain this batch: six game functions / 1,144 bytes; eleven static functions / 1,008 bytes. Six switch heads registered separately (9,472 bytes of extents; no C credit).
+- All eleven static sources promoted through lock/promote into the actual ROM TUs: osGetActiveQueue, inflate_flush_window, viDeadlinePassed, osPiReleaseAccess, osPiGetAccess, osViGetFramebuffer, osPiInit, osSiInit, osSetIntMask, osContStartReadData2, osViSetSpecialFeatures. Every promotion rebuilt its TU and passed the full-ROM hash gate before its automatic commit.
+- Static context mismatch caught and resolved: inflate_flush_window's first promotion failed because shared gDisplayListSize is volatile. Rollback restored the exact ROM. Candidate now uses a nonvolatile view for that RAM store, independently reverified and relocked; existing huft_alloc declaration/source preserved. This is a documented source quirk.
+- Refreshed near-miss VERDICTS from the committed diagnose tool (195b7bc1) on real Rocky objects, exit 0. Diagnostic counts remain leads, not strict matches.
+- Gates: final source-built game image and full-ROM SHA-1 EXACT; blob lock 503 entries, zero problems; group lock zero problems; all 37 static/source locks intact. Final full pytest passed (exit 0 captured separately; environment-dependent tests skipped).
+- Workstreams now cover both local and cloud handoffs. Remaining priorities: forty close static candidates; real closures for input_aux_handler/C7200/8ABE4; new head func_8010C2E4 (three words away); r4300_mul historical resweep; verdict-routed mutators judged on clean held-out data; IPA probe integration/seed repair. Existing cloud known blockers retained; no extra brute-force budget assigned to exhausted closures.
+- No open cloud PRs at intake. First integration/head-registration push CI passed: run 36881032233. Final promotion push CI will be checked separately.
+- Persisted coordinator reconciliation: 36 forward status transitions, static promotions marked verified, image locks marked matched, zero open jobs to cancel.
+- Farm harvesting will resume after the final gates/push; searches were preserved. Rocky orphaned uopt count is zero and its current load is below 1.
+- Wiki publishing remains blocked by changed SSH host key at 192.168.50.30; awaiting independent fingerprint confirmation. No host-key trust bypass performed.
+
 ## 2026-10-01 static promotion preparation
 
 - Converted seven static segments to passthrough ROM TUs: 0x79a0, 0x83d0, 0x8920, 0xa330, 0xd260, 0xe7c0, 0xf160. No new static C coverage yet.
