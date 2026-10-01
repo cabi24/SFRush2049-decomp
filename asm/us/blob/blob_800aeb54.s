@@ -764,6 +764,7 @@ save_slot_valid:
 .section .text.save_load_data, "ax", @progbits
 .globl save_load_data
 save_load_data:
+    /* compiled from src/blob/save_load_data.c */
     .word 0x27BDFFC8
     .word 0xAFB00028
     .word 0x00048400

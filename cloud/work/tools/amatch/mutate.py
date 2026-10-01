@@ -30,7 +30,7 @@ loop_for_to_while, loop_while_to_for, loop_to_goto, loop_from_goto,
 counter_type, local_inline, decl_order, decl_init, pad_local, extern_toggle,
 ptr_launder, knr_proto, param_type, shared_exit, mul2_shift, incr_form,
 commute, cmp_flip, literal_spelling, andor_nest, ifelse_swap, switch_perm,
-stmt_swap.  Round 3 (edit classes found missing on the development half of the regression corpus,
+stmt_swap, line_join (whitespace-only scheduling).  Round 3 (edit classes found missing on the development half of the regression corpus,
 see corpus_data/SPLIT.json): while_fold, cond_merge, call_arg, cast_simplify, ret_type,
 proto_form, hoist_local, compound_assign, deref_index, param_unused, dead_purge, view_cast,
 m2c_field, local_reload, loop_guard, goto_branch.
@@ -4021,10 +4021,42 @@ def fam_param_unused(ctx):
 
 
 # --------------------------------------------------------------------------
+def fam_line_join(ctx):
+    """Put adjacent statement boundaries on one physical line (pilot lever 33)."""
+    if not ctx.want("line_join"):
+        return
+    sig = ctx.sig
+    body = sig[ctx.f.bo:ctx.f.bc + 1]
+    # These built-ins give physical layout a C-level meaning. Macro definitions
+    # elsewhere in the TU can also expand them, so conservatively skip the TU.
+    if any(t.t in ("__LINE__", "__COUNTER__") for t in sig) or re.search(
+            r"\b(?:__LINE__|__COUNTER__)\b", ctx.src):
+        return
+    # The light tokenizer does not model phase-2 line splicing inside //
+    # comments. A following apparent statement can still be comment text.
+    if any(m.lastgroup == "lc" and m.group().rstrip("\r").endswith("\\")
+           for m in TOKEN_RE.finditer(ctx.src)):
+        return
+    for left, right in zip(body, body[1:]):
+        if left.k == "pp" or right.k == "pp":
+            continue
+        boundary = left.t in (";", "{", "}") or (left.t == ")" and right.t == "{")
+        if not boundary:
+            continue
+        gap = ctx.src[left.e:right.s]
+        # Leave comments, directives and escaped newlines intact. In particular
+        # a // comment must retain its newline or it would swallow the next stmt.
+        if "\n" not in gap or not gap.isspace():
+            continue
+        ctx.add("line_join", [(left.e, right.s, " ")], 2, "order",
+                "join physical lines at a statement boundary")
+
+
 # catalog registry and API
 # --------------------------------------------------------------------------
 
 CATALOG = {
+    "line_join": (fam_line_join, "order", "join adjacent statement lines without changing tokens"),
     "loop_do_to_for": (fam_loops, "loop", "do/while -> for (init/step folded)"),
     "loop_do_to_while": (None, "loop", "do/while -> while"),
     "loop_for_to_do": (None, "loop", "for -> do/while"),
@@ -4071,6 +4103,7 @@ CATALOG = {
 
 # families implemented by a shared generator (run once)
 _GENERATORS = [
+    (("line_join",), fam_line_join),
     (("loop_do_to_for", "loop_do_to_while", "loop_for_to_do", "loop_for_to_while",
       "loop_while_to_for", "loop_to_goto", "loop_from_goto"), fam_loops),
     (("counter_type",), fam_counter_type),

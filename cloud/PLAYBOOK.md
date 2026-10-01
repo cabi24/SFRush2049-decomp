@@ -118,3 +118,9 @@ Eighteen near-misses were worked with `diagnose` in the loop: 7 matched, 4 match
 Eleven static object matches (1,008 slot bytes) promoted behind full-ROM gates; static coverage is 34/230, 2,456/61,440 bytes. Shared-TU declarations matter even when the full seed matched: `inflate_flush_window` needed a nonvolatile view of `gDisplayListSize` because the shared header's volatile declaration changed stores and introduced an extra instruction. Its failed first promotion rolled back cleanly; the corrected source independently reverified and then passed the ROM gate. Do not change existing locked allocator declarations to make a new body fit.
 
 Static conversions move asm to `asm/us/nonmatchings/rom/`; both target extraction and seed indexes must retain those inputs. Establish the passthrough baseline after explicitly syncing the new sources/assembly/linker/config to the builder: the game blob workflow alone only syncs its compressed blob and Makefile.
+
+## Callback symbol and line-join follow-up (2026-10-01)
+
+save_load_data's final ori/addiu mismatch was a hard-coded callback address: naming real drone_ai_update produces strict MATCH and exact image/ROM bytes. The other three one-word packet members need the real sound_update_channel IPA calling convention; stand-in closures cannot be claimed.
+
+The cloud catalog now has token-preserving line_join scheduling mutations, guarded against comments, preprocessing continuations and line-dependent macros. It reproduces the existing D4D84 pilot but yields 0/8 both before and after on the fixed bounded held-out protocol. See cloud/work/line_join_codex.md; no new coverage or generalization gain is claimed.

@@ -1,5 +1,14 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-01 follow-up integration
+
+- Game cartridge C: **504/1,216 functions, 57,996/647,072 bytes (8.96%)**. Static cartridge C: **34/230 functions, 2,456/61,440 bytes (4.00%)**. Session gains: seven game functions / 1,580 bytes, eleven static functions / 1,008 bytes.
+- Accepted save_load_data (436 bytes): replacing callback address literal with the real drone_ai_update symbol resolves the final ori/addiu difference. Coordinator independently obtained strict MATCH, then image and full-ROM SHA-1 EXACT. No dead-read or unused-local quirk introduced.
+- Added safe whitespace-only line_join cloud mutation family. Seven regressions pass; known pilot reproduces strict MATCH, adding no coverage. Fixed bounded held-out protocol: before 0/8, after 0/8, measured gain zero. Detailed reproducible evidence in cloud/work/line_join_codex.md.
+- Full pytest passed with exit 0 captured separately; blob lock 504 entries and group lock have zero problems. Live farm fixture now skips already-ROM-promoted strlen before seeding, preserving the production re-seed guard and accepted source.
+- Previous integration push passed GitHub CI (run 36882861035); this follow-up push will be checked separately. Farm harvesting resumes after commit/push; active searches preserved.
+- Remaining one-word mode_byte2_set and object_type_byte2_get/object_type_byte3_get need the real sound_update_channel IPA closure. Stand-ins remain unclaimable. Wiki host-key confirmation remains pending.
+
 ## 2026-10-01 first complete integration milestone
 
 - Game cartridge C: **503/1,216 functions, 57,560/647,072 bytes (8.90%)**. Static cartridge C: **34/230 functions, 2,456/61,440 bytes (4.00%)**.
