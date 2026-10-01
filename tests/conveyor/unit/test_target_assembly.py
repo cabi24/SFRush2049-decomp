@@ -75,6 +75,23 @@ def test_index_two_regions_keyed_by_first_vaddr(tmp_path):
     assert any("addiu" in line and "/*" not in line for line in r.lines)
 
 
+def test_converted_rom_slots_remain_available_to_target_and_seed_indexes(tmp_path, monkeypatch):
+    from tools.conveyor.pipeline import autodecomp
+
+    slots = tmp_path / "nonmatchings" / "rom" / "lib_1000"
+    slots.mkdir(parents=True)
+    source = slots / "func_80000100.s"
+    source.write_text(TWO_REGION_S)
+    # Game blob assembly is not part of this static population.
+    blob = tmp_path / "blob"
+    blob.mkdir()
+    (blob / "ignored.s").write_text("glabel unrelated_game_label\n")
+    assert set(T.index_asm_regions(tmp_path)) == {0x80000100, 0x80000200}
+    monkeypatch.setattr(autodecomp, "ASM_DIR", tmp_path)
+    assert autodecomp._asm_index() == {
+        "func_80000100": source, "func_80000200": source}
+
+
 def test_index_oscreate_region_words(tmp_path):
     (tmp_path / "7600.s").write_text(OSCREATE_S)
     regions = T.index_asm_regions(tmp_path)

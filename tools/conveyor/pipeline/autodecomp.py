@@ -30,6 +30,7 @@ from ..coordinator.store import BlobStore
 from . import seeds as seedsmod
 from . import farm as farmmod
 from . import disasm as disasmmod
+from . import targets as targetsmod
 
 REPO = Path(__file__).resolve().parents[3]
 ASM_DIR = REPO / "asm" / "us"
@@ -100,11 +101,11 @@ def _context_sha(context=None):
 
 
 def _asm_index():
-    """{glabel_name: asm_file} across asm/us/*.s (unconverted segments). Splat
+    """{glabel_name: asm_file} across whole segments and converted slots. Splat
     now emits canonical glabels (e.g. `glabel viGetTimeToDeadline`), so the
     target_id keys directly."""
     idx = {}
-    for f in sorted(ASM_DIR.glob("*.s")):
+    for f in targetsmod.static_asm_paths(ASM_DIR):
         for line in f.read_text(errors="replace").splitlines():
             m = _GLABEL_RE.match(line)
             if m:

@@ -1,12 +1,20 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-01 static promotion preparation
+
+- Converted seven static segments to passthrough ROM TUs: 0x79a0, 0x83d0, 0x8920, 0xa330, 0xd260, 0xe7c0, 0xf160. No new static C coverage yet.
+- Explicitly synced converted ROM sources, assembly (including stale whole-segment removals), splat config and linker script to watchman2. Rebuilt all seven new TUs and verified full-ROM SHA-1 exact before any promotion. `blob_rom rom` alone only syncs the compressed game blob/Makefile, so it cannot establish this static conversion baseline without that source sync.
+- Conversion exposed a real seeding/extraction gap: static assembly indexes only read top-level asm/us/*.s. Both now include converted asm/us/nonmatchings/rom slots, excluding game blob assembly; synthetic regression plus existing static context regression exercise the new path.
+- Eleven static candidates independently verified on Rocky D (stack-sensitive score zero and exact raw object words, content hashes recorded in build/codex-static-verify/results.json); pool locks are supplemental evidence because compile_score defaults to stack-masked scoring.
+- Wiki update blocked by changed SSH host key at 192.168.50.30; requested independent fingerprint confirmation, preserved known_hosts. Repository status remains authoritative.
+
 ## 2026-10-01 switch-head registration
 
 - Registered all six previously proved switch heads: func_8010221C (548 bytes), func_80102F30 (3,560), func_80104B14 (2,404), func_80105480 (1,780), func_8010D3C0 (704), func_8010D680 (476). Added 9,472 bytes of registered extents, no new C coverage claimed.
 - Game population now 1,216 functions; accepted C remains 503 functions / 57,560 of 647,072 bytes (8.90%). Static remains 23/230 functions / 1,448 of 61,440 bytes (2.36%).
 - Seventh head func_80104704 still refuses: branch at 0x80104A48 enters existing highscore_entry_anim at 0x80104A58. No shared-tail registration attempted.
 - Removed stale blob_80104b14.s; generated current regions/linker/symbols/manifest through blob_tu. Cloud head tests updated to the six registered extents and sole remaining audited head, with explicit extent assertions.
-- ROM from the regenerated layout: SHA-1 EXACT; both blob checks zero problems. Full pytest gate required before commit.
+- ROM from the regenerated layout: SHA-1 EXACT; both blob checks zero problems. Full pytest gate passed (exit 0) before commit.
 - Small-head worker final log and func_8010C2E4 best (three strict words away) retained as a nonmatch. Next: static passthrough conversions and eleven promotions.
 
 ## 2026-10-01 Codex integration batch 1

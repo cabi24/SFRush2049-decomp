@@ -512,8 +512,14 @@ def _is_kseg1_ref(mnemonic_text):
     return addr is not None and KSEG1_BASE <= addr < KSEG1_END
 
 
+def static_asm_paths(asm_dir):
+    """Static assembly in whole segments and converted ROM-TU slots."""
+    root = Path(asm_dir)
+    return sorted(root.glob("*.s")) + sorted((root / "nonmatchings" / "rom").rglob("*.s"))
+
+
 def index_asm_regions(asm_dir=None):
-    """{first_instruction_vaddr: Region} over every `asm/us/*.s`.
+    """{first_instruction_vaddr: Region} over static assembly inputs.
 
     A region runs from `glabel <name>` to `endlabel <name>`. Instruction lines
     (`/* off vaddr word */  mnemonic`) contribute their word to the gate and,
@@ -525,7 +531,7 @@ def index_asm_regions(asm_dir=None):
     """
     asm_dir = Path(asm_dir) if asm_dir else ASM_DIR
     regions = {}
-    for path in sorted(asm_dir.glob("*.s")):
+    for path in static_asm_paths(asm_dir):
         cur = None
         for line in path.read_text(errors="replace").splitlines():
             g = _GLABEL_RE.match(line)
