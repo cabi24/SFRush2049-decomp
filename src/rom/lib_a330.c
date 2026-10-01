@@ -4,7 +4,29 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_a330/osContStartQuery.s")
+/* PROMOTED 2026-10-01 — osContStartQuery
+ * Source:   cloud/work/static_C3/osContStartQuery.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C3/osContStartQuery.c:osContStartQuery (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+s32 osContStartQuery(OSMesgQueue* mq) {
+    s32 ret = 0;
+
+    __osSiGetAccess();
+
+    if (__osPfsRequestType != CONT_CMD_REQUEST_STATUS) {
+        __osContRamReset(CONT_CMD_REQUEST_STATUS);
+        ret = __osSiRawStartDma(OS_WRITE, __osSiDmaBuffer.ramarray);
+        osRecvMesg(mq, NULL, OS_MESG_BLOCK);
+    }
+
+    ret = __osSiRawStartDma(OS_READ, __osSiDmaBuffer.ramarray);
+    __osPfsRequestType = CONT_CMD_REQUEST_STATUS;
+    __osSiRelAccess();
+    return ret;
+}
+
 /* PROMOTED 2026-10-01 — osContGetQuery
  * Source:   cloud/work/static_C2/osContGetQuery.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
