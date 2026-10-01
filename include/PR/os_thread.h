@@ -41,8 +41,8 @@ typedef struct __OSThreadContext {
     u64     lo, hi;
     u32     sr, pc, cause, badvaddr, rcp;
     u32     fpcsr;
-    f32     fp0, fp2, fp4, fp6, fp8, fp10, fp12, fp14;
-    f32     fp16, fp18, fp20, fp22, fp24, fp26, fp28, fp30;
+    u64     fp0, fp2, fp4, fp6, fp8, fp10, fp12, fp14;
+    u64     fp16, fp18, fp20, fp22, fp24, fp26, fp28, fp30;
 } __OSThreadContext;
 
 /* Thread structure */
