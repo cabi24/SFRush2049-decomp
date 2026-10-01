@@ -71,3 +71,6 @@ What worked in cloud rounds 1-3 (single functions and IPA groups). Setup and rul
   Generic IDO 5.3 notes (register allocation measured with an instrumented `uopt`, stack-frame
   arithmetic, loop unrolling rules, struct/global access). Measured at `-O2 -mips1`; check a rule
   on our flags first. No licence declared: link to it, do not copy it into this repo.
+- **Vendored workbench (CC0):** `third_party/n64-decomp-workbench/` — run `diagnose` on a near-miss first; it names
+  the residual and the lever (`python3 tools/workbench.py guide` for the field guide and IDO 5.3 laws). The temp-ring
+  levers (14-16) explain the `t6`-`t9` register-rotation wall.

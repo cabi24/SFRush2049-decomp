@@ -1,0 +1,363 @@
+# JSON and automation contracts
+
+Every command with `--json` returns exactly one JSON document on stdout.
+Success documents carry a versioned top-level `schema`; failures carry
+`decomp-workbench-error-v1`. Diagnostics are not mixed into stderr in JSON
+mode, so a caller never has to guess whether stdout is parseable.
+
+## Success
+
+Schemas name the user-visible report, for example:
+
+- `decomp-workbench-comparison-v1`
+- `decomp-workbench-staleness-v1`
+- `decomp-workbench-diagnosis-v3`
+- `decomp-workbench-lever-v1`
+- `decomp-workbench-campaign-status-v1`
+- `decomp-workbench-campaign-finish-v1`
+- `decomp-workbench-oracle-sweep-v1`
+- `decomp-workbench-trace-source-v1`
+- `decomp-workbench-relocation-proof-v1`
+- `decomp-workbench-target-readiness-v1`
+
+### Hash-bound promotion and campaign state
+
+Artifact records use resolved `path`, descriptive `role`, byte `size`, and
+lowercase `sha256`. Content is identity: modification time is not recorded.
+Consumers should not infer source/object causality from two adjacent records;
+the relocation proof states that relation as `host-declared` because it does
+not run the build.
+
+`reloc-surface --identity-provider` retains the ordinary
+`decomp-workbench-reloc-surface-v1` host schema and adds an `identities`
+sub-document named `decomp-workbench-relocation-identity-report-v1`. Site
+statuses are exactly `resolved`, `unknown`, and `contradicted`; `complete=true`
+means a non-empty site set is wholly resolved with no contradiction.
+
+`reloc-proof` emits `decomp-workbench-relocation-proof-v1`. Its
+`surfaces.fallback_static` and `surfaces.promoted_linked` members are separate
+claims. A newly built receipt has `status=PASS`; verification adds
+`verification=AGREES|DISAGREES`, boolean `pass`, and the recorded/rebuilt
+documents. Static synthesis, the project identity join, and linked byte
+classification are recomputed from the hash-bound inputs; linked range
+coordinates must agree with a bound `range-map` artifact. Verification errors
+on stale, cropped, or internally fabricated input rather than returning
+agreement over a different file.
+
+Candidate lifecycle reports are
+`decomp-workbench-campaign-checkpoint-v1`,
+`decomp-workbench-campaign-restore-v1`, and
+`decomp-workbench-campaign-accept-v1`. Candidate artifacts use
+`decomp-workbench-candidate-artifact-v1`; contextual manifest pointers use
+`decomp-workbench-candidate-pointer-v1`. This separation lets current and best
+point at the same immutable content while retaining different roles,
+comparison evidence, and origin paths. `same` is true only when both were
+supplied and their content IDs agree.
+
+Campaign dossier JSONL uses one `decomp-workbench-dossier-entry-v1` object per
+line; the query report is `decomp-workbench-dossier-v1`. IDs are SHA-256
+prefixes over substantive canonical fields and are checked on read. A torn
+final line is a warning; malformed or edited completed lines are errors.
+
+`campaign readiness` consumes `decomp-workbench-target-queue-v1` and emits
+`decomp-workbench-target-readiness-v1`. Class values are exactly
+`promotion-ready`, `codegen-ready`, `identity-maintenance`, and `remeasure`.
+`source_queue`, `maintenance_queue`, and `promotion_queue` are derived lists,
+not additional classifications. Every measurement has an `artifact_sha256`
+role-to-digest map binding at least one target-side and one candidate-side
+artifact; adjacent but unbound current files do not make a measurement fresh.
+
+PRE reports use `decomp-workbench-pre-trace-v1` or
+`decomp-workbench-pre-diff-v1`; the guarded adapter emits
+`decomp-workbench-pre-instrument-v1`. Scheduler provenance is additive inside
+`decomp-workbench-scheduler-trace-v1`: `emitted_slot`, `source_file`,
+`source_statement`, `reason`, and `ready_ids`, plus report-level
+`provenance_complete`. A complete event has every field, exactly `ready`
+unique IDs, and its `chosen` ID in that set; partial or contradictory sets are
+never counted as complete.
+
+### One command, two shapes
+
+Two commands take more than one candidate, and the schema says which shape you
+got. Switch on `schema`, never on argument count:
+
+| Command | One candidate | Several candidates |
+|---|---|---|
+| `align`, `align-dumps` | `decomp-workbench-shift-diff-v1` | `decomp-workbench-align-census-v1` |
+| `phase`, `phase-dumps` | `decomp-workbench-phase-v1` | `decomp-workbench-phase-census-v1` |
+
+A census document holds one single-candidate report per entry under
+`candidates`, so a consumer that already reads the single shape can loop over
+that list unchanged.
+
+### Sub-documents never rename their host
+
+Optional blocks merged into a report keep their keys namespaced and name
+themselves under a prefixed key, never `schema`. `--watch-rows` adds
+`watch_rows`, `watch_signature`, the tallies, and `watch_schema`
+(`decomp-workbench-watch-rows-v1`) to a `compare`, `rank`, or `sweep build`
+document; the document's own top-level `schema` is unchanged. `compare`,
+`compare-dumps`, `diagnose` and `diagnose-dumps` add `staleness` and
+`staleness_schema` (`decomp-workbench-staleness-v1`) the same way: what was
+compared, when each artifact was built, and any input newer than the build
+that was compared against it. `check-staleness` emits that document on its
+own, with the schema at the top level. Its `status` is `fresh` only when at
+least one input/derived pair was actually read: a comparison run without
+`--built-from` compared nothing, so it reports `unknown` with `comparisons: 0`
+rather than certifying a build nobody checked. Switch on
+`schema` to know what you are holding, and on the presence of the prefixed
+keys to know which optional blocks came with it.
+
+### The lever block
+
+`diagnose` and `diagnose-dumps` add `lever` and `lever_schema`
+(`decomp-workbench-lever-v1`) whenever the comparison is not exact. An exact
+comparison has no residual to explain and carries neither key, so the presence
+of the block is itself the statement that something is left.
+
+`lever_class` is exactly one of `stack-home`, `temp-ring`, `line-order`,
+`pool-population`, `pool-rotation`, `unreachable`, and `none-known`. Beside
+it, `edit_family`, `edit` and `citation` name the concrete source edit and the
+function and date it was measured on; `evidence` is the lines that support the
+class; `measurements` carries the numbers it was computed from;
+`alternatives` lists the sibling families in the class, each with the
+`discriminator` that would select it instead; `see_also` lists catalogue
+proofs the owning pass points at; `reachability` reports a recorded force
+experiment and is null without one.
+
+**`edit_family` is null whenever the input that would name it is absent, and
+`needs` then names the capture that produces it.** That pairing is the
+contract, not a convenience: a consumer that treats a named class as a named
+edit will act on a guess. `edit` and `citation` travel with `edit_family` and
+are null with it.
+
+`stack-home` is the one class whose family comes from the disassembly rather
+than from a trace, so a `stack-home` lever always names a family, and a `needs`
+beside it asks for the frame ladder that *corroborates* the count rather than
+for the input that produced the family. It ranks its three directions in the
+order `STACK_HOME_RANKING` states: an unequal **pool lane** first — the side
+carrying the surplus web names the direction, because a value one side colours
+and the other homes is a declaration-list fact — then the frame delta, then the
+number of displaced homes. For every other class the family is read from a
+trace and `edit_family` stays null until one is supplied.
+
+`temp-ring` needs two inputs, not one, and names a family only when both are
+present. `--ring-trace` says which line was charged a pop; `--source` says what
+that line contains, and `measurements.constructs_by_line` reports it as
+`field-through-local`, `scaled-index`, `fused-accumulate`, `constant`, or
+`unclassified`. Each pop-cost rule was measured on one construct, so a charged
+line that holds none of the first three yields no family and a `reason` naming
+the construct it does hold. A pop count says which line to edit; it does not
+say which law reaches it.
+
+`pool-rotation` and `pool-population` are decided by comparing the two pool
+lanes' **lengths** before anything else. Unequal lengths are
+`pool-population`: one side colours a web the other leaves in the temp ring,
+and no colour lever reaches a web that does not exist. Equal lengths make the
+residual a rotation, and then `measurements.owning_sweep` names which sweep
+coloured its registers — `p1`, `p2`, `mixed`, or null when the capture holds
+no coloured web on any of them. That field is null without `--ladder`, because
+p1 and p2 order their webs differently and nothing in two disassemblies says
+which owns a colour.
+
+With a capture, `measurements` also carries `tie_group` (the save and the
+members, for a p1 pair ordered by web number alone), `move_earlier` and
+`move_later`, and `involved_webs`. The direction is derived from the
+lowest-free-colour rule, which the records establish for **p2** only, so it is
+stated for a p2 pair and never for a p1 one, and only for a two-register
+transposition with exactly one coloured web on each side. It is a reading of
+the numbering rule rather than a measured lever: no recorded edit has yet
+reordered a pair. A register held by two coloured webs names no
+direction and `needs` asks for `CDX_DETAIL_WEB` instead. **A named
+renumbering family always carries a `needs` entry demanding a confirming
+second capture**: an edit chosen from the numbering model can leave every web
+number where it was, and the source diff cannot show that.
+
+`reachability` is `proven`, `unreachable`, or null, and it is a statement
+about the web graph rather than about the source. `proven` means a recorded
+`CDX_FORCE` run in `--force-result` reached `words=0`: every colour in the
+residual is legal and the pass added no instruction, so what is missing is a
+spelling. `unreachable` means the pass declined a force or bought it with
+extra instructions. A run that neither closed nor failed leaves the field
+null and reports the best residual as evidence, because a force that improved
+the count proves nothing about the rest.
+
+`unreachable` is null unless the class is `unreachable`; when present it
+carries `unreachable_class` (`as1-readiness`, `uopt-address-folding`,
+`uopt-coalescing-tie-break`, or `cfe-pointer-add-order`), the `proof`, its
+`citation`, `reopens_when` — the condition under which the target is worth
+another look — and `precondition`, the residual shape the proof was measured
+on.
+
+A catalogue proof is the **verdict** whenever the evidence at hand meets that
+precondition, not a footnote beside `none-known`. Two do:
+`as1-readiness` from an `--as1-trace` whose selections are all decided above
+the line key, and `uopt-coalescing-tie-break` when the colourer owns the
+residual and it is one consistent web substitution across its sites between
+argument and return registers — the tie the proof is about, and narrower than
+"one web", which any pass can produce. The
+remaining two describe shapes two disassemblies cannot distinguish, so they
+stay under `see_also` with their `precondition` for the reader to check.
+Every entry under `see_also` carries that sentence for the same reason.
+
+`decomp-workbench commands --json` is the versioned discovery surface. Existing
+flat command names and journey spellings return the same report:
+`object diagnose` is an alias of `diagnose`, and `campaign status` is an alias
+of `campaign-status`. Each discovery entry includes executable `invocation`
+argv, its `report_schema`, and conservative safety metadata (`default`,
+`external_process`, `network`, and `destructive`). The metadata describes the
+default path; command help remains authoritative for optional output flags.
+
+The report also carries a top-level `network` object: the offline-first
+`policy` sentences, the `commands` that may open a connection, and the `hosts`
+they contact with the reason for each. It is an inventory, not a flag — an
+empty `commands` list is the positive claim that this build cannot call out,
+and every command outside the list reports `safety.network: false`. Use it as
+the egress contract; do not infer network behavior from a command's name.
+
+`next --json` is the action surface. Every proposed step carries
+`command_argv`, a shell-rendered `command` for humans, `safety`, and an
+`expected_signal` that says what evidence would make the step informative.
+Agents should execute argv directly and evaluate the expected signal instead
+of scraping prose or invoking a shell string.
+
+Comparison metric labels, JSON keys, census keys, and ledger fields share one
+registry. Run:
+
+```sh
+decomp-workbench --explain-keys
+```
+
+Canonical short keys such as `words`, `aligned_total`, and `frame` are the
+stable vocabulary. Deprecated long spellings remain emitted only for the
+documented compatibility window.
+
+Rank reports name the selected scale as `ranked_by`. If any candidate required
+alignment gaps, `alignment_ranking_unsafe=true` and the whole set is ordered on
+positional `words`; two gapped candidates are not assumed to share an aligned
+scale. `mixed_alignment` is retained as the narrower fact that both gap-free
+and gapped candidates were present.
+
+`diagnose`/`diagnose-dumps` emit `decomp-workbench-diagnosis-v3` and
+`view`/`view-dumps` emit `decomp-workbench-view-v3`. Both bumps are additive.
+v2 gained a `routing` field beside the verdict; v3 gained `owning_pass`,
+`reachability` and `ownership_basis` beside that. Nothing was removed or
+renamed at either step, so a consumer that ignores the new fields reads a v3
+document exactly as it read a v1 one.
+
+`routing` is one of `permuter-first`, `structural`, `import-fix`, or `none` --
+which tool the residual belongs to, as opposed to which mechanism explains it.
+An allocation, colour, or schedule tie is always `permuter-first`; it is never
+reported as proven unmatchable.
+
+`owning_pass` is one of `cfe-spelling`, `rodata-load-form`,
+`stack-home-assignment`, `uopt-globalcolor`, `ugen-temp-ring`, `g0-scheduler`,
+`none` (an exact pair) or `unknown` (nothing here settles it). `reachability`
+is one of `source-reachable`, `permuter-target`, `pass-owned` or `unknown`.
+`ownership_basis` says what those two were read off and is never omitted:
+`trace` when a compiler trace settled it, `heuristic` when they were read off
+the residual's shape, `none` when there was nothing to read. A consumer that
+treats a `heuristic` answer as a measurement is making the claim the field
+exists to prevent.
+
+`pass-owned` means the evidence exposes no handle a source edit reaches. It is
+**not** a wall: a `pass-owned` residual routes `permuter-first` exactly like
+any other tie, and the measurement that may record a wall is
+`permute classify`, afterwards.
+
+On a diagnosis the top-level `routing`, `owning_pass` and `reachability` may
+differ from `view.*`: a relocation naming a different symbol makes the whole
+residual `import-fix`/`unknown`/`unknown` while the view still reports the
+mechanism it measured.
+
+Experiment-v2 and endgame additions are additive to existing report schemas:
+
+- comparisons expose `aligned_row_receipts`, a code-free row identity/class/
+  equality table used by signals;
+- campaign results expose `signals`, `object_sha256`, and `controls`;
+- campaign status exposes `acceptance_trajectory`, `mechanism_trajectory`,
+  `coverage`, `conclusion_label`, requested `rank_by`, effective `ranked_by`,
+  and `alignment_ranking_unsafe`;
+- scratch checks expose `truth_layers`, `context_differential`,
+  `context_hypotheses`, and optional `project_comparison`;
+- finish files use `decomp-workbench-campaign-finish-v1`, with independent
+  gates whose status is `PASS`, `FAIL`, `UNKNOWN`, or `NOT RUN`.
+
+Signal/control machine statuses are exactly `PASS`, `FAIL`, and `UNKNOWN`.
+`UNKNOWN` blocks a required control; it never means false. Coverage conclusion
+labels are exactly `exhaustive-over-declared-space`,
+`sampled-over-declared-space`, `partial-interrupted`, `control-invalid`, and
+`coverage-unknown`. Consumers should switch on those fields rather than parse
+human reasons. Signal receipts deliberately contain no target instruction
+text or target words; normal ledger redaction still applies to other
+comparison detail.
+
+The CV64 campaign record also uses
+`decomp-workbench-recorded-example-v1`. That is aggregate historical metadata,
+not a schema emitted by a CLI command and not a substitute for a fresh
+comparison.
+
+## Failure
+
+A representative error is:
+
+```json
+{
+  "schema": "decomp-workbench-error-v1",
+  "command": "compare-dumps",
+  "stage": "command",
+  "status": 2,
+  "error": {
+    "kind": "not-found",
+    "message": "..."
+  }
+}
+```
+
+Argument-parser failures follow the same envelope when `--json` was present.
+`kind` is a small operational classification (`usage`, `not-found`,
+`process-failed`, `timeout`, `no-result`, or `command-failed`); domain details
+remain in the message or an optional `details` object.
+
+## Exit codes
+
+| Code | Meaning |
+|---:|---|
+| `0` | command completed; any explicitly requested gate passed |
+| `1` | a requested match/validation gate failed, or no usable rows existed |
+| `2` | invalid input, missing capability, or failed external stage |
+| `3` | the report was produced, but at least one `--census` predicate was false |
+
+A failed required campaign control returns 2 because the experiment is
+invalid and ordinary candidates were not scheduled. `campaign finish` returns
+1 when it wrote a valid receipt with one or more evaluated gates failing, and
+2 when it could not produce a trustworthy receipt.
+
+State and readiness are data, not automatically process failures. For example,
+successful partial `toolchain calibrate` returns zero with
+`claim="uncalibrated"` and lists the missing gates. `toolchain status` returns
+nonzero only when recorded file integrity fails.
+
+## Bounded process output
+
+Compiler-facing reports retain at most 64 KiB per stdout/stderr stream by
+default and report original byte counts plus truncation. Use `--stream-limit`
+to change the preview and `--artifact-dir` to retain complete streams. Artifact
+filenames are exclusive and collision-safe; existing evidence is never
+overwritten.
+
+Compact campaign automation should prefer `--json-summary`. Full `--json`
+includes richer compiler and instruction evidence. JSONL ledgers are
+append-only; an unterminated torn final line after interruption is ignored with
+a warning, while every newline-terminated malformed record is rejected.
+
+## Files written by reports
+
+Explicit exports and force specifications refuse to overwrite. Derived status
+inside an owned `.decomp-workbench` state directory is updated atomically.
+Cache prune is a dry run until `--apply`, and apply moves entries to recoverable
+trash rather than deleting them.
+
+These contracts are exercised in the supported Python matrix, macOS full-suite
+CI, targeted Windows process/filesystem CI, distribution smoke tests, and
+runnable documentation tests.

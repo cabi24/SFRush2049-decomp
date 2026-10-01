@@ -146,6 +146,15 @@ behaviour measured with an instrumented `uopt` (how registers are coloured, stac
 which loops get unrolled). It was measured at `-O2 -mips1` and we use `-mips2`/`-O3`, so check a rule
 here before relying on it. It has no licence: link to it, do not copy it into this repo.
 
+**Run the workbench `diagnose` before hand-editing a near-miss.** It is vendored (CC0) at
+`third_party/n64-decomp-workbench/`; run it without installing:
+`PYTHONPATH=third_party/n64-decomp-workbench/src python3 -m decomp_workbench diagnose TARGET.o CANDIDATE.o
+--function FN --objdump <mips objdump>` (or `python3 tools/workbench.py ...`). It classifies the residual
+(`schedule`, `allocation`, `frame-layout`, `phase-shift`, ...), shows the register lanes (the allocator's coloured pool
+`v0`/`a0`-`a3` versus ugen's temp ring `t6`-`t9`), and prints the next lever; `guide` prints the field guide and the
+IDO 5.3 compiler laws. The `t6`-`t9` "register rotation wall" in `hand_notes_A.md` is the temp ring being out of phase:
+see levers 14-16 (`guide temp-fifo-phase`). Its ownership labels are heuristic and measured on other games.
+
 What worked on the 32 hand matches of 2026-09-28/29 (details in the commit log
 from `2f2f5bc` onward):
 - **Pointer strides:** m2c byte offsets through typed pointers (`s32 *p; p += 4`

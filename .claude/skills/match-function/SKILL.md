@@ -24,7 +24,9 @@ for flag evidence and C89 constraints, and the relevant section of
 4. Compile/score with the target's recorded flags or the confirmed `-O1`/`-O2`
    candidates. Do not assume all game code uses one optimization level. Retain
    provenance: target object, candidate source, toolkit, flagset, and true score.
-   For a register-allocation, stack-frame or loop-unrolling residual, read the
+   On a near-match, run `python3 tools/workbench.py diagnose TARGET.o CAND.o --function FN --objdump <mips objdump>`
+   first: it names the residual (schedule, frame, temp ring, allocation) and the lever to try. For a
+   register-allocation, stack-frame or loop-unrolling residual, also read the
    [external IDO notes](../../../docs/external/README.md) (a local copy of the Snowboard
    Kids decomp's learnings, refreshed daily) and check each rule on our pipeline before
    relying on it: it was measured at `-O2 -mips1`, we use `-mips2` and `-O3` groups.

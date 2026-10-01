@@ -67,7 +67,7 @@ read-only status command. Old phase percentages and next-session TODOs are archi
 | Use specialized agent definitions | [Agent directory](.claude/agents/) |
 | Read/write the project wiki | [Wiki access](docs/WIKI.md) |
 | Joining from the cloud (repo only, no ROM/LAN) | [Cloud handoff](CloudHandoff.md) |
-| Register-allocation or frame-size residual in a near-match | [External IDO notes](docs/external/README.md) |
+| Register-allocation, frame-size or schedule residual in a near-match: run the workbench `diagnose` first | [External notes + vendored workbench](docs/external/README.md) |
 
 ## Maintaining these instructions
 
