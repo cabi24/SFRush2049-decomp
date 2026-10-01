@@ -5,4 +5,11 @@
 #include "rom_tu.h"
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_e390/__osSetFpcCsr.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_e390/osPiReadIo.s")
+/* PROMOTED 2026-10-01 — osPiReadIo
+ * Source:   cloud/work/static_C5/osPiReadIo.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C5/osPiReadIo.c:osPiReadIo (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+s32 osPiReadIo(u32 devAddr, u32 *data) { if (__osPiDeviceBusy()) return -1; *data = *(volatile u32 *)(devAddr | 0xA0000000U); return 0; }
+
