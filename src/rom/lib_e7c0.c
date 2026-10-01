@@ -41,4 +41,21 @@ void osPiReleaseAccess(void) {
     osJamMesg(&__osPiMesgQueue, NULL, 0);
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_e7c0/osPiReadWord.s")
+/* PROMOTED 2026-10-01 — osPiReadWord
+ * Source:   cloud/work/static_C8/osPiReadWord.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C8/osPiReadWord.c:osPiReadWord (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+s32 osPiReadWord(u32 devAddr, u32* data) {
+    register u32 stat;
+
+
+    
+
+    while ((stat = *(volatile u32*)0xA4600010) & 3);
+    *data = (*(volatile u32*)((u32)osRomBase | devAddr | 0xA0000000));
+
+    return 0;
+}
+
