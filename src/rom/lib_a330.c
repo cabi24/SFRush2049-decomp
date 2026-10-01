@@ -5,7 +5,17 @@
 #include "rom_tu.h"
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_a330/osContStartQuery.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_a330/osContGetQuery.s")
+/* PROMOTED 2026-10-01 — osContGetQuery
+ * Source:   cloud/work/static_C2/osContGetQuery.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C2/osContGetQuery.c:osContGetQuery (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void osContGetQuery(OSContStatus* data) {
+    u8 pattern;
+    __osContGetStatus(&pattern, data);
+}
+
 /* PROMOTED 2026-10-01 — osContStartReadData2
  * Source:   cloud/work/static_C/osContStartReadData2.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
