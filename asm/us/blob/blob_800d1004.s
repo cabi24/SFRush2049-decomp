@@ -4062,6 +4062,7 @@ stunt_combo_display:
 .section .text.func_800D4D84, "ax", @progbits
 .globl func_800D4D84
 func_800D4D84:
+    /* compiled from src/blob/func_800D4D84.c */
     .word 0x00047200
     .word 0x01C47021
     .word 0x3C0F8015
