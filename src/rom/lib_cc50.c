@@ -58,7 +58,24 @@ void dll_update(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_cc50/dll_reschedule.s")
+/* PROMOTED 2026-10-01 — dll_reschedule
+ * Source:   cloud/work/static_C14/dll_reschedule.c (in-repo, locked)
+ * Flags:    -g0 -O1 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C14/dll_reschedule.c:dll_reschedule (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void dll_reschedule(OSTime tim) {
+    OSTime NewTime;
+    u32 savedMask;
+
+
+    savedMask = __osDisableInt();
+    __osTimerCounter = osGetCount();
+    NewTime = __osTimerCounter + tim;
+    __osSetCompare(NewTime);
+    __osRestoreInt(savedMask);
+}
+
 /* PROMOTED 2026-10-01 — dll_insert
  * Source:   cloud/work/static_C11/dll_insert.c (in-repo, locked)
  * Flags:    -g0 -O1 -mips2 -G 0 -non_shared
