@@ -132,3 +132,12 @@ Real sound closure now accepts mode_byte_set, mode_byte2_set and the two byte ge
 func_800C7200 matches with both actual callers after real seed repair, nonvoid exhaustion fall-through and same-line initializers. This is an explicit C undefined-return quirk, not proof of original source; exact fixed-compiler retail bytes are the acceptance evidence. 8ABE4 still needs its final six-word web repair.
 
 random_seed_init uses a code-free argument read to exchange colored webs. D0C0 instead simplifies its natural loop and removes pass-through locals, matching without dummy reads. Static acceptance expanded to 50/230, 4,308/61,440 bytes. Canonical float ABI aliases and converted-slot indexing repair four stale target objects through existing round-trip gates; no scorer masks were weakened. Shared declarations retain existing signed bzero_alt body and correct DP wrapper's 64-bit size argument.
+
+
+## Static GU errata and real helper follow-up (2026-10-01)
+
+Explicit `-Wab,-r4300_mul` in isolated scoring is decisive for guMtxF2L, guOrthoF and guPerspectiveF. Makefile ROM builds already supply it, so reconcile shared flag evidence only after re-verifying every accepted body in those segments, not by changing optimization pins arbitrarily. Five shared accepted bodies remain strict/raw0; full ROM passes after all three helper promotions. Existing gOrthoScale holds the perspective radians constant; reference the actual retail symbol instead of assuming new local .rodata will link correctly.
+
+Real sound extra callers and control-settings helpers add376+268 bytes, with actual audited callee/caller context and claimed image/ROM equality. The latter needs real control_settings's ten call sites to reproduce unsaved s0/s1. Unclaimed context still has external IPA and rodata gaps; do not treat a strict helper match as proof of its entire caller.
+
+Current game errata resweep gives zero immediate matches among79 attempted seeds (56 strict nonmatches,23 compile/score failures), plus12 already locked andone seed failure. Six42-word matrix seeds improve to5 differing words after real stack-home/expression repair but remain unaccepted. Prefer missing vector-output/prototype repairs over another uncontrolled formatting batch. Static coverage now66/230,8,532/61,440 bytes; game521/1,216,60,604/647,072 bytes, reported separately.
