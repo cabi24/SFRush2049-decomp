@@ -74,6 +74,56 @@ s32 __osCheckId(OSPfs* pfs, __OSPackId* temp) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_f700/__osGetId.s")
+/* PROMOTED 2026-10-01 — __osGetId
+ * Source:   cloud/work/static_C9/__osGetId.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C9/__osGetId.c:__osGetId (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+s32 __osGetId(OSPfs* pfs) {
+    u16 sum;
+    u16 isum;
+    u8 temp[BLOCKSIZE];
+    __OSPackId newid;
+    s32 ret;
+    __OSPackId* id;
+
+    SET_ACTIVEBANK_TO_ZERO();
+    ERRCK(__osContRamRead(pfs->queue, pfs->channel, PFS_ID_0AREA, (u8*)temp));
+    __osIdCheckSum((u16*)temp, &sum, &isum);
+    id = (__OSPackId*)temp;
+
+    if (id->checksum != sum || id->inverted_checksum != isum) {
+        ret = __osCheckId(pfs, id);
+
+        if (ret == PFS_ERR_ID_FATAL) {
+            ERRCK(__osRepairId(pfs, id, &newid));
+            id = &newid;
+        } else if (ret != 0) {
+            return ret;
+        }
+    }
+
+    if ((id->deviceid & 1) == 0) {
+        ERRCK(__osRepairId(pfs, id, &newid));
+        id = &newid;
+
+        if ((id->deviceid & 1) == 0) {
+            return PFS_ERR_DEVICE;
+        }
+    }
+
+    bcopy(id, pfs->id, BLOCKSIZE);
+    pfs->version = id->version;
+    pfs->banks = id->banks;
+    pfs->inode_start_page = 1 + DEF_DIR_PAGES + (2 * pfs->banks);
+    pfs->dir_size = 16;
+    pfs->inode_table = PFS_ONE_PAGE;
+    pfs->minode_table = (1 + pfs->banks) * PFS_ONE_PAGE;
+    pfs->dir_table = pfs->minode_table + pfs->banks * PFS_ONE_PAGE;
+    ERRCK(__osContRamRead(pfs->queue, pfs->channel, PFS_LABEL_AREA, pfs->label));
+    return 0;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_f700/osPfsReadWriteFile_pages.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_f700/__osPfsRWInode.s")
