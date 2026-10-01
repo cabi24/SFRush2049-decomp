@@ -1,0 +1,31 @@
+{
+  "members": [
+    "PrevMaxPath"
+  ],
+  "context": [
+    "InitMaxPath",
+    "sync_maxpath_to_checkpoint",
+    "display_enable",
+    "audio_reverb_update",
+    "playgame_state_change",
+    "speed_set",
+    "slot_state_setup",
+    "audio_frame_sync",
+    "sound_update_channel",
+    "func_80096288",
+    "func_80097694"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "keep": [
+    "InitMaxPath",
+    "sync_maxpath_to_checkpoint",
+    "playgame_state_change",
+    "audio_frame_sync",
+    "func_80097694",
+    "sound_update_channel"
+  ],
+  "claims": []
+}

@@ -1,0 +1,662 @@
+[
+  {
+    "keep": [
+      "InitMaxPath",
+      "sync_maxpath_to_checkpoint",
+      "playgame_state_change",
+      "audio_frame_sync",
+      "func_80097694"
+    ],
+    "err": null,
+    "scores": {
+      "PrevMaxPath": {
+        "strict_diff": 5,
+        "size": 24,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "InitMaxPath": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "sync_maxpath_to_checkpoint": {
+        "strict_diff": 34,
+        "size": 30,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "display_enable": {
+        "strict_diff": 78,
+        "size": 72,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "audio_reverb_update": {
+        "strict_diff": 21,
+        "size": 61,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "playgame_state_change": {
+        "strict_diff": 607,
+        "size": 643,
+        "extra": 7,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "speed_set": {
+        "strict_diff": 47,
+        "size": 56,
+        "extra": 5,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "slot_state_setup": {
+        "strict_diff": 56,
+        "size": 171,
+        "extra": 111,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "audio_frame_sync": {
+        "strict_diff": 129,
+        "size": 112,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "sound_update_channel": {
+        "strict_diff": 122,
+        "size": 2,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "func_80096288": {
+        "strict_diff": 3,
+        "size": 2,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "func_80097694": {
+        "strict_diff": 29,
+        "size": 65,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      }
+    }
+  },
+  {
+    "keep": [
+      "InitMaxPath",
+      "sync_maxpath_to_checkpoint",
+      "playgame_state_change",
+      "audio_frame_sync",
+      "func_80097694",
+      "sound_update_channel"
+    ],
+    "err": null,
+    "scores": {
+      "PrevMaxPath": {
+        "strict_diff": 5,
+        "size": 24,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "InitMaxPath": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "sync_maxpath_to_checkpoint": {
+        "strict_diff": 34,
+        "size": 29,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "display_enable": {
+        "strict_diff": 78,
+        "size": 72,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "audio_reverb_update": {
+        "strict_diff": 21,
+        "size": 61,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "playgame_state_change": {
+        "strict_diff": 607,
+        "size": 643,
+        "extra": 7,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "speed_set": {
+        "strict_diff": 47,
+        "size": 56,
+        "extra": 5,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "slot_state_setup": {
+        "strict_diff": 24,
+        "size": 58,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "audio_frame_sync": {
+        "strict_diff": 129,
+        "size": 112,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "sound_update_channel": {
+        "strict_diff": 120,
+        "size": 117,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "func_80096288": {
+        "strict_diff": 3,
+        "size": 2,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "func_80097694": {
+        "strict_diff": 29,
+        "size": 65,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      }
+    }
+  },
+  {
+    "keep": [
+      "InitMaxPath",
+      "sync_maxpath_to_checkpoint",
+      "playgame_state_change",
+      "audio_frame_sync",
+      "func_80097694",
+      "sound_update_channel",
+      "func_80096288"
+    ],
+    "err": null,
+    "scores": {
+      "PrevMaxPath": {
+        "strict_diff": 5,
+        "size": 24,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "InitMaxPath": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "sync_maxpath_to_checkpoint": {
+        "strict_diff": 34,
+        "size": 30,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "display_enable": {
+        "strict_diff": 78,
+        "size": 72,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "audio_reverb_update": {
+        "strict_diff": 21,
+        "size": 61,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "playgame_state_change": {
+        "strict_diff": 607,
+        "size": 643,
+        "extra": 7,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "speed_set": {
+        "strict_diff": 47,
+        "size": 56,
+        "extra": 5,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "slot_state_setup": {
+        "strict_diff": 24,
+        "size": 58,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "audio_frame_sync": {
+        "strict_diff": 129,
+        "size": 112,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "sound_update_channel": {
+        "strict_diff": 120,
+        "size": 126,
+        "extra": 4,
+        "matched": false,
+        "err": null,
+        "errors": [
+          "unpaired R_MIPS_HI16 for D_80149B28 at .text+0x4a0"
+        ]
+      },
+      "func_80096288": {
+        "strict_diff": 4,
+        "size": 3,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "func_80097694": {
+        "strict_diff": 29,
+        "size": 65,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      }
+    }
+  },
+  {
+    "keep": [
+      "InitMaxPath",
+      "sync_maxpath_to_checkpoint",
+      "playgame_state_change",
+      "audio_frame_sync",
+      "func_80097694",
+      "sound_update_channel",
+      "speed_set",
+      "slot_state_setup"
+    ],
+    "err": null,
+    "scores": {
+      "PrevMaxPath": {
+        "strict_diff": 5,
+        "size": 24,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "InitMaxPath": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "sync_maxpath_to_checkpoint": {
+        "strict_diff": 34,
+        "size": 31,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "display_enable": {
+        "strict_diff": 78,
+        "size": 72,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "audio_reverb_update": {
+        "strict_diff": 21,
+        "size": 61,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "playgame_state_change": {
+        "strict_diff": 567,
+        "size": 635,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "speed_set": {
+        "strict_diff": 49,
+        "size": 60,
+        "extra": 9,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "slot_state_setup": {
+        "strict_diff": 58,
+        "size": 64,
+        "extra": 6,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "audio_frame_sync": {
+        "strict_diff": 129,
+        "size": 112,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "sound_update_channel": {
+        "strict_diff": 120,
+        "size": 117,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "func_80096288": {
+        "strict_diff": 3,
+        "size": 2,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "func_80097694": {
+        "strict_diff": 29,
+        "size": 65,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      }
+    }
+  },
+  {
+    "keep": [
+      "InitMaxPath",
+      "sync_maxpath_to_checkpoint",
+      "playgame_state_change",
+      "audio_frame_sync",
+      "func_80097694",
+      "sound_update_channel",
+      "display_enable"
+    ],
+    "err": null,
+    "scores": {
+      "PrevMaxPath": {
+        "strict_diff": 5,
+        "size": 24,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "InitMaxPath": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "sync_maxpath_to_checkpoint": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "display_enable": {
+        "strict_diff": 75,
+        "size": 79,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "audio_reverb_update": {
+        "strict_diff": 21,
+        "size": 61,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "playgame_state_change": {
+        "strict_diff": 549,
+        "size": 637,
+        "extra": 1,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "speed_set": {
+        "strict_diff": 47,
+        "size": 56,
+        "extra": 5,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "slot_state_setup": {
+        "strict_diff": 24,
+        "size": 58,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "audio_frame_sync": {
+        "strict_diff": 129,
+        "size": 112,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "sound_update_channel": {
+        "strict_diff": 120,
+        "size": 117,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "func_80096288": {
+        "strict_diff": 3,
+        "size": 2,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "func_80097694": {
+        "strict_diff": 29,
+        "size": 65,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      }
+    }
+  },
+  {
+    "keep": [
+      "InitMaxPath",
+      "sync_maxpath_to_checkpoint",
+      "playgame_state_change",
+      "audio_frame_sync",
+      "func_80097694",
+      "sound_update_channel",
+      "audio_reverb_update"
+    ],
+    "err": null,
+    "scores": {
+      "PrevMaxPath": {
+        "strict_diff": 5,
+        "size": 24,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "InitMaxPath": {
+        "strict_diff": 34,
+        "size": 28,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "sync_maxpath_to_checkpoint": {
+        "strict_diff": 34,
+        "size": 31,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "display_enable": {
+        "strict_diff": 78,
+        "size": 71,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "audio_reverb_update": {
+        "strict_diff": 56,
+        "size": 65,
+        "extra": 4,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "playgame_state_change": {
+        "strict_diff": 554,
+        "size": 641,
+        "extra": 5,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "speed_set": {
+        "strict_diff": 47,
+        "size": 56,
+        "extra": 5,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "slot_state_setup": {
+        "strict_diff": 24,
+        "size": 58,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "audio_frame_sync": {
+        "strict_diff": 129,
+        "size": 112,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "sound_update_channel": {
+        "strict_diff": 120,
+        "size": 117,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "func_80096288": {
+        "strict_diff": 3,
+        "size": 2,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      },
+      "func_80097694": {
+        "strict_diff": 29,
+        "size": 65,
+        "extra": 0,
+        "matched": false,
+        "err": null,
+        "errors": []
+      }
+    }
+  }
+]

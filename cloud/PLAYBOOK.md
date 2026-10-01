@@ -170,3 +170,8 @@ C12 five canonical PFS/EPi bodies add4376 ROM-verified bytes. Historical osPfsRe
 Actual steering/traction callers reproduce vector_diff_process's hidden origin register t0 without a dummy formal. Claim only its80 bytes; both reconstructed callers remain different. Real physics closure repairs improve source semantics but not yet the allocation; empty claims remain honest.
 
 New source-built local tables/BSS are not proven by an isolated raw-zero object. The PI device-manager switch table is inside monolithic data at retail0x8002D860; replace that actual slot, preserving the rest, rather than appending duplicate rodata. Full VI BSS layout derives every real object through the local retrace counter at0x80036700, but a standalone localcounter .bss at0 does not establish binding. Restore genuine complete ownership and typed SDK thread layout behind the unchanged full-ROM gate; do not invent individual symbol assignments.
+
+
+## Seven true output pointers close a small IPA helper (2026-10-01)
+
+A16 func_800B6748 is a16-word initializer with seven genuinely consumed output pointers: RGBA, float, two signed halfwords and three signed bytes. Recover every actual caller binding, rather than accepting the decompiler's four-formal prototype. Three real callers and their corrected byte-stream/float-bit operations give strict MATCH with no invented guard, unused formal or broad ancestor expansion. Caller contexts remain unclaimed nonmatches. Independently rescore the frozen source, image-splice only the helper, and require the full source-built ROM gate.
