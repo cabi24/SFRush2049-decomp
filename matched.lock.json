@@ -1,12 +1,4 @@
 {
-  "cloud/work/static_C6/__osViSwapContext.c:__osViSwapContext": {
-    "body_sha256": "46127f612005a604a3586ebb602ef241a27e6f40ac3d26ff6c7608bc21bbf5c5",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "__osViSwapContext",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-01"
-  },
   "cloud/work/static_C6/guMtxF2L.c:guMtxF2L": {
     "body_sha256": "ca3620759913a33440800d791917ee96a72d1f76201b5dcf412807cdfc6b304d",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
@@ -373,6 +365,14 @@
     "body_sha256": "fbeeadfcaa406022b3373ce01662a878036afe502a3ee9df0bd690e6d96e5c20",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "osGetActiveQueue",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
+  },
+  "src/rom/lib_d270.c:__osViSwapContext": {
+    "body_sha256": "46127f612005a604a3586ebb602ef241a27e6f40ac3d26ff6c7608bc21bbf5c5",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osViSwapContext",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
