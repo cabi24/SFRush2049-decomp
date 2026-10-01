@@ -7,14 +7,6 @@
     "verified": "score0",
     "verified_at": "2026-10-01"
   },
-  "cloud/work/static_C9/__osPfsDeclearPage.c:__osPfsDeclearPage": {
-    "body_sha256": "92f54e3795e59b38180411cb35b9bb6b03f6a2b16c2a2cdaac81b890947c16dd",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "__osPfsDeclearPage",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-01"
-  },
   "cloud/work/static_C9/osMotorInit.c:osMotorInit": {
     "body_sha256": "47e8a3d659ade13d08c05d9a71e56571a7aace33327a5132d2a567eba0ee34f0",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -431,6 +423,14 @@
     "body_sha256": "230696d23c3f1833f534fd9ec543e306cc4fa23a0317167d36899d14186e36c0",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "osPfsFindFile",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
+  },
+  "src/rom/lib_b570.c:__osPfsDeclearPage": {
+    "body_sha256": "92f54e3795e59b38180411cb35b9bb6b03f6a2b16c2a2cdaac81b890947c16dd",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osPfsDeclearPage",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
