@@ -1,12 +1,4 @@
 {
-  "cloud/work/static_C2/osViModeNtscLpn1.c:osViModeNtscLpn1": {
-    "body_sha256": "13664978efca0ad0f6a3da01e063e04b5900896f85bce9f779df61f6c570bc03",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "osViModeNtscLpn1",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-01"
-  },
   "cloud/work/static_C2/osVirtualToPhysical.c:osVirtualToPhysical": {
     "body_sha256": "f6d92fa3f73b13901b5d8b241561c1367552f1713b22d81c7f951e51be6e0463",
     "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
@@ -163,6 +155,14 @@
     "body_sha256": "74aadaa51ecbfdad7f15e1f870be13d9419a9e9c560f7023cb9ed959c66bd430",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "osViGetFramebuffer",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
+  },
+  "src/rom/lib_8440.c:osViModeNtscLpn1": {
+    "body_sha256": "13664978efca0ad0f6a3da01e063e04b5900896f85bce9f779df61f6c570bc03",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osViModeNtscLpn1",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
