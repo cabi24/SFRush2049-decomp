@@ -1,0 +1,65 @@
+[
+  {
+    "function": "__osContRamRead",
+    "exit": 0,
+    "stderr": "",
+    "raw_word_diff": 0,
+    "strict_score": 0,
+    "target_words": 140,
+    "candidate_words": 140
+  },
+  {
+    "function": "__osTimerInterrupt",
+    "exit": 0,
+    "stderr": "",
+    "raw_word_diff": 0,
+    "strict_score": 0,
+    "target_words": 68,
+    "candidate_words": 68
+  },
+  {
+    "function": "osMotorStart",
+    "exit": 0,
+    "stderr": "",
+    "raw_word_diff": 0,
+    "strict_score": 0,
+    "target_words": 88,
+    "candidate_words": 88
+  },
+  {
+    "function": "osPfsAllocate",
+    "exit": 0,
+    "stderr": "",
+    "raw_word_diff": 0,
+    "strict_score": 0,
+    "target_words": 116,
+    "candidate_words": 116
+  },
+  {
+    "function": "osPfsDeleteFile",
+    "exit": 0,
+    "stderr": "",
+    "raw_word_diff": 0,
+    "strict_score": 0,
+    "target_words": 120,
+    "candidate_words": 120
+  },
+  {
+    "function": "osPfsRename",
+    "exit": 0,
+    "stderr": "",
+    "raw_word_diff": 0,
+    "strict_score": 0,
+    "target_words": 120,
+    "candidate_words": 120
+  },
+  {
+    "function": "osSetEventMesgAlt",
+    "exit": 0,
+    "stderr": "",
+    "raw_word_diff": 0,
+    "strict_score": 0,
+    "target_words": 48,
+    "candidate_words": 48
+  }
+]
