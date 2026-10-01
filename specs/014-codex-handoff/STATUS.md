@@ -1,5 +1,17 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-01 fourth completed promotion milestone
+
+- Game cartridge C: **526/1,216 functions, 61,716/647,072 bytes (9.54%)**. Static cartridge C: **96/230 functions, 17,520/61,440 bytes (28.52%)**.
+- Since previous pushed milestone: five game functions /1,112 bytes and thirty static functions /8,988 bytes accepted. Across handoff:29 game functions /5,300 bytes and73 static functions /16,072 bytes. Six registered switch extents remain separate from C credit.
+- A5 real inlined audio getter closes B08FC; B10 adds D9CC natural property-list/vector handling and DF90 compound-mask logic. E828 was already accepted: original body/lock restored, alternate strict match archived without extra credit. B13 adds C7CC/FD60 tiny real bodies (52 bytes), with unused actual argument homes documented. Every new game body independently strict MATCH on D, source-built image exact, full-ROM exact.
+- Static C7 seven, C8 eight, C9 eight and C10 seven promoted through individual exact-ROM transactions. Canonical messaging/controller/PFS/motor/PI/GU/event bodies use the actual historical symbol mapping, rather than guessed SDK label semantics. New PFS identity objects refreshed through supported assembly round-trip gates; no score weakening.
+- PIF status alias normalization requires authoritative __osSiDmaRetry == __osSiDmaBuffer +0x3c. Accepted pointer-valued s32 __osInsertTimer remains unchanged; new callers use independently verified pointer casts. __OSDir corrected to data_sum@0xA, unsigned ext_name@0xC, unsigned game_name@0x10, preserving32-byte size. Independent seven current-header body checks and53 existing-TU identical text comparisons supplement forced full-ROM acceptance. Raw streams remain ignored/private; committed proof contains hashes/counts/equality only.
+- C10 event setter first full-ROM attempt rolled back because conversion preceded its O1 evidence lock and the generated opt fragment omitted7a10. Regenerated/synced the derived fragment; unchanged body passed retry. Required order is lock flags, derive/write overrides, sync, prove passthrough baseline, then promote. O2-only osCreatePiManager and O1-only osSendMesg remain blocked by neighboring accepted pins.
+- Real A6/A7/A8 groups remain honest nonmatches with empty claims. B8/B9 repairs and B13 larger heads retained as nonmatches. Current C11 focuses further PFS/VI/timer code; scoped supported refresh of three stale cc50 timer objects passes reloc-aware assembly gates with zero fallback. Worker will rescore current targets before final verdicts.
+- Checkpoint source-built image and full-ROM SHA-1 EXACT; blob526 and group locks zero problems;99 static/source locks intact (96 actual ROM promotions plus3 historical source entries). Full pytest exit0 captured separately;27 required static tests pass before each transaction. Coordinator reconciled4 game and29 static forward statuses, then the final event promotion separately; no informational attention flags introduced.
+- Previous pushed02e050bf CI run36896489132 succeeded. No open cloud PRs; Rocky orphan uopt count zero. Four concurrent slots are occupied (coordinator plus three workers). Farm remains stopped during source integration and resumes after checkpoint push. Wiki host-key confirmation remains independently pending.
+
 ## 2026-10-01 third completed promotion milestone
 
 - Game cartridge C: **521/1,216 functions, 60,604/647,072 bytes (9.37%)**. Static cartridge C: **66/230 functions, 8,532/61,440 bytes (13.89%)**.
