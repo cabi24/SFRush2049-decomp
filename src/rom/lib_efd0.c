@@ -4,4 +4,28 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_efd0/osSetTimer.s")
+/* PROMOTED 2026-10-01 — osSetTimer
+ * Source:   cloud/work/static_C3/osSetTimer.c (in-repo, locked)
+ * Flags:    -g0 -O1 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C3/osSetTimer.c:osSetTimer (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+int osSetTimer(OSTimer* t, OSTime countdown, OSTime interval, OSMesgQueue* mq, OSMesg msg) {
+    OSTime time;
+
+
+    t->next = NULL;
+    t->prev = NULL;
+    t->interval = interval;
+    t->value = (countdown != 0) ? countdown : interval;
+    t->mq = mq;
+    t->msg = msg;
+
+    time = dll_insert(t);
+    if (((OSTimer *)__osTimerList)->next == t) {
+        dll_reschedule(time);
+    }
+
+    return 0;
+}
+
