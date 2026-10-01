@@ -14,6 +14,41 @@ from tools.conveyor.pipeline import targets as T
 HAS_AS = shutil.which("mips-linux-gnu-as") is not None
 HAS_OBJDUMP = shutil.which("mips-linux-gnu-objdump") is not None
 
+
+def test_pif_status_alias_requires_authoritative_field_address(monkeypatch):
+    lines = ["lui $v1, %hi(__osSiDmaRetry)",
+             "addiu $v1, $v1, %lo(__osSiDmaRetry)",
+             "lui $a0, %hi(other_symbol)"]
+    addresses = {"__osSiDmaBuffer": 0x80037AA0, "__osSiDmaRetry": 0x80037ADC}
+    monkeypatch.setattr(T, "_resolve_symbol", addresses.get)
+    assert T._data_field_aliases(lines) == [
+        "lui $v1, %hi(__osSiDmaBuffer+0x3c)",
+        "addiu $v1, $v1, %lo(__osSiDmaBuffer+0x3c)", lines[2]]
+    addresses["__osSiDmaRetry"] += 4
+    assert T._data_field_aliases(lines) == lines
+    addresses.pop("__osSiDmaBuffer")
+    assert T._data_field_aliases(lines) == lines
+
+
+@pytest.mark.skipif(not (HAS_AS and HAS_OBJDUMP and shutil.which("mips-linux-gnu-ld")),
+                    reason="MIPS binutils required")
+def test_pif_status_alias_links_to_exact_unmasked_retail_words(tmp_path):
+    import subprocess
+    from tools.conveyor.jobs import scoring
+    words = ["3C038003", "24637ADC", "03E00008", "00000000"]
+    region = T.Region("field_end", 0x80001000,
+                      ["lui $v1, %hi(__osSiDmaRetry)",
+                       "addiu $v1, $v1, %lo(__osSiDmaRetry)",
+                       "jr $ra", "nop"], words)
+    obj, linked = tmp_path / "field.o", tmp_path / "field.elf"
+    T.assemble_region(region, "field_end", obj)
+    subprocess.run(["mips-linux-gnu-ld", "-Ttext=0x80001000", "-e", "field_end",
+                    "--defsym=__osSiDmaBuffer=0x80037AA0", str(obj), "-o", str(linked)],
+                   check=True, capture_output=True)
+    raw = scoring._parse_text_words(scoring._objdump("mips-linux-gnu-objdump", "-dz", str(linked)))
+    assert raw == [int(w, 16) for w in words]
+    assert T.gate_target(words, obj) == (True, None)
+
 # The osCreateMesgQueue region as splat emits it in asm/us/7600.s: two %hi/%lo
 # pairs (D_8002C3D0) then stores, jr, delay-slot store.
 OSCREATE_S = """\

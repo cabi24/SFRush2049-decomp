@@ -1,0 +1,47 @@
+[
+  {
+    "function": "func_800E4300",
+    "address": 2148418304,
+    "size": 540,
+    "status": "ready",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_origin": "fresh current-context m2c",
+    "context_sha256": "b93aa64efbe661b7aaeea40339ca5f698e1050837900c659fa958eb9696da71b",
+    "source_sha256": "9ee43701517fbf7ad275b4ff75e54ac7d0f6b18c1beb9abcafe31c3b2720978f",
+    "target_sha256": "152d288e0b063ca4d1445b30014f4691c0ac96990fa70634e308dea4d61530c3",
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "IDO compile failed:\ncfe: Error: ../scratch/r4300-sweep/sources/func_800E4300.c, line 4130: 'arg3' undefined; reoccurrences will not be reported.\n     arg3 = arg1;\n ----^\ncfe: Error: ../scratch/r4300-sweep/sources/func_800E4300.c, line 4134: 'arg4' undefined; reoccurrences will not be reported.\n     arg4 = (0) ;\n ----^\ncfe: Warning 712: ../scratch/r4300-sweep/sources/func_800E4300.c, line 4175: illegal combination of pointer and integer\n             temp_v0_2 = (*( s32 *)((s8 *)(var_a1) + ( 4)))  + (var_t2 * 8);\n ----------------------^\n\n",
+    "match": false
+  },
+  {
+    "function": "random_float",
+    "address": 2148522488,
+    "size": 1424,
+    "status": "ready",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_origin": "fresh current-context m2c",
+    "context_sha256": "b93aa64efbe661b7aaeea40339ca5f698e1050837900c659fa958eb9696da71b",
+    "source_sha256": "96e102d48f1007711794474d3d46be46f7a6434de8953c964c18799bcc1c09f2",
+    "target_sha256": "8abf9355bc78273f8a9739c0e814f19fa131457753942a7610c9559ef3faf50d",
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "IDO compile failed:\ncfe: Error: ../scratch/r4300-sweep/sources/random_float.c, line 4175: 'sp50' undefined; reoccurrences will not be reported.\n         temp_f16 = sp50 * D_80124808;\n -------------------^\ncfe: Error: ../scratch/r4300-sweep/sources/random_float.c, line 4236: 'sp4C' undefined; reoccurrences will not be reported.\n     sp70 = sp4C * 100.0f;\n -----------^\n\n",
+    "match": false
+  },
+  {
+    "function": "stat_lap_split",
+    "address": 2148526592,
+    "size": 608,
+    "status": "ready",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_origin": "fresh current-context m2c",
+    "context_sha256": "b93aa64efbe661b7aaeea40339ca5f698e1050837900c659fa958eb9696da71b",
+    "source_sha256": "7d2f04aa3eb1ab4717cb7ee313327b8cc494cd72639d0e14b12028d2d0d8fe1b",
+    "target_sha256": "dcf6060a953918574161a2f91b3b14445710dffb27a11245643e880e340ca8fc",
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "IDO compile failed:\ncfe: Error: ../scratch/r4300-sweep/sources/stat_lap_split.c, line 4134: 'sp58' undefined; reoccurrences will not be reported.\n     var_f12 = sp58 * sp58;\n --------------^\n\n",
+    "match": false
+  }
+]

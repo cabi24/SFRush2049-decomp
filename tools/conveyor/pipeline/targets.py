@@ -570,6 +570,22 @@ class AssembleError(Exception):
     gate_reason detail."""
 
 
+def _data_field_aliases(lines):
+    """Express the documented PIF status alias through its containing buffer.
+
+    IDO naturally emits buffer+60 for the end of the fifteen-word RAM array.
+    Splat's separate historical label names that same pifstatus field. Keep
+    relocation addends comparable only when authoritative addresses prove
+    the field relationship; other symbols and instruction words stay intact.
+    """
+    base = _resolve_symbol("__osSiDmaBuffer")
+    field = _resolve_symbol("__osSiDmaRetry")
+    if base is None or field != base + 0x3C:
+        return list(lines)
+    return [re.sub(r"(%(?:hi|lo)\()__osSiDmaRetry(\))",
+                   r"\1__osSiDmaBuffer+0x3c\2", line) for line in lines]
+
+
 def assemble_region(region, target_id, out_o):
     """Assemble a region into a relocatable object named `target_id`. Raises
     AssembleError (first stderr line preserved) on assembler failure."""
@@ -588,7 +604,7 @@ def assemble_region(region, target_id, out_o):
     aliases = [line for line in prelude.read_text().splitlines()
                if re.match(r"^\s*\.set\s+\$f\w+,\s*\$f\d+\s*$", line)]
     asm[0:0] = aliases
-    asm += region.lines
+    asm += _data_field_aliases(region.lines)
     with tempfile.NamedTemporaryFile("w", suffix=".s", delete=False) as f:
         f.write("\n".join(asm) + "\n")
         src = f.name

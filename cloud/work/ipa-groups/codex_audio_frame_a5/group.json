@@ -1,0 +1,21 @@
+{
+  "members": [
+    "func_800B08FC"
+  ],
+  "context": [
+    "audio_frame_update",
+    "func_800B0A88",
+    "func_8008B3A0"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "audio_frame_update",
+    "func_8008B3A0"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [
+    "func_800B08FC"
+  ]
+}
