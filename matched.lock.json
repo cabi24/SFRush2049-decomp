@@ -1,4 +1,60 @@
 {
+  "cloud/work/static_C10/__osContRamRead.c:__osContRamRead": {
+    "body_sha256": "139a559d62cb3f6be7f845a948158545c14776dcc43d1bf480237519ec6df355",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osContRamRead",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C10/__osTimerInterrupt.c:__osTimerInterrupt": {
+    "body_sha256": "2f94982201f5f377eaea05aa1619ef8e10a01cfaf8338131156f099f2994546d",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osTimerInterrupt",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C10/osMotorStart.c:osMotorStart": {
+    "body_sha256": "4134ffcf1681be20230a83cd82573eced106fd3be968098ebb46c275af5ad823",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osMotorStart",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C10/osPfsAllocate.c:osPfsAllocate": {
+    "body_sha256": "c5b40957083ab1bf76c09743deb492acdd1978734ab5a48d7b3925416277973a",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osPfsAllocate",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C10/osPfsDeleteFile.c:osPfsDeleteFile": {
+    "body_sha256": "faf37a471409ba70c8ddfbecec1a5626a285d1f2bada53958fd5821f55e714bb",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osPfsDeleteFile",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C10/osPfsRename.c:osPfsRename": {
+    "body_sha256": "0ad83f8168afc1a29d90599366c69708ed0e91a2e900bf2ebcbe692839e709f3",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osPfsRename",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C10/osSetEventMesgAlt.c:osSetEventMesgAlt": {
+    "body_sha256": "267585adc6cbe0af978c42305caaa25007defcdd1e2bf45cf189eaad8b1aa9df",
+    "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "target_id": "osSetEventMesgAlt",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
   "src/libultra/os_ai.c:__osAiDeviceBusy": {
     "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",

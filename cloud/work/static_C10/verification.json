@@ -1,0 +1,90 @@
+[
+  {
+    "function": "__osContRamRead",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 140,
+    "candidate_words": 140,
+    "raw_word_diff": 0,
+    "source_sha256": "5d02ada48d1bb65803773ec9ede6189a639901b920d7b0230ab9a14a2bd33e0a",
+    "target_sha256": "de9e0b2b54df74a342749f980033863b77260d85a482fe3c93002a05db8e4819",
+    "integration_status": "ready"
+  },
+  {
+    "function": "__osTimerInterrupt",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 68,
+    "candidate_words": 68,
+    "raw_word_diff": 0,
+    "source_sha256": "cf7c07125a5403e988a7c31cdc4b38fea8ea7782212e8d4e7375d73cbbff6fde",
+    "target_sha256": "46c4095799f76d38d44488335585f26e3a5cbf022aba42ab6f00094675f8e816",
+    "integration_status": "ready"
+  },
+  {
+    "function": "osCreatePiManager",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 92,
+    "candidate_words": 92,
+    "raw_word_diff": 0,
+    "source_sha256": "deae83135442b7a6b0679287db5f4f02af5a668cab5cc5549cd6ffe9b0a06728",
+    "target_sha256": "a222ec3e449c91592c7bca350faf98dd3b98df6bc24774b33fcbb58743c3538e",
+    "integration_status": "blocked_shared_TU_O1"
+  },
+  {
+    "function": "osMotorStart",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 88,
+    "candidate_words": 88,
+    "raw_word_diff": 0,
+    "source_sha256": "3d8006f8451c33dabd4935edb6b040b9c69da0863a09908baab554a981c52d47",
+    "target_sha256": "b5f9ff826306b647f846a653a2d1f7a0e12994158e72e20249eb0ceba21c4854",
+    "integration_status": "ready"
+  },
+  {
+    "function": "osPfsAllocate",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 116,
+    "candidate_words": 116,
+    "raw_word_diff": 0,
+    "source_sha256": "0b425326388cd64b10c6f4684bfb4e7a4de7ef2325611639ec612b317bcc5b16",
+    "target_sha256": "60a5c8ffea65c637ae3780d2ecce54cc62a1f7768326f65a9b0f11eedd2cb80f",
+    "integration_status": "ready"
+  },
+  {
+    "function": "osPfsDeleteFile",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 120,
+    "candidate_words": 120,
+    "raw_word_diff": 0,
+    "source_sha256": "69e99e3f3fd32075df0c320e1bf9b8e11ba6117d187573827dd95269244aeb9e",
+    "target_sha256": "c17122661dd9d8b80850918a26bf7f68bc9ed165848557d3346868fff21f44ec",
+    "integration_status": "ready"
+  },
+  {
+    "function": "osPfsRename",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 120,
+    "candidate_words": 120,
+    "raw_word_diff": 0,
+    "source_sha256": "9619b4f5f75fe8a3b3605387708cd4dff3aa9a37857297acbedd9903f3f860e9",
+    "target_sha256": "cd27da06d77707fda5989a080a538e72483409acf061f55b430796af78173d04",
+    "integration_status": "ready"
+  },
+  {
+    "function": "osSetEventMesgAlt",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 48,
+    "candidate_words": 48,
+    "raw_word_diff": 0,
+    "source_sha256": "b577ade936e6eae7ae53217470cacfed705c0fba34e1af715326e880fcf66c92",
+    "target_sha256": "a08c658d55c8ce18f531db7a1cb0911003ee83c377a55f6da3063ffb9310e2b3",
+    "integration_status": "ready"
+  }
+]

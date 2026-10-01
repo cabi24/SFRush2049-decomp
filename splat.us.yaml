@@ -100,7 +100,7 @@ segments:
       - [0x7630, asm]
       - [0x7940, c, rom/lib_7940]
       - [0x79A0, c, rom/lib_79a0]
-      - [0x7A10, asm]
+      - [0x7A10, c, rom/lib_7a10]
       - [0x7AD0, c, rom/lib_7ad0]
       - [0x7B30, c, rom/lib_7b30]
       - [0x7C80, c, rom/lib_7c80]
@@ -134,8 +134,8 @@ segments:
       - [0xA800, c, rom/lib_a800]
       - [0xA810, c, rom/lib_a810]
       - [0xAB20, c, rom/lib_ab20]
-      - [0xAF50, asm]
-      - [0xB120, asm]
+      - [0xAF50, c, rom/lib_af50]
+      - [0xB120, c, rom/lib_b120]
       - [0xB300, c, rom/lib_b300]
       - [0xB570, c, rom/lib_b570]
       - [0xB9F0, c, rom/lib_b9f0]
@@ -171,7 +171,7 @@ segments:
       - [0xF0B0, c, rom/lib_f0b0]
       - [0xF160, c, rom/lib_f160]
       - [0xF450, c, rom/lib_f450]
-      - [0xF4D0, asm]
+      - [0xF4D0, c, rom/lib_f4d0]
       - [0xF700, c, rom/lib_f700]
 
   # Remaining ROM data (to be further segmented)

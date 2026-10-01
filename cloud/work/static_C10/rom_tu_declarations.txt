@@ -1,0 +1,55 @@
+/* REQUIRED __OSDir correction in include/PR/os_pfs.h, preserving size32.
+ * Current data_sum is at0x1E, ext_name at0x1A, game_name at0x0A.
+ * Proven canonical body/retail require the following field offsets/types: */
+typedef struct __OSDir {
+    u32 game_code;                   /* 0x00 */
+    u16 company_code;                /* 0x04 */
+    __OSInodeUnit start_page;         /* 0x06 */
+    u8 status;                       /* 0x08 */
+    s8 reserved;                     /* 0x09 */
+    u16 data_sum;                    /* 0x0A */
+    u8 ext_name[4];                  /* 0x0C */
+    u8 game_name[16];                /* 0x10 */
+} __OSDir;
+/* Replace the current definition; do not append a duplicate typedef.
+ * C6-C9 delivered bodies do not dereference __OSDir, but parent must run
+ * all previously locked TU byte checks plus full-ROM acceptance. */
+
+extern s32 __osTimerInterrupt(OSPfs *);
+extern s32 __osContLastChannel;
+extern u8 __osPfsDataChecksum(u8 *); /* actual SDK data CRC helper */
+extern s32 osPfsRename(OSPfs *, u16, u32, u8 *, u8 *);
+#define PFS_CHECK_STATUS() if ((pfs->status & 1)==0) return 5
+#define PFS_ID_BANK_256K 0
+#define PFS_FILE_NAME_LEN 16
+#define PFS_FILE_EXT_LEN 4
+#define CONT_CMD_READ_PAK 2
+#define CONT_CMD_READ_PAK_TX 3
+#define CONT_CMD_READ_PAK_RX 33
+/* Existing public macros supply PFS_* errors/EOF/READ/WRITE and file lengths;
+ * avoid duplicates when present. C6-C9/C8 context supplies ERRCK, ARRLEN,
+ * BLOCKSIZE, SELECT_BANK, SET_ACTIVEBANK_TO_ZERO, __OSContRamReadFormat,
+ * READFORMAT, CHNL_ERR, __osMotorAccess(int,OSPifRam*) and MOTOR_* macros. */
+
+/* Required signature replacements (not extra conflicting redeclarations): */
+/* include/PR/os_pfs.h currently osPfsAllocate(OSPfs*,s32); target is FindFile: */
+extern s32 osPfsAllocate(OSPfs *, u16, u32, u8 *, u8 *, s32 *);
+/* include/PR/os_pfs.h currently osPfsDeleteFile five args; target FileState: */
+extern s32 osPfsDeleteFile(OSPfs *, s32, OSPfsState *);
+/* osMotorStart public SDK one arg; target SDK MotorInit takes three: */
+extern s32 osMotorStart(OSMesgQueue *, OSPfs *, int);
+
+/* osSetEventMesgAlt needs this exact eight-byte event-entry layout. */
+typedef u32 OSEvent;
+typedef struct { OSMesgQueue *messageQueue; OSMesg message; } __OSEventState;
+extern __OSEventState __osEventStateTab[16];
+extern u32 __osShutdown;
+extern u32 gEventTypeFlag;
+extern void osSetEventMesgAlt(OSEvent, OSMesgQueue *, OSMesg);
+#define OS_EVENT_PRENMI 14
+/* Existing __osShutdown/gEventTypeFlag declarations must be audited before
+ * adding these declarations. Unsigned word use here follows SDK and target. */
+
+/* osCreatePiManager is excluded: O2-only exact under existing 8e10 O1 pin.
+ * Its private typed OSDevMgr overlay/context is not required by seven ready
+ * bodies and must not be copied into shared header for this packet. */

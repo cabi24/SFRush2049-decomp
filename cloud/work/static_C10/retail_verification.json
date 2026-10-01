@@ -1,0 +1,130 @@
+[
+  {
+    "function": "__osTimerInterrupt",
+    "rom_offset": 43544,
+    "slot_size": 264,
+    "retail_slot_sha256": "ecdd864b3c94ca0806c7ab685c1291466e6b07c1cfe0dbf6674213cd1f58ad31",
+    "linked_prefix_word_diff": 0,
+    "candidate_words": 68,
+    "slot_words": 66,
+    "extra_candidate_words": [
+      0,
+      0
+    ],
+    "missing_slot_words": [],
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": []
+  },
+  {
+    "function": "osMotorStart",
+    "rom_offset": 44436,
+    "slot_size": 348,
+    "retail_slot_sha256": "c462e84b4d21a98aaa4aa11431885f2124a76753ca7149db197c5ab41043bb21",
+    "linked_prefix_word_diff": 0,
+    "candidate_words": 88,
+    "slot_words": 87,
+    "extra_candidate_words": [
+      0
+    ],
+    "missing_slot_words": [],
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": []
+  },
+  {
+    "function": "osPfsAllocate",
+    "rom_offset": 44880,
+    "slot_size": 464,
+    "retail_slot_sha256": "6725c7637cd29efe9a033dfdee7cf5d2d0523318ef738ef0f3cc115a590025ea",
+    "linked_prefix_word_diff": 0,
+    "candidate_words": 116,
+    "slot_words": 116,
+    "extra_candidate_words": [],
+    "missing_slot_words": [],
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": []
+  },
+  {
+    "function": "osPfsDeleteFile",
+    "rom_offset": 45344,
+    "slot_size": 480,
+    "retail_slot_sha256": "5896d0bb7bbd864d67c90cf7815948291285711ea24c444df7f8cdcafd61a500",
+    "linked_prefix_word_diff": 0,
+    "candidate_words": 120,
+    "slot_words": 120,
+    "extra_candidate_words": [],
+    "missing_slot_words": [],
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": []
+  },
+  {
+    "function": "osPfsRename",
+    "rom_offset": 45824,
+    "slot_size": 472,
+    "retail_slot_sha256": "67014b809230c5c96cb04da2131e559e7c33f4db50e8296c2eb5b03295d5543f",
+    "linked_prefix_word_diff": 0,
+    "candidate_words": 120,
+    "slot_words": 118,
+    "extra_candidate_words": [
+      0,
+      0
+    ],
+    "missing_slot_words": [],
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": []
+  },
+  {
+    "function": "__osContRamRead",
+    "rom_offset": 62672,
+    "slot_size": 560,
+    "retail_slot_sha256": "9747df6dbe8cdf8392fb7a4f3a504b02f3c96adf60f10ce699d20b7607198699",
+    "linked_prefix_word_diff": 0,
+    "candidate_words": 140,
+    "slot_words": 140,
+    "extra_candidate_words": [],
+    "missing_slot_words": [],
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": []
+  },
+  {
+    "function": "osSetEventMesgAlt",
+    "rom_offset": 31248,
+    "slot_size": 192,
+    "retail_slot_sha256": "f3557d0268186fc742d916039f8f4993b4d6d89a530d727b0c37868286ab6e09",
+    "linked_prefix_word_diff": 0,
+    "candidate_words": 48,
+    "slot_words": 48,
+    "extra_candidate_words": [],
+    "missing_slot_words": [],
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": []
+  },
+  {
+    "function": "osCreatePiManager",
+    "rom_offset": 36368,
+    "slot_size": 368,
+    "retail_slot_sha256": "2644fcd420cc3397edbd3490c554c3441567c2e4b9aa8e7f986110510f04113d",
+    "linked_prefix_word_diff": 0,
+    "candidate_words": 92,
+    "slot_words": 92,
+    "extra_candidate_words": [],
+    "missing_slot_words": [],
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": []
+  }
+]

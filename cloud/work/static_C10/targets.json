@@ -1,0 +1,194 @@
+[
+  {
+    "target": {
+      "target_id": "__osTimerInterrupt",
+      "address": 2147524120,
+      "population": "static",
+      "insn_count": 66,
+      "target_asm_sha": "1848274abfc88feb824254fcf945bc9d9523a665a21b3924e749d37acea3f9a3",
+      "target_o_sha": "46c4095799f76d38d44488335585f26e3a5cbf022aba42ab6f00094675f8e816",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xa810",
+        "function": {
+          "name": "__osTimerInterrupt",
+          "vaddr": "0x80009e18",
+          "size": 264,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "osMotorStart",
+      "address": 2147525012,
+      "population": "static",
+      "insn_count": 87,
+      "target_asm_sha": "99e9bba2da38ec4e28917cbf2dd005042b8016ad1faca1cf29deeaf2850f6d61",
+      "target_o_sha": "b5f9ff826306b647f846a653a2d1f7a0e12994158e72e20249eb0ceba21c4854",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xab20",
+        "function": {
+          "name": "osMotorStart",
+          "vaddr": "0x8000a194",
+          "size": 348,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "osPfsAllocate",
+      "address": 2147525456,
+      "population": "static",
+      "insn_count": 116,
+      "target_asm_sha": "3cbf8cd39da0310393f421fa8609badbd369dc5cead8752c916b97a2d0a3ed9a",
+      "target_o_sha": "60a5c8ffea65c637ae3780d2ecce54cc62a1f7768326f65a9b0f11eedd2cb80f",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xaf50",
+        "function": {
+          "name": "osPfsAllocate",
+          "vaddr": "0x8000a350",
+          "size": 464,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "osPfsDeleteFile",
+      "address": 2147525920,
+      "population": "static",
+      "insn_count": 120,
+      "target_asm_sha": "8253bc89e7a044271b4b6920c25bd62fd051fc304c43540d09132d70730bda86",
+      "target_o_sha": "c17122661dd9d8b80850918a26bf7f68bc9ed165848557d3346868fff21f44ec",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xb120",
+        "function": {
+          "name": "osPfsDeleteFile",
+          "vaddr": "0x8000a520",
+          "size": 480,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "osPfsRename",
+      "address": 2147526400,
+      "population": "static",
+      "insn_count": 118,
+      "target_asm_sha": "27c92ce6a10e718a2446517187e31f8e54c50571c6203aa24f40e922f009cd0c",
+      "target_o_sha": "cd27da06d77707fda5989a080a538e72483409acf061f55b430796af78173d04",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xb300",
+        "function": {
+          "name": "osPfsRename",
+          "vaddr": "0x8000a700",
+          "size": 472,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "__osContRamRead",
+      "address": 2147543248,
+      "population": "static",
+      "insn_count": 140,
+      "target_asm_sha": "a5aae9a9c6c6778ed56864c2b447b8be11fef7815fd3aca9d3f3f7115458a176",
+      "target_o_sha": "de9e0b2b54df74a342749f980033863b77260d85a482fe3c93002a05db8e4819",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0xf4d0",
+        "function": {
+          "name": "__osContRamRead",
+          "vaddr": "0x8000e8d0",
+          "size": 560,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "osSetEventMesgAlt",
+      "address": 2147511824,
+      "population": "static",
+      "insn_count": 48,
+      "target_asm_sha": "b3523232785ad660f654de504e6003bfb031824b537af2cd63b74559c90fd413",
+      "target_o_sha": "a08c658d55c8ce18f531db7a1cb0911003ee83c377a55f6da3063ffb9310e2b3",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0x7a10",
+        "function": {
+          "name": "osSetEventMesgAlt",
+          "vaddr": "0x80006e10",
+          "size": 192,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  },
+  {
+    "target": {
+      "target_id": "osCreatePiManager",
+      "address": 2147516944,
+      "population": "static",
+      "insn_count": 92,
+      "target_asm_sha": "fecb9b4bdd4097529a5f077a6673cc2d329c88731121bcf76cdc7238c5901173",
+      "target_o_sha": "a222ec3e449c91592c7bca350faf98dd3b98df6bc24774b33fcbb58743c3538e",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "layout": {
+        "segment": "0x8e10",
+        "function": {
+          "name": "osCreatePiManager",
+          "vaddr": "0x80008210",
+          "size": 368,
+          "state": "passthrough"
+        }
+      }
+    },
+    "source_origin": null
+  }
+]
