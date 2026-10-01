@@ -1,4 +1,92 @@
 {
+  "cloud/work/static_C/inflate_flush_window.c:inflate_flush_window": {
+    "body_sha256": "b245b88d91241ef7b7ae6052214a42b0a6b55f6a948d84d84b6c7c00fe36eedc",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "inflate_flush_window",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C/osContStartReadData2.c:osContStartReadData2": {
+    "body_sha256": "1b245b7c54bd040d6c1a55ab8c4cacafe2f08b43902f8160c8fb028e0e60a072",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osContStartReadData2",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C/osGetActiveQueue.c:osGetActiveQueue": {
+    "body_sha256": "fbeeadfcaa406022b3373ce01662a878036afe502a3ee9df0bd690e6d96e5c20",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osGetActiveQueue",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C/osPiGetAccess.c:osPiGetAccess": {
+    "body_sha256": "75ed6301a5d365bf2d82f50f3d1b1569c583eff94d321dd07947d4071c2495a0",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osPiGetAccess",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C/osPiInit.c:osPiInit": {
+    "body_sha256": "263756b2bb0f4bf096d3afda875cbfed91041cce491bd0b7d7fee30c583403b5",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osPiInit",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C/osPiReleaseAccess.c:osPiReleaseAccess": {
+    "body_sha256": "9784f1eaf15ccdaeb345a8dc42f80f84c65d524401bd47a55daf5ece43822652",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osPiReleaseAccess",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C/osSetIntMask.c:osSetIntMask": {
+    "body_sha256": "52328ff43f16a124031ec271d3f3d544c88eb546746df6f62747d0120d1d8dc6",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osSetIntMask",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C/osSiInit.c:osSiInit": {
+    "body_sha256": "2870b6d8d8fd5f45b469f6cb1216a88f99093b5829c6fd4b0e1f9913596ad063",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osSiInit",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C/osViGetFramebuffer.c:osViGetFramebuffer": {
+    "body_sha256": "74aadaa51ecbfdad7f15e1f870be13d9419a9e9c560f7023cb9ed959c66bd430",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osViGetFramebuffer",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C/osViSetSpecialFeatures.c:osViSetSpecialFeatures": {
+    "body_sha256": "ae546c83ba220a05c2703da305f6be871e44ac664db7425cae38d39cd72f68d2",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osViSetSpecialFeatures",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
+  "cloud/work/static_C/viDeadlinePassed.c:viDeadlinePassed": {
+    "body_sha256": "6736d4fef06bb76a8df5d9a88f3646c8ea73e00db04965c5c478ecff505ec76d",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "viDeadlinePassed",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-01"
+  },
   "src/libultra/os_ai.c:__osAiDeviceBusy": {
     "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",

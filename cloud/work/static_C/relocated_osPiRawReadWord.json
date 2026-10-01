@@ -1,0 +1,14 @@
+{
+  "function": "osPiRawReadWord",
+  "symbol_addresses": {
+    "osPiGetAccess": 2147539984,
+    "osPiReadWord": 2147540096,
+    "osPiReleaseAccess": 2147540052
+  },
+  "relocated_raw_word_diff": 0,
+  "unresolved": [],
+  "unverified": [],
+  "errors": [],
+  "masks": {},
+  "status": "linked-word proof only; strict object lock remains blocked"
+}

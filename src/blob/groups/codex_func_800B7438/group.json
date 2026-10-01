@@ -1,0 +1,19 @@
+{
+  "members": [
+    "func_800B73E4",
+    "func_800B7438"
+  ],
+  "context": [
+    "input_init_flag_get"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_800B7438",
+    "input_init_flag_get"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "unprototyped": [],
+  "provenance": "cloud rounds 4-5 (PR #6), cloud/work/ipa-groups/codex_func_800B7438"
+}

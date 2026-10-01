@@ -24,6 +24,7 @@ ROOT = HERE.parents[3]
 sys.path.insert(0, str(HERE.parent))
 sys.path.insert(0, str(ROOT / "tools" / "cloud"))
 from amatch import aligned, builder  # noqa: E402
+from ipakit import mipsdec  # noqa: E402
 import score  # noqa: E402
 
 GPR = ("zero at v0 v1 a0 a1 a2 a3 t0 t1 t2 t3 t4 t5 t6 t7 s0 s1 s2 s3 s4 s5 s6 s7 t8 t9 k0 k1 "
@@ -137,8 +138,37 @@ def frame_info(words):
 _dis_cache = {}
 
 
+def _portable_disasm(word):
+    """Display decoded operands without requiring binutils on a worker."""
+    ins = mipsdec.decode(word)
+    op = word >> 26
+    mnemonic = ins.mnem
+    if mnemonic == "nop":
+        return mnemonic
+    if ins.mem is not None:
+        base, offset = ins.mem
+        reg = "f%d" % ins.rt if op in (0x31, 0x35, 0x39, 0x3D) else gname(ins.rt)
+        return f"{mnemonic} {reg},{offset}({gname(base)})"
+    if op in (8, 9, 10, 11, 24, 25):
+        return f"{mnemonic} {gname(ins.rt)},{gname(ins.rs)},{ins.imm}"
+    if op in (12, 13, 14):
+        return f"{mnemonic} {gname(ins.rt)},{gname(ins.rs)},0x{word & 0xffff:x}"
+    if op == 15:
+        return f"{mnemonic} {gname(ins.rt)},0x{word & 0xffff:x}"
+    if op == 0 and (word & 63) == 8:
+        return f"jr {gname(ins.rs)}"
+    # The analysis decoder supports more instructions than this operand
+    # formatter. Keep that information visible rather than guessing operands
+    # or PC-relative destinations in a cache keyed only by instruction word.
+    if mnemonic.startswith("?"):
+        return ""
+    uses = ",".join(mipsdec.mask_names(ins.uses)) or "none"
+    defs = ",".join(mipsdec.mask_names(ins.defs)) or "none"
+    return f"{mnemonic} (uses={uses}; defs={defs})"
+
+
 def disasm(words):
-    """{word: text}; one objdump run for all unseen words, per-word fallback, else ''."""
+    """{word: text}; batch objdump, per-word objdump, then stdlib decoder."""
     need = sorted({w for w in words if w is not None and w not in _dis_cache})
     if need:
         done = False
@@ -164,9 +194,10 @@ def disasm(words):
             for w in need:
                 if w not in _dis_cache:
                     try:
-                        _dis_cache[w] = score.disasm_word(w)
+                        text = score.disasm_word(w)
                     except Exception:  # noqa: BLE001
-                        _dis_cache[w] = ""
+                        text = ""
+                    _dis_cache[w] = text or _portable_disasm(w)
     return {w: _dis_cache.get(w, "") for w in words if w is not None}
 
 

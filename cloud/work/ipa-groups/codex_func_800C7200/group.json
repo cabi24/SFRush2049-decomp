@@ -1,0 +1,21 @@
+{
+  "members": [
+    "func_800C7200",
+    "func_800C813C",
+    "func_800CC50C",
+    "draw_ui_element",
+    "func_800C7EC8"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_800C813C",
+    "func_800CC50C"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "generated": "groupgen.py seeds=func_800C7200,func_800C813C,func_800CC50C mode=direct",
+  "unprototyped": [],
+  "context": [],
+  "claims": []
+}

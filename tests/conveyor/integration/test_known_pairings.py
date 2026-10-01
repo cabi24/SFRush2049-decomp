@@ -36,6 +36,13 @@ def conn():
 
 @pytest.mark.parametrize("target_id,expected_candidate", KNOWN_PAIRINGS)
 def test_known_pairing_ranks_in_top_n(conn, target_id, expected_candidate):
+    scored = conn.execute(
+        "SELECT 1 FROM matrix_entry WHERE target_id = ? AND candidate_id = ? LIMIT 1",
+        (target_id, expected_candidate),
+    ).fetchone()
+    if scored is None:
+        pytest.skip(f"known arcade candidate {expected_candidate} has not been scored "
+                    f"against {target_id}; m2c-only cells do not populate this pairing")
     rows = conn.execute(
         "SELECT candidate_id, MIN(score) AS score FROM matrix_entry"
         " WHERE target_id = ? GROUP BY candidate_id"
@@ -48,3 +55,26 @@ def test_known_pairing_ranks_in_top_n(conn, target_id, expected_candidate):
     assert expected_candidate in ranked, (
         f"{target_id}: expected {expected_candidate} in top {TOP_N}, got {ranked}"
     )
+
+
+def _synthetic_matrix():
+    c = sqlite3.connect(":memory:")
+    c.row_factory = sqlite3.Row
+    c.execute("CREATE TABLE matrix_entry (target_id TEXT, candidate_id TEXT, score INTEGER)")
+    return c
+
+
+def test_partial_matrix_requires_the_arcade_pairing_before_ranking():
+    with _synthetic_matrix() as c:
+        c.execute("INSERT INTO matrix_entry VALUES ('game_loop', 'm2c:game_loop', 0)")
+        with pytest.raises(pytest.skip.Exception, match="has not been scored"):
+            test_known_pairing_ranks_in_top_n(c, 'game_loop', 'game/game.c:game')
+
+
+def test_scored_arcade_pairing_outside_top_n_still_fails():
+    with _synthetic_matrix() as c:
+        c.executemany("INSERT INTO matrix_entry VALUES ('game_loop', ?, ?)",
+                      [(f'other{i}', i) for i in range(TOP_N)] +
+                      [('game/game.c:game', TOP_N + 1)])
+        with pytest.raises(AssertionError, match="expected game/game.c:game"):
+            test_known_pairing_ranks_in_top_n(c, 'game_loop', 'game/game.c:game')

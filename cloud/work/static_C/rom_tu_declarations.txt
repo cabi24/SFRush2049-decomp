@@ -1,0 +1,16 @@
+/* Additive declarations for shared src/rom/rom_tu.h; existing types suffice. */
+extern s32 __osViModeInfo;
+extern s32 gDisplayListEnd;
+extern s32 gViAccumTime;
+extern s32 gViTickCounter;
+extern s32 __osPiInitialized;
+extern OSMesgQueue __osPiMesgQueue;
+extern void *__osPiMesg;
+extern s32 __osSiInitialized;
+/* The SI names have historical swapped attribution; these match current source. */
+extern OSMesgQueue __osSiMesg;
+extern void *__osSiMesgQueue;
+extern u8 __osPfsRequestType;
+/* __osViContext and OSPifRam __osSiDmaBuffer already exist in m2c_types.h.
+ * gDisplayListHead and volatile gDisplayListSize already exist in rom_tu.h.
+ * No new struct/type definitions are needed. */

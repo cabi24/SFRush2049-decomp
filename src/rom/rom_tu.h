@@ -33,3 +33,20 @@ extern volatile unsigned int gDisplayListSize;  /* 0x800354C8 */
 #define DPC_TMEM_REG     (*(vu32 *)0xA410001C)
 #define AI_STATUS_REG    (*(vu32 *)0xA450000C)
 #define AI_STATUS_FIFO_FULL 0x80000000
+
+/* Additive declarations for shared src/rom/rom_tu.h; existing types suffice. */
+extern s32 __osViModeInfo;
+extern s32 gDisplayListEnd;
+extern s32 gViAccumTime;
+extern s32 gViTickCounter;
+extern s32 __osPiInitialized;
+extern OSMesgQueue __osPiMesgQueue;
+extern void *__osPiMesg;
+extern s32 __osSiInitialized;
+/* The SI names have historical swapped attribution; these match current source. */
+extern OSMesgQueue __osSiMesg;
+extern void *__osSiMesgQueue;
+extern u8 __osPfsRequestType;
+/* __osViContext and OSPifRam __osSiDmaBuffer already exist in m2c_types.h.
+ * gDisplayListHead and volatile gDisplayListSize already exist in rom_tu.h.
+ * No new struct/type definitions are needed. */

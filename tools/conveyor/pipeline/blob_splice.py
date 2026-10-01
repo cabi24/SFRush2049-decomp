@@ -149,7 +149,7 @@ def compile_on_builder(sources, flagset, builder=BUILDER, toolkit=TOOLKIT,
 def link_function(object_path, target_id, vaddr, size, provides=None, work=None):
     """Bytes a compiled function contributes at its image address.
 
-    Linked alone so its relocations resolve against the PROVIDE table (data
+    Linked alone so its relocations resolve against the image symbol table (data
     globals inside opaque runs, and libultra/libc out in the cartridge), then
     cut to the extent only after verifying excess words are zero padding.
     IDO pads .text to 16 bytes; a following function bounds that padding.
@@ -159,6 +159,11 @@ def link_function(object_path, target_id, vaddr, size, provides=None, work=None)
     if provides is None:
         provides = {name: addr for addr, name in blob_tu.data_symbols().items()}
     provides = dict(provides)
+    defined_data = defined_data_symbols(object_path)
+    for name in defined_data:
+        addr = address_named(name)
+        if name not in provides and addr is not None:
+            provides[name] = addr
     for name in undefined_symbols(object_path):
         addr = address_named(name)
         if name not in provides and addr is not None:
@@ -166,7 +171,13 @@ def link_function(object_path, target_id, vaddr, size, provides=None, work=None)
     work = Path(work or tempfile.mkdtemp(prefix="blobfn-"))
     work.mkdir(parents=True, exist_ok=True)
     script = work / f"{target_id}.ld"
-    provides = "\n".join(f"    PROVIDE({name} = 0x{addr:08X});"
+    # Definitions can affect as1 scheduling, but their storage already lives
+    # in the image. PROVIDE does not override an object's definition: without
+    # an absolute assignment GNU ld places these globals after the function.
+    # Only externally visible data objects are rebound; function definitions
+    # and local statics retain their normal link semantics.
+    provides = "\n".join((f"    {name} = 0x{addr:08X};" if name in defined_data
+                           else f"    PROVIDE({name} = 0x{addr:08X});")
                           for name, addr in sorted(provides.items())
                           if name != target_id)
     script.write_text(
@@ -235,6 +246,22 @@ def undefined_symbols(object_path):
         raise blob_build.BuildError("nm failed: " + proc.stderr.strip()[:200])
     return [line.split()[-1] for line in proc.stdout.splitlines()
             if line.strip()]
+
+
+def defined_data_symbols(object_path):
+    """Externally visible ELF objects, including common definitions."""
+    proc = subprocess.run([blob_build.READELF, "-sW", str(object_path)],
+                          capture_output=True, text=True)
+    if proc.returncode:
+        raise blob_build.BuildError("readelf failed: " + proc.stderr.strip()[:200])
+    result = set()
+    for line in proc.stdout.splitlines():
+        fields = line.split()
+        if (len(fields) >= 8 and fields[0].rstrip(":").isdigit()
+                and fields[3] == "OBJECT" and fields[4] in ("GLOBAL", "WEAK")
+                and (fields[6].isdigit() or fields[6] == "COM")):
+            result.add(fields[7])
+    return result
 
 
 def image_symbols(document=None, symbols=None):

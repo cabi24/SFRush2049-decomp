@@ -151,3 +151,41 @@ def test_an_address_name_resolves_to_the_address_it_spells():
     assert blob_splice.address_named("D_80152000") == 0x80152000
     assert blob_splice.address_named("entity_flags_apply") is None
     assert blob_splice.address_named("func_8009") is None
+
+
+@pytest.mark.parametrize("storage", [".bss\n.space 16", ".data\n.word 7, 8, 9, 10", "common"])
+def test_unit_defined_global_resolves_to_existing_image_storage(tmp_path, storage):
+    """A defined global must use its image address, including LO16 carry.
+
+    Definitions let as1 share a high-address load; emitting fresh storage
+    beside the function instead silently changes every reference to it.
+    """
+    import shutil
+    import struct
+    import subprocess
+    from tools.conveyor.pipeline import blob_build
+
+    if not all(shutil.which(t) for t in
+               ("mips-linux-gnu-as", "mips-linux-gnu-ld",
+                "mips-linux-gnu-objcopy", "mips-linux-gnu-readelf")):
+        pytest.skip("MIPS binutils absent")
+    src, obj = tmp_path / "fn.s", tmp_path / "fn.o"
+    data = (".comm D_8013C300,16,4\n" if storage == "common" else
+            storage.split("\n", 1)[0] + "\n.globl D_8013C300\n"
+            ".type D_8013C300,@object\nD_8013C300:\n" +
+            storage.split("\n", 1)[1] + "\n")
+    src.write_text(
+        '.section .text.fn,"ax",@progbits\n.set noreorder\n'
+        '.globl fn\n.type fn,@function\nfn:\n'
+        'lui $at,%hi(D_8013C300)\n'
+        'sw $zero,%lo(D_8013C300)($at)\n'
+        'jr $ra\nnop\n.size fn,.-fn\n' + data)
+    subprocess.run(["mips-linux-gnu-as", "-mips2", "-o", str(obj), str(src)],
+                   check=True, capture_output=True)
+    # A conflicting provide for fn must not move its own compiled definition.
+    body = blob_splice.link_function(
+        obj, "fn", 0x80086A50, 16,
+        {"D_8013C300": 0x8013C300, "fn": 0x80090000}, work=tmp_path / "link")
+    assert body == struct.pack(">IIII", 0x3C018014, 0xAC20C300, 0x03E00008, 0)
+    assert blob_splice.defined_data_symbols(obj) == {"D_8013C300"}
+    assert blob_build.function_symbols(obj)["fn"][0] == 0

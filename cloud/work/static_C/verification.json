@@ -1,0 +1,62 @@
+[
+  {
+    "function": "inflate_flush_window",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 8,
+    "candidate_words": 8,
+    "raw_word_diff": 0,
+    "source_sha256": "1c9aab5f42a2d64a3d7b6360d6993a40f9b1d908279d585defcd1510b9f78740",
+    "target_sha256": "2a81ff5442b18517e2b0944d81b368a679189f26d0687b9f13cd66b509021fe2"
+  },
+  {
+    "function": "osGetActiveQueue",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 4,
+    "candidate_words": 4,
+    "raw_word_diff": 0,
+    "source_sha256": "a0d071adaee8f96bd95e61be44c08917858d0d03039d70915128b406d5d864d6",
+    "target_sha256": "5a85aa724a9393bdbd886afdac77aea67450ab07c901a8ed1da7806c203ead57"
+  },
+  {
+    "function": "osPiGetAccess",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 20,
+    "candidate_words": 20,
+    "raw_word_diff": 0,
+    "source_sha256": "3c33a6ab6438bb99bd3340f41671dacd50e24283540a47de59fded9dada69c1f",
+    "target_sha256": "af355c323d579207ab1d6c947348401cedb54e1894c1c507f7eb6682e245aafa"
+  },
+  {
+    "function": "osPiReleaseAccess",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 12,
+    "candidate_words": 12,
+    "raw_word_diff": 0,
+    "source_sha256": "184f37c67327264c23d695e7c93d9d868005d0740092337f7f7acb1ad62b7660",
+    "target_sha256": "2ccd5f7261fd8dcdcdd4c394739858ca81e3008de0760cfbae012c9e1ccc8804"
+  },
+  {
+    "function": "osViGetFramebuffer",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 16,
+    "candidate_words": 16,
+    "raw_word_diff": 0,
+    "source_sha256": "26823c10023c8d4766c19a28285c3a8144b0ff78b120ed892ea3586119efa7b5",
+    "target_sha256": "f6189dac5622a984a8fe4078e7850019b911c61233d6a81017074084781db858"
+  },
+  {
+    "function": "viDeadlinePassed",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 8,
+    "candidate_words": 8,
+    "raw_word_diff": 0,
+    "source_sha256": "f1557c81f727fe124ff23f7e2075fed4668884cb956ea46fb64d8fa95c80d605",
+    "target_sha256": "1a3a5a26327ffae7503297d4cc215630604492d374686cfce456b391a2f8fa1a"
+  }
+]

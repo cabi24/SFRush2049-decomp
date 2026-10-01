@@ -1,0 +1,62 @@
+[
+  {
+    "function": "osContStartReadData2",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 36,
+    "candidate_words": 36,
+    "raw_word_diff": 0,
+    "source_sha256": "2ad01f75e09c23c0cebf93ec7e4efb02f6ef0041f745144fe3bdcb6134115983",
+    "target_sha256": "2b73ad1aeb8df95b5bb40f2ab05ab600389c768883686a56fded43512e40234e"
+  },
+  {
+    "function": "osPiInit",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 20,
+    "candidate_words": 20,
+    "raw_word_diff": 0,
+    "source_sha256": "9ec530811356d9292c147031de85396f7c776ec143a5b52508a6e9b7d51c14c1",
+    "target_sha256": "e7227bbb80c40d13aad454d923abc57908cea9f18c6d0114daa53127a060d223"
+  },
+  {
+    "function": "osPiRawReadWord",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 15,
+    "target_words": 16,
+    "candidate_words": 16,
+    "raw_word_diff": 3,
+    "source_sha256": "0c3fe44a14d6b667cab1f97fe6d4f85040e50452640e1b32e67dedc817efdfae",
+    "target_sha256": "4f33aa57e9ac96790149fb8540c8ee1e71f25b9266d7e9a5ae48630e92ae2f33"
+  },
+  {
+    "function": "osSetIntMask",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 28,
+    "candidate_words": 28,
+    "raw_word_diff": 0,
+    "source_sha256": "f618df120a6e38daabe7078f59a4579e53a9749d3e8977509d43708dc707fe41",
+    "target_sha256": "35677cd27310958707b6d3e42883e8909aa2cbbd87fd7d93880487f2cb22cb29"
+  },
+  {
+    "function": "osSiInit",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 20,
+    "candidate_words": 20,
+    "raw_word_diff": 0,
+    "source_sha256": "e7247b474dfedbf0990bfdd7c039544f0de52d686a8774e58aeaa43dd237b462",
+    "target_sha256": "75d79b09e6786206236967eb5c00aa76e6a7371f30d7604ff604c2c3438d1f82"
+  },
+  {
+    "function": "osViSetSpecialFeatures",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 88,
+    "candidate_words": 88,
+    "raw_word_diff": 0,
+    "source_sha256": "5b0ddbb67d00df4bd9f89bb35c1fed13bf4e2b7791183782ec58f3a7825d8a4b",
+    "target_sha256": "c9e16c847f30a0bfe3eb90de35de3aa71785a739e6b5a62bd64ef3e437fe494e"
+  }
+]

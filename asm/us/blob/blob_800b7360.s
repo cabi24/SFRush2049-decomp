@@ -42,6 +42,7 @@ func_800B7360:
 .section .text.func_800B73E4, "ax", @progbits
 .globl func_800B73E4
 func_800B73E4:
+    /* compiled from src/blob/func_800B73E4.c */
     .word 0x3C028011
     .word 0x244247C4
     .word 0x804E0000
@@ -67,6 +68,7 @@ func_800B73E4:
 .section .text.func_800B7438, "ax", @progbits
 .globl func_800B7438
 func_800B7438:
+    /* compiled from src/blob/func_800B7438.c */
     .word 0x3C0E8011
     .word 0x81CE47C4
     .word 0x27BDFFE8
@@ -4601,6 +4603,7 @@ camera_reset:
 .section .text.func_800BB7F4, "ax", @progbits
 .globl func_800BB7F4
 func_800BB7F4:
+    /* compiled from src/blob/func_800BB7F4.c */
     .word 0x3C018014
     .word 0x3C038014
     .word 0x3C028014

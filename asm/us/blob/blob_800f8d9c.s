@@ -2107,6 +2107,7 @@ func_800FAD50:
 .section .text.render_post_process, "ax", @progbits
 .globl render_post_process
 render_post_process:
+    /* compiled from src/blob/render_post_process.c */
     .word 0x27BDFFC0
     .word 0xAFB4002C
     .word 0x3C148015
