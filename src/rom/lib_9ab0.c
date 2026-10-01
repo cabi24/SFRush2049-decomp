@@ -5,4 +5,20 @@
 #include "rom_tu.h"
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_9ab0/guLookAtF.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_9ab0/guLookAt.s")
+/* PROMOTED 2026-10-01 — guLookAt
+ * Source:   cloud/work/static_C3/guLookAt.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C3/guLookAt.c:guLookAt (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void guLookAt (Mtx *m, float xEye, float yEye, float zEye,
+	       float xAt,  float yAt,  float zAt,
+	       float xUp,  float yUp,  float zUp)
+{
+	Matrix	mf;
+
+	guLookAtF(mf, xEye, yEye, zEye, xAt, yAt, zAt, xUp, yUp, zUp);
+
+	guMtxF2L(mf, m);
+}
+
