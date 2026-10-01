@@ -1,0 +1,64 @@
+[
+  {
+    "target": {
+      "target_id": "osViSetMode",
+      "address": 2147513744,
+      "population": "static",
+      "insn_count": 20,
+      "target_asm_sha": "87fa021a3cb37c0d8fd7f279f261ac230ce89286c575bc9e2f6893cea095a7a9",
+      "target_o_sha": "99af270fbc656684ebaa50ac5c9e4ccee4814b000b9e65306e86721f3dc5270b",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null
+    },
+    "accepted_source": "src/rom/lib_8040.c",
+    "normalized_body_sha256": null,
+    "existing_lock": {
+      "body_sha256": "c4815e64651b502767e9c4aa7f7318bb4e27d84cfddcead39d3bfbb8f3f47ca9",
+      "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "target_id": "osViSetMode",
+      "toolkit_sha": null,
+      "verified": "rom-sha1",
+      "verified_at": "2026-07-15"
+    },
+    "alternate_flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "old_target": {
+      "target_id": "osViSetMode",
+      "address": 2147513744,
+      "population": "static",
+      "insn_count": 20,
+      "target_asm_sha": "87fa021a3cb37c0d8fd7f279f261ac230ce89286c575bc9e2f6893cea095a7a9",
+      "target_o_sha": "e6d8d4036ed3d29f222e94ba56e1c4ea420ba29ebc525c7e72d4ed8962d13fc5",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "raw_word",
+      "gate_reason": "no_asm_region"
+    }
+  },
+  {
+    "target": {
+      "target_id": "osCreateViManager",
+      "address": 2147517312,
+      "population": "static",
+      "insn_count": 56,
+      "target_asm_sha": "32762d326dd86398c61a32bdbe5303873270e8993ed94cd3abcfda883804f901",
+      "target_o_sha": "1d47b1a85912293e0b8842f00a5dd219f3116267ea6e56d21bd3117b652f89da",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null
+    },
+    "accepted_source": "src/rom/lib_8e10.c",
+    "normalized_body_sha256": null,
+    "existing_lock": {
+      "body_sha256": "231b11e21c3a406a74c3a98f991aff69bfbed10ce1c84deeaf39cdd2ff1be05a",
+      "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "target_id": "osCreateViManager",
+      "toolkit_sha": null,
+      "verified": "rom-sha1",
+      "verified_at": "2026-10-01"
+    },
+    "alternate_flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+  }
+]

@@ -1,0 +1,40 @@
+[
+  {
+    "control": "osSetEventMesg_stackfield",
+    "linked_prefix_word_diff": 0,
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": []
+  },
+  {
+    "control": "vi_manager_main_local",
+    "linked_prefix_word_diff": 10,
+    "masks": {
+      "56": 4294901760,
+      "68": 4294901760,
+      "76": 4294901760,
+      "80": 4294901760,
+      "172": 4294901760,
+      "176": 4294901760,
+      "180": 4294901760,
+      "196": 4294901760,
+      "244": 4294901760,
+      "248": 4294901760
+    },
+    "unresolved": [],
+    "unverified": [
+      ".bss+0x0 at +0x38",
+      ".bss+0x0 at +0x44",
+      ".bss+0x0 at +0x4c",
+      ".bss+0x0 at +0x50",
+      ".bss+0x0 at +0xac",
+      ".bss+0x0 at +0xb0",
+      ".bss+0x0 at +0xb4",
+      ".bss+0x0 at +0xc4",
+      ".bss+0x0 at +0xf4",
+      ".bss+0x0 at +0xf8"
+    ],
+    "errors": []
+  }
+]

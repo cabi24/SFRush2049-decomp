@@ -1,0 +1,1274 @@
+[
+  {
+    "order": [
+      "out",
+      "basis",
+      "position",
+      "origin"
+    ],
+    "err": null,
+    "members": {
+      "steering_sensitivity": {
+        "strict_diff": 229,
+        "size": 252,
+        "extra": 20,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 18,
+        "size": 24,
+        "extra": 4,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      }
+    },
+    "context": {
+      "traction_control": {
+        "strict_diff": 245,
+        "size": 285,
+        "extra": 37,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 0,
+        "size": 37,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      }
+    }
+  },
+  {
+    "order": [
+      "out",
+      "basis",
+      "origin",
+      "position"
+    ],
+    "err": null,
+    "members": {
+      "steering_sensitivity": {
+        "strict_diff": 229,
+        "size": 252,
+        "extra": 20,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 18,
+        "size": 24,
+        "extra": 4,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      }
+    },
+    "context": {
+      "traction_control": {
+        "strict_diff": 245,
+        "size": 285,
+        "extra": 37,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 0,
+        "size": 37,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      }
+    }
+  },
+  {
+    "order": [
+      "out",
+      "position",
+      "basis",
+      "origin"
+    ],
+    "err": null,
+    "members": {
+      "steering_sensitivity": {
+        "strict_diff": 229,
+        "size": 252,
+        "extra": 20,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 18,
+        "size": 22,
+        "extra": 2,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      }
+    },
+    "context": {
+      "traction_control": {
+        "strict_diff": 245,
+        "size": 285,
+        "extra": 37,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 0,
+        "size": 37,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      }
+    }
+  },
+  {
+    "order": [
+      "out",
+      "position",
+      "origin",
+      "basis"
+    ],
+    "err": null,
+    "members": {
+      "steering_sensitivity": {
+        "strict_diff": 229,
+        "size": 252,
+        "extra": 20,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 18,
+        "size": 23,
+        "extra": 3,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      }
+    },
+    "context": {
+      "traction_control": {
+        "strict_diff": 245,
+        "size": 285,
+        "extra": 37,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 0,
+        "size": 37,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      }
+    }
+  },
+  {
+    "order": [
+      "out",
+      "origin",
+      "basis",
+      "position"
+    ],
+    "err": null,
+    "members": {
+      "steering_sensitivity": {
+        "strict_diff": 229,
+        "size": 252,
+        "extra": 20,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 18,
+        "size": 22,
+        "extra": 2,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      }
+    },
+    "context": {
+      "traction_control": {
+        "strict_diff": 245,
+        "size": 285,
+        "extra": 37,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 0,
+        "size": 37,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      }
+    }
+  },
+  {
+    "order": [
+      "out",
+      "origin",
+      "position",
+      "basis"
+    ],
+    "err": null,
+    "members": {
+      "steering_sensitivity": {
+        "strict_diff": 229,
+        "size": 252,
+        "extra": 20,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 18,
+        "size": 23,
+        "extra": 3,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      }
+    },
+    "context": {
+      "traction_control": {
+        "strict_diff": 245,
+        "size": 285,
+        "extra": 37,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 0,
+        "size": 37,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      }
+    }
+  },
+  {
+    "order": [
+      "basis",
+      "out",
+      "position",
+      "origin"
+    ],
+    "err": null,
+    "members": {
+      "steering_sensitivity": {
+        "strict_diff": 230,
+        "size": 251,
+        "extra": 19,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 18,
+        "size": 22,
+        "extra": 2,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      }
+    },
+    "context": {
+      "traction_control": {
+        "strict_diff": 245,
+        "size": 285,
+        "extra": 37,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 0,
+        "size": 37,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      }
+    }
+  },
+  {
+    "order": [
+      "basis",
+      "out",
+      "origin",
+      "position"
+    ],
+    "err": null,
+    "members": {
+      "steering_sensitivity": {
+        "strict_diff": 230,
+        "size": 251,
+        "extra": 19,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 18,
+        "size": 22,
+        "extra": 2,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      }
+    },
+    "context": {
+      "traction_control": {
+        "strict_diff": 245,
+        "size": 285,
+        "extra": 37,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 0,
+        "size": 37,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      }
+    }
+  },
+  {
+    "order": [
+      "basis",
+      "position",
+      "out",
+      "origin"
+    ],
+    "err": null,
+    "members": {
+      "steering_sensitivity": {
+        "strict_diff": 230,
+        "size": 251,
+        "extra": 19,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 18,
+        "size": 23,
+        "extra": 3,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      }
+    },
+    "context": {
+      "traction_control": {
+        "strict_diff": 245,
+        "size": 285,
+        "extra": 37,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 0,
+        "size": 37,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      }
+    }
+  },
+  {
+    "order": [
+      "basis",
+      "position",
+      "origin",
+      "out"
+    ],
+    "err": null,
+    "members": {
+      "steering_sensitivity": {
+        "strict_diff": 230,
+        "size": 251,
+        "extra": 19,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 18,
+        "size": 23,
+        "extra": 3,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      }
+    },
+    "context": {
+      "traction_control": {
+        "strict_diff": 245,
+        "size": 285,
+        "extra": 37,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 0,
+        "size": 37,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      }
+    }
+  },
+  {
+    "order": [
+      "basis",
+      "origin",
+      "out",
+      "position"
+    ],
+    "err": null,
+    "members": {
+      "steering_sensitivity": {
+        "strict_diff": 230,
+        "size": 251,
+        "extra": 19,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 18,
+        "size": 23,
+        "extra": 3,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      }
+    },
+    "context": {
+      "traction_control": {
+        "strict_diff": 245,
+        "size": 285,
+        "extra": 37,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 0,
+        "size": 37,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      }
+    }
+  },
+  {
+    "order": [
+      "basis",
+      "origin",
+      "position",
+      "out"
+    ],
+    "err": null,
+    "members": {
+      "steering_sensitivity": {
+        "strict_diff": 230,
+        "size": 251,
+        "extra": 19,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 18,
+        "size": 23,
+        "extra": 3,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      }
+    },
+    "context": {
+      "traction_control": {
+        "strict_diff": 245,
+        "size": 285,
+        "extra": 37,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 0,
+        "size": 37,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      }
+    }
+  },
+  {
+    "order": [
+      "position",
+      "out",
+      "basis",
+      "origin"
+    ],
+    "err": null,
+    "members": {
+      "steering_sensitivity": {
+        "strict_diff": 229,
+        "size": 252,
+        "extra": 20,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 13,
+        "size": 20,
+        "extra": 0,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      }
+    },
+    "context": {
+      "traction_control": {
+        "strict_diff": 245,
+        "size": 285,
+        "extra": 37,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 0,
+        "size": 37,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      }
+    }
+  },
+  {
+    "order": [
+      "position",
+      "out",
+      "origin",
+      "basis"
+    ],
+    "err": null,
+    "members": {
+      "steering_sensitivity": {
+        "strict_diff": 229,
+        "size": 252,
+        "extra": 20,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 18,
+        "size": 20,
+        "extra": 0,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      }
+    },
+    "context": {
+      "traction_control": {
+        "strict_diff": 245,
+        "size": 285,
+        "extra": 37,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 0,
+        "size": 37,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      }
+    }
+  },
+  {
+    "order": [
+      "position",
+      "basis",
+      "out",
+      "origin"
+    ],
+    "err": null,
+    "members": {
+      "steering_sensitivity": {
+        "strict_diff": 229,
+        "size": 252,
+        "extra": 20,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 18,
+        "size": 23,
+        "extra": 3,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      }
+    },
+    "context": {
+      "traction_control": {
+        "strict_diff": 245,
+        "size": 285,
+        "extra": 37,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 0,
+        "size": 37,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      }
+    }
+  },
+  {
+    "order": [
+      "position",
+      "basis",
+      "origin",
+      "out"
+    ],
+    "err": null,
+    "members": {
+      "steering_sensitivity": {
+        "strict_diff": 229,
+        "size": 252,
+        "extra": 20,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 18,
+        "size": 23,
+        "extra": 3,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      }
+    },
+    "context": {
+      "traction_control": {
+        "strict_diff": 245,
+        "size": 285,
+        "extra": 37,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 0,
+        "size": 37,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      }
+    }
+  },
+  {
+    "order": [
+      "position",
+      "origin",
+      "out",
+      "basis"
+    ],
+    "err": null,
+    "members": {
+      "steering_sensitivity": {
+        "strict_diff": 229,
+        "size": 252,
+        "extra": 20,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 18,
+        "size": 21,
+        "extra": 1,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      }
+    },
+    "context": {
+      "traction_control": {
+        "strict_diff": 245,
+        "size": 285,
+        "extra": 37,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 0,
+        "size": 37,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      }
+    }
+  },
+  {
+    "order": [
+      "position",
+      "origin",
+      "basis",
+      "out"
+    ],
+    "err": null,
+    "members": {
+      "steering_sensitivity": {
+        "strict_diff": 229,
+        "size": 252,
+        "extra": 20,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 18,
+        "size": 20,
+        "extra": 0,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      }
+    },
+    "context": {
+      "traction_control": {
+        "strict_diff": 245,
+        "size": 285,
+        "extra": 37,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 0,
+        "size": 37,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      }
+    }
+  },
+  {
+    "order": [
+      "origin",
+      "out",
+      "basis",
+      "position"
+    ],
+    "err": null,
+    "members": {
+      "steering_sensitivity": {
+        "strict_diff": 229,
+        "size": 252,
+        "extra": 20,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 12,
+        "size": 20,
+        "extra": 0,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      }
+    },
+    "context": {
+      "traction_control": {
+        "strict_diff": 245,
+        "size": 285,
+        "extra": 37,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 0,
+        "size": 37,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      }
+    }
+  },
+  {
+    "order": [
+      "origin",
+      "out",
+      "position",
+      "basis"
+    ],
+    "err": null,
+    "members": {
+      "steering_sensitivity": {
+        "strict_diff": 229,
+        "size": 252,
+        "extra": 20,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 18,
+        "size": 20,
+        "extra": 0,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      }
+    },
+    "context": {
+      "traction_control": {
+        "strict_diff": 245,
+        "size": 285,
+        "extra": 37,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 0,
+        "size": 37,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      }
+    }
+  },
+  {
+    "order": [
+      "origin",
+      "basis",
+      "out",
+      "position"
+    ],
+    "err": null,
+    "members": {
+      "steering_sensitivity": {
+        "strict_diff": 229,
+        "size": 252,
+        "extra": 20,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 18,
+        "size": 23,
+        "extra": 3,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      }
+    },
+    "context": {
+      "traction_control": {
+        "strict_diff": 245,
+        "size": 285,
+        "extra": 37,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 0,
+        "size": 37,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      }
+    }
+  },
+  {
+    "order": [
+      "origin",
+      "basis",
+      "position",
+      "out"
+    ],
+    "err": null,
+    "members": {
+      "steering_sensitivity": {
+        "strict_diff": 229,
+        "size": 252,
+        "extra": 20,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 18,
+        "size": 23,
+        "extra": 3,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      }
+    },
+    "context": {
+      "traction_control": {
+        "strict_diff": 245,
+        "size": 285,
+        "extra": 37,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 0,
+        "size": 37,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      }
+    }
+  },
+  {
+    "order": [
+      "origin",
+      "position",
+      "out",
+      "basis"
+    ],
+    "err": null,
+    "members": {
+      "steering_sensitivity": {
+        "strict_diff": 229,
+        "size": 252,
+        "extra": 20,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 18,
+        "size": 21,
+        "extra": 1,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      }
+    },
+    "context": {
+      "traction_control": {
+        "strict_diff": 245,
+        "size": 285,
+        "extra": 37,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 0,
+        "size": 37,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      }
+    }
+  },
+  {
+    "order": [
+      "origin",
+      "position",
+      "basis",
+      "out"
+    ],
+    "err": null,
+    "members": {
+      "steering_sensitivity": {
+        "strict_diff": 229,
+        "size": 252,
+        "extra": 20,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "vector_diff_process": {
+        "strict_diff": 18,
+        "size": 20,
+        "extra": 0,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      }
+    },
+    "context": {
+      "traction_control": {
+        "strict_diff": 245,
+        "size": 285,
+        "extra": 37,
+        "matched": false,
+        "unverified": [],
+        "err": null
+      },
+      "func_800A61B0": {
+        "strict_diff": 0,
+        "size": 37,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      },
+      "math_utility": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "unverified": [],
+        "err": null
+      }
+    }
+  }
+]

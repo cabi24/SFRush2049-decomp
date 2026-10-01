@@ -1,0 +1,28 @@
+{
+  "linker_script_sha256": "710a7e5acb29bfb0866e988129715a04b2549c2c4d94c6e6d33d6f98f27f7b81",
+  "source_object_sha256": "f167aa2589e42cb763d451a47b9e67c270a0ad4e1346bcd3b9c6b03e5384d003",
+  "table_address_authority": "asm/us/nonmatchings/rom/lib_e9a0/osSpTaskLoad_full.s:175/177, %hi/%lo(jtbl_8002D860_main) encodes 0x8002D860",
+  "table_relocations": "Seven R_MIPS_32 .text entries resolve against authoritative function address0x8000DF80. No masks; entire seven-entry actual retail table verified.",
+  "sections": [
+    {
+      "section": ".text",
+      "vaddr": "0x8000df80",
+      "compared_bytes": 1040,
+      "linked_word_diff": 0,
+      "section_bytes": 1040,
+      "extra_section_bytes": 0,
+      "retail_sha256": "8295d0d593688626442def768f96835ea1c949e5638dbed95708da51154b44a9",
+      "linked_prefix_sha256": "8295d0d593688626442def768f96835ea1c949e5638dbed95708da51154b44a9"
+    },
+    {
+      "section": ".rodata",
+      "vaddr": "0x8002d860",
+      "compared_bytes": 28,
+      "linked_word_diff": 0,
+      "section_bytes": 32,
+      "extra_section_bytes": 4,
+      "retail_sha256": "8715ab3d3467adb72f3b32ad01b9bde327d5ef34383d4ecb437c629d34e99320",
+      "linked_prefix_sha256": "8715ab3d3467adb72f3b32ad01b9bde327d5ef34383d4ecb437c629d34e99320"
+    }
+  ]
+}

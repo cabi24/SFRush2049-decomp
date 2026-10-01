@@ -1,0 +1,16 @@
+[
+  {
+    "function": "osViSetMode",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_score": 646,
+    "raw_word_diff": 16,
+    "shared_source_sha256": "b42487dd849efacba1b8b7780770ae109163aebab730b0560883202ec568b1d0"
+  },
+  {
+    "function": "osCreateViManager",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 3149,
+    "raw_word_diff": 55,
+    "shared_source_sha256": "1d87719f76dcbf7c0434112a6c468d011bed832b33ca4b9537b0e7363d8590ad"
+  }
+]
