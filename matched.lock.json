@@ -1,12 +1,4 @@
 {
-  "cloud/work/static_C8/osPfsGetFileStat.c:osPfsGetFileStat": {
-    "body_sha256": "fa442e3b937334cf35188f31548de8531fb82e92dbdd3d198625f5b99819736f",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "osPfsGetFileStat",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-01"
-  },
   "cloud/work/static_C8/osPiReadWord.c:osPiReadWord": {
     "body_sha256": "1184c9285a096c018d46daa0395a0061658ba8a3e6ad472058638dda0f642c43",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -415,6 +407,14 @@
     "body_sha256": "230696d23c3f1833f534fd9ec543e306cc4fa23a0317167d36899d14186e36c0",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "osPfsFindFile",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
+  },
+  "src/rom/lib_b9f0.c:osPfsGetFileStat": {
+    "body_sha256": "fa442e3b937334cf35188f31548de8531fb82e92dbdd3d198625f5b99819736f",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osPfsGetFileStat",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
