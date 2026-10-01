@@ -1,0 +1,66 @@
+[
+  {
+    "function": "dll_remove",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "status": "ready",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "source_sha256": "fe36b02c369f3275cba1bd71708c6f1561637e4578ccbab916a1b3950a26f513",
+    "object_sha256": "cdf9cb005980f8d8a7194f65773d6f59ce0b09cdf35e293f117ac8d0627c1cff",
+    "target_sha256": "a3803e5d4aaf06be6df289dc64c4a470fd86580eeb63e3ba80f0fc4384f235c9",
+    "current_header": {
+      "strict_score": 0,
+      "raw_word_diff": 0,
+      "source_sha256": "79d5212bff3196d2c6d6d131b5022385fe790f7db061487fbd93837482bf7a04",
+      "object_sha256": "b10083d4ecc0336b7269cf046ad1adc32bacc298603a0e7fb711f12bbc4eba9a"
+    }
+  },
+  {
+    "function": "osGetTime",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "status": "ready",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "source_sha256": "acf650feaac8d82435a0d3f37764cf9f9acda375f1bde04b5cfa374ed865e756",
+    "object_sha256": "5a0959469e219eb63a9bbeb24e699d9e5ecfe80029a2ee4710ed545170560cd2",
+    "target_sha256": "003f0366f146328fdd098524974f78db29815c628a0ca0892e4ebc4a63c5b53e",
+    "current_header": {
+      "strict_score": 0,
+      "raw_word_diff": 0,
+      "source_sha256": "639f259b2cbabbebcf7b49b7569e4a63c1a7910592055f78dffcb05da7b831e6",
+      "object_sha256": "a1bbe19d70bd17adfc93b4ce08b58a84aa091b63a1dd60dfbbb7f964906605dc"
+    }
+  },
+  {
+    "function": "osViModeTableGet",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "status": "ready",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "source_sha256": "8065f19e6f1e39bd6829635dfd2306ffd0b076a9a4766cc4f6f255c055b156b2",
+    "object_sha256": "e12230fcaf61210e749528719119b357a64678b307f3b2c4f592eafa3c3f49fe",
+    "target_sha256": "6a0055529638e63974886853916a7c7087106788dd8d52248708ecf9da4412c1",
+    "current_header": {
+      "strict_score": 0,
+      "raw_word_diff": 0,
+      "source_sha256": "83a52eb6497ee4a96249ec891895a6ceceaa97cbeb62bcba21c02934c75007c5",
+      "object_sha256": "fa6fc1f321d81648f2315ce86bb66828548a6f3dd5b31c9a28ae140466fd96f4"
+    }
+  },
+  {
+    "function": "osViModeNtscLan1",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "status": "ready",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "source_sha256": "29fda2a87651a53e691d58a8e606ea9164b1ac2d439a51413cfd2f166e176b55",
+    "object_sha256": "9ff82565476327ba550c2ee5929019f494ddd443076d593368baf89acbee041d",
+    "target_sha256": "a5f9623e7deb5e68e883fd2dfe06ce167a4c148c168102a8f10e2808a26b143a",
+    "current_header": {
+      "strict_score": 0,
+      "raw_word_diff": 0,
+      "source_sha256": "f179b8d87aa6b8fcf078a01d82d269aded48dffd4f4b36519f050b38a2194179",
+      "object_sha256": "9f5a2c586ffe20696e023e62ed1cd491d4209a5a902a5b59b95abb04a4f4f9dd"
+    }
+  }
+]

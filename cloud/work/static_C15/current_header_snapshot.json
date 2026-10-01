@@ -1,0 +1,6 @@
+{
+  "sdk_thread_header_sha256": "1ab29a9e77fcfeae0f2b106b4fbec77fca53f2df4273240ea6b937e25a9845f6",
+  "rom_tu_header_sha256": "a7a1d4a1d9220b912b7ad0ec62bcd796e7abce207b9aa7f249339f18064de662",
+  "OSThread_fp_slots": "u64 paired slots, corrected by B18",
+  "scope": "Shared current-root snapshot used privately for all four frozen current_header sources."
+}

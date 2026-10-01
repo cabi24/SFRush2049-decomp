@@ -104,7 +104,7 @@ segments:
       - [0x7AD0, c, rom/lib_7ad0]
       - [0x7B30, c, rom/lib_7b30]
       - [0x7C80, c, rom/lib_7c80]
-      - [0x7FB0, asm]
+      - [0x7FB0, c, rom/lib_7fb0]
       - [0x8040, c, rom/lib_8040]
       - [0x81E0, c, rom/lib_81e0]
       - [0x8330, c, rom/lib_8330]
