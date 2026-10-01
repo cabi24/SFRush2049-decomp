@@ -1,5 +1,16 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-01 fifth completed promotion milestone
+
+- Game cartridge C: **529/1,216 functions, 62,192/647,072 bytes (9.61%)**. Static cartridge C: **102/230 functions, 19,912/61,440 bytes (32.41%)**.
+- Since previous pushed milestone: three game functions /476 bytes and six static functions /2,392 bytes accepted. Across handoff:32 game functions /5,776 bytes and79 static functions /18,464 bytes; registered switch extents remain separate from C credit.
+- A10 authentic eight-function entity/message closure accepts results_screen_update, leaderboard_update and camera_clip_planes. Coordinator D independently scores all three strict MATCH; exact source-built image and full-ROM gates pass. Actual empty BF01C uses a documented code-free pointer-formal guard; camera retains true float clamp behavior. Historical synthetic wrapper removed, real allocator kept out of line. Allocator18/42 and receiver27/40 remain unclaimed; three already accepted context MATCHes earn no duplicate credit.
+- C11 accepts two canonical PFS checker helpers and VI initialization at O2 (1,432 bytes), then two timers and historical StopThread at O1 (960 bytes). Existing neighboring getter bodies independently strict/raw0 at O1 on A/C/D with normalized hashes asserted unchanged; original provenance preserved while flags reconciled. Actual typed OSTimer* head replaces only the extern, retaining old overlay typedef. All63 existing C-TU streams remain byte-identical under the corrected header; forced baseline full-ROM and each individual promotion exact.
+- Scoped supported target refreshes repair stale converted-slot targets for three timers, priority getter and next __osRepairId; all relocation-aware assembly gates pass without fallback or score changes. VI initialization's existing osTvType boot symbol authority is explicitly recorded. Code bytes and comparison streams remain private/ignored; checked-in proof contains source/hashes/counts.
+- B14 directed repairs find zero new matches; improved widths/vector/loop/frame candidates remain honest leads. B15 identifies genuine hidden-t0 steering and unsaved-register physics closures rather than faking standalone matches. A continues real closure work with B; C12 covers further PFS/VI/PI candidates and audits shared pins before rejecting alternate flags.
+- Gates: source-built full-ROM SHA-1 EXACT; blob529 and group locks zero problems;105 static/source locks intact (102 actual ROM promotions plus3 historical source entries). Full pytest exit0 captured separately;27 required static tests before every promotion. Six static and three game coordinator statuses reconciled forward without informational attention flags.
+- Pushed d3a9efc7 CI run36904348929 succeeded. No open cloud PRs at latest intake. Farm paused during integration, resumes after checkpoint push; active node jobs preserved. Three workers plus coordinator remain active. Wiki host-key confirmation remains independently pending.
+
 ## 2026-10-01 fourth completed promotion milestone
 
 - Game cartridge C: **526/1,216 functions, 61,716/647,072 bytes (9.54%)**. Static cartridge C: **96/230 functions, 17,520/61,440 bytes (28.52%)**.

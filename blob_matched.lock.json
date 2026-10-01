@@ -164,6 +164,15 @@
     "verified": "image_gate",
     "verified_at": "2026-09-23"
   },
+  "camera_clip_planes": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "codex_entity_helpers_a10",
+    "source": "src/blob/groups/codex_entity_helpers_a10/group.json",
+    "source_sha256": "ad864a2aae9f5fce80ebca7999fbcb1064e9211896445c763ee74271bf06d832",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-01"
+  },
   "camera_fov_control": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "camera_aspect_ratio",
@@ -3560,6 +3569,15 @@
     "verified": "image_gate",
     "verified_at": "2026-09-28"
   },
+  "leaderboard_update": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "codex_entity_helpers_a10",
+    "source": "src/blob/groups/codex_entity_helpers_a10/group.json",
+    "source_sha256": "ad864a2aae9f5fce80ebca7999fbcb1064e9211896445c763ee74271bf06d832",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-01"
+  },
   "listener_position_set": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/listener_position_set.c",
@@ -4056,6 +4074,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-29"
+  },
+  "results_screen_update": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "codex_entity_helpers_a10",
+    "source": "src/blob/groups/codex_entity_helpers_a10/group.json",
+    "source_sha256": "ad864a2aae9f5fce80ebca7999fbcb1064e9211896445c763ee74271bf06d832",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-01"
   },
   "results_time_display": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
