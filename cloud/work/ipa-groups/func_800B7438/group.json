@@ -1,0 +1,20 @@
+{
+  "members": [
+    "func_800B73E4",
+    "func_800B7438"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_800B7438",
+    "__standin_input_init_flag_get"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "unprototyped": [],
+  "claims": [
+    "func_800B73E4",
+    "func_800B7438"
+  ],
+  "note": "hand group: IPA callee func_800B73E4 + func_800B7438; __standin_input_init_flag_get gives the callee a second call site (stand-in, not spliceable)"
+}
