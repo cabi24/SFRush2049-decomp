@@ -5,5 +5,37 @@
 #include "rom_tu.h"
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_8e10/osCreatePiManager.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_8e10/osCreateViManager.s")
+/* PROMOTED 2026-10-01 — osCreateViManager
+ * Source:   cloud/work/static_C8/osCreateViManager.c (in-repo, locked)
+ * Flags:    -g0 -O1 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C8/osCreateViManager.c:osCreateViManager (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void osCreateViManager(OSThread* t, OSPri pri) {
+    register u32 saveMask;
+
+
+    saveMask = __osDisableInt();
+
+    if (t == NULL) {
+        t = __osRunningThread;
+    }
+
+    if (t->priority != pri) {
+        t->priority = pri;
+
+        if (t != __osRunningThread && t->state != OS_STATE_STOPPED) {
+            dll_remove(t->queue, t);
+            __osEnqueueThread(t->queue, t);
+        }
+
+        if (__osRunningThread->priority < ((OSThread *)__osActiveQueue)->priority) {
+            __osRunningThread->state = OS_STATE_RUNNABLE;
+            __osCleanupThread((OSThread **) &__osActiveQueue);
+        }
+    }
+
+    __osRestoreInt(saveMask);
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_8e10/osInvalICache_full.s")
