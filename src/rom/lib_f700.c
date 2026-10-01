@@ -125,5 +125,42 @@ s32 __osGetId(OSPfs* pfs) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_f700/osPfsReadWriteFile_pages.s")
+/* PROMOTED 2026-10-01 — osPfsReadWriteFile_pages
+ * Source:   cloud/work/static_C9/osPfsReadWriteFile_pages.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C9/osPfsReadWriteFile_pages.c:osPfsReadWriteFile_pages (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+s32 osPfsReadWriteFile_pages(OSPfs* pfs) {
+    u8 temp[BLOCKSIZE];
+    s32 ret;
+
+    if (pfs->activebank != 0) {
+        ret = __osPfsSelectBank(pfs, 0);
+
+        if (ret == PFS_ERR_NEW_PACK) {
+            ret = __osPfsSelectBank(pfs, 0);
+        }
+
+        if (ret != 0) {
+            return ret;
+        }
+    }
+
+    ret = __osContRamRead(pfs->queue, pfs->channel, PFS_ID_0AREA, (u8*)temp);
+
+    if (ret != 0) {
+        if (ret != PFS_ERR_NEW_PACK) {
+            return ret;
+        }
+        ERRCK(__osContRamRead(pfs->queue, pfs->channel, PFS_ID_0AREA, (u8*)temp));
+    }
+
+    if (bcmp(pfs->id, temp, BLOCKSIZE) != 0) {
+        return PFS_ERR_NEW_PACK;
+    }
+
+    return 0;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_f700/__osPfsRWInode.s")
