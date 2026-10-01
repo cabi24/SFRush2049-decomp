@@ -1,0 +1,58 @@
+{
+  "audio_output_setup:late_sum": {
+    "strict_diff": 32,
+    "size": 36,
+    "extra": 0,
+    "matched": false,
+    "err": null
+  },
+  "func_800947F0:factor_array": {
+    "strict_diff": 37,
+    "size": 38,
+    "extra": 0,
+    "matched": false,
+    "err": null
+  },
+  "func_800947F0:true_factor_address": {
+    "strict_diff": 37,
+    "size": 38,
+    "extra": 0,
+    "matched": false,
+    "err": null
+  },
+  "func_800D0810:offset_outer": {
+    "strict_diff": 16,
+    "size": 33,
+    "extra": 0,
+    "matched": false,
+    "err": null
+  },
+  "func_800D0810:pointer_walk": {
+    "strict_diff": 23,
+    "size": 33,
+    "extra": 0,
+    "matched": false,
+    "err": null
+  },
+  "audio_output_setup:selected_owner": {
+    "strict_diff": 30,
+    "size": 36,
+    "extra": 0,
+    "matched": false,
+    "err": null
+  },
+  "audio_output_setup:selected_while": {
+    "strict_diff": 30,
+    "size": 36,
+    "extra": 0,
+    "matched": false,
+    "err": null
+  },
+  "func_800947F0:actual_timer_view": {
+    "strict_diff": 37,
+    "size": 38,
+    "extra": 0,
+    "matched": false,
+    "err": null
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "targets": [
+    "audio_output_setup",
+    "func_800B9284",
+    "func_800D0810",
+    "func_800B66B0",
+    "func_800BD080",
+    "func_800BDA24",
+    "func_800947F0",
+    "func_800B4B00"
+  ],
+  "claims": [
+    "func_800B9284"
+  ],
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+}

@@ -1,0 +1,87 @@
+{
+  "func_80090E9C": {
+    "strict_diff": 26,
+    "size": 42,
+    "target_size": 42,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "cc255d547ae40ee3abc867358663bb156e44ae2d7a1e3af38c1a3aa6700b1fe5"
+  },
+  "func_80090F44": {
+    "strict_diff": 24,
+    "size": 42,
+    "target_size": 42,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "69509b3b7207322d115bbed96b736d580107f425266221af92cabed1a27d94c0"
+  },
+  "func_800B5898": {
+    "strict_diff": 24,
+    "size": 42,
+    "target_size": 42,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "ad112fc4d21cd75f8414718491c05976ecf7f9fa402f4d6086099ad47ca01ed1"
+  },
+  "func_800B5940": {
+    "strict_diff": 24,
+    "size": 42,
+    "target_size": 42,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "417e595d25659cf09c2d402bc8e7a842c6a913695a9d89b80b846a37075cf69b"
+  },
+  "func_800AFA84": {
+    "strict_diff": 0,
+    "size": 41,
+    "target_size": 41,
+    "extra": 0,
+    "matched": true,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "12084280853d5a002f9cca45c09fc97c88941184968a1d74eb1bfa08c02626b9",
+    "canonical_exit": 0
+  },
+  "func_80091B00": {
+    "strict_diff": 25,
+    "size": 42,
+    "target_size": 42,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "41431ffefad1fb3381010bf3b1dd718319116c465b02e54a6f0efddbf5f94a9a"
+  },
+  "func_800B0580": {
+    "strict_diff": 30,
+    "size": 43,
+    "target_size": 38,
+    "extra": 5,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "20efdbcc4bf96b6265cba8cb1f7df9b6e33ff8daa16ea78fcba996744c93227d"
+  }
+}

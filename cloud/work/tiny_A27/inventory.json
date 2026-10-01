@@ -1,0 +1,82 @@
+{
+  "func_8008AD6C": {
+    "words": 41,
+    "decision": "deferred after real assembly inventory; no bounded missing-signature lever"
+  },
+  "func_8008B000": {
+    "words": 54,
+    "decision": "deferred after real assembly inventory; no bounded missing-signature lever"
+  },
+  "func_80090E9C": {
+    "words": 42,
+    "decision": "compiled"
+  },
+  "func_80090F44": {
+    "words": 42,
+    "decision": "compiled"
+  },
+  "func_80091B00": {
+    "words": 42,
+    "decision": "compiled"
+  },
+  "func_800A7BF8": {
+    "words": 41,
+    "decision": "deferred after real assembly inventory; no bounded missing-signature lever"
+  },
+  "func_800AFA84": {
+    "words": 41,
+    "decision": "compiled"
+  },
+  "func_800B2BDC": {
+    "words": 54,
+    "decision": "deferred after real assembly inventory; no bounded missing-signature lever"
+  },
+  "func_800B5898": {
+    "words": 42,
+    "decision": "compiled"
+  },
+  "func_800B5940": {
+    "words": 42,
+    "decision": "compiled"
+  },
+  "func_800BC21C": {
+    "words": 40,
+    "decision": "deferred after real assembly inventory; no bounded missing-signature lever"
+  },
+  "func_800BE6A4": {
+    "words": 40,
+    "decision": "deferred after real assembly inventory; no bounded missing-signature lever"
+  },
+  "func_800CCE5C": {
+    "words": 40,
+    "decision": "deferred after real assembly inventory; no bounded missing-signature lever"
+  },
+  "func_800D18D8": {
+    "words": 41,
+    "decision": "deferred after real assembly inventory; no bounded missing-signature lever"
+  },
+  "func_800D2054": {
+    "words": 53,
+    "decision": "deferred after real assembly inventory; no bounded missing-signature lever"
+  },
+  "func_800D2C10": {
+    "words": 49,
+    "decision": "deferred after real assembly inventory; no bounded missing-signature lever"
+  },
+  "func_800E5C9C": {
+    "words": 50,
+    "decision": "deferred after real assembly inventory; no bounded missing-signature lever"
+  },
+  "func_800E79F8": {
+    "words": 40,
+    "decision": "deferred after real assembly inventory; no bounded missing-signature lever"
+  },
+  "func_800E7A98": {
+    "words": 43,
+    "decision": "deferred after real assembly inventory; no bounded missing-signature lever"
+  },
+  "game_timer_pause": {
+    "words": 41,
+    "decision": "deferred after real assembly inventory; no bounded missing-signature lever"
+  }
+}

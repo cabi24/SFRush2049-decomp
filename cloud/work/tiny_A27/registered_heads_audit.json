@@ -1,0 +1,26 @@
+{
+  "func_8010221C": {
+    "words": 137,
+    "blocker": "unsaved s0-s8; actual parent02F30 plus slot_state_setup required"
+  },
+  "func_80102F30": {
+    "words": 890,
+    "blocker": "hidden t1-t4 real00D5C; real slot_state_setup s2 input"
+  },
+  "func_80104B14": {
+    "words": 601,
+    "blocker": "unsaved s0-s8/f20/f22; actual parent05480 plus slot_state_setup"
+  },
+  "func_80105480": {
+    "words": 445,
+    "blocker": "real slot_state_setup plus hidden s5 input to0104704"
+  },
+  "func_8010D3C0": {
+    "words": 176,
+    "blocker": "ordinary switch; no small fresh type lever before separate local-table ownership proof"
+  },
+  "func_8010D680": {
+    "words": 119,
+    "blocker": "ordinary switch; original80-byte frame/3-vector homes need real source evidence; no fabricated padding"
+  }
+}

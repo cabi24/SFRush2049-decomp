@@ -1,5 +1,14 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-01 twelfth completed milestone: game matching C exceeds10 percent
+
+- Game cartridge C: **562/1,216 functions, 64,796/647,072 bytes (10.0137%, displayed10.01%)**. Static cartridge C: **116/230 functions, 27,096/61,440 bytes (44.10%)**. These are actual matching source-built bytes; candidates and preserved linker fill remain uncounted.
+- A26 func_800B9284 adds136 bytes: genuine signed index/count wrap and halfword table selection, exact ordinary O2 TU. A27 func_800AFA84 adds164 bytes: real two-input pool/node unlink and free-chain insertion, preserving actual singly/doubly linked behavior and alias load order. The genuine successor carrier repairs register web without extra memory access, pressure, dummy input or fabricated caller. Both exact flags-prefixed sources independently canonical strict MATCH on D, image identical and source-built full ROM SHA-1 EXACT.
+- User's requested game threshold is crossed by matching C, not rounding:300 accepted bytes exceed the212-byte gap from64,496 to over647,072/10. Across handoff:65 game functions /8,380 bytes and93 static functions /25,648 bytes accepted. No static/game denominator merging.
+- A26 switch-table residual remains explicitly unclaimed despite strict0 because two rodata relocations are unverified. A28 authentic two-function pool-init closure has empty claims; copied real AFA84 same-group MATCH earns no duplicate coverage. Other A26/A27 controls and registered-head audits remain honest leads.
+- Gates: source-built full-ROM SHA-1 EXACT;562 blob and group locks zero problems;119 static/source locks intact (116 actual ROM promotions plus3 historical entries). Full pytest exit0 captured separately:633 passed/482 skipped. Two forward coordinator status transitions persisted without informational attention flags. Initial dirty tools/mips_to_c preserved.
+- Previous62dc8f60 CI run36939264033 succeeded. Farm stopped during integration and resumes after checkpoint push. Three workers continue real release callers, remaining static bodies and coherent existing-TU timer ownership; B24 independently strict/raw0 allsix timer bodies pending reviewed transaction, no provisional C credit. Wiki host-key confirmation remains independently pending.
+
 ## 2026-10-01 eleventh completed heap-release and padding milestone
 
 - Game cartridge C: **560/1,216 functions, 64,496/647,072 bytes (9.97%)**. Static cartridge C: **116/230 functions, 27,096/61,440 bytes (44.10%)**.

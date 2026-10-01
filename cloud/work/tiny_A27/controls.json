@@ -1,0 +1,65 @@
+{
+  "func_800AFA84:shared_successor_carrier": {
+    "strict_diff": 0,
+    "size": 41,
+    "extra": 0,
+    "matched": true,
+    "err": null
+  },
+  "func_80090E9C:real_cursor": {
+    "strict_diff": 33,
+    "size": 42,
+    "extra": 0,
+    "matched": false,
+    "err": null
+  },
+  "func_80090F44:real_cursor": {
+    "strict_diff": 33,
+    "size": 42,
+    "extra": 0,
+    "matched": false,
+    "err": null
+  },
+  "func_800B5898:real_cursor": {
+    "strict_diff": 33,
+    "size": 42,
+    "extra": 0,
+    "matched": false,
+    "err": null
+  },
+  "func_800B5940:real_cursor": {
+    "strict_diff": 33,
+    "size": 42,
+    "extra": 0,
+    "matched": false,
+    "err": null
+  },
+  "func_80091B00:O3": {
+    "strict_diff": 38,
+    "size": 20,
+    "extra": 0,
+    "matched": false,
+    "err": null
+  },
+  "func_80091B00:actual_four_check_loop": {
+    "strict_diff": 25,
+    "size": 42,
+    "extra": 0,
+    "matched": false,
+    "err": null
+  },
+  "func_80091B00:actual_end_symbol": {
+    "strict_diff": 41,
+    "size": 132,
+    "extra": 90,
+    "matched": false,
+    "err": null
+  },
+  "func_80091B00:actual_end_separate_stores": {
+    "strict_diff": 41,
+    "size": 132,
+    "extra": 90,
+    "matched": false,
+    "err": null
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "err": null,
+  "matched": false,
+  "members": {
+    "func_800B0580": {
+      "strict_diff": 30,
+      "size": 43,
+      "target_size": 38,
+      "extra": 5,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    }
+  },
+  "context": {
+    "func_800AFA84": {
+      "strict_diff": 0,
+      "size": 41,
+      "target_size": 41,
+      "extra": 0,
+      "matched": true,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    }
+  },
+  "canonical_exit": 0,
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "source_sha256": "221b5861af9b71d9df1406c676866b36a57c86814dfa5b91b0260e4f95c513c7"
+}

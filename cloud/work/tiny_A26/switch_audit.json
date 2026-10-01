@@ -1,0 +1,21 @@
+{
+  "target": "func_800B4B00",
+  "table_address": "0x80123CE4",
+  "case_field_offsets": {
+    "21": 80,
+    "22": 81,
+    "23": 82,
+    "24": 83,
+    "25": null,
+    "26": 84,
+    "27": 85,
+    "28": 86,
+    "29": 87,
+    "30": 88,
+    "31": 89
+  },
+  "default_result": 0,
+  "strict_diff": 0,
+  "canonical_matched": false,
+  "blocker": "two local .rodata relocations remain unverified; no claim"
+}
