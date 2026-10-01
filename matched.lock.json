@@ -1,12 +1,4 @@
 {
-  "cloud/work/static_C3/osSetTimer.c:osSetTimer": {
-    "body_sha256": "7ebbfdde607de07818a4bcec8dee278b3ff6af8187e45d4f1a8a11383b87f491",
-    "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
-    "target_id": "osSetTimer",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-01"
-  },
   "src/libultra/os_ai.c:__osAiDeviceBusy": {
     "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -374,6 +366,14 @@
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-07-15"
+  },
+  "src/rom/lib_efd0.c:osSetTimer": {
+    "body_sha256": "7ebbfdde607de07818a4bcec8dee278b3ff6af8187e45d4f1a8a11383b87f491",
+    "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "target_id": "osSetTimer",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
   },
   "src/rom/lib_f160.c:__osSiGetAccess": {
     "body_sha256": "101d8686d8e0a989c5ce0bc5c9010322f89e3f79fc893df5de2032d809c9bd36",
