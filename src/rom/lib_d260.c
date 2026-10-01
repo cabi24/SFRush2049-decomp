@@ -4,4 +4,13 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_d260/osGetActiveQueue.s")
+/* PROMOTED 2026-10-01 — osGetActiveQueue
+ * Source:   cloud/work/static_C/osGetActiveQueue.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C/osGetActiveQueue.c:osGetActiveQueue (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+s32 osGetActiveQueue(void) {
+    return __osViModeInfo;
+}
+
