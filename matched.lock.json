@@ -1,12 +1,4 @@
 {
-  "cloud/work/static_C10/osPfsRename.c:osPfsRename": {
-    "body_sha256": "0ad83f8168afc1a29d90599366c69708ed0e91a2e900bf2ebcbe692839e709f3",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "osPfsRename",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-01"
-  },
   "cloud/work/static_C10/osSetEventMesgAlt.c:osSetEventMesgAlt": {
     "body_sha256": "267585adc6cbe0af978c42305caaa25007defcdd1e2bf45cf189eaad8b1aa9df",
     "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
@@ -471,6 +463,14 @@
     "body_sha256": "230696d23c3f1833f534fd9ec543e306cc4fa23a0317167d36899d14186e36c0",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "osPfsFindFile",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
+  },
+  "src/rom/lib_b300.c:osPfsRename": {
+    "body_sha256": "0ad83f8168afc1a29d90599366c69708ed0e91a2e900bf2ebcbe692839e709f3",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osPfsRename",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
