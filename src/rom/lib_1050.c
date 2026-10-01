@@ -24,7 +24,16 @@
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050/viScheduleTick.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050/viAddTicks.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050/viGetTimeToDeadline.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050/viDeadlinePassed.s")
+/* PROMOTED 2026-10-01 — viDeadlinePassed
+ * Source:   cloud/work/static_C/viDeadlinePassed.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C/viDeadlinePassed.c:viDeadlinePassed (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+s32 viDeadlinePassed(void) {
+    return (gViAccumTime - gViTickCounter) < 1;
+}
+
 /* PROMOTED 2026-09-24 — viStub
  * Source:   work/auto/viStub/matched.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
