@@ -9,7 +9,6 @@ Diagnostic evidence only. Word counts are positional object comparisons, with kn
 | mode_byte2_set | 1 | 1 | register-permutation | unknown | none-known |
 | object_type_byte2_get | 1 | 1 | structure | cfe-spelling | none-known |
 | object_type_byte3_get | 1 | 1 | structure | cfe-spelling | none-known |
-| save_load_data | 1 | 1 | structure | cfe-spelling | none-known |
 | func_8008A704 | 2 | 2 | schedule | g0-scheduler | line-order |
 | func_8008C680 | 4 | 4 | register-ring-only | ugen-temp-ring | temp-ring |
 | physics_forces2 | 4 | 4 | structure | unknown | none-known |
@@ -103,7 +102,7 @@ Diagnostic evidence only. Word counts are positional object comparisons, with kn
 | attract_or_transition | 516 | 516 | mixed(constant:2, structural:355, register:188) | unknown | declare-the-pair-later |
 | net_state_validate | 675 | 675 | mixed(constant:7, structural:297, register:392) | unknown | declare-the-pair-later |
 
-Processed: 96; diagnosis failures: 0.
+Processed: 95; diagnosis failures: 0.
 
 Counts:
 
@@ -189,4 +188,4 @@ Counts:
 - register-permutation: 6
 - register-ring-only: 2
 - schedule: 1
-- structure: 7
+- structure: 6

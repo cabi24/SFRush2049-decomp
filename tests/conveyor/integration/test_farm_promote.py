@@ -15,6 +15,8 @@ from pathlib import Path
 
 import pytest
 
+from tools.conveyor.pipeline import lock
+
 pytestmark = pytest.mark.node_required
 
 COORDINATOR = os.environ.get("CONVEYOR_COORDINATOR", "http://127.0.0.1:8323")
@@ -22,7 +24,15 @@ DATA = Path(os.environ.get("CONVEYOR_DATA", "~/.conveyor")).expanduser()
 REPO = Path(__file__).resolve().parents[3]
 
 
+def _require_unpromoted_fixture(entries):
+    if any(e.get("target_id") == "strlen" and e.get("verified") == "rom-sha1"
+           for e in entries.values()):
+        pytest.skip("strlen is already promoted; run this win-path fixture in an "
+                    "unpromoted scratch checkout, preserving the re-seed guard")
+
+
 def test_seed_search_harvest_promote_cycle():
+    _require_unpromoted_fixture(lock.load_lock())
     token = (DATA / "token").read_text().strip()
 
     # strlen matches at score 0 immediately -> exercises the full win path.
@@ -53,3 +63,14 @@ def test_seed_search_harvest_promote_cycle():
             break
         time.sleep(10)
     assert final and final["functions"]["matched"] + final["functions"]["verified"] >= 1, final
+
+
+def test_promoted_fixture_is_skipped_before_seeding():
+    with pytest.raises(pytest.skip.Exception, match="already promoted"):
+        _require_unpromoted_fixture({"src/rom/lib_8800.c:strlen": {
+            "target_id": "strlen", "verified": "rom-sha1"}})
+
+
+def test_object_evidence_still_allows_fresh_win_path():
+    _require_unpromoted_fixture({"src/libc/string.c:strlen": {
+        "target_id": "strlen", "verified": "score0"}})

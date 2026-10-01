@@ -3885,6 +3885,14 @@
     "verified": "image_gate",
     "verified_at": "2026-09-30"
   },
+  "save_load_data": {
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "src/blob/save_load_data.c",
+    "source_sha256": "0e8c41c0efd13707a48e7553a869d1b0328995dabfd3ae32e7de7058771b6058",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-01"
+  },
   "scene_cleanup_slots": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/scene_cleanup_slots.c",
