@@ -4,5 +4,25 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_8330/osSpTaskYielded.s")
+/* PROMOTED 2026-10-01 — osSpTaskYielded
+ * Source:   cloud/work/static_C2/osSpTaskYielded.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C2/osSpTaskYielded.c:osSpTaskYielded (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+OSYieldResult osSpTaskYielded(OSTask* tp) {
+    u32 status;
+    OSYieldResult result;
+
+    status = bzero_alt();
+    result = (status & SP_STATUS_YIELDED) ? OS_TASK_YIELDED : 0;
+
+    if (status & SP_STATUS_YIELD) {
+        tp->t.flags |= result;
+        tp->t.flags &= ~(OS_TASK_DP_WAIT);
+    }
+
+    return result;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_8330/osViGetCurrentFramebuffer.s")
