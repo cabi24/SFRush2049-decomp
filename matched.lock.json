@@ -1,12 +1,4 @@
 {
-  "cloud/work/static_C3/osContStartQuery.c:osContStartQuery": {
-    "body_sha256": "42958b8df6ed9f24cd8523fafe7f1f95defd138cefb099b856af429634395b23",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "osContStartQuery",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-01"
-  },
   "cloud/work/static_C3/osCreateThread.c:osCreateThread": {
     "body_sha256": "626b2ed59f496db09cff24e07e2fd0d35ecde452a6a102776ce8eea3cc64071e",
     "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
@@ -243,6 +235,14 @@
     "body_sha256": "6b871d6daf9d39e2d276bdfcc727e3967896f01fb44b17512dc555d01545371e",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "osContGetReadData",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
+  },
+  "src/rom/lib_a330.c:osContStartQuery": {
+    "body_sha256": "42958b8df6ed9f24cd8523fafe7f1f95defd138cefb099b856af429634395b23",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osContStartQuery",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
