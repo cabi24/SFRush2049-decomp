@@ -7,4 +7,24 @@
 extern OSTime gViTimeAccumHi;
 extern u32 gViLastCount;
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_7fb0/osGetTime.s")
+/* PROMOTED 2026-10-01 — osGetTime
+ * Source:   cloud/work/static_C15/osGetTime.c (in-repo, locked)
+ * Flags:    -g0 -O1 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_C15/osGetTime.c:osGetTime (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+OSTime osGetTime(void) {
+    u32 tmptime;
+    u32 elapseCount;
+    OSTime currentCount;
+    register u32 saveMask;
+
+
+    saveMask = __osDisableInt();
+    tmptime = osGetCount();
+    elapseCount = tmptime - gViLastCount;
+    currentCount = gViTimeAccumHi;
+    __osRestoreInt(saveMask);
+    return currentCount + elapseCount;
+}
+
