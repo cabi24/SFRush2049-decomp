@@ -1,0 +1,40 @@
+[
+  {
+    "function": "func_800BDD90",
+    "address": null,
+    "bytes": 108,
+    "source": "cloud/matches/func_800BDD90.c",
+    "source_sha256": "0476915e920e0fa3dfafd762299fa9217447e8af5a96c80264bd5c724e5360da",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_result": "MATCH",
+    "allow_unverified": false,
+    "score_exit_code": 0,
+    "score_stdout_sha256": "cf444a4d9f6a619407c73d53fb8e81840e968bd898dc5500a0a58b54a5f01682",
+    "target_words_sha256": "5816385ec7cd8873756ff3b890cbd6e4d7e70c14f76f49c46c2730e7c0af71a4",
+    "target_manifest_sha256": "6ffda622b1aed921d85aa20d3996959aa69a433cbca46e0b83d98ad13e3bd6e8",
+    "target_symbols_sha256": "91760c85ae47cd8445013beeb1e987048830b0a35ea319b7cc681a61d89af8b1",
+    "scorer_sha256": "ca0e5fdebb90e13d1e91643357bcda7d402401552e5de326c361ab6411565cc0",
+    "baseline_source": "build/codex-r4300-sweep/sources/func_800BDD90.c",
+    "baseline_sha256": "a97ec08ee2a026385f04837bea6bbae246f698473669b2561d35211df648d88d",
+    "baseline_result": "27/27 words differ (12 extra words (nonzero beyond target length))"
+  },
+  {
+    "function": "func_80098A54",
+    "address": null,
+    "bytes": 136,
+    "source": "cloud/matches/func_80098A54.c",
+    "source_sha256": "7028229a79b1c090aaf6d1869a2d821e67710b332bfce7dd376a9338910e60b4",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_result": "MATCH",
+    "allow_unverified": false,
+    "score_exit_code": 0,
+    "score_stdout_sha256": "26b747dfe96b5c9010dd4d31a5067f33f98e741ea14ac2ba82a09e805d0d1bfb",
+    "target_words_sha256": "7f78bfb0de90b4e0ad2348591f08c5b631b887f3d394a697c9b73305683a5d8a",
+    "target_manifest_sha256": "6ffda622b1aed921d85aa20d3996959aa69a433cbca46e0b83d98ad13e3bd6e8",
+    "target_symbols_sha256": "91760c85ae47cd8445013beeb1e987048830b0a35ea319b7cc681a61d89af8b1",
+    "scorer_sha256": "ca0e5fdebb90e13d1e91643357bcda7d402401552e5de326c361ab6411565cc0",
+    "baseline_source": "build/codex-r4300-sweep/sources/func_80098A54.c",
+    "baseline_sha256": "9b522cfdb772fa126a05e19f2b28491e023de04b1c8416aa576f9252cd145e86",
+    "baseline_result": "34/34 words differ (14 extra words (nonzero beyond target length))"
+  }
+]

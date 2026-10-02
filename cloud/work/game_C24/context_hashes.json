@@ -1,0 +1,8 @@
+{
+  "asm/us/blob/symbols.json": "91760c85ae47cd8445013beeb1e987048830b0a35ea319b7cc681a61d89af8b1",
+  "asm/us/blob/SHA256SUMS": "311c62b0259a55b2bab973bc969dec1dc39c78b33ac65352445c9ea82bdb6924",
+  "build/m2c_asm/func_800C4180.s": "626b33d7e55802842d6f1371acfb3294cdf4f0ed0faf57fb87b21346e6074cdc",
+  "build/m2c_asm/func_8008C768.s": "aaf2daa290f171624ccf6b7b54854f8cdfa55ab4d5f028d110b67dbafcaefefa",
+  "tools/cloud/score.py": "ca0e5fdebb90e13d1e91643357bcda7d402401552e5de326c361ab6411565cc0",
+  "tools/conveyor/jobs/scoring.py": "107fa8b627acd0b88f10c309973f97c2ee990786387b652f23b3c3175ce525d5"
+}

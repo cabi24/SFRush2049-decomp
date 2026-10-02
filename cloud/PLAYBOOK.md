@@ -226,3 +226,7 @@ C22 reconstructs canonical SDK sinf/cosf with exact original named readonly arra
 B26 introduces a separately reviewed exact owner profile, preserving timer's flags and complete source family. Distinguish actual tracked compile dependencies from ignored SDK target-normalization provenance: accepted source/context/current-target hashes and original ROM gates retain authority while readonly CI needs no reference checkout. Initializer credit is only680 C bytes; original32-byte initialized data and16-byte BSS belong to the same atomic transaction.
 
 B27 repairs an actual scalar-float callee return contract rather than converting an assumed integer return. Prove formal types from original caller register lanes and callee homing; a truly unused third float observed in the actual call is legitimate, while an invented pressure formal remains forbidden. Typed table element scaling and natural product/value flow recover the other exact registered-head body.
+
+### Intrinsic declarations and true vector dataflow yield ordinary matches (2026-10-01)
+
+C24/B28 recover original hardware sqrt.s/abs.s via genuine IDO intrinsic declarations after proving SDK float signatures. Correcting implicit-int assumptions avoids invented wrapper work. Typed two/three-float arrays, a common return and actual component load order match the physical source behavior; prior distant vector seeds can become exact when this real missing contract is fixed. These three independent ordinary bodies add372 bytes with no context or storage credit.

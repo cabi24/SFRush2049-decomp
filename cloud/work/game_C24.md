@@ -1,0 +1,19 @@
+# Game packet C24 — real floating-point ABI match
+
+One ready ordinary match: **func_800C4180,128bytes**, exact flags `-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul`. Frozen source: `game_C24/func_800C4180.c`, source SHA256 `ad995ceb214d87936190161a7576c1fc196d9926e1d858bbb3218ddd92b1b668`.
+
+Rocky canonical scorer with stack differences enabled gives score0. Independently linked full32 retail words match with no masks, unresolved/unverified references, relocation errors or extra words. `verification.json` records actual compile command, source/target/object SHA256 and complete verdict. Private target `~/agents/C/scratch/game-C24/func_800C4180.target.o` is the current supported DB target, SHA256 `613812e2fdf77d66deae454f8a1cb589a5d40acbd93422e6a799a02b52fe929f`; compiled final object is alongside it.
+
+Actual assembly establishes func_8008C768's two-f32 input contract (f12/f14) and f32 return (f0). The original seed prelude incorrectly declares this helper s32(), leading to integer conversion code. This source uses the real float contract. The target's two abs.s operations are represented with standard IDO `#pragma intrinsic(fabsf)`, already used in the genuine SDK intrinsic pattern and current accepted game sources. A ternary macro generated extra comparison branches; a fabsf declaration without the intrinsic generated calls. No helper formal was added for allocation pressure; no fake inputs/constants or new owned storage exist. The only data reference is the original named readonly threshold D_80123F80.
+
+Minimal source context is typedef float f32, the genuine two-float helper prototype, readonly threshold declaration and intrinsic declaration/pragma. The function computes the real matrix angle and stores its f32 result via the caller's output pointer. All32 original instructions form its entire extent; no trailing slot padding is involved. Source hashes stay independent of private object .mdebug path differences. Parent owns normal independent replay, locks, image splice and ROM gates before coverage credit.
+
+Independent replay:
+
+```sh
+python3 PACKET/verify.py --repo ~/agents/D/wt --toolkit ~/rush2049/cache/toolkits/796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5 --target PRIVATE_TARGET/func_800C4180.target.o --output D_C24.json
+```
+
+Selection was disjoint from A40/B27. Other retained diagnostic bodies (8C544, ACFF8, AD090, C40E8) are nonmatches. The three rotations already had genuine f12/f14+a2 contracts; no ABI repair is claimed for them. A separately frozen E9C70 real caller group now also matches444bytes; its unchanged accepted helper is context only. See motion_group/README.md and frozen_verification.json for exact joint profile and source/body identity. No duplicate helper credit. No integration source/header/locks/layout/state mutations were made.
+
+A second separately frozen ordinary source now matches **func_8008C544,156bytes** with the same exact O2+errata flags. `func_8008C544.c` SHA256 is `eebe8ddbd316812da19ff2569059d2f7a3a8d5cfe6ddd39e7e7c8068db0cd4c9`; `vector_verification.json` records strict0 and all39 linked retail words0, no unresolved/unverified/errors/extra words. Original assembly establishes actual three-pointer vector/matrix ABI and exact floating-point term grouping. Canonical source computes the partial signed dot products before the last term and preserves original operand order; a three-control directed arithmetic audit reduced625→60→0. No temporary pressure variables, helper calls or data are needed. Standalone ELF adds four alignment-zero bytes outside the156-byte original body; the image scorer compares the entire original body and accepts no nonzero extra words. Private object/target are alongside the other C24 objects, and `verify_vector.py` independently replays this immutable source with `--target PRIVATE_TARGET/func_8008C544.target.o`.

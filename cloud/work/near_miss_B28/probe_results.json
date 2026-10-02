@@ -1,0 +1,104 @@
+[
+  {
+    "probe": "func_8008E0B8_intrinsic",
+    "result": "  35/35 words differ",
+    "match": false,
+    "stdout_sha256": "b12a76e09e66216981898234c9aa9b5425e405232765d197514d6a5035d9336b"
+  },
+  {
+    "probe": "func_8008E0B8_original",
+    "result": "  34/35 words differ (9 extra words (nonzero beyond target length))",
+    "match": false,
+    "stdout_sha256": "29dee85fd3314a00e733e9fba317c2664005cbe24870547b06e7be08f57203cd"
+  },
+  {
+    "probe": "func_8008E0B8_sqrtdecl",
+    "result": "  35/35 words differ (7 extra words (nonzero beyond target length))",
+    "match": false,
+    "stdout_sha256": "5550bc23323c217df5258d87fe66543f3cb42abc7de432d8f5ee02274bc900fc"
+  },
+  {
+    "probe": "func_8008E0B8_vector",
+    "result": "  35/35 words differ",
+    "match": false,
+    "stdout_sha256": "b12a76e09e66216981898234c9aa9b5425e405232765d197514d6a5035d9336b"
+  },
+  {
+    "probe": "func_80098A54_both",
+    "result": "  5/34 words differ",
+    "match": false,
+    "stdout_sha256": "8fe252475ff9e8ff3c7c0892d29680bfa8011e8ddefd0efb1085eeb169a0aea4"
+  },
+  {
+    "probe": "func_80098A54_intrinsic",
+    "result": "  12/34 words differ",
+    "match": false,
+    "stdout_sha256": "59aaa4077621d68362160cebae5d971647ff00170ac219221642b3a4abed0146"
+  },
+  {
+    "probe": "func_80098A54_loadorder",
+    "result": "  MATCH",
+    "match": true,
+    "stdout_sha256": "26b747dfe96b5c9010dd4d31a5067f33f98e741ea14ac2ba82a09e805d0d1bfb"
+  },
+  {
+    "probe": "func_80098A54_oneexit",
+    "result": "  9/34 words differ",
+    "match": false,
+    "stdout_sha256": "489f51362afafe8ccbcccb008344f2ca6df1387ed0bfcae371d5e9d678a5b9b7"
+  },
+  {
+    "probe": "func_80098A54_original",
+    "result": "  34/34 words differ (14 extra words (nonzero beyond target length))",
+    "match": false,
+    "stdout_sha256": "e944d81a7a4e6b6de8deac0f1253ab8a3b71f77fce6b8e6f12427c1df643da10"
+  },
+  {
+    "probe": "func_80098A54_sqrtdecl",
+    "result": "  34/34 words differ (11 extra words (nonzero beyond target length))",
+    "match": false,
+    "stdout_sha256": "52701f859824f76a679990f708752bb65746ac08602e67fa24eba646ea815851"
+  },
+  {
+    "probe": "func_80098A54_sumorder",
+    "result": "  12/34 words differ",
+    "match": false,
+    "stdout_sha256": "14f0a59aa9a051ff17b2484bcdbbfdbbb42e86e109339f08e4b8eccc7db734f5"
+  },
+  {
+    "probe": "func_80098A54_vector",
+    "result": "  12/34 words differ",
+    "match": false,
+    "stdout_sha256": "59aaa4077621d68362160cebae5d971647ff00170ac219221642b3a4abed0146"
+  },
+  {
+    "probe": "func_800BDD90_intrinsic",
+    "result": "  3/27 words differ",
+    "match": false,
+    "stdout_sha256": "ea46958f48076780f68047059832a678b2a2a078745ebd9db8daf14e5801358f"
+  },
+  {
+    "probe": "func_800BDD90_oneexit",
+    "result": "  MATCH",
+    "match": true,
+    "stdout_sha256": "cf444a4d9f6a619407c73d53fb8e81840e968bd898dc5500a0a58b54a5f01682"
+  },
+  {
+    "probe": "func_800BDD90_original",
+    "result": "  27/27 words differ (12 extra words (nonzero beyond target length))",
+    "match": false,
+    "stdout_sha256": "52fc496609063e5d48d19fbd87456de0de785e665d9f9db0f44ffe15768558f6"
+  },
+  {
+    "probe": "func_800BDD90_sqrtdecl",
+    "result": "  27/27 words differ (10 extra words (nonzero beyond target length))",
+    "match": false,
+    "stdout_sha256": "c41b3a8e747f7dad02a50156d5b6e9b8a770cbeeb82c9dd4fccca54f082487d4"
+  },
+  {
+    "probe": "func_800BDD90_vector",
+    "result": "  3/27 words differ",
+    "match": false,
+    "stdout_sha256": "ea46958f48076780f68047059832a678b2a2a078745ebd9db8daf14e5801358f"
+  }
+]
