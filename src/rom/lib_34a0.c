@@ -39,7 +39,36 @@
  * passthrough lines. */
 #include "static_debug_context.h"
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_34a0/modf.s")
+/* PROMOTED 2026-10-02 — modf
+ * Source:   cloud/work/static_debug_consolidation/acceptance_sources/modf.c (in-repo, locked)
+ * Flags:    -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul
+ * Evidence: lock:cloud/work/static_debug_consolidation/acceptance_sources/modf.c:modf (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+double modf(register double input, register double* ip) {
+    register double ax;
+    double t;
+    double x = input;
+    ax = x > 0.0 ? x : -x;
+    if (ax >= 4503599627370496.0) {
+        *ip = x;
+        return 0.0;
+    } else {
+        t = ax + 4503599627370496.0;
+        t = t - 4503599627370496.0;
+        if (ax < t) t = t - 1.0;
+        if (t > 0.0) {} else t = -t;
+    }
+    if (x - t == 1.0) t = t + 1.0;
+    if (x >= 0.0) {
+        *ip = t;
+        return x - t;
+    } else {
+        *ip = -t;
+        return x + t;
+    }
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_34a0/modff.s")
 /* PROMOTED 2026-10-02 — __isinf
  * Source:   cloud/work/static_debug_consolidation/acceptance_sources/__isinf.c (in-repo, locked)
