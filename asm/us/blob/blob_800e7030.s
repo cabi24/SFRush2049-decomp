@@ -7884,6 +7884,7 @@ func_800EE7B4:
 .section .text.sync_init_conditional, "ax", @progbits
 .globl sync_init_conditional
 sync_init_conditional:
+    /* compiled from src/blob/sync_init_conditional.c */
     .word 0x3C0E8011
     .word 0x81CE47C0
     .word 0x27BDFFE8

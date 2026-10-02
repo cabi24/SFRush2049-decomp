@@ -1,0 +1,275 @@
+[
+  {
+    "headRefOid": "b367919ee5358e1fa3b7b8de504186a801fe45c8",
+    "isDraft": true,
+    "mergeStateStatus": "CLEAN",
+    "mergeable": "MERGEABLE",
+    "number": 10,
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T18:04:32Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37044829519/job/110963553533",
+        "name": "verify",
+        "startedAt": "2026-10-02T18:03:08Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "title": "Match complete func_80098710 with real helper context",
+    "url": "https://github.com/cabi24/SFRush2049-decomp/pull/10"
+  },
+  {
+    "headRefOid": "4dcc698a6b0066a3446c4e32284137506fb9393a",
+    "isDraft": true,
+    "mergeStateStatus": "CLEAN",
+    "mergeable": "MERGEABLE",
+    "number": 11,
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T18:43:02Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37049143460/job/110977879235",
+        "name": "verify",
+        "startedAt": "2026-10-02T18:41:36Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "title": "Match complete func_800D3430 through the O3 group pipeline",
+    "url": "https://github.com/cabi24/SFRush2049-decomp/pull/11"
+  },
+  {
+    "headRefOid": "03b47dc9ff8ce788eef3e3c1d79bc6c29583d92c",
+    "isDraft": true,
+    "mergeStateStatus": "CLEAN",
+    "mergeable": "MERGEABLE",
+    "number": 12,
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T18:59:52Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37051005901/job/110984132178",
+        "name": "verify",
+        "startedAt": "2026-10-02T18:58:27Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "title": "Match complete func_8008E098 through the O3 group pipeline",
+    "url": "https://github.com/cabi24/SFRush2049-decomp/pull/12"
+  },
+  {
+    "headRefOid": "0867f2880a5bec883630b86b52fb3a5673234fcc",
+    "isDraft": true,
+    "mergeStateStatus": "CLEAN",
+    "mergeable": "MERGEABLE",
+    "number": 13,
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T19:37:41Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37055198213/job/110998061686",
+        "name": "verify",
+        "startedAt": "2026-10-02T19:36:21Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "title": "Match complete func_800BEA3C with its RGBA aggregate interface",
+    "url": "https://github.com/cabi24/SFRush2049-decomp/pull/13"
+  },
+  {
+    "headRefOid": "c6cfffb0b61d84989264b9d2604ad6b97fd7f570",
+    "isDraft": true,
+    "mergeStateStatus": "CLEAN",
+    "mergeable": "MERGEABLE",
+    "number": 14,
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T19:42:21Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37055640973/job/110999547067",
+        "name": "verify",
+        "startedAt": "2026-10-02T19:41:05Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "title": "Match complete func_80090770 with unsigned halfword value",
+    "url": "https://github.com/cabi24/SFRush2049-decomp/pull/14"
+  },
+  {
+    "headRefOid": "77ce3451c2f33027f886f828384fdedfb40d7169",
+    "isDraft": true,
+    "mergeStateStatus": "CLEAN",
+    "mergeable": "MERGEABLE",
+    "number": 15,
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T20:17:34Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37059490300/job/111012322535",
+        "name": "verify",
+        "startedAt": "2026-10-02T20:16:18Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "title": "Match complete sign_extend_call through standard O3",
+    "url": "https://github.com/cabi24/SFRush2049-decomp/pull/15"
+  },
+  {
+    "headRefOid": "e786ec892cd7e23289912c17f780506650d6f8d8",
+    "isDraft": true,
+    "mergeStateStatus": "CLEAN",
+    "mergeable": "MERGEABLE",
+    "number": 16,
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T20:22:20Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37059969390/job/111013935854",
+        "name": "verify",
+        "startedAt": "2026-10-02T20:20:48Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "title": "Match complete func_800F7564 with a natural row scan",
+    "url": "https://github.com/cabi24/SFRush2049-decomp/pull/16"
+  },
+  {
+    "headRefOid": "45ac8d45a3d761d0d785cc33c3f2971c25be874f",
+    "isDraft": true,
+    "mergeStateStatus": "CLEAN",
+    "mergeable": "MERGEABLE",
+    "number": 17,
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T21:03:15Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37064345443/job/111028304680",
+        "name": "verify",
+        "startedAt": "2026-10-02T21:02:02Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "title": "Match complete func_80090284 free-list node allocation",
+    "url": "https://github.com/cabi24/SFRush2049-decomp/pull/17"
+  },
+  {
+    "headRefOid": "2dbc1860a09f18a433c9b0b792ef8d3bc96d1255",
+    "isDraft": true,
+    "mergeStateStatus": "CLEAN",
+    "mergeable": "MERGEABLE",
+    "number": 18,
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T21:03:20Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37064354960/job/111028335116",
+        "name": "verify",
+        "startedAt": "2026-10-02T21:02:07Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "title": "Match complete func_800ADCE0 with native run decoding",
+    "url": "https://github.com/cabi24/SFRush2049-decomp/pull/18"
+  },
+  {
+    "headRefOid": "e668455fb0ea6a073c7e9a470a6da6258eea824c",
+    "isDraft": true,
+    "mergeStateStatus": "CLEAN",
+    "mergeable": "MERGEABLE",
+    "number": 19,
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T21:28:32Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37066919718/job/111036986781",
+        "name": "verify",
+        "startedAt": "2026-10-02T21:27:17Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "title": "Match complete func_800CC848 node action gate",
+    "url": "https://github.com/cabi24/SFRush2049-decomp/pull/19"
+  },
+  {
+    "headRefOid": "ad9690fb949d4d532ffdbf9d85759c51c9cc2fe8",
+    "isDraft": true,
+    "mergeStateStatus": "CLEAN",
+    "mergeable": "MERGEABLE",
+    "number": 20,
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T21:29:27Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37067001217/job/111037249413",
+        "name": "verify",
+        "startedAt": "2026-10-02T21:28:07Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "title": "Match complete sync_init_conditional queue initialization",
+    "url": "https://github.com/cabi24/SFRush2049-decomp/pull/20"
+  },
+  {
+    "headRefOid": "4691bc4af4475ec28b0f25b03706c487d2d73301",
+    "isDraft": true,
+    "mergeStateStatus": "CLEAN",
+    "mergeable": "MERGEABLE",
+    "number": 22,
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T21:57:02Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37069665004/job/111045832407",
+        "name": "verify",
+        "startedAt": "2026-10-02T21:55:37Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "title": "Match complete func_8008B32C matrix scaling",
+    "url": "https://github.com/cabi24/SFRush2049-decomp/pull/22"
+  },
+  {
+    "headRefOid": "d0a6ed4e7ef38ea9fe6e31c5ab9f29729dc70062",
+    "isDraft": true,
+    "mergeStateStatus": "CLEAN",
+    "mergeable": "MERGEABLE",
+    "number": 23,
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T22:00:42Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37070006065/job/111046968888",
+        "name": "verify",
+        "startedAt": "2026-10-02T21:59:27Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "title": "Match complete func_800A5158 one-time initialization",
+    "url": "https://github.com/cabi24/SFRush2049-decomp/pull/23"
+  }
+]

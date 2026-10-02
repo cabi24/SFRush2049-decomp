@@ -6352,6 +6352,7 @@ input_process_controller:
 .section .text.func_800ADCE0, "ax", @progbits
 .globl func_800ADCE0
 func_800ADCE0:
+    /* compiled from src/blob/func_800ADCE0.c */
     .word 0x00057040
     .word 0x01C61021
     .word 0x00E04025

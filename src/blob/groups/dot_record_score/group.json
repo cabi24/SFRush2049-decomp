@@ -1,0 +1,18 @@
+{
+  "members": [
+    "func_80098710"
+  ],
+  "context": [
+    "func_800986DC"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_80098710",
+    "func_800986DC"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "provenance": "Complete protected retail body func_80098710; real existing func_800986DC wrapped-time helper from src/blob/func_800986DC.c, preserved as context only. Reconstructed from master 2f1f30c508495db08d61170c4a9b2409461ae326.",
+  "name": "dot_record_score"
+}

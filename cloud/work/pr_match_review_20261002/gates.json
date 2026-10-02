@@ -1,0 +1,146 @@
+{
+  "reviewed_prs": [
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    22,
+    23
+  ],
+  "new_functions": [
+    {
+      "function": "func_8008B32C",
+      "native_bytes": 116,
+      "full_body_word_differences": 0,
+      "body_sha256": "b30975f5c44f9d68849d39357cc27979fac7cb88b48b5eccb38e63044c37b3a5",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "source": "src/blob/func_8008B32C.c"
+    },
+    {
+      "function": "func_8008E098",
+      "native_bytes": 32,
+      "full_body_word_differences": 0,
+      "body_sha256": "a07bdbf82d3fb5ba370ef74a9c0d2d01930a0febbb974bf397e5f03c9d709bbe",
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "source": "src/blob/groups/dot_vector_length/group.json"
+    },
+    {
+      "function": "func_80090284",
+      "native_bytes": 132,
+      "full_body_word_differences": 0,
+      "body_sha256": "30a84341f5dadb3b164c8e49d76c350693b8369e33e6f62663cf9d2c8fe807eb",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "source": "src/blob/func_80090284.c"
+    },
+    {
+      "function": "func_80090770",
+      "native_bytes": 44,
+      "full_body_word_differences": 0,
+      "body_sha256": "63c22792e9508d3ecf6bf1a7ca33f1e474feb47957aae72f5bc45941c4c62fa7",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "source": "src/blob/func_80090770.c"
+    },
+    {
+      "function": "func_80098710",
+      "native_bytes": 216,
+      "full_body_word_differences": 0,
+      "body_sha256": "0e90ba900caa01772b36d2cc268bb997e850cbc828ba85feacd073c23c012a58",
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "source": "src/blob/groups/dot_record_score/group.json"
+    },
+    {
+      "function": "func_800A5158",
+      "native_bytes": 128,
+      "full_body_word_differences": 0,
+      "body_sha256": "dcf0eae046aa0e3ee32eac82b70097d9f40df96c617dca7fc24e4e52c5450663",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "source": "src/blob/func_800A5158.c"
+    },
+    {
+      "function": "func_800ADCE0",
+      "native_bytes": 120,
+      "full_body_word_differences": 0,
+      "body_sha256": "7f4e356afd5b999a9ac0786684a4d3fdb55ef2a7245db618dd6c3848010934c7",
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "source": "src/blob/groups/dot_run_decode/group.json"
+    },
+    {
+      "function": "func_800BEA3C",
+      "native_bytes": 28,
+      "full_body_word_differences": 0,
+      "body_sha256": "a97b665b83056427c771c7a1508769b4442a97c040d8ccfb98593561550cacb7",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "source": "src/blob/func_800BEA3C.c"
+    },
+    {
+      "function": "func_800CC848",
+      "native_bytes": 128,
+      "full_body_word_differences": 0,
+      "body_sha256": "d122b34d72a2a60e0edc6427ae61488212cb13354748744325938f2baaa2e7e7",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "source": "src/blob/func_800CC848.c"
+    },
+    {
+      "function": "func_800D3430",
+      "native_bytes": 92,
+      "full_body_word_differences": 0,
+      "body_sha256": "20b8e1edb018ef61df5648369280b6b69d00aec85b51ae3ce5cadd02cc786b80",
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "source": "src/blob/groups/dot_entry_dispatch/group.json"
+    },
+    {
+      "function": "func_800F7564",
+      "native_bytes": 76,
+      "full_body_word_differences": 0,
+      "body_sha256": "f51bb8fa96fcffd9772aa7ca11b533aa0f8fd2e64cda93af0a1d68ccb0126654",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "source": "src/blob/func_800F7564.c"
+    },
+    {
+      "function": "sign_extend_call",
+      "native_bytes": 40,
+      "full_body_word_differences": 0,
+      "body_sha256": "7fd128bef40a72ad661e6bd2ac8b83a32a5921f63ff3a11b6fae562a62182f51",
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "source": "src/blob/groups/dot_sign_extend/group.json"
+    },
+    {
+      "function": "sync_init_conditional",
+      "native_bytes": 100,
+      "full_body_word_differences": 0,
+      "body_sha256": "50bf8af4f3ebbf9989828f427c38ab244361867cfe17800c7f1a643dfcda018d",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "source": "src/blob/sync_init_conditional.c"
+    }
+  ],
+  "new_code_bytes": 1252,
+  "all_previous_game_locks_identical": true,
+  "all_664_bodies_source_built": true,
+  "all_664_complete_native_bodies_exact": true,
+  "game_functions": 664,
+  "game_bytes": 100480,
+  "game_total_bytes": 647072,
+  "static_functions": 158,
+  "static_bytes": 44808,
+  "static_total_bytes": 61440,
+  "combined_bytes": 145288,
+  "combined_total_bytes": 708512,
+  "combined_percentage": 20.50607470303961,
+  "produce": {
+    "spliced": 664,
+    "image_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d",
+    "image_bytes": 647072,
+    "blob_bytes": 326180,
+    "blob_sha256": "9e632d21b7d0d293563755d9f2033557cb1a4d91d7df6e8d41e68d8afe3e5f7d",
+    "stream_matches_rom": true
+  },
+  "rom_ok": true,
+  "rom_tail": "Verifying built ROM hash...\nbuild/us/rush2049.us.z64: OK\nROM matches!\nbuild/us/rush2049.us.z64: OK\nROM matches!\nMAKE=0 TEST=0"
+}
