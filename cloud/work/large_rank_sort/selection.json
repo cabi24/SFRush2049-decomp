@@ -1,0 +1,24 @@
+{
+  "function": "func_800F7F3C",
+  "address": "0x800F7F3C",
+  "bytes": 1396,
+  "words": 349,
+  "accepted": false,
+  "purpose": "Player ranking sort and leading-player tie detection",
+  "target_object_sha256": "79b9ecc0871a23fca245e73e0ed975f40a318812621c5a7a6f6e2fd7259cc29f",
+  "tier": "reloc_aware",
+  "baseline_game_percent": 13.97,
+  "baseline_static_percent": 46.76,
+  "team": {
+    "reconstruction": {
+      "agent": "large_next_reconstruction",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high"
+    },
+    "compiler": {
+      "agent": "large_next_compiler",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high"
+    }
+  }
+}

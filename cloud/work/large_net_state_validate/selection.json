@@ -1,0 +1,26 @@
+{
+  "function": "net_state_validate",
+  "address": "0x800F2A28",
+  "bytes": 2728,
+  "words": 682,
+  "accepted": false,
+  "purpose_inferred": "Per-player achievement and unlock flag evaluator",
+  "arcade_equivalent": "No direct counterpart identified in prior scouting; agents will search again",
+  "reason": "Large complete ordinary-ABI integer routine with documented record layout and full prior C drafts",
+  "baseline_game_percent": 13.38,
+  "baseline_static_percent": 46.76,
+  "team": {
+    "reconstruction": {
+      "agent": "large_unlock_reconstruction",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high"
+    },
+    "compiler": {
+      "agent": "large_unlock_compiler",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high"
+    }
+  },
+  "target_object_sha256": "8ea6c4ecf649d488e8e691151d36eb784244e52179a58febbf834d009e7ac501",
+  "target_object_tier": "reloc_aware"
+}

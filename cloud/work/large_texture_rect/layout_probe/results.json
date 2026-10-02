@@ -1,0 +1,301 @@
+[
+  {
+    "source_sha256": "b331342f19abf205f0b85ce105667d5de5232c0e47574a73734d4f4287c863e0",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "cloud/work/large_texture_rect/layout_probe/condition_and_both_assignments.c",
+    "accepted": false,
+    "canonical_verdict": "4/445 words differ",
+    "comparison": {
+      "differing": 4,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "f260b72bdc83809c99901bb473062840529bae8359c359669ee20872fffc315a",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 444,
+      "aligned_opcode": 444,
+      "aligned_opcode_reg": 444
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "aa6fb3339eef99e0a5a3714e17211a809001b63fcc173b358978612397d432ff",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "cloud/work/large_texture_rect/layout_probe/condition_and_edge_shared_line.c",
+    "accepted": false,
+    "canonical_verdict": "4/445 words differ",
+    "comparison": {
+      "differing": 4,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "53fa8e7ca3f0de1bb93853cc88cde81d0adb97a840dbbb8ef6a3457b03931995",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 444,
+      "aligned_opcode": 444,
+      "aligned_opcode_reg": 444
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "c9c438e794a334671c87212f6b8696e08b489ffd7abc5f2cc36e6761f8060638",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "cloud/work/large_texture_rect/layout_probe/edge_and_command_shared_line.c",
+    "accepted": false,
+    "canonical_verdict": "6/445 words differ",
+    "comparison": {
+      "differing": 6,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "c5805faa211797de90d36677c4449e0a5b4cbbb0637f51dc892729166b85172f",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 443,
+      "aligned_opcode": 443,
+      "aligned_opcode_reg": 443
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "4d80a83ec45a5b0a8d21dd6d6f0f56b6e72084fb10d72e9d421ae56f1f8ae3b3",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "cloud/work/large_texture_rect/layout_probe/edge_compound_separate_lines.c",
+    "accepted": false,
+    "canonical_verdict": "4/445 words differ",
+    "comparison": {
+      "differing": 4,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "bbb3689a265915ec398e10fe88bcee10b16271ba252439c4d07ff8da2f0e7e45",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 444,
+      "aligned_opcode": 444,
+      "aligned_opcode_reg": 444
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "adc6c8797a0f3152fb6f9f14b7b2d42587e998c060d8b8035dd06059f4afed68",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "cloud/work/large_texture_rect/layout_probe/edge_separate_result_and_command.c",
+    "accepted": false,
+    "canonical_verdict": "6/445 words differ",
+    "comparison": {
+      "differing": 6,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "2dbf642a004744ebdcb3d016947466ae93a3c40624e3ada584d865808c31efb3",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 443,
+      "aligned_opcode": 443,
+      "aligned_opcode_reg": 443
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "bccd791727fe93f49f9c2c07a4c6924ebada32b2cd5c3fc6a5ad0180dd807286",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "cloud/work/large_texture_rect/layout_probe/edge_separate_statements.c",
+    "accepted": false,
+    "canonical_verdict": "4/445 words differ",
+    "comparison": {
+      "differing": 4,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "aa592eb6e977093cc4496d57777096b4ae5e53781f37254cb523830e202e146f",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 444,
+      "aligned_opcode": 444,
+      "aligned_opcode_reg": 444
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "52b27f90e645b014643688d119d3f0060e59584a7c8e55baf5cda8ddf0141ea8",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "cloud/work/large_texture_rect/layout_probe/sdk_authentic_macro_layout.c",
+    "accepted": false,
+    "canonical_verdict": "4/445 words differ",
+    "comparison": {
+      "differing": 4,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "96cf757a3e95f5bc12edcdd647c2f079c792da88bb611421ef85d860ee025dfd",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 444,
+      "aligned_opcode": 444,
+      "aligned_opcode_reg": 444
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "4671b8f55ec5024c6e822f829676d76bcbfecf16c97352ce83da3a76bb46e2a5",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "cloud/work/large_texture_rect/layout_probe/sdk_capture_between_edge_steps.c",
+    "accepted": false,
+    "canonical_verdict": "11/445 words differ",
+    "comparison": {
+      "differing": 11,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "f71855243c95429790795ada91f4fb5284fd32b50e32055f5f9bdc4e54c104b2",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 439,
+      "aligned_opcode": 440,
+      "aligned_opcode_reg": 439
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "09ee36d31584a400fb0aa498a895ffe00ed9d34da783ae4edd68136d45644e7d",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "cloud/work/large_texture_rect/layout_probe/sdk_capture_result_shared_line.c",
+    "accepted": false,
+    "canonical_verdict": "11/445 words differ",
+    "comparison": {
+      "differing": 11,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "792e97e4d293aa0ece4ad78409ce16bcc8b75670e3b0d0e2a6acb91f0699b2d1",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 439,
+      "aligned_opcode": 440,
+      "aligned_opcode_reg": 439
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "5041a7c0e9f77ac0e713c503d2aa7627e6a3ce6ad051cbc46e1e4757facdb80f",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "cloud/work/large_texture_rect/layout_probe/sdk_edge_and_block_shared_line.c",
+    "accepted": false,
+    "canonical_verdict": "11/445 words differ",
+    "comparison": {
+      "differing": 11,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "c8ac4f90e5cd299053edbaf4604463a3d9e63285da828deb55a25abd8ddb5c14",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 439,
+      "aligned_opcode": 440,
+      "aligned_opcode_reg": 439
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "209d1c41376a578062a33fed06486227f0d76c0fbead945fe4d92a5236366443",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "cloud/work/large_texture_rect/layout_probe/sdk_explicit_captures_shared.c",
+    "accepted": false,
+    "canonical_verdict": "6/445 words differ",
+    "comparison": {
+      "differing": 6,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "d96266549973b69f7b6d50c70a8bbb661aa3e27d60cde4874f3252bf9c2fad25",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 442,
+      "aligned_opcode": 442,
+      "aligned_opcode_reg": 442
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "43b69a36a094a14861bed33c8678257a3a72b2b316a21bd0fd81cd92e146c9cf",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "cloud/work/large_texture_rect/layout_probe/sdk_explicit_edge_shared.c",
+    "accepted": false,
+    "canonical_verdict": "6/445 words differ",
+    "comparison": {
+      "differing": 6,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "c8260160382d2ed19d8e0a3fbd389cc67f36447e60c67db6ba2e510870f25fa1",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 442,
+      "aligned_opcode": 442,
+      "aligned_opcode_reg": 442
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "7a4f5c4e36ce1424f0dc947c04b059a5c3e6a9478c88b9182e26929ec566c810",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "cloud/work/large_texture_rect/layout_probe/sdk_explicit_statements.c",
+    "accepted": false,
+    "canonical_verdict": "6/445 words differ",
+    "comparison": {
+      "differing": 6,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "66b6e1d11e17e5867405c4c270df46d4e5884d5fc96dad527fad296053efab8c",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 442,
+      "aligned_opcode": 442,
+      "aligned_opcode_reg": 442
+    },
+    "frame_bytes": 104
+  }
+]
