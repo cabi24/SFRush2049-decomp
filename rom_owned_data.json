@@ -26,6 +26,19 @@
       "owner_section": ".data",
       "sha256": "3c1a6f5433a5490b4c6df69ff14fe6cd7df420acdf36f18e0491bc2e3aab4206",
       "composed_source": "build/us/assets/us/data.composed.bin"
+    },
+    {
+      "owner": "sdk_initialize_data",
+      "storage_owner": "sdk_initialize",
+      "tu": "src/rom/lib_8a80.c",
+      "source": "assets/us/data.bin",
+      "offset": "0x1cf60",
+      "size": "0x20",
+      "container_vram": "0x8000f400",
+      "container_section": ".data",
+      "owner_section": ".data",
+      "sha256": "00eff670001b7953977665e4e87a8f811e3928fc8cce0f7ff5e8bf01d41559c6",
+      "composed_source": "build/us/assets/us/data.composed.bin"
     }
   ],
   "storage_blocks": [
@@ -222,7 +235,7 @@
       "owner": "sdk_initialize",
       "kind": "bss",
       "activation_mode": "existing_tu",
-      "active": false,
+      "active": true,
       "tu": "src/rom/lib_8a80.c",
       "source": "cloud/work/static_C18/full_module.c",
       "source_sha256": "7606f20fc4e2459c6de43e5be046a9389030c5c7a93db6548bf9729003e5fe80",

@@ -202,7 +202,7 @@ SECTIONS
         build/us/src/rom/lib_8800.o(.data);
         build/us/asm/us/88A0.o(.data);
         build/us/src/rom/lib_8920.o(.data);
-        build/us/src/rom/lib_8a80.o(.data);
+        /* ROM_OWNED_SECTION_MOVED build/us/src/rom/lib_8a80.o(.data) */
         build/us/src/rom/lib_8dd0.o(.data);
         build/us/src/rom/lib_8e10.o(.data);
         build/us/asm/us/90E0.o(.data);
@@ -465,18 +465,24 @@ SECTIONS
         _binary_assets_us_data_bin_start = ABSOLUTE(.);
         _binary_build_us_assets_us_data_composed_bin_start = ABSOLUTE(.);
         build/us/assets/us/data.o(.data.owned0);
+        rom_owned_sdk_initialize_data_START = ABSOLUTE(.);
+        build/us/src/rom/lib_8a80.o(.data);
+        rom_owned_sdk_initialize_data_END = ABSOLUTE(.);
+        ASSERT(rom_owned_sdk_initialize_data_START == 0x8002c360, "owned ROM slot address changed");
+        ASSERT(rom_owned_sdk_initialize_data_END - rom_owned_sdk_initialize_data_START == 0x20, "owned ROM slot size changed");
+        build/us/assets/us/data.o(.data.owned1);
         rom_owned_timer_services_pointer_START = ABSOLUTE(.);
         build/us/src/rom/lib_cc50.o(.data);
         rom_owned_timer_services_pointer_END = ABSOLUTE(.);
         ASSERT(rom_owned_timer_services_pointer_START == 0x8002c3f0, "owned ROM slot address changed");
         ASSERT(rom_owned_timer_services_pointer_END - rom_owned_timer_services_pointer_START == 0x10, "owned ROM slot size changed");
-        build/us/assets/us/data.o(.data.owned1);
+        build/us/assets/us/data.o(.data.owned2);
         rom_owned_osSpTaskLoad_full_START = ABSOLUTE(.);
         build/us/src/rom/lib_e9a0.o(.rodata);
         rom_owned_osSpTaskLoad_full_END = ABSOLUTE(.);
         ASSERT(rom_owned_osSpTaskLoad_full_START == 0x8002d860, "owned ROM slot address changed");
         ASSERT(rom_owned_osSpTaskLoad_full_END - rom_owned_osSpTaskLoad_full_START == 0x20, "owned ROM slot size changed");
-        build/us/assets/us/data.o(.data.owned2);
+        build/us/assets/us/data.o(.data.owned3);
         _binary_assets_us_data_bin_end = ABSOLUTE(.);
         _binary_assets_us_data_bin_size = ABSOLUTE(_binary_assets_us_data_bin_end - _binary_assets_us_data_bin_start);
         _binary_build_us_assets_us_data_composed_bin_end = ABSOLUTE(.);
