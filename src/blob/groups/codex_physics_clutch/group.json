@@ -1,0 +1,14 @@
+{
+  "name": "codex_physics_clutch",
+  "members": [
+    "func_800E2AC4"
+  ],
+  "context": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_800E2AC4"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+}
