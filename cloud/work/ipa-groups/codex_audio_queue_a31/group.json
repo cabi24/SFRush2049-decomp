@@ -1,0 +1,17 @@
+{
+  "members": [
+    "audio_fade_control",
+    "gfx_setup_e700",
+    "audio_timing_sync"
+  ],
+  "context": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "gfx_setup_e700",
+    "audio_timing_sync"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": []
+}

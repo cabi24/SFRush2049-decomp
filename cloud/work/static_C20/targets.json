@@ -1,0 +1,42 @@
+[
+  {
+    "function": "inflate_entry_alt",
+    "address": "0x8000697c",
+    "words": 32,
+    "target_sha256": "54c23561baef092958a714f4ef7b1e716b91d6aa7070b5b61f4ec6df80d6b5b3",
+    "gate": [
+      true,
+      null
+    ]
+  },
+  {
+    "function": "inflate_read_bits",
+    "address": "0x800066d4",
+    "words": 80,
+    "target_sha256": "865e162af62f7f60c035f795de8860ecf3a4bdd9fb1c9a61156686724de49bb6",
+    "gate": [
+      true,
+      null
+    ]
+  },
+  {
+    "function": "inflate_stored",
+    "address": "0x8000595c",
+    "words": 136,
+    "target_sha256": "540529600b077da2dec640a495e9cb57fc4eae39e6fed187861bc5fe32773e46",
+    "gate": [
+      true,
+      null
+    ]
+  },
+  {
+    "function": "lzss_decode",
+    "address": "0x80004afc",
+    "words": 149,
+    "target_sha256": "6121176bae7bfc0c753ee84b9eb83eb8d1923eb92f1f2275f7516a5faa6a8eb4",
+    "gate": [
+      true,
+      null
+    ]
+  }
+]

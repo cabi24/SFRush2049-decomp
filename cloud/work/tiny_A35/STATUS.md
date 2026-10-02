@@ -1,0 +1,9 @@
+# A35 fresh integer inventory frozen: no claims
+
+Two faithful ordinary no-call TUs (180 retail words) from fifteen fresh65–110-word leaves. Flags `-g0 -O2 -mips2 -G 0 -non_shared`; exact source hashes and baseline counts in scores.json. Neither matches: A150C78/78 plus5 extras, B9740100/102 plus7. Three directed width/cached-record controls remain nonmatches (A150C77 plus2 or3, B974097 plus1); retained complete baselines, no pressure/permutation sweeps.
+
+A150C converts zero-terminated byte or FF-prefixed big-endian halfword streams into palette indices, searches256 unsigned half entries, pads output zeros to the low-byte requested length. Nonempty zero-length input still searches/writes before the equality break, as actual retail does. An absent palette value emits nothing and advances the input. No invented pre-length guard. Decompiler's signed-byte loop counter could never equal256 and was repaired to s32 before testing; uncorrected output rejected.
+
+B9740 finds signed-half coordinate bounds: initial min32767/max-32767, primary vertices or vertices covered by a kind1 range. True ranges stride16, unsigned-half count10, points pointer12; points are signed-half triples stride6. Mesh primary count half0, range count byte8, ranges pointer12; total vertices unsigned half global. Every eligible point updates all six bounds, including stores of retained values. Automated decompiler fabricated an incoming fourth argument from a missed byte load and mangled shared-field aliases; that output was rejected. Directed control cached real retail counts, preserved readback half values and used actual endpoint pointer; no match. Baseline exact full source remains reviewable.
+
+All instruction-bearing output remains ignored build/codex-A35. No shared accepted source/layout/lock/state edits.

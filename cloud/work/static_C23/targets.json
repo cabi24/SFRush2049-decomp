@@ -1,0 +1,42 @@
+[
+  {
+    "function": "huft_build",
+    "address": "0x80004d98",
+    "words": 435,
+    "sha256": "b87bb594b965f11f37e41e0ba1fd95e98bf64bf7fb0ece0a4333a28797d61cc2",
+    "gate": [
+      true,
+      null
+    ]
+  },
+  {
+    "function": "inflate_block",
+    "address": "0x800064d4",
+    "words": 105,
+    "sha256": "8f6ec33330199d00d721415b87395a127ece3df7daa7a110a0fadfa3d12ee9c0",
+    "gate": [
+      true,
+      null
+    ]
+  },
+  {
+    "function": "inflate_dynamic",
+    "address": "0x80005d44",
+    "words": 484,
+    "sha256": "f82aa18a6528a0c29d613c090048841d223d60ae84906e6392d38c8435aea096",
+    "gate": [
+      true,
+      null
+    ]
+  },
+  {
+    "function": "inflate_fixed",
+    "address": "0x80005b7c",
+    "words": 114,
+    "sha256": "9b777a9622260e81feb53297e92545fdfa946ae317db2cd2ee6ffc3d3dd8b61a",
+    "gate": [
+      true,
+      null
+    ]
+  }
+]

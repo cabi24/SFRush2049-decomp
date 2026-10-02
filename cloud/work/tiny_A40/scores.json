@@ -1,0 +1,50 @@
+{
+  "func_80090284": {
+    "strict_diff": 31,
+    "size": 32,
+    "target_size": 33,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "055a3c1afffa46e50ce934384f5efe3b516e6e0fdb93fa7e168fcaaefe67ee9f"
+  },
+  "func_800CC848": {
+    "strict_diff": 8,
+    "size": 32,
+    "target_size": 32,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "b59242c81a1faf28046d57a8e7a9de20bdfc4f32f78e2aefae8d6150eaefb938"
+  },
+  "func_800E79F8": {
+    "strict_diff": 21,
+    "size": 40,
+    "target_size": 40,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "543862e1de0db8abe75643ce8adf345f28586d5cf96d6107bdc33445e5658e6f"
+  },
+  "func_80098A54": {
+    "strict_diff": 25,
+    "size": 35,
+    "target_size": 34,
+    "extra": 1,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "3dc40961f94b71ea06ed4f7d8e46f90632607c31cd3e2c7728300aa656e830f8"
+  }
+}

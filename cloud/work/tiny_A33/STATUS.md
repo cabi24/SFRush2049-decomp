@@ -1,0 +1,7 @@
+# A33 ordinary four-function inventory frozen: no claims
+
+Four fresh complete ordinary leaves (215 retail words); O2 flags `-g0 -O2 -mips2 -G 0 -non_shared`. Final hashes/sanitized counts in scores.json; four directed true temporary/width/store controls in controls.json. None matches. func_800BF78024/46 exact; func_80099B3047/51 plus5 extras; func_800D807854/55 plus2 extras; func_800E703849/63 with60 emitted. Retained faithful baselines, no register/format sweeps.
+
+Matrix product has three genuine matrix pointers and nine output stores: third product plus grouped first two products, preserving retail operation grouping and repeated reads where output may alias inputs. Texture upload emits six actual Gfx commands and updates the output pointer after them, with genuine u8 start/end fields16/17 and pointer20. Path predicate consumes signed byte player index, signed half selector, true76-byte player stride/path byte25 and10-byte path records, including original 2/3/19/23/25 boundaries and signed classification bytes. Startup routine uses genuine init flags, eight bytes set70, one-message queue initialization, actual volatile byte polling and controller_poll call. Automated decompiler incorrectly made the last byte store conditional on initialization; that output was rejected rather than introducing the incorrect behavior.
+
+No accepted tree/state edits. Raw target assembly, objects and automatic decompiler output remain ignored in build/codex-A33. All four unlocked at selection; no claims means no acceptance requested.

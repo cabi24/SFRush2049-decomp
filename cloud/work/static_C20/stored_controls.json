@@ -1,0 +1,26 @@
+[
+  {
+    "variant": "ordinary_scalars",
+    "strict_score": 1885,
+    "raw_word_diff": 108,
+    "words": 132
+  },
+  {
+    "variant": "mask_before_bits",
+    "strict_score": 1885,
+    "raw_word_diff": 108,
+    "words": 132
+  },
+  {
+    "variant": "register_local",
+    "strict_score": 1885,
+    "raw_word_diff": 108,
+    "words": 132
+  },
+  {
+    "variant": "split_declarations",
+    "strict_score": 1885,
+    "raw_word_diff": 108,
+    "words": 132
+  }
+]

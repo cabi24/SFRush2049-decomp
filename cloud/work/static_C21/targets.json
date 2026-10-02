@@ -1,0 +1,26 @@
+[
+  {
+    "function": "huft_alloc",
+    "words": 11,
+    "vaddr": "0x80004d6c",
+    "sha256": "93b402a6999dd2cef785bc7da1b883c9f692bcbb2df317521c9e4ef2c2c7eadb"
+  },
+  {
+    "function": "inflate_flush_window",
+    "words": 7,
+    "vaddr": "0x80004d50",
+    "sha256": "2a81ff5442b18517e2b0944d81b368a679189f26d0687b9f13cd66b509021fe2"
+  },
+  {
+    "function": "inflate_io_wait",
+    "words": 59,
+    "vaddr": "0x80004a10",
+    "sha256": "f12e58bd04528474d09a1e32ae3939ad976a945190dac980d270d59f2f92023d"
+  },
+  {
+    "function": "lzss_decode",
+    "words": 149,
+    "vaddr": "0x80004afc",
+    "sha256": "6121176bae7bfc0c753ee84b9eb83eb8d1923eb92f1f2275f7516a5faa6a8eb4"
+  }
+]

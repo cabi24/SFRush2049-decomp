@@ -1,0 +1,50 @@
+[
+  {
+    "variant": "ordinary_separate_high",
+    "strict_score": 1935,
+    "raw_word_diff": 68,
+    "words": 80
+  },
+  {
+    "variant": "ordinary_do_recv",
+    "strict_score": 2250,
+    "raw_word_diff": 78,
+    "words": 72
+  },
+  {
+    "variant": "ordinary_goto_recv",
+    "strict_score": 2250,
+    "raw_word_diff": 78,
+    "words": 72
+  },
+  {
+    "variant": "ordinary_order_toggle",
+    "strict_score": 1970,
+    "raw_word_diff": 70,
+    "words": 80
+  },
+  {
+    "variant": "inputvolatile_separate_high",
+    "strict_score": 1695,
+    "raw_word_diff": 68,
+    "words": 80
+  },
+  {
+    "variant": "inputvolatile_do_recv",
+    "strict_score": 2010,
+    "raw_word_diff": 77,
+    "words": 76
+  },
+  {
+    "variant": "inputvolatile_goto_recv",
+    "strict_score": 2010,
+    "raw_word_diff": 77,
+    "words": 76
+  },
+  {
+    "variant": "inputvolatile_order_toggle",
+    "strict_score": 1730,
+    "raw_word_diff": 70,
+    "words": 80
+  }
+]

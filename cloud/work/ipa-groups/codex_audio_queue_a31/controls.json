@@ -1,0 +1,71 @@
+{
+  "explicit_actual_dispatch": {
+    "audio_fade_control": {
+      "strict_diff": 44,
+      "size": 53,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    },
+    "gfx_setup_e700": {
+      "strict_diff": 14,
+      "size": 32,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    },
+    "audio_timing_sync": {
+      "strict_diff": 8,
+      "size": 46,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  },
+  "actual_indexed_record": {
+    "audio_fade_control": {
+      "strict_diff": 44,
+      "size": 53,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    },
+    "gfx_setup_e700": {
+      "strict_diff": 14,
+      "size": 32,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    },
+    "audio_timing_sync": {
+      "strict_diff": 8,
+      "size": 46,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  },
+  "actual_list_pointer": {
+    "audio_fade_control": {
+      "strict_diff": 44,
+      "size": 53,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    },
+    "gfx_setup_e700": {
+      "strict_diff": 16,
+      "size": 32,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    },
+    "audio_timing_sync": {
+      "strict_diff": 8,
+      "size": 46,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  }
+}

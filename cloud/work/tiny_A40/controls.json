@@ -1,0 +1,18 @@
+{
+  "real_selected_heap_and_counter_after_receive": {
+    "strict_diff": 21,
+    "size": 40,
+    "target_size": 40,
+    "extra": 0,
+    "matched": false,
+    "err": null
+  },
+  "actual_direct_pointer_car_read": {
+    "strict_diff": 8,
+    "size": 32,
+    "target_size": 32,
+    "extra": 0,
+    "matched": false,
+    "err": null
+  }
+}

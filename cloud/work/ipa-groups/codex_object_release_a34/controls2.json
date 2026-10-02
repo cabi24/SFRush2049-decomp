@@ -1,0 +1,34 @@
+{
+  "separate_typed_local_declarations": {
+    "AdjustSteer": {
+      "strict_diff": 6,
+      "size": 44,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    },
+    "menu_transition": {
+      "strict_diff": 7,
+      "size": 40,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  },
+  "actual_snapshot_assignment": {
+    "AdjustSteer": {
+      "strict_diff": 4,
+      "size": 44,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    },
+    "menu_transition": {
+      "strict_diff": 4,
+      "size": 40,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  }
+}
