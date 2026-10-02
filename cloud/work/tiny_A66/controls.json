@@ -1,0 +1,26 @@
+[
+  {
+    "name": "complete cached-byte/state reconstruction",
+    "strict_diff": 115,
+    "size": 112,
+    "extra": 0
+  },
+  {
+    "name": "observed duplicate mismatch-progress store",
+    "strict_diff": 115,
+    "size": 112,
+    "extra": 0
+  },
+  {
+    "name": "actual raw unsigned byte versus promoted character roles",
+    "strict_diff": 117,
+    "size": 119,
+    "extra": 1
+  },
+  {
+    "name": "direct repeated-pattern memory predicate",
+    "strict_diff": 118,
+    "size": 122,
+    "extra": 4
+  }
+]

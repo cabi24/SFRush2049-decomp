@@ -1,0 +1,18 @@
+[
+  {
+    "name": "camera_collision_check",
+    "address": "0x800AEFE0",
+    "bytes": 132,
+    "source": "cloud/work/near_miss_B42/camera_collision_check_pointer.c",
+    "source_sha256": "b859e61436a11037a095629c5c7e949396c9e3b5cc19979f157c713591149478",
+    "target_sha256": "3f413d17c94959d2eca5e59d4a0e48af9a069dd96cbe9b2f9c2c5e509cc290d0",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "canonical_stack_sensitive_score": 0,
+    "raw_differing": 0,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "target_roundtrip": true
+  }
+]

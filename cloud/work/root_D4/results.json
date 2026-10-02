@@ -1,0 +1,23 @@
+[
+  {
+    "source": "func_800F43B8.baseline.c",
+    "sha256": "dcfb602377b281d1ad66b10cecaca77b859ad623f03b12e5af845eb9e97bdda4",
+    "canonical_D_differing": 42,
+    "target_words": 144,
+    "claims": []
+  },
+  {
+    "source": "func_800F43B8.explicit.c",
+    "sha256": "7aff0f2e3ae5a8a02d3ba52051517430be4329106e1328556c69631b4d3763c3",
+    "canonical_D_differing": 93,
+    "target_words": 144,
+    "claims": []
+  },
+  {
+    "source": "func_800F43B8.reverse.c",
+    "sha256": "022f096d9db5b5244caf1640271f3341a8ba7ec03a317c418a0a064910accb3b",
+    "canonical_D_differing": 129,
+    "target_words": 144,
+    "claims": []
+  }
+]

@@ -262,3 +262,7 @@ C36's 72-byte viewport records contain a true bounds pointer and four float fiel
 ### Genuine cursors and increment-before-store indexing (2026-10-01)
 
 B41's encoded string copier keeps the actual destination return input intact through separate real input/output cursors. Preserve the 255 prefix, two-byte zero terminator and original ordinary byte-copy path. The state initializer's existing inner index increment precedes its actual matrix write; writing matrix[i][j-1] after increment reproduces retail pointer/store scheduling without added operations. The display-list getter preserves its original no-defined-result end opcode path. Recheck full archived packets immediately before reserving a target so new negative reports cannot be missed by an older shortlist.
+
+### Forwarded arguments must retain the actual callee contract (2026-10-01)
+
+B42's camera wrapper visibly forwards ten real incoming arguments; the genuine callee reads the first as a three-float vector pointer. Correcting an opaque word carrier to that proven pointer retains exact ordinary output and improves the reconstructed interface. Do not infer semantics for callee-unused forwarded carriers, fabricate extra arguments, or erase the original enable/index guards. Final typed source needs a fresh canonical replay even when an earlier carrier variant already matched.
