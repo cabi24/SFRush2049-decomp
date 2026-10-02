@@ -4863,6 +4863,7 @@ game_loop:
 .section .text.func_800FD724, "ax", @progbits
 .globl func_800FD724
 func_800FD724:
+    /* compiled from src/blob/func_800FD724.c */
     .word 0xC4840000
     .word 0xC4A6000C
     .word 0xC48A0004

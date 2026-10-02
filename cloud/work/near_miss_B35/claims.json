@@ -1,0 +1,16 @@
+{
+  "claims": [
+    {
+      "name": "func_800FD724",
+      "address": "0x800FD724",
+      "bytes": 48,
+      "target_words": 12,
+      "strict_verdict": "MATCH",
+      "source": "cloud/work/near_miss_B35/func_800FD724_native.c",
+      "source_sha256": "8e0687b4c1395eea0bc80b75fd69513e7b8fee7d25e8b95fdba67cf652f4ff21",
+      "target_sha256": "12d8043b1b7c729779a933f45c1e1eefc889a675dfd2d320c6567f8a6471aa53",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "current_lock_checked_unlocked": true
+    }
+  ]
+}
