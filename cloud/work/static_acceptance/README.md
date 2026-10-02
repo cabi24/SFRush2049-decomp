@@ -2,6 +2,6 @@
 
 The formatter module now contains all nine native C functions (8,528 bytes). Its complete 89-entry, 356-byte source-built jump table occupies the original 0x8002D558 position; every neighboring original byte is retained. The build validates the table relocations and alignment zeros, preserves meaningful symbols and all instructions, and honors actual input alignment in this explicitly owned container. Other ownership rows keep their defaults and all original address and size assertions remain enabled.
 
-All existing 629 game bodies remain source-built and byte-exact, with the original compressed stream and ROM preserved. All 150 static locks and all blob/group locks hold; full pytest passed with exit 0 (775 passed, 564 skipped). The original common SDK context is unchanged. BSD-derived formatter helpers retain their complete notice in the production destination.
+All current 631 game bodies remain source-built and byte-exact, with the original compressed stream and ROM preserved. All 150 static locks and all blob/group locks hold; full pytest passed with exit 0 (775 passed, 565 skipped). The original common SDK context is unchanged. BSD-derived formatter helpers retain their complete notice in the production destination.
 
-The branch is based on 8199580a; newer game matches on master must be retained when integrating. No shared master sources, lock files, builders or Git refs were changed by this isolated acceptance.
+The branch incorporates current master c50cacd5 and retains its 13.97% matching game code. Source-image, full-ROM and pytest gates passed again after incorporating these newer game matches. No shared master sources, lock files, builders or Git refs were changed by this isolated acceptance.

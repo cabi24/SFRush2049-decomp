@@ -1,5 +1,22 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-02 forty-third completed milestone: complete suspension and crash updater
+
+- Game cartridge C: **631/1,216 functions, 90,424/647,072 bytes (13.97%)**. Static: **120/230 functions, 28,732/61,440 bytes (46.76%)**. Adds the complete **1,580-byte / 395-instruction** `func_800E0B20`; this round totals 2,032 bytes including the graphics helper.
+- Two GPT-6.1-sol agents at High reasoning reconstructed native crash-state, suspension and roof-contact logic using arcade `drivsym.c:checkok` as ancestry. N64 offsets, thresholds and conditions remain native-authoritative.
+- Genuine already-matched `effect_cleanup` O3 inline context restores the native argument setup, frame and register choices. Arcade severity-before-mask statement order, real suspension array indexing and declaration order of the existing live locals resolve the final differences. No artificial pressure, padding, dummy arguments or extra runtime work.
+- Published group `codex_large_crash_state`, member `func_800E0B20`, context `effect_cleanup`. Flags `-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul`. Publication source SHA256 **b1e88b9c3e4f0a01a40bac84ab978040ac25b2a122090a0b2ff7a41c5111978b**. Root independently replayed all actual O3 stages and verified all395 words and32 literal-pool bytes at `0x80124394`. Context earns zero new coverage.
+- Source-built image exact; original ROM **SHA-1 EXACT**, **MAKE=0 TEST=0**. All631 blob locks, group locks and123 static/source locks pass. Proof: `cloud/work/large_damage/`. Prior helper commit `61283a05` passed GitHub CI37008096749.
+- Earlier viewport/palette candidates and unrelated pending infrastructure work remain preserved; no overnight farm restart.
+
+## 2026-10-02 Codex forty-second completed milestone: graphics coordinate helper
+
+- Accepted `camera_smooth_follow`: 452 bytes, all 113 instructions and references exact. Its actual role is texture-coordinate adjustment in a graphics command stream.
+- Two GPT-6.1-sol High agents found the ordinary five-argument helper during large-function scouting. Genuine statement layout recovered native scheduling without additional runtime operations.
+- Root independently compiled and spliced the final source; full image hash and source-built ROM SHA-1 exact (`MAKE=0 TEST=0`). Standalone, group and static locks pass.
+- Game: **630/1,216 functions, 88,844/647,072 bytes (13.73%)**. Static: **46.76%**. Proof: `cloud/work/large_palette/compiler/helper_final.json` and `acceptance_gates.json`.
+- The larger `func_800E0B20` reconstruction remains active; viewport/palette research is preserved without coverage credit.
+
 ## 2026-10-02 forty-first completed milestone: complete configuration initialization
 
 - Game cartridge C: **629/1,216 functions, 88,392/647,072 bytes (13.66%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**. Adds one complete **1,816-byte / 454-instruction** function.
