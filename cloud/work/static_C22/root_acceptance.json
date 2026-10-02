@@ -1,0 +1,14 @@
+{
+  "sinf_commit": "faec474a",
+  "cosf_commit": "5add41d2",
+  "normal_pool_locks": true,
+  "independent_strict_and_raw_zero": true,
+  "constant_ownership": "all original named readonly symbols, no new data",
+  "source_built_ROM": "SHA-1 EXACT",
+  "accepted_slot_bytes": 816,
+  "source_body_bytes": 808,
+  "cosf_original_compiler_alignment_bytes": 8,
+  "static_function_count": 119,
+  "static_bytes": 28052,
+  "static_total_bytes": 61440
+}

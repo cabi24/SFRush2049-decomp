@@ -1,0 +1,26 @@
+{
+  "func_8008E098": {
+    "strict_diff": 7,
+    "size": 9,
+    "target_size": 8,
+    "extra": 1,
+    "matched": false,
+    "err": null
+  },
+  "func_8008B3F4": {
+    "strict_diff": 0,
+    "size": 12,
+    "target_size": 12,
+    "extra": 0,
+    "matched": true,
+    "err": null
+  },
+  "func_800F7E30": {
+    "strict_diff": 9,
+    "size": 16,
+    "target_size": 16,
+    "extra": 0,
+    "matched": false,
+    "err": null
+  }
+}

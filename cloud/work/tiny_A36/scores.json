@@ -1,0 +1,52 @@
+{
+  "func_800A73FC": {
+    "strict_diff": 0,
+    "size": 11,
+    "target_size": 11,
+    "extra": 0,
+    "matched": true,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "d33e274819710c2cada5d35d88cb7f44a403aa50f5caff5f86c0997a034ea2f8",
+    "canonical_exit": 0
+  },
+  "func_800F7E30": {
+    "strict_diff": 2,
+    "size": 16,
+    "target_size": 16,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "b4c7ca3cc3d3040ab595d4f385fd72c4daebc5d9361d700460379677acc457a4"
+  },
+  "func_8008E098": {
+    "strict_diff": 7,
+    "size": 9,
+    "target_size": 8,
+    "extra": 1,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "152b9b1186595d96c6c86f204bdf07711252728125624a4a34013db84445f040"
+  },
+  "func_8008B3F4": {
+    "strict_diff": 0,
+    "size": 12,
+    "target_size": 12,
+    "extra": 0,
+    "matched": true,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "9cc33209e4f6d72d91d3f719775b0d781c988327310a8803504fc9bc8d690ecc",
+    "canonical_exit": 0
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "norm_named_actual_sum": {
+    "strict_diff": 7,
+    "size": 9,
+    "extra": 1,
+    "matched": false,
+    "err": null
+  },
+  "norm_actual_result_carrier": {
+    "strict_diff": 7,
+    "size": 9,
+    "extra": 1,
+    "matched": false,
+    "err": null
+  },
+  "norm_native_double_intrinsic": {
+    "strict_diff": 7,
+    "size": 11,
+    "extra": 3,
+    "matched": false,
+    "err": null
+  },
+  "real_signed_byte_snapshot": {
+    "strict_diff": 5,
+    "size": 16,
+    "extra": 0,
+    "matched": false,
+    "err": null
+  },
+  "real_byte_pointer": {
+    "strict_diff": 2,
+    "size": 16,
+    "extra": 0,
+    "matched": false,
+    "err": null
+  }
+}

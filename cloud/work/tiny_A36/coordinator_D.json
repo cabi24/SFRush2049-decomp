@@ -1,0 +1,15 @@
+{
+  "func_800A73FC": {
+    "source_sha256": "d33e274819710c2cada5d35d88cb7f44a403aa50f5caff5f86c0997a034ea2f8",
+    "canonical": "MATCH",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+  },
+  "func_8008B3F4": {
+    "source_sha256": "9cc33209e4f6d72d91d3f719775b0d781c988327310a8803504fc9bc8d690ecc",
+    "canonical": "MATCH",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+  },
+  "image_identical": true,
+  "source_built_ROM": "SHA-1 EXACT",
+  "claim_bytes": 92
+}
