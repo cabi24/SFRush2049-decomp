@@ -1,0 +1,15 @@
+{
+  "accepted_source": "src/blob/func_8008B3C8.c",
+  "accepted_source_sha256": "a64ca9d0624c3541c45cca2c659e6cf7e6605ffaf92b496e842f23c5c052eb3e",
+  "accepted_lock": {
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "src/blob/func_8008B3C8.c",
+    "source_sha256": "a64ca9d0624c3541c45cca2c659e6cf7e6605ffaf92b496e842f23c5c052eb3e",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-30"
+  },
+  "normalized_body_sha256": "71e21c2cbcf51e93083e15737b276febb39bf9d3114e2cebf6e942ee538eda55",
+  "normalized_body_unchanged": true,
+  "group_source_sha256": "bfee31aeaeb3c16deda461123eb2026641a7a4a87ef12d8b85850eed4b6dbd35"
+}

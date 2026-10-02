@@ -1,0 +1,38 @@
+[
+  {
+    "variant": "canonical_sum",
+    "strict_score": 60,
+    "linked": {
+      "differing": 6,
+      "total": 39,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "variant": "canonical_mul",
+    "strict_score": 0,
+    "linked": {
+      "differing": 0,
+      "total": 39,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "variant": "explicit_partial",
+    "strict_score": 640,
+    "linked": {
+      "differing": 26,
+      "total": 39,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+]

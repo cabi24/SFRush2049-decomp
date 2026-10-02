@@ -615,6 +615,14 @@
     "verified": "image_gate",
     "verified_at": "2026-09-30"
   },
+  "func_8008C544": {
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "src/blob/func_8008C544.c",
+    "source_sha256": "eebe8ddbd316812da19ff2569059d2f7a3a8d5cfe6ddd39e7e7c8068db0cd4c9",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-01"
+  },
   "func_8008C5E0": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_8008C5E0.c",
@@ -3313,6 +3321,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-23"
+  },
+  "func_800E9C70": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "codex_motion_norm_c24",
+    "source": "src/blob/groups/codex_motion_norm_c24/group.json",
+    "source_sha256": "ad1ec121f50c05e0f0ce079ff8c0e7a5effc7d5bd3a2a9d20e706aff77decfa5",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-01"
   },
   "func_800EA2DC": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",

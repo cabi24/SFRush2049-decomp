@@ -1,0 +1,28 @@
+{
+  "claims": {
+    "func_800E9C70": {
+      "bytes": 444,
+      "source_sha256": "bfee31aeaeb3c16deda461123eb2026641a7a4a87ef12d8b85850eed4b6dbd35",
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "canonical_D": "MATCH"
+    },
+    "func_8008C544": {
+      "bytes": 156,
+      "source_sha256": "eebe8ddbd316812da19ff2569059d2f7a3a8d5cfe6ddd39e7e7c8068db0cd4c9",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "canonical_D": "MATCH"
+    }
+  },
+  "context": {
+    "func_8008B3C8": "canonical D MATCH; normalized definition identical to accepted source; no extra credit"
+  },
+  "image_identical": true,
+  "source_built_ROM_sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+  "pytest": {
+    "passed": 713,
+    "skipped": 493,
+    "exit": 0
+  },
+  "blob_locks": 575,
+  "static_locks": 123
+}

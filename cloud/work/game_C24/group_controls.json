@@ -1,0 +1,54 @@
+[
+  {
+    "variant": "canonical_order",
+    "function": "func_800E9C70",
+    "strict_score": 1294,
+    "linked": {
+      "differing": 31,
+      "total": 111,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "variant": "canonical_order",
+    "function": "func_8008B3C8",
+    "strict_score": 0,
+    "linked": {
+      "differing": 0,
+      "total": 11,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "variant": "struct_vector",
+    "function": "func_800E9C70",
+    "strict_score": 1294,
+    "linked": {
+      "differing": 31,
+      "total": 111,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "variant": "struct_vector",
+    "function": "func_8008B3C8",
+    "strict_score": 55,
+    "linked": {
+      "differing": 7,
+      "total": 11,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+]

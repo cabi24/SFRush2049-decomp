@@ -1,0 +1,26 @@
+[
+  {
+    "function": "func_800E9C70",
+    "strict_score": 0,
+    "linked": {
+      "differing": 0,
+      "total": 111,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "function": "func_8008B3C8",
+    "strict_score": 0,
+    "linked": {
+      "differing": 0,
+      "total": 11,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+]

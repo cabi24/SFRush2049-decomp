@@ -1,0 +1,41 @@
+[
+  {
+    "function": "func_800ACFF8",
+    "variant": "register_temporaries",
+    "strict_score": 4250,
+    "linked": {
+      "differing": 37,
+      "total": 38,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 4
+    }
+  },
+  {
+    "function": "func_800ACFF8",
+    "variant": "register_arguments",
+    "strict_score": 4250,
+    "linked": {
+      "differing": 37,
+      "total": 38,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 4
+    }
+  },
+  {
+    "function": "func_800ACFF8",
+    "variant": "register_all",
+    "strict_score": 4250,
+    "linked": {
+      "differing": 37,
+      "total": 38,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 4
+    }
+  }
+]
