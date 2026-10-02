@@ -7,7 +7,39 @@
 #include "static_scheduler_context.h"
 
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/osCreateScheduler.s")
+/* PROMOTED 2026-10-02 — osCreateScheduler
+ * Source:   cloud/work/static_acceptance/SDK_candidates/osCreateScheduler.c (in-repo, locked)
+ * Flags:    -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul
+ * Evidence: lock:cloud/work/static_acceptance/SDK_candidates/osCreateScheduler.c:osCreateScheduler (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void osCreateScheduler(OSSched *scheduler, void *stack, OSPri priority, u8 mode, u8 numFields)
+{
+    __osScTaskCount = 0;
+    scheduler->curRSPTask = 0;
+    scheduler->curRDPTask = 0;
+    scheduler->clientList = 0;
+    scheduler->retraceCount = 0;
+    scheduler->rspTaskHead = 0;
+    scheduler->rspTaskTail = 0;
+    scheduler->rdpTaskHead = 0;
+    scheduler->rdpTaskTail = 0;
+    scheduler->state = 1;
+    scheduler->priority = 4;
+    osCreateMesgQueue(&scheduler->cmdQueue, scheduler->cmdMsgs, 8);
+    osCreateMesgQueue(&scheduler->retQueue, scheduler->retMsgs, 8);
+    osSetEventMesg(254);
+    osSetThreadPri(&gViModeTableBase[mode]);
+    osSetIntMask(1);
+    osSetEventMesgAlt(4, &scheduler->cmdQueue, (OSMesg)667);
+    osSetEventMesgAlt(9, &scheduler->cmdQueue, (OSMesg)668);
+    osSetEventMesgAlt(14, &scheduler->cmdQueue, (OSMesg)669);
+    osSetEventMesgAlt(0, &scheduler->cmdQueue, (OSMesg)670);
+    osSetTimerIntr(&scheduler->cmdQueue, (OSMesg)666, numFields);
+    osCreateThread((OSThread *)scheduler->padB0, 4, __scMain, scheduler, stack, priority);
+    osStartThread((OSThread *)scheduler->padB0);
+}
+
 /* PROMOTED 2026-10-02 — osScAddClient
  * Source:   cloud/work/static_acceptance/SDK_candidates/osScAddClient.c (in-repo, locked)
  * Flags:    -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm
