@@ -212,3 +212,7 @@ A29's E5C9C retains true signed-half field+2000 and32-bit magnitude, including s
 ### Guarded counter closure and typed SDK targets (2026-10-01)
 
 A30 preserves the real owner guard at offset16 and byte saturation at offset22. Genuine unchanged accepted context restores the retail O3 calling/register behavior; all eleven contexts independently MATCH. Only its184-byte claim is counted. SDK target aliases must be guarded by actual field widths, source declarations and original address relationships; refreshed relocatable targets produce raw equality without scorer masks. Zero scores for timer/initialization candidates remain uncredited until their complete source/storage transaction passes the original full-ROM gate.
+
+### Existing C modules own initialized pointers and BSS jointly (2026-10-01)
+
+Timer activation replaces the complete existing O1 TU and installs its actual pointer/data and BSS together, retaining five accepted body-lock dictionaries and its C SPLAT owner. Immutable complete-source/context/current-target/linked/startup proofs precede force-all-static original-ROM gates. Only new dll_init is credited. A standard coordinator callback checks source-built ROM, pytest and locks, and publishes the new member inside the rollback scope. Ignored ROM/assets remain synchronization dependencies and are filtered from Git. ROM-independent readonly guards still pin source, headers, original assembly and revert prerequisites. Timer-specific flags/counts must not silently authorize a different ownership module.

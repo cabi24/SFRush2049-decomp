@@ -1,5 +1,12 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-01 fifteenth completed milestone: coherent timer source/storage
+
+- Game cartridge C: **564/1,216 functions, 65,180/647,072 bytes (10.07%)**. Static cartridge C: **117/230 functions, 27,236/61,440 bytes (44.33%)**.
+- B25 accepts dll_init140 bytes with complete actual six-function O1 timer module, original initialized pointer16 bytes and genuine64-byte BSS. Exact flags **-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul**. Independent D strict/raw0 for allsix actual members; prior five body locks preserved verbatim and only initializer credited. Data/BSS adds no code coverage.
+- Governed transaction64b8b953 follows reviewed inactive preparation0fee2945, forced current shared-builder static rebuild and original ROM gate. Active transaction repeats source-built full-ROM SHA-1 EXACT, full pytest684 passed/483 skipped exit0,564 blob/group checks and120 static/source locks. Publication failure restores complete package and regates; database changes only new member. Complete SDK dependency/readonly context guards retain ROM-independent CI.
+- All3 workers continue: fresh actual game leaves, two promising SDK math matches under independent review, and separately proved SDK initialization ownership. Across original handoff:67 game functions /8,764 bytes and94 static functions /25,788 bytes accepted. Initial dirty tools/mips_to_c preserved; e1ba8a65 CI36945275566 succeeded.
+
 ## 2026-10-01 fourteenth completed game milestone
 
 - Game cartridge C: **564/1,216 functions, 65,180/647,072 bytes (10.072%, displayed10.07%)**. Static cartridge C: **116/230 functions, 27,096/61,440 bytes (44.10%)**.

@@ -1,0 +1,31 @@
+{
+  "prepare_commit": "0fee2945",
+  "transaction_commit": "64b8b953",
+  "new_member": "dll_init",
+  "new_C_bytes": 140,
+  "compiler_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
+  "independent_all_six_members_strict_score": 0,
+  "independent_all_six_raw_differences": 0,
+  "complete_static_rebuild": true,
+  "source_built_full_ROM": "SHA-1 EXACT",
+  "rom_sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+  "pytest": {
+    "passed": 684,
+    "skipped": 483,
+    "exit": 0
+  },
+  "prior_locks_preserved": 5,
+  "current_static_locks": 120,
+  "static_coverage": {
+    "functions": 117,
+    "total_functions": 230,
+    "bytes": 27236,
+    "total_bytes": 61440
+  },
+  "game_coverage": {
+    "functions": 564,
+    "total_functions": 1216,
+    "bytes": 65180,
+    "total_bytes": 647072
+  }
+}
