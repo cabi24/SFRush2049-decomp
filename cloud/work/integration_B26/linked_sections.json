@@ -1,0 +1,16 @@
+[
+  {
+    "section": ".text",
+    "bytes": 848,
+    "differences": 0,
+    "sha256": "5f9eb949fa43d9b8212d4337ae14a0b02b4e6302d09c8a39d15c86a8fdafe8f7",
+    "retail_sha256": "5f9eb949fa43d9b8212d4337ae14a0b02b4e6302d09c8a39d15c86a8fdafe8f7"
+  },
+  {
+    "section": ".data",
+    "bytes": 32,
+    "differences": 0,
+    "sha256": "00eff670001b7953977665e4e87a8f811e3928fc8cce0f7ff5e8bf01d41559c6",
+    "retail_sha256": "00eff670001b7953977665e4e87a8f811e3928fc8cce0f7ff5e8bf01d41559c6"
+  }
+]

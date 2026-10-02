@@ -1,0 +1,18 @@
+{
+  "actual_squared_terms": {
+    "strict_diff": 7,
+    "size": 9,
+    "target_size": 8,
+    "extra": 1,
+    "matched": false,
+    "err": null
+  },
+  "actual_first_product": {
+    "strict_diff": 8,
+    "size": 9,
+    "target_size": 8,
+    "extra": 1,
+    "matched": false,
+    "err": null
+  }
+}

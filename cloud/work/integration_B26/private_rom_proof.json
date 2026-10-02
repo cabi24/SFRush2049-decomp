@@ -1,0 +1,39 @@
+{
+  "scope": "isolated B26 source-built older game snapshot; actual generated O1 recipe, joint API and full-ROM gates, no production acceptance claim",
+  "results": [
+    {
+      "case": "baseline",
+      "exit_code": 0,
+      "sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+      "retail_gate": true
+    },
+    {
+      "case": "inactive_registered",
+      "exit_code": 0,
+      "sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+      "retail_gate": true
+    },
+    {
+      "case": "active",
+      "exit_code": 0,
+      "sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+      "retail_gate": true
+    },
+    {
+      "case": "regenerated_active",
+      "exit_code": 0,
+      "sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+      "retail_gate": true
+    },
+    {
+      "case": "reverted",
+      "exit_code": 0,
+      "sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+      "retail_gate": true
+    }
+  ],
+  "prior_locks_preserved": true,
+  "c_splat_unchanged": true,
+  "unrelated_vi_pi_timer_metadata_preserved": true,
+  "final_state": "inactive registered baseline source/storage/container restored"
+}

@@ -1,0 +1,105 @@
+--- a/tools/conveyor/pipeline/owned_existing_storage.py
++++ b/tools/conveyor/pipeline/owned_existing_storage.py
+@@ -10,6 +10,38 @@
+ 
+ REGISTRY='rom_owned_data.json'
+ FLAGS='-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul'
++
++# Explicit reviewed profiles, never a caller-supplied compiler/extent whitelist.
++PROFILES={
++    'timer_services':dict(tu='src/rom/lib_cc50.c',flags=FLAGS,
++        source_sha256='8ea97f1232f2b872f37530130da9d8ccca45c26ba87a1ec9f03b317c61a22bd3',
++        text_bytes=1120,data_bytes=16,bss_start=0x80037c30,bss_bytes=64,
++        data_offset=0x1cff0,
++        members=('dll_remove','dll_init','dll_update','dll_reschedule','dll_insert','dll_get_priority'),
++        new_members=('dll_init',)),
++    'sdk_initialize':dict(tu='src/rom/lib_8a80.c',
++        flags='-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm',
++        source_sha256='7606f20fc4e2459c6de43e5be046a9389030c5c7a93db6548bf9729003e5fe80',
++        text_bytes=848,data_bytes=32,bss_start=0x800367d0,bss_bytes=16,
++        data_offset=0x1cf60,members=('__osInitialize_common','__osPiReadDeviceType'),
++        new_members=('__osInitialize_common',)),
++}
++
++
++def profile(row):
++    value=PROFILES.get(row.get('owner'))
++    if (value is None or row.get('activation_mode')!='existing_tu' or
++        row.get('tu')!=value['tu'] or row.get('flags')!=value['flags'] or
++        row.get('source_sha256')!=value['source_sha256'] or
++        tuple(row.get('members',()))!=value['members'] or
++        tuple(row.get('new_members',()))!=value['new_members'] or
++        int(row.get('vram_start','0'),0)!=value['bss_start'] or
++        int(row.get('size','0'),0)!=value['bss_bytes'] or
++        int(row.get('data_slot',{}).get('offset','0'),0)!=value['data_offset'] or
++        int(row.get('data_slot',{}).get('size','0'),0)!=value['data_bytes']):
++        raise ValueError('unsupported compiler recipe or extent for reviewed existing-TU profile')
++    return value
++
+ 
+ 
+ def sha(path):
+@@ -42,7 +74,7 @@
+ def assert_existing_context(repo,row,check_rom=False):
+     """Standalone active-owner guard, including immutable revert prerequisites."""
+     repo=Path(repo)
+-    if row.get('activation_mode')!='existing_tu' or row['flags']!=FLAGS:
++    if row['flags']!=profile(row)['flags']:
+         raise ValueError('active existing-TU compiler recipe changed')
+     for field in ('source','tu_before_source','strict_proof','context_proof','linked_proof','startup_proof'):
+         if sha(repo/row[field])!=row['tu_before_sha256' if field=='tu_before_source' else field+'_sha256']:
+@@ -60,8 +92,8 @@
+     from . import lock
+     from .owned_data import rom_slots,load_registry
+     from .owned_storage import storage_blocks
+-    repo=Path(repo)
+-    if row['flags']!=FLAGS or sha(repo/row['source'])!=row['source_sha256'] or sha(repo/row['tu_before_source'])!=row['tu_before_sha256']:
++    repo=Path(repo);approved=profile(row)
++    if row['flags']!=approved['flags'] or sha(repo/row['source'])!=row['source_sha256'] or sha(repo/row['tu_before_source'])!=row['tu_before_sha256']:
+         raise ValueError('complete source/baseline/flags changed')
+     if sha(repo/row['strict_proof'])!=reviewed_digest or reviewed_digest!=row['strict_proof_sha256']:
+         raise ValueError('independent canonical proof is not the reviewed immutable record')
+@@ -76,7 +108,7 @@
+     entries=lock.load_lock(repo/'matched.lock.json')
+     for result in proof:
+         fn=result['function']
+-        if (result['strict_score']!=0 or result['words']<=0 or result['flags']!=FLAGS or
++        if (result['strict_score']!=0 or result['words']<=0 or result['flags']!=approved['flags'] or
+             result['source_sha256']!=row['source_sha256'] or
+             result['protocol']!='unchanged canonical scorer settings, function-scoped objdump; raw unlinked object slices, no masks or linked substitutions' or
+             trusted_targets.get(fn)!=(result['target_sha256'],result['words'])):
+@@ -86,7 +118,7 @@
+             if entries.get(row['tu']+':'+fn)!=prior or prior['body_sha256']!=lock.body_sha(repo/row['source'],fn):
+                 raise ValueError('accepted body or historical lock changed: '+fn)
+     linked=json.loads((repo/row['linked_proof']).read_text())
+-    if sha(repo/row['linked_proof'])!=row['linked_proof_sha256'] or {(r['section'],r['bytes'],r['differences']) for r in linked}!={('.text',1120,0),('.data',16,0)}:
++    if sha(repo/row['linked_proof'])!=row['linked_proof_sha256'] or {(r['section'],r['bytes'],r['differences']) for r in linked}!={('.text',approved['text_bytes'],0),('.data',approved['data_bytes'],0)}:
+         raise ValueError('complete module linked proof differs')
+     startup=json.loads((repo/row['startup_proof']).read_text())
+     start=int(row['vram_start'],0);end=start+int(row['size'],0)
+@@ -159,7 +191,7 @@
+             if activate:
+                 result=next(r for r in json.loads((repo/row['strict_proof']).read_text()) if r['function']==fn)
+                 entries[key]=dict(body_sha256=lock.body_sha(repo/row['tu'],fn),target_id=fn,
+-                    flagset=FLAGS,verified='rom-sha1',toolkit_sha=None,storage_owner=owner,
++                    flagset=row['flags'],verified='rom-sha1',toolkit_sha=None,storage_owner=owner,
+                     strict_proof_sha256=reviewed_digest,raw_word_diff=result['raw_word_diff'],
+                     target_o_sha=result['target_sha256'],strict_words=result['words'])
+             else:entries.pop(key,None)
+--- a/tools/conveyor/pipeline/owned_storage.py
++++ b/tools/conveyor/pipeline/owned_storage.py
+@@ -44,9 +44,11 @@
+             raise ValueError("invalid storage owner")
+         if owner in owners or tu in tus:
+             raise ValueError("duplicate storage owner or TU")
+-        expected_flags = ("-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul"
+-                          if row.get("activation_mode") == "existing_tu" else
+-                          "-g0 -O2 -mips2 -G 0 -non_shared")
++        if row.get("activation_mode") == "existing_tu":
++            from .owned_existing_storage import profile
++            expected_flags = profile(row)["flags"]
++        else:
++            expected_flags = "-g0 -O2 -mips2 -G 0 -non_shared"
+         if row["flags"] != expected_flags:
+             raise ValueError("unsupported compiler recipe for this proven storage mode")
+         owners.add(owner); tus.add(tu)

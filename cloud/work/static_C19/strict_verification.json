@@ -1,0 +1,26 @@
+[
+  {
+    "function": "__osInitialize_common",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "object_start": 0,
+    "words": 170,
+    "target_sha256": "88607c187a346cf36ccc27d240c61b838414400ba567adb23d91f1558369ccfd",
+    "module_sha256": "a73bb742b270f19701a7b8377c3704befe99431c965c3829e98d20bddef07db9",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm",
+    "protocol": "unchanged canonical scorer settings, function-scoped objdump; raw unlinked object slices, no masks or linked substitutions",
+    "source_sha256": "7606f20fc4e2459c6de43e5be046a9389030c5c7a93db6548bf9729003e5fe80"
+  },
+  {
+    "function": "__osPiReadDeviceType",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "object_start": 680,
+    "words": 39,
+    "target_sha256": "6b2a0194aedb28f81292fca5f2bb6e7e1a1a5c4d5f2f31e9fff3f813ad598b53",
+    "module_sha256": "a73bb742b270f19701a7b8377c3704befe99431c965c3829e98d20bddef07db9",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm",
+    "protocol": "unchanged canonical scorer settings, function-scoped objdump; raw unlinked object slices, no masks or linked substitutions",
+    "source_sha256": "7606f20fc4e2459c6de43e5be046a9389030c5c7a93db6548bf9729003e5fe80"
+  }
+]

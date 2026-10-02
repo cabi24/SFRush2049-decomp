@@ -1,0 +1,17 @@
+{
+  "context_hashes.json": "e67f45e29ccf0b4288f14fd0b5712a511e0a44f29713f70eaa6339c6f550d40b",
+  "hook_baselines.json": "a39de7c2696097f72e8ec0517146db69d98bfdc5182c808dfdb6112c201c40ca",
+  "lib_8a80_before.c": "9464866c77f194f86aa65deddf7e168be516700b5d41274faef95935adb820e1",
+  "linked_sections.json": "33c33415645bbd09061bcca8f07e435548c6ba04b42d5ad9d880beef5148e3ae",
+  "negative_rom_proof.json": "fe0f28d989fc5d4e00afbedb87f6e572961c9fd0c56074d42ef4f3a2786307d5",
+  "owned_existing_storage.py": "7e7ed853bb9fd1901fe6047ee51b4050a125cc76bcffc411b7a5a2078be94429",
+  "owned_storage.py": "3a282e26c085f50d9a7860a73647e46d8c389eb17d10e17cc9a2f0de56cbda5e",
+  "private_rom_proof.json": "be38ec8fd93dc360a1b8522e7d3d7b9d691644db902cfe24c75a91cb32d55355",
+  "profiles.patch": "576de85b80bd1d359e69f4a455f670cbc45e323ad8ce1be33e4e90914cf187e4",
+  "startup_proof.json": "22a9062b752910d632ac06d79c29c9f9bd672be7688d4e20614f857dc441b894",
+  "storage_record.json": "f8b06b9b10f4ed8e479f24d6c8a5438bd1c7797dbdbfde42417c7538209e79af",
+  "test_initialize_storage.py": "f4c8fd08b484619bd9ec7182fb5a063c1e372c42719bfc27b744318e2e7970f2",
+  "tests.json": "bc3eb52c6b909eeb166b295a115c9952e632dcf90ac5b8243a7b2d3f50975c2b",
+  "verify_negative_rom.py": "ae40f0ca5590e47cb6e5062d989958dc390c9d16abdea8868fb38f950cd35907",
+  "verify_private_rom.py": "a7f665bca63017b2081b0075c2e17a2ff8b084e12e28eb9facf61d5f645d5538"
+}

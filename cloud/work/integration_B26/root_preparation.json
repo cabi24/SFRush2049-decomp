@@ -1,0 +1,21 @@
+{
+  "checkpoint": "2bf83865",
+  "owner": "sdk_initialize",
+  "activation": "inactive registration only",
+  "reviewed_strict_proof_sha256": "7a75c581e841a05d788319153bb5acf9ab88959700bf19e889927005b9b6f608",
+  "canonical_D_proof": "coordinator_D.json",
+  "current_force_all_static_ROM_baseline": true,
+  "source_built_ROM": "SHA-1 EXACT",
+  "pytest": {
+    "passed": 713,
+    "skipped": 488,
+    "exit": 0
+  },
+  "coverage_added_by_storage": 0,
+  "game_claims_accepted_separately": [
+    "func_800A785C",
+    "menu_video_settings",
+    "func_800F7E30"
+  ],
+  "game_bytes_added": 332
+}

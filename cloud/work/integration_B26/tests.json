@@ -1,0 +1,7 @@
+{
+  "exit_code": 0,
+  "passed": 101,
+  "skipped": 0,
+  "initializer_tests": 28,
+  "scope": "existing data/storage/text suites, frozen B25 timer17 and initializer28 transaction/profile tests; private modules only"
+}

@@ -3530,6 +3530,7 @@ func_800CF06C:
 .section .text.menu_video_settings, "ax", @progbits
 .globl menu_video_settings
 menu_video_settings:
+    /* compiled from src/blob/menu_video_settings.c */
     .word 0x27BDFFE0
     .word 0xAFB00018
     .word 0x00808025

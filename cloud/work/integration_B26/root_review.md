@@ -1,0 +1,5 @@
+# Current-root initializer ownership review
+
+The frozen proposal remains unchanged. Production registers root_storage_record.json, whose context_proof is root_compiler_context.json: the complete tracked compiler-header closure, scorer and original symbol inputs. Four ignored ultralib SDK files are target-normalization provenance, not compile dependencies. Their original hashes remain in the immutable proposal and root_context_review.json; supported target identities and independent canonical D replay validate the exact source. CI readonly checks need no ignored SDK checkout.
+
+The timer profile keeps its exact source/flags/member/extent family. The new initializer profile pins the separately reviewed source/TU/member/flags/data/BSS family. It adds only __osInitialize_common680 bytes while preserving the accepted neighbor body and lock. Existing standard publication and rollback gates remain unchanged. Source prefix historical flags comment omits Xcpluscomm; the proof and generated literal recipe include the actual verified flag. No cloud/matches ordinary source is published from that prefix.

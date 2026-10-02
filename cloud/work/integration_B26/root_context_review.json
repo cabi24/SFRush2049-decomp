@@ -1,0 +1,13 @@
+{
+  "scope": "current complete tracked compiler header closure and original symbol/scorer inputs",
+  "sdk_provenance": {
+    "reference/repos/ultralib/include/PR/ultratypes.h": "e25fc6df3953acbab2234ece2218ec74080cdc3e673ce1ec5896d4ce921bb4de",
+    "reference/repos/ultralib/include/PR/os_time.h": "21bd983fa7b11daa6a06c053b5e9cd7c08420dd20657c4fd61be434389af3342",
+    "reference/repos/ultralib/include/PR/R4300.h": "bb8a7702ef8dfe94c389f0c411a4f2346c506ea8766e85c332a44486a97b7b44",
+    "reference/repos/ultralib/src/os/initialize.c": "deaaa7466badaeecb10c6ec2df965cdb9c718dc84aa69a143353e05dc5ce2907"
+  },
+  "sdk_provenance_authority": "frozen context_hashes.json; supported relocation-aware target hashes and canonical D replay",
+  "sdk_is_compilation_dependency": false,
+  "readonly_CI_requires_ignored_SDK": false,
+  "production_source_unchanged": "7606f20fc4e2459c6de43e5be046a9389030c5c7a93db6548bf9729003e5fe80"
+}

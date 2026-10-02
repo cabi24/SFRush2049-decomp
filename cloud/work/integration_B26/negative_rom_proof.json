@@ -1,0 +1,44 @@
+{
+  "scope": "private actual compiler-data and storage-linker corruption refusal + complete-package rollback",
+  "results": [
+    {
+      "case": "active_before_clock_corruption",
+      "exit_code": 0,
+      "sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+      "retail_gate": true
+    },
+    {
+      "case": "actual compiled clock corruption",
+      "exit_code": 2,
+      "sha1": "7e2513135c4b4ebc923a4f826a36c24fb21ed55b",
+      "retail_gate": false
+    },
+    {
+      "case": "clock_rollback",
+      "exit_code": 0,
+      "sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+      "retail_gate": true
+    },
+    {
+      "case": "active_before_linker_corruption",
+      "exit_code": 0,
+      "sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+      "retail_gate": true
+    },
+    {
+      "case": "actual generated BSS placement corruption",
+      "exit_code": 2,
+      "retail_gate": false,
+      "alias_assertion_refused": true
+    },
+    {
+      "case": "storage_rollback",
+      "exit_code": 0,
+      "sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+      "retail_gate": true
+    }
+  ],
+  "prior_locks_preserved": true,
+  "registry_restored_exactly": true,
+  "final_state": "inactive baseline restored"
+}
