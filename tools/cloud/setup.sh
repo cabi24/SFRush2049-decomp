@@ -22,7 +22,9 @@ if [ ! -x "$HERE/ido/cc" ]; then
     cd "$HERE"
     echo "ab5c741561f80913d58c8b074771f23941a3edd312505a8ebed6d1dfeb65e506  ido.tgz" | sha256sum -c -
   )
-  tar xzf "$HERE/ido.tgz" -C "$HERE/ido"
+  # Cloud containers may run as root without permission to restore the
+  # archive's builder UID/GID. Compiler files should belong to this user.
+  tar --no-same-owner -xzf "$HERE/ido.tgz" -C "$HERE/ido"
   rm -f "$HERE/ido.tgz"
 fi
 git -C "$HERE/../.." config --local core.hooksPath .githooks
