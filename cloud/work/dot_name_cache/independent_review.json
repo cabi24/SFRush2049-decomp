@@ -1,0 +1,24 @@
+{
+  "reviewer": "independent lane A",
+  "verdict": "PASS as NONMATCH research only",
+  "source_sha256": "0bbd160a8a1e0be1256899fe9d3f20021527fc9d9a58c1254057b54de1325bcc",
+  "replayed": {
+    "strict_differences": "104/222",
+    "candidate_function_bytes": 884,
+    "native_bytes": 888,
+    "semantic_cases": 1162,
+    "sanitizer_cases": 20000
+  },
+  "audit": [
+    "Confirmed source byte-identical to prior tiny_A68, provenance and novelty honestly disclosed",
+    "Reviewed signed halfword age comparisons and wrap, strcmp/copy ABI, reference invalidation, three search priorities",
+    "Fresh independent direct IDO/GNU full resolved words proof replay",
+    "Fresh native/linked/host/oracle semantic replay and ASan/UBSan C89 harness",
+    "All-wrap native stack-fill counterexample independently reproduced (slot0 vs unmapped slot257)"
+  ],
+  "limits": [
+    "No new source match or accepted coverage claimed",
+    "Full all-wrap referenced cache remains undefined; bounded strings non-overlap required",
+    "Real game/ROM and unrestricted inputs not established"
+  ]
+}
