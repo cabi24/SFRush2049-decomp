@@ -1,0 +1,19 @@
+{
+  "name": "camera_smooth_follow",
+  "address": "0x800BD104",
+  "bytes": 452,
+  "target_words": 113,
+  "strict_words_differing": 4,
+  "extra_words": 0,
+  "source": "cloud/work/near_miss_B36/camera_smooth_follow_best.c",
+  "source_sha256": "839b0fc728bce5566af7e8ba272f2b02e4596aa9863fb49e54dc7b931fb727e1",
+  "target_sha256": "471de567714510275093c4741425aea6e8f18d831666eac600cc21ec80a0970a",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "new_coverage_bytes": 0,
+  "residual_offsets": [
+    "0xE8",
+    "0xF0",
+    "0x13C",
+    "0x144"
+  ]
+}

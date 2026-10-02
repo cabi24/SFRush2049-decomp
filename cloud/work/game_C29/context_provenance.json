@@ -1,0 +1,17 @@
+{
+  "assembly": "build/m2c_asm/func_800D2128.s",
+  "assembly_sha256": "3b87425ed74c9e9c3836cf79b39828cf12383e0b729cc30f5a36b29a9cf2713c",
+  "abi": {
+    "value": "f32 f12, clamp nonnegative",
+    "digits": "u8* a1, all outputs byte stores",
+    "format": "u8 a2, home save8(sp), mask255, case99/c and102/f",
+    "return": "s32 v0=3/6/0"
+  },
+  "output_semantics": {
+    "c": "saturate999, numeric hundreds/tens/units, terminator0 at3",
+    "f": "minutes and seconds from unsigned integer value, hundredths from unsigned(value*100)%100, six numeric bytes and terminator0 at6"
+  },
+  "named_data": [],
+  "external_callees": [],
+  "owned_data": false
+}

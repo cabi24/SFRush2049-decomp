@@ -2,7 +2,7 @@
 import argparse,hashlib,json,os,shlex,subprocess,sys,tempfile
 from dataclasses import asdict
 from pathlib import Path
-ap=argparse.ArgumentParser();ap.add_argument('--repo',type=Path,required=True);ap.add_argument('--toolkit',type=Path,required=True);ap.add_argument('--target',type=Path,required=True);ap.add_argument('--source',type=Path,default=Path(__file__).with_name('render_helper.c'));ap.add_argument('--output',type=Path,required=True);a=ap.parse_args()
+ap=argparse.ArgumentParser();ap.add_argument('--repo',type=Path,required=True);ap.add_argument('--toolkit',type=Path,required=True);ap.add_argument('--target',type=Path,required=True);ap.add_argument('--source',type=Path,default=Path(__file__).with_name('func_80091FBC.explicit.c'));ap.add_argument('--output',type=Path,required=True);a=ap.parse_args()
 os.environ['CONVEYOR_TOOLKIT']=str(a.toolkit);sys.path[:0]=[str(a.repo/'tools/conveyor/jobs'),str(a.repo/'tools/cloud')]
 import scoring
 import score as retail

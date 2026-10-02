@@ -1,0 +1,9 @@
+# A55 frozen fresh callback/state initializer
+
+Current lock checked588 entries: AC8D4 unlocked. Literal flags `-g0 -O2 -mips2 -G 0 -non_shared`, claims empty. Initial reconstruction52/58 exactextent; actual five full-word snapshots before callback/stores improve45/58 exactextent. Actual whole-object versus record-subobject pointer control unchanged. Final source/hash/error scope scores.json, two controls snapshot_control.json/object_control.json. No source-size extras/unresolved/unverified/errors. Stop instead of allocator sweep.
+
+Real signed-half key, global mode bit8 skip, actual Object952 stride and five Callback24 records at object300. All status halves become-1; key halves304/328/352/376/400 receive key; lookup64 fullwords44/48/52/56/60 feed actual low-half value302/326/350/374/398. Callback words316/340/364/388/412 receive actual physics_velocity_integrate_f/e/d/c/b code addresses. Marker halves/values/callback pointer widths and five-read snapshot directly audited in retail. Padding preserves actual untouched fields, not frame pressure.
+
+Callback declarations are address-only unspecified-argument declarations: routine never invokes these functions, so no callee ABI or original return contract is asserted. Stored addresses independently resolve through real image symbols. No fake callbacks/bodies, invented runtime call, guard, formal or pointer substitution. Snapshot control initially used a C99 late declaration and was corrected to real C89 declarations before measurement; no compile failure counted as source evidence. Whole-object final source retains real typed dimensions and all actual fields/stores, yet makes no claim about original aggregate declaration.
+
+All binary/hex instruction streams remain ignored/private. No accepted source/layout/header/lock/build-state mutations and no canonical MATCH acceptance requested.

@@ -1,0 +1,12 @@
+{
+  "target_id": "func_8009E8B4",
+  "address": 2148133044,
+  "population": "extracted",
+  "insn_count": 73,
+  "target_asm_sha": "383b6ab2330040ae63e26893c0178b4abf094a6c932055c8fa05af13c9bf370b",
+  "target_o_sha": "c30bd90acb7fc203257ff0b2c549e86704728e8d3c48914b9c49ec5ef3323999",
+  "fingerprint": null,
+  "cluster_id": null,
+  "tier": "reloc_aware",
+  "gate_reason": "discovered"
+}

@@ -1,0 +1,3 @@
+# D3 bounded scheduling control: no claim
+
+Frozen B36 retains a complete real 452-byte graphics scanner at4/113 differing words under O3 with multiply erratum handling. Root tested exactly one known pilot33 mechanism: preserve every C token and expression order, but separate actual x/width and y/height halving assignments onto physical lines. It regresses to10/113 with the full113-word extent and no extra-word report. No new instructions, formals, work, context or pressure were introduced. Stop after this failed concrete source-boundary control; B36's earlier four-word source remains the better unaccepted lead. No accepted/shared source or lock changed. Raw comparison remains private.

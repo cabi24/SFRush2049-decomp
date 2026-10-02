@@ -1,0 +1,30 @@
+[
+  {
+    "control": "pause_then_delta",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 845,
+    "linked": {
+      "differing": 42,
+      "total": 52,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "control": "array_delta",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 425,
+    "linked": {
+      "differing": 6,
+      "total": 52,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+]

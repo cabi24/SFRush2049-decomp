@@ -1,0 +1,30 @@
+[
+  {
+    "control": "register_list",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 701,
+    "linked": {
+      "differing": 30,
+      "total": 37,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "control": "register_locals",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 701,
+    "linked": {
+      "differing": 30,
+      "total": 37,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+]

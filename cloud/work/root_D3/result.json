@@ -1,0 +1,11 @@
+{
+  "claims": [],
+  "source_sha256": "5ec00aabae7dd918b8fc628fd53c10c0b1d51fa181b46293d8f3152cf6317e6d",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "differing_words": 10,
+  "target_words": 113,
+  "extra_words": 0,
+  "baseline_differing_words": 4,
+  "mechanism": "token-preserving physical assignment boundaries",
+  "control_count": 1
+}

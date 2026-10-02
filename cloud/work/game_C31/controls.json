@@ -1,0 +1,44 @@
+[
+  {
+    "control": "local_delta",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 895,
+    "linked": {
+      "differing": 38,
+      "total": 52,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "control": "local_delta_inner",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 895,
+    "linked": {
+      "differing": 38,
+      "total": 52,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "control": "explicit_delta_cast",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 425,
+    "linked": {
+      "differing": 6,
+      "total": 52,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+]

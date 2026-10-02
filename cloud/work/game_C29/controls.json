@@ -1,0 +1,58 @@
+[
+  {
+    "control": "chosen_if",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 701,
+    "linked": {
+      "differing": 30,
+      "total": 37,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "control": "unsigned_sum",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 701,
+    "linked": {
+      "differing": 30,
+      "total": 37,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "control": "count_before_head",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 701,
+    "linked": {
+      "differing": 30,
+      "total": 37,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "control": "while_loop",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 701,
+    "linked": {
+      "differing": 30,
+      "total": 37,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+]
