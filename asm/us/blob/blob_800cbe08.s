@@ -5240,6 +5240,7 @@ func_800D0B14:
 .section .text.track_info_display, "ax", @progbits
 .globl track_info_display
 track_info_display:
+    /* compiled from src/blob/track_info_display.c */
     .word 0x27BDFFB8
     .word 0xAFBF0044
     .word 0xAFBE0040
