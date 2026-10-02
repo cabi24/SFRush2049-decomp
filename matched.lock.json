@@ -23,6 +23,70 @@
     "verified": "rom-sha1",
     "verified_at": "2026-09-24"
   },
+  "src/rom/lib_1050_sdk.c:__scExecTask": {
+    "body_sha256": "1b417a9470a8da37c0ef8d2c10018369ef87b45649e39ca4e1e2a99ee01d9594",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "__scExecTask",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-02"
+  },
+  "src/rom/lib_1050_sdk.c:__scHandlePreNMI": {
+    "body_sha256": "02aa69a61177e3fc10fc4a341926ad19afada32313110bcb90536f5ad7ec64b1",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "__scHandlePreNMI",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-02"
+  },
+  "src/rom/lib_1050_sdk.c:__scHandleRDP": {
+    "body_sha256": "a0c8a9b648566ee205a7e4ed82841c3569fefb6842fb5e3ec4a4e32695a157aa",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "__scHandleRDP",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-02"
+  },
+  "src/rom/lib_1050_sdk.c:__scHandleRSP": {
+    "body_sha256": "756aacf0caf5e0ac8255be8c0838a13935ad77febb1cac65c4df29a2f21d9baa",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "__scHandleRSP",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-02"
+  },
+  "src/rom/lib_1050_sdk.c:__scSchedule": {
+    "body_sha256": "e4f085f8b7904d04047860cfb70bb8d5cde486234e54d6009a663792778dd288",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "__scSchedule",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-02"
+  },
+  "src/rom/lib_1050_sdk.c:__scTaskReady": {
+    "body_sha256": "a8d027d4fa9550433c8f9f4831f12cd72932e2dc1a5162463e680da1121b5c52",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "__scTaskReady",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-02"
+  },
+  "src/rom/lib_1050_sdk.c:osCreateScheduler": {
+    "body_sha256": "1351e5217f18624b5365e5bb94deca4f833ccdb7772e332b308ab2183d90c4df",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "osCreateScheduler",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-02"
+  },
+  "src/rom/lib_1050_sdk.c:osScAddClient": {
+    "body_sha256": "c449cf664f9c4ac9ac2a03e4c21ce9e23202fd094962222a02f1c7b55746526e",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "osScAddClient",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-02"
+  },
   "src/rom/lib_21f0.c:apply_display_mode": {
     "body_sha256": "5785344f372b84c76cfe70b763143eb53af34aab44b695e06bdd4a8fc1c5b412",
     "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",

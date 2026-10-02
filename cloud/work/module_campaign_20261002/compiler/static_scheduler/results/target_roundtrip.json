@@ -1,0 +1,145 @@
+[
+  {
+    "function": "osCreateScheduler",
+    "native_bytes": 388,
+    "protected_target_object_sha256": "41c18cb3dd8630927385b21540b546b3d5819808d945ab4d877d7bae19eec617",
+    "target_roundtrip_differing_words": 0,
+    "target_roundtrip_mask_count": 0,
+    "target_roundtrip_unresolved_count": 0,
+    "target_roundtrip_unverified_count": 0,
+    "target_roundtrip_errors_count": 0,
+    "target_roundtrip_exact": true
+  },
+  {
+    "function": "__scHandleRDP",
+    "native_bytes": 216,
+    "protected_target_object_sha256": "83015b504ebaa8aa44aa1a1dcf5a42b9060e9c306484e0abf5be0d52ed0b5765",
+    "target_roundtrip_differing_words": 0,
+    "target_roundtrip_mask_count": 0,
+    "target_roundtrip_unresolved_count": 0,
+    "target_roundtrip_unverified_count": 0,
+    "target_roundtrip_errors_count": 0,
+    "target_roundtrip_exact": true
+  },
+  {
+    "function": "__scHandleRSP",
+    "native_bytes": 380,
+    "protected_target_object_sha256": "2078519b05555c616dafd9d3994ae45dce72b4b51df23b0af9a04e1e72a587c7",
+    "target_roundtrip_differing_words": 0,
+    "target_roundtrip_mask_count": 0,
+    "target_roundtrip_unresolved_count": 0,
+    "target_roundtrip_unverified_count": 0,
+    "target_roundtrip_errors_count": 0,
+    "target_roundtrip_exact": true
+  },
+  {
+    "function": "__scSchedule",
+    "native_bytes": 256,
+    "protected_target_object_sha256": "9cb767a791d9a849514fd4c665e4d12772ab019a0ffa0b900f965823eaf8a60e",
+    "target_roundtrip_differing_words": 0,
+    "target_roundtrip_mask_count": 0,
+    "target_roundtrip_unresolved_count": 0,
+    "target_roundtrip_unverified_count": 0,
+    "target_roundtrip_errors_count": 0,
+    "target_roundtrip_exact": true
+  },
+  {
+    "function": "__scExecTask",
+    "native_bytes": 280,
+    "protected_target_object_sha256": "ea794d1fec6269f6c9f684d57e0d845f7c4614e5ea617498bf6b5d2021df7fc1",
+    "target_roundtrip_differing_words": 0,
+    "target_roundtrip_mask_count": 0,
+    "target_roundtrip_unresolved_count": 0,
+    "target_roundtrip_unverified_count": 0,
+    "target_roundtrip_errors_count": 0,
+    "target_roundtrip_exact": true
+  },
+  {
+    "function": "__scScheduleCore",
+    "native_bytes": 872,
+    "protected_target_object_sha256": "8bf84d9465b4ef9c95f841b414915a4fb2b8c3f87909541aeea5fb39c2aab928",
+    "target_roundtrip_differing_words": 0,
+    "target_roundtrip_mask_count": 0,
+    "target_roundtrip_unresolved_count": 0,
+    "target_roundtrip_unverified_count": 0,
+    "target_roundtrip_errors_count": 0,
+    "target_roundtrip_exact": true
+  },
+  {
+    "function": "__scAppendList",
+    "native_bytes": 180,
+    "protected_target_object_sha256": "601e91e2b056ddd2d3597d872c8688cef519472539f0a6ce358264181f65a747",
+    "target_roundtrip_differing_words": 0,
+    "target_roundtrip_mask_count": 0,
+    "target_roundtrip_unresolved_count": 0,
+    "target_roundtrip_unverified_count": 0,
+    "target_roundtrip_errors_count": 0,
+    "target_roundtrip_exact": true
+  },
+  {
+    "function": "__scTaskReady",
+    "native_bytes": 176,
+    "protected_target_object_sha256": "8bdb52efdcf2b8d6345991c79b8a932776151a33ab46bae9d40201c391434569",
+    "target_roundtrip_differing_words": 0,
+    "target_roundtrip_mask_count": 0,
+    "target_roundtrip_unresolved_count": 0,
+    "target_roundtrip_unverified_count": 0,
+    "target_roundtrip_errors_count": 0,
+    "target_roundtrip_exact": true
+  },
+  {
+    "function": "__scHandleRetrace",
+    "native_bytes": 208,
+    "protected_target_object_sha256": "9b2cb4c68c0451b1aa98dace3ef1951e04727fc06a09cd63945d52a2fcfc957f",
+    "target_roundtrip_differing_words": 0,
+    "target_roundtrip_mask_count": 0,
+    "target_roundtrip_unresolved_count": 0,
+    "target_roundtrip_unverified_count": 0,
+    "target_roundtrip_errors_count": 0,
+    "target_roundtrip_exact": true
+  },
+  {
+    "function": "osScAddClient",
+    "native_bytes": 104,
+    "protected_target_object_sha256": "18e2b7521888575ecd5d6adb41422b6ab36c56a43253e9632140f6f1e4af352e",
+    "target_roundtrip_differing_words": 0,
+    "target_roundtrip_mask_count": 0,
+    "target_roundtrip_unresolved_count": 0,
+    "target_roundtrip_unverified_count": 0,
+    "target_roundtrip_errors_count": 0,
+    "target_roundtrip_exact": true
+  },
+  {
+    "function": "__scHandlePreNMI",
+    "native_bytes": 96,
+    "protected_target_object_sha256": "0c2cd7a6e75c1db2b19c58060b4aa770b1feda8f9005f1a0705c5999b6ba58dc",
+    "target_roundtrip_differing_words": 0,
+    "target_roundtrip_mask_count": 0,
+    "target_roundtrip_unresolved_count": 0,
+    "target_roundtrip_unverified_count": 0,
+    "target_roundtrip_errors_count": 0,
+    "target_roundtrip_exact": true
+  },
+  {
+    "function": "__scMain",
+    "native_bytes": 324,
+    "protected_target_object_sha256": "cda7a95859f818498b3cb735907dae34e51a7c5244a46f2623250551c03e0605",
+    "target_roundtrip_differing_words": 0,
+    "target_roundtrip_mask_count": 0,
+    "target_roundtrip_unresolved_count": 0,
+    "target_roundtrip_unverified_count": 0,
+    "target_roundtrip_errors_count": 0,
+    "target_roundtrip_exact": true
+  },
+  {
+    "function": "__scExec",
+    "native_bytes": 360,
+    "protected_target_object_sha256": "a23a9281408a3d8da49477f76822bbc1f964b34225e02855fb06392a4effe71d",
+    "target_roundtrip_differing_words": 0,
+    "target_roundtrip_mask_count": 0,
+    "target_roundtrip_unresolved_count": 0,
+    "target_roundtrip_unverified_count": 0,
+    "target_roundtrip_errors_count": 0,
+    "target_roundtrip_exact": true
+  }
+]

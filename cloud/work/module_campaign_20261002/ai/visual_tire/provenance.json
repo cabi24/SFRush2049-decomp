@@ -1,0 +1,12 @@
+{
+  "main_ancestor": "reference/repos/rushtherock/game/visuals.c:1869-1963 AnimateTire",
+  "entity_ancestor": "cloud/work/game_C106/group.c complete159-word entity callback prefix, native audited",
+  "entity_adjustments": [
+    "actual pointer/show/part logical argument ordering for matrix_scale_apply",
+    "model handle external formals s16 as native"
+  ],
+  "wrapper_ancestor": "Native complete18/25-word implementations, logical formals validated against actual callers",
+  "rng": "src/blob/func_8008B2B4.c unchanged accepted complete real body",
+  "license": "No donor license grant asserted. Original copied context notices retained. No assembly/native instruction arrays included.",
+  "prior_context": "Legacy accepted func_8008B640 synthetic keepers are excluded completely."
+}

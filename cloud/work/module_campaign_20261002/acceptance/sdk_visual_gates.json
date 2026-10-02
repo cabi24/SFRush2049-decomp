@@ -1,0 +1,27 @@
+{
+  "produce": {
+    "spliced": 651,
+    "image_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d",
+    "image_bytes": 647072,
+    "blob_bytes": 326180,
+    "blob_sha256": "9e632d21b7d0d293563755d9f2033557cb1a4d91d7df6e8d41e68d8afe3e5f7d",
+    "stream_matches_rom": true
+  },
+  "rom_ok": true,
+  "rom_tail": "Verifying built ROM hash...\nbuild/us/rush2049.us.z64: OK\nROM matches!\nbuild/us/rush2049.us.z64: OK\nROM matches!\nMAKE=0 TEST=0",
+  "game_functions": 651,
+  "game_bytes": 99228,
+  "static_functions": 155,
+  "static_bytes": 43232,
+  "combined_bytes": 142460,
+  "combined_total_bytes": 708512,
+  "combined_percentage": 20.10692832302064,
+  "added_game_bytes": 100,
+  "added_static_bytes": 1896,
+  "original_static_locks_preserved": true,
+  "whole_source_game_bodies_verified": 651,
+  "geometry_split_added_credit": 0,
+  "new_sdk_and_preserved_vi_objects_freshly_compiled": true,
+  "old_rom_tu_header_unchanged": true,
+  "standins_in_new_group": false
+}
