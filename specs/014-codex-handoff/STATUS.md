@@ -1,5 +1,14 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-02 fortieth completed milestone: large tire friction updater
+
+- Game cartridge C: **628/1,216 functions, 86,576/647,072 bytes (13.38%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**. Adds one complete **2,300-byte / 575-instruction** game function.
+- Two user-requested **GPT-6.1-sol agents at High reasoning** collaborated on the full historical `camera_dolly` target at `0x800BC2BC`. Direct arcade counterpart: `reference/repos/rushtherock/game/tires.c:frictioncircle`; its callee `func_800BC21C` is `calcalpha`. The historical camera label is misleading: native code computes tire traction and lateral force, contact-patch displacement, angular velocity, slip torque and slip diagnostics.
+- The arcade-derived ordinary seven-argument C preserves native model/tire field offsets, N64 vector-axis order, early nonpositive-load braking drag, under-rotation damping and the additional softened force branch. Actual `patchspeed` reuse and longitudinal-before-lateral squared-sum order resolve the six residual instructions; no invented operations or pressure. Final source SHA256 **fe70c8677374aecc6cec0e209a8d0b18f744cc4c8c785af2bd9345184dd73f13**. Literal flags **-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul**.
+- Independent fresh canonical MATCH proves **575/575 words**, zero extra executable words, errors, unresolved or unverified relocations; one alignment word receives no coverage. Coordinator separately compiled on watchman2 and passed the full source-built image gate. Original ROM **SHA-1 EXACT**, **MAKE=0 TEST=0**. All628 blob locks, group locks and123 static/source locks intact. Evidence: `cloud/work/large_camera_dolly/`. No separate full pytest run or new CI result is claimed at checkpoint creation.
+- Prior static batches, A102 and unrelated infrastructure changes remain pending. Do not restart the old overnight lanes automatically.
+
+
 ## 2026-10-02 thirty-ninth completed milestone: large statistics routine
 
 - Game cartridge C: **627/1,216 functions, 84,276/647,072 bytes (13.02%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**. This checkpoint adds **4,416 game bytes across six functions**, including the independently recovered five-function batch (2,344 bytes) and the newly reconstructed large routine (2,072 bytes).

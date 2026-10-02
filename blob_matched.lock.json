@@ -275,6 +275,14 @@
     "verified": "image_gate",
     "verified_at": "2026-10-01"
   },
+  "camera_dolly": {
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "src/blob/camera_dolly.c",
+    "source_sha256": "fe70c8677374aecc6cec0e209a8d0b18f744cc4c8c785af2bd9345184dd73f13",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-02"
+  },
   "camera_fov_control": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "camera_aspect_ratio",

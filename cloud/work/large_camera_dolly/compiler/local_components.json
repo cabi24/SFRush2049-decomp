@@ -1,0 +1,25 @@
+{
+  "source_sha256": "9535fdbd13cf8f5a5cde947c450982ecd5ef687f1e173aad7d19c058393f8bc1",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source": "/home/cburnes/agents/large-camera-compiler/candidates/local_components.c",
+  "accepted": false,
+  "canonical_verdict": "99/575 words differ",
+  "comparison": {
+    "differing": 99,
+    "total": 575,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "object_sha256": "3c741e3c6abf1aa3285a5ffbc1e144e3bf566f28c774f03e86efa1f7848a09ac",
+  "emitted_words": 576,
+  "aligned": {
+    "aligned_exact": 476,
+    "aligned_opcode": 575,
+    "aligned_opcode_reg": 542
+  },
+  "frame_bytes": 128,
+  "source_normalization_note": "Leading indentation tabs expanded to spaces and trailing whitespace removed only; C tokens unchanged. Historical scores retained; final normalized source independently recompiled.",
+  "compiled_source_sha256_before_normalization": "7eb172394a5ec403be01c467cf12f1dc82ce59a70ac4367f327414f85fb671a6"
+}

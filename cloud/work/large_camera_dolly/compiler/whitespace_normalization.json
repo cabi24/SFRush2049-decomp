@@ -1,0 +1,45 @@
+{
+  "note": "Leading indentation tabs expanded to spaces and trailing whitespace removed only; C tokens unchanged. Final source freshly independently replayed.",
+  "sources": [
+    {
+      "source": "cloud/work/large_camera_dolly/compiler/arcade_intrinsic.c",
+      "before_sha256": "1eedd0a106e14b2a81ac9e45d80cbb733180cb8e180f86ec84e7dac98e3f4a31",
+      "after_sha256": "b91eeaf83032d4b95e20bef0e5dd9b58ad42fe39f9a7d9ddaf30325444de8d89"
+    },
+    {
+      "source": "cloud/work/large_camera_dolly/compiler/arcade_seed.c",
+      "before_sha256": "b92576366f34d8f05c6447e8e79131dfe4f687edc86f13d227105eae732da42a",
+      "after_sha256": "711eeb800f03dbce1ab09b8a3f47edd025193ff1f0d241b80869ccba8c71cca9"
+    },
+    {
+      "source": "cloud/work/large_camera_dolly/compiler/local_components.c",
+      "before_sha256": "7eb172394a5ec403be01c467cf12f1dc82ce59a70ac4367f327414f85fb671a6",
+      "after_sha256": "9535fdbd13cf8f5a5cde947c450982ecd5ef687f1e173aad7d19c058393f8bc1"
+    },
+    {
+      "source": "cloud/work/large_camera_dolly/reconstruction/arcade_intrinsic.c",
+      "before_sha256": "0416ad624ef58728e9ca9863d760c8a4d69356292017bdbc49521fb3ad59b50e",
+      "after_sha256": "1da0a5e18f4bd9c77cda0c6912c6beed9385563acd593ee803f2ed3cdd3a70be"
+    },
+    {
+      "source": "cloud/work/large_camera_dolly/reconstruction/arcade_port.c",
+      "before_sha256": "38027b5eecdfc87f1dff7819cb9f1e633095cf8edf76e76e84242d1a15ca881b",
+      "after_sha256": "61437deaba0d736525e8ed8db3e7519b1c416352e237aadb9554e5d7d1cde841"
+    },
+    {
+      "source": "cloud/work/large_camera_dolly/reconstruction/camera_dolly.c",
+      "before_sha256": "2e3827dfb49eb739fd01fa9d316363e9c158d64dbbefd5275265f7a64e42e6ea",
+      "after_sha256": "fe70c8677374aecc6cec0e209a8d0b18f744cc4c8c785af2bd9345184dd73f13"
+    },
+    {
+      "source": "cloud/work/large_camera_dolly/reconstruction/patchspeed_reuse.c",
+      "before_sha256": "d0b299f2d9b585178fec93a31da3994b955015dcbf185ff91b9242e0dd68d1f7",
+      "after_sha256": "7f6ec8118cd24d63890dbda5a9abc874aa4530f3176cac3e57d1af9150b1b508"
+    },
+    {
+      "source": "cloud/work/large_camera_dolly/reconstruction/patchspeed_sum_order.c",
+      "before_sha256": "fa6f32b6897652943e954278ec6632ef44050d9a5b48ece8070b7f6fb0886b39",
+      "after_sha256": "2052fa7b184e35fd9aff7341777847e68aeb763322900f5d336936ddc4fc7c1b"
+    }
+  ]
+}

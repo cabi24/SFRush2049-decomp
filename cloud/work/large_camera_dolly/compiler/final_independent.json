@@ -1,0 +1,24 @@
+{
+  "source_sha256": "fe70c8677374aecc6cec0e209a8d0b18f744cc4c8c785af2bd9345184dd73f13",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source": "/home/cburnes/agents/large-camera-compiler/candidates/camera_dolly_final.c",
+  "accepted": true,
+  "canonical_verdict": "MATCH",
+  "comparison": {
+    "differing": 0,
+    "total": 575,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "object_sha256": "cb58cd092c0c343313f714191d34e72f3a940767dc146faa1bf26b414a94cd31",
+  "emitted_words": 576,
+  "aligned": {
+    "aligned_exact": 575,
+    "aligned_opcode": 575,
+    "aligned_opcode_reg": 575
+  },
+  "frame_bytes": 120,
+  "source_normalization_note": "Fresh independent compilation after expanding leading indentation tabs and removing trailing whitespace; C tokens unchanged."
+}
