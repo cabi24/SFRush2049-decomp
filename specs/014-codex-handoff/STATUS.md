@@ -1,5 +1,12 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-01 eighteenth completed milestone: genuine FP contracts/intrinsics
+
+- Game cartridge C: **573/1,216 functions, 66,128/647,072 bytes (10.22%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**.
+- C24 func_800C4180 adds128 bytes through true two-float argument/float-return helper and genuine IDO fabsf intrinsic. B28 BDD90/98A54 add244 bytes through actual float sqrtf declaration/intrinsic, natural typed vector arrays, common return and original load order. Original SDK declaration and target sqrt.s/abs.s instructions prove contracts; no fake pressure or extra formals. Exact flags **-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul**.
+- Independent D canonical MATCH for allthree delivered exact sources, all image gates identical and source-built full-ROM SHA-1 EXACT. Final573 blob/group checks zero problems and123 static/source locks intact. Full pytest713 passed/492 skipped with separately captured exit0. Across original handoff:76 game functions /9,712 bytes and97 static functions /27,284 bytes accepted.
+- Existing accepted helper is not counted again when used in new genuine caller context. C24 has a fresh larger real motion pair under independent review; B29 scans actual intrinsic/prototype defects; A42 fresh integer leaves continue. Latest matching checkpoint634fab28 CI36947787466 and archival5b8ad73c CI36947963808 succeeded. Initial dirty tools/mips_to_c preserved; negative source packets archived to prevent repeated exhausted work.
+
 ## 2026-10-01 seventeenth completed milestone: SDK initialization and fresh heads
 
 - Game cartridge C: **570/1,216 functions, 65,756/647,072 bytes (10.16%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**.

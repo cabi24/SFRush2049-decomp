@@ -1,0 +1,19 @@
+{
+  "func_800BDD90": {
+    "source_sha256": "0476915e920e0fa3dfafd762299fa9217447e8af5a96c80264bd5c724e5360da",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "canonical_D": "MATCH"
+  },
+  "func_80098A54": {
+    "source_sha256": "7028229a79b1c090aaf6d1869a2d821e67710b332bfce7dd376a9338910e60b4",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "canonical_D": "MATCH"
+  },
+  "image_identical": true,
+  "source_built_ROM": "SHA-1 EXACT",
+  "pytest": {
+    "passed": 713,
+    "skipped": 492,
+    "exit": 0
+  }
+}

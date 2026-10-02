@@ -1,0 +1,14 @@
+{
+  "func_800C4180": {
+    "source_sha256": "ad995ceb214d87936190161a7576c1fc196d9926e1d858bbb3218ddd92b1b668",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "canonical_D": "MATCH"
+  },
+  "image_identical": true,
+  "source_built_ROM": "SHA-1 EXACT",
+  "pytest": {
+    "passed": 713,
+    "skipped": 492,
+    "exit": 0
+  }
+}

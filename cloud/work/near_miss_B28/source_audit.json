@@ -1,0 +1,17 @@
+{
+  "sqrtf_live_authority": "include/game/math.h:136 f32 sqrtf(f32 x)",
+  "sqrtf_live_authority_sha256": "25682e1bc09af28b45b46ab7b94000b5a27784efdf9807376d41ea903d33602a",
+  "retail_hardware_authority": {
+    "func_800BDD90": "sqrt.s at body+0x1c; no call, f0 scalar result",
+    "func_80098A54": "sqrt.s at body+0x28; no call, f0 scalar result",
+    "func_8008E0B8": "sqrt.s at body+0x38; no call, f2 scalar result moved to f0"
+  },
+  "original_seed_error": "No sqrtf prototype at all; C89 implicit s32 return and default promoted float argument are wrong",
+  "genuine_intrinsic": "pragma intrinsic(sqrtf) reproduces existing real hardware sqrt instructions",
+  "vector_argument": "a0 points to two or three ordinary scalar float words; actual retail loads/stores4-byte elements at0,4[,8]",
+  "common_return": "if/nonzero normalizes components; else writes fallback unit-axis components; one final return preserves exact value in both paths",
+  "load_order": "A54 real vector input snapshot loads z before x/y, while final machine scheduler emits original x/y/z ordering with exact float allocation",
+  "no_dummy_context": true,
+  "no_fake_buffers": true,
+  "no_pressure_or_formals": true
+}

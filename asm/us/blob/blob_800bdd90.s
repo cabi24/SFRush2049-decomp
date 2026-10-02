@@ -5,6 +5,7 @@
 .section .text.func_800BDD90, "ax", @progbits
 .globl func_800BDD90
 func_800BDD90:
+    /* compiled from src/blob/func_800BDD90.c */
     .word 0xC4820004
     .word 0xC48C0000
     .word 0x44808000
@@ -6662,6 +6663,7 @@ func_800C40E8:
 .section .text.func_800C4180, "ax", @progbits
 .globl func_800C4180
 func_800C4180:
+    /* compiled from src/blob/func_800C4180.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0xAFA5001C
