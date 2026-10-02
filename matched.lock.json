@@ -7,14 +7,6 @@
     "verified": "score0",
     "verified_at": "2026-10-02"
   },
-  "cloud/work/static_debug_consolidation/acceptance_sources/__isnan.c:__isnan": {
-    "body_sha256": "eb95351f1110e65c0cf46823bb15ec453eccca01386af52f97b4299638bcbb36",
-    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
-    "target_id": "__isnan",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-02"
-  },
   "cloud/work/static_debug_consolidation/acceptance_sources/__round_helper.c:__round_helper": {
     "body_sha256": "05cb6878c375b813228e779c0a8ad144fce9158723e0075f36cca5cdd8b497d7",
     "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
@@ -227,6 +219,14 @@
     "body_sha256": "5c42b8987aded09bbf708fa6b8e78febbf8b53a8e3e15b8bd4b6af2c842a983f",
     "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "target_id": "__isinf",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-02"
+  },
+  "src/rom/lib_34a0.c:__isnan": {
+    "body_sha256": "eb95351f1110e65c0cf46823bb15ec453eccca01386af52f97b4299638bcbb36",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "__isnan",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-02"
