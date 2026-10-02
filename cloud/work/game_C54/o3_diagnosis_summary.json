@@ -1,0 +1,39 @@
+{
+  "function": "entity_collision_detect",
+  "words_differing": 167,
+  "strict_words_differing": 168,
+  "target_words": 205,
+  "candidate_words": 204,
+  "verdict": "mixed(constant:4, structural:7, register:116)",
+  "frame_delta": 8,
+  "lanes": [
+    {
+      "class": "pool",
+      "slot": 6,
+      "rotation": null
+    },
+    {
+      "class": "temp",
+      "slot": 6,
+      "rotation": null
+    },
+    {
+      "class": "shared",
+      "slot": 0,
+      "rotation": null
+    },
+    {
+      "class": "fp-pool",
+      "slot": null,
+      "rotation": null
+    },
+    {
+      "class": "fp-temp",
+      "slot": null,
+      "rotation": null
+    }
+  ],
+  "owning_pass": "unknown",
+  "ownership_basis": "none",
+  "lever": "drop-a-declared-local"
+}

@@ -1,0 +1,12 @@
+{
+  "claims": [],
+  "function": "display_settings",
+  "address": "0x800DDFAC",
+  "target_bytes": 608,
+  "files": {
+    "display_settings_cursor.c": "b87df4b6ffe3396022f8e230ebbfc98b32dd039bb84f6cf19fe3053065ef7300",
+    "display_settings_native.c": "0d0d949a13484519b98ae9b2ba0fd3df885244b33e0b6fdab064591cc0c2ce8f",
+    "results.json": "3620490c610322d33ae21de4b4f4cb324e5b6177edf5cb9fd506a435902a3771",
+    "display_settings_O3.c": "7eb6316c2ba1d077f9a7d47e205e05cd9ecc1f27e245ebcdd93dbeff3772ff8c"
+  }
+}

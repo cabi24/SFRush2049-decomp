@@ -1,0 +1,19 @@
+{
+  "members": [
+    "func_80109468"
+  ],
+  "context": [
+    "Input_ApplyPadConfig",
+    "func_800EF5B0"
+  ],
+  "claims": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_80109468",
+    "Input_ApplyPadConfig",
+    "func_800EF5B0"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+}

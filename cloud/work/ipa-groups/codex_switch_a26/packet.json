@@ -1,0 +1,14 @@
+{
+  "targets": [
+    "func_800B4B00"
+  ],
+  "claims": [
+    "func_800B4B00"
+  ],
+  "source": "group.c",
+  "source_sha256": "951a1c1c8f3bc82e90cde8d366e1246e56a86e5f1989353146535e9ad0729fec",
+  "manifest_sha256": "f2bb65f13c047032f0ae2f25cc03f181207ceb89c07789c1756d7055ca018e21",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "image_verified": true,
+  "frozen": true
+}

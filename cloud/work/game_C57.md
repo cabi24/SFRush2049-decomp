@@ -1,0 +1,3 @@
+# C57: readonly resource-update caller ABI scout
+
+Fresh canonical engine_sound_update@800B2DF8,1428B/357w, absent from prior native packet and accepted source/lock. Conventional prologue saves the whole used register set, but the body calls actual engine_torque_calc with live s1 as consumed input (callee reads incoming s1 and modifies unsaved s1-s4/f20) and ends its mode6 path with unknown direct JAL0x8039133C. Both genuine group closure and unknown external ownership must be resolved before compiling a complete source. No fabricated a0 input or external alias, stand-in, guessed frame buffers or match claim. Actual assembly is private/ignored only.

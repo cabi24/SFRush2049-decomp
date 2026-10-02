@@ -11,3 +11,11 @@ Controls in scores.json: Vec3 struct ordinary O2/O3 199/201 and four extra words
 Two actual Vec3 locals are meaningful arrays, not arbitrary scratch. The original local gaps may involve original source/module allocation; inventing larger capacity is refused. All full original/candidate disassemblies and private objects remain ignored/private; no instruction streams in committed packets. Move to fresh source after bounded structural controls.
 
 Matrix-contract erratum: full audit of E8D50→E8CB8→math_utility proves the originally word-typed fourth A75 input is actually a nullable3-by-3 float-matrix pointer. E8CB8 forwards it to the nine-float copy. Separate corrected `func_800E8F10.matrix_contract.c` retains original source/hash controls and receives fresh proof in A76 scores.json; still199/201 plus1extra and no credit. The preceding integer/conditional description is superseded.
+
+## Intrinsic-contract erratum (separate follow-up)
+
+A83 native object inspection exposed that this frozen A75 packet declares sqrtf
+without the documented IDO #pragma intrinsic(sqrtf), emitting a call instead of the
+original hardware sqrt.s. Original sources/hashes/proofs remain unchanged.
+Coordinator-authorized separate tiny_A75_intrinsic follow-up corrects this real
+missing SDK/compiler contract and requires its own hashes and fresh proof.

@@ -1,0 +1,5 @@
+# B64 complete ordinary physics extrapolation
+
+Frozen honest NONMATCH battle_mode_setup@800D4EF4348bytes/87words. Actual scalar float now input; six observed2056-byte records guarded by active1992 and Model952 state857<2. Computes (now-timestamp1812)*scale2036, uses real three-float scratch from axis544, adds position556 into result1940, copies real nine-float basis748 to1952 via true two-pointer math_utility, reuses scratch for velocity76*scale and applies true two-pointer sound_position_set. Both callees decoded to confirm full observed input contracts; no hidden formals. Real stack104 frame retained.
+
+Struct nativeO3 and O2, and genuine project Vec3f[3] array view all47/87 plus1 extra. Per-axis interleaving of genuinely independent destination writes is17/87 exact extent; first two axis temporaries then x destination then z temporary is12/87 exact extent. Five bounded real dataflow controls only; preserve all arithmetic, branches and calls. The remaining math schedule is a nonmatch; no line sweeps, artificial expression pressure, dummy locals, padded buffer or fake helper inserted. All sources/results/hashmanifest frozen; no claim/shared changes.

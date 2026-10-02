@@ -1,0 +1,38 @@
+{
+  "targets": [
+    "world_object_destroy"
+  ],
+  "claims": [],
+  "final_source": "world_object_destroy.intrinsic.c",
+  "proof": [
+    {
+      "source": "A83.c",
+      "source_sha256": "7f33fe9e5bc46275a768c6077b4ce4e75928675f778a78353f62fcbafff62dbd",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "compiled_words": 168,
+      "comparison": {
+        "differing": 155,
+        "total": 159,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 6
+      }
+    },
+    {
+      "source": "A83.intrinsic.c",
+      "source_sha256": "9856e095ce5fed4670f86ed1be9a69bc48c7dfef8f1c13fb0de98076d53dfa2b",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "compiled_words": 160,
+      "comparison": {
+        "differing": 132,
+        "total": 159,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 1
+      }
+    }
+  ],
+  "frozen": true
+}

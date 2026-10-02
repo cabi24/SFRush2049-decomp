@@ -5515,6 +5515,7 @@ controller_poll:
 .section .text.process_inputs, "ax", @progbits
 .globl process_inputs
 process_inputs:
+    /* compiled from src/blob/process_inputs.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x0C032577

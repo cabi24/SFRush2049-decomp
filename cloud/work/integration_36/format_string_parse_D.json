@@ -1,0 +1,20 @@
+{
+  "function": "format_string_parse",
+  "group": "codex_hash_a80",
+  "source_sha256": "5352f376ad96994820b1c6e169a2a8ac272531481b0efce8d45912843352e829",
+  "group_source_sha256": "0dcd752a7c71555d39ad46048f63139be397e1a01545117bf74ab7131f641f7b",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "canonical_differing": 0,
+  "canonical_total": 45,
+  "canonical_local_rodata_refs": 2,
+  "full_image_word_differences": {
+    "format_string_parse": 0
+  },
+  "table_address": "0x80123C20",
+  "table_bytes": 24,
+  "table_sha256": "f6bcb0ccbee2571534ca6b32bdc230101a2d54ae46263f7873c8ff08698a567e",
+  "original_table_identity": true,
+  "unknown_references": 0,
+  "extra_words": 0,
+  "published_group_source_sha256": "a5e541091c40119439773351f8b2deb21608a396e173a4fa741b24eb521ad462"
+}

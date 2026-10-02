@@ -1,0 +1,19 @@
+[
+  {
+    "function": "entity_collision_detect",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 4230,
+    "linked": {
+      "differing": 197,
+      "total": 205,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "f547e28410e5f1ea85414a0c6b230e61d1ea49a2cc23de12a40bd06aae1b8209",
+    "target_sha256": "0c4021e95b3412a3461448699d37ac7316826ed600e99563363f6735fcb52636"
+  }
+]

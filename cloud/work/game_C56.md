@@ -1,0 +1,3 @@
+# C56: readonly registered power-up callback ABI scout
+
+Canonical func_8010D3C0@8010D3C0,704B/176w, no prior native packet/accepted hit. Head is normally shaped and its switch cases use real Player952/Car2056 fields, a normal stat_lap_split call and realsqrt intrinsic. However its complete inactive-object path contains direct JAL0x80391490 with no protected manifest symbol or supported source contract. The callee cannot be omitted, renamed to an invented external or replaced with a stand-in. No source compile or match claim attempted; actual assembler remains only ignored scratch. Reservation map checked before scouting; move fresh.

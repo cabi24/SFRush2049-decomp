@@ -1,0 +1,14 @@
+{
+  "claims": [],
+  "function": "battle_mode_setup",
+  "address": "0x800D4EF4",
+  "target_bytes": 348,
+  "files": {
+    "battle_mode_setup_O2.c": "0d8340c4f38c31642a93174e604de0082c9b1654a2c72be0c6ed863544750fb7",
+    "results.json": "f770f46900dd2fb72bd48db914165062cbcbecacb020e5e2d6250153dfd85877",
+    "battle_mode_setup_array.c": "caf9bfa1ee71006fcedb614677f0f2be90637e1f2dc69e83b9448bf1e0f13fd0",
+    "battle_mode_setup_native.c": "1b4471e57190fd984e8e3bc45b2f1d7668ebec862d3e4d6d481a2ef7545012ef",
+    "battle_mode_setup_axis.c": "4604ef2e4c623405a0f29548b3d85da1077bc021a3fac137946b3be81a5c35a5",
+    "battle_mode_setup_pair.c": "ba853dab2502857796382f30410113d70a0f61253b9b364c48d33888d27be071"
+  }
+}

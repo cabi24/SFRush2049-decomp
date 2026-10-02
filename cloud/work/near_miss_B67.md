@@ -1,0 +1,7 @@
+# B67 exact complete player input copying
+
+Strict canonical bare MATCH process_inputs@800C997C,356bytes/89targetwords. Final process_inputs_native.c literal flags -g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul. Zero-input ordinary24-byte frame routine. Real controller_poll precedes actual four-player loop. Each real76-byte input record gets zero current/previous/pressed words and two zero float axes when selector5 or player beyond signed-half active count; otherwise copies canonical D_80156978 current,D_80156998 previous,D_80143A00 pressed and genuine8-byte axes D_80156958 using actual selectorbyte. All original source paths/global reloads/calls/stores retained. Existing opaque52-byte record remainder is genuine observed76-byte stride, no new storage.
+
+First complete nativeO3 compile exact; no other hypothesis controls needed. No artificial pressure, unused formal/local, padding, invented function/group or scoring edits. Earlier controller_poll group m2c keep body89differences/110words checked alongside source filename/report/lock/active-reservation audit; no prior complete native packet for this body.
+
+Fresh independent worker proof0/89differences,extras0,unresolved0,unverified0,errors0. Object text length 92 words includes zero alignment beyond89-word body; only356bytes credited. Source/hash proof frozen; root independently verifies and owns linked raw/image/ROM/test acceptance.

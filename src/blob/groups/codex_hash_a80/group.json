@@ -1,0 +1,14 @@
+{
+  "members": [
+    "format_string_parse"
+  ],
+  "context": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "format_string_parse"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "provenance": "Actual resource byte hash with independently verified original switch table; cloud/work/ipa-groups/codex_hash_a80 and cloud/work/integration_36"
+}

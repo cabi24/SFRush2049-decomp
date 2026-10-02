@@ -1,0 +1,54 @@
+[
+  {
+    "control": "native",
+    "source_sha256": "51eaa0e7f92c59f574f83a77837936a9d27b62d3332267edf5e38ef1b3c5284d",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "comparison": {
+      "differing": 67,
+      "total": 143,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "control": "layout",
+    "source_sha256": "2c1f61fcc5992ceabc83b3b5636fb672498c985a18f70c4aa50df41ca24477c7",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "comparison": {
+      "differing": 83,
+      "total": 143,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "control": "O2",
+    "source_sha256": "fd93f6c0525ddee7acb9200c8a771aa4ebc43224ba6b7f64d86ca18f37dcb0ae",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "comparison": {
+      "differing": 83,
+      "total": 143,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "control": "headers",
+    "source_sha256": "802724b39c610c1045b2ede84d6cf15962927d1857f8723d7c3f42aa871d78e8",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "comparison": {
+      "differing": 112,
+      "total": 143,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+]
