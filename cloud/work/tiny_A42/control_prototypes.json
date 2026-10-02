@@ -1,0 +1,18 @@
+{
+  "visual_objects_update": {
+    "strict_diff": 22,
+    "size": 35,
+    "target_size": 35,
+    "extra": 0,
+    "matched": false,
+    "err": null
+  },
+  "Input_ApplyPadConfig": {
+    "strict_diff": 23,
+    "size": 48,
+    "target_size": 48,
+    "extra": 0,
+    "matched": false,
+    "err": null
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "targets": [
+    "func_800B7360",
+    "func_800B0EA0",
+    "visual_objects_update",
+    "Input_ApplyPadConfig"
+  ],
+  "claims": [],
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+}

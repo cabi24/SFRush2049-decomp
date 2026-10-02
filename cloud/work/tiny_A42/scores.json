@@ -1,0 +1,56 @@
+{
+  "func_800B7360": {
+    "strict_diff": 33,
+    "size": 37,
+    "target_size": 33,
+    "extra": 4,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [
+      "unpaired R_MIPS_HI16 for D_80149B48 at .text+0x80"
+    ],
+    "source_sha256": "6951d2d266c3f4cb9b1196620020679f4def8d83d450e367809cb81d4812541d",
+    "canonical_exit": 1
+  },
+  "func_800B0EA0": {
+    "strict_diff": 30,
+    "size": 48,
+    "target_size": 48,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "1f0fffc2f9cd3fdda2b342e6f5df06b33ef059c64b4a06559dd2bc65462b2019",
+    "canonical_exit": 1
+  },
+  "visual_objects_update": {
+    "strict_diff": 22,
+    "size": 35,
+    "target_size": 35,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "2c45ca95a277d2d572ccd63ced3c9e35938996c14ffefb2b7d81f7911815a643",
+    "canonical_exit": 1
+  },
+  "Input_ApplyPadConfig": {
+    "strict_diff": 23,
+    "size": 48,
+    "target_size": 48,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "459bb22d6a0df92041f2d77e8f00347336ba988fb4ec36607eafd765b9601d34",
+    "canonical_exit": 1
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "real_first_cached_byte_snapshot": {
+    "strict_diff": 32,
+    "size": 37,
+    "target_size": 33,
+    "extra": 4,
+    "matched": false,
+    "err": null,
+    "errors": [
+      "unpaired R_MIPS_HI16 for D_80149B48 at .text+0x80"
+    ]
+  },
+  "actual_record_read_snapshot": {
+    "strict_diff": 23,
+    "size": 48,
+    "target_size": 48,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "errors": []
+  }
+}

@@ -1,0 +1,13 @@
+[
+  {
+    "target": "func_800C1A00",
+    "control": "global_count_loop",
+    "strict_diff": 87,
+    "size": 91,
+    "target_size": 88,
+    "extra": 3,
+    "matched": false,
+    "err": null,
+    "errors": []
+  }
+]

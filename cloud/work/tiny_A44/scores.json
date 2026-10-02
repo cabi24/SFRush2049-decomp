@@ -1,0 +1,38 @@
+{
+  "func_8008AD6C": {
+    "strict_diff": 32,
+    "size": 42,
+    "target_size": 41,
+    "extra": 1,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "68ad2230e78159b6b9bcdd5113161968d9c07ffdd43ac2a7ed39aede5ef38319"
+  },
+  "func_80092BF4": {
+    "strict_diff": 22,
+    "size": 20,
+    "target_size": 25,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "4115a8475f74a13776c4c0cd9fa9029a3928741b976006fdb0047f05332b4227"
+  },
+  "func_800EC270": {
+    "strict_diff": 20,
+    "size": 34,
+    "target_size": 34,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "89ff393f44d99814dc96b6297435653788dd7177220953afdf25fadd0f04ec44"
+  }
+}
