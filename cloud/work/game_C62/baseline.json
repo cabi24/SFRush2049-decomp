@@ -1,0 +1,24 @@
+[
+  {
+    "function": "reverb_setup",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 1425,
+    "linked": {
+      "differing": 88,
+      "total": 132,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0xb4",
+        ".rodata+0x0 at +0xbc",
+        ".rodata+0x48 at +0x140",
+        ".rodata+0x48 at +0x148"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "22b33f442d88309f6ac2432b6b561567d839031af6eb616034f4af21d5029571",
+    "target_sha256": "c14aa428696f3f8480279416702288b81dbfa445b33d82861f1fb3cc72929010"
+  }
+]

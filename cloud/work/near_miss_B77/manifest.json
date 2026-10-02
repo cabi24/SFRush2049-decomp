@@ -1,0 +1,12 @@
+{
+  "claims": [],
+  "function": "func_8010E72C",
+  "address": "0x8010E72C",
+  "target_bytes": 252,
+  "files": {
+    "func_8010E72C_resource_O2.c": "51f4c1114f41bf2ce9d0192e385c90266f5b2d7e730a780a8838616885c2189e",
+    "results.json": "07b82526d9a77199212bb8815010927c9037093c560592034270a09719eb43fa",
+    "func_8010E72C_native.c": "c4a2d1b812097b89f87b3a012811c9c7e451ab61a003ccb50b7069922ddf844c",
+    "func_8010E72C_resource.c": "314a2ecedfde71ec5835394659d96063524acb4ca6c446fc2c8c0c4edd9b5eb3"
+  }
+}

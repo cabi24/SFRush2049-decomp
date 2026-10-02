@@ -1,0 +1,87 @@
+[
+  {
+    "function": "camera_first_person.scoped",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 8763,
+    "linked": {
+      "differing": 229,
+      "total": 236,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "fa698db4e73cfadbecf5f41738fd7a61125adff6d3a3349ac8120aeab70b1144",
+    "target_sha256": "622afa571f7de6e379a7b902f65054bcba5d669b1e6b79aff3f027c120b86bf8"
+  },
+  {
+    "function": "camera_first_person.order",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 8583,
+    "linked": {
+      "differing": 229,
+      "total": 236,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "ba146588a62ca16291166e74cc623d32587fb5f0209d61668fce777d7de4571f",
+    "target_sha256": "622afa571f7de6e379a7b902f65054bcba5d669b1e6b79aff3f027c120b86bf8"
+  },
+  {
+    "function": "camera_first_person.O3",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 8715,
+    "linked": {
+      "differing": 229,
+      "total": 236,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "dfd3c5471715514c94e18b5b213cf9d3147fb3ce0459c19cb4958b7f6e6cb3c7",
+    "target_sha256": "622afa571f7de6e379a7b902f65054bcba5d669b1e6b79aff3f027c120b86bf8"
+  },
+  {
+    "function": "camera_first_person.output_direct",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 8715,
+    "linked": {
+      "differing": 229,
+      "total": 236,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "fd1fc7bcb8d83914c621a34599bdab1be18c102a651e57e549c4a6105327d368",
+    "target_sha256": "622afa571f7de6e379a7b902f65054bcba5d669b1e6b79aff3f027c120b86bf8"
+  },
+  {
+    "function": "camera_first_person.packed_locals",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 7134,
+    "linked": {
+      "differing": 227,
+      "total": 236,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "83903c6f9f3fc93485d5f1b006dd0dda4cc44f0cb3027a12395071fa20af4ea9",
+    "target_sha256": "622afa571f7de6e379a7b902f65054bcba5d669b1e6b79aff3f027c120b86bf8"
+  }
+]

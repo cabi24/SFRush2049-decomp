@@ -1,0 +1,74 @@
+[
+  {
+    "function": "entity_spawn_callback",
+    "variant": "entity_spawn_callback.head_pointer",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 748,
+    "linked": {
+      "differing": 23,
+      "total": 104,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "257aca841f3c1a74a3f133fedb9a6051f187b7bd13b192fe8cce84b995e6058b",
+    "target_sha256": "7b120715c5214e3c6f7c6a8afefa94c59a27873c5e6e2e3c50455b250035f9c0"
+  },
+  {
+    "function": "entity_spawn_callback",
+    "variant": "entity_spawn_callback.consumed_call",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 780,
+    "linked": {
+      "differing": 31,
+      "total": 104,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "3db681d734d25debbb3ffe36c3150c1d54104719748e5ad9607317b1ce14bab3",
+    "target_sha256": "7b120715c5214e3c6f7c6a8afefa94c59a27873c5e6e2e3c50455b250035f9c0"
+  },
+  {
+    "function": "entity_spawn_callback",
+    "variant": "entity_spawn_callback.scope",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 748,
+    "linked": {
+      "differing": 23,
+      "total": 104,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "88cd7ba7d8261d10baf6b7b0b3d88e8e1dc8569438a3262a47180b5681470e46",
+    "target_sha256": "7b120715c5214e3c6f7c6a8afefa94c59a27873c5e6e2e3c50455b250035f9c0"
+  },
+  {
+    "function": "entity_spawn_callback",
+    "variant": "entity_spawn_callback.pointer_consumed",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 748,
+    "linked": {
+      "differing": 23,
+      "total": 104,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "83758bc5176c00b2ed3660a2d13265c21231ba850abd5210504115fb0ed7a419",
+    "target_sha256": "7b120715c5214e3c6f7c6a8afefa94c59a27873c5e6e2e3c50455b250035f9c0"
+  }
+]

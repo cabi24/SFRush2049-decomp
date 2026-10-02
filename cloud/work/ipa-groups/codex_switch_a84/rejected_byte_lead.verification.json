@@ -1,0 +1,17 @@
+{
+  "source_sha256": "809e8960d476748839e9cd43299aa556ee837419e5d5b6ab5865782539f7e76e",
+  "manifest_sha256": "8c76c191befe770452bbbfe31653ae72682f789c5b4288d82693b3f094a729d2",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "compiled_words": 100,
+  "comparison": {
+    "differing": 0,
+    "total": 99,
+    "unresolved": [],
+    "unverified": [
+      ".rodata+0x0 at +0xc",
+      ".rodata+0x0 at +0x14"
+    ],
+    "errors": [],
+    "extra_words": 0
+  }
+}

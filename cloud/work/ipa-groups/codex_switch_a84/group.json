@@ -1,0 +1,14 @@
+{
+  "members": [
+    "func_800CCB40"
+  ],
+  "context": [],
+  "claims": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_800CCB40"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}

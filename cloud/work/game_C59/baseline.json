@@ -1,0 +1,19 @@
+[
+  {
+    "function": "entity_spawn_callback",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 780,
+    "linked": {
+      "differing": 31,
+      "total": 104,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "19d2fcaa9164af63e045cf01b0b1779387613f76d5f540462048782163148afb",
+    "target_sha256": "7b120715c5214e3c6f7c6a8afefa94c59a27873c5e6e2e3c50455b250035f9c0"
+  }
+]

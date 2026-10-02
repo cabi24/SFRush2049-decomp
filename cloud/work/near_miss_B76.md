@@ -1,0 +1,5 @@
+# B76 complete ordinary collision correction
+
+Frozen honest NONMATCH entity_iterate at 0x800C69C0, 224 bytes / 56 words. Two actual consumed vector-pointer inputs. Actual six-argument input_deadzone_apply uses the second vector as start, mutates the first as endpoint, and writes a proven nine-float basis. On nonnull return, form the exact second-minus-first three-float delta, normalize through the actual single-input func_8008E0B8, and apply the quarter-length correction to all three first-vector components. Return zero on all paths. Both helper bodies decoded; basis capacity follows the exact nine-float math_utility copy and no fourth vector coordinate is introduced.
+
+Three bounded controls: native O3 29/56, O2 48/56, named actual three-float delta O3 29/56. Native frame 80 versus original 88, basis offset 44 versus 48 and delta offset 32 versus 36; parameter homes shift accordingly. No positive claim or fabricated storage, unused formal, pressure, volatile, mask or sweep. Full sources and fresh sanitized proofs frozen; no shared changes.

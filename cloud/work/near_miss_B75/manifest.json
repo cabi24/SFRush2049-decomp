@@ -1,0 +1,16 @@
+{
+  "claims": [
+    "audio_volume_pan"
+  ],
+  "function": "audio_volume_pan",
+  "address": "0x80094C28",
+  "target_bytes": 248,
+  "final_source": "audio_volume_pan_cursors.c",
+  "files": {
+    "audio_volume_pan_native.c": "cadb996089e9b1105a84871dea28d100f43751e31693a79db2d63b9d90c320e6",
+    "audio_volume_pan_index_O2.c": "f9f792eb25f7e4945f672a9eb6b426687c6b7a470cc93276915ba5d78cbed732",
+    "audio_volume_pan_cursors.c": "521e4665cb424742f322b153b06117dee0e30d3fa84e98e9d983aaa762a967a2",
+    "results.json": "420242472fbe8d4250403613c665bf6ff2e895fafcd504b1635017810e580fa3",
+    "audio_volume_pan_index.c": "e4d1097dd30e50dc951830733ae89eb8bcb7929a58ba14dd6ba8ef26b8833e73"
+  }
+}

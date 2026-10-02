@@ -1,0 +1,9 @@
+# A85 — genuine physics update group, nonmatch
+
+Frozen full sources for func_800E3430 (189 words) and its sole direct caller func_800E3724 (150 words). Literal flags: `-g0 -O3 -mips2 -G 0 -non_shared`. Claims remain empty. Fresh canonical comparison is 180/189 and 98/150 respectively, with no unresolved references, unverified references, errors, or extra nonzero words. No credit.
+
+The actual external entry is func_800E3724. Keeping only this caller allows the real internal helper to clobber FP temporaries and moves their preservation to the caller. Keeping both gives the ordinary helper ABI and a worse 184/189 plus three extra helper words, with caller146/150. Making the helper static removes its public symbol and is not acceptable proof. The successful linkage control still leaves FP register allocation and ordering substantially different; retail caller saves four FP pairs in a56-byte frame, current source saves three in48 bytes.
+
+Source recovers all actual typed object fields, player model lookup, mass/inverse mass, gear/brake/friction decisions, four wheel velocity factors, three real update callees, signed speed state transitions, three-axis/four-vertex bounds, and the final motion-history transfer. The final source corrects a discovered semantic reversal: maximum extent is at object+328, minimum extent at+340. This improves caller108 to98 differences. A separately frozen actual short-circuit absolute-value control worsens to150/150; it introduces no synthetic dataflow. Consumed mass/inverse locals and a readonly scalar declaration hypothesis did not improve the helper. No padding or extra runtime work was introduced to imitate the retail frame.
+
+All variants are hashed in source_hashes.json. Frozen group.c hash and fresh proof are in verification.json. No accepted source, layout, lock, or existing packet was changed.

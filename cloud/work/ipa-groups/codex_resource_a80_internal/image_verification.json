@@ -1,0 +1,11 @@
+{
+  "context": "format_string_parse",
+  "full_image_word_differences": 0,
+  "helper_words": 45,
+  "table_entries": 6,
+  "table_image_address": "0x80123c20",
+  "table_used_bytes": 24,
+  "table_sha256": "f6bcb0ccbee2571534ca6b32bdc230101a2d54ae46263f7873c8ff08698a567e",
+  "relocated_table_matches_original": true,
+  "source_sha256": "676595c601a1abcfcb7aaf684a9fe1bcbded23edcd857b0724cf7e78eca9cea8"
+}

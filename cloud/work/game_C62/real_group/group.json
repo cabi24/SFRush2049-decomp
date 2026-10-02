@@ -1,0 +1,17 @@
+{
+  "members": [
+    "reverb_setup"
+  ],
+  "context": [
+    "func_800B4B00"
+  ],
+  "claims": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "reverb_setup",
+    "func_800B4B00"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+}

@@ -1,0 +1,134 @@
+[
+  {
+    "function": "reverb_setup.O3",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 1425,
+    "linked": {
+      "differing": 88,
+      "total": 132,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0xb4",
+        ".rodata+0x0 at +0xbc",
+        ".rodata+0x48 at +0x140",
+        ".rodata+0x48 at +0x148"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "51e67afce6bf48e3fd3ffc5675395c51a196494baa1b70f7b681aca294cf0e7a",
+    "target_sha256": "c14aa428696f3f8480279416702288b81dbfa445b33d82861f1fb3cc72929010"
+  },
+  {
+    "function": "reverb_setup.selector_copy",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 1425,
+    "linked": {
+      "differing": 88,
+      "total": 132,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0xb4",
+        ".rodata+0x0 at +0xbc",
+        ".rodata+0x48 at +0x140",
+        ".rodata+0x48 at +0x148"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "0b02f61d567f3486c6a640a870481fbaa3714f09bcb6da67b1c1eaccc50bc18d",
+    "target_sha256": "c14aa428696f3f8480279416702288b81dbfa445b33d82861f1fb3cc72929010"
+  },
+  {
+    "function": "reverb_setup.word_selector",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 1765,
+    "linked": {
+      "differing": 130,
+      "total": 132,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0xac",
+        ".rodata+0x0 at +0xb4",
+        ".rodata+0x48 at +0x138",
+        ".rodata+0x48 at +0x140"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "2d0bda2af12469be4827bff76281a3cc6be0c16c9672e471b3d11ab87bacd35a",
+    "target_sha256": "c14aa428696f3f8480279416702288b81dbfa445b33d82861f1fb3cc72929010"
+  },
+  {
+    "function": "reverb_setup.mode_byte",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 1425,
+    "linked": {
+      "differing": 88,
+      "total": 132,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0xb4",
+        ".rodata+0x0 at +0xbc",
+        ".rodata+0x48 at +0x140",
+        ".rodata+0x48 at +0x148"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "05cb27e29613d9736de48ef25b70eea568c799db7e0e19b60c944bbd39389bea",
+    "target_sha256": "c14aa428696f3f8480279416702288b81dbfa445b33d82861f1fb3cc72929010"
+  },
+  {
+    "function": "reverb_setup.nested_ranges",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 1425,
+    "linked": {
+      "differing": 88,
+      "total": 132,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0xb4",
+        ".rodata+0x0 at +0xbc",
+        ".rodata+0x48 at +0x140",
+        ".rodata+0x48 at +0x148"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "cb2c2df66168d2b3aac7b5860b8aa6024f740eb6eeaad55690d1d5591977a956",
+    "target_sha256": "c14aa428696f3f8480279416702288b81dbfa445b33d82861f1fb3cc72929010"
+  },
+  {
+    "function": "reverb_setup.single_return",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 1925,
+    "linked": {
+      "differing": 102,
+      "total": 132,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0xb4",
+        ".rodata+0x0 at +0xbc",
+        ".rodata+0x48 at +0x140",
+        ".rodata+0x48 at +0x148"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "7b25f13e265a22cb1313414e877fedccb1f988a73c2cc24337d2c874bbb543d4",
+    "target_sha256": "c14aa428696f3f8480279416702288b81dbfa445b33d82861f1fb3cc72929010"
+  }
+]

@@ -1,0 +1,35 @@
+{
+  "target": "func_800CCB40",
+  "defined_selector_domain": [
+    0,
+    40
+  ],
+  "direct_calls": [
+    {
+      "caller": "func_800CCCCC",
+      "site": "0x800CCD68",
+      "selector_range": [
+        0,
+        20
+      ]
+    },
+    {
+      "caller": "func_800CCCCC",
+      "site": "0x800CCDBC",
+      "selector_range": [
+        21,
+        40
+      ]
+    },
+    {
+      "caller": "func_800DE45C",
+      "site": "0x800DE534",
+      "selector_range": [
+        0,
+        40
+      ]
+    }
+  ],
+  "known_address_taken_sites": [],
+  "outside_domain": "Original jumps directly to jr ra without assigning v0; reconstructed C89 falls through without a defined return."
+}

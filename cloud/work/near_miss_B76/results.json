@@ -1,0 +1,44 @@
+[
+  {
+    "source": "entity_iterate_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "920c23603708a07cfa502daafb2b75ecaff2db9d1a3e5f22ffe7214f6acddf55",
+    "comparison": {
+      "differing": 29,
+      "total": 56,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 56
+  },
+  {
+    "source": "entity_iterate_O2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "f099619031be2abb725f18ee6b8922c1bd5a3ee66ba79ff51066d8b0d0cbcf74",
+    "comparison": {
+      "differing": 48,
+      "total": 56,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 56
+  },
+  {
+    "source": "entity_iterate_vectors.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "e1933d5de1adf3b535ba46717e0e9f485f1414c44a2ee3a7bf6db809bf8e89ad",
+    "comparison": {
+      "differing": 29,
+      "total": 56,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 56
+  }
+]

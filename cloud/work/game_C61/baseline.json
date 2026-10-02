@@ -1,0 +1,19 @@
+[
+  {
+    "function": "camera_first_person",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 8715,
+    "linked": {
+      "differing": 229,
+      "total": 236,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "8e23a8ae8eb703001c01f84bbbc1173f895c1629cfa5c0aad632dc81660238ae",
+    "target_sha256": "622afa571f7de6e379a7b902f65054bcba5d669b1e6b79aff3f027c120b86bf8"
+  }
+]

@@ -1674,6 +1674,7 @@ menu_confirm_dialog:
 .section .text.menu_dialog_close, "ax", @progbits
 .globl menu_dialog_close
 menu_dialog_close:
+    /* compiled from src/blob/menu_dialog_close.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0xAFA5001C
@@ -1704,6 +1705,7 @@ menu_dialog_close:
 .section .text.object_data_allocate, "ax", @progbits
 .globl object_data_allocate
 object_data_allocate:
+    /* compiled from src/blob/object_data_allocate.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x8C8E0000

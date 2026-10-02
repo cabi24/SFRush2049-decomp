@@ -1,0 +1,29 @@
+{
+  "function": "entity_spawn_callback",
+  "words_differing": 23,
+  "strict_words_differing": 23,
+  "target_words": 104,
+  "candidate_words": 104,
+  "verdict": "mixed(constant:14, structural:6, register:5)",
+  "frame_delta": -8,
+  "lanes": [
+    {
+      "class": "pool",
+      "slot": 13,
+      "rotation": null
+    },
+    {
+      "class": "temp",
+      "slot": 8,
+      "rotation": null
+    },
+    {
+      "class": "shared",
+      "slot": null,
+      "rotation": null
+    }
+  ],
+  "owning_pass": "unknown",
+  "ownership_basis": "none",
+  "lever": "declare-the-pair-later"
+}

@@ -1,0 +1,29 @@
+{
+  "function": "reverb_setup",
+  "words_differing": 70,
+  "strict_words_differing": 70,
+  "target_words": 132,
+  "candidate_words": 132,
+  "verdict": "mixed(structural:13, register:24)",
+  "frame_delta": 0,
+  "lanes": [
+    {
+      "class": "pool",
+      "slot": 33,
+      "rotation": null
+    },
+    {
+      "class": "temp",
+      "slot": 4,
+      "rotation": null
+    },
+    {
+      "class": "shared",
+      "slot": 0,
+      "rotation": null
+    }
+  ],
+  "owning_pass": "unknown",
+  "ownership_basis": "none",
+  "lever": "none-known"
+}

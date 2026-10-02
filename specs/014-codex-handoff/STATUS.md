@@ -1,5 +1,13 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-02 thirty-seventh completed milestone: list removal and real checksum callers
+
+- Game cartridge C: **618/1,216 functions, 78,944/647,072 bytes (12.20%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**. This batch adds **432 matching code bytes** across three complete functions.
+- B75 audio_volume_pan248B preserves both actual identifier-list domains, player handle clearing and genuine unlink/priority calls. Separate consumed domain cursors recover the original spill slot without padding or pressure. Source SHA521e4665cb424742f322b153b06117dee0e30d3fa84e98e9d983aaa762a967a2, literal O3 flags with -Wab,-r4300_mul. Fresh independent D is bare MATCH with all62 words exact, zero extras/errors/unknowns; two alignment words earn no credit.
+- A88/A89 menu_dialog_close104B and object_data_allocate80B are genuine checksum callers over actual28/76-byte resource records. Complete accepted format_string_parse is unclaimed context; its real internal register contract reproduces both callers on the first source. Source SHAabfce138e6caddda5067f89241818cf43069777fbb19a1392c93e07a896fc3f3, literal O3 group recipe. Fresh independent D gives both callers bare MATCH26/20 words; canonical full image placement proves callers and all45 helper words. Root independently proves all six original helper table entries/24 bytes at80123C20 unchanged; existing helper lock remains intact.
+- Identical source-built image and original ROM SHA-1 EXACT; full pytest **724 passed, 532 skipped, captured exit0**. All618 blob/group checks and123 static/source locks pass. Since original handoff: **121 game functions /22,528 bytes** and **97 static functions /27,284 bytes**. Since overnight start601/73,268: **17 game functions /5,676 bytes**. e98d3c43 passed CI36973247871.
+- A86/A87 complete switch callers reproduce all native words and original individual tables but require supported multiple-table placement, currently unclaimed. Tooling draft is isolated for explicit review and negative tests. A84 redundant false operand byte lead was rejected as invented source work; grounded controls remain nonmatches, empty claims. Frozen A85/A80_internal/B69–B74/B76/B77/C59–C62 remain honest nonmatches. Workers continue fresh sources and real helper contracts; initial dirty tools/mips_to_c preserved.
+
 ## 2026-10-02 thirty-sixth completed milestone: original switch tables and complete input update
 
 - Game cartridge C: **615/1,216 functions, 78,512/647,072 bytes (12.13%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**. This batch adds **684 matching code bytes** across three complete routines.

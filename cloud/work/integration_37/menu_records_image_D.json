@@ -1,0 +1,14 @@
+{
+  "group": "codex_menu_records_a88",
+  "source_sha256": "abfce138e6caddda5067f89241818cf43069777fbb19a1392c93e07a896fc3f3",
+  "full_image_word_differences": {
+    "menu_dialog_close": 0,
+    "object_data_allocate": 0,
+    "format_string_parse": 0
+  },
+  "original_table_identity": true,
+  "table_address": "0x80123C20",
+  "table_bytes": 24,
+  "table_sha256": "f6bcb0ccbee2571534ca6b32bdc230101a2d54ae46263f7873c8ff08698a567e",
+  "alignment_bytes_counted": 0
+}

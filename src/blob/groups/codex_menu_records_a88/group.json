@@ -1,0 +1,18 @@
+{
+  "members": [
+    "menu_dialog_close",
+    "object_data_allocate"
+  ],
+  "context": [
+    "format_string_parse"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "menu_dialog_close",
+    "object_data_allocate"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "provenance": "Complete native A88/A89 callers with actual accepted format_string_parse context; independently verified by coordinator D, original helper table and full image bytes exact."
+}
