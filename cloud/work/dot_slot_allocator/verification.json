@@ -1,0 +1,444 @@
+{
+  "verdict": "NONMATCH",
+  "source_sha256": "2ed30539609995338dd4fad46e3b138858017d6186d83411a5d6b863cd15e093",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "base_commit": "a12daa63ae67c8dab3404efb666089c884dadfd4",
+  "target_start": "0x80091b00",
+  "target_end_exclusive": "0x80091ba8",
+  "target_words": 42,
+  "function_bytes": 168,
+  "differing_full_words": 18,
+  "matching_full_words": 24,
+  "extra_nonzero_words": 0,
+  "zero_alignment_words": 2,
+  "relocations": [
+    {
+      "offset": 0,
+      "type": 5,
+      "symbol": "D_80142DD8",
+      "address": "0x80142dd8"
+    },
+    {
+      "offset": 12,
+      "type": 6,
+      "symbol": "D_80142DD8",
+      "address": "0x80142dd8",
+      "addend": 0
+    },
+    {
+      "offset": 4,
+      "type": 5,
+      "symbol": "D_80142DD8",
+      "address": "0x80142dd8"
+    },
+    {
+      "offset": 8,
+      "type": 6,
+      "symbol": "D_80142DD8",
+      "address": "0x80142dd8",
+      "addend": 3072
+    }
+  ],
+  "unresolved": [],
+  "unverified": [],
+  "masks": {},
+  "raw_target_words": [
+    "3c038014",
+    "3c028014",
+    "244239d8",
+    "24632dd8",
+    "806e0003",
+    "15c00006",
+    "240f0001",
+    "a06f0003",
+    "2418ffff",
+    "a4780000",
+    "03e00008",
+    "00601025",
+    "8079001b",
+    "17200006",
+    "240e0001",
+    "a06e001b",
+    "240fffff",
+    "a46f0018",
+    "03e00008",
+    "24620018",
+    "80780033",
+    "17000006",
+    "24190001",
+    "a0790033",
+    "240effff",
+    "a46e0030",
+    "03e00008",
+    "24620030",
+    "806f004b",
+    "15e00006",
+    "24180001",
+    "a078004b",
+    "2419ffff",
+    "a4790048",
+    "03e00008",
+    "24620048",
+    "24630060",
+    "5462ffdf",
+    "806e0003",
+    "00001025",
+    "03e00008",
+    "00000000"
+  ],
+  "raw_candidate_words": [
+    "3c030000",
+    "3c020000",
+    "24420c00",
+    "24630000",
+    "806e0003",
+    "15c00006",
+    "240f0001",
+    "2418ffff",
+    "a06f0003",
+    "a4780000",
+    "03e00008",
+    "00601025",
+    "8079001b",
+    "17200006",
+    "24080001",
+    "2409ffff",
+    "a4690018",
+    "a068001b",
+    "03e00008",
+    "24620018",
+    "806a0033",
+    "15400006",
+    "240b0001",
+    "240cffff",
+    "a46c0030",
+    "a06b0033",
+    "03e00008",
+    "24620030",
+    "806d004b",
+    "15a00006",
+    "240e0001",
+    "240fffff",
+    "a46f0048",
+    "a06e004b",
+    "03e00008",
+    "24620048",
+    "24630060",
+    "5462ffdf",
+    "806e0003",
+    "00001025",
+    "03e00008",
+    "00000000",
+    "00000000",
+    "00000000"
+  ],
+  "resolved_candidate_body_words": [
+    "3c038014",
+    "3c028014",
+    "244239d8",
+    "24632dd8",
+    "806e0003",
+    "15c00006",
+    "240f0001",
+    "2418ffff",
+    "a06f0003",
+    "a4780000",
+    "03e00008",
+    "00601025",
+    "8079001b",
+    "17200006",
+    "24080001",
+    "2409ffff",
+    "a4690018",
+    "a068001b",
+    "03e00008",
+    "24620018",
+    "806a0033",
+    "15400006",
+    "240b0001",
+    "240cffff",
+    "a46c0030",
+    "a06b0033",
+    "03e00008",
+    "24620030",
+    "806d004b",
+    "15a00006",
+    "240e0001",
+    "240fffff",
+    "a46f0048",
+    "a06e004b",
+    "03e00008",
+    "24620048",
+    "24630060",
+    "5462ffdf",
+    "806e0003",
+    "00001025",
+    "03e00008",
+    "00000000"
+  ],
+  "differences": [
+    {
+      "offset": 28,
+      "target": "a06f0003",
+      "candidate": "2418ffff"
+    },
+    {
+      "offset": 32,
+      "target": "2418ffff",
+      "candidate": "a06f0003"
+    },
+    {
+      "offset": 56,
+      "target": "240e0001",
+      "candidate": "24080001"
+    },
+    {
+      "offset": 60,
+      "target": "a06e001b",
+      "candidate": "2409ffff"
+    },
+    {
+      "offset": 64,
+      "target": "240fffff",
+      "candidate": "a4690018"
+    },
+    {
+      "offset": 68,
+      "target": "a46f0018",
+      "candidate": "a068001b"
+    },
+    {
+      "offset": 80,
+      "target": "80780033",
+      "candidate": "806a0033"
+    },
+    {
+      "offset": 84,
+      "target": "17000006",
+      "candidate": "15400006"
+    },
+    {
+      "offset": 88,
+      "target": "24190001",
+      "candidate": "240b0001"
+    },
+    {
+      "offset": 92,
+      "target": "a0790033",
+      "candidate": "240cffff"
+    },
+    {
+      "offset": 96,
+      "target": "240effff",
+      "candidate": "a46c0030"
+    },
+    {
+      "offset": 100,
+      "target": "a46e0030",
+      "candidate": "a06b0033"
+    },
+    {
+      "offset": 112,
+      "target": "806f004b",
+      "candidate": "806d004b"
+    },
+    {
+      "offset": 116,
+      "target": "15e00006",
+      "candidate": "15a00006"
+    },
+    {
+      "offset": 120,
+      "target": "24180001",
+      "candidate": "240e0001"
+    },
+    {
+      "offset": 124,
+      "target": "a078004b",
+      "candidate": "240fffff"
+    },
+    {
+      "offset": 128,
+      "target": "2419ffff",
+      "candidate": "a46f0048"
+    },
+    {
+      "offset": 132,
+      "target": "a4790048",
+      "candidate": "a06e004b"
+    }
+  ],
+  "target_sha256": "c466f1dbe7e0596f1266860f7e6612ab26338fcab2d5f1e664723d1527f722e9",
+  "resolved_body_sha256": "78fa248c1587463873c85321619f6bedd15984963280b6b64f06eac788cbdaf6",
+  "object_sha256": "5f9784496618d4716ccd3b5357c45ad3b5279800378c1bb59b421f44e078a66f",
+  "compiler_cc_sha256": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+  "scorer_sha256": "ca0e5fdebb90e13d1e91643357bcda7d402401552e5de326c361ab6411565cc0",
+  "direct_transfers": [
+    {
+      "caller": "scheduler_recv",
+      "word": 14,
+      "opcode": 3
+    },
+    {
+      "caller": "entity_transform_calc",
+      "word": 45,
+      "opcode": 3
+    },
+    {
+      "caller": "entity_flags_apply",
+      "word": 13,
+      "opcode": 3
+    },
+    {
+      "caller": "sound_position_update",
+      "word": 57,
+      "opcode": 3
+    },
+    {
+      "caller": "sound_position_update",
+      "word": 89,
+      "opcode": 3
+    },
+    {
+      "caller": "camera_target_track",
+      "word": 75,
+      "opcode": 3
+    },
+    {
+      "caller": "object_type7_create",
+      "word": 7,
+      "opcode": 3
+    },
+    {
+      "caller": "object_type1_create",
+      "word": 7,
+      "opcode": 3
+    },
+    {
+      "caller": "func_800C8918",
+      "word": 50,
+      "opcode": 3
+    },
+    {
+      "caller": "func_800C8918",
+      "word": 70,
+      "opcode": 3
+    },
+    {
+      "caller": "sync_entry_register",
+      "word": 9,
+      "opcode": 3
+    },
+    {
+      "caller": "speed_set",
+      "word": 8,
+      "opcode": 3
+    },
+    {
+      "caller": "func_800D5A04",
+      "word": 60,
+      "opcode": 3
+    },
+    {
+      "caller": "high_scores_display",
+      "word": 13,
+      "opcode": 3
+    },
+    {
+      "caller": "func_800D6348",
+      "word": 7,
+      "opcode": 3
+    },
+    {
+      "caller": "credits_screen",
+      "word": 8,
+      "opcode": 3
+    },
+    {
+      "caller": "func_800D6E00",
+      "word": 8,
+      "opcode": 3
+    },
+    {
+      "caller": "drone_pathfind_main",
+      "word": 227,
+      "opcode": 3
+    },
+    {
+      "caller": "func_800D7634",
+      "word": 78,
+      "opcode": 3
+    },
+    {
+      "caller": "func_800D7634",
+      "word": 291,
+      "opcode": 3
+    },
+    {
+      "caller": "object_type7_create_alt",
+      "word": 7,
+      "opcode": 3
+    },
+    {
+      "caller": "RaceStateMachine_Update",
+      "word": 74,
+      "opcode": 3
+    },
+    {
+      "caller": "RaceStateMachine_Update",
+      "word": 187,
+      "opcode": 3
+    },
+    {
+      "caller": "RaceStateMachine_Update",
+      "word": 380,
+      "opcode": 3
+    },
+    {
+      "caller": "RaceStateMachine_Update",
+      "word": 412,
+      "opcode": 3
+    },
+    {
+      "caller": "RaceStateMachine_Update",
+      "word": 509,
+      "opcode": 3
+    },
+    {
+      "caller": "track_texture_load",
+      "word": 11,
+      "opcode": 3
+    },
+    {
+      "caller": "func_800F87A0",
+      "word": 35,
+      "opcode": 3
+    },
+    {
+      "caller": "func_800F87A0",
+      "word": 97,
+      "opcode": 3
+    },
+    {
+      "caller": "func_800F87A0",
+      "word": 121,
+      "opcode": 3
+    },
+    {
+      "caller": "finish_state_alt",
+      "word": 55,
+      "opcode": 3
+    },
+    {
+      "caller": "display_list_flush",
+      "word": 236,
+      "opcode": 3
+    },
+    {
+      "caller": "display_list_flush",
+      "word": 392,
+      "opcode": 3
+    }
+  ],
+  "scope": "Research-only source; no match, promotion, accepted coverage or ROM identity claim"
+}
