@@ -1,0 +1,6 @@
+{
+  "include/game/math.h": "25682e1bc09af28b45b46ab7b94000b5a27784efdf9807376d41ea903d33602a",
+  "asm/us/34A0.s": "524cdb70a9b26373d61e6d5a6467bd05512542b0f3a5f6c4a9e6d4a983c90cb2",
+  "src/libm/math.c": "dcd514e5a7404c1c870d354a4e20096ed5e756878ae32fe46019a78c340c2a41",
+  "tools/cloud/score.py": "ca0e5fdebb90e13d1e91643357bcda7d402401552e5de326c361ab6411565cc0"
+}

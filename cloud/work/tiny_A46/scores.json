@@ -1,0 +1,14 @@
+{
+  "func_800B2BDC": {
+    "strict_diff": 53,
+    "size": 20,
+    "target_size": 54,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "533acf33cc6808d9f55f3f25158c67859dee2e874e34a28e252dff8e725be0d4"
+  }
+}
