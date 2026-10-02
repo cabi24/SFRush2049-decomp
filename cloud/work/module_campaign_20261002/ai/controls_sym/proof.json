@@ -1,0 +1,73 @@
+{
+  "accepted": false,
+  "source_hashes": {
+    "physics_types.h": "eadb022c2b46508ccf4c0b24d81ecfac8aff260668ffadfe048c2820ec7cf718",
+    "sym.c": "912e99040c650c10f48f9864fee9b3633d770fdc20d2326a2654d9f69986a9fe",
+    "group.json": "bc29d4bbd01744040ae6a78ce703c85d4605a5113a737f5e304d2a9b3d88f2c7",
+    "controls.c": "30fa4900930af97e61ee023cf6a43adb7a9f767a2230959226f013cffb2af9b7"
+  },
+  "object_sha256": "5dbcf171e3c64de6673d5de442a80fb2251cc8f711cc681e7651672d4807bdec",
+  "members": [
+    {
+      "function": "func_800E3430",
+      "verdict": "163/189 words differ (8 section-relative relocations unverified: .rodata+0x0 at +0x90, .rodata+0x0 at +0xb4, .rodata+0x4 at +0xc4, .rodata+0x4 at +0xd8, .rodata+0x8 at +0xec, .rodata+0x8 at +0xf0, .rodata+0xc at +0x124, .rodata+0xc at +0x164)",
+      "comparison": {
+        "differing": 163,
+        "total": 189,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0x90",
+          ".rodata+0x0 at +0xb4",
+          ".rodata+0x4 at +0xc4",
+          ".rodata+0x4 at +0xd8",
+          ".rodata+0x8 at +0xec",
+          ".rodata+0x8 at +0xf0",
+          ".rodata+0xc at +0x124",
+          ".rodata+0xc at +0x164"
+        ],
+        "errors": [],
+        "extra_words": 0
+      },
+      "words": 183,
+      "aligned": {
+        "aligned_exact": 136,
+        "aligned_opcode": 177,
+        "aligned_opcode_reg": 145
+      },
+      "frame": 0
+    },
+    {
+      "function": "func_800E3724",
+      "verdict": "113/150 words differ (1 extra words (nonzero beyond target length); 4 section-relative relocations unverified: .rodata+0x10 at +0x90, .rodata+0x10 at +0x94, .rodata+0x14 at +0x9c, .rodata+0x14 at +0xa0)",
+      "comparison": {
+        "differing": 113,
+        "total": 150,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x10 at +0x90",
+          ".rodata+0x10 at +0x94",
+          ".rodata+0x14 at +0x9c",
+          ".rodata+0x14 at +0xa0"
+        ],
+        "errors": [],
+        "extra_words": 1
+      },
+      "words": 153,
+      "aligned": {
+        "aligned_exact": 117,
+        "aligned_opcode": 142,
+        "aligned_opcode_reg": 123
+      },
+      "frame": 56
+    }
+  ],
+  "literal_bytes": {
+    "section_bytes": 32,
+    "native_24_bytes_equal": true,
+    "candidate_24_sha256": "a3b101afe849f68c4c68a0e950256e24673d960ca0de02bd36f24f495332ebc8",
+    "native_24_sha256": "a3b101afe849f68c4c68a0e950256e24673d960ca0de02bd36f24f495332ebc8",
+    "placement_verified": false,
+    "reason": "Protected whole-group relocation refuses shortened helper and overlong caller before data mapping. Matching float values/ordering alone is not full placement proof."
+  },
+  "source_hash_note": "Final sym.c differs from compiled source only by restoration of donor copyright notice; no executable source changed."
+}

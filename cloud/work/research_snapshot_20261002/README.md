@@ -31,3 +31,5 @@ The active visibility-cell reconstruction remains ongoing separately; it is not 
 ## Follow-up module controls
 
 The [module freeze manifest](module_freezes.json) preserves the later genuine inflater closure, corrected navigation/path types and actual tire-helper contexts. These are frozen nonmatches with zero new credit; their reports distinguish preserved accepted helper bodies from unaccepted callers. Current accepted master7c4d12c3 has19.83% combined matching bytes (15.32% game,67.28% static), independently gated outside this PR. The earlier snapshot percentages above describe its original base.
+
+The follow-up manifest also preserves the bounded direct controls/sym donor reconstruction, position/corner updater, and tire donor controls. The controls wrapper recovers the native frame; the position updater recovers the full body length. Both remain nonmatches, with unresolved frame/allocation or protected literal-placement limitations explicitly recorded in their packets.

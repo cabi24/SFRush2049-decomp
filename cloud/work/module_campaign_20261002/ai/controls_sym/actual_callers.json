@@ -1,0 +1,18 @@
+{
+  "func_800E3430": [
+    {
+      "caller": "func_800E3724",
+      "call_address": "0x800e373c"
+    }
+  ],
+  "func_800E3724": [
+    {
+      "caller": "func_800E56F8",
+      "call_address": "0x800e59c4"
+    },
+    {
+      "caller": "func_800E56F8",
+      "call_address": "0x800e5b44"
+    }
+  ]
+}
