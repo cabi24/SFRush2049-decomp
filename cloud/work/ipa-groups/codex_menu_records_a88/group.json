@@ -1,0 +1,21 @@
+{
+  "members": [
+    "menu_dialog_close",
+    "object_data_allocate"
+  ],
+  "context": [
+    "format_string_parse"
+  ],
+  "claims": [
+    "menu_dialog_close",
+    "object_data_allocate"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "menu_dialog_close",
+    "object_data_allocate"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}

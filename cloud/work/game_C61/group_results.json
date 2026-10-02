@@ -1,0 +1,41 @@
+[
+  {
+    "variant": "real_group",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "566395a5bda82cc0607269089f41d7aa8bc16944d82995845e7583c7c0a178fa",
+    "linked": {
+      "camera_first_person": {
+        "differing": 227,
+        "total": 236,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "func_800AD650": {
+        "differing": 30,
+        "total": 57,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "func_800BF780": {
+        "differing": 24,
+        "total": 46,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "func_8009E820": {
+        "differing": 24,
+        "total": 37,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    }
+  }
+]

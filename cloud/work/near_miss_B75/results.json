@@ -1,0 +1,58 @@
+[
+  {
+    "source": "audio_volume_pan_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "cadb996089e9b1105a84871dea28d100f43751e31693a79db2d63b9d90c320e6",
+    "comparison": {
+      "differing": 54,
+      "total": 62,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 12
+    },
+    "text_words": 76
+  },
+  {
+    "source": "audio_volume_pan_index.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "e4d1097dd30e50dc951830733ae89eb8bcb7929a58ba14dd6ba8ef26b8833e73",
+    "comparison": {
+      "differing": 2,
+      "total": 62,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 64
+  },
+  {
+    "source": "audio_volume_pan_index_O2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "f9f792eb25f7e4945f672a9eb6b426687c6b7a470cc93276915ba5d78cbed732",
+    "comparison": {
+      "differing": 2,
+      "total": 62,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 64
+  },
+  {
+    "source": "audio_volume_pan_cursors.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "521e4665cb424742f322b153b06117dee0e30d3fa84e98e9d983aaa762a967a2",
+    "comparison": {
+      "differing": 0,
+      "total": 62,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 64
+  }
+]

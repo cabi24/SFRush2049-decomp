@@ -1,0 +1,33 @@
+[
+  {
+    "variant": "real_group",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "9361284c8167cb1e6fe6e73bc71f93c9d9ab411ed8844840226ae014c6aee5e5",
+    "linked": {
+      "reverb_setup": {
+        "differing": 89,
+        "total": 132,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x2c at +0xb4",
+          ".rodata+0x2c at +0xbc",
+          ".rodata+0x74 at +0x140",
+          ".rodata+0x74 at +0x148"
+        ],
+        "errors": [],
+        "extra_words": 0
+      },
+      "func_800B4B00": {
+        "differing": 0,
+        "total": 37,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0x24",
+          ".rodata+0x0 at +0x2c"
+        ],
+        "errors": [],
+        "extra_words": 0
+      }
+    }
+  }
+]

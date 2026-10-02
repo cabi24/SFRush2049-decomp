@@ -1,0 +1,13 @@
+{
+  "control.logical_and.c": "37d75e2c245ccdb154758723bcb344bf0e3500fc2b19e0013dff53babb5326f6",
+  "control.actual_conditional.c": "cd23d3b423c42d4fb8c8521188db78155be48326a6a66d2a8e833f622b948170",
+  "group.c": "cd23d3b423c42d4fb8c8521188db78155be48326a6a66d2a8e833f622b948170",
+  "positive.logical_or.c": "809e8960d476748839e9cd43299aa556ee837419e5d5b6ab5865782539f7e76e",
+  "control.break_default.c": "8f63f245d2e242c1e439c436b206b1608a56051a9933da5fe4dca6385dad0328",
+  "control.unary_not.c": "430aa15e01125f2a34acfec8eda597604776e2793a3460e2762560eaad33ec5b",
+  "control.consumed_boolean.c": "12016b79f7d72952e2d6d15d253ae8ceda5b707b9e9e561fbfdf368c819976e2",
+  "control.actual_boolean_value.c": "399d3daccc52b8d245d54a1c8433292c243b8ea86070ca54337780962942e476",
+  "control.logical_or.c": "3bba0768e22e270b2fa81816468e55a2e879e56f9afaf6a3731e78f2eda0d02c",
+  "control.direct_return.c": "a5e91c9564e44a21e99ca7b329896483670da11dd4ca62e1ba1fcd47629c0e15",
+  "control.conditional_value.c": "a7bf561f8181418de9eba4f2af36d3cd0f9cdaf3365db58331da7ff385a8236f"
+}

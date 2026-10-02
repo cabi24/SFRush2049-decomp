@@ -1,0 +1,14 @@
+{
+  "claims": [],
+  "function": "camera_position_update",
+  "address": "0x800AEB54",
+  "target_bytes": 452,
+  "files": {
+    "camera_position_update_rows_O2.c": "8b4b6c69fcb45df0cd248f28e043af69cf93b6be80a5b30aaf782960311a9465",
+    "camera_position_update_vectors.c": "6807c01f6b5920920a6ad7f9a6d7d9e82dc975880217dd57317945914bb1a971",
+    "results.json": "c3bcc92a8b9c59c8d59268ba4a864b9f16bc96175f00a9577e1ef2f621914122",
+    "camera_position_update_native.c": "9bc1438d382fa4ad81f0da236ce0907259a4d73d4aa1c2d5b77f790bd70fdb9e",
+    "camera_position_update_O2.c": "fef1ec9bdfc952f7fd5f679987e00662173e4204c7c5978be7720999788096e0",
+    "camera_position_update_rows.c": "13d8132715d9bfd2c1409b30f8aa7e7629fe7da24a8fa86441289591e68caafc"
+  }
+}

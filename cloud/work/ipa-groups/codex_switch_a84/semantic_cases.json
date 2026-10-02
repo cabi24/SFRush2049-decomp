@@ -1,0 +1,210 @@
+{
+  "table_address": "0x80124020",
+  "cases": [
+    {
+      "case": 0,
+      "target": "0x800ccb70",
+      "result": 1
+    },
+    {
+      "case": 1,
+      "target": "0x800ccb80",
+      "result": 1
+    },
+    {
+      "case": 2,
+      "target": "0x800ccb88",
+      "result": 1
+    },
+    {
+      "case": 3,
+      "target": "0x800ccb90",
+      "result": 1
+    },
+    {
+      "case": 4,
+      "target": "0x800ccb98",
+      "result": 1
+    },
+    {
+      "case": 5,
+      "target": "0x800ccba0",
+      "result": 1
+    },
+    {
+      "case": 6,
+      "target": "0x800ccba8",
+      "result": 1
+    },
+    {
+      "case": 7,
+      "target": "0x800ccbb0",
+      "result": 1
+    },
+    {
+      "case": 8,
+      "target": "0x800ccbb8",
+      "result": 1
+    },
+    {
+      "case": 9,
+      "target": "0x800ccbf8",
+      "result": "boot_boolean"
+    },
+    {
+      "case": 10,
+      "target": "0x800ccc28",
+      "result": 1
+    },
+    {
+      "case": 11,
+      "target": "0x800ccc30",
+      "result": 1
+    },
+    {
+      "case": 12,
+      "target": "0x800ccc38",
+      "result": 10
+    },
+    {
+      "case": 13,
+      "target": "0x800ccc40",
+      "result": 10
+    },
+    {
+      "case": 14,
+      "target": "0x800ccc48",
+      "result": 12
+    },
+    {
+      "case": 15,
+      "target": "0x800ccc50",
+      "result": 0
+    },
+    {
+      "case": 16,
+      "target": "0x800ccc58",
+      "result": 0
+    },
+    {
+      "case": 17,
+      "target": "0x800ccc60",
+      "result": 0
+    },
+    {
+      "case": 18,
+      "target": "0x800ccc68",
+      "result": 1
+    },
+    {
+      "case": 19,
+      "target": "0x800ccc70",
+      "result": 0
+    },
+    {
+      "case": 20,
+      "target": "0x800ccc78",
+      "result": 0
+    },
+    {
+      "case": 21,
+      "target": "0x800ccb60",
+      "result": 3
+    },
+    {
+      "case": 22,
+      "target": "0x800ccb68",
+      "result": 5
+    },
+    {
+      "case": 23,
+      "target": "0x800ccb78",
+      "result": 1
+    },
+    {
+      "case": 24,
+      "target": "0x800ccbc0",
+      "result": 2
+    },
+    {
+      "case": 25,
+      "target": "0x800ccbc8",
+      "result": 0
+    },
+    {
+      "case": 26,
+      "target": "0x800ccbd0",
+      "result": 2
+    },
+    {
+      "case": 27,
+      "target": "0x800ccbd8",
+      "result": 0
+    },
+    {
+      "case": 28,
+      "target": "0x800ccbe0",
+      "result": 0
+    },
+    {
+      "case": 29,
+      "target": "0x800ccbe8",
+      "result": 0
+    },
+    {
+      "case": 30,
+      "target": "0x800ccbf0",
+      "result": 0
+    },
+    {
+      "case": 31,
+      "target": "0x800ccc20",
+      "result": 0
+    },
+    {
+      "case": 32,
+      "target": "0x800ccc80",
+      "result": 0
+    },
+    {
+      "case": 33,
+      "target": "0x800ccc88",
+      "result": 0
+    },
+    {
+      "case": 34,
+      "target": "0x800ccc98",
+      "result": 69
+    },
+    {
+      "case": 35,
+      "target": "0x800ccc90",
+      "result": 5
+    },
+    {
+      "case": 36,
+      "target": "0x800ccca0",
+      "result": 30
+    },
+    {
+      "case": 37,
+      "target": "0x800ccca8",
+      "result": 0
+    },
+    {
+      "case": 38,
+      "target": "0x800cccb8",
+      "result": 10
+    },
+    {
+      "case": 39,
+      "target": "0x800cccb0",
+      "result": 8
+    },
+    {
+      "case": 40,
+      "target": "0x800cccc0",
+      "result": 0
+    }
+  ]
+}

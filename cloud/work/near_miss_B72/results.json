@@ -1,0 +1,44 @@
+[
+  {
+    "source": "audio_priority_find_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "002790d047a504b543e8b2f5c0273c6ebf92a90cf4691d189c6f185eb8aae197",
+    "comparison": {
+      "differing": 94,
+      "total": 108,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 108
+  },
+  {
+    "source": "audio_priority_find_O2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "9b3ed5490ac7266c335cd84a110f2a8c5663a65a3f134182a044ee508cce23a2",
+    "comparison": {
+      "differing": 94,
+      "total": 108,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 108
+  },
+  {
+    "source": "audio_priority_find_wordinputs.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "6ea35bc4086b55bb40aac0a847212dc18c264ee5e5b328848079328c1e90c2de",
+    "comparison": {
+      "differing": 103,
+      "total": 108,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 108
+  }
+]

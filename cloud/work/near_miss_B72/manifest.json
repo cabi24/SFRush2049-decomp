@@ -1,0 +1,12 @@
+{
+  "claims": [],
+  "function": "audio_priority_find",
+  "address": "0x800BA46C",
+  "target_bytes": 432,
+  "files": {
+    "audio_priority_find_O2.c": "9b3ed5490ac7266c335cd84a110f2a8c5663a65a3f134182a044ee508cce23a2",
+    "audio_priority_find_wordinputs.c": "6ea35bc4086b55bb40aac0a847212dc18c264ee5e5b328848079328c1e90c2de",
+    "results.json": "7d10f9aeab38a1d9894dfd04f2e85a85ca8c930e5c48a89f3489da5c7ae38999",
+    "audio_priority_find_native.c": "002790d047a504b543e8b2f5c0273c6ebf92a90cf4691d189c6f185eb8aae197"
+  }
+}

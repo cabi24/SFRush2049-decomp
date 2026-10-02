@@ -1,0 +1,14 @@
+{
+  "targets": [
+    "func_800CCB40"
+  ],
+  "claims": [],
+  "source": "group.c",
+  "source_sha256": "cd23d3b423c42d4fb8c8521188db78155be48326a6a66d2a8e833f622b948170",
+  "manifest_sha256": "ce34fb18dd62e1672e065d90b9c9775fab44478061542eea53f0fa51eb2e1723",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "natural_residual": 6,
+  "rejected_byte_lead": "positive.logical_or.c",
+  "rejected_byte_lead_reason": "Redundant false predicate lacks original operand evidence; coordinator rejected publication.",
+  "frozen": true
+}

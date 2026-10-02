@@ -1,0 +1,44 @@
+[
+  {
+    "source": "steering_apply_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "5d10c6662e9d24c951ede3179867e8c3506b05c6c6e3d4d79e083a55dc32d938",
+    "comparison": {
+      "differing": 47,
+      "total": 65,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 64
+  },
+  {
+    "source": "steering_apply_O2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "a3c90ebbfaefee51891adca47db28de494726671e3cea6f56f9b4b4b4a6f8e8c",
+    "comparison": {
+      "differing": 47,
+      "total": 65,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 64
+  },
+  {
+    "source": "steering_apply_vectors.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "8fc61e6758060151f889827876c7e07e4aa3f8e3a8d714944c7fd72269f86e2d",
+    "comparison": {
+      "differing": 63,
+      "total": 65,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 60
+  }
+]

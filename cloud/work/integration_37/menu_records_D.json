@@ -1,0 +1,29 @@
+{
+  "menu_dialog_close": {
+    "differing": 0,
+    "total": 26,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "object_data_allocate": {
+    "differing": 0,
+    "total": 20,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "format_string_parse": {
+    "differing": 0,
+    "total": 45,
+    "unresolved": [],
+    "unverified": [
+      ".rodata+0x0 at +0x20",
+      ".rodata+0x0 at +0x28"
+    ],
+    "errors": [],
+    "extra_words": 0
+  }
+}

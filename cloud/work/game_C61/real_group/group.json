@@ -1,0 +1,21 @@
+{
+  "members": [
+    "camera_first_person"
+  ],
+  "context": [
+    "func_800AD650",
+    "func_800BF780",
+    "func_8009E820"
+  ],
+  "claims": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "camera_first_person",
+    "func_800AD650",
+    "func_800BF780",
+    "func_8009E820"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "function": "func_8010D680",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 2862,
+    "linked": {
+      "differing": 110,
+      "total": 119,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0xe4",
+        ".rodata+0x0 at +0xec"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "250141a65444c9679a80d10cf0224646ae2cedda4e113aa938cdd311ba72c00f",
+    "target_sha256": "759959e943b7c57b492590aa9bb8dd9917fae0a54c7bc9bb9ae4e8809a42533d"
+  }
+]

@@ -302,6 +302,7 @@ audio_channel_priority:
 .section .text.audio_volume_pan, "ax", @progbits
 .globl audio_volume_pan
 audio_volume_pan:
+    /* compiled from src/blob/audio_volume_pan.c */
     .word 0x3C058013
     .word 0x8CA5E6E0
     .word 0x27BDFFE0

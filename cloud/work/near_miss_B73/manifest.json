@@ -1,0 +1,13 @@
+{
+  "claims": [],
+  "function": "stat_race_start",
+  "address": "0x800FE080",
+  "target_bytes": 1068,
+  "files": {
+    "stat_race_start_dest.c": "c68adb7e7af0621895f306dc6c99edaab14587ba09274ec76768be8ad6b9b4c3",
+    "stat_race_start_native.c": "ac1b2761a4ef6760a453b741d2ad53788dec23cef7eb68ccd2e80859af9043de",
+    "results.json": "80ae9cfe6df391a1fd2e10e491680f1e690baac4d72b9859f2a1d6ad745ab538",
+    "stat_race_start_intloops.c": "06d48ac81334e98b6fce83eec754eda2fc3029e517377d4f3e32785a02584c86",
+    "stat_race_start_intloops_O2.c": "1f099a87e8b7cf105ad091f1af6a156ab86dd15f289cc09ae65c540ebfd13e1a"
+  }
+}

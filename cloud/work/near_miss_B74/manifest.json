@@ -1,0 +1,11 @@
+{
+  "claims": [],
+  "function": "func_800E7710",
+  "address": "0x800E7710",
+  "target_bytes": 248,
+  "files": {
+    "func_800E7710_O2.c": "0e37c3b1915ce12d1603f84c9eb4a7e404a13814f1c695154f396f50e252b730",
+    "results.json": "b5d336f3cb8bb5a1579ae632b460e8cd24ff373706637d3f6ca3240519cbd744",
+    "func_800E7710_native.c": "a8c1c8051e49c1d34d7f31020199714a713ec2ce32e7070d579bb9fea98cf475"
+  }
+}

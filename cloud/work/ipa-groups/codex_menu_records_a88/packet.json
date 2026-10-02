@@ -1,0 +1,13 @@
+{
+  "status": "MATCH_PENDING_ROOT_GATES",
+  "claims": [
+    "menu_dialog_close",
+    "object_data_allocate"
+  ],
+  "context": [
+    "format_string_parse"
+  ],
+  "source_sha256": "abfce138e6caddda5067f89241818cf43069777fbb19a1392c93e07a896fc3f3",
+  "canonical_image_verified": true,
+  "frozen": true
+}

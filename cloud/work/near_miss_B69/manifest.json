@@ -1,0 +1,12 @@
+{
+  "claims": [],
+  "function": "brake_light_update",
+  "address": "0x800A6244",
+  "target_bytes": 448,
+  "files": {
+    "brake_light_update_O2.c": "dead6a7fcf3bad74dc11b5349d75bb974d1327c77d50dbf33475c0bf60891029",
+    "brake_light_update_native.c": "d3e5bee9b321ddb602aef1d9ac057a34d984484ca3c6b52e050bb17a71ad955f",
+    "results.json": "a86a4d3cc435d5524e2e260605063aa06a80543f6246550173a842d63fe10cbf",
+    "brake_light_update_scalars.c": "dc7bb3e6a9d13d17ceb2f407056cbe9e91c75fc11c788b51e499f9ffcd7f542b"
+  }
+}
