@@ -14,5 +14,17 @@ SECTIONS
     ASSERT(gViMgrEventDP == ADDR(.vi_manager_bss) + 0x11e0, "owned storage alias moved: gViMgrEventDP")
     ASSERT(gViMgrEventSP == ADDR(.vi_manager_bss) + 0x11f8, "owned storage alias moved: gViMgrEventSP")
     ASSERT(gViMgrRetraceCounter == ADDR(.vi_manager_bss) + 0x1210, "owned storage alias moved: gViMgrRetraceCounter")
+    .timer_services_bss 0x80037c30 (NOLOAD) : SUBALIGN(16)
+    {
+        __timer_services_bss_start = .;
+        build/us/src/rom/lib_cc50.o(.bss.timer_services);
+        __timer_services_bss_end = .;
+    }
+    ASSERT(SIZEOF(.timer_services_bss) == 0x40, "owned storage size changed: timer_services")
+    ASSERT(__osBaseTimer == ADDR(.timer_services_bss) + 0x0, "owned storage alias moved: __osBaseTimer")
+    ASSERT(gViTimeAccumHi == ADDR(.timer_services_bss) + 0x20, "owned storage alias moved: gViTimeAccumHi")
+    ASSERT(gViLastCount == ADDR(.timer_services_bss) + 0x28, "owned storage alias moved: gViLastCount")
+    ASSERT(gViRetraceCount == ADDR(.timer_services_bss) + 0x2c, "owned storage alias moved: gViRetraceCount")
+    ASSERT(__osTimerCounter == ADDR(.timer_services_bss) + 0x30, "owned storage alias moved: __osTimerCounter")
 }
 INSERT AFTER .data;

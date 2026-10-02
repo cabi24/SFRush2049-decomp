@@ -621,6 +621,18 @@
     "verified": "rom-sha1",
     "verified_at": "2026-07-15"
   },
+  "src/rom/lib_cc50.c:dll_init": {
+    "body_sha256": "5c936501e7adce13ef7b979edef234ac9bbc65b279fba82e25890855f82c0cfc",
+    "flagset": "-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
+    "raw_word_diff": 0,
+    "storage_owner": "timer_services",
+    "strict_proof_sha256": "281e6c31ba76072c3cbf48efeb3d359ac0c30ca274015ab60e9b7474d8ce0081",
+    "strict_words": 35,
+    "target_id": "dll_init",
+    "target_o_sha": "321befc936cee5bd08c815a671f798b064dff2603e9cb9503a7a78a0de651304",
+    "toolkit_sha": null,
+    "verified": "rom-sha1"
+  },
   "src/rom/lib_cc50.c:dll_insert": {
     "body_sha256": "02d281cf3dc0d038f2439d375d40a6e9d14ee67adb94844bc259e8ff38f81e77",
     "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
