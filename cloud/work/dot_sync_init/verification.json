@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "verdict": "PASS",
+  "scope": "Complete compiled-function match only; no image or ROM integration",
+  "base_commit": "2f1f30c508495db08d61170c4a9b2409461ae326",
+  "source_path": "cloud/matches/sync_init_conditional.c",
+  "source_sha256": "433a35ac3dc36664664e1dcb08e5284a616816e3c82456a172bc1c4ba2a838d4",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "canonical_exit_code": 0,
+  "canonical_stdout": "sync_init_conditional:\n  MATCH\n",
+  "independent_replay": {
+    "method": "Fresh clean-directory direct pinned IDO cc invocation; all HI16/LO16 and JAL words resolved by independent explicit arithmetic, then compared without masks",
+    "object_sha256": "04ff0fb83e3f8b9e5be458927d0baa561061f24414eebda14573724c105af8c3",
+    "function_symbol": {
+      "name": "sync_init_conditional",
+      "value": 0,
+      "size": 100,
+      "type": 2,
+      "section": 4
+    },
+    "target_start": "0x800EE7BC",
+    "target_end_exclusive": "0x800EE820",
+    "body_words": 25,
+    "body_bytes": 100,
+    "zero_alignment_words": 3,
+    "nonzero_excess_words": 0,
+    "target_sha256": "50bf8af4f3ebbf9989828f427c38ab244361867cfe17800c7f1a643dfcda018d",
+    "resolved_body_sha256": "50bf8af4f3ebbf9989828f427c38ab244361867cfe17800c7f1a643dfcda018d",
+    "strict_full_word_differences": 0,
+    "relocations": [
+      {
+        "offset": 0,
+        "type": 5,
+        "symbol": "D_801147C0",
+        "address": "0x801147C0"
+      },
+      {
+        "offset": 4,
+        "type": 6,
+        "symbol": "D_801147C0",
+        "address": "0x801147C0",
+        "addend": 0
+      },
+      {
+        "offset": 24,
+        "type": 5,
+        "symbol": "D_801147C0",
+        "address": "0x801147C0"
+      },
+      {
+        "offset": 36,
+        "type": 6,
+        "symbol": "D_801147C0",
+        "address": "0x801147C0",
+        "addend": 0
+      },
+      {
+        "offset": 28,
+        "type": 5,
+        "symbol": "D_801461D0",
+        "address": "0x801461D0"
+      },
+      {
+        "offset": 44,
+        "type": 6,
+        "symbol": "D_801461D0",
+        "address": "0x801461D0",
+        "addend": 0
+      },
+      {
+        "offset": 32,
+        "type": 5,
+        "symbol": "D_801461FC",
+        "address": "0x801461FC"
+      },
+      {
+        "offset": 40,
+        "type": 6,
+        "symbol": "D_801461FC",
+        "address": "0x801461FC",
+        "addend": 0
+      },
+      {
+        "offset": 48,
+        "type": 4,
+        "symbol": "osCreateMesgQueue",
+        "address": "0x80006A00",
+        "addend": 0
+      },
+      {
+        "offset": 56,
+        "type": 5,
+        "symbol": "D_801461D0",
+        "address": "0x801461D0"
+      },
+      {
+        "offset": 60,
+        "type": 6,
+        "symbol": "D_801461D0",
+        "address": "0x801461D0",
+        "addend": 0
+      },
+      {
+        "offset": 68,
+        "type": 4,
+        "symbol": "osJamMesg",
+        "address": "0x800075E0",
+        "addend": 0
+      },
+      {
+        "offset": 84,
+        "type": 5,
+        "symbol": "D_80149DA0",
+        "address": "0x80149DA0"
+      },
+      {
+        "offset": 88,
+        "type": 6,
+        "symbol": "D_80149DA0",
+        "address": "0x80149DA0",
+        "addend": 0
+      }
+    ],
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "canonical_comparison": {
+      "differing": 0,
+      "total": 25,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  "compiler_identity": {
+    "name": "IDO 5.3 static-recomp v1.2",
+    "pinned_archive_sha256": "ab5c741561f80913d58c8b074771f23941a3edd312505a8ebed6d1dfeb65e506",
+    "note": "Approved installed toolchain reused",
+    "executable_sha256": {
+      "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+      "acpp": "7bfdf2f79010eb95bd47e165036cac04a69e5f1290fde11736e5f6934f3e9189",
+      "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+      "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+      "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+      "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+    }
+  },
+  "audit_script_sha256": "825f2ab6adfbdcbd3f1870e8b96a98a510ab9ffa97cd405f11ff1e88861ab422",
+  "scorer_sha256": "ca0e5fdebb90e13d1e91643357bcda7d402401552e5de326c361ab6411565cc0",
+  "setup_sha256": "e78fafc84cb5cde638bbcab528b96de3d6837e39b3b1f8f8d6c69e55d8f13e4b",
+  "protected_manifest_valid": true,
+  "protected_manifest_files_verified": 23,
+  "protected_paths_changed": [],
+  "direct_transfer_scan": {
+    "functions": 1216,
+    "words": 140252,
+    "j_and_jal": [],
+    "limit": "Indirect/computed transfers not excluded"
+  },
+  "host_semantics": {
+    "cases": 131072,
+    "repeated_calls": 131072,
+    "source_sha256": "d6a00d257748f9d1556167368c1eab13ca7845bf882e4b7603fa088a0cc9317e",
+    "result": "PASS 131072 initial-state cases plus 131072 repeated calls",
+    "coverage": "Every signed-byte guard and reset-state value, with success/failure jam returns; exact call order/arguments and guard-before-calls/reset-after-calls behavior, queue absence on nonzero guard, repeated calls, untouched message buffer",
+    "sanitizers": "Host AddressSanitizer and UndefinedBehaviorSanitizer; leak detection disabled under sandbox ptrace; no dynamic allocation",
+    "limit": "Mocks check delegation and observable C behavior, not real libultra scheduling or N64 execution"
+  },
+  "checks": {
+    "cloud_scorer_tests": "621 passed; exit 0",
+    "repository_tests": "1299 passed, 41 skipped, 9 deselected; exit 0",
+    "static_locks": "160 intact",
+    "blob_group_source_hash_issues": 0,
+    "protected_manifest": "23 entries verified",
+    "native_layout": "IDO compile-time assertions: sizeof queue 24, msgCount offset16, msg offset20",
+    "host_C89": "PASS"
+  },
+  "scope_checks": {
+    "accepted_lock_or_alias": false,
+    "other_group_claims": [],
+    "open_matching_PRs_excluded": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+    ],
+    "new_files": 3,
+    "accepted_coverage_change": 0,
+    "source_image_splice": "not run: full image unavailable",
+    "full_ROM_SHA1": "not run: ROM unavailable",
+    "make_test": "not run: ROM unavailable",
+    "live_coordinator": "Integrator must recheck before promotion"
+  },
+  "independent_peer_review": {
+    "result": "PASS",
+    "source_sha256": "433a35ac3dc36664664e1dcb08e5284a616816e3c82456a172bc1c4ba2a838d4",
+    "method": "Separate clean compilation plus GNU ld relocation and raw-byte comparison; all25 native words, full zero-input ABI, source naturalness, eligibility and independent ASan/UBSan semantics checked",
+    "reviewer_host_cases": 65536,
+    "reviewer_repeated_calls": true
+  },
+  "semantic_audit": {
+    "prototype": "void sync_init_conditional(void)",
+    "real_input": "signed-byte global guard D_801147C0",
+    "native_start": "0x800EE7BC",
+    "native_end_exclusive": "0x800EE820",
+    "full_body_words": 25,
+    "guard_behavior": "Nonzero skips calls; zero writes1 before queue creation and jam",
+    "queue_calls": "osCreateMesgQueue(&D_801461D0,&D_801461FC,1); osJamMesg(&D_801461D0,NULL,0); return ignored",
+    "all_paths": "Set D_80149DA0=-1 before return",
+    "historical_suffix_warning": "Historical game.c entry0x800EE7C4 is a suffix and must not be treated as a callable condition-parameter ABI",
+    "arcade_equivalent": "Not established; arcade reference checkout unavailable",
+    "limits": "Non-atomic guard; real queue scheduling/thread safety not established by host mocks"
+  }
+}
