@@ -6808,6 +6808,7 @@ entity_render_setup:
 .section .text.func_8008D084, "ax", @progbits
 .globl func_8008D084
 func_8008D084:
+    /* compiled from src/blob/func_8008D084.c */
     .word 0xAFA50004
     .word 0x948F0002
     .word 0x01E5C025
@@ -6817,6 +6818,7 @@ func_8008D084:
 .section .text.func_8008D098, "ax", @progbits
 .globl func_8008D098
 func_8008D098:
+    /* compiled from src/blob/func_8008D098.c */
     .word 0xAFA50004
     .word 0x948F0002
     .word 0x00A0C027

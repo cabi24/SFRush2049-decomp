@@ -1,0 +1,26 @@
+{
+  "object_init_cleared": {
+    "target_id": "object_init_cleared",
+    "address": 2148199724,
+    "population": "extracted",
+    "insn_count": 14,
+    "target_asm_sha": "3773c0dcd00f0ba25139cbd24a3094f2818cd7fe38e670860ff0e619c9c85620",
+    "target_o_sha": "464714b5216c177bf8e536bd2281dd5f383aefcc28817d83f243e46af0b7ae74",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "raw_word",
+    "gate_reason": "extent_conflict:func_800AED20"
+  },
+  "euler_to_matrix": {
+    "target_id": "euler_to_matrix",
+    "address": 2148063076,
+    "population": "extracted",
+    "insn_count": 67,
+    "target_asm_sha": "941f24bad6263e059d7482673a3411221710e16ff2f834ae76cf2f7471a556fc",
+    "target_o_sha": "3f8479d6ef9d1250b02646f3a12c3cfc6d0d43f9f54c8d7526aeee084973f4e3",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "extent_repaired"
+  }
+}

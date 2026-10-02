@@ -1,0 +1,38 @@
+{
+  "func_800A5560": {
+    "target_id": "func_800A5560",
+    "address": 2148160864,
+    "population": "extracted",
+    "insn_count": 7,
+    "target_asm_sha": "e957ff2529e4a2f83dc39727196bb818eebc0abf46d312f1ac19a5a43fac6f39",
+    "target_o_sha": "9065b941eda0c539f4a35e71a3c539788fe66c500bedf309470e013d018824f1",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "discovered"
+  },
+  "func_800BEA3C": {
+    "target_id": "func_800BEA3C",
+    "address": 2148264508,
+    "population": "extracted",
+    "insn_count": 7,
+    "target_asm_sha": "3458f3e8157fac897470f7e1501e49f2298ec148389824b311adf6730d52457a",
+    "target_o_sha": "01ea6f6bd74755ccca17d32f6877a58f7358714d20ecaebaabcf53b3a009d748",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "discovered"
+  },
+  "func_800A1BB4": {
+    "target_id": "func_800A1BB4",
+    "address": 2148146100,
+    "population": "extracted",
+    "insn_count": 46,
+    "target_asm_sha": "ffaf53b4bb802af0d543c993213eb8b8fe0add11a6304393cf691fe651a3f7e2",
+    "target_o_sha": "f23914cac1c801f2a4db039d2dcf29f6d0f6355ce15f4320399a462023432e78",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "discovered"
+  }
+}

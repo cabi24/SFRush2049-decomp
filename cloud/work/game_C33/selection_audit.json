@@ -1,0 +1,14 @@
+{
+  "func_800A43FC": {
+    "accepted_game_lock": false,
+    "assembly": "build/m2c_asm/func_800A43FC.s",
+    "assembly_sha256": "c0e91723ecae9915d15a9825c88a75e8823eb4b040adbee3fdcf170c71e001fb",
+    "selection": "Current actual locks and full prior name/address reports checked before reservation; disjoint from A58 D5374 and B39."
+  },
+  "func_800EC190": {
+    "accepted_game_lock": false,
+    "assembly": "build/m2c_asm/func_800EC190.s",
+    "assembly_sha256": "913e63e611632b755e27238206526080065b7c88d5d4e9b9f61118abd4145802",
+    "selection": "Current actual locks and full prior name/address reports checked before reservation; disjoint from A58 D5374 and B39."
+  }
+}

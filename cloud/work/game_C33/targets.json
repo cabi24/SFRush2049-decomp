@@ -1,0 +1,26 @@
+{
+  "func_800A43FC": {
+    "target_id": "func_800A43FC",
+    "address": 2148156412,
+    "population": "extracted",
+    "insn_count": 53,
+    "target_asm_sha": "77a0220a1403f11c84554736004bf0b4db45620ea3bd2bfac12f487fc839dbbd",
+    "target_o_sha": "3d64ba1eb25ba320302f160b2a00db3893c5749da7e8e596b0aee8d4584558fa",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "discovered"
+  },
+  "func_800EC190": {
+    "target_id": "func_800EC190",
+    "address": 2148450704,
+    "population": "extracted",
+    "insn_count": 56,
+    "target_asm_sha": "ae2dae34e9370df5720a09d00ed5f948bc0b42a34b37227f31af055e4fba84a4",
+    "target_o_sha": "e7f0f70b08c66d643aca25c3caa2db37d90c633c3a6b19ba0d410302a86b3921",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "discovered"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "func_800E7DD0_O1": "113/116 words differ (19 extra words (nonzero beyond target length))",
+  "func_800E7DD0_O3": "48/116 words differ",
+  "func_800E7DD0_O2": "48/116 words differ",
+  "func_800E7DD0_shortreturn": "50/116 words differ (1 extra words (nonzero beyond target length))",
+  "func_800E7DD0_flag": "48/116 words differ",
+  "func_800E7DD0_byteflags": "48/116 words differ",
+  "func_800E7DD0_mode": "48/116 words differ"
+}

@@ -1,0 +1,30 @@
+{
+  "function": "func_800A5560",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source_sha256": "311b85532cdeb92f10f8d05f269c4f27c14e8d1b3ddf121a9ef8f9b1ee4a295c",
+  "target_sha256": "9065b941eda0c539f4a35e71a3c539788fe66c500bedf309470e013d018824f1",
+  "compile_command": [
+    "/home/cburnes/rush2049/cache/toolkits/796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5/ido/cc",
+    "-c",
+    "-g0",
+    "-O2",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Wab,-r4300_mul",
+    "/home/cburnes/agents/C/scratch/game-C32/func_800A5560.c",
+    "-o",
+    "/tmp/C32-verify-9rlglsic/candidate.o"
+  ],
+  "compile_exit": 0,
+  "strict_score": 0,
+  "linked": {
+    "differing": 0,
+    "total": 7,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  }
+}

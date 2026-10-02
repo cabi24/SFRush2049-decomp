@@ -1,5 +1,13 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-01 twenty-fifth completed milestone: complete utility and resource source
+
+- Game cartridge C: **596/1,216 functions, 71,904/647,072 bytes (11.11%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**.
+- Eight complete ordinary routines add **1,356 bytes**: A57 real box traversal (252), A60 actual player/car indexed flag query (392), C32 packed color setter (28), C34 packed resource section parser (212), B40 two true halfword flag leaves (20/24) and bounded divisor helper (160), and C35 Euler matrix builder (268). Actual consumed inputs, original guards and named globals are retained; no invented operations, formals or context credit.
+- Independent D canonical MATCH for every final source, identical image, and source-built original ROM SHA-1 EXACT. Full pytest **713 passed, 514 skipped, captured exit 0**; all 596 blob locks, group checks and 123 static/source locks pass. A57/A60 flags **-g0 -O2 -mips2 -G 0 -non_shared**; the other six add **-Wab,-r4300_mul**.
+- Since original handoff: **99 game functions / 15,488 bytes** and **97 static functions / 27,284 bytes** accepted. Previous fe098ff4 passed CI36953789143; no open cloud PRs. Frozen negative packets receive zero credit. An inferred alias inside an accepted body was refused before promotion; both canonical section existence and accepted address intervals govern selection. Three workers continue fresh complete sources. Initial dirty tools/mips_to_c preserved.
+
+
 ## 2026-10-01 twenty-fourth completed milestone: full numeric formatter and affine matrix
 
 - Game cartridge C: **588/1,216 functions, 70,548/647,072 bytes (10.90%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**.

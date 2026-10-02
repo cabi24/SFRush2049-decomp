@@ -1,0 +1,14 @@
+{
+  "func_800AB638": {
+    "target_id": "func_800AB638",
+    "address": 2148185656,
+    "population": "extracted",
+    "insn_count": 53,
+    "target_asm_sha": "bbc36272a442f38572300d39a6026479938b12c9fa189341241a600c39934132",
+    "target_o_sha": "fc88617c74685ac44afa00a63eea43e78da6f4d10eb53cbbdefc837e54cba237",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "discovered"
+  }
+}

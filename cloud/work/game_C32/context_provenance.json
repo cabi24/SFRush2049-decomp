@@ -1,0 +1,9 @@
+{
+  "assembly": "build/m2c_asm/func_800A5560.s",
+  "assembly_sha256": "4f88bace156f9890cdc43f95738af22a33b9a67173238209f513a8afb6822a02",
+  "abi": "One consumed u16 input in a0; original andi 65535 and argument home at 0(sp).",
+  "result": "(color << 16) | color stored to original 32-bit named D_80124FC8.",
+  "source_sha256": "311b85532cdeb92f10f8d05f269c4f27c14e8d1b3ddf121a9ef8f9b1ee4a295c",
+  "owned_data": false,
+  "callees": []
+}

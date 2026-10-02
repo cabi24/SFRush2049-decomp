@@ -5274,6 +5274,7 @@ player_flag_clear_process:
 .section .text.func_800BC21C, "ax", @progbits
 .globl func_800BC21C
 func_800BC21C:
+    /* compiled from src/blob/func_800BC21C.c */
     .word 0x44807000
     .word 0xC48C0008
     .word 0xC4800000

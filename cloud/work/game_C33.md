@@ -1,0 +1,14 @@
+# Game C33 — two complete record-update bodies, no matches
+
+No new strict-zero claim is ready. Current actual blob locks and full prior name/address reports were checked before reservation, then coordinated with parent/A58 D5374/B39. All work stayed private and all compile jobs are complete. Exact flags: `-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul`.
+
+| Function | Retail bytes / words | Baseline strict | Best strict | Best linked differences |
+|---|---:|---:|---:|---:|
+| func_800A43FC | 212 / 53 | 3225 | 1940 | 51 / 53 |
+| func_800EC190 | 224 / 56 | 1415 | 1375 | 50 / 56 |
+
+A43FC uses original named globals, four genuine 772-byte car records and four four-byte state records. Its original two-per-iteration body tests actual state flag bits1/2, sets the signed byte at car+2 or clears it and sets car+3. The initial ordinary single-record loop compiles to a shorter loop. Explicitly retaining the observed pair loop reduces the strict residual; its exact source is func_800A43FC.pair.c. End-symbol and byte-pointer views were bounded controls. A single-record loop with unknown external named end loses the compiler's fixed trip count and expands badly (56 extra words); this failed control is honestly preserved in controls.json, never claimed. Byte-pointer view is worse. End address D_80144C40 equals the original four-record boundary; no allocation, copied runtime work, fabricated pressure or dummy guard was introduced.
+
+EC190 retains its real six-iteration loop, original unreachable `i >= 6` arm, signed16 loop/ordinal counters and 8-byte record fields: owner0, ordinal5, flags6, index7. It then increments the original signed16 global with wrap at6, writes actual byte input/state globals and mode2, and stores the new index. Original owner argument is homed then stored as byte; the s8 parameter control reproduces that home without invented operations, improving1415 to1375. This remains only a source-width hypothesis, since original consumed operations alone cannot fully establish the declared formal width. Scalar/one-element-array/one-field-record views and a separate final-index local are unchanged. None justifies a match or ABI certainty. Best body is func_800EC190.byte.c.
+
+Both best objects have full original compared extents, zero extra words and no unresolved/unverified references or link errors. Strict stack differences remain enabled. Original target SHA256 values: A43FC `3d64ba1eb25ba320302f160b2a00db3893c5749da7e8e596b0aee8d4584558fa`; EC190 `e7f0f70b08c66d643aca25c3caa2db37d90c633c3a6b19ba0d410302a86b3921`. Targets remain read-only exports at Rocky ~/agents/C/scratch/game-C33/. Target/assembly provenance is in targets.json and selection_audit.json; baseline.json, controls.json, bytes.json and fields.json retain all nine bounded compilations. No broad reflow, fake caller, new owned data or compiler/scoring changes were used.

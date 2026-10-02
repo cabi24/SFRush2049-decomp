@@ -1,0 +1,38 @@
+[
+  {
+    "function": "func_800EC190",
+    "variant": "func_800EC190.fields",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 1375,
+    "linked": {
+      "differing": 50,
+      "total": 56,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "7bebca342de5cef505e547318da54c580bd136812e2d46003d091f08e965f166",
+    "target_sha256": "e7f0f70b08c66d643aca25c3caa2db37d90c633c3a6b19ba0d410302a86b3921"
+  },
+  {
+    "function": "func_800EC190",
+    "variant": "func_800EC190.next",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 1375,
+    "linked": {
+      "differing": 50,
+      "total": 56,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "d88a756faaa13694da63c52d1e09b57256866b8a5bea7b7c210ac352dfe87612",
+    "target_sha256": "e7f0f70b08c66d643aca25c3caa2db37d90c633c3a6b19ba0d410302a86b3921"
+  }
+]

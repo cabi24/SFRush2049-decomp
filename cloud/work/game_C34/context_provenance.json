@@ -1,0 +1,18 @@
+{
+  "assembly": "build/m2c_asm/func_800AB638.s",
+  "assembly_sha256": "2b58129e623e8ad1673f42fadf7a2df04036060229fed58e73128082e0f04afe",
+  "abi": "Complete no-argument leaf; no incoming argument or hidden register consumed.",
+  "header": "Original six unsigned16 counts at offsets0,2,4,6,8,10; reserved bytes12..15; first section begins at header+16.",
+  "section_strides": [
+    132,
+    20,
+    24,
+    8,
+    32,
+    1
+  ],
+  "owned_data": false,
+  "callees": [],
+  "selection": "Not in current blob_matched.lock.json or full prior name/address reports at reservation; disjoint from A60 F7A98/B39 E7DD0.",
+  "source_sha256": "45361aa4d65cd25f75f43ade772e7dc6d25b01ac5e7351e72a65ab8706ff4702"
+}

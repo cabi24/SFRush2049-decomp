@@ -1,0 +1,19 @@
+[
+  {
+    "function": "euler_to_matrix",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 245,
+    "linked": {
+      "differing": 6,
+      "total": 67,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "87fbf3395ac26d5f5110bf3c6b51caba226b01e48b673afbe49106a66bde455e",
+    "target_sha256": "3f8479d6ef9d1250b02646f3a12c3cfc6d0d43f9f54c8d7526aeee084973f4e3"
+  }
+]

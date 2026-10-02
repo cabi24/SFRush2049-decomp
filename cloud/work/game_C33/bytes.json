@@ -1,0 +1,20 @@
+[
+  {
+    "function": "func_800A43FC",
+    "variant": "func_800A43FC.bytes",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 2880,
+    "linked": {
+      "differing": 51,
+      "total": 53,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "08548ff9779a8cdd9dcffdf06a95b2dece09ecdea7cdb96d6bd11a63b5cf1530",
+    "target_sha256": "3d64ba1eb25ba320302f160b2a00db3893c5749da7e8e596b0aee8d4584558fa"
+  }
+]
