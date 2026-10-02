@@ -24,7 +24,29 @@ void osScAddClient(OSSched *scheduler, OSScClient *client, OSMesgQueue *queue) {
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scMain.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scSchedule.s")
+/* PROMOTED 2026-10-02 — __scSchedule
+ * Source:   cloud/matches/__scSchedule.c (in-repo, locked)
+ * Flags:    -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul
+ * Evidence: lock:cloud/matches/__scSchedule.c:__scSchedule (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void __scSchedule(OSSched *scheduler)
+{
+    OSMesg message;
+    s32 state;
+    OSScTask *sp = 0;
+    OSScTask *dp = 0;
+    while (osRecvMesg(&scheduler->retQueue, &message, OS_MESG_NOBLOCK) != -1)
+        __scAppendList(scheduler, (OSScTask *)message);
+    if (scheduler->audioListPending && scheduler->rspTaskHead && scheduler->curRSPTask) {
+        __scHandlePreNMI(scheduler);
+    } else {
+        state = ((scheduler->curRSPTask == 0) << 1) | (scheduler->curRDPTask == 0);
+        if (__scScheduleCore(scheduler, &sp, &dp, state) != state)
+            __scExec(scheduler, sp, dp);
+    }
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scHandleRetrace.s")
 /* PROMOTED 2026-10-02 — __scHandleRSP
  * Source:   cloud/matches/__scHandleRSP.c (in-repo, locked)
