@@ -1,0 +1,8 @@
+{
+  "source_sha256": "616d94533ad40b0e8352ad54868475739a3d7fc78080a635984e5b3e8d12dd91",
+  "function": "func_800F7E30",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "canonical": "MATCH",
+  "image_identical": true,
+  "source_built_ROM": "SHA-1 EXACT"
+}

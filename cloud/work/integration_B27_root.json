@@ -1,0 +1,11 @@
+{
+  "function": "menu_video_settings",
+  "source": "cloud/matches/menu_video_settings.c",
+  "source_sha256": "0a9e292cec836f7b60b89bc3673e52ee896576d77570c9ae094bd6ac44bf6641",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "canonical_D": "MATCH",
+  "image_identical": true,
+  "source_built_ROM": "SHA-1 EXACT",
+  "bytes": 228,
+  "source_fix": "actual func_8008B424 floating-point return type validated in original callee and linked caller"
+}

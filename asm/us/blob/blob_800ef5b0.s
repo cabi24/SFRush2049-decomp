@@ -8951,6 +8951,7 @@ linear_interp:
 .section .text.func_800F7E30, "ax", @progbits
 .globl func_800F7E30
 func_800F7E30:
+    /* compiled from src/blob/func_800F7E30.c */
     .word 0x00047600
     .word 0x000E7E03
     .word 0x0005C600
