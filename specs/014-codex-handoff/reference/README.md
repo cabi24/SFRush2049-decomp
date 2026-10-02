@@ -18,3 +18,11 @@ After any splice: `python3 -m tools.conveyor.pipeline.blob_rom rom` must print `
 `blob_group check` must report 0 problems; run pytest with its exit code captured; then commit the new `src/blob/**` files,
 `git add -u asm/us/blob blob_matched.lock.json` (new region files need `git add -f`; after a layout change `git rm` region files
 the layout no longer lists, then `blob_tu generate`), set the coordinator statuses to `matched`, push.
+
+The coordinator replay is now available as `tools/cloud/review_single.py` on an IDO-capable host:
+
+```bash
+python3 tools/cloud/review_single.py frozen.c FUNCTION --expected-bytes BYTE_COUNT --output proof.json
+```
+
+It reads the exact first-line flags, verifies the protected canonical target extent, freshly compiles in a private temporary directory, and records complete relocation-resolved comparison, source hash and target-manifest hash. It rejects source/manifest changes during replay and exits nonzero for differences, extra words, unresolved or unverified relocations, compiler failure and integrity failure. A rejected replay replaces any old output success with explicit rejection evidence. This is an object proof only; independent source review, image and full-ROM gates are still required. Use the actual registered extent rather than a historical info.txt size. Static SDK targets use their separate promotion path.

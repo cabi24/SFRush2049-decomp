@@ -1,0 +1,14 @@
+{
+  "claims": [],
+  "disposition": "duplicate target; A79 sole ownership; stopped after first compile",
+  "source_sha256": "5c0750015518e4a5f211692de4a60acbc638521ff6896a10c37b6e9e39e85583",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "comparison": {
+    "differing": 8,
+    "total": 150,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  }
+}

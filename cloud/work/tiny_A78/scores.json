@@ -1,0 +1,62 @@
+[
+  {
+    "differing": 115,
+    "total": 117,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "source": "A78.c",
+    "source_sha256": "3d25f0a06b5e320157bcf6013e6d07d7e4f88cc020562045109c14dd3dcda5ef",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "compiled_words": 116
+  },
+  {
+    "differing": 36,
+    "total": 117,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 2,
+    "source": "A78.c",
+    "source_sha256": "3d25f0a06b5e320157bcf6013e6d07d7e4f88cc020562045109c14dd3dcda5ef",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "compiled_words": 120
+  },
+  {
+    "differing": 9,
+    "total": 117,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "source": "A78callback.c",
+    "source_sha256": "353343f342a58cbdbc724c9109b6c6ef9dc98d51e6c6829a074397bacbfa8f63",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "compiled_words": 120
+  },
+  {
+    "differing": 9,
+    "total": 117,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "source": "A78assigned.c",
+    "source_sha256": "b32e6c1e414f2a2617e9923966805e7f0a164f0b2ba7430a568df770b5a0205a",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "compiled_words": 120
+  },
+  {
+    "differing": 9,
+    "total": 117,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "source": "A78cursor.c",
+    "source_sha256": "466f304d0ede6c702be26121080172c4cd7c1b47d53040aea81c653dbc9396d5",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "compiled_words": 120
+  }
+]

@@ -4055,6 +4055,14 @@
     "verified": "image_gate",
     "verified_at": "2026-10-01"
   },
+  "graphics_chunk_b": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "src/blob/graphics_chunk_b.c",
+    "source_sha256": "5e52b2e2d3baabec0519967a90acea51d4db3b00b1d89e98d912d928b81e39ad",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-02"
+  },
   "handbrake_apply": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "func_800AD4C8",

@@ -5605,6 +5605,7 @@ graphics_chunk:
 .section .text.graphics_chunk_b, "ax", @progbits
 .globl graphics_chunk_b
 graphics_chunk_b:
+    /* compiled from src/blob/graphics_chunk_b.c */
     .word 0x27BDFFB8
     .word 0xAFBE0040
     .word 0x3C0E8015
