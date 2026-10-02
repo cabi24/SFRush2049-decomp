@@ -1,0 +1,16 @@
+{
+  "cases": 5893,
+  "result": "PASS",
+  "models": [
+    "full native instructions",
+    "fresh linked IDO instructions",
+    "host C with callback stubs"
+  ],
+  "limitations": [
+    "round-to-nearest binary32; NaNs compared by class",
+    "no signaling-NaN payload or FCSR exception equivalence",
+    "well-formed nonoverlapping typed records and valid kind indices",
+    "callback stubs cover ordering, arguments and selected mutations, not full game callees"
+  ],
+  "claims": []
+}
