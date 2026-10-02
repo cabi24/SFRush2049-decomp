@@ -1,0 +1,358 @@
+{
+  "inflate_io_wait": [
+    {
+      "callee": "osRecvMesg",
+      "offset": 28,
+      "target": "0x80007270"
+    },
+    {
+      "callee": "osRecvMesg",
+      "offset": 56,
+      "target": "0x80007270"
+    },
+    {
+      "callee": "osInvalDCache",
+      "offset": 136,
+      "target": "0x800084e0"
+    },
+    {
+      "callee": "__osPiRawStartDma",
+      "offset": 184,
+      "target": "0x80008630"
+    }
+  ],
+  "lzss_decode": [
+    {
+      "callee": "osInvalDCache",
+      "offset": 84,
+      "target": "0x800084e0"
+    },
+    {
+      "callee": "__osPiRawStartDma",
+      "offset": 140,
+      "target": "0x80008630"
+    },
+    {
+      "callee": "inflate_io_wait",
+      "offset": 188,
+      "target": "0x80004a10"
+    },
+    {
+      "callee": "inflate_io_wait",
+      "offset": 248,
+      "target": "0x80004a10"
+    },
+    {
+      "callee": "inflate_io_wait",
+      "offset": 312,
+      "target": "0x80004a10"
+    },
+    {
+      "callee": "inflate_io_wait",
+      "offset": 376,
+      "target": "0x80004a10"
+    },
+    {
+      "callee": "osRecvMesg",
+      "offset": 456,
+      "target": "0x80007270"
+    },
+    {
+      "callee": "osRecvMesg",
+      "offset": 488,
+      "target": "0x80007270"
+    }
+  ],
+  "inflate_flush_window": [],
+  "huft_alloc": [],
+  "huft_build": [
+    {
+      "callee": "memset",
+      "offset": 68,
+      "target": "0x80002790"
+    },
+    {
+      "callee": "huft_alloc",
+      "offset": 724,
+      "target": "0x80004d6c"
+    },
+    {
+      "callee": "huft_alloc",
+      "offset": 1088,
+      "target": "0x80004d6c"
+    }
+  ],
+  "inflate_free_window": [
+    {
+      "callee": "inflate_read_bits",
+      "offset": 216,
+      "target": "0x800066d4"
+    },
+    {
+      "callee": "inflate_read_bits",
+      "offset": 388,
+      "target": "0x800066d4"
+    },
+    {
+      "callee": "inflate_read_bits",
+      "offset": 588,
+      "target": "0x800066d4"
+    },
+    {
+      "callee": "inflate_read_bits",
+      "offset": 716,
+      "target": "0x800066d4"
+    },
+    {
+      "callee": "inflate_read_bits",
+      "offset": 888,
+      "target": "0x800066d4"
+    },
+    {
+      "callee": "inflate_read_bits",
+      "offset": 1036,
+      "target": "0x800066d4"
+    },
+    {
+      "callee": "memcpy",
+      "offset": 1120,
+      "target": "0x80007c68"
+    }
+  ],
+  "inflate_stored": [
+    {
+      "callee": "inflate_read_bits",
+      "offset": 136,
+      "target": "0x800066d4"
+    },
+    {
+      "callee": "inflate_read_bits",
+      "offset": 260,
+      "target": "0x800066d4"
+    },
+    {
+      "callee": "inflate_read_bits",
+      "offset": 412,
+      "target": "0x800066d4"
+    }
+  ],
+  "inflate_fixed": [
+    {
+      "callee": "huft_alloc",
+      "offset": 8,
+      "target": "0x80004d6c"
+    },
+    {
+      "callee": "huft_build",
+      "offset": 220,
+      "target": "0x80004d98"
+    },
+    {
+      "callee": "huft_build",
+      "offset": 336,
+      "target": "0x80004d98"
+    },
+    {
+      "callee": "inflate_free_window",
+      "offset": 384,
+      "target": "0x80005464"
+    }
+  ],
+  "inflate_dynamic": [
+    {
+      "callee": "huft_alloc",
+      "offset": 44,
+      "target": "0x80004d6c"
+    },
+    {
+      "callee": "inflate_read_bits",
+      "offset": 148,
+      "target": "0x800066d4"
+    },
+    {
+      "callee": "inflate_read_bits",
+      "offset": 280,
+      "target": "0x800066d4"
+    },
+    {
+      "callee": "inflate_read_bits",
+      "offset": 396,
+      "target": "0x800066d4"
+    },
+    {
+      "callee": "inflate_read_bits",
+      "offset": 564,
+      "target": "0x800066d4"
+    },
+    {
+      "callee": "huft_build",
+      "offset": 744,
+      "target": "0x80004d98"
+    },
+    {
+      "callee": "inflate_read_bits",
+      "offset": 900,
+      "target": "0x800066d4"
+    },
+    {
+      "callee": "inflate_read_bits",
+      "offset": 1088,
+      "target": "0x800066d4"
+    },
+    {
+      "callee": "inflate_read_bits",
+      "offset": 1288,
+      "target": "0x800066d4"
+    },
+    {
+      "callee": "inflate_read_bits",
+      "offset": 1480,
+      "target": "0x800066d4"
+    },
+    {
+      "callee": "huft_build",
+      "offset": 1704,
+      "target": "0x80004d98"
+    },
+    {
+      "callee": "huft_build",
+      "offset": 1796,
+      "target": "0x80004d98"
+    },
+    {
+      "callee": "inflate_free_window",
+      "offset": 1836,
+      "target": "0x80005464"
+    }
+  ],
+  "inflate_block": [
+    {
+      "callee": "inflate_read_bits",
+      "offset": 116,
+      "target": "0x800066d4"
+    },
+    {
+      "callee": "inflate_read_bits",
+      "offset": 244,
+      "target": "0x800066d4"
+    },
+    {
+      "callee": "inflate_dynamic",
+      "offset": 320,
+      "target": "0x80005d44"
+    },
+    {
+      "callee": "inflate_stored",
+      "offset": 344,
+      "target": "0x8000595c"
+    },
+    {
+      "callee": "inflate_fixed",
+      "offset": 372,
+      "target": "0x80005b7c"
+    }
+  ],
+  "inflate_loop": [
+    {
+      "callee": "inflate_block",
+      "offset": 32,
+      "target": "0x800064d4"
+    }
+  ],
+  "inflate_read_bits": [
+    {
+      "callee": "osRecvMesg",
+      "offset": 40,
+      "target": "0x80007270"
+    },
+    {
+      "callee": "osRecvMesg",
+      "offset": 68,
+      "target": "0x80007270"
+    },
+    {
+      "callee": "osInvalDCache",
+      "offset": 212,
+      "target": "0x800084e0"
+    },
+    {
+      "callee": "__osPiRawStartDma",
+      "offset": 256,
+      "target": "0x80008630"
+    }
+  ],
+  "inflate_entry": [
+    {
+      "callee": "osInvalDCache",
+      "offset": 96,
+      "target": "0x800084e0"
+    },
+    {
+      "callee": "__osPiRawStartDma",
+      "offset": 152,
+      "target": "0x80008630"
+    },
+    {
+      "callee": "sound_play_menu",
+      "offset": 172,
+      "target": "0x800cc3c0"
+    },
+    {
+      "callee": "inflate_flush_window",
+      "offset": 188,
+      "target": "0x80004d50"
+    },
+    {
+      "callee": "inflate_flush_window",
+      "offset": 212,
+      "target": "0x80004d50"
+    },
+    {
+      "callee": "inflate_loop",
+      "offset": 220,
+      "target": "0x80006678"
+    },
+    {
+      "callee": "dma_queue_sync",
+      "offset": 236,
+      "target": "0x800960d4"
+    },
+    {
+      "callee": "osRecvMesg",
+      "offset": 256,
+      "target": "0x80007270"
+    },
+    {
+      "callee": "osRecvMesg",
+      "offset": 284,
+      "target": "0x80007270"
+    },
+    {
+      "callee": "osInvalICache_full",
+      "offset": 312,
+      "target": "0x80008460"
+    }
+  ],
+  "inflate_entry_alt": [
+    {
+      "callee": "sound_play_menu",
+      "offset": 60,
+      "target": "0x800cc3c0"
+    },
+    {
+      "callee": "inflate_flush_window",
+      "offset": 76,
+      "target": "0x80004d50"
+    },
+    {
+      "callee": "inflate_loop",
+      "offset": 84,
+      "target": "0x80006678"
+    },
+    {
+      "callee": "dma_queue_sync",
+      "offset": 92,
+      "target": "0x800960d4"
+    }
+  ]
+}

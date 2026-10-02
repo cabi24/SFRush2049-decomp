@@ -1,0 +1,36 @@
+{
+  "candidate": "dotireforce_force_update_context_group",
+  "function": "camera_follow_target",
+  "source_sha256": "54c425569f803548ce749c2573b07a055da3bce54e7fc26b2bf21bdda43a273e",
+  "object_sha256": "a219659f88b4353eb0cc7684bc84f85a066388e89795091cc3349459df1aa349",
+  "comparison": {
+    "differing": 176,
+    "total": 203,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "helper_comparisons": {
+    "camera_dolly": {
+      "differing": 0,
+      "total": 575,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_800BC21C": {
+      "differing": 0,
+      "total": 40,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "claims": [],
+  "recipe": "full retained-entry ucode group",
+  "protected_target_object_sha256": "e3668bf9c2ed664ef11c71c747c85fe76ac3e7668342fcb3c7496e5f21d12558"
+}

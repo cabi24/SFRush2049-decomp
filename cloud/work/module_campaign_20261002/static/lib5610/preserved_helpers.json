@@ -1,0 +1,10 @@
+{
+  "inflate_flush_window": {
+    "byte_for_byte_source_body_equal": true,
+    "source_body_sha256": "9c97287abe974ba7fa1bb75703f69bc09cf967fdf30b69b481aaaa3a93f226a7"
+  },
+  "huft_alloc": {
+    "byte_for_byte_source_body_equal": true,
+    "source_body_sha256": "0360892a4ff1a0a5a146ddd2e87c279e6a0bc4c6612e8589f874349d0dcfa767"
+  }
+}

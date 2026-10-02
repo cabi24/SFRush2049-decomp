@@ -1,0 +1,18 @@
+{
+  "candidate": "dotireforce_donor_vector_zero.c",
+  "function": "camera_follow_target",
+  "source_sha256": "67537d441d08e16e1b213580916dcd47f7945e444aed93cddd2c7c0013e8ed64",
+  "object_sha256": "06ec359e69142eeca5c7f8faf5d39e99230bf9ab502200d2d81dffccc9b6ae7a",
+  "comparison": {
+    "differing": 186,
+    "total": 203,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "claims": [],
+  "recipe": "ordinary IDO cc compile",
+  "protected_target_object_sha256": "e3668bf9c2ed664ef11c71c747c85fe76ac3e7668342fcb3c7496e5f21d12558"
+}

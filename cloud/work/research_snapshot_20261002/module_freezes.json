@@ -1,0 +1,263 @@
+{
+  "status": "frozen_nonmatches",
+  "accepted_credit": 0,
+  "accepted_master": "7c4d12c368a7f938f5b405c78f602dde34d4087e",
+  "combined_percentage_at_snapshot": 19.83,
+  "files": [
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/navigation/README.md",
+      "sha256": "e1eb0d372cc615c062b1ef9d3f5b25929460cc05545c271474093a967fedc62c",
+      "bytes": 4442
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/navigation/actual_callers.json",
+      "sha256": "4f3ce1f9b9b3ca7c98592350f4adc6919c31e904793861a33a0a800fbad945c3",
+      "bytes": 1149
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/navigation/baseline_comparisons.json",
+      "sha256": "26cd4a3d27ffba7b1753a6e7fba1a18094d2a132fa196165f82a85c3fbd0f683",
+      "bytes": 1791
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/navigation/compile_recipe.json",
+      "sha256": "1c48e3f3e09df8a0ebd8d2fd781db0212a5f9f8213e4a7a2390a9aa8078ac10a",
+      "bytes": 1959
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/navigation/full_context_proof.json",
+      "sha256": "6946c1be0b7553a62c33381b378fe168ecaa6008a836c0cc98a318a13cb5fd98",
+      "bytes": 2398
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/navigation/native_counter_types.c",
+      "sha256": "74187fb86262b7091e1fd94faf0bd80a229abd507ba726590daa589fa44b94ec",
+      "bytes": 8949
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/navigation/provenance.json",
+      "sha256": "beaa2127bf9cac678af5d2a9afbd6140da94dcf5952af543a3d826b857e769ec",
+      "bytes": 2317
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/navigation/road_distance.c",
+      "sha256": "d79f299dc7cec8b0082997bfcc2949fe376729767635aa75ff60d1c55f323f17",
+      "bytes": 1915
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/static/lib5610/README.md",
+      "sha256": "76adfa62bb626b05932ccf865ca00eb9acd3609fe5112b5c994129ac48158b9c",
+      "bytes": 3463
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/static/lib5610/callgraph.json",
+      "sha256": "a8f34685c16584da444468702cff2fedc2c8938f999a7e83831e2444c1cdde6e",
+      "bytes": 6776
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/static/lib5610/compile_recipe.json",
+      "sha256": "016db9c041b1e1edbb597ea10f0bf94987f8acd175d83fcf086a2ba43eff8e79",
+      "bytes": 1661
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/static/lib5610/external_calls.json",
+      "sha256": "ab3e315de0148f4108c3aa84b186eb74a71e0b1b65a1682cf52d226b7479cabb",
+      "bytes": 421
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/static/lib5610/full_closure_proof.json",
+      "sha256": "e6e927b3b244ddf8305aac99f303bc48948a61cde3405537d6d7c825e7e5a4c7",
+      "bytes": 7594
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/static/lib5610/header_hashes.json",
+      "sha256": "0fd6e9b79735e04fb5965a2bc7e6c529b26fba5ce3eec9d4204faf30303e0ebb",
+      "bytes": 6899
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/static/lib5610/module.c",
+      "sha256": "4758def3001eea839fdd4033b6230bcd4961bb5b96e27d001cb1df5233920396",
+      "bytes": 19272
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/static/lib5610/preserved_helpers.json",
+      "sha256": "6df75426aaed091672f83fc6e4405a46ae0fc3f22f4d3cb67174dacb6bc65a8c",
+      "bytes": 335
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/static/lib5610/provenance.json",
+      "sha256": "9d24a4da106a18d978cfbaa2e5c796f1bfdb66db3db42c65b942bfde923c1a50",
+      "bytes": 5674
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/static/lib5610/targets.json",
+      "sha256": "868f15f54c29f46d49b99119ef97aed4e2aa638a955cec451e485881462d37c1",
+      "bytes": 4789
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/README.md",
+      "sha256": "00c0dc6fbc7516d9d7b60758bd19693f9aed32448c44b589fcbd393a6fdfefac",
+      "bytes": 4608
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/calctireuv_arrays.c",
+      "sha256": "e340b0bc27e6d9198e0f53e322f5263315db1395ef141713a54690c3392a7eeb",
+      "bytes": 1436
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/calctireuv_arrays_integer_zero.c",
+      "sha256": "3ea9e4e66e09f7dd1d8411e6225898ecf4607e4177c3227d57d30539f8006c7f",
+      "bytes": 1433
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/calctireuv_struct_baseline.c",
+      "sha256": "b1b688e5df17289fbe95a41c21edb85cb8ad30e65ff7806c308f88c26591020c",
+      "bytes": 1367
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/calctireuv_struct_transform_group/group.c",
+      "sha256": "e122c1cff4175cd570f0e581906e70911bb8b2e6249a07b4b9c8060cd97c92ac",
+      "bytes": 1718
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/calctireuv_struct_transform_group/group.json",
+      "sha256": "c7b157902f4fe0f4a043db5f33f58d468a7922d17caedf677c0d17b0cb674d06",
+      "bytes": 164
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/calctireuv_transform_group/group.c",
+      "sha256": "9793c2fe02e28af757e5d71692c9257826d22e4875e2466c418a0cc459075822",
+      "bytes": 1685
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/calctireuv_transform_group/group.json",
+      "sha256": "c7b157902f4fe0f4a043db5f33f58d468a7922d17caedf677c0d17b0cb674d06",
+      "bytes": 164
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/dotireforce_accepted_context_group/calcalpha.c",
+      "sha256": "4111085453125ccb0119ac3d13dbc908967173894b9a5eb0e71ed22e43bf35a3",
+      "bytes": 467
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/dotireforce_accepted_context_group/caller.c",
+      "sha256": "28759043ad0c9dddbdbe9787b8503d60ca9ec7d3c10becb1b8aa5e3fabbe2ed7",
+      "bytes": 3098
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/dotireforce_accepted_context_group/camera_dolly.c",
+      "sha256": "fe70c8677374aecc6cec0e209a8d0b18f744cc4c8c785af2bd9345184dd73f13",
+      "bytes": 8274
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/dotireforce_accepted_context_group/group.json",
+      "sha256": "8e502dc1f93f1066863c01cb975a1b47ed669fb63baab76b2719cc238de92a24",
+      "bytes": 300
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/dotireforce_donor_vector_zero.c",
+      "sha256": "67537d441d08e16e1b213580916dcd47f7945e444aed93cddd2c7c0013e8ed64",
+      "bytes": 3100
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/dotireforce_force_update.c",
+      "sha256": "54c425569f803548ce749c2573b07a055da3bce54e7fc26b2bf21bdda43a273e",
+      "bytes": 3099
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/dotireforce_force_update_context_group/calcalpha.c",
+      "sha256": "4111085453125ccb0119ac3d13dbc908967173894b9a5eb0e71ed22e43bf35a3",
+      "bytes": 467
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/dotireforce_force_update_context_group/caller.c",
+      "sha256": "54c425569f803548ce749c2573b07a055da3bce54e7fc26b2bf21bdda43a273e",
+      "bytes": 3099
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/dotireforce_force_update_context_group/camera_dolly.c",
+      "sha256": "fe70c8677374aecc6cec0e209a8d0b18f744cc4c8c785af2bd9345184dd73f13",
+      "bytes": 8274
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/dotireforce_force_update_context_group/group.json",
+      "sha256": "8e502dc1f93f1066863c01cb975a1b47ed669fb63baab76b2719cc238de92a24",
+      "bytes": 300
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/dotireforce_opaque_14.c",
+      "sha256": "7b8780c939b73d89059a21736e990f182a98470e534af798e1073f9f31f575ad",
+      "bytes": 3192
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/dotireforce_typed_14.c",
+      "sha256": "28759043ad0c9dddbdbe9787b8503d60ca9ec7d3c10becb1b8aa5e3fabbe2ed7",
+      "bytes": 3098
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/results/accepted_tire_context_preservation.json",
+      "sha256": "6eccac53bb6829422681b96c0af63aad4b1a85c34f0d586909a8d8f94be41660",
+      "bytes": 1500
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/results/accepted_transform_preservation.json",
+      "sha256": "81f58ceba3dfe461e75343eb573abc5461c616c8738bbead1d3cf84c9eb276d4",
+      "bytes": 641
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/results/calctireuv_arrays.json",
+      "sha256": "a687ad282e734ab524459b80bfda1b82c83087f651c0b041d23018e4c5b827fc",
+      "bytes": 621
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/results/calctireuv_arrays_integer_zero.json",
+      "sha256": "de8b9fc48f0acd8501af6593d1c5cc788df9f4ba874fe6fe03433047a0e01c0b",
+      "bytes": 634
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/results/calctireuv_struct_baseline.json",
+      "sha256": "148d4bab60ba63d13f32c7100ebc50348d8902ac627a0f043d779495f8500a4e",
+      "bytes": 630
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/results/calctireuv_struct_transform_group.json",
+      "sha256": "b1c19b7e8c4a1f6e1b849b5e3b76c5fc47f61791cc911bb1189f522f746e1116",
+      "bytes": 793
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/results/calctireuv_transform_group.json",
+      "sha256": "3fbae00de7c61c28c77dcd8a49df79b977ebd9c1512db439a941399d9a048667",
+      "bytes": 786
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/results/dotireforce_accepted_context_group.json",
+      "sha256": "1f35c9651b99ada68d2f37292a90a9dadd9d5e97ffe5c4e7a504e6088716e842",
+      "bytes": 997
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/results/dotireforce_donor_vector_zero.json",
+      "sha256": "8eae2c5b98972d0b3667024a5b22aeb1042f5589562d1c12eab3014c13e70e63",
+      "bytes": 632
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/results/dotireforce_force_update.json",
+      "sha256": "ee39c4227e2d7c84ca50d08af12ad9e371b875409a6250d9c5c3c16ca795023e",
+      "bytes": 627
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/results/dotireforce_force_update_context_group.json",
+      "sha256": "5c1974ffd9af496a5c1d46844357c9b78ed5e420b850d61b19bcde8d76fdd2cb",
+      "bytes": 1001
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/results/dotireforce_opaque_14.json",
+      "sha256": "0cbf435d4cac852cb36b6c54e33c7a3ebf25ee43e1e654cadfb436cbb9ed7227",
+      "bytes": 624
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/results/dotireforce_typed_14.json",
+      "sha256": "ebc20647c54c63ca9e14347873fe6b9b2701c92f76766e3d7bdaa7e899714422",
+      "bytes": 623
+    }
+  ]
+}

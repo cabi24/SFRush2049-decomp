@@ -1,0 +1,18 @@
+{
+  "files": [
+    "caller.c",
+    "camera_dolly.c",
+    "calcalpha.c"
+  ],
+  "keep": [
+    "camera_follow_target",
+    "camera_dolly",
+    "func_800BC21C"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "claims": [],
+  "context": [
+    "camera_dolly",
+    "func_800BC21C"
+  ]
+}
