@@ -1,5 +1,12 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-01 fourteenth completed game milestone
+
+- Game cartridge C: **564/1,216 functions, 65,180/647,072 bytes (10.072%, displayed10.07%)**. Static cartridge C: **116/230 functions, 27,096/61,440 bytes (44.10%)**.
+- A30 audio_loop_control adds184 bytes through a genuine guarded saturating counter and unchanged real A25 context. Exact flags **-g0 -O3 -mips2 -G 0 -non_shared**. Coordinator D independently canonical strict MATCH for the claim and all11 real contexts, image identical, source-built full-ROM SHA-1 EXACT. No extra context coverage or fabricated pressure.
+- Gates:564 blob locks and group locks zero problems;119 static/source locks intact. Full pytest exit0 captured separately:662 passed/483 skipped. Across original handoff:67 game functions /8,764 bytes and93 static functions /25,648 bytes accepted. Initial dirty tools/mips_to_c preserved.
+- Reviewed target aliases preserve SDK typed storage and fixed exception-vector addresses: dll_init and __osInitialize_common now have relocatable targets instead of unresolved historical names. Scoped target refresh and independent D raw/strict checks pass; neither initializer earns provisional source coverage. Timer data/BSS transaction remains under review. Previous f7d073ff CI36943776559 succeeded. All3 worker slots continue fresh source work.
+
 ## 2026-10-01 thirteenth completed game milestone
 
 - Game cartridge C: **563/1,216 functions, 64,996/647,072 bytes (10.0446%, displayed10.04%)**. Static cartridge C: **116/230 functions, 27,096/61,440 bytes (44.10%)**.

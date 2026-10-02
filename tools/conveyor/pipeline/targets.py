@@ -643,7 +643,7 @@ def _sdk_field_offsets(kind):
 def _typed_data_field_aliases(lines, target_id):
     """Equivalent SDK field relocations, guarded by types and all addresses."""
     relationships = []
-    if target_id == "osGetTime":
+    if target_id in ("osGetTime", "dll_init"):
         offsets = _sdk_field_offsets("time")
         if offsets is not None:
             relationships = [("gViTimeAccumLo", "gViTimeAccumHi", offsets["low_word"])]
@@ -667,6 +667,46 @@ def _typed_data_field_aliases(lines, target_id):
     return result
 
 
+def _initialization_aliases(lines, target_id):
+    """Canonical initialization-only clock field and fixed SDK vector operands."""
+    if target_id != "__osInitialize_common" or _sdk_field_offsets("time") != {"low_word": 4}:
+        return list(lines)
+    def clean(rel):
+        return re.sub(r"/\*.*?\*/|//[^\n]*", " ", (REPO / rel).read_text(), flags=re.S)
+    try:
+        sdk = clean("reference/repos/ultralib/include/PR/R4300.h")
+        live = clean("src/rom/rom_tu.h")
+        init = clean("reference/repos/ultralib/src/os/initialize.c")
+        if not all(re.search(r"^\s*#define\s+K0BASE\s+0x80000000\s*$", text, re.M) for text in (sdk, live)):
+            return list(lines)
+        if not re.search(r"^\s*#define\s+UT_VEC\s+K0BASE\s*$", sdk, re.M):
+            return list(lines)
+        if not re.search(r"\bOSTime\s+osClockRate\s*=\s*OS_CLOCK_RATE\s*;", init):
+            return list(lines)
+        vector = re.search(r"typedef\s+struct\s*\{([^{}]*)\}\s*__osExceptionVector\s*;", init, re.S)
+        if not vector or re.sub(r"\s+", "", vector.group(1)) != "unsignedintinst1;unsignedintinst2;unsignedintinst3;unsignedintinst4;":
+            return list(lines)
+        if not all(re.search(r"typedef\s+unsigned\s+(?:int|long)\s+u32\s*;", clean(path)) for path in
+                   ("include/types.h", "reference/repos/ultralib/include/PR/ultratypes.h")):
+            return list(lines)
+    except OSError:
+        return list(lines)
+    aliases = {"g_tlb_exception_vector": 0x80000000,
+               "g_tlb_exception_instr1": 0x80000004,
+               "g_tlb_exception_instr2": 0x80000008,
+               "g_tlb_exception_instr3": 0x8000000c}
+    base = _resolve_symbol("gAudioDmaCounter")
+    if base is None or _resolve_symbol("gAudioDmaState") != base + 4 or any(_resolve_symbol(name) != address for name, address in aliases.items()):
+        return list(lines)
+    substitutions = {**{name: hex(address) for name, address in aliases.items()},
+                     "gAudioDmaState": "gAudioDmaCounter+0x4"}
+    result = list(lines)
+    for alias, expression in substitutions.items():
+        result = [re.sub(r"(%(?:hi|lo)\()" + re.escape(alias) + r"(\))",
+                         lambda m: m.group(1) + expression + m.group(2), line) for line in result]
+    return result
+
+
 def assemble_region(region, target_id, out_o):
     """Assemble a region into a relocatable object named `target_id`. Raises
     AssembleError (first stderr line preserved) on assembler failure."""
@@ -685,7 +725,7 @@ def assemble_region(region, target_id, out_o):
     aliases = [line for line in prelude.read_text().splitlines()
                if re.match(r"^\s*\.set\s+\$f\w+,\s*\$f\d+\s*$", line)]
     asm[0:0] = aliases
-    asm += _typed_data_field_aliases(_data_field_aliases(region.lines), target_id)
+    asm += _initialization_aliases(_typed_data_field_aliases(_data_field_aliases(region.lines), target_id), target_id)
     with tempfile.NamedTemporaryFile("w", suffix=".s", delete=False) as f:
         f.write("\n".join(asm) + "\n")
         src = f.name

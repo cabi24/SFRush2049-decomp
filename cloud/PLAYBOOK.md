@@ -208,3 +208,7 @@ A26 signed table-index wrap and A27 true pool unlink add300 actual matching byte
 ### Faithful signed-half absolute branch (2026-10-01)
 
 A29's E5C9C retains true signed-half field+2000 and32-bit magnitude, including safe32768 for the minimum halfword. Writing its real nonnegative branch first reproduces retail condition/delay-slot scheduling with no added operation. All genuine float thresholds/fields remain unchanged. Its200bytes pass independent strict/image/full-ROM gates; expanded E7A98 heap context remains an honest empty-claim nonmatch despite eleven exact accepted contexts.
+
+### Guarded counter closure and typed SDK targets (2026-10-01)
+
+A30 preserves the real owner guard at offset16 and byte saturation at offset22. Genuine unchanged accepted context restores the retail O3 calling/register behavior; all eleven contexts independently MATCH. Only its184-byte claim is counted. SDK target aliases must be guarded by actual field widths, source declarations and original address relationships; refreshed relocatable targets produce raw equality without scorer masks. Zero scores for timer/initialization candidates remain uncredited until their complete source/storage transaction passes the original full-ROM gate.

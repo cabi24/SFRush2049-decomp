@@ -1,0 +1,19 @@
+{
+  "source_sha256": "74e98679bf036a724c2696711e38b008db5d127ba511892d8c54ce16644afd97",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claim": "audio_loop_control",
+  "claim_words": 46,
+  "claim_bytes": 184,
+  "independent_builder": "Rocky coordinator D",
+  "canonical_claim": "MATCH",
+  "canonical_context_matches": 11,
+  "image": "identical",
+  "rom_sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+  "pytest": {
+    "passed": 662,
+    "skipped": 483,
+    "exit": 0
+  },
+  "blob_locks": 564,
+  "static_locks": 119
+}
