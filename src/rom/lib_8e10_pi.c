@@ -55,5 +55,3 @@ void osCreatePiManager(OSPri pri, OSMesgQueue* cmdQ, OSMesg* cmdBuf, s32 cmdMsgC
         osCreateViManager(NULL, oldPri);
     }
 }
-
-

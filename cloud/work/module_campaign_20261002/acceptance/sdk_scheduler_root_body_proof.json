@@ -1,0 +1,85 @@
+{
+  "object_sha256": "fbc76df9a8d3cbafe1809246ac447ca4e66f73aa4ba9858dc5f20788ed5ed90c",
+  "members": [
+    {
+      "function": "osCreateScheduler",
+      "native_bytes": 388,
+      "full_word_differences": 0,
+      "masks": 0,
+      "unresolved": 0,
+      "unverified": 0,
+      "errors": 0,
+      "body_sha256": "e306ecc04ba35fbdb2b2ce6695e8aeebea338d297b723a03ed19157b096680d7"
+    },
+    {
+      "function": "__scHandleRDP",
+      "native_bytes": 216,
+      "full_word_differences": 0,
+      "masks": 0,
+      "unresolved": 0,
+      "unverified": 0,
+      "errors": 0,
+      "body_sha256": "3e3c0c8157845dfd7b295ea7e46a8cf3005b2a14863cdfdba654df6cb8a7d4f9"
+    },
+    {
+      "function": "__scHandleRSP",
+      "native_bytes": 380,
+      "full_word_differences": 0,
+      "masks": 0,
+      "unresolved": 0,
+      "unverified": 0,
+      "errors": 0,
+      "body_sha256": "8d636ce88125586b0a11d470727c3e3761d7b5a07367a733efbc637247f56a6f"
+    },
+    {
+      "function": "__scSchedule",
+      "native_bytes": 256,
+      "full_word_differences": 0,
+      "masks": 0,
+      "unresolved": 0,
+      "unverified": 0,
+      "errors": 0,
+      "body_sha256": "bb98c70c78e6abc0c7a72eb543c9633ada54cafa0bae0ca2233bbf8f19870ad3"
+    },
+    {
+      "function": "__scExecTask",
+      "native_bytes": 280,
+      "full_word_differences": 0,
+      "masks": 0,
+      "unresolved": 0,
+      "unverified": 0,
+      "errors": 0,
+      "body_sha256": "0149436e11deb97c33e7cb8906915b06615344f5fce497722827c14b716bb051"
+    },
+    {
+      "function": "__scTaskReady",
+      "native_bytes": 176,
+      "full_word_differences": 0,
+      "masks": 0,
+      "unresolved": 0,
+      "unverified": 0,
+      "errors": 0,
+      "body_sha256": "f2358d70d1cc45c73023b6497dda5ead1951f066e4c6265257963a6d6647dbca"
+    },
+    {
+      "function": "osScAddClient",
+      "native_bytes": 104,
+      "full_word_differences": 0,
+      "masks": 0,
+      "unresolved": 0,
+      "unverified": 0,
+      "errors": 0,
+      "body_sha256": "a97ba8d8e41d867ba0d841e6612c91ee1d451eaac6097d3746951f42d1fc4f97"
+    },
+    {
+      "function": "__scHandlePreNMI",
+      "native_bytes": 96,
+      "full_word_differences": 0,
+      "masks": 0,
+      "unresolved": 0,
+      "unverified": 0,
+      "errors": 0,
+      "body_sha256": "c0db9ba65703ded9337cc672b3f045c55522d7fb39d0e763e1a23b686313c5a8"
+    }
+  ]
+}
