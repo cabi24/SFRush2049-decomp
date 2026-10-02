@@ -1,0 +1,17 @@
+{
+  "differing": 0,
+  "total": 150,
+  "unresolved": [],
+  "unverified": [],
+  "errors": [],
+  "extra_words": 0,
+  "target": "audio_update_a",
+  "address": "0x800F4D94",
+  "size": 600,
+  "source_sha256": "84232f12a5668871657abb057b48623b5db99538bf59e6592f6f75324ef3c051",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "compiled_words": 152,
+  "full_word_differing": 0,
+  "non_full_masks": 0,
+  "trailing_alignment_zero_words": 2
+}

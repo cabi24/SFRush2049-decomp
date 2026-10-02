@@ -1,0 +1,12 @@
+{
+  "targets": [
+    "audio_update_a"
+  ],
+  "claims": [
+    "audio_update_a"
+  ],
+  "final_source": "audio_update_a.shared_offset.c",
+  "source_sha256": "84232f12a5668871657abb057b48623b5db99538bf59e6592f6f75324ef3c051",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "frozen": true
+}

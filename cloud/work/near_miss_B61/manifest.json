@@ -1,0 +1,15 @@
+{
+  "claims": [],
+  "function": "graphics_chunk",
+  "address": "0x800F497C",
+  "target_bytes": 528,
+  "files": {
+    "graphics_chunk_phases.c": "2daf2cc0dfeeff212033f1c5b3c09fdd879c36019fab29db175d1746012dd02a",
+    "graphics_chunk_scope.c": "19badda1eb1f8efc51bc62fd71ee76f5e84b4a42fe7233abda31896fc2e1f7b8",
+    "results.json": "5c3adcb5aa38d19e0c197a52a75f026e73c612053d0e689789f48ebc206e6f4e",
+    "graphics_chunk_byte.c": "cf83b59634f2a2a94815250a96a0f170dadfc5c4d1eee0d64dbf0fb647446efb",
+    "graphics_chunk_native.c": "6544f5095f50dc16836deb972a3e0c525e7a5f9b8e8e914904c3fecf21a6a167",
+    "graphics_chunk_refresh.c": "2745cf21c4119008657efe41d7b1fcf79571e18def1ac6d6d4bc0f84059cb22a",
+    "graphics_chunk_O2.c": "10409f47768d7beda56706a3b47759410658f896487928434f3f64aa3ffcee21"
+  }
+}

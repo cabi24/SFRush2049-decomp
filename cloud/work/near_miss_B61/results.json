@@ -1,0 +1,80 @@
+[
+  {
+    "control": "native",
+    "source_sha256": "6544f5095f50dc16836deb972a3e0c525e7a5f9b8e8e914904c3fecf21a6a167",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "comparison": {
+      "differing": 8,
+      "total": 132,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "control": "refresh",
+    "source_sha256": "2745cf21c4119008657efe41d7b1fcf79571e18def1ac6d6d4bc0f84059cb22a",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "comparison": {
+      "differing": 4,
+      "total": 132,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "control": "O2",
+    "source_sha256": "10409f47768d7beda56706a3b47759410658f896487928434f3f64aa3ffcee21",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "comparison": {
+      "differing": 4,
+      "total": 132,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "control": "byte",
+    "source_sha256": "cf83b59634f2a2a94815250a96a0f170dadfc5c4d1eee0d64dbf0fb647446efb",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "comparison": {
+      "differing": 6,
+      "total": 132,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "control": "scope",
+    "source_sha256": "19badda1eb1f8efc51bc62fd71ee76f5e84b4a42fe7233abda31896fc2e1f7b8",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "comparison": {
+      "differing": 6,
+      "total": 132,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "control": "phases",
+    "source_sha256": "2daf2cc0dfeeff212033f1c5b3c09fdd879c36019fab29db175d1746012dd02a",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "comparison": {
+      "differing": 6,
+      "total": 132,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+]
