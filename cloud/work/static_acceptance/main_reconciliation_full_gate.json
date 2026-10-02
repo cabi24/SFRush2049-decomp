@@ -1,0 +1,21 @@
+{
+  "merged_main": "7c4d12c368a7f938f5b405c78f602dde34d4087e",
+  "source_bodies": 651,
+  "full_native_game_image_and_original_compressed_stream_exact": true,
+  "full_source_built_rom_sha1_exact": true,
+  "all_lock_problems": 0,
+  "static_source_locks": 154,
+  "pytest_exit": 0,
+  "pytest_suites": [
+    {
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "573",
+      "tests": "1393",
+      "time": "41.820",
+      "timestamp": "2026-10-02T11:50:16.386817-05:00",
+      "hostname": "nvmepi3"
+    }
+  ]
+}

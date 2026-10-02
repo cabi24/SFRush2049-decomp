@@ -1,0 +1,15 @@
+{
+  "produce": {
+    "spliced": 649,
+    "image_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d",
+    "image_bytes": 647072,
+    "blob_bytes": 326180,
+    "blob_sha256": "9e632d21b7d0d293563755d9f2033557cb1a4d91d7df6e8d41e68d8afe3e5f7d",
+    "stream_matches_rom": true
+  },
+  "rom_ok": true,
+  "rom_tail": "Verifying built ROM hash...\nbuild/us/rush2049.us.z64: OK\nROM matches!\nbuild/us/rush2049.us.z64: OK\nROM matches!\nMAKE=0 TEST=0",
+  "source_bodies": 649,
+  "source_body_bytes": 98280,
+  "publication_group_sha256": "7dfea8f4907186cd827d2a58fad139d924c6127589ce8feb8766fb36831f9687"
+}

@@ -3240,6 +3240,7 @@ func_800E1540:
 .section .text.func_800E15A0, "ax", @progbits
 .globl func_800E15A0
 func_800E15A0:
+    /* compiled from src/blob/func_800E15A0.c */
     .word 0x44800000
     .word 0x8C830000
     .word 0x27BDFFE8
@@ -3668,6 +3669,7 @@ func_800E1AA0:
 .section .text.func_800E1C30, "ax", @progbits
 .globl func_800E1C30
 func_800E1C30:
+    /* compiled from src/blob/func_800E1C30.c */
     .word 0x27BDFFC8
     .word 0xAFBF0014
     .word 0x808E05A9
@@ -4623,6 +4625,7 @@ object_update_full:
 .section .text.func_800E2AC4, "ax", @progbits
 .globl func_800E2AC4
 func_800E2AC4:
+    /* compiled from src/blob/func_800E2AC4.c */
     .word 0x3C018012
     .word 0xC42E43D8
     .word 0xC48C0408
@@ -5113,6 +5116,7 @@ func_800E313C:
 .section .text.func_800E31D4, "ax", @progbits
 .globl func_800E31D4
 func_800E31D4:
+    /* compiled from src/blob/func_800E31D4.c */
     .word 0x27BDFFE0
     .word 0xAFBF0014
     .word 0x3C014040
@@ -5179,6 +5183,7 @@ func_800E31D4:
 .section .text.func_800E32CC, "ax", @progbits
 .globl func_800E32CC
 func_800E32CC:
+    /* compiled from src/blob/func_800E32CC.c */
     .word 0x27BDFFE0
     .word 0xAFBF001C
     .word 0xAFB00018
