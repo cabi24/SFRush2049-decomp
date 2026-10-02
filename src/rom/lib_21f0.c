@@ -6,7 +6,23 @@
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_21f0/display_update.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_21f0/viewport_setup.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_21f0/display_mode_tick.s")
+/* PROMOTED 2026-10-02 — display_mode_tick
+ * Source:   cloud/work/static_debug_consolidation/acceptance_sources/display_mode_tick.c (in-repo, locked)
+ * Flags:    -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul
+ * Evidence: lock:cloud/work/static_debug_consolidation/acceptance_sources/display_mode_tick.c:display_mode_tick (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void display_mode_tick(void) {
+    if (gViewportPendingFrames == 0) return;
+    if (--gViewportPendingFrames == 0) {
+        if ((gViewportDataPtr->fldRegs[0].yScale & 0xFFFF) == (gViewportStruct->fldRegs[0].yScale & 0xFFFF)) {
+            osSetIntMask(0);
+        }
+        osSetThreadPri(gViewportDataPtr);
+        osViSetSpecialFeatures(0xAA);
+    }
+}
+
 /* PROMOTED 2026-10-02 — get_tv_offset
  * Source:   cloud/work/static_debug_consolidation/acceptance_sources/get_tv_offset.c (in-repo, locked)
  * Flags:    -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul
