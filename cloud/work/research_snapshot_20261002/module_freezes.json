@@ -5,6 +5,51 @@
   "combined_percentage_at_snapshot": 19.83,
   "files": [
     {
+      "path": "cloud/work/module_campaign_20261002/ai/controls_sym/README.md",
+      "sha256": "2c170df047cbc7af5776a49ff6a9110752ca90bbec96dea646ac7bc8dbd4fc41",
+      "bytes": 3519
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/controls_sym/actual_callers.json",
+      "sha256": "c9e832ee9705ff2311615871c9f40f285263c6feddb6ee4b43d88b6efd87dfba",
+      "bytes": 296
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/controls_sym/compile_recipe.json",
+      "sha256": "403c36ce9726c2b67f1a154ba0c63120f12676aa61254543554ed3764677ff71",
+      "bytes": 3009
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/controls_sym/controls.c",
+      "sha256": "30fa4900930af97e61ee023cf6a43adb7a9f767a2230959226f013cffb2af9b7",
+      "bytes": 1969
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/controls_sym/group.json",
+      "sha256": "bc29d4bbd01744040ae6a78ce703c85d4605a5113a737f5e304d2a9b3d88f2c7",
+      "bytes": 227
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/controls_sym/physics_types.h",
+      "sha256": "eadb022c2b46508ccf4c0b24d81ecfac8aff260668ffadfe048c2820ec7cf718",
+      "bytes": 1688
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/controls_sym/proof.json",
+      "sha256": "1b61a87753ce83175b9a3b6c7b2b3a509c5a620af7b6747380eb7e19168175d2",
+      "bytes": 2818
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/controls_sym/provenance.json",
+      "sha256": "ec40b3d773a9238213d2ba16e67266bc27c0723668cf258aef1cb45d513fa53e",
+      "bytes": 869
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/controls_sym/sym.c",
+      "sha256": "912e99040c650c10f48f9864fee9b3633d770fdc20d2326a2654d9f69986a9fe",
+      "bytes": 2141
+    },
+    {
       "path": "cloud/work/module_campaign_20261002/ai/navigation/README.md",
       "sha256": "e1eb0d372cc615c062b1ef9d3f5b25929460cc05545c271474093a967fedc62c",
       "bytes": 4442
@@ -43,56 +88,6 @@
       "path": "cloud/work/module_campaign_20261002/ai/navigation/road_distance.c",
       "sha256": "d79f299dc7cec8b0082997bfcc2949fe376729767635aa75ff60d1c55f323f17",
       "bytes": 1915
-    },
-    {
-      "path": "cloud/work/module_campaign_20261002/static/lib5610/README.md",
-      "sha256": "76adfa62bb626b05932ccf865ca00eb9acd3609fe5112b5c994129ac48158b9c",
-      "bytes": 3463
-    },
-    {
-      "path": "cloud/work/module_campaign_20261002/static/lib5610/callgraph.json",
-      "sha256": "a8f34685c16584da444468702cff2fedc2c8938f999a7e83831e2444c1cdde6e",
-      "bytes": 6776
-    },
-    {
-      "path": "cloud/work/module_campaign_20261002/static/lib5610/compile_recipe.json",
-      "sha256": "016db9c041b1e1edbb597ea10f0bf94987f8acd175d83fcf086a2ba43eff8e79",
-      "bytes": 1661
-    },
-    {
-      "path": "cloud/work/module_campaign_20261002/static/lib5610/external_calls.json",
-      "sha256": "ab3e315de0148f4108c3aa84b186eb74a71e0b1b65a1682cf52d226b7479cabb",
-      "bytes": 421
-    },
-    {
-      "path": "cloud/work/module_campaign_20261002/static/lib5610/full_closure_proof.json",
-      "sha256": "e6e927b3b244ddf8305aac99f303bc48948a61cde3405537d6d7c825e7e5a4c7",
-      "bytes": 7594
-    },
-    {
-      "path": "cloud/work/module_campaign_20261002/static/lib5610/header_hashes.json",
-      "sha256": "0fd6e9b79735e04fb5965a2bc7e6c529b26fba5ce3eec9d4204faf30303e0ebb",
-      "bytes": 6899
-    },
-    {
-      "path": "cloud/work/module_campaign_20261002/static/lib5610/module.c",
-      "sha256": "4758def3001eea839fdd4033b6230bcd4961bb5b96e27d001cb1df5233920396",
-      "bytes": 19272
-    },
-    {
-      "path": "cloud/work/module_campaign_20261002/static/lib5610/preserved_helpers.json",
-      "sha256": "6df75426aaed091672f83fc6e4405a46ae0fc3f22f4d3cb67174dacb6bc65a8c",
-      "bytes": 335
-    },
-    {
-      "path": "cloud/work/module_campaign_20261002/static/lib5610/provenance.json",
-      "sha256": "9d24a4da106a18d978cfbaa2e5c796f1bfdb66db3db42c65b942bfde923c1a50",
-      "bytes": 5674
-    },
-    {
-      "path": "cloud/work/module_campaign_20261002/static/lib5610/targets.json",
-      "sha256": "868f15f54c29f46d49b99119ef97aed4e2aa638a955cec451e485881462d37c1",
-      "bytes": 4789
     },
     {
       "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/README.md",
@@ -258,6 +253,136 @@
       "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/results/dotireforce_typed_14.json",
       "sha256": "ebc20647c54c63ca9e14347873fe6b9b2701c92f76766e3d7bdaa7e899714422",
       "bytes": 623
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/reconstruction/positions/README.md",
+      "sha256": "f38e5f596d0f21bd9d6c67800d3eb5072cab08b941b2316ac85eb5f035016781",
+      "bytes": 2136
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/reconstruction/positions/positions_actual_tire_cursor.c",
+      "sha256": "0e116236fafe97c790e45a2365d2046117230991df186a964853f11001ae8894",
+      "bytes": 3342
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/reconstruction/positions/positions_donor.c",
+      "sha256": "862af7f92c9a657a5b07b265a513336eb288ed9ff1178bfd34659faddf33e7e7",
+      "bytes": 3367
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/reconstruction/positions/positions_native_body_cursor.c",
+      "sha256": "549fa36b7ef8c5305fd35e7842dd3fbad4a7b7f82240acd3232133cc3fa9a457",
+      "bytes": 3349
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/reconstruction/positions/receipts/positions_actual_tire_cursor.json",
+      "sha256": "6161c61a3c2045aff043521e8b6c65e0fc245c25283251824041f8e4c4546ba9",
+      "bytes": 406
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/reconstruction/positions/receipts/positions_donor.json",
+      "sha256": "7522e24f0bc0f96a7ec25e2fee5ca5cffa63ca26a3fbb8136d192e595c80ad00",
+      "bytes": 406
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/reconstruction/positions/receipts/positions_native_body_cursor.json",
+      "sha256": "8b260fbc0dfda15196e9b8b258b5f7a3045205820d533520d7ba98df339028ed",
+      "bytes": 406
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/reconstruction/tire_helpers/README.md",
+      "sha256": "6b88262761d6643aee946700b2099a086fc41dd5206a43e1cf2e18eaf10f58a2",
+      "bytes": 1166
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/reconstruction/tire_helpers/dotireforce_actual_constants.c",
+      "sha256": "aabd0946bae2e6a3e99782bf39a24014e436658a8b266869b5335c8a25e018ae",
+      "bytes": 3042
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/reconstruction/tire_helpers/dotireforce_actual_force_comparison.c",
+      "sha256": "e96fa4a4eafcf712904704e3a828ca7017610da28e85d14f62ba15fc3790fd2c",
+      "bytes": 3123
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/reconstruction/tire_helpers/dotireforce_donor_constant_types.c",
+      "sha256": "50a04ce828a36ae56c0cdad92be6e6f4ac3a0a274c6e9076ff87d565fc7640df",
+      "bytes": 3048
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/reconstruction/tire_helpers/dotireforce_donor_locals.c",
+      "sha256": "596465dca239304c669bd09e5f75f0bb70f143e09b9b3f1e35c4d1e60a3e1158",
+      "bytes": 3114
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/reconstruction/tire_helpers/receipts/dotireforce_actual_constants.json",
+      "sha256": "1845473f2c098b54c5812bd3e9e67c826a05b48fcdf9dca0062eb6094771fccd",
+      "bytes": 722
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/reconstruction/tire_helpers/receipts/dotireforce_actual_force_comparison.json",
+      "sha256": "366392b35e4bf45c8eed163ffd2206b056dad73d5c2f95910a0cfda3e81e5be9",
+      "bytes": 406
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/reconstruction/tire_helpers/receipts/dotireforce_donor_constant_types.json",
+      "sha256": "9d0843b9d2455439405258886e26fabb689ac6b3472ab411a8b9f6b08b943028",
+      "bytes": 722
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/reconstruction/tire_helpers/receipts/dotireforce_donor_locals.json",
+      "sha256": "455302a5cea2e4ec78cc5b194a04fe701fa4ef1588f969a9e8a0671f4f7d5032",
+      "bytes": 406
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/static/lib5610/README.md",
+      "sha256": "76adfa62bb626b05932ccf865ca00eb9acd3609fe5112b5c994129ac48158b9c",
+      "bytes": 3463
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/static/lib5610/callgraph.json",
+      "sha256": "a8f34685c16584da444468702cff2fedc2c8938f999a7e83831e2444c1cdde6e",
+      "bytes": 6776
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/static/lib5610/compile_recipe.json",
+      "sha256": "016db9c041b1e1edbb597ea10f0bf94987f8acd175d83fcf086a2ba43eff8e79",
+      "bytes": 1661
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/static/lib5610/external_calls.json",
+      "sha256": "ab3e315de0148f4108c3aa84b186eb74a71e0b1b65a1682cf52d226b7479cabb",
+      "bytes": 421
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/static/lib5610/full_closure_proof.json",
+      "sha256": "e6e927b3b244ddf8305aac99f303bc48948a61cde3405537d6d7c825e7e5a4c7",
+      "bytes": 7594
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/static/lib5610/header_hashes.json",
+      "sha256": "0fd6e9b79735e04fb5965a2bc7e6c529b26fba5ce3eec9d4204faf30303e0ebb",
+      "bytes": 6899
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/static/lib5610/module.c",
+      "sha256": "4758def3001eea839fdd4033b6230bcd4961bb5b96e27d001cb1df5233920396",
+      "bytes": 19272
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/static/lib5610/preserved_helpers.json",
+      "sha256": "6df75426aaed091672f83fc6e4405a46ae0fc3f22f4d3cb67174dacb6bc65a8c",
+      "bytes": 335
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/static/lib5610/provenance.json",
+      "sha256": "9d24a4da106a18d978cfbaa2e5c796f1bfdb66db3db42c65b942bfde923c1a50",
+      "bytes": 5674
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/static/lib5610/targets.json",
+      "sha256": "868f15f54c29f46d49b99119ef97aed4e2aa638a955cec451e485881462d37c1",
+      "bytes": 4789
     }
   ]
 }
