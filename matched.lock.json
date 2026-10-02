@@ -71,14 +71,6 @@
     "verified": "score0",
     "verified_at": "2026-10-02"
   },
-  "cloud/work/static_debug_consolidation/acceptance_sources/inflate_decompress.c:inflate_decompress": {
-    "body_sha256": "2a6b01c4b39ed5b91b2b8161683c2e904dab558e3ee122fbcf86169bcd8c0bc1",
-    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
-    "target_id": "inflate_decompress",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-02"
-  },
   "cloud/work/static_debug_consolidation/acceptance_sources/main.c:main": {
     "body_sha256": "12282198332aa856ddfffcd6311f63d79a545dc5740e7bf015b4c550054e29e4",
     "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
@@ -195,6 +187,14 @@
     "body_sha256": "9369ac1650340121c8bc0fc341ee1fd9524d606a6a50bb0bee5fdd4eaa12c4da",
     "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "target_id": "dma_wait",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-02"
+  },
+  "src/rom/lib_3140.c:inflate_decompress": {
+    "body_sha256": "2a6b01c4b39ed5b91b2b8161683c2e904dab558e3ee122fbcf86169bcd8c0bc1",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "inflate_decompress",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-02"
