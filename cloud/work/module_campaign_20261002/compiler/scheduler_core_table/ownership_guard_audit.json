@@ -1,0 +1,16 @@
+{
+  "production_logical_table_guard_passed": true,
+  "retained_section_descriptive_symbols": 1,
+  "validated_source_text_word_relocations": 7,
+  "logical_bytes": 28,
+  "zero_discarded_section_alignment_bytes": 4,
+  "new_mutable_storage_bytes": 0,
+  "owned_slot_overlap_count": 0,
+  "assets_data_sha256": "c348ea04768321ca2f864195ad6013a8fb15b59f0295ab74b8b16317cfa77154",
+  "source_header_sha256": "a7a1d4a1d9220b912b7ad0ec62bcd796e7abce207b9aa7f249339f18064de662",
+  "proposed_registry_entry_sha256": "03e56389e22be77f119d2bfacf90527c110e64a10dc0c1ffb2f0430fa348b50f",
+  "proposal_companion_sha256": "f284f7e71dcc1be3127897ca68ddd70b012cc447a37b55c4180acfeedf0579a0",
+  "read_only_production_audit": true,
+  "root_linker_and_rom_gate_completed": false,
+  "accepted_bytes": 0
+}

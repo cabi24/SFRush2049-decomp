@@ -1,0 +1,14 @@
+{
+  "native_code_bytes": 872,
+  "code_full_word_differences": 0,
+  "owned_table_bytes": 28,
+  "table_full_word_differences": 0,
+  "table_source_text_relocations": 7,
+  "unresolved": 0,
+  "unverified_after_actual_section_placement": 0,
+  "comparison_masks": 0,
+  "production_logical_table_guard_passed": true,
+  "object_sha256": "03bc6521e61fa143af32ac47f01dc5f73c86c19158b076d8a146b4e158a5005e",
+  "body_sha256": "f4ade7ef44286dd7959c38bc1633e824532279baea3e09794692d9320c51d9cc",
+  "table_sha256": "296bdccd2705527c030fc06033b427a2139f83edf56a82bc6cb4985e6460065f"
+}
