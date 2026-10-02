@@ -69,7 +69,36 @@ double modf(register double input, register double* ip) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_34a0/modff.s")
+/* PROMOTED 2026-10-02 — modff
+ * Source:   cloud/work/static_debug_consolidation/acceptance_sources/modff.c (in-repo, locked)
+ * Flags:    -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul
+ * Evidence: lock:cloud/work/static_debug_consolidation/acceptance_sources/modff.c:modff (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+float modff(register float input, register float* ip) {
+    register float ax;
+    float t;
+    float x = input;
+    ax = x > 0.0f ? x : -x;
+    if (ax >= 8388608.0f) {
+        *ip = x;
+        return 0.0f;
+    } else {
+        t = ax + 8388608.0f;
+        t = t - 8388608.0f;
+        if (ax < t) t = t - 1.0f;
+        if (t > 0.0f) {} else t = -t;
+    }
+    if (x - t == 1.0f) t = t + 1.0f;
+    if (x >= 0.0f) {
+        *ip = t;
+        return x - t;
+    } else {
+        *ip = -t;
+        return x + t;
+    }
+}
+
 /* PROMOTED 2026-10-02 — __isinf
  * Source:   cloud/work/static_debug_consolidation/acceptance_sources/__isinf.c (in-repo, locked)
  * Flags:    -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul
