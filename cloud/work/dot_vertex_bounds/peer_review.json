@@ -1,0 +1,9 @@
+{
+  "reviewer": "independent lane C",
+  "verdict": "PASS as NONMATCH research",
+  "source_sha256": "046aa583b8c02a8bf1695703102fb1ccd9585adb7ed10a5803ebc8cb152d27ef",
+  "replayed_native_linked_oracle_cases": 1000,
+  "replayed_asan_ubsan_host_cases": 20000,
+  "findings": ["Complete 102-word native source/ABI review", "Same-array pointer precondition necessary and explicit", "No pointer truncation, optimizer steering, fake helpers, or pressure padding", "100/102 residual and 3 nonzero excess words independently confirmed"],
+  "claims": []
+}
