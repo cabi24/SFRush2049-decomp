@@ -4623,6 +4623,7 @@ object_update_full:
 .section .text.func_800E2AC4, "ax", @progbits
 .globl func_800E2AC4
 func_800E2AC4:
+    /* compiled from src/blob/func_800E2AC4.c */
     .word 0x3C018012
     .word 0xC42E43D8
     .word 0xC48C0408
