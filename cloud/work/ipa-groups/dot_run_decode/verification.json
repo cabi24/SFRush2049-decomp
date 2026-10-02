@@ -1,0 +1,250 @@
+{
+  "schema_version": 1,
+  "verifier": "Independent clean canonical command plus separate compile_group/relocate full-word audit",
+  "scope": "Compiled-function match only; no game image splice, ROM build, or ROM hash claim",
+  "base_commit": "2f1f30c508495db08d61170c4a9b2409461ae326",
+  "source_path": "cloud/work/ipa-groups/dot_run_decode/group.c",
+  "source_sha256": "5d1eef4e3dc595c15436258835fd616f24847c50873953f4f8206c0953c39f7d",
+  "spec_path": "cloud/work/ipa-groups/dot_run_decode/group.json",
+  "spec_sha256": "58683905ca07ea2886cf80d9675ae1486e1ff07e484b2543d92f510190fda6ef",
+  "inputs_unchanged_during_verification": true,
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "compiler_identity": {
+    "name": "IDO 5.3 static recompilation",
+    "distribution": "decompals/ido-static-recomp v1.2",
+    "distribution_identity_source": "Repository-pinned tools/cloud/setup.sh; approved installation reused and actual executable files independently hashed",
+    "pinned_archive_sha256": "ab5c741561f80913d58c8b074771f23941a3edd312505a8ebed6d1dfeb65e506",
+    "installed_executable_sha256": {
+      "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+      "acpp": "7bfdf2f79010eb95bd47e165036cac04a69e5f1290fde11736e5f6934f3e9189",
+      "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+      "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+      "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b",
+      "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+      "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+      "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+      "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+    }
+  },
+  "tool_sha256": {
+    "tools/cloud/score.py": "ca0e5fdebb90e13d1e91643357bcda7d402401552e5de326c361ab6411565cc0",
+    "tools/cloud/setup.sh": "e78fafc84cb5cde638bbcab528b96de3d6837e39b3b1f8f8d6c69e55d8f13e4b"
+  },
+  "audit_script_sha256": "9dae2d9cd7d9f3fda47ad752895cef0bfccfe1d7b59a4fef6adf9fc182abab5b",
+  "canonical_command": "python3 tools/cloud/score.py group cloud/work/ipa-groups/dot_run_decode",
+  "canonical_exit_code": 0,
+  "canonical_stdout": "Members:\nfunc_800ADCE0:\n  MATCH\n",
+  "canonical_stderr": "",
+  "compiled_object_sha256": "9214489b1fad0bc597857cf13e4bbec06af97d34369bd77cd670de8908346c47",
+  "functions": [
+    {
+      "name": "func_800ADCE0",
+      "target_address": "0x800ADCE0",
+      "target_end_exclusive": "0x800ADD58",
+      "target_byte_count": 120,
+      "target_word_count": 30,
+      "native_target_sha256": "7f4e356afd5b999a9ac0786684a4d3fdb55ef2a7245db618dd6c3848010934c7",
+      "object_symbol_records": [
+        {
+          "name": "func_800ADCE0",
+          "value": 0,
+          "size": 120,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "compiled_text_start": 0,
+      "compiled_text_end": 128,
+      "compiled_extent_bytes": 128,
+      "resolved_compared_bytes": 120,
+      "resolved_compared_sha256": "7f4e356afd5b999a9ac0786684a4d3fdb55ef2a7245db618dd6c3848010934c7",
+      "strict_full_word_differences": 0,
+      "differing_word_indices": [],
+      "mask_count": 0,
+      "masks": {},
+      "unresolved": [],
+      "unverified": [],
+      "relocation_errors": [],
+      "excess_words": 2,
+      "nonzero_excess_words": 0,
+      "canonical_comparison": {
+        "differing": 0,
+        "total": 30,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "accepted_without_allow_unverified": true,
+      "relocations": []
+    }
+  ],
+  "protected_manifest_sha256": "9e70c670e356fc6bf41b7d43f355b6a65b18234e0c2382dbd95408f842bbea4b",
+  "protected_manifest_valid": true,
+  "protected_manifest_files_verified": 23,
+  "protected_file_sha256": {
+    "asm/us/blob/blob_80086a50.s": "e92856cfeb8dd1b6e94a273ebc25f013870200834bf72e0fd6d48c2bba9488d6",
+    "asm/us/blob/blob_8008d0c0.s": "31d3c07a84b763f4b7827eb3228e3936603363f171554daa7bc516340c9f3402",
+    "asm/us/blob/blob_800947f0.s": "d5b2166820f70cbb7081a5fed6ab96a018981d0b3907d20259ec75473d44c9f4",
+    "asm/us/blob/blob_800966d8.s": "ce544f739a166fa8debfb03a278ca406d94363eca9aaec4437b8da0302e8b584",
+    "asm/us/blob/blob_8009dd18.s": "d2f6fe0e922b647b94239bfd7ec7ad38e322a78728c4b920a1dafe4555f24513",
+    "asm/us/blob/blob_800a4508.s": "ddf75a1f17fc65024a6770ab54a86acb6035a950608d6f84c46c727a9a897c88",
+    "asm/us/blob/blob_800a7df0.s": "45684d2b0a3bf29bfcef7c3760dd561b8a3d60b7333138cc16b8677bbc931e8f",
+    "asm/us/blob/blob_800aeb54.s": "9936e09c9a4e7a7ee9c6748202926ec3b2e5f2d585f67b63a681eedc150238ce",
+    "asm/us/blob/blob_800b3b4c.s": "4f3231e74265ae77a87b404efbf5f893422678aa2ba903f8ce93aa8e12e6c89d",
+    "asm/us/blob/blob_800b7360.s": "2617f1c3dcf6ebee8f6812a756acf7865e9217e1133be793ac2fb1ad22ca5293",
+    "asm/us/blob/blob_800bdd90.s": "1e979b1d33a4e679a9ef9ad66c2a3f9c2d7510b86eeeb2d205dc91d8a339c319",
+    "asm/us/blob/blob_800c46d0.s": "391475bce994968b633a3fa5f30524eb27f1196622cf384420a85a6b816d2602",
+    "asm/us/blob/blob_800cbe08.s": "fbf932ac29483f80bc801e228b10392309548bf3f567c29bc41e695dba95089c",
+    "asm/us/blob/blob_800d1004.s": "788be2853b049c8cc34ecc0625d5cea385bd4e5d921d77a349dbf772469215f2",
+    "asm/us/blob/blob_800d6690.s": "6e1403b3d570599474df1ade4333a5b974f6b8b0ba8803f17af939365ff48315",
+    "asm/us/blob/blob_800de454.s": "caf6e4512105823f8e779a2f9d54eba64b406ebedd4c43ab95d350739cba3119",
+    "asm/us/blob/blob_800e7030.s": "42361b29e3901ff358d75465f366bd06ef3507c482d1ecfe9c99e2ee1393ad37",
+    "asm/us/blob/blob_800ef5b0.s": "9b46f3c8648d4db197629db031fe4c425fdb1d1799411c9eb13c4c11bdb4f271",
+    "asm/us/blob/blob_800f8d9c.s": "d15ea66f688306133ae61cecc9f17949cbf4ef7bed169151373340a1f71c3e93",
+    "asm/us/blob/blob_80100d24.s": "69a18c6a52f3add504de47e73c891a7ac1b9df799d8587a9f5ddb81000f091ae",
+    "asm/us/blob/blob_8010e0fc.s": "f73370264acbcd402606b0340e2b88c208ba4f0df07d953c870d7be5076e7fc6",
+    "asm/us/blob/blob_8010fd7c.s": "ad3456595bad8f1e62ac4d8ce1710c2c6d6851dd05c509de0904b22538a4df13",
+    "asm/us/blob/symbols.json": "91760c85ae47cd8445013beeb1e987048830b0a35ea319b7cc681a61d89af8b1"
+  },
+  "protected_paths_changed_relative_HEAD": [],
+  "accepted_sources_or_locks_changed_relative_HEAD": [],
+  "claims": [
+    "func_800ADCE0"
+  ],
+  "context": [],
+  "defined_compiled_functions": {
+    "func_800ADCE0": 0
+  },
+  "verdict": "PASS",
+  "independent_raw_word_comparison": {
+    "method": "Assert compiled .text first 30 full words equal all 30 protected target words directly, without any relocation or comparison routine; assert no text relocations exist and both excess words are zero",
+    "full_words_exact": 30,
+    "relocations": 0,
+    "trailing_zero_alignment_words": 2
+  },
+  "semantic_audit": {
+    "interface": "void func_800ADCE0(u8 *input, s32 count, u16 *front, u32 marker)",
+    "full_native_words_reviewed": 30,
+    "real_inputs": 4,
+    "stack_frame_bytes": 0,
+    "return_value": "No source return value; native return register is only an output cursor temporary",
+    "operation": "Read each big-endian packed word; top 3 bits encode length minus one, bottom 13 bits encode starting value. Subtract the full run length from remaining count once. Increment value after each output; values equal to the full-word marker go forward, all other values go backward.",
+    "direct_transfer_scan": {
+      "functions": 1216,
+      "words": 140252,
+      "callers": [
+        {
+          "caller": "input_deadzone_apply",
+          "address": "0x800AE098",
+          "kind": "jal"
+        },
+        {
+          "caller": "camera_trigger_check",
+          "address": "0x800C4394",
+          "kind": "jal"
+        },
+        {
+          "caller": "camera_victory",
+          "address": "0x800C6668",
+          "kind": "jal"
+        },
+        {
+          "caller": "entity_update",
+          "address": "0x800C6C58",
+          "kind": "jal"
+        }
+      ],
+      "indirect_call_limit": "Indirect/computed references are not excluded"
+    },
+    "caller_windows_reviewed": [
+      {
+        "name": "input_deadzone_apply",
+        "count": "lbu from record first byte",
+        "input": "record bytes after count",
+        "output": "sp+220",
+        "marker": "0xFFFFFFFF"
+      },
+      {
+        "name": "camera_trigger_check",
+        "count": "lbu from record first byte",
+        "input": "record bytes after count",
+        "output": "sp+172",
+        "marker": "0xFFFFFFFF"
+      },
+      {
+        "name": "camera_victory",
+        "count": "lbu from record first byte",
+        "input": "record bytes after count",
+        "output": "sp+276 plus 2*existing output count",
+        "marker": "0"
+      },
+      {
+        "name": "entity_update",
+        "count": "lbu from record first byte",
+        "input": "record bytes after count",
+        "output": "sp+180",
+        "marker": "unsigned halfword loaded from record+1440"
+      }
+    ],
+    "pointer_domain": "Source retains native initial back=front+count-1 and postdecrement-after-write. The surrounding writable array must include each formed pointer, including one-before the selected output span and initial cursor for nonpositive counts. This is not an API-safe decoder for arbitrary pointers or malformed streams; no caller-wide buffer-capacity proof is claimed.",
+    "reference_provenance": "Arcade source tree unavailable; no direct arcade equivalent established",
+    "no_forced_matching": "One real four-argument function; no helper/caller context, fabricated operations, extra parameters, volatile, padding locals, assembly, target modifications, masks or patched compiler."
+  },
+  "host_semantic_test": {
+    "result": "PASS",
+    "cases": 302147,
+    "harness_sha256": "fad6f849d61a0af6d6b4b286ebc39f6f30282dead80bd08f2e666e3484940ebf",
+    "command": "cc -std=c89 -pedantic -Wall -Wextra -Werror -O2 -fsanitize=address,undefined -fno-omit-frame-pointer; ASAN_OPTIONS=detect_leaks=0 executable",
+    "coverage": [
+      "Every one of 65,536 encoded words with four markers: no-hit 0xFFFFFFFF, first value, last value, and zero",
+      "10,000 deterministic valid multi-run streams of 1..255 outputs, each with four marker cases",
+      "Three nonpositive counts (-255,-1,0) within a valid surrounding-array pointer domain; null input never read",
+      "Every output byte, surrounding guards and all input bytes checked against independent index-only reference"
+    ],
+    "limits": "Host tests do not execute N64 machine code. Leak detection disabled for sandbox ptrace; no dynamic allocation. Malformed-stream bounds and arbitrary pointer safety are not claimed."
+  },
+  "historical_control": {
+    "source": "cloud/work/tiny_A24/func_800ADCE0.c",
+    "source_sha256": "306a80d511f3b3c852681be0569b17e70f5fcfd2ba62885920831e56a37ad602",
+    "unchanged": true,
+    "original_O2_differing_words": 29,
+    "original_nonzero_excess_words": 1,
+    "defect": "The historical tiny_A24 source subtracts run then decrements remaining count inside every output iteration. Native subtracts run+1 once before the inner loop.",
+    "reconstruction": "Readable complete source consumes one decoded value through the mask and increments; ordinary whole-program O3 compiles the single kept function; full-word unsigned marker supplies exact compare operand order. Earlier hand_partial_A research already has the correct count reduction and remains unchanged."
+  },
+  "independent_peer_review": {
+    "result": "PASS",
+    "source_sha256": "5d1eef4e3dc595c15436258835fd616f24847c50873953f4f8206c0953c39f7d",
+    "method": "Separate lane copied final source/spec and independently compiled ordinary O3; confirmed all 30 raw words, 120-byte function, zero relocations, two zero padding words, full body semantics and four-input ABI; pointer-domain limitation independently flagged."
+  },
+  "checks": {
+    "cloud_and_scorer_tests": "840 passed, 27 subtests passed; exit 0",
+    "ci_style_repository_tests": "1299 passed, 41 skipped, 9 deselected; exit 0",
+    "static_locks": "all 160 intact",
+    "blob_and_group_source_hash_issues": 0,
+    "protected_manifest": "all 23 entries verify",
+    "host_C89_syntax": "PASS",
+    "scope_base_commit": "2f1f30c508495db08d61170c4a9b2409461ae326"
+  },
+  "scope_checks": {
+    "accepted_aliases_present": false,
+    "other_group_claims": [],
+    "open_matching_prs_excluded": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16
+    ],
+    "new_files": 4,
+    "accepted_coverage_change": 0,
+    "source_image_splice": "not run: full extracted image unavailable",
+    "full_ROM_SHA1": "not run: ROM unavailable",
+    "make_test": "not run: ROM unavailable",
+    "blob_layout": "unavailable",
+    "live_coordinator_ownership": "Integrator must recheck before promotion"
+  }
+}
