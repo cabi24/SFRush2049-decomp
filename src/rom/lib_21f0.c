@@ -94,4 +94,25 @@ void get_viewport_offset(register s32 *x, register s32 *y) {
     *y = gViewportScaleY - ((s16 (*)[4])gViewportOffsetY)[gViewportX][0];
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_21f0/update_viewport.s")
+/* PROMOTED 2026-10-02 — update_viewport
+ * Source:   cloud/work/static_debug_consolidation/acceptance_sources/update_viewport.c (in-repo, locked)
+ * Flags:    -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul
+ * Evidence: lock:cloud/work/static_debug_consolidation/acceptance_sources/update_viewport.c:update_viewport (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void update_viewport(s32 x, s32 y) {
+    s32 left, top, right, bottom;
+    if (gViewportDataPtr == NULL) return;
+    left = gViewportLeftEdge + x;
+    top = gViewportTopEdge + y;
+    right = gViewportRightEdge + x + gViewportXOverflow;
+    bottom = gViewportBottomEdge + y + gViewportYOverflow;
+    if (left > gViewportBoundsTable[gViewportX][0] && left < gViewportBoundsTable[gViewportX][1] && right > gViewportBoundsTable[gViewportX][2] && right < gViewportBoundsTable[gViewportX][3]) {
+        gViewportScaleX = ((s16 (*)[4])gViewportOffsetX)[gViewportX][0] + x;
+    }
+    if (top > gViewportBoundsTable[gViewportX][4] && top < gViewportBoundsTable[gViewportX][5] && bottom > gViewportBoundsTable[gViewportX][6] && bottom < gViewportBoundsTable[gViewportX][7]) {
+        gViewportScaleY = ((s16 (*)[4])gViewportOffsetY)[gViewportX][0] + y;
+    }
+    display_update();
+}
+

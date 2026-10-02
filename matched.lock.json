@@ -55,14 +55,6 @@
     "verified": "score0",
     "verified_at": "2026-10-02"
   },
-  "cloud/work/static_debug_consolidation/acceptance_sources/update_viewport.c:update_viewport": {
-    "body_sha256": "8540ae8d43c9d1e5a62a3a961ce20b87b884ad3ddef704dbc1bca1f4b5f1512e",
-    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
-    "target_id": "update_viewport",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-02"
-  },
   "src/libultra/os_ai.c:__osAiDeviceBusy": {
     "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -123,6 +115,14 @@
     "body_sha256": "dcc6525ff31a785da27d2a2361d36e9d16699dbf6cfddd8920d634bd0503f926",
     "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "target_id": "get_viewport_pos",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-02"
+  },
+  "src/rom/lib_21f0.c:update_viewport": {
+    "body_sha256": "8540ae8d43c9d1e5a62a3a961ce20b87b884ad3ddef704dbc1bca1f4b5f1512e",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "update_viewport",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-02"
