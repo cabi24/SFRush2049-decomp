@@ -1,0 +1,26 @@
+# Independent native and arcade audit: `func_800E0B20`
+
+Complete native target `0x800E0B20`: 395 words / 1,580 bytes. Ordinary one-pointer input and void return; retail frame 56 bytes. Native entry reads car index as signed halfword at model offset 1990. It indexes 952-byte player records and skips processing when their signed byte at offset 857 is nonzero. Every vector-magnitude call explicitly spills and reloads the actual model pointer. No hidden incoming registers are required.
+
+`func_8008B3C8` is an already matched 11-word vector magnitude routine: one pointer to three floats in `$a0`, ordinary float result in `$f0`, direct `sqrt.s`. Its body reads three scalar components and sums their squares. Caller invokes it for model velocity at offset 16, followed conditionally by four actual vector records at offsets 100, 112, 124, 136. All four calls must remain.
+
+The static callback at `0x803914B4` consumes three ordinary integer register values in the caller. First two are the same car index explicitly narrowed/sign-extended from signed byte. Third is literal -1. Existing matched `effect_cleanup` source independently uses the same external address and signed byte arguments. Declaring the third argument signed byte or full signed word gives identical code for literal -1. There are three genuine conditional callback sites; no calls were removed.
+
+Direct arcade ancestor: `reference/repos/rushtherock/game/drivsym.c`, `checkok()` beginning near line 650. Its suspension compression loop evaluates four tires, retaining the highest reached thump level and accumulating the corresponding side mask. Original thresholds are .9, 1.3, 1.8. The arcade source declares the loop index, thump level, and thump side as signed 16-bit values. Native explicit sign narrowing applies to the loop index and mask; level only holds zero through three and its final byte store does not establish a necessary narrow local type.
+
+The N64 routine extends this logic: actual velocity and four sample-vector magnitudes, minimum three/four qualifying sample correction, game-mode gating, car crash flags, opposing contact pairs, and a callback for selected modes. Arcade `checkok()` additionally contains different averaged-force calculations and top-damage appearance updates; they are not part of this native extent and must not be copied into the N64 source.
+
+Native writes: model signed short offset 1604 (thump side mask), signed byte offset 1602 (thump level), byte offset 1600 (crash flag), byte offset 1601 (top scrape). Native contact/sample and roll/speed offsets are preserved even where semantic field naming remains inferred. There is no switch jump table. Protected target SHA256: `83280449e928dc464f600f9f7214d94c25402e5795cdfc27b9ec40daa8661a8d`.
+
+Fresh full C ordinary O2/O3 baseline emits the same linked words: correct 56-byte frame, 396 words including alignment, 356/395 strict differing, 358 aligned opcode matches. Workbench diagnosis was run before controls. Explicit actual threshold float locals improve positional score to 190/395 but change frame to 72; this lead confirms preload order and motivates correcting model field typing rather than declaring a match. Callback signed-byte typing changes no linked words. These first controls were not accepted. Final independent acceptance is recorded below.
+
+
+## Complete exact match
+
+The real already matched `effect_cleanup(s8,s8,s8)` body was recovered as the original inlining context. The three native direct callbacks are its actual inline expansions. Including this full callee and calling it from the real caller through the complete `cc -j / uld / usplit / umerge / uopt / ugen / as1` O3 pipeline restores all callback control flow and register use. The callee is context only; its separately locked source remains its ROM provider. Its context code is not claimed.
+
+Using the real native eight float literals restores all three loop-invariant preload operations. Protected `blob_group.relocate` derives their common 0x80124394 base from every native HI/LO site and verifies all 32 generated data bytes against the image. It then verifies all 395 executable instructions with zero word differences.
+
+The final remaining source controls were actual arcade statement order (assign thump level before accumulating side mask), actual compression-array indexing, and declaration order for existing real locals. The native stack locations follow these declarations; no local, buffer, parameter, padding, volatility, or dummy operation was added. The final declaration order is model, magnitude, level, mask, index, threshold, sample, sum, count, pairs.
+
+Frozen source `actual_group_native_locals.c` SHA256 `f7ec5047a4dfce421f00f849afb3dd4f999cce6afd8cd8437c6bfc218f8f2698`; full compiler flags `-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul`. Its first comment still records the inherited O2 baseline; publication needs only that metadata comment normalized to O3 and a fresh replay. `final_independent.json` is the complete relocation and source-built constant proof. Final target size is 1,580 bytes. Alignment, existing callee, and constant pool are not extra game-code credit. Root handles image, ROM, locks, and publication.

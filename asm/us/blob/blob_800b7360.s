@@ -6251,6 +6251,7 @@ func_800BD080:
 .section .text.camera_smooth_follow, "ax", @progbits
 .globl camera_smooth_follow
 camera_smooth_follow:
+    /* compiled from src/blob/camera_smooth_follow.c */
     .word 0x27BDFFE0
     .word 0xAFB40014
     .word 0xAFB30010

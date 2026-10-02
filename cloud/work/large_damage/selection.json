@@ -1,0 +1,25 @@
+{
+  "function": "func_800E0B20",
+  "address": "0x800E0B20",
+  "bytes": 1580,
+  "words": 395,
+  "target_o_sha256": "83280449e928dc464f600f9f7214d94c25402e5795cdfc27b9ec40daa8661a8d",
+  "tier": "reloc_aware",
+  "accepted": true,
+  "agents": {
+    "model": "gpt-6.1-sol",
+    "reasoning": "high",
+    "count": 2
+  },
+  "purpose_inferred": "Suspension thump, crash-state and roof-contact updater",
+  "arcade_ancestor": "reference/repos/rushtherock/game/drivsym.c:checkok",
+  "publication_group": "src/blob/groups/codex_large_crash_state",
+  "publication_source_sha256": "b1e88b9c3e4f0a01a40bac84ab978040ac25b2a122090a0b2ff7a41c5111978b",
+  "baseline_game_percent": 13.66,
+  "final_game_percent": 13.97,
+  "static_percent": 46.76,
+  "context": [
+    "effect_cleanup"
+  ],
+  "accepted_game_bytes": 1580
+}
