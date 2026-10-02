@@ -1,0 +1,258 @@
+{
+  "schema_version": 1,
+  "verdict": "PASS",
+  "scope": "Complete compiled-function match only; no image or ROM integration",
+  "base_commit": "2f1f30c508495db08d61170c4a9b2409461ae326",
+  "source_path": "cloud/matches/func_800A5158.c",
+  "source_sha256": "17466ebf6f33460f0add20d0e03b7a67ce69502223f15c6032a3943af3bcd392",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "canonical_exit_code": 0,
+  "canonical_stdout": "func_800A5158:\n  MATCH\n",
+  "independent_replay": {
+    "method": "Clean-directory direct pinned IDO cc invocation; explicit independent HI16/LO16 and JAL arithmetic; no masking",
+    "object_sha256": "4dd11bc00dd693261b66994e11ddffcc292fd0b916f0ea19ecdedb4b88ef58ba",
+    "elf_function": {
+      "name": "func_800A5158",
+      "value": 0,
+      "size": 128,
+      "type": 2,
+      "section": 4
+    },
+    "body_words": 32,
+    "body_bytes": 128,
+    "zero_alignment_words": 0,
+    "nonzero_excess_words": 0,
+    "strict_full_word_differences": 0,
+    "target_sha256": "dcf0eae046aa0e3ee32eac82b70097d9f40df96c617dca7fc24e4e52c5450663",
+    "resolved_body_sha256": "dcf0eae046aa0e3ee32eac82b70097d9f40df96c617dca7fc24e4e52c5450663",
+    "relocations": [
+      {
+        "offset": 0,
+        "type": 5,
+        "symbol": "D_80118EE4"
+      },
+      {
+        "offset": 4,
+        "type": 6,
+        "symbol": "D_80118EE4"
+      },
+      {
+        "offset": 24,
+        "type": 5,
+        "symbol": "D_80118EE4"
+      },
+      {
+        "offset": 28,
+        "type": 6,
+        "symbol": "D_80118EE4"
+      },
+      {
+        "offset": 32,
+        "type": 5,
+        "symbol": "D_8013FEC8"
+      },
+      {
+        "offset": 44,
+        "type": 6,
+        "symbol": "D_8013FEC8"
+      },
+      {
+        "offset": 36,
+        "type": 5,
+        "symbol": "D_8002E860"
+      },
+      {
+        "offset": 40,
+        "type": 6,
+        "symbol": "D_8002E860"
+      },
+      {
+        "offset": 48,
+        "type": 5,
+        "symbol": "D_80140A10"
+      },
+      {
+        "offset": 72,
+        "type": 6,
+        "symbol": "D_80140A10"
+      },
+      {
+        "offset": 68,
+        "type": 4,
+        "symbol": "audio_frame_sync"
+      },
+      {
+        "offset": 76,
+        "type": 5,
+        "symbol": "D_80140AF0"
+      },
+      {
+        "offset": 80,
+        "type": 6,
+        "symbol": "D_80140AF0"
+      },
+      {
+        "offset": 88,
+        "type": 4,
+        "symbol": "display_list_alloc"
+      },
+      {
+        "offset": 96,
+        "type": 4,
+        "symbol": "func_800A4E58"
+      },
+      {
+        "offset": 104,
+        "type": 4,
+        "symbol": "func_800A510C"
+      }
+    ],
+    "addends": [
+      {
+        "symbol": "D_80118EE4",
+        "addend": 0,
+        "resolved_address": "0x80118ee4"
+      },
+      {
+        "symbol": "D_80118EE4",
+        "addend": 0,
+        "resolved_address": "0x80118ee4"
+      },
+      {
+        "symbol": "D_8013FEC8",
+        "addend": 0,
+        "resolved_address": "0x8013fec8"
+      },
+      {
+        "symbol": "D_8002E860",
+        "addend": 0,
+        "resolved_address": "0x8002e860"
+      },
+      {
+        "symbol": "D_80140A10",
+        "addend": 0,
+        "resolved_address": "0x80140a10"
+      },
+      {
+        "symbol": "audio_frame_sync",
+        "addend": 0,
+        "resolved_address": "0x80097798"
+      },
+      {
+        "symbol": "D_80140AF0",
+        "addend": 0,
+        "resolved_address": "0x80140af0"
+      },
+      {
+        "symbol": "display_list_alloc",
+        "addend": 0,
+        "resolved_address": "0x8009638c"
+      },
+      {
+        "symbol": "func_800A4E58",
+        "addend": 0,
+        "resolved_address": "0x800a4e58"
+      },
+      {
+        "symbol": "func_800A510C",
+        "addend": 0,
+        "resolved_address": "0x800a510c"
+      }
+    ],
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "canonical_comparison": {
+      "differing": 0,
+      "total": 32,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  "compiler_identity": {
+    "name": "IDO 5.3 static-recomp v1.2",
+    "pinned_archive_sha256": "ab5c741561f80913d58c8b074771f23941a3edd312505a8ebed6d1dfeb65e506",
+    "executable_sha256": {
+      "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+      "acpp": "7bfdf2f79010eb95bd47e165036cac04a69e5f1290fde11736e5f6934f3e9189",
+      "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+      "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+      "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+      "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+    }
+  },
+  "audit_script_sha256": "ead999e18a96d7a1eb8c01b4167bc30f85dec08942f744e6d71e1b09e31adb8b",
+  "scorer_sha256": "ca0e5fdebb90e13d1e91643357bcda7d402401552e5de326c361ab6411565cc0",
+  "manifest_files_verified": 23,
+  "protected_paths_changed": [],
+  "blob_source_hashes_checked": 651,
+  "blob_source_hash_problems": [],
+  "native_start": "0x800a5158",
+  "native_end_exclusive": "0x800a51d8",
+  "direct_transfer_scan": {
+    "functions": 1216,
+    "words": 140252,
+    "j_and_jal": [
+      {
+        "function": "tire_compound_set",
+        "word_index": 86,
+        "operation": "jal"
+      }
+    ],
+    "pc_relative": [],
+    "limit": "Does not exclude indirect or opaque-region callers"
+  },
+  "semantic_audit": {
+    "prototype": "void func_800A5158(void)",
+    "frame_bytes": 32,
+    "guard": "Signed byte D_80118EE4: any nonzero value skips all work; zero sets guard to one before delegates. Not atomic.",
+    "stores": "Zero signed-half D_8013FEC8; copy unsigned D_8002E860 to D_80140A10 before first call; store full returned ID to D_80140AF0.",
+    "calls": "audio_frame_sync(unsigned byte,0,0,0,null pointer); display_list_alloc(returned ID); func_800A4E58(); func_800A510C(); all in native order. No error-result validation introduced.",
+    "fifth_argument_type": "void pointer follows actual audio_frame_sync group definition and native fifth stack slot forwarded to allocation; historical generated s32 declaration replaced only in new source.",
+    "source_choice": "Named const s8 initialized=1 is actual guard value. No padding, invented operation, helper body, extra argument, volatile access or forced register.",
+    "caller": "tire_compound_set calls at 0x800A5D10 without inputs; wrapper return is unused.",
+    "arcade_equivalent": "Not established; arcade reference checkout unavailable."
+  },
+  "host_semantics": {
+    "cases": 327680,
+    "repeated_calls": 327680,
+    "test_source": "cloud/work/dot_once_init/host_semantics.c",
+    "test_source_sha256": "16ee1f437f2ae790cb4a0ab22016d6f45e187d382c1d0bdee3aebf2252582e35",
+    "coverage": "All 256 signed guards x all256 unsigned source bytes x five callee returns (INT_MIN,-1,0,1,INT_MAX). Verify exact call order/arguments, guard set before callback, pre-call copied byte, ID store and forwarding, no operations when nonzero, and repeated-call suppression. First mock mutates source byte to expose stale/copy ordering errors.",
+    "sanitizers": "ASan and UBSan pass; C89 pedantic warnings pass. Leak detection disabled under sandbox ptrace; no heap allocations.",
+    "limit": "Host stubs are test-only; real N64 delegates are not executed by host checks."
+  },
+  "tests": {
+    "cloud_suite": "Exit 0; two skips observed, quiet runner omitted numerical summary",
+    "cloud_scorer_suite": "621 passed, exit0",
+    "repository_suite": "1299 passed,41 skipped,9 deselected,exit0",
+    "static_locks": "160 intact",
+    "initial_repository_attempt": "Collection failed because submodules were not yet materialized; populated exact pinned submodule revisions and reran entire suite successfully."
+  },
+  "eligibility": {
+    "master": "2f1f30c508495db08d61170c4a9b2409461ae326",
+    "target_absent_from_blob_lock": true,
+    "target_absent_from_existing_cloud_matches": true,
+    "target_absent_from_all_group_members_context_keep_claims": true,
+    "prior_prs": "PR1\u20138 merged; PR9 is zero-credit research archive. PR10\u201320 targets differ; body and paginated changed-file lists checked. No old candidate changed.",
+    "parallel_target": "func_8008B32C, disjoint",
+    "historical_source": "cloud/work/near_miss_B33/func_800A5158_init.c",
+    "historical_source_sha256": "0d596c21dfdd62fb953ab49956f8510e23cbd68746be434ae32187e92d2c1b45",
+    "historical_differences": 8
+  },
+  "separate_reviewer": {
+    "source_sha256": "17466ebf6f33460f0add20d0e03b7a67ce69502223f15c6032a3943af3bcd392",
+    "method": "Direct fresh pinned IDO cc; GNU ld with explicit verified symbol addresses; objcopy whole .text; unmasked 128byte comparison",
+    "result": "All32 native words and16 relocations match; source C89 warnings pass; full function extent/zero-input ABI audited.",
+    "linked_text_sha256": "dcf0eae046aa0e3ee32eac82b70097d9f40df96c617dca7fc24e4e52c5450663"
+  },
+  "limits": [
+    "No ROM or complete extracted image available",
+    "No source-image splice, compressed-stream identity, full-ROM SHA1 or make test run",
+    "No accepted cartridge coverage added",
+    "Live LAN coordinator ownership and normal image/ROM/lock promotion gates remain integrator work"
+  ]
+}
