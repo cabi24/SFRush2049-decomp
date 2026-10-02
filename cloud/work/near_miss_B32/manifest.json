@@ -1,0 +1,16 @@
+{
+  "frozen": true,
+  "files": {
+    "cloud/work/near_miss_B32/claims.json": "deda7ff441528f77e4e372bb05e13b9d29a5a5407acdb53fd25ad843d56d9ca9",
+    "cloud/work/near_miss_B32/func_800BD080_continue.c": "3975f607ee5e3e6d0d19166686dc753e896ffeb38e35ae09db3967d2eb1dedb2",
+    "cloud/work/near_miss_B32/func_800BD080_independent.c": "d47a7738ce97adcf4deb0a68e8dc3763070fd5c053a33223f58d328e5650ec3a",
+    "cloud/work/near_miss_B32/func_800BD080_opcode.c": "0c3a890ee53529d97ac8e62f1b6fb8670960655a675c8fce47b3e5daee1b1444",
+    "cloud/work/near_miss_B32/func_800BE744_cursor.c": "a543db7755d113bcaf92aa85c8e67e673ea2ad51df86e73dad5381cb9750f703",
+    "cloud/work/near_miss_B32/func_800BE744_direct.c": "a4cd17e22fb78546f6c605e48f3b6574a4e4be26f8fec3ba167a1b8b172ce5db",
+    "cloud/work/near_miss_B32/func_800BE744_initial.c": "e734c5d146242f0169c36fb2ae4f06d10fa7bd9f3dce2d2df65c94d8d6f253c5",
+    "cloud/work/near_miss_B32/func_800BE744_length.c": "d86fdbb2f7f8093897d679fe70e51ae96de468f12d96e01000fbf1bd1dde00d4",
+    "cloud/work/near_miss_B32/func_800BE744_wide.c": "49d27e4a4b89a4f51a243a80348c7e5b17f97d5e7fc170b1ce214f3cbaa372d1",
+    "cloud/work/near_miss_B32/results.json": "eb783dafc3244890b1eab6f07e938c3eae6339349aebd1d9aa0deae85c36fcec",
+    "cloud/work/near_miss_B32.md": "cca55ada1880d4f3d2a957fd67b11db7d09c8cf84d9b88fa59c1256d7eecc4c2"
+  }
+}

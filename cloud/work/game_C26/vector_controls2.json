@@ -1,0 +1,30 @@
+[
+  {
+    "control": "indexed_flat",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 621,
+    "linked": {
+      "differing": 37,
+      "total": 71,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "control": "named_components",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 642,
+    "linked": {
+      "differing": 34,
+      "total": 71,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+]

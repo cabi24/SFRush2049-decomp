@@ -1,0 +1,17 @@
+{
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_800F6928",
+    "render_helper"
+  ],
+  "members": [
+    "func_800F6928"
+  ],
+  "claims": [],
+  "context": [
+    "render_helper"
+  ]
+}

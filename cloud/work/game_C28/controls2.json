@@ -1,0 +1,16 @@
+[
+  {
+    "control": "conditional_cursor",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 470,
+    "linked": {
+      "differing": 87,
+      "total": 100,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+]

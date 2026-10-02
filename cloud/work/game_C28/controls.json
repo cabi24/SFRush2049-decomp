@@ -1,0 +1,58 @@
+[
+  {
+    "control": "for_loop",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 990,
+    "linked": {
+      "differing": 94,
+      "total": 100,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 2
+    }
+  },
+  {
+    "control": "named_interpolation",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 775,
+    "linked": {
+      "differing": 94,
+      "total": 100,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 2
+    }
+  },
+  {
+    "control": "cursor_loop",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 470,
+    "linked": {
+      "differing": 92,
+      "total": 100,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "control": "initial_loop",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 775,
+    "linked": {
+      "differing": 94,
+      "total": 100,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 2
+    }
+  }
+]

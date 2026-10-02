@@ -987,6 +987,7 @@ gfx_setup_e700:
 .section .text.music_track_control, "ax", @progbits
 .globl music_track_control
 music_track_control:
+    /* compiled from src/blob/music_track_control.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0xE7AC0018

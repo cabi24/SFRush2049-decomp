@@ -1,5 +1,13 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-01 twenty-second completed milestone: complete real list/audio/display bodies
+
+- Game cartridge C: **585/1,216 functions, 69,392/647,072 bytes (10.72%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**.
+- Five new ordinary bodies add1,744 bytes. Root D1/D2 reconstruct real List/Link removal348 and insertion352 bytes, preserving indirect/doubly modes, actual head/tail/count updates and original scan behavior. Four actual pointer/field-flow controls reach removal MATCH; three genuine branch/scope controls reach insertion MATCH. B32 adds132-byte display opcode scanner through natural shared continue/increment. C27 adds404-byte actual audio conversion wrapper; C28 adds508-byte real voice-list traversal/removal with unsigned amplitude conversion and live next-pointer preservation. Original constants, fields, external callees and real consumed inputs only.
+- Independent canonical D MATCH, complete strict raw zero proofs, all image gates exact and source-built full original ROM SHA-1 EXACT. Full pytest713 passed/503 skipped with captured exit0;585 blob locks/group checks zero, all123 static/source locks intact. Root list flags **-g0 -O2 -mips2 -G 0 -non_shared**; B32/C27/C28 also **-Wab,-r4300_mul**. No invented guards, pressure, initialization, dummy formal or stand-in group.
+- Across original handoff:88 game functions /12,976 bytes and97 static functions /27,284 bytes accepted. Latest9f93823d CI36951046709 succeeded. Frozen C26/B31/B33/A50/A51/A52 nonmatches are retained with no extra coverage. Three workers continue fresh unseeded source/ABI reconstruction; initial dirty tools/mips_to_c preserved. Farm resumes after checkpoint.
+
+
 ## 2026-10-01 twenty-first completed milestone: real traversal, list and conversion sources
 
 - Game cartridge C: **580/1,216 functions, 67,648/647,072 bytes (10.45%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**.

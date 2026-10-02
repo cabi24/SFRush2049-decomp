@@ -1,0 +1,22 @@
+[
+  {
+    "control": "actual_field_symbols",
+    "strict_diff": 30,
+    "size": 32,
+    "target_size": 32,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "errors": []
+  },
+  {
+    "control": "field_statement_boundaries",
+    "strict_diff": 30,
+    "size": 32,
+    "target_size": 32,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "errors": []
+  }
+]

@@ -1844,6 +1844,7 @@ func_800B0618:
 .section .text.audio_voice_set, "ax", @progbits
 .globl audio_voice_set
 audio_voice_set:
+    /* compiled from src/blob/audio_voice_set.c */
     .word 0x27BDFF98
     .word 0xAFB60060
     .word 0x3C168015

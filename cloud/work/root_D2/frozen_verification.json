@@ -1,0 +1,29 @@
+{
+  "function": "func_80091FBC",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "source_sha256": "d408b65b5959e87c58256bab68b9c7e9893de99a178dfb1062900e954c418b79",
+  "target_sha256": "ba144909eaa4b1ee8202b375a2a8e9c19e808618b735a2150aacc8e8abfa8d3d",
+  "compile_command": [
+    "/home/cburnes/rush2049/cache/toolkits/796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5/ido/cc",
+    "-c",
+    "-g0",
+    "-O2",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "/home/cburnes/agents/D/scratch/func_80091FBC_D2_explicit.c",
+    "-o",
+    "/tmp/C26-verify-w8hzq46m/candidate.o"
+  ],
+  "compile_exit": 0,
+  "strict_score": 0,
+  "linked": {
+    "differing": 0,
+    "total": 88,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  }
+}

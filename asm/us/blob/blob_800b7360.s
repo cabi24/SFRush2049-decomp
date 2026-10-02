@@ -6211,6 +6211,7 @@ camera_collision_avoid:
 .section .text.func_800BD080, "ax", @progbits
 .globl func_800BD080
 func_800BD080:
+    /* compiled from src/blob/func_800BD080.c */
     .word 0x00A03025
     .word 0x240B00DF
     .word 0x240A00FD

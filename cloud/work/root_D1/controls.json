@@ -1,0 +1,30 @@
+[
+  {
+    "source": "func_8009211C.c",
+    "source_sha256": "c654022e366f2e935883ed1be513586a87b55f4fc992dbe92c30321587d9960e",
+    "differing": 86,
+    "target_words": 87,
+    "extra_words": 0
+  },
+  {
+    "source": "func_8009211C.explicit.c",
+    "source_sha256": "9f031e5cfa1e9d10ffb49a861f3b9058a0f4a290f07b01b2466acb21397b3acc",
+    "differing": 47,
+    "target_words": 87,
+    "extra_words": 1
+  },
+  {
+    "source": "func_8009211C.head_assignment.c",
+    "source_sha256": "bf3e74d4e3c6afbabc732ce4e3dfc803f48ff07e037d5147380bcdccdfa0cf38",
+    "differing": 22,
+    "target_words": 87,
+    "extra_words": 0
+  },
+  {
+    "source": "func_8009211C.field_flow.c",
+    "source_sha256": "20d73de239d47ec0799b4bfbf4a03023abb8f99359f5603ee68c7dd2a89edd99",
+    "differing": 0,
+    "target_words": 87,
+    "extra_words": 0
+  }
+]

@@ -1,0 +1,19 @@
+[
+  {
+    "function": "random_int",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 2037,
+    "linked": {
+      "differing": 59,
+      "total": 71,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "7abdced961cebf3e0b6601be728c3a395e3a2fea0e7b51595d6df23fd2ad5f44",
+    "target_sha256": "bfe34a2c6a21562038c0d3fbdf451a8f9f0504eb6fdc08bb2304d78813d1041a"
+  }
+]

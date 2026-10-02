@@ -1,0 +1,16 @@
+{
+  "function": "audio_voice_set",
+  "bytes": 508,
+  "source_sha256": "bbf6499a556db8e30742cfe12df0b9c854fcc27b0d587aa06902870254cf1c66",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "canonical_D": "MATCH",
+  "image_identical": true,
+  "source_built_ROM_sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+  "pytest": {
+    "passed": 713,
+    "skipped": 503,
+    "exit": 0
+  },
+  "blob_locks": 585,
+  "static_locks": 123
+}

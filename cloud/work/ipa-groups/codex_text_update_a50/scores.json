@@ -1,0 +1,31 @@
+{
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "source_sha256": "77a0ab623f0b45a1d333662da52cc84273d3fe96dde6101a1351e5fc030868cc",
+  "err": null,
+  "members": {
+    "func_800CCE5C": {
+      "strict_diff": 7,
+      "size": 40,
+      "target_size": 40,
+      "extra": 0,
+      "matched": false,
+      "unverified": [],
+      "unresolved": [],
+      "err": null,
+      "errors": []
+    }
+  },
+  "context": {
+    "func_800A1910": {
+      "strict_diff": 0,
+      "size": 75,
+      "target_size": 75,
+      "extra": 0,
+      "matched": true,
+      "unverified": [],
+      "unresolved": [],
+      "err": null,
+      "errors": []
+    }
+  }
+}
