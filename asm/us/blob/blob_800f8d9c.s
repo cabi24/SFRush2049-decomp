@@ -2403,6 +2403,7 @@ init_state_continue:
 .section .text.vsync_wait, "ax", @progbits
 .globl vsync_wait
 vsync_wait:
+    /* compiled from src/blob/vsync_wait.c */
     .word 0x27BDFFC8
     .word 0x3C018011
     .word 0xAFBF0034
