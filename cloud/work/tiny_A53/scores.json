@@ -1,0 +1,14 @@
+{
+  "render_helper": {
+    "strict_diff": 0,
+    "size": 58,
+    "target_size": 58,
+    "extra": 0,
+    "matched": true,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "c83017190fef37ee01c4c307ccbb54029288aee87ea76b7e695f9e5ddc84bcf2"
+  }
+}

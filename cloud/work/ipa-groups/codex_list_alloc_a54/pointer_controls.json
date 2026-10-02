@@ -1,0 +1,98 @@
+[
+  {
+    "control": "real_free_list_address",
+    "err": null,
+    "members": {
+      "func_80092278": {
+        "strict_diff": 5,
+        "size": 58,
+        "target_size": 58,
+        "extra": 0,
+        "matched": false,
+        "errors": []
+      }
+    },
+    "context": {
+      "entity_flags_apply": {
+        "strict_diff": 39,
+        "size": 73,
+        "target_size": 73,
+        "extra": 0,
+        "matched": false,
+        "errors": []
+      },
+      "high_scores_display": {
+        "strict_diff": 86,
+        "size": 113,
+        "target_size": 117,
+        "extra": 0,
+        "matched": false,
+        "errors": []
+      },
+      "func_8009211C": {
+        "strict_diff": 0,
+        "size": 87,
+        "target_size": 87,
+        "extra": 0,
+        "matched": true,
+        "errors": []
+      },
+      "func_80091FBC": {
+        "strict_diff": 0,
+        "size": 88,
+        "target_size": 88,
+        "extra": 0,
+        "matched": true,
+        "errors": []
+      }
+    }
+  },
+  {
+    "control": "actual_counter_address_locals",
+    "err": null,
+    "members": {
+      "func_80092278": {
+        "strict_diff": 57,
+        "size": 61,
+        "target_size": 58,
+        "extra": 3,
+        "matched": false,
+        "errors": []
+      }
+    },
+    "context": {
+      "entity_flags_apply": {
+        "strict_diff": 39,
+        "size": 73,
+        "target_size": 73,
+        "extra": 0,
+        "matched": false,
+        "errors": []
+      },
+      "high_scores_display": {
+        "strict_diff": 86,
+        "size": 113,
+        "target_size": 117,
+        "extra": 0,
+        "matched": false,
+        "errors": []
+      },
+      "func_8009211C": {
+        "strict_diff": 0,
+        "size": 87,
+        "target_size": 87,
+        "extra": 0,
+        "matched": true,
+        "errors": []
+      },
+      "func_80091FBC": {
+        "strict_diff": 0,
+        "size": 88,
+        "target_size": 88,
+        "extra": 0,
+        "matched": true,
+        "errors": []
+      }
+    }
+  }
+]

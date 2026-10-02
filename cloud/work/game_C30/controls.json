@@ -1,0 +1,58 @@
+[
+  {
+    "control": "sdk_masks",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 5510,
+    "linked": {
+      "differing": 70,
+      "total": 73,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 9
+    }
+  },
+  {
+    "control": "fixed_offsets",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 115,
+    "linked": {
+      "differing": 4,
+      "total": 73,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    }
+  },
+  {
+    "control": "signed_pointer",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 5510,
+    "linked": {
+      "differing": 70,
+      "total": 73,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 9
+    }
+  },
+  {
+    "control": "flat_input",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 4915,
+    "linked": {
+      "differing": 71,
+      "total": 73,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 5
+    }
+  }
+]

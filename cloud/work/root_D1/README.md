@@ -7,3 +7,5 @@ Actual two inputs are a list and an object pointer. Null object returns without 
 Four assembly-backed source controls: default node initialization86/87; explicit real if/else mapping47/87 plus1word; actual head-assignment expression22/87 exact extent; explicit head store/read, original equality operand order and genuine pointer reuse across the direct/indirect traversal branches0/87. The last form preserves real field value flow and alias-sensitive node reloads, without pressure variables or source sweeps. The direct predecessor pointer and indirect header pointer share the same actual role when used to reconnect the successor. Only the final exact source is installed; earlier controls are evidence, not claims.
 
 Root selected this real callee after A49 recovered its actual list layout and caller. It has no calls, owned data or whole-program group. Source body, original linker symbols and protected scorer remain unchanged outside this new match.
+
+Replay with `python3 verify.py --repo REPO --toolkit TOOLKIT --target PRIVATE_TARGET --output RESULT.json`. The default source is this packet's exact final variant; target/object files remain outside Git.

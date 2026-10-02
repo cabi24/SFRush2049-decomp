@@ -1234,6 +1234,14 @@
     "verified": "image_gate",
     "verified_at": "2026-09-29"
   },
+  "func_8009E8B4": {
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "src/blob/func_8009E8B4.c",
+    "source_sha256": "494644cc85913d801df8404bbe8b2fee1a3766b07f842a0e02a57bde45012121",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-01"
+  },
   "func_8009E9D8": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_8009E9D8.c",
@@ -2800,6 +2808,14 @@
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_800D18D8.c",
     "source_sha256": "358a80d085a6f05dd4a1c13eaf09f95d405529130c752ce05fa5c547032f738c",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-01"
+  },
+  "func_800D2128": {
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "src/blob/func_800D2128.c",
+    "source_sha256": "27dcdbe55792d42aa4b1bc776a025a5429d15c2fa3ba6a1f0cac73aed505ee47",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-01"

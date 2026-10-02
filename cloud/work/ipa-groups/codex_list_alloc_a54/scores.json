@@ -1,0 +1,59 @@
+{
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "source_sha256": "f76691688ab0780de63eae41da4a05929bf211592f24d470450d887a4f88577a",
+  "err": null,
+  "members": {
+    "func_80092278": {
+      "strict_diff": 5,
+      "size": 58,
+      "target_size": 58,
+      "extra": 0,
+      "matched": false,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    }
+  },
+  "context": {
+    "entity_flags_apply": {
+      "strict_diff": 39,
+      "size": 73,
+      "target_size": 73,
+      "extra": 0,
+      "matched": false,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "high_scores_display": {
+      "strict_diff": 86,
+      "size": 113,
+      "target_size": 117,
+      "extra": 0,
+      "matched": false,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "func_8009211C": {
+      "strict_diff": 0,
+      "size": 87,
+      "target_size": 87,
+      "extra": 0,
+      "matched": true,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "func_80091FBC": {
+      "strict_diff": 0,
+      "size": 88,
+      "target_size": 88,
+      "extra": 0,
+      "matched": true,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    }
+  }
+}

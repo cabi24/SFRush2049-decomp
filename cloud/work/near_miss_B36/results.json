@@ -1,0 +1,13 @@
+{
+  "camera_smooth_follow_condition": "10/113 words differ",
+  "camera_smooth_follow_native": "10/113 words differ",
+  "camera_smooth_follow_O1": "112/113 words differ (13 extra words (nonzero beyond target length))",
+  "camera_smooth_follow_tile": "49/113 words differ",
+  "camera_smooth_follow_while": "4/113 words differ",
+  "camera_smooth_follow_divide": "66/113 words differ (14 extra words (nonzero beyond target length))",
+  "camera_smooth_follow_for": "4/113 words differ",
+  "camera_smooth_follow_best": "4/113 words differ",
+  "camera_smooth_follow_O3": "4/113 words differ",
+  "camera_smooth_follow_break": "62/113 words differ (8 extra words (nonzero beyond target length))",
+  "func_800E79F8_max": "33/40 words differ"
+}

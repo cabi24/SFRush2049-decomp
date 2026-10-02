@@ -1,0 +1,11 @@
+{
+  "assembly": "build/m2c_asm/func_8009E8B4.s",
+  "assembly_sha256": "7ec4ee1666ef8fc766f4d4dfef8d2108a6664a4a80737169e7615542a3b4a309",
+  "sdk_reference": "reference/repos/ultralib/src/gu/mtxutil.c",
+  "sdk_reference_sha256": "4f61c11992bbfb679343516902e734ab3b475769fc3fd85b2ef2dd58f4d2c1df",
+  "actual_inputs": "a0 float matrix rows stride16; a1 output64-byte fixed matrix",
+  "body_semantics": "three rows pack first two signed16.16 conversions together; third signed conversion has zero fourth component; integer/fraction halves separated by32bytes; affine last row0,0,0,1",
+  "data_dependencies": [],
+  "callee_dependencies": [],
+  "standalone_padding": 0
+}

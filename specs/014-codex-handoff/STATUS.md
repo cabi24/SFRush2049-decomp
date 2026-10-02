@@ -1,5 +1,14 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-01 twenty-fourth completed milestone: full numeric formatter and affine matrix
+
+- Game cartridge C: **588/1,216 functions, 70,548/647,072 bytes (10.90%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**.
+- C29/C30 add **1,108 bytes**. The complete 816-byte numeric formatter uses its actual float/pointer/format-byte ABI, unsigned conversions, original numeric/time digit extraction and return lengths. The 292-byte affine matrix packer uses genuine signed 16.16 conversion, actual parallel integer/fraction offsets and explicit required final row stores. No invented data, formals, pressure or padding.
+- Independent D canonical MATCH for both final sources; all image gates identical and source-built original ROM SHA-1 EXACT. C30 trailing whitespace cleanup preserved every token and line boundary, then received fresh strict replay, image publication and lock refresh before final gates. Literal flags: **-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul**.
+- Full pytest: **713 passed, 506 skipped, captured exit 0**. All 588 blob locks and group checks have zero problems; all 123 static/source locks remain intact. Root D1/D2 replay tools now default to their own final source variants.
+- Since original handoff: **91 game functions / 14,132 bytes** and **97 static functions / 27,284 bytes** accepted. Previous cea1e1fb passed CI36952577139. A54 real caller group preserves both accepted list helpers at strict zero, but its five-word allocator residual remains unaccepted; D3's single actual source-boundary control regressed and receives no credit. All three workers continue fresh complete sources; initial dirty tools/mips_to_c preserved.
+
+
 ## 2026-10-01 twenty-third completed milestone: actual vector dot product
 
 - Game cartridge C: **586/1,216 functions, 69,440/647,072 bytes (10.73%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**.

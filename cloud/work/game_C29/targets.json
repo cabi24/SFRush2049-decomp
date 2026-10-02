@@ -1,0 +1,12 @@
+{
+  "target_id": "audio_output_setup",
+  "address": 2148249496,
+  "population": "extracted",
+  "insn_count": 37,
+  "target_asm_sha": "bdc45d3c46168ed9a85cd705b300be203b6a9d0db04903b2abbcc96b791569a2",
+  "target_o_sha": "49294b99b3e2631c3542903094a973c82e92f7b9efe0a15de80cf91dfa5b68ca",
+  "fingerprint": null,
+  "cluster_id": null,
+  "tier": "reloc_aware",
+  "gate_reason": "extent_repaired"
+}
