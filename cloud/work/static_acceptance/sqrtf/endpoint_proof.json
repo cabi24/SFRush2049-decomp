@@ -1,0 +1,14 @@
+{
+  "function": "sqrtf",
+  "logical_body_bytes": 8,
+  "padding_bytes": 8,
+  "function_offset": 0,
+  "extent_bytes": 16,
+  "retail_extent_sha256": "4ea14d5f89379ec41118bbacbd120dec7513472a303805a5461b4438f53a0626",
+  "padding_sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+  "endpoint_vram": 2147541960,
+  "logical_body_sha256": "b6734913923fe896811dcd9a80dc62ec436b4b9b440e7ba45c9f097eb8917e25",
+  "original_assembly_sha256": "0ce18b0acc0969ece1d60ba6e0ba66655e1d44c8765ed574dabbbd4d5c85eb65",
+  "authority": "Original asm/us/EFC0.s endlabel is at8000e3c8 before two native zero alignment words; original aliases sqrtf and osSetTimer prove the16-byte originalTU. Independent compiler symbol has8-byte function extent.",
+  "verification_reference": "cloud/work/static_acceptance/sqrtf/independent.json"
+}

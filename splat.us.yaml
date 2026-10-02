@@ -167,7 +167,7 @@ segments:
       - [0xE7C0, c, rom/lib_e7c0]
       - [0xE8D0, c, rom/lib_e8d0]
       - [0xE9A0, c, rom/lib_e9a0]
-      - [0xEFC0, asm]
+      - [0xEFC0, c, rom/lib_efc0]
       - [0xEFD0, c, rom/lib_efd0]
       - [0xF0B0, c, rom/lib_f0b0]
       - [0xF160, c, rom/lib_f160]

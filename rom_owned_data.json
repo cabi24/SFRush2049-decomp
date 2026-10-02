@@ -344,6 +344,36 @@
           "offset": 256
         }
       ]
+    },
+    {
+      "owner": "lib_efc0",
+      "tu": "src/rom/lib_efc0.c",
+      "function": "sqrtf",
+      "rom_start": "0xefc0",
+      "vram_start": "0x8000e3c0",
+      "next_rom_start": "0xefd0",
+      "extent_bytes": 16,
+      "function_offset": 0,
+      "logical_body_bytes": 8,
+      "padding_bytes": 8,
+      "retail_extent_sha256": "4ea14d5f89379ec41118bbacbd120dec7513472a303805a5461b4438f53a0626",
+      "padding_sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+      "asm_authority": "cloud/work/static_acceptance/sqrtf/endpoint_proof.json",
+      "asm_authority_sha256": "398e508f6b130f50a02c5c93d1f5432956334f02cf6c115ceffbeb82d8784bd8",
+      "source": "cloud/work/static_acceptance/sqrtf/sqrtf.c",
+      "source_sha256": "e4d770042b7fb90b905586ee2cab06543a746f7e33aa0d906a53cfdbbefef8ba",
+      "body_sha256": "a72d890f8e75086bdaa21ef1b418d9cc93ab7640d47a8a93027b9b8fa662a4d9",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "aliases": [
+        {
+          "symbol": "sqrtf",
+          "offset": 0
+        },
+        {
+          "symbol": "osSetTimer",
+          "offset": 16
+        }
+      ]
     }
   ]
 }

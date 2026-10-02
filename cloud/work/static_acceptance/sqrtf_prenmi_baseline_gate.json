@@ -1,0 +1,34 @@
+{
+  "game_functions": 652,
+  "game_native_bytes": 99864,
+  "static_promoted_functions": 154,
+  "static_native_bytes": 43136,
+  "new_conversion_credit": 0,
+  "pending_static_logical_bytes": 104,
+  "pending_functions": [
+    "sqrtf",
+    "__scHandlePreNMI"
+  ],
+  "sqrtf_original_extent_bytes": 16,
+  "sqrtf_actual_code_bytes": 8,
+  "sqrtf_original_padding_bytes": 8,
+  "all_original_aliases_preserved": true,
+  "full_source_built_rom_sha1_exact": true,
+  "all_game_static_group_lock_problems": 0,
+  "pytest_exit": 0,
+  "pytest_suites": [
+    {
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "574",
+      "tests": "1394",
+      "time": "41.965",
+      "timestamp": "2026-10-02T12:13:55.409985-05:00",
+      "hostname": "nvmepi3"
+    }
+  ],
+  "builder_conversion_old_assembly_removed": true,
+  "make_exit": 0,
+  "rom_test_exit": 0
+}

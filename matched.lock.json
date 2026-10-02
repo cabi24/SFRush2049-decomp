@@ -1,4 +1,20 @@
 {
+  "cloud/work/static_acceptance/SDK_candidates/__scHandlePreNMI.c:__scHandlePreNMI": {
+    "body_sha256": "9be77233d8523aad117c8a1a538ba517d425687b0a6d21181a30532098cdc1d8",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm",
+    "target_id": "__scHandlePreNMI",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-02"
+  },
+  "cloud/work/static_acceptance/sqrtf/sqrtf.c:sqrtf": {
+    "body_sha256": "a72d890f8e75086bdaa21ef1b418d9cc93ab7640d47a8a93027b9b8fa662a4d9",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "sqrtf",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-02"
+  },
   "src/libultra/os_ai.c:__osAiDeviceBusy": {
     "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",

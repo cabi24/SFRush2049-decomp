@@ -1,0 +1,23 @@
+{
+  "function": "sqrtf",
+  "source_sha256": "e4d770042b7fb90b905586ee2cab06543a746f7e33aa0d906a53cfdbbefef8ba",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "original_bytes": 8,
+  "true_symbol_bytes": 8,
+  "canonical_strict_including_stack": 0,
+  "full_word_differences": 0,
+  "extra_nonzero_words": 0,
+  "masks": 0,
+  "unresolved": [],
+  "unverified": [],
+  "errors": [],
+  "original_target_roundtrip": [
+    true,
+    null
+  ],
+  "object_sha256": "9cf07bb877897dee50a22b60004e39e4f5262ee610300857aeb40e288e8fc0bd",
+  "current_module_pin": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "production_recipe_migration_safe": false,
+  "accepted_credit": 0,
+  "research_object_match": true
+}

@@ -164,7 +164,18 @@ SECTIONS
         build/us/src/rom/lib_e7c0.o(.text);
         build/us/src/rom/lib_e8d0.o(.text);
         build/us/src/rom/lib_e9a0.o(.text);
-        build/us/asm/us/EFC0.o(.text);
+        /* ROM_TEXT_BOUNDARY_BEGIN build/us/src/rom/lib_efc0.o(.text) */
+        rom_text_lib_efc0_START = .;
+        build/us/src/rom/lib_efc0.o(.text);
+        rom_text_lib_efc0_INPUT_END = .;
+        ASSERT(ABSOLUTE(rom_text_lib_efc0_START) == 0x8000e3c0, "original text owner moved");
+        ASSERT(rom_text_lib_efc0_INPUT_END == rom_text_lib_efc0_START + 0x8 || rom_text_lib_efc0_INPUT_END == rom_text_lib_efc0_START + 0x10, "unproven text owner extent");
+        ASSERT(ABSOLUTE(sqrtf) == 0x8000e3c0, "original text alias moved");
+        ASSERT(ABSOLUTE(osSetTimer) == 0x8000e3d0, "original text alias moved");
+        FILL(0x00000000);
+        . = rom_text_lib_efc0_START + 0x10;
+        rom_text_lib_efc0_END = .;
+        /* ROM_TEXT_BOUNDARY_END build/us/src/rom/lib_efc0.o(.text) */
         build/us/src/rom/lib_efd0.o(.text);
         build/us/src/rom/lib_f0b0.o(.text);
         build/us/src/rom/lib_f160.o(.text);
@@ -255,7 +266,7 @@ SECTIONS
         build/us/src/rom/lib_e7c0.o(.data);
         build/us/src/rom/lib_e8d0.o(.data);
         build/us/src/rom/lib_e9a0.o(.data);
-        build/us/asm/us/EFC0.o(.data);
+        build/us/src/rom/lib_efc0.o(.data);
         build/us/src/rom/lib_efd0.o(.data);
         build/us/src/rom/lib_f0b0.o(.data);
         build/us/src/rom/lib_f160.o(.data);
@@ -346,7 +357,7 @@ SECTIONS
         build/us/src/rom/lib_e7c0.o(.rodata);
         build/us/src/rom/lib_e8d0.o(.rodata);
         /* ROM_OWNED_SECTION_MOVED build/us/src/rom/lib_e9a0.o(.rodata) */
-        build/us/asm/us/EFC0.o(.rodata);
+        build/us/src/rom/lib_efc0.o(.rodata);
         build/us/src/rom/lib_efd0.o(.rodata);
         build/us/src/rom/lib_f0b0.o(.rodata);
         build/us/src/rom/lib_f160.o(.rodata);
@@ -442,7 +453,7 @@ SECTIONS
         build/us/src/rom/lib_e7c0.o(.bss);
         build/us/src/rom/lib_e8d0.o(.bss);
         build/us/src/rom/lib_e9a0.o(.bss);
-        build/us/asm/us/EFC0.o(.bss);
+        build/us/src/rom/lib_efc0.o(.bss);
         build/us/src/rom/lib_efd0.o(.bss);
         build/us/src/rom/lib_f0b0.o(.bss);
         build/us/src/rom/lib_f160.o(.bss);
