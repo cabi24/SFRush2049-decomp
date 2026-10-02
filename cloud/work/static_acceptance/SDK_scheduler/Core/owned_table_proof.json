@@ -1,0 +1,30 @@
+{
+  "production_helper_sha256": "8e09c6724616821238c6df979a6028eedc61b2f98a495ad1c02a6f141385154c",
+  "normalization": [
+    {
+      "owner": "__scScheduleCore",
+      "section": ".rodata",
+      "size": 28,
+      "alignment": 4
+    }
+  ],
+  "all_retained_relocations_exact": true,
+  "all_text_bytes_unchanged_by_normalization": true,
+  "only_descriptive_symbol_size_changed": [
+    {
+      "symbol": ".rodata",
+      "old_size": 32,
+      "new_size": 28
+    }
+  ],
+  "native_text_bytes_exact": 872,
+  "table_bytes_exact": 28,
+  "table_start": "0x8002D4A4",
+  "full_original_data_container_bytes_exact": 12517376,
+  "full_original_data_container_sha256": "c348ea04768321ca2f864195ad6013a8fb15b59f0295ab74b8b16317cfa77154",
+  "nonzero_neighbor_bytes_preserved": 4,
+  "untrimmed_object_link_refuses": true,
+  "changed_neighbor_detectable": true,
+  "idempotent_normalization_and_link_rewrite": true,
+  "accepted_credit": 0
+}

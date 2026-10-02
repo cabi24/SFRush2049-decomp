@@ -1,0 +1,28 @@
+{
+  "source_built_game_bodies": 652,
+  "static_promoted_functions": 156,
+  "static_promoted_bytes": 43240,
+  "pending_function": "__scScheduleCore",
+  "pending_code_bytes": 872,
+  "table_source_built_native_bytes": 28,
+  "table_native_vram": "0x8002d4a4",
+  "logical_table_input_alignment": 4,
+  "original_nonzero_next4_bytes_preserved": true,
+  "all_original_native_slots_conserved": true,
+  "full_source_built_rom_sha1_exact": true,
+  "all_game_static_group_lock_problems": 0,
+  "static_source_locks": 160,
+  "pytest_exit": 0,
+  "pytest_suites": [
+    {
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "574",
+      "tests": "1394",
+      "time": "40.378",
+      "timestamp": "2026-10-02T12:22:28.491017-05:00",
+      "hostname": "nvmepi3"
+    }
+  ]
+}

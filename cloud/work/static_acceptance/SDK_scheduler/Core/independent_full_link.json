@@ -1,0 +1,15 @@
+{
+  "function": "__scScheduleCore",
+  "source_sha256": "909e90c11fdb959c788ae51f56d898dfb94c47472952426c4c5055fd7683dfdc",
+  "independent_fresh_object_sha256": "ed1923917376b4d1675609cc38358bb56bd2b8c858d4efbf2fe1587c74ab2671",
+  "all_original_unmasked_text_bytes_exact": 872,
+  "all_actual_source_built_table_bytes_exact": 28,
+  "table_vram": "0x8002d4a4",
+  "logical_text_sha256": "f4ade7ef44286dd7959c38bc1633e824532279baea3e09794692d9320c51d9cc",
+  "logical_table_sha256": "296bdccd2705527c030fc06033b427a2139f83edf56a82bc6cb4985e6460065f",
+  "extra_text_zero_padding_bytes": 8,
+  "extra_rodata_zero_padding_bytes": 4,
+  "original_nonzero_neighbor_sha256": "21bcd658d2e3905e33c37e724cecb360b3275ff3935c77187648ef78691b1a5b",
+  "all_references_resolved_by_actual_GNU_link": true,
+  "accepted_credit": 0
+}

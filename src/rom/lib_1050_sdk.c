@@ -201,3 +201,7 @@ void __scHandlePreNMI(OSSched *scheduler)
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scScheduleCore.s")
 
 
+
+/* ROM_OWNED_RODATA_BEGIN __scScheduleCore */
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scScheduleCore.table.s")
+/* ROM_OWNED_RODATA_END __scScheduleCore */
