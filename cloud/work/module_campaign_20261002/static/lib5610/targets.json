@@ -1,0 +1,114 @@
+[
+  {
+    "function": "inflate_io_wait",
+    "words": 59,
+    "vaddr": "0x80004a10",
+    "assembly": "asm/us/nonmatchings/rom/lib_5610/inflate_io_wait.s",
+    "assembly_sha256": "d50e78ed058832593052bd1170602d4f77f8c08185c48808eae2a7684bb050a2",
+    "native_bytes_sha256": "cb6f8b044eed089a83315f39f69247bf9443b27ca9bee18a4c5a526e03867cd3"
+  },
+  {
+    "function": "lzss_decode",
+    "words": 149,
+    "vaddr": "0x80004afc",
+    "assembly": "asm/us/nonmatchings/rom/lib_5610/lzss_decode.s",
+    "assembly_sha256": "755fe4bc018f00f1be0af2ce464ad7e406c21f792fe2081d9cd4edec41b554e7",
+    "native_bytes_sha256": "133fd80407273e0c6904b7bfebb07a3a6f8687c0f996b80bac00cc89fcd15455"
+  },
+  {
+    "function": "inflate_flush_window",
+    "words": 7,
+    "vaddr": "0x80004d50",
+    "assembly": "asm/us/nonmatchings/rom/lib_5610/inflate_flush_window.s",
+    "assembly_sha256": "f0ef7014f00f56b11661d12c8a33b7960855cde0dddebe2aed6d475877b01d02",
+    "native_bytes_sha256": "d89f1dab5b95cb18829014bfb7ac83378744a86e1e3d623162b4b228b3aae276"
+  },
+  {
+    "function": "huft_alloc",
+    "words": 11,
+    "vaddr": "0x80004d6c",
+    "assembly": "asm/us/nonmatchings/rom/lib_5610/huft_alloc.s",
+    "assembly_sha256": "3e94abc40e082f42129693d8ac65d9de74b31a42637ec93f324276ecb01cf285",
+    "native_bytes_sha256": "66de364eb9ac3f7de495162b4d4265f3ef397d730710f676f11afa0de784c622"
+  },
+  {
+    "function": "huft_build",
+    "words": 435,
+    "vaddr": "0x80004d98",
+    "assembly": "asm/us/nonmatchings/rom/lib_5610/huft_build.s",
+    "assembly_sha256": "16b398cfe226244e058eac86180c7925b38a9c12b8d1b6ac10a7acf6758fd3e2",
+    "native_bytes_sha256": "8d95332e42e57f189787b0c75d0e577e68551bd69476c0a2f25ad88c667ee81a"
+  },
+  {
+    "function": "inflate_free_window",
+    "words": 318,
+    "vaddr": "0x80005464",
+    "assembly": "asm/us/nonmatchings/rom/lib_5610/inflate_free_window.s",
+    "assembly_sha256": "f55902c4713705c09439ad18d6b7f49c0cedd7889e775729f9a923ddabb2734a",
+    "native_bytes_sha256": "5858e8c24a8a188cc7d80fd1e40f3a485ab994d038a798058774886bad5ce89f"
+  },
+  {
+    "function": "inflate_stored",
+    "words": 136,
+    "vaddr": "0x8000595c",
+    "assembly": "asm/us/nonmatchings/rom/lib_5610/inflate_stored.s",
+    "assembly_sha256": "b0d22872a47b3c060825342d1e468355010766e8b069cb2acff1f3cfa6686187",
+    "native_bytes_sha256": "ce0cbf515b4f4912b028ae4bb79c3a500194061f48832a5ad71651ecf3507b85"
+  },
+  {
+    "function": "inflate_fixed",
+    "words": 114,
+    "vaddr": "0x80005b7c",
+    "assembly": "asm/us/nonmatchings/rom/lib_5610/inflate_fixed.s",
+    "assembly_sha256": "13ee06d7adfe3c6871391c67bcaffa0cabf80bb8b236d88bb8274ca52ca31129",
+    "native_bytes_sha256": "9832028ca057e6995fcfdf7b61fbdc532b2fa412831c710c22a3e0d5c9718518"
+  },
+  {
+    "function": "inflate_dynamic",
+    "words": 484,
+    "vaddr": "0x80005d44",
+    "assembly": "asm/us/nonmatchings/rom/lib_5610/inflate_dynamic.s",
+    "assembly_sha256": "a51de8200c9f9ef53a553ab9be7bde367d43d41d977ecd42080c53171928c96a",
+    "native_bytes_sha256": "03b6ed78b8416505e912fd0c12cf01e2ac31b685daafd4f2955f9d45226e0424"
+  },
+  {
+    "function": "inflate_block",
+    "words": 105,
+    "vaddr": "0x800064d4",
+    "assembly": "asm/us/nonmatchings/rom/lib_5610/inflate_block.s",
+    "assembly_sha256": "34be5f7d65c040d97564f5393fef638a2b82e8e4643695932cbd7c5ea98f4ec3",
+    "native_bytes_sha256": "0ab7401d253123335d82c32d4bd610b36cc8cb90e52dab97dbcbf18e8b8027b3"
+  },
+  {
+    "function": "inflate_loop",
+    "words": 23,
+    "vaddr": "0x80006678",
+    "assembly": "asm/us/nonmatchings/rom/lib_5610/inflate_loop.s",
+    "assembly_sha256": "5888c9f76dfa503d94598dc8199785f979d0d68bc91200f6e51adf8b8964c581",
+    "native_bytes_sha256": "cea898f8c0b93f47e437a752efa819856e282d74e1c51b42ac0c6caf15ec4db3"
+  },
+  {
+    "function": "inflate_read_bits",
+    "words": 80,
+    "vaddr": "0x800066d4",
+    "assembly": "asm/us/nonmatchings/rom/lib_5610/inflate_read_bits.s",
+    "assembly_sha256": "32b0a74c854bf412db7781c7527393fc8587195888ff148e17dc43833d3ecd66",
+    "native_bytes_sha256": "0a0bbc8f17e47e2682a275fa43e26a56aef2f5d03bb1ee9633e01f247548f48c"
+  },
+  {
+    "function": "inflate_entry",
+    "words": 90,
+    "vaddr": "0x80006814",
+    "assembly": "asm/us/nonmatchings/rom/lib_5610/inflate_entry.s",
+    "assembly_sha256": "65bd3fb6922df2459a1edc5cf6d73462c62eba8209a5ada1bd10d02b4b85d0bb",
+    "native_bytes_sha256": "a4c0b1ea3ad492c5dc73d600a1d46d7afa8ff45d30e08ccb1e3b4891c7fcadd3"
+  },
+  {
+    "function": "inflate_entry_alt",
+    "words": 33,
+    "vaddr": "0x8000697c",
+    "assembly": "asm/us/nonmatchings/rom/lib_5610/inflate_entry_alt.s",
+    "assembly_sha256": "afd9c34eed1d9adcf78b6d7895a9e007c59009ba84628a189dbfdc0372eefbc6",
+    "native_bytes_sha256": "0fa00016b18acd1f05b9f0f3ae0ab3fc59645f564ba67fa4b6bb25871c3bb83c"
+  }
+]

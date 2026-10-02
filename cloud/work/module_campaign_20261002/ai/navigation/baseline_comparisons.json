@@ -1,0 +1,55 @@
+[
+  {
+    "source_sha256": "21069fea1295ec16f041b09b7abf4f1f660e7ea48e224b257b960f0b5e73ad3e",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "superseded_initial_source",
+    "accepted": false,
+    "canonical_verdict": "650/661 words differ",
+    "comparison": {
+      "differing": 650,
+      "total": 661,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "6a5f87565359a285b4f54197b73d53d4aa0cedde76f39af35a5a0c9c177ca0a4",
+    "emitted_words": 656,
+    "aligned": {
+      "aligned_exact": 193,
+      "aligned_opcode": 601,
+      "aligned_opcode_reg": 243
+    },
+    "frame_bytes": 248,
+    "new_coverage_accepted": false,
+    "superseded_semantic_errata": [
+      "Late mainpath successor arg0 must be -1, not initial0.",
+      "Native point loop counters are word width; first short branch bound and far-scan count use signed16, later completion bound remains unsigned16.",
+      "Near threshold globals loaded only after actual positive-player guard."
+    ]
+  },
+  {
+    "source_sha256": "74187fb86262b7091e1fd94faf0bd80a229abd507ba726590daa589fa44b94ec",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "native_counter_types.c",
+    "accepted": false,
+    "canonical_verdict": "632/661 words differ",
+    "comparison": {
+      "differing": 632,
+      "total": 661,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "9e5941899e1cf697cdb2c8746fb28dcb86173fd89c1eb902f42bd6f5519aa678",
+    "emitted_words": 648,
+    "aligned": {
+      "aligned_exact": 157,
+      "aligned_opcode": 611,
+      "aligned_opcode_reg": 229
+    },
+    "frame_bytes": 248,
+    "new_coverage_accepted": false
+  }
+]

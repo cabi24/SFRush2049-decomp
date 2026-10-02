@@ -27,3 +27,7 @@ Existing tracked history is inherited from the base commit. The new [manifest](m
 No accepted sources, locks, target masks, scorer, linker/build wiring, ROM bytes, raw instruction arrays, objects, or disassembly are changed by this snapshot. No tests or ROM gates were run for this research-only PR. A candidate must independently reproduce its protected full extent and all relocations/pools/tables, then pass the existing source-built image and full-ROM gates before integration or coverage credit.
 
 The active visibility-cell reconstruction remains ongoing separately; it is not a frozen result in this snapshot.
+
+## Follow-up module controls
+
+The [module freeze manifest](module_freezes.json) preserves the later genuine inflater closure, corrected navigation/path types and actual tire-helper contexts. These are frozen nonmatches with zero new credit; their reports distinguish preserved accepted helper bodies from unaccepted callers. Current accepted master7c4d12c3 has19.83% combined matching bytes (15.32% game,67.28% static), independently gated outside this PR. The earlier snapshot percentages above describe its original base.

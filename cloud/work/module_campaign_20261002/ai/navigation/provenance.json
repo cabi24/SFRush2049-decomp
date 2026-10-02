@@ -1,0 +1,29 @@
+{
+  "accepted": false,
+  "native_purpose": "Nearest point/branch search and per-car lap/section/projection distance accumulation",
+  "sources": {
+    "cloud/work/bigfish/seeds/world_gravity_apply.m2c.c": "1282ff21655cc3d119f1adc480006e14595fda870482d25124a51f69509e2e55",
+    "cloud/work/near_miss_B29/audio_channel_alloc_descriptor.c": "cd6a40e0fb43efc7263b4e3c7b003105d7f13f91a329debd0940671dd143bd45",
+    "src/blob/func_800B9F60.c": "db2d1acdb805e34e508b324cd88c0a67ec512396d819d174e5f75f8553aacaaf",
+    "src/blob/func_80098A54.c": "7028229a79b1c090aaf6d1869a2d821e67710b332bfce7dd376a9338910e60b4"
+  },
+  "arcade_audit": {
+    "reference/repos/rushtherock/game/drones.c": "240e4c8b2ac15c5f1d13788198c59735db13f61f7d0090fa24c3d53742847979",
+    "reference/repos/rushtherock/game/maxpath.c": "3e69bfe5017f12b8628f450029aadd4136792b4d91eab304b14a0be9c58164df",
+    "reference/repos/rushtherock/game/checkpoint.c": "9bf9853b61b734fa70b5748d761d065b0361b64fd8050ef37d09157382721cd4",
+    "reference/repos/rushtherock/game/mdrive.c": "90a1c1b8aa6b990671582a77a897bc72e4199435cad21063904e145645a25d0c"
+  },
+  "ancestor_limit": "No exact branch-aware ancestor found. Arcade mdrive.c get_demo_path_point and maxpath.c find_maxpath_intervals establish nearest-point/section/race-distance algorithm ancestry, not verbatim whole-function source. Drone/pad names reject native purpose audit.",
+  "new_source_hashes": {
+    "native_counter_types.c": "74187fb86262b7091e1fd94faf0bd80a229abd507ba726590daa589fa44b94ec",
+    "road_distance.c": "d79f299dc7cec8b0082997bfcc2949fe376729767635aa75ff60d1c55f323f17"
+  },
+  "adaptations": [
+    "Actual four integer/pointer successor ABI replaces stale float arguments. Eligibility predicate takes one signed16 index.",
+    "True signed16[3] quantized position and two consumed float[3] vectors replace scalar adjacency assumptions.",
+    "Model952/Vehicle2056/Point6/Branch16/section80 layouts contain only actual native consumed fields.",
+    "Unsigned root count and branch count preserved; first local short bound and signed far-scan root count differ from later unsigned final count.",
+    "Actual mainpath successor uses -1, including final normalized projection.",
+    "No new stored tables, unused locals, padding, volatile pressure, dummy caller or fabricated helper."
+  ]
+}

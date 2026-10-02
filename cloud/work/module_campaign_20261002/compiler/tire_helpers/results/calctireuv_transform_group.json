@@ -1,0 +1,26 @@
+{
+  "candidate": "calctireuv_transform_group",
+  "function": "camera_collision_avoid",
+  "source_sha256": "9793c2fe02e28af757e5d71692c9257826d22e4875e2466c418a0cc459075822",
+  "object_sha256": "29076ae0adc4677a301879c623baf1346bd2ca09e8322ec50da27baeef8ec24f",
+  "comparison": {
+    "differing": 48,
+    "total": 103,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "helper_comparison": {
+    "differing": 0,
+    "total": 37,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "recipe": "full retained-entry ucode group",
+  "claims": [],
+  "protected_target_object_sha256": "11d66e8d1f73cba38128c53855a21b53016d42e61fb54cd391408bf600db272a"
+}
