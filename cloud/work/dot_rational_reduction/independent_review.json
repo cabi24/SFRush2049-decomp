@@ -1,0 +1,26 @@
+{
+  "reviewer": "independent lane B",
+  "verdict": "PASS as NONMATCH research",
+  "source_sha256": "e0a4f4a2446de7e35485f66d66ed89a294ea9d343a77a35613125f948b62a0d8",
+  "replayed": {
+    "differing_words": 71,
+    "target_words": 114,
+    "candidate_function_bytes": 452,
+    "candidate_text_bytes": 464,
+    "differential_cases": 10139,
+    "sanitizer_cases": 100000,
+    "pytest": "4 passed"
+  },
+  "audit": [
+    "Natural named locals; both modff effects sequenced before reads",
+    "Native instruction scan confirms Horner dependencies, half-way sign rounding and parity reciprocal",
+    "Bounded interpreter implements delay slots and annulment; call-clobber poison; stack bounds and preserved integer registers",
+    "Independent GNU relocation and canonical full-word comparison agree; no masked match claims"
+  ],
+  "limits": [
+    "Fixtures are not recovered ROM coefficients",
+    "10139 sampled/boundary cases, not exhaustive finite domain",
+    "N64 FCSR/traps/NaN payloads/subnormal behavior unproved; rounded-s32 conversion excludes nonfinite/out-of-range states",
+    "No ROM or accepted coverage claim"
+  ]
+}
