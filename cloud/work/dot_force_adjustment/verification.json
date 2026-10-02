@@ -1,0 +1,237 @@
+{
+  "status": "NONMATCH",
+  "function": "func_800E1AA0",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source_sha256": "08df92e2ffeabe43ec2193f6aaa06788177955bb2253fdcc82f770a59e85ac02",
+  "target_sha256": "6dca64a004fcba80a268ed3e87fe2feb4d0a4c5ec9f0320266d5911d936e4c2d",
+  "target_bytes": 400,
+  "candidate_function_bytes": 392,
+  "candidate_text_bytes": 400,
+  "canonical": {
+    "differing": 40,
+    "total": 100,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "gnu_linked_differences": [
+    {
+      "offset": 8,
+      "target": "15e0005f",
+      "candidate": "15e0005d"
+    },
+    {
+      "offset": 44,
+      "target": "c4900048",
+      "candidate": "44801000"
+    },
+    {
+      "offset": 204,
+      "target": "c4900048",
+      "candidate": "44801000"
+    },
+    {
+      "offset": 208,
+      "target": "44809000",
+      "candidate": "c4900048"
+    },
+    {
+      "offset": 220,
+      "target": "4612803c",
+      "candidate": "4602803c"
+    },
+    {
+      "offset": 228,
+      "target": "45010028",
+      "candidate": "45010026"
+    },
+    {
+      "offset": 240,
+      "target": "5100000f",
+      "candidate": "5100000e"
+    },
+    {
+      "offset": 252,
+      "target": "c4880050",
+      "candidate": "c4920050"
+    },
+    {
+      "offset": 256,
+      "target": "44803000",
+      "candidate": "46009182"
+    },
+    {
+      "offset": 260,
+      "target": "46080102",
+      "candidate": "4606103c"
+    },
+    {
+      "offset": 264,
+      "target": "4604303c",
+      "candidate": "00000000"
+    },
+    {
+      "offset": 268,
+      "target": "00000000",
+      "candidate": "4500001c"
+    },
+    {
+      "offset": 272,
+      "target": "4500001d",
+      "candidate": "00000000"
+    },
+    {
+      "offset": 276,
+      "target": "00000000",
+      "candidate": "460c0102"
+    },
+    {
+      "offset": 280,
+      "target": "460c0402",
+      "candidate": "c4880140"
+    },
+    {
+      "offset": 284,
+      "target": "c48a0140",
+      "candidate": "46044281"
+    },
+    {
+      "offset": 288,
+      "target": "46105481",
+      "candidate": "03e00008"
+    },
+    {
+      "offset": 292,
+      "target": "03e00008",
+      "candidate": "e48a0140"
+    },
+    {
+      "offset": 296,
+      "target": "e4920140",
+      "candidate": "c4800040"
+    },
+    {
+      "offset": 300,
+      "target": "c4800040",
+      "candidate": "c4900050"
+    },
+    {
+      "offset": 304,
+      "target": "c4860050",
+      "candidate": "3c013f00"
+    },
+    {
+      "offset": 308,
+      "target": "44804000",
+      "candidate": "46008482"
+    },
+    {
+      "offset": 312,
+      "target": "3c013f00",
+      "candidate": "4612103c"
+    },
+    {
+      "offset": 316,
+      "target": "46060102",
+      "candidate": "00000000"
+    },
+    {
+      "offset": 320,
+      "target": "4604403c",
+      "candidate": "4500000f"
+    },
+    {
+      "offset": 328,
+      "target": "4500000f",
+      "candidate": "c48603d4"
+    },
+    {
+      "offset": 332,
+      "target": "00000000",
+      "candidate": "44814000"
+    },
+    {
+      "offset": 336,
+      "target": "c48a03d4",
+      "candidate": "00000000"
+    },
+    {
+      "offset": 340,
+      "target": "44818000",
+      "candidate": "4608303c"
+    },
+    {
+      "offset": 348,
+      "target": "4610503c",
+      "candidate": "45000008"
+    },
+    {
+      "offset": 356,
+      "target": "45000008",
+      "candidate": "460c0102"
+    },
+    {
+      "offset": 360,
+      "target": "00000000",
+      "candidate": "8c890004"
+    },
+    {
+      "offset": 364,
+      "target": "460c0482",
+      "candidate": "c4920140"
+    },
+    {
+      "offset": 368,
+      "target": "8c890004",
+      "candidate": "c52a0024"
+    },
+    {
+      "offset": 372,
+      "target": "c4840140",
+      "candidate": "460a2402"
+    },
+    {
+      "offset": 376,
+      "target": "c5260024",
+      "candidate": "46109181"
+    },
+    {
+      "offset": 380,
+      "target": "46069202",
+      "candidate": "e4860140"
+    },
+    {
+      "offset": 384,
+      "target": "46082281",
+      "candidate": "03e00008"
+    },
+    {
+      "offset": 388,
+      "target": "e48a0140",
+      "candidate": "00000000"
+    },
+    {
+      "offset": 392,
+      "target": "03e00008",
+      "candidate": "00000000"
+    }
+  ],
+  "o32_layout_assertions": {
+    "config": 4,
+    "direction": 64,
+    "height": 72,
+    "velocity": 80,
+    "force": 320,
+    "blend": 980,
+    "speed": 1008,
+    "bias": 1452,
+    "mode_a": 1548,
+    "mode_b": 1552,
+    "magnitude": 1824,
+    "direct": 1994,
+    "flags": 2004
+  },
+  "relocations": "GNU ld resolves sole global D_801243C0 via linker script; no masks",
+  "claims": []
+}
