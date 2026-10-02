@@ -1,0 +1,17 @@
+{
+  "members": [
+    "main_menu_input"
+  ],
+  "context": [
+    "func_800D52CC"
+  ],
+  "claims": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "main_menu_input",
+    "func_800D52CC"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}

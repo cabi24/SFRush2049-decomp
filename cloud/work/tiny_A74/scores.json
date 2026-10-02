@@ -1,0 +1,46 @@
+[
+  {
+    "differing": 55,
+    "total": 56,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "kind": "ordinary-O2",
+    "target": "main_menu_input",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+  },
+  {
+    "differing": 29,
+    "total": 56,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "kind": "ordinary-O3",
+    "target": "main_menu_input",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+  },
+  {
+    "differing": 39,
+    "total": 56,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "kind": "real-group",
+    "target": "main_menu_input",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+  },
+  {
+    "differing": 0,
+    "total": 2,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "kind": "real-group",
+    "target": "func_800D52CC",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+  }
+]

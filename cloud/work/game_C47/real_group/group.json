@@ -1,0 +1,19 @@
+{
+  "members": [
+    "func_800D63EC"
+  ],
+  "context": [
+    "func_8009211C",
+    "func_80091FBC"
+  ],
+  "claims": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_800D63EC",
+    "func_8009211C",
+    "func_80091FBC"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}

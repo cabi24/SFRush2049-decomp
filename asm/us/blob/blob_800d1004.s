@@ -1686,6 +1686,7 @@ race_countdown_display:
 .section .text.lap_count_select, "ax", @progbits
 .globl lap_count_select
 lap_count_select:
+    /* compiled from src/blob/lap_count_select.c */
     .word 0x27BDFFF8
     .word 0x3C0A8014
     .word 0x254A07F0
@@ -1940,6 +1941,7 @@ func_800D2CD4:
 .section .text.split_time_display, "ax", @progbits
 .globl split_time_display
 split_time_display:
+    /* compiled from src/blob/split_time_display.c */
     .word 0x27BDFFF8
     .word 0x3C0A8014
     .word 0x254A07F0

@@ -1,0 +1,20 @@
+[
+  {
+    "function": "func_800BA2B8",
+    "variant": "func_800BA2B8.cached",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 2463,
+    "linked": {
+      "differing": 97,
+      "total": 109,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "c2dfd363b6a503036586a6d1a4ae71673ca940d473762c79ae6cdd7d1bda1e65",
+    "target_sha256": "bc5f5c15295e05575fc141cc7ee655ef58e4952216bac730bf5b34a7c30840c8"
+  }
+]

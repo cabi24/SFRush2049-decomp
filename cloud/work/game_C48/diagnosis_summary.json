@@ -1,0 +1,29 @@
+{
+  "function": "world_effect_update",
+  "words_differing": 103,
+  "strict_words_differing": 104,
+  "target_words": 114,
+  "candidate_words": 113,
+  "verdict": "mixed(structural:26, register:17)",
+  "frame_delta": 0,
+  "lanes": [
+    {
+      "class": "pool",
+      "slot": 26,
+      "rotation": null
+    },
+    {
+      "class": "temp",
+      "slot": 0,
+      "rotation": null
+    },
+    {
+      "class": "shared",
+      "slot": 6,
+      "rotation": null
+    }
+  ],
+  "owning_pass": "unknown",
+  "ownership_basis": "none",
+  "lever": "none-known"
+}

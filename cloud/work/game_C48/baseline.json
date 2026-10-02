@@ -1,0 +1,19 @@
+[
+  {
+    "function": "world_effect_update",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 1780,
+    "linked": {
+      "differing": 108,
+      "total": 114,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "2cd6ee2b73117bd32ab99c3294103ebe1acae996125f3bb9f029e39fca68d22a",
+    "target_sha256": "e1a0f64774351ed99e42d4a9189913d979339443e319e032ef0475e2df354a4f"
+  }
+]

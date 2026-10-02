@@ -1,0 +1,86 @@
+[
+  {
+    "control": "native",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "24c216dbe0561fa0e4403a2dbe683bcd96859aaf9403581532cde6ce6399fdd5",
+    "comparison": {
+      "differing": 99,
+      "total": 102,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_word_count": 104
+  },
+  {
+    "control": "O3",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "b6c4a39fd55ee978968f0563a90da67d03ea11e3e303c1ed21737386f3f04713",
+    "comparison": {
+      "differing": 99,
+      "total": 102,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_word_count": 104
+  },
+  {
+    "control": "header",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "02a14b85a0e71dab604a7633146a09f7c90f64383f90ead6e6f6e6b7aa63b86a",
+    "comparison": {
+      "differing": 101,
+      "total": 102,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_word_count": 104
+  },
+  {
+    "control": "stores",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "7c04fb76458706d7e9440cfa3ab4d3b362d25db0005b70cebf792f0977a54782",
+    "comparison": {
+      "differing": 97,
+      "total": 102,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_word_count": 104
+  },
+  {
+    "control": "O1",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "2df22514193b8a9ed245d5c66b65fb2013804a0593f3e3d55584b14e4f8d398d",
+    "comparison": {
+      "differing": 98,
+      "total": 102,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 9
+    },
+    "text_word_count": 112
+  },
+  {
+    "control": "count",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "4ce8bb5d832ae8730d7bd95bf4e8792518a4d7b42f7bdf6b81ce21c8ef18cde8",
+    "comparison": {
+      "differing": 98,
+      "total": 102,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_word_count": 100
+  }
+]

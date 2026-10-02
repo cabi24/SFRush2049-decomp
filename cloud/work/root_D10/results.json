@@ -1,0 +1,33 @@
+{
+  "function": "func_800E5D64",
+  "address": "0x800E5D64",
+  "bytes": 1296,
+  "target_words": 324,
+  "claims": [],
+  "controls": [
+    {
+      "source": "func_800E5D64.native.c",
+      "sha256": "738819d0dba5951440fbc13b94ffe339cc79e7059b01b2f9e0d48a8814dd3b24",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing": 227,
+      "target_words": 324,
+      "extra_words": 0
+    },
+    {
+      "source": "func_800E5D64.O3.c",
+      "sha256": "5b57ff4b73c522df69750b875f9b47c7a2250ceb797a7eebe832eead3f88efe8",
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing": 227,
+      "target_words": 324,
+      "extra_words": 0
+    },
+    {
+      "source": "func_800E5D64.flag.c",
+      "sha256": "2e37dc49e2d56e88e40b06efd8ad0cd818338691dbaebd1608a4b046e9a71dd0",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing": 227,
+      "target_words": 324,
+      "extra_words": 0
+    }
+  ]
+}

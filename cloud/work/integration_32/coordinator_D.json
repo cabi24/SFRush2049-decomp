@@ -1,0 +1,101 @@
+[
+  {
+    "function": "crowd_cheer_play",
+    "source_sha256": "7a2163a516d79dc1f2f671c767df50c8fac48aacd261e44d2e0b00c157db1fb8",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "canonical_verdict": "MATCH",
+    "compile_exit": 0,
+    "linked": {
+      "differing": 0,
+      "total": 100,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    "image_bytes": 647072,
+    "rom_sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+    "rom_exit": 0,
+    "pytest_exit": 0,
+    "pytest_passed": 713,
+    "pytest_skipped": 526,
+    "blob_locked": 608,
+    "static_source_locked": 123,
+    "coverage": {
+      "static_functions": 120,
+      "static_total": 230,
+      "static_bytes": 28732,
+      "static_total_bytes": 61440,
+      "game_functions": 608,
+      "game_total": 1216,
+      "game_bytes": 75732,
+      "game_total_bytes": 647072
+    }
+  },
+  {
+    "function": "lap_count_select",
+    "source_sha256": "50ab5cfab12b2144581da874e51e7d8975ec2df0b6cc8b16152c3fa821668aaf",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "canonical_verdict": "MATCH",
+    "compile_exit": 0,
+    "linked": {
+      "differing": 0,
+      "total": 83,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    "image_bytes": 647072,
+    "rom_sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+    "rom_exit": 0,
+    "pytest_exit": 0,
+    "pytest_passed": 713,
+    "pytest_skipped": 526,
+    "blob_locked": 608,
+    "static_source_locked": 123,
+    "coverage": {
+      "static_functions": 120,
+      "static_total": 230,
+      "static_bytes": 28732,
+      "static_total_bytes": 61440,
+      "game_functions": 608,
+      "game_total": 1216,
+      "game_bytes": 75732,
+      "game_total_bytes": 647072
+    }
+  },
+  {
+    "function": "split_time_display",
+    "source_sha256": "72c40c533fbb02baa73803129f027899c1e53085dccdc06f5a5ee2bcc85a2c57",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "canonical_verdict": "MATCH",
+    "compile_exit": 0,
+    "linked": {
+      "differing": 0,
+      "total": 60,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    "image_bytes": 647072,
+    "rom_sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+    "rom_exit": 0,
+    "pytest_exit": 0,
+    "pytest_passed": 713,
+    "pytest_skipped": 526,
+    "blob_locked": 608,
+    "static_source_locked": 123,
+    "coverage": {
+      "static_functions": 120,
+      "static_total": 230,
+      "static_bytes": 28732,
+      "static_total_bytes": 61440,
+      "game_functions": 608,
+      "game_total": 1216,
+      "game_bytes": 75732,
+      "game_total_bytes": 647072
+    }
+  }
+]

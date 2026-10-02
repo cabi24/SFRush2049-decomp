@@ -1,0 +1,7 @@
+# B50 ordinary pool/list initialization
+
+Frozen honest NONMATCH func_800A4CB8@800A4CB8, 408 bytes/102 target words. Complete native initializer uses the real incoming full-word count, actual 16-byte list headers, real 24-byte/32-byte allocated record strides, both allocator/binding/memset sequences, original head insertion loop, five real zeroed handles and byte readiness flags. Record byte arrays describe genuine allocated strides, not invented stack pressure. Actual helper callees were decoded before prototypes were chosen.
+
+Six bounded controls: native O2 99/102; O3 unchanged99; genuine header-pointer reuse101; actual stores on separate source lines97; O1 98 plus9 nonzero extra words; consumed count-carrier rewrite98. Original count remains used by its final global store in every retained semantic control. Target frame48; native56; count-carrier48 still differs. No dummy local, invented third allocator argument, spare formal, unused buffer or pressure expression was added. Native allocation and scheduling remain blockers. No source/lock/layout ownership changes or claims.
+
+Sources and sanitized fresh comparison metadata are in near_miss_B50. Raw original instructions and private compiled objects are not retained here. Additional read-only scouts mostly exposed real IPA remapped caller contracts (unsaved s/FP registers or nonstandard argument carriers), and were not forced into standalone matches.

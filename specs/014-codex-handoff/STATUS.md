@@ -1,5 +1,14 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-02 thirty-second completed milestone: rectangles and real tail recursion
+
+- Game cartridge C: **608/1,216 functions, 75,732/647,072 bytes (11.70%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**.
+- A73's400-byte crowd_cheer_play configures five genuine rectangle children with actual XOR bounds swaps and original signed geometry. B51's332-byte lap_count_select and240-byte split_time_display preserve complete forward/backward recursive offset updates; IDO emits the original tail loops and8-byte frame. Total **972 matching bytes**. Labels retain historical symbols without inferring their semantics. No invented operations, fields/capacity, helpers or context credit.
+- Independent D canonical MATCH and fresh full unmasked relocation-resolved equality for100/83/60words, with zero extras/unresolved/unverified/errors. Coordinator removed A73's obsolete unused cursor declaration in a separate source, freshly proved SHA7a2163a516d79dc1f2f671c767df50c8fac48aacd261e44d2e0b00c157db1fb8. A73 literal flags **-g0 -O3 -mips2 -G 0 -non_shared**; B51 adds **-Wab,-r4300_mul** with O2.
+- Identical image and source-built original ROM SHA-1 EXACT; full pytest **713 passed, 526 skipped, captured exit0**. All608 blob/group checks and123 static/source locks pass. Since original handoff: **111 game functions /19,316 bytes** and **97 static functions /27,284 bytes** accepted. 50ac7ee4 passed CI36967274331.
+- Three workers remain active through the authorized overnight run. A74/B50/B52/C45/C47/C48/D10 remain frozen no-claim packets; actual empty/helper groups earn no context credit. C49's two real SDK mask routines have exact private O1 raw matches, pending supported target/slot provenance and full publication gates; neither is counted. Initial dirty tools/mips_to_c preserved.
+
+
 ## 2026-10-02 thirty-first completed milestone: full initialization and nearest-point search
 
 - Game cartridge C: **605/1,216 functions, 74,760/647,072 bytes (11.55%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**.

@@ -1,0 +1,35 @@
+/* flags: -g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul */
+typedef struct ListHeader {unsigned char indirect,doubly;unsigned short reserved;int count;void *head,*tail;} ListHeader;
+typedef struct Record24 {unsigned char bytes[24];} Record24;
+typedef struct Record32 {unsigned char bytes[32];} Record32;
+extern ListHeader D_80146160,D_80146138;
+extern int D_801460F4,D_80144DB8;
+extern Record24 *D_80144C48;
+extern Record32 *D_80146100;
+extern int D_801460C8[];
+extern signed char D_8011028C,D_80110284;
+extern void *audio_dma_sync(void *,int);
+extern void audio_loop_control(void *,int);
+extern void *memset(void *,int,unsigned int);
+extern void func_80091FBC(ListHeader *,void *,void *);
+void func_800A4CB8(int count) {
+ int i,entries;
+ ListHeader *header=&D_80146160;
+ header->doubly=1;header->indirect=0;
+ header->head=0;header->tail=0;header->count=0;
+ D_801460F4=count;
+ header=&D_80146138;
+ header->indirect=0;header->doubly=1;
+ header->head=0;header->tail=0;header->count=0;
+ D_80144C48=audio_dma_sync(0,D_801460F4*24);
+ audio_loop_control(D_80144C48,0);
+ memset(D_80144C48,0,D_801460F4*24);
+ entries=count*3;
+ D_80146100=audio_dma_sync(0,entries*32);
+ audio_loop_control(D_80146100,0);
+ memset(D_80146100,0,entries*32);
+ for(i=0;i<entries;i++)func_80091FBC(header,&D_80146100[i],header->head);
+ D_80144DB8=count;
+ for(i=0;i<5;i++)D_801460C8[i]=0;
+ D_8011028C=0;D_80110284=1;
+}

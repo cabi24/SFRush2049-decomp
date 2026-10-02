@@ -1,0 +1,28 @@
+{
+  "function": "func_800D63EC",
+  "registered_bytes": 324,
+  "literal_flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "group_controls": [
+    {
+      "source": "real_group/group.c",
+      "source_sha256": "a08076e8337bddac078ab85edfe69bf1972be090f6bd3a3533728dc6f9b52090",
+      "member_differing": 79,
+      "target_words": 81,
+      "accepted_context": {
+        "func_8009211C": "MATCH",
+        "func_80091FBC": "MATCH"
+      }
+    },
+    {
+      "source": "real_group_arrays/group.c",
+      "source_sha256": "a5871f10c257380257a14bdbcb9dffbda73a82449e6dbc745a2cf1a94156607e",
+      "member_differing": 79,
+      "target_words": 81,
+      "accepted_context": {
+        "func_8009211C": "MATCH",
+        "func_80091FBC": "MATCH"
+      }
+    }
+  ]
+}
