@@ -28,7 +28,25 @@ void osScAddClient(OSSched *scheduler, OSScClient *client, OSMesgQueue *queue) {
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scHandleRetrace.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scHandleRSP.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scHandleRDP.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scTaskReady.s")
+/* PROMOTED 2026-10-02 — __scTaskReady
+ * Source:   cloud/matches/__scTaskReady.c (in-repo, locked)
+ * Flags:    -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm
+ * Evidence: lock:cloud/matches/__scTaskReady.c:__scTaskReady (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+OSScTask *__scTaskReady(OSSched *scheduler, OSScTask *task) {
+    void *current;
+    void *next;
+    if (task != 0) {
+        if ((current = osViGetCurrentFramebuffer()) !=
+            (next = osViGetFramebuffer())) return 0;
+        if (__osScPendingSwap != 0 && scheduler->retraceCount - __osScSwapCount < 2U)
+            return 0;
+        return task;
+    }
+    return 0;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scExecTask.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scAppendList.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scExec.s")
