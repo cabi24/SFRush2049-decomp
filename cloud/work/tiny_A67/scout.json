@@ -1,0 +1,12 @@
+{
+  "name": "func_800D5524",
+  "start": "0x800d5524",
+  "end": "0x800d5798",
+  "words": 157,
+  "class": [
+    "ABI",
+    []
+  ],
+  "locked": false,
+  "accepted_interval_overlaps": []
+}

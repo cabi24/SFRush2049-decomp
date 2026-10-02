@@ -1,0 +1,10 @@
+[
+  {
+    "kind": "function",
+    "size": 260,
+    "target_id": "entity_transform_apply",
+    "vaddr": 2148075420,
+    "region": "blob_8008d0c0",
+    "region_flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "function": "func_800F769C",
+    "variant": "func_800F769C.unsized",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 485,
+    "linked": {
+      "differing": 65,
+      "total": 255,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "418a4229c654bae5905e7e77df5401dbe0c6ff046b093f46403aed6bdc0e2d5f",
+    "target_sha256": "b9e369d32017a9b14efeb4328b7e52c1c4d4d2a4fdb0df4c380ca7aa77bf6b7c"
+  },
+  {
+    "function": "func_800F769C",
+    "variant": "func_800F769C.externs",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 485,
+    "linked": {
+      "differing": 65,
+      "total": 255,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "bed218b89a46294eed528c992b5ba831cc3ddbf4a3ebfd30a4029c09b56b9ced",
+    "target_sha256": "b9e369d32017a9b14efeb4328b7e52c1c4d4d2a4fdb0df4c380ca7aa77bf6b7c"
+  }
+]

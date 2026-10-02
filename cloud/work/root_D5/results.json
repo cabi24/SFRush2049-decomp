@@ -1,0 +1,16 @@
+[
+  {
+    "function": "func_800F43B8",
+    "source_sha256": "d0b7d1c42ba276d098e18753bc03db3b3f286271cdb975efafd72b68ba422800",
+    "canonical_D_differing": 42,
+    "target_words": 144,
+    "claims": []
+  },
+  {
+    "function": "func_800D5524",
+    "source_sha256": "ac1d4af359437ef8b1dde7e68efaa63014824baf050960905eb1c2b698c3167c",
+    "canonical_D_differing": 151,
+    "target_words": 157,
+    "claims": []
+  }
+]

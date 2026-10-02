@@ -1,0 +1,26 @@
+[
+  {
+    "name": "full true bytecursor baseline",
+    "strict_diff": 150,
+    "size": 152,
+    "extra": 0
+  },
+  {
+    "name": "actual exact40 terminator",
+    "strict_diff": 150,
+    "size": 152,
+    "extra": 0
+  },
+  {
+    "name": "literal actual84byte group arithmetic",
+    "strict_diff": 155,
+    "size": 156,
+    "extra": 0
+  },
+  {
+    "name": "true typed two-record pair traversal",
+    "strict_diff": 151,
+    "size": 157,
+    "extra": 0
+  }
+]

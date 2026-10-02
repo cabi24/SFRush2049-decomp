@@ -1,0 +1,10 @@
+{
+  "entity_transform_apply_break": "36/65 words differ",
+  "entity_transform_apply_advance": "2/65 words differ",
+  "entity_transform_apply_peel": "37/65 words differ (2 extra words (nonzero beyond target length))",
+  "entity_transform_apply_scan": "61/65 words differ",
+  "entity_transform_apply_sequenced": "MATCH",
+  "entity_transform_apply_compare": "2/65 words differ",
+  "entity_transform_apply_seed": "62/65 words differ",
+  "entity_transform_apply_scan_O3": "12/65 words differ"
+}

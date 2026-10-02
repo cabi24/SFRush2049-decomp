@@ -1,0 +1,14 @@
+{
+  "func_800A5A40": {
+    "target_id": "func_800A5A40",
+    "address": 2148162112,
+    "population": "extracted",
+    "insn_count": 63,
+    "target_asm_sha": "b02e63a73b164a725f52d92af3a18a5296f78e945138810a08afa20892cc4898",
+    "target_o_sha": "cb19515b23b54dba82b8afdeb35aa20bbd7dd5fe1bfbb33f7cf571fd285210a5",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "discovered"
+  }
+}

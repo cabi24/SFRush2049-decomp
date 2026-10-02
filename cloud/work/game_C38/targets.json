@@ -1,0 +1,26 @@
+{
+  "func_800D4DFC": {
+    "target_id": "func_800D4DFC",
+    "address": 2148355580,
+    "population": "extracted",
+    "insn_count": 62,
+    "target_asm_sha": "4063baaa70aab478ed5d83958f081b07e42b438f18b39743e1b92eb8507d4ce0",
+    "target_o_sha": "6ec42f6fcadb0aa9b463f3ba0cfeaf83de02f77499f184e5613184eb8d7dca62",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "discovered"
+  },
+  "func_800F769C": {
+    "target_id": "func_800F769C",
+    "address": 2148497052,
+    "population": "extracted",
+    "insn_count": 255,
+    "target_asm_sha": "3978130bbc756d176fed17c4a9cd1d1c521cdf2637e34041001826fe13bf8305",
+    "target_o_sha": "b9e369d32017a9b14efeb4328b7e52c1c4d4d2a4fdb0df4c380ca7aa77bf6b7c",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "discovered"
+  }
+}

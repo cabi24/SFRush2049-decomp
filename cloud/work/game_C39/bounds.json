@@ -1,0 +1,20 @@
+[
+  {
+    "function": "func_800A5A40",
+    "variant": "func_800A5A40.bounds",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 580,
+    "linked": {
+      "differing": 15,
+      "total": 63,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "38505b93506af84a1ecfa8c0f5faca3d526d520b392a89cbe2ea087347a05ad4",
+    "target_sha256": "cb19515b23b54dba82b8afdeb35aa20bbd7dd5fe1bfbb33f7cf571fd285210a5"
+  }
+]

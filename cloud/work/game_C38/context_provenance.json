@@ -1,0 +1,54 @@
+{
+  "assembly": "build/m2c_asm/func_800F769C.s",
+  "assembly_sha256": "c74f6be41bc155376e07273c916b4761e0f6479f168899b4adc1cc7a1a564aad",
+  "abi": "One original pointer argument; real pointer chain offsets0 then44 then0. No calls or hidden incoming registers.",
+  "input_statistics": {
+    "prefix": 140,
+    "a": [
+      12,
+      96
+    ],
+    "b": [
+      4,
+      64
+    ],
+    "c": [
+      8,
+      12
+    ],
+    "d": [
+      1,
+      24
+    ],
+    "e": [
+      4,
+      28
+    ],
+    "total_size": 1780
+  },
+  "destinations": {
+    "a": [
+      "D_80150F88",
+      "D_80151408"
+    ],
+    "b": [
+      "D_80151410",
+      "D_80151510"
+    ],
+    "c": [
+      "D_80151578",
+      "D_801515D8"
+    ],
+    "d": [
+      "D_801515F8",
+      "D_80151610"
+    ],
+    "e": [
+      "D_80151618",
+      "D_80151688"
+    ]
+  },
+  "claims": [],
+  "owned_data": false,
+  "selection": "Canonical whole section, current live locks/accepted intervals, full prior reports plus source filenames checked immediately before fresh F769C reservation. D4DFC earlier stale-shortlist duplicate was stopped after one diagnostic compile on root reminder."
+}
