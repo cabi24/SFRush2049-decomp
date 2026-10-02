@@ -1,0 +1,50 @@
+[
+  {
+    "target_id": "vector_normalize_length",
+    "address": 2148054212,
+    "population": "extracted",
+    "insn_count": 95,
+    "target_asm_sha": "734a72d8fdedb705bf29bbc481ce364cf69677687a645142dfe122bca3abadab",
+    "target_o_sha": "5cda4b1a58eb86dff5514fcc119c54c2dedc5ef35bf91b9b70d866384219e021",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "extent_repaired"
+  },
+  {
+    "target_id": "func_800E114C",
+    "address": 2148405580,
+    "population": "extracted",
+    "insn_count": 237,
+    "target_asm_sha": "ccd59e8ea93734729474d19c927b02b603863ea561a2cf59a7629232d423835f",
+    "target_o_sha": "9ad381e5d60a85d91409f1e5cdcc2ca458043deafe34a574d14a08563a499131",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "discovered"
+  },
+  {
+    "target_id": "camera_update_d",
+    "address": 2148124128,
+    "population": "extracted",
+    "insn_count": 196,
+    "target_asm_sha": "2cc39149b7229817503ee8cc21242c3ff1f22b6acd8ea63da45a0576c60fcd97",
+    "target_o_sha": "98a19b9645645de33025ec2d381104984fa73f6afaac44b11869e85938dc9d53",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": null
+  },
+  {
+    "target_id": "func_800AB18C",
+    "address": 2148184460,
+    "population": "extracted",
+    "insn_count": 231,
+    "target_asm_sha": "6c883a8c92e18974a78b69786f239e59ce4ed7126e651651a4007e86b75f40c9",
+    "target_o_sha": "8569b733f2dcee0df45c28da710fbf6ca04c53be570917986de441ea3a260c7b",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "discovered"
+  }
+]

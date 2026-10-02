@@ -1,0 +1,10 @@
+[
+  {
+    "function": "func_8008B3C8",
+    "source": "src/blob/func_8008B3C8.c",
+    "source_sha256": "a64ca9d0624c3541c45cca2c659e6cf7e6605ffaf92b496e842f23c5c052eb3e",
+    "normalized_body_sha256": "71e21c2cbcf51e93083e15737b276febb39bf9d3114e2cebf6e942ee538eda55",
+    "definition_copied_verbatim": true,
+    "current_accepted_context": true
+  }
+]

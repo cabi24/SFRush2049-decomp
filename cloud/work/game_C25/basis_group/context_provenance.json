@@ -1,0 +1,26 @@
+[
+  {
+    "function": "func_8008B3C8",
+    "source": "src/blob/func_8008B3C8.c",
+    "source_sha256": "a64ca9d0624c3541c45cca2c659e6cf7e6605ffaf92b496e842f23c5c052eb3e",
+    "normalized_body_sha256": "71e21c2cbcf51e93083e15737b276febb39bf9d3114e2cebf6e942ee538eda55",
+    "definition_copied_verbatim": true,
+    "current_accepted_context": true
+  },
+  {
+    "function": "vector_copy_scale",
+    "source": "src/blob/vector_copy_scale.c",
+    "source_sha256": "612829c652ceff9b8b7e83216fbca240f1827e75bd25c7db8bb285de3d087eaf",
+    "normalized_body_sha256": "f0896333a6065d3b751b4204e07bf13ba019e09d6ed2dda96e63d4b36e6e86f0",
+    "definition_copied_verbatim": true,
+    "current_accepted_context": true
+  },
+  {
+    "function": "func_8008B424",
+    "source": "cloud/work/game_C25/func_8008B424.c",
+    "source_sha256": "664db61fb4774987464f508b30983e10157c46ae847634478876d92d0fb74ca5",
+    "normalized_body_sha256": "d13b6d0dcb0ce654a0650d25fb8a9d60b15cd2050c4549f6a50adfcd976e12a7",
+    "definition_copied_verbatim": true,
+    "current_accepted_context": false
+  }
+]

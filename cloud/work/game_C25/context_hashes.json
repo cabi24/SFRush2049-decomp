@@ -1,0 +1,15 @@
+{
+  "build/m2c_asm/vector_normalize_length.s": "17f51913f9efdc79d1d64eca45c7b694739cfca7f70ded3dd540cb2e0aab6702",
+  "build/m2c_asm/func_800E114C.s": "66b1f344c3436fe4ec3ff148114573870ff64f614a790fb9c6e1eba00a903ea3",
+  "build/m2c_asm/camera_update_d.s": "a9fe01cbe1b796fa7d872f2e62e621aa65811ef3a8005767036a34298d39ac17",
+  "build/m2c_asm/func_800AB18C.s": "cfa04f00221008d9b531b08e07f8c3a82f4cf182e76caeea935062b7d6f3106d",
+  "build/m2c_asm/func_8008B3C8.s": "634d2d855a69966f7069a8572ec12a56629528142160a469f2a704fef7a47070",
+  "build/m2c_asm/func_8008B424.s": "d459b8bcca75cfed4d23f78c3225b94c026eeb737d466f018be51d4b033262af",
+  "build/m2c_asm/vector_copy_scale.s": "4a2e070ab695ed10fc2e0359fe75ffb8a8005a39199a9b09d9c3cbd8ba485ef8",
+  "asm/us/blob/SHA256SUMS": "2e910015efe90048555ae05928502b1a9612328f8579c59d1c1eb5b8d5467c57",
+  "asm/us/blob/symbols.json": "91760c85ae47cd8445013beeb1e987048830b0a35ea319b7cc681a61d89af8b1",
+  "tools/cloud/score.py": "ca0e5fdebb90e13d1e91643357bcda7d402401552e5de326c361ab6411565cc0",
+  "tools/conveyor/jobs/scoring.py": "107fa8b627acd0b88f10c309973f97c2ee990786387b652f23b3c3175ce525d5",
+  "include/types.h": "0c3169319a4e10b8a2c7d850791df9bafcf923b57411c64bfa6ca83bb639bf57",
+  "reference/repos/ultralib/src/gu/lookatref.c": "feedb76b02ed22b05b2edeb4247ecb3cc28be784b23d32b178d34c48e9518724"
+}

@@ -1,0 +1,16 @@
+{
+  "function": "game_timer_reset",
+  "bytes": 144,
+  "source_sha256": "f168a925a848fd81aa45ba7f580d4f972b48e2f23ef5287a2cbaab85c75f9077",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "canonical_D": "MATCH",
+  "image_identical": true,
+  "source_built_ROM_sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+  "pytest": {
+    "passed": 713,
+    "skipped": 498,
+    "exit": 0
+  },
+  "blob_locks": 580,
+  "static_locks": 123
+}

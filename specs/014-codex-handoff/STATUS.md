@@ -1,5 +1,13 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-01 twenty-first completed milestone: real traversal, list and conversion sources
+
+- Game cartridge C: **580/1,216 functions, 67,648/647,072 bytes (10.45%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**.
+- A48 adds144-byte game_timer_reset: real signed-half tail recursion is optimized by IDO into the original traversal loop; one token-preserving assignment boundary restores actual halfword store scheduling. A49 adds164-byte actual list-head removal and unsigned packed counter/mask updates, with ordinary real external callee signature. Stale database zero was only a lead; complete delivered source independently recompiled. C26 adds232-byte render_helper with actual named globals, bit update and genuine unsigned float conversion narrowed to the real halfword callee argument.
+- Independent D canonical MATCH and identical image for allthree. Source-built full original ROM SHA-1 EXACT, full pytest713 passed/498 skipped with separately captured exit0. All580 blob locks, group checks zero and123 static/source locks intact. Exact ordinary flags **-g0 -O2 -mips2 -G 0 -non_shared**; C26 adds **-Wab,-r4300_mul**. No fake pressure, callers, buffers or formals.
+- Across original handoff:83 game functions /11,232 bytes and97 static functions /27,284 bytes accepted. C25/B30 bounded negative packets archived without coverage claims. Matching checkpoint7e6e3e25 CI36950183911, actual-progress fixeb9d0479 CI36950256594 and archival7ea99313 CI36950503395 succeeded. make progress now reports verified cartridge coverage without the obsolete file-count percentage. All three workers continue fresh source work; initial dirty tools/mips_to_c preserved.
+
+
 ## 2026-10-01 twentieth completed milestone: reciprocal length and byte comparison
 
 - Game cartridge C: **577/1,216 functions, 67,108/647,072 bytes (10.37%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**.

@@ -1,0 +1,54 @@
+[
+  {
+    "function": "vector_normalize_length",
+    "variant": "reuse_actual_scalars",
+    "strict_score": 4130,
+    "linked": {
+      "differing": 95,
+      "total": 95,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 2
+    }
+  },
+  {
+    "function": "vector_normalize_length",
+    "variant": "typed_matrix",
+    "strict_score": 4130,
+    "linked": {
+      "differing": 95,
+      "total": 95,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 2
+    }
+  },
+  {
+    "function": "camera_update_d",
+    "variant": "reuse_clamp",
+    "strict_score": 12875,
+    "linked": {
+      "differing": 190,
+      "total": 196,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 13
+    }
+  },
+  {
+    "function": "camera_update_d",
+    "variant": "reuse_normalized_components",
+    "strict_score": 10480,
+    "linked": {
+      "differing": 192,
+      "total": 196,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+]

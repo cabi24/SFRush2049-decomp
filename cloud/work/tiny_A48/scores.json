@@ -1,0 +1,27 @@
+{
+  "game_timer_reset": {
+    "strict_diff": 0,
+    "size": 36,
+    "target_size": 36,
+    "extra": 0,
+    "matched": true,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "f168a925a848fd81aa45ba7f580d4f972b48e2f23ef5287a2cbaab85c75f9077",
+    "canonical_exit": 0
+  },
+  "audio_channel_reset": {
+    "strict_diff": 39,
+    "size": 41,
+    "target_size": 41,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "6b96b03b0af4f0304a5f0ddf63b97b10a1e9c72f14321bd10989887c3ef6d291"
+  }
+}

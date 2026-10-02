@@ -1,0 +1,12 @@
+{
+  "variant": "real_delta_vector",
+  "strict_score": 3002,
+  "linked": {
+    "differing": 201,
+    "total": 237,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  }
+}

@@ -1,0 +1,24 @@
+[
+  {
+    "target": "game_timer_reset",
+    "control": "actual_tail_recursion",
+    "strict_diff": 2,
+    "size": 36,
+    "target_size": 36,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "errors": []
+  },
+  {
+    "target": "audio_channel_reset",
+    "control": "full_count_local",
+    "strict_diff": 39,
+    "size": 41,
+    "target_size": 41,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "errors": []
+  }
+]
