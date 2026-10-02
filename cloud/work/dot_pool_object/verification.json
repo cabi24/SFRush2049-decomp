@@ -1,0 +1,349 @@
+{
+  "verdict": "NONMATCH",
+  "claims": [],
+  "target_words": 57,
+  "target_bytes": 228,
+  "candidate_words": 56,
+  "candidate_bytes": 224,
+  "differing_words": 41,
+  "differences": [
+    {
+      "offset": 0,
+      "target": "3c038015",
+      "candidate": "3c088015"
+    },
+    {
+      "offset": 4,
+      "target": "24639788",
+      "candidate": "25089788"
+    },
+    {
+      "offset": 8,
+      "target": "8c620000",
+      "candidate": "8d020000"
+    },
+    {
+      "offset": 40,
+      "target": "00804025",
+      "candidate": "00803825"
+    },
+    {
+      "offset": 44,
+      "target": "10000028",
+      "candidate": "10000027"
+    },
+    {
+      "offset": 72,
+      "target": "ac6f0000",
+      "candidate": "ad0f0000"
+    },
+    {
+      "offset": 76,
+      "target": "ae080000",
+      "candidate": "ae070000"
+    },
+    {
+      "offset": 84,
+      "target": "24090001",
+      "candidate": "2403ffff"
+    },
+    {
+      "offset": 88,
+      "target": "240affff",
+      "candidate": "24090001"
+    },
+    {
+      "offset": 100,
+      "target": "240bffff",
+      "candidate": "a200001a"
+    },
+    {
+      "offset": 104,
+      "target": "a200001a",
+      "candidate": "a2000019"
+    },
+    {
+      "offset": 108,
+      "target": "a2000019",
+      "candidate": "a209001b"
+    },
+    {
+      "offset": 112,
+      "target": "a209001b",
+      "candidate": "ae00003c"
+    },
+    {
+      "offset": 116,
+      "target": "ae00003c",
+      "candidate": "ae000028"
+    },
+    {
+      "offset": 120,
+      "target": "ae000028",
+      "candidate": "ae03002c"
+    },
+    {
+      "offset": 124,
+      "target": "ae0a002c",
+      "candidate": "ae030030"
+    },
+    {
+      "offset": 128,
+      "target": "ae0b0030",
+      "candidate": "ae000038"
+    },
+    {
+      "offset": 132,
+      "target": "ae000038",
+      "candidate": "02002025"
+    },
+    {
+      "offset": 136,
+      "target": "02002025",
+      "candidate": "0c02cd8b"
+    },
+    {
+      "offset": 140,
+      "target": "0c02cd8b",
+      "candidate": "a6190010"
+    },
+    {
+      "offset": 144,
+      "target": "a6190010",
+      "candidate": "8faa0038"
+    },
+    {
+      "offset": 148,
+      "target": "8fac0038",
+      "candidate": "9604000c"
+    },
+    {
+      "offset": 152,
+      "target": "9604000c",
+      "candidate": "240bffff"
+    },
+    {
+      "offset": 156,
+      "target": "240dffff",
+      "candidate": "240cffff"
+    },
+    {
+      "offset": 160,
+      "target": "240effff",
+      "candidate": "afac0018"
+    },
+    {
+      "offset": 164,
+      "target": "afae0018",
+      "candidate": "afab0014"
+    },
+    {
+      "offset": 168,
+      "target": "afad0014",
+      "candidate": "00002825"
+    },
+    {
+      "offset": 172,
+      "target": "00002825",
+      "candidate": "00003025"
+    },
+    {
+      "offset": 176,
+      "target": "00003025",
+      "candidate": "8fa70034"
+    },
+    {
+      "offset": 180,
+      "target": "8fa70034",
+      "candidate": "0c029e7d"
+    },
+    {
+      "offset": 184,
+      "target": "0c029e7d",
+      "candidate": "afaa0010"
+    },
+    {
+      "offset": 188,
+      "target": "afac0010",
+      "candidate": "a6020034"
+    },
+    {
+      "offset": 192,
+      "target": "a6020034",
+      "candidate": "0c0253b2"
+    },
+    {
+      "offset": 196,
+      "target": "0c0253b2",
+      "candidate": "02002025"
+    },
+    {
+      "offset": 200,
+      "target": "02002025",
+      "candidate": "02001025"
+    },
+    {
+      "offset": 204,
+      "target": "02001025",
+      "candidate": "8fbf002c"
+    },
+    {
+      "offset": 208,
+      "target": "8fbf002c",
+      "candidate": "8fb00028"
+    },
+    {
+      "offset": 212,
+      "target": "8fb00028",
+      "candidate": "27bd0030"
+    },
+    {
+      "offset": 216,
+      "target": "27bd0030",
+      "candidate": "03e00008"
+    },
+    {
+      "offset": 220,
+      "target": "03e00008",
+      "candidate": "00000000"
+    },
+    {
+      "offset": 224,
+      "target": "00000000",
+      "candidate": null
+    }
+  ],
+  "target_words_hex": [
+    "3c038015",
+    "24639788",
+    "8c620000",
+    "27bdffd0",
+    "afbf002c",
+    "284100c8",
+    "afb00028",
+    "afa50034",
+    "afa60038",
+    "14200003",
+    "00804025",
+    "10000028",
+    "00001025",
+    "00027080",
+    "3c108015",
+    "020e8021",
+    "8e109450",
+    "244f0001",
+    "ac6f0000",
+    "ae080000",
+    "8fb80034",
+    "24090001",
+    "240affff",
+    "a618000e",
+    "8fb90038",
+    "240bffff",
+    "a200001a",
+    "a2000019",
+    "a209001b",
+    "ae00003c",
+    "ae000028",
+    "ae0a002c",
+    "ae0b0030",
+    "ae000038",
+    "02002025",
+    "0c02cd8b",
+    "a6190010",
+    "8fac0038",
+    "9604000c",
+    "240dffff",
+    "240effff",
+    "afae0018",
+    "afad0014",
+    "00002825",
+    "00003025",
+    "8fa70034",
+    "0c029e7d",
+    "afac0010",
+    "a6020034",
+    "0c0253b2",
+    "02002025",
+    "02001025",
+    "8fbf002c",
+    "8fb00028",
+    "27bd0030",
+    "03e00008",
+    "00000000"
+  ],
+  "resolved_candidate_words_hex": [
+    "3c088015",
+    "25089788",
+    "8d020000",
+    "27bdffd0",
+    "afbf002c",
+    "284100c8",
+    "afb00028",
+    "afa50034",
+    "afa60038",
+    "14200003",
+    "00803825",
+    "10000027",
+    "00001025",
+    "00027080",
+    "3c108015",
+    "020e8021",
+    "8e109450",
+    "244f0001",
+    "ad0f0000",
+    "ae070000",
+    "8fb80034",
+    "2403ffff",
+    "24090001",
+    "a618000e",
+    "8fb90038",
+    "a200001a",
+    "a2000019",
+    "a209001b",
+    "ae00003c",
+    "ae000028",
+    "ae03002c",
+    "ae030030",
+    "ae000038",
+    "02002025",
+    "0c02cd8b",
+    "a6190010",
+    "8faa0038",
+    "9604000c",
+    "240bffff",
+    "240cffff",
+    "afac0018",
+    "afab0014",
+    "00002825",
+    "00003025",
+    "8fa70034",
+    "0c029e7d",
+    "afaa0010",
+    "a6020034",
+    "0c0253b2",
+    "02002025",
+    "02001025",
+    "8fbf002c",
+    "8fb00028",
+    "27bd0030",
+    "03e00008",
+    "00000000"
+  ],
+  "source_sha256": "98bd8da50eb8023342b800cf8e13ac893f7ea0c38f23808f4d8cb94e24d2fda1",
+  "target_sha256": "3c62ff0ba87a6c36adf1bbb3dd2cf485babe675078d2a93bf1d61ba7e1780637",
+  "compiler_sha256": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+  "differential_cases": 10000,
+  "unresolved": [],
+  "unverified": [],
+  "flags": [
+    "-g0",
+    "-O2",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Wab,-r4300_mul"
+  ],
+  "scope": "Research only; no match or coverage claim"
+}
