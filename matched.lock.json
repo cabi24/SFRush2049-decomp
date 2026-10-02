@@ -87,14 +87,6 @@
     "verified": "score0",
     "verified_at": "2026-10-02"
   },
-  "cloud/work/static_debug_consolidation/acceptance_sources/modf.c:modf": {
-    "body_sha256": "b32ddf633aabf4bdbe74d3a06b3803f4ee6be5dce7129a08de428c7d647a4f79",
-    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
-    "target_id": "modf",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-02"
-  },
   "cloud/work/static_debug_consolidation/acceptance_sources/modff.c:modff": {
     "body_sha256": "567255113189d5748cb873277cb0840fc3248ffc5e42fd783a4ab3907189580d",
     "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
@@ -227,6 +219,14 @@
     "body_sha256": "eb95351f1110e65c0cf46823bb15ec453eccca01386af52f97b4299638bcbb36",
     "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "target_id": "__isnan",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-02"
+  },
+  "src/rom/lib_34a0.c:modf": {
+    "body_sha256": "b32ddf633aabf4bdbe74d3a06b3803f4ee6be5dce7129a08de428c7d647a4f79",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "modf",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-02"
