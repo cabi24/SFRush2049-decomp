@@ -1,0 +1,23 @@
+{
+  "source_sha256": "7126ed7400d6d01fe209ea292aee5abc6dcd42ff3e82d011d6c943e8ca14ae90",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source": "/home/cburnes/agents/large-F56E0/candidates/audit/entry/course_first.c",
+  "accepted": false,
+  "canonical_verdict": "506/518 words differ",
+  "comparison": {
+    "differing": 506,
+    "total": 518,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "object_sha256": "7149b30f7fdd89ce1e26207eaada4b29a60ffb935aced748b5ce1bfd0ef2743a",
+  "emitted_words": 520,
+  "aligned": {
+    "aligned_exact": 504,
+    "aligned_opcode": 513,
+    "aligned_opcode_reg": 509
+  },
+  "frame_bytes": 160
+}

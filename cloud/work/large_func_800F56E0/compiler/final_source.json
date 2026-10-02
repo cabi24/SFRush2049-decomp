@@ -1,0 +1,7 @@
+{
+  "original_source": "cloud/work/large_func_800F56E0/reconstruction/both_course_first.c",
+  "original_sha256": "0223e18754472236da63d688b757ec80a94da72664dab12af05f825aa1ae2a4f",
+  "publication_source": "cloud/matches/func_800F56E0.c",
+  "publication_sha256": "2a2e3ea9b0a67ac3d61515225d2dc123c074731b0808b1f3b466c871d770d9ae",
+  "change": "Normalized exact flags comment on the existing first physical line; function body and remaining line layout preserved"
+}

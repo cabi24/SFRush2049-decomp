@@ -1,0 +1,23 @@
+{
+  "source_sha256": "0223e18754472236da63d688b757ec80a94da72664dab12af05f825aa1ae2a4f",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source": "/home/cburnes/agents/large-F56E0/candidates/audit/final_verified.c",
+  "accepted": true,
+  "canonical_verdict": "MATCH",
+  "comparison": {
+    "differing": 0,
+    "total": 518,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "object_sha256": "0729e802ac6e2bd2f1af56cbc6b7ef81d8f0db23451b1c040e23e9615331a67e",
+  "emitted_words": 520,
+  "aligned": {
+    "aligned_exact": 518,
+    "aligned_opcode": 518,
+    "aligned_opcode_reg": 518
+  },
+  "frame_bytes": 160
+}

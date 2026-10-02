@@ -1,0 +1,23 @@
+{
+  "source_sha256": "20bb3f51296db8f19a40947fb5237f28cf8544d22f1cf240a1ed84a651616cae",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "source": "/home/cburnes/agents/large-F56E0/candidates/types/mean_explicit_float.c",
+  "accepted": false,
+  "canonical_verdict": "159/518 words differ",
+  "comparison": {
+    "differing": 159,
+    "total": 518,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "object_sha256": "392eb230eca56dc6be9e2b5a36fca9fc4b2039b6b140e9eef7dc86ce5d5058e6",
+  "emitted_words": 520,
+  "aligned": {
+    "aligned_exact": 362,
+    "aligned_opcode": 514,
+    "aligned_opcode_reg": 366
+  },
+  "frame_bytes": 160
+}

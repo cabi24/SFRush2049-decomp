@@ -1,0 +1,23 @@
+{
+  "source_sha256": "a782d09166ac43251bfd2388f535919007d332e1ca4605bf877c96e32715507b",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "source": "/home/cburnes/agents/large-F56E0/candidates/types/distance_explicit.c",
+  "accepted": false,
+  "canonical_verdict": "159/518 words differ",
+  "comparison": {
+    "differing": 159,
+    "total": 518,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "object_sha256": "2b22609221935a0e208714065e12d80648759f451de6e39ae179df6d00607518",
+  "emitted_words": 520,
+  "aligned": {
+    "aligned_exact": 362,
+    "aligned_opcode": 514,
+    "aligned_opcode_reg": 366
+  },
+  "frame_bytes": 160
+}

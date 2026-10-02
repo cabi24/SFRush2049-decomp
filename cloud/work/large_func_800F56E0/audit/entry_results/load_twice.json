@@ -1,0 +1,23 @@
+{
+  "source_sha256": "d9985689bb02cbf41bb2116751d5fc673747aa17fc53820458bccde476428445",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source": "/home/cburnes/agents/large-F56E0/candidates/audit/entry/load_twice.c",
+  "accepted": false,
+  "canonical_verdict": "12/518 words differ",
+  "comparison": {
+    "differing": 12,
+    "total": 518,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "object_sha256": "4af01753962479b1785428d879184e6241986a169057cf1253d7702ec4929a57",
+  "emitted_words": 520,
+  "aligned": {
+    "aligned_exact": 508,
+    "aligned_opcode": 514,
+    "aligned_opcode_reg": 513
+  },
+  "frame_bytes": 160
+}

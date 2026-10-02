@@ -1,5 +1,14 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-02 thirty-ninth completed milestone: large statistics routine
+
+- Game cartridge C: **627/1,216 functions, 84,276/647,072 bytes (13.02%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**. This checkpoint adds **4,416 game bytes across six functions**, including the independently recovered five-function batch (2,344 bytes) and the newly reconstructed large routine (2,072 bytes).
+- Following the user's new direction, three agents collaborated on **func_800F56E0**, a complete 518-instruction routine. They separately reconstructed C, audited the native control flow/callee ABI, and proved the record types and unsigned conversion behavior. It updates resource-local and shared statistics, sorted top-five sample and average tables, counters and distance, then calls the real persistence routine. These semantics are inferred; no direct arcade counterpart was identified.
+- The final ordinary C preserves direct player-record accesses, live loop counts, actual selector read/update ordering, sequential float accumulation and the backward shift counter for the inserted average tag. No artificial frame padding or added runtime work. Literal flags **-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul**. Publication source SHA256 **2a2e3ea9b0a67ac3d61515225d2dc123c074731b0808b1f3b466c871d770d9ae**. Independent canonical MATCH: all518 words exact, zero extra words, errors, unresolved or unverified relocations. Ordinary alignment earns no code credit.
+- Recovered frozen groups A101/A104/A105/A111/B88 add func_800B4E68 (328), func_800CC8C8 (316), func_800CCA04 (316), track_lighting_setup (152), and func_8008C074 (1,232). Fresh private compilations prove every complete member and accepted helper context; helper/table bytes receive no repeat credit. Evidence: cloud/work/integration_40/groups.json.
+- Final source-built image is byte-exact, original ROM **SHA-1 EXACT**, **MAKE=0 TEST=0**. Full pytest captured **exit0**. All627 blob locks and group checks have zero problems; all123 static/source locks remain intact. Evidence: cloud/work/large_func_800F56E0/compiler/. No new CI result is claimed.
+- The three large-function agents have finished. Unintegrated static batches, unrelated infrastructure drafts, the separate A102 candidate, and the initially dirty tools/mips_to_c remain pending. This milestone follows the allocator type-refinement commit4b4278bd from the prior session. Do not restart the old overnight lanes automatically; the user's current focus is larger game routines.
+
 ## 2026-10-02 thirty-eighth completed milestone: independently placed native switch tables
 
 - Game cartridge C: **621/1,216 functions, 79,860/647,072 bytes (12.34%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**. This batch adds **916 matching code bytes** across three complete functions.

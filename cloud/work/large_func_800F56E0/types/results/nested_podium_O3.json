@@ -1,0 +1,23 @@
+{
+  "source_sha256": "dac035ef2c32805e2ce912335a5287c6fc86ecf9820ed9face2891627f2d1804",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "source": "/home/cburnes/agents/large-F56E0/candidates/types/nested_podium.c",
+  "accepted": false,
+  "canonical_verdict": "166/518 words differ",
+  "comparison": {
+    "differing": 166,
+    "total": 518,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "object_sha256": "333d13410b79f19f8716d463b8a0e20d406a44d7790d6ff8d32a47760ac81a8d",
+  "emitted_words": 520,
+  "aligned": {
+    "aligned_exact": 357,
+    "aligned_opcode": 511,
+    "aligned_opcode_reg": 364
+  },
+  "frame_bytes": 160
+}
