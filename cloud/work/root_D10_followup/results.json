@@ -1,0 +1,10 @@
+{
+  "function": "func_800E5D64",
+  "source": "func_800E5D64.flag_array.c",
+  "source_sha256": "384989c22d710bb9da9ded90f6a677cc48dd384f7b07e904423310893622c8e6",
+  "target_words": 324,
+  "differing": 227,
+  "extra_words": 0,
+  "verdict": "NONMATCH",
+  "control": "Actual one-byte global flag via unsized signed-byte array view; unchanged from frozen native baseline. No capacity or new storage."
+}

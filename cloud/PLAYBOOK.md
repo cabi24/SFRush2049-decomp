@@ -282,3 +282,7 @@ D8's actual initializer captures its one-time diagonal constant in a consumed lo
 ### True dimensional expressions and recursive source recover complete routines (2026-10-02)
 
 A73's actual five-child rectangle builder matches at O3 when width/height differences are expressed at their real stores and the final call loop uses native child indexing. IDO hoists those consumed invariant differences naturally; an obsolete cursor declaration was removed and the resulting source independently reproved before publication. B51's forward/backward offset utilities preserve real tail-recursive argument updates and output pointer accesses. Native recursion reproduces the original8-byte frame and conversion work; one genuine sum operand-order correction closes its last instruction without extra work.
+
+### Actual publication order and ordinary O3 preserve complete resource routines (2026-10-02)
+
+B55's true halfword resource updater preserves signed selector ranges, actual record strides and the original asymmetric nullable paths; changing only the explicit recipe from O2 to O3 gives a complete match. A77's five-child parent allocator consumes the byte1 attribute before publishing its active flag, allowing IDO to recover the original load/store schedule without any new operation. An observed extra zero ABI carrier to a callee that ignores it remains through an old-style declaration rather than an invented unused formal. Exact SDK matches outside the registered static code map remain separate leads until real ownership and coverage denominators are supported.

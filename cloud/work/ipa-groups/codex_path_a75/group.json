@@ -1,0 +1,18 @@
+{
+  "members": [
+    "func_800E8F10"
+  ],
+  "context": [
+    "func_800B9338"
+  ],
+  "claims": [],
+  "files": [
+    "caller.c",
+    "index.c"
+  ],
+  "keep": [
+    "func_800E8F10",
+    "func_800B9338"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}

@@ -1,0 +1,9 @@
+{
+  "claims": [],
+  "files": {
+    "difficulty_select_anchor.c": "92720e22966be76f0d88cd71778c07a4da96f7b7f78eb9bb33091665c1400c8c",
+    "difficulty_select_half.c": "ededb2e24b6a4fd011f63ed6a5d8814960a1957e04d074a3eb37373e0f09af49",
+    "difficulty_select_shared_half.c": "b18cd31bd91d1f29f1169d8a5f12a6e89c7cbc8c66bd54318c21446b88ccd1b4",
+    "results.json": "c2bf01337e40ba0e4bb7e716f49603a76d50ea4c2fc4db50f43426b6d842b2df"
+  }
+}

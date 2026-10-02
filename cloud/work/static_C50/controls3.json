@@ -1,0 +1,22 @@
+[
+  {
+    "function": "__scHandlePreNMI",
+    "variant": "__scHandlePreNMI.r4300",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 60,
+    "source_sha256": "9d4f364baa4487132e752d29d20dfb59560d134c89a6a0ad8779f07ae05b43f3",
+    "target_sha256": "0c2cd7a6e75c1db2b19c58060b4aa770b1feda8f9005f1a0705c5999b6ba58dc"
+  },
+  {
+    "function": "__scHandlePreNMI",
+    "variant": "__scHandlePreNMI.assembler_o1",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared -Wa,-O1",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 60,
+    "source_sha256": "7966eff7a7cfac6d7f7092f7eaac28baf4e031f9dc958087953abe07d7ae40d8",
+    "target_sha256": "0c2cd7a6e75c1db2b19c58060b4aa770b1feda8f9005f1a0705c5999b6ba58dc"
+  }
+]

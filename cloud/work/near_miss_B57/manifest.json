@@ -1,0 +1,8 @@
+{
+  "claims": [],
+  "files": {
+    "camera_collision_avoid_cross.c": "bd29c8d590dc66b8fb55a52b4a5e44b88860c46f6d5638867dd67e1f2864a33e",
+    "camera_collision_avoid_native.c": "b1b688e5df17289fbe95a41c21edb85cb8ad30e65ff7806c308f88c26591020c",
+    "results.json": "b5d35fc0748ada129cd1dc0c496139ffa2df8f9f02fb03eb618e7fc6cce8c6d9"
+  }
+}

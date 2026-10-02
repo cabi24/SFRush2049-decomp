@@ -1,0 +1,22 @@
+[
+  {
+    "function": "__scHandlePreNMI",
+    "variant": "__scHandlePreNMI.compare",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 60,
+    "source_sha256": "81db58f00c2a5038e23ccac797544a9d7ecb3f237a467765167155aa32b77b91",
+    "target_sha256": "0c2cd7a6e75c1db2b19c58060b4aa770b1feda8f9005f1a0705c5999b6ba58dc"
+  },
+  {
+    "function": "__scHandlePreNMI",
+    "variant": "__scHandlePreNMI.emptyelse",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 260,
+    "source_sha256": "6fdfd8ebfb08c3cb10d1bcce557eea45a27d9ad99b477ad513094d08d7ab09f6",
+    "target_sha256": "0c2cd7a6e75c1db2b19c58060b4aa770b1feda8f9005f1a0705c5999b6ba58dc"
+  }
+]

@@ -1,0 +1,72 @@
+[
+  {
+    "differing": 199,
+    "total": 201,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 4,
+    "source": "A75.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source_sha256": "2e8b17d689ae1eae68b3220aa93c4668edb734505d1b1ca610e10465089f0aea",
+    "compiled_words": 208
+  },
+  {
+    "differing": 199,
+    "total": 201,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 5,
+    "source": "A75arrays.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source_sha256": "b475ac2b9cf43ee47d17c84becf2d74379172dd47feda3ccd239d4d458d13c2c",
+    "compiled_words": 208
+  },
+  {
+    "differing": 199,
+    "total": 201,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 1,
+    "source": "A75reuse.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source_sha256": "745e74643517dc2a976b4cd492c60924c3919665c211e6fb05de95a70ca7991e",
+    "compiled_words": 204
+  },
+  {
+    "differing": 199,
+    "total": 201,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 1,
+    "source": "A75scope.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source_sha256": "908607d7264d16b5bcadfe861aedf398df79f24e2c174197563a0cf5bceadfd0",
+    "compiled_words": 204
+  },
+  {
+    "differing": 199,
+    "total": 201,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 5,
+    "source": "codex_path_a75",
+    "target": "func_800E8F10",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+  },
+  {
+    "differing": 0,
+    "total": 28,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "source": "codex_path_a75",
+    "target": "func_800B9338",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+  }
+]

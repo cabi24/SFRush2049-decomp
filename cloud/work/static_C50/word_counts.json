@@ -1,0 +1,10 @@
+{
+  "target_words": 24,
+  "candidate_words": 24,
+  "unlinked_raw_differing": 3,
+  "differing_offsets": [
+    16,
+    20,
+    24
+  ]
+}

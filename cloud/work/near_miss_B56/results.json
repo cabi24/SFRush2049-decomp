@@ -1,0 +1,90 @@
+{
+  "function": "place_cars_in_order",
+  "claims": [],
+  "results": [
+    {
+      "control": "native",
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "source_sha256": "993d183c96cf49f800f09b9f188d3583a33c16222c2c16589c9965acbdcec6ba",
+      "comparison": {
+        "differing": 76,
+        "total": 136,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "compiled_text_word_count": 136
+    },
+    {
+      "control": "symbols",
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "source_sha256": "77c22e5ab7289ba572bee1ec0277531542c005c578d4b8d649c8fb12a6d66959",
+      "comparison": {
+        "differing": 76,
+        "total": 136,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "compiled_text_word_count": 136
+    },
+    {
+      "control": "byte",
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "source_sha256": "b73729bf326c1358443a366e6a181bd96e3aca770a2d2bcb4132aaa208debec5",
+      "comparison": {
+        "differing": 76,
+        "total": 136,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "compiled_text_word_count": 136
+    },
+    {
+      "control": "refresh",
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "source_sha256": "520ed156f32ba44dd96e652a863030460f639ec6e5f4c9f638731f1d23d051d4",
+      "comparison": {
+        "differing": 102,
+        "total": 136,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "compiled_text_word_count": 136
+    },
+    {
+      "control": "accumulate",
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "source_sha256": "528a79e616634113eb37c5653c5789576cdf4cca2fdd026e831734ff78acb65c",
+      "comparison": {
+        "differing": 81,
+        "total": 136,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "compiled_text_word_count": 136
+    },
+    {
+      "control": "records",
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "source_sha256": "f9b37eae482537b9aeeadad988d316ab9be14b3205b4a55ff418c94d0fc13deb",
+      "comparison": {
+        "differing": 76,
+        "total": 136,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "compiled_text_word_count": 136
+    }
+  ]
+}

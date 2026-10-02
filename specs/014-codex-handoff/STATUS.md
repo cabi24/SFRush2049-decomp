@@ -1,5 +1,14 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-02 thirty-third completed milestone: resource flags and rectangle allocation
+
+- Game cartridge C: **610/1,216 functions, 76,708/647,072 bytes (11.85%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**. This batch adds **976 matching bytes**.
+- B55's528-byte linear_interp preserves actual selector-dependent halfword resource flags, fallback/live-handle chains and original refresh guards. Ordinary O3 reproduces the complete body without changing its O2 source operations. A77's448-byte ambient_sound_set allocates five real rectangle children from the actual16-parent pool; storing the consumed byte1 attribute before publishing active reproduces original scheduling. Historical names are retained without inferring semantics. No invented operations, helpers, formals, storage capacity or context credit.
+- Independent D canonical MATCH and fresh complete unmasked relocation-resolved equality for132/112words, zero extras/unresolved/unverified/errors. Frozen SHAabc657d25fda2b582f0c8663753b22a4b59036e14c229286d5cbdd0e0f969e28 and eed6e304c9f7a093e7c0b103530194604ab002b90770198164a30c6503f49a2c. Literal O3 flags retain B55's **-Wab,-r4300_mul** and omit it for A77. Actual callee-unused zero call carrier remains through A77's old-style external declaration; no unused logical formal is fabricated.
+- Identical image and original ROM SHA-1 EXACT; full pytest **713 passed, 528 skipped, captured exit0**. All610 blob/group checks and123 static/source locks pass. Since original handoff: **113 game functions /20,292 bytes** and **97 static functions /27,284 bytes** accepted. f97e6623 passed CI36968418806.
+- Three workers continue fresh targets overnight. A75/A76/B52–B54/B56/B57/C50/D10 follow-up remain frozen nonmatches, no credit. C49's two SDK mask sources independently replay exactly20/24words with original target words unchanged; both addresses lie beyond the current static code map under assets data.bin, so supported ownership/denominator registration remains necessary and neither is counted. Initial dirty tools/mips_to_c preserved.
+
+
 ## 2026-10-02 thirty-second completed milestone: rectangles and real tail recursion
 
 - Game cartridge C: **608/1,216 functions, 75,732/647,072 bytes (11.70%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**.

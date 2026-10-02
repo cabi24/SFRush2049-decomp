@@ -1,0 +1,12 @@
+{
+  "claims": [],
+  "files": {
+    "place_cars_in_order_accumulate.c": "528a79e616634113eb37c5653c5789576cdf4cca2fdd026e831734ff78acb65c",
+    "place_cars_in_order_byte.c": "b73729bf326c1358443a366e6a181bd96e3aca770a2d2bcb4132aaa208debec5",
+    "place_cars_in_order_native.c": "993d183c96cf49f800f09b9f188d3583a33c16222c2c16589c9965acbdcec6ba",
+    "place_cars_in_order_records.c": "f9b37eae482537b9aeeadad988d316ab9be14b3205b4a55ff418c94d0fc13deb",
+    "place_cars_in_order_refresh.c": "520ed156f32ba44dd96e652a863030460f639ec6e5f4c9f638731f1d23d051d4",
+    "place_cars_in_order_symbols.c": "77c22e5ab7289ba572bee1ec0277531542c005c578d4b8d649c8fb12a6d66959",
+    "results.json": "35a8a8fc6cdeba67f03b2c08fa9f5aa9760940d4ca429cfb61ec77a861edfcf7"
+  }
+}

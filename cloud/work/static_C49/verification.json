@@ -1,0 +1,32 @@
+{
+  "sdk_commit": "e24c836796df4bf520ff8b11a5c9d2cea3a66cbd",
+  "functions": {
+    "__osPiGetCmdQueue": {
+      "address": 2147549376,
+      "size": 80,
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "source_sha256": "6cd25a76f4e6cb2a9c78643a36cf0a433288d127d6f64cbcd0c70b9cd843273e",
+      "target_sha256": "c8f68dd923b7dcbc80d4e417dfdda3b66f33bae613222f6f17c9d6305208c1d4",
+      "sdk_source": "reference/repos/ultralib/src/os/setglobalintmask.c",
+      "sdk_source_sha256": "85baf4c0f0462cb49e07dc6c9e6651ae5e3d8d22537f648aeec66131792a685f",
+      "layout_slots": []
+    },
+    "osEPiRawWriteIo": {
+      "address": 2147548576,
+      "size": 96,
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "source_sha256": "55308c976ce507bd3f015f70614b5bbee89dc9a6d30abda0775f547d4e5aded6",
+      "target_sha256": "89395a40040da9540d0ddd6105cb8fd2527f6c9b095f4712a1ce0234942b780e",
+      "sdk_source": "reference/repos/ultralib/src/os/resetglobalintmask.c",
+      "sdk_source_sha256": "4dc6cf082676c71ebaf220b27d826d8e88c5ee0fb7707de24ffd92036db5ec31",
+      "layout_slots": []
+    }
+  },
+  "bindings": {
+    "__osDisableInt": "0x8000C4B0",
+    "__osRestoreInt": "0x8000C520",
+    "__OSGlobalIntMask": "0x8002C370"
+  },
+  "publication_status": "Two exact complete source matches privately proved. Both current static-layout slot lookups are empty; ROM data-bin ownership and coverage denominator need root review before publication.",
+  "target_vma_note": "Original target ELF text address zero; private metadata-only VMA anchoring changes no original instructions and resolves objdump jal display address discrepancy; protected DB targets unchanged."
+}

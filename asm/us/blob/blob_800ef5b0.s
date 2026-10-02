@@ -8816,6 +8816,7 @@ func_800F7A98:
 .section .text.linear_interp, "ax", @progbits
 .globl linear_interp
 linear_interp:
+    /* compiled from src/blob/linear_interp.c */
     .word 0x3C0E8011
     .word 0x8DCE74B4
     .word 0x27BDFFE8
