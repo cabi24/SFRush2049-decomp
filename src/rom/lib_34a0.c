@@ -157,7 +157,32 @@ u8 *__round_helper(double value, s32 *exponent, u8 *start, u8 *end, u8 nextDigit
     return start;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_34a0/__write_exponent.s")
+/* PROMOTED 2026-10-02 — __write_exponent
+ * Source:   cloud/work/static_debug_consolidation/acceptance_sources/__write_exponent.c (in-repo, locked)
+ * Flags:    -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul
+ * Evidence: lock:cloud/work/static_debug_consolidation/acceptance_sources/__write_exponent.c:__write_exponent (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+u8 *__write_exponent(register u8 *output, register int exponent, register int format) {
+    u8 *digit;
+    u8 buffer[308];
+    *output++ = format;
+    if (exponent < 0) {exponent = -exponent; *output++ = '-';}
+    else *output++ = '+';
+    digit = buffer + sizeof(buffer);
+    if (exponent > 9) {
+        do {
+            *--digit = exponent % 10 + '0';
+        } while ((exponent /= 10) > 9);
+        *--digit = exponent + '0';
+        for (; digit < buffer + sizeof(buffer); *output++ = *digit++) {}
+    } else {
+        *output++ = '0';
+        *output++ = exponent + '0';
+    }
+    return output;
+}
+
 /* PROMOTED 2026-10-02 — sprintf
  * Source:   cloud/work/static_debug_consolidation/acceptance_sources/sprintf.c (in-repo, locked)
  * Flags:    -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul
