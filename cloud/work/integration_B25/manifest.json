@@ -1,0 +1,16 @@
+{
+  "hook_baselines.json": "c8a396616eb9f26c9fb9ec22e073266856d0d1413115754f724e1e2a0dbf4356",
+  "hooks.patch": "c46ff91ba6fd9efdb918660c093d6a64bb9e06fb6b8fefd495970969f7f9cdb5",
+  "lib_cc50_before.c": "4ce0c4afbffea9c6878c254daf114727d45cecdb28708345b98b6e86a5b2b892",
+  "negative_rom_proof.json": "5645c90b979818a89565c3346aa7313d41f79ea768196dec60cbe1030950b5bd",
+  "owned_data.py": "94bb2d636e3c8a2b3313386d2dc24886638680d96cec44c6b404868bb3697ff9",
+  "owned_existing_storage.py": "c8c1bdc42483598b387f47d0ccc36fead28f78d0258d1268c78f0cc0f84397c7",
+  "owned_storage.py": "c947d5692c4e45789459aa0853153a9eee977ac30a78f5436004b5c9971d5701",
+  "private_rom_proof.json": "64637ddb1e91ef578c5b29aa1fbe316850188dea4b48f15dd1b204716d89b244",
+  "startup_proof.json": "71239e48d41518a9c2a69e43387ddd2dc39aed81acd26b2ca01dee6d4fed9f44",
+  "storage_record.json": "0a136fdf95a4dd8960660f416786ac2e325bfdfc75efd69dfc640f5e9ace7146",
+  "test_existing_storage.py": "320caa7689f4f9d94f7be99a70b7c89dd74b705c1b52735ad5563479201d69a6",
+  "tests.json": "74540a3e81805ccc6cffafb95f199b92a5451c9e1ffb7c00a6ca6c5c6a60972d",
+  "verify_negative_rom.py": "b9ecd5979d8c4822e4609e0019c3d1ef334dcedf473682e64f57868398b4aac6",
+  "verify_private_rom.py": "fe91269617eaee4d9e8fb8f21b8a8fe085618c6a7f77f3750859bc19397e4a01"
+}

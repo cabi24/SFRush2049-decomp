@@ -1,0 +1,12 @@
+{
+  "authority": "retail entrypoint asm/us/1000.s, ROM0x1000..0x1037",
+  "entry_code_sha256": "de3530934473f7a99e7938ea495df595f444cf15cf65f7b65611268ca118a8bc",
+  "clear_start": "0x8002e8e0",
+  "clear_size": "0x58170",
+  "clear_end_exclusive": "0x80086a50",
+  "owned_start": "0x80037c30",
+  "owned_end_exclusive": "0x80037c70",
+  "covered": true,
+  "method": "Retail entry initializes t0 via lui8003/addiuE8E0, t1=0x58170, writes zero at offsets0/4 and advances8 until count0; source ownership retains these original addresses.",
+  "entry_asm_sha256": "c55e9aa5df5815c15702a6f58ecbe3203ae7aebe5a523b9cf4d23910ba277cc6"
+}

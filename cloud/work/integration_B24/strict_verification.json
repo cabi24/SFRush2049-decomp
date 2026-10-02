@@ -1,0 +1,74 @@
+[
+  {
+    "function": "dll_remove",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "object_start": 0,
+    "words": 16,
+    "target_sha256": "a3803e5d4aaf06be6df289dc64c4a470fd86580eeb63e3ba80f0fc4384f235c9",
+    "module_sha256": "41b90e3985318502435164caa257cfa84329d93d53f2193e1d631831dca4f6b3",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
+    "protocol": "unchanged canonical scorer settings, function-scoped objdump; raw unlinked object slices, no masks or linked substitutions",
+    "source_sha256": "8ea97f1232f2b872f37530130da9d8ccca45c26ba87a1ec9f03b317c61a22bd3"
+  },
+  {
+    "function": "dll_init",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "object_start": 64,
+    "words": 35,
+    "target_sha256": "321befc936cee5bd08c815a671f798b064dff2603e9cb9503a7a78a0de651304",
+    "module_sha256": "41b90e3985318502435164caa257cfa84329d93d53f2193e1d631831dca4f6b3",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
+    "protocol": "unchanged canonical scorer settings, function-scoped objdump; raw unlinked object slices, no masks or linked substitutions",
+    "source_sha256": "8ea97f1232f2b872f37530130da9d8ccca45c26ba87a1ec9f03b317c61a22bd3"
+  },
+  {
+    "function": "dll_update",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "object_start": 204,
+    "words": 94,
+    "target_sha256": "dd7637b111b0f60e06a47c134e6b56972179faca417dd06920f2bd81719be258",
+    "module_sha256": "41b90e3985318502435164caa257cfa84329d93d53f2193e1d631831dca4f6b3",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
+    "protocol": "unchanged canonical scorer settings, function-scoped objdump; raw unlinked object slices, no masks or linked substitutions",
+    "source_sha256": "8ea97f1232f2b872f37530130da9d8ccca45c26ba87a1ec9f03b317c61a22bd3"
+  },
+  {
+    "function": "dll_reschedule",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "object_start": 580,
+    "words": 29,
+    "target_sha256": "07fc5ff1844157e83ffbb101873b6996c7682e33d68d294f3af01115a741abeb",
+    "module_sha256": "41b90e3985318502435164caa257cfa84329d93d53f2193e1d631831dca4f6b3",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
+    "protocol": "unchanged canonical scorer settings, function-scoped objdump; raw unlinked object slices, no masks or linked substitutions",
+    "source_sha256": "8ea97f1232f2b872f37530130da9d8ccca45c26ba87a1ec9f03b317c61a22bd3"
+  },
+  {
+    "function": "dll_insert",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "object_start": 696,
+    "words": 98,
+    "target_sha256": "38a34759181c618a276a0f42f8e049dd5f5a05a22f60dc25439bcf3c404fdd7d",
+    "module_sha256": "41b90e3985318502435164caa257cfa84329d93d53f2193e1d631831dca4f6b3",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
+    "protocol": "unchanged canonical scorer settings, function-scoped objdump; raw unlinked object slices, no masks or linked substitutions",
+    "source_sha256": "8ea97f1232f2b872f37530130da9d8ccca45c26ba87a1ec9f03b317c61a22bd3"
+  },
+  {
+    "function": "dll_get_priority",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "object_start": 1088,
+    "words": 6,
+    "target_sha256": "1c220b7382b3db545dcfabba77fd3e4569248a6bdc5f2cdb2ffe4b84e89de9d3",
+    "module_sha256": "41b90e3985318502435164caa257cfa84329d93d53f2193e1d631831dca4f6b3",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
+    "protocol": "unchanged canonical scorer settings, function-scoped objdump; raw unlinked object slices, no masks or linked substitutions",
+    "source_sha256": "8ea97f1232f2b872f37530130da9d8ccca45c26ba87a1ec9f03b317c61a22bd3"
+  }
+]

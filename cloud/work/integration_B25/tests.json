@@ -1,0 +1,7 @@
+{
+  "exit_code": 0,
+  "passed": 73,
+  "skipped": 0,
+  "new_transaction_tests": 17,
+  "scope": "private hooked modules against existing data/storage/text suites and new existing-TU transaction suite"
+}

@@ -44,10 +44,15 @@ def storage_blocks(repo, active_only=False):
             raise ValueError("invalid storage owner")
         if owner in owners or tu in tus:
             raise ValueError("duplicate storage owner or TU")
-        if row["flags"] != "-g0 -O2 -mips2 -G 0 -non_shared":
-            raise ValueError("only the verified static O2 storage ABI is supported")
+        expected_flags = ("-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul"
+                          if row.get("activation_mode") == "existing_tu" else
+                          "-g0 -O2 -mips2 -G 0 -non_shared")
+        if row["flags"] != expected_flags:
+            raise ValueError("unsupported compiler recipe for this proven storage mode")
         owners.add(owner); tus.add(tu)
-        _path(tu); _path(row["source"]); _path(row["passthrough_asm"])
+        _path(tu); _path(row["source"])
+        if row.get("activation_mode") != "existing_tu":
+            _path(row["passthrough_asm"])
         if row.get("kind") != "bss":
             raise ValueError("owned storage requires genuine zero-initialized BSS")
         for field in ("source_section", "input_section", "output_section"):
@@ -89,6 +94,9 @@ def assert_context(repo, row):
     for fn in row["members"]:
         if not extract_named_function(tu, fn):
             raise ValueError("owned storage module lacks real member " + fn)
+    if row.get("activation_mode") == "existing_tu":
+        from .owned_existing_storage import assert_existing_context
+        assert_existing_context(repo,row)
     for item in row.get("context_files", []):
         if _sha(Path(repo) / item["path"]) != item["sha256"]:
             raise ValueError("owned storage typed context changed: " + item["path"])
@@ -114,6 +122,9 @@ def package_paths(repo, tu):
     row = owner_for_tu(repo, tu)
     if not row:
         return []
+    if row.get("activation_mode") == "existing_tu":
+        from .owned_existing_storage import package_paths as existing_paths
+        return existing_paths(repo, row)
     rels = {REGISTRY, LINKER, OVERRIDES, "Makefile", "splat.us.yaml",
             "rush2049.us.ld", "matched.lock.json", row["tu"], row["passthrough_asm"],
             "tools/conveyor/pipeline/owned_storage.py", "tools/conveyor/pipeline/owned_data.py",
@@ -149,14 +160,26 @@ def generate(repo):
         for alias in row["aliases"]:
             linker.append("    ASSERT(" + alias["symbol"] + " == ADDR(" + section + ") + " +
                           hex(_number(alias["offset"])) + ', "owned storage alias moved: ' + alias["symbol"] + '")')
-        oldobj = "$(BUILD_DIR)/" + str(Path(row["passthrough_asm"]).with_suffix(".o"))
         deps = " ".join(item["path"] for item in row.get("context_files", []))
-        mk += ["O_FILES := $(filter-out " + oldobj + ",$(O_FILES))",
-               obj + ": CFLAGS := $(filter-out -O%,$(CFLAGS)) -O2",
-               obj + ": " + row["tu"] + " " + REGISTRY + " " + deps,
-               "\t@mkdir -p $(dir $@)", "\t@echo \"CC $< (complete owned storage)\"",
-               "\t$(V)$(CC) -c -g0 $(CFLAGS) -o $@ $<",
-               "\t$(V)$(OBJCOPY) --rename-section " + row["source_section"] + "=" + row["input_section"] + " $@"]
+        if row.get("activation_mode") == "existing_tu":
+            # Full verified context forces rebuild and a standalone refusal guard.
+            context_paths = json.loads((repo / row["context_proof"]).read_text())
+            deps = " ".join(str(_path(path)) for path in sorted(context_paths))
+            deps += " " + row["context_proof"] + " tools/conveyor/pipeline/owned_existing_storage.py"
+            # Exact independently verified complete compiler recipe, no O2 inheritance.
+            mk += [obj + ": " + row["tu"] + " " + REGISTRY + " " + deps,
+                   "\t@mkdir -p $(dir $@)", "\t@echo \"CC $< (existing complete owned storage)\"",
+                   "\t$(V)$(PYTHON) -m tools.conveyor.pipeline.owned_existing_storage assert " + row["owner"],
+                   "\t$(V)$(CC) -c " + row["flags"] + " $(INCLUDE_CFLAGS) -o $@ $<",
+                   "\t$(V)$(OBJCOPY) --rename-section " + row["source_section"] + "=" + row["input_section"] + " $@"]
+        else:
+            oldobj = "$(BUILD_DIR)/" + str(Path(row["passthrough_asm"]).with_suffix(".o"))
+            mk += ["O_FILES := $(filter-out " + oldobj + ",$(O_FILES))",
+                   obj + ": CFLAGS := $(filter-out -O%,$(CFLAGS)) -O2",
+                   obj + ": " + row["tu"] + " " + REGISTRY + " " + deps,
+                   "\t@mkdir -p $(dir $@)", "\t@echo \"CC $< (complete owned storage)\"",
+                   "\t$(V)$(CC) -c -g0 $(CFLAGS) -o $@ $<",
+                   "\t$(V)$(OBJCOPY) --rename-section " + row["source_section"] + "=" + row["input_section"] + " $@"]
     linker += ["}", "INSERT AFTER .data;"]
     if rows:
         mk.append("endif")
@@ -247,6 +270,8 @@ def run_promotion(owner, via_builder=False, data=None):
     row = next((r for r in registry["storage_blocks"] if r["owner"] == owner), None)
     if row is None or row.get("active", False):
         raise promote.Refusal("storage owner must be registered and inactive")
+    if row.get("activation_mode") == "existing_tu":
+        raise promote.Refusal("use reviewed owned_existing_storage transaction for existing C TUs")
     paths = package_paths(repo, row["tu"])
     if not promote._git_clean(paths):
         raise promote.Refusal("storage promotion requires clean complete package paths")
@@ -335,6 +360,8 @@ def run_revert(owner, via_builder=False, data=None):
     if not row or not row.get("active", False):
         raise promote.Refusal("storage owner must be active to revert")
     assert_context(repo, row)
+    if row.get("activation_mode") == "existing_tu":
+        raise promote.Refusal("use reviewed owned_existing_storage transaction for existing C TUs")
     paths = package_paths(repo, row["tu"])
     if not promote._git_clean(paths):
         raise promote.Refusal("storage revert requires clean complete package paths")

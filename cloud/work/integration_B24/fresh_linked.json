@@ -1,0 +1,14 @@
+[
+  {
+    "section": ".text",
+    "bytes": 1120,
+    "differences": 0,
+    "sha256": "3390233c9dafc6c501d8e30063065bb50affaf98319b2641a52ad05e3d3d8166"
+  },
+  {
+    "section": ".data",
+    "bytes": 16,
+    "differences": 0,
+    "sha256": "3c1a6f5433a5490b4c6df69ff14fe6cd7df420acdf36f18e0491bc2e3aab4206"
+  }
+]
