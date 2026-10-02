@@ -104,6 +104,7 @@ func_800B7498:
 .section .text.dispatch_handler, "ax", @progbits
 .globl dispatch_handler
 dispatch_handler:
+    /* compiled from src/blob/dispatch_handler.c */
     .word 0x27BDFFE8
     .word 0x24010016
     .word 0xAFBF0014
@@ -389,6 +390,7 @@ func_800B78A4:
 .section .text.func_800B78F0, "ax", @progbits
 .globl func_800B78F0
 func_800B78F0:
+    /* compiled from src/blob/func_800B78F0.c */
     .word 0x3C068015
     .word 0x80C6978C
     .word 0x27BDFFE8

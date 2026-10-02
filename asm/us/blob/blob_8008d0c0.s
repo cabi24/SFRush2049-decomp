@@ -5042,6 +5042,7 @@ scheduler_recv:
 .section .text.entity_transform_calc, "ax", @progbits
 .globl entity_transform_calc
 entity_transform_calc:
+    /* compiled from src/blob/entity_transform_calc.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x0C0246EA
@@ -5156,6 +5157,7 @@ entity_transform_calc:
 .section .text.client_sync, "ax", @progbits
 .globl client_sync
 client_sync:
+    /* compiled from src/blob/client_sync.c */
     .word 0x27BDFFB8
     .word 0x44856000
     .word 0xAFA40048
@@ -5214,6 +5216,7 @@ client_sync:
 .section .text.entity_hierarchy_update, "ax", @progbits
 .globl entity_hierarchy_update
 entity_hierarchy_update:
+    /* compiled from src/blob/entity_hierarchy_update.c */
     .word 0x27BDFFB8
     .word 0xAFA40048
     .word 0xAFBF0044

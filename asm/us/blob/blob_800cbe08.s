@@ -3187,6 +3187,7 @@ func_800CEC8C:
 .section .text.menu_audio_settings, "ax", @progbits
 .globl menu_audio_settings
 menu_audio_settings:
+    /* compiled from src/blob/menu_audio_settings.c */
     .word 0x27BDFF70
     .word 0x3C0E8018
     .word 0x81CEA4D8
