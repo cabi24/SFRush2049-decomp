@@ -1,0 +1,195 @@
+{
+  "schema_version": 1,
+  "verdict": "PASS",
+  "scope": "Complete compiled-function match only; no image or ROM integration",
+  "base_commit": "a12daa63ae67c8dab3404efb666089c884dadfd4",
+  "source_path": "cloud/matches/func_800B7360.c",
+  "source_sha256": "2f2de46ee678b05edc3a7470a605b1499bfea2880ce066817921cb0514fcaad4",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "canonical_exit_code": 0,
+  "canonical_stdout": "func_800B7360:\n  MATCH\n",
+  "independent_replay": {
+    "method": "Fresh clean-directory direct pinned IDO cc invocation; all HI16/LO16 and JAL words resolved by independent explicit arithmetic, then compared without masks",
+    "object_sha256": "022cbd6227f5be89413b70f82dd499f1b64135ab456beb915111b9c076d73564",
+    "function_symbol": {
+      "name": "func_800B7360",
+      "value": 0,
+      "size": 132,
+      "type": 2,
+      "section": 4
+    },
+    "target_start": "0x800B7360",
+    "target_end_exclusive": "0x800B73E4",
+    "body_words": 33,
+    "body_bytes": 132,
+    "zero_alignment_words": 3,
+    "nonzero_excess_words": 0,
+    "target_sha256": "22700d38ddaad48bde81bfb27dafaca3128bc7dc40c5b7d60dc26969750f5a10",
+    "resolved_body_sha256": "22700d38ddaad48bde81bfb27dafaca3128bc7dc40c5b7d60dc26969750f5a10",
+    "strict_full_word_differences": 0,
+    "relocations": [
+      {
+        "offset": 0,
+        "type": 5,
+        "symbol": "D_80149B48",
+        "address": "0x80149B48"
+      },
+      {
+        "offset": 4,
+        "type": 6,
+        "symbol": "D_80149B48",
+        "address": "0x80149B48",
+        "addend": 0
+      },
+      {
+        "offset": 116,
+        "type": 5,
+        "symbol": "D_8012E6D0",
+        "address": "0x8012E6D0"
+      },
+      {
+        "offset": 120,
+        "type": 6,
+        "symbol": "D_8012E6D0",
+        "address": "0x8012E6D0",
+        "addend": 0
+      }
+    ],
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "canonical_comparison": {
+      "differing": 0,
+      "total": 33,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  "compiler_identity": {
+    "name": "IDO 5.3 static-recomp v1.2",
+    "pinned_archive_sha256": "ab5c741561f80913d58c8b074771f23941a3edd312505a8ebed6d1dfeb65e506",
+    "note": "Approved installed toolchain reused",
+    "executable_sha256": {
+      "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+      "acpp": "7bfdf2f79010eb95bd47e165036cac04a69e5f1290fde11736e5f6934f3e9189",
+      "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+      "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+      "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+      "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+    }
+  },
+  "audit_script_sha256": "c84e717704da857a5a08b2e8f856c7c31cebf379b0d7a7335ae205fcdf2a1078",
+  "scorer_sha256": "ca0e5fdebb90e13d1e91643357bcda7d402401552e5de326c361ab6411565cc0",
+  "setup_sha256": "e78fafc84cb5cde638bbcab528b96de3d6837e39b3b1f8f8d6c69e55d8f13e4b",
+  "protected_manifest_valid": true,
+  "protected_manifest_files_verified": 23,
+  "protected_paths_changed": [],
+  "direct_transfer_scan": {
+    "functions": 1216,
+    "words": 140252,
+    "j_and_jal": [
+      {
+        "function": "dispatch_handler",
+        "word_index": 240,
+        "op": 3
+      },
+      {
+        "function": "dispatch_handler",
+        "word_index": 251,
+        "op": 3
+      },
+      {
+        "function": "world_velocity_integrate",
+        "word_index": 136,
+        "op": 3
+      },
+      {
+        "function": "race_finish",
+        "word_index": 206,
+        "op": 3
+      }
+    ],
+    "limit": "Indirect/computed transfers not excluded"
+  },
+  "semantic_tests": {
+    "cases": 17680,
+    "passed": true,
+    "method": "GCC C89 shared library, all 256 uniform equal states, each individual mismatch and 6 dirty-word sentinel values; 10,000 random cases, unsigned parameter truncation",
+    "test_script_sha256": "70d4c5c28d6f502bb60435d54d1a0ed4bc22f5924d1bc1627cef9ef9390be79f"
+  },
+  "abi_review": {
+    "parameters": "Four unsigned-byte arguments in a0-a3, narrowed to 8 bits; void return",
+    "leaf": true,
+    "stack": "No frame; argument home slots 0,4,8,12(sp) only",
+    "callee_saved_registers": "None touched",
+    "memory": "Four cached bytes read; if any differs, exactly four byte stores plus one full-word zero store",
+    "direct_call_sites": 4,
+    "caller_functions": [
+      "dispatch_handler",
+      "world_velocity_integrate",
+      "race_finish"
+    ],
+    "limits": "Indirect/computed transfers not ruled out"
+  },
+  "eligibility": {
+    "base_commit": "2989bf50267dec6f457c6a71607d2c4afb1b6698",
+    "pr_numbers_checked": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "excluded": false,
+    "exclusions_sha256": "a367b5690bccfc870895e387c318f0c7139bad2f21bbf0066460214b0661ee4f",
+    "latest_base_commit": "a12daa63ae67c8dab3404efb666089c884dadfd4",
+    "latest_check": "Current locks and existing cloud/group ownership refreshed on a12daa63; target still unowned"
+  },
+  "existing_locks": {
+    "static_intact": 161,
+    "blob_source_problems": [],
+    "group_source_problems": []
+  },
+  "independent_peer_review": {
+    "verdict": "PASS",
+    "function": "func_800B7360",
+    "source_sha256": "2f2de46ee678b05edc3a7470a605b1499bfea2880ce066817921cb0514fcaad4",
+    "complete_target_bytes": 132,
+    "full_word_differences": 0,
+    "GNU_linker_relocations": 4,
+    "zero_trailing_alignment_bytes": 12,
+    "semantic_host_cases": 36736,
+    "ABI": "o32 four unsigned-byte arguments in a0-a3, stack home slots 0..12; no callee-save changes, no calls, return via ra. Input normalization and branch-likely delay slots match target.",
+    "semantics": "Any differing component writes all four bytes and clears D_8012E6D0. Equal inputs preserve cache and flag. Natural C; no padding, dummy helpers or register tricks.",
+    "limitations": "No ROM or splice verification. Host semantic tests supplement full retail-word proof."
+  },
+  "repository_tests": {
+    "command": "python -m pytest tests/conveyor -o addopts='' -q -m 'not node_required'",
+    "passed": 1307,
+    "skipped": 41,
+    "deselected": 9,
+    "exit_code": 0,
+    "log_sha256": "9dd572762cec191c7604298b8d325571e2409de78c3d0a8d2de8adb4acdc57dd"
+  }
+}
