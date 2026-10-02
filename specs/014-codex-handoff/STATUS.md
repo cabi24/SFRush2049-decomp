@@ -1,14 +1,16 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
-## 2026-10-02 isolated overnight acceptance: 40 additional native functions
+## 2026-10-02 isolated overnight acceptance: 41 additional native functions
 
-- Isolated branch `codex/static-acceptance-20261002`: game **644/1,216 functions, 95,580/647,072 bytes (14.77%)**; static **147/230 functions, 41,336/61,440 bytes (67.28%)**. Shared master c50cacd5 remains **13.97% game / 46.76% static** pending its owning coordinator's integration.
-- Beyond that master: **13 genuinely new game functions / 5,156 bytes**, and **27 static functions / 12,604 bytes**. Already accepted A129–A137 rematches were caught at integration and receive zero duplicate credit; their original accepted sources and locks are preserved.
+- Isolated branch `codex/static-acceptance-20261002`: game **645/1,216 functions, 95,968/647,072 bytes (14.83%)**; static **147/230 functions, 41,336/61,440 bytes (67.28%)**. Shared master c50cacd5 remains **13.97% game / 46.76% static** pending its owning coordinator's integration.
+- Beyond that master: **14 genuinely new game functions / 5,544 bytes**, and **27 static functions / 12,604 bytes**. Already accepted A129–A137 rematches were caught at integration and receive zero duplicate credit; their original accepted sources and locks are preserved.
 - Game additions include full dispatch/menu bodies, five genuine transform-group members, the complete PFS callback and its original table, real vsync/state-transition callers, full vehicle-parameter setup, and cloud PR8's rational-approximation caller. Genuine complete contexts are unclaimed and never substitute for original nonmatching code.
 - Static acceptance follows ordinary scoped target refresh, conversion and verified lock/promotion. The formatter's complete 356-byte table is source-built at its original location without changing neighbors or weakening address/size assertions. Complete BSD notices remain in the native formatter destination.
-- Final source-built image and original compressed stream exact; full ROM SHA-1 exact, MAKE=0 TEST=0. All 644 game/group locks and 150 static/source locks hold. Full pytest captured exit0, **776 passed / 568 skipped**, including cloud PR7's four ownership-safe compiler-installation checks. Compiler download and checksum remain pinned.
+- Final source-built image and original compressed stream exact; full ROM SHA-1 exact, MAKE=0 TEST=0. All 645 game/group locks and 150 static/source locks hold. Full pytest captured exit0, **776 passed / 569 skipped**, including cloud PR7's four ownership-safe compiler-installation checks. Compiler download and checksum remain pinned.
 - Exact cloud heads PR7 a0897358b0777e3f831cc12c16d8c3a7e390729b and PR8 aa2b3461be83b881ee7e397c56d37302f76d6bc4 are merged only into the isolated branch after fresh review/verification. No shared accepted files, builder, Git refs or coordinator state changed. The farm remains stopped to avoid overlapping automatic splices.
 - Three requested subagents continue fresh eligible complete-body reconstruction on independent Rocky workspaces. Frozen negatives receive no credit. Acceptance record: `cloud/work/static_acceptance/final_acceptance.json`; direct owning-coordinator integration must preserve protected-path policy and rerun the gates on its final master.
+
+- The latest initializer adds 388 native bytes. It preserves an actual original three-iteration no-write loop retained by IDO; the quirk is disclosed in its source and acceptance commit. Native record extents derive from the original 812-byte copy and 80-byte stride. Independent strict replay and all source/image/ROM/test gates pass.
 
 ## 2026-10-02 forty-third completed milestone: complete suspension and crash updater
 
