@@ -1,0 +1,14 @@
+{
+  "__write_exponent": {
+    "target_id": "__write_exponent",
+    "address": 2147502200,
+    "population": "static",
+    "insn_count": 70,
+    "target_asm_sha": "1dfab3dfe9d2c2254dea307c2d479c6a7fe2bac729b34f049f818f96110b7587",
+    "target_o_sha": "7dd51a3c80e50b0638dea830d2c1f2890d3e9e7b09ad0662ab40c4a6ef6cc184",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": null
+  }
+}

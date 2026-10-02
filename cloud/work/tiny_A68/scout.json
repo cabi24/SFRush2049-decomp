@@ -1,0 +1,12 @@
+{
+  "name": "func_800F1D04",
+  "start": "0x800f1d04",
+  "end": "0x800f207c",
+  "words": 222,
+  "class": [
+    "ABI",
+    []
+  ],
+  "locked": false,
+  "accepted_interval_overlaps": []
+}

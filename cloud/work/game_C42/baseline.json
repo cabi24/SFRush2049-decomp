@@ -1,0 +1,19 @@
+[
+  {
+    "function": "func_800E15A0",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 22642,
+    "linked": {
+      "differing": 320,
+      "total": 320,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "024f8f3a204f57a2a33cc023ca490e4b46703ead50b6c222fcc7223ea55e0ec2",
+    "target_sha256": "c13fbfdf9273a732a725d51744e9f8e44eb2a0fb5ee5600d3e8456315d845a01"
+  }
+]

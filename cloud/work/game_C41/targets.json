@@ -1,0 +1,14 @@
+{
+  "car_stats_display": {
+    "target_id": "car_stats_display",
+    "address": 2148342140,
+    "population": "extracted",
+    "insn_count": 77,
+    "target_asm_sha": "9646f640fee83224827b0e29b284b6baa0439b70f3fa79a631ade2d938b6896f",
+    "target_o_sha": "358e2dc41e201769a21f735e40e17dfcfabee5caeb3273fdf8d5c1b13527c33a",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "extent_repaired"
+  }
+}

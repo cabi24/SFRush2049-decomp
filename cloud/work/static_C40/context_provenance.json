@@ -1,0 +1,9 @@
+{
+  "original_address": "0x80004878",
+  "original_body_words": 70,
+  "abi": "Three real pointer/int/int inputs, pointer return. Register parameters match actual consumed a0/a1/a2 without homes.",
+  "scratch": "Actual308-byte reverse-digit array plus one pointer at308;312-byte frame.",
+  "owned_data": false,
+  "shared_pin": null,
+  "claims": []
+}

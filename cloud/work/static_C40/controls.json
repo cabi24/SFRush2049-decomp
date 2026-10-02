@@ -1,0 +1,24 @@
+[
+  {
+    "function": "__write_exponent",
+    "variant": "__write_exponent.locals",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "strict_score": 1705,
+    "target_words": 72,
+    "candidate_words": 76,
+    "raw_word_diff": 65,
+    "source_sha256": "e74e2bd8646884b409636b3ca0bcc4564c2269db6f9c2fdaa70e65eb81d5052e",
+    "target_sha256": "7dd51a3c80e50b0638dea830d2c1f2890d3e9e7b09ad0662ab40c4a6ef6cc184"
+  },
+  {
+    "function": "__write_exponent",
+    "variant": "__write_exponent.register",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "strict_score": 2285,
+    "target_words": 72,
+    "candidate_words": 68,
+    "raw_word_diff": 62,
+    "source_sha256": "2f535d55079d87c9b67cfb673ed51a264d8811f6edf2c045102625884489a386",
+    "target_sha256": "7dd51a3c80e50b0638dea830d2c1f2890d3e9e7b09ad0662ab40c4a6ef6cc184"
+  }
+]

@@ -1,0 +1,30 @@
+[
+  {
+    "source": "func_800A7E10.native.c",
+    "source_sha256": "d0b128b56843030318c0ce7991eaccf6aced54bff24537c15277d4ba31de1c4b",
+    "canonical_D_differing": 176,
+    "target_words": 176,
+    "claims": []
+  },
+  {
+    "source": "func_800A7E10.walk.c",
+    "source_sha256": "83efd6b8872e5ee7d61c5eec69bfadedc8ab2e3be837012d73ff458dbe5bc2d1",
+    "canonical_D_differing": 74,
+    "target_words": 176,
+    "claims": []
+  },
+  {
+    "source": "func_800A7E10.packed.c",
+    "source_sha256": "21a452ad4470b04cacbc589fe8252274d8a98243b941622d0bdfc9a9cae93789",
+    "canonical_D_differing": 72,
+    "target_words": 176,
+    "claims": []
+  },
+  {
+    "source": "func_800A7E10.index_cast.c",
+    "source_sha256": "5c41b1c5261a7380233520363247c2c1a5439b7901a5b409580fb6755c946475",
+    "canonical_D_differing": 176,
+    "target_words": 176,
+    "claims": []
+  }
+]

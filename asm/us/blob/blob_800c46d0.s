@@ -5176,6 +5176,7 @@ draw_minimap:
 .section .text.func_800C9480, "ax", @progbits
 .globl func_800C9480
 func_800C9480:
+    /* compiled from src/blob/func_800C9480.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x0C032501

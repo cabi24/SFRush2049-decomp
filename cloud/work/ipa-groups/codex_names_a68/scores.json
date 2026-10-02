@@ -1,0 +1,37 @@
+{
+  "members": {
+    "func_800F1D04": {
+      "strict_diff": 104,
+      "size": 222,
+      "target_size": 222,
+      "extra": 0,
+      "matched": false,
+      "errors": [],
+      "unverified": [],
+      "unresolved": []
+    }
+  },
+  "context": {
+    "func_8008AD04": {
+      "strict_diff": 0,
+      "size": 17,
+      "target_size": 17,
+      "extra": 0,
+      "matched": true,
+      "errors": [],
+      "unverified": [],
+      "unresolved": []
+    },
+    "func_800A473C": {
+      "strict_diff": 0,
+      "size": 13,
+      "target_size": 13,
+      "extra": 0,
+      "matched": true,
+      "errors": [],
+      "unverified": [],
+      "unresolved": []
+    }
+  },
+  "source_sha256": "3a942a3656ace3d414a784c21f1c91c968a6b64796beb79919903c7d36c6cd8a"
+}

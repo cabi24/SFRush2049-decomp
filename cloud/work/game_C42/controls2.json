@@ -1,0 +1,20 @@
+[
+  {
+    "function": "func_800E15A0",
+    "variant": "func_800E15A0.pointers",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 8934,
+    "linked": {
+      "differing": 304,
+      "total": 320,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "c3aa5c3feded4eac2ec59c5e03826ff50e6475d3c4939f89f24b7e7cd8d82f4e",
+    "target_sha256": "c13fbfdf9273a732a725d51744e9f8e44eb2a0fb5ee5600d3e8456315d845a01"
+  }
+]

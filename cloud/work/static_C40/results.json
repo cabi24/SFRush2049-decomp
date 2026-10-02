@@ -1,0 +1,35 @@
+[
+  {
+    "function": "__write_exponent",
+    "variant": "__write_exponent",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "strict_score": 4319,
+    "target_words": 72,
+    "candidate_words": 76,
+    "raw_word_diff": 66,
+    "source_sha256": "ac91e250cffdad976cf6e8dc89f6729c23864078fafc3b1e18d186e4cb8292f0",
+    "target_sha256": "7dd51a3c80e50b0638dea830d2c1f2890d3e9e7b09ad0662ab40c4a6ef6cc184"
+  },
+  {
+    "function": "__write_exponent",
+    "variant": "__write_exponent.O1",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_score": 4046,
+    "target_words": 72,
+    "candidate_words": 64,
+    "raw_word_diff": 69,
+    "source_sha256": "c8c4f5da7cf80a6a57e43fa482386ff3455e1e5e3782d4a5e484e192406e2263",
+    "target_sha256": "7dd51a3c80e50b0638dea830d2c1f2890d3e9e7b09ad0662ab40c4a6ef6cc184"
+  },
+  {
+    "function": "__write_exponent",
+    "variant": "__write_exponent.O2",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 4835,
+    "target_words": 72,
+    "candidate_words": 56,
+    "raw_word_diff": 70,
+    "source_sha256": "db4f7c00963977671e55d1cb5cb9bf43b7d19d45de9468b9aaddb6aeacc4128d",
+    "target_sha256": "7dd51a3c80e50b0638dea830d2c1f2890d3e9e7b09ad0662ab40c4a6ef6cc184"
+  }
+]

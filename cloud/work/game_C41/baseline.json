@@ -1,0 +1,19 @@
+[
+  {
+    "function": "car_stats_display",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 1479,
+    "linked": {
+      "differing": 50,
+      "total": 77,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "6b6a345957a3bcb25ef12f01422f29a35396ff010cb18a6d8e495d4673caaf06",
+    "target_sha256": "358e2dc41e201769a21f735e40e17dfcfabee5caeb3273fdf8d5c1b13527c33a"
+  }
+]

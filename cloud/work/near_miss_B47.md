@@ -1,0 +1,5 @@
+# B47 concrete allocator ABI repair
+
+Honest NONMATCH func_8008E26C@8008E26C300B/75w. Older r5_b source has second formal integer despite callers passing a true descriptor pointer, and an unused-looking signedshort idx declaration. Corrected actual record pointer field8 and formal2 to void*, true signed16 returned/helper index to a consumed local, preserving real render_mode_select(index,parent) and all actual68-byte record stores. Canonical raw result68/75 is exactly the old result; this concrete type/home evidence creates no new matching gain, so stopped after one corrected source rather than a repeated pressure/allocation search. Literal flagsO3 + r4300_mul. No unused formal/helper/dummy home introduced, no source capacity guessed.
+
+Scouts stat_lap_complete/game_timer_resume both pass floats in saved f22/f24/f26 to real91CA4 helper; authentic whole closure needed. F2888 writes unsaved s0-s8; no conventional invented wrapper. No shared acceptance paths changed, objects/retail streams ignored. Previous packet referenced only actual ABI/types, no claim from repaired seed.

@@ -1,0 +1,7 @@
+# B46 queue-guarded reset
+
+Frozen honest NONMATCH audio_occlusion@800B6024, 276 bytes /69 words. Complete zero-input ABI, actual osRecvMesg(queue,NULL,1) and osJamMesg(queue,NULL,0), no inherited register input. Clears three real scalar words, four2-float vectors and four parallel four-word arrays. Current locks/registered interval/full packet and filename screening checked, A68/C41 confirmed disjoint. No acceptance files changed.
+
+Natural four-iteration reset loop exactly exposes the actual compiler's unroll, but scalar addresses are folded and instruction allocation differs: O2/O3 separate globals46/69+1nonzeroextra; genuine byte-offset layout view45+1; consumed chained first-two scalar reset47+2; layout+chain45+1. All live memory stores and their order are faithful; no dummy work, fake address read, forced volatile or speculative helper added to prevent address folding. Five bounded semantic controls; no strict-zero claim. Alternative layout structure is explicitly an access view of observed offsets, not a proven original global type. No target symbol alias was created or normalizer changed.
+
+Read-only scouts deferred voice_stop_2 because it consumes inherited t0 plus switch-owned rodata; sfx_volume_set because actual sprintf scratch-buffer source capacity is unproved; audio_buffer_manage because it depends on a2 preservation across real956BC and s4 input to953CC and needs a genuine complete closure, not stand-ins. Objects and retail words stay ignored.

@@ -1,0 +1,14 @@
+{
+  "func_800E15A0": {
+    "target_id": "func_800E15A0",
+    "address": 2148406688,
+    "population": "extracted",
+    "insn_count": 320,
+    "target_asm_sha": "44cd9c3d77b308cc9693781b0f1391ff11af88b2f351c07fdead666757c78161",
+    "target_o_sha": "c13fbfdf9273a732a725d51744e9f8e44eb2a0fb5ee5600d3e8456315d845a01",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "discovered"
+  }
+}

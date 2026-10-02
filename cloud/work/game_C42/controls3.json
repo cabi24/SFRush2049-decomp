@@ -1,0 +1,20 @@
+[
+  {
+    "function": "func_800E15A0",
+    "variant": "func_800E15A0.counter",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 12335,
+    "linked": {
+      "differing": 309,
+      "total": 320,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 24
+    },
+    "source_sha256": "2355b362e3a77c1c5ad0b73bd87dbad0336039d2b8edeb8eddaa1df7b6bdcab5",
+    "target_sha256": "c13fbfdf9273a732a725d51744e9f8e44eb2a0fb5ee5600d3e8456315d845a01"
+  }
+]
