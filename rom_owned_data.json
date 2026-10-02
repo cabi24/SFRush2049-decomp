@@ -13,6 +13,19 @@
       "sha256": "7cd466024e8a90377babb0f8d67c4da7d5c38af1acf59be025edb7b8456ebb9d",
       "passthrough_asm": "asm/us/nonmatchings/rom/lib_e9a0/osSpTaskLoad_full.table.s",
       "composed_source": "build/us/assets/us/data.composed.bin"
+    },
+    {
+      "owner": "timer_services_pointer",
+      "storage_owner": "timer_services",
+      "tu": "src/rom/lib_cc50.c",
+      "source": "assets/us/data.bin",
+      "offset": "0x1cff0",
+      "size": "0x10",
+      "container_vram": "0x8000f400",
+      "container_section": ".data",
+      "owner_section": ".data",
+      "sha256": "3c1a6f5433a5490b4c6df69ff14fe6cd7df420acdf36f18e0491bc2e3aab4206",
+      "composed_source": "build/us/assets/us/data.composed.bin"
     }
   ],
   "storage_blocks": [
@@ -90,7 +103,7 @@
       "owner": "timer_services",
       "kind": "bss",
       "activation_mode": "existing_tu",
-      "active": false,
+      "active": true,
       "tu": "src/rom/lib_cc50.c",
       "source": "cloud/work/static_C16/candidate.c",
       "source_sha256": "8ea97f1232f2b872f37530130da9d8ccca45c26ba87a1ec9f03b317c61a22bd3",
