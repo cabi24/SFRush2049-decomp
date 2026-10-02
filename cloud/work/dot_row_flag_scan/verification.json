@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "scope": "Complete original-IDO function match only; no image or ROM integration claim",
+  "base_commit": "2f1f30c508495db08d61170c4a9b2409461ae326",
+  "source_path": "cloud/matches/func_800F7564.c",
+  "source_sha256": "3476d3c0ae327b9ee93e19ec9dbae553bb9cbea3bfa13f899c94d6bee2fe5fbd",
+  "source_unchanged_during_replay": true,
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "canonical_exit_code": 0,
+  "canonical_stdout": "func_800F7564:\n  MATCH\n",
+  "canonical_stderr": "",
+  "independent_replay": {
+    "method": "Fresh source copy in a clean directory; direct pinned IDO cc invocation; separately applied explicit full-word HI16/LO16 relocation arithmetic without score.relocate; canonical relocation cross-check also passes",
+    "exit_code": 0,
+    "stderr": "",
+    "object_sha256": "f6c3db26f361b375764f15593cf8f0cd9b0a44b16c70d3cdf5e2753ac38428ca",
+    "elf_function_symbol": {
+      "name": "func_800F7564",
+      "value": 0,
+      "size": 76,
+      "type": 2,
+      "section": 4
+    },
+    "text_byte_count": 80,
+    "body_bytes": 76,
+    "body_words": 19,
+    "zero_alignment_words": 1,
+    "nonzero_excess_words": 0,
+    "target_sha256": "f51bb8fa96fcffd9772aa7ca11b533aa0f8fd2e64cda93af0a1d68ccb0126654",
+    "resolved_body_sha256": "f51bb8fa96fcffd9772aa7ca11b533aa0f8fd2e64cda93af0a1d68ccb0126654",
+    "strict_full_word_differences": 0,
+    "relocations": [
+      {
+        "offset": 0,
+        "type": 5,
+        "symbol": "D_8014A108"
+      },
+      {
+        "offset": 4,
+        "type": 6,
+        "symbol": "D_8014A108"
+      },
+      {
+        "offset": 8,
+        "type": 5,
+        "symbol": "D_80150E88"
+      },
+      {
+        "offset": 20,
+        "type": 6,
+        "symbol": "D_80150E88"
+      }
+    ],
+    "relocation_addends": [
+      0,
+      0
+    ],
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "canonical_comparison": {
+      "differing": 0,
+      "total": 19,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  "compiler_identity": {
+    "name": "IDO 5.3 static-recomp v1.2",
+    "pinned_distribution": "decompals/ido-static-recomp",
+    "pinned_archive_sha256": "ab5c741561f80913d58c8b074771f23941a3edd312505a8ebed6d1dfeb65e506",
+    "note": "Reused approved installed compiler; executable contents independently hashed",
+    "installed_executable_sha256": {
+      "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+      "acpp": "7bfdf2f79010eb95bd47e165036cac04a69e5f1290fde11736e5f6934f3e9189",
+      "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+      "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+      "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+      "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+    }
+  },
+  "audit_script_sha256": "d97014f1a70847c63bd02ff33105f1143d4d2a8aa15d98b069f5834fefa00f0d",
+  "scorer_sha256": "ca0e5fdebb90e13d1e91643357bcda7d402401552e5de326c361ab6411565cc0",
+  "setup_script_sha256": "e78fafc84cb5cde638bbcab528b96de3d6837e39b3b1f8f8d6c69e55d8f13e4b",
+  "protected_manifest_sha256": "9e70c670e356fc6bf41b7d43f355b6a65b18234e0c2382dbd95408f842bbea4b",
+  "protected_manifest_valid": true,
+  "protected_manifest_files_verified": 23,
+  "protected_paths_changed_relative_HEAD": [],
+  "semantic_audit": {
+    "native_start": "0x800F7564",
+    "native_end_exclusive": "0x800F75B0",
+    "next_symbol": "func_800F75B0",
+    "next_symbol_address": "0x800F75B0",
+    "full_disassembled_instruction_count": 19,
+    "all_native_instruction_addresses_accounted": true,
+    "candidate_prototype": "s32 func_800F7564(s32 field)",
+    "input": "Only entry a0 is read; its full word is used as a byte offset within each four-byte row. No other incoming argument or stack slot is consumed.",
+    "count": "Signed 16-bit count is loaded from D_8014A108. A nonpositive count takes the zero-result exit without a table load. Positive counts visit all rows 0 through count-1.",
+    "table": "Signed bytes are loaded from D_80150E88 + 4*i + field. No array capacity or field bounds are inferred; the source declares unsized rows and adds no check.",
+    "return_value": "v1 starts at zero, becomes one whenever a selected byte is nonzero, and is copied to v0 in the return delay slot. It does not exit early after a hit.",
+    "stack_frame_bytes": 0,
+    "calls": 0,
+    "row_stride": 4,
+    "memory_effect": "Read-only table scan; no stores. No helper, fabricated operation, extra argument, volatile access, uninitialized local or forced register is introduced.",
+    "direct_transfer_scan": {
+      "functions": 1216,
+      "function_words": 140252,
+      "j_and_jal": [],
+      "pc_relative": [],
+      "limit": "No direct caller was found; indirect callers and computed transfers are not excluded"
+    },
+    "arcade_reference_available": false,
+    "arcade_equivalent": "Not established; nearby accepted func_800F7644 uses the same signed count and indexed scan on a different table",
+    "field_precondition": "The declared four-byte row uses valid field subscripts 0 through 3. No caller-based proof supports wider flat-storage indexing; no checks are introduced."
+  },
+  "host_semantics": {
+    "command": "cc -std=c89 -pedantic -Wall -Wextra -Werror -O2 -fsanitize=address,undefined build/F7564_audit/host_semantics.c -o build/F7564_audit/host_semantics && ASAN_OPTIONS=detect_leaks=0 build/F7564_audit/host_semantics",
+    "test_source_sha256": "8fd52b026162352c7fbd3771415fd9f73240b7c4dd63bac0d2655fb421a82541",
+    "cases": 5156,
+    "counts": [
+      -32768,
+      -1,
+      0,
+      1,
+      2,
+      7,
+      8,
+      32767
+    ],
+    "byte_values": [
+      -128,
+      -1,
+      1,
+      127
+    ],
+    "field_indices": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "checks": [
+      "empty/nonpositive counts return zero",
+      "single selected values distinguish active and inactive rows",
+      "other field bytes do not influence the selected field",
+      "all 256 occupancy patterns over eight rows and each field",
+      "last row at maximum signed-short count is visited",
+      "candidate does not modify the table"
+    ],
+    "sanitizers": "AddressSanitizer and UndefinedBehaviorSanitizer enabled; leak detection disabled because this sandbox uses ptrace and the test performs no dynamic allocation",
+    "limit": "Host semantic/layout test supplements native byte identity; it is not execution of the N64 binary"
+  },
+  "source_evidence_sha256": {
+    "cloud/work/tiny_A24/func_800F7564.c": "cdbb89df2c25a6dd826e75c6e5eb68a9be48ed86a21e43a6ca15a5e141ae89a7",
+    "src/blob/func_800F7644.c": "00228e1ae43f0060974bf8e8c0cf2d1dee3677029b5043416a8176b29a392b00"
+  },
+  "verdict": "PASS",
+  "independent_review": {
+    "verdict": "PASS",
+    "method": "Separate reviewer copied final source to an isolated worktree, invoked canonical pinned IDO scorer, and reviewed all target words independently",
+    "source_sha256": "3476d3c0ae327b9ee93e19ec9dbae553bb9cbea3bfa13f899c94d6bee2fe5fbd",
+    "strict_differing_words": 0,
+    "body_words": 19,
+    "body_bytes": 76,
+    "findings": [
+      "one genuine full-word field input",
+      "signed 16-bit count; nonpositive count returns zero without table loads",
+      "four-byte row stride and signed byte reads",
+      "result remains zero or one; entire range is scanned even after a hit",
+      "no calls, stack frame, stores or matching-forcing constructs"
+    ]
+  },
+  "validation": {
+    "repository_suite": {
+      "command": "python -m pytest tests/conveyor -q -o addopts='' -m 'not node_required'",
+      "exit_code": 0,
+      "passed": 1299,
+      "skipped": 41,
+      "deselected": 9,
+      "seconds": 56.39
+    },
+    "broad_cloud_related_suite": {
+      "command": "python -m pytest tests/conveyor/test_cloud*.py tests/cloud -q",
+      "exit_code": 0,
+      "note": "The double-quiet output suppresses its aggregate summary; a separate core cloud/scorer run records counts."
+    },
+    "static_locked_functions_intact": 160,
+    "blob_source_hash_problems": [],
+    "blob_group_source_hash_problems": [],
+    "host_semantics_exit_code": 0,
+    "c89_syntax_exit_code": 0,
+    "cloud_scorer_suite": {
+      "command": "python -m pytest tests/cloud tests/conveyor/test_cloud_score.py -q -o addopts=''",
+      "exit_code": 0,
+      "passed": 840,
+      "subtests_passed": 27,
+      "seconds": 187.91
+    },
+    "neighbor_func_800F7644_source_lock_hash_verified": true,
+    "neighbor_func_800F7644_canonical_score": "MATCH"
+  }
+}
