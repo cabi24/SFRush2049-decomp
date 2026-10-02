@@ -1,0 +1,9 @@
+{
+  "verdict": "PASS as NONMATCH research only",
+  "reviewed_source_sha256": "8fc1a58103ac20bb5cb58d9995ca07f39aa068689d65169e81161a5295d7d339",
+  "reviewer": "Independent lane A",
+  "source_audit": "All80 protected instructions reviewed against natural4-argument O32 source; signed short index, strides0x808/0x3b8, radius pre-branch snapshot, optional output and ordered radial/vertical predicates agree for documented valid inputs. No artificial locals, helpers, argument padding or protected changes.",
+  "independent_replay": "Fresh direct IDO5.3 compile + GNU ld/objcopy; target parsed directly from .word assembly independent of author comparator;45/80 full words differ;304-byte ELF symbol/text versus320-byte native, four missing words.",
+  "tests": "Author native/host differential7620 cases and20000 ASan/UBSan host cases independently rerun PASS; all9 output alias modes.",
+  "limits": "Host IEEE single-rounding tests do not prove N64 FCSR exceptions/subnormal/NaN payloads or all aliases. No matching or ROM coverage claim."
+}
