@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "verifier": "Independent clean-directory canonical run and separate compile_group rebuild",
+  "base_commit": "2f1f30c508495db08d61170c4a9b2409461ae326",
+  "source_path": "cloud/work/ipa-groups/dot_record_score/group.c",
+  "source_sha256": "171e8aa2714c304264371db7fabddb0d20e376d9c8db3a52ad6cb9cc8d199e47",
+  "spec_path": "cloud/work/ipa-groups/dot_record_score/group.json",
+  "spec_sha256": "eb64b18a531cfad10a2dc25fc9bb45bf558eb8017cf0a6753336f8063666fbaf",
+  "inputs_unchanged_during_verification": true,
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "compiler_identity": {
+    "name": "IDO 5.3 static recompilation",
+    "distribution": "decompals/ido-static-recomp v1.2",
+    "distribution_identity_source": "Repository-pinned tools/cloud/setup.sh; archive checksum verified before installation",
+    "pinned_archive_sha256": "ab5c741561f80913d58c8b074771f23941a3edd312505a8ebed6d1dfeb65e506",
+    "installed_executable_sha256": {
+      "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+      "acpp": "7bfdf2f79010eb95bd47e165036cac04a69e5f1290fde11736e5f6934f3e9189",
+      "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+      "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+      "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b",
+      "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+      "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+      "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+      "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+    }
+  },
+  "scorer_path": "tools/cloud/score.py",
+  "scorer_sha256": "ca0e5fdebb90e13d1e91643357bcda7d402401552e5de326c361ab6411565cc0",
+  "canonical_command": "python3 tools/cloud/score.py group cloud/work/ipa-groups/dot_record_score",
+  "canonical_exit_code": 0,
+  "canonical_stdout": "Members:\nfunc_80098710:\n  MATCH\n\nContext (informational; excluded from exit status):\nfunc_800986DC:\n  MATCH\n",
+  "canonical_stderr": "",
+  "functions": [
+    {
+      "name": "func_80098710",
+      "role": "new_member",
+      "target_address": "0x80098710",
+      "target_byte_count": 216,
+      "target_word_count": 54,
+      "native_target_sha256": "0e90ba900caa01772b36d2cc268bb997e850cbc828ba85feacd073c23c012a58",
+      "compiled_extent_bytes": 220,
+      "resolved_compared_bytes": 216,
+      "resolved_compared_sha256": "0e90ba900caa01772b36d2cc268bb997e850cbc828ba85feacd073c23c012a58",
+      "strict_full_word_differences": 0,
+      "mask_count": 0,
+      "unresolved": [],
+      "unverified": [],
+      "relocation_errors": [],
+      "excess_words": 1,
+      "nonzero_excess_words": 0,
+      "canonical_comparison": {
+        "differing": 0,
+        "total": 54,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "accepted_without_allow_unverified": true
+    },
+    {
+      "name": "func_800986DC",
+      "role": "existing_context_only",
+      "target_address": "0x800986DC",
+      "target_byte_count": 52,
+      "target_word_count": 13,
+      "native_target_sha256": "c4a04f97ff242a3ef359cb839e8e453bde0fa63392b924ec36d20b28970f474a",
+      "compiled_extent_bytes": 52,
+      "resolved_compared_bytes": 52,
+      "resolved_compared_sha256": "c4a04f97ff242a3ef359cb839e8e453bde0fa63392b924ec36d20b28970f474a",
+      "strict_full_word_differences": 0,
+      "mask_count": 0,
+      "unresolved": [],
+      "unverified": [],
+      "relocation_errors": [],
+      "excess_words": 0,
+      "nonzero_excess_words": 0,
+      "canonical_comparison": {
+        "differing": 0,
+        "total": 13,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "accepted_without_allow_unverified": true
+    }
+  ],
+  "helper_source_exactly_matches_existing_accepted_definition": true,
+  "protected_manifest_valid": true,
+  "protected_manifest_files_verified": 23,
+  "protected_paths_changed_relative_HEAD": [],
+  "accepted_sources_or_locks_changed_relative_HEAD": [],
+  "scope": "Fresh strict compiled-function proof only; no game image splice, ROM build, or ROM hash claim",
+  "verdict": "PASS",
+  "semantic_audit": {
+    "verdict": "PASS",
+    "record_offsets": {
+      "kind": "s32 +0x10",
+      "flag": "s8 +0x19",
+      "value": "u8 +0x1B",
+      "start": "f32 +0x20",
+      "scale": "f32 +0x24"
+    },
+    "observations": [
+      "Both float-to-s32 conversions preserve target truncation points",
+      "Flag path adds 8 and skips elapsed-time scoring",
+      "Elapsed-time path requires original value nonzero, start >= 0.0f, and kind == 2",
+      "Genuine helper adds 14400.0f only on wrap and divides the elapsed value by 0.25f at this call site",
+      "No artificial operations, dummy context, volatile accesses, assembly, or fabricated padding in source"
+    ],
+    "purpose_confidence": "Audio-record priority/scoring is inferred; generic field names retained; no direct arcade donor identified",
+    "caller": "func_80098FB8, two direct calls storing result at record+0x1C",
+    "historical_label_warning": "work/game/entity/world_collision/target.s starts eight bytes inside the authoritative caller extent"
+  },
+  "existing_context_lock": {
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "src/blob/func_800986DC.c",
+    "source_sha256": "bbaae6df0a170c0ae4787469678bd10f3097a68f6c6f1d334cdab1ebfcd6daf0",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-09-29"
+  },
+  "tests": {
+    "command": "python -m pytest tests/cloud tests/conveyor/test_cloud_score.py",
+    "exit_code": 0,
+    "passed": 837,
+    "skipped": 3,
+    "subtests_passed": 27,
+    "duration_seconds": 213.78,
+    "c89_syntax_exit_code": 0,
+    "initial_unittest_limitation": "Missing pytest caused one import error; dependency installed locally and complete applicable pytest run passed."
+  },
+  "publication_preflight": {
+    "base_commit": "2f1f30c508495db08d61170c4a9b2409461ae326",
+    "static_locked_functions_intact": 160,
+    "blob_and_group_source_hash_problems": 0,
+    "protected_path_violations": [],
+    "prior_archived_candidate": {
+      "pull_request": 9,
+      "branch_commit": "433611408270ede7fe6acdb027f1b82179209511",
+      "path": "cloud/work/tiny_A30/func_80098710.c",
+      "recorded_word_differences": 44,
+      "target_words": 54,
+      "claims": []
+    },
+    "image_and_rom_gates": "Not run: original ROM and derived blob_layout.json absent",
+    "repository_tests": {
+      "command": "python -m pytest tests/conveyor -q -o addopts='' -m 'not node_required'",
+      "exit_code": 0,
+      "passed": 1299,
+      "skipped": 41,
+      "deselected": 9,
+      "duration_seconds": 56.99
+    }
+  }
+}
