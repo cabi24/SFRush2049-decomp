@@ -5028,6 +5028,14 @@
     "verified": "image_gate",
     "verified_at": "2026-10-01"
   },
+  "save_settings": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "src/blob/save_settings.c",
+    "source_sha256": "7485bfc0492332dd368ebb11256e74a1861497280c120401a7d906bfa3d42cf3",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-02"
+  },
   "scene_cleanup_slots": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/scene_cleanup_slots.c",

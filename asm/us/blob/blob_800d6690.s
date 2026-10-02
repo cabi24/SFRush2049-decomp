@@ -8173,6 +8173,7 @@ display_settings:
 .section .text.save_settings, "ax", @progbits
 .globl save_settings
 save_settings:
+    /* compiled from src/blob/save_settings.c */
     .word 0x27BDFF68
     .word 0xAFB70044
     .word 0xAFA600A0

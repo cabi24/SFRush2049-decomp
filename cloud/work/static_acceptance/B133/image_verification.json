@@ -1,0 +1,9 @@
+{
+  "source_sha256": "7485bfc0492332dd368ebb11256e74a1861497280c120401a7d906bfa3d42cf3",
+  "object_sha256": "e8ebc5287760f5563baea96e1dca67a4f55aa47f1ca5833ff8428e9a432379f1",
+  "target_id": "save_settings",
+  "vaddr": "0x800de20c",
+  "bytes": 584,
+  "exact": true,
+  "body_sha256": "e60b148f00d4cb6579ba35a6c0a02eb04c6b9b12f81daa6d2bcf96a75a224a6d"
+}

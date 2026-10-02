@@ -1,0 +1,16 @@
+{
+  "ready_for_parent_replay": [
+    "save_settings"
+  ],
+  "potential_new_bytes": 584,
+  "accepted_coverage_claims": [],
+  "files": {
+    "cloud/work/near_miss_B133/save_settings_homes.c": "7485bfc0492332dd368ebb11256e74a1861497280c120401a7d906bfa3d42cf3",
+    "cloud/work/near_miss_B133/save_settings_native.c": "06af945dbc816df9a41a65af047437fb59778e7d92118da3f06deb2f0e07f9b9",
+    "cloud/work/near_miss_B133/verification.json": "66159fd6d833f9043b64badc6fd34fcb11597308bb90e4ede9d95585d4a71a4e",
+    "cloud/work/near_miss_B133/canonical_MATCH.txt": "34c2cd8b8352602c970535be611dd00de4bd22a23fa37b8eedfb565c7d17457e",
+    "cloud/work/near_miss_B133/image_verification.json": "99b7fe0279484122a208186ddd9f56feb9220853cd88c1c658df6f408130d277",
+    "cloud/work/near_miss_B133/provenance.json": "c664321bba8a1e319537cfb807733696351159178614e2bc5edc73f625de5ba5",
+    "cloud/work/near_miss_B133.md": "b46b8207c9fa157c9dafbbbfcb90ec0d5b4610ae571144f8924dc4714453dcf1"
+  }
+}

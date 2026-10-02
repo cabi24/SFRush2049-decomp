@@ -10,4 +10,6 @@ extern u32 __osScSwapCount;
 extern s32 __scExecTask(OSSched *, OSScTask *);
 extern s32 __scScheduleCore(OSSched *, OSScTask **, OSScTask **, s32);
 extern s32 osSpTaskYielded(void *);
+extern void __scHandlePreNMI(OSSched *);
+extern s16 __osScTaskCount;
 #endif

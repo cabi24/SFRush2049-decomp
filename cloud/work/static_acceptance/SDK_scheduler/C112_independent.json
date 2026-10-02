@@ -1,0 +1,23 @@
+{
+  "function": "__scExecTask",
+  "source_sha256": "83f63ab4b6c456237ef774517daf467e254f906a618a0f4bd4c87a2b617b2f51",
+  "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm",
+  "original_bytes": 280,
+  "true_symbol_bytes": 280,
+  "canonical_strict_including_stack": 0,
+  "full_word_differences": 0,
+  "extra_nonzero_words": 0,
+  "masks": 0,
+  "unresolved": [],
+  "unverified": [],
+  "errors": [],
+  "original_target_roundtrip": [
+    true,
+    null
+  ],
+  "object_sha256": "17ad0a0d209a1dd43c686d447e325e725f9a976e1136723098e489649ce976ef",
+  "current_module_pin": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm",
+  "production_recipe_migration_safe": false,
+  "accepted_credit": 0,
+  "research_object_match": true
+}
