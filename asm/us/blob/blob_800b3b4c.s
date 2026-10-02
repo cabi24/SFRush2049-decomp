@@ -2942,6 +2942,7 @@ audio_doppler_full:
 .section .text.render_helper, "ax", @progbits
 .globl render_helper
 render_helper:
+    /* compiled from src/blob/render_helper.c */
     .word 0x44802000
     .word 0x27BDFFE8
     .word 0x3C018011

@@ -1,0 +1,10 @@
+{
+  "targets": [
+    "game_timer_reset",
+    "audio_channel_reset"
+  ],
+  "claims": [
+    "game_timer_reset"
+  ],
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+}

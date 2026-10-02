@@ -1,0 +1,38 @@
+[
+  {
+    "variant": "func_800E9E2C_O1",
+    "verdict": "180/183 words differ (17 extra words (nonzero beyond target length))"
+  },
+  {
+    "variant": "func_800E9E2C_O3",
+    "verdict": "157/183 words differ"
+  },
+  {
+    "variant": "func_800E9E2C_arrays",
+    "verdict": "157/183 words differ"
+  },
+  {
+    "variant": "func_800E9E2C_cast",
+    "verdict": "175/183 words differ"
+  },
+  {
+    "variant": "func_800E9E2C_live",
+    "verdict": "169/183 words differ (1 extra words (nonzero beyond target length))"
+  },
+  {
+    "variant": "func_800E9E2C_natural",
+    "verdict": "157/183 words differ"
+  },
+  {
+    "variant": "func_800E9E2C_storage",
+    "verdict": "157/183 words differ"
+  },
+  {
+    "variant": "func_800E9E2C_vector",
+    "verdict": "174/183 words differ (1 extra words (nonzero beyond target length))"
+  },
+  {
+    "variant": "func_800E9E2C_wide",
+    "verdict": "169/183 words differ (1 extra words (nonzero beyond target length))"
+  }
+]

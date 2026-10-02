@@ -1,0 +1,30 @@
+{
+  "function": "render_helper",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source_sha256": "1b348028763e29942e3e319160adfc22b9f3e04da6b18e1c285d64da6c106743",
+  "target_sha256": "1c1539a4d7207b66edb15512158eedbdee1597e531b75bc6ac90314aeee3c654",
+  "compile_command": [
+    "/home/cburnes/rush2049/cache/toolkits/796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5/ido/cc",
+    "-c",
+    "-g0",
+    "-O2",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Wab,-r4300_mul",
+    "/home/cburnes/agents/C/scratch/game-C26/render_helper.c",
+    "-o",
+    "/tmp/C26-verify-e5vgjyyj/candidate.o"
+  ],
+  "compile_exit": 0,
+  "strict_score": 0,
+  "linked": {
+    "differing": 0,
+    "total": 58,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  }
+}

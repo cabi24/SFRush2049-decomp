@@ -1,0 +1,14 @@
+{
+  "frozen": true,
+  "files": {
+    "cloud/work/near_miss_B30/func_800E9E2C_vector.c": "a5a18fe05a780895e3c9cf01b4f3e905bf977c1075833486fa3e9054e368a670",
+    "cloud/work/near_miss_B30/func_800E9E2C_cast.c": "c92261cda2700de776cf5538c4610b3ce2a96d2fc31bbf0f1d0db4514ce11832",
+    "cloud/work/near_miss_B30/func_800E9E2C_live.c": "4cfacbbc8699c3716749f5b9bfe790f564d58d6213d0f19380308c532c95affa",
+    "cloud/work/near_miss_B30/results.json": "e2ef0c4250e84ef18d1f01f506732f62bba2e8c00ee5e2fce97bde433fddff54",
+    "cloud/work/near_miss_B30/func_800E9E2C_wide.c": "7e41cee9ee2a2ca62ac9cfe467babeebf8df8d01f43ca8942a1c5a9d05c5b473",
+    "cloud/work/near_miss_B30/func_800E9E2C_arrays.c": "f3b3bbc971a2e4bf5decc5202919a243b28a227975334483a3608ad5a254f0bb",
+    "cloud/work/near_miss_B30/func_800E9E2C_natural.c": "211554a0ad6c467aefcc6ce6f0baf3567c6b42229c3b148bea4e775f54b8f4ec",
+    "cloud/work/near_miss_B30/func_800E9E2C_storage.c": "f6fad46c887d09f924fafb5d6f6b738c3b84338b713fc6af882117b90bb7a4a4",
+    "cloud/work/near_miss_B30.md": "646c5c71b3c6d0466f7fa4496487e4886940b415d36fe832725030a78246a265"
+  }
+}

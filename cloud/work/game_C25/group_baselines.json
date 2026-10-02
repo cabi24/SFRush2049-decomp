@@ -1,0 +1,80 @@
+[
+  {
+    "group": "velocity_group",
+    "function": "func_800E114C",
+    "strict_score": 7353,
+    "linked": {
+      "differing": 233,
+      "total": 237,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "group": "velocity_group",
+    "function": "func_8008B3C8",
+    "strict_score": 0,
+    "linked": {
+      "differing": 0,
+      "total": 11,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "group": "basis_group",
+    "function": "vector_normalize_length",
+    "strict_score": 4167,
+    "linked": {
+      "differing": 95,
+      "total": 95,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 2
+    }
+  },
+  {
+    "group": "basis_group",
+    "function": "func_8008B3C8",
+    "strict_score": 0,
+    "linked": {
+      "differing": 0,
+      "total": 11,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "group": "basis_group",
+    "function": "vector_copy_scale",
+    "strict_score": 0,
+    "linked": {
+      "differing": 0,
+      "total": 20,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "group": "basis_group",
+    "function": "func_8008B424",
+    "strict_score": 0,
+    "linked": {
+      "differing": 0,
+      "total": 20,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+]

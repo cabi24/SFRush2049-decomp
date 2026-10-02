@@ -1,0 +1,22 @@
+{
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "vector_normalize_length",
+    "func_8008B3C8",
+    "vector_copy_scale",
+    "func_8008B424"
+  ],
+  "members": [
+    "vector_normalize_length"
+  ],
+  "claims": [],
+  "context": [
+    "func_8008B3C8",
+    "vector_copy_scale",
+    "func_8008B424"
+  ],
+  "unprototyped": []
+}

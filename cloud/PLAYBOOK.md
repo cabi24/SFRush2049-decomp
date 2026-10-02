@@ -238,3 +238,7 @@ C24's motion caller uses its real one-pointer float-return length helper. An inc
 ### Real cursor scope recovers byte-comparison source (2026-10-01)
 
 A45 recovers the actual three-input byte-comparison loop: generic memory converted to an unsigned-byte cursor inside the existing nonzero-count guard, postincrement comparison and genuine predecrement mismatch difference. Natural cursor scope restores the original local register and schedule; IDO emits the original unroll/remainder structure without manually inventing a group or extra work. C25 proves the nearby reciprocal-length helper's one-pointer float-return ABI and original threshold; independent duplicate discovery earns only one credit.
+
+### Tail recursion and actual unsigned types recover fresh ordinary bodies (2026-10-01)
+
+A48's real signed-half traversal inputs are narrowed again at the recursive source call. IDO removes that tail call into the retail loop; a generic while rewrite omitted four actual argument-conversion instructions. One actual assignment-line boundary recovers halfword store scheduling. A49 matches immediately after describing only actual object fields and unsigned counter/mask globals with the genuine external remove signature. An old database zero is a selection hint, never acceptance proof. C26's render helper uses real (u16)(u32) float conversion and original named flag/global stores, producing IDO's complete original conversion sequence.
