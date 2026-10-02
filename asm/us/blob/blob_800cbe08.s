@@ -689,6 +689,7 @@ menu_item_value_get:
 .section .text.func_800CC848, "ax", @progbits
 .globl func_800CC848
 func_800CC848:
+    /* compiled from src/blob/func_800CC848.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x8C8E0000

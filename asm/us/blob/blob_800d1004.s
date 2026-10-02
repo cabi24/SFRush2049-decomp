@@ -2429,6 +2429,7 @@ func_800D2FA8:
 .section .text.func_800D3430, "ax", @progbits
 .globl func_800D3430
 func_800D3430:
+    /* compiled from src/blob/func_800D3430.c */
     .word 0x27BDFFE0
     .word 0x8FA80030
     .word 0xAFBF001C

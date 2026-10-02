@@ -1,0 +1,15 @@
+{
+  "members": [
+    "func_800D3430"
+  ],
+  "context": [],
+  "files": [
+    "group.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "keep": [
+    "func_800D3430"
+  ],
+  "provenance": "Complete five-input conditional entry dispatcher, reconstructed from the protected retail extent and preserved tiny_A24 candidate; natural multiline control flow using the whole-program O3 pipeline. No helper body or stand-in context.",
+  "name": "dot_entry_dispatch"
+}

@@ -1062,6 +1062,7 @@ func_8008E06C:
 .section .text.func_8008E098, "ax", @progbits
 .globl func_8008E098
 func_8008E098:
+    /* compiled from src/blob/func_8008E098.c */
     .word 0x460C6102
     .word 0x44868000
     .word 0x460E7182
@@ -1276,6 +1277,7 @@ func_8008E26C:
 .section .text.sign_extend_call, "ax", @progbits
 .globl sign_extend_call
 sign_extend_call:
+    /* compiled from src/blob/sign_extend_call.c */
     .word 0x27BDFFE8
     .word 0x00063400
     .word 0xAFBF0014
@@ -3301,6 +3303,7 @@ sound_call_minimal:
 .section .text.func_80090284, "ax", @progbits
 .globl func_80090284
 func_80090284:
+    /* compiled from src/blob/func_80090284.c */
     .word 0x3C058014
     .word 0x24A592C8
     .word 0x8CA20000
@@ -3624,6 +3627,7 @@ func_80090308:
 .section .text.func_80090770, "ax", @progbits
 .globl func_80090770
 func_80090770:
+    /* compiled from src/blob/func_80090770.c */
     .word 0x00047400
     .word 0x000E7C03
     .word 0x000FC900

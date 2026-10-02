@@ -1,0 +1,14 @@
+{
+  "files": [
+    "group.c"
+  ],
+  "members": [
+    "func_800ADCE0"
+  ],
+  "context": [],
+  "keep": [
+    "func_800ADCE0"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "name": "dot_run_decode"
+}
