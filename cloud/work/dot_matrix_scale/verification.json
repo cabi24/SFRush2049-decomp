@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "verdict": "PASS",
+  "scope": "Complete compiled-function match only; no image or ROM integration",
+  "base_commit": "2f1f30c508495db08d61170c4a9b2409461ae326",
+  "source_path": "cloud/matches/func_8008B32C.c",
+  "source_sha256": "7076d9340d985cc3aa04075f434ad8cf1ca61a77cdcf23cfa99eca380387a47f",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "canonical_exit_code": 0,
+  "canonical_stdout": "func_8008B32C:\n  MATCH\n",
+  "independent_replay": {
+    "method": "Fresh clean-directory direct pinned IDO cc invocation; direct full-word equality with no relocations or masks",
+    "object_sha256": "af3e073f7b0fd5bcbf07f4f0d8c7a93530be24c0c49210b62a5025de981bd3e6",
+    "function_symbol": {
+      "name": "func_8008B32C",
+      "value": 0,
+      "size": 116,
+      "type": 2,
+      "section": 4
+    },
+    "target_start": "0x8008B32C",
+    "target_end_exclusive": "0x8008B3A0",
+    "body_words": 29,
+    "body_bytes": 116,
+    "zero_alignment_words": 3,
+    "nonzero_excess_words": 0,
+    "target_sha256": "b30975f5c44f9d68849d39357cc27979fac7cb88b48b5eccb38e63044c37b3a5",
+    "resolved_body_sha256": "b30975f5c44f9d68849d39357cc27979fac7cb88b48b5eccb38e63044c37b3a5",
+    "strict_full_word_differences": 0,
+    "relocations": [],
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "canonical_comparison": {
+      "differing": 0,
+      "total": 29,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  "compiler_identity": {
+    "name": "IDO 5.3 static-recomp v1.2",
+    "pinned_archive_sha256": "ab5c741561f80913d58c8b074771f23941a3edd312505a8ebed6d1dfeb65e506",
+    "note": "Approved installed toolchain reused",
+    "executable_sha256": {
+      "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+      "acpp": "7bfdf2f79010eb95bd47e165036cac04a69e5f1290fde11736e5f6934f3e9189",
+      "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+      "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+      "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+      "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+    }
+  },
+  "audit_script_sha256": "52a8314042cdbd48c9ef3d0e7fa29d07f605684e9ba52955c4e8125d46f3fa88",
+  "scorer_sha256": "ca0e5fdebb90e13d1e91643357bcda7d402401552e5de326c361ab6411565cc0",
+  "setup_sha256": "e78fafc84cb5cde638bbcab528b96de3d6837e39b3b1f8f8d6c69e55d8f13e4b",
+  "protected_manifest_valid": true,
+  "protected_manifest_files_verified": 23,
+  "protected_paths_changed": [],
+  "direct_transfer_scan": {
+    "functions": 1216,
+    "words": 140252,
+    "j_and_jal": [
+      {
+        "function": "physics_velocity_integrate_a",
+        "word_index": 60,
+        "op": 3
+      },
+      {
+        "function": "physics_velocity_integrate_a",
+        "word_index": 100,
+        "op": 3
+      },
+      {
+        "function": "anim_state_update",
+        "word_index": 395,
+        "op": 3
+      },
+      {
+        "function": "anim_state_update",
+        "word_index": 419,
+        "op": 3
+      },
+      {
+        "function": "entity_tick_main",
+        "word_index": 546,
+        "op": 3
+      },
+      {
+        "function": "func_800B59F0",
+        "word_index": 336,
+        "op": 3
+      },
+      {
+        "function": "particles_update",
+        "word_index": 147,
+        "op": 3
+      },
+      {
+        "function": "particle_collision",
+        "word_index": 136,
+        "op": 3
+      },
+      {
+        "function": "func_800D6914",
+        "word_index": 308,
+        "op": 3
+      },
+      {
+        "function": "drone_pathfind_main",
+        "word_index": 131,
+        "op": 3
+      },
+      {
+        "function": "func_800D816C",
+        "word_index": 214,
+        "op": 3
+      },
+      {
+        "function": "func_800D816C",
+        "word_index": 411,
+        "op": 3
+      },
+      {
+        "function": "func_800D816C",
+        "word_index": 605,
+        "op": 3
+      },
+      {
+        "function": "drone_throttle_calc",
+        "word_index": 211,
+        "op": 3
+      },
+      {
+        "function": "func_800DA2C0",
+        "word_index": 163,
+        "op": 3
+      },
+      {
+        "function": "replay_save_prompt",
+        "word_index": 248,
+        "op": 3
+      }
+    ],
+    "limit": "Indirect/computed transfers not excluded"
+  },
+  "host_semantics": {
+    "cases": 500000,
+    "result": "PASS 500000 cases: disjoint, in-place, and row-aligned forward/backward overlap; random float bit patterns including NaN, infinity and subnormals; untouched surroundings.",
+    "source_sha256": "ff96a91da2d41406cb606e7e6028cb97e66c02bcb48cc0669b4f5ccf63543a78",
+    "sanitizers": "AddressSanitizer and UndefinedBehaviorSanitizer; leak detection disabled under sandbox ptrace",
+    "limitations": "Host floating-point behavior is not N64 FCSR behavior; NaNs compared by class, not payload. No claims on exception flags, signaling-NaN behavior, or subnormal handling on console.",
+    "coverage": "500,000 disjoint, in-place and row-aligned overlap cases; random float bits plus explicit positive/negative zero, infinities, quiet/signaling NaNs, subnormal/minimum normal, and maximum finite values. All surrounding elements checked."
+  },
+  "eligibility": {
+    "base_commit": "2f1f30c508495db08d61170c4a9b2409461ae326",
+    "prior_pr_numbers": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "conservative_exclusion_symbols": 834,
+    "candidate_excluded": false,
+    "exclusion_sha256": "8f28c9f8f91f9cbedf3b5f37153d0658eb4e6f1c40fcda5d40f00eb79dd31f8b",
+    "note": "Union of accepted static/blob locks, cloud singles, group claims, historical PR function mentions and prior task exclusions; reviewed before probing."
+  },
+  "separate_review": {
+    "verdict": "PASS",
+    "method": "Independent IDO compile, GNU objcopy raw ELF text extraction, direct assembly word parsing without author scorer/comparator",
+    "review_sha256": "ddbdb94a30aaad75954f9398a64f10d1b92f150718c24511f0571edee835a065",
+    "direct_call_sites": 16,
+    "caller_functions": 12,
+    "eligible_against_base_and_pr_1_to_20": true
+  },
+  "existing_locks": {
+    "static_intact": 160,
+    "blob_and_group_source_problems": []
+  },
+  "repository_tests": {
+    "command": "python -m pytest tests/conveyor -o addopts='' -q -m 'not node_required'",
+    "exit_code": 0,
+    "passed": 1299,
+    "skipped": 41,
+    "deselected": 9,
+    "log_sha256": "4d72511f276975f566bdf00908173b3bf6fdf9bced424334ea5f9931cda3065d"
+  }
+}
