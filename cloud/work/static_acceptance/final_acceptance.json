@@ -1,0 +1,23 @@
+{
+  "commit": "bce3ff2360a2d577994f4887526dd17735740677",
+  "new_static_functions": 27,
+  "added_native_bytes": 12604,
+  "static_functions": 147,
+  "static_total_functions": 230,
+  "static_native_bytes": 41336,
+  "static_total_bytes": 61440,
+  "static_percent": 67.28,
+  "normal_full_ROM_promotion_gates_passed": 27,
+  "formatter_module_native_functions": 9,
+  "formatter_module_native_bytes": 8528,
+  "formatter_table_original_bytes": 356,
+  "full_pytest_exit": 0,
+  "pytest_passed": 775,
+  "pytest_skipped": 564,
+  "static_locks": 150,
+  "static_lock_problems": 0,
+  "blob_locks": 629,
+  "blob_lock_problems": 0,
+  "group_lock_problems": 0,
+  "shared_master_modified": false
+}
