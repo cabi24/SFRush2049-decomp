@@ -1,0 +1,24 @@
+[
+  {
+    "function": "osCreatePiManager",
+    "native_bytes": 368,
+    "full_word_differences": 0,
+    "masks": 0,
+    "unresolved": 0,
+    "unverified": 0,
+    "errors": 0,
+    "object_sha256": "8c825bf4cea30df7518b81600af5bd04cc7b2d6238ab7d8395da2a09eacbdbdd",
+    "body_sha256": "2644fcd420cc3397edbd3490c554c3441567c2e4b9aa8e7f986110510f04113d"
+  },
+  {
+    "function": "osSendMesg",
+    "native_bytes": 336,
+    "full_word_differences": 0,
+    "masks": 0,
+    "unresolved": 0,
+    "unverified": 0,
+    "errors": 0,
+    "object_sha256": "2ffb52cb3dfee8ae9a9a0eaa2d8955fc6a11f1b6a12de5a2b293a96f709cdb6b",
+    "body_sha256": "96bea94488da57bab616bee4a19879b5968a72d3bf36a88268da7c9a8f4f87e9"
+  }
+]

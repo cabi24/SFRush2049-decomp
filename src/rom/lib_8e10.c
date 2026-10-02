@@ -40,4 +40,3 @@ void osCreateViManager(OSThread* t, OSPri pri) {
     __osRestoreInt(saveMask);
 }
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_8e10/osInvalICache_full.s")
-
