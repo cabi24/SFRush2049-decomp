@@ -243,6 +243,14 @@
     "verified": "image_gate",
     "verified_at": "2026-10-01"
   },
+  "camera_collision_check": {
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "src/blob/camera_collision_check.c",
+    "source_sha256": "b859e61436a11037a095629c5c7e949396c9e3b5cc19979f157c713591149478",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-01"
+  },
   "camera_fov_control": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "camera_aspect_ratio",

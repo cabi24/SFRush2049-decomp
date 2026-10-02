@@ -1,0 +1,16 @@
+[
+  {
+    "kind": "function",
+    "size": 132,
+    "target_id": "camera_collision_check",
+    "vaddr": 2148200416,
+    "region": "blob_800aeb54"
+  },
+  {
+    "kind": "function",
+    "size": 160,
+    "target_id": "sound_stop",
+    "vaddr": 2148218252,
+    "region": "blob_800aeb54"
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "name": "func_800F0674",
+  "start": "0x800f0674",
+  "end": "0x800f084c",
+  "words": 118,
+  "class": [
+    "ABI",
+    []
+  ],
+  "locked": false,
+  "accepted_interval_overlaps": []
+}

@@ -1,5 +1,13 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-01 twenty-eighth completed milestone: true camera forwarding contract
+
+- Game cartridge C: **601/1,216 functions, 73,268/647,072 bytes (11.32%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**.
+- B42 adds the complete 132-byte camera_collision_check wrapper. All ten original arguments are genuinely forwarded through the observed O32 register/stack lanes. Inspection of actual camera_target_track proves the first argument is a three-float vector pointer; the final typed source retains that contract. Original signed-byte enable and index -1 guards remain. No invented formal, callee substitute, storage or context credit.
+- Independent D canonical MATCH on the final pointer-typed source, complete strict/raw zero proof, identical image and source-built original ROM SHA-1 EXACT. Full pytest **713 passed, 519 skipped, captured exit 0**; all 601 blob/group checks and 123 static/source locks pass. Literal flags **-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul**.
+- Since original handoff: **104 game functions / 16,852 bytes** and **97 static functions / 27,284 bytes** accepted. cb3345aa passed CI36956627936. Root D4's actual stats-pointer branch controls regress from 42 to 93/129 differences, and A66's complete string utility remains nonmatching; no credit for either. Three workers continue fresh complete sources; initial dirty tools/mips_to_c preserved.
+
+
 ## 2026-10-01 twenty-seventh completed milestone: 600 matching game functions
 
 - Game cartridge C: **600/1,216 functions, 73,136/647,072 bytes (11.30%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**.

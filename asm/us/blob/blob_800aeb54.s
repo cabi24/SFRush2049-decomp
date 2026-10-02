@@ -314,6 +314,7 @@ camera_target_track:
 .section .text.camera_collision_check, "ax", @progbits
 .globl camera_collision_check
 camera_collision_check:
+    /* compiled from src/blob/camera_collision_check.c */
     .word 0x3C0E8011
     .word 0x81CEFFC0
     .word 0x27BDFFD0
