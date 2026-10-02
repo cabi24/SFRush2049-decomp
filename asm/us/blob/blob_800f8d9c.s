@@ -6030,6 +6030,7 @@ game_timer_pause:
 .section .text.game_timer_resume, "ax", @progbits
 .globl game_timer_resume
 game_timer_resume:
+    /* compiled from src/blob/game_timer_resume.c */
     .word 0x27BDFFB8
     .word 0x44856000
     .word 0xAFA40048
@@ -6089,6 +6090,7 @@ game_timer_resume:
 .section .text.stat_lap_complete, "ax", @progbits
 .globl stat_lap_complete
 stat_lap_complete:
+    /* compiled from src/blob/stat_lap_complete.c */
     .word 0x27BDFFB8
     .word 0x44856000
     .word 0xAFA40048

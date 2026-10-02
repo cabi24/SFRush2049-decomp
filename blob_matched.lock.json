@@ -428,6 +428,15 @@
     "verified": "image_gate",
     "verified_at": "2026-09-29"
   },
+  "client_sync": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "codex_transform_b109",
+    "source": "src/blob/groups/codex_transform_b109/group.json",
+    "source_sha256": "2981db500155bd0430b40d9d432bc27bfbafc2535e89fddc529ae294c31c97ca",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-02"
+  },
   "collision_check_thunk": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/collision_check_thunk.c",
@@ -448,6 +457,14 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "source": "src/blob/crowd_cheer_play.c",
     "source_sha256": "7a2163a516d79dc1f2f671c767df50c8fac48aacd261e44d2e0b00c157db1fb8",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-02"
+  },
+  "dispatch_handler": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "src/blob/dispatch_handler.c",
+    "source_sha256": "3de5caa9f1e87bd31c18a000a14baa0f37796810def384f4b8498179230eb7b1",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-02"
@@ -526,6 +543,15 @@
     "verified": "image_gate",
     "verified_at": "2026-09-29"
   },
+  "entity_hierarchy_update": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "codex_transform_b109",
+    "source": "src/blob/groups/codex_transform_b109/group.json",
+    "source_sha256": "2981db500155bd0430b40d9d432bc27bfbafc2535e89fddc529ae294c31c97ca",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-02"
+  },
   "entity_transform_apply": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "source": "src/blob/entity_transform_apply.c",
@@ -533,6 +559,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-01"
+  },
+  "entity_transform_calc": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "codex_transform_b109",
+    "source": "src/blob/groups/codex_transform_b109/group.json",
+    "source_sha256": "2981db500155bd0430b40d9d432bc27bfbafc2535e89fddc529ae294c31c97ca",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-02"
   },
   "euler_to_matrix": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
@@ -1403,6 +1438,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-29"
+  },
+  "func_800A1E94": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "group": "codex_pfs_status_c90",
+    "source": "src/blob/groups/codex_pfs_status_c90/group.json",
+    "source_sha256": "f5ec832bf9416142c8631d27101d02c65611f5ed49b14a08ceafb2c5d2b53e40",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-02"
   },
   "func_800A2670": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -2390,6 +2434,14 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-30"
+  },
+  "func_800B78F0": {
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "src/blob/func_800B78F0.c",
+    "source_sha256": "173e3f414aa4d3a33a1549bb465da77874219389be5fe41086b8689878670f4a",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-02"
   },
   "func_800B836C": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -4166,6 +4218,15 @@
     "verified": "image_gate",
     "verified_at": "2026-10-01"
   },
+  "game_timer_resume": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "codex_transform_b109",
+    "source": "src/blob/groups/codex_transform_b109/group.json",
+    "source_sha256": "2981db500155bd0430b40d9d432bc27bfbafc2535e89fddc529ae294c31c97ca",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-02"
+  },
   "graphics_chunk_b": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "source": "src/blob/graphics_chunk_b.c",
@@ -4281,6 +4342,14 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-23"
+  },
+  "menu_audio_settings": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "src/blob/menu_audio_settings.c",
+    "source_sha256": "7348847086e77bb47e20d9c7d7bd5ddd1391a15a7ed71a0abd6c1007fc5ae843",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-02"
   },
   "menu_confirm_dialog": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -4985,6 +5054,15 @@
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "source": "src/blob/split_time_display.c",
     "source_sha256": "72c40c533fbb02baa73803129f027899c1e53085dccdc06f5a5ee2bcc85a2c57",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-02"
+  },
+  "stat_lap_complete": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "codex_transform_b109",
+    "source": "src/blob/groups/codex_transform_b109/group.json",
+    "source_sha256": "2981db500155bd0430b40d9d432bc27bfbafc2535e89fddc529ae294c31c97ca",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-02"
