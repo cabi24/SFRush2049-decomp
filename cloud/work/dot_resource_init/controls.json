@@ -1,0 +1,28 @@
+{
+  "O1": {
+    "differing": 89,
+    "total": 92,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [
+      "unpaired R_MIPS_HI16 for audio_channel_setup at .text+0x16c"
+    ],
+    "extra_words": 8
+  },
+  "O2": {
+    "differing": 73,
+    "total": 92,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "O3": {
+    "differing": 62,
+    "total": 92,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  }
+}
