@@ -451,6 +451,23 @@ def _add_convert_parsers(sub):
     p.add_argument("segment")
     p.add_argument("--revert", action="store_true")
     p.set_defaults(func=_cmd_convert)
+    p = sub.add_parser("split", help="split one converted TU at an original function boundary")
+    p.add_argument("segment")
+    p.add_argument("boundary", type=lambda value: int(value, 0), help="ROM offset")
+    p.add_argument("--new-tu", required=True, help="new flat rom/<name> TU")
+    p.add_argument("--keep", choices=("prefix", "suffix"), default="suffix",
+                   help="side retaining the original TU and every promoted lock path")
+    p.set_defaults(func=_cmd_split)
+
+
+def _cmd_split(args):
+    from .layout_split import split, SplitRefusal
+    try:
+        result = split(args.segment, args.boundary, args.new_tu, args.keep)
+    except SplitRefusal as exc:
+        sys.exit("refusing split: " + str(exc))
+    print(json.dumps(result, indent=2))
+    print("next: full source-built ROM SHA-1 and original lock gates")
 
 
 def _cmd_convert(args):

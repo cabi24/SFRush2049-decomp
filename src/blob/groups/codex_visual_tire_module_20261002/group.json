@@ -1,0 +1,24 @@
+{
+  "members": [
+    "matrix_scale_apply"
+  ],
+  "context": [
+    "model_bounds_calc",
+    "anim_state_update",
+    "entity_anim_texture",
+    "func_8008B2B4"
+  ],
+  "files": [
+    "anim_tire_donor.c",
+    "rand.c",
+    "visibility_wrappers.c",
+    "entity_anim_texture.c"
+  ],
+  "keep": [
+    "anim_state_update",
+    "entity_anim_texture"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
+  "provenance": "Complete genuine donor/native callback context; no stand-ins or fabricated keepers.",
+  "name": "codex_visual_tire_module_20261002"
+}

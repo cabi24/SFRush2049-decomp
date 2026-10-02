@@ -72,6 +72,7 @@ SECTIONS
     {
         FILL(0x00000000);
         main_TEXT_START = .;
+        build/us/src/rom/lib_1050_sdk.o(.text);
         build/us/src/rom/lib_1050.o(.text);
         build/us/src/rom/lib_21f0.o(.text);
         build/us/src/rom/lib_2cf0.o(.text);
@@ -174,6 +175,7 @@ SECTIONS
         main_TEXT_END = .;
         main_TEXT_SIZE = ABSOLUTE(main_TEXT_END - main_TEXT_START);
         main_DATA_START = .;
+        build/us/src/rom/lib_1050_sdk.o(.data);
         build/us/src/rom/lib_1050.o(.data);
         build/us/src/rom/lib_21f0.o(.data);
         build/us/src/rom/lib_2cf0.o(.data);
@@ -264,6 +266,7 @@ SECTIONS
         main_DATA_END = .;
         main_DATA_SIZE = ABSOLUTE(main_DATA_END - main_DATA_START);
         main_RODATA_START = .;
+        build/us/src/rom/lib_1050_sdk.o(.rodata);
         build/us/src/rom/lib_1050.o(.rodata);
         build/us/src/rom/lib_21f0.o(.rodata);
         build/us/src/rom/lib_2cf0.o(.rodata);
@@ -359,6 +362,7 @@ SECTIONS
     {
         FILL(0x00000000);
         main_BSS_START = .;
+        build/us/src/rom/lib_1050_sdk.o(.bss);
         build/us/src/rom/lib_1050.o(.bss);
         build/us/src/rom/lib_21f0.o(.bss);
         build/us/src/rom/lib_2cf0.o(.bss);

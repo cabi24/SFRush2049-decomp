@@ -11,3 +11,9 @@ The ROM gate used a new isolated watchman2 directory with an empty build/us obje
 [gates.json](gates.json) records final gate results and coverage. [fresh_game_rebuild.json](fresh_game_rebuild.json) records the independent baseline body hashes. The compiler lane's individual protected receipts and source SHA-256s are in ../compiler/results/. Drivetrain source/provenance is in ../reconstruction/drivetrain/README.md. The three accepted publication sources are src/blob/func_800E15A0.c (torques), func_800E31D4.c (autoshift), func_800E32CC.c (drivetrain).
 
 The next physics/transmission and static module work remains unaccepted until its own gates pass. No partial source, helper context, literal pool, alignment bytes, or reconstructed data earns additional code credit.
+
+## Scheduler and visual helper acceptance
+
+Eight complete scheduler routines add 1,896 static bytes after the guarded split at ROM 0x1F50. The prefix uses its exact O1/g1 recipe; the existing VI suffix keeps its old source locks and O2/g0 recipe. The structural split itself adds no coverage. The genuine two-callback visual context adds only matrix_scale_apply, 100 game bytes; its unmatched callbacks earn no credit. Header declarations were inlined unchanged for self-contained group compilation.
+
+All 651 accepted game bodies were reconstructed from their compiled objects and checked against every complete native body. Both changed static objects were deleted and freshly built before the original compressed stream and full ROM SHA-1 gates passed, MAKE=0 TEST=0. Original static lock entries and shared rom_tu.h are unchanged. Coverage is now 99,228/647,072 game bytes (15.33%), 43,232/61,440 static bytes (70.36%), and 142,460/708,512 combined bytes (20.11%). [sdk_visual_gates.json](sdk_visual_gates.json) records this gate.

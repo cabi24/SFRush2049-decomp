@@ -552,6 +552,7 @@ func_8008D870:
 .section .text.matrix_scale_apply, "ax", @progbits
 .globl matrix_scale_apply
 matrix_scale_apply:
+    /* compiled from src/blob/matrix_scale_apply.c */
     .word 0x27BDFFE8
     .word 0x04E10005
     .word 0xAFBF0014

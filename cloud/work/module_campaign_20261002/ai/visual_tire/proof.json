@@ -1,0 +1,134 @@
+{
+  "object_sha256": "80a4aa34939c179addea2bae5f3b282826994f04f8f3ff4d484a128de9dd505e",
+  "image_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d",
+  "relocation_resolver": "tools.conveyor.pipeline.blob_group.relocate unchanged",
+  "full_word_results": {
+    "model_bounds_calc": {
+      "native_bytes": 72,
+      "differing_full_words": 0,
+      "body_sha256": "dbf60aeb7bef4b769e4db4c3823754621bbc79e9c54bb6803b7af2e44d5e2a2c"
+    },
+    "matrix_scale_apply": {
+      "native_bytes": 100,
+      "differing_full_words": 0,
+      "body_sha256": "efe889bbb0a83bf978452a98f490ac73399fb85c5261dd26ce926a1baa25f7af"
+    }
+  },
+  "accepted": false,
+  "coverage_claim_bytes": 0,
+  "new_candidate_bytes": 100,
+  "existing_helper_preserved_bytes": 72,
+  "source_sha256": {
+    "anim_tire_donor.c": "04eb8f42f60785f251e1dd4f79948db9307d58b9d723fb036d65323f93982edb",
+    "rand.c": "4d7d62f78adb32386a21ce11790ee88054be058b7f08bfc6214ff68011a3628b",
+    "visibility_wrappers.c": "90fc61d2f7bc5fa99014215d789f162a1f4a6251082f4ebf2b41d8bd739499c3",
+    "entity_anim_texture.c": "59ddd98fadeb2567e12fd51ff00463c2f5b624669dac5eb2d3d8cb0486753424",
+    "types.h": "b1d3661f438f597cfa50cf164d46cf45448ea12dcbdddaa2d53183f72d8e504f"
+  },
+  "independent_clean_replay": {
+    "object_sha256": "80a4aa34939c179addea2bae5f3b282826994f04f8f3ff4d484a128de9dd505e",
+    "same_object": true,
+    "protected_full_word_differences": {
+      "model_bounds_calc": 0,
+      "matrix_scale_apply": 0
+    }
+  },
+  "diagnostics": {
+    "anim_state_update": {
+      "function": "anim_state_update",
+      "comparison": {
+        "differing": 429,
+        "total": 460,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "alignment": {
+        "aligned_exact": 176,
+        "aligned_opcode": 411,
+        "aligned_opcode_reg": 239
+      },
+      "words": 433,
+      "frame": 200
+    },
+    "entity_anim_texture": {
+      "function": "entity_anim_texture",
+      "comparison": {
+        "differing": 148,
+        "total": 159,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "alignment": {
+        "aligned_exact": 78,
+        "aligned_opcode": 139,
+        "aligned_opcode_reg": 82
+      },
+      "words": 154,
+      "frame": 64
+    },
+    "model_bounds_calc": {
+      "function": "model_bounds_calc",
+      "comparison": {
+        "differing": 0,
+        "total": 18,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "alignment": {
+        "aligned_exact": 18,
+        "aligned_opcode": 18,
+        "aligned_opcode_reg": 18
+      },
+      "words": 18,
+      "frame": 24
+    },
+    "matrix_scale_apply": {
+      "function": "matrix_scale_apply",
+      "comparison": {
+        "differing": 0,
+        "total": 25,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "alignment": {
+        "aligned_exact": 25,
+        "aligned_opcode": 25,
+        "aligned_opcode_reg": 25
+      },
+      "words": 25,
+      "frame": 24
+    },
+    "func_8008B2B4": {
+      "function": "func_8008B2B4",
+      "comparison": {
+        "differing": 12,
+        "total": 12,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "alignment": {
+        "aligned_exact": 1,
+        "aligned_opcode": 1,
+        "aligned_opcode_reg": 1
+      },
+      "words": 2,
+      "frame": 0
+    }
+  },
+  "context_limits": [
+    "anim_state_update and entity_anim_texture do not match and are not supplied by this group.",
+    "Rand is inlined; its emitted dead stub is not spliced or counted.",
+    "Main source presently retains an angular-velocity capture across angle/rpy writes; native later re-reads the field. This outstanding context review does not change the full25-word helper proof.",
+    "Existing legacy bounds group is untouched; preserved helper is context only to avoid duplicate ownership."
+  ]
+}

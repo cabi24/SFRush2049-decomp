@@ -4401,6 +4401,15 @@
     "verified": "image_gate",
     "verified_at": "2026-09-23"
   },
+  "matrix_scale_apply": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
+    "group": "codex_visual_tire_module_20261002",
+    "source": "src/blob/groups/codex_visual_tire_module_20261002/group.json",
+    "source_sha256": "9e8d638d1b81da88f04150f8254ffa9d7ce9de4951ae83343007bf1b1faa0dcf",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-02"
+  },
   "menu_audio_settings": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "source": "src/blob/menu_audio_settings.c",
