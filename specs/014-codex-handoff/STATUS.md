@@ -1,5 +1,14 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-02 forty-fourth completed milestone: acceptance backlog and physics module campaign
+
+- Game cartridge C: **648/1,216 functions, 97,852/647,072 bytes (15.12%)**. Static: **147/230 functions, 41,336/61,440 bytes (67.28%)**. Combined tracker byte coverage **19.65%**, up from16.82%. Adds **20,032 bytes /44 functions** relative to c50cacd5.
+- Reviewed and integrated branch9c3ecc45:27 static functions/12,604 bytes plus14 game functions/5,544 bytes. Existing locks remain unchanged. The superseded GNU C79 formatter is excluded; the separately sourced BSD C81 notices remain intact.
+- Three GPT-6.1-sol High agents switched to related modules and independent verification. Genuine arcade vector macros recover complete func_800E15A0 torques (1,280B/320 words). Direct drivetra.c donor structure, actual Tire92/model offsets and consumed locals recover func_800E31D4 autoshift (248B/62 words) and func_800E32CC drivetrain (356B/89 words). No padding, invented formals, helper stubs or artificial pressure.
+- Independent review found that derived flags dropped existing lib_8a80 O1 because its lock records differ only by the parser-only -Xcpluscomm option. Narrow evidence comparison removes only that exact option; every code-generation/ABI option still must agree. Regenerated recipe restores the O1 pin without changing locks or actual compiler flags.
+- Root freshly compiled all645 baseline game functions and all57 genuine groups, then independently compiled/spliced the three new ordinaryO2 sources. All648 full native bodies and source-built group data placements exact. Source-built image and compressed stream exact. Clean isolated builder with no prior build/us objects produces original ROM **SHA-1 EXACT, MAKE=0 TEST=0**. All648 blob locks, group locks and150 static/source locks pass. No new separate pytest run claimed.
+- Evidence: cloud/work/module_campaign_20261002/acceptance/, compiler/results/ and reconstruction/drivetrain/. Corrected visibility/antispin plateaus remain frozen; external-owned B125 checkpoint work is not duplicated. Related transmission and static-library module campaigns continue.
+
 ## 2026-10-02 isolated overnight acceptance: 41 additional native functions
 
 - Isolated branch `codex/static-acceptance-20261002`: game **645/1,216 functions, 95,968/647,072 bytes (14.83%)**; static **147/230 functions, 41,336/61,440 bytes (67.28%)**. Shared master c50cacd5 remains **13.97% game / 46.76% static** pending its owning coordinator's integration.

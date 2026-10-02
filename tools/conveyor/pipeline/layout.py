@@ -161,7 +161,12 @@ def _nonzero_gap(vaddr, nbytes):
 def _segment_flagset(func_names, flag_by_fn):
     """The single flagset shared by the segment's functions that carry
     evidence, or None (no evidence, or a conflict — FR-005 remedy is a sweep)."""
-    seen = {flag_by_fn[n] for n in func_names if n in flag_by_fn}
+    # -Xcpluscomm permits C++ comments; it does not change code generation.
+    # Preserve a shared recipe when only that parser option differs between
+    # locked members. Every other compiler option must still agree.
+    seen = {" ".join(token for token in flag_by_fn[n].split()
+                     if token != "-Xcpluscomm")
+            for n in func_names if n in flag_by_fn}
     return seen.pop() if len(seen) == 1 else None
 
 

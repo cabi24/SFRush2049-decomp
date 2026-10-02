@@ -1,0 +1,28 @@
+{
+  "game_functions": 648,
+  "game_bytes": 97852,
+  "game_total_bytes": 647072,
+  "game_percentage": 15.122273873695663,
+  "static_functions": 147,
+  "static_bytes": 41336,
+  "static_total_bytes": 61440,
+  "static_percentage": 67.27864583333333,
+  "combined_tracker_percentage": 19.645115396775214,
+  "all_locked_game_functions_source_built": true,
+  "all_native_body_words_exact": true,
+  "compiler_recipe_review": "Only -Xcpluscomm parser option normalized; every other token must agree, restoring lib_8a80 -O1",
+  "clean_rom": {
+    "rom_ok": true,
+    "rom_tail": "Verifying built ROM hash...\nbuild/us/rush2049.us.z64: OK\nROM matches!\nbuild/us/rush2049.us.z64: OK\nROM matches!\nMAKE=0 TEST=0",
+    "builder_path": "~/agents/module-integration-root/repo",
+    "fresh_build": "Empty build/us; all static TUs compiled from source, no copied object cache"
+  },
+  "source_image": {
+    "spliced": 648,
+    "image_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d",
+    "image_bytes": 647072,
+    "blob_bytes": 326180,
+    "blob_sha256": "9e632d21b7d0d293563755d9f2033557cb1a4d91d7df6e8d41e68d8afe3e5f7d",
+    "stream_matches_rom": true
+  }
+}
