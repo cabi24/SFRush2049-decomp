@@ -1,5 +1,13 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-02 Codex forty-second completed milestone: graphics coordinate helper
+
+- Accepted `camera_smooth_follow`: 452 bytes, all 113 instructions and references exact. Its actual role is texture-coordinate adjustment in a graphics command stream.
+- Two GPT-6.1-sol High agents found the ordinary five-argument helper during large-function scouting. Genuine statement layout recovered native scheduling without additional runtime operations.
+- Root independently compiled and spliced the final source; full image hash and source-built ROM SHA-1 exact (`MAKE=0 TEST=0`). Standalone, group and static locks pass.
+- Game: **630/1,216 functions, 88,844/647,072 bytes (13.73%)**. Static: **46.76%**. Proof: `cloud/work/large_palette/compiler/helper_final.json` and `acceptance_gates.json`.
+- The larger `func_800E0B20` reconstruction remains active; viewport/palette research is preserved without coverage credit.
+
 ## 2026-10-02 forty-first completed milestone: complete configuration initialization
 
 - Game cartridge C: **629/1,216 functions, 88,392/647,072 bytes (13.66%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**. Adds one complete **1,816-byte / 454-instruction** function.
