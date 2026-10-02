@@ -1,0 +1,14 @@
+{
+  "stat_race_update": {
+    "strict_diff": 45,
+    "size": 99,
+    "target_size": 99,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "71a383df9ce6246244774c42146ff665388706874bb3075e0b588158cf7a84d1"
+  }
+}

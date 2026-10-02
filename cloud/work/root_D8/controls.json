@@ -1,0 +1,12 @@
+{
+  "fields": {
+    "differing": 67,
+    "total": 110,
+    "extra_words": 1
+  },
+  "sequenced": {
+    "differing": 0,
+    "total": 110,
+    "extra_words": 0
+  }
+}

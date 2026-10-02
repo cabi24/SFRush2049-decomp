@@ -1,0 +1,20 @@
+{
+  "function": "draw_text",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "claims": [],
+  "indexed": {
+    "differing": 125,
+    "target_words": 139,
+    "extra_words": 0
+  },
+  "strides": {
+    "differing": 138,
+    "target_words": 139,
+    "extra_words": 6
+  },
+  "scoped": {
+    "differing": 138,
+    "target_words": 139,
+    "extra_words": 6
+  }
+}

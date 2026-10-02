@@ -1,0 +1,14 @@
+{
+  "audio_channel_setup": {
+    "strict_diff": 69,
+    "size": 83,
+    "target_size": 83,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "4831457f21e7b523a16f13676dc92f04a8bea1e26990c2def3a62908fc9683d8"
+  }
+}
