@@ -3292,6 +3292,7 @@ func_800A7480:
 .section .text.viewport_scale, "ax", @progbits
 .globl viewport_scale
 viewport_scale:
+    /* compiled from src/blob/viewport_scale.c */
     .word 0x3C058014
     .word 0x24A56204
     .word 0x90AE0000

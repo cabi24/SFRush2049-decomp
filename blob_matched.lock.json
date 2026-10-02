@@ -4854,6 +4854,14 @@
     "verified": "image_gate",
     "verified_at": "2026-10-01"
   },
+  "viewport_scale": {
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "src/blob/viewport_scale.c",
+    "source_sha256": "75c5ecc5f0996ad5639ddd599b7a25b13eefcc0b7c10908b744ecf061f4f6449",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-01"
+  },
   "world_bounds_check": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/world_bounds_check.c",

@@ -1,0 +1,23 @@
+{
+  "function": "viewport_scale",
+  "bytes": 808,
+  "source_sha256": "75c5ecc5f0996ad5639ddd599b7a25b13eefcc0b7c10908b744ecf061f4f6449",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "canonical_D": "MATCH",
+  "strict_score": 0,
+  "linked_words": 202,
+  "linked_differing": 0,
+  "extra_words": 0,
+  "errors": [],
+  "unresolved": [],
+  "unverified": [],
+  "image_identical": true,
+  "source_built_ROM_sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+  "pytest": {
+    "passed": 713,
+    "skipped": 515,
+    "exit": 0
+  },
+  "blob_locks": 597,
+  "static_locks": 123
+}

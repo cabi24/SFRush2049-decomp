@@ -1,0 +1,24 @@
+{
+  "assembly": "build/m2c_asm/viewport_scale.s",
+  "assembly_sha256": "d194c8db4eb9ce592932ce9e8b9395ea3a3bf4d53ec59efdcd10f535c90d405e",
+  "abi": "Two genuine f32 inputs f12/f14; complete no-call leaf, ordinary O32.",
+  "record_size": 72,
+  "pointer_offset": 4,
+  "pointee": "u16 bounds[4], original offsets0,2,4,6; unsigned32-to-f32 promotion and f32-to-unsigned32 conversions preserve retail FCSR handling.",
+  "scaled_fields": {
+    "x": [
+      36,
+      44
+    ],
+    "y": [
+      40,
+      48
+    ]
+  },
+  "count": "Original u8 D_80146204; reload each iteration preserved.",
+  "record_array": "Original D_8017A510, actual record stride72.",
+  "callees": [],
+  "owned_data": false,
+  "source_sha256": "75c5ecc5f0996ad5639ddd599b7a25b13eefcc0b7c10908b744ecf061f4f6449",
+  "selection": "Canonical whole section present, absent current game lock and accepted intervals; full prior name/address reports clear; excludes A61 B78F0/B40 D084,D098,BC21C."
+}
