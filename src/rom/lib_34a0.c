@@ -119,4 +119,17 @@ int __isnan(register double x) { DoubleUnion v; v.value=x; if(v.bits.exponent==2
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_34a0/__ecvt_internal.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_34a0/__round_helper.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_34a0/__write_exponent.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_34a0/sprintf.s")
+/* PROMOTED 2026-10-02 — sprintf
+ * Source:   cloud/work/static_debug_consolidation/acceptance_sources/sprintf.c (in-repo, locked)
+ * Flags:    -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul
+ * Evidence: lock:cloud/work/static_debug_consolidation/acceptance_sources/sprintf.c:sprintf (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+int sprintf(char *output, const char *format, ...) {
+    int result;
+    char *arguments;
+    arguments = (char *)&format + sizeof(format);
+    result = fcvt(output, format, arguments);
+    return result;
+}
+
