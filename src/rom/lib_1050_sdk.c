@@ -26,7 +26,38 @@ void osScAddClient(OSSched *scheduler, OSScClient *client, OSMesgQueue *queue) {
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scMain.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scSchedule.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scHandleRetrace.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scHandleRSP.s")
+/* PROMOTED 2026-10-02 — __scHandleRSP
+ * Source:   cloud/matches/__scHandleRSP.c (in-repo, locked)
+ * Flags:    -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm
+ * Evidence: lock:cloud/matches/__scHandleRSP.c:__scHandleRSP (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void __scHandleRSP(OSSched *scheduler)
+{
+    OSScTask *task, *sp = 0, *dp = 0;
+    s32 state;
+    if (!scheduler->curRSPTask) { }
+    task = scheduler->curRSPTask;
+    scheduler->curRSPTask = 0;
+    if ((task->state & 0x10) && osSpTaskYielded(&task->type)) {
+        task->state |= 0x20;
+        if ((task->flags & 7) == 3) {
+            task->next = scheduler->rspTaskTail;
+            scheduler->rspTaskTail = task;
+            if (scheduler->rdpTaskTail == 0)
+                scheduler->rdpTaskTail = task;
+        }
+    } else {
+        if (task->flags & 0x40) { }
+        else if (task->type == 2) { }
+        task->state &= ~2;
+        __scExecTask(scheduler, task);
+    }
+    state = ((scheduler->curRSPTask == 0) << 1) | (scheduler->curRDPTask == 0);
+    if (__scScheduleCore(scheduler, &sp, &dp, state) != state)
+        __scExec(scheduler, sp, dp);
+}
+
 /* PROMOTED 2026-10-02 — __scHandleRDP
  * Source:   cloud/matches/__scHandleRDP.c (in-repo, locked)
  * Flags:    -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm
