@@ -1,5 +1,13 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-01 thirteenth completed game milestone
+
+- Game cartridge C: **563/1,216 functions, 64,996/647,072 bytes (10.0446%, displayed10.04%)**. Static cartridge C: **116/230 functions, 27,096/61,440 bytes (44.10%)**.
+- A29 func_800E5C9C adds200 genuine ordinary game bytes. Real signed-half magnitude in32-bit arithmetic, original float thresholds and output offsets are retained. Nonnegative branch first repairs the three actual scheduling/condition words without dummy operations or intrinsic substitution. Exact flags-prefixed source independently canonical strict MATCH on D, image identical and source-built ROM SHA-1 EXACT.
+- Authentic E7A98 expanded heap-unlink closure remains empty claims; all eleven reused real accepted contexts independently MATCH without duplicate credit. Original helper/body text preserved and eight directed controls bounded. Across handoff:66 game functions /8,580 bytes and93 static functions /25,648 bytes accepted.
+- Gates: source-built full-ROM SHA-1 EXACT;563 blob and group locks zero problems;119 static/source locks intact (116 actual ROM promotions plus3 historical entries). Full pytest exit0 captured separately:633 passed/483 skipped. New coordinator game status reconciled forward, initial dirty tools/mips_to_c preserved.
+- Previous b0f65361 CI run36941597642 succeeded. Maximum session slots occupied: coordinator plus3workers. Farm resumes after checkpoint. A30 broadens genuine ordinary45–70-word source work; C19 reviews SDK initialization aliases without score relaxation; B25 reviews coherent existing-TU timer ownership. Six timer bodies independently D strict/raw0, but140-byte initializer remains unaccepted until joint original data/BSS ownership gate.
+
 ## 2026-10-01 twelfth completed milestone: game matching C exceeds10 percent
 
 - Game cartridge C: **562/1,216 functions, 64,796/647,072 bytes (10.0137%, displayed10.01%)**. Static cartridge C: **116/230 functions, 27,096/61,440 bytes (44.10%)**. These are actual matching source-built bytes; candidates and preserved linker fill remain uncounted.

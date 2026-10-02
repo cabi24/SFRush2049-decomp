@@ -1,0 +1,7 @@
+{
+  "function": "func_800E5C9C",
+  "source_sha256": "3f20e794de8d698a241e5496e3f490e8bc23fdd8ad82e8d8877b9063476c4d40",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "canonical_exit": 0,
+  "verdict": "MATCH"
+}

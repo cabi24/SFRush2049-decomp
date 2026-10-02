@@ -1,0 +1,63 @@
+{
+  "func_800BC21C": {
+    "strict_diff": 21,
+    "size": 40,
+    "target_size": 40,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "0b46b13a0b5d5deecf0f37e08f634434333a2bf92163a93373d4098d484e5887"
+  },
+  "func_800BE6A4": {
+    "strict_diff": 37,
+    "size": 41,
+    "target_size": 40,
+    "extra": 1,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "a6714f2e4713de4e9db805748a019f4924e45a882b24fe2fbaa5c46df119381a"
+  },
+  "func_800E5C9C": {
+    "strict_diff": 0,
+    "size": 50,
+    "target_size": 50,
+    "extra": 0,
+    "matched": true,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "3f20e794de8d698a241e5496e3f490e8bc23fdd8ad82e8d8877b9063476c4d40",
+    "canonical_exit": 0
+  },
+  "func_800D2054": {
+    "strict_diff": 41,
+    "size": 76,
+    "target_size": 53,
+    "extra": 22,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "02548dc21d41d22ac54789d65071d5a9a34504b9388ef71b7e6445d62cfd59cb"
+  },
+  "game_timer_pause": {
+    "strict_diff": 26,
+    "size": 40,
+    "target_size": 41,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "2211f3bf03bef59684c86ba0cb80af244599e2df6cedd59d56bdf1dcebd8d8b3"
+  }
+}

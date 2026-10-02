@@ -1,0 +1,46 @@
+{
+  "func_80095F8C": {
+    "definition_text_unchanged": true,
+    "definition_sha256": "1e6bd68971de8e87c3c56e246f984888e950a46997d2758cc4783a7e25454907"
+  },
+  "func_80095EF4": {
+    "definition_text_unchanged": true,
+    "definition_sha256": "3d315957d8071252d19547c8ef97629b792830ca96f421b31e75df466ecf05ec"
+  },
+  "audio_buffer_sync": {
+    "definition_text_unchanged": true,
+    "definition_sha256": "8b425138b3e5bd75ab9f9891bf741b71ed9d694b32371d1077e2cb8285f4a623"
+  },
+  "object_counter_decrement": {
+    "definition_text_unchanged": true,
+    "definition_sha256": "b987bf1955c52ef6dc89ce58d52a32795a2a26f52ea15b7c3be82947cf1ffb46"
+  },
+  "object_counter_increment": {
+    "definition_text_unchanged": true,
+    "definition_sha256": "f2f07cdfc7ac3c8d5f0051b76126bd34fdbe99278dca168113f44112fb2115c9"
+  },
+  "audio_reverb_update": {
+    "definition_text_unchanged": true,
+    "definition_sha256": "97635150826e812f82f19c9dd0039972b63b08a6dff8277622c8d113f4d927aa"
+  },
+  "audio_effect_process": {
+    "definition_text_unchanged": true,
+    "definition_sha256": "f87cfb3cbd2f32f765611f4411ab7d1de8bef550311998ecc446d75fcb8e150a"
+  },
+  "synced_model_render": {
+    "definition_text_unchanged": true,
+    "definition_sha256": "a26025ba69d3b8b05f0df926307d2307c25e92e5e8462b8c556f9e6d0fe0489b"
+  },
+  "MP_TargetSpeed": {
+    "definition_text_unchanged": true,
+    "definition_sha256": "61282fb4ebb3ba9e6565b3b62346d27f73865b52f4a42ff035f88685b2dffff4"
+  },
+  "assign_default_paths": {
+    "definition_text_unchanged": true,
+    "definition_sha256": "c6528ad9162517d5714e33e717befee94dcd94737b599497b9ef0a120b07f72c"
+  },
+  "stat_race_end": {
+    "definition_text_unchanged": true,
+    "definition_sha256": "991819db305202cffdd8872be142374a868084a6256a7d7d9c143206aab7a0b3"
+  }
+}
