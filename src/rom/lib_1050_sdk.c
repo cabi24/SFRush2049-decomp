@@ -183,7 +183,21 @@ s32 __scExecTask(OSSched *scheduler, OSScTask *task)
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scAppendList.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scExec.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scHandlePreNMI.s")
+/* PROMOTED 2026-10-02 — __scHandlePreNMI
+ * Source:   cloud/work/static_acceptance/SDK_candidates/__scHandlePreNMI.c (in-repo, locked)
+ * Flags:    -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul
+ * Evidence: lock:cloud/work/static_acceptance/SDK_candidates/__scHandlePreNMI.c:__scHandlePreNMI (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void __scHandlePreNMI(OSSched *scheduler)
+{
+    if (scheduler->curRSPTask->type == 1) {
+        scheduler->curRSPTask->state |= 0x10;
+        osDpWait();
+    } else {
+    }
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scScheduleCore.s")
 
 
