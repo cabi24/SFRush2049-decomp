@@ -141,6 +141,15 @@
     "verified": "image_gate",
     "verified_at": "2026-09-30"
   },
+  "audio_loop_control": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "codex_counter_guard_a30",
+    "source": "src/blob/groups/codex_counter_guard_a30/group.json",
+    "source_sha256": "9c43c251d460c1db647be27f529d9db096fdb6e8466abc40505e993f99e262ba",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-01"
+  },
   "audio_pitch_adjust": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "audio_pitch_adjust",

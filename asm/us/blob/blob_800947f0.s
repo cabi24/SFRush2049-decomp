@@ -1985,6 +1985,7 @@ slot_value_get:
 .section .text.audio_loop_control, "ax", @progbits
 .globl audio_loop_control
 audio_loop_control:
+    /* compiled from src/blob/audio_loop_control.c */
     .word 0x27BDFFE8
     .word 0xAFA40018
     .word 0xAFBF0014
