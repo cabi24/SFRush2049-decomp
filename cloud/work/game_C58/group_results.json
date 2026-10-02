@@ -1,0 +1,33 @@
+[
+  {
+    "variant": "real_group",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "f37d1a41915d71c35a6311d0141dc854ecef9e4a2456ed3b3f35fbb2118f6b34",
+    "linked": {
+      "func_80109468": {
+        "differing": 370,
+        "total": 382,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 4
+      },
+      "Input_ApplyPadConfig": {
+        "differing": 24,
+        "total": 48,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "func_800EF5B0": {
+        "differing": 27,
+        "total": 31,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    }
+  }
+]

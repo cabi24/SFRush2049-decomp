@@ -1,0 +1,13 @@
+{
+  "claims": [],
+  "function": "hud_speed_display",
+  "address": "0x800C84FC",
+  "rejected_baseline": "hud_speed_display_native.c wrong nested stride/address corrected in other controls",
+  "files": {
+    "hud_speed_display_native.c": "51eaa0e7f92c59f574f83a77837936a9d27b62d3332267edf5e38ef1b3c5284d",
+    "hud_speed_display_layout.c": "2c1f61fcc5992ceabc83b3b5636fb672498c985a18f70c4aa50df41ca24477c7",
+    "results.json": "2aaf1fe9ed760cf8e327ff23b0d65fcf9394180003e802093361e02bd30dab7a",
+    "hud_speed_display_O2.c": "fd93f6c0525ddee7acb9200c8a771aa4ebc43224ba6b7f64d86ca18f37dcb0ae",
+    "hud_speed_display_headers.c": "802724b39c610c1045b2ede84d6cf15962927d1857f8723d7c3f42aa871d78e8"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "claims": [
+    "process_inputs"
+  ],
+  "function": "process_inputs",
+  "address": "0x800C997C",
+  "target_bytes": 356,
+  "final_source": "process_inputs_native.c",
+  "files": {
+    "process_inputs_native.c": "a31cd0d34fbb3bdc64b4c5591a9d6d987e6fc8045190c42d3637dff93e404fa0",
+    "verification.json": "6b3bf4126e454d66a0e9cc210af1c1d5a4d50c545a22d52fab22c1689031d8a9"
+  }
+}

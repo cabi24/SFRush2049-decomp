@@ -1,0 +1,16 @@
+{
+  "target": "format_string_parse",
+  "address": "0x800B466C",
+  "size": 180,
+  "image_word_differences": 0,
+  "relocated_body_sha256": "f8537dbeb5e899bf215a2380e1f44dc25689bb46dca8be6deb664bc5bfbd4c0d",
+  "table_section": ".rodata",
+  "table_image_address": "0x80123C20",
+  "table_entries": 6,
+  "table_used_bytes": 24,
+  "object_section_bytes": 32,
+  "table_relocations": "R_MIPS_32 against own .text",
+  "table_sha256": "f6bcb0ccbee2571534ca6b32bdc230101a2d54ae46263f7873c8ff08698a567e",
+  "relocated_table_matches_original": true,
+  "unknown_references": 0
+}

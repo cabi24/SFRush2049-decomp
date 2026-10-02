@@ -1,0 +1,38 @@
+{
+  "targets": [
+    "tire_compound_set"
+  ],
+  "claims": [],
+  "source": "tire_compound_set.c",
+  "proof": [
+    {
+      "source": "A81.c",
+      "source_sha256": "256f5e8b391b1d007c683ee81d36e8ff08ab089f27b14d49ed833c7e319ebf2a",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "compiled_words": 96,
+      "comparison": {
+        "differing": 8,
+        "total": 93,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    {
+      "source": "A81.busy.c",
+      "source_sha256": "5541f2de323a73a25d53361511a7fc87402a606993eaf7d76c30bf9b67675491",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "compiled_words": 96,
+      "comparison": {
+        "differing": 8,
+        "total": 93,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    }
+  ],
+  "frozen": true
+}

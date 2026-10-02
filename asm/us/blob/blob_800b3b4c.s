@@ -791,6 +791,7 @@ sound_handles_clear:
 .section .text.format_string_parse, "ax", @progbits
 .globl format_string_parse
 format_string_parse:
+    /* compiled from src/blob/format_string_parse.c */
     .word 0x00801025
     .word 0x10A00029
     .word 0x00001825
@@ -1126,6 +1127,7 @@ func_800B4AF8:
 .section .text.func_800B4B00, "ax", @progbits
 .globl func_800B4B00
 func_800B4B00:
+    /* compiled from src/blob/func_800B4B00.c */
     .word 0xAFA50004
     .word 0x8C8F0000
     .word 0x30AE00FF

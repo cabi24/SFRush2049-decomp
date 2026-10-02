@@ -1,0 +1,74 @@
+[
+  {
+    "function": "func_80109468",
+    "variant": "func_80109468.o3",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 10592,
+    "linked": {
+      "differing": 370,
+      "total": 382,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 4
+    },
+    "source_sha256": "5db3493582e2e6f14b33f1c6da418979d373aa687dd00d8d4781ff1eb2e32a7f",
+    "target_sha256": "34d892f21fccdeab151abc1726c742afd21e7e2d96b63a2c026021001c113639"
+  },
+  {
+    "function": "func_80109468",
+    "variant": "func_80109468.direct_point",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 8883,
+    "linked": {
+      "differing": 370,
+      "total": 382,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 6
+    },
+    "source_sha256": "021eb48de9e710b2e242011f104bffe5edb473f64fc1c4d9e050d5f42867d881",
+    "target_sha256": "34d892f21fccdeab151abc1726c742afd21e7e2d96b63a2c026021001c113639"
+  },
+  {
+    "function": "func_80109468",
+    "variant": "func_80109468.direct_pixel",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 8584,
+    "linked": {
+      "differing": 370,
+      "total": 382,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 4
+    },
+    "source_sha256": "cdd45928a1800d6545d853758bcc7408aa677e3d086d16ac88dfb8fc9a7ca41a",
+    "target_sha256": "34d892f21fccdeab151abc1726c742afd21e7e2d96b63a2c026021001c113639"
+  },
+  {
+    "function": "func_80109468",
+    "variant": "func_80109468.indexed",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 10592,
+    "linked": {
+      "differing": 370,
+      "total": 382,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 4
+    },
+    "source_sha256": "4cb4d85aa20cad9acae2861cb55f5c05f009b4a8b4fb9658cb75049f2d0a7d85",
+    "target_sha256": "34d892f21fccdeab151abc1726c742afd21e7e2d96b63a2c026021001c113639"
+  }
+]

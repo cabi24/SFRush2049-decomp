@@ -1,0 +1,42 @@
+{
+  "single": {
+    "source_sha256": "6a2f529953d81732d67a06d1f1d94aa4762914d3b097654920427e603d337099",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "comparison": {
+      "differing": 67,
+      "total": 85,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 4
+    },
+    "compiled_words": 92
+  },
+  "group": {
+    "source_sha256": "676595c601a1abcfcb7aaf684a9fe1bcbded23edcd857b0724cf7e78eca9cea8",
+    "manifest_sha256": "35d8dbed66e89e0287d720996f2e16087955400657c72d76bde13a302467c881",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "claims": [],
+    "comparisons": {
+      "func_800CD798": {
+        "differing": 67,
+        "total": 85,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 4
+      },
+      "format_string_parse": {
+        "differing": 0,
+        "total": 45,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0x20",
+          ".rodata+0x0 at +0x28"
+        ],
+        "errors": [],
+        "extra_words": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "members": [
+    "format_string_parse"
+  ],
+  "context": [],
+  "claims": [
+    "format_string_parse"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "format_string_parse"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "allow_unverified": true
+}

@@ -1,0 +1,14 @@
+{
+  "targets": [
+    "format_string_parse"
+  ],
+  "claims": [
+    "format_string_parse"
+  ],
+  "source": "group.c",
+  "source_sha256": "5352f376ad96994820b1c6e169a2a8ac272531481b0efce8d45912843352e829",
+  "manifest_sha256": "8ad1eb645fdb33e15f0c9dd80c52fbdbedf514caa6109726c7f3e2e2bc5a56bd",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "image_verified": true,
+  "frozen": true
+}

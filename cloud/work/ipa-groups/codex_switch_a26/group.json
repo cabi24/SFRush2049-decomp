@@ -1,0 +1,17 @@
+{
+  "members": [
+    "func_800B4B00"
+  ],
+  "context": [],
+  "claims": [
+    "func_800B4B00"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_800B4B00"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "allow_unverified": true
+}

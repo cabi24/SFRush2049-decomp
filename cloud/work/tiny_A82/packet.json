@@ -1,0 +1,38 @@
+{
+  "targets": [
+    "wheel_torque_apply"
+  ],
+  "claims": [],
+  "final_source": "wheel_torque_apply.result.c",
+  "proof": [
+    {
+      "source": "A82.c",
+      "source_sha256": "6e3053064d8aa6656450eb46db3a4f4ba23aa482af9f2e7c08357f3a16d448ee",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "compiled_words": 36,
+      "comparison": {
+        "differing": 20,
+        "total": 35,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    {
+      "source": "A82.result.c",
+      "source_sha256": "c866dbff1181f6fb6ef141cf6a11596397aeeef98e54e47f2b1258060abdee46",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "compiled_words": 36,
+      "comparison": {
+        "differing": 11,
+        "total": 35,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    }
+  ],
+  "frozen": true
+}

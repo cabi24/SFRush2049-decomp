@@ -1,0 +1,16 @@
+{
+  "function": "process_inputs",
+  "address": "0x800C997C",
+  "target_bytes": 356,
+  "source_sha256": "a31cd0d34fbb3bdc64b4c5591a9d6d987e6fc8045190c42d3637dff93e404fa0",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "object_text_words": 92,
+  "comparison": {
+    "differing": 0,
+    "total": 89,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  }
+}

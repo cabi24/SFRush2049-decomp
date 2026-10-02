@@ -1,0 +1,12 @@
+{
+  "claims": [],
+  "function": "world_collision_response",
+  "address": "0x800EDACC",
+  "rejected_baseline": "world_collision_response_native.c: call-order defect corrected in other controls",
+  "files": {
+    "world_collision_response_native.c": "c472b8348c67fe26e977fb50169638deb3c79af4fd8b26288d9c04bcbce11cfa",
+    "world_collision_response_order.c": "ceba1cf0a8379317fd118b63ea0b5f7e131cb1a6adb334983beebebcad605b86",
+    "results.json": "d9c5ee2f77d0fd2cb37af6b65237428afbef806fdee6ae0031c31af86ec3cce2",
+    "world_collision_response_O2.c": "f7fe1422bea2c8a199d8467faa8b5f0cb75e0bf5da4031706f68aa1c4c58e007"
+  }
+}

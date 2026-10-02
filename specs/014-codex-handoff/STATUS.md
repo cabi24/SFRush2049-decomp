@@ -1,5 +1,14 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-02 thirty-sixth completed milestone: original switch tables and complete input update
+
+- Game cartridge C: **615/1,216 functions, 78,512/647,072 bytes (12.13%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**. This batch adds **684 matching code bytes** across three complete routines.
+- A80 format_string_parse180B preserves all original unsigned byte-hash cases and actual cursor updates. A26 func_800B4B00148B preserves selectors21..31 and signed-byte resource fields; its previously blocked source body is unchanged, now compiled with the explicit O3 group recipe. Genuine helper-only groups contain no dummy or mismatching caller context. B67 process_inputs356B matches on its first full native O3 compile, retaining the true poll and all four player copy/zero paths, original selector5 and player-count guards, actual word/float arrays and76-byte records.
+- Independent D: B67 canonical bare MATCH and all89words exact. Both switch routines initially0/45 and0/37 with exactly two own .rodata references each, explicitly not bare standalone matches. Fresh private group compilation and canonical blob_group placement resolve every reference, reproducing all full unmasked body words. Root independently relocates every original6/11 R_MIPS_32 table entry and proves all24/44 table bytes identical at80123C20/80123CE4, with recorded original hashes. Text/table alignment and data bytes earn no code credit. No unknown references, widened masks or target changes.
+- Supported image gates and original ROM SHA-1 EXACT; full pytest **724 passed, 531 skipped, captured exit0**. All615 blob/group checks and123 static/source locks pass. Since original handoff: **118 game functions /22,096 bytes** and **97 static functions /27,284 bytes** accepted. Since overnight start at601/73,268: **14 game functions /5,244 bytes**. 4cf25f16 passed CI36971204729.
+- A84/B69 and fresh C selection remain active. A75 intrinsic-only follow-up corrects the genuinely missing sqrt.s contract, improves199/201 to136/201 but stays unclaimed; frozen originals remain intact with a factual erratum. A80 caller/A81/A82/A83/B62–B66/B68/C54/C55/C58 are frozen nonmatches. C56/C57 refuse unknown external/hidden IPA contracts. Initial dirty tools/mips_to_c preserved.
+
+
 ## 2026-10-02 thirty-fifth completed milestone: over twelve percent matching game bytes
 
 - Game cartridge C: **612/1,216 functions, 77,828/647,072 bytes (12.03%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**. A79 adds **600 matching bytes**.

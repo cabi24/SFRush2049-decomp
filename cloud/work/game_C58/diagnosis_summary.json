@@ -1,0 +1,29 @@
+{
+  "function": "func_80109468",
+  "words_differing": 374,
+  "strict_words_differing": 374,
+  "target_words": 382,
+  "candidate_words": 386,
+  "verdict": "mixed(constant:17, structural:152, register:149)",
+  "frame_delta": -24,
+  "lanes": [
+    {
+      "class": "pool",
+      "slot": 0,
+      "rotation": null
+    },
+    {
+      "class": "temp",
+      "slot": 9,
+      "rotation": null
+    },
+    {
+      "class": "shared",
+      "slot": 0,
+      "rotation": null
+    }
+  ],
+  "owning_pass": "unknown",
+  "ownership_basis": "none",
+  "lever": "drop-a-declared-local"
+}

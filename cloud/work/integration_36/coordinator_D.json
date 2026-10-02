@@ -1,0 +1,113 @@
+[
+  {
+    "function": "format_string_parse",
+    "group": "codex_hash_a80",
+    "source_sha256": "5352f376ad96994820b1c6e169a2a8ac272531481b0efce8d45912843352e829",
+    "group_source_sha256": "0dcd752a7c71555d39ad46048f63139be397e1a01545117bf74ab7131f641f7b",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "canonical_differing": 0,
+    "canonical_total": 45,
+    "canonical_local_rodata_refs": 2,
+    "full_image_word_differences": {
+      "format_string_parse": 0
+    },
+    "table_address": "0x80123C20",
+    "table_bytes": 24,
+    "table_sha256": "f6bcb0ccbee2571534ca6b32bdc230101a2d54ae46263f7873c8ff08698a567e",
+    "original_table_identity": true,
+    "unknown_references": 0,
+    "extra_words": 0,
+    "published_group_source_sha256": "a5e541091c40119439773351f8b2deb21608a396e173a4fa741b24eb521ad462",
+    "image_bytes": 647072,
+    "rom_sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+    "rom_exit": 0,
+    "pytest_exit": 0,
+    "pytest_passed": 724,
+    "pytest_skipped": 531,
+    "blob_locked": 615,
+    "static_source_locked": 123,
+    "coverage": {
+      "static_functions": 120,
+      "static_total": 230,
+      "static_bytes": 28732,
+      "static_total_bytes": 61440,
+      "game_functions": 615,
+      "game_total": 1216,
+      "game_bytes": 78512,
+      "game_total_bytes": 647072
+    }
+  },
+  {
+    "function": "func_800B4B00",
+    "group": "codex_switch_a26",
+    "source_sha256": "951a1c1c8f3bc82e90cde8d366e1246e56a86e5f1989353146535e9ad0729fec",
+    "group_source_sha256": "90d08f50d0b6e0742e556be841be179ca2619580bcde24e6474badfc51d01400",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "canonical_differing": 0,
+    "canonical_total": 37,
+    "canonical_local_rodata_refs": 2,
+    "full_image_word_differences": {
+      "func_800B4B00": 0
+    },
+    "table_address": "0x80123CE4",
+    "table_bytes": 44,
+    "table_sha256": "db0b41b6a0dce190225975c030829ba6be12073d672a86384b391053f0afc2c0",
+    "original_table_identity": true,
+    "unknown_references": 0,
+    "extra_words": 0,
+    "published_group_source_sha256": "5e2b0545e1c442377e40935212ea54308311500e625e9d811d6edbb3570bd928",
+    "image_bytes": 647072,
+    "rom_sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+    "rom_exit": 0,
+    "pytest_exit": 0,
+    "pytest_passed": 724,
+    "pytest_skipped": 531,
+    "blob_locked": 615,
+    "static_source_locked": 123,
+    "coverage": {
+      "static_functions": 120,
+      "static_total": 230,
+      "static_bytes": 28732,
+      "static_total_bytes": 61440,
+      "game_functions": 615,
+      "game_total": 1216,
+      "game_bytes": 78512,
+      "game_total_bytes": 647072
+    }
+  },
+  {
+    "function": "process_inputs",
+    "source_sha256": "a31cd0d34fbb3bdc64b4c5591a9d6d987e6fc8045190c42d3637dff93e404fa0",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_manifest_sha256": "6ffda622b1aed921d85aa20d3996959aa69a433cbca46e0b83d98ad13e3bd6e8",
+    "expected_bytes": 356,
+    "canonical_verdict": "MATCH",
+    "object_accepted": true,
+    "linked": {
+      "differing": 0,
+      "total": 89,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "image_bytes": 647072,
+    "rom_sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+    "rom_exit": 0,
+    "pytest_exit": 0,
+    "pytest_passed": 724,
+    "pytest_skipped": 531,
+    "blob_locked": 615,
+    "static_source_locked": 123,
+    "coverage": {
+      "static_functions": 120,
+      "static_total": 230,
+      "static_bytes": 28732,
+      "static_total_bytes": 61440,
+      "game_functions": 615,
+      "game_total": 1216,
+      "game_bytes": 78512,
+      "game_total_bytes": 647072
+    }
+  }
+]

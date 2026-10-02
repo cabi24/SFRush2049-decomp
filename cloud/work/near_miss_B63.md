@@ -1,0 +1,5 @@
+# B63 complete SDK task builder, no claim
+
+Frozen honest NONMATCH world_collision_response@800EDACC540bytes/135words. Genuine SDK OSTask layout from reference/repos/ultralib/include/PR/sptask.h and OSScTask prefix from PR/sched.h, plus actually observed128-byte taskrecord extension (message32-byte object at92, framebuffer pointer124). Actual three GBI command packets, saved global pointers/counters, SDK microcode data, queue/thread operations and scheduler field636 address view preserved. No new storage or array capacity assertions.
+
+First exploratory native compile131/135 had a call-order defect: audio_start ran after taking/incrementing global command pointer, unlike original. This baseline is explicitly rejected as semantic control and never a matching claim. Corrected real call-before-command order and actual save/record selection order compile134/135 both O3 and O2, with original32-byte frame but remaining scheduling/layout mismatches. Only corrected order/O2 sources are semantic candidates. Three bounded compilations; no artificial address materialization, padding, volatile or pressure added. No shared changes; sanitized fresh comparisons/hashes frozen.
