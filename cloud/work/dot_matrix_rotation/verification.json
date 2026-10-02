@@ -1,0 +1,294 @@
+{
+  "schema_version": 1,
+  "verdict": "NONMATCH_CONFIRMED",
+  "scope": "Natural C research only; five full-word differences; no match or image/ROM integration",
+  "base_commit": "a12daa63ae67c8dab3404efb666089c884dadfd4",
+  "source_path": "cloud/work/dot_matrix_rotation/func_800B5898.c",
+  "source_sha256": "589a949c6760e8034938a2d78ce1df14be03225aaa840e41e3ba24e5236e5b10",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "canonical_exit_code": 1,
+  "canonical_stdout": "func_800B5898:\n    +0x04c  want c7b00018                               got c7ae0018                             \n    +0x070  want 46106282                               got 460e6282                             \n    +0x078  want 46101482                               got 460e1482                             \n    +0x084  want 460a4381                               got 460a4401                             \n    +0x088  want e44efff8                               got e450fff8                             \n  5/42 words differ\n",
+  "independent_replay": {
+    "method": "Clean-directory direct pinned IDO cc invocation; explicit independent HI16/LO16 and JAL arithmetic; no masking",
+    "object_sha256": "bc82885a6d4ddcaf558ec90544d7dd3fb82c4cee3dd99574f49b470e99912b26",
+    "elf_function": {
+      "name": "func_800B5898",
+      "value": 0,
+      "size": 168,
+      "type": 2,
+      "section": 4
+    },
+    "body_words": 42,
+    "body_bytes": 168,
+    "zero_alignment_words": 2,
+    "nonzero_excess_words": 0,
+    "strict_full_word_differences": 5,
+    "differences": [
+      {
+        "offset": 76,
+        "target": "0xc7b00018",
+        "candidate": "0xc7ae0018"
+      },
+      {
+        "offset": 112,
+        "target": "0x46106282",
+        "candidate": "0x460e6282"
+      },
+      {
+        "offset": 120,
+        "target": "0x46101482",
+        "candidate": "0x460e1482"
+      },
+      {
+        "offset": 132,
+        "target": "0x460a4381",
+        "candidate": "0x460a4401"
+      },
+      {
+        "offset": 136,
+        "target": "0xe44efff8",
+        "candidate": "0xe450fff8"
+      }
+    ],
+    "target_sha256": "b5d546cc076f2eb4c789d9f4ac39f0df19fb7ce64b794ca0c9f375545cb80d14",
+    "resolved_body_sha256": "dbe1d25d3590cc8a3c4e99c5da8eb249d062efb301d1352db1e203a472c33db5",
+    "relocations": [
+      {
+        "offset": 0,
+        "type": 5,
+        "symbol": "D_80123DB4"
+      },
+      {
+        "offset": 4,
+        "type": 6,
+        "symbol": "D_80123DB4"
+      },
+      {
+        "offset": 24,
+        "type": 5,
+        "symbol": "D_80123DB8"
+      },
+      {
+        "offset": 36,
+        "type": 6,
+        "symbol": "D_80123DB8"
+      },
+      {
+        "offset": 56,
+        "type": 4,
+        "symbol": "sinf"
+      },
+      {
+        "offset": 68,
+        "type": 4,
+        "symbol": "cosf"
+      }
+    ],
+    "addends": [
+      {
+        "symbol": "D_80123DB4",
+        "addend": 0,
+        "resolved_address": "0x80123db4"
+      },
+      {
+        "symbol": "D_80123DB8",
+        "addend": 0,
+        "resolved_address": "0x80123db8"
+      },
+      {
+        "symbol": "sinf",
+        "addend": 0,
+        "resolved_address": "0x80008730"
+      },
+      {
+        "symbol": "cosf",
+        "addend": 0,
+        "resolved_address": "0x800088f0"
+      }
+    ],
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "canonical_comparison": {
+      "differing": 5,
+      "total": 42,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  "compiler_identity": {
+    "name": "IDO 5.3 static-recomp v1.2",
+    "pinned_archive_sha256": "ab5c741561f80913d58c8b074771f23941a3edd312505a8ebed6d1dfeb65e506",
+    "executable_sha256": {
+      "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+      "acpp": "7bfdf2f79010eb95bd47e165036cac04a69e5f1290fde11736e5f6934f3e9189",
+      "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+      "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+      "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+      "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+    }
+  },
+  "audit_script_sha256": "acce317a9dd6c398248496496c59bda29399216afbeca913a00c1ede0b02c460",
+  "scorer_sha256": "ca0e5fdebb90e13d1e91643357bcda7d402401552e5de326c361ab6411565cc0",
+  "manifest_files_verified": 23,
+  "protected_paths_changed": [],
+  "blob_source_hashes_checked": 664,
+  "blob_source_hash_problems": [],
+  "native_start": "0x800b5898",
+  "native_end_exclusive": "0x800b5940",
+  "direct_transfer_scan": {
+    "functions": 1216,
+    "words": 140252,
+    "j_and_jal": [
+      {
+        "function": "func_800B59F0",
+        "word_index": 127,
+        "operation": "jal"
+      },
+      {
+        "function": "func_800B59F0",
+        "word_index": 331,
+        "operation": "jal"
+      },
+      {
+        "function": "particle_collision",
+        "word_index": 123,
+        "operation": "jal"
+      },
+      {
+        "function": "particle_collision",
+        "word_index": 146,
+        "operation": "jal"
+      },
+      {
+        "function": "particle_collision",
+        "word_index": 178,
+        "operation": "jal"
+      },
+      {
+        "function": "func_800D6914",
+        "word_index": 124,
+        "operation": "jal"
+      },
+      {
+        "function": "func_800D6914",
+        "word_index": 303,
+        "operation": "jal"
+      },
+      {
+        "function": "drone_pathfind_main",
+        "word_index": 118,
+        "operation": "jal"
+      },
+      {
+        "function": "drone_pathfind_main",
+        "word_index": 141,
+        "operation": "jal"
+      },
+      {
+        "function": "drone_pathfind_main",
+        "word_index": 171,
+        "operation": "jal"
+      },
+      {
+        "function": "func_800D816C",
+        "word_index": 222,
+        "operation": "jal"
+      },
+      {
+        "function": "func_800D816C",
+        "word_index": 415,
+        "operation": "jal"
+      },
+      {
+        "function": "func_800D816C",
+        "word_index": 609,
+        "operation": "jal"
+      },
+      {
+        "function": "drone_throttle_calc",
+        "word_index": 115,
+        "operation": "jal"
+      },
+      {
+        "function": "drone_throttle_calc",
+        "word_index": 184,
+        "operation": "jal"
+      },
+      {
+        "function": "drone_throttle_calc",
+        "word_index": 219,
+        "operation": "jal"
+      },
+      {
+        "function": "func_800DA2C0",
+        "word_index": 158,
+        "operation": "jal"
+      },
+      {
+        "function": "func_800DA2C0",
+        "word_index": 345,
+        "operation": "jal"
+      },
+      {
+        "function": "func_800DA2C0",
+        "word_index": 349,
+        "operation": "jal"
+      },
+      {
+        "function": "replay_save_prompt",
+        "word_index": 235,
+        "operation": "jal"
+      },
+      {
+        "function": "replay_save_prompt",
+        "word_index": 258,
+        "operation": "jal"
+      },
+      {
+        "function": "replay_save_prompt",
+        "word_index": 290,
+        "operation": "jal"
+      }
+    ],
+    "pc_relative": [],
+    "limit": "Does not exclude indirect or opaque-region callers"
+  },
+  "independent_review": {
+    "verdict": "PASS_AS_NONMATCH_RESEARCH",
+    "source_sha256": "589a949c6760e8034938a2d78ce1df14be03225aaa840e41e3ba24e5236e5b10",
+    "method": "Separate fresh IDO compile and GNU ld/objcopy relocation replay",
+    "body_bytes": 168,
+    "differing_word_offsets": [
+      "0x4c",
+      "0x70",
+      "0x78",
+      "0x84",
+      "0x88"
+    ],
+    "relocations_resolved": 6,
+    "zero_alignment_bytes": 8,
+    "abi": "Float angle in f12; pointer in a1; verified native direct caller func_800D6914 at word124",
+    "source_review": "No artificial operations or padding; all declared locals carry actual values."
+  },
+  "host_semantics": {
+    "cases": 107520,
+    "result": "PASS",
+    "sanitizers": [
+      "address",
+      "undefined"
+    ],
+    "floating_contraction": "off",
+    "limitations": "Synthetic deadband values and sin/cos return values; does not execute N64 libm or establish native rodata values."
+  },
+  "repository_tests": {
+    "passed": 1307,
+    "skipped": 41,
+    "deselected": 9,
+    "exit_code": 0,
+    "base_commit": "a12daa63ae67c8dab3404efb666089c884dadfd4"
+  }
+}
