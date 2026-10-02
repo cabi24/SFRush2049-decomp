@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "scope": "Complete original-IDO function match only; no image or ROM integration claim",
+  "base_commit": "2f1f30c508495db08d61170c4a9b2409461ae326",
+  "source_path": "cloud/matches/func_80090770.c",
+  "source_sha256": "74beff9a631d97d9f734372aea9fbc8a0a1378d897ff4222df3ed121058f74b7",
+  "source_unchanged_during_replay": true,
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "canonical_exit_code": 0,
+  "canonical_stdout": "func_80090770:\n  MATCH\n",
+  "canonical_stderr": "",
+  "independent_replay": {
+    "method": "Fresh source copy in a clean directory; direct pinned IDO cc invocation; separately applied explicit full-word HI16/LO16 relocation arithmetic without score.relocate; canonical relocation cross-check also passes",
+    "exit_code": 0,
+    "stderr": "",
+    "object_sha256": "3795cfcc1aa7941e61d07d40366b74f90faf3acffd5196479bfe8048c8d916ea",
+    "elf_function_symbol": {
+      "name": "func_80090770",
+      "value": 0,
+      "size": 44,
+      "type": 2,
+      "section": 4
+    },
+    "text_byte_count": 48,
+    "body_bytes": 44,
+    "body_words": 11,
+    "zero_alignment_words": 1,
+    "nonzero_excess_words": 0,
+    "target_sha256": "63c22792e9508d3ecf6bf1a7ca33f1e474feb47957aae72f5bc45941c4c62fa7",
+    "resolved_body_sha256": "63c22792e9508d3ecf6bf1a7ca33f1e474feb47957aae72f5bc45941c4c62fa7",
+    "strict_full_word_differences": 0,
+    "relocations": [
+      {
+        "offset": 20,
+        "type": 5,
+        "symbol": "D_8012E700"
+      },
+      {
+        "offset": 40,
+        "type": 6,
+        "symbol": "D_8012E700"
+      }
+    ],
+    "relocation_symbol": "D_8012E700",
+    "symbol_address": "0x8012E700",
+    "addend": 20,
+    "resolved_field_address": "0x8012E714",
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "canonical_comparison": {
+      "differing": 0,
+      "total": 11,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  "compiler_identity": {
+    "name": "IDO 5.3 static-recomp v1.2",
+    "pinned_distribution": "decompals/ido-static-recomp",
+    "pinned_archive_sha256": "ab5c741561f80913d58c8b074771f23941a3edd312505a8ebed6d1dfeb65e506",
+    "note": "Reused approved installed compiler; executable contents independently hashed",
+    "installed_executable_sha256": {
+      "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+      "acpp": "7bfdf2f79010eb95bd47e165036cac04a69e5f1290fde11736e5f6934f3e9189",
+      "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+      "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+      "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+      "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+    }
+  },
+  "audit_script_sha256": "a034479977d3a834a39d23fac345dfc06b7e356af55be0acaf786a2c448acaf5",
+  "scorer_sha256": "ca0e5fdebb90e13d1e91643357bcda7d402401552e5de326c361ab6411565cc0",
+  "setup_script_sha256": "e78fafc84cb5cde638bbcab528b96de3d6837e39b3b1f8f8d6c69e55d8f13e4b",
+  "protected_manifest_sha256": "9e70c670e356fc6bf41b7d43f355b6a65b18234e0c2382dbd95408f842bbea4b",
+  "protected_manifest_valid": true,
+  "protected_manifest_files_verified": 23,
+  "protected_paths_changed_relative_HEAD": [],
+  "semantic_audit": {
+    "native_start": "0x80090770",
+    "native_end_exclusive": "0x8009079C",
+    "next_symbol": "entity_transform_apply",
+    "next_symbol_address": "0x8009079C",
+    "full_disassembled_instruction_count": 11,
+    "all_native_instruction_addresses_accounted": true,
+    "candidate_prototype": "void func_80090770(s16 index, u16 value)",
+    "index": "Entry a0 is sign-extended from 16 bits, multiplied by 0x44, and used for the indexed address; its incoming home word is stored at sp+0",
+    "value": "Entry a1 is homed at sp+4 and its low halfword is stored at 0x8012E714+signed_index*0x44; no additional argument is consumed",
+    "signedness_evidence": "The native store alone cannot distinguish signed from unsigned 16-bit values. Existing camera_aspect_ratio group writes the same field with u16, D_8012E714 is declared u16, and the exact original-IDO object reproduces the u16 prototype. Historical s16 prototype remains a 7-word nonmatch, or 4-word nonmatch with readable statement boundaries.",
+    "return_value": "No result register is defined; void is appropriate for this setter",
+    "stack_frame_bytes": 0,
+    "calls": 0,
+    "record_stride": 68,
+    "field_offset": 20,
+    "record_layout_note": "Opaque bytes describe actual native field positions and stride, never artificial stack padding",
+    "memory_effect": "One selected 16-bit field is updated, plus the native parameter-home stores; no guard, narrowing side effect, extra argument, helper, volatile access or forced register is introduced",
+    "direct_transfer_scan": {
+      "functions": 1216,
+      "function_words": 140252,
+      "all_region_words": 140252,
+      "j_and_jal": [],
+      "pc_relative": [],
+      "all_region_j_and_jal": [],
+      "limit": "No direct caller was found; indirect callers and computed transfers are not excluded"
+    },
+    "arcade_reference_available": false,
+    "arcade_equivalent": "Not established"
+  },
+  "host_semantics": {
+    "command": "cc -std=c89 -pedantic -Wall -Wextra -Werror build/90770_audit/host_semantics.c -o build/90770_audit/host_semantics && build/90770_audit/host_semantics",
+    "test_source_sha256": "01c9c927247f6dd14ab0f1932a0a4d365044849e08f5b01a7ccfac2423db81b3",
+    "cases": 15,
+    "indices": [
+      0,
+      3,
+      7
+    ],
+    "values": [
+      0,
+      1,
+      32767,
+      32768,
+      65535
+    ],
+    "checks": [
+      "record size equals 0x44",
+      "field offset equals 0x14",
+      "only the two-byte selected field changes in an eight-record array"
+    ],
+    "limit": "Host semantic/layout test supplements native byte identity; it is not execution of the N64 binary"
+  },
+  "source_evidence_sha256": {
+    "cloud/work/tiny_A23/func_80090770.c": "973dd1d920cdcc8ae36d9b9dd19f06684b12805801622b05cf5181dfca5a208a",
+    "src/blob/func_800A785C.c": "4a33ad774ae0353d045535b5dffa351946cc510bdf5fe5ae2d78101d532f28bf",
+    "src/blob/groups/camera_aspect_ratio/group.c": "38bf9cb2dd0ce2091e307d87df413cccad99251b56f8cfd354f57454baf54eeb"
+  },
+  "verdict": "PASS",
+  "validation": {
+    "cloud_scorer_suite": {
+      "command": "python -m pytest tests/cloud tests/conveyor/test_cloud_score.py",
+      "exit_code": 0,
+      "passed": 840,
+      "subtests_passed": 27,
+      "seconds": 244.39
+    },
+    "repository_suite": {
+      "command": "python -m pytest tests/conveyor -q -o addopts='' -m 'not node_required'",
+      "exit_code": 0,
+      "passed": 1299,
+      "skipped": 41,
+      "deselected": 9,
+      "seconds": 59.06
+    },
+    "static_locked_functions_intact": 160,
+    "blob_source_hash_problems": [],
+    "blob_group_source_hash_problems": [],
+    "host_semantics_exit_code": 0,
+    "c89_syntax_warnings_exit_code": 0,
+    "not_run": [
+      "source-built image splice",
+      "compressed-stream identity",
+      "full-ROM SHA-1",
+      "make test"
+    ],
+    "missing_inputs": [
+      "original ROM",
+      "full extracted game image",
+      "derived build/blob_layout.json"
+    ]
+  }
+}
