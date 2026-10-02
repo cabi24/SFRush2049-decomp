@@ -1,0 +1,24 @@
+{
+  "accepted": true,
+  "source": "cloud/work/large_damage/compiler/actual_group_native_locals.c",
+  "source_sha256": "f7ec5047a4dfce421f00f849afb3dd4f999cce6afd8cd8437c6bfc218f8f2698",
+  "object_sha256": "d86b80f8ab24e13d99b4edf1005a0053901d90d9a901c07bda2d8c2014bca356",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "toolkit": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+  "compiler_pipeline": "cc -j -> uld -> usplit -> umerge -> uopt -> ugen -> as1",
+  "group_relocation_verified": true,
+  "constant_pool_bytes": 32,
+  "constant_pool_address": "0x80124394",
+  "word_differences": {
+    "func_800E0B20": 0
+  },
+  "errors": [],
+  "context_not_claimed": {
+    "effect_cleanup": {
+      "word_differences": 3,
+      "reason": "Real callee context only; its existing locked source remains the ROM provider."
+    }
+  },
+  "words": 395,
+  "bytes": 1580
+}

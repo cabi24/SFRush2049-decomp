@@ -1,0 +1,17 @@
+{
+  "members": [
+    "func_800E0B20"
+  ],
+  "context": [
+    "effect_cleanup"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_800E0B20",
+    "effect_cleanup"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "provenance": "cloud/work/large_damage; arcade checkok crash-state logic, genuine already-matched effect_cleanup inline context and eight original float constants"
+}

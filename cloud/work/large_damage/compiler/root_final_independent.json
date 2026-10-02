@@ -1,0 +1,39 @@
+{
+  "accepted": true,
+  "source": "src/blob/groups/codex_large_crash_state/group.c",
+  "source_sha256": "b1e88b9c3e4f0a01a40bac84ab978040ac25b2a122090a0b2ff7a41c5111978b",
+  "object_sha256": "d86b80f8ab24e13d99b4edf1005a0053901d90d9a901c07bda2d8c2014bca356",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "pipeline": [
+    "cc -j",
+    "uld -kp",
+    "usplit",
+    "umerge",
+    "uopt",
+    "ugen",
+    "as1"
+  ],
+  "function": "func_800E0B20",
+  "instructions": 395,
+  "bytes": 1580,
+  "word_diffs": {
+    "func_800E0B20": 0
+  },
+  "relocations_verified": true,
+  "unresolved": [],
+  "unverified": [],
+  "extra_executable_words": 0,
+  "frame_bytes": 56,
+  "literal_pool": {
+    "address": "0x80124394",
+    "bytes": 32,
+    "sha256": "7c02636c097a00c3ba78ba94002cf5d8b6e590e32862566a0d5bfeb02054be5c",
+    "byte_exact": true
+  },
+  "context": {
+    "function": "effect_cleanup",
+    "already_matched": true,
+    "new_coverage_bytes": 0
+  },
+  "image_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d"
+}
