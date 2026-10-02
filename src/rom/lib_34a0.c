@@ -117,7 +117,46 @@ int __isnan(register double x) { DoubleUnion v; v.value=x; if(v.bits.exponent==2
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_34a0/fcvt.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_34a0/__ecvt_internal.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_34a0/__round_helper.s")
+/* PROMOTED 2026-10-02 — __round_helper
+ * Source:   cloud/work/static_debug_consolidation/acceptance_sources/__round_helper.c (in-repo, locked)
+ * Flags:    -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul
+ * Evidence: lock:cloud/work/static_debug_consolidation/acceptance_sources/__round_helper.c:__round_helper (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+u8 *__round_helper(double value, s32 *exponent, u8 *start, u8 *end, u8 nextDigit, u8 *sign) {
+    double integral;
+    if (value != 0.0) {
+        modf(value * 10.0, &integral);
+    } else {
+        integral = nextDigit - '0';
+    }
+    if (integral > 4.0) {
+        for (;; --end) {
+            if (*end == '.') end--;
+            ++*end;
+            if (*end <= '9') break;
+            *end = '0';
+            if (end == start) {
+                if (exponent != NULL) {
+                    *end = '1';
+                    ++*exponent;
+                } else {
+                    *--end = '1';
+                    --start;
+                }
+                break;
+            }
+        }
+    } else if (*sign == '-') {
+        for (;; --end) {
+            if (*end == '.') end--;
+            if (*end != '0') break;
+            if (end == start) *sign = 0;
+        }
+    }
+    return start;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_34a0/__write_exponent.s")
 /* PROMOTED 2026-10-02 — sprintf
  * Source:   cloud/work/static_debug_consolidation/acceptance_sources/sprintf.c (in-repo, locked)
