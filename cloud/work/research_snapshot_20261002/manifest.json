@@ -5311,51 +5311,6 @@
       "bytes": 3023
     },
     {
-      "path": "cloud/work/static_C79/__ecvt_internal.native.c",
-      "sha256": "1ec5e1df846a46b49fcac7737b257498498705bd0e83d96c5696ed73c08fc9cb",
-      "bytes": 6989
-    },
-    {
-      "path": "cloud/work/static_C79/__ecvt_internal.original_conditions.c",
-      "sha256": "3d149acb4263310a2992b08d52acd07a9b2ac00bac80e4f9e27d2bd07b938a06",
-      "bytes": 7006
-    },
-    {
-      "path": "cloud/work/static_C79/full_module_compile.json",
-      "sha256": "accdfdec2fa5d89ae2e62e85da277b0aa48e605c0448d6430c8ad442058a9657",
-      "bytes": 2026
-    },
-    {
-      "path": "cloud/work/static_C79/full_module_proofs.json",
-      "sha256": "a8e9ae2d0239c6f63dc2a002247479c0b341974be8c73385609912c376821df9",
-      "bytes": 3822
-    },
-    {
-      "path": "cloud/work/static_C79/inputs.json",
-      "sha256": "23f84ddc9d841535420a1ebb3bd006f9880becd70e4e9b7e07f3cbf2496b2005",
-      "bytes": 668
-    },
-    {
-      "path": "cloud/work/static_C79/lib_34a0.proposed.c",
-      "sha256": "78653b859593cc5476acdc48ee332de40edb1ed9f2cdff47233a80767c949dee",
-      "bytes": 8550
-    },
-    {
-      "path": "cloud/work/static_C79/linked_singleton_proof.json",
-      "sha256": "710ed4a9af15aedfb6f4a9368a98256405e257d9dd9f2f9d8d956c4d51262703",
-      "bytes": 155
-    },
-    {
-      "path": "cloud/work/static_C79/manifest.json",
-      "sha256": "33eb05fc6d697adc684d2b42bbd442ef7a16f22316b89c126ca49df4cdd0791f",
-      "bytes": 1263
-    },
-    {
-      "path": "cloud/work/static_C79/results.json",
-      "sha256": "08bcd624a8505806f5bd092196dbd535acb6f0783523856dc74fb5190572cf81",
-      "bytes": 977
-    },
-    {
       "path": "cloud/work/static_C80.md",
       "sha256": "6f30fca6a7a5d7a8af174b8eb700a5b8768a695f137385d5d53510ebdb6c45aa",
       "bytes": 1821
@@ -7796,5 +7751,8 @@
       "bytes": 262
     }
   ],
-  "excluded_raw_listings": []
+  "excluded_raw_listings": [],
+  "excluded_packets": {
+    "static_C79": "Existing coordinator review explicitly excludes the GNU-derived formatter; separately sourced BSD C81 replacements are preserved."
+  }
 }

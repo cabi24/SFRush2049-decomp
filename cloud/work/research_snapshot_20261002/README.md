@@ -18,6 +18,8 @@ This draft preserves candidate C, real helper context, ABI/type research and num
 
 The snapshot also preserves local textual packets under `near_miss_B*`, `tiny_A*`, `game_C*`, `static_C*`, and `ipa-groups/`. Read each packet's report and manifest before resuming it. These archives include competing controls and explicitly rejected historical drafts, so a file's presence does not endorse its semantics or make it the best candidate. Some older packets report exact isolated comparisons while still awaiting original-target, image, or ROM integration gates; they also receive zero new coverage in this PR.
 
+The GNU-derived C79 formatter packet is excluded per the existing coordinator review; separately sourced BSD C81 replacements remain.
+
 Existing tracked history is inherited from the base commit. The new [manifest](manifest.json) records every additional snapshot file's SHA-256 and byte size. Recorded results are historical evidence, not fresh replays performed for this PR. Paths naming ignored build artifacts or isolated compiler machines describe private reproduction artifacts and are not included files.
 
 ## Integration requirements
