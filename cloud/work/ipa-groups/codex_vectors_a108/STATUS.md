@@ -1,0 +1,1 @@
+Complete genuine caller and actual main_menu_input context, real func_800D52CC stays external. Native inlines context,56/59+39extra and unpaired relocation: strict refusal, empty claims. Original A74 unchanged; full lane report ../tiny_A108/STATUS.md.

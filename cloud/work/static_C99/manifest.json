@@ -1,0 +1,10 @@
+{
+  "source": "cloud/work/static_C99/inflate_entry.c",
+  "source_sha256": "29ae78dc6b47f4de10a11553788bb11c03c485872e9e4a53cdd1267f23e8c1b3",
+  "original_bytes": 360,
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "complete_native_source": true,
+  "strict_score": 3042,
+  "status": "frozen genuine mapped complete native nonmatch",
+  "accepted_credit": 0
+}

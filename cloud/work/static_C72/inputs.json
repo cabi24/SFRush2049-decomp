@@ -1,0 +1,37 @@
+[
+  {
+    "function": "sprintf",
+    "variant": "sprintf",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "b9aaaebefa78653b1b92356cdfaf3f0de267a5b086eec4980c7b92230902611c",
+    "target_sha256": "7983bda9b2fa4d795194a31917519491bec1d2e8baa95243e26907785ee9d391"
+  },
+  {
+    "function": "apply_display_mode",
+    "variant": "apply_display_mode",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "b3481cf71378c4e27a2fdb28d1a7b57b6bc3bb1eb3a4c8df719d206b09e7026c",
+    "target_sha256": "85550130ba706ccafab4e16e8362c1939a8ed614d10d5c80d09b4eef569f4eab"
+  },
+  {
+    "function": "display_mode_tick",
+    "variant": "display_mode_tick",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "d01e818bee410c8f0f9b5a2bdca2592201c049dd746b2c2c48aa4b62329b666a",
+    "target_sha256": "9e7883b809bd52e49c2baec20998c7f940c096a1311edea3dd2c64659eedaaf7"
+  },
+  {
+    "function": "display_mode_tick",
+    "variant": "display_mode_tick.mask",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "557ec4f7110e907566f749674e68426c3529a3133d52a95986df75151d830e71",
+    "target_sha256": "9e7883b809bd52e49c2baec20998c7f940c096a1311edea3dd2c64659eedaaf7"
+  },
+  {
+    "function": "display_mode_tick",
+    "variant": "display_mode_tick.mask_order",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "b046381bc7b95a31bedd4ab7ae3ad6afa0b4b75e72198a1869fc7ad2ddbea68e",
+    "target_sha256": "9e7883b809bd52e49c2baec20998c7f940c096a1311edea3dd2c64659eedaaf7"
+  }
+]

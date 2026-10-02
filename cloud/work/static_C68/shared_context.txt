@@ -1,0 +1,16 @@
+/* Genuine declarations needed after function-body extraction. */
+extern s8 gDmaInitialized; /* original DMA wait uses lb; init stores one byte */
+extern OSMesg gDmaMessageBuffer; /* queue initialized with one message cell */
+extern OSMesgQueue gDmaMessageQueue;
+
+/* Actual IEEE big-endian double bitfield carrier; no owned storage. */
+typedef struct {
+    unsigned sign:1;
+    unsigned exponent:11;
+    unsigned fraction:20;
+    unsigned low;
+} DoubleBits;
+typedef union {
+    double value;
+    DoubleBits bits;
+} DoubleUnion;

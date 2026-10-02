@@ -1,0 +1,48 @@
+[
+  {
+    "module": "lib_2cf0",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm -Iinclude -Iinclude/PR -Irom -D_LANGUAGE_C",
+    "source_sha256": "5df96eee6916aa3b7bc6e138d15d7009c3b66a70d492ac7e2b74083624afc8f0",
+    "original_asm_sha256": "82c54792e43c0d63034437e00a8d74cf8dece8029a4fff527cd76e389ea18729",
+    "existing_promoted": 0,
+    "compile_exit": 0,
+    "stderr": "",
+    "seg": {
+      "yaml_name": "0x2cf0",
+      "rom_tu": "rom/lib_2cf0",
+      "vram_start": "0x800020f0",
+      "size": 1104,
+      "converted": false,
+      "flagset": null,
+      "functions": [
+        {
+          "name": "main",
+          "vaddr": "0x800020f0",
+          "size": 180,
+          "state": "passthrough"
+        },
+        {
+          "name": "idle_thread_entry",
+          "vaddr": "0x800021a4",
+          "size": 148,
+          "state": "passthrough"
+        },
+        {
+          "name": "game_init",
+          "vaddr": "0x80002238",
+          "size": 708,
+          "state": "passthrough"
+        },
+        {
+          "name": "audio_thread_entry",
+          "vaddr": "0x800024fc",
+          "size": 68,
+          "state": "passthrough"
+        }
+      ],
+      "refusal": null
+    },
+    "object_sha256": "339cbd3fbfe2de4c9cd0d68aa6f7c329a7043fd28901951a7834ba7304a8712c",
+    "postprocess": "ok"
+  }
+]

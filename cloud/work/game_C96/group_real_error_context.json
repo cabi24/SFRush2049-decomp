@@ -1,0 +1,26 @@
+{
+  "members": [
+    "func_800A1C6C",
+    "track_data_decompress",
+    "func_800A1DD4",
+    "func_800A1BB4",
+    "track_collision_setup",
+    "MaxPathZeroControls",
+    "slot_state_lookup"
+  ],
+  "context": [
+    "func_800A1E94"
+  ],
+  "files": [
+    "group_word_slot.c",
+    "func_800A1E94.context.c"
+  ],
+  "keep": [
+    "track_collision_setup",
+    "MaxPathZeroControls",
+    "slot_state_lookup",
+    "func_800A1E94"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Iinclude -I.",
+  "provenance": "Complete actual seven-function PFS dirty-bitmap caller closure; no substitute functions or invented unused formals. All declarations grounded in original calls and shared SDK. Actual A1E94 copied source-text-identically from frozen C90 as context; kept exposed because original callers outside this closure call it."
+}

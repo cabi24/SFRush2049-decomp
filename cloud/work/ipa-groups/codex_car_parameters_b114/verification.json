@@ -1,0 +1,23 @@
+{
+  "source_sha256": "5b980be20490faabeb336517141dc8a6acfcb8a53de8367b536eb9f8bb4a4c0c",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "object_sha256": "9a844d9784da67dce2fbccdb191bd04fcae6aae9e7a0bea37d37b79d3e877fca",
+  "canonical": {
+    "track_info_display": {
+      "differing": 4,
+      "total": 281,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_800D0A34": {
+      "differing": 0,
+      "total": 27,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+}

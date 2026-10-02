@@ -1,0 +1,68 @@
+[
+  {
+    "module": "lib_2cf0",
+    "source_sha256": "5df96eee6916aa3b7bc6e138d15d7009c3b66a70d492ac7e2b74083624afc8f0",
+    "object_sha256": "339cbd3fbfe2de4c9cd0d68aa6f7c329a7043fd28901951a7834ba7304a8712c",
+    "original_slot_bytes": 1104,
+    "object_text_bytes": 1104,
+    "members": [
+      {
+        "function": "main",
+        "original_slot_words": 45,
+        "emitted_extent_words": 45,
+        "original_zero_padding_words_missing": 0,
+        "differing_full_words": 0,
+        "extra_nonzero_words": 0,
+        "slot_delta_bytes": 0,
+        "masks": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "exact": true
+      },
+      {
+        "function": "idle_thread_entry",
+        "original_slot_words": 37,
+        "emitted_extent_words": 37,
+        "original_zero_padding_words_missing": 0,
+        "differing_full_words": 0,
+        "extra_nonzero_words": 0,
+        "slot_delta_bytes": 0,
+        "masks": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "exact": true
+      },
+      {
+        "function": "game_init",
+        "original_slot_words": 177,
+        "emitted_extent_words": 177,
+        "original_zero_padding_words_missing": 0,
+        "differing_full_words": 0,
+        "extra_nonzero_words": 0,
+        "slot_delta_bytes": 0,
+        "masks": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "exact": true
+      },
+      {
+        "function": "audio_thread_entry",
+        "original_slot_words": 17,
+        "emitted_extent_words": 17,
+        "original_zero_padding_words_missing": 0,
+        "differing_full_words": 0,
+        "extra_nonzero_words": 0,
+        "slot_delta_bytes": 0,
+        "masks": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "exact": true
+      }
+    ],
+    "all_members_exact": true
+  }
+]

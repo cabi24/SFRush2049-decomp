@@ -1,0 +1,9 @@
+# C83 — exact complete memset through the real debug recipe
+
+The complete unchanged frozen native C17 memset strictly matches at the newly proved actual g1/O1 recipe. This is an explicitly labeled effective-recipe follow-up, not a fresh-body claim or source sweep. Both standalone and current-authoritative-header sources compile on private Rocky C and return stack-sensitive strict0. The actual no-neighbor lib_3390 is unconverted and has no existing authoritative flag pin.
+
+Final current-header source memset.current_header.c SHA e2b84ba3357c9eeaa3d8eb5ca264b625d0e93ae5ef7427e9d3ec208037b01367 carries literal -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul. The complete real one-function TU also compiles with the existing full include/Xcpluscomm/D_LANGUAGE_C recipe and matches all68original words, exact original272-byte slot placement and all272module bytes. All three original final zero alignment words are explicitly preserved. No masks, unresolved/unverified symbols, errors, missing padding or extra words occur.
+
+Actual unsigned byte loop, original zero-only word-store path and true pointer/alignment/word cursor locals are unchanged. No source reflow, extra capacity, unused local/formal, pressure work, stand-in or compiler override was introduced. No new shared header context or owned data is required. Complete module compile/word proof, strict records and source/target/object hashes are frozen. Raw objects/original words stay ignored under build.
+
+Root owns independent replay, supported lib_3390 conversion and genuine module recipe support, then full-ROM/lock/test/publication gates. No shared tool/source/header/target/locks/state or git mutation was made. The separately integrable debug baseline now offers26nativefunctions/8656authoritative static bytes, prospective until root acceptance; C82 fcvt adds separate ownership-blocked3948bytes.

@@ -1,0 +1,36 @@
+{
+  "function": "fcvt",
+  "vaddr": "0x80002CD0",
+  "layout_bytes": 3948,
+  "source": "cloud/work/static_C85/fcvt.current_header.c",
+  "source_sha256": "60fd6f806bcc65641c4b2a48d9574da938583e7d72c7cafcb412458dff913b52",
+  "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "canonical_score": 205,
+  "canonical_target_tier": "raw_word",
+  "refresh_pending_target_ids": [
+    "fcvt"
+  ],
+  "full_native_module": "cloud/work/static_C85/lib_34a0.original_templates.full_native.c",
+  "full_native_module_sha256": "a49fbfc2c64294ec642baa617e988c3ad5a7b8aa57e007a77eef18f19f75660e",
+  "original_module_bytes": 8528,
+  "all_nine_native_members_exact": true,
+  "generated_initialized_data_bytes": 0,
+  "table_logical_bytes": 356,
+  "table_emitted_bytes": 368,
+  "required_context": "cloud/work/static_C85/fcvt_context.txt",
+  "claims": [],
+  "refusals": [
+    "supported scoped FP-alias target refresh and independent canonical replay",
+    "supported true 4-byte table-slot/logical-section extent support; trailing compiler12 zero bytes must not overwrite original nonzero neighbors",
+    "root original-ROM/lock/tests gates"
+  ],
+  "source_license": "Full original four-clause Regents BSD notice retained, same direct Berkeley5.47 ancestor as C81/C82",
+  "baseline_without_fcvt_functions": 26,
+  "baseline_without_fcvt_bytes": 8656,
+  "total_after_safe_fcvt_integration_functions": 27,
+  "total_after_safe_fcvt_integration_bytes": 12604,
+  "ownership_simplification": "Single .rodata section only; original pad templates remain existing read-only references, no multi-section/per-function owner route needed.",
+  "independent_supported_refresh_preview_strict_score": 0,
+  "independent_supported_refresh_preview": "cloud/work/coordinator_readonly_20261002/fcvt_refresh_preview.json",
+  "private_production_proposal": "cloud/work/static_C85/proposal/manifest.json"
+}

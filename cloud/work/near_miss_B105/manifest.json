@@ -1,0 +1,21 @@
+{
+  "packet": "B105",
+  "function": "func_800A1644",
+  "address": "0x800A1644",
+  "bytes": 716,
+  "claims": [],
+  "rejected_zero_length_variant": "func_800A1644_native.c",
+  "unproved_declaration": "translated[64] capacity",
+  "report": "cloud/work/near_miss_B105.md",
+  "report_sha256": "6af7bd46057056e61637d222e00efb8fc0896dd4d52426a64fded44f0d196d93",
+  "files": {
+    "func_800A1644_reverse_cursor.c": "ace58e4996154e12f28f88de9340c5eadb0a9487713fa4d3563e9420d68179dc",
+    "func_800A1644_indexed_translation_O2.c": "8df5b97c42d92c39709b05347a3da756a98f9445cda20efc73db6227e1acf770",
+    "results.json": "4feb11a5121596248a067d3596995a0ca79123e253e74ea019881ba178697fa4",
+    "func_800A1644_indexed_translation.c": "c71e2e6336bbc67e6c60941242e5869e97fcefa744c3ee9dfa46b05de5844559",
+    "func_800A1644_byte_carrier.c": "2e0189a7fb2d930dcfe6ddef323e4684cda371265244013f2abe1bac8b62ad09",
+    "func_800A1644_readonly_input.c": "cbdc2282ba4adbd92d8636ad6b9636d9751e188caab67ca53ccd35b40884f827",
+    "func_800A1644_reverse_pair.c": "7a62f5cedc23e127d72b4727c2bbd295f7629f8819a38eb56cb93b52e9e58051",
+    "func_800A1644_native.c": "a3ed51386e4bc9c7bf2b7bd5340777112cb0ee560dd8e0055ca891f3f4723f51"
+  }
+}

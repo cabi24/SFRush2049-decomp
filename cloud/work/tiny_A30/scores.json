@@ -1,0 +1,98 @@
+{
+  "func_800AB638": {
+    "strict_diff": 46,
+    "size": 52,
+    "target_size": 53,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "ba6257368478b6e495924f4725e439dfa2238243caf03cb66aeb0b93a514d196"
+  },
+  "func_800A1BB4": {
+    "strict_diff": 42,
+    "size": 40,
+    "target_size": 46,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "7b81a0cda27229bbf4d6b26f6a85fb864e2c3f6ae61b4240e60a620a3de3d2db"
+  },
+  "func_800A3424": {
+    "strict_diff": 54,
+    "size": 44,
+    "target_size": 57,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "beb64fc92ab27e70b9c93beb0ab03b391b2c15ba06db4c38c1c002acc6555a05"
+  },
+  "func_800A43FC": {
+    "strict_diff": 51,
+    "size": 32,
+    "target_size": 53,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "fd1801f3f07808df4cf0795ccc52a4ca084a7e722947d910febf23efe7b59754"
+  },
+  "func_80098710": {
+    "strict_diff": 44,
+    "size": 54,
+    "target_size": 54,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "2f024a1d35c3ca80d70d949013299a44c94583fe8f3e7d4f30b99ff82680a7dc"
+  },
+  "func_800DC628": {
+    "strict_diff": 54,
+    "size": 66,
+    "target_size": 62,
+    "extra": 4,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "9c46719cc9fed38b488d8e4466b22424b13af816823e9490a649373357619fef"
+  },
+  "func_800E762C": {
+    "strict_diff": 51,
+    "size": 57,
+    "target_size": 57,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "29cd94dbeda6f6fc91582c64c76202b1dbd6285f5b00643606dcbd867fd4f543"
+  },
+  "func_800EC190": {
+    "strict_diff": 50,
+    "size": 56,
+    "target_size": 56,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "17970f9649eeb3ebbc793519e2ac7fdbf4b2f935baf86fcb38ca767acfa98c7f"
+  }
+}

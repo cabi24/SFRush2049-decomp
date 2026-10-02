@@ -1,0 +1,19 @@
+{
+  "source_sha256": "d4417114c909d09977b6ad6c0ea1cd2085df904cde053659a5f74a12340af14f",
+  "manifest_sha256": "18edcc5b5ae33b4f8abd6614385d76586049fc640995dc1fb837e23902b34f6d",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "comparisons": {
+    "track_lighting_setup": {
+      "differing": 0,
+      "total": 38,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x1c",
+        ".rodata+0x0 at +0x24"
+      ],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+}

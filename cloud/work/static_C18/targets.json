@@ -1,0 +1,86 @@
+[
+  {
+    "target": {
+      "target_id": "dma_wait",
+      "address": 2147493272,
+      "population": "static",
+      "insn_count": 37,
+      "target_asm_sha": "1f8bf85ddc7e4f01a6f17f046d20a3bf80d965aed22146ae28de0eaa1983bfb8",
+      "target_o_sha": "f1022b1396125fabef68d8d8ec1c5f34bd5f706eeb5a17c60e65cd35d8910618",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null
+    },
+    "segment": "0x3140",
+    "function": {
+      "name": "dma_wait",
+      "vaddr": "0x80002598",
+      "size": 148,
+      "state": "passthrough"
+    }
+  },
+  {
+    "target": {
+      "target_id": "lzss_decompress",
+      "address": 2147493472,
+      "population": "static",
+      "insn_count": 24,
+      "target_asm_sha": "91538b9d87860e2dcd3cc07b101855787c7d55199f7e6fecde94fef4fd19f58e",
+      "target_o_sha": "b9c06034073fbd42ec6fa6af2df32c88f98e45d4992af2739f0efc1d21a1c2f9",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null
+    },
+    "segment": "0x3140",
+    "function": {
+      "name": "lzss_decompress",
+      "vaddr": "0x80002660",
+      "size": 96,
+      "state": "passthrough"
+    }
+  },
+  {
+    "target": {
+      "target_id": "inflate_decompress",
+      "address": 2147493568,
+      "population": "static",
+      "insn_count": 28,
+      "target_asm_sha": "4682463f361b8daa0e5abda2e28d066359e1cbc3e8303d13f8c3a3d42b6978dd",
+      "target_o_sha": "0308b114c2b1281f36cf8e7ce12f658e03467930a8daee5ae51a1270eb34f6b8",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null
+    },
+    "segment": "0x3140",
+    "function": {
+      "name": "inflate_decompress",
+      "vaddr": "0x800026c0",
+      "size": 112,
+      "state": "passthrough"
+    }
+  },
+  {
+    "target": {
+      "target_id": "__osInitialize_common",
+      "address": 2147516032,
+      "population": "static",
+      "insn_count": 170,
+      "target_asm_sha": "67f2594801a1a5bd65fb595aa15c0754968b0fde2776587c36a7aad3614143c8",
+      "target_o_sha": "52a1df4288ba5644b96e6e7ea5958b22a2133fdef2a468eb5739ebc9cad53da9",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null
+    },
+    "segment": "0x8a80",
+    "function": {
+      "name": "__osInitialize_common",
+      "vaddr": "0x80007e80",
+      "size": 680,
+      "state": "passthrough"
+    }
+  }
+]

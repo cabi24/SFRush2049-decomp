@@ -1,0 +1,6 @@
+{
+  "command": "python3 cloud/work/static_C85/proposal/run_existing_compatibility.py",
+  "unchanged_test_source": "tests/conveyor/test_owned_data.py",
+  "exit_code": 0,
+  "stdout_and_stderr": ".......................................                                  [100%]\n"
+}

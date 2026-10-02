@@ -1,0 +1,104 @@
+[
+  {
+    "source": "func_8008C074_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "37bb4fc98af02434ab645d5fac431c35d910142d9ce484db8a4bcabfae7671e3",
+    "comparison": {
+      "differing": 296,
+      "total": 308,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0xe4",
+        ".rodata+0x0 at +0xec"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 308
+  },
+  {
+    "source": "func_8008C074_lifetime.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "103b1c37a90dab22ae3cc8e57d06b99241847b2a8c7742b871261e407e0c6b94",
+    "comparison": {
+      "differing": 278,
+      "total": 308,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0xe4",
+        ".rodata+0x0 at +0xec"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 308
+  },
+  {
+    "source": "func_8008C074_init.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "7e7e38f3549bb6b9bf4e90bcb46eea78e4251ea373fdc7a049fa8f24675e8bc8",
+    "comparison": {
+      "differing": 274,
+      "total": 308,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0xe4",
+        ".rodata+0x0 at +0xec"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 308
+  },
+  {
+    "source": "func_8008C074_branch.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "4ce32090278f2fe3738b219a2a1730b29e691e668a8d21e37faaad800bbe8b0e",
+    "comparison": {
+      "differing": 14,
+      "total": 308,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0xe8",
+        ".rodata+0x0 at +0xf0"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 308
+  },
+  {
+    "source": "func_8008C074_position.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "13ea87574d339bd8dce040e6473790682f72ec66264349f0cc976e9ecb351689",
+    "comparison": {
+      "differing": 289,
+      "total": 308,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0xe4",
+        ".rodata+0x0 at +0xec"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 312
+  },
+  {
+    "source": "func_8008C074_vectors.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "dd3f03126692a044b25dca7420937ed9e94f0fdb1f10a10e69084b23da9c4582",
+    "comparison": {
+      "differing": 0,
+      "total": 308,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0xe8",
+        ".rodata+0x0 at +0xf0"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 308
+  }
+]

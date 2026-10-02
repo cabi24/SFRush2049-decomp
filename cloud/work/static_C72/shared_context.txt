@@ -1,0 +1,6 @@
+/* Actual pending signed16 countdown and genuine VI mode pointers. */
+extern s16 gViewportPendingFrames;
+extern OSViMode *gViewportStruct;
+extern OSViMode *gViewportDataPtr;
+/* Historical fcvt symbol is the real three-argument formatting worker. */
+extern int fcvt(char *output, const char *format, char *arguments);

@@ -1,0 +1,14 @@
+{
+  "name": "func_800E847C",
+  "local_main_lock_sha256": "b6427ddd9186cfb0e9381f16db90008063e0bfde5cf47c62a35903b66df89a0c",
+  "name_locked": false,
+  "accepted_overlaps": [],
+  "canonical_extent": [
+    {
+      "kind": "function",
+      "size": 2100,
+      "target_id": "func_800E847C",
+      "vaddr": 2148435068
+    }
+  ]
+}

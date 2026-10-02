@@ -1,0 +1,32 @@
+{
+  "scope": "private generic-data API and genuine SDK initialization BSS model; old C13 source-game baseline; no production lifecycle claim",
+  "regeneration_stable": true,
+  "results": [
+    {
+      "case": "generic data ownership + genuine initialization storage",
+      "link_exit": 0,
+      "link_diagnostic": "/usr/bin/mips-linux-gnu-ld.bfd: warning: build/us/rush2049.us.elf has a LOAD segment with RWX permissions",
+      "sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+      "retail_gate": true
+    },
+    {
+      "case": "wrong BSS address refuses",
+      "link_exit": 1,
+      "link_diagnostic": "/usr/bin/mips-linux-gnu-ld.bfd: original final-ROM flag allocation moved\n/usr/bin/mips-linux-gnu-ld.bfd: warning: build/us/rush2049.us.elf has a LOAD segment with RWX permissions"
+    },
+    {
+      "case": "wrong actual SDK clock initializer fails ROM gate",
+      "link_exit": 0,
+      "link_diagnostic": "/usr/bin/mips-linux-gnu-ld.bfd: warning: build/us/rush2049.us.elf has a LOAD segment with RWX permissions",
+      "sha1": "a80d3c82ba92a8a97eae1a451b581b17eba17680",
+      "retail_gate": false
+    },
+    {
+      "case": "rollback original physical ownership",
+      "link_exit": 0,
+      "link_diagnostic": "/usr/bin/mips-linux-gnu-ld.bfd: warning: build/us/rush2049.us.elf has a LOAD segment with RWX permissions",
+      "sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+      "retail_gate": true
+    }
+  ]
+}

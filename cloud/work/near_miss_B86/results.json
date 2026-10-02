@@ -1,0 +1,72 @@
+[
+  {
+    "source": "func_80087110_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "bb7bddf837f6c50378b4c13c222c2c50903f0384f1b9f2b68fb059b1dffa9dd8",
+    "comparison": {
+      "differing": 20,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 448
+  },
+  {
+    "source": "func_80087110_arithmetic.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "7db5460232badfb3024303d29dcbd30bd0f37ff2044af7bd18ce6fe716652610",
+    "comparison": {
+      "differing": 16,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 448
+  },
+  {
+    "source": "func_80087110_arithmetic_O2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "eb20cfcf805837d7210b27fc811b74c0499e05a864176cbe7a894d8c3f7b6448",
+    "comparison": {
+      "differing": 433,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 2
+    },
+    "text_words": 448
+  },
+  {
+    "source": "func_80087110_bounds.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "56e5570b13da13d00598c0264dff6f04d2b94323df1478dad6df1b73f2b100c8",
+    "comparison": {
+      "differing": 436,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 444
+  },
+  {
+    "source": "func_80087110_scoped.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "c7c99fcb1947e5e0e1b887eb607f41953ce9e20967fa1a3589b4543bdfd775a3",
+    "comparison": {
+      "differing": 16,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 448
+  }
+]

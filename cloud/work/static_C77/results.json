@@ -1,0 +1,24 @@
+[
+  {
+    "function": "__round_helper",
+    "variant": "__round_helper",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "d6790b0d46011aafc5327a8b254970bbe48af74ec43b06e5680d2f8b3f332a4b",
+    "target_sha256": "8b615f14901115f24526de672135b2908eacfc37b2e5745d015d5b7f90bfea13",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict_score": 325,
+    "object_sha256": "7a8fec15e767d992ef0dad8e1363c0785720c76a2abb9ed967d29c443b667c32"
+  },
+  {
+    "function": "__round_helper",
+    "variant": "__round_helper.steps",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "9abf59f81b40d7e23462c108c8ac2c1c45f6e28bf3f615f620e3168c9dccb961",
+    "target_sha256": "8b615f14901115f24526de672135b2908eacfc37b2e5745d015d5b7f90bfea13",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict_score": 5,
+    "object_sha256": "980ace4c403e838351eb07f61d9df46ea0b8af1083e1fc3b35cb6ca98d1d5baa"
+  }
+]

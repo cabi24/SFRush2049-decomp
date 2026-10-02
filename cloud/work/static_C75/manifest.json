@@ -1,0 +1,19 @@
+{
+  "decision": "full original words and entire real video TU exact; pending supported canonical FP-alias target refresh before strict claim",
+  "function": "display_update",
+  "layout_bytes": 1364,
+  "source": "cloud/work/static_C75/display_update.origin_order.c",
+  "source_sha256": "be197bbaa44092f04e6783a9af5a872d9c700f2cb640f65f6f9587133ccfa3ae",
+  "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "stale_target_sha256": "4dfdcd4080c92fa0eaa9d03a34e75d2656617e2b3c252199c744ca4426648b1d",
+  "stale_target_tier": "raw_word",
+  "stale_target_gate_reason": "assemble_error: 52: invalid operands mtc1 $t5,$ft0",
+  "complete_module_proof": "full_module_proofs.json",
+  "original_full_words_exact": 341,
+  "full_native_TU": "lib_21f0.full_native.c",
+  "full_native_TU_sha256": "d317f72691e70ba8828ab887b9d052d3116bc0e1503280ae5650defb1a863f57",
+  "full_native_TU_bytes": 2816,
+  "source_context": "genuine existing SDK OSViMode fields; entire source prelude has grounded declarations only",
+  "shared_additions": "extern OSViMode gViewportBuffer[]; extern float gViewportFloatA,gViewportFloatB; extern u32 osSetGlobalIntMask(u32); plus prior grounded C70/C72/C73 viewport globals",
+  "accepted_coverage_claim": false
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "source": "differential_output_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "29503e2b96f924958ace12fe062a700ca1ba5575dafceb00afa32d0b0888e07a",
+    "comparison": {
+      "differing": 148,
+      "total": 162,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 11
+    },
+    "text_words": 176
+  },
+  {
+    "source": "differential_output_corrected.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "a35cb6a6e0b8bb9d7964ecc1eb55db04b447f57dc361a6b55fbbe780a20f8f86",
+    "comparison": {
+      "differing": 134,
+      "total": 162,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 160
+  },
+  {
+    "source": "differential_output_corrected_O2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "5b6b00416dea2bd2415fdce8d852cf7d383f49e390a8ddb14bb4882594af3d58",
+    "comparison": {
+      "differing": 134,
+      "total": 162,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 160
+  },
+  {
+    "source": "differential_output_word.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "a40674c33d6874bc839a6741fbd9116a185acfcd635528a8d579cb944b18ba92",
+    "comparison": {
+      "differing": 159,
+      "total": 162,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 156
+  }
+]

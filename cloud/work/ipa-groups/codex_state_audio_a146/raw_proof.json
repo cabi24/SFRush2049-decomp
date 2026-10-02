@@ -1,0 +1,37 @@
+{
+  "source_sha256": "3a9db271ed6afcf84296179e815072a8335d1d2a2da046c16772f67accff1d73",
+  "manifest_sha256": "4eb3d99557b09f1f71178568a204967a3d31f9b320529e83adce0addd543bc46",
+  "object_sha256": "4db27b808b27516fa5d550246c962718c6974690319a8d1736baeef51bde75ef",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "exact_functions": {
+    "state_change_preprocess": {
+      "words": 45,
+      "bytes": 180,
+      "unmasked_exact": true
+    },
+    "resource_slot_clear": {
+      "words": 18,
+      "bytes": 72,
+      "unmasked_exact": true
+    },
+    "func_80097694": {
+      "words": 65,
+      "bytes": 260,
+      "unmasked_exact": true
+    },
+    "resource_slots_clear_multiple": {
+      "words": 12,
+      "bytes": 48,
+      "unmasked_exact": true
+    }
+  },
+  "unclaimed_nonmatches": [
+    "audio_frame_sync130/130"
+  ],
+  "already_accepted_no_new_credit": [
+    "resource_slot_clear",
+    "func_80097694",
+    "resource_slots_clear_multiple"
+  ]
+}

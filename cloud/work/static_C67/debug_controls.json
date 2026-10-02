@@ -1,0 +1,38 @@
+[
+  {
+    "function": "osScAddClient.debug1",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 0,
+    "source_sha256": "f17c289eba6e36b11a7ff04384a82f4edc5ccd1136595ec53101391950f0db92",
+    "target_sha256": "18e2b7521888575ecd5d6adb41422b6ab36c56a43253e9632140f6f1e4af352e"
+  },
+  {
+    "function": "osScAddClient.debug2",
+    "flags": "-g2 -O1 -mips2 -G 0 -non_shared",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 0,
+    "source_sha256": "0f26a2a62ac0790cbc1d60eff09a007452d2709864d0c023153ad52e1ca87b83",
+    "target_sha256": "18e2b7521888575ecd5d6adb41422b6ab36c56a43253e9632140f6f1e4af352e"
+  },
+  {
+    "function": "osScAddClient.debug3",
+    "flags": "-g3 -O1 -mips2 -G 0 -non_shared",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 278,
+    "source_sha256": "b159c7cdec26f5a0d9555e33cab02595101b9379ee90751d7c769a5c1e0b2ec1",
+    "target_sha256": "18e2b7521888575ecd5d6adb41422b6ab36c56a43253e9632140f6f1e4af352e"
+  },
+  {
+    "function": "osScAddClient.debug0_O0",
+    "flags": "-g2 -O0 -mips2 -G 0 -non_shared",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 350,
+    "source_sha256": "d589af74b73f8bafc6c9a508993583582aa68bd3eae097b5f26313601a82e19f",
+    "target_sha256": "18e2b7521888575ecd5d6adb41422b6ab36c56a43253e9632140f6f1e4af352e"
+  }
+]

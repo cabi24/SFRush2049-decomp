@@ -1,0 +1,15 @@
+{
+  "packet": "B97",
+  "function": "music_control",
+  "address": "0x800B1B48",
+  "size_bytes": 992,
+  "target_words": 248,
+  "claims": [],
+  "files": {
+    "music_control_native.c": "47ba08827ab2173962a3fe8650c5a6ca9b3a824202c47e0bae52574b403f8a62",
+    "results.json": "e0ebe989b8ce829402bfdf5dbb62e33a815de635ca059eddf90c7bb65bf62188",
+    "music_control_calls_O2.c": "cd9670976dc19950cefce1d56a5d9453705c5709cbb01f13d86b65caefc4ede3",
+    "music_control_calls.c": "463645da2f12604daefd0d3832addd279614cfbba1d08817518f3d7f4df07e73"
+  },
+  "report_sha256": "7d6cbf8ae0b41e318cfef1ed81fe52f4da5ed4db24985c88851ef9c656ef828a"
+}

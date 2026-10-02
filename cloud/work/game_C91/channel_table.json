@@ -1,0 +1,20 @@
+[
+  {
+    "function": "func_800A3424",
+    "variant": "func_800A3424.channel_table",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 2510,
+    "linked": {
+      "differing": 47,
+      "total": 57,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "20da17b0ed521056e45052635bcf7ce9f7188ef049ac6fc526e3c8d85a995014",
+    "target_sha256": "306b6652a7beb4a0473a3cba3d38669c1383322bb2f98e336351274bb21dbe5c"
+  }
+]

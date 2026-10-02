@@ -1,0 +1,17 @@
+{
+  "packet": "B111",
+  "function": "sound_bank_load",
+  "address": "0x800B0F68",
+  "bytes": 364,
+  "claims": [],
+  "unproved_declaration": "original local name-buffer capacity; proposed16bytes never varied",
+  "report": "cloud/work/near_miss_B111.md",
+  "report_sha256": "a5c26d232f809ce253b5902173ff9cb50e40ea9b74ccc7507a71f9f05677066c",
+  "files": {
+    "results.json": "74d5a681575cb692e93f4c07c935138eeeb159826feb25f2908be30d818e6121",
+    "sound_bank_load_argument_carriers.c": "e145164438279b321aa23e340f2a56688f70b663c6ce1f192b8511b3c3c2651e",
+    "sound_bank_load_endpoint_loop.c": "292e0ed082509403131aa2ec2c33eb1f7ead675b98f82dc24aceab524849346f",
+    "sound_bank_load_native.c": "0914330dd17af0a695a2c4defca8506aa63c0984a4af222dcc8857e10364b8cc",
+    "sound_bank_load_native_O2.c": "093042582f62deccd47ae834b285cacfb59d7ccd4d6f835e08a83fdeadb5217e"
+  }
+}

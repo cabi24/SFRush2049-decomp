@@ -1,0 +1,24 @@
+{
+  "claims": [
+    {
+      "function": "func_8008C074",
+      "kind": "strict_original_table_placement",
+      "bytes": 1232,
+      "root_acceptance_pending": true
+    }
+  ],
+  "function": "func_8008C074",
+  "address": "0x8008C074",
+  "target_bytes": 1232,
+  "final_source": "func_8008C074_vectors.c",
+  "files": {
+    "func_8008C074_branch.c": "4ce32090278f2fe3738b219a2a1730b29e691e668a8d21e37faaad800bbe8b0e",
+    "func_8008C074_init.c": "7e7e38f3549bb6b9bf4e90bcb46eea78e4251ea373fdc7a049fa8f24675e8bc8",
+    "func_8008C074_lifetime.c": "103b1c37a90dab22ae3cc8e57d06b99241847b2a8c7742b871261e407e0c6b94",
+    "func_8008C074_native.c": "37bb4fc98af02434ab645d5fac431c35d910142d9ce484db8a4bcabfae7671e3",
+    "func_8008C074_position.c": "13ea87574d339bd8dce040e6473790682f72ec66264349f0cc976e9ecb351689",
+    "func_8008C074_vectors.c": "dd3f03126692a044b25dca7420937ed9e94f0fdb1f10a10e69084b23da9c4582",
+    "placement_proof.json": "981391e55b081f6aa7789edf5702397a84ed2b5ca794c1094f655cb9fca594fe",
+    "results.json": "2f3070af5e076df96bf9d48cf9c0e7d118a5aa53004396d18ecf5144efac6a9c"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "function": "fcvt",
+  "vaddr": "0x80002CD0",
+  "layout_bytes": 3948,
+  "source": "cloud/work/static_C82/fcvt.actual_abi.c",
+  "source_sha256": "f3bce9a85d791018f1cd2e28bb5f106ea4bd0f2b5915bbb2d74cef30ee335b04",
+  "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "canonical_score": 205,
+  "canonical_target_tier": "raw_word",
+  "canonical_target_gate_reason": "assemble_error: 315: Error: invalid operands `ldc1 $ft0,-0x8($s5)'",
+  "target_sha256": "dee06a70b9fc4d990695ee21e0c88ebb96f96c3557e23a93e849dd6c896fd166",
+  "full_native_module": "cloud/work/static_C82/lib_34a0.full_native.c",
+  "full_native_module_sha256": "70bfb8f6c67d71ce4f18ed398fc29a4c24cf6a67642b26a92d857653f5951a7f",
+  "original_module_bytes": 8528,
+  "all_nine_native_members_exact": true,
+  "claims": [],
+  "refusals": [
+    "supported scoped FP-alias target refresh and current independent canonical replay required",
+    "true 4-byte table-slot/logical-section extent support required; 12-byte compiler alignment tail cannot overwrite following nonzero original bytes",
+    "root full-ROM/lock/test/publication gates required"
+  ],
+  "upstream_primary_url": "https://raw.githubusercontent.com/386bsd/386bsd/a21426270803ed92361b0d722e554be159c137ef/usr/src/lib/libc/stdio/vfprintf.c",
+  "upstream_sha256": "b8dd888df9dc8466724aee4a70d7d186f640ce74e35002d8fd7ce9beac26f358",
+  "source_license": "original four-clause Regents BSD notice retained",
+  "SDK_macro_reference": "reference/repos/banjo-kazooie/include/stdarg.h",
+  "SDK_macro_reference_sha256": "84e923e57a1f6d0c7a80d1f707aec48fb6b8c56688194d488c1949a04c3b0ce6",
+  "prospective_total_with_baseline_functions": 26,
+  "prospective_total_with_baseline_bytes": 12332
+}

@@ -1,0 +1,9 @@
+{
+  "module": "lib_3390",
+  "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm -Iinclude -Iinclude/PR -Irom -D_LANGUAGE_C",
+  "source_sha256": "042660941d5e5bb1f9b4aee22acea074fbfa464323b4f171c88fed4875359268",
+  "compile_exit": 0,
+  "stderr": "",
+  "full_native": true,
+  "object_sha256": "f0cf953f5911b48ff94daaa425e86bb25fc8ec60d588977171ef06f111616b9b"
+}

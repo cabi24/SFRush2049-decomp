@@ -1,0 +1,15 @@
+{
+  "source": "audio_dsp_process_native.c",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source_sha256": "da90c16d7db94a42b3b07c71188e30efa5c4c6e362321a25e65fcd15c292893c",
+  "object_sha256": "12fc6806349e253e6dd42c0d0139e76427ec27b411ea7261160c4de20133b758",
+  "comparison": {
+    "differing": 0,
+    "total": 97,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "text_words": 100
+}

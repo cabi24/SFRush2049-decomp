@@ -1,0 +1,26 @@
+[
+  {
+    "function": "inflate_free_window",
+    "variant": "inflate_free_window.debug_o1",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 22627,
+    "raw_word_diff": 394,
+    "candidate_words": 396,
+    "source_sha256": "87dc6296449c911b44383a76bad59f3502bccb2e25eb179b5603ff4515e65359",
+    "target_sha256": "6c45a872539c49aa51fb7450c069714cfa0ddfecf0f04cb68306ee9ac3480005"
+  },
+  {
+    "function": "inflate_free_window",
+    "variant": "inflate_free_window.volatile_input",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 7437,
+    "raw_word_diff": 309,
+    "candidate_words": 324,
+    "source_sha256": "87759824f1887da521e996ccf9ed05fa387fe57b9aa5929879f7491470d0ca62",
+    "target_sha256": "6c45a872539c49aa51fb7450c069714cfa0ddfecf0f04cb68306ee9ac3480005"
+  }
+]

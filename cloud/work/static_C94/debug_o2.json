@@ -1,0 +1,26 @@
+[
+  {
+    "function": "inflate_free_window",
+    "variant": "inflate_free_window.debug_o2",
+    "flags": "-g1 -O2 -mips2 -G 0 -non_shared",
+    "compile_exit": 0,
+    "stderr": "\nuopt: Warning: file not optimized; use -g3 if both optimization and debug wanted\n",
+    "strict": 22627,
+    "raw_word_diff": 394,
+    "candidate_words": 396,
+    "source_sha256": "126056aef720e07d3959f55eb03687bc1d0a58fe7299c3799a715f9e47f6538e",
+    "target_sha256": "6c45a872539c49aa51fb7450c069714cfa0ddfecf0f04cb68306ee9ac3480005"
+  },
+  {
+    "function": "inflate_free_window",
+    "variant": "inflate_free_window.volatile_debug_o2",
+    "flags": "-g1 -O2 -mips2 -G 0 -non_shared",
+    "compile_exit": 0,
+    "stderr": "\nuopt: Warning: file not optimized; use -g3 if both optimization and debug wanted\n",
+    "strict": 23957,
+    "raw_word_diff": 403,
+    "candidate_words": 408,
+    "source_sha256": "35900626f137f64b4134b181539fb69515a7b52420f1cccc3ba4bf12ade1bf7f",
+    "target_sha256": "6c45a872539c49aa51fb7450c069714cfa0ddfecf0f04cb68306ee9ac3480005"
+  }
+]

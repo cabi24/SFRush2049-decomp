@@ -1,0 +1,15 @@
+{
+  "status": "NONMATCH",
+  "claims": [],
+  "sources": {
+    "func_800AB18C_storage_view.c": "e02a601b3a9d0bd88ee7d2ee73d05306e34420315d25416c59339b7f3cc01688",
+    "func_800AB18C_address.c": "ca8eba03136b08ee6cbf9ba653ecd6252789024989c1490f8a3ff5544942d850",
+    "func_800AB18C.c": "027e1a9dce798bee08ba4de13fd36296ba74c538616c4e71af7cac7a36b0d86a",
+    "func_800AB18C_fields_O2.c": "c56d95552f6a8438ca502ccd6bad273ef93b5cc813cdc57a3a8fdbdffa7152a2",
+    "func_800AB18C_fields.c": "fc2d9549b8123e266cbb6744666f5d2e8b1449abe293e1d9703f12226508e473"
+  },
+  "best_source": "func_800AB18C_address.c",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "best_differing": 38,
+  "total": 231
+}

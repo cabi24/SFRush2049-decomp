@@ -1,0 +1,35 @@
+extern void *memcpy(void *, const void *, u32);
+extern s32 strlen(const void *);
+extern u8 *memchr(u8 *, u32, s32);
+extern int __isnan(double), __isinf(double);
+extern int __ecvt_internal(double, int, int, u8 *, int, u8 *, u8 *);
+extern u8 gFcvtSign[], gFcvtDecpt[], gFcvtTemp1[], gFcvtTemp2[], gFcvtTemp3[], gFcvtTemp4[], gFcvtTemp5[];
+typedef struct FcvtPadBlock { u8 bytes[16]; } FcvtPadBlock;
+extern FcvtPadBlock gFcvtBuffer, gFcvtDigits;
+/* Canonical SDK IDO o32 va_arg implementation. */
+#define _VA_ALIGN(p,a) (((unsigned int)(((char *)(p)) + ((a)>4?(a):4)-1)) & -((a)>4?(a):4))
+#define __va_stack_arg(list,mode) (((list)=(char *)_VA_ALIGN(list,__builtin_alignof(mode)) + _VA_ALIGN(sizeof(mode),4)), ((char *)list)-(_VA_ALIGN(sizeof(mode),4)-sizeof(mode)))
+#define __va_double_arg(list,mode) (((long)list & 1) ? (list=(char *)((long)list+7),(char *)((long)list-6-16)) : (((long)list & 2) ? (list=(char *)((long)list+10),(char *)((long)list-24-16)) : __va_stack_arg(list,mode)))
+#define va_arg(list,mode) (((mode *)((__builtin_classof(mode)==1 && __builtin_alignof(mode)==sizeof(double)) ? __va_double_arg(list,mode) : __va_stack_arg(list,mode)))[-1])
+#define LONGINT 1
+#define LONGDBL 2
+#define SHORTINT 4
+#define ALT 8
+#define LADJUST 16
+#define ZEROPAD 32
+#define HEXPREFIX 64
+#define MAXEXP 308
+#define MAXFRACT 39
+#define BUF (MAXEXP+MAXFRACT+1)
+#define DEFPREC 6
+#define to_digit(c) ((c)-'0')
+#define is_digit(c) ((unsigned)to_digit(c)<=9)
+#define to_char(n) ((n)+'0')
+#define SARG() (flags&LONGINT ? va_arg(ap,long) : flags&SHORTINT ? (long)(short)va_arg(ap,int) : va_arg(ap,int))
+#define UARG() (flags&LONGINT ? va_arg(ap,unsigned long) : flags&SHORTINT ? (unsigned long)(unsigned short)va_arg(ap,int) : va_arg(ap,unsigned int))
+#define PRINT(ptr,len) {memcpy(fp,(ptr),(len)); fp += (len);}
+#define blanks blank_block.bytes
+#define zeroes zero_block.bytes
+#define PADSIZE 16
+#define PAD(howmany,with) {if((n=(howmany))>0) {while(n>PADSIZE) {PRINT(with,PADSIZE); n-=PADSIZE;} PRINT(with,n);}}
+#define FLUSH() (*fp = 0)

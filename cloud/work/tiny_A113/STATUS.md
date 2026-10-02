@@ -1,0 +1,5 @@
+# A113 genuine recursive display-list traversal — bounded nonmatch
+
+Full display_list_traverse@800963E8,468 bytes/117 words. Five actual consumed arguments: word cursor, original/replacement address, flags, optional callback yielding words to advance. Termination wordDF000000; DE command resolves actual segmented/KSEG address, optional replacement, recursive call versus jump depending command/flag fields. E1 command parses following04 command and either follows target or recurses, with exact cursor increments. Other commands invoke actual callback or advance two words. Every pointer operation/bit mask/recursive argument follows original complete body; no stand-in or inferred extra formal.
+
+Native82/117/frame72. Actual early consumed rewrite/branch flag snapshots unchanged82. Genuine opcode switch structure92+1extra; original O3 source unchanged82. Exact saved-register ABI, prefix setup and recursive call targets; remaining branch/layout/register differences not masked or padded. No volatile, pressure, unused runtime work or invented helper. Full sources/fresh proof frozen with claims empty.

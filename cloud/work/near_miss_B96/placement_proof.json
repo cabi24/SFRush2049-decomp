@@ -1,0 +1,9 @@
+{
+  "function": "menu_audio_settings",
+  "size_bytes": 816,
+  "target_words": 204,
+  "relocated_raw_byte_equal": true,
+  "body_sha256": "4e66a58a5d38d4d7afdbb9ba0df98ccdd2e51d6b06444d43e81e4d816972156d",
+  "object_sha256": "027bd858ffec4708b95bec0bc960e946eab520e6668a4756c7be8186de06ad20",
+  "shared_mutations": false
+}

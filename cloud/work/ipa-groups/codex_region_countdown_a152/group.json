@@ -1,0 +1,17 @@
+{
+  "members": [
+    "func_800AB18C"
+  ],
+  "context": [
+    "countdown"
+  ],
+  "files": [
+    "helper.c",
+    "countdown.c"
+  ],
+  "keep": [
+    "countdown"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": []
+}

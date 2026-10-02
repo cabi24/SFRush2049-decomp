@@ -1,0 +1,26 @@
+{
+  "function": "func_800B24EC",
+  "variant": "func_800B24EC.declaration_order",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "compile_exit": 0,
+  "stderr": "",
+  "strict": 710,
+  "linked": {
+    "differing": 62,
+    "total": 91,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "source_sha256": "5f700693e12a5122b90288130487df5819e6b9333e930bc2390b609fac3a2331",
+  "target_sha256": "ad3c819e23b390b5c338067f414b5d993194de53e5f749617b3b2a171cad2cac",
+  "status": "refused_nonmatch",
+  "source": "cloud/work/game_C95/func_800B24EC.declaration_order.c",
+  "authoritative_bytes": 364,
+  "accepted_credit": 0,
+  "capacity_note": "32-byte query is tied to actual 36-byte name-plus-offset resource record; exact original local capacity remains unresolved. Earlier 40-byte maximum-stack-region inference did not prove true object extent and is rejected as an acceptance source.",
+  "real_formals": 4,
+  "compiler_stack_differences": true,
+  "protected_original_no_shared_edits": true
+}

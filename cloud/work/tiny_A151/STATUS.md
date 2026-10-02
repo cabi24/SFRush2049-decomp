@@ -1,0 +1,9 @@
+# A151 sound_init display-list reset: NONMATCH
+
+sound_init@800A4934 has100words/400bytes, complete LOCAL main unlocked interval and no prior full archived caller. Actual zero-input body resets render counters/flags, alternates two real19200-byte graphics buffers, emits four complete native Gfx commands, calls mode initializer1 and optional dimension threshold-mask helper. Buffer dimensions2x2400Gfx derive actual two-valued selector and19200-byte stride. No scratch capacity/padding invented.
+
+Initial source83/100, no excess/errors/unresolved/unverified. Its initial floating-double global clear is a rejected typing lead: native stores two integer zero words. Final actual64-bit integer clear better represents consumed native global zero bits; exact original64-bit source type is not certified. All other stores/commands/calls retained.
+
+Complete accepted func80086A50 native f.c context copied unchanged without historical callers.c. Keeping only real sound entry causes compiler inline and90/100+96extras, rejected; retaining both original sound and mode entries preserves real call but83/100, mode251/387+2ownrodatarefs. Adding complete genuine original mask-helper func878E0 (ordinary exported entry), allowing real mode helper's shared contract to emerge, gives70/100, mode0/387+2ownrodatarefs and maskhelper19/74. All context unclaimed, no repeated accepted credit and no source-image placement waiver. During initial unfrozen archival extraction, trailing synthetic caller_a was detected and removed; clean fresh replay returns identical70/100. No stand-in exists in frozen final source.
+
+Final codex_sound_modes_a151 SHA9f6728ca2161b9c37099e42df0ee952293e49216f5de503a642c55d93836c420. Native frame24 agrees. Global base/register allocation and field-write schedule remain residual. No additional pressure/context variations, scorer changes, shared accepted edits or claims. All files/manifest/proofs frozen in packets.

@@ -1,0 +1,6 @@
+{
+  "command": "PYTHONPATH=. pytest -q cloud/work/static_C19/test_initialization_aliases.py",
+  "exit_code": 0,
+  "passed": 26,
+  "scope": "26 new private guard regression cases; unmasked real linked target comparison separately recorded in linked_targets.json"
+}

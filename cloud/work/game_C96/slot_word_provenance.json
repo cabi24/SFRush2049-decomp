@@ -1,0 +1,8 @@
+{
+  "proof_target": "func_800A3518",
+  "proof_target_sha256": "1b241a4f31348d417efa5fecbe323dfc92da59795fe656460a7d2281f5faa87a",
+  "accesses": "four direct LW at channel-relative140,180,220,260 then advances160; each is slot8 within40-byte records beginning132",
+  "field_type": "u32 allocation at Slot8, proving at least4-byte slot alignment",
+  "no_storage_allocated": true,
+  "source_file": "group_word_slot.c"
+}

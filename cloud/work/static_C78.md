@@ -1,0 +1,11 @@
+# C78 — exact exponent output through its real copy-loop step
+
+Complete native __write_exponent at80004878, **280 authoritative layout bytes**, strictly matches at `-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul`. Final source SHA2561882261f262dda77b2664bb28e4884a2c042ae4b872ab333916a9b004410f1d4; current canonical target hash and full recipe are frozen in the manifest.
+
+This is a single justified follow-up after C71's bounded refusal. A [primary FreeBSD historical formatter predecessor](https://cgit-dev.freebsd.org/src-test/diff/contrib/libg%2B%2B/libio/iovfprintf.c?h=vendor%2Fopenpam%2FCINERARIA&id=ced08d6d571739ffba565c4ad2656791f7fc5fd3) explicitly places the actual byte-copy operation in the for-loop iteration expression. Applying that genuine loop form to the independently reconstructed source resolves the last6word scheduling differences; the real quotient assignment remains in the decimal-loop predicate. No physical line search, fake work, pressure variable, spare formal or compiler override is involved. All existing C40/C69/C71 sources and refusal hashes remain unchanged.
+
+Original312-byte frame, actually justified308-byte digit buffer (also the reference library MAXEXP), actual pointer slot, remainder/division, sign/format bytes, two-digit minimum and return pointer are retained. No new shared typedef, global, storage or prototype is needed beyond ordinary u8 context. Empty loop body reflects that the real copy occurs in the iteration expression; it performs no dummy operation.
+
+The complete expanded actual lib_34a0 verifies all9original member bodies, exact original slots and complete8528/8528-byte text length. It includes all earlier exact C68/C69/C72 natives, C77's original-word-exact round helper and untouched formatting-worker asm. No masks, unresolved/unverified symbols, errors or omitted padding occur. C77 itself still awaits supported canonical FP-target refresh before its separate strict claim; C78 already scores0 on its current canonical target.
+
+`manifest.json`, strict results, complete module compilation/word-placement proofs, full proposed C snapshot and read-only reproduce/verify scripts freeze every relevant identity. Protected target words/objects/asm stay ignored under build/C78. No shared source, header, flags, locks, state or publication was changed; root owns independent final replay and all gates.

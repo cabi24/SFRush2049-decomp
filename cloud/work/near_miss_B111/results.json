@@ -1,0 +1,58 @@
+[
+  {
+    "source": "sound_bank_load_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "0914330dd17af0a695a2c4defca8506aa63c0984a4af222dcc8857e10364b8cc",
+    "comparison": {
+      "differing": 79,
+      "total": 91,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 88
+  },
+  {
+    "source": "sound_bank_load_argument_carriers.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "e145164438279b321aa23e340f2a56688f70b663c6ce1f192b8511b3c3c2651e",
+    "comparison": {
+      "differing": 86,
+      "total": 91,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 84
+  },
+  {
+    "source": "sound_bank_load_endpoint_loop.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "292e0ed082509403131aa2ec2c33eb1f7ead675b98f82dc24aceab524849346f",
+    "comparison": {
+      "differing": 86,
+      "total": 91,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 88
+  },
+  {
+    "source": "sound_bank_load_native_O2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "093042582f62deccd47ae834b285cacfb59d7ccd4d6f835e08a83fdeadb5217e",
+    "comparison": {
+      "differing": 79,
+      "total": 91,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 88
+  }
+]

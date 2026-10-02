@@ -1,0 +1,16 @@
+[
+  {
+    "symbol": "gFcvtBuffer",
+    "vaddr": "0x8002d4d0",
+    "extent_bytes": 16,
+    "original_sha256": "38113c36d1f8eb3558d5868d285a7ddcba11128374fd2f13537255c351ea8c2f",
+    "all_bytes_are_expected_character": true
+  },
+  {
+    "symbol": "gFcvtDigits",
+    "vaddr": "0x8002d4e0",
+    "extent_bytes": 16,
+    "original_sha256": "fcdb4b423f4e5283afa249d762ef6aef150e91fccd810d43e5e719d14512dec7",
+    "all_bytes_are_expected_character": true
+  }
+]

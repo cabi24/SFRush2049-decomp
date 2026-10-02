@@ -1,0 +1,15 @@
+{
+  "members": [
+    "render_replay_ui",
+    "render_results_screen"
+  ],
+  "context": [],
+  "claims": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "render_results_screen"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}

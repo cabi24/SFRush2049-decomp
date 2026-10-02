@@ -1,0 +1,16 @@
+{
+  "members": [
+    "dust_cloud_effect"
+  ],
+  "context": [
+    "slot_state_setup"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "dust_cloud_effect"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": []
+}

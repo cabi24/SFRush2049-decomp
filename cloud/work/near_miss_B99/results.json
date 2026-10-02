@@ -1,0 +1,44 @@
+[
+  {
+    "source": "music_tempo_set_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "bd66469606525bed5aae7c8fc1632ca84a904f47428f9e69e07fff808774cd1e",
+    "comparison": {
+      "differing": 244,
+      "total": 245,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 240
+  },
+  {
+    "source": "music_tempo_set_cursors.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "a1e4a05afdb096478456c5583191919c5e5f02f8f3787d6822a1c966058ee3ed",
+    "comparison": {
+      "differing": 244,
+      "total": 245,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 240
+  },
+  {
+    "source": "music_tempo_set_cursors_O2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "58eea0614652daba74b8eef9d4ff0c88edd19cde71bf56910faabb60c2ae0448",
+    "comparison": {
+      "differing": 244,
+      "total": 245,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 240
+  }
+]

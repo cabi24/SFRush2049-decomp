@@ -1,0 +1,20 @@
+{
+  "packet": "B103",
+  "function": "init_state_begin",
+  "address": "0x800C9BE0",
+  "bytes": 1816,
+  "claims": [],
+  "duplicate_owner": "cloud/work/large_init_state",
+  "report": "cloud/work/near_miss_B103.md",
+  "report_sha256": "f644752c6e11189f872bf005fd9955082e7241e17a35bd47478181a320e7c32f",
+  "files": {
+    "init_state_begin_level_capture.c": "9d8c4c3b3dfd313a30c7124506582c2f916fbe5e44bf53c902eddc9fdf2e7f2b",
+    "init_state_begin_native.c": "51ea537e39bd1df89e2362345dc8ae0ee1b3c4effd8fdc4171b0d79c614a40f0",
+    "init_state_begin_control_record.c": "4ca0122f6a80cfcdf6a58ac4c98797be658e481c3aad4c379822eaf042845b9f",
+    "results.json": "9db5d3ad83ff39afdfba5aace2eb941dd970f91e49d634962f9a1ffa41cbc868",
+    "init_state_begin_record_views.c": "849162e606a98aebeaf07b5a7659f89f7d9369643a556bd0a53693e3a4a9f56b",
+    "init_state_begin_typed_address_views.c": "4207783f113a7e0fb9c530394da79e77dba1ec0cfb7bb25d3574876226add1fe",
+    "init_state_begin_half_array.c": "d68ac93fbcf4674e85b90fb8d67f9f53e4ddb99b777b58dd0020c85e5fb35ae6",
+    "init_state_begin_typed_settings.c": "6dd678615aaad68e33ec2783027806aaf64e3cb4ce0d797fca662baa331ffca8"
+  }
+}

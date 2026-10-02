@@ -1,0 +1,7 @@
+# B99 — whole native model resource setup
+
+Frozen honest NONMATCH music_tempo_set@0x800B200C,980B/245 words. Three real consumed formals: signed-half player,unsigned-byte mode,int apply. Normal helper ABIs independently inspected. The historical osPfsChecker_full label atstatic8000BD90 actually implements SDKosStopThread; original SDKbody proves OSThread* signature and normal callback/thread coordination. Real Slot64/Resource68/Model952/Vehicle2056 memory offsets; no compiler local buffers invented.
+
+Whole native body includes conditional stop/masks/start; returned color, root/body/four-wheel resources; texture pointer selection; root/body/fiveextras/fourwheels updates; and final mode13 thread bit changes. Real global pointer table default entry13 follows observed pointer offset52, no new symbol/alias. Complete archival definition/report/lock audit clear before reservation. Workbench diagnose before bounded controls shows true seven-instruction geometry difference, original88-byte versus64-byte frame and one saved-register gap. Genuine separately consumed wheel-view cursor and O2 controls retained; all comparisons/literal flags/hashes sanitized in results. All are nonmatching; no errors,unresolved,unverified or extra nonzero words.
+
+No fake pressure,unused formals,manufactured aggregates,volatile,dead reads,masks or source-line sweeps. No shared accepted-source/header/lock/layout mutation or commits. Raw assembly/object/diagnosis private; empty claims.

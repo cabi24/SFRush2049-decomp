@@ -1,0 +1,4 @@
+/* Actual decoder/wrapper callee contracts, no storage. */
+extern s32 lzss_decode(void *src, void *dst);
+extern s32 inflate_entry(void *src, void *dst, s32 size);
+/* Existing shared dma_wait(s32), dma_signal(void) need no change. */

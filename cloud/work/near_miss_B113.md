@@ -1,0 +1,7 @@
+# B113: complete resource allocation and queue submission, frozen nonmatch
+
+`audio_state_save @0x80095D04`,436B/109 protected words, is genuinely eligible on the current local main lock and canonical interval audit. The complete native three-input body allocates an actual 24-byte record, writes six consumed flags, generates a wrapping handle, assigns the real resource ID and submits two float values through an actual queue node. It is appended to the byte-for-byte unchanged A31 source prefix after a literal actual flags line. A31 is NONMATCHING context, despite an earlier reservation message mistakenly describing it as accepted; no context coverage is claimed.
+
+Native differs105/109. A genuine explicit allocation-success Boolean, consumed by the failure path and corresponding to original v0, differs96/109. Both leave the actual A31 helper/two callers unchanged at44/53,14/32,8/46. No errors, unresolved/unverified references or nonzero excess words. Native frame56 versus original80 remains; private workbench diagnosis preceded the success-flow control. No padding, unused declarations or buffer sizing is introduced to force a frame.
+
+Both complete genuine groups, fresh independent canonical results and manifests are frozen. Claims remain empty. Shared accepted sources, locks, layouts, targets and scorers are untouched. Raw objects, original words and diagnosis remain private /tmp or Rocky scratch. Image/ROM/pytest acceptance does not apply to nonmatches.

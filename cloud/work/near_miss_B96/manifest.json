@@ -1,0 +1,23 @@
+{
+  "packet": "B96",
+  "function": "menu_audio_settings",
+  "address": "0x800CED3C",
+  "size_bytes": 816,
+  "target_words": 204,
+  "claims": [
+    {
+      "kind": "strict_native_match",
+      "root_acceptance_pending": true
+    }
+  ],
+  "files": {
+    "menu_audio_settings_expressions.c": "2c7d8fefa87c070e6d10fcb664a576c8fef35fab7b05b457d0ba496757ec2a71",
+    "menu_audio_settings_vectors.c": "7348847086e77bb47e20d9c7d7bd5ddd1391a15a7ed71a0abd6c1007fc5ae843",
+    "menu_audio_settings_native.c": "59b0d8172b01ff750dc42b7981ceeedb2ca1e3b5d5d34108829c069fa0bb13b4",
+    "results.json": "84f49415483b4bd9a3fa53af4701b092dfcbe5bc6a2741246b39bdd61a2ae2d9",
+    "menu_audio_settings_arrays.c": "7db9cbf8d9f76eaea999bd158115951717c081d656b803fe26e2afe93b5f03fc",
+    "menu_audio_settings_signed.c": "42e9c26a47cc301a23b17ec67c70f134d20f64f10514dcd9387c8ee0920789c2",
+    "placement_proof.json": "091702dd225bb909c9868856c58e24cdac2d5fff6c77f1b7e22381c31a5795fa"
+  },
+  "report_sha256": "16748d4dfa65b80d586ee4ba17df135273750e27a0d63b122bc15321711075a9"
+}

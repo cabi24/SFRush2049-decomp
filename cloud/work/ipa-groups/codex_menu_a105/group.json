@@ -1,0 +1,16 @@
+{
+  "members": [
+    "func_800CCA04"
+  ],
+  "context": [
+    "format_string_parse"
+  ],
+  "claims": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_800CCA04"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}

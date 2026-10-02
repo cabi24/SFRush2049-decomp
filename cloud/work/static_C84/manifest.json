@@ -1,0 +1,22 @@
+{
+  "packet": "C84",
+  "status": "frozen_nonmatch",
+  "functions": [
+    "__fixdfdi",
+    "__fixsfdi",
+    "__floatdidf",
+    "__floatdisf"
+  ],
+  "source_hashes": {
+    "__fixdfdi.mips3.c": "0e736373b4d4767e7e47f0fb05bf4ebd3297180e774094d1cd4c6f0964b81b7a",
+    "__fixdfdi.mips3_32.c": "f0db75ec4c016cb94fd2434c61cdabae0a7512a5ffff9ff1b52b8e20f3898ee6",
+    "__fixsfdi.mips3.c": "b455e1b05de7a6b867ef18b12799ceabf570f7b09e8842efdbf59bde6e7099a0",
+    "__fixsfdi.mips3_32.c": "ebd4ed04534ff14d34652c05bf5d5316e8dee872715a2ffe96cb4535a67dd309",
+    "__floatdidf.mips3.c": "d9828622346c9794e456876d392ffd514ff41c737397c71fb7eb13905c362657",
+    "__floatdidf.mips3_32.c": "ef4809683728225106450cb4d9c0ffc72c6cdefd0dd768c9c3505ac9007baee7",
+    "__floatdisf.mips3.c": "8ee76d6f6e72ca8fb977e567126a53990e3df89ea72b78879148fa1b8a3b5828",
+    "__floatdisf.mips3_32.c": "29237b8c62eada3d2c88d30711841c60aeeb40f5ecafd77cc98043b49a7297d5"
+  },
+  "claims": [],
+  "refusal": "Documented IDO MIPS3/o32 backend does not emit required native 64-bit FP register transfers; plain genuine casts cannot match these hand-written helpers. No source tricks or backend patches attempted."
+}

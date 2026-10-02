@@ -1,0 +1,20 @@
+[
+  {
+    "function": "func_800A3424",
+    "variant": "func_800A3424.consumed_channel",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 2195,
+    "linked": {
+      "differing": 54,
+      "total": 57,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "9e87a67a5569723a9addf40d87aae99ef6ac8b500ddc53c1251df401ce7b1e05",
+    "target_sha256": "306b6652a7beb4a0473a3cba3d38669c1383322bb2f98e336351274bb21dbe5c"
+  }
+]

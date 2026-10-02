@@ -1,0 +1,9 @@
+# B119: genuine Gfx rectangle closure
+
+No new matching or coverage claim. Fresh candidates: func_8008A46C118w, func_8008A148145w, func_8008705C45w; real func_800878E074w follows A151's frozen nonmatching source. Root and A lane ownership checked before reconstruction, LOCAL main locks/aliases/intervals plus source/archive filenames audited. Palette leaf and rectangle/clear-mask bodies are newly complete native source.
+
+The clean A151 prefix is byte-for-byte preserved in every group (SHA-256 9f6728ca2161b9c37099e42df0ee952293e49216f5de503a642c55d93836c420). It contains full mode helper, sound_init and mask-set helper, with no stand-in callers. Mode helper is already accepted; sound_init remains70/100 and mask-set19/74 unclaimed. Every mode helper result has 0/387 differing instructions BUT two unverified own-rodata references; this is not a strict MATCH or any new claim.
+
+Baseline group: rectangle71/118, palette101/145, mask-clear11/45. Workbench diagnosis ran before refinements; rectangle frame is exact24 but allocation and scheduling differ. Bounded controls use one actual shared command pointer, an actual existing22-word alpha caller with real full arguments, or a consumed command word-value scalar. Shared command pointer and value forms worsen the result. The genuine alpha caller extension reproduces the same residuals; its22-word entry remains0/22 but was already accepted, so receives no new credit. Existing accepted source remains untouched.
+
+All group results have zero errors, unresolved references and nonzero excess words. New candidates have no unverified references. The standalone145-word palette source likewise remains101/145, no claim. All literal first-line flags, source/object hashes and actual canonical results are frozen in each verification file. No fake wrapper, arbitrary unused storage/formals, masks, line sweeps or shared acceptance mutation. Raw original words and objects remain temporary/private.

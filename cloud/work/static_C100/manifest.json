@@ -1,0 +1,27 @@
+{
+  "target_id": "osAiSetNextBuffer",
+  "vaddr": "0x8000BE70",
+  "slot_bytes": 144,
+  "actual_module": "rom/lib_ca70",
+  "current_pin": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "source": "cloud/work/static_C100/osAiSetNextBuffer.c",
+  "source_sha256": "60788414bd92950fde0e12483e979bd4ee01588dec8a98a7c75827d3e76c24d1",
+  "object_sha256": "a8b5232aef91fddd038cb440d68aeec00d2c0de21aeed3036fe94b3e9fad6431",
+  "target_sha256": "ca817bd297fdb28a69dc5606c5b6328342be98d7d5f9e0690037a385e130f6f0",
+  "target_roundtrip_gate": [
+    true,
+    null
+  ],
+  "strict_score_including_stack": 335,
+  "true_native_instruction_count": 35,
+  "original_instruction_count": 36,
+  "native_frame": 24,
+  "original_frame": 24,
+  "native_data_bytes": 16,
+  "meaningful_flag_bytes": 1,
+  "original_flag_vaddr": "0x8002C3C0",
+  "storage_ownership_registered": false,
+  "debug_o1_strict_score": 2449,
+  "accepted_credit": 0,
+  "status": "frozen canonical SDK file-static storage hypothesis nonmatch"
+}

@@ -1,0 +1,14 @@
+{
+  "local_main_lock_sha256": "b6427ddd9186cfb0e9381f16db90008063e0bfde5cf47c62a35903b66df89a0c",
+  "target": "sound_init",
+  "name_locked": false,
+  "accepted_overlaps": [],
+  "canonical_entries": [
+    {
+      "kind": "function",
+      "size": 400,
+      "target_id": "sound_init",
+      "vaddr": 2148157748
+    }
+  ]
+}

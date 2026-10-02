@@ -1,0 +1,7 @@
+{
+  "claims": [],
+  "status": "NONMATCH",
+  "source_sha256": "6b459be38eab0d962f2b790cf5e715e0d26821c3dd72042e6b839ea9d64d53b9",
+  "manifest_sha256": "8e52519c343f70cb3a0a10b56bc352438f8cb537e0792ae4878e1c122c636365",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}

@@ -1,0 +1,56 @@
+[
+  {
+    "function": "camera_lerp_position",
+    "variant": "camera_lerp_position.data_first",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 760,
+    "linked": {
+      "differing": 22,
+      "total": 95,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "9613298d7bf521b3fd1b53f0891d8235f178d28a6c5373bfe6e9b64e5015021b",
+    "target_sha256": "7d33bc26103eb9dd2b3c08b650aa396d0ec9d6268f9b9a68ed278d52db2e4a26"
+  },
+  {
+    "function": "camera_lerp_position",
+    "variant": "camera_lerp_position.consumed_data",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 735,
+    "linked": {
+      "differing": 17,
+      "total": 95,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "0a7245557de696ec0a3b573c9d01f00b4b19ce955c74cef066bae01dc7e4ac44",
+    "target_sha256": "7d33bc26103eb9dd2b3c08b650aa396d0ec9d6268f9b9a68ed278d52db2e4a26"
+  },
+  {
+    "function": "camera_lerp_position",
+    "variant": "camera_lerp_position.list_addresses",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 760,
+    "linked": {
+      "differing": 22,
+      "total": 95,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "15c56d08f1d28458d17968db18c42b9523b8881ea6b79d93b29cc46730ab234f",
+    "target_sha256": "7d33bc26103eb9dd2b3c08b650aa396d0ec9d6268f9b9a68ed278d52db2e4a26"
+  }
+]

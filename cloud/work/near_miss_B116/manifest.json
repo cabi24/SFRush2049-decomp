@@ -1,0 +1,16 @@
+{
+  "claims": [],
+  "target": "entity_render_setup",
+  "vaddr": "0x8008C884",
+  "size_bytes": 2048,
+  "files": {
+    "cloud/work/near_miss_B116/entity_render_setup_callback_abi.c": "a10a6c3ea20a45165856661bbd74c71b6bdb1db338e4c9aec08e90ffe5861476",
+    "cloud/work/near_miss_B116/entity_render_setup_mode_flow.c": "71d54233207b178a1be29d346ecc232d24e9063ea08995b696f7d3eaf33c4d63",
+    "cloud/work/near_miss_B116/entity_render_setup_mode_flow_O2.c": "5225f3b48ac325a1cdbd43443764c2a250c37ead3635175d9e5627eac54f7437",
+    "cloud/work/near_miss_B116/entity_render_setup_shared_projection.c": "0549b064dc96b3feff462377dbd1b7496a6fb2d23a7e2c812f5b4b6aee2da0b2",
+    "cloud/work/near_miss_B116/entity_render_setup_visibility.c": "e1f079c9657fc4dc723f478fea349e9da626dedee0bdf244e0f315d562f677ee",
+    "cloud/work/near_miss_B116/entity_render_setup_native.c": "1db447eafa75f2721a547f5223e7e77ecf0ce42d124456691122412b6ccf675e",
+    "cloud/work/near_miss_B116/results.json": "57c1a14536069c3d0fa3aff4479ff5293f5fdc9f1027046f59cf5a7ae7ea5fe1",
+    "cloud/work/near_miss_B116.md": "f810d057015884c0926a1e44180df13e1f0b8121b3822ece64a7b60ba62020ea"
+  }
+}

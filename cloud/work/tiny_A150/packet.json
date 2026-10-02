@@ -1,0 +1,8 @@
+{
+  "claims": [],
+  "status": "NONMATCH",
+  "sources": {
+    "func_800D6530_counted.c": "4cbb36c2ffc6124900798390e398a7903345437ab38e94fb0d7f7ef634649fb3",
+    "func_800D6530.c": "dcaa569dd37c6657058a61e54850abfb4c119a1222841b44d7542f62243f3147"
+  }
+}

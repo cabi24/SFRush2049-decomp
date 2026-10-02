@@ -1,0 +1,62 @@
+[
+  {
+    "source": "func_800E23A4_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "4855a96fffb9e6609247ebad69268ef9aede324dbca64ff910467429dc7cd5d1",
+    "comparison": {
+      "differing": 226,
+      "total": 422,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 420,
+    "rejected_semantics": true
+  },
+  {
+    "source": "func_800E23A4_corrected.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "3f19b5ff707cebf446366a52d4235842aa72cceccb8fdd526694092046cb61d2",
+    "comparison": {
+      "differing": 296,
+      "total": 422,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 420,
+    "rejected_semantics": false
+  },
+  {
+    "source": "func_800E23A4_corrected_O2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "b4de4f5f05af45932db4c4a482214c4c1a36df3f0f1c437a340cb9d4d589d225",
+    "comparison": {
+      "differing": 296,
+      "total": 422,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 420,
+    "rejected_semantics": false
+  },
+  {
+    "source": "func_800E23A4_predicate.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "e1a8c35c223c8ff89090271bd70069a6080a4a5bc9aea34110e4a15bf8914689",
+    "comparison": {
+      "differing": 329,
+      "total": 422,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 420,
+    "rejected_semantics": false
+  }
+]

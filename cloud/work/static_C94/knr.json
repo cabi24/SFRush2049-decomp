@@ -1,0 +1,26 @@
+[
+  {
+    "function": "inflate_free_window",
+    "variant": "inflate_free_window.knr",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 7032,
+    "raw_word_diff": 320,
+    "candidate_words": 308,
+    "source_sha256": "989f8e665a9679e8d0205275ffb567fafc14ca9c3b85ad100260435d9da52933",
+    "target_sha256": "6c45a872539c49aa51fb7450c069714cfa0ddfecf0f04cb68306ee9ac3480005"
+  },
+  {
+    "function": "inflate_free_window",
+    "variant": "inflate_free_window.volatile_knr",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 7437,
+    "raw_word_diff": 309,
+    "candidate_words": 324,
+    "source_sha256": "755bd48786269c160bbf200cf6871ba88ed197882e2f786a9864fbb42ab923da",
+    "target_sha256": "6c45a872539c49aa51fb7450c069714cfa0ddfecf0f04cb68306ee9ac3480005"
+  }
+]

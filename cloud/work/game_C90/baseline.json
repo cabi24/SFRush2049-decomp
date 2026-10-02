@@ -1,0 +1,23 @@
+[
+  {
+    "function": "func_800A1E94",
+    "variant": "func_800A1E94",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 15,
+    "linked": {
+      "differing": 3,
+      "total": 33,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x10",
+        ".rodata+0x0 at +0x18"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "f42c970048d3daafbc637949fd9e5e58493ce73db15c782d9ce2509fc2c3c686",
+    "target_sha256": "2cb3e584ae889fef16b1d5f5787d52c42d1288b944c3da3a134ebb7a318e3f9e"
+  }
+]

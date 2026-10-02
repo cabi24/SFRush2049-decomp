@@ -1,0 +1,29 @@
+{
+  "function": "fcvt",
+  "original_words": 987,
+  "differing_full_words": 0,
+  "extra_nonzero_words": 0,
+  "section_placement": "independent private GNU link at original .text/.data/table addresses, section align4 for original table",
+  "sections": [
+    {
+      "section": ".data",
+      "original_vaddr": "0x8002d4d0",
+      "verified_original_bytes": 32,
+      "emitted_bytes": 32,
+      "differing_full_bytes": 0,
+      "extra_nonzero_bytes": 0,
+      "original_sha256": "97fec1b1f0590aae7f183f80616a56a2025d734bf9288dcbfdae512678816fc2"
+    },
+    {
+      "section": ".rodata",
+      "original_vaddr": "0x8002d558",
+      "verified_original_bytes": 356,
+      "emitted_bytes": 368,
+      "differing_full_bytes": 0,
+      "extra_nonzero_bytes": 0,
+      "original_sha256": "6c8434640414a8bf729d13362022b6286e0ae23866e77d6e05d39a2b61262370"
+    }
+  ],
+  "source_sha256": "f3bce9a85d791018f1cd2e28bb5f106ea4bd0f2b5915bbb2d74cef30ee335b04",
+  "object_sha256": "5d15560831663d0934c4664d84389a362a450886882c955b7e05b8a4da75ef66"
+}

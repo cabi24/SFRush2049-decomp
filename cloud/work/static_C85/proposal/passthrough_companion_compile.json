@@ -1,0 +1,11 @@
+{
+  "private_transition_only": true,
+  "native_functions": 8,
+  "fcvt_body": "original asm passthrough",
+  "compile_exit": 0,
+  "stderr": "",
+  "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm -Iinclude -Iinclude/PR -Irom -D_LANGUAGE_C",
+  "source_sha256": "d2371a76bed13b24dbc468a85236461eb5ee656d291a7bc59444450db7ccf45c",
+  "object_sha256": "553f905941c9e2bfe07b3c8f9d0c9303b96bb273d65fe45fce58e5a96b12bbd2",
+  "companion_sha256": "bbe8685e3f50bb2cd7b152ba2ee2797ea30d150d600ec4ec01502acefbd56b81"
+}

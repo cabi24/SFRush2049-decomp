@@ -1,0 +1,9 @@
+# C80 — full native startup body; isolated original-frame residual
+
+Fresh game_init at80002238,708 authoritative layout bytes, is fully reconstructed with actual SDK queue/thread/scheduler types, real callbacks, decompression/cache/BSS initialization, sync handshake and infinite runtime loop. Eight bounded native/recipe controls were compiled privately; no prior source, shared state or accepted neighbor was changed.
+
+The best final source `game_init.client_message.c` reproduces **173/177 original fully relocated words**. Its only four differences are the frame decrement, actual incoming argument home/reload, and frame restoration: the candidate frame is56bytes, original80bytes. Every call, branch, real message slot44, real client slot48, saved-register slot and original operation otherwise matches. Nested actual get_tv_offset argument expresses the original s0 intermediate and call scheduling naturally; declaration order of the two actual consumed locals recovers their real slots.
+
+The original remaining24bytes have no addressed local storage in the body. Actual SDK OSScClient is8bytes, confirmed by both the shared type and canonical sched.h. The real callee uses only its next/queue fields. There is insufficient evidence for additional original consumed locals or a larger client type. No invented padding, capacity, unused local, extra formal or pressure operation was introduced to force the frame. g2/O1 and g1/O2 remain58; g0/O0 and g1/O0 regress. No claim or whole-module replacement is made.
+
+Literal flag lines, immutable source/target/object hashes, all strict scores and sanitized full-word counts are frozen. Objects/original words remain ignored under build/C80. Move fresh rather than widen the unsupported frame search; the C76 exact sources and complete module proof remain untouched.

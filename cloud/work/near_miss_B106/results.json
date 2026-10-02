@@ -1,0 +1,86 @@
+[
+  {
+    "source": "particle_lifetime_set_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "41fc611f482dd14fa4207ec2f9fef1ea977e125dba5d18ccbb94fcc604b1c358",
+    "comparison": {
+      "differing": 157,
+      "total": 183,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 184
+  },
+  {
+    "source": "particle_lifetime_set_scalar_views.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "b5fe13ff1e80639032d90b16b1d8271f07f07fe665f696734fa2fdc59cb722b7",
+    "comparison": {
+      "differing": 157,
+      "total": 183,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 184
+  },
+  {
+    "source": "particle_lifetime_set_rgba.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "00937de9f624e65f6726179c917f5b177d3088ff60ca0ff73d928e90d8b96bf2",
+    "comparison": {
+      "differing": 157,
+      "total": 183,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 184
+  },
+  {
+    "source": "particle_lifetime_set_name_cursor.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "497bd1bba157644456b759be6ef639b2ee74f55389d6da490f4e420f060d5618",
+    "comparison": {
+      "differing": 157,
+      "total": 183,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 184
+  },
+  {
+    "source": "particle_lifetime_set_word_handle.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "72b932a72707f68fecda0fc45e06cc448786e2fa2659bbc4921c0cf0acf106f2",
+    "comparison": {
+      "differing": 157,
+      "total": 183,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 184
+  },
+  {
+    "source": "particle_lifetime_set_word_handle_O2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "6b3f0745dbc6ed5ba73ff23b801744809e206ea9ba0daa1292709dba271c43ee",
+    "comparison": {
+      "differing": 157,
+      "total": 183,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 184
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "function": "inflate_free_window",
+    "variant": "inflate_free_window.o1",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 14984,
+    "raw_word_diff": 347,
+    "candidate_words": 348,
+    "source_sha256": "01e55cdacf1ea3a9b14d3244cfcf2e8eeacab740454fdacfb60787729b8f762b",
+    "target_sha256": "6c45a872539c49aa51fb7450c069714cfa0ddfecf0f04cb68306ee9ac3480005"
+  },
+  {
+    "function": "inflate_free_window",
+    "variant": "inflate_free_window.volatile_o1",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 17544,
+    "raw_word_diff": 379,
+    "candidate_words": 384,
+    "source_sha256": "b1672f13a13093110e968595389f794dfcbb42f1d089e52eb3280d1cc62a02e2",
+    "target_sha256": "6c45a872539c49aa51fb7450c069714cfa0ddfecf0f04cb68306ee9ac3480005"
+  }
+]

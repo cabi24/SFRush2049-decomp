@@ -1,0 +1,11 @@
+{
+  "canonical_full_image_word_differences": {
+    "track_lighting_setup": 0
+  },
+  "original_table_entries": 7,
+  "table_image_address": "0x801245e4",
+  "table_used_bytes": 28,
+  "table_sha256": "6a7761ba4c45d0d6808907b1c6c9ff776fa8b43bdd012a8f8a15e92b1f18b95e",
+  "relocated_table_matches_original": true,
+  "source_sha256": "d4417114c909d09977b6ad6c0ea1cd2085df904cde053659a5f74a12340af14f"
+}

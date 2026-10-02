@@ -1,0 +1,43 @@
+{
+  "status": "refused_nonmatch",
+  "sources": [
+    "cloud/work/game_C96/group.c"
+  ],
+  "source_sha256": "af071abf35c284f1309c04b86b3ab0f2010d8c8ddc22211f920ff09bf4bd56ad",
+  "spec": "group.json",
+  "compile_exit": 0,
+  "compiler_path": "actual production blob_group.builder_script whole-program stages",
+  "authoritative_bytes": 2440,
+  "accepted_credit": 0,
+  "best_lead": {
+    "function": "MaxPathZeroControls",
+    "differing_words": 12,
+    "total_words": 99,
+    "original_frame": 88,
+    "candidate_frame": 72,
+    "original_real_message_offset": 76,
+    "candidate_real_message_offset": 68
+  },
+  "complete_members": [
+    "func_800A1C6C",
+    "track_data_decompress",
+    "func_800A1DD4",
+    "func_800A1BB4",
+    "track_collision_setup",
+    "MaxPathZeroControls",
+    "slot_state_lookup"
+  ],
+  "local_lock_interval_audit": "local_lock_interval_audit.json",
+  "group_scores": "group_scores.json",
+  "unresolved": [],
+  "unverified": [],
+  "errors": [],
+  "extra_words_best_group": 0,
+  "source_provenance": "Complete actual dirty-bitmap/PFS flush closure from original instructions; ordinary shared SDK types from unmodified header snapshot. Original A1DD4 redundant bounds branches carry no invented error or return; compiler strips them, honestly causing mismatch.",
+  "newest_full_native_source": "cloud/work/game_C96/group_nonzero_block.c",
+  "newest_full_native_source_sha256": "5e1fadce2bba126eb28cfdd1317dbf49ff6e2c9485a5c22ac77d712a4fc3bdcb",
+  "newest_full_native_object_sha256": "524afa621b8bcc679e9e3b7885890d305120806223f3e65a32dde2cc3972d330",
+  "newest_scores": "nonzero_block_scores.json",
+  "newest_A1C6C_differing": 67,
+  "grounded_improvement": "Original nonzero-byte scan has a nested conditional body, not continue; real completion flag declaration moved before file pointer. All other members unchanged. Proved Slot+8 word retained, no extra native words."
+}

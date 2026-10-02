@@ -1,0 +1,55 @@
+{
+  "function": "game_init",
+  "vaddr": "0x80002238",
+  "layout_bytes": 708,
+  "claims": [],
+  "decision": "refused: unsupported 24-byte original frame residual",
+  "best_source": "cloud/work/static_C80/game_init.client_message.c",
+  "best_strict_score": 58,
+  "best_full_word_differences": 4,
+  "original_words": 177,
+  "original_frame_bytes": 80,
+  "candidate_frame_bytes": 56,
+  "sources": [
+    {
+      "source": "cloud/work/static_C80/game_init.c",
+      "source_sha256": "d6d3db2cfdcca66aff937e9ad2661ec62d4c606cbd44e1a5a3259a1c989289c0",
+      "literal_flags": "/* flags: -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul */"
+    },
+    {
+      "source": "cloud/work/static_C80/game_init.client_message.c",
+      "source_sha256": "551f522c61789c64ac8c33940a06ca6f189fef872b2666a37ecbfbb1768438e2",
+      "literal_flags": "/* flags: -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul */"
+    },
+    {
+      "source": "cloud/work/static_C80/game_init.g0o0.c",
+      "source_sha256": "c126251c08494478211dcb0e28852ad659099666ce8286174b2dc52afaee8e9c",
+      "literal_flags": "/* flags: -g0 -O0 -mips2 -G 0 -non_shared -Wab,-r4300_mul */"
+    },
+    {
+      "source": "cloud/work/static_C80/game_init.g1o0.c",
+      "source_sha256": "57f6f9559904b52d08176b9a090650ea9fa4108d1d319dfae9d113fb44a91e9f",
+      "literal_flags": "/* flags: -g1 -O0 -mips2 -G 0 -non_shared -Wab,-r4300_mul */"
+    },
+    {
+      "source": "cloud/work/static_C80/game_init.g1o2.c",
+      "source_sha256": "57f1244b51b864a7aa5cd1e357dd0ed9dd14e9e6c64ba2c95c07bed33184e506",
+      "literal_flags": "/* flags: -g1 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul */"
+    },
+    {
+      "source": "cloud/work/static_C80/game_init.g2o1.c",
+      "source_sha256": "1c9b0f9c0b88d28e9fb8c9fe853e648e4953f0674d804a4565991c717d9f3c84",
+      "literal_flags": "/* flags: -g2 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul */"
+    },
+    {
+      "source": "cloud/work/static_C80/game_init.nested_tv.c",
+      "source_sha256": "7ea4002bf79f2901b26aa27bc68cf17462b1e2f5449e581118d968eee31af9fa",
+      "literal_flags": "/* flags: -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul */"
+    },
+    {
+      "source": "cloud/work/static_C80/game_init.register_tv.c",
+      "source_sha256": "4de5f9e11ba17b0997b8ec06089a620733f7b2f70bd637bd801148b9eaeb3ecf",
+      "literal_flags": "/* flags: -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul */"
+    }
+  ]
+}

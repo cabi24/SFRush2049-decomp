@@ -1,0 +1,13 @@
+[
+  {
+    "function": "game_init",
+    "variant": "game_init.register_tv",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "4de5f9e11ba17b0997b8ec06089a620733f7b2f70bd637bd801148b9eaeb3ecf",
+    "target_sha256": "fc30aa842b0602dea9fdbf7c526d365a26ebe6823dce8f7fd3456454bcb34697",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict_score": 264,
+    "object_sha256": "058412bca95b852e26a87ed43f48f3f2a96e19bdac4e7e983de5d878dfaafab4"
+  }
+]

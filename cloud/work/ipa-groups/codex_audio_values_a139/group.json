@@ -1,0 +1,27 @@
+{
+  "members": [
+    "audio_bus_route",
+    "sound_priority_set",
+    "audio_stream_control"
+  ],
+  "context": [
+    "audio_fade_control",
+    "gfx_setup_e700",
+    "audio_timing_sync",
+    "func_800956BC"
+  ],
+  "claims": [],
+  "files": [
+    "group.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "keep": [
+    "gfx_setup_e700",
+    "audio_timing_sync",
+    "audio_bus_route",
+    "sound_priority_set",
+    "audio_stream_control",
+    "func_800956BC"
+  ],
+  "provenance": "A139 genuine three floating field updates with complete actual lookup and unchanged accepted A31 helper/caller bodies unclaimed"
+}

@@ -1,0 +1,17 @@
+{
+  "source_sha256": "d9b44662e173a1fbb84c5c8dc8d13404f454b73a82e0d45299bb577b7810569e",
+  "manifest_sha256": "60886cec4ed85b8c48126862ccb52f294420f085b20dea0585a80a9a4bedd91f",
+  "object_sha256": "d1ce7e6f1b45b4eb8745e9d5594dd386c73bf82c12f78ea3d1319d7960b1f037",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "claims": [],
+  "exact_functions": {
+    "func_8009E820": {
+      "words": 37,
+      "bytes": 148,
+      "unmasked_exact": true
+    }
+  },
+  "unclaimed_nonmatches": [
+    "menu_control_settings"
+  ]
+}

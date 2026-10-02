@@ -1,0 +1,10 @@
+{
+  "status": "NONMATCH",
+  "claims": [],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "sources": {
+    "helper.c": "ca8eba03136b08ee6cbf9ba653ecd6252789024989c1490f8a3ff5544942d850",
+    "countdown.c": "4e048c2c33c46822763268fc13adfa555aeaff7d4c05cf0495e3c57bfc4f6180"
+  },
+  "manifest_sha256": "e5b33c669e94a41bf1fc5233ad9200811e87a2fb2213b0a483485a27e38a9da0"
+}

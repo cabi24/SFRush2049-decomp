@@ -1,0 +1,31 @@
+{
+  "source_sha256": "98c6a7ce0d7d4b5edfe60b51228dc6eb60687aab5af263246f2f1195e03c881a",
+  "object_sha256": "9620635ea6b69cc607c8a563f38155f3a4a9656301e035a27aa0a30560956f95",
+  "members": {
+    "entity_transform_calc": {
+      "bytes": 440,
+      "exact": true,
+      "body_sha256": "12cf24b1371782655ff6ccaac6c0e47a73c2eafc31a058ec251f5a701f99c995"
+    },
+    "client_sync": {
+      "bytes": 216,
+      "exact": true,
+      "body_sha256": "e00bd77c09dae04d25cb1de2a0b41bc572c7c250e42507ee9078efbc0ba245b5"
+    },
+    "entity_hierarchy_update": {
+      "bytes": 136,
+      "exact": true,
+      "body_sha256": "91ae6e572e43923d6b37dcd487074200c38ec930e0485b6a003a5b4ffa0896bf"
+    },
+    "stat_lap_complete": {
+      "bytes": 220,
+      "exact": true,
+      "body_sha256": "101dc3bbf6663579ad460d602c4e688e14ec410e4aae11b236de1cef9a38920a"
+    },
+    "game_timer_resume": {
+      "bytes": 220,
+      "exact": true,
+      "body_sha256": "5297500d8e20b977e756d1cc73ccca7ed36e3fef45c5b73eb4cc1126ad899767"
+    }
+  }
+}

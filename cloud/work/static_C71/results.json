@@ -1,0 +1,112 @@
+[
+  {
+    "function": "__write_exponent",
+    "variant": "__write_exponent.O2",
+    "flags": "-g1 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "b116c045e3b19f451215eb9661df609946dfc3c9cb4c944d7ca0d6e37abeb749",
+    "target_sha256": "7dd51a3c80e50b0638dea830d2c1f2890d3e9e7b09ad0662ab40c4a6ef6cc184",
+    "compile_exit": 0,
+    "stderr": "\nuopt: Warning: file not optimized; use -g3 if both optimization and debug wanted\n",
+    "strict_score": 805,
+    "object_sha256": "a45ff3178001484ff1fe8e5d00c9a7375111fa0076e0fad82e74ef0d537b034e"
+  },
+  {
+    "function": "__write_exponent",
+    "variant": "__write_exponent.O0",
+    "flags": "-g1 -O0 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "8c09a4279bd814ef71ba3ef3b33e8219cca775f39a084ed3db7e61b3ac2c70df",
+    "target_sha256": "7dd51a3c80e50b0638dea830d2c1f2890d3e9e7b09ad0662ab40c4a6ef6cc184",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict_score": 1705,
+    "object_sha256": "781ef568d3958ffa2b98c172d707514428e94efb6f327486fa72fd7f3975a895"
+  },
+  {
+    "function": "__write_exponent",
+    "variant": "__write_exponent.copy_for",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "6e567fea1ef7a2a564b8497150fab380b15df972d20c066ec05c0fb5d51baa9e",
+    "target_sha256": "7dd51a3c80e50b0638dea830d2c1f2890d3e9e7b09ad0662ab40c4a6ef6cc184",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict_score": 375,
+    "object_sha256": "9e62109f9e134073f77b0356ec90479d319323336f17611f04642c6ebffb45cd"
+  },
+  {
+    "function": "__write_exponent",
+    "variant": "__write_exponent.copy_separate",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "dc41f9349ba46e5451f71dbf1efc6e28b3dabf7cfd948d74345c8ff911dfc4d0",
+    "target_sha256": "7dd51a3c80e50b0638dea830d2c1f2890d3e9e7b09ad0662ab40c4a6ef6cc184",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict_score": 870,
+    "object_sha256": "98349bf73f2b63556b0e5d65e566886dd9e4564001d28a4f7e0440e03a3d47f9"
+  },
+  {
+    "function": "__write_exponent",
+    "variant": "__write_exponent.copy_do",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "ded2f03fd92ba3e4852b543b829fda63e8fad1356b41e0a044eef2696cfa25dc",
+    "target_sha256": "7dd51a3c80e50b0638dea830d2c1f2890d3e9e7b09ad0662ab40c4a6ef6cc184",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict_score": 805,
+    "object_sha256": "8c516a3cfb5aaa119dbb796814c25b50e13c40956d7aa5c3b2bb64b6b90afaac"
+  },
+  {
+    "function": "__write_exponent",
+    "variant": "__write_exponent.quotient_condition",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "bc74f71ebeda32d18d11a25fa3155f3c0501e804599f1e3fe3f95d20f382b0d8",
+    "target_sha256": "7dd51a3c80e50b0638dea830d2c1f2890d3e9e7b09ad0662ab40c4a6ef6cc184",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict_score": 275,
+    "object_sha256": "4bbfc0578fc00bf8c9f1fc7b3d6f3ff09fb77c0319913ceaff68dfc542f4de16"
+  },
+  {
+    "function": "__write_exponent",
+    "variant": "__write_exponent.copy_step_both",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "55b98907a1321bdd4a0d6c680f880731006d1abc47a1d68747be0613a8da96fd",
+    "target_sha256": "7dd51a3c80e50b0638dea830d2c1f2890d3e9e7b09ad0662ab40c4a6ef6cc184",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict_score": 500,
+    "object_sha256": "fb7b41fc3aa4d844f735a359a5c8c5c0dc39e57a5b8c7b1d578c12b32b9a9b8f"
+  },
+  {
+    "function": "__write_exponent",
+    "variant": "__write_exponent.copy_condition_step",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "ac1b90e98cd3a59c2603e6678665648b760012f27a9006ceab6d862e27640b57",
+    "target_sha256": "7dd51a3c80e50b0638dea830d2c1f2890d3e9e7b09ad0662ab40c4a6ef6cc184",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict_score": 375,
+    "object_sha256": "d1fd2f8952dab38739bead0be659026f3d08bd7916ab8fbf563577f89280c7da"
+  },
+  {
+    "function": "__write_exponent",
+    "variant": "__write_exponent.copy_byte",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "d844842afd70fbdb985fa0ccbacdc58f897c7ff50ce15ac496210c70d0da1a26",
+    "target_sha256": "7dd51a3c80e50b0638dea830d2c1f2890d3e9e7b09ad0662ab40c4a6ef6cc184",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict_score": 809,
+    "object_sha256": "eda6184b9991981a0ef9aadcdb4e033f8838ac0503e7461c0bdf79ed475500c5"
+  },
+  {
+    "function": "__write_exponent",
+    "variant": "__write_exponent.copy_byte_condition",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "0e557ee9e173fba31f2e2d8a0ffacaca513bef83f258007ea149521b29002409",
+    "target_sha256": "7dd51a3c80e50b0638dea830d2c1f2890d3e9e7b09ad0662ab40c4a6ef6cc184",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict_score": 809,
+    "object_sha256": "2d2f510c757778c92f2b046372b0f91ef6e3faa08c824c7b50f6f71ee2bf7f98"
+  }
+]

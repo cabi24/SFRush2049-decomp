@@ -1,0 +1,101 @@
+{
+  "status": "private production draft verified; no publication claim",
+  "native_function_count": 8,
+  "fcvt_body_passthrough": true,
+  "draft_sha256": "dff042090648401770e4a833c658d59d57061d3df61339095b7d7ce6cdfb2295",
+  "source_sha256": "d2371a76bed13b24dbc468a85236461eb5ee656d291a7bc59444450db7ccf45c",
+  "input_object_sha256": "553f905941c9e2bfe07b3c8f9d0c9303b96bb273d65fe45fce58e5a96b12bbd2",
+  "normalized_object_sha256": "a882f39ce34a5bcabec3882c251d469e86de9bcb8024fd23283a09fb24fd4be1",
+  "all_module_original_text_bytes": 8528,
+  "native_original_text_bytes": 4580,
+  "members": [
+    {
+      "function": "modf",
+      "native": true,
+      "original_words": 113,
+      "differing_full_words": 0,
+      "slot_delta_bytes": 0
+    },
+    {
+      "function": "modff",
+      "native": true,
+      "original_words": 99,
+      "differing_full_words": 0,
+      "slot_delta_bytes": 0
+    },
+    {
+      "function": "__isinf",
+      "native": true,
+      "original_words": 28,
+      "differing_full_words": 0,
+      "slot_delta_bytes": 0
+    },
+    {
+      "function": "__isnan",
+      "native": true,
+      "original_words": 28,
+      "differing_full_words": 0,
+      "slot_delta_bytes": 0
+    },
+    {
+      "function": "fcvt",
+      "native": false,
+      "original_words": 987,
+      "differing_full_words": 0,
+      "slot_delta_bytes": 0
+    },
+    {
+      "function": "__ecvt_internal",
+      "native": true,
+      "original_words": 654,
+      "differing_full_words": 0,
+      "slot_delta_bytes": 0
+    },
+    {
+      "function": "__round_helper",
+      "native": true,
+      "original_words": 129,
+      "differing_full_words": 0,
+      "slot_delta_bytes": 0
+    },
+    {
+      "function": "__write_exponent",
+      "native": true,
+      "original_words": 70,
+      "differing_full_words": 0,
+      "slot_delta_bytes": 0
+    },
+    {
+      "function": "sprintf",
+      "native": true,
+      "original_words": 24,
+      "differing_full_words": 0,
+      "slot_delta_bytes": 0
+    }
+  ],
+  "retained_table_bytes": 356,
+  "retained_table_sha256": "6c8434640414a8bf729d13362022b6286e0ae23866e77d6e05d39a2b61262370",
+  "retained_table_relocations": 89,
+  "all_relocation_records_unchanged": true,
+  "symbol_count_unchanged": true,
+  "descriptive_section_symbol_changes": [
+    {
+      "symbol": ".rodata",
+      "old_descriptive_size": 368,
+      "new_descriptive_size": 356
+    }
+  ],
+  "original_container_bytes": 12517376,
+  "original_container_sha256": "c348ea04768321ca2f864195ad6013a8fb15b59f0295ab74b8b16317cfa77154",
+  "full_linked_container_exact": true,
+  "following_12_bytes_sha256": "08ac1709ae8d3ddf5d57b12b3580abb23bb2d8833b1ae51fc036cc399114fccf",
+  "following_12_bytes_nonzero_count": 8,
+  "untrimmed_input_link_rejected": true,
+  "changed_neighbor_identity_rejected": true,
+  "generated_linker": "cloud/work/static_C85/proposal/generated_linker.proposed.ld",
+  "remaining_gates": [
+    "review/integrate draft",
+    "supported target refresh + independent strict replay",
+    "current source-built game + full-ROM + lock + pytest gates"
+  ]
+}

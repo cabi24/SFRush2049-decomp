@@ -1,0 +1,9 @@
+{
+  "STATUS.md": "9f560b72652dba17c75b4e6d922ef36750a141f5beaa756caf9f9705aa412f6e",
+  "verification.json": "46c5da0e81a9c3fdfde00893f9bb13655a1d9dcc75d5705ce4c1253315e9bafb",
+  "car_shadow_render_initial.c": "9e8b58175510729cc66b7fe95a2affdee2076af03aa4d233690d32b4f89e5150",
+  "verification_wait.json": "d10babd4d24c9fce2ff8c8918b636a83372684fffd71e616192a96e2a86a932a",
+  "car_shadow_render_wait.c": "59d1a544d0cbc78d5a55bb82d05063ce71f485b85281032f5395db54c8cb8fb9",
+  "verification_initial.json": "5c1f40a78d72b1c161431796185340328e488a3c029191b417a413d353b23560",
+  "car_shadow_render.c": "cba5f6cf8c29d4b2115c7564e6a420c26c4fc9e10ba073c3eac5192ae28561d9"
+}

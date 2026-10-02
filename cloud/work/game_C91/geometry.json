@@ -1,0 +1,38 @@
+[
+  {
+    "function": "func_800A3424",
+    "variant": "func_800A3424.byte_geometry",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 3920,
+    "linked": {
+      "differing": 57,
+      "total": 57,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "5036051165440220e224fd88f98a41b54a0d88b7b91d1c02243a0600e3e298df",
+    "target_sha256": "306b6652a7beb4a0473a3cba3d38669c1383322bb2f98e336351274bb21dbe5c"
+  },
+  {
+    "function": "func_800A3424",
+    "variant": "func_800A3424.o3",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 3920,
+    "linked": {
+      "differing": 57,
+      "total": 57,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "4045345d899bf927efd5b50736d81843543bfed87ca9c35c6758c1a0870768ae",
+    "target_sha256": "306b6652a7beb4a0473a3cba3d38669c1383322bb2f98e336351274bb21dbe5c"
+  }
+]

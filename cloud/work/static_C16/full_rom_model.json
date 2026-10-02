@@ -1,0 +1,6 @@
+{
+  "private_full_rom_sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+  "expected": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+  "match": true,
+  "scope": "manual private genuine-section model; older C13 source-built game baseline; not current root acceptance"
+}

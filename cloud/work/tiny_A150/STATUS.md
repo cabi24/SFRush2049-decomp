@@ -1,0 +1,7 @@
+# A150 complete record/message caller, NONMATCH
+
+func_800D6530@800D6530 is88words/352bytes. Current LOCAL main name/complete interval eligibility clear. Native complete zero-input body checks bit8, iterates real76-byte records up to actual signed-half count, skips records only for mode2 and their actual first byte, stores the four-Vec3 message handle at68 and finally invokes real speed_set with actual blend/amount/0/1. All flags, true count reloads, vector addresses and return handle are consumed. Unknown global record fields are structural layout, not stack padding.
+
+Standalone O3 is85/88, no excess/errors/unresolved/unverified. Unchanged full A145 speed_set and all original caller contexts produce83/88. Native initial count>0 guard and next-record progression motivated separately labeled counted do-while control,85/88. Adding unchanged complete C47 actual four-Vec3 message helper and its full exact87+88-word accepted list callees produces85/88, no additional target exceptions/excess. Real indexed-loop control also85/88. Pointer return typing and true Vec3 aggregate views are preserved in those complete groups. Original C47 helper residual remains79/81. A145 vsync context stays0/37 with no duplicate credit; speed_set remains47/51+5extra unclaimed. All other real caller contexts retain their prior residuals.
+
+Full target frame/control differences remain; no frame reservation, dummy formal, false helper, or scorer change was added. All source/report/proof/manifest hashes frozen in packets. Claims empty. No shared production mutations or credit.

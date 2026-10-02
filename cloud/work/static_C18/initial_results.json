@@ -1,0 +1,122 @@
+[
+  {
+    "function": "__osInitialize_common",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_score": 9109,
+    "target_words": 172,
+    "candidate_words": 156,
+    "raw_word_diff": 162,
+    "source_sha256": "8599228c1dd1708ee279bc8e9f62aeed67d5a2933a8af4a7f9c02af22cdd1c2f",
+    "target_sha256": "52a1df4288ba5644b96e6e7ea5958b22a2133fdef2a468eb5739ebc9cad53da9"
+  },
+  {
+    "function": "__osInitialize_common",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_score": 150,
+    "target_words": 172,
+    "candidate_words": 172,
+    "raw_word_diff": 55,
+    "source_sha256": "8599228c1dd1708ee279bc8e9f62aeed67d5a2933a8af4a7f9c02af22cdd1c2f",
+    "target_sha256": "52a1df4288ba5644b96e6e7ea5958b22a2133fdef2a468eb5739ebc9cad53da9"
+  },
+  {
+    "function": "__osInitialize_common",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_score": 9826,
+    "target_words": 172,
+    "candidate_words": 188,
+    "raw_word_diff": 179,
+    "source_sha256": "8599228c1dd1708ee279bc8e9f62aeed67d5a2933a8af4a7f9c02af22cdd1c2f",
+    "target_sha256": "52a1df4288ba5644b96e6e7ea5958b22a2133fdef2a468eb5739ebc9cad53da9"
+  },
+  {
+    "function": "dma_wait",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 1520,
+    "target_words": 40,
+    "candidate_words": 32,
+    "raw_word_diff": 40,
+    "source_sha256": "f42840649fe0e78a78bc27536ecdc6cee38a00c44a994ae4ae04d2141a005b6e",
+    "target_sha256": "f1022b1396125fabef68d8d8ec1c5f34bd5f706eeb5a17c60e65cd35d8910618"
+  },
+  {
+    "function": "dma_wait",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_score": 580,
+    "target_words": 40,
+    "candidate_words": 36,
+    "raw_word_diff": 39,
+    "source_sha256": "f42840649fe0e78a78bc27536ecdc6cee38a00c44a994ae4ae04d2141a005b6e",
+    "target_sha256": "f1022b1396125fabef68d8d8ec1c5f34bd5f706eeb5a17c60e65cd35d8910618"
+  },
+  {
+    "function": "dma_wait",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "strict_score": 580,
+    "target_words": 40,
+    "candidate_words": 44,
+    "raw_word_diff": 28,
+    "source_sha256": "f42840649fe0e78a78bc27536ecdc6cee38a00c44a994ae4ae04d2141a005b6e",
+    "target_sha256": "f1022b1396125fabef68d8d8ec1c5f34bd5f706eeb5a17c60e65cd35d8910618"
+  },
+  {
+    "function": "inflate_decompress",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 1038,
+    "target_words": 28,
+    "candidate_words": 24,
+    "raw_word_diff": 20,
+    "source_sha256": "a14e072a87a5bcefbce0c756a0f5505fb5de00f5c1d650469aacac1497d03213",
+    "target_sha256": "0308b114c2b1281f36cf8e7ce12f658e03467930a8daee5ae51a1270eb34f6b8"
+  },
+  {
+    "function": "inflate_decompress",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_score": 729,
+    "target_words": 28,
+    "candidate_words": 24,
+    "raw_word_diff": 16,
+    "source_sha256": "a14e072a87a5bcefbce0c756a0f5505fb5de00f5c1d650469aacac1497d03213",
+    "target_sha256": "0308b114c2b1281f36cf8e7ce12f658e03467930a8daee5ae51a1270eb34f6b8"
+  },
+  {
+    "function": "inflate_decompress",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "strict_score": 798,
+    "target_words": 28,
+    "candidate_words": 32,
+    "raw_word_diff": 23,
+    "source_sha256": "a14e072a87a5bcefbce0c756a0f5505fb5de00f5c1d650469aacac1497d03213",
+    "target_sha256": "0308b114c2b1281f36cf8e7ce12f658e03467930a8daee5ae51a1270eb34f6b8"
+  },
+  {
+    "function": "lzss_decompress",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 1367,
+    "target_words": 24,
+    "candidate_words": 20,
+    "raw_word_diff": 16,
+    "source_sha256": "842c06d805e18a47742961533d08fb5b2064910caf35fb1ce73c8fcc298b518a",
+    "target_sha256": "b9c06034073fbd42ec6fa6af2df32c88f98e45d4992af2739f0efc1d21a1c2f9"
+  },
+  {
+    "function": "lzss_decompress",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_score": 580,
+    "target_words": 24,
+    "candidate_words": 20,
+    "raw_word_diff": 13,
+    "source_sha256": "842c06d805e18a47742961533d08fb5b2064910caf35fb1ce73c8fcc298b518a",
+    "target_sha256": "b9c06034073fbd42ec6fa6af2df32c88f98e45d4992af2739f0efc1d21a1c2f9"
+  },
+  {
+    "function": "lzss_decompress",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "strict_score": 789,
+    "target_words": 24,
+    "candidate_words": 28,
+    "raw_word_diff": 20,
+    "source_sha256": "842c06d805e18a47742961533d08fb5b2064910caf35fb1ce73c8fcc298b518a",
+    "target_sha256": "b9c06034073fbd42ec6fa6af2df32c88f98e45d4992af2739f0efc1d21a1c2f9"
+  }
+]

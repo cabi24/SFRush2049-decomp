@@ -1,0 +1,86 @@
+[
+  {
+    "source": "car_render_full_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "5f65c3bd3606362aed7554de33b71940e5d14c7dcdda8542df051550b8b1ea4e",
+    "comparison": {
+      "differing": 486,
+      "total": 504,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 492
+  },
+  {
+    "source": "car_render_full_address_view.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "3368fa65843a4b6c164f681011053c80cd6b43dfbe27b3e3779c30aadcd5cab6",
+    "comparison": {
+      "differing": 486,
+      "total": 504,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 492
+  },
+  {
+    "source": "car_render_full_native_O2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "eaf49a8a7d616f1230b5a0b1b4c0fcfb0575fbe2358eaaf7700d56dc368df384",
+    "comparison": {
+      "differing": 503,
+      "total": 504,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 484
+  },
+  {
+    "source": "car_render_full_descriptor_cursor.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "92f55851b95891b41d00e1d95fe5a03e61adbf13d5785cff76e3c41708c898ff",
+    "comparison": {
+      "differing": 486,
+      "total": 504,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 492
+  },
+  {
+    "source": "car_render_full_record_views.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "8b2902d21af5f81e9a5a2018abf5e45c12c1f01bf052808c85af584c8b3b90d7",
+    "comparison": {
+      "differing": 402,
+      "total": 504,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 496
+  },
+  {
+    "source": "car_render_full_dimension_captures.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "1e06a948108fd1eceebcd98915d796fe7144387dfaa044668290700100dfbd5a",
+    "comparison": {
+      "differing": 424,
+      "total": 504,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 496
+  }
+]

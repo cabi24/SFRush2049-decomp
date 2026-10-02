@@ -1,0 +1,6 @@
+{
+  "path": "tools/conveyor/pipeline/owned_data.py",
+  "sha256": "d43883e029828cca4d84c492198e93a3038e73795a4273ffaa6f3f11438e5bab",
+  "asm_processor_path": "tools/asm-processor/asm_processor.py",
+  "asm_processor_sha256": "a41ea6ba342e4fd517f13aedee80ac15f1efbba6c0be53c517c1abe81715fd02"
+}
