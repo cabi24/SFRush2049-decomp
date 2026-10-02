@@ -1,0 +1,23 @@
+{
+  "target_id": "func_800EB90C",
+  "slot": {
+    "kind": "function",
+    "size": 2000,
+    "target_id": "func_800EB90C",
+    "vaddr": 2148448524
+  },
+  "game_lock_sha256": "b6427ddd9186cfb0e9381f16db90008063e0bfde5cf47c62a35903b66df89a0c",
+  "static_lock_sha256": "4fb94c530eb996356b8dd00af8d5223440207d5443d7d333c4818cecb228e825",
+  "local_lock": false,
+  "locked_interval_overlaps": [],
+  "full_archive_source_definition_paths": [],
+  "image_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d",
+  "table_vaddr": "0x8012455c",
+  "original_case_targets": [
+    "0x800ebc84",
+    "0x800ebc8c",
+    "0x800ebcac",
+    "0x800ebcc0",
+    "0x800ebcd4"
+  ]
+}

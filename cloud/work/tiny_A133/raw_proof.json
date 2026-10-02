@@ -1,0 +1,10 @@
+{
+  "function": "func_800D60AC",
+  "words": 45,
+  "bytes": 180,
+  "unmasked_exact": true,
+  "source_sha256": "321d799b232985e783b9cf3a5c35bfba35ad786cb68a3c6795ce719d4ba815ef",
+  "object_sha256": "f40da8adde72ed86ca3c01cdd45a0956020623f288b84b98d915cc9d423b8699",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": []
+}

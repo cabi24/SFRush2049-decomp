@@ -1,0 +1,34 @@
+{
+  "target_id": "inflate_entry",
+  "vaddr": "0x80006814",
+  "original_slot_bytes": 360,
+  "actual_module": "rom/lib_5610",
+  "current_pin": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "main_lock_present": false,
+  "private_lock_present": false,
+  "original_target_roundtrip_gate": [
+    true,
+    null
+  ],
+  "source_sha256": "29ae78dc6b47f4de10a11553788bb11c03c485872e9e4a53cdd1267f23e8c1b3",
+  "target_sha256": "7d0831263d286cf590f39e2a294b225271b33c4b993a70241830119db6cd0e95",
+  "candidate_sha256": "cd9284f3af20b5beddb9d15f0deb90ab5c86c6c14b4ac6831ffc495c1ebe3d61",
+  "strict_score_including_stack": 3042,
+  "native_instruction_count": 85,
+  "original_instruction_count": 90,
+  "native_frame": 72,
+  "original_frame": 72,
+  "compile_exit_code": 0,
+  "compile_stderr": "",
+  "bounded_controls": {
+    "written_length": 3042,
+    "source_carrier": 3042,
+    "integer_window": 3042,
+    "debug_o1": 5678,
+    "debug_o2": 5678
+  },
+  "debug_o2_warning": "uopt: Warning: file not optimized; use -g3 if both optimization and debug wanted",
+  "registered_slot": true,
+  "source_complete": true,
+  "accepted_credit": 0
+}

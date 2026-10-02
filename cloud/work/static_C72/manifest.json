@@ -1,0 +1,31 @@
+{
+  "claims": [
+    {
+      "function": "display_mode_tick",
+      "layout_bytes": 156,
+      "source": "cloud/work/static_C72/display_mode_tick.mask_order.c",
+      "source_sha256": "b046381bc7b95a31bedd4ab7ae3ad6afa0b4b75e72198a1869fc7ad2ddbea68e"
+    },
+    {
+      "function": "apply_display_mode",
+      "layout_bytes": 44,
+      "source": "cloud/work/static_C72/apply_display_mode.c",
+      "source_sha256": "b3481cf71378c4e27a2fdb28d1a7b57b6bc3bb1eb3a4c8df719d206b09e7026c"
+    },
+    {
+      "function": "sprintf",
+      "layout_bytes": 96,
+      "source": "cloud/work/static_C72/sprintf.c",
+      "source_sha256": "b9aaaebefa78653b1b92356cdfaf3f0de267a5b086eec4980c7b92230902611c"
+    }
+  ],
+  "claim_layout_bytes": 296,
+  "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "complete_module_flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm -Iinclude -Iinclude/PR -Irom -D_LANGUAGE_C",
+  "asm_processor_model": "-g",
+  "full_module_proof": "full_module_proofs.json",
+  "all_original_members_verified": 17,
+  "required_shared_context": "shared_context.txt plus C68/C70 additions already proved",
+  "shared_header_sha256": "a7a1d4a1d9220b912b7ad0ec62bcd796e7abce207b9aa7f249339f18064de662",
+  "shared_m2c_types_sha256": "93ab9028d3acf10515babd91636d6bd1c243110d1b70972d7758c83b65e932d0"
+}

@@ -1,0 +1,38 @@
+{
+  "members": [
+    "func_800C8918",
+    "object_type1_create",
+    "object_type7_create"
+  ],
+  "context": [
+    "audio_reverb_update",
+    "audio_effect_process",
+    "synced_model_render",
+    "MP_TargetSpeed",
+    "assign_default_paths",
+    "stat_race_end",
+    "func_80095F8C",
+    "func_80095EF4",
+    "audio_buffer_sync",
+    "object_counter_decrement",
+    "object_counter_increment",
+    "func_80091B00"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "keep": [
+    "synced_model_render",
+    "MP_TargetSpeed",
+    "assign_default_paths",
+    "stat_race_end",
+    "audio_buffer_sync",
+    "object_counter_decrement",
+    "object_counter_increment",
+    "func_800C8918",
+    "func_80091B00"
+  ],
+  "claims": [],
+  "provenance": "A137 complete genuine shutdown and two actual message helpers, unchanged accepted A25 release closure unclaimed, full real allocator unclaimed"
+}

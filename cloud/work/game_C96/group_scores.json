@@ -1,0 +1,69 @@
+{
+  "object_sha256": "89b8ae70ab53a3d29a435921b026c3e093390504bc5ef38bf75b90125e26aae8",
+  "source_sha256": "af071abf35c284f1309c04b86b3ab0f2010d8c8ddc22211f920ff09bf4bd56ad",
+  "results": [
+    {
+      "function": "func_800A1C6C",
+      "differing": 89,
+      "total": 90,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 9
+    },
+    {
+      "function": "track_data_decompress",
+      "differing": 156,
+      "total": 163,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "function": "func_800A1DD4",
+      "differing": 38,
+      "total": 48,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "function": "func_800A1BB4",
+      "differing": 33,
+      "total": 46,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "function": "track_collision_setup",
+      "differing": 88,
+      "total": 117,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "function": "MaxPathZeroControls",
+      "differing": 12,
+      "total": 99,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "function": "slot_state_lookup",
+      "differing": 45,
+      "total": 47,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+# A142 — real audio/thread initializer, frozen NONMATCH
+
+car_shadow_render@800A5D34,836B/209words. Complete actual audio initialization with three consumed word inputs, their original byte projections at SDK configuration calls, true 48-byte frame, initialized queue/thread globals and audited thread entry addresses, three actual resource allocations/table-header loads, completion wait, four SDK drains, initialization versus reconfiguration calls, four instrument updates and final globals. All literal flag lines preserved. No local capacity guesses or padding.
+
+Canonical final72/209 plus1 nonzero extra word, no unresolved/unverified references or errors, source SHA cba5f6cf8c29d4b2115c7564e6a420c26c4fc9e10ba073c3eac5192ae28561d9. Initial104/209+5 used a redundant preliminary outer wait if; this duplicated one SDK test and was explicitly corrected to the original single while. Corrected view71+1. Final full genuine20-byte resource view based atD80156D38 (observed state/id fields and header12 in real tire_compound_set), endpoint inequality for exact4-record instrument traversal72+1. O2 checked on the corrected wait copy and remains71+1; O3 final retained with exact first-line flags. No register/temporary naming, declaration ordering, pressure or reflow probes.
+
+Source body is ordinary complete native C, not a candidate match. Residuals include GP virtual registers/address scheduling, one repeated22050 SDK argument setup and ORI versus ADDIU constant construction; no artificial callee context to force these. Actual real SDK names func_XXXXXXXX are resolved by canonical score.address_named against their audited original jal addresses; initial coordinator note anticipated unknown references incorrectly, corrected after compile. No scoring/symbol-map mutation.
+
+Historical copies retain original hashes and full proof. Claims empty. No shared accepted source, layout, lock, commit or gates touched.

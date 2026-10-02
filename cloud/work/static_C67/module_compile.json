@@ -1,0 +1,26 @@
+[
+  {
+    "label": "baseline",
+    "flags": "-g0 -G 0 -mips2 -O2 -non_shared -Iinclude -Iinclude/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm",
+    "asm_processor_model": [
+      "-O2"
+    ],
+    "compile_exit": 0,
+    "stderr": "",
+    "source_sha256": "e9b8722aee7d9fb768b90694a59f326dd5bdcbc4fdc69ddf1f6dd7c2ec5482f0",
+    "postprocess": "ok",
+    "object_sha256": "352e00b129c6efa7346b7a4813eed10c0aa2bd7124d65ba4539a9ccd07fc8a4f"
+  },
+  {
+    "label": "debug1_O1_modelg",
+    "flags": "-g1 -G 0 -mips2 -O1 -non_shared -Iinclude -Iinclude/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm",
+    "asm_processor_model": [
+      "-g"
+    ],
+    "compile_exit": 0,
+    "stderr": "",
+    "source_sha256": "e9b8722aee7d9fb768b90694a59f326dd5bdcbc4fdc69ddf1f6dd7c2ec5482f0",
+    "postprocess": "ok",
+    "object_sha256": "50e262bfdbc134aaf5cd1f798aa7503d30878768572fae3daec1566c9e1646a8"
+  }
+]

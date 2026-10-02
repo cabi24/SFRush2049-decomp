@@ -1,0 +1,13 @@
+[
+  {
+    "function": "game_init",
+    "variant": "game_init",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "d6d3db2cfdcca66aff937e9ad2661ec62d4c606cbd44e1a5a3259a1c989289c0",
+    "target_sha256": "fc30aa842b0602dea9fdbf7c526d365a26ebe6823dce8f7fd3456454bcb34697",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict_score": 793,
+    "object_sha256": "5d20774afcb53df2a0e2ef7f6ee019506caa1b175180a28703fda537becef80f"
+  }
+]

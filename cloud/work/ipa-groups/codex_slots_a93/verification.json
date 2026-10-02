@@ -1,0 +1,24 @@
+{
+  "source_sha256": "76bfe38675db938a2dbbdccbc6250989714bd08f503e8f2338707f995b9bd2ad",
+  "manifest_sha256": "a620806b9b0017ece378b2bee10681ce26eb69662bbc6227b4625ed16ad7e3dd",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "comparisons": {
+    "func_800BB02C": {
+      "differing": 40,
+      "total": 69,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "audio_output_setup": {
+      "differing": 26,
+      "total": 37,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+}

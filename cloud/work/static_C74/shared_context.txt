@@ -1,0 +1,3 @@
+/* Eight actual signed16 bounds per16-byte row; no array capacity. */
+extern s16 gViewportBoundsTable[][8];
+/* Other actual viewport globals/prototypes are already supplied by C70/C72/C73. */

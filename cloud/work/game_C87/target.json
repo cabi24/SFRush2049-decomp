@@ -1,0 +1,12 @@
+{
+  "target_id": "camera_lerp_position",
+  "address": 2148251700,
+  "population": "extracted",
+  "insn_count": 95,
+  "target_asm_sha": "bc705bf52d79c12d8a467491b7789e635d3c8cd1ccb451432edd623ddaf299b9",
+  "target_o_sha": "7d33bc26103eb9dd2b3c08b650aa396d0ec9d6268f9b9a68ed278d52db2e4a26",
+  "fingerprint": null,
+  "cluster_id": null,
+  "tier": "reloc_aware",
+  "gate_reason": "extent_repaired"
+}

@@ -1,0 +1,17 @@
+{
+  "packet": "B110",
+  "function": "sfx_volume_set",
+  "address": "0x800B2828",
+  "bytes": 256,
+  "claims": [],
+  "unproved_declaration": "exact original name-buffer capacity; proposed16bytes safely covers allsupported\u226411+NUL keys, never varied",
+  "report": "cloud/work/near_miss_B110.md",
+  "report_sha256": "b438d572a998e4c671be10cafbee13ff1d54ea9a629d704e6384704ca4d85a73",
+  "files": {
+    "sfx_volume_set_native_O2.c": "52db9098427bee4df5869f9dbfaed7e2d611a21377b63941d7fd74ee5d5c61e2",
+    "sfx_volume_set_native.c": "5fa52bced4c427442a46f063cbc7e50df02f387d9b7b1c53886d2ab2ce6da013",
+    "results.json": "d888cb2bd47c5cd6acd370743d947f02fdbf7299b7dee6f8f3a48365ed340fb9",
+    "sfx_volume_set_argument_carriers.c": "8206a992763f31b818b4a3cf3c35317eaf42c6bc274c8279936abd56d0e200a0",
+    "sfx_volume_set_resource_cursors.c": "6b19103206da39e47d82ce9752733752ed4941880fc7cd74a8f92f95170c505c"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "claims": [
+    {
+      "function": "memset",
+      "layout_bytes": 272,
+      "source": "cloud/work/static_C83/memset.current_header.c",
+      "source_sha256": "e2b84ba3357c9eeaa3d8eb5ca264b625d0e93ae5ef7427e9d3ec208037b01367"
+    }
+  ],
+  "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "full_native_module": "cloud/work/static_C83/lib_3390.full_native.c",
+  "full_native_module_sha256": "042660941d5e5bb1f9b4aee22acea074fbfa464323b4f171c88fed4875359268",
+  "full_module_proof": "full_module_proofs.json",
+  "old_frozen_native_source_unchanged": "cloud/work/static_C17/memset.c",
+  "old_source_sha256": "b1e8e128fe7694619185ce23af9baa894f14ca92cb962fe9c7f34b182977a559",
+  "required_shared_context": "none beyond current authoritative rom_tu.h",
+  "publication_status": "root independent verification and full-ROM/lock/test gates pending"
+}

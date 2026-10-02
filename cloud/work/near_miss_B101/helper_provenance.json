@@ -1,0 +1,20 @@
+{
+  "wrapper": {
+    "function": "func_800205E4",
+    "address": "0x800205E4",
+    "rom_offset": "0x211E4",
+    "size_bytes": 32,
+    "consumed_inputs": 0,
+    "normal_abi": true,
+    "sha256": "def16d90caafb44f21ed7b0aee065eb601d1379c98941f37e6d7160ab65f319d"
+  },
+  "callee": {
+    "address": "0x80014D1C",
+    "rom_offset": "0x1591C",
+    "size_bytes": 16,
+    "consumed_inputs": 0,
+    "behavior": "sets signed-byte global flag to one",
+    "sha256": "b344599a2c2f4079ba779433432bf8488244859b4d46490ed02525c3c494a157"
+  },
+  "raw_evidence_private": true
+}

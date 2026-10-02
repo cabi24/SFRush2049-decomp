@@ -1,0 +1,20 @@
+[
+  {
+    "function": "__ecvt_internal",
+    "source_sha256": "f05bbcd8e8e84104a73f83427e68633fe8db71302d9809a231b57c690ed376f1",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict_score": 80,
+    "object_sha256": "49f2671b9bc45c9426418759de666db3855ff94ec1270b2acb89db85cdf999f0"
+  },
+  {
+    "function": "__write_exponent",
+    "source_sha256": "838fb8253ddd604ca855a8b296f19332ff84c45a92d33225521480ee96c27ce9",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict_score": 0,
+    "object_sha256": "127f3d5065aef05ed8f44fa2de43d5b235f08fc9ebb454e40fe4d941819bb2df"
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "members": [
+    "sound_init"
+  ],
+  "context": [
+    "func_80086A50"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "sound_init"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": []
+}

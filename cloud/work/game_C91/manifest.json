@@ -1,0 +1,23 @@
+{
+  "function": "func_800A3424",
+  "variant": "func_800A3424.file_scan",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "compile_exit": 0,
+  "stderr": "",
+  "strict": 1970,
+  "linked": {
+    "differing": 46,
+    "total": 57,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "source_sha256": "dd30cf85a253a89e4b6bb4110a45f28e143754bbbc2f048aee5bb01eda639fec",
+  "target_sha256": "306b6652a7beb4a0473a3cba3d38669c1383322bb2f98e336351274bb21dbe5c",
+  "packet": "C91",
+  "status": "frozen_nonmatch",
+  "source": "cloud/work/game_C91/func_800A3424.file_scan.c",
+  "native_claims": [],
+  "reason": "Complete actual channel/file flag update and16-record scan reconstructed; bounded pointer/type/byte-geometry controls improve archived best but cannot match original allocation/schedule."
+}

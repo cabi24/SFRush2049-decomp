@@ -1,0 +1,24 @@
+{
+  "source_sha256": "dea4c8527c1bf6ac46e16a2f6c8bca58d4368f9d9869f3ab5ada8dbcd68810fe",
+  "manifest_sha256": "6cc2ef376c5fdf0bfd4f13b68aa32cde1f85e7e56427715c96be8890e8d1a350",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "comparisons": {
+    "camera_follow_target": {
+      "differing": 177,
+      "total": 203,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "camera_dolly": {
+      "differing": 0,
+      "total": 575,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+}

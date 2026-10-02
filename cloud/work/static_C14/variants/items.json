@@ -1,0 +1,27 @@
+[
+  {
+    "function": "memchr",
+    "variant": "memchr_scheduledO0",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared -Wab,-O2"
+  },
+  {
+    "function": "get_tv_offset",
+    "variant": "get_tv_offset_scheduledO0",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared -Wab,-O2"
+  },
+  {
+    "function": "get_viewport_pos",
+    "variant": "get_viewport_pos_scheduledO0",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared -Wab,-O2"
+  },
+  {
+    "function": "dma_queue_init",
+    "variant": "dma_queue_init_scheduledO0",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared -Wab,-O2"
+  },
+  {
+    "function": "audio_thread_entry",
+    "variant": "audio_thread_entry_scheduledO0",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared -Wab,-O2"
+  }
+]

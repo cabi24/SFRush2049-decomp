@@ -1,0 +1,23 @@
+[
+  {
+    "pragma": "#pragma optimize(0)",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "diagnostic": "",
+    "strict_score": 420,
+    "raw_word_diff": 11
+  },
+  {
+    "pragma": "#pragma optimization_level 0",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "diagnostic": "",
+    "strict_score": 420,
+    "raw_word_diff": 11
+  },
+  {
+    "pragma": "#pragma optimize off",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "diagnostic": "",
+    "strict_score": 420,
+    "raw_word_diff": 11
+  }
+]

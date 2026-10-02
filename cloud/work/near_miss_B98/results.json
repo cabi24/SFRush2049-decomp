@@ -1,0 +1,58 @@
+[
+  {
+    "source": "track_select_handler_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "4bd805b6db1b223d18878eae73bd7248de4d379a71ced16a71bb8a97dc0a0f3c",
+    "comparison": {
+      "differing": 198,
+      "total": 221,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 220
+  },
+  {
+    "source": "track_select_handler_vectors_O2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "841704e0346bf02620b129c3eb47a2aa3862148890ada7e501d54952363c94fa",
+    "comparison": {
+      "differing": 183,
+      "total": 221,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 224
+  },
+  {
+    "source": "track_select_handler_divisors.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "1b988c664a37f49c50e7a5a0c3ad3610c9856b0344dacf96137895f56fbe69ce",
+    "comparison": {
+      "differing": 163,
+      "total": 221,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 224
+  },
+  {
+    "source": "track_select_handler_reuse.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "811957e1f1d808bab4149b1369e660ccbee50ae79a6d4e39c5da5f915267c63a",
+    "comparison": {
+      "differing": 168,
+      "total": 221,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 224
+  }
+]

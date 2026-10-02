@@ -1,0 +1,21 @@
+{
+  "claim": {
+    "function": "__ecvt_internal",
+    "layout_bytes": 2616,
+    "source": "cloud/work/static_C79/__ecvt_internal.original_conditions.c",
+    "source_sha256": "3d149acb4263310a2992b08d52acd07a9b2ac00bac80e4f9e27d2bd07b938a06"
+  },
+  "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "canonical_strict_score": 80,
+  "target_sha256": "b06c535bb45ead920aaf23643eafacc1bc2174400d6670faf657d994a1f15305",
+  "canonical_target_tier": "raw_word",
+  "canonical_target_gate_reason": "assemble_error: 10: Error: invalid operands `sdc1 $fa0,0x78($sp)'",
+  "claims": [],
+  "original_linked_words_exact": 654,
+  "complete_module_proof": "full_module_proofs.json",
+  "all_original_members_verified": 9,
+  "module_bytes": 8528,
+  "required_shared_context": "extern double gPerspFov, gPerspAspect; extern u8 *__round_helper(double, s32 *, u8 *, u8 *, u8, u8 *); extern u8 *__write_exponent(u8 *, s32, s32);",
+  "source_cue_primary_url": "https://raw.githubusercontent.com/freebsd/freebsd-src/ced08d6d571739ffba565c4ad2656791f7fc5fd3%5E/contrib/libg%2B%2B/libio/iovfprintf.c",
+  "note": "No canonical strict-zero claim before supported target refresh and root acceptance gates; retain historical library license notices when integrating adapted body."
+}

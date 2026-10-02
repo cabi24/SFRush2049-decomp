@@ -1,0 +1,24 @@
+[
+  {
+    "function": "__ecvt_internal",
+    "variant": "__ecvt_internal.native",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "1ec5e1df846a46b49fcac7737b257498498705bd0e83d96c5696ed73c08fc9cb",
+    "target_sha256": "b06c535bb45ead920aaf23643eafacc1bc2174400d6670faf657d994a1f15305",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict_score": 876,
+    "object_sha256": "f41337bfcd1e68247d5e57f0367412d41033441dc2dfeb60be6e207ce3fd57f9"
+  },
+  {
+    "function": "__ecvt_internal",
+    "variant": "__ecvt_internal.original_conditions",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "3d149acb4263310a2992b08d52acd07a9b2ac00bac80e4f9e27d2bd07b938a06",
+    "target_sha256": "b06c535bb45ead920aaf23643eafacc1bc2174400d6670faf657d994a1f15305",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict_score": 80,
+    "object_sha256": "be2500a9266719d2be341747fc16db1e7788f08880839bb58aebb0a758256d9d"
+  }
+]

@@ -1,0 +1,77 @@
+[
+  {
+    "source": "menu_audio_settings_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "59b0d8172b01ff750dc42b7981ceeedb2ca1e3b5d5d34108829c069fa0bb13b4",
+    "object_sha256": "06a0a8e648fc6b627144d16e6636fd6430a67204672d4a70dff354c82487e6b3",
+    "comparison": {
+      "differing": 180,
+      "total": 204,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 200
+  },
+  {
+    "source": "menu_audio_settings_signed.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "42e9c26a47cc301a23b17ec67c70f134d20f64f10514dcd9387c8ee0920789c2",
+    "object_sha256": "b2aae5c0b0be49b796f5b88da6fb251e312f3a35989d69dd85086ba02299df8a",
+    "comparison": {
+      "differing": 180,
+      "total": 204,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 200
+  },
+  {
+    "source": "menu_audio_settings_expressions.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "2c7d8fefa87c070e6d10fcb664a576c8fef35fab7b05b457d0ba496757ec2a71",
+    "object_sha256": "9d59a18845d78c88de0c3933aea1bcfe5a68dd69c93e9f82c259f55643ef13e0",
+    "comparison": {
+      "differing": 179,
+      "total": 204,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 200
+  },
+  {
+    "source": "menu_audio_settings_vectors.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "7348847086e77bb47e20d9c7d7bd5ddd1391a15a7ed71a0abd6c1007fc5ae843",
+    "object_sha256": "027bd858ffec4708b95bec0bc960e946eab520e6668a4756c7be8186de06ad20",
+    "comparison": {
+      "differing": 0,
+      "total": 204,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 204
+  },
+  {
+    "source": "menu_audio_settings_arrays.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "7db9cbf8d9f76eaea999bd158115951717c081d656b803fe26e2afe93b5f03fc",
+    "object_sha256": "16a57f59cd2395a86ae59c32936d5c5294bf800934d6016d0afcd629a7426ae6",
+    "comparison": {
+      "differing": 118,
+      "total": 204,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 200
+  }
+]

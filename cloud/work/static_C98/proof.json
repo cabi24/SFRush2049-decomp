@@ -1,0 +1,20 @@
+{
+  "source_sha256": "ab186519e6562451f721437b47fb97cb7e66984cbddbe3897d1cd840995914ee",
+  "object_sha256": "2732a57dce4e08ee91b9ea8236eb7575e61172551cfd9e470983b61d06f7e530",
+  "target_sha256": "43c3180c0b7d2d23d137012ee666ef911646da97fe3fc28e5e338542b188cff4",
+  "original_rom_sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+  "target_roundtrip_gate": [
+    true,
+    null
+  ],
+  "native_text_size": 48,
+  "native_text_sha256": "d3e167924189bc9493383dde565dfefe5c30415b204d0a39a18096c48f506b2f",
+  "original_text_sha256": "d3e167924189bc9493383dde565dfefe5c30415b204d0a39a18096c48f506b2f",
+  "all48_bytes_exact": true,
+  "genuine_instruction_bytes": 36,
+  "zero_alignment_tail_bytes": 12,
+  "actual_owner": "existing data.bin container (static layout ends ROM0x10000)",
+  "registered_slot": false,
+  "accepted_credit": 0,
+  "strict_score_including_stack_differences": 0
+}

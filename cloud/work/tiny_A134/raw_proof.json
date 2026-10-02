@@ -1,0 +1,10 @@
+{
+  "function": "race_init_helper",
+  "words": 45,
+  "bytes": 180,
+  "unmasked_exact": true,
+  "source_sha256": "7b136851ee5e0ad7de78e97ffb8fc3329f69f23e51cd0a5279f1dba2b83b9641",
+  "object_sha256": "d35134077354f5cfb9ef3694c4f984ab61e7c053f29f80084398f15c633676f1",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": []
+}

@@ -1,0 +1,12 @@
+{
+  "status": "NONMATCH",
+  "claims": [],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "sources": {
+    "hud_render.c": "4ad3bbb96b1d0a0f7b1744555e751655145af5a3d75c2ea7cdc19eb953c7380e",
+    "hud_render_captured.c": "8432b9d6777af0c163aa14c97e5ad9459b8fffd959d4e4371b8ae751e12032da",
+    "hud_render_constants.c": "ddf1b3d48c9506e0421ad938f722927b76a31612fcd81cbbaaa93c0b951f32fe",
+    "hud_render_literal_constants.c": "97c9a87d41851067053dfd18cda0250b2914075d7bda07863c3146d6727c9028"
+  },
+  "eligibility_sha256": "52899ca9d439ad1b3081cff928e946f55abc291f765d48a1c695582263cafd0a"
+}

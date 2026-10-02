@@ -1,0 +1,26 @@
+[
+  {
+    "function": "inflate_free_window",
+    "variant": "inflate_free_window.volatile_inputs",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 7437,
+    "raw_word_diff": 309,
+    "candidate_words": 324,
+    "source_sha256": "6a7a0428c04ca5ceedff233fda297dd39b4667722fb107b1fe69f40ae8ffbf30",
+    "target_sha256": "6c45a872539c49aa51fb7450c069714cfa0ddfecf0f04cb68306ee9ac3480005"
+  },
+  {
+    "function": "inflate_free_window",
+    "variant": "inflate_free_window.volatile_pointers",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 8167,
+    "raw_word_diff": 297,
+    "candidate_words": 324,
+    "source_sha256": "1b689f7838c6572bbe1e7e47e9ab275b3487c654a9ce450957b310f75f3c3ae3",
+    "target_sha256": "6c45a872539c49aa51fb7450c069714cfa0ddfecf0f04cb68306ee9ac3480005"
+  }
+]

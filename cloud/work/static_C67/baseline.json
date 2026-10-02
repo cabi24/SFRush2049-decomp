@@ -1,0 +1,11 @@
+[
+  {
+    "function": "osScAddClient",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 350,
+    "source_sha256": "6072c6daad0f372deea7f55f68799e30e570766806d3bf46e3edfcbed3b1fd89",
+    "target_sha256": "18e2b7521888575ecd5d6adb41422b6ab36c56a43253e9632140f6f1e4af352e"
+  }
+]

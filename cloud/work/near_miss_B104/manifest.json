@@ -1,0 +1,19 @@
+{
+  "packet": "B104",
+  "function": "race_setup_1",
+  "address": "0x800BD2C8",
+  "bytes": 1884,
+  "claims": [],
+  "rejected_semantic_variant": "race_setup_1_native.c",
+  "cooperating_helper_owner": "A127 camera_smooth_follow",
+  "report": "cloud/work/near_miss_B104.md",
+  "report_sha256": "c618e02c79837f82193c37e0e6f9bcd484433ba3e96d53e403ed2b2900ca88b7",
+  "files": {
+    "race_setup_1_case_mapping_O2.c": "a480fd958e2fe0a70e2cbe03d3e81c31003367c45e41d220f88bd6a8409c290d",
+    "race_setup_1_native.c": "56815db4703dcab24d5d025ac74e8280e7d101bdbbcd799750263f5fc003aa4c",
+    "race_setup_1_scalar_views.c": "38654fa565fa64f713f585fe085acdbbc8560f6857cfd7b1e839aa040d1e9cda",
+    "results.json": "7800b0b8f0f291d4aa40504ff21c9cc73ef4d6c72936159addd245c52b284913",
+    "race_setup_1_case_mapping.c": "c66b427ff7476c5537273b6d6c135bde7ca39dc3104d50ed6e1f96a14ee3668f",
+    "race_setup_1_timing_view.c": "8504b907d7fa6371b282f092459dab5235f69273ab518c5ff6e2f8910d935960"
+  }
+}

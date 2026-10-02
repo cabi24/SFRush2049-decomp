@@ -1,0 +1,62 @@
+[
+  {
+    "source": "func_800E543C_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "ff6efebf34578c74330be2ef13be36be190be1ae0169ebfff4a8d11850172171",
+    "comparison": {
+      "differing": 171,
+      "total": 175,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 168,
+    "rejected_semantics": true
+  },
+  {
+    "source": "func_800E543C_branches.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "14a7997fe2366e98e4ac1da4c3e6f4a4bf42e6dc6df1433b2c6f52eb8a26cc12",
+    "comparison": {
+      "differing": 171,
+      "total": 175,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 168,
+    "rejected_semantics": false
+  },
+  {
+    "source": "func_800E543C_addresses.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "565cf1013f14f142447c27f0a7ad065413adc457b9fb0b6ded39d9d604711600",
+    "comparison": {
+      "differing": 171,
+      "total": 175,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 168,
+    "rejected_semantics": false
+  },
+  {
+    "source": "func_800E543C_branches_O2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "1c926f101be757ab2fbb8d37fa876e2ad287b3900e03d2790e8e4930fe654031",
+    "comparison": {
+      "differing": 171,
+      "total": 175,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 168,
+    "rejected_semantics": false
+  }
+]

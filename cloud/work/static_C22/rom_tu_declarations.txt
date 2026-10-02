@@ -1,0 +1,8 @@
+/* Readonly original symbols; no initialized data definitions. */
+extern const f64 gSinCoeffs[5],gTwoOverPi,gPiOver2Hi,gPiOver2Lo;
+extern const f64 gCosCoeffs[5],gCosAngleScale,gCosPiOver2Hi,gCosPiOver2Lo;
+extern const f32 gNaN,gCosOne,gNaNf;
+/* Keep ROUND/ABS private before the first target pragma, or spell out their
+ * simple expressions in a separately verified source adaptation. */
+#define ROUND(d) (int)(((d)>=0.0)?((d)+0.5):((d)-0.5))
+#define ABS(d) (((d)>0)?(d):-(d))

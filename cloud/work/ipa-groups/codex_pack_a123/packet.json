@@ -1,0 +1,10 @@
+{
+  "source_sha256": "664717605639528312c86cff613cf0b8bcc5a04dfa16a499abe5a824bf773eb1",
+  "manifest_sha256": "8614b6b6cdacf0af59d740a6c8ad1762b6529f34a0a8a7d3a0032304668d10d0",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "status": "frozen residual",
+  "target": "func_800CC50C",
+  "differing": 30,
+  "words": 190
+}

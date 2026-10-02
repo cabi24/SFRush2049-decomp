@@ -1,0 +1,8 @@
+{
+  "claims": [],
+  "standalone_result": "101/145 words differ",
+  "files": {
+    "cloud/work/near_miss_B119/func_8008A148_native.c": "ce799693d23b0bee5b30554c0c5b34b7dd5f6b8bc7e8f41159c1a978384f9015",
+    "cloud/work/near_miss_B119.md": "79b571c7fc637ef0605fa9f86430a671dc4a3cd1bf20d85f92374485f178ed90"
+  }
+}

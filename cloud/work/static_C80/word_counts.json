@@ -1,0 +1,46 @@
+[
+  {
+    "variant": "game_init",
+    "original_words": 177,
+    "object_words": 176,
+    "differing_full_words": 175,
+    "extra_nonzero_words": 0,
+    "masks": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": []
+  },
+  {
+    "variant": "game_init.register_tv",
+    "original_words": 177,
+    "object_words": 180,
+    "differing_full_words": 14,
+    "extra_nonzero_words": 0,
+    "masks": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": []
+  },
+  {
+    "variant": "game_init.nested_tv",
+    "original_words": 177,
+    "object_words": 180,
+    "differing_full_words": 8,
+    "extra_nonzero_words": 0,
+    "masks": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": []
+  },
+  {
+    "variant": "game_init.client_message",
+    "original_words": 177,
+    "object_words": 180,
+    "differing_full_words": 4,
+    "extra_nonzero_words": 0,
+    "masks": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": []
+  }
+]

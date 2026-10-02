@@ -1,0 +1,30 @@
+[
+  {
+    "function": "game_init",
+    "variant": "game_init.g0o0",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "c126251c08494478211dcb0e28852ad659099666ce8286174b2dc52afaee8e9c",
+    "target_sha256": "fc30aa842b0602dea9fdbf7c526d365a26ebe6823dce8f7fd3456454bcb34697"
+  },
+  {
+    "function": "game_init",
+    "variant": "game_init.g1o0",
+    "flags": "-g1 -O0 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "57f6f9559904b52d08176b9a090650ea9fa4108d1d319dfae9d113fb44a91e9f",
+    "target_sha256": "fc30aa842b0602dea9fdbf7c526d365a26ebe6823dce8f7fd3456454bcb34697"
+  },
+  {
+    "function": "game_init",
+    "variant": "game_init.g2o1",
+    "flags": "-g2 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "1c9b0f9c0b88d28e9fb8c9fe853e648e4953f0674d804a4565991c717d9f3c84",
+    "target_sha256": "fc30aa842b0602dea9fdbf7c526d365a26ebe6823dce8f7fd3456454bcb34697"
+  },
+  {
+    "function": "game_init",
+    "variant": "game_init.g1o2",
+    "flags": "-g1 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "57f1244b51b864a7aa5cd1e357dd0ed9dd14e9e6c64ba2c95c07bed33184e506",
+    "target_sha256": "fc30aa842b0602dea9fdbf7c526d365a26ebe6823dce8f7fd3456454bcb34697"
+  }
+]

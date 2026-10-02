@@ -1,0 +1,8 @@
+{
+  "function": "inflate_free_window",
+  "target_sha256": "6c45a872539c49aa51fb7450c069714cfa0ddfecf0f04cb68306ee9ac3480005",
+  "gate": [
+    true,
+    null
+  ]
+}

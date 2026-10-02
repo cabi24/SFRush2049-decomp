@@ -1,0 +1,17 @@
+{
+  "members": [
+    "func_800D1248"
+  ],
+  "context": [
+    "math_utility"
+  ],
+  "claims": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_800D1248",
+    "math_utility"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}

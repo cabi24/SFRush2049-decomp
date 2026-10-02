@@ -1,0 +1,11 @@
+# A146 original loader contract audit supplement
+
+This supplement preserves the original frozen source/manifest/packet hashes. It adds original instruction-range provenance, no target instruction bytes or opcodes.
+
+Skip condition: audio_frame_sync@800977CC branches on actual second incoming word a1 to80097824, bypassing search when nonzero. Skip0 passes actual kind and signed-byte flag to true func80097694 call at800977DC. At800977E4–800977E8, search result v0 decides reuse versus allocation and is retained in a3. Reuse returns the same result after optional actual entity_render_mode call at80097810.
+
+Allocation scan80097824–8009790C starts counter0, bound64, advances actual20-byte records and tests pointer12. Occupied records invoke no functions. Free-record path clears bytes0/1/2/4, stores actual kind6/flag5, allocates/registers through real functions, stores pointer12/registeredword8 and calls actual func800972C4. Then800978FC–80097900 selects real free index as return carrier a3.
+
+Full-pool fallthrough at80097910 selects v0 into a3. For skip0, search previously assigned v0 and returned-1; the occupied-only scan contains no calls or v0 writes, so this preserves true-1. For skip!=0, the earlier branch bypassed the only prior local v0 assignment. Full-pool return then depends on incoming/uncertified v0, represented by historical source's uninitialized res. The source is not certified for this out-of-module input and no synthetic initialization/default was added. Async completion and synchronous finalize ranges80097914–8009796C preserve a3, with final v0=a3 at8009796C.
+
+Every actual publication-module wrapper loader call uses skip0. The sole original resource_slot_clear loader call is800C935C: a0 holds actual resource ID, a1=0 at800C9350, a2=0 at800C9354, a3=0 at800C9358 and fifth outgoing word0 at800C9360. New caller invokes resource_slot_clear IDs54/58/59 at800CA374/800CA37C/800CA384. Actual resource_slots_clear_multiple invokes the same IDs at800C9384/800C938C/800C9394. All six whole-caller call sites therefore funnel through exactly that real skip0 wrapper, matching the one source expression audio_frame_sync(id,0,0,0,0). No other loader call exists in this module. Real external loader entry stays context only; only new state_change_preprocess would be placed, so existing runtime loader body remains original.

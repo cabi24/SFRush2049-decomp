@@ -1,0 +1,37 @@
+{
+  "source_sha256": "dcacf9fa7dd0bdf1b4c64b71f1fb82cab8575962214b8acd975848255e170b4f",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "body_proofs": {
+    "entity_transform_calc": {
+      "words": 110,
+      "differing": 0,
+      "mask_count": 0,
+      "body_sha256": "12cf24b1371782655ff6ccaac6c0e47a73c2eafc31a058ec251f5a701f99c995"
+    },
+    "client_sync": {
+      "words": 54,
+      "differing": 0,
+      "mask_count": 0,
+      "body_sha256": "e00bd77c09dae04d25cb1de2a0b41bc572c7c250e42507ee9078efbc0ba245b5"
+    },
+    "entity_hierarchy_update": {
+      "words": 34,
+      "differing": 0,
+      "mask_count": 0,
+      "body_sha256": "91ae6e572e43923d6b37dcd487074200c38ec930e0485b6a003a5b4ffa0896bf"
+    },
+    "func_80091BA8": {
+      "words": 21,
+      "differing": 0,
+      "mask_count": 0,
+      "body_sha256": "d5dc025c1f81860dabb7d7dbd3e69ba459a34f8343918c63767b506f42aa9655"
+    },
+    "scheduler_recv": {
+      "words": 40,
+      "differing": 0,
+      "mask_count": 0,
+      "body_sha256": "790caccf464952f67072f0db5e5659b07a46b5a348c561ff73bc3ecc826fc8d9"
+    }
+  }
+}

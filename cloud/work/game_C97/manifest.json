@@ -1,0 +1,27 @@
+{
+  "target_id": "func_800EB90C",
+  "vaddr": "0x800EB90C",
+  "original_bytes": 2000,
+  "original_words": 500,
+  "source": "cloud/work/game_C97/func_800EB90C.c",
+  "source_sha256": "38595a0766933709fc7763bca18645ffbd267d73d5111eab5b6bbe85514ad162",
+  "object_sha256": "420a919e284c0528533d4c3b8163ca226d202f166ed004c86c021cc4e3be50a8",
+  "target_sha256": "63b312c73f2a5247d4704c8e9a8b5e7f863019be7ab6ebd899539bbd5ffb74b2",
+  "original_roundtrip_gate": [
+    true,
+    null
+  ],
+  "strict_score": 11118,
+  "native_true_instructions": 483,
+  "target_frame": 200,
+  "candidate_frame": 168,
+  "source_complete": true,
+  "accepted_credit": 0,
+  "status": "frozen complete native nonmatch",
+  "evidence": [
+    "eligibility.json",
+    "score.json",
+    "narrow_score.json"
+  ],
+  "private_m2c_scaffold": "build/C97/func_800EB90C.pattern_input.s: original five table branches added; only FCSR register spelling normalized and local analysis table renamed for m2c recognition, no production target/source masks"
+}

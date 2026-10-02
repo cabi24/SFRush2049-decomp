@@ -1,0 +1,22 @@
+# C19 — initialization target representation review
+
+Frozen private patch: static_C19/targets.patch. No shared target tools, database, accepted sources, headers, locks or layout were modified. Frozen C18 source and ownership packet remain unchanged.
+
+The narrow __osInitialize_common-only normalization replaces the first fixed SDK exception-vector operand family with their literal UT_VEC addresses, and the separately named low clock word with gAudioDmaCounter+4. All replacements require the complete authoritative address family, matching live/SDK unsigned64 OSTime declarations, matching unsigned32 types, live/SDK K0BASE80000000, SDK UT_VEC=K0BASE, the ordered four-unsigned-int SDK exception-vector structure, and the genuine SDK OSTime osClockRate definition. Missing files, mismatched declarations or any missing/wrong family address disable all replacements atomically. Only exact bare %hi/%lo symbol operands are changed; unrelated targets, similarly named symbols, already offset expressions, calls and other instructions remain untouched.
+
+Fresh Rocky compilation of the UNCHANGED C18 full_module.c against a CURRENT-root header snapshot produced the identical object SHA256 a73bb742b270f19701a7b8377c3704befe99431c965c3829e98d20bddef07db9 and source SHA2567606f20fc4e2459c6de43e5be046a9389030c5c7a93db6548bf9729003e5fe80. Flags: -g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm. Both named functions pass the unchanged canonical scorer with stack differences enabled and literal raw unlinked object-word comparison:
+
+| Function | Bytes | Strict / raw differences | Proposed target SHA256 |
+| --- | --- | --- | --- |
+| __osInitialize_common | 680 | 0 / 0 | 88607c187a346cf36ccc27d240c61b838414400ba567adb23d91f1558369ccfd |
+| existing __osPiReadDeviceType | 156 | 0 / 0 | 6b2a0194aedb28f81292fca5f2bb6e7e1a1a5c4d5f2f31e9fff3f813ad598b53 |
+
+strict_verification.json records canonical settings and function-scoped objdump commands. No masks or linked substitutions are used in these raw/strict proofs. score_module.py is the reproducible private verifier, executed in Rocky ~/agents/C/scratch/static-C19, alongside fresh full_module.o and both targets. It uses the existing scoring implementation from C/wt and the vendored toolkit; source/scorer provenance and current header/SDK hashes are separately pinned.
+
+verify_targets.py independently assembles and links the genuine original instruction regions through the private proposed normalizer. All170 initializer words and all39 neighbor words match retail WITHOUT relocation masks; both existing assembly gates also pass. linked_targets.json records complete linked byte hashes and original assembly hashes. Production target refresh remains exclusively the parent supported API action after review; no private target objects are inserted into DB.
+
+The focused private suite passes26 new cases: exact replacement/operand scope, six address relationships each missing or wrong, six type/constant drift cases, and seven missing authority files. Reproduce with PYTHONPATH=. pytest -q cloud/work/static_C19/test_initialization_aliases.py. Both real target unmasked linkage comparisons are additional proof, not counted as pytest cases.
+
+Original SDK initialize.c declares and writes four-word exception vectors at UT_VEC, XUT_VEC, ECC_VEC and E_VEC. Historical first-vector symbols name hardware-fixed memory, rather than separately allocated source globals. SDK PR/R4300.h establishes the exact first vector location; live rom_tu.h agrees on K0BASE. OSTime is the genuine N64 big-endian unsigned64 scalar, hence its low word is byte4. Current symbol files establish clock8002C360/low8002C364 and all four vector words at80000000/4/8/C. This is an equivalent assembly operand representation; literal canonical source is preserved. The failed source extern-vector control from C18 is excluded.
+
+C18 already independently proved complete848-byte text plus initialized data32 against retail, genuine allocated BSS16, full private-ROM candidate/regeneration/negative/rollback behavior. C19 resolves its strict protocol blocker only. Current-root ownership activation still needs the reviewed coherent existing-O1 complete-module transaction, allocated data/BSS symbols and forced full-ROM gate. No coverage or ready standalone body promotion is claimed before that transaction. B25 timer lifecycle is a useful API shape, but its timer-specific linked proof must be explicitly parameterized/reviewed for this initialization module rather than silently reused.

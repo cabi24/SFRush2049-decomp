@@ -1,0 +1,50 @@
+[
+  {
+    "function": "viDeadlinePassed",
+    "original_words": 8,
+    "candidate_extent_words": 16,
+    "differing_full_words": 8,
+    "extra_nonzero_words": 6,
+    "candidate_slot_delta_bytes": null,
+    "masks": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "exact_body_and_extent": false,
+    "slot_placement_exact": null,
+    "variant": "deadline_difference",
+    "source_sha256": "047ceaaff78cf6133ab3c321cb233d5eec4491b0b24a2e364632ec5651937686"
+  },
+  {
+    "function": "viDeadlinePassed",
+    "original_words": 8,
+    "candidate_extent_words": 16,
+    "differing_full_words": 8,
+    "extra_nonzero_words": 5,
+    "candidate_slot_delta_bytes": null,
+    "masks": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "exact_body_and_extent": false,
+    "slot_placement_exact": null,
+    "variant": "deadline_comparison",
+    "source_sha256": "04865be824044c559be9e6a757bda8fd79fd005b2a87118c57e25ca2a710a733"
+  },
+  {
+    "function": "viDeadlinePassed",
+    "original_words": 8,
+    "candidate_extent_words": 16,
+    "differing_full_words": 8,
+    "extra_nonzero_words": 7,
+    "candidate_slot_delta_bytes": null,
+    "masks": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "exact_body_and_extent": false,
+    "slot_placement_exact": null,
+    "variant": "deadline_both",
+    "source_sha256": "e7a3de1d4c77cfceee8b70fa4cc75b676e2fa67f4fa2bd18d883e56192ba229e"
+  }
+]

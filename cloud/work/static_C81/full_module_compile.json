@@ -1,0 +1,78 @@
+[
+  {
+    "module": "lib_34a0",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm -Iinclude -Iinclude/PR -Irom -D_LANGUAGE_C",
+    "source_sha256": "3278ec22c194616962c2e5ba6414da422336cced7ee5cd2f2f265dbb7916bd11",
+    "original_asm_sha256": "524cdb70a9b26373d61e6d5a6467bd05512542b0f3a5f6c4a9e6d4a983c90cb2",
+    "existing_promoted": 0,
+    "compile_exit": 0,
+    "stderr": "",
+    "seg": {
+      "yaml_name": "0x34a0",
+      "rom_tu": "rom/lib_34a0",
+      "vram_start": "0x800028a0",
+      "size": 8528,
+      "converted": false,
+      "flagset": null,
+      "functions": [
+        {
+          "name": "modf",
+          "vaddr": "0x800028a0",
+          "size": 452,
+          "state": "passthrough"
+        },
+        {
+          "name": "modff",
+          "vaddr": "0x80002a64",
+          "size": 396,
+          "state": "passthrough"
+        },
+        {
+          "name": "__isinf",
+          "vaddr": "0x80002bf0",
+          "size": 112,
+          "state": "passthrough"
+        },
+        {
+          "name": "__isnan",
+          "vaddr": "0x80002c60",
+          "size": 112,
+          "state": "passthrough"
+        },
+        {
+          "name": "fcvt",
+          "vaddr": "0x80002cd0",
+          "size": 3948,
+          "state": "passthrough"
+        },
+        {
+          "name": "__ecvt_internal",
+          "vaddr": "0x80003c3c",
+          "size": 2616,
+          "state": "passthrough"
+        },
+        {
+          "name": "__round_helper",
+          "vaddr": "0x80004674",
+          "size": 516,
+          "state": "passthrough"
+        },
+        {
+          "name": "__write_exponent",
+          "vaddr": "0x80004878",
+          "size": 280,
+          "state": "passthrough"
+        },
+        {
+          "name": "sprintf",
+          "vaddr": "0x80004990",
+          "size": 96,
+          "state": "passthrough"
+        }
+      ],
+      "refusal": null
+    },
+    "object_sha256": "5a3a93ca0140b9d42a72692fc8b4374b398f6b760aab0beb9ed20ca62da36ca3",
+    "postprocess": "ok"
+  }
+]

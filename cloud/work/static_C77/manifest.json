@@ -1,0 +1,17 @@
+{
+  "decision": "full original words and complete real TU exact; pending canonical scoped FP-alias target refresh before strict claim",
+  "function": "__round_helper",
+  "layout_bytes": 516,
+  "source": "cloud/work/static_C77/__round_helper.steps.c",
+  "source_sha256": "9abf59f81b40d7e23462c108c8ac2c1c45f6e28bf3f615f620e3168c9dccb961",
+  "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "stale_target_sha256": "8b615f14901115f24526de672135b2908eacfc37b2e5745d015d5b7f90bfea13",
+  "stale_target_tier": "raw_word",
+  "stale_target_gate_reason": "assemble_error: 10: invalid operands sdc1 $fa0,0x20($sp)",
+  "original_words_exact": 129,
+  "complete_module_proof": "full_module_proofs.json",
+  "complete_module_bytes": 8528,
+  "all_original_members_verified": 9,
+  "actual_o32_contract": "double in f12/f14 slots0/1; exponent a2; start a3; end stack16; unsigned digit stack20 byte3; sign stack24",
+  "required_shared_prototype": "extern double modf(double,double *); (full proposed TU already defines real modf before helper)"
+}

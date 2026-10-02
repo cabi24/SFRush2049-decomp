@@ -1,0 +1,77 @@
+[
+  {
+    "source": "entity_process_main_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "905cbe668e318e9deee2f9a6a013c2852827d1982db7c5e8b429adf7e2917f33",
+    "comparison": {
+      "differing": 331,
+      "total": 356,
+      "unresolved": [
+        "fabsf+0x0 at +0xd4",
+        "fabsf+0x0 at +0x108",
+        "fabsf+0x0 at +0x13c",
+        "fabsf+0x0 at +0x170"
+      ],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 22
+    },
+    "text_words": 380
+  },
+  {
+    "source": "entity_process_main_intrinsic.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "0692a73d6e5fbf4b5dd280fd25dde45d3adab04fbed8a50a487461cfac05237b",
+    "comparison": {
+      "differing": 326,
+      "total": 356,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 352
+  },
+  {
+    "source": "entity_process_main_flat.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "67f73e1f8410dcd93ec420adb492fd25a6dd8ebab9d7b2b4634d37b1e0c334c4",
+    "comparison": {
+      "differing": 347,
+      "total": 356,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 352
+  },
+  {
+    "source": "entity_process_main_columns.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "88048c4cac100e9677db18a1429dd9d79cacc910f27312edad140f979574e5a7",
+    "comparison": {
+      "differing": 340,
+      "total": 356,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 352
+  },
+  {
+    "source": "entity_process_main_intrinsic_O2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "ca8b3bcc3ab5de7d3e57b76a69f340f13db3091de4c938d764fe23c8843d7771",
+    "comparison": {
+      "differing": 348,
+      "total": 356,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 352
+  }
+]

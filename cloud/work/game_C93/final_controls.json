@@ -1,0 +1,83 @@
+[
+  {
+    "function": "func_800DE860",
+    "variant": "func_800DE860.branch_unity",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 883,
+    "linked": {
+      "differing": 205,
+      "total": 211,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x224",
+        ".rodata+0x0 at +0x22c",
+        ".rodata+0x4 at +0x234",
+        ".rodata+0x4 at +0x23c",
+        ".rodata+0x8 at +0x2f0",
+        ".rodata+0x8 at +0x2f4",
+        ".rodata+0xc at +0x2fc",
+        ".rodata+0xc at +0x300"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "410a528819ec9d94cca7a68d8d3b71e4507c25b4593b3a0b5ecd6f98280d71af",
+    "target_sha256": "75a54aedf6bb2c21883f1d712e9565440129142d3594b7cdf33401fc6b7a7976"
+  },
+  {
+    "function": "func_800DE860",
+    "variant": "func_800DE860.increment_factor",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 898,
+    "linked": {
+      "differing": 205,
+      "total": 211,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x224",
+        ".rodata+0x0 at +0x22c",
+        ".rodata+0x4 at +0x234",
+        ".rodata+0x4 at +0x23c",
+        ".rodata+0x8 at +0x2f0",
+        ".rodata+0x8 at +0x2f4",
+        ".rodata+0xc at +0x2fc",
+        ".rodata+0xc at +0x300"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "5c2b20c1abf3474b0e94835e65dcc2e2b17954c2d22378e2a8db61d522f3bdb3",
+    "target_sha256": "75a54aedf6bb2c21883f1d712e9565440129142d3594b7cdf33401fc6b7a7976"
+  },
+  {
+    "function": "func_800DE860",
+    "variant": "func_800DE860.o3",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 883,
+    "linked": {
+      "differing": 205,
+      "total": 211,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x224",
+        ".rodata+0x0 at +0x22c",
+        ".rodata+0x4 at +0x234",
+        ".rodata+0x4 at +0x23c",
+        ".rodata+0x8 at +0x2f0",
+        ".rodata+0x8 at +0x2f4",
+        ".rodata+0xc at +0x2fc",
+        ".rodata+0xc at +0x300"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "c0c66f497a80893244cdf7f1a33c497a5e2d0d65b1d0d2f8a4df2c86242f85ea",
+    "target_sha256": "75a54aedf6bb2c21883f1d712e9565440129142d3594b7cdf33401fc6b7a7976"
+  }
+]

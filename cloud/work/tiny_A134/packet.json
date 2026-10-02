@@ -1,0 +1,16 @@
+{
+  "packet": "A134",
+  "function": "race_init_helper",
+  "address": "0x800EC0DC",
+  "bytes": 180,
+  "words": 45,
+  "claims": [],
+  "files": {
+    "control.three_cursors.c": "84c67fd77bc7f3249180420a3aa5a74031b35aacc24a84d0421fc8b74ffdda39",
+    "STATUS.md": "5395be27df6f21b85fede05ed0b82319c38a2e8703355f16fb0cb726dd61dbf1",
+    "control.three_cursors.verification.json": "11348a3d626d6b8127da2c3e53ef950624f07f2513f49e6e55c9077c29d1c6c1",
+    "verification.json": "5da4f8218a0aefab50a7c3648d1a3e09bca9b416894c6e7ad7639fbb1c0150fe",
+    "race_init_helper.c": "7b136851ee5e0ad7de78e97ffb8fc3329f69f23e51cd0a5279f1dba2b83b9641",
+    "raw_proof.json": "e1b1aba5b5d71ed14ac8dca56c8875c500c6f2e523e999a8f7a4ad744d6b0c09"
+  }
+}

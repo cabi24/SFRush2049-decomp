@@ -1,0 +1,30 @@
+[
+  {
+    "function": "get_viewport_offset",
+    "variant": "get_viewport_offset",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "acb8e0318b894a11d0bf51e6a94f341f868bdde487a5818108398925c8542198",
+    "target_sha256": "3fe3c64aa507e27bbec8aa8514ce680a7f1dc7393b8423e6f2a2643acf0b846c"
+  },
+  {
+    "function": "get_viewport_pos",
+    "variant": "get_viewport_pos",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "0e9726ccaac1f467b6aad87fb51bc3ffd04bd9b7c89c2be44db2d26969c3e6f6",
+    "target_sha256": "f4ea3fc4c4c30300ff2911c26eff3e16d608364b6692d4670d80e87c7d297bfd"
+  },
+  {
+    "function": "get_viewport_pos",
+    "variant": "get_viewport_pos.rows",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "c14c498ce96f1196c93f930d06f011b1a56c1b43ac1a4596610ed97575956ba5",
+    "target_sha256": "f4ea3fc4c4c30300ff2911c26eff3e16d608364b6692d4670d80e87c7d297bfd"
+  },
+  {
+    "function": "get_viewport_offset",
+    "variant": "get_viewport_offset.rows",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "65107d5126ba7ad3767c13abf31a33a3288402cdae6954f5932ed2b8b1b07300",
+    "target_sha256": "3fe3c64aa507e27bbec8aa8514ce680a7f1dc7393b8423e6f2a2643acf0b846c"
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "packet": "B114",
+  "function": "track_info_display",
+  "address": "0x800D0BA0",
+  "bytes": 1124,
+  "claims": [
+    "track_info_display"
+  ],
+  "report": "cloud/work/near_miss_B114.md",
+  "report_sha256": "048cc2f8b27427652dad86315879a431bd7593c5a0b4d61787f552b4b6a8d353",
+  "files": {
+    "group.c": "369200bb7c17a48d4dad8909a7ba53d12077696d5fc932f675956eaf84b8734f",
+    "group.json": "0e267b92060b3d7ab20208633d4f124f47956e0c36e3c58f786dc6d4e8f837cd",
+    "image_verification.json": "73daae4e361353a31316ea2be8bb6ffc7b20189d5a6f2823ad97d81c72c069e1",
+    "verification.json": "c08c8c22dcf490383b569e7a94970d407b28806f0af232aabae90873c9e14994"
+  }
+}

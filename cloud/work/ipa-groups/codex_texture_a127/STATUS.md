@@ -1,0 +1,3 @@
+# A127/B104 genuine closure control
+
+Frozen source SHA-256 `94b930d1b53e7745622ce5fb52b367bd7e34b039a8c5e0db06b6f066100e0fb0`, literal flags `-g0 -O3 -mips2 -G 0 -non_shared`. Complete corrected real B104 caller plus complete A127 native helper, no stand-ins. Internal helper gives113/113 and caller470/471+9extra; both ordinary real entries restore helper4/113 and caller381/471, no extras. Caller rodata table references are unverified leads, not accepted table proof. Claims remain empty. See ../.. /tiny_A127/STATUS.md for complete ABI/dataflow audit. Frozen B104 original source remains untouched.

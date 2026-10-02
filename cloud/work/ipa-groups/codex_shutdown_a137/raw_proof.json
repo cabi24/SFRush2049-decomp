@@ -1,0 +1,78 @@
+{
+  "source_sha256": "b8bd2fabe35aec99238646441e353ff87c8fcac8a0ba434b74dc033f8a9d7780",
+  "manifest_sha256": "46804671313f4ded8d8b30a57c933aae4382ea76ae990b49ac7dc6eaa279bc0c",
+  "object_sha256": "2e28999b7a527751719023223b2bb6a5607fb7c9c23f5fd13e02341ff166bd6d",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "exact_functions": {
+    "object_type1_create": {
+      "words": 26,
+      "bytes": 104,
+      "unmasked_exact": true
+    },
+    "object_type7_create": {
+      "words": 26,
+      "bytes": 104,
+      "unmasked_exact": true
+    },
+    "audio_reverb_update": {
+      "words": 61,
+      "bytes": 244,
+      "unmasked_exact": true
+    },
+    "audio_effect_process": {
+      "words": 23,
+      "bytes": 92,
+      "unmasked_exact": true
+    },
+    "synced_model_render": {
+      "words": 23,
+      "bytes": 92,
+      "unmasked_exact": true
+    },
+    "MP_TargetSpeed": {
+      "words": 28,
+      "bytes": 112,
+      "unmasked_exact": true
+    },
+    "assign_default_paths": {
+      "words": 28,
+      "bytes": 112,
+      "unmasked_exact": true
+    },
+    "stat_race_end": {
+      "words": 29,
+      "bytes": 116,
+      "unmasked_exact": true
+    },
+    "func_80095F8C": {
+      "words": 19,
+      "bytes": 76,
+      "unmasked_exact": true
+    },
+    "func_80095EF4": {
+      "words": 38,
+      "bytes": 152,
+      "unmasked_exact": true
+    },
+    "audio_buffer_sync": {
+      "words": 26,
+      "bytes": 104,
+      "unmasked_exact": true
+    },
+    "object_counter_decrement": {
+      "words": 27,
+      "bytes": 108,
+      "unmasked_exact": true
+    },
+    "object_counter_increment": {
+      "words": 28,
+      "bytes": 112,
+      "unmasked_exact": true
+    }
+  },
+  "unclaimed_nonmatches": [
+    "func_800C8918",
+    "func_80091B00"
+  ]
+}

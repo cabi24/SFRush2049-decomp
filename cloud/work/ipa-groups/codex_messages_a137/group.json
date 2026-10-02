@@ -1,0 +1,17 @@
+{
+  "members": [
+    "object_type1_create",
+    "object_type7_create"
+  ],
+  "context": [],
+  "claims": [],
+  "files": [
+    "group.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "keep": [
+    "object_type1_create",
+    "object_type7_create"
+  ],
+  "provenance": "A137 complete genuine ordinary message constructors, native allocator is actual external zero-input callee"
+}

@@ -1,0 +1,9 @@
+# A144 — full genuine caller closure, frozen NONMATCH
+
+func_800E847C@800E847C,2100B/525words, one zero-input six-car sync routine and sole real original caller of frozen A143 func_800E7FA0. Current local lock/interval eligibility JSON confirms no accepted overlap. Complete actual car/object fields, two nine-float matrix copies, consumed three-float summed force, directional response curves and clamps, four tire transforms/positions, four material comparison counts, dominant event, speed/contact flags, real311-word threshold leaf call and all final object state stores. Local counts[4] bound by four actual tire iterations and sum[3] by three actual components; no spare locals or guessed capacity.
+
+Initial source519/525 explicitly rejected after directed audit found reversed X-axis clamp comparisons. Corrected whole caller521/525, no extras/unverified/unresolved/errors. Separate full real caller + unchanged A143 leaf group250/311+1extra for leaf and521/525 for genuine caller. The actual source prefix preserves frozen A143 hash/body. Real native context reduces caller-inferred clobber mismatch but remains a nonmatch; no partial body claim. Ordinary exported full caller kept, actual one-caller leaf internal.
+
+Original first-load/final-store of a scratch halfword is not represented as a dummy self-preservation local. Actual event scalar is consumed by original event-bit store and assigned during the four-tire search. First tire's count ties itself, so every qualifying material pass initializes event; unused initial native home is not assigned padding/pressure credit. All observed body operations with actual consumers recovered. Original speed/curve domains left unchecked just as native; no synthesized guards.
+
+No fake callee bodies, unused formals, masks, reflow, stack pressure, declarations/operand coloring or commits. Claims empty.

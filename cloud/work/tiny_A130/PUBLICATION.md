@@ -1,0 +1,3 @@
+# A130 separately frozen publication copy
+
+`listener_position_set.publication.c` SHA-256 `4281805fdf0eb1ff4f2571b870e136ad27efbb460f1f3f03f053f9f734988218` has exactly the required literal flags comment on line1, followed by the previously frozen complete source without edits. This exact copy was freshly compiled on Rocky using `-g0 -O3 -mips2 -G 0 -non_shared`; canonical strict54 words and direct unmasked original comparisons both remain exact, no exceptions/extras/errors. Original packet/source/proof hashes remain unchanged. Publication claims empty pending coordinator independent replay/ROM gates.

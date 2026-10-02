@@ -1,0 +1,274 @@
+[
+  {
+    "module": "lib_21f0",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm -Iinclude -Iinclude/PR -Irom -D_LANGUAGE_C",
+    "source_sha256": "8698fb468a91bff56d9a7be7aa3f836e713d4273656830a63c1d15ca671f7305",
+    "original_asm_sha256": "789ef52311cd65e021aca5dfbb2af72432ef5f6f2746e8607dbfa55699df9581",
+    "existing_promoted": 0,
+    "compile_exit": 0,
+    "stderr": "",
+    "seg": {
+      "yaml_name": "0x21f0",
+      "rom_tu": "rom/lib_21f0",
+      "vram_start": "0x800015f0",
+      "size": 2816,
+      "converted": false,
+      "flagset": null,
+      "functions": [
+        {
+          "name": "display_update",
+          "vaddr": "0x800015f0",
+          "size": 1364,
+          "state": "passthrough"
+        },
+        {
+          "name": "viewport_setup",
+          "vaddr": "0x80001b44",
+          "size": 540,
+          "state": "passthrough"
+        },
+        {
+          "name": "display_mode_tick",
+          "vaddr": "0x80001d60",
+          "size": 156,
+          "state": "passthrough"
+        },
+        {
+          "name": "get_tv_offset",
+          "vaddr": "0x80001dfc",
+          "size": 92,
+          "state": "passthrough"
+        },
+        {
+          "name": "apply_display_mode",
+          "vaddr": "0x80001e58",
+          "size": 44,
+          "state": "passthrough"
+        },
+        {
+          "name": "get_viewport_pos",
+          "vaddr": "0x80001e84",
+          "size": 72,
+          "state": "passthrough"
+        },
+        {
+          "name": "get_viewport_offset",
+          "vaddr": "0x80001ecc",
+          "size": 96,
+          "state": "passthrough"
+        },
+        {
+          "name": "update_viewport",
+          "vaddr": "0x80001f2c",
+          "size": 452,
+          "state": "passthrough"
+        }
+      ],
+      "refusal": null
+    },
+    "object_sha256": "10227f27cb93cf54b1793b0260b71b5416ead20e3bff35a97b8a100ffd359e2c",
+    "postprocess": "ok"
+  },
+  {
+    "module": "lib_2cf0",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm -Iinclude -Iinclude/PR -Irom -D_LANGUAGE_C",
+    "source_sha256": "0245f4169fbfcbe5ca762cc0701b1da968c931c22be65069f88cb23b53b028ef",
+    "original_asm_sha256": "82c54792e43c0d63034437e00a8d74cf8dece8029a4fff527cd76e389ea18729",
+    "existing_promoted": 0,
+    "compile_exit": 0,
+    "stderr": "",
+    "seg": {
+      "yaml_name": "0x2cf0",
+      "rom_tu": "rom/lib_2cf0",
+      "vram_start": "0x800020f0",
+      "size": 1104,
+      "converted": false,
+      "flagset": null,
+      "functions": [
+        {
+          "name": "main",
+          "vaddr": "0x800020f0",
+          "size": 180,
+          "state": "passthrough"
+        },
+        {
+          "name": "idle_thread_entry",
+          "vaddr": "0x800021a4",
+          "size": 148,
+          "state": "passthrough"
+        },
+        {
+          "name": "game_init",
+          "vaddr": "0x80002238",
+          "size": 708,
+          "state": "passthrough"
+        },
+        {
+          "name": "audio_thread_entry",
+          "vaddr": "0x800024fc",
+          "size": 68,
+          "state": "passthrough"
+        }
+      ],
+      "refusal": null
+    },
+    "object_sha256": "bd6770154fa41df80c3036d44df52f7553b81704c0c9b3746e239295def9e8c9",
+    "postprocess": "ok"
+  },
+  {
+    "module": "lib_3140",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm -Iinclude -Iinclude/PR -Irom -D_LANGUAGE_C",
+    "source_sha256": "a908ffa97af5fff6ab27edacaf0db50df84864b8fdb918e9bc33f24bbb5e56e9",
+    "original_asm_sha256": "e7d649f38c9c70d16bb7c23ca5829682da4b9096dfe110780a57ccaba06f6388",
+    "existing_promoted": 0,
+    "compile_exit": 0,
+    "stderr": "",
+    "seg": {
+      "yaml_name": "0x3140",
+      "rom_tu": "rom/lib_3140",
+      "vram_start": "0x80002540",
+      "size": 496,
+      "converted": false,
+      "flagset": null,
+      "functions": [
+        {
+          "name": "dma_queue_init",
+          "vaddr": "0x80002540",
+          "size": 88,
+          "state": "passthrough"
+        },
+        {
+          "name": "dma_wait",
+          "vaddr": "0x80002598",
+          "size": 148,
+          "state": "passthrough"
+        },
+        {
+          "name": "dma_signal",
+          "vaddr": "0x8000262c",
+          "size": 52,
+          "state": "passthrough"
+        },
+        {
+          "name": "lzss_decompress",
+          "vaddr": "0x80002660",
+          "size": 96,
+          "state": "passthrough"
+        },
+        {
+          "name": "inflate_decompress",
+          "vaddr": "0x800026c0",
+          "size": 112,
+          "state": "passthrough"
+        }
+      ],
+      "refusal": null
+    },
+    "object_sha256": "bf3328a1d8b3caf1548a7acfb85d358cc059620a6d1c1e9473b1288f08f99724",
+    "postprocess": "ok"
+  },
+  {
+    "module": "lib_3330",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm -Iinclude -Iinclude/PR -Irom -D_LANGUAGE_C",
+    "source_sha256": "3dfd0b5e503a207ed3b1ec991d34f32936dcf2c5627d611c8be64ba2f8bf1b66",
+    "original_asm_sha256": "6d02eaf96742deffec7564d087487178980f04f4334f0e82fef04a410fec9712",
+    "existing_promoted": 0,
+    "compile_exit": 0,
+    "stderr": "",
+    "seg": {
+      "yaml_name": "0x3330",
+      "rom_tu": "rom/lib_3330",
+      "vram_start": "0x80002730",
+      "size": 96,
+      "converted": false,
+      "flagset": null,
+      "functions": [
+        {
+          "name": "memchr",
+          "vaddr": "0x80002730",
+          "size": 96,
+          "state": "passthrough"
+        }
+      ],
+      "refusal": null
+    },
+    "object_sha256": "75cb356e53907747ddb9d2ef7766205c458fb678d955eb42535f5bd50c09be4d",
+    "postprocess": "ok"
+  },
+  {
+    "module": "lib_34a0",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm -Iinclude -Iinclude/PR -Irom -D_LANGUAGE_C",
+    "source_sha256": "621a3bb808b47c27e2d71673668744a3b0366f8adcb66862d40972490f8b52e8",
+    "original_asm_sha256": "524cdb70a9b26373d61e6d5a6467bd05512542b0f3a5f6c4a9e6d4a983c90cb2",
+    "existing_promoted": 0,
+    "compile_exit": 0,
+    "stderr": "",
+    "seg": {
+      "yaml_name": "0x34a0",
+      "rom_tu": "rom/lib_34a0",
+      "vram_start": "0x800028a0",
+      "size": 8528,
+      "converted": false,
+      "flagset": null,
+      "functions": [
+        {
+          "name": "modf",
+          "vaddr": "0x800028a0",
+          "size": 452,
+          "state": "passthrough"
+        },
+        {
+          "name": "modff",
+          "vaddr": "0x80002a64",
+          "size": 396,
+          "state": "passthrough"
+        },
+        {
+          "name": "__isinf",
+          "vaddr": "0x80002bf0",
+          "size": 112,
+          "state": "passthrough"
+        },
+        {
+          "name": "__isnan",
+          "vaddr": "0x80002c60",
+          "size": 112,
+          "state": "passthrough"
+        },
+        {
+          "name": "fcvt",
+          "vaddr": "0x80002cd0",
+          "size": 3948,
+          "state": "passthrough"
+        },
+        {
+          "name": "__ecvt_internal",
+          "vaddr": "0x80003c3c",
+          "size": 2616,
+          "state": "passthrough"
+        },
+        {
+          "name": "__round_helper",
+          "vaddr": "0x80004674",
+          "size": 516,
+          "state": "passthrough"
+        },
+        {
+          "name": "__write_exponent",
+          "vaddr": "0x80004878",
+          "size": 280,
+          "state": "passthrough"
+        },
+        {
+          "name": "sprintf",
+          "vaddr": "0x80004990",
+          "size": 96,
+          "state": "passthrough"
+        }
+      ],
+      "refusal": null
+    },
+    "object_sha256": "710a04272d1066407d7203f964725dc650a64d8639f7e1b2ae32e0066dd0c55c",
+    "postprocess": "ok"
+  }
+]

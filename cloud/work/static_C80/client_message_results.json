@@ -1,0 +1,13 @@
+[
+  {
+    "function": "game_init",
+    "variant": "game_init.client_message",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "551f522c61789c64ac8c33940a06ca6f189fef872b2666a37ecbfbb1768438e2",
+    "target_sha256": "fc30aa842b0602dea9fdbf7c526d365a26ebe6823dce8f7fd3456454bcb34697",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict_score": 58,
+    "object_sha256": "47c96fca717a7d76ad588a0683cddcdb572d0814cb044891f475afd3b0707c29"
+  }
+]

@@ -1,0 +1,13 @@
+[
+  {
+    "function": "game_init",
+    "variant": "game_init.nested_tv",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "7ea4002bf79f2901b26aa27bc68cf17462b1e2f5449e581118d968eee31af9fa",
+    "target_sha256": "fc30aa842b0602dea9fdbf7c526d365a26ebe6823dce8f7fd3456454bcb34697",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict_score": 84,
+    "object_sha256": "9eabf6d5bb8e442149b3af06cea866dfdac879da9196aa8533d0c569d4e89a75"
+  }
+]

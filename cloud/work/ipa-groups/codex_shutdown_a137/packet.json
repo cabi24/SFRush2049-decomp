@@ -1,0 +1,16 @@
+{
+  "packet": "A137 codex_shutdown_a137",
+  "claims": [],
+  "files": {
+    "group.c": "b8bd2fabe35aec99238646441e353ff87c8fcac8a0ba434b74dc033f8a9d7780",
+    "control.external.json": "4793ccd6c4d1ca6189b14d7fcf90c000f198e84875a7c3ef16bdd6d4868f22f7",
+    "STATUS.md": "010ce34c9974734e5f10c7a61d09a4de2f55136de4ccead320729273324c2d1b",
+    "control.external.verification.json": "18e675fcb740148b4318161f91350d5192ad033791a1b791b5d410a57532110e",
+    "verification.json": "097c7bf63f307f12044c0ebb8e6dc1361cbcc03654b13d6a3ee3ed401260b431",
+    "control.internal.json": "d20f00e939f65c190640150d70010cde1e6561da71a637cd464482a8f4408aca",
+    "raw_proof.json": "5b0f1906d98336196747cdc5c83d031c325ba78cfb4bad4531a705809ec7b7f0",
+    "INLINE_AUDIT.md": "dcd8c32c55a4cecc8762e4fdad3bdc35642eb5e0cbd736e320e93f8411f1af2d",
+    "group.json": "46804671313f4ded8d8b30a57c933aae4382ea76ae990b49ac7dc6eaa279bc0c",
+    "control.internal.verification.json": "088257c1387968ad4fa5201c9b5c0061e68a553b488e776b6381539417891d75"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "packet": "A129 publication",
+  "source_sha256": "4216cbe8a1e1fb19a670ce148df8eec23eb4547835fec2ee7de691f691133a40",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "files": {
+    "func_800CEC8C.publication.c": "4216cbe8a1e1fb19a670ce148df8eec23eb4547835fec2ee7de691f691133a40",
+    "publication.verification.json": "2d1ecfe3959b60bc66b19620f98beacf4360338522611c3900f2f9d47127c9ed",
+    "publication.raw_proof.json": "d180fd358ee5f211ba6e198fcc65b54840c43cf8c208aa2f9cb0cdd18cf8defe",
+    "PUBLICATION.md": "d8844d6b185e85d109ddb16ddf01461e8850253bfbf8b28577d1b9c6373545db"
+  }
+}

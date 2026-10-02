@@ -1,0 +1,13 @@
+[
+  {
+    "function": "fcvt",
+    "variant": "fcvt.bsd_native",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "d40f84ed2d46437e277b4f13f97ebdeb13a9229a4b6ee3469223edad1b09ac92",
+    "target_sha256": "dee06a70b9fc4d990695ee21e0c88ebb96f96c3557e23a93e849dd6c896fd166",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict_score": 7150,
+    "object_sha256": "05fbe48c9f098d64a83b2d0e788b75b3bb81d12c2e2a9d78383df7f7282519a9"
+  }
+]

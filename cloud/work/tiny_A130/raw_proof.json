@@ -1,0 +1,10 @@
+{
+  "function": "listener_position_set",
+  "words": 54,
+  "bytes": 216,
+  "unmasked_exact": true,
+  "source_sha256": "6fedb766211657784fad4b0e5d1b6c7db816de3f9c169f69ef473b631df93b22",
+  "object_sha256": "18e2e417ba563f3e9f19f013446545caa45b79deec0fbcc98acdd9b72df0fc5e",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": []
+}

@@ -1,0 +1,18 @@
+{
+  "status": "frozen private reviewed proposal, not live changes",
+  "production_baseline_sha256": "d43883e029828cca4d84c492198e93a3038e73795a4273ffaa6f3f11438e5bab",
+  "draft_sha256": "dff042090648401770e4a833c658d59d57061d3df61339095b7d7ce6cdfb2295",
+  "new_real_elf_tests": 36,
+  "new_tests_exit": 0,
+  "existing_unmodified_tests": 39,
+  "existing_tests_exit": 0,
+  "actual_native_module_proof": "actual_module_proof.json",
+  "actual_transition_proof": "passthrough_companion_proof.json",
+  "source_sha256": "a49fbfc2c64294ec642baa617e988c3ad5a7b8aa57e007a77eef18f19f75660e",
+  "all_native_bytes": 8528,
+  "logical_table_bytes": 356,
+  "compiler_zero_tail_bytes_excluded": 12,
+  "following_original_nonzero_bytes": 8,
+  "live_registry_or_tool_changes": false,
+  "remaining": "Root review + live supported integration + original ROM/lock/test gates"
+}

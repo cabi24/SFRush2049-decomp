@@ -1,0 +1,11 @@
+{
+  "packet": "A137 codex_messages_a137",
+  "claims": [],
+  "files": {
+    "group.c": "3140c076597bf061b4157d0453c0d0d340f09984b37810b027bfa3dda592e5d8",
+    "STATUS.md": "bde5a3fd688139ee37ee11a754015646e05c1f367bfab03c46ae32c4535e2ede",
+    "verification.json": "59304d2c8112e68fe3986ea0b3a46689e4d995eb6a2d8d79a0df4a32d4197231",
+    "raw_proof.json": "81b723d7d19756b29ccba1f06dc7353012a0a7789172ef2cae06a909f2887540",
+    "group.json": "864e95665a83ea228613faa5f23b83ab99617d4850907622168ba8eca163df17"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "func_80098710:real_byte_float_carriers": {
+    "strict_diff": 43,
+    "size": 57,
+    "extra": 2,
+    "matched": false,
+    "err": null
+  },
+  "func_800AB638:real_section_carriers": {
+    "strict_diff": 50,
+    "size": 48,
+    "extra": 0,
+    "matched": false,
+    "err": null
+  },
+  "func_800AB638:cached_header_section_carriers": {
+    "strict_diff": 46,
+    "size": 52,
+    "extra": 0,
+    "matched": false,
+    "err": null
+  },
+  "func_800E762C:correct_actual_base": {
+    "strict_diff": 51,
+    "size": 57,
+    "extra": 0,
+    "matched": false,
+    "err": null
+  },
+  "func_800E762C:actual_cached_mode_and_factor": {
+    "strict_diff": 53,
+    "size": 56,
+    "extra": 0,
+    "matched": false,
+    "err": null
+  },
+  "func_800EC190:actual_half_counter_carriers": {
+    "strict_diff": 51,
+    "size": 56,
+    "extra": 0,
+    "matched": false,
+    "err": null
+  }
+}

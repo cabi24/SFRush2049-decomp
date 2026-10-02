@@ -1,0 +1,35 @@
+[
+  {
+    "function": "fcvt",
+    "variant": "fcvt.original_templates",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "60fd6f806bcc65641c4b2a48d9574da938583e7d72c7cafcb412458dff913b52",
+    "target_sha256": "dee06a70b9fc4d990695ee21e0c88ebb96f96c3557e23a93e849dd6c896fd166",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict_score": 205,
+    "object_sha256": "fca2f654d2aa1db2c1976fb022cd070fe3c3a7a6dd40c02fe9bf752a5758e224"
+  },
+  {
+    "function": "fcvt",
+    "variant": "fcvt.original_templates_union",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "8cb14971cb93aad5a24f02277a0dac5fbf110dc00db2764936e614d76bc05c11",
+    "target_sha256": "dee06a70b9fc4d990695ee21e0c88ebb96f96c3557e23a93e849dd6c896fd166",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict_score": 205,
+    "object_sha256": "ed8752cfa77e2d6ac81d010d2811de2eeee926fa6f607af9a3bd447d633a0759"
+  },
+  {
+    "function": "fcvt",
+    "variant": "fcvt.current_header",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "60fd6f806bcc65641c4b2a48d9574da938583e7d72c7cafcb412458dff913b52",
+    "target_sha256": "dee06a70b9fc4d990695ee21e0c88ebb96f96c3557e23a93e849dd6c896fd166",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict_score": 205,
+    "object_sha256": "996d357ebffa389a935441fc914430f9daab2a59d254985ea27ca48667fa15f6"
+  }
+]

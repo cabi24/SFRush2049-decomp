@@ -1,0 +1,58 @@
+[
+  {
+    "source": "menu_controller_remap_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "f66436fc4cf2036cb24660003552c9c971fe155b687a0bbfe2d9ee7d740397e0",
+    "comparison": {
+      "differing": 328,
+      "total": 387,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 364
+  },
+  {
+    "source": "menu_controller_remap_routes.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "9e386c8c1ee551faf87d0b9bbf5128953d6125efdd1d280e9cfbd5422021679f",
+    "comparison": {
+      "differing": 313,
+      "total": 387,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 388
+  },
+  {
+    "source": "menu_controller_remap_counters.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "405750b24d436e4cfd962fc9967e9220a01c77c3928c1ab6663f50edd9ed3fcd",
+    "comparison": {
+      "differing": 318,
+      "total": 387,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 388
+  },
+  {
+    "source": "menu_controller_remap_routes_O2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "33420c1de560f13742e16dc094ff6437ad90c0a4eaa751cd26b00c82525647b8",
+    "comparison": {
+      "differing": 313,
+      "total": 387,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 388
+  }
+]

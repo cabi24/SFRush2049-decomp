@@ -1,0 +1,5 @@
+# A107 genuine history/minimum update — bounded nonmatch
+
+Full func_800D2054@800D2054,212 bytes/53 words. Actual player index and float value, guard original flags bit8/mode1/signed player count. Genuine32-byte history stride yields eight-float row; current unsigned byte cursor selects value, subtracts prior values, updates minimum if smaller and increments byte cursor. Final source preserves the original count snapshot for all three uses; actual consumed pointer cursor matches original memory traversal. Capacity describes original32-byte row, no stack padding/pressure.
+
+Initial41/53+23nonzero extra words; promoted actual count41+22; genuine cursor40+19 (final). Compiler unrolls the count-snapshot loop. Real global-bound control suppresses unroll41/53 no extras; direct global cursor40+1extra. These dynamic-bound controls are archived separately because the snapshot source states original semantics most clearly. No forced volatile, masking, padding or dummy operands used to suppress optimizer. All bounded controls/fresh source metadata frozen, claims empty.

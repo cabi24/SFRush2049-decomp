@@ -1,0 +1,1 @@
+A145 first full native four-caller speed group: vsync_wait0/37 eligible new148B, otherwrappers6/22,6/22,10/23 and true speed_set47/51+5extra words remain NONMATCH. Separate fresh publication member-only proof under ../codex_vsync_a145. Genuine source unchanged; claims empty.

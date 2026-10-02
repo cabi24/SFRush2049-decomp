@@ -1,0 +1,18 @@
+{
+  "claims": [
+    {
+      "function": "update_viewport",
+      "layout_bytes": 452,
+      "source": "cloud/work/static_C74/update_viewport.direct_order.c",
+      "source_sha256": "317fabc4a9fcf73c7bf8c5dcd8fa17be7a8fa2194c977aec9d4894565780a0ef"
+    }
+  ],
+  "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "target_sha256": "7650d39b312d4bb7c7d6673b9dda8e35037366353ab6e68b3eddc81a25a4d01b",
+  "complete_module_flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm -Iinclude -Iinclude/PR -Irom -D_LANGUAGE_C",
+  "asm_processor_model": "-g",
+  "complete_module_proof": "full_module_proofs.json",
+  "all_original_members_verified": 8,
+  "required_shared_context": "shared_context.txt plus prior C70/C72/C73 additions",
+  "note": "complete TU includes exact C73 viewport_setup original-word proof but that body still awaits canonical target refresh"
+}

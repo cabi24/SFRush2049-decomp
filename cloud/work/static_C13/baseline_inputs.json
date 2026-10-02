@@ -1,0 +1,10 @@
+{
+  "inputs_sha256": {
+    "src/rom/lib_e9a0.c": "d6d0bdb71e2a8d30a14f74f1c4352c2e65642e068000fbc72cbfe66a5c9fdb10",
+    "src/rom/rom_tu.h": "a7a1d4a1d9220b912b7ad0ec62bcd796e7abce207b9aa7f249339f18064de662",
+    "rush2049.us.ld": "a56ec78aeb45a0885db5c550411cc8cd874be7b2443180ceef2b9debcbde80fc",
+    "assets/us/data.bin": "c348ea04768321ca2f864195ad6013a8fb15b59f0295ab74b8b16317cfa77154",
+    "build/blob/game_code.deflate": "9e632d21b7d0d293563755d9f2033557cb1a4d91d7df6e8d41e68d8afe3e5f7d"
+  },
+  "scratch": "/tmp/static-C13-rom"
+}

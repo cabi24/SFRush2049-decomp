@@ -1,0 +1,13 @@
+{
+  "source": "cloud/work/static_C98/__osPiDeviceBusy.c",
+  "source_sha256": "ab186519e6562451f721437b47fb97cb7e66984cbddbe3897d1cd840995914ee",
+  "vaddr": "0x8000FD70",
+  "rom_offset": "0x10970",
+  "native_text_bytes": 48,
+  "actual_instruction_bytes": 36,
+  "strict_score": 0,
+  "all48_original_bytes_exact": true,
+  "registered_promotion_slot": false,
+  "status": "frozen exact source outside active static layout",
+  "accepted_credit": 0
+}

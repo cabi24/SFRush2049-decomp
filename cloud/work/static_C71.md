@@ -1,0 +1,7 @@
+# C71 — bounded exponent-loop debug follow-up; no claim
+
+Effective g1/O1 recovered the real312-byte frame and actual308-byte digit buffer/pointer offsets for the complete __write_exponent280-byte leaf. The existing C40 native source improved from its frozen residuals to805 in C69. This packet applies10bounded actual recipe/control-flow controls, with no source line search, fake work, spare arguments, pressure variables or compiler intervention.
+
+Best source `__write_exponent.quotient_condition.c` performs the same actual decimal remainder, moves the real quotient assignment into the loop predicate, and copies bytes with an ordinary for loop. It scores275 strictly with stack differences enabled; `word_counts.json` records full target/candidate word counts and honest word differences. The original frame and buffer are preserved. Effective g1/O2 offers no improvement over g1/O1. Natural separate-copy, for-step, do-loop and one actually consumed unsigned copy-byte local controls remain nonzero and are excluded. The register byte has a real loaded/copied value; no artificial lifetime was introduced.
+
+No whole-TU alternate recipe, flags migration, accepted source/header/layout/lock edit or coverage claim was made. Old C40/C69 sources remain unchanged. `results.json` freezes all strict scores, literal flags, source/target/object hashes; sources and reproducible compiler script are frozen here, while target/object bytes remain ignored under build/C71. Move fresh rather than widen the search.

@@ -1,0 +1,30 @@
+{
+  "direct_original_callers": [
+    {
+      "callsite": "0x800a1fa4",
+      "owners": [
+        "track_data_decompress"
+      ]
+    },
+    {
+      "callsite": "0x800a216c",
+      "owners": [
+        "track_data_decompress",
+        "physics_contact_test"
+      ]
+    }
+  ],
+  "caller_target": {
+    "target_id": "track_data_decompress",
+    "address": 2148146968,
+    "population": "extracted",
+    "insn_count": 163,
+    "target_asm_sha": "4d192da32d15f2af782e761a0225adc70c83019f74318fca2a2ba5b20d36b66e",
+    "target_o_sha": "559cc6b25ad0948b0175178a0c8207a06f82aa62d8f814e9243b081df51eb197",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "extent_repaired"
+  },
+  "disjoint_with_IPA": "A142 car_shadow_render; explicit permission confirmed by IPA worker"
+}

@@ -1,0 +1,72 @@
+[
+  {
+    "module": "lib_21f0",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm -Iinclude -Iinclude/PR -Irom -D_LANGUAGE_C",
+    "source_sha256": "ab83c95a1c98628de05296f2bab4de3119aeb4f282e0d6d0697cfac29da1591c",
+    "original_asm_sha256": "789ef52311cd65e021aca5dfbb2af72432ef5f6f2746e8607dbfa55699df9581",
+    "existing_promoted": 0,
+    "compile_exit": 0,
+    "stderr": "",
+    "seg": {
+      "yaml_name": "0x21f0",
+      "rom_tu": "rom/lib_21f0",
+      "vram_start": "0x800015f0",
+      "size": 2816,
+      "converted": false,
+      "flagset": null,
+      "functions": [
+        {
+          "name": "display_update",
+          "vaddr": "0x800015f0",
+          "size": 1364,
+          "state": "passthrough"
+        },
+        {
+          "name": "viewport_setup",
+          "vaddr": "0x80001b44",
+          "size": 540,
+          "state": "passthrough"
+        },
+        {
+          "name": "display_mode_tick",
+          "vaddr": "0x80001d60",
+          "size": 156,
+          "state": "passthrough"
+        },
+        {
+          "name": "get_tv_offset",
+          "vaddr": "0x80001dfc",
+          "size": 92,
+          "state": "passthrough"
+        },
+        {
+          "name": "apply_display_mode",
+          "vaddr": "0x80001e58",
+          "size": 44,
+          "state": "passthrough"
+        },
+        {
+          "name": "get_viewport_pos",
+          "vaddr": "0x80001e84",
+          "size": 72,
+          "state": "passthrough"
+        },
+        {
+          "name": "get_viewport_offset",
+          "vaddr": "0x80001ecc",
+          "size": 96,
+          "state": "passthrough"
+        },
+        {
+          "name": "update_viewport",
+          "vaddr": "0x80001f2c",
+          "size": 452,
+          "state": "passthrough"
+        }
+      ],
+      "refusal": null
+    },
+    "object_sha256": "c7473b5443ffd25e4d78c021b7ddabad70e8d3ad55989d47e343608ad6fbc523",
+    "postprocess": "ok"
+  }
+]

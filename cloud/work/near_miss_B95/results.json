@@ -1,0 +1,17 @@
+[
+  {
+    "source": "dispatch_handler_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "3de5caa9f1e87bd31c18a000a14baa0f37796810def384f4b8498179230eb7b1",
+    "object_sha256": "4b3b5faf43bef99032bc77b2f287a0e7de451c6eea6b453d6d69f875dcb35297",
+    "comparison": {
+      "differing": 0,
+      "total": 257,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 260
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "packet": "C87",
+  "status": "frozen_nonmatch",
+  "target": "camera_lerp_position",
+  "source": "cloud/work/game_C87/camera_lerp_position.consumed_data.c",
+  "source_sha256": "0a7245557de696ec0a3b573c9d01f00b4b19ce955c74cef066bae01dc7e4ac44",
+  "target_sha256": "7d33bc26103eb9dd2b3c08b650aa396d0ec9d6268f9b9a68ed278d52db2e4a26",
+  "strict_score": 735,
+  "original_words_different": 17,
+  "original_words_total": 95,
+  "unresolved": [],
+  "unverified": [],
+  "errors": [],
+  "extra_words": 0,
+  "native_claims": [],
+  "reason": "Two real pool-field store orders differ; final counter globals fold to scalar absolute stores rather than original address materialization. No unsupported volatility, padding, formal or register pressure added."
+}

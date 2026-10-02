@@ -1,0 +1,9 @@
+# B118: audio_dsp_process (0x800BADE0, 97 words / 388 bytes)
+
+Complete native ordinary entry is strict canonical MATCH, independently recompiled and linked with original image symbols. The full original 388 bytes are equal, with zero nonzero excess words. Literal actual first-line flags and source/object hashes are recorded in verification.json; full relocated original-byte proof is image_verification.json. Parent coordinator owns independent replay, supported splice, full-ROM, lock and pytest gates before acceptance. This packet alone is not an accepted coverage claim.
+
+The initializer copies exactly 812 bytes: Header12 plus ten true 80-byte records. Signed halfword flags, timer fields and twenty signed halfword cells derive from original accesses; cells offset34..72 are within each record. No fabricated padding or array sizing experiments. Real fields initialize first flagged selections, clear all twenty cells, and set paired timers from their actual stored source field.
+
+The original executes a three-iteration arithmetic loop without visible writes, immediately before its record selection/clear work. The C source preserves this genuine delay loop using the same consumed short index later used to clear cells; IDO retains it. It is disclosed as an original code quirk, with no invented volatile qualifier or additional runtime expression. Its higher-level historical purpose remains unknown. B44 had deferred this scouting question without writing a complete body.
+
+Before selection, actual LOCAL main lock, canonical alias and protected interval, archived complete bodies and filenames and current lane ownership were audited. No stale Rocky lock was used. No shared accepted files, symbol maps, masks, scorers, locks or splices changed. Raw objects and image bytes remain private temporary files.

@@ -1,0 +1,19 @@
+{
+  "packet": "B95",
+  "function": "dispatch_handler",
+  "address": "0x800B74A0",
+  "size_bytes": 1028,
+  "target_words": 257,
+  "claims": [
+    {
+      "kind": "strict_native_match",
+      "root_acceptance_pending": true
+    }
+  ],
+  "files": {
+    "results.json": "b045f6d2192217c6bbad8f0e51da96bf23efcd74d63c10a68322824f360b126e",
+    "dispatch_handler_native.c": "3de5caa9f1e87bd31c18a000a14baa0f37796810def384f4b8498179230eb7b1",
+    "placement_proof.json": "864cd846bb7e50ea61e7e7c7a08797d9b744b341555a143cea5745c66cb174e2"
+  },
+  "report_sha256": "27532dd2459373f2b31ac13f7d78c52a004c08531889989266f53bef79ab1121"
+}
