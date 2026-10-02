@@ -1,0 +1,40 @@
+{
+  "source_hashes": {
+    "group.c": "bfee31aeaeb3c16deda461123eb2026641a7a4a87ef12d8b85850eed4b6dbd35",
+    "group.json": "e8896ef6bd654c1bff752e6df8d5ecda9d6ef37df88365811db1365e6a37c28b"
+  },
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "keep": [
+    "func_800E9C70",
+    "func_8008B3C8"
+  ],
+  "claims": [
+    "func_800E9C70"
+  ],
+  "results": [
+    {
+      "function": "func_800E9C70",
+      "strict_score": 0,
+      "linked": {
+        "differing": 0,
+        "total": 111,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    {
+      "function": "func_8008B3C8",
+      "strict_score": 0,
+      "linked": {
+        "differing": 0,
+        "total": 11,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    }
+  ]
+}

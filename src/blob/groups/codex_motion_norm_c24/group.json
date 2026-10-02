@@ -1,0 +1,18 @@
+{
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_800E9C70",
+    "func_8008B3C8"
+  ],
+  "members": [
+    "func_800E9C70"
+  ],
+  "context": [
+    "func_8008B3C8"
+  ],
+  "unprototyped": [],
+  "generated": "C24 real caller plus unchanged accepted vector-length helper"
+}

@@ -230,3 +230,7 @@ B27 repairs an actual scalar-float callee return contract rather than converting
 ### Intrinsic declarations and true vector dataflow yield ordinary matches (2026-10-01)
 
 C24/B28 recover original hardware sqrt.s/abs.s via genuine IDO intrinsic declarations after proving SDK float signatures. Correcting implicit-int assumptions avoids invented wrapper work. Typed two/three-float arrays, a common return and actual component load order match the physical source behavior; prior distant vector seeds can become exact when this real missing contract is fixed. These three independent ordinary bodies add372 bytes with no context or storage credit.
+
+### Genuine vector context preserves accepted helper identity (2026-10-01)
+
+C24's motion caller uses its real one-pointer float-return length helper. An incidental caller register value is not evidence for an additional formal. Keep the already accepted helper definition identical, independently score both claim and context, and credit only the new caller. A real three-component vector local and actual pointer reuse can recover allocation without dummy stack pressure. Preserve original global access order where aliasing is observable. The companion ordinary vector leaf needs exact real operand grouping and signed product flow.

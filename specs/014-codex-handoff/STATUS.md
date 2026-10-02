@@ -1,5 +1,13 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-01 nineteenth completed milestone: real motion group and vector dataflow
+
+- Game cartridge C: **575/1,216 functions, 66,728/647,072 bytes (10.31%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**.
+- C24 adds600 bytes: E9C70 real motion caller444 bytes in its genuine vector-length helper context, and 8C544156-byte signed vector products. The accepted 8B3C8 helper remains identical and receives no extra credit. Real vector local, pointer reuse and global access order recover caller allocation; three actual pointer arguments and original floating product grouping recover the ordinary leaf. No invented work, formals or storage.
+- Independent D canonical claim/context MATCH, exact full image, source-built full original ROM SHA-1 EXACT. Full pytest713 passed/493 skipped with captured exit0;575 blob locks, all group checks and123 static/source locks intact. Group flags **-g0 -O3 -mips2 -G 0 -non_shared**; ordinary flags **-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul**.
+- Across original handoff:78 game functions /10,312 bytes and97 static functions /27,284 bytes accepted. Three workers continue fresh real ABI/dataflow repairs, with a further80-byte helper independently verified for the next checkpoint. Initial dirty tools/mips_to_c preserved.
+
+
 ## 2026-10-01 eighteenth completed milestone: genuine FP contracts/intrinsics
 
 - Game cartridge C: **573/1,216 functions, 66,128/647,072 bytes (10.22%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**.

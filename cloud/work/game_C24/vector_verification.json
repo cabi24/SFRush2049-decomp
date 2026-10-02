@@ -1,0 +1,32 @@
+{
+  "function": "func_8008C544",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "compile_command": [
+    "/home/cburnes/rush2049/cache/toolkits/796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5/ido/cc",
+    "-c",
+    "-g0",
+    "-O2",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Wab,-r4300_mul",
+    "/home/cburnes/agents/C/scratch/game-C24/func_8008C544.c",
+    "-o",
+    "/home/cburnes/agents/C/scratch/game-C24/func_8008C544.final.o"
+  ],
+  "compile_exit": 0,
+  "source_sha256": "eebe8ddbd316812da19ff2569059d2f7a3a8d5cfe6ddd39e7e7c8068db0cd4c9",
+  "target_sha256": "96845022070872feeae8462449e3835a6a82a89d450f2c15b82f7255109275b3",
+  "object_sha256": "009bcf68b129a5d08c0440bfd620ea43f23e2b3a108dabda1f30b80edbfbdb17",
+  "strict_score": 0,
+  "linked": {
+    "differing": 0,
+    "total": 39,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "body_bytes": 156
+}

@@ -1,0 +1,41 @@
+[
+  {
+    "variant": "typed_global_arrays",
+    "function": "func_800E9C70",
+    "strict_score": 1294,
+    "linked": {
+      "differing": 31,
+      "total": 111,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "variant": "one_vector_pointer",
+    "function": "func_800E9C70",
+    "strict_score": 1154,
+    "linked": {
+      "differing": 13,
+      "total": 111,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "variant": "typed_argument",
+    "function": "func_800E9C70",
+    "strict_score": 1294,
+    "linked": {
+      "differing": 31,
+      "total": 111,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+]

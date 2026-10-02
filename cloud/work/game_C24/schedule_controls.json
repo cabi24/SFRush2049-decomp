@@ -1,0 +1,54 @@
+[
+  {
+    "variant": "flag_before",
+    "function": "func_800E9C70",
+    "strict_score": 1379,
+    "linked": {
+      "differing": 14,
+      "total": 111,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "variant": "third_before_zero",
+    "function": "func_800E9C70",
+    "strict_score": 0,
+    "linked": {
+      "differing": 0,
+      "total": 111,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "variant": "reuse_third",
+    "function": "func_800E9C70",
+    "strict_score": 1259,
+    "linked": {
+      "differing": 29,
+      "total": 111,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "variant": "flag_after_first",
+    "function": "func_800E9C70",
+    "strict_score": 1379,
+    "linked": {
+      "differing": 14,
+      "total": 111,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+]
