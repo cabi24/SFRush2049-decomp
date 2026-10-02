@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "host_native_cases": 32768,
+  "negative_native_address_cases": 32768,
+  "sanitizer_cases": 196608,
+  "source_sha256": "448e617d25e0d56e2ecb87b421cb492f3db7c8c1986036a8518a6b9cb09b3f86",
+  "limits": "Synthetic32768-entry host fixture. Original table bounds and value semantic type unknown. Negative native addresses tested without executing out-of-bounds C. No full-ROM proof."
+}
