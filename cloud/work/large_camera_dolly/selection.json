@@ -1,0 +1,29 @@
+{
+  "function": "camera_dolly",
+  "address": "0x800BC2BC",
+  "bytes": 2300,
+  "words": 575,
+  "accepted": true,
+  "reason": "Full tire friction force updater with direct arcade counterpart and ordinary seven-argument ABI",
+  "arcade_equivalent": "reference/repos/rushtherock/game/tires.c:frictioncircle",
+  "callee_equivalent": "func_800BC21C = tires.c:calcalpha",
+  "historical_name_note": "camera_dolly is an unsupported historical name; native semantics are tire forces",
+  "baseline_game_percent": 13.02,
+  "baseline_static_percent": 46.76,
+  "team": {
+    "reconstruction": {
+      "agent": "large_camera_reconstruction",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high"
+    },
+    "compiler": {
+      "agent": "large_camera_compiler",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high"
+    }
+  },
+  "publication_source": "src/blob/camera_dolly.c",
+  "publication_source_sha256": "fe70c8677374aecc6cec0e209a8d0b18f744cc4c8c785af2bd9345184dd73f13",
+  "accepted_game_bytes": 2300,
+  "source_normalization_note": "Leading indentation tabs expanded to spaces and trailing whitespace removed only; C tokens unchanged. Historical scores retained; final normalized source independently recompiled."
+}

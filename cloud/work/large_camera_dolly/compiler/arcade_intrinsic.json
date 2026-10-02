@@ -1,0 +1,25 @@
+{
+  "source_sha256": "b91eeaf83032d4b95e20bef0e5dd9b58ad42fe39f9a7d9ddaf30325444de8d89",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source": "/home/cburnes/agents/large-camera-compiler/candidates/arcade_intrinsic.c",
+  "accepted": false,
+  "canonical_verdict": "6/575 words differ",
+  "comparison": {
+    "differing": 6,
+    "total": 575,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "object_sha256": "40ecaaaf6ebcfb5d63121e7c4381ac0591e084a33ce0a22568b57fe76cd33d9d",
+  "emitted_words": 576,
+  "aligned": {
+    "aligned_exact": 570,
+    "aligned_opcode": 575,
+    "aligned_opcode_reg": 570
+  },
+  "frame_bytes": 120,
+  "source_normalization_note": "Leading indentation tabs expanded to spaces and trailing whitespace removed only; C tokens unchanged. Historical scores retained; final normalized source independently recompiled.",
+  "compiled_source_sha256_before_normalization": "1eedd0a106e14b2a81ac9e45d80cbb733180cb8e180f86ec84e7dac98e3f4a31"
+}

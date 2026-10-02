@@ -1,0 +1,30 @@
+{
+  "source_sha256": "fe70c8677374aecc6cec0e209a8d0b18f744cc4c8c785af2bd9345184dd73f13",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "canonical_verdict": "MATCH",
+  "native_words": 575,
+  "image": "exact,647072 bytes",
+  "image_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d",
+  "rom": "SHA-1 EXACT",
+  "rom_make_exit": 0,
+  "rom_test_exit": 0,
+  "blob_lock_entries": 628,
+  "blob_lock_problems": 0,
+  "group_lock_problems": 0,
+  "static_source_locks_intact": 123,
+  "game": {
+    "functions": 628,
+    "bytes": 86576,
+    "total_bytes": 647072,
+    "percent": 13.38
+  },
+  "static": {
+    "functions": 120,
+    "bytes": 28732,
+    "total_bytes": 61440,
+    "percent": 46.76
+  },
+  "private_rom_log": "build/large_camera_dolly/rom-gate.log",
+  "source_normalization_note": "Leading indentation tabs expanded to spaces and trailing whitespace removed only; C tokens unchanged. Historical scores retained; final normalized source independently recompiled.",
+  "compiled_source_sha256_before_normalization": "2e3827dfb49eb739fd01fa9d316363e9c158d64dbbefd5275265f7a64e42e6ea"
+}

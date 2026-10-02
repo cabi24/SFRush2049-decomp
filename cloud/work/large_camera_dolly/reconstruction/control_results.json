@@ -1,0 +1,120 @@
+{
+  "arcade_port": {
+    "source_sha256": "61437deaba0d736525e8ed8db3e7519b1c416352e237aadb9554e5d7d1cde841",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "cloud/work/large_camera_dolly/reconstruction/arcade_port.c",
+    "accepted": false,
+    "canonical_verdict": "569/575 words differ (36 extra words (nonzero beyond target length); unresolved symbols: fabsf+0x0 at +0x274)",
+    "comparison": {
+      "differing": 569,
+      "total": 575,
+      "unresolved": [
+        "fabsf+0x0 at +0x274"
+      ],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 36
+    },
+    "object_sha256": "072bf3be51290eeb2add76ff4ab1d90e29e4f66897e7519b1502da748747c68e",
+    "emitted_words": 616,
+    "aligned": {
+      "aligned_exact": 197,
+      "aligned_opcode": 521,
+      "aligned_opcode_reg": 230
+    },
+    "frame_bytes": 120
+  },
+  "arcade_intrinsic": {
+    "source_sha256": "1da0a5e18f4bd9c77cda0c6912c6beed9385563acd593ee803f2ed3cdd3a70be",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "cloud/work/large_camera_dolly/reconstruction/arcade_intrinsic.c",
+    "accepted": false,
+    "canonical_verdict": "6/575 words differ",
+    "comparison": {
+      "differing": 6,
+      "total": 575,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "7b0e5913dc330af1904317c6c06a51022b8f3430edc483a4fc2015228549e9ec",
+    "emitted_words": 576,
+    "aligned": {
+      "aligned_exact": 570,
+      "aligned_opcode": 575,
+      "aligned_opcode_reg": 570
+    },
+    "frame_bytes": 120
+  },
+  "patchspeed_reuse": {
+    "source_sha256": "7f6ec8118cd24d63890dbda5a9abc874aa4530f3176cac3e57d1af9150b1b508",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "cloud/work/large_camera_dolly/reconstruction/patchspeed_reuse.c",
+    "accepted": false,
+    "canonical_verdict": "4/575 words differ",
+    "comparison": {
+      "differing": 4,
+      "total": 575,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "054149356a70bde78e2f5120f806d6a39c7c4b0e1adead8e705ccf971a582459",
+    "emitted_words": 576,
+    "aligned": {
+      "aligned_exact": 572,
+      "aligned_opcode": 575,
+      "aligned_opcode_reg": 572
+    },
+    "frame_bytes": 120
+  },
+  "patchspeed_sum_order": {
+    "source_sha256": "2052fa7b184e35fd9aff7341777847e68aeb763322900f5d336936ddc4fc7c1b",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "cloud/work/large_camera_dolly/reconstruction/patchspeed_sum_order.c",
+    "accepted": true,
+    "canonical_verdict": "MATCH",
+    "comparison": {
+      "differing": 0,
+      "total": 575,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "77a3ec0d3bb7eb1dc76f3ee3287833e66ef8e2bbdd2650718c655ec613f15109",
+    "emitted_words": 576,
+    "aligned": {
+      "aligned_exact": 575,
+      "aligned_opcode": 575,
+      "aligned_opcode_reg": 575
+    },
+    "frame_bytes": 120
+  },
+  "camera_dolly": {
+    "source_sha256": "fe70c8677374aecc6cec0e209a8d0b18f744cc4c8c785af2bd9345184dd73f13",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "cloud/work/large_camera_dolly/reconstruction/camera_dolly.c",
+    "accepted": true,
+    "canonical_verdict": "MATCH",
+    "comparison": {
+      "differing": 0,
+      "total": 575,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "29506c204b7a84d41944d5bd8db5c71e9683414f67b8fe064eda72f08a81f3ad",
+    "emitted_words": 576,
+    "aligned": {
+      "aligned_exact": 575,
+      "aligned_opcode": 575,
+      "aligned_opcode_reg": 575
+    },
+    "frame_bytes": 120
+  },
+  "source_normalization_note": "Leading indentation tabs expanded to spaces and trailing whitespace removed only; C tokens unchanged. Historical scores retained; final normalized source independently recompiled."
+}

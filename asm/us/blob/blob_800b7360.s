@@ -42,7 +42,6 @@ func_800B7360:
 .section .text.func_800B73E4, "ax", @progbits
 .globl func_800B73E4
 func_800B73E4:
-    /* compiled from src/blob/func_800B73E4.c */
     .word 0x3C028011
     .word 0x244247C4
     .word 0x804E0000
@@ -68,7 +67,6 @@ func_800B73E4:
 .section .text.func_800B7438, "ax", @progbits
 .globl func_800B7438
 func_800B7438:
-    /* compiled from src/blob/func_800B7438.c */
     .word 0x3C0E8011
     .word 0x81CE47C4
     .word 0x27BDFFE8
@@ -97,7 +95,6 @@ func_800B7438:
 .section .text.func_800B7498, "ax", @progbits
 .globl func_800B7498
 func_800B7498:
-    /* compiled from src/blob/func_800B7498.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -365,7 +362,6 @@ dispatch_handler:
 .section .text.func_800B78A4, "ax", @progbits
 .globl func_800B78A4
 func_800B78A4:
-    /* compiled from src/blob/func_800B78A4.c */
     .word 0xAFA50004
     .word 0x30AE00FF
     .word 0x01C02825
@@ -903,7 +899,6 @@ func_800B7FF8:
 .section .text.particles_spawn_emitter, "ax", @progbits
 .globl particles_spawn_emitter
 particles_spawn_emitter:
-    /* compiled from src/blob/particles_spawn_emitter.c */
     .word 0x3C0F8012
     .word 0x25EF4FD0
     .word 0x00047080
@@ -929,7 +924,6 @@ particles_spawn_emitter:
 .section .text.Effects_UpdateEmitters, "ax", @progbits
 .globl Effects_UpdateEmitters
 Effects_UpdateEmitters:
-    /* compiled from src/blob/Effects_UpdateEmitters.c */
     .word 0x27BDFFD0
     .word 0xAFB40028
     .word 0x3C148015
@@ -998,7 +992,6 @@ Effects_UpdateEmitters:
 .section .text.particle_position_set, "ax", @progbits
 .globl particle_position_set
 particle_position_set:
-    /* compiled from src/blob/particle_position_set.c */
     .word 0x27BDFFD8
     .word 0xAFA40028
     .word 0x00047400
@@ -1046,7 +1039,6 @@ particle_position_set:
 .section .text.particle_velocity_set, "ax", @progbits
 .globl particle_velocity_set
 particle_velocity_set:
-    /* compiled from src/blob/particle_velocity_set.c */
     .word 0x27BDFFD8
     .word 0xAFB30020
     .word 0xAFB2001C
@@ -1092,7 +1084,6 @@ particle_velocity_set:
 .section .text.func_800B836C, "ax", @progbits
 .globl func_800B836C
 func_800B836C:
-    /* compiled from src/blob/func_800B836C.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -1402,7 +1393,6 @@ particle_render:
 .section .text.func_800B8810, "ax", @progbits
 .globl func_800B8810
 func_800B8810:
-    /* compiled from src/blob/func_800B8810.c */
     .word 0x240E0001
     .word 0x3C018011
     .word 0x03E00008
@@ -1985,7 +1975,6 @@ physics_sym:
 .section .text.func_800B90F8, "ax", @progbits
 .globl func_800B90F8
 func_800B90F8:
-    /* compiled from src/blob/func_800B90F8.c */
     .word 0x3C038015
     .word 0x84631AD0
     .word 0x3C0E8012
@@ -2003,7 +1992,6 @@ func_800B90F8:
 .section .text.func_800B912C, "ax", @progbits
 .globl func_800B912C
 func_800B912C:
-    /* compiled from src/blob/func_800B912C.c */
     .word 0x3C018015
     .word 0x27BDFFE8
     .word 0xAC209818
@@ -2098,7 +2086,6 @@ physics_collision_test:
 .section .text.func_800B9284, "ax", @progbits
 .globl func_800B9284
 func_800B9284:
-    /* compiled from src/blob/func_800B9284.c */
     .word 0x3C0E8015
     .word 0x81CE2570
     .word 0x3C0F8016
@@ -2137,7 +2124,6 @@ func_800B9284:
 .section .text.func_800B930C, "ax", @progbits
 .globl func_800B930C
 func_800B930C:
-    /* compiled from src/blob/func_800B930C.c */
     .word 0x3C038015
     .word 0x24631CE8
     .word 0x846F0008
@@ -2153,7 +2139,6 @@ func_800B930C:
 .section .text.func_800B9338, "ax", @progbits
 .globl func_800B9338
 func_800B9338:
-    /* compiled from src/blob/func_800B9338.c */
     .word 0x0005C400
     .word 0x0018CC03
     .word 0x001948C0
@@ -2526,7 +2511,6 @@ func_800B9740:
 .section .text.func_800B98D8, "ax", @progbits
 .globl func_800B98D8
 func_800B98D8:
-    /* compiled from src/blob/func_800B98D8.c */
     .word 0x04800018
     .word 0x00A03025
     .word 0x3C028014
@@ -2608,7 +2592,6 @@ func_800B98D8:
 .section .text.physics_velocity_clamp, "ax", @progbits
 .globl physics_velocity_clamp
 physics_velocity_clamp:
-    /* compiled from src/blob/physics_velocity_clamp.c */
     .word 0x27BDFFC0
     .word 0xAFB50028
     .word 0xAFB40024
@@ -2699,7 +2682,6 @@ physics_velocity_clamp:
 .section .text.func_800B9B64, "ax", @progbits
 .globl func_800B9B64
 func_800B9B64:
-    /* compiled from src/blob/func_800B9B64.c */
     .word 0x3C018012
     .word 0x3C0B8014
     .word 0xC4203DF8
@@ -2963,7 +2945,6 @@ physics_friction_apply:
 .section .text.func_800B9F60, "ax", @progbits
 .globl func_800B9F60
 func_800B9F60:
-    /* compiled from src/blob/func_800B9F60.c */
     .word 0x04800015
     .word 0x3C088014
     .word 0x3C088014
@@ -3184,7 +3165,6 @@ audio_channel_alloc:
 .section .text.func_800BA2B0, "ax", @progbits
 .globl func_800BA2B0
 func_800BA2B0:
-    /* compiled from src/blob/func_800BA2B0.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -3891,7 +3871,6 @@ audio_effect_apply:
 .section .text.audio_effect_remove, "ax", @progbits
 .globl audio_effect_remove
 audio_effect_remove:
-    /* compiled from src/blob/audio_effect_remove.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x0C02EAA8
@@ -4031,7 +4010,6 @@ audio_dsp_process:
 .section .text.mode_flags_clear, "ax", @progbits
 .globl mode_flags_clear
 mode_flags_clear:
-    /* compiled from src/blob/mode_flags_clear.c */
     .word 0x27BDFFE8
     .word 0x3C028011
     .word 0x24420680
@@ -4047,7 +4025,6 @@ mode_flags_clear:
 .section .text.func_800BAF90, "ax", @progbits
 .globl func_800BAF90
 func_800BAF90:
-    /* compiled from src/blob/func_800BAF90.c */
     .word 0x03E00008
     .word 0x00000000
 
@@ -4515,7 +4492,6 @@ audio_interrupt_handler:
 .section .text.camera_reset, "ax", @progbits
 .globl camera_reset
 camera_reset:
-    /* compiled from src/blob/camera_reset.c */
     .word 0x27BDFFD0
     .word 0x3C0E8014
     .word 0x81CEF1D8
@@ -4606,7 +4582,6 @@ camera_reset:
 .section .text.func_800BB7F4, "ax", @progbits
 .globl func_800BB7F4
 func_800BB7F4:
-    /* compiled from src/blob/func_800BB7F4.c */
     .word 0x3C018014
     .word 0x3C038014
     .word 0x3C028014
@@ -5256,7 +5231,6 @@ func_800BB9B0:
 .section .text.player_flag_clear_process, "ax", @progbits
 .globl player_flag_clear_process
 player_flag_clear_process:
-    /* compiled from src/blob/player_flag_clear_process.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x3C018014
@@ -5274,7 +5248,6 @@ player_flag_clear_process:
 .section .text.func_800BC21C, "ax", @progbits
 .globl func_800BC21C
 func_800BC21C:
-    /* compiled from src/blob/func_800BC21C.c */
     .word 0x44807000
     .word 0xC48C0008
     .word 0xC4800000
@@ -5319,6 +5292,7 @@ func_800BC21C:
 .section .text.camera_dolly, "ax", @progbits
 .globl camera_dolly
 camera_dolly:
+    /* compiled from src/blob/camera_dolly.c */
     .word 0x27BDFF88
     .word 0xAFA60080
     .word 0x8FA60088
@@ -6212,7 +6186,6 @@ camera_collision_avoid:
 .section .text.func_800BD080, "ax", @progbits
 .globl func_800BD080
 func_800BD080:
-    /* compiled from src/blob/func_800BD080.c */
     .word 0x00A03025
     .word 0x240B00DF
     .word 0x240A00FD
@@ -6842,7 +6815,6 @@ race_setup_1:
 .section .text.func_800BDA24, "ax", @progbits
 .globl func_800BDA24
 func_800BDA24:
-    /* compiled from src/blob/func_800BDA24.c */
     .word 0x240A00DF
     .word 0x240900FD
     .word 0x24080080
