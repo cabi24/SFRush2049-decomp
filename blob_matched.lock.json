@@ -5184,6 +5184,15 @@
     "verified": "image_gate",
     "verified_at": "2026-09-27"
   },
+  "track_info_display": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "group": "codex_car_resistance_b114",
+    "source": "src/blob/groups/codex_car_resistance_b114/group.json",
+    "source_sha256": "d1be3ae5a11937728d143152649bc871775f62639f0e51dbaf5c1cae6dd32eb6",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-02"
+  },
   "track_lighting_setup": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "codex_dispatch_a111",
