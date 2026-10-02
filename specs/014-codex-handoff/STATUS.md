@@ -1,5 +1,12 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-02 forty-sixth completed milestone: full force summation
+
+- Game cartridge C: **650/1,216 functions, 99,128/647,072 bytes (15.32%)**. Static: **147/230 functions, 41,336/61,440 bytes (67.28%)**. Combined tracker byte coverage **19.83%**. Adds848 native code bytes; this plan has added21,308 matching bytes relative to c50cacd5.
+- GPT-6.1-sol High reconstruction recovered func_800E1C30 from drivsym.c:forces2 and genuine vecmath.h vector macros. Real Model2056 force arrays, consumed three-float body-force sum and donor operand order recover all212 native words with ordinary Model* ABI and56-byte frame. Native axle blending, gravity modifiers, actual transform and magnitude calls remain intact.
+- A second agent independently recompiled the frozen ordinaryO2 source and proved all848 protected body bytes exact with no masks, extras, unresolved/unverified relocations or errors. Source SHA25675fa8e12c16df3f7ec17b94bdf42cd7bba0adc01564ff6ddf13da971589ac36d. Body SHA2560bb385d718a988715ca584ce9c092ac3100911430baf168641515337d1532ece. Root separately compiled and spliced the publication source, then verified all650 complete source-built game bodies/99,128 bytes, exact linked image and original326,180-byte compressed stream. Full original ROM **SHA-1 EXACT, MAKE=0 TEST=0**. No separate pytest run claimed.
+- All blob/group/static locks and generated assembly manifest remain intact. Evidence: cloud/work/module_campaign_20261002/reconstruction/forces2/, compiler/forces2/ and acceptance/forces2_gates.json. Prior clutch commit45c97f73 CI37030788009 is green. Typed tire/full-helper and navigation controls remain nonmatches with zero credit; direct controls/sym donor reconstruction and new sibling scouting continue.
+
 ## 2026-10-02 forty-fifth completed milestone: complete clutch updater
 
 - Game cartridge C: **649/1,216 functions, 98,280/647,072 bytes (15.19%)**. Static: **147/230 functions, 41,336/61,440 bytes (67.28%)**. Combined tracker coverage **19.71%**. Adds428 native code bytes; physics campaign now2,312 accepted bytes across four functions.
