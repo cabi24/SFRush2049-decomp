@@ -1,0 +1,36 @@
+{
+  "verdict": "PASS",
+  "cases": 1162,
+  "categories": {
+    "hit": 140,
+    "empty": 140,
+    "unreferenced": 140,
+    "eviction-boundary": 140,
+    "signed-age": 1,
+    "zero-after-large": 1,
+    "random": 600
+  },
+  "native_speculative_uninitialized_read_cases": 433,
+  "all_ages_wrap_counterexample": [
+    {
+      "fill": 0,
+      "result": 0,
+      "uninitialized_reads": 1
+    },
+    {
+      "fill": 1,
+      "native_error": "('unmapped', '0x80152675', 1)"
+    }
+  ],
+  "checks": [
+    "native/linked/host/oracle state",
+    "callee-save and stack restoration",
+    "native/linked exact call trace",
+    "bounded string and memory access"
+  ],
+  "limits": [
+    "Strings must terminate within 13 bytes; non-overlapping input/cache",
+    "All-wrap full referenced cache has undefined selected slot; excluded from C",
+    "Callees modeled from verified byte strcmp/strcpy contracts; no whole-game execution"
+  ]
+}
