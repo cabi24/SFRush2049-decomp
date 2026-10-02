@@ -1,0 +1,3 @@
+# B60 stopped duplicate no-claim packet
+
+The full native audio_update_a@800F4D94 source and first O3 compile were created before root warned that A79 already owned this target. A combined audit/write call surfaced its tiny_A79 source filename after creation; selection sequencing has been corrected to read active build/overnight_reservations.json and inspect filename/interval audits before reconstruction. A79 retains sole ownership; no B60 integration or claim. Single native compile8/150 differences, all initial pointer/table/inner loop setup scheduling. All metrics/division/branches beyond that matched. The sanitized lead was forwarded to root for A79; B60 stopped immediately with this frozen no-claim provenance. No shared changes.

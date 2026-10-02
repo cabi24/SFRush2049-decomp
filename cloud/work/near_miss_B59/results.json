@@ -1,0 +1,44 @@
+[
+  {
+    "control": "native",
+    "source_sha256": "0e8d62a9f55ad4734f4f6b3f1e80ec4d4e51aa75f060e444fc3395e6eb73751d",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "object_text_words": 132,
+    "comparison": {
+      "differing": 8,
+      "total": 130,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "control": "total",
+    "source_sha256": "81f708d33d1f9dde6490c9d6e07becd800ceafe85ac6b9c41c2912172453e023",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "object_text_words": 132,
+    "comparison": {
+      "differing": 15,
+      "total": 130,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "control": "accumulate",
+    "source_sha256": "5e52b2e2d3baabec0519967a90acea51d4db3b00b1d89e98d912d928b81e39ad",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "object_text_words": 132,
+    "comparison": {
+      "differing": 0,
+      "total": 130,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+]

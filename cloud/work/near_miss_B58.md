@@ -1,0 +1,5 @@
+# B58 complete projection descriptor setup
+
+Frozen honest NONMATCH exhaust_smoke_effect@800A5744, 452 bytes/113 target words. All seven consumed ordinary ABI inputs are retained: descriptor index and horizontal/vertical angles, width/height, near/far planes. The descriptor is the actual 72-byte record with observed angle, tangent, inverse tangent and projection fields. Actual screen height word controls half-height conversion. Tangent and atan callees were decoded to confirm scalar float contracts. DEFAULT_ANGLE is a read-only address view of the observed adjacent word four bytes past canonical D_80123BCC; no new alias or fabricated array ownership was added.
+
+Complete native O3 is87/113 differences plus3 extras (frame64 versus target48). Reusing the actual angle input variables is101/113 plus3 (frame56). O2 native is102/113 plus4 (frame64). Three bounded controls; none claims matching bytes. All original branches, stores and calls are retained; no padding, fake formal, unused aggregate, volatile or artificial pressure. Fresh sanitized comparisons and source hashes are retained. No shared sources, locks, scoring policy or acceptance metadata changed.

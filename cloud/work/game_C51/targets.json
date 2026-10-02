@@ -1,0 +1,14 @@
+{
+  "race_setup_2": {
+    "target_id": "race_setup_2",
+    "address": 2148264608,
+    "population": "extracted",
+    "insn_count": 227,
+    "target_asm_sha": "899b0fb6a6362629593e4d6b77848b88f811d1b402994e48746279d75c2ea143",
+    "target_o_sha": "2e75d50d7958dcd667ed5471fd7973efe122960a2a5b55249043ba6d7ab5cd23",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": null
+  }
+}

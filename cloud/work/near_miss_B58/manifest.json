@@ -1,0 +1,12 @@
+{
+  "claims": [],
+  "function": "exhaust_smoke_effect",
+  "address": "0x800A5744",
+  "target_bytes": 452,
+  "files": {
+    "exhaust_smoke_effect_O2.c": "4ac62fd38c04624f539885ea176e2df6235ee1eb4b79c6dcf078fdedb0aedb39",
+    "exhaust_smoke_effect_angles.c": "d9cb19fd091411572ddad60a3f46a77147295785c5bb2f497b4581218c57c47d",
+    "exhaust_smoke_effect_native.c": "3a6015e784b9e7785ad0a61a07d85450be6b9d53e3aba62669c2c8d92916a9bb",
+    "results.json": "f003402b59625c53d4cd8531271a2d7a9941e57b1d43de731b27e7ad65f607c2"
+  }
+}

@@ -1,5 +1,14 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-02 thirty-fourth completed milestone: complete resource statistics
+
+- Game cartridge C: **611/1,216 functions, 77,228/647,072 bytes (11.93%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**. B59 adds **520 matching bytes**.
+- graphics_chunk_b preserves complete actual76-byte players,24-byte stats and952-byte models, fallback handle binding, both real per-player accumulators, completion/minimum/enabled counters and original two-input refresh. Sequencing the genuine float total update before the consumed halfword count increment closes eight scheduling differences. Frozen source SHA5e52b2e2d3baabec0519967a90acea51d4db3b00b1d89e98d912d928b81e39ad; explicit flags **-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul**. No pressure, invented operations or context credit.
+- Independent D canonical MATCH and fresh full unmasked relocation-resolved equality for130words, zero extras/unresolved/unverified/errors. Two trailing object alignment zeros earn no credit. Identical image and original ROM SHA-1 EXACT; full pytest **724 passed, 529 skipped, captured exit0**. All611 blob/group checks and123 static/source locks pass. Since original handoff: **114 game functions /20,812 bytes** and **97 static functions /27,284 bytes** accepted. 9adee4eb passed CI36969801309.
+- Added read-only tools/cloud/review_single.py for fresh frozen-source replay, exact publication flags and registered extent validation, source/manifest hashes and complete strict comparison. Eleven proof-protocol regressions cover compiler failure replacing stale success, changed inputs, wrong extent, malformed flags and all incomplete verification states; real D replay reproduces B55/A77/B59 exact matches. No scorer/target masks, publication gates or coverage rules changed.
+- Three workers remain active. A78/B58/C51 and the stopped duplicate B60 are frozen no-claim packets; A79 alone owns audio_update_a. Active selection now also consults build/overnight_reservations.json. Initial dirty tools/mips_to_c preserved.
+
+
 ## 2026-10-02 thirty-third completed milestone: resource flags and rectangle allocation
 
 - Game cartridge C: **610/1,216 functions, 76,708/647,072 bytes (11.85%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**. This batch adds **976 matching bytes**.

@@ -1,0 +1,23 @@
+[
+  {
+    "function": "race_setup_2",
+    "variant": "race_setup_2.o3",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 3138,
+    "linked": {
+      "differing": 152,
+      "total": 227,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x2d0",
+        ".rodata+0x0 at +0x2d8"
+      ],
+      "errors": [],
+      "extra_words": 3
+    },
+    "source_sha256": "c9d551f7bd324011539128ac110901538c280994f4383f1b24e00dbbfa80623a",
+    "target_sha256": "2e75d50d7958dcd667ed5471fd7973efe122960a2a5b55249043ba6d7ab5cd23"
+  }
+]

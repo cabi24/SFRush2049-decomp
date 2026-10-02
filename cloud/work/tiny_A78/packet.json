@@ -1,0 +1,10 @@
+{
+  "targets": [
+    "sound_control"
+  ],
+  "claims": [],
+  "final_source": "sound_control.callback.c",
+  "source_sha256": "353343f342a58cbdbc724c9109b6c6ef9dc98d51e6c6829a074397bacbfa8f63",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "frozen": true
+}
