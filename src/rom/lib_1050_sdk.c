@@ -8,7 +8,21 @@
 
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/osCreateScheduler.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/osScAddClient.s")
+/* PROMOTED 2026-10-02 — osScAddClient
+ * Source:   cloud/matches/osScAddClient.c (in-repo, locked)
+ * Flags:    -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm
+ * Evidence: lock:cloud/matches/osScAddClient.c:osScAddClient (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void osScAddClient(OSSched *scheduler, OSScClient *client, OSMesgQueue *queue) {
+    u32 mask;
+    mask = osSetGlobalIntMask(1);
+    client->msgQueue = queue;
+    client->next = scheduler->clientList;
+    scheduler->clientList = client;
+    osSetGlobalIntMask(mask);
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scMain.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scSchedule.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scHandleRetrace.s")

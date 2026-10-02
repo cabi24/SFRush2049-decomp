@@ -23,14 +23,6 @@
     "verified": "score0",
     "verified_at": "2026-10-02"
   },
-  "cloud/matches/osScAddClient.c:osScAddClient": {
-    "body_sha256": "681eda4b818afab2c30aa12926fce63da2ed0fa0f23c8fbed8f84992c7036226",
-    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm",
-    "target_id": "osScAddClient",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-02"
-  },
   "src/libultra/os_ai.c:__osAiDeviceBusy": {
     "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -54,6 +46,14 @@
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-09-24"
+  },
+  "src/rom/lib_1050_sdk.c:osScAddClient": {
+    "body_sha256": "681eda4b818afab2c30aa12926fce63da2ed0fa0f23c8fbed8f84992c7036226",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm",
+    "target_id": "osScAddClient",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-02"
   },
   "src/rom/lib_21f0.c:apply_display_mode": {
     "body_sha256": "5785344f372b84c76cfe70b763143eb53af34aab44b695e06bdd4a8fc1c5b412",
