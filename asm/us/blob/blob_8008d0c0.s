@@ -449,6 +449,7 @@ func_8008D6FC:
 .section .text.euler_to_matrix, "ax", @progbits
 .globl euler_to_matrix
 euler_to_matrix:
+    /* compiled from src/blob/euler_to_matrix.c */
     .word 0x27BDFFC0
     .word 0xAFBF0024
     .word 0xAFB10020

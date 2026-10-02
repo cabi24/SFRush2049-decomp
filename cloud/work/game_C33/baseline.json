@@ -1,0 +1,36 @@
+[
+  {
+    "function": "func_800A43FC",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 3225,
+    "linked": {
+      "differing": 51,
+      "total": 53,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "996fd4fccb44e5b6d07e82e5d9e4ebe61a3b805524b8c5c2a83d31cfa368ba91",
+    "target_sha256": "3d64ba1eb25ba320302f160b2a00db3893c5749da7e8e596b0aee8d4584558fa"
+  },
+  {
+    "function": "func_800EC190",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 1415,
+    "linked": {
+      "differing": 52,
+      "total": 56,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "611278e24eeac445c79c97fe77c691dc852b4c67f64f3fdf8357fda5a31778ef",
+    "target_sha256": "e7f0f70b08c66d643aca25c3caa2db37d90c633c3a6b19ba0d410302a86b3921"
+  }
+]

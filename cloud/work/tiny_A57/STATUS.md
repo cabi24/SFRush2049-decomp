@@ -1,0 +1,9 @@
+# A57 frozen genuine ordinary box-list query
+
+Claim func_800AB53C, 63 words / 252 bytes. Literal flags `-g0 -O2 -mips2 -G 0 -non_shared`. Canonical `python3 tools/cloud/score.py fn cloud/work/tiny_A57/func_800AB53C.c func_800AB53C --flags '-g0 -O2 -mips2 -G 0 -non_shared'` exit0. Exact strict0, size63/63, no extra/unverified/unresolved/errors; source SHA256 in scores.json. Current shared lock checked unlocked before selection and freeze.
+
+Complete real Record104 reconstruction: origin float3 at52/56/60, signed next halfword68, minimum floats80/84/88 and maximum floats92/96/100. The actual predicate checks x lower/upper, y LOWER ONLY, z lower/upper. No invented y-upper test, finite check, null/bounds guard or helper. All three offsets are stored in real float3 temporary before comparisons. Failure follows real signed linked index into the original base pointer, exits on negative, returns -1. Success returns actual car_gear_shift(record). Callee audit proves only incoming a0 consumed; its real body returns signed-half selected index or -1 as a full returned word. Live a1 and constant104 in a2 are compiler caller allocation, not extra original parameters or fabricated formal arguments. Reconstructed padding models genuine untouched fields, no fake frame data.
+
+Initial endless-loop return-on-negative source13/63 with exact extent; genuine do/while condition version10/63; final negative-link break plus function-level return matches all63. No register permutations, invented pressure, runtime quirk, stand-in context, or source reflow sweep. This ordinary TU requires no local caller/callee bodies.
+
+Actual instruction streams/objects and canonical raw scorer output remain ignored build/codex-A57 and private Rocky. No shared accepted tree/header/layout/lock/build-state mutations. Root independent target scoring, image splice and ROM gate remain required before acceptance.

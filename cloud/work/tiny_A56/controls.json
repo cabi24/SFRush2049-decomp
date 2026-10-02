@@ -1,0 +1,31 @@
+[
+  {
+    "control": "initial unsigned dimension loop",
+    "strict_diff": 140,
+    "size": 120,
+    "target_size": 142,
+    "extra": 0
+  },
+  {
+    "control": "actual three explicitly expanded round stages, retail delta operand and packed OR order",
+    "strict_diff": 140,
+    "size": 143,
+    "target_size": 142,
+    "extra": 1
+  },
+  {
+    "control": "signed dimension counter and real local-array declaration order",
+    "strict_diff": 140,
+    "size": 120,
+    "target_size": 142,
+    "extra": 0
+  },
+  {
+    "control": "signed dimension loop O3",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "strict_diff": 130,
+    "size": 120,
+    "target_size": 142,
+    "extra": 0
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "function": "euler_to_matrix",
+    "variant": "euler_to_matrix.order",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 0,
+    "linked": {
+      "differing": 0,
+      "total": 67,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "56ec7a0f9650b9bc73cf8a0cef1bfdef20781a468b0f2609903f6445a0489d74",
+    "target_sha256": "3f8479d6ef9d1250b02646f3a12c3cfc6d0d43f9f54c8d7526aeee084973f4e3"
+  },
+  {
+    "function": "euler_to_matrix",
+    "variant": "euler_to_matrix.sum",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 0,
+    "linked": {
+      "differing": 0,
+      "total": 67,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "9c16e7edfe0e8bbf57e5eaea362de50545dfaae7265cd85698b7f31cf9bce98a",
+    "target_sha256": "3f8479d6ef9d1250b02646f3a12c3cfc6d0d43f9f54c8d7526aeee084973f4e3"
+  }
+]

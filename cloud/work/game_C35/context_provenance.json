@@ -1,0 +1,12 @@
+{
+  "assembly": "build/m2c_asm/euler_to_matrix.s",
+  "assembly_sha256": "27a4451d7c9acc7d13669c7d77ed7dcc2f37f8e105c10f42b4bb16da9c4c7f74",
+  "abi": "Two genuine pointer inputs a0 output contiguous nine f32 elements and a1 angles three f32 elements; ordinary O32 calls sinf/cosf consume f12 and return f0.",
+  "callees": [
+    "cosf",
+    "sinf"
+  ],
+  "owned_data": false,
+  "source_sha256": "56ec7a0f9650b9bc73cf8a0cef1bfdef20781a468b0f2609903f6445a0489d74",
+  "selection": "Actual canonical blob section verified; current live lock false; full prior name/address reports clear, excludes A61 B78F0/B40 D084,D098,BC21C."
+}

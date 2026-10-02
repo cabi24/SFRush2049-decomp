@@ -1,0 +1,15 @@
+# Game C35 — complete Euler matrix builder
+
+Ready: **euler_to_matrix, 268 bytes / 67 words**. Exact flags: `-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul`. The final canonical source and fresh independent replay both score strict 0 with stack differences enabled and match all 67 unmasked linked retail words. There are no extra words, unresolved/unverified references, or errors. No shared accepted files, headers, layouts, locks or state changed; all private jobs are complete.
+
+The complete registered retail section was checked independently of the inferred alias inventory. Two genuine pointer inputs hold a contiguous nine-float output matrix and three float angles. Six ordinary O32 scalar cosf/sinf calls consume f12 and return f0. The source preserves the original call order, products, negative signs, row strides, and nine stores. No new data, dummy argument, pressure variable, or synthetic caller is needed. Current actual lock was absent and full prior reports were clear by name and address before reservation; A61 B78F0 and B40 D084/D098/BC21C are disjoint.
+
+The baseline source differs in six tail words (strict 245). Retaining a scalar final-result temporary is unchanged; splitting its products is worse (47 differences and six extra words). Restoring the actual source store order—matrix[1][2] expression before matrix[2][2]—matches exactly, without changing operators or inputs. A second algebraic sum control also matches but is not selected: the canonical ready source uses the unchanged original subtraction expression. Five bounded matrix compilations are recorded in baseline.json, controls.json, and tail.json. Baseline source is preserved as euler_to_matrix.baseline.c.
+
+Source SHA256: `56ec7a0f9650b9bc73cf8a0cef1bfdef20781a468b0f2609903f6445a0489d74`. Authoritative target SHA256: `3f8479d6ef9d1250b02646f3a12c3cfc6d0d43f9f54c8d7526aeee084973f4e3`. Read-only target object: Rocky ~/agents/C/scratch/game-C35/euler_to_matrix.target.o. Minimal frozen files: game_C35/euler_to_matrix.c, verification.json, frozen_verification.json, verify.py, context_provenance.json, targets.json. Copy these and target object to independent scratch, then replay:
+
+```sh
+python3 verify.py --repo "$HOME/agents/D/wt" --toolkit "$HOME/rush2049/cache/toolkits/796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5" --target euler_to_matrix.target.o --output independent.json
+```
+
+A separate screening diagnostic for object_init_cleared was stopped when canonical comparison refused its missing section. Its plausible prologue at 800AED2C actually sits 12 bytes into already-accepted func_800AED20, whose preceding global-pointer head is authoritative. The diagnostic strict 175 against the inferred alias target is not a match or credit, and the source is retained only to document that refusal. Selection now explicitly checks canonical section existence and accepted address intervals, in addition to current lock names/full reports, before further controls. No fabricated standalone prologue was introduced.

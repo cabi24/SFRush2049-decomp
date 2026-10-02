@@ -8713,6 +8713,7 @@ func_800F769C:
 .section .text.func_800F7A98, "ax", @progbits
 .globl func_800F7A98
 func_800F7A98:
+    /* compiled from src/blob/func_800F7A98.c */
     .word 0x3C0E8011
     .word 0x8DCE74B4
     .word 0x00A03825

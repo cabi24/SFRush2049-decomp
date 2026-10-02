@@ -1,0 +1,16 @@
+{
+  "claims": [
+    {
+      "name": "func_800BC21C",
+      "address": "0x800BC21C",
+      "bytes": 160,
+      "target_words": 40,
+      "strict_verdict": "MATCH",
+      "source": "cloud/work/near_miss_B40/func_800BC21C_seed.c",
+      "source_sha256": "4111085453125ccb0119ac3d13dbc908967173894b9a5eb0e71ed22e43bf35a3",
+      "target_sha256": "46eebf1fd1df6eeb1be94cf924f3107c69149a321b0eb11a6bfb67d166c71741",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "current_lock_checked_unlocked": true
+    }
+  ]
+}

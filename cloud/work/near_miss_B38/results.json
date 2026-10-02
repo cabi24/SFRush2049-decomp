@@ -1,0 +1,11 @@
+{
+  "func_800E2D18_stages": "112/122 words differ (29 extra words (nonzero beyond target length); unpaired R_MIPS_HI16 for D_801110C4 at .text+0x1dc)",
+  "func_800E2D18_matrix_O2": "112/122 words differ (29 extra words (nonzero beyond target length))",
+  "func_800E2D18_spacing_O1": "122/122 words differ (24 extra words (nonzero beyond target length))",
+  "func_800E2D18_O1": "118/122 words differ (2 extra words (nonzero beyond target length))",
+  "func_800E2D18_O2": "120/122 words differ (29 extra words (nonzero beyond target length); unpaired R_MIPS_HI16 for D_801110C4 at .text+0x1dc)",
+  "func_800E2D18_spacing_O2": "112/122 words differ (29 extra words (nonzero beyond target length))",
+  "func_800E2D18_O3": "114/122 words differ (12 extra words (nonzero beyond target length))",
+  "func_800E2D18_products": "112/122 words differ (29 extra words (nonzero beyond target length); unpaired R_MIPS_HI16 for D_801110C4 at .text+0x1dc)",
+  "func_800E2D18_matrix_O1": "120/122 words differ (3 extra words (nonzero beyond target length))"
+}
