@@ -1,0 +1,37 @@
+[
+  {
+    "function": "audio_update_a",
+    "source_sha256": "84232f12a5668871657abb057b48623b5db99538bf59e6592f6f75324ef3c051",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "target_manifest_sha256": "6ffda622b1aed921d85aa20d3996959aa69a433cbca46e0b83d98ad13e3bd6e8",
+    "expected_bytes": 600,
+    "canonical_verdict": "MATCH",
+    "object_accepted": true,
+    "linked": {
+      "differing": 0,
+      "total": 150,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "image_bytes": 647072,
+    "rom_sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+    "rom_exit": 0,
+    "pytest_exit": 0,
+    "pytest_passed": 724,
+    "pytest_skipped": 530,
+    "blob_locked": 612,
+    "static_source_locked": 123,
+    "coverage": {
+      "static_functions": 120,
+      "static_total": 230,
+      "static_bytes": 28732,
+      "static_total_bytes": 61440,
+      "game_functions": 612,
+      "game_total": 1216,
+      "game_bytes": 77828,
+      "game_total_bytes": 647072
+    }
+  }
+]

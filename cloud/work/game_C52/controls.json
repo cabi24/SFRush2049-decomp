@@ -1,0 +1,74 @@
+[
+  {
+    "function": "world_physics_tick",
+    "variant": "world_physics_tick.intrinsic",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 18611,
+    "linked": {
+      "differing": 379,
+      "total": 391,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "2c5ed3a599843d529d39dfc5a32bdbc170977dcda28855f9cc8a53e89d6b678d",
+    "target_sha256": "1a2394244559f731416392aa95c50902e9d798f7701a5113d87a3d75f0120489"
+  },
+  {
+    "function": "world_physics_tick",
+    "variant": "world_physics_tick.body",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 13845,
+    "linked": {
+      "differing": 384,
+      "total": 391,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "77708456b98308fc7af4b2ec5966cd394538ac297eb6ed362968f7a04f81fe69",
+    "target_sha256": "1a2394244559f731416392aa95c50902e9d798f7701a5113d87a3d75f0120489"
+  },
+  {
+    "function": "world_physics_tick",
+    "variant": "world_physics_tick.tables",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 10010,
+    "linked": {
+      "differing": 380,
+      "total": 391,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "df6f54901d625aef449f153c4fb8202da4274e4bd89390982c3dde0a7521f3fd",
+    "target_sha256": "1a2394244559f731416392aa95c50902e9d798f7701a5113d87a3d75f0120489"
+  },
+  {
+    "function": "world_physics_tick",
+    "variant": "world_physics_tick.o3",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 10010,
+    "linked": {
+      "differing": 380,
+      "total": 391,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "5fd6740a7997600c70a957eecbc6fc20f19ed456e0df5d9fb876aa6726303958",
+    "target_sha256": "1a2394244559f731416392aa95c50902e9d798f7701a5113d87a3d75f0120489"
+  }
+]

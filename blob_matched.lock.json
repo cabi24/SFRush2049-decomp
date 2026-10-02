@@ -184,6 +184,14 @@
     "verified": "image_gate",
     "verified_at": "2026-09-29"
   },
+  "audio_update_a": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/audio_update_a.c",
+    "source_sha256": "84232f12a5668871657abb057b48623b5db99538bf59e6592f6f75324ef3c051",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-02"
+  },
   "audio_update_b": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/audio_update_b.c",

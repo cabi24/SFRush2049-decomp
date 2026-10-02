@@ -290,3 +290,7 @@ B55's true halfword resource updater preserves signed selector ranges, actual re
 ### Genuine accumulator update order and reproducible coordinator replay (2026-10-02)
 
 B59's full resource statistics loop matches when the actual float total update precedes its consumed halfword count increment. Preserve the original reloads, record widths and both real accumulators; no artificial pressure or operation is needed. tools/cloud/review_single.py binds exact first-line flags and canonical extent to fresh full comparison and source/manifest hashes. It rejects incomplete proof and replaces stale success output on failure. Object proof remains separate from independent source review and image/full-ROM publication gates. Read the live reservation map before creating a new native body to catch overlapping work whose source file has not yet appeared.
+
+### Real shared offset captures recover entry scheduling (2026-10-02)
+
+A79's complete dual-statistics loop has a genuine selector*64 byte offset consumed by both resource and global records. Capturing it per player before the original resource validation lets IDO place the original entry calculations and peel the true ten-counter update loop. Full600-byte equality follows without a pressure expression, added operation or stack padding. Retain signed live-counter loads, unsigned accumulators and the actual signed division before converting its consumed result.

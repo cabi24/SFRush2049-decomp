@@ -1,0 +1,39 @@
+{
+  "function": "world_physics_tick",
+  "words_differing": 380,
+  "strict_words_differing": 380,
+  "target_words": 392,
+  "candidate_words": 375,
+  "verdict": "mixed(constant:7, structural:253, register:105)",
+  "frame_delta": 0,
+  "lanes": [
+    {
+      "class": "pool",
+      "slot": 0,
+      "rotation": null
+    },
+    {
+      "class": "temp",
+      "slot": 1,
+      "rotation": null
+    },
+    {
+      "class": "shared",
+      "slot": 0,
+      "rotation": null
+    },
+    {
+      "class": "fp-pool",
+      "slot": 14,
+      "rotation": null
+    },
+    {
+      "class": "fp-temp",
+      "slot": null,
+      "rotation": null
+    }
+  ],
+  "owning_pass": "unknown",
+  "ownership_basis": "none",
+  "lever": "none-known"
+}

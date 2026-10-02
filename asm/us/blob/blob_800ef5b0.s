@@ -5740,6 +5740,7 @@ graphics_chunk_b:
 .section .text.audio_update_a, "ax", @progbits
 .globl audio_update_a
 audio_update_a:
+    /* compiled from src/blob/audio_update_a.c */
     .word 0x27BDFFC0
     .word 0xAFBE0038
     .word 0x3C1E8015

@@ -1,5 +1,13 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-02 thirty-fifth completed milestone: over twelve percent matching game bytes
+
+- Game cartridge C: **612/1,216 functions, 77,828/647,072 bytes (12.03%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**. A79 adds **600 matching bytes**.
+- audio_update_a preserves both real64-byte stats records for each actual76-byte player,120-byte live input rows, unsigned maxima, actual signed division, halfword totals and ten genuinely consumed signed-short counters. A real shared selector byte offset initialized before resource validation repairs all eight entry scheduling words without extra operations. Original fallback/null guards and true two-input refresh remain. Frozen SHA84232f12a5668871657abb057b48623b5db99538bf59e6592f6f75324ef3c051; literal flags **-g0 -O3 -mips2 -G 0 -non_shared**.
+- Independent D canonical MATCH and fresh complete unmasked relocation-resolved equality for150words, zero extras/unresolved/unverified/errors. Two trailing object alignment zeros earn no credit. Identical image and original ROM SHA-1 EXACT; full pytest **724 passed, 530 skipped, captured exit0**. All612 blob/group checks and123 static/source locks pass. Since original handoff: **115 game functions /21,412 bytes** and **97 static functions /27,284 bytes** accepted. Since overnight start at601/73,268: **11 game functions /4,560 bytes**. 4ca9b325 passed CI36970699514.
+- A80/B62/C54 remain active on new complete sources. Frozen B61 is four words away but retains an unproved original frame reservation; no padding or credit. C52 complete native initializer remains a nonmatch; C53 is refused at scout stage for actual hidden IPA inputs. Initial dirty tools/mips_to_c preserved.
+
+
 ## 2026-10-02 thirty-fourth completed milestone: complete resource statistics
 
 - Game cartridge C: **611/1,216 functions, 77,228/647,072 bytes (11.93%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**. B59 adds **520 matching bytes**.
