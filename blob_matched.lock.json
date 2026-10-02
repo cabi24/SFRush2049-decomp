@@ -1718,7 +1718,7 @@
   "func_800A78BC": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "source": "src/blob/func_800A78BC.c",
-    "source_sha256": "658c2fec5cc864422153246b311a2200bb098f5b5f065b0b56c948ed4b0680a1",
+    "source_sha256": "38558565e48364685f75f7cb3a3ac1ce0c721f16119d8e602823e1035b69553c",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-02"

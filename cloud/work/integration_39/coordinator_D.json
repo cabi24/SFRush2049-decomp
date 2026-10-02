@@ -1,0 +1,11 @@
+{
+  "function": "func_800A78BC",
+  "purpose": "Consumed pointer and indexed-geometry argument types refined from native caller and helper audit; original instructions unchanged.",
+  "proof": "func_800A78BC_typed_D.json",
+  "image_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d",
+  "rom_sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+  "rom_exit": 0,
+  "pytest_exit": 0,
+  "pytest": "762 passed, 533 skipped",
+  "coverage_change": 0
+}
