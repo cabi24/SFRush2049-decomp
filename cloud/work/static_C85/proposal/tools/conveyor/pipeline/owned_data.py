@@ -371,7 +371,6 @@ def rewrite_linker(text, repo=REPO):
     text = re.sub(r'/\* ROM_OWNED_SECTION_MOVED ([^\n]+) \*/', r'\1;', text)
     pattern = r'/\* ROM_OWNED_DATA_BEGIN ([A-Za-z0-9_./-]+\(\.[A-Za-z0-9_.]+\)) \*/.*?/\* ROM_OWNED_DATA_END \1 \*/'
     text = re.sub(pattern, lambda m: m.group(1) + ';', text, flags=re.S)
-    text = re.sub(r'/\* ROM_OWNED_SUBALIGN (SUBALIGN\(16\)) \*/', r'\1', text)
     for source, rows in _groups(repo).items():
         obj = rows[0]['container_object']; section = rows[0]['container_section']
         original = obj + '(' + section + ');'
@@ -382,25 +381,6 @@ def rewrite_linker(text, repo=REPO):
             text = text.replace(owned + ';', '/* ROM_OWNED_SECTION_MOVED ' + owned + ' */')
         if text.count(original) != 1:
             raise OwnershipError('expected exactly one original container linker input')
-        if any(r.get('logical_extent') for r in rows):
-            # SPLAT's output-wide override supersedes even a validated input
-            # section's actual four-byte alignment. Honor input alignments for
-            # this container; fixed slot and size assertions still apply to
-            # every owner. Preserve the override in a reversible marker.
-            blocks = re.compile(
-                r'(?m)^(?P<header>[ \t]*\.[A-Za-z0-9_.]+[^\n{}]*)'
-                r'(?P<opening>\s*\{)(?P<body>[^{}]*)(?P<closing>\})')
-            found = [m for m in blocks.finditer(text) if original in m['body']]
-            if len(found) != 1:
-                raise OwnershipError('expected exactly one logical container output section')
-            block = found[0]
-            header = block['header']
-            if 'SUBALIGN' in header:
-                if not re.search(r'SUBALIGN\(16\)', header):
-                    raise OwnershipError('unexpected logical container subalignment')
-                header = header.replace('SUBALIGN(16)',
-                                        '/* ROM_OWNED_SUBALIGN SUBALIGN(16) */')
-                text = text[:block.start('header')] + header + text[block.end('header'):]
         indent = re.search(r'(?m)^([ \t]*)' + re.escape(original), text).group(1)
         marker = obj + '(' + section + ')'
         lines = ['/* ROM_OWNED_DATA_BEGIN ' + marker + ' */']

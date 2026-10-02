@@ -39,6 +39,21 @@
       "owner_section": ".data",
       "sha256": "00eff670001b7953977665e4e87a8f811e3928fc8cce0f7ff5e8bf01d41559c6",
       "composed_source": "build/us/assets/us/data.composed.bin"
+    },
+    {
+      "owner": "fcvt",
+      "tu": "src/rom/lib_34a0.c",
+      "source": "assets/us/data.bin",
+      "offset": "0x1e158",
+      "size": "0x164",
+      "container_vram": "0x8000f400",
+      "container_section": ".data",
+      "owner_section": ".rodata",
+      "alignment": 4,
+      "logical_extent": true,
+      "sha256": "6c8434640414a8bf729d13362022b6286e0ae23866e77d6e05d39a2b61262370",
+      "passthrough_asm": "asm/us/nonmatchings/rom/lib_34a0/fcvt.table.s",
+      "composed_source": "build/us/assets/us/data.composed.bin"
     }
   ],
   "storage_blocks": [

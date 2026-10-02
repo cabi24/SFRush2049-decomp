@@ -270,7 +270,7 @@ SECTIONS
         build/us/src/rom/lib_3140.o(.rodata);
         build/us/src/rom/lib_3330.o(.rodata);
         build/us/src/rom/lib_3390.o(.rodata);
-        build/us/src/rom/lib_34a0.o(.rodata);
+        /* ROM_OWNED_SECTION_MOVED build/us/src/rom/lib_34a0.o(.rodata) */
         build/us/asm/us/55F0.o(.rodata);
         build/us/src/rom/lib_5610.o(.rodata);
         build/us/src/rom/lib_7600.o(.rodata);
@@ -457,7 +457,7 @@ SECTIONS
 
     data_ROM_START = __romPos;
     data_VRAM = ADDR(.data);
-    .data : AT(data_ROM_START) SUBALIGN(16)
+    .data : AT(data_ROM_START) /* ROM_OWNED_SUBALIGN SUBALIGN(16) */
     {
         FILL(0x00000000);
         data_DATA_START = .;
@@ -477,12 +477,19 @@ SECTIONS
         ASSERT(rom_owned_timer_services_pointer_START == 0x8002c3f0, "owned ROM slot address changed");
         ASSERT(rom_owned_timer_services_pointer_END - rom_owned_timer_services_pointer_START == 0x10, "owned ROM slot size changed");
         build/us/assets/us/data.o(.data.owned2);
+        rom_owned_fcvt_START = ABSOLUTE(.);
+        build/us/src/rom/lib_34a0.o(.rodata);
+        rom_owned_fcvt_END = ABSOLUTE(.);
+        ASSERT(rom_owned_fcvt_START == 0x8002d558, "owned ROM slot address changed");
+        ASSERT(rom_owned_fcvt_END - rom_owned_fcvt_START == 0x164, "owned ROM slot size changed");
+        ASSERT(rom_owned_fcvt_START % 4 == 0, "owned table alignment changed");
+        build/us/assets/us/data.o(.data.owned3);
         rom_owned_osSpTaskLoad_full_START = ABSOLUTE(.);
         build/us/src/rom/lib_e9a0.o(.rodata);
         rom_owned_osSpTaskLoad_full_END = ABSOLUTE(.);
         ASSERT(rom_owned_osSpTaskLoad_full_START == 0x8002d860, "owned ROM slot address changed");
         ASSERT(rom_owned_osSpTaskLoad_full_END - rom_owned_osSpTaskLoad_full_START == 0x20, "owned ROM slot size changed");
-        build/us/assets/us/data.o(.data.owned3);
+        build/us/assets/us/data.o(.data.owned4);
         _binary_assets_us_data_bin_end = ABSOLUTE(.);
         _binary_assets_us_data_bin_size = ABSOLUTE(_binary_assets_us_data_bin_end - _binary_assets_us_data_bin_start);
         _binary_build_us_assets_us_data_composed_bin_end = ABSOLUTE(.);

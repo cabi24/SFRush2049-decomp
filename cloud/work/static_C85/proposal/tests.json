@@ -1,0 +1,12 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "pytest",
+    "-q",
+    "cloud/work/static_C85/proposal/test_owned_table_extent.py"
+  ],
+  "exit_code": 0,
+  "stdout": "....................................                                     [100%]\n",
+  "stderr": ""
+}

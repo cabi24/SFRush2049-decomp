@@ -1,0 +1,22 @@
+{
+  "stage": "Grounded formatter table ownership baseline; fcvt still real assembly passthrough",
+  "native_formatter_credit": 0,
+  "strict_formatter_pool_score": 0,
+  "static_locks": 150,
+  "all_lock_problems": 0,
+  "full_source_built_game_image_exact": true,
+  "full_ROM_SHA1_exact": true,
+  "pytest_exit": 0,
+  "pytest_passed": 775,
+  "pytest_skipped": 564,
+  "table_address": "0x8002D558",
+  "table_bytes": 356,
+  "table_entry_count": 89,
+  "table_alignment": 4,
+  "following_original_bytes_preserved": true,
+  "production_helper_sha256": "8e09c6724616821238c6df979a6028eedc61b2f98a495ad1c02a6f141385154c",
+  "additional_root_fix": "SPLAT output SUBALIGN(16) overrode input alignment and inserted 8 bytes; normal generator now honors actual input alignment only in explicitly logical-table-owned containers, retaining reversible marker and unchanged exact owner assertions",
+  "common_header_unchanged": true,
+  "frozen_formatter_body_hash_preserved": true,
+  "isolated_builder": "watchman2:~/rush2049/static-acceptance-codex-20261002"
+}
