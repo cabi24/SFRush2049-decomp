@@ -270,3 +270,7 @@ B42's camera wrapper visibly forwards ten real incoming arguments; the genuine c
 ### Ordinary O3 and real consumed expression sequencing (2026-10-01)
 
 B43's complete list removal matches as an ordinary O3 source; the enclosing region default O2 is not an authoritative per-function recipe. Prove the exact compiler flags independently and pass them explicitly into publication. Its final two differences were equality operand ordering: sequence the genuine pointer advance before its consumed comparison, retaining every original operation, guard and field access. Correct signed HI/LO address arithmetic must precede source controls. A65/A67's single O3 controls are unchanged nonmatches, so this setting is a verified possibility rather than a blanket explanation.
+
+### Actual multidimensional indexing recovers compiler unrolling (2026-10-01)
+
+D6's complete initializer describes the observed12-by-3-by-5 signed-word table directly. IDO derives the original peeled and unrolled stores on the first native compile; the pointer-loop alternative leaves23 differences. Preserve the real call and subsequent name/age clears, without hand-expanded extra work. Shared data views remain local declarations rather than new owned storage. A stale automated candidate residual is not evidence that a complete native rewrite is blocked.

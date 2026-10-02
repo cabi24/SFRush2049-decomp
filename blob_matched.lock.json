@@ -2674,6 +2674,14 @@
     "verified": "image_gate",
     "verified_at": "2026-09-29"
   },
+  "func_800C9480": {
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "src/blob/func_800C9480.c",
+    "source_sha256": "36644a6bdcec1edc8da5e49267cba0e3e3cc5575b1d90c20140eebbafd90ddec",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-01"
+  },
   "func_800C9590": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "controller_poll",

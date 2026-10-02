@@ -1,0 +1,74 @@
+[
+  {
+    "function": "car_stats_display",
+    "variant": "car_stats_display.while",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 733,
+    "linked": {
+      "differing": 28,
+      "total": 77,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "b63b527e6cf96750a2943e3313544849d328da308729a59241962ce4d62e4c38",
+    "target_sha256": "358e2dc41e201769a21f735e40e17dfcfabee5caeb3273fdf8d5c1b13527c33a"
+  },
+  {
+    "function": "car_stats_display",
+    "variant": "car_stats_display.cursor",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 803,
+    "linked": {
+      "differing": 34,
+      "total": 77,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "f647163f1a549c806af915284e012e42055208a28377cebfb76cb1e83882c31d",
+    "target_sha256": "358e2dc41e201769a21f735e40e17dfcfabee5caeb3273fdf8d5c1b13527c33a"
+  },
+  {
+    "function": "car_stats_display",
+    "variant": "car_stats_display.order",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 836,
+    "linked": {
+      "differing": 39,
+      "total": 77,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "e5db2cb856e5138d09299c037ebb3eeb5e4847c4a94d3f60a01bcb6579d77d67",
+    "target_sha256": "358e2dc41e201769a21f735e40e17dfcfabee5caeb3273fdf8d5c1b13527c33a"
+  },
+  {
+    "function": "car_stats_display",
+    "variant": "car_stats_display.pointer",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 1303,
+    "linked": {
+      "differing": 58,
+      "total": 77,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "9c62eaef81d6d9bbf5766e6b7307385e82a925b4eeca44a503897e8490fc1c76",
+    "target_sha256": "358e2dc41e201769a21f735e40e17dfcfabee5caeb3273fdf8d5c1b13527c33a"
+  }
+]

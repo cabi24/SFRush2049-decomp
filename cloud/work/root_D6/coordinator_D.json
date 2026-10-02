@@ -1,0 +1,33 @@
+{
+  "function": "func_800C9480",
+  "source_sha256": "36644a6bdcec1edc8da5e49267cba0e3e3cc5575b1d90c20140eebbafd90ddec",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "compile_exit": 0,
+  "linked": {
+    "differing": 0,
+    "total": 42,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "canonical_verdict": "MATCH",
+  "image_bytes": 647072,
+  "rom_sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+  "rom_exit": 0,
+  "pytest_exit": 0,
+  "pytest_passed": 713,
+  "pytest_skipped": 521,
+  "blob_locked": 603,
+  "static_source_locked": 123,
+  "coverage": {
+    "static_functions": 120,
+    "static_total": 230,
+    "static_bytes": 28732,
+    "static_total_bytes": 61440,
+    "game_functions": 603,
+    "game_total": 1216,
+    "game_bytes": 73696,
+    "game_total_bytes": 647072
+  }
+}

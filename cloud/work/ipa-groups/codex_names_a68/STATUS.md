@@ -1,0 +1,7 @@
+# A68 genuine bounded caller/callee module, frozen no claims
+
+Real member F1D04 full name-cache body and two actual callees8AD04/A473C. Literal flags `-g0 -O3 -mips2 -G 0 -non_shared`. Member strict104/222, exactextent/noextra/errors/unverified/unresolved. Both exact unchanged accepted helper bodytexts verify same-module strict0/17 and0/13, with no extra/unverified/unresolved/errors. accepted_body_hashes.json records extracted exact functionbody SHA256 values; source hash/counts scores.json. No helper coverage counted again and no candidate MATCH asserted. Canonical full group exit1; claims empty.
+
+Allthree genuine public callable bodies are kept. Initial control kept only helpers, and without any rootcaller in this partial module compiler emitted inactive member2-word body; this was rejected and recorded as no member proof. Keeping genuine existing F1D04 callable boundary restores222 words,104diff identical ordinary baseline. No synthetic caller, guard, argument duplication or stand-in. The module provides actual callees rather than broader ancestor expansion, and separately proves their current byte/clobber contracts. Original historical helper acceptance alone was not used as same-module evidence.
+
+Full semantic/field/scout/odd signed-age/uninitialized-index audit tiny_A68/STATUS.md. Exact raw binary/text proofs ignored build/codex-A68 and privateRocky; no ROM instruction streams in checked-in metadata. No accepted source/layout/locks changes. Freeze this packet unchanged; residual has no justified new semantic lever.

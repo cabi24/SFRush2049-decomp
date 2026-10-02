@@ -1,0 +1,13 @@
+[
+  {
+    "source": "func_800C9480.indexed.c",
+    "canonical_D": "MATCH",
+    "words_differing": 0,
+    "target_words": 42
+  },
+  {
+    "source": "func_800C9480.pointer.c",
+    "words_differing": 23,
+    "target_words": 42
+  }
+]

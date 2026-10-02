@@ -1,0 +1,45 @@
+/* flags: -g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul */
+typedef int s32;
+typedef unsigned int u32;
+typedef signed short s16;
+typedef float f32;
+typedef struct Vertex {s16 x,y,z; unsigned char rest[10];} Vertex;
+typedef struct Record {u32 command, flags; unsigned char rest[60];} Record;
+extern s32 D_80156CE0,D_80156D30;
+extern Vertex D_80157248[];
+extern Record D_8012E700[];
+void func_800A7E10(f32 *low,f32 *high,s16 slot) {
+    s32 start;
+    Vertex *vertices;
+    Record *record;
+    start=D_80156CE0;
+    vertices=&D_80157248[start];
+    record=&D_8012E700[slot];
+    record->flags |= ((u32)start<<3)|7;
+    D_80156CE0=start+8;
+    if(D_80156D30<start+8)D_80156D30=start+8;
+    vertices[0].x=(s32)(low[0]*16.0f);
+    vertices[0].y=(s32)(low[1]*16.0f);
+    vertices[0].z=(s32)(low[2]*16.0f);
+    vertices[1].x=(s32)(low[0]*16.0f);
+    vertices[1].y=(s32)(low[1]*16.0f);
+    vertices[1].z=(s32)(high[2]*16.0f);
+    vertices[2].x=(s32)(low[0]*16.0f);
+    vertices[2].y=(s32)(high[1]*16.0f);
+    vertices[2].z=(s32)(low[2]*16.0f);
+    vertices[3].x=(s32)(low[0]*16.0f);
+    vertices[3].y=(s32)(high[1]*16.0f);
+    vertices[3].z=(s32)(high[2]*16.0f);
+    vertices[4].x=(s32)(high[0]*16.0f);
+    vertices[4].y=(s32)(low[1]*16.0f);
+    vertices[4].z=(s32)(low[2]*16.0f);
+    vertices[5].x=(s32)(high[0]*16.0f);
+    vertices[5].y=(s32)(low[1]*16.0f);
+    vertices[5].z=(s32)(high[2]*16.0f);
+    vertices[6].x=(s32)(high[0]*16.0f);
+    vertices[6].y=(s32)(high[1]*16.0f);
+    vertices[6].z=(s32)(low[2]*16.0f);
+    vertices[7].x=(s32)(high[0]*16.0f);
+    vertices[7].y=(s32)(high[1]*16.0f);
+    vertices[7].z=(s32)(high[2]*16.0f);
+}

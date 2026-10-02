@@ -1,5 +1,13 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-01 thirtieth completed milestone: native table initialization
+
+- Game cartridge C: **603/1,216 functions, 73,696/647,072 bytes (11.39%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**.
+- D6 adds the complete 168-byte func_800C9480 initializer. Actual 12-by-3-by-5 signed-word indexing lets IDO reproduce the original peeled/unrolled inner loop, followed by the genuine name/age clears and original no-input minimap helper. First native compile matches; a pointer-loop control remains 23 words away. Literal flags **-g0 -O2 -mips2 -G 0 -non_shared**. No invented storage, formals, operations or context credit.
+- Independent D canonical MATCH and fresh full raw relocation-resolved equality for all42 words with zero extras/unresolved/unverified/errors; identical image and source-built original ROM SHA-1 EXACT. Full pytest **713 passed, 521 skipped, captured exit0**; all603 blob/group checks and123 static/source locks pass.
+- Since original handoff: **106 game functions /17,280 bytes** and **97 static functions /27,284 bytes** accepted. 502e96ef passed CI36959122408. Frozen D7, A68/A69/A70, B44–B48 and C40/C41/C42 remain nonmatches with no credit; genuine A68 module contexts are unclaimed. Three workers continue fresh complete sources throughout the authorized overnight run. Initial dirty tools/mips_to_c preserved.
+
+
 ## 2026-10-01 twenty-ninth completed milestone: original O3 list removal
 
 - Game cartridge C: **602/1,216 functions, 73,528/647,072 bytes (11.36%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**.
