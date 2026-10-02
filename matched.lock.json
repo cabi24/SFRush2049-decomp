@@ -1,12 +1,4 @@
 {
-  "cloud/matches/__scExecTask.c:__scExecTask": {
-    "body_sha256": "1b417a9470a8da37c0ef8d2c10018369ef87b45649e39ca4e1e2a99ee01d9594",
-    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm",
-    "target_id": "__scExecTask",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-02"
-  },
   "src/libultra/os_ai.c:__osAiDeviceBusy": {
     "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -30,6 +22,14 @@
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-09-24"
+  },
+  "src/rom/lib_1050_sdk.c:__scExecTask": {
+    "body_sha256": "1b417a9470a8da37c0ef8d2c10018369ef87b45649e39ca4e1e2a99ee01d9594",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "__scExecTask",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-02"
   },
   "src/rom/lib_1050_sdk.c:__scHandleRDP": {
     "body_sha256": "a0c8a9b648566ee205a7e4ed82841c3569fefb6842fb5e3ec4a4e32695a157aa",

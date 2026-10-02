@@ -120,7 +120,35 @@ OSScTask *__scTaskReady(OSSched *scheduler, OSScTask *task) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scExecTask.s")
+/* PROMOTED 2026-10-02 — __scExecTask
+ * Source:   cloud/matches/__scExecTask.c (in-repo, locked)
+ * Flags:    -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul
+ * Evidence: lock:cloud/matches/__scExecTask.c:__scExecTask (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+s32 __scExecTask(OSSched *scheduler, OSScTask *task)
+{
+    int rv;
+    if ((task->state & 3) == 0) {
+        if (!task->msgQueue) { }
+        rv = osJamMesg(task->msgQueue, task->msg, OS_MESG_BLOCK);
+        if (task->type == 1) {
+            __osScTaskCount--;
+            if ((task->flags & 0x40) && (task->flags & 0x20)) {
+                if (scheduler->retraceCount - __osScSwapCount >= 2U) {
+                    __osScSwapCount = scheduler->retraceCount;
+                    osViSetMode(task->framebuffer);
+                    display_mode_tick();
+                } else {
+                    __osScPendingSwap = (s32)task->framebuffer;
+                }
+            }
+        }
+        return 1;
+    }
+    return 0;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scAppendList.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scExec.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scHandlePreNMI.s")
