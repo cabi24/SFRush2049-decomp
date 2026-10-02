@@ -1,0 +1,22 @@
+[
+  {
+    "function": "__osPiGetCmdQueue",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "source_sha256": "6cd25a76f4e6cb2a9c78643a36cf0a433288d127d6f64cbcd0c70b9cd843273e",
+    "target_sha256": "c8f68dd923b7dcbc80d4e417dfdda3b66f33bae613222f6f17c9d6305208c1d4",
+    "raw_word_count": 20,
+    "full_unmasked_word_differences": 0,
+    "private_vma_only_strict_score": 0,
+    "original_target_text_unchanged": true
+  },
+  {
+    "function": "osEPiRawWriteIo",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "source_sha256": "55308c976ce507bd3f015f70614b5bbee89dc9a6d30abda0775f547d4e5aded6",
+    "target_sha256": "89395a40040da9540d0ddd6105cb8fd2527f6c9b095f4712a1ce0234942b780e",
+    "raw_word_count": 24,
+    "full_unmasked_word_differences": 0,
+    "private_vma_only_strict_score": 0,
+    "original_target_text_unchanged": true
+  }
+]

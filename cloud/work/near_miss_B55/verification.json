@@ -1,0 +1,50 @@
+{
+  "function": "linear_interp",
+  "target_address": "0x800F7C20",
+  "target_byte_count": 528,
+  "source_claim": "linear_interp_O3.c",
+  "results": [
+    {
+      "control": "native",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "source_sha256": "4c9621acaf89cf73ee1308b30fc6beddaafd3b45588489c1165f21f359cae005",
+      "comparison": {
+        "differing": 114,
+        "total": 132,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 2
+      },
+      "compiled_text_word_count": 136
+    },
+    {
+      "control": "symbols",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "source_sha256": "cb8f841a24772e26080384a4d3b7b12d2706bf77efc35106a0ee0dc64161a691",
+      "comparison": {
+        "differing": 114,
+        "total": 132,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 2
+      },
+      "compiled_text_word_count": 136
+    },
+    {
+      "control": "O3",
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "source_sha256": "abc657d25fda2b582f0c8663753b22a4b59036e14c229286d5cbdd0e0f969e28",
+      "comparison": {
+        "differing": 0,
+        "total": 132,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "compiled_text_word_count": 132
+    }
+  ]
+}

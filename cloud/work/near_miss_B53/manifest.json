@@ -1,0 +1,9 @@
+{
+  "claims": [],
+  "files": {
+    "func_800B3704_O3.c": "973684e7fa26c56c107a32b1ca3c3feb8949f2d9f187d613b280c8e535722513",
+    "func_800B3704_native.c": "de77630257860d3d51e4dea9486983410c0dc5ca8b24b9fdb708fef4dd47756d",
+    "func_800B3704_take.c": "a31cfac2a898fddb111c4258d279f300ea9565b706b3d3888e09db0a2004ef72",
+    "results.json": "1300f30f22c6bd07df9b2663886b2ba4ff26eb6e50a892a2e75fe584e5faa3f2"
+  }
+}

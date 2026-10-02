@@ -1,0 +1,11 @@
+[
+  {
+    "function": "__scHandlePreNMI",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 60,
+    "source_sha256": "0229085d3e9256b0edc36cb2277685909d0a8ec484ac0f57a6955a3f23f02ffe",
+    "target_sha256": "0c2cd7a6e75c1db2b19c58060b4aa770b1feda8f9005f1a0705c5999b6ba58dc"
+  }
+]

@@ -5,6 +5,7 @@
 .section .text.ambient_sound_set, "ax", @progbits
 .globl ambient_sound_set
 ambient_sound_set:
+    /* compiled from src/blob/ambient_sound_set.c */
     .word 0x27BDFFB8
     .word 0xAFB20028
     .word 0xAFBE0040

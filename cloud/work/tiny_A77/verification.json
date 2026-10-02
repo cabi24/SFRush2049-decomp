@@ -1,0 +1,14 @@
+{
+  "differing": 0,
+  "total": 112,
+  "unresolved": [],
+  "unverified": [],
+  "errors": [],
+  "extra_words": 0,
+  "target": "ambient_sound_set",
+  "address": "0x800B3B4C",
+  "size": 448,
+  "source_sha256": "eed6e304c9f7a093e7c0b103530194604ab002b90770198164a30c6503f49a2c",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "compiled_words": 112
+}

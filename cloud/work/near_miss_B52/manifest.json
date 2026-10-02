@@ -1,0 +1,8 @@
+{
+  "claims": [],
+  "files": {
+    "func_800A7480_blue.c": "85f46301e53c31646e8efcc3aba7c0e5cd075882982bbcd718c3060e5b97fa27",
+    "func_800A7480_native.c": "f8e2eb485f899021e2e5238a13b0f3442084527ed11b1f6dabcf2fe2f1aa7672",
+    "results.json": "c40ed3d2a892635649dd0645562ee95664e1bad8146734d355d587efc12c1ae4"
+  }
+}

@@ -1,0 +1,12 @@
+[
+  {
+    "function": "__scHandlePreNMI",
+    "variant": "__scHandlePreNMI.sdk_u32",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 60,
+    "source_sha256": "c7b3a9e0da9d59aa58df4d09455cbb8f804d7199a2fd999750f84b96d1d9ae51",
+    "target_sha256": "0c2cd7a6e75c1db2b19c58060b4aa770b1feda8f9005f1a0705c5999b6ba58dc"
+  }
+]

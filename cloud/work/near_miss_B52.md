@@ -1,0 +1,5 @@
+# B52 faithful descriptor/color packing repair
+
+Frozen NONMATCH func_800A7480@800A7480, 136 bytes/34 target words. Replaced the historical automated seed's fake argument increment/decrement with complete native stores and the actual RGBA16 pack. Seven genuinely consumed incoming values populate a real72-byte descriptor's observed halfword x/y and byte RGBA fields at64..71; original alpha bit is always1 and the packed halfword is duplicated into the real word global. The opaque prefix describes existing descriptor bytes, with no local padding or owned storage.
+
+Two directed controls: native and caching the actually reused blue value. Both29/34, one nonzero extra word, canonical unpaired R_MIPS_HI16 for D_80124FC8 at text+0x70. This is an honest scorer/extent failure, not strict equality. Target homing of the first four real inputs and register/scheduling work remain unexplained. No extra operation, fake formal, volatile/unused pressure local, alias change, instruction mask or line sweep was introduced. Original two frozen C sources are unchanged; fresh sanitized recompile counts/errors/hashes in results.json. No claims or shared acceptance changes.

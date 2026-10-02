@@ -73,6 +73,14 @@
     "verified": "image_gate",
     "verified_at": "2026-09-29"
   },
+  "ambient_sound_set": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/ambient_sound_set.c",
+    "source_sha256": "eed6e304c9f7a093e7c0b103530194604ab002b90770198164a30c6503f49a2c",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-02"
+  },
   "ambient_sounds_clear": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/ambient_sounds_clear.c",
@@ -4113,6 +4121,14 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-01"
+  },
+  "linear_interp": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "src/blob/linear_interp.c",
+    "source_sha256": "abc657d25fda2b582f0c8663753b22a4b59036e14c229286d5cbdd0e0f969e28",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-02"
   },
   "listener_position_set": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",

@@ -1,0 +1,24 @@
+{
+  "function": "__scHandlePreNMI",
+  "words_differing": 3,
+  "strict_words_differing": 3,
+  "target_words": 24,
+  "candidate_words": 24,
+  "verdict": "schedule",
+  "frame_delta": 0,
+  "lanes": [
+    {
+      "class": "temp",
+      "slot": null,
+      "rotation": null
+    },
+    {
+      "class": "shared",
+      "slot": null,
+      "rotation": null
+    }
+  ],
+  "owning_pass": "g0-scheduler",
+  "ownership_basis": "heuristic",
+  "lever": "line-order"
+}

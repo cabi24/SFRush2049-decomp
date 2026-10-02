@@ -1,0 +1,10 @@
+{
+  "targets": [
+    "func_800E8D50"
+  ],
+  "claims": [],
+  "final_source": "func_800E8D50.blend.c",
+  "source_sha256": "cf41cd2c38272f19f9c0d06895ca067c28732dd25130c4bf17aac0ac8cc4d44e",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "frozen": true
+}

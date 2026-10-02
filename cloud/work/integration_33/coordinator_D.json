@@ -1,0 +1,68 @@
+[
+  {
+    "function": "linear_interp",
+    "source_sha256": "abc657d25fda2b582f0c8663753b22a4b59036e14c229286d5cbdd0e0f969e28",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "canonical_verdict": "MATCH",
+    "compile_exit": 0,
+    "linked": {
+      "differing": 0,
+      "total": 132,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "image_bytes": 647072,
+    "rom_sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+    "rom_exit": 0,
+    "pytest_exit": 0,
+    "pytest_passed": 713,
+    "pytest_skipped": 528,
+    "blob_locked": 610,
+    "static_source_locked": 123,
+    "coverage": {
+      "static_functions": 120,
+      "static_total": 230,
+      "static_bytes": 28732,
+      "static_total_bytes": 61440,
+      "game_functions": 610,
+      "game_total": 1216,
+      "game_bytes": 76708,
+      "game_total_bytes": 647072
+    }
+  },
+  {
+    "function": "ambient_sound_set",
+    "source_sha256": "eed6e304c9f7a093e7c0b103530194604ab002b90770198164a30c6503f49a2c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "canonical_verdict": "MATCH",
+    "compile_exit": 0,
+    "linked": {
+      "differing": 0,
+      "total": 112,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "image_bytes": 647072,
+    "rom_sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+    "rom_exit": 0,
+    "pytest_exit": 0,
+    "pytest_passed": 713,
+    "pytest_skipped": 528,
+    "blob_locked": 610,
+    "static_source_locked": 123,
+    "coverage": {
+      "static_functions": 120,
+      "static_total": 230,
+      "static_bytes": 28732,
+      "static_total_bytes": 61440,
+      "game_functions": 610,
+      "game_total": 1216,
+      "game_bytes": 76708,
+      "game_total_bytes": 647072
+    }
+  }
+]

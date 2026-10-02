@@ -1,0 +1,34 @@
+[
+  {
+    "function": "__osPiGetCmdQueue",
+    "optimization": "O2",
+    "target_words": 20,
+    "candidate_words": 16,
+    "raw_differing": 20,
+    "strict_linked_score": 795
+  },
+  {
+    "function": "__osPiGetCmdQueue",
+    "optimization": "O1",
+    "target_words": 20,
+    "candidate_words": 20,
+    "raw_differing": 0,
+    "strict_linked_score": 10
+  },
+  {
+    "function": "osEPiRawWriteIo",
+    "optimization": "O2",
+    "target_words": 24,
+    "candidate_words": 20,
+    "raw_differing": 21,
+    "strict_linked_score": 604
+  },
+  {
+    "function": "osEPiRawWriteIo",
+    "optimization": "O1",
+    "target_words": 24,
+    "candidate_words": 24,
+    "raw_differing": 0,
+    "strict_linked_score": 10
+  }
+]

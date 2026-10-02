@@ -1,0 +1,11 @@
+{
+  "claims": [
+    "linear_interp"
+  ],
+  "files": {
+    "linear_interp_O3.c": "abc657d25fda2b582f0c8663753b22a4b59036e14c229286d5cbdd0e0f969e28",
+    "linear_interp_native.c": "4c9621acaf89cf73ee1308b30fc6beddaafd3b45588489c1165f21f359cae005",
+    "linear_interp_symbols.c": "cb8f841a24772e26080384a4d3b7b12d2706bf77efc35106a0ee0dc64161a691",
+    "verification.json": "776be7cf9aa936dc3e3d232132db8139b30015f22a3871735fe7c83481b0a7f3"
+  }
+}

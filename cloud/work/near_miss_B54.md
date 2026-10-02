@@ -1,0 +1,5 @@
+# B54 genuine signed-half local width follow-up
+
+Frozen honest NONMATCH difficulty_select@800D2A74, 412 bytes/103 words. B51's exact recursive utilities motivated a new width audit of B49's automatic locals: every current/base/anchor value is a real signed-half load or zero. A directed replacement of only these genuine local types reduces best scoped-phases source from17 differences/frame64 to15 differences/frame48. Shared actual signed-half locals give23 differences/frame40. Inlining the real repeated anchor lookup gives25/frame40. All controls preserve the complete recursive source, original mode/segment/distance/player word formals, field/table contracts and operations; original32-byte frame still does not match. No fake padding, unused local, new expression work, pressure formal or source-line sweep.
+
+Three new bounded controls, sanitized fresh recompilation results and source hashes retained. Original B49 packet remains unchanged and separately frozen; this follow-up earns no coverage or claim. Current best15/103 is a lead, with frame/home and register allocation blocking strict acceptance.

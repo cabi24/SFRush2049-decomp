@@ -1,0 +1,10 @@
+{
+  "targets": [
+    "func_800E8F10"
+  ],
+  "claims": [],
+  "final_source": "func_800E8F10.reuse.c",
+  "source_sha256": "745e74643517dc2a976b4cd492c60924c3919665c211e6fb05de95a70ca7991e",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "frozen": true
+}

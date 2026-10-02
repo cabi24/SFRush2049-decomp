@@ -1,0 +1,1 @@
+Genuine complete func_800E8F10 array caller and unchanged accepted func_800B9338 complete TU. Empty claims; caller199/201 plus5 extra words; helper MATCH. No stand-ins or new storage. Frozen A75 packet cloud/work/tiny_A75/STATUS.md.

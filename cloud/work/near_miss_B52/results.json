@@ -1,0 +1,38 @@
+{
+  "function": "func_800A7480",
+  "claims": [],
+  "results": [
+    {
+      "control": "native",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "source_sha256": "f8e2eb485f899021e2e5238a13b0f3442084527ed11b1f6dabcf2fe2f1aa7672",
+      "comparison": {
+        "differing": 29,
+        "total": 34,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [
+          "unpaired R_MIPS_HI16 for D_80124FC8 at .text+0x70"
+        ],
+        "extra_words": 1
+      },
+      "text_word_count": 36
+    },
+    {
+      "control": "blue",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "source_sha256": "85f46301e53c31646e8efcc3aba7c0e5cd075882982bbcd718c3060e5b97fa27",
+      "comparison": {
+        "differing": 29,
+        "total": 34,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [
+          "unpaired R_MIPS_HI16 for D_80124FC8 at .text+0x70"
+        ],
+        "extra_words": 1
+      },
+      "text_word_count": 36
+    }
+  ]
+}
