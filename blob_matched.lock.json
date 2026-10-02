@@ -772,6 +772,15 @@
     "verified": "image_gate",
     "verified_at": "2026-09-30"
   },
+  "func_8008C680": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "sol_high_c680",
+    "source": "src/blob/groups/sol_high_c680/group.json",
+    "source_sha256": "015e34a0bf9b6d408c17a6311bd1b1a80fcae7dff45f9e444551de21334b8af8",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-02"
+  },
   "func_8008C720": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_8008C720.c",
