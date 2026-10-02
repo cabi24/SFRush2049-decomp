@@ -1,0 +1,248 @@
+{
+  "schema_version": 1,
+  "scope": "Complete original-IDO function match only; no image or ROM integration claim",
+  "base_commit": "2f1f30c508495db08d61170c4a9b2409461ae326",
+  "source_path": "cloud/matches/func_80090284.c",
+  "source_sha256": "fd914a7ab60a0bfd4bde8b3cc8765482cc01529a454437f6406ce428aeb76e91",
+  "source_unchanged_during_replay": true,
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "canonical_exit_code": 0,
+  "canonical_stdout": "func_80090284:\n  MATCH\n",
+  "canonical_stderr": "",
+  "independent_replay": {
+    "method": "Fresh copy in a clean directory; direct pinned IDO cc invocation; independently applied full-word HI16/LO16 arithmetic without score.relocate; canonical relocation cross-check also passes",
+    "exit_code": 0,
+    "stderr": "",
+    "object_sha256": "800670ab5d242ae1d811d95ca0b706879c0653c1e32190cfc06792a71a43cb87",
+    "elf_function_symbol": {
+      "name": "func_80090284",
+      "value": 0,
+      "size": 132,
+      "type": 2,
+      "section": 4
+    },
+    "text_byte_count": 144,
+    "body_bytes": 132,
+    "body_words": 33,
+    "zero_alignment_words": 3,
+    "nonzero_excess_words": 0,
+    "target_sha256": "30a84341f5dadb3b164c8e49d76c350693b8369e33e6f62663cf9d2c8fe807eb",
+    "resolved_body_sha256": "30a84341f5dadb3b164c8e49d76c350693b8369e33e6f62663cf9d2c8fe807eb",
+    "strict_full_word_differences": 0,
+    "relocations": [
+      {
+        "offset": 0,
+        "type": 5,
+        "symbol": "D_801392C8"
+      },
+      {
+        "offset": 4,
+        "type": 6,
+        "symbol": "D_801392C8"
+      },
+      {
+        "offset": 12,
+        "type": 5,
+        "symbol": "D_8012E66C"
+      },
+      {
+        "offset": 16,
+        "type": 6,
+        "symbol": "D_8012E66C"
+      },
+      {
+        "offset": 24,
+        "type": 5,
+        "symbol": "D_8012E678"
+      },
+      {
+        "offset": 44,
+        "type": 6,
+        "symbol": "D_8012E678"
+      }
+    ],
+    "relocation_addends": [
+      {
+        "symbol": "D_801392C8",
+        "addend": 0
+      },
+      {
+        "symbol": "D_8012E66C",
+        "addend": 0
+      },
+      {
+        "symbol": "D_8012E678",
+        "addend": 0
+      }
+    ],
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "canonical_comparison": {
+      "differing": 0,
+      "total": 33,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  "compiler_identity": {
+    "name": "IDO 5.3 static-recomp v1.2",
+    "pinned_distribution": "decompals/ido-static-recomp",
+    "pinned_archive_sha256": "ab5c741561f80913d58c8b074771f23941a3edd312505a8ebed6d1dfeb65e506",
+    "note": "Reused approved installed compiler; executable contents independently hashed",
+    "installed_executable_sha256": {
+      "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+      "acpp": "7bfdf2f79010eb95bd47e165036cac04a69e5f1290fde11736e5f6934f3e9189",
+      "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+      "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+      "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+      "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+    }
+  },
+  "audit_script_sha256": "2aa49aca185c23792975e3bbdfd275fe57ed51e86a928d85d2e42cf5267efe4d",
+  "scorer_sha256": "ca0e5fdebb90e13d1e91643357bcda7d402401552e5de326c361ab6411565cc0",
+  "setup_script_sha256": "e78fafc84cb5cde638bbcab528b96de3d6837e39b3b1f8f8d6c69e55d8f13e4b",
+  "protected_manifest_sha256": "9e70c670e356fc6bf41b7d43f355b6a65b18234e0c2382dbd95408f842bbea4b",
+  "protected_manifest_valid": true,
+  "protected_manifest_files_verified": 23,
+  "protected_paths_changed_relative_HEAD": [],
+  "semantic_audit": {
+    "native_start": "0x80090284",
+    "native_end_exclusive": "0x80090308",
+    "next_symbol_address": "0x80090308",
+    "full_disassembled_instruction_count": 33,
+    "all_native_instruction_addresses_accounted": true,
+    "prototype": "Node *func_80090284(void)",
+    "input": "No incoming argument register or stack slot is consumed; all inputs come from globals. No calls or stack frame.",
+    "empty_case": "A null free-list head returns null without modifying memory.",
+    "allocation": "Returns the previous free-list head, advances it to node->next, increments signed-half D_8012E66C, compares its reloaded signed-half result against D_8012E678, and updates the latter when greater.",
+    "reset": "Sets next and object pointers null; half fields at 4 and 8 to zero, half at 6 to -1; word at 20 to zero; float at 16 to positive zero. Pad bytes 10 and 11 are untouched.",
+    "layout": "O32 node size is 24 bytes; target-only compile-time assertions verify offsets 0,4,6,8,10,12,16,20 and size. Field names other than next remain neutral; original typedef names are not claimed.",
+    "count_overflow": "The native signed-half store/reload wraps 32767 to -32768. C narrowing is implementation-defined at that boundary; the pinned IDO exact body proves the target behavior. Host compiler behavior was separately checked.",
+    "direct_transfer_scan": {
+      "functions": 1216,
+      "function_words": 140252,
+      "j_and_jal": [
+        {
+          "function": "func_80090308",
+          "word_index": 4,
+          "operation": "jal"
+        },
+        {
+          "function": "engine_torque_calc",
+          "word_index": 170,
+          "operation": "jal"
+        },
+        {
+          "function": "save_write_data",
+          "word_index": 48,
+          "operation": "jal"
+        },
+        {
+          "function": "save_write_data",
+          "word_index": 133,
+          "operation": "jal"
+        },
+        {
+          "function": "camera_process_input",
+          "word_index": 215,
+          "operation": "jal"
+        },
+        {
+          "function": "func_8010D9CC",
+          "word_index": 12,
+          "operation": "jal"
+        },
+        {
+          "function": "func_8010DAF8",
+          "word_index": 12,
+          "operation": "jal"
+        },
+        {
+          "function": "func_8010DBB8",
+          "word_index": 12,
+          "operation": "jal"
+        },
+        {
+          "function": "func_8010DCFC",
+          "word_index": 70,
+          "operation": "jal"
+        },
+        {
+          "function": "func_8010E72C",
+          "word_index": 3,
+          "operation": "jal"
+        }
+      ],
+      "pc_relative": [],
+      "limit": "Protected direct transfers only; indirect callers and computed transfers are not excluded"
+    },
+    "arcade_reference_available": false,
+    "arcade_equivalent": "Not established; accepted entity_transform_apply independently implements the complementary free-list push using the same link, counter and high-water globals.",
+    "caller_window_review": "All ten direct JAL windows reviewed; callers check v0 for null and use or preserve the returned node pointer. No incoming arguments are read by the callee.",
+    "companion_native_words_reviewed": 65,
+    "companion_source_lock_valid": true
+  },
+  "host_semantics": {
+    "command": "cc -std=c89 -pedantic -Wall -Wextra -Werror -O2 -fsanitize=address,undefined build/90284_audit/host_semantics.c -o build/90284_audit/host_semantics && ASAN_OPTIONS=detect_leaks=0 build/90284_audit/host_semantics",
+    "test_source_sha256": "9787e535b1ea0eb2a1d15ed00b5c6358beb6d4ac86f86d1946e85b8335593bdb",
+    "cases": 524290,
+    "coverage": "Every signed-half counter value and four high-water boundaries; null and two-node free lists, one-node exhaustion, returned identity, all reset fields, untouched padding and untouched successor.",
+    "sanitizers": "AddressSanitizer and UndefinedBehaviorSanitizer enabled; leak detection disabled because unsupported under sandbox ptrace. No dynamic allocation.",
+    "limit": "Host semantics supplement native byte identity, not N64 execution; actual O32 layout is separately compiled under IDO."
+  },
+  "source_evidence_sha256": {
+    "cloud/work/tiny_A40/func_80090284.c": "055a3c1afffa46e50ce934384f5efe3b516e6e0fdb93fa7e168fcaaefe67ee9f",
+    "src/blob/entity_transform_apply.c": "3f31c8c3af09044047ca8194152f9d4df90cf1744362615837a2bac6c7cde8cf"
+  },
+  "independent_peer_review": {
+    "status": "PASS",
+    "source_sha256": "9f65ac5f16162bf0190684f2e25e294fa02058572508d1155d032ea1b89d52ed",
+    "final_source_sha256": "fd914a7ab60a0bfd4bde8b3cc8765482cc01529a454437f6406ce428aeb76e91",
+    "source_difference": "Only a trailing documentation comment was appended after the independently reviewed function; all reviewed C bytes are preserved verbatim. Publication replay independently verifies the final source.",
+    "method": "Separate worktree source copy, canonical score, independent direct compiler replay and three-pair manual relocation arithmetic; complete-body ABI/semantic audit",
+    "review_record_sha256": "974ed5c29f72ed64b27a855b0b21d152a568943dd2f696c3e91cb34c9ba22d3a"
+  },
+  "verdict": "PASS",
+  "additional_checks": {
+    "c89_syntax_warnings": "PASS",
+    "ido_o32_layout_assertions": "PASS",
+    "host_semantics": "524290 passed",
+    "cloud_suite": {
+      "command": "python -m pytest tests/conveyor/test_cloud_score.py tests/conveyor/test_cloud_submissions.py tests/conveyor/test_cloud_integrity.py tests/conveyor/test_cloud_guard.py tests/conveyor/test_cloud_setup.py tests/conveyor/test_cloud_worklist.py -o addopts= -q",
+      "passed": 621,
+      "exit_code": 0,
+      "seconds": 15.62
+    },
+    "repository_suite": {
+      "command": "python -m pytest tests/conveyor -o addopts= -q -m 'not node_required'",
+      "passed": 1299,
+      "skipped": 41,
+      "deselected": 9,
+      "exit_code": 0,
+      "seconds": 48.24
+    },
+    "static_locks_intact": 160,
+    "blob_group_source_hash_problems": 0,
+    "protected_manifest_entries_verified": 23
+  },
+  "integration_limits": [
+    "No original ROM, full extracted image or build/blob_layout.json available",
+    "No source-image splice, compressed-stream identity, full-ROM SHA-1 or make test run",
+    "No accepted coverage, lock, protected target, scorer or build-wiring change",
+    "Live LAN ownership must be rechecked before normal integration gates"
+  ],
+  "publication_replay": {
+    "verdict": "PASS",
+    "source_sha256": "fd914a7ab60a0bfd4bde8b3cc8765482cc01529a454437f6406ce428aeb76e91",
+    "object_sha256": "800670ab5d242ae1d811d95ca0b706879c0653c1e32190cfc06792a71a43cb87",
+    "strict_full_word_differences": 0,
+    "body_bytes": 132,
+    "body_words": 33,
+    "method": "Fresh copied final source, direct pinned IDO compile, full-word HI16/LO16 relocation arithmetic, and canonical cross-check; all detailed evidence equals the original proof.",
+    "date_utc": "2026-10-02"
+  }
+}
