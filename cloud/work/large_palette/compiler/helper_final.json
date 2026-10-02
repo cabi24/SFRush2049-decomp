@@ -1,0 +1,23 @@
+{
+  "source_sha256": "4081a0219fbf79802403eba7e08b7b62b1133d51909740dbe9908f5b5042d377",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source": "cloud/work/large_palette/compiler/coordinate_helper_newlines.c",
+  "accepted": true,
+  "canonical_verdict": "MATCH",
+  "comparison": {
+    "differing": 0,
+    "total": 113,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "object_sha256": "f8df9d2a4b10ffba7032700601054e5462e21073f59bfa8e66043935dfb3b2eb",
+  "emitted_words": 116,
+  "aligned": {
+    "aligned_exact": 113,
+    "aligned_opcode": 113,
+    "aligned_opcode_reg": 113
+  },
+  "frame_bytes": 32
+}

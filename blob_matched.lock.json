@@ -317,6 +317,14 @@
     "verified": "image_gate",
     "verified_at": "2026-10-01"
   },
+  "camera_smooth_follow": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "src/blob/camera_smooth_follow.c",
+    "source_sha256": "4081a0219fbf79802403eba7e08b7b62b1133d51909740dbe9908f5b5042d377",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-02"
+  },
   "camera_smooth_lerp": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/camera_smooth_lerp.c",
