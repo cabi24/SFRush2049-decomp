@@ -273,7 +273,8 @@ def main(argv=None):
     if a.command == 'split':
         split_container(a.repo, a.source, a.composed, a.output, objcopy=a.objcopy)
     elif a.command == 'companions':
-        print(' '.join(sorted({r['passthrough_asm'] for r in rom_slots(a.repo, check_source=False)})))
+        print(' '.join(sorted({r['passthrough_asm'] for r in rom_slots(a.repo, check_source=False)
+                               if not r.get('storage_owner')})))
     else:
         path = Path(a.path); path.write_text(rewrite_linker(path.read_text(), a.repo))
 
