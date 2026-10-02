@@ -56,13 +56,19 @@ def rom_slots(repo=REPO, *, check_source=True):
     repo = Path(repo)
     result, owners, sections, containers = [], set(), set(), {}
     for raw in load_registry(repo)['rom_slots']:
-        required = {'owner', 'tu', 'source', 'offset', 'size', 'container_vram', 'sha256', 'passthrough_asm'}
+        required = {'owner', 'tu', 'source', 'offset', 'size', 'container_vram', 'sha256'}
+        if isinstance(raw, dict) and raw.get('storage_owner'):
+            storage_owners = [v for v in load_registry(repo)['storage_blocks'] if isinstance(v, dict) and v.get('owner') == raw['storage_owner']]
+            if len(storage_owners) != 1 or not storage_owners[0].get('active') or storage_owners[0].get('activation_mode') != 'existing_tu' or storage_owners[0].get('data_slot') != raw:
+                raise OwnershipError('mutable slot requires its active reviewed complete storage owner')
+        else:
+            required.add('passthrough_asm')
         if not isinstance(raw, dict) or not required.issubset(raw):
             raise OwnershipError('missing required ROM owner metadata')
         r = dict(raw)
         if not isinstance(r['owner'], str) or not IDENT.fullmatch(r['owner']):
             raise OwnershipError('invalid ROM owner name')
-        for k in ['tu', 'source', 'passthrough_asm']:
+        for k in ['tu', 'source'] + ([] if r.get('storage_owner') else ['passthrough_asm']):
             r[k] = _relative(r[k])
             if not (repo / r[k]).resolve().is_relative_to(repo.resolve()):
                 raise OwnershipError('ownership path resolves outside repository')
@@ -222,7 +228,7 @@ def companion_block(row):
 
 def companions_for_tu(repo, tu, states):
     return ''.join(companion_block(r) for r in rom_slots(repo)
-                   if r['tu'] == _relative(tu) and states.get(r['owner']) == 'passthrough')
+                   if not r.get('storage_owner') and r['tu'] == _relative(tu) and states.get(r['owner']) == 'passthrough')
 
 
 def strip_companion(text, owner, repo=REPO, tu=None):
@@ -232,6 +238,8 @@ def strip_companion(text, owner, repo=REPO, tu=None):
     r = rows[0]
     if tu is not None and r['tu'] != _relative(tu):
         raise OwnershipError('owner belongs to another TU')
+    if r.get('storage_owner'):
+        raise OwnershipError('mutable storage slot uses whole existing-TU activation, no companion splice')
     block = companion_block(r)
     if text.count(block) != 1:
         raise OwnershipError('expected exactly one owned passthrough companion')
@@ -244,7 +252,7 @@ def promotion_paths(repo, tu):
     paths = set()
     if rows:
         paths.update([REGISTRY, 'Makefile', 'rush2049.us.ld', 'tools/conveyor/pipeline/owned_data.py', 'tools/asm-processor/asm_processor.py'])
-        paths.update(r['passthrough_asm'] for r in rows)
+        paths.update(r['passthrough_asm'] for r in rows if not r.get('storage_owner'))
     if any(r.get('tu') == tu for r in load_registry(repo)['storage_blocks']):
         from . import owned_storage
         paths.update(str(Path(p).relative_to(repo)) if Path(p).is_absolute() else _relative(p)

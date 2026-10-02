@@ -1,0 +1,20 @@
+{
+  "coordinator_source_checkpoint": "e1ba8a65",
+  "owner": "timer_services",
+  "activation": "inactive registration only",
+  "independently_reviewed_strict_proof_sha256": "281e6c31ba76072c3cbf48efeb3d359ac0c30ca274015ab60e9b7474d8ce0081",
+  "independent_D_proof": "cloud/work/integration_B24/coordinator_D.json",
+  "production_transaction_tests": 17,
+  "publication_tests": 5,
+  "required_promotion_tests": 27,
+  "coverage_added": 0,
+  "current_full_static_rebuild_gate": true,
+  "original_rom_sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+  "pytest": {
+    "passed": 684,
+    "skipped": 483,
+    "exit": 0
+  },
+  "static_locks": 119,
+  "game_locks": 564
+}

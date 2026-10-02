@@ -1,0 +1,38 @@
+{
+  "scope": "private actual compiler-data and storage-linker corruption refusal + complete-package rollback",
+  "results": [
+    {
+      "case": "active_before_pointer_corruption",
+      "exit_code": 0,
+      "sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+      "retail_gate": true
+    },
+    {
+      "case": "actual compiled pointer corruption",
+      "exit_code": 2,
+      "sha1": "05c8d2b6f3ed280d21a5f51c70353e346c6b666e",
+      "retail_gate": false
+    },
+    {
+      "case": "pointer_rollback",
+      "exit_code": 0,
+      "sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+      "retail_gate": true
+    },
+    {
+      "case": "wrong_real_bss_address",
+      "exit_code": 2,
+      "sha1": null,
+      "retail_gate": false
+    },
+    {
+      "case": "storage_rollback",
+      "exit_code": 0,
+      "sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+      "retail_gate": true
+    }
+  ],
+  "prior_locks_preserved": true,
+  "registry_restored_exactly": true,
+  "final_state": "inactive baseline restored"
+}

@@ -1,0 +1,119 @@
+{
+  "owner": "timer_services",
+  "kind": "bss",
+  "activation_mode": "existing_tu",
+  "active": false,
+  "tu": "src/rom/lib_cc50.c",
+  "source": "cloud/work/static_C16/candidate.c",
+  "source_sha256": "8ea97f1232f2b872f37530130da9d8ccca45c26ba87a1ec9f03b317c61a22bd3",
+  "tu_before_source": "cloud/work/integration_B25/lib_cc50_before.c",
+  "tu_before_sha256": "4ce0c4afbffea9c6878c254daf114727d45cecdb28708345b98b6e86a5b2b892",
+  "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
+  "members": [
+    "dll_remove",
+    "dll_init",
+    "dll_update",
+    "dll_reschedule",
+    "dll_insert",
+    "dll_get_priority"
+  ],
+  "new_members": [
+    "dll_init"
+  ],
+  "prior_locks": {
+    "dll_remove": {
+      "body_sha256": "a1cad86d2a4504ad6c0db40f658baac3a91a3158aaa351daa5c43ec08f1fe4df",
+      "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "target_id": "dll_remove",
+      "toolkit_sha": null,
+      "verified": "rom-sha1",
+      "verified_at": "2026-10-01"
+    },
+    "dll_update": {
+      "body_sha256": "a312c0513076bd3db3d21ea29cb59932cfbb34cd8ccfed376bcda7ff7cf28cc6",
+      "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "target_id": "dll_update",
+      "toolkit_sha": null,
+      "verified": "rom-sha1",
+      "verified_at": "2026-10-01"
+    },
+    "dll_reschedule": {
+      "body_sha256": "45c8e3c1299e9dcec5de8852f30053709ec9d963bb8ba5c118aae2f946d13343",
+      "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "target_id": "dll_reschedule",
+      "toolkit_sha": null,
+      "verified": "rom-sha1",
+      "verified_at": "2026-10-01"
+    },
+    "dll_insert": {
+      "body_sha256": "02d281cf3dc0d038f2439d375d40a6e9d14ee67adb94844bc259e8ff38f81e77",
+      "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "target_id": "dll_insert",
+      "toolkit_sha": null,
+      "verified": "rom-sha1",
+      "verified_at": "2026-10-01"
+    },
+    "dll_get_priority": {
+      "body_sha256": "2c12a312d5e992cd9ae033704f757fb22d27d69d5741ef129dccfb35e47be5ad",
+      "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "target_id": "dll_get_priority",
+      "toolkit_sha": null,
+      "verified": "rom-sha1",
+      "verified_at": "2026-07-15"
+    }
+  },
+  "source_section": ".bss",
+  "input_section": ".bss.timer_services",
+  "output_section": ".timer_services_bss",
+  "vram_start": "0x80037c30",
+  "size": "0x40",
+  "aliases": [
+    {
+      "symbol": "__osBaseTimer",
+      "offset": 0,
+      "size": 32
+    },
+    {
+      "symbol": "gViTimeAccumHi",
+      "offset": 32,
+      "size": 8
+    },
+    {
+      "symbol": "gViLastCount",
+      "offset": 40,
+      "size": 4
+    },
+    {
+      "symbol": "gViRetraceCount",
+      "offset": 44,
+      "size": 4
+    },
+    {
+      "symbol": "__osTimerCounter",
+      "offset": 48,
+      "size": 4
+    }
+  ],
+  "context_files": [],
+  "strict_proof": "cloud/work/integration_B24/strict_verification.json",
+  "context_proof": "cloud/work/integration_B24/context_hashes.json",
+  "linked_proof": "cloud/work/integration_B24/fresh_linked.json",
+  "strict_proof_sha256": "281e6c31ba76072c3cbf48efeb3d359ac0c30ca274015ab60e9b7474d8ce0081",
+  "context_proof_sha256": "00add995ee9d3d943f4abd38477eb00cd2c22b94f14d156882ddd2e520b6673e",
+  "linked_proof_sha256": "5e05cd640d543b4e82298f31d8c88aa2e2398f4a939d8f2408a649c16d35b67b",
+  "data_slot": {
+    "owner": "timer_services_pointer",
+    "storage_owner": "timer_services",
+    "tu": "src/rom/lib_cc50.c",
+    "source": "assets/us/data.bin",
+    "offset": "0x1cff0",
+    "size": "0x10",
+    "container_vram": "0x8000f400",
+    "container_section": ".data",
+    "owner_section": ".data",
+    "sha256": "3c1a6f5433a5490b4c6df69ff14fe6cd7df420acdf36f18e0491bc2e3aab4206",
+    "composed_source": "build/us/assets/us/data.composed.bin"
+  },
+  "startup_proof": "cloud/work/integration_B25/startup_proof.json",
+  "startup_proof_sha256": "71239e48d41518a9c2a69e43387ddd2dc39aed81acd26b2ca01dee6d4fed9f44"
+}
