@@ -1,0 +1,29 @@
+{
+  "status": "NONMATCH",
+  "target": "func_800A1644",
+  "target_address": "0x800A1644",
+  "native_bytes": 716,
+  "native_instructions": 179,
+  "candidate_native_bytes": 716,
+  "candidate_native_instructions": 179,
+  "object_text_bytes": 720,
+  "zero_alignment_bytes": 4,
+  "comparison": {
+    "differing": 149,
+    "total": 179,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "summary": "149/179 words differ",
+  "frame_bytes": 104,
+  "normalization_buffer_offset": 32,
+  "source_sha256": "76ab02714cc52a0688dffaffac04425a3f0a1f94f100b0e929a156bb0295f6f7",
+  "object_sha256": "d93b6eceb1a3bda005cd4fc220dd5e0a224907da5b6065cefdfbb11fbb306184",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "recipe": "tools/cloud/score.py group cloud/work/larger_func_800A1644",
+  "compiler": "IDO 5.3, existing approved tools/cloud/ido",
+  "baseline_commit": "2f1f30c508495db08d61170c4a9b2409461ae326",
+  "claims": []
+}
