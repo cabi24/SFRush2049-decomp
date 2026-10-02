@@ -1,5 +1,13 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-01 twenty-third completed milestone: actual vector dot product
+
+- Game cartridge C: **586/1,216 functions, 69,440/647,072 bytes (10.73%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**.
+- B35 adds the complete 48-byte func_800FD724 through the real two-pointer float dot-product expression and original component order. Independent D canonical MATCH, identical image, and source-built original ROM SHA-1 EXACT. Literal flags: **-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul**.
+- Full pytest: **713 passed, 504 skipped, captured exit 0**. All 586 blob locks and group checks have zero problems; all 123 static/source locks remain intact. No new data, context credit, invented inputs or pressure operations.
+- Since the original handoff, 89 game functions / 13,024 bytes and 97 static functions / 27,284 bytes have been accepted. The previous d98fddcc checkpoint passed CI36952123442. All three workers continue with fresh source and genuine list caller groups; the initial dirty tools/mips_to_c is preserved. Farm resumes after the checkpoint.
+
+
 ## 2026-10-01 twenty-second completed milestone: complete real list/audio/display bodies
 
 - Game cartridge C: **585/1,216 functions, 69,392/647,072 bytes (10.72%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**.

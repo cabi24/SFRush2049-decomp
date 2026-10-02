@@ -1,0 +1,11 @@
+{
+  "func_800FD724_sum": "11/12 words differ",
+  "func_800FD724_native": "MATCH",
+  "func_800FD724_result": "4/12 words differ (1 extra words (nonzero beyond target length))",
+  "func_800FD724_products": "11/12 words differ",
+  "func_800B66B0_span": "31/38 words differ (1 extra words (nonzero beyond target length))",
+  "func_800B66B0_break": "33/38 words differ (1 extra words (nonzero beyond target length))",
+  "func_800B66B0_limitcast": "37/38 words differ",
+  "func_800FD724_dot": "5/12 words differ",
+  "func_800FD724_forward": "2/12 words differ"
+}
