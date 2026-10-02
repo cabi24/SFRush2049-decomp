@@ -3210,6 +3210,7 @@ wheel_render_full:
 .section .text.func_800A73FC, "ax", @progbits
 .globl func_800A73FC
 func_800A73FC:
+    /* compiled from src/blob/func_800A73FC.c */
     .word 0x1C800004
     .word 0x3C018014
     .word 0x3C028014

@@ -1,5 +1,13 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-01 sixteenth completed milestone: SDK math and fresh game leaves
+
+- Game cartridge C: **566/1,216 functions, 65,272/647,072 bytes (10.09%)**. Static cartridge C: **119/230 functions, 28,052/61,440 bytes (45.66%)**.
+- C22 canonical SDK sinf/cosf independently strict/raw0 as ordinary sources and together under the real shared-header build recipe. All original named readonly constants match SDK identities; no new data/BSS/rodata. Normal pool locks, converted9330 passthrough baseline and normal full-ROM promotions faec474a/5add41d2 pass. Credited existing448/368-byte slots include cosf's8 bytes of ordinary compiler alignment; linked full816-byte module exactly equals retail, with no synthetic padding source.
+- A36 adds92 game bytes: genuine byte-backed positive setter/nonpositive query and clamped reciprocal sqrt using IDO's actual sqrtf intrinsic. Exact flags **-g0 -O2 -mips2 -G 0 -non_shared**; independent D canonical MATCH for both, image identical and source-built full-ROM SHA-1 EXACT.
+- Gates:566 blob/group checks zero problems;122 static/source locks intact (119 accepted ROM plus3 historical). Full pytest685 passed/485 skipped, captured exit0. Corrected build-time companion listing for genuine mutable owned data, with active-owner CLI regression. Across original handoff:69 game functions /8,856 bytes and96 static functions /26,604 bytes accepted. Initial dirty tools/mips_to_c preserved.
+- All3 slots continue fresh game/head/static source. B26 initializer ownership independently strict/raw0, now under current-root review. Ignored SDK target provenance is separated from tracked actual compiler context so active readonly CI requires no SDK checkout. No provisional initializer coverage. Previous df675c84 CI36945989515 succeeded.
+
 ## 2026-10-01 fifteenth completed milestone: coherent timer source/storage
 
 - Game cartridge C: **564/1,216 functions, 65,180/647,072 bytes (10.07%)**. Static cartridge C: **117/230 functions, 27,236/61,440 bytes (44.33%)**.
