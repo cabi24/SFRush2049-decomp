@@ -1,0 +1,38 @@
+[
+  {
+    "function": "func_800A5A40",
+    "variant": "func_800A5A40.snapshot",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 720,
+    "linked": {
+      "differing": 16,
+      "total": 63,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "1d0262e1566e3ffd49aaacd131db4fb7d63a745c77e4a585dd4753d185fe832b",
+    "target_sha256": "cb19515b23b54dba82b8afdeb35aa20bbd7dd5fe1bfbb33f7cf571fd285210a5"
+  },
+  {
+    "function": "func_800A5A40",
+    "variant": "func_800A5A40.order",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 580,
+    "linked": {
+      "differing": 15,
+      "total": 63,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "72eb3456751b80254178506375b83320331ee10704f4a445e71cc1e7a93c1fdf",
+    "target_sha256": "cb19515b23b54dba82b8afdeb35aa20bbd7dd5fe1bfbb33f7cf571fd285210a5"
+  }
+]

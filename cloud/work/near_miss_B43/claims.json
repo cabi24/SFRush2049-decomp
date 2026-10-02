@@ -1,0 +1,19 @@
+[
+  {
+    "name": "entity_transform_apply",
+    "address": "0x8009079C",
+    "bytes": 260,
+    "source": "cloud/work/near_miss_B43/entity_transform_apply_sequenced.c",
+    "source_sha256": "3f31c8c3af09044047ca8194152f9d4df90cf1744362615837a2bac6c7cde8cf",
+    "target_sha256": "e80960e46c723272da00f1815ad1fd1a54133649e6ec7513f9e1845daf5a90b2",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "canonical_stack_sensitive_score": 0,
+    "raw_differing": 0,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "target_roundtrip": true,
+    "current_lock_unlocked": true
+  }
+]

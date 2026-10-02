@@ -1,0 +1,63 @@
+{
+  "direct": [
+    {
+      "name": "results_screen_update",
+      "address": "0x800BF024",
+      "words": 32,
+      "consumed_inputs": [
+        "u32 handle in a0"
+      ],
+      "return": "ignored",
+      "behavior": "queue lock, real tagged Node68 lookup, true empty BF01C call with nodeword64 when found, unlock, scheduler_recv(handle) when found"
+    },
+    {
+      "name": "scheduler_recv",
+      "address": "0x80091C04",
+      "words": 40,
+      "consumed_inputs": [
+        "u32 handle in a0"
+      ],
+      "return": "ignored",
+      "behavior": "queue lock, true handle lookup, real Message24 allocation, type6 and Node pointer atmessage4, nodebyte26 increment, unlock and queue submission when found"
+    },
+    {
+      "name": "player_conditional_call",
+      "address": "0x800D54BC",
+      "words": 9,
+      "consumed_inputs": [
+        "Record20 pointer in a0"
+      ],
+      "return": "ignored",
+      "behavior": "word0=-1; four real float fields4/8/12/16=-2.0"
+    }
+  ],
+  "supporting": [
+    {
+      "name": "func_80091BA8",
+      "address": "0x80091BA8",
+      "words": 21,
+      "consumed_inputs": [
+        "u32 tag a0"
+      ],
+      "return": "Node68 pointer or null",
+      "behavior": "-1 refuses; mask extracts slot; real Node68 tagword12 equality required"
+    },
+    {
+      "name": "func_80091B00",
+      "address": "0x80091B00",
+      "words": 42,
+      "consumed_inputs": [],
+      "return": "Message24 pointer or null",
+      "behavior": "real128element24byte pool first free signedbyte3, byte3=1 and half0=-1"
+    },
+    {
+      "name": "func_800BF01C",
+      "address": "0x800BF01C",
+      "words": 2,
+      "consumed_inputs": [],
+      "return": "ignored",
+      "behavior": "actual jr-ra/nop; BF024 still passes real Node64 word; original input declaration unproved, no synthetic body supplied"
+    }
+  ],
+  "abi_scope": "Actual consumed lanes/widths audited. Original return declarations of ignored-return functions unproved. No same-group byte/clobber claims."
+}

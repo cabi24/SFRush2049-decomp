@@ -266,3 +266,7 @@ B41's encoded string copier keeps the actual destination return input intact thr
 ### Forwarded arguments must retain the actual callee contract (2026-10-01)
 
 B42's camera wrapper visibly forwards ten real incoming arguments; the genuine callee reads the first as a three-float vector pointer. Correcting an opaque word carrier to that proven pointer retains exact ordinary output and improves the reconstructed interface. Do not infer semantics for callee-unused forwarded carriers, fabricate extra arguments, or erase the original enable/index guards. Final typed source needs a fresh canonical replay even when an earlier carrier variant already matched.
+
+### Ordinary O3 and real consumed expression sequencing (2026-10-01)
+
+B43's complete list removal matches as an ordinary O3 source; the enclosing region default O2 is not an authoritative per-function recipe. Prove the exact compiler flags independently and pass them explicitly into publication. Its final two differences were equality operand ordering: sequence the genuine pointer advance before its consumed comparison, retaining every original operation, guard and field access. Correct signed HI/LO address arithmetic must precede source controls. A65/A67's single O3 controls are unchanged nonmatches, so this setting is a verified possibility rather than a blanket explanation.

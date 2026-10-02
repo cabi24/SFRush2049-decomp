@@ -1,0 +1,11 @@
+{
+  "abi": "Complete no-argument leaf. Actual arbrate call consumes s32 index, three pointers and five f32 stack arguments at16,20,24,28,32; callee reads16 througha2 for its real matrix-helper call and loads otherfour asf32.",
+  "assembly": "build/m2c_asm/func_800A5A40.s",
+  "assembly_sha256": "e2a6c91818268a6cf2f488480f3e876e59e867f5b92c4a950538416494bf98bc",
+  "callee_assembly": "build/m2c_asm/arb_rate_set.s",
+  "callee_assembly_sha256": "374778edfe90a16144461a28ce470c49050cb72e3717b1e13284317721ff57c4",
+  "layouts": "Real unsigned16 bounds at D80149870 offsets0,2,4,6. Genuine72-byte D8017A510 record firstpointer0/bounds4; D8011EA30 is actual sixteen-byte viewport with signed16 scale/translation.",
+  "selection": "Current canonical section, accepted locks/intervals and full report/source filenames checked; B42 report only prior readonly screening, B confirmed no controls.",
+  "claims": [],
+  "owned_data": false
+}

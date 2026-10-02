@@ -1,5 +1,13 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-01 twenty-ninth completed milestone: original O3 list removal
+
+- Game cartridge C: **602/1,216 functions, 73,528/647,072 bytes (11.36%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**.
+- B43 adds the complete 260-byte entity_transform_apply. Actual node fields, signed handle, list heads and counters are preserved. Sequencing the genuine consumed next-pointer assignment before its node comparison reproduces the original equality operand order. This ordinary function needs O3 despite the layout region's default O2. Literal flags **-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul**. No invented inputs, helper bodies, pressure or context credit.
+- Independent D canonical MATCH on the frozen final source, strict/raw zero, identical image and source-built original ROM SHA-1 EXACT. Full pytest **713 passed, 520 skipped, captured exit 0**; all 602 blob/group checks and 123 static/source locks pass.
+- Since original handoff: **105 game functions / 17,112 bytes** and **97 static functions / 27,284 bytes** accepted. 6dcdf9a1 passed CI36957024907. Explicit O3 controls on A65/A67 repeat their nonzero results; C38/C39 and A67 remain frozen no-claim packets. User authorized continuous overnight work in this single session, with all three worker slots occupied. Initial dirty tools/mips_to_c preserved.
+
+
 ## 2026-10-01 twenty-eighth completed milestone: true camera forwarding contract
 
 - Game cartridge C: **601/1,216 functions, 73,268/647,072 bytes (11.32%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**.

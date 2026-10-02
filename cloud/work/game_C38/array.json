@@ -1,0 +1,20 @@
+[
+  {
+    "function": "func_800F769C",
+    "variant": "func_800F769C.array",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 485,
+    "linked": {
+      "differing": 65,
+      "total": 255,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "f61791a482c8d83451a1f499f62bec69c12b5e6ba814188dc5165022b27cd796",
+    "target_sha256": "b9e369d32017a9b14efeb4328b7e52c1c4d4d2a4fdb0df4c380ca7aa77bf6b7c"
+  }
+]

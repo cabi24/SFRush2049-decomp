@@ -3638,6 +3638,7 @@ func_80090770:
 .section .text.entity_transform_apply, "ax", @progbits
 .globl entity_transform_apply
 entity_transform_apply:
+    /* compiled from src/blob/entity_transform_apply.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0xAFA5001C
