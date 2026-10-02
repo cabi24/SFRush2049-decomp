@@ -1,0 +1,13 @@
+# A71 — stat_race_update: frozen nonmatch
+
+No claims. Canonical extent 0x800FE5B0–0x800FE73C, 99 words / 396 bytes, ordinary ABI; current shared lock and accepted interval checks clear before work. Conservative archived-report/source inventory was clear. Literal final flags `-g0 -O3 -mips2 -G 0 -non_shared`, with canonical r4300_mul handling. Final source SHA256 `71a383df9ce6246244774c42146ff665388706874bb3075e0b588158cf7a84d1`.
+
+Canonical exit 1, strict 45/99 differing words, compiled 99, extra 0, no errors/unverified/unresolved evidence. Full target and compiled object/disassembly, raw comparison and canonical stdout stay ignored/private at `build/codex-A71/`. Frame 24 matches retail; remaining pointer/quotient/remainder temporary allocation and sequencing differ. No pressure/formal permutation, padding or reflow controls were used.
+
+Complete real semantics: nullable configuration pointer; if its data-buffer pointer is null or the buffer's unsigned halfword16 is zero, call real EF5B0(config, actual config data pointer, 1), reload buffer, and stop if still null. Divide buffer count by the signed step input, replace a zero quotient with one, derive both signed quotient and remainder from index. Set signed halfword28 to quotient*span, then halfword30 from the truncated stored left plus span-1. Byte25 chooses forward or reverse placement: reverse uses freshly loaded count%step plus (rows-remainder-1)*step, forward uses remainder*step. Halfword34 uses the truncated stored right plus step-1. Call the actual one-pointer Input_ApplyPadConfig. Neither divisor-zero nor quotient-overflow guards are invented; the compiler's standard division traps remain.
+
+Four true consumed inputs are observed in a0–a3; actual EF5B0 and Input_ApplyPadConfig contracts were audited in A70 and their ignored assembly retained here. No fake helper bodies or caller were introduced. Config geometry/data fields and unsigned halfword count are actual consumed widths/offsets. The containing data-buffer declaration and valid argument domains are not proven beyond those accesses.
+
+Bounded controls: natural nested initial source 97/99 with13extra; explicit real early-return/reload paths 97/99 with18extra; consumed page/remainder/reverse-row locals reduced O2 to98/99 exact99words. O3 gives45/99 exact99words and correct24frame. Reordering equivalent page/remainder evaluation and explicit actual fast-path buffer caching do not change45. Final source retains the explicit retail buffer lifetime and actual reverse-row intermediate, not invented allocation pressure. Stop without a new concrete source/prototype lead.
+
+Reproduce: `python3 tools/cloud/score.py fn cloud/work/tiny_A71/stat_race_update.c stat_race_update --flags '-g0 -O3 -mips2 -G 0 -non_shared'`.

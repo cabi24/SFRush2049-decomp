@@ -1,0 +1,56 @@
+[
+  {
+    "function": "func_800C4CF8",
+    "variant": "func_800C4CF8.base",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 495,
+    "linked": {
+      "differing": 58,
+      "total": 156,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "32c514bceabf4fe82a5276d02eabd4a1a525be0033cabc873e062dfee8a6d74a",
+    "target_sha256": "44aeeafbc0ffe9c8107d772806f46a37bc6e46eb1ee53d7ecb8a3692a0c671fc"
+  },
+  {
+    "function": "func_800C4CF8",
+    "variant": "func_800C4CF8.update",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 160,
+    "linked": {
+      "differing": 9,
+      "total": 156,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "359022f183a2fb64a0a1ce81e7a0a5d683a896bd85ff5b9723d30bf579c135c9",
+    "target_sha256": "44aeeafbc0ffe9c8107d772806f46a37bc6e46eb1ee53d7ecb8a3692a0c671fc"
+  },
+  {
+    "function": "func_800C4CF8",
+    "variant": "func_800C4CF8.return",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 100,
+    "linked": {
+      "differing": 7,
+      "total": 156,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "5674256a89ac68d659d0704fbae5371e4d45efb80116a9a27f2e4f6ac6f21cc9",
+    "target_sha256": "44aeeafbc0ffe9c8107d772806f46a37bc6e46eb1ee53d7ecb8a3692a0c671fc"
+  }
+]

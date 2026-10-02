@@ -1,0 +1,10 @@
+{
+  "function": "func_800C4CF8",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source_sha256": "ff3e61ce78e6b7fc4dc9fb742af827ddddf3af97761dee146d7899b4815b1070",
+  "target_sha256": "44aeeafbc0ffe9c8107d772806f46a37bc6e46eb1ee53d7ecb8a3692a0c671fc",
+  "canonical_words": 156,
+  "body_bytes": 624,
+  "strict_stack_score": 0,
+  "linked_differing": 0
+}

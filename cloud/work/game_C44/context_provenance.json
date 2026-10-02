@@ -1,0 +1,21 @@
+{
+  "canonical_source": "build/m2c_asm/func_800C4CF8.s",
+  "callee_audits": {
+    "func_800B9338": "build/m2c_asm/func_800B9338.s: consumes a0/a1 as signed16 and returns signed16 through v0, no other inputs",
+    "func_800C4C9C": "build/m2c_asm/func_800C4C9C.s: consumes state pointer a0, signed16 point a1; writes real region fields, no other inputs"
+  },
+  "layout": {
+    "State": "player@1990 signed16, next@2018 signed16, previous@2020 signed16",
+    "Player": "stride952, Region@788, signed16 path at region+40",
+    "Position": "stride6 signed16 xyz",
+    "SearchPoint": "stride8 signed16 xyz+flag",
+    "PositionEntry": "stride16 positions pointer@12",
+    "Waypoint": "80-byte row of40 signed16 indices",
+    "CountEntry": "8-byte stride unsigned16 count at0; original D8012E5E8",
+    "PointEntry": "8-byte stride pointer at0; original D8012E5EC"
+  },
+  "selection_audit": "fresh report text plus all artifact filenames; root blob locks and accepted DB address intervals exclude overlaps; canonical original156-word section",
+  "no_new_storage": true,
+  "bounded_compile_count": 15,
+  "literal_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+}

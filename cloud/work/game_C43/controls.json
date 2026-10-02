@@ -1,0 +1,38 @@
+[
+  {
+    "function": "sound_play_menu",
+    "variant": "sound_play_menu.selected",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 1478,
+    "linked": {
+      "differing": 60,
+      "total": 83,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 2
+    },
+    "source_sha256": "d1587a9c61b6ae219dd04de3fa535d233149ed5e4e647db68a782f97efd6177d",
+    "target_sha256": "d72f24ecabfd2f914c01536b8663e7f223ae59f49d3182b66d37c4ee161e47a6"
+  },
+  {
+    "function": "sound_play_menu",
+    "variant": "sound_play_menu.previous",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 883,
+    "linked": {
+      "differing": 62,
+      "total": 83,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "74dc927130ea3943d9530de3de28e1f0c878db316894118eb842c2f4b47b3461",
+    "target_sha256": "d72f24ecabfd2f914c01536b8663e7f223ae59f49d3182b66d37c4ee161e47a6"
+  }
+]

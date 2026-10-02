@@ -1,0 +1,7 @@
+{
+  "targets": [
+    "audio_channel_setup"
+  ],
+  "claims": [],
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+}

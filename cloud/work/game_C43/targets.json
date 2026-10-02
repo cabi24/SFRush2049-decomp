@@ -1,0 +1,14 @@
+{
+  "sound_play_menu": {
+    "target_id": "sound_play_menu",
+    "address": 2148320192,
+    "population": "extracted",
+    "insn_count": 83,
+    "target_asm_sha": "1e37e09d21bc9e33b012371e6e4e151ff0c4e7876ce7235ee582d07076b7eaff",
+    "target_o_sha": "d72f24ecabfd2f914c01536b8663e7f223ae59f49d3182b66d37c4ee161e47a6",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "extent_repaired"
+  }
+}

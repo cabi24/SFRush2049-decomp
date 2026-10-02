@@ -274,3 +274,7 @@ B43's complete list removal matches as an ordinary O3 source; the enclosing regi
 ### Actual multidimensional indexing recovers compiler unrolling (2026-10-01)
 
 D6's complete initializer describes the observed12-by-3-by-5 signed-word table directly. IDO derives the original peeled and unrolled stores on the first native compile; the pointer-loop alternative leaves23 differences. Preserve the real call and subsequent name/age clears, without hand-expanded extra work. Shared data views remain local declarations rather than new owned storage. A stale automated candidate residual is not evidence that a complete native rewrite is blocked.
+
+### Real captured values and consumed update order preserve larger routines (2026-10-02)
+
+D8's actual initializer captures its one-time diagonal constant in a consumed local before writing three matrix elements; chained stores introduce an extra reload through real aliasing. Original vector/field store order completes the440-byte match. C44's624-byte nearest-point search needs original signed-half narrowing, genuine point-formal/counter reuse, branch-local coordinate loads and consumed next-point update order. Capture real loads and preserve data flow rather than adding pressure or dummy runtime work.

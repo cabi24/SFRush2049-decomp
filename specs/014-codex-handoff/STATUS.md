@@ -1,5 +1,13 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-02 thirty-first completed milestone: full initialization and nearest-point search
+
+- Game cartridge C: **605/1,216 functions, 74,760/647,072 bytes (11.55%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**.
+- D8's complete440-byte func_800D1004 object initializer and C44's complete624-byte func_800C4CF8 nearest-point utility add **1,064 matching bytes**. Actual field widths, vector/matrix sizes, original player/point strides and signed geometry remain exact. A genuine consumed diagonal value and original store sequencing remove D8's extra reload; C44 reuses the actual point input/common counter and preserves minimum-distance/next-point update order. No invented inputs, operations, stack/storage padding, helper context or credit.
+- Both final sources independently canonical MATCH and fresh unmasked full relocation-resolved equality for110/156words, with zero extras/unresolved/unverified/errors. Literal flags **-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul**. Identical image and source-built original ROM SHA-1 EXACT; full pytest **713 passed, 523 skipped, captured exit0**. All605 blob/group checks and123 static/source locks pass.
+- Since original handoff: **108 game functions /18,344 bytes** and **97 static functions /27,284 bytes** accepted. 087b2eef passed CI36960963702. Frozen D9/A71/A72/B49/C43 packets remain nonmatches with no credit. Permissions interruption resolved; all three overnight workers restored with current private lanes. Initial dirty tools/mips_to_c preserved.
+
+
 ## 2026-10-01 thirtieth completed milestone: native table initialization
 
 - Game cartridge C: **603/1,216 functions, 73,696/647,072 bytes (11.39%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**.

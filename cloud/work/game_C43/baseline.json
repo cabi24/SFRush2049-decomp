@@ -1,0 +1,19 @@
+[
+  {
+    "function": "sound_play_menu",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 1873,
+    "linked": {
+      "differing": 69,
+      "total": 83,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "ca44923dc3508a6636b3c1a7b2fc0e243463e5c7a08768dfa49d6e0914bb8c19",
+    "target_sha256": "d72f24ecabfd2f914c01536b8663e7f223ae59f49d3182b66d37c4ee161e47a6"
+  }
+]

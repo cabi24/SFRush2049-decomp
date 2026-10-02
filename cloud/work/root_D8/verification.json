@@ -1,0 +1,15 @@
+{
+  "function": "func_800D1004",
+  "source_sha256": "84015f000249f46928814adfe373cd747d04f7b9b4f796707afaeecff793829a",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "canonical_verdict": "MATCH",
+  "compile_exit": 0,
+  "linked": {
+    "differing": 0,
+    "total": 110,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  }
+}

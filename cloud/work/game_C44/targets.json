@@ -1,0 +1,14 @@
+{
+  "func_800C4CF8": {
+    "target_id": "func_800C4CF8",
+    "address": 2148289784,
+    "population": "extracted",
+    "insn_count": 156,
+    "target_asm_sha": "cf7f884ecbdd88c920c51e184056b43231456cb35ac26f405bfdffb1f3b7a5b1",
+    "target_o_sha": "44aeeafbc0ffe9c8107d772806f46a37bc6e46eb1ee53d7ecb8a3692a0c671fc",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "discovered"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "difficulty_select_O3": "25/103 words differ",
+  "difficulty_select_phases": "17/103 words differ",
+  "difficulty_select_seed": "101/103 words differ (1 extra words (nonzero beyond target length))",
+  "difficulty_select_register": "25/103 words differ",
+  "difficulty_select_arguments": "102/103 words differ (1 extra words (nonzero beyond target length))",
+  "difficulty_select_carriers": "98/103 words differ (1 extra words (nonzero beyond target length))"
+}

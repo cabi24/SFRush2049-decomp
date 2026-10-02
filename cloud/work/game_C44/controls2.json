@@ -1,0 +1,20 @@
+[
+  {
+    "function": "func_800C4CF8",
+    "variant": "func_800C4CF8.counter",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 160,
+    "linked": {
+      "differing": 9,
+      "total": 156,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "89a48857cb7f732b7e7583752795d8ff60369d97df3d83587820704720b56a55",
+    "target_sha256": "44aeeafbc0ffe9c8107d772806f46a37bc6e46eb1ee53d7ecb8a3692a0c671fc"
+  }
+]
