@@ -116,3 +116,11 @@ def test_readonly_active_context_without_rom_retains_acceptance_rom_gate(repo):
 def test_existing_mode_never_accepts_o2_metadata_recipe(repo):
  root,row,targets=register(repo);reg=D.load_registry(root);reg['storage_blocks'][0]['flags']='-g0 -O2 -mips2 -G 0 -non_shared';(root/'rom_owned_data.json').write_text(json.dumps(reg))
  with pytest.raises(ValueError,match='unsupported compiler recipe'):S.storage_blocks(root)
+
+
+def test_make_companion_listing_accepts_joint_mutable_owner(repo, monkeypatch, capsys):
+ root,row,targets=register(repo)
+ E.transition(root,row['owner'],True,reviewed_digest=row['strict_proof_sha256'],trusted_targets=targets,gate=lambda r,p:True)
+ monkeypatch.setattr('sys.argv',['owned_data','--repo',str(root),'companions'])
+ D.main()
+ assert capsys.readouterr().out=='\n'
