@@ -19,8 +19,10 @@
   "full_ROM_SHA1_exact": true,
   "all_static_blob_group_lock_problems": 0,
   "pytest_exit": 0,
-  "pytest_passed": 775,
+  "pytest_passed": 776,
   "pytest_skipped": 568,
   "duplicate_rematch_credit": 0,
-  "shared_master_modified": false
+  "shared_master_modified": false,
+  "cloud_pr7_head": "a0897358b0777e3f831cc12c16d8c3a7e390729b",
+  "cloud_pr7_integrated_privately": true
 }

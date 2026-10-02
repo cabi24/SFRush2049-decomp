@@ -1,5 +1,6 @@
 """F5: an untrusted compiler archive must not reach extraction."""
 import io
+import hashlib
 import os
 from pathlib import Path
 import shutil
@@ -12,6 +13,58 @@ SETUP = Path(__file__).resolve().parents[2] / "tools/cloud/setup.sh"
 pytestmark = pytest.mark.skipif(
     not shutil.which("bash") or not shutil.which("sha256sum"),
     reason="needs bash and sha256sum")
+
+
+def test_verified_archive_extracts_without_restoring_builder_owner(tmp_path):
+    repo = tmp_path / "repo with spaces"
+    cloud = repo / "tools/cloud"
+    cloud.mkdir(parents=True)
+    subprocess.run(["git", "init", "-q", str(repo)], check=True)
+    archive = tmp_path / "download.tgz"
+    with tarfile.open(archive, "w:gz") as tar:
+        data = b"#!/bin/sh\nexit 0\n"
+        entry = tarfile.TarInfo("cc")
+        entry.size, entry.mode = len(data), 0o755
+        entry.uid, entry.gid = 1001, 127
+        tar.addfile(entry, io.BytesIO(data))
+    # Substitute only the fixture's digest; production keeps its pinned hash.
+    script = SETUP.read_text().replace(
+        "ab5c741561f80913d58c8b074771f23941a3edd312505a8ebed6d1dfeb65e506",
+        hashlib.sha256(archive.read_bytes()).hexdigest())
+    (cloud / "setup.sh").write_text(script)
+    binaries = tmp_path / "bin"
+    binaries.mkdir()
+    (binaries / "curl").write_text('''#!/bin/bash
+while [ "$#" -gt 0 ]; do
+  if [ "$1" = "-o" ]; then
+    cp "$F5_DOWNLOAD_SOURCE" "$2"
+    exit 0
+  fi
+  shift
+done
+exit 2
+''')
+    # Simulate a container that refuses chown, even on hosts where it works.
+    (binaries / "tar").write_text('''#!/bin/bash
+if [ "$1" != "--no-same-owner" ]; then
+  echo "Cannot change ownership" >&2
+  exit 2
+fi
+exec "$F5_REAL_TAR" "$@"
+''')
+    for binary in binaries.iterdir():
+        binary.chmod(0o755)
+    env = dict(os.environ, PATH=str(binaries) + os.pathsep + os.environ["PATH"],
+               F5_DOWNLOAD_SOURCE=str(archive), F5_REAL_TAR=shutil.which("tar"))
+    proc = subprocess.run(["bash", str(cloud / "setup.sh")], cwd=tmp_path,
+                          env=env, capture_output=True, text=True)
+    assert proc.returncode == 0, proc.stdout + proc.stderr
+    compiler = cloud / "ido/cc"
+    assert os.access(compiler, os.X_OK)
+    assert compiler.stat().st_uid == os.geteuid()
+    assert "ido.tgz: OK" in proc.stdout
+    assert "IDO 5.3 ready" in proc.stdout
+    assert not (cloud / "ido.tgz").exists()
 
 
 @pytest.mark.parametrize("valid_tar", [False, True])
