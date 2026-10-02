@@ -55,14 +55,6 @@
     "verified": "score0",
     "verified_at": "2026-10-02"
   },
-  "cloud/work/static_debug_consolidation/acceptance_sources/sprintf.c:sprintf": {
-    "body_sha256": "5a86490214c11a2800da76e7e79e76b4b5134f586492350d36b32c17b667075f",
-    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
-    "target_id": "sprintf",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-02"
-  },
   "cloud/work/static_debug_consolidation/acceptance_sources/update_viewport.c:update_viewport": {
     "body_sha256": "8540ae8d43c9d1e5a62a3a961ce20b87b884ad3ddef704dbc1bca1f4b5f1512e",
     "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
@@ -227,6 +219,14 @@
     "body_sha256": "567255113189d5748cb873277cb0840fc3248ffc5e42fd783a4ab3907189580d",
     "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "target_id": "modff",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-02"
+  },
+  "src/rom/lib_34a0.c:sprintf": {
+    "body_sha256": "5a86490214c11a2800da76e7e79e76b4b5134f586492350d36b32c17b667075f",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "sprintf",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-02"
