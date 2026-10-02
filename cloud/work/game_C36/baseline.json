@@ -1,0 +1,19 @@
+[
+  {
+    "function": "viewport_scale",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 635,
+    "linked": {
+      "differing": 11,
+      "total": 202,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "fa2e3526117a19c3aa60520a9951ccabf9d09604bdac77a868d97b33a432f5ff",
+    "target_sha256": "8b729b24b20552c8d2d4f39ff7cb3ef74617c5d7d88579c46bdb26653a50193f"
+  }
+]

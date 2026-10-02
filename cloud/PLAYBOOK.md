@@ -254,3 +254,7 @@ C29's first canonical numeric formatter compile matches all 204 words using actu
 ### True resource layouts and original float store order (2026-10-01)
 
 A57 preserves the real box predicate, including its asymmetric y test, and consumes only the actual shifted index return. A60 describes the complete player/reference/car/data chain, actual selector ranges and original nullable path; the result is the original full bit mask rather than a normalized boolean. C34's six real halfword counts partition contiguous resource sections with their actual strides. B40 uses genuine halfword masks and initializes the real returned input value before the divisor load. C35 preserves all six ordinary scalar trigonometric calls and nine actual matrix products/stores; original final-store order fixes scheduling without new arithmetic. Before selecting a head, check the canonical target section and accepted address intervals: an alias inside an already accepted body is not a new function.
+
+### Indexed records preserve original unsigned conversion loops (2026-10-01)
+
+C36's 72-byte viewport records contain a true bounds pointer and four float fields. Preserve actual unsigned-half to unsigned-word to float conversions and the original unsigned result conversion, including FCSR behavior. A genuine indexed record expression recovers the original induction register and tail schedule; replacing it with a pointer cursor leaves eleven real differences. The complete 808-byte routine matches without adding operations or changing the record/count globals.

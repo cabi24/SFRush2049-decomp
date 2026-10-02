@@ -1,5 +1,13 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-01 twenty-sixth completed milestone: complete viewport scaling source
+
+- Game cartridge C: **597/1,216 functions, 72,712/647,072 bytes (11.24%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**.
+- C36 adds the complete 808-byte viewport_scale. Two actual float inputs scale four real unsigned-half bounds and four existing float record fields. An indexed loop over genuine 72-byte records restores original induction/branch scheduling while retaining all unsigned conversion/FCSR work and original count reloads. No added data, pressure, dummy formals or context credit.
+- Independent D canonical MATCH and strict/raw zero for all 202 words; identical image and source-built original ROM SHA-1 EXACT. Full pytest **713 passed, 515 skipped, captured exit 0**; all 597 blob/group checks and 123 static/source locks pass. Literal flags **-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul**.
+- Since original handoff: **100 game functions / 16,296 bytes** and **97 static functions / 27,284 bytes** accepted. Three workers continue fresh complete utility, stats and display routines; initial dirty tools/mips_to_c preserved.
+
+
 ## 2026-10-01 twenty-fifth completed milestone: complete utility and resource source
 
 - Game cartridge C: **596/1,216 functions, 71,904/647,072 bytes (11.11%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**.

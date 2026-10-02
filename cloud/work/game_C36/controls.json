@@ -1,0 +1,56 @@
+[
+  {
+    "function": "viewport_scale",
+    "variant": "viewport_scale.indexed",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 0,
+    "linked": {
+      "differing": 0,
+      "total": 202,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "75c5ecc5f0996ad5639ddd599b7a25b13eefcc0b7c10908b744ecf061f4f6449",
+    "target_sha256": "8b729b24b20552c8d2d4f39ff7cb3ef74617c5d7d88579c46bdb26653a50193f"
+  },
+  {
+    "function": "viewport_scale",
+    "variant": "viewport_scale.do",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 635,
+    "linked": {
+      "differing": 11,
+      "total": 202,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "808dbec61657b0115f93d017396124725be6308d6ab417b581113ac626458dd1",
+    "target_sha256": "8b729b24b20552c8d2d4f39ff7cb3ef74617c5d7d88579c46bdb26653a50193f"
+  },
+  {
+    "function": "viewport_scale",
+    "variant": "viewport_scale.increment",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 635,
+    "linked": {
+      "differing": 11,
+      "total": 202,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "317f6f996eab9ef20bacb11b0c73226843fdf6ccbc2cc09043511010640a6c5e",
+    "target_sha256": "8b729b24b20552c8d2d4f39ff7cb3ef74617c5d7d88579c46bdb26653a50193f"
+  }
+]

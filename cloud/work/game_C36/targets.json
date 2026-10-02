@@ -1,0 +1,14 @@
+{
+  "viewport_scale": {
+    "target_id": "viewport_scale",
+    "address": 2148168968,
+    "population": "extracted",
+    "insn_count": 202,
+    "target_asm_sha": "4e719fa61800ef11e311fe2a710e466767b530c18692d6b42d12c56df4f5bca0",
+    "target_o_sha": "8b729b24b20552c8d2d4f39ff7cb3ef74617c5d7d88579c46bdb26653a50193f",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "extent_repaired"
+  }
+}
