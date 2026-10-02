@@ -1,0 +1,19 @@
+{
+  "reviewer": "independent lane D",
+  "verdict": "PASS research, NONMATCH",
+  "source_sha256": "668e976dcdb4568aa571a861f7b06ccd1e5e34b9fef3e6c0245646841c740369",
+  "replayed": [
+    "fresh IDO/GNU full-word72/108, function412/text416 vs native432",
+    "5893 native/linked/host differential cases"
+  ],
+  "source_audit": [
+    "observed object/descriptor offsets",
+    "actual velocity subobject pointer",
+    "once-per-call acceleration scale",
+    "zero-mode before pause",
+    "callback mutation/current step reload/cached object",
+    "ordinary ABI at four external call sites",
+    "no artificial padding or fake helpers"
+  ],
+  "claims": []
+}
