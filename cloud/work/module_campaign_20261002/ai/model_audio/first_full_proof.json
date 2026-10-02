@@ -1,0 +1,340 @@
+{
+  "accepted": false,
+  "object_sha256": "d4d4a3a893734bd095ef4de06143ce45c62ba7b1eb7ff19418e508af55f1ec46",
+  "source_hashes": {
+    "audio_core.c": "0011b8a296d554ee9e2074428a1278571d0cdc07ad0e5bcd3901343a69ac4cee",
+    "ROOT_DEF68/mode_select_handler.c": "0686f34fec3f7ac987f23db7fa18ca1bbb680112961ae0f0040895e5134fd00d",
+    "ROOT_DEF68/impact_sound.h": "47ce420f588733cccadd7db07f7e29b29637348d29d7aa4c54a5aa0341042194",
+    "group.json": "cb3b9daeef968b8ffaad2a8335cb102a538102c3ca380c85d1dc2d3009d8a1d9"
+  },
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "keep": [
+    "client_sync",
+    "entity_hierarchy_update",
+    "entity_transform_calc",
+    "func_80091B00",
+    "func_80091BA8",
+    "func_800D5E64",
+    "func_800E05F0",
+    "game_timer_resume",
+    "player_conditional_call",
+    "scheduler_recv",
+    "stat_lap_complete"
+  ],
+  "members": [
+    {
+      "function": "func_800E05F0",
+      "native_words": 332,
+      "generated_section_words": 346,
+      "diagnostic": "292/332 words differ (14 extra words (nonzero beyond target length))",
+      "comparison": {
+        "differing": 292,
+        "total": 332,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 14
+      },
+      "aligned_exact": 178,
+      "aligned_opcode": 304,
+      "aligned_opcode_reg": 203,
+      "frame": 248
+    },
+    {
+      "function": "func_800E0050",
+      "native_words": 360,
+      "generated_section_words": 371,
+      "diagnostic": "352/360 words differ (10 extra words (nonzero beyond target length))",
+      "comparison": {
+        "differing": 352,
+        "total": 360,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 10
+      },
+      "aligned_exact": 108,
+      "aligned_opcode": 295,
+      "aligned_opcode_reg": 138,
+      "frame": 56
+    },
+    {
+      "function": "func_800DFBA0",
+      "native_words": 298,
+      "generated_section_words": 299,
+      "diagnostic": "275/298 words differ",
+      "comparison": {
+        "differing": 275,
+        "total": 298,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "aligned_exact": 163,
+      "aligned_opcode": 280,
+      "aligned_opcode_reg": 177,
+      "frame": 24
+    },
+    {
+      "function": "mode_select_input",
+      "native_words": 38,
+      "generated_section_words": 41,
+      "diagnostic": "17/38 words differ (2 extra words (nonzero beyond target length))",
+      "comparison": {
+        "differing": 17,
+        "total": 38,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 2
+      },
+      "aligned_exact": 30,
+      "aligned_opcode": 34,
+      "aligned_opcode_reg": 31,
+      "frame": 32
+    },
+    {
+      "function": "mode_select_handler",
+      "native_words": 744,
+      "generated_section_words": 760,
+      "diagnostic": "699/744 words differ (15 extra words (nonzero beyond target length); 4 section-relative relocations unverified: .rodata+0x0 at +0x6a0, .rodata+0x0 at +0x6a8, .rodata+0x1c at +0x790, .rodata+0x1c at +0x798)",
+      "comparison": {
+        "differing": 699,
+        "total": 744,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0x6a0",
+          ".rodata+0x0 at +0x6a8",
+          ".rodata+0x1c at +0x790",
+          ".rodata+0x1c at +0x798"
+        ],
+        "errors": [],
+        "extra_words": 15
+      },
+      "aligned_exact": 347,
+      "aligned_opcode": 672,
+      "aligned_opcode_reg": 389,
+      "frame": 40
+    },
+    {
+      "function": "func_800DED78",
+      "native_words": 122,
+      "generated_section_words": 122,
+      "diagnostic": "35/122 words differ",
+      "comparison": {
+        "differing": 35,
+        "total": 122,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "aligned_exact": 92,
+      "aligned_opcode": 118,
+      "aligned_opcode_reg": 96,
+      "frame": 0
+    },
+    {
+      "function": "best_times_display",
+      "native_words": 56,
+      "generated_section_words": 52,
+      "diagnostic": "47/56 words differ",
+      "comparison": {
+        "differing": 47,
+        "total": 56,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "aligned_exact": 34,
+      "aligned_opcode": 51,
+      "aligned_opcode_reg": 37,
+      "frame": 24
+    },
+    {
+      "function": "func_800D5E64",
+      "native_words": 146,
+      "generated_section_words": 139,
+      "diagnostic": "129/146 words differ",
+      "comparison": {
+        "differing": 129,
+        "total": 146,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "aligned_exact": 70,
+      "aligned_opcode": 129,
+      "aligned_opcode_reg": 80,
+      "frame": 112
+    },
+    {
+      "function": "entity_transform_calc",
+      "native_words": 110,
+      "generated_section_words": 129,
+      "diagnostic": "109/110 words differ (17 extra words (nonzero beyond target length))",
+      "comparison": {
+        "differing": 109,
+        "total": 110,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 17
+      },
+      "aligned_exact": 50,
+      "aligned_opcode": 103,
+      "aligned_opcode_reg": 55,
+      "frame": 32
+    },
+    {
+      "function": "client_sync",
+      "native_words": 54,
+      "generated_section_words": 46,
+      "diagnostic": "52/54 words differ",
+      "comparison": {
+        "differing": 52,
+        "total": 54,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "aligned_exact": 30,
+      "aligned_opcode": 40,
+      "aligned_opcode_reg": 37,
+      "frame": 32
+    },
+    {
+      "function": "entity_hierarchy_update",
+      "native_words": 34,
+      "generated_section_words": 30,
+      "diagnostic": "33/34 words differ",
+      "comparison": {
+        "differing": 33,
+        "total": 34,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "aligned_exact": 13,
+      "aligned_opcode": 20,
+      "aligned_opcode_reg": 19,
+      "frame": 32
+    },
+    {
+      "function": "scheduler_recv",
+      "native_words": 40,
+      "generated_section_words": 39,
+      "diagnostic": "29/40 words differ",
+      "comparison": {
+        "differing": 29,
+        "total": 40,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "aligned_exact": 26,
+      "aligned_opcode": 33,
+      "aligned_opcode_reg": 27,
+      "frame": 32
+    },
+    {
+      "function": "stat_lap_complete",
+      "native_words": 55,
+      "generated_section_words": 47,
+      "diagnostic": "53/55 words differ",
+      "comparison": {
+        "differing": 53,
+        "total": 55,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "aligned_exact": 31,
+      "aligned_opcode": 41,
+      "aligned_opcode_reg": 38,
+      "frame": 32
+    },
+    {
+      "function": "game_timer_resume",
+      "native_words": 55,
+      "generated_section_words": 47,
+      "diagnostic": "53/55 words differ",
+      "comparison": {
+        "differing": 53,
+        "total": 55,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "aligned_exact": 31,
+      "aligned_opcode": 41,
+      "aligned_opcode_reg": 38,
+      "frame": 32
+    },
+    {
+      "function": "player_conditional_call",
+      "native_words": 9,
+      "generated_section_words": 9,
+      "diagnostic": "MATCH",
+      "comparison": {
+        "differing": 0,
+        "total": 9,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "aligned_exact": 9,
+      "aligned_opcode": 9,
+      "aligned_opcode_reg": 9,
+      "frame": 0
+    },
+    {
+      "function": "func_80091BA8",
+      "native_words": 21,
+      "generated_section_words": 21,
+      "diagnostic": "MATCH",
+      "comparison": {
+        "differing": 0,
+        "total": 21,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "aligned_exact": 21,
+      "aligned_opcode": 21,
+      "aligned_opcode_reg": 21,
+      "frame": 0
+    },
+    {
+      "function": "func_80091B00",
+      "native_words": 42,
+      "generated_section_words": 42,
+      "diagnostic": "18/42 words differ",
+      "comparison": {
+        "differing": 18,
+        "total": 42,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "aligned_exact": 25,
+      "aligned_opcode": 38,
+      "aligned_opcode_reg": 25,
+      "frame": 0
+    }
+  ],
+  "literal_and_table_placement_verified": false,
+  "protected_group_refusal": "func_800E05F0: 14 extra words (nonzero beyond target length)",
+  "reason": "Diagnostic scores retain local section references as unverified; protected full resolver refuses nonmatching extents. No masks or resolver changes."
+}

@@ -1,0 +1,41 @@
+{
+  "status": "complete_native_reconstruction_pending_compile",
+  "target": {
+    "target_id": "mode_select_handler",
+    "address": 2148396904,
+    "insn_count": 744,
+    "target_asm_sha": "f65156425c5115ea9df7e11ece8d39af83486b93e7f652931a51840f56d77004",
+    "target_o_sha": "1c73b9c271b95f8c4ee0561d07d745a491d253981770a1daf5d47f55d621fc01"
+  },
+  "logical_formals": [
+    "AudioModel2056 *model"
+  ],
+  "native_carrier": "s1, supplied by real E05F0 caller",
+  "sources": {
+    "impact_sound.h": "47ce420f588733cccadd7db07f7e29b29637348d29d7aa4c54a5aa0341042194",
+    "mode_select_handler.c": "0686f34fec3f7ac987f23db7fa18ca1bbb680112961ae0f0040895e5134fd00d"
+  },
+  "owned_context": {
+    "model_bytes": 2056,
+    "impact_record_bytes": 24,
+    "impact_block_bytes": 120,
+    "body_force": 196,
+    "center_force": 304,
+    "speed": 1008,
+    "crash": 1600,
+    "collision_kind": 1602,
+    "last_collision_kind": 1603,
+    "collision_direction": 1604,
+    "player": 1990
+  },
+  "repairs": [
+    "mapped real s2 player input for best_times_display; no phantom register formals",
+    "replaced stale ordinary f12 with true seven-input high_scores_display ABI",
+    "replaced unset loop t0 with actual twelve-byte body-force element stride",
+    "Impact24 records advance by one actual element, not twenty-four typed elements",
+    "three-component center vector advances one float, not four typed blocks",
+    "LCG arithmetic wraps as unsigned32 then uses native signed masked shift",
+    "agreed u32 sound handle return across actual module translation units"
+  ],
+  "claims": []
+}

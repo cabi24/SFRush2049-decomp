@@ -1,0 +1,24 @@
+{
+  "candidate": "forceapart_magnitude_accumulate_group",
+  "function": "menu_load_options",
+  "source_sha256": "eb9ead4c7778cba0068efd5c552665aa5191f0ce31206d138025141ad1ac22fb",
+  "object_sha256": "dc622c1a0f7cc4b473aee538f96e9b0264c7af7359fc37e85fa318d25910c322",
+  "comparison": {
+    "differing": 57,
+    "total": 91,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "helper_comparisons": {
+    "func_800A61B0": {
+      "differing": 0,
+      "total": 37,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+}

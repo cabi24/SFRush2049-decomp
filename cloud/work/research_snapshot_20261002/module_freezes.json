@@ -1,8 +1,8 @@
 {
   "status": "frozen_nonmatches",
   "accepted_credit": 0,
-  "accepted_master": "7c4d12c368a7f938f5b405c78f602dde34d4087e",
-  "combined_percentage_at_snapshot": 19.83,
+  "accepted_master": "ccc123608494c4092361121d4b8eed908df819ac",
+  "combined_percentage_at_snapshot": 20.11,
   "files": [
     {
       "path": "cloud/work/module_campaign_20261002/ai/controls_sym/README.md",
@@ -50,6 +50,91 @@
       "bytes": 2141
     },
     {
+      "path": "cloud/work/module_campaign_20261002/ai/model_audio/README.md",
+      "sha256": "06325c80518f960e801a44b64481cb8c497253ae086763480c519af90e0d3a84",
+      "bytes": 5519
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/model_audio/ROOT_DEF68/README.md",
+      "sha256": "9b145cb6d18ffe9742f01b46e594b93f13520df546d97039cfe95bbc4466bea6",
+      "bytes": 1880
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/model_audio/ROOT_DEF68/impact_sound.h",
+      "sha256": "47ce420f588733cccadd7db07f7e29b29637348d29d7aa4c54a5aa0341042194",
+      "bytes": 1159
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/model_audio/ROOT_DEF68/mode_select_handler.c",
+      "sha256": "0686f34fec3f7ac987f23db7fa18ca1bbb680112961ae0f0040895e5134fd00d",
+      "bytes": 10656
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/model_audio/ROOT_DEF68/provenance.json",
+      "sha256": "fd6998f4517215c4826d1b7b84c10bbe2c4a34d0f289f96e61d2818cb7c3777c",
+      "bytes": 1586
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/model_audio/actual_callers.json",
+      "sha256": "abd9ad3de90052db877995f45101be206820687b12b6655a63c23946bc97b935",
+      "bytes": 1112
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/model_audio/actual_full_callgraph.json",
+      "sha256": "626f354ebc59ab75ada5f81c4374da6d21e91c4b66085edbaa55c18c1b544654",
+      "bytes": 16812
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/model_audio/audio_core.c",
+      "sha256": "0011b8a296d554ee9e2074428a1278571d0cdc07ad0e5bcd3901343a69ac4cee",
+      "bytes": 27499
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/model_audio/compile_recipe.json",
+      "sha256": "4e8214bdf9837b6afe1c2625c33eea24dcc7fd701d2cab10714b058fd350407c",
+      "bytes": 3392
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/model_audio/first_full_proof.json",
+      "sha256": "4bf24f6de7694b12c5133123adadac6f87959d2012d2840a0f8467c6d37ef3e7",
+      "bytes": 9164
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/model_audio/group.json",
+      "sha256": "cb3b9daeef968b8ffaad2a8335cb102a538102c3ca380c85d1dc2d3009d8a1d9",
+      "bytes": 885
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/model_audio/minimal_exports/README.md",
+      "sha256": "151af9736b56237278f0186a363640c678ee876e25e48651192ac99772f13400",
+      "bytes": 877
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/model_audio/minimal_exports/compile_recipe.json",
+      "sha256": "2f0d362c85f30b152b7e0d79af6aeaf442c576aa9e9f48ae3b6a96f6ee3420f7",
+      "bytes": 2446
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/model_audio/minimal_exports/group.json",
+      "sha256": "31d412a8f1537a864b7543c4411d39b0cc551e5ebdb3410af779580954f8aa83",
+      "bytes": 987
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/model_audio/minimal_exports/proof.json",
+      "sha256": "25c68cb8c78fd0e48a68a502d1b2223e2b2c40eaa367e2ab99e9e24ad68b7553",
+      "bytes": 3759
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/model_audio/provenance.json",
+      "sha256": "ea29359763e076abc8c982172e495bc2e2c66e3265fde4ceecbd4c15b11abd02",
+      "bytes": 1688
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/model_audio/tables.json",
+      "sha256": "b019d69e31469f1979998b6d76bc42c13c0d64f069c82e70d7f510a409a7f3e1",
+      "bytes": 847
+    },
+    {
       "path": "cloud/work/module_campaign_20261002/ai/navigation/README.md",
       "sha256": "e1eb0d372cc615c062b1ef9d3f5b25929460cc05545c271474093a967fedc62c",
       "bytes": 4442
@@ -88,6 +173,386 @@
       "path": "cloud/work/module_campaign_20261002/ai/navigation/road_distance.c",
       "sha256": "d79f299dc7cec8b0082997bfcc2949fe376729767635aa75ff60d1c55f323f17",
       "bytes": 1915
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/README.md",
+      "sha256": "caa309a2419fec6a513df011d7d0cb0a0c0a7eb79c3c1c4492e627746e2834f9",
+      "bytes": 4603
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/bounded_audit.json",
+      "sha256": "28a320ed5a9937a1db72eebed007c5807fe9237544a74832033720658705f2b3",
+      "bytes": 7570
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/collision_best_complete_context_group/group.c",
+      "sha256": "1c991da2992d7a8a85da556734b3f4e07081cd8554e013ffe92baf9f991e7dd7",
+      "bytes": 6686
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/collision_best_complete_context_group/group.json",
+      "sha256": "4dbf58f7839f10beebf08b951d66cc455c258ed7ee64b0af9eef2385a13e2b45",
+      "bytes": 309
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/collision_complete_context_group/group.c",
+      "sha256": "6bc2297a31c9a423f5338963400f3b360ce85148b74eb9400a4ad1f7ee8f0b0d",
+      "bytes": 6523
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/collision_complete_context_group/group.json",
+      "sha256": "4dbf58f7839f10beebf08b951d66cc455c258ed7ee64b0af9eef2385a13e2b45",
+      "bytes": 309
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/forceapart_actual_coordinates_group/caller.c",
+      "sha256": "af38402ffd6ee9c6ecbd57b07686775204786702c0585f46de6ee891dae81c96",
+      "bytes": 1419
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/forceapart_actual_coordinates_group/group.json",
+      "sha256": "93abccaf288502e1164a8870a10e37982158654d49fcb6bdf58e32d55978f929",
+      "bytes": 195
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/forceapart_actual_coordinates_group/transform.c",
+      "sha256": "070108fba6a01d2e44c46b9a0d86cb87c7f08fda6ac08910471fa7ebd244a637",
+      "bytes": 181
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/forceapart_actual_literals_group/caller.c",
+      "sha256": "7b11ce99aa6766c3b5803a0bbcbbd94b98a4947928201b18d2579a651f724945",
+      "bytes": 1301
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/forceapart_actual_literals_group/group.json",
+      "sha256": "93abccaf288502e1164a8870a10e37982158654d49fcb6bdf58e32d55978f929",
+      "bytes": 195
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/forceapart_actual_literals_group/transform.c",
+      "sha256": "070108fba6a01d2e44c46b9a0d86cb87c7f08fda6ac08910471fa7ebd244a637",
+      "bytes": 181
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/forceapart_actual_pointer_loop_group/caller.c",
+      "sha256": "889a458568adca28041315e51bdba4485793e08c9cf294b23c4a380d964f5133",
+      "bytes": 1404
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/forceapart_actual_pointer_loop_group/group.json",
+      "sha256": "93abccaf288502e1164a8870a10e37982158654d49fcb6bdf58e32d55978f929",
+      "bytes": 195
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/forceapart_actual_pointer_loop_group/transform.c",
+      "sha256": "070108fba6a01d2e44c46b9a0d86cb87c7f08fda6ac08910471fa7ebd244a637",
+      "bytes": 181
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/forceapart_donor_arrays.c",
+      "sha256": "90fb1ea0c57bcbf801cc419d7b87d5f1f22894a79246aca3fda73c99b23d6efd",
+      "bytes": 1344
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/forceapart_donor_dotprod_group/caller.c",
+      "sha256": "bc1d2bf6262453e2a8bbe59d44c13dd39dcd16a56ccd7be365f3e280950a6462",
+      "bytes": 1381
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/forceapart_donor_dotprod_group/group.json",
+      "sha256": "93abccaf288502e1164a8870a10e37982158654d49fcb6bdf58e32d55978f929",
+      "bytes": 195
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/forceapart_donor_dotprod_group/transform.c",
+      "sha256": "070108fba6a01d2e44c46b9a0d86cb87c7f08fda6ac08910471fa7ebd244a637",
+      "bytes": 181
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/forceapart_donor_inverse.c",
+      "sha256": "07a27a1a18f9a5acce55ca49fe7fde070c19b605dd340c5379619e8c4f6fea3e",
+      "bytes": 1352
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/forceapart_donor_inverse_group/caller.c",
+      "sha256": "07a27a1a18f9a5acce55ca49fe7fde070c19b605dd340c5379619e8c4f6fea3e",
+      "bytes": 1352
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/forceapart_donor_inverse_group/group.json",
+      "sha256": "93abccaf288502e1164a8870a10e37982158654d49fcb6bdf58e32d55978f929",
+      "bytes": 195
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/forceapart_donor_inverse_group/transform.c",
+      "sha256": "070108fba6a01d2e44c46b9a0d86cb87c7f08fda6ac08910471fa7ebd244a637",
+      "bytes": 181
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/forceapart_field_first_group/caller.c",
+      "sha256": "8e0fe577cda564c933a0287b1316433e775d5e9371f553f450ec6ed84dac8e4e",
+      "bytes": 1381
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/forceapart_field_first_group/group.json",
+      "sha256": "93abccaf288502e1164a8870a10e37982158654d49fcb6bdf58e32d55978f929",
+      "bytes": 195
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/forceapart_field_first_group/transform.c",
+      "sha256": "070108fba6a01d2e44c46b9a0d86cb87c7f08fda6ac08910471fa7ebd244a637",
+      "bytes": 181
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/forceapart_magnitude_accumulate_group/caller.c",
+      "sha256": "eb9ead4c7778cba0068efd5c552665aa5191f0ce31206d138025141ad1ac22fb",
+      "bytes": 1417
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/forceapart_magnitude_accumulate_group/group.json",
+      "sha256": "93abccaf288502e1164a8870a10e37982158654d49fcb6bdf58e32d55978f929",
+      "bytes": 195
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/forceapart_magnitude_accumulate_group/transform.c",
+      "sha256": "070108fba6a01d2e44c46b9a0d86cb87c7f08fda6ac08910471fa7ebd244a637",
+      "bytes": 181
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/forceapart_original_local_ownership_group/caller.c",
+      "sha256": "6548cd1f88c727b944024fd1b7e772576cee8efea8b6f3dbb511bfaf636bdde6",
+      "bytes": 1381
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/forceapart_original_local_ownership_group/group.json",
+      "sha256": "93abccaf288502e1164a8870a10e37982158654d49fcb6bdf58e32d55978f929",
+      "bytes": 195
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/forceapart_original_local_ownership_group/transform.c",
+      "sha256": "070108fba6a01d2e44c46b9a0d86cb87c7f08fda6ac08910471fa7ebd244a637",
+      "bytes": 181
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/forceapart_typed.c",
+      "sha256": "dcb78ba9dd1ab88a1dd2f31ac74d0581e1be3879a67be44652e066159f3f2156",
+      "bytes": 1388
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/forceapart_typed_group/caller.c",
+      "sha256": "dcb78ba9dd1ab88a1dd2f31ac74d0581e1be3879a67be44652e066159f3f2156",
+      "bytes": 1388
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/forceapart_typed_group/group.json",
+      "sha256": "93abccaf288502e1164a8870a10e37982158654d49fcb6bdf58e32d55978f929",
+      "bytes": 195
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/forceapart_typed_group/transform.c",
+      "sha256": "070108fba6a01d2e44c46b9a0d86cb87c7f08fda6ac08910471fa7ebd244a637",
+      "bytes": 181
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/results/collision_best_complete_context_group.json",
+      "sha256": "0904a941812015bb31a483fea4677cfb79dcf62922f117343fc78d7831458a5e",
+      "bytes": 937
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/results/collision_complete_context_group.json",
+      "sha256": "b54095a866d041087cab682ad74de243d89305c7375c7600f686ff4096b4520c",
+      "bytes": 932
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/results/collision_force_native_value_groups.json",
+      "sha256": "1706b35e3f0f2d612dddf85071e0860f759544e617ddb8a04eae54ff92edd01f",
+      "bytes": 416
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/results/forceapart_actual_coordinates_group.json",
+      "sha256": "ceb6606ee9d82ce8113ba309bf643d9fe4b79067703589a7b37c90a82e32b3f9",
+      "bytes": 602
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/results/forceapart_actual_literals_group.json",
+      "sha256": "ea98233d39eef8d116696ec3cf8d49b4081de42f460ccdad360636c0e1003462",
+      "bytes": 783
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/results/forceapart_actual_pointer_loop_group.json",
+      "sha256": "6e457303ae114c55d7c2180c394a2cb25aca785acc62f09bf37548ca48e42f87",
+      "bytes": 603
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/results/forceapart_donor_arrays.json",
+      "sha256": "48fef5ef0ebb97a2077cebf42491b2eac069d5072417f6c757c387b2219ea90d",
+      "bytes": 400
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/results/forceapart_donor_dotprod_group.json",
+      "sha256": "b51dd321846b1b5641d139edf6188b77a7a3383bcefdac0009d5e06ba03dce1c",
+      "bytes": 597
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/results/forceapart_donor_inverse_group.json",
+      "sha256": "9e923cd1c12e018e65897e7a198078227130a3090dc9f244e92d21edcc3e0174",
+      "bytes": 597
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/results/forceapart_field_first_group.json",
+      "sha256": "7cb87d798a83d708cb364751030e45c89e5f705a7d90c84e753ff4be357daf1e",
+      "bytes": 595
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/results/forceapart_magnitude_accumulate_group.json",
+      "sha256": "012d4570f5e29c785105efbe70a4060bf67c7db21738a1ce4343702f404b63a3",
+      "bytes": 604
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/results/forceapart_original_local_ownership_group.json",
+      "sha256": "383c2bb614c9d33719a0d8b64855420ff7acf202419fb52d78dc3816e25743b6",
+      "bytes": 608
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/results/forceapart_typed.json",
+      "sha256": "dc746abe1e7d9a0bb509210f365c87357cfb392a0509d5ca3ee7a6420defa825",
+      "bytes": 393
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/collision_helpers/results/forceapart_typed_group.json",
+      "sha256": "b2040a26fe27fff373ea88c745f9b2a2a4d1062bd48c78c929fa7d9c1458fb74",
+      "bytes": 589
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/model_audio/DEF68_readonly_audit.json",
+      "sha256": "ec0537725b88f66cb2a9855570fff538a60acd0a0b517d2d78ac6394c00a94a4",
+      "bytes": 2062
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/model_audio/README.md",
+      "sha256": "9d372e18b17945c2ab9a87eee2cb0d93eeee6974e24605a790b36beb61325f70",
+      "bytes": 2509
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/static_scheduler/README.md",
+      "sha256": "774af7a214f59d8b2b288c10eee27409cb38a0f44b05f186c251670e646ffde6",
+      "bytes": 4461
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/static_scheduler/__scAppendList.c",
+      "sha256": "820044880607b7a9a72f983e77ed1c233ac3f772f283af863ee60e85e2c5c6e3",
+      "bytes": 1160
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/static_scheduler/__scExec.c",
+      "sha256": "3ba6d9f17beac2f92bd7161f561ccaaa138043f02ee7c3ccce942cef5d4ce5a0",
+      "bytes": 834
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/static_scheduler/__scExecTask.c",
+      "sha256": "f7703c639a587174fed4d8b96aa6360be701ab377f1f27362cab006859496dfb",
+      "bytes": 1080
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/static_scheduler/__scHandlePreNMI.c",
+      "sha256": "c209d0e92c57f21c28eeae3a6426ca915fee1d88fcd439317eaa63e146277f55",
+      "bytes": 250
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/static_scheduler/__scHandleRDP.c",
+      "sha256": "2713ebd0bec7b27612883cc39b5ef5d43e2552f5252c72e23b887f5613c8d620",
+      "bytes": 924
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/static_scheduler/__scHandleRSP.c",
+      "sha256": "2c73144cfc5f8adf28775e35e1858147818dbc29bd409543a7f3d4e6dad1a054",
+      "bytes": 1280
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/static_scheduler/__scHandleRetrace.c",
+      "sha256": "d6710a93d3ad37f713a00ee07b12751e0a30abd7f59fc39af735a4acceaf5544",
+      "bytes": 620
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/static_scheduler/__scMain.c",
+      "sha256": "f58acee532b180f0e1b83a5f6764bd0a17082ca79a321a4e663a217e35f7360b",
+      "bytes": 897
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/static_scheduler/__scSchedule.c",
+      "sha256": "72b414df894adf4ba59f20f7e177a5ae5cee5564f3a2bcbd92638d4797165a18",
+      "bytes": 969
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/static_scheduler/__scScheduleCore.c",
+      "sha256": "ee69f8f5eb43d943a77baea9f5960069cc721a82ca3eb02c8ba0fdac43897211",
+      "bytes": 3206
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/static_scheduler/__scTaskReady.c",
+      "sha256": "fb85189d82bf67986ef52d05b6836a9469e03b545f84d6f3ab3958d4b2a10e99",
+      "bytes": 407
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/static_scheduler/all_timestamp_ownership/group.c",
+      "sha256": "c5ca0c3e87dd8c34364c4b05c155d4594db84edd537a6ca3e073bf045302cacd",
+      "bytes": 16338
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/static_scheduler/group.c",
+      "sha256": "4bcc83ed858df7fa2f395364b056986cbeac611860aee79966bf255ae366e3b8",
+      "bytes": 16261
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/static_scheduler/group.json",
+      "sha256": "d5264b31a4c61f6a8f26da0dad30c14d468f857bb0df2ade5fc7adb58ed66f17",
+      "bytes": 405
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/static_scheduler/manifest.json",
+      "sha256": "a000bb64d24855918f7826aa788fd7f1ff0f9c17bb451052fe50f6f8fe25c9d3",
+      "bytes": 2325
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/static_scheduler/members.json",
+      "sha256": "bf55dcc96e8c572e7f885928c3d97dc4d1bcbf311f0a0d6d5b838f568c4bb9b0",
+      "bytes": 409
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/static_scheduler/osCreateScheduler.c",
+      "sha256": "03b23db267d444583b45a1bd36e20d41383d2755e66c74fd6f49681d41494533",
+      "bytes": 1536
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/static_scheduler/osScAddClient.c",
+      "sha256": "dea767bc7045362eaefa69a05c169a57309cb63a4c85e12eeb75a7a8ad450a89",
+      "bytes": 348
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/static_scheduler/results/all_timestamp_ownership.json",
+      "sha256": "a002456e15b9bd0724c9e1f6b747ce849ceee04e58ee24ffafc2d70d8d243019",
+      "bytes": 9491
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/static_scheduler/results/full_context.json",
+      "sha256": "f4f423e309c2369ed7d1be01bddaf98134862c78fd480120d9e02b895bf43af1",
+      "bytes": 18985
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/static_scheduler/results/timestamp_ownership.json",
+      "sha256": "fb37a6da00f40b264f1449a9914408e5b5b7f8113635a571c8fde2d8bd7df0e6",
+      "bytes": 9489
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/static_scheduler/scheduler_native.h",
+      "sha256": "70425739427009dba9199720f4234cae2436dcbb09a9d0b8f43ea258db2287b6",
+      "bytes": 3061
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/compiler/static_scheduler/timestamp_ownership/group.c",
+      "sha256": "e225feeb99566b83a33023bd174e89385234d866e98eb71991fe9649f59e9005",
+      "bytes": 16353
     },
     {
       "path": "cloud/work/module_campaign_20261002/compiler/tire_helpers/README.md",
@@ -333,6 +798,46 @@
       "path": "cloud/work/module_campaign_20261002/reconstruction/tire_helpers/receipts/dotireforce_donor_locals.json",
       "sha256": "455302a5cea2e4ec78cc5b194a04fe701fa4ef1588f969a9e8a0671f4f7d5032",
       "bytes": 406
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/reconstruction/visual_tire/README.md",
+      "sha256": "9cec9d0955040d707874af20615af17ecb0a05eb5f08d017708bfbaf2dd80eb7",
+      "bytes": 4726
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/reconstruction/visual_tire/actual_callers.json",
+      "sha256": "47a5b5b9274c0e4a7ab9b341722800c6397d13b2ad0da427a86a62c4f29e32ce",
+      "bytes": 1635
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/reconstruction/visual_tire/anim_tire_donor.c",
+      "sha256": "04eb8f42f60785f251e1dd4f79948db9307d58b9d723fb036d65323f93982edb",
+      "bytes": 2944
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/reconstruction/visual_tire/anim_tire_generic_word.c",
+      "sha256": "10f7df81aa009f16ae423a48bab88ddfa3ab4a7a8ccbaf12b34f88a34a163481",
+      "bytes": 3128
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/reconstruction/visual_tire/provenance.json",
+      "sha256": "384a77f4a618f6c0416924558868de2fffc29fc258dfd6a5811b113f48f71e8e",
+      "bytes": 826
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/reconstruction/visual_tire/types.h",
+      "sha256": "b1d3661f438f597cfa50cf164d46cf45448ea12dcbdddaa2d53183f72d8e504f",
+      "bytes": 2136
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/reconstruction/visual_tire/types_generic_word.h",
+      "sha256": "2b8f712cdb71488905060072d23d6c6e668f4cf18f71594b48af6cafb9162285",
+      "bytes": 2145
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/reconstruction/visual_tire/visibility_wrappers.c",
+      "sha256": "90fc61d2f7bc5fa99014215d789f162a1f4a6251082f4ebf2b41d8bd739499c3",
+      "bytes": 616
     },
     {
       "path": "cloud/work/module_campaign_20261002/static/lib5610/README.md",

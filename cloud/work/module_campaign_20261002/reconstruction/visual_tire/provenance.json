@@ -1,0 +1,20 @@
+{
+  "ancestor": {
+    "file": "reference/repos/rushtherock/game/visuals.c",
+    "function": "AnimateTire",
+    "line": 1869,
+    "sha256": "143fb78b0317cfca6e068a2992ffa52b51996184d53c1109769cd969c58ca331"
+  },
+  "source": "anim_tire_donor.c",
+  "source_sha256": "04eb8f42f60785f251e1dd4f79948db9307d58b9d723fb036d65323f93982edb",
+  "reconstruction": "Fresh complete typed donor reconstruction with authoritative native differences, not an old opaque seed.",
+  "native": {
+    "name": "anim_state_update",
+    "address": "0x8008D93C",
+    "bytes": 1840,
+    "words": 460,
+    "frame": 224
+  },
+  "prior_archive_audit": "No full target file in archive filename search; prior scout only. Legacy model_bounds_calc group is read for actual body semantics only; its stand-ins are excluded from new context.",
+  "accepted": false
+}

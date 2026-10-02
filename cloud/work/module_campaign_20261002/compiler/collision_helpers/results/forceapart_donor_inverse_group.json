@@ -1,0 +1,24 @@
+{
+  "candidate": "forceapart_donor_inverse_group",
+  "function": "menu_load_options",
+  "source_sha256": "07a27a1a18f9a5acce55ca49fe7fde070c19b605dd340c5379619e8c4f6fea3e",
+  "object_sha256": "e19a8c3365dff20f95dce4ff2f97d5226d6331304726a3bd4f1a17d28e8c5fe8",
+  "comparison": {
+    "differing": 37,
+    "total": 91,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "helper_comparisons": {
+    "func_800A61B0": {
+      "differing": 0,
+      "total": 37,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+}

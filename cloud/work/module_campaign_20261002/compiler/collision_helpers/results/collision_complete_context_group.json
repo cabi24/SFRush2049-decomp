@@ -1,0 +1,40 @@
+{
+  "candidate": "collision_complete_context_group",
+  "function": "menu_options_screen",
+  "source_sha256": "6bc2297a31c9a423f5338963400f3b360ce85148b74eb9400a4ad1f7ee8f0b0d",
+  "object_sha256": "1be258f245223bef220f1b12aa22f00e347690e07e7719b619c021b380084228",
+  "comparison": {
+    "differing": 461,
+    "total": 589,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "helper_comparisons": {
+    "menu_load_options": {
+      "differing": 45,
+      "total": 91,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_800A61B0": {
+      "differing": 0,
+      "total": 37,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_8008B3C8": {
+      "differing": 0,
+      "total": 11,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+}

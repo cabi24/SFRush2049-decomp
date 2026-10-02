@@ -1,0 +1,14 @@
+{
+  "candidate": "collision_force_native_value_groups.c",
+  "function": "menu_options_screen",
+  "source_sha256": "64ec79504daad7ab4daed141b3a5d50b6d3b998cc30c40854855757c388e871e",
+  "object_sha256": "ee0dffadc61126ca5882d15d55eb9dac59944ac26a65580f998d54ad4d82b3d1",
+  "comparison": {
+    "differing": 449,
+    "total": 589,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  }
+}

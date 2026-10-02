@@ -1,0 +1,24 @@
+{
+  "candidate": "forceapart_actual_pointer_loop_group",
+  "function": "menu_load_options",
+  "source_sha256": "889a458568adca28041315e51bdba4485793e08c9cf294b23c4a380d964f5133",
+  "object_sha256": "9ae8c6172b2dcd95a8c0b719d9077857c44d43007b3e3966db6969fc24b1f206",
+  "comparison": {
+    "differing": 59,
+    "total": 91,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "helper_comparisons": {
+    "func_800A61B0": {
+      "differing": 0,
+      "total": 37,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+}
