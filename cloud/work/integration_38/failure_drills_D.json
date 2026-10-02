@@ -1,0 +1,26 @@
+[
+  {
+    "group": "codex_menu_a86",
+    "corrupted_original_table_address": "0x801240e0",
+    "refused": true,
+    "reason": ".rodata: jump table window at 0x801240e0 differs from image"
+  },
+  {
+    "group": "codex_menu_a86",
+    "corrupted_original_table_address": "0x80123c20",
+    "refused": true,
+    "reason": ".rodata: jump table window at 0x80123c20 differs from image"
+  },
+  {
+    "group": "codex_menu_a87",
+    "corrupted_original_table_address": "0x801240c4",
+    "refused": true,
+    "reason": ".rodata: jump table window at 0x801240c4 differs from image"
+  },
+  {
+    "group": "codex_menu_a87",
+    "corrupted_original_table_address": "0x80123c20",
+    "refused": true,
+    "reason": ".rodata: jump table window at 0x80123c20 differs from image"
+  }
+]

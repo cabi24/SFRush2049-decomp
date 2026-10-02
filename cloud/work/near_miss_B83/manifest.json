@@ -1,0 +1,13 @@
+{
+  "claims": [],
+  "function": "arb_rate_set",
+  "address": "0x800A5908",
+  "target_bytes": 312,
+  "files": {
+    "arb_rate_set_colors.c": "45889bdaefe830a2f63a4288aac82d02f9b5583c7580acb1e66d9da48022afe6",
+    "arb_rate_set_colors_O2.c": "929e64b127a6028086978f042475cd7eaf7221207398f71c4776ffac3160f9de",
+    "arb_rate_set_native.c": "534a01449de78e47546a2ed4bbe2f6957af8580a382aafbababdbeac417b9bf3",
+    "arb_rate_set_scale.c": "176fad8e52a49b6d263ff995b9a288ab019778b5f4d8ea7924feeafb97b78cc1",
+    "results.json": "f8929806cd7c0c49c8394ae86ff2c74efc47015aeea99c0949765ab373c3ed48"
+  }
+}

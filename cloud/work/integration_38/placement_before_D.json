@@ -1,0 +1,10 @@
+{
+  "codex_menu_a86": {
+    "refused": true,
+    "reason": ".rodata: relocation sites disagree on its image address ['0x80123c20', '0x801240c8']"
+  },
+  "codex_menu_a87": {
+    "refused": true,
+    "reason": ".rodata: relocation sites disagree on its image address ['0x80123c20', '0x801240ac']"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "claims": [
+    "func_800A78BC"
+  ],
+  "function": "func_800A78BC",
+  "address": "0x800A78BC",
+  "target_bytes": 252,
+  "final_source": "func_800A78BC_native.c",
+  "files": {
+    "func_800A78BC_native.c": "658c2fec5cc864422153246b311a2200bb098f5b5f065b0b56c948ed4b0680a1",
+    "results.json": "ce35eebe60d6e09da73a07bbdde90b34fc64f1a4ec3420aff535ba50cee9b29d"
+  }
+}

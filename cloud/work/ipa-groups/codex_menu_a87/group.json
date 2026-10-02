@@ -1,0 +1,16 @@
+{
+  "members": [
+    "menu_text_input"
+  ],
+  "context": [
+    "format_string_parse"
+  ],
+  "claims": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "menu_text_input"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}

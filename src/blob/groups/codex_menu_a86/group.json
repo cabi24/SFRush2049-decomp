@@ -1,0 +1,16 @@
+{
+  "members": [
+    "menu_option_toggle"
+  ],
+  "context": [
+    "format_string_parse"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "menu_option_toggle"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "provenance": "Complete native menu caller with actual accepted format_string_parse context; coordinator D independently verifies all body words and each original switch table through canonical disjoint window placement."
+}

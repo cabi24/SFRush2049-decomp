@@ -1,0 +1,30 @@
+{
+  "source_sha256": "6c925896d8f82e07bc227dfbe25806d8da619cecf54fcf4efbc1a326b595f909",
+  "manifest_sha256": "f0f2df6553c25d78644a521107bb0efaebcf2d9303f51c73b4a6a638fba5aced",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "comparisons": {
+    "menu_option_toggle": {
+      "differing": 0,
+      "total": 79,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x18 at +0x30",
+        ".rodata+0x18 at +0x38"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "format_string_parse": {
+      "differing": 0,
+      "total": 45,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x20",
+        ".rodata+0x0 at +0x28"
+      ],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+}

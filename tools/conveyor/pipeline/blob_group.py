@@ -177,9 +177,102 @@ def _sext16(v):
     return v - 0x10000 if v & 0x8000 else v
 
 
+class _TableWindows:
+    """Verified disjoint object ranges placed at independent image addresses."""
+
+    def __init__(self, windows):
+        self.windows = tuple(windows)
+
+    def address(self, addend):
+        if addend % 4:
+            raise GroupError(f"unaligned jump table addend {addend:#x}")
+        for lo, hi, address in self.windows:
+            if lo <= addend < hi:
+                return address + addend - lo
+        raise GroupError(f"jump table addend {addend:#x} outside verified windows")
+
+
+def _local_address(placement, addend):
+    return (placement.address(addend) if isinstance(placement, _TableWindows)
+            else placement + addend)
+
+
+def _jump_table_windows(obj, references, rels, syms, data_target, image_bytes):
+    """Strict fallback for native .rodata tables linked into separate image windows.
+
+    References are (object table offset, original image table address), derived
+    from actual HI16/LO16 pairs. Every used object word must be a relocated
+    table entry, and every resulting window must equal its original bytes.
+    """
+    raw = _section_bytes(obj, ".rodata")
+    if not references or not rels or data_target is None:
+        raise GroupError(".rodata: multiple placements need complete jump table evidence")
+    starts = sorted({offset for offset, _ in references})
+    if starts[0] != 0:
+        raise GroupError(".rodata: unmapped data before first jump table")
+    addresses = {}
+    for offset, address in references:
+        if offset % 4 or address % 4:
+            raise GroupError(".rodata: unaligned jump table reference")
+        if offset < 0 or offset + 4 > len(raw):
+            raise GroupError(".rodata: jump table reference outside section")
+        if offset in addresses and addresses[offset] != address:
+            raise GroupError(".rodata: conflicting references to one jump table")
+        addresses[offset] = address
+    entries = {}
+    text_ndx = _sections(obj)[".text"][0]
+    for offset, kind, name in rels:
+        if offset % 4 or offset < 0 or offset + 4 > len(raw):
+            raise GroupError(".rodata: unaligned or out-of-window table relocation")
+        if offset in entries:
+            raise GroupError(".rodata: overlapping table relocations")
+        if kind != "R_MIPS_32":
+            raise GroupError(f".rodata: unsupported table relocation {kind}")
+        symbol = syms.get(name)
+        if name != ".text" and (not symbol or symbol[1] != text_ndx):
+            raise GroupError(f".rodata: table entry {name} is not covered text")
+        addend = struct.unpack(">I", raw[offset:offset + 4])[0]
+        object_target = addend if name == ".text" else symbol[0] + addend
+        if object_target % 4:
+            raise GroupError(".rodata: unaligned table text target")
+        target = data_target(name, addend)
+        if target % 4:
+            raise GroupError(".rodata: unaligned image table target")
+        entries[offset] = struct.pack(">I", target & 0xFFFFFFFF)
+    used = max(entries) + 4
+    if set(entries) != set(range(0, used, 4)):
+        raise GroupError(".rodata: unmapped data between jump table entries")
+    if any(raw[used:]):
+        raise GroupError(".rodata: nonzero unmapped data after jump tables")
+    if starts[-1] >= used:
+        raise GroupError(".rodata: jump table reference outside relocated windows")
+    windows = []
+    for i, lo in enumerate(starts):
+        hi = starts[i + 1] if i + 1 < len(starts) else used
+        address = addresses[lo]
+        expected = b"".join(entries[o] for o in range(lo, hi, 4))
+        if address + len(expected) > 0x100000000:
+            raise GroupError(".rodata: image table window overflows address space")
+        windows.append((lo, hi, address))
+    for i, (lo, hi, address) in enumerate(windows):
+        for other_lo, other_hi, other_address in windows[:i]:
+            if max(address, other_address) < min(address + hi - lo,
+                                                other_address + other_hi - other_lo):
+                raise GroupError(".rodata: overlapping image jump table windows")
+        expected = b"".join(entries[o] for o in range(lo, hi, 4))
+        if image_bytes(address, hi - lo) != expected:
+            raise GroupError(f".rodata: jump table window at {address:#010x} differs from image")
+    return _TableWindows(windows)
+
+
 def _local_data_bases(obj, rels, syms, in_member, image_word, image_bytes,
-                      known=lambda name: None, relocated=None, data_target=None):
-    """{section name: image address} for the unit's own data sections.
+                      known=lambda name: None, relocated=None, data_target=None,
+                      table_member=None):
+    """Verified placements for the unit's own data sections.
+
+    Ordinary placements are one section base. Only after that existing proof
+    refuses a .rodata section can complete native jump-table evidence select
+    independent _TableWindows placements. All covered context pairs then count.
 
     A function-local static lives in the unit's .data, so its relocations name
     a section of this object, not an image symbol. The section's image address
@@ -238,23 +331,61 @@ def _local_data_bases(obj, rels, syms, in_member, image_word, image_bytes,
             raise GroupError(f"unsupported {rtype} against {section} at .text+0x{offset:x}")
     bases = {}
     for section, found in candidates.items():
-        if len(found) != 1:
-            raise GroupError(f"{section}: relocation sites disagree on its image address "
-                             f"{sorted(hex(b) for b in found)}")
-        base = found.pop()
-        data = bytearray(_section_bytes(obj, section))
-        for off, rtype, name in relocated.get(section, []):
-            if rtype != "R_MIPS_32" or data_target is None:
-                raise GroupError(f"{section}: {rtype} inside the section is not supported")
-            addend = struct.unpack(">I", data[off:off + 4])[0]
-            data[off:off + 4] = struct.pack(">I", data_target(name, addend) & 0xFFFFFFFF)
-        data = bytes(data)
-        used = max(reach[section], len(data.rstrip(b"\0")))
-        used = min((used + 3) & ~3, len(data))
-        retail = image_bytes(base, used)
-        if retail != data[:used]:
-            raise GroupError(f"{section}: {used} bytes at 0x{base:08x} differ from the image")
-        bases[section] = base
+        # Try the original contiguous-section proof first. In particular, a
+        # successful old path never examines a context's own partial pairs.
+        if len(found) == 1:
+            base = next(iter(found))
+            data = bytearray(_section_bytes(obj, section))
+            for off, rtype, name in relocated.get(section, []):
+                if rtype != "R_MIPS_32" or data_target is None:
+                    raise GroupError(f"{section}: {rtype} inside the section is not supported")
+                addend = struct.unpack(">I", data[off:off + 4])[0]
+                data[off:off + 4] = struct.pack(">I", data_target(name, addend) & 0xFFFFFFFF)
+            data = bytes(data)
+            used = max(reach[section], len(data.rstrip(b"\0")))
+            used = min((used + 3) & ~3, len(data))
+            if image_bytes(base, used) == data[:used]:
+                bases[section] = base
+                continue
+            refusal = GroupError(f"{section}: {used} bytes at 0x{base:08x} differ from the image")
+        else:
+            refusal = GroupError(f"{section}: relocation sites disagree on its image address "
+                                 f"{sorted(hex(b) for b in found)}")
+        if section != ".rodata" or table_member is None:
+            raise refusal
+        references, table_pending, table_sites = [], [], set()
+        for offset, kind, name in rels:
+            own, value = section_of(name)
+            if own != section:
+                continue
+            if not table_member(offset):
+                raise GroupError(".rodata: reference outside covered text in multi-window group")
+            if offset % 4 or offset < 0 or offset + 4 > len(text):
+                raise GroupError(".rodata: unaligned or invalid text relocation site")
+            if offset in table_sites:
+                raise GroupError(".rodata: duplicate text relocation site")
+            table_sites.add(offset)
+            if kind == "R_MIPS_HI16":
+                table_pending.append((offset, name))
+            elif kind == "R_MIPS_LO16":
+                his = [h for h, n in table_pending if n == name]
+                if not his:
+                    raise GroupError(".rodata LO16 has no paired HI16")
+                table_pending = [(h, n) for h, n in table_pending if n != name]
+                for h in his:
+                    ours = value + ((word(h) & 0xFFFF) << 16) + _sext16(word(offset) & 0xFFFF)
+                    retail = ((image_word(h) & 0xFFFF) << 16) + _sext16(image_word(offset) & 0xFFFF)
+                    references.append((ours, retail & 0xFFFFFFFF))
+            else:
+                raise GroupError(f"unsupported {kind} against .rodata")
+        if table_pending:
+            raise GroupError(".rodata has unpaired HI16 references")
+        if len({(address - offset) & 0xFFFFFFFF
+                for offset, address in references}) <= 1:
+            raise refusal
+        bases[section] = _jump_table_windows(
+            obj, references, relocated.get(section, []), syms,
+            data_target, image_bytes)
     return bases
 
 
@@ -386,7 +517,8 @@ def relocate(obj, slices, text_ndx, extern, members=None, image=None):
 
     local = _local_data_bases(obj, rels, syms, in_member, image_word, image_at, known,
                               relocated={o[len(".rel"):]: v for o, v in others.items()},
-                              data_target=data_target)
+                              data_target=data_target,
+                              table_member=lambda o: any(lo <= o < hi for lo, hi, _ in covered))
     sec_index = {ndx: name for name, (ndx, _, _) in _sections(obj).items()
                  if name in local}
 
@@ -395,14 +527,14 @@ def relocate(obj, slices, text_ndx, extern, members=None, image=None):
         if name == ".text":
             return text_addr(addend)
         if name in local:
-            return local[name] + addend
+            return _local_address(local[name], addend)
         if sym and sym[1] == text_ndx:
             return text_addr(sym[0] + addend)
         addr = known(name)
         if addr is not None:
             return addr + addend
         if sym and sym[1] in sec_index:
-            return local[sec_index[sym[1]]] + sym[0] + addend
+            return _local_address(local[sec_index[sym[1]]], sym[0] + addend)
         raise GroupError(f"unresolved symbol {name}")
 
     def word(o):

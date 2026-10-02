@@ -1,0 +1,29 @@
+{
+  "function": "func_800BFD8C",
+  "words_differing": 145,
+  "strict_words_differing": 145,
+  "target_words": 213,
+  "candidate_words": 215,
+  "verdict": "mixed(constant:1, structural:16, schedule:1, register:92)",
+  "frame_delta": 0,
+  "lanes": [
+    {
+      "class": "pool",
+      "slot": 4,
+      "rotation": null
+    },
+    {
+      "class": "fp-pool",
+      "slot": 3,
+      "rotation": null
+    },
+    {
+      "class": "fp-temp",
+      "slot": 23,
+      "rotation": null
+    }
+  ],
+  "owning_pass": "unknown",
+  "ownership_basis": "none",
+  "lever": "reuse-an-existing-local-as-carrier"
+}

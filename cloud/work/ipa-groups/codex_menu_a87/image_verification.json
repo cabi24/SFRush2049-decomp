@@ -1,0 +1,4 @@
+{
+  "canonical_image_placement": "REFUSED",
+  "reason": ".rodata: relocation sites disagree on its image address ['0x80123c20', '0x801240ac']"
+}

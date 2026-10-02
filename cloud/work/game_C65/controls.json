@@ -1,0 +1,104 @@
+[
+  {
+    "function": "sound_position_update.state_capture",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 5945,
+    "linked": {
+      "differing": 105,
+      "total": 111,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "4c029d10fc4e55e2affe1215280cb924886b951938055f7791514bc3d076e8a1",
+    "target_sha256": "e047beee2efdc32159e0774e5daf146ca2e75f544773d3087a3120583b9a19a1"
+  },
+  {
+    "function": "sound_position_update.no_default",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 5945,
+    "linked": {
+      "differing": 105,
+      "total": 111,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "b6290c6ac97d63bc601d84e841e6cf3dad29fe16c52efb221e79b940c187ed2e",
+    "target_sha256": "e047beee2efdc32159e0774e5daf146ca2e75f544773d3087a3120583b9a19a1"
+  },
+  {
+    "function": "sound_position_update.state_if",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 5420,
+    "linked": {
+      "differing": 89,
+      "total": 111,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "d8d9f35cbb67eabecdbce86054db05b2306c7cdd4fe03d45fa2224ce679b4ccb",
+    "target_sha256": "e047beee2efdc32159e0774e5daf146ca2e75f544773d3087a3120583b9a19a1"
+  },
+  {
+    "function": "sound_position_update.phase_capture",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 6195,
+    "linked": {
+      "differing": 104,
+      "total": 111,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "a294045aabcde772d6a0b278b1e63c1718422c52b3c52dda1ceaa40b6ab4bba7",
+    "target_sha256": "e047beee2efdc32159e0774e5daf146ca2e75f544773d3087a3120583b9a19a1"
+  },
+  {
+    "function": "sound_position_update.O3",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 5945,
+    "linked": {
+      "differing": 105,
+      "total": 111,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "101885a02e72beb3890b9f22048443105a2d3426282f8db70fd68a15c48b98c9",
+    "target_sha256": "e047beee2efdc32159e0774e5daf146ca2e75f544773d3087a3120583b9a19a1"
+  },
+  {
+    "function": "sound_position_update.request_boolean",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 3310,
+    "linked": {
+      "differing": 107,
+      "total": 111,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 4
+    },
+    "source_sha256": "46c61a5d1d4924b29db75d628d06a74511a84f9e99cdd186ec163754aedf09c6",
+    "target_sha256": "e047beee2efdc32159e0774e5daf146ca2e75f544773d3087a3120583b9a19a1"
+  }
+]

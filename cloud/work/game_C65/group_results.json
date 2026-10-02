@@ -1,0 +1,25 @@
+[
+  {
+    "variant": "real_group",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "93aaf5caa9ee57ae2ec3110d89cde3ceddb5e12456a47ec3941e35e93a424125",
+    "linked": {
+      "sound_position_update": {
+        "differing": 102,
+        "total": 111,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "func_80091B00": {
+        "differing": 25,
+        "total": 42,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    }
+  }
+]

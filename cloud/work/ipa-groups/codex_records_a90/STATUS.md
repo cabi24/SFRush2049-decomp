@@ -1,0 +1,5 @@
+# A90 — genuine full selector-record checksum caller, nonmatch
+
+First full source func_800CD8EC@800CD8EC,372 bytes/93 words, frozen to honor the coordinator tooling priority. Actual accepted format_string_parse is unclaimed genuine context, only caller is kept externally. Literal flags `-g0 -O3 -mips2 -G 0 -non_shared`. Fresh canonical caller14/93, no extras or exceptions; helper0/45 has its two known own-table references. Claims empty.
+
+Actual u8 mode selects true96-byte records with embedded checksum at+140 for0..5 or-1108 for19..24; modes6..13 use12-byte records checksum+1476, modes14..17 use64-byte records checksum+396; all other modes use24-byte records checksum+1212. Hash lengths are record size minus4, with original slot calls consuming the whole record. Resource.data is reached through the real Handle/Object+44/Resource chain. No fake bounds/default behavior, source padding, controls, stand-in groups, or claims. Frozen sourceSHAd5a6d0ede68be040581fa78f98b19970b3f67e08b42525199bafa9f84faee558, proofverification.json.

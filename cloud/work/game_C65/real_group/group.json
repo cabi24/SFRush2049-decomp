@@ -1,0 +1,17 @@
+{
+  "members": [
+    "sound_position_update"
+  ],
+  "context": [
+    "func_80091B00"
+  ],
+  "claims": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "sound_position_update",
+    "func_80091B00"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+}

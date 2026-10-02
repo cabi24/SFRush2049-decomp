@@ -1,0 +1,197 @@
+[
+  {
+    "variant": "scoped",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "d7a78ee30ff565dc430dad1f0a963542c2064157298eae23b51a48c8c90f3c2f",
+    "linked": {
+      "func_800BFD8C": {
+        "differing": 149,
+        "total": 213,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 1
+      },
+      "func_8009C3F8": {
+        "differing": 92,
+        "total": 113,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "camera_update_c": {
+        "differing": 7,
+        "total": 9,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "select_screen_update": {
+        "differing": 7,
+        "total": 9,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    }
+  },
+  {
+    "variant": "weights",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "83f1d374e036c70050352a04e4a4d033d81b0c8fba26cc9af811f926580379e3",
+    "linked": {
+      "func_800BFD8C": {
+        "differing": 156,
+        "total": 213,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 5
+      },
+      "func_8009C3F8": {
+        "differing": 92,
+        "total": 113,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "camera_update_c": {
+        "differing": 7,
+        "total": 9,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "select_screen_update": {
+        "differing": 7,
+        "total": 9,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    }
+  },
+  {
+    "variant": "typed",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "4d3fdb161566a142946148c6a636a3145dc77bd47fd4a4359cb6f5c08610fe2a",
+    "linked": {
+      "func_800BFD8C": {
+        "differing": 153,
+        "total": 213,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 1
+      },
+      "func_8009C3F8": {
+        "differing": 92,
+        "total": 113,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "camera_update_c": {
+        "differing": 7,
+        "total": 9,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "select_screen_update": {
+        "differing": 7,
+        "total": 9,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    }
+  },
+  {
+    "variant": "dot_linear",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "3733208c97fe5a86440f8603edd2ccb38a3f64c5deb455ada518ca193659fb12",
+    "linked": {
+      "func_800BFD8C": {
+        "differing": 143,
+        "total": 213,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 1
+      },
+      "func_8009C3F8": {
+        "differing": 92,
+        "total": 113,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "camera_update_c": {
+        "differing": 7,
+        "total": 9,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "select_screen_update": {
+        "differing": 7,
+        "total": 9,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    }
+  },
+  {
+    "variant": "loop_pointer",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "622d44f8510036863eb39eb6abe0f7ccd86f3de022986ea055a748818a322a68",
+    "linked": {
+      "func_800BFD8C": {
+        "differing": 155,
+        "total": 213,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 3
+      },
+      "func_8009C3F8": {
+        "differing": 92,
+        "total": 113,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "camera_update_c": {
+        "differing": 7,
+        "total": 9,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "select_screen_update": {
+        "differing": 7,
+        "total": 9,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    }
+  }
+]

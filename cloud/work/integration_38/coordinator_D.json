@@ -1,0 +1,37 @@
+{
+  "functions": [
+    "menu_option_toggle",
+    "menu_text_input",
+    "func_800A78BC"
+  ],
+  "new_code_bytes": 916,
+  "image_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d",
+  "rom_sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+  "rom_exit": 0,
+  "pytest_exit": 0,
+  "pytest_passed": 751,
+  "pytest_skipped": 533,
+  "blob_locked": 621,
+  "static_source_locked": 123,
+  "coverage": {
+    "static_functions": 120,
+    "static_total": 230,
+    "static_bytes": 28732,
+    "static_total_bytes": 61440,
+    "game_functions": 621,
+    "game_total": 1216,
+    "game_bytes": 79860,
+    "game_total_bytes": 647072
+  },
+  "focused_tests": 47,
+  "real_corruption_drills_refused": 4,
+  "source_sha256": {
+    "menu_option_toggle": "6c925896d8f82e07bc227dfbe25806d8da619cecf54fcf4efbc1a326b595f909",
+    "menu_text_input": "410266b61f481e7f1262bb6f3bdffa397a80fd7793f9cfce0c43231a29b99dcb",
+    "func_800A78BC": "658c2fec5cc864422153246b311a2200bb098f5b5f065b0b56c948ed4b0680a1"
+  },
+  "published_group_source_sha256": {
+    "codex_menu_a86": "f8bd5ac8effe4fadc6862305f301151e460c5958ad9cecb8b7808266a26d67b2",
+    "codex_menu_a87": "958b2c13d1f30e060d6bb3937b4874b8fe27bab5dc8e0be72e89e2b839f6e942"
+  }
+}

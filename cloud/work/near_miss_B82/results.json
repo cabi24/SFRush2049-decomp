@@ -1,0 +1,30 @@
+[
+  {
+    "source": "func_800A1A60_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "1b0174e9a2d647603af8f89f3ba684547b6757ec65ce61fbca7990e374f46b15",
+    "comparison": {
+      "differing": 47,
+      "total": 85,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 88
+  },
+  {
+    "source": "func_800A1A60_O2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "7c3e3377488a611ccf8275d5748ceac0c36cfc6a39b6cfed83fdeed64131e70a",
+    "comparison": {
+      "differing": 47,
+      "total": 85,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 88
+  }
+]
