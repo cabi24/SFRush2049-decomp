@@ -404,6 +404,14 @@
     "verified": "image_gate",
     "verified_at": "2026-09-27"
   },
+  "crowd_cheer_play": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/crowd_cheer_play.c",
+    "source_sha256": "7a2163a516d79dc1f2f671c767df50c8fac48aacd261e44d2e0b00c157db1fb8",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-02"
+  },
   "draw_minimap": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/draw_minimap.c",
@@ -4089,6 +4097,14 @@
     "verified": "image_gate",
     "verified_at": "2026-09-28"
   },
+  "lap_count_select": {
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "src/blob/lap_count_select.c",
+    "source_sha256": "50ab5cfab12b2144581da874e51e7d8975ec2df0b6cc8b16152c3fa821668aaf",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-02"
+  },
   "leaderboard_update": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "codex_entity_helpers_a10",
@@ -4776,6 +4792,14 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-29"
+  },
+  "split_time_display": {
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "src/blob/split_time_display.c",
+    "source_sha256": "72c40c533fbb02baa73803129f027899c1e53085dccdc06f5a5ee2bcc85a2c57",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-02"
   },
   "stat_race_end": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",

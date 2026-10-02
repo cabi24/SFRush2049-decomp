@@ -1,0 +1,20 @@
+[
+  {
+    "function": "func_800D63EC",
+    "variant": "func_800D63EC.components",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 3464,
+    "linked": {
+      "differing": 81,
+      "total": 81,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "1780d7b75ba7c4c9511a30c28acca3a67f7361b0dd12b708338014d10be1a0a3",
+    "target_sha256": "e6b2dcba7ded4ec12da9c155a53bb7a420d3d06c63dbd3425e41916ec9b42265"
+  }
+]

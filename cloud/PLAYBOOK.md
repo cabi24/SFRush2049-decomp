@@ -278,3 +278,7 @@ D6's complete initializer describes the observed12-by-3-by-5 signed-word table d
 ### Real captured values and consumed update order preserve larger routines (2026-10-02)
 
 D8's actual initializer captures its one-time diagonal constant in a consumed local before writing three matrix elements; chained stores introduce an extra reload through real aliasing. Original vector/field store order completes the440-byte match. C44's624-byte nearest-point search needs original signed-half narrowing, genuine point-formal/counter reuse, branch-local coordinate loads and consumed next-point update order. Capture real loads and preserve data flow rather than adding pressure or dummy runtime work.
+
+### True dimensional expressions and recursive source recover complete routines (2026-10-02)
+
+A73's actual five-child rectangle builder matches at O3 when width/height differences are expressed at their real stores and the final call loop uses native child indexing. IDO hoists those consumed invariant differences naturally; an obsolete cursor declaration was removed and the resulting source independently reproved before publication. B51's forward/backward offset utilities preserve real tail-recursive argument updates and output pointer accesses. Native recursion reproduces the original8-byte frame and conversion work; one genuine sum operand-order correction closes its last instruction without extra work.

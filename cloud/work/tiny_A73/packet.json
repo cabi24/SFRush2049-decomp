@@ -1,0 +1,11 @@
+{
+  "targets": [
+    "crowd_cheer_play"
+  ],
+  "claims": [
+    "crowd_cheer_play"
+  ],
+  "final_source": "crowd_cheer_play.dimensions_expr.c",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "frozen": true
+}

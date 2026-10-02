@@ -1,0 +1,13 @@
+{
+  "claims": [
+    "lap_count_select",
+    "split_time_display"
+  ],
+  "files": {
+    "lap_count_select_final.c": "50ab5cfab12b2144581da874e51e7d8975ec2df0b6cc8b16152c3fa821668aaf",
+    "lap_count_select_flow.c": "de602166173c2a721c71a2f05549695207f111600da2106a45d3e7b1c38eadda",
+    "lap_count_select_native.c": "0bd31bbee04a6eebbd8b623bc9f64a97528c890aa09c4fc9e33a53033584e341",
+    "split_time_display_native.c": "72c40c533fbb02baa73803129f027899c1e53085dccdc06f5a5ee2bcc85a2c57",
+    "verification.json": "d44ac7f745a59b366932d561accffe34b32b03ea46d12e59db79fd37d73b0222"
+  }
+}

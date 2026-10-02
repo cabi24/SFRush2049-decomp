@@ -1,0 +1,34 @@
+[
+  {
+    "function": "lap_count_select",
+    "source": "lap_count_select_final.c",
+    "source_sha256": "50ab5cfab12b2144581da874e51e7d8975ec2df0b6cc8b16152c3fa821668aaf",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "comparison": {
+      "differing": 0,
+      "total": 83,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "compiled_text_word_count": 84,
+    "target_word_count": 83
+  },
+  {
+    "function": "split_time_display",
+    "source": "split_time_display_native.c",
+    "source_sha256": "72c40c533fbb02baa73803129f027899c1e53085dccdc06f5a5ee2bcc85a2c57",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "comparison": {
+      "differing": 0,
+      "total": 60,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "compiled_text_word_count": 60,
+    "target_word_count": 60
+  }
+]

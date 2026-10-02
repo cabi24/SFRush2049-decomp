@@ -1,0 +1,14 @@
+{
+  "func_800D63EC": {
+    "target_id": "func_800D63EC",
+    "address": 2148361196,
+    "population": "extracted",
+    "insn_count": 81,
+    "target_asm_sha": "8effc52220ca7d78281daaebdc9023e48d8f6c6f95df2e4c6238872ca3fb35fe",
+    "target_o_sha": "e6b2dcba7ded4ec12da9c155a53bb7a420d3d06c63dbd3425e41916ec9b42265",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "discovered"
+  }
+}

@@ -1,0 +1,1 @@
+Real main_menu_input caller and unchanged accepted empty func_800D52CC callee. No stand-ins. Claims empty: caller39/56 after compiler removes its actual original callee call, helper MATCH. Full packet cloud/work/tiny_A74/STATUS.md. Frozen no credit.

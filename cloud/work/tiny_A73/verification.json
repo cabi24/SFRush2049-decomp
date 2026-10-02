@@ -1,0 +1,16 @@
+{
+  "differing": 0,
+  "total": 100,
+  "unresolved": [],
+  "unverified": [],
+  "errors": [],
+  "extra_words": 0,
+  "source_sha256": "48abf9b0bf92fc2714a2b1d87b5710f4785cb8dad3b17b6466d3eadd850dd68b",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "compiled_words": 100,
+  "address": "0x800B39BC",
+  "size": 400,
+  "claims": [
+    "crowd_cheer_play"
+  ]
+}

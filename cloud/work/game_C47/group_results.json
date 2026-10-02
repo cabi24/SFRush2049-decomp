@@ -1,0 +1,64 @@
+[
+  {
+    "variant": "real_group",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source_sha256": "a08076e8337bddac078ab85edfe69bf1972be090f6bd3a3533728dc6f9b52090",
+    "linked": {
+      "func_800D63EC": {
+        "differing": 79,
+        "total": 81,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "func_8009211C": {
+        "differing": 0,
+        "total": 87,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "func_80091FBC": {
+        "differing": 0,
+        "total": 88,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    }
+  },
+  {
+    "variant": "real_group_arrays",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source_sha256": "a5871f10c257380257a14bdbcb9dffbda73a82449e6dbc745a2cf1a94156607e",
+    "linked": {
+      "func_800D63EC": {
+        "differing": 79,
+        "total": 81,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "func_8009211C": {
+        "differing": 0,
+        "total": 87,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "func_80091FBC": {
+        "differing": 0,
+        "total": 88,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    }
+  }
+]

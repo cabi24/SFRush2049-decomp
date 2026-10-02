@@ -1,0 +1,56 @@
+[
+  {
+    "function": "world_effect_update",
+    "variant": "world_effect_update.forward",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 3540,
+    "linked": {
+      "differing": 97,
+      "total": 114,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "123a22409cff013baf7aeed1dc7692f240e376452f386b0688e02b1d13dc265c",
+    "target_sha256": "e1a0f64774351ed99e42d4a9189913d979339443e319e032ef0475e2df354a4f"
+  },
+  {
+    "function": "world_effect_update",
+    "variant": "world_effect_update.o3",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 3540,
+    "linked": {
+      "differing": 97,
+      "total": 114,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "9d225c9270782f9c85230e7ba892775ca74c8d649c4cfdec6db39448b1ca0c52",
+    "target_sha256": "e1a0f64774351ed99e42d4a9189913d979339443e319e032ef0475e2df354a4f"
+  },
+  {
+    "function": "world_effect_update",
+    "variant": "world_effect_update.carriers",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 3540,
+    "linked": {
+      "differing": 97,
+      "total": 114,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "c9a09a28b0004f7cac21c7f0912fe97bd23d95845654983ef5118d677dd275f9",
+    "target_sha256": "e1a0f64774351ed99e42d4a9189913d979339443e319e032ef0475e2df354a4f"
+  }
+]

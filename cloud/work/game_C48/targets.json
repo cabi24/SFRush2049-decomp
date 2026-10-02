@@ -1,0 +1,14 @@
+{
+  "world_effect_update": {
+    "target_id": "world_effect_update",
+    "address": 2148460724,
+    "population": "extracted",
+    "insn_count": 114,
+    "target_asm_sha": "82c64bb121d83b9bb465bcbce8ce3fd0ed19634f9ac13beb853681c77daebeb2",
+    "target_o_sha": "e1a0f64774351ed99e42d4a9189913d979339443e319e032ef0475e2df354a4f",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "extent_repaired"
+  }
+}

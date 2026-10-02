@@ -5290,6 +5290,7 @@ sound_control:
 .section .text.crowd_cheer_play, "ax", @progbits
 .globl crowd_cheer_play
 crowd_cheer_play:
+    /* compiled from src/blob/crowd_cheer_play.c */
     .word 0x27BDFFD8
     .word 0x00E5082A
     .word 0xAFBF0024
