@@ -1,0 +1,71 @@
+{
+  "function": "func_800F7EB0",
+  "source_sha256": "974f4673ef146f3188acba103e8e7608a63bd5c27ce7e4be11f19d380f1cc0b1",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "target_bytes": 140,
+  "linked_text_bytes": 144,
+  "nonzero_extra_words": 0,
+  "target_sha256": "20066766ce1d991a438bc64495baaa0eb7e57d329371743a219ff68efe4aa956",
+  "linked_text_sha256": "002d7648fb959e5933e49988ef7ced3941dd48e55cda69164c9494130f3ec0e6",
+  "differences": [
+    {
+      "offset": "0x24",
+      "target": "0x37880",
+      "candidate": "0x3c018012"
+    },
+    {
+      "offset": "0x28",
+      "target": "0x3c018012",
+      "candidate": "0x37880"
+    },
+    {
+      "offset": "0x2c",
+      "target": "0xc4204618",
+      "candidate": "0x1e42821"
+    },
+    {
+      "offset": "0x30",
+      "target": "0x1e42821",
+      "candidate": "0xc4204618"
+    }
+  ],
+  "relocations": "\nRelocation section '.rel.text' at offset 0x218 contains 12 entries:\n Offset     Info    Type            Sym.Value  Sym. Name\n00000000  00000305 R_MIPS_HI16       00000000   D_8014A108\n00000004  00000306 R_MIPS_LO16       00000000   D_8014A108\n00000020  00000405 R_MIPS_HI16       00000000   D_80144018\n00000034  00000406 R_MIPS_LO16       00000000   D_80144018\n00000018  00000605 R_MIPS_HI16       00000000   D_80144DA8\n0000001c  00000606 R_MIPS_LO16       00000000   D_80144DA8\n00000024  00000505 R_MIPS_HI16       00000000   D_80124618\n00000030  00000506 R_MIPS_LO16       00000000   D_80124618\n00000014  00000705 R_MIPS_HI16       00000000   D_80151AC0\n00000050  00000706 R_MIPS_LO16       00000000   D_80151AC0\n00000008  00000705 R_MIPS_HI16       00000000   D_80151AC0\n0000000c  00000706 R_MIPS_LO16       00000000   D_80151AC0\n",
+  "symbols": {
+    "D_80124618": "0x80124618",
+    "D_80144018": "0x80144018",
+    "D_80144DA8": "0x80144da8",
+    "D_8014A108": "0x8014a108",
+    "D_80151AC0": "0x80151ac0"
+  },
+  "direct_callers": [
+    {
+      "function": "display_list_flush",
+      "index": 293,
+      "kind": "jal"
+    }
+  ],
+  "protected_manifest_entries": 23,
+  "method": "Fresh direct IDO compile; independent target parser and manifest hash; GNU ld/objcopy raw full-word comparison",
+  "verdict": "NONMATCH",
+  "accepted_coverage": false,
+  "source_path": "cloud/work/dot_array_reset/func_800F7EB0.c",
+  "base_commit": "a12daa63ae67c8dab3404efb666089c884dadfd4",
+  "address_resolution_note": "All five D_<hex> names directly encode addresses in native instructions; fallback addresses are explicitly shown, not inferred from unverified local sections.",
+  "host_test": {
+    "cases": 33693,
+    "result": "PASS",
+    "sanitizers": [
+      "AddressSanitizer",
+      "UndefinedBehaviorSanitizer"
+    ],
+    "scope": "All nonpositive signed16 counts and representative positive boundaries with seven float bit patterns; guards checked throughout32770 element arrays."
+  },
+  "source_locks_checked": 664,
+  "static_locks_checked": 161,
+  "independent_review": {
+    "verdict": "PASS as NONMATCH research",
+    "source_sha256": "974f4673ef146f3188acba103e8e7608a63bd5c27ce7e4be11f19d380f1cc0b1",
+    "raw_comparison": "Fresh IDO and GNU link reproduces four-word scheduling residual, full140-byte body and one zero alignment word",
+    "source_abi_semantics": "No argument leaf; signed-half count gated parallel arrays and3x5 signed bytes; no artificial operations"
+  }
+}
