@@ -1,0 +1,23 @@
+{
+  "function": "__scHandleRSP",
+  "source_sha256": "c1df6b45075e49f1a4a29d4e892c8aee26867f05b414cc7f507dc15a908d5c6d",
+  "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm",
+  "original_bytes": 380,
+  "true_symbol_bytes": 380,
+  "canonical_strict_including_stack": 0,
+  "full_word_differences": 0,
+  "extra_nonzero_words": 0,
+  "masks": 0,
+  "unresolved": [],
+  "unverified": [],
+  "errors": [],
+  "original_target_roundtrip": [
+    true,
+    null
+  ],
+  "object_sha256": "7639687aa6398750f99840ce0b89ad64515d279641266e5f50fc60b2c610acf4",
+  "current_module_pin": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "production_recipe_migration_safe": false,
+  "accepted_credit": 0,
+  "research_object_match": true
+}

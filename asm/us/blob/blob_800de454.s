@@ -1497,6 +1497,7 @@ mode_select_handler:
 .section .text.mode_select_input, "ax", @progbits
 .globl mode_select_input
 mode_select_input:
+    /* compiled from src/blob/mode_select_input.c */
     .word 0x27BDFFE0
     .word 0xAFBF001C
     .word 0xC6040004

@@ -1,0 +1,42 @@
+Members:
+mode_select_input:
+  MATCH
+
+Context (informational; excluded from exit status):
+entity_transform_calc:
+  MATCH
+client_sync:
+  MATCH
+entity_hierarchy_update:
+  MATCH
+func_80091BA8:
+  MATCH
+func_80091B00:
+    +0x01c  want a06f0003                               got 2418ffff                             
+    +0x020  want 2418ffff                               got a06f0003                             
+    +0x03c  want a06e001b                               got 240fffff                             
+    +0x040  want 240fffff                               got a46f0018                             
+    +0x044  want a46f0018                               got a06e001b                             
+    +0x05c  want a0790033                               got 240effff                             
+    +0x060  want 240effff                               got a46e0030                             
+    +0x064  want a46e0030                               got a0790033                             
+    +0x07c  want a078004b                               got 2419ffff                             
+    +0x080  want 2419ffff                               got a4790048                             
+    +0x084  want a4790048                               got a078004b                             
+  11/42 words differ
+scheduler_recv:
+  MATCH
+func_800DFBA0:
+    +0x000  want 3c0142a0                               got 27bdff78                             
+    +0x004  want 4481e000                               got f7b40018                             
+    +0x00c  want 4481b000                               got 44807000                             
+    +0x010  want 3c014080                               got 4481a000                             
+    +0x014  want 44808000                               got 3c014080                             
+    +0x018  want 4481a000                               got 44819000                             
+    +0x01c  want 3c014000                               got afbf004c                             
+    +0x020  want 44819000                               got afb20048                             
+    +0x024  want 27bdffe8                               got afb10044                             
+    +0x028  want 3c013f80                               got afb00040                             
+    +0x02c  want afbf0014                               got f7bc0038                             
+    +0x030  want 44817000                               got f7ba0030                             
+  293/298 words differ (44 extra words (nonzero beyond target length); unpaired R_MIPS_HI16 for D_801406C0 at .text+0x958)

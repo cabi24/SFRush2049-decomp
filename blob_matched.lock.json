@@ -4454,6 +4454,15 @@
     "verified": "image_gate",
     "verified_at": "2026-10-01"
   },
+  "mode_select_input": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "codex_mode_layers_inline_a168",
+    "source": "src/blob/groups/codex_mode_layers_inline_a168/group.json",
+    "source_sha256": "3b803b8cfdd6d5c85f2199778e13db578cb5b1e7375e136dfda3b25796d1e6ea",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-02"
+  },
   "model_bounds_calc": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "func_8008B640",

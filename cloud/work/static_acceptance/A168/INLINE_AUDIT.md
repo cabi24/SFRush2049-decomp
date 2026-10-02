@@ -1,0 +1,7 @@
+# Actual hierarchy wrapper expansion
+
+Original mode_select_input800DFB08–800DFBA0 first checks/stores level4 and calls real client_sync. After comparing/storing style8, its800DFB50–800DFB8C runtime operations construct the real80142728 queue, capture node handle0 inS1 before blocking receive, call original osRecvMesg, set the three -2.0 values, pass style through the true fourth float input of entity_transform_calc, and osJamMesg the same queue. There is no call to entity_hierarchy_update80091F34.
+
+Full original entity_hierarchy_update80091F34–80091FBC has exactly those receive→sentinel transform→jam operations using actual captured handle/value formals. Its prologue and saved float registers belong to the standalone wrapper and are absent from the original mode helper. Thus the helper contains the entire genuine wrapper runtime body, not a guessed subset or frame-size inference. Source calls this existing real function and marks its actual definition __inline; the ordinary exported34-word wrapper remains native exact under the same literal flags. This tests a real observed expansion contract; no claim that annotation syntax itself was recovered from original source.
+
+The unchanged accepted A114 prefix is the provenance for wrapper, transform, lookup, allocation and queue behavior. New source modifies only the genuine wrapper declaration's inline annotation and appends the entire real caller/helper. Message allocator's existing11-word residual is preserved and never waived.

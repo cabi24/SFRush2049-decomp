@@ -2,6 +2,7 @@
 # Converted ROM TUs use their verified optimization and debug levels;
 # different code generation fails the promotion SHA-1 gate.
 ifeq ($(COMPILER),ido)
+$(BUILD_DIR)/src/rom/lib_1050_sdk.o: CFLAGS := $(filter-out -g -g0 -g1 -g2 -g3,$(subst -O2,-O1,$(CFLAGS))) -g1
 $(BUILD_DIR)/src/rom/lib_21f0.o: CFLAGS := $(filter-out -g -g0 -g1 -g2 -g3,$(subst -O2,-O1,$(CFLAGS))) -g1
 $(BUILD_DIR)/src/rom/lib_2cf0.o: CFLAGS := $(filter-out -g -g0 -g1 -g2 -g3,$(subst -O2,-O1,$(CFLAGS))) -g1
 $(BUILD_DIR)/src/rom/lib_3140.o: CFLAGS := $(filter-out -g -g0 -g1 -g2 -g3,$(subst -O2,-O1,$(CFLAGS))) -g1

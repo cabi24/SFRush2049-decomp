@@ -4,6 +4,7 @@
  * passthrough lines. */
 
 #include "rom_tu.h"
+#include "static_scheduler_context.h"
 
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/osCreateScheduler.s")

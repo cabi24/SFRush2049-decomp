@@ -1,0 +1,10 @@
+{
+  "function": "mode_select_input",
+  "source_sha256": "099ac1306bc54a6a055a80e34a31a44b02dfbe51f282a361607291394acfd322",
+  "worker_manifest_sha256": "3d57df4f99444cd87fda13f917e39629d5a0def4f3500dcbd2b339545b28cf4f",
+  "strict_independent_claim": "MATCH",
+  "native_bytes": 152,
+  "unclaimed_contexts_may_differ": true,
+  "eligible_new_game_functions": 1,
+  "accepted_credit": 0
+}

@@ -1,4 +1,36 @@
 {
+  "cloud/matches/__scHandleRDP.c:__scHandleRDP": {
+    "body_sha256": "a0c8a9b648566ee205a7e4ed82841c3569fefb6842fb5e3ec4a4e32695a157aa",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm",
+    "target_id": "__scHandleRDP",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-02"
+  },
+  "cloud/matches/__scHandleRSP.c:__scHandleRSP": {
+    "body_sha256": "756aacf0caf5e0ac8255be8c0838a13935ad77febb1cac65c4df29a2f21d9baa",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm",
+    "target_id": "__scHandleRSP",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-02"
+  },
+  "cloud/matches/__scTaskReady.c:__scTaskReady": {
+    "body_sha256": "a8d027d4fa9550433c8f9f4831f12cd72932e2dc1a5162463e680da1121b5c52",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm",
+    "target_id": "__scTaskReady",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-02"
+  },
+  "cloud/matches/osScAddClient.c:osScAddClient": {
+    "body_sha256": "681eda4b818afab2c30aa12926fce63da2ed0fa0f23c8fbed8f84992c7036226",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm",
+    "target_id": "osScAddClient",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-02"
+  },
   "src/libultra/os_ai.c:__osAiDeviceBusy": {
     "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
