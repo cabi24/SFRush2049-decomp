@@ -1,0 +1,34 @@
+[
+  {
+    "name": "func_800BDA24",
+    "address": "0x800BDA24",
+    "bytes": 132,
+    "source": "cloud/work/near_miss_B41/func_800BDA24_seed.c",
+    "source_sha256": "a1a34a7e71332d5fcd8dc34c863656fd4682e8acf6fcf4b0510f6f1645d7a2e6",
+    "target_sha256": "aa24add219486cb38f59f2435796fdd908fe32311220fdd4de6b03645f778c86",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_stack_sensitive_score": 0,
+    "raw_differing": 0,
+    "raw_extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "lock_unlocked_at_freeze": true
+  },
+  {
+    "name": "func_800BE6A4",
+    "address": "0x800BE6A4",
+    "bytes": 160,
+    "source": "cloud/work/near_miss_B41/func_800BE6A4_cursor.c",
+    "source_sha256": "ab8fedb39371229834e7978ab506bd164246a72f8ad0229f7d45a3972151ad7f",
+    "target_sha256": "00710f1dbfb5750584cf4dcbffd653280b810bcc283815a1b3dd7c131bea38a8",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_stack_sensitive_score": 0,
+    "raw_differing": 0,
+    "raw_extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "lock_unlocked_at_freeze": true
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "name": "full typed body, reused final Ref local",
+    "strict_diff": 139,
+    "size": 145,
+    "extra": 1
+  },
+  {
+    "name": "direct actual final Ref/data chain",
+    "strict_diff": 42,
+    "size": 144,
+    "extra": 0
+  },
+  {
+    "name": "true initial Data intermediary",
+    "strict_diff": 106,
+    "size": 144,
+    "extra": 0
+  },
+  {
+    "name": "explicit global record base then index",
+    "strict_diff": 42,
+    "size": 144,
+    "extra": 0
+  },
+  {
+    "name": "direct initial player-ref field chain",
+    "strict_diff": 95,
+    "size": 144,
+    "extra": 0
+  }
+]

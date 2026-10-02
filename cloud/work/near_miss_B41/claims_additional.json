@@ -1,0 +1,17 @@
+{
+  "name": "func_800D0810",
+  "address": "0x800D0810",
+  "bytes": 132,
+  "source": "cloud/work/near_miss_B41/func_800D0810_preincrement.c",
+  "source_sha256": "b315e04cc332f6e8e49404779d1ecaf6b9ad93c8a4fbebed5571c4334a1f4b82",
+  "target_sha256": "1ed5a5cb5e06db065ae859ae9a232e6045fb528c6707aa561d7725a052c1b0a3",
+  "canonical_stack_sensitive_score": 0,
+  "raw_differing": 0,
+  "extra_words": 0,
+  "unverified": [],
+  "unresolved": [],
+  "errors": [],
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "derived_target_asm_sha256": "29295401823cba0fff2820b103d3404c45469645b436d418a9c55ab143bd9f42",
+  "target_roundtrip_full_unmasked": true
+}

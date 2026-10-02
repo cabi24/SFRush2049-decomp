@@ -1,0 +1,30 @@
+{
+  "assembly": "build/m2c_asm/func_800E2AC4.s",
+  "assembly_sha256": "5edfbbc974097906a46e7546a6506a6ab210cda846cc808e252d5d394f4d6d59",
+  "abi": "Single real state pointer a0; no calls or extra inputs.",
+  "fields": {
+    "coefficient_pointers": [
+      0,
+      4
+    ],
+    "position": 972,
+    "signed16_condition": 1012,
+    "f32_contiguous_fields": "1028..1068; native stride4",
+    "dt": 1588
+  },
+  "coefficient_fields": {
+    "pointer0": [
+      160,
+      168
+    ],
+    "pointer4": [
+      16
+    ]
+  },
+  "globals": [
+    "D_801243D8",
+    "D_801243DC"
+  ],
+  "selection": "Canonical section exists; current accepted name and address-interval checks absent; full prior name/address reports clear. Excludes active A/B reservations.",
+  "claims": []
+}

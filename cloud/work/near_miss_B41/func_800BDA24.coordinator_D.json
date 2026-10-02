@@ -1,0 +1,16 @@
+{
+  "function": "func_800BDA24",
+  "bytes": 132,
+  "source_sha256": "a1a34a7e71332d5fcd8dc34c863656fd4682e8acf6fcf4b0510f6f1645d7a2e6",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "canonical_D": "MATCH",
+  "image_identical": true,
+  "source_built_ROM_sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+  "pytest": {
+    "passed": 713,
+    "skipped": 518,
+    "exit": 0
+  },
+  "blob_locks": 600,
+  "static_locks": 123
+}

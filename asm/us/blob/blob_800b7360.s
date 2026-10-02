@@ -6842,6 +6842,7 @@ race_setup_1:
 .section .text.func_800BDA24, "ax", @progbits
 .globl func_800BDA24
 func_800BDA24:
+    /* compiled from src/blob/func_800BDA24.c */
     .word 0x240A00DF
     .word 0x240900FD
     .word 0x24080080

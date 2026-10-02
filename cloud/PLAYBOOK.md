@@ -258,3 +258,7 @@ A57 preserves the real box predicate, including its asymmetric y test, and consu
 ### Indexed records preserve original unsigned conversion loops (2026-10-01)
 
 C36's 72-byte viewport records contain a true bounds pointer and four float fields. Preserve actual unsigned-half to unsigned-word to float conversions and the original unsigned result conversion, including FCSR behavior. A genuine indexed record expression recovers the original induction register and tail schedule; replacing it with a pointer cursor leaves eleven real differences. The complete 808-byte routine matches without adding operations or changing the record/count globals.
+
+### Genuine cursors and increment-before-store indexing (2026-10-01)
+
+B41's encoded string copier keeps the actual destination return input intact through separate real input/output cursors. Preserve the 255 prefix, two-byte zero terminator and original ordinary byte-copy path. The state initializer's existing inner index increment precedes its actual matrix write; writing matrix[i][j-1] after increment reproduces retail pointer/store scheduling without added operations. The display-list getter preserves its original no-defined-result end opcode path. Recheck full archived packets immediately before reserving a target so new negative reports cannot be missed by an older shortlist.
