@@ -1,0 +1,19 @@
+{
+  "source_checkpoint": "df675c84",
+  "converted_segment": "0x9330",
+  "independent_canonical_ordinary_proof": "coordinator_ordinary_D.json",
+  "independent_canonical_full_recipe_proof": "coordinator_D.json",
+  "normal_pool_locks": {
+    "sinf": "ed02a0b5-c5a3-46ce-9650-6bf15d5129fe",
+    "cosf": "4d1fd667-3320-4957-b0bc-f75f15631a10"
+  },
+  "current_converted_passthrough_full_ROM_gate": true,
+  "rom_sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+  "pytest": {
+    "passed": 684,
+    "skipped": 483,
+    "exit": 0
+  },
+  "coverage_added": 0,
+  "macros_and_externs": "local to lib_9330; global compiler/header context untouched"
+}

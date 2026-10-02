@@ -1,0 +1,22 @@
+[
+  {
+    "function": "sinf",
+    "address": "0x80008730",
+    "words": 112,
+    "target_sha256": "51e5aa6c1edc07702c4f92838e1ced47594202b30d3ce5eec621e7e060de086f",
+    "gate": [
+      true,
+      null
+    ]
+  },
+  {
+    "function": "cosf",
+    "address": "0x800088f0",
+    "words": 90,
+    "target_sha256": "4d85fcdef870a78c63152eb7e1cc79e5880358461f691835aa1c2ff1a4d8dce0",
+    "gate": [
+      true,
+      null
+    ]
+  }
+]

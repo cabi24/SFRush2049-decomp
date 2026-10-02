@@ -1,0 +1,14 @@
+{
+  "source": "full_module.c",
+  "source_sha256": "2eb4b0088a662efa3f41db73c557a28bd34484752a5a54f1c560af625acd4b29",
+  "object_sha256": "2f198a804932686feaa003d6b7ae4a81e5c5c77f7a437ef522bd18cba7d284ba",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
+  "vram": "0x80008730",
+  "rom": "0x9330",
+  "size": 816,
+  "linked_byte_differences": 0,
+  "linked_text_sha256": "5696e5d1339e307b1038e087fa9d6dac0a84b367a64ee466cb445b9d6b514201",
+  "retail_text_sha256": "5696e5d1339e307b1038e087fa9d6dac0a84b367a64ee466cb445b9d6b514201",
+  "new_data_sections": false,
+  "private_object": "Rocky:~/agents/C/scratch/static-C22/full_module.final.o"
+}

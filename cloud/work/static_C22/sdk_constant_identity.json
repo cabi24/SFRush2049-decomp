@@ -1,0 +1,101 @@
+[
+  {
+    "function": "sinf",
+    "sdk_symbol": "P",
+    "actual_symbol": "gSinCoeffs",
+    "size": 40,
+    "sdk_byte_sha256": "cb3f0df4723dfab882bd0c5d292ba67f3d2407b0e6ffa58b125663f07d1b06c0",
+    "retail_byte_sha256": "cb3f0df4723dfab882bd0c5d292ba67f3d2407b0e6ffa58b125663f07d1b06c0",
+    "equal": true
+  },
+  {
+    "function": "sinf",
+    "sdk_symbol": "rpi",
+    "actual_symbol": "gTwoOverPi",
+    "size": 8,
+    "sdk_byte_sha256": "4a6d76ccf7bd278b33296336da2d1fa51f50aedad83b788c351b71346f432011",
+    "retail_byte_sha256": "4a6d76ccf7bd278b33296336da2d1fa51f50aedad83b788c351b71346f432011",
+    "equal": true
+  },
+  {
+    "function": "sinf",
+    "sdk_symbol": "pihi",
+    "actual_symbol": "gPiOver2Hi",
+    "size": 8,
+    "sdk_byte_sha256": "8cd5f2f98f8968e2480e375bde8910b8dd8d98a18aa71fc7700d7e3b1011f752",
+    "retail_byte_sha256": "8cd5f2f98f8968e2480e375bde8910b8dd8d98a18aa71fc7700d7e3b1011f752",
+    "equal": true
+  },
+  {
+    "function": "sinf",
+    "sdk_symbol": "pilo",
+    "actual_symbol": "gPiOver2Lo",
+    "size": 8,
+    "sdk_byte_sha256": "99d4b0634cb88e996288b87158849dbf497ab94372672fb6bd75f1014ba463a6",
+    "retail_byte_sha256": "99d4b0634cb88e996288b87158849dbf497ab94372672fb6bd75f1014ba463a6",
+    "equal": true
+  },
+  {
+    "function": "cosf",
+    "sdk_symbol": "P",
+    "actual_symbol": "gCosCoeffs",
+    "size": 40,
+    "sdk_byte_sha256": "cb3f0df4723dfab882bd0c5d292ba67f3d2407b0e6ffa58b125663f07d1b06c0",
+    "retail_byte_sha256": "cb3f0df4723dfab882bd0c5d292ba67f3d2407b0e6ffa58b125663f07d1b06c0",
+    "equal": true
+  },
+  {
+    "function": "cosf",
+    "sdk_symbol": "rpi",
+    "actual_symbol": "gCosAngleScale",
+    "size": 8,
+    "sdk_byte_sha256": "4a6d76ccf7bd278b33296336da2d1fa51f50aedad83b788c351b71346f432011",
+    "retail_byte_sha256": "4a6d76ccf7bd278b33296336da2d1fa51f50aedad83b788c351b71346f432011",
+    "equal": true
+  },
+  {
+    "function": "cosf",
+    "sdk_symbol": "pihi",
+    "actual_symbol": "gCosPiOver2Hi",
+    "size": 8,
+    "sdk_byte_sha256": "8cd5f2f98f8968e2480e375bde8910b8dd8d98a18aa71fc7700d7e3b1011f752",
+    "retail_byte_sha256": "8cd5f2f98f8968e2480e375bde8910b8dd8d98a18aa71fc7700d7e3b1011f752",
+    "equal": true
+  },
+  {
+    "function": "cosf",
+    "sdk_symbol": "pilo",
+    "actual_symbol": "gCosPiOver2Lo",
+    "size": 8,
+    "sdk_byte_sha256": "99d4b0634cb88e996288b87158849dbf497ab94372672fb6bd75f1014ba463a6",
+    "retail_byte_sha256": "99d4b0634cb88e996288b87158849dbf497ab94372672fb6bd75f1014ba463a6",
+    "equal": true
+  },
+  {
+    "actual_symbol": "gNaN",
+    "sdk_symbol": "zero.f",
+    "sdk_authority": "reference/repos/ultralib/src/gu/sinf.c and cosf.c",
+    "size": 4,
+    "sdk_byte_sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "retail_byte_sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "equal": true
+  },
+  {
+    "actual_symbol": "gCosOne",
+    "sdk_symbol": "zero.f",
+    "sdk_authority": "reference/repos/ultralib/src/gu/sinf.c and cosf.c",
+    "size": 4,
+    "sdk_byte_sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "retail_byte_sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "equal": true
+  },
+  {
+    "actual_symbol": "gNaNf",
+    "sdk_symbol": "__libm_qnan_f",
+    "sdk_authority": "reference/repos/ultralib/src/gu/libm_vals.s",
+    "size": 4,
+    "sdk_byte_sha256": "2a9e125bce2ef1f802f30b9f5d6caa5b576e421b36a451514cd6d58db0e09165",
+    "retail_byte_sha256": "2a9e125bce2ef1f802f30b9f5d6caa5b576e421b36a451514cd6d58db0e09165",
+    "equal": true
+  }
+]

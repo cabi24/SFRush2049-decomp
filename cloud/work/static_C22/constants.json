@@ -1,0 +1,98 @@
+{
+  "gSinCoeffs": {
+    "address": "0x8002d750",
+    "size": 40,
+    "sha256": "cb3f0df4723dfab882bd0c5d292ba67f3d2407b0e6ffa58b125663f07d1b06c0",
+    "values": [
+      1.0,
+      -0.16666659550427756,
+      0.008333066246082155,
+      -0.0001980960290193795,
+      2.605780637968037e-06
+    ]
+  },
+  "gTwoOverPi": {
+    "address": "0x8002d778",
+    "size": 8,
+    "sha256": "4a6d76ccf7bd278b33296336da2d1fa51f50aedad83b788c351b71346f432011",
+    "values": [
+      0.3183098861837907
+    ]
+  },
+  "gPiOver2Hi": {
+    "address": "0x8002d780",
+    "size": 8,
+    "sha256": "8cd5f2f98f8968e2480e375bde8910b8dd8d98a18aa71fc7700d7e3b1011f752",
+    "values": [
+      3.1415926218032837
+    ]
+  },
+  "gPiOver2Lo": {
+    "address": "0x8002d788",
+    "size": 8,
+    "sha256": "99d4b0634cb88e996288b87158849dbf497ab94372672fb6bd75f1014ba463a6",
+    "values": [
+      3.178650954705639e-08
+    ]
+  },
+  "gNaN": {
+    "address": "0x8002d790",
+    "size": 4,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "values": [
+      0.0
+    ]
+  },
+  "gCosCoeffs": {
+    "address": "0x8002d7a0",
+    "size": 40,
+    "sha256": "cb3f0df4723dfab882bd0c5d292ba67f3d2407b0e6ffa58b125663f07d1b06c0",
+    "values": [
+      1.0,
+      -0.16666659550427756,
+      0.008333066246082155,
+      -0.0001980960290193795,
+      2.605780637968037e-06
+    ]
+  },
+  "gCosAngleScale": {
+    "address": "0x8002d7c8",
+    "size": 8,
+    "sha256": "4a6d76ccf7bd278b33296336da2d1fa51f50aedad83b788c351b71346f432011",
+    "values": [
+      0.3183098861837907
+    ]
+  },
+  "gCosPiOver2Hi": {
+    "address": "0x8002d7d0",
+    "size": 8,
+    "sha256": "8cd5f2f98f8968e2480e375bde8910b8dd8d98a18aa71fc7700d7e3b1011f752",
+    "values": [
+      3.1415926218032837
+    ]
+  },
+  "gCosPiOver2Lo": {
+    "address": "0x8002d7d8",
+    "size": 8,
+    "sha256": "99d4b0634cb88e996288b87158849dbf497ab94372672fb6bd75f1014ba463a6",
+    "values": [
+      3.178650954705639e-08
+    ]
+  },
+  "gCosOne": {
+    "address": "0x8002d7e0",
+    "size": 4,
+    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+    "values": [
+      0.0
+    ]
+  },
+  "gNaNf": {
+    "address": "0x8002d880",
+    "size": 4,
+    "sha256": "2a9e125bce2ef1f802f30b9f5d6caa5b576e421b36a451514cd6d58db0e09165",
+    "values": [
+      "NaN"
+    ]
+  }
+}
