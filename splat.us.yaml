@@ -122,7 +122,7 @@ segments:
       - [0x9190, asm]
       - [0x9230, c, rom/lib_9230]
       - [0x92F0, c, rom/lib_92f0]
-      - [0x9330, asm]
+      - [0x9330, c, rom/lib_9330]
       - [0x9660, c, rom/lib_9660]
       - [0x9820, c, rom/lib_9820]
       - [0x9AB0, c, rom/lib_9ab0]

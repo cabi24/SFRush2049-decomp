@@ -119,7 +119,7 @@ SECTIONS
         build/us/asm/us/9190.o(.text);
         build/us/src/rom/lib_9230.o(.text);
         build/us/src/rom/lib_92f0.o(.text);
-        build/us/asm/us/9330.o(.text);
+        build/us/src/rom/lib_9330.o(.text);
         build/us/src/rom/lib_9660.o(.text);
         build/us/src/rom/lib_9820.o(.text);
         build/us/src/rom/lib_9ab0.o(.text);
@@ -209,7 +209,7 @@ SECTIONS
         build/us/asm/us/9190.o(.data);
         build/us/src/rom/lib_9230.o(.data);
         build/us/src/rom/lib_92f0.o(.data);
-        build/us/asm/us/9330.o(.data);
+        build/us/src/rom/lib_9330.o(.data);
         build/us/src/rom/lib_9660.o(.data);
         build/us/src/rom/lib_9820.o(.data);
         build/us/src/rom/lib_9ab0.o(.data);
@@ -299,7 +299,7 @@ SECTIONS
         build/us/asm/us/9190.o(.rodata);
         build/us/src/rom/lib_9230.o(.rodata);
         build/us/src/rom/lib_92f0.o(.rodata);
-        build/us/asm/us/9330.o(.rodata);
+        build/us/src/rom/lib_9330.o(.rodata);
         build/us/src/rom/lib_9660.o(.rodata);
         build/us/src/rom/lib_9820.o(.rodata);
         build/us/src/rom/lib_9ab0.o(.rodata);
@@ -394,7 +394,7 @@ SECTIONS
         build/us/asm/us/9190.o(.bss);
         build/us/src/rom/lib_9230.o(.bss);
         build/us/src/rom/lib_92f0.o(.bss);
-        build/us/asm/us/9330.o(.bss);
+        build/us/src/rom/lib_9330.o(.bss);
         build/us/src/rom/lib_9660.o(.bss);
         build/us/src/rom/lib_9820.o(.bss);
         build/us/src/rom/lib_9ab0.o(.bss);

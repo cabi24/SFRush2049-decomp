@@ -1,0 +1,46 @@
+[
+  {
+    "source": "sinf.c",
+    "function": "sinf",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "source_sha256": "17e4db8bc83e2690379172fe33449d833dbcf70599705c57fa2c0354d9c025e5",
+    "object_sha256": "22398bc8629b0c4879c57b1934da196b1e4cc304a0cf6d0c198333b4ad29b56e",
+    "target_sha256": "51e5aa6c1edc07702c4f92838e1ced47594202b30d3ce5eec621e7e060de086f",
+    "private_object": "/home/cburnes/agents/C/scratch/static-C22/sinf.final.o"
+  },
+  {
+    "source": "cosf.c",
+    "function": "cosf",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "source_sha256": "548afebb05933e26f02c51db02bc0b1b5d92393e3de499b7052ec527b65e7196",
+    "object_sha256": "34ed30b0d2ff23036f78c9cc842cea2b3835da26dafbf67ec00cff6dfd964936",
+    "target_sha256": "4d85fcdef870a78c63152eb7e1cc79e5880358461f691835aa1c2ff1a4d8dce0",
+    "private_object": "/home/cburnes/agents/C/scratch/static-C22/cosf.final.o"
+  },
+  {
+    "source": "full_module.c",
+    "function": "sinf",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "source_sha256": "2eb4b0088a662efa3f41db73c557a28bd34484752a5a54f1c560af625acd4b29",
+    "object_sha256": "2f198a804932686feaa003d6b7ae4a81e5c5c77f7a437ef522bd18cba7d284ba",
+    "target_sha256": "51e5aa6c1edc07702c4f92838e1ced47594202b30d3ce5eec621e7e060de086f",
+    "private_object": "/home/cburnes/agents/C/scratch/static-C22/full_module.final.o"
+  },
+  {
+    "source": "full_module.c",
+    "function": "cosf",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "source_sha256": "2eb4b0088a662efa3f41db73c557a28bd34484752a5a54f1c560af625acd4b29",
+    "object_sha256": "2f198a804932686feaa003d6b7ae4a81e5c5c77f7a437ef522bd18cba7d284ba",
+    "target_sha256": "4d85fcdef870a78c63152eb7e1cc79e5880358461f691835aa1c2ff1a4d8dce0",
+    "private_object": "/home/cburnes/agents/C/scratch/static-C22/full_module.final.o"
+  }
+]

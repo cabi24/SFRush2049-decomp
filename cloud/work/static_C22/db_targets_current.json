@@ -1,0 +1,14 @@
+[
+  {
+    "target_id": "cosf",
+    "target_o_sha": "4d85fcdef870a78c63152eb7e1cc79e5880358461f691835aa1c2ff1a4d8dce0",
+    "tier": "reloc_aware",
+    "gate_reason": null
+  },
+  {
+    "target_id": "sinf",
+    "target_o_sha": "51e5aa6c1edc07702c4f92838e1ced47594202b30d3ce5eec621e7e060de086f",
+    "tier": "reloc_aware",
+    "gate_reason": null
+  }
+]
