@@ -1,0 +1,67 @@
+{
+  "image_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d",
+  "sites": {
+    "0x8008b26c": [
+      {
+        "address": "0x8008b8fc",
+        "caller": "physics_velocity_integrate_a",
+        "caller_bytes": 712
+      },
+      {
+        "address": "0x8008d8e4",
+        "caller": "matrix_scale_apply",
+        "caller_bytes": 100
+      },
+      {
+        "address": "0x8008daa4",
+        "caller": "anim_state_update",
+        "caller_bytes": 1840
+      },
+      {
+        "address": "0x80091a48",
+        "caller": "entity_anim_texture",
+        "caller_bytes": 636
+      },
+      {
+        "address": "0x80092ac4",
+        "caller": "buffer_swap",
+        "caller_bytes": 1676
+      }
+    ],
+    "0x8008d8d8": [
+      {
+        "address": "0x8008db0c",
+        "caller": "anim_state_update",
+        "caller_bytes": 1840
+      },
+      {
+        "address": "0x80091a68",
+        "caller": "entity_anim_texture",
+        "caller_bytes": 636
+      },
+      {
+        "address": "0x80092ae4",
+        "caller": "buffer_swap",
+        "caller_bytes": 1676
+      },
+      {
+        "address": "0x80094294",
+        "caller": "drone_ai_update",
+        "caller_bytes": 3280
+      },
+      {
+        "address": "0x800943c4",
+        "caller": "drone_ai_update",
+        "caller_bytes": 3280
+      },
+      {
+        "address": "0x800943fc",
+        "caller": "drone_ai_update",
+        "caller_bytes": 3280
+      }
+    ],
+    "0x8008d93c": []
+  },
+  "accepted": false,
+  "note": "Read-only native direct JAL graph. Native references through stored callback pointers are additional uses, not invented keepers."
+}

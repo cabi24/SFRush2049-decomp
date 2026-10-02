@@ -1,0 +1,42 @@
+{
+  "status": "frozen_research",
+  "accepted_bytes": 0,
+  "ordinary_recipe": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "whole_o3_recipe": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "toolkit_sha256": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+  "full_sources": {
+    "__scAppendList.c": "820044880607b7a9a72f983e77ed1c233ac3f772f283af863ee60e85e2c5c6e3",
+    "__scExec.c": "3ba6d9f17beac2f92bd7161f561ccaaa138043f02ee7c3ccce942cef5d4ce5a0",
+    "__scExecTask.c": "f7703c639a587174fed4d8b96aa6360be701ab377f1f27362cab006859496dfb",
+    "__scHandlePreNMI.c": "c209d0e92c57f21c28eeae3a6426ca915fee1d88fcd439317eaa63e146277f55",
+    "__scHandleRDP.c": "2713ebd0bec7b27612883cc39b5ef5d43e2552f5252c72e23b887f5613c8d620",
+    "__scHandleRSP.c": "2c73144cfc5f8adf28775e35e1858147818dbc29bd409543a7f3d4e6dad1a054",
+    "__scHandleRetrace.c": "d6710a93d3ad37f713a00ee07b12751e0a30abd7f59fc39af735a4acceaf5544",
+    "__scMain.c": "f58acee532b180f0e1b83a5f6764bd0a17082ca79a321a4e663a217e35f7360b",
+    "__scSchedule.c": "72b414df894adf4ba59f20f7e177a5ae5cee5564f3a2bcbd92638d4797165a18",
+    "__scScheduleCore.c": "ee69f8f5eb43d943a77baea9f5960069cc721a82ca3eb02c8ba0fdac43897211",
+    "__scTaskReady.c": "fb85189d82bf67986ef52d05b6836a9469e03b545f84d6f3ab3958d4b2a10e99",
+    "all_timestamp_ownership/group.c": "c5ca0c3e87dd8c34364c4b05c155d4594db84edd537a6ca3e073bf045302cacd",
+    "group.c": "4bcc83ed858df7fa2f395364b056986cbeac611860aee79966bf255ae366e3b8",
+    "osCreateScheduler.c": "03b23db267d444583b45a1bd36e20d41383d2755e66c74fd6f49681d41494533",
+    "osScAddClient.c": "dea767bc7045362eaefa69a05c169a57309cb63a4c85e12eeb75a7a8ad450a89",
+    "scheduler_native.h": "70425739427009dba9199720f4234cae2436dcbb09a9d0b8f43ea258db2287b6",
+    "timestamp_ownership/group.c": "e225feeb99566b83a33023bd174e89385234d866e98eb71991fe9649f59e9005"
+  },
+  "exact_full_bodies": [
+    "osCreateScheduler",
+    "__scHandleRDP",
+    "__scHandleRSP",
+    "__scSchedule",
+    "__scExecTask",
+    "__scTaskReady",
+    "osScAddClient",
+    "__scHandlePreNMI"
+  ],
+  "exact_full_body_bytes": 1896,
+  "native_body_bytes_total": 3840,
+  "storage_ownership_proven": false,
+  "switch_table_placement_proven": false,
+  "linked_module_or_rom_gate_completed": false,
+  "production_mutation_performed": false
+}

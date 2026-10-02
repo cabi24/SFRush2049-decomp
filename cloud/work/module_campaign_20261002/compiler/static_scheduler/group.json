@@ -1,0 +1,22 @@
+{
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "osCreateScheduler",
+    "__scHandleRDP",
+    "__scHandleRSP",
+    "__scSchedule",
+    "__scExecTask",
+    "__scScheduleCore",
+    "__scAppendList",
+    "__scTaskReady",
+    "__scHandleRetrace",
+    "osScAddClient",
+    "__scHandlePreNMI",
+    "__scMain",
+    "__scExec"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "claims": []
+}

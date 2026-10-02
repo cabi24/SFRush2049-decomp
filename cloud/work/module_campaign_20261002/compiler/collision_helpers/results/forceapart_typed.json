@@ -1,0 +1,14 @@
+{
+  "candidate": "forceapart_typed.c",
+  "function": "menu_load_options",
+  "source_sha256": "dcb78ba9dd1ab88a1dd2f31ac74d0581e1be3879a67be44652e066159f3f2156",
+  "object_sha256": "6df6ccecb33368ca34edd1e22b6dbf03283523f78d4fbd15cbe44b0c1631e90f",
+  "comparison": {
+    "differing": 75,
+    "total": 91,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  }
+}

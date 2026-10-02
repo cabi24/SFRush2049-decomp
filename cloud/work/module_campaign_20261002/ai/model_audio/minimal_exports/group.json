@@ -1,0 +1,40 @@
+{
+  "members": [
+    "func_800E05F0",
+    "func_800E0050",
+    "func_800DFBA0",
+    "mode_select_input",
+    "mode_select_handler",
+    "func_800DED78",
+    "best_times_display",
+    "func_800D5E64"
+  ],
+  "context": [
+    "entity_transform_calc",
+    "client_sync",
+    "entity_hierarchy_update",
+    "scheduler_recv",
+    "stat_lap_complete",
+    "game_timer_resume",
+    "player_conditional_call",
+    "func_80091BA8",
+    "func_80091B00"
+  ],
+  "files": [
+    "../audio_core.c",
+    "../ROOT_DEF68/mode_select_handler.c"
+  ],
+  "keep": [
+    "client_sync",
+    "entity_transform_calc",
+    "func_80091B00",
+    "func_80091BA8",
+    "func_800D5E64",
+    "func_800E05F0",
+    "player_conditional_call",
+    "scheduler_recv"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "claims": [],
+  "boundary_note": "Only remove three real context exports without current direct-call or initialized-address evidence. Actual source bodies unchanged; no fabricated callers."
+}
