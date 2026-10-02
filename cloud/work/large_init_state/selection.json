@@ -1,0 +1,33 @@
+{
+  "function": "init_state_begin",
+  "address": "0x800C9BE0",
+  "bytes": 1816,
+  "words": 454,
+  "accepted": true,
+  "purpose_inferred": "Player configuration application and game mode initialization",
+  "reason": "Fresh full ordinary-ABI routine with one callee and simple seven-case mode switch",
+  "target_object_sha256": "d9d912871bc81a2d1c410d56f1394957ac881a7041a9f4cb196792c2574815fc",
+  "target_object_tier": "reloc_aware",
+  "baseline_game_percent": 13.38,
+  "baseline_static_percent": 46.76,
+  "team": {
+    "reconstruction": {
+      "agent": "large_unlock_reconstruction",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high"
+    },
+    "compiler": {
+      "agent": "large_unlock_compiler",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high"
+    }
+  },
+  "switch_table": {
+    "address": "0x80123F98",
+    "entries": 7,
+    "sha256": "7de657b186dd07381fcf256bf32e205f639a0f3c9c29642dab2b160d7bd1029f"
+  },
+  "publication_group": "src/blob/groups/codex_large_init_state",
+  "publication_source_sha256": "ce9074048228c2a88537233df8663281c921d47e514ddd45167bc2448e49a55c",
+  "accepted_game_bytes": 1816
+}

@@ -1,0 +1,18 @@
+{
+  "target": "init_state_begin",
+  "address": "0x800C9BE0",
+  "bytes": 1816,
+  "words": 454,
+  "ABI": "void(void)",
+  "source": "group.c",
+  "source_sha256": "ce9074048228c2a88537233df8663281c921d47e514ddd45167bc2448e49a55c",
+  "flags": "/* flags: -g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul */",
+  "single_function_code_differences": 0,
+  "requires_group_verification": false,
+  "accepted": true,
+  "arcade_equivalent": null,
+  "purpose": "Apply signed-byte saved configuration to active player profiles and runtime per-mode settings.",
+  "group_proof": "../compiler/final_independent.json",
+  "image_integration_pending": false,
+  "rom_sha1_exact": true
+}

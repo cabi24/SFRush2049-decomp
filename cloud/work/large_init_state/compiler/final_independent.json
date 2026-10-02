@@ -1,0 +1,29 @@
+{
+  "accepted": true,
+  "function": "init_state_begin",
+  "address": "0x800c9be0",
+  "full_instructions": 454,
+  "credited_function_bytes": 1816,
+  "strict_linked_differences": 0,
+  "extra_instructions": 0,
+  "unresolved_references": [],
+  "unverified_references": [],
+  "source_sha256": "ce9074048228c2a88537233df8663281c921d47e514ddd45167bc2448e49a55c",
+  "object_sha256": "0389f1a8725876f903a65b2bca1def8bbcdc31e98aab37cc8fee79eb5ce49883",
+  "target_object_sha256": "d9d912871bc81a2d1c410d56f1394957ac881a7041a9f4cb196792c2574815fc",
+  "linked_body_sha256": "5def13c61ea05b7b9a95722f0512631be9d5174d8e8d815a94777f2bf480b2a5",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "toolkit": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+  "pipeline": "cc-j uld-kp usplit umerge uopt ugen as1",
+  "native_switch": {
+    "address": "0x80123f98",
+    "entries": 7,
+    "bytes": 28,
+    "fully_relocated_entries_equal": true,
+    "sha256": "7de657b186dd07381fcf256bf32e205f639a0f3c9c29642dab2b160d7bd1029f",
+    "alignment_bytes_zero": 4,
+    "credited_bytes": 0
+  },
+  "text_alignment_bytes_zero": 8,
+  "validation": "existing protected blob_group.relocate plus independent R_MIPS_32 table entry relocation and full retail comparison"
+}

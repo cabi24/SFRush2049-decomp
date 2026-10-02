@@ -1,0 +1,32 @@
+{
+  "canonical_verdict": "MATCH",
+  "source_sha256": "ce9074048228c2a88537233df8663281c921d47e514ddd45167bc2448e49a55c",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "function_words": 454,
+  "credited_function_bytes": 1816,
+  "switch_entries_exact": 7,
+  "credited_table_bytes": 0,
+  "credited_alignment_bytes": 0,
+  "image": "exact,647072 bytes",
+  "image_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d",
+  "rom": "SHA-1 EXACT",
+  "rom_make_exit": 0,
+  "rom_test_exit": 0,
+  "blob_lock_entries": 629,
+  "blob_lock_problems": 0,
+  "group_lock_problems": 0,
+  "static_source_locks_intact": 123,
+  "game": {
+    "functions": 629,
+    "bytes": 88392,
+    "total_bytes": 647072,
+    "percent": 13.66
+  },
+  "static": {
+    "functions": 120,
+    "bytes": 28732,
+    "total_bytes": 61440,
+    "percent": 46.76
+  },
+  "private_rom_log": "build/large_init_state/rom-gate.log"
+}

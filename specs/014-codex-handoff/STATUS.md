@@ -1,5 +1,15 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-02 forty-first completed milestone: complete configuration initialization
+
+- Game cartridge C: **629/1,216 functions, 88,392/647,072 bytes (13.66%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**. Adds one complete **1,816-byte / 454-instruction** function.
+- Two **GPT-6.1-sol agents at High reasoning** reconstructed and independently verified `init_state_begin` at `0x800C9BE0`. It applies signed-byte configuration to player profiles through the genuine narrow-argument setting helper, initializes runtime globals for seven gameplay modes, and applies the final mode-word override. Arcade `game.c` supplies only a general configuration analogy; no direct equivalent was identified.
+- The complete fresh C initially matched the instruction structure; placing the real mode-six clear of `D_8015F72C` before the `D_80140B08` assignment resolves the store-scheduling residual. Publication source SHA256 **ce9074048228c2a88537233df8663281c921d47e514ddd45167bc2448e49a55c**. Literal flags **-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul**. Group `codex_large_init_state` has one member and no helper context.
+- Independent actual whole-unit compilation proves **454/454 linked instructions exact**, zero extra executable words or unresolved/unverified references. All seven original switch entries at `0x80123F98` are verified by the protected group resolver and a separate relocation replay; table SHA256 **7de657b186dd07381fcf256bf32e205f639a0f3c9c29642dab2b160d7bd1029f**. Neither table nor alignment bytes count as code.
+- Coordinator separately compiled and spliced the complete group. Source-built image exact; original ROM **SHA-1 EXACT**, **MAKE=0 TEST=0**. All629 blob locks, group locks and123 static/source locks pass. Evidence: `cloud/work/large_init_state/`. No separate full pytest run or new CI result is claimed at checkpoint creation.
+- The initially selected unlock evaluator and texture rectangle remain frozen nonmatches after fresh allocation/scheduling controls; no credit. Prior static batches, A102 and unrelated infrastructure drafts remain pending. The prior tire checkpoint `2b95a8af` passed GitHub CI37003174008. Do not automatically restart overnight lanes.
+
+
 ## 2026-10-02 fortieth completed milestone: large tire friction updater
 
 - Game cartridge C: **628/1,216 functions, 86,576/647,072 bytes (13.38%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**. Adds one complete **2,300-byte / 575-instruction** game function.

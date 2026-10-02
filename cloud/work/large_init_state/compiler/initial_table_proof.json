@@ -1,0 +1,12 @@
+{
+  "strict_linked_differences": 4,
+  "total": 454,
+  "offsets": [
+    "0x6a0",
+    "0x6a4",
+    "0x6a8",
+    "0x6ac"
+  ],
+  "body_sha256": "61eaf47008c9aef749515d56f1d04eb4051a15043da08f1e5056940552d5ec5d",
+  "complete_table_proof": true
+}

@@ -1,0 +1,26 @@
+{
+  "source_sha256": "bb983aefcaee2a00ec0e1a1127572eb45cacf0c98f50d6d11ab10b44b0477386",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source": "/home/cburnes/agents/large-init-compiler/candidates/store_order.c",
+  "accepted": false,
+  "canonical_verdict": "MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x1b8, .rodata+0x0 at +0x1c0)",
+  "comparison": {
+    "differing": 0,
+    "total": 454,
+    "unresolved": [],
+    "unverified": [
+      ".rodata+0x0 at +0x1b8",
+      ".rodata+0x0 at +0x1c0"
+    ],
+    "errors": [],
+    "extra_words": 0
+  },
+  "object_sha256": "13e2aeb62cd47b804a0f6aabd0916db23d22143c8650412e9cce1e25e7ba829d",
+  "emitted_words": 456,
+  "aligned": {
+    "aligned_exact": 452,
+    "aligned_opcode": 454,
+    "aligned_opcode_reg": 454
+  },
+  "frame_bytes": 48
+}

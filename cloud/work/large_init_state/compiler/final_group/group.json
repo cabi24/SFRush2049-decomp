@@ -1,0 +1,14 @@
+{
+  "members": [
+    "init_state_begin"
+  ],
+  "context": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "init_state_begin"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "provenance": "cloud/work/large_init_state; ordinary ABI configuration updater and complete generated seven-entry native switch table"
+}
