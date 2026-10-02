@@ -23,7 +23,20 @@ void main(void *argument) {
     osStartThread(&gIdleThread);
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_2cf0/idle_thread_entry.s")
+/* PROMOTED 2026-10-02 — idle_thread_entry
+ * Source:   cloud/work/static_debug_consolidation/acceptance_sources/idle_thread_entry.c (in-repo, locked)
+ * Flags:    -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul
+ * Evidence: lock:cloud/work/static_debug_consolidation/acceptance_sources/idle_thread_entry.c:idle_thread_entry (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void idle_thread_entry(void *argument) {
+    osCreatePiManager(150, &gViModeTable, gViModeLan1, 200);
+    osCreateViManager(NULL, 0);
+    osCreateThread(&gGameThread, 6, game_init, argument, gStackGame + 0x960, 4);
+    osStartThread(&gGameThread);
+    for (;;) {}
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_2cf0/game_init.s")
 /* PROMOTED 2026-10-02 — audio_thread_entry
  * Source:   cloud/work/static_debug_consolidation/acceptance_sources/audio_thread_entry.c (in-repo, locked)
