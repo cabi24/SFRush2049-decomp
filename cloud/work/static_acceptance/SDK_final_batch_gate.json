@@ -1,0 +1,41 @@
+{
+  "accepted_source_head": "2f5c3f010c320ae5d23be2f3cc615a23e03f9831",
+  "included_main": "7c4d12c368a7f938f5b405c78f602dde34d4087e",
+  "game_functions": 652,
+  "game_native_bytes": 99864,
+  "game_total_functions": 1216,
+  "game_total_bytes": 647072,
+  "static_functions": 157,
+  "static_native_bytes": 44112,
+  "static_total_functions": 230,
+  "static_total_bytes": 61440,
+  "new_game_functions": 2,
+  "new_game_native_bytes": 736,
+  "new_static_functions": 10,
+  "new_static_native_bytes": 2776,
+  "source_built_game_bodies_available": 652,
+  "original_linked_game_image_and_compressed_stream_exact": true,
+  "full_source_built_ROM_SHA1_exact": true,
+  "static_source_locks": 160,
+  "all_lock_problems": 0,
+  "SDK_new_C_bodies": 9,
+  "SDK_native_C_bytes": 2768,
+  "SDK_source_built_table_bytes": 28,
+  "table_receives_code_credit": false,
+  "sqrtf_code_bytes": 8,
+  "sqrtf_preserved_uncredited_alignment_bytes": 8,
+  "all_preserved_uncredited_static_padding_bytes": 104,
+  "pytest_exit": 0,
+  "pytest_suites": [
+    {
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "574",
+      "tests": "1394",
+      "time": "37.604",
+      "timestamp": "2026-10-02T12:27:00.087885-05:00",
+      "hostname": "nvmepi3"
+    }
+  ]
+}
