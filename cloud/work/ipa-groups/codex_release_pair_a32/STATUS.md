@@ -1,0 +1,7 @@
+# A32 genuine paired release caller frozen, no claims
+
+Actual func_800C885C plus eleven unchanged real A25 contexts: 377 retail words. Flags `-g0 -O3 -mips2 -G 0 -non_shared`. Source SHA256 `1bc4b9be845cb219a7e2103a079285520761b8c95eba36944557fdca472af338`. Canonical empty-claims exit 0 is WIP, not MATCH. New caller 15/47 differing words, exact extent, no extras or relocation issues. Every real context independently MATCH. Two directed controls: separate genuine allocation snapshots improves to14/47 but leaves the blocker; typed actual allocation pointers stays15/47. Retained baseline.
+
+Actual caller releases nonzero cached allocation globals D_8011025C and D_80110260 separately: queue receive, real address/tag-zero coalescing release, queue jam, then zero that allocation global. Real release clobbers s0/s1, correctly inherited by the caller and saved/restored. No stand-in or hidden dummy inputs. Remaining frame40 versus retail64 and shared36-byte pointer spill versus retail first56/second32 prove unresolved original local home layout; register a3 versus retail v0 also differs. No padding, fabricated arrays, runtime stores or formal parameters added to force the frame. Context full byte verification does not cure those unknown caller source details.
+
+No accepted source/state changes. Instructions and objects remain ignored build/codex-A32. Frozen unchanged context provenance is A25.

@@ -1,0 +1,14 @@
+[
+  {
+    "variant": "nonvolatile",
+    "strict_score": 4149,
+    "raw_word_diff": 75,
+    "words": 108
+  },
+  {
+    "variant": "explicit_error",
+    "strict_score": 4289,
+    "raw_word_diff": 75,
+    "words": 108
+  }
+]

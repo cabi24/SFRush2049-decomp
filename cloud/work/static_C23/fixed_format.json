@@ -1,0 +1,26 @@
+[
+  {
+    "variant": "volatile_lines",
+    "strict_score": 3306,
+    "raw_word_diff": 86,
+    "words": 112
+  },
+  {
+    "variant": "volatile_looplines",
+    "strict_score": 4449,
+    "raw_word_diff": 75,
+    "words": 112
+  },
+  {
+    "variant": "cast_lines",
+    "strict_score": 3306,
+    "raw_word_diff": 86,
+    "words": 108
+  },
+  {
+    "variant": "cast_looplines",
+    "strict_score": 4149,
+    "raw_word_diff": 75,
+    "words": 108
+  }
+]

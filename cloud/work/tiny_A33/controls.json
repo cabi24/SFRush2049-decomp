@@ -1,0 +1,46 @@
+{
+  "func_800BF780": {
+    "strict_diff": 44,
+    "size": 46,
+    "target_size": 46,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": []
+  },
+  "func_80099B30": {
+    "strict_diff": 48,
+    "size": 48,
+    "target_size": 51,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": []
+  },
+  "func_800D8078": {
+    "strict_diff": 54,
+    "size": 57,
+    "target_size": 55,
+    "extra": 2,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": []
+  },
+  "func_800E7038": {
+    "strict_diff": 49,
+    "size": 60,
+    "target_size": 63,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": []
+  }
+}

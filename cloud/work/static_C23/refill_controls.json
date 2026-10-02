@@ -1,0 +1,44 @@
+[
+  {
+    "function": "inflate_block",
+    "variant": "volatile_ptr",
+    "strict_score": 2626,
+    "raw_word_diff": 98,
+    "words": 108
+  },
+  {
+    "function": "inflate_block",
+    "variant": "volatile_ptr_ternary",
+    "strict_score": 2626,
+    "raw_word_diff": 98,
+    "words": 108
+  },
+  {
+    "function": "inflate_block",
+    "variant": "ternary",
+    "strict_score": 2083,
+    "raw_word_diff": 93,
+    "words": 104
+  },
+  {
+    "function": "inflate_dynamic",
+    "variant": "volatile_ptr",
+    "strict_score": 13917,
+    "raw_word_diff": 498,
+    "words": 500
+  },
+  {
+    "function": "inflate_dynamic",
+    "variant": "volatile_ptr_ternary",
+    "strict_score": 13517,
+    "raw_word_diff": 498,
+    "words": 500
+  },
+  {
+    "function": "inflate_dynamic",
+    "variant": "ternary",
+    "strict_score": 11936,
+    "raw_word_diff": 482,
+    "words": 476
+  }
+]

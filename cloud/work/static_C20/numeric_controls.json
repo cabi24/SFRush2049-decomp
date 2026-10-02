@@ -1,0 +1,38 @@
+[
+  {
+    "variant": "numeric_ordinary_ordinary",
+    "strict_score": 1570,
+    "raw_word_diff": 29,
+    "words": 32
+  },
+  {
+    "variant": "numeric_ordinary_volatiledst",
+    "strict_score": 850,
+    "raw_word_diff": 33,
+    "words": 36
+  },
+  {
+    "variant": "numeric_inputvolatile_ordinary",
+    "strict_score": 1115,
+    "raw_word_diff": 36,
+    "words": 36
+  },
+  {
+    "variant": "numeric_inputvolatile_volatiledst",
+    "strict_score": 490,
+    "raw_word_diff": 25,
+    "words": 36
+  },
+  {
+    "variant": "numeric_allvolatile_ordinary",
+    "strict_score": 1100,
+    "raw_word_diff": 35,
+    "words": 36
+  },
+  {
+    "variant": "numeric_allvolatile_volatiledst",
+    "strict_score": 1075,
+    "raw_word_diff": 35,
+    "words": 40
+  }
+]

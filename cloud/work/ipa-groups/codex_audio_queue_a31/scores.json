@@ -1,0 +1,43 @@
+{
+  "err": null,
+  "matched": false,
+  "members": {
+    "audio_fade_control": {
+      "strict_diff": 44,
+      "size": 53,
+      "target_size": 53,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "gfx_setup_e700": {
+      "strict_diff": 14,
+      "size": 32,
+      "target_size": 32,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    },
+    "audio_timing_sync": {
+      "strict_diff": 8,
+      "size": 46,
+      "target_size": 46,
+      "extra": 0,
+      "matched": false,
+      "err": null,
+      "unverified": [],
+      "unresolved": [],
+      "errors": []
+    }
+  },
+  "context": {},
+  "canonical_exit": 0,
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "source_sha256": "57fab9ec96960f50cba8283054f6a2fdbcb27ce5b89738191c59656237fe1192"
+}

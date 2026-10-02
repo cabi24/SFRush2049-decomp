@@ -1,0 +1,50 @@
+[
+  {
+    "variant": "ordinary_volatiledst",
+    "strict_score": 650,
+    "raw_word_diff": 33,
+    "words": 36
+  },
+  {
+    "variant": "ordinary_registersrc",
+    "strict_score": 650,
+    "raw_word_diff": 33,
+    "words": 36
+  },
+  {
+    "variant": "ordinary_registersize",
+    "strict_score": 650,
+    "raw_word_diff": 33,
+    "words": 36
+  },
+  {
+    "variant": "ordinary_registerboth",
+    "strict_score": 650,
+    "raw_word_diff": 33,
+    "words": 36
+  },
+  {
+    "variant": "inputvolatile_volatiledst",
+    "strict_score": 485,
+    "raw_word_diff": 25,
+    "words": 36
+  },
+  {
+    "variant": "inputvolatile_registersrc",
+    "strict_score": 485,
+    "raw_word_diff": 25,
+    "words": 36
+  },
+  {
+    "variant": "inputvolatile_registersize",
+    "strict_score": 485,
+    "raw_word_diff": 25,
+    "words": 36
+  },
+  {
+    "variant": "inputvolatile_registerboth",
+    "strict_score": 485,
+    "raw_word_diff": 25,
+    "words": 36
+  }
+]

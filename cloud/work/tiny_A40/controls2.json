@@ -1,0 +1,16 @@
+{
+  "actual_unsigned_byte_car": {
+    "strict_diff": 8,
+    "size": 32,
+    "extra": 0,
+    "matched": false,
+    "err": null
+  },
+  "actual_enabled_return_web": {
+    "strict_diff": 17,
+    "size": 32,
+    "extra": 0,
+    "matched": false,
+    "err": null
+  }
+}

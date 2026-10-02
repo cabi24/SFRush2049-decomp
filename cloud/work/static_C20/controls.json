@@ -1,0 +1,98 @@
+[
+  {
+    "function": "inflate_entry_alt",
+    "variant": "all_pointer_ordinary",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 1565,
+    "raw_word_diff": 29,
+    "words": 32
+  },
+  {
+    "function": "inflate_entry_alt",
+    "variant": "input_pointer_volatile",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 975,
+    "raw_word_diff": 36,
+    "words": 36
+  },
+  {
+    "function": "inflate_entry_alt",
+    "variant": "all_pointer_ordinary_volatile_size",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 728,
+    "raw_word_diff": 18,
+    "words": 32
+  },
+  {
+    "function": "inflate_entry_alt",
+    "variant": "input_pointer_volatile_volatile_size",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 751,
+    "raw_word_diff": 36,
+    "words": 36
+  },
+  {
+    "function": "inflate_read_bits",
+    "variant": "all_pointer_ordinary",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 1785,
+    "raw_word_diff": 66,
+    "words": 80
+  },
+  {
+    "function": "inflate_read_bits",
+    "variant": "input_pointer_volatile",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 1828,
+    "raw_word_diff": 63,
+    "words": 80
+  },
+  {
+    "function": "inflate_read_bits",
+    "variant": "all_pointer_ordinary_local_short",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 1935,
+    "raw_word_diff": 68,
+    "words": 80
+  },
+  {
+    "function": "inflate_read_bits",
+    "variant": "input_pointer_volatile_local_short",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 1700,
+    "raw_word_diff": 68,
+    "words": 80
+  },
+  {
+    "function": "inflate_stored",
+    "variant": "all_pointer_ordinary",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 4489,
+    "raw_word_diff": 112,
+    "words": 136
+  },
+  {
+    "function": "inflate_stored",
+    "variant": "input_pointer_volatile",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 4819,
+    "raw_word_diff": 147,
+    "words": 148
+  },
+  {
+    "function": "lzss_decode",
+    "variant": "all_pointer_ordinary",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 8627,
+    "raw_word_diff": 151,
+    "words": 132
+  },
+  {
+    "function": "lzss_decode",
+    "variant": "input_pointer_volatile",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 8627,
+    "raw_word_diff": 151,
+    "words": 132
+  }
+]

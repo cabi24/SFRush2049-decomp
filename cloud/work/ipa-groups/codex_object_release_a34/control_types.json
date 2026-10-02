@@ -1,0 +1,16 @@
+{
+  "AdjustSteer": {
+    "strict_diff": 4,
+    "size": 44,
+    "extra": 0,
+    "matched": false,
+    "err": null
+  },
+  "menu_transition": {
+    "strict_diff": 4,
+    "size": 40,
+    "extra": 0,
+    "matched": false,
+    "err": null
+  }
+}

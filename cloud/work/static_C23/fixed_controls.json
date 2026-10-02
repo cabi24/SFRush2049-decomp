@@ -1,0 +1,20 @@
+[
+  {
+    "variant": "reuse_i",
+    "strict_score": 1991,
+    "raw_word_diff": 75,
+    "words": 112
+  },
+  {
+    "variant": "explicit_alloc",
+    "strict_score": 6472,
+    "raw_word_diff": 105,
+    "words": 120
+  },
+  {
+    "variant": "reuse_i_explicit_alloc",
+    "strict_score": 1991,
+    "raw_word_diff": 75,
+    "words": 112
+  }
+]

@@ -1,0 +1,24 @@
+{
+  "func_800A150C": {
+    "strict_diff": 77,
+    "size": 80,
+    "target_size": 78,
+    "extra": 2,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": []
+  },
+  "func_800B9740": {
+    "strict_diff": 97,
+    "size": 103,
+    "target_size": 102,
+    "extra": 1,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": []
+  }
+}

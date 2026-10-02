@@ -1,0 +1,20 @@
+{
+  "separate_real_allocation_snapshots": {
+    "func_800C885C": {
+      "strict_diff": 14,
+      "size": 47,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  },
+  "typed_actual_allocations": {
+    "func_800C885C": {
+      "strict_diff": 15,
+      "size": 47,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    }
+  }
+}

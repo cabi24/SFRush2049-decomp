@@ -1,0 +1,9 @@
+# A40 compact inventory frozen, no claims
+
+Four faithful ordinary TUs:9028433 words, CC84832, E79F840,98A5434 (139 retail words). Flags `-g0 -O2 -mips2 -G 0 -non_shared`; final sanitized counts and exact source hashes in scores.json. Final differing counts31/33 with32 emitted,8/32 exact,21/40 exact,25/34 with35 emitted+1 extra. No claims.
+
+Actual90284 pops a24-byte free node, updates signed-half allocation/high-water counters, resets next pointer0, half fields4/6/8 (id6=-1), pointer12, flags20 and float16. Actual CC848 follows object0->node8->owner0, uses unsigned car byte16 and signed enable byte1 in772-byte car records, then delegates on nonzero action. Audited real delegate A1A60 consumes only pointera0; external signature repaired from two inputs to that one consumed input, with no invented ignored action argument. Caller still needs both of its real inputs for its gate. No substitute callee body.
+
+E79F8 selects supplied or global heap under actual message queue lock, traverses block pointer8/next4, unsigned size12 and signed used-byte20, and returns the largest free size after jam. Source actual selected-heap pointer and counter initialization after receive improve33 to21 differing words. Genuine opaque OSMesgQueue declaration and correct receive pointer prototype retained. 98A54 normalizes a real vec3 using genuine sqrtf intrinsic and actual arithmetic grouping; zero length writes (1,0,0) and returns zero, otherwise returns original length. No invented behaviors.
+
+Seven bounded faithful controls: direct pointer read, unsigned car width, genuine enable/return web, consumed delegate prototype, selected-heap/counter lifetime, queue type, real node/counter snapshots. Only semantic repairs and meaningful gains retained; none MATCH. No formal/color/reflow sweeps. Raw assembly/objects remain ignored build/codex-A40. Shared accepted tree/state untouched.
