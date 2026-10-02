@@ -1,0 +1,167 @@
+{
+  "schema_version": 1,
+  "scope": "Complete original-IDO function match only; no image or ROM integration claim",
+  "base_commit": "2f1f30c508495db08d61170c4a9b2409461ae326",
+  "source_path": "cloud/matches/func_800CC848.c",
+  "source_sha256": "1f8daccf73a0765793e73f217f306fd3a904726a149eaaeafb6744a99fd24f7b",
+  "source_unchanged_during_replay": true,
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "canonical_exit_code": 0,
+  "canonical_stdout": "func_800CC848:\n  MATCH\n",
+  "canonical_stderr": "",
+  "independent_replay": {
+    "method": "Fresh copy in clean directory; direct pinned IDO cc; independent HI16/LO16 and JAL arithmetic without score.relocate; canonical cross-check also passes",
+    "exit_code": 0,
+    "stderr": "",
+    "object_sha256": "9b5b8918fb091fa2aff2e30070c9b9ba03554277a33d4b01893b6667deba5138",
+    "elf_function_symbol": {
+      "name": "func_800CC848",
+      "value": 0,
+      "size": 128,
+      "type": 2,
+      "section": 4
+    },
+    "text_byte_count": 128,
+    "body_bytes": 128,
+    "body_words": 32,
+    "zero_alignment_words": 0,
+    "nonzero_excess_words": 0,
+    "target_sha256": "d122b34d72a2a60e0edc6427ae61488212cb13354748744325938f2baaa2e7e7",
+    "resolved_body_sha256": "d122b34d72a2a60e0edc6427ae61488212cb13354748744325938f2baaa2e7e7",
+    "strict_full_word_differences": 0,
+    "relocations": [
+      {
+        "offset": 36,
+        "type": 5,
+        "symbol": "D_80144030"
+      },
+      {
+        "offset": 68,
+        "type": 6,
+        "symbol": "D_80144030"
+      },
+      {
+        "offset": 104,
+        "type": 4,
+        "symbol": "func_800A1A60"
+      }
+    ],
+    "relocation_addends": [
+      {
+        "symbol": "D_80144030",
+        "addend": 1,
+        "resolved_address": "0x80144031"
+      },
+      {
+        "symbol": "func_800A1A60",
+        "addend": 0,
+        "resolved_address": "0x800a1a60"
+      }
+    ],
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "canonical_comparison": {
+      "differing": 0,
+      "total": 32,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  "compiler_identity": {
+    "name": "IDO 5.3 static-recomp v1.2",
+    "pinned_distribution": "decompals/ido-static-recomp",
+    "pinned_archive_sha256": "ab5c741561f80913d58c8b074771f23941a3edd312505a8ebed6d1dfeb65e506",
+    "installed_executable_sha256": {
+      "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+      "acpp": "7bfdf2f79010eb95bd47e165036cac04a69e5f1290fde11736e5f6934f3e9189",
+      "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+      "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+      "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+      "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+    }
+  },
+  "audit_script_sha256": "3ac7f0baff225cba528b00fd3de6be1a7c191a83f1830d7153e4a1e3f1282d98",
+  "scorer_sha256": "ca0e5fdebb90e13d1e91643357bcda7d402401552e5de326c361ab6411565cc0",
+  "protected_manifest_sha256": "9e70c670e356fc6bf41b7d43f355b6a65b18234e0c2382dbd95408f842bbea4b",
+  "protected_manifest_valid": true,
+  "protected_manifest_files_verified": 23,
+  "protected_paths_changed_relative_HEAD": [],
+  "existing_blob_source_hashes_checked": 651,
+  "existing_blob_source_hash_problems": [],
+  "semantic_audit": {
+    "native_start": "0x800CC848",
+    "native_end_exclusive": "0x800CC8C8",
+    "full_disassembled_instruction_count": 32,
+    "all_native_instruction_addresses_accounted": true,
+    "prototype": "s32 func_800CC848(Object **object, s32 action)",
+    "input": "a0 is a pointer to an object pointer, then node at object+8; a1 is full-word action. All inputs consumed. Null checks exist only for nested node.",
+    "missing_node": "Returns 1 without dereferencing the node or table.",
+    "enabled_gate": "Reads owner pointer at node+0, unsigned byte at owner+16, indexes 772-byte records and reads signed enabled byte at +1. Returns 0 if zero.",
+    "action_gate": "Returns 1 for zero action when the indexed record is enabled.",
+    "delegate": "Passes node as the sole consumed input of the real func_800A1A60 (85 native words) and forwards its full return value; no substitute body.",
+    "layout": "O32 compile-time assertions verify pointer size4; Object node+8 size12; Node owner+0 size4; Owner index+16 size17; table records size772 with signed byte+1. These are minimal access views, not established original full types.",
+    "domain": "Requires valid object pointer chain through object; non-null node requires valid owner and indexed table entry. Logical table capacity and indirect caller contracts are not established. No new validation is added.",
+    "source_choice": "The genuinely returned default status is initialized to1, then reused for the enabled byte. Its initialization is semantically consumed by the missing-node path; there are no unused locals, fabricated operations, helper context, volatile accesses or ABI tricks.",
+    "direct_transfer_scan": {
+      "functions": 1216,
+      "function_words": 140252,
+      "j_and_jal": [],
+      "pc_relative": [],
+      "limit": "Protected direct transfers only; indirect callers and computed transfers not excluded"
+    },
+    "arcade_equivalent": "Not established; arcade reference checkout is unavailable."
+  },
+  "host_semantics": {
+    "command": "cc -std=c89 -pedantic -Wall -Wextra -Werror -O2 -fsanitize=address,undefined build/CC848_audit/host_semantics.c -o build/CC848_audit/host_semantics && ASAN_OPTIONS=detect_leaks=0 build/CC848_audit/host_semantics",
+    "test_source_sha256": "e96d13a9c38c69767bdb428662910867b52ad3622b8056a1c44003d7058df183",
+    "cases": 1638405,
+    "coverage": "Null-node actions; every unsigned index and enabled-byte bit pattern; INT_MIN,-1,0,1,INT_MAX for action and stub return; exact delegate count and identity; unchanged node/owner/object and table. Host fixture has256 records solely to cover the byte domain, not a game-capacity assertion.",
+    "sanitizers": "AddressSanitizer and UndefinedBehaviorSanitizer; leak detection disabled under sandbox ptrace; no dynamic allocation.",
+    "limit": "Host model checks supplement native identity; they do not execute N64 code. Stub is test-only and not used to build the match."
+  },
+  "source_evidence_sha256": {
+    "cloud/work/tiny_A40/func_800CC848.c": "b59242c81a1faf28046d57a8e7a9de20bdfc4f32f78e2aefae8d6150eaefb938"
+  },
+  "verdict": "PASS",
+  "independent_peer_review": {
+    "status": "PASS",
+    "source_sha256": "1f8daccf73a0765793e73f217f306fd3a904726a149eaaeafb6744a99fd24f7b",
+    "method": "Separate source copy and clean IDO build; independent ELF parser and HI16/LO16/JAL arithmetic, no scorer helpers; full wrapper and real 85-word callee audit; focused native interpreter",
+    "strict_full_word_differences": 0,
+    "body_words": 32,
+    "body_bytes": 128,
+    "behavior_cases": 131149,
+    "behavior_verdict": "PASS",
+    "review_record_sha256": "32ca67246c91530ae1fec2b0f82b012233f0444cebe5f4c18ab9660a0f1af606",
+    "semantic_report_sha256": "06e966015fe8675151ff363e9da3ccc2c26a29e5f86289bdbaf57bc2dd2c924f",
+    "verifier_sha256": "41371fef4037e154259ad75cba872f76f6be4093b7762e79a8b30f69ae5b02ea",
+    "behavior_verifier_sha256": "87f682de2fd2c7e7a10b4118bd9bfd37095bf097990ad3009409555fc7f6b044",
+    "scope": "Opaque address-checked hook models the delegate for wrapper interpreter tests; real callee statically audited, not executed."
+  },
+  "additional_checks": {
+    "c89_syntax_warnings": "PASS",
+    "ido_o32_layout_assertions": "PASS",
+    "host_semantics": "1638405 passed",
+    "repository_suite": {
+      "command": "python -m pytest tests/conveyor -o addopts= -q -m 'not node_required'",
+      "passed": 1299,
+      "skipped": 41,
+      "deselected": 9,
+      "exit_code": 0,
+      "seconds": 50.18
+    },
+    "static_locks_intact": 160,
+    "blob_group_source_hash_problems": 0,
+    "protected_manifest_entries_verified": 23
+  },
+  "integration_limits": [
+    "No original ROM, full extracted image or build/blob_layout.json available",
+    "No source-image splice, compressed-stream identity, full-ROM SHA-1 or make test run",
+    "No accepted coverage, lock, protected target, scorer or build-wiring change",
+    "Live LAN ownership must be rechecked before normal integration gates"
+  ]
+}
