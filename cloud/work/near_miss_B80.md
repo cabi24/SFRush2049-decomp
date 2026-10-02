@@ -1,0 +1,7 @@
+# B80 — complete session-result update, no match claim
+
+`func_800F45F8@0x800F45F8`, 900 bytes / 225 words. Active reservation, archived filename/body/report, alias and canonical lock interval audits found no conflict. Adjacent A65 function ends at the target start. Two consumed arguments: mutable six-result byte stream and elapsed float. Genuine Player76, resource-data session at +1780, Session76 and Ranking76 layouts. Preserve XOR swap, destructive bit extraction, nine-byte packed-player stride, signed round counter, session/global updates, ranking selection and conditional level increase; all real calls included. Ranking indices retain the target's conditional initialization under its valid ranking invariant.
+
+Three bounded complete native controls: O3/O2 session pointer both strict 113/225 with six nonzero excess words and unresolved paired-HI error for input_rec0 (recorded exactly); delayed resource-data/session pointer control 199/225 with five extras and the same relocation pairing error. Frames 56/72 versus original 80. No artificial locals, padding, winner initialization, aliases, masks, or line sweep used to manufacture the gap. No match or coverage claim; sources/proofs frozen for future real context evidence.
+
+Each source first line retains literal flags; source hashes and sanitized canonical comparison details are in results.json and manifest.json. Raw ROM/object/assembly excluded. Root alone integrates accepted sources and locks.

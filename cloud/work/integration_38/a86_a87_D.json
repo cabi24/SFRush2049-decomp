@@ -1,0 +1,56 @@
+{
+  "codex_menu_a86": {
+    "source_sha256": "6c925896d8f82e07bc227dfbe25806d8da619cecf54fcf4efbc1a326b595f909",
+    "comparisons": {
+      "menu_option_toggle": {
+        "differing": 0,
+        "total": 79,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x18 at +0x30",
+          ".rodata+0x18 at +0x38"
+        ],
+        "errors": [],
+        "extra_words": 0
+      },
+      "format_string_parse": {
+        "differing": 0,
+        "total": 45,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0x20",
+          ".rodata+0x0 at +0x28"
+        ],
+        "errors": [],
+        "extra_words": 0
+      }
+    }
+  },
+  "codex_menu_a87": {
+    "source_sha256": "410266b61f481e7f1262bb6f3bdffa397a80fd7793f9cfce0c43231a29b99dcb",
+    "comparisons": {
+      "menu_text_input": {
+        "differing": 0,
+        "total": 87,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x18 at +0x34",
+          ".rodata+0x18 at +0x3c"
+        ],
+        "errors": [],
+        "extra_words": 0
+      },
+      "format_string_parse": {
+        "differing": 0,
+        "total": 45,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0x20",
+          ".rodata+0x0 at +0x28"
+        ],
+        "errors": [],
+        "extra_words": 0
+      }
+    }
+  }
+}

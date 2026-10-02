@@ -1,0 +1,21 @@
+{
+  "members": [
+    "entity_spawn_callback"
+  ],
+  "context": [
+    "func_8009002C",
+    "func_8008FFD0"
+  ],
+  "claims": [],
+  "files": [
+    "group.c",
+    "func_8009002C.c",
+    "func_8008FFD0.c"
+  ],
+  "keep": [
+    "entity_spawn_callback",
+    "func_8009002C",
+    "func_8008FFD0"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+}

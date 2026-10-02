@@ -1,0 +1,21 @@
+{
+  "members": [
+    "func_800BFD8C"
+  ],
+  "context": [
+    "func_8009C3F8",
+    "camera_update_c",
+    "select_screen_update"
+  ],
+  "claims": [],
+  "files": [
+    "group.c",
+    "trig_context.c"
+  ],
+  "keep": [
+    "func_800BFD8C",
+    "camera_update_c",
+    "select_screen_update"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+}

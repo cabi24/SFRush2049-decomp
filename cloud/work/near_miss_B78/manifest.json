@@ -1,0 +1,12 @@
+{
+  "claims": [],
+  "function": "camera_blend_between",
+  "address": "0x800BEE2C",
+  "target_bytes": 496,
+  "files": {
+    "camera_blend_between_native.c": "b192dc71520274af35ef5a4f056ecd119788514cfbbf5a1b07a060dd828b86c9",
+    "camera_blend_between_inline.c": "3c1e5a04b10e477f23ec3bed81eb84362b069dc93875ebb0c77b098734b78f97",
+    "results.json": "da5080ad8f94e95216510d715f097746ae657fbd2acbdbe288a03ca6fd435ed1",
+    "camera_blend_between_O2.c": "953fa42b9a00f305de8bc4c588fc439ac5ab46f4a1069b54cb75d558d5758c53"
+  }
+}

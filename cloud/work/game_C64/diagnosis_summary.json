@@ -1,0 +1,39 @@
+{
+  "function": "func_800D169C",
+  "words_differing": 147,
+  "strict_words_differing": 147,
+  "target_words": 140,
+  "candidate_words": 150,
+  "verdict": "mixed(constant:4, structural:161, register:30)",
+  "frame_delta": -8,
+  "lanes": [
+    {
+      "class": "pool",
+      "slot": 0,
+      "rotation": null
+    },
+    {
+      "class": "temp",
+      "slot": 0,
+      "rotation": null
+    },
+    {
+      "class": "shared",
+      "slot": 0,
+      "rotation": null
+    },
+    {
+      "class": "fp-pool",
+      "slot": 7,
+      "rotation": null
+    },
+    {
+      "class": "fp-temp",
+      "slot": 0,
+      "rotation": null
+    }
+  ],
+  "owning_pass": "unknown",
+  "ownership_basis": "none",
+  "lever": "drop-a-declared-local"
+}

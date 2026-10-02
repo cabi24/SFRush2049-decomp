@@ -1,0 +1,11 @@
+{
+  "claims": [],
+  "function": "func_800A1A60",
+  "address": "0x800A1A60",
+  "target_bytes": 340,
+  "files": {
+    "func_800A1A60_O2.c": "7c3e3377488a611ccf8275d5748ceac0c36cfc6a39b6cfed83fdeed64131e70a",
+    "func_800A1A60_native.c": "1b0174e9a2d647603af8f89f3ba684547b6757ec65ce61fbca7990e374f46b15",
+    "results.json": "a0bbd43d3805ab21644217e4f3ed47fdcbc709d0aabb5d544be81db1ad92411d"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "codex_menu_a86": {
+    "format_string_parse": {
+      "original_table_identity": true,
+      "entries": 6,
+      "table_object_offset": 0,
+      "table_address": "0x80123c20",
+      "table_sha256": "f6bcb0ccbee2571534ca6b32bdc230101a2d54ae46263f7873c8ff08698a567e"
+    },
+    "menu_option_toggle": {
+      "original_table_identity": true,
+      "entries": 7,
+      "table_object_offset": 24,
+      "table_address": "0x801240e0",
+      "table_sha256": "7be0f80071d21d3ebb4af142dd9addd2d5407cf3a64fd8221238de16f354e529"
+    }
+  },
+  "codex_menu_a87": {
+    "format_string_parse": {
+      "original_table_identity": true,
+      "entries": 6,
+      "table_object_offset": 0,
+      "table_address": "0x80123c20",
+      "table_sha256": "f6bcb0ccbee2571534ca6b32bdc230101a2d54ae46263f7873c8ff08698a567e"
+    },
+    "menu_text_input": {
+      "original_table_identity": true,
+      "entries": 7,
+      "table_object_offset": 24,
+      "table_address": "0x801240c4",
+      "table_sha256": "0452951da1e2c5d2c7669e60b5daea7d025ecdf3ae136fd3cd152e2585f46572"
+    }
+  }
+}

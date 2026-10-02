@@ -1,0 +1,32 @@
+{
+  "status": "EXACT_INDIVIDUAL_TABLE_WINDOW_LEAD",
+  "canonical_group_placement": "REFUSED: original table windows have distinct image section bases",
+  "functions": {
+    "format_string_parse": {
+      "full_word_differences": 0,
+      "words": 45,
+      "table_object_offset": 0,
+      "table_image_address": "0x80123c20",
+      "table_entries": 6,
+      "table_used_bytes": 24,
+      "relocated_table_matches_original": true,
+      "table_sha256": "f6bcb0ccbee2571534ca6b32bdc230101a2d54ae46263f7873c8ff08698a567e",
+      "relocated_body_sha256": "f8537dbeb5e899bf215a2380e1f44dc25689bb46dca8be6deb664bc5bfbd4c0d",
+      "known_own_table_relocations": 2,
+      "unknown_references": 0
+    },
+    "menu_text_input": {
+      "full_word_differences": 0,
+      "words": 87,
+      "table_object_offset": 24,
+      "table_image_address": "0x801240c4",
+      "table_entries": 7,
+      "table_used_bytes": 28,
+      "relocated_table_matches_original": true,
+      "table_sha256": "0452951da1e2c5d2c7669e60b5daea7d025ecdf3ae136fd3cd152e2585f46572",
+      "relocated_body_sha256": "7c2f2451f5f0dbdc3489c36901844621b6fd695bb6a63ac8b3f0a0c3d3979062",
+      "known_own_table_relocations": 2,
+      "unknown_references": 0
+    }
+  }
+}

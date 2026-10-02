@@ -1,0 +1,20 @@
+{
+  "codex_menu_a86": {
+    "full_image_word_differences": {
+      "menu_option_toggle": 0,
+      "format_string_parse": 0
+    },
+    "member_only_exact": true,
+    "unknown_references": 0,
+    "extra_words": 0
+  },
+  "codex_menu_a87": {
+    "full_image_word_differences": {
+      "menu_text_input": 0,
+      "format_string_parse": 0
+    },
+    "member_only_exact": true,
+    "unknown_references": 0,
+    "extra_words": 0
+  }
+}

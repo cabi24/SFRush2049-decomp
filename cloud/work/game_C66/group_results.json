@@ -1,0 +1,41 @@
+[
+  {
+    "variant": "real_group",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "61d9b3a30e5963a79b03b2128b7818122639fe166200907c886fe792344bec72",
+    "linked": {
+      "func_800BFD8C": {
+        "differing": 153,
+        "total": 213,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 1
+      },
+      "func_8009C3F8": {
+        "differing": 92,
+        "total": 113,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "camera_update_c": {
+        "differing": 7,
+        "total": 9,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "select_screen_update": {
+        "differing": 7,
+        "total": 9,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    }
+  }
+]

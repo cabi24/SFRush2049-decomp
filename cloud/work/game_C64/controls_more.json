@@ -1,0 +1,59 @@
+[
+  {
+    "function": "func_800D169C.count",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 10433,
+    "linked": {
+      "differing": 136,
+      "total": 139,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_80152818 at .text+0x1e4"
+      ],
+      "extra_words": 57
+    },
+    "source_sha256": "1cb2c7ebd4c30a0e0430919f4356221f0d9c66f16eb747ab7dd5315d2ed76217",
+    "target_sha256": "0fb27cd0b22ac9f44f852fde76b060b2b21e6e078d017cafa4892e2047c33332"
+  },
+  {
+    "function": "func_800D169C.count_guard",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 11158,
+    "linked": {
+      "differing": 137,
+      "total": 139,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_80152818 at .text+0x1e8"
+      ],
+      "extra_words": 58
+    },
+    "source_sha256": "21ccaac48d784fc7e33963eacc6fb7c7bbacb79f0caac3aa2bbe5357682caadf",
+    "target_sha256": "0fb27cd0b22ac9f44f852fde76b060b2b21e6e078d017cafa4892e2047c33332"
+  },
+  {
+    "function": "func_800D169C.scoped_vectors",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 10818,
+    "linked": {
+      "differing": 137,
+      "total": 139,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_80152818 at .text+0x1e8"
+      ],
+      "extra_words": 58
+    },
+    "source_sha256": "7d5532f8fc2c60d6152b1f79a19a4b14dc7a9d1a57a7d9c750e238fefca8df1e",
+    "target_sha256": "0fb27cd0b22ac9f44f852fde76b060b2b21e6e078d017cafa4892e2047c33332"
+  }
+]

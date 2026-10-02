@@ -1,0 +1,7 @@
+# B83 — complete viewport setup and genuine SDK packed color, no claim
+
+`arb_rate_set@0x800A5908`, 312 bytes / 78 words. Reservation/archived filename/body/canonical interval checks clear. Earlier B43/B44 only deferred read-only macro screening; fresh source now uses primary corpus `reference/repos/ultralib/include/PR/gbi.h` GPACK_RGBA5551 definition and real sprite color operands, not invented shift work.
+
+Nine actual inputs: signed index, two record pointers, six floats. Fourth argument is horizontal float: original a3 passes as exhaust_smoke_effect a1 and callee mtc1 feeds f16. This provides semantic evidence beyond C39's historical void-pointer fourth-argument prototype (that prototype preserves observed ABI bits). Descriptor72 and actual Viewport16; pointer setup, fog/zoom globals, scale/translate conversions, complete real projection helper, RGBA fields/ranges and packed fill color all included.
+
+Four bounded controls: constant-black macro O3 75/78; consumed stored-color macro O3 73/78 +1 extra; O2 74/78 +5 extras and recorded unpaired-HI D_80124FC8 error; one consumed scaling-factor intermediate O3 unchanged73/78+1. Frame56 is correct. Compiler rewrites multiply-by-two into addition and macro/ordering remains different; no volatile scale, fake shifts, opaque constants, masks, caller stand-ins or line sweep. No claim; freeze pending actual source/compiler evidence. Sanitized proofs/hashes/literal flags preserved, raw objects/assembly/ROM excluded. Shared accepted sources/locks untouched.

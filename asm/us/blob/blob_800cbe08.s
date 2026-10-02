@@ -1958,6 +1958,7 @@ object_byte71_set_sync:
 .section .text.menu_text_input, "ax", @progbits
 .globl menu_text_input
 menu_text_input:
+    /* compiled from src/blob/menu_text_input.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0xAFA40018
@@ -2082,6 +2083,7 @@ func_800CDC3C:
 .section .text.menu_option_toggle, "ax", @progbits
 .globl menu_option_toggle
 menu_option_toggle:
+    /* compiled from src/blob/menu_option_toggle.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0xAFA5001C

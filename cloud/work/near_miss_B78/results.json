@@ -1,0 +1,44 @@
+[
+  {
+    "source": "camera_blend_between_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "b192dc71520274af35ef5a4f056ecd119788514cfbbf5a1b07a060dd828b86c9",
+    "comparison": {
+      "differing": 121,
+      "total": 124,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 2
+    },
+    "text_words": 128
+  },
+  {
+    "source": "camera_blend_between_O2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "953fa42b9a00f305de8bc4c588fc439ac5ab46f4a1069b54cb75d558d5758c53",
+    "comparison": {
+      "differing": 121,
+      "total": 124,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 2
+    },
+    "text_words": 128
+  },
+  {
+    "source": "camera_blend_between_inline.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "3c1e5a04b10e477f23ec3bed81eb84362b069dc93875ebb0c77b098734b78f97",
+    "comparison": {
+      "differing": 121,
+      "total": 124,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 2
+    },
+    "text_words": 128
+  }
+]

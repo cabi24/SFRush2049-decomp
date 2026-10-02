@@ -1,0 +1,9 @@
+# C63: genuine recursive-remover context control, no claim
+
+Follow-up to frozen C59, not relabeled fresh singleton work. Uses the complete C59 recursive resource destructor and both complete actual accepted lookup translation units `func_8009002C.c` and `func_8008FFD0.c`, copied byte-for-byte from cloud/matches. Their source hashes are recorded in `game_C63/source_hashes.json`; original accepted files and old C59 packet are unchanged. All three actual functions are kept under the literal group recipe `-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul`; no stand-in, caller stub, fake formal or capacity.
+
+Actual helper disassembly preserves all but its real temporary registers. This supplied a meaningful clobber-context experiment for C59's frame40 vs retail32. Both group controls compile and retain complete helpers at **0/23 each**, no extra words, no unresolved/unverified/error entries. Caller baseline remains **31/104**, consumed-head-pointer control remains **23/104**. Therefore genuine helper context does not repair the caller's frame or materialization residual. Empty claims retained. No coverage credit requested.
+
+Group source SHA-256 baseline `dffb0db228498242a74fdfdea2a6f0cacfd7894e2e411340a78a3b6740838da3`; head-pointer `8f8101ea92cdadeb954c3269ebea21c002ac62cc503e23cd82299ae8da976578`. Canonical caller target hash remains the original C59 `7b120715c5214e3c6f7c6a8afefa94c59a27873c5e6e2e3c50455b250035f9c0`. No raw words or objects committed; local object scratch stays ignored.
+
+Read-only adjacent scouts: audio_state_save80095D04 calls audio_fade_control800953CC, which consumes incoming s4 and modifies unsaved s0..s3. func800D6530 calls speed_set with incoming s1/s2/f20/f22; func800CF06C calls large actual IPA camera/menu helpers. None was assigned invented ordinary signatures.

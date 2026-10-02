@@ -1,0 +1,58 @@
+[
+  {
+    "source": "drone_target_update_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "5c4a34c81afb18ba70dfe7aa4efb80135f902d076acfc8ae71c218b99cded532",
+    "comparison": {
+      "differing": 123,
+      "total": 124,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "text_words": 128
+  },
+  {
+    "source": "drone_target_update_do.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "15d3dc32a8e16c58d70676e5bc8f0ef6902748160fbf5e8324672ea40252d9f9",
+    "comparison": {
+      "differing": 115,
+      "total": 124,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 120
+  },
+  {
+    "source": "drone_target_update_index.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "4c4dbfe9cd5e911ba47f957c54a51506044602384aac313f960605075abf8d76",
+    "comparison": {
+      "differing": 120,
+      "total": 124,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 116
+  },
+  {
+    "source": "drone_target_update_index_O2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "8cb1b77a40e23139bc935fbc9b749d0d21e11238de577066b049a406be945d96",
+    "comparison": {
+      "differing": 120,
+      "total": 124,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 116
+  }
+]
