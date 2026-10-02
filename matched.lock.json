@@ -31,14 +31,6 @@
     "verified": "score0",
     "verified_at": "2026-10-02"
   },
-  "cloud/work/static_debug_consolidation/acceptance_sources/main.c:main": {
-    "body_sha256": "12282198332aa856ddfffcd6311f63d79a545dc5740e7bf015b4c550054e29e4",
-    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
-    "target_id": "main",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-02"
-  },
   "cloud/work/static_debug_consolidation/acceptance_sources/memset.c:memset": {
     "body_sha256": "44ac98bc0f231a5d3ea9cc98a6d165316181620bc28600cbefa6ee072682275c",
     "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
@@ -139,6 +131,14 @@
     "body_sha256": "05d1c70d03654fbe58385467666d02733c48e474a5c54e9435a0e6116d6cd6f8",
     "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "target_id": "audio_thread_entry",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-02"
+  },
+  "src/rom/lib_2cf0.c:main": {
+    "body_sha256": "12282198332aa856ddfffcd6311f63d79a545dc5740e7bf015b4c550054e29e4",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "main",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-02"
