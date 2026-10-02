@@ -1,0 +1,158 @@
+[
+  {
+    "function": "dma_queue_init",
+    "exit": 0,
+    "stderr": "",
+    "source_sha256": "80dba608b8f30b96dedaddaac57998f5585d33c64130fb4bb1598652a1832013"
+  },
+  {
+    "function": "memchr",
+    "exit": 0,
+    "stderr": "",
+    "source_sha256": "2feed3ef3c5bdadeb0bdbee25694b5e1f40b7d2ca7dfe8532ece3a9a448790b6"
+  },
+  {
+    "function": "audio_thread_entry",
+    "exit": 0,
+    "stderr": "",
+    "source_sha256": "5b912fb8e60e989e9c335409f97b51e975735d9333557ec7c075b5d53021b80c"
+  },
+  {
+    "function": "get_tv_offset",
+    "exit": 0,
+    "stderr": "",
+    "source_sha256": "8cb844a1b2884b8eab97df626da5f35033853fac801e132896cc64cec4e184d1"
+  },
+  {
+    "function": "__isinf",
+    "exit": 0,
+    "stderr": "",
+    "source_sha256": "3c3aba839a9e309eaf6e3ee3aaedb2001554952bf934915cbd73408d81785e43"
+  },
+  {
+    "function": "__isnan",
+    "exit": 0,
+    "stderr": "",
+    "source_sha256": "449676f36b3e83e272eb68641868fd45112b6f1bc3e402daf1e9e8ebaac5ccea"
+  },
+  {
+    "function": "dma_wait",
+    "exit": 0,
+    "stderr": "",
+    "source_sha256": "8f9bb3585af90027164eeccc9a7ac32d1105ad8017b78c39f24fdf84221397d8"
+  },
+  {
+    "function": "dma_signal",
+    "exit": 0,
+    "stderr": "",
+    "source_sha256": "7b2b5eaa15ff42eceeacc950bba0ad0ff729a59964873d2dfdefe7ade0833980"
+  },
+  {
+    "function": "lzss_decompress",
+    "exit": 0,
+    "stderr": "",
+    "source_sha256": "fab64c17416593c3aee3ad3172861afe7176543a54661f9dce3900a35ec623bf"
+  },
+  {
+    "function": "inflate_decompress",
+    "exit": 0,
+    "stderr": "",
+    "source_sha256": "84925c3051a318c640ec39d10210b1350480138e74b841f4ebbad8c461a8a596"
+  },
+  {
+    "function": "modf",
+    "exit": 0,
+    "stderr": "",
+    "source_sha256": "c4b18e8ffa822f8d40a3b9209b08fce805a374a7854fd0029f543e9ecc07aea1"
+  },
+  {
+    "function": "modff",
+    "exit": 0,
+    "stderr": "",
+    "source_sha256": "c0b8f94dcc13219b423041932d524959d812fc959582af00dc2b685f4a4648a7"
+  },
+  {
+    "function": "get_viewport_pos",
+    "exit": 0,
+    "stderr": "",
+    "source_sha256": "56ab45545dc9be893b7440a299b0b6eaec64609c9d0be57164563cbf11510508"
+  },
+  {
+    "function": "get_viewport_offset",
+    "exit": 0,
+    "stderr": "",
+    "source_sha256": "1102b6bc2f243820e5717754b26cf226c90f9f7524329822fab4b79716799b9d"
+  },
+  {
+    "function": "display_mode_tick",
+    "exit": 0,
+    "stderr": "",
+    "source_sha256": "eb1cea03fb35142ce26758a34f3e1703c5faac54cf62f66ddb42b31ee658764e"
+  },
+  {
+    "function": "apply_display_mode",
+    "exit": 0,
+    "stderr": "",
+    "source_sha256": "9bfa5d5f194bf1440c86abf573aade055874cfdbd353ad7f9d187f893d6ce2af"
+  },
+  {
+    "function": "sprintf",
+    "exit": 0,
+    "stderr": "",
+    "source_sha256": "1361a9de8ddb05994db784cbfde9fb9ca6aae4b17d755550055245be1a3a6635"
+  },
+  {
+    "function": "viewport_setup",
+    "exit": 0,
+    "stderr": "",
+    "source_sha256": "40da2576dfd69b369e2dcc1fe19c991858ee8fecede4a631190702df875d1326"
+  },
+  {
+    "function": "update_viewport",
+    "exit": 0,
+    "stderr": "",
+    "source_sha256": "17615f15302268d3102c600223e7739fada006b7cab0c18e51e9d68983418c9b"
+  },
+  {
+    "function": "display_update",
+    "exit": 0,
+    "stderr": "",
+    "source_sha256": "5641b53ac47fba76473272d29301107a7faad029d654d83b5a5816e4b218ace4"
+  },
+  {
+    "function": "main",
+    "exit": 0,
+    "stderr": "",
+    "source_sha256": "b9c1a89408c795339c00af521719c5f2837ca10ea2831dec4137d75e505f746d"
+  },
+  {
+    "function": "idle_thread_entry",
+    "exit": 0,
+    "stderr": "",
+    "source_sha256": "55e2ac697f679d34b3255b496b63d8489197dd740f23490bcd943e777fec706a"
+  },
+  {
+    "function": "__round_helper",
+    "exit": 0,
+    "stderr": "",
+    "source_sha256": "5ece1ab4fe08d429f501d03ecb10a0030746c8c9540038913d1410b15d43f98c"
+  },
+  {
+    "function": "__write_exponent",
+    "exit": 0,
+    "stderr": "",
+    "source_sha256": "3875433c7b05e494f7ea155b9de1320f1b959431d516460b99ab46caf3cc7e83"
+  },
+  {
+    "function": "__ecvt_internal",
+    "exit": 0,
+    "stderr": "",
+    "source_sha256": "b460e5c21af299742bb12a710312862e8f535a9c1dd3be6724a61049d597137a"
+  },
+  {
+    "function": "memset",
+    "exit": 0,
+    "stderr": "",
+    "source_sha256": "e3d1ed5d8256000e9a30a521fb794bfafb935868f34880e93468404bd14d6d31"
+  }
+]

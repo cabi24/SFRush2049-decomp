@@ -1,0 +1,33 @@
+{
+  "primary_url": "https://raw.githubusercontent.com/386bsd/386bsd/master/usr/src/lib/libc/stdio/vfprintf.c",
+  "upstream_sha256": "b8dd888df9dc8466724aee4a70d7d186f640ce74e35002d8fd7ce9beac26f358",
+  "upstream_sccs": "vfprintf.c 5.47 (Berkeley) 3/22/91",
+  "upstream_license": "four-clause Regents BSD",
+  "original_gpl_packet_unchanged": true,
+  "ecvt_body_tokens_identical_to_frozen_original": true,
+  "adaptations": [
+    "K&R signature to the actual consumed N64 ABI; unsigned bytes",
+    "Expand to_char and use actual ALT=8",
+    "Bind real runtime .01/.0001 loads to gPerspFov/gPerspAspect",
+    "Original number>=1 integer-loop guard",
+    "Original consumed scalar initialization order gformat/expcnt/dotrim",
+    "Use actual callee names __round_helper/__write_exponent",
+    "Explicit parentheses around pre-existing && subexpression; same original BSD operator precedence"
+  ],
+  "sources": [
+    {
+      "source": "cloud/work/static_C81/__ecvt_internal.bsd.c",
+      "source_sha256": "f05bbcd8e8e84104a73f83427e68633fe8db71302d9809a231b57c690ed376f1"
+    },
+    {
+      "source": "cloud/work/static_C81/__write_exponent.bsd_notice.c",
+      "source_sha256": "838fb8253ddd604ca855a8b296f19332ff84c45a92d33225521480ee96c27ce9"
+    },
+    {
+      "source": "cloud/work/static_C81/lib_34a0.bsd.proposed.c",
+      "source_sha256": "3278ec22c194616962c2e5ba6414da422336cced7ee5cd2f2f265dbb7916bd11"
+    }
+  ],
+  "immutable_primary_url": "https://raw.githubusercontent.com/386bsd/386bsd/a21426270803ed92361b0d722e554be159c137ef/usr/src/lib/libc/stdio/vfprintf.c",
+  "upstream_commit": "a21426270803ed92361b0d722e554be159c137ef"
+}

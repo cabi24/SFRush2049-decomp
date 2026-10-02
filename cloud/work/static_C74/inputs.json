@@ -1,0 +1,23 @@
+[
+  {
+    "function": "update_viewport",
+    "variant": "update_viewport",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "b50a39a87d7ea193faf0ca0fc5d782d6711882a7622c27a2dd0facb70eada3d3",
+    "target_sha256": "7650d39b312d4bb7c7d6673b9dda8e35037366353ab6e68b3eddc81a25a4d01b"
+  },
+  {
+    "function": "update_viewport",
+    "variant": "update_viewport.direct",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "c7218f266546fce9488d6f163753892ba7edb3cf199d0c2916731a2446130771",
+    "target_sha256": "7650d39b312d4bb7c7d6673b9dda8e35037366353ab6e68b3eddc81a25a4d01b"
+  },
+  {
+    "function": "update_viewport",
+    "variant": "update_viewport.direct_order",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "317fabc4a9fcf73c7bf8c5dcd8fa17be7a8fa2194c977aec9d4894565780a0ef",
+    "target_sha256": "7650d39b312d4bb7c7d6673b9dda8e35037366353ab6e68b3eddc81a25a4d01b"
+  }
+]

@@ -1,0 +1,13 @@
+[
+  {
+    "function": "viewport_setup",
+    "variant": "viewport_setup",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "b3978f6e70344ef28dd03461630241f89aba1ae1472703c87f293ec127550c61",
+    "target_sha256": "5bb55a675a0778752e38a430510dc67358281ce1f4e4f870577784078b7ccf41",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict_score": 360,
+    "object_sha256": "bc45fd6bcca90dbf77202a21f0c30b62f8aa3f0f908b58f5376786634d7fd6d4"
+  }
+]

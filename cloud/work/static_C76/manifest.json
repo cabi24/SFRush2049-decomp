@@ -1,0 +1,24 @@
+{
+  "claims": [
+    {
+      "function": "main",
+      "layout_bytes": 180,
+      "source": "cloud/work/static_C76/main.c",
+      "source_sha256": "1662b4edb064d6fc06276cd2d9da7c288afef442211d96efc59e89059ead23dc"
+    },
+    {
+      "function": "idle_thread_entry",
+      "layout_bytes": 148,
+      "source": "cloud/work/static_C76/idle_thread_entry.c",
+      "source_sha256": "ee75da07c552780ec5c2e52bda17ab0ac4cacf3d94c3a05705de081d87dbdb27"
+    }
+  ],
+  "claim_layout_bytes": 328,
+  "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "complete_module_flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm -Iinclude -Iinclude/PR -Irom -D_LANGUAGE_C",
+  "asm_processor_model": "-g",
+  "full_module_proof": "full_module_proofs.json",
+  "all_original_members_verified": 4,
+  "required_shared_context": "shared_context.txt",
+  "genuine_header_storage": "16-word64-byte local array proven by original loop bound/addressing and frame104"
+}

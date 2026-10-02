@@ -88,12 +88,12 @@ segments:
     follows_vram: entry
     subsegments:
       - [0x1050, c, rom/lib_1050]
-      - [0x21F0, asm]
-      - [0x2CF0, asm]
-      - [0x3140, asm]
-      - [0x3330, asm]
-      - [0x3390, asm]
-      - [0x34A0, asm]
+      - [0x21F0, c, rom/lib_21f0]
+      - [0x2CF0, c, rom/lib_2cf0]
+      - [0x3140, c, rom/lib_3140]
+      - [0x3330, c, rom/lib_3330]
+      - [0x3390, c, rom/lib_3390]
+      - [0x34A0, c, rom/lib_34a0]
       - [0x55F0, asm]
       - [0x5610, c, rom/lib_5610]
       - [0x7600, c, rom/lib_7600]

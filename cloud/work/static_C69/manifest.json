@@ -1,0 +1,48 @@
+{
+  "claims": [
+    {
+      "function": "dma_wait",
+      "layout_bytes": 148,
+      "source": "cloud/work/static_C69/dma_wait.g1.c",
+      "source_sha256": "28cbe730a7dd470c737aea3a170471c22da7387d2665561b890d2d272d35566f"
+    },
+    {
+      "function": "dma_signal",
+      "layout_bytes": 52,
+      "source": "cloud/work/static_C69/dma_signal.fallthrough.c",
+      "source_sha256": "7c66e42a2913c91ac4b8389f271c8b19ce01142b50796cde59f2933891ac6046"
+    },
+    {
+      "function": "lzss_decompress",
+      "layout_bytes": 96,
+      "source": "cloud/work/static_C69/lzss_decompress.g1.c",
+      "source_sha256": "2346f5e619ce1f72fcf8a02760975c90647e34fa8b1b3136d9f0bcbbed6f2122"
+    },
+    {
+      "function": "inflate_decompress",
+      "layout_bytes": 112,
+      "source": "cloud/work/static_C69/inflate_decompress.g1.c",
+      "source_sha256": "e91869d4679050ec05581e058294bdf85a68afccd3ce42295ed8bd489d579fb6"
+    },
+    {
+      "function": "modf",
+      "layout_bytes": 452,
+      "source": "cloud/work/static_C69/modf.g1.c",
+      "source_sha256": "dca48f27b97f5410323969e8ad3a55dbe98e5181db8daa4f483f389ef51229cb"
+    },
+    {
+      "function": "modff",
+      "layout_bytes": 396,
+      "source": "cloud/work/static_C69/modff.g1.c",
+      "source_sha256": "59dd4fa40a7459e33b990362a3e5d4caeea500ab77e1047b71b6aed37bfc9104"
+    }
+  ],
+  "claim_layout_bytes": 1256,
+  "full_native_module": "lib_3140 all five functions, 496 bytes",
+  "recipe": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "complete_module_recipe": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm -Iinclude -Iinclude/PR -Irom -D_LANGUAGE_C",
+  "asm_processor_model": "-g",
+  "full_module_proof": "full_module_proofs.json",
+  "required_shared_context": "C68 shared_context.txt plus grounded lzss_decode/inflate_entry prototypes",
+  "existing_shared_dma_prototypes": "dma_wait and dma_signal already exist in include/m2c_types.h"
+}

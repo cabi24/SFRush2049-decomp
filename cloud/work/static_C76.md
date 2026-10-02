@@ -1,0 +1,9 @@
+# C76 — exact genuine main and idle thread
+
+Native main180bytes and idle_thread_entry148bytes, totaling **328 authoritative static layout bytes**, both match strictly at `-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul`. Fresh main follows its actual initialization, sixteen-word ROM read and SDK thread calls. Idle is an explicitly grounded native effective-debug follow-up of old C5, whose source remains unchanged.
+
+Main's64-byte local is proven by the original16-word loop, scaled indexing and104-byte frame. Input is the actual opaque thread argument passed to the SDK entry. ROM address and index increments, thread identifier/priority, real constant idle-stack endpoint and SDK calls remain exact. Idle uses the actual SDK queue, message-buffer and thread types; creates the real game thread with its actual stack-end address; then loops forever. Its source uses no invented stack capacity or the old m2c long-long offset local. Existing shared gStackGame declaration is consumed only as an address.
+
+Both sources also verify inside the complete current-header lib_2cf0 with C68's exact audio_thread_entry and untouched game_init assembly. All4original functions match every full word and exact slot placement, complete1104/1104-byte text length. No masks, unresolved/unverified symbols, errors or omitted original padding occur. Correct private asm-processor `-g` modeling and existing full module flags are frozen.
+
+`shared_context.txt` lists only genuine SDK/opaque stack declarations and actual callback prototypes required after extraction. `manifest.json` freezes sources/flags/claims; strict results, full module/object hashes, every-member proofs, complete proposed C snapshot and read-only reproduce/verify scripts freeze all evidence. Protected original asm/object bytes remain ignored under build/C76. No shared files, state, flags or publication were changed; root owns independent replay and all final gates.

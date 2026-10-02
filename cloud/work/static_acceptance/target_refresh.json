@@ -1,0 +1,50 @@
+{
+  "method": "Supported targets.populate with five scoped names in copied private database; original assembly round-trip and gate preserved.",
+  "built": 5,
+  "static_gate_fallbacks": 0,
+  "superseded_targets": 5,
+  "purged_prior_evidence_rows": 162,
+  "targets": [
+    {
+      "target_id": "__ecvt_internal",
+      "population": "static",
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "target_o_sha": "b28b85077a46ff1b7cbcdadc2d536fc5a736288215706e26e3f07ff875b72c68",
+      "insn_count": 654
+    },
+    {
+      "target_id": "__round_helper",
+      "population": "static",
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "target_o_sha": "ca8ce9d32f1ec6fa8cab00e8da8a38c9f8d46eb71668da71ff655e5fbacd6969",
+      "insn_count": 129
+    },
+    {
+      "target_id": "display_update",
+      "population": "static",
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "target_o_sha": "8168ab0ed0cf46b4a6ee03bed14bc2f0c8aa889b261567f59cdd3b449c0005d0",
+      "insn_count": 341
+    },
+    {
+      "target_id": "fcvt",
+      "population": "static",
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "target_o_sha": "737824c52749d664d567bd80788ae79653b4831ff687def3e5f7babf53ecd04a",
+      "insn_count": 987
+    },
+    {
+      "target_id": "viewport_setup",
+      "population": "static",
+      "tier": "reloc_aware",
+      "gate_reason": null,
+      "target_o_sha": "c256915880c347bf4875bdf0c9cb1dbd9a3c38cc5a097a1589858943352cf2aa",
+      "insn_count": 135
+    }
+  ],
+  "live_database_mutations": 0
+}

@@ -6,6 +6,7 @@ import subprocess
 import tempfile
 import uuid
 import asm_processor
+from compiler_flags import processor_flags
 
 # Boolean for debugging purposes
 # Preprocessed files are temporary, set to True to keep a copy
@@ -38,11 +39,7 @@ del compile_args[out_ind]
 
 
 in_dir = in_file.resolve().parent
-opt_flags = [
-    x for x in compile_args if x in {"-g3", "-g", "-O0", "-O1", "-O2", "-framepointer", "-KPIC"}
-]
-if "-mips2" not in compile_args:
-    opt_flags.append("-mips1")
+opt_flags = processor_flags(compile_args)
 
 asmproc_flags += opt_flags + [str(in_file)]
 

@@ -1,0 +1,5 @@
+/* Actual signed halfword viewport index and per-axis scales. */
+extern s16 gViewportX;
+extern s16 gViewportScaleX;
+extern s16 gViewportScaleY;
+/* Existing gViewportOffsetX/Y shared declarations remain usable. */

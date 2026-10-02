@@ -1,0 +1,27 @@
+{
+  "claims": [],
+  "canonical_refresh_pending": [
+    "__ecvt_internal"
+  ],
+  "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "prospective": [
+    {
+      "function": "__ecvt_internal",
+      "source": "cloud/work/static_C81/__ecvt_internal.bsd.c",
+      "layout_bytes": 2616,
+      "canonical_score": 80,
+      "source_sha256": "f05bbcd8e8e84104a73f83427e68633fe8db71302d9809a231b57c690ed376f1"
+    },
+    {
+      "function": "__write_exponent",
+      "source": "cloud/work/static_C81/__write_exponent.bsd_notice.c",
+      "layout_bytes": 280,
+      "canonical_score": 0,
+      "source_sha256": "838fb8253ddd604ca855a8b296f19332ff84c45a92d33225521480ee96c27ce9"
+    }
+  ],
+  "full_module": "cloud/work/static_C81/lib_34a0.bsd.proposed.c",
+  "provenance": "provenance.json",
+  "frozen_original_gpl_packet_unmodified": true,
+  "full_module_sha256": "3278ec22c194616962c2e5ba6414da422336cced7ee5cd2f2f265dbb7916bd11"
+}

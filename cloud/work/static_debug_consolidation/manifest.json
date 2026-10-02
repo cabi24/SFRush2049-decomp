@@ -1,0 +1,382 @@
+{
+  "recipe": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "module_recipe": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm -Iinclude -Iinclude/PR -Irom -D_LANGUAGE_C",
+  "asm_processor_model": "-g",
+  "sources": [
+    {
+      "function": "dma_queue_init",
+      "source": "cloud/work/static_C68/dma_queue_init.g1.c",
+      "source_sha256": "395d13e6d3d57085c2d770837c8c8b4884a9592f0bc888d060e901f880652f65",
+      "layout_bytes": 88,
+      "packet": "C68",
+      "canonical_refresh_pending": false,
+      "vaddr": "0x80002540",
+      "module": "lib_3140"
+    },
+    {
+      "function": "memchr",
+      "source": "cloud/work/static_C68/memchr.g1.c",
+      "source_sha256": "48ac0dddf2af7f6452ddcc8ff5d6bd1eb35493acb74017248f5e218b6db9ca4f",
+      "layout_bytes": 96,
+      "packet": "C68",
+      "canonical_refresh_pending": false,
+      "vaddr": "0x80002730",
+      "module": "lib_3330"
+    },
+    {
+      "function": "audio_thread_entry",
+      "source": "cloud/work/static_C68/audio_thread_entry.g1.c",
+      "source_sha256": "5cc47c928ed28e874caaf5776f0715f7e70de7e0e80b657bb041a6a5695dd58f",
+      "layout_bytes": 68,
+      "packet": "C68",
+      "canonical_refresh_pending": false,
+      "vaddr": "0x800024fc",
+      "module": "lib_2cf0"
+    },
+    {
+      "function": "get_tv_offset",
+      "source": "cloud/work/static_C68/get_tv_offset.g1.c",
+      "source_sha256": "d25e23dfacba33e0da4024ef766fc62138d0e13608e9d46542e6cef8a7b1f4e5",
+      "layout_bytes": 92,
+      "packet": "C68",
+      "canonical_refresh_pending": false,
+      "vaddr": "0x80001dfc",
+      "module": "lib_21f0"
+    },
+    {
+      "function": "__isinf",
+      "source": "cloud/work/static_C68/__isinf.g1.c",
+      "source_sha256": "f2c5bcaa2b84c9c95df3082ead54eac7694ea4962a5bb904160db2ae0d076d46",
+      "layout_bytes": 112,
+      "packet": "C68",
+      "canonical_refresh_pending": false,
+      "vaddr": "0x80002bf0",
+      "module": "lib_34a0"
+    },
+    {
+      "function": "__isnan",
+      "source": "cloud/work/static_C68/__isnan.g1.c",
+      "source_sha256": "1786333316c04e5a1cad1fe85fb4381a350da02de5a17ad2256497808e0fcfea",
+      "layout_bytes": 112,
+      "packet": "C68",
+      "canonical_refresh_pending": false,
+      "vaddr": "0x80002c60",
+      "module": "lib_34a0"
+    },
+    {
+      "function": "dma_wait",
+      "layout_bytes": 148,
+      "source": "cloud/work/static_C69/dma_wait.g1.c",
+      "source_sha256": "28cbe730a7dd470c737aea3a170471c22da7387d2665561b890d2d272d35566f",
+      "packet": "C69",
+      "canonical_refresh_pending": false,
+      "vaddr": "0x80002598",
+      "module": "lib_3140"
+    },
+    {
+      "function": "dma_signal",
+      "layout_bytes": 52,
+      "source": "cloud/work/static_C69/dma_signal.fallthrough.c",
+      "source_sha256": "7c66e42a2913c91ac4b8389f271c8b19ce01142b50796cde59f2933891ac6046",
+      "packet": "C69",
+      "canonical_refresh_pending": false,
+      "vaddr": "0x8000262c",
+      "module": "lib_3140"
+    },
+    {
+      "function": "lzss_decompress",
+      "layout_bytes": 96,
+      "source": "cloud/work/static_C69/lzss_decompress.g1.c",
+      "source_sha256": "2346f5e619ce1f72fcf8a02760975c90647e34fa8b1b3136d9f0bcbbed6f2122",
+      "packet": "C69",
+      "canonical_refresh_pending": false,
+      "vaddr": "0x80002660",
+      "module": "lib_3140"
+    },
+    {
+      "function": "inflate_decompress",
+      "layout_bytes": 112,
+      "source": "cloud/work/static_C69/inflate_decompress.g1.c",
+      "source_sha256": "e91869d4679050ec05581e058294bdf85a68afccd3ce42295ed8bd489d579fb6",
+      "packet": "C69",
+      "canonical_refresh_pending": false,
+      "vaddr": "0x800026c0",
+      "module": "lib_3140"
+    },
+    {
+      "function": "modf",
+      "layout_bytes": 452,
+      "source": "cloud/work/static_C69/modf.g1.c",
+      "source_sha256": "dca48f27b97f5410323969e8ad3a55dbe98e5181db8daa4f483f389ef51229cb",
+      "packet": "C69",
+      "canonical_refresh_pending": false,
+      "vaddr": "0x800028a0",
+      "module": "lib_34a0"
+    },
+    {
+      "function": "modff",
+      "layout_bytes": 396,
+      "source": "cloud/work/static_C69/modff.g1.c",
+      "source_sha256": "59dd4fa40a7459e33b990362a3e5d4caeea500ab77e1047b71b6aed37bfc9104",
+      "packet": "C69",
+      "canonical_refresh_pending": false,
+      "vaddr": "0x80002a64",
+      "module": "lib_34a0"
+    },
+    {
+      "function": "get_viewport_pos",
+      "layout_bytes": 72,
+      "source": "cloud/work/static_C70/get_viewport_pos.rows.c",
+      "source_sha256": "c14c498ce96f1196c93f930d06f011b1a56c1b43ac1a4596610ed97575956ba5",
+      "packet": "C70",
+      "canonical_refresh_pending": false,
+      "vaddr": "0x80001e84",
+      "module": "lib_21f0"
+    },
+    {
+      "function": "get_viewport_offset",
+      "layout_bytes": 96,
+      "source": "cloud/work/static_C70/get_viewport_offset.rows.c",
+      "source_sha256": "65107d5126ba7ad3767c13abf31a33a3288402cdae6954f5932ed2b8b1b07300",
+      "packet": "C70",
+      "canonical_refresh_pending": false,
+      "vaddr": "0x80001ecc",
+      "module": "lib_21f0"
+    },
+    {
+      "function": "display_mode_tick",
+      "layout_bytes": 156,
+      "source": "cloud/work/static_C72/display_mode_tick.mask_order.c",
+      "source_sha256": "b046381bc7b95a31bedd4ab7ae3ad6afa0b4b75e72198a1869fc7ad2ddbea68e",
+      "packet": "C72",
+      "canonical_refresh_pending": false,
+      "vaddr": "0x80001d60",
+      "module": "lib_21f0"
+    },
+    {
+      "function": "apply_display_mode",
+      "layout_bytes": 44,
+      "source": "cloud/work/static_C72/apply_display_mode.c",
+      "source_sha256": "b3481cf71378c4e27a2fdb28d1a7b57b6bc3bb1eb3a4c8df719d206b09e7026c",
+      "packet": "C72",
+      "canonical_refresh_pending": false,
+      "vaddr": "0x80001e58",
+      "module": "lib_21f0"
+    },
+    {
+      "function": "sprintf",
+      "layout_bytes": 96,
+      "source": "cloud/work/static_C72/sprintf.c",
+      "source_sha256": "b9aaaebefa78653b1b92356cdfaf3f0de267a5b086eec4980c7b92230902611c",
+      "packet": "C72",
+      "canonical_refresh_pending": false,
+      "vaddr": "0x80004990",
+      "module": "lib_34a0"
+    },
+    {
+      "function": "viewport_setup",
+      "layout_bytes": 540,
+      "source_sha256": "b3978f6e70344ef28dd03461630241f89aba1ae1472703c87f293ec127550c61",
+      "source": "cloud/work/static_C73/viewport_setup.c",
+      "packet": "C73",
+      "canonical_refresh_pending": true,
+      "vaddr": "0x80001b44",
+      "module": "lib_21f0"
+    },
+    {
+      "function": "update_viewport",
+      "layout_bytes": 452,
+      "source": "cloud/work/static_C74/update_viewport.direct_order.c",
+      "source_sha256": "317fabc4a9fcf73c7bf8c5dcd8fa17be7a8fa2194c977aec9d4894565780a0ef",
+      "packet": "C74",
+      "canonical_refresh_pending": false,
+      "vaddr": "0x80001f2c",
+      "module": "lib_21f0"
+    },
+    {
+      "function": "display_update",
+      "layout_bytes": 1364,
+      "source_sha256": "be197bbaa44092f04e6783a9af5a872d9c700f2cb640f65f6f9587133ccfa3ae",
+      "source": "cloud/work/static_C75/display_update.origin_order.c",
+      "packet": "C75",
+      "canonical_refresh_pending": true,
+      "vaddr": "0x800015f0",
+      "module": "lib_21f0"
+    },
+    {
+      "function": "main",
+      "layout_bytes": 180,
+      "source": "cloud/work/static_C76/main.c",
+      "source_sha256": "1662b4edb064d6fc06276cd2d9da7c288afef442211d96efc59e89059ead23dc",
+      "packet": "C76",
+      "canonical_refresh_pending": false,
+      "vaddr": "0x800020f0",
+      "module": "lib_2cf0"
+    },
+    {
+      "function": "idle_thread_entry",
+      "layout_bytes": 148,
+      "source": "cloud/work/static_C76/idle_thread_entry.c",
+      "source_sha256": "ee75da07c552780ec5c2e52bda17ab0ac4cacf3d94c3a05705de081d87dbdb27",
+      "packet": "C76",
+      "canonical_refresh_pending": false,
+      "vaddr": "0x800021a4",
+      "module": "lib_2cf0"
+    },
+    {
+      "function": "__round_helper",
+      "layout_bytes": 516,
+      "source_sha256": "9abf59f81b40d7e23462c108c8ac2c1c45f6e28bf3f615f620e3168c9dccb961",
+      "source": "cloud/work/static_C77/__round_helper.steps.c",
+      "packet": "C77",
+      "canonical_refresh_pending": true,
+      "vaddr": "0x80004674",
+      "module": "lib_34a0"
+    },
+    {
+      "function": "__write_exponent",
+      "layout_bytes": 280,
+      "source": "cloud/work/static_C81/__write_exponent.bsd_notice.c",
+      "source_sha256": "838fb8253ddd604ca855a8b296f19332ff84c45a92d33225521480ee96c27ce9",
+      "packet": "C81",
+      "canonical_refresh_pending": false,
+      "vaddr": "0x80004878",
+      "module": "lib_34a0",
+      "source_license": "native reconstruction with original four-clause Regents BSD notice for historical algorithm cue"
+    },
+    {
+      "function": "__ecvt_internal",
+      "layout_bytes": 2616,
+      "source": "cloud/work/static_C81/__ecvt_internal.bsd.c",
+      "source_sha256": "f05bbcd8e8e84104a73f83427e68633fe8db71302d9809a231b57c690ed376f1",
+      "packet": "C81",
+      "canonical_refresh_pending": true,
+      "vaddr": "0x80003c3c",
+      "module": "lib_34a0",
+      "source_license": "four-clause Regents BSD"
+    },
+    {
+      "function": "memset",
+      "source": "cloud/work/static_C83/memset.current_header.c",
+      "source_sha256": "e2b84ba3357c9eeaa3d8eb5ca264b625d0e93ae5ef7427e9d3ec208037b01367",
+      "layout_bytes": 272,
+      "vaddr": "0x80002790",
+      "module": "lib_3390",
+      "packet": "C83",
+      "canonical_refresh_pending": false
+    }
+  ],
+  "modules": [
+    {
+      "module": "lib_21f0",
+      "snapshot": "cloud/work/static_C75/lib_21f0.full_native.c",
+      "source_sha256": "d317f72691e70ba8828ab887b9d052d3116bc0e1503280ae5650defb1a863f57",
+      "proof": "cloud/work/static_C75/full_module_proofs.json",
+      "bytes": 2816,
+      "members": 8,
+      "native_functions": [
+        "get_tv_offset",
+        "get_viewport_pos",
+        "get_viewport_offset",
+        "display_mode_tick",
+        "apply_display_mode",
+        "viewport_setup",
+        "update_viewport",
+        "display_update"
+      ]
+    },
+    {
+      "module": "lib_2cf0",
+      "snapshot": "cloud/work/static_C76/lib_2cf0.proposed.c",
+      "source_sha256": "5df96eee6916aa3b7bc6e138d15d7009c3b66a70d492ac7e2b74083624afc8f0",
+      "proof": "cloud/work/static_C76/full_module_proofs.json",
+      "bytes": 1104,
+      "members": 4,
+      "native_functions": [
+        "audio_thread_entry",
+        "main",
+        "idle_thread_entry"
+      ]
+    },
+    {
+      "module": "lib_3140",
+      "snapshot": "cloud/work/static_C69/lib_3140.proposed.c",
+      "source_sha256": "d1369ec5fdb2c1695f50e3b5c0ffa87e8a1c3ade62e938576f47fbb3bedc99db",
+      "proof": "cloud/work/static_C69/full_module_proofs.json",
+      "bytes": 496,
+      "members": 5,
+      "native_functions": [
+        "dma_queue_init",
+        "dma_wait",
+        "dma_signal",
+        "lzss_decompress",
+        "inflate_decompress"
+      ]
+    },
+    {
+      "module": "lib_3330",
+      "snapshot": "cloud/work/static_C68/lib_3330.proposed.c",
+      "source_sha256": "3dfd0b5e503a207ed3b1ec991d34f32936dcf2c5627d611c8be64ba2f8bf1b66",
+      "proof": "cloud/work/static_C68/full_module_proofs.json",
+      "bytes": 96,
+      "members": 1,
+      "native_functions": [
+        "memchr"
+      ]
+    },
+    {
+      "module": "lib_34a0",
+      "snapshot": "cloud/work/static_C81/lib_34a0.bsd.proposed.c",
+      "source_sha256": "3278ec22c194616962c2e5ba6414da422336cced7ee5cd2f2f265dbb7916bd11",
+      "proof": "cloud/work/static_C81/full_module_proofs.json",
+      "bytes": 8528,
+      "members": 9,
+      "native_functions": [
+        "__isinf",
+        "__isnan",
+        "modf",
+        "modff",
+        "sprintf",
+        "__round_helper",
+        "__write_exponent",
+        "__ecvt_internal"
+      ]
+    },
+    {
+      "module": "lib_3390",
+      "snapshot": "cloud/work/static_C83/lib_3390.full_native.c",
+      "source_sha256": "042660941d5e5bb1f9b4aee22acea074fbfa464323b4f171c88fed4875359268",
+      "proof": "cloud/work/static_C83/full_module_proofs.json",
+      "bytes": 272,
+      "members": 1,
+      "native_functions": [
+        "memset"
+      ]
+    }
+  ],
+  "source_count": 26,
+  "source_layout_bytes": 8656,
+  "refresh_pending_target_ids": [
+    "viewport_setup",
+    "display_update",
+    "__round_helper",
+    "__ecvt_internal"
+  ],
+  "publication_status": "Prospective only; root replay and ROM gates required",
+  "license_notice": "All final formatter sources and module carry the original four-clause Regents BSD notice, separately derived from Berkeley 5.47; C79 GNU packet excluded and unchanged.",
+  "pending_logical_table_addition": {
+    "function": "fcvt",
+    "source": "cloud/work/static_C85/fcvt.current_header.c",
+    "source_sha256": "60fd6f806bcc65641c4b2a48d9574da938583e7d72c7cafcb412458dff913b52",
+    "full_module": "cloud/work/static_C85/lib_34a0.original_templates.full_native.c",
+    "full_module_sha256": "a49fbfc2c64294ec642baa617e988c3ad5a7b8aa57e007a77eef18f19f75660e",
+    "layout_bytes": 3948,
+    "independent_refresh_preview": "cloud/work/coordinator_readonly_20261002/fcvt_refresh_preview.json",
+    "independent_refresh_preview_strict_score": 0,
+    "shared_target_refresh_pending": true,
+    "private_production_proposal": "cloud/work/static_C85/proposal/manifest.json",
+    "prospective_total_after_reviewed_support_functions": 27,
+    "prospective_total_after_reviewed_support_bytes": 12604,
+    "not_in_current_baseline_counts": true
+  }
+}

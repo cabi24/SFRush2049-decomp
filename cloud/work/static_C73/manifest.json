@@ -1,0 +1,16 @@
+{
+  "decision": "full original words and complete TU exact; pending supported canonical FP-alias target refresh before strict claim",
+  "function": "viewport_setup",
+  "layout_bytes": 540,
+  "source_sha256": "b3978f6e70344ef28dd03461630241f89aba1ae1472703c87f293ec127550c61",
+  "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "stale_target_sha256": "5bb55a675a0778752e38a430510dc67358281ce1f4e4f870577784078b7ccf41",
+  "stale_target_tier": "raw_word",
+  "stale_target_gate_reason": "assemble_error: 16: invalid operands mtc1 $at,$ft0",
+  "complete_module_proof": "full_module_proofs.json",
+  "original_full_words_exact": 135,
+  "complete_module_words_and_placement_exact": true,
+  "original_module_bytes": 2816,
+  "candidate_module_bytes": 2816,
+  "source_context_preserved": "entire current-header source prelude has only grounded globals/types/prototypes; no custom typedef required"
+}

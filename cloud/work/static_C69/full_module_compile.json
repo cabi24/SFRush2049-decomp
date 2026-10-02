@@ -1,0 +1,130 @@
+[
+  {
+    "module": "lib_3140",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm -Iinclude -Iinclude/PR -Irom -D_LANGUAGE_C",
+    "source_sha256": "d1369ec5fdb2c1695f50e3b5c0ffa87e8a1c3ade62e938576f47fbb3bedc99db",
+    "original_asm_sha256": "e7d649f38c9c70d16bb7c23ca5829682da4b9096dfe110780a57ccaba06f6388",
+    "existing_promoted": 0,
+    "compile_exit": 0,
+    "stderr": "",
+    "seg": {
+      "yaml_name": "0x3140",
+      "rom_tu": "rom/lib_3140",
+      "vram_start": "0x80002540",
+      "size": 496,
+      "converted": false,
+      "flagset": null,
+      "functions": [
+        {
+          "name": "dma_queue_init",
+          "vaddr": "0x80002540",
+          "size": 88,
+          "state": "passthrough"
+        },
+        {
+          "name": "dma_wait",
+          "vaddr": "0x80002598",
+          "size": 148,
+          "state": "passthrough"
+        },
+        {
+          "name": "dma_signal",
+          "vaddr": "0x8000262c",
+          "size": 52,
+          "state": "passthrough"
+        },
+        {
+          "name": "lzss_decompress",
+          "vaddr": "0x80002660",
+          "size": 96,
+          "state": "passthrough"
+        },
+        {
+          "name": "inflate_decompress",
+          "vaddr": "0x800026c0",
+          "size": 112,
+          "state": "passthrough"
+        }
+      ],
+      "refusal": null
+    },
+    "object_sha256": "531d258cf49a473c1104f6b1d083ea0a49bc557a94a88049ab5b3b2f2f481efb",
+    "postprocess": "ok"
+  },
+  {
+    "module": "lib_34a0",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm -Iinclude -Iinclude/PR -Irom -D_LANGUAGE_C",
+    "source_sha256": "50851fb888102dc81250a7d274ef38f83963293ca96ee4b5d20fcf3e72a0da0a",
+    "original_asm_sha256": "524cdb70a9b26373d61e6d5a6467bd05512542b0f3a5f6c4a9e6d4a983c90cb2",
+    "existing_promoted": 0,
+    "compile_exit": 0,
+    "stderr": "",
+    "seg": {
+      "yaml_name": "0x34a0",
+      "rom_tu": "rom/lib_34a0",
+      "vram_start": "0x800028a0",
+      "size": 8528,
+      "converted": false,
+      "flagset": null,
+      "functions": [
+        {
+          "name": "modf",
+          "vaddr": "0x800028a0",
+          "size": 452,
+          "state": "passthrough"
+        },
+        {
+          "name": "modff",
+          "vaddr": "0x80002a64",
+          "size": 396,
+          "state": "passthrough"
+        },
+        {
+          "name": "__isinf",
+          "vaddr": "0x80002bf0",
+          "size": 112,
+          "state": "passthrough"
+        },
+        {
+          "name": "__isnan",
+          "vaddr": "0x80002c60",
+          "size": 112,
+          "state": "passthrough"
+        },
+        {
+          "name": "fcvt",
+          "vaddr": "0x80002cd0",
+          "size": 3948,
+          "state": "passthrough"
+        },
+        {
+          "name": "__ecvt_internal",
+          "vaddr": "0x80003c3c",
+          "size": 2616,
+          "state": "passthrough"
+        },
+        {
+          "name": "__round_helper",
+          "vaddr": "0x80004674",
+          "size": 516,
+          "state": "passthrough"
+        },
+        {
+          "name": "__write_exponent",
+          "vaddr": "0x80004878",
+          "size": 280,
+          "state": "passthrough"
+        },
+        {
+          "name": "sprintf",
+          "vaddr": "0x80004990",
+          "size": 96,
+          "state": "passthrough"
+        }
+      ],
+      "refusal": null
+    },
+    "object_sha256": "e434c803159a654bd50c1fa4970d055455e51ff7db5e0d4dea1dd1cba8eb854b",
+    "postprocess": "ok"
+  }
+]

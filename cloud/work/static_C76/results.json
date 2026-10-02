@@ -1,0 +1,24 @@
+[
+  {
+    "function": "main",
+    "variant": "main",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "1662b4edb064d6fc06276cd2d9da7c288afef442211d96efc59e89059ead23dc",
+    "target_sha256": "878091eb79dac7906127f63e80241545c5dadadde04e5e6d85394657d5467de5",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict_score": 0,
+    "object_sha256": "d5a221d5f5eefa64470274e3fff90e0fec980646c7ebf5442fb3388a746e4ad6"
+  },
+  {
+    "function": "idle_thread_entry",
+    "variant": "idle_thread_entry",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "ee75da07c552780ec5c2e52bda17ab0ac4cacf3d94c3a05705de081d87dbdb27",
+    "target_sha256": "45efd0d0ea675d0de3fc5e7a14168039bef86d23f020e06578f595d2203fcc02",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict_score": 0,
+    "object_sha256": "eab991b665cfd096c2a0ebf86320b16ceea038607a6e19b28b5506bb0a87e83b"
+  }
+]
