@@ -87,7 +87,8 @@ segments:
     vram: 0x80000450
     follows_vram: entry
     subsegments:
-      - [0x1050, c, rom/lib_1050]
+      - [0x1050, c, rom/lib_1050_sdk]
+      - [0x1F50, c, rom/lib_1050]
       - [0x21F0, c, rom/lib_21f0]
       - [0x2CF0, c, rom/lib_2cf0]
       - [0x3140, c, rom/lib_3140]

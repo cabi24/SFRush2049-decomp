@@ -1,0 +1,27 @@
+{
+  "original_segment": "0x1050",
+  "boundary": "0x1f50",
+  "new_sdk_tu": "rom/lib_1050_sdk",
+  "original_vi_tu": "rom/lib_1050",
+  "native_functions_conserved": 22,
+  "native_bytes_conserved": 4512,
+  "added_code_coverage": 0,
+  "game_source_bodies": 645,
+  "game_image_and_original_stream_exact": true,
+  "full_rom_sha1_exact": true,
+  "static_source_locks": 150,
+  "all_lock_problems": 0,
+  "pytest_exit": 0,
+  "pytest_suites": [
+    {
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "569",
+      "tests": "1389",
+      "time": "39.551",
+      "timestamp": "2026-10-02T11:36:08.942431-05:00",
+      "hostname": "nvmepi3"
+    }
+  ]
+}
