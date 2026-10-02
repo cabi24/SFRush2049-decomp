@@ -1,0 +1,18 @@
+{
+  "func_800FD41C_elapsed_O1": "5/18 words differ",
+  "func_800A5158_O3": "8/32 words differ",
+  "func_80090770_halfword": "4/11 words differ",
+  "func_800A5158_init": "8/32 words differ",
+  "func_800FD41C_scale": "13/18 words differ (3 extra words (nonzero beyond target length))",
+  "func_800FD41C_locals": "11/18 words differ (3 extra words (nonzero beyond target length))",
+  "func_80090770_halfindices": "4/11 words differ",
+  "func_800A5158_goto": "8/32 words differ",
+  "func_800FD41C_elapsed": "16/18 words differ",
+  "func_80090770_wordarg": "7/11 words differ",
+  "func_80090770_bytes": "4/11 words differ",
+  "func_800956BC_find": "19/20 words differ",
+  "func_800A5158_O1": "27/32 words differ (1 extra words (nonzero beyond target length))",
+  "func_800956BC_find_O1": "19/20 words differ (3 extra words (nonzero beyond target length))",
+  "func_800A5158_return": "8/32 words differ",
+  "func_80090770_castindex": "8/11 words differ"
+}

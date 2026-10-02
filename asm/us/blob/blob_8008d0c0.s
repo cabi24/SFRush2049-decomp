@@ -5250,6 +5250,7 @@ entity_hierarchy_update:
 .section .text.func_80091FBC, "ax", @progbits
 .globl func_80091FBC
 func_80091FBC:
+    /* compiled from src/blob/func_80091FBC.c */
     .word 0x10A00055
     .word 0x00000000
     .word 0x90820000
@@ -5342,6 +5343,7 @@ func_80091FBC:
 .section .text.func_8009211C, "ax", @progbits
 .globl func_8009211C
 func_8009211C:
+    /* compiled from src/blob/func_8009211C.c */
     .word 0x10A00054
     .word 0x00000000
     .word 0x90820000

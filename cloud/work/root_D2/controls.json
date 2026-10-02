@@ -1,0 +1,23 @@
+[
+  {
+    "source": "func_80091FBC.c",
+    "source_sha256": "ad10f867760158c9001f8dbea93f8dd895c4c00868bb630ef4cdace2e34e132a",
+    "differing": 87,
+    "target_words": 88,
+    "extra_words": 0
+  },
+  {
+    "source": "func_80091FBC.guard_scope.c",
+    "source_sha256": "f585f08e97f00e2acf453a5d0a33985c38d6cd15678c7818a526bd5e1876cb35",
+    "differing": 84,
+    "target_words": 88,
+    "extra_words": 0
+  },
+  {
+    "source": "func_80091FBC.explicit.c",
+    "source_sha256": "d408b65b5959e87c58256bab68b9c7e9893de99a178dfb1062900e954c418b79",
+    "differing": 0,
+    "target_words": 88,
+    "extra_words": 0
+  }
+]

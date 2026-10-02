@@ -1,0 +1,30 @@
+[
+  {
+    "control": "reuse_sum",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 515,
+    "linked": {
+      "differing": 27,
+      "total": 71,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "control": "reuse_scale",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 555,
+    "linked": {
+      "differing": 33,
+      "total": 71,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+]

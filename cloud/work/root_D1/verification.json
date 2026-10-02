@@ -1,0 +1,6 @@
+{
+  "function": "func_8009211C",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "source_sha256": "20d73de239d47ec0799b4bfbf4a03023abb8f99359f5603ee68c7dd2a89edd99",
+  "target_sha256": "a8665571742ae493c1fa6faef57e9840e423af1dc174fc6c8c6bbcfa62389230"
+}

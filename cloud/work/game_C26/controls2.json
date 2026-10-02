@@ -1,0 +1,44 @@
+[
+  {
+    "control": "pointer_mask",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 970,
+    "linked": {
+      "differing": 29,
+      "total": 67,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    }
+  },
+  {
+    "control": "explicit_loop",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 485,
+    "linked": {
+      "differing": 13,
+      "total": 67,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "control": "signed_choice",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 685,
+    "linked": {
+      "differing": 14,
+      "total": 67,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "func_800CC848_device": "10/32 words differ",
+  "func_800CC848_common": "18/32 words differ (1 extra words (nonzero beyond target length))",
+  "func_800CC848_width": "8/32 words differ",
+  "func_800CC848_returnstatus": "9/32 words differ",
+  "func_800CC848_fields": "8/32 words differ",
+  "func_800CC848_order": "8/32 words differ"
+}

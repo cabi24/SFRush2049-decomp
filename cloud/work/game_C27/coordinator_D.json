@@ -1,0 +1,16 @@
+{
+  "function": "music_track_control",
+  "bytes": 404,
+  "source_sha256": "3349968fe5e759e259f4bb53abac117b84130d8638f4b376c78b7754b8758769",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "canonical_D": "MATCH",
+  "image_identical": true,
+  "source_built_ROM_sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+  "pytest": {
+    "passed": 713,
+    "skipped": 503,
+    "exit": 0
+  },
+  "blob_locks": 585,
+  "static_locks": 123
+}

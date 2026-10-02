@@ -1,0 +1,22 @@
+{
+  "frozen": true,
+  "files": {
+    "cloud/work/near_miss_B31/menu_components/group.c": "a71d1f3ae72357aa7052a673a8f9c5c6ccd9ca6e5d00f7f7c2b596f1e9c5a1be",
+    "cloud/work/near_miss_B31/menu_components/group.json": "1623809634e3013cb1685f2bf02c7c14d30f165014058b813e8ebe0427af2b68",
+    "cloud/work/near_miss_B31/menu_components_sum/group.c": "b2fc27a0581247e78c27017706a69014aeb2bc3b944a927d079fad6ace99519a",
+    "cloud/work/near_miss_B31/menu_components_sum/group.json": "1623809634e3013cb1685f2bf02c7c14d30f165014058b813e8ebe0427af2b68",
+    "cloud/work/near_miss_B31/menu_group/group.c": "7b7c0fbb39760315979e4d2626f6b12acfab9e494c98c0bd8fff58c408096577",
+    "cloud/work/near_miss_B31/menu_group/group.json": "1623809634e3013cb1685f2bf02c7c14d30f165014058b813e8ebe0427af2b68",
+    "cloud/work/near_miss_B31/menu_load_options_vector.c": "ae7becfe5ce4377e37a3eb29e392f94fa6e6883dfa26257c277b85f13a8e411f",
+    "cloud/work/near_miss_B31/menu_onefloat/group.c": "a6d03da9049e83c3e492893d944ae52f6fc925c3df26a9313ec6a948853a44d5",
+    "cloud/work/near_miss_B31/menu_onefloat/group.json": "1623809634e3013cb1685f2bf02c7c14d30f165014058b813e8ebe0427af2b68",
+    "cloud/work/near_miss_B31/menu_order/group.c": "7ba6924f00eb0e3d73bb88cf2747cabb96959277678aebbdcf5063bbb6a22e7a",
+    "cloud/work/near_miss_B31/menu_order/group.json": "1623809634e3013cb1685f2bf02c7c14d30f165014058b813e8ebe0427af2b68",
+    "cloud/work/near_miss_B31/menu_ptrend/group.c": "4d511353f2d769496eed98af07ee4ce00a5bd20d39ed5abbafa573fc8f85b2dd",
+    "cloud/work/near_miss_B31/menu_ptrend/group.json": "1623809634e3013cb1685f2bf02c7c14d30f165014058b813e8ebe0427af2b68",
+    "cloud/work/near_miss_B31/menu_ptrloop/group.c": "2cb27e46de33c6df600fdfb50c1056e3b93275b6af3c52d72fb74372c1a6c114",
+    "cloud/work/near_miss_B31/menu_ptrloop/group.json": "1623809634e3013cb1685f2bf02c7c14d30f165014058b813e8ebe0427af2b68",
+    "cloud/work/near_miss_B31/results.json": "f92d4521c73227ffeef5366c07a4a30b0c81382c816c4fb723882717562df7a5",
+    "cloud/work/near_miss_B31.md": "77377691779d5e3dd8e11994d28c7187b7102b31133e7365d4cfd34593212643"
+  }
+}

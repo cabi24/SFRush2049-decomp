@@ -1,0 +1,30 @@
+{
+  "assembly": "build/m2c_asm/audio_voice_set.s",
+  "assembly_sha256": "dca77c0d98a06fe05ed2cb651b4cffc150039e45e8276d45455ce8331c8783f4",
+  "field_layout": {
+    "Voice.next": 0,
+    "Voice.start": 8,
+    "Voice.handle": 12,
+    "Voice.bytes": 28,
+    "Voice.bytes[3]": 31,
+    "Voice.enabled": 32,
+    "VoiceLists.active": 16,
+    "VoiceLists.other": 20
+  },
+  "callee_calls": {
+    "func_8008C074": "handle,4,0,0,node+28,0,0",
+    "func_8008D0C0": "node.handle",
+    "func_800AFA84": "original list container, node"
+  },
+  "literal_f32_constants": [
+    "63.0f",
+    "255.0f",
+    "2.0f",
+    "100.0f"
+  ],
+  "original_named_data": [
+    "D_80155220",
+    "D_8002EB90"
+  ],
+  "new_owned_data": false
+}

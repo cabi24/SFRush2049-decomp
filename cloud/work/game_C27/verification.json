@@ -1,0 +1,17 @@
+{
+  "function": "music_track_control",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "compile_exit": 0,
+  "stderr": "",
+  "strict": 0,
+  "linked": {
+    "differing": 0,
+    "total": 101,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "source_sha256": "3349968fe5e759e259f4bb53abac117b84130d8638f4b376c78b7754b8758769",
+  "target_sha256": "3b776a9481a161c6f822c78c43394167cefeb1e3b0ee34e813c280e8746965d0"
+}

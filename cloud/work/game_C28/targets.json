@@ -1,0 +1,26 @@
+{
+  "func_800F6928": {
+    "target_id": "func_800F6928",
+    "address": 2148493608,
+    "population": "extracted",
+    "insn_count": 100,
+    "target_asm_sha": "e6e25a8d3f9118271b08d84bfdc39704265e68459ad4b6a911fb7b63dd501151",
+    "target_o_sha": "93409de7376ec0ddbe599d49de0949d52de823bfd5c37e65276049a81f1a67bb",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "discovered"
+  },
+  "audio_voice_set": {
+    "target_id": "audio_voice_set",
+    "address": 2148206188,
+    "population": "extracted",
+    "insn_count": 127,
+    "target_asm_sha": "760713e12ba0e33385c1fbbcfd4f517a81f41a8cbc21894c552fe791cfea2070",
+    "target_o_sha": "daf03278c7e7b11aec13bae6a0d9e9c686984ad76d29e8a60a1e8c234f2ff4d4",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": null
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "function": "audio_voice_set",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "compile_exit": 0,
+  "stderr": "",
+  "strict": 0,
+  "linked": {
+    "differing": 0,
+    "total": 127,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "source_sha256": "bbf6499a556db8e30742cfe12df0b9c854fcc27b0d587aa06902870254cf1c66",
+  "target_sha256": "daf03278c7e7b11aec13bae6a0d9e9c686984ad76d29e8a60a1e8c234f2ff4d4"
+}

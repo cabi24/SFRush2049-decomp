@@ -1,0 +1,13 @@
+{
+  "retail_assembly": "build/m2c_asm/music_track_control.s",
+  "assembly_sha256": "a6b8cab15095415f994d14901478a345c39090fca642dd17d9aed4955c67e401",
+  "real_input_abi": {
+    "value": "f32 in f12, saved 24(sp)",
+    "channel": "u16 in a1, sw28(sp), lhu30(sp)",
+    "first": "s32 a2 tested before first call",
+    "second": "s32 a3 saved36(sp), tested after first call"
+  },
+  "callee": "func_80020494",
+  "callee_arguments": "u8 converted amplitude, u16 channel, two integer enables",
+  "initial_control": "one incorrect second literal 255; original lui0x42fe proves127; corrected canonical source is0"
+}

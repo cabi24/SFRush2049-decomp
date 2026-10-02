@@ -1,0 +1,72 @@
+[
+  {
+    "control": "signed_mask",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 565,
+    "linked": {
+      "differing": 24,
+      "total": 67,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "control": "wide_return",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 565,
+    "linked": {
+      "differing": 24,
+      "total": 67,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "control": "float_local",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 485,
+    "linked": {
+      "differing": 13,
+      "total": 67,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "control": "local_seed",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 940,
+    "linked": {
+      "differing": 63,
+      "total": 67,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "control": "operand_order",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 565,
+    "linked": {
+      "differing": 24,
+      "total": 67,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+]

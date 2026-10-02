@@ -1,0 +1,32 @@
+[
+  {
+    "control": "direct_actual_config_pointer",
+    "strict_diff": 27,
+    "size": 31,
+    "target_size": 31,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "errors": []
+  },
+  {
+    "control": "actual_wire_word",
+    "strict_diff": 27,
+    "size": 31,
+    "target_size": 31,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "errors": []
+  },
+  {
+    "control": "generic_actual_wire_word",
+    "strict_diff": 27,
+    "size": 31,
+    "target_size": 31,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "errors": []
+  }
+]

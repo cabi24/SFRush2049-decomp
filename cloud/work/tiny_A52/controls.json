@@ -1,0 +1,32 @@
+[
+  {
+    "control": "generic_encoded_destination",
+    "strict_diff": 106,
+    "size": 108,
+    "target_size": 109,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "errors": []
+  },
+  {
+    "control": "generic_both_encodings",
+    "strict_diff": 106,
+    "size": 108,
+    "target_size": 109,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "errors": []
+  },
+  {
+    "control": "actual_byte_value_copy",
+    "strict_diff": 108,
+    "size": 104,
+    "target_size": 109,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "errors": []
+  }
+]

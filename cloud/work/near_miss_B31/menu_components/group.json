@@ -1,0 +1,20 @@
+{
+  "members": [
+    "menu_load_options"
+  ],
+  "context": [
+    "func_800A61B0"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "keep": [
+    "func_800A61B0",
+    "menu_load_options"
+  ],
+  "claims": [
+    "menu_load_options"
+  ],
+  "provenance": "Fresh assembly-derived real caller + byte-identical accepted real transform helper body; no fake contexts."
+}

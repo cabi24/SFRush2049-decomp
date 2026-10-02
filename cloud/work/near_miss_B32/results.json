@@ -1,0 +1,10 @@
+{
+  "func_800BD080_continue": "MATCH",
+  "func_800BE744_length": "28/30 words differ (1 extra words (nonzero beyond target length))",
+  "func_800BE744_cursor": "27/30 words differ (3 extra words (nonzero beyond target length))",
+  "func_800BD080_independent": "MATCH",
+  "func_800BE744_initial": "30/30 words differ (2 extra words (nonzero beyond target length))",
+  "func_800BE744_direct": "28/30 words differ (3 extra words (nonzero beyond target length))",
+  "func_800BD080_opcode": "15/33 words differ (1 extra words (nonzero beyond target length))",
+  "func_800BE744_wide": "30/30 words differ (2 extra words (nonzero beyond target length))"
+}

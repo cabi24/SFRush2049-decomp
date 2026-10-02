@@ -1,0 +1,36 @@
+[
+  {
+    "function": "render_helper",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 0,
+    "linked": {
+      "differing": 0,
+      "total": 58,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "1b348028763e29942e3e319160adfc22b9f3e04da6b18e1c285d64da6c106743",
+    "target_sha256": "1c1539a4d7207b66edb15512158eedbdee1597e531b75bc6ac90314aeee3c654"
+  },
+  {
+    "function": "func_800B23E0",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 565,
+    "linked": {
+      "differing": 24,
+      "total": 67,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "4581565f6e10a725fd7e4716745066f8cd10c19f8c01d0f357b6f0ca9e874d20",
+    "target_sha256": "cba063480052f31ba08e5bd9cb94f496182ea9c8983ecf7d01719ecb3bb78052"
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "claims": [
+    {
+      "name": "func_800BD080",
+      "address": "0x800BD080",
+      "bytes": 132,
+      "target_words": 33,
+      "strict_verdict": "MATCH",
+      "source": "cloud/work/near_miss_B32/func_800BD080_continue.c",
+      "source_sha256": "3975f607ee5e3e6d0d19166686dc753e896ffeb38e35ae09db3967d2eb1dedb2",
+      "target_sha256": "8a0d2f3ce6fa5d23a87027702115b239c7d562712168288ae21fb9c8a8e0689d",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "current_lock_checked_unlocked": true
+    }
+  ]
+}

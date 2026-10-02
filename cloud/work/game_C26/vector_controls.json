@@ -1,0 +1,30 @@
+[
+  {
+    "control": "indexed_three",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 642,
+    "linked": {
+      "differing": 34,
+      "total": 71,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "control": "pointer_for",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 1202,
+    "linked": {
+      "differing": 51,
+      "total": 71,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+]

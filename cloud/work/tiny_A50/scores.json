@@ -1,0 +1,26 @@
+{
+  "func_8010FBE0": {
+    "strict_diff": 30,
+    "size": 32,
+    "target_size": 32,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "0b14ba199b69a5ba80ad8874e2aea0ebf0e676c17c3947c24c00939b3aeb799e"
+  },
+  "func_800CCE5C": {
+    "strict_diff": 7,
+    "size": 40,
+    "target_size": 40,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "4a78e9a4adddb63c548c4c26f37cbb78d48f5d3e9f7d8b67988a0cb6188fbdb6"
+  }
+}
