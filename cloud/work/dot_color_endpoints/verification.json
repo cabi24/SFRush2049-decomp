@@ -1,0 +1,258 @@
+{
+  "schema_version": 1,
+  "verifier": "Clean canonical CLI replay plus separate fresh-directory compile_single and fully resolved instruction audit",
+  "scope": "Complete compiled-function match; not cartridge integration or coverage",
+  "base_commit": "2f1f30c508495db08d61170c4a9b2409461ae326",
+  "source_path": "cloud/matches/func_800BEA3C.c",
+  "source_sha256": "ced1420bc1b0bb4bb8dd693d4d83b7d7d004562da1268871fa1ef9657eeed173",
+  "inputs_unchanged_during_verification": true,
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "compiler_identity": {
+    "name": "IDO 5.3 static recompilation",
+    "distribution": "decompals/ido-static-recomp v1.2",
+    "pinned_archive_sha256": "ab5c741561f80913d58c8b074771f23941a3edd312505a8ebed6d1dfeb65e506",
+    "installation": "Reused approved pinned installation; executable contents independently hashed",
+    "installed_executable_sha256": {
+      "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+      "acpp": "7bfdf2f79010eb95bd47e165036cac04a69e5f1290fde11736e5f6934f3e9189",
+      "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+      "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+      "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b",
+      "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+      "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+      "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+      "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+    }
+  },
+  "tool_sha256": {
+    "tools/cloud/score.py": "ca0e5fdebb90e13d1e91643357bcda7d402401552e5de326c361ab6411565cc0",
+    "tools/cloud/setup.sh": "e78fafc84cb5cde638bbcab528b96de3d6837e39b3b1f8f8d6c69e55d8f13e4b"
+  },
+  "audit_script_sha256": "5a3bd915d6ae3eedafc52a11a7dbfd86357d1fb672eaf4c95b2170c0d56e2d52",
+  "canonical_command": "python3 tools/cloud/score.py fn cloud/matches/func_800BEA3C.c func_800BEA3C --flags \"-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul\"",
+  "canonical_exit_code": 0,
+  "canonical_stdout": "func_800BEA3C:\n  MATCH\n",
+  "canonical_stderr": "",
+  "function": {
+    "name": "func_800BEA3C",
+    "target_address": "0x800BEA3C",
+    "target_end_exclusive": "0x800BEA58",
+    "target_word_count": 7,
+    "target_byte_count": 28,
+    "native_target_sha256": "a97b665b83056427c771c7a1508769b4442a97c040d8ccfb98593561550cacb7",
+    "compiled_object_sha256": "9dfad13c235f9eaf5a503e7dcfa57993acef0d1bafeff20429112f6fbb5a2174",
+    "object_symbol_records": [
+      {
+        "name": "func_800BEA3C",
+        "value": 0,
+        "size": 28,
+        "type": 2,
+        "section": 4
+      }
+    ],
+    "compiled_text_bytes": 32,
+    "resolved_body_bytes": 28,
+    "resolved_body_sha256": "a97b665b83056427c771c7a1508769b4442a97c040d8ccfb98593561550cacb7",
+    "strict_full_word_differences": 0,
+    "mask_count": 0,
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "relocation_errors": [],
+    "excess_words": 1,
+    "nonzero_excess_words": 0,
+    "canonical_comparison": {
+      "differing": 0,
+      "total": 7,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "accepted_without_allow_unverified": true,
+    "relocations": [
+      {
+        "function_offset": 0,
+        "relocation_type": "R_MIPS_HI16",
+        "symbol": "D_80118E28",
+        "resolved_address": "0x80118E28"
+      },
+      {
+        "function_offset": 4,
+        "relocation_type": "R_MIPS_LO16",
+        "symbol": "D_80118E28",
+        "resolved_address": "0x80118E28"
+      },
+      {
+        "function_offset": 8,
+        "relocation_type": "R_MIPS_HI16",
+        "symbol": "D_80118E2C",
+        "resolved_address": "0x80118E2C"
+      },
+      {
+        "function_offset": 24,
+        "relocation_type": "R_MIPS_LO16",
+        "symbol": "D_80118E2C",
+        "resolved_address": "0x80118E2C"
+      }
+    ]
+  },
+  "defined_compiled_functions": {
+    "func_800BEA3C": 0
+  },
+  "protected_manifest_sha256": "9e70c670e356fc6bf41b7d43f355b6a65b18234e0c2382dbd95408f842bbea4b",
+  "protected_manifest_valid": true,
+  "protected_manifest_files_verified": 23,
+  "verdict": "PASS",
+  "semantic_audit": {
+    "audit_script_sha256": "75e994dadcac2c5f4dbc452dfd8a29ded60c3482817a1bedd475090e1b0dd965",
+    "scope": "Every instruction in the complete setter and accepted RGBA consumer was reviewed; direct-transfer scan does not establish absence of indirect callers.",
+    "full_native_evidence": [
+      {
+        "name": "func_800BEA3C",
+        "address": "0x800BEA3C",
+        "word_count": 7,
+        "native_sha256": "a97b665b83056427c771c7a1508769b4442a97c040d8ccfb98593561550cacb7",
+        "full_disassembly_word_count": 7,
+        "all_word_addresses_accounted": true
+      },
+      {
+        "name": "dispatch_handler",
+        "address": "0x800B74A0",
+        "word_count": 257,
+        "native_sha256": "21a02928c539b8245d8f31d68e81a52c43a252f127da03437e864f108309bdd6",
+        "full_disassembly_word_count": 257,
+        "all_word_addresses_accounted": true
+      }
+    ],
+    "direct_transfer_scan": {
+      "protected_function_count": 1216,
+      "protected_function_word_count": 140252,
+      "j_and_jal_word_count": 5146,
+      "pc_relative_branch_word_count": 12738,
+      "matching_direct_transfers": [],
+      "matching_pc_relative_transfers": [],
+      "all_protected_region_word_count": 140252,
+      "matching_all_region_direct_transfers": []
+    },
+    "candidate_interface": "void func_800BEA3C(Color4 first, Color4 second)",
+    "color_layout": {
+      "size_bytes": 4,
+      "fields": [
+        {
+          "name": "r",
+          "type": "unsigned char",
+          "offset": 0
+        },
+        {
+          "name": "g",
+          "type": "unsigned char",
+          "offset": 1
+        },
+        {
+          "name": "b",
+          "type": "unsigned char",
+          "offset": 2
+        },
+        {
+          "name": "a",
+          "type": "unsigned char",
+          "offset": 3
+        }
+      ]
+    },
+    "native_contract": {
+      "entry_inputs": [
+        "a0: complete first four-byte color",
+        "a1: complete second four-byte color"
+      ],
+      "global_stores": [
+        "0x80118E28: a0, all 32 bits",
+        "0x80118E2C: a1, all 32 bits"
+      ],
+      "argument_home_stores": [
+        "entry sp + 0: a0",
+        "entry sp + 4: a1"
+      ],
+      "stack_frame_bytes": 0,
+      "calls": 0,
+      "return_register_written": false,
+      "return_instruction": "jr ra, second global store in delay slot"
+    },
+    "accepted_consumer": {
+      "source": "src/blob/dispatch_handler.c",
+      "source_sha256": "3de5caa9f1e87bd31c18a000a14baa0f37796810def384f4b8498179230eb7b1",
+      "accepted_verification": "image_gate",
+      "native_address": "0x800B74A0",
+      "byte_reads": "Mode 22 reads unsigned byte offsets 0, 1, 2, and 3 from both exact globals, blends corresponding components with D_8017A630, and passes the four channels to func_800B7360.",
+      "first_endpoint_byte_read_addresses": [
+        "0x800B7528",
+        "0x800B75FC",
+        "0x800B76D4",
+        "0x800B77AC"
+      ],
+      "second_endpoint_byte_read_addresses": [
+        "0x800B74EC",
+        "0x800B75D0",
+        "0x800B76A8",
+        "0x800B7780"
+      ],
+      "source_lock_hash_verified": true,
+      "fresh_strict_scorer_result": "MATCH: 257/257 fully resolved native words"
+    },
+    "prototype_assessment": "The complete native setter plus independently accepted consumer support two by-value four-byte RGBA aggregates. The canonical IDO compiler naturally emits both native home stores for this prototype. No direct caller was found to independently corroborate source-level type spelling; Color4 is a descriptive reconstruction, not a recovered original typedef.",
+    "rejected_prior_scalar_prototype": "Two u32 parameters copy the global words but omit both native argument-home stores (4/7 differing words); narrow scalar probes add unsupported conversion instructions and are rejected.",
+    "no_added_behavior": "Only two genuine color inputs and two whole-color assignments. No extra arguments, narrowing, shifts, volatile accesses, artificial stack locals, helper/caller context, inline assembly, raw instructions, or dead operations.",
+    "arcade_provenance": "Primary arcade reference tree unavailable; no original arcade equivalent claimed.",
+    "integration_note": "Future generated declarations/call sites must preserve the aggregate ABI; no generated or accepted context is modified here."
+  },
+  "provenance_controls": {
+    "prior_source": "cloud/work/game_C32/func_800BEA3C.c",
+    "prior_source_sha256": "6c3e506b15c305ff365fb085aeff0b0932e626265cd9b1ab438e0d6dd0e2976f",
+    "prior_scalar_differing_words": 4,
+    "prior_scalar_target_words": 7,
+    "prior_scalar_nonzero_excess_words": 0,
+    "prior_scalar_exit_code": 1,
+    "archive_pr9_head": "433611408270ede7fe6acdb027f1b82179209511",
+    "archive_source_verified_unchanged": true,
+    "decisive_change": "Use the supported four-byte RGBA aggregate type for both by-value parameters and the two globals; IDO emits native argument homes naturally."
+  },
+  "publication_preflight": {
+    "base_commit": "2f1f30c508495db08d61170c4a9b2409461ae326",
+    "target_present_in_accepted_lock": false,
+    "other_current_claims_for_target": [],
+    "other_open_matching_pull_requests": [
+      10,
+      11,
+      12
+    ],
+    "protected_or_accepted_paths_changed": [],
+    "live_coordinator_ownership": "Not accessible; integrator must recheck before promotion",
+    "image_and_rom_gates": "Not run: original ROM, extracted image, and derived blob_layout.json unavailable"
+  },
+  "tests": {
+    "repository_tests": {
+      "command": "python -m pytest tests/conveyor -q -o addopts='' -m 'not node_required'",
+      "passed": 1299,
+      "skipped": 41,
+      "deselected": 9,
+      "duration_seconds": 57.17,
+      "exit_code": 0
+    },
+    "static_locked_functions_intact": 160,
+    "blob_and_group_source_hash_problems": 0,
+    "c89_syntax_exit_code": 0,
+    "host_functional_layout_and_copy_cases": 4096,
+    "host_functional_exit_code": 0,
+    "changed_submission_exit_code": 0,
+    "protected_path_violations": [],
+    "cloud_scorer_tests": {
+      "command": "python -m pytest tests/cloud tests/conveyor/test_cloud_score.py -rs",
+      "passed": 840,
+      "subtests_passed": 27,
+      "skipped": 0,
+      "duration_seconds": 235.18,
+      "exit_code": 0
+    }
+  }
+}
