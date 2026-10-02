@@ -1,0 +1,40 @@
+[
+  {
+    "function": "menu_video_settings",
+    "address": null,
+    "bytes": 228,
+    "source": "cloud/matches/menu_video_settings.c",
+    "source_sha256": "0a9e292cec836f7b60b89bc3673e52ee896576d77570c9ae094bd6ac44bf6641",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_result": "MATCH",
+    "allow_unverified": false,
+    "score_exit_code": 0,
+    "score_stdout_sha256": "db26eae225f70a6c2a246de0355ea4328f3e74f1f390f6b3b7d858adb8995b83",
+    "trusted_target_words_sha256": "3fed985c8ac5adb72e0a1a8d5e29614ac94f948354057f8fd3cb74d1f4f838b3",
+    "trusted_manifest_sha256": "81dbb0ac2a58b63da4880ffcf96c1335cec75feee59d83b0d3fc2babbba17d2a",
+    "trusted_symbols_sha256": "91760c85ae47cd8445013beeb1e987048830b0a35ea319b7cc681a61d89af8b1",
+    "scorer_sha256": "ca0e5fdebb90e13d1e91643357bcda7d402401552e5de326c361ab6411565cc0",
+    "baseline_source": "build/codex-r4300-sweep/sources/menu_video_settings.c",
+    "baseline_source_sha256": "ceca1e00985b61962e777dd432345586ff6f32420b6ced0fd0732d0f5e7d86d9",
+    "baseline_strict_result": "49/57 words differ (5 extra words (nonzero beyond target length))"
+  },
+  {
+    "function": "func_800E313C",
+    "address": null,
+    "bytes": 152,
+    "source": "cloud/matches/func_800E313C.c",
+    "source_sha256": "560680b6100489f8e961a1e48ad26522da8986cae53826c0d0a6ab18b13b663b",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_result": "MATCH",
+    "allow_unverified": false,
+    "score_exit_code": 0,
+    "score_stdout_sha256": "72c9f68d1cc60ec58c36e4c7ad5304990f0b3977c7d917d58255e8d31ce479cf",
+    "trusted_target_words_sha256": "676d4413349b0d35bd30d7b3a065d924b9fbfdba2df3f5e2e32b542da07f98dd",
+    "trusted_manifest_sha256": "81dbb0ac2a58b63da4880ffcf96c1335cec75feee59d83b0d3fc2babbba17d2a",
+    "trusted_symbols_sha256": "91760c85ae47cd8445013beeb1e987048830b0a35ea319b7cc681a61d89af8b1",
+    "scorer_sha256": "ca0e5fdebb90e13d1e91643357bcda7d402401552e5de326c361ab6411565cc0",
+    "baseline_source": "build/codex-r4300-sweep/sources/func_800E313C.c",
+    "baseline_source_sha256": "153a45821fa43a5137cff35bd384b5b533f2c1673b92cc296ec0d129deeeced9",
+    "baseline_strict_result": "23/38 words differ"
+  }
+]

@@ -1,0 +1,15 @@
+# B27 — five fresh game targets
+
+Frozen packet; two strict matches delivered and three honest nonmatches. Frozen near_miss_B27_matches.md/claims.json/source_audit.json cover the menu_video_settings228B and func_800E313C152B deliveries, exact flags and retail ABI/type repairs. These claims remain unchanged. Root independently accepted menu; remaining root image/ROM publication checks belong to coordinator.
+
+All five functions were verified current unlocked genuine registered heads at selection. A confirmed no active closure overlap. Private B tools/target manifest were refreshed from trusted root; stale extra region80104B14 was removed from private target copy to restore exact manifest before any counted result. Fresh original sources reproduce strict residuals23/38 E313C,44/62+3extra E31D4,30/89 E32CC,49/57+5extra menu,50/65+1extra track preview. Prior diagnostic counts were not accepted as strict proofs.
+
+E313C repaired byte-scale16-to4 table-index error, authentic observed three-arg ABI and natural product/value evaluation. Directed genuine AST/intermediate experiments reached18,4,3,2 then strict MATCH; no artificial work, pressure or fake helper. Two early intermediate-generation syntax failures were repaired before their final recorded probes; no compile failure is a match. Menu fixes genuine f32 helper return in one candidate and strictly matches. Complete source TUs carry literal -g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul.
+
+E31D4 corrects pointer first arguments to the real E313C and E30F4 callees and removes an unused m2c assignment, improving44/62+3extra to20/62. Natural factor/shared-multiplier forms regress25/62. Genuine O3 group containing actual caller plus matched E313C yields E313C MATCH but caller20/62 unchanged, so no group claim. Caller remaining mismatch is40-byte frame vs retail32, stack slot placement, multiply operands and scheduling; retain liveonly source as best. No dummy callee context or synthetic buffers were used.
+
+E32CC corrects genuine pointer argument to E31D4 and sum operand spelling, reaching28/89 versus original30/89. Direct condition and live local-order forms do not improve it. Residuals mix real float global coloring with load/add operand order and branch scheduling. Best sum source retained; no match or new coverage claimed.
+
+Track preview's simple-looking seed has an actual retail stack temporary and callee-saved float register allocation; natural load ordering and actual add-for-double expression improve50/65 to48/65, still1extra nonzero word. No volatile/stack/register pressure was invented to force retail spilling. Further blind coloring probes stopped. Natural source retained as an honest lead.
+
+probe_results.json pins strict outputs by digest/count; raw disassembly/objects remain ignored/private. All trials stay within bounded directed budgets; no shared source/layout/locks/state mutations, commits or .conveyor writes by this worker. The two accepted candidates total380 genuine target bytes before coordinator accounting; nonmatches add zero.

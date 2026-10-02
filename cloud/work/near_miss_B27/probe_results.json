@@ -1,0 +1,230 @@
+[
+  {
+    "probe": "func_800E313C_ast0",
+    "result": "  4/38 words differ",
+    "match": false,
+    "stdout_sha256": "a0201672dfb300a19fc1e8e7519fc5bd1673d0951fcb88eb6be0e4a7c6e12838"
+  },
+  {
+    "probe": "func_800E313C_ast1",
+    "result": "  9/38 words differ",
+    "match": false,
+    "stdout_sha256": "8b9cb39cc4ef1fb369a78dc370af97d9839bbff0310d56f146dcac372c594c31"
+  },
+  {
+    "probe": "func_800E313C_ast2",
+    "result": "  18/38 words differ",
+    "match": false,
+    "stdout_sha256": "264b8ba3fe921071001cea2b0ad2e3ddb7ffa077705ab44af3eda64419ef0c46"
+  },
+  {
+    "probe": "func_800E313C_localreverse",
+    "result": "  3/38 words differ",
+    "match": false,
+    "stdout_sha256": "e51d619a932daa257f57474f70e2204ea0188406e5f426d7bee9b5ae51faad7d"
+  },
+  {
+    "probe": "func_800E313C_locals0",
+    "result": "  4/38 words differ",
+    "match": false,
+    "stdout_sha256": "46c0974fea3aa2df069199bba628ea32c0b2bdaea976257416073cb0d0bae4a1"
+  },
+  {
+    "probe": "func_800E313C_locals1",
+    "result": "  3/38 words differ",
+    "match": false,
+    "stdout_sha256": "67d37f3c55e86b56ec7fc926edeb597f467b62eb2339f82efa1926def710cb4d"
+  },
+  {
+    "probe": "func_800E313C_original",
+    "result": "  23/38 words differ",
+    "match": false,
+    "stdout_sha256": "b6f6b45aa14882fbaa0ba11b87e1a38ee880eb83389a8e0ed0e90145184e9208"
+  },
+  {
+    "probe": "func_800E313C_outerreverse",
+    "result": "  18/38 words differ",
+    "match": false,
+    "stdout_sha256": "264b8ba3fe921071001cea2b0ad2e3ddb7ffa077705ab44af3eda64419ef0c46"
+  },
+  {
+    "probe": "func_800E313C_productcond",
+    "result": "  2/38 words differ",
+    "match": false,
+    "stdout_sha256": "a867f3232697d5957999fbb5c69cb3439165715ed5b380277a840012d20ffbfb"
+  },
+  {
+    "probe": "func_800E313C_productreuse",
+    "result": "  2/38 words differ",
+    "match": false,
+    "stdout_sha256": "c340cc104dc8cec1fbbf9b51b58a50205b647324ac5d3d0ae5f9bd25a09531d4"
+  },
+  {
+    "probe": "func_800E313C_productvalue",
+    "result": "  MATCH",
+    "match": true,
+    "stdout_sha256": "72c9f68d1cc60ec58c36e4c7ad5304990f0b3977c7d917d58255e8d31ce479cf"
+  },
+  {
+    "probe": "func_800E313C_repair",
+    "result": "  18/38 words differ",
+    "match": false,
+    "stdout_sha256": "bc8288cfac88489fbbc00130949ae0c5a9c9014bbc2d4666b5bb29e22ea9a161"
+  },
+  {
+    "probe": "func_800E313C_repair_O1",
+    "result": "  38/38 words differ (1 extra words (nonzero beyond target length))",
+    "match": false,
+    "stdout_sha256": "ed6d47bdecc3fa588b8a8fddd7ad2acbdbfb6bde2b9432ea5ce2d9a824bdb29c"
+  },
+  {
+    "probe": "func_800E313C_repair_O3",
+    "result": "  18/38 words differ",
+    "match": false,
+    "stdout_sha256": "bc8288cfac88489fbbc00130949ae0c5a9c9014bbc2d4666b5bb29e22ea9a161"
+  },
+  {
+    "probe": "func_800E313C_result",
+    "result": "  3/38 words differ",
+    "match": false,
+    "stdout_sha256": "67d37f3c55e86b56ec7fc926edeb597f467b62eb2339f82efa1926def710cb4d"
+  },
+  {
+    "probe": "func_800E313C_swap",
+    "result": "  18/38 words differ",
+    "match": false,
+    "stdout_sha256": "264b8ba3fe921071001cea2b0ad2e3ddb7ffa077705ab44af3eda64419ef0c46"
+  },
+  {
+    "probe": "func_800E31D4_liveonly",
+    "result": "  20/62 words differ",
+    "match": false,
+    "stdout_sha256": "5eda06c391c1998e5d9bebc5fac414d636b7180e48eba6931b99e78e5755df79"
+  },
+  {
+    "probe": "func_800E31D4_liveonly_O1",
+    "result": "  62/62 words differ (7 extra words (nonzero beyond target length))",
+    "match": false,
+    "stdout_sha256": "9b5a38d14c47322b7ac43fdef71d2f89c9f692298bdd82dfcb9c15f0a5398c5f"
+  },
+  {
+    "probe": "func_800E31D4_liveonly_O3",
+    "result": "  20/62 words differ",
+    "match": false,
+    "stdout_sha256": "5eda06c391c1998e5d9bebc5fac414d636b7180e48eba6931b99e78e5755df79"
+  },
+  {
+    "probe": "func_800E31D4_natural",
+    "result": "  25/62 words differ",
+    "match": false,
+    "stdout_sha256": "35dff8639ab4fef6a737257bfc9bba474a31f7ad555f19fd1e0627ef9c088299"
+  },
+  {
+    "probe": "func_800E31D4_naturalshared",
+    "result": "  25/62 words differ",
+    "match": false,
+    "stdout_sha256": "35dff8639ab4fef6a737257bfc9bba474a31f7ad555f19fd1e0627ef9c088299"
+  },
+  {
+    "probe": "func_800E31D4_original",
+    "result": "  44/62 words differ (3 extra words (nonzero beyond target length))",
+    "match": false,
+    "stdout_sha256": "024a63f366469ca340d478392d797cab9176332068dc80e4c7f0496acca6114d"
+  },
+  {
+    "probe": "func_800E31D4_repair",
+    "result": "  22/62 words differ",
+    "match": false,
+    "stdout_sha256": "382396547d6c58fcc58b8819b5e0065587827446e3adec97a42ef30a8fd00965"
+  },
+  {
+    "probe": "func_800E31D4_swap",
+    "result": "  20/62 words differ",
+    "match": false,
+    "stdout_sha256": "5eda06c391c1998e5d9bebc5fac414d636b7180e48eba6931b99e78e5755df79"
+  },
+  {
+    "probe": "func_800E32CC_decl",
+    "result": "  28/89 words differ",
+    "match": false,
+    "stdout_sha256": "cc51b67441baab9a2f0dbdfdef65157186863a78c86c38b2ed2542953b502b21"
+  },
+  {
+    "probe": "func_800E32CC_directcond",
+    "result": "  28/89 words differ",
+    "match": false,
+    "stdout_sha256": "cc51b67441baab9a2f0dbdfdef65157186863a78c86c38b2ed2542953b502b21"
+  },
+  {
+    "probe": "func_800E32CC_order",
+    "result": "  28/89 words differ",
+    "match": false,
+    "stdout_sha256": "cc51b67441baab9a2f0dbdfdef65157186863a78c86c38b2ed2542953b502b21"
+  },
+  {
+    "probe": "func_800E32CC_original",
+    "result": "  30/89 words differ",
+    "match": false,
+    "stdout_sha256": "2382dc4ccd7a3da7aaa81a8c5622ed263806193847259e9a96a10c2a097524a1"
+  },
+  {
+    "probe": "func_800E32CC_repair",
+    "result": "  30/89 words differ",
+    "match": false,
+    "stdout_sha256": "2382dc4ccd7a3da7aaa81a8c5622ed263806193847259e9a96a10c2a097524a1"
+  },
+  {
+    "probe": "func_800E32CC_repair_O1",
+    "result": "  84/89 words differ (29 extra words (nonzero beyond target length))",
+    "match": false,
+    "stdout_sha256": "60f73ca183144b2e8e6b49d7b7675d35ebdaa7d2f2038e9fc43c3f3c213d0ad4"
+  },
+  {
+    "probe": "func_800E32CC_repair_O3",
+    "result": "  30/89 words differ",
+    "match": false,
+    "stdout_sha256": "2382dc4ccd7a3da7aaa81a8c5622ed263806193847259e9a96a10c2a097524a1"
+  },
+  {
+    "probe": "func_800E32CC_sum",
+    "result": "  28/89 words differ",
+    "match": false,
+    "stdout_sha256": "cc51b67441baab9a2f0dbdfdef65157186863a78c86c38b2ed2542953b502b21"
+  },
+  {
+    "probe": "menu_video_settings_original",
+    "result": "  49/57 words differ (5 extra words (nonzero beyond target length))",
+    "match": false,
+    "stdout_sha256": "10ac54151a955843b261732a979db7d157d5763e21924b63fbcda21db51b9868"
+  },
+  {
+    "probe": "menu_video_settings_repair",
+    "result": "  MATCH",
+    "match": true,
+    "stdout_sha256": "db26eae225f70a6c2a246de0355ea4328f3e74f1f390f6b3b7d858adb8995b83"
+  },
+  {
+    "probe": "real_gear_pair",
+    "result": "  MATCH",
+    "match": true,
+    "stdout_sha256": "ec3b80f6d4c3985f2c6e42e439587659095f7fccf1365b9c3a8c6989ca8f8ecf"
+  },
+  {
+    "probe": "track_preview_handler_natural",
+    "result": "  48/65 words differ (1 extra words (nonzero beyond target length))",
+    "match": false,
+    "stdout_sha256": "e1bc9538776adeb8887a84e8eb08bab15c12679f48ee4ed8456fc3d5b4db4d46"
+  },
+  {
+    "probe": "track_preview_handler_original",
+    "result": "  50/65 words differ (1 extra words (nonzero beyond target length))",
+    "match": false,
+    "stdout_sha256": "2d479ff57cda2f915b4dc6bb8f91fce4bafd6612d916725868ca696f7adf5fa8"
+  },
+  {
+    "probe": "track_preview_handler_repair",
+    "result": "  50/65 words differ (1 extra words (nonzero beyond target length))",
+    "match": false,
+    "stdout_sha256": "2d479ff57cda2f915b4dc6bb8f91fce4bafd6612d916725868ca696f7adf5fa8"
+  }
+]

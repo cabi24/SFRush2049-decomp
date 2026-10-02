@@ -1,0 +1,22 @@
+{
+  "preparation_commit": "4d71da11",
+  "transaction_commit": "13c7e353",
+  "owner": "sdk_initialize",
+  "new_member": "__osInitialize_common",
+  "new_C_bytes": 680,
+  "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm",
+  "independent_D_all_real_members_strict_raw_zero": true,
+  "current_force_all_static_original_ROM_gate": true,
+  "source_built_ROM": "SHA-1 EXACT",
+  "pytest_at_transaction": {
+    "passed": 713,
+    "skipped": 488,
+    "exit": 0
+  },
+  "existing_neighbor_lock_preserved": true,
+  "active_timer_vi_pi_owners_preserved": true,
+  "SDK_provenance_separate_from_compiler_dependencies": true,
+  "static_function_count": 120,
+  "static_bytes": 28732,
+  "static_total_bytes": 61440
+}

@@ -1,5 +1,13 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-01 seventeenth completed milestone: SDK initialization and fresh heads
+
+- Game cartridge C: **570/1,216 functions, 65,756/647,072 bytes (10.16%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**.
+- A37/A38 add104 bytes through true signed-half slot index and signed-byte table update. Token-preserving assignment-line layout reproduces actual IDO home/store scheduling; no dummy runtime operation or invented input. B27 adds380 bytes: genuine float-return callee correction in menu_video_settings and actual table-index byte scaling/product flow in E313C. E313C third float formal is independently evidenced in its real caller and original callee homing. Independent D strict MATCH, image identical and source-built ROM SHA-1 EXACT for allfour.
+- B26 governed transaction13c7e353 accepts __osInitialize_common680 bytes with complete existing O1 SDK initialization module, real initialized data32/BSS16 and unchanged accepted neighbor. Flags **-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm**. Two explicit immutable source/flags/TU/member/extent profiles preserve timer's independent recipe. Complete tracked compiler context and original symbol/scorer inputs are pinned; ignored SDK normalization provenance remains separate evidence, with current supported target hashes and independent strict/raw0 proof. No extra data/BSS credit.
+- Original full-ROM baseline and activation pass with all static C forcibly rebuilt; active timer/VI/PI metadata and prior neighbor lock preserved. Mandatory publication callback repeats source-built ROM, pytest and locks before committing only new initializer. Final combined gates:570 blob/group checks zero problems,123 static/source locks intact, full pytest713 passed/489 skipped and captured exit0.
+- Across original handoff:73 game functions /9,340 bytes and97 static functions /27,284 bytes accepted. Initial dirty tools/mips_to_c preserved. Previous2bf83865 CI36946833712 succeeded; no open cloud PRs at latest check. All3 workers continue fresh game leaves/registered heads and actual FP ABI source repairs. Farm resumes after checkpoint.
+
 ## 2026-10-01 sixteenth completed milestone: SDK math and fresh game leaves
 
 - Game cartridge C: **566/1,216 functions, 65,272/647,072 bytes (10.09%)**. Static cartridge C: **119/230 functions, 28,052/61,440 bytes (45.66%)**.

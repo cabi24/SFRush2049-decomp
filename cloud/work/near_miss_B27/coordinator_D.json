@@ -1,0 +1,22 @@
+{
+  "claims": {
+    "menu_video_settings": {
+      "source_sha256": "0a9e292cec836f7b60b89bc3673e52ee896576d77570c9ae094bd6ac44bf6641",
+      "canonical": "MATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+    },
+    "func_800E313C": {
+      "source_sha256": "560680b6100489f8e961a1e48ad26522da8986cae53826c0d0a6ab18b13b663b",
+      "canonical": "MATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+    }
+  },
+  "image_identical": true,
+  "source_built_ROM": "SHA-1 EXACT",
+  "claim_bytes": 380,
+  "final_pytest": {
+    "passed": 713,
+    "skipped": 489,
+    "exit": 0
+  }
+}

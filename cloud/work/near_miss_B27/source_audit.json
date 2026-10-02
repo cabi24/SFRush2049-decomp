@@ -1,0 +1,21 @@
+{
+  "menu_video_settings": {
+    "callee": "func_8008B424",
+    "actual_return": "single precision scalar in f0",
+    "caller_evidence": "retail call800CF2A0 followed by mul.s using returned f0 and float constant; repeats for vectors2EC,2F8,304",
+    "seed_error": "old s32 prototype and numeric float cast forced integer-to-float conversion",
+    "repaired_prototype": "f32 func_8008B424(f32*)",
+    "no_new_data": "three constants retain original external float globals"
+  },
+  "func_800E313C": {
+    "caller": "func_800E31D4",
+    "caller_address": "0x800E31D4",
+    "call_address": "0x800E326C",
+    "pointer_arg": "a0 preserves actual object pointer",
+    "threshold_arguments": "a1 receives f12 bits at caller+90/94; a2 loads stack float at+7C; f12 saved around call at+9C",
+    "callee_evidence": "entry stores a2 at+8sp; mtc1 a1,f12; genuine observed thirdfloat formal unused in body",
+    "table_index_error": "target gear shifts2; m2c s32 pointer plus gear*4 shifts4; corrected6-float-row table indexes byte4 and class stride24",
+    "natural_temporaries": "product computes table factor times nested-object coefficients; value scales by actual object factor before threshold compare",
+    "no_dummy_context": true
+  }
+}
