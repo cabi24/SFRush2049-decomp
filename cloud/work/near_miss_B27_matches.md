@@ -1,0 +1,5 @@
+# B27 frozen strict matches
+
+Two genuine registered unlocked heads matched independently in private Rocky B: menu_video_settings228bytes and func_800E313C152bytes. Full TUs are cloud/matches/<function>.c with literal O2+multiply-errata flags. claims.json pins sources, trusted region/symbol manifest, strict scorer, original source baselines and strict MATCH results; source_audit.json records actual retail caller/callee ABI and seed repairs. These claims are frozen; remaining B27 probes are separate work without modifying these sources.
+
+Fresh original seeds strictly reproduce49/57 plus5extra words for menu and23/38 for E313C. Correcting the genuine scalar-float callee declaration makes menu exact. Correcting E313C table-index byte scaling, preserving observed real three-argument ABI, and expressing actual product/value intermediates makes all38words exact. No stand-in callee, dummy work, pressure declarations or fake formals. Original unlocked slots were checked before adding files; existing deliveries were preserved. No shared production sources/locks/layout were edited. Coordinator acceptance/ROM gates remain separate.

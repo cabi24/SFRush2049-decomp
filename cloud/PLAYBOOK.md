@@ -220,3 +220,9 @@ Timer activation replaces the complete existing O1 TU and installs its actual po
 ### SDK polynomial math uses original constants and genuine intrinsics (2026-10-01)
 
 C22 reconstructs canonical SDK sinf/cosf with exact original named readonly arrays/scalars. Historical labels can be misleading: prove values/types from SDK initializers and original hashes rather than renaming symbols or creating replacement constants. Keep genuine ROUND/ABS macros and constant declarations local to the new TU so accepted shared compiler/header context stays pinned. Verify ordinary source and full actual recipe separately, then use normal pool locks and original-ROM promotion. A36's reciprocal square root uses the real IDO sqrtf intrinsic declaration; an inline assembly or dummy helper is unnecessary.
+
+### Initialization ownership and genuine float ABI repairs (2026-10-01)
+
+B26 introduces a separately reviewed exact owner profile, preserving timer's flags and complete source family. Distinguish actual tracked compile dependencies from ignored SDK target-normalization provenance: accepted source/context/current-target hashes and original ROM gates retain authority while readonly CI needs no reference checkout. Initializer credit is only680 C bytes; original32-byte initialized data and16-byte BSS belong to the same atomic transaction.
+
+B27 repairs an actual scalar-float callee return contract rather than converting an assumed integer return. Prove formal types from original caller register lanes and callee homing; a truly unused third float observed in the actual call is legitimate, while an invented pressure formal remains forbidden. Typed table element scaling and natural product/value flow recover the other exact registered-head body.
