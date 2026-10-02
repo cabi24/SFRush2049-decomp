@@ -8,4 +8,14 @@
 float sqrtf(float);
 #pragma intrinsic(sqrtf)
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_efc0/sqrtf.s")
+/* PROMOTED 2026-10-02 — sqrtf
+ * Source:   cloud/work/static_acceptance/sqrtf/sqrtf.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/static_acceptance/sqrtf/sqrtf.c:sqrtf (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+float sqrtf(float value)
+{
+    return sqrtf(value);
+}
+

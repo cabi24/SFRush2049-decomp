@@ -1,12 +1,4 @@
 {
-  "cloud/work/static_acceptance/sqrtf/sqrtf.c:sqrtf": {
-    "body_sha256": "a72d890f8e75086bdaa21ef1b418d9cc93ab7640d47a8a93027b9b8fa662a4d9",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "sqrtf",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-02"
-  },
   "src/libultra/os_ai.c:__osAiDeviceBusy": {
     "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -1148,6 +1140,14 @@
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
+  },
+  "src/rom/lib_efc0.c:sqrtf": {
+    "body_sha256": "a72d890f8e75086bdaa21ef1b418d9cc93ab7640d47a8a93027b9b8fa662a4d9",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "sqrtf",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-02"
   },
   "src/rom/lib_efd0.c:osSetTimer": {
     "body_sha256": "7ebbfdde607de07818a4bcec8dee278b3ff6af8187e45d4f1a8a11383b87f491",
