@@ -55,14 +55,6 @@
     "verified": "score0",
     "verified_at": "2026-10-02"
   },
-  "cloud/work/static_debug_consolidation/acceptance_sources/dma_wait.c:dma_wait": {
-    "body_sha256": "9369ac1650340121c8bc0fc341ee1fd9524d606a6a50bb0bee5fdd4eaa12c4da",
-    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
-    "target_id": "dma_wait",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-02"
-  },
   "cloud/work/static_debug_consolidation/acceptance_sources/get_viewport_offset.c:get_viewport_offset": {
     "body_sha256": "3c54e9ec9996731a1e2c55bda68ddf88fb21419fa930e6073610d6f9188e2616",
     "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
@@ -203,6 +195,14 @@
     "body_sha256": "aa80c9ff8d3661c08ea0eec8377fbd4da36220444ef30a212c46c18657d207a3",
     "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "target_id": "dma_queue_init",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-02"
+  },
+  "src/rom/lib_3140.c:dma_wait": {
+    "body_sha256": "9369ac1650340121c8bc0fc341ee1fd9524d606a6a50bb0bee5fdd4eaa12c4da",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "dma_wait",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-02"
