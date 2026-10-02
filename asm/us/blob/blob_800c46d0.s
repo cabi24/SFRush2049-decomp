@@ -5677,6 +5677,7 @@ game_mode_handler:
 .section .text.init_state_begin, "ax", @progbits
 .globl init_state_begin
 init_state_begin:
+    /* compiled from src/blob/init_state_begin.c */
     .word 0x27BDFFD0
     .word 0x3C058011
     .word 0x8CA574B4

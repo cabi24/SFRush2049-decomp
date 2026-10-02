@@ -1,0 +1,19 @@
+{
+  "source_sha256": "ce9074048228c2a88537233df8663281c921d47e514ddd45167bc2448e49a55c",
+  "group_sha256": "d37c2e3447e3d4a3f27d74ae45e085e530e7c6b535963c5d382470d695fa38d4",
+  "object_sha256": "0389f1a8725876f903a65b2bca1def8bbcdc31e98aab37cc8fee79eb5ce49883",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "canonical_verdict": "MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x1b8, .rodata+0x0 at +0x1c0)",
+  "comparison": {
+    "differing": 0,
+    "total": 454,
+    "unresolved": [],
+    "unverified": [
+      ".rodata+0x0 at +0x1b8",
+      ".rodata+0x0 at +0x1c0"
+    ],
+    "errors": [],
+    "extra_words": 0
+  },
+  "pipeline": "cc-j uld-kp usplit umerge uopt ugen as1"
+}

@@ -1,0 +1,26 @@
+{
+  "source_sha256": "e5769061bb880484467a66f560d708df268e4a6af8541cc6780e70d5ff1949d7",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source": "/home/cburnes/agents/large-init-compiler/candidates/reconstruction/native.c",
+  "accepted": false,
+  "canonical_verdict": "4/454 words differ (2 section-relative relocations unverified: .rodata+0x0 at +0x1b8, .rodata+0x0 at +0x1c0)",
+  "comparison": {
+    "differing": 4,
+    "total": 454,
+    "unresolved": [],
+    "unverified": [
+      ".rodata+0x0 at +0x1b8",
+      ".rodata+0x0 at +0x1c0"
+    ],
+    "errors": [],
+    "extra_words": 0
+  },
+  "object_sha256": "2cf85ae0a0538819b681f89dce34c30052770d707d114dc4589229f00db80c2f",
+  "emitted_words": 456,
+  "aligned": {
+    "aligned_exact": 451,
+    "aligned_opcode": 453,
+    "aligned_opcode_reg": 453
+  },
+  "frame_bytes": 48
+}
