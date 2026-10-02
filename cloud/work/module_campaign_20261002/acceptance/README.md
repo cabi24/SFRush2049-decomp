@@ -23,3 +23,11 @@ All 651 accepted game bodies were reconstructed from their compiled objects and 
 Natural object splits at ROM 0x8F80 and 0x8190 preserve both existing VI suffix lock records and recipes. Fresh complete source-built osCreatePiManager (368 bytes, O2) and native osSendMesg (336 bytes, O1, observed prepend behavior) pass canonical replay, root comparison of all full relocated object words without masks, and full ROM SHA-1, MAKE=0 TEST=0. Prefix and suffix objects were deleted before compiling the final gate. There is no new storage definition. Combined matching coverage is now 143,164/708,512 bytes (20.21%), with static 43,936/61,440 (71.51%) and game 99,228/647,072 (15.33%). See [sdk_two_objects_gates.json](sdk_two_objects_gates.json) and the root full-body proof.
 
 Root also retrieved the actual freshly built scheduler-prefix object and independently relocated all eight C bodies against the original ROM: all 1,896 bytes match, with no masks, unresolved references or unverified references. The object and body hashes are recorded in [sdk_scheduler_root_body_proof.json](sdk_scheduler_root_body_proof.json).
+
+## Scheduler core acceptance
+
+The complete recursive scheduler __scScheduleCore adds 872 matching code bytes. Its C switch generates all seven entries of the original 28-byte table. Existing data ownership guards place the table at 0x8002D4A4 and validate each source text relocation. Only four zero alignment bytes are trimmed; the table earns zero code credit.
+
+The first integration attempt missed the required wrapped passthrough companion and failed. Adding and removing that companion through the normal promotion lifecycle resolved the error. Root independently compared the freshly built whole-prefix object: every complete body word and all table bytes match without comparison masks. The corrected full ROM SHA-1 gate passed, MAKE=0 TEST=0. All previous static locks and data owner rows remain identical.
+
+Coverage is now 144,036/708,512 combined bytes (20.33%), with 44,808/61,440 static bytes (72.93%) and 99,228/647,072 game bytes (15.33%). The final evidence is in [sdk_core_table_gates.json](sdk_core_table_gates.json) and [sdk_core_root_body_table_proof.json](sdk_core_root_body_table_proof.json).

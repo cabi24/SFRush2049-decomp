@@ -1,0 +1,26 @@
+{
+  "source_sha256": "1493cacdcaf05a26039c1e2d1f7161cf175f9c92fe5dbcbbed47ff98640aef38",
+  "object_sha256": "9b5143468e5010868f25e9f3f13b8c4661e5bbef50b790cf0fe873cf1aaeef6d",
+  "protected_target_sha256": "8bf84d9465b4ef9c95f841b414915a4fb2b8c3f87909541aeea5fb39c2aab928",
+  "canonical_strict_score": 0,
+  "native_body_bytes": 872,
+  "candidate_runtime_bytes": 872,
+  "frame_bytes": 40,
+  "complete_section_resolved_body_word_differences": 0,
+  "table_logical_bytes": 28,
+  "table_input_section_bytes": 32,
+  "table_zero_alignment_tail_bytes": 4,
+  "table_word_differences": 0,
+  "table_sha256": "296bdccd2705527c030fc06033b427a2139f83edf56a82bc6cb4985e6460065f",
+  "table_source_text_relocations": 7,
+  "relocation_type_counts": {
+    "4": 2,
+    "5": 1,
+    "6": 1,
+    "2": 7
+  },
+  "new_mutable_storage_sections": [],
+  "extra_nonzero_text_alignment_words": 0,
+  "root_production_linker_and_rom_gate_complete": false,
+  "accepted_bytes": 0
+}

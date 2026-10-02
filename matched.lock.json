@@ -63,6 +63,14 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-02"
   },
+  "src/rom/lib_1050_sdk.c:__scScheduleCore": {
+    "body_sha256": "666cb0493c77dced310f7942df6daf54305aa5358434a571695b19bb722c1b39",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "__scScheduleCore",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-02"
+  },
   "src/rom/lib_1050_sdk.c:__scTaskReady": {
     "body_sha256": "a8d027d4fa9550433c8f9f4831f12cd72932e2dc1a5162463e680da1121b5c52",
     "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",

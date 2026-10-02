@@ -1,0 +1,15 @@
+{
+  "owner": "__scScheduleCore",
+  "tu": "src/rom/lib_1050_sdk.c",
+  "source": "assets/us/data.bin",
+  "container_section": ".data",
+  "owner_section": ".rodata",
+  "alignment": 4,
+  "logical_extent": true,
+  "offset": "0x1e0a4",
+  "size": "0x1c",
+  "container_vram": "0x8000f400",
+  "sha256": "296bdccd2705527c030fc06033b427a2139f83edf56a82bc6cb4985e6460065f",
+  "passthrough_asm": "asm/us/nonmatchings/rom/lib_1050_sdk/__scScheduleCore.table.s",
+  "composed_source": "build/us/assets/us/data.composed.bin"
+}
