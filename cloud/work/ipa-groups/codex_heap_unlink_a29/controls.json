@@ -1,0 +1,362 @@
+{
+  "explicit_choice": {
+    "members": {
+      "func_800E7A98": {
+        "strict_diff": 37,
+        "size": 39,
+        "extra": 0,
+        "matched": false,
+        "err": null
+      }
+    },
+    "context": {
+      "func_80095F8C": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "func_80095EF4": {
+        "strict_diff": 0,
+        "size": 38,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "audio_buffer_sync": {
+        "strict_diff": 0,
+        "size": 26,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "object_counter_decrement": {
+        "strict_diff": 0,
+        "size": 27,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "object_counter_increment": {
+        "strict_diff": 0,
+        "size": 28,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "audio_reverb_update": {
+        "strict_diff": 0,
+        "size": 61,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "audio_effect_process": {
+        "strict_diff": 0,
+        "size": 23,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "synced_model_render": {
+        "strict_diff": 0,
+        "size": 23,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "MP_TargetSpeed": {
+        "strict_diff": 0,
+        "size": 28,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "assign_default_paths": {
+        "strict_diff": 0,
+        "size": 28,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "stat_race_end": {
+        "strict_diff": 0,
+        "size": 29,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      }
+    }
+  },
+  "parameter_choice": {
+    "members": {
+      "func_800E7A98": {
+        "strict_diff": 31,
+        "size": 41,
+        "extra": 0,
+        "matched": false,
+        "err": null
+      }
+    },
+    "context": {
+      "func_80095F8C": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "func_80095EF4": {
+        "strict_diff": 0,
+        "size": 38,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "audio_buffer_sync": {
+        "strict_diff": 0,
+        "size": 26,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "object_counter_decrement": {
+        "strict_diff": 0,
+        "size": 27,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "object_counter_increment": {
+        "strict_diff": 0,
+        "size": 28,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "audio_reverb_update": {
+        "strict_diff": 0,
+        "size": 61,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "audio_effect_process": {
+        "strict_diff": 0,
+        "size": 23,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "synced_model_render": {
+        "strict_diff": 0,
+        "size": 23,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "MP_TargetSpeed": {
+        "strict_diff": 0,
+        "size": 28,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "assign_default_paths": {
+        "strict_diff": 0,
+        "size": 28,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "stat_race_end": {
+        "strict_diff": 0,
+        "size": 29,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      }
+    }
+  },
+  "actual_chain_for": {
+    "members": {
+      "func_800E7A98": {
+        "strict_diff": 37,
+        "size": 41,
+        "extra": 0,
+        "matched": false,
+        "err": null
+      }
+    },
+    "context": {
+      "func_80095F8C": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "func_80095EF4": {
+        "strict_diff": 0,
+        "size": 38,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "audio_buffer_sync": {
+        "strict_diff": 0,
+        "size": 26,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "object_counter_decrement": {
+        "strict_diff": 0,
+        "size": 27,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "object_counter_increment": {
+        "strict_diff": 0,
+        "size": 28,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "audio_reverb_update": {
+        "strict_diff": 0,
+        "size": 61,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "audio_effect_process": {
+        "strict_diff": 0,
+        "size": 23,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "synced_model_render": {
+        "strict_diff": 0,
+        "size": 23,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "MP_TargetSpeed": {
+        "strict_diff": 0,
+        "size": 28,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "assign_default_paths": {
+        "strict_diff": 0,
+        "size": 28,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "stat_race_end": {
+        "strict_diff": 0,
+        "size": 29,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      }
+    }
+  },
+  "opaque_address_choice": {
+    "members": {
+      "func_800E7A98": {
+        "strict_diff": 37,
+        "size": 41,
+        "extra": 0,
+        "matched": false,
+        "err": null
+      }
+    },
+    "context": {
+      "func_80095F8C": {
+        "strict_diff": 0,
+        "size": 19,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "func_80095EF4": {
+        "strict_diff": 0,
+        "size": 38,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "audio_buffer_sync": {
+        "strict_diff": 0,
+        "size": 26,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "object_counter_decrement": {
+        "strict_diff": 0,
+        "size": 27,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "object_counter_increment": {
+        "strict_diff": 0,
+        "size": 28,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "audio_reverb_update": {
+        "strict_diff": 0,
+        "size": 61,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "audio_effect_process": {
+        "strict_diff": 0,
+        "size": 23,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "synced_model_render": {
+        "strict_diff": 0,
+        "size": 23,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "MP_TargetSpeed": {
+        "strict_diff": 0,
+        "size": 28,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "assign_default_paths": {
+        "strict_diff": 0,
+        "size": 28,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      },
+      "stat_race_end": {
+        "strict_diff": 0,
+        "size": 29,
+        "extra": 0,
+        "matched": true,
+        "err": null
+      }
+    }
+  }
+}

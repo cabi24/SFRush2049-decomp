@@ -204,3 +204,7 @@ A32-byte SDK yield body can replace a128-byte assembly slot only when original96
 ### Matching game source passes10 percent (2026-10-01)
 
 A26 signed table-index wrap and A27 true pool unlink add300 actual matching bytes after independent strict, image and source-built full-ROM gates. Game C is64,796/647,072 bytes (10.0137%). A27 fixes the actual successor carrier and preserves its load order under aliasing, with no dummy runtime work. A26's different switch body remains unclaimed because local-table relocations are unverified; strict0 alone is insufficient. A28 authentic pool-init group remains an empty-claim nonmatch and its accepted helper earns no duplicate credit.
+
+### Faithful signed-half absolute branch (2026-10-01)
+
+A29's E5C9C retains true signed-half field+2000 and32-bit magnitude, including safe32768 for the minimum halfword. Writing its real nonnegative branch first reproduces retail condition/delay-slot scheduling with no added operation. All genuine float thresholds/fields remain unchanged. Its200bytes pass independent strict/image/full-ROM gates; expanded E7A98 heap context remains an honest empty-claim nonmatch despite eleven exact accepted contexts.

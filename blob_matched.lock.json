@@ -3150,6 +3150,14 @@
     "verified": "image_gate",
     "verified_at": "2026-09-29"
   },
+  "func_800E5C9C": {
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "src/blob/func_800E5C9C.c",
+    "source_sha256": "3f20e794de8d698a241e5496e3f490e8bc23fdd8ad82e8d8877b9063476c4d40",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-01"
+  },
   "func_800E6274": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_800E6274.c",

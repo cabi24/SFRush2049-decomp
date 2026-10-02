@@ -1,0 +1,13 @@
+{
+  "targets": [
+    "func_800BC21C",
+    "func_800BE6A4",
+    "func_800E5C9C",
+    "func_800D2054",
+    "game_timer_pause"
+  ],
+  "claims": [
+    "func_800E5C9C"
+  ],
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+}

@@ -1,0 +1,23 @@
+{
+  "nonnegative_first": {
+    "strict_diff": 0,
+    "size": 50,
+    "extra": 0,
+    "matched": true,
+    "err": null
+  },
+  "actual_abs_ternary": {
+    "strict_diff": 3,
+    "size": 50,
+    "extra": 0,
+    "matched": false,
+    "err": null
+  },
+  "actual_abs_intrinsic": {
+    "strict_diff": 49,
+    "size": 53,
+    "extra": 3,
+    "matched": false,
+    "err": null
+  }
+}
