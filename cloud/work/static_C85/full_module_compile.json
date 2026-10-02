@@ -1,0 +1,9 @@
+{
+  "module": "lib_34a0",
+  "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm -Iinclude -Iinclude/PR -Irom -D_LANGUAGE_C",
+  "source_sha256": "a49fbfc2c64294ec642baa617e988c3ad5a7b8aa57e007a77eef18f19f75660e",
+  "compile_exit": 0,
+  "stderr": "",
+  "full_native": true,
+  "object_sha256": "6e82ef557b22a68bdc227237f22ced4a42210d255e4ef746e2708f5d318596bc"
+}

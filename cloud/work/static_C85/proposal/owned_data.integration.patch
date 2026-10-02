@@ -1,0 +1,231 @@
+--- a/tools/conveyor/pipeline/owned_data.py
++++ b/tools/conveyor/pipeline/owned_data.py
+@@ -6,9 +6,12 @@
+ """
+ import argparse
+ import hashlib
++import importlib.util
+ import json
++import os
+ import re
+ import subprocess
++import tempfile
+ from pathlib import Path
+ 
+ REGISTRY = 'rom_owned_data.json'
+@@ -95,8 +98,18 @@
+                     raise OwnershipError('invalid ownership integer') from exc
+             if type(r.get(k)) is not int or r[k] < 0:
+                 raise OwnershipError('nonnegative integer required for ' + k)
+-        if not r['size'] or r['offset'] % 16 or r['size'] % 16:
+-            raise OwnershipError('owned slots must occupy complete 16-byte aligned sections')
++        alignment = r.get('alignment', 16)
++        logical = r.get('logical_extent', False)
++        if type(alignment) is not int or alignment not in (4, 16) or type(logical) is not bool:
++            raise OwnershipError('owned alignment must be 4 or 16, logical extent must be boolean')
++        if alignment != 16 and not logical:
++            raise OwnershipError('4-byte ownership requires an explicit logical table extent')
++        if logical and (alignment != 4 or r['owner_section'] != '.rodata' or r.get('storage_owner')):
++            raise OwnershipError('logical extents support only complete 4-byte readonly tables')
++        if not r['size'] or r['offset'] % alignment or r['size'] % alignment:
++            raise OwnershipError('owned slots must occupy complete aligned sections')
++        if logical and (r['container_vram'] + r['offset']) % alignment:
++            raise OwnershipError('logical table address must satisfy its actual alignment')
+         if r['container_vram'] + r['offset'] + r['size'] > 0x100000000:
+             raise OwnershipError('owned slot address overflows MIPS image')
+         if not isinstance(r['sha256'], str) or not re.fullmatch(r'[0-9a-f]{64}', r['sha256']):
+@@ -142,6 +155,171 @@
+     return groups
+ 
+ 
++def _elf_processor(repo):
++    """Use the existing project MIPS ELF reader/writer, including debug fixups."""
++    path = Path(repo) / 'tools/asm-processor/asm_processor.py'
++    spec = importlib.util.spec_from_file_location('_owned_data_elf', path)
++    if spec is None or spec.loader is None:
++        raise OwnershipError('missing project ELF processor')
++    module = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(module)
++    return module
++
++
++def _relocation_symbol(obj, relocation):
++    if not 0 <= relocation.sym_index < len(obj.symtab.symbol_entries):
++        raise OwnershipError('relocation symbol index is outside the symbol table')
++    return obj.symtab.symbol_entries[relocation.sym_index]
++
++
++def _logical_table(obj, section, size, elf):
++    """Validate a complete word-relocated readonly table before trimming its tail.
++
++    This deliberately supports the proven 4-byte table case, not arbitrary
++    lower-aligned constants. It changes no instruction, table word, relocation,
++    meaningful symbol, section index or symbol index.
++    """
++    alignment = section.sh_addralign
++    if (section.name != '.rodata' or section.sh_type != elf.SHT_PROGBITS or
++            section.sh_flags != elf.SHF_ALLOC or section.sh_addr != 0 or
++            alignment not in (4, 16) or size <= 0 or size % 4 or
++            len(section.data) != section.sh_size or
++            section.sh_size != (size + alignment - 1) // alignment * alignment):
++        raise OwnershipError('malformed logical table geometry or section kind')
++    if any(section.data[size:]):
++        raise OwnershipError('excluded section tail contains nonzero bytes')
++    table_relocations = []
++    for reltab in section.relocated_by:
++        for rel in reltab.relocations:
++            if rel.r_offset % 4 or rel.r_offset < 0 or rel.r_offset + 4 > size:
++                raise OwnershipError('relocation falls in excluded table extent')
++            if reltab.sh_type != elf.SHT_REL or rel.rel_type != elf.R_MIPS_32:
++                raise OwnershipError('logical table requires actual 32-bit word relocations')
++            symbol = _relocation_symbol(obj, rel)
++            if not 0 < symbol.st_shndx < len(obj.sections):
++                raise OwnershipError('logical table entry has no source-built text target')
++            target = obj.sections[symbol.st_shndx]
++            addend = obj.fmt.unpack('I', section.data[rel.r_offset:rel.r_offset + 4])[0]
++            address = symbol.st_value + addend
++            if target.name != '.text' or address % 4 or not 0 <= address < len(target.data):
++                raise OwnershipError('logical table entry points outside source-built text')
++            table_relocations.append(rel.r_offset)
++    if sorted(table_relocations) != list(range(0, size, 4)):
++        raise OwnershipError('logical table must retain every complete relocated word once')
++    descriptive = []
++    for symbol in obj.symtab.symbol_entries:
++        if symbol.st_shndx != section.index:
++            continue
++        if symbol.type == elf.STT_SECTION:
++            if (symbol.bind != elf.STB_LOCAL or symbol.st_value != 0 or
++                    symbol.st_size not in (0, section.sh_size, size)):
++                raise OwnershipError('malformed descriptive section symbol')
++            descriptive.append(symbol)
++        elif symbol.st_value >= size or symbol.st_value + symbol.st_size > size:
++            raise OwnershipError('meaningful symbol falls in excluded table extent')
++
++    # An address relocation elsewhere can refer to the section plus an addend.
++    # Retain all such records, but reject a pointer to an excluded table byte.
++    for reltab in obj.sections:
++        if not reltab.is_rel():
++            continue
++        pending_hi = {}
++        for rel in reltab.relocations:
++            symbol = _relocation_symbol(obj, rel)
++            if symbol.st_shndx != section.index or rel.rel_type == 0:
++                continue
++            def check(addend):
++                if not 0 <= symbol.st_value + addend < size:
++                    raise OwnershipError('address relocation refers to excluded table extent')
++            if reltab.sh_type == elf.SHT_RELA:
++                check(rel.r_addend)
++                continue
++            payload = reltab.rel_target.data
++            if rel.r_offset % 4 or rel.r_offset + 4 > len(payload):
++                raise OwnershipError('malformed table address relocation')
++            word = obj.fmt.unpack('I', payload[rel.r_offset:rel.r_offset + 4])[0]
++            if rel.rel_type == elf.R_MIPS_32:
++                check(word)
++            elif rel.rel_type == elf.R_MIPS_HI16:
++                pending_hi.setdefault(rel.sym_index, []).append(word & 0xffff)
++            elif rel.rel_type == elf.R_MIPS_LO16:
++                low = (word & 0xffff) - (0x10000 if word & 0x8000 else 0)
++                for high in pending_hi.pop(rel.sym_index, [0]):
++                    check((high << 16) + low)
++            else:
++                raise OwnershipError('unsupported address relocation to logical table')
++        if pending_hi:
++            raise OwnershipError('unpaired high relocation to logical table')
++    return descriptive
++
++
++def normalize_object_sections(repo, tu, object_path):
++    """Apply explicit logical table extents after normal asm post-processing.
++
++    Ordinary existing 16-byte ownership rows are byte-for-byte no-ops. Extent
++    validation precedes any write; serialization uses the existing processor
++    and an atomic replace. This is a build operation, never a scoring mask.
++    """
++    repo = Path(repo)
++    tu = _relative(tu)
++    rows = [r for r in rom_slots(repo, check_source=False)
++            if r['tu'] == tu and r.get('logical_extent')]
++    if not rows:
++        return []
++    path = Path(object_path)
++    if not path.is_absolute():
++        path = repo / path
++    if not path.resolve().is_relative_to(repo.resolve()):
++        raise OwnershipError('owned object path resolves outside repository')
++    if path.is_symlink() or any(path.resolve() != (repo / r['owner_object']).resolve() for r in rows):
++        raise OwnershipError('object does not correspond to the registry-derived owner object')
++    # Ordinary ROM TUs do not read large ignored containers. A matching logical
++    # owner still receives the full original-byte/overlap/source-built-blob guards.
++    rows = [r for r in rom_slots(repo) if r['tu'] == tu and r.get('logical_extent')]
++    elf = _elf_processor(repo)
++    try:
++        obj = elf.ElfFile(path.read_bytes())
++    except (AssertionError, OSError, IndexError, ValueError) as exc:
++        raise OwnershipError('invalid owned MIPS relocatable object') from exc
++    changes = []
++    # Finish every validation before changing even the in-memory ELF model.
++    for row in rows:
++        sections = [s for s in obj.sections if s.name == row['owner_section']]
++        if len(sections) != 1:
++            raise OwnershipError('expected exactly one owned logical input section')
++        section = sections[0]
++        descriptive = _logical_table(obj, section, row['size'], elf)
++        changes.append((row, section, descriptive))
++    if all(s.sh_size == r['size'] and s.sh_addralign == r['alignment']
++           for r, s, _ in changes):
++        return []
++    relocations = {s.index: s.data for s in obj.sections if s.is_rel()}
++    for row, section, descriptive in changes:
++        for symbol in descriptive:
++            if symbol.st_size == section.sh_size:
++                symbol.st_size = row['size']
++        section.data = section.data[:row['size']]
++        section.sh_size = row['size']
++        section.sh_addralign = row['alignment']
++    obj.symtab.data = b''.join(symbol.to_bin() for symbol in obj.symtab.symbol_entries)
++    fd, temporary = tempfile.mkstemp(prefix=path.name + '.extent-', dir=path.parent)
++    os.close(fd)
++    try:
++        obj.write(temporary)
++        replay = elf.ElfFile(Path(temporary).read_bytes())
++        if any(replay.sections[i].data != data for i, data in relocations.items()):
++            raise OwnershipError('ELF serialization changed a retained relocation')
++        if [s.to_bin() for s in replay.symtab.symbol_entries] != [s.to_bin() for s in obj.symtab.symbol_entries]:
++            raise OwnershipError('ELF serialization changed a retained symbol')
++        os.chmod(temporary, path.stat().st_mode & 0o777)
++        os.replace(temporary, path)
++    finally:
++        if Path(temporary).exists():
++            Path(temporary).unlink()
++    return [{'owner': r['owner'], 'section': s.name, 'size': r['size'],
++             'alignment': r['alignment']} for r, s, _ in changes]
++
++
+ def _slices(rows, length):
+     cursor = 0
+     for i, r in enumerate(rows):
+@@ -211,6 +389,8 @@
+         for i, r in enumerate(rows):
+             start = 'rom_owned_' + r['owner'] + '_START'; end = 'rom_owned_' + r['owner'] + '_END'
+             lines += [obj + '(' + section_name(rows, i) + ');', start + ' = ABSOLUTE(.);', r['owner_object'] + '(' + r['owner_section'] + ');', end + ' = ABSOLUTE(.);', 'ASSERT(' + start + ' == ' + hex(r['container_vram'] + r['offset']) + ', "owned ROM slot address changed");', 'ASSERT(' + end + ' - ' + start + ' == ' + hex(r['size']) + ', "owned ROM slot size changed");']
++            if r.get('logical_extent'):
++                lines += ['ASSERT(' + start + ' % ' + str(r['alignment']) + ' == 0, "owned table alignment changed");']
+         lines += [obj + '(' + section_name(rows, len(rows)) + ');']
+         for name in sorted(binary_names):
+             lines += ['_binary_' + name + '_end = ABSOLUTE(.);', '_binary_' + name + '_size = ABSOLUTE(_binary_' + name + '_end - _binary_' + name + '_start);']
+@@ -268,10 +448,13 @@
+     sub = p.add_subparsers(dest='command', required=True)
+     split = sub.add_parser('split'); split.add_argument('source'); split.add_argument('composed'); split.add_argument('output'); split.add_argument('--objcopy', default='mips-linux-gnu-objcopy')
+     ld = sub.add_parser('linker'); ld.add_argument('path')
++    obj = sub.add_parser('object'); obj.add_argument('tu'); obj.add_argument('path')
+     sub.add_parser('companions')
+     a = p.parse_args(argv)
+     if a.command == 'split':
+         split_container(a.repo, a.source, a.composed, a.output, objcopy=a.objcopy)
++    elif a.command == 'object':
++        normalize_object_sections(a.repo, a.tu, a.path)
+     elif a.command == 'companions':
+         print(' '.join(sorted({r['passthrough_asm'] for r in rom_slots(a.repo, check_source=False)
+                                if not r.get('storage_owner')})))

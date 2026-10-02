@@ -37,7 +37,7 @@
  * layout map f54dc176ce4855b86d3262eb2d2e0a66fa10aa93d8447be4d46e417ab6c9dc75; regenerate via `pipeline.layout convert`.
  * Slots are GLOBAL_ASM passthroughs until promoted; do not hand-edit
  * passthrough lines. */
-#include "static_debug_context.h"
+#include "static_formatter_context.h"
 
 /* PROMOTED 2026-10-02 — modf
  * Source:   cloud/work/static_debug_consolidation/acceptance_sources/modf.c (in-repo, locked)
@@ -115,6 +115,9 @@ int __isinf(register double x) { DoubleUnion v; v.value=x; if(v.bits.exponent==2
  */
 int __isnan(register double x) { DoubleUnion v; v.value=x; if(v.bits.exponent==2047) { v.bits.exponent=0; return v.value == 0.0; } return 0; }
 
+/* ROM_OWNED_RODATA_BEGIN fcvt */
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_34a0/fcvt.table.s")
+/* ROM_OWNED_RODATA_END fcvt */
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_34a0/fcvt.s")
 /* PROMOTED 2026-10-02 — __ecvt_internal
  * Source:   cloud/work/static_debug_consolidation/acceptance_sources/__ecvt_internal.c (in-repo, locked)

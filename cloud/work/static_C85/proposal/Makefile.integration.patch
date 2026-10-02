@@ -1,0 +1,6 @@
+--- a/Makefile
++++ b/Makefile
+@@
+ 	$(V)$(PYTHON) $(TOOLS_DIR)/asm-processor/build.py \
+ 	    $(CC) -- $(AS) $(ASFLAGS) -- -c $(CFLAGS) -o $@ $<
++	$(V)$(PYTHON) -m tools.conveyor.pipeline.owned_data object $< $@

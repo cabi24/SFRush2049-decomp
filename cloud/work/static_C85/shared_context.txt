@@ -1,0 +1,5 @@
+/* Actual original 16-byte formatter pad templates, not allocated source storage.
+ * gFcvtBuffer @8002D4D0 has 16 spaces; gFcvtDigits @8002D4E0 has 16 zero digits.
+ * Each real local block is fully consumed by output padding. */
+typedef struct FcvtPadBlock { u8 bytes[16]; } FcvtPadBlock;
+extern FcvtPadBlock gFcvtBuffer, gFcvtDigits;
