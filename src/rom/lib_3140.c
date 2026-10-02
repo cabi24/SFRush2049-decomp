@@ -30,5 +30,12 @@ void dma_signal(void) {
     osJamMesg(&gDmaMessageQueue, NULL, 0);
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_3140/lzss_decompress.s")
+/* PROMOTED 2026-10-02 — lzss_decompress
+ * Source:   cloud/work/static_debug_consolidation/acceptance_sources/lzss_decompress.c (in-repo, locked)
+ * Flags:    -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul
+ * Evidence: lock:cloud/work/static_debug_consolidation/acceptance_sources/lzss_decompress.c:lzss_decompress (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+s32 lzss_decompress(void* src,void* dst) { s32 result; if(!dma_wait(1)) return 0; result=lzss_decode(src,dst); dma_signal(); return result; }
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_3140/inflate_decompress.s")
