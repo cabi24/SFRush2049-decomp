@@ -1,0 +1,52 @@
+[
+  {
+    "mode": "ordinary-O2",
+    "source_sha256": "8f9610a71af5af6eaf35f39d52ad128244e1c18ebfeaf4b7dd8ec0d43b1717b7",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "object_sha256": "e4ff243e67a710892cf16dab621fddb81acc9b25b2356803cba3c0febc8e2e1d",
+    "protected_manifest_sha256": "156cef1f09df80f4ef45d44bad1ab83115c50021b872a5ec3617189b51b3d6e7",
+    "comparison": {
+      "differing": 0,
+      "total": 62,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "true_strict_score": 0,
+    "full_body_sha256": "a89d3e57c6771068fc7817bdb0ee3c76332bf4b3766b813558a20c9eff1b540e",
+    "native_body_sha256": "a89d3e57c6771068fc7817bdb0ee3c76332bf4b3766b813558a20c9eff1b540e",
+    "full_body_bytes": 248,
+    "exact_bytes_equal": true,
+    "accepted": true,
+    "toolkit_sha256": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "protected_target_object_sha256": "c419978412488716fd5630d1ad0c7ada980365a70105208a52ab2e21a2ed3ba6",
+    "target_asm_sha256": "c890a3ee0a1bf8bd066aa94289a60306e657ea39c256512edc64c698b619f73b",
+    "root_image_rom_acceptance": "pending root integration"
+  },
+  {
+    "mode": "whole-O3",
+    "source_sha256": "8f9610a71af5af6eaf35f39d52ad128244e1c18ebfeaf4b7dd8ec0d43b1717b7",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "object_sha256": "4afc178b476c9017554e547da96019d6b58726bd600bf4be57c5f63a79ba0d94",
+    "protected_manifest_sha256": "156cef1f09df80f4ef45d44bad1ab83115c50021b872a5ec3617189b51b3d6e7",
+    "comparison": {
+      "differing": 0,
+      "total": 62,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "true_strict_score": 0,
+    "full_body_sha256": "a89d3e57c6771068fc7817bdb0ee3c76332bf4b3766b813558a20c9eff1b540e",
+    "native_body_sha256": "a89d3e57c6771068fc7817bdb0ee3c76332bf4b3766b813558a20c9eff1b540e",
+    "full_body_bytes": 248,
+    "exact_bytes_equal": true,
+    "accepted": true,
+    "toolkit_sha256": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "protected_target_object_sha256": "c419978412488716fd5630d1ad0c7ada980365a70105208a52ab2e21a2ed3ba6",
+    "target_asm_sha256": "c890a3ee0a1bf8bd066aa94289a60306e657ea39c256512edc64c698b619f73b",
+    "root_image_rom_acceptance": "pending root integration"
+  }
+]
