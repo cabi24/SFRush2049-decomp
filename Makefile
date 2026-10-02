@@ -330,19 +330,7 @@ extract: $(BASEROM)
 progress:
 	@echo "=== Rush 2049 Decompilation Progress ==="
 	@echo "-- cartridge coverage (the full-ROM SHA-1 is the gate) --"
-	@$(PYTHON) -m tools.conveyor.pipeline.blob_rom coverage 2>/dev/null || true
-	@echo ""
-	@total_asm=$$(find $(ASM_DIR) -name '*.s' | wc -l); \
-	total_c=$$(find $(SRC_DIR) -name '*.c' 2>/dev/null | wc -l); \
-	echo "Assembly files: $$total_asm"; \
-	echo "C source files: $$total_c"; \
-	if [ $$total_asm -gt 0 ]; then \
-		pct=$$((total_c * 100 / total_asm)); \
-		echo "Progress: $$pct%"; \
-	fi
-	@echo ""
-	@echo "Functions by file:"
-	@grep -c 'glabel func_' $(ASM_DIR)/*.s 2>/dev/null | sort -t: -k2 -nr | head -10
+	@$(PYTHON) -m tools.conveyor.pipeline.blob_rom coverage
 
 # ============================================================
 # Cleanup
