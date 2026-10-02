@@ -26,5 +26,13 @@ SECTIONS
     ASSERT(gViLastCount == ADDR(.timer_services_bss) + 0x28, "owned storage alias moved: gViLastCount")
     ASSERT(gViRetraceCount == ADDR(.timer_services_bss) + 0x2c, "owned storage alias moved: gViRetraceCount")
     ASSERT(__osTimerCounter == ADDR(.timer_services_bss) + 0x30, "owned storage alias moved: __osTimerCounter")
+    .sdk_initialize_bss 0x800367d0 (NOLOAD) : SUBALIGN(16)
+    {
+        __sdk_initialize_bss_start = .;
+        build/us/src/rom/lib_8a80.o(.bss.sdk_initialize);
+        __sdk_initialize_bss_end = .;
+    }
+    ASSERT(SIZEOF(.sdk_initialize_bss) == 0x10, "owned storage size changed: sdk_initialize")
+    ASSERT(gSpTaskState == ADDR(.sdk_initialize_bss) + 0x0, "owned storage alias moved: gSpTaskState")
 }
 INSERT AFTER .data;
