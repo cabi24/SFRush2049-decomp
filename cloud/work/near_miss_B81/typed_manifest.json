@@ -1,0 +1,14 @@
+{
+  "claims": [
+    "func_800A78BC"
+  ],
+  "function": "func_800A78BC",
+  "address": "0x800A78BC",
+  "target_bytes": 252,
+  "final_source": "func_800A78BC_typed.c",
+  "files": {
+    "func_800A78BC_typed.c": "38558565e48364685f75f7cb3a3ac1ce0c721f16119d8e602823e1035b69553c",
+    "typed_results.json": "dc86d956c2d26a2c6533806563db9579a5ac50a49f5ce8b826a38991acc5b3cd",
+    "typed_followup.md": "69a24841648f5c0690fbf646aedd4e5fe3d7a8634854a40b34d10b65ebfcaaff"
+  }
+}

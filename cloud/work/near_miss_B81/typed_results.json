@@ -1,0 +1,16 @@
+[
+  {
+    "source": "func_800A78BC_typed.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "38558565e48364685f75f7cb3a3ac1ce0c721f16119d8e602823e1035b69553c",
+    "comparison": {
+      "differing": 0,
+      "total": 63,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 64
+  }
+]
