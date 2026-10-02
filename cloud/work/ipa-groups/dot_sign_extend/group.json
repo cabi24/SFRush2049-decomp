@@ -1,0 +1,17 @@
+{
+  "members": [
+    "sign_extend_call"
+  ],
+  "context": [],
+  "files": [
+    "group.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "keep": [
+    "sign_extend_call"
+  ],
+  "claims": [
+    "sign_extend_call"
+  ],
+  "provenance": "Complete four-input signed-index wrapper from its protected retail extent and the preserved tiny_A23 nonmatch; ordinary C narrowing and multiline source under whole-program O3. Real external callee declaration only; no helper or caller context."
+}

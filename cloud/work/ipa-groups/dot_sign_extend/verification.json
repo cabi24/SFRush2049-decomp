@@ -1,0 +1,280 @@
+{
+  "schema_version": 1,
+  "verifier": "Independent clean canonical command plus separate compile_group/relocate full-word audit",
+  "scope": "Compiled-function match only; no game image splice, ROM build, or ROM hash claim",
+  "base_commit": "2f1f30c508495db08d61170c4a9b2409461ae326",
+  "source_path": "cloud/work/ipa-groups/dot_sign_extend/group.c",
+  "source_sha256": "822e613a50a4a05c5fd71a112befe6778273f15ffced59ebf0aae05db35231a1",
+  "spec_path": "cloud/work/ipa-groups/dot_sign_extend/group.json",
+  "spec_sha256": "a8d444eec8468db3f8d831389b8ee545c01b21da7fd0af9c8c7bc30ea8e10e17",
+  "inputs_unchanged_during_verification": true,
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "compiler_identity": {
+    "name": "IDO 5.3 static recompilation",
+    "distribution": "decompals/ido-static-recomp v1.2",
+    "distribution_identity_source": "Repository-pinned tools/cloud/setup.sh; approved installation reused and actual executable files independently hashed",
+    "pinned_archive_sha256": "ab5c741561f80913d58c8b074771f23941a3edd312505a8ebed6d1dfeb65e506",
+    "installed_executable_sha256": {
+      "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+      "acpp": "7bfdf2f79010eb95bd47e165036cac04a69e5f1290fde11736e5f6934f3e9189",
+      "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+      "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+      "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b",
+      "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+      "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+      "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+      "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+    }
+  },
+  "tool_sha256": {
+    "tools/cloud/score.py": "ca0e5fdebb90e13d1e91643357bcda7d402401552e5de326c361ab6411565cc0",
+    "tools/cloud/setup.sh": "e78fafc84cb5cde638bbcab528b96de3d6837e39b3b1f8f8d6c69e55d8f13e4b"
+  },
+  "audit_script_sha256": "3f4dd2c4ec4bb16447e45fa130431c9277a3101c768a92885b91ed9d4e29c014",
+  "canonical_command": "python3 tools/cloud/score.py group cloud/work/ipa-groups/dot_sign_extend",
+  "canonical_exit_code": 0,
+  "canonical_stdout": "Members:\nsign_extend_call:\n  MATCH\n",
+  "canonical_stderr": "",
+  "compiled_object_sha256": "9701d44da904f75504e825c34d58bed7097354ee72b886f7b4dc2f8e0ec1db3d",
+  "functions": [
+    {
+      "name": "sign_extend_call",
+      "target_address": "0x8008E398",
+      "target_end_exclusive": "0x8008E3C0",
+      "target_byte_count": 40,
+      "target_word_count": 10,
+      "native_target_sha256": "7fd128bef40a72ad661e6bd2ac8b83a32a5921f63ff3a11b6fae562a62182f51",
+      "object_symbol_records": [
+        {
+          "name": "sign_extend_call",
+          "value": 0,
+          "size": 40,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "compiled_text_start": 0,
+      "compiled_text_end": 48,
+      "compiled_extent_bytes": 48,
+      "resolved_compared_bytes": 40,
+      "resolved_compared_sha256": "7fd128bef40a72ad661e6bd2ac8b83a32a5921f63ff3a11b6fae562a62182f51",
+      "strict_full_word_differences": 0,
+      "differing_word_indices": [],
+      "mask_count": 0,
+      "masks": {},
+      "unresolved": [],
+      "unverified": [],
+      "relocation_errors": [],
+      "excess_words": 2,
+      "nonzero_excess_words": 0,
+      "canonical_comparison": {
+        "differing": 0,
+        "total": 10,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "accepted_without_allow_unverified": true,
+      "relocations": [
+        {
+          "function_offset": 16,
+          "relocation_type": "R_MIPS_26",
+          "symbol": "func_8008E26C",
+          "resolved_address": "0x8008E26C",
+          "address_resolution": "protected symbols.json"
+        }
+      ]
+    }
+  ],
+  "protected_manifest_sha256": "9e70c670e356fc6bf41b7d43f355b6a65b18234e0c2382dbd95408f842bbea4b",
+  "protected_manifest_valid": true,
+  "protected_manifest_files_verified": 23,
+  "protected_file_sha256": {
+    "asm/us/blob/blob_80086a50.s": "e92856cfeb8dd1b6e94a273ebc25f013870200834bf72e0fd6d48c2bba9488d6",
+    "asm/us/blob/blob_8008d0c0.s": "31d3c07a84b763f4b7827eb3228e3936603363f171554daa7bc516340c9f3402",
+    "asm/us/blob/blob_800947f0.s": "d5b2166820f70cbb7081a5fed6ab96a018981d0b3907d20259ec75473d44c9f4",
+    "asm/us/blob/blob_800966d8.s": "ce544f739a166fa8debfb03a278ca406d94363eca9aaec4437b8da0302e8b584",
+    "asm/us/blob/blob_8009dd18.s": "d2f6fe0e922b647b94239bfd7ec7ad38e322a78728c4b920a1dafe4555f24513",
+    "asm/us/blob/blob_800a4508.s": "ddf75a1f17fc65024a6770ab54a86acb6035a950608d6f84c46c727a9a897c88",
+    "asm/us/blob/blob_800a7df0.s": "45684d2b0a3bf29bfcef7c3760dd561b8a3d60b7333138cc16b8677bbc931e8f",
+    "asm/us/blob/blob_800aeb54.s": "9936e09c9a4e7a7ee9c6748202926ec3b2e5f2d585f67b63a681eedc150238ce",
+    "asm/us/blob/blob_800b3b4c.s": "4f3231e74265ae77a87b404efbf5f893422678aa2ba903f8ce93aa8e12e6c89d",
+    "asm/us/blob/blob_800b7360.s": "2617f1c3dcf6ebee8f6812a756acf7865e9217e1133be793ac2fb1ad22ca5293",
+    "asm/us/blob/blob_800bdd90.s": "1e979b1d33a4e679a9ef9ad66c2a3f9c2d7510b86eeeb2d205dc91d8a339c319",
+    "asm/us/blob/blob_800c46d0.s": "391475bce994968b633a3fa5f30524eb27f1196622cf384420a85a6b816d2602",
+    "asm/us/blob/blob_800cbe08.s": "fbf932ac29483f80bc801e228b10392309548bf3f567c29bc41e695dba95089c",
+    "asm/us/blob/blob_800d1004.s": "788be2853b049c8cc34ecc0625d5cea385bd4e5d921d77a349dbf772469215f2",
+    "asm/us/blob/blob_800d6690.s": "6e1403b3d570599474df1ade4333a5b974f6b8b0ba8803f17af939365ff48315",
+    "asm/us/blob/blob_800de454.s": "caf6e4512105823f8e779a2f9d54eba64b406ebedd4c43ab95d350739cba3119",
+    "asm/us/blob/blob_800e7030.s": "42361b29e3901ff358d75465f366bd06ef3507c482d1ecfe9c99e2ee1393ad37",
+    "asm/us/blob/blob_800ef5b0.s": "9b46f3c8648d4db197629db031fe4c425fdb1d1799411c9eb13c4c11bdb4f271",
+    "asm/us/blob/blob_800f8d9c.s": "d15ea66f688306133ae61cecc9f17949cbf4ef7bed169151373340a1f71c3e93",
+    "asm/us/blob/blob_80100d24.s": "69a18c6a52f3add504de47e73c891a7ac1b9df799d8587a9f5ddb81000f091ae",
+    "asm/us/blob/blob_8010e0fc.s": "f73370264acbcd402606b0340e2b88c208ba4f0df07d953c870d7be5076e7fc6",
+    "asm/us/blob/blob_8010fd7c.s": "ad3456595bad8f1e62ac4d8ce1710c2c6d6851dd05c509de0904b22538a4df13",
+    "asm/us/blob/symbols.json": "91760c85ae47cd8445013beeb1e987048830b0a35ea319b7cc681a61d89af8b1"
+  },
+  "protected_paths_changed_relative_HEAD": [],
+  "accepted_sources_or_locks_changed_relative_HEAD": [],
+  "claims": [
+    "sign_extend_call"
+  ],
+  "context": [],
+  "defined_compiled_functions": {
+    "sign_extend_call": 0
+  },
+  "verdict": "PASS",
+  "independent_call_relocation_arithmetic": {
+    "method": "Preserve JAL opcode, insert protected callee address shifted by 2 into its 26-bit field, and compare all 10 full words directly; independent of score.relocate",
+    "callee": "func_8008E26C",
+    "callee_address": "0x8008E26C",
+    "relocation_offset": 16,
+    "full_words_exact": 10,
+    "trailing_zero_alignment_words": 2
+  },
+  "semantic_audit": {
+    "full_native_review": [
+      {
+        "name": "sign_extend_call",
+        "native_words": 10,
+        "all_addresses_accounted": true
+      },
+      {
+        "name": "func_8008E26C",
+        "native_words": 75,
+        "all_addresses_accounted": true
+      }
+    ],
+    "direct_transfer_scan": {
+      "protected_function_count": 1216,
+      "protected_function_word_count": 140252,
+      "all_protected_region_words": 140252,
+      "direct_callers": [],
+      "direct_branches": [],
+      "all_region_direct_calls": []
+    },
+    "interface": "void sign_extend_call(u32 value, u32 data, s32 index, u32 flags)",
+    "native_contract": {
+      "real_inputs": 4,
+      "passed_unchanged": [
+        "a0: first 32-bit value",
+        "a1: second 32-bit value",
+        "a3: fourth 32-bit value"
+      ],
+      "narrowing": "Third input a2 is shifted left 16, arithmetically right 16 into t6, then copied to a2 at the call delay slot.",
+      "callee_address": "0x8008E26C",
+      "stack_frame_bytes": 24,
+      "saved_return_address_offset": 20,
+      "local_buffers_or_padding_objects": 0,
+      "argument_home_stores": 0,
+      "wrapper_return_register_writes": 0
+    },
+    "callee_review": {
+      "native_bytes": 300,
+      "all_four_inputs_consumed": true,
+      "first_input": "Low 16 bits stored to selected 68-byte record at offset 0x14.",
+      "second_input": "All 32 bits stored at record offset 8.",
+      "third_input": "Narrowed to signed 16 bits at entry and forwarded as signed index to func_8008E19C.",
+      "fourth_input": "All 32 bits stored at record offset 0.",
+      "return_value": "Selected record index narrowed to signed 16 bits and returned in v0; declared s32."
+    },
+    "interface_limits": "No direct caller of this wrapper was found. Existing generated context and historical candidate declare void; this reconstruction retains void and makes no source-level return-use claim. Native v0 happens to survive the wrapper epilogue. Indirect callers and opaque-region references are not excluded. Names and exact original typedef spelling are not recovered.",
+    "no_forced_matching": "One actual wrapper, four actual parameters, one ordinary cast, one real external call. No helper/caller context, invented operations, extra arguments, volatile access, stack-padding objects, assembly insertion, masks or target changes.",
+    "arcade_provenance": "Primary reference/repos/rushtherock source tree absent; no direct arcade equivalent established.",
+    "functional_check": {
+      "command": "cc -std=c89 -pedantic -Wall -Wextra -Werror -fsanitize=undefined; execute test harness",
+      "result": "PASS",
+      "cases": 196608,
+      "coverage": "Every low-16-bit index pattern tested with three high-half/sign forms; exactly one call and bit-exact pass-through of all other parameters per case.",
+      "note": "Test-only host callee stub lives in ignored build output and is never supplied to IDO or the submitted group.",
+      "test_harness_sha256": "b2614483cee85cddb9640219443d61e3a8cb77bf4713e3353b482e1e57ef67c9"
+    }
+  },
+  "historical_controls": {
+    "source": "cloud/work/tiny_A23/sign_extend_call.c",
+    "source_sha256": "dc8b2b9988409cf1d29bea24f6b5ba029d87cd8daf289ce9b74356a7b2e772e0",
+    "source_unchanged": true,
+    "original_O2_differing_words": 4,
+    "original_single_line_O3_differing_words": 2,
+    "original_bitshift_expression_readable_lines_O3_differing_words": 0,
+    "conclusion": "Ordinary O3 removes the redundant argument home. Separating function header and call onto readable lines fixes the remaining instruction scheduling. The final s16 cast expresses the same low-half sign extension; the readable original bitshift control matches too."
+  },
+  "scope_checks": {
+    "accepted_lock_name_or_address_present": false,
+    "other_current_claims_found": [],
+    "open_matching_pr_exclusions": [
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "protected_master_commit": "2f1f30c508495db08d61170c4a9b2409461ae326",
+    "new_contribution_files": 4,
+    "source_image_splice": "not run: full extracted image unavailable",
+    "full_ROM_SHA1": "not run: ROM unavailable",
+    "make_test": "not run: ROM unavailable",
+    "blob_layout": "unavailable",
+    "live_coordinator_ownership": "Integrator must recheck before promotion",
+    "accepted_coverage_change": 0
+  },
+  "validation": {
+    "cloud_scorer_tests": {
+      "command": "python -m pytest tests/cloud tests/conveyor/test_cloud_score.py -rs",
+      "exit_code": 0,
+      "passed": 840,
+      "subtests_passed": 27,
+      "seconds": 238.98
+    },
+    "repository_tests": {
+      "command": "python -m pytest tests/conveyor -q -o addopts='' -m 'not node_required'",
+      "exit_code": 0,
+      "passed": 1299,
+      "skipped": 41,
+      "deselected": 9,
+      "seconds": 60.63
+    },
+    "static_locks": {
+      "command": "make check-matched",
+      "exit_code": 0,
+      "locked_functions_intact": 160
+    },
+    "blob_group_source_hash_check": {
+      "result": "PASS",
+      "problems": []
+    },
+    "C89_syntax": {
+      "exit_code": 0
+    },
+    "behavior_cases": {
+      "exit_code": 0,
+      "passed": 196608,
+      "undefined_behavior_sanitizer": true
+    },
+    "scorer_sanity": {
+      "single": "sound_handles_clear MATCH",
+      "group": "resource_slot_clear: all three members MATCH"
+    },
+    "protected_manifest": {
+      "files": 23,
+      "all_valid": true
+    },
+    "changed_submission_scorer": {
+      "result": "PASS",
+      "changed_submissions": 1
+    },
+    "protected_path_guard": {
+      "result": "PASS",
+      "protected_paths_changed": false
+    }
+  },
+  "independent_peer_review": {
+    "source_sha256": "822e613a50a4a05c5fd71a112befe6778273f15ffced59ebf0aae05db35231a1",
+    "environment": "Separate worktree and clean copied group",
+    "canonical_O3_result": "MATCH",
+    "complete_native_review_words": 85,
+    "result": "PASS",
+    "findings": "All four true inputs and signed low-half conversion corroborated against wrapper and real callee. Native return register passes through; void source intent cannot be proved and is disclosed. No fabricated helper, argument or operation."
+  }
+}
