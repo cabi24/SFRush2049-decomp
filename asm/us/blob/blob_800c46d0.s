@@ -6143,6 +6143,7 @@ func_800CA2F8:
 .section .text.state_change_preprocess, "ax", @progbits
 .globl state_change_preprocess
 state_change_preprocess:
+    /* compiled from src/blob/state_change_preprocess.c */
     .word 0x3C028011
     .word 0x8C4274B4
     .word 0x27BDFFE8
