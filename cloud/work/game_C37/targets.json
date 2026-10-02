@@ -1,0 +1,14 @@
+{
+  "func_800E2AC4": {
+    "target_id": "func_800E2AC4",
+    "address": 2148412100,
+    "population": "extracted",
+    "insn_count": 107,
+    "target_asm_sha": "1a50172bb4cf7b8b41be8d151480c64e24dd863c3d8cdc3f66b1337388d63c42",
+    "target_o_sha": "08a9fa552f31176e7c9063cf036a0acac2ce6d6e623b2cce6e54ce1098073d81",
+    "fingerprint": null,
+    "cluster_id": null,
+    "tier": "reloc_aware",
+    "gate_reason": "discovered"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "func_800F43B8": {
+    "strict_diff": 42,
+    "size": 144,
+    "target_size": 144,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "dcfb602377b281d1ad66b10cecaca77b859ad623f03b12e5af845eb9e97bdda4"
+  }
+}

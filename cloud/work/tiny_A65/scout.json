@@ -1,0 +1,13 @@
+{
+  "target": "func_800F43B8",
+  "start": "0x800f43b8",
+  "end": "0x800f45f8",
+  "words": 144,
+  "class": [
+    "ABI",
+    []
+  ],
+  "locked_name": false,
+  "accepted_intervals_overlap": [],
+  "lock_count": 596
+}

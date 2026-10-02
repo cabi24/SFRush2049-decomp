@@ -1,0 +1,34 @@
+[
+  {
+    "kind": "function",
+    "size": 152,
+    "target_id": "func_800947F0",
+    "vaddr": 2148091888,
+    "region": "blob_800947f0",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+  },
+  {
+    "kind": "function",
+    "size": 132,
+    "target_id": "func_800BDA24",
+    "vaddr": 2148260388,
+    "region": "blob_800b7360",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+  },
+  {
+    "kind": "function",
+    "size": 160,
+    "target_id": "func_800BE6A4",
+    "vaddr": 2148263588,
+    "region": "blob_800bdd90",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+  },
+  {
+    "kind": "function",
+    "size": 132,
+    "target_id": "func_800D0810",
+    "vaddr": 2148337680,
+    "region": "blob_800cbe08",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+  }
+]

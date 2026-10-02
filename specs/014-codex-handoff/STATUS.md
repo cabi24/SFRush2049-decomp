@@ -1,5 +1,13 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-01 twenty-seventh completed milestone: 600 matching game functions
+
+- Game cartridge C: **600/1,216 functions, 73,136/647,072 bytes (11.30%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**.
+- B41 adds three complete ordinary routines, **424 bytes**: BDA24 display-list image lookup (132), BE6A4 encoded byte-string copy (160), and D0810 real state/vector/matrix initialization (132). Genuine separate source/destination cursors retain the original copy ABI; real increment-before-store indexing restores two initializer scheduling words without extra work. Display-list DF exit retains its original unspecified return rather than inventing a zero result.
+- Independent D canonical MATCH for every final source; full strict/raw zero proofs, identical image and source-built original ROM SHA-1 EXACT. Full pytest **713 passed, 518 skipped, captured exit 0**; all 600 blob locks/group checks and 123 static/source locks pass. Literal flags **-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul**. The third claim prompted fresh full-ROM/pytest gates after the two-body batch.
+- Since original handoff: **103 game functions / 16,720 bytes** and **97 static functions / 27,284 bytes** accepted. d966d2ed passed CI36956222964. A65/C37 and B41's triangular-wave controls remain honest nonmatches with no credit. Three workers continue fresh complete sources; archived A62 prevented duplicate D4DFC selection from becoming a new claim. Initial dirty tools/mips_to_c preserved.
+
+
 ## 2026-10-01 twenty-sixth completed milestone: complete viewport scaling source
 
 - Game cartridge C: **597/1,216 functions, 72,712/647,072 bytes (11.24%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**.

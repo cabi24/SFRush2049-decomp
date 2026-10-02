@@ -1,0 +1,22 @@
+[
+  {
+    "function": "func_800BDA24",
+    "canonical_stack_sensitive_score": 0,
+    "raw_differing": 0,
+    "target_words": 33,
+    "extra_words": 0,
+    "unverified": [],
+    "unresolved": [],
+    "errors": []
+  },
+  {
+    "function": "func_800BE6A4",
+    "canonical_stack_sensitive_score": 0,
+    "raw_differing": 0,
+    "target_words": 40,
+    "extra_words": 0,
+    "unverified": [],
+    "unresolved": [],
+    "errors": []
+  }
+]
