@@ -3499,6 +3499,14 @@
     "verified": "image_gate",
     "verified_at": "2026-10-02"
   },
+  "func_800E1C30": {
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "src/blob/func_800E1C30.c",
+    "source_sha256": "75fa8e12c16df3f7ec17b94bdf42cd7bba0adc01564ff6ddf13da971589ac36d",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-02"
+  },
   "func_800E2AC4": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "codex_physics_clutch",

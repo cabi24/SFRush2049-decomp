@@ -1,0 +1,25 @@
+[
+  {
+    "mode": "ordinary-O2",
+    "source_sha256": "75fa8e12c16df3f7ec17b94bdf42cd7bba0adc01564ff6ddf13da971589ac36d",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "object_sha256": "e8031f5f9e1823b721bbab9564959d6cbc838bb8996992e9b5e2abf14e5e83ac",
+    "protected_manifest_sha256": "156cef1f09df80f4ef45d44bad1ab83115c50021b872a5ec3617189b51b3d6e7",
+    "comparison": {
+      "differing": 0,
+      "total": 212,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "true_strict_score": 0,
+    "full_body_sha256": "0bb385d718a988715ca584ce9c092ac3100911430baf168641515337d1532ece",
+    "native_body_sha256": "0bb385d718a988715ca584ce9c092ac3100911430baf168641515337d1532ece",
+    "full_body_bytes": 848,
+    "exact_bytes_equal": true,
+    "accepted": true,
+    "toolkit_sha256": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "protected_target_object_sha256": "e44990b068ae728eba270aca60b69cd17a12ce537793bd06f807b03ac16b99d2"
+  }
+]
