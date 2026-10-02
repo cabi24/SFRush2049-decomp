@@ -21,3 +21,5 @@ All 651 accepted game bodies were reconstructed from their compiled objects and 
 ## Pi and message object acceptance
 
 Natural object splits at ROM 0x8F80 and 0x8190 preserve both existing VI suffix lock records and recipes. Fresh complete source-built osCreatePiManager (368 bytes, O2) and native osSendMesg (336 bytes, O1, observed prepend behavior) pass canonical replay, root comparison of all full relocated object words without masks, and full ROM SHA-1, MAKE=0 TEST=0. Prefix and suffix objects were deleted before compiling the final gate. There is no new storage definition. Combined matching coverage is now 143,164/708,512 bytes (20.21%), with static 43,936/61,440 (71.51%) and game 99,228/647,072 (15.33%). See [sdk_two_objects_gates.json](sdk_two_objects_gates.json) and the root full-body proof.
+
+Root also retrieved the actual freshly built scheduler-prefix object and independently relocated all eight C bodies against the original ROM: all 1,896 bytes match, with no masks, unresolved references or unverified references. The object and body hashes are recorded in [sdk_scheduler_root_body_proof.json](sdk_scheduler_root_body_proof.json).
