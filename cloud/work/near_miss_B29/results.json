@@ -1,0 +1,121 @@
+{
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "scorer_sha256": "ca0e5fdebb90e13d1e91643357bcda7d402401552e5de326c361ab6411565cc0",
+  "new_accepted_coverage_bytes": 0,
+  "results": [
+    {
+      "variant": "audio_channel_alloc_descriptor",
+      "strict_verdict": "161/169 words differ",
+      "source_sha256": "cd6a40e0fb43efc7263b4e3c7b003105d7f13f91a329debd0940671dd143bd45",
+      "source": "cloud/work/near_miss_B29/audio_channel_alloc_descriptor.c"
+    },
+    {
+      "variant": "audio_channel_alloc_intrinsic",
+      "strict_verdict": "168/169 words differ",
+      "source_sha256": "8bd47bdaf4834e0e5a1efc85714f9507af280bd54a2e6487cab511185151f63c",
+      "source": "cloud/work/near_miss_B29/audio_channel_alloc_intrinsic.c"
+    },
+    {
+      "variant": "audio_channel_alloc_original",
+      "strict_verdict": "168/169 words differ",
+      "source_sha256": null,
+      "source": "build/codex-r4300-sweep/sources/audio_channel_alloc.c"
+    },
+    {
+      "variant": "camera_follow_target_intrinsic",
+      "strict_verdict": "200/203 words differ",
+      "source_sha256": "3107b040f87e77c000bf93b402a7600543bfc8f03be530a347e43aa904e476be",
+      "source": "cloud/work/near_miss_B29/camera_follow_target_intrinsic.c"
+    },
+    {
+      "variant": "camera_follow_target_original",
+      "strict_verdict": "189/203 words differ (1 extra words (nonzero beyond target length); unresolved symbols: fabsf+0x0 at +0x204)",
+      "source_sha256": null,
+      "source": "build/codex-r4300-sweep/sources/camera_follow_target.c"
+    },
+    {
+      "variant": "camera_follow_target_vector",
+      "strict_verdict": "188/203 words differ",
+      "source_sha256": "f54ac6456ea91c25f59e0800d796c5a871c230f7a05443ae694137c08a4d7b78",
+      "source": "cloud/work/near_miss_B29/camera_follow_target_vector.c"
+    },
+    {
+      "variant": "func_8008B424_direct",
+      "strict_verdict": "7/20 words differ",
+      "source_sha256": "06dae07841663f20a05bb5bb35940bd5318080c00bf3adea0ff141b4e2cfb94d",
+      "source": "cloud/work/near_miss_B29/func_8008B424_direct.c"
+    },
+    {
+      "variant": "func_8008B424_inverse",
+      "strict_verdict": "14/20 words differ",
+      "source_sha256": "ed26dc6f54f04c9e231ce7863e26cb0846701e21fd5a1fc5275bc859f1ed09c5",
+      "source": "cloud/work/near_miss_B29/func_8008B424_inverse.c"
+    },
+    {
+      "variant": "func_8008B424_loadorder",
+      "strict_verdict": "12/20 words differ",
+      "source_sha256": "0236d83a3e1708410f488b8178e52988075703a729e566a93b305d18c0cf5854",
+      "source": "cloud/work/near_miss_B29/func_8008B424_loadorder.c"
+    },
+    {
+      "variant": "func_8008B424_sum0",
+      "strict_verdict": "2/20 words differ",
+      "source_sha256": "9a2d357715b81f5d68f61826ba8dc7b178cb34f312b8acec1cb28d970e215984",
+      "source": "cloud/work/near_miss_B29/func_8008B424_sum0.c"
+    },
+    {
+      "variant": "func_8008B424_sum1",
+      "strict_verdict": "MATCH",
+      "source_sha256": "ae89de3665376aa8a03865299a93d9a2809a857f317aa89e0e9aa2126fcf7083",
+      "source": "cloud/work/near_miss_B29/func_8008B424_sum1.c"
+    },
+    {
+      "variant": "func_8009D708_arrays",
+      "strict_verdict": "155/165 words differ (7 extra words (nonzero beyond target length))",
+      "source_sha256": "64f716ec1bf42df50e4b0c8b3b36bf7697538fe3a3bbed337d377a123ac851cf",
+      "source": "cloud/work/near_miss_B29/func_8009D708_arrays.c"
+    },
+    {
+      "variant": "func_8009D708_capture",
+      "strict_verdict": "161/165 words differ (7 extra words (nonzero beyond target length))",
+      "source_sha256": "16e8b0738dd8ac1dc346fdc1cab349d7115a062e0bf36ebd920a9cd22fb18dd9",
+      "source": "cloud/work/near_miss_B29/func_8009D708_capture.c"
+    },
+    {
+      "variant": "func_8009D708_intrinsic",
+      "strict_verdict": "155/165 words differ (7 extra words (nonzero beyond target length))",
+      "source_sha256": "af93be40c97d7dc72e059a16a4a258275c94e18b3e58eec5db6d89d880f1cd10",
+      "source": "cloud/work/near_miss_B29/func_8009D708_intrinsic.c"
+    },
+    {
+      "variant": "func_8009D708_original",
+      "strict_verdict": "164/165 words differ (17 extra words (nonzero beyond target length))",
+      "source_sha256": null,
+      "source": "build/codex-r4300-sweep/sources/func_8009D708.c"
+    },
+    {
+      "variant": "func_800A557C_intrinsic",
+      "strict_verdict": "70/114 words differ",
+      "source_sha256": "721a7f37a219f916e772d43aa499aadf8eb4f48a16b47804124cff173daa1bac",
+      "source": "cloud/work/near_miss_B29/func_800A557C_intrinsic.c"
+    },
+    {
+      "variant": "func_800A557C_natural",
+      "strict_verdict": "86/114 words differ",
+      "source_sha256": "5a8a028215b085b18d6463062db4b38fa926522d547efa9501e2b8832186cef6",
+      "source": "cloud/work/near_miss_B29/func_800A557C_natural.c"
+    },
+    {
+      "variant": "func_800A557C_original",
+      "strict_verdict": "110/114 words differ (11 extra words (nonzero beyond target length); unresolved symbols: fabsf+0x0 at +0x10, fabsf+0x0 at +0x60, fabsf+0x0 at +0x104)",
+      "source_sha256": null,
+      "source": "build/codex-r4300-sweep/sources/func_800A557C.c"
+    },
+    {
+      "variant": "func_800A557C_polynomial",
+      "strict_verdict": "74/114 words differ",
+      "source_sha256": "fac161ff191483870a0e3c14c43f88ea34005434ccde15cbb302b8b9e0a3f482",
+      "source": "cloud/work/near_miss_B29/func_800A557C_polynomial.c"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+# A47 frozen new ordinary source
+
+Fresh missing-candidate func_800F7EB035w, literal flags `-g0 -O2 -mips2 -G 0 -non_shared`, no claims. Actual positive signed-half count controls parallel float/byte resets; float receives real D_80124618 value, byte receives0. Count<=0 skips this loop. Three five-byte records at D_80151AC0 then receive -1 in all five bytes. No calls/formals/context inventions, unrelated writes or accepted state changes.
+
+Final actual pointer loop + inner byte-index loop produces exact35 words but34 differing; initial flat inner-store source35/35 compiled32. Actual full-word count local and advanced pointer syntax do not improve; natural two-dimensional/index-array source triggers outer unroll and +26 extra. Stop after four directed actual loop/source controls. Retained final source corrects the structure needed to reproduce actual inner unroll, yet does not claim matching allocator lanes. Source hash/errors/counts in scores.json, controls.json and index_control.json. All instruction streams private/ignored; canonical MATCH acceptance not requested.

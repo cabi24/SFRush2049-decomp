@@ -1,0 +1,5 @@
+# A46 frozen bounded ordinary control
+
+func_800B2BDC, flags `-g0 -O2 -mips2 -G 0 -non_shared`, no claims. Actual Node24 pool100 initialized into next-pointer free chain with signed-half id=-1; node99 terminates with NULL. Real head D_801392C8 assigned node0; actual word D_801391F0 and half D_8012E66C zeroed. Exact pool/count comes from retail initial3+24 four-node groups+terminal, consistent with A40 actual pop counterpart offsets. No unrelated node fields written and no arguments/callees introduced.
+
+Typed-pointer baseline53/54, compiled20 words: compiler does not unroll a pointer-bound loop. Counted-pointer control restores natural four-way unroll but51/54 compiled48; true array-index control51/54 compiled57+3; swapping two actual per-node stores53/54 compiled48. Remaining peeled constants/global-address schedules differ substantially. Stop after these three actual-source controls; no arbitrary formal, pressure, fabricated wrappers or reflow sweep. Source SHA/counts/errors in scores.json; sanitized controls.json. Actual binary/disassembly stays ignored/private. No canonical MATCH acceptance requested and no shared accepted state changed.

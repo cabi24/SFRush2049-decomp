@@ -1,0 +1,23 @@
+{
+  "frozen": true,
+  "files": {
+    "cloud/work/near_miss_B29/audio_channel_alloc_descriptor.c": "cd6a40e0fb43efc7263b4e3c7b003105d7f13f91a329debd0940671dd143bd45",
+    "cloud/work/near_miss_B29/audio_channel_alloc_intrinsic.c": "8bd47bdaf4834e0e5a1efc85714f9507af280bd54a2e6487cab511185151f63c",
+    "cloud/work/near_miss_B29/authority.json": "148955d1ce3db673aa7cde9b82c8d599dc184cdba68552092211dab9c4cce5d4",
+    "cloud/work/near_miss_B29/camera_follow_target_intrinsic.c": "3107b040f87e77c000bf93b402a7600543bfc8f03be530a347e43aa904e476be",
+    "cloud/work/near_miss_B29/camera_follow_target_vector.c": "f54ac6456ea91c25f59e0800d796c5a871c230f7a05443ae694137c08a4d7b78",
+    "cloud/work/near_miss_B29/func_8008B424_direct.c": "06dae07841663f20a05bb5bb35940bd5318080c00bf3adea0ff141b4e2cfb94d",
+    "cloud/work/near_miss_B29/func_8008B424_inverse.c": "ed26dc6f54f04c9e231ce7863e26cb0846701e21fd5a1fc5275bc859f1ed09c5",
+    "cloud/work/near_miss_B29/func_8008B424_loadorder.c": "0236d83a3e1708410f488b8178e52988075703a729e566a93b305d18c0cf5854",
+    "cloud/work/near_miss_B29/func_8008B424_sum0.c": "9a2d357715b81f5d68f61826ba8dc7b178cb34f312b8acec1cb28d970e215984",
+    "cloud/work/near_miss_B29/func_8008B424_sum1.c": "ae89de3665376aa8a03865299a93d9a2809a857f317aa89e0e9aa2126fcf7083",
+    "cloud/work/near_miss_B29/func_8009D708_arrays.c": "64f716ec1bf42df50e4b0c8b3b36bf7697538fe3a3bbed337d377a123ac851cf",
+    "cloud/work/near_miss_B29/func_8009D708_capture.c": "16e8b0738dd8ac1dc346fdc1cab349d7115a062e0bf36ebd920a9cd22fb18dd9",
+    "cloud/work/near_miss_B29/func_8009D708_intrinsic.c": "af93be40c97d7dc72e059a16a4a258275c94e18b3e58eec5db6d89d880f1cd10",
+    "cloud/work/near_miss_B29/func_800A557C_intrinsic.c": "721a7f37a219f916e772d43aa499aadf8eb4f48a16b47804124cff173daa1bac",
+    "cloud/work/near_miss_B29/func_800A557C_natural.c": "5a8a028215b085b18d6463062db4b38fa926522d547efa9501e2b8832186cef6",
+    "cloud/work/near_miss_B29/func_800A557C_polynomial.c": "fac161ff191483870a0e3c14c43f88ea34005434ccde15cbb302b8b9e0a3f482",
+    "cloud/work/near_miss_B29/results.json": "49d08cbd59053138aad91330733da83cbf0f9b491469cac520c43e4be1b42a8e",
+    "cloud/work/near_miss_B29.md": "6efa774846db65aaa2a6e7a21170432e01ce332fa3c2f1e23b8027fb5286d83c"
+  }
+}

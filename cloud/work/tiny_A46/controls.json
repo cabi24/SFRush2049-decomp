@@ -1,0 +1,32 @@
+[
+  {
+    "control": "true_counted_pointer",
+    "strict_diff": 51,
+    "size": 48,
+    "target_size": 54,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "errors": []
+  },
+  {
+    "control": "true_index_loop",
+    "strict_diff": 51,
+    "size": 57,
+    "target_size": 54,
+    "extra": 3,
+    "matched": false,
+    "err": null,
+    "errors": []
+  },
+  {
+    "control": "counted_next_first",
+    "strict_diff": 53,
+    "size": 48,
+    "target_size": 54,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "errors": []
+  }
+]
