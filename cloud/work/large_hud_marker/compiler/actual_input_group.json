@@ -1,0 +1,25 @@
+{
+  "source_sha256": "c1ba20ffea6756262b22ea8f42123919651e55832290cbada22ea88d8ad814a8",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source": "/home/cburnes/agents/large-hud-compiler/candidates/actual_input_group/group.c",
+  "accepted": false,
+  "canonical_verdict": "408/433 words differ (9 extra words (nonzero beyond target length); unpaired R_MIPS_HI16 for D_8011407C at .text+0x780)",
+  "comparison": {
+    "differing": 408,
+    "total": 433,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [
+      "unpaired R_MIPS_HI16 for D_8011407C at .text+0x780"
+    ],
+    "extra_words": 9
+  },
+  "object_sha256": "7f4dbe79e16eea8343d2b6b2076bb75781888f236f2998ea52096275cff6ebdf",
+  "emitted_words": 444,
+  "aligned": {
+    "aligned_exact": 120,
+    "aligned_opcode": 393,
+    "aligned_opcode_reg": 162
+  },
+  "frame_bytes": 112
+}

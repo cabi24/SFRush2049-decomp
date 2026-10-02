@@ -1,0 +1,10 @@
+{
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "entity_update_callback",
+    "entity_transform_apply"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+}

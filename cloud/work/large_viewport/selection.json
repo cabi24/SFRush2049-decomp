@@ -1,0 +1,25 @@
+{
+  "function": "wheel_render_full",
+  "address": "0x800A6BE4",
+  "bytes": 2072,
+  "words": 518,
+  "accepted": false,
+  "purpose_inferred": "Configure clipping rectangles and rendering viewports for player count",
+  "reason": "Fresh full ordinary-ABI routine with one nine-argument callee and repeated viewport cases, no tables",
+  "target_object_sha256": "fd0e6aa8c157c1434fd634496fe15f326b9fde1b11cf6b768f1efd8834627bb8",
+  "target_object_tier": "reloc_aware",
+  "baseline_game_percent": 13.66,
+  "baseline_static_percent": 46.76,
+  "team": {
+    "reconstruction": {
+      "agent": "large_next_reconstruction",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high"
+    },
+    "compiler": {
+      "agent": "large_next_compiler",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high"
+    }
+  }
+}
