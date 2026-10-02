@@ -1,0 +1,26 @@
+{
+  "claims": [
+    {
+      "function": "get_viewport_pos",
+      "layout_bytes": 72,
+      "source": "cloud/work/static_C70/get_viewport_pos.rows.c",
+      "source_sha256": "c14c498ce96f1196c93f930d06f011b1a56c1b43ac1a4596610ed97575956ba5"
+    },
+    {
+      "function": "get_viewport_offset",
+      "layout_bytes": 96,
+      "source": "cloud/work/static_C70/get_viewport_offset.rows.c",
+      "source_sha256": "65107d5126ba7ad3767c13abf31a33a3288402cdae6954f5932ed2b8b1b07300"
+    }
+  ],
+  "claim_layout_bytes": 168,
+  "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "complete_module_flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm -Iinclude -Iinclude/PR -Irom -D_LANGUAGE_C",
+  "asm_processor_model": "-g",
+  "full_module_proof": "full_module_proofs.json",
+  "all_original_members_verified": 8,
+  "required_shared_context": "shared_context.txt",
+  "real_row_typing_proof": "include/m2c_types.h documents actual eight-byte rows and X/Y/extra signed16 fields; original loads index signed16 and scales by8",
+  "shared_header_sha256": "a7a1d4a1d9220b912b7ad0ec62bcd796e7abce207b9aa7f249339f18064de662",
+  "shared_m2c_types_sha256": "93ab9028d3acf10515babd91636d6bd1c243110d1b70972d7758c83b65e932d0"
+}

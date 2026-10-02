@@ -1,0 +1,16 @@
+[
+  {
+    "function": "display_update",
+    "variant": "display_update",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "c85ee59e1977404e319c795696efdd222e313ee985ece1c5226efe1f563121ad",
+    "target_sha256": "4dfdcd4080c92fa0eaa9d03a34e75d2656617e2b3c252199c744ca4426648b1d"
+  },
+  {
+    "function": "display_update",
+    "variant": "display_update.origin_order",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "be197bbaa44092f04e6783a9af5a872d9c700f2cb640f65f6f9587133ccfa3ae",
+    "target_sha256": "4dfdcd4080c92fa0eaa9d03a34e75d2656617e2b3c252199c744ca4426648b1d"
+  }
+]

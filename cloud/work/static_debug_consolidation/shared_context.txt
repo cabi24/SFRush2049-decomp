@@ -1,0 +1,77 @@
+/* C68 */
+/* Genuine declarations needed after function-body extraction. */
+extern s8 gDmaInitialized; /* original DMA wait uses lb; init stores one byte */
+extern OSMesg gDmaMessageBuffer; /* queue initialized with one message cell */
+extern OSMesgQueue gDmaMessageQueue;
+
+/* Actual IEEE big-endian double bitfield carrier; no owned storage. */
+typedef struct {
+    unsigned sign:1;
+    unsigned exponent:11;
+    unsigned fraction:20;
+    unsigned low;
+} DoubleBits;
+typedef union {
+    double value;
+    DoubleBits bits;
+} DoubleUnion;
+
+/* C69 */
+/* Actual decoder/wrapper callee contracts, no storage. */
+extern s32 lzss_decode(void *src, void *dst);
+extern s32 inflate_entry(void *src, void *dst, s32 size);
+/* Existing shared dma_wait(s32), dma_signal(void) need no change. */
+
+/* C70 */
+/* Actual signed halfword viewport index and per-axis scales. */
+extern s16 gViewportX;
+extern s16 gViewportScaleX;
+extern s16 gViewportScaleY;
+/* Existing gViewportOffsetX/Y shared declarations remain usable. */
+
+/* C72 */
+/* Actual pending signed16 countdown and genuine VI mode pointers. */
+extern s16 gViewportPendingFrames;
+extern OSViMode *gViewportStruct;
+extern OSViMode *gViewportDataPtr;
+/* Historical fcvt symbol is the real three-argument formatting worker. */
+extern int fcvt(char *output, const char *format, char *arguments);
+
+/* C74 */
+/* Eight actual signed16 bounds per16-byte row; no array capacity. */
+extern s16 gViewportBoundsTable[][8];
+/* Other actual viewport globals/prototypes are already supplied by C70/C72/C73. */
+
+/* C76 */
+extern OSThread gIdleThread, gGameThread;
+extern u8 gStackIdle[];
+extern void __osInitialize_common(void), idle_thread_entry(void *), game_init(void *);
+extern OSMesgQueue gViModeTable;
+extern OSMesg gViModeLan1[];
+/* gStackGame has an existing shared declaration; source uses no sizeof/capacity. */
+
+/* C73: actual extern declarations from final singleton prelude */
+extern float gScaleTicksPerSecond, gScaleSecondsPerTick, gViewportFloatC, gViewportFloatD;
+extern s16 gViewportX, gViewportY, gViewportLeftEdge, gViewportRightEdge, gViewportTopEdge, gViewportBottomEdge;
+extern s16 gViewportXOverflow, gViewportYOverflow, gViewportScaleX, gViewportScaleY, gViewportScale, gViewportScaleYAlt;
+extern s16 gViewportOffsetXExtra[], gViewportOffsetYExtra[], gViewportOffsetX[], gViewportOffsetY[];
+extern OSViMode *gViewportStruct, *gViewportDataPtr, gViModeTableBase[];
+extern void viewport_scale(float, float), display_update(void);
+
+/* C75: actual extern declarations from final singleton prelude */
+extern OSViMode *gViewportStruct, *gViewportDataPtr, gViewportBuffer[];
+extern s16 gViewportLeftEdge, gViewportRightEdge, gViewportTopEdge, gViewportBottomEdge;
+extern s16 gViewportScaleX, gViewportScaleY, gViewportXOverflow, gViewportYOverflow;
+extern s16 gViewportScale, gViewportScaleYAlt, gViewportPendingFrames;
+extern float gViewportFloatA, gViewportFloatB;
+extern u32 osSetGlobalIntMask(u32);
+extern void osWritebackDCache(void *, s32);
+
+/* C77: actual extern declarations from final singleton prelude */
+extern double modf(double, double *);
+
+/* C79: actual extern declarations from final singleton prelude */
+extern double modf(double, double *);
+extern double gPerspFov, gPerspAspect;
+extern u8 *__round_helper(double, s32 *, u8 *, u8 *, u8, u8 *);
+extern u8 *__write_exponent(u8 *, s32, s32);

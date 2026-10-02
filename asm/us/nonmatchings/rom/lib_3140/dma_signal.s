@@ -1,0 +1,18 @@
+nonmatching dma_signal, 0x34
+
+glabel dma_signal
+    /* 322C 8000262C 27BDFFE8 */  addiu      $sp, $sp, -0x18
+    /* 3230 80002630 AFBF0014 */  sw         $ra, 0x14($sp)
+    /* 3234 80002634 3C048003 */  lui        $a0, %hi(gDmaMessageQueue)
+    /* 3238 80002638 2484F190 */  addiu      $a0, $a0, %lo(gDmaMessageQueue)
+    /* 323C 8000263C 00002825 */  or         $a1, $zero, $zero
+    /* 3240 80002640 0C001D78 */  jal        osJamMesg
+    /* 3244 80002644 00003025 */   or        $a2, $zero, $zero
+    /* 3248 80002648 10000001 */  b          .L80002650
+    /* 324C 8000264C 00000000 */   nop
+  .L80002650:
+    /* 3250 80002650 8FBF0014 */  lw         $ra, 0x14($sp)
+    /* 3254 80002654 27BD0018 */  addiu      $sp, $sp, 0x18
+    /* 3258 80002658 03E00008 */  jr         $ra
+    /* 325C 8000265C 00000000 */   nop
+endlabel dma_signal

@@ -1,0 +1,15 @@
+[
+  {
+    "function": "memset",
+    "variant": "memset.current_header",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "e2b84ba3357c9eeaa3d8eb5ca264b625d0e93ae5ef7427e9d3ec208037b01367",
+    "target_sha256": "1178646492f468bd84e8f5b7ae5da0da651632ac7b80b9cbf67ad4476cc9b1e8",
+    "old_source": "cloud/work/static_C17/memset.c",
+    "old_source_sha256": "b1e8e128fe7694619185ce23af9baa894f14ca92cb962fe9c7f34b182977a559",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict_score": 0,
+    "object_sha256": "a9925252136e1fb3855c3ba5be342d14c60999dbf539a6eb1ed3c4c6a0e2571b"
+  }
+]

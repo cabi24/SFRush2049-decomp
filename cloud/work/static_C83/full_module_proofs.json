@@ -1,0 +1,17 @@
+{
+  "module": "lib_3390",
+  "source_sha256": "042660941d5e5bb1f9b4aee22acea074fbfa464323b4f171c88fed4875359268",
+  "object_sha256": "f0cf953f5911b48ff94daaa425e86bb25fc8ec60d588977171ef06f111616b9b",
+  "full_native": true,
+  "original_slot_bytes": 272,
+  "object_text_bytes": 272,
+  "original_words": 68,
+  "differing_full_words": 0,
+  "masks": 0,
+  "unresolved": [],
+  "unverified": [],
+  "errors": [],
+  "original_zero_padding_words_preserved": 3,
+  "slot_delta_bytes": 0,
+  "all_members_exact": true
+}

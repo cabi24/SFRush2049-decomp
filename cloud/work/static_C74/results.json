@@ -1,0 +1,35 @@
+[
+  {
+    "function": "update_viewport",
+    "variant": "update_viewport",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "b50a39a87d7ea193faf0ca0fc5d782d6711882a7622c27a2dd0facb70eada3d3",
+    "target_sha256": "7650d39b312d4bb7c7d6673b9dda8e35037366353ab6e68b3eddc81a25a4d01b",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict_score": 1321,
+    "object_sha256": "6f564ccf373d51d2db9ba65207b44771a6e18d51a53945d3f8d88669422f3ddf"
+  },
+  {
+    "function": "update_viewport",
+    "variant": "update_viewport.direct",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "c7218f266546fce9488d6f163753892ba7edb3cf199d0c2916731a2446130771",
+    "target_sha256": "7650d39b312d4bb7c7d6673b9dda8e35037366353ab6e68b3eddc81a25a4d01b",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict_score": 820,
+    "object_sha256": "7bdd638a05c4cd49063577ed2bfba49e15dfa66d8c9f38995d668cad4f007133"
+  },
+  {
+    "function": "update_viewport",
+    "variant": "update_viewport.direct_order",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "317fabc4a9fcf73c7bf8c5dcd8fa17be7a8fa2194c977aec9d4894565780a0ef",
+    "target_sha256": "7650d39b312d4bb7c7d6673b9dda8e35037366353ab6e68b3eddc81a25a4d01b",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict_score": 0,
+    "object_sha256": "ad96547c5b54b60764cfc33b8e326f88877ce418bc504d721208dc49d39414a4"
+  }
+]

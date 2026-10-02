@@ -1,0 +1,6 @@
+extern OSThread gIdleThread, gGameThread;
+extern u8 gStackIdle[];
+extern void __osInitialize_common(void), idle_thread_entry(void *), game_init(void *);
+extern OSMesgQueue gViModeTable;
+extern OSMesg gViModeLan1[];
+/* gStackGame has an existing shared declaration; source uses no sizeof/capacity. */
