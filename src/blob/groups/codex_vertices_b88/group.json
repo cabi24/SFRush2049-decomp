@@ -1,0 +1,14 @@
+{
+  "members": [
+    "func_8008C074"
+  ],
+  "context": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_8008C074"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "provenance": "cloud/work/near_miss_B88; complete vertex update and original eight-entry switch table"
+}

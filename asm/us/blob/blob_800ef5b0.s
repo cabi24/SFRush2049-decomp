@@ -6348,6 +6348,7 @@ place_cars_in_order:
 .section .text.func_800F56E0, "ax", @progbits
 .globl func_800F56E0
 func_800F56E0:
+    /* compiled from src/blob/func_800F56E0.c */
     .word 0x27BDFF60
     .word 0x3C028015
     .word 0x3C0E8015
@@ -6870,6 +6871,7 @@ func_800F56E0:
 .section .text.track_lighting_setup, "ax", @progbits
 .globl track_lighting_setup
 track_lighting_setup:
+    /* compiled from src/blob/track_lighting_setup.c */
     .word 0x3C0E8015
     .word 0x8DCEA110
     .word 0x27BDFFE8

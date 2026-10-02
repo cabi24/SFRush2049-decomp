@@ -1,0 +1,14 @@
+{
+  "members": [
+    "track_lighting_setup"
+  ],
+  "context": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "track_lighting_setup"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "provenance": "cloud/work/ipa-groups/codex_dispatch_a111; full native source, independently rebuilt during session recovery"
+}

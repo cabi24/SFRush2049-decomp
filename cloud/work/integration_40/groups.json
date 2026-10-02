@@ -1,0 +1,81 @@
+{
+  "codex_cleanup_a101": {
+    "splice": {
+      "spliced": [
+        "func_800B4E68"
+      ],
+      "image_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d"
+    },
+    "full_member_and_context_word_diffs": {
+      "func_800B4E68": 0
+    },
+    "bytes": {
+      "func_800B4E68": 328
+    },
+    "source_sha256": "e2a1027dcfadb4387bba2d21a6cdc8c3739bc5898cb1b31c014eec9ab9255a02"
+  },
+  "codex_menu_a104": {
+    "splice": {
+      "spliced": [
+        "func_800CC8C8"
+      ],
+      "image_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d"
+    },
+    "full_member_and_context_word_diffs": {
+      "func_800CC8C8": 0,
+      "format_string_parse": 0
+    },
+    "bytes": {
+      "func_800CC8C8": 316,
+      "format_string_parse": 180
+    },
+    "source_sha256": "12b444bfd23e98d0424acca67ae3a643f79acca0237eb256ae49db28ca7ccec8"
+  },
+  "codex_menu_a105": {
+    "splice": {
+      "spliced": [
+        "func_800CCA04"
+      ],
+      "image_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d"
+    },
+    "full_member_and_context_word_diffs": {
+      "func_800CCA04": 0,
+      "format_string_parse": 0
+    },
+    "bytes": {
+      "func_800CCA04": 316,
+      "format_string_parse": 180
+    },
+    "source_sha256": "45a2a8afe9ae554b712a7e7a31a4d7b4825b74f2c03679ec8b6a90854f7ba6da"
+  },
+  "codex_dispatch_a111": {
+    "splice": {
+      "spliced": [
+        "track_lighting_setup"
+      ],
+      "image_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d"
+    },
+    "full_member_and_context_word_diffs": {
+      "track_lighting_setup": 0
+    },
+    "bytes": {
+      "track_lighting_setup": 152
+    },
+    "source_sha256": "54a48eb57ce287cc5f7e6971b2f3ad2e80302cde5d815fc0a390379e1cde20b5"
+  },
+  "codex_vertices_b88": {
+    "splice": {
+      "spliced": [
+        "func_8008C074"
+      ],
+      "image_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d"
+    },
+    "full_member_and_context_word_diffs": {
+      "func_8008C074": 0
+    },
+    "bytes": {
+      "func_8008C074": 1232
+    },
+    "source_sha256": "eadba88e29ff99d7d9b55a72473be81c8752342b049b6fbc4ea038744c5bb27e"
+  }
+}

@@ -1,0 +1,9 @@
+Complete matching reconstruction of `func_800F56E0` at `0x800F56E0` (2072 bytes, 518 retail words).
+
+`func_800F56E0.c` contains native C89-compatible C and concrete record layouts. It updates the resource-local and shared statistics for each active player, inserting individual times and their average into top-five tables, updating finish/podium/event counters, accumulating sample totals and distance, then calling the persistence routine. Semantic behavior was independently checked against the canonical retail disassembly by the scout and types agents. No direct arcade counterpart was found.
+
+Strict `tools/cloud/score.py` result: `MATCH`, zero differing words, no unverified relocations allowed. Flags and reproducible artifact hashes are in `manifest.json`. The independently retained object in ignored `build/large_func_800F56E0/reconstruction-artifacts/` has 518 executable words plus ordinary zero alignment.
+
+The workbench diagnostic uses an exported generated-symbol target, so it reports seven relocation-layout differences from synthetic symbol aliases while all instruction bits match after canonical retail symbol resolution. The protected retail scorer is authoritative.
+
+Exploratory source variants remain here to preserve progression and measured compiler controls. `func_800F56E0.c` is the final candidate. This directory does not alter shared production headers, protected targets, locks, or cartridge coverage. The parent independently recompiled the published `cloud/matches/func_800F56E0.c` and reproduced the strict match. The canonical image and original ROM SHA-1 are exact; the full pytest suite exits0 and all627 blob locks, group locks and123 static/source locks pass. Accepted game coverage is84276/647072 bytes (13.02%); static coverage remains28732/61440 bytes (46.76%).

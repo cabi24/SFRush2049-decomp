@@ -1,0 +1,26 @@
+{
+  "source_sha256": "46800dd3894c033572c642b6966e08d30332806c90615dcc581d7255f1b8fd70",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "source": "/home/cburnes/agents/large-F56E0/candidates/types/unsigned_rank_shift.c",
+  "accepted": false,
+  "canonical_verdict": "511/518 words differ (17 extra words (nonzero beyond target length); unpaired R_MIPS_HI16 for D_80151AC0 at .text+0x804; unpaired R_MIPS_HI16 for D_80151690 at .text+0x808)",
+  "comparison": {
+    "differing": 511,
+    "total": 518,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [
+      "unpaired R_MIPS_HI16 for D_80151AC0 at .text+0x804",
+      "unpaired R_MIPS_HI16 for D_80151690 at .text+0x808"
+    ],
+    "extra_words": 17
+  },
+  "object_sha256": "dc1e3fb6f8d8182dccc271f74276a71d6a37c3bd325982f6e4916c53b4336391",
+  "emitted_words": 536,
+  "aligned": {
+    "aligned_exact": 151,
+    "aligned_opcode": 500,
+    "aligned_opcode_reg": 175
+  },
+  "frame_bytes": 160
+}

@@ -1,0 +1,23 @@
+{
+  "source_sha256": "592d382d8ad81305f6afd2d12b1e68204fa3542b040a06ca48988896518895c0",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source": "/home/cburnes/agents/large-F56E0/candidates/audit/entry/chained_reverse.c",
+  "accepted": false,
+  "canonical_verdict": "506/518 words differ",
+  "comparison": {
+    "differing": 506,
+    "total": 518,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "object_sha256": "572189ea9a84331f2216e3a3db4a7f2ea4b9ae6c48459f2bb679be29b015c6d0",
+  "emitted_words": 520,
+  "aligned": {
+    "aligned_exact": 504,
+    "aligned_opcode": 513,
+    "aligned_opcode_reg": 509
+  },
+  "frame_bytes": 160
+}

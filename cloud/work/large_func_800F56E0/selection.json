@@ -1,0 +1,19 @@
+{
+  "function": "func_800F56E0",
+  "address": "0x800F56E0",
+  "bytes": 2072,
+  "words": 518,
+  "reason": "Large full ordinary-ABI statistics updater with one genuine external callee and two-phase sorted result tables",
+  "target_manifest_sha256": "e7acb31240d06b6449f596ad28f66439e5b1405efec887c8337bd504673d5cc2",
+  "team": {
+    "reconstruction": "large_function_reconstruction",
+    "types": "large_function_types",
+    "audit": "large_function_scout"
+  },
+  "accepted": true,
+  "target_object_sha256": "4dad26b877000e7bc1fb86930d8e3518a1b060cb7ce4e61481b86c8e965372f4",
+  "target_object_note": "Protected relocation-aware inventory object; raw ELF text includes relocation placeholders and alignment. Canonical retail body is518 words.",
+  "publication_source": "src/blob/func_800F56E0.c",
+  "publication_source_sha256": "2a2e3ea9b0a67ac3d61515225d2dc123c074731b0808b1f3b466c871d770d9ae",
+  "accepted_game_bytes": 2072
+}

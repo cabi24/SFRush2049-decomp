@@ -1,0 +1,23 @@
+{
+  "source_sha256": "5c0eb179f971678bf8fced027fa8759de1190ff042653d6f1177c9248e883c57",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "source": "/home/cburnes/agents/large-F56E0/candidates/types/unsigned_phase.c",
+  "accepted": false,
+  "canonical_verdict": "262/518 words differ (2 extra words (nonzero beyond target length))",
+  "comparison": {
+    "differing": 262,
+    "total": 518,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 2
+  },
+  "object_sha256": "0bc7d20cc7b2af048b4598818b084c4a89c4a28a5318072ca727ecd1e4c4602a",
+  "emitted_words": 520,
+  "aligned": {
+    "aligned_exact": 340,
+    "aligned_opcode": 509,
+    "aligned_opcode_reg": 354
+  },
+  "frame_bytes": 160
+}

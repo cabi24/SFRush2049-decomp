@@ -1,0 +1,82 @@
+[
+  {
+    "candidate": "baseline.c",
+    "strict_differing_words": 512,
+    "extra_nonzero_words": 9
+  },
+  {
+    "candidate": "live_counts.c",
+    "strict_differing_words": 461,
+    "extra_nonzero_words": 0
+  },
+  {
+    "candidate": "types_casts.c",
+    "strict_differing_words": 366,
+    "extra_nonzero_words": 0
+  },
+  {
+    "candidate": "reuse_shift.c",
+    "strict_differing_words": 498,
+    "extra_nonzero_words": 0
+  },
+  {
+    "candidate": "zero_mean.c",
+    "strict_differing_words": 204,
+    "extra_nonzero_words": 0
+  },
+  {
+    "candidate": "tag_first.c",
+    "strict_differing_words": 159,
+    "extra_nonzero_words": 0
+  },
+  {
+    "candidate": "average_count.c",
+    "strict_differing_words": 370,
+    "extra_nonzero_words": 19
+  },
+  {
+    "candidate": "separate_sum.c",
+    "strict_differing_words": 165,
+    "extra_nonzero_words": 0
+  },
+  {
+    "candidate": "average_tag_shift.c",
+    "strict_differing_words": 159,
+    "extra_nonzero_words": 0
+  },
+  {
+    "candidate": "direct_record.c",
+    "strict_differing_words": 154,
+    "extra_nonzero_words": 0
+  },
+  {
+    "candidate": "direct_record_sum.c",
+    "strict_differing_words": 160,
+    "extra_nonzero_words": 0
+  },
+  {
+    "candidate": "direct_record_load_twice.c",
+    "strict_differing_words": 5,
+    "extra_nonzero_words": 0
+  },
+  {
+    "candidate": "fix_average_tag.c",
+    "strict_differing_words": 4,
+    "extra_nonzero_words": 0
+  },
+  {
+    "candidate": "initial_course_first.c",
+    "strict_differing_words": 2,
+    "extra_nonzero_words": 0
+  },
+  {
+    "candidate": "alternate_course_first.c",
+    "strict_differing_words": 2,
+    "extra_nonzero_words": 0
+  },
+  {
+    "candidate": "both_course_first.c",
+    "strict_differing_words": 0,
+    "extra_nonzero_words": 0
+  }
+]

@@ -1,0 +1,23 @@
+{
+  "source_sha256": "868c9d8528580b1cdd8df37839301433a2470be45f025c9b3849c0be4b495387",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "source": "/home/cburnes/agents/large-F56E0/candidates/types/unsigned_rank.c",
+  "accepted": false,
+  "canonical_verdict": "507/518 words differ",
+  "comparison": {
+    "differing": 507,
+    "total": 518,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "object_sha256": "db727ca8082b2d59d354edfea0db01c1397dc1908befd111281825ca0d152ca0",
+  "emitted_words": 388,
+  "aligned": {
+    "aligned_exact": 117,
+    "aligned_opcode": 372,
+    "aligned_opcode_reg": 136
+  },
+  "frame_bytes": 152
+}

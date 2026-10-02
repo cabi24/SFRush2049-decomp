@@ -1,0 +1,23 @@
+{
+  "source_sha256": "560073708e8aab721b5dc6558faba218537657ee3ea5ff14a0afa193d7475509",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "source": "/home/cburnes/agents/large-F56E0/candidates/types/baseline.c",
+  "accepted": false,
+  "canonical_verdict": "159/518 words differ",
+  "comparison": {
+    "differing": 159,
+    "total": 518,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "object_sha256": "bc2c5791ecd369a5f7298a06ced2006cae6cadcaa4c4b0599c30bffadd6f4949",
+  "emitted_words": 520,
+  "aligned": {
+    "aligned_exact": 362,
+    "aligned_opcode": 514,
+    "aligned_opcode_reg": 366
+  },
+  "frame_bytes": 160
+}

@@ -1,0 +1,23 @@
+{
+  "source_sha256": "45d13a4f083395a99530ca43a1a9ad6b6fb21565bab31f0183323e36573fdf4f",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "source": "/home/cburnes/agents/large-F56E0/candidates/types/byte_gaps.c",
+  "accepted": false,
+  "canonical_verdict": "159/518 words differ",
+  "comparison": {
+    "differing": 159,
+    "total": 518,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "object_sha256": "06dae32c28cb86e66988ff17762f79c085706d15fe8504c607dee3d9b4713b69",
+  "emitted_words": 520,
+  "aligned": {
+    "aligned_exact": 362,
+    "aligned_opcode": 514,
+    "aligned_opcode_reg": 366
+  },
+  "frame_bytes": 160
+}

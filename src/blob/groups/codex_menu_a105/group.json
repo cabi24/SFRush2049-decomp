@@ -1,0 +1,16 @@
+{
+  "members": [
+    "func_800CCA04"
+  ],
+  "context": [
+    "format_string_parse"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_800CCA04"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "provenance": "cloud/work/ipa-groups/codex_menu_a105; full native source, independently rebuilt during session recovery"
+}

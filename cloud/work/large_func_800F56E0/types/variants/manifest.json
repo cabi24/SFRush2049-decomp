@@ -1,0 +1,20 @@
+{
+  "baseline_parent": "reconstruction/tag_first.c",
+  "remote": "Rocky:~/agents/large-F56E0",
+  "toolkit_sha256": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+  "sources": {
+    "baseline.c": "560073708e8aab721b5dc6558faba218537657ee3ea5ff14a0afa193d7475509",
+    "byte_gaps.c": "45d13a4f083395a99530ca43a1a9ad6b6fb21565bab31f0183323e36573fdf4f",
+    "distance_explicit.c": "a782d09166ac43251bfd2388f535919007d332e1ca4605bf877c96e32715507b",
+    "mean_explicit_float.c": "20bb3f51296db8f19a40947fb5237f28cf8544d22f1cf240a1ed84a651616cae",
+    "mean_signed.c": "da551b863dd5bc5794121dbef040d25357094717e7d5c1d4048e04c02ccae09b",
+    "model_alias.c": "ac1df0a44d4a10af1d65bae9b9de2107f72d2270df7681f0bbb97f58d68fae64",
+    "nested_podium.c": "dac035ef2c32805e2ce912335a5287c6fc86ecf9820ed9face2891627f2d1804",
+    "owner_pointer.c": "6c9fe850229b2953e86a7f643ac7ac880ddc53f685ec5e78a6f5c164da271d5b",
+    "unsigned_lap.c": "f40a9b0a3c6f7f00f934724d88221cf2bcba3b1c967b252a185e7df41f1a85b4",
+    "unsigned_phase.c": "5c0eb179f971678bf8fced027fa8759de1190ff042653d6f1177c9248e883c57",
+    "unsigned_rank.c": "868c9d8528580b1cdd8df37839301433a2470be45f025c9b3849c0be4b495387",
+    "unsigned_rank_shift.c": "46800dd3894c033572c642b6966e08d30332806c90615dcc581d7255f1b8fd70",
+    "unsigned_shift.c": "1d1e51688d3fee0287780efedcf6a930ba3632894d6a9cf6fb27f852ffee9248"
+  }
+}

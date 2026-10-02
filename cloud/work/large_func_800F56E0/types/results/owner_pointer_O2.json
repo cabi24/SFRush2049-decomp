@@ -1,0 +1,23 @@
+{
+  "source_sha256": "6c9fe850229b2953e86a7f643ac7ac880ddc53f685ec5e78a6f5c164da271d5b",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "source": "/home/cburnes/agents/large-F56E0/candidates/types/owner_pointer.c",
+  "accepted": false,
+  "canonical_verdict": "159/518 words differ",
+  "comparison": {
+    "differing": 159,
+    "total": 518,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "object_sha256": "943124dc1928f723c4e0dac9414e9ebbc150ccbd42a65608b44e4da754eff2d4",
+  "emitted_words": 520,
+  "aligned": {
+    "aligned_exact": 362,
+    "aligned_opcode": 514,
+    "aligned_opcode_reg": 366
+  },
+  "frame_bytes": 160
+}
