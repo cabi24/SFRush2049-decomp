@@ -1,0 +1,10 @@
+{
+  "targets": [
+    "func_800A1910",
+    "func_800C1A00"
+  ],
+  "claims": [
+    "func_800A1910"
+  ],
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+}

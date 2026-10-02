@@ -1,0 +1,27 @@
+{
+  "func_800A1910": {
+    "strict_diff": 0,
+    "size": 75,
+    "target_size": 75,
+    "extra": 0,
+    "matched": true,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "25a0eb5174ea07f5c3ef0c74c264a413445cbd54727dcc261257c020ebc5a264",
+    "canonical_exit": 0
+  },
+  "func_800C1A00": {
+    "strict_diff": 87,
+    "size": 90,
+    "target_size": 88,
+    "extra": 2,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "5d22780aa04e5a52d0068fe5294312b749eaa126f14162ad776d890b034680a6"
+  }
+}

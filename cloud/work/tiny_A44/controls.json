@@ -1,0 +1,46 @@
+[
+  {
+    "target": "func_8008AD6C",
+    "control": "early_return",
+    "strict_diff": 34,
+    "size": 42,
+    "target_size": 41,
+    "extra": 1,
+    "matched": false,
+    "err": null,
+    "errors": []
+  },
+  {
+    "target": "func_8008AD6C",
+    "control": "first_swap_then_second_load",
+    "strict_diff": 34,
+    "size": 42,
+    "target_size": 41,
+    "extra": 1,
+    "matched": false,
+    "err": null,
+    "errors": []
+  },
+  {
+    "target": "func_80092BF4",
+    "control": "true_byte_offsets",
+    "strict_diff": 22,
+    "size": 20,
+    "target_size": 25,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "errors": []
+  },
+  {
+    "target": "func_80092BF4",
+    "control": "key_byte_offset",
+    "strict_diff": 22,
+    "size": 20,
+    "target_size": 25,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "errors": []
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "control": "actual_predecrement_return",
+    "strict_diff": 72,
+    "size": 75,
+    "target_size": 75,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "errors": []
+  },
+  {
+    "control": "count_before_compare",
+    "strict_diff": 72,
+    "size": 75,
+    "target_size": 75,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "errors": []
+  }
+]

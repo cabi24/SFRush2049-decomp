@@ -1,5 +1,13 @@
 # Coordinator status (Codex maintains this; newest entry first)
 
+## 2026-10-01 twentieth completed milestone: reciprocal length and byte comparison
+
+- Game cartridge C: **577/1,216 functions, 67,108/647,072 bytes (10.37%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**.
+- C25 adds80-byte actual one-pointer float-return reciprocal vector length with original named threshold and genuine sqrtf intrinsic; B29 independently reconstructed the same helper, credited once. A45 adds300-byte actual unsigned-byte comparison through a real local byte cursor within the existing count guard and genuine mismatch predecrement expressions. IDO generates the original unroll/remainder structure. No fake callers, extra inputs or pressure operations.
+- Independent D canonical MATCH, identical image and source-built full-ROM SHA-1 EXACT. Full pytest713 passed/495 skipped, separately captured exit0;577 blob locks, group checks zero and123 static/source locks intact. Ordinary flags **-g0 -O2 -mips2 -G 0 -non_shared**, C25 adds **-Wab,-r4300_mul**.
+- Across original handoff:80 game functions /10,692 bytes and97 static functions /27,284 bytes accepted. Negative A39/A41/A42/A43/A44 packets preserve bounded source evidence with empty claims. Latest b9cbca56 CI36949867981 and8e96f0e7 CI36949001345 succeeded; no open cloud PRs. All three workers continue; initial dirty tools/mips_to_c preserved.
+
+
 ## 2026-10-01 nineteenth completed milestone: real motion group and vector dataflow
 
 - Game cartridge C: **575/1,216 functions, 66,728/647,072 bytes (10.31%)**. Static cartridge C: **120/230 functions, 28,732/61,440 bytes (46.76%)**.

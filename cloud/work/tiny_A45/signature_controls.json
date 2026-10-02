@@ -1,0 +1,32 @@
+[
+  {
+    "control": "void_left",
+    "strict_diff": 4,
+    "size": 75,
+    "target_size": 75,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "errors": []
+  },
+  {
+    "control": "void_both",
+    "strict_diff": 75,
+    "size": 75,
+    "target_size": 75,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "errors": []
+  },
+  {
+    "control": "const_void_both",
+    "strict_diff": 75,
+    "size": 75,
+    "target_size": 75,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "errors": []
+  }
+]

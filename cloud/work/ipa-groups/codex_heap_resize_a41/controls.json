@@ -1,0 +1,22 @@
+{
+  "actual_plain_shrink_fallthrough": {
+    "menu_item_select": {
+      "strict_diff": 66,
+      "size": 141,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    },
+    "error": null
+  },
+  "actual_field_stores_on_separate_lines": {
+    "menu_item_select": {
+      "strict_diff": 56,
+      "size": 141,
+      "extra": 0,
+      "matched": false,
+      "err": null
+    },
+    "error": null
+  }
+}

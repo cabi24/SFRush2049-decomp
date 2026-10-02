@@ -234,3 +234,7 @@ C24/B28 recover original hardware sqrt.s/abs.s via genuine IDO intrinsic declara
 ### Genuine vector context preserves accepted helper identity (2026-10-01)
 
 C24's motion caller uses its real one-pointer float-return length helper. An incidental caller register value is not evidence for an additional formal. Keep the already accepted helper definition identical, independently score both claim and context, and credit only the new caller. A real three-component vector local and actual pointer reuse can recover allocation without dummy stack pressure. Preserve original global access order where aliasing is observable. The companion ordinary vector leaf needs exact real operand grouping and signed product flow.
+
+### Real cursor scope recovers byte-comparison source (2026-10-01)
+
+A45 recovers the actual three-input byte-comparison loop: generic memory converted to an unsigned-byte cursor inside the existing nonzero-count guard, postincrement comparison and genuine predecrement mismatch difference. Natural cursor scope restores the original local register and schedule; IDO emits the original unroll/remainder structure without manually inventing a group or extra work. C25 proves the nearby reciprocal-length helper's one-pointer float-return ABI and original threshold; independent duplicate discovery earns only one credit.

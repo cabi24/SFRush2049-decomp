@@ -1,0 +1,13 @@
+# A45 frozen ordinary packet
+
+Claim: func_800A1910, 75 words / 300 bytes. Rocky strict MATCH, size75, target75, extra0, no unresolved/unverified relocations or scorer errors, canonical score.py fn exit0. Literal flags `-g0 -O2 -mips2 -G 0 -non_shared` (canonical scorer includes r4300 multiply erratum setting). Current root lock checked at freeze: not already accepted.
+
+Source SHA256: 25a0eb5174ea07f5c3ef0c74c264a413445cbd54727dcc261257c020ebc5a264. Exact sanitized proof is scores.json. Canonical command: `python3 tools/cloud/score.py fn cloud/work/tiny_A45/func_800A1910.c func_800A1910 --flags '-g0 -O2 -mips2 -G 0 -non_shared'`. Instruction-bearing canonical output remains private `~/agents/A/wt/build/codex-A45/func_800A1910.score.txt`.
+
+Actual three inputs: generic memory address, unsigned-byte address, and full-word byte count. Zero count returns0. Each nonzero iteration compares unsigned bytes, advances both cursors, returns the integer difference of the mismatch bytes via actual predecrement cursor expressions, otherwise decrements count until0. Caller must supply a valid nonnegative count / byte range; source uses signed count, although assembly cannot establish signedness from equality/decrement operations alone. No terminator check, extra volatile reads, invented inputs or stand-in helpers. IDO naturally generates the retail four-way unroll/remainder path; source does not handcraft pressure or a fake group.
+
+The first generic pointer is converted to a true unsigned-byte cursor inside the existing nonzero-count guard. Initial byte-pointer formal version used a0 directly (72 differing words); the generic-pointer conversion produced retail v1 cursor with4 differing initial scheduling words; initializing it only on the actual read path produces strict0. Predecrement return expressions also reproduce retail dead pointer decrements. These are real type/scope/source-expression repairs; no source-line reflow sweep.
+
+Unclaimed func_800C1A00:87/88 +2 words; actual lookup/scaled vector semantics retained with exact Info32/Ref20/Object112/VecRecord68 fields. Removes old seed's unproved dead guard; captures count after zeroing three outputs, returns first matching signed-half ID's indexed scaled vector and preserves sign flag8. Global-count loop control worsens extent; no further allocation sweep. No claims for this source.
+
+Six bounded mechanism controls plus one existing explicit-unroll seed control; sanitized records are controls.json, memcmp_controls.json, signature_controls.json, scope_control.json. Existing source contexts untouched; no accepted source/layout/locks/build state changes.

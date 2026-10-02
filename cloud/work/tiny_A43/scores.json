@@ -1,0 +1,14 @@
+{
+  "entity_cull_check": {
+    "strict_diff": 62,
+    "size": 64,
+    "target_size": 64,
+    "extra": 0,
+    "matched": false,
+    "err": null,
+    "unverified": [],
+    "unresolved": [],
+    "errors": [],
+    "source_sha256": "c74a109408f307e2fa7cb81f3f1111243d3246f27014f76ea985e77a40a70f7f"
+  }
+}

@@ -3944,6 +3944,7 @@ func_800A1644:
 .section .text.func_800A1910, "ax", @progbits
 .globl func_800A1910
 func_800A1910:
+    /* compiled from src/blob/func_800A1910.c */
     .word 0x10C00047
     .word 0x30C20003
     .word 0x00021023
