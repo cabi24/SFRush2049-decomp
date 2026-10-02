@@ -1,0 +1,15 @@
+{
+  "function": "func_800E0B20",
+  "accepted_bytes": 1580,
+  "image_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d",
+  "image_bytes": 647072,
+  "rom_sha1_exact": true,
+  "make": 0,
+  "rom_test": 0,
+  "blob_lock_entries": 631,
+  "blob_lock_problems": 0,
+  "group_lock_problems": 0,
+  "static_lock_intact": 123,
+  "game_percent": 13.97,
+  "static_percent": 46.76
+}
