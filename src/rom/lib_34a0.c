@@ -41,7 +41,14 @@
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_34a0/modf.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_34a0/modff.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_34a0/__isinf.s")
+/* PROMOTED 2026-10-02 — __isinf
+ * Source:   cloud/work/static_debug_consolidation/acceptance_sources/__isinf.c (in-repo, locked)
+ * Flags:    -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul
+ * Evidence: lock:cloud/work/static_debug_consolidation/acceptance_sources/__isinf.c:__isinf (score0)
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+int __isinf(register double x) { DoubleUnion v; v.value=x; if(v.bits.exponent==2047) { v.bits.exponent=0; return v.value != 0.0; } return 0; }
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_34a0/__isnan.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_34a0/fcvt.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_34a0/__ecvt_internal.s")
