@@ -3932,6 +3932,7 @@ audio_effect_remove:
 .section .text.audio_dsp_process, "ax", @progbits
 .globl audio_dsp_process
 audio_dsp_process:
+    /* compiled from src/blob/audio_dsp_process.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x3C078015

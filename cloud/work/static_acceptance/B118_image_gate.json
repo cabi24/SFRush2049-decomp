@@ -1,0 +1,16 @@
+{
+  "spliced": 645,
+  "image_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d",
+  "image_bytes": 647072,
+  "blob_bytes": 326180,
+  "blob_sha256": "9e632d21b7d0d293563755d9f2033557cb1a4d91d7df6e8d41e68d8afe3e5f7d",
+  "stream_matches_rom": true,
+  "path": "/tmp/rush-static-acceptance-20261002/build/blob/game_code.deflate",
+  "coverage": {
+    "functions": 645,
+    "total_functions": 1216,
+    "bytes": 95968,
+    "image_size": 647072,
+    "percent": 14.831116166361703
+  }
+}
