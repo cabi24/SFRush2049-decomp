@@ -9,9 +9,9 @@
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/osCreateScheduler.s")
 /* PROMOTED 2026-10-02 — osScAddClient
- * Source:   cloud/matches/osScAddClient.c (in-repo, locked)
+ * Source:   cloud/work/static_acceptance/SDK_candidates/osScAddClient.c (in-repo, locked)
  * Flags:    -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm
- * Evidence: lock:cloud/matches/osScAddClient.c:osScAddClient (score0)
+ * Evidence: lock:cloud/work/static_acceptance/SDK_candidates/osScAddClient.c:osScAddClient (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
 void osScAddClient(OSSched *scheduler, OSScClient *client, OSMesgQueue *queue) {
@@ -25,9 +25,9 @@ void osScAddClient(OSSched *scheduler, OSScClient *client, OSMesgQueue *queue) {
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scMain.s")
 /* PROMOTED 2026-10-02 — __scSchedule
- * Source:   cloud/matches/__scSchedule.c (in-repo, locked)
+ * Source:   cloud/work/static_acceptance/SDK_candidates/__scSchedule.c (in-repo, locked)
  * Flags:    -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul
- * Evidence: lock:cloud/matches/__scSchedule.c:__scSchedule (score0)
+ * Evidence: lock:cloud/work/static_acceptance/SDK_candidates/__scSchedule.c:__scSchedule (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
 void __scSchedule(OSSched *scheduler)
@@ -49,9 +49,9 @@ void __scSchedule(OSSched *scheduler)
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scHandleRetrace.s")
 /* PROMOTED 2026-10-02 — __scHandleRSP
- * Source:   cloud/matches/__scHandleRSP.c (in-repo, locked)
+ * Source:   cloud/work/static_acceptance/SDK_candidates/__scHandleRSP.c (in-repo, locked)
  * Flags:    -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm
- * Evidence: lock:cloud/matches/__scHandleRSP.c:__scHandleRSP (score0)
+ * Evidence: lock:cloud/work/static_acceptance/SDK_candidates/__scHandleRSP.c:__scHandleRSP (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
 void __scHandleRSP(OSSched *scheduler)
@@ -81,9 +81,9 @@ void __scHandleRSP(OSSched *scheduler)
 }
 
 /* PROMOTED 2026-10-02 — __scHandleRDP
- * Source:   cloud/matches/__scHandleRDP.c (in-repo, locked)
+ * Source:   cloud/work/static_acceptance/SDK_candidates/__scHandleRDP.c (in-repo, locked)
  * Flags:    -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm
- * Evidence: lock:cloud/matches/__scHandleRDP.c:__scHandleRDP (score0)
+ * Evidence: lock:cloud/work/static_acceptance/SDK_candidates/__scHandleRDP.c:__scHandleRDP (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
 void __scHandleRDP(OSSched *scheduler)
@@ -102,9 +102,9 @@ void __scHandleRDP(OSSched *scheduler)
 }
 
 /* PROMOTED 2026-10-02 — __scTaskReady
- * Source:   cloud/matches/__scTaskReady.c (in-repo, locked)
+ * Source:   cloud/work/static_acceptance/SDK_candidates/__scTaskReady.c (in-repo, locked)
  * Flags:    -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm
- * Evidence: lock:cloud/matches/__scTaskReady.c:__scTaskReady (score0)
+ * Evidence: lock:cloud/work/static_acceptance/SDK_candidates/__scTaskReady.c:__scTaskReady (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
 OSScTask *__scTaskReady(OSSched *scheduler, OSScTask *task) {
@@ -121,9 +121,9 @@ OSScTask *__scTaskReady(OSSched *scheduler, OSScTask *task) {
 }
 
 /* PROMOTED 2026-10-02 — __scExecTask
- * Source:   cloud/matches/__scExecTask.c (in-repo, locked)
+ * Source:   cloud/work/static_acceptance/SDK_candidates/__scExecTask.c (in-repo, locked)
  * Flags:    -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul
- * Evidence: lock:cloud/matches/__scExecTask.c:__scExecTask (score0)
+ * Evidence: lock:cloud/work/static_acceptance/SDK_candidates/__scExecTask.c:__scExecTask (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
 s32 __scExecTask(OSSched *scheduler, OSScTask *task)

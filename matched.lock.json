@@ -1,4 +1,12 @@
 {
+  "cloud/work/static_acceptance/SDK_candidates/osCreateScheduler.c:osCreateScheduler": {
+    "body_sha256": "1351e5217f18624b5365e5bb94deca4f833ccdb7772e332b308ab2183d90c4df",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm",
+    "target_id": "osCreateScheduler",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-02"
+  },
   "src/libultra/os_ai.c:__osAiDeviceBusy": {
     "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",

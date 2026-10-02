@@ -12,4 +12,8 @@ extern s32 __scScheduleCore(OSSched *, OSScTask **, OSScTask **, s32);
 extern s32 osSpTaskYielded(void *);
 extern void __scHandlePreNMI(OSSched *);
 extern s16 __osScTaskCount;
+extern OSViMode gViModeTableBase[];
+extern void osSetEventMesg(OSPri);
+extern void osSetTimerIntr(OSMesgQueue *, OSMesg, s32);
+extern void __scMain(void *);
 #endif
