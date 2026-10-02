@@ -47,14 +47,6 @@
     "verified": "score0",
     "verified_at": "2026-10-02"
   },
-  "cloud/work/static_debug_consolidation/acceptance_sources/get_viewport_offset.c:get_viewport_offset": {
-    "body_sha256": "3c54e9ec9996731a1e2c55bda68ddf88fb21419fa930e6073610d6f9188e2616",
-    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
-    "target_id": "get_viewport_offset",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-02"
-  },
   "cloud/work/static_debug_consolidation/acceptance_sources/idle_thread_entry.c:idle_thread_entry": {
     "body_sha256": "b5b465e8900c2a6168a7af0f8f316815081941c17cf1dbbb75c619e9874693e4",
     "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
@@ -131,6 +123,14 @@
     "body_sha256": "cbeac312fca57a2d491a4078571156e3d572e0658cfb3e51b1b2850f0e291aa7",
     "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "target_id": "get_tv_offset",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-02"
+  },
+  "src/rom/lib_21f0.c:get_viewport_offset": {
+    "body_sha256": "3c54e9ec9996731a1e2c55bda68ddf88fb21419fa930e6073610d6f9188e2616",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "get_viewport_offset",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-02"
