@@ -1,0 +1,44 @@
+{
+  "members": [
+    {
+      "function": "osCreatePiManager",
+      "source_sha256": "d33a4237b8e37c978167eebaa9988bf3ac30a1cfd28a3e1b824193c1d092fcee",
+      "object_sha256": "b7f6edbc99a71dc190150e5654d32ec2a3c7741407e06a80f6b4e5338acca0ef",
+      "protected_target_object_sha256": "a222ec3e449c91592c7bca350faf98dd3b98df6bc24774b33fcbb58743c3538e",
+      "canonical_strict_including_stack": 0,
+      "native_bytes": 368,
+      "candidate_runtime_bytes": 368,
+      "frame_bytes": 48,
+      "full_word_differences": 0,
+      "masks_count": 0,
+      "unresolved_count": 0,
+      "unverified_count": 0,
+      "error_count": 0,
+      "extra_nonzero_alignment_words": 0,
+      "native_body_sha256": "2644fcd420cc3397edbd3490c554c3441567c2e4b9aa8e7f986110510f04113d",
+      "exact_full_body": true,
+      "accepted_bytes": 0
+    },
+    {
+      "function": "osSendMesg",
+      "source_sha256": "aaf1d44e6c9960539cada7717fb4c9f4184d92c4aaeebeffcecc1aee13580e56",
+      "object_sha256": "c847ba0b0cefc430a5ea3fa964f9363e5c23df565f5030e93d47d701e616ebd5",
+      "protected_target_object_sha256": "0d361368060117dc538e45342e98564df234bd5433c125385e49b278c0b90d06",
+      "canonical_strict_including_stack": 0,
+      "native_bytes": 336,
+      "candidate_runtime_bytes": 336,
+      "frame_bytes": 40,
+      "full_word_differences": 0,
+      "masks_count": 0,
+      "unresolved_count": 0,
+      "unverified_count": 0,
+      "error_count": 0,
+      "extra_nonzero_alignment_words": 0,
+      "native_body_sha256": "96bea94488da57bab616bee4a19879b5968a72d3bf36a88268da7c9a8f4f87e9",
+      "exact_full_body": true,
+      "accepted_bytes": 0
+    }
+  ],
+  "exact_native_bytes": 704,
+  "accepted_bytes": 0
+}

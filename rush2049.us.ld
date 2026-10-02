@@ -91,6 +91,7 @@ SECTIONS
         build/us/src/rom/lib_7b30.o(.text);
         build/us/src/rom/lib_7c80.o(.text);
         build/us/src/rom/lib_7fb0.o(.text);
+        build/us/src/rom/lib_8040_msg.o(.text);
         build/us/src/rom/lib_8040.o(.text);
         build/us/src/rom/lib_81e0.o(.text);
         build/us/src/rom/lib_8330.o(.text);
@@ -195,6 +196,7 @@ SECTIONS
         build/us/src/rom/lib_7b30.o(.data);
         build/us/src/rom/lib_7c80.o(.data);
         build/us/src/rom/lib_7fb0.o(.data);
+        build/us/src/rom/lib_8040_msg.o(.data);
         build/us/src/rom/lib_8040.o(.data);
         build/us/src/rom/lib_81e0.o(.data);
         build/us/src/rom/lib_8330.o(.data);
@@ -287,6 +289,7 @@ SECTIONS
         build/us/src/rom/lib_7b30.o(.rodata);
         build/us/src/rom/lib_7c80.o(.rodata);
         build/us/src/rom/lib_7fb0.o(.rodata);
+        build/us/src/rom/lib_8040_msg.o(.rodata);
         build/us/src/rom/lib_8040.o(.rodata);
         build/us/src/rom/lib_81e0.o(.rodata);
         build/us/src/rom/lib_8330.o(.rodata);
@@ -384,6 +387,7 @@ SECTIONS
         build/us/src/rom/lib_7b30.o(.bss);
         build/us/src/rom/lib_7c80.o(.bss);
         build/us/src/rom/lib_7fb0.o(.bss);
+        build/us/src/rom/lib_8040_msg.o(.bss);
         build/us/src/rom/lib_8040.o(.bss);
         build/us/src/rom/lib_81e0.o(.bss);
         build/us/src/rom/lib_8330.o(.bss);

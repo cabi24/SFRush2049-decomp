@@ -1,0 +1,57 @@
+{
+  "status": "frozen_exact_bodies_pending_root_split_and_full_rom_gate",
+  "accepted_bytes": 0,
+  "exact_native_body_bytes": 704,
+  "toolkit_sha256": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+  "rom_tu_header_sha256": "a7a1d4a1d9220b912b7ad0ec62bcd796e7abce207b9aa7f249339f18064de662",
+  "production_header_closure_sha256": {
+    "include/types.h": "0c3169319a4e10b8a2c7d850791df9bafcf923b57411c64bfa6ca83bb639bf57",
+    "include/rom_auto.h": "19c91f4227b58dc67b9cf73d3046d5516ffea3133be6c1f61be3b3cea257d027",
+    "include/PR/os_message.h": "abcd94ab267e900fe34aa5d135de9bbea97b569ba92b28b603a05ee0990695df",
+    "include/PR/os_thread.h": "1ab29a9e77fcfeae0f2b106b4fbec77fca53f2df4273240ea6b937e25a9845f6",
+    "include/PR/os.h": "cd435b51c7aec3f5f6548081b90a2c179503ea81adaaf110f138774b46df6809",
+    "include/PR/os_ai.h": "5c3b64a7591c38af33be445a5dc360cb1f5d5a28b18952eed9af48785a6157e4",
+    "include/PR/os_cont.h": "d90de1e07e5950f6e551d36fa51465113005c32499709ac3800a54d16982e4f4",
+    "include/PR/os_pfs.h": "c1b35642cfbb0efbad6668067bfca27ef6ffaba3a5edad1213a7c8e4fe84051c",
+    "include/PR/os_pi.h": "8334d60c3f0761abaf38f69f905d04feb62eea3a1e4fa7de3951273fef19888d",
+    "include/PR/os_time.h": "a224b0b67e8b01fc2dabcbf391785be35127884645648abfd9ffc29f7d10c8cc",
+    "include/m2c_types.h": "93ab9028d3acf10515babd91636d6bd1c243110d1b70972d7758c83b65e932d0"
+  },
+  "source_header_sha256": "b9d9ed21b810679f491792586288b62d6a1376fd28a12044b1d26d6ebf0994a8",
+  "members": [
+    {
+      "function": "osCreatePiManager",
+      "rom_prefix_start": "0x8e10",
+      "rom_split_boundary": "0x8f80",
+      "vram_prefix_start": "0x80008210",
+      "vram_split_boundary": "0x80008380",
+      "prefix_native_bytes": 368,
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "preserved_suffix_rom_tu": "lib_8e10",
+      "preserved_lock_spec": "src/rom/lib_8e10.c:osCreateViManager",
+      "preserved_normalized_body_sha256": "231b11e21c3a406a74c3a98f991aff69bfbed10ce1c84deeaf39cdd2ff1be05a",
+      "preserved_lock_body_sha256": "231b11e21c3a406a74c3a98f991aff69bfbed10ce1c84deeaf39cdd2ff1be05a",
+      "preserved_suffix_flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "source_sha256": "d33a4237b8e37c978167eebaa9988bf3ac30a1cfd28a3e1b824193c1d092fcee"
+    },
+    {
+      "function": "osSendMesg",
+      "rom_prefix_start": "0x8040",
+      "rom_split_boundary": "0x8190",
+      "vram_prefix_start": "0x80007440",
+      "vram_split_boundary": "0x80007590",
+      "prefix_native_bytes": 336,
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "preserved_suffix_rom_tu": "lib_8040",
+      "preserved_lock_spec": "src/rom/lib_8040.c:osViSetMode",
+      "preserved_normalized_body_sha256": "c4815e64651b502767e9c4aa7f7318bb4e27d84cfddcead39d3bfbb8f3f47ca9",
+      "preserved_lock_body_sha256": "c4815e64651b502767e9c4aa7f7318bb4e27d84cfddcead39d3bfbb8f3f47ca9",
+      "preserved_suffix_flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_sha256": "aaf1d44e6c9960539cada7717fb4c9f4184d92c4aaeebeffcecc1aee13580e56"
+    }
+  ],
+  "protected_full_body_all_exact": true,
+  "current_production_header_replay": true,
+  "new_storage_definitions": false,
+  "root_layout_and_full_rom_gate_completed": false
+}

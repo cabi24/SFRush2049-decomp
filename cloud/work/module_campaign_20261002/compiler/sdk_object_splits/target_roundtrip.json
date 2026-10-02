@@ -1,0 +1,24 @@
+[
+  {
+    "function": "osCreatePiManager",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "protected_target_sha256": "a222ec3e449c91592c7bca350faf98dd3b98df6bc24774b33fcbb58743c3538e",
+    "target_full_roundtrip_word_differences": 0,
+    "target_masks_count": 0,
+    "target_unresolved_count": 0,
+    "target_unverified_count": 0,
+    "target_error_count": 0,
+    "new_storage_section_sizes": {}
+  },
+  {
+    "function": "osSendMesg",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "protected_target_sha256": "0d361368060117dc538e45342e98564df234bd5433c125385e49b278c0b90d06",
+    "target_full_roundtrip_word_differences": 0,
+    "target_masks_count": 0,
+    "target_unresolved_count": 0,
+    "target_unverified_count": 0,
+    "target_error_count": 0,
+    "new_storage_section_sizes": {}
+  }
+]
