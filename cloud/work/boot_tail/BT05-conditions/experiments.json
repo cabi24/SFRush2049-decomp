@@ -1,0 +1,256 @@
+{
+  "initial_form_results": [
+    {
+      "name": "func_80021C58",
+      "source_sha256": "dd6f1a030f6037fbc84c3248946430d56584fef7b65581c1884d6a16fdeb35ab",
+      "scores": {
+        "O2": {
+          "differing": 22,
+          "total": 33,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 2
+        },
+        "O1": {
+          "differing": 33,
+          "total": 33,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 10
+        }
+      }
+    },
+    {
+      "name": "func_80021CDC",
+      "source_sha256": "e8eaa3e8c997790b41c634b6c9ac1a738aef36846dcfa3a8ecd3aac3f8c97603",
+      "scores": {
+        "O2": {
+          "differing": 22,
+          "total": 32,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 2
+        },
+        "O1": {
+          "differing": 32,
+          "total": 32,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 10
+        }
+      }
+    },
+    {
+      "name": "func_80021D5C",
+      "source_sha256": "820228addc0b519eba65cb16787e2c6dc8c047cb3647b2b8da4731ae19c38867",
+      "scores": {
+        "O2": {
+          "differing": 35,
+          "total": 39,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 4
+        },
+        "O1": {
+          "differing": 39,
+          "total": 39,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 11
+        }
+      }
+    },
+    {
+      "name": "func_80021DF8",
+      "source_sha256": "c026162cca5a5530855639d29c89b1bd4f1d12d78b3114f9e63bb00af6931058",
+      "scores": {
+        "O2": {
+          "differing": 19,
+          "total": 31,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 2
+        },
+        "O1": {
+          "differing": 31,
+          "total": 31,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 12
+        }
+      }
+    },
+    {
+      "name": "func_80021E74",
+      "source_sha256": "64f0c9bad15c0c2df2b88b19034249baf180134d0e447d2850fc0b2407f61d0f",
+      "scores": {
+        "O2": {
+          "differing": 16,
+          "total": 37,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "O1": {
+          "differing": 36,
+          "total": 37,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 7
+        }
+      }
+    }
+  ],
+  "gated_operation_controls": [
+    {
+      "address": "80021C58",
+      "form": "one gated operation and one common zero return with explicit halfword identifier",
+      "differing": 21,
+      "total": 33,
+      "extra_words": 0
+    },
+    {
+      "address": "80021CDC",
+      "form": "one gated operation and one common zero return with explicit halfword identifier",
+      "differing": 21,
+      "total": 32,
+      "extra_words": 0
+    },
+    {
+      "address": "80021D5C",
+      "form": "one gated operation and one common zero return with explicit halfword identifier",
+      "differing": 21,
+      "total": 39,
+      "extra_words": 0
+    },
+    {
+      "address": "80021DF8",
+      "form": "one gated operation and one common zero return with explicit halfword identifier",
+      "differing": 19,
+      "total": 31,
+      "extra_words": 0
+    }
+  ],
+  "word_status_controls": [
+    {
+      "address": "80021C58",
+      "form": "word status type",
+      "differing": 21,
+      "total": 33,
+      "extra_words": 0
+    },
+    {
+      "address": "80021CDC",
+      "form": "word status type",
+      "differing": 21,
+      "total": 32,
+      "extra_words": 0
+    },
+    {
+      "address": "80021D5C",
+      "form": "word status type",
+      "differing": 21,
+      "total": 39,
+      "extra_words": 0
+    },
+    {
+      "address": "80021DF8",
+      "form": "word status type",
+      "differing": 19,
+      "total": 31,
+      "extra_words": 0
+    },
+    {
+      "address": "80021E74",
+      "form": "word status type",
+      "differing": 16,
+      "total": 37,
+      "extra_words": 0
+    }
+  ],
+  "representative_identifier_linkage_controls": [
+    {
+      "form": "explicit_halfword_identifier",
+      "differing": 21,
+      "total": 33,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "form": "internal_handler_linkage",
+      "result": "func_80021C58 is not a defined function in the compiled object"
+    }
+  ],
+  "combined_guard_control": {
+    "address": "80021C58",
+    "form": "combined predicate and lookup guard",
+    "differing": 21,
+    "total": 33,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "attempted_source_forms": {
+    "80021C58": 6,
+    "80021CDC": 3,
+    "80021D5C": 3,
+    "80021DF8": 3,
+    "80021E74": 2
+  },
+  "diagnosis_summaries": {
+    "80021C58": {
+      "aligned_register": 7,
+      "aligned_schedule": 0,
+      "aligned_constant": 0,
+      "aligned_deletions": 1,
+      "aligned_insertions": 4,
+      "frame": -24
+    },
+    "80021CDC": {
+      "aligned_register": 7,
+      "aligned_schedule": 0,
+      "aligned_constant": 0,
+      "aligned_deletions": 1,
+      "aligned_insertions": 4,
+      "frame": -24
+    },
+    "80021D5C": {
+      "aligned_register": 9,
+      "aligned_schedule": 0,
+      "aligned_constant": 0,
+      "aligned_deletions": 1,
+      "aligned_insertions": 6,
+      "frame": -24
+    },
+    "80021DF8": {
+      "aligned_register": 7,
+      "aligned_schedule": 0,
+      "aligned_constant": 0,
+      "aligned_deletions": 1,
+      "aligned_insertions": 4,
+      "frame": -24
+    },
+    "80021E74": {
+      "aligned_register": 16,
+      "aligned_schedule": 0,
+      "aligned_constant": 0,
+      "aligned_deletions": 0,
+      "aligned_insertions": 0,
+      "frame": -24
+    }
+  },
+  "stop": "All five remain complete nonmatches. Preserve genuine halfword helper ABI rather than weaken the declaration to suppress conversion copies. Do not insert a fake caller to retain an unused static function."
+}

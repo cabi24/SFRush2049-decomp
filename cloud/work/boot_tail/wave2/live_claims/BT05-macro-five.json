@@ -1,0 +1,38 @@
+{
+  "state": "active",
+  "owner": "/root/match_boot_tail_macro_five",
+  "packet": "BT05-macro-five",
+  "branch": "dot/boot-tail-bt05-macro-five",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "targets": [
+    {
+      "address": "0x80022324",
+      "size": 172,
+      "end_exclusive": "0x800223D0"
+    },
+    {
+      "address": "0x800230B0",
+      "size": 224,
+      "end_exclusive": "0x80023190"
+    },
+    {
+      "address": "0x80023AD4",
+      "size": 124,
+      "end_exclusive": "0x80023B50"
+    },
+    {
+      "address": "0x80023B50",
+      "size": 140,
+      "end_exclusive": "0x80023BDC"
+    },
+    {
+      "address": "0x80023DB8",
+      "size": 228,
+      "end_exclusive": "0x80023E9C"
+    }
+  ],
+  "bytes": 888,
+  "dependency_order": "22324 and230B0 use matched helpers;23AD4 and23B50 use fully reconstructed native contracts;23DB8 after23AD4 inspection.",
+  "edit_scope": "Only listed match sources and cloud/work/boot_tail/BT05-macro-five/**",
+  "stop": "Audit actual native callee ABI and missing data before edits. Natural C89,O2 thenO1,20 directed variants maximum per diagnosis. No protected changes, overlap, frozen-target reopens or table-proof substitution. Use /tmp isolated worktree."
+}
