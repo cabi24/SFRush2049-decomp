@@ -1,0 +1,12 @@
+{
+  "verdict": "PASS for NONMATCH research semantics only",
+  "source_sha256": "df64ffab219b6c2c30d71d1872bf749ba0736a4f266e176f50f619dfb37a3ecc",
+  "strict_differing_words": 19,
+  "target_bytes": 136,
+  "candidate_symbol_bytes": 132,
+  "candidate_section_bytes": 144,
+  "independent_host_cases": 67584,
+  "ABI": "o32 two pointer arguments in a0,a1; no stack frame, no calls, no callee-saved clobbers, void return",
+  "semantics": "Exact offsets verified including byte2012; enabled-only pair write and signed counter increment/wrap comparison; disabled preserves second index; mode zero enables vehicle byte; all untouched bytes preserved",
+  "limitations": "No exact match or ROM claim; host integer narrowing relies on the intended two-complement target conventions"
+}

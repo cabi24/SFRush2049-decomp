@@ -1,0 +1,88 @@
+{
+  "status": "NONMATCH",
+  "function": "func_800EC270",
+  "base": "a12daa63ae67c8dab3404efb666089c884dadfd4",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source_sha256": "df64ffab219b6c2c30d71d1872bf749ba0736a4f266e176f50f619dfb37a3ecc",
+  "canonical": {
+    "differing": 19,
+    "total": 34,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "differing_offsets": [
+    "0x2c",
+    "0x30",
+    "0x38",
+    "0x3c",
+    "0x4c",
+    "0x50",
+    "0x54",
+    "0x58",
+    "0x5c",
+    "0x60",
+    "0x64",
+    "0x68",
+    "0x6c",
+    "0x70",
+    "0x74",
+    "0x78",
+    "0x7c",
+    "0x80",
+    "0x84"
+  ],
+  "target_words": 34,
+  "candidate_text_words": 36,
+  "nonzero_excess_words": 0,
+  "masks": {},
+  "unresolved": [],
+  "unverified": [],
+  "relocation_errors": [],
+  "candidate_function_symbols": [
+    {
+      "name": "func_800EC270",
+      "value": 0,
+      "size": 132,
+      "type": 2,
+      "section": 4
+    }
+  ],
+  "direct_calls": [
+    [
+      "world_physics_tick",
+      260
+    ]
+  ],
+  "candidate_body_words": 33,
+  "candidate_zero_alignment_words": 3,
+  "semantic_tests": {
+    "verdict": "PASS",
+    "native_differential_cases": 90896,
+    "asan_ubsan_host_cases": 500000,
+    "native_instructions": 34,
+    "candidate_sha256": "df64ffab219b6c2c30d71d1872bf749ba0736a4f266e176f50f619dfb37a3ecc",
+    "scope": "Native interpreter vs host C, bounded disjoint memory tests; not native execution or compiler identity",
+    "limits": [
+      "No concurrent mutation or overlapping vehicle/state/global regions tested",
+      "IEEE float words are copied; FCSR effects not modeled",
+      "Signed uint32-to-int32 conversion assumes two-complement implementation, as IDO/GCC use"
+    ]
+  },
+  "independent_review": {
+    "verdict": "PASS for NONMATCH research semantics only",
+    "source_sha256": "df64ffab219b6c2c30d71d1872bf749ba0736a4f266e176f50f619dfb37a3ecc",
+    "strict_differing_words": 19,
+    "target_bytes": 136,
+    "candidate_symbol_bytes": 132,
+    "candidate_section_bytes": 144,
+    "independent_host_cases": 67584,
+    "ABI": "o32 two pointer arguments in a0,a1; no stack frame, no calls, no callee-saved clobbers, void return",
+    "semantics": "Exact offsets verified including byte2012; enabled-only pair write and signed counter increment/wrap comparison; disabled preserves second index; mode zero enables vehicle byte; all untouched bytes preserved",
+    "limitations": "No exact match or ROM claim; host integer narrowing relies on the intended two-complement target conventions"
+  },
+  "claims": [],
+  "asan_leak_detection": false,
+  "asan_leak_note": "Disabled only LeakSanitizer because ptrace environment is unsupported; address and undefined behavior checks active."
+}
