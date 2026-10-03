@@ -1,0 +1,42 @@
+{
+  "state": "active",
+  "owner": "/root/match_boot_tail_bt02_larger",
+  "packet": "BT02-larger",
+  "branch": "dot/boot-tail-bt02-larger",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "targets": [
+    {
+      "address": "0x80010628",
+      "size": 236,
+      "end_exclusive": "0x80010714"
+    },
+    {
+      "address": "0x80010714",
+      "size": 192,
+      "end_exclusive": "0x800107D4"
+    },
+    {
+      "address": "0x80010C68",
+      "size": 212,
+      "end_exclusive": "0x80010D3C"
+    },
+    {
+      "address": "0x80011910",
+      "size": 208,
+      "end_exclusive": "0x800119E0"
+    },
+    {
+      "address": "0x80012660",
+      "size": 208,
+      "end_exclusive": "0x80012730"
+    },
+    {
+      "address": "0x80013C84",
+      "size": 236,
+      "end_exclusive": "0x80013D70"
+    }
+  ],
+  "bytes": 1292,
+  "edit_scope": "Only listed matching files and cloud/work/boot_tail/BT02-larger/**",
+  "stop": "Natural C89/O2/O1 real ABI,20 directed variants max; no protected edits, overlap, unproved rodata, out-of-scope data inspection or frozen residual reopening. Audit references without reading microcode/data bytes."
+}

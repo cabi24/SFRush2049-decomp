@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "result": "PASS",
+  "reviewer": "BT07-larger",
+  "reviewed_commit": "da2834a85a9b83604fcd26685971054f320ec95f",
+  "reviewed_tree": "783db7d4e4305a65b5efd65e89cbec330c1c4c8f",
+  "source_bound_results": [
+    {
+      "function": "func_80010628",
+      "source_sha256": "d307373ec3aabedcdd5e0f7f920a81e27c02aa0603d4fa16d4226683dfa53222",
+      "native_bytes": 236,
+      "strict_match": true,
+      "differing_words": 0
+    },
+    {
+      "function": "func_80010714",
+      "source_sha256": "c3f3be7aaa15dcbde292903a8642e6860e133a5336f0f9ea2c60e51296926b18",
+      "native_bytes": 192,
+      "strict_match": true,
+      "differing_words": 0
+    },
+    {
+      "function": "func_80010C68",
+      "source_sha256": "b18b613c64de9deeb221db368fa513ca1f69ae62106210699a48257df5186475",
+      "native_bytes": 212,
+      "strict_match": true,
+      "differing_words": 0
+    },
+    {
+      "function": "func_80011910",
+      "source_sha256": "9b0776027b9cc979f4db3695a4030504d60810029f3c24b280989f6bd65080a3",
+      "native_bytes": 208,
+      "strict_match": false,
+      "differing_words": 47
+    },
+    {
+      "function": "func_80012660",
+      "source_sha256": "f8790fa0dd9f1d035e719e681ba1254ee8403bce318134bd0a7e06184590c164",
+      "native_bytes": 208,
+      "strict_match": true,
+      "differing_words": 0
+    },
+    {
+      "function": "func_80013C84",
+      "source_sha256": "89c4d7fc2f32f3fb1ff873f1ed3125c2dc9bc6c0d9c8202b5d3ef67af7ff7264",
+      "native_bytes": 236,
+      "strict_match": true,
+      "differing_words": 0
+    }
+  ],
+  "original_receipt_sha256": "a9f12e0063763160671fb4f48eee9ca8cb81cc3279d68bc2a766783750cbc1bd",
+  "checks": [
+    "independent full relocated word equality for all matching bodies",
+    "actual native source and direct/indirect ABI review",
+    "source-bound O2/O1 receipt replay",
+    "C89 host behavior and ASan/UBSan controls",
+    "independent 32-bit native layout assertions",
+    "honest complete nonmatch excluded from credit"
+  ],
+  "note": "Exact aggregate-head CI remains required. No execution-local identifiers or native dumps are included."
+}

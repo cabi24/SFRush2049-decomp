@@ -1,0 +1,85 @@
+{
+  "packet": "BT02-larger",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "claim_commit": "b34484c9",
+  "rows": [
+    {
+      "address": "0x80010628",
+      "name": "func_80010628",
+      "size": 236,
+      "cluster": "BT02",
+      "status": "verified_body",
+      "evidence_level": "VERIFIED-BODY",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_80010628.c",
+      "owner": "/root/match_boot_tail_bt02_larger",
+      "note": "Local strict replay and host checks pass; source/ABI peer review and exact aggregate-head CI required."
+    },
+    {
+      "address": "0x80010714",
+      "name": "func_80010714",
+      "size": 192,
+      "cluster": "BT02",
+      "status": "verified_body",
+      "evidence_level": "VERIFIED-BODY",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_80010714.c",
+      "owner": "/root/match_boot_tail_bt02_larger",
+      "note": "Local strict replay and host checks pass; source/ABI peer review and exact aggregate-head CI required."
+    },
+    {
+      "address": "0x80010C68",
+      "name": "func_80010C68",
+      "size": 212,
+      "cluster": "BT02",
+      "status": "verified_body",
+      "evidence_level": "VERIFIED-BODY",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_80010C68.c",
+      "owner": "/root/match_boot_tail_bt02_larger",
+      "note": "Local strict replay and host checks pass; source/ABI peer review and exact aggregate-head CI required."
+    },
+    {
+      "address": "0x80011910",
+      "name": "func_80011910",
+      "size": 208,
+      "cluster": "BT02",
+      "status": "nonmatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 47,
+      "source_path": "cloud/work/boot_tail/BT02-larger/nonmatch/func_80011910.c",
+      "owner": "/root/match_boot_tail_bt02_larger",
+      "note": "Whole task-record initializer; O2 47/52, O1 50/52 plus six excess words; aggregate address lowering differs. Microcode/data addresses only, no content inspection."
+    },
+    {
+      "address": "0x80012660",
+      "name": "func_80012660",
+      "size": 208,
+      "cluster": "BT02",
+      "status": "verified_body",
+      "evidence_level": "VERIFIED-BODY",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_80012660.c",
+      "owner": "/root/match_boot_tail_bt02_larger",
+      "note": "Local strict replay and host checks pass; source/ABI peer review and exact aggregate-head CI required."
+    },
+    {
+      "address": "0x80013C84",
+      "name": "func_80013C84",
+      "size": 236,
+      "cluster": "BT02",
+      "status": "verified_body",
+      "evidence_level": "VERIFIED-BODY",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_80013C84.c",
+      "owner": "/root/match_boot_tail_bt02_larger",
+      "note": "Local strict replay and host checks pass; source/ABI peer review and exact aggregate-head CI required."
+    }
+  ]
+}

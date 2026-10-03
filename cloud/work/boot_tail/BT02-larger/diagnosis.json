@@ -1,0 +1,69 @@
+{
+  "method": "Unmodified workbench diagnose on temporary native target and candidate objects was run before follow-up variants, and again at the 12660 two-word near-match. Diagnostic relocation-layout cautions reflect raw target objects without relocation records; strict unchanged score.py is the acceptance gate. No objects or native dumps are archived.",
+  "functions": [
+    {
+      "name": "func_80012660",
+      "initial_differing_words": 33,
+      "total_words": 52,
+      "target_instruction_count": 52,
+      "initial_candidate_instruction_count": 53,
+      "class": "alias-sensitive control-flow and statement ordering",
+      "diagnosis": "Head assignment through node can alias global pointer storage. Testing the just-assigned node next field removes a redundant head reload and branch, moving to two differing words. Near-match diagnosis then identified two reordered tail-load/next-clear words. Writing previous before clearing next matches the native dependence order.",
+      "variants": [
+        {
+          "id": "baseline",
+          "differing_words": 33
+        },
+        {
+          "id": "test_assigned_node_next",
+          "differing_words": 2
+        },
+        {
+          "id": "previous_before_next_clear",
+          "differing_words": 0
+        }
+      ],
+      "followup_variants": 2,
+      "final_strict_match": true
+    },
+    {
+      "name": "func_80011910",
+      "initial_differing_words": 47,
+      "total_words": 52,
+      "target_instruction_count": 52,
+      "initial_candidate_instruction_count": 49,
+      "class": "task-record address materialization and scheduling",
+      "diagnosis": "Natural whole-record source hoists one common task base, whereas native uses independently materialized high halves for pairs of fields. The difference starts in the address/common-base pool and yields a three-instruction deficit with unchanged 24-byte frame. No semantic fields or byte counts are missing.",
+      "variants": [
+        {
+          "id": "baseline_whole_record",
+          "O2_differing_words": 47,
+          "O1_differing_words": 50,
+          "O1_extra_words": 6
+        },
+        {
+          "id": "aligned_union_view",
+          "O2_differing_words": 47
+        },
+        {
+          "id": "volatile_record_view",
+          "O2_differing_words": 47
+        },
+        {
+          "id": "independent_scalar_views",
+          "O2_differing_words": 43,
+          "extra_words": 4
+        },
+        {
+          "id": "paired_region_views",
+          "O2_differing_words": 47,
+          "extra_words": 4
+        }
+      ],
+      "compile_error_note": "One scalar-view trial initially had mechanically renamed field-size identifiers; corrected before scoring. It produced no artifact or result claim.",
+      "followup_variants": 4,
+      "retained": "Complete natural whole-record baseline; 47/52 O2, 50/52 O1 with six extra words.",
+      "next_hypothesis": "Obtain original task-storage declaration or independently demonstrated IDO aggregate-lowering evidence before another source search. No forced address literals or target/scorer changes."
+    }
+  ]
+}

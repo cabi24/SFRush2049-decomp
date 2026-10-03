@@ -1,0 +1,152 @@
+[
+  {
+    "function": "func_800105C4",
+    "scores": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 0,
+        "total": 22,
+        "extra": 0,
+        "accepted": true,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 12,
+        "total": 22,
+        "extra": 0,
+        "accepted": false,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    ]
+  },
+  {
+    "function": "func_80010D74",
+    "scores": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 3,
+        "total": 25,
+        "extra": 0,
+        "accepted": false,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 3,
+        "total": 25,
+        "extra": 0,
+        "accepted": false,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    ]
+  },
+  {
+    "function": "func_80011C84",
+    "scores": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 0,
+        "total": 21,
+        "extra": 0,
+        "accepted": true,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 20,
+        "total": 21,
+        "extra": 0,
+        "accepted": false,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    ]
+  },
+  {
+    "function": "func_80014374",
+    "scores": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 2,
+        "total": 19,
+        "extra": 0,
+        "accepted": false,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 19,
+        "total": 19,
+        "extra": 6,
+        "accepted": false,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    ]
+  },
+  {
+    "function": "func_800143C0",
+    "scores": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 0,
+        "total": 29,
+        "extra": 0,
+        "accepted": true,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 28,
+        "total": 29,
+        "extra": 2,
+        "accepted": false,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    ]
+  },
+  {
+    "function": "func_80014434",
+    "scores": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 0,
+        "total": 21,
+        "extra": 0,
+        "accepted": true,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 21,
+        "total": 21,
+        "extra": 2,
+        "accepted": false,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    ]
+  }
+]

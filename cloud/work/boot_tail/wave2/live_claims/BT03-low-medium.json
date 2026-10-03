@@ -1,0 +1,42 @@
+{
+  "state": "active",
+  "owner": "/root/match_boot_tail_low_medium",
+  "packet": "BT03-low-medium",
+  "branch": "dot/boot-tail-bt03-low-medium",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "targets": [
+    {
+      "address": "0x80014550",
+      "size": 68,
+      "end_exclusive": "0x80014594"
+    },
+    {
+      "address": "0x80014594",
+      "size": 72,
+      "end_exclusive": "0x800145DC"
+    },
+    {
+      "address": "0x800145DC",
+      "size": 72,
+      "end_exclusive": "0x80014624"
+    },
+    {
+      "address": "0x8001489C",
+      "size": 92,
+      "end_exclusive": "0x800148F8"
+    },
+    {
+      "address": "0x80014AF0",
+      "size": 76,
+      "end_exclusive": "0x80014B3C"
+    },
+    {
+      "address": "0x80014CAC",
+      "size": 72,
+      "end_exclusive": "0x80014CF4"
+    }
+  ],
+  "bytes": 452,
+  "edit_scope": "Only listed matching sources and cloud/work/boot_tail/BT03-low-medium/**",
+  "stop": "Natural C89/O2/O1 true static/callback ABI,20 directed variants maximum; no protected edits, overlaps or reopening frozen residuals. Use /tmp isolated worktree to avoid workspace inode pressure."
+}
