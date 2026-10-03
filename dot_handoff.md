@@ -1,5 +1,7 @@
 # dot_handoff — work queue for Rush 2049 helpers
 
+For the full-project continuation strategy, current readiness corrections and detailed agent work packages, start with [PROJECT_PLAN.md](PROJECT_PLAN.md). Existing packet history remains below; check the plan before dispatch.
+
 Updated after matching integration **d77aabb8** and incorporation of research PRs #9, #21, #25–39 and #41–49. Original snapshot: 2026-10-02.
 This is the assignment and replenishment plan. Update its claims and results as work arrives.
 No helpers are newly assigned by this document; names and ownership must be recorded before starting.
