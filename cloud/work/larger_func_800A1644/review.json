@@ -1,0 +1,23 @@
+{
+  "source_sha256": "76ab02714cc52a0688dffaffac04425a3f0a1f94f100b0e929a156bb0295f6f7",
+  "status": "NONMATCH",
+  "comparison": {
+    "differing": 149,
+    "total": 179,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "group_claims": [],
+  "review": "Ordinary three-argument encoder with consumed locals; no artificial padding, helper, extra formal, assembly substitution or volatile pressure. Array capacity 64 is explicitly inferred. Native and source semantics agree for tested lengths 0, 1, 4, and 16; not a universal input or ROM verification.",
+  "semantic": {
+    "function": "func_800A1644",
+    "target_words": 179,
+    "differential_cases": 21432,
+    "maximum_native_steps": 407,
+    "source": "candidate.c",
+    "status": "PASS",
+    "scope": "deterministic randomized tables; caller-observed lengths 4/16 plus lengths 0/1; exact in-place and distinct buffers; not a ROM or compiler matching gate"
+  }
+}

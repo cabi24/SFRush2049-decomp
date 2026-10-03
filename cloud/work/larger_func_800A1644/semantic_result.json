@@ -1,0 +1,12 @@
+{
+  "function": "func_800A1644",
+  "target_words": 179,
+  "differential_cases": 21432,
+  "maximum_native_steps": 407,
+  "source": "candidate.c",
+  "status": "PASS",
+  "scope": "deterministic randomized tables; caller-observed lengths 4/16 plus lengths 0/1; exact in-place and distinct buffers; not a ROM or compiler matching gate",
+  "uninitialized_native_reads": "rejected",
+  "source_sha256": "76ab02714cc52a0688dffaffac04425a3f0a1f94f100b0e929a156bb0295f6f7",
+  "harness_sha256": "e106b21216b7d20428a5abedd2fb72b52fe1c318014a0f057ef8c27c9d60be83"
+}
