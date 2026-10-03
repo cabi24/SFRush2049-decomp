@@ -78,3 +78,45 @@ example a stripped debug/assert macro that expands to a short-circuit
 test, or an inlined helper's guard. The arcade source
 (`reference/repos/rushtherock/`) is the place to look for a matching
 idiom. Until then this stays NONMATCH, at strict-equal-with-keeper.
+
+## Update: source identified, guard characterised (Claude, 2026-10-03)
+
+**Identity.** This is the N64 port of the arcade
+`check_if_finished_resurrecting` (`reference/repos/rushtherock/game/resurrect.c`),
+the loop body taken as a per-model function `(MODELDAT *m)`:
+
+| Arcade | N64 |
+|---|---|
+| `resurrect.moving_state == -2 → -1` | `+0x6C4` |
+| `fastin.modelrun = 0` | `+0x71C` |
+| `MOVMEM(resurrect.pos → initin.pos, 12)` | three float copies `+0x660 → +0x6D4` |
+| `MOVMEM(resurrect.uvs → initin.uvs, 36)` | `math_utility(+0x678, +0x6E0)` (3×3 copy) |
+| `syminit(m)` | `func_800D11BC` |
+| `V[X] = resurrect.velocity * .4` | `+0x48 = (f32)+0x6BC` (the N64 drops the ×0.4) |
+| `TIREV[j][X]` and `tires[j].angvel` loop | the 4-iteration ratio loop |
+| `multigo(node)` | `D_8014A96C[+0x7C6].flag = 1` |
+| *(new on N64)* | gear/mode bytes from `velocity >= 44` |
+
+The arcade's `if (node == gThisNode) { recenter_flag…; frictwheel(); }`
+is absent from the N64 code.
+
+**What closes the last 9 words.** Exactly **three levels of conditional
+blocks with no code, immediately after the early return**. All of these
+give a strict MATCH:
+- `if (a && b && c) {}`, `if (a || b || c) {}`, `if (a != 0 && b != 0 && c != 0) {}`
+- nested `if (a) { if (b) { if (c) {} } }`
+- `if (a && b) {} else if (c) {}`
+
+Operands are irrelevant: `arg0` itself, or any global such as
+`D_8014A96C`, as long as each is a plain truth test. These do not match:
+1, 2 or 4 terms; three sequential `if`s (9 words); constant comparisons
+(`x == 1 || …`, 49); an empty `for` (78); and the same block placed after
+the stores (5–11), after the calls (63–72) or before the tail (21).
+
+Interpretation: a three-condition guard whose body is compiled out of the
+retail build, most plausibly a debug or trace macro, sits at the top of the
+N64 function. Its exact spelling cannot be recovered from the binary.
+`func_800D1248.inferred_guard.c` is a strict match using nested truth tests
+on `D_8014A96C`. **Its guard operands are invented**, so whether it counts
+as natural source is a maintainer decision. It is not submitted to
+`cloud/matches/`.
