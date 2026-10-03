@@ -1,0 +1,8 @@
+address,name,size,cluster,status,evidence_level,flags,diff_words,source_path,note
+0x80015574,func_80015574,24,BT03,verified_body,LOCAL-STRICT-MATCH,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_80015574.c,Pending independent replay and exact-head CI.
+0x800156E8,func_800156E8,48,BT03,nonmatch,COMPLETE-NONMATCH,-g0 -O2 -mips2 -G 0 -non_shared,8,cloud/work/boot_tail/BT03-low-C/func_800156E8.c,Shared narrow-formal lowering boundary retained; 1 excess word; no credit.
+0x80016BF8,func_80016BF8,40,BT03,verified_body,LOCAL-STRICT-MATCH,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_80016BF8.c,Pending independent replay and exact-head CI.
+0x80016CE0,func_80016CE0,16,BT03,verified_body,LOCAL-STRICT-MATCH,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_80016CE0.c,Pending independent replay and exact-head CI.
+0x80016E40,func_80016E40,40,BT03,verified_body,LOCAL-STRICT-MATCH,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_80016E40.c,Pending independent replay and exact-head CI.
+0x80016F58,func_80016F58,40,BT03,verified_body,LOCAL-STRICT-MATCH,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_80016F58.c,Pending independent replay and exact-head CI.
+0x80017018,func_80017018,40,BT03,verified_body,LOCAL-STRICT-MATCH,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_80017018.c,Pending independent replay and exact-head CI.

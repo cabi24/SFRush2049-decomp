@@ -1,0 +1,6 @@
+address,name,size,cluster,status,flags,diff_words,source_path,note
+0x800218CC,func_800218CC,112,BT05,verified_body,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_800218CC.c,Strict MATCH; paired source/ABI review and replay passed; exact-head CI pending.
+0x800223D0,func_800223D0,108,BT05,nonmatch,-g0 -O2 -mips2 -G 0 -non_shared,11,cloud/work/boot_tail/BT05-medium/nonmatch/func_800223D0.c,"COMPLETE-NONMATCH; bounded natural forms, see packet README and experiments."
+0x8002245C,func_8002245C,84,BT05,verified_body,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_8002245C.c,Strict MATCH; paired source/ABI review and replay passed; exact-head CI pending.
+0x800224B0,func_800224B0,100,BT05,verified_body,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_800224B0.c,Strict MATCH; paired source/ABI review and replay passed; exact-head CI pending.
+0x80023190,func_80023190,140,BT05,nonmatch,-g0 -O2 -mips2 -G 0 -non_shared,18,cloud/work/boot_tail/BT05-medium/nonmatch/func_80023190.c,"COMPLETE-NONMATCH; bounded natural forms, see packet README and experiments."

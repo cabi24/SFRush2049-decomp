@@ -1,0 +1,8 @@
+address,name,size,cluster,status,evidence_level,flags,diff_words,source_path,note
+0x80024FB0,func_80024FB0,36,BT07,verified_body,LOCAL-STRICT-MATCH,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_80024FB0.c,Independent review and exact aggregate-head CI required before VERIFIED-BODY credit.
+0x800250F0,func_800250F0,48,BT07,verified_body,LOCAL-STRICT-MATCH,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_800250F0.c,Independent review and exact aggregate-head CI required before VERIFIED-BODY credit.
+0x80025120,func_80025120,48,BT07,verified_body,LOCAL-STRICT-MATCH,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_80025120.c,Independent review and exact aggregate-head CI required before VERIFIED-BODY credit.
+0x80025150,func_80025150,44,BT07,verified_body,LOCAL-STRICT-MATCH,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_80025150.c,Independent review and exact aggregate-head CI required before VERIFIED-BODY credit.
+0x80025D84,func_80025D84,60,BT07,verified_body,LOCAL-STRICT-MATCH,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_80025D84.c,Independent review and exact aggregate-head CI required before VERIFIED-BODY credit.
+0x80026328,func_80026328,32,BT07,verified_body,LOCAL-STRICT-MATCH,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_80026328.c,Independent review and exact aggregate-head CI required before VERIFIED-BODY credit.
+0x80026348,func_80026348,12,BT07,verified_body,LOCAL-STRICT-MATCH,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_80026348.c,Independent review and exact aggregate-head CI required before VERIFIED-BODY credit.

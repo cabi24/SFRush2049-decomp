@@ -285,3 +285,13 @@ exactly preserve six frozen peer-reviewed packets. These new matches remain
 source-head CI proof. See `wave2/README.md`, `wave2/reviewed_sources.json` and
 `wave2/verification.json`. Later successor claims are metadata only here; their
 candidates are excluded from this frozen cut. D10 is unchanged as documented above.
+
+## Third frozen source cut and unique totals
+
+The first two published cuts have 73 new CI-verified matching bodies / 3,060 B,
+plus the existing 12-byte getter. Third cut adds 30 peer-reviewed local strict
+matches / 1,864 B and 7 complete nonmatches / 624 B. If its exact-head CI passes,
+the unique new matching total becomes 103 bodies / 4,924 B. No source is counted
+twice. See wave3/README.md and the exact source manifests; later candidates are
+excluded. The prior #62 CI receipt is now carried in wave2/ci.json. D10 stays
+unchanged; authoritative ledger/receipts remain in the allowed cloud files.
