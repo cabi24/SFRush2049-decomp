@@ -1,0 +1,20 @@
+{
+  "status": "NONMATCH",
+  "native_bytes": 472,
+  "candidate_text_bytes": 464,
+  "comparison": {
+    "differing": 109,
+    "total": 118,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "source_sha256": "e0de249b8ec077bfe94297831dda59822b11ede90f24d41d54476cfeb2329478",
+  "object_sha256": "f71aca8d68677214acc14392bca32873a42195804b056f10f85cc692ca0ab9a5",
+  "candidate_text_sha256": "6c204beba0ab2c72e46b9eb341fd069f4caff25da349ddf18c1c4f7b46cb5303",
+  "compiler_sha256": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "native_manifest_sha256": "50c30f27d467288c06a83fda816fd9e77d8861ade56ce8ee60240542242a0530",
+  "claims": []
+}
