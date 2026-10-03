@@ -69,7 +69,14 @@ def produce(out=BLOB_OUT, document=None):
     build/game_code.bin: compressing the extracted image would make the whole
     pipeline decorative."""
     document = document or blob_layout.load()
-    bodies = blob_splice.spliced_bodies(document=document)
+    drift = blob_splice.check()
+    if drift:
+        raise BlobRomError("locked sources drifted — refusing to compose\n"
+                           + "\n".join(f"  {t}: {why}" for t, why in drift))
+    try:
+        bodies = blob_splice.spliced_bodies(document=document)
+    except blob_splice.LockedBodyError as exc:
+        raise BlobRomError(str(exc)) from exc
     blob_tu.generate(document, spliced=bodies)
     work = Path(tempfile.mkdtemp(prefix="blobrom-"))
     ok, sha, message = blob_build.build(document, work_dir=work)
@@ -90,6 +97,7 @@ def produce(out=BLOB_OUT, document=None):
     matches = blob == original_stream()
     return {
         "spliced": len(bodies),
+        "unbound_objects": len(blob_splice.unbound_objects()),
         "image_sha256": sha,
         "image_bytes": len(image),
         "blob_bytes": len(blob),
@@ -212,6 +220,9 @@ def main():
             print(f"blob_rom: image {r['image_bytes']} B ({r['spliced']} spliced) -> "
                   f"blob {r['blob_bytes']} B sha256 {r['blob_sha256'][:16]}…")
             print(f"  byte-identical to the ROM's stream: {r['stream_matches_rom']}")
+            if r["unbound_objects"]:
+                print(f"  {r['unbound_objects']} locked bodies come from objects built "
+                      "before provenance records; rebuild them to bind source")
             print(f"  -> {r['path']}")
             return 0 if r["stream_matches_rom"] else 1
         r = rom(drill=args.drill)

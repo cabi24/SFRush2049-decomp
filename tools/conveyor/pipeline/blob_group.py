@@ -143,6 +143,7 @@ def compile_group(spec, builder=BUILDER, obj_dir=OBJ_DIR):
     out.parent.mkdir(parents=True, exist_ok=True)
     subprocess.run(["scp", "-q", f"{builder}:{BUILDER_TMP}/group.o", str(out)],
                    check=True, capture_output=True)
+    blob_splice.write_provenance(out, source_sha(spec), TOOLKIT)
     return out
 
 
@@ -643,7 +644,11 @@ def splice(group, document=None, lockfile=blob_splice.LOCKFILE, root=GROUP_DIR):
     bodies = group_bodies(group, document)
     for member, first in image_mismatches(bodies, document).items():
         raise GroupError(f"{member} differs from the image at +0x{first:x}; not splicing")
-    others = {t: b for t, b in blob_splice.spliced_bodies(document=document).items()
+    # The fresh object replaced any previous build of this group, so its old
+    # lock entries are left out rather than relinked against new source.
+    others = {t: b for t, b in blob_splice.spliced_bodies(
+                  {t: e for t, e in lock.items() if e.get("group") != group},
+                  document=document).items()
               if t not in bodies}
     ok, sha, message = blob_splice.build_with({**others, **bodies}, document=document)
     if not ok:
