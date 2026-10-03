@@ -1,0 +1,749 @@
+{
+  "schema_version": 1,
+  "base_commit": "b16dd93ba51ac3e04e8332b1f710337b5b2fbd8f",
+  "inventory_spec_commit": "92e91f12",
+  "evidence_level": "HYPOTHESIS",
+  "method": "Reviewed address/ref seed cohorts; adjacent merging of low-cohesion cohorts inside semantic barriers. Metadata relationships are scan leads, not recovered translation units.",
+  "barriers": [
+    "0x8000F8D0",
+    "0x80010450",
+    "0x80024BF0",
+    "0x80024FB0",
+    "0x80026360",
+    "0x800277D0"
+  ],
+  "cohorts": [
+    {
+      "id": "C01",
+      "start": "0x8000F8D0",
+      "end": "0x80010450",
+      "role": "Memory comparison candidate among excluded SDK code",
+      "rationale": "The sole in-scope row has no scanned callees or data references. The bcmp historical label and spec identify it only as a comparison/assembly candidate; intervening SDK rows are excluded.",
+      "name_prefix": "memory_compare_candidate",
+      "reference_ids": []
+    },
+    {
+      "id": "C02",
+      "start": "0x80010450",
+      "end": "0x800107E0",
+      "role": "Message-queue-backed resident service",
+      "rationale": "Shared 0x80037FA0/0x80037FE0/0x80038020 leads, counted-static queue calls, and cross-family critical-section helpers 0x80014594/0x800145DC.",
+      "name_prefix": "resident_queue_service",
+      "reference_ids": [
+        "ULTRA_QUEUE"
+      ]
+    },
+    {
+      "id": "C03",
+      "start": "0x800107E0",
+      "end": "0x80010A40",
+      "role": "Audio runtime public initialization/state gateway",
+      "rationale": "Game callers reach 0x80010840/0x800108E0/0x800109C0; common 0x8002C630 references and calls to audio task setup/initializers support a gateway hypothesis.",
+      "name_prefix": "audio_runtime_gateway",
+      "reference_ids": []
+    },
+    {
+      "id": "C04",
+      "start": "0x80010A40",
+      "end": "0x80014550",
+      "role": "Audio buffering, mixer task setup and scheduler",
+      "rationale": "Counted-static AI frequency/buffer and cache calls; native task construction at 0x80011910 supports audio. Supplied mixer-block leads at 0x80011104/0x800114C0 are floating-point loads and 0x80014198 copies metadata strings, not proved microcode pointers. Shared 0x800382xx/0x800383xx storage and internal calls support scheduler grouping.",
+      "name_prefix": "audio_task_scheduler",
+      "reference_ids": [
+        "ULTRA_TASK",
+        "LIBDRAGON_AUDIO"
+      ]
+    },
+    {
+      "id": "C05",
+      "start": "0x80014550",
+      "end": "0x8001467C",
+      "role": "Shared message-queue synchronization wrappers",
+      "rationale": "Queue creation/receive/send-labelled static entries and shared 0x80038368/0x8002C5DC. High incoming degree means these are dependency helpers, not assumed private members of every caller TU.",
+      "name_prefix": "queue_sync_wrapper",
+      "reference_ids": [
+        "ULTRA_QUEUE",
+        "LIBRE_QUEUE"
+      ]
+    },
+    {
+      "id": "C06",
+      "start": "0x8001467C",
+      "end": "0x80014D30",
+      "role": "Audio buffer/storage primitives and tiny utility leaves",
+      "rationale": "Repeated 0x80038294 reference, calls back to audio-buffer helpers, cache writeback calls, and identified-only tiny rows. Native opcode screen is separate from role inference.",
+      "name_prefix": "audio_buffer_utility",
+      "reference_ids": []
+    },
+    {
+      "id": "C07",
+      "start": "0x80014D30",
+      "end": "0x800171C0",
+      "role": "Audio pooled-storage front ends and paired state operations",
+      "rationale": "Repeated create/release-shaped call pairs through shared synchronization helpers; distinct storage groups at 0x800385A0,0x80038608,0x8003C610,0x8003CE18,0x8003DA20 and 0x80042228. Allocation semantics remain unproved.",
+      "name_prefix": "audio_pool_state",
+      "reference_ids": []
+    },
+    {
+      "id": "C08",
+      "start": "0x800171C0",
+      "end": "0x80019A60",
+      "role": "Audio channel-state update and control wrappers",
+      "rationale": "Dense internal calls around 0x80017644/0x80019490/0x800198C8, shared 0x80043EB8/0x8004BE80 storage, and calls to volume-curve setup 0x8001B9F8. Exact channel field meanings remain unknown.",
+      "name_prefix": "audio_channel_control",
+      "reference_ids": []
+    },
+    {
+      "id": "C09",
+      "start": "0x80019A60",
+      "end": "0x8001C390",
+      "role": "Audio command dispatch and mixer parameter preparation",
+      "rationale": "Large dispatcher 0x8001A658 connects command helpers and source-lead MusyX macro interpreter 0x80023E9C. 0x8001B9F8 uses jump-table storage 0x8002D8D0 rather than a proved microcode pointer; common 0x8004BEB8/0x8004F300 storage supports related audio state.",
+      "name_prefix": "audio_command_prepare",
+      "reference_ids": [
+        "MUSYX_MACROS",
+        "MUSYX_API"
+      ]
+    },
+    {
+      "id": "C10",
+      "start": "0x8001C390",
+      "end": "0x8001E0E0",
+      "role": "Audio sequencing and callback-state maintenance",
+      "rationale": "Shared 0x8004FA50/0x8004FD50/0x8004FF20 state, repeated queue wrappers, and update call chain through 0x8001DDE0; calls to trailing numeric helpers include sqrtf-labelled static entry.",
+      "name_prefix": "audio_sequence_state",
+      "reference_ids": []
+    },
+    {
+      "id": "C11",
+      "start": "0x8001E0E0",
+      "end": "0x8001E9B0",
+      "role": "Shared numeric, copy and small-state utility candidates",
+      "rationale": "Mostly leaves, references to 0x8002CA40/0x8002CC44/0x8002C640/0x8002C840 and constants; widely reused from audio families. No forced libc or random-generator identity from constants alone. One grounded per-function exception is sndRand source lead 0x8001E790; its multiplier is not hardware.",
+      "name_prefix": "numeric_memory_utility",
+      "reference_ids": [
+        "MUSYX_SERVICE"
+      ]
+    },
+    {
+      "id": "C12",
+      "start": "0x8001E9B0",
+      "end": "0x80020610",
+      "role": "Audio sequence buffers and public state-control API",
+      "rationale": "Repeated 0x80050C50/0x800504C8/0x8004BEB8 references, calls across channel helpers and a concentration of game-called wrappers protected by 0x80014594/0x800145DC.",
+      "name_prefix": "audio_sequence_api",
+      "reference_ids": [
+        "MUSYX_API"
+      ]
+    },
+    {
+      "id": "C13",
+      "start": "0x80020610",
+      "end": "0x800218CC",
+      "role": "Audio input-controller calculations and paired table access",
+      "rationale": "Self-contained inventory call graph centered on 0x80020610/0x80020A04/0x80021150; shared 0x80050D00/0x80055000 and paired table accesses. MusyX snd_midictrl.c has analogous input-controller wrappers but an extra dirty-mask argument, so exact per-wrapper names remain unproved.",
+      "name_prefix": "audio_data_dispatch",
+      "reference_ids": [
+        "MUSYX_MIDICTRL"
+      ]
+    },
+    {
+      "id": "C14",
+      "start": "0x800218CC",
+      "end": "0x80024BF0",
+      "role": "MusyX sound-macro interpreter and handler family",
+      "rationale": "0x80023E9C has a named MusyX macHandleActive source lead with 32-step cap, two-word commands and 7-bit opcode switch. It calls a dense contiguous handler set; exact handler names, N64 layout/version and original TU remain hypotheses.",
+      "name_prefix": "audio_command_handler",
+      "reference_ids": [
+        "MUSYX_MACROS"
+      ]
+    },
+    {
+      "id": "C15",
+      "start": "0x80024BF0",
+      "end": "0x80024FB0",
+      "role": "MusyX matrix/vector sound-math helper candidates",
+      "rationale": "Four adjacent bodies have named salApplyMatrix/salNormalizeVector/salCrossProduct/salInvertMatrix reference definitions and native arithmetic evidence. Inversion operation order is not fully compared. Source-lead annotations are per function; original TU remains unproved.",
+      "name_prefix": "numeric_curve_utility",
+      "reference_ids": [
+        "MUSYX_MATH"
+      ]
+    },
+    {
+      "id": "C16",
+      "start": "0x80024FB0",
+      "end": "0x80026360",
+      "role": "Runtime buffered-stream/session management",
+      "rationale": "Ten roots reference 0x8002D480/0x8002D484; shared 0x80051200/0x80056230/0x800586A0, queue/cache calls and local helper chains. 0x80025F74 calls trailing packed decoder 0x800268D0. PI/cartridge identity is not established.",
+      "name_prefix": "buffered_stream_service",
+      "reference_ids": [
+        "ULTRA_QUEUE"
+      ]
+    },
+    {
+      "id": "C17",
+      "start": "0x80026360",
+      "end": "0x800277D0",
+      "role": "Packed-bitstream/table decoding candidate",
+      "rationale": "Inventory-internal call chain 26360<-26558<-26640/268D0; independent native review observes bounded bit-field extraction and ring-buffer indexing, not a proved printf loop. Printf/string path is instead located in counted-static code (REFERENCES.md). Direct native calls from 26360/26558 reach at/beyond declared text_end and are missing from supplied call columns; external classification is required before matching.",
+      "name_prefix": "packed_stream_decoder",
+      "reference_ids": []
+    }
+  ],
+  "function_annotations": {
+    "0x8000F8D0": {
+      "name_hypothesis": "bcmp-like memory comparison; assembly candidate",
+      "evidence_level": "HYPOTHESIS",
+      "note": "non-C candidate only: historical label/spec lead, not sufficient proof; no privileged-opcode hit. No compiler experiment."
+    },
+    "0x80010A00": {
+      "name_hypothesis": "D_8002C630 unsigned-byte getter (pre-existing PR54 match)",
+      "evidence_level": "VERIFIED-BODY",
+      "status": "verified_body",
+      "owner": "pre-existing PR54",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_80010A00.c",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/54",
+      "note": "Imported existing PR54 true-match source on master b16dd93b. Packet1 did not replay it. Packet2 freshly verified pinned setup and target manifest/census, then strict replay MATCH; receipt packet2/preflight.json. Existing 12 B only, no new byte credit."
+    },
+    "0x80010450": {
+      "matching_blocker": "Direct jal reaches at/beyond declared text_end; maintainer must classify target (opcode_audit.json); no out-of-range bytes inspected."
+    },
+    "0x80012234": {
+      "matching_blocker": "Direct jal reaches at/beyond declared text_end; maintainer must classify target (opcode_audit.json); no out-of-range bytes inspected."
+    },
+    "0x80012730": {
+      "matching_blocker": "Direct jal reaches at/beyond declared text_end; maintainer must classify target (opcode_audit.json); no out-of-range bytes inspected."
+    },
+    "0x80012D18": {
+      "matching_blocker": "Direct jal reaches at/beyond declared text_end; maintainer must classify target (opcode_audit.json); no out-of-range bytes inspected."
+    },
+    "0x80026360": {
+      "matching_blocker": "Direct jal reaches at/beyond declared text_end; maintainer must classify target (opcode_audit.json); no out-of-range bytes inspected."
+    },
+    "0x80026558": {
+      "matching_blocker": "Direct jal reaches at/beyond declared text_end; maintainer must classify target (opcode_audit.json); no out-of-range bytes inspected."
+    },
+    "0x80026640": {
+      "matching_blocker": "Depends on 0x80026558 with unclassified out-of-census callees; resolve boundary/callee classification before decoder matching."
+    },
+    "0x800268D0": {
+      "matching_blocker": "Depends on 0x80026558 with unclassified out-of-census callees; resolve boundary/callee classification before decoder matching."
+    },
+    "0x80023E9C": {
+      "name_hypothesis": "MusyX macHandleActive source lead; N64 layout/version unproved",
+      "evidence_level": "SOURCE-LEAD",
+      "note": "AxioDL/musyx@78d2e16e4905fc675952162d331c24d5198b2687 src/musyx/runtime/synthmacros.c: 32-step cap, two-word MSTEP, opcode&0x7f through0x71; no compilation or match. See REFERENCES.md."
+    },
+    "0x80020494": {
+      "name_hypothesis": "MusyX sndMasterVolume source lead",
+      "evidence_level": "SOURCE-LEAD",
+      "note": "Pinned AxioDL/musyx snd_synthapi.c: music/fx groups0x15/0x16; native fifth argument0 versus public-1 is a version difference. See REFERENCES.md; no match."
+    },
+    "0x8002043C": {
+      "name_hypothesis": "MusyX sndVolume source lead",
+      "evidence_level": "SOURCE-LEAD",
+      "note": "Pinned AxioDL/musyx snd_synthapi.c analogous synth-volume wrapper; native trailing0 differs from public-1. See REFERENCES.md; no match."
+    },
+    "0x8001E790": {
+      "name_hypothesis": "MusyX sndRand source lead",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "note": "C11; grounded MusyX sndRand lead reconstructed, but 2/11 words differ at return shift/mask allocation; no extras/unresolved/unverified. Eleven directed natural controls froze without movement. See C11-small/README.md and scores.json; zero byte credit.",
+      "status": "nonmatch",
+      "owner": "Astra / C11-small",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "2",
+      "source_path": "cloud/work/boot_tail/C11-small/func_8001E790_NONMATCH.c"
+    },
+    "0x80024BF0": {
+      "name_hypothesis": "MusyX salApplyMatrix source lead",
+      "evidence_level": "SOURCE-LEAD",
+      "note": "Pinned AxioDL/musyx snd_math.c named definition and native arithmetic/order evidence; see REFERENCES.md. No match or exact N64 TU claim."
+    },
+    "0x80024C9C": {
+      "name_hypothesis": "MusyX salNormalizeVector source lead",
+      "evidence_level": "SOURCE-LEAD",
+      "note": "Pinned AxioDL/musyx snd_math.c named definition and native arithmetic/order evidence; see REFERENCES.md. No match or exact N64 TU claim."
+    },
+    "0x80024D04": {
+      "name_hypothesis": "MusyX salCrossProduct source lead",
+      "evidence_level": "SOURCE-LEAD",
+      "note": "Pinned AxioDL/musyx snd_math.c named definition and native arithmetic/order evidence; see REFERENCES.md. No match or exact N64 TU claim."
+    },
+    "0x80024D74": {
+      "name_hypothesis": "MusyX salInvertMatrix source lead",
+      "evidence_level": "SOURCE-LEAD",
+      "note": "Pinned AxioDL/musyx snd_math.c named definition and native arithmetic/order evidence; see REFERENCES.md. No match or exact N64 TU claim. Full 564-byte operation order not compared line by line."
+    },
+    "0x8001E740": {
+      "status": "claimed",
+      "owner": "Astra / C11-small",
+      "name_hypothesis": "allocation callback with mode zero",
+      "source_path": "cloud/matches/boot_tail/func_8001E740.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "note": "C11; local strict O2 MATCH; independent review and exact PR-head CI pending, so status stays claimed. See C11-small/README.md and scores.json; no cartridge credit."
+    },
+    "0x8001E768": {
+      "status": "claimed",
+      "owner": "Astra / C11-small",
+      "name_hypothesis": "release callback wrapper",
+      "source_path": "cloud/matches/boot_tail/func_8001E768.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "note": "C11; local strict O2 MATCH; independent review and exact PR-head CI pending, so status stays claimed. See C11-small/README.md and scores.json; no cartridge credit."
+    },
+    "0x8001E930": {
+      "status": "claimed",
+      "owner": "Astra / C11-small",
+      "name_hypothesis": "MusyX sndConvertMs source-family lead",
+      "source_path": "cloud/matches/boot_tail/func_8001E930.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "note": "C11; local strict O2 MATCH; independent review and exact PR-head CI pending, so status stays claimed. See C11-small/README.md and scores.json; no cartridge credit."
+    },
+    "0x8001E9A0": {
+      "status": "claimed",
+      "owner": "Astra / C11-small",
+      "name_hypothesis": "MusyX sndConvert2Ms source-family lead",
+      "source_path": "cloud/matches/boot_tail/func_8001E9A0.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "note": "C11; local strict O2 MATCH; independent review and exact PR-head CI pending, so status stays claimed. See C11-small/README.md and scores.json; no cartridge credit."
+    },
+    "0x80021428": {
+      "status": "claimed",
+      "owner": "Astra / C13-small",
+      "name_hypothesis": "audio_controller_field_196",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_80021428.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "C13-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. One natural source; O2 strict MATCH, O1 7/8 differences plus 2 nonzero excess words. Exact field name and original TU unproved."
+    },
+    "0x80021448": {
+      "status": "claimed",
+      "owner": "Astra / C13-small",
+      "name_hypothesis": "audio_controller_field_214",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_80021448.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "C13-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. One natural source; O2 strict MATCH, O1 7/8 differences plus 2 nonzero excess words. Exact field name and original TU unproved."
+    },
+    "0x80021468": {
+      "status": "claimed",
+      "owner": "Astra / C13-small",
+      "name_hypothesis": "audio_controller_field_232",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_80021468.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "C13-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. One natural source; O2 strict MATCH, O1 7/8 differences plus 2 nonzero excess words. Exact field name and original TU unproved."
+    },
+    "0x80021488": {
+      "status": "claimed",
+      "owner": "Astra / C13-small",
+      "name_hypothesis": "audio_controller_field_250",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_80021488.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "C13-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. One natural source; O2 strict MATCH, O1 7/8 differences plus 2 nonzero excess words. Exact field name and original TU unproved."
+    },
+    "0x800214A8": {
+      "status": "claimed",
+      "owner": "Astra / C13-small",
+      "name_hypothesis": "audio_controller_field_268",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_800214A8.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "C13-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. One natural source; O2 strict MATCH, O1 7/8 differences plus 2 nonzero excess words. Exact field name and original TU unproved."
+    },
+    "0x800214C8": {
+      "status": "claimed",
+      "owner": "Astra / C13-small",
+      "name_hypothesis": "audio_controller_field_286",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_800214C8.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "C13-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. One natural source; O2 strict MATCH, O1 7/8 differences plus 2 nonzero excess words. Exact field name and original TU unproved."
+    },
+    "0x800214E8": {
+      "status": "claimed",
+      "owner": "Astra / C13-small",
+      "name_hypothesis": "audio_controller_field_304",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_800214E8.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "C13-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. One natural source; O2 strict MATCH, O1 7/8 differences plus 2 nonzero excess words. Exact field name and original TU unproved."
+    },
+    "0x80021508": {
+      "status": "claimed",
+      "owner": "Astra / C13-small",
+      "name_hypothesis": "audio_controller_field_322",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_80021508.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "C13-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. One natural source; O2 strict MATCH, O1 7/8 differences plus 2 nonzero excess words. Exact field name and original TU unproved."
+    },
+    "0x80021528": {
+      "status": "claimed",
+      "owner": "Astra / C13-small",
+      "name_hypothesis": "audio_controller_field_340",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_80021528.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "C13-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. One natural source; O2 strict MATCH, O1 7/8 differences plus 2 nonzero excess words. Exact field name and original TU unproved."
+    },
+    "0x8001061C": {
+      "status": "claimed",
+      "owner": "Astra / BT02-small",
+      "name_hypothesis": "clear_audio_callback",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_8001061C.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "BT02-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. BT02-small: strict local match; apply after independent replay and exact-head CI. Historical role/type names remain hypotheses."
+    },
+    "0x80010A0C": {
+      "status": "claimed",
+      "owner": "Astra / BT02-small",
+      "name_hypothesis": "unused_word_callback",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_80010A0C.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "BT02-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. BT02-small: strict local match; apply after independent replay and exact-head CI. Historical role/type names remain hypotheses."
+    },
+    "0x80010A14": {
+      "status": "claimed",
+      "owner": "Astra / BT02-small",
+      "name_hypothesis": "get_enabled_audio_buffer",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_80010A14.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "BT02-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. BT02-small: strict local match; apply after independent replay and exact-head CI. Historical role/type names remain hypotheses."
+    },
+    "0x80010D3C": {
+      "status": "claimed",
+      "owner": "Astra / BT02-small",
+      "name_hypothesis": "set_audio_frequency",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_80010D3C.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "BT02-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. BT02-small: strict local match; apply after independent replay and exact-head CI. Historical role/type names remain hypotheses."
+    },
+    "0x80011894": {
+      "status": "claimed",
+      "owner": "Astra / BT02-small",
+      "name_hypothesis": "reset_audio_buffer_cursors",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_80011894.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "BT02-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. BT02-small: strict local match; apply after independent replay and exact-head CI. Historical role/type names remain hypotheses."
+    },
+    "0x800119E0": {
+      "status": "claimed",
+      "owner": "Astra / BT02-small",
+      "name_hypothesis": "submit_audio_task",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_800119E0.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "BT02-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. BT02-small: strict local match; apply after independent replay and exact-head CI. Historical role/type names remain hypotheses."
+    },
+    "0x80011A10": {
+      "status": "claimed",
+      "owner": "Astra / BT02-small",
+      "name_hypothesis": "initialize_audio_state",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_80011A10.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "BT02-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. BT02-small: strict local match; apply after independent replay and exact-head CI. Historical role/type names remain hypotheses."
+    },
+    "0x80011A3C": {
+      "status": "claimed",
+      "owner": "Astra / BT02-small",
+      "name_hypothesis": "release_audio_state",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_80011A3C.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "BT02-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. BT02-small: strict local match; apply after independent replay and exact-head CI. Historical role/type names remain hypotheses."
+    },
+    "0x80012200": {
+      "status": "claimed",
+      "owner": "Astra / BT02-small",
+      "name_hypothesis": "tick_audio_countdowns",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_80012200.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "BT02-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. BT02-small: strict local match; apply after independent replay and exact-head CI. Historical role/type names remain hypotheses."
+    },
+    "0x80014624": {
+      "status": "claimed",
+      "owner": "Astra / BT03-low",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_80014624.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "BT03-low; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Pending independent replay and exact-head CI."
+    },
+    "0x8001467C": {
+      "status": "nonmatch",
+      "owner": "Astra / BT03-low",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "2",
+      "source_path": "cloud/work/boot_tail/BT03-low/func_8001467C.c",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "note": "BT03-low; COMPLETE-NONMATCH, no credit. Allocation residual after diagnose and 15 natural source forms; no credit."
+    },
+    "0x800146AC": {
+      "status": "claimed",
+      "owner": "Astra / BT03-low",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_800146AC.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "BT03-low; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Pending independent replay and exact-head CI."
+    },
+    "0x800149BC": {
+      "status": "claimed",
+      "owner": "Astra / BT03-low",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_800149BC.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "BT03-low; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Pending independent replay and exact-head CI."
+    },
+    "0x800149DC": {
+      "status": "claimed",
+      "owner": "Astra / BT03-low",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_800149DC.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "BT03-low; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Pending independent replay and exact-head CI."
+    },
+    "0x80014A04": {
+      "status": "claimed",
+      "owner": "Astra / BT03-low",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_80014A04.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "BT03-low; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Pending independent replay and exact-head CI."
+    },
+    "0x80014BB0": {
+      "status": "claimed",
+      "owner": "Astra / BT03-low",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_80014BB0.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "BT03-low; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Pending independent replay and exact-head CI."
+    },
+    "0x80014C18": {
+      "status": "claimed",
+      "owner": "Astra / BT03-low",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_80014C18.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "BT03-low; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Pending independent replay and exact-head CI."
+    },
+    "0x80014C40": {
+      "status": "claimed",
+      "owner": "Astra / BT03-low",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_80014C40.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "BT03-low; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Pending independent replay and exact-head CI."
+    },
+    "0x80014D1C": {
+      "status": "claimed",
+      "owner": "Astra / BT03-low",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_80014D1C.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "BT03-low; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Pending independent replay and exact-head CI."
+    },
+    "0x800175A8": {
+      "status": "claimed",
+      "owner": "Astra / BT03-high",
+      "name_hypothesis": "audio_channel_control_800175A8",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_800175A8.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "BT03-high; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Strict local whole-body MATCH; independent peer review and aggregate exact-head CI required."
+    },
+    "0x800177EC": {
+      "status": "nonmatch",
+      "owner": "Astra / BT03-high",
+      "name_hypothesis": "audio_channel_control_800177EC",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "diff_words": "4",
+      "source_path": "cloud/work/boot_tail/BT03-high/nonmatch/func_800177EC.c",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "note": "BT03-high; COMPLETE-NONMATCH, no credit. COMPLETE-NONMATCH; bounded source refinements stopped. See BT03-high/README.md and verification.json for controls and next hypothesis."
+    },
+    "0x80017824": {
+      "status": "nonmatch",
+      "owner": "Astra / BT03-high",
+      "name_hypothesis": "audio_channel_control_80017824",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "diff_words": "4",
+      "source_path": "cloud/work/boot_tail/BT03-high/nonmatch/func_80017824.c",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "note": "BT03-high; COMPLETE-NONMATCH, no credit. COMPLETE-NONMATCH; bounded source refinements stopped. See BT03-high/README.md and verification.json for controls and next hypothesis."
+    },
+    "0x8001989C": {
+      "status": "nonmatch",
+      "owner": "Astra / BT03-high",
+      "name_hypothesis": "audio_channel_control_8001989C",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "2",
+      "source_path": "cloud/work/boot_tail/BT03-high/nonmatch/func_8001989C.c",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "note": "BT03-high; COMPLETE-NONMATCH, no credit. COMPLETE-NONMATCH; bounded source refinements stopped. See BT03-high/README.md and verification.json for controls and next hypothesis."
+    },
+    "0x80019AA8": {
+      "status": "claimed",
+      "owner": "Astra / BT03-high",
+      "name_hypothesis": "audio_command_prepare_80019AA8",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_80019AA8.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "BT03-high; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Strict local whole-body MATCH; independent peer review and aggregate exact-head CI required."
+    },
+    "0x8001C19C": {
+      "status": "nonmatch",
+      "owner": "Astra / BT03-high",
+      "name_hypothesis": "audio_command_prepare_8001C19C",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "11",
+      "source_path": "cloud/work/boot_tail/BT03-high/nonmatch/func_8001C19C.c",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "note": "BT03-high; COMPLETE-NONMATCH, no credit. COMPLETE-NONMATCH; bounded source refinements stopped. See BT03-high/README.md and verification.json for controls and next hypothesis."
+    },
+    "0x8001C390": {
+      "status": "nonmatch",
+      "owner": "Astra / BT03-high",
+      "name_hypothesis": "audio_sequence_state_8001C390",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "12",
+      "source_path": "cloud/work/boot_tail/BT03-high/nonmatch/func_8001C390.c",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "note": "BT03-high; COMPLETE-NONMATCH, no credit. COMPLETE-NONMATCH; bounded source refinements stopped. See BT03-high/README.md and verification.json for controls and next hypothesis."
+    },
+    "0x8001C770": {
+      "status": "claimed",
+      "owner": "Astra / BT03-high",
+      "name_hypothesis": "audio_sequence_state_8001C770",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_8001C770.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "BT03-high; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Strict local whole-body MATCH; independent peer review and aggregate exact-head CI required."
+    },
+    "0x8001CC9C": {
+      "status": "nonmatch",
+      "owner": "Astra / BT03-high",
+      "name_hypothesis": "audio_sequence_state_8001CC9C",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "6",
+      "source_path": "cloud/work/boot_tail/BT03-high/nonmatch/func_8001CC9C.c",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "note": "BT03-high; COMPLETE-NONMATCH, no credit. COMPLETE-NONMATCH; bounded source refinements stopped. See BT03-high/README.md and verification.json for controls and next hypothesis."
+    },
+    "0x8001CCC0": {
+      "status": "claimed",
+      "owner": "Astra / BT03-high",
+      "name_hypothesis": "audio_sequence_state_8001CCC0",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_8001CCC0.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "BT03-high; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Strict local whole-body MATCH; independent peer review and aggregate exact-head CI required."
+    },
+    "0x80021F68": {
+      "status": "claimed",
+      "owner": "Astra / BT05-leaves",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_80021F68.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "BT05-leaves; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Native packed-state macro leaf; two-argument ABI validated from func_80023E9C; strict local replay, independent review and exact-head CI required before integration."
+    },
+    "0x8002243C": {
+      "status": "claimed",
+      "owner": "Astra / BT05-leaves",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_8002243C.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "BT05-leaves; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Native packed-state macro leaf; two-argument ABI validated from func_80023E9C; strict local replay, independent review and exact-head CI required before integration."
+    },
+    "0x800225AC": {
+      "status": "claimed",
+      "owner": "Astra / BT05-leaves",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_800225AC.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "BT05-leaves; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Native packed-state macro leaf; two-argument ABI validated from func_80023E9C; strict local replay, independent review and exact-head CI required before integration."
+    },
+    "0x800225DC": {
+      "status": "claimed",
+      "owner": "Astra / BT05-leaves",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_800225DC.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "BT05-leaves; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Native packed-state macro leaf; two-argument ABI validated from func_80023E9C; strict local replay, independent review and exact-head CI required before integration."
+    },
+    "0x80022A78": {
+      "status": "claimed",
+      "owner": "Astra / BT05-leaves",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_80022A78.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "BT05-leaves; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Native packed-state macro leaf; two-argument ABI validated from func_80023E9C; strict local replay, independent review and exact-head CI required before integration."
+    },
+    "0x80023710": {
+      "status": "claimed",
+      "owner": "Astra / BT05-leaves",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_80023710.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "BT05-leaves; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Native packed-state macro leaf; two-argument ABI validated from func_80023E9C; strict local replay, independent review and exact-head CI required before integration."
+    },
+    "0x80023734": {
+      "status": "claimed",
+      "owner": "Astra / BT05-leaves",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "0",
+      "source_path": "cloud/matches/boot_tail/func_80023734.c",
+      "evidence_level": "HYPOTHESIS",
+      "note": "BT05-leaves; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Native packed-state macro leaf; two-argument ABI validated from func_80023E9C; strict local replay, independent review and exact-head CI required before integration."
+    }
+  }
+}

@@ -1,0 +1,566 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-03",
+  "coordination": "User requested six concurrent matching workers. Each holds one disjoint packet. Only C11 lead edits central ledger and D10; other owners return status deltas. Runtime-image/farm work is excluded.",
+  "dependency_pr": "https://github.com/cabi24/SFRush2049-decomp/pull/59",
+  "dependency_head": "21e104a22575cf4d639261d2f6d9535913074e6a",
+  "preflight_commit": "76780b3a1b3e26c54b86e1f153344e92dac15b20",
+  "claimed_functions": 50,
+  "claimed_bytes": 1736,
+  "claims": [
+    {
+      "packet": "Packet 3 C11-small",
+      "owner": "/root/match_boot_tail_small_batch",
+      "status": "source-frozen; peer PASS; aggregate publication pending",
+      "branch": "dot/boot-tail-p3-c11-small",
+      "base": "76780b3a1b3e26c54b86e1f153344e92dac15b20",
+      "partition_intervals": [
+        {
+          "start": "0x8001E0E0",
+          "end_exclusive": "0x8001E9B0"
+        }
+      ],
+      "targets": [
+        {
+          "address": "0x8001E740",
+          "end_exclusive": "0x8001E768",
+          "size": 40
+        },
+        {
+          "address": "0x8001E768",
+          "end_exclusive": "0x8001E790",
+          "size": 40
+        },
+        {
+          "address": "0x8001E790",
+          "end_exclusive": "0x8001E7BC",
+          "size": 44
+        },
+        {
+          "address": "0x8001E930",
+          "end_exclusive": "0x8001E940",
+          "size": 16
+        },
+        {
+          "address": "0x8001E9A0",
+          "end_exclusive": "0x8001E9A8",
+          "size": 8
+        }
+      ],
+      "bytes": 148,
+      "edited_paths": [
+        "cloud/work/boot_tail/C11-small/**",
+        "cloud/matches/boot_tail/func_8001E740.c",
+        "cloud/matches/boot_tail/func_8001E768.c",
+        "cloud/matches/boot_tail/func_8001E790.c",
+        "cloud/matches/boot_tail/func_8001E930.c",
+        "cloud/matches/boot_tail/func_8001E9A0.c"
+      ],
+      "stop": "Stop on scope, boundary, ABI, non-C, corpus-variant or protected-change requirement; maximum 20 directed variants per evidence-backed hypothesis. No next packet queued.",
+      "local_result": {
+        "strict_match_functions": 4,
+        "strict_match_bytes": 104,
+        "nonmatch_functions": 1,
+        "nonmatch_bytes": 44,
+        "ci": "pending aggregate draft"
+      },
+      "reviewed_commit": "aae267e9a59d0f74eb7fb558333e9383974d2c2e",
+      "reviewer": "C13 worker",
+      "aggregate_branch": "dot/boot-tail-p3-wave1"
+    },
+    {
+      "packet": "Packet 3 C13-small",
+      "owner": "/root/verify_boot_tail_matches",
+      "status": "source-frozen; peer PASS; aggregate publication pending",
+      "branch": "dot/boot-tail-p3-c13",
+      "base": "76780b3a1b3e26c54b86e1f153344e92dac15b20",
+      "partition_intervals": [
+        {
+          "start": "0x80020610",
+          "end_exclusive": "0x800218CC"
+        }
+      ],
+      "targets": [
+        {
+          "address": "0x80021428",
+          "end_exclusive": "0x80021448",
+          "size": 32
+        },
+        {
+          "address": "0x80021448",
+          "end_exclusive": "0x80021468",
+          "size": 32
+        },
+        {
+          "address": "0x80021468",
+          "end_exclusive": "0x80021488",
+          "size": 32
+        },
+        {
+          "address": "0x80021488",
+          "end_exclusive": "0x800214A8",
+          "size": 32
+        },
+        {
+          "address": "0x800214A8",
+          "end_exclusive": "0x800214C8",
+          "size": 32
+        },
+        {
+          "address": "0x800214C8",
+          "end_exclusive": "0x800214E8",
+          "size": 32
+        },
+        {
+          "address": "0x800214E8",
+          "end_exclusive": "0x80021508",
+          "size": 32
+        },
+        {
+          "address": "0x80021508",
+          "end_exclusive": "0x80021528",
+          "size": 32
+        },
+        {
+          "address": "0x80021528",
+          "end_exclusive": "0x80021548",
+          "size": 32
+        }
+      ],
+      "bytes": 288,
+      "edited_paths": [
+        "cloud/work/boot_tail/C13-small/**",
+        "cloud/matches/boot_tail/func_80021428.c",
+        "cloud/matches/boot_tail/func_80021448.c",
+        "cloud/matches/boot_tail/func_80021468.c",
+        "cloud/matches/boot_tail/func_80021488.c",
+        "cloud/matches/boot_tail/func_800214A8.c",
+        "cloud/matches/boot_tail/func_800214C8.c",
+        "cloud/matches/boot_tail/func_800214E8.c",
+        "cloud/matches/boot_tail/func_80021508.c",
+        "cloud/matches/boot_tail/func_80021528.c"
+      ],
+      "stop": "Stop on scope, boundary, ABI, non-C, corpus-variant or protected-change requirement; maximum 20 directed variants per evidence-backed hypothesis. No next packet queued.",
+      "reviewed_commit": "a50d5fa7b09b75c359dc3330c3d21df3a64c5145",
+      "reviewer": "C11 worker",
+      "aggregate_branch": "dot/boot-tail-p3-wave1"
+    },
+    {
+      "packet": "Packet 3 BT02-small",
+      "owner": "/root/match_boot_tail_bt02",
+      "status": "source-frozen; peer PASS; aggregate publication pending",
+      "branch": "dot/boot-tail-p3-bt02-small",
+      "base": "76780b3a1b3e26c54b86e1f153344e92dac15b20",
+      "partition_intervals": [
+        {
+          "start": "0x80010450",
+          "end_exclusive": "0x80014550"
+        }
+      ],
+      "targets": [
+        {
+          "address": "0x8001061C",
+          "end_exclusive": "0x80010628",
+          "size": 12
+        },
+        {
+          "address": "0x80010A0C",
+          "end_exclusive": "0x80010A14",
+          "size": 8
+        },
+        {
+          "address": "0x80010A14",
+          "end_exclusive": "0x80010A3C",
+          "size": 40
+        },
+        {
+          "address": "0x80010D3C",
+          "end_exclusive": "0x80010D74",
+          "size": 56
+        },
+        {
+          "address": "0x80011894",
+          "end_exclusive": "0x800118C0",
+          "size": 44
+        },
+        {
+          "address": "0x800119E0",
+          "end_exclusive": "0x80011A10",
+          "size": 48
+        },
+        {
+          "address": "0x80011A10",
+          "end_exclusive": "0x80011A3C",
+          "size": 44
+        },
+        {
+          "address": "0x80011A3C",
+          "end_exclusive": "0x80011A64",
+          "size": 40
+        },
+        {
+          "address": "0x80012200",
+          "end_exclusive": "0x80012234",
+          "size": 52
+        }
+      ],
+      "bytes": 344,
+      "edited_paths": [
+        "cloud/work/boot_tail/BT02-small/**",
+        "cloud/matches/boot_tail/func_8001061C.c",
+        "cloud/matches/boot_tail/func_80010A0C.c",
+        "cloud/matches/boot_tail/func_80010A14.c",
+        "cloud/matches/boot_tail/func_80010D3C.c",
+        "cloud/matches/boot_tail/func_80011894.c",
+        "cloud/matches/boot_tail/func_800119E0.c",
+        "cloud/matches/boot_tail/func_80011A10.c",
+        "cloud/matches/boot_tail/func_80011A3C.c",
+        "cloud/matches/boot_tail/func_80012200.c"
+      ],
+      "stop": "Stop on scope, boundary, ABI, non-C, corpus-variant or protected-change requirement; maximum 20 directed variants per evidence-backed hypothesis. No next packet queued.",
+      "reviewed_commit": "3f0057926a1854ac1d03b50d7d46667e0f151770",
+      "reviewer": "BT03-low worker",
+      "aggregate_branch": "dot/boot-tail-p3-wave1"
+    },
+    {
+      "packet": "Packet 3 BT03-low",
+      "owner": "/root/match_boot_tail_bt03_low",
+      "status": "source-frozen; peer PASS; aggregate publication pending",
+      "branch": "dot/boot-tail-p3-bt03-low",
+      "base": "76780b3a1b3e26c54b86e1f153344e92dac15b20",
+      "partition_intervals": [
+        {
+          "start": "0x80014550",
+          "end_exclusive": "0x80017500"
+        }
+      ],
+      "targets": [
+        {
+          "address": "0x80014624",
+          "end_exclusive": "0x80014650",
+          "size": 44
+        },
+        {
+          "address": "0x8001467C",
+          "end_exclusive": "0x800146AC",
+          "size": 48
+        },
+        {
+          "address": "0x800146AC",
+          "end_exclusive": "0x800146B4",
+          "size": 8
+        },
+        {
+          "address": "0x800149BC",
+          "end_exclusive": "0x800149DC",
+          "size": 32
+        },
+        {
+          "address": "0x800149DC",
+          "end_exclusive": "0x80014A04",
+          "size": 40
+        },
+        {
+          "address": "0x80014A04",
+          "end_exclusive": "0x80014A0C",
+          "size": 8
+        },
+        {
+          "address": "0x80014BB0",
+          "end_exclusive": "0x80014BD8",
+          "size": 40
+        },
+        {
+          "address": "0x80014C18",
+          "end_exclusive": "0x80014C40",
+          "size": 40
+        },
+        {
+          "address": "0x80014C40",
+          "end_exclusive": "0x80014C60",
+          "size": 32
+        },
+        {
+          "address": "0x80014D1C",
+          "end_exclusive": "0x80014D2C",
+          "size": 16
+        }
+      ],
+      "bytes": 308,
+      "edited_paths": [
+        "cloud/work/boot_tail/BT03-low/**",
+        "cloud/matches/boot_tail/func_80014624.c",
+        "cloud/matches/boot_tail/func_8001467C.c",
+        "cloud/matches/boot_tail/func_800146AC.c",
+        "cloud/matches/boot_tail/func_800149BC.c",
+        "cloud/matches/boot_tail/func_800149DC.c",
+        "cloud/matches/boot_tail/func_80014A04.c",
+        "cloud/matches/boot_tail/func_80014BB0.c",
+        "cloud/matches/boot_tail/func_80014C18.c",
+        "cloud/matches/boot_tail/func_80014C40.c",
+        "cloud/matches/boot_tail/func_80014D1C.c"
+      ],
+      "stop": "Stop on scope, boundary, ABI, non-C, corpus-variant or protected-change requirement; maximum 20 directed variants per evidence-backed hypothesis. No next packet queued.",
+      "queued": {
+        "packet": "BT03-low batch B",
+        "branch": "dot/boot-tail-p3-bt03-low-b",
+        "state": "queued only; no source edits before prior packet peer PASS, aggregate publication and exact remote-tree verification",
+        "targets": [
+          {
+            "address": "0x80014E00",
+            "size": 12,
+            "end_exclusive": "0x80014E0C"
+          },
+          {
+            "address": "0x80014E10",
+            "size": 12,
+            "end_exclusive": "0x80014E1C"
+          },
+          {
+            "address": "0x80014E64",
+            "size": 44,
+            "end_exclusive": "0x80014E90"
+          },
+          {
+            "address": "0x80014E90",
+            "size": 44,
+            "end_exclusive": "0x80014EBC"
+          },
+          {
+            "address": "0x80014EBC",
+            "size": 44,
+            "end_exclusive": "0x80014EE8"
+          },
+          {
+            "address": "0x80014EE8",
+            "size": 44,
+            "end_exclusive": "0x80014F14"
+          },
+          {
+            "address": "0x80015318",
+            "size": 48,
+            "end_exclusive": "0x80015348"
+          },
+          {
+            "address": "0x80015348",
+            "size": 36,
+            "end_exclusive": "0x8001536C"
+          }
+        ]
+      },
+      "reviewed_commit": "f2c816f9236034261b83db1d766934605c95a6d9",
+      "reviewer": "BT02 worker",
+      "aggregate_branch": "dot/boot-tail-p3-wave1"
+    },
+    {
+      "packet": "Packet 3 BT03-high",
+      "owner": "/root/match_boot_tail_bt03_high",
+      "status": "source-frozen; peer PASS; aggregate publication pending",
+      "branch": "dot/boot-tail-p3-bt03-high",
+      "base": "76780b3a1b3e26c54b86e1f153344e92dac15b20",
+      "partition_intervals": [
+        {
+          "start": "0x80017500",
+          "end_exclusive": "0x8001E0E0"
+        },
+        {
+          "start": "0x8001E9B0",
+          "end_exclusive": "0x80020610"
+        }
+      ],
+      "targets": [
+        {
+          "address": "0x800175A8",
+          "end_exclusive": "0x800175B4",
+          "size": 12
+        },
+        {
+          "address": "0x800177EC",
+          "end_exclusive": "0x80017824",
+          "size": 56
+        },
+        {
+          "address": "0x80017824",
+          "end_exclusive": "0x8001785C",
+          "size": 56
+        },
+        {
+          "address": "0x8001989C",
+          "end_exclusive": "0x800198C8",
+          "size": 44
+        },
+        {
+          "address": "0x80019AA8",
+          "end_exclusive": "0x80019AD4",
+          "size": 44
+        },
+        {
+          "address": "0x8001C19C",
+          "end_exclusive": "0x8001C1D8",
+          "size": 60
+        },
+        {
+          "address": "0x8001C390",
+          "end_exclusive": "0x8001C3CC",
+          "size": 60
+        },
+        {
+          "address": "0x8001C770",
+          "end_exclusive": "0x8001C77C",
+          "size": 12
+        },
+        {
+          "address": "0x8001CC9C",
+          "end_exclusive": "0x8001CCC0",
+          "size": 36
+        },
+        {
+          "address": "0x8001CCC0",
+          "end_exclusive": "0x8001CCDC",
+          "size": 28
+        }
+      ],
+      "bytes": 408,
+      "edited_paths": [
+        "cloud/work/boot_tail/BT03-high/**",
+        "cloud/matches/boot_tail/func_800175A8.c",
+        "cloud/matches/boot_tail/func_800177EC.c",
+        "cloud/matches/boot_tail/func_80017824.c",
+        "cloud/matches/boot_tail/func_8001989C.c",
+        "cloud/matches/boot_tail/func_80019AA8.c",
+        "cloud/matches/boot_tail/func_8001C19C.c",
+        "cloud/matches/boot_tail/func_8001C390.c",
+        "cloud/matches/boot_tail/func_8001C770.c",
+        "cloud/matches/boot_tail/func_8001CC9C.c",
+        "cloud/matches/boot_tail/func_8001CCC0.c"
+      ],
+      "stop": "Stop on scope, boundary, ABI, non-C, corpus-variant or protected-change requirement; maximum 20 directed variants per evidence-backed hypothesis. No next packet queued.",
+      "reviewed_commit": "53bff645fcba96ae71f1bf29f18aae72054a3897",
+      "reviewer": "BT05 worker",
+      "aggregate_branch": "dot/boot-tail-p3-wave1"
+    },
+    {
+      "packet": "Packet 3 BT05-leaves",
+      "owner": "/root/match_boot_tail_bt05_bt07",
+      "status": "source-frozen; peer PASS; aggregate publication pending",
+      "branch": "dot/boot-tail-bt05-leaves",
+      "base": "76780b3a1b3e26c54b86e1f153344e92dac15b20",
+      "partition_intervals": [
+        {
+          "start": "0x800218CC",
+          "end_exclusive": "0x80024BF0"
+        },
+        {
+          "start": "0x80024FB0",
+          "end_exclusive": "0x80026360"
+        }
+      ],
+      "targets": [
+        {
+          "address": "0x80021F68",
+          "end_exclusive": "0x80021F84",
+          "size": 28
+        },
+        {
+          "address": "0x8002243C",
+          "end_exclusive": "0x8002245C",
+          "size": 32
+        },
+        {
+          "address": "0x800225AC",
+          "end_exclusive": "0x800225DC",
+          "size": 48
+        },
+        {
+          "address": "0x800225DC",
+          "end_exclusive": "0x800225FC",
+          "size": 32
+        },
+        {
+          "address": "0x80022A78",
+          "end_exclusive": "0x80022A98",
+          "size": 32
+        },
+        {
+          "address": "0x80023710",
+          "end_exclusive": "0x80023734",
+          "size": 36
+        },
+        {
+          "address": "0x80023734",
+          "end_exclusive": "0x80023754",
+          "size": 32
+        }
+      ],
+      "bytes": 240,
+      "edited_paths": [
+        "cloud/work/boot_tail/BT05-leaves/**",
+        "cloud/matches/boot_tail/func_80021F68.c",
+        "cloud/matches/boot_tail/func_8002243C.c",
+        "cloud/matches/boot_tail/func_800225AC.c",
+        "cloud/matches/boot_tail/func_800225DC.c",
+        "cloud/matches/boot_tail/func_80022A78.c",
+        "cloud/matches/boot_tail/func_80023710.c",
+        "cloud/matches/boot_tail/func_80023734.c"
+      ],
+      "stop": "Stop on scope, boundary, ABI, non-C, corpus-variant or protected-change requirement; maximum 20 directed variants per evidence-backed hypothesis. No next packet queued.",
+      "queued": {
+        "packet": "BT05-controls",
+        "branch": "dot/boot-tail-bt05-controls",
+        "state": "queued only; no source edits before prior packet peer PASS, aggregate publication and exact remote-tree verification",
+        "targets": [
+          {
+            "address": "0x80023818",
+            "size": 44,
+            "end_exclusive": "0x80023844"
+          },
+          {
+            "address": "0x80023844",
+            "size": 44,
+            "end_exclusive": "0x80023870"
+          },
+          {
+            "address": "0x80023870",
+            "size": 44,
+            "end_exclusive": "0x8002389C"
+          },
+          {
+            "address": "0x8002389C",
+            "size": 44,
+            "end_exclusive": "0x800238C8"
+          },
+          {
+            "address": "0x800238C8",
+            "size": 44,
+            "end_exclusive": "0x800238F4"
+          },
+          {
+            "address": "0x800238F4",
+            "size": 44,
+            "end_exclusive": "0x80023920"
+          },
+          {
+            "address": "0x80023920",
+            "size": 44,
+            "end_exclusive": "0x8002394C"
+          },
+          {
+            "address": "0x8002394C",
+            "size": 44,
+            "end_exclusive": "0x80023978"
+          },
+          {
+            "address": "0x80023978",
+            "size": 44,
+            "end_exclusive": "0x800239A4"
+          }
+        ]
+      },
+      "reviewed_commit": "927fb95e45a0d1fb5579e51893a801da7cb18afe",
+      "reviewer": "BT03-high worker",
+      "aggregate_branch": "dot/boot-tail-p3-wave1"
+    }
+  ],
+  "aggregate_base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "research_provenance": "PR #59 at 21e104a2, explicitly incorporated without merging after fresh-master refresh"
+}
