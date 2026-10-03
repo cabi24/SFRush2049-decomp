@@ -1,0 +1,397 @@
+{
+  "function": "func_8010E4E4",
+  "source_sha256": "668e976dcdb4568aa571a861f7b06ccd1e5e34b9fef3e6c0245646841c740369",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "target_bytes": 432,
+  "linked_text_bytes": 416,
+  "candidate_function_bytes": 412,
+  "claims": [],
+  "nonzero_extra_words": 0,
+  "target_sha256": "de1f36df460facf901e061b060ce243d1fc761740f2a8b5e5453ed417ccf9920",
+  "linked_text_sha256": "ab487de6d8c08376bc0266878adb7fa0541a8f00446f949839214ade50e038cf",
+  "differences": [
+    {
+      "offset": "0x8",
+      "target": "0x27bdff98",
+      "candidate": "0x27bdffb8"
+    },
+    {
+      "offset": "0x10",
+      "target": "0xafa5006c",
+      "candidate": "0xafa5004c"
+    },
+    {
+      "offset": "0x24",
+      "target": "0x1000005f",
+      "candidate": "0x1000005a"
+    },
+    {
+      "offset": "0x34",
+      "target": "0x3025",
+      "candidate": "0x3c018012"
+    },
+    {
+      "offset": "0x38",
+      "target": "0x5700005a",
+      "candidate": "0x57000055"
+    },
+    {
+      "offset": "0x44",
+      "target": "0x3c018012",
+      "candidate": "0x3c078012"
+    },
+    {
+      "offset": "0x48",
+      "target": "0x3c078012",
+      "candidate": "0xc42049cc"
+    },
+    {
+      "offset": "0x54",
+      "target": "0xc42049cc",
+      "candidate": "0x3025"
+    },
+    {
+      "offset": "0xb0",
+      "target": "0x3c028003",
+      "candidate": "0x3c018003"
+    },
+    {
+      "offset": "0xb4",
+      "target": "0x2442eb94",
+      "candidate": "0xc420eb94"
+    },
+    {
+      "offset": "0xb8",
+      "target": "0xc4500000",
+      "candidate": "0xc5520000"
+    },
+    {
+      "offset": "0xbc",
+      "target": "0xc5520000",
+      "candidate": "0x27a40030"
+    },
+    {
+      "offset": "0xc0",
+      "target": "0xc4440000",
+      "candidate": "0x25250014"
+    },
+    {
+      "offset": "0xc4",
+      "target": "0x27a4003c",
+      "candidate": "0x46009402"
+    },
+    {
+      "offset": "0xc8",
+      "target": "0x46109182",
+      "candidate": "0xe7b00030"
+    },
+    {
+      "offset": "0xcc",
+      "target": "0xc4500000",
+      "candidate": "0xc5460004"
+    },
+    {
+      "offset": "0xd0",
+      "target": "0x25250014",
+      "candidate": "0x46003202"
+    },
+    {
+      "offset": "0xd4",
+      "target": "0xe7a6003c",
+      "candidate": "0xe7a80034"
+    },
+    {
+      "offset": "0xd8",
+      "target": "0xc5480004",
+      "candidate": "0xc5440008"
+    },
+    {
+      "offset": "0xdc",
+      "target": "0x46044282",
+      "candidate": "0xafab0048"
+    },
+    {
+      "offset": "0xe0",
+      "target": "0xe7aa0040",
+      "candidate": "0xafa90044"
+    },
+    {
+      "offset": "0xe4",
+      "target": "0xc5520008",
+      "candidate": "0x46002282"
+    },
+    {
+      "offset": "0xe8",
+      "target": "0xafab0068",
+      "candidate": "0xc0340f7"
+    },
+    {
+      "offset": "0xec",
+      "target": "0xafa90060",
+      "candidate": "0xe7aa0038"
+    },
+    {
+      "offset": "0xf0",
+      "target": "0x46109182",
+      "candidate": "0x8fab0048"
+    },
+    {
+      "offset": "0xf4",
+      "target": "0xc0340f7",
+      "candidate": "0x3c018003"
+    },
+    {
+      "offset": "0xf8",
+      "target": "0xe7a60044",
+      "candidate": "0xc430eb94"
+    },
+    {
+      "offset": "0xfc",
+      "target": "0x8fab0068",
+      "candidate": "0xc5720010"
+    },
+    {
+      "offset": "0x100",
+      "target": "0x3c028003",
+      "candidate": "0x8fa90044"
+    },
+    {
+      "offset": "0x104",
+      "target": "0x2442eb94",
+      "candidate": "0x44804000"
+    },
+    {
+      "offset": "0x108",
+      "target": "0xc4440000",
+      "candidate": "0x46109181"
+    },
+    {
+      "offset": "0x10c",
+      "target": "0xc5680010",
+      "candidate": "0xe5660010"
+    },
+    {
+      "offset": "0x110",
+      "target": "0x8fa90060",
+      "candidate": "0xc5640010"
+    },
+    {
+      "offset": "0x114",
+      "target": "0x44809000",
+      "candidate": "0x4608203e"
+    },
+    {
+      "offset": "0x118",
+      "target": "0x46044281",
+      "candidate": "0x0"
+    },
+    {
+      "offset": "0x11c",
+      "target": "0xe56a0010",
+      "candidate": "0x4502001c"
+    },
+    {
+      "offset": "0x120",
+      "target": "0xc5700010",
+      "candidate": "0x8fbf0014"
+    },
+    {
+      "offset": "0x124",
+      "target": "0x4612803e",
+      "candidate": "0x852d0010"
+    },
+    {
+      "offset": "0x128",
+      "target": "0x0",
+      "candidate": "0x3c0f8011"
+    },
+    {
+      "offset": "0x12c",
+      "target": "0x4502001d",
+      "candidate": "0x2825"
+    },
+    {
+      "offset": "0x130",
+      "target": "0x8fbf0014",
+      "candidate": "0xd7080"
+    },
+    {
+      "offset": "0x134",
+      "target": "0x852d0010",
+      "candidate": "0x1cd7023"
+    },
+    {
+      "offset": "0x138",
+      "target": "0x3c0f8011",
+      "candidate": "0xe7100"
+    },
+    {
+      "offset": "0x13c",
+      "target": "0x25ef7530",
+      "candidate": "0x1ee7821"
+    },
+    {
+      "offset": "0x140",
+      "target": "0xd7080",
+      "candidate": "0x95ef7542"
+    },
+    {
+      "offset": "0x144",
+      "target": "0x1cd7023",
+      "candidate": "0x3025"
+    },
+    {
+      "offset": "0x148",
+      "target": "0xe7100",
+      "candidate": "0x31f82000"
+    },
+    {
+      "offset": "0x14c",
+      "target": "0x1cf1021",
+      "candidate": "0x13000007"
+    },
+    {
+      "offset": "0x150",
+      "target": "0x94580012",
+      "candidate": "0x0"
+    },
+    {
+      "offset": "0x154",
+      "target": "0x2825",
+      "candidate": "0x8524000e"
+    },
+    {
+      "offset": "0x158",
+      "target": "0x3025",
+      "candidate": "0xafab0048"
+    },
+    {
+      "offset": "0x15c",
+      "target": "0x33192000",
+      "candidate": "0xc024022"
+    },
+    {
+      "offset": "0x160",
+      "target": "0x13200007",
+      "candidate": "0xafa90044"
+    },
+    {
+      "offset": "0x164",
+      "target": "0x0",
+      "candidate": "0x8fa90044"
+    },
+    {
+      "offset": "0x168",
+      "target": "0x8524000e",
+      "candidate": "0x8fab0048"
+    },
+    {
+      "offset": "0x16c",
+      "target": "0xafab0068",
+      "candidate": "0x3c048014"
+    },
+    {
+      "offset": "0x170",
+      "target": "0xc024022",
+      "candidate": "0x24843fc8"
+    },
+    {
+      "offset": "0x174",
+      "target": "0xafa90060",
+      "candidate": "0x1202825"
+    },
+    {
+      "offset": "0x178",
+      "target": "0x8fa90060",
+      "candidate": "0xc02bea1"
+    },
+    {
+      "offset": "0x17c",
+      "target": "0x8fab0068",
+      "candidate": "0xafab0048"
+    },
+    {
+      "offset": "0x180",
+      "target": "0x3c048014",
+      "candidate": "0x8fa40048"
+    },
+    {
+      "offset": "0x184",
+      "target": "0x24843fc8",
+      "candidate": "0xc0241e7"
+    },
+    {
+      "offset": "0x188",
+      "target": "0x1202825",
+      "candidate": "0x24050001"
+    },
+    {
+      "offset": "0x18c",
+      "target": "0xc02bea1",
+      "candidate": "0x8fbf0014"
+    },
+    {
+      "offset": "0x190",
+      "target": "0xafab0068",
+      "candidate": "0x27bd0048"
+    },
+    {
+      "offset": "0x194",
+      "target": "0x8fa40068",
+      "candidate": "0x3e00008"
+    },
+    {
+      "offset": "0x198",
+      "target": "0xc0241e7",
+      "candidate": "0x0"
+    },
+    {
+      "offset": "0x19c",
+      "target": "0x24050001",
+      "candidate": "0x0"
+    },
+    {
+      "offset": "0x1a0",
+      "target": "0x8fbf0014",
+      "candidate": null
+    },
+    {
+      "offset": "0x1a4",
+      "target": "0x27bd0068",
+      "candidate": null
+    },
+    {
+      "offset": "0x1a8",
+      "target": "0x3e00008",
+      "candidate": null
+    },
+    {
+      "offset": "0x1ac",
+      "target": "0x0",
+      "candidate": null
+    }
+  ],
+  "relocations": "\nRelocation section '.rel.text' at offset 0x3c8 contains 19 entries:\n Offset     Info    Type            Sym.Value  Sym. Name\n0000001c  00000304 R_MIPS_26         00000000   entity_transform_apply\n0000002c  00000405 R_MIPS_HI16       00000000   D_801170FC\n00000030  00000406 R_MIPS_LO16       00000000   D_801170FC\n00000034  00000505 R_MIPS_HI16       00000000   D_801249CC\n00000048  00000506 R_MIPS_LO16       00000000   D_801249CC\n00000044  00000605 R_MIPS_HI16       00000000   D_80121DDC\n00000050  00000606 R_MIPS_LO16       00000000   D_80121DDC\n000000b0  00000705 R_MIPS_HI16       00000000   D_8002EB94\n000000b4  00000706 R_MIPS_LO16       00000000   D_8002EB94\n000000e8  00000804 R_MIPS_26         00000000   sound_position_set\n000000f4  00000705 R_MIPS_HI16       00000000   D_8002EB94\n000000f8  00000706 R_MIPS_LO16       00000000   D_8002EB94\n00000128  00000905 R_MIPS_HI16       00000000   D_80117530\n00000140  00000906 R_MIPS_LO16       00000000   D_80117530\n0000015c  00000a04 R_MIPS_26         00000000   entity_spawn_callback\n0000016c  00000c05 R_MIPS_HI16       00000000   D_80143FC8\n00000170  00000c06 R_MIPS_LO16       00000000   D_80143FC8\n00000178  00000b04 R_MIPS_26         00000000   func_800AFA84\n00000184  00000304 R_MIPS_26         00000000   entity_transform_apply\n",
+  "symbols": {
+    "D_8002EB94": "0x8002eb94",
+    "D_801170FC": "0x801170fc",
+    "D_80117530": "0x80117530",
+    "D_80121DDC": "0x80121ddc",
+    "D_801249CC": "0x801249cc",
+    "D_80143FC8": "0x80143fc8",
+    "entity_spawn_callback": "0x80090088",
+    "entity_transform_apply": "0x8009079c",
+    "func_800AFA84": "0x800afa84",
+    "sound_position_set": "0x800d03dc"
+  },
+  "direct_callers": [],
+  "protected_manifest_entries": 23,
+  "compiler_sha256": {
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+  },
+  "method": "Fresh direct IDO compile; independent target parser and manifest hash; GNU ld/objcopy raw full-word comparison"
+}
