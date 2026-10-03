@@ -136,11 +136,41 @@ individually. None of this is cartridge coverage yet: integrating C into the
 runtime images needs an image build plus exact recompression of each ROM
 stream, the analogue of `blob_rom`.
 
+## 5. Integration prototype: C → image → exact ROM stream
+
+`python3 -m tools.conveyor.pipeline.ovl_rom verify` compiles every
+`cloud/matches/ovl_<x>/*.c` on the builder (private remote and local
+directories, using the flags on line 1). It links each body alone at its
+image address (`blob_splice.link_function`; excess non-zero words are
+refused) and splices it over the protected target words. The data tail is
+carried through unchanged. Then it gates in two steps:
+
+1. **Image gate:** the composed image must be byte-identical to the
+   decompressed original.
+2. **Stream gate:** `deflate104` (zlib 1.0.4, level 9, raw) must reproduce
+   the cartridge's stream at the image's ROM offset exactly.
+
+Result on 2026-10-03: **A, 2 bodies → stream 80,272 B == ROM @ `0xB5C534`; B,
+3 bodies → stream 23,639 B == ROM @ `0xB6FEC4`.** Negative control: changing
+one body (`+= 2`) fails both gates and names the function.
+
+**Stream reproducibility, all 119 deflate streams in the cartridge:**
+`deflate104` reproduces **117** exactly from their decompressed bytes,
+including the game image and both runtime images. Two asset streams do not
+reproduce at any level 1–9: `0x360230` (47,736 B) and `0x36BCAB`
+(186,040 B). They were made with other settings or another tool and must stay
+opaque bytes for now.
+
+**Remaining production step:** compose the source-built runtime-image
+streams into the cartridge, as `tools/compose_data.py` does for the game
+blob, then run the full-ROM SHA-1 gate on the builder. Add a lock for
+runtime-image bodies and protect `asm/us/ovl_*`. These are maintainer-owned
+production changes and are deliberately not made here.
+
 ## Next actions
 
-1. Integration path for the runtime images: link the image from targets and C,
-   recompress to the exact ROM stream (`deflate104`), and compose it into the
-   ROM. This mirrors `blob_rom`. After that, protect `asm/us/ovl_*` in
-   `guard_paths.py` like `asm/us/blob/`.
+1. Production integration (section 5): compose the runtime-image streams in
+   the cartridge build, add a lock, and protect `asm/us/ovl_*` in
+   `guard_paths.py`.
 2. Census `0x8000F400–~0x80028000` functions against the libultra corpus.
 3. Write B's contracts for `8038D798`, `8038D3A4` and `8039133C` (see #53).
