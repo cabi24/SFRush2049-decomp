@@ -1,0 +1,33 @@
+{
+  "classification": "ABI_PREREQUISITE_ONLY_NO_MATCH",
+  "claims": [],
+  "caller": {
+    "native_bytes": 2636,
+    "native_words": 659,
+    "sha256": "038c6b05ae52d2f07622ac981c8b16d1f9759f447573dd8aca9e7d71b1ef9052"
+  },
+  "callee": {
+    "native_bytes": 1232,
+    "native_words": 308,
+    "sha256": "cdc5f8d1125fdc7fade873776b2e63fb7ed7f95defe78d30de353ec37372bf74"
+  },
+  "call_address": "0x8010CB48",
+  "arguments": [
+    "a0=state+68",
+    "a1=caller_sp+352",
+    "a2=caller_sp+316 (delay slot)"
+  ],
+  "f12_first_reads": [
+    "0x800C42FC"
+  ],
+  "incoming_f12_required": false,
+  "unknown_external": {
+    "address": "0x8038D798",
+    "symbol_names": [],
+    "contract_verified": false
+  },
+  "compiled_candidate": false,
+  "differing_words": null,
+  "unverified_relocations": null,
+  "accepted_code_bytes": 0
+}
