@@ -1,0 +1,597 @@
+[
+ {
+  "rom": "0x32F1F0",
+  "compressed": 783,
+  "decompressed": 2816
+ },
+ {
+  "rom": "0x32F500",
+  "compressed": 279,
+  "decompressed": 800
+ },
+ {
+  "rom": "0x32F770",
+  "compressed": 390,
+  "decompressed": 1760
+ },
+ {
+  "rom": "0x32F900",
+  "compressed": 549,
+  "decompressed": 1712
+ },
+ {
+  "rom": "0x32FB30",
+  "compressed": 530,
+  "decompressed": 1856
+ },
+ {
+  "rom": "0x32FE50",
+  "compressed": 749,
+  "decompressed": 2144
+ },
+ {
+  "rom": "0x330140",
+  "compressed": 887,
+  "decompressed": 2432
+ },
+ {
+  "rom": "0x3304C0",
+  "compressed": 2041,
+  "decompressed": 4208
+ },
+ {
+  "rom": "0x330CC0",
+  "compressed": 1611,
+  "decompressed": 2864
+ },
+ {
+  "rom": "0x331310",
+  "compressed": 940,
+  "decompressed": 3456
+ },
+ {
+  "rom": "0x3316C0",
+  "compressed": 3273,
+  "decompressed": 7120
+ },
+ {
+  "rom": "0x332390",
+  "compressed": 703,
+  "decompressed": 2768
+ },
+ {
+  "rom": "0x332650",
+  "compressed": 962,
+  "decompressed": 3456
+ },
+ {
+  "rom": "0x332A20",
+  "compressed": 2003,
+  "decompressed": 17936
+ },
+ {
+  "rom": "0x3336C0",
+  "compressed": 541,
+  "decompressed": 1072
+ },
+ {
+  "rom": "0x3338E0",
+  "compressed": 551,
+  "decompressed": 1072
+ },
+ {
+  "rom": "0x333B10",
+  "compressed": 529,
+  "decompressed": 1072
+ },
+ {
+  "rom": "0x333D30",
+  "compressed": 553,
+  "decompressed": 1072
+ },
+ {
+  "rom": "0x333F60",
+  "compressed": 537,
+  "decompressed": 1072
+ },
+ {
+  "rom": "0x334180",
+  "compressed": 529,
+  "decompressed": 1072
+ },
+ {
+  "rom": "0x3343A0",
+  "compressed": 107153,
+  "decompressed": 285256
+ },
+ {
+  "rom": "0x34E680",
+  "compressed": 24142,
+  "decompressed": 89032
+ },
+ {
+  "rom": "0x3544D0",
+  "compressed": 43797,
+  "decompressed": 117352
+ },
+ {
+  "rom": "0x35EFF0",
+  "compressed": 4671,
+  "decompressed": 13136
+ },
+ {
+  "rom": "0x360230",
+  "compressed": 47736,
+  "decompressed": 99192
+ },
+ {
+  "rom": "0x36BCAB",
+  "compressed": 186040,
+  "decompressed": 390083
+ },
+ {
+  "rom": "0x3C3990",
+  "compressed": 3380,
+  "decompressed": 9448
+ },
+ {
+  "rom": "0x3D17D0",
+  "compressed": 53027,
+  "decompressed": 139192
+ },
+ {
+  "rom": "0x3EE1B0",
+  "compressed": 30783,
+  "decompressed": 67160
+ },
+ {
+  "rom": "0x3F59F0",
+  "compressed": 34882,
+  "decompressed": 87144
+ },
+ {
+  "rom": "0x3FE240",
+  "compressed": 29595,
+  "decompressed": 68640
+ },
+ {
+  "rom": "0x4055E0",
+  "compressed": 27793,
+  "decompressed": 63920
+ },
+ {
+  "rom": "0x40C280",
+  "compressed": 13408,
+  "decompressed": 41880
+ },
+ {
+  "rom": "0x40F6E0",
+  "compressed": 20843,
+  "decompressed": 56192
+ },
+ {
+  "rom": "0x43FE80",
+  "compressed": 602388,
+  "decompressed": 1194272
+ },
+ {
+  "rom": "0x4D2FA0",
+  "compressed": 534695,
+  "decompressed": 1080504
+ },
+ {
+  "rom": "0x555850",
+  "compressed": 526594,
+  "decompressed": 1051744
+ },
+ {
+  "rom": "0x5D6160",
+  "compressed": 553642,
+  "decompressed": 1194888
+ },
+ {
+  "rom": "0x65D410",
+  "compressed": 547940,
+  "decompressed": 1125912
+ },
+ {
+  "rom": "0x6E3080",
+  "compressed": 714357,
+  "decompressed": 1578064
+ },
+ {
+  "rom": "0x791700",
+  "compressed": 47075,
+  "decompressed": 90896
+ },
+ {
+  "rom": "0x79CEF0",
+  "compressed": 33885,
+  "decompressed": 68568
+ },
+ {
+  "rom": "0x7A5350",
+  "compressed": 70173,
+  "decompressed": 139728
+ },
+ {
+  "rom": "0x7B6570",
+  "compressed": 85486,
+  "decompressed": 213504
+ },
+ {
+  "rom": "0x7CB360",
+  "compressed": 86652,
+  "decompressed": 156040
+ },
+ {
+  "rom": "0x7E05E0",
+  "compressed": 66450,
+  "decompressed": 124120
+ },
+ {
+  "rom": "0x7F0980",
+  "compressed": 76674,
+  "decompressed": 134920
+ },
+ {
+  "rom": "0x803510",
+  "compressed": 63173,
+  "decompressed": 150976
+ },
+ {
+  "rom": "0x812BE0",
+  "compressed": 69414,
+  "decompressed": 150768
+ },
+ {
+  "rom": "0x823B10",
+  "compressed": 64806,
+  "decompressed": 148080
+ },
+ {
+  "rom": "0x833840",
+  "compressed": 97645,
+  "decompressed": 184488
+ },
+ {
+  "rom": "0x84B5B0",
+  "compressed": 104838,
+  "decompressed": 200944
+ },
+ {
+  "rom": "0x864F40",
+  "compressed": 197844,
+  "decompressed": 446744
+ },
+ {
+  "rom": "0x895420",
+  "compressed": 5098,
+  "decompressed": 17040
+ },
+ {
+  "rom": "0x896810",
+  "compressed": 8644,
+  "decompressed": 34936
+ },
+ {
+  "rom": "0x8989E0",
+  "compressed": 4663,
+  "decompressed": 15048
+ },
+ {
+  "rom": "0x899C20",
+  "compressed": 6292,
+  "decompressed": 23720
+ },
+ {
+  "rom": "0x89B4C0",
+  "compressed": 4121,
+  "decompressed": 13304
+ },
+ {
+  "rom": "0x89C4E0",
+  "compressed": 4950,
+  "decompressed": 16912
+ },
+ {
+  "rom": "0x89D840",
+  "compressed": 761,
+  "decompressed": 2592
+ },
+ {
+  "rom": "0x89DB40",
+  "compressed": 543,
+  "decompressed": 1840
+ },
+ {
+  "rom": "0x89DD60",
+  "compressed": 797,
+  "decompressed": 2712
+ },
+ {
+  "rom": "0x89E080",
+  "compressed": 952,
+  "decompressed": 3440
+ },
+ {
+  "rom": "0x89E440",
+  "compressed": 1012,
+  "decompressed": 3520
+ },
+ {
+  "rom": "0x89E840",
+  "compressed": 729,
+  "decompressed": 2256
+ },
+ {
+  "rom": "0x89EB20",
+  "compressed": 820,
+  "decompressed": 2688
+ },
+ {
+  "rom": "0x89EE60",
+  "compressed": 956,
+  "decompressed": 3200
+ },
+ {
+  "rom": "0x89F220",
+  "compressed": 1282,
+  "decompressed": 4968
+ },
+ {
+  "rom": "0x89F730",
+  "compressed": 1292,
+  "decompressed": 5392
+ },
+ {
+  "rom": "0x89FC40",
+  "compressed": 1916,
+  "decompressed": 6248
+ },
+ {
+  "rom": "0x8A03C0",
+  "compressed": 1431,
+  "decompressed": 5384
+ },
+ {
+  "rom": "0x8A0960",
+  "compressed": 901,
+  "decompressed": 3016
+ },
+ {
+  "rom": "0x8A0CF0",
+  "compressed": 252362,
+  "decompressed": 351450
+ },
+ {
+  "rom": "0x8DE6C0",
+  "compressed": 317724,
+  "decompressed": 446217
+ },
+ {
+  "rom": "0x92BFE0",
+  "compressed": 353888,
+  "decompressed": 522887
+ },
+ {
+  "rom": "0x982640",
+  "compressed": 200616,
+  "decompressed": 314553
+ },
+ {
+  "rom": "0x9B35F0",
+  "compressed": 307633,
+  "decompressed": 447255
+ },
+ {
+  "rom": "0x9FE7B0",
+  "compressed": 328401,
+  "decompressed": 468148
+ },
+ {
+  "rom": "0xA4EA90",
+  "compressed": 10968,
+  "decompressed": 19061
+ },
+ {
+  "rom": "0xA51570",
+  "compressed": 10284,
+  "decompressed": 18282
+ },
+ {
+  "rom": "0xA53DA0",
+  "compressed": 18450,
+  "decompressed": 35546
+ },
+ {
+  "rom": "0xA585C0",
+  "compressed": 6936,
+  "decompressed": 11899
+ },
+ {
+  "rom": "0xA5A0E0",
+  "compressed": 9388,
+  "decompressed": 19398
+ },
+ {
+  "rom": "0xA5C590",
+  "compressed": 21387,
+  "decompressed": 36337
+ },
+ {
+  "rom": "0xA61920",
+  "compressed": 7337,
+  "decompressed": 16336
+ },
+ {
+  "rom": "0xA635D0",
+  "compressed": 19156,
+  "decompressed": 34312
+ },
+ {
+  "rom": "0xA680B0",
+  "compressed": 90079,
+  "decompressed": 157711
+ },
+ {
+  "rom": "0xA7E090",
+  "compressed": 52826,
+  "decompressed": 101012
+ },
+ {
+  "rom": "0xA8AEF0",
+  "compressed": 85133,
+  "decompressed": 122407
+ },
+ {
+  "rom": "0xA9FB80",
+  "compressed": 79392,
+  "decompressed": 136031
+ },
+ {
+  "rom": "0xAB31A0",
+  "compressed": 69392,
+  "decompressed": 160485
+ },
+ {
+  "rom": "0xAC40B0",
+  "compressed": 18891,
+  "decompressed": 30626
+ },
+ {
+  "rom": "0xAC8A80",
+  "compressed": 26532,
+  "decompressed": 40120
+ },
+ {
+  "rom": "0xACF230",
+  "compressed": 25046,
+  "decompressed": 38628
+ },
+ {
+  "rom": "0xAD5410",
+  "compressed": 23262,
+  "decompressed": 39606
+ },
+ {
+  "rom": "0xADAEF0",
+  "compressed": 16959,
+  "decompressed": 36352
+ },
+ {
+  "rom": "0xADF130",
+  "compressed": 36162,
+  "decompressed": 56120
+ },
+ {
+  "rom": "0xAE7E80",
+  "compressed": 1664,
+  "decompressed": 4890
+ },
+ {
+  "rom": "0xAE8500",
+  "compressed": 1349,
+  "decompressed": 4416
+ },
+ {
+  "rom": "0xAE8A50",
+  "compressed": 1022,
+  "decompressed": 1894
+ },
+ {
+  "rom": "0xAE8E50",
+  "compressed": 1460,
+  "decompressed": 4764
+ },
+ {
+  "rom": "0xAE9410",
+  "compressed": 1652,
+  "decompressed": 5192
+ },
+ {
+  "rom": "0xAE9A90",
+  "compressed": 1455,
+  "decompressed": 4578
+ },
+ {
+  "rom": "0xAEA040",
+  "compressed": 1016,
+  "decompressed": 1840
+ },
+ {
+  "rom": "0xAEA440",
+  "compressed": 946,
+  "decompressed": 1798
+ },
+ {
+  "rom": "0xAEA800",
+  "compressed": 1684,
+  "decompressed": 2952
+ },
+ {
+  "rom": "0xAEAEA0",
+  "compressed": 2888,
+  "decompressed": 4990
+ },
+ {
+  "rom": "0xAEB9F0",
+  "compressed": 1057,
+  "decompressed": 2044
+ },
+ {
+  "rom": "0xAEBE20",
+  "compressed": 1346,
+  "decompressed": 2362
+ },
+ {
+  "rom": "0xAEC370",
+  "compressed": 495,
+  "decompressed": 1218
+ },
+ {
+  "rom": "0xAEC560",
+  "compressed": 13625,
+  "decompressed": 28758
+ },
+ {
+  "rom": "0xAEFAA0",
+  "compressed": 20615,
+  "decompressed": 39108
+ },
+ {
+  "rom": "0xAF4B30",
+  "compressed": 14974,
+  "decompressed": 39224
+ },
+ {
+  "rom": "0xAF85B0",
+  "compressed": 25838,
+  "decompressed": 39672
+ },
+ {
+  "rom": "0xAFEAA0",
+  "compressed": 20031,
+  "decompressed": 35828
+ },
+ {
+  "rom": "0xB038E0",
+  "compressed": 37409,
+  "decompressed": 55828
+ },
+ {
+  "rom": "0xB0CB10",
+  "compressed": 326180,
+  "decompressed": 647072
+ },
+ {
+  "rom": "0xB5C534",
+  "compressed": 80272,
+  "decompressed": 194128
+ },
+ {
+  "rom": "0xB6FEC4",
+  "compressed": 23639,
+  "decompressed": 43888
+ }
+]
