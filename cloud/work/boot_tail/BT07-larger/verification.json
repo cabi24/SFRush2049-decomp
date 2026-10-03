@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "packet": "BT07-larger",
+  "base_commit": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "central_claim_commit": "b34484c9",
+  "manifest": [
+    "boot_tail_8000f3a4.s: OK",
+    "extents.json: OK",
+    "symbols.json: OK"
+  ],
+  "extents": {
+    "functions": 439,
+    "bytes": 99120,
+    "equal": true
+  },
+  "toolchain_archive_sha256": "ab5c741561f80913d58c8b074771f23941a3edd312505a8ebed6d1dfeb65e506",
+  "compiler_files_sha256": {
+    "acpp": "7bfdf2f79010eb95bd47e165036cac04a69e5f1290fde11736e5f6934f3e9189",
+    "as0": "72670d53952459fe5ac463e8844182cf4df9f6ccf469826c82ca858fdd665564",
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695",
+    "c++filt": "60791cf1d07ba780a4e8aa25d53c741d4b7d5427f891f7287b1bed0b6ba3e665",
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "copt": "e62a2a7276d2f9fa7f5daac25e01abe92cf4765173391cb0b616434c9c8122b3",
+    "crt1.o": "95bd24880e95e102bbdf2a1cfa2e10d391cb57784a42db19afd609c0904aee28",
+    "crtn.o": "62197e97a5e56e21c6a4e76ffe9f634cf90b47046ebe4841086108101ce496eb",
+    "err.english.cc": "6f2d777730f0a70328bb932c116c1c195da765cb9bbdee8c6d3eaf7d6ad77e78",
+    "ld": "266c5a22192ce532a6dcdb7127c1da72faa37e7e71d44677ab91d723b8ed2113",
+    "libc.so": "803f8b127194a79d92c5caea62fd39097be16d3fcd9870b4470123cebd5d27fe",
+    "libc.so.1": "803f8b127194a79d92c5caea62fd39097be16d3fcd9870b4470123cebd5d27fe",
+    "libexc.so": "b59bf75bcbff1526ad4e3b2b49b313788a6e4c97df5b69b4bc2ddbd6726c5864",
+    "libgen.so": "bb66dea1242000f648e890252cbe47037310559cc0ecda8ed212c0e545bf8063",
+    "libm.so": "8acc66c2d1315b90f38a280fe04a26d0e61b5ca377976ed5d7f88bb064bd2e35",
+    "strip": "bf39eca7d4357b699d59077078c657c5af428b0e57d5dd7835c3d0f915e801bf",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "ujoin": "34a6fff6e693f8c9505777d2860b4795fe97a01e89ce8616f4a5b624b11c451d",
+    "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+    "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "upas": "7fa9be3c14bfe854bb539312af5f4f40c29b975996bdd6868f489f82fb427d5b",
+    "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b"
+  },
+  "source_hashes": {
+    "specs/015-boot-tail-runtime/inventory.json": "09dd150e3bdd66123b24e42aa5d152c20559890e7ee15a476396b47a0cf02953",
+    "asm/us/boot_tail/extents.json": "0d69358c528171a2c53e7468dd5b48afe7611006ab3800dbfbb10e079b008fcf",
+    "asm/us/boot_tail/SHA256SUMS": "6bd3e6ef05e6123e4ea4dd0d814c0abb16f202a91d8d0a381eca14322c8a36d5",
+    "asm/us/boot_tail/symbols.json": "bd200aeb947e5da64c9e810dc6fbe15ef5c3f2f26633071cf7363cdb1b1fcba9",
+    "tools/cloud/score.py": "9de8385b28938c012ba679ea1f899cd7e5fe351d2c51129c5319442c84b679c4",
+    "tools/cloud/setup.sh": "e78fafc84cb5cde638bbcab528b96de3d6837e39b3b1f8f8d6c69e55d8f13e4b",
+    "cloud/work/boot_tail/BT07-larger/verify.py": "1cf72cbcfd7d03fd211a5cbbac118df3f14e9ba52dec96992710274732ebadf3",
+    "cloud/work/boot_tail/BT07-larger/test_semantics.py": "abf247194064ccb43945e343f9b03697aa94174651ed42b04dbcf82ec2bbf10e",
+    "cloud/work/boot_tail/BT07-larger/README.md": "8712c46b1c047fb41e63e33a6ef3fe0d0c805b4c760c5135924331e15cac660d",
+    "cloud/work/boot_tail/BT07-larger/input_pins.json": "e3b97735e701497a36ad728550d315ed806365804468d5e9155f4c87bf69828b",
+    "cloud/work/boot_tail/BT07-larger/status_delta.csv": "0305155e8ae0bfd0289d687c31722bba5654f764be3c2a6435cd8fafc084b2ec",
+    "cloud/work/boot_tail/BT07-larger/experiments.json": "555ccc2982a35a07636c4f1b52d2013085c754549006725f8e18720a52c7dbef",
+    "cloud/work/boot_tail/BT07-larger/reconstruction.md": "8a872139b26e107212e62d16a45bd8d5196f7c523b056ed025f26e9b6503a981"
+  },
+  "results": [
+    {
+      "name": "func_800259A8",
+      "bytes": 268,
+      "source_path": "cloud/matches/boot_tail/func_800259A8.c",
+      "source_sha256": "4a24f968bf90eae92cc710bbc0a42230dd9eeefe59054a20a21106a7f822adf3",
+      "target_body_sha256": "d74fb3ca8ad589b4c9a1d4fcd51d9b67dd0c5c3d9f36cda01086de04f7890be1",
+      "trials": [
+        {
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "differing_words": 0,
+          "total_words": 67,
+          "extra_words": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "strict_match": true,
+          "relocation_mask_count": 0,
+          "object_text_bytes": 272,
+          "relocated_full_word_equality": true,
+          "zero_trailing_alignment": true
+        },
+        {
+          "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "differing_words": 65,
+          "total_words": 67,
+          "extra_words": 13,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [
+            "unpaired R_MIPS_HI16 for D_80056230 at .text+0xf0"
+          ],
+          "strict_match": false,
+          "relocation_mask_count": 0,
+          "object_text_bytes": 336,
+          "relocated_full_word_equality": false,
+          "zero_trailing_alignment": false
+        }
+      ]
+    },
+    {
+      "name": "func_80025C68",
+      "bytes": 284,
+      "source_path": "cloud/matches/boot_tail/func_80025C68.c",
+      "source_sha256": "30314786fb49aa8746ca604c011612ad31a26bc722860221ac194be98bca187f",
+      "target_body_sha256": "d5b7244ffa917daaaab5181957bdb3359c48b98ba08c78b8d4b352d48312f5c7",
+      "trials": [
+        {
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "differing_words": 0,
+          "total_words": 71,
+          "extra_words": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "strict_match": true,
+          "relocation_mask_count": 0,
+          "object_text_bytes": 288,
+          "relocated_full_word_equality": true,
+          "zero_trailing_alignment": true
+        },
+        {
+          "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "differing_words": 71,
+          "total_words": 71,
+          "extra_words": 29,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "strict_match": false,
+          "relocation_mask_count": 0,
+          "object_text_bytes": 400,
+          "relocated_full_word_equality": false,
+          "zero_trailing_alignment": false
+        }
+      ]
+    }
+  ],
+  "getter": {
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "differing_words": 0,
+    "total_words": 3,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": true,
+    "relocation_mask_count": 0,
+    "object_text_bytes": 16,
+    "relocated_full_word_equality": true,
+    "zero_trailing_alignment": true
+  },
+  "result": "PASS",
+  "new_matching_bodies": 2,
+  "new_matching_bytes": 552,
+  "complete_nonmatch_bodies": 0,
+  "complete_nonmatch_bytes": 0
+}

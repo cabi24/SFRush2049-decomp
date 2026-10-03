@@ -1,12 +1,12 @@
 # D10: boot-tail runtime research and matching
 
 The 412 assigned functions account for **95,012 B**.
-The current ledger records **244 open functions / 84,544 B**,
+The current ledger records **218 open functions / 80,660 B**,
 **0 confirmed non-C rows**, **1
 pre-existing verified bodies / 12 B**, and
-**103 newly verified bodies / 4,924 B**.
-There are **21 claimed functions / 2,012 B** and
-**43 nonmatches / 3,520 B**.
+**124 newly verified bodies / 6,936 B**.
+There are **24 claimed functions / 3,548 B** and
+**45 nonmatches / 3,856 B**.
 
 Packet 1 itself introduced zero matching bodies or verified bytes. Its initial
 verified entry imports the existing 12-byte `func_80010A00` PR #54 receipt, now
@@ -158,10 +158,10 @@ existing getter is excluded from the queue. Packet 2 must pass first.
 | 1 | BT03 | `0x80014550–0x80020610` | 230 / 49,072 | 330 / 379 | C05, C06, C07, C08, C09, C10, C11, C12 (HYPOTHESIS) |
 | 2 | BT06 | `0x80024BF0–0x80024FB0` | 4 / 952 | 0 / 0 | C15 (HYPOTHESIS) |
 | 3 | BT02 | `0x80010450–0x80014550` | 59 / 16,624 | 55 / 83 | C02, C03, C04 (HYPOTHESIS) |
-| 4 | BT07 | `0x80024FB0–0x80026360` | 25 / 4,980 | 27 / 39 | C16 (HYPOTHESIS) |
-| 5 | BT05 | `0x800218CC–0x80024BF0` | 62 / 13,084 | 80 / 141 | C14 (HYPOTHESIS) |
-| 6 | BT01 | `0x8000F8D0–0x80010450` | 1 / 284 | 0 / 0 | C01 (HYPOTHESIS) |
-| 7 | BT04 | `0x80020610–0x800218CC` | 27 / 4,784 | 18 / 18 | C13 (HYPOTHESIS) |
+| 4 | BT05 | `0x800218CC–0x80024BF0` | 62 / 13,084 | 80 / 141 | C14 (HYPOTHESIS) |
+| 5 | BT01 | `0x8000F8D0–0x80010450` | 1 / 284 | 0 / 0 | C01 (HYPOTHESIS) |
+| 6 | BT04 | `0x80020610–0x800218CC` | 27 / 4,784 | 18 / 18 | C13 (HYPOTHESIS) |
+| 7 | BT07 | `0x80024FB0–0x80026360` | 25 / 4,980 | 27 / 39 | C16 (HYPOTHESIS) |
 | 8 | BT08 | `0x80026360–0x800277D0` | 4 / 5,232 | 3 / 3 | C17 (HYPOTHESIS) |
 
 ## Census-boundary escalation
@@ -258,8 +258,8 @@ repository regression, native equality proof, target/toolchain check or ROM test
 ```json
 {
   "all_tail_distinct_directed_edges": 671,
-  "claimed_bytes": 2012,
-  "claimed_functions": 21,
+  "claimed_bytes": 3548,
+  "claimed_functions": 24,
   "cluster_count": 8,
   "cohort_count": 17,
   "game_called_all_inventory": 21,
@@ -270,13 +270,13 @@ repository regression, native equality proof, target/toolchain check or ROM test
   "in_scope_functions": 412,
   "inventory_function_bytes": 99120,
   "inventory_functions": 439,
-  "new_verified_bytes": 4924,
-  "new_verified_functions": 103,
+  "new_verified_bytes": 6936,
+  "new_verified_functions": 124,
   "non_c_functions": 0,
-  "nonmatch_bytes": 3520,
-  "nonmatch_functions": 43,
-  "open_bytes": 84544,
-  "open_functions": 244,
+  "nonmatch_bytes": 3856,
+  "nonmatch_functions": 45,
+  "open_bytes": 80660,
+  "open_functions": 218,
   "preexisting_verified_bytes": 12,
   "preexisting_verified_functions": 1,
   "ultralib_excluded_bytes": 4048,
@@ -441,3 +441,17 @@ SOURCE-LEAD at 80021548, explicitly needs-rodata-proof: its canonical six-entry
 case mapping and local-table relocation are unproved. It is not credited as a
 complete native reconstruction or match. See wave4/unique_totals.json. Later
 work and source-led rechecks are excluded. D10 remains untouched.
+
+## Fifth cut: 24 additional peer-reviewed bodies
+
+Historical cut summaries above describe their publication-time CI state. The
+first four source cuts now have 124 unique new exact-CI-verified bodies / 6,936 B;
+wave4/ci.json records #64's successful exact-head Verify run. Fifth cut adds
+24 peer-reviewed local strict matches / 3,548 B and two complete nonmatches /
+336 B, pending its own exact-head CI. Its unique union is 148 new bodies /
+10,484 B plus the existing 12-byte getter. Across 193 distinct attempts, 44
+complete nonmatches / 3,760 B and the one 96-byte blocked source lead remain
+outside match credit. No already-attempted address is counted twice. See
+wave5/README.md and wave5/unique_totals.json. Later sources are excluded from
+this frozen cut; atomic successor claims do not confer matching credit. D10 is
+unchanged and the allowed ledger/receipts remain authoritative.

@@ -306,3 +306,17 @@ SOURCE-LEAD at 80021548, explicitly needs-rodata-proof: its canonical six-entry
 case mapping and local-table relocation are unproved. It is not credited as a
 complete native reconstruction or match. See wave4/unique_totals.json. Later
 work and source-led rechecks are excluded. D10 remains untouched.
+
+## Fifth cut: 24 additional peer-reviewed bodies
+
+Historical cut summaries above describe their publication-time CI state. The
+first four source cuts now have 124 unique new exact-CI-verified bodies / 6,936 B;
+wave4/ci.json records #64's successful exact-head Verify run. Fifth cut adds
+24 peer-reviewed local strict matches / 3,548 B and two complete nonmatches /
+336 B, pending its own exact-head CI. Its unique union is 148 new bodies /
+10,484 B plus the existing 12-byte getter. Across 193 distinct attempts, 44
+complete nonmatches / 3,760 B and the one 96-byte blocked source lead remain
+outside match credit. No already-attempted address is counted twice. See
+wave5/README.md and wave5/unique_totals.json. Later sources are excluded from
+this frozen cut; atomic successor claims do not confer matching credit. D10 is
+unchanged and the allowed ledger/receipts remain authoritative.

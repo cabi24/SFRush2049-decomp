@@ -1,0 +1,52 @@
+[
+  {
+    "address": "800259A8",
+    "label": "initial",
+    "optimization": 2,
+    "differing": 0,
+    "total": 67,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "strict_match": true
+  },
+  {
+    "address": "800259A8",
+    "label": "initial",
+    "optimization": 1,
+    "differing": 65,
+    "total": 67,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [
+      "unpaired R_MIPS_HI16 for D_80056230 at .text+0xf0"
+    ],
+    "extra_words": 13,
+    "strict_match": false
+  },
+  {
+    "address": "80025C68",
+    "label": "initial",
+    "optimization": 2,
+    "differing": 0,
+    "total": 71,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "strict_match": true
+  },
+  {
+    "address": "80025C68",
+    "label": "initial",
+    "optimization": 1,
+    "differing": 71,
+    "total": 71,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 29,
+    "strict_match": false
+  }
+]

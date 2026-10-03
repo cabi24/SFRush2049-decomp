@@ -1,0 +1,7 @@
+{
+  "result": "PASS",
+  "cases": 631,
+  "c89_layout": "PASS (32-bit size and field offsets)",
+  "sanitizers": "ASan and UBSan",
+  "scope": "Actual source bodies with host test-only callee stubs; no ROM or target runtime"
+}
