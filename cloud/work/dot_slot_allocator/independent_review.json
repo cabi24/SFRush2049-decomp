@@ -1,0 +1,105 @@
+{
+  "verdict": "PASS as honest NONMATCH research only",
+  "function": "func_80091B00",
+  "source_sha256": "2ed30539609995338dd4fad46e3b138858017d6186d83411a5d6b863cd15e093",
+  "target_bytes": 168,
+  "candidate_function_bytes": 168,
+  "zero_alignment_bytes": 8,
+  "differing_words": 18,
+  "differences": [
+    {
+      "offset": "0x1c",
+      "target": "0xa06f0003",
+      "candidate": "0x2418ffff"
+    },
+    {
+      "offset": "0x20",
+      "target": "0x2418ffff",
+      "candidate": "0xa06f0003"
+    },
+    {
+      "offset": "0x38",
+      "target": "0x240e0001",
+      "candidate": "0x24080001"
+    },
+    {
+      "offset": "0x3c",
+      "target": "0xa06e001b",
+      "candidate": "0x2409ffff"
+    },
+    {
+      "offset": "0x40",
+      "target": "0x240fffff",
+      "candidate": "0xa4690018"
+    },
+    {
+      "offset": "0x44",
+      "target": "0xa46f0018",
+      "candidate": "0xa068001b"
+    },
+    {
+      "offset": "0x50",
+      "target": "0x80780033",
+      "candidate": "0x806a0033"
+    },
+    {
+      "offset": "0x54",
+      "target": "0x17000006",
+      "candidate": "0x15400006"
+    },
+    {
+      "offset": "0x58",
+      "target": "0x24190001",
+      "candidate": "0x240b0001"
+    },
+    {
+      "offset": "0x5c",
+      "target": "0xa0790033",
+      "candidate": "0x240cffff"
+    },
+    {
+      "offset": "0x60",
+      "target": "0x240effff",
+      "candidate": "0xa46c0030"
+    },
+    {
+      "offset": "0x64",
+      "target": "0xa46e0030",
+      "candidate": "0xa06b0033"
+    },
+    {
+      "offset": "0x70",
+      "target": "0x806f004b",
+      "candidate": "0x806d004b"
+    },
+    {
+      "offset": "0x74",
+      "target": "0x15e00006",
+      "candidate": "0x15a00006"
+    },
+    {
+      "offset": "0x78",
+      "target": "0x24180001",
+      "candidate": "0x240e0001"
+    },
+    {
+      "offset": "0x7c",
+      "target": "0xa078004b",
+      "candidate": "0x240fffff"
+    },
+    {
+      "offset": "0x80",
+      "target": "0x2419ffff",
+      "candidate": "0xa46f0048"
+    },
+    {
+      "offset": "0x84",
+      "target": "0xa4790048",
+      "candidate": "0xa06e004b"
+    }
+  ],
+  "independent_host_cases": 33024,
+  "abi": "No arguments, pointer return v0, leaf, no callee-saved registers/stack use",
+  "semantics": "Scan 128 24-byte records, first signed-byte active==0 is set to1 and signed16-bit index=-1, return its address; exhausted returns null",
+  "limits": "No exact match, image or ROM claim; native and candidate store scheduling differ"
+}
