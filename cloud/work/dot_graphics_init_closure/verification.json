@@ -1,0 +1,89 @@
+{
+  "status": "NONMATCH; no accepted coverage",
+  "source_sha256": {
+    "flags.c": "b83781e5852e280a64903704d213c2a2262098a80e781cce8a8b2b4fb487e2d5",
+    "host_test.c": "49ae2d98296cb0a54d148268c5ba6e18c3b9fb39a25b0df10cee1ea3fe18e7a4",
+    "init.c": "215760fc5cb8f8fe81331902a52950a1953f5df9c5d8b3ad35a8c4feab891d5c",
+    "mode.c": "b9ca1deb9480cbda475a4930fc11f486b703033387052e1609f89e45d73c7ade"
+  },
+  "recipes": [
+    {
+      "function": "sound_init",
+      "recipe": "standalone -g0 -O2 -mips2 -G 0 -non_shared; automatic -Wab,-r4300_mul",
+      "native_bytes": 400,
+      "native_sha256": "dac85a66df515c931ee79094a8f3b9cda18d34f3844b4e9039ff7c88728af9e2",
+      "candidate_symbol_extent": 416,
+      "comparison": {
+        "differing": 75,
+        "total": 100,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    {
+      "function": "func_800878E0",
+      "recipe": "standalone -g0 -O2 -mips2 -G 0 -non_shared; automatic -Wab,-r4300_mul",
+      "native_bytes": 296,
+      "native_sha256": "f8a00435e231f977bc38197993238f02132a0e43c0163442382397e294ffb85f",
+      "candidate_symbol_extent": 320,
+      "comparison": {
+        "differing": 56,
+        "total": 74,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 3
+      }
+    },
+    {
+      "function": "sound_init",
+      "recipe": "genuine three-body O3 group per group.json; as1 -r4300_mul",
+      "native_bytes": 400,
+      "native_sha256": "dac85a66df515c931ee79094a8f3b9cda18d34f3844b4e9039ff7c88728af9e2",
+      "candidate_symbol_extent": 412,
+      "comparison": {
+        "differing": 75,
+        "total": 100,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    {
+      "function": "func_800878E0",
+      "recipe": "genuine three-body O3 group per group.json; as1 -r4300_mul",
+      "native_bytes": 296,
+      "native_sha256": "f8a00435e231f977bc38197993238f02132a0e43c0163442382397e294ffb85f",
+      "candidate_symbol_extent": 296,
+      "comparison": {
+        "differing": 29,
+        "total": 74,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    {
+      "function": "func_80086A50",
+      "recipe": "genuine three-body O3 group per group.json; as1 -r4300_mul",
+      "native_bytes": 1548,
+      "native_sha256": "945eedfdd9b852633b98c2b855a03f76b7b611382e2f36076d3aa35a771fd60f",
+      "candidate_symbol_extent": 1548,
+      "comparison": {
+        "differing": 0,
+        "total": 387,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0xc",
+          ".rodata+0x0 at +0x14"
+        ],
+        "errors": [],
+        "extra_words": 0
+      }
+    }
+  ]
+}
