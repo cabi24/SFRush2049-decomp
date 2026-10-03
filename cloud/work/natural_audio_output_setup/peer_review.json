@@ -1,0 +1,14 @@
+{
+  "verdict": "PASS as NONMATCH research only",
+  "source_sha256": "bad44508030b2ad7f237428fa7c354de8e1e8049cad9e518e28dc7326fd7334d",
+  "strict_residual": "24/37 target words differ",
+  "candidate_symbol_bytes": 144,
+  "target_bytes": 148,
+  "typed_cursor": "Approved clear typed cursor; untyped layout experiment is separately labeled rejected",
+  "independent_host_cases": 20000,
+  "sanitizers": "ASan+UBSan, leak detection disabled for ptrace runtime",
+  "semantics": "sum unexcluded list entry count modulo2^32, optional default read after acquire, OS arguments and acquire/release order, lists preserved",
+  "abi": "o32 pointer argument and uint32 return; saves incoming arg at32(sp),32-byte frame, saves/restores ra, sum preserved across osJamMesg via28(sp), no other callee-saved clobbers",
+  "author_interpreter_review": "Checked branch likely annul/delay slots, signed loads, caller-saved poison, protected manifest and GNU relocation replay; reran4010 scenarios/8020 executions successfully",
+  "limitations": "Unsigned count semantics are inferred from modulo arithmetic; specific audio meaning not established. No exact match, accepted coverage, ROM or hardware validation."
+}
