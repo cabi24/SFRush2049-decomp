@@ -1,0 +1,9 @@
+{
+  "baseline": "b16dd93ba51ac3e04e8332b1f710337b5b2fbd8f",
+  "files": {
+    "asm/us/boot_tail/boot_tail_8000f3a4.s": "0dc55ce51ebe828207816f4f0b878b8928da64694f7f247bf8749f68cf91b224",
+    "asm/us/nonmatchings/rom/lib_34a0/fcvt.s": "d9020d181ed9e66fcc63fab6f88ee2d2be0007b494784a67be7dde4d73fb191a",
+    "asm/us/nonmatchings/rom/lib_34a0/sprintf.s": "101267ae310dd7993a38e352dd21bc207f2054d832e46ad9b1de2c7becaaa789",
+    "specs/015-boot-tail-runtime/inventory.json": "09dd150e3bdd66123b24e42aa5d152c20559890e7ee15a476396b47a0cf02953"
+  }
+}
