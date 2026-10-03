@@ -80,5 +80,15 @@ jobs:
       - name: Check static locks
         run: make check-matched
 
-      - name: Repository tests
-        run: python3 -m pytest tests/conveyor -q -m 'not node_required'
+      # IDO and MIPS binutils are installed above, so a test that skips for a
+      # missing tool here is a broken environment and fails (tests/conftest.py).
+      # Skips for private inputs (baserom, conveyor DB, corpus) stay listed.
+      - name: Conveyor tests
+        env:
+          REQUIRE_TOOLCHAIN: "1"
+        run: python3 -m pytest tests/conveyor -q -rs -m 'not node_required'
+
+      - name: Cloud tooling tests
+        env:
+          REQUIRE_TOOLCHAIN: "1"
+        run: python3 -m pytest tests/cloud -q -rs -m 'not node_required'

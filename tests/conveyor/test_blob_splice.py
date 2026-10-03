@@ -189,3 +189,146 @@ def test_unit_defined_global_resolves_to_existing_image_storage(tmp_path, storag
     assert body == struct.pack(">IIII", 0x3C018014, 0xAC20C300, 0x03E00008, 0)
     assert blob_splice.defined_data_symbols(obj) == {"D_8013C300"}
     assert blob_build.function_symbols(obj)["fn"][0] == 0
+
+
+# --- V01: locked C fails closed, never falls back to passthrough -------------
+
+def _entry(source_sha="s" * 64, group=None):
+    entry = {"source": "src/blob/x.c", "source_sha256": source_sha,
+             "flagset": "-O2", "toolkit_sha": blob_splice.TOOLKIT,
+             "verified": "image_gate", "verified_at": "2026-10-03"}
+    if group:
+        entry["group"] = group
+    return entry
+
+
+def _document(*names):
+    return {"regions": [{"entries": [
+        {"kind": "function", "target_id": name, "vaddr": 0x80090000 + 8 * i,
+         "size": 8} for i, name in enumerate(names)]}]}
+
+
+@pytest.fixture
+def objects(tmp_path, monkeypatch):
+    """An object directory whose singles 'link' to their own name's bytes."""
+    from tools.conveyor.pipeline import blob_group
+
+    obj_dir = tmp_path / "obj"
+    (obj_dir / "groups").mkdir(parents=True)
+    monkeypatch.setattr(blob_splice, "link_function",
+                        lambda obj, target_id, *a, **k: target_id.encode().ljust(8, b"\0"))
+    monkeypatch.setattr(blob_group, "group_bodies",
+                        lambda group, *a, **k: {m: m.encode().ljust(8, b"\0")
+                                                for m in ("g1", "g2")})
+    return obj_dir
+
+
+def _collect(lock, document, obj_dir, **kwargs):
+    return blob_splice.spliced_bodies(lock, document, symbols={}, obj_dir=obj_dir, **kwargs)
+
+
+def test_every_locked_body_is_returned_when_all_build(objects):
+    (objects / "a.o").write_bytes(b"")
+    (objects / "groups" / "G.o").write_bytes(b"")
+    lock = {"a": _entry(), "g1": _entry(group="G"), "g2": _entry(group="G")}
+
+    bodies = _collect(lock, _document("a", "g1", "g2"), objects)
+
+    assert set(bodies) == set(lock)
+
+
+@pytest.mark.parametrize("break_it, reason", [
+    (lambda d, mp: None, "object missing"),
+    (lambda d, mp: (d / "a.o").write_bytes(b"") or mp.setattr(
+        blob_splice, "link_function",
+        lambda *a, **k: (_ for _ in ()).throw(blob_splice.blob_build.BuildError("link failed: x"))),
+     "link failed"),
+])
+def test_a_single_that_cannot_build_is_an_error_not_passthrough(objects, monkeypatch,
+                                                                break_it, reason):
+    break_it(objects, monkeypatch)
+    with pytest.raises(blob_splice.LockedBodyError, match=reason) as info:
+        _collect({"a": _entry()}, _document("a"), objects)
+    assert set(info.value.problems) == {"a"}
+
+
+def test_a_locked_target_missing_from_the_layout_is_an_error(objects):
+    (objects / "a.o").write_bytes(b"")
+    with pytest.raises(blob_splice.LockedBodyError, match="not in the layout map"):
+        _collect({"a": _entry()}, _document("other"), objects)
+
+
+def test_a_group_that_fails_names_every_member(objects, monkeypatch):
+    from tools.conveyor.pipeline import blob_group
+
+    def fail(*a, **k):
+        raise blob_group.GroupError("group G is not compiled")
+    monkeypatch.setattr(blob_group, "group_bodies", fail)
+    lock = {"g1": _entry(group="G"), "g2": _entry(group="G")}
+
+    with pytest.raises(blob_splice.LockedBodyError) as info:
+        _collect(lock, _document("g1", "g2"), objects)
+    assert set(info.value.problems) == {"g1", "g2"}
+    assert "not compiled" in info.value.problems["g1"]
+
+
+def test_a_group_that_omits_a_locked_member_is_an_error(objects):
+    (objects / "groups" / "G.o").write_bytes(b"")
+    lock = {"g1": _entry(group="G"), "g3": _entry(group="G")}
+
+    with pytest.raises(blob_splice.LockedBodyError) as info:
+        _collect(lock, _document("g1", "g3"), objects)
+    assert set(info.value.problems) == {"g3"}
+
+
+def test_errors_are_collected_not_first_only(objects):
+    with pytest.raises(blob_splice.LockedBodyError) as info:
+        _collect({"a": _entry(), "b": _entry()}, _document("a", "b"), objects)
+    assert set(info.value.problems) == {"a", "b"}
+    assert "2 locked bodies" in str(info.value)
+
+
+def test_an_object_built_from_other_source_is_refused(objects):
+    obj = objects / "a.o"
+    obj.write_bytes(b"")
+    blob_splice.write_provenance(obj, "old" * 21 + "d", blob_splice.TOOLKIT)
+
+    with pytest.raises(blob_splice.LockedBodyError, match="different source_sha256"):
+        _collect({"a": _entry()}, _document("a"), objects)
+
+    blob_splice.write_provenance(obj, "s" * 64, blob_splice.TOOLKIT)
+    assert set(_collect({"a": _entry()}, _document("a"), objects)) == {"a"}
+
+
+def test_legacy_objects_without_provenance_are_refused_only_when_required(objects):
+    (objects / "a.o").write_bytes(b"")
+    lock = {"a": _entry()}
+
+    assert set(_collect(lock, _document("a"), objects)) == {"a"}
+    assert blob_splice.unbound_objects(lock, objects) == {"a"}
+    with pytest.raises(blob_splice.LockedBodyError, match="no provenance"):
+        _collect(lock, _document("a"), objects, require_provenance=True)
+
+
+def test_produce_refuses_before_composing_when_a_body_is_missing(monkeypatch):
+    from tools.conveyor.pipeline import blob_rom, blob_tu
+
+    def missing(**kwargs):
+        raise blob_splice.LockedBodyError({"a": "object missing"})
+
+    def must_not_generate(*a, **k):
+        raise AssertionError("composed an image without the locked body")
+    monkeypatch.setattr(blob_splice, "check", lambda *a, **k: [])
+    monkeypatch.setattr(blob_splice, "spliced_bodies", missing)
+    monkeypatch.setattr(blob_tu, "generate", must_not_generate)
+
+    with pytest.raises(blob_rom.BlobRomError, match="object missing"):
+        blob_rom.produce(document={"regions": []})
+
+
+def test_produce_refuses_drifted_locked_source(monkeypatch):
+    from tools.conveyor.pipeline import blob_rom
+
+    monkeypatch.setattr(blob_splice, "check", lambda *a, **k: [("a", "source hash drifted")])
+    with pytest.raises(blob_rom.BlobRomError, match="drifted"):
+        blob_rom.produce(document={"regions": []})
