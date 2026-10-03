@@ -33,7 +33,11 @@ snapshot: local commit `a58e7bc9bde1eea84408488dfb16656e0af61651`, tree
 regeneration checks, protected-path guard and base-to-head whitespace check
 were independently rerun. All eight source leads were validated at their
 stated depth. Publication and exact-head CI remain separate checks.
-Receipt-only approval/PR/CI bookkeeping may follow this snapshot.
+Published as draft [PR #59](https://github.com/cabi24/SFRush2049-decomp/pull/59).
+Initial published tree `9584561eb9ef9e3cb6202282713933cde20abe38` exactly
+matched the locally tested tree; this subsequent receipt update changes only
+D10 and this review record. The PR description carries the final remote-head,
+tested-tree and exact-head CI receipt after completion. No merge is performed.
 
 ## Deliberately not run
 
