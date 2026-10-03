@@ -1,5 +1,5 @@
 {
-  "state": "active",
+  "state": "integrating-source-frozen",
   "owner": "/root/match_boot_tail_bt03_high",
   "packet": "BT03-high-helpers",
   "branch": "dot/boot-tail-bt03-high-helpers",
@@ -39,5 +39,6 @@
   "bytes": 584,
   "prior_packet": "Prior editing packet frozen and peer-approved; central integration owns it.",
   "edit_scope": "Only listed matching sources and cloud/work/boot_tail/BT03-high-helpers/**",
-  "stop": "Natural C89, actual source/caller/callee ABI, O2 then O1 evidence, maximum 20 directed variants per hypothesis with diagnosis. No overlaps, protected edits, prior-target reopening or missing rodata substitutions. Use /tmp isolated worktree."
+  "stop": "Natural C89, actual source/caller/callee ABI, O2 then O1 evidence, maximum 20 directed variants per hypothesis with diagnosis. No overlaps, protected edits, prior-target reopening or missing rodata substitutions. Use /tmp isolated worktree.",
+  "peer_approved_head": "6d5b195446d55027562e923fce225123ab775ae4"
 }

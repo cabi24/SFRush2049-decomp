@@ -1,5 +1,5 @@
 {
-  "state": "active",
+  "state": "integrating-source-frozen",
   "owner": "/root/match_boot_tail_bt05_bt07",
   "packet": "BT05-conditions",
   "branch": "dot/boot-tail-bt05-conditions",
@@ -34,5 +34,6 @@
   "bytes": 688,
   "prior_packet": "BT05 source-led research frozen peer PASS87fd05d1; zero matching credit",
   "edit_scope": "Only listed matching files and cloud/work/boot_tail/BT05-conditions/**",
-  "stop": "Natural C89/O2/O1 real ABI,20 directed variants maximum; no protected edits, overlaps, out-of-scope data inspection, unproved rodata or frozen residual reopening. New isolated worktrees belong in /tmp."
+  "stop": "Natural C89/O2/O1 real ABI,20 directed variants maximum; no protected edits, overlaps, out-of-scope data inspection, unproved rodata or frozen residual reopening. New isolated worktrees belong in /tmp.",
+  "peer_approved_head": "6acbc06132e0c767783948a0804d66d2ae20ac80"
 }

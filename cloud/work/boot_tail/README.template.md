@@ -332,3 +332,14 @@ The 12-byte getter is separate. Three qualified source-led rechecks add no uniqu
 attempts or matches; the improved signed donor probe does not replace the old
 full-width reconstruction. See wave6/README.md and wave6/unique_totals.json.
 Prior source-head proof is carried in wave5/ci.json; D10 remains unchanged.
+
+## Seventh cut: eight additional peer-reviewed bodies
+
+The first six source cuts now have 157 unique new exact-CI-verified bodies /
+11,236 B. Seventh cut adds eight peer-reviewed strict local bodies / 824 B and
+eight complete nonmatches / 940 B. If its exact-head CI passes, the unique new
+matching union becomes 165 bodies / 12,060 B, plus the separate 12-byte getter.
+Across 224 distinct attempts, 58 complete nonmatches /6,684 B and one 96-byte
+blocked source lead remain outside match credit. See wave7/README.md and
+wave7/unique_totals.json. Prior proof is in wave6/ci.json; later candidates
+are excluded from the frozen cut. D10 remains unchanged.

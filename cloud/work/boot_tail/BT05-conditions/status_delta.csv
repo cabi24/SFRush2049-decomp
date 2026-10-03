@@ -1,0 +1,6 @@
+address,name,size,cluster,status,flags,diff_words,source_path,note
+0x80021C58,func_80021C58,132,BT05,nonmatch,-g0 -O2 -mips2 -G 0 -non_shared,21,cloud/work/boot_tail/BT05-conditions/nonmatch/func_80021C58.c,COMPLETE-NONMATCH; bounded natural conditional transfer reconstruction; halfword lookup ABI preserved.
+0x80021CDC,func_80021CDC,128,BT05,nonmatch,-g0 -O2 -mips2 -G 0 -non_shared,21,cloud/work/boot_tail/BT05-conditions/nonmatch/func_80021CDC.c,COMPLETE-NONMATCH; bounded natural conditional transfer reconstruction; halfword lookup ABI preserved.
+0x80021D5C,func_80021D5C,156,BT05,nonmatch,-g0 -O2 -mips2 -G 0 -non_shared,21,cloud/work/boot_tail/BT05-conditions/nonmatch/func_80021D5C.c,COMPLETE-NONMATCH; bounded natural conditional transfer reconstruction; halfword lookup ABI preserved.
+0x80021DF8,func_80021DF8,124,BT05,nonmatch,-g0 -O2 -mips2 -G 0 -non_shared,19,cloud/work/boot_tail/BT05-conditions/nonmatch/func_80021DF8.c,COMPLETE-NONMATCH; bounded natural conditional transfer reconstruction; halfword lookup ABI preserved.
+0x80021E74,func_80021E74,148,BT05,nonmatch,-g0 -O2 -mips2 -G 0 -non_shared,16,cloud/work/boot_tail/BT05-conditions/nonmatch/func_80021E74.c,COMPLETE-NONMATCH; bounded natural conditional transfer reconstruction; halfword lookup ABI preserved.

@@ -1,0 +1,25 @@
+{
+  "repository": "AxioDL/musyx",
+  "revision": "78d2e16e4905fc675952162d331c24d5198b2687",
+  "license": "CC0-1.0",
+  "license_url": "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/LICENSE",
+  "header": {
+    "path": "include/musyx/synthdata.h",
+    "blob_sha": "3170e8ffabc2bd1e8c4212a0d32000d0657cee73",
+    "url": "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/include/musyx/synthdata.h",
+    "observed_declaration": "MSTEP* dataGetMacro(u16 mid);"
+  },
+  "source_family": {
+    "path": "src/musyx/runtime/synthmacros.c",
+    "blob_sha": "a3203f9e0032fa5e9d08fa5e51da80acf4cab0c0",
+    "url": "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/src/musyx/runtime/synthmacros.c",
+    "definitions": [
+      "mcmdIfKey",
+      "mcmdIfVelocity",
+      "mcmdIfModulation",
+      "mcmdIfRandom",
+      "mcmdGosub"
+    ],
+    "qualification": "PC/Dolphin family context only. Native offsets, unsigned full high-word velocity comparison, byte status and single-level saved pointer pair are authoritative; modern reference layout and multi-entry call stack are not copied."
+  }
+}

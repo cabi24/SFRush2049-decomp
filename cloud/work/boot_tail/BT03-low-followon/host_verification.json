@@ -1,0 +1,27 @@
+{
+  "result": "PASS_FOR_DECLARED_HOST_SEMANTICS",
+  "tests_passed": 6,
+  "host_standard": "C89 with pedantic-errors, Wall, Wextra and Werror",
+  "sanitizers": [
+    "AddressSanitizer",
+    "UndefinedBehaviorSanitizer"
+  ],
+  "leak_sanitizer": "Disabled because ptrace prevents it in this executor; harnesses and candidate bodies do not allocate heap memory. Address/undefined-behavior checks remain enabled and halt on errors.",
+  "candidate_calls": 524455,
+  "case_counts": {
+    "rate_clamp_all_u16_values_at_7_valid_indices": 458752,
+    "parameter_forwarding_and_four_output_addresses": 42,
+    "release_dispatch_valid_indices_and_boolean_classes": 63,
+    "tail_copy_counts_including_overlap": 61,
+    "relative_resource_all_u16_queries_plus_empty_sentinel": 65537
+  },
+  "source_sha256": {
+    "cloud/work/boot_tail/BT03-low-followon/func_80014A0C_NONMATCH.c": "71a5444188118d8a0db769d1cf8fb79d95a6582706e84d1797eda0afb3aa94cb",
+    "cloud/matches/boot_tail/func_80014A74.c": "8b49909eff2b8337b03e83f17a89ac147731bdd20562e73e922da1c48c7531d3",
+    "cloud/matches/boot_tail/func_80014B3C.c": "01516f4f52055a9784f897aab9466fa7487eb832a3449e7efc52d7f62f01c3df",
+    "cloud/work/boot_tail/BT03-low-followon/func_80014C60_NONMATCH.c": "8c41d5081c7c87e00f2688ba60007b8407b465faafd6f801c3542011456282f6",
+    "cloud/work/boot_tail/BT03-low-followon/func_80014E1C_NONMATCH.c": "bb623f33772cc3eabc0ecf84840aa1ae8e990f286c896dfd95a905605d060665"
+  },
+  "test_source_sha256": "ef4e05ace6af628ec301a22f33d91993cf57dd351c379ab3bf73b901eb0a587e",
+  "limits": "Native matches are established separately by strict IDO replay. Host cases cover valid array indices, allocated sample destinations and finite aligned forward resource records; no malformed-list, game-runtime, original-helper implementation or cartridge claim."
+}
