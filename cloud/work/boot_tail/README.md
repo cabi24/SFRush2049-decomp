@@ -4,9 +4,9 @@ The 412 assigned functions account for **95,012 B**.
 The current ledger records **244 open functions / 84,544 B**,
 **0 confirmed non-C rows**, **1
 pre-existing verified bodies / 12 B**, and
-**73 newly verified bodies / 3,060 B**.
-There are **62 claimed functions / 5,212 B** and
-**32 nonmatches / 2,184 B**.
+**103 newly verified bodies / 4,924 B**.
+There are **21 claimed functions / 2,012 B** and
+**43 nonmatches / 3,520 B**.
 
 Packet 1 itself introduced zero matching bodies or verified bytes. Its initial
 verified entry imports the existing 12-byte `func_80010A00` PR #54 receipt, now
@@ -258,8 +258,8 @@ repository regression, native equality proof, target/toolchain check or ROM test
 ```json
 {
   "all_tail_distinct_directed_edges": 671,
-  "claimed_bytes": 5212,
-  "claimed_functions": 62,
+  "claimed_bytes": 2012,
+  "claimed_functions": 21,
   "cluster_count": 8,
   "cohort_count": 17,
   "game_called_all_inventory": 21,
@@ -270,11 +270,11 @@ repository regression, native equality proof, target/toolchain check or ROM test
   "in_scope_functions": 412,
   "inventory_function_bytes": 99120,
   "inventory_functions": 439,
-  "new_verified_bytes": 3060,
-  "new_verified_functions": 73,
+  "new_verified_bytes": 4924,
+  "new_verified_functions": 103,
   "non_c_functions": 0,
-  "nonmatch_bytes": 2184,
-  "nonmatch_functions": 32,
+  "nonmatch_bytes": 3520,
+  "nonmatch_functions": 43,
   "open_bytes": 84544,
   "open_functions": 244,
   "preexisting_verified_bytes": 12,
@@ -430,3 +430,14 @@ the unique new matching total becomes 103 bodies / 4,924 B. No source is counted
 twice. See wave3/README.md and the exact source manifests; later candidates are
 excluded. The prior #62 CI receipt is now carried in wave2/ci.json. D10 stays
 unchanged; authoritative ledger/receipts remain in the allowed cloud files.
+
+## Fourth cut: 21 more bodies and one table-proof gap
+
+Prior published cuts have 103 new exact-CI-verified bodies / 4,924 B. This cut
+adds 21 peer-reviewed local strict matches / 2,012 B, pending its own CI. The
+union is 124 unique new bodies / 6,936 B plus the historical 12-byte getter.
+New research comprises ten complete nonmatches / 1,240 B and one 96-byte
+SOURCE-LEAD at 80021548, explicitly needs-rodata-proof: its canonical six-entry
+case mapping and local-table relocation are unproved. It is not credited as a
+complete native reconstruction or match. See wave4/unique_totals.json. Later
+work and source-led rechecks are excluded. D10 remains untouched.
