@@ -1,0 +1,258 @@
+{
+  "verdict": "NONMATCH_CONFIRMED",
+  "claims": [],
+  "source_sha256": "8fc1a58103ac20bb5cb58d9995ca07f39aa068689d65169e81161a5295d7d339",
+  "base_commit": "a12daa63ae67c8dab3404efb666089c884dadfd4",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "target_start": "0x8010c448",
+  "target_end_exclusive": "0x8010c588",
+  "target_bytes": 320,
+  "candidate_function_bytes": 304,
+  "candidate_text_bytes": 304,
+  "target_sha256": "24eeff04bedb00e173b55621b2fc2a7832a90cc4dcbdc254a6d4a9b63fc4120e",
+  "resolved_sha256": "281b88bc37c15b2dcd606346ca47088c0e732cd54e4994cf5a81bf9d3420f380",
+  "object_sha256": "13af3ee06ed443887e991cbf18a0c25e9d67ca3532cb2693eb0c735100a61790",
+  "compiler_sha256": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+  "comparison": {
+    "differing": 45,
+    "total": 80,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "differences": [
+    {
+      "offset": "0x8",
+      "target": "0x27bdffe0",
+      "candidate": "0x27bdffe8"
+    },
+    {
+      "offset": "0x30",
+      "target": "0x10000041",
+      "candidate": "0x1000003d"
+    },
+    {
+      "offset": "0x8c",
+      "target": "0xe7a80010",
+      "candidate": "0xc7a6000c"
+    },
+    {
+      "offset": "0x90",
+      "target": "0xc46a0010",
+      "candidate": "0x44812000"
+    },
+    {
+      "offset": "0x94",
+      "target": "0xc7a8000c",
+      "candidate": "0x3c01c000"
+    },
+    {
+      "offset": "0x98",
+      "target": "0x46105481",
+      "candidate": "0xe7a80010"
+    },
+    {
+      "offset": "0x9c",
+      "target": "0x44818000",
+      "candidate": "0xc46a0010"
+    },
+    {
+      "offset": "0xa0",
+      "target": "0x3c01c000",
+      "candidate": "0x46063202"
+    },
+    {
+      "offset": "0xa4",
+      "target": "0xe7b20014",
+      "candidate": "0x46040000"
+    },
+    {
+      "offset": "0xa8",
+      "target": "0xc7a40014",
+      "candidate": "0x46105481"
+    },
+    {
+      "offset": "0xac",
+      "target": "0x46100000",
+      "candidate": "0xe7b20014"
+    },
+    {
+      "offset": "0xb0",
+      "target": "0x46042182",
+      "candidate": "0xc7aa0014"
+    },
+    {
+      "offset": "0xb4",
+      "target": "0x0",
+      "candidate": "0x460a5402"
+    },
+    {
+      "offset": "0xb8",
+      "target": "0x46084282",
+      "candidate": "0x46104080"
+    },
+    {
+      "offset": "0xbc",
+      "target": "0x460a3080",
+      "candidate": "0x46000182"
+    },
+    {
+      "offset": "0xc0",
+      "target": "0x46000182",
+      "candidate": "0x50e00005"
+    },
+    {
+      "offset": "0xc4",
+      "target": "0x10e00004",
+      "candidate": "0x4602303c"
+    },
+    {
+      "offset": "0xc8",
+      "target": "0x0",
+      "candidate": "0x46000482"
+    },
+    {
+      "offset": "0xcc",
+      "target": "0x46000482",
+      "candidate": "0x46121101"
+    },
+    {
+      "offset": "0xd0",
+      "target": "0x46121101",
+      "candidate": "0xe4e40000"
+    },
+    {
+      "offset": "0xd4",
+      "target": "0xe4e40000",
+      "candidate": "0x4602303c"
+    },
+    {
+      "offset": "0xd8",
+      "target": "0x46061281",
+      "candidate": "0xc7a00010"
+    },
+    {
+      "offset": "0xdc",
+      "target": "0x44804000",
+      "candidate": "0x45020004"
+    },
+    {
+      "offset": "0xe0",
+      "target": "0xc7a00010",
+      "candidate": "0x44815000"
+    },
+    {
+      "offset": "0xe4",
+      "target": "0x460a403c",
+      "candidate": "0x10000010"
+    },
+    {
+      "offset": "0xe8",
+      "target": "0x0",
+      "candidate": "0x1025"
+    },
+    {
+      "offset": "0xec",
+      "target": "0x45020004",
+      "candidate": "0x44815000"
+    },
+    {
+      "offset": "0xf0",
+      "target": "0x44818000",
+      "candidate": "0x1825"
+    },
+    {
+      "offset": "0xf4",
+      "target": "0x10000010",
+      "candidate": "0x3c014190"
+    },
+    {
+      "offset": "0xf8",
+      "target": "0x1025",
+      "candidate": "0x4600503c"
+    },
+    {
+      "offset": "0xfc",
+      "target": "0x44818000",
+      "candidate": "0x0"
+    },
+    {
+      "offset": "0x100",
+      "target": "0x3c014190",
+      "candidate": "0x45020009"
+    },
+    {
+      "offset": "0x104",
+      "target": "0x1025",
+      "candidate": "0x601025"
+    },
+    {
+      "offset": "0x108",
+      "target": "0x4600803c",
+      "candidate": "0x44814000"
+    },
+    {
+      "offset": "0x110",
+      "target": "0x45000009",
+      "candidate": "0x4608003c"
+    },
+    {
+      "offset": "0x118",
+      "target": "0x44819000",
+      "candidate": "0x45020003"
+    },
+    {
+      "offset": "0x11c",
+      "target": "0x0",
+      "candidate": "0x601025"
+    },
+    {
+      "offset": "0x120",
+      "target": "0x4612003c",
+      "candidate": "0x24030001"
+    },
+    {
+      "offset": "0x124",
+      "target": "0x0",
+      "candidate": "0x601025"
+    },
+    {
+      "offset": "0x128",
+      "target": "0x45000003",
+      "candidate": "0x3e00008"
+    },
+    {
+      "offset": "0x12c",
+      "target": "0x0",
+      "candidate": "0x27bd0018"
+    },
+    {
+      "offset": "0x130",
+      "target": "0x10000001",
+      "candidate": null
+    },
+    {
+      "offset": "0x134",
+      "target": "0x24020001",
+      "candidate": null
+    },
+    {
+      "offset": "0x138",
+      "target": "0x3e00008",
+      "candidate": null
+    },
+    {
+      "offset": "0x13c",
+      "target": "0x27bd0020",
+      "candidate": null
+    }
+  ],
+  "missing_native_bytes": 16,
+  "nonzero_excess_words": 0,
+  "resolved_symbols": {
+    "player_array": "0x80152818",
+    "D_8014AA3A": "0x8014aa3a"
+  },
+  "replay_method": "Fresh direct IDO compile then GNU ld and objcopy; full canonical relocation replay agrees; no masks"
+}

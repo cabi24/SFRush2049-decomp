@@ -1,0 +1,11 @@
+{
+  "cases": 7620,
+  "result": "PASS",
+  "target_sha256": "24eeff04bedb00e173b55621b2fc2a7832a90cc4dcbdc254a6d4a9b63fc4120e",
+  "limitations": [
+    "No FCSR exception or signaling-NaN payload model",
+    "Valid accessible indices 0..7; native population count not established",
+    "Single-threaded host IEEE binary32 round-to-nearest"
+  ],
+  "output_alias_modes": 9
+}
