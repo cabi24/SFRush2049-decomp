@@ -1,0 +1,59 @@
+{
+  "matching_prs": [
+    24,
+    40
+  ],
+  "prior_game_locks_unchanged": 664,
+  "all_complete_bodies": 666,
+  "body_sha256": {
+    "func_800B7360": "22700d38ddaad48bde81bfb27dafaca3128bc7dc40c5b7d60dc26969750f5a10",
+    "func_800A7830": "9d87042b1f3fe78b5790f158947659cb729695982b021688c2c74b84e0985d37"
+  },
+  "produce": {
+    "spliced": 666,
+    "image_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d",
+    "image_bytes": 647072,
+    "blob_bytes": 326180,
+    "blob_sha256": "9e632d21b7d0d293563755d9f2033557cb1a4d91d7df6e8d41e68d8afe3e5f7d",
+    "stream_matches_rom": true
+  },
+  "rom": {
+    "produce": {
+      "spliced": 666,
+      "image_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d",
+      "image_bytes": 647072,
+      "blob_bytes": 326180,
+      "blob_sha256": "9e632d21b7d0d293563755d9f2033557cb1a4d91d7df6e8d41e68d8afe3e5f7d",
+      "stream_matches_rom": true
+    },
+    "rom_ok": true,
+    "rom_tail": "Verifying built ROM hash...\nbuild/us/rush2049.us.z64: OK\nROM matches!\nbuild/us/rush2049.us.z64: OK\nROM matches!\nMAKE=0 TEST=0"
+  },
+  "game": {
+    "functions": 666,
+    "total_functions": 1216,
+    "bytes": 100656,
+    "total_bytes": 647072
+  },
+  "static": {
+    "functions": 158,
+    "total_functions": 230,
+    "bytes": 44808,
+    "total_bytes": 61440
+  },
+  "combined": {
+    "bytes": 145464,
+    "total_bytes": 708512,
+    "percentage": 20.530915496138384
+  },
+  "rom_sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+  "reviewed_heads": {
+    "40": "c66eba909eddaf91d5b7c314b371da1f75b0a38f",
+    "24": "b2b41ad324c03fcfea3ba843acd9b79ef7ea5553"
+  },
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source_sha256": {
+    "func_800B7360": "2f2de46ee678b05edc3a7470a605b1499bfea2880ce066817921cb0514fcaad4",
+    "func_800A7830": "448e617d25e0d56e2ecb87b421cb492f3db7c8c1986036a8518a6b9cb09b3f86"
+  }
+}
